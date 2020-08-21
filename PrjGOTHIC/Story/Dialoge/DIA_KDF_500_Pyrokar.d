@@ -214,6 +214,7 @@ func void DIA_Pyrokar_FIRE_Info()
 	AI_Output(other,self,"DIA_Pyrokar_FIRE_15_06");	//Я настаиваю на прохождении Испытания Огнем.
 	AI_Output(self,other,"DIA_Pyrokar_FIRE_11_07");	//В таком случае - так тому и быть. Когда ты будешь готов, каждый из магов Высшего Совета даст тебе задание, которое ты должен будешь выполнить.
 	AI_Output(self,other,"DIA_Pyrokar_FIRE_11_08");	//Да сжалится Иннос над твоей душой.
+	KDF_Aufnahme = LOG_Running;
 	B_LogEntry(TOPIC_FireContest,"Я потребовал у Пирокара пройти Испытание Огнем. Теперь я должен выполнить три задания Высшего Совета.");
 };
 
@@ -517,7 +518,10 @@ func void DIA_Pyrokar_OATH_Info()
 	AI_PrintScreen("Легкая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	Fire_Contest = TRUE;
 	Snd_Play("LEVELUP");
-	Npc_ExchangeRoutine(Lothar,"START");
+	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
+	{
+		Npc_ExchangeRoutine(Lothar,"START");
+	};
 	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
 	KDF_Aufnahme = LOG_SUCCESS;
 //	SLD_Aufnahme = LOG_OBSOLETE;
@@ -959,6 +963,21 @@ func void DIA_Pyrokar_Parlan_Info()
 };
 
 
+func void B_BuildLearnDialog_Pyrokar()
+{
+	Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
+	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
+	if(other.aivar[REAL_MANA_MAX] >= T_MEGA)
+	{
+		AI_Output(self,other,"DIA_Pyrokar_TEACH_MANA_11_00");	//Я чувствую, как магическая энергия течет через тебя, не зная преград. Даже я не могу показать тебе, как повысить ее еще больше.
+	}
+	else
+	{
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Pyrokar_TEACH_MANA_1);
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Pyrokar_TEACH_MANA_5);
+	};
+};
+
 instance DIA_Pyrokar_TEACH_MANA(C_Info)
 {
 	npc = KDF_500_Pyrokar;
@@ -981,38 +1000,28 @@ func int DIA_Pyrokar_TEACH_MANA_Condition()
 func void DIA_Pyrokar_TEACH_MANA_Info()
 {
 	AI_Output(other,self,"DIA_Pyrokar_TEACH_MANA_15_00");	//Я хочу повысить мои магические способности.
-	Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Pyrokar_TEACH_MANA_1);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Pyrokar_TEACH_MANA_5);
+	B_BuildLearnDialog_Pyrokar();
 };
 
 func void DIA_Pyrokar_TEACH_MANA_BACK()
 {
-//	if(other.attribute[ATR_MANA_MAX] >= 250)
-	if(other.aivar[REAL_MANA_MAX] >= 250)
-	{
-		AI_Output(self,other,"DIA_Pyrokar_TEACH_MANA_11_00");	//Я чувствую, как магическая энергия течет через тебя, не зная преград. Даже я не могу показать тебе, как повысить ее еще больше.
-	};
 	Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
 };
 
 func void DIA_Pyrokar_TEACH_MANA_1()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MEGA);
-	Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Pyrokar_TEACH_MANA_1);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Pyrokar_TEACH_MANA_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MEGA))
+	{
+		B_BuildLearnDialog_Pyrokar();
+	};
 };
 
 func void DIA_Pyrokar_TEACH_MANA_5()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MEGA);
-	Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Pyrokar_TEACH_MANA_1);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Pyrokar_TEACH_MANA_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MEGA))
+	{
+		B_BuildLearnDialog_Pyrokar();
+	};
 };
 
 func void B_Pyrokar_BLESSING()
@@ -1207,10 +1216,10 @@ func void DIA_Pyrokar_GIVEINNOSEYE_wer()
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_08");	//Я боюсь, что он просто слишком много времени проводил наедине, за воротами и защитными стенами монастыря, открытый для опасностей всякого рода.
 //	Pedro.flags = 0;
 	Pedro_Traitor = TRUE;
-	B_LogEntry(TOPIC_INNOSEYE,"Невероятно. Хотя я ожидал чего-то подобного. Я опоздал, эти тупицы из монастыря позволили какому-то послушнику украсть Глаз, и теперь мне придется гнаться за предателем Педро и надеяться, что он еще не продал Глаз кому-нибудь.");
+	B_LogEntries(TOPIC_INNOSEYE,"Невероятно. Хотя я ожидал чего-то подобного. Я опоздал, эти тупицы из монастыря позволили какому-то послушнику украсть Глаз, и теперь мне придется гнаться за предателем Педро и надеяться, что он еще не продал Глаз кому-нибудь.");
 	Log_CreateTopic(TOPIC_TraitorPedro,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_TraitorPedro,LOG_Running);
-	B_LogEntry(TOPIC_TraitorPedro,"Предатель Педро украл Глаз Инноса из монастыря. Как я понимаю, маги Огня теперь из кожи вон лезут, чтобы найти этого предателя.");
+	B_LogNextEntry(TOPIC_TraitorPedro,"Предатель Педро украл Глаз Инноса из монастыря. Как я понимаю, маги Огня теперь из кожи вон лезут, чтобы найти этого предателя.");
 };
 
 
@@ -1549,6 +1558,10 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	B_LogEntry(TOPIC_DRACHENJAGD,"Теперь я готов к встрече с драконами. Глаз Инноса поможет мне уничтожить их. Но прежде чем вступать в битву с драконами, я должен не забыть надеть его. Я должен поговорить с драконами, прежде чем начинать сражение. Проблема состоит в том, что Глаз теряет свою силу каждый раз, когда я разговариваю с одним из них. Чтобы восстановить силу этого амулета, мне необходимо сердце дракона и пустая мензурка. Я должен объединить ослабленный камень и экстракт из драконьего сердца на алхимическом столе, прежде чем противостоять другому дракону.");
 	MIS_ReadyforChapter4 = TRUE;
 	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
+	if(StartChapter4InNewWorld == TRUE)
+	{
+		B_Kapitelwechsel(4,NEWWORLD_ZEN);
+	};
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
 };

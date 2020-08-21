@@ -16,7 +16,8 @@ instance NOV_612_Babo(Npc_Default)
 	Mdl_SetModelFatness(self,-1);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,30);
+//	B_SetFightSkills(self,30);
+	B_SetTeacherFightSkills(self,30,TeachLimit_2H_Babo,30,30);
 	daily_routine = Rtn_Start_612;
 };
 

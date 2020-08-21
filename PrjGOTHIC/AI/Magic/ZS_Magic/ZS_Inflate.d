@@ -61,7 +61,7 @@ func int ZS_Inflate_Loop()
 		else if(Npc_GetStateTime(self) == 5)
 		{
 			Mdl_SetModelFatness(self,9);
-			B_Say(self,other,"$Aargh_1");
+			B_Say(self,other,"$AARGH_1");
 		}
 		else if(Npc_GetStateTime(self) == 6)
 		{
@@ -74,7 +74,7 @@ func int ZS_Inflate_Loop()
 		else if(Npc_GetStateTime(self) == 8)
 		{
 			Mdl_SetModelFatness(self,11);
-			B_Say(self,other,"$Aargh_2");
+			B_Say(self,other,"$AARGH_2");
 		}
 		else if(Npc_GetStateTime(self) == 9)
 		{
@@ -99,7 +99,7 @@ func int ZS_Inflate_Loop()
 		else if(Npc_GetStateTime(self) == 14)
 		{
 			Mdl_SetModelFatness(self,5);
-			B_Say(self,other,"$Aargh_3");
+			B_Say(self,other,"$AARGH_3");
 		}
 		else if(Npc_GetStateTime(self) == 15)
 		{

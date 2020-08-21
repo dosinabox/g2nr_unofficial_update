@@ -204,7 +204,7 @@ func void DIA_Addon_Greg_NW_Stadtwachen_klamotten()
 
 func void DIA_Addon_Greg_NW_Stadtwachen_nochnicht()
 {
-	AI_Output(other,self,"DIA_Addon_Greg_NW_Stadtwachen_nochnicht_15_00");	//Я должен еще подумать.
+	DIA_Common_INeedToThinkAboutIt();
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Stadtwachen_nochnicht_01_01");	//Хорошо. Но поспеши, у меня мало времени.
 	AI_StopProcessInfos(self);
 };
@@ -443,7 +443,7 @@ func void DIA_Addon_Greg_NW_was_HierGold()
 {
 	if(Npc_HasItems(other,ItMi_Gold) < 10)
 	{
-		AI_Output(other,self,"DIA_1013_BANDIT_DEXTER_15_06");	//Эээ... Я только что понял, что у меня не осталось даже десяти монет.
+		DIA_Common_NotEven10Gold();
 	}
 	else
 	{
@@ -596,7 +596,7 @@ func void DIA_Addon_Greg_NW_RakeCavePlundered_No()
 	AI_Output(other,self,"DIA_Addon_Greg_NW_RakeCavePlundered_No_15_00");	//Нет.
 	if(RAKEPLACE[1] == TRUE)
 	{
-		AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?
+		DIA_Common_01_AreYouTryingToPissMeOff();
 		AI_Output(other,self,"DIA_Addon_Greg_NW_RakeCavePlundered_No_15_02");	//Э-э... там ничего не было.
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_03");	//Тысяча чертей! Я так и знал! Меня опять опередили.
@@ -854,7 +854,7 @@ func void DIA_Addon_Greg_NW_DexterFound_Info()
 	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_15_00");	//Я думаю, что тебе нужен человек по имени Декстер.
 	if(GregLocation == Greg_Dexter)
 	{
-		AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?
+		DIA_Common_01_AreYouTryingToPissMeOff();
 	}
 	else
 	{
@@ -875,7 +875,7 @@ func void DIA_Addon_Greg_NW_DexterFound_weg()
 
 func void DIA_Addon_Greg_NW_DexterFound_together()
 {
-	AI_Output(other,self,"DIA_Addon_Diego_Together_15_00");	//Давай пойдем вместе.
+	DIA_Common_LetsGoTogether();
 	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_together_01_01");	//Нет, я пойду один. У меня с ним свои личные счеты.
 };
 

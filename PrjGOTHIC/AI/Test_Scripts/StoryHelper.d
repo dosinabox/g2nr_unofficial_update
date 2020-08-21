@@ -82,6 +82,25 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
 	};*/
+	if(MIS_ReadyforChapter4 == FALSE)
+	{
+		if(StartChapter4InNewWorld == FALSE)
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Включить начало четвертой главы в Хоринисе",StoryHelper_Chapter4InNewWorld);
+		}
+		else
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Выключить начало четвертой главы в Хоринисе",StoryHelper_Log);
+		};
+	};
+	if(FullNPCRemoval == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить полное удаление NPC из мира",StoryHelper_FullNPCRemoval);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить полное удаление NPC из мира",StoryHelper_FullNPCRemoval);
+	};
 	if(AlternativeSmithing == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить альтернативное обучение у Беннета",StoryHelper_AlternativeSmithing);
@@ -735,6 +754,36 @@ func void StoryHelper_HonestStatCalculation()
 	b_build_settings_diag();
 };
 
+func void StoryHelper_FullNPCRemoval()
+{
+	if(FullNPCRemoval == TRUE)
+	{
+		FullNPCRemoval = FALSE;
+		PrintScreen("Полное удаление NPC из мира выключено",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		FullNPCRemoval = TRUE;
+		PrintScreen("Полное удаление NPC из мира включено",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_Chapter4InNewWorld()
+{
+	if(StartChapter4InNewWorld == TRUE)
+	{
+		StartChapter4InNewWorld = FALSE;
+		PrintScreen("Четвертая глава начнется в Долине рудников",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		StartChapter4InNewWorld = TRUE;
+		PrintScreen("Четвертая глава начнется в Хоринисе",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
 func void StoryHelper_PatchSettings_BACK()
 {
 	Info_ClearChoices(StoryHelper_PatchSettings);
@@ -930,7 +979,7 @@ func void StoryHelper_KAPITEL4ANFANG()
 	B_Kapitelwechsel(3,NEWWORLD_ZEN);
 	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
-	CreateInvItems(self,ItMi_InnosEye_MIS,1);
+	CreateInvItems(hero,ItMi_InnosEye_MIS,1);
 	MIS_ReadyforChapter4 = TRUE;
 	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
 	B_Kapitelwechsel(4,NEWWORLD_ZEN);

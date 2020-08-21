@@ -530,7 +530,7 @@ func void DIA_Cassia_BevorLernen_Info()
 
 func void DIA_Cassia_BevorLernen_Spaeter()
 {
-	AI_Output(other,self,"DIA_Bennet_WannaSmith_Later_15_00");	//Ну, может быть, позже...
+	DIA_Common_MaybeLater();
 	Info_ClearChoices(DIA_Cassia_BevorLernen);
 };
 
@@ -567,6 +567,14 @@ func void DIA_Cassia_BevorLernen_Pickpocket()
 };
 
 
+func void B_BuildLearnDialog_Cassia()
+{
+	Info_ClearChoices(DIA_Cassia_TEACH);
+	Info_AddChoice(DIA_Cassia_TEACH,Dialog_Back,DIA_Cassia_TEACH_BACK);
+	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Cassia_TEACH_1);
+	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Cassia_TEACH_5);
+};
+
 instance DIA_Cassia_TEACH(C_Info)
 {
 	npc = VLK_447_Cassia;
@@ -589,10 +597,7 @@ func int DIA_Cassia_TEACH_Condition()
 func void DIA_Cassia_TEACH_Info()
 {
 	AI_Output(other,self,"DIA_Cassia_TEACH_15_00");	//Я хочу стать более ловким.
-	Info_ClearChoices(DIA_Cassia_TEACH);
-	Info_AddChoice(DIA_Cassia_TEACH,Dialog_Back,DIA_Cassia_TEACH_BACK);
-	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Cassia_TEACH_1);
-	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Cassia_TEACH_5);
+	B_BuildLearnDialog_Cassia();
 };
 
 func void DIA_Cassia_TEACH_BACK()
@@ -602,22 +607,19 @@ func void DIA_Cassia_TEACH_BACK()
 
 func void DIA_Cassia_TEACH_1()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MAX);
-	Info_ClearChoices(DIA_Cassia_TEACH);
-	Info_AddChoice(DIA_Cassia_TEACH,Dialog_Back,DIA_Cassia_TEACH_BACK);
-	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Cassia_TEACH_1);
-	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Cassia_TEACH_5);
+	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MAX))
+	{
+		B_BuildLearnDialog_Cassia();
+	};
 };
 
 func void DIA_Cassia_TEACH_5()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MAX);
-	Info_ClearChoices(DIA_Cassia_TEACH);
-	Info_AddChoice(DIA_Cassia_TEACH,Dialog_Back,DIA_Cassia_TEACH_BACK);
-	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Cassia_TEACH_1);
-	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Cassia_TEACH_5);
+	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MAX))
+	{
+		B_BuildLearnDialog_Cassia();
+	};
 };
-
 
 instance DIA_Cassia_Pickpocket(C_Info)
 {

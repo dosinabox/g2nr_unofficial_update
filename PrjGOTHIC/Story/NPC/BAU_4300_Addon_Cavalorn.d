@@ -18,7 +18,8 @@ instance BAU_4300_Addon_Cavalorn(Npc_Default)
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,50);
+//	B_SetFightSkills(self,50);
+	B_SetTeacherFightSkills(self,TeachLimit_1H_Cavalorn,50,TeachLimit_Bow_Cavalorn,50);
 	daily_routine = Rtn_Start_4300;
 };
 

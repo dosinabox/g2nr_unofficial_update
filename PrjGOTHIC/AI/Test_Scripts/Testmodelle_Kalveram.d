@@ -155,6 +155,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_MIL_M);
 	CreateInvItem(self,ITAR_PAL_M);
 	CreateInvItem(self,ITAR_PAL_H);
+	CreateInvItem(self,ITAR_PAL_S);
 	CreateInvItem(self,ITAR_Bau_L);
 	CreateInvItem(self,ITAR_Bau_M);
 	CreateInvItem(self,ITAR_BauBabe_L);
@@ -165,7 +166,9 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_SLD_H);
 	CreateInvItem(self,ITAR_NOV_L);
 	CreateInvItem(self,ITAR_KDF_L);
+	CreateInvItem(self,ITAR_KDF_M);
 	CreateInvItem(self,ITAR_KDF_H);
+	CreateInvItem(self,ITAR_KDF_S);
 	CreateInvItem(self,ITAR_Leather_L);
 	CreateInvItem(self,ITAR_BDT_M);
 	CreateInvItem(self,ITAR_BDT_H);
@@ -173,6 +176,8 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_DJG_M);
 	CreateInvItem(self,ITAR_DJG_H);
 	CreateInvItem(self,ITAR_DJG_Crawler);
+	CreateInvItem(self,ITAR_DHT);
+	CreateInvItem(self,ITAR_OHT);
 //	CreateInvItem(self,ITAR_DJG_Babe);
 	CreateInvItem(self,ITAR_Xardas);
 	CreateInvItem(self,ITAR_Lester);
@@ -1485,7 +1490,7 @@ instance MobsiBrief(C_Item)
 	material = MAT_STONE;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "Исправить зависание.";
+	text[0] = "Исправить блокировку состояния.";
 	on_state[0] = UseMobsiBrief;
 	inv_rotz = 180;
 	inv_rotx = 90;
@@ -1584,23 +1589,24 @@ func void Use_StatsBook()
 		Doc_PrintLine(nDocID,0,"Ремесло (Константино):");
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Constantino_DunkelpilzCounter)," черных грибов продано"));
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Constantino_BigMushroomsCounter)," пищи рудокопа продано"));
-		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter)," золотых получено"));
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter),PRINT_GoldTaken));
 	}
 	else if(Player_IsApprentice == APP_Bosper)
 	{
 		Doc_PrintLine(nDocID,0,"Ремесло (Боспер):");
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(BosperFurCounter)," шкур продано"));
-		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter)," золотых получено"));
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter),PRINT_GoldTaken));
 	}
 	else if(Player_IsApprentice == APP_Harad)
 	{
 		Doc_PrintLine(nDocID,0,"Ремесло (Гарад):");
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(AnyAnvilUsed)," мечей выковано"));
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(HaradSwordsCounter)," мечей продано"));
-		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter)," золотых получено"));
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter),PRINT_GoldTaken));
 	};
 	Doc_SetMargins(nDocID,-1,10,20,275,20,1);
 	Doc_PrintLine(nDocID,1,"Молитвы Инносу:");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_GoldGiven)," золотых отдано"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_GoldGiven),PRINT_GoldGiven));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_Str)," силы получено"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_Dex)," ловкости получено"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_MaxHp)," макс. здоровья получено"));
@@ -1609,7 +1615,7 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,1,"Молитвы Белиару:");
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(GivenHitpoints)," макс. здоровья отдано"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(GivenMana)," макс. маны отдано"));
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(RecievedMoney)," золотых получено"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(RecievedMoney),PRINT_GoldTaken));
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Улучшения Когтя:");
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Beliar_ClawMaxHp)," макс. здоровья отдано"));
@@ -1630,7 +1636,7 @@ func void Use_StatsBook()
 	};
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Информация о сборке:");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 29/05/2020"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 21/08/2020"));
 	if(FIX_VERSION_SAVE == FALSE)
 	{
 		if(Addon_zuerst == TRUE)
@@ -1653,7 +1659,7 @@ instance Gold(C_Item)
 {
 	name = NAME_Bag;
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MISSION;
+	flags = ITEM_MULTI;
 	value = 0;
 	visual = "ItMi_Bag.3ds";
 	scemeName = "MAPSEALED";

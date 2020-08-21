@@ -10,18 +10,18 @@ func void B_PlayerFindItem(var int itm,var int amount)
 		itemname = item.description;
 		if(itm == ItMi_Gold)
 		{
-			concatText = ConcatStrings(IntToString(amount),PRINT_GoldErhalten);
+			concatText = ConcatStrings(IntToString(amount),PRINT_GoldTaken);
 			Print(concatText);
 			Snd_Play("Geldbeutel");
 		}
 		else if(amount == 1)
 		{
-			concatText = ConcatStrings(itemname,PRINT_Addon_erhalten);
+			concatText = ConcatStrings(itemname,PRINT_ItemTaken);
 			Print(concatText);
 		}
 		else
 		{
-			concatText = ConcatStrings(IntToString(amount),PRINT_ItemsErhalten);
+			concatText = ConcatStrings(IntToString(amount),PRINT_ItemsTaken);
 			concatText = ConcatStrings(concatText," (");
 			concatText = ConcatStrings(concatText,itemname);
 			concatText = ConcatStrings(concatText,")");

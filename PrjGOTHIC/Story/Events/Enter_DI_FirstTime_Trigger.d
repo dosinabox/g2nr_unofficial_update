@@ -13,7 +13,7 @@ func void enter_di_firsttime_trigger()
 	};*/
 	if(EnterDI_Kapitel6 == FALSE)
 	{
-		if(hero.attribute[ATR_DEXTERITY] <= 17)
+		if(hero.attribute[ATR_DEXTERITY] <= (Condition_Weidenbogen - DEX_Elixier))
 		{
 			Wld_InsertItem(ItPo_Perm_DEX,"FP_ITEM_DI_ENTER_05");
 		};

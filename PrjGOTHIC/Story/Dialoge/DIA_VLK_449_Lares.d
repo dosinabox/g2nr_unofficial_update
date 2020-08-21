@@ -2068,7 +2068,7 @@ func int DIA_Addon_Lares_GOFORESTPRE_Condition()
 func void DIA_Addon_Lares_GOFORESTPRE_ja()
 {
 	B_MakeRangerReadyForMeeting(self);
-	AI_Output(other,self,"DIA_Addon_Lares_GOFORESTPRE_ja_15_00");	//Да.
+	DIA_Common_Yes();
 	AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_ja_09_01");	//Прекрасно, друг мой. В таком случае, следуй за мной. Здесь может быть небезопасно.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"GUIDEMEDIUMWALD2");
@@ -2274,6 +2274,16 @@ func void DIA_Lares_DEX_Info()
 var int Lares_MerkeDEX;
 var int Lares_MerkeSTR;
 
+func void B_BuildLearnDialog_Lares()
+{
+	Info_ClearChoices(DIA_Lares_TEACH);
+	Info_AddChoice(DIA_Lares_TEACH,Dialog_Back,DIA_Lares_TEACH_BACK);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_TEACH_1);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_TEACH_5);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Lares_TEACHSTR_1);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Lares_TEACHSTR_5);
+};
+
 instance DIA_Lares_TEACH(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -2296,26 +2306,17 @@ func int DIA_Lares_TEACH_Condition()
 func void DIA_Lares_TEACH_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_Teach_15_00");	//Тренируй меня.
-//	Lares_MerkeDEX = other.attribute[ATR_DEXTERITY];
-//	Lares_MerkeSTR = other.attribute[ATR_STRENGTH];
 	Lares_MerkeDEX = other.aivar[REAL_DEXTERITY];
 	Lares_MerkeSTR = other.aivar[REAL_STRENGTH];
-	Info_ClearChoices(DIA_Lares_TEACH);
-	Info_AddChoice(DIA_Lares_TEACH,Dialog_Back,DIA_Lares_TEACH_BACK);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_TEACH_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_TEACH_5);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Lares_TEACHSTR_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Lares_TEACHSTR_5);
+	B_BuildLearnDialog_Lares();
 };
 
 func void DIA_Lares_TEACH_BACK()
 {
-//	if(other.attribute[ATR_DEXTERITY] > Lares_MerkeDEX)
 	if(other.aivar[REAL_DEXTERITY] > Lares_MerkeDEX)
 	{
 		AI_Output(self,other,"DIA_Lares_TEACH_BACK_09_00");	//Ты уже стал более ловким.
 	};
-//	if(other.attribute[ATR_STRENGTH] > Lares_MerkeSTR)
 	if(other.aivar[REAL_STRENGTH] > Lares_MerkeSTR)
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_TEACH_BACK_Add_09_00");	//(оценивающе) Очень хорошо. Ты стал сильнее.
@@ -2325,48 +2326,37 @@ func void DIA_Lares_TEACH_BACK()
 
 func void DIA_Lares_TEACH_1()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MED);
-	Info_ClearChoices(DIA_Lares_TEACH);
-	Info_AddChoice(DIA_Lares_TEACH,Dialog_Back,DIA_Lares_TEACH_BACK);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_TEACH_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_TEACH_5);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Lares_TEACHSTR_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Lares_TEACHSTR_5);
+	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MED))
+	{
+		B_BuildLearnDialog_Lares();
+	};
 };
 
 func void DIA_Lares_TEACH_5()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MED);
-	Info_ClearChoices(DIA_Lares_TEACH);
-	Info_AddChoice(DIA_Lares_TEACH,Dialog_Back,DIA_Lares_TEACH_BACK);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_TEACH_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_TEACH_5);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Lares_TEACHSTR_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Lares_TEACHSTR_5);
+	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MED))
+	{
+		B_BuildLearnDialog_Lares();
+	};
 };
 
 func void DIA_Lares_TEACHSTR_1()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_LOW);
-	Info_ClearChoices(DIA_Lares_TEACH);
-	Info_AddChoice(DIA_Lares_TEACH,Dialog_Back,DIA_Lares_TEACH_BACK);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_TEACH_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_TEACH_5);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Lares_TEACHSTR_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Lares_TEACHSTR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_LOW))
+	{
+		B_BuildLearnDialog_Lares();
+	};
 };
 
 func void DIA_Lares_TEACHSTR_5()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_LOW);
-	Info_ClearChoices(DIA_Lares_TEACH);
-	Info_AddChoice(DIA_Lares_TEACH,Dialog_Back,DIA_Lares_TEACH_BACK);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_TEACH_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_TEACH_5);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Lares_TEACHSTR_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Lares_TEACHSTR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_LOW))
+	{
+		B_BuildLearnDialog_Lares();
+	};
 };
 
+var int Lares_AnyNews_OneTime;
 
 instance DIA_Lares_AnyNews(C_Info)
 {
@@ -2392,8 +2382,19 @@ func void DIA_Lares_AnyNews_Info()
 	AI_Output(other,self,"DIA_Lares_AnyNews_15_00");	//Есть новости?
 	if(MIS_RescueBennet == LOG_SUCCESS)
 	{
-		AI_Output(self,other,"DIA_Lares_AnyNews_09_01");	//Основные новости связаны с тобой. Беннета отпустили, и он возвращается на ферму.
-		AI_Output(self,other,"DIA_Lares_AnyNews_09_02");	//Иди к нему, я думаю, он хочет отблагодарить тебя лично.
+		if(Lares_AnyNews_OneTime == FALSE)
+		{
+			AI_Output(self,other,"DIA_Lares_AnyNews_09_01");	//Основные новости связаны с тобой. Беннета отпустили, и он возвращается на ферму.
+			if(!Npc_KnowsInfo(other,DIA_Bennet_Present))
+			{
+				AI_Output(self,other,"DIA_Lares_AnyNews_09_02");	//Иди к нему, я думаю, он хочет отблагодарить тебя лично.
+			};
+			Lares_AnyNews_OneTime = TRUE;
+		}
+		else
+		{
+			DIA_Common_09_AllQuiet();
+		};
 	}
 	else
 	{

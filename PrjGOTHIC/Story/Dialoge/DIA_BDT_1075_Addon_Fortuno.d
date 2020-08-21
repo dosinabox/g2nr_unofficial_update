@@ -243,7 +243,7 @@ func void B_Fortuno_InfoManager()
 	{
 		Info_AddChoice(DIA_Addon_Fortuno_Trade,"(отдать всю болотную траву)",DIA_Addon_Fortuno_Trade_all);
 	};
-	Info_AddChoice(DIA_Addon_Fortuno_Trade,"(отдать 1 болотную траву)",DIA_Addon_Fortuno_Trade_1);
+	Info_AddChoice(DIA_Addon_Fortuno_Trade,"(отдать одну болотную траву)",DIA_Addon_Fortuno_Trade_1);
 };
 
 
@@ -385,6 +385,8 @@ func void DIA_Addon_Fortuno_more_Info()
 	Log_AddEntry(TOPIC_Addon_RavenKDW,"Ворону зачем-то понадобилась гробница жреца древней религии, которую он раскопал в шахте.");
 	Log_AddEntry(TOPIC_Addon_RavenKDW,"Ворон считает, что для осуществления его планов ему необходимы каменные таблички.");
 	Npc_ExchangeRoutine(self,"START");
+	B_StartOtherRoutine(BDT_10006_Addon_Bandit,"FORTUNO");
+	B_StartOtherRoutine(BDT_10010_Addon_Bandit,"FORTUNO");
 	B_GivePlayerXP(XP_Addon_Fortuno_03);
 };
 

@@ -70,14 +70,14 @@ func void B_BuildLearnDialog_Lares_DI()
 		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_DI_Training_DEX_1);
 		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_DI_Training_DEX_5);
 	};
-	if(VisibleTalentValue(NPC_TALENT_1H) < 100)
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Lares)
 	{
 		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lares_DI_Training_1H_1);
 		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lares_DI_Training_1H_5);
 	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (other.attribute[ATR_DEXTERITY] >= T_MED) && (VisibleTalentValue(NPC_TALENT_1H) >= 100))
+	if(Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (other.attribute[ATR_DEXTERITY] >= T_MED) && (VisibleTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Lares))
 	{
-		if((RealTalentValue(NPC_TALENT_1H) >= 100) && (other.aivar[REAL_DEXTERITY] >= T_MED))
+		if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Lares) && (other.aivar[REAL_DEXTERITY] >= T_MED))
 		{
 			DIA_Lares_DI_Teacher_permanent = TRUE;
 		};
@@ -133,7 +133,7 @@ func int DIA_Lares_DI_Training_Condition()
 func void DIA_Lares_DI_Training_Info()
 {
 	AI_Output(other,self,"DIA_Lares_DI_Training_15_00");	//Научи меня тому, что знаешь сам.
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (VisibleTalentValue(NPC_TALENT_1H) < 100))
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Lares))
 	{
 		AI_Output(self,other,"DIA_Lares_DI_Training_09_01");	//Нет проблем.
 	}
@@ -146,7 +146,7 @@ func void DIA_Lares_DI_Training_Info()
 
 func void DIA_Lares_DI_Training_1H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_1H_Lares))
 	{
 		B_Lares_DI_TeachComment();
 		B_BuildLearnDialog_Lares_DI();
@@ -155,7 +155,7 @@ func void DIA_Lares_DI_Training_1H_1()
 
 func void DIA_Lares_DI_Training_1H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_1H_Lares))
 	{
 		B_Lares_DI_TeachComment();
 		B_BuildLearnDialog_Lares_DI();

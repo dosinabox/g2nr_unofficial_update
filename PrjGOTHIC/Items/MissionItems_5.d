@@ -380,7 +380,6 @@ instance ItPo_PotionOfDeath_01_Mis(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	value = 0;
-//	visual = "ItMi_Flask.3ds";
 	visual = "ItPo_Special_03.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseItPo_PotionOfDeath;
@@ -389,18 +388,14 @@ instance ItPo_PotionOfDeath_01_Mis(C_Item)
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Слезы Инноса";
 	text[1] = PRINT_UnknownEffect;
-//	text[1] = "???";
-//	count[1] = Mana_Essenz;
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 
 func void UseItPo_PotionOfDeath()
 {
-	if(hero.guild == GIL_KDF)
+	if(self.guild == GIL_KDF)
 	{
-		Wld_PlayEffect("spellFX_LIGHTSTAR_BLUE",hero,hero,0,0,0,FALSE);
+		Wld_PlayEffect("spellFX_LIGHTSTAR_BLUE",self,self,0,0,0,FALSE);
 		Snd_Play("SFX_HealObsession");
 		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
@@ -415,13 +410,8 @@ func void UseItPo_PotionOfDeath()
 	}
 	else
 	{
-		AI_Wait(hero,3);
-		AI_PlayAni(self,"S_FIRE_VICTIM");
-		Wld_PlayEffect("VOB_MAGICBURN",hero,hero,0,0,0,FALSE);
-		B_Say(self,self,"$Dead");
-		AI_StopFX(self,"VOB_MAGICBURN");
-		Npc_ChangeAttribute(self,ATR_HITPOINTS,-self.attribute[ATR_HITPOINTS_MAX]);
-		Npc_StopAni(self,"S_FIRE_VICTIM");
+		self.aivar[AIV_ReadyForPainfulDeath] = TRUE;
+		AI_StartState(self,ZS_MagicFreeze,0,"");
 	};
 };
 
@@ -432,7 +422,6 @@ instance ItPo_PotionOfDeath_02_Mis(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	value = 0;
-//	visual = "ItMi_Flask.3ds";
 	visual = "ItPo_Special_03.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseItPo_PotionOfDeath;
@@ -442,8 +431,6 @@ instance ItPo_PotionOfDeath_02_Mis(C_Item)
 	description = "Слезы Инноса";
 	text[0] = "Это зелье наделяет магов Огня особыми способностями.";
 	text[1] = "Любой другой принявший его, найдет свою смерть.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItAm_AmulettOfDeath_Mis(C_Item)
@@ -452,7 +439,6 @@ instance ItAm_AmulettOfDeath_Mis(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = 1000;
-//	visual = "ItAm_Prot_Fire_01.3ds";
 	visual = "ItAm_AmulettOfDeath_Mis.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;

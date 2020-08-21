@@ -11,6 +11,7 @@ func void B_GiveTradeInv_Karras(var C_Npc slf)
 	{
 //		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItSc_SumGobSkel,4);
+		CreateInvItems(slf,ItSc_Fear,1);
 		CreateInvItems(slf,ItRi_Prot_Total_01,1);
 		Karras_ItemsGiven_Chapter_1 = TRUE;
 	};

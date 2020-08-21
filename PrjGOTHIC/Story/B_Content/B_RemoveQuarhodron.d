@@ -9,7 +9,7 @@ func void B_RemoveGhost()
 		if((SC_SummonedAncientGhost == TRUE) && (B_RemoveQuarhodron_OneTime == FALSE))
 		{
 			AI_Teleport(Quarhodron,"TOT");
-			B_RemoveNpc(NONE_ADDON_111_Quarhodron);
+			B_MoveNpcToMorgue(NONE_ADDON_111_Quarhodron);
 			Snd_Play("MFX_GhostVoice");
 			Snd_Play("MFX_Firestorm_Cast");
 			B_RemoveQuarhodron_OneTime = TRUE;
@@ -21,7 +21,7 @@ func void B_RemoveGhost()
 		if(B_RemoveRhademes_OneTime == FALSE)
 		{
 			AI_Teleport(Rhademes,"TOT");
-			B_RemoveNpc(NONE_ADDON_112_Rhademes);
+			B_MoveNpcToMorgue(NONE_ADDON_112_Rhademes);
 			Snd_Play("MFX_GhostVoice");
 			Snd_Play("MFX_Firestorm_Cast");
 			B_RemoveRhademes_OneTime = TRUE;

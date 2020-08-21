@@ -116,7 +116,7 @@ func int DIA_Neoras_Rezept_Condition()
 
 func void DIA_Neoras_Rezept_Info()
 {
-	AI_Output(other,self,"DIA_Neoras_Rezept_15_00");	//Насчет рецепта...
+	DIA_Common_AboutThatRecipe();
 	if(B_GiveInvItems(other,self,ItWr_ManaRezept,1))
 	{
 		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.

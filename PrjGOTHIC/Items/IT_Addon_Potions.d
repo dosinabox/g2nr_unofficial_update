@@ -5,7 +5,6 @@ instance ItPo_Addon_Geist_01(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	value = 300;
-//	visual = "ItPo_Perm_STR.3ds";
 	visual = "ItPo_Special_02.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseItPo_Geist_01;
@@ -33,7 +32,6 @@ instance ItPo_Addon_Geist_02(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	value = 300;
-//	visual = "ItPo_Perm_STR.3ds";
 	visual = "ItPo_Special_02.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseItPo_Geist_02;
@@ -64,7 +62,6 @@ instance ItPo_Health_Addon_04(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	value = Value_HpTrunk;
-//	visual = "ItPo_Health_03.3ds";
 	visual = "ItPo_Health_04.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseItPo_Health_04;
@@ -90,7 +87,6 @@ instance ItPo_Mana_Addon_04(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	value = Value_ManaTrunk;
-//	visual = "ItPo_Mana_03.3ds";
 	visual = "ItPo_Mana_04.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseItPo_Mana_04;

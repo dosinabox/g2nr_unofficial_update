@@ -18,7 +18,8 @@ instance SLD_802_Buster(Npc_Default)
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,30);
+//	B_SetFightSkills(self,30);
+	B_SetTeacherFightSkills(self,TeachLimit_1H_Buster,30,30,30);
 	daily_routine = Rtn_Start_802;
 };
 

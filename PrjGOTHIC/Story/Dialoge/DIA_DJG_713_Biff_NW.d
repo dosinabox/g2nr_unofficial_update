@@ -77,7 +77,7 @@ func int DIA_Biff_NW_QUIT_Condition()
 
 func void DIA_Biff_NW_QUIT_Info()
 {
-	AI_Output(other,self,"DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen_15_00");	//Боюсь, дальше наши пути расходятся.
+	DIA_Common_ImAfraidThatsTheEndForUs();
 	B_Biff_Verarschen();
 	Biff_IsOnBoard = LOG_FAILED;
 	Crewmember_Count -= 1;

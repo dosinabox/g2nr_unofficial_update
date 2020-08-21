@@ -17,7 +17,8 @@ instance PAL_268_Udar(Npc_Default)
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,65);
+//	B_SetFightSkills(self,65);
+	B_SetTeacherFightSkills(self,65,65,65,TeachLimit_Crossbow_Udar);
 	daily_routine = Rtn_Start_268;
 };
 

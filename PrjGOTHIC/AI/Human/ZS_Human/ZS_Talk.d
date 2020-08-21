@@ -56,7 +56,7 @@ func void ZS_Talk()
 				B_AssignCityGuide(self);
 			};
 		};
-		if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff_NW)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff_DI)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Pardos)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Pardos_NW)))
+		if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff_NW)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff_DI)))
 		{
 			B_Addon_GivePotion(self);
 		};

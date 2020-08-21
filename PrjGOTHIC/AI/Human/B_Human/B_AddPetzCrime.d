@@ -77,7 +77,7 @@ func void B_AddPetzCrime(var C_Npc slf,var int crime)
 			PETZCOUNTER_Farm_Sheepkiller += 1;
 		};
 	};
-	if(C_NpcBelongsToBL(slf))
+/*	if(C_NpcBelongsToBL(slf))
 	{
 		if(crime == CRIME_MURDER)
 		{
@@ -91,6 +91,6 @@ func void B_AddPetzCrime(var C_Npc slf,var int crime)
 		{
 			PETZCOUNTER_BL_Attack += 1;
 		};
-	};
+	};*/
 };
 

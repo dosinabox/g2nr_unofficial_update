@@ -20,7 +20,8 @@ instance SLD_800_Lee(Npc_Default)
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,70);
+//	B_SetFightSkills(self,70);
+	B_SetTeacherFightSkills(self,TeachLimit_1H_Lee,TeachLimit_2H_Lee,70,70);
 	daily_routine = Rtn_Start_800;
 };
 

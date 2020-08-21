@@ -254,7 +254,7 @@ func void DIA_Halvor_MESSAGE_Info()
 {
 	AI_Output(other,self,"DIA_Halvor_MESSAGE_15_00");	//я думаю, этот клочок бумаги имеет отношение к тебе...
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_01");	//„то?.. ƒай посмотрю.
-	AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_00");	//Ќе так быстро, мой друг.
+	DIA_Common_NotSoFastMyFriend();
 //	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_02");	//(в испарине) Ё-э... ’орошо, давай поговорим спокойно об этом - э-э... послушай. я перепродал товары, полученные от бандитов.
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_03");	//(торопливо) Ќо нет необходимости сообщать об этом ополчению, правда? я уверен, мы можем прийти к взаимопониманию, разве нет?
@@ -358,7 +358,7 @@ func int DIA_Halvor_Hehlerei_Condition()
 
 func void DIA_Halvor_Hehlerei_Info()
 {
-	AI_Output(other,self,"DIA_Coragon_Add_15_15");	//ѕосмотри, что у мен€ есть...
+	DIA_Common_LookWhatIGot();
 	Halvor_Score = 0;
 	if(Halvor_Day != Wld_GetDay())
 	{
@@ -400,7 +400,7 @@ func void DIA_Halvor_Hehlerei_Annehmen()
 	var int amount;
 	var string concatText;
 	amount = Npc_HasItems(other,ItMi_SilverPlate) + Npc_HasItems(other,ItMi_SilverCup);
-	concatText = ConcatStrings(IntToString(amount),PRINT_ItemsGegeben);
+	concatText = ConcatStrings(IntToString(amount),PRINT_ItemsGiven);
 	AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	Npc_RemoveInvItems(other,ItMi_SilverCup,Npc_HasItems(other,ItMi_SilverCup));
 	Npc_RemoveInvItems(other,ItMi_SilverPlate,Npc_HasItems(other,ItMi_SilverPlate));
@@ -491,7 +491,7 @@ func void DIA_Halvor_Crew_HelpMe()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Huno_Attentat_06_04");	//я ничего об этом не знаю и знать не хочу!
+		DIA_Common_06_IKnowNothingAboutIt();
 	};
 };
 

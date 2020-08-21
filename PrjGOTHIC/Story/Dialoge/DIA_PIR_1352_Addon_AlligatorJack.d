@@ -224,7 +224,7 @@ func void DIA_Addon_AlligatorJack_BDTRuestung_Info()
 
 func void DIA_Addon_AlligatorJack_BDTRuestung_gut()
 {
-	AI_Output(other,self,"DIA_Addon_AlligatorJack_BDTRuestung_gut_15_00");	//Звучит неплохо...
+	DIA_Common_SoundsGood();
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_BDTRuestung_gut_12_01");	//Да, для того, кто задумал покончить жизнь самоубийством.
 };
 

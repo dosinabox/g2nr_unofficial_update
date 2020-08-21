@@ -32,6 +32,8 @@ func int B_TeachPlayerTalentForeignLanguage(var C_Npc slf,var C_Npc oth,var int 
 		B_LogEntry(TOPIC_Language,LogText_Addon_Language_3);
 		PrintScreen("»зучено: язык жрецов",-1,-1,FONT_Screen,2);
 	};
+	TOPIC_End_Stoneplates = TRUE;
+	B_CheckLog();
 	return TRUE;
 };
 

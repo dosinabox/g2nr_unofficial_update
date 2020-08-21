@@ -186,7 +186,7 @@ func void DIA_Addon_Farim_MartinHelps_Info()
 	AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_05");	//Думаешь, он сможет сделать так, чтобы люди из ополчения оставили меня в покое?
 	AI_Output(other,self,"DIA_Addon_Farim_MartinHelps_15_06");	//Он так сказал.
 	MIS_Addon_Farim_PaladinFisch = LOG_SUCCESS;
-	if(Npc_HasItems(other,ItMi_Aquamarine))
+	if(Npc_HasItems(self,ItMi_Aquamarine))
 	{
 		AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_07");	//Отлично! Спасибо тебе. Мне нечем тебе заплатить... Хотя постой...
 		AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_08");	//Я нашел этот странный камень на одном из островов у побережья Хориниса.
@@ -224,7 +224,10 @@ func void DIA_Addon_Farim_Landstreicher_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Farim_Landstreicher_15_01");	//Ты знаешь что-нибудь о пропавших людях?
 	AI_Output(self,other,"DIA_Addon_Farim_Landstreicher_11_02");	//Мой друг Вильям встречался с какими-то подозрительными типами. И к чему это его привело?
-	AI_Output(self,other,"DIA_Addon_Farim_Landstreicher_11_03");	//Однажды он просто не пришел на работу. Больше я его не видел.
+	if(ToldFarimAboutDeadWilliam == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Farim_Landstreicher_11_03");	//Однажды он просто не пришел на работу. Больше я его не видел.
+	};
 	SCKnowsFarimAsWilliamsFriend = TRUE;
 };
 

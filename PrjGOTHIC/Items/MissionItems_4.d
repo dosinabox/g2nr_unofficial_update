@@ -114,7 +114,7 @@ instance ItAt_TalbinsLurkerSkin(C_Item)
 {
 	name = "Кожа луркера";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI | ITEM_MISSION;
+	flags = ITEM_MULTI;
 	value = Value_ReptileSkin;
 	visual = "ItAt_LurkerSkin.3DS";
 	material = MAT_LEATHER;

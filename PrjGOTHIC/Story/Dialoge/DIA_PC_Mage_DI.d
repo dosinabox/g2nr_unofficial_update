@@ -170,7 +170,7 @@ func void DIA_Milten_DI_PEDROTOT_Info()
 };
 
 
-func void B_MiltenDI_Teach_Dialog()
+func void B_BuildLearnDialog_Milten_DI()
 {
 	Info_ClearChoices(DIA_Milten_DI_TeachMagic);
 	Info_AddChoice(DIA_Milten_DI_TeachMagic,Dialog_Back,DIA_Milten_DI_TeachMagic_BACK);
@@ -238,7 +238,7 @@ func void DIA_Milten_DI_TeachMagic_Info()
 	{
 		AI_Output(self,other,"DIA_Milten_DI_TeachMagic_03_03");	//Хорошо. Что ты хочешь?
 	};
-	B_MiltenDI_Teach_Dialog();
+	B_BuildLearnDialog_Milten_DI();
 };
 
 func void DIA_Milten_DI_TeachMagic_MANA_1()
@@ -246,8 +246,8 @@ func void DIA_Milten_DI_TeachMagic_MANA_1()
 	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_HIGH))
 	{
 		DIA_Milten_RunesComment_02();
+		B_BuildLearnDialog_Milten_DI();
 	};
-	B_MiltenDI_Teach_Dialog();
 };
 
 func void DIA_Milten_DI_TeachMagic_MANA_5()
@@ -255,8 +255,8 @@ func void DIA_Milten_DI_TeachMagic_MANA_5()
 	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_HIGH))
 	{
 		DIA_Milten_RunesComment_03();
+		B_BuildLearnDialog_Milten_DI();
 	};
-	B_MiltenDI_Teach_Dialog();
 };
 
 func void DIA_Milten_DI_TeachMagic_RUNES()

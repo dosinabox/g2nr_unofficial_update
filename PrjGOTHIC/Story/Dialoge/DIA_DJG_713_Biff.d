@@ -25,7 +25,7 @@ func void B_BiffsAnteil_PrintScreen()
 	var string Anteil;
 	Anteil = IntToString(BiffsAnteil);
 	BiffsAnteilText_Teil = ConcatStrings(PRINT_BiffsAnteil,Anteil);
-	BiffsAnteilText = ConcatStrings(BiffsAnteilText_Teil,PRINT_BiffGold);
+	BiffsAnteilText = ConcatStrings(BiffsAnteilText_Teil,PRINT_Gold);
 	AI_PrintScreen(BiffsAnteilText,-1,45,FONT_ScreenSmall,4);
 };
 
@@ -333,7 +333,7 @@ func void DIA_Biff_GELDEINTREIBEN_zuTeuer()
 
 func void DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen()
 {
-	AI_Output(other,self,"DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen_15_00");	//Боюсь, дальше наши пути расходятся.
+	DIA_Common_ImAfraidThatsTheEndForUs();
 	AI_Output(self,other,"DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen_07_01");	//Как скажешь. Тогда я заберу свою долю.
 	BIFF_LABERT_GELDEINTREIBEN = FALSE;
 	AI_StopProcessInfos(self);
@@ -726,7 +726,7 @@ func void DIA_Biff_HEILUNG_HeilTrankLow()
 
 func void DIA_Biff_HEILUNG_Spaeter()
 {
-	AI_Output(other,self,"DIA_Biff_HEILUNG_Spaeter_15_00");	//Я дам тебе что-нибудь позже.
+	DIA_Common_IWillGiveYouSomethingLater();
 	AI_Output(self,other,"DIA_Biff_HEILUNG_Spaeter_07_01");	//Только не забудь.
 	AI_StopProcessInfos(self);
 };

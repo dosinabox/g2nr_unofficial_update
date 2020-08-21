@@ -242,7 +242,7 @@ func void DIA_Addon_Nefarius_MissingOrnaments_Info()
 		{
 			AI_Output(other,self,"DIA_Addon_Nefarius_MissingOrnaments_15_03");	//Я нашел их.
 			Npc_RemoveInvItems(other,ItMi_Ornament_Addon,MissingOrnamentsCount);
-			concatText = ConcatStrings(IntToString(MissingOrnamentsCount),PRINT_ItemsGegeben);
+			concatText = ConcatStrings(IntToString(MissingOrnamentsCount),PRINT_ItemsGiven);
 			AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 			XP_Addon_BringMissingOrnaments = MissingOrnamentsCount * XP_Addon_BringMissingOrnament;
 			MissingOrnamentsCounter += MissingOrnamentsCount;

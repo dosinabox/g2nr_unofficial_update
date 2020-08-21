@@ -606,7 +606,7 @@ func void Use_Astronomy()
 	{
 		B_RaiseAttribute(self,ATR_MANA_MAX,2);
 		Print(Print_ReadAstronomy);
-		Snd_Play("Levelup");
+		Snd_Play("LEVELUP");
 		Astronomy_Once = TRUE;
 	};
 };

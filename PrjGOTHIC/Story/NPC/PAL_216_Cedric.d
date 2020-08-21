@@ -15,7 +15,8 @@ instance PAL_216_Cedric(Npc_Default)
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,55);
+//	B_SetFightSkills(self,55);
+	B_SetTeacherFightSkills(self,TeachLimit_1H_Cedric,55,55,55);
 	daily_routine = Rtn_Start_216;
 };
 

@@ -179,7 +179,7 @@ func int DIA_Engrom_B_NpcObsessedByDMT_Condition()
 
 func void DIA_Engrom_B_NpcObsessedByDMT_Info()
 {
-	AI_Output(other,self,"DIA_Brutus_PERM4_15_00");	//Все в порядке?
+	DIA_Common_IsEverythingOk();
 	MIS_Tabin_LookForEngrom = LOG_SUCCESS;
 	B_NpcObsessedByDMT(self);
 };

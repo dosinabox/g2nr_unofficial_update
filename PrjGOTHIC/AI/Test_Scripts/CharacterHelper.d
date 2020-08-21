@@ -320,7 +320,6 @@ func int CH_RESET_Condition()
 
 func void CH_RESET_Info()
 {
-	//обход бага движка с двойным снятием оружия (исправлен в Union)
 	AI_UnequipWeapons(hero);
 	Info_ClearChoices(CH_RESET);
 	Info_AddChoice(CH_RESET,Dialog_Back,CH_RESET_Back);
@@ -334,7 +333,6 @@ func void CH_RESET_Back()
 
 func void CH_RESET_Ok()
 {
-	//снять всю бижутерию и пояс, повышающие силу/ловкость/ману/здоровье
 	B_UnEquipHeroItem(ItBe_Addon_STR_5);
 	B_UnEquipHeroItem(ItBe_Addon_STR_10);
 	B_UnEquipHeroItem(ItBe_Addon_DEX_5);

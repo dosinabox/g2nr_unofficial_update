@@ -1840,7 +1840,7 @@ func void INIT_OldWorld()
 	B_InitNpcGlobals();
 	b_enter_oldworld();
 	b_cycle_function();
-	if((MIS_ReadyforChapter4 == TRUE) && (B_Chapter4_OneTime == FALSE))
+	if((MIS_ReadyforChapter4 == TRUE) && (StartChapter4InNewWorld == FALSE) && (B_Chapter4_OneTime == FALSE))
 	{
 		B_Kapitelwechsel(4,OLDWORLD_ZEN);
 		B_Chapter4_OneTime = TRUE;
@@ -2130,9 +2130,7 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_21");
 	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_SHELLSPAWN_CITY_22");
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_23");
-//	точка FP_SHELLSPAWN_CITY_24 за текстурой в гавани - временная замена на FP_ROAM_FISHERMAN_02
-//	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_SHELLSPAWN_CITY_24");
-	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_ROAM_FISHERMAN_02");
+	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_SHELLSPAWN_CITY_24");
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_25");
 };
 

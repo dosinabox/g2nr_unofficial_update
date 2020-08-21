@@ -665,6 +665,7 @@ func void DIA_Andre_AskToJoin_Info()
 	AI_Output(self,other,"DIA_Andre_AskToJoin_08_05");	//Мой командующий опасается, что в наши ряды могут проникнуть шпионы или диверсанты.
 	AI_Output(self,other,"DIA_Andre_AskToJoin_08_06");	//Он хочет таким образом свести риск к минимуму.
 	AI_Output(self,other,"DIA_Andre_AskToJoin_08_07");	//Поэтому ты сначала должен стать гражданином города. Не знаю, имеет это правило смысл или нет, но приказ есть приказ.
+	MIL_Aufnahme = LOG_Running;
 	Log_CreateTopic(TOPIC_BecomeMIL,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BecomeMIL,LOG_Running);
 	B_LogEntry(TOPIC_BecomeMIL,"Прежде чем я смогу вступить в ряды городской стражи, я должен стать гражданином города.");
@@ -892,7 +893,7 @@ func void B_AndreSold()
 func void B_AndreNoProof()
 {
 	AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
-	AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
+	DIA_Common_No();
 	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
 };
 
@@ -1136,7 +1137,7 @@ func void DIA_Andre_DGRunning_Info()
 	{
 		Info_AddChoice(DIA_Andre_DGRunning,"Я всех их ликвидировал!",DIA_Andre_DGRunning_Success);
 	};
-	if(((Cassia.aivar[AIV_TalkedToPlayer] == TRUE) || (Jesper.aivar[AIV_TalkedToPlayer] == TRUE) || (Ramirez.aivar[AIV_TalkedToPlayer] == TRUE)) && (Andre_FoundThieves_Reported == FALSE))
+	if(((Cassia.aivar[AIV_TalkedToPlayer] == TRUE) || (Jesper.aivar[AIV_TalkedToPlayer] == TRUE) || (Ramirez.aivar[AIV_TalkedToPlayer] == TRUE) || (DG_gefunden == TRUE)) && (Andre_FoundThieves_Reported == FALSE))
 	{
 		Info_AddChoice(DIA_Andre_DGRunning,"Я нашел логово гильдии воров!",DIA_Andre_DGRunning_Verrat);
 	};
@@ -1187,6 +1188,12 @@ func void DIA_Andre_DGRunning_Success()
 	};
 	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_04");	//Тебе полагается награда за этих бандитов. Вот, возьми.
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld * 3);
+	B_StartOtherRoutine(MIL_318_Miliz,"SEWER");
+	B_StartOtherRoutine(MIL_327_Miliz,"SEWER");
+	if(Npc_IsDead(Hanna))
+	{
+		B_SendMilitiaToHotel();
+	};
 	Info_ClearChoices(DIA_Andre_DGRunning);
 };
 
@@ -1204,6 +1211,10 @@ instance DIA_Andre_FoundThieves_KilledByMilitia(C_Info)
 
 func int DIA_Andre_FoundThieves_KilledByMilitia_Condition()
 {
+	if(Andre_FoundThieves_KilledByMilitia == TRUE)
+	{
+		return TRUE;
+	};
 	if(Andre_FoundThieves_Reported == TRUE)
 	{
 		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
@@ -1221,6 +1232,10 @@ func void DIA_Andre_FoundThieves_KilledByMilitia_Info()
 	AI_Output(self,other,"DIA_Andre_DGRunning_08_01");	//Ты можешь забыть об этом деле. Я послал своих людей в канализацию.
 	AI_Output(self,other,"DIA_Andre_DGRunning_08_02");	//Гильдия воров теперь не более чем перевернутая страница истории этого города.
 	B_AndreSold();
+	if(Npc_IsDead(Hanna))
+	{
+		B_SendMilitiaToHotel();
+	};
 	B_KillThievesGuild();
 	MIS_Andre_GuildOfThieves = LOG_FAILED;
 	if(MIS_CassiaRing == LOG_Running)
@@ -1321,7 +1336,10 @@ func void DIA_Andre_JOIN_Yes()
 	CreateInvItem(hero,ITAR_MIL_L);
 	AI_PrintScreen("Легкие доспехи ополчения получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	Snd_Play("LEVELUP");
-	Npc_ExchangeRoutine(Lothar,"START");
+	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
+	{
+		Npc_ExchangeRoutine(Lothar,"START");
+	};
 	SLD_Aufnahme = LOG_OBSOLETE;
 	KDF_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;
@@ -1706,7 +1724,7 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 		AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
 		if(!Npc_HasItems(other,ItMi_Joint))
 		{
-			AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
+			DIA_Common_No();
 			AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
 		}
 		else
@@ -2021,7 +2039,7 @@ func void DIA_Andre_Cornelius_Liar_Info()
 
 func void DIA_Andre_Cornelius_Liar_No()
 {
-	AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
+	DIA_Common_No();
 	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
 	if(other.guild != GIL_KDF)
 	{

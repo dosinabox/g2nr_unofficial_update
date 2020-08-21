@@ -20,7 +20,8 @@ instance PAL_207_Girion_DI(Npc_Default)
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,90);
+//	B_SetFightSkills(self,90);
+	B_SetTeacherFightSkills(self,TeachLimit_1H_Girion,TeachLimit_2H_Girion,90,TeachLimit_Crossbow_Girion);
 	daily_routine = Rtn_Start_2070;
 };
 

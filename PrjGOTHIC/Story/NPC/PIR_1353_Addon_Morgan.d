@@ -15,7 +15,8 @@ instance PIR_1353_Addon_Morgan(Npc_Default)
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,50);
+//	B_SetFightSkills(self,50);
+	B_SetTeacherFightSkills(self,TeachLimit_1H_Morgan,50,50,50);
 	daily_routine = Rtn_START_1353;
 };
 

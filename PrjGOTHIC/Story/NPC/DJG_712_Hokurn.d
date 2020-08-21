@@ -16,7 +16,8 @@ instance DJG_712_Hokurn(Npc_Default)
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,60);
+//	B_SetFightSkills(self,60);
+	B_SetTeacherFightSkills(self,TeachLimit_1H_Hokurn,TeachLimit_2H_Hokurn,60,60);
 	daily_routine = Rtn_PreStart_712;
 };
 

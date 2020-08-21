@@ -450,7 +450,7 @@ func int DIA_Addon_Elvrich_PERM_Condition()
 
 func void DIA_Addon_Elvrich_PERM_Info()
 {
-	AI_Output(other,self,"DIA_Joe_Perm_15_00");	//Все в порядке?
+	DIA_Common_IsEverythingOk();
 	AI_Output(self,other,"DIA_Addon_Elvrich_PERM_04_00");	//Спасибо, что спас меня!
 	AI_StopProcessInfos(self);
 };

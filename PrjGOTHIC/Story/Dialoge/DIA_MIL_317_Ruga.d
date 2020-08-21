@@ -205,6 +205,24 @@ func void DIA_Ruga_Teach_CROSSBOW_5()
 	};
 };
 
+var int DIA_Ruga_TEACHDEX_permanent;
+
+func void B_BuildLearnDialog_Ruga_DEX()
+{
+	Info_ClearChoices(DIA_Ruga_TEACHDEX);
+	Info_AddChoice(DIA_Ruga_TEACHDEX,Dialog_Back,DIA_Ruga_TEACHDEX_BACK);
+	if(other.aivar[REAL_DEXTERITY] >= T_HIGH)
+	{
+		AI_Output(self,other,"DIA_Ruga_TEACHDEX_11_00");	//Это все, чему я мог обучить тебя. Если ты хочешь стать еще более ловким, тебе лучше поискать другого учителя.
+		DIA_Ruga_TEACHDEX_permanent = TRUE;
+	}
+	else
+	{
+		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Ruga_TEACHDEX_1);
+		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Ruga_TEACHDEX_5);
+	};
+};
+
 instance DIA_Ruga_TEACHDEX(C_Info)
 {
 	npc = MIL_317_Ruga;
@@ -215,8 +233,6 @@ instance DIA_Ruga_TEACHDEX(C_Info)
 	description = "Я хочу стать более ловким.";
 };
 
-
-var int DIA_Ruga_TEACHDEX_permanent;
 
 func int DIA_Ruga_TEACHDEX_Condition()
 {
@@ -229,38 +245,27 @@ func int DIA_Ruga_TEACHDEX_Condition()
 func void DIA_Ruga_TEACHDEX_Info()
 {
 	AI_Output(other,self,"DIA_Ruga_TEACHDEX_15_00");	//Я хочу стать более ловким.
-	Info_ClearChoices(DIA_Ruga_TEACHDEX);
-	Info_AddChoice(DIA_Ruga_TEACHDEX,Dialog_Back,DIA_Ruga_TEACHDEX_BACK);
-	Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Ruga_TEACHDEX_1);
-	Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Ruga_TEACHDEX_5);
+	B_BuildLearnDialog_Ruga_DEX();
 };
 
 func void DIA_Ruga_TEACHDEX_BACK()
 {
-//	if(other.attribute[ATR_DEXTERITY] >= T_HIGH)
-	if(other.aivar[REAL_DEXTERITY] >= T_HIGH)
-	{
-		AI_Output(self,other,"DIA_Ruga_TEACHDEX_11_00");	//Это все, чему я мог обучить тебя. Если ты хочешь стать еще более ловким, тебе лучше поискать другого учителя.
-		DIA_Ruga_TEACHDEX_permanent = TRUE;
-	};
 	Info_ClearChoices(DIA_Ruga_TEACHDEX);
 };
 
 func void DIA_Ruga_TEACHDEX_1()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_HIGH);
-	Info_ClearChoices(DIA_Ruga_TEACHDEX);
-	Info_AddChoice(DIA_Ruga_TEACHDEX,Dialog_Back,DIA_Ruga_TEACHDEX_BACK);
-	Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Ruga_TEACHDEX_1);
-	Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Ruga_TEACHDEX_5);
+	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_HIGH))
+	{
+		B_BuildLearnDialog_Ruga_DEX();
+	};
 };
 
 func void DIA_Ruga_TEACHDEX_5()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_HIGH);
-	Info_ClearChoices(DIA_Ruga_TEACHDEX);
-	Info_AddChoice(DIA_Ruga_TEACHDEX,Dialog_Back,DIA_Ruga_TEACHDEX_BACK);
-	Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Ruga_TEACHDEX_1);
-	Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Ruga_TEACHDEX_5);
+	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_HIGH))
+	{
+		B_BuildLearnDialog_Ruga_DEX();
+	};
 };
 

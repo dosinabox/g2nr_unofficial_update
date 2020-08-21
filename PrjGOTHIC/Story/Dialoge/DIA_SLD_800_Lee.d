@@ -466,6 +466,7 @@ func void DIA_Lee_ClearWhat_Info()
 	AI_Output(self,other,"DIA_Lee_ClearWhat_04_02");	//“акже, дело еще в наших парн€х. я смогу прин€ть теб€, только если большинство наемников согласитс€, что ты можешь присоединитьс€ к нам.
 	AI_Output(self,other,"DIA_Lee_ClearWhat_04_03");	//Ќо не ходи к ќнару, пока все не будет улажено. ќн очень раздражительный тип...
 	SCKnowsSLDVotes = TRUE;
+	SLD_Aufnahme = LOG_Running;
 	Log_CreateTopic(TOPIC_BecomeSLD,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BecomeSLD,LOG_Running);
 	B_LogEntry(TOPIC_BecomeSLD,"„тобы быть прин€тым в р€ды наемников, € должен получить одобрение ќнара, после того, как заручусь одобрением наемников.");
@@ -615,7 +616,10 @@ func void DIA_Lee_JoinNOW_Info()
 			CreateInvItem(hero,ITAR_SLD_L);
 			AI_PrintScreen("Ћегкие доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 			Snd_Play("LEVELUP");
-			Npc_ExchangeRoutine(Lothar,"START");
+			if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
+			{
+				Npc_ExchangeRoutine(Lothar,"START");
+			};
 			KDF_Aufnahme = LOG_OBSOLETE;
 			SLD_Aufnahme = LOG_SUCCESS;
 			MIL_Aufnahme = LOG_OBSOLETE;
@@ -1445,7 +1449,7 @@ func int DIA_Lee_CanTeach_Condition()
 func void DIA_Lee_CanTeach_Info()
 {
 	AI_Output(other,self,"DIA_Lee_CanTeach_15_00");	//“ы можешь обучить мен€?
-	if(RealTalentValue(NPC_TALENT_2H) >= 100)
+	if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Lee)
 	{
 		B_Lee_TeachNoMore();
 		Lee_TeachPlayer = TRUE;
@@ -1504,7 +1508,7 @@ func void DIA_Lee_CanTeach_Yes()
 
 func void B_BuildLearnDialog_Lee()
 {
-	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Lee)
 	{
 		Info_ClearChoices(DIA_Lee_Teach);
 		Info_AddChoice(DIA_Lee_Teach,Dialog_Back,DIA_Lee_Teach_Back);
@@ -1513,7 +1517,7 @@ func void B_BuildLearnDialog_Lee()
 	}
 	else
 	{
-		if(RealTalentValue(NPC_TALENT_2H) >= 100)
+		if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Lee)
 		{
 			DIA_Lee_Teacher_permanent = TRUE;
 		};
@@ -1555,7 +1559,7 @@ func void DIA_Lee_Teach_Back()
 
 func void DIA_Lee_Teach_2H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Lee))
 	{
 		B_Lee_CommentFightSkill();
 		B_BuildLearnDialog_Lee();
@@ -1564,7 +1568,7 @@ func void DIA_Lee_Teach_2H_1()
 
 func void DIA_Lee_Teach_2H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Lee))
 	{
 		B_Lee_CommentFightSkill();
 		B_BuildLearnDialog_Lee();

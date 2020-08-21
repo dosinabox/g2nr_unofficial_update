@@ -88,7 +88,7 @@ func void B_BuildLearnDialog_Lee_DI()
 {
 	Info_ClearChoices(DIA_Lee_DI_Teach);
 	Info_AddChoice(DIA_Lee_DI_Teach,Dialog_Back,DIA_Lee_DI_Teach_Back);
-	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Lee)
 	{
 		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Lee_DI_Teach_2H_1);
 		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Lee_DI_Teach_2H_5);
@@ -103,7 +103,7 @@ func void B_BuildLearnDialog_Lee_DI()
 		};
 		DIA_Lee_DI_TeachState_2H = 2;
 	};
-	if(VisibleTalentValue(NPC_TALENT_1H) < 100)
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Lee)
 	{
 		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lee_DI_Teach_1H_1);
 		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lee_DI_Teach_1H_5);
@@ -118,7 +118,7 @@ func void B_BuildLearnDialog_Lee_DI()
 		};
 		DIA_Lee_DI_TeachState_1H = 2;
 	};
-	if((RealTalentValue(NPC_TALENT_1H) >= 100) && (RealTalentValue(NPC_TALENT_2H) >= 100))
+	if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Lee) && (RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Lee))
 	{
 		DIA_Lee_DI_Teacher_permanent = TRUE;
 	};
@@ -152,7 +152,7 @@ func int DIA_Lee_DI_Teach_Condition()
 func void DIA_Lee_DI_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Lee_DI_Teach_15_00");	//Я хочу потренироваться.
-	if((VisibleTalentValue(NPC_TALENT_1H) < 100) && (VisibleTalentValue(NPC_TALENT_2H) < 100))
+	if((VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Lee) && (VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Lee))
 	{
 		if((VisibleTalentValue(NPC_TALENT_1H) <= 30) || (VisibleTalentValue(NPC_TALENT_2H) <= 30))
 		{
@@ -165,7 +165,7 @@ func void DIA_Lee_DI_Teach_Info()
 
 func void DIA_Lee_DI_Teach_1H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_1H_Lee))
 	{
 		B_Lee_CommentFightSkill();
 		B_BuildLearnDialog_Lee_DI();
@@ -174,7 +174,7 @@ func void DIA_Lee_DI_Teach_1H_1()
 
 func void DIA_Lee_DI_Teach_1H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_1H_Lee))
 	{
 		B_Lee_CommentFightSkill();
 		B_BuildLearnDialog_Lee_DI();
@@ -183,7 +183,7 @@ func void DIA_Lee_DI_Teach_1H_5()
 
 func void DIA_Lee_DI_Teach_2H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Lee))
 	{
 		B_Lee_CommentFightSkill();
 		B_BuildLearnDialog_Lee_DI();
@@ -192,7 +192,7 @@ func void DIA_Lee_DI_Teach_2H_1()
 
 func void DIA_Lee_DI_Teach_2H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Lee))
 	{
 		B_Lee_CommentFightSkill();
 		B_BuildLearnDialog_Lee_DI();

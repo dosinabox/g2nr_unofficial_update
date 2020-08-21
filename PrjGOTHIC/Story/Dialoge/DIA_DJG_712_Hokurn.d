@@ -292,7 +292,7 @@ func void DIA_Hokurn_Learn_Info()
 	{
 		AI_Output(self,other,"DIA_Hokurn_Teach_01_03");	//Что ты понимаешь. Даже маги не чуждаются оружия ближнего боя.
 	};
-	if((RealTalentValue(NPC_TALENT_1H) >= 100) && (RealTalentValue(NPC_TALENT_2H) >= 100))
+	if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Hokurn) && (RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Hokurn))
 	{
 		B_Say(self,other,"$NOLEARNYOUREBETTER");
 		Hokurn_TeachPlayer = TRUE;
@@ -358,7 +358,7 @@ func int DIA_Hokurn_PayTeacher_Condition()
 func void DIA_Hokurn_PayTeacher_Info()
 {
 	AI_Output(other,self,"DIA_Hokurn_PayTeacher_15_00");	//Вот твои деньги. Я хочу, чтобы ты обучил меня.
-	if((RealTalentValue(NPC_TALENT_1H) >= 100) && (RealTalentValue(NPC_TALENT_2H) >= 100))
+	if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Hokurn) && (RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Hokurn))
 	{
 		B_Say(self,other,"$NOLEARNYOUREBETTER");
 		Hokurn_TeachPlayer = TRUE;
@@ -411,7 +411,7 @@ func void B_BuildLearnDialog_Hokurn()
 {
 	Info_ClearChoices(DIA_Hokurn_Teach);
 	Info_AddChoice(DIA_Hokurn_Teach,Dialog_Back,DIA_Hokurn_Teach_Back);
-	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Hokurn)
 	{
 		Info_AddChoice(DIA_Hokurn_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Hokurn_Teach_2H_1);
 		Info_AddChoice(DIA_Hokurn_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Hokurn_Teach_2H_5);
@@ -432,7 +432,7 @@ func void B_BuildLearnDialog_Hokurn()
 		};
 		DIA_Hokurn_TeachState_2H = 2;
 	};
-	if(VisibleTalentValue(NPC_TALENT_1H) < 100)
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Hokurn)
 	{
 		Info_AddChoice(DIA_Hokurn_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Hokurn_Teach_1H_1);
 		Info_AddChoice(DIA_Hokurn_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Hokurn_Teach_1H_5);
@@ -453,7 +453,7 @@ func void B_BuildLearnDialog_Hokurn()
 		};
 		DIA_Hokurn_TeachState_1H = 2;
 	};
-	if((RealTalentValue(NPC_TALENT_1H) >= 100) && (RealTalentValue(NPC_TALENT_2H) >= 100))
+	if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Hokurn) && (RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Hokurn))
 	{
 		DIA_Hokurn_Teacher_permanent = TRUE;
 	};
@@ -508,7 +508,7 @@ func void DIA_Hokurn_Teach_Back()
 
 func void DIA_Hokurn_Teach_2H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Hokurn))
 	{
 		B_BuildLearnDialog_Hokurn();
 	};
@@ -516,7 +516,7 @@ func void DIA_Hokurn_Teach_2H_1()
 
 func void DIA_Hokurn_Teach_2H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Hokurn))
 	{
 		B_BuildLearnDialog_Hokurn();
 	};
@@ -524,7 +524,7 @@ func void DIA_Hokurn_Teach_2H_5()
 
 func void DIA_Hokurn_Teach_1H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_1H_Hokurn))
 	{
 		B_BuildLearnDialog_Hokurn();
 	};
@@ -532,7 +532,7 @@ func void DIA_Hokurn_Teach_1H_1()
 
 func void DIA_Hokurn_Teach_1H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_1H_Hokurn))
 	{
 		B_BuildLearnDialog_Hokurn();
 	};

@@ -487,7 +487,7 @@ func void DIA_Hanna_Schuldenbuch_Info()
 {
 	AI_Output(other,self,"DIA_Hanna_Add_15_41");	//Посмотри, какая у меня есть книга!
 	AI_Output(self,other,"DIA_Hanna_Add_17_42");	//Гроссбух Лемара. Как тебе это удалось?
-	AI_Output(other,self,"DIA_Hanna_Add_15_43");	//Ну...
+	DIA_Common_Well();
 	AI_Output(self,other,"DIA_Hanna_Add_17_44");	//То, что Лемар лишился своего гроссбуха - это хорошо. Но лучше, если он будет у меня...
 };
 
@@ -596,10 +596,15 @@ func int DIA_Hanna_Blubb3_Condition()
 
 func void DIA_Hanna_Blubb3_Info()
 {
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,other);
+	};
 	CreateInvItem(self,ItSc_IceCube);
 	CreateInvItem(self,ItSc_Firestorm);
 	CreateInvItem(self,ItKe_ThiefGuildKey_Hotel_MIS);
-	if(Andre_FoundThieves_Reported == TRUE)
+	if(Andre_FoundThieves_KilledByMilitia == TRUE)
 	{
 		AI_Output(self,other,"DIA_Hanna_Add_17_32");	//Здесь было ополчение... Кто-то предал наше убежище!
 		if(Npc_IsDead(Cassia) && Npc_IsDead(Jesper) && Npc_IsDead(Ramirez))

@@ -499,7 +499,7 @@ func int DIA_Sekob_BELOHNUNG_Condition()
 
 func void DIA_Sekob_BELOHNUNG_Info()
 {
-	AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_00");	//Не так быстро, мой друг.
+	DIA_Common_NotSoFastMyFriend();
 	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 	{
 		if(Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU))
@@ -734,7 +734,7 @@ func int DIA_Sekob_ROSINEVERBACK_Condition()
 func void DIA_Sekob_ROSINEVERBACK_Info()
 {
 	AI_Output(other,self,"DIA_Sekob_ROSINEVERBACK_15_00");	//Рози никогда не вернется к тебе. Я отвел ее в безопасное место.
-	AI_Output(self,other,"DIA_Sekob_ROSINEVERBACK_01_01");	//Безопасное. От кого?
+	AI_Output(self,other,"DIA_Sekob_ROSINEVERBACK_01_01");	//Безопасное?.. От кого?
 	AI_Output(other,self,"DIA_Sekob_ROSINEVERBACK_15_02");	//От тебя.
 	AI_Output(self,other,"DIA_Sekob_ROSINEVERBACK_01_03");	//Ты пожалеешь об этом, грязная свинья.
 	self.flags = 0;

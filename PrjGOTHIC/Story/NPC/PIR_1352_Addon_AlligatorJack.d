@@ -17,7 +17,8 @@ instance PIR_1352_Addon_AlligatorJack(Npc_Default)
 	Mdl_SetModelFatness(self,1.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,90);
+//	B_SetFightSkills(self,90);
+	B_SetTeacherFightSkills(self,90,90,TeachLimit_Bow_AlligatorJack,90);
 	daily_routine = Rtn_PreStart_1352;
 };
 

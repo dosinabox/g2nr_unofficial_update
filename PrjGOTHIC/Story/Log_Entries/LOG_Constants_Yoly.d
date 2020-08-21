@@ -16,10 +16,13 @@ const string TOPIC_Addon_WhoStolePeople = "Где пропавшие люди?";
 const string TOPIC_Addon_BringRangerToLares = "Замена для Лареса";
 const string TOPIC_Addon_TeleportsNW = "Телепортационные камни";
 const string TOPIC_Addon_Stoneplates = "Каменные таблички";
-const string TOPIC_Addon_RangerHelpKDF = "Простой путь в монастырь";
+
+var int TOPIC_End_Stoneplates;
+
 const string TOPIC_Addon_HelpDaron = "Пропавшая статуэтка";
 const string TOPIC_Addon_DaronGobbos = "Дарон был ограблен мерзкими гоблинами. У него пропала ценная статуэтка, которую он должен был доставить в монастырь. Эти гоблины, похоже, скрываются в пещере около таверны 'Мертвая гарпия'.";
 const string TOPIC_Addon_PedroPass = "Я принес пропавшую статуэтку в монастырь и Педро сказал, что теперь я могу стать послушником бесплатно. Я должен отдать статуэтку кому-то в монастыре.";
+const string TOPIC_Addon_RangerHelpKDF = "Простой путь в монастырь";
 
 var int TOPIC_End_RangerHelpKDF;
 
@@ -129,6 +132,7 @@ const string TOPIC_MalethsGehstock = "Посох Малета";
 var int TOPIC_END_MalethsGehstock;
 
 const string TOPIC_BengarALLEIN = "Один и без защиты";
+const string TOPIC_BengarMALAK = "Куда глаза глядят";
 const string TOPIC_MinenAnteileKDF = "Поддельные акции";
 const string TOPIC_MinenAnteileSLD = "Неизвестные прегрешения";
 

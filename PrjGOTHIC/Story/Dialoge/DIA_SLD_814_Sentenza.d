@@ -37,7 +37,7 @@ instance DIA_Sentenza_Hello(C_Info)
 
 func int DIA_Sentenza_Hello_Condition()
 {
-	if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Npc_HasItems(self,ItMi_Gold) < 50) && (other.guild != GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -57,7 +57,10 @@ func void DIA_Sentenza_Hello_JustLooking()
 {
 	AI_Output(other,self,"DIA_Sentenza_Hello_JustLooking_15_00");	//Я просто прогуливаюсь. Вот и все.
 	AI_Output(self,other,"DIA_Sentenza_Hello_JustLooking_09_01");	//(смеется) Таких как ты, здесь ожидают большие проблемы! Это ты мне заявляешь, что просто прогуливаешься?
-	AI_Output(self,other,"DIA_Sentenza_Hello_JustLooking_09_02");	//Ха! Ты идешь на двор! Зачем еще тебе нужно было проделывать столь долгий путь?
+	if(other.guild != GIL_SLD)
+	{
+		AI_Output(self,other,"DIA_Sentenza_Hello_JustLooking_09_02");	//Ха! Ты идешь на двор! Зачем еще тебе нужно было проделывать столь долгий путь?
+	};
 	AI_Output(self,other,"DIA_Sentenza_Hello_JustLooking_09_03");	//Так что прекращай нести эту чушь. Сейчас я обыщу тебя, и можешь топать дальше.
 	Info_ClearChoices(DIA_Sentenza_Hello);
 	Info_AddChoice(DIA_Sentenza_Hello,"Не распускай руки!",DIA_Sentenza_Hello_HandsOff);
@@ -132,14 +135,15 @@ instance DIA_Sentenza_Vzwei(C_Info)
 	nr = 2;
 	condition = DIA_Sentenza_Vzwei_Condition;
 	information = DIA_Sentenza_Vzwei_Info;
-	permanent = FALSE;
+//	permanent = FALSE;
+	permanent = TRUE;
 	important = TRUE;
 };
 
 
 func int DIA_Sentenza_Vzwei_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Sentenza_GoldTaken == FALSE) && (Sentenza_SearchDay < Wld_GetDay()))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Sentenza_GoldTaken == FALSE) && (Sentenza_GoldGiven == FALSE) && (Sentenza_SearchDay < Wld_GetDay()) && (Npc_HasItems(self,ItMi_Gold) < 50) && (other.guild != GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -268,7 +272,7 @@ instance DIA_Sentenza_Pay50(C_Info)
 
 func int DIA_Sentenza_Pay50_Condition()
 {
-	if((Sentenza_Wants50 == TRUE) && (Npc_HasItems(self,ItMi_Gold) < 50) && (other.guild == GIL_NONE))
+	if((Sentenza_Wants50 == TRUE) && (Npc_HasItems(self,ItMi_Gold) < 50))
 	{
 		return TRUE;
 	};

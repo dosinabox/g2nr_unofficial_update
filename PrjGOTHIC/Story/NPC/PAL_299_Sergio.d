@@ -17,7 +17,8 @@ instance PAL_299_Sergio(Npc_Default)
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,65);
+//	B_SetFightSkills(self,65);
+	B_SetTeacherFightSkills(self,65,90,65,65);
 	daily_routine = Rtn_Start_299;
 };
 

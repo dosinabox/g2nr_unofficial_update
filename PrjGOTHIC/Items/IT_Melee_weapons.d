@@ -13,11 +13,6 @@ instance ItMw_1h_Vlk_Dagger(C_Item)
 	cond_value[2] = Condition_VLKDolch;
 	visual = "Itmw_005_1h_dagger_01.3DS";
 	description = name;
-	//тест отображения
-	//
-	//text[1] = "Длина:";
-	//count[1] = range;
-	//
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;

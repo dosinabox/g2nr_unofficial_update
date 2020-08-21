@@ -13,7 +13,7 @@ func void B_LevelUp(var int levels)
 	hero.attribute[ATR_HITPOINTS] += levels * HP_PER_LEVEL;
 	hero.lp += levels * LP_PER_LEVEL;
 	PrintScreen(PRINT_LevelUp,-1,YPOS_LevelUp,FONT_Screen,2);
-	Snd_Play("LevelUp");
+	Snd_Play("LEVELUP");
 };
 
 func int CalculateLowerXP(var int add_xp)

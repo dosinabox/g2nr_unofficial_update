@@ -8,6 +8,9 @@ const int TeachLimit_1H_Wulfgar = 75;
 const int TeachLimit_1H_Girion = 90;
 const int TeachLimit_1H_Cedric = 90;
 const int TeachLimit_1H_Cord = 90;
+const int TeachLimit_1H_Lares = 100;
+const int TeachLimit_1H_Hokurn = 100;
+const int TeachLimit_1H_Lee = 100;
 
 const int TeachLimit_2H_Keroloth = 60;
 const int TeachLimit_2H_Wulfgar = 75;
@@ -16,6 +19,10 @@ const int TeachLimit_2H_Henry = 90;
 const int TeachLimit_2H_Girion = 90;
 const int TeachLimit_2H_Rod = 90;
 const int TeachLimit_2H_Cord = 90;
+const int TeachLimit_2H_Hokurn = 100;
+const int TeachLimit_2H_Hagen = 100;
+const int TeachLimit_2H_Lee = 100;
+const int TeachLimit_2H_Gorn = 100;
 
 const int TeachLimit_Bow_Niclas = 60;
 const int TeachLimit_Bow_Bartok = 60;
@@ -28,6 +35,7 @@ const int TeachLimit_Crossbow_Dragomir = 75;
 const int TeachLimit_Crossbow_Henry = 80;
 const int TeachLimit_Crossbow_Girion = 90;
 const int TeachLimit_Crossbow_Ruga = 90;
+const int TeachLimit_Crossbow_Wolf = 100;
 
 const int TeachCondition_Cord = 30;
 const int TeachCondition_2H_Lee = 75;
@@ -124,7 +132,10 @@ func int CoerceInRange(var int value,var int min,var int max)
 
 func int IsHero(var C_NPC npc)
 {
-	if(Hlp_StrCmp(npc.name[0],"ß") == TRUE)
+//	if(Hlp_StrCmp(npc.name[0],"ß") == TRUE)
+	var C_Npc her;
+	her = Hlp_GetNpc(PC_Hero);
+	if(Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(her))
 	{
 		RealHero = Hlp_GetNpc(npc);
 		return TRUE;
@@ -521,7 +532,7 @@ func int ChangeTalent(var C_NPC npc,var int talent,var int change,var int source
 func int ChangeTalent_Hero(var int talent,var int change,var int source)
 {
 	SecondaryChange = 0;
-	if(source != TS_TempBonus)
+	if(source == TS_Training)
 	{
 		change = CutChange_Hero(talent,change,source);
 	};
@@ -540,7 +551,14 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 		}
 		else if(source == TS_PermBonus)
 		{
-			TAL_PermBonus[NPC_TALENT_1H] += change;
+			if(TAL_Training[NPC_TALENT_1H] + TAL_PermBonus[NPC_TALENT_1H] < 100)
+			{
+				TAL_PermBonus[NPC_TALENT_1H] += change;
+			}
+			else
+			{
+				return 0;
+			};
 		}
 		else 
 		{
@@ -565,7 +583,14 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 		}
 		else if(source == TS_PermBonus)
 		{
-			TAL_PermBonus[NPC_TALENT_2H] += change;
+			if(TAL_Training[NPC_TALENT_2H] + TAL_PermBonus[NPC_TALENT_2H] < 100)
+			{
+				TAL_PermBonus[NPC_TALENT_2H] += change;
+			}
+			else
+			{
+				return 0;
+			};
 		}
 		else 
 		{
@@ -590,7 +615,14 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 		}
 		else if(source == TS_PermBonus)
 		{
-			TAL_PermBonus[NPC_TALENT_BOW] += change;
+			if(TAL_Training[NPC_TALENT_BOW] + TAL_PermBonus[NPC_TALENT_BOW] < 100)
+			{
+				TAL_PermBonus[NPC_TALENT_BOW] += change;
+			}
+			else
+			{
+				return 0;
+			};
 		}
 		else 
 		{
@@ -615,7 +647,14 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 		}
 		else if(source == TS_PermBonus)
 		{
-			TAL_PermBonus[NPC_TALENT_CROSSBOW] += change;
+			if(TAL_Training[NPC_TALENT_CROSSBOW] + TAL_PermBonus[NPC_TALENT_CROSSBOW] < 100)
+			{
+				TAL_PermBonus[NPC_TALENT_CROSSBOW] += change;
+			}
+			else
+			{
+				return 0;
+			};
 		}
 		else 
 		{
@@ -768,6 +807,18 @@ func void B_InitTalentSystem()
 {
 	ValidateNpc(hero);
 	RealHero = Hlp_GetNpc(hero);
+	TAL_Training[NPC_TALENT_1H] = 0;
+	TAL_Training[NPC_TALENT_2H] = 0;
+	TAL_Training[NPC_TALENT_BOW] = 0;
+	TAL_Training[NPC_TALENT_CROSSBOW] = 0;
+	TAL_TempBonus[NPC_TALENT_1H] = 0;
+	TAL_TempBonus[NPC_TALENT_2H] = 0;
+	TAL_TempBonus[NPC_TALENT_BOW] = 0;
+	TAL_TempBonus[NPC_TALENT_CROSSBOW] = 0;
+	TAL_PermBonus[NPC_TALENT_1H] = 0;
+	TAL_PermBonus[NPC_TALENT_2H] = 0;
+	TAL_PermBonus[NPC_TALENT_BOW] = 0;
+	TAL_PermBonus[NPC_TALENT_CROSSBOW] = 0;
 	TAL_Training[NPC_TALENT_1H] = RealHero.HitChance[NPC_TALENT_1H];
 	TAL_Training[NPC_TALENT_2H] = RealHero.HitChance[NPC_TALENT_2H];
 	TAL_Training[NPC_TALENT_BOW] = RealHero.HitChance[NPC_TALENT_BOW];

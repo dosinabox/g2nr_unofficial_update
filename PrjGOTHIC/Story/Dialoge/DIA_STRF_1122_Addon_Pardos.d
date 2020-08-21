@@ -99,7 +99,11 @@ func int DIA_Addon_Pardos_trank_Condition()
 func void DIA_Addon_Pardos_trank_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Pardos_trank_15_00");	//Вот, выпей.
-	AI_StandupQuick(self);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,hero);
+	};
 	Info_ClearChoices(DIA_Addon_Pardos_trank);
 	Info_AddChoice(DIA_Addon_Pardos_trank,Dialog_Back,DIA_Addon_Pardos_trank_BACK);
 	if(Npc_HasItems(other,ItFo_Addon_Meatsoup))
@@ -124,13 +128,24 @@ func void DIA_Addon_Pardos_trank_Info()
 	};
 };
 
-func void B_SayPardosThanks()
+func void B_SayPardosThanks(var int bonus)
 {
-	AI_Output(self,other,"DIA_Addon_Pardos_trank_03_00");	//Спасибо. Мне уже лучше.
+	Info_ClearChoices(DIA_Addon_Pardos_trank);
+	Pardos_Geheilt = TRUE;
+	if(bonus < 4)
+	{
+		AI_Output(self,other,"DIA_Addon_Pardos_trank_03_00");	//Спасибо. Мне уже лучше.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Pardos_trank_03_01");	//Спасибо. Я уже не так слаб.
+	};
+	B_GivePlayerXP(XP_Ambient * bonus);
 };
 
 func void DIA_Addon_Pardos_trank_BACK()
 {
+	DIA_Common_IWillGiveYouSomethingLater();
 	Info_ClearChoices(DIA_Addon_Pardos_trank);
 };
 
@@ -138,40 +153,28 @@ func void DIA_Addon_Pardos_trank_01()
 {
 	B_GiveInvItems(other,self,ItPo_Health_01,1);
 	B_UseItem(self,ItPo_Health_01);
-	Info_ClearChoices(DIA_Addon_Pardos_trank);
-	Pardos_Geheilt = TRUE;
-	B_SayPardosThanks();
-	B_GivePlayerXP(XP_Ambient);
+	B_SayPardosThanks(1);
 };
 
 func void DIA_Addon_Pardos_trank_02()
 {
 	B_GiveInvItems(other,self,ItPo_Health_02,1);
 	B_UseItem(self,ItPo_Health_02);
-	Info_ClearChoices(DIA_Addon_Pardos_trank);
-	Pardos_Geheilt = TRUE;
-	B_SayPardosThanks();
-	B_GivePlayerXP(XP_Ambient * 2);
+	B_SayPardosThanks(2);
 };
 
 func void DIA_Addon_Pardos_trank_03()
 {
 	B_GiveInvItems(other,self,ItPo_Health_03,1);
 	B_UseItem(self,ItPo_Health_03);
-	Info_ClearChoices(DIA_Addon_Pardos_trank);
-	Pardos_Geheilt = TRUE;
-	B_SayPardosThanks();
-	B_GivePlayerXP(XP_Ambient * 3);
+	B_SayPardosThanks(3);
 };
 
 func void DIA_Addon_Pardos_trank_04()
 {
 	B_GiveInvItems(other,self,ItPo_Health_Addon_04,1);
 	B_UseItem(self,ItPo_Health_Addon_04);
-	Info_ClearChoices(DIA_Addon_Pardos_trank);
-	Pardos_Geheilt = TRUE;
-	B_SayPardosThanks();
-	B_GivePlayerXP(XP_Ambient * 4);
+	B_SayPardosThanks(4);
 };
 
 func void DIA_Addon_Pardos_trank_Soup()
@@ -181,10 +184,7 @@ func void DIA_Addon_Pardos_trank_Soup()
 	B_GiveInvItems(other,self,ItFo_Addon_Meatsoup,1);
 	B_UseItem(self,ItFo_Addon_Meatsoup);
 	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
-	Pardos_Geheilt = TRUE;
-	AI_Output(self,other,"DIA_Addon_Pardos_trank_03_01");	//Спасибо. Я уже не так слаб.
-	Info_ClearChoices(DIA_Addon_Pardos_trank);
-	B_GivePlayerXP(XP_Ambient * 5);
+	B_SayPardosThanks(5);
 };
 
 

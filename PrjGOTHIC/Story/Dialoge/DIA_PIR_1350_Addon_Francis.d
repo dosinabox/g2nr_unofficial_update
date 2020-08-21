@@ -340,7 +340,7 @@ func void DIA_Francis_Ausgeschissen_Info()
 	AI_Output(self,other,"DIA_Addon_Francis_Ausgeschissen_13_01");	//Оставь меня в покое!
 	if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis) && (Francis_HasProof == TRUE))
 	{
-		AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_00");	//Не так быстро, мой друг.
+		DIA_Common_NotSoFastMyFriend();
 	}
 	else
 	{

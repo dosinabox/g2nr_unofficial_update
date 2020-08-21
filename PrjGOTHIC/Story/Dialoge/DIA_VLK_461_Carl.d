@@ -235,6 +235,14 @@ func void DIA_Carl_bezahlen_Info()
 };
 
 
+func void B_BuildLearnDialog_Carl()
+{
+	Info_ClearChoices(DIA_Carl_Teach);
+	Info_AddChoice(DIA_Carl_Teach,Dialog_Back,DIA_Carl_Teach_Back);
+	Info_AddChoice(DIA_Carl_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Carl_Teach_STR_1);
+	Info_AddChoice(DIA_Carl_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Carl_Teach_STR_5);
+};
+
 instance DIA_Carl_Teach(C_Info)
 {
 	npc = VLK_461_Carl;
@@ -257,10 +265,7 @@ func int DIA_Carl_Teach_Condition()
 func void DIA_Carl_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Carl_Teach_15_00");	//Я хочу стать сильнее.
-	Info_ClearChoices(DIA_Carl_Teach);
-	Info_AddChoice(DIA_Carl_Teach,Dialog_Back,DIA_Carl_Teach_Back);
-	Info_AddChoice(DIA_Carl_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Carl_Teach_STR_1);
-	Info_AddChoice(DIA_Carl_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Carl_Teach_STR_5);
+	B_BuildLearnDialog_Carl();
 };
 
 func void DIA_Carl_Teach_Back()
@@ -270,20 +275,18 @@ func void DIA_Carl_Teach_Back()
 
 func void DIA_Carl_Teach_STR_1()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_HIGH);
-	Info_ClearChoices(DIA_Carl_Teach);
-	Info_AddChoice(DIA_Carl_Teach,Dialog_Back,DIA_Carl_Teach_Back);
-	Info_AddChoice(DIA_Carl_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Carl_Teach_STR_1);
-	Info_AddChoice(DIA_Carl_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Carl_Teach_STR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_HIGH))
+	{
+		B_BuildLearnDialog_Carl();
+	};
 };
 
 func void DIA_Carl_Teach_STR_5()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_HIGH);
-	Info_ClearChoices(DIA_Carl_Teach);
-	Info_AddChoice(DIA_Carl_Teach,Dialog_Back,DIA_Carl_Teach_Back);
-	Info_AddChoice(DIA_Carl_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Carl_Teach_STR_1);
-	Info_AddChoice(DIA_Carl_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Carl_Teach_STR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_HIGH))
+	{
+		B_BuildLearnDialog_Carl();
+	};
 };
 
 instance DIA_Carl_RepairNecklace(C_Info)
@@ -310,7 +313,7 @@ func int DIA_Carl_RepairNecklace_Condition()
 
 func void DIA_Carl_RepairNecklace_Info()
 {
-	AI_Output(other,self,"DIA_Harad_RepairNecklace_15_00");	//Ты можешь чинить драгоценности?
+	DIA_Common_CanYouRepairJewelry();
 	AI_Output(self,other,"DIA_Carl_Lernen_05_01");	//Ох, я всего лишь кую скобяные изделия и гвозди и чиню различные железяки.
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 };

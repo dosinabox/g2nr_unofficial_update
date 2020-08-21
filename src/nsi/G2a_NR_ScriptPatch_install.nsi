@@ -9,8 +9,8 @@
 ##            Основное           ##
 ###################################
 
-!define MOD_VERSION "24"
-!define MOD_DATE "2.20"
+!define MOD_VERSION "25"
+!define MOD_DATE "8.21"
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"
@@ -100,15 +100,6 @@ BrandingText " "
 !insertmacro MUI_LANGUAGE "Russian"
 
 ###################################
-##            Макросы            ##
-###################################
-
-!macro GMF_Delete FILENAME
-	IfFileExists "${FILENAME}" "" +2
-	Delete "${FILENAME}"
-!macroend
-
-###################################
 ##          Инсталляция          ##
 ###################################
 
@@ -144,7 +135,7 @@ Section "Основные файлы" SecMain
 	WriteRegStr HKLM "${REGISTRY_PATH}" "HelpLink" "http://worldofplayers.ru/threads/36817"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "Publisher" "${MOD_AUTHOR}"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "DisplayIcon" "$INSTDIR\system\${MOD_NAME}.ico"
-	WriteRegDWORD HKLM "${REGISTRY_PATH}" "EstimatedSize" "255000"
+	WriteRegDWORD HKLM "${REGISTRY_PATH}" "EstimatedSize" "263000"
 SectionEnd
 
 Section "Дополнительная русская озвучка" SecAdditional_1
@@ -180,7 +171,18 @@ SectionEnd
 
 Section "Un.Удалить обновление" SecUninstall_Main
 	SectionIn RO
-	Call Un.GMF_Delete_Components
+	Delete "$INSTDIR\system\${MOD_NAME}.ico"
+	Delete "$INSTDIR\system\${MOD_NAME}.ini"
+	Delete "$INSTDIR\system\${MOD_NAME}.rtf"
+	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}.mod"
+	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_autoscale.mod"
+	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_speech_add.mod"
+	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_speech_fix.mod"
+	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_wasteland.mod"
+	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_widescreen.mod"
+	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_hotfix.mod"
+	Delete "$INSTDIR\Changelog_${MOD_NAME}.txt"
+	Delete "$INSTDIR\Changelog_Speech_v${MOD_VERSION}.txt"
 	Delete "$INSTDIR\${UNINSTALLER_NAME}.exe"
 	DeleteRegKey HKLM "${REGISTRY_PATH}"
 SectionEnd
@@ -226,19 +228,4 @@ Function .onVerifyInstDir
 	IfFileExists "$INSTDIR\system\GothicStarter.exe" CheckIsSuccessful
 	Abort
 	CheckIsSuccessful:
-FunctionEnd
-
-Function Un.GMF_Delete_Components
-	!insertmacro GMF_Delete "$INSTDIR\system\${MOD_NAME}.ico"
-	!insertmacro GMF_Delete "$INSTDIR\system\${MOD_NAME}.ini"
-	!insertmacro GMF_Delete "$INSTDIR\system\${MOD_NAME}.rtf"
-	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}.mod"
-	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_autoscale.mod"
-	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_speech_add.mod"
-	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_speech_fix.mod"
-	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_wasteland.mod"
-	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_widescreen.mod"
-	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_hotfix.mod"
-	!insertmacro GMF_Delete "$INSTDIR\Changelog_${MOD_NAME}.txt"
-	!insertmacro GMF_Delete "$INSTDIR\Changelog_Speech_v${MOD_VERSION}.txt"
 FunctionEnd

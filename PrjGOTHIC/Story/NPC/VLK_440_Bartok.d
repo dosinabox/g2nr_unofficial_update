@@ -19,7 +19,8 @@ instance VLK_440_Bartok(Npc_Default)
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,50);
+//	B_SetFightSkills(self,50);
+	B_SetTeacherFightSkills(self,50,50,TeachLimit_Bow_Bartok,50);
 	daily_routine = Rtn_Start_440;
 };
 

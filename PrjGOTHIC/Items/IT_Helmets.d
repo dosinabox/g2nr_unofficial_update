@@ -183,6 +183,10 @@ func void Equip_Helmet()
 		B_UnEquipHeroItem(ITAR_PAL_H);
 		B_UnEquipHeroItem(ITAR_DJG_M);
 		B_UnEquipHeroItem(ITAR_DJG_H);
+		B_UnEquipHeroItem(ITAR_PIR_H_Addon);
+		B_UnEquipHeroItem(ITAR_PAL_Skel);
+		B_UnEquipHeroItem(ITAR_Dementor);
+		B_UnEquipHeroItem(ITAR_Judge);
 	};
 };
 

@@ -7,6 +7,7 @@ instance MIL_313_Boltan(Npc_Default)
 	voice = 5;
 	flags = 0;
 	npcType = NPCTYPE_AMBIENT;
+	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Mil_Sword);

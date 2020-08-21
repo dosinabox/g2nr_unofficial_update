@@ -95,7 +95,7 @@ func void DIA_Addon_Myxir_Steintafeln_Info()
 	AI_Output(self,other,"DIA_Addon_Myxir_Steintafeln_12_01");	//Ќа них записаны знани€ древнего народа.
 	AI_Output(self,other,"DIA_Addon_Myxir_Steintafeln_12_02");	//Ќекоторые из них волшебным образом увеличивают магические или боевые способности.
 	AI_Output(self,other,"DIA_Addon_Myxir_Steintafeln_12_03");	//ƒл€ тех, кто способен их прочесть, они €вл€ютс€ насто€щим сокровищем.
-	if(PLAYER_TALENT_FOREIGNLANGUAGE == FALSE)
+	if(TOPIC_End_Stoneplates == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_Stoneplates,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_Stoneplates,LOG_Running);

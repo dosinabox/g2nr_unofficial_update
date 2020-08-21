@@ -17,8 +17,6 @@ instance MENU_LOG(C_MENU_DEF)
 	alpha = 255;
 	posx = 0;
 	posy = 0;
-	dimx = 8192;
-	dimy = 8192;
 	backpic = LOG_BACK_PIC;
 	flags = flags | MENU_OVERTOP | MENU_NOANI;
 };

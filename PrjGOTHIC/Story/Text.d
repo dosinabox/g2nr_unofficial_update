@@ -17,6 +17,7 @@ const string MOBNAME_WHEEL = "Лебедка";
 const string MOBNAME_LAB = "Алхимический стол";
 const string MOBNAME_BOOKSTAND = "Книжный стенд";
 const string MOBNAME_BOOKSBOARD = "Книжный стенд";
+const string MOBNAME_BOOKBOARD = "Книжный стенд";
 const string MOBNAME_CHAIR = "";
 const string MOBNAME_CAULDRON = "";
 const string MOBNAME_SEAT = "";
@@ -412,14 +413,14 @@ const string TXT_TALENTS[22] =
 	"Двуручное",
 	"Лук",
 	"Арбалет",
-	"Отмычки",
+	"Взлом замков",
 	"",
 	"Круг магии",
 	"Подкрадывание",
 	"Регенерация",
 	"",
 	"Акробатика",
-	"Карман. кража",
+	"Карманная кража",
 	"Ковка оружия",
 	"Создание рун",
 	"Алхимия",
@@ -545,18 +546,20 @@ const string PRINT_Trade_Not_Enough_Gold = "У вас недостаточно золота для покупк
 const string NAME_Value = "Цена:";
 const string NAME_Mag_Circle = "Круг:";
 const string NAME_Manakosten = "Расход маны:";
-const string NAME_MinManakosten = "Расход маны (мин.):";
+const string NAME_ManakostenMin = "Расход маны (мин.):";
 const string NAME_ManakostenMax = "Расход маны (макс.):";
-const string NAME_ManaPerSec = "Маны в секунду";
+//const string NAME_ManaPerSec = "Маны в секунду";
 const string NAME_Duration = "Длительность (минут):";
 const string NAME_Sec_Duration = "Длительность (секунд):";
-const string NAME_Mana_needed = "Необходимо маны:";
 const string NAME_Str_needed = "Необходима сила:";
 const string NAME_Dex_needed = "Необходима ловкость:";
-const string NAME_Spell_Load = "Заклинание заряда";
-const string NAME_Spell_Invest = "Заклинание покрова";
-const string NAME_Dam_Edge = "Урон оружием:";
-const string NAME_Dam_Point = "Урон стрелами:";
+const string NAME_MaxMana_needed = "Необходимо макс. маны:";
+const string NAME_Mana_needed = "Необходимо маны:";
+const string NAME_Unknown_needed = "Требования неизвестны";
+//const string NAME_Spell_Load = "Заклинание заряда";
+//const string NAME_Spell_Invest = "Заклинание покрова";
+//const string NAME_Dam_Edge = "Урон оружием:";
+//const string NAME_Dam_Point = "Урон стрелами:";
 //изменить тип если нужно
 const string NAME_Dam_Fire = "Урон магией:";
 const string NAME_Dam_FireMin = "Урон магией (мин.):";
@@ -564,12 +567,14 @@ const string NAME_Dam_FireMax = "Урон магией (макс.):";
 //const string NAME_Dam_Fire = "Урон огнем:";
 //const string NAME_Dam_FireMin = "Урон огнем (мин.):";
 //const string NAME_Dam_FireMax = "Урон огнем (макс.):";
+const string NAME_Dam_FireWeapons = "Урон огнем:";
 const string NAME_Dam_Magic = "Урон магией:";
 const string NAME_Dam_Fly = "Урон ветром:";
 const string NAME_Damage = "Урон:";
 const string NAME_Damage_Max = "Урон (макс.):";
 const string NAME_PerMana = " (на ед. маны)";
 const string NAME_DamagePerSec = "Урон в секунду:";
+const string NAME_DamageUnknown = "Урон неизвестен";
 const string NAME_Prot_Edge = "Защита от оружия:";
 const string NAME_Prot_Point = "Защита от стрел:";
 const string NAME_Prot_Fire = "Защита от огня:";
@@ -582,12 +587,13 @@ const string NAME_Bonus_Dex = "Прибавка к ловкости:";
 const string NAME_Bonus_Str = "Прибавка к силе:";
 const string NAME_OneHanded = "Одноручное оружие";
 const string NAME_TwoHanded = "Двуручное оружие";
-const string NAME_HealingPerMana = "Лечение на ед. маны";
+const string NAME_TwoHandedManaBonus = "Двуручное оружие, прибавка к макс. мане:";
+//const string NAME_HealingPerMana = "Лечение на ед. маны";
 const string NAME_HealingPerCast = "Лечение:";
 const string NAME_Addon_NostalgieBonus = "Бонус ностальгии!";
 const string NAME_Addon_NeedsAllMana = "Использует всю ману";
 const string NAME_Addon_SpellDontKill = "Заклинание не убивает людей";
-const string NAME_Addon_Damage_Min = "Урон (мин.):";
+//const string NAME_Addon_Damage_Min = "Урон (мин.):";
 const string NAME_ADDON_WISPSKILL_FF = "Дальнобойное оружие и боеприпасы";
 const string NAME_ADDON_WISPSKILL_NONE = "Золото, ключи и утварь";
 const string NAME_ADDON_WISPSKILL_RUNE = "Руны и свитки";
@@ -597,12 +603,12 @@ const string NAME_ADDON_WISPSKILL_POTIONS = "Зелья и магия";
 const string NAME_ADDON_LEARNLANGUAGE_1 = "Изучить язык крестьян";
 const string NAME_ADDON_LEARNLANGUAGE_2 = "Изучить язык воинов";
 const string NAME_ADDON_LEARNLANGUAGE_3 = "Изучить язык жрецов";
-const string NAME_ADDON_MALUS_2H = "Владение двуручным оружием - ухудшение:";
-const string NAME_ADDON_MALUS_1H = "Владение одноручным оружием - ухудшение:";
-const string NAME_ADDON_BONUS_1H = "Владение одноручным оружием - улучшение:";
-const string NAME_ADDON_BONUS_2H = "Владение двуручным оружием - улучшение:";
-const string NAME_ADDON_ONEHANDED_BELIAR = "Шанс дополнительного урона (%):";
-const string NAME_ADDON_TWOHANDED_BELIAR = "Шанс дополнительного урона (%):";
+const string NAME_ADDON_BONUS_1H = "Одноручное оружие, улучшение навыка:";
+const string NAME_ADDON_MALUS_1H = "Одноручное оружие, ухудшение навыка:";
+const string NAME_ADDON_BONUS_2H = "Двуручное оружие, улучшение навыка:";
+const string NAME_ADDON_MALUS_2H = "Двуручное оружие, ухудшение навыка:";
+const string NAME_ADDON_ONEHANDED_BELIAR = "Одноручное оружие, шанс дополнительного урона (%):";
+const string NAME_ADDON_TWOHANDED_BELIAR = "Двуручное оружие, шанс дополнительного урона (%):";
 const string NAME_ADDON_SPECIALDAMEGE_BELIAR = "Дополнительный чистый урон:";
 const string NAME_ADDON_UPGRATEBELIARSWEAPON = "Улучшить 'Коготь Белиара'";
 const string NAME_ADDON_BETEN = "Помолиться";
@@ -625,18 +631,13 @@ const string NAME_Addon_Harad_02 = "Изысканный длинный меч";
 const string NAME_Addon_Harad_03 = "Рубиновый клинок";
 const string NAME_Addon_Harad_04 = "Эль-бастардо";
 const string NAME_ItMw_Banditenaxt = "Бандитский топор";
-const string PRINT_Addon_gegeben = " отдано";
-const string PRINT_GoldGegeben = " золотых отдано";
-//const string PRINT_ItemGegeben = " предмет отдан";
-const string PRINT_ItemsGegeben = " предметов отдано";
-const string PRINT_Addon_erhalten = " получено";
-const string PRINT_GoldErhalten = " золотых получено";
-//const string PRINT_ItemErhalten = " предмет получен";
-const string PRINT_ItemsErhalten = " предметов получено";
+const string PRINT_ItemGiven = " отдано";
+const string PRINT_ItemTaken = " получено";
+const string PRINT_GoldGiven = " золотых отдано";
+const string PRINT_GoldTaken = " золотых получено";
+const string PRINT_ItemsGiven = " предметов отдано";
+const string PRINT_ItemsTaken = " предметов получено";
 const string PRINT_Addon_RuneGiven = "Белиар дарует вам новое заклинание";
-//const string PRINT_Kosten = ". Цена: ";
-//const string PRINT_LP = " очков обучения";
-//const string PRINT_1LP = " очко обучения";
 const string PRINT_Kosten = " (";
 const string PRINT_LP = " очков обучения)";
 const string PRINT_2LP = " очка обучения)";
@@ -707,6 +708,7 @@ const string PRINT_RuneSuccess = "Руна создана!";
 const string PRINT_AlchemySuccess = "Зелье готово!";
 const string PRINT_AlchemySuccessInnoseye = "Глаз Инноса пульсирует энергией!";
 const string PRINT_ProdItemsMissing = "Недостаточно ингредиентов!";
+const string PRINT_AlcoholSuccess = "Алкоголь готов!";
 const string PRINT_TabakSuccess = "Создан новый табак!";
 const string PRINT_JointSuccess = "Косяк из болотной травы готов!";
 const string PRINT_Addon_Joint_01_Success = "'Зеленый послушник' готов!";
@@ -813,10 +815,10 @@ const string PRINT_XPGained = "Опыт + ";
 const string PRINT_XPLost = "Опыт ";
 const string PRINT_LevelUp = "Повышение уровня!";
 const string PRINT_NewLogEntry = "Новая запись в дневнике";
-const string PRINT_NewLogEntries = "Новые записи в дневнике:";
+const string PRINT_NewLogEntries = "Дневник обновлен:";
 const string PRINT_TeleportTooFarAway = "Слишком далеко";
 const string PRINT_BiffsAnteil = "Доля Биффа: ";
-const string PRINT_BiffGold = " золотых";
+const string PRINT_Gold = " золотых";
 const string PRINT_Addon_SCIsWearingRangerRing = "Теперь вы носите знак 'Кольца Воды'.";
 const string PRINT_Used = "Использовано: ";
 var string TEXT_Innoseye_Setting;
@@ -846,7 +848,8 @@ const string Pickpocket_40_Key = "(украсть его ключ будет довольно просто)";
 const string Pickpocket_60_Key = "(украсть его ключ будет довольно рискованно)";
 const string Pickpocket_80_Key = "(украсть его ключ будет довольно трудно)";
 const string DIALOG_SecretSign = "(показать знак воров)";
-const string DIALOG_SellGoldNugget = "(продать 1 золотой самородок)";
+const string DIALOG_BloodwynHead = "(показать голову Бладвина)";
+const string DIALOG_SellGoldNugget = "(продать один золотой самородок)";
 const string DIALOG_SellGoldNuggets = "(продать все золотые самородки)";
 const string DIALOG_GiveDragonBlood = "(отдать одну пробирку)";
 const string DIALOG_GiveAllDragonBlood = "(отдать все пробирки)";
@@ -864,14 +867,13 @@ const string PRINT_PICKLOCK_SUCCESS = "Похоже, я на верном пути.";
 const string PRINT_PICKLOCK_UNLOCK = "Замок открыт.";
 const string PRINT_PICKLOCK_FAILURE = "Черт... Попробуем еще раз.";
 const string PRINT_PICKLOCK_BROKEN = "Отмычка сломалась.";
-const string PRINT_HITPOINTS_MISSING = "Недостаточно здоровья:";
-const string PRINT_HITPOINTS_MAX_MISSING = "Максимум здоровья маловат:";
-const string PRINT_MANA_MISSING = "Недостаточно маны:";
-//const string PRINT_MANA_MAX_MISSING = "Максимум маны маловат:";
-const string PRINT_MANA_MAX_MISSING = "Недостаточно маны:";
-const string PRINT_STRENGTH_MISSING = "Недостаточно силы:";
-const string PRINT_DEXTERITY_MISSING = "Недостаточно ловкости:";
-const string PRINT_MAGCIRCLES_MISSING = "Слишком низкий магический круг для использования этой руны:";
+const string PRINT_HITPOINTS_MISSING = "Недостаточно здоровья: ";
+const string PRINT_HITPOINTS_MAX_MISSING = "Недостаточно макс. здоровья: ";
+const string PRINT_MANA_MISSING = "Недостаточно маны: ";
+const string PRINT_MANA_MAX_MISSING = "Недостаточно макс. маны: ";
+const string PRINT_STRENGTH_MISSING = "Недостаточно силы: ";
+const string PRINT_DEXTERITY_MISSING = "Недостаточно ловкости: ";
+const string PRINT_MAGCIRCLES_MISSING = "Слишком низкий магический круг для использования этой руны: ";
 const string PRINT_MAGCIRCLES_PAL = "Я не умею пользоваться магией паладинов.";
 const string PRINT_MAGCIRCLES_LOW = "Не изучен необходимый Круг магии.";
 const string PRINT_MAGCIRCLES_NEEDFIRST = "Не изучено ни одного Круга магии.";

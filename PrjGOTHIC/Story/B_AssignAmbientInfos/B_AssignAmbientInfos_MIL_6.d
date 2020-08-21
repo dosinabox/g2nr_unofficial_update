@@ -150,8 +150,11 @@ func void DIA_MIL_6_STANDARD_Info()
 	if(Kapitel == 1)
 	{
 		AI_Output(self,other,"DIA_MIL_6_STANDARD_06_01");	//В последнее время город просто наводнен всяким сбродом.
-		AI_Output(self,other,"DIA_MIL_6_STANDARD_06_02");	//Воровство стало просто невыносимым. Лорд Андрэ подозревает, что это дело рук банды.
-		AI_Output(self,other,"DIA_MIL_6_STANDARD_06_03");	//Не так давно мы перевернули вверх дном весь портовый квартал, но ничего не нашли.
+		if((Andre_FoundThieves_KilledByMilitia == FALSE) && (MIS_Andre_GuildOfThieves != LOG_SUCCESS))
+		{
+			AI_Output(self,other,"DIA_MIL_6_STANDARD_06_02");	//Воровство стало просто невыносимым. Лорд Андрэ подозревает, что это дело рук банды.
+			AI_Output(self,other,"DIA_MIL_6_STANDARD_06_03");	//Не так давно мы перевернули вверх дном весь портовый квартал, но ничего не нашли.
+		};
 	};
 	if(Kapitel == 2)
 	{

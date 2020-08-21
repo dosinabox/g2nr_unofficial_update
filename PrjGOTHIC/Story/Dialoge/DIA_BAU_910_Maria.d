@@ -235,7 +235,7 @@ func void DIA_Maria_Belohnung_Info()
 		}
 		else
 		{
-			AI_Output(other,self,"DIA_Hanna_Add_15_43");	//Ну...
+			DIA_Common_Well();
 			AI_Output(self,other,"DIA_Maria_Belohnung_SOLD_17_02");	//Зайди ко мне, когда обсудишь размер жалования с моим мужем.
 		};
 	}

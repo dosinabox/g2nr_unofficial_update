@@ -163,8 +163,8 @@ instance ItRi_Prot_Edge_01_Valentino(C_Item)
 	visual = "ItRi_Prot_Edge_01.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	on_equip = Equip_ValentinosRing;
-	on_unequip = UnEquip_ValentinosRing;
+	on_equip = Equip_ItRi_Prot_Edge_01;
+	on_unequip = UnEquip_ItRi_Prot_Edge_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо железной кожи";
@@ -177,20 +177,6 @@ instance ItRi_Prot_Edge_01_Valentino(C_Item)
 	inv_rotz = INVCAM_Z_RING_STANDARD;
 	inv_rotx = INVCAM_X_RING_STANDARD;
 };
-
-
-func void Equip_ValentinosRing()
-{
-	self.protection[PROT_EDGE] += Ri_ProtEdge;
-	self.protection[PROT_BLUNT] += Ri_ProtEdge;
-};
-
-func void UnEquip_ValentinosRing()
-{
-	self.protection[PROT_EDGE] -= Ri_ProtEdge;
-	self.protection[PROT_BLUNT] -= Ri_ProtEdge;
-};
-
 
 instance ItKe_Dexter(C_Item)
 {
@@ -766,8 +752,8 @@ instance Holy_Hammer_MIS(C_Item)
 //	count[2] = damageTotal;
 //	text[3] = NAME_Str_needed;
 //	count[3] = cond_value[2];
-	text[2] = "Урон неизвестен";
-	text[3] = "Требование к силе неизвестно";
+	text[2] = NAME_DamageUnknown;
+	text[3] = NAME_Unknown_needed;
 	text[4] = NAME_TwoHanded;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -959,8 +945,8 @@ instance ItRi_Prot_Point_01_MIS(C_Item)
 	visual = "ItRi_Prot_Point_01.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	on_equip = Equip_ItRi_Prot_Point_01_MIS;
-	on_unequip = UnEquip_ItRi_Prot_Point_01_MIS;
+	on_equip = Equip_ItRi_Prot_Point_01;
+	on_unequip = UnEquip_ItRi_Prot_Point_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо деревянной кожи";
@@ -973,18 +959,6 @@ instance ItRi_Prot_Point_01_MIS(C_Item)
 	inv_rotz = INVCAM_Z_RING_STANDARD;
 	inv_rotx = INVCAM_X_RING_STANDARD;
 };
-
-
-func void Equip_ItRi_Prot_Point_01_MIS()
-{
-	self.protection[PROT_POINT] += Ri_ProtPoint;
-};
-
-func void UnEquip_ItRi_Prot_Point_01_MIS()
-{
-	self.protection[PROT_POINT] -= Ri_ProtPoint;
-};
-
 
 instance ItMi_EddasStatue(C_Item)
 {
@@ -1070,6 +1044,7 @@ instance ITAR_PAL_Skel(C_Item)
 	visual_change = "Armor_Pal_Skeleton.asc";
 	visual_skin = 0;
 	material = MAT_METAL;
+	on_equip = Equip_ArmorSet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];

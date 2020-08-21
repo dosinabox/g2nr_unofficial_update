@@ -188,6 +188,21 @@ func void DIA_Mortis_CanTeach_Info()
 };
 
 
+func void B_BuildLearnDialog_Mortis()
+{
+	Info_ClearChoices(DIA_Mortis_Teach);
+	Info_AddChoice(DIA_Mortis_Teach,Dialog_Back,DIA_Mortis_Teach_BACK);
+	if(other.aivar[REAL_STRENGTH] >= 150)
+	{
+		AI_Output(self,other,"DIA_Mortis_Teach_13_00");	//Ты и так достаточно силен. Если же ты стремишься к большему, найди себе другого учителя.
+	}
+	else
+	{
+		Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Mortis_Teach_1);
+		Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Mortis_Teach_5);
+	};
+};
+
 instance DIA_Mortis_Teach(C_Info)
 {
 	npc = MIL_314_Mortis;
@@ -195,7 +210,6 @@ instance DIA_Mortis_Teach(C_Info)
 	condition = DIA_Mortis_Teach_Condition;
 	information = DIA_Mortis_Teach_Info;
 	permanent = TRUE;
-//	description = "Я хочу стать сильнее.";
 	description = "Начнем.";
 };
 
@@ -210,42 +224,30 @@ func int DIA_Mortis_Teach_Condition()
 
 func void DIA_Mortis_Teach_Info()
 {
-//	AI_Output(other,self,"DIA_Mortis_Teach_15_00");	//Я хочу стать сильнее.
 	AI_Output(other,self,"DIA_Keroloth_Teach_15_00");	//Начнем.
-	Info_ClearChoices(DIA_Mortis_Teach);
-	Info_AddChoice(DIA_Mortis_Teach,Dialog_Back,DIA_Mortis_Teach_BACK);
-	Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Mortis_Teach_1);
-	Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Mortis_Teach_5);
+	B_BuildLearnDialog_Mortis();
 };
 
 func void DIA_Mortis_Teach_BACK()
 {
-//	if(other.attribute[ATR_STRENGTH] >= T_LOW)
-	if(other.aivar[REAL_STRENGTH] >= 150)
-	{
-		AI_Output(self,other,"DIA_Mortis_Teach_13_00");	//Ты и так достаточно силен. Если же ты стремишься к большему, найди себе другого учителя.
-	};
 	Info_ClearChoices(DIA_Mortis_Teach);
 };
 
 func void DIA_Mortis_Teach_1()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,150);
-	Info_ClearChoices(DIA_Mortis_Teach);
-	Info_AddChoice(DIA_Mortis_Teach,Dialog_Back,DIA_Mortis_Teach_BACK);
-	Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Mortis_Teach_1);
-	Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Mortis_Teach_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,1,150))
+	{
+		B_BuildLearnDialog_Mortis();
+	};
 };
 
 func void DIA_Mortis_Teach_5()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,150);
-	Info_ClearChoices(DIA_Mortis_Teach);
-	Info_AddChoice(DIA_Mortis_Teach,Dialog_Back,DIA_Mortis_Teach_BACK);
-	Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Mortis_Teach_1);
-	Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Mortis_Teach_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,5,150))
+	{
+		B_BuildLearnDialog_Mortis();
+	};
 };
-
 
 instance DIA_Mortis_PICKPOCKET(C_Info)
 {
@@ -305,7 +307,7 @@ func int DIA_Mortis_RepairNecklace_Condition()
 
 func void DIA_Mortis_RepairNecklace_Info()
 {
-	AI_Output(other,self,"DIA_Harad_RepairNecklace_15_00");	//Ты можешь чинить драгоценности?
+	DIA_Common_CanYouRepairJewelry();
 	AI_Output(self,other,"DIA_Parcival_PERMKAP4_13_01");	//Ах, оставь меня в покое!
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 	AI_StopProcessInfos(self);

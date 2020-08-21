@@ -26,7 +26,8 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 		CreateInvItems(slf,ItMw_Stabkeule,1);
 		CreateInvItems(slf,ItMw_Steinbrecher,1);
 		CreateInvItems(slf,ItMw_Schwert2,1);
-		CreateInvItems(slf,ItMw_Doppelaxt,1);
+//		CreateInvItems(slf,ItMw_Doppelaxt,1);
+		CreateInvItems(slf,ItMw_1h_Pal_Sword,1);
 		CreateInvItems(slf,ItRw_Crossbow_M_02,1);
 		CreateInvItems(slf,ItRw_Crossbow_H_01,1);
 		CreateInvItems(slf,ItRw_Bow_M_02,1);

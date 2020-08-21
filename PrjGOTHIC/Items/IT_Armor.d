@@ -134,6 +134,7 @@ instance ITAR_Judge(C_Item)
 	visual_change = "Armor_Judge.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_ArmorSet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -577,6 +578,8 @@ instance ITAR_Bau_L(C_Item)
 	visual_change = "Armor_Bau_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_ITAR_BAU;
+	on_unequip = UnEquip_ITAR_BAU;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -588,6 +591,24 @@ instance ITAR_Bau_L(C_Item)
 	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
+};
+
+func void Equip_ITAR_BAU()
+{
+	if(Npc_IsPlayer(self))
+	{
+		BAUArmor_Equipped = TRUE;
+		B_SetHeroSkin();
+	};
+};
+
+func void UnEquip_ITAR_BAU()
+{
+	if(Npc_IsPlayer(self))
+	{
+		BAUArmor_Equipped = FALSE;
+		B_SetHeroSkin();
+	};
 };
 
 instance ITAR_Bau_M(C_Item)
@@ -606,6 +627,8 @@ instance ITAR_Bau_M(C_Item)
 	visual_change = "Armor_Bau_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_ITAR_BAU;
+	on_unequip = UnEquip_ITAR_BAU;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -1608,6 +1631,7 @@ instance ITAR_Dementor(C_Item)
 	visual_change = "Armor_Dementor.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_ArmorSet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -1979,6 +2003,68 @@ instance ITAR_DHT(C_Item)
 	visual_change = "Armor_Dht.asc";
 	visual_skin = 0;
 	material = MAT_WOOD;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ITAR_KDF_M(C_Item)
+{
+	name = "Старая легкая мантия мага Огня";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 40;
+	protection[PROT_BLUNT] = 40;
+	protection[PROT_POINT] = 40;
+	protection[PROT_FIRE] = 20;
+	protection[PROT_MAGIC] = 20;
+	value = VALUE_ITAR_KDF_L;
+	wear = WEAR_TORSO;
+	visual = "ItAr_KdF_M.3ds";
+	visual_change = "Armor_Kdf_M.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+	on_equip = Equip_ITAR_KDF_L;
+	on_unequip = UnEquip_ITAR_KDF_L;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ITAR_KDF_S(C_Item)
+{
+	name = "Старая тяжелая мантия мага Огня";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 100;
+	protection[PROT_BLUNT] = 100;
+	protection[PROT_POINT] = 100;
+	protection[PROT_FIRE] = 50;
+	protection[PROT_MAGIC] = 50;
+	value = VALUE_ITAR_KDF_H;
+	wear = WEAR_TORSO;
+	visual = "ItAr_KdF_S.3ds";
+	visual_change = "Armor_Kdf_S.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+	on_equip = Equip_ITAR_KDF_H;
+	on_unequip = UnEquip_ITAR_KDF_H;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];

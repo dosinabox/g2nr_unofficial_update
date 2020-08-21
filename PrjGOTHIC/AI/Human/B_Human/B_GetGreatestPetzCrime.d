@@ -77,7 +77,7 @@ func int B_GetGreatestPetzCrime(var C_Npc slf)
 			return CRIME_SHEEPKILLER;
 		};
 	};
-	if(C_NpcBelongsToBL(slf))
+/*	if(C_NpcBelongsToBL(slf))
 	{
 		if(PETZCOUNTER_BL_Murder > 0)
 		{
@@ -91,7 +91,7 @@ func int B_GetGreatestPetzCrime(var C_Npc slf)
 		{
 			return CRIME_ATTACK;
 		};
-	};
+	};*/
 	return CRIME_NONE;
 };
 

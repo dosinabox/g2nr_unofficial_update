@@ -296,7 +296,7 @@ func void PC_PrayShrine_Pray_SmallPay()
 {
 	Npc_RemoveInvItems(hero,ItMi_Gold,10);
 	Stats_Blessings_GoldGiven += 10;
-	concatDonation = ConcatStrings(IntToString(10),PRINT_GoldGegeben);
+	concatDonation = ConcatStrings(IntToString(10),PRINT_GoldGiven);
 	AI_PrintScreen(concatDonation,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && ((PrayDayOne_0 == TRUE) || (PrayDayOne_10 == TRUE) || (PrayDayOne_50 == TRUE) || (PrayDayOne_100 == TRUE))))
 	{
@@ -318,7 +318,7 @@ func void PC_PrayShrine_Pray_MediumPay()
 {
 	Npc_RemoveInvItems(hero,ItMi_Gold,50);
 	Stats_Blessings_GoldGiven += 50;
-	concatDonation = ConcatStrings(IntToString(50),PRINT_GoldGegeben);
+	concatDonation = ConcatStrings(IntToString(50),PRINT_GoldGiven);
 	AI_PrintScreen(concatDonation,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && ((PrayDayOne_0 == TRUE) || (PrayDayOne_10 == TRUE) || (PrayDayOne_50 == TRUE) || (PrayDayOne_100 == TRUE))))
 	{
@@ -342,7 +342,7 @@ func void PC_PrayShrine_Pray_BigPay()
 	zufall = Hlp_Random(100);
 	Npc_RemoveInvItems(hero,ItMi_Gold,100);
 	Stats_Blessings_GoldGiven += 100;
-	concatDonation = ConcatStrings(IntToString(100),PRINT_GoldGegeben);
+	concatDonation = ConcatStrings(IntToString(100),PRINT_GoldGiven);
 	AI_PrintScreen(concatDonation,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && ((PrayDayOne_0 == TRUE) || (PrayDayOne_10 == TRUE) || (PrayDayOne_50 == TRUE) || (PrayDayOne_100 == TRUE))))
 	{
@@ -409,7 +409,7 @@ func void PC_PrayShrine_BlessSword_Info()
 	else if(Npc_HasItems(hero,ItMi_Gold) >= Gold_BlessSword)
 	{
 		Npc_RemoveInvItems(hero,ItMi_Gold,Gold_BlessSword);
-		concatDonation = ConcatStrings(IntToString(Gold_BlessSword),PRINT_GoldGegeben);
+		concatDonation = ConcatStrings(IntToString(Gold_BlessSword),PRINT_GoldGiven);
 		AI_PrintScreen(concatDonation,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 		if(Npc_HasItems(hero,ItMw_2H_Blessed_01))
 		{
