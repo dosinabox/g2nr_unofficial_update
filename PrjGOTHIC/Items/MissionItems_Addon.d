@@ -24,6 +24,7 @@ func void Use_SaturasFirstMessage()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Дорогой Ватрас,");
 	Doc_PrintLines(nDocID,0,"Мы нашли портал. Ты был прав.");
 	Doc_PrintLines(nDocID,0,"Похоже, что это действительно были последователи Аданоса. Я прошу тебя проверить это еще раз, пользуясь моими записями.");
@@ -33,7 +34,7 @@ func void Use_SaturasFirstMessage()
 	Doc_PrintLines(nDocID,0,"Найденный нами орнамент имеет гораздо большее значение, чем мы думали. Похоже, что это артефакт-ключ. Увы, у нас только часть его. Мы должны заняться им.");
 	Doc_PrintLines(nDocID,0,"Отправь одного из членов Кольца Воды, чтобы он вернул нам орнамент. Если возможно, не посылай Кавалорна.");
 	Doc_PrintLines(nDocID,0,"Он и так достаточно потрудился, доставляя тебе это письмо.");
-	Doc_PrintLines(nDocID,0,"Надеюсь на то, что мы делаем - правильно.");
+	Doc_PrintLines(nDocID,0,"Надеюсь, то, что мы делаем - правильно.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Сатурас");
 	Doc_Show(nDocID);
@@ -41,14 +42,21 @@ func void Use_SaturasFirstMessage()
 	{
 		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
-		B_LogEntry(TOPIC_Addon_KDW,"Я забрал у бандита письмо, которое Кавалорн должен был доставить магу Воды Ватрасу. Теперь это моя задача.");
+		if(SC_KnowsRanger == FALSE)
+		{
+			B_LogEntries(TOPIC_Addon_KDW,"Я забрал у бандита письмо, которое Кавалорн должен был доставить магу Воды Ватрасу. Теперь это моя задача.");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_Addon_KDW,"Я забрал у бандита письмо, которое Кавалорн должен был доставить магу Воды Ватрасу. Теперь это моя задача.");
+		};
 		Use_SaturasFirstMessage_OneTime = TRUE;
 	};
 	if(SC_KnowsRanger == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
-		Log_AddEntry(TOPIC_Addon_RingOfWater,"Существует какое-то сообщество, которое называется 'Кольцо Воды'. Похоже, что управляют им маги Воды.");
+		B_LogNextEntry(TOPIC_Addon_RingOfWater,"Существует какое-то сообщество, которое называется 'Кольцо Воды'. Похоже, что управляют им маги Воды.");
 	};
 	if(SC_IsRanger == FALSE)
 	{
@@ -365,6 +373,7 @@ func void Use_RavensKidnapperMission_Addon()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Декстер, ублюдок!");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Когда я еще был рудным бароном, ты не был настолько ненадежен.");
@@ -550,7 +559,7 @@ instance ItRi_Addon_BanditTrader(C_Item)
 {
 	name = NAME_Ring;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_MISSION | ITEM_RING;
+	flags = ITEM_RING | ITEM_MISSION;
 	value = 70;
 	visual = "ItRi_Addon_BanditTrader.3ds";
 	visual_skin = 0;
@@ -676,7 +685,7 @@ instance ItWr_Vatras2Saturas_FindRaven_opened(C_Item)
 
 instance ItAm_Addon_WispDetector(C_Item)
 {
-	name = "Рудный амулет";
+	name = NAME_Amulett;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_Am_DexStrg;
@@ -722,7 +731,7 @@ func void UnEquip_WispDetector()
 		Snd_Play("WSP_Dead_A1");
 	};
 	AI_Teleport(DetWsp,"TOT");
-	B_RemoveNpc(DetWsp);
+	B_MoveNpcToMorgue(DetWsp);
 	AI_Teleport(DetWsp,"TOT");
 };
 
@@ -750,14 +759,16 @@ instance ItRi_Addon_MorgansRing_Mission(C_Item)
 	value = 500;
 	visual = "ItRi_Addon_MorgansRing.3DS";
 	material = MAT_METAL;
-	on_equip = Equip_MorgansRing;
-	on_unequip = UnEquip_MorgansRing;
+//	on_equip = Equip_MorgansRing;
+//	on_unequip = UnEquip_MorgansRing;
+	on_equip = Equip_1H_10;
+	on_unequip = UnEquip_1H_10;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо Моргана";
 	text[0] = "Кольцо украшено множеством рун.";
 	text[2] = NAME_ADDON_BONUS_1H;
-	count[2] = 10;
+	count[2] = Waffenbonus_10;
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_RING_STANDARD;
@@ -821,7 +832,7 @@ instance ItWr_StonePlateCommon_Addon(C_Item)
 	description = name;
 	text[0] = "Серая каменная табличка.";
 	text[5] = NAME_Value;
-	count[5] = value_StonePlateCommon;
+	count[5] = value;
 };
 
 
@@ -1097,18 +1108,18 @@ instance ItSE_Addon_FrancisChest(C_Item)
 
 func void FrancisChest()
 {
-	AI_PrintScreen("Книга платежей получено",-1,40,FONT_ScreenSmall,4);
-	AI_PrintScreen("Хороший кинжал получено",-1,43,FONT_ScreenSmall,4);
-	AI_PrintScreen("Золотой кубок получено",-1,46,FONT_ScreenSmall,4);
-	AI_PrintScreen("Серебряное ожерелье получено",-1,49,FONT_ScreenSmall,4);
-	AI_PrintScreen("153 золотых получено",-1,52,FONT_ScreenSmall,4);
-	Snd_Play("Geldbeutel");
-	CreateInvItems(hero,ItSE_Addon_EmptyFrancisChest,1);
+	CreateInvItems(hero,ITWR_Addon_FrancisAbrechnung_Mis,1);
 	CreateInvItems(hero,ItMw_FrancisDagger_Mis,1);
 	CreateInvItems(hero,ItMi_Gold,153);
 	CreateInvItems(hero,ItMi_GoldCup,1);
 	CreateInvItems(hero,ItMi_SilverNecklace,1);
-	CreateInvItems(hero,ITWR_Addon_FrancisAbrechnung_Mis,1);
+	CreateInvItems(hero,ItSE_Addon_EmptyFrancisChest,1);
+	AI_PrintScreen("Книга платежей получено",-1,49,FONT_ScreenSmall,4);
+	AI_PrintScreen("Хороший кинжал получено",-1,40,FONT_ScreenSmall,4);
+	AI_PrintScreen("153 золотых получено",-1,52,FONT_ScreenSmall,4);
+	AI_PrintScreen("Золотой кубок получено",-1,43,FONT_ScreenSmall,4);
+	AI_PrintScreen("Серебряное ожерелье получено",-1,46,FONT_ScreenSmall,4);
+	Snd_Play("Geldbeutel");
 };
 
 

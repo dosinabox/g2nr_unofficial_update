@@ -32,7 +32,7 @@ instance DIA_PAL_12_JOIN(C_Info)
 
 func int DIA_PAL_12_JOIN_Condition()
 {
-	if(other.guild == GIL_NONE)
+	if((other.guild == GIL_NONE) || (other.guild == GIL_MIL))
 	{
 		return TRUE;
 	};
@@ -41,8 +41,11 @@ func int DIA_PAL_12_JOIN_Condition()
 func void DIA_PAL_12_JOIN_Info()
 {
 	AI_Output(other,self,"DIA_PAL_12_JOIN_15_00");	//Я хочу стать паладином!
-	AI_Output(self,other,"DIA_PAL_12_JOIN_12_01");	//Ты? Не смеши меня! Да ты даже не служишь в городской страже.
-	AI_Output(self,other,"DIA_PAL_12_JOIN_12_02");	//Если бы я не видел, что передо мной просто тупая деревенщина, я бы подумал, что ты издеваешься надо мной.
+	if(other.guild != GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_PAL_12_JOIN_12_01");	//Ты? Не смеши меня! Да ты даже не служишь в городской страже.
+		AI_Output(self,other,"DIA_PAL_12_JOIN_12_02");	//Если бы я не видел, что передо мной просто тупая деревенщина, я бы подумал, что ты издеваешься надо мной.
+	};
 	AI_Output(self,other,"DIA_PAL_12_JOIN_12_03");	//Только лучшие из лучших, самые преданные последователи короля и нашего Владыки Инноса могут быть приняты в паладины.
 };
 
@@ -70,6 +73,7 @@ func void DIA_PAL_12_PEOPLE_Info()
 	AI_Output(other,self,"DIA_PAL_12_PEOPLE_15_00");	//Кто командует здесь?
 	AI_Output(self,other,"DIA_PAL_12_PEOPLE_12_01");	//Достопочтенный лорд Хаген. Но лорд Андрэ отвечает за все дела, касающиеся простого народа.
 	AI_Output(self,other,"DIA_PAL_12_PEOPLE_12_02");	//Ты найдешь его в казармах. Может, тебе повезет, и он уделит тебе несколько минут своего драгоценного времени.
+	Player_KnowsLordHagen = TRUE;
 };
 
 

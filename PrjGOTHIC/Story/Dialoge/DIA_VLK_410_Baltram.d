@@ -199,10 +199,10 @@ func void DIA_Baltram_Trick_Info()
 	AI_Output(other,self,"DIA_Baltram_Trick_15_05");	//Отлично, я согласен.
 	AI_Output(self,other,"DIA_Baltram_Trick_01_06");	//Хорошо, просто скажи Акилу, что тебя послал я. Он передаст тебе пакет. Принеси его мне.
 	MIS_Baltram_ScoutAkil = LOG_Running;
-	Log_AddEntry(TOPIC_Nagur,"Бальтрам нанял меня в качестве мальчика на побегушках. Теперь я должен доставить ему посылку с фермы Акила.");
 	Log_CreateTopic(TOPIC_Baltram,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Baltram,LOG_Running);
-	B_LogEntry(TOPIC_Baltram,"Если я принесу Бальтраму его посылку, он заплатит мне 50 золотых монет.");
+	B_LogEntries(TOPIC_Baltram,"Если я принесу Бальтраму его посылку, он заплатит мне 50 золотых монет.");
+	B_LogNextEntry(TOPIC_Nagur,"Бальтрам нанял меня в качестве мальчика на побегушках. Теперь я должен доставить ему посылку с фермы Акила.");
 };
 
 
@@ -513,7 +513,6 @@ func int DIA_Baltram_HaveYourWarez_Condition()
 
 func void DIA_Baltram_HaveYourWarez_Info()
 {
-	var string concatText;
 	B_BaltramRangerCheck(other);
 	AI_Output(other,self,"DIA_Baltram_HaveYourWarez_15_00");	//Я принес то, что ты просил.
 	AI_Output(self,other,"DIA_Baltram_HaveYourWarez_01_01");	//Покажи.
@@ -540,8 +539,8 @@ func void DIA_Baltram_HaveYourWarez_Info()
 		AI_Output(self,other,"DIA_Baltram_HaveYourWarez_01_04");	//Хммм, товар не самого лучшего качества, но в наше время не приходится привередничать.
 		Npc_RemoveInvItems(other,ItFo_Bacon,10);
 		Npc_RemoveInvItems(other,ItFo_Wine,10);
-		concatText = ConcatStrings(IntToString(20),PRINT_ItemsGegeben);
-		AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen("10 предметов отдано (Окорок)",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen("10 предметов отдано (Вино)",-1,40,FONT_ScreenSmall,2);
 		MIS_BaltramTrade = LOG_SUCCESS;
 		B_GivePlayerXP(XP_BaltramTrade);
 		AI_Output(self,other,"DIA_Baltram_HaveYourWarez_01_05");	//Теперь ничто не мешает нам вести дела.

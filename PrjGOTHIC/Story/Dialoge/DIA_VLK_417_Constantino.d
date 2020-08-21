@@ -182,8 +182,6 @@ func void DIA_Addon_Constantino_LestersKraeuter_Info()
 };
 
 
-var int Constantino_ItemsGiven_LittleMana;
-
 instance DIA_Constantino_Trade(C_Info)
 {
 	npc = VLK_417_Constantino;
@@ -216,11 +214,6 @@ func void DIA_Constantino_Trade_Info()
 		};
 		Constantino_flag = FALSE;
 	};
-	if((Player_IsApprentice == APP_Constantino) && ((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF)) && (Constantino_ItemsGiven_LittleMana == FALSE))
-	{
-		CreateInvItems(self,ItPo_Perm_LittleMana,1);
-		Constantino_ItemsGiven_LittleMana = TRUE;
-	};
 	if(Constantino_Logpatch1 == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
@@ -231,6 +224,11 @@ func void DIA_Constantino_Trade_Info()
 	Trade_IsActive = TRUE;
 };
 
+
+func void B_Constantino_NoYouAreWanted()
+{
+	AI_Output(self,other,"DIA_Constantino_LEHRLING_10_25");	//(сердито) Ни за что! До меня дошли слухи, что ты обвиняешься в преступлении здесь, в Хоринисе!
+};
 
 instance DIA_Constantino_NoTrade(C_Info)
 {
@@ -254,7 +252,7 @@ func int DIA_Constantino_NoTrade_Condition()
 func void DIA_Constantino_NoTrade_Info()
 {
 	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//Покажи мне свои товары.
-	AI_Output(self,other,"DIA_Constantino_LEHRLING_10_25");	//(сердито) Ни за что! До меня дошли слухи, что ты обвиняешься в преступлении здесь, в Хоринисе!
+	B_Constantino_NoYouAreWanted();
 	AI_StopProcessInfos(self);
 };
 
@@ -572,7 +570,7 @@ func void DIA_Constantino_LEHRLING_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Constantino_LEHRLING_10_25");	//(сердито) Ни за что! До меня дошли слухи, что ты обвиняешься в преступлении здесь, в Хоринисе!
+		B_Constantino_NoYouAreWanted();
 		AI_Output(self,other,"DIA_Constantino_LEHRLING_10_26");	//Я не возьму тебя в ученики, пока ты не уладишь этот вопрос с командующим городской стражи.
 	};
 };
@@ -583,14 +581,24 @@ func void DIA_Constantino_LEHRLING_Yes()
 	AI_Output(self,other,"DIA_Constantino_LEHRLING_Yes_10_01");	//(вздыхает) Хорошо! Надеюсь, я не пожалею об этом решении.
 	AI_Output(self,other,"DIA_Constantino_LEHRLING_Yes_10_02");	//С этого момента, ты можешь считать себя моим учеником.
 	Player_IsApprentice = APP_Constantino;
-	Npc_ExchangeRoutine(Lothar,"START");
+	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
+	{
+		Npc_ExchangeRoutine(Lothar,"START");
+	};
 	Constantino_StartGuild = other.guild;
 	Constantino_Lehrling_Day = Wld_GetDay();
 	Wld_AssignRoomToGuild("alchemist",GIL_NONE);
 	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
 	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-	B_LogEntry(Topic_Bonus,"Константино принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+	{
+		B_LogEntry(Topic_Bonus,"Константино принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+	}
+	else
+	{
+		B_LogEntry(Topic_Bonus,"Константино принял меня в ученики.");
+	};
 	Info_ClearChoices(DIA_Constantino_LEHRLING);
 };
 
@@ -604,6 +612,11 @@ func void DIA_Constantino_LEHRLING_Later()
 
 var int Constantino_MILKommentar;
 var int Constantino_INNOSKommentar;
+
+func void B_Constantino_NoLearnYouAreWanted()
+{
+	AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_00");	//(сердито) Я отказываюсь обучать тебя, пока ты обвиняешься в преступлении в городе.
+};
 
 instance DIA_Constantino_AlsLehrling(C_Info)
 {
@@ -628,7 +641,7 @@ func void DIA_Constantino_AlsLehrling_Info()
 {
 	if(B_GetGreatestPetzCrime(self) > CRIME_NONE)
 	{
-		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_00");	//(сердито) Я отказываюсь обучать тебя, пока ты обвиняешься в преступлении в городе.
+		B_Constantino_NoLearnYouAreWanted();
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_01");	//Иди к лорду Андрэ и уладь этот вопрос с ним.
 		Constantino_Lehrling_Day = Wld_GetDay();
 		AI_StopProcessInfos(self);
@@ -763,19 +776,24 @@ func void DIA_Constantino_MushroomsRunning_Info()
 
 func void DIA_Constantino_MushroomsRunning_Sell()
 {
+	var int Mushroom1_Count;
+	var int Mushroom2_Count;
 	var int Dunkelpilz_dabei;
 	Dunkelpilz_dabei = FALSE;
 	if(Npc_HasItems(other,ItPl_Mushroom_01))
 	{
+		Mushroom1_Count = Npc_HasItems(other,ItPl_Mushroom_01);
 		AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Sell_15_00");	//Я принес несколько черных грибов.
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Sell_10_01");	//Ах! Это лучшие грибы! Отлично! Вот твое золото!
 		Dunkelpilz_dabei = TRUE;
-		Constantino_DunkelpilzCounter = Constantino_DunkelpilzCounter + Npc_HasItems(other,ItPl_Mushroom_01);
-		B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItPl_Mushroom_01) * Value_Mushroom_01);
-		B_GiveInvItems(other,self,ItPl_Mushroom_01,Npc_HasItems(other,ItPl_Mushroom_01));
+		Constantino_DunkelpilzCounter += Mushroom1_Count;
+		ApprenticeGoldCounter += Mushroom1_Count * Value_Mushroom_01;
+		B_GiveInvItems(self,other,ItMi_Gold,Mushroom1_Count * Value_Mushroom_01);
+		B_GiveInvItems(other,self,ItPl_Mushroom_01,Mushroom1_Count);
 	};
 	if(Npc_HasItems(other,ItPl_Mushroom_02))
 	{
+		Mushroom2_Count = Npc_HasItems(other,ItPl_Mushroom_02);
 		if(Dunkelpilz_dabei == TRUE)
 		{
 			AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Sell_15_02");	//А вот еще другие...
@@ -785,8 +803,10 @@ func void DIA_Constantino_MushroomsRunning_Sell()
 			AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Sell_15_03");	//У меня здесь несколько грибов!
 		};
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Sell_10_04");	//Эти не так хороши, как черные грибы, но я все равно возьму их.
-		B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItPl_Mushroom_02) * Value_Mushroom_02);
-		B_GiveInvItems(other,self,ItPl_Mushroom_02,Npc_HasItems(other,ItPl_Mushroom_02));
+		Constantino_BigMushroomsCounter += Mushroom2_Count;
+		ApprenticeGoldCounter += Mushroom2_Count * Value_Mushroom_02;
+		B_GiveInvItems(self,other,ItMi_Gold,Mushroom2_Count * Value_Mushroom_02);
+		B_GiveInvItems(other,self,ItPl_Mushroom_02,Mushroom2_Count);
 	};
 	Info_ClearChoices(DIA_Constantino_MushroomsRunning);
 };
@@ -805,6 +825,7 @@ func void DIA_Constantino_MushroomsRunning_Why()
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Why_10_04");	//А когда ты съешь достаточное количество этих грибов, твоя магическая энергия возрастет...
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Why_10_05");	//Если бы я сказал тебе это ранее, ты бы слопал все эти грибы сам, разве нет?
 		AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Why_15_06");	//(вздыхает) Ох!
+		CreateInvItems(self,ItWr_MushroomMana,1);
 		Player_KnowsDunkelpilzBonus = TRUE;
 		Info_ClearChoices(DIA_Constantino_MushroomsRunning);
 	}
@@ -871,7 +892,7 @@ func void DIA_Constantino_Alchemy_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_00");	//(сердито) Я отказываюсь обучать тебя, пока ты обвиняешься в преступлении в городе.
+		B_Constantino_NoLearnYouAreWanted();
 		AI_StopProcessInfos(self);
 	};
 };
@@ -913,7 +934,7 @@ func void DIA_Constantino_NewRecipes_Info()
 			}
 			else
 			{
-				AI_Output(other,self,"DIA_Thorben_ZUSTIMMUNG_15_06");	//Нет. Еще нет...
+				DIA_Common_NoNotYet();
 				AI_Output(self,other,"DIA_Constantino_BringHerbs_10_01");	//(вздыхает) Я не вынесу, если ЕЩЕ ОДИН дилетант окажется на моей совести.
 				AI_StopProcessInfos(self);
 			};
@@ -926,7 +947,7 @@ func void DIA_Constantino_NewRecipes_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_00");	//(сердито) Я отказываюсь обучать тебя, пока ты обвиняешься в преступлении в городе.
+		B_Constantino_NoLearnYouAreWanted();
 		AI_StopProcessInfos(self);
 	};
 };
@@ -970,12 +991,12 @@ func void DIA_Constantino_TEACH_Info()
 			Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Constantino_TEACH_Health01);
 			talente += 1;
 		};
-		if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE))
+		if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE))
 		{
 			Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Constantino_TEACH_Health02);
 			talente += 1;
 		};
-		if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE))
+		if((PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE))
 		{
 			Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),DIA_Constantino_TEACH_Health03);
 			talente += 1;
@@ -1016,7 +1037,7 @@ func void DIA_Constantino_TEACH_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Constantino_LEHRLING_10_25");	//(сердито) Ни за что! До меня дошли слухи, что ты обвиняешься в преступлении здесь, в Хоринисе!
+		B_Constantino_NoYouAreWanted();
 		AI_StopProcessInfos(self);
 	};	
 };

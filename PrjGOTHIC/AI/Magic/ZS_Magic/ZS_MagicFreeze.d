@@ -37,8 +37,45 @@ func void B_StopMagicFreeze()
 	};
 };
 
+var int PainfulDeathState;
+
+func int PainfulDeath_Loop()
+{
+	var int time;
+	time = Npc_GetStateTime(self);
+	if((time == 0) && (PainfulDeathState == 0))
+	{
+		Wld_PlayEffect("VOB_MAGICBURN",self,self,0,0,0,FALSE);
+		B_Say(self,self,"$AARGH_1");
+		Npc_PlayAni(self,"S_FIRE_VICTIM");
+		PainfulDeathState = 1;
+	}
+	else if((time == 2) && (PainfulDeathState == 1))
+	{
+		B_Say(self,self,"$DEAD");
+		PainfulDeathState = 2;
+	}
+	else if((time == 3) && (PainfulDeathState == 2))
+	{
+		Npc_StopAni(self,"S_FIRE_VICTIM");
+		B_KillNpc(self);
+		PainfulDeathState = 3;
+	};
+	if(PainfulDeathState >= 3)
+	{
+		self.aivar[AIV_ReadyForPainfulDeath] = false;
+		return LOOP_END;
+	};
+	return LOOP_CONTINUE;
+};
+
 func void ZS_MagicFreeze()
 {
+	if(self.aivar[AIV_ReadyForPainfulDeath] == TRUE)
+	{
+		PainfulDeathState = 0;
+		return;
+	};
 	Snd_Play("MFX_ICECUBE_TARGET_START");
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_RestartFreeze);
 	Npc_StopAni(self,"S_FIRE_VICTIM");
@@ -51,6 +88,10 @@ func void ZS_MagicFreeze()
 
 func int ZS_MagicFreeze_Loop()
 {
+	if(self.aivar[AIV_ReadyForPainfulDeath] == TRUE)
+	{
+		return PainfulDeath_Loop();
+	};
 	if((Npc_GetStateTime(self) > SPL_TIME_FREEZE) || (self.attribute[ATR_HITPOINTS] <= 0))
 	{
 		B_StopMagicFreeze();

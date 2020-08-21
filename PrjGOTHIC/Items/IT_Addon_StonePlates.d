@@ -1,4 +1,5 @@
 
+const string StPl_MagicAuraText = "Эта каменная табличка излучает магическую ауру.";
 const int STR_StPlLevel1 = 2;
 const int STR_StPlLevel2 = 4;
 const int STR_StPlLevel3 = 6;
@@ -36,8 +37,73 @@ const int TwoHStonePlate = 7;
 const int BowStonePlate = 8;
 const int CrsBowStonePlate = 9;
 
-const string StPl_MagicAuraText = "Эта каменная табличка излучает магическую ауру.";
-const string StPl_StandardText = "";
+func void B_PrintPlayerMiddle(var C_NPC npc,var string text)
+{
+	if(Npc_IsPlayer(npc))
+	{
+		PrintScreen(text,-1,-1,FONT_Screen,2);
+	};
+};
+
+func void B_RaiseAttributeByStonePlate(var int talent,var int value)
+{
+	var string text;
+	if(talent == ATR_STRENGTH)
+	{
+		text = PRINT_LearnSTR;
+	}
+	else if(talent == ATR_DEXTERITY)
+	{
+		text = PRINT_LearnDEX;
+	}
+	else if(talent == ATR_HITPOINTS_MAX)
+	{
+		text = PRINT_LearnHP_MAX;
+	}
+	else if(talent == ATR_MANA_MAX)
+	{
+		text = PRINT_LearnMANA_MAX;
+	};
+	B_RaiseAttribute(self,talent,value);
+	PrintScreen(ConcatStrings(text,IntToString(value)),-1,-1,FONT_Screen,2);
+	Wld_PlayEffect("spellFX_LIGHTSTAR_ORANGE",self,self,0,0,0,FALSE);
+	Snd_Play("SFX_HealObsession");
+};
+
+func void B_RaiseTalentByStonePlate(var C_NPC npc,var int talent,var int value)
+{
+	var string text;
+	value = B_ChangeTalent(npc,talent,value,TS_PermBonus);
+	if(value == 0)
+	{
+		B_PrintPlayerMiddle(npc,PRINT_NoLearnOverMAX);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
+		B_Say(self,self,"$PickBroke");
+		AI_Waitms(self,500);
+		return;
+	};
+	if(talent == NPC_TALENT_1H)
+	{
+		text = PRINT_Learn1H;
+	}
+	else if(talent == NPC_TALENT_2H)
+	{
+		text = PRINT_Learn2H;
+	}
+	else if(talent == NPC_TALENT_BOW)
+	{
+		text = PRINT_LearnBow;
+	}
+	else if(talent == NPC_TALENT_CROSSBOW)
+	{
+		text = PRINT_LearnCrossbow;
+	};
+	text = ConcatStrings(text," + ");
+	text = ConcatStrings(text,IntToString(value));
+	B_PrintPlayerMiddle(npc,text);
+	Wld_PlayEffect("spellFX_LIGHTSTAR_ORANGE",self,self,0,0,0,FALSE);
+	Snd_Play("SFX_HealObsession");
+};
 
 func void B_CannotUse_Addon()
 {
@@ -96,429 +162,123 @@ func void Use_StonePlate()
 	{
 		if(StoneplateItem == StrStonePlate)
 		{
-			concatText = PRINT_LearnSTR;
 			if(StoneplateLevel == 1)
 			{
-				B_RaiseAttribute(self,ATR_STRENGTH,STR_StPlLevel1);
-				concatText = ConcatStrings(concatText,IntToString(STR_StPlLevel1));
-//				B_Say(self,self,"STONEPLATE_1");
+				B_RaiseAttributeByStonePlate(ATR_STRENGTH,STR_StPlLevel1);
 			}
 			else if(StoneplateLevel == 2)
 			{
-				B_RaiseAttribute(self,ATR_STRENGTH,STR_StPlLevel2);
-				concatText = ConcatStrings(concatText,IntToString(STR_StPlLevel2));
-//				B_Say(self,self,"STONEPLATE_2");
+				B_RaiseAttributeByStonePlate(ATR_STRENGTH,STR_StPlLevel2);
 			}
 			else if(StoneplateLevel == 3)
 			{
-				B_RaiseAttribute(self,ATR_STRENGTH,STR_StPlLevel3);
-				concatText = ConcatStrings(concatText,IntToString(STR_StPlLevel3));
-//				B_Say(self,self,"STONEPLATE_3");
+				B_RaiseAttributeByStonePlate(ATR_STRENGTH,STR_StPlLevel3);
 			};
 		}
 		else if(StoneplateItem == DexStonePlate)
 		{
-			concatText = PRINT_LearnDEX;
 			if(StoneplateLevel == 1)
 			{
-				B_RaiseAttribute(self,ATR_DEXTERITY,DEX_StPlLevel1);
-				concatText = ConcatStrings(concatText,IntToString(DEX_StPlLevel1));
-//				B_Say(self,self,"STONEPLATE_1");
+				B_RaiseAttributeByStonePlate(ATR_DEXTERITY,DEX_StPlLevel1);
 			}
 			else if(StoneplateLevel == 2)
 			{
-				B_RaiseAttribute(self,ATR_DEXTERITY,DEX_StPlLevel2);
-				concatText = ConcatStrings(concatText,IntToString(DEX_StPlLevel2));
-//				B_Say(self,self,"STONEPLATE_2");
+				B_RaiseAttributeByStonePlate(ATR_DEXTERITY,DEX_StPlLevel2);
 			}
 			else if(StoneplateLevel == 3)
 			{
-				B_RaiseAttribute(self,ATR_DEXTERITY,DEX_StPlLevel3);
-				concatText = ConcatStrings(concatText,IntToString(DEX_StPlLevel3));
-//				B_Say(self,self,"STONEPLATE_3");
+				B_RaiseAttributeByStonePlate(ATR_DEXTERITY,DEX_StPlLevel3);
 			};
 		}
 		else if(StoneplateItem == HitPointStonePlate)
 		{
-			concatText = PRINT_Learnhitpoints_MAX;
 			if(StoneplateLevel == 1)
 			{
-				B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HPMax_StPlLevel1);
-				Npc_ChangeAttribute(self,ATR_HITPOINTS,HPMax_StPlLevel1);
-				concatText = ConcatStrings(concatText,IntToString(HPMax_StPlLevel1));
-//				B_Say(self,self,"STONEPLATE_1");
+				B_RaiseAttributeByStonePlate(ATR_HITPOINTS_MAX,HPMax_StPlLevel1);
 			}
 			else if(StoneplateLevel == 2)
 			{
-				B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HPMax_StPlLevel2);
-				Npc_ChangeAttribute(self,ATR_HITPOINTS,HPMax_StPlLevel2);
-				concatText = ConcatStrings(concatText,IntToString(HPMax_StPlLevel2));
-//				B_Say(self,self,"STONEPLATE_2");
+				B_RaiseAttributeByStonePlate(ATR_HITPOINTS_MAX,HPMax_StPlLevel2);
 			}
 			else if(StoneplateLevel == 3)
 			{
-				B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HPMax_StPlLevel3);
-				Npc_ChangeAttribute(self,ATR_HITPOINTS,HPMax_StPlLevel3);
-				concatText = ConcatStrings(concatText,IntToString(HPMax_StPlLevel3));
-//				B_Say(self,self,"STONEPLATE_3");
+				B_RaiseAttributeByStonePlate(ATR_HITPOINTS_MAX,HPMax_StPlLevel3);
 			};
 		}
 		else if(StoneplateItem == ManaStonePlate)
 		{
-			concatText = PRINT_LearnMANA_MAX;
 			if(StoneplateLevel == 1)
 			{
-				B_RaiseAttribute(self,ATR_MANA_MAX,ManaMax_StPlLevel1);
-//				Npc_ChangeAttribute(self,ATR_MANA,ManaMax_StPlLevel1);
-				concatText = ConcatStrings(concatText,IntToString(ManaMax_StPlLevel1));
-//				B_Say(self,self,"STONEPLATE_1");
+				B_RaiseAttributeByStonePlate(ATR_MANA_MAX,ManaMax_StPlLevel1);
 			}
 			else if(StoneplateLevel == 2)
 			{
-				B_RaiseAttribute(self,ATR_MANA_MAX,ManaMax_StPlLevel2);
-//				Npc_ChangeAttribute(self,ATR_MANA,ManaMax_StPlLevel2);
-				concatText = ConcatStrings(concatText,IntToString(ManaMax_StPlLevel2));
-//				B_Say(self,self,"STONEPLATE_2");
+				B_RaiseAttributeByStonePlate(ATR_MANA_MAX,ManaMax_StPlLevel2);
 			}
 			else if(StoneplateLevel == 3)
 			{
-				B_RaiseAttribute(self,ATR_MANA_MAX,ManaMax_StPlLevel3);
-//				Npc_ChangeAttribute(self,ATR_MANA,ManaMax_StPlLevel3);
-				concatText = ConcatStrings(concatText,IntToString(ManaMax_StPlLevel3));
-//				B_Say(self,self,"STONEPLATE_3");
+				B_RaiseAttributeByStonePlate(ATR_MANA_MAX,ManaMax_StPlLevel3);
 			};
 		}
 		else if(StoneplateItem == OneHStonePlate)
 		{
-			if(Current1HBonus > 0)
+			if(StoneplateLevel == 1)
 			{
-				Current1HBonusRemoved = Current1HBonus;
-				if(Current1HBonus == 1)
-				{
-					UnEquip_1H_01();
-				}
-				else if(Current1HBonus == 2)
-				{
-					UnEquip_1H_02();
-				}
-				else if(Current1HBonus == 3)
-				{
-					UnEquip_1H_03();
-				}
-				else if(Current1HBonus == 4)
-				{
-					UnEquip_1H_04();
-				}
-				else if(Current1HBonus == 5)
-				{
-					UnEquip_1H_05();
-				}
-				else if(Current1HBonus == 6)
-				{
-					UnEquip_1H_06();
-				}
-				else if(Current1HBonus == 7)
-				{
-					UnEquip_1H_07();
-				}
-				else if(Current1HBonus == 8)
-				{
-					UnEquip_1H_08();
-				}
-				else if(Current1HBonus == 9)
-				{
-					UnEquip_1H_09();
-				}
-				else if(Current1HBonus == 10)
-				{
-					UnEquip_1H_10();
-				};
-			};
-			if(MorgansRing == TRUE)
-			{
-				UnEquip_MorgansRing();
-				MorgansRingUnequippedForTablet = TRUE;
-			};
-			if(hero.HitChance[NPC_TALENT_1H] < 100)
-			{
-				concatText = PRINT_Learn1H;
-				if(StoneplateLevel == 1)
-				{
-					B_RaiseFightTalent(self,NPC_TALENT_1H,OneH_StPlLevel1);
-					concatText = ConcatStrings(concatText," + ");
-					concatText = ConcatStrings(concatText,IntToString(OneH_StPlLevel1));
-				}
-				else if(StoneplateLevel == 2)
-				{
-					B_RaiseFightTalent(self,NPC_TALENT_1H,OneH_StPlLevel2);
-					concatText = ConcatStrings(concatText," + ");
-					concatText = ConcatStrings(concatText,IntToString(OneH_StPlLevel2));
-				}
-				else if(StoneplateLevel == 3)
-				{
-					B_RaiseFightTalent(self,NPC_TALENT_1H,OneH_StPlLevel3);
-					concatText = ConcatStrings(concatText," + ");
-					concatText = ConcatStrings(concatText,IntToString(OneH_StPlLevel3));
-				};
-				PrintScreen(concatText,-1,-1,FONT_Screen,2);
-				Wld_PlayEffect("spellFX_LIGHTSTAR_ORANGE",hero,hero,0,0,0,FALSE);
-				Snd_Play("SFX_HealObsession");
+				B_RaiseTalentByStonePlate(self,NPC_TALENT_1H,OneH_StPlLevel1);
 			}
-			else
+			else if(StoneplateLevel == 2)
 			{
-				PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
-				Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-				B_Say(self,self,"$PickBroke");
-				AI_Waitms(self,500);
-			};
-			if(MorgansRingUnequippedForTablet == TRUE)
+				B_RaiseTalentByStonePlate(self,NPC_TALENT_1H,OneH_StPlLevel2);
+			}
+			else if(StoneplateLevel == 3)
 			{
-				Equip_MorgansRing();
-				MorgansRingUnequippedForTablet = FALSE;
-			};
-			if(Current1HBonusRemoved > 0)
-			{
-				if(Current1HBonusRemoved == 1)
-				{
-					Equip_1H_01();
-				}
-				else if(Current1HBonusRemoved == 2)
-				{
-					Equip_1H_02();
-				}
-				else if(Current1HBonusRemoved == 3)
-				{
-					Equip_1H_03();
-				}
-				else if(Current1HBonusRemoved == 4)
-				{
-					Equip_1H_04();
-				}
-				else if(Current1HBonusRemoved == 5)
-				{
-					Equip_1H_05();
-				}
-				else if(Current1HBonusRemoved == 6)
-				{
-					Equip_1H_06();
-				}
-				else if(Current1HBonusRemoved == 7)
-				{
-					Equip_1H_07();
-				}
-				else if(Current1HBonusRemoved == 8)
-				{
-					Equip_1H_08();
-				}
-				else if(Current1HBonusRemoved == 9)
-				{
-					Equip_1H_09();
-				}
-				else if(Current1HBonusRemoved == 10)
-				{
-					Equip_1H_10();
-				};
-				Current1HBonusRemoved = 0;
+				B_RaiseTalentByStonePlate(self,NPC_TALENT_1H,OneH_StPlLevel3);
 			};
 		}
 		else if(StoneplateItem == TwoHStonePlate)
 		{
-			if(Current2HBonus > 0)
+			if(StoneplateLevel == 1)
 			{
-				Current2HBonusRemoved = Current2HBonus;
-				if(Current2HBonus == 1)
-				{
-					UnEquip_2H_01();
-				}
-				else if(Current2HBonus == 2)
-				{
-					UnEquip_2H_02();
-				}
-				else if(Current2HBonus == 3)
-				{
-					UnEquip_2H_03();
-				}
-				else if(Current2HBonus == 4)
-				{
-					UnEquip_2H_04();
-				}
-				else if(Current2HBonus == 5)
-				{
-					UnEquip_2H_05();
-				}
-				else if(Current2HBonus == 6)
-				{
-					UnEquip_2H_06();
-				}
-				else if(Current2HBonus == 7)
-				{
-					UnEquip_2H_07();
-				}
-				else if(Current2HBonus == 8)
-				{
-					UnEquip_2H_08();
-				}
-				else if(Current2HBonus == 9)
-				{
-					UnEquip_2H_09();
-				}
-				else if(Current2HBonus == 10)
-				{
-					UnEquip_2H_10();
-				};
-			};
-			if(hero.HitChance[NPC_TALENT_2H] < 100)
-			{
-				concatText = PRINT_Learn2H;
-				if(StoneplateLevel == 1)
-				{
-					B_RaiseFightTalent(self,NPC_TALENT_2H,TwoH_StPlLevel1);
-					concatText = ConcatStrings(concatText," + ");
-					concatText = ConcatStrings(concatText,IntToString(TwoH_StPlLevel1));
-				}
-				else if(StoneplateLevel == 2)
-				{
-					B_RaiseFightTalent(self,NPC_TALENT_2H,TwoH_StPlLevel2);
-					concatText = ConcatStrings(concatText," + ");
-					concatText = ConcatStrings(concatText,IntToString(TwoH_StPlLevel2));
-				}
-				else if(StoneplateLevel == 3)
-				{
-					B_RaiseFightTalent(self,NPC_TALENT_2H,TwoH_StPlLevel3);
-					concatText = ConcatStrings(concatText," + ");
-					concatText = ConcatStrings(concatText,IntToString(TwoH_StPlLevel3));
-				};
-				PrintScreen(concatText,-1,-1,FONT_Screen,2);
-				Wld_PlayEffect("spellFX_LIGHTSTAR_ORANGE",hero,hero,0,0,0,FALSE);
-				Snd_Play("SFX_HealObsession");
+				B_RaiseTalentByStonePlate(self,NPC_TALENT_2H,TwoH_StPlLevel1);
 			}
-			else
+			else if(StoneplateLevel == 2)
 			{
-				PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
-				Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-				B_Say(self,self,"$PickBroke");
-				AI_Waitms(self,500);
-			};
-			if(Current2HBonusRemoved > 0)
+				B_RaiseTalentByStonePlate(self,NPC_TALENT_2H,TwoH_StPlLevel2);
+			}
+			else if(StoneplateLevel == 3)
 			{
-				if(Current2HBonusRemoved == 1)
-				{
-					Equip_2H_01();
-				}
-				else if(Current2HBonusRemoved == 2)
-				{
-					Equip_2H_02();
-				}
-				else if(Current2HBonusRemoved == 3)
-				{
-					Equip_2H_03();
-				}
-				else if(Current2HBonusRemoved == 4)
-				{
-					Equip_2H_04();
-				}
-				else if(Current2HBonusRemoved == 5)
-				{
-					Equip_2H_05();
-				}
-				else if(Current2HBonusRemoved == 6)
-				{
-					Equip_2H_06();
-				}
-				else if(Current2HBonusRemoved == 7)
-				{
-					Equip_2H_07();
-				}
-				else if(Current2HBonusRemoved == 8)
-				{
-					Equip_2H_08();
-				}
-				else if(Current2HBonusRemoved == 9)
-				{
-					Equip_2H_09();
-				}
-				else if(Current2HBonusRemoved == 10)
-				{
-					Equip_2H_10();
-				};
-				Current2HBonusRemoved = 0;
+				B_RaiseTalentByStonePlate(self,NPC_TALENT_2H,TwoH_StPlLevel3);
 			};
 		}
 		else if(StoneplateItem == BowStonePlate)
 		{
-			if(hero.HitChance[NPC_TALENT_BOW] < 100)
+			if(StoneplateLevel == 1)
 			{
-				concatText = PRINT_LearnBow;
-				if(StoneplateLevel == 1)
-				{
-					B_RaiseFightTalent(self,NPC_TALENT_BOW,Bow_StPlLevel1);
-					concatText = ConcatStrings(concatText," + ");
-					concatText = ConcatStrings(concatText,IntToString(Bow_StPlLevel1));
-				}
-				else if(StoneplateLevel == 2)
-				{
-					B_RaiseFightTalent(self,NPC_TALENT_BOW,Bow_StPlLevel2);
-					concatText = ConcatStrings(concatText," + ");
-					concatText = ConcatStrings(concatText,IntToString(Bow_StPlLevel2));
-				}
-				else if(StoneplateLevel == 3)
-				{
-					B_RaiseFightTalent(self,NPC_TALENT_BOW,Bow_StPlLevel3);
-					concatText = ConcatStrings(concatText," + ");
-					concatText = ConcatStrings(concatText,IntToString(Bow_StPlLevel3));
-				};
-				PrintScreen(concatText,-1,-1,FONT_Screen,2);
-				Wld_PlayEffect("spellFX_LIGHTSTAR_ORANGE",hero,hero,0,0,0,FALSE);
-				Snd_Play("SFX_HealObsession");
+				B_RaiseTalentByStonePlate(self,NPC_TALENT_BOW,Bow_StPlLevel1);
 			}
-			else
+			else if(StoneplateLevel == 2)
 			{
-				PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
-				Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-				B_Say(self,self,"$PickBroke");
-				AI_Waitms(self,500);
+				B_RaiseTalentByStonePlate(self,NPC_TALENT_BOW,Bow_StPlLevel2);
+			}
+			else if(StoneplateLevel == 3)
+			{
+				B_RaiseTalentByStonePlate(self,NPC_TALENT_BOW,Bow_StPlLevel3);
 			};
 		}
 		else if(StoneplateItem == CrsBowStonePlate)
 		{
-			if(hero.HitChance[NPC_TALENT_CROSSBOW] < 100)
+			if(StoneplateLevel == 1)
 			{
-				concatText = PRINT_LearnCrossbow;
-				if(StoneplateLevel == 1)
-				{
-					B_RaiseFightTalent(self,NPC_TALENT_CROSSBOW,CrsBow_StPlLevel1);
-					concatText = ConcatStrings(concatText," + ");
-					concatText = ConcatStrings(concatText,IntToString(CrsBow_StPlLevel1));
-				}
-				else if(StoneplateLevel == 2)
-				{
-					B_RaiseFightTalent(self,NPC_TALENT_CROSSBOW,CrsBow_StPlLevel2);
-					concatText = ConcatStrings(concatText," + ");
-					concatText = ConcatStrings(concatText,IntToString(CrsBow_StPlLevel2));
-				}
-				else if(StoneplateLevel == 3)
-				{
-					B_RaiseFightTalent(self,NPC_TALENT_CROSSBOW,CrsBow_StPlLevel3);
-					concatText = ConcatStrings(concatText," + ");
-					concatText = ConcatStrings(concatText,IntToString(CrsBow_StPlLevel3));
-				};
-				PrintScreen(concatText,-1,-1,FONT_Screen,2);
-				Wld_PlayEffect("spellFX_LIGHTSTAR_ORANGE",hero,hero,0,0,0,FALSE);
-				Snd_Play("SFX_HealObsession");
+				B_RaiseTalentByStonePlate(self,NPC_TALENT_CROSSBOW,CrsBow_StPlLevel1);
 			}
-			else
+			else if(StoneplateLevel == 2)
 			{
-				PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
-				Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-				B_Say(self,self,"$PickBroke");
-				AI_Waitms(self,500);
+				B_RaiseTalentByStonePlate(self,NPC_TALENT_CROSSBOW,CrsBow_StPlLevel2);
+			}
+			else if(StoneplateLevel == 3)
+			{
+				B_RaiseTalentByStonePlate(self,NPC_TALENT_CROSSBOW,CrsBow_StPlLevel3);
 			};
-		};
-		if((StoneplateItem != OneHStonePlate) && (StoneplateItem != TwoHStonePlate) && (StoneplateItem != BowStonePlate) && (StoneplateItem != CrsBowStonePlate))
-		{
-			PrintScreen(concatText,-1,-1,FONT_Screen,2);
-			Wld_PlayEffect("spellFX_LIGHTSTAR_ORANGE",hero,hero,0,0,0,FALSE);
-			Snd_Play("SFX_HealObsession");
 		};
 	};
 	StoneplateItem = 0;
@@ -529,7 +289,8 @@ func void Use_StonePlate()
 prototype Prototype_StonePlate(C_Item)
 {
 	name = "Каменная табличка";
-	mainflag = ITEM_KAT_DOCS;
+//	mainflag = ITEM_KAT_DOCS;
+	mainflag = ITEM_KAT_RUNE;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = Value_StonePlateMagic;
 	visual = "ItMi_StonePlate_PowerUp_01.3DS";
@@ -741,7 +502,7 @@ instance ItWr_ManaStonePlate1_Addon(Prototype_StonePlate)
 {
 	description = "Каменная табличка магии I";
 	on_state[0] = Use_ManaStonePlate1;
-	visual = "ItMi_StonePlate_PowerUp_03.3DS";
+	visual = "ItMi_StonePlate_PowerUp_05.3DS";
 };
 
 
@@ -762,7 +523,7 @@ instance ItWr_ManaStonePlate2_Addon(Prototype_StonePlate)
 {
 	description = "Каменная табличка магии II";
 	on_state[0] = Use_ManaStonePlate2;
-	visual = "ItMi_StonePlate_PowerUp_03.3DS";
+	visual = "ItMi_StonePlate_PowerUp_05.3DS";
 };
 
 
@@ -783,7 +544,7 @@ instance ItWr_ManaStonePlate3_Addon(Prototype_StonePlate)
 {
 	description = "Каменная табличка магии III";
 	on_state[0] = Use_ManaStonePlate3;
-	visual = "ItMi_StonePlate_PowerUp_03.3DS";
+	visual = "ItMi_StonePlate_PowerUp_05.3DS";
 };
 
 
@@ -867,7 +628,7 @@ instance ItWr_TwoHStonePlate1_Addon(Prototype_StonePlate)
 {
 	description = "Каменная табличка двуручного оружия I";
 	on_state[0] = Use_TwoHStonePlate1;
-	visual = "ItMi_StonePlate_PowerUp_05.3DS";
+	visual = "ItMi_StonePlate_PowerUp_04.3DS";
 };
 
 
@@ -888,7 +649,7 @@ instance ItWr_TwoHStonePlate2_Addon(Prototype_StonePlate)
 {
 	description = "Каменная табличка двуручного оружия II";
 	on_state[0] = Use_TwoHStonePlate2;
-	visual = "ItMi_StonePlate_PowerUp_05.3DS";
+	visual = "ItMi_StonePlate_PowerUp_04.3DS";
 };
 
 
@@ -909,7 +670,7 @@ instance ItWr_TwoHStonePlate3_Addon(Prototype_StonePlate)
 {
 	description = "Каменная табличка двуручного оружия III";
 	on_state[0] = Use_TwoHStonePlate3;
-	visual = "ItMi_StonePlate_PowerUp_05.3DS";
+	visual = "ItMi_StonePlate_PowerUp_04.3DS";
 };
 
 
@@ -993,7 +754,7 @@ instance ItWr_CrsBowStonePlate1_Addon(Prototype_StonePlate)
 {
 	description = "Каменная табличка стрельбы из арбалета I";
 	on_state[0] = Use_CrsBowStonePlate1;
-	visual = "ItMi_StonePlate_PowerUp_04.3DS";
+	visual = "ItMi_StonePlate_PowerUp_03.3DS";
 };
 
 
@@ -1014,7 +775,7 @@ instance ItWr_CrsBowStonePlate2_Addon(Prototype_StonePlate)
 {
 	description = "Каменная табличка стрельбы из арбалета II";
 	on_state[0] = Use_CrsBowStonePlate2;
-	visual = "ItMi_StonePlate_PowerUp_04.3DS";
+	visual = "ItMi_StonePlate_PowerUp_03.3DS";
 };
 
 
@@ -1035,7 +796,7 @@ instance ItWr_CrsBowStonePlate3_Addon(Prototype_StonePlate)
 {
 	description = "Каменная табличка стрельбы из арбалета III";
 	on_state[0] = Use_CrsBowStonePlate3;
-	visual = "ItMi_StonePlate_PowerUp_04.3DS";
+	visual = "ItMi_StonePlate_PowerUp_03.3DS";
 };
 
 

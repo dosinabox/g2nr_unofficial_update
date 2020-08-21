@@ -29,14 +29,14 @@ instance DIA_Gorax_PICKPOCKET(C_Info)
 	condition = DIA_Gorax_PICKPOCKET_Condition;
 	information = DIA_Gorax_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(украсть его ключ будет довольно трудно)";
+	description = Pickpocket_80_Key;
 };
 
 
 func int DIA_Gorax_PICKPOCKET_Condition()
 {
 //	return C_StealItems(80,Hlp_GetInstanceID(ItKe_KlosterSchatz),0);
-	return C_StealItem(80,Hlp_GetInstanceID(ItKe_KlosterSchatz));
+	return C_StealItem(80);
 };
 
 func void DIA_Gorax_PICKPOCKET_Info()
@@ -350,12 +350,17 @@ func void DIA_Gorax_Orlan_Info()
 	};
 };
 
+func void B_Gorax_YouAreUseless()
+{
+	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_02");	//Ты совершенно ни на что не способен! Убирайся с глаз моих!
+};
+
 func void DIA_Gorax_Orlan_100()
 {
 	AI_Output(other,self,"DIA_Gorax_Orlan_100_15_00");	//Он надул меня!
 	B_GiveInvItems(other,self,ItMi_Gold,100);
 	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_01");	//Ты продал ему вино дешевле? Ох, нет! И почему я послал ТЕБЯ?!
-	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_02");	//Ты совершенно ни на что не способен! Убирайся с глаз моих!
+	B_Gorax_YouAreUseless();
 	MIS_GoraxWein = LOG_FAILED;
 	Goraxday = Wld_GetDay() + 1;
 	Info_ClearChoices(DIA_Gorax_Orlan);
@@ -405,7 +410,7 @@ func int DIA_Gorax_Orlan_TooLate_Condition()
 
 func void DIA_Gorax_Orlan_TooLate_Info()
 {
-	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_02");	//Ты совершенно ни на что не способен! Убирайся с глаз моих!
+	B_Gorax_YouAreUseless();
 	Goraxday = Wld_GetDay() + 1;
 	AI_StopProcessInfos(self);
 };*/
@@ -442,6 +447,11 @@ func void DIA_Gorax_JOB_Info()
 };
 
 
+func void B_Gorax_INeedSomething()
+{
+	AI_Output(other,self,"DIA_Gorax_TRADE_15_00");	//Мне нужно кое-что...
+};
+
 instance DIA_Gorax_TRADE(C_Info)
 {
 	npc = KDF_508_Gorax;
@@ -464,7 +474,7 @@ func int DIA_Gorax_TRADE_Condition()
 
 func void DIA_Gorax_TRADE_Info()
 {
-	AI_Output(other,self,"DIA_Gorax_TRADE_15_00");	//Мне нужно кое-что...
+	B_Gorax_INeedSomething();
 	B_GiveTradeInv(self);
 	if(!Npc_HasItems(self,ItMi_Pliers) && !Npc_HasItems(other,ItMi_Pliers))
 	{
@@ -499,8 +509,8 @@ func int DIA_Gorax_NOTRADE_Condition()
 
 func void DIA_Gorax_NOTRADE_Info()
 {
-	AI_Output(other,self,"DIA_Gorax_TRADE_15_00");	//Мне нужно кое-что...
-	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_02");	//Ты совершенно ни на что не способен! Убирайся с глаз моих!
+	B_Gorax_INeedSomething();
+	B_Gorax_YouAreUseless();
 	AI_StopProcessInfos(self);
 };
 

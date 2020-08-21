@@ -5,15 +5,13 @@ func void B_AssignDementorTalk_Ritual()
 	Wld_PlayEffect("DEMENTOR_FX",hero,hero,0,0,0,FALSE);
 	Wld_PlayEffect("spellFX_Fear",self,self,0,0,0,FALSE);
 	AI_PlayAni(self,"T_PRACTICEMAGIC5");
-	if(MIS_SCKnowsInnosEyeIsBroken == FALSE)
+	if(MIS_DementorToldInnosEyeIsBroken == FALSE)
 	{
 		AI_Output(self,other,"DIA_RitualDementor_19_00");	//Ты пришел слишком поздно.
 		AI_Output(self,other,"DIA_RitualDementor_19_01");	//Мы уничтожили Глаз Инноса, и теперь ему никогда не вернуть былую силу.
 		AI_Output(self,other,"DIA_RitualDementor_19_02");	//Теперь мы продемонстрируем всю тщетность твоих попыток бросить вызов Хозяину.
 		MIS_SCKnowsInnosEyeIsBroken = TRUE;
-		B_LogEntry(TOPIC_INNOSEYE,"Эти жуткие ребята действуют мне на нервы. Они испортили Глаз Инноса. И теперь я не знаю, как мне починить его.");
-		Log_AddEntry(TOPIC_TraitorPedro,"Я нашел Глаз Инноса. Но что-то нигде не видно Педро. Эти черные маги в сговоре с ним.");
-		B_GivePlayerXP(XP_SCKnowsInnosEyeIsBroken);
+		MIS_DementorToldInnosEyeIsBroken = TRUE;
 	}
 	else
 	{

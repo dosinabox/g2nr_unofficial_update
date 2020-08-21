@@ -138,3 +138,9 @@ func void Rtn_SHIP_7130()
 	TA_Stand_Guarding(5,0,6,0,"SHIP_DECK_29");
 };
 
+func void Rtn_Quit_7130()
+{
+	TA_Stand_Guarding(8,0,23,0,"TAVERNE");
+	TA_Stand_Guarding(23,0,8,0,"TAVERNE");
+};
+

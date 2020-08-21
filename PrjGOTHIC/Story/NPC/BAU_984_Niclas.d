@@ -16,7 +16,8 @@ instance BAU_984_Niclas(Npc_Default)
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,40);
+//	B_SetFightSkills(self,40);
+	B_SetTeacherFightSkills(self,40,40,TeachLimit_Bow_Niclas,40);
 	daily_routine = Rtn_Start_984;
 };
 

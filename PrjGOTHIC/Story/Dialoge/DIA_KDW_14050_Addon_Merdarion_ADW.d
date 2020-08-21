@@ -269,6 +269,23 @@ func void DIA_Addon_Merdarion_ADW_PreTeachMana_Info()
 
 var int Merdarion_ADW_Empty;
 
+func void B_BuildLearnDialog_Merdarion()
+{
+	Info_ClearChoices(DIA_Addon_Merdarion_ADW_TEACH_MANA);
+	Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,Dialog_Back,DIA_Addon_Merdarion_ADW_TEACH_MANA_BACK);
+	if(other.aivar[REAL_MANA_MAX] >= T_HIGH)
+	{
+		AI_Output(self,other,"DIA_Addon_Merdarion_ADW_TEACH_MANA_06_00");	//То, что ты просишь, выходит за рамки моих способностей.
+		AI_Output(self,other,"DIA_Addon_Merdarion_ADW_TEACH_MANA_06_01");	//Ты уже знаешь все, чему бы я тебя мог научить.
+		Merdarion_ADW_Empty = TRUE;
+	}
+	else
+	{
+		Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Addon_Merdarion_ADW_TEACH_MANA_1);
+		Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Addon_Merdarion_ADW_TEACH_MANA_5);
+	};
+};
+
 instance DIA_Addon_Merdarion_ADW_TEACH_MANA(C_Info)
 {
 	npc = KDW_14050_Addon_Merdarion_ADW;
@@ -282,7 +299,7 @@ instance DIA_Addon_Merdarion_ADW_TEACH_MANA(C_Info)
 
 func int DIA_Addon_Merdarion_ADW_TEACH_MANA_Condition()
 {
-	if((Merdarion_ADW_Empty == FALSE) && (Merdarion_Addon_TeachMana == TRUE))
+	if((Merdarion_Addon_TeachMana == TRUE) && (Merdarion_ADW_Empty == FALSE))
 	{
 		return TRUE;
 	};
@@ -291,39 +308,27 @@ func int DIA_Addon_Merdarion_ADW_TEACH_MANA_Condition()
 func void DIA_Addon_Merdarion_ADW_TEACH_MANA_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Merdarion_ADW_TEACH_MANA_15_00");	//Я хочу увеличить мою магическую энергию.
-	Info_ClearChoices(DIA_Addon_Merdarion_ADW_TEACH_MANA);
-	Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,Dialog_Back,DIA_Addon_Merdarion_ADW_TEACH_MANA_BACK);
-	Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Addon_Merdarion_ADW_TEACH_MANA_1);
-	Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Addon_Merdarion_ADW_TEACH_MANA_5);
+	B_BuildLearnDialog_Merdarion();
 };
 
 func void DIA_Addon_Merdarion_ADW_TEACH_MANA_BACK()
 {
-//	if(other.attribute[ATR_MANA_MAX] >= T_HIGH)
-	if(other.aivar[REAL_MANA_MAX] >= T_HIGH)
-	{
-		AI_Output(self,other,"DIA_Addon_Merdarion_ADW_TEACH_MANA_06_00");	//То, что ты просишь, выходит за рамки моих способностей.
-		AI_Output(self,other,"DIA_Addon_Merdarion_ADW_TEACH_MANA_06_01");	//Ты уже знаешь все, чему бы я тебя мог научить.
-		Merdarion_ADW_Empty = TRUE;
-	};
 	Info_ClearChoices(DIA_Addon_Merdarion_ADW_TEACH_MANA);
 };
 
 func void DIA_Addon_Merdarion_ADW_TEACH_MANA_1()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_HIGH);
-	Info_ClearChoices(DIA_Addon_Merdarion_ADW_TEACH_MANA);
-	Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,Dialog_Back,DIA_Addon_Merdarion_ADW_TEACH_MANA_BACK);
-	Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Addon_Merdarion_ADW_TEACH_MANA_1);
-	Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Addon_Merdarion_ADW_TEACH_MANA_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_HIGH))
+	{
+		B_BuildLearnDialog_Merdarion();
+	};
 };
 
 func void DIA_Addon_Merdarion_ADW_TEACH_MANA_5()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_HIGH);
-	Info_ClearChoices(DIA_Addon_Merdarion_ADW_TEACH_MANA);
-	Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,Dialog_Back,DIA_Addon_Merdarion_ADW_TEACH_MANA_BACK);
-	Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Addon_Merdarion_ADW_TEACH_MANA_1);
-	Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Addon_Merdarion_ADW_TEACH_MANA_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_HIGH))
+	{
+		B_BuildLearnDialog_Merdarion();
+	};
 };
 

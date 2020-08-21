@@ -83,6 +83,27 @@ func int C_Bennet_HaveNewWeapons()
 	return FALSE;
 };
 
+func void DIA_Bennet_SmithComment1()
+{
+	AI_Output(self,other,"DIA_Bennet_TeachSmith_06_01");	//Я могу научить тебя ковать магические мечи и даже двуручные клинки.
+};
+
+func void DIA_Bennet_SmithComment2()
+{
+	AI_Output(self,other,"DIA_Bennet_TeachSmith_06_02");	//Я немного потренировался, и теперь я могу научить тебя, как ковать полуторные и тяжелые двуручные магические мечи.
+};
+
+func void DIA_Bennet_SmithComment3()
+{
+	AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03_add");	//Мои новые магические клинки! Это лучшее, что я умею ковать сейчас.
+};
+
+func void DIA_Bennet_SmithComment4()
+{
+	AI_Output(self,other,"DIA_Bennet_TeachSmith_06_04");	//Послушай. На меня только что снизошло вдохновение. Магическое оружие, покрытое кровью дракона. И я точно знаю, как изготовить его!
+	AI_Output(self,other,"DIA_Bennet_TeachSmith_06_05");	//(ухмыляется) А ты хочешь узнать?
+};
+
 instance DIA_Bennet_AnnounceNewWeapons(C_Info)
 {
 	npc = SLD_809_Bennet;
@@ -108,23 +129,22 @@ func void DIA_Bennet_AnnounceNewWeapons_Info()
 	{
 		if((Kapitel == 2) && (Bennet_Kap2Smith == FALSE))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_01");	//Я могу научить тебя ковать магические мечи и даже двуручные клинки.
+			DIA_Bennet_SmithComment1();
 			Bennet_Kap2Smith = TRUE;
 		}
 		else if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE) && (Bennet_Kap3Smith == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_02");	//Я немного потренировался, и теперь я могу научить тебя, как ковать полуторные и тяжелые двуручные магические мечи.
+			DIA_Bennet_SmithComment2();
 			Bennet_Kap3Smith = TRUE;
 		}
 		else if((Kapitel < 5) && (MIS_ReadyforChapter4 == TRUE) && (Bennet_Kap4Smith == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03_add");	//Мои новые магические клинки! Это лучшее, что я умею ковать сейчас.
+			DIA_Bennet_SmithComment3();
 			Bennet_Kap4Smith = TRUE;
 		}
 		else if((Kapitel >= 5) && (Bennet_Kap5Smith == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_04");	//Послушай. На меня только что снизошло вдохновение. Магическое оружие, покрытое кровью дракона. И я точно знаю, как изготовить его!
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_05");	//(ухмыляется) А ты хочешь узнать?
+			DIA_Bennet_SmithComment4();
 			Bennet_Kap5Smith = TRUE;
 		};
 	}
@@ -132,23 +152,22 @@ func void DIA_Bennet_AnnounceNewWeapons_Info()
 	{
 		if((Kapitel == 1) && (Bennet_Kap1Smith_Alt == FALSE))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_01");	//Я могу научить тебя ковать магические мечи и даже двуручные клинки.
+			DIA_Bennet_SmithComment1();
 			Bennet_Kap1Smith_Alt = TRUE;
 		}
 		else if((Kapitel == 2) && (Bennet_Kap2Smith_Alt == FALSE))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_02");	//Я немного потренировался, и теперь я могу научить тебя, как ковать полуторные и тяжелые двуручные магические мечи.
+			DIA_Bennet_SmithComment2();
 			Bennet_Kap2Smith_Alt = TRUE;
 		}
 		else if((Kapitel < 5) && (Bennet_Kap3Smith_Alt == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03_add");	//Мои новые магические клинки! Это лучшее, что я умею ковать сейчас.
+			DIA_Bennet_SmithComment3();
 			Bennet_Kap3Smith_Alt = TRUE;
 		}
 		else if((Kapitel >= 5) && (Bennet_Kap5Smith_Alt == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_04");	//Послушай. На меня только что снизошло вдохновение. Магическое оружие, покрытое кровью дракона. И я точно знаю, как изготовить его!
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_05");	//(ухмыляется) А ты хочешь узнать?
+			DIA_Bennet_SmithComment4();
 			Bennet_Kap5Smith_Alt = TRUE;
 		};
 	};
@@ -413,7 +432,7 @@ func void DIA_Bennet_WannaSmith_Pay()
 
 func void DIA_Bennet_WannaSmith_Later()
 {
-	AI_Output(other,self,"DIA_Bennet_WannaSmith_Later_15_00");	//Ну, может быть, позже.
+	DIA_Common_MaybeLater();
 	Info_ClearChoices(DIA_Bennet_WannaSmith);
 };
 
@@ -1032,7 +1051,7 @@ func void DIA_Bennet_DragonScale_Info()
 	Bennet_DragonScale_Counter += dragonscalecount;
 	B_GiveInvItems(self,other,ItMi_Gold,dragonscalecount * Value_DragonScale);
 	Npc_RemoveInvItems(other,ItAt_DragonScale,dragonscalecount);
-	concatText = ConcatStrings(IntToString(dragonscalecount),PRINT_ItemsGegeben);
+	concatText = ConcatStrings(IntToString(dragonscalecount),PRINT_ItemsGiven);
 	AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	if((Bennet_DragonScale_Counter >= 20) && (Show_DJG_Armor_M == FALSE))
 	{
@@ -1401,14 +1420,14 @@ func void DIA_Bennet_DRACHENEIER_ok()
 		if(!Npc_IsDead(Brahim))
 		{
 			AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_08");	//Но сначала ты должен взять карту пещер у картографа в городе. Будет жаль, если ты найдешь не все яйца.
-			B_LogEntry(TOPIC_DRACHENEIER,"Я должен купить карту пещер у картографа в городе, чтобы быть уверенным, что я не пропущу часть яиц.");
+			Log_AddEntry(TOPIC_DRACHENEIER,"Я должен купить карту пещер у картографа в городе, чтобы быть уверенным, что я не пропущу часть яиц.");
 		}
 		else
 		{
 			AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_07");	//Вот. Возьми эту карту. Она поможет тебе найти пещеры.
 			CreateInvItems(self,ItWr_Map_Caves_MIS,1);
 			B_GiveInvItems(self,other,ItWr_Map_Caves_MIS,1);
-			B_LogEntry(TOPIC_DRACHENEIER,"Он дал мне карту пещер, возможно, она поможет мне.");
+			Log_AddEntry(TOPIC_DRACHENEIER,"Он дал мне карту пещер, возможно, она поможет мне.");
 		};
 	};
 	Info_ClearChoices(DIA_Bennet_DRACHENEIER);
@@ -1475,7 +1494,7 @@ func void DIA_Bennet_EierBringen_Info()
 	{
 		AI_Output(other,self,"DIA_Bennet_EierBringen_15_03");	//Я принес еще несколько.
 		Npc_RemoveInvItems(other,ItAt_DragonEgg_MIS,DragonEggCount);
-		concatText = ConcatStrings(IntToString(DragonEggCount),PRINT_ItemsGegeben);
+		concatText = ConcatStrings(IntToString(DragonEggCount),PRINT_ItemsGiven);
 		AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		XP_DJG_BringDragonEggs = DragonEggCount * XP_DJG_BringDragonEgg;
 		DragonEggCounter += DragonEggCount;
@@ -1493,6 +1512,7 @@ func void DIA_Bennet_EierBringen_Info()
 	{
 		AI_Output(self,other,"DIA_Bennet_EierBringen_06_06");	//Я не думаю, что ты найдешь еще яйца. К тому же, мне и этих достаточно. Я даже не знаю, что я буду делать со всеми ними.
 		TOPIC_END_DRACHENEIER = TRUE;
+		B_CheckLog();
 	};
 	AI_Output(self,other,"DIA_Bennet_EierBringen_06_07");	//Ох, хорошо. Вот твои деньги.
 	DragonEggGeld = DragonEggCount * BennetsDragonEggOffer;

@@ -83,6 +83,7 @@ instance ITAR_PIR_H_Addon(C_Item)
 	visual_change = "Armor_PIR_H_ADDON.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_ArmorSet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -325,7 +326,7 @@ instance ITAR_MayaZombie_Addon(C_Item)
 
 instance ITAR_FireArmor_Addon(C_Item)
 {
-	name = "Магические доспехи";
+	name = "Магическая мантия";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 100;

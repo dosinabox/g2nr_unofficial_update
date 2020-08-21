@@ -162,7 +162,7 @@ func void DIA_Attila_Hallo_Warum()
 	};
 	if((Betrayal_Halvor == FALSE) && (Rengaru_InKnast == FALSE) && (Nagur_Ausgeliefert == FALSE))
 	{
-		B_Say(self,other,"$DieEnemy");
+		B_Say(self,other,"$DIEENEMY");
 	};
 	AI_Output(self,other,"DIA_Attila_Hallo_Warum_09_04");	//Мои хозяева недовольны этим. Чтобы не дать тебе совершить еще одну ошибку, они послали меня.
 	Info_ClearChoices(DIA_Attila_Hallo);

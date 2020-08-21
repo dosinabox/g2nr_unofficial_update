@@ -614,25 +614,12 @@ instance ItRi_HP_01(C_Item)
 
 func void Equip_ItRi_Hp_01()
 {
-	self.attribute[ATR_HITPOINTS_MAX] += Ri_Hp;
-//	self.attribute[ATR_HITPOINTS] += Ri_Hp;
+	Equip_MaxHP(Ri_Hp);
 };
 
 func void UnEquip_ItRi_Hp_01()
 {
-	self.attribute[ATR_HITPOINTS_MAX] -= Ri_Hp;
-	if(self.attribute[ATR_HITPOINTS] > self.attribute[ATR_HITPOINTS_MAX])
-	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
-	};
-//	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp + 2))
-//	{
-//		self.attribute[ATR_HITPOINTS] -= Ri_Hp;
-//	}
-//	else
-//	{
-//		self.attribute[ATR_HITPOINTS] = 2;
-//	};
+	UnEquip_MaxHP(Ri_Hp);
 };
 
 
@@ -662,25 +649,12 @@ instance ItRi_Hp_02(C_Item)
 
 func void Equip_ItRi_Hp_02()
 {
-	self.attribute[ATR_HITPOINTS_MAX] += Ri_Hp02;
-//	self.attribute[ATR_HITPOINTS] += Ri_Hp02;
+	Equip_MaxHP(Ri_Hp02);
 };
 
 func void UnEquip_ItRi_Hp_02()
 {
-	self.attribute[ATR_HITPOINTS_MAX] -= Ri_Hp02;
-	if(self.attribute[ATR_HITPOINTS] > self.attribute[ATR_HITPOINTS_MAX])
-	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
-	};
-//	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp02 + 2))
-//	{
-//		self.attribute[ATR_HITPOINTS] -= Ri_Hp02;
-//	}
-//	else
-//	{
-//		self.attribute[ATR_HITPOINTS] = 2;
-//	};
+	UnEquip_MaxHP(Ri_Hp02);
 };
 
 
@@ -780,25 +754,12 @@ instance ItRi_Mana_01(C_Item)
 
 func void Equip_ItRi_Mana_01()
 {
-	self.attribute[ATR_MANA_MAX] += Ri_Mana;
-//	self.attribute[ATR_MANA] += Ri_Mana;
+	Equip_MaxMana(Ri_Mana);
 };
 
 func void UnEquip_ItRi_Mana_01()
 {
-	self.attribute[ATR_MANA_MAX] -= Ri_Mana;
-	if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
-	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
-	};
-//	if(self.attribute[ATR_MANA] > Ri_Mana)
-//	{
-//		self.attribute[ATR_MANA] -= Ri_Mana;
-//	}
-//	else
-//	{
-//		self.attribute[ATR_MANA] = 0;
-//	};
+	UnEquip_MaxMana(Ri_Mana);
 };
 
 
@@ -828,25 +789,12 @@ instance ItRi_Mana_02(C_Item)
 
 func void Equip_ItRi_Mana_02()
 {
-	self.attribute[ATR_MANA_MAX] += Ri_Mana02;
-//	self.attribute[ATR_MANA] += Ri_Mana02;
+	Equip_MaxMana(Ri_Mana02);
 };
 
 func void UnEquip_ItRi_Mana_02()
 {
-	self.attribute[ATR_MANA_MAX] -= Ri_Mana02;
-	if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
-	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
-	};
-//	if(self.attribute[ATR_MANA] > Ri_Mana02)
-//	{
-//		self.attribute[ATR_MANA] -= Ri_Mana02;
-//	}
-//	else
-//	{
-//		self.attribute[ATR_MANA] = 0;
-//	};
+	UnEquip_MaxMana(Ri_Mana02);
 };
 
 
@@ -878,40 +826,14 @@ instance ItRi_Hp_Mana_01(C_Item)
 
 func void Equip_ItRi_Hp_Mana_01()
 {
-//	self.attribute[ATR_HITPOINTS] += Ri_HpMana_Hp;
-	self.attribute[ATR_HITPOINTS_MAX] += Ri_HpMana_Hp;
-//	self.attribute[ATR_MANA] += Ri_HpMana_Mana;
-	self.attribute[ATR_MANA_MAX] += Ri_HpMana_Mana;
+	Equip_MaxHP(Ri_HpMana_Hp);
+	Equip_MaxMana(Ri_HpMana_Mana);
 };
 
 func void UnEquip_ItRi_Hp_Mana_01()
 {
-	self.attribute[ATR_MANA_MAX] -= Ri_HpMana_Mana;
-	self.attribute[ATR_HITPOINTS_MAX] -= Ri_HpMana_Hp;
-	if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
-	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
-	};
-	if(self.attribute[ATR_HITPOINTS] > self.attribute[ATR_HITPOINTS_MAX])
-	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
-	};
-//	if(self.attribute[ATR_HITPOINTS] > (Ri_HpMana_Hp + 2))
-//	{
-//		self.attribute[ATR_HITPOINTS] -= Ri_HpMana_Hp;
-//	}
-//	else
-//	{
-//		self.attribute[ATR_HITPOINTS] = 2;
-//	};
-//	if(self.attribute[ATR_MANA] > Ri_HpMana_Mana)
-//	{
-//		self.attribute[ATR_MANA] -= Ri_HpMana_Mana;
-//	}
-//	else
-//	{
-//		self.attribute[ATR_MANA] = 0;
-//	};
+	UnEquip_MaxHP(Ri_HpMana_Hp);
+	UnEquip_MaxMana(Ri_HpMana_Mana);
 };
 
 

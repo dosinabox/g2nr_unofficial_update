@@ -28,3 +28,9 @@ func void Rtn_Start_315()
 	TA_Sleep(0,3,7,5,"NW_CITY_BARRACK01_BED_RUGA");
 };
 
+func void Rtn_Hotel_315()
+{
+	TA_Stand_Guarding(8,0,22,0,"NW_CITY_MERCHANT_SHOP03_FRONT_02");
+	TA_Stand_Guarding(22,0,8,0,"NW_CITY_MERCHANT_SHOP03_FRONT_02");
+};
+

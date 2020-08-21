@@ -61,6 +61,7 @@ const int Value_SchwereArmbrust = 2000;
 const int Damage_Drachenjaegerarmbrust = 180;
 const int Condition_Drachenjaegerarmbrust = 150;
 const int Value_Drachenjaegerarmbrust = 2500;
+const int SpecialDamage_FireBow = 40;
 const int Damage_FireBow = 50;
 const int Condition_FireBow = 25;
 const int Value_FireBow = 2000;

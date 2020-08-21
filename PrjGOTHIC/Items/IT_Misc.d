@@ -789,3 +789,37 @@ instance ItMi_SumpfTabak(C_Item)
 	inv_zbias = 190;
 };
 
+instance ItMi_AlarmHorn(C_Item)
+{
+	name = "Сигнальный рог";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = Value_Alarmhorn;
+	visual = "ItMi_AlarmHorn.3ds";
+	scemeName = "HORN";
+	material = MAT_STONE;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItMi_ArrowPack(C_Item)
+{
+	name = "Колчан стрел";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = Value_Pfeil * 50;
+	visual = "ItMi_ArrowPack.3ds";
+	scemeName = "MAPSEALED";
+	material = MAT_LEATHER;
+	on_state[0] = Use_ArrowPack;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+func void Use_ArrowPack()
+{
+	B_PlayerFindItem(ItRw_Arrow,50);
+};
+

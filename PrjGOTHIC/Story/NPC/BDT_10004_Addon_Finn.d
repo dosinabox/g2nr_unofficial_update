@@ -22,8 +22,8 @@ instance BDT_10004_Addon_Finn(Npc_Default)
 
 func void Rtn_Start_10004()
 {
-	TA_Stand_Eating(10,0,20,0,"BL_DOWN_RING_04");
-	TA_Smalltalk(20,0,2,0,"BL_DOWN_RING_02");
+	TA_Stand_Eating(10,0,22,0,"BL_DOWN_RING_04");
+	TA_Stand_ArmsCrossed(22,0,2,0,"BL_DOWN_RING_02");
 	TA_Sit_Bench(2,0,10,0,"BL_DOWN_04_BENCH");
 };
 

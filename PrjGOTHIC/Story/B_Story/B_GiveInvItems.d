@@ -20,17 +20,17 @@ func int B_GiveInvItems(var C_Npc giver,var C_Npc taker,var int itemInstance,var
 		itemname = item.description;
 		if(itemInstance == ItMi_Gold)
 		{
-			concatText = ConcatStrings(IntToString(amount),PRINT_GoldGegeben);
+			concatText = ConcatStrings(IntToString(amount),PRINT_GoldGiven);
 			AI_PrintScreen(concatText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 		}
 		else if(amount == 1)
 		{
-			concatText = ConcatStrings(itemname,PRINT_Addon_gegeben);
+			concatText = ConcatStrings(itemname,PRINT_ItemGiven);
 			AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		}
 		else
 		{
-			concatText = ConcatStrings(IntToString(amount),PRINT_ItemsGegeben);
+			concatText = ConcatStrings(IntToString(amount),PRINT_ItemsGiven);
 			concatText = ConcatStrings(concatText," (");
 			concatText = ConcatStrings(concatText,itemname);
 			concatText = ConcatStrings(concatText,")");
@@ -47,17 +47,17 @@ func int B_GiveInvItems(var C_Npc giver,var C_Npc taker,var int itemInstance,var
 		itemname = item.description;
 		if(itemInstance == ItMi_Gold)
 		{
-			concatText = ConcatStrings(IntToString(amount),PRINT_GoldErhalten);
+			concatText = ConcatStrings(IntToString(amount),PRINT_GoldTaken);
 			AI_PrintScreen(concatText,-1,YPOS_GoldTaken,FONT_ScreenSmall,2);
 		}
 		else if(amount == 1)
 		{
-			concatText = ConcatStrings(itemname,PRINT_Addon_erhalten);
+			concatText = ConcatStrings(itemname,PRINT_ItemTaken);
 			AI_PrintScreen(concatText,-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		}
 		else
 		{
-			concatText = ConcatStrings(IntToString(amount),PRINT_ItemsErhalten);
+			concatText = ConcatStrings(IntToString(amount),PRINT_ItemsTaken);
 			concatText = ConcatStrings(concatText," (");
 			concatText = ConcatStrings(concatText,itemname);
 			concatText = ConcatStrings(concatText,")");

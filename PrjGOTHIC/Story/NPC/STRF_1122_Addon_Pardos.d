@@ -25,7 +25,7 @@ instance STRF_1122_Addon_Pardos(Npc_Default)
 	Mdl_SetModelFatness(self,-1);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,60);
+	B_SetFightSkills(self,10);
 	daily_routine = Rtn_Start_1122;
 };
 

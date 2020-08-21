@@ -12,14 +12,15 @@ instance DIA_Opolos_Kap1_EXIT(C_Info)
 
 func int DIA_Opolos_Kap1_EXIT_Condition()
 {
-	if(Kapitel <= 1)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Opolos_Kap1_EXIT_Info()
 {
+	if(Parlan_DontTalkToNovice == LOG_Running)
+	{
+		Parlan_DontTalkToNovice = LOG_SUCCESS;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -216,7 +217,7 @@ func int DIA_Opolos_rezept_Condition()
 
 func void DIA_Opolos_rezept_Info()
 {
-	AI_Output(other,self,"DIA_Neoras_Rezept_15_00");	//Насчет рецепта...
+	DIA_Common_AboutThatRecipe();
 	if(Npc_HasItems(other,ItWr_ManaRezept))
 	{
 		AI_Output(other,self,"DIA_Opolos_rezept_15_00");	//Я принес рецепт, как ты и хотел.
@@ -252,6 +253,21 @@ func void DIA_Opolos_rezept_Info()
 };
 
 
+func void B_BuildLearnDialog_Opolos()
+{
+	Info_ClearChoices(DIA_Opolos_TEACH_STR);
+	Info_AddChoice(DIA_Opolos_TEACH_STR,Dialog_Back,DIA_Opolos_TEACH_STR_BACK);
+	if(other.aivar[REAL_STRENGTH] >= T_MED)
+	{
+		AI_Output(self,other,"DIA_Opolos_TEACH_STR_12_00");	//Ты стал очень сильным. Мне больше нечему учить тебя.
+	}
+	else
+	{
+		Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Opolos_TEACH_STR_1);
+		Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Opolos_TEACH_STR_5);
+	};
+};
+
 instance DIA_Opolos_TEACH_STR(C_Info)
 {
 	npc = NOV_605_Opolos;
@@ -274,40 +290,29 @@ func int DIA_Opolos_TEACH_STR_Condition()
 func void DIA_Opolos_TEACH_STR_Info()
 {
 	AI_Output(other,self,"DIA_Opolos_TEACH_STR_15_00");	//Я хочу стать сильнее.
-	Info_ClearChoices(DIA_Opolos_TEACH_STR);
-	Info_AddChoice(DIA_Opolos_TEACH_STR,Dialog_Back,DIA_Opolos_TEACH_STR_BACK);
-	Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Opolos_TEACH_STR_1);
-	Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Opolos_TEACH_STR_5);
+	B_BuildLearnDialog_Opolos();
 };
 
 func void DIA_Opolos_TEACH_STR_BACK()
 {
-//	if(other.attribute[ATR_STRENGTH] >= T_MED)
-	if(other.aivar[REAL_STRENGTH] >= T_MED)
-	{
-		AI_Output(self,other,"DIA_Opolos_TEACH_STR_12_00");	//Ты стал очень сильным. Мне больше нечему учить тебя.
-	};
 	Info_ClearChoices(DIA_Opolos_TEACH_STR);
 };
 
 func void DIA_Opolos_TEACH_STR_1()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MED);
-	Info_ClearChoices(DIA_Opolos_TEACH_STR);
-	Info_AddChoice(DIA_Opolos_TEACH_STR,Dialog_Back,DIA_Opolos_TEACH_STR_BACK);
-	Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Opolos_TEACH_STR_1);
-	Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Opolos_TEACH_STR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MED))
+	{
+		B_BuildLearnDialog_Opolos();
+	};
 };
 
 func void DIA_Opolos_TEACH_STR_5()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MED);
-	Info_ClearChoices(DIA_Opolos_TEACH_STR);
-	Info_AddChoice(DIA_Opolos_TEACH_STR,Dialog_Back,DIA_Opolos_TEACH_STR_BACK);
-	Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Opolos_TEACH_STR_1);
-	Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Opolos_TEACH_STR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MED))
+	{
+		B_BuildLearnDialog_Opolos();
+	};
 };
-
 
 instance DIA_Opolos_Agon(C_Info)
 {
@@ -480,60 +485,6 @@ func void DIA_Opolos_HowIsIt_Info()
 };
 
 
-instance DIA_Opolos_Kap2_EXIT(C_Info)
-{
-	npc = NOV_605_Opolos;
-	nr = 999;
-	condition = DIA_Opolos_Kap2_EXIT_Condition;
-	information = DIA_Opolos_Kap2_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Opolos_Kap2_EXIT_Condition()
-{
-	if(Kapitel == 2)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Opolos_Kap2_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Opolos_Kap3_EXIT(C_Info)
-{
-	npc = NOV_605_Opolos;
-	nr = 999;
-	condition = DIA_Opolos_Kap3_EXIT_Condition;
-	information = DIA_Opolos_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Opolos_Kap3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Opolos_Kap3_EXIT_Info()
-{
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Opolos_Kap3_PERM(C_Info)
 {
 	npc = NOV_605_Opolos;
@@ -582,7 +533,7 @@ func void DIA_Opolos_Kap3_PERM_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_14");	//Пока ничего важного.
+		DIA_Common_NothingImportantYet();
 	};
 };
 
@@ -624,64 +575,6 @@ func void DIA_Opolos_Kap3_PERM_PEDRO()
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_PEDRO_15_03");	//Мы еще не мертвы.
 	B_GivePlayerXP(XP_Ambient);
 	Opolos_Pedro = TRUE;
-};
-
-
-instance DIA_Opolos_Kap4_EXIT(C_Info)
-{
-	npc = NOV_605_Opolos;
-	nr = 999;
-	condition = DIA_Opolos_Kap4_EXIT_Condition;
-	information = DIA_Opolos_Kap4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Opolos_Kap4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Opolos_Kap4_EXIT_Info()
-{
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Opolos_Kap5_EXIT(C_Info)
-{
-	npc = NOV_605_Opolos;
-	nr = 999;
-	condition = DIA_Opolos_Kap5_EXIT_Condition;
-	information = DIA_Opolos_Kap5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Opolos_Kap5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Opolos_Kap5_EXIT_Info()
-{
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
-	AI_StopProcessInfos(self);
 };
 
 

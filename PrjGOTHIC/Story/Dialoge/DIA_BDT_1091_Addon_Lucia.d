@@ -371,6 +371,14 @@ func void DIA_Addon_Lucia_lernen_Info()
 };
 
 
+func void B_BuildLearnDialog_Lucia()
+{
+	Info_ClearChoices(DIA_Addon_Lucia_TEACH);
+	Info_AddChoice(DIA_Addon_Lucia_TEACH,Dialog_Back,DIA_Addon_Lucia_TEACH_BACK);
+	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Addon_Lucia_TEACH_1);
+	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Addon_Lucia_TEACH_5);
+};
+
 instance DIA_Addon_Lucia_TEACH(C_Info)
 {
 	npc = BDT_1091_Addon_Lucia;
@@ -393,10 +401,7 @@ func int DIA_Addon_Lucia_TEACH_Condition()
 func void DIA_Addon_Lucia_TEACH_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lucia_TEACH_15_00");	//Я хочу стать более ловким.
-	Info_ClearChoices(DIA_Addon_Lucia_TEACH);
-	Info_AddChoice(DIA_Addon_Lucia_TEACH,Dialog_Back,DIA_Addon_Lucia_TEACH_BACK);
-	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Addon_Lucia_TEACH_1);
-	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Addon_Lucia_TEACH_5);
+	B_BuildLearnDialog_Lucia();
 };
 
 func void DIA_Addon_Lucia_TEACH_BACK()
@@ -406,19 +411,17 @@ func void DIA_Addon_Lucia_TEACH_BACK()
 
 func void DIA_Addon_Lucia_TEACH_1()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MED);
-	Info_ClearChoices(DIA_Addon_Lucia_TEACH);
-	Info_AddChoice(DIA_Addon_Lucia_TEACH,Dialog_Back,DIA_Addon_Lucia_TEACH_BACK);
-	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Addon_Lucia_TEACH_1);
-	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Addon_Lucia_TEACH_5);
+	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MED))
+	{
+		B_BuildLearnDialog_Lucia();
+	};
 };
 
 func void DIA_Addon_Lucia_TEACH_5()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MED);
-	Info_ClearChoices(DIA_Addon_Lucia_TEACH);
-	Info_AddChoice(DIA_Addon_Lucia_TEACH,Dialog_Back,DIA_Addon_Lucia_TEACH_BACK);
-	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Addon_Lucia_TEACH_1);
-	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Addon_Lucia_TEACH_5);
+	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MED))
+	{
+		B_BuildLearnDialog_Lucia();
+	};
 };
 

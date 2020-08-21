@@ -12,7 +12,7 @@ instance VLK_449_Lares_DI(Npc_Default)
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
-	B_SetAttributesToChapter(self,3);
+	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Schwert3);
 	B_CreateAmbientInv(self);
@@ -21,7 +21,8 @@ instance VLK_449_Lares_DI(Npc_Default)
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,35);
+//	B_SetFightSkills(self,35);
+	B_SetTeacherFightSkills(self,TeachLimit_1H_Lares,35,35,35);
 	daily_routine = Rtn_Start_4490;
 };
 

@@ -13,7 +13,7 @@ func void B_LevelUp(var int levels)
 	hero.attribute[ATR_HITPOINTS] += levels * HP_PER_LEVEL;
 	hero.lp += levels * LP_PER_LEVEL;
 	PrintScreen(PRINT_LevelUp,-1,YPOS_LevelUp,FONT_Screen,2);
-	Snd_Play("LevelUp");
+	Snd_Play("LEVELUP");
 };
 
 func int CalculateLowerXP(var int add_xp)
@@ -61,12 +61,12 @@ func void B_GivePlayerXP(var int add_xp)
 	B_CheckLog();
 };
 
-func void B_GiveDeathXP(var C_Npc Killer, var C_Npc Victim)
+func void B_GiveDeathXP(var C_Npc Killer,var C_Npc Victim)
 {
 	if((Npc_IsPlayer(Killer) || ((Killer.aivar[AIV_PARTYMEMBER] == TRUE) && !Npc_IsPlayer(Victim))) && (Victim.aivar[AIV_VictoryXPGiven] == FALSE) && (Victim.level != 0))
 	{
 		B_GivePlayerXP(Victim.level * XP_PER_VICTORY);
 		Victim.aivar[AIV_VictoryXPGiven] = TRUE;
-	}; 
+	};
 };
 

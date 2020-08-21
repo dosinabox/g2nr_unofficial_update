@@ -246,7 +246,7 @@ func int DIA_Dobar_PICKPOCKET_Condition()
 //	return C_StealItems(79,Hlp_GetInstanceID(ItMi_Nugget),1);
 	if(Npc_HasItems(self,ItMi_Nugget))
 	{
-		return C_StealItem(79,Hlp_GetInstanceID(ItMi_Nugget));
+		return C_StealItem(79);
 	};
 	return FALSE;
 };
@@ -294,7 +294,7 @@ func int DIA_Dobar_RepairNecklace_Condition()
 
 func void DIA_Dobar_RepairNecklace_Info()
 {
-	AI_Output(other,self,"DIA_Harad_RepairNecklace_15_00");	//Ты можешь чинить драгоценности?
+	DIA_Common_CanYouRepairJewelry();
 	AI_Output(self,other,"DIA_Dobar_NEWS_08_01");	//Я кую оружие для рыцарей замка. С тех пор, как мы прибыли сюда, я не отхожу от кузницы.
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 };

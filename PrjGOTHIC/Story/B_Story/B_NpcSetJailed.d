@@ -34,6 +34,7 @@ func void B_NpcSetJailed(var C_Npc slf)
 	slf.aivar[AIV_IGNORE_Murder] = TRUE;	//игнорирование преступлений игрока
 	slf.aivar[AIV_IGNORE_Theft] = TRUE;
 	slf.aivar[AIV_IGNORE_Sheepkiller] = TRUE;
+	slf.aivar[AIV_CommentedPlayerCrime] = FALSE;
 };
 
 func void B_NpcSetReleased(var C_Npc slf)
@@ -51,6 +52,7 @@ func void B_NpcSetReleased(var C_Npc slf)
 		slf.attribute[ATR_MANA_MAX] = slf.aivar[REAL_MANA_MAX];		//восстановление маны у мага
 		slf.attribute[ATR_MANA] = slf.attribute[ATR_MANA_MAX];
 	};
+	slf.aivar[AIV_CommentedPlayerCrime] = FALSE;
 	AI_EquipBestMeleeWeapon(slf);
 	AI_EquipBestRangedWeapon(slf);
 };

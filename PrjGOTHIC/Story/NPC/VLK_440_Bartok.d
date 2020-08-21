@@ -10,7 +10,8 @@ instance VLK_440_Bartok(Npc_Default)
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 //	EquipItem(self,ItRw_Bow_M_03);
-	EquipItem(self,ItMW_Addon_Hacker_1h_01);
+//	EquipItem(self,ItMW_Addon_Hacker_1h_01);
+	EquipItem(self,ItMW_Addon_Hacker_1h_02);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItPo_Health_03,5);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Important_Arto,BodyTex_N,ITAR_Vlk_L);
@@ -18,7 +19,8 @@ instance VLK_440_Bartok(Npc_Default)
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,50);
+//	B_SetFightSkills(self,50);
+	B_SetTeacherFightSkills(self,50,50,TeachLimit_Bow_Bartok,50);
 	daily_routine = Rtn_Start_440;
 };
 

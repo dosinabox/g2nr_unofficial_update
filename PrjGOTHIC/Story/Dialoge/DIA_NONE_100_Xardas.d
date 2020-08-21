@@ -60,6 +60,11 @@ func void DIA_Xardas_EXIT_Info()
 
 var int Addon_zuerst;
 
+func void B_Xardas_SoLittleTime()
+{
+	AI_Output(self,other,"DIA_Xardas_Hello_14_15");	//(задумчиво) У нас очень мало времени.
+};
+
 instance DIA_Xardas_Hello(C_Info)
 {
 	npc = NONE_100_Xardas;
@@ -92,13 +97,11 @@ func void DIA_Xardas_Hello_Info()
 func void DIA_Addon_Xardas_Hello_Man()
 {
 	PlayVideo("Intro_ADDON.BIK");
-	/////восстановление
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_01");	//(пренебрежительно) Люди слабы.
 	AI_Output(other,self,"DIA_Addon_AddonIntro_15_00");	//(ошеломлен) ...люди?
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_02");	//(пренебрежительно) Они слишком легко поддаются соблазнам Зла.
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_03");	//Таким образом они вовлекаются в дела, которые не могут понять и уж тем более не могут контролировать.
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_04");	//Твердые в своей вере уже начали сражение с врагом.
-	/////
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_10");	//Ты должен стать их союзником! Это единственный способ остановить Белиара.
 	Addon_zuerst = TRUE;
 };
@@ -119,7 +122,7 @@ func void DIA_Addon_Xardas_Hello_Dragons()
 	AI_Output(self,other,"DIA_Xardas_Hello_14_14");	//Лагерь этой армии находится недалеко отсюда, в Долине Рудников около Хориниса, и она готовится к атаке.
 	if(Addon_zuerst == TRUE)
 	{
-		AI_Output(self,other,"DIA_Xardas_Hello_14_15");	//(задумчиво) У нас очень мало времени.
+		B_Xardas_SoLittleTime();
 	}
 	else
 	{
@@ -616,7 +619,7 @@ func void DIA_Xardas_FirstPal_Info()
 	}
 	else if(LordHagen.aivar[AIV_TalkedToPlayer] == TRUE)
 	{
-		AI_Output(other,self,"DIA_Addon_Lares_GOFORESTPRE_ja_15_00");	//Да.
+		DIA_Common_Yes();
 		if(Kapitel == 2)
 		{
 			AI_Output(other,self,"DIA_Addon_Vatras_NowRanger_15_03");	//Но он отправил меня в Долину Рудников, чтобы я добыл ему доказательства своих слов!
@@ -628,14 +631,14 @@ func void DIA_Xardas_FirstPal_Info()
 		else
 		{
 			AI_Output(self,other,"DIA_Xardas_RITUALREQUEST_14_01");	//Хорошо. Что он сказал?
-			AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_14");	//Пока ничего важного.
-			AI_Output(self,other,"DIA_Xardas_Hello_14_15");	//(задумчиво) У нас очень мало времени.
+			DIA_Common_NothingImportantYet();
+			B_Xardas_SoLittleTime();
 		};
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Thorben_ZUSTIMMUNG_15_06");	//Нет. Еще нет...
-		AI_Output(self,other,"DIA_Xardas_Hello_14_15");	//(задумчиво) У нас очень мало времени.
+		DIA_Common_NoNotYet();
+		B_Xardas_SoLittleTime();
 	};
 	if((LesterMovedToXardas == FALSE) && Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
 	{

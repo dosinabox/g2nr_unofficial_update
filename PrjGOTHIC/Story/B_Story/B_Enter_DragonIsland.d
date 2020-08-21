@@ -255,9 +255,10 @@ func void startup_dragonisland()
 	B_Kapitelwechsel(6,DRAGONISLAND_ZEN);
 };
 
-func void init_dragonisland()
+func void INIT_DragonIsland()
 {
 	B_Check_Version();
+	B_Check_Talents();
 	B_SetHeroSkin();
 	B_CheckDynamicText();
 	B_InitMonsterAttitudes();

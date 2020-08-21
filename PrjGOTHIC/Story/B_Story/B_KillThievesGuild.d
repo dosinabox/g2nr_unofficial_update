@@ -23,21 +23,22 @@ func void B_KillThievesGuild()
 				Npc_RemoveInvItem(Ramirez,ItMw_Meisterdegen);
 				CreateInvItem(Ramirez,ItMw_Meisterdegen);
 			};
+			B_StartOtherRoutine(MIL_318_Miliz,"SEWER");
+			B_StartOtherRoutine(MIL_327_Miliz,"SEWER");
+			B_StartOtherRoutine(MIL_329_Miliz,"SEWER");
+			B_StartOtherRoutine(MIL_330_Miliz,"SEWER");
 			Andre_FoundThieves_KilledByMilitia = TRUE;
 		};
 	};
 };
 
-func void B_ResetSergio()
+func void B_SendMilitiaToHotel()
 {
-	if(!Npc_IsDead(Sergio))
+	if(MilitiaSentToHotel == FALSE)
 	{
-		if((Sergio.aivar[AIV_PARTYMEMBER] == TRUE) && (Sergio_Follow_End == FALSE))
-		{
-			Sergio.aivar[AIV_PARTYMEMBER] = FALSE;
-			Npc_ExchangeRoutine(Sergio,"START");
-			Sergio_Follow_End = TRUE;
-		};
+		B_StartOtherRoutine(MIL_315_Kasernenwache,"HOTEL");
+		B_StartOtherRoutine(Bote,"BALTRAM");
+		MilitiaSentToHotel = TRUE;
 	};
 };
 

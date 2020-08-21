@@ -8,7 +8,7 @@ func void B_Upgrade_Hero_HackChance(var int Wert)
 		concatText = ConcatStrings(concatText,")");
 		PrintScreen(concatText,-1,34,FONT_ScreenSmall,2);
 		Hero_HackChance += Wert;
-		Snd_Play("LevelUp");
+		Snd_Play("LEVELUP");
 	};
 	if(Hero_HackChance > 100)
 	{

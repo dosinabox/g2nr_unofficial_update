@@ -221,6 +221,16 @@ func void DIA_DiegoOw_Gorn_Info()
 var int Diego_MerkeDEX;
 var int Diego_MerkeSTR;
 
+func void B_BuildLearnDialog_Diego_OW()
+{
+	Info_ClearChoices(DIA_DiegoOw_Teach);
+	Info_AddChoice(DIA_DiegoOw_Teach,Dialog_Back,DIA_DiegoOw_TEACH_BACK);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_DiegoOw_TEACHDEX_1);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_DiegoOw_TEACHDEX_5);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_DiegoOw_TEACHSTR_1);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_DiegoOw_TEACHSTR_5);
+};
+
 instance DIA_DiegoOw_Teach(C_Info)
 {
 	npc = PC_ThiefOW;
@@ -241,26 +251,17 @@ func void DIA_DiegoOw_Teach_Info()
 {
 	AI_Output(other,self,"DIA_DiegoOw_Teach_15_00");	//Ты можешь научить меня чему-нибудь?
 	AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_01");	//Конечно. Что ты хочешь знать?
-//	Diego_MerkeDEX = other.attribute[ATR_DEXTERITY];
-//	Diego_MerkeSTR = other.attribute[ATR_STRENGTH];
 	Diego_MerkeDEX = other.aivar[REAL_DEXTERITY];
 	Diego_MerkeSTR = other.aivar[REAL_STRENGTH];
-	Info_ClearChoices(DIA_DiegoOw_Teach);
-	Info_AddChoice(DIA_DiegoOw_Teach,Dialog_Back,DIA_DiegoOw_TEACH_BACK);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_DiegoOw_TEACHDEX_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_DiegoOw_TEACHDEX_5);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_DiegoOw_TEACHSTR_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_DiegoOw_TEACHSTR_5);
+	B_BuildLearnDialog_Diego_OW();
 };
 
 func void DIA_DiegoOw_TEACH_BACK()
 {
-//	if(other.attribute[ATR_DEXTERITY] > Diego_MerkeDEX)
 	if(other.aivar[REAL_DEXTERITY] > Diego_MerkeDEX)
 	{
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_02");	//Ты уже стал более ловким.
 	};
-//	if(other.attribute[ATR_STRENGTH] > Diego_MerkeSTR)
 	if(other.aivar[REAL_STRENGTH] > Diego_MerkeSTR)
 	{
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_03");	//(оценивающе) Очень хорошо. Твоя сила увеличилась.
@@ -270,48 +271,35 @@ func void DIA_DiegoOw_TEACH_BACK()
 
 func void DIA_DiegoOw_TEACHDEX_1()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MAX);
-	Info_ClearChoices(DIA_DiegoOw_Teach);
-	Info_AddChoice(DIA_DiegoOw_Teach,Dialog_Back,DIA_DiegoOw_TEACH_BACK);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_DiegoOw_TEACHDEX_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_DiegoOw_TEACHDEX_5);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_DiegoOw_TEACHSTR_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_DiegoOw_TEACHSTR_5);
+	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MAX))
+	{
+		B_BuildLearnDialog_Diego_OW();
+	};
 };
 
 func void DIA_DiegoOw_TEACHDEX_5()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MAX);
-	Info_ClearChoices(DIA_DiegoOw_Teach);
-	Info_AddChoice(DIA_DiegoOw_Teach,Dialog_Back,DIA_DiegoOw_TEACH_BACK);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_DiegoOw_TEACHDEX_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_DiegoOw_TEACHDEX_5);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_DiegoOw_TEACHSTR_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_DiegoOw_TEACHSTR_5);
+	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MAX))
+	{
+		B_BuildLearnDialog_Diego_OW();
+	};
 };
 
 func void DIA_DiegoOw_TEACHSTR_1()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MED);
-	Info_ClearChoices(DIA_DiegoOw_Teach);
-	Info_AddChoice(DIA_DiegoOw_Teach,Dialog_Back,DIA_DiegoOw_TEACH_BACK);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_DiegoOw_TEACHDEX_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_DiegoOw_TEACHDEX_5);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_DiegoOw_TEACHSTR_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_DiegoOw_TEACHSTR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MED))
+	{
+		B_BuildLearnDialog_Diego_OW();
+	};
 };
 
 func void DIA_DiegoOw_TEACHSTR_5()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MED);
-	Info_ClearChoices(DIA_DiegoOw_Teach);
-	Info_AddChoice(DIA_DiegoOw_Teach,Dialog_Back,DIA_DiegoOw_TEACH_BACK);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_DiegoOw_TEACHDEX_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_DiegoOw_TEACHDEX_5);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_DiegoOw_TEACHSTR_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_DiegoOw_TEACHSTR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MED))
+	{
+		B_BuildLearnDialog_Diego_OW();
+	};
 };
-
 
 instance DIA_ThiefOW_PICKPOCKET(C_Info)
 {
@@ -365,7 +353,7 @@ func int DIA_Addon_ThiefOW_Together_Condition()
 
 func void DIA_Addon_ThiefOW_Together_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Diego_Together_15_00");	//Давай пойдем вместе.
+	DIA_Common_LetsGoTogether();
 	AI_Output(self,other,"DIA_Addon_Diego_Together_11_01");	//К Проходу? Почему бы и нет...
 	AI_Output(self,other,"DIA_Addon_Diego_Together_11_02");	//Иди первым. Ты ведь недавно оттуда.
 	AI_Output(self,other,"DIA_Addon_Diego_Together_11_03");	//Но даже не думай о том, чтобы подойти слишком близко к замку или Стене орков.

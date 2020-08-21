@@ -40,7 +40,8 @@ func void B_Beklauen()
 };
 
 //func int C_StealItems(var int TheftDex,var int Itm,var int Qty)
-func int C_StealItem(var int TheftDex,var int Itm)
+//func int C_StealItem(var int TheftDex,var int Itm)
+func int C_StealItem(var int TheftDex)
 {
 //	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (other.attribute[ATR_DEXTERITY] >= (TheftDex - Theftdiff)) && (Npc_HasItems(self,Itm) >= Qty) && (NpcObsessedByDMT == FALSE))
 	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (other.attribute[ATR_DEXTERITY] >= (TheftDex - Theftdiff)) && (NpcObsessedByDMT == FALSE))

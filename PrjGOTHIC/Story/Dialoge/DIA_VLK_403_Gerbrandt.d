@@ -9,8 +9,13 @@ func void B_StartNewLife()
 		{
 			B_StartOtherRoutine(DiegoNW,"GERBRANDT");
 		};
+		self.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		Npc_ExchangeRoutine(self,"FLEE");
-		B_StartOtherRoutine(GerbrandtsFrau,"NEWLIFE");
+		if(!Npc_IsDead(GerbrandtsFrau))
+		{
+			GerbrandtsFrau.aivar[AIV_CommentedPlayerCrime] = FALSE;
+			B_StartOtherRoutine(GerbrandtsFrau,"NEWLIFE");
+		};
 		B_StartOtherRoutine(VLK_419_Buerger,"NEWPLACE");
 		DIEGO_COMING = 2;
 	};
@@ -55,7 +60,7 @@ func int DIA_Gerbrandt_PICKPOCKET_Condition()
 //	if(C_StealItems(30,Hlp_GetInstanceID(ItSe_GoldPocket100),1) && (DIEGO_COMING != TRUE))
 	if(Npc_HasItems(self,ItSe_GoldPocket100) && (DIEGO_COMING == FALSE))
 	{
-		return C_StealItem(30,Hlp_GetInstanceID(ItSe_GoldPocket100));
+		return C_StealItem(30);
 	};
 	return FALSE;
 };
@@ -102,7 +107,8 @@ func int DIA_Gerbrandt_PreHello_Condition()
 
 func void DIA_Gerbrandt_PreHello_Info()
 {
-	AI_Output(self,other,"DIA_Constantino_Hallo_10_00");	//„то тебе нужно? Ѕесплатного здесь ничего нет, и продавать тебе € тоже ничего не собираюсь. 
+	AI_Output(self,other,"DIA_Constantino_Hallo_10_00");	//„то тебе нужно? Ѕесплатного здесь ничего нет, и продавать тебе € тоже ничего не собираюсь.
+	B_PlayerEnteredUpperCity();
 };
 
 instance DIA_Gerbrandt_Hello(C_Info)
@@ -127,6 +133,7 @@ func int DIA_Gerbrandt_Hello_Condition()
 func void DIA_Gerbrandt_Hello_Info()
 {
 	AI_Output(other,self,"DIA_Gerbrandt_Hello_15_00");	//„то ты делаешь здесь?
+	B_PlayerEnteredUpperCity();
 	if((hero.guild != GIL_KDF) && (hero.guild != GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Gerbrandt_Hello_10_01");	//ј ты кто такой? ѕохоже, ты недавно здесь и пон€ти€ не имеешь, с кем имеешь дело.

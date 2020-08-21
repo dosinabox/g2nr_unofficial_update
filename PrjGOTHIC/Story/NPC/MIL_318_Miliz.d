@@ -27,3 +27,9 @@ func void Rtn_Start_318()
 	TA_Sleep(23,59,6,45,"NW_CITY_BARRACK02_BED_WULFGAR");
 };
 
+func void Rtn_Sewer_318()
+{
+	TA_Read_Bookstand(7,0,23,0,"NW_CITY_KANAL_ROOM_05_02");
+	TA_Read_Bookstand(23,0,7,0,"NW_CITY_KANAL_ROOM_05_02");
+};
+

@@ -11,6 +11,7 @@ const int Value_BonusFood = 40;
 const int STR_FireStew = 1;
 const int HP_FireStew = 5;
 const int STR_MeatSoup = 1;
+const int Value_Shellflesh = 10;
 const int HP_Shellflesh = 20;
 
 instance ItFo_Addon_Shellflesh(C_Item)
@@ -18,7 +19,7 @@ instance ItFo_Addon_Shellflesh(C_Item)
 	name = "ћ€со моллюска";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Meatbugflesh * 2;
+	value = Value_Shellflesh;
 	visual = "ItAt_Shellflesh.3DS";
 	material = MAT_LEATHER;
 	scemeName = "FOODHUGE";
@@ -104,7 +105,6 @@ instance ItFo_Addon_LousHammer(C_Item)
 	on_state[0] = UseLouHammer;
 	scemeName = "POTIONFAST";
 	description = name;
-//	text[0] = PRINT_UnknownEffect;
 	text[1] = TEXT_LousHammer_Setting;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -116,7 +116,6 @@ func void UseLouHammer()
 	if(Hammer_Once == FALSE)
 	{
 		B_RaiseAttribute(self,ATR_MANA_MAX,Mana_LousHammer);
-		Npc_ChangeAttribute(self,ATR_MANA,Mana_LousHammer);
 		TEXT_LousHammer_Setting = PRINT_LousHammerNoEffect;
 		Hammer_Once = TRUE;
 	};
@@ -258,7 +257,6 @@ func void Use_FireStew()
 {
 	var string concatText;
 	B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HP_FireStew);
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_FireStew);
 	self.attribute[ATR_STRENGTH] += STR_FireStew;
 	if(IgnoreBonuses == FALSE)
 	{

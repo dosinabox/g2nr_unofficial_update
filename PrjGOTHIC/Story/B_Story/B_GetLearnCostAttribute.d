@@ -2,22 +2,28 @@
 func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut)
 {
 	var int kosten;
+	var int penalty;
 	kosten = 0;
+	penalty = 0;
 	if(attribut == ATR_STRENGTH)
 	{
-		if(oth.aivar[REAL_STRENGTH] >= 120)
+		if(PenaltiesAffectLearnCost == TRUE)
+		{
+			penalty = OrcRingCurrentPenalty;
+		};
+		if((oth.aivar[REAL_STRENGTH] - penalty) >= 120)
 		{
 			kosten = 5;
 		}
-		else if(oth.aivar[REAL_STRENGTH] >= 90)
+		else if((oth.aivar[REAL_STRENGTH] - penalty) >= 90)
 		{
 			kosten = 4;
 		}
-		else if(oth.aivar[REAL_STRENGTH] >= 60)
+		else if((oth.aivar[REAL_STRENGTH] - penalty) >= 60)
 		{
 			kosten = 3;
 		}
-		else if(oth.aivar[REAL_STRENGTH] >= 30)
+		else if((oth.aivar[REAL_STRENGTH] - penalty) >= 30)
 		{
 			kosten = 2;
 		}
@@ -25,8 +31,8 @@ func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut)
 		{
 			kosten = 1;
 		};
-	};
-	if(attribut == ATR_DEXTERITY)
+	}
+	else if(attribut == ATR_DEXTERITY)
 	{
 		if(oth.aivar[REAL_DEXTERITY] >= 120)
 		{
@@ -48,8 +54,8 @@ func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut)
 		{
 			kosten = 1;
 		};
-	};
-	if(attribut == ATR_MANA_MAX)
+	}
+	else if(attribut == ATR_MANA_MAX)
 	{
 		if(oth.aivar[REAL_MANA_MAX] >= 120)
 		{
@@ -71,8 +77,8 @@ func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut)
 		{
 			kosten = 1;
 		};
-	};
-	if(attribut == ATR_REGENERATEHP)
+	}
+	else if(attribut == ATR_REGENERATEHP)
 	{
 		if(oth.attribute[ATR_REGENERATEHP] > 30)
 		{
@@ -86,8 +92,8 @@ func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut)
 		{
 			kosten = 3;
 		};
-	};
-	if(attribut == ATR_REGENERATEMANA)
+	}
+	else if(attribut == ATR_REGENERATEMANA)
 	{
 		if(oth.attribute[ATR_REGENERATEMANA] > 30)
 		{

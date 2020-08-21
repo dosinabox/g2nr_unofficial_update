@@ -12,10 +12,7 @@ instance DIA_Hanna_EXIT(C_Info)
 
 func int DIA_Hanna_EXIT_Condition()
 {
-	if(Kapitel <= 2)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Hanna_EXIT_Info()
@@ -23,6 +20,41 @@ func void DIA_Hanna_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
+
+func int C_Hanna_ThievesGuildIsExposed()
+{
+	if(Andre_FoundThieves_KilledByMilitia == TRUE)
+	{
+		return TRUE;
+	};
+	if(Andre_FoundThieves_Reported == TRUE)
+	{
+		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
+		{
+			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
+			{
+				return TRUE;
+			};
+		};
+	};
+	if(Hanna_ThievesIsDead == TRUE)
+	{
+		if(Hanna_ThievesIsDead_Day <= (Wld_GetDay() - 2))
+		{
+			return TRUE;
+		};
+	};
+	return FALSE;
+};
+
+func void B_Hanna_ThievesCheck()
+{
+	if(Npc_IsDead(Cassia) || Npc_IsDead(Jesper) || Npc_IsDead(Ramirez))
+	{
+		Hanna_ThievesIsDead = TRUE;
+		Hanna_ThievesIsDead_Day = Wld_GetDay();
+	};
+};
 
 instance DIA_Hanna_Hello(C_Info)
 {
@@ -37,35 +69,10 @@ instance DIA_Hanna_Hello(C_Info)
 
 func int DIA_Hanna_Hello_Condition()
 {
-	if(Andre_FoundThieves_KilledByMilitia == TRUE)
+	if(!C_Hanna_ThievesGuildIsExposed() && !Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) && (Knows_SecretSign == FALSE))
 	{
-		return FALSE;
+		return TRUE;
 	};
-	if(Andre_FoundThieves_Reported == TRUE)
-	{
-		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
-		{
-			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
-			{
-				return FALSE;
-			};
-		};
-	};
-	if(Hanna_ThievesIsDead == TRUE)
-	{
-		if(Hanna_ThievesIsDead_Day <= (Wld_GetDay() - 2))
-		{
-			if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) || Npc_KnowsInfo(other,DIA_Hanna_Blubb) || Npc_KnowsInfo(other,DIA_Hanna_Blubb2))
-			{
-				return FALSE;
-			};
-		};
-	};
-	if(Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) || (Knows_SecretSign == TRUE))
-	{
-		return FALSE;
-	};
-	return TRUE;
 };
 
 func void DIA_Hanna_Hello_Info()
@@ -219,34 +226,9 @@ func void DIA_Hanna_City_City()
 {
 	AI_Output(other,self,"DIA_Hanna_City_City_15_00");	//Расскажи мне о городе.
 	AI_Output(self,other,"DIA_Hanna_City_City_17_01");	//Хоринис - один из самых богатых городов королевства, даже несмотря на то, что сейчас он совсем не кажется таким.
-	AI_Output(self,other,"DIA_Hanna_City_City_17_02");	//Но с тех пор, как началась война с орками, всяческая торговля практически умерла. Король реквизировал весь торговый флот для нужд армии,
-	AI_Output(self,other,"DIA_Hanna_City_City_17_03");	//и теперь в наш порт корабли практически не заходят. Поэтому поставки товаров очень ограничены, и многие горожане очень обеспокоены этим.
+	AI_Output(self,other,"DIA_Hanna_City_City_17_02");	//Но с тех пор, как началась война с орками, всяческая торговля практически умерла. Король реквизировал весь торговый флот для нужд армии.
+	AI_Output(self,other,"DIA_Hanna_City_City_17_03");	//И теперь в наш порт корабли практически не заходят. Поэтому поставки товаров очень ограничены, и многие горожане очень обеспокоены этим.
 	AI_Output(self,other,"DIA_Hanna_City_City_17_04");	//Никто не знает, что принесет нам будущее. Нам ничего не остается, кроме как ждать и надеяться на лучшее. Вряд ли в наших силах хоть что-то изменить.
-};
-
-
-instance DIA_Hanna_Kap3_EXIT(C_Info)
-{
-	npc = VLK_414_Hanna;
-	nr = 999;
-	condition = DIA_Hanna_Kap3_EXIT_Condition;
-	information = DIA_Hanna_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Hanna_Kap3_EXIT_Condition()
-{
-	if(Kapitel >= 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Hanna_Kap3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -452,31 +434,7 @@ instance DIA_Hanna_AusKeller(C_Info)
 
 func int DIA_Hanna_AusKeller_Condition()
 {
-	if(Andre_FoundThieves_KilledByMilitia == TRUE)
-	{
-		return FALSE;
-	};
-	if(Andre_FoundThieves_Reported == TRUE)
-	{
-		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
-		{
-			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
-			{
-				return FALSE;
-			};
-		};
-	};
-	if(Hanna_ThievesIsDead == TRUE)
-	{
-		if(Hanna_ThievesIsDead_Day <= (Wld_GetDay() - 2))
-		{
-			if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) || Npc_KnowsInfo(other,DIA_Hanna_Blubb) || Npc_KnowsInfo(other,DIA_Hanna_Blubb2))
-			{
-				return FALSE;
-			};
-		};
-	};
-	if(Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) || (Knows_SecretSign == TRUE))
+	if((Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) || (Knows_SecretSign == TRUE)) && !C_Hanna_ThievesGuildIsExposed())
 	{
 		return TRUE;
 	};
@@ -501,11 +459,7 @@ func void DIA_Hanna_AusKeller_Info()
 		AI_Output(other,self,"DIA_Hanna_Add_15_30");	//Ты прекрасно знаешь это!
 		AI_Output(self,other,"DIA_Hanna_Add_17_31");	//(холодно) Я не знаю, о чем ты говоришь...
 	};
-	if(Npc_IsDead(Cassia) && Npc_IsDead(Jesper) && Npc_IsDead(Ramirez))
-	{
-		Hanna_ThievesIsDead = TRUE;
-		Hanna_ThievesIsDead_Day = Wld_GetDay();
-	};
+	B_Hanna_ThievesCheck();
 	AI_StopProcessInfos(self);
 };
 
@@ -533,7 +487,7 @@ func void DIA_Hanna_Schuldenbuch_Info()
 {
 	AI_Output(other,self,"DIA_Hanna_Add_15_41");	//Посмотри, какая у меня есть книга!
 	AI_Output(self,other,"DIA_Hanna_Add_17_42");	//Гроссбух Лемара. Как тебе это удалось?
-	AI_Output(other,self,"DIA_Hanna_Add_15_43");	//Ну...
+	DIA_Common_Well();
 	AI_Output(self,other,"DIA_Hanna_Add_17_44");	//То, что Лемар лишился своего гроссбуха - это хорошо. Но лучше, если он будет у меня...
 };
 
@@ -594,11 +548,7 @@ func void DIA_Hanna_Blubb_Info()
 	AI_Output(self,other,"DIA_Hanna_Add_17_39");	//Я давно уже не видела их.
 	AI_Output(self,other,"DIA_Hanna_Add_17_40");	//Я, пожалуй, схожу туда, когда у меня будет время и проверю, как у них дела.
 	AI_Output(self,other,"DIA_Hanna_Add_17_38");	//Да. Но тебе лучше не говорить об этом...
-	if(Npc_IsDead(Cassia) && Npc_IsDead(Jesper) && Npc_IsDead(Ramirez))
-	{
-		Hanna_ThievesIsDead = TRUE;
-		Hanna_ThievesIsDead_Day = Wld_GetDay();
-	};
+	B_Hanna_ThievesCheck();
 };
 
 instance DIA_Hanna_Blubb2(C_Info)
@@ -623,12 +573,9 @@ func void DIA_Hanna_Blubb2_Info()
 {
 	AI_Output(other,self,"DIA_Hanna_Add_15_25");	//Ты знала о логове воров?
 	AI_Output(self,other,"DIA_Hanna_Add_17_26");	//(глупо улыбается) Я не понимаю, о чем ты говоришь...
-	if(Npc_IsDead(Cassia) && Npc_IsDead(Jesper) && Npc_IsDead(Ramirez))
-	{
-		Hanna_ThievesIsDead = TRUE;
-		Hanna_ThievesIsDead_Day = Wld_GetDay();
-	};
+	B_Hanna_ThievesCheck();
 };
+
 
 instance DIA_Hanna_Blubb3(C_Info)
 {
@@ -641,43 +588,35 @@ instance DIA_Hanna_Blubb3(C_Info)
 
 func int DIA_Hanna_Blubb3_Condition()
 {
-	if(Andre_FoundThieves_KilledByMilitia == TRUE)
+	if(C_Hanna_ThievesGuildIsExposed())
 	{
 		return TRUE;
-	};
-	if(Andre_FoundThieves_Reported == TRUE)
-	{
-		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
-		{
-			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
-			{
-				return TRUE;
-			};
-		};
-	};
-	if(Hanna_ThievesIsDead == TRUE)
-	{
-		if(Hanna_ThievesIsDead_Day <= (Wld_GetDay() - 2))
-		{
-			if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) || Npc_KnowsInfo(other,DIA_Hanna_Blubb) || Npc_KnowsInfo(other,DIA_Hanna_Blubb2))
-			{
-				return TRUE;
-			};
-		};
 	};
 };
 
 func void DIA_Hanna_Blubb3_Info()
 {
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,other);
+	};
 	CreateInvItem(self,ItSc_IceCube);
 	CreateInvItem(self,ItSc_Firestorm);
 	CreateInvItem(self,ItKe_ThiefGuildKey_Hotel_MIS);
-	AI_Output(self,other,"DIA_Hanna_Add_17_32");	//Здесь было ополчение... Кто-то предал наше убежище!
-	if(Npc_IsDead(Cassia) && Npc_IsDead(Jesper) && Npc_IsDead(Ramirez))
+	if(Andre_FoundThieves_KilledByMilitia == TRUE)
 	{
-		AI_Output(self,other,"DIA_Hanna_Add_17_33");	//Мне они ничего не смогли предъявить, но Кассия и ее люди мертвы!
+		AI_Output(self,other,"DIA_Hanna_Add_17_32");	//Здесь было ополчение... Кто-то предал наше убежище!
+		if(Npc_IsDead(Cassia) && Npc_IsDead(Jesper) && Npc_IsDead(Ramirez))
+		{
+			AI_Output(self,other,"DIA_Hanna_Add_17_33");	//Мне они ничего не смогли предъявить, но Кассия и ее люди мертвы!
+		};
+		AI_Output(self,other,"DIA_Hanna_Add_17_34");	//Я уверена, что это ТЫ...
+	}
+	else
+	{
+		B_Say(self,other,"$YOUMURDERER");
 	};
-	AI_Output(self,other,"DIA_Hanna_Add_17_34");	//Я уверена, что это ТЫ...
 	B_SelectSpell(self,other);
 	AI_Output(self,other,"DIA_Hanna_Add_17_35");	//Я купила это специально для тебя.
 	AI_Output(self,other,"DIA_Hanna_Add_17_36");	//Это обошлось мне в кругленькую сумму. Но для тебя ничего не жалко, свинья...
@@ -734,12 +673,12 @@ func void DIA_Hanna_PICKPOCKET_Book_DoIt()
 		CreateInvItem(other,ItWr_Schuldenbuch);
 		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketSuccess));
+		B_LogEntry(Topic_PickPocket,ConcatStrings("Ханна",PRINT_PickPocketSuccess));
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
+		B_LogEntry(Topic_PickPocket,ConcatStrings("Ханна",PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};
@@ -771,7 +710,7 @@ func int DIA_Hanna_Blubb4_Condition()
 
 func void DIA_Hanna_Blubb4_Info()
 {
-	B_Say(self,other,"$KillEnemy");
+	B_Say(self,other,"$KILLENEMY");
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };

@@ -17,7 +17,7 @@ instance MIL_311_Andre(Npc_Default)
 //	EquipItem(self,ItMw_Schwert2);
 	EquipItem(self,ItMw_1H_Blessed_02);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak12,BodyTex_N,ITAR_PALN_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak12,BodyTex_N,ITAR_PAL_H);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

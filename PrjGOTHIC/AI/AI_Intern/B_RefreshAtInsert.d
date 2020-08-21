@@ -137,7 +137,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 func void B_RefreshAtInsert()
 {
 	var C_Npc her;
-	if(self.attribute[ATR_HITPOINTS] <= 0)
+	if((self.attribute[ATR_HITPOINTS] <= 0) || ((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Pardos)) && (Pardos_Geheilt == FALSE)))
 	{
 		return;
 	};

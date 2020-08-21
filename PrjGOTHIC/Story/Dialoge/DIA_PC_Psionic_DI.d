@@ -47,18 +47,18 @@ var int DIA_Lester_DI_SCGotWarning2;
 func void DIA_Lester_DI_Hello_Info()
 {
 	AI_Output(other,self,"DIA_Lester_DI_Hello_15_00");	//Ты хочешь что-то сказать мне?
-	if(!Npc_IsDead(Mario_DI) && (OrkSturmDI == TRUE) && (DIA_Lester_DI_SCGotWarning1 == FALSE))
+	if(!Npc_IsDead(Mario_DI) && (OrkSturmDI == FALSE) && (DIA_Lester_DI_SCGotWarning1 == FALSE))
+	{
+		AI_Output(self,other,"DIA_Lester_DI_Hello_13_04");	//Этот странный парень, который называет себя Марио, мне не нравится. У него тяжелая аура.
+		AI_Output(self,other,"DIA_Lester_DI_Hello_13_05");	//Будь осторожен, мой друг.
+		DIA_Lester_DI_SCGotWarning1 = TRUE;
+	}
+	else if((Mario_DI_ReadyForAmbush == TRUE) && (DIA_Lester_DI_SCGotWarning2 == FALSE))
 	{
 		AI_Output(self,other,"DIA_Lester_DI_Hello_13_01");	//Марио слинял, когда на нас напали орки. Несмотря на весь хаос, что творился на корабле, я смог проследить за ним.
 		AI_Output(self,other,"DIA_Lester_DI_Hello_13_02");	//Он просто пошел через ряды орков, и те его даже пальцем не тронули.
 		AI_Output(self,other,"DIA_Lester_DI_Hello_13_03");	//Я с самого начала не доверял этому парню. Он заодно с врагом.
 		B_GivePlayerXP(XP_AmbientKap6);
-		DIA_Lester_DI_SCGotWarning1 = TRUE;
-	}
-	else if(!Npc_IsDead(Mario_DI) && (DIA_Lester_DI_SCGotWarning2 == FALSE))
-	{
-		AI_Output(self,other,"DIA_Lester_DI_Hello_13_04");	//Этот странный парень, который называет себя Марио, мне не нравится. У него тяжелая аура.
-		AI_Output(self,other,"DIA_Lester_DI_Hello_13_05");	//Будь осторожен, мой друг.
 		DIA_Lester_DI_SCGotWarning2 = TRUE;
 	}
 	else
@@ -80,9 +80,16 @@ instance DIA_Lester_DI_MarioArsch(C_Info)
 
 func int DIA_Lester_DI_MarioArsch_Condition()
 {
-	if(((DIA_Lester_DI_SCGotWarning2 == TRUE) || (DIA_Lester_DI_SCGotWarning2 == TRUE)) && (MIS_Mario_Ambush == LOG_SUCCESS))
+	if((DIA_Lester_DI_SCGotWarning1 == TRUE) || (DIA_Lester_DI_SCGotWarning2 == TRUE))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_NONE_101_MARIO_DI_ambush))
+		{
+			return TRUE;
+		}
+		else if((Mario_DI_ReadyForAmbush == TRUE) && Npc_IsDead(Mario_DI))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -1,10 +1,29 @@
 
+var int FlasksCount;
+var int BoozeStart;
+var int TabakStart;
+var int ManaStart;
+var int HealthStart;
+var int SpecialStart;
+
+func int C_PlayerHasFlasks()
+{
+	if(FlasksCount > 0)
+	{
+		return TRUE;
+	};
+	AI_PrintScreen("«акончились чистые мензурки!",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	return FALSE;
+};
+
 func void potionalchemy_s1()
 {
 	var C_Npc her;
 	her = Hlp_GetNpc(PC_Hero);
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
 	{
+		FlasksCount = Npc_HasItems(self,ItMi_Flask) + 1;
+		Npc_RemoveInvItems(self,ItMi_Flask,Npc_HasItems(self,ItMi_Flask));
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_PotionAlchemy;
 		//AI_ProcessInfos(her);
@@ -12,6 +31,21 @@ func void potionalchemy_s1()
 	};
 };
 
+func void B_BrewPotion(var int potion)
+{
+	AI_Wait(self,0.5);
+	FlasksCount -= 1;
+	CreateInvItem(self,potion);
+	AI_PrintScreen(PRINT_AlchemySuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
+};
+
+func void B_BrewAlcohol(var int alcohol)
+{
+	AI_Wait(self,0.5);
+	FlasksCount -= 1;
+	CreateInvItem(self,alcohol);
+	AI_PrintScreen(PRINT_AlcoholSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
+};
 
 instance PC_PotionAlchemy_End(C_Info)
 {
@@ -34,12 +68,13 @@ func int PC_PotionAlchemy_End_Condition()
 
 func void PC_PotionAlchemy_End_Info()
 {
-	CreateInvItems(self,ItMi_Flask,1);
+	if(FlasksCount > 0)
+	{
+		CreateInvItems(self,ItMi_Flask,FlasksCount);
+	};
 	b_endproductiondialog();
 };
 
-
-var int BoozeStart;
 
 instance PC_Booze_Start(C_Info)
 {
@@ -112,23 +147,23 @@ func int PC_Booze_Lou_Condition()
 
 func void PC_Booze_Lou_Info()
 {
-	if(Npc_HasItems(self,ItPl_SwampHerb) && (Npc_HasItems(self,ItPl_Beet) >= 2) && Npc_HasItems(self,ItAt_SharkTeeth) && Npc_HasItems(self,ItFo_Addon_Rum) && Npc_HasItems(self,ItFo_Water))
+	if(!C_PlayerHasFlasks())
+	{
+		b_endproductiondialog();
+	}
+	else if(Npc_HasItems(self,ItPl_SwampHerb) && (Npc_HasItems(self,ItPl_Beet) >= 2) && Npc_HasItems(self,ItAt_SharkTeeth) && Npc_HasItems(self,ItFo_Addon_Rum) && Npc_HasItems(self,ItFo_Water))
 	{
 		Npc_RemoveInvItems(self,ItPl_SwampHerb,1);
 		Npc_RemoveInvItems(self,ItPl_Beet,2);
 		Npc_RemoveInvItems(self,ItAt_SharkTeeth,1);
 		Npc_RemoveInvItems(self,ItFo_Addon_Rum,1);
 		Npc_RemoveInvItems(self,ItFo_Water,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		Print(PRINT_AlchemySuccess);
-		CreateInvItems(self,ItFo_Addon_LousHammer,1);
+		B_BrewAlcohol(ItFo_Addon_LousHammer);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
 
@@ -153,20 +188,20 @@ func int PC_Booze_Schlaf_Condition()
 
 func void PC_Booze_Schlaf_Info()
 {
-	if(Npc_HasItems(self,ItFo_Addon_LousHammer) && Npc_HasItems(self,ItFo_Addon_Rum))
+	if(!C_PlayerHasFlasks())
+	{
+		b_endproductiondialog();
+	}
+	else if(Npc_HasItems(self,ItFo_Addon_LousHammer) && Npc_HasItems(self,ItFo_Addon_Rum))
 	{
 		Npc_RemoveInvItems(self,ItFo_Addon_LousHammer,1);
 		Npc_RemoveInvItems(self,ItFo_Addon_Rum,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		Print(PRINT_AlchemySuccess);
-		CreateInvItems(self,ItFo_Addon_SchlafHammer,1);
+		B_BrewAlcohol(ItFo_Addon_SchlafHammer);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
 
@@ -191,7 +226,11 @@ func int PC_Booze_SchnellerHering_Condition()
 
 func void PC_Booze_SchnellerHering_Info()
 {
-	if(Npc_HasItems(self,ItPl_Speed_Herb_01) && (Npc_HasItems(self,ItFo_Fish) || Npc_HasItems(self,ItFo_SmellyFish)) && Npc_HasItems(self,ItFo_Addon_Rum) && Npc_HasItems(self,ItFo_Water))
+	if(!C_PlayerHasFlasks())
+	{
+		b_endproductiondialog();
+	}
+	else if(Npc_HasItems(self,ItPl_Speed_Herb_01) && (Npc_HasItems(self,ItFo_Fish) || Npc_HasItems(self,ItFo_SmellyFish)) && Npc_HasItems(self,ItFo_Addon_Rum) && Npc_HasItems(self,ItFo_Water))
 	{
 		Npc_RemoveInvItems(self,ItPl_Speed_Herb_01,1);
 		Npc_RemoveInvItems(self,ItFo_Addon_Rum,1);
@@ -204,16 +243,12 @@ func void PC_Booze_SchnellerHering_Info()
 			Npc_RemoveInvItems(self,ItFo_SmellyFish,1);
 		};
 		Npc_RemoveInvItems(self,ItFo_Water,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		Print(PRINT_AlchemySuccess);
-		CreateInvItems(self,ItFo_Addon_SchnellerHering,1);
+		B_BrewAlcohol(ItFo_Addon_SchnellerHering);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
 
@@ -230,7 +265,7 @@ instance PC_Charge_InnosEye(C_Info)
 
 func int PC_Charge_InnosEye_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] == TRUE) && Npc_HasItems(hero,ItMi_InnosEye_Discharged_Mis) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] == TRUE) && Npc_HasItems(self,ItMi_InnosEye_Discharged_Mis) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -238,38 +273,40 @@ func int PC_Charge_InnosEye_Condition()
 
 func void PC_Charge_InnosEye_Info()
 {
-	if((Npc_HasItems(hero,ItAt_IcedragonHeart) || Npc_HasItems(hero,ItAt_RockdragonHeart) || Npc_HasItems(hero,ItAt_FiredragonHeart) || Npc_HasItems(hero,ItAt_SwampdragonHeart)) && (Npc_HasItems(hero,ItMi_InnosEye_Discharged_Mis)))
+	if(!C_PlayerHasFlasks())
 	{
-		if(Npc_HasItems(hero,ItAt_SwampdragonHeart))
+		b_endproductiondialog();
+	}
+	else if((Npc_HasItems(self,ItAt_IcedragonHeart) || Npc_HasItems(self,ItAt_RockdragonHeart) || Npc_HasItems(self,ItAt_FiredragonHeart) || Npc_HasItems(self,ItAt_SwampdragonHeart)) && (Npc_HasItems(self,ItMi_InnosEye_Discharged_Mis)))
+	{
+		AI_Wait(self,0.5);
+		FlasksCount -= 1;
+		if(Npc_HasItems(self,ItAt_SwampdragonHeart))
 		{
-			Npc_RemoveInvItems(hero,ItAt_SwampdragonHeart,1);
+			Npc_RemoveInvItems(self,ItAt_SwampdragonHeart,1);
 		}
-		else if(Npc_HasItems(hero,ItAt_RockdragonHeart))
+		else if(Npc_HasItems(self,ItAt_RockdragonHeart))
 		{
-			Npc_RemoveInvItems(hero,ItAt_RockdragonHeart,1);
+			Npc_RemoveInvItems(self,ItAt_RockdragonHeart,1);
 		}
-		else if(Npc_HasItems(hero,ItAt_FiredragonHeart))
+		else if(Npc_HasItems(self,ItAt_FiredragonHeart))
 		{
-			Npc_RemoveInvItems(hero,ItAt_FiredragonHeart,1);
+			Npc_RemoveInvItems(self,ItAt_FiredragonHeart,1);
 		}
-		else if(Npc_HasItems(hero,ItAt_IcedragonHeart))
+		else if(Npc_HasItems(self,ItAt_IcedragonHeart))
 		{
-			Npc_RemoveInvItems(hero,ItAt_IcedragonHeart,1);
+			Npc_RemoveInvItems(self,ItAt_IcedragonHeart,1);
 		};
-		Npc_RemoveInvItems(hero,ItMi_InnosEye_Discharged_Mis,1);
-		CreateInvItems(hero,ItMi_InnosEye_MIS,1);
-		Print(PRINT_AlchemySuccessInnoseye);
+		Npc_RemoveInvItems(self,ItMi_InnosEye_Discharged_Mis,1);
+		CreateInvItems(self,ItMi_InnosEye_MIS,1);
+		AI_PrintScreen(PRINT_AlchemySuccessInnoseye,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
-
-var int ManaStart;
 
 instance PC_Mana_Start(C_Info)
 {
@@ -342,20 +379,20 @@ func int PC_ItPo_Mana_01_Condition()
 
 func void PC_ItPo_Mana_01_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Mana_Herb_01) >= 2) && Npc_HasItems(hero,ItPl_Temp_Herb))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_01,2);
-		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Mana_01,1);
-		Print(PRINT_AlchemySuccess);
+		b_endproductiondialog();
+	}
+	else if((Npc_HasItems(self,ItPl_Mana_Herb_01) >= 2) && Npc_HasItems(self,ItPl_Temp_Herb))
+	{
+		Npc_RemoveInvItems(self,ItPl_Mana_Herb_01,2);
+		Npc_RemoveInvItems(self,ItPl_Temp_Herb,1);
+		B_BrewPotion(ItPo_Mana_01);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
 
@@ -380,20 +417,20 @@ func int PC_ItPo_Mana_02_Condition()
 
 func void PC_ItPo_Mana_02_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Mana_Herb_02) >= 2) && Npc_HasItems(hero,ItPl_Temp_Herb))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_02,2);
-		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Mana_02,1);
-		Print(PRINT_AlchemySuccess);
+		b_endproductiondialog();
+	}
+	else if((Npc_HasItems(self,ItPl_Mana_Herb_02) >= 2) && Npc_HasItems(self,ItPl_Temp_Herb))
+	{
+		Npc_RemoveInvItems(self,ItPl_Mana_Herb_02,2);
+		Npc_RemoveInvItems(self,ItPl_Temp_Herb,1);
+		B_BrewPotion(ItPo_Mana_02);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
 
@@ -418,20 +455,20 @@ func int PC_ItPo_Mana_03_Condition()
 
 func void PC_ItPo_Mana_03_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Mana_Herb_03) >= 2) && Npc_HasItems(hero,ItPl_Temp_Herb))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_03,2);
-		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Mana_03,1);
-		Print(PRINT_AlchemySuccess);
+		b_endproductiondialog();
+	}
+	else if((Npc_HasItems(self,ItPl_Mana_Herb_03) >= 2) && Npc_HasItems(self,ItPl_Temp_Herb))
+	{
+		Npc_RemoveInvItems(self,ItPl_Mana_Herb_03,2);
+		Npc_RemoveInvItems(self,ItPl_Temp_Herb,1);
+		B_BrewPotion(ItPo_Mana_03);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
 
@@ -456,24 +493,22 @@ func int PC_ItPo_Mana_04_Condition()
 
 func void PC_ItPo_Mana_04_Info()
 {
-	if((Npc_HasItems(hero,ItPo_Mana_01) >= 3) && Npc_HasItems(hero,ItPl_Temp_Herb))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItPo_Mana_01,3);
-		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-		CreateInvItems(hero,ItPo_Mana_Addon_04,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		Print(PRINT_AlchemySuccess);
+		b_endproductiondialog();
+	}
+	else if((Npc_HasItems(self,ItPo_Mana_01) >= 3) && Npc_HasItems(self,ItPl_Temp_Herb))
+	{
+		Npc_RemoveInvItems(self,ItPo_Mana_01,3);
+		Npc_RemoveInvItems(self,ItPl_Temp_Herb,1);
+		B_BrewPotion(ItPo_Mana_Addon_04);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
-
-var int HealthStart;
 
 instance PC_Health_Start(C_Info)
 {
@@ -546,20 +581,20 @@ func int PC_ItPo_Health_01_Condition()
 
 func void PC_ItPo_Health_01_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Health_Herb_01) >= 2) && Npc_HasItems(hero,ItPl_Temp_Herb))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItPl_Health_Herb_01,2);
-		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItem(hero,ItPo_Health_01);
-		Print(PRINT_AlchemySuccess);
+		b_endproductiondialog();
+	}
+	else if((Npc_HasItems(self,ItPl_Health_Herb_01) >= 2) && Npc_HasItems(self,ItPl_Temp_Herb))
+	{
+		Npc_RemoveInvItems(self,ItPl_Health_Herb_01,2);
+		Npc_RemoveInvItems(self,ItPl_Temp_Herb,1);
+		B_BrewPotion(ItPo_Health_01);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
 
@@ -584,20 +619,20 @@ func int PC_ItPo_Health_02_Condition()
 
 func void PC_ItPo_Health_02_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Health_Herb_02) >= 2) && Npc_HasItems(hero,ItPl_Temp_Herb))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItPl_Health_Herb_02,2);
-		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Health_02,1);
-		Print(PRINT_AlchemySuccess);
+		b_endproductiondialog();
+	}
+	else if((Npc_HasItems(self,ItPl_Health_Herb_02) >= 2) && Npc_HasItems(self,ItPl_Temp_Herb))
+	{
+		Npc_RemoveInvItems(self,ItPl_Health_Herb_02,2);
+		Npc_RemoveInvItems(self,ItPl_Temp_Herb,1);
+		B_BrewPotion(ItPo_Health_02);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
 
@@ -622,20 +657,20 @@ func int PC_ItPo_Health_03_Condition()
 
 func void PC_ItPo_Health_03_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Health_Herb_03) >= 2) && Npc_HasItems(hero,ItPl_Temp_Herb))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItPl_Health_Herb_03,2);
-		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Health_03,1);
-		Print(PRINT_AlchemySuccess);
+		b_endproductiondialog();
+	}
+	else if((Npc_HasItems(self,ItPl_Health_Herb_03) >= 2) && Npc_HasItems(self,ItPl_Temp_Herb))
+	{
+		Npc_RemoveInvItems(self,ItPl_Health_Herb_03,2);
+		Npc_RemoveInvItems(self,ItPl_Temp_Herb,1);
+		B_BrewPotion(ItPo_Health_03);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
 
@@ -660,24 +695,22 @@ func int PC_ItPo_Health_04_Condition()
 
 func void PC_ItPo_Health_04_Info()
 {
-	if((Npc_HasItems(hero,ItPo_Health_01) >= 3) && Npc_HasItems(hero,ItPl_Temp_Herb))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItPo_Health_01,3);
-		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Health_Addon_04,1);
-		Print(PRINT_AlchemySuccess);
+		b_endproductiondialog();
+	}
+	else if((Npc_HasItems(self,ItPo_Health_01) >= 3) && Npc_HasItems(self,ItPl_Temp_Herb))
+	{
+		Npc_RemoveInvItems(self,ItPo_Health_01,3);
+		Npc_RemoveInvItems(self,ItPl_Temp_Herb,1);
+		B_BrewPotion(ItPo_Health_Addon_04);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
-
-var int SpecialStart;
 
 instance PC_Special_Start(C_Info)
 {
@@ -729,56 +762,9 @@ func void PC_Special_Stop_Info()
 };
 
 
-instance PC_ItPo_Addon_Geist(C_Info)
-{
-	nr = 2;
-	npc = PC_Hero;
-	condition = PC_ItPo_Addon_Geist_Condition;
-	information = PC_ItPo_Addon_Geist_Info;
-	permanent = TRUE;
-	description = ConcatStrings(NAME_Geist," (2 жала кровавой мухи, 1 экстракт маны, 1 лечебна€ эссенци€ и 1 красный жгучий перец)");
-};
-
-
-func int PC_ItPo_Addon_Geist_Condition()
-{
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (Knows_MCELIXIER == TRUE) && (SpecialStart == TRUE))
-	{
-		return TRUE;
-	};
-};
-
-func void PC_ItPo_Addon_Geist_Info()
-{
-	if((Npc_HasItems(hero,ItAt_Sting) >= 2) && Npc_HasItems(hero,ItPo_Mana_02) && Npc_HasItems(hero,ItPo_Health_01) && Npc_HasItems(hero,ItFo_Addon_Pfeffer_01))
-	{
-		Npc_RemoveInvItems(hero,ItAt_Sting,2);
-		Npc_RemoveInvItems(hero,ItPo_Mana_02,1);
-		Npc_RemoveInvItems(hero,ItPo_Health_01,1);
-		Npc_RemoveInvItems(hero,ItFo_Addon_Pfeffer_01,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		if(Knows_Bloodfly == TRUE)
-		{
-			CreateInvItems(hero,ItPo_Addon_Geist_02,1);
-		}
-		else
-		{
-			CreateInvItems(hero,ItPo_Addon_Geist_01,1);
-		};
-		Print(PRINT_AlchemySuccess);
-	}
-	else
-	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
-	};
-	b_endproductiondialog();
-};
-
-
 instance PC_ItPo_Perm_Health(C_Info)
 {
-	nr = 3;
+	nr = 1;
 	npc = PC_Hero;
 	condition = PC_ItPo_Perm_Health_Condition;
 	information = PC_ItPo_Perm_Health_Info;
@@ -797,26 +783,27 @@ func int PC_ItPo_Perm_Health_Condition()
 
 func void PC_ItPo_Perm_Health_Info()
 {
-	if(Npc_HasItems(hero,ItPl_Health_Herb_03) && Npc_HasItems(hero,ItPl_Perm_Herb))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItPl_Health_Herb_03,1);
-		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Perm_Health,1);
-		Print(PRINT_AlchemySuccess);
+		b_endproductiondialog();
+	}
+	else if(Npc_HasItems(self,ItPl_Health_Herb_03) && Npc_HasItems(self,ItPl_Perm_Herb))
+	{
+		Npc_RemoveInvItems(self,ItPl_Health_Herb_03,1);
+		Npc_RemoveInvItems(self,ItPl_Perm_Herb,1);
+		B_BrewPotion(ItPo_Perm_Health);
+		TotalPermEaten += 1;
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
 
 instance PC_ItPo_Perm_Mana(C_Info)
 {
-	nr = 3;
+	nr = 2;
 	npc = PC_Hero;
 	condition = PC_ItPo_Perm_Mana_Condition;
 	information = PC_ItPo_Perm_Mana_Info;
@@ -835,26 +822,66 @@ func int PC_ItPo_Perm_Mana_Condition()
 
 func void PC_ItPo_Perm_Mana_Info()
 {
-	if(Npc_HasItems(hero,ItPl_Mana_Herb_03) && Npc_HasItems(hero,ItPl_Perm_Herb))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_03,1);
-		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Perm_Mana,1);
-		Print(PRINT_AlchemySuccess);
+		b_endproductiondialog();
+	}
+	else if(Npc_HasItems(self,ItPl_Mana_Herb_03) && Npc_HasItems(self,ItPl_Perm_Herb))
+	{
+		Npc_RemoveInvItems(self,ItPl_Mana_Herb_03,1);
+		Npc_RemoveInvItems(self,ItPl_Perm_Herb,1);
+		B_BrewPotion(ItPo_Perm_Mana);
+		TotalPermEaten += 1;
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
+};
+
+
+instance PC_ItPo_Perm_MushroomMana(C_Info)
+{
+	nr = 3;
+	npc = PC_Hero;
+	condition = PC_ItPo_Perm_MushroomMana_Condition;
+	information = PC_ItPo_Perm_MushroomMana_Info;
+	permanent = TRUE;
+	description = ConcatStrings(NAME_MushroomMana," (50 черных грибов, 1 лугова€ €года)");
+};
+
+
+func int PC_ItPo_Perm_MushroomMana_Condition()
+{
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (Knows_MushroomMana == TRUE) && (SpecialStart == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void PC_ItPo_Perm_MushroomMana_Info()
+{
+	if(!C_PlayerHasFlasks())
+	{
+		b_endproductiondialog();
+	}
+	else if((Npc_HasItems(self,ItPl_Mushroom_01) >= 50) && Npc_HasItems(self,ItPl_Planeberry))
+	{
+		Npc_RemoveInvItems(self,ItPl_Mushroom_01,50);
+		Npc_RemoveInvItems(self,ItPl_Planeberry,1);
+		B_BrewPotion(ItPo_Perm_MushroomMana);
+		TotalMushroomsEaten += 50;
+	}
+	else
+	{
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
+	};
 };
 
 
 instance PC_ItPo_Dex(C_Info)
 {
-	nr = 3;
+	nr = 4;
 	npc = PC_Hero;
 	condition = PC_ItPo_Dex_Condition;
 	information = PC_ItPo_Dex_Info;
@@ -873,26 +900,28 @@ func int PC_ItPo_Dex_Condition()
 
 func void PC_ItPo_Dex_Info()
 {
-	if(Npc_HasItems(hero,ItPl_Dex_Herb_01) && Npc_HasItems(hero,ItPl_Perm_Herb))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItPl_Dex_Herb_01,1);
-		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Perm_DEX,1);
-		Print(PRINT_AlchemySuccess);
+		b_endproductiondialog();
+	}
+	else if(Npc_HasItems(self,ItPl_Dex_Herb_01) && Npc_HasItems(self,ItPl_Perm_Herb))
+	{
+		Npc_RemoveInvItems(self,ItPl_Dex_Herb_01,1);
+		Npc_RemoveInvItems(self,ItPl_Perm_Herb,1);
+		B_BrewPotion(ItPo_Perm_DEX);
+		TotalDexEaten += 1;
+		TotalPermEaten += 1;
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
 
 instance PC_ItPo_Strg(C_Info)
 {
-	nr = 3;
+	nr = 5;
 	npc = PC_Hero;
 	condition = PC_ItPo_Strg_Condition;
 	information = PC_ItPo_Strg_Info;
@@ -911,26 +940,28 @@ func int PC_ItPo_Strg_Condition()
 
 func void PC_ItPo_Strg_Info()
 {
-	if(Npc_HasItems(hero,ItPl_Strength_Herb_01) && Npc_HasItems(hero,ItPl_Perm_Herb))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItPl_Strength_Herb_01,1);
-		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Perm_STR,1);
-		Print(PRINT_AlchemySuccess);
+		b_endproductiondialog();
+	}
+	else if(Npc_HasItems(self,ItPl_Strength_Herb_01) && Npc_HasItems(self,ItPl_Perm_Herb))
+	{
+		Npc_RemoveInvItems(self,ItPl_Strength_Herb_01,1);
+		Npc_RemoveInvItems(self,ItPl_Perm_Herb,1);
+		B_BrewPotion(ItPo_Perm_STR);
+		TotalStrEaten += 1;
+		TotalPermEaten += 1;
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
 
 instance PC_ItPo_Speed(C_Info)
 {
-	nr = 3;
+	nr = 6;
 	npc = PC_Hero;
 	condition = PC_ItPo_Speed_Condition;
 	information = PC_ItPo_Speed_Info;
@@ -949,26 +980,73 @@ func int PC_ItPo_Speed_Condition()
 
 func void PC_ItPo_Speed_Info()
 {
-	if(Npc_HasItems(hero,ItPl_Speed_Herb_01) && Npc_HasItems(hero,ItPl_Temp_Herb))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItPl_Speed_Herb_01,1);
-		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Speed,1);
-		Print(PRINT_AlchemySuccess);
+		b_endproductiondialog();
+	}
+	else if(Npc_HasItems(self,ItPl_Speed_Herb_01) && Npc_HasItems(self,ItPl_Temp_Herb))
+	{
+		Npc_RemoveInvItems(self,ItPl_Speed_Herb_01,1);
+		Npc_RemoveInvItems(self,ItPl_Temp_Herb,1);
+		B_BrewPotion(ItPo_Speed);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
+};
+
+
+instance PC_ItPo_Addon_Geist(C_Info)
+{
+	nr = 7;
+	npc = PC_Hero;
+	condition = PC_ItPo_Addon_Geist_Condition;
+	information = PC_ItPo_Addon_Geist_Info;
+	permanent = TRUE;
+	description = ConcatStrings(NAME_Geist," (2 жала кровавой мухи, 1 экстракт маны, 1 лечебна€ эссенци€ и 1 красный жгучий перец)");
+};
+
+
+func int PC_ItPo_Addon_Geist_Condition()
+{
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (Knows_MCELIXIER == TRUE) && (SpecialStart == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void PC_ItPo_Addon_Geist_Info()
+{
+	if(!C_PlayerHasFlasks())
+	{
+		b_endproductiondialog();
+	}
+	else if((Npc_HasItems(self,ItAt_Sting) >= 2) && Npc_HasItems(self,ItPo_Mana_02) && Npc_HasItems(self,ItPo_Health_01) && Npc_HasItems(self,ItFo_Addon_Pfeffer_01))
+	{
+		Npc_RemoveInvItems(self,ItAt_Sting,2);
+		Npc_RemoveInvItems(self,ItPo_Mana_02,1);
+		Npc_RemoveInvItems(self,ItPo_Health_01,1);
+		Npc_RemoveInvItems(self,ItFo_Addon_Pfeffer_01,1);
+		if(Knows_Bloodfly == TRUE)
+		{
+			B_BrewPotion(ItPo_Addon_Geist_02);
+		}
+		else
+		{
+			B_BrewPotion(ItPo_Addon_Geist_01);
+		};
+	}
+	else
+	{
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
+	};
 };
 
 
 instance PC_ItPo_MegaDrink(C_Info)
 {
-	nr = 2;
+	nr = 8;
 	npc = PC_Hero;
 	condition = PC_ItPo_MegaDrink_Condition;
 	information = PC_ItPo_MegaDrink_Info;
@@ -987,25 +1065,23 @@ func int PC_ItPo_MegaDrink_Condition()
 
 func void PC_ItPo_MegaDrink_Info()
 {
-	if((Npc_HasItems(hero,ItAt_DragonEgg_MIS) >= 10) && Npc_HasItems(hero,ItMi_DarkPearl) && Npc_HasItems(hero,ItMi_Sulfur))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItAt_DragonEgg_MIS,10);
-		Npc_RemoveInvItems(hero,ItMi_DarkPearl,1);
-		Npc_RemoveInvItems(hero,ItMi_Sulfur,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_MegaDrink,1);
-		Print(PRINT_AlchemySuccess);
+		b_endproductiondialog();
+	}
+	else if((Npc_HasItems(self,ItAt_DragonEgg_MIS) >= 10) && Npc_HasItems(self,ItMi_DarkPearl) && Npc_HasItems(self,ItMi_Sulfur))
+	{
+		Npc_RemoveInvItems(self,ItAt_DragonEgg_MIS,10);
+		Npc_RemoveInvItems(self,ItMi_DarkPearl,1);
+		Npc_RemoveInvItems(self,ItMi_Sulfur,1);
+		B_BrewPotion(ItPo_MegaDrink);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
-
-var int TabakStart;
 
 instance PC_Tabak_Start(C_Info)
 {
@@ -1078,18 +1154,22 @@ func int PC_ItMi_Joint_Condition()
 
 func void PC_ItMi_Joint_Info()
 {
-	if(Npc_HasItems(hero,ItPl_SwampHerb))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItPl_SwampHerb,1);
-		CreateInvItems(hero,ItMi_Joint,1);
-		Print(PRINT_JointSuccess);
+		b_endproductiondialog();
+	}
+	else if(Npc_HasItems(self,ItPl_SwampHerb))
+	{
+		AI_Wait(self,0.5);
+		FlasksCount -= 1;
+		Npc_RemoveInvItems(self,ItPl_SwampHerb,1);
+		CreateInvItems(self,ItMi_Joint,1);
+		AI_PrintScreen(PRINT_JointSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
 
@@ -1114,19 +1194,23 @@ func int PC_ItMi_Addon_Joint_01_Condition()
 
 func void PC_ItMi_Addon_Joint_01_Info()
 {
-	if((Npc_HasItems(hero,ItPl_SwampHerb) >= 2) && Npc_HasItems(hero,ItPl_Temp_Herb))
+	if(!C_PlayerHasFlasks())
 	{
-		Npc_RemoveInvItems(hero,ItPl_SwampHerb,2);
-		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-		CreateInvItems(hero,ItMi_Addon_Joint_01,1);
-		Print(PRINT_Addon_Joint_01_Success);
+		b_endproductiondialog();
+	}
+	else if((Npc_HasItems(self,ItPl_SwampHerb) >= 2) && Npc_HasItems(self,ItPl_Temp_Herb))
+	{
+		AI_Wait(self,0.5);
+		FlasksCount -= 1;
+		Npc_RemoveInvItems(self,ItPl_SwampHerb,2);
+		Npc_RemoveInvItems(self,ItPl_Temp_Herb,1);
+		CreateInvItems(self,ItMi_Addon_Joint_01,1);
+		AI_PrintScreen(PRINT_Addon_Joint_01_Success,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 	};
-	b_endproductiondialog();
 };
 
 
@@ -1143,7 +1227,7 @@ instance PC_ItMi_Tabak(C_Info)
 
 func int PC_ItMi_Tabak_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && Npc_HasItems(hero,ItMi_ApfelTabak) && (TabakStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && Npc_HasItems(self,ItMi_ApfelTabak) && (TabakStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -1153,19 +1237,19 @@ func void PC_ItMi_Tabak_Info()
 {
 	Info_ClearChoices(PC_ItMi_Tabak);
 	Info_AddChoice(PC_ItMi_Tabak,Dialog_Back,PC_ItMi_Tabak_BACK);
-	if(Npc_HasItems(hero,ItFo_Honey))
+	if(Npc_HasItems(self,ItFo_Honey))
 	{
 		Info_AddChoice(PC_ItMi_Tabak,"... с медом",PC_ItMi_Tabak_Honey);
 	};
-	if(Npc_HasItems(hero,ItPl_SwampHerb))
+	if(Npc_HasItems(self,ItPl_SwampHerb))
 	{
 		Info_AddChoice(PC_ItMi_Tabak,"... с болотной травой",PC_ItMi_Tabak_Swampherb);
 	};
-	if(Npc_HasItems(hero,ItPl_Mushroom_01))
+	if(Npc_HasItems(self,ItPl_Mushroom_01))
 	{
 		Info_AddChoice(PC_ItMi_Tabak,"... с черным грибом",PC_ItMi_Tabak_Mushroom_01);
 	};
-	if(Npc_HasItems(hero,ItFo_Apple))
+	if(Npc_HasItems(self,ItFo_Apple))
 	{
 		Info_AddChoice(PC_ItMi_Tabak,"... с €блоком",PC_ItMi_Tabak_Double);
 	};
@@ -1176,39 +1260,73 @@ func void PC_ItMi_Tabak_BACK()
 	Info_ClearChoices(PC_ItMi_Tabak);
 };
 
+func void B_MakeTobacco(var int tobacco)
+{
+	AI_Wait(self,0.5);
+	FlasksCount -= 1;
+	Npc_RemoveInvItems(self,ItMi_ApfelTabak,1);
+	CreateInvItem(self,tobacco);
+	AI_PrintScreen(PRINT_TabakSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
+	if(Npc_HasItems(self,ItMi_ApfelTabak))
+	{
+		PC_ItMi_Tabak_Info();
+	}
+	else
+	{
+		Info_ClearChoices(PC_ItMi_Tabak);
+		Info_AddChoice(PC_ItMi_Tabak,Dialog_Back,PC_ItMi_Tabak_BACK);
+	};
+};
+
 func void PC_ItMi_Tabak_Honey()
 {
-	Npc_RemoveInvItems(hero,ItMi_ApfelTabak,1);
-	Npc_RemoveInvItems(hero,ItFo_Honey,1);
-	CreateInvItems(hero,ItMi_Honigtabak,1);
-	Print(PRINT_TabakSuccess);
-	b_endproductiondialog();
+	if(!C_PlayerHasFlasks())
+	{
+		b_endproductiondialog();
+	}
+	else
+	{
+		Npc_RemoveInvItems(self,ItFo_Honey,1);
+		B_MakeTobacco(ItMi_Honigtabak);
+	};
 };
 
 func void PC_ItMi_Tabak_Swampherb()
 {
-	Npc_RemoveInvItems(hero,ItMi_ApfelTabak,1);
-	Npc_RemoveInvItems(hero,ItPl_SwampHerb,1);
-	CreateInvItems(hero,ItMi_SumpfTabak,1);
-	Print(PRINT_TabakSuccess);
-	b_endproductiondialog();
+	if(!C_PlayerHasFlasks())
+	{
+		b_endproductiondialog();
+	}
+	else
+	{
+		Npc_RemoveInvItems(self,ItPl_SwampHerb,1);
+		B_MakeTobacco(ItMi_SumpfTabak);
+	};
 };
 
 func void PC_ItMi_Tabak_Mushroom_01()
 {
-	Npc_RemoveInvItems(hero,ItMi_ApfelTabak,1);
-	Npc_RemoveInvItems(hero,ItPl_Mushroom_01,1);
-	CreateInvItems(hero,ItMi_PilzTabak,1);
-	Print(PRINT_TabakSuccess);
-	b_endproductiondialog();
+	if(!C_PlayerHasFlasks())
+	{
+		b_endproductiondialog();
+	}
+	else
+	{
+		Npc_RemoveInvItems(self,ItPl_Mushroom_01,1);
+		B_MakeTobacco(ItMi_PilzTabak);
+	};
 };
 
 func void PC_ItMi_Tabak_Double()
 {
-	Npc_RemoveInvItems(hero,ItMi_ApfelTabak,1);
-	Npc_RemoveInvItems(hero,ItFo_Apple,1);
-	CreateInvItems(hero,ItMi_Doppeltabak,1);
-	Print(PRINT_TabakSuccess);
-	b_endproductiondialog();
+	if(!C_PlayerHasFlasks())
+	{
+		b_endproductiondialog();
+	}
+	else
+	{
+		Npc_RemoveInvItems(self,ItFo_Apple,1);
+		B_MakeTobacco(ItMi_Doppeltabak);
+	};
 };
 

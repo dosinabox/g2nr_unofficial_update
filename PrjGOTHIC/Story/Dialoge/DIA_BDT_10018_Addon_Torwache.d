@@ -258,7 +258,7 @@ instance DIA_Addon_BDT_10018_Torwache_Drin(C_Info)
 
 func int DIA_Addon_10018_Torwache_Drin_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_BDT_10018_Torwache_Hi) && !Npc_IsDead(Bloodwyn))
+	if(Npc_KnowsInfo(other,DIA_Addon_BDT_10018_Torwache_Hi) && !Npc_IsDead(Bloodwyn) && (Bloodwyn_Spawn == FALSE))
 	{
 		return TRUE;
 	};
@@ -282,7 +282,7 @@ instance DIA_Addon_BDT_10018_Torwache_kopf(C_Info)
 	condition = DIA_Addon_10018_Torwache_kopf_Condition;
 	information = DIA_Addon_10018_Torwache_kopf_Info;
 	permanent = FALSE;
-	description = "(показать голову Бладвина)";
+	description = DIALOG_BloodwynHead;
 };
 
 
@@ -298,6 +298,7 @@ func void DIA_Addon_10018_Torwache_kopf_Info()
 {
 	CreateInvItem(other,ItMi_FakeBloodwynHead);
 	AI_UseItemToState(other,ItMi_FakeBloodwynHead,1);
+	//эта функция нужна, чтобы ГГ не смотрел на голову Бладвина, но работает это неправильно
 	B_LookAtNpc(other,self);
 	AI_Output(other,self,"DIA_Addon_BDT_10018_Torwache_kopf_15_00");	//Вот! Ты все еще хочешь остановить меня?!
 	AI_UseItemToState(other,ItMi_FakeBloodwynHead,-1);

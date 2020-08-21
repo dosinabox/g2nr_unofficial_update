@@ -46,6 +46,8 @@ func void DIA_Cedric_Hallo_Info()
 };
 
 
+var int DIA_Cedric_Teacher_permanent;
+
 instance DIA_Cedric_CanTeach(C_Info)
 {
 	npc = PAL_216_Cedric;
@@ -78,9 +80,35 @@ func void DIA_Cedric_CanTeach_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Cedric_CanTeach_12_02");	//Я тренирую только паладинов.
+		if((other.guild != GIL_NONE) && (other.guild != GIL_MIL))
+		{
+			Cedric_Teach1H = TRUE;
+			DIA_Cedric_Teacher_permanent = TRUE;
+		};
 	};
 };
 
+
+func void B_BuildLearnDialog_Cedric()
+{
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Cedric)
+	{
+		Info_ClearChoices(DIA_Cedric_Teach);
+		Info_AddChoice(DIA_Cedric_Teach,Dialog_Back,DIA_Cedric_Teach_Back);
+		Info_AddChoice(DIA_Cedric_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cedric_Teach_1H_1);
+		Info_AddChoice(DIA_Cedric_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cedric_Teach_1H_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Cedric)
+		{
+			DIA_Cedric_Teacher_permanent = TRUE;
+		};
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_1H_Cedric)),-1,53,FONT_Screen,2);
+		AI_Output(self,other,"DIA_DIA_Cedric_Teach_12_01");	//Ты уже владеешь мечом лучше меня. Мне нечему учить тебя.
+		AI_StopProcessInfos(self);
+	};
+};
 
 instance DIA_Cedric_Teach(C_Info)
 {
@@ -93,11 +121,9 @@ instance DIA_Cedric_Teach(C_Info)
 };
 
 
-var int DIA_Cedric_Teach_permanent;
-
 func int DIA_Cedric_Teach_Condition()
 {
-	if((Cedric_Teach1H == TRUE) && (DIA_Cedric_Teach_permanent == FALSE))
+	if((Cedric_Teach1H == TRUE) && (DIA_Cedric_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -106,43 +132,30 @@ func int DIA_Cedric_Teach_Condition()
 func void DIA_Cedric_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Cedric_Teach_15_00");	//Я хочу потренироваться.
-//	if(other.HitChance[NPC_TALENT_1H] >= 90)
-	if(other.aivar[REAL_TALENT_1H] >= 90)
-	{
-		AI_Output(self,other,"DIA_DIA_Cedric_Teach_12_01");	//Ты уже владеешь мечом лучше меня. Мне нечему учить тебя.
-	}
-	else
-	{
-		Info_ClearChoices(DIA_Cedric_Teach);
-		Info_AddChoice(DIA_Cedric_Teach,Dialog_Back,DIA_Cedric_Teach_Back);
-		Info_AddChoice(DIA_Cedric_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cedric_Teach_2H_1);
-		Info_AddChoice(DIA_Cedric_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cedric_Teach_2H_5);
-	};
+	B_BuildLearnDialog_Cedric();
 };
+
 
 func void DIA_Cedric_Teach_Back()
 {
 	Info_ClearChoices(DIA_Cedric_Teach);
 };
 
-func void DIA_Cedric_Teach_2H_1()
+func void DIA_Cedric_Teach_1H_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,90);
-	Info_ClearChoices(DIA_Cedric_Teach);
-	Info_AddChoice(DIA_Cedric_Teach,Dialog_Back,DIA_Cedric_Teach_Back);
-	Info_AddChoice(DIA_Cedric_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cedric_Teach_2H_1);
-	Info_AddChoice(DIA_Cedric_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cedric_Teach_2H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_1H_Cedric))
+	{
+		B_BuildLearnDialog_Cedric();
+	};
 };
 
-func void DIA_Cedric_Teach_2H_5()
+func void DIA_Cedric_Teach_1H_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,90);
-	Info_ClearChoices(DIA_Cedric_Teach);
-	Info_AddChoice(DIA_Cedric_Teach,Dialog_Back,DIA_Cedric_Teach_Back);
-	Info_AddChoice(DIA_Cedric_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cedric_Teach_2H_1);
-	Info_AddChoice(DIA_Cedric_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cedric_Teach_2H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_1H_Cedric))
+	{
+		B_BuildLearnDialog_Cedric();
+	};
 };
-
 
 instance DIA_Cedric_PICKPOCKET(C_Info)
 {

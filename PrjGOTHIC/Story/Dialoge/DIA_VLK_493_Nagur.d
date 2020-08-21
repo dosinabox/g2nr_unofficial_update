@@ -55,6 +55,10 @@ func void DIA_Nagur_PICKPOCKET_BACK()
 	Info_ClearChoices(DIA_Nagur_PICKPOCKET);
 };
 
+func void B_Kardif_LeaveMeAlone()
+{
+	AI_Output(self,other,"DIA_Nagur_Hallo_08_01");	//Послушай, оставь меня в покое, хорошо?
+};
 
 instance DIA_Nagur_Hallo(C_Info)
 {
@@ -84,7 +88,7 @@ func void DIA_Nagur_Hallo_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Nagur_Hallo_08_01");	//Послушай, оставь меня в покое, хорошо?
+		B_Kardif_LeaveMeAlone();
 		AI_StopProcessInfos(self);
 	};
 };
@@ -148,8 +152,8 @@ func void DIA_Nagur_Job_Info()
 				AI_WaitTillEnd(self,other);
 				AI_PlayAni(self,"T_SEARCH");
 			};
-			AI_Output(self,other,"DIA_Nagur_Hallo_08_01");	//Послушай, оставь меня в покое, хорошо?
-			AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
+			B_Kardif_LeaveMeAlone();
+			DIA_Common_IllBeBackLater();
 			AI_StopProcessInfos(self);
 		}
 		else
@@ -214,8 +218,8 @@ func void DIA_Nagur_Auftrag_Info()
 			AI_WaitTillEnd(self,other);
 			AI_PlayAni(self,"T_SEARCH");
 		};
-		AI_Output(self,other,"DIA_Nagur_Hallo_08_01");	//Послушай, оставь меня в покое, хорошо?
-		AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
+		B_Kardif_LeaveMeAlone();
+		DIA_Common_IllBeBackLater();
 		AI_StopProcessInfos(self);
 	}
 	else

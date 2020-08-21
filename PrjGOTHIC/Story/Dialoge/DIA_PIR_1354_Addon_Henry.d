@@ -914,27 +914,96 @@ func void DIA_Addon_Henry_WhatTeach_Info()
 
 
 var int Henry_merke2h;
+var int Henry_merkeCbow;
 var int Henry_Labercount;
+var int Henry_Comment2H;
+var int DIA_Henry_Teacher_permanent;
+var int DIA_Henry_TeachState_2H;
+var int DIA_Henry_TeachState_Crossbow;
+
+func void B_Henry_NoMore_2H()
+{
+	AI_Output(self,other,"DIA_DIA_Lee_Teach_2H_1_04_00");	//“еперь ты насто€щий мастер бо€ двуручным оружием.
+};
+
+func void B_Henry_NoMoreTeach()
+{
+	AI_Output(self,other,"DIA_DIA_Lee_Teach_2H_1_04_01");	//“ы больше не нуждаешьс€ в учител€х.
+};
+
+func void B_BuildLearnDialog_Henry()
+{
+	Info_ClearChoices(DIA_Addon_Henry_Teach);
+	Info_AddChoice(DIA_Addon_Henry_Teach,Dialog_Back,DIA_Addon_Henry_Teach_Back);
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Henry)
+	{
+		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Addon_Henry_Teach_2H_1);
+		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Addon_Henry_Teach_2H_5);
+		DIA_Henry_TeachState_2H = 1;
+	}
+	else
+	{
+		if((DIA_Henry_TeachState_2H == 1) && (DIA_Henry_TeachState_Crossbow != 2))
+		{
+			PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Henry)),-1,53,FONT_Screen,2);
+			B_Henry_NoMore_2H();
+		};
+		DIA_Henry_TeachState_2H = 2;
+	};
+	if(VisibleTalentValue(NPC_TALENT_CROSSBOW) < TeachLimit_Crossbow_Henry)
+	{
+		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Addon_Henry_Teach_CB_1);
+		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Addon_Henry_Teach_CB_5);
+		DIA_Henry_TeachState_Crossbow = 1;
+	}
+	else
+	{
+		if((DIA_Henry_TeachState_Crossbow == 1) && (DIA_Henry_TeachState_2H != 2))
+		{
+			PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Crossbow_Henry)),-1,53,FONT_Screen,2);
+			B_Say(self,other,"$NOLEARNYOUREBETTER");
+		};
+		DIA_Henry_TeachState_Crossbow = 2;
+	};
+	if((RealTalentValue(NPC_TALENT_2H) >= DIA_Henry_TeachState_2H) && (RealTalentValue(NPC_TALENT_CROSSBOW) >= TeachLimit_Crossbow_Henry))
+	{
+		DIA_Henry_Teacher_permanent = TRUE;
+	};
+	if((DIA_Henry_TeachState_2H == 2) && (DIA_Henry_TeachState_Crossbow == 2))
+	{
+		PrintScreen(PRINT_NoLearnTotalMAXReached,-1,53,FONT_Screen,2);
+		B_Henry_NoMoreTeach();
+		AI_StopProcessInfos(self);
+	};
+};
+
+func void B_Henry_Comment2H()
+{
+	if(Henry_Comment2H == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Henry_CommentFightSkill_04_03");	//Ќикогда не забывай: дольше живет тот, кто не забывает парировать удары!
+		Henry_Comment2H = TRUE;
+	};
+};
 
 func void B_Henry_CommentFightSkill()
 {
 	if(Henry_Labercount == 0)
 	{
-		AI_Output(self,other,"DIA_Addon_Henry_CommentFightSkill_04_01");	//“ы быстро учишьс€. ћожет, тебе удастс€ стать насто€щим пиратом.
+		AI_Output(self,other,"DIA_Addon_Henry_Teach_Back_04_00");	//“вое умение растет.
 		Henry_Labercount = 1;
 	}
 	else if(Henry_Labercount == 1)
 	{
-		AI_Output(self,other,"DIA_Addon_Henry_CommentFightSkill_04_02");	//≈сли будешь продолжать в том же духе, то скоро ты сможешь в одиночку захватить целый корабль.
+		AI_Output(self,other,"DIA_Addon_Henry_CommentFightSkill_04_01");	//“ы быстро учишьс€. ћожет, тебе удастс€ стать насто€щим пиратом.
 		Henry_Labercount = 2;
 	}
 	else if(Henry_Labercount == 2)
 	{
-		AI_Output(self,other,"DIA_Addon_Henry_CommentFightSkill_04_03");	//Ќикогда не забывай: дольше живет тот, кто не забывает парировать удары!
+		AI_Output(self,other,"DIA_Addon_Henry_CommentFightSkill_04_02");	//≈сли будешь продолжать в том же духе, то скоро ты сможешь в одиночку захватить целый корабль.
 		Henry_Labercount = 0;
 	};
 };
-
 
 instance DIA_Addon_Henry_Teach(C_Info)
 {
@@ -949,7 +1018,7 @@ instance DIA_Addon_Henry_Teach(C_Info)
 
 func int DIA_Addon_Henry_Teach_Condition()
 {
-	if(Henry_Addon_TeachPlayer == TRUE)
+	if((Henry_Addon_TeachPlayer == TRUE) && (DIA_Henry_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -958,75 +1027,52 @@ func int DIA_Addon_Henry_Teach_Condition()
 func void DIA_Addon_Henry_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_Teach_15_00");	//”чи мен€!
-//	Henry_merke2h = other.HitChance[NPC_TALENT_2H];
-	Henry_merke2h = other.aivar[REAL_TALENT_2H];
-	Info_ClearChoices(DIA_Addon_Henry_Teach);
-	Info_AddChoice(DIA_Addon_Henry_Teach,Dialog_Back,DIA_Addon_Henry_Teach_Back);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Addon_Henry_Teach_2H_1);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,1) * 5),DIA_Addon_Henry_Teach_2H_5);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Addon_Henry_Teach_CB_1);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Addon_Henry_Teach_CB_5);
+	Henry_merke2h = other.HitChance[NPC_TALENT_2H];
+	Henry_merkeCbow = other.HitChance[NPC_TALENT_CROSSBOW];
+	B_BuildLearnDialog_Henry();
 };
 
 func void DIA_Addon_Henry_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_2H] > Henry_merke2h)
-	if(other.aivar[REAL_TALENT_2H] > Henry_merke2h)
+	if((other.HitChance[NPC_TALENT_2H] > Henry_merke2h) || (other.HitChance[NPC_TALENT_CROSSBOW] > Henry_merkeCbow))
 	{
 		B_Henry_CommentFightSkill();
-	}
-//	else if(other.HitChance[NPC_TALENT_2H] >= 90)
-	else if(other.aivar[REAL_TALENT_2H] >= 90)
-	{
-		AI_Output(self,other,"DIA_Addon_Henry_Teach_Back_04_00");	//“вое умение растет.
 	};
 	Info_ClearChoices(DIA_Addon_Henry_Teach);
 };
 
 func void DIA_Addon_Henry_Teach_CB_1()
 {
-//	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,75);
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,80);
-	Info_ClearChoices(DIA_Addon_Henry_Teach);
-	Info_AddChoice(DIA_Addon_Henry_Teach,Dialog_Back,DIA_Addon_Henry_Teach_Back);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Addon_Henry_Teach_2H_1);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,1) * 5),DIA_Addon_Henry_Teach_2H_5);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Addon_Henry_Teach_CB_1);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Addon_Henry_Teach_CB_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,TeachLimit_Crossbow_Henry))
+	{
+		B_BuildLearnDialog_Henry();
+	};
 };
 
 func void DIA_Addon_Henry_Teach_CB_5()
 {
-//	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,75);
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,80);
-	Info_ClearChoices(DIA_Addon_Henry_Teach);
-	Info_AddChoice(DIA_Addon_Henry_Teach,Dialog_Back,DIA_Addon_Henry_Teach_Back);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Addon_Henry_Teach_2H_1);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,1) * 5),DIA_Addon_Henry_Teach_2H_5);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Addon_Henry_Teach_CB_1);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Addon_Henry_Teach_CB_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,TeachLimit_Crossbow_Henry))
+	{
+		B_BuildLearnDialog_Henry();
+	};
 };
 
 func void DIA_Addon_Henry_Teach_2H_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,90);
-	Info_ClearChoices(DIA_Addon_Henry_Teach);
-	Info_AddChoice(DIA_Addon_Henry_Teach,Dialog_Back,DIA_Addon_Henry_Teach_Back);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Addon_Henry_Teach_2H_1);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,1) * 5),DIA_Addon_Henry_Teach_2H_5);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Addon_Henry_Teach_CB_1);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Addon_Henry_Teach_CB_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Henry))
+	{
+		B_Henry_Comment2H();
+		B_BuildLearnDialog_Henry();
+	};
 };
 
 func void DIA_Addon_Henry_Teach_2H_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,90);
-	Info_ClearChoices(DIA_Addon_Henry_Teach);
-	Info_AddChoice(DIA_Addon_Henry_Teach,Dialog_Back,DIA_Addon_Henry_Teach_Back);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Addon_Henry_Teach_2H_1);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,1) * 5),DIA_Addon_Henry_Teach_2H_5);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Addon_Henry_Teach_CB_1);
-	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Addon_Henry_Teach_CB_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Henry))
+	{
+		B_Henry_Comment2H();
+		B_BuildLearnDialog_Henry();
+	};
 };
 
 

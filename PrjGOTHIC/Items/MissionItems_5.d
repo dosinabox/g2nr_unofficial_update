@@ -122,8 +122,8 @@ func void Use_HallsofIrdorath_Open()
 	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
-	Doc_SetPage(nDocID,0,"BOOK_MAGE_L.tga",0);
-	Doc_SetPage(nDocID,1,"BOOK_MAGE_R.tga",0);
+	Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
+	Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_PrintLine(nDocID,0,"");
@@ -173,8 +173,8 @@ func void Use_XardasSeamapBook_Mis()
 	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
-	Doc_SetPage(nDocID,0,"BOOK_WOOD_L.tga",0);
-	Doc_SetPage(nDocID,1,"BOOK_WOOD_R.tga",0);
+	Doc_SetPage(nDocID,0,"Book_Wood_L.tga",0);
+	Doc_SetPage(nDocID,1,"Book_Wood_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetFont(nDocID,0,FONT_Book);
@@ -279,22 +279,22 @@ func void Use_Seamap_Irdorath()
 	Doc_Show(nDocID);
 	if(MIS_SCKnowsWayToIrdorath == FALSE)
 	{
-		if(Kapitel < 6)
-		{
-			B_Say(self,self,"$IRDORATHTHEREYOUARE");
-		};
+		Log_CreateTopic(Topic_Crew,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Crew,LOG_Running);
+		B_LogEntries(Topic_Crew,"Для путешествия на корабле и решающего сражения мне нужна команда.");
+		Log_CreateTopic(Topic_Captain,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Captain,LOG_Running);
+		B_LogNextEntry(Topic_Captain,"Для управления кораблем мне нужен опытный капитан, готовый отправиться со мной в опасное путешествие.");
 		if(MIS_ShipIsFree == FALSE)
 		{
 			Log_CreateTopic(Topic_Ship,LOG_MISSION);
 			Log_SetTopicStatus(Topic_Ship,LOG_Running);
-			B_LogEntry(Topic_Ship,"Похоже, я должен добраться до этого странного вражеского острова. Но для этого мне нужен корабль.");
+			B_LogNextEntry(Topic_Ship,"Похоже, я должен добраться до этого странного вражеского острова. Но для этого мне нужен корабль.");
 		};
-		Log_CreateTopic(Topic_Crew,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Crew,LOG_Running);
-		B_LogEntry(Topic_Crew,"Для путешествия на корабле и решающего сражения мне нужна команда.");
-		Log_CreateTopic(Topic_Captain,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Captain,LOG_Running);
-		B_LogEntry(Topic_Captain,"Для управления кораблем мне нужен опытный капитан, готовый отправиться со мной в опасное путешествие.");
+		if(Kapitel < 6)
+		{
+			B_Say(self,self,"$IRDORATHTHEREYOUARE");
+		};
 		MIS_SCKnowsWayToIrdorath = TRUE;
 		B_GivePlayerXP(XP_SCKnowsWayToIrdorath);
 	};
@@ -380,7 +380,6 @@ instance ItPo_PotionOfDeath_01_Mis(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	value = 0;
-//	visual = "ItMi_Flask.3ds";
 	visual = "ItPo_Special_03.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseItPo_PotionOfDeath;
@@ -389,18 +388,14 @@ instance ItPo_PotionOfDeath_01_Mis(C_Item)
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Слезы Инноса";
 	text[1] = PRINT_UnknownEffect;
-//	text[1] = "???";
-//	count[1] = Mana_Essenz;
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 
 func void UseItPo_PotionOfDeath()
 {
-	if(hero.guild == GIL_KDF)
+	if(self.guild == GIL_KDF)
 	{
-		Wld_PlayEffect("spellFX_LIGHTSTAR_BLUE",hero,hero,0,0,0,FALSE);
+		Wld_PlayEffect("spellFX_LIGHTSTAR_BLUE",self,self,0,0,0,FALSE);
 		Snd_Play("SFX_HealObsession");
 		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
@@ -415,13 +410,8 @@ func void UseItPo_PotionOfDeath()
 	}
 	else
 	{
-		AI_Wait(hero,3);
-		AI_PlayAni(self,"S_FIRE_VICTIM");
-		Wld_PlayEffect("VOB_MAGICBURN",hero,hero,0,0,0,FALSE);
-		B_Say(self,self,"$Dead");
-		AI_StopFX(self,"VOB_MAGICBURN");
-		Npc_ChangeAttribute(self,ATR_HITPOINTS,-self.attribute[ATR_HITPOINTS_MAX]);
-		Npc_StopAni(self,"S_FIRE_VICTIM");
+		self.aivar[AIV_ReadyForPainfulDeath] = TRUE;
+		AI_StartState(self,ZS_MagicFreeze,0,"");
 	};
 };
 
@@ -432,7 +422,6 @@ instance ItPo_PotionOfDeath_02_Mis(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	value = 0;
-//	visual = "ItMi_Flask.3ds";
 	visual = "ItPo_Special_03.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseItPo_PotionOfDeath;
@@ -442,17 +431,14 @@ instance ItPo_PotionOfDeath_02_Mis(C_Item)
 	description = "Слезы Инноса";
 	text[0] = "Это зелье наделяет магов Огня особыми способностями.";
 	text[1] = "Любой другой принявший его, найдет свою смерть.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItAm_AmulettOfDeath_Mis(C_Item)
 {
-	name = "Божественная аура Инноса";
+	name = NAME_Amulett;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = 1000;
-//	visual = "ItAm_Prot_Fire_01.3ds";
 	visual = "ItAm_AmulettOfDeath_Mis.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -460,9 +446,7 @@ instance ItAm_AmulettOfDeath_Mis(C_Item)
 	on_unequip = UnEquip_ItAm_AmulettOfDeath_Mis;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = name;
-//	text[2] = "Этот амулет защищает владельца";
-//	text[3] = "от всех форм урона.";
+	description = "Божественная аура Инноса";
 	text[0] = "Этот амулет защищает владельца от всех форм урона.";
 	text[1] = NAME_Prot_Edge;
 	count[1] = 30;

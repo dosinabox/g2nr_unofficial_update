@@ -25,6 +25,7 @@ const int Value_Speed = 200;
 const int Time_Speed = 300000;
 const int Value_ManaTrunk = 200;
 const int Value_HpTrunk = 150;
+const int ManaMax_Mushrooms = 5;
 
 instance ItPo_Mana_01(C_Item)
 {
@@ -257,7 +258,6 @@ instance ItPo_Perm_Health(C_Item)
 func void UseItPo_Perm_Health()
 {
 	B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HPMax_Elixier);
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HPMax_Elixier);
 };
 
 
@@ -284,7 +284,6 @@ instance ItPo_Perm_Mana(C_Item)
 func void UseItPo_Perm_Mana()
 {
 	B_RaiseAttribute(self,ATR_MANA_MAX,ManaMax_Elixier);
-	Npc_ChangeAttribute(self,ATR_MANA,ManaMax_Elixier);
 };
 
 
@@ -321,7 +320,6 @@ instance ItPo_MegaDrink(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	value = Value_MegaDrink;
-//	visual = "ItPo_Perm_Mana.3ds";
 	visual = "ItPo_Special_01.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseItPo_MegaDrink;
@@ -329,7 +327,6 @@ instance ItPo_MegaDrink(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = name;
-//	text[0] = PRINT_UnknownEffect;
 	text[0] = TEXT_MegaDrink_Setting_Desc;
 	text[1] = TEXT_MegaDrink_Setting;
 	count[1] = COUNT_MegaDrink_Setting;
@@ -355,5 +352,32 @@ func void UseItPo_MegaDrink()
 	TEXT_MegaDrink_Setting = TEXT_MegaDrink_Setting_Print;
 	COUNT_MegaDrink_Setting = STRorDEX_MegaDrink;
 	MegaDrink_Used = TRUE;
+};
+
+instance ItPo_Perm_MushroomMana(C_Item)
+{
+	name = NAME_Trank;
+	mainflag = ITEM_KAT_POTIONS;
+	flags = ITEM_MULTI;
+	value = Value_ManaMaxElixier;
+	visual = "ItPo_Perm_MushroomMana.3ds";
+	material = MAT_GLAS;
+	on_state[0] = UseItPo_MushroomMana;
+	scemeName = "POTIONFAST";
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_MANAPOTION";
+	description = NAME_MushroomMana;
+	text[1] = NAME_Bonus_ManaMax;
+	count[1] = ManaMax_Mushrooms;
+	text[2] = "Полное восстановление маны.";
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+
+func void UseItPo_MushroomMana()
+{
+	B_RaiseAttribute(self,ATR_MANA_MAX,ManaMax_Mushrooms);
+	self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
 };
 

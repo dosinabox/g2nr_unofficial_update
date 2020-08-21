@@ -56,6 +56,16 @@ func void DIA_Torlof_DI_Hallo_Info()
 };
 
 
+func void B_BuildLearnDialog_Torlof_DI()
+{
+	Info_ClearChoices(DIA_Torlof_DI_Teach);
+	Info_AddChoice(DIA_Torlof_DI_Teach,Dialog_Back,DIA_Torlof_DI_Teach_Back);
+	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Torlof_DI_Teach_DEX_1);
+	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Torlof_DI_Teach_DEX_5);
+	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Torlof_DI_Teach_STR_1);
+	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Torlof_DI_Teach_STR_5);
+};
+
 instance DIA_Torlof_DI_Teach(C_Info)
 {
 	npc = SLD_801_Torlof_DI;
@@ -78,12 +88,7 @@ func int DIA_Torlof_DI_Teach_Condition()
 func void DIA_Torlof_DI_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Torlof_DI_Teach_15_00");	//Я хочу улучшить свои способности!
-	Info_ClearChoices(DIA_Torlof_DI_Teach);
-	Info_AddChoice(DIA_Torlof_DI_Teach,Dialog_Back,DIA_Torlof_DI_Teach_Back);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Torlof_DI_Teach_DEX_1);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Torlof_DI_Teach_DEX_5);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Torlof_DI_Teach_STR_1);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Torlof_DI_Teach_STR_5);
+	B_BuildLearnDialog_Torlof_DI();
 };
 
 func void DIA_Torlof_DI_Teach_Back()
@@ -93,48 +98,35 @@ func void DIA_Torlof_DI_Teach_Back()
 
 func void DIA_Torlof_DI_Teach_DEX_1()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MED);
-	Info_ClearChoices(DIA_Torlof_DI_Teach);
-	Info_AddChoice(DIA_Torlof_DI_Teach,Dialog_Back,DIA_Torlof_DI_Teach_Back);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Torlof_DI_Teach_DEX_1);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Torlof_DI_Teach_DEX_5);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Torlof_DI_Teach_STR_1);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Torlof_DI_Teach_STR_5);
+	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MED))
+	{
+		B_BuildLearnDialog_Torlof_DI();
+	};
 };
 
 func void DIA_Torlof_DI_Teach_DEX_5()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MED);
-	Info_ClearChoices(DIA_Torlof_DI_Teach);
-	Info_AddChoice(DIA_Torlof_DI_Teach,Dialog_Back,DIA_Torlof_DI_Teach_Back);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Torlof_DI_Teach_DEX_1);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Torlof_DI_Teach_DEX_5);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Torlof_DI_Teach_STR_1);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Torlof_DI_Teach_STR_5);
+	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MED))
+	{
+		B_BuildLearnDialog_Torlof_DI();
+	};
 };
 
 func void DIA_Torlof_DI_Teach_STR_1()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MAX);
-	Info_ClearChoices(DIA_Torlof_DI_Teach);
-	Info_AddChoice(DIA_Torlof_DI_Teach,Dialog_Back,DIA_Torlof_DI_Teach_Back);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Torlof_DI_Teach_DEX_1);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Torlof_DI_Teach_DEX_5);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Torlof_DI_Teach_STR_1);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Torlof_DI_Teach_STR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MAX))
+	{
+		B_BuildLearnDialog_Torlof_DI();
+	};
 };
 
 func void DIA_Torlof_DI_Teach_STR_5()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MAX);
-	Info_ClearChoices(DIA_Torlof_DI_Teach);
-	Info_AddChoice(DIA_Torlof_DI_Teach,Dialog_Back,DIA_Torlof_DI_Teach_Back);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Torlof_DI_Teach_DEX_1);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Torlof_DI_Teach_DEX_5);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Torlof_DI_Teach_STR_1);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Torlof_DI_Teach_STR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MAX))
+	{
+		B_BuildLearnDialog_Torlof_DI();
+	};
 };
-
 
 instance DIA_Torlof_DI_UndeadDragonDead(C_Info)
 {

@@ -1,27 +1,4 @@
 
-const int Value_Sc_SummonMud = 300;
-
-instance ItSc_SummonMud(C_Item)
-{
-	name = NAME_Spruchrolle;
-	mainflag = ITEM_KAT_RUNE;
-	flags = ITEM_MULTI;
-	value = Value_Sc_SummonMud;
-	visual = "ItSc_SumMud.3DS";
-	material = MAT_LEATHER;
-	spell = SPL_SummonMud;
-	cond_atr[2] = ATR_MANA_MAX;
-	cond_value[2] = SPL_Cost_Scroll;
-	wear = WEAR_EFFECT;
-	effect = "SPELLFX_WEAKGLIMMER";
-	description = NAME_SPL_SummonMud;
-	text[0] = NAME_MageScroll;
-	text[1] = NAME_Mana_needed;
-	count[1] = SPL_Cost_Scroll;
-	text[5] = NAME_Value;
-	count[5] = value;
-};
-
 /*instance Aya_Testmodell(Npc_Default)
 {
 	name[0] = "Ýéÿ";

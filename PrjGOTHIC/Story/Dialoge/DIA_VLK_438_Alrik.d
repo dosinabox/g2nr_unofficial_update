@@ -211,11 +211,15 @@ func void DIA_Alrik_NewFights5_Info()
 	B_Alrik_Again();
 };
 
+
 func void B_Alrik_Enough()
 {
 	AI_Output(self,other,"DIA_Alrik_WannaFight_09_05");	//Мне кажется, ты побеждаешь слишком часто.
 	AI_Output(self,other,"DIA_Alrik_WannaFight_09_06");	//Не пойми меня неверно, но моя башка все еще гудит после прошлого раза...
 };
+
+var int Alrik_FightsIsOver;
+var int Alrik_Sword_Once;
 
 instance DIA_Alrik_WannaFight(C_Info)
 {
@@ -230,13 +234,11 @@ instance DIA_Alrik_WannaFight(C_Info)
 
 func int DIA_Alrik_WannaFight_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Alrik_Regeln) && (self.aivar[AIV_ArenaFight] == AF_NONE))
+	if(Npc_KnowsInfo(other,DIA_Alrik_Regeln) && (self.aivar[AIV_ArenaFight] == AF_NONE) && (Alrik_FightsIsOver == FALSE))
 	{
 		return TRUE;
 	};
 };
-
-var int Alrik_Sword_Once;
 
 func void DIA_Alrik_WannaFight_Info()
 {
@@ -290,6 +292,7 @@ func void DIA_Alrik_WannaFight_Info()
 		AI_Output(self,other,"DIA_Alrik_Add_09_04");	//Кроме того, я сегодня заработал уже достаточно денег.
 		AI_Output(self,other,"DIA_Alrik_Add_09_05");	//С меня хватит. Я собираюсь подыскать себе другое местечко в городе...
 		AI_Output(self,other,"DIA_Alrik_Add_09_06");	//Кто знает, может, я открою оружейную лавку...
+		Alrik_FightsIsOver = TRUE;
 	}
 	else if(Wld_IsTime(11,0,19,0))
 	{
@@ -541,7 +544,7 @@ instance DIA_Alrik_HaveSword(C_Info)
 
 func int DIA_Alrik_HaveSword_Condition()
 {
-	if(Npc_HasItems(other,ItMw_AlriksSword_Mis))
+	if((Alrik_VomSchwertErzaehlt == TRUE) && Npc_HasItems(other,ItMw_AlriksSword_Mis))
 	{
 		return TRUE;
 	};
@@ -589,7 +592,7 @@ instance DIA_Alrik_Krieg(C_Info)
 
 func int DIA_Alrik_Krieg_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Alrik_DuWohnst) || (hero.guild != GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Alrik_DuWohnst))
 	{
 		return TRUE;
 	};
@@ -605,6 +608,9 @@ func void DIA_Alrik_Krieg_Info()
 
 
 var int Alrik_VorausErzaehlt;
+var int Alrik_Merke_1h;
+var int Alrik_CommentedProgress;
+var int DIA_Alrik_Teach_permanent;
 
 instance DIA_Alrik_Ausbilden(C_Info)
 {
@@ -619,7 +625,7 @@ instance DIA_Alrik_Ausbilden(C_Info)
 
 func int DIA_Alrik_Ausbilden_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Alrik_DuWohnst) || (hero.guild != GIL_NONE)) && (Alrik_Teach1H == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Alrik_DuWohnst) && (Alrik_Teach1H == FALSE))
 	{
 		return TRUE;
 	};
@@ -628,7 +634,13 @@ func int DIA_Alrik_Ausbilden_Condition()
 func void DIA_Alrik_Ausbilden_Info()
 {
 	AI_Output(other,self,"DIA_Alrik_Ausbilden_15_00");	//Ты можешь обучить меня?
-	if((Alrik_Kaempfe == 0) && (hero.guild == GIL_NONE))
+	if(RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Alrik)
+	{
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		Alrik_Teach1H = TRUE;
+		DIA_Alrik_Teach_permanent = true;
+	}
+	else if((Alrik_Kaempfe == 0) && (hero.guild == GIL_NONE))
 	{
 		AI_Output(self,other,"DIA_Alrik_Ausbilden_09_01");	//Если ты действительно хочешь научиться сражаться, то выходи против меня. (ухмыляется) За этот урок я не возьму дополнительной платы.
 		Alrik_VorausErzaehlt = TRUE;
@@ -653,7 +665,26 @@ func void DIA_Alrik_Ausbilden_Info()
 };
 
 
-var int Alrik_Merke_1h;
+func void B_BuildLearnDialog_Alrik()
+{
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Alrik)
+	{
+		Info_ClearChoices(DIA_Alrik_Teach);
+		Info_AddChoice(DIA_Alrik_Teach,Dialog_Back,DIA_Alrik_Teach_Back);
+		Info_AddChoice(DIA_Alrik_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Alrik_Teach_1H_1);
+		Info_AddChoice(DIA_Alrik_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Alrik_Teach_1H_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Alrik)
+		{
+			DIA_Alrik_Teach_permanent = TRUE;
+		};
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_1H_Alrik)),-1,53,FONT_Screen,2);
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		AI_StopProcessInfos(self);
+	};
+};
 
 instance DIA_Alrik_Teach(C_Info)
 {
@@ -668,7 +699,7 @@ instance DIA_Alrik_Teach(C_Info)
 
 func int DIA_Alrik_Teach_Condition()
 {
-	if(Alrik_Teach1H == TRUE)
+	if((Alrik_Teach1H == TRUE) && (DIA_Alrik_Teach_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -677,49 +708,45 @@ func int DIA_Alrik_Teach_Condition()
 func void DIA_Alrik_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Alrik_Teach_15_00");	//Научи меня обращаться с мечом!
-	if(C_BodyStateContains(self,BS_SIT))
+	Alrik_Merke_1h = other.HitChance[NPC_TALENT_1H];
+	/*if(C_BodyStateContains(self,BS_SIT))
 	{
 		AI_Standup(self);
 		B_TurnToNpc(self,other);
-	};
-//	Alrik_Merke_1h = other.HitChance[NPC_TALENT_1H];
-	Alrik_Merke_1h = other.aivar[REAL_TALENT_1H];
-	Info_ClearChoices(DIA_Alrik_Teach);
-	Info_AddChoice(DIA_Alrik_Teach,Dialog_Back,DIA_Alrik_Teach_Back);
-	Info_AddChoice(DIA_Alrik_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Alrik_Teach_1H_1);
-	Info_AddChoice(DIA_Alrik_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Alrik_Teach_1H_5);
+	};*/
+	B_BuildLearnDialog_Alrik();
 };
 
 func void DIA_Alrik_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_1H] >= 30)
-	if(other.aivar[REAL_TALENT_1H] >= 30)
+	if((other.HitChance[NPC_TALENT_1H] > Alrik_Merke_1h) && (Alrik_CommentedProgress == FALSE))
 	{
-		AI_Output(self,other,"DIA_Alrik_Teach_Back_09_00");	//Ты больше не новичок!
-	}
-//	else if(other.HitChance[NPC_TALENT_1H] > Alrik_Merke_1h)
-	else if(other.aivar[REAL_TALENT_1H] > Alrik_Merke_1h)
-	{
-		AI_Output(self,other,"DIA_Alrik_Teach_Back_09_01");	//У тебя уже лучше получается. Скоро ты станешь серьезным бойцом!
+		if(other.HitChance[NPC_TALENT_1H] >= 30)
+		{
+			AI_Output(self,other,"DIA_Alrik_Teach_Back_09_00");	//Ты больше не новичок!
+			Alrik_CommentedProgress = TRUE;
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Alrik_Teach_Back_09_01");	//У тебя уже лучше получается. Скоро ты станешь серьезным бойцом!
+		};
 	};
 	Info_ClearChoices(DIA_Alrik_Teach);
 };
 
 func void DIA_Alrik_Teach_1H_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,60);
-	Info_ClearChoices(DIA_Alrik_Teach);
-	Info_AddChoice(DIA_Alrik_Teach,Dialog_Back,DIA_Alrik_Teach_Back);
-	Info_AddChoice(DIA_Alrik_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Alrik_Teach_1H_1);
-	Info_AddChoice(DIA_Alrik_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Alrik_Teach_1H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_1H_Alrik))
+	{
+		B_BuildLearnDialog_Alrik();
+	};
 };
 
 func void DIA_Alrik_Teach_1H_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,60);
-	Info_ClearChoices(DIA_Alrik_Teach);
-	Info_AddChoice(DIA_Alrik_Teach,Dialog_Back,DIA_Alrik_Teach_Back);
-	Info_AddChoice(DIA_Alrik_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Alrik_Teach_1H_1);
-	Info_AddChoice(DIA_Alrik_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Alrik_Teach_1H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_1H_Alrik))
+	{
+		B_BuildLearnDialog_Alrik();
+	};
 };
 

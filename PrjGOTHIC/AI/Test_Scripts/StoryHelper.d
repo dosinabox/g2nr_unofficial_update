@@ -34,7 +34,7 @@ instance SH(Npc_Default)
 	B_GiveNpcTalents(self);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player,-1);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player_G1,-1);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	daily_routine = Rtn_Start_9999;
@@ -74,6 +74,33 @@ func void b_build_settings_diag()
 {
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
+	/*if(PenaltiesAffectLearnCost == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
+	};*/
+	if(MIS_ReadyforChapter4 == FALSE)
+	{
+		if(StartChapter4InNewWorld == FALSE)
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Включить начало четвертой главы в Хоринисе",StoryHelper_Chapter4InNewWorld);
+		}
+		else
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Выключить начало четвертой главы в Хоринисе",StoryHelper_Log);
+		};
+	};
+	if(FullNPCRemoval == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить полное удаление NPC из мира",StoryHelper_FullNPCRemoval);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить полное удаление NPC из мира",StoryHelper_FullNPCRemoval);
+	};
 	if(AlternativeSmithing == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить альтернативное обучение у Беннета",StoryHelper_AlternativeSmithing);
@@ -106,7 +133,6 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Соединить шлемы и доспехи",StoryHelper_Helmets);
 	};
-	/*не сделано
 	if(HonestStatCalculation == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
@@ -114,7 +140,7 @@ func void b_build_settings_diag()
 	else
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
-	};*/
+	};
 	if(EnterNW_Kapitel4 == FALSE)
 	{
 		if(OriginalAntipaladins == FALSE)
@@ -171,21 +197,21 @@ func void b_build_settings_diag()
 	};
 	if(NpcWantToFlee == FALSE)
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить режим трусости у ИИ",StoryHelper_Flee);
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить режим трусости у людей и животных",StoryHelper_Flee);
 	}
 	else
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить режим трусости у ИИ",StoryHelper_Flee);
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить режим трусости у людей и животных",StoryHelper_Flee);
 	};
-	if(IgnoreBonuses == FALSE)
+	/*if(IgnoreBonuses == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование бонусов при прокачке",StoryHelper_Bonuses);
 	}
 	else
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование бонусов при прокачке",StoryHelper_Bonuses);
-	};
-	If(RandomGoblinBerries == FALSE)
+	};*/
+	if(RandomGoblinBerries == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить рандомные гоблинские ягоды у паладинов",StoryHelper_GoblinBerries);
 	}
@@ -193,7 +219,7 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить рандомные гоблинские ягоды у паладинов",StoryHelper_GoblinBerries);
 	};
-	If(InfiniteApples == FALSE)
+	if(InfiniteApples == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить выбивание бесконечных яблок",StoryHelper_Apples);
 	}
@@ -201,13 +227,29 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить выбивание бесконечных яблок",StoryHelper_Apples);
 	};
-	If(XP_Static == FALSE)
+	if(XP_Static == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить фиксированный опыт по главам",StoryHelper_XP);
 	}
 	else
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить фиксированный опыт по главам",StoryHelper_XP);
+	};
+	if(NoXPFromSummonedSkeletons == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить опыт с бесконечно призываемых скелетов",StoryHelper_Skeletons);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить опыт с бесконечно призываемых скелетов",StoryHelper_Skeletons);
+	};
+	if(NewLogEnabled == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить показ заголовков при обновлении дневника",StoryHelper_Log);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить показ заголовков при обновлении дневника",StoryHelper_Log);
 	};
 };
 	
@@ -417,6 +459,36 @@ func void StoryHelper_AlternativeSmithing()
 	b_build_settings_diag();
 };
 
+func void StoryHelper_Log()
+{
+	if(NewLogEnabled == TRUE)
+	{
+		NewLogEnabled = FALSE;
+		PrintScreen("Показ заголовков выключен",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		NewLogEnabled = TRUE;
+		PrintScreen("Показ заголовков включен",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_Skeletons()
+{
+	if(NoXPFromSummonedSkeletons == TRUE)
+	{
+		NoXPFromSummonedSkeletons = FALSE;
+		PrintScreen("Опыт за бесконечных скелетов включен",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		NoXPFromSummonedSkeletons = TRUE;
+		PrintScreen("Опыт за бесконечных скелетов выключен",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
 func void StoryHelper_HardMode()
 {
 	if(HardModeEnabled == TRUE)
@@ -473,12 +545,27 @@ func void StoryHelper_HardMode_50()
 	b_build_settings_diag();
 };
 
+func void StoryHelper_Penalties()
+{
+	if(PenaltiesAffectLearnCost == TRUE)
+	{
+		PenaltiesAffectLearnCost = FALSE;
+		PrintScreen("Влияние штрафов на стоимость обучения выключено",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		PenaltiesAffectLearnCost = TRUE;
+		PrintScreen("Влияние штрафов на стоимость обучения включено",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
 func void StoryHelper_LehmarBook()
 {
 	if(ClassicLehmarBook == TRUE)
 	{
 		ClassicLehmarBook = FALSE;
-		PrintScreen("Выкуп гроссбуха отключен",-1,-1,FONT_Screen,3);
+		PrintScreen("Выкуп гроссбуха выключен",-1,-1,FONT_Screen,3);
 	}
 	else
 	{
@@ -493,7 +580,7 @@ func void StoryHelper_Guildless()
 	if(GuildlessMode == TRUE)
 	{
 		GuildlessMode = FALSE;
-		PrintScreen("Прохождение без гильдии отключено",-1,-1,FONT_Screen,3);
+		PrintScreen("Прохождение без гильдии выключено",-1,-1,FONT_Screen,3);
 	}
 	else
 	{
@@ -508,7 +595,7 @@ func void StoryHelper_Addon()
 	if(AddonDisabled == TRUE)
 	{
 		AddonDisabled = FALSE;
-		PrintScreen("Прохождение без аддона отключено",-1,-1,FONT_Screen,3);
+		PrintScreen("Прохождение без аддона выключено",-1,-1,FONT_Screen,3);
 	}
 	else
 	{
@@ -652,7 +739,7 @@ func void StoryHelper_XP_1()
 	b_build_settings_diag();
 };
 
-/*func void StoryHelper_HonestStatCalculation()
+func void StoryHelper_HonestStatCalculation()
 {
 	if(HonestStatCalculation == TRUE)
 	{
@@ -665,7 +752,37 @@ func void StoryHelper_XP_1()
 		PrintScreen("Честный расчет стоимости обучения включен",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
-};*/
+};
+
+func void StoryHelper_FullNPCRemoval()
+{
+	if(FullNPCRemoval == TRUE)
+	{
+		FullNPCRemoval = FALSE;
+		PrintScreen("Полное удаление NPC из мира выключено",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		FullNPCRemoval = TRUE;
+		PrintScreen("Полное удаление NPC из мира включено",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_Chapter4InNewWorld()
+{
+	if(StartChapter4InNewWorld == TRUE)
+	{
+		StartChapter4InNewWorld = FALSE;
+		PrintScreen("Четвертая глава начнется в Долине рудников",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		StartChapter4InNewWorld = TRUE;
+		PrintScreen("Четвертая глава начнется в Хоринисе",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
 
 func void StoryHelper_PatchSettings_BACK()
 {
@@ -718,13 +835,13 @@ func void StoryHelper_Cavalorn()
 	//Где же пропавшие люди?
 	MIS_Addon_Vatras_WhereAreMissingPeople = LOG_SUCCESS;
 	//Кольцо колец :)
-	CreateInvItems(hero,ItRi_Ranger_Addon,1);	
+	CreateInvItems(hero,ItRi_Ranger_Addon,1);
 	//Найти каменные круги
 	MIS_Addon_Nefarius_BringMissingOrnaments = LOG_RUNNING;
 	//...и Кавалорн отправился в один из них
 	B_StartotherRoutine(BAU_4300_Addon_Cavalorn,"OrnamentSteinring");
 	//Игрок получил карту кругов
-	CreateInvItems(hero,ItWr_Map_NewWorld_Ornaments_Addon,1);	
+	CreateInvItems(hero,ItWr_Map_NewWorld_Ornaments_Addon,1);
 	AI_StopProcessInfos(self);
 };
 
@@ -862,7 +979,7 @@ func void StoryHelper_KAPITEL4ANFANG()
 	B_Kapitelwechsel(3,NEWWORLD_ZEN);
 	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
-	CreateInvItems(self,ItMi_InnosEye_MIS,1);
+	CreateInvItems(hero,ItMi_InnosEye_MIS,1);
 	MIS_ReadyforChapter4 = TRUE;
 	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
 	B_Kapitelwechsel(4,NEWWORLD_ZEN);

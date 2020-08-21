@@ -4,6 +4,7 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 	Kapitel = neues_Kapitel;
 	if(neues_Kapitel == 1)
 	{
+		B_InitTalentSystem();
 		Hero_HackChance = 10;
 		Cronos_NW_ItMi_Flask_Count = 5;
 		Cronos_NW_ItMi_Sulfur_Count = 2;
@@ -41,6 +42,10 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		Bennet_NW_ItMi_Swordraw_Count += 3;
 		Bennet_NW_ItMi_Nugget_Count += 2;
 		PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
+		if(StartChapter4InNewWorld == TRUE)
+		{
+			IntroduceChapter(KapWechsel_4,KapWechsel_4_Text,"chapter4.tga","chapter_01.wav",6000);
+		};
 	}
 	else if(neues_Kapitel == 5)
 	{

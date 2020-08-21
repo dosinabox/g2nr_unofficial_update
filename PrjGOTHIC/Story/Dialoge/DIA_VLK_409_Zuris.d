@@ -36,7 +36,7 @@ instance DIA_Zuris_PICKPOCKET(C_Info)
 func int DIA_Zuris_PICKPOCKET_Condition()
 {
 //	return C_StealItems(40,Hlp_GetInstanceID(ItPo_Health_03),0);
-	return C_StealItem(40,Hlp_GetInstanceID(ItPo_Health_03));
+	return C_StealItem(40);
 };
 
 func void DIA_Zuris_PICKPOCKET_Info()
@@ -54,7 +54,7 @@ func void DIA_Zuris_PICKPOCKET_DoIt()
 	if(other.attribute[ATR_DEXTERITY] >= 40)
 	{
 		CreateInvItem(other,ItPo_Health_03);
-		AI_PrintScreen(ConcatStrings(NAME_HP_Elixier,PRINT_Addon_erhalten),-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		AI_PrintScreen(ConcatStrings(NAME_HP_Elixier,PRINT_ItemTaken),-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
 		B_LogEntry(Topic_PickPocket,ConcatStrings("«урис",PRINT_PickPocketSuccess));

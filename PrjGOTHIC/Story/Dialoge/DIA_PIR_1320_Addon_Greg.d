@@ -259,7 +259,7 @@ func void DIA_Addon_Greg_JoinPirates_Compadres()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?
+		DIA_Common_01_AreYouTryingToPissMeOff();
 	};
 };
 
@@ -310,7 +310,7 @@ func void DIA_Addon_Greg_AboutCanyon_Info()
 
 func void DIA_Addon_Greg_AboutCanyon_Back()
 {
-	AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_14");	//Пока ничего важного.
+	DIA_Common_NothingImportantYet();
 	Info_ClearChoices(DIA_Addon_Greg_AboutCanyon);
 };
 
@@ -396,10 +396,10 @@ func void DIA_Addon_Greg_BanditArmor_Info()
 		AI_Output(self,other,"DIA_Addon_Greg_BanditArmor_01_07");	//Поговори с Бонесом, чтобы он дал тебе броню. Потом надевай ее и отправляйся в лагерь бандитов.
 		AI_Output(self,other,"DIA_Addon_Greg_BanditArmor_01_08");	//Я хочу узнать, почему эти ублюдки приперлись в нашу долину.
 		AI_Output(other,self,"DIA_Addon_Greg_BanditArmor_15_09");	//Будет сделано, капитан!
-		B_LogEntry(TOPIC_Addon_BDTRuestung,"После того как я закончу, я смогу забрать доспехи у Бонеса.");
+		B_LogEntries(TOPIC_Addon_BDTRuestung,"Я разобрался с бритвозубами для Грега и теперь могу забрать доспехи у Бонеса.");
 		Log_CreateTopic(TOPIC_Addon_ScoutBandits,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_ScoutBandits,LOG_Running);
-		Log_AddEntry(TOPIC_Addon_ScoutBandits,"Я должен узнать, для чего бандиты пришли в долину, и сообщить Грегу.");
+		B_LogNextEntry(TOPIC_Addon_ScoutBandits,"Я должен узнать, для чего бандиты пришли в долину, и сообщить Грегу.");
 		MIS_Greg_ScoutBandits = LOG_Running;
 	};
 };
@@ -740,7 +740,7 @@ func int DIA_Addon_Greg_ItemsInADW_Condition()
 func void DIA_Addon_Greg_ItemsInADW_Info()
 {
 	B_GiveGregItems();
-	B_GivePlayerXP(XP_Addon_Greg_RakeCave / 2);
+	B_GivePlayerXP(XP_Addon_Greg_RakeCave / 3);
 };
 
 instance DIA_Addon_Greg_BeMyCap(C_Info)
@@ -766,7 +766,7 @@ func int DIA_Addon_Greg_BeMyCap_Condition()
 
 func void DIA_Addon_Greg_BeMyCap_Info()
 {
-	AI_Output(other,self,"DIA_Jorgen_BEMYCAPTAIN_15_00");	//Может быть, я смогу предложить тебе работу капитана.
+	DIA_Common_MaybeICanOfferYouCaptainJob();
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_06");	//Что это за бред?
 	AI_Output(other,self,"DIA_Pyrokar_SCKNOWSWAYTOIRDORATH_15_00");	//Я знаю, где нужно искать Чертоги Ирдората.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_da_01_01");	//Э-э, тебе даже не стоит пытаться туда попасть.

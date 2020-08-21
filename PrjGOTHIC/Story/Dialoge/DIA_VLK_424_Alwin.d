@@ -197,8 +197,8 @@ func void DIA_Alwin_FellanSuccess_Info()
 	}
 	else
 	{
-		B_Say(self,other,"$YouMurderer");
-		B_Say(self,other,"$GetOutOfHere");
+		B_Say(self,other,"$YOUMURDERER");
+		B_Say(self,other,"$GETOUTOFHERE");
 		MIS_AttackFellan = LOG_FAILED;
 		B_MemorizePlayerCrime(self,other,CRIME_MURDER);
 		B_CheckLog();
@@ -234,7 +234,7 @@ func void DIA_Alwin_Endlos_Info()
 	}
 	else if(Kapitel <= 2)
 	{
-		AI_Output(self,other,"DIA_Alwin_Endlos_12_02");	//Овцы едят и становятся все толще и толще. Прямо как моя жена. ХАХАХА (громко смеется)
+		AI_Output(self,other,"DIA_Alwin_Endlos_12_02");	//Овцы едят и становятся все толще и толще. Прямо как моя жена. (громко смеется)
 	}
 	else if(Kapitel == 3)
 	{

@@ -48,7 +48,7 @@ func void DIA_Bosper_HALLO_Info()
 	AI_Output(self,other,"DIA_Bosper_HALLO_11_02");	//Что привело тебя в Хоринис?
 	B_PlayerEnteredCity();
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTrader,"Боспер делает луки и торгует шкурами. Его лавка находится у восточных ворот, в нижней части города.");
+	B_LogEntry(TOPIC_CityTrader,"Боспер делает луки и торгует шкурами. Его лавка находится у южных ворот, в нижней части города.");
 };
 
 
@@ -265,14 +265,24 @@ func void DIA_Bosper_LEHRLING_OK()
 	AI_Output(other,self,"DIA_Bosper_LEHRLING_OK_15_00");	//Я готов стать твоим учеником!
 	AI_Output(self,other,"DIA_Bosper_LEHRLING_OK_11_01");	//Ты не пожалеешь об этом! Думаю, мы сработаемся.
 	Player_IsApprentice = APP_Bosper;
-	Npc_ExchangeRoutine(Lothar,"START");
+	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
+	{
+		Npc_ExchangeRoutine(Lothar,"START");
+	};
 	Bosper_StartGuild = other.guild;
 	Bosper_Lehrling_Day = Wld_GetDay();
 	Wld_AssignRoomToGuild("gritta",GIL_NONE);
 	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
 	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-	B_LogEntry(Topic_Bonus,"Боспер принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+	{
+		B_LogEntry(Topic_Bonus,"Боспер принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+	}
+	else
+	{
+		B_LogEntry(Topic_Bonus,"Боспер принял меня в ученики.");
+	};
 	Info_ClearChoices(DIA_Bosper_LEHRLING);
 };
 
@@ -424,15 +434,19 @@ func int DIA_Bosper_Job_Condition()
 func void DIA_Bosper_Job_Info()
 {
 	AI_Output(other,self,"DIA_Bosper_Job_15_00");	//Что ты хочешь, чтобы я сделал для тебя?
+	Log_CreateTopic(TOPIC_BosperWolf,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_BosperWolf,LOG_Running);
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Bosper_Job_11_01");	//Я научу тебя снимать шкуры с животных, и ты принесешь мне - скажем, полдюжины волчьих шкур.
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher,"Боспер может обучить меня снимать шкуры с животных.");
+		B_LogEntries(TOPIC_CityTeacher,"Боспер может обучить меня снимать шкуры с животных.");
+		B_LogNextEntry(TOPIC_BosperWolf,"Я должен принести Босперу шесть волчьих шкур. Тогда я смогу либо работать на него, либо получу его одобрение на работу с другими мастерами. Но сначала я должен попросить его обучить меня снимать шкуры с животных.");
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Bosper_Job_11_02");	//Принеси мне полдюжины волчьих шкур.
+		B_LogEntry(TOPIC_BosperWolf,"Я должен принести Босперу шесть волчьих шкур. Тогда я смогу либо работать на него, либо получу его одобрение на работу с другими мастерами.");
 	};
 	AI_Output(self,other,"DIA_Bosper_Job_11_03");	//Тогда я пойму, что ты освоил это ремесло.
 	AI_Output(self,other,"DIA_Bosper_Job_11_04");	//Если только у тебя не уйдет на это целая вечность, и если шкуры будут в приемлемом состоянии. И тогда я возьму тебя к себе, если ты захочешь.
@@ -441,13 +455,6 @@ func void DIA_Bosper_Job_Info()
 		AI_Output(self,other,"DIA_Bosper_Job_11_05");	//Или (вздыхает) ты сможешь стать учеником другого мастера - если ты этого действительно хочешь.
 	};
 	MIS_Bosper_WolfFurs = LOG_Running;
-	Log_CreateTopic(TOPIC_BosperWolf,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BosperWolf,LOG_Running);
-	B_LogEntry(TOPIC_BosperWolf,"Я должен принести Босперу шесть волчьих шкур. Тогда я смогу либо работать на него, либо получу его одобрение на работу с другими мастерами.");
-	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
-	{
-		B_LogEntry(TOPIC_BosperWolf,"Я должен попросить его обучить меня снимать шкуры с животных.");
-	};
 };
 
 
@@ -810,9 +817,13 @@ func int DIA_Bosper_SellFur_Condition()
 
 func void DIA_Bosper_SellFur_Info()
 {
+	var int furs;
 	AI_Output(other,self,"DIA_Bosper_SellFur_15_00");	//Я принес несколько шкур для тебя...
-	if(Npc_HasItems(other,ItAt_SheepFur) || Npc_HasItems(other,ItAt_WolfFur) || Npc_HasItems(other,ItAt_IceWolfFur) || Npc_HasItems(other,ItAt_WargFur) || Npc_HasItems(other,ItAt_ShadowFur) || Npc_HasItems(other,ItAt_TrollFur) || Npc_HasItems(other,ItAt_TrollBlackFur) || Npc_HasItems(other,ItAt_Addon_KeilerFur))
+	furs = Npc_HasItems(other,ItAt_Addon_KeilerFur) + Npc_HasItems(other,ItAt_SheepFur) + Npc_HasItems(other,ItAt_WolfFur) + Npc_HasItems(other,ItAt_IceWolfFur) + Npc_HasItems(other,ItAt_WargFur) + Npc_HasItems(other,ItAt_ShadowFur) + Npc_HasItems(other,ItAt_TrollFur) + Npc_HasItems(other,ItAt_TrollBlackFur);
+	if(furs > 0)
 	{
+		BosperFurCounter += furs;
+		ApprenticeGoldCounter += (Npc_HasItems(other,ItAt_Addon_KeilerFur) * Value_Keilerfur) + (Npc_HasItems(other,ItAt_SheepFur) * Value_SheepFur) + (Npc_HasItems(other,ItAt_WolfFur) * Value_WolfFur) + (Npc_HasItems(other,ItAt_IceWolfFur) * Value_IceWolfFur) + (Npc_HasItems(other,ItAt_WargFur) * Value_WargFur) + (Npc_HasItems(other,ItAt_ShadowFur) * Value_ShadowFur) + (Npc_HasItems(other,ItAt_TrollFur) * Value_TrollFur) + (Npc_HasItems(other,ItAt_TrollBlackFur) * Value_TrollBlackFur);
 		if(Npc_HasItems(other,ItAt_Addon_KeilerFur))
 		{
 			B_Say(self,other,"$ABS_GOOD");
@@ -953,6 +964,4 @@ func void DIA_Bosper_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Bosper_PICKPOCKET);
 };
-
-
 

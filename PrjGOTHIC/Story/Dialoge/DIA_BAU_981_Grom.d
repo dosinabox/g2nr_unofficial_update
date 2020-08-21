@@ -163,16 +163,16 @@ func int DIA_Grom_PayTeacher_Condition()
 
 func void DIA_Grom_PayTeacher_Info()
 {
-	var string concatText;
 	AI_Output(other,self,"DIA_Grom_PayTeacher_15_00");	//Вот еда, как ты просил.
 	Npc_RemoveInvItem(other,ItFo_Milk);
-	CreateInvItem(self,ItFo_Milk);
 	Npc_RemoveInvItem(other,ItFo_Bread);
-	CreateInvItem(self,ItFo_Bread);
 	Npc_RemoveInvItem(other,ItFo_Bacon);
+	CreateInvItem(self,ItFo_Milk);
+	CreateInvItem(self,ItFo_Bread);
 	CreateInvItem(self,ItFo_Bacon);
-	concatText = ConcatStrings(IntToString(3),PRINT_ItemsGegeben);
-	AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2); 
+	AI_PrintScreen("Молоко отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	AI_PrintScreen("Хлеб отдано",-1,40,FONT_ScreenSmall,2);
+	AI_PrintScreen("Окорок отдано",-1,43,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Grom_PayTeacher_08_01");	//Фантастика. И что теперь?
 	Grom_TeachAnimalTrophy = TRUE;
 	B_GivePlayerXP(XP_Ambient);

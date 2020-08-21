@@ -17,7 +17,7 @@ func int DIA_Addon_Lennar_EXIT_Condition()
 
 func void DIA_Addon_Lennar_EXIT_Info()
 {
-	AI_Output(other,self,"DIA_Angar_DJG_Anwerben_Gehen_15_00");	//ћне нужно идти.
+	DIA_Common_IHaveToGo_v2();
 	AI_WaitTillEnd(self,other);
 	AI_StopProcessInfos(self);
 };

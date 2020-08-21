@@ -194,13 +194,12 @@ func void DIA_Rengaru_GOTYOU_Anteil_alles()
 	{
 		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_alles_07_02");	//Ты просто грабишь меня. Ладно, возьми это золото. А теперь оставь меня в покое.
 		B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
-		Info_ClearChoices(DIA_Rengaru_GOTYOU);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_alles_07_03");	//Я бы отдал тебе золото, но у меня больше ничего нет.
-		Info_ClearChoices(DIA_Rengaru_GOTYOU);
 	};
+	Info_ClearChoices(DIA_Rengaru_GOTYOU);
 };
 
 func void DIA_Rengaru_GOTYOU_Anteil_GehtKlar()
@@ -209,13 +208,12 @@ func void DIA_Rengaru_GOTYOU_Anteil_GehtKlar()
 	if(B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold) / 2))
 	{
 		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим!
-		Info_ClearChoices(DIA_Rengaru_GOTYOU);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_GehtKlar_07_02");	//Я был бы не прочь отдать тебе половину, но у меня больше ничего нет.
-		Info_ClearChoices(DIA_Rengaru_GOTYOU);
 	};
+	Info_ClearChoices(DIA_Rengaru_GOTYOU);
 };
 
 func void DIA_Rengaru_GOTYOU_WhoAreYou()

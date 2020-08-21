@@ -1,5 +1,5 @@
 
-func void B_RemoveNpc(var int npcInstance)
+func void B_MoveNpcToMorgue(var int npcInstance)
 {
 	var C_Npc npc;
 	npc = Hlp_GetNpc(npcInstance);
@@ -11,6 +11,18 @@ func void B_RemoveNpc(var int npcInstance)
 		B_StartOtherRoutine(npc,"TOT");
 		Npc_ChangeAttribute(npc,ATR_HITPOINTS,-npc.attribute[ATR_HITPOINTS_MAX]);
 		AI_Teleport(npc,"TOT");
+	};
+};
+
+func void B_RemoveNpc(var int npcInstance)
+{
+	if(FullNPCRemoval == FALSE)
+	{
+		B_MoveNpcToMorgue(npcInstance);
+	}
+	else
+	{
+		Wld_RemoveNpc(npcInstance);
 	};
 };
 

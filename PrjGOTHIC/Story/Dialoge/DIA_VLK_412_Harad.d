@@ -459,17 +459,27 @@ func void DIA_Harad_LEHRLING_OK()
 		AI_Output(self,other,"DIA_Harad_LEHRLING_OK_12_04");	//Кроме того, пришло время стать немного сильнее. Ты чахнешь прямо у меня на глазах!
 	};
 	Player_IsApprentice = APP_Harad;
-	Npc_ExchangeRoutine(Lothar,"START");
+	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
+	{
+		Npc_ExchangeRoutine(Lothar,"START");
+	};
 	Harad_StartGuild = other.guild;
 	Harad_Lehrling_Day = Wld_GetDay();
 	Wld_AssignRoomToGuild("schmied",GIL_NONE);
 	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
 	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-	B_LogEntry(Topic_Bonus,"Гарад принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+	{
+		B_LogEntries(Topic_Bonus,"Гарад принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+	}
+	else
+	{
+		B_LogEntries(Topic_Bonus,"Гарад принял меня в ученики.");
+	};
 	Log_AddEntry(Topic_Bonus,"Гарад будет покупать оружие, выкованное мной, по хорошей цене.");
 	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	Log_AddEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу. Также он может помочь мне стать сильнее.");
+	B_LogNextEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу. Также он может помочь мне стать сильнее.");
 	Info_ClearChoices(DIA_Harad_LEHRLING);
 };
 
@@ -761,12 +771,13 @@ func void DIA_Harad_SellBlades_Info()
 		Npc_RemoveInvItems(other,ItMw_Schwert4,anzahl_schwert4);
 		Npc_RemoveInvItems(other,ItMw_Rubinklinge,anzahl_rubinklinge);
 		Npc_RemoveInvItems(other,ItMw_ElBastardo,anzahl_elbastardo);
-		concatText = ConcatStrings(IntToString(gesamt),PRINT_ItemsGegeben);
+		concatText = ConcatStrings(IntToString(gesamt),PRINT_ItemsGiven);
 		AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		AI_Output(self,other,"DIA_Harad_SellBlades_12_03");	//Отлично. Держи, что заработал.
 		lohn = ((anzahl_common * Value_Common1) + (anzahl_schwert1 * Value_Schwert1) + (anzahl_schwert4 * Value_Schwert4) + (anzahl_rubinklinge * Value_Rubinklinge) + (anzahl_elbastardo * Value_ElBastardo)) / 3;
+		HaradSwordsCounter += gesamt;
+		ApprenticeGoldCounter += lohn;
 		B_GiveInvItems(self,other,ItMi_Gold,lohn);
-//		AI_EquipBestMeleeWeapon(other);
 	};
 };
 
@@ -885,13 +896,21 @@ func void DIA_Harad_TeachSmith_Harad04()
 
 var int Harad_Merke_STR;
 
+func void B_BuildLearnDialog_Harad()
+{
+	Info_ClearChoices(DIA_Harad_TeachSTR);
+	Info_AddChoice(DIA_Harad_TeachSTR,Dialog_Back,DIA_Harad_TeachSTR_BACK);
+	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Harad_TeachSTR_1);
+	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Harad_TeachSTR_5);
+};
+
 instance DIA_Harad_TeachSTR(C_Info)
 {
 	npc = VLK_412_Harad;
 	nr = 100;
 	condition = DIA_Harad_TeachSTR_Condition;
 	information = DIA_Harad_TeachSTR_Info;
-	permanent = 1;
+	permanent = TRUE;
 	description = "Я хочу стать сильнее!";
 };
 
@@ -907,22 +926,16 @@ func int DIA_Harad_TeachSTR_Condition()
 func void DIA_Harad_TeachSTR_Info()
 {
 	AI_Output(other,self,"DIA_Harad_TeachSTR_15_00");	//Я хочу стать сильнее!
-//	Harad_Merke_STR = other.attribute[ATR_STRENGTH];
 	Harad_Merke_STR = other.aivar[REAL_STRENGTH];
-	Info_ClearChoices(DIA_Harad_TeachSTR);
-	Info_AddChoice(DIA_Harad_TeachSTR,Dialog_Back,DIA_Harad_TeachSTR_BACK);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Harad_TeachSTR_1);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Harad_TeachSTR_5);
+	B_BuildLearnDialog_Harad();
 };
 
 func void DIA_Harad_TeachSTR_BACK()
 {
-//	if(Harad_Merke_STR < other.attribute[ATR_STRENGTH])
 	if(Harad_Merke_STR < other.aivar[REAL_STRENGTH])
 	{
 		AI_Output(self,other,"DIA_Harad_TeachSTR_BACK_12_01");	//Ты уже нарастил немного мускулов.
 	};
-//	if(other.attribute[ATR_STRENGTH] < T_MED)
 	if(other.aivar[REAL_STRENGTH] < T_MED)
 	{
 		AI_Output(self,other,"DIA_Harad_TeachSTR_BACK_12_02");	//Возвращайся, если хочешь поучиться еще.
@@ -932,22 +945,19 @@ func void DIA_Harad_TeachSTR_BACK()
 
 func void DIA_Harad_TeachSTR_1()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MED);
-	Info_ClearChoices(DIA_Harad_TeachSTR);
-	Info_AddChoice(DIA_Harad_TeachSTR,Dialog_Back,DIA_Harad_TeachSTR_BACK);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Harad_TeachSTR_1);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Harad_TeachSTR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MED))
+	{
+		B_BuildLearnDialog_Harad();
+	};
 };
 
 func void DIA_Harad_TeachSTR_5()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MED);
-	Info_ClearChoices(DIA_Harad_TeachSTR);
-	Info_AddChoice(DIA_Harad_TeachSTR,Dialog_Back,DIA_Harad_TeachSTR_BACK);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Harad_TeachSTR_1);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Harad_TeachSTR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MED))
+	{
+		B_BuildLearnDialog_Harad();
+	};
 };
-
 
 instance DIA_Harad_ImmerNoch(C_Info)
 {
@@ -1039,7 +1049,7 @@ func void DIA_Harad_Erzklingen_Info()
 	{
 		AI_Output(self,other,"DIA_Harad_Erzklingen_12_02");	//Вы, паладины, можете считать себя счастливчиками, что вам дозволено владеть такими превосходными мечами.
 		AI_Output(self,other,"DIA_Harad_Erzklingen_12_03");	//Согласно декрету лорда Хагена, я могу продать тебе только одно магическое оружие.
-		AI_Output(self,other,"DIA_Harad_Erzklingen_12_04");	//Так, что я могу предложить тебе?
+		AI_Output(self,other,"DIA_Harad_Erzklingen_12_04");	//Так... Что я могу предложить тебе?
 		Info_ClearChoices(DIA_Harad_Erzklingen);
 		Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
 		Info_AddChoice(DIA_Harad_Erzklingen,"Двуручный меч (2000 золотых)",DIA_Harad_Erzklingen_2h);
@@ -1129,7 +1139,7 @@ func int DIA_Harad_RepairNecklace_Condition()
 
 func void DIA_Harad_RepairNecklace_Info()
 {
-	AI_Output(other,self,"DIA_Harad_RepairNecklace_15_00");	//Ты можешь чинить драгоценности?
+	DIA_Common_CanYouRepairJewelry();
 	AI_Output(self,other,"DIA_Harad_RepairNecklace_12_01");	//Я оружейник, а не ювелир. Пожалуй, здесь в городе ты не найдешь никого, кто мог бы помочь тебе.
 	AI_Output(self,other,"DIA_Harad_RepairNecklace_12_02");	//Сейчас мало у кого водятся деньги, и давно уже никому не удавалось разбогатеть здесь.
 	AI_Output(self,other,"DIA_Harad_RepairNecklace_12_03");	//Большинство радо хотя бы тому, что им хватает на хлеб.

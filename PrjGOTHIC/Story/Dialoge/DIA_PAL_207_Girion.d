@@ -46,6 +46,8 @@ func void DIA_Girion_Hallo_Info()
 };
 
 
+var int DIA_Girion_Teach_permanent;
+
 instance DIA_Girion_CanTeach(C_Info)
 {
 	npc = PAL_207_Girion;
@@ -80,9 +82,85 @@ func void DIA_Girion_CanTeach_Info()
 	{
 		AI_Output(self,other,"DIA_Girion_CanTeach_08_03");	//Если ты хочешь обучиться чему-нибудь, тебе лучше поискать учителя не из нашего ордена.
 		AI_Output(self,other,"DIA_Girion_CanTeach_08_04");	//Я воин, а не учитель.
+		if((other.guild != GIL_NONE) && (other.guild != GIL_MIL))
+		{
+			Girion_Teach2H = TRUE;
+			DIA_Girion_Teach_permanent = TRUE;
+		};
 	};
 };
 
+
+func void B_BuildLearnDialog_Girion()
+{
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Girion)
+	{
+		Info_ClearChoices(DIA_Girion_Teach);
+		Info_AddChoice(DIA_Girion_Teach,Dialog_Back,DIA_Girion_Teach_Back);
+		Info_AddChoice(DIA_Girion_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Girion_Teach_2H_1);
+		Info_AddChoice(DIA_Girion_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Girion_Teach_2H_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Girion)
+		{
+			DIA_Girion_Teach_permanent = TRUE;
+		};
+		if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+		{
+			PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Girion)),-1,53,FONT_Screen,2);
+			AI_Output(self,other,"DIA_DIA_Girion_Teach_08_00");	//Вообще-то говоря, твое обучение еще не завершено, но я больше ничему не могу научить тебя.
+			AI_Output(self,other,"DIA_DIA_Girion_Teach_08_01");	//Если ты хочешь отточить свое мастерство еще больше, тебе лучше поискать настоящего мастера меча.
+			AI_Output(other,self,"DIA_DIA_Girion_Teach_15_02");	//И где мне найти такого человека?
+			AI_Output(self,other,"DIA_DIA_Girion_Teach_08_03");	//Лорд Хаген - мастер-мечник. Он наверняка сможет обучить тебя.
+		}
+		else
+		{
+			PrintScreen(PRINT_NoLearnOverMAX,-1,53,FONT_Screen,2);
+			B_Say(self,other,"$NOLEARNYOUREBETTER");
+		};
+		AI_StopProcessInfos(self);
+	};
+};
+
+func void B_GirionTeachComment()
+{
+	if(Girion_Labercount == 0)
+	{
+		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_1_08_00");	//Сражайся с честью. Бой - наша жизнь, а что за жизнь без чести?
+		Girion_Labercount = 1;
+	}
+	else if(Girion_Labercount == 1)
+	{
+		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_1_08_01");	//Будь осторожен и быстр в бою. Удивляй своего противника.
+		Girion_Labercount = 2;
+	}
+	else if(Girion_Labercount == 2)
+	{
+		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_1_08_02");	//Никогда не вступай в бой неподготовленным. Неизвестно, сколько он будет длиться.
+		Girion_Labercount = 3;
+	}
+	else if(Girion_Labercount == 3)
+	{
+		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_1_08_03");	//Паладин всегда готов к бою. Но никогда не начинает бой, в котором не может победить.
+		Girion_Labercount = 4;
+	}
+	else if(Girion_Labercount == 4)
+	{
+		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_5_08_00");	//Паладин сражается не только мечом, но и головой.
+		Girion_Labercount = 5;
+	}
+	else if(Girion_Labercount == 5)
+	{
+		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_5_08_02");	//Помни, если ты сражаешься хорошо, ты контролируешь своего противника и не даешь ему шанса контролировать себя.
+		Girion_Labercount = 6;
+	}
+	else if(Girion_Labercount == 6)
+	{
+		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_5_08_03");	//Отступление - это всегда потеря.
+		Girion_Labercount = 0;
+	};
+};
 
 instance DIA_Girion_Teach(C_Info)
 {
@@ -95,8 +173,6 @@ instance DIA_Girion_Teach(C_Info)
 };
 
 
-var int DIA_Girion_Teach_permanent;
-
 func int DIA_Girion_Teach_Condition()
 {
 	if((Girion_Teach2H == TRUE) && (DIA_Girion_Teach_permanent == FALSE))
@@ -105,102 +181,34 @@ func int DIA_Girion_Teach_Condition()
 	};
 };
 
-
-var int girion_merk2h;
-
 func void DIA_Girion_Teach_Info()
 {
-//	girion_merk2h = other.HitChance[NPC_TALENT_2H];
-	girion_merk2h = other.aivar[REAL_TALENT_2H];
 	AI_Output(other,self,"DIA_Girion_Teach_15_00");	//Я готов к обучению.
-	Info_ClearChoices(DIA_Girion_Teach);
-	Info_AddChoice(DIA_Girion_Teach,Dialog_Back,DIA_Girion_Teach_Back);
-	Info_AddChoice(DIA_Girion_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Girion_Teach_2H_1);
-	Info_AddChoice(DIA_Girion_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Girion_Teach_2H_5);
+	B_BuildLearnDialog_Girion();
 };
 
 func void DIA_Girion_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_2H] >= 90)
-	if((other.aivar[REAL_TALENT_2H] >= 90) && (other.aivar[REAL_TALENT_2H] < 100))
-	{
-		AI_Output(self,other,"DIA_DIA_Girion_Teach_08_00");	//Вообще-то говоря, твое обучение еще не завершено, но я больше ничему не могу научить тебя.
-		AI_Output(self,other,"DIA_DIA_Girion_Teach_08_01");	//Если ты хочешь отточить свое мастерство еще больше, тебе лучше поискать настоящего мастера меча.
-		AI_Output(other,self,"DIA_DIA_Girion_Teach_15_02");	//И где мне найти такого человека?
-		AI_Output(self,other,"DIA_DIA_Girion_Teach_08_03");	//Лорд Хаген - мастер-мечник. Он наверняка сможет обучить тебя.
-		DIA_Girion_Teach_permanent = TRUE;
-	};
 	Info_ClearChoices(DIA_Girion_Teach);
 };
 
 func void DIA_Girion_Teach_2H_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,90);
-//	if(other.HitChance[NPC_TALENT_2H] > girion_merk2h)
-	if(other.aivar[REAL_TALENT_2H] > girion_merk2h)
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Girion))
 	{
-		if(Girion_Labercount == 0)
-		{
-			AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_1_08_00");	//Сражайся с честью. Бой - наша жизнь, а что за жизнь без чести?
-		};
-		if(Girion_Labercount == 1)
-		{
-			AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_1_08_01");	//Будь осторожен и быстр в бою. Удивляй своего противника.
-		};
-		if(Girion_Labercount == 2)
-		{
-			AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_1_08_02");	//Никогда не вступай в бой неподготовленным. Неизвестно, сколько он будет длиться.
-		};
-		if(Girion_Labercount == 3)
-		{
-			AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_1_08_03");	//Паладин всегда готов к бою. Но никогда не начинает бой, в котором не может победить.
-		};
-		Girion_Labercount += 1;
-		if(Girion_Labercount >= 3)
-		{
-			Girion_Labercount = 0;
-		};
+		B_GirionTeachComment();
+		B_BuildLearnDialog_Girion();
 	};
-	Info_ClearChoices(DIA_Girion_Teach);
-	Info_AddChoice(DIA_Girion_Teach,Dialog_Back,DIA_Girion_Teach_Back);
-	Info_AddChoice(DIA_Girion_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Girion_Teach_2H_1);
-	Info_AddChoice(DIA_Girion_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Girion_Teach_2H_5);
 };
 
 func void DIA_Girion_Teach_2H_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,90);
-//	if(other.HitChance[NPC_TALENT_2H] > girion_merk2h)
-	if(other.aivar[REAL_TALENT_2H] > girion_merk2h)
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Girion))
 	{
-		if(Girion_Labercount == 0)
-		{
-			AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_5_08_00");	//Паладин сражается не только мечом, но и головой.
-		};
-		if(Girion_Labercount == 1)
-		{
-			AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_5_08_01");	//Ты должен понимать, когда лучше отступить.
-		};
-		if(Girion_Labercount == 2)
-		{
-			AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_5_08_02");	//Помни, если ты сражаешься хорошо, ты контролируешь своего противника и не даешь ему шанса контролировать себя.
-		};
-		if(Girion_Labercount == 3)
-		{
-			AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_5_08_03");	//Отступление - это всегда потеря.
-		};
-		Girion_Labercount += 1;
-		if(Girion_Labercount >= 3)
-		{
-			Girion_Labercount = 0;
-		};
+		B_GirionTeachComment();
+		B_BuildLearnDialog_Girion();
 	};
-	Info_ClearChoices(DIA_Girion_Teach);
-	Info_AddChoice(DIA_Girion_Teach,Dialog_Back,DIA_Girion_Teach_Back);
-	Info_AddChoice(DIA_Girion_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Girion_Teach_2H_1);
-	Info_AddChoice(DIA_Girion_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Girion_Teach_2H_5);
 };
-
 
 instance DIA_Girion_CATCHPLAYERSTOLENSHIP(C_Info)
 {

@@ -16,7 +16,8 @@ instance SLD_811_Wolf(Npc_Default)
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,50);
+//	B_SetFightSkills(self,50);
+	B_SetTeacherFightSkills(self,50,50,TeachLimit_Bow_Wolf,TeachLimit_Crossbow_Wolf);
 	daily_routine = Rtn_Start_811;
 };
 

@@ -37,7 +37,7 @@ func int DIA_Wambo_PICKPOCKET_Condition()
 //	return C_StealItems(50,Hlp_GetInstanceID(ItKe_City_Tower_04),1);
 	if(Npc_HasItems(self,ItKe_City_Tower_04))
 	{
-		return C_StealItem(50,Hlp_GetInstanceID(ItKe_City_Tower_04));
+		return C_StealItem(50);
 	};
 	return FALSE;
 };
@@ -88,6 +88,7 @@ func void DIA_Wambo_Job_Info()
 	AI_Output(other,self,"DIA_Wambo_Job_15_00");	//Что ты делаешь здесь?
 	AI_Output(self,other,"DIA_Wambo_Job_03_01");	//Я слежу за тем, чтобы никто не входил в дома.
 	AI_Output(self,other,"DIA_Wambo_Job_03_02");	//Лорд Хаген лично отдал этот приказ. И даже не думай нарушить его!
+	B_PlayerEnteredUpperCity();
 };
 
 

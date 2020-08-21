@@ -61,10 +61,7 @@ instance DIA_Bote_Talk(C_Info)
 
 func int DIA_Bote_Talk_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bote_Hello))
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Bote_Talk_Info()

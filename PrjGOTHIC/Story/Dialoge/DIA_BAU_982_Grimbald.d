@@ -352,11 +352,11 @@ func void DIA_Grimbald_Success_Info()
 {
 	if(Grimbald_Snappers_KilledByPlayer == TRUE)
 	{
-		B_Say(self,other,"$NotBad");
+		B_Say(self,other,"$NOTBAD");
 	}
 	else
 	{
-		B_Say(self,other,"$GoodMonsterKill");
+		B_Say(self,other,"$GOODMONSTERKILL");
 	};
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"JagdOver");

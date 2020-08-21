@@ -95,7 +95,7 @@ func void DIA_Landstreicher_HALLO_wer_vorsicht_Manieren()
 
 func void DIA_Landstreicher_HALLO_weg()
 {
-	AI_Output(other,self,"DIA_Landstreicher_HALLO_weg_15_00");	//Мне нужно идти.
+	DIA_Common_IHaveToGo_v2();
 	AI_Output(self,other,"DIA_Landstreicher_HALLO_weg_09_01");	//Хе. Нет проблем.
 	AI_StopProcessInfos(self);
 };

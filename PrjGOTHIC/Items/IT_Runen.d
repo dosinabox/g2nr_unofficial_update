@@ -594,7 +594,7 @@ instance ItRu_Windfist(C_Item)
 	description = NAME_SPL_WINDFIST;
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
-	text[1] = NAME_MinManakosten;
+	text[1] = NAME_ManakostenMin;
 	count[1] = STEP_WindFist;
 	text[2] = NAME_ManakostenMax;
 	count[2] = SPL_Cost_WindFist;
@@ -694,7 +694,7 @@ instance ItRu_ChargeFireball(C_Item)
 	description = NAME_SPL_ChargeFireball;
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
-	text[1] = NAME_MinManakosten;
+	text[1] = NAME_ManakostenMin;
 	count[1] = STEP_ChargeFireball;
 	text[2] = NAME_ManakostenMax;
 	count[2] = SPL_COST_ChargeFireball;
@@ -792,7 +792,7 @@ instance ItRu_ThunderBall(C_Item)
 	description = NAME_SPL_ChargeZap;
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
-	text[1] = NAME_MinManakosten;
+	text[1] = NAME_ManakostenMin;
 	count[1] = STEP_ChargeZap;
 	text[2] = NAME_ManakostenMax;
 	count[2] = SPL_COST_ChargeZap;
@@ -863,7 +863,7 @@ instance ItRu_Pyrokinesis(C_Item)
 	description = NAME_SPL_Pyrokinesis;
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
-	text[1] = NAME_MinManakosten;
+	text[1] = NAME_ManakostenMin;
 	count[1] = STEP_Firestorm;
 	text[2] = NAME_ManakostenMax;
 	count[2] = SPL_COST_Firestorm;

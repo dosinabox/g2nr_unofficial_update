@@ -210,6 +210,14 @@ func void DIA_Bennet_DI_Smith_2hSpecial4()
 };
 
 
+func void B_BuildLearnDialog_Bennet_DI()
+{
+	Info_ClearChoices(DIA_Bennet_TeachSTR);
+	Info_AddChoice(DIA_Bennet_TeachSTR,Dialog_Back,DIA_Bennet_TeachSTR_Back);
+	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Bennet_TeachSTR_STR_1);
+	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Bennet_TeachSTR_STR_5);
+};
+
 instance DIA_Bennet_TeachSTR(C_Info)
 {
 	npc = SLD_809_Bennet_DI;
@@ -233,10 +241,7 @@ func void DIA_Bennet_TeachSTR_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_TeachSTR_15_00");	//Я хочу стать сильнее.
 	AI_Output(self,other,"DIA_Bennet_TeachSTR_06_01");	//В наше время твердая рука никогда не помешает.
-	Info_ClearChoices(DIA_Bennet_TeachSTR);
-	Info_AddChoice(DIA_Bennet_TeachSTR,Dialog_Back,DIA_Bennet_TeachSTR_Back);
-	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Bennet_TeachSTR_STR_1);
-	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Bennet_TeachSTR_STR_5);
+	B_BuildLearnDialog_Bennet_DI();
 };
 
 func void DIA_Bennet_TeachSTR_Back()
@@ -246,16 +251,19 @@ func void DIA_Bennet_TeachSTR_Back()
 
 func void DIA_Bennet_TeachSTR_STR_1()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MAX);
-	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Bennet_TeachSTR_STR_1);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MAX))
+	{
+		B_BuildLearnDialog_Bennet_DI();
+	};
 };
 
 func void DIA_Bennet_TeachSTR_STR_5()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MAX);
-	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Bennet_TeachSTR_STR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MAX))
+	{
+		B_BuildLearnDialog_Bennet_DI();
+	};
 };
-
 
 instance DIA_Bennet_DI_DragonEgg(C_Info)
 {

@@ -19,7 +19,7 @@ func void ZS_MagicFlee()
 	var int randy;
 	if(self.guild > GIL_SEPERATOR_HUM)
 	{
-		If((self.guild != GIL_DRAGON) && (self.guild != GIL_TROLL) && !C_NpcIsGolem(self) && !C_NpcIsUndead(self))
+		if((self.guild != GIL_DRAGON) && (self.guild != GIL_TROLL) && !C_NpcIsGolem(self) && !C_NpcIsUndead(self))
 		{
 			AI_StartState(self,ZS_MM_Flee,0,"");
 		}
@@ -68,8 +68,8 @@ func void ZS_MagicFlee()
 		{
 			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Alvares))
 			{
-				Alvares.guild = GIL_SLD;
-				Npc_SetTrueGuild(Alvares,GIL_SLD);
+				self.guild = GIL_SLD;
+				Npc_SetTrueGuild(self,GIL_SLD);
 				Npc_ExchangeRoutine(self,"Bigfarm");
 				ScaredAlvares = TRUE;
 			};
@@ -78,13 +78,13 @@ func void ZS_MagicFlee()
 		{
 			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Engardo))
 			{
-				Engardo.guild = GIL_SLD;
-				Npc_SetTrueGuild(Engardo,GIL_SLD);
+				self.guild = GIL_SLD;
+				Npc_SetTrueGuild(self,GIL_SLD);
 				Npc_ExchangeRoutine(self,"Bigfarm");
 				ScaredEngardo = TRUE;
 			};
 		};
-		if((ScaredAlvares == TRUE) && (ScaredEngardo == TRUE))
+		if((ScaredAlvares == TRUE) && (ScaredEngardo == TRUE) && (ScaredFarmers == FALSE))
 		{
 			if(Hlp_IsValidNpc(Akil) && !Npc_IsDead(Akil))
 			{
@@ -99,6 +99,7 @@ func void ZS_MagicFlee()
 				Npc_ExchangeRoutine(Randolph,"Start");
 				Randolph.flags = 0;
 			};
+			ScaredFarmers = TRUE;
 		};
 	};
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_StopMagicFlee);

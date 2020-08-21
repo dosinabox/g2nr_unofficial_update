@@ -20,12 +20,8 @@ instance ItSe_XardasNotfallBeutel_MIS(C_Item)
 
 func void Use_XardasNotfallBeutel()
 {
-	var string concatText;
-	CreateInvItems(hero,ItWr_XardasErmahnungFuerIdioten_MIS,1);
-	CreateInvItems(hero,ItMi_InnosEye_Discharged_Mis,1);
-	concatText = ConcatStrings("2",PRINT_ItemsErhalten);
-	concatText = ConcatStrings(concatText," (ѕисьмо и √лаз »нноса)");
-	Print(concatText);
+	B_PlayerFindItem(ItWr_XardasErmahnungFuerIdioten_MIS,1);
+	B_PlayerFindItem(ItMi_InnosEye_Discharged_Mis,1);
 };
 
 
@@ -227,15 +223,12 @@ instance ItWr_Rezept_MegaDrink_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Recipe.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_RezeptFuerMegaTrank;
 	scemeName = "MAP";
 	description = name;
 	text[0] = PRINT_RequiresAlchemyTalent;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 
@@ -262,9 +255,10 @@ func void Use_RezeptFuerMegaTrank()
 	{
 		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == FALSE))
 		{
-			PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] = TRUE;
 			B_LogEntry(TOPIC_TalentAlchemy,"»нгредиенты дл€ 'ЁћЅј–Ћј ‘»–√ј—“ќ': 10 драконьих €иц, 1 черна€ жемчужина и 1 сера.");
+			PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] = TRUE;
 		};
+		Opened_MegaDrink = TRUE;
 	};
 };
 
@@ -291,8 +285,8 @@ func void Use_Diary_BlackNovice()
 	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
-	Doc_SetPage(nDocID,0,"BOOK_WOOD_L.tga",0);
-	Doc_SetPage(nDocID,1,"BOOK_WOOD_R.tga",0);
+	Doc_SetPage(nDocID,0,"Book_Wood_L.tga",0);
+	Doc_SetPage(nDocID,1,"Book_Wood_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetFont(nDocID,0,FONT_Book);

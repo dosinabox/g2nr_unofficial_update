@@ -410,7 +410,7 @@ func void DIA_Till_PERMKAP1_Info()
 			AI_Output(other,self,"DIA_Till_PERMKAP1_15_00");	//А до дома-то далеко, а? Папочка не сможет помочь тебе здесь.
 			AI_Output(self,other,"DIA_Till_PERMKAP1_03_01");	//Когда-нибудь я набью тебе морду.
 		};
-		AI_Output(other,self,"DIA_Till_PERMKAP1_15_02");	//Ты трус, радуйся, если я оставлю тебя в живых.
+		AI_Output(other,self,"DIA_Till_PERMKAP1_15_02");	//Ты, трус, радуйся, если я оставлю тебя в живых.
 		AI_Output(self,other,"DIA_Till_PERMKAP1_03_03");	//Тогда оставь меня в покое.
 	}
 	else if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)

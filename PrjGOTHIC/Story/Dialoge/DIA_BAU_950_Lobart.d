@@ -709,7 +709,7 @@ func void DIA_Lobart_ANDREHELPLOBART_Info()
 	AI_Output(other,self,"DIA_Lobart_ANDREHELPLOBART_15_00");	//Меня направил к тебе Андрэ. Я могу чем-нибудь помочь тебе?
 	AI_Output(self,other,"DIA_Lobart_ANDREHELPLOBART_05_01");	//Да, конечно. Меня уже тошнит от этих проклятых полевых хищников.
 	AI_Output(self,other,"DIA_Lobart_ANDREHELPLOBART_05_02");	//Прикончи их всех. Меня не волнует, как!
-	Log_AddEntry(TOPIC_Feldraeuber,"Поля Лобарта наводнены полевыми хищниками. Он хочет, чтобы я прогнал их.");
+	B_LogEntry(TOPIC_Feldraeuber,"Поля Лобарта наводнены полевыми хищниками. Он хочет, чтобы я прогнал их.");
 	MIS_LobartKillBugs = LOG_Running;
 	AI_StopProcessInfos(self);
 };
@@ -873,7 +873,6 @@ func void DIA_Lobart_DMT_VinoWohin()
 	AI_Output(self,other,"DIA_Lobart_DMT_VinoWohin_05_01");	//Они пошли вверх, на этот холм.
 };
 
-
 instance DIA_Lobart_VINOTOT(C_Info)
 {
 	npc = BAU_950_Lobart;
@@ -897,7 +896,7 @@ func void DIA_Lobart_VINOTOT_Info()
 	AI_Output(other,self,"DIA_Lobart_VINOTOT_15_00");	//Вино не вернется.
 	if(Npc_IsDead(Vino))
 	{
-		AI_Output(other,self,"DIA_Lobart_VINOTOT_15_01");	//Он мертв.
+		DIA_Common_HeIsDead();
 	}
 	else
 	{

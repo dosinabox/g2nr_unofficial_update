@@ -165,7 +165,7 @@ func void DIA_Addon_Bloodwyn_Wait_FIGHT()
 	}
 	else
 	{
-		B_Say(self,other,"$KillEnemy");
+		B_Say(self,other,"$KILLENEMY");
 	};
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);

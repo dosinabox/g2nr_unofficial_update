@@ -343,20 +343,15 @@ func void DIA_Addon_Eremit_Klamotten_Info()
 
 func void B_Eremit_Tatsache()
 {
-	var string concatText;
 	AI_EquipBestArmor(self);
 	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_20");	//Подходит!
 	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_21");	//Так-так-так, чем же мне тебе заплатить? Все золото я отдал пиратам за то, что они меня сюда привезли.
 	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_22");	//Все, что я могу тебе отдать, это эти старые каменные таблички.
 	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_23");	//Забирай. Я поищу себе новые.
 	AI_WaitTillEnd(other,self);
-//	B_GiveInvItems(self,other,ItWr_DexStonePlate3_Addon,1);
-//	B_GiveInvItems(self,other,ItWr_StonePlateCommon_Addon,1);
 	CreateInvItem(other,ItWr_DexStonePlate3_Addon);
 	CreateInvItem(other,ItWr_StonePlateCommon_Addon);
-	concatText = ConcatStrings(IntToString(2),PRINT_ItemsErhalten);
-	concatText = ConcatStrings(concatText," (Каменная табличка)");
-	AI_PrintScreen(concatText,-1,YPOS_ItemTaken,FONT_ScreenSmall,2); 
+	AI_PrintScreen("2 предмета получено (Каменная табличка)",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	MIS_Eremit_Klamotten = LOG_SUCCESS;
 	B_GivePlayerXP(200);
 	Info_ClearChoices(DIA_Addon_Eremit_Klamotten);
@@ -364,7 +359,7 @@ func void B_Eremit_Tatsache()
 
 func void DIA_Addon_Eremit_Klamotten_BACK()
 {
-	AI_Output(other,self,"DIA_Biff_HEILUNG_Spaeter_15_00");	//Я дам тебе что-нибудь позже.
+	DIA_Common_IWillGiveYouSomethingLater();
 	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_24");	//Ну вот... Сначала ты меня обнадежил, а потом... (вздыхает)
 	Info_ClearChoices(DIA_Addon_Eremit_Klamotten);
 };

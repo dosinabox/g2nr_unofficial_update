@@ -25,7 +25,7 @@ func void DIA_Vatras_DI_EXIT_Info()
 instance DIA_Vatras_DI_HEAL(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
-	nr = 99;
+	nr = 10;
 	condition = DIA_Vatras_DI_HEAL_Condition;
 	information = DIA_Vatras_DI_HEAL_Info;
 	permanent = TRUE;
@@ -60,7 +60,7 @@ func void DIA_Vatras_DI_HEAL_Info()
 instance DIA_Vatras_DI_TRADE(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
-	nr = 12;
+	nr = 11;
 	condition = DIA_Vatras_DI_TRADE_Condition;
 	information = DIA_Vatras_DI_TRADE_Info;
 	permanent = TRUE;
@@ -89,7 +89,7 @@ func void DIA_Vatras_DI_TRADE_Info()
 instance DIA_Vatras_DI_OBSESSION(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
-	nr = 35;
+	nr = 12;
 	condition = DIA_Vatras_DI_OBSESSION_Condition;
 	information = DIA_Vatras_DI_OBSESSION_Info;
 	permanent = TRUE;
@@ -140,7 +140,7 @@ func void DIA_Vatras_DI_OBSESSION_Info()
 instance DIA_Vatras_DI_RAT(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
-	nr = 99;
+	nr = 13;
 	condition = DIA_Vatras_DI_RAT_Condition;
 	information = DIA_Vatras_DI_RAT_Info;
 	description = "Какой совет ты можешь дать мне?";
@@ -167,6 +167,8 @@ func void DIA_Vatras_DI_RAT_Info()
 };
 
 
+var int DIA_Vatras_DI_PEDROTOT_VatrasSucked;
+
 instance DIA_Vatras_DI_PEDROTOT(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
@@ -179,14 +181,11 @@ instance DIA_Vatras_DI_PEDROTOT(C_Info)
 
 func int DIA_Vatras_DI_PEDROTOT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Pedro_DI_YOU))
+	if(Npc_KnowsInfo(other,DIA_Pedro_DI_YOU) || Npc_IsDead(Pedro_DI))
 	{
 		return TRUE;
 	};
 };
-
-
-var int DIA_Vatras_DI_PEDROTOT_VatrasSucked;
 
 func void DIA_Vatras_DI_PEDROTOT_Info()
 {
@@ -247,6 +246,7 @@ func void DIA_Vatras_DI_VatrasSucked_Info()
 instance DIA_Vatras_DI_Talente(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
+	nr = 14;
 	condition = DIA_Vatras_DI_Talente_Condition;
 	information = DIA_Vatras_DI_Talente_Info;
 	permanent = TRUE;
@@ -357,96 +357,107 @@ func void DIA_Vatras_DI_Talente_ALCHIMIE()
 
 func void DIA_Vatras_DI_Talente_Circle_1()
 {
-	Info_ClearChoices(DIA_Vatras_DI_Talente);
 	B_TeachMagicCircle(self,other,1);
+	DIA_Vatras_DI_Talente_CIRCLES();
 };
 
 func void DIA_Vatras_DI_Talente_Circle_2()
 {
-	Info_ClearChoices(DIA_Vatras_DI_Talente);
 	B_TeachMagicCircle(self,other,2);
+	DIA_Vatras_DI_Talente_CIRCLES();
 };
 
 func void DIA_Vatras_DI_Talente_Circle_3()
 {
-	Info_ClearChoices(DIA_Vatras_DI_Talente);
 	B_TeachMagicCircle(self,other,3);
+	DIA_Vatras_DI_Talente_CIRCLES();
 };
 
 func void DIA_Vatras_DI_Talente_Circle_4()
 {
-	Info_ClearChoices(DIA_Vatras_DI_Talente);
 	B_TeachMagicCircle(self,other,4);
+	DIA_Vatras_DI_Talente_CIRCLES();
 };
 
 func void DIA_Vatras_DI_Talente_Circle_5()
 {
-	AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_5_05_00");	//Теперь ты маг пятого Круга. Используй заклинания, изученные тобой, во благо.
-	Info_ClearChoices(DIA_Vatras_DI_Talente);
 	B_TeachMagicCircle(self,other,5);
+	AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_5_05_00");	//Теперь ты маг пятого Круга. Используй заклинания, изученные тобой, во благо.
+	DIA_Vatras_DI_Talente_CIRCLES();
 };
 
 func void DIA_Vatras_DI_Talente_Circle_6()
 {
+	B_TeachMagicCircle(self,other,6);
 	AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_6_05_00");	//Ты достиг самых высоких вершин в магии.
 	AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_6_05_01");	//Пусть руку твою направляет разум, а твои человеческие слабости будут под глубоким контролем. Они не смогут затмить твой взор.
 	Info_ClearChoices(DIA_Vatras_DI_Talente);
-	B_TeachMagicCircle(self,other,6);
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Health_01()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_01);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Health_02()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_02);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Health_03()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_03);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Mana_01()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_01);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Mana_02()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_02);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Mana_03()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_03);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Speed()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Speed);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Perm_STR()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_STR);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Perm_DEX()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_DEX);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Perm_Mana()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Mana);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Perm_Health()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Health);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_BACK()
@@ -458,7 +469,7 @@ func void DIA_Vatras_DI_Talente_BACK()
 instance DIA_Vatras_DI_DementorObsessionBook(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
-	nr = 99;
+	nr = 15;
 	condition = DIA_Vatras_DI_DementorObsessionBook_Condition;
 	information = DIA_Vatras_DI_DementorObsessionBook_Info;
 	permanent = TRUE;
@@ -504,7 +515,7 @@ func void DIA_Vatras_DI_DementorObsessionBook_Info()
 instance DIA_Vatras_DI_UndeadDragonDead(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
-	nr = 99;
+	nr = 2;
 	condition = DIA_Vatras_DI_UndeadDragonDead_Condition;
 	information = DIA_Vatras_DI_UndeadDragonDead_Info;
 	permanent = TRUE;
@@ -580,5 +591,34 @@ func void DIA_Addon_Vatras_PISSOFFFOREVVER_DI_Info()
 	};
 	B_VatrasPissedOff();
 	AI_StopProcessInfos(self);
+};
+
+
+instance DIA_Addon_Vatras_DI_Stoneplate(C_Info)
+{
+	npc = VLK_439_Vatras_DI;
+	nr = 16;
+	condition = DIA_Addon_Vatras_DI_Stoneplate_Condition;
+	information = DIA_Addon_Vatras_Stoneplate_Info;
+	description = "У меня с собой есть каменная табличка. Не мог бы ты мне рассказать о ней что-нибудь?";
+};
+
+
+func int DIA_Addon_Vatras_DI_Stoneplate_Condition()
+{
+	if(!Npc_KnowsInfo(other,DIA_Addon_Vatras_Stoneplate) && (C_ScHasMagicStonePlate() || Npc_HasItems(other,ItWr_StonePlateCommon_Addon)))
+	{
+		return TRUE;
+	};
+};
+
+instance DIA_Addon_Vatras_DI_SellStonplate(C_Info)
+{
+	npc = VLK_439_Vatras_DI;
+	nr = 16;
+	condition = DIA_Addon_Vatras_SellStonplate_Condition;
+	information = DIA_Addon_Vatras_SellStonplate_Info;
+	permanent = TRUE;
+	description = "Я принес тебе еще таблички...";
 };
 

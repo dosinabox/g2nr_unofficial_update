@@ -27,3 +27,11 @@ func void Rtn_Start_10006()
 	TA_Stand_Eating(20,0,2,0,"BL_DOWN_RING_01");
 };
 
+func void Rtn_Fortuno_10006()
+{
+	TA_Sit_Bench(2,0,16,0,"BL_MID_10_C");
+	TA_Cook_Pan(16,0,20,0,"BL_DOWN_RING_05");
+	TA_Smalltalk(20,0,22,0,"BL_DOWN_RING_01");
+	TA_Smoke_Joint(22,0,2,0,"BL_DOWN_RING_01");
+};
+

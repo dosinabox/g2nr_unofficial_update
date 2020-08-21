@@ -128,16 +128,20 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		{
 			B_StartOtherRoutine(Ambusher_1013,"AWAY");
 		}; */
-		if(Lobart.aivar[AIV_IGNORE_Theft] == TRUE)
+		if(!Npc_IsDead(Lobart))
 		{
 			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
-		if((MIS_HelpDyrian != LOG_Success) && !Npc_IsDead(Dyrian))
+		if((MIS_HelpDyrian != LOG_SUCCESS) && !Npc_IsDead(Dyrian))
 		{
 			Dyrian.guild = GIL_NONE;
 			Npc_SetTrueGuild(Dyrian,GIL_NONE);
 			Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 			B_StartOtherRoutine(Dyrian,"NOFAVOUR");
+		};
+		if(Npc_IsDead(Hanna))
+		{
+			B_SendMilitiaToHotel();
 		};
 		B_KillThievesGuild();
 		B_ResetSergio();
@@ -278,7 +282,6 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_ROAM_CITY_TO_FOREST_15");
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_07");
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_STAND_DEMENTOR_08");
-//		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_09");
 		Wld_InsertNpc(DMT_DementorAmbientMalak,"FP_STAND_DEMENTOR_09");
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_STAND_DEMENTOR_10");
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_11");
@@ -291,7 +294,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_17");
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_STAND_DEMENTOR_18");
 		Wld_InsertNpc(DMT_DementorAmbientWalker11,"CITY1");
-		Wld_InsertNpc(DMT_DementorAmbientWalker9,"CITY1");
+		if((GregIsBack == TRUE) || (GregLocation == Greg_Dexter))
+		{
+			Wld_InsertNpc(DMT_DementorAmbientWalker9,"CITY1");
+		};
 		Wld_InsertNpc(DMT_DementorAmbientWalker6,"CITY1");
 		Wld_InsertNpc(DMT_DementorAmbientWalker3,"CITY1");
 		Wld_InsertNpc(DMT_DementorAmbientWalker1,"CITY1");
@@ -423,19 +429,33 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			Wld_InsertNpc(MIL_335_Rumbold,"CITY2");
 			Wld_InsertNpc(MIL_336_Rick,"CITY2");
+			RumboldReturnedToCity = TRUE;
+			RickReturnedToCity = TRUE;
 			B_InitNpcGlobals();
 		};
 		if(!Npc_IsDead(Rick))
 		{
+			Rick.guild = GIL_MIL;
+			Npc_SetTrueGuild(Rick,GIL_MIL);
+			Rick.aivar[AIV_DropDeadAndKill] = FALSE;
 			Npc_ExchangeRoutine(Rick,"Ch3");
+			RickReturnedToCity = TRUE;
 		};
 		if(!Npc_IsDead(Rumbold))
 		{
+			Rumbold.guild = GIL_MIL;
+			Npc_SetTrueGuild(Rumbold,GIL_MIL);
+			Rumbold.aivar[AIV_DropDeadAndKill] = FALSE;
 			Npc_ExchangeRoutine(Rumbold,"Ch3");
+			RumboldReturnedToCity = TRUE;
 		};
 		if(!Npc_IsDead(Bengar))
 		{
 			Npc_ExchangeRoutine(Bengar,"Start");
+		};
+		if(Npc_IsDead(Hanna))
+		{
+			B_SendMilitiaToHotel();
 		};
 		B_KillThievesGuild();
 		B_ResetSergio();
@@ -482,7 +502,8 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		if(hero.guild == GIL_PAL)
 		{
 			Wld_InsertNpc(OrcElite_AntiPaladin1,"NW_FARM3_PATH_BRIDGE");
-			Wld_InsertNpc(OrcElite_AntiPaladin2,"XARDAS");
+//			Wld_InsertNpc(OrcElite_AntiPaladin2,"XARDAS");
+			Wld_InsertNpc(OrcElite_AntiPaladin2,"NW_XARDAS_TOWER_PATH_01_B");
 			Wld_InsertNpc(OrcElite_AntiPaladin3,"NW_CITY_TO_FOREST_11");
 			Wld_InsertNpc(OrcElite_AntiPaladin,"NW_FARM3_PATH_12_MONSTER_03");
 			Wld_InsertNpc(OrcWarrior_Roam,"NW_FARM3_PATH_12_MONSTER_03");
@@ -689,11 +710,9 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			if(!Npc_IsDead(Randolph))
 			{
 				CreateInvItems(Randolph,ITWR_DementorObsessionBook_MIS,1);
-//				B_StartOtherRoutine(Randolph,"Obsessed");
 				B_StartOtherRoutine(Randolph,"preStart");
 			};
 		};
-//		возвращение на ферму Онара Альвареса и Энгардо
 		if((TOPIC_END_AkilsSLDStillthere == FALSE) && !C_AkilFarmIsFree())
 		{
 			if(!Npc_IsDead(Alvares))
@@ -718,12 +737,39 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			};
 			if(!Npc_IsDead(Randolph))
 			{
-				if(hero.guild != GIL_KDF)
+				if((hero.guild != GIL_KDF) && (Randolph_ExchangeRoutine_Once == FALSE))
 				{
 					B_StartOtherRoutine(Randolph,"Start");
+					Randolph_ExchangeRoutine_Once = TRUE;
 				};
 				Randolph.flags = 0;
 			};
+		};
+		if((TaverneTopicStarted == TRUE) && (MIS_Rukhar_Wettkampf == FALSE))
+		{
+			MIS_Rukhar_Wettkampf = LOG_OBSOLETE;
+			B_CheckLog();
+		};
+		if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (MIS_Rukhar_Wettkampf == LOG_Running))
+		{
+			if(Mob_HasItems("CHEST_RUKHAR",ItFo_Booze))
+			{
+				B_StartOtherRoutine(Rukhar,"WettkampfRukharWon");
+				Rukhar_Won_Wettkampf = TRUE;
+			}
+			else if(Mob_HasItems("CHEST_RUKHAR",ItFo_Water) > 0)
+			{
+				B_StartOtherRoutine(Rukhar,"WettkampfRukharLost");
+			};
+			if((hero.guild != GIL_KDF) && (Randolph_ExchangeRoutine_Once == FALSE))
+			{
+				B_StartOtherRoutine(Randolph,"Start");
+				Randolph_ExchangeRoutine_Once = TRUE;
+			};
+		};
+		if(Npc_IsDead(Hanna))
+		{
+			B_SendMilitiaToHotel();
 		};
 		B_KillThievesGuild();
 		B_ResetSergio();
@@ -889,6 +935,10 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		if(MIS_ShipIsFree == TRUE)
 		{
 			B_StartOtherRoutine(Girion,"WaitForShip");
+		};
+		if(Npc_IsDead(Hanna))
+		{
+			B_SendMilitiaToHotel();
 		};
 		B_KillThievesGuild();
 		B_ResetSergio();

@@ -7,44 +7,8 @@ var int Cronos_ADW_ItemsGiven_Chapter_5;
 
 func void B_GiveTradeInv_Addon_Cronos_ADW(var C_Npc slf)
 {
-	if((Kapitel >= 2) && (Cronos_ADW_ItemsGiven_Chapter_2 == FALSE))
+	if((Kapitel >= 1) && (Cronos_ADW_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMW_Addon_Stab03,1);
-		CreateInvItems(slf,ItMW_Addon_Stab05,1);
-		CreateInvItems(slf,ItMi_Sulfur,2);
-		CreateInvItems(slf,ItMi_Quartz,2);
-		CreateInvItems(slf,ItMi_Pitch,1);
-		CreateInvItems(slf,ItMi_Flask,15);
-		CreateInvItems(slf,ItPo_Health_01,7);
-		CreateInvItems(slf,ItPo_Health_02,2);
-		CreateInvItems(slf,ItPo_Mana_01,14);
-		CreateInvItems(slf,ItPo_Health_Addon_04,2);
-		CreateInvItems(slf,ItPo_Mana_Addon_04,5);
-		CreateInvItems(slf,ItWr_Map_AddonWorld,1);
-		CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC1,1);
-		CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC2,1);
-		CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC3,1);
-		CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC4,1);
-		CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC5,1);
-		CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC6,1);
-		CreateInvItems(slf,ITWR_Addon_Runemaking_KDW_CIRC1,1);
-		CreateInvItems(slf,ItMi_RuneBlank,2);
-		CreateInvItems(slf,ItSc_Light,5);
-		CreateInvItems(slf,ItSc_Firebolt,5);
-		CreateInvItems(slf,ItSc_Zap,5);
-		CreateInvItems(slf,ItSc_LightHeal,5);
-		CreateInvItems(slf,ItSc_SumGobSkel,2);
-		CreateInvItems(slf,ItSc_Icelance,5);
-		CreateInvItems(slf,ItSc_Whirlwind,1);
-		CreateInvItems(slf,ItSc_Icebolt,3);
-		CreateInvItems(slf,ItSc_InstantFireball,3);
-		CreateInvItems(slf,ItSc_Whirlwind,2);
-		CreateInvItems(slf,ItSc_Geyser,2);
-		CreateInvItems(slf,ItSc_Thunderstorm,2);
-		CreateInvItems(slf,ItSc_Waterfist,1);
-		CreateInvItems(slf,ItSc_SumWolf,2);
-		CreateInvItems(slf,ITWr_Addon_Health_04,1);
-		CreateInvItems(slf,ITWr_Addon_Mana_04,1);
 		//перенос инвентаря из Хориниса
 		if(Cronos_NW_ItMi_Flask_Count > 0)
 		{
@@ -94,6 +58,47 @@ func void B_GiveTradeInv_Addon_Cronos_ADW(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItSc_Whirlwind,Cronos_NW_ItSc_Whirlwind_Count);
 		};
+		Cronos_ADW_ItemsGiven_Chapter_1 = TRUE;
+	};
+	if((Kapitel >= 2) && (Cronos_ADW_ItemsGiven_Chapter_2 == FALSE))
+	{
+		CreateInvItems(slf,ItMW_Addon_Stab03,1);
+		CreateInvItems(slf,ItMW_Addon_Stab05,1);
+		CreateInvItems(slf,ItMi_Sulfur,2);
+		CreateInvItems(slf,ItMi_Quartz,2);
+		CreateInvItems(slf,ItMi_Pitch,1);
+		CreateInvItems(slf,ItMi_Flask,15);
+		CreateInvItems(slf,ItPo_Health_01,7);
+		CreateInvItems(slf,ItPo_Health_02,2);
+		CreateInvItems(slf,ItPo_Mana_01,14);
+		CreateInvItems(slf,ItPo_Health_Addon_04,2);
+		CreateInvItems(slf,ItPo_Mana_Addon_04,5);
+		CreateInvItems(slf,ItWr_Map_AddonWorld,1);
+		CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC1,1);
+		CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC2,1);
+		CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC3,1);
+		CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC4,1);
+		CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC5,1);
+		CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC6,1);
+		CreateInvItems(slf,ITWR_Addon_Runemaking_KDW_CIRC1,1);
+		CreateInvItems(slf,ItMi_RuneBlank,2);
+		CreateInvItems(slf,ItSc_Light,5);
+		CreateInvItems(slf,ItSc_Firebolt,5);
+		CreateInvItems(slf,ItSc_Zap,5);
+		CreateInvItems(slf,ItSc_LightHeal,5);
+		CreateInvItems(slf,ItSc_SumGobSkel,2);
+		CreateInvItems(slf,ItSc_Icelance,5);
+		CreateInvItems(slf,ItSc_Whirlwind,1);
+		CreateInvItems(slf,ItSc_Icebolt,3);
+		CreateInvItems(slf,ItSc_InstantFireball,3);
+		CreateInvItems(slf,ItSc_Whirlwind,2);
+		CreateInvItems(slf,ItSc_Geyser,2);
+		CreateInvItems(slf,ItSc_Thunderstorm,2);
+		CreateInvItems(slf,ItSc_Waterfist,1);
+		CreateInvItems(slf,ItSc_SumWolf,2);
+		CreateInvItems(slf,ITWr_Addon_Health_04,1);
+		CreateInvItems(slf,ITWr_Addon_Mana_04,1);
+		CreateInvItems(slf,ItAm_Prot_Mage_01,1);
 		Cronos_ADW_ItemsGiven_Chapter_2 = TRUE;
 	};
 	if((Kapitel >= 3) && (Cronos_ADW_ItemsGiven_Chapter_3 == FALSE))
@@ -121,7 +126,7 @@ func void B_GiveTradeInv_Addon_Cronos_ADW(var C_Npc slf)
 		CreateInvItems(slf,ItSc_Geyser,2);
 		CreateInvItems(slf,ItSc_Thunderstorm,2);
 		CreateInvItems(slf,ItSc_Waterfist,1);
-		CreateInvItems(slf,ItMi_RuneBlank,2);
+		CreateInvItems(slf,ItMi_RuneBlank,1);
 		CreateInvItems(slf,ItSc_TrfGiantBug,1);
 		CreateInvItems(slf,ItSc_TrfWolf,1);
 		CreateInvItems(slf,ItSc_TrfSheep,1);

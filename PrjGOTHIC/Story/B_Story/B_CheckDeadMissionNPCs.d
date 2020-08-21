@@ -162,6 +162,57 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 		{
 			MIS_HelpBabo = LOG_FAILED;
 		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rukhar))
+	{
+		MIS_Rukhar_Wettkampf = LOG_OBSOLETE;
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Gaan))
+	{
+		if(MIS_Gaan_Snapper == LOG_Running)
+		{
+			MIS_Gaan_Snapper = LOG_OBSOLETE;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Salandril))
+	{
+		if((SC_KnowsProspektorSalandril == TRUE) && (Log_SalandrilIsDead == FALSE))
+		{
+			B_LogEntry(TOPIC_MinenAnteileKDF,"Саландрил мертв. Мне нужно сообщить это Серпентесу.");
+			Log_SalandrilIsDead = TRUE;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cassia))
+	{
+		if(MIS_CassiaRing == LOG_Running)
+		{
+			MIS_CassiaRing = LOG_FAILED;
+		};
+		if(MIS_CassiaKelche == LOG_Running)
+		{
+			MIS_CassiaKelche = LOG_FAILED;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Ramirez))
+	{
+		if(MIS_RamirezSextant == LOG_Running)
+		{
+			MIS_RamirezSextant = LOG_FAILED;
+		};
+	}
+	else if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Malak)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bengar)))
+	{
+		if(MIS_GetMalakBack == LOG_Running)
+		{
+			MIS_GetMalakBack = LOG_FAILED;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(SLD_Wolf))
+	{
+		if(MIS_BengarsHelpingSLD == LOG_Running)
+		{
+			MIS_BengarsHelpingSLD = LOG_FAILED;
+		};
 	};
 	B_CheckLog();
 };

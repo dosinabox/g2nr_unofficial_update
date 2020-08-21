@@ -104,7 +104,7 @@ func void B_CloseTopics_Mattes()
 	B_CloseTopic(TOPIC_PyrokarClearDemonTower,MIS_PyrokarClearDemonTower,0,6);
 	B_CloseTopic(TOPIC_HyglasBringBook,MIS_HyglasBringBook,0,6);
 	B_CloseTopic(Topic_BabosDocs,MIS_BabosDocs,0,6);
-	B_CloseTopic(TOPIC_Wolf_BringCrawlerPlates,MIS_Wolf_BringCrawlerPlates,0,6);
+	B_CloseTopic(TOPIC_Wolf_BringCrawlerPlates,MIS_Wolf_BringCrawlerPlates,0,4);
 	B_CloseTopic(TOPIC_HelpDiegoNW,MIS_HelpDiegoNW,0,6);
 	B_CloseTopic(TOPIC_DiegosResidence,MIS_DiegosResidence,0,6);
 };

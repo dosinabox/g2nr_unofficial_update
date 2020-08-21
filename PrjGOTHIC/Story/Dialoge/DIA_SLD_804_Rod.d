@@ -48,7 +48,7 @@ func void DIA_Rod_Hello_Info()
 	if(other.guild != GIL_SLD)
 	{
 		AI_Output(self,other,"DIA_Rod_Hello_06_01");	//Что ТЕБЕ нужно от меня, детка?
-		if(other.guild == GIL_KDF)
+		if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
 		{
 			AI_Output(self,other,"DIA_Rod_Hello_06_02");	//Что, для тебя не нашлось места в монастыре?
 		};
@@ -65,6 +65,8 @@ func void DIA_Rod_Hello_Info()
 
 
 var int Rod_SchwachGesagt;
+var int DIA_Rod_Teach_permanent;
+var int Rod_Merke_2h;
 
 instance DIA_Rod_WannaLearn(C_Info)
 {
@@ -94,6 +96,12 @@ func void DIA_Rod_WannaLearn_Info()
 		{
 			AI_Output(self,other,"DIA_Rod_WannaLearn_06_03");	//Да, если ты отдашь мне назад мой меч.
 		}
+		else if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Rod)
+		{
+			B_Say(self,other,"$NOLEARNYOUREBETTER");
+			Rod_Teach2H = TRUE;
+			DIA_Rod_Teach_permanent = TRUE;
+		}
 		else
 		{
 			AI_Output(self,other,"DIA_Rod_WannaLearn_06_01");	//Я неплохой боец, но это не означает, что я хороший учитель.
@@ -112,7 +120,26 @@ func void DIA_Rod_WannaLearn_Info()
 };
 
 
-var int Rod_Merke_2h;
+func void B_BuildLearnDialog_Rod()
+{
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Rod)
+	{
+		Info_ClearChoices(DIA_Rod_Teach);
+		Info_AddChoice(DIA_Rod_Teach,Dialog_Back,DIA_Rod_Teach_Back);
+		Info_AddChoice(DIA_Rod_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Rod_Teach_2H_1);
+		Info_AddChoice(DIA_Rod_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Rod_Teach_2H_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Rod)
+		{
+			DIA_Rod_Teach_permanent = TRUE;
+		};
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Rod)),-1,53,FONT_Screen,2);
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		AI_StopProcessInfos(self);
+	};
+};
 
 instance DIA_Rod_Teach(C_Info)
 {
@@ -127,7 +154,7 @@ instance DIA_Rod_Teach(C_Info)
 
 func int DIA_Rod_Teach_Condition()
 {
-	if(Rod_Teach2H == TRUE)
+	if((Rod_Teach2H == TRUE) && (DIA_Rod_Teach_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -136,18 +163,13 @@ func int DIA_Rod_Teach_Condition()
 func void DIA_Rod_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Rod_Teach_15_00");	//Я хочу научиться лучше владеть двуручным оружием!
-//	Rod_Merke_2h = other.HitChance[NPC_TALENT_2H];
-	Rod_Merke_2h = other.aivar[REAL_TALENT_2H];
-	Info_ClearChoices(DIA_Rod_Teach);
-	Info_AddChoice(DIA_Rod_Teach,Dialog_Back,DIA_Rod_Teach_Back);
-	Info_AddChoice(DIA_Rod_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Rod_Teach_2H_1);
-	Info_AddChoice(DIA_Rod_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Rod_Teach_2H_5);
+	Rod_Merke_2h = other.HitChance[NPC_TALENT_2H];
+	B_BuildLearnDialog_Rod();
 };
 
 func void DIA_Rod_Teach_Back()
 {
-//	if(Rod_Merke_2h < other.HitChance[NPC_TALENT_2H])
-	if(Rod_Merke_2h < other.aivar[REAL_TALENT_2H])
+	if(Rod_Merke_2h < other.HitChance[NPC_TALENT_2H])
 	{
 		AI_Output(self,other,"DIA_Rod_Teach_BACK_06_00");	//Ты уже владеешь им лучше.
 	};
@@ -156,22 +178,19 @@ func void DIA_Rod_Teach_Back()
 
 func void DIA_Rod_Teach_2H_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,90);
-	Info_ClearChoices(DIA_Rod_Teach);
-	Info_AddChoice(DIA_Rod_Teach,Dialog_Back,DIA_Rod_Teach_Back);
-	Info_AddChoice(DIA_Rod_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Rod_Teach_2H_1);
-	Info_AddChoice(DIA_Rod_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Rod_Teach_2H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Rod))
+	{
+		B_BuildLearnDialog_Rod();
+	};
 };
 
 func void DIA_Rod_Teach_2H_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,90);
-	Info_ClearChoices(DIA_Rod_Teach);
-	Info_AddChoice(DIA_Rod_Teach,Dialog_Back,DIA_Rod_Teach_Back);
-	Info_AddChoice(DIA_Rod_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Rod_Teach_2H_1);
-	Info_AddChoice(DIA_Rod_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Rod_Teach_2H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Rod))
+	{
+		B_BuildLearnDialog_Rod();
+	};
 };
-
 
 var int DIA_Rod_WannaJoin_noPerm;
 

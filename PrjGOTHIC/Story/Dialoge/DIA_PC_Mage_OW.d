@@ -328,7 +328,7 @@ instance DIA_MiltenOW_Versteck(C_Info)
 
 func int DIA_MiltenOW_Versteck_Condition()
 {
-	if((GornsTreasure == TRUE) && !Npc_HasItems(other,ItMi_GornsTreasure_MIS) && (Gorns_Beutel == FALSE) && (Kapitel == 2))
+	if((GornsTreasure == TRUE) && !Npc_HasItems(other,ItMi_GornsTreasure_MIS) && (Gorns_Beutel == FALSE) && (Kapitel == 2) && (MIS_RescueGorn == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -419,12 +419,12 @@ func int DIA_MiltenOW_TeachCircle1_Condition()
 
 func void DIA_MiltenOW_TeachCircle1_Info()
 {
-	AI_Output(other,self,"DIA_Parlan_TECH_CIRCLE1_15_00");	//Научи меня первому Кругу магии.
+	DIA_Common_TeachMe_FirstMagicCirlce();
 	if(B_TeachMagicCircle(self,other,1))
 	{
-		AI_Output(self,other,"DIA_Milten_DI_TeachMagic_RUNES_03_00");	//Ох, нет! Я не большой специалист в этом, но мы как-нибудь справимся.
-		AI_Output(self,other,"DIA_Milten_DI_TeachMagic_MANA_1_03_00");	//Да ведет тебя рука Инноса.
-		AI_Output(self,other,"DIA_Milten_DI_TeachMagic_MANA_5_03_00");	//Да осветит Иннос твой путь.
+		DIA_Milten_RunesComment_01();
+		DIA_Milten_RunesComment_02();
+		DIA_Milten_RunesComment_03();
 	};
 };
 
@@ -484,7 +484,7 @@ func int DIA_MiltenOW_Teach_Condition()
 
 func void DIA_MiltenOW_Teach_Info()
 {
-	B_Say_WantToLearnNewRunes();
+	DIA_Common_WantToLearnNewRunes();
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
 	{
 		AI_Output(self,other,"DIA_MiltenOW_Teach_03_01");	//Ты все еще не достиг второго Круга магии. Я ничему не могу научить тебя.
@@ -552,6 +552,21 @@ func void DIA_MiltenOW_Teach_Light()
 	B_TeachPlayerTalentRunes(self,other,SPL_Light);
 };
 
+func void B_BuildLearnDialog_Milten_OW()
+{
+	Info_ClearChoices(DIA_MiltenOW_Mana);
+	Info_AddChoice(DIA_MiltenOW_Mana,Dialog_Back,DIA_MiltenOW_Mana_BACK);
+	if(other.aivar[REAL_MANA_MAX] >= T_MED)
+	{
+		AI_Output(self,other,"DIA_MiltenOW_Mana_03_00");	//Твоя магическая энергия велика. Слишком велика, чтобы я мог увеличить ее.
+	}
+	else
+	{
+		Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_MiltenOW_Mana_1);
+		Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_MiltenOW_Mana_5);
+	};
+};
+
 instance DIA_MiltenOW_Mana(C_Info)
 {
 	npc = PC_Mage_OW;
@@ -574,40 +589,29 @@ func int DIA_MiltenOW_Mana_Condition()
 func void DIA_MiltenOW_Mana_Info()
 {
 	AI_Output(other,self,"DIA_MiltenOW_Mana_15_00");	//Я хочу повысить мои магические способности.
-	Info_ClearChoices(DIA_MiltenOW_Mana);
-	Info_AddChoice(DIA_MiltenOW_Mana,Dialog_Back,DIA_MiltenOW_Mana_BACK);
-	Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_MiltenOW_Mana_1);
-	Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_MiltenOW_Mana_5);
+	B_BuildLearnDialog_Milten_OW();
 };
 
 func void DIA_MiltenOW_Mana_BACK()
 {
-//	if(other.attribute[ATR_MANA_MAX] >= T_MED)
-	if(other.aivar[REAL_MANA_MAX] >= T_MED)
-	{
-		AI_Output(self,other,"DIA_MiltenOW_Mana_03_00");	//Твоя магическая энергия велика. Слишком велика, чтобы я мог увеличить ее.
-	};
 	Info_ClearChoices(DIA_MiltenOW_Mana);
 };
 
 func void DIA_MiltenOW_Mana_1()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MED);
-	Info_ClearChoices(DIA_MiltenOW_Mana);
-	Info_AddChoice(DIA_MiltenOW_Mana,Dialog_Back,DIA_MiltenOW_Mana_BACK);
-	Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_MiltenOW_Mana_1);
-	Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_MiltenOW_Mana_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MED))
+	{
+		B_BuildLearnDialog_Milten_OW();
+	};
 };
 
 func void DIA_MiltenOW_Mana_5()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MED);
-	Info_ClearChoices(DIA_MiltenOW_Mana);
-	Info_AddChoice(DIA_MiltenOW_Mana,Dialog_Back,DIA_MiltenOW_Mana_BACK);
-	Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_MiltenOW_Mana_1);
-	Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_MiltenOW_Mana_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MED))
+	{
+		B_BuildLearnDialog_Milten_OW();
+	};
 };
-
 
 instance DIA_MiltenOW_Perm(C_Info)
 {
@@ -682,7 +686,7 @@ func int DIA_MiltenOW_PICKPOCKET_Condition()
 //	return C_StealItems(80,Hlp_GetInstanceID(ItPo_Perm_Mana),1);
 	if(Npc_HasItems(self,ItPo_Perm_Mana))
 	{
-		return C_StealItem(80,Hlp_GetInstanceID(ItPo_Perm_Mana));
+		return C_StealItem(80);
 	};
 	return FALSE;
 };

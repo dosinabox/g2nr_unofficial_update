@@ -48,11 +48,11 @@ func void B_ArrowBonusDamage(var C_Npc oth,var C_Npc slf)
 			Wld_PlayEffect("VOB_MAGICBURN",slf,slf,0,0,0,FALSE);
 			if(slf.flags == 0)
 			{
-				if(slf.protection[PROT_FIRE] < 40)
+				if(slf.protection[PROT_FIRE] < SpecialDamage_FireBow)
 				{
-					if((slf.attribute[ATR_HITPOINTS] + slf.protection[PROT_FIRE] - 40) >= 0)
+					if((slf.attribute[ATR_HITPOINTS] + slf.protection[PROT_FIRE] - SpecialDamage_FireBow) >= 0)
 					{
-						slf.attribute[ATR_HITPOINTS] -= (40 - slf.protection[PROT_FIRE]);
+						slf.attribute[ATR_HITPOINTS] -= (SpecialDamage_FireBow - slf.protection[PROT_FIRE]);
 					}
 					else
 					{
@@ -63,11 +63,11 @@ func void B_ArrowBonusDamage(var C_Npc oth,var C_Npc slf)
 			if(Npc_GetDistToNpc(slf,oth) <= 600)
 			{
 				Wld_PlayEffect("VOB_MAGICBURN",oth,oth,0,0,0,FALSE);
-				if(oth.protection[PROT_FIRE] < 40)
+				if(oth.protection[PROT_FIRE] < SpecialDamage_FireBow)
 				{
-					if((oth.attribute[ATR_HITPOINTS] + oth.protection[PROT_FIRE] - 40) >= 0)
+					if((oth.attribute[ATR_HITPOINTS] + oth.protection[PROT_FIRE] - SpecialDamage_FireBow) >= 0)
 					{
-						oth.attribute[ATR_HITPOINTS] -= (40 - oth.protection[PROT_FIRE]);
+						oth.attribute[ATR_HITPOINTS] -= (SpecialDamage_FireBow - oth.protection[PROT_FIRE]);
 					}
 					else
 					{

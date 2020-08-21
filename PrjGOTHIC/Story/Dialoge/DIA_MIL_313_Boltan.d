@@ -17,7 +17,7 @@ func int DIA_Boltan_EXIT_Condition()
 
 func void DIA_Boltan_EXIT_Info()
 {
-	AI_Output(other,self,"DIA_Landstreicher_HALLO_Weg_15_00");	//ћне нужно идти.
+	DIA_Common_IHaveToGo_v2();
 	AI_WaitTillEnd(self,other);
 	AI_StopProcessInfos(self);
 };
@@ -77,7 +77,11 @@ instance DIA_Boltan_HALLO(C_Info)
 
 func int DIA_Boltan_HALLO_Condition()
 {
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (other.guild == GIL_SLD))
+	if(Npc_KnowsInfo(other,DIA_Boltan_HalloBennet) || Npc_KnowsInfo(other,DIA_Boltan_HalloCanthar))
+	{
+		return FALSE;
+	}
+	else if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (other.guild == GIL_SLD))
 	{
 		return FALSE;
 	}
@@ -186,7 +190,7 @@ instance DIA_Boltan_HalloCanthar(C_Info)
 
 func int DIA_Boltan_HalloCanthar_Condition()
 {
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (other.guild == GIL_SLD))
+	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (other.guild == GIL_SLD) && !Npc_KnowsInfo(other,DIA_Boltan_HalloBennet))
 	{
 		return FALSE;
 	}

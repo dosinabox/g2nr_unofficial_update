@@ -27,3 +27,9 @@ func void Rtn_Start_330()
 	TA_Sleep(0,0,7,0,"NW_CITY_BARRACK01_BED_06");
 };
 
+func void Rtn_Sewer_330()
+{
+	TA_Stand_Guarding(7,0,23,0,"NW_CITY_KANAL_22");
+	TA_Stand_Guarding(23,0,7,0,"NW_CITY_KANAL_22");
+};
+

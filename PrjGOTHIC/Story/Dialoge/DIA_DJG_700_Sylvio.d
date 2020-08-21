@@ -280,7 +280,7 @@ func void DIA_Sylvio_WASJETZT_Info()
 	AI_Output(other,self,"DIA_Sylvio_WASJETZT_15_00");	//Что еще?
 	AI_Output(self,other,"DIA_Sylvio_WASJETZT_09_01");	//Ну-у... Мне что-то обстановка там не очень нравится.
 	AI_Output(self,other,"DIA_Sylvio_WASJETZT_09_02");	//Будет лучше всего, если ты пойдешь вперед, а я пойду за тобой.
-	Info_AddChoice(DIA_Sylvio_WASJETZT,"Я, пожалуй, пойду.",DIA_Sylvio_WASJETZT_ok);
+	Info_AddChoice(DIA_Sylvio_WASJETZT,"Звучит неплохо...",DIA_Sylvio_WASJETZT_ok);
 	Info_AddChoice(DIA_Sylvio_WASJETZT,"Ты боишься?",DIA_Sylvio_WASJETZT_trennen);
 	Info_AddChoice(DIA_Sylvio_WASJETZT,"Я не собираюсь делать всю грязную работу за тебя.",DIA_Sylvio_WASJETZT_nein);
 	if(DJG_Sylvio_PromisedMoney == TRUE)
@@ -297,7 +297,7 @@ func void DIA_Sylvio_WASJETZT_trennen()
 
 func void DIA_Sylvio_WASJETZT_ok()
 {
-	AI_Output(other,self,"DIA_Attila_Hallo_Ende_15_00");	//Я, пожалуй, пойду.
+	DIA_Common_SoundsGood();
 	AI_Output(self,other,"DIA_Sylvio_WASJETZT_ok_09_01");	//Давай, быстрее!
 	AI_StopProcessInfos(self);
 };

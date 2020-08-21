@@ -34,7 +34,7 @@ instance DIA_Addon_10023_Wache_Hi(C_Info)
 
 func int DIA_Addon_10023_Wache_Hi_Condition()
 {
-	if(Npc_GetDistToNpc(self,other) <= 300)
+	if((Npc_GetDistToNpc(self,other) <= 300) || Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -51,12 +51,24 @@ func void DIA_Addon_10023_Wache_Hi_Info()
 	AI_Output(other,self,"DIA_Addon_10023_Wache_Hi_15_06");	//А я думал, здесь командует Ворон.
 	AI_Output(self,other,"DIA_Addon_10023_Wache_Hi_11_07");	//Верно - но рабы ему больше не нужны, он отдал их Бладвину.
 	EnteredBanditsCamp = TRUE;
-	Pardos.attribute[ATR_HITPOINTS] = 70;
+	if(!Npc_IsDead(Pardos) && (Pardos_Geheilt == FALSE))
+	{
+		if(Pardos.attribute[ATR_HITPOINTS] > 70)
+		{
+			Pardos.attribute[ATR_HITPOINTS] = 70;
+		};
+	};
 	B_LogEntry(TOPIC_Addon_Sklaven,"Ворону больше не нужны рабы. Теперь они принадлежат Бладвину.");
 };
 
 
 var int PrisonGuard_Rules;
+var int Wache_einmal;
+
+func void B_YouBetterLetSlavesGo()
+{
+	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_02");	//Лучше бы тебе отпустить рабов СЕЙЧАС ЖЕ.
+};
 
 instance DIA_Addon_10023_Wache_go(C_Info)
 {
@@ -84,8 +96,8 @@ func void DIA_Addon_10023_Wache_go_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_10023_Wache_go_11_01");	//Слушай. Здесь командует Бладвин. Рабы принадлежат ему, так что только у него есть право отпустить их.
 		AI_Output(self,other,"DIA_Addon_10023_Wache_go_11_02");	//Ну, еще у Торуса есть возможность замолвить словечко. А ты?
-		PrisonGuard_Rules = TRUE;
 		B_LogEntry(TOPIC_Addon_Sklaven,"Право освободить рабов есть только у Бладвина и Торуса.");
+		PrisonGuard_Rules = TRUE;
 	};
 	AI_Output(self,other,"DIA_Addon_10023_Wache_go_11_03");	//У тебя есть какое-то право на это?
 	Info_ClearChoices(DIA_Addon_10023_Wache_go);
@@ -94,9 +106,13 @@ func void DIA_Addon_10023_Wache_go_Info()
 	{
 		Info_AddChoice(DIA_Addon_10023_Wache_go,"Я поговорил с Торусом. Он приказал отпустить рабов.",DIA_Addon_10023_Wache_go_Thorus);
 	}
+	else if(Wache_einmal == TRUE)
+	{
+		Info_AddChoice(DIA_Addon_10023_Wache_go,"Лучше бы тебе отпустить рабов СЕЙЧАС ЖЕ.",DIA_Addon_10023_Wache_go_Threat);
+	}
 	else if(Npc_IsDead(Bloodwyn) && Npc_HasItems(other,ItMi_Addon_Bloodwyn_Kopf))
 	{
-		Info_AddChoice(DIA_Addon_10023_Wache_go,"(показать голову Бладвина)",DIA_Addon_10023_Wache_go_Blood);
+		Info_AddChoice(DIA_Addon_10023_Wache_go,DIALOG_BloodwynHead,DIA_Addon_10023_Wache_go_Blood);
 	}
 	else
 	{
@@ -116,40 +132,31 @@ func void DIA_Addon_10023_Wache_go_WER()
 	Info_ClearChoices(DIA_Addon_10023_Wache_go);
 };
 
-
-var int Wache_einmal;
-
 func void DIA_Addon_10023_Wache_go_Blood()
 {
 	CreateInvItem(other,ItMi_FakeBloodwynHead);
 	AI_UseItemToState(other,ItMi_FakeBloodwynHead,1);
+	//эта функция нужна, чтобы ГГ не смотрел на голову Бладвина, но работает это неправильно
 	B_LookAtNpc(other,self);
 	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_00");	//Вот. Этого достаточно?
 	AI_UseItemToState(other,ItMi_FakeBloodwynHead,-1);
 	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Blood_11_01");	//(резко) Убери. Я даже видеть этого не хочу.
-	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_02");	//Лучше бы тебе отпустить рабов СЕЙЧАС ЖЕ.
+	B_YouBetterLetSlavesGo();
 	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Blood_11_03");	//Погоди минутку. Бладвин - не единственный, кто здесь решает. Пока у меня не будет приказа от Торуса, я никого не отпущу.
-	if(Npc_KnowsInfo(other,DIA_Addon_Thorus_Answer))
-	{
-		Info_ClearChoices(DIA_Addon_10023_Wache_go);
-		Info_AddChoice(DIA_Addon_10023_Wache_go,"Я поговорил с Торусом. Он приказал отпустить рабов.",DIA_Addon_10023_Wache_go_Thorus);
-	}
-	else
-	{
-		if(Wache_einmal == FALSE)
-		{
-			AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_04");	//Но ты только что сказал, что рабы принадлежат Бладвину.
-			AI_Output(self,other,"DIA_Addon_10023_Wache_go_Blood_11_05");	//Да, но я также сказал, что никого не отпущу без приказа от Торуса.
-			AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_06");	//Ты из тех ребят, кто не может даже помочиться без приказа?
-			Wache_einmal = TRUE;
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Addon_10023_Wache_go_Blood_11_07");	//Я же тебе сказал...
-			AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_08");	//... хватит, дальше я знаю.
-		};
-		Info_ClearChoices(DIA_Addon_10023_Wache_go);
-	};
+	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_04");	//Но ты только что сказал, что рабы принадлежат Бладвину.
+	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Blood_11_05");	//Да, но я также сказал, что никого не отпущу без приказа от Торуса.
+	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_06");	//Ты из тех ребят, кто не может даже помочиться без приказа?
+	Wache_einmal = TRUE;
+	Info_ClearChoices(DIA_Addon_10023_Wache_go);
+};
+
+func void DIA_Addon_10023_Wache_go_Threat()
+{
+	B_YouBetterLetSlavesGo();
+	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Blood_11_03_add");	//Пока у меня не будет приказа от Торуса, я никого не отпущу.
+	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Blood_11_07");	//Я же тебе сказал...
+	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_08");	//... хватит, дальше я знаю.
+	Info_ClearChoices(DIA_Addon_10023_Wache_go);
 };
 
 func void DIA_Addon_10023_Wache_go_Thorus()

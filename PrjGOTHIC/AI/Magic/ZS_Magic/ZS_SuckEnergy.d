@@ -54,19 +54,19 @@ func int ZS_SuckEnergy_Loop()
 		};
 		if(Npc_GetStateTime(self) == 2)
 		{
-			B_Say(self,other,"$Aargh_2");
+			B_Say(self,other,"$AARGH_2");
 		}
 		else if(Npc_GetStateTime(self) == 3)
 		{
-			B_Say(self,other,"$Help");
+			B_Say(self,other,"$HELP");
 		}
 		else if(Npc_GetStateTime(self) == 5)
 		{
-			B_Say(self,other,"$Aargh_1");
+			B_Say(self,other,"$AARGH_1");
 		}
 		else if(Npc_GetStateTime(self) == 6)
 		{
-			B_Say(self,other,"$Aargh_3");
+			B_Say(self,other,"$AARGH_3");
 		};
 		self.aivar[AIV_SuckEnergyStateTime] = Npc_GetStateTime(self);
 		if(self.attribute[ATR_HITPOINTS] > SPL_SuckEnergy_Damage)
@@ -104,19 +104,19 @@ func int ZS_SuckEnergy_Loop()
 		};
 		if(Npc_GetStateTime(self) == 2)
 		{
-			B_Say(self,other,"$Aargh_2");
+			B_Say(self,other,"$AARGH_2");
 		}
 		else if(Npc_GetStateTime(self) == 3)
 		{
-			B_Say(self,other,"$Help");
+			B_Say(self,other,"$HELP");
 		}
 		else if(Npc_GetStateTime(self) == 5)
 		{
-			B_Say(self,other,"$Aargh_1");
+			B_Say(self,other,"$AARGH_1");
 		}
 		else if(Npc_GetStateTime(self) == 6)
 		{
-			B_Say(self,other,"$Aargh_3");
+			B_Say(self,other,"$AARGH_3");
 		};
 		self.aivar[AIV_SuckEnergyStateTime] = Npc_GetStateTime(self);
 		if(self.attribute[ATR_HITPOINTS] >= SPL_SuckEnergy_Damage)

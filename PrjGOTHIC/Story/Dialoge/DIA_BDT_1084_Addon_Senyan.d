@@ -17,7 +17,7 @@ func int DIA_Addon_Senyan_EXIT_Condition()
 
 func void DIA_Addon_Senyan_EXIT_Info()
 {
-	AI_Output(other,self,"DIA_GornOW_SeeYou_15_00");	//Еще увидимся.
+	DIA_Common_SeeYou();
 	if(Senyan_Erpressung == LOG_Running)
 	{
 		AI_Output(self,other,"DIA_Addon_Senyan_EXIT_12_00");	//Ты знаешь, что тебе нужно сделать...

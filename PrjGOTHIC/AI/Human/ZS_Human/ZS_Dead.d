@@ -31,12 +31,16 @@ func void ZS_Dead()
 	{
 		B_Greg_ComesToDexter();
 	};
-	if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPDRONE)
+	if((self.aivar[AIV_MM_REAL_ID] == ID_SWAMPDRONE) || (self.aivar[AIV_MM_REAL_ID] == ID_SWAMPZOMBIE))
 	{
 		if(Npc_GetDistToNpc(self,other) < 300)
 		{
 			other.attribute[ATR_HITPOINTS] -= 50;
-//			B_MagicHurtNpc(self,other,50);
+			if(Npc_IsPlayer(other))
+			{
+				Wld_PlayEffect("CONTROL_LEAVERANGEFX",other,other,0,0,0,FALSE);
+				Wld_StopEffect("CONTROL_LEAVERANGEFX");
+			};
 		};
 	};
 	B_CheckDeadMissionNPCs(self);
@@ -53,9 +57,9 @@ func void ZS_Dead()
 	{
 		Npc_RemoveInvItems(self,ItMw_1h_Bau_Mace,Npc_HasItems(self,ItMw_1h_Bau_Mace));
 		Npc_RemoveInvItems(self,ItMw_1h_MISC_Sword,Npc_HasItems(self,ItMw_1h_MISC_Sword));
-		Npc_RemoveInvItems(self,ItMw_1h_Misc_Axe,Npc_HasItems(self,ItMw_1h_Misc_Axe)); 
-	};
-	if(self.guild == GIL_SUMMONED_SKELETON)
+		Npc_RemoveInvItems(self,ItMw_1h_Misc_Axe,Npc_HasItems(self,ItMw_1h_Misc_Axe));
+	}
+	else if(self.guild == GIL_SUMMONED_SKELETON)
 	{
 		Npc_RemoveInvItems(self,ItMw_2H_Sword_M_01,Npc_HasItems(self,ItMw_2H_Sword_M_01));
 	};
@@ -72,27 +76,27 @@ func void ZS_Dead()
 			{
 				Festers_Giant_Bug_Killed += 1;
 			};
-		};
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Swamprat)) && (MIS_KrokoJagd == LOG_Running))
+		}
+		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Swamprat)) && (MIS_KrokoJagd == LOG_Running))
 		{
 			if(Npc_GetDistToNpc(self,AlligatorJack) <= 1500)
 			{
 				AlligatorJack_KrokosKilled += 1;
 			};
-		};
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ramon))
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ramon))
 		{
 			Player_HasTalkedToBanditCamp = TRUE;
-		};
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(OrcShaman_Sit_CanyonLibraryKey))
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(OrcShaman_Sit_CanyonLibraryKey))
 		{
 			OrcShaman_CanyonLibrary_KilledByPlayer = TRUE;
-		};
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper1)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper2)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper3)))
+		}
+		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper1)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper2)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper3)))
 		{
 			Grimbald_Snappers_KilledByPlayer = TRUE;
-		};
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Halvor)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nagur)))
+		}
+		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Halvor)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nagur)))
 		{
 			if(Npc_IsDead(Rengaru) && Npc_IsDead(Halvor) && Npc_IsDead(Nagur))
 			{
@@ -121,6 +125,7 @@ func void ZS_Dead()
 	B_ClearAlchemyInv(self);
 	B_ClearBonusFoodInv(self);
 	B_ClearInfiniteTools(self);
+	B_ClearSpecialAmmo(self);
 	B_DeletePetzCrime(self);
 	self.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
 	AI_UnequipWeapons(self);
@@ -134,11 +139,11 @@ func void ZS_Dead()
 			if(Npc_GetDistToNpc(self,other) <= 600)
 			{
 				Wld_PlayEffect("VOB_MAGICBURN",other,other,0,0,0,FALSE);
-				if(other.protection[PROT_FIRE] < 40)
+				if(other.protection[PROT_FIRE] < SpecialDamage_FireBow)
 				{
-					if((other.attribute[ATR_HITPOINTS] + other.protection[PROT_FIRE] - 40) >= 0)
+					if((other.attribute[ATR_HITPOINTS] + other.protection[PROT_FIRE] - SpecialDamage_FireBow) >= 0)
 					{
-						other.attribute[ATR_HITPOINTS] -= (40 - other.protection[PROT_FIRE]);
+						other.attribute[ATR_HITPOINTS] -= (SpecialDamage_FireBow - other.protection[PROT_FIRE]);
 					}
 					else
 					{

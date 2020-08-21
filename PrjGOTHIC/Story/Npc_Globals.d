@@ -340,6 +340,7 @@ var C_Npc BDT_1052;
 var C_Npc Talbin;
 var C_Npc TalbinNW;
 var C_Npc Joe;
+var C_Npc Hanna;
 
 func void B_InitNpcGlobals()
 {
@@ -688,5 +689,6 @@ func void B_InitNpcGlobals()
 	Talbin = Hlp_GetNpc(VLK_4130_Talbin);
 	TalbinNW = Hlp_GetNpc(VLK_4132_Talbin_NW);
 	Joe = Hlp_GetNpc(VLK_448_Joe);
+	Hanna = Hlp_GetNpc(VLK_414_Hanna);
 };
 

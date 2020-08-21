@@ -187,7 +187,6 @@ var int Lerne_Zweihand;
 
 instance ItWr_EinhandBuch(C_Item)
 {
-//	name = "Искусство сражения";
 	name = "Южное искусство обороны";
 	mainflag = ITEM_KAT_DOCS;
 	flags = 0;
@@ -212,10 +211,8 @@ func void UseEinhandBuch()
 	var int nDocID;
 	if(Lerne_Einhand == FALSE)
 	{
-		B_RaiseFightTalent(self,NPC_TALENT_1H,5);
-		PrintScreen(PRINT_Learn1H,-1,-1,FONT_Screen,2);
+		B_RaiseTalentByPermBonus(self,NPC_TALENT_1H,5);
 		Lerne_Einhand = TRUE;
-		Snd_Play("Levelup");
 	};
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
@@ -240,7 +237,6 @@ func void UseEinhandBuch()
 
 instance ItWr_ZweihandBuch(C_Item)
 {
-//	name = "Тактика боя";
 	name = "Двойные блоки";
 	mainflag = ITEM_KAT_DOCS;
 	flags = 0;
@@ -265,10 +261,8 @@ func void UseZweihandBuch()
 	var int nDocID;
 	if(Lerne_Zweihand == FALSE)
 	{
-		B_RaiseFightTalent(self,NPC_TALENT_2H,5);
-		PrintScreen(PRINT_Learn2H,-1,-1,FONT_Screen,2);
+		B_RaiseTalentByPermBonus(self,NPC_TALENT_2H,5);
 		Lerne_Zweihand = TRUE;
-		Snd_Play("Levelup");
 	};
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);

@@ -75,7 +75,15 @@ func int C_LawArmorEquipped(var C_Npc oth)
 		{
 			return TRUE;
 		};
+		if(Hlp_IsItem(armor,ITAR_KDF_M))
+		{
+			return TRUE;
+		};
 		if(Hlp_IsItem(armor,ITAR_KDF_H))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_KDF_S))
 		{
 			return TRUE;
 		};
@@ -122,7 +130,15 @@ func int C_HenryNiceArmorCheck(var C_Npc oth)
 		{
 			return TRUE;
 		};
+		if(Hlp_IsItem(armor,ITAR_KDF_M))
+		{
+			return TRUE;
+		};
 		if(Hlp_IsItem(armor,ITAR_KDF_H))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_KDF_S))
 		{
 			return TRUE;
 		};
@@ -204,7 +220,15 @@ func int C_RobeCheck(var C_Npc oth)
 		{
 			return TRUE;
 		};
+		if(Hlp_IsItem(armor,ITAR_KDF_M))
+		{
+			return TRUE;
+		};
 		if(Hlp_IsItem(armor,ITAR_KDF_H))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_KDF_S))
 		{
 			return TRUE;
 		};
@@ -284,9 +308,25 @@ func int C_BAUCheck(var C_Npc oth)
 
 func void B_SetHeroSkin()
 {
-	if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE))
+	if(TattoosBodySkin == TRUE)
 	{
-		Mdl_SetVisualBody(hero,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex_Tattoo_N,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+	}
+	else if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE) || (SLDArmor_Equipped == TRUE) || (BDTArmor_Equipped == TRUE) || (BAUArmor_Equipped == TRUE) || (NakedBodySkin == TRUE))
+	{
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex_N,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+	}
+	else if(G1BodySkin == TRUE)
+	{
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex_Player_G1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+	}
+	else if(SequelBodySkin == TRUE)
+	{
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex_Player_Sequel,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+	}
+	else
+	{
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex_Player_G2,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 	};
 };
 

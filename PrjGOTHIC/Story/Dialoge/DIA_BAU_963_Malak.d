@@ -94,7 +94,7 @@ instance DIA_Malak_PASS(C_Info)
 
 func int DIA_Malak_PASS_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Malak_WASMACHSTDU) && (Kapitel < 3))
+	if((Npc_KnowsInfo(other,DIA_Malak_WASMACHSTDU) || Npc_KnowsInfo(other,DIA_Malak_WOPASS)) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -146,7 +146,7 @@ instance DIA_Malak_MINENTAL(C_Info)
 
 func int DIA_Malak_MINENTAL_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Malak_PASS) && (Kapitel < 3))
+	if((Npc_KnowsInfo(other,DIA_Malak_PASS) || Npc_KnowsInfo(other,DIA_Malak_WOPASS)) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -172,7 +172,7 @@ instance DIA_Malak_WARSTDUSCHONDA(C_Info)
 
 func int DIA_Malak_WARSTDUSCHONDA_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Malak_PASS) && (Kapitel < 3))
+	if((Npc_KnowsInfo(other,DIA_Malak_PASS) || Npc_KnowsInfo(other,DIA_Malak_WOPASS)) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -199,7 +199,7 @@ instance DIA_Malak_PALADINE(C_Info)
 
 func int DIA_Malak_PALADINE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Malak_WARSTDUSCHONDA) && Npc_KnowsInfo(other,DIA_Malak_MINENTAL) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Malak_WARSTDUSCHONDA) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -320,11 +320,51 @@ func void DIA_Malak_FLEEFROMPASS_Info()
 		AI_Output(self,other,"DIA_Malak_FLEEFROMPASS_08_01");	//Я сбежал с фермы Бенгара. Я не хочу, чтобы меня сожрали все эти твари, что толпами валят из Прохода.
 		AI_Output(self,other,"DIA_Malak_FLEEFROMPASS_08_02");	//Ты представить себе не можешь, какие ужасы повылазили оттуда за последние несколько дней.
 		AI_Output(other,self,"DIA_Malak_FLEEFROMPASS_15_03");	//Могу.
-		B_LogEntry(TOPIC_BengarALLEIN,"Малак спрятался в укрепленном месте на юге, потому что боится тварей, приходящих на его пастбища из Прохода.");
+		MIS_GetMalakBack = LOG_Running;
+		if(!Npc_KnowsInfo(other,DIA_Bengar_ALLEIN))
+		{
+			Log_CreateTopic(TOPIC_BengarMALAK,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_BengarMALAK,LOG_Running);
+		};
+		B_LogEntry(TOPIC_BengarMALAK,"Малак спрятался в укрепленном месте на юге, потому что боится тварей, приходящих на его пастбища из Прохода.");
 		B_GivePlayerXP(XP_FoundMalakFLEEFROMPASS);
 	};
 };
 
+
+var int Malak_DementorCommentLog;
+
+func void B_Malak_DementorComment()
+{
+	AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_01_add");	//Я ни на шаг отсюда не сойду!
+	if(Malak_DementorCommentLog == FALSE)
+	{
+		if(MIS_GetMalakBack != LOG_Running)
+		{
+			MIS_GetMalakBack = LOG_Running;
+			Log_CreateTopic(TOPIC_BengarMALAK,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_BengarMALAK,LOG_Running);
+		};
+		B_LogEntry(TOPIC_BengarMALAK,"Эти фигуры в черных рясах повсюду! Малак никуда не уйдет, пока я не разберусь с одним из них прямо около его убежища.");
+		Malak_DementorCommentLog = TRUE;
+	};
+};
+
+func void B_Malak_BackToBengar()
+{
+	MalakIsBackToBengar = TRUE;
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"Start");
+	B_StartOtherRoutine(BAU_962_Bauer,"Start");
+	B_StartOtherRoutine(BAU_964_Bauer,"Start");
+	B_StartOtherRoutine(BAU_965_Bauer,"Start");
+	B_StartOtherRoutine(BAU_966_Bauer,"Start");
+	B_StartOtherRoutine(BAU_967_Bauer,"Start");
+	B_StartOtherRoutine(BAU_968_Bauer,"Start");
+	B_StartOtherRoutine(BAU_969_Bauer,"Start");
+};
+
+var int DIA_Malak_Heilung_oneTime;
 
 instance DIA_Malak_Heilung(C_Info)
 {
@@ -345,23 +385,6 @@ func int DIA_Malak_Heilung_Condition()
 	};
 };
 
-
-func void B_Malak_BackToBengar()
-{
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
-	B_StartOtherRoutine(BAU_962_Bauer,"Start");
-	B_StartOtherRoutine(BAU_964_Bauer,"Start");
-	B_StartOtherRoutine(BAU_965_Bauer,"Start");
-	B_StartOtherRoutine(BAU_966_Bauer,"Start");
-	B_StartOtherRoutine(BAU_967_Bauer,"Start");
-	B_StartOtherRoutine(BAU_968_Bauer,"Start");
-	B_StartOtherRoutine(BAU_969_Bauer,"Start");
-};
-
-
-var int DIA_Malak_Heilung_oneTime;
-
 func void DIA_Malak_Heilung_Info()
 {
 	AI_Output(other,self,"DIA_Malak_Heilung_15_00");	//Тебе нужна помощь.
@@ -369,7 +392,7 @@ func void DIA_Malak_Heilung_Info()
 	{
 		if(!Npc_IsDead(DMT_DementorAmbientMalak))
 		{
-			AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_01");	//Я не сумасшедший. Пока ферма беззащитна, я ни на шаг отсюда не сойду!
+			B_Malak_DementorComment();
 		}
 		else
 		{
@@ -400,7 +423,7 @@ instance DIA_Malak_PERMCASTLE(C_Info)
 
 func int DIA_Malak_PERMCASTLE_Condition()
 {
-	if((Npc_GetDistToWP(self,"CASTLEMINE") < 4000) && (MIS_GetMalakBack != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && (NpcObsessedByDMT_Malak == FALSE) && (hero.guild != GIL_KDF) && (Kapitel >= 3))
+	if((Npc_GetDistToWP(self,"CASTLEMINE") < 4000) && (MalakIsBackToBengar == FALSE) && Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && (NpcObsessedByDMT_Malak == FALSE) && (hero.guild != GIL_KDF) && (Kapitel >= 3))
 	{
 		return TRUE;
 	};
@@ -426,7 +449,7 @@ instance DIA_Malak_BACKTOBENGAR(C_Info)
 
 func int DIA_Malak_BACKTOBENGAR_Condition()
 {
-	if((MIS_GetMalakBack == LOG_Running) && Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && !Npc_IsDead(Bengar) && (NpcObsessedByDMT_Malak == FALSE) && (hero.guild != GIL_KDF) && (Kapitel >= 3))
+	if(Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && Npc_KnowsInfo(other,DIA_Bengar_ALLEIN) && !Npc_IsDead(Bengar) && (NpcObsessedByDMT_Malak == FALSE) && (hero.guild != GIL_KDF) && (Kapitel >= 3) && (MalakIsBackToBengar == FALSE))
 	{
 		return TRUE;
 	};
@@ -437,20 +460,27 @@ var int DIA_Malak_BACKTOBENGAR_Once;
 func void DIA_Malak_BACKTOBENGAR_Info()
 {
 	AI_Output(other,self,"DIA_Malak_BACKTOBENGAR_15_00");	//Ты нужен Бенгару. Он хочет, чтобы ты вернулся на его ферму.
-	AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_01");	//Я не сумасшедший. Пока ферма беззащитна, я ни на шаг отсюда не сойду!
-	if(DIA_Malak_BACKTOBENGAR_Once == FALSE)
+	if(!Npc_IsDead(DMT_DementorAmbientMalak))
 	{
-		B_LogEntry(TOPIC_BengarALLEIN,"Малак не вернется на ферму Бенгара, пока она не будет хорошо защищена.");
-		DIA_Malak_BACKTOBENGAR_Once = TRUE;
-	};
-	if((MIS_BengarsHelpingSLD == LOG_SUCCESS) && Npc_IsDead(DMT_DementorAmbientMalak))
+		B_Malak_DementorComment();
+	}
+	else
 	{
-		AI_Output(other,self,"DIA_Malak_BACKTOBENGAR_15_02");	//Я нанял наемника. Он присмотрит за вашей фермой.
-		AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_03");	//Ну, это другое дело, конечно же. Но подожди минутку. А кто будет платить этому парню?
-		AI_Output(other,self,"DIA_Malak_BACKTOBENGAR_15_04");	//Это моя проблема.
-		AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_05");	//(с любопытством) М-м-м. А может, скажешь, а?
-		Info_ClearChoices(DIA_Malak_BACKTOBENGAR);
-		Info_AddChoice(DIA_Malak_BACKTOBENGAR,"Нет.",DIA_Malak_BACKTOBENGAR_los);
+		AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_01");	//Я не сумасшедший. Пока ферма беззащитна, я ни на шаг отсюда не сойду!
+		if(DIA_Malak_BACKTOBENGAR_Once == FALSE)
+		{
+			B_LogEntry(TOPIC_BengarMALAK,"Малак не вернется на ферму Бенгара, пока она не будет хорошо защищена.");
+			DIA_Malak_BACKTOBENGAR_Once = TRUE;
+		};
+		if(MIS_BengarsHelpingSLD == LOG_SUCCESS)
+		{
+			AI_Output(other,self,"DIA_Malak_BACKTOBENGAR_15_02");	//Я нанял наемника. Он присмотрит за вашей фермой.
+			AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_03");	//Ну, это другое дело, конечно же. Но подожди минутку. А кто будет платить этому парню?
+			AI_Output(other,self,"DIA_Malak_BACKTOBENGAR_15_04");	//Это моя проблема.
+			AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_05");	//(с любопытством) М-м-м. А может, скажешь, а?
+			Info_ClearChoices(DIA_Malak_BACKTOBENGAR);
+			Info_AddChoice(DIA_Malak_BACKTOBENGAR,"Нет.",DIA_Malak_BACKTOBENGAR_los);
+		};
 	};
 };
 
@@ -458,7 +488,6 @@ func void DIA_Malak_BACKTOBENGAR_los()
 {
 	AI_Output(other,self,"DIA_Malak_BACKTOBENGAR_los_15_00");	//Нет.
 	AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_los_08_01");	//Хорошо. Тогда я возвращаюсь. Надеюсь, этот парень знает свое дело.
-	MIS_GetMalakBack = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Malak_BACKTOBENGAR);
 	B_NpcClearObsessionByDMT(self);
 	B_Malak_BackToBengar();
@@ -478,7 +507,7 @@ instance DIA_Malak_BACK(C_Info)
 
 func int DIA_Malak_BACK_Condition()
 {
-	if((MIS_GetMalakBack == LOG_SUCCESS) && (NpcObsessedByDMT_Malak == FALSE) && (hero.guild != GIL_KDF) && (Kapitel >= 3))
+	if((MalakIsBackToBengar == TRUE) && (Npc_GetDistToWP(self,"FARM3") < 3000) && (NpcObsessedByDMT_Malak == FALSE) && (hero.guild != GIL_KDF) && (Kapitel >= 3))
 	{
 		return TRUE;
 	};

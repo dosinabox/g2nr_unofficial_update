@@ -115,7 +115,6 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItMi_GoldChest,Npc_HasItems(slf,ItMi_GoldChest));
 		Npc_RemoveInvItems(slf,ItMi_JeweleryChest,Npc_HasItems(slf,ItMi_JeweleryChest));
 		Npc_RemoveInvItems(slf,ItMi_InnosStatue,Npc_HasItems(slf,ItMi_InnosStatue));
-		Npc_RemoveInvItems(slf,ItMi_Sextant,Npc_HasItems(slf,ItMi_Sextant));
 		Npc_RemoveInvItems(slf,ItPl_Beet,Npc_HasItems(slf,ItPl_Beet));
 		Npc_RemoveInvItems(slf,ItPl_SwampHerb,Npc_HasItems(slf,ItPl_SwampHerb));
 //		Npc_RemoveInvItems(slf,ItPl_Mushroom_01,Npc_HasItems(slf,ItPl_Mushroom_01));
@@ -156,6 +155,27 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		{
 			Npc_RemoveInvItem(slf,ItWr_Addon_BanditTrader);
 		};
+		if(MIS_RamirezSextant == LOG_SUCCESS)
+		{
+			Npc_RemoveInvItems(slf,ItMi_Sextant,Npc_HasItems(slf,ItMi_Sextant));
+		};
+		if(MIS_CassiaKelche == LOG_SUCCESS)
+		{
+			Npc_RemoveInvItems(slf,ItMi_BloodCup_MIS,Npc_HasItems(slf,ItMi_BloodCup_MIS));
+		};
+		if(MIS_Bromor_LuciaStoleGold == LOG_SUCCESS)
+		{
+			Npc_RemoveInvItem(slf,ItMi_BromorsGeld_Addon);
+		};
+		if(MIS_Maria_BringPlate == LOG_SUCCESS)
+		{
+			Npc_RemoveInvItem(slf,ItMi_MariasGoldPlate);
+		};
+		if(MIS_Addon_Greg_RakeCave == LOG_SUCCESS)
+		{
+			Npc_RemoveInvItem(slf,ItMi_GregsSilverPlate);
+			Npc_RemoveInvItem(slf,ItAm_Addon_Greg);
+		};
 	};
 };
 
@@ -176,6 +196,19 @@ func void B_ClearTools(var C_Npc slf)
 		{
 			Npc_RemoveInvItems(slf,ItMi_Broom,Npc_HasItems(slf,ItMi_Broom));
 			Npc_RemoveInvItems(slf,ItMi_Lute,Npc_HasItems(slf,ItMi_Lute));
+		};
+	};
+};
+
+func void B_ClearSpecialAmmo(var C_Npc slf)
+{
+	if(Hlp_IsValidNpc(slf))
+	{
+		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Bennet_DI))
+		{
+			Npc_RemoveInvItems(slf,ItRw_Addon_MagicBolt,Npc_HasItems(slf,ItRw_Addon_MagicBolt));
+			Npc_RemoveInvItems(slf,ItRw_Addon_MagicArrow,Npc_HasItems(slf,ItRw_Addon_MagicArrow));
+			Npc_RemoveInvItems(slf,ItRw_Addon_FireArrow,Npc_HasItems(slf,ItRw_Addon_FireArrow));
 		};
 	};
 };

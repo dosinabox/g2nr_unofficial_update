@@ -163,8 +163,8 @@ instance ItRi_Prot_Edge_01_Valentino(C_Item)
 	visual = "ItRi_Prot_Edge_01.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	on_equip = Equip_ValentinosRing;
-	on_unequip = UnEquip_ValentinosRing;
+	on_equip = Equip_ItRi_Prot_Edge_01;
+	on_unequip = UnEquip_ItRi_Prot_Edge_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо железной кожи";
@@ -177,20 +177,6 @@ instance ItRi_Prot_Edge_01_Valentino(C_Item)
 	inv_rotz = INVCAM_Z_RING_STANDARD;
 	inv_rotx = INVCAM_X_RING_STANDARD;
 };
-
-
-func void Equip_ValentinosRing()
-{
-	self.protection[PROT_EDGE] += Ri_ProtEdge;
-	self.protection[PROT_BLUNT] += Ri_ProtEdge;
-};
-
-func void UnEquip_ValentinosRing()
-{
-	self.protection[PROT_EDGE] -= Ri_ProtEdge;
-	self.protection[PROT_BLUNT] -= Ri_ProtEdge;
-};
-
 
 instance ItKe_Dexter(C_Item)
 {
@@ -263,16 +249,13 @@ instance ItWr_ManaRezept(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 20;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Recipe.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_ManaRezept;
 	scemeName = "MAP";
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 
@@ -351,6 +334,7 @@ func void UsePassierschein()
 //	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
+	Player_KnowsLariusAsGovernor = TRUE;
 };
 
 
@@ -383,32 +367,6 @@ instance ItKe_Storage(C_Item)
 	inv_rotx = -25;
 	inv_roty = 0;
 	inv_zbias = 145;
-};
-
-
-const int HP_Hering = 20;
-
-instance ItFo_SmellyFish(C_Item)
-{
-	name = "Селедка";
-	mainflag = ITEM_KAT_FOOD;
-	flags = ITEM_MISSION;
-	value = 20;
-	visual = "ItFo_SmellyFish.3DS";
-	material = MAT_LEATHER;
-	scemeName = "FOODHUGE";
-	on_state[0] = Use_SmellyFish;
-	description = name;
-	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Hering;
-	text[5] = NAME_Value;
-	count[5] = value;
-};
-
-
-func void Use_SmellyFish()
-{
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Hering);
 };
 
 
@@ -768,7 +726,6 @@ instance ItPo_Perm_LittleMana(C_Item)
 func void UseItPo_LittleMana()
 {
 	B_RaiseAttribute(self,ATR_MANA_MAX,3);
-	Npc_ChangeAttribute(self,ATR_MANA,3);
 };
 
 
@@ -795,8 +752,8 @@ instance Holy_Hammer_MIS(C_Item)
 //	count[2] = damageTotal;
 //	text[3] = NAME_Str_needed;
 //	count[3] = cond_value[2];
-	text[2] = "Урон неизвестен";
-	text[3] = "Требование к силе неизвестно";
+	text[2] = NAME_DamageUnknown;
+	text[3] = NAME_Unknown_needed;
 	text[4] = NAME_TwoHanded;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -988,8 +945,8 @@ instance ItRi_Prot_Point_01_MIS(C_Item)
 	visual = "ItRi_Prot_Point_01.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	on_equip = Equip_ItRi_Prot_Point_01_MIS;
-	on_unequip = UnEquip_ItRi_Prot_Point_01_MIS;
+	on_equip = Equip_ItRi_Prot_Point_01;
+	on_unequip = UnEquip_ItRi_Prot_Point_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо деревянной кожи";
@@ -1002,18 +959,6 @@ instance ItRi_Prot_Point_01_MIS(C_Item)
 	inv_rotz = INVCAM_Z_RING_STANDARD;
 	inv_rotx = INVCAM_X_RING_STANDARD;
 };
-
-
-func void Equip_ItRi_Prot_Point_01_MIS()
-{
-	self.protection[PROT_POINT] += Ri_ProtPoint;
-};
-
-func void UnEquip_ItRi_Prot_Point_01_MIS()
-{
-	self.protection[PROT_POINT] -= Ri_ProtPoint;
-};
-
 
 instance ItMi_EddasStatue(C_Item)
 {
@@ -1099,6 +1044,7 @@ instance ITAR_PAL_Skel(C_Item)
 	visual_change = "Armor_Pal_Skeleton.asc";
 	visual_skin = 0;
 	material = MAT_METAL;
+	on_equip = Equip_ArmorSet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -1327,7 +1273,7 @@ instance ItRw_DragomirsArmbrust_MIS(C_Item)
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_LeichteArmbrust;
 //	visual = "ItRw_Crossbow_L_02.mms";
-	visual = "ITRW_CROSSBOW_MISSION.MMS";
+	visual = "ItRw_Crossbow_Mission_01.mms";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;

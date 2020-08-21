@@ -635,7 +635,7 @@ instance DIA_Orlan_WETTKAMPFLAEUFT(C_Info)
 
 func int DIA_Orlan_WETTKAMPFLAEUFT_Condition()
 {
-	if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (MIS_Rukhar_Wettkampf_Day <= (Wld_GetDay() - 2)))
+	if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && ((MIS_Rukhar_Wettkampf_Day <= (Wld_GetDay() - 2)) || (Kapitel >= 4)))
 	{
 		return TRUE;
 	};
@@ -648,7 +648,7 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 	AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_02");	//Состязание 'кто кого перепьет' наконец-то закончилось.
 	AI_Output(other,self,"DIA_Orlan_WETTKAMPFLAEUFT_15_03");	//Кто победил?
 //	if(!Mob_HasItems("CHEST_RUKHAR",ItFo_Booze) && Mob_HasItems("CHEST_RUKHAR",ItFo_Water))
-	if(!Mob_HasItems("CHEST_RUKHAR",ItFo_Booze) && (Mob_HasItems("CHEST_RUKHAR",ItFo_Water) > 0))
+	if(!Mob_HasItems("CHEST_RUKHAR",ItFo_Booze) && (Mob_HasItems("CHEST_RUKHAR",ItFo_Water) > 0) && (Rukhar_Won_Wettkampf == FALSE))
 	{
 		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_04");	//На этот раз Рэндольф. Рухару нынче не повезло.
 	}
@@ -660,6 +660,10 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 	if((hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_06");	//Я надеюсь, это было в последний раз. Я не хочу, чтобы подобное повторялось в моем доме. Заруби это у себя на носу.
+	}
+	else if((Rukhar_Won_Wettkampf == FALSE) && !Npc_KnowsInfo(other,DIA_Orlan_EINGEBROCKT))
+	{
+		AI_Output(self,other,"DIA_Orlan_EINGEBROCKT_05_00");	//Да уж, доставил ты мне проблем. Теперь мне нужно быть поосторожнее с Рухаром.
 	};
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
@@ -679,13 +683,16 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 	};
 	if(Hlp_IsValidNpc(Rukhar))
 	{
-		if(Rukhar_Won_Wettkampf == TRUE)
+		if(Kapitel < 4)
 		{
-			B_StartOtherRoutine(Rukhar,"WettkampfRukharWon");
-		}
-		else
-		{
-			B_StartOtherRoutine(Rukhar,"WettkampfRukharLost");
+			if(Rukhar_Won_Wettkampf == TRUE)
+			{
+				B_StartOtherRoutine(Rukhar,"WettkampfRukharWon");
+			}
+			else
+			{
+				B_StartOtherRoutine(Rukhar,"WettkampfRukharLost");
+			};
 		};
 	};
 	MIS_Rukhar_Wettkampf = LOG_SUCCESS;
@@ -705,7 +712,7 @@ instance DIA_Orlan_EINGEBROCKT(C_Info)
 
 func int DIA_Orlan_EINGEBROCKT_Condition()
 {
-	if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (MIS_Rukhar_Wettkampf == LOG_Running))
+	if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (MIS_Rukhar_Wettkampf == LOG_Running) && (MIS_Rukhar_Wettkampf_Day > (Wld_GetDay() - 2)) && (Kapitel < 4))
 	{
 		return TRUE;
 	};

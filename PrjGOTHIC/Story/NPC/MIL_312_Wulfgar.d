@@ -15,7 +15,8 @@ instance MIL_312_Wulfgar(Npc_Default)
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,60);
+//	B_SetFightSkills(self,60);
+	B_SetTeacherFightSkills(self,TeachLimit_1H_Wulfgar,TeachLimit_2H_Wulfgar,60,60);
 	daily_routine = Rtn_PreStart_312;
 };
 

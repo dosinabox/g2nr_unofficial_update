@@ -1,48 +1,50 @@
 
-func void B_LogEntry(var string topic,var string entry)
+var int YPOS_LOGENTRY_NEXTLINE;
+
+func void B_WriteToLog(var string topic,var string entry)
 {
+	var string text;
 	Log_AddEntry(topic,entry);
-	PrintScreen(PRINT_NewLogEntry,-1,YPOS_LOGENTRY,FONT_ScreenSmall,2);
 	Snd_Play("LogEntry");
+	if(NewLogEnabled == TRUE)
+	{
+		YPOS_LOGENTRY_NEXTLINE = YPOS_LOGENTRY_NEW + 2;
+		text = ConcatStrings("'",topic);
+		PrintScreen(ConcatStrings(text,"'"),-1,YPOS_LOGENTRY_NEXTLINE,FONT_ScreenSmall,3);
+	}
+	else
+	{
+		PrintScreen(PRINT_NewLogEntry,-1,YPOS_LOGENTRY,FONT_ScreenSmall,2);
+	};
 };
 
-func void B_CheckDynamicText()
+func void B_LogEntry(var string topic,var string entry)
 {
-	if(Hammer_Once == FALSE)
+	B_WriteToLog(topic,entry);
+	if(NewLogEnabled == TRUE)
 	{
-		TEXT_LousHammer_Setting = PRINT_UnknownEffect;
-	}
-	else
-	{
-		TEXT_LousHammer_Setting = PRINT_LousHammerNoEffect;
+		PrintScreen(ConcatStrings(PRINT_NewLogEntry,":"),-1,YPOS_LOGENTRY_NEW,FONT_ScreenSmall,3);
 	};
-	if(Zeitspalt_Used == FALSE)
+};
+
+func void B_LogEntries(var string topic,var string entry)
+{
+	B_WriteToLog(topic,entry);
+	if(NewLogEnabled == TRUE)
 	{
-		TEXT_Zeitspalt_Setting = PRINT_UnknownEffect;
-	}
-	else
-	{
-		TEXT_Zeitspalt_Setting = PRINT_SlowTime;
+		PrintScreen(PRINT_NewLogEntries,-1,YPOS_LOGENTRY_NEW,FONT_ScreenSmall,3);
 	};
-	if(MegaDrink_Used == FALSE)
+};
+
+func void B_LogNextEntry(var string topic,var string entry)
+{
+	var string text;
+	Log_AddEntry(topic,entry);
+	if(NewLogEnabled == TRUE)
 	{
-		TEXT_MegaDrink_Setting_Desc = " ";
-		TEXT_MegaDrink_Setting = PRINT_UnknownEffect;
-		COUNT_MegaDrink_Setting = 0;
-	}
-	else
-	{
-		TEXT_MegaDrink_Setting_Desc = TEXT_MegaDrink_Setting_Desc_Print;
-		TEXT_MegaDrink_Setting = TEXT_MegaDrink_Setting_Print;
-		COUNT_MegaDrink_Setting = STRorDEX_MegaDrink;
-	};
-	if(MIS_Bennet_InnosEyeRepairedSetting == LOG_SUCCESS)
-	{
-		TEXT_Innoseye_Setting = TEXT_Innoseye_Setting_Repaired;
-	}
-	else
-	{
-		TEXT_Innoseye_Setting = TEXT_Innoseye_Setting_Broken;
+		YPOS_LOGENTRY_NEXTLINE += 2;
+		text = ConcatStrings("'",topic);
+		PrintScreen(ConcatStrings(text,"'"),-1,YPOS_LOGENTRY_NEXTLINE,FONT_ScreenSmall,3);
 	};
 };
 

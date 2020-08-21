@@ -83,7 +83,7 @@ func void DIA_Lehmar_GELDLEIHEN_Info()
 
 func void DIA_Lehmar_GELDLEIHEN_back()
 {
-	AI_Output(other,self,"DIA_Lehmar_GELDLEIHEN_back_15_00");	//Я подумаю над этим.
+	DIA_Common_IWillThinkAboutIt();
 	AI_Output(self,other,"DIA_Lehmar_GELDLEIHEN_back_09_01");	//Думай же быстрее! Не трать мое время попусту!
 	AI_StopProcessInfos(self);
 };
@@ -344,7 +344,7 @@ func int DIA_Lehmar_PICKPOCKET_Condition()
 //	return C_StealItems(20,Hlp_GetInstanceID(ItWr_Schuldenbuch),1);
 	if(Npc_HasItems(self,ItWr_Schuldenbuch))
 	{
-		return C_StealItem(20,Hlp_GetInstanceID(ItWr_Schuldenbuch));
+		return C_StealItem(20);
 	};
 	return FALSE;
 };

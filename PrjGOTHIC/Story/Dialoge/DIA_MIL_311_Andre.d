@@ -282,7 +282,7 @@ func void DIA_Andre_PMSchulden_HowMuchAgain()
 	Info_ClearChoices(DIA_Andre_PMSchulden);
 	Info_ClearChoices(DIA_Andre_PETZMASTER);
 	Info_AddChoice(DIA_Andre_PMSchulden,"У меня недостаточно золота.",DIA_Andre_PETZMASTER_PayLater);
-	Info_AddChoice(DIA_Andre_PMSchulden,"Сколько там нужно?",DIA_Andre_PMSchulden_HowMuchAgain);
+	Info_AddChoice(DIA_Andre_PMSchulden,"Сколько там еще?",DIA_Andre_PMSchulden_HowMuchAgain);
 	if(Npc_HasItems(other,ItMi_Gold) >= Andre_Schulden)
 	{
 		Info_AddChoice(DIA_Andre_PMSchulden,"Я хочу заплатить штраф!",DIA_Andre_PETZMASTER_PayNow);
@@ -507,7 +507,10 @@ func void DIA_Andre_Message_Dragons()
 		AI_Output(self,other,"DIA_Andre_Message_Dragons_08_04");	//Я уверен, что ты достаточно умен и понимаешь это сам.
 	};
 	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_05");	//Так все-таки, зачем тебе нужно увидеть его?
-	Player_TalkedAboutDragonsToSomeone = TRUE;
+	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons))
+	{
+		Player_TalkedAboutDragonsToSomeone = TRUE;
+	};
 };
 
 func void DIA_Andre_Message_Personal()
@@ -662,6 +665,7 @@ func void DIA_Andre_AskToJoin_Info()
 	AI_Output(self,other,"DIA_Andre_AskToJoin_08_05");	//Мой командующий опасается, что в наши ряды могут проникнуть шпионы или диверсанты.
 	AI_Output(self,other,"DIA_Andre_AskToJoin_08_06");	//Он хочет таким образом свести риск к минимуму.
 	AI_Output(self,other,"DIA_Andre_AskToJoin_08_07");	//Поэтому ты сначала должен стать гражданином города. Не знаю, имеет это правило смысл или нет, но приказ есть приказ.
+	MIL_Aufnahme = LOG_Running;
 	Log_CreateTopic(TOPIC_BecomeMIL,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BecomeMIL,LOG_Running);
 	B_LogEntry(TOPIC_BecomeMIL,"Прежде чем я смогу вступить в ряды городской стражи, я должен стать гражданином города.");
@@ -761,6 +765,14 @@ func void DIA_Andre_Alternative_Info()
 };
 
 
+func void B_Andre_StartGuildOfThievesQuest()
+{
+	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_01");	//Последнее время в городе развелось слишком много воров. И мы никак не можем поймать ни одного из них. Воры действуют очень осторожно.
+	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_02");	//Эти мерзавцы знают свое дело. Я уверен, что в городе действует организованная банда.
+	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_03");	//Я не удивлюсь, если в Хоринисе появилась гильдия воров. Найди главарей этой банды и ликвидируй их.
+	MIS_Andre_GuildOfThieves = LOG_Running;
+};
+
 instance DIA_Andre_GuildOfThieves(C_Info)
 {
 	npc = MIL_311_Andre;
@@ -787,10 +799,7 @@ func int DIA_Andre_GuildOfThieves_Condition()
 func void DIA_Andre_GuildOfThieves_Info()
 {
 	AI_Output(other,self,"DIA_Andre_GuildOfThieves_15_00");	//Что у тебя за проблема?
-	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_01");	//Последнее время в городе развелось слишком много воров. И мы никак не можем поймать ни одного из них. Воры действуют очень осторожно.
-	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_02");	//Эти мерзавцы знают свое дело. Я уверен, что в городе действует организованная банда.
-	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_03");	//Я не удивлюсь, если в Хоринисе появилась гильдия воров. Найди главарей этой банды и ликвидируй их.
-	MIS_Andre_GuildOfThieves = LOG_Running;
+	B_Andre_StartGuildOfThievesQuest();
 	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_04");	//Тогда я смогу гарантировать, что ты будешь принят в ополчение - неважно, гражданин ты или нет.
@@ -884,7 +893,7 @@ func void B_AndreSold()
 func void B_AndreNoProof()
 {
 	AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
-	AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
+	DIA_Common_No();
 	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
 };
 
@@ -950,7 +959,7 @@ func void DIA_Andre_Auslieferung_Info()
 
 func void DIA_Andre_Auslieferung_Back()
 {
-	AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
+	DIA_Common_IllBeBackLater();
 	Info_ClearChoices(DIA_Andre_Auslieferung);
 };
 
@@ -1128,7 +1137,7 @@ func void DIA_Andre_DGRunning_Info()
 	{
 		Info_AddChoice(DIA_Andre_DGRunning,"Я всех их ликвидировал!",DIA_Andre_DGRunning_Success);
 	};
-	if(((Cassia.aivar[AIV_TalkedToPlayer] == TRUE) || (Jesper.aivar[AIV_TalkedToPlayer] == TRUE) || (Ramirez.aivar[AIV_TalkedToPlayer] == TRUE)) && (Andre_FoundThieves_Reported == FALSE))
+	if(((Cassia.aivar[AIV_TalkedToPlayer] == TRUE) || (Jesper.aivar[AIV_TalkedToPlayer] == TRUE) || (Ramirez.aivar[AIV_TalkedToPlayer] == TRUE) || (DG_gefunden == TRUE)) && (Andre_FoundThieves_Reported == FALSE))
 	{
 		Info_AddChoice(DIA_Andre_DGRunning,"Я нашел логово гильдии воров!",DIA_Andre_DGRunning_Verrat);
 	};
@@ -1168,18 +1177,6 @@ func void DIA_Andre_DGRunning_Success()
 	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_01");	//Ты оказал городу большую услугу.
 	DG_gefunden = TRUE;
 	MIS_Andre_GuildOfThieves = LOG_SUCCESS;
-	if(MIS_CassiaRing == LOG_Running)
-	{
-		MIS_CassiaRing = LOG_FAILED;
-	};
-	if(MIS_CassiaKelche == LOG_Running)
-	{
-		MIS_CassiaKelche = LOG_FAILED;
-	};
-	if(MIS_RamirezSextant == LOG_Running)
-	{
-		MIS_RamirezSextant = LOG_FAILED;
-	};
 	B_GivePlayerXP(XP_GuildOfThievesPlatt);
 	if(other.guild == GIL_NONE)
 	{
@@ -1191,6 +1188,12 @@ func void DIA_Andre_DGRunning_Success()
 	};
 	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_04");	//Тебе полагается награда за этих бандитов. Вот, возьми.
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld * 3);
+	B_StartOtherRoutine(MIL_318_Miliz,"SEWER");
+	B_StartOtherRoutine(MIL_327_Miliz,"SEWER");
+	if(Npc_IsDead(Hanna))
+	{
+		B_SendMilitiaToHotel();
+	};
 	Info_ClearChoices(DIA_Andre_DGRunning);
 };
 
@@ -1208,6 +1211,10 @@ instance DIA_Andre_FoundThieves_KilledByMilitia(C_Info)
 
 func int DIA_Andre_FoundThieves_KilledByMilitia_Condition()
 {
+	if(Andre_FoundThieves_KilledByMilitia == TRUE)
+	{
+		return TRUE;
+	};
 	if(Andre_FoundThieves_Reported == TRUE)
 	{
 		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
@@ -1225,6 +1232,10 @@ func void DIA_Andre_FoundThieves_KilledByMilitia_Info()
 	AI_Output(self,other,"DIA_Andre_DGRunning_08_01");	//Ты можешь забыть об этом деле. Я послал своих людей в канализацию.
 	AI_Output(self,other,"DIA_Andre_DGRunning_08_02");	//Гильдия воров теперь не более чем перевернутая страница истории этого города.
 	B_AndreSold();
+	if(Npc_IsDead(Hanna))
+	{
+		B_SendMilitiaToHotel();
+	};
 	B_KillThievesGuild();
 	MIS_Andre_GuildOfThieves = LOG_FAILED;
 	if(MIS_CassiaRing == LOG_Running)
@@ -1325,7 +1336,10 @@ func void DIA_Andre_JOIN_Yes()
 	CreateInvItem(hero,ITAR_MIL_L);
 	AI_PrintScreen("Легкие доспехи ополчения получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	Snd_Play("LEVELUP");
-	Npc_ExchangeRoutine(Lothar,"START");
+	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
+	{
+		Npc_ExchangeRoutine(Lothar,"START");
+	};
 	SLD_Aufnahme = LOG_OBSOLETE;
 	KDF_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;
@@ -1464,7 +1478,7 @@ func void DIA_Andre_FOUND_PECK_Info()
 	AI_Output(other,self,"DIA_Andre_FOUND_PECK_15_00");	//Мне удалось найти Пека.
 	if(Npc_IsDead(Peck))
 	{
-		AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_02");	//Он мертв.
+		DIA_Common_HeIsDead();
 		AI_Output(self,other,"DIA_Maleth_GEHSTOCK_08_01");	//Это невероятно! Я...
 		AI_Output(self,other,"DIA_Maleth_BanditsDEAD_08_04");	//Я расскажу остальным об этом!
 		MIS_Andre_Peck = LOG_OBSOLETE;
@@ -1710,7 +1724,7 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 		AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
 		if(!Npc_HasItems(other,ItMi_Joint))
 		{
-			AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
+			DIA_Common_No();
 			AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
 		}
 		else
@@ -1829,10 +1843,7 @@ func void DIA_Andre_ThievesGuildQuestForMIL_Info()
 	AI_Output(other,self,"DIA_Andre_HILFBAUERLOBART_15_00");	//У тебя есть еще задания для меня?
 	if(MIS_Andre_GuildOfThieves == FALSE)
 	{
-		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_01");	//Последнее время в городе развелось слишком много воров. И мы никак не можем поймать ни одного из них. Воры действуют очень осторожно.
-		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_02");	//Эти мерзавцы знают свое дело. Я уверен, что в городе действует организованная банда.
-		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_03");	//Я не удивлюсь, если в Хоринисе появилась гильдия воров. Найди главарей этой банды и ликвидируй их.
-		MIS_Andre_GuildOfThieves = LOG_Running;
+		B_Andre_StartGuildOfThievesQuest();
 	}
 	else
 	{
@@ -2028,7 +2039,7 @@ func void DIA_Andre_Cornelius_Liar_Info()
 
 func void DIA_Andre_Cornelius_Liar_No()
 {
-	AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
+	DIA_Common_No();
 	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
 	if(other.guild != GIL_KDF)
 	{

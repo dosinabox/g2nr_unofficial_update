@@ -42,7 +42,7 @@ func int DIA_Franco_PICKPOCKET_Condition()
 //	return C_StealItems(60,Hlp_GetInstanceID(ItAm_Addon_Franco),1);
 	if(Npc_HasItems(self,ItAm_Addon_Franco))
 	{
-		return C_StealItem(60,Hlp_GetInstanceID(ItAm_Addon_Franco));
+		return C_StealItem(60);
 	};
 	return FALSE;
 };
@@ -258,8 +258,8 @@ func void DIA_Addon_Franco_Mis2_Info()
 	MIS_HlpEdgor = LOG_Running;
 	Log_CreateTopic(Topic_Addon_Stoneplate,LOG_MISSION);
 	Log_SetTopicStatus(Topic_Addon_Stoneplate,LOG_Running);
-	B_LogEntry(Topic_Addon_Stoneplate,"‘ранко нужна каменна€ табличка, которую должен был принести ему Ёдгор. “еперь это мо€ забота.");
-	Log_AddEntry(Topic_Addon_Franco,"‘ранко хочет, чтобы € помог Ёдгору.");
+	B_LogEntries(Topic_Addon_Stoneplate,"‘ранко нужна каменна€ табличка, которую должен был принести ему Ёдгор. “еперь это мо€ забота.");
+	B_LogNextEntry(Topic_Addon_Franco,"‘ранко хочет, чтобы € помог Ёдгору.");
 };
 
 

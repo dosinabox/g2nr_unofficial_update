@@ -275,7 +275,7 @@ func int DIA_Coragon_Schuldenbuch_Condition()
 
 func void DIA_Coragon_Schuldenbuch_Info()
 {
-	AI_Output(other,self,"DIA_Coragon_Add_15_15");	//Посмотри, что у меня есть...
+	DIA_Common_LookWhatIGot();
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_16");	//Хм-м... (удивленно) Но это же гроссбух Лемара!
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_17");	//Что ты с ним собираешься делать?
 };
@@ -302,7 +302,7 @@ func int DIA_Coragon_GiveBook_Condition()
 
 func void DIA_Coragon_GiveBook_Info()
 {
-	AI_Output(other,self,"DIA_Coragon_Add_15_18");	//Вот твоя книга.
+	DIA_Common_HereIsYourBook();
 	if(ClassicLehmarBook == FALSE)
 	{
 		AI_PrintScreen("Долговая книга отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
@@ -474,13 +474,13 @@ func void DIA_Coragon_PICKPOCKET_Book_DoIt()
 		CreateInvItem(other,ItWr_Schuldenbuch);
 		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketSuccess));
+		B_LogEntry(Topic_PickPocket,ConcatStrings("Корагон",PRINT_PickPocketSuccess));
 		SchuldBuch_Stolen_Coragon = TRUE;
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
+		B_LogEntry(Topic_PickPocket,ConcatStrings("Корагон",PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};

@@ -263,7 +263,7 @@ func int DIA_Angar_DJG_ANWERBEN_Condition()
 func void DIA_Angar_DJG_ANWERBEN_Info()
 {
 	AI_Output(other,self,"DIA_Angar_DJG_ANWERBEN_15_00");	//Может быть, я смогу помочь тебе найти амулет?
-	AI_Output(self,other,"DIA_Angar_DJG_ANWERBEN_04_01");	//Почему бы и нет. Помощь никогда не помещает.
+	AI_Output(self,other,"DIA_Angar_DJG_ANWERBEN_04_01");	//Почему бы и нет. Помощь никогда не помешает.
 	if(DJG_Angar_SentToStones == FALSE)
 	{
 		Info_AddChoice(DIA_Angar_DJG_ANWERBEN,Dialog_Ende_v2,DIA_Angar_DJG_ANWERBEN_gehen);
