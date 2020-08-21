@@ -218,7 +218,7 @@ instance MENUITEM_UNION_COLLIDEFIX_CHOICE(C_MENU_ITEM_DEF)
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "CollideTargetFix";
-	onchgsetoptionsection = "[UNION_SPELLFIX]";
+	onchgsetoptionsection = "UNION_SPELLFIX";
 	flags = flags & ~IT_SELECTABLE;
 	flags = flags | IT_TXT_CENTER;
 };

@@ -2068,7 +2068,7 @@ func int DIA_Addon_Lares_GOFORESTPRE_Condition()
 func void DIA_Addon_Lares_GOFORESTPRE_ja()
 {
 	B_MakeRangerReadyForMeeting(self);
-	AI_Output(other,self,"DIA_Addon_Lares_GOFORESTPRE_ja_15_00");	//Да.
+	DIA_Common_Yes();
 	AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_ja_09_01");	//Прекрасно, друг мой. В таком случае, следуй за мной. Здесь может быть небезопасно.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"GUIDEMEDIUMWALD2");

@@ -9,8 +9,8 @@
 ##            Основное           ##
 ###################################
 
-!define MOD_VERSION "24"
-!define MOD_DATE "2.20"
+!define MOD_VERSION "25"
+!define MOD_DATE "8.21"
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"
@@ -135,7 +135,7 @@ Section "Основные файлы" SecMain
 	WriteRegStr HKLM "${REGISTRY_PATH}" "HelpLink" "http://worldofplayers.ru/threads/36817"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "Publisher" "${MOD_AUTHOR}"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "DisplayIcon" "$INSTDIR\system\${MOD_NAME}.ico"
-	WriteRegDWORD HKLM "${REGISTRY_PATH}" "EstimatedSize" "255000"
+	WriteRegDWORD HKLM "${REGISTRY_PATH}" "EstimatedSize" "263000"
 SectionEnd
 
 Section "Дополнительная русская озвучка" SecAdditional_1

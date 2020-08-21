@@ -52,8 +52,8 @@ instance MENU_OPT_CONTROLS(C_MENU_DEF)
 	items[48] = "MENU_ITEM_INP_QUICKHEALTH";
 	items[49] = "MENU_ITEM_CHG_KEYS_SET_DEFAULT";
 	items[50] = "MENU_ITEM_CHG_KEYS_SET_ALTERNATIVE";
-	items[51] = "MENU_ITEM_GAMEPAD";
-	items[52] = "MENUITEM_CHG_KEYS_BACK";
+//	items[51] = "MENU_ITEM_GAMEPAD";
+	items[51] = "MENUITEM_CHG_KEYS_BACK";
 	flags = flags | MENU_SHOW_INFO;
 };
 
@@ -793,6 +793,11 @@ instance MENU_ITEM_GAMEPAD(C_MENU_ITEM_DEF)
 	hideifoptionsectionset = "INTERNAL";
 	hideifoptionset = "UnionActivated";
 	hideonvalue = 0;
+};
+
+instance MENU_OPT_CONTROLS_EXTKEYS(C_MENU_DEF)
+{
+	
 };
 
 instance MENUITEM_CHG_KEYS_BACK(C_MENU_ITEM_DEF)

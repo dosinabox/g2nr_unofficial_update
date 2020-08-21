@@ -133,8 +133,11 @@ prototype C_MENU_DEF(C_MENU)
 	posy = 0;
 	dimx = 8192;
 	dimy = 8192;
+//	dimx = 5120;
+//	dimy = 6144;
 	alpha = 254;
 	flags = MENU_EXCLUSIVE | MENU_DONTSCALE_DIM | MENU_ALIGN_CENTER;
+//	flags = MENU_EXCLUSIVE | MENU_ALIGN_CENTER;
 	eventtimermsec = 1000;
 	musictheme = "";
 	defaultoutgame = -1;

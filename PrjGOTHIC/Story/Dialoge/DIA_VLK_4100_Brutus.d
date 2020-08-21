@@ -398,7 +398,7 @@ func int DIA_Brutus_PERM4_Condition()
 
 func void DIA_Brutus_PERM4_Info()
 {
-	AI_Output(other,self,"DIA_Brutus_PERM4_15_00");	//Все в порядке?
+	DIA_Common_IsEverythingOk();
 	if((MIS_OCGateOpen == TRUE) || ((hero.guild == GIL_KDF) && (Kapitel >= 5)))
 	{
 		B_NpcObsessedByDMT(self);

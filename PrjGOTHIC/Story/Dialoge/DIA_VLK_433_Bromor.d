@@ -319,7 +319,7 @@ var int DIA_Bromor_Obsession_GotMoney;
 
 func void DIA_Bromor_Obsession_Info()
 {
-	AI_Output(other,self,"DIA_Bartok_PERM_15_00");	//Все в порядке?
+	DIA_Common_IsEverythingOk();
 	B_NpcObsessedByDMT(self);
 };
 

@@ -64,6 +64,11 @@ func void DIA_Common_NothingImportantYet()
 	AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_14");	//Пока ничего важного.
 };
 
+func void DIA_Common_Yes()
+{
+	AI_Output(other,self,"DIA_Addon_Lares_GOFORESTPRE_ja_15_00");	//Да.
+};
+
 func void DIA_Common_No()
 {
 	AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
@@ -127,6 +132,11 @@ func void DIA_Common_NotEven10Gold()
 func void DIA_Common_ImAfraidThatsTheEndForUs()
 {
 	AI_Output(other,self,"DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen_15_00");	//Боюсь, дальше наши пути расходятся.
+};
+
+func void DIA_Common_IsEverythingOk()
+{
+	AI_Output(other,self,"DIA_Brutus_PERM4_15_00");	//Все в порядке?
 };
 
 func void DIA_Common_01_AreYouTryingToPissMeOff()

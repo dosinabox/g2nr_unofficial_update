@@ -416,7 +416,7 @@ func int DIA_Fernando_Obsession_Condition()
 
 func void DIA_Fernando_Obsession_Info()
 {
-	AI_Output(other,self,"DIA_Joe_Perm_15_00");	//Все в порядке?
+	DIA_Common_IsEverythingOk();
 	B_NpcObsessedByDMT(self);
 };
 

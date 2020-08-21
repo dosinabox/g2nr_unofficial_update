@@ -65,8 +65,6 @@ instance MENU_STATUS(C_MENU_DEF)
 	items[61] = "MENU_ITEM_TALENT_17_SKILL";
 	items[62] = "MENU_ITEM_TALENT_19_TITLE";
 	items[63] = "MENU_ITEM_TALENT_19_SKILL";
-	dimx = 8192;
-	dimy = 8192;
 	flags = flags | MENU_OVERTOP | MENU_NOANI;
 	backpic = STAT_BACK_PIC;
 };

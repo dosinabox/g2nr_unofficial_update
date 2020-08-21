@@ -619,7 +619,7 @@ func void DIA_Xardas_FirstPal_Info()
 	}
 	else if(LordHagen.aivar[AIV_TalkedToPlayer] == TRUE)
 	{
-		AI_Output(other,self,"DIA_Addon_Lares_GOFORESTPRE_ja_15_00");	//Да.
+		DIA_Common_Yes();
 		if(Kapitel == 2)
 		{
 			AI_Output(other,self,"DIA_Addon_Vatras_NowRanger_15_03");	//Но он отправил меня в Долину Рудников, чтобы я добыл ему доказательства своих слов!
