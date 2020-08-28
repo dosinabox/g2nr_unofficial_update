@@ -494,7 +494,7 @@ func void B_Torlof_HolPachtVonSekob()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Torlof_Probe_15_06");	//Нет.
+		DIA_Common_No();
 	};
 	MIS_Torlof_HolPachtVonSekob = LOG_Running;
 	Sekob.flags = 0;
@@ -517,7 +517,7 @@ func void B_Torlof_BengarMilizKlatschen()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Torlof_Probe_15_06");	//Нет.
+		DIA_Common_No();
 	};
 	MIS_Torlof_BengarMilizKlatschen = LOG_Running;
 	Bengar.flags = 0;

@@ -203,14 +203,14 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить режим трусости у людей и животных",StoryHelper_Flee);
 	};
-	/*if(IgnoreBonuses == FALSE)
+	if(IgnoreBonuses == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование бонусов при прокачке",StoryHelper_Bonuses);
 	}
 	else
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование бонусов при прокачке",StoryHelper_Bonuses);
-	};*/
+	};
 	if(RandomGoblinBerries == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить рандомные гоблинские ягоды у паладинов",StoryHelper_GoblinBerries);
@@ -326,11 +326,13 @@ func void StoryHelper_Bonuses()
 	if(IgnoreBonuses == TRUE)
 	{
 		IgnoreBonuses = FALSE;
+		TAL_CostFlags_TS_PermBonus = 1;
 		PrintScreen("Оригинал: бонусы нужно копить",-1,-1,FONT_Screen,2);
 	}
 	else
 	{
 		IgnoreBonuses = TRUE;
+		TAL_CostFlags_TS_PermBonus = 0;
 		PrintScreen("Теперь бонусы можно не копить",-1,-1,FONT_Screen,2);
 	};
 	b_build_settings_diag();

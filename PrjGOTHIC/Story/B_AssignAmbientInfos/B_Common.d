@@ -139,6 +139,11 @@ func void DIA_Common_IsEverythingOk()
 	AI_Output(other,self,"DIA_Brutus_PERM4_15_00");	//Все в порядке?
 };
 
+func void DIA_Common_ShowMeYourGoods()
+{
+	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//Покажи мне свои товары.
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?

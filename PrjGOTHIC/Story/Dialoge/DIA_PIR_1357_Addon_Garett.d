@@ -412,7 +412,7 @@ func int DIA_Addon_Garett_Trade_Condition()
 
 func void DIA_Addon_Garett_Trade_Info()
 {
-	AI_Output(other,self,"DIA_Orlan_TRADE_15_00");	//Покажи мне свои товары.
+	DIA_Common_ShowMeYourGoods();
 	B_GiveTradeInv(self);
 	if(TradersHaveLimitedAmmo == TRUE)
 	{

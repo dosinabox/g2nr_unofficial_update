@@ -37,7 +37,7 @@ func void pan_s1()
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
-		player_mobsi_production = MOBSI_PAN;
+		PLAYER_MOBSI_PRODUCTION = MOBSI_PAN;
 		//AI_ProcessInfos(her);
 		AI_ProcessInfos(self);
 	};
@@ -50,7 +50,7 @@ func void stove_s1()
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
-		player_mobsi_production = MOBSI_PAN;
+		PLAYER_MOBSI_PRODUCTION = MOBSI_PAN;
 		//AI_ProcessInfos(her);
 		AI_ProcessInfos(self);
 	};

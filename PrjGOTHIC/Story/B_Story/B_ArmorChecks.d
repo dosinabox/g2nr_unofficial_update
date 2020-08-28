@@ -158,6 +158,10 @@ func int C_HenryNiceArmorCheck(var C_Npc oth)
 		{
 			return TRUE;
 		};
+		if(Hlp_IsItem(armor,ITAR_PAL_S))
+		{
+			return TRUE;
+		};
 		if(Hlp_IsItem(armor,ITAR_DJG_L))
 		{
 			return TRUE;
@@ -202,10 +206,10 @@ func int C_HenryNiceArmorCheck(var C_Npc oth)
 		{
 			return TRUE;
 		};
-		/*if(Hlp_IsItem(armor,ITAR_OHT))
+		if(Hlp_IsItem(armor,ITAR_OHT))
 		{
 			return TRUE;
-		};*/
+		};
 	};
 	return FALSE;
 };

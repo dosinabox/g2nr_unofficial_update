@@ -204,7 +204,7 @@ func int DIA_Constantino_Trade_Condition()
 
 func void DIA_Constantino_Trade_Info()
 {
-	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//Покажи мне свои товары.
+	DIA_Common_ShowMeYourGoods();
 	if(Constantino_flag == TRUE)
 	{
 		B_ClearAlchemyInv(self);
@@ -251,7 +251,7 @@ func int DIA_Constantino_NoTrade_Condition()
 
 func void DIA_Constantino_NoTrade_Info()
 {
-	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//Покажи мне свои товары.
+	DIA_Common_ShowMeYourGoods();
 	B_Constantino_NoYouAreWanted();
 	AI_StopProcessInfos(self);
 };

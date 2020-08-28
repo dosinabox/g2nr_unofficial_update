@@ -76,14 +76,6 @@ const int TAL_MaxValue[TAL_Max] =
 	100
 };
 
-// learn price depends on (training / equipment / permanent bonuses)
-const int TAL_CostFlags[TS_Max] =
-{
-	1,
-	0,
-	1
-};
-
 // teacher over limiting depends on (training / equipment / permanent bonuses)
 const int TAL_TeachLimitFlags[TS_Max] =
 {
@@ -91,6 +83,11 @@ const int TAL_TeachLimitFlags[TS_Max] =
 	1,
 	1
 };
+
+// learn price depends on (training / equipment / permanent bonuses)
+var int TAL_CostFlags_TS_Training;
+var int TAL_CostFlags_TS_TempBonus;
+var int TAL_CostFlags_TS_PermBonus;
 
 // Teach Limit Reasons
 const int TLR_AlreadyMax = 5; // talent >= 100
@@ -253,30 +250,30 @@ func int GetTalentPart_Cost_Hero(var int talent)
 	if (talent == NPC_TALENT_1H)
 	{
 		return 
-			TAL_Training[NPC_TALENT_1H] * TAL_CostFlags[TS_Training] + 
-			TAL_TempBonus[NPC_TALENT_1H] * TAL_CostFlags[TS_TempBonus] +
-			TAL_PermBonus[NPC_TALENT_1H] * TAL_CostFlags[TS_PermBonus];
+			TAL_Training[NPC_TALENT_1H] * TAL_CostFlags_TS_Training + 
+			TAL_TempBonus[NPC_TALENT_1H] * TAL_CostFlags_TS_TempBonus +
+			TAL_PermBonus[NPC_TALENT_1H] * TAL_CostFlags_TS_PermBonus;
 	}
 	else if(talent == NPC_TALENT_2H)
 	{
 		return 
-			TAL_Training[NPC_TALENT_2H] * TAL_CostFlags[TS_Training] + 
-			TAL_TempBonus[NPC_TALENT_2H] * TAL_CostFlags[TS_TempBonus] +
-			TAL_PermBonus[NPC_TALENT_2H] * TAL_CostFlags[TS_PermBonus];		
+			TAL_Training[NPC_TALENT_2H] * TAL_CostFlags_TS_Training + 
+			TAL_TempBonus[NPC_TALENT_2H] * TAL_CostFlags_TS_TempBonus +
+			TAL_PermBonus[NPC_TALENT_2H] * TAL_CostFlags_TS_PermBonus;		
 	}
 	else if(talent == NPC_TALENT_BOW)
 	{
 		return 
-			TAL_Training[NPC_TALENT_BOW] * TAL_CostFlags[TS_Training] + 
-			TAL_TempBonus[NPC_TALENT_BOW] * TAL_CostFlags[TS_TempBonus] +
-			TAL_PermBonus[NPC_TALENT_BOW] * TAL_CostFlags[TS_PermBonus];
+			TAL_Training[NPC_TALENT_BOW] * TAL_CostFlags_TS_Training + 
+			TAL_TempBonus[NPC_TALENT_BOW] * TAL_CostFlags_TS_TempBonus +
+			TAL_PermBonus[NPC_TALENT_BOW] * TAL_CostFlags_TS_PermBonus;
 	}
 	else if(talent == NPC_TALENT_CROSSBOW)
 	{
 		return 
-			TAL_Training[NPC_TALENT_CROSSBOW] * TAL_CostFlags[TS_Training] + 
-			TAL_TempBonus[NPC_TALENT_CROSSBOW] * TAL_CostFlags[TS_TempBonus] +
-			TAL_PermBonus[NPC_TALENT_CROSSBOW] * TAL_CostFlags[TS_PermBonus];
+			TAL_Training[NPC_TALENT_CROSSBOW] * TAL_CostFlags_TS_Training + 
+			TAL_TempBonus[NPC_TALENT_CROSSBOW] * TAL_CostFlags_TS_TempBonus +
+			TAL_PermBonus[NPC_TALENT_CROSSBOW] * TAL_CostFlags_TS_PermBonus;
 	};
 	return 0;
 };
@@ -696,9 +693,9 @@ func int GetTalentTrainCost_Impl(var int talent,var int value,var int change)
 	var int pointsBefore;
 	barrier = GetNextTalentBarrier(talent,value);
 	costBefore = GetTalentPointCost(talent,value);
-	costAfter = GetTalentPointCost(talent, barrier);
+	costAfter = GetTalentPointCost(talent,barrier);
 	pointsBefore = GetMin(barrier - value,change);
-	if((HonestStatCalculation == FALSE) || (TAL_CostFlags[TS_Training] == 0))
+	if(HonestStatCalculation == FALSE)
 	{
 		return change * costBefore;
 	};
@@ -805,6 +802,9 @@ var int TalentSystemSynced;
 // initialize the talent system (must not be called twice)
 func void B_InitTalentSystem()
 {
+	TAL_CostFlags_TS_Training = 1;
+	TAL_CostFlags_TS_TempBonus = 0;
+	TAL_CostFlags_TS_PermBonus = 1;
 	ValidateNpc(hero);
 	RealHero = Hlp_GetNpc(hero);
 	TAL_Training[NPC_TALENT_1H] = 0;
