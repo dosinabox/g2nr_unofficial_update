@@ -341,31 +341,6 @@ func void DIA_Lester_Sleep_Info()
 };
 
 
-/*instance DIA_Lester_KAP3_EXIT(C_Info)
-{
-	npc = PC_Psionic;
-	nr = 999;
-	condition = DIA_Lester_KAP3_EXIT_Condition;
-	information = DIA_Lester_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lester_KAP3_EXIT_Condition()
-{
-	if(Kapitel >= 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lester_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};*/
-
-
 instance DIA_Lester_BACKINTOWN(C_Info)
 {
 	npc = PC_Psionic;

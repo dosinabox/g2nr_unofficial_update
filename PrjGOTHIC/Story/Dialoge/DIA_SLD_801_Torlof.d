@@ -554,7 +554,7 @@ func void B_Torlof_TheOtherMissionDay()
 	{
 		AI_Output(self,other,"B_Torlof_TheOtherMissionDay_01_00");	//Ты потратил на это слишком много времени. Онар будет недоволен.
 		Torlof_TheOtherMission_TooLate = TRUE;
-		if(EnterOW_Kapitel2 == TRUE)
+		if(Enter_OldWorld_FirstTime_Trigger_OneTime == TRUE)
 		{
 			AI_Output(self,other,"DIA_Torlof_Add_01_00");	//И ему все равно, погибнут паладины в Долине Рудников или нет...
 		};

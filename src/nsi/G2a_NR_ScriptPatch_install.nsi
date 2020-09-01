@@ -10,7 +10,7 @@
 ###################################
 
 !define MOD_VERSION "25"
-!define MOD_DATE "8.21"
+!define MOD_DATE "9.1"
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"
@@ -107,16 +107,9 @@ Section "Основные файлы" SecMain
 	SectionIn RO
 	CreateDirectory "$INSTDIR\saves_${MOD_NAME}\current"
 
-	IfFileExists "$INSTDIR\Data\MENU_AutoScale_G2.vdf" menu_found menu_not_found
-	menu_found:
-	SetOutPath "$INSTDIR\Data\ModVDF"
-	File "g2a_nr_scriptpatch_v${MOD_VERSION}_autoscale.mod"
-	goto check_end
-	menu_not_found:
-	check_end:
-
 	SetOutPath "$INSTDIR\Data\ModVDF"
 	File "g2a_nr_scriptpatch_v${MOD_VERSION}.mod"
+	File "g2a_nr_scriptpatch_v${MOD_VERSION}_plugins.mod"
 
 	SetOutPath "$INSTDIR\system"
 	File "${MOD_NAME}.ico"

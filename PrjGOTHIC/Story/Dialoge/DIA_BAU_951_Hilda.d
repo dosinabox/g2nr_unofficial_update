@@ -12,15 +12,12 @@ instance DIA_Hilda_EXIT(C_Info)
 
 func int DIA_Hilda_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Hilda_EXIT_Info()
 {
-	if(!Npc_HasEquippedArmor(other))
+	if((Kapitel < 3) && !Npc_HasEquippedArmor(other))
 	{
 		PlayerVisitedLobartFarmArmorless = TRUE;
 	};
@@ -308,31 +305,6 @@ func void DIA_Hilda_PfanneTooLate_Info()
 		B_CheckLog();
 		AI_StopProcessInfos(self);
 	};
-};
-
-
-instance DIA_Hilda_KAP3_EXIT(C_Info)
-{
-	npc = BAU_951_Hilda;
-	nr = 999;
-	condition = DIA_Hilda_KAP3_EXIT_Condition;
-	information = DIA_Hilda_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Hilda_KAP3_EXIT_Condition()
-{
-	if(Kapitel >= 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Hilda_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

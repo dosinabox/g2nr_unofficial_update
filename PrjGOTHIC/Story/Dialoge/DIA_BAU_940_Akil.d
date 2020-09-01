@@ -12,10 +12,7 @@ instance DIA_Akil_EXIT(C_Info)
 
 func int DIA_Akil_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Akil_EXIT_Info()
@@ -479,31 +476,6 @@ func void DIA_Akil_Perm_Info()
 		AI_Output(other,self,"DIA_Akil_Perm_15_06");	//Это не новость.
 		AI_Output(self,other,"DIA_Akil_Perm_13_07");	//Ну и ладно. Я просто подумал, что тебе стоит знать это.
 	};
-};
-
-
-instance DIA_Akil_KAP3_EXIT(C_Info)
-{
-	npc = BAU_940_Akil;
-	nr = 999;
-	condition = DIA_Akil_KAP3_EXIT_Condition;
-	information = DIA_Akil_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Akil_KAP3_EXIT_Condition()
-{
-	if(Kapitel >= 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Akil_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

@@ -161,8 +161,8 @@ func void DIA_Bilgot_KNOWSLEADSNAPPER_Info()
 	AI_Output(self,other,"DIA_Bilgot_KNOWSLEADSNAPPER_05_07");	//Я видел его на ступенях старой сторожевой башни.
 	AI_Output(other,self,"DIA_Bilgot_KNOWSLEADSNAPPER_15_08");	//Отлично. Мне кажется, я понял. Спасибо!
 	AI_Output(self,other,"DIA_Bilgot_KNOWSLEADSNAPPER_05_09");	//Помни, ты дал мне слово!
-	NewMine_LeadSnapper_Spawned = TRUE;
 	Wld_InsertNpc(NewMine_LeadSnapper,"OW_ORC_LOOKOUT_2_01");
+	NewMine_LeadSnapper_Spawned = TRUE;
 	B_LogEntries(TOPIC_FajethKillSnapper,"Билгот рассказал мне о вожаке стаи снепперов. Он должен быть у старой сторожевой башни.");
 	Log_CreateTopic(TOPIC_BilgotEscort,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BilgotEscort,LOG_Running);

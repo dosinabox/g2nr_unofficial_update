@@ -12,10 +12,7 @@ instance DIA_Tandor_EXIT(C_Info)
 
 func int DIA_Tandor_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Tandor_EXIT_Info()
@@ -197,58 +194,6 @@ func void DIA_Tandor_Equipment_Crossbow()
 };
 
 
-instance DIA_Tandor_KAP3_EXIT(C_Info)
-{
-	npc = PAL_260_Tandor;
-	nr = 999;
-	condition = DIA_Tandor_KAP3_EXIT_Condition;
-	information = DIA_Tandor_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Tandor_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Tandor_KAP3_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Tandor_KAP4_EXIT(C_Info)
-{
-	npc = PAL_260_Tandor;
-	nr = 999;
-	condition = DIA_Tandor_KAP4_EXIT_Condition;
-	information = DIA_Tandor_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Tandor_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Tandor_KAP4_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Tandor_News(C_Info)
 {
 	npc = PAL_260_Tandor;
@@ -280,32 +225,6 @@ func void DIA_Tandor_News_Info()
 		AI_Output(self,other,"DIA_Tandor_News_08_02");	//Сюда прибыли охотники на драконов.
 		AI_Output(self,other,"DIA_Tandor_News_08_03");	//Похоже, это крепкие ублюдки. Надеюсь, это действительно так, иначе вряд ли им удастся выжить здесь.
 	};
-};
-
-
-instance DIA_Tandor_KAP5_EXIT(C_Info)
-{
-	npc = PAL_260_Tandor;
-	nr = 999;
-	condition = DIA_Tandor_KAP5_EXIT_Condition;
-	information = DIA_Tandor_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Tandor_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Tandor_KAP5_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 

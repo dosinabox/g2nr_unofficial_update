@@ -958,7 +958,7 @@ instance DIA_Lee_Report(C_Info)
 func int DIA_Lee_Report_Condition()
 {
 //	if((EnterOW_Kapitel2 == TRUE) && (Kapitel <= 3))
-	if(EnterOW_Kapitel2 == TRUE)
+	if(Enter_OldWorld_FirstTime_Trigger_OneTime == TRUE)
 	{
 		return TRUE;
 	};

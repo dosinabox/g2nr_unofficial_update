@@ -543,58 +543,6 @@ func void DIA_Gorax_KDF_Info()
 };
 
 
-/*instance DIA_Gorax_Kap2_EXIT(C_Info)
-{
-	npc = KDF_508_Gorax;
-	nr = 999;
-	condition = DIA_Gorax_Kap2_EXIT_Condition;
-	information = DIA_Gorax_Kap2_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Gorax_Kap2_EXIT_Condition()
-{
-	if(Kapitel == 2)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Gorax_Kap2_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Gorax_Kap3_EXIT(C_Info)
-{
-	npc = KDF_508_Gorax;
-	nr = 999;
-	condition = DIA_Gorax_Kap3_EXIT_Condition;
-	information = DIA_Gorax_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Gorax_Kap3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Gorax_Kap3_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};*/
-
-
 instance DIA_Gorax_KILLPEDRO(C_Info)
 {
 	npc = KDF_508_Gorax;
@@ -647,55 +595,4 @@ func void DIA_Gorax_KILLPEDRO_ja()
 	AI_StopProcessInfos(self);
 };
 
-
-/*instance DIA_Gorax_Kap4_EXIT(C_Info)
-{
-	npc = KDF_508_Gorax;
-	nr = 999;
-	condition = DIA_Gorax_Kap4_EXIT_Condition;
-	information = DIA_Gorax_Kap4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Gorax_Kap4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Gorax_Kap4_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Gorax_Kap5_EXIT(C_Info)
-{
-	npc = KDF_508_Gorax;
-	nr = 999;
-	condition = DIA_Gorax_Kap5_EXIT_Condition;
-	information = DIA_Gorax_Kap5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Gorax_Kap5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Gorax_Kap5_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};*/
 

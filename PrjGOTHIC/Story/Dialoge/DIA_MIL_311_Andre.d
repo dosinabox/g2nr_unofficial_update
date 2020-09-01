@@ -1965,7 +1965,7 @@ instance DIA_Andre_BerichtDrachen(C_Info)
 
 func int DIA_Andre_BerichtDrachen_Condition()
 {
-	if((EnterOW_Kapitel2 == TRUE) && (MIS_OLDWORLD != LOG_SUCCESS))
+	if((Enter_OldWorld_FirstTime_Trigger_OneTime == TRUE) && (MIS_OLDWORLD != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -1977,9 +1977,13 @@ func void DIA_Andre_BerichtDrachen_Info()
 	if(Npc_HasItems(hero,ItWr_PaladinLetter_MIS))
 	{
 		AI_Output(other,self,"DIA_Andre_Add_15_14");	//У меня есть письмо от командующего Гаронда, подтверждающее то, что я сказал.
+		AI_Output(self,other,"DIA_Andre_Add_08_10");	//Это заинтересует лорда Хагена!
+		B_Andre_GotoLordHagen();
+	}
+	else
+	{
+		B_AndreNoProof();
 	};
-	AI_Output(self,other,"DIA_Andre_Add_08_10");	//Это заинтересует лорда Хагена!
-	B_Andre_GotoLordHagen();
 };
 
 
