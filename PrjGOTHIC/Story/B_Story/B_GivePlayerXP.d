@@ -67,6 +67,7 @@ func void B_GiveDeathXP(var C_Npc Killer,var C_Npc Victim)
 	{
 		B_GivePlayerXP(Victim.level * XP_PER_VICTORY);
 		Victim.aivar[AIV_VictoryXPGiven] = TRUE;
+		B_UpdateKilledStats(Victim);
 	};
 };
 

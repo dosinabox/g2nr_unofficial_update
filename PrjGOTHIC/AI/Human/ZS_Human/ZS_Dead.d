@@ -44,7 +44,6 @@ func void ZS_Dead()
 		};
 	};
 	B_CheckDeadMissionNPCs(self);
-	B_UpdateKilledStats(self);
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stoneguardian_NailedValleyShowcase_01))
 	{
 		if((MayaScrollGiven == FALSE) && !Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT))
@@ -63,13 +62,41 @@ func void ZS_Dead()
 	{
 		Npc_RemoveInvItems(self,ItMw_2H_Sword_M_01,Npc_HasItems(self,ItMw_2H_Sword_M_01));
 	};
-	if(Npc_IsPlayer(other))
+	if(Npc_IsPlayer(other) || ((other.aivar[AIV_PARTYMEMBER] == TRUE) && C_NpcIsSummon(other)))
 	{
-		self.aivar[AIV_KilledByPlayer] = TRUE;
 		if(C_DropUnconscious())
 		{
 			MadKillerCount += 1;
 		};
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ramon))
+		{
+			Player_HasTalkedToBanditCamp = TRUE;
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru))
+		{
+			if(Npc_IsDead(Halvor) && Npc_IsDead(Nagur))
+			{
+				MIS_ThiefGuild_sucked = TRUE;
+			};
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Halvor))
+		{
+			if(Npc_IsDead(Rengaru) && Npc_IsDead(Nagur))
+			{
+				MIS_ThiefGuild_sucked = TRUE;
+			};
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nagur))
+		{
+			if(Npc_IsDead(Rengaru) && Npc_IsDead(Halvor))
+			{
+				MIS_ThiefGuild_sucked = TRUE;
+			};
+		};
+	};
+	if(Npc_IsPlayer(other))
+	{
+		self.aivar[AIV_KilledByPlayer] = TRUE;
 		if((self.guild == GIL_GIANT_BUG) && (MIS_Fester_KillBugs == LOG_Running))
 		{
 			if(Npc_GetDistToNpc(self,Fester) <= 1500)
@@ -84,10 +111,6 @@ func void ZS_Dead()
 				AlligatorJack_KrokosKilled += 1;
 			};
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ramon))
-		{
-			Player_HasTalkedToBanditCamp = TRUE;
-		}
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(OrcShaman_Sit_CanyonLibraryKey))
 		{
 			OrcShaman_CanyonLibrary_KilledByPlayer = TRUE;
@@ -95,13 +118,6 @@ func void ZS_Dead()
 		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper1)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper2)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper3)))
 		{
 			Grimbald_Snappers_KilledByPlayer = TRUE;
-		}
-		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Halvor)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nagur)))
-		{
-			if(Npc_IsDead(Rengaru) && Npc_IsDead(Halvor) && Npc_IsDead(Nagur))
-			{
-				MIS_ThiefGuild_sucked = TRUE;
-			};
 		};
 	};
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GoldMinecrawler))

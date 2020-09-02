@@ -30,6 +30,7 @@ Story\NPC_Scripts\B_SetFightSkills.d
 Story\B_Story\B_RaiseAttribute.d
 Story\B_Story\B_LogEntry.d
 Story\B_Story\B_CheckDynamicText.d
+Story\B_Story\B_UpdateKilledStats.d
 Story\B_Story\B_GetDayPlus.d
 Story\B_Story\B_BlessAttribute.d
 Story\B_Story\B_StartOtherRoutine.d
@@ -140,6 +141,7 @@ AI\Human\C_Human\C_IsUsedMobMyPossession.d
 AI\Human\C_Human\C_IsTakenItemMyPossession.d
 AI\Human\C_Human\C_NpcIsDown.d
 AI\Human\C_Human\C_NpcIsToughGuy.d
+AI\Human\C_Human\C_NpcIsSummon.d
 AI\Human\C_Human\C_PlayerIsFakePirate.d
 AI\Human\C_Human\C_PlayerHasFakeGuild.d
 AI\Human\C_Human\C_BanditHelpsStoryBandit.d
