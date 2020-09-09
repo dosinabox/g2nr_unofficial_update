@@ -31,9 +31,3 @@ func void enter_oldworld_firsttime_trigger()
 	};
 };
 
-func void newworld_fishfood_trigger()
-{
-	PlayVideo("FISHFOOD.BIK");
-	ExitSession();
-};
-

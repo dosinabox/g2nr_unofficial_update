@@ -82,13 +82,16 @@ func void DIA_Jesper_Hallo_Info()
 	Info_ClearChoices(DIA_Jesper_Hallo);
 	Info_AddChoice(DIA_Jesper_Hallo,"Я пришел убить тебя.",DIA_Jesper_Hallo_Kill);
 	Info_AddChoice(DIA_Jesper_Hallo,"Я просто прогуливаюсь здесь.",DIA_Jesper_Hallo_NurSo);
-	if(Attila_Key == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Kardif_SENDATTILA))
 	{
-		Info_AddChoice(DIA_Jesper_Hallo,"Аттила дал мне ключ. Вот почему я здесь. Так что вам нужно от меня?",DIA_Jesper_Hallo_Willkommen);
-	}
-	else
-	{
-		Info_AddChoice(DIA_Jesper_Hallo,"Я прикончил Аттилу. При нем был ключ от канализации.",DIA_Jesper_Hallo_Umgelegt);
+		if(Attila_Key == TRUE)
+		{
+			Info_AddChoice(DIA_Jesper_Hallo,"Аттила дал мне ключ. Вот почему я здесь. Так что вам нужно от меня?",DIA_Jesper_Hallo_Willkommen);
+		}
+		else
+		{
+			Info_AddChoice(DIA_Jesper_Hallo,"Я прикончил Аттилу. При нем был ключ от канализации.",DIA_Jesper_Hallo_Umgelegt);
+		};
 	};
 	DG_gefunden = TRUE;
 };
@@ -107,6 +110,10 @@ func void DIA_Jesper_Hallo_NurSo()
 	AI_Output(other,self,"DIA_Jesper_Hallo_NurSo_15_00");	//Я просто прогуливаюсь здесь.
 	AI_Output(self,other,"DIA_Jesper_Hallo_NurSo_09_01");	//Здесь не стоит гулять. Это слишком опасно, понятно?
 	AI_Output(self,other,"DIA_Jesper_Hallo_NurSo_09_02");	//Так что оставь свое оружие на месте и скажи мне, зачем ты здесь?
+	if(!Npc_KnowsInfo(other,DIA_Kardif_SENDATTILA))
+	{
+		Info_AddChoice(DIA_Jesper_Hallo,"Отведи меня к вашему главарю.",DIA_Jesper_Hallo_Anfuehrer);
+	};
 };
 
 func void DIA_Jesper_Hallo_Willkommen()

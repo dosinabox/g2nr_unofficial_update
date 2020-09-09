@@ -316,14 +316,14 @@ func void DIA_Garond_NeedProof_Info()
 		Jergan.aivar[AIV_IgnoresFakeGuild] = FALSE;
 		Jergan.aivar[AIV_IgnoresArmor] = FALSE;
 	};
-	B_LogEntry(Topic_MISOLDWORLD,"Прежде чем командующий Гаронд отправит меня назад, он хочет, чтобы я разыскал три группы старателей и сообщил ему, сколько руды удалось им добыть.");
+	B_LogEntries(Topic_MISOLDWORLD,"Прежде чем командующий Гаронд отправит меня назад, он хочет, чтобы я разыскал три группы старателей и сообщил ему, сколько руды удалось им добыть.");
 	Log_CreateTopic(TOPIC_ScoutMine,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_ScoutMine,LOG_Running);
-	B_LogEntry(TOPIC_ScoutMine,"Командующий Гаронд дал мне поручение. Он отправил три группы старателей добывать магическую руду. И до сих пор они не вернулись.");
-	B_LogEntry(TOPIC_ScoutMine,"Я должен найти эти три группы старателей и выяснить, сколько руды удалось им добыть.");
+	B_LogNextEntry(TOPIC_ScoutMine,"Командующий Гаронд дал мне поручение. Он отправил три группы старателей добывать магическую руду. И до сих пор они не вернулись.");
+	Log_AddEntry(TOPIC_ScoutMine,"Я должен найти эти три группы старателей и выяснить, сколько руды удалось им добыть.");
 	if(Npc_KnowsInfo(other,DIA_DiegoOw_Beweise))
 	{
-		B_LogEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
+		Log_AddEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
 	};
 };
 

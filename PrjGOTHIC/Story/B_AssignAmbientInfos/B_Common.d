@@ -144,6 +144,26 @@ func void DIA_Common_ShowMeYourGoods()
 	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//Покажи мне свои товары.
 };
 
+func void DIA_Common_HowsItGoing()
+{
+	AI_Output(other,self,"DIA_Addon_Edgor_Hi_15_00");	//Как дела?
+};
+
+func void DIA_Common_TellMeAboutSLD()
+{
+	AI_Output(other,self,"DIA_BAU_7_JOIN_15_00");	//Что ты знаешь о наемниках?
+};
+
+func void DIA_Common_CanIBuySheep()
+{
+	AI_Output(other,self,"DIA_Pepe_Liesel_15_00");	//Могу я купить овцу?
+};
+
+func void DIA_Common_SoWhatYouSay()
+{
+	AI_Output(other,self,"DIA_Brian_LIGHTHOUSEFREE_15_00");	//И, что скажешь?
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?
@@ -157,5 +177,10 @@ func void DIA_Common_06_IKnowNothingAboutIt()
 func void DIA_Common_09_AllQuiet()
 {
 	AI_Output(self,other,"DIA_PAL_298_Perm2_09_01");	//Все спокойно. Мы держим ситуацию под контролем.
+};
+
+func void DIA_Common_17_Thanks()
+{
+	AI_Output(self,other,"DIA_Hanna_Add_17_46");	//Спасибо.
 };
 

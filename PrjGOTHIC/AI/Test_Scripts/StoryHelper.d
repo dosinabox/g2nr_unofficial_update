@@ -841,7 +841,7 @@ func void StoryHelper_Cavalorn()
 	//Найти каменные круги
 	MIS_Addon_Nefarius_BringMissingOrnaments = LOG_RUNNING;
 	//...и Кавалорн отправился в один из них
-	B_StartotherRoutine(BAU_4300_Addon_Cavalorn,"OrnamentSteinring");
+	B_StartotherRoutine(Cavalorn,"OrnamentSteinring");
 	//Игрок получил карту кругов
 	CreateInvItems(hero,ItWr_Map_NewWorld_Ornaments_Addon,1);
 	AI_StopProcessInfos(self);

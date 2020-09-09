@@ -64,10 +64,6 @@ func void ZS_Dead()
 	};
 	if(Npc_IsPlayer(other) || ((other.aivar[AIV_PARTYMEMBER] == TRUE) && C_NpcIsSummon(other)))
 	{
-		if(C_DropUnconscious())
-		{
-			MadKillerCount += 1;
-		};
 		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ramon))
 		{
 			Player_HasTalkedToBanditCamp = TRUE;
@@ -97,6 +93,10 @@ func void ZS_Dead()
 	if(Npc_IsPlayer(other))
 	{
 		self.aivar[AIV_KilledByPlayer] = TRUE;
+		if(C_DropUnconscious())
+		{
+			MadKillerCount += 1;
+		};
 		if((self.guild == GIL_GIANT_BUG) && (MIS_Fester_KillBugs == LOG_Running))
 		{
 			if(Npc_GetDistToNpc(self,Fester) <= 1500)

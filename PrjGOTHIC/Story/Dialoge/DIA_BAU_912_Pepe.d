@@ -303,7 +303,7 @@ func int DIA_Pepe_Liesel_Condition()
 
 func void DIA_Pepe_Liesel_Info()
 {
-	AI_Output(other,self,"DIA_Pepe_Liesel_15_00");	//Могу я купить овцу?
+	DIA_Common_CanIBuySheep();
 	AI_Output(self,other,"DIA_Pepe_Liesel_03_01");	//Когда захочешь, если у тебя есть деньги. Овца стоит 100 золотых монет.
 	AI_Output(self,other,"DIA_Pepe_Liesel_03_02");	//Если ты заплатишь, можешь выбрать себе овцу. Но ты должен пообещать хорошо с ней обращаться.
 };

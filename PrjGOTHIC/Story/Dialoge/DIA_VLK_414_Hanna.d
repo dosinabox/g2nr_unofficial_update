@@ -515,7 +515,7 @@ func void DIA_Hanna_GiveSchuldenbuch_Info()
 {
 	AI_Output(other,self,"DIA_Hanna_Add_15_45");	//Вот - возьми эту книгу.
 	B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
-	AI_Output(self,other,"DIA_Hanna_Add_17_46");	//Спасибо.
+	DIA_Common_17_Thanks();
 	AI_Output(self,other,"DIA_Hanna_Add_17_47");	//Возьми это в качестве награды.
 	B_GiveInvItems(self,other,ItSe_HannasBeutel,1);
 	B_GivePlayerXP(XP_Schuldenbuch);

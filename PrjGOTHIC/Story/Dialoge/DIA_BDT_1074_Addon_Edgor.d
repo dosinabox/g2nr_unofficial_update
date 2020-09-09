@@ -85,7 +85,7 @@ func int DIA_Addon_Edgor_Hi_Condition()
 
 func void DIA_Addon_Edgor_Hi_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Edgor_Hi_15_00");	//Как дела?
+	DIA_Common_HowsItGoing();
 	AI_Output(self,other,"DIA_Addon_Edgor_Hi_06_01");	//Ты хочешь узнать, как у меня дела? Я тебе расскажу, как у меня дела.
 	AI_Output(self,other,"DIA_Addon_Edgor_Hi_06_02");	//Сначала какие-то пираты привезли меня сюда в шторм. Я облевал всю их посудину.
 	AI_Output(self,other,"DIA_Addon_Edgor_Hi_06_03");	//Затем Ворон запер шахту, потому что какие-то идиоты слишком сильно хотят золота.

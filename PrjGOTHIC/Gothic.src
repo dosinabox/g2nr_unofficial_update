@@ -141,6 +141,7 @@ AI\Human\C_Human\C_IsUsedMobMyPossession.d
 AI\Human\C_Human\C_IsTakenItemMyPossession.d
 AI\Human\C_Human\C_NpcIsDown.d
 AI\Human\C_Human\C_NpcIsToughGuy.d
+AI\Human\C_Human\C_NpcIsAfraidOfOrcs.d
 AI\Human\C_Human\C_NpcIsSummon.d
 AI\Human\C_Human\C_PlayerIsFakePirate.d
 AI\Human\C_Human\C_PlayerHasFakeGuild.d
@@ -733,7 +734,7 @@ Story\NPC\NONE_101_Mario.d
 Story\NPC\NONE_101_Mario_DI.d
 Story\NPC\NONE_ADDON_111_Quarhodron.d
 Story\NPC\NONE_ADDON_112_Rhademes.d
-Story\NPC\NONE_Addon_114_Lance_ADW.d
+Story\NPC\NONE_ADDON_114_Lance_ADW.d
 Story\NPC\NONE_ADDON_115_Eremit.d
 Story\NPC\NOV_600_Pedro.d
 Story\NPC\NOV_600_Pedro_DI.d
@@ -1696,6 +1697,7 @@ AI\Monster\ZS_Monster\ZS_MM_ThreatenEnemy.d
 Story\B_Story\b_magecavetrigger.d
 Story\Events\B_Addon_Portal_Activated.d
 Story\Events\B_Function_Touch_And_Get_Killed.d
+Story\Events\NewWorld_FishFood_Trigger.d
 Story\Events\B_GiveStuntBonus.d
 Story\Events\B_RavensEscapeIntoTempelAVI.d
 Story\Events\B_Spawn_Skeleton.d

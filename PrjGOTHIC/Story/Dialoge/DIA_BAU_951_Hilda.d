@@ -234,14 +234,13 @@ func void DIA_Hilda_PfanneGeholt_Info()
 {
 	AI_Output(other,self,"DIA_Hilda_PfanneGeholt_15_00");	//Вот твоя сковородка.
 	B_GiveInvItems(other,self,ItMi_Pan,1);
-//	if(Npc_GetDistToWP(self,"NW_FARM1_INHOUSE_02") < 500)
-	if(Wld_IsTime(8,0,22,0))
+	if(Wld_IsTime(8,0,21,55) && (Npc_GetDistToWP(self,"NW_FARM1_INHOUSE_02") < 500))
 	{
 		AI_Output(self,other,"DIA_Hilda_PfanneGeholt_17_01");	//Отлично. Посмотрим, хорошая ли она...
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Hanna_Add_17_46");	//Спасибо.
+		DIA_Common_17_Thanks();
 	};
 	MIS_Hilda_PfanneKaufen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HildaHolPfanne);

@@ -200,6 +200,7 @@ instance SHEEPTRANSFORM(Mst_Default_Sheep)
 
 instance OC_Sheep1(Mst_Default_Sheep)
 {
+	id = 171;
 	B_SetVisuals_Sheep();
 	Npc_SetToFistMode(self);
 	start_aistate = ZS_MM_AllScheduler;
@@ -207,7 +208,46 @@ instance OC_Sheep1(Mst_Default_Sheep)
 	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
+func void Rtn_Tot_171()
+{
+	TA_MM_AllScheduler(8,0,22,0,"TOT");
+	TA_MM_AllScheduler(22,0,8,0,"TOT");
+};
+
 instance OC_Sheep2(Mst_Default_Sheep)
+{
+	id = 172;
+	B_SetVisuals_Sheep();
+	Npc_SetToFistMode(self);
+	start_aistate = ZS_MM_AllScheduler;
+	aivar[AIV_MM_RoamStart] = OnlyRoutine;
+	CreateInvItems(self,ItFoMuttonRaw,1);
+};
+
+func void Rtn_Tot_172()
+{
+	TA_MM_AllScheduler(8,0,22,0,"TOT");
+	TA_MM_AllScheduler(22,0,8,0,"TOT");
+};
+
+instance OC_Sheep3(Mst_Default_Sheep)
+{
+	name[0] = NAME_Hammel;
+	id = 173;
+	B_SetVisuals_Hammel();
+	Npc_SetToFistMode(self);
+	start_aistate = ZS_MM_AllScheduler;
+	aivar[AIV_MM_RoamStart] = OnlyRoutine;
+	CreateInvItems(self,ItFoMuttonRaw,1);
+};
+
+func void Rtn_Tot_173()
+{
+	TA_MM_AllScheduler(8,0,22,0,"TOT");
+	TA_MM_AllScheduler(22,0,8,0,"TOT");
+};
+
+instance Alwin_Sheep1(Mst_Default_Sheep)
 {
 	B_SetVisuals_Sheep();
 	Npc_SetToFistMode(self);
@@ -216,7 +256,16 @@ instance OC_Sheep2(Mst_Default_Sheep)
 	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
-instance OC_Sheep3(Mst_Default_Sheep)
+instance Alwin_Sheep2(Mst_Default_Sheep)
+{
+	B_SetVisuals_Sheep();
+	Npc_SetToFistMode(self);
+	start_aistate = ZS_MM_AllScheduler;
+	aivar[AIV_MM_RoamStart] = OnlyRoutine;
+	CreateInvItems(self,ItFoMuttonRaw,1);
+};
+
+instance Alwin_Sheep3(Mst_Default_Sheep)
 {
 	name[0] = NAME_Hammel;
 	B_SetVisuals_Hammel();

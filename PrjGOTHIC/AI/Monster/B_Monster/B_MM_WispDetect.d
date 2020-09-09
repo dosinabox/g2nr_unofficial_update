@@ -70,7 +70,7 @@ func int B_MM_WispDetect()
 	Npc_PerceiveAll(self);
 	if(Wld_DetectNpc(self,Wisp_Detector,NOFUNC,-1))
 	{
-		B_RemoveNpc(self);
+		B_MoveNpcToMorgue(self);
 	};
 	if((Npc_GetDistToNpc(self,hero) < 2000) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
 	{

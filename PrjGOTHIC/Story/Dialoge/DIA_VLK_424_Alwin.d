@@ -78,7 +78,7 @@ func void DIA_Alwin_Sheep_Info()
 	AI_Output(self,other,"DIA_Alwin_Sheep_12_01");	//Единственная овца, что принадлежит мне, отзывается на имя Люси. (смеется) Это моя жена - Люси.
 	if(SC_KnowsKlosterTribut == TRUE)
 	{
-		AI_Output(other,self,"DIA_Pepe_Liesel_15_00");	//Могу я купить овцу?
+		DIA_Common_CanIBuySheep();
 	};
 	AI_Output(self,other,"DIA_Alwin_Sheep_12_02");	//Эти овцы принадлежат ополчению. Они забирают их у фермеров и приводят ко мне.
 };
@@ -206,6 +206,11 @@ func void DIA_Alwin_FellanSuccess_Info()
 };
 
 
+func void B_AlwinAboutDeadSheeps()
+{
+	AI_Output(self,other,"DIA_Alwin_Endlos_12_13");	//Ну, теперь я хотя бы буду проводить больше времени со своей женой.
+};
+
 instance DIA_Alwin_Endlos(C_Info)
 {
 	npc = VLK_424_Alwin;
@@ -228,7 +233,11 @@ func int DIA_Alwin_Endlos_Condition()
 func void DIA_Alwin_Endlos_Info()
 {
 	AI_Output(other,self,"DIA_Alwin_Endlos_15_00");	//Как твои овцы?
-	if((MIS_AttackFellan != LOG_SUCCESS) && !Npc_IsDead(Fellan))
+	if(Npc_IsDead(Alwin_Sheep1) && Npc_IsDead(Alwin_Sheep2) && Npc_IsDead(Alwin_Sheep3))
+	{
+		B_AlwinAboutDeadSheeps();
+	}
+	else if((MIS_AttackFellan != LOG_SUCCESS) && !Npc_IsDead(Fellan))
 	{
 		AI_Output(self,other,"DIA_Alwin_Endlos_12_01");	//Стук этого Феллана сведет их с ума. Однажды они все разбегутся.
 	}
@@ -259,8 +268,8 @@ func void DIA_Alwin_Endlos_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Alwin_Endlos_12_12");	//Я говорю им - прощайте. Лорд Хаген приказал, чтобы все овцы пошли на провиант для его армии.
-		AI_Output(self,other,"DIA_Alwin_Endlos_12_13");	//Ну, теперь я хотя бы буду проводить больше времени со своей женой.
+		AI_Output(self,other,"DIA_Alwin_Endlos_12_12");	//Я говорю им 'прощайте'. Лорд Хаген приказал, чтобы все овцы пошли на провиант для его армии.
+		B_AlwinAboutDeadSheeps();
 	};
 };
 

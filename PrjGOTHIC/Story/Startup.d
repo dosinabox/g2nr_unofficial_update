@@ -1932,9 +1932,9 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertNpc(VLK_489_Buerger,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(VLK_424_Alwin,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(VLK_479_Lucy,"NW_CITY_ENTRANCE_01");
-	Wld_InsertNpc(Hammel,"NW_CITY_SHEEP_SPAWN_02");
-	Wld_InsertNpc(Sheep,"NW_CITY_SHEEP_SPAWN_01");
-	Wld_InsertNpc(Sheep,"NW_CITY_SHEEP_SPAWN_01");
+	Wld_InsertNpc(Alwin_Sheep1,"NW_CITY_SHEEP_SPAWN_01");
+	Wld_InsertNpc(Alwin_Sheep2,"NW_CITY_SHEEP_SPAWN_01");
+	Wld_InsertNpc(Alwin_Sheep3,"NW_CITY_SHEEP_SPAWN_02");
 	Wld_InsertNpc(VLK_461_Carl,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(VLK_429_Buergerin,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(VLK_453_Buerger,"NW_CITY_ENTRANCE_01");

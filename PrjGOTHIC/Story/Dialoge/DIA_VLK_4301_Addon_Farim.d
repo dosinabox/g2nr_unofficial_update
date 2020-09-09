@@ -118,7 +118,7 @@ func void DIA_Addon_Farim_MilizProbs_Info()
 	AI_Output(self,other,"DIA_Addon_Farim_MilizProbs_11_05");	//Но если они продолжат так поступать, мне самому нечего будет есть.
 	Info_ClearChoices(DIA_Addon_Farim_MilizProbs);
 	Info_AddChoice(DIA_Addon_Farim_MilizProbs,"Отдай мне всю свою рыбу.",DIA_Addon_Farim_MilizProbs_klauen);
-	Info_AddChoice(DIA_Addon_Farim_MilizProbs,"Может быть, я смогу помочь.",DIA_Addon_Farim_MilizProbs_helfen);
+	Info_AddChoice(DIA_Addon_Farim_MilizProbs,"Может быть, я смогу тебе помочь.",DIA_Addon_Farim_MilizProbs_helfen);
 	Info_AddChoice(DIA_Addon_Farim_MilizProbs,"Ты рассказывал об этом паладинам?",DIA_Addon_Farim_MilizProbs_paladine);
 };
 

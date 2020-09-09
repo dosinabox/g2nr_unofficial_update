@@ -40,7 +40,7 @@ func int DIA_BAU_7_JOIN_Condition()
 
 func void DIA_BAU_7_JOIN_Info()
 {
-	AI_Output(other,self,"DIA_BAU_7_JOIN_15_00");	//„то ты знаешь о наемниках?
+	DIA_Common_TellMeAboutSLD();
 	AI_Output(self,other,"DIA_BAU_7_JOIN_07_01");	//ќнар нан€л их дл€ защиты своей фермы.
 	AI_Output(self,other,"DIA_BAU_7_JOIN_07_02");	//Ѕольшинство их них ведут себ€ так, как будто эта ферма принадлежит им. Ќо все же они защищают нас.
 };

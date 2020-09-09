@@ -770,7 +770,7 @@ func void DIA_Addon_Greg_BeMyCap_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_06");	//Что это за бред?
 	AI_Output(other,self,"DIA_Pyrokar_SCKNOWSWAYTOIRDORATH_15_00");	//Я знаю, где нужно искать Чертоги Ирдората.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_da_01_01");	//Э-э, тебе даже не стоит пытаться туда попасть.
-	AI_Output(other,self,"DIA_Brian_LIGHTHOUSEFREE_15_00");	//И, что скажешь?
+	DIA_Common_SoWhatYouSay();
 	AI_Output(self,other,"DIA_Addon_Greg_NW_was_SLD_01_02");	//Неплохо для сухопутной крысы.
 	B_LogEntry(Topic_Captain,"Грега не заинтересовало мое предложение.");
 	AI_StopProcessInfos(self);
