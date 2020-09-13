@@ -164,6 +164,16 @@ func void DIA_Common_SoWhatYouSay()
 	AI_Output(other,self,"DIA_Brian_LIGHTHOUSEFREE_15_00");	//И, что скажешь?
 };
 
+func void DIA_Common_WhatAboutBetterArmor()
+{
+	AI_Output(other,self,"DIA_Lee_ArmorM_15_00");	//А как насчет доспехов получше?
+};
+
+func void DIA_Common_GiveMeThatArmor()
+{
+	AI_Output(other,self,"DIA_Lee_BuyArmorM_15_00");	//Дай мне эти доспехи.
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?

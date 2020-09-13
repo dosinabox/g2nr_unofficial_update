@@ -69,7 +69,10 @@ instance DIA_Alwin_Sheep(C_Info)
 
 func int DIA_Alwin_Sheep_Condition()
 {
-	return TRUE;
+	if(!Npc_IsDead(Alwin_Sheep1) || !Npc_IsDead(Alwin_Sheep2) || !Npc_IsDead(Alwin_Sheep3))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Alwin_Sheep_Info()
@@ -125,7 +128,7 @@ instance DIA_Alwin_FellanRunning(C_Info)
 
 func int DIA_Alwin_FellanRunning_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Fellan))
+	if(Npc_KnowsInfo(other,DIA_Alwin_Fellan))
 	{
 		return TRUE;
 	};

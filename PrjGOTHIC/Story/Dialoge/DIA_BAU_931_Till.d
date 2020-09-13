@@ -61,7 +61,7 @@ func void DIA_Till_HALLO_Info()
 func void DIA_Till_HALLO_selber()
 {
 	AI_Output(other,self,"DIA_Till_HALLO_selber_15_00");	//Ты командуешь здесь?
-	AI_Output(self,other,"DIA_Till_HALLO_selber_03_01");	//Э-э. Нет, я всего лишь сын Секоба. Но когда старика больше не будет с нами, вся земля, что ты видишь вокруг, перейдет ко мне.
+	AI_Output(self,other,"DIA_Till_HALLO_selber_03_01");	//(запуганно) Э-э. Нет, я всего лишь сын Секоба. Но когда старика больше не будет с нами, вся земля, что ты видишь вокруг, перейдет ко мне.
 	AI_Output(other,self,"DIA_Till_HALLO_selber_15_02");	//Потрясающе!
 	Info_ClearChoices(DIA_Till_HALLO);
 };

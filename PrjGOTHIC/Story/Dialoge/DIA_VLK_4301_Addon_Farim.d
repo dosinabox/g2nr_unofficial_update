@@ -153,7 +153,7 @@ func void DIA_Addon_Farim_MilizProbs_helfen()
 	Info_ClearChoices(DIA_Addon_Farim_MilizProbs);
 	Log_CreateTopic(TOPIC_Addon_FarimsFish,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_FarimsFish,LOG_Running);
-	B_LogEntry(TOPIC_Addon_FarimsFish,"” рыбака ‘арима проблемы с ополчением. ќни забирают у него столько рыбы, что ему не хватает на жизнь. „тобы помочь ему, € должен поговорить с кем-нибудь, имеющим вли€ние среди паладинов.");
+	B_LogEntry(TOPIC_Addon_FarimsFish,"” рыбака ‘арима проблемы с ополчением. ќни забирают у него столько рыбы, что ему не хватает на жизнь. „тобы помочь ему, € должен поговорить с кем-нибудь, имеющим вли€ние среди ополчени€ или паладинов.");
 	MIS_Addon_Farim_PaladinFisch = LOG_Running;
 };
 

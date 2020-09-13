@@ -95,7 +95,7 @@ instance DIA_Wulfgar_AboutMiliz(C_Info)
 
 func int DIA_Wulfgar_AboutMiliz_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wulfgar_Hallo))
+	if(Npc_KnowsInfo(other,DIA_Wulfgar_Hallo) && (other.guild != GIL_PAL))
 	{
 		return TRUE;
 	};

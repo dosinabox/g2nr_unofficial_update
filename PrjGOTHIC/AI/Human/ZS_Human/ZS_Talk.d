@@ -59,6 +59,7 @@ func void ZS_Talk()
 		if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff_NW)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff_DI)))
 		{
 			B_Addon_GivePotion(self);
+			//B_Union_GiveItem(self);
 		};
 		if(C_NpcIsToughGuy(self) && (self.aivar[AIV_ToughGuyNewsOverride] == FALSE))
 		{

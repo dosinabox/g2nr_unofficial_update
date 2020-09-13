@@ -450,7 +450,7 @@ func int DIA_Addon_Garett_ArmorM_Condition()
 
 func void DIA_Addon_Garett_ArmorM_Info()
 {
-	AI_Output(other,self,"DIA_Lee_ArmorM_15_00");	//А как насчет доспехов получше?
+	DIA_Common_WhatAboutBetterArmor();
 	AI_Output(self,other,"DIA_Matteo_LEATHER_09_01");	//Они тебе понравятся. (ухмыляется)
 	Info_ClearChoices(DIA_Addon_Garett_ArmorM);
 	Info_AddChoice(DIA_Addon_Garett_ArmorM,Dialog_Back,DIA_Addon_Garett_ArmorM_Back);
@@ -459,7 +459,7 @@ func void DIA_Addon_Garett_ArmorM_Info()
 
 func void DIA_Addon_Garett_ArmorM_Buy()
 {
-	AI_Output(other,self,"DIA_Lee_BuyArmorM_15_00");	//Дай мне эти доспехи.
+	DIA_Common_GiveMeThatArmor();
 	if(B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_PIR_M_Addon))
 	{
 		B_Say(self,other,"$ABS_GOOD");

@@ -1009,7 +1009,7 @@ func int DIA_Lee_ArmorM_Condition()
 
 func void DIA_Lee_ArmorM_Info()
 {
-	AI_Output(other,self,"DIA_Lee_ArmorM_15_00");	//А как насчет доспехов получше?
+	DIA_Common_WhatAboutBetterArmor();
 	if((MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS) && (MIS_Torlof_HolPachtVonSekob == LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Lee_ArmorM_04_01");	//Ты выполнил задание.
@@ -1045,7 +1045,7 @@ func int DIA_Lee_BuyArmorM_Condition()
 
 func void DIA_Lee_BuyArmorM_Info()
 {
-	AI_Output(other,self,"DIA_Lee_BuyArmorM_15_00");	//Дай мне эти доспехи.
+	DIA_Common_GiveMeThatArmor();
 	if(B_GiveInvItems(other,self,ItMi_Gold,1000))
 	{
 		AI_Output(self,other,"DIA_Lee_BuyArmorM_04_01");	//Держи. Это очень хорошие доспехи.

@@ -354,7 +354,7 @@ func int DIA_Peck_ARMOR_Condition()
 
 func void DIA_Peck_ARMOR_Info()
 {
-	AI_Output(other,self,"DIA_Lee_ArmorM_15_00");	//А как насчет доспехов получше?
+	DIA_Common_WhatAboutBetterArmor();
 	if(MIS_Andre_Peck == LOG_Running)
 	{
 		AI_Output(self,other,"DIA_Peck_WEAPON_12_01");	//Сходи сначала к Андрэ и доложи ему.
@@ -403,7 +403,7 @@ func void DIA_Peck_ARMOR_Back()
 
 func void DIA_Peck_ARMOR_BUY()
 {
-	AI_Output(other,self,"DIA_Engor_RSkaufen_15_00");	//Дай мне доспехи.
+	DIA_Common_GiveMeThatArmor();
 	if(B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_MIL_M_Dynamic))
 	{
 		AI_Output(self,other,"DIA_Peck_Add_12_05");	//Вот, возьми.

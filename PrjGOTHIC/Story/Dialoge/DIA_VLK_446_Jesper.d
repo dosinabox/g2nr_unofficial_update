@@ -88,7 +88,7 @@ func void DIA_Jesper_Hallo_Info()
 		{
 			Info_AddChoice(DIA_Jesper_Hallo,"Аттила дал мне ключ. Вот почему я здесь. Так что вам нужно от меня?",DIA_Jesper_Hallo_Willkommen);
 		}
-		else
+		else if(Npc_IsDead(Attila))
 		{
 			Info_AddChoice(DIA_Jesper_Hallo,"Я прикончил Аттилу. При нем был ключ от канализации.",DIA_Jesper_Hallo_Umgelegt);
 		};
@@ -113,6 +113,13 @@ func void DIA_Jesper_Hallo_NurSo()
 	if(!Npc_KnowsInfo(other,DIA_Kardif_SENDATTILA))
 	{
 		Info_AddChoice(DIA_Jesper_Hallo,"Отведи меня к вашему главарю.",DIA_Jesper_Hallo_Anfuehrer);
+	}
+	else if(!Npc_IsDead(Attila))
+	{
+		if(Npc_HasItems(Attila,ItKe_ThiefGuildKey_MIS))
+		{
+			Info_AddChoice(DIA_Jesper_Hallo,"Отведи меня к вашему главарю.",DIA_Jesper_Hallo_Anfuehrer);
+		};
 	};
 };
 
