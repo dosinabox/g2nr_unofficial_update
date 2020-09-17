@@ -92,7 +92,10 @@ func void DIA_Addon_TAL_BDT_1_Raven_Info()
 {
 	AI_Output(other,self,"DIA_Addon_TAL_BDT_1_Raven_15_00");	//„то тебе известно про ¬орона?
 	AI_Output(self,other,"DIA_Addon_TAL_BDT_1_Raven_01_01");	//Ётот человек первым оказалс€ здесь со своими реб€тами.
-	AI_Output(self,other,"DIA_Addon_TAL_BDT_1_Raven_01_02");	//ќн - командир лагер€. я тебе советую не крутитьс€ вокруг него.
+	if(RavenIsDead == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_TAL_BDT_1_Raven_01_02");	//ќн - командир лагер€. я тебе советую не крутитьс€ вокруг него.
+	};
 	AI_Output(self,other,"DIA_Addon_TAL_BDT_1_Raven_01_03");	//ќднажды им потребовались п€ть новых бойцов, потому что он сорвал свою злость на своих же люд€х.
 };
 

@@ -1659,12 +1659,12 @@ func void Startup_Surface()
 	Wld_InsertNpc(Skeleton,"OW_PATH_07_03");
 	Wld_InsertNpc(Skeleton,"OW_PATH_07_04");
 	Wld_InsertNpc(Skeleton,"OW_PATH_07_04");
-	Wld_InsertNpc(Skeleton,"OW_PATH_35");
 	Wld_InsertNpc(Skeleton,"OW_PATH_033_TO_CAVE5");
 	Wld_InsertNpc(Skeleton,"OW_PATH_033_TO_CAVE5");
 	Wld_InsertNpc(Skeleton,"OW_PATH_092");
 	Wld_InsertNpc(Skeleton,"OW_PATH_092");
 	Wld_InsertNpc(Skeleton,"OW_PATH_091");
+	Wld_InsertNpc(Skeleton,"OW_PATH_035");
 	Wld_InsertNpc(Skeleton,"OW_PATH_036");
 	Wld_InsertNpc(Keiler,"OW_PATH_274_RIGHT2");
 	Wld_InsertNpc(OrcWarrior_Roam,"FP_ROAM_ORC_05");

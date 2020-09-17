@@ -198,15 +198,15 @@ func void B_AssignAmbientInfos(var C_Npc slf)
 			};
 			if(slf.voice == 4)
 			{
-				b_assignambientinfos_bdt_4(slf);
+				B_AssignAmbientInfos_BDT_4(slf);
 			};
 			if(slf.voice == 6)
 			{
-				b_assignambientinfos_bdt_6(slf);
+				B_AssignAmbientInfos_BDT_6(slf);
 			};
 			if(slf.voice == 10)
 			{
-				b_assignambientinfos_bdt_10(slf);
+				B_AssignAmbientInfos_BDT_10(slf);
 			};
 			if(slf.voice == 13)
 			{
@@ -221,15 +221,15 @@ func void B_AssignAmbientInfos(var C_Npc slf)
 			};
 			if(slf.voice == 4)
 			{
-				b_assignambientinfos_bdt_4(slf);
+				B_AssignAmbientInfos_BDT_4(slf);
 			};
 			if(slf.voice == 6)
 			{
-				b_assignambientinfos_bdt_6(slf);
+				B_AssignAmbientInfos_BDT_6(slf);
 			};
 			if(slf.voice == 10)
 			{
-				b_assignambientinfos_bdt_10(slf);
+				B_AssignAmbientInfos_BDT_10(slf);
 			};
 			if(slf.voice == 13)
 			{
@@ -244,15 +244,15 @@ func void B_AssignAmbientInfos(var C_Npc slf)
 			};
 			if(slf.voice == 4)
 			{
-				b_assignambientinfos_bdt_4(slf);
+				B_AssignAmbientInfos_BDT_4(slf);
 			};
 			if(slf.voice == 6)
 			{
-				b_assignambientinfos_bdt_6(slf);
+				B_AssignAmbientInfos_BDT_6(slf);
 			};
 			if(slf.voice == 10)
 			{
-				b_assignambientinfos_bdt_10(slf);
+				B_AssignAmbientInfos_BDT_10(slf);
 			};
 			if(slf.voice == 13)
 			{

@@ -223,7 +223,7 @@ func void DIA_Thekla_Problem_Info()
 	AI_Output(self,other,"DIA_Thekla_Problem_17_01");	//Эти кретины действуют мне на нервы! Особенно Сильвио и его жирный приятель Буллко.
 	AI_Output(self,other,"DIA_Thekla_Problem_17_02");	//Эти двое сидят вон там, в углу, целыми днями напролет и отравляют мне жизнь.
 	AI_Output(self,other,"DIA_Thekla_Problem_17_03");	//То суп им слишком горячий, то мясо слишком жесткое, ну и все тому подобное...
-	if(other.guild == GIL_NONE)
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		AI_Output(other,self,"DIA_Thekla_Problem_15_04");	//А почему ты ничего не делаешь с этим?
 		AI_Output(self,other,"DIA_Thekla_Problem_17_05");	//А что я могу сделать, мистер Остряк-Самоучка? Врезать им своей скалкой? Да, с фермерами это проходит, но ведь эти ублюдки, недолго думая, ответят мечом!

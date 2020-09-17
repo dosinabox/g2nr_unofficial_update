@@ -78,7 +78,7 @@ func void B_RaiseTalentByStonePlate(var C_NPC npc,var int talent,var int value)
 	{
 		B_PrintPlayerMiddle(npc,PRINT_NoLearnOverMAX);
 		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-		B_Say(self,self,"$PickBroke");
+		B_Say(self,self,"$PICKBROKE");
 		AI_Waitms(self,500);
 		return;
 	};

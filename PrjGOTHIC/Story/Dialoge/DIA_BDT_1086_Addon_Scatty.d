@@ -319,12 +319,12 @@ func void DIA_Addon_Scatty_teach_Info()
 		}
 		else
 		{
-			B_Say(self,other,"$NoLearnNoPoints");
+			B_Say(self,other,"$NOLEARNNOPOINTS");
 		};
 	}
 	else
 	{
-		B_Say(self,other,"$NoLearnYoureBetter");
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
 		Scatty_teach_noPerm = TRUE;
 	};
 };

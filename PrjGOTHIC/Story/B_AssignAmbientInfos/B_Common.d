@@ -106,7 +106,7 @@ func void DIA_Common_SoundsGood()
 
 func void DIA_Common_MaybeLater()
 {
-	AI_Output(other,self,"DIA_Bennet_WannaSmith_Later_15_00");	//Ну, может быть, позже.
+	AI_Output(other,self,"DIA_Thorben_PleaseTeach_Later_15_00");	//Может быть, позже...
 };
 
 func void DIA_Common_AboutThatRecipe()
@@ -172,6 +172,11 @@ func void DIA_Common_WhatAboutBetterArmor()
 func void DIA_Common_GiveMeThatArmor()
 {
 	AI_Output(other,self,"DIA_Lee_BuyArmorM_15_00");	//Дай мне эти доспехи.
+};
+
+func void DIA_Common_WhyNot()
+{
+	AI_Output(other,self,"DIA_Addon_Greg_NW_Hallo_ja_15_00");	//Почему бы и нет?
 };
 
 func void DIA_Common_01_AreYouTryingToPissMeOff()

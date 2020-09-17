@@ -89,10 +89,6 @@ func void DIA_Sonja_STANDARD_Info()
 	{
 		AI_Output(self,other,"DIA_Sonja_STANDARD_16_02");	//Если ты хочешь поговорить, иди, найди себе женщину, и женись на ней.
 	};
-	if((MIS_Andre_REDLIGHT == LOG_Running) && C_RedlightUndercoverCheckFailed(other))
-	{
-		Undercover_Failed = TRUE;
-	};
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 48) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
 	{
 		if((MIS_Andre_REDLIGHT != LOG_Running) || (Knows_Borka_Dealer == TRUE))
@@ -125,10 +121,6 @@ func void DIA_Sonja_WEED_Info()
 {
 	AI_Output(other,self,"DIA_Meldor_Smoke_15_00");	//Ты не знаешь, где мне купить травки?
 	AI_Output(self,other,"DIA_Babera_DUSTOERST_16_01");	//Я занята.
-	if(C_RedlightUndercoverCheckFailed(other))
-	{
-		Undercover_Failed = TRUE;
-	};
 	AI_StopProcessInfos(self);
 };
 

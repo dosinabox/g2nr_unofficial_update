@@ -459,6 +459,7 @@ func void DIA_Harad_LEHRLING_OK()
 		AI_Output(self,other,"DIA_Harad_LEHRLING_OK_12_04");	// роме того, пришло врем€ стать немного сильнее. “ы чахнешь пр€мо у мен€ на глазах!
 	};
 	Player_IsApprentice = APP_Harad;
+	ApprenticeGoldCounter = 0;
 	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
 	{
 		Npc_ExchangeRoutine(Lothar,"START");

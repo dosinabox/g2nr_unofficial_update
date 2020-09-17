@@ -81,7 +81,7 @@ func void DIA_Addon_Greg_NW_Hallo_weg()
 
 func void DIA_Addon_Greg_NW_Hallo_ja()
 {
-	AI_Output(other,self,"DIA_Addon_Greg_NW_Hallo_ja_15_00");	//ѕочему бы и нет?
+	DIA_Common_WhyNot();
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_ja_01_01");	//“ы должен простить невежественного старого мор€ка! я чужой в ваших кра€х и не знаю местных законов.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_ja_01_02");	//ѕоэтому мне пришлось на своей шкуре испытать, как стражники встречают в этом городе простых путников.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_ja_01_03");	//» вот теперь мне нужно попасть в город, а € не знаю, как это сделать.

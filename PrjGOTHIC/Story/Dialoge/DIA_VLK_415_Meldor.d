@@ -212,10 +212,11 @@ func int DIA_Meldor_Smoke_Condition()
 func void DIA_Meldor_Smoke_Info()
 {
 	AI_Output(other,self,"DIA_Meldor_Smoke_15_00");	//Ты не знаешь, где мне купить травки?
-	if(C_RedlightUndercoverCheckFailed(other))
+	if(Meldor_Busted == TRUE)
 	{
 		AI_Output(self,other,"DIA_Meldor_Smoke_07_01");	//(оценивающе) Нет, понятия не имею.
-		Undercover_Failed = TRUE;
+		Undercover_Failed_Meldor = TRUE;
+		B_CheckRedLightUndercover();
 	}
 	else
 	{

@@ -210,7 +210,7 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon()
 	}
 	else
 	{
-		B_Say(self,other,"$WeaponDown");
+		B_Say(self,other,"$WEAPONDOWN");
 		AI_DrawWeapon(self);
 		AI_Output(other,self,"DIA_Dar_ORCRING_necken_schlagen_15_00");	//Ладно. Попробуй.
 		AI_StopProcessInfos(self);

@@ -523,7 +523,7 @@ func void DIA_Cassia_BevorLernen_Info()
 	{
 		AI_Output(self,other,"DIA_Cassia_BevorLernen_16_02");	//Конечно. Карманное воровство и ловкость обойдутся тебе по 100 золотых монет.
 		Info_ClearChoices(DIA_Cassia_BevorLernen);
-		Info_AddChoice(DIA_Cassia_BevorLernen,"Ну, может быть, позже...",DIA_Cassia_BevorLernen_Spaeter);
+		Info_AddChoice(DIA_Cassia_BevorLernen,"Может быть, позже...",DIA_Cassia_BevorLernen_Spaeter);
 		if((Cassia_TeachPickpocket == FALSE) && !Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 		{
 			Info_AddChoice(DIA_Cassia_BevorLernen,"Я хочу научиться карманному воровству. (заплатить 100 золотых)",DIA_Cassia_BevorLernen_Pickpocket);

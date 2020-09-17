@@ -361,7 +361,7 @@ func void DIA_Serpentes_MinenAnteile_nein()
 func void DIA_Serpentes_MinenAnteile_nein_sld()
 {
 	AI_Output(other,self,"DIA_Vatras_Mission_No_15_00");	//Найди себе другого мальчика на побегушках, старик!
-	B_Say(self,other,"$YesGoOutOfHere");
+	B_Say(self,other,"$YESGOOUTOFHERE");
 	AI_StopProcessInfos(self);
 };
 

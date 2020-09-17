@@ -1636,7 +1636,7 @@ func void Use_StatsBook()
 	};
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Информация о сборке:");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 13/09/2020"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 17/09/2020"));
 	if(FIX_VERSION_SAVE == FALSE)
 	{
 		if(Addon_zuerst == TRUE)

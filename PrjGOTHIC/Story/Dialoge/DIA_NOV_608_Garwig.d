@@ -306,7 +306,7 @@ func void DIA_Garwig_THIEF_Info()
 		}
 		else
 		{
-			B_Say(self,other,"$YouDareHitMe");
+			B_Say(self,other,"$YOUDAREHITME");
 		};
 	}
 	else
@@ -410,7 +410,7 @@ func int DIA_Garwig_EXIE_Condition()
 
 func void DIA_Garwig_EXIE_Info()
 {
-	B_Say(self,other,"$NeverEnterRoomAgain");
+	B_Say(self,other,"$NEVERENTERROOMAGAIN");
 	AI_StopProcessInfos(self);
 };
 

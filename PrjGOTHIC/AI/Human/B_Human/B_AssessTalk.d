@@ -67,13 +67,33 @@ func void B_AssessTalk()
 				};
 			};
 		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Meldor))
+		{
+			if(C_LawArmorEquipped(other))
+			{
+				Meldor_Busted = TRUE;
+			};
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Kardif))
+		{
+			if(C_LawArmorEquipped(other) && !Npc_KnowsInfo(other,DIA_Kardif_Zeichen))
+			{
+				Kardif_Busted = TRUE;
+			};
+		}
 		else if(MIS_Andre_REDLIGHT == LOG_Running)
 		{
-			if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Meldor)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Borka)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nadja)))
+			if(C_LawArmorEquipped(other))
 			{
-				if(C_RedlightUndercoverCheckFailed(other))
+				if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Borka))
 				{
-					Undercover_Failed = TRUE;
+					Undercover_Failed_Borka = TRUE;
+					B_CheckRedLightUndercover();
+				}
+				else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nadja))
+				{
+					Undercover_Failed_Nadja = TRUE;
+					B_CheckRedLightUndercover();
 				};
 			};
 		};

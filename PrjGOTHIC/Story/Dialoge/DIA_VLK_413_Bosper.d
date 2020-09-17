@@ -492,6 +492,8 @@ func void DIA_Bosper_BringFur_Info()
 		AI_Output(self,other,"DIA_Bosper_BringFur_11_03");	//Отлично! Я знал, что ты подходишь для этой работы.
 		AI_Output(self,other,"DIA_Bosper_BringFur_11_04");	//Вот деньги, как я и обещал тебе.
 		B_GiveInvItems(self,other,ItMi_Gold,Value_WolfFur * 6);
+		BosperFurCounter += 6;
+		ApprenticeGoldCounter += Value_WolfFur * 6;
 		AI_Output(self,other,"DIA_Bosper_BringFur_11_05");	//И? Что скажешь? Разве это не лучше, чем корпеть над мечами день напролет или наполнять бутылочки в пыльной каморке?
 		MIS_Bosper_WolfFurs = LOG_SUCCESS;
 		B_LogEntry(TOPIC_Lehrling,"Боспер примет меня в ученики, если другие мастера не будут против.");

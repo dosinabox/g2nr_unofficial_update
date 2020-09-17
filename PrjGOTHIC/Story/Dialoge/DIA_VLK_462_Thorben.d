@@ -459,7 +459,7 @@ func void DIA_Thorben_PleaseTeach_Pay100()
 
 func void DIA_Thorben_PleaseTeach_Later()
 {
-	AI_Output(other,self,"DIA_Thorben_PleaseTeach_Later_15_00");	//Может быть, позже...
+	DIA_Common_MaybeLater();
 	Info_ClearChoices(DIA_Thorben_PleaseTeach);
 };
 

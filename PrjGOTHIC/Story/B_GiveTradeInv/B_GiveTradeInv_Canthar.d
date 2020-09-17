@@ -7,7 +7,7 @@ var int Canthar_ItemsGiven_Chapter_5;
 
 func void B_GiveTradeInv_Canthar(var C_Npc slf)
 {
-	if((Kapitel >= 0) && (Canthar_ItemsGiven_Chapter_1 == FALSE))
+	if((Kapitel >= 1) && (Canthar_ItemsGiven_Chapter_1 == FALSE))
 	{
 //		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItPl_Beet,10);
@@ -16,7 +16,7 @@ func void B_GiveTradeInv_Canthar(var C_Npc slf)
 		CreateInvItems(slf,ItMi_Flask,5);
 		CreateInvItems(slf,ItMi_Saw,1);
 		CreateInvItems(slf,ItMw_Nagelkeule,1);
-		CreateInvItems(slf,ItMw_ShortSword5,1);
+		CreateInvItems(slf,ItMw_1h_Vlk_Sword,1);
 		CreateInvItems(slf,ItMw_Hellebarde,1);
 //		CreateInvItems(slf,ItMw_Piratensaebel,1);
 //		CreateInvItems(slf,ItMw_Schwert2,2);

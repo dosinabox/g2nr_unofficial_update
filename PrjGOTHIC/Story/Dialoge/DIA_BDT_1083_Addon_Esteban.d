@@ -430,7 +430,7 @@ func void DIA_Addon_Esteban_fight_Info()
 	else
 	{
 		AI_Output(other,self,"DIA_Addon_Esteban_Duell_15_00");	//Давай сюда камень СЕЙЧАС ЖЕ, или я заберу его сам!
-		B_Say(self,other,"$StupidBeastKilled");
+		B_Say(self,other,"$STUPIDBEASTKILLED");
 	};
 	Bodyguard_Killer = FALSE;
 	B_StartOtherRoutine(Wache_01,"TOT");

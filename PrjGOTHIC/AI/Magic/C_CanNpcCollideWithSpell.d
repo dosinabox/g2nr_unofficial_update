@@ -237,7 +237,6 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	/*if(spellType == SPL_Fear)
 	{
-		//Print("spellType == SPL_Fear");
 		if(!C_NpcIsGolem(self) && (self.guild != GIL_SWAMPSHARK) && (self.guild != GIL_TROLL) && !C_NpcIsEvil(self) && !C_NpcIsGateGuard(self) && (self.guild != GIL_KDF) && (self.guild != GIL_PAL) && (self.guild != GIL_KDW) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Vatras)))
 		{
 			return COLL_DOEVERYTHING;

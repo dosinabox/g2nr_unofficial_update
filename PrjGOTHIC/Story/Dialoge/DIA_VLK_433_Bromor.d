@@ -224,6 +224,12 @@ func void DIA_Addon_Bromor_LuciaGold_geben()
 	Info_ClearChoices(DIA_Addon_Bromor_LuciaGold);
 };
 
+func void B_Bromor_NoServiceForYou()
+{
+	AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_mehr_07_01_add");	//Можешь здесь больше не показываться!
+};
+
+var int DIA_Bromor_Pay_OneTime;
 
 instance DIA_Bromor_Pay(C_Info)
 {
@@ -238,32 +244,36 @@ instance DIA_Bromor_Pay(C_Info)
 
 func int DIA_Bromor_Pay_Condition()
 {
-	if((Bromor_Pay == FALSE) && (Bromor_Hausverbot == FALSE) && Npc_KnowsInfo(other,DIA_Bromor_GIRLS) && (NpcObsessedByDMT_Bromor == FALSE) && !Npc_IsDead(Nadja))
+	if((Bromor_Pay == 0) && Npc_KnowsInfo(other,DIA_Bromor_GIRLS) && (NpcObsessedByDMT_Bromor == FALSE) && !Npc_IsDead(Nadja))
 	{
 		return TRUE;
 	};
 };
 
-
-//var int DIA_Bromor_Pay_OneTime;
-
 func void DIA_Bromor_Pay_Info()
 {
 	AI_Output(other,self,"DIA_Bromor_Pay_15_00");	//Я хочу развлечься.
-	AI_Output(self,other,"DIA_Bromor_GIRLS_07_01");	//Ну да, все сюда за этим приходят.
-	if(B_GiveInvItems(other,self,ItMi_Gold,50))
+	if(Bromor_Hausverbot == FALSE)
 	{
-		AI_Output(self,other,"DIA_Bromor_Pay_07_01");	//Отлично. (ухмыляется) Ты долго не забудешь следующие несколько часов твоей жизни.
-		AI_Output(self,other,"DIA_Bromor_Pay_07_02");	//Иди наверх с Надей. Удачи.
-//		if(DIA_Bromor_Pay_OneTime == FALSE)
-//		{
-//			DIA_Bromor_Pay_OneTime = TRUE;
-//		};
-		Bromor_Pay = 1;
+		if(DIA_Bromor_Pay_OneTime == FALSE)
+		{
+			AI_Output(self,other,"DIA_Bromor_GIRLS_07_01");	//Ну да, все сюда за этим приходят.
+			DIA_Bromor_Pay_OneTime = TRUE;
+		};
+		if(B_GiveInvItems(other,self,ItMi_Gold,50))
+		{
+			AI_Output(self,other,"DIA_Bromor_Pay_07_01");	//Отлично. (ухмыляется) Ты долго не забудешь следующие несколько часов твоей жизни.
+			AI_Output(self,other,"DIA_Bromor_Pay_07_02");	//Иди наверх с Надей. Удачи.
+			Bromor_Pay = 1;
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Bromor_Pay_07_03");	//Я не выношу, когда кто-нибудь пытается надуть меня. Убирайся отсюда, если не можешь заплатить.
+		};
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Bromor_Pay_07_03");	//Я не выношу, когда кто-нибудь пытается надуть меня. Убирайся отсюда, если не можешь заплатить.
+		B_Bromor_NoServiceForYou();
 	};
 	B_NpcClearObsessionByDMT(self);
 };
@@ -282,7 +292,7 @@ instance DIA_Bromor_DOPE(C_Info)
 
 func int DIA_Bromor_DOPE_Condition()
 {
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE) && (NpcObsessedByDMT_Bromor == FALSE) && (Bromor_Hausverbot == FALSE) && Npc_KnowsInfo(other,DIA_Bromor_GIRLS))
+	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE) && (NpcObsessedByDMT_Bromor == FALSE) && Npc_KnowsInfo(other,DIA_Bromor_GIRLS))
 	{
 		return TRUE;
 	};
@@ -291,8 +301,22 @@ func int DIA_Bromor_DOPE_Condition()
 func void DIA_Bromor_DOPE_Info()
 {
 	AI_Output(other,self,"DIA_Bromor_DOPE_15_00");	//А могу я рассчитывать на 'особые' услуги, а?
-	AI_Output(self,other,"DIA_Bromor_DOPE_07_01");	//Конечно, все мои девочки особенные. (ухмыляется)
-	AI_Output(self,other,"DIA_Bromor_DOPE_07_02");	//Если у тебя есть деньги, ты можешь пойти наверх с Надей.
+	if(Bromor_Hausverbot == FALSE)
+	{
+		if(C_LawArmorEquipped(other))
+		{
+			AI_Output(self,other,"DIA_Bromor_DOPE_07_01_add");	//(уклончиво) Все мои девочки особенные...
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Bromor_DOPE_07_01");	//Конечно, все мои девочки особенные. (ухмыляется)
+			AI_Output(self,other,"DIA_Bromor_DOPE_07_02");	//Если у тебя есть деньги, ты можешь пойти наверх с Надей.
+		};
+	}
+	else
+	{
+		B_Bromor_NoServiceForYou();
+	};
 };
 
 

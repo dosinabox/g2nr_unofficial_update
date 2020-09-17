@@ -581,6 +581,7 @@ func void DIA_Constantino_LEHRLING_Yes()
 	AI_Output(self,other,"DIA_Constantino_LEHRLING_Yes_10_01");	//(вздыхает) Хорошо! Надеюсь, я не пожалею об этом решении.
 	AI_Output(self,other,"DIA_Constantino_LEHRLING_Yes_10_02");	//С этого момента, ты можешь считать себя моим учеником.
 	Player_IsApprentice = APP_Constantino;
+	ApprenticeGoldCounter = 0;
 	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
 	{
 		Npc_ExchangeRoutine(Lothar,"START");

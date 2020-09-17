@@ -1,15 +1,4 @@
 
-func void B_KardifArmorCheck()
-{
-	if(C_LawArmorEquipped(other))
-	{
-		if(!Npc_KnowsInfo(other,DIA_Kardif_Zeichen))
-		{
-			Kardif_Busted = TRUE;
-		};
-	};
-};
-
 instance DIA_Kardif_EXIT(C_Info)
 {
 	npc = VLK_431_Kardif;
@@ -31,7 +20,6 @@ func int DIA_Kardif_EXIT_Condition()
 
 func void DIA_Kardif_EXIT_Info()
 {
-	B_KardifArmorCheck();
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
@@ -256,7 +244,6 @@ func int DIA_Kardif_TradeInfo_Condition()
 
 func void DIA_Kardif_TradeInfo_Info()
 {
-	B_KardifArmorCheck();
 	AI_Output(other,self,"DIA_Kardif_TradeInfo_15_00");	//Мне нужна информация.
 	Kardif_OneQuestion = TRUE;
 };
@@ -642,10 +629,8 @@ func void DIA_Kardif_DOPE_Info()
 	if(Kardif_Busted == TRUE)
 	{
 		AI_Output(self,other,"DIA_Kardif_DOPE_14_00");	//Только не здесь - я не имею дела с подобными вещами.
-		if(MIS_Andre_REDLIGHT == LOG_Running)
-		{
-			Undercover_Failed = TRUE;
-		};
+		Undercover_Failed_Kardif = TRUE;
+		B_CheckRedLightUndercover();
 	}
 	else if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{

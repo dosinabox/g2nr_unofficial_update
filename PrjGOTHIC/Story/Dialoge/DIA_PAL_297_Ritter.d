@@ -74,7 +74,7 @@ func void DIA_PAL_297_TRESPAS_Info()
 		}
 		else
 		{
-			B_Say(self,other,"$WhyAreYouInHere");
+			B_Say(self,other,"$WHYAREYOUINHERE");
 		};
 	}
 	else

@@ -39,9 +39,35 @@ func int Spell_Logic_Charm(var int manaInvested)
 				};
 			};
 		};
-		if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Canthar)) && (other.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE))
+		if(Undercover_Failed == FALSE)
 		{
-			other.aivar[AIV_LastFightComment] = TRUE;
+			if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Borka))
+			{
+				Undercover_Failed_Borka = FALSE;
+				Borka_RefuseToTalk = FALSE;
+			}
+			else if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Nadja))
+			{
+				Undercover_Failed_Nadja = FALSE;
+				Nadja_BuyHerb_Failed = FALSE;
+			};
+		};
+		if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Meldor))
+		{
+			Undercover_Failed_Meldor = FALSE;
+			Meldor_Busted = FALSE;
+		}
+		else if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Kardif))
+		{
+			Undercover_Failed_Kardif = FALSE;
+			Kardif_Busted = FALSE;
+		}
+		else if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Canthar))
+		{
+			if(other.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE)
+			{
+				other.aivar[AIV_LastFightComment] = TRUE;
+			};
 		};
 		return SPL_SENDCAST;
 	};

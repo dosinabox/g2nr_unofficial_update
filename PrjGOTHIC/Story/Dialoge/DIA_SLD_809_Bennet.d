@@ -432,7 +432,7 @@ func void DIA_Bennet_WannaSmith_Pay()
 
 func void DIA_Bennet_WannaSmith_Later()
 {
-	DIA_Common_MaybeLater();
+	AI_Output(other,self,"DIA_Bennet_WannaSmith_Later_15_00");	//Ну, может быть, позже.
 	Info_ClearChoices(DIA_Bennet_WannaSmith);
 };
 
