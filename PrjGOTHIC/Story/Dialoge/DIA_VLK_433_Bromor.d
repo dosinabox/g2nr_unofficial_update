@@ -80,12 +80,12 @@ func void DIA_Addon_Bromor_MissingPeople_Info()
 		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
 	};
-	B_LogEntry(TOPIC_Addon_MissingPeople,"Шлюха по имени Люсия пропала из борделя в гавани.");
+	B_LogEntries(TOPIC_Addon_MissingPeople,"Шлюха по имени Люсия пропала из борделя в гавани.");
 	if(MIS_LookingForLucia == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
-		B_LogEntry(TOPIC_Addon_Lucia,"Шлюха по имени Люсия пропала из борделя в гавани.");
+		B_LogNextEntry(TOPIC_Addon_Lucia,"Шлюха по имени Люсия пропала из борделя в гавани.");
 		MIS_LookingForLucia = LOG_Running;
 	};
 };
@@ -185,7 +185,14 @@ func void DIA_Addon_Bromor_LuciaGold_lucia()
 func void DIA_Addon_Bromor_LuciaGold_lohn()
 {
 	AI_Output(other,self,"DIA_Addon_Bromor_LuciaGold_lohn_15_00");	//Как насчет награды?
-	AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_lohn_07_01");	//Можешь бесплатно провести время с одной из моих девочек. Что скажешь?
+	if(!Npc_IsDead(Nadja))
+	{
+		AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_lohn_07_01");	//Можешь бесплатно провести время с одной из моих девочек. Что скажешь?
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_lohn_07_01_add");	//50 золотых монет. Что скажешь?
+	};
 	Info_ClearChoices(DIA_Addon_Bromor_LuciaGold);
 	if(DIA_Addon_Bromor_LuciaGold_lucia_OneTime == FALSE)
 	{
@@ -216,8 +223,16 @@ func void DIA_Addon_Bromor_LuciaGold_geben()
 {
 	AI_Output(other,self,"DIA_Addon_Bromor_LuciaGold_geben_15_00");	//Согласен. Вот блюдо.
 	B_GiveInvItems(other,self,ItMi_BromorsGeld_Addon,1);
-	AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_geben_07_01");	//Благодарю. Иди к Наде. Она составит тебе компанию наверху.
-	Bromor_Pay = 1;
+	if(!Npc_IsDead(Nadja))
+	{
+		AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_geben_07_01");	//Благодарю. Иди к Наде. Она составит тебе компанию наверху.
+		Bromor_Pay = 1;
+	}
+	else
+	{
+		CreateInvItems(self,ItMi_Gold,50);
+		B_GiveInvItems(self,other,ItMi_Gold,50);
+	};
 	MIS_Bromor_LuciaStoleGold = LOG_SUCCESS;
 	Bromor_Hausverbot = FALSE;
 	B_GivePlayerXP(XP_Addon_Bromor_LuciaGold);
@@ -303,14 +318,14 @@ func void DIA_Bromor_DOPE_Info()
 	AI_Output(other,self,"DIA_Bromor_DOPE_15_00");	//А могу я рассчитывать на 'особые' услуги, а?
 	if(Bromor_Hausverbot == FALSE)
 	{
-		if(C_LawArmorEquipped(other))
-		{
-			AI_Output(self,other,"DIA_Bromor_DOPE_07_01_add");	//(уклончиво) Все мои девочки особенные...
-		}
-		else
+		if(!C_LawArmorEquipped(other) && !Npc_IsDead(Nadja))
 		{
 			AI_Output(self,other,"DIA_Bromor_DOPE_07_01");	//Конечно, все мои девочки особенные. (ухмыляется)
 			AI_Output(self,other,"DIA_Bromor_DOPE_07_02");	//Если у тебя есть деньги, ты можешь пойти наверх с Надей.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Bromor_DOPE_07_01_add");	//(уклончиво) Все мои девочки особенные...
 		};
 	}
 	else

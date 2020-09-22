@@ -65,14 +65,3 @@ instance Openbook1(C_Item)
 	inv_roty = 180;
 };
 
-instance ItMi_FakeBloodwynHead(C_Item)
-{
-	name = "Голова Бладвина";
-	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI;
-	visual = "ItMi_Head_Bloodwyn_01.3ds";
-	material = MAT_LEATHER;
-	scemeName = "MAPSEALED";
-	description = name;
-};
-

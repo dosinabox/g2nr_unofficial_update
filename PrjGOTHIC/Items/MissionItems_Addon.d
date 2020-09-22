@@ -1335,6 +1335,17 @@ instance ItMi_Addon_Bloodwyn_Kopf(C_Item)
 	description = name;
 };
 
+instance ItMi_FakeBloodwynHead(C_Item)
+{
+	name = "Голова Бладвина";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	visual = "ItMi_Head_Bloodwyn_01.3ds";
+	material = MAT_LEATHER;
+	scemeName = "MAPSEALED";
+	description = name;
+};
+
 instance ItWR_Addon_TreasureMap(C_Item)
 {
 	name = "Карта сокровищ";

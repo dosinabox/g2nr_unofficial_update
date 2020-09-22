@@ -2816,10 +2816,10 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 	Wld_InsertNpc(BDT_10309_Addon_RangerBandit_L,"NW_BIGMILL_FARM3_RANGERBANDITS_03");
 	Wld_InsertNpc(BDT_10310_Addon_RangerBandit_M,"NW_BIGMILL_FARM3_RANGERBANDITS_04");
 	Wld_InsertNpc(VLK_4302_Addon_Elvrich,"NW_BIGMILL_FARM3_RANGERBANDITS_04");
-	Wld_InsertNpc(BDT_10311_Addon_RangerBandit_M,"NW_FARM4_WOOD_RANGERBANDITS_04");
-	Wld_InsertNpc(BDT_10312_Addon_RangerBandit_L,"NW_FARM4_WOOD_RANGERBANDITS_03");
-	Wld_InsertNpc(BDT_10313_Addon_RangerBandit_L,"NW_FARM4_WOOD_RANGERBANDITS_04");
-	Wld_InsertNpc(BDT_10314_Addon_RangerBandit_M,"NW_FARM4_WOOD_RANGERBANDITS_05");
+	Wld_InsertNpc(BDT_10311_Addon_RangerBandit_M,"NW_FARM4_WOOD_RANGERBANDITS_05");
+	Wld_InsertNpc(BDT_10312_Addon_RangerBandit_L,"NW_FARM4_WOOD_RANGERBANDITS_04");
+	Wld_InsertNpc(BDT_10313_Addon_RangerBandit_L,"NW_FARM4_WOOD_RANGERBANDITS_02");
+	Wld_InsertNpc(BDT_10314_Addon_RangerBandit_M,"NW_FARM4_WOOD_RANGERBANDITS_03");
 	Wld_InsertItem(ItWr_LuciasLoveLetter_Addon,"FP_ITEM_NW_FARM4_WOOD_LUCIASLETTER");
 	Wld_InsertItem(ItWr_HitPointStonePlate3_Addon,"FP_ITEM_GREATPEASANT_STPLATE_05");
 	Wld_InsertItem(ItWr_StonePlateCommon_Addon,"FP_ITEM_GREATPEASANT_STPLATE_07");

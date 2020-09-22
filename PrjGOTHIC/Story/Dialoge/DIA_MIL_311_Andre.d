@@ -1767,9 +1767,9 @@ func int DIA_Andre_HILFBAUERLOBART_Condition()
 
 func void DIA_Andre_HILFBAUERLOBART_Info()
 {
+	AI_Output(other,self,"DIA_Andre_HILFBAUERLOBART_15_00");	//У тебя есть еще задания для меня?
 	if(other.guild == GIL_MIL)
 	{
-		AI_Output(other,self,"DIA_Andre_HILFBAUERLOBART_15_00");	//У тебя есть еще задания для меня?
 		AI_Output(self,other,"DIA_Andre_HILFBAUERLOBART_08_01");	//У фермера Лобарта какие-то проблемы на его полях.
 		AI_Output(self,other,"DIA_Andre_HILFBAUERLOBART_08_02");	//Если мы поможем ему, это укрепит его отношения с городом. Так что отправляйся туда и посмотри, что там не так.
 		Log_CreateTopic(TOPIC_Feldraeuber,LOG_MISSION);
@@ -2124,8 +2124,8 @@ func void DIA_Andre_PERM_Info()
 	if(other.guild == GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Andre_PERM_08_02");	//Выполняй свои задания.
-	};
-	if(other.guild == GIL_PAL)
+	}
+	else if(other.guild == GIL_PAL)
 	{
 		B_ReportToHagenNow();
 	};
