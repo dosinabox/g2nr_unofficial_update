@@ -91,7 +91,18 @@ func int PC_Booze_Start_Condition()
 {
 	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
 	{
-		return TRUE;
+		if(Knows_LousHammer == TRUE)
+		{
+			return TRUE;
+		};
+		if(Knows_Schlafhammer == TRUE)
+		{
+			return TRUE;
+		};
+		if(Knows_SchnellerHering == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -323,7 +334,22 @@ func int PC_Mana_Start_Condition()
 {
 	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (ManaStart == FALSE) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (SpecialStart == FALSE))
 	{
-		return TRUE;
+		if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE)
+		{
+			return TRUE;
+		};
+		if(PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == TRUE)
+		{
+			return TRUE;
+		};
+		if(PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE)
+		{
+			return TRUE;
+		};
+		if(PLAYER_TALENT_ALCHEMY[POTION_Mana_04] == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -525,7 +551,22 @@ func int PC_Health_Start_Condition()
 {
 	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (HealthStart == FALSE) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
 	{
-		return TRUE;
+		if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE)
+		{
+			return TRUE;
+		};
+		if(PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE)
+		{
+			return TRUE;
+		};
+		if(PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE)
+		{
+			return TRUE;
+		};
+		if(PLAYER_TALENT_ALCHEMY[POTION_Health_04] == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -727,7 +768,38 @@ func int PC_Special_Start_Condition()
 {
 	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (SpecialStart == FALSE) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE))
 	{
-		return TRUE;
+		if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == TRUE)
+		{
+			return TRUE;
+		};
+		if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == TRUE)
+		{
+			return TRUE;
+		};
+		if(PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == TRUE)
+		{
+			return TRUE;
+		};
+		if(PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == TRUE)
+		{
+			return TRUE;
+		};
+		if(PLAYER_TALENT_ALCHEMY[POTION_Speed] == TRUE)
+		{
+			return TRUE;
+		};
+		if(PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == TRUE)
+		{
+			return TRUE;
+		};
+		if(Knows_MCELIXIER == TRUE)
+		{
+			return TRUE;
+		};
+		if(Knows_MushroomMana == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 

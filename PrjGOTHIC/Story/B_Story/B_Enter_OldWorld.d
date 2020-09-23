@@ -458,7 +458,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 	};
 	if(Talbin_FollowsThroughPass == LOG_OBSOLETE)
 	{
-		B_KillNpc(VLK_4130_Talbin);
+		B_KillNpc(Talbin);
 		Wld_InsertNpc(DragonSnapper,"START");
 		Talbin_FollowsThroughPass = LOG_FAILED;
 	}

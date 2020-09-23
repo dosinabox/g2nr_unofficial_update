@@ -86,6 +86,7 @@ func void DIA_RodDJG_HALLO_warten_zusammen()
 		B_TurnToNpc(self,other);
 	};
 	AI_StopProcessInfos(self);
+	self.npcType = NPCTYPE_FRIEND;
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	Npc_ExchangeRoutine(self,"SwampWait2");
 };
@@ -129,8 +130,8 @@ func void DIA_RodDJG_WARTEMAL_Info()
 	{
 		AI_Output(self,other,"DIA_RodDJG_WARTEMAL_06_01");	//ѕослушай, парень. я думаю, эта тварь немного нам не по зубам. я, пожалуй, попробую тихонько смытьс€.
 		DJG_SwampParty = FALSE;
-		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		AI_StopProcessInfos(self);
+		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		Npc_ExchangeRoutine(self,"Start");
 	}
 	else
@@ -141,8 +142,8 @@ func void DIA_RodDJG_WARTEMAL_Info()
 	{
 		AI_Output(other,self,"DIA_RodDJG_WARTEMAL_15_03");	//» что ты собираешьс€ делать дальше?
 		AI_Output(self,other,"DIA_RodDJG_WARTEMAL_06_04");	//“ы еще спрашиваешь! ѕрежде всего, € куплю себе новые сапоги!
-		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		AI_StopProcessInfos(self);
+		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		Npc_ExchangeRoutine(self,"Start");
 	};
 	AI_StopProcessInfos(self);

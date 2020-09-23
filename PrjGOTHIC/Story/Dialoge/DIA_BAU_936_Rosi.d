@@ -379,7 +379,6 @@ func void DIA_Rosi_HILFE_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_HILFE_15_00");	//Я выведу тебя отсюда.
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	Till.aivar[AIV_PARTYMEMBER] = TRUE;
 	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 	{
 		AI_Output(other,self,"DIA_Rosi_HILFE_15_01");	//Я могу отвести тебя в город.
@@ -399,6 +398,7 @@ func void DIA_Rosi_HILFE_Info()
 	}
 	else
 	{
+		Till.aivar[AIV_PARTYMEMBER] = TRUE;
 		AI_Output(self,other,"DIA_Rosi_HILFE_17_06");	//Ты иди вперед. Мы пойдем за тобой.
 	};
 	AI_StopProcessInfos(self);
@@ -470,7 +470,6 @@ func void DIA_Rosi_ANGEKOMMEN_Info()
 	AI_Output(self,other,"DIA_Rosi_ANGEKOMMEN_17_00");	//Дальше я сама найду дорогу.
 	AI_Output(self,other,"DIA_Rosi_ANGEKOMMEN_17_01");	//Спасибо. Я даже не знаю, что бы я делала без тебя.
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
-	Till.aivar[AIV_PARTYMEMBER] = FALSE;
 	MIS_bringRosiBackToSekob = LOG_OBSOLETE;
 	MIS_RosisFlucht = LOG_SUCCESS;
 	AI_Output(self,other,"DIA_Rosi_ANGEKOMMEN_17_02");	//Пожалуйста, прими этот скромный дар. Ты заслужил его.
@@ -483,6 +482,7 @@ func void DIA_Rosi_ANGEKOMMEN_Info()
 	}
 	else
 	{
+		Till.aivar[AIV_PARTYMEMBER] = FALSE;
 		B_GivePlayerXP(XP_SavedRosi + XP_AmbientKap5);
 	};
 	AI_StopProcessInfos(self);

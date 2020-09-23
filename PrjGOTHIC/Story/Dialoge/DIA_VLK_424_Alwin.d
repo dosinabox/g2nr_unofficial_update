@@ -190,9 +190,9 @@ func int DIA_Alwin_FellanSuccess_Condition()
 func void DIA_Alwin_FellanSuccess_Info()
 {
 	AI_Output(other,self,"DIA_Alwin_FellanSuccess_15_00");	//Феллан больше не будет стучать.
-	AI_Output(self,other,"DIA_Alwin_FellanSuccess_12_01");	//Надо же! Больше нет этого стука. Наконец-то. Я уж думал, он никогда не перестанет.
 	if(!Npc_IsDead(Fellan))
 	{
+		AI_Output(self,other,"DIA_Alwin_FellanSuccess_12_01");	//Надо же! Больше нет этого стука. Наконец-то. Я уж думал, он никогда не перестанет.
 		AI_Output(self,other,"DIA_Alwin_FellanSuccess_12_02");	//Ты оказал мне большую услугу. Знаешь что, я дам тебе 30 золотых монет.
 		B_GiveInvItems(self,other,ItMi_Gold,30);
 		MIS_AttackFellan = LOG_SUCCESS;
@@ -205,6 +205,7 @@ func void DIA_Alwin_FellanSuccess_Info()
 		MIS_AttackFellan = LOG_FAILED;
 		B_MemorizePlayerCrime(self,other,CRIME_MURDER);
 		B_CheckLog();
+		AI_StopProcessInfos(self);
 	};
 };
 

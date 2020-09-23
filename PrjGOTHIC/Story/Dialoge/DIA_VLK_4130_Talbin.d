@@ -47,6 +47,7 @@ func void DIA_Talbin_HALLO_Info()
 	AI_Output(other,self,"DIA_Talbin_HALLO_15_01");	//О, нет проблем!
 	AI_Output(self,other,"DIA_Talbin_HALLO_07_02");	//Эй! Еще один маленький ягненок, ха? Сначала я принял тебя за одного из этих ублюдков, что постоянно шляются здесь.
 	AI_Output(self,other,"DIA_Talbin_HALLO_07_03");	//Но теперь я вижу, что ты не один из них. Ты выглядишь слишком беззащитным!
+	self.npcType = NPCTYPE_FRIEND;
 };
 
 

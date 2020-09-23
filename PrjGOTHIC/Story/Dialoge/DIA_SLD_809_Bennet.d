@@ -962,6 +962,7 @@ func void DIA_Bennet_ThankYou_Info()
 	AI_Output(self,other,"DIA_Bennet_ThankYou_06_04");	//Да, чуть не забыл. У меня есть кое-что для тебя.
 	AI_Output(other,self,"DIA_Bennet_ThankYou_15_05");	//Что ты имеешь в виду?
 	AI_Output(self,other,"DIA_Bennet_ThankYou_06_06");	//(ухмыляется) Презент.
+	self.npcType = NPCTYPE_FRIEND;
 };
 
 
