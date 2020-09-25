@@ -15,7 +15,7 @@ func void B_NPC_IsAliveCheck(var int Zen)
 {
 	var C_Npc SLD_Bullco_OWCheck;
 	var C_Npc SLD_Rod_OWCheck;
-	var C_Npc Sld_821;
+	var C_Npc SLD_821;
 	var C_Npc SLD_Cipher_OWCheck;
 	var C_Npc SLD_Gorn_OWCheck;
 	var C_Npc SLD_Sylvio_OWCheck;
@@ -51,8 +51,8 @@ func void B_NPC_IsAliveCheck(var int Zen)
 				SLD_Rod_is_alive = TRUE;
 				B_RemoveNpc(SLD_Rod_OWCheck);
 			};
-			Sld_821 = Hlp_GetNpc(SLD_821_Soeldner);
-			Npc_ExchangeRoutine(Sld_821,"RODWEG");
+			SLD_821 = Hlp_GetNpc(SLD_821_Soeldner);
+			Npc_ExchangeRoutine(SLD_821,"RODWEG");
 			SLD_Cipher_OWCheck = Hlp_GetNpc(Sld_803_Cipher);
 			if(Npc_IsDead(SLD_Cipher_OWCheck))
 			{

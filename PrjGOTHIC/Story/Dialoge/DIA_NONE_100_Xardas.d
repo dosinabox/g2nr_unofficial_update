@@ -879,6 +879,44 @@ func void DIA_Xardas_INNOSEYEBROKEN_wasnun()
 };
 
 
+func void B_XardasGivesProofForPyrokar()
+{
+	AI_Output(other,self,"DIA_Xardas_PYROWILLNICHT_15_00");	//Пирокар отказывается принять участие в ритуале.
+	AI_Output(other,self,"DIA_Xardas_PYROWILLNICHT_15_01");	//Сначала он хочет получить доказательства того, что он может доверять тебе.
+	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_02");	//Ах, неужели! Пирокар. Как интересно.
+	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_03");	//Этот старый чудак становится совершенно невыносимым. Но я думаю, у меня есть кое-что, что поможет тебе.
+	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_04");	//Когда я покидал орден магов Огня, я взял с собой из монастыря несколько вещей.
+	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_06");	//Я не хотел, чтобы паладины или маги Огня перевернули все в моей башне вверх дном, и нашли эти вещи.
+	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_07");	//Поэтому я спрятал их в надежном месте, где магам никогда не придет в голову искать их.
+	AI_Output(other,self,"DIA_Xardas_PYROWILLNICHT_15_08");	//И где же?
+	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_09");	//Некоторые из них лежат в запертом сундуке на ферме Секоба.
+	Wld_AssignRoomToGuild("grpbauer01",GIL_NONE);
+	Sekob_RoomFree = TRUE;
+	AI_Output(other,self,"DIA_Xardas_PYROWILLNICHT_15_10");	//Ты доверяешь этому Секобу?
+	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_11");	//Нет. Но его можно купить и он не будет задавать глупых вопросов. К тому же, этот сундук заперт. Вот ключ.
+	CreateInvItems(self,ItKe_CHEST_SEKOB_XARDASBOOK_MIS,1);
+	B_GiveInvItems(self,other,ItKe_CHEST_SEKOB_XARDASBOOK_MIS,1);
+	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_12");	//Там, среди прочего, есть очень старая книга. Когда Пирокар увидит эту книгу, он поймет, что она от меня.
+	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_13");	//Она больше не нужна мне. Поэтому пусть она послужит хоть такой цели.
+	B_LogEntry(TOPIC_INNOSEYE,"Ксардас дал мне ключ от сундука на ферме Секоба. Я должен отнести книгу, находящуюся в нем, Пирокару.");
+};
+
+func void B_XardasGoesToRitual()
+{
+	if(Pyrokar_DeniesInnosEyeRitual == TRUE)
+	{
+		B_XardasGivesProofForPyrokar();
+	};
+	AI_StopProcessInfos(self);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_UseMob(self,"THRONE",-1);
+	};
+	B_LogEntry(TOPIC_INNOSEYE,"Ксардас согласился участвовать в ритуале в Круге Солнца.");
+	Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");
+	Xardas_GoesToRitualInnosEye = TRUE;
+};
+
 instance DIA_Xardas_RITUALREQUEST(C_Info)
 {
 	npc = NONE_100_Xardas;
@@ -907,15 +945,8 @@ func void DIA_Xardas_RITUALREQUEST_Info()
 	if((hero.guild == GIL_KDF) || (hero.guild == GIL_DJG) || (hero.guild == GIL_PAL) || (GuildlessMode == TRUE))
 	{
 		AI_Output(self,other,"DIA_Xardas_RITUALREQUEST_14_05");	//Не стоит заставлять Ватраса ждать. Я отправляюсь немедленно. А ты должен выполнить свою задачу, а затем присоединиться ко мне опять.
-		AI_StopProcessInfos(self);
-		if(C_BodyStateContains(self,BS_SIT))
-		{
-			AI_UseMob(self,"THRONE",-1);
-		};
-		B_LogEntry(TOPIC_INNOSEYE,"Ксардас согласился участвовать в ритуале в Круге Солнца.");
 		B_GivePlayerXP(XP_AmbientKap3 * 2);
-		Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");
-		Xardas_GoesToRitualInnosEye = TRUE;
+		B_XardasGoesToRitual();
 	}
 	else
 	{
@@ -993,15 +1024,8 @@ func void DIA_Xardas_BEREIT_Info()
 {
 	AI_Output(other,self,"DIA_Xardas_BEREIT_15_00");	//Я готов к сражению с драконами.
 	AI_Output(self,other,"DIA_Xardas_BEREIT_14_01");	//Тогда не будем терять времени. Я немедленно отправлюсь к Кругу Солнца. А ты выполни свои задачи. Я встречу тебя там.
-	AI_StopProcessInfos(self);
-	if(C_BodyStateContains(self,BS_SIT))
-	{
-		AI_UseMob(self,"THRONE",-1);
-	};
-	B_LogEntry(TOPIC_INNOSEYE,"Ксардас согласился участвовать в ритуале в Круге Солнца.");
 	B_GivePlayerXP(XP_AmbientKap3);
-	Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");
-	Xardas_GoesToRitualInnosEye = TRUE;
+	B_XardasGoesToRitual();
 };
 
 
@@ -1043,7 +1067,7 @@ instance DIA_Xardas_PYROWILLNICHT(C_Info)
 
 func int DIA_Xardas_PYROWILLNICHT_Condition()
 {
-	if((Pyrokar_DeniesInnosEyeRitual == TRUE) && Npc_KnowsInfo(other,DIA_Xardas_RITUALREQUEST) && (Kapitel == 3))
+	if((Pyrokar_DeniesInnosEyeRitual == TRUE) && Npc_KnowsInfo(other,DIA_Xardas_RITUALREQUEST) && (Kapitel == 3) && (Sekob_RoomFree == FALSE))
 	{
 		return TRUE;
 	};
@@ -1051,23 +1075,7 @@ func int DIA_Xardas_PYROWILLNICHT_Condition()
 
 func void DIA_Xardas_PYROWILLNICHT_Info()
 {
-	AI_Output(other,self,"DIA_Xardas_PYROWILLNICHT_15_00");	//Пирокар отказывается принять участие в ритуале.
-	AI_Output(other,self,"DIA_Xardas_PYROWILLNICHT_15_01");	//Сначала он хочет получить доказательства того, что он может доверять тебе.
-	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_02");	//Ах, неужели! Пирокар. Как интересно.
-	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_03");	//Этот старый чудак становится совершенно невыносимым. Но я думаю, у меня есть кое-что, что поможет тебе.
-	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_04");	//Когда я покидал орден магов Огня, я взял с собой из монастыря несколько вещей.
-	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_06");	//Я не хотел, чтобы паладины или маги Огня перевернули все в моей башне вверх дном, и нашли эти вещи.
-	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_07");	//Поэтому я спрятал их в надежном месте, где магам никогда не придет в голову искать их.
-	AI_Output(other,self,"DIA_Xardas_PYROWILLNICHT_15_08");	//И где же?
-	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_09");	//Некоторые из них лежат в запертом сундуке на ферме Секоба.
-	Sekob_RoomFree = TRUE;
-	AI_Output(other,self,"DIA_Xardas_PYROWILLNICHT_15_10");	//Ты доверяешь этому Секобу?
-	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_11");	//Нет. Но его можно купить и он не будет задавать глупых вопросов. К тому же, этот сундук заперт. Вот ключ.
-	CreateInvItems(self,ItKe_CHEST_SEKOB_XARDASBOOK_MIS,1);
-	B_GiveInvItems(self,other,ItKe_CHEST_SEKOB_XARDASBOOK_MIS,1);
-	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_12");	//Там, среди прочего, есть очень старая книга. Когда Пирокар увидит эту книгу, он поймет, что она от меня.
-	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_13");	//Она больше не нужна мне. Поэтому пусть она послужит хоть такой цели.
-	B_LogEntry(TOPIC_INNOSEYE,"Ксардас дал мне ключ от сундука на ферме Секоба. Я должен отнести книгу, находящуюся в нем, Пирокару.");
+	B_XardasGivesProofForPyrokar();
 };
 
 
