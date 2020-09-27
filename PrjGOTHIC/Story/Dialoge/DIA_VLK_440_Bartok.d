@@ -252,7 +252,7 @@ instance DIA_Bartok_TeachSneak(C_Info)
 	information = DIA_Bartok_TeachSneak_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Научи меня красться!",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
-	description = B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
+	description = B_BuildLearnString(NAME_Skill_Sneak,B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
 };
 
 

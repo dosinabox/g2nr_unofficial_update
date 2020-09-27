@@ -446,7 +446,7 @@ instance PC_Rockefeller(Npc_Default)
 	CreateInvItem(self,ItRi_Dex_01);
 	CreateInvItem(self,ItRi_Dex_02);
 	CreateInvItem(self,ItRi_HP_01);
-	CreateInvItem(self,ItRi_Hp_02);
+	CreateInvItem(self,ItRi_HP_02);
 	CreateInvItem(self,ItRi_Str_01);
 	CreateInvItem(self,ItRi_Str_02);
 	CreateInvItem(self,ItRi_Mana_01);

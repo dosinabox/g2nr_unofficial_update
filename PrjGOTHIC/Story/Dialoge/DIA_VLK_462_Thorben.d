@@ -471,7 +471,7 @@ instance DIA_Thorben_Teach(C_Info)
 	condition = DIA_Thorben_Teach_Condition;
 	information = DIA_Thorben_Teach_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1));
+	description = B_BuildLearnString(NAME_Skill_PickLock,B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1));
 };
 
 

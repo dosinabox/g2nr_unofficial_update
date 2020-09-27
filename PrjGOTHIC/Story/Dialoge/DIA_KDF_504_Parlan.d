@@ -746,9 +746,7 @@ func void DIA_Parlan_KNOWSJUDGE_Info()
 
 func void B_BuildLearnDialog_Parlan()
 {
-	Info_ClearChoices(DIA_Parlan_TEACH_MANA);
-	Info_AddChoice(DIA_Parlan_TEACH_MANA,Dialog_Back,DIA_Parlan_TEACH_MANA_BACK);
-	if(other.aivar[REAL_MANA_MAX] >= T_MED)
+	if((other.aivar[REAL_MANA_MAX] >= T_MED) || ((IgnoreBonuses == TRUE) && (other.attribute[ATR_MANA_MAX] >= T_MED)))
 	{
 		AI_Output(self,other,"DIA_Parlan_TEACH_MANA_05_00");	//Твоя магическая энергия выросла. Я не могу помочь тебе повысить ее еще больше.
 		AI_Output(self,other,"DIA_Parlan_TEACH_MANA_05_01");	//Если ты хочешь научиться большему, поговори с Пирокаром.
@@ -756,6 +754,8 @@ func void B_BuildLearnDialog_Parlan()
 	}
 	else
 	{
+		Info_ClearChoices(DIA_Parlan_TEACH_MANA);
+		Info_AddChoice(DIA_Parlan_TEACH_MANA,Dialog_Back,DIA_Parlan_TEACH_MANA_BACK);
 		Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Parlan_TEACH_MANA_1);
 		Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Parlan_TEACH_MANA_5);
 	};

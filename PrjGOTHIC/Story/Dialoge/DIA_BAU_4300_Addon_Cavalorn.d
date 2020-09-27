@@ -1007,7 +1007,7 @@ func void B_BuildLearnDialog_Cavalorn()
 	Info_AddChoice(DIA_Addon_Cavalorn_TEACH,Dialog_Back,DIA_Addon_Cavalorn_Teach_Back);
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
 	{
-		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Addon_Cavalorn_Teach_Sneak);
+		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(NAME_Skill_Sneak,B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Addon_Cavalorn_Teach_Sneak);
 	};
 	if(VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_Cavalorn)
 	{

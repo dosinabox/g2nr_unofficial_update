@@ -1827,16 +1827,19 @@ func void DIA_Vatras_CanTeach_Info()
 };
 
 
+var int Vatras_TeachMANA_NoPerm;
+
 func void B_BuildLearnDialog_Vatras()
 {
-	Info_ClearChoices(DIA_Vatras_Teach);
-	Info_AddChoice(DIA_Vatras_Teach,Dialog_Back,DIA_Vatras_Teach_BACK);
 	if(other.aivar[REAL_MANA_MAX] >= T_HIGH)
 	{
 		AI_Output(self,other,"DIA_Vatras_Teach_05_00");	//Твоя магическая энергия стала слишком велика, чтобы я мог еще повысить ее.
+		Vatras_TeachMANA_NoPerm = TRUE;
 	}
 	else
 	{
+		Info_ClearChoices(DIA_Vatras_Teach);
+		Info_AddChoice(DIA_Vatras_Teach,Dialog_Back,DIA_Vatras_Teach_BACK);
 		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Vatras_Teach_1);
 		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Vatras_Teach_5);
 	};
@@ -1856,7 +1859,7 @@ instance DIA_Vatras_Teach(C_Info)
 func int DIA_Vatras_Teach_Condition()
 {
 //	if((Vatras_TeachMANA == TRUE) && (Vatras_MORE == TRUE))
-	if(Vatras_TeachMANA == TRUE)
+	if((Vatras_TeachMANA == TRUE) && (Vatras_TeachMANA_NoPerm == FALSE))
 	{
 		return TRUE;
 	};

@@ -963,16 +963,19 @@ func void DIA_Pyrokar_Parlan_Info()
 };
 
 
+var int Pyrokar_TeachMANA_NoPerm;
+
 func void B_BuildLearnDialog_Pyrokar()
 {
-	Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
 	if(other.aivar[REAL_MANA_MAX] >= T_MEGA)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_TEACH_MANA_11_00");	//Я чувствую, как магическая энергия течет через тебя, не зная преград. Даже я не могу показать тебе, как повысить ее еще больше.
+		Pyrokar_TeachMANA_NoPerm = TRUE;
 	}
 	else
 	{
+		Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
 		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Pyrokar_TEACH_MANA_1);
 		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Pyrokar_TEACH_MANA_5);
 	};
@@ -991,7 +994,7 @@ instance DIA_Pyrokar_TEACH_MANA(C_Info)
 
 func int DIA_Pyrokar_TEACH_MANA_Condition()
 {
-	if(((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV) || (hero.guild == GIL_PAL)) && Npc_KnowsInfo(hero,DIA_Pyrokar_Parlan))
+	if(((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV) || (hero.guild == GIL_PAL)) && Npc_KnowsInfo(hero,DIA_Pyrokar_Parlan) && (Pyrokar_TeachMANA_NoPerm == FALSE))
 	{
 		return TRUE;
 	};

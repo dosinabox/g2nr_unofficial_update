@@ -472,7 +472,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItRi_Dex_01,1);
 	CreateInvItems(self,ItRi_Dex_02,1);
 	CreateInvItems(self,ItRi_HP_01,1);
-	CreateInvItems(self,ItRi_Hp_02,1);
+	CreateInvItems(self,ItRi_HP_02,1);
 	CreateInvItems(self,ItRi_Str_01,1);
 	CreateInvItems(self,ItRi_Str_02,1);
 	CreateInvItems(self,ItRi_Mana_01,1);

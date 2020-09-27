@@ -350,7 +350,7 @@ func void CH_RESET_Ok()
 	B_UnEquipHeroItem(ItRi_Dex_01);
 	B_UnEquipHeroItem(ItRi_Dex_02);
 	B_UnEquipHeroItem(ItRi_HP_01);
-	B_UnEquipHeroItem(ItRi_Hp_02);
+	B_UnEquipHeroItem(ItRi_HP_02);
 	B_UnEquipHeroItem(ItRi_Str_01);
 	B_UnEquipHeroItem(ItRi_Str_02);
 	B_UnEquipHeroItem(ItRi_Mana_01);
@@ -2526,19 +2526,19 @@ func void DIA_CH_Dieb_Start_Info()
 	Info_AddChoice(DIA_CH_Dieb_Start,Dialog_Back,DIA_CH_Dieb_Start_BACK);
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 	{
-		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString("Карманная кража",B_GetLearnCostTalent(other,NPC_TALENT_PICKPOCKET,1)),CH_Training_Thief_Pickpocket);
+		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString(NAME_Skill_PickPocket,B_GetLearnCostTalent(other,NPC_TALENT_PICKPOCKET,1)),CH_Training_Thief_Pickpocket);
 	};
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
-		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),CH_Training_Thief_Picklock);
+		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString(NAME_Skill_PickLock,B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),CH_Training_Thief_Picklock);
 	};
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
 	{
-		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),CH_Training_Thief_Sneak);
+		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString(NAME_Skill_Sneak,B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),CH_Training_Thief_Sneak);
 	};
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_ACROBAT))
 	{
-		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString("Акробатика",B_GetLearnCostTalent(other,NPC_TALENT_ACROBAT,1)),CH_Training_Thief_Acrobat);
+		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString(NAME_Skill_Acrobat,B_GetLearnCostTalent(other,NPC_TALENT_ACROBAT,1)),CH_Training_Thief_Acrobat);
 	};
 };
 

@@ -224,16 +224,19 @@ func void DIA_Albrecht_TEACHPalRunes_PalRepelEvil()
 };
 
 
+var int Albrecht_TeachMANA_NoPerm;
+
 func void B_BuildLearnDialog_Albrecht()
 {
-	Info_ClearChoices(DIA_Albrecht_Teach);
-	Info_AddChoice(DIA_Albrecht_Teach,Dialog_Back,DIA_Albrecht_Teach_BACK);
 	if(other.aivar[REAL_MANA_MAX] >= T_MED)
 	{
 		AI_Output(self,other,"DIA_Albrecht_Teach_03_00");	//Если ты хочешь повысить свои магические способности еще больше, тебе придется поискать другого учителя.
+		Albrecht_TeachMANA_NoPerm = TRUE;
 	}
 	else
 	{
+		Info_ClearChoices(DIA_Albrecht_Teach);
+		Info_AddChoice(DIA_Albrecht_Teach,Dialog_Back,DIA_Albrecht_Teach_BACK);
 		Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Albrecht_Teach_1);
 		Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Albrecht_Teach_5);
 	};
@@ -252,7 +255,7 @@ instance DIA_Albrecht_Teach(C_Info)
 
 func int DIA_Albrecht_Teach_Condition()
 {
-	if(Albrecht_TeachMANA == TRUE)
+	if((Albrecht_TeachMANA == TRUE) && (Albrecht_TeachMANA_NoPerm == FALSE))
 	{
 		return TRUE;
 	};

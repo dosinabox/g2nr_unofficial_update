@@ -167,7 +167,10 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(Meatbug_Brutus2,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus3,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus4,"OC_FOLTER_SHARP");
-		Wld_InsertNpc(DJG_700_Sylvio,"OC1");
+		if(SLD_Sylvio_is_alive == TRUE)
+		{
+			Wld_InsertNpc(DJG_700_Sylvio,"OC1");
+		};
 		if(SLD_Bullco_is_alive == TRUE)
 		{
 			Wld_InsertNpc(DJG_701_Bullco,"OC1");

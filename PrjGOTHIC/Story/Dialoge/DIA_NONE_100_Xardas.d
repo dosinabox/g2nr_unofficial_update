@@ -951,6 +951,7 @@ func void DIA_Xardas_RITUALREQUEST_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Xardas_RITUALREQUEST_14_06");	//Я буду помогать в этом ритуале только когда буду уверен, что ты готов к встрече с драконами.
+		B_LogEntry(TOPIC_INNOSEYE,"Ксардас считает, что я еще не готов к встрече с драконами.");
 		B_GivePlayerXP(XP_AmbientKap3);
 	};
 };
@@ -1111,7 +1112,7 @@ func void DIA_Xardas_RitualInnosEyeRepairImportant_Info()
 func void DIA_Xardas_RitualInnosEyeRepairImportant_weiter()
 {
 	AI_StopProcessInfos(self);
-	B_StartOtherRoutine(Xardas,"Start");
+	Npc_ExchangeRoutine(self,"Start");
 	B_StartOtherRoutine(Vatras,"Start");
 };
 

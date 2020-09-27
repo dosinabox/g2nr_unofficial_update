@@ -377,7 +377,7 @@ func void DIA_Fernando_Success_Info()
 			else
 			{
 				AI_Output(self,other,"DIA_Fernando_Minental_14_07");	//Вот твое кольцо.
-				B_GiveInvItems(self,other,ItRi_Hp_02,1);
+				B_GiveInvItems(self,other,ItRi_HP_02,1);
 			};
 		}
 		else
