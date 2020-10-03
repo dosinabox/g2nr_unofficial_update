@@ -1,8 +1,4 @@
 
-const int FIX_VERSION_START = 25;
-const int LEAST_SUPPORTED = 21;
-var int FIX_VERSION_SAVE;
-
 func void startup_global()
 {
 	Game_InitGerman();

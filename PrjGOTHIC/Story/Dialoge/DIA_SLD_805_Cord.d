@@ -588,8 +588,7 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 	AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_08");	//Что ж, ты выполнил условия сделки...
 	MIS_Addon_Cord_Look4Patrick = LOG_SUCCESS;
 	TOPIC_End_RangerHelpSLD = TRUE;
-	B_GivePlayerXP(XP_Addon_Cord_Look4Patrick);
-	if(other.guild == GIL_NONE)
+	if((other.guild == GIL_NONE) && (Torlof_ProbeBestanden == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_09");	//Что насчет задания Торлофа?
 		AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_10");	//Не беспокойся, я обо всем позаботился. Твое задание выполнено, и ты прошел испытание. Можешь поговорить с Торлофом.
@@ -608,7 +607,7 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 		};
 		MIS_Torlof_BengarMilizKlatschen = LOG_SUCCESS;
 	};
-	B_CheckLog();
+	B_GivePlayerXP(XP_Addon_Cord_Look4Patrick);
 };
 
 

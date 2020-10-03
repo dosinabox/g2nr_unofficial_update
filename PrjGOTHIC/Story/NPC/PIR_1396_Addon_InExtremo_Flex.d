@@ -18,7 +18,7 @@ instance PIR_1396_Addon_InExtremo_Flex(Npc_Default)
 	CreateInvItem(self,ItMi_IEDudelBlau);
 	B_CreateAmbientInv(self);
 	Mdl_SetVisual(self,"HUMANS.MDS");
-	Mdl_SetVisualBody(self,"Hum_IE_Flex_INSTRUMENT",DEFAULT,DEFAULT,"HUM_HEAD_Flex",DEFAULT,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"Hum_IE_Flex_INSTRUMENT",DEFAULT,DEFAULT,"HUM_HEAD_Flex",DEFAULT,DEFAULT,NO_ARMOR);
 	fight_tactic = FAI_HUMAN_STRONG;
 	Npc_SetTalentSkill(self,NPC_TALENT_1H,1);
 	daily_routine = Rtn_Start_1396;

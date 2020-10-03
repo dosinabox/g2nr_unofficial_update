@@ -103,6 +103,10 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 			{
 				return FALSE;
 			};
+			if(Hlp_IsItem(itm,ITAR_DJG_Crawler) || Hlp_IsItem(itm,ITAR_OHT) || Hlp_IsItem(itm,ITAR_DHT) || Hlp_IsItem(itm,ITAR_RANGER_Addon))
+			{
+				return FALSE;
+			};
 		}
 		else if(oth.guild == GIL_MIL)
 		{
@@ -118,6 +122,10 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 				return FALSE;
 			};
 			if(Hlp_IsItem(itm,ITAR_PALN_M) || Hlp_IsItem(itm,ITAR_PALN_H))
+			{
+				return FALSE;
+			};
+			if(Hlp_IsItem(itm,ITAR_PAL_S))
 			{
 				return FALSE;
 			};

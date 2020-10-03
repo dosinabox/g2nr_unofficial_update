@@ -66,7 +66,7 @@ instance CH(Npc_Default)
 	B_GiveNpcTalents(self);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player_G1,-1);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player_G1,NO_ARMOR);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	daily_routine = Rtn_Start_0;
@@ -539,7 +539,7 @@ func void CH_Guild_Info()
 	Info_AddChoice(CH_Guild,"Ополченец",ch_mil);
 	Info_AddChoice(CH_Guild,"Паладин",ch_pal);
 	Info_AddChoice(CH_Guild,"Нет гильдии",ch_none);
-	Info_AddChoice(CH_Guild,"Псевдобандит",CH_FakeBandit);
+	Info_AddChoice(CH_Guild,"Псевдобандит",ch_bdt);
 };
 
 func void CH_Guild_BACK()
@@ -547,12 +547,11 @@ func void CH_Guild_BACK()
 	Info_ClearChoices(CH_Guild);
 };
 
-func void CH_FakeBandit()
+func void ch_bdt()
 {
-	CreateInvItems(hero,ITAR_BDT_M,1);
-	CreateInvItems(hero,ITAR_BDT_H,1);
-	CreateInvItems(hero,ITAR_Thorus_Addon,1);
-	AI_EquipBestArmor(hero);
+	Info_ClearChoices(CH_Guild);
+	CreateInvItem(hero,ITAR_BDT_M);
+	AI_EquipArmor(hero,ITAR_BDT_M);
 };
 
 func void ch_nov()

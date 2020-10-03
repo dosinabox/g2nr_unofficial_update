@@ -1,5 +1,5 @@
 
-instance VLK_2000_Thorus(Npc_Default)
+/*instance VLK_2000_Thorus(Npc_Default)
 {
 	name[0] = "Торус";
 	guild = GIL_NONE;
@@ -28,5 +28,5 @@ func void Rtn_Start_2000()
 {
 	TA_Sit_Bench(8,0,23,0,"XXX");
 	TA_Sit_Bench(23,0,8,0,"XXX");
-};
+};*/
 

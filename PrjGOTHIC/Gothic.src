@@ -1735,6 +1735,7 @@ Story\Events\SC_ComesInto_CanyonLibrary_Func.d
 Story\Events\Valley_Showcase_TriggerScript_Func.d
 AI\Test_Scripts\CharacterHelper.d
 AI\Test_Scripts\PC_ItemFeller.d
+AI\Test_Scripts\ScriptPatch.d
 AI\Test_Scripts\StoryHelper.d
 AI\Test_Scripts\Testmodelle_Bendlin.d
 AI\Test_Scripts\Testmodelle_Kalveram.d

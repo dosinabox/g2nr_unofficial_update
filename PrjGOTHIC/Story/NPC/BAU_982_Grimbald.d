@@ -29,8 +29,8 @@ func void Rtn_Start_982()
 
 func void Rtn_Jagd_982()
 {
-	TA_Guide_Player(8,0,23,0,"NW_TROLLAREA_PATH_80");
-	TA_Guide_Player(23,0,8,0,"NW_TROLLAREA_PATH_80");
+	TA_RunToWP(8,0,23,0,"NW_TROLLAREA_PATH_80");
+	TA_RunToWP(23,0,8,0,"NW_TROLLAREA_PATH_80");
 };
 
 func void Rtn_JagdOver_982()

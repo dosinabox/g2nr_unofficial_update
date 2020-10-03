@@ -1574,6 +1574,7 @@ instance ITAR_Diego(C_Item)
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
+	text[0] = PRINT_Addon_BDTArmor;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
 	text[2] = NAME_Prot_Point;
