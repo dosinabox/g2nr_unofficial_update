@@ -166,8 +166,8 @@ instance ITAR_OreBaron_Addon(C_Item)
 	protection[PROT_EDGE] = 80;
 	protection[PROT_BLUNT] = 80;
 	protection[PROT_POINT] = 80;
-	protection[PROT_FIRE] = 0;	//20
-	protection[PROT_MAGIC] = 0;
+	protection[PROT_FIRE] = 5;	//20
+	protection[PROT_MAGIC] = 10;
 	value = VALUE_ITAR_OreBaron_Addon;
 	wear = WEAR_TORSO;
 	visual = "ItAr_CHAOS_ADDON.3ds";

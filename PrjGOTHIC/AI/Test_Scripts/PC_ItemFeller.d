@@ -88,7 +88,6 @@ instance PC_Itemfeller(Npc_Default)
 	PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] = TRUE;
 	PLAYER_TALENT_RUNES[SPL_Shrink] = TRUE;
 	B_SetFightSkills(self,100);
-	EquipItem(self,ItMw_2h_Pal_Sword);
 	CreateInvItems(self,ItMw_1h_Vlk_Dagger,1);
 	CreateInvItems(self,ItMw_1H_Mace_L_01,1);
 	CreateInvItems(self,ItMw_1h_Bau_Axe,1);

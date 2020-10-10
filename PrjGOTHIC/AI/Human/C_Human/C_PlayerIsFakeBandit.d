@@ -2,6 +2,10 @@
 func int C_PlayerIsFakeBandit(var C_Npc slf,var C_Npc oth)
 {
 	var C_Item itm;
+	if(slf.guild > GIL_SEPERATOR_HUM)
+	{
+		return FALSE;
+	};
 	if(slf.aivar[AIV_IgnoresArmor] == TRUE)
 	{
 		return FALSE;
@@ -18,9 +22,15 @@ func int C_PlayerIsFakeBandit(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(slf.guild > GIL_SEPERATOR_HUM)
+	if(slf.guild == GIL_BDT)
 	{
-		return FALSE;
+		if(CurrentLevel == ADDONWORLD_ZEN)
+		{
+			if((Player_HasTalkedToBanditCamp == TRUE) && !Npc_HasEquippedArmor(oth))
+			{
+				return TRUE;
+			};
+		};
 	};
 	if(Npc_HasEquippedArmor(oth))
 	{
@@ -29,10 +39,6 @@ func int C_PlayerIsFakeBandit(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-	}
-	else if((slf.guild == GIL_BDT) && (CurrentLevel == ADDONWORLD_ZEN) && (Player_HasTalkedToBanditCamp == TRUE))
-	{
-		return TRUE;
 	};
 	return FALSE;
 };

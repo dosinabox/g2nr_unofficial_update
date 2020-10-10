@@ -133,6 +133,23 @@ func void B_AssessTalk()
 				return;
 			};
 		};
+		if(self.guild == GIL_NOV)
+		{
+			if(Parlan_DontTalkToNovice == LOG_Running)
+			{
+				if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger1))
+				{
+					if(Npc_GetDistToWP(self,"NW_MONASTERY_CELLAR_08") > 900)
+					{
+						Parlan_DontTalkToNovice = LOG_FAILED;
+					};
+				}
+				else if((Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Garwig)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Pedro)))
+				{
+					Parlan_DontTalkToNovice = LOG_FAILED;
+				};
+			};
+		};
 	};
 	if(self.aivar[AIV_NpcStartedTalk] == FALSE)
 	{

@@ -588,11 +588,6 @@ func int DIA_Buster_SHADOWBEASTS_Condition()
 	};
 };
 
-func void B_DIA_Buster_SHADOWBEASTS_OK()
-{
-	AI_StopProcessInfos(self);
-};
-
 func void DIA_Buster_SHADOWBEASTS_Info()
 {
 	AI_Output(self,other,"DIA_Buster_SHADOWBEASTS_13_00");	//Ёй, при€тель!
@@ -833,6 +828,4 @@ func void DIA_Buster_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Buster_PICKPOCKET);
 };
-
-
 

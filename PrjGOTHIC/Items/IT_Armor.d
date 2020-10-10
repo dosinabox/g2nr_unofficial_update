@@ -1544,6 +1544,8 @@ instance ITAR_Lester(C_Item)
 	visual_change = "Armor_Lester.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_ITAR_BDT;
+	on_unequip = UnEquip_ITAR_BDT;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -1573,6 +1575,8 @@ instance ITAR_Diego(C_Item)
 	visual_change = "Armor_Diego.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_ITAR_BDT;
+	on_unequip = UnEquip_ITAR_BDT;
 	description = name;
 	text[0] = PRINT_Addon_BDTArmor;
 	text[1] = NAME_Prot_Edge;

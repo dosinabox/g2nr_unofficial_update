@@ -1201,7 +1201,7 @@ instance DIA_Parlan_DontDisturb(C_Info)
 func int DIA_Parlan_DontDisturb_Condition()
 {
 //	if((Parlan_DontTalkToNovice == LOG_SUCCESS) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && ((other.guild != GIL_PAL) || (other.guild != GIL_NOV) || (other.guild != GIL_KDF)))
-	if((Parlan_DontTalkToNovice == LOG_SUCCESS) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && (other.guild != GIL_PAL))
+	if((Parlan_DontTalkToNovice == LOG_FAILED) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && (other.guild != GIL_PAL))
 	{
 		return TRUE;
 	};

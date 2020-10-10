@@ -359,7 +359,7 @@ instance ItPo_Perm_MushroomMana(C_Item)
 	name = NAME_Trank;
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
-	value = Value_ManaMaxElixier;
+	value = 1700;
 	visual = "ItPo_Perm_MushroomMana.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseItPo_MushroomMana;

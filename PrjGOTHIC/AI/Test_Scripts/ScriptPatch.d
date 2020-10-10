@@ -101,6 +101,10 @@ func void Use_StatsBook()
 	{
 		Doc_PrintLine(nDocID,1,ConcatStrings(ConcatStrings("Опыт снижен на ",IntToString(HardModeXPModifier)),"%"));
 	};
+	if(UnionActivated == TRUE)
+	{
+		Doc_PrintLine(nDocID,1,"Union активирован");
+	};
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Информация о сборке:");
 	Doc_PrintLine(nDocID,1,ConcatStrings(ConcatStrings(IntToString(FIX_VERSION_START)," версия от "),FIX_VERSION_DATE));

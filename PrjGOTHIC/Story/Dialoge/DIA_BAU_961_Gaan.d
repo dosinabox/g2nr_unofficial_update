@@ -1,5 +1,6 @@
 
 var int GaanTeachHornOneTime;
+var int DIA_Gaan_EXIT_oneTime;
 
 func void B_GaanTeachHornComment()
 {
@@ -20,8 +21,6 @@ instance DIA_Gaan_EXIT(C_Info)
 	description = Dialog_Ende;
 };
 
-
-var int DIA_Gaan_EXIT_oneTime;
 
 func int DIA_Gaan_EXIT_Condition()
 {

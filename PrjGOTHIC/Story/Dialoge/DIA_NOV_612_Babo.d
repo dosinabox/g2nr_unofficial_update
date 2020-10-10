@@ -17,10 +17,6 @@ func int DIA_Babo_Kap1_EXIT_Condition()
 
 func void DIA_Babo_Kap1_EXIT_Info()
 {
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
 	AI_StopProcessInfos(self);
 };
 
@@ -837,10 +833,6 @@ func void DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner()
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_15_03");	//я должен обговорить финансовую часть с »гарацем.
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_03_05");	//“ы свинь€. ѕрезренна€ жадна€ свинь€. »ннос покарает теб€.
 	BabosDocsRejected = TRUE;
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,Dialog_Ende,DIA_Babo_Kap3_HaveYourDocs_End);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"ѕридержи €зык.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_KeepCalm);
@@ -981,10 +973,6 @@ func void DIA_Babo_Kap3_Perm_Info()
 	{
 		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_05");	//¬се хорошо, но мне нужно возвращатьс€ к работе, иначе мне ни за что не закончить ее сегодн€.
 		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_06");	//я не хочу оп€ть трудитьс€ до полуночи, чтобы выполнить свою работу и не быть наказанным.
-	};
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
 	};
 	AI_StopProcessInfos(self);
 };

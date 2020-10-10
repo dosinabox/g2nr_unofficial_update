@@ -102,6 +102,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_1H_Special_03,1);
 	CreateInvItems(self,ItMw_2H_Special_03,1);
 	CreateInvItems(self,ItMw_Berserkeraxt,1);
+	CreateInvItems(self,ItMw_Warrioraxt,1);
 	CreateInvItems(self,ItMw_Drachenschneide,1);
 	CreateInvItems(self,ItMw_Bloodschneide,1);
 	CreateInvItems(self,ItMw_1H_Special_04,1);
@@ -140,7 +141,6 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_Addon_BanditTrader,1);
 	CreateInvItems(self,ItMw_Addon_Betty,1);
 	CreateInvItems(self,ItMw_Addon_Becky,1);
-	EquipItem(self,ItMw_Warrioraxt);
 	CreateInvItem(self,ITAR_Governor);
 	CreateInvItem(self,ITAR_Smith);
 	CreateInvItem(self,ITAR_Barkeeper);

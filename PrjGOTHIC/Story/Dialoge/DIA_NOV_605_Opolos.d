@@ -17,10 +17,6 @@ func int DIA_Opolos_Kap1_EXIT_Condition()
 
 func void DIA_Opolos_Kap1_EXIT_Info()
 {
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
 	AI_StopProcessInfos(self);
 };
 
