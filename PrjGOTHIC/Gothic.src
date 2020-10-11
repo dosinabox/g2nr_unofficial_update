@@ -47,6 +47,7 @@ Story\B_Content\C_ArtefaktValues.d
 Story\Dialog_Mobsis\B_PlayerMap.d
 AI\Human\B_Human\B_Say.d
 AI\Human\B_Human\B_Say_Overlay.d
+AI\AI_Intern\Player_Plunder_Is_Empty.d
 Story\Log_Entries\B_CloseTopic.d
 Story\Log_Entries\B_CloseTopics_Hoshi.d
 Story\Log_Entries\B_CloseTopics_Mattes.d
@@ -167,7 +168,6 @@ AI\Human\B_Human\B_Say_GuildGreetings.d
 AI\Human\B_Human\B_Say_Smalltalk.d
 AI\Human\B_Human\B_Say_FleeReason.d
 AI\Human\B_Human\B_SetAttitude.d
-AI\AI_Intern\Player_Plunder_Is_Empty.d
 AI\Human\C_Human\C_NpcIsBotheredByWeapon.d
 AI\Human\C_Human\C_WantToFlee.d
 AI\Human\C_Human\C_WantToRansack.d

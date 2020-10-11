@@ -40,7 +40,7 @@ func void B_NPC_IsAliveCheck(var int Zen)
 			else
 			{
 				SLD_Bullco_is_alive = TRUE;
-				B_RemoveNpc(Sld_807_Bullco);
+				B_RemoveNpc(SLD_807_Bullco);
 			};
 			if(Npc_IsDead(Cipher))
 			{
@@ -49,7 +49,7 @@ func void B_NPC_IsAliveCheck(var int Zen)
 			else
 			{
 				SLD_Cipher_is_alive = TRUE;
-				B_RemoveNpc(Sld_803_Cipher);
+				B_RemoveNpc(SLD_803_Cipher);
 			};
 			if(Npc_IsDead(Rod))
 			{
@@ -58,7 +58,7 @@ func void B_NPC_IsAliveCheck(var int Zen)
 			else
 			{
 				SLD_Rod_is_alive = TRUE;
-				B_RemoveNpc(Sld_804_Rod);
+				B_RemoveNpc(SLD_804_Rod);
 			};
 			Npc_ExchangeRoutine(SLD_821_Soeldner,"RODWEG");
 		};

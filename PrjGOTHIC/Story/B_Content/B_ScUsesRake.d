@@ -218,6 +218,10 @@ func void B_SCGetTreasure_S1()
 			Wld_InsertItem(ItMI_Addon_Kompass_Mis,RAKEPLACE_WP_30);
 			RakeTreasureSuccess(ItMI_Addon_Kompass_Mis);
 			RAKEPLACE[30] = TRUE;
+		}
+		else
+		{
+			player_plunder_is_empty();
 		};
 	};
 };

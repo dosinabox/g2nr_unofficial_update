@@ -153,7 +153,7 @@ var C_Npc Cassia;
 var C_Npc Jesper;
 var C_Npc Ramirez;
 var C_Npc Nagur;
-//var C_Npc Rangar;
+var C_Npc Rangar;
 var C_Npc Bronko;
 var C_Npc Sekob;
 var C_Npc Rosi;
@@ -518,7 +518,7 @@ func void B_InitNpcGlobals()
 	Jesper = Hlp_GetNpc(VLK_446_Jesper);
 	Ramirez = Hlp_GetNpc(VLK_445_Ramirez);
 	Nagur = Hlp_GetNpc(VLK_493_Nagur);
-//	Rangar = Hlp_GetNpc(MIL_321_Rangar);
+	Rangar = Hlp_GetNpc(MIL_321_Rangar);
 	Sylvio = Hlp_GetNpc(SLD_806_Sylvio);
 	Sentenza = Hlp_GetNpc(SLD_814_Sentenza);
 	Bronko = Hlp_GetNpc(BAU_935_Bronko);

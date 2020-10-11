@@ -310,7 +310,7 @@ func void DIA_Addon_Martin_Auftrag_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Auftrag_07_03");	//Возвращайся вечером и заступай на стражу. Я в это время буду в таверне.
 	};
-	B_StartOtherRoutine(MIL_321_Rangar,"PrePalCampKlau");
+	B_StartOtherRoutine(Rangar,"PrePalCampKlau");
 	Info_ClearChoices(DIA_Addon_Martin_Auftrag);
 //	Info_AddChoice(DIA_Addon_Martin_Auftrag,"(еще)",DIA_Addon_Martin_Auftrag_weiter);
 	Info_AddChoice(DIA_Addon_Martin_Auftrag,Dialog_Ende,DIA_Addon_Martin_Auftrag_weiter);
@@ -323,7 +323,7 @@ func void DIA_Addon_Martin_Auftrag_weiter()
 	MIS_Addon_Martin_GetRangar_Day = Wld_GetDay();
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
-	B_StartOtherRoutine(MIL_321_Rangar,"PalCampKlau");
+	B_StartOtherRoutine(Rangar,"PalCampKlau");
 };
 
 
