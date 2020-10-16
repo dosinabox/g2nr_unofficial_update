@@ -117,7 +117,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 			CreateInvItem(slf,ItMw_1H_Mace_L_03);
 		};
 	}
-	else if((slf.guild == GIL_VLK) && C_NpcCanEquipWeapons(slf))
+	else if(slf.guild == GIL_VLK)
 	{
 		if(rnd == 0)
 		{

@@ -1341,3 +1341,4 @@ var int RumboldReturnedToCity;
 var int StartChapter4InNewWorld;
 var int DragonScaleLearnedOutsideOW;
 var int DragonBloodLearnedOutsideOW;
+var int RosiToldAboutSekob;

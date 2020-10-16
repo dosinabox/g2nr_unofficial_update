@@ -803,13 +803,13 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 			{
 				B_StartOtherRoutine(Rosi,"FleeFromSekob");
 				Rosi.aivar[AIV_CommentedPlayerCrime] = FALSE;
+				Rosi_FleeFromSekob_Kap5 = TRUE;
+				if(!Npc_IsDead(Till))
+				{
+					B_StartOtherRoutine(Till,"FleeFromSekob");
+					Till.aivar[AIV_CommentedPlayerCrime] = FALSE;
+				};
 			};
-			if(!Npc_IsDead(Till))
-			{
-				B_StartOtherRoutine(Till,"FleeFromSekob");
-				Till.aivar[AIV_CommentedPlayerCrime] = FALSE;
-			};
-			Rosi_FleeFromSekob_Kap5 = TRUE;
 		};
 		if(GornDJG_is_alive == TRUE)
 		{

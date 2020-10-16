@@ -588,6 +588,10 @@ func void B_Addon_Cavalorn_VatrasBrief()
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_03");	//(вздыхает) Не знаю, как мне удастся сделать это вовремя.
 		AI_Output(other,self,"DIA_Addon_Cavalorn_VatrasBrief_15_04");	//(сухо) А что насчет меня?
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_05");	//(оценивающе) Хм-м. А почему бы и нет... Ты можешь доставить письмо в город.
+		MIS_Addon_Cavalorn_Letter2Vatras = LOG_Running;
+		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+		B_LogEntry(TOPIC_Addon_KDW,"Кавалорн хочет, чтобы я доставил украденное бандитами письмо магу Воды Ватрасу, который читает проповеди в храме Аданоса в Хоринисе.");
 	};
 	AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_06");	//Тогда у меня будет слегка больше времени, чтобы позаботиться о своей экипировке.
 	if(MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS)
@@ -596,27 +600,24 @@ func void B_Addon_Cavalorn_VatrasBrief()
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_08");	//Отнеси его к Ватрасу, магу Воды, в город. Ты найдешь его в храме Аданоса. Он проповедует там весь день.
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_09");	//Скажи ему, что мне не удалось.
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_10");	//А если он спросит, где я, просто скажи ему, что я уже на пути к месту встречи, ладно?
-		B_LogEntry(TOPIC_Addon_KDW,"В городе Хоринисе живет маг Воды Ватрас. Он читает проповеди в храме Аданоса.");
 	};
-//	if(!Npc_HasEquippedArmor(other) && (hero.guild == GIL_NONE) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
 	if(!Npc_HasEquippedArmor(other) && (hero.guild == GIL_NONE))
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_11");	//А, да, и еще одно. Сначала купи приличную одежду у какого-нибудь фермера.
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_12");	//Иначе тебя могут принять за бандита. Вот пара монет.
 		CreateInvItems(self,ItMi_Gold,50);
 		B_GiveInvItems(self,other,ItMi_Gold,50);
-	};
-	MIS_Addon_Cavalorn_KillBrago = LOG_SUCCESS;
-	if(MIS_Addon_Cavalorn_Letter2Vatras == FALSE)
-	{
-		MIS_Addon_Cavalorn_Letter2Vatras = LOG_Running;
+		if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
+		{
+			Log_CreateTopic(TOPIC_City,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_City,LOG_Running);
+			Log_AddEntry(TOPIC_City,"Кавалорн посоветовал мне купить приличую одежду, чтобы я не выглядел слишком подозрительно.");
+		};
 	};
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"Start");
+	MIS_Addon_Cavalorn_KillBrago = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Cavalorn_KillBrago);
-	Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
-	B_LogEntry(TOPIC_Addon_KDW,"Кавалорн хочет, чтобы я доставил украденное бандитами письмо магу Воды Ватрасу, которого можно найти в городе, в храме Аданоса.");
 };
 
 

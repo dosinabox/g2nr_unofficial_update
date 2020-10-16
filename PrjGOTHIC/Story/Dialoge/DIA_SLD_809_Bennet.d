@@ -445,7 +445,7 @@ instance DIA_Bennet_TeachCOMMON(C_Info)
 	information = DIA_Bennet_TeachCOMMON_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Научиться кузнечному делу",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common));
-	description = B_BuildLearnString("Кузнечное дело",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common));
+	description = B_BuildLearnString(NAME_Skill_Smith,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common));
 };
 
 

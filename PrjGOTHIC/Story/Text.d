@@ -421,7 +421,7 @@ const string TXT_TALENTS[22] =
 	"",
 	"Акробатика",
 	"Карманная кража",
-	"Ковка оружия",
+	"Кузнечное дело",
 	"Создание рун",
 	"Алхимия",
 	"Снятие шкур",
@@ -636,6 +636,7 @@ const string NAME_Skill_Sneak = "Подкрадывание";
 const string NAME_Skill_PickPocket = "Карманная кража";
 const string NAME_Skill_PickLock = "Взлом замков";
 const string NAME_Skill_Acrobat = "Акробатика";
+const string NAME_Skill_Smith = "Кузнечное дело";
 const string NAME_ItMw_Banditenaxt = "Бандитский топор";
 const string PRINT_ItemGiven = " отдано";
 const string PRINT_ItemTaken = " получено";

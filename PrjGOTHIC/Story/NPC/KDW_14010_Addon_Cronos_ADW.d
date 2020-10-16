@@ -11,7 +11,7 @@ instance KDW_14010_Addon_Cronos_ADW(Npc_Default)
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,5);
-	self.attribute[ATR_STRENGTH] = 45;
+	self.attribute[ATR_STRENGTH] = Condition_Stab05;
 	self.attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMW_Addon_Stab05);

@@ -376,10 +376,6 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_SCAVENGER13_SPAWN01");
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_SCAVENGER13_SPAWN01");
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_SCAVENGER13_SPAWN01");
-		if(Npc_IsDead(DragonSnapper_NC_Cave))
-		{
-			Wld_InsertNpc(Shadowbeast,"OW_PATH_07_15_CAVE3");
-		};
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_07_19");
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_146");
 		Wld_InsertNpc(FireWaran,"OW_PATH_182");

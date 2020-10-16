@@ -8,7 +8,7 @@ instance KDF_508_Gorax(Npc_Default)
 	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,4);
-	self.attribute[ATR_STRENGTH] = 40;
+	self.attribute[ATR_STRENGTH] = Condition_Stab04;
 	self.attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMW_Addon_Stab04);

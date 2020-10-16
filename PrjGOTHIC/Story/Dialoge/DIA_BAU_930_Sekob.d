@@ -317,32 +317,6 @@ func void DIA_Sekob_PERMKAP1_Info()
 };
 
 
-/*instance DIA_Sekob_KAP3_EXIT(C_Info)
-{
-	npc = BAU_930_Sekob;
-	nr = 999;
-	condition = DIA_Sekob_KAP3_EXIT_Condition;
-	information = DIA_Sekob_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Sekob_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Sekob_KAP3_EXIT_Info()
-{
-	self.flags = 0;
-	AI_StopProcessInfos(self);
-};*/
-
-
 instance DIA_Sekob_DMT(C_Info)
 {
 	npc = BAU_930_Sekob;
@@ -502,7 +476,7 @@ func void DIA_Sekob_BELOHNUNG_Info()
 	DIA_Common_NotSoFastMyFriend();
 	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 	{
-		if(Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU))
+		if(RosiToldAboutSekob == TRUE)
 		{
 			AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_01");	//ќтныне тебе придетс€ оставить свои гр€зные делишки и встать на путь добра, или € вернусь...
 		};
@@ -564,7 +538,7 @@ func void DIA_Sekob_PERM_Info()
 		{
 			AI_Output(self,other,"DIA_Sekob_PERM_01_02");	//Ќет. Ќичего особенного.
 		}
-		else if((Kapitel >= 5) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
+		else if((Rosi_FleeFromSekob_Kap5 == TRUE) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
 		{
 			AI_Output(self,other,"DIA_Sekob_PERM_01_03");	//ћо€ жена исчезла. —начала € не придал этому внимани€, но она так и не вернулась.
 			AI_Output(self,other,"DIA_Sekob_PERM_01_04");	//я подозреваю, что она убежала в лес, спаса€сь от полевых хищников.
@@ -583,58 +557,6 @@ func void DIA_Sekob_PERM_Info()
 		};
 	};
 };
-
-
-/*instance DIA_Sekob_KAP4_EXIT(C_Info)
-{
-	npc = BAU_930_Sekob;
-	nr = 999;
-	condition = DIA_Sekob_KAP4_EXIT_Condition;
-	information = DIA_Sekob_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Sekob_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Sekob_KAP4_EXIT_Info()
-{
-	self.flags = 0;
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Sekob_KAP5_EXIT(C_Info)
-{
-	npc = BAU_930_Sekob;
-	nr = 999;
-	condition = DIA_Sekob_KAP5_EXIT_Condition;
-	information = DIA_Sekob_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Sekob_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Sekob_KAP5_EXIT_Info()
-{
-	self.flags = 0;
-	B_NpcClearObsessionByDMT(self);
-};*/
 
 
 instance DIA_Sekob_Heilung(C_Info)
@@ -691,10 +613,12 @@ instance DIA_Sekob_ROSIBACKATSEKOB(C_Info)
 
 func int DIA_Sekob_ROSIBACKATSEKOB_Condition()
 {
-//	if((Kapitel >= 5) && (hero.guild != GIL_KDF) && (Npc_GetDistToWP(Rosi,"NW_FARM4_SEKOB") < 3000) && (MIS_bringRosiBackToSekob == LOG_Running))
-	if((Kapitel >= 5) && (Npc_GetDistToWP(Rosi,"NW_FARM4_IN_04") < 3000) && (MIS_bringRosiBackToSekob == LOG_Running) && !Npc_IsDead(Rosi))
+	if(!Npc_IsDead(Rosi) && (MIS_bringRosiBackToSekob == LOG_Running))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(Rosi,"NW_FARM4_IN_04") < 3000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -707,8 +631,13 @@ func void DIA_Sekob_ROSIBACKATSEKOB_Info()
 	B_GiveInvItems(self,other,ItMi_Gold,650);
 	B_GivePlayerXP(XP_AmbientKap5);
 	B_NpcClearObsessionByDMT(self);
+	Rosi.aivar[AIV_PARTYMEMBER] = FALSE;
 	B_StartOtherRoutine(Rosi,"Start");
-	B_StartOtherRoutine(Till,"Start");
+	if(!Npc_IsDead(Till))
+	{
+		Till.aivar[AIV_PARTYMEMBER] = FALSE;
+		B_StartOtherRoutine(Till,"Start");
+	};
 };
 
 
@@ -744,32 +673,6 @@ func void DIA_Sekob_ROSINEVERBACK_Info()
 	B_GivePlayerXP(XP_AmbientKap5);
 };
 
-/*
-instance DIA_Sekob_KAP6_EXIT(C_Info)
-{
-	npc = BAU_930_Sekob;
-	nr = 999;
-	condition = DIA_Sekob_KAP6_EXIT_Condition;
-	information = DIA_Sekob_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Sekob_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Sekob_KAP6_EXIT_Info()
-{
-	self.flags = 0;
-	B_NpcClearObsessionByDMT(self);
-};
-*/
 
 instance DIA_Sekob_PICKPOCKET(C_Info)
 {

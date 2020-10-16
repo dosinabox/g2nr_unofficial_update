@@ -1,4 +1,54 @@
 
+var int RosiTradeInfo;
+var int RosiLocation;
+var int RosiToldAboutBarrier;
+var int RosiToldAboutMilitia;
+var int RosiToldAboutOnar;
+
+func void B_RosiTradeInfo()
+{
+	if(RosiTradeInfo == FALSE)
+	{
+		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_06");	//Ты хочешь купить какой-нибудь еды или, возможно, что-то для охоты в лесу?
+		if(RosiLocation == LOC_CITY)
+		{
+			Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+			B_LogEntry(TOPIC_CityTrader,"У Рози можно купить различные товары.");
+		}
+		else if(RosiLocation == LOC_MONASTERY)
+		{
+			Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
+			B_LogEntry(Topic_KlosterTrader,"У Рози можно купить различные товары.");
+		}
+		else if(RosiLocation == LOC_FARM)
+		{
+			Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
+			B_LogEntry(Topic_SoldierTrader,"У Рози можно купить различные товары.");
+		}
+		else
+		{
+			Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
+			if(Rosi_FleeFromSekob_Kap5 == FALSE)
+			{
+				B_LogEntry(Topic_OutTrader,"У Рози на ферме Секоба можно купить различные товары.");
+			}
+			else
+			{
+				B_LogEntry(Topic_OutTrader,"У Рози можно купить различные товары.");
+			};
+		};
+		RosiTradeInfo = TRUE;
+	};
+};
+
+func void B_RosiAboutSekob()
+{
+	AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_02");	//Он задолжал всем в округе. И еще он ворует продукты из запасов Онара и продает их в городе.
+	AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_03");	//Он сколотил целое состояние своими темными делишками.
+	AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_04");	//Он заставил наших работников трудиться до полного изнеможения. За это его за глаза называют душегубом.
+	RosiToldAboutSekob = TRUE;
+};
+
 instance DIA_Rosi_EXIT(C_Info)
 {
 	npc = BAU_936_Rosi;
@@ -34,7 +84,10 @@ instance DIA_Rosi_HALLO(C_Info)
 
 func int DIA_Rosi_HALLO_Condition()
 {
-	return TRUE;
+	if(Rosi_FleeFromSekob_Kap5 == FALSE)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Rosi_HALLO_Info()
@@ -44,6 +97,7 @@ func void DIA_Rosi_HALLO_Info()
 	if(other.guild != GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Rosi_HALLO_17_02");	//Обычно приходят либо головорезы с гор, либо эти ужасные солдаты ополчения из города.
+		RosiToldAboutMilitia = TRUE;
 		if(other.guild != GIL_NONE)
 		{
 			AI_Output(self,other,"DIA_Rosi_HALLO_17_03");	//Последнее время они наведываются на нашу ферму очень часто. Но ты не похож ни на одного из них.
@@ -51,38 +105,6 @@ func void DIA_Rosi_HALLO_Info()
 	};
 };
 
-
-var int RosiTradeInfo;
-var int RosiLocation;
-
-func void B_RosiTradeInfo()
-{
-	if(RosiTradeInfo == FALSE)
-	{
-		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_06");	//Ты хочешь купить какой-нибудь еды или, возможно, что-то для охоты в лесу?
-		if(RosiLocation == LOC_CITY)
-		{
-			Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-			B_LogEntry(TOPIC_CityTrader,"У Рози можно купить различные товары.");
-		}
-		else if(RosiLocation == LOC_MONASTERY)
-		{
-			Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-			B_LogEntry(Topic_KlosterTrader,"У Рози можно купить различные товары.");
-		}
-		else if(RosiLocation == LOC_FARM)
-		{
-			Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-			B_LogEntry(Topic_SoldierTrader,"У Рози можно купить различные товары.");
-		}
-		else
-		{
-			Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
-			B_LogEntry(Topic_OutTrader,"У Рози на ферме Секоба можно купить различные товары.");
-		};
-		RosiTradeInfo = TRUE;
-	};
-};
 
 instance DIA_Rosi_WASMACHSTDU(C_Info)
 {
@@ -96,7 +118,7 @@ instance DIA_Rosi_WASMACHSTDU(C_Info)
 
 func int DIA_Rosi_WASMACHSTDU_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rosi_HALLO) && (Kapitel < 5))
+	if(Npc_KnowsInfo(other,DIA_Rosi_HALLO) && (Rosi_FleeFromSekob_Kap5 == FALSE))
 	{
 		return TRUE;
 	};
@@ -108,10 +130,9 @@ func void DIA_Rosi_WASMACHSTDU_Info()
 	if(!Npc_IsDead(Sekob))
 	{
 		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_01");	//Я задаю себе этот вопрос уже несколько лет. Секоб, мой муж, умудрился перессориться со всеми соседями.
-		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_02");	//Он задолжал всем в округе. И еще он ворует продукты из запасов Онара и продает их в городе.
-		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_03");	//Он сколотил целое состояние своими темными делишками.
-		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_04");	//Он заставил наших работников трудиться до полного изнеможения. За это его за глаза называют душегубом.
+		B_RosiAboutSekob();
 		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_05");	//Мне не очень приятно называть себя женой Секоба, поверь мне. Иногда мне даже хочется, чтобы Барьер все еще стоял на месте.
+		RosiToldAboutBarrier = TRUE;
 	};
 	B_RosiTradeInfo();
 };
@@ -131,7 +152,7 @@ instance DIA_Rosi_WAREZ(C_Info)
 
 func int DIA_Rosi_WAREZ_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU) || ((Kapitel >= 5) && Npc_KnowsInfo(other,DIA_Rosi_FLEEFROMSEKOB)) || Npc_IsDead(Sekob)) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
+	if((Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU) || Npc_KnowsInfo(other,DIA_Rosi_FLEEFROMSEKOB)) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -140,9 +161,9 @@ func int DIA_Rosi_WAREZ_Condition()
 func void DIA_Rosi_WAREZ_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_WAREZ_15_00");	//Что ты можешь предложить мне?
-	B_GiveTradeInv(self);
 	B_RosiTradeInfo();
 	AI_Output(self,other,"DIA_Rosi_WAREZ_17_01");	//Выбирай.
+	B_GiveTradeInv(self);
 	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
 	{
 		RosiMinenAnteil = TRUE;
@@ -163,7 +184,7 @@ instance DIA_Rosi_BARRIERE(C_Info)
 
 func int DIA_Rosi_BARRIERE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU))
+	if(RosiToldAboutBarrier == TRUE)
 	{
 		return TRUE;
 	};
@@ -241,7 +262,7 @@ instance DIA_Rosi_Miliz(C_Info)
 
 func int DIA_Rosi_Miliz_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU))
+	if(RosiToldAboutMilitia == TRUE)
 	{
 		return TRUE;
 	};
@@ -254,6 +275,7 @@ func void DIA_Rosi_Miliz_Info()
 	{
 		AI_Output(self,other,"DIA_Rosi_Miliz_17_01");	//Потому что здесь никого нет, кто не позволит им просто грабить наши фермы, вместо того, чтобы покупать наши продукты.
 		AI_Output(self,other,"DIA_Rosi_Miliz_17_02");	//Король далеко, а нам остается только работать на Онара, надеясь, что он пришлет помощь, когда она действительно будет нам необходима.
+		RosiToldAboutOnar = TRUE;
 	}
 	else
 	{
@@ -274,7 +296,7 @@ instance DIA_Rosi_ONAR(C_Info)
 
 func int DIA_Rosi_ONAR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rosi_Miliz))
+	if(RosiToldAboutOnar == TRUE)
 	{
 		return TRUE;
 	};
@@ -289,7 +311,10 @@ func void DIA_Rosi_ONAR_Info()
 		AI_Output(self,other,"DIA_Rosi_ONAR_17_02");	//Тогда мы посылаем кого-нибудь к лендлорду с просьбой о помощи.
 		AI_Output(self,other,"DIA_Rosi_ONAR_17_03");	//И затем, обычно вскоре, появляются наемники, которым он платит, чтобы те пришли сюда и прогнали ополчение.
 	};
-	AI_Output(self,other,"DIA_Rosi_ONAR_17_04");	//Но, откровенно говоря, наемники не многим лучше ополчения.
+	if((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
+	{
+		AI_Output(self,other,"DIA_Rosi_ONAR_17_04");	//Но, откровенно говоря, наемники не многим лучше ополчения.
+	};
 };
 
 
@@ -306,7 +331,7 @@ instance DIA_Rosi_PERMKAP1(C_Info)
 
 func int DIA_Rosi_PERMKAP1_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU) || ((Kapitel >= 5) && Npc_KnowsInfo(other,DIA_Rosi_FLEEFROMSEKOB)))
+	if(Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU) || Npc_KnowsInfo(other,DIA_Rosi_FLEEFROMSEKOB))
 	{
 		return TRUE;
 	};
@@ -339,7 +364,7 @@ instance DIA_Rosi_FLEEFROMSEKOB(C_Info)
 
 func int DIA_Rosi_FLEEFROMSEKOB_Condition()
 {
-	if((Kapitel == 5) && (Rosi_FleeFromSekob_Kap5 == TRUE))
+	if(Rosi_FleeFromSekob_Kap5 == TRUE)
 	{
 		return TRUE;
 	};
@@ -349,6 +374,10 @@ func void DIA_Rosi_FLEEFROMSEKOB_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_FLEEFROMSEKOB_15_00");	//Что ты делаешь здесь, в глуши?
 	AI_Output(self,other,"DIA_Rosi_FLEEFROMSEKOB_17_01");	//Я больше не в силах терпеть все это. Секоб начал закатывать истерики по любому поводу.
+	if(RosiToldAboutSekob == FALSE)
+	{
+		B_RosiAboutSekob();
+	};
 	AI_Output(self,other,"DIA_Rosi_FLEEFROMSEKOB_17_02");	//В конце концов, все перестали с ним разговаривать. Ну и он тоже не говорит ни с кем.
 	AI_Output(self,other,"DIA_Rosi_FLEEFROMSEKOB_17_03");	//Я должна была бежать оттуда, но теперь я не знаю, куда мне идти.
 	AI_Output(self,other,"DIA_Rosi_FLEEFROMSEKOB_17_04");	//Ты не мог бы помочь мне?
@@ -369,7 +398,7 @@ instance DIA_Rosi_HILFE(C_Info)
 
 func int DIA_Rosi_HILFE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rosi_FLEEFROMSEKOB) && (Rosi_FleeFromSekob_Kap5 == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Rosi_FLEEFROMSEKOB))
 	{
 		return TRUE;
 	};
@@ -379,7 +408,7 @@ func void DIA_Rosi_HILFE_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_HILFE_15_00");	//Я выведу тебя отсюда.
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_NONE))
 	{
 		AI_Output(other,self,"DIA_Rosi_HILFE_15_01");	//Я могу отвести тебя в город.
 	}
@@ -387,7 +416,7 @@ func void DIA_Rosi_HILFE_Info()
 	{
 		AI_Output(other,self,"DIA_Rosi_HILFE_15_02");	//Я отведу тебя на ферму лендлорда.
 	}
-	else if(hero.guild == GIL_KDF)
+	else if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
 	{
 		AI_Output(other,self,"DIA_Rosi_HILFE_15_03");	//Пойдем в монастырь. Тебя хорошо примут там.
 	};
@@ -402,7 +431,7 @@ func void DIA_Rosi_HILFE_Info()
 		AI_Output(self,other,"DIA_Rosi_HILFE_17_06");	//Ты иди вперед. Мы пойдем за тобой.
 	};
 	AI_StopProcessInfos(self);
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_NONE))
 	{
 		Npc_ExchangeRoutine(self,"FollowCity");
 		B_StartOtherRoutine(Till,"FollowCity");
@@ -412,7 +441,7 @@ func void DIA_Rosi_HILFE_Info()
 		Npc_ExchangeRoutine(self,"FollowBigfarm");
 		B_StartOtherRoutine(Till,"FollowBigfarm");
 	}
-	else if(hero.guild == GIL_KDF)
+	else if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
 	{
 		Npc_ExchangeRoutine(self,"FollowKloster");
 		B_StartOtherRoutine(Till,"FollowKloster");
@@ -421,7 +450,7 @@ func void DIA_Rosi_HILFE_Info()
 	{
 		Log_CreateTopic(TOPIC_RosisFlucht,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_RosisFlucht,LOG_Running);
-		B_LogEntry(TOPIC_RosisFlucht,"Рози больше не могла выносить жизнь на ферме Секоба, и сбежала в лес, но заблудилась и теперь не знает, куда идти. Я выведу ее из лесной глуши.");
+		B_LogEntry(TOPIC_RosisFlucht,"Рози больше не могла выносить жизнь на ферме Секоба и сбежала в лес, но заблудилась и теперь не знает, куда идти. Я выведу ее из лесной глуши.");
 	};
 	MIS_RosisFlucht = LOG_Running;
 };
@@ -439,9 +468,9 @@ instance DIA_Rosi_ANGEKOMMEN(C_Info)
 
 func int DIA_Rosi_ANGEKOMMEN_Condition()
 {
-	if((Kapitel == 5) && (MIS_bringRosiBackToSekob != LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE))
+	if((MIS_bringRosiBackToSekob != LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE))
 	{
-		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_NONE))
 		{
 			if((Npc_GetDistToWP(self,"CITY1") < 6000) || (Npc_GetDistToWP(self,"CITY2") < 6000))
 			{
@@ -455,7 +484,7 @@ func int DIA_Rosi_ANGEKOMMEN_Condition()
 				return TRUE;
 			};
 		}
-		else if(hero.guild == GIL_KDF)
+		else if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
 		{
 			if(Npc_GetDistToWP(self,"KLOSTER") < 6000)
 			{
@@ -519,7 +548,7 @@ instance DIA_Rosi_TRAIT(C_Info)
 
 func int DIA_Rosi_TRAIT_Condition()
 {
-	if((MIS_bringRosiBackToSekob == LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE))
+	if(MIS_bringRosiBackToSekob == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -530,10 +559,8 @@ func void DIA_Rosi_TRAIT_Info()
 	AI_Output(other,self,"DIA_Rosi_TRAIT_15_00");	//Видишь, теперь ты опять дома.
 	AI_Output(self,other,"DIA_Rosi_TRAIT_17_01");	//Ты худший кусок дерьма, что я встречала в своей жизни! Ты грязная свинья!
 	AI_StopProcessInfos(self);
-	self.aivar[AIV_PARTYMEMBER] = FALSE;
-	Till.aivar[AIV_PARTYMEMBER] = FALSE;
 	MIS_RosisFlucht = LOG_FAILED;
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap5);
 };
 
 
@@ -549,7 +576,6 @@ instance DIA_Rosi_MinenAnteil(C_Info)
 
 func int DIA_Rosi_MinenAnteil_Condition()
 {
-	//if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU))
 	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (RosiMinenAnteil == TRUE))
 	{
 		return TRUE;

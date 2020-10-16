@@ -197,6 +197,10 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
 	};*/
+	if(!Npc_HasItems(other,StatsBook))
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Получить книгу статистики",StoryHelper_StatsBook);
+	};
 	if(MIS_ReadyforChapter4 == FALSE)
 	{
 		if(StartChapter4InNewWorld == FALSE)
@@ -875,6 +879,12 @@ func void StoryHelper_Chapter4InNewWorld()
 		StartChapter4InNewWorld = TRUE;
 		PrintScreen("Четвертая глава начнется в Хоринисе",-1,-1,FONT_Screen,3);
 	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_StatsBook()
+{
+	B_GiveInvItems(self,other,StatsBook,1);
 	b_build_settings_diag();
 };
 

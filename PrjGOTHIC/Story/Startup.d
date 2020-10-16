@@ -1643,7 +1643,7 @@ func void Startup_Surface()
 	Wld_InsertNpc(Draconian,"FP_ROAM_SWAMP_15_02");
 	Wld_InsertNpc(Draconian,"FP_ROAM_SWAMP_16_01");
 	Wld_InsertNpc(Draconian,"FP_ROAM_SWAMP_16_02");
-	Wld_InsertNpc(DragonSnapper_NC_Cave,"OW_PATH_07_15_CAVE3");
+	Wld_InsertNpc(DragonSnapper,"OW_PATH_07_15_CAVE3");
 	Wld_InsertNpc(DragonSnapper,"OW_PATH_07_15");
 	Wld_InsertNpc(DragonSnapper,"OW_PATH_07_15");
 	Wld_InsertNpc(DragonSnapper,"OW_PATH_07_15");
