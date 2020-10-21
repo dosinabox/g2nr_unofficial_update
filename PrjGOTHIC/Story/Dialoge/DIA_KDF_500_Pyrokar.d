@@ -1133,12 +1133,12 @@ func void DIA_Pyrokar_BACKFROMOW_Info()
 		Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
 		B_LogEntry(TOPIC_DEMENTOREN,"Пирокар рассказал мне об Ищущих, людях в черных рясах. Это приспешники Белиара. Он предупредил меня, что они могут сделать меня одержимым. Если это произойдет, я должен немедленно возвращаться в монастырь.");
-	};
-	if(!Npc_IsDead(Karras) && (hero.guild == GIL_KDF))
-	{
-		AI_Output(self,other,"DIA_Pyrokar_BACKFROMOW_11_09");	//Я попросил Карраса заняться этим вопросом. Ему наверняка скоро удастся лучше понять эту проблему, что позволит нам видеть яснее.
-		PyrokarToldKarrasToResearchDMT = TRUE;
-		B_LogEntry(TOPIC_DEMENTOREN,"Пирокар приказал Каррасу ликвидировать угрозу, исходящую от Ищущих.");
+		if(!Npc_IsDead(Karras))
+		{
+			AI_Output(self,other,"DIA_Pyrokar_BACKFROMOW_11_09");	//Я попросил Карраса заняться этим вопросом. Ему наверняка скоро удастся лучше понять эту проблему, что позволит нам видеть яснее.
+			PyrokarToldKarrasToResearchDMT = TRUE;
+			Log_AddEntry(TOPIC_DEMENTOREN,"Пирокар приказал Каррасу ликвидировать угрозу, исходящую от Ищущих.");
+		};
 	};
 	AI_Output(self,other,"DIA_Pyrokar_Add_11_00");	//Вот - эта руна всегда перенесет тебя прямо в монастырь, если тебе понадобится помощь.
 	B_GiveInvItems(self,other,ItRu_TeleportMonastery,1);
@@ -1288,7 +1288,7 @@ func void DIA_Pyrokar_FOUNDINNOSEYE_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
+		DIA_Common_InnosEyeBroken();
 	};
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_11_01");	//Но... этого не может быть. Что произошло?
 	AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_15_02");	//Его заполучили в свои руки заказчики весьма отвратительного вида. Так получилось, что я прибыл слишком поздно.
@@ -1624,7 +1624,7 @@ func void DIA_Pyrokar_BUCHDERBESSENEN_Info()
 		AI_Output(other,self,"DIA_Pyrokar_BUCHDERBESSENEN_15_15");	//А от их ментальных атак нет никакой защиты?
 		AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_16");	//Защита возможна. Каррас может знать что-нибудь об этом.
 		Pyrokar_AskKarrasAboutDMTAmulett = TRUE;
-		B_LogEntry(TOPIC_DEMENTOREN,"Каррас должен помочь мне найти защиту от ментальных атак Ищущих.");
+		Log_AddEntry(TOPIC_DEMENTOREN,"Каррас должен помочь мне найти защиту от ментальных атак Ищущих.");
 	};
 };
 

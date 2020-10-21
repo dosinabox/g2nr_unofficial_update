@@ -828,7 +828,7 @@ func int DIA_Garond_BACKINKAP4_Condition()
 
 func void DIA_Garond_BACKINKAP4_Info()
 {
-	AI_Output(other,self,"DIA_Garond_BACKINKAP4_15_00");	//Я вернулся.
+	DIA_Common_ImBack();
 	AI_Output(self,other,"DIA_Garond_BACKINKAP4_10_01");	//Я сам это вижу. А что насчет подкрепления?
 	AI_Output(other,self,"DIA_Garond_BACKINKAP4_15_02");	//Лорд Хаген прибудет, как только со всем разберется. Столько всего произошло.
 	AI_Output(self,other,"DIA_Garond_BACKINKAP4_10_03");	//Меня это не волнует. Мне нужны войска. Орки все прибывают и прибывают. Нам не продержаться долго.

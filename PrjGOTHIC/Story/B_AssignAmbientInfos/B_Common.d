@@ -179,6 +179,16 @@ func void DIA_Common_WhyNot()
 	AI_Output(other,self,"DIA_Addon_Greg_NW_Hallo_ja_15_00");	//Почему бы и нет?
 };
 
+func void DIA_Common_ImBack()
+{
+	AI_Output(other,self,"DIA_Garond_BACKINKAP4_15_00");	//Я вернулся.
+};
+
+func void DIA_Common_InnosEyeBroken()
+{
+	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?

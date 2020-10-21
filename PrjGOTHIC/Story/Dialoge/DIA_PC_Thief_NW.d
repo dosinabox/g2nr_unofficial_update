@@ -435,6 +435,11 @@ func void DIA_DiegoNW_CanYouTeach_Info()
 	if(Npc_KnowsInfo(other,DIA_DiegoNW_DeliveredLetter))
 	{
 		AI_Output(self,other,"DIA_DiegoNW_CanYouTeach_11_01");	//Да, конечно. Дай мне знать, когда будешь готов.
+		if(DiegoOW_Teach == FALSE)
+		{
+			Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_CityTeacher,"Диего может помочь мне повысить мою ловкость и силу.");
+		};
 		Diego_Teach = TRUE;
 	}
 	else

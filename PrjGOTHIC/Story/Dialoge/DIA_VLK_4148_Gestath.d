@@ -151,8 +151,8 @@ func void DIA_Gestath_Drachen_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Gestath_Drachen_09_02");	//Конечно. Почему нет?
-		Log_CreateTopic(Topic_OutTeacher,LOG_NOTE);
-		B_LogEntry(Topic_OutTeacher,"Гестат из Долины Рудников может научить меня потрошить драконов.");
+		Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_OutTeacher,"Гестат из Долины Рудников может научить меня потрошить драконов.");
 		Gestath_DragonTrophy = TRUE;
 	};
 };

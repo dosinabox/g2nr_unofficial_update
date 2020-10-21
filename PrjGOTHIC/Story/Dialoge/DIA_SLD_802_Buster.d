@@ -495,8 +495,8 @@ func void DIA_Buster_PreTeach_Info()
 	{
 		AI_Output(self,other,"DIA_Buster_Teach_13_02");	//“ы не так уж глуп, как кажешьс€. ’орошо, € научу теб€ тому, что знаю сам. “огда, может быть, у теб€ по€в€тс€ шансы против мен€...
 	};
-	Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-	B_LogEntry(Topic_SoldierTeacher,"Ѕастер может обучить мен€ искусству владени€ одноручным оружием.");
+	Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_SoldierTeacher,"Ѕастер может обучить мен€ искусству владени€ одноручным оружием.");
 };
 
 

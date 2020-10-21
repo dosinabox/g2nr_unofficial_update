@@ -97,6 +97,13 @@ func void B_AssessTalk()
 				};
 			};
 		};
+		if(self.guild == GIL_VLK)
+		{
+			if(CurrentLevel == NEWWORLD_ZEN)
+			{
+				B_PlayerEnteredCity();
+			};
+		};
 		if(B_AssessEnemy())
 		{
 			return;

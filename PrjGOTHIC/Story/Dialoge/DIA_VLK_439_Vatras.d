@@ -183,7 +183,6 @@ func void DIA_Vatras_EXIT_Info()
 		B_GiveInvItems(self,other,ItMi_Ornament_Addon_Vatras,1);
 		Vatras_LaresExit = TRUE;
 	};
-	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 	B_Vatras_ListenersControl();
 //	Vatras_MORE = FALSE;
@@ -2243,7 +2242,7 @@ func void DIA_Addon_Vatras_AddonSolved_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Garond_BACKINKAP4_15_00");	//Я вернулся.
+		DIA_Common_ImBack();
 	};
 	AI_Output(self,other,"DIA_Addon_Vatras_AddonSolved_05_01");	//Как обстоит дело с проблемой в северо-восточных горах?
 	AI_Output(other,self,"DIA_Addon_Vatras_AddonSolved_15_02");	//Нормально. Ворон мертв, угроза устранена.
@@ -2281,7 +2280,7 @@ func int DIA_Vatras_INNOSEYEKAPUTT_Condition()
 
 func void DIA_Vatras_INNOSEYEKAPUTT_Info()
 {
-	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
+	DIA_Common_InnosEyeBroken();
 	if(MIS_Pyrokar_GoToVatrasInnoseye == LOG_Running)
 	{
 		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_00");	//Меня прислал Пирокар.

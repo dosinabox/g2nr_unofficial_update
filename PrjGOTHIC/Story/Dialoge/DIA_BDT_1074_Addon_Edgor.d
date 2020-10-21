@@ -377,7 +377,6 @@ func void DIA_Addon_Edgor_TrainStart_GIFT()
 		AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_GIFT_06_02");	//Это совершенно безопасный способ высосать его из жала - или использовать его для лечебного зелья.
 		other.lp -= 1;
 		Knows_Bloodfly = TRUE;
-		Knows_Bloodfly_LP = TRUE;
 		PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
 		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
 		B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);

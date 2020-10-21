@@ -139,8 +139,8 @@ func void DIA_Wolf_WannaLearn_Info()
 	AI_Output(other,self,"DIA_Wolf_WannaLearn_15_00");	//Ты можешь научить меня чему-нибудь?
 	AI_Output(self,other,"DIA_Wolf_WannaLearn_08_01");	//Я могу научить тебя секретам обращения с луком, если хочешь. Все равно мне сейчас нечего делать.
 	Wolf_TeachBow = TRUE;
-	Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-	B_LogEntry(Topic_SoldierTeacher,"Вольф может обучить меня обращению с луком.");
+	Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_SoldierTeacher,"Вольф может обучить меня обращению с луком.");
 };
 
 

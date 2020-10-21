@@ -226,8 +226,8 @@ func void DIA_Bennet_HALLO_Info()
 	AI_Output(self,other,"DIA_Bennet_HALLO_06_00");	//Я не продаю оружие. Халед продает. Он находится в доме Онара.
 	if(Khaled_weiter == FALSE)
 	{
-		Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-		B_LogEntry(Topic_SoldierTrader,"Халед - торговец оружием.");
+		Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_SoldierTrader,"Халед - торговец оружием.");
 	};
 };
 
@@ -280,8 +280,8 @@ func void DIA_Bennet_TRADE_Info()
 	AI_Output(self,other,"DIA_Bennet_TRADE_06_01");	//Что тебе нужно?
 	if(BennetLOG == FALSE)
 	{
-		Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-		B_LogEntry(Topic_SoldierTrader,"Беннет продает кузнечное снаряжение.");
+		Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_SoldierTrader,"Беннет продает кузнечное снаряжение.");
 		BennetLOG = TRUE;
 	};
 	if(!Npc_HasItems(self,ItMw_1H_Mace_L_04) && !Npc_HasItems(other,ItMw_1H_Mace_L_04) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE))
@@ -420,8 +420,8 @@ func void DIA_Bennet_WannaSmith_Pay()
 	{
 		AI_Output(self,other,"DIA_Bennet_WannaSmith_Pay_06_01");	//Должен сказать, это очень хорошая цена! Я готов приступить к обучению, как только ты будешь готов.
 		Bennet_TeachCommon = TRUE;
-		Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-		B_LogEntry(Topic_SoldierTeacher,"Беннет может обучить меня кузнечному делу.");
+		Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_SoldierTeacher,"Беннет может обучить меня кузнечному делу.");
 	}
 	else
 	{

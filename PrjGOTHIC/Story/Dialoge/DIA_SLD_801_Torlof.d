@@ -838,8 +838,8 @@ func void DIA_Torlof_Teach_Info()
 	{
 		if(Log_TorlofTeach == FALSE)
 		{
-			Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-			B_LogEntry(Topic_SoldierTeacher,"Торлоф может повысить мою ловкость и силу.");
+			Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_SoldierTeacher,"Торлоф может повысить мою ловкость и силу.");
 			Log_TorlofTeach = TRUE;
 		};
 		Torlof_Merke_STR = other.aivar[REAL_STRENGTH];
@@ -854,8 +854,8 @@ func void DIA_Torlof_Teach_Info()
 			AI_Output(self,other,"DIA_Torlof_Teach_01_02");	//Пока ты не станешь одним из нас, тебе лучше поискать другого учителя!
 			if(Log_TorlofTeach == FALSE)
 			{
-				Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-				B_LogEntry(Topic_SoldierTeacher,"Торлоф может повысить мою ловкость и силу, если я решу присоединиться к наемникам.");
+				Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+				B_LogEntry(TOPIC_SoldierTeacher,"Торлоф может повысить мою ловкость и силу, если я решу присоединиться к наемникам.");
 				Log_TorlofTeach = TRUE;
 			};
 		};

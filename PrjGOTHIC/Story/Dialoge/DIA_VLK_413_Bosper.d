@@ -46,7 +46,6 @@ func void DIA_Bosper_HALLO_Info()
 	AI_Output(self,other,"DIA_Bosper_HALLO_11_00");	//Добро пожаловать в мою лавку, чужеземец!
 	AI_Output(self,other,"DIA_Bosper_HALLO_11_01");	//Я Боспер. Я делаю луки и торгую шкурами.
 	AI_Output(self,other,"DIA_Bosper_HALLO_11_02");	//Что привело тебя в Хоринис?
-	B_PlayerEnteredCity();
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTrader,"Боспер делает луки и торгует шкурами. Его лавка находится у южных ворот, в нижней части города.");
 };

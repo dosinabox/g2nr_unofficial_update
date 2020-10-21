@@ -3300,7 +3300,6 @@ func void CH_Training_TROPHYS_BFGift()
 	{
 		other.lp -= 1;
 		Knows_Bloodfly = TRUE;
-		Knows_Bloodfly_LP = TRUE;
 		PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
 		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
 		B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);

@@ -315,6 +315,67 @@ func void DIA_Mil_310_Stadtwache_ZumSchmied_Info()
 };
 
 
+func int C_SCHasHerbs(var int count)
+{
+	if(Npc_HasItems(other,ItPl_Blueplant) >= count)
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItPl_Forestberry) >= count)
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItPl_Planeberry) >= count)
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItPl_Mana_Herb_01) >= count)
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItPl_Mana_Herb_02) >= count)
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItPl_Mana_Herb_03) >= count)
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItPl_Health_Herb_01) >= count)
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItPl_Health_Herb_02) >= count)
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItPl_Health_Herb_03) >= count)
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItPl_Dex_Herb_01) >= count)
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItPl_Strength_Herb_01) >= count)
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItPl_Speed_Herb_01) >= count)
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItPl_Temp_Herb) >= count)
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItPl_Perm_Herb) >= count)
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 instance DIA_Addon_Mil_310_Stadtwache_Constantino(C_Info)
 {
 	npc = MIL_310_Stadtwache;
@@ -337,10 +398,10 @@ func int DIA_Addon_Mil_310_Stadtwache_Constantino_Condition()
 func void DIA_Addon_Mil_310_Stadtwache_Constantino_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Mil_310_Stadtwache_Constantino_15_00");	//Я принес травы для алхимика Константино.
-	if(Npc_HasItems(other,ItPl_Mana_Herb_01) || Npc_HasItems(other,ItPl_Mana_Herb_02) || Npc_HasItems(other,ItPl_Mana_Herb_03) || Npc_HasItems(other,ItPl_Health_Herb_01) || Npc_HasItems(other,ItPl_Health_Herb_02) || Npc_HasItems(other,ItPl_Health_Herb_03) || Npc_HasItems(other,ItPl_Dex_Herb_01) || Npc_HasItems(other,ItPl_Strength_Herb_01) || Npc_HasItems(other,ItPl_Speed_Herb_01) || Npc_HasItems(other,ItPl_Temp_Herb) || Npc_HasItems(other,ItPl_Perm_Herb) || Npc_HasItems(other,ItPl_Beet))
+	if(C_SCHasHerbs(1) || Npc_HasItems(other,ItPl_Beet) || Npc_HasItems(other,ItPl_Weed) || Npc_HasItems(other,ItPl_SwampHerb) || Npc_HasItems(other,ItPl_Sagitta_Herb_MIS))
 	{
 		AI_Output(self,other,"DIA_Addon_Mil_310_Stadtwache_Constantino_07_01");	//Правда? Ты же не будешь возражать, если я взгляну на них, не так ли?
-		if((Npc_HasItems(other,ItPl_Mana_Herb_01) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Mana_Herb_02) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Mana_Herb_03) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Health_Herb_01) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Health_Herb_02) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Health_Herb_03) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Dex_Herb_01) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Strength_Herb_01) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Speed_Herb_01) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Temp_Herb) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Perm_Herb) >= MinimumPassagePlants))
+		if(C_SCHasHerbs(MinimumPassagePlants))
 		{
 			AI_Output(self,other,"DIA_Addon_Mil_310_Stadtwache_Constantino_07_02");	//Хм-м. Выглядит неплохо. Хорошо, ты можешь пройти. Но не создавай проблем, ты понял?
 			self.aivar[AIV_PASSGATE] = TRUE;

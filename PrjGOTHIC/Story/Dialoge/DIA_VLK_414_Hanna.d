@@ -78,7 +78,6 @@ func int DIA_Hanna_Hello_Condition()
 func void DIA_Hanna_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Hanna_Hello_17_00");	//Ага, клиент - что я могу сделать для тебя?
-	B_PlayerEnteredCity();
 };
 
 

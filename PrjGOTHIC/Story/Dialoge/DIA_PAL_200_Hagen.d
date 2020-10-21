@@ -913,7 +913,7 @@ func void DIA_Lord_Hagen_EyeBroken_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
+		DIA_Common_InnosEyeBroken();
 	};
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_08");	//ЧТО? О, Иннос! Что ты наделал? Нам нужен этот Глаз!
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_09");	//Поговори с Пирокаром! Должен быть способ восстановить его.

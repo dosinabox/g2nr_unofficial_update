@@ -43,7 +43,6 @@ func int DIA_Harad_Hallo_Condition()
 func void DIA_Harad_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Harad_Hallo_12_00");	//(раздраженно) Что ты хочешь?
-	B_PlayerEnteredCity();
 };
 
 

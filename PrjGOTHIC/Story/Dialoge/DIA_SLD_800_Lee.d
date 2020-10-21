@@ -1469,8 +1469,8 @@ func void DIA_Lee_CanTeach_Info()
 			if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 			{
 				Lee_TeachPlayer = TRUE;
-				Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-				B_LogEntry(Topic_SoldierTeacher,"Ли может обучить меня искусству обращения с двуручным оружием.");
+				Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+				B_LogEntry(TOPIC_SoldierTeacher,"Ли может обучить меня искусству обращения с двуручным оружием.");
 			}
 			else
 			{
@@ -1502,8 +1502,8 @@ func void DIA_Lee_CanTeach_Yes()
 	B_GiveInvItems(other,self,ItMi_Gold,1000);
 	Lee_TeachPlayer = TRUE;
 	Info_ClearChoices(DIA_Lee_CanTeach);
-	Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-	B_LogEntry(Topic_SoldierTeacher,"Ли может обучить меня искусству обращения с двуручным оружием.");
+	Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_SoldierTeacher,"Ли может обучить меня искусству обращения с двуручным оружием.");
 };
 
 func void B_BuildLearnDialog_Lee()

@@ -147,9 +147,8 @@ func int DIA_Hilda_BringBeet_Condition()
 func void DIA_Hilda_BringBeet_Info()
 {
 	AI_Output(other,self,"DIA_Hilda_BringBeet_15_00");	//Я принес тебе репу...
-	if(Npc_HasItems(other,ItPl_Beet) >= 20)
+	if(B_GiveInvItems(other,self,ItPl_Beet,20))
 	{
-		B_GiveInvItems(other,self,ItPl_Beet,20);
 		AI_Output(self,other,"DIA_Hilda_BringBeet_17_01");	//Отлично! (смеется) Этого должно хватить, чтобы накормить наших работников до отвала!
 		AI_Output(self,other,"DIA_Hilda_BringBeet_17_02");	//Раз уж ты все равно здесь... Я видела, как мимо прошел странствующий торговец. Это было несколько минут назад.
 		AI_Output(self,other,"DIA_Hilda_BringBeet_17_03");	//Я думаю, он где-нибудь остановился по пути в город. Сходи к нему. Может у него найдется сковородка для меня.

@@ -22,19 +22,19 @@ func void B_RosiTradeInfo()
 		}
 		else if(RosiLocation == LOC_FARM)
 		{
-			Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-			B_LogEntry(Topic_SoldierTrader,"У Рози можно купить различные товары.");
+			Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
+			B_LogEntry(TOPIC_SoldierTrader,"У Рози можно купить различные товары.");
 		}
 		else
 		{
-			Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
+			Log_CreateTopic(TOPIC_OutTrader,LOG_NOTE);
 			if(Rosi_FleeFromSekob_Kap5 == FALSE)
 			{
-				B_LogEntry(Topic_OutTrader,"У Рози на ферме Секоба можно купить различные товары.");
+				B_LogEntry(TOPIC_OutTrader,"У Рози на ферме Секоба можно купить различные товары.");
 			}
 			else
 			{
-				B_LogEntry(Topic_OutTrader,"У Рози можно купить различные товары.");
+				B_LogEntry(TOPIC_OutTrader,"У Рози можно купить различные товары.");
 			};
 		};
 		RosiTradeInfo = TRUE;
@@ -184,7 +184,7 @@ instance DIA_Rosi_BARRIERE(C_Info)
 
 func int DIA_Rosi_BARRIERE_Condition()
 {
-	if(RosiToldAboutBarrier == TRUE)
+	if((RosiToldAboutBarrier == TRUE) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -210,7 +210,7 @@ instance DIA_Rosi_DuInBarriere(C_Info)
 
 func int DIA_Rosi_DuInBarriere_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rosi_BARRIERE))
+	if(Npc_KnowsInfo(other,DIA_Rosi_BARRIERE) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -220,7 +220,6 @@ func void DIA_Rosi_DuInBarriere_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_DuInBarriere_15_00");	//Ты когда-нибудь была за Барьером?
 	AI_Output(self,other,"DIA_Rosi_DuInBarriere_17_01");	//Нет. Мы только слышали о нем. Бенгар, фермер с высокогорных пастбищ, наверняка сможет рассказать тебе о нем больше.
-	AI_Output(self,other,"DIA_Rosi_DuInBarriere_17_02");	//Его ферма находится очень близко от прохода, ведущего в Долину Рудников.
 };
 
 
@@ -236,7 +235,7 @@ instance DIA_Rosi_BENGAR(C_Info)
 
 func int DIA_Rosi_BENGAR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rosi_DuInBarriere) && !Npc_IsDead(Balthasar))
+	if(Npc_KnowsInfo(other,DIA_Rosi_DuInBarriere) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -245,8 +244,12 @@ func int DIA_Rosi_BENGAR_Condition()
 func void DIA_Rosi_BENGAR_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_BENGAR_15_00");	//Как мне попасть на ферму Бенгара?
-	AI_Output(self,other,"DIA_Rosi_BENGAR_17_01");	//Спроси Бальтазара. Это наш пастух. Иногда он водит своих овец на пастбища Бенгара.
-	AI_Output(self,other,"DIA_Rosi_BENGAR_17_02");	//Он расскажет тебе, как добраться туда.
+	AI_Output(self,other,"DIA_Rosi_DuInBarriere_17_02");	//Его ферма находится очень близко от прохода, ведущего в Долину Рудников.
+	if(!Npc_IsDead(Balthasar))
+	{
+		AI_Output(self,other,"DIA_Rosi_BENGAR_17_01");	//Спроси Бальтазара. Это наш пастух. Иногда он водит своих овец на пастбища Бенгара.
+		AI_Output(self,other,"DIA_Rosi_BENGAR_17_02");	//Он расскажет тебе, как добраться туда.
+	};
 };
 
 
@@ -262,7 +265,7 @@ instance DIA_Rosi_Miliz(C_Info)
 
 func int DIA_Rosi_Miliz_Condition()
 {
-	if(RosiToldAboutMilitia == TRUE)
+	if((RosiToldAboutMilitia == TRUE) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -296,7 +299,7 @@ instance DIA_Rosi_ONAR(C_Info)
 
 func int DIA_Rosi_ONAR_Condition()
 {
-	if(RosiToldAboutOnar == TRUE)
+	if((RosiToldAboutOnar == TRUE) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -499,7 +502,7 @@ func void DIA_Rosi_ANGEKOMMEN_Info()
 	AI_Output(self,other,"DIA_Rosi_ANGEKOMMEN_17_00");	//Дальше я сама найду дорогу.
 	AI_Output(self,other,"DIA_Rosi_ANGEKOMMEN_17_01");	//Спасибо. Я даже не знаю, что бы я делала без тебя.
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
-	MIS_bringRosiBackToSekob = LOG_OBSOLETE;
+//	MIS_bringRosiBackToSekob = LOG_OBSOLETE;
 	MIS_RosisFlucht = LOG_SUCCESS;
 	AI_Output(self,other,"DIA_Rosi_ANGEKOMMEN_17_02");	//Пожалуйста, прими этот скромный дар. Ты заслужил его.
 	AI_WaitTillEnd(other,self);
@@ -585,7 +588,15 @@ func int DIA_Rosi_MinenAnteil_Condition()
 func void DIA_Rosi_MinenAnteil_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_Minenanteil_15_00");	//А тебе не стыдно продавать поддельные акции?
-	AI_Output(self,other,"DIA_Rosi_Minenanteil_17_01");	//Нет. Мне нужно на что-то жить, и, к тому же, я сама их у кого-то купила.
+	if(MIS_bringRosiBackToSekob != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Rosi_Minenanteil_17_01");	//Нет. Мне нужно на что-то жить, и, к тому же, я сама их у кого-то купила.
+	}
+	else
+	{
+		B_Say(self,other,"$GETOUTOFHERE");
+		AI_StopProcessInfos(self);
+	};
 	B_GivePlayerXP(XP_Ambient);
 };
 

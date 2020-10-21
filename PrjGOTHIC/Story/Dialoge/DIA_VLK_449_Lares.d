@@ -96,7 +96,6 @@ func int DIA_Lares_Kap1_EXIT_Condition()
 
 func void DIA_Lares_Kap1_EXIT_Info()
 {
-	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 };
 
@@ -230,7 +229,6 @@ func void DIA_Lares_HALLO_Info()
 	{
 		B_Lares_Comment_SLD();
 	};
-	B_PlayerEnteredCity();
 	Info_ClearChoices(DIA_Lares_HALLO);
 	Info_AddChoice(DIA_Lares_HALLO,"Мы уже встречались раньше?",DIA_Lares_HALLO_NO);
 	Info_AddChoice(DIA_Lares_HALLO,"Эй, Ларес, старый пройдоха! А как ты попал сюда?",DIA_Lares_HALLO_YES);

@@ -992,8 +992,8 @@ func void DIA_Addon_Cavalorn_WannaLearn_Info()
 		AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_02");	//Ты и правда ничего не помнишь, да?
 	};
 	Cavalorn_Addon_TeachPlayer = TRUE;
-	Log_CreateTopic(Topic_OutTeacher,LOG_NOTE);
-	B_LogEntry(Topic_OutTeacher,LogText_Addon_Cavalorn_Teach);
+	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_OutTeacher,LogText_Addon_Cavalorn_Teach);
 };
 
 

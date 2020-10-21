@@ -377,7 +377,7 @@ instance ITAR_MIL_L(C_Item)
 	protection[PROT_BLUNT] = 40;
 	protection[PROT_POINT] = 40;
 	protection[PROT_FIRE] = 0;	//15;
-	protection[PROT_MAGIC] = 5;
+	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_MIL_L;
 	wear = WEAR_TORSO;
 	visual = "ItAr_MIL_L.3DS";

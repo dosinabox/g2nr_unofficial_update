@@ -126,8 +126,8 @@ func void DIA_Orlan_WERBISTDU_Info()
 	};
 	AI_Output(self,other,"DIA_Orlan_WERBISTDU_05_03");	//Глоток вина, или, может быть, тебе нужна информация?
 	AI_Output(self,other,"DIA_Orlan_WERBISTDU_05_04");	//Я могу дать тебе все это и даже больше, если у тебя есть звонкие монеты.
-	Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
-	B_LogEntry(Topic_OutTrader,"Орлан - трактирщик в таверне 'Мертвая гарпия'. Я могу купить у него припасы и кое-какое оружие.");
+	Log_CreateTopic(TOPIC_OutTrader,LOG_NOTE);
+	B_LogEntry(TOPIC_OutTrader,"Орлан - трактирщик в таверне 'Мертвая гарпия'. Я могу купить у него припасы и кое-какое оружие.");
 };
 
 

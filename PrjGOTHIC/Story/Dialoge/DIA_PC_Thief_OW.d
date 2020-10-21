@@ -251,6 +251,12 @@ func void DIA_DiegoOw_Teach_Info()
 {
 	AI_Output(other,self,"DIA_DiegoOw_Teach_15_00");	//Ты можешь научить меня чему-нибудь?
 	AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_01");	//Конечно. Что ты хочешь знать?
+	if(DiegoOW_Teach == FALSE)
+	{
+		Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_OutTeacher,"Диего может помочь мне повысить мою ловкость и силу.");
+		DiegoOW_Teach = TRUE;
+	};
 	Diego_MerkeDEX = other.aivar[REAL_DEXTERITY];
 	Diego_MerkeSTR = other.aivar[REAL_STRENGTH];
 	B_BuildLearnDialog_Diego_OW();

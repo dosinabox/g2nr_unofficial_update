@@ -73,8 +73,8 @@ func void DIA_Cipher_TradeWhat_Info()
 	AI_Output(self,other,"DIA_Cipher_TradeWhat_07_02");	//Я принес с собой из колонии целый тюк болотной травы.
 	AI_Output(self,other,"DIA_Cipher_TradeWhat_07_03");	//Многие наемники не прочь иногда покурить травки. Я даже смог сколотить небольшое состояние на этом.
 	AI_Output(self,other,"DIA_Cipher_TradeWhat_07_04");	//Но какой-то ублюдок украл эту траву из моего сундука!
-	Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-	B_LogEntry(Topic_SoldierTrader,"Сифер - торговец на ферме Онара.");
+	Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
+	B_LogEntry(TOPIC_SoldierTrader,"Сифер - торговец на ферме Онара.");
 	Log_CreateTopic(Topic_CipherPaket,LOG_MISSION);
 	Log_SetTopicStatus(Topic_CipherPaket,LOG_Running);
 	B_LogEntry(Topic_CipherPaket,"Наемник Сифер потерял тюк болотной травы.");

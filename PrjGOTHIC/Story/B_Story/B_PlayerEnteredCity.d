@@ -3,16 +3,7 @@ func void B_PlayerEnteredCity()
 {
 	if(PlayerEnteredCity == FALSE)
 	{
-		if(!Npc_IsDead(Canthar))
-		{
-			if(C_WorldIsFixed(NEWWORLD_ZEN))
-			{
-				Wld_SendTrigger("CANTHAR_CART_01");
-				Wld_SendTrigger("CANTHAR_CART_02");
-			};
-			Npc_ExchangeRoutine(Canthar,"START");
-		};
-		if(Lobart.aivar[AIV_IGNORE_Theft] == TRUE)
+		if(!Npc_IsDead(Lobart))
 		{
 			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
@@ -25,6 +16,19 @@ func void B_PlayerEnteredCity()
 			B_StartOtherRoutine(Lester,"XARDAS");
 			LesterMovedToXardas = TRUE;
 		};
+	};
+	if((CantharMovedToCity == FALSE) && (C_NpcIsInQuarter(hero) != Q_MARKT))
+	{
+		if(!Npc_IsDead(Canthar))
+		{
+			if(C_WorldIsFixed(NEWWORLD_ZEN))
+			{
+				Wld_SendTrigger("CANTHAR_CART_01");
+				Wld_SendTrigger("CANTHAR_CART_02");
+			};
+			Npc_ExchangeRoutine(Canthar,"START");
+		};
+		CantharMovedToCity = TRUE;
 	};
 };
 

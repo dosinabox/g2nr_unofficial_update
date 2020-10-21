@@ -48,7 +48,6 @@ func void DIA_Meldor_Hallo_Info()
 	AI_Output(self,other,"DIA_Meldor_Hallo_07_00");	//Что тебе нужно?
 	AI_Output(other,self,"DIA_Meldor_Hallo_15_01");	//Я просто любуюсь окрестностями...
 	AI_Output(self,other,"DIA_Meldor_Hallo_07_02");	//А куда именно ты направляешься?
-	B_PlayerEnteredCity();
 };
 
 
@@ -301,7 +300,6 @@ func void DIA_Meldor_VonLehmar_Info()
 {
 	AI_Output(self,other,"DIA_Meldor_VonLehmar_07_00");	//Эй, подожди...
 	AI_Output(self,other,"DIA_Meldor_VonLehmar_07_01");	//У меня есть для тебя сообщение от Лемара...
-	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };

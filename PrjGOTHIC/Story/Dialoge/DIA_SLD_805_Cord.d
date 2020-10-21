@@ -740,8 +740,8 @@ func void B_Cord_Teach()
 {
 	if(Cord_Teacher == FALSE)
 	{
-		Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-		B_LogEntry(Topic_SoldierTeacher,"Корд может обучить меня владению одноручным и двуручным оружием.");
+		Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_SoldierTeacher,"Корд может обучить меня владению одноручным и двуручным оружием.");
 		Cord_Teacher = TRUE;
 	};
 	Info_ClearChoices(DIA_Cord_Teach);

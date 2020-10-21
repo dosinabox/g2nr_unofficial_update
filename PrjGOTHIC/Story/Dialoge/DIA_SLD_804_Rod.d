@@ -107,8 +107,8 @@ func void DIA_Rod_WannaLearn_Info()
 			AI_Output(self,other,"DIA_Rod_WannaLearn_06_01");	//я неплохой боец, но это не означает, что € хороший учитель.
 			AI_Output(self,other,"DIA_Rod_WannaLearn_06_02");	//» все же € думаю, € могу показать тебе основы бо€ двуручным оружием.
 			Rod_Teach2H = TRUE;
-			Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-			B_LogEntry(Topic_SoldierTeacher,"–од может показать мне, как лучше владеть двуручным оружием.");
+			Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_SoldierTeacher,"–од может показать мне, как лучше владеть двуручным оружием.");
 		};
 	}
 	else
