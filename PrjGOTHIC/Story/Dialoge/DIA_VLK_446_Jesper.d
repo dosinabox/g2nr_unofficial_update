@@ -93,7 +93,6 @@ func void DIA_Jesper_Hallo_Info()
 			Info_AddChoice(DIA_Jesper_Hallo,"Я прикончил Аттилу. При нем был ключ от канализации.",DIA_Jesper_Hallo_Umgelegt);
 		};
 	};
-	DG_gefunden = TRUE;
 };
 
 func void DIA_Jesper_Hallo_Kill()

@@ -244,7 +244,7 @@ func void DIA_Addon_Henry_WantEnter_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_07");	//А ты выглядишь человеком состоятельным.
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_08");	//Так что небольшая плата за вход тебя не разорит.
-		if(!C_RobeCheck(other))
+		if(!C_MageRobeCheck(other))
 		{
 			AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_09");	//Или свою роскошную броню ты у кого-то украл?
 		};

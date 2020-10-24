@@ -176,7 +176,7 @@ func int C_HenryNiceArmorCheck(var C_Npc oth)
 	return FALSE;
 };
 
-func int C_RobeCheck(var C_Npc oth)
+func int C_MageRobeCheck(var C_Npc oth)
 {
 	var C_Item armor;
 	armor = Npc_GetEquippedArmor(oth);
@@ -195,10 +195,6 @@ func int C_RobeCheck(var C_Npc oth)
 			return TRUE;
 		};
 		if(Hlp_IsItem(armor,ITAR_KDF_S))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_NOV_L))
 		{
 			return TRUE;
 		};
@@ -265,6 +261,62 @@ func int C_BAUCheck(var C_Npc oth)
 			return TRUE;
 		};
 		if(Hlp_IsItem(armor,ITAR_Bau_M))
+		{
+			return TRUE;
+		};
+	};
+	return FALSE;
+};
+
+func int C_BanditArmorEquipped(var C_Npc oth)
+{
+	var C_Item armor;
+	armor = Npc_GetEquippedArmor(oth);
+	if(Npc_HasEquippedArmor(oth))
+	{
+		if(Hlp_IsItem(armor,ITAR_BDT_M))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_BDT_H))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_Thorus_Addon))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_OreBaron_Addon))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_Bloodwyn_Addon))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_Diego))
+		{
+			return TRUE;
+		};
+	};
+	return FALSE;
+};
+
+func int C_PirateArmorEquipped(var C_Npc oth)
+{
+	var C_Item armor;
+	armor = Npc_GetEquippedArmor(oth);
+	if(Npc_HasEquippedArmor(oth))
+	{
+		if(Hlp_IsItem(armor,ITAR_PIR_M_Addon))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_PIR_L_Addon))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_PIR_H_Addon))
 		{
 			return TRUE;
 		};

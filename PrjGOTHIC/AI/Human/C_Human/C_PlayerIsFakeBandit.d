@@ -1,7 +1,6 @@
 
 func int C_PlayerIsFakeBandit(var C_Npc slf,var C_Npc oth)
 {
-	var C_Item itm;
 	if(slf.guild > GIL_SEPERATOR_HUM)
 	{
 		return FALSE;
@@ -32,13 +31,9 @@ func int C_PlayerIsFakeBandit(var C_Npc slf,var C_Npc oth)
 			};
 		};
 	};
-	if(Npc_HasEquippedArmor(oth))
+	if(C_BanditArmorEquipped(oth))
 	{
-		itm = Npc_GetEquippedArmor(oth);
-		if(Hlp_IsItem(itm,ITAR_BDT_M) || Hlp_IsItem(itm,ITAR_BDT_H) || Hlp_IsItem(itm,ITAR_Thorus_Addon) || Hlp_IsItem(itm,ITAR_OreBaron_Addon) || Hlp_IsItem(itm,ITAR_Bloodwyn_Addon) || Hlp_IsItem(itm,ITAR_Diego))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 	return FALSE;
 };

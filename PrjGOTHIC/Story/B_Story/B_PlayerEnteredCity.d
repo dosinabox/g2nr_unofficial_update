@@ -8,6 +8,7 @@ func void B_PlayerEnteredCity()
 			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
 		PlayerEnteredCity = TRUE;
+		B_CheckLog();
 	};
 	if(LesterMovedToXardas == FALSE)
 	{

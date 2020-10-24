@@ -105,7 +105,6 @@ func void DIA_Ramirez_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Ramirez_Hallo_14_00");	//Ты что, заблудился? По-моему, это не самое подходящее место для тебя.
 	AI_Output(self,other,"DIA_Ramirez_Hallo_14_01");	//Если здесь с тобой что-нибудь случится, тебе никто не придет на помощь. Так что будь осторожен. (широкая ухмылка)
-	DG_gefunden = TRUE;
 	AI_StopProcessInfos(self);
 };
 
@@ -134,7 +133,6 @@ func void DIA_Ramirez_Hallo_Joined_Info()
 	AI_Output(self,other,"DIA_Ramirez_Hallo_14_02");	//Итак, ты с нами. Что ж, тогда я желаю тебе успеха - но будь осторожен.
 	AI_Output(self,other,"DIA_Ramirez_Hallo_14_03");	//Ох, и еще одно - меня не интересует, кто ты там наверху, и кем ты работаешь.
 	AI_Output(self,other,"DIA_Ramirez_Hallo_14_04");	//Но здесь, внизу, ты один из нас. Вор. Не больше и не меньше.
-	DG_gefunden = TRUE;
 };
 
 
@@ -206,7 +204,6 @@ func int DIA_Ramirez_Beute_Condition()
 func void DIA_Ramirez_Beute_Info()
 {
 	AI_Output(self,other,"DIA_Ramirez_Beute_14_00");	//Послушай, ты что, пытаешься так пошутить? Ты набиваешь карманы нашим золотом... ты что, пытаешься красть у нас?
-	DG_gefunden = TRUE;
 	if(Join_Thiefs == TRUE)
 	{
 		AI_Output(other,self,"DIA_Ramirez_Beute_15_01");	//Не стоит расстраиваться так из-за пары монет.
@@ -459,7 +456,6 @@ func void B_ThievesKiller()
 	};
 	B_CheckLog();
 	SewerThieves_KilledByPlayer = TRUE;
-	DG_gefunden = TRUE;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_KILL,1);
 };

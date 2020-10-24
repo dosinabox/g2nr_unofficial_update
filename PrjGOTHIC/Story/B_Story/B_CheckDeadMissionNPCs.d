@@ -182,23 +182,27 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 			Log_SalandrilIsDead = TRUE;
 		};
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cassia))
+	else if(C_IAmThiefFromSewer(slf))
 	{
-		if(MIS_CassiaRing == LOG_Running)
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cassia))
 		{
-			MIS_CassiaRing = LOG_FAILED;
-		};
-		if(MIS_CassiaKelche == LOG_Running)
+			if(MIS_CassiaRing == LOG_Running)
+			{
+				MIS_CassiaRing = LOG_FAILED;
+			};
+			if(MIS_CassiaKelche == LOG_Running)
+			{
+				MIS_CassiaKelche = LOG_FAILED;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Ramirez))
 		{
-			MIS_CassiaKelche = LOG_FAILED;
+			if(MIS_RamirezSextant == LOG_Running)
+			{
+				MIS_RamirezSextant = LOG_FAILED;
+			};
 		};
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Ramirez))
-	{
-		if(MIS_RamirezSextant == LOG_Running)
-		{
-			MIS_RamirezSextant = LOG_FAILED;
-		};
+		DG_gefunden = TRUE;
 	}
 	else if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Malak)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bengar)))
 	{

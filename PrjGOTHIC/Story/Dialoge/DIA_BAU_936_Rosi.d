@@ -245,7 +245,7 @@ func void DIA_Rosi_BENGAR_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_BENGAR_15_00");	//Как мне попасть на ферму Бенгара?
 	AI_Output(self,other,"DIA_Rosi_DuInBarriere_17_02");	//Его ферма находится очень близко от прохода, ведущего в Долину Рудников.
-	if(!Npc_IsDead(Balthasar))
+	if((BalthasarMovedToBengar == FALSE) && !Npc_IsDead(Balthasar))
 	{
 		AI_Output(self,other,"DIA_Rosi_BENGAR_17_01");	//Спроси Бальтазара. Это наш пастух. Иногда он водит своих овец на пастбища Бенгара.
 		AI_Output(self,other,"DIA_Rosi_BENGAR_17_02");	//Он расскажет тебе, как добраться туда.

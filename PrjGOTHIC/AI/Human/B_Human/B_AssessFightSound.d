@@ -1,21 +1,4 @@
 
-func int C_IAmThiefFromSewer(var C_Npc slf)
-{
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Ramirez))
-	{
-		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Jesper))
-	{
-		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cassia))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
 func void B_AssessFightSound()
 {
 	if(!Hlp_IsValidNpc(victim))

@@ -619,7 +619,7 @@ instance DIA_Lothar_Schlafen(C_Info)
 
 func int DIA_Lothar_Schlafen_Condition()
 {
-	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+	if(other.guild != GIL_MIL)
 	{
 		return TRUE;
 	};
@@ -701,6 +701,15 @@ func void B_Lothar_Blubb()
 
 var int Lothar_Reported;
 
+func int C_Lothar_Reported()
+{
+	if((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (Lothar_Day < Wld_GetDay()) && (Lothar_Reported == FALSE))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 func void B_Lothar_Reported()
 {
 	AI_Output(self,other,"DIA_Lothar_Add_01_48");	//Я доложил лорду Хагену, что ты желаешь поговорить с ним...
@@ -759,9 +768,12 @@ func void DIA_Lothar_HelloAgain_Info()
 		AI_Output(self,other,"DIA_Lothar_HelloAgain_01_01");	//Так тебе все же удалось получить доступ в верхний квартал!
 		AI_Output(self,other,"DIA_Lothar_Add_01_13");	//Похоже, ты полон решимости добиться своего, да?
 	};
-	if(other.guild == GIL_KDF)
+	if(C_MageRobeCheck(other))
 	{
 		AI_Output(self,other,"DIA_Lothar_Add_01_36");	//Где ты взял эту мантию?
+	};
+	if(other.guild == GIL_KDF)
+	{
 		AI_Output(other,self,"DIA_Lothar_Add_15_37");	//Я прошел Испытание Огнем.
 		AI_Output(self,other,"DIA_Lothar_Add_01_38");	//Невероятно. Тогда то, что происходит здесь, может быть волей Инноса...
 	}
@@ -829,7 +841,7 @@ func void DIA_Lothar_HelloAgain_Info()
 	};
 	AI_Output(self,other,"DIA_Lothar_HelloAgain_01_09");	//Мы поняли друг друга?
 	AI_Output(other,self,"DIA_Lothar_HelloAgain_15_10");	//Конечно.
-	if((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (Lothar_Day < Wld_GetDay()) && (Lothar_Reported == FALSE))
+	if(C_Lothar_Reported())
 	{
 		B_Lothar_Reported();
 	};
@@ -883,7 +895,7 @@ instance DIA_Lothar_Reported(C_Info)
 
 func int DIA_Lothar_Reported_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (Lothar_Day < Wld_GetDay()) && (Lothar_Reported == FALSE))
+	if(C_Lothar_Reported())
 	{
 		return TRUE;
 	};

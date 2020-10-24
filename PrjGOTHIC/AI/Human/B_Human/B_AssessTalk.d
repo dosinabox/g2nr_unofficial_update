@@ -113,9 +113,10 @@ func void B_AssessTalk()
 			B_Attack(self,other,AR_HumanMurderedHuman,0);
 			return;
 		};
-		if(SewerThieves_KilledByPlayer == TRUE)
+		if(C_IAmThiefFromSewer(self))
 		{
-			if(C_IAmThiefFromSewer(self))
+			DG_gefunden = TRUE;
+			if(SewerThieves_KilledByPlayer == TRUE)
 			{
 				B_Attack(self,other,AR_KILL,0);
 				return;

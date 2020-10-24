@@ -81,8 +81,8 @@ func void DIA_Cassia_Gilde_Info()
 	{
 		AI_Output(self,other,"DIA_Cassia_Gilde_16_00");	//Я вижу, ты стал служителем закона и порядка.
 		AI_Output(self,other,"DIA_Cassia_Gilde_16_01");	//Но то, что ты теперь служишь Инносу, для нас значения не имеет. Ты один из нас. И я надеюсь, что ты это тоже понимаешь.
-	};
-	if(other.guild == GIL_KDF)
+	}
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Cassia_Gilde_16_02");	//Так ты теперь служитель церкви Инноса? Отлично. Но ты помимо этого один из нас - надеюсь, ты никогда это не забудешь.
 	};
@@ -164,11 +164,6 @@ func void DIA_Cassia_News_Info()
 		AI_Output(other,self,"DIA_Cassia_News_15_08");	//Что ты хочешь предложить мне?
 		AI_Output(self,other,"DIA_Cassia_News_16_09");	//Ты можешь присоединиться к нам.
 	};
-	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
-	{
-		Cassia_Gildencheck = TRUE;
-	};
-	DG_gefunden = TRUE;
 };
 
 
@@ -386,13 +381,17 @@ func void DIA_Cassia_beweisen_Info()
 func void B_AgreedToJoinThiefs()
 {
 	Log_CreateTopic(Topic_Diebesgilde,LOG_NOTE);
-	B_LogEntry(Topic_Diebesgilde,"Я согласился работать с городской гильдией воров. Теперь мне предстоит испытание.");
+	B_LogEntries(Topic_Diebesgilde,"Я согласился работать с городской гильдией воров. Теперь мне предстоит испытание.");
 	if(Npc_KnowsInfo(other,DIA_Cassia_Lernen))
 	{
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher,"Кассия может обучить меня карманному воровству и помочь мне стать более ловким.");
+		B_LogNextEntry(TOPIC_CityTeacher,"Кассия может обучить меня карманному воровству и помочь мне стать более ловким.");
 		Log_AddEntry(TOPIC_CityTeacher,"Рамирез может обучить меня пользоваться отмычками.");
 		Log_AddEntry(TOPIC_CityTeacher,"Джеспер может обучить меня красться.");
+	};
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+	{
+		Cassia_Gildencheck = TRUE;
 	};
 	Join_Thiefs = TRUE;
 	Cassia_Frist = FALSE;

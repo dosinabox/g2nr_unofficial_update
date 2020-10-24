@@ -342,12 +342,12 @@ func void DIA_Sekob_DMT_Info()
 	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Sekob_DMT_01_02");	//¬ы, слуги корол€, ведь должны заботитьс€ о населении, правда?
-	};
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	}
+	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Sekob_DMT_01_03");	//я знаю, что вы, наемники, не занимаетесь благотворительностью, но € заплачу тебе.
-	};
-	if(hero.guild == GIL_KDF)
+	}
+	else if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Sekob_DMT_01_04");	//“ы должен помочь мне, о, великий маг.
 	};
@@ -382,13 +382,14 @@ func void DIA_Sekob_DMTWEG_Info()
 	AI_Output(other,self,"DIA_Sekob_DMTWEG_15_00");	//“вой дом пуст. Ћюдей в черных р€сах больше нет.
 	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 	{
-		AI_Output(self,other,"DIA_Sekob_DMTWEG_01_01");	//я знал, что на стражника можно положитьс€.
-	};
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+//		AI_Output(self,other,"DIA_Sekob_DMTWEG_01_01");	//я знал, что на стражника можно положитьс€.
+		AI_Output(self,other,"DIA_Sekob_DMTWEG_01_01_add");	//я знал! ќгромное спасибо!
+	}
+	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Sekob_DMTWEG_01_02");	//“ы отлично справилс€. ќнар может гордитьс€, что на его стороне есть такие люди.
-	};
-	if(hero.guild == GIL_KDF)
+	}
+	else if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Sekob_DMTWEG_01_03");	//—пасибо тебе, о великий маг. „то бы с нами сталось без защиты духовенства?!
 	};
@@ -481,12 +482,12 @@ func void DIA_Sekob_BELOHNUNG_Info()
 			AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_01");	//ќтныне тебе придетс€ оставить свои гр€зные делишки и встать на путь добра, или € вернусь...
 		};
 		AI_Output(self,other,"DIA_Sekob_BELOHNUNG_01_02");	//я не понимаю. „то еще тебе нужно?
-	};
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	}
+	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
 		AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_03");	//“ы что-то там болтал о награде, или мне послышалось?
-	};
-	if(hero.guild == GIL_KDF)
+	}
+	else if(hero.guild == GIL_KDF)
 	{
 		AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_04");	//ћен€ интересует только одно. „то эти люди в черных р€сах делали в твоем доме?
 		AI_Output(self,other,"DIA_Sekob_BELOHNUNG_01_05");	//я сам не понимаю, о, великий маг. ¬озможно, они...

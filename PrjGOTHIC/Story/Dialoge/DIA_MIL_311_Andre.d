@@ -1137,7 +1137,7 @@ func void DIA_Andre_DGRunning_Info()
 	{
 		Info_AddChoice(DIA_Andre_DGRunning,"я всех их ликвидировал!",DIA_Andre_DGRunning_Success);
 	};
-	if(((Cassia.aivar[AIV_TalkedToPlayer] == TRUE) || (Jesper.aivar[AIV_TalkedToPlayer] == TRUE) || (Ramirez.aivar[AIV_TalkedToPlayer] == TRUE) || (DG_gefunden == TRUE)) && (Andre_FoundThieves_Reported == FALSE))
+	if((DG_gefunden == TRUE) && (Andre_FoundThieves_Reported == FALSE))
 	{
 		Info_AddChoice(DIA_Andre_DGRunning,"я нашел логово гильдии воров!",DIA_Andre_DGRunning_Verrat);
 	};
@@ -1164,7 +1164,6 @@ func void DIA_Andre_DGRunning_Verrat()
 	AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_05");	//“ы ликвидировал этих преступников?
 	Andre_FoundThieves_Reported_Day = Wld_GetDay();
 	Andre_FoundThieves_Reported = TRUE;
-	DG_gefunden = TRUE;
 };
 
 func void DIA_Andre_DGRunning_Success()
@@ -1175,7 +1174,6 @@ func void DIA_Andre_DGRunning_Success()
 		B_AndreAskAboutSewer();
 	};
 	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_01");	//“ы оказал городу большую услугу.
-	DG_gefunden = TRUE;
 	MIS_Andre_GuildOfThieves = LOG_SUCCESS;
 	B_GivePlayerXP(XP_GuildOfThievesPlatt);
 	if(other.guild == GIL_NONE)

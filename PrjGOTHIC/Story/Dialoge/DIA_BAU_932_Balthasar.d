@@ -39,9 +39,12 @@ func int DIA_Balthasar_HALLO_Condition()
 func void DIA_Balthasar_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Balthasar_HALLO_15_00");	//Как дела?
-	AI_Output(self,other,"DIA_Balthasar_HALLO_05_01");	//Ах, новое лицо на ферме. Неужели этот старый скряга, наконец, подарил мне ученика?
-	AI_Output(other,self,"DIA_Balthasar_HALLO_15_02");	//Я не ученик.
-	AI_Output(self,other,"DIA_Balthasar_HALLO_05_03");	//Ох. Понятно. Но я ведь уже не так молод, как раньше, понимаешь? И я уже много лет жду себе замену.
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV) || (other.guild == GIL_SLD))
+	{
+		AI_Output(self,other,"DIA_Balthasar_HALLO_05_01");	//Ах, новое лицо на ферме. Неужели этот старый скряга, наконец, подарил мне ученика?
+		AI_Output(other,self,"DIA_Balthasar_HALLO_15_02");	//Я не ученик.
+		AI_Output(self,other,"DIA_Balthasar_HALLO_05_03");	//Ох. Понятно. Но я ведь уже не так молод, как раньше, понимаешь? И я уже много лет жду себе замену.
+	};
 	AI_Output(self,other,"DIA_Balthasar_HALLO_05_04");	//Ты ведь здесь не потому, что тебя послали разгневанные соседи, правда?
 };
 
@@ -94,19 +97,32 @@ func void DIA_Addon_Balthasar_Rangerbandits_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Balthasar_Rangerbandits_15_00");	//Ты не видел проходящих здесь бандитов?
 	AI_Output(self,other,"DIA_Addon_Balthasar_Rangerbandits_05_01");	//Видел. Они прошли краем поля у фермы Секоба и отправились в лес на север.
-	if(MIS_Vatras_FindTheBanditTrader == LOG_Running)
-	{
-		AI_Output(self,other,"DIA_Addon_Balthasar_Rangerbandits_05_02");	//С собой у них было огромное количество оружия. Выглядели они так, как будто собираются выиграть войну с орками.
-	};
-	if(SC_KnowsLuciaCaughtByBandits == TRUE)
-	{
-		AI_Output(self,other,"DIA_Addon_Balthasar_Rangerbandits_05_03");	//И если глаза меня не обманывали, они также увели в лес молодую женщину.
-		AI_Output(self,other,"DIA_Addon_Balthasar_Rangerbandits_05_04");	//Надеюсь, они не причинили ей зла.
-	};
-	B_GivePlayerXP(XP_Ambient);
+	AI_Output(self,other,"DIA_Addon_Balthasar_Rangerbandits_05_02");	//С собой у них было огромное количество оружия. Выглядели они так, как будто собираются выиграть войну с орками.
+	AI_Output(self,other,"DIA_Addon_Balthasar_Rangerbandits_05_03");	//И если глаза меня не обманывали, они также увели в лес молодую женщину.
+	AI_Output(self,other,"DIA_Addon_Balthasar_Rangerbandits_05_04");	//Надеюсь, они не причинили ей зла.
 	AI_Output(self,other,"DIA_Addon_Balthasar_Rangerbandits_05_05");	//Слава богам, они не зашли на нашу ферму.
+	B_GivePlayerXP(XP_Ambient);
 };
 
+
+func int C_BalthasarSheepsAreDead()
+{
+	if(Npc_IsDead(BalthasarSheep1) && Npc_IsDead(BalthasarSheep2) && Npc_IsDead(BalthasarSheep3))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+func void B_BalthasarLostHisSheeps()
+{
+	AI_WaitTillEnd(self,other);
+	AI_PlayAni(self,"T_SEARCH");
+	AI_Output(self,other,"DIA_Balthasar_PERMKAP1_05_02_add");	//Я не могу найти моих овец!
+	AI_StopProcessInfos(self);
+	MIS_Balthasar_BengarsWeide = LOG_OBSOLETE;
+	B_CheckLog();
+};
 
 instance DIA_Balthasar_AERGERMITNACHBARN(C_Info)
 {
@@ -120,7 +136,7 @@ instance DIA_Balthasar_AERGERMITNACHBARN(C_Info)
 
 func int DIA_Balthasar_AERGERMITNACHBARN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Balthasar_WASMACHSTDU) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (!Npc_IsDead(BalthasarSheep1) || !Npc_IsDead(BalthasarSheep2) || !Npc_IsDead(BalthasarSheep3)))
+	if(Npc_KnowsInfo(other,DIA_Balthasar_WASMACHSTDU) && ((other.guild == GIL_NONE) || (other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
 	{
 		return TRUE;
 	};
@@ -148,15 +164,32 @@ instance DIA_Balthasar_WOBENGAR(C_Info)
 
 func int DIA_Balthasar_WOBENGAR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Balthasar_AERGERMITNACHBARN) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+	if(BalthasarMovedToBengar == TRUE)
 	{
+		return FALSE;
+	};
+	if(Npc_KnowsInfo(other,DIA_Balthasar_AERGERMITNACHBARN))
+	{
+		DIA_Balthasar_WOBENGAR.description = "Как я могу попасть на эти высокогорные пастбища и ферму Бенгара?";
+		return TRUE;
+	};
+	if(Npc_KnowsInfo(other,DIA_Rosi_BENGAR))
+	{
+		DIA_Balthasar_WOBENGAR.description = "Как я могу попасть на ферму Бенгара?";
 		return TRUE;
 	};
 };
 
 func void DIA_Balthasar_WOBENGAR_Info()
 {
-	AI_Output(other,self,"DIA_Balthasar_WOBENGAR_15_00");	//Как я могу попасть на эти высокогорные пастбища и ферму Бенгара?
+	if(Npc_KnowsInfo(other,DIA_Balthasar_AERGERMITNACHBARN))
+	{
+		AI_Output(other,self,"DIA_Balthasar_WOBENGAR_15_00");	//Как я могу попасть на эти высокогорные пастбища и ферму Бенгара?
+	}
+	else if(Npc_KnowsInfo(other,DIA_Rosi_BENGAR))
+	{
+		AI_Output(other,self,"DIA_Balthasar_WOBENGAR_15_00_add");	//Как я могу попасть на ферму Бенгара?
+	};
 	AI_Output(self,other,"DIA_Balthasar_WOBENGAR_05_01");	//Иди по этой дороге до перекрестка.
 	AI_Output(self,other,"DIA_Balthasar_WOBENGAR_05_02");	//Если там ты повернешь направо, ты увидишь большую скалу. За ней, справа, и находятся высокогорные пастбища и Проход.
 };
@@ -174,7 +207,7 @@ instance DIA_Balthasar_TALKTOBENGAR(C_Info)
 
 func int DIA_Balthasar_TALKTOBENGAR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Balthasar_AERGERMITNACHBARN) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (!Npc_IsDead(BalthasarSheep1) || !Npc_IsDead(BalthasarSheep2) || !Npc_IsDead(BalthasarSheep3)))
+	if(Npc_KnowsInfo(other,DIA_Balthasar_AERGERMITNACHBARN) && ((other.guild == GIL_NONE) || (other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
 	{
 		return TRUE;
 	};
@@ -183,12 +216,19 @@ func int DIA_Balthasar_TALKTOBENGAR_Condition()
 func void DIA_Balthasar_TALKTOBENGAR_Info()
 {
 	AI_Output(other,self,"DIA_Balthasar_TALKTOBENGAR_15_00");	//Возможно, мне стоит поговорить с Бенгаром.
-	AI_Output(self,other,"DIA_Balthasar_TALKTOBENGAR_05_01");	//Ты сделаешь это для меня? Но что бы ты ни говорил ему, имей в виду, я не хочу никаких проблем, хорошо?
-	AI_Output(other,self,"DIA_Balthasar_TALKTOBENGAR_15_02");	//Посмотрим.
-	Log_CreateTopic(TOPIC_BalthasarsSchafe,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BalthasarsSchafe,LOG_Running);
-	B_LogEntry(TOPIC_BalthasarsSchafe,"Фермер Бенгар запретил пастуху Бальтазару пасти овец на его высокогорных пастбищах.");
-	MIS_Balthasar_BengarsWeide = LOG_Running;
+	if(!C_BalthasarSheepsAreDead())
+	{
+		AI_Output(self,other,"DIA_Balthasar_TALKTOBENGAR_05_01");	//Ты сделаешь это для меня? Но что бы ты ни говорил ему, имей в виду, я не хочу никаких проблем, хорошо?
+		AI_Output(other,self,"DIA_Balthasar_TALKTOBENGAR_15_02");	//Посмотрим.
+		Log_CreateTopic(TOPIC_BalthasarsSchafe,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_BalthasarsSchafe,LOG_Running);
+		B_LogEntry(TOPIC_BalthasarsSchafe,"Фермер Бенгар запретил пастуху Бальтазару пасти овец на его высокогорных пастбищах.");
+		MIS_Balthasar_BengarsWeide = LOG_Running;
+	}
+	else
+	{
+		B_BalthasarLostHisSheeps();
+	};
 };
 
 
@@ -204,8 +244,7 @@ instance DIA_Balthasar_BENGARUEBERREDET(C_Info)
 
 func int DIA_Balthasar_BENGARUEBERREDET_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Balthasar_TALKTOBENGAR) && (MIS_Balthasar_BengarsWeide == LOG_SUCCESS) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (!Npc_IsDead(BalthasarSheep1) || !Npc_IsDead(BalthasarSheep2) || !Npc_IsDead(BalthasarSheep3)))
-	if(Npc_KnowsInfo(other,DIA_Balthasar_TALKTOBENGAR) && (MIS_Balthasar_BengarsWeide == LOG_SUCCESS) && (!Npc_IsDead(BalthasarSheep1) || !Npc_IsDead(BalthasarSheep2) || !Npc_IsDead(BalthasarSheep3)))
+	if(Npc_KnowsInfo(other,DIA_Balthasar_TALKTOBENGAR) && (MIS_Balthasar_BengarsWeide == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -214,40 +253,38 @@ func int DIA_Balthasar_BENGARUEBERREDET_Condition()
 func void DIA_Balthasar_BENGARUEBERREDET_Info()
 {
 	AI_Output(other,self,"DIA_Balthasar_BENGARUEBERREDET_15_00");	//Ты можешь опять водить своих овец на пастбища Бенгара. Я поговорил с ним.
-	AI_Output(self,other,"DIA_Balthasar_BENGARUEBERREDET_05_01");	//Спасибо. Я отправляюсь туда прямо сейчас.
-	AI_Output(self,other,"DIA_Balthasar_BENGARUEBERREDET_05_02");	//Вот, возьми эти овечьи шкуры в знак моей благодарности.
-	B_GiveInvItems(self,other,ItAt_SheepFur,10);
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"BengarsWeide");
-	B_GivePlayerXP(XP_Balthasar_BengarsWeide);
-//	Wld_InsertNpc(Sheep,"NW_BIGMILL_FARM3_BALTHASAR");
-//	Wld_InsertNpc(Sheep,"NW_BIGMILL_FARM3_BALTHASAR");
-//	Wld_InsertNpc(Hammel,"NW_BIGMILL_FARM3_BALTHASAR");
-	BalthasarSheep1 = Hlp_GetNpc(Balthasar_Sheep1);
-	if(Hlp_IsValidNpc(BalthasarSheep1) && !Npc_IsDead(BalthasarSheep1))
+	if(!C_BalthasarSheepsAreDead())
 	{
-		//AI_StartState(BalthasarSheep1,ZS_MM_Rtn_Follow_Sheep_Balthasar,1,"");
-		BalthasarSheep1.wp = "NW_BIGMILL_FARM3_BALTHASAR";
-		BalthasarSheep1.start_aistate = ZS_MM_AllScheduler;
-		B_StartOtherRoutine(BalthasarSheep1,"NewFarm");
-	};
-	BalthasarSheep2 = Hlp_GetNpc(Balthasar_Sheep2);
-	if(Hlp_IsValidNpc(BalthasarSheep2) && !Npc_IsDead(BalthasarSheep2))
+		AI_Output(self,other,"DIA_Balthasar_BENGARUEBERREDET_05_01");	//Спасибо. Я отправляюсь туда прямо сейчас.
+		AI_Output(self,other,"DIA_Balthasar_BENGARUEBERREDET_05_02");	//Вот, возьми эти овечьи шкуры в знак моей благодарности.
+		B_GiveInvItems(self,other,ItAt_SheepFur,10);
+		AI_StopProcessInfos(self);
+		Npc_ExchangeRoutine(self,"BengarsWeide");
+		B_GivePlayerXP(XP_Balthasar_BengarsWeide);
+		if(Hlp_IsValidNpc(BalthasarSheep1) && !Npc_IsDead(BalthasarSheep1))
+		{
+			BalthasarSheep1.wp = "NW_BIGMILL_FARM3_BALTHASAR";
+			BalthasarSheep1.start_aistate = ZS_MM_AllScheduler;
+			B_StartOtherRoutine(BalthasarSheep1,"NewFarm");
+		};
+		if(Hlp_IsValidNpc(BalthasarSheep2) && !Npc_IsDead(BalthasarSheep2))
+		{
+			BalthasarSheep2.wp = "NW_BIGMILL_FARM3_BALTHASAR";
+			BalthasarSheep2.start_aistate = ZS_MM_AllScheduler;
+			B_StartOtherRoutine(BalthasarSheep2,"NewFarm");
+		};
+		if(Hlp_IsValidNpc(BalthasarSheep3) && !Npc_IsDead(BalthasarSheep3))
+		{
+			BalthasarSheep3.wp = "NW_BIGMILL_FARM3_BALTHASAR";
+			BalthasarSheep3.start_aistate = ZS_MM_AllScheduler;
+			B_StartOtherRoutine(BalthasarSheep3,"NewFarm");
+		};
+		BalthasarMovedToBengar = TRUE;
+	}
+	else
 	{
-		//AI_StartState(BalthasarSheep2,ZS_MM_Rtn_Follow_Sheep_Balthasar,1,"");
-		BalthasarSheep2.wp = "NW_BIGMILL_FARM3_BALTHASAR";
-		BalthasarSheep2.start_aistate = ZS_MM_AllScheduler;
-		B_StartOtherRoutine(BalthasarSheep2,"NewFarm");
+		B_BalthasarLostHisSheeps();
 	};
-	BalthasarSheep3 = Hlp_GetNpc(Balthasar_Sheep3);
-	if(Hlp_IsValidNpc(BalthasarSheep3) && !Npc_IsDead(BalthasarSheep3))
-	{
-		//AI_StartState(BalthasarSheep3,ZS_MM_Rtn_Follow_Sheep_Balthasar,1,"");
-		BalthasarSheep3.wp = "NW_BIGMILL_FARM3_BALTHASAR";
-		BalthasarSheep3.start_aistate = ZS_MM_AllScheduler;
-		B_StartOtherRoutine(BalthasarSheep3,"NewFarm");
-	};
-	BalthasarMovedToBengar = TRUE;
 };
 
 
@@ -273,25 +310,34 @@ func int DIA_Balthasar_PERMKAP1_Condition()
 func void DIA_Balthasar_PERMKAP1_Info()
 {
 	AI_Output(other,self,"DIA_Balthasar_PERMKAP1_15_00");	//Все в порядке?
-	Npc_PerceiveAll(self);
-//	if((Wld_DetectNpc(self,Balthasar_Sheep1,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 4000)) || (Wld_DetectNpc(self,Balthasar_Sheep2,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 4000)) || (Wld_DetectNpc(self,Balthasar_Sheep3,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 4000)) || (Wld_DetectNpc(self,Sheep,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 4000)) || (Wld_DetectNpc(self,Hammel,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 4000)))
-	if(!Npc_IsDead(BalthasarSheep1) && !Npc_IsDead(BalthasarSheep2) && !Npc_IsDead(BalthasarSheep3))
+	if(!C_BalthasarSheepsAreDead())
 	{
-		AI_Output(self,hero,"DIA_Balthasar_PERMKAP1_05_01");	//Мне не на что жаловаться. Спасибо, что спросил.
+		AI_Output(self,other,"DIA_Balthasar_PERMKAP1_05_01");	//Мне не на что жаловаться. Спасибо, что спросил.
 		AI_StopProcessInfos(self);
 	}
 	else
 	{
-		AI_Output(self,hero,"DIA_Balthasar_PERMKAP1_05_02");	//Настали тяжелые времена. Я не могу найти моих овец!
+		AI_Output(self,other,"DIA_Balthasar_PERMKAP1_05_02");	//Настали тяжелые времена. Я не могу найти моих овец!
 		if(!Npc_IsDead(Sekob))
 		{
-			AI_Output(self,hero,"DIA_Balthasar_PERMKAP1_05_03");	//Я думаю, лучше пойти к Секобу и признаться.
+			AI_Output(self,other,"DIA_Balthasar_PERMKAP1_05_03");	//Я думаю, лучше пойти к Секобу и признаться.
 		};
 		AI_StopProcessInfos(self);
-		if((Kapitel < 3) || (TOPIC_END_SekobDMT == TRUE))
+		if(BalthasarMovedToBengar == TRUE)
 		{
+			if(Kapitel < 3)
+			{
+				Npc_ExchangeRoutine(self,"Start");
+			}
+			else if(Npc_IsDead(DMT_DementorAmbientSekob1) && Npc_IsDead(DMT_DementorAmbientSekob2) && Npc_IsDead(DMT_DementorAmbientSekob3) && Npc_IsDead(DMT_DementorAmbientSekob4))
+			{
+				Npc_ExchangeRoutine(self,"Start");
+			}
+			else
+			{
+				Npc_ExchangeRoutine(self,"FleeDMT");
+			};
 			BalthasarMovedToBengar = FALSE;
-			Npc_ExchangeRoutine(self,"Start");
 		};
 	};
 };
