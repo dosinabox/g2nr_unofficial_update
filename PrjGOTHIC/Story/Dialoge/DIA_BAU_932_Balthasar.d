@@ -39,7 +39,7 @@ func int DIA_Balthasar_HALLO_Condition()
 func void DIA_Balthasar_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Balthasar_HALLO_15_00");	//Как дела?
-	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV) || (other.guild == GIL_SLD))
+	if((VisibleHeroGuild() == GIL_NONE) || (VisibleHeroGuild() == GIL_NOV) || (VisibleHeroGuild() == GIL_SLD))
 	{
 		AI_Output(self,other,"DIA_Balthasar_HALLO_05_01");	//Ах, новое лицо на ферме. Неужели этот старый скряга, наконец, подарил мне ученика?
 		AI_Output(other,self,"DIA_Balthasar_HALLO_15_02");	//Я не ученик.

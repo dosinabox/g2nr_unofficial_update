@@ -1739,6 +1739,8 @@ func void DIA_Pyrokar_SCOBSESSED_nein()
 };
 
 
+var int DIA_Pyrokar_AlmanachBringen_OneTime;
+
 instance DIA_Pyrokar_AlmanachBringen(C_Info)
 {
 	npc = KDF_500_Pyrokar;
@@ -1757,9 +1759,6 @@ func int DIA_Pyrokar_AlmanachBringen_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Pyrokar_AlmanachBringen_OneTime;
 
 func void DIA_Pyrokar_AlmanachBringen_Info()
 {

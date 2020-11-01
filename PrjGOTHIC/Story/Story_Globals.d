@@ -46,7 +46,7 @@ var int Leather01_Equipped;
 //var int Leather02_Equipped;
 //var int Rhobar_Equipped;
 var int MC_Equipped;
-var int wispskill_level;
+var int WISPSKILL_LEVEL;
 var int MIS_Addon_Cavalorn_TheHut;
 var int MIS_Addon_Cavalorn_KillBrago;
 var int MIS_Addon_Cavalorn_Letter2Vatras;

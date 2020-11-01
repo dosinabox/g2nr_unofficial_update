@@ -66,28 +66,28 @@ func int DIA_Onar_PERM_Condition()
 func void DIA_Onar_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Onar_PERM_15_00");	//Здесь все в порядке, на твоей ферме?
-	if(other.guild == GIL_NONE)
-	{
-		AI_Output(self,other,"DIA_Onar_PERM_14_01");	//Я не понимаю, какое тебе до этого может быть дело. Ты не работаешь здесь!
-		AI_StopProcessInfos(self);
-	};
 	if(other.guild == GIL_SLD)
 	{
 		AI_Output(self,other,"DIA_Onar_PERM_14_02");	//Очень надеюсь, что да! В конце концов, именно за это я тебе и плачу!
 		AI_Output(self,other,"DIA_Onar_PERM_14_03");	//Тебе лучше пойти, поговорить с Торлофом, может быть, у него есть работа для тебя.
-	};
-	if(other.guild == GIL_DJG)
+	}
+	else if(other.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_Onar_PERM_14_04");	//Да, конечно. Ты можешь идти, охотиться на своих драконов.
-	};
-	if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
+	}
+	else if((VisibleHeroGuild() == GIL_NOV) || (VisibleHeroGuild() == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Onar_PERM_14_05");	//Вам, лицемерным ублюдкам из монастыря, сюда вход закрыт!
 		AI_StopProcessInfos(self);
-	};
-	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
+	}
+	else if((VisibleHeroGuild() == GIL_MIL) || (VisibleHeroGuild() == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Onar_PERM_14_06");	//Наше гостеприимство не распространяется на войска короля.
+		AI_StopProcessInfos(self);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Onar_PERM_14_01");	//Я не понимаю, какое тебе до этого может быть дело. Ты не работаешь здесь!
 		AI_StopProcessInfos(self);
 	};
 };

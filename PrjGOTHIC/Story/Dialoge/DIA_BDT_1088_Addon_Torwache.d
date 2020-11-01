@@ -50,13 +50,17 @@ func int DIA_BDT_1088_Addon_Torwache_FirstWarn_Condition()
 func void DIA_BDT_1088_Addon_Torwache_FirstWarn_Info()
 {
 	AI_Output(self,other,"DIA_Addon_BDT_1088_Addon_Torwache_FirstWarn_06_00");	//СТОЙ!
-	if((MIS_Send_Buddler == LOG_SUCCESS) || Npc_HasItems(other,ITAR_Thorus_Addon))
+	if((MIS_Send_Buddler == LOG_SUCCESS) || Npc_HasItems(other,ITAR_Thorus_Addon) || (RavenIsDead == TRUE))
 	{
 		AI_Output(other,self,"DIA_Addon_BDT_1088_Torwache_FirstWarn_15_01");	//Уйди с дороги, охранник.
 		AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_FirstWarn_06_02");	//А, все в порядке, можешь проходить.
 		self.aivar[AIV_PASSGATE] = TRUE;
 	}
-	else if((MIS_Send_Buddler != LOG_Running) && (MIS_Send_Buddler != LOG_SUCCESS))
+	else if(MIS_Send_Buddler == LOG_Running)
+	{
+		AI_Output(self,other,"DIA_Addon_BDT_1088_Addon_Torwache_FirstWarn_06_06");	//Эй, пока Торус не выдал тебе пропуск, ты не пройдешь здесь.
+	}
+	else
 	{
 		if(Torwache_Greetings == 0)
 		{
@@ -72,10 +76,6 @@ func void DIA_BDT_1088_Addon_Torwache_FirstWarn_Info()
 		{
 			AI_Output(self,other,"DIA_Addon_BDT_1088_Addon_Torwache_FirstWarn_06_05");	//(с нажимом) ПОШЕЛ ОТСЮДА!
 		};
-	}
-	else if(MIS_Send_Buddler == LOG_Running)
-	{
-		AI_Output(self,other,"DIA_Addon_BDT_1088_Addon_Torwache_FirstWarn_06_06");	//Эй, пока Торус не выдал тебе пропуск, ты не пройдешь здесь.
 	};
 	AI_StopProcessInfos(self);
 	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,BDT_1088_Checkpoint);

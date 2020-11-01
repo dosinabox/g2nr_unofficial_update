@@ -739,10 +739,10 @@ const int TROPHY_ReptileSkin = 13;
 const int MAX_TROPHIES = 14;
 var int PLAYER_TALENT_TAKEANIMALTROPHY[MAX_TROPHIES];
 
-const string TEXT_FONT_20 = "Font_old_20_white.tga";
-const string TEXT_FONT_10 = "Font_old_10_white.tga";
-const string TEXT_FONT_DEFAULT = "Font_old_10_white.tga";
-const string TEXT_FONT_Inventory = "Font_old_10_white.tga";
+const string TEXT_FONT_20 = "FONT_OLD_20_WHITE.TGA";
+const string TEXT_FONT_10 = "FONT_OLD_10_WHITE.TGA";
+const string TEXT_FONT_DEFAULT = "FONT_OLD_10_WHITE.TGA";
+const string TEXT_FONT_Inventory = "FONT_OLD_10_WHITE.TGA";
 
 const float VIEW_TIME_PER_CHAR = 550;
 
@@ -762,7 +762,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "24/10/2020";
+const string FIX_VERSION_DATE = "01/11/2020";
 const int FIX_VERSION_START = 26;
 const int LEAST_SUPPORTED = 22;
 var int FIX_VERSION_SAVE;

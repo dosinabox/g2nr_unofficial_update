@@ -137,7 +137,7 @@ func void DIA_Addon_Martin_WasMachstDu_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Martin_WasMachstDu_15_00");	//ј что это за место?
 	AI_Output(self,other,"DIA_Addon_Martin_WasMachstDu_07_01");	//«десь хран€тс€ запасы королевской гвардии паладинов.
-	if((other.guild == GIL_NONE) && (SC_IsRanger == FALSE))
+	if((VisibleHeroGuild() == GIL_NONE) && (SC_IsRanger == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_WasMachstDu_07_02");	//я - интендант, и € отвечаю за то, чтобы не пропало ничего из наход€щегос€ здесь. ј тебе здесь не место.
 		AI_Output(self,other,"DIA_Addon_Martin_WasMachstDu_07_03");	//“ак что не трогай здесь ничего, иначе останешьс€ без рук.

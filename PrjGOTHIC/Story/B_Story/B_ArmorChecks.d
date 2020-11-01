@@ -324,27 +324,63 @@ func int C_PirateArmorEquipped(var C_Npc oth)
 	return FALSE;
 };
 
+func int VisibleHeroGuild()
+{
+	var C_Item armor;
+	armor = Npc_GetEquippedArmor(hero);
+	if(Npc_HasEquippedArmor(hero))
+	{
+		if(Hlp_IsItem(armor,ITAR_NOV_L))
+		{
+			return GIL_NOV;
+		};
+		if(Hlp_IsItem(armor,ITAR_KDF_L) || Hlp_IsItem(armor,ITAR_KDF_M) || Hlp_IsItem(armor,ITAR_KDF_H) || Hlp_IsItem(armor,ITAR_KDF_S))
+		{
+			return GIL_KDF;
+		};
+		if(Hlp_IsItem(armor,ITAR_MIL_L) || Hlp_IsItem(armor,ITAR_MIL_M))
+		{
+			return GIL_MIL;
+		};
+		if(Hlp_IsItem(armor,ITAR_PAL_M) || Hlp_IsItem(armor,ITAR_PALN_M) || Hlp_IsItem(armor,ITAR_PAL_H) || Hlp_IsItem(armor,ITAR_PALN_H) || Hlp_IsItem(armor,ITAR_PAL_S))
+		{
+			return GIL_PAL;
+		};
+		if(Hlp_IsItem(armor,ITAR_SLD_L) || Hlp_IsItem(armor,ITAR_SLD_M) || Hlp_IsItem(armor,ITAR_SLD_M2) || Hlp_IsItem(armor,ITAR_SLD_H) || Hlp_IsItem(armor,ITAR_SLD_S))
+		{
+			return GIL_SLD;
+		};
+		if(Hlp_IsItem(armor,ITAR_DJG_L) || Hlp_IsItem(armor,ITAR_DJG_M) || Hlp_IsItem(armor,ITAR_DJGN_M) || Hlp_IsItem(armor,ITAR_DJG_H) || Hlp_IsItem(armor,ITAR_DJGN_H))
+		{
+			return GIL_DJG;
+		};
+	};
+	return GIL_NONE;
+};
+
 func void B_SetHeroSkin()
 {
+	var int BodyTex;
 	if(TattoosBodySkin == TRUE)
 	{
-		Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex_Tattoo_N,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+		BodyTex = BodyTex_Tattoo_N;
 	}
 	else if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE) || (SLDArmor_Equipped == TRUE) || (BDTArmor_Equipped == TRUE) || (BAUArmor_Equipped == TRUE) || (NakedBodySkin == TRUE))
 	{
-		Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex_N,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+		BodyTex = BodyTex_N;
 	}
 	else if(G1BodySkin == TRUE)
 	{
-		Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex_Player_G1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+		BodyTex = BodyTex_Player_G1;
 	}
 	else if(SequelBodySkin == TRUE)
 	{
-		Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex_Player_Sequel,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+		BodyTex = BodyTex_Player_Sequel;
 	}
 	else
 	{
-		Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex_Player_G2,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+		BodyTex = BodyTex_Player_G2;
 	};
+	Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 };
 

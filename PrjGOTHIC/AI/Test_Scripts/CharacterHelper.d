@@ -3693,15 +3693,15 @@ func string B_BuildCurrentRegenerateValue(var int stats)
 	concatText = ConcatStrings(concatText,IntToString(cost));
 	if(cost == 1)
 	{
-		concatText = ConcatStrings(concatText," очко обучения)");
+		concatText = ConcatStrings(concatText,PRINT_1LP);
 	}
 	else if(cost == 2)
 	{
-		concatText = ConcatStrings(concatText," очка обучения)");
+		concatText = ConcatStrings(concatText,PRINT_2LP);
 	}
 	else
 	{
-		concatText = ConcatStrings(concatText," очков обучения)");
+		concatText = ConcatStrings(concatText,PRINT_LP);
 	};
 	return concatText;
 };

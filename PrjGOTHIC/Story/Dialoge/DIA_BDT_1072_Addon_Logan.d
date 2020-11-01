@@ -372,7 +372,7 @@ instance DIA_Addon_Logan_Allg(C_Info)
 	condition = DIA_Addon_Logan_Allg_Condition;
 	information = DIA_Addon_Logan_Allg_Info;
 	permanent = TRUE;
-	description = "Я хочу обучиться тому, что ты умеешь.";
+	description = "Обучи меня.";
 };
 
 
@@ -386,7 +386,7 @@ func int DIA_Addon_Logan_Allg_Condition()
 
 func void DIA_Addon_Logan_Allg_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Cavalorn_TEACH_15_00");	//Я хочу обучиться тому, что ты умеешь.
+	AI_Output(other,self,"DIA_Karras_TEACH_15_00");	//Обучи меня.
 	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE))
 	{
 		Info_ClearChoices(DIA_Addon_Logan_Allg);
