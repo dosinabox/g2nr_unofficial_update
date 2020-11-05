@@ -781,7 +781,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_Info()
 {
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_15_00");	//Я нашел твои записки.
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_03_01");	//Правда? Спасибо, ты спас меня. Я даже не знаю, как благодарить тебя.
-	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_15_02");	//Да, да, просто успокойся.
+	DIA_Common_YeahJustRelax();
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_03_03");	//(нервно) Это действительно мои? Ты уверен? Покажи мне.
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Я подержу их пока у себя.",DIA_Babo_Kap3_HaveYourDocs_KeepThem);

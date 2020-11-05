@@ -208,17 +208,16 @@ func int DIA_1013_BANDIT_AMBUSH_Condition()
 
 func void DIA_1013_BANDIT_AMBUSH_Info()
 {
-	if(Npc_IsDead(Ambusher_1014) && Npc_IsDead(Ambusher_1015))
+	if(!Npc_IsDead(Ambusher_1014) && !Npc_IsDead(Ambusher_1015))
 	{
-		AI_Output(self,other,"DIA_1013_BANDIT_AMBUSH_01_00");	//Тебе не стоило идти за мной...
-		B_Attack(self,other,AR_SuddenEnemyInferno,1);
-		AI_StopProcessInfos(self);
+		AI_Output(self,other,"DIA_1013_BANDIT_AMBUSH_01_01");	//Эй, парни, посмотрите, кто у нас здесь...
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_1013_BANDIT_AMBUSH_01_01");	//Эй, парни, посмотрите, кто у нас здесь...
-		AI_StopProcessInfos(self);
+		AI_Output(self,other,"DIA_1013_BANDIT_AMBUSH_01_00");	//Тебе не стоило идти за мной...
+		B_Attack(self,other,AR_SuddenEnemyInferno,1);
 	};
+	AI_StopProcessInfos(self);
 };
 
 

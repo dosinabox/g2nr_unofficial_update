@@ -58,7 +58,7 @@ func void DIA_GornOW_Hello_Info()
 		}
 		else
 		{
-			CreateInvItem(hero,ITAR_SLD_M2);
+			CreateInvItem(hero,ITAR_SLD_M);
 			AI_PrintScreen("Средние доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 			Lee_SldMGiven = TRUE;
 		};

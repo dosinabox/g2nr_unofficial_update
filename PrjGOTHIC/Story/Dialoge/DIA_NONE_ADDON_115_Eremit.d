@@ -335,10 +335,6 @@ func void DIA_Addon_Eremit_Klamotten_Info()
 	{
 		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать доспехи стражи Ворона)",DIA_Addon_Eremit_Klamotten_Thorus_Addon);
 	};
-	if(Npc_HasItems(other,ITAR_SLD_M) && Npc_HasItems(other,ITAR_SLD_M2))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать средние доспехи наемника)",DIA_Addon_Eremit_Klamotten_SLD_M);
-	};
 };
 
 func void B_Eremit_Tatsache()
@@ -435,13 +431,6 @@ func void DIA_Addon_Eremit_Klamotten_Thorus_Addon()
 	B_GiveInvItems(other,self,ITAR_Thorus_Addon,1);
 	B_Eremit_Tatsache();
 };
-
-func void DIA_Addon_Eremit_Klamotten_SLD_M()
-{
-	B_GiveInvItems(other,self,ITAR_SLD_M,1);
-	B_Eremit_Tatsache();
-};
-
 
 instance DIA_Addon_Eremit_PERM(C_Info)
 {

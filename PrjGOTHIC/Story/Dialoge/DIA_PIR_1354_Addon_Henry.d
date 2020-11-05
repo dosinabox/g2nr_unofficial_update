@@ -867,8 +867,11 @@ func void DIA_Addon_Henry_Palisade_CanHelp_Info()
 		AI_Output(other,self,"DIA_Addon_Henry_Palisade_CanHelp_15_02");	//Честно говоря, нет.
 		AI_Output(self,other,"DIA_Addon_Henry_Palisade_CanHelp_04_03");	//Тогда пользы от тебя здесь не будет. Помоги кому-нибудь еще.
 		Henry_PERM_Once = TRUE;
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Henry_Palisade_CanHelp_04_04");	//Можешь напиться до потери памяти, я не возражаю. Только не мешай моим рабочим.
 	};
-	AI_Output(self,other,"DIA_Addon_Henry_Palisade_CanHelp_04_04");	//Можешь напиться до потери памяти, я не возражаю. Только не мешай моим рабочим.
 };
 
 

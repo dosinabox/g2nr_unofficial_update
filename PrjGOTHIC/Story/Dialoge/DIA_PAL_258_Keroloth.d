@@ -414,7 +414,7 @@ func void DIA_Keroloth_KAP4_GELDGEFUNDEN_keineAhnung()
 	else if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_CipherDJG_GOTOGETHERAGAIN_07_01");	//Просто дай мне слово!
-		AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_15_02");	//Да, да, просто успокойся.
+		DIA_Common_YeahJustRelax();
 		AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_ruhig_07_01");	//Но я не хочу успокаиваться. Это были все мои сбережения, черт!
 		AI_StopProcessInfos(self);
 	}

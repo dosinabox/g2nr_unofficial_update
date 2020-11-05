@@ -1,7 +1,7 @@
 
 instance PC_Hero(Npc_Default)
 {
-	name[0] = "ß";
+	name[0] = NAME_Hero;
 	guild = GIL_NONE;
 	id = 0;
 	voice = 15;
@@ -24,7 +24,7 @@ instance PC_Hero(Npc_Default)
 
 instance PC_L10(Npc_Default)
 {
-	name[0] = "ß";
+	name[0] = NAME_Hero;
 	guild = GIL_MIL;
 	id = 0;
 	voice = 15;
@@ -53,7 +53,7 @@ instance PC_L10(Npc_Default)
 
 instance PC_L20(Npc_Default)
 {
-	name[0] = "ß";
+	name[0] = NAME_Hero;
 	guild = GIL_MIL;
 	id = 0;
 	voice = 15;
@@ -86,7 +86,7 @@ instance PC_L20(Npc_Default)
 
 instance PC_L40(Npc_Default)
 {
-	name[0] = "ß";
+	name[0] = NAME_Hero;
 	guild = GIL_PAL;
 	id = 0;
 	voice = 15;
@@ -126,7 +126,7 @@ instance PC_L40(Npc_Default)
 
 instance PC_L60(Npc_Default)
 {
-	name[0] = "ß";
+	name[0] = NAME_Hero;
 	guild = GIL_PAL;
 	id = 0;
 	voice = 15;
@@ -162,7 +162,7 @@ instance PC_L60(Npc_Default)
 
 instance PC_E3Mage(Npc_Default)
 {
-	name[0] = "ß";
+	name[0] = NAME_Hero;
 	guild = GIL_KDF;
 	id = 0;
 	voice = 15;
@@ -296,7 +296,7 @@ instance PC_E3Mage(Npc_Default)
 
 instance PC_E3Paladin(Npc_Default)
 {
-	name[0] = "ß";
+	name[0] = NAME_Hero;
 	guild = GIL_PAL;
 	id = 0;
 	voice = 15;
@@ -373,7 +373,7 @@ instance PC_E3Paladin(Npc_Default)
 
 instance PC_Bandit(Npc_Default)
 {
-	name[0] = "ß";
+	name[0] = NAME_Hero;
 	guild = GIL_NONE;
 	id = 0;
 	voice = 15;
