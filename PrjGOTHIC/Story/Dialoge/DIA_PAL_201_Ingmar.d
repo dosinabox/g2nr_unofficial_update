@@ -266,7 +266,7 @@ instance DIA_Ingmar_HAUPTQUARTIER(C_Info)
 
 func int DIA_Ingmar_HAUPTQUARTIER_Condition()
 {
-	if(Npc_IsDead(OrkElite_AntiPaladinOrkOberst) && Npc_KnowsInfo(other,DIA_Ingmar_ORKELITE))
+	if(Npc_IsDead(AntiPaladin_NW) && Npc_KnowsInfo(other,DIA_Ingmar_ORKELITE))
 	{
 		return TRUE;
 	};

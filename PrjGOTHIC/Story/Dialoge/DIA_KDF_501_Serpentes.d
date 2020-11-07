@@ -146,7 +146,7 @@ func void DIA_Serpentes_TEST_Info()
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_04");	//А теперь слушай: В Месте Камней найди того, кто никогда не был рожден - найди того, кто когда-то был вызван.
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_05");	//Одолей того, кого нельзя одолеть - померься силами с живой скалой, сразись с бессмертным камнем - и уничтожь его.
 	Wld_InsertNpc(MagicGolem,"FP_MAGICGOLEM");
-	Magic_Golem = Hlp_GetNpc(MagicGolem);
+	B_InitNpcGlobals();
 	MIS_GOLEM = LOG_Running;
 	Log_CreateTopic(TOPIC_Golem,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Golem,LOG_Running);
@@ -221,7 +221,7 @@ instance DIA_Serpentes_SUCCESS(C_Info)
 
 func int DIA_Serpentes_SUCCESS_Condition()
 {
-	if(Npc_IsDead(MagicGolem) && (MIS_GOLEM == LOG_Running) && (hero.guild == GIL_NOV))
+	if(Npc_IsDead(Magic_Golem) && (MIS_GOLEM == LOG_Running) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};

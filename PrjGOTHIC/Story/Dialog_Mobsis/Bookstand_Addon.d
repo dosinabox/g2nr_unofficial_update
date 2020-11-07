@@ -1,10 +1,8 @@
 
 func void Use_Bookstand_Addon_BL_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -173,9 +171,7 @@ func void Use_BookstandMaya()
 
 func void InitUse_BookstandMaya()
 {
-	var C_Npc her;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		if(!C_CanReadBookStand())
 		{

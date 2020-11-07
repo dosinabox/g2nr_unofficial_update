@@ -18,15 +18,12 @@ func int C_PlayerHasFlasks()
 
 func void potionalchemy_s1()
 {
-	var C_Npc her;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		FlasksCount = Npc_HasItems(self,ItMi_Flask) + 1;
 		Npc_RemoveInvItems(self,ItMi_Flask,Npc_HasItems(self,ItMi_Flask));
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_PotionAlchemy;
-		//AI_ProcessInfos(her);
 		AI_ProcessInfos(self);
 	};
 };

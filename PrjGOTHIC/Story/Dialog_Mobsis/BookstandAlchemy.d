@@ -5,10 +5,8 @@ var int ALchemy_3_permanent;
 
 func void Use_BookstandALCHEMY1_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -52,10 +50,8 @@ func void Use_BookstandALCHEMY1_S1()
 
 func void Use_BookstandALCHEMY2_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -99,10 +95,8 @@ func void Use_BookstandALCHEMY2_S1()
 
 func void Use_BookstandALCHEMY3_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);

@@ -1,9 +1,6 @@
 
 func int B_AssessEnemy()
 {
-	var C_Npc pcl;
-	var C_Npc mgo;
-	pcl = Hlp_GetNpc(PC_Levelinspektor);
 	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph)) && !Npc_IsPlayer(other))
 	{
 		if(Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000)
@@ -20,7 +17,7 @@ func int B_AssessEnemy()
 			return FALSE;
 		};
 	};
-	if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(pcl))
+	if(C_NpcIsLevelinspektor(other))
 	{
 		return FALSE;
 	};
@@ -51,8 +48,7 @@ func int B_AssessEnemy()
 	{
 		return FALSE;
 	};
-	mgo = Hlp_GetNpc(MagicGolem);
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(mgo)))
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Magic_Golem)))
 	{
 		return FALSE;
 	};

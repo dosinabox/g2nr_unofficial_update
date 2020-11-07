@@ -342,6 +342,8 @@ var C_Npc TalbinNW;
 var C_Npc Joe;
 var C_Npc Hanna;
 var C_Npc Kardif;
+var C_Npc AntiPaladin_NW;
+var C_Npc AntiPaladin_DI;
 
 func void B_InitNpcGlobals()
 {
@@ -692,5 +694,7 @@ func void B_InitNpcGlobals()
 	Joe = Hlp_GetNpc(VLK_448_Joe);
 	Hanna = Hlp_GetNpc(VLK_414_Hanna);
 	Kardif = Hlp_GetNpc(VLK_431_Kardif);
+	AntiPaladin_NW = Hlp_GetNpc(OrkElite_AntiPaladinOrkOberst);
+	AntiPaladin_DI = Hlp_GetNpc(OrkElite_AntiPaladinOrkOberst_DI);
 };
 

@@ -1,10 +1,8 @@
 
 func void Use_Bookstand_Rune_01_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -26,10 +24,8 @@ func void Use_Bookstand_Rune_01_S1()
 
 func void Use_Bookstand_Rune_02_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -51,10 +47,8 @@ func void Use_Bookstand_Rune_02_S1()
 
 func void Use_Bookstand_Innos_01_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -76,10 +70,8 @@ func void Use_Bookstand_Innos_01_S1()
 
 func void Use_Bookstand_Innos_02_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -101,10 +93,8 @@ func void Use_Bookstand_Innos_02_S1()
 
 func void Use_Bookstand_Kreise_01_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -146,10 +136,8 @@ func void Use_Bookstand_Kreise_01_S1()
 
 func void Use_Bookstand_Kreise_02_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -191,10 +179,8 @@ func void Use_Bookstand_Kreise_02_S1()
 
 func void Use_Bookstand_Kreise_03_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -241,10 +227,8 @@ func void Use_Bookstand_Kreise_03_S1()
 
 func void Use_Bookstand_Kreise_04_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -285,10 +269,8 @@ func void Use_Bookstand_Kreise_04_S1()
 
 func void Use_Bookstand_Kreise_05_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -333,10 +315,8 @@ func void Use_Bookstand_Kreise_05_S1()
 
 func void Use_Bookstand_Kreise_06_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -382,10 +362,8 @@ func void Use_Bookstand_Kreise_06_S1()
 
 func void Use_Bookstand_Rules_01_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);

@@ -1,17 +1,15 @@
 
 func void B_MM_AssessDamage()
 {
-	var C_Npc MagGol;
 	var C_Item OthWeap;
 	self.aivar[AIV_MM_PRIORITY] = PRIO_ATTACK;
 	B_BeliarsWeaponSpecialDamage(other,self);
 	B_ArrowBonusDamage(other,self);
 	if(Npc_HasItems(other,Holy_Hammer_MIS))
 	{
-		MagGol = Hlp_GetNpc(MagicGolem);
 		Npc_GetInvItem(other,Holy_Hammer_MIS);
 		OthWeap = Npc_GetReadiedWeapon(other);
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(MagGol)) && (Hlp_GetInstanceID(OthWeap) == Hlp_GetInstanceID(item)))
+		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Magic_Golem)) && (Hlp_GetInstanceID(OthWeap) == Hlp_GetInstanceID(item)))
 		{
 //			Npc_ChangeAttribute(self,ATR_HITPOINTS,-1000);
 			Npc_ChangeAttribute(self,ATR_HITPOINTS,-self.attribute[ATR_HITPOINTS_MAX]);

@@ -15,10 +15,8 @@ func int C_PlayerHasHotRawSwords()
 
 func void smithweapon_s1()
 {
-	var C_Npc her;
 	var C_Item EquipWeap;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		HotRawSwordsCount = Npc_HasItems(self,ItMiSwordrawhot) + 1;
 		Npc_RemoveInvItems(self,ItMiSwordrawhot,Npc_HasItems(self,ItMiSwordrawhot));
@@ -32,7 +30,6 @@ func void smithweapon_s1()
 				AI_UnequipWeapons(self);
 			};
 		};
-		//AI_ProcessInfos(her);
 		AI_ProcessInfos(self);
 	};
 };

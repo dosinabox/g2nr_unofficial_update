@@ -1,11 +1,7 @@
 
 func void B_AssessTalk()
 {
-	var C_Npc pcl;
-	var C_Npc pcr;
 	var int rnd;
-	pcl = Hlp_GetNpc(PC_Levelinspektor);
-	pcr = Hlp_GetNpc(PC_Rockefeller);
 	if(self.guild > GIL_SEPERATOR_HUM)
 	{
 		if(!Npc_CheckInfo(self,1))
@@ -18,7 +14,7 @@ func void B_AssessTalk()
 	}
 	else if(self.guild < GIL_SEPERATOR_HUM)
 	{
-		if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(pcl)) || (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(pcr)))
+		if(C_NpcIsLevelinspektor(other) || C_NpcIsRockefeller(other))
 		{
 			PrintScreen(ConcatStrings("Голос: ",IntToString(self.voice)),-1,70,FONT_Screen,2);
 			PrintScreen("Нет героя!",-1,-1,FONT_Screen,2);

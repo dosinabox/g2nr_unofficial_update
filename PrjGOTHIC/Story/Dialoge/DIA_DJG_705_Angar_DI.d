@@ -125,7 +125,7 @@ func void B_AngarStays()
 		{
 			Npc_ExchangeRoutine(self,"FireDragonIsland");
 		}
-		else if(Npc_IsDead(OrkElite_AntiPaladinOrkOberst_DI))
+		else if(Npc_IsDead(AntiPaladin_DI))
 		{
 			Npc_ExchangeRoutine(self,"ORKOBERST_DI");
 		}

@@ -124,6 +124,10 @@ func int C_HenryNiceArmorCheck(var C_Npc oth)
 		{
 			return TRUE;
 		};
+		if(Hlp_IsItem(armor,ITAR_Hagen))
+		{
+			return TRUE;
+		};
 		if(Hlp_IsItem(armor,ITAR_DJG_L))
 		{
 			return TRUE;
@@ -338,7 +342,7 @@ func int VisibleHeroGuild()
 		{
 			return GIL_MIL;
 		};
-		if(Hlp_IsItem(armor,ITAR_PAL_M) || Hlp_IsItem(armor,ITAR_PALN_M) || Hlp_IsItem(armor,ITAR_PAL_H) || Hlp_IsItem(armor,ITAR_PALN_H) || Hlp_IsItem(armor,ITAR_PAL_S))
+		if(Hlp_IsItem(armor,ITAR_PAL_M) || Hlp_IsItem(armor,ITAR_PALN_M) || Hlp_IsItem(armor,ITAR_PAL_H) || Hlp_IsItem(armor,ITAR_PALN_H) || Hlp_IsItem(armor,ITAR_PAL_S) || Hlp_IsItem(armor,ITAR_Hagen))
 		{
 			return GIL_PAL;
 		};

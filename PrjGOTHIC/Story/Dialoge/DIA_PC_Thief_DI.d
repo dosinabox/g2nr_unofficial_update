@@ -78,7 +78,7 @@ var int DIA_PC_Thief_DI_RAT_OneTime2;
 func void DIA_PC_Thief_DI_RAT_Info()
 {
 	AI_Output(other,self,"DIA_PC_Thief_DI_RAT_15_00");	//Мне нужен твой совет.
-	if(Npc_IsDead(OrkElite_AntiPaladinOrkOberst_DI) && (EVT_ORKOBERST_SWITCH_FOUND == FALSE))
+	if(Npc_IsDead(AntiPaladin_DI) && (EVT_ORKOBERST_SWITCH_FOUND == FALSE))
 	{
 		AI_Output(other,self,"DIA_PC_Thief_DI_RAT_15_01");	//У полковника орков здесь есть штаб-квартира. Я не могу продвинуться вглубь острова дальше этой точки.
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_02");	//Орки - хитрые создания. Зачастую их недооценивают. Я полагаю, у них там что-то вроде секретного прохода. Осмотри стены на предмет скрытых выключателей.

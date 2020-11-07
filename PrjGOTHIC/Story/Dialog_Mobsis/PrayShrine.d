@@ -139,9 +139,7 @@ func void PC_PrayShrine_HEALSHRINE_Info()
 
 func void PrayShrine_S1()
 {
-	var C_Npc her;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		C_IsShrineObsessed(self);
 		if(ShrineIsObsessed == TRUE)
@@ -150,7 +148,6 @@ func void PrayShrine_S1()
 		};
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_PrayShrine;
-		//AI_ProcessInfos(her);
 		AI_ProcessInfos(self);
 	};
 };

@@ -1,10 +1,8 @@
 
 func void Bookstand_Milten_03_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -35,10 +33,8 @@ func void Bookstand_Milten_03_S1()
 
 func void Bookstand_Milten_02_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -69,10 +65,8 @@ func void Bookstand_Milten_02_S1()
 
 func void Bookstand_Milten_01_S1()
 {
-	var C_Npc her;
 	var int Document;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		Document = Doc_CreateMap();
 		Doc_SetPages(Document,1);
@@ -85,10 +79,8 @@ func void Bookstand_Milten_01_S1()
 
 func void Bookstand_Engor_01_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
