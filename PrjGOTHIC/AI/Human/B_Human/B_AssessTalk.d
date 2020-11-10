@@ -93,7 +93,7 @@ func void B_AssessTalk()
 				};
 			};
 		};
-		if(self.guild == GIL_VLK)
+		if((self.guild == GIL_VLK) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Canthar)))
 		{
 			if(CurrentLevel == NEWWORLD_ZEN)
 			{

@@ -93,7 +93,7 @@ func int DIA_Addon_AlligatorJack_Hello_Condition()
 
 func void DIA_Addon_AlligatorJack_Hello_Info()
 {
-	if(!C_BanditArmorEquipped(other))
+	if(!C_BanditArmorEquipped(other) && (VisibleGuild(other) != GIL_KDW))
 	{
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_Hello_12_00");	//Кто, черт возьми, ты такой? Ты не похож на остальных.
 		AI_Output(other,self,"DIA_Addon_AlligatorJack_Hello_15_01");	//Каких еще остальных?

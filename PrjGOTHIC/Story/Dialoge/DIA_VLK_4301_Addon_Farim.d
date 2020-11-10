@@ -76,7 +76,7 @@ func void DIA_Addon_Farim_Hallo_Info()
 	AI_Output(other,self,"DIA_Addon_Farim_Hallo_15_00");	//Ты рыбак?
 	AI_Output(self,other,"DIA_Addon_Farim_Hallo_11_01");	//Интересно, как ты догадался?
 	AI_Output(self,other,"DIA_Addon_Farim_Hallo_11_02");	//Не мог бы ты оставить меня в покое?
-	if(VisibleHeroGuild() == GIL_MIL)
+	if(VisibleGuild(other) == GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Addon_Farim_Landstreicher_Add_11_02");	//Не принимай это на свой счет, но в последнее время от ополчения у меня одни неприятности.
 	}
@@ -108,7 +108,7 @@ func int DIA_Addon_Farim_MilizProbs_Condition()
 func void DIA_Addon_Farim_MilizProbs_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Farim_MilizProbs_15_00");	//Неприятности с ополчением?
-	if((VisibleHeroGuild() != GIL_MIL) && (VisibleHeroGuild() != GIL_PAL))
+	if((VisibleGuild(other) != GIL_MIL) && (VisibleGuild(other) != GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Addon_Farim_MilizProbs_11_01");	//Эти подонки приходят ко мне и забирают все, что им вздумается.
 	};
@@ -135,7 +135,7 @@ func void DIA_Addon_Farim_MilizProbs_klauen()
 {
 	AI_Output(other,self,"DIA_Addon_Farim_MilizProbs_klauen_15_00");	//Отдай мне всю свою рыбу.
 	AI_Output(self,other,"DIA_Addon_Farim_MilizProbs_klauen_11_01");	//(сердито) Я так и знал! Ты просто очередной подонок.
-	if((VisibleHeroGuild() == GIL_MIL) || (VisibleHeroGuild() == GIL_PAL))
+	if((VisibleGuild(other) == GIL_MIL) || (VisibleGuild(other) == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Addon_Farim_MilizProbs_klauen_11_02");	//Боюсь, ты опоздал. Здесь уже побывали твои друзья, которые все забрали.
 	};

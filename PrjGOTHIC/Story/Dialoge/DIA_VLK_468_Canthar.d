@@ -135,7 +135,7 @@ func void DIA_Canthar_PersonalCRIMES_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_09_02");	//Ћибо ты сейчас извинишьс€, либо € позабочусь, чтобы ты горько пожалел о том, что сделал!
-		AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_03");	//„то ты имеешь в виду?
+		DIA_Common_WhatDoYouMean();
 		B_Say_Gold(self,other,100);
 		Info_ClearChoices(DIA_Canthar_PersonalCRIMES);
 		Info_AddChoice(DIA_Canthar_PersonalCRIMES,"” мен€ нет столько!",DIA_Canthar_PersonalCRIMES_NotEnough);
@@ -197,7 +197,7 @@ func void DIA_Canthar_Hallo_Info()
 		AI_Output(self,other,"DIA_Canthar_Hallo_09_05");	//(торопливо) ћен€ не волнует, откуда ты пришел. Ќо мне кажетс€, у мен€ есть интересное предложение дл€ теб€...
 		Canthar_GotMe = TRUE;
 	}
-	else if(C_BAUCheck(other))
+	else if(VisibleGuild(other) == GIL_BAU)
 	{
 		AI_Output(self,other,"DIA_Canthar_HelloArmor_09_06");	// ак идет работа, кресть€нин?
 		Info_ClearChoices(DIA_Canthar_Hallo);

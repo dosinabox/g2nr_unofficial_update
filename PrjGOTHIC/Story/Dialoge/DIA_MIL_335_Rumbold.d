@@ -88,7 +88,7 @@ func int DIA_Rumbold_Hallo_Condition()
 func void DIA_Rumbold_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Rumbold_Hallo_10_00");	//Посмотрите на него! Еще один клоун! Что ты здесь делаешь, а?
-	if(SLDArmor_Equipped == TRUE)
+	if(VisibleGuild(other) == GIL_SLD)
 	{
 		AI_Output(self,other,"DIA_Rumbold_Hallo_10_02");	//Еще один из этих грязных наемников!
 	};

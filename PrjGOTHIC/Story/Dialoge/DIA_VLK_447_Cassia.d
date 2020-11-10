@@ -21,38 +21,38 @@ func void DIA_Cassia_EXIT_Info()
 };
 
 
-instance DIA_Cassia_PICKME(C_Info)
+instance DIA_Cassia_PICKPOCKET(C_Info)
 {
 	npc = VLK_447_Cassia;
 	nr = 900;
-	condition = DIA_Cassia_PICKME_Condition;
-	information = DIA_Cassia_PICKME_Info;
+	condition = DIA_Cassia_PICKPOCKET_Condition;
+	information = DIA_Cassia_PICKPOCKET_Info;
 	permanent = TRUE;
 	description = Pickpocket_100_Female;
 };
 
 
-func int DIA_Cassia_PICKME_Condition()
+func int DIA_Cassia_PICKPOCKET_Condition()
 {
 	return C_Beklauen(100,400);
 };
 
-func void DIA_Cassia_PICKME_Info()
+func void DIA_Cassia_PICKPOCKET_Info()
 {
-	Info_ClearChoices(DIA_Cassia_PICKME);
-	Info_AddChoice(DIA_Cassia_PICKME,Dialog_Back,DIA_Cassia_PICKME_BACK);
-	Info_AddChoice(DIA_Cassia_PICKME,DIALOG_PICKPOCKET,DIA_Cassia_PICKME_DoIt);
+	Info_ClearChoices(DIA_Cassia_PICKPOCKET);
+	Info_AddChoice(DIA_Cassia_PICKPOCKET,Dialog_Back,DIA_Cassia_PICKPOCKET_BACK);
+	Info_AddChoice(DIA_Cassia_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Cassia_PICKPOCKET_DoIt);
 };
 
-func void DIA_Cassia_PICKME_DoIt()
+func void DIA_Cassia_PICKPOCKET_DoIt()
 {
 	B_Beklauen();
-	Info_ClearChoices(DIA_Cassia_PICKME);
+	Info_ClearChoices(DIA_Cassia_PICKPOCKET);
 };
 
-func void DIA_Cassia_PICKME_BACK()
+func void DIA_Cassia_PICKPOCKET_BACK()
 {
-	Info_ClearChoices(DIA_Cassia_PICKME);
+	Info_ClearChoices(DIA_Cassia_PICKPOCKET);
 };
 
 
@@ -627,18 +627,18 @@ func void DIA_Cassia_TEACH_5()
 	};
 };
 
-instance DIA_Cassia_Pickpocket(C_Info)
+instance DIA_Cassia_PickMe(C_Info)
 {
 	npc = VLK_447_Cassia;
 	nr = 10;
-	condition = DIA_Cassia_Pickpocket_Condition;
-	information = DIA_Cassia_Pickpocket_Info;
+	condition = DIA_Cassia_PickMe_Condition;
+	information = DIA_Cassia_PickMe_Info;
 	permanent = TRUE;
 	description = B_BuildLearnString(NAME_Skill_PickPocket,B_GetLearnCostTalent(other,NPC_TALENT_PICKPOCKET,1));
 };
 
 
-func int DIA_Cassia_Pickpocket_Condition()
+func int DIA_Cassia_PickMe_Condition()
 {
 	if((Cassia_TeachPickpocket == TRUE) && !Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 	{
@@ -646,7 +646,7 @@ func int DIA_Cassia_Pickpocket_Condition()
 	};
 };
 
-func void DIA_Cassia_Pickpocket_Info()
+func void DIA_Cassia_PickMe_Info()
 {
 	AI_Output(other,self,"DIA_Cassia_Pickpocket_15_00");	//Научи меня карманному воровству.
 	if(B_TeachThiefTalent(self,other,NPC_TALENT_PICKPOCKET))

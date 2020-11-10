@@ -1,54 +1,84 @@
 
-func int C_LawArmorEquipped(var C_Npc oth)
+func int ArmorEquipped(var C_Npc npc,var int itemInstance)
 {
 	var C_Item armor;
-	armor = Npc_GetEquippedArmor(oth);
-	if(Npc_HasEquippedArmor(oth))
+	if(Npc_HasEquippedArmor(npc))
 	{
-		if(Hlp_IsItem(armor,ITAR_MIL_L))
+		armor = Npc_GetEquippedArmor(npc);
+		if(Hlp_IsItem(armor,itemInstance))
 		{
 			return TRUE;
 		};
-		if(Hlp_IsItem(armor,ITAR_MIL_M))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_PAL_M))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_PALN_M))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_PAL_H))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_PALN_H))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_NOV_L))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_KDF_L))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_KDF_M))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_KDF_H))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_KDF_S))
-		{
-			return TRUE;
-		};
+	};
+	return FALSE;
+};
+
+func int VisibleGuild(var C_Npc npc)
+{
+	if(!Npc_HasEquippedArmor(npc))
+	{
+		return GIL_NONE;
+	};
+	if(ArmorEquipped(npc,ITAR_NOV_L))
+	{
+		return GIL_NOV;
+	};
+	if(ArmorEquipped(npc,ITAR_KDF_L) || ArmorEquipped(npc,ITAR_KDF_M) || ArmorEquipped(npc,ITAR_KDF_H) || ArmorEquipped(npc,ITAR_KDF_S))
+	{
+		return GIL_KDF;
+	};
+	if(ArmorEquipped(npc,ITAR_MIL_L) || ArmorEquipped(npc,ITAR_MIL_M))
+	{
+		return GIL_MIL;
+	};
+	if(ArmorEquipped(npc,ITAR_PAL_M) || ArmorEquipped(npc,ITAR_PALN_M) || ArmorEquipped(npc,ITAR_PAL_H) || ArmorEquipped(npc,ITAR_PALN_H) || ArmorEquipped(npc,ITAR_PAL_S) || ArmorEquipped(npc,ITAR_Hagen))
+	{
+		return GIL_PAL;
+	};
+	if(ArmorEquipped(npc,ITAR_SLD_L) || ArmorEquipped(npc,ITAR_SLD_M) || ArmorEquipped(npc,ITAR_SLD_H) || ArmorEquipped(npc,ITAR_SLD_S))
+	{
+		return GIL_SLD;
+	};
+	if(ArmorEquipped(npc,ITAR_DJG_L) || ArmorEquipped(npc,ITAR_DJG_M) || ArmorEquipped(npc,ITAR_DJGN_M) || ArmorEquipped(npc,ITAR_DJG_H) || ArmorEquipped(npc,ITAR_DJGN_H))
+	{
+		return GIL_DJG;
+	};
+	if(ArmorEquipped(npc,ITAR_Vlk_L) || ArmorEquipped(npc,ITAR_Vlk_M) || ArmorEquipped(npc,ITAR_Vlk_H) || ArmorEquipped(npc,ITAR_Governor) || ArmorEquipped(npc,ITAR_Larius))
+	{
+		return GIL_VLK;
+	};
+	if(ArmorEquipped(npc,ITAR_Bau_L) || ArmorEquipped(npc,ITAR_Bau_M) || ArmorEquipped(npc,ITAR_Onar))
+	{
+		return GIL_BAU;
+	};
+	if(ArmorEquipped(npc,ITAR_KDW_L_Addon) || ArmorEquipped(npc,ITAR_KDW_H))
+	{
+		return GIL_KDW;
+	};
+	return GIL_NONE;
+};
+
+func int C_LawArmorEquipped(var C_Npc npc)
+{
+	if(VisibleGuild(npc) == GIL_MIL)
+	{
+		return TRUE;
+	};
+	if(VisibleGuild(npc) == GIL_PAL)
+	{
+		return TRUE;
+	};
+	if(VisibleGuild(npc) == GIL_NOV)
+	{
+		return TRUE;
+	};
+	if(VisibleGuild(npc) == GIL_KDF)
+	{
+		return TRUE;
+	};
+	if(VisibleGuild(npc) == GIL_KDW)
+	{
+		return TRUE;
 	};
 	return FALSE;
 };
@@ -62,300 +92,94 @@ func int AnyRangerRingEquipped()
 	return FALSE;
 };
 
-func void B_BaltramRangerCheck(var C_Npc oth)
+func void B_BaltramRangerCheck(var C_Npc npc)
 {
-	var C_Item armor;
-	armor = Npc_GetEquippedArmor(oth);
 	if(SC_KnowsBaltramAsRanger == FALSE)
 	{
-		if(Npc_HasEquippedArmor(oth))
-		{
-			if(Hlp_IsItem(armor,ITAR_RANGER_Addon))
-			{
-				SC_KnowsBaltramAsRanger = TRUE;
-			};
-		};
-		if(AnyRangerRingEquipped())
+		if(AnyRangerRingEquipped() || ArmorEquipped(npc,ITAR_RANGER_Addon))
 		{
 			SC_KnowsBaltramAsRanger = TRUE;
 		};
 	};
 };
 
-func int C_HenryNiceArmorCheck(var C_Npc oth)
+func int C_HenryNiceArmorCheck(var C_Npc npc)
 {
-	var C_Item armor;
-	armor = Npc_GetEquippedArmor(oth);
-	if(Npc_HasEquippedArmor(oth))
+	if(VisibleGuild(npc) == GIL_KDF)
 	{
-		if(Hlp_IsItem(armor,ITAR_KDF_L))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_KDF_M))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_KDF_H))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_KDF_S))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_PAL_M))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_PALN_M))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_PAL_H))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_PALN_H))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_PAL_S))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_Hagen))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_DJG_L))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_DJG_M))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_DJGN_M))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_DJG_H))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_DJGN_H))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_RANGER_Addon))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_MIL_L))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_MIL_M))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_SLD_M))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_SLD_H))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_OHT))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
-	return FALSE;
-};
-
-func int C_MageRobeCheck(var C_Npc oth)
-{
-	var C_Item armor;
-	armor = Npc_GetEquippedArmor(oth);
-	if(Npc_HasEquippedArmor(oth))
+	if(VisibleGuild(npc) == GIL_PAL)
 	{
-		if(Hlp_IsItem(armor,ITAR_KDF_L))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_KDF_M))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_KDF_H))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_KDF_S))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
-	return FALSE;
-};
-
-func int C_MikaPeasantCheck(var C_Npc oth)
-{
-	var C_Item armor;
-	armor = Npc_GetEquippedArmor(oth);
-	if(Npc_HasEquippedArmor(oth))
+	if(VisibleGuild(npc) == GIL_DJG)
 	{
-		if(Hlp_IsItem(armor,ITAR_Bau_L))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_Bau_M))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_Vlk_L))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_Vlk_M))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_Vlk_H))
-		{
-			return TRUE;
-		};
-	}
-	else
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_MIL_M))
+	{
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_SLD_M))
+	{
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_SLD_H))
+	{
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_RANGER_Addon))
 	{
 		return TRUE;
 	};
 	return FALSE;
 };
 
-func int C_MikaMILMCheck(var C_Npc oth)
+func int C_BanditArmorEquipped(var C_Npc npc)
 {
-	var C_Item armor;
-	armor = Npc_GetEquippedArmor(oth);
-	if(Npc_HasEquippedArmor(oth))
+	if(ArmorEquipped(npc,ITAR_BDT_M))
 	{
-		if(Hlp_IsItem(armor,ITAR_MIL_M))
-		{
-			return TRUE;
-		};
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_BDT_H))
+	{
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_Thorus_Addon))
+	{
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_OreBaron_Addon))
+	{
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_Bloodwyn_Addon))
+	{
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_Diego))
+	{
+		return TRUE;
 	};
 	return FALSE;
 };
 
-func int C_BAUCheck(var C_Npc oth)
+func int C_PirateArmorEquipped(var C_Npc npc)
 {
-	var C_Item armor;
-	armor = Npc_GetEquippedArmor(oth);
-	if(Npc_HasEquippedArmor(oth))
+	if(ArmorEquipped(npc,ITAR_PIR_M_Addon))
 	{
-		if(Hlp_IsItem(armor,ITAR_Bau_L))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_Bau_M))
-		{
-			return TRUE;
-		};
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_PIR_L_Addon))
+	{
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_PIR_H_Addon))
+	{
+		return TRUE;
 	};
 	return FALSE;
-};
-
-func int C_BanditArmorEquipped(var C_Npc oth)
-{
-	var C_Item armor;
-	armor = Npc_GetEquippedArmor(oth);
-	if(Npc_HasEquippedArmor(oth))
-	{
-		if(Hlp_IsItem(armor,ITAR_BDT_M))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_BDT_H))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_Thorus_Addon))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_OreBaron_Addon))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_Bloodwyn_Addon))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_Diego))
-		{
-			return TRUE;
-		};
-	};
-	return FALSE;
-};
-
-func int C_PirateArmorEquipped(var C_Npc oth)
-{
-	var C_Item armor;
-	armor = Npc_GetEquippedArmor(oth);
-	if(Npc_HasEquippedArmor(oth))
-	{
-		if(Hlp_IsItem(armor,ITAR_PIR_M_Addon))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_PIR_L_Addon))
-		{
-			return TRUE;
-		};
-		if(Hlp_IsItem(armor,ITAR_PIR_H_Addon))
-		{
-			return TRUE;
-		};
-	};
-	return FALSE;
-};
-
-func int VisibleHeroGuild()
-{
-	var C_Item armor;
-	armor = Npc_GetEquippedArmor(hero);
-	if(Npc_HasEquippedArmor(hero))
-	{
-		if(Hlp_IsItem(armor,ITAR_NOV_L))
-		{
-			return GIL_NOV;
-		};
-		if(Hlp_IsItem(armor,ITAR_KDF_L) || Hlp_IsItem(armor,ITAR_KDF_M) || Hlp_IsItem(armor,ITAR_KDF_H) || Hlp_IsItem(armor,ITAR_KDF_S))
-		{
-			return GIL_KDF;
-		};
-		if(Hlp_IsItem(armor,ITAR_MIL_L) || Hlp_IsItem(armor,ITAR_MIL_M))
-		{
-			return GIL_MIL;
-		};
-		if(Hlp_IsItem(armor,ITAR_PAL_M) || Hlp_IsItem(armor,ITAR_PALN_M) || Hlp_IsItem(armor,ITAR_PAL_H) || Hlp_IsItem(armor,ITAR_PALN_H) || Hlp_IsItem(armor,ITAR_PAL_S) || Hlp_IsItem(armor,ITAR_Hagen))
-		{
-			return GIL_PAL;
-		};
-		if(Hlp_IsItem(armor,ITAR_SLD_L) || Hlp_IsItem(armor,ITAR_SLD_M) || Hlp_IsItem(armor,ITAR_SLD_H) || Hlp_IsItem(armor,ITAR_SLD_S))
-		{
-			return GIL_SLD;
-		};
-		if(Hlp_IsItem(armor,ITAR_DJG_L) || Hlp_IsItem(armor,ITAR_DJG_M) || Hlp_IsItem(armor,ITAR_DJGN_M) || Hlp_IsItem(armor,ITAR_DJG_H) || Hlp_IsItem(armor,ITAR_DJGN_H))
-		{
-			return GIL_DJG;
-		};
-	};
-	return GIL_NONE;
 };
 
 func void B_SetHeroSkin()

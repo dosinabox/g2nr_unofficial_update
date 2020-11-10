@@ -94,7 +94,7 @@ func void DIA_Mil_310_Stadtwache_FirstWarn_Info()
 				B_LogEntry(TOPIC_City,"Чтобы стражники позволили мне войти в город, я должен выглядеть так, как будто у меня есть деньги. Ну, или я должен найти какой-нибудь другой способ.");
 			};
 		}
-		else if(C_BAUCheck(other))
+		else if(VisibleGuild(other) == GIL_BAU)
 		{
 			if(self.aivar[AIV_TalkedToPlayer] == TRUE)
 			{
@@ -287,7 +287,7 @@ instance DIA_Mil_310_Stadtwache_ZumSchmied(C_Info)
 
 func int DIA_Mil_310_Stadtwache_ZumSchmied_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maleth_ToTheCity) && (Mil_310_schonmalreingelassen == FALSE) && C_BAUCheck(other))
+	if(Npc_KnowsInfo(other,DIA_Maleth_ToTheCity) && (Mil_310_schonmalreingelassen == FALSE) && (VisibleGuild(other) == GIL_BAU))
 	{
 		return TRUE;
 	};

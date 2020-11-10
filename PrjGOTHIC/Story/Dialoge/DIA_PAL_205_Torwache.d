@@ -56,7 +56,7 @@ instance DIA_PAL_205_Torwache_FirstWarn(C_Info)
 
 func int DIA_PAL_205_Torwache_FirstWarn_Condition()
 {
-	if((MILArmor_Equipped == TRUE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((VisibleGuild(other) == GIL_MIL) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
 	{
 		return FALSE;
 	}
@@ -109,7 +109,7 @@ instance DIA_PAL_205_Torwache_SecondWarn(C_Info)
 
 func int DIA_PAL_205_Torwache_SecondWarn_Condition()
 {
-	if((MILArmor_Equipped == TRUE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((VisibleGuild(other) == GIL_MIL) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
 	{
 		return FALSE;
 	}
@@ -141,7 +141,7 @@ instance DIA_PAL_205_Torwache_Attack(C_Info)
 
 func int DIA_PAL_205_Torwache_Attack_Condition()
 {
-	if((MILArmor_Equipped == TRUE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((VisibleGuild(other) == GIL_MIL) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
 	{
 		return FALSE;
 	}
@@ -203,7 +203,7 @@ instance DIA_PAL_205_Torwache_PassAsArmoredMil(C_Info)
 
 func int DIA_PAL_205_Torwache_PassAsArmoredMil_Condition()
 {
-	if((MILArmor_Equipped == TRUE) && (PAL_205_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((VisibleGuild(other) == GIL_MIL) && (PAL_205_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
 	{
 		return TRUE;
 	};

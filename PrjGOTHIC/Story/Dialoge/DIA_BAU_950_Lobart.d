@@ -46,9 +46,7 @@ func int DIA_Lobart_STOLENCLOTHS_Condition()
 
 func void DIA_Lobart_STOLENCLOTHS_Info()
 {
-	var C_Item heroArmor;
-	heroArmor = Npc_GetEquippedArmor(other);
-	if(Hlp_IsItem(heroArmor,ITAR_Bau_L))
+	if(ArmorEquipped(other,ITAR_Bau_L))
 	{
 		AI_Output(self,other,"DIA_Lobart_STOLENCLOTHS_05_00");	//Я не могу поверить своим глазам! Этот ублюдок расхаживает в МОЕЙ одежде!
 	}

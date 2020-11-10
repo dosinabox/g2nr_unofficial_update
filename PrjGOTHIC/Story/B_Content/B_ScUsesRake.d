@@ -42,15 +42,13 @@ func void B_SCUsesRake(var C_Npc slf)
 
 func void B_SCGetTreasure_S1()
 {
-	var C_Item GregsArmor;
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
 	{
 		if((Npc_GetDistToWP(hero,RAKEPLACE_WP_01) < RAKE_BUDDEL_DIST_MIN) && (RAKEPLACE[1] == FALSE))
 		{
 			Wld_InsertItem(ItSe_GoldPocket25,RAKEPLACE_WP_01);
 			RakeTreasureSuccess(ItSe_GoldPocket25);
-			GregsArmor = Npc_GetEquippedArmor(Greg_NW);
-			if(!Hlp_IsItem(GregsArmor,ITAR_PIR_H_Addon))
+			if(!ArmorEquipped(Greg_NW,ITAR_PIR_H_Addon))
 			{
 				AI_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
 			};

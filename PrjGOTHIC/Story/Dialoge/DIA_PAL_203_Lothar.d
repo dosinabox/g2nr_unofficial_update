@@ -768,7 +768,7 @@ func void DIA_Lothar_HelloAgain_Info()
 		AI_Output(self,other,"DIA_Lothar_HelloAgain_01_01");	//“ак тебе все же удалось получить доступ в верхний квартал!
 		AI_Output(self,other,"DIA_Lothar_Add_01_13");	//ѕохоже, ты полон решимости добитьс€ своего, да?
 	};
-	if(C_MageRobeCheck(other))
+	if((VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_KDW))
 	{
 		AI_Output(self,other,"DIA_Lothar_Add_01_36");	//√де ты вз€л эту мантию?
 	};

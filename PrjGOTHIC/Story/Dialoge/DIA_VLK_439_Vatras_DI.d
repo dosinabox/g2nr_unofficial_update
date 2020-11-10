@@ -196,7 +196,7 @@ func void DIA_Vatras_DI_PEDROTOT_Info()
 	{
 		AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_01");	//ќн мертв.
 		AI_Output(self,other,"DIA_Vatras_DI_PEDROTOT_05_02");	//я крайне разочарован. я не ожидал этого от теб€.
-		AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_03");	//„то ты имеешь в виду?
+		DIA_Common_WhatDoYouMean();
 		AI_Output(self,other,"DIA_Vatras_DI_PEDROTOT_05_04");	//я знаю о твоем отвратительном соглашении с —ерпентесом. я глубоко потр€сен тем, что так ошибалс€ в тебе.
 		DIA_Vatras_DI_PEDROTOT_VatrasSucked = TRUE;
 		AI_StopProcessInfos(self);

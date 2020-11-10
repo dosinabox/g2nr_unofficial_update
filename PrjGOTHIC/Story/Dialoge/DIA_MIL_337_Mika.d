@@ -135,7 +135,7 @@ func void DIA_Mika_WASGEFAEHRLICH_Info()
 	{
 		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_03");	//А если тебя не поймают бандиты, то дикие животные из леса или наемники, которые шляются вокруг, позаботятся о тебе.
 	};
-	if(C_MikaPeasantCheck(other))
+	if(!Npc_HasEquippedArmor(other) || (VisibleGuild(other) == GIL_BAU) || (VisibleGuild(other) == GIL_VLK))
 	{
 		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_04");	//Так что постарайся сначала хотя бы добыть приличные доспехи. Без них тут нечего делать.
 	};
@@ -164,7 +164,7 @@ func int DIA_Mika_WASKOSTETHILFE_Condition()
 func void DIA_Mika_WASKOSTETHILFE_Info()
 {
 	AI_Output(other,self,"DIA_Mika_WASKOSTETHILFE_15_00");	//Ну, предположим, я обращусь к тебе за помощью. Сколько это будет мне стоить?
-	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF) || C_MikaMILMCheck(other))
+	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF) || ArmorEquipped(other,ITAR_MIL_M))
 	{
 		AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_ja_12_01");	//Потрясающе. Если тебе понадобится моя помощь, ты знаешь, где найти меня.
 		Mika_Helps = TRUE;
@@ -217,7 +217,7 @@ instance DIA_Mika_UEBERLEGT(C_Info)
 
 func int DIA_Mika_UEBERLEGT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Mika_WASKOSTETHILFE) && (Mika_Helps == FALSE) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF) && !C_MikaMILMCheck(other))
+	if(Npc_KnowsInfo(other,DIA_Mika_WASKOSTETHILFE) && (Mika_Helps == FALSE) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF) && !ArmorEquipped(other,ITAR_MIL_M))
 	{
 		return TRUE;
 	};
@@ -266,7 +266,7 @@ func int DIA_Mika_HILFE_Condition()
 		{
 			return TRUE;
 		};
-		if(C_MikaMILMCheck(other))
+		if(ArmorEquipped(other,ITAR_MIL_M))
 		{
 			return TRUE;
 		};

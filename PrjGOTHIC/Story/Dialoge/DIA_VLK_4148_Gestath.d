@@ -17,9 +17,7 @@ func int DIA_Gestath_EXIT_Condition()
 
 func void DIA_Gestath_EXIT_Info()
 {
-	var C_Item heroArmor;
-	heroArmor = Npc_GetEquippedArmor(other);
-	if(Hlp_IsItem(heroArmor,ITAR_DJG_Crawler))
+	if(ArmorEquipped(other,ITAR_DJG_Crawler))
 	{
 		AI_Output(self,other,"DIA_Gestath_EXIT_09_00");	//(сухо) Хорошие доспехи!
 	};

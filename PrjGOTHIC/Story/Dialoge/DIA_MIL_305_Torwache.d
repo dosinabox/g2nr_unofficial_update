@@ -53,7 +53,7 @@ instance DIA_Mil_305_Torwache_FirstWarn(C_Info)
 
 func int DIA_Mil_305_Torwache_FirstWarn_Condition()
 {
-	if((MILArmor_Equipped == TRUE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((VisibleGuild(other) == GIL_MIL) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
 	{
 		return FALSE;
 	}
@@ -106,7 +106,7 @@ instance DIA_Mil_305_Torwache_SecondWarn(C_Info)
 
 func int DIA_Mil_305_Torwache_SecondWarn_Condition()
 {
-	if((MILArmor_Equipped == TRUE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((VisibleGuild(other) == GIL_MIL) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
 	{
 		return FALSE;
 	}
@@ -138,7 +138,7 @@ instance DIA_Mil_305_Torwache_Attack(C_Info)
 
 func int DIA_Mil_305_Torwache_Attack_Condition()
 {
-	if((MILArmor_Equipped == TRUE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((VisibleGuild(other) == GIL_MIL) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
 	{
 		return FALSE;
 	}
@@ -281,7 +281,7 @@ instance DIA_Mil_305_Torwache_PassAsArmoredMil(C_Info)
 
 func int DIA_Mil_305_Torwache_PassAsArmoredMil_Condition()
 {
-	if((MILArmor_Equipped == TRUE) && (Mil_305_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((VisibleGuild(other) == GIL_MIL) && (Mil_305_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
 	{
 		return TRUE;
 	};

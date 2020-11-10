@@ -44,7 +44,7 @@ instance DIA_Fajeth_First(C_Info)
 
 func int DIA_Fajeth_First_Condition()
 {
-	if(Garond.aivar[AIV_TalkedToPlayer] == FALSE)
+	if((Kapitel == 2) && (MIS_ScoutMine == FALSE))
 	{
 		return TRUE;
 	};
@@ -72,7 +72,7 @@ instance DIA_Fajeth_Hallo(C_Info)
 
 func int DIA_Fajeth_Hallo_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2))
+	if((Kapitel == 2) && (MIS_ScoutMine == LOG_Running))
 	{
 		return TRUE;
 	};

@@ -34,7 +34,7 @@ instance DIA_Wasili_HALLO(C_Info)
 
 func int DIA_Wasili_HALLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && ((VisibleHeroGuild() == GIL_NONE) || (VisibleHeroGuild() == GIL_NOV)))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && ((VisibleGuild(other) == GIL_NONE) || (VisibleGuild(other) == GIL_NOV)))
 	{
 		return TRUE;
 	};

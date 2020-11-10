@@ -194,6 +194,11 @@ func void DIA_Common_YeahJustRelax()
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_15_02");	//Да, да, просто успокойся.
 };
 
+func void DIA_Common_WhatDoYouMean()
+{
+	AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_03");	//Что ты имеешь в виду?
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?

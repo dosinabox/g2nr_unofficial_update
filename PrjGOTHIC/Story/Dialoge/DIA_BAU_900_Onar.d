@@ -75,12 +75,12 @@ func void DIA_Onar_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Onar_PERM_14_04");	//Да, конечно. Ты можешь идти, охотиться на своих драконов.
 	}
-	else if((VisibleHeroGuild() == GIL_NOV) || (VisibleHeroGuild() == GIL_KDF))
+	else if((VisibleGuild(other) == GIL_NOV) || (VisibleGuild(other) == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Onar_PERM_14_05");	//Вам, лицемерным ублюдкам из монастыря, сюда вход закрыт!
 		AI_StopProcessInfos(self);
 	}
-	else if((VisibleHeroGuild() == GIL_MIL) || (VisibleHeroGuild() == GIL_PAL))
+	else if((VisibleGuild(other) == GIL_MIL) || (VisibleGuild(other) == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Onar_PERM_14_06");	//Наше гостеприимство не распространяется на войска короля.
 		AI_StopProcessInfos(self);

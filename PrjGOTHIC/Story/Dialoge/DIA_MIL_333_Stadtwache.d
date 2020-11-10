@@ -80,7 +80,7 @@ func void DIA_Mil_333_Stadtwache_FirstWarn_Info()
 	}
 	else
 	{
-		if(!Npc_HasEquippedArmor(other) || C_BAUCheck(other))
+		if(!Npc_HasEquippedArmor(other) || (VisibleGuild(other) == GIL_BAU))
 		{
 			AI_Output(other,self,"DIA_Mil_333_Stadtwache_FirstWarn_15_07");	//Да?
 			AI_Output(self,other,"DIA_Mil_333_Stadtwache_FirstWarn_06_08");	//Ты похож на нищего. В этом городе нам не нужны люди, у которых нет денег.
