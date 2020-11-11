@@ -1329,8 +1329,7 @@ func void DIA_Andre_JOIN_Yes()
 	AI_Output(self,other,"DIA_Andre_JOIN_Yes_08_01");	//Тогда так тому и быть. Добро пожаловать в ряды ополчения.
 	AI_Output(self,other,"DIA_Andre_JOIN_Yes_08_02");	//Вот твои доспехи.
 	AI_Output(self,other,"DIA_Andre_JOIN_Yes_08_03");	//Носи их с гордостью и достоинством.
-	hero.guild = GIL_MIL;
-	Npc_SetTrueGuild(hero,GIL_MIL);
+	B_SetGuild(hero,GIL_MIL);
 	CreateInvItem(hero,ITAR_MIL_L);
 	AI_PrintScreen("Легкие доспехи ополчения получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	Snd_Play("LEVELUP");
@@ -1346,10 +1345,12 @@ func void DIA_Andre_JOIN_Yes()
 		if(!Npc_IsDead(Rick))
 		{
 			Npc_ExchangeRoutine(Rick,"Flucht3");
+			Rick.aivar[AIV_DropDeadAndKill] = FALSE;
 		};
 		if(!Npc_IsDead(Rumbold))
 		{
 			Npc_ExchangeRoutine(Rumbold,"Flucht3");
+			Rumbold.aivar[AIV_DropDeadAndKill] = FALSE;
 		};
 		if(!Npc_IsDead(Bengar))
 		{

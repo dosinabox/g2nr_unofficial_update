@@ -611,8 +611,7 @@ func void DIA_Lee_JoinNOW_Info()
 			Lee_OnarOK = TRUE;
 			AI_Output(self,other,"DIA_Lee_JoinNOW_04_13");	//Тогда добро пожаловать в наши ряды, приятель!
 			AI_Output(self,other,"DIA_Lee_JoinNOW_04_14");	//Вот, возьми для начала эти доспехи!
-			hero.guild = GIL_SLD;
-			Npc_SetTrueGuild(hero,GIL_SLD);
+			B_SetGuild(hero,GIL_SLD);
 			CreateInvItem(hero,ITAR_SLD_L);
 			AI_PrintScreen("Легкие доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 			Snd_Play("LEVELUP");

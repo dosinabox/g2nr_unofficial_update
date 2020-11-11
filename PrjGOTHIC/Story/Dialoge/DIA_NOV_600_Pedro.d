@@ -379,8 +379,7 @@ func void DIA_Pedro_AUFNAHME_YES()
 	};
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_02");	//В знак твоего добровольного принятия этого решения, ты должен сам открыть эти ворота и войти внутрь.
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_03");	//Теперь ты послушник. Носи эту робу в знак того, что теперь ты член нашего братства.
-	hero.guild = GIL_NOV;
-	Npc_SetTrueGuild(hero,GIL_NOV);
+	B_SetGuild(hero,GIL_NOV);
 	CreateInvItem(hero,ITAR_NOV_L);
 	AI_PrintScreen("Роба послушника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_04");	//Когда ты войдешь в монастырь, подойди к Парлану. С этого момента он будет отвечать за тебя.
@@ -395,10 +394,12 @@ func void DIA_Pedro_AUFNAHME_YES()
 		if(!Npc_IsDead(Rick))
 		{
 			Npc_ExchangeRoutine(Rick,"Flucht3");
+			Rick.aivar[AIV_DropDeadAndKill] = FALSE;
 		};
 		if(!Npc_IsDead(Rumbold))
 		{
 			Npc_ExchangeRoutine(Rumbold,"Flucht3");
+			Rumbold.aivar[AIV_DropDeadAndKill] = FALSE;
 		};
 		if(!Npc_IsDead(Bengar))
 		{

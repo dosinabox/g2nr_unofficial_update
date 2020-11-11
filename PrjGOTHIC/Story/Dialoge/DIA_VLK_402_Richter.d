@@ -193,8 +193,7 @@ func void DIA_Richter_KillMorgahard_Info()
 	Wld_InsertNpc(BDT_1030_Morgahard,"NW_BIGFARM_HOUSE_OUT_05");
 	if(!Npc_IsDead(Garwig))
 	{
-		Garwig.guild = GIL_NONE;
-		Npc_SetTrueGuild(Garwig,GIL_NONE);
+		B_SetGuild(Garwig,GIL_NONE);
 		Garwig.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		B_StartOtherRoutine(Garwig,"Exile");
 	};

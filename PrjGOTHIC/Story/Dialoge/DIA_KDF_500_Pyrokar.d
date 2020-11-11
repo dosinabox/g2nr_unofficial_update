@@ -282,7 +282,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Ulf.aivar[AIV_IgnoresArmor] = TRUE;
 		Ulf.aivar[AIV_IgnoresFakeGuild] = TRUE;
 		Ulf.aivar[AIV_CommentedPlayerCrime] = FALSE;
-		Ulf.guild = GIL_NOV;
+		B_SetGuild(Ulf,GIL_NOV);
 		CreateInvItems(Ulf,ItKe_MagicChest,1);
 		AI_Teleport(Ulf,"NW_TROLLAREA_PATH_42");
 		B_StartOtherRoutine(Ulf,"SUCHE");
@@ -512,8 +512,7 @@ func void DIA_Pyrokar_OATH_Info()
 	};
 	B_CheckLog();
 	/////////////////////
-	hero.guild = GIL_KDF;
-	Npc_SetTrueGuild(hero,GIL_KDF);
+	B_SetGuild(hero,GIL_KDF);
 	CreateInvItem(hero,ITAR_KDF_L);
 	AI_PrintScreen("Легкая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	Fire_Contest = TRUE;
@@ -672,7 +671,6 @@ func void DIA_Pyrokar_Wunsch_Nothing()
 	if(!Npc_IsDead(Dyrian))
 	{
 		Dyrian.guild = GIL_NONE;
-		Npc_SetTrueGuild(Dyrian,GIL_NONE);
 		Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		AI_Teleport(Dyrian,"TAVERNE");
 		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
@@ -720,11 +718,13 @@ func void DIA_Pyrokar_Wunsch_Babo()
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Babo_11_02");	//С сего момента послушник Бабо будет отвечать за монастырский сад.
 	B_GivePlayerXP(XP_HelpBabo);
 	B_StartOtherRoutine(Babo,"FAVOUR");
-	Dyrian.guild = GIL_NONE;
-	Npc_SetTrueGuild(Dyrian,GIL_NONE);
-	Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
-	AI_Teleport(Dyrian,"TAVERNE");
-	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
+	if(!Npc_IsDead(Dyrian))
+	{
+		Dyrian.guild = GIL_NONE;
+		Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		AI_Teleport(Dyrian,"TAVERNE");
+		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
+	};
 	MIS_HelpBabo = LOG_SUCCESS;
 	if(MIS_HelpDyrian == LOG_Running)
 	{
@@ -745,11 +745,13 @@ func void DIA_Pyrokar_Wunsch_Opolos()
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Opolos_11_02");	//С сего момента послушнику Ополосу будет позволено изучать писания Инноса.
 	B_GivePlayerXP(XP_HelpOpolos);
 	B_StartOtherRoutine(Opolos,"FAVOUR");
-	Dyrian.guild = GIL_NONE;
-	Npc_SetTrueGuild(Dyrian,GIL_NONE);
-	Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
-	AI_Teleport(Dyrian,"TAVERNE");
-	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
+	if(!Npc_IsDead(Dyrian))
+	{
+		Dyrian.guild = GIL_NONE;
+		Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		AI_Teleport(Dyrian,"TAVERNE");
+		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
+	};
 	MIS_HelpOpolos = LOG_SUCCESS;
 	if(MIS_HelpDyrian == LOG_Running)
 	{

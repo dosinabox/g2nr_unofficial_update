@@ -99,7 +99,7 @@ instance DIA_Gerbrandt_PreHello(C_Info)
 
 func int DIA_Gerbrandt_PreHello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (hero.guild != GIL_KDF) && (hero.guild != GIL_PAL))
+	if(Npc_IsInState(self,ZS_Talk) && (VisibleGuild(hero) != GIL_KDF) && (VisibleGuild(hero) != GIL_PAL) && (VisibleGuild(hero) != GIL_KDW))
 	{
 		return TRUE;
 	};
@@ -134,7 +134,7 @@ func void DIA_Gerbrandt_Hello_Info()
 {
 	AI_Output(other,self,"DIA_Gerbrandt_Hello_15_00");	//Что ты делаешь здесь?
 	B_PlayerEnteredUpperCity();
-	if((hero.guild != GIL_KDF) && (hero.guild != GIL_PAL))
+	if((VisibleGuild(hero) != GIL_KDF) && (VisibleGuild(hero) != GIL_PAL) && (VisibleGuild(hero) != GIL_KDW))
 	{
 		AI_Output(self,other,"DIA_Gerbrandt_Hello_10_01");	//А ты кто такой? Похоже, ты недавно здесь и понятия не имеешь, с кем имеешь дело.
 		AI_Output(self,other,"DIA_Gerbrandt_Hello_10_02");	//Меня зовут Гербрандт. А для тебя я мистер Гербрандт. Понял?
@@ -232,15 +232,15 @@ func void DIA_Gerbrandt_Perm_Info()
 	AI_Output(other,self,"DIA_Gerbrandt_Perm_15_00");	//Есть новости?
 	if(MIS_DiegosResidence != LOG_SUCCESS)
 	{
-		if(hero.guild == GIL_PAL)
+		if(VisibleGuild(other) == GIL_PAL)
 		{
 			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_03");	//Мне не на что жаловаться, о, благородный рыцарь.
 		}
-		else if(hero.guild == GIL_KDF)
+		else if((VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_KDW))
 		{
 			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_06");	//Это никого не касается, кроме меня. Я занят!
 		}
-		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+		else if((VisibleGuild(other) == GIL_SLD) || (VisibleGuild(other) == GIL_DJG))
 		{
 			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_04");	//Много я видел таких людей как ты - вы просто не знаете своего места.
 			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_05");	//Мне стоит поговорить с губернатором об усилении мер безопасности в верхнем квартале.

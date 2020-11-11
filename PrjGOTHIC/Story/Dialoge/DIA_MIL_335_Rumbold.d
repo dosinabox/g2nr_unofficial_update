@@ -155,7 +155,12 @@ func void DIA_Rumbold_HALLO_geld_ok()
 	else
 	{
 		Npc_ExchangeRoutine(self,"Flucht3");
-		B_StartOtherRoutine(Rick,"Flucht3");
+		self.aivar[AIV_DropDeadAndKill] = FALSE;
+		if(!Npc_IsDead(Rick))
+		{
+			B_StartOtherRoutine(Rick,"Flucht3");
+			Rick.aivar[AIV_DropDeadAndKill] = FALSE;
+		};
 		Miliz_Flucht = TRUE;
 	};
 	if(Hlp_IsValidNpc(Bengar) && !Npc_IsDead(Bengar))

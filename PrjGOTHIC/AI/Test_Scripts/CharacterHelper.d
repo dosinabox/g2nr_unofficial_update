@@ -367,8 +367,7 @@ func void CH_RESET_Ok()
 	B_UnEquipHeroItem(ItRi_OrcEliteRing);
 	B_UnEquipHeroItem(ItAm_Mana_Angar_MIS);
 	AI_UnequipArmor(hero);
-	hero.guild = GIL_NONE;
-	Npc_SetTrueGuild(hero,GIL_NONE);
+	B_SetGuild(hero,GIL_NONE);
 	hero.lp = 0;
 	hero.level = 0;
 	hero.exp = 0;
@@ -578,8 +577,7 @@ func void ch_bdt()
 func void ch_nov()
 {
 	Info_ClearChoices(CH_Guild);
-	hero.guild = GIL_NOV;
-	Npc_SetTrueGuild(hero,GIL_NOV);
+	B_SetGuild(hero,GIL_NOV);
 	CreateInvItem(hero,ITAR_NOV_L);
 	AI_EquipArmor(hero,ITAR_NOV_L);
 };
@@ -587,8 +585,7 @@ func void ch_nov()
 func void ch_kdf()
 {
 	Info_ClearChoices(CH_Guild);
-	hero.guild = GIL_KDF;
-	Npc_SetTrueGuild(hero,GIL_KDF);
+	B_SetGuild(hero,GIL_KDF);
 	CreateInvItem(hero,ITAR_KDF_L);
 	AI_EquipArmor(hero,ITAR_KDF_L);
 };
@@ -596,8 +593,7 @@ func void ch_kdf()
 func void ch_sld()
 {
 	Info_ClearChoices(CH_Guild);
-	hero.guild = GIL_SLD;
-	Npc_SetTrueGuild(hero,GIL_SLD);
+	B_SetGuild(hero,GIL_SLD);
 	CreateInvItem(hero,ITAR_SLD_M);
 	AI_EquipArmor(hero,ITAR_SLD_M);
 };
@@ -605,8 +601,7 @@ func void ch_sld()
 func void ch_djg()
 {
 	Info_ClearChoices(CH_Guild);
-	hero.guild = GIL_DJG;
-	Npc_SetTrueGuild(hero,GIL_DJG);
+	B_SetGuild(hero,GIL_DJG);
 	CreateInvItem(hero,ITAR_DJG_M);
 	AI_EquipArmor(hero,ITAR_DJG_M);
 };
@@ -614,8 +609,7 @@ func void ch_djg()
 func void ch_mil()
 {
 	Info_ClearChoices(CH_Guild);
-	hero.guild = GIL_MIL;
-	Npc_SetTrueGuild(hero,GIL_MIL);
+	B_SetGuild(hero,GIL_MIL);
 	CreateInvItem(hero,ITAR_MIL_L);
 	AI_EquipArmor(hero,ITAR_MIL_L);
 };
@@ -623,8 +617,7 @@ func void ch_mil()
 func void ch_pal()
 {
 	Info_ClearChoices(CH_Guild);
-	hero.guild = GIL_PAL;
-	Npc_SetTrueGuild(hero,GIL_PAL);
+	B_SetGuild(hero,GIL_PAL);
 	CreateInvItem(hero,ITAR_PAL_M);
 	AI_EquipArmor(hero,ITAR_PAL_M);
 	B_SetPaladinEquipment();
@@ -633,8 +626,7 @@ func void ch_pal()
 func void ch_none()
 {
 	Info_ClearChoices(CH_Guild);
-	hero.guild = GIL_NONE;
-	Npc_SetTrueGuild(hero,GIL_NONE);
+	B_SetGuild(hero,GIL_NONE);
 	AI_UnequipArmor(hero);
 };
 

@@ -2362,6 +2362,7 @@ func void STARTUP_NewWorld_Part_Xardas_01()
 		Wld_InsertNpc(Giant_Rat,"SOME_NW_WAYPOINT_049");
 		Wld_InsertNpc(Meatbug,"SOME_NW_WAYPOINT_037");
 		Wld_InsertNpc(Meatbug,"SOME_NW_WAYPOINT_037");
+		Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_03");
 	}
 	else
 	{
@@ -2377,14 +2378,14 @@ func void STARTUP_NewWorld_Part_Xardas_01()
 		Wld_InsertNpc(Giant_Rat,"FP_ROAM_XARDAS_SECRET_27");
 		Wld_InsertNpc(Meatbug,"FP_ROAM_XARDAS_SECRET_01");
 		Wld_InsertNpc(Meatbug,"FP_ROAM_XARDAS_SECRET_01");
+		Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_02");
 	};
+	Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_02");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_TOWER_WATERFALL_CAVE_03");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_TOWER_WATERFALL_CAVE_ENTRANCE_02");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_TOWER_WATERFALL_CAVE_ENTRANCE_05");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_TOWER_WATERFALL_CAVE_ENTRANCE_05");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_TOWER_WATERFALL_CAVE_ENTRANCE_GOBBO");
-	Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_02");
-	Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_02");
 	Wld_InsertNpc(YWolf,"NW_XARDAS_VALLEY_03");
 	Wld_InsertNpc(YWolf,"NW_XARDAS_VALLEY_04");
 	Wld_InsertNpc(YWolf,"NW_XARDAS_VALLEY_06");

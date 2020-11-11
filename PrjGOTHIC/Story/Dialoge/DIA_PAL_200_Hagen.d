@@ -771,8 +771,7 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_05");	//Тогда отныне ты принадлежишь к нашему братству.
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_06");	//Я произвожу тебя в воины Инноса.
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_07");	//Я даю тебе оружие и доспехи рыцаря. Носи их с гордостью, рыцарь!
-	hero.guild = GIL_PAL;
-	Npc_SetTrueGuild(hero,GIL_PAL);
+	B_SetGuild(hero,GIL_PAL);
 	if(Helmets_Enabled == TRUE)
 	{
 		CreateInvItem(hero,ITAR_PALN_M);

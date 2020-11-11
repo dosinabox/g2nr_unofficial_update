@@ -134,8 +134,7 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		};
 		if((MIS_HelpDyrian != LOG_SUCCESS) && !Npc_IsDead(Dyrian))
 		{
-			Dyrian.guild = GIL_NONE;
-			Npc_SetTrueGuild(Dyrian,GIL_NONE);
+			B_SetGuild(Dyrian,GIL_NONE);
 			Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 			B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 		};
@@ -435,16 +434,14 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		};
 		if(!Npc_IsDead(Rick))
 		{
-			Rick.guild = GIL_MIL;
-			Npc_SetTrueGuild(Rick,GIL_MIL);
+			B_SetGuild(Rick,GIL_MIL);
 			Rick.aivar[AIV_DropDeadAndKill] = FALSE;
 			Npc_ExchangeRoutine(Rick,"Ch3");
 			RickReturnedToCity = TRUE;
 		};
 		if(!Npc_IsDead(Rumbold))
 		{
-			Rumbold.guild = GIL_MIL;
-			Npc_SetTrueGuild(Rumbold,GIL_MIL);
+			B_SetGuild(Rumbold,GIL_MIL);
 			Rumbold.aivar[AIV_DropDeadAndKill] = FALSE;
 			Npc_ExchangeRoutine(Rumbold,"Ch3");
 			RumboldReturnedToCity = TRUE;
@@ -717,14 +714,12 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		{
 			if(!Npc_IsDead(Alvares))
 			{
-				Alvares.guild = GIL_SLD;
-				Npc_SetTrueGuild(Alvares,GIL_SLD);
+				B_SetGuild(Alvares,GIL_SLD);
 				B_StartOtherRoutine(Alvares,"Bigfarm");
 			};
 			if(!Npc_IsDead(Engardo))
 			{
-				Engardo.guild = GIL_SLD;
-				Npc_SetTrueGuild(Engardo,GIL_SLD);
+				B_SetGuild(Engardo,GIL_SLD);
 				B_StartOtherRoutine(Engardo,"Bigfarm");
 			};
 			if(!Npc_IsDead(Kati))

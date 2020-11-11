@@ -70,7 +70,7 @@ instance DIA_Constantino_Hallo(C_Info)
 
 func int DIA_Constantino_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (VisibleGuild(other) != GIL_PAL) && (VisibleGuild(other) != GIL_MIL) && (VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_KDW))
 	{
 		return TRUE;
 	};
@@ -655,7 +655,7 @@ func void DIA_Constantino_AlsLehrling_Info()
 		Constantino_MILKommentar = TRUE;
 		Constantino_Lehrling_Day = Wld_GetDay();
 	}
-	else if(((other.guild == GIL_NOV) || (other.guild == GIL_KDF) || (other.guild == GIL_PAL)) && (Constantino_StartGuild != GIL_NOV) && (Constantino_StartGuild != GIL_KDF) && (Constantino_StartGuild != GIL_PAL) && (Constantino_INNOSKommentar == FALSE))
+	else if(((VisibleGuild(other) == GIL_NOV) || (VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_PAL)) && (Constantino_StartGuild != GIL_NOV) && (Constantino_StartGuild != GIL_KDF) && (Constantino_StartGuild != GIL_PAL) && (Constantino_INNOSKommentar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_06");	//я вижу, ты поступил в услужение к »нносу. я полагаю, это значит, что с этого времени ты не сможешь удел€ть много внимани€ сбору трав дл€ старика.
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_07");	//Ќо все же, € сочту за большую честь поддерживать теб€ на твоем пути.

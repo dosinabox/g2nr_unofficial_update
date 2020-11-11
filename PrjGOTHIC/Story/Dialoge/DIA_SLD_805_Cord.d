@@ -602,8 +602,16 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 	{
 		if(Kapitel < 3)
 		{
-			B_StartOtherRoutine(Rumbold,"Flucht3");
-			B_StartOtherRoutine(Rick,"Flucht3");
+			if(!Npc_IsDead(Rick))
+			{
+				Npc_ExchangeRoutine(Rick,"Flucht3");
+				Rick.aivar[AIV_DropDeadAndKill] = FALSE;
+			};
+			if(!Npc_IsDead(Rumbold))
+			{
+				Npc_ExchangeRoutine(Rumbold,"Flucht3");
+				Rumbold.aivar[AIV_DropDeadAndKill] = FALSE;
+			};
 		};
 		MIS_Torlof_BengarMilizKlatschen = LOG_SUCCESS;
 	};

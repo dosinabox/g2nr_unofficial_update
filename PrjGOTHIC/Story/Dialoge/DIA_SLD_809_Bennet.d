@@ -950,11 +950,6 @@ func int DIA_Bennet_ThankYou_Condition()
 
 func void DIA_Bennet_ThankYou_Info()
 {
-	/*if(hero.guild == GIL_SLD)
-	{
-		hero.guild = GIL_DJG;
-		Npc_SetTrueGuild(hero,GIL_DJG);
-	};*/
 	AI_Output(self,other,"DIA_Bennet_ThankYou_06_00");	//Ох, я уж думал, что меня наверняка повесят!
 	AI_Output(other,self,"DIA_Bennet_ThankYou_15_01");	//Что ж, в конце концов, все окончилось хорошо.
 	AI_Output(self,other,"DIA_Bennet_ThankYou_06_02");	//Да уж. Ты бы видел выражение лица солдата, который выпускал меня!
@@ -993,8 +988,7 @@ func void DIA_Bennet_Present_Info()
 	AI_Output(self,other,"DIA_Bennet_Present_06_03");	//Хорошо, я верю тебе.
 	if(hero.guild == GIL_SLD)
 	{
-		hero.guild = GIL_DJG;
-		Npc_SetTrueGuild(hero,GIL_DJG);
+		B_SetGuild(hero,GIL_DJG);
 		AI_Output(self,other,"DIA_Bennet_Present_06_04");	//Как бы там ни было, некоторые из парней решили отправиться в Долину.
 		AI_Output(self,other,"DIA_Bennet_Present_06_05");	//(ухмыляется) Они собираются навести там порядок.
 		AI_Output(other,self,"DIA_Bennet_Present_15_06");	//А какое это имеет отношение ко мне?

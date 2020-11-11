@@ -222,6 +222,7 @@ AI\Human\B_Human\B_MoveMob.d
 AI\Human\B_Human\B_RemoveWeapon.d
 Story\B_Content\B_GiveThiefXP.d
 Story\B_Story\B_GiveInvItems.d
+Story\B_Story\B_SetGuild.d
 Story\B_Content\B_Beklauen.d
 Story\B_AssignAmbientInfos\B_Announce_Herold.d
 Story\B_AssignAmbientInfos\B_Preach_Vatras.d
