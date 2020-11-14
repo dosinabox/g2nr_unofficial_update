@@ -147,7 +147,7 @@ func void DIA_Rumbold_HALLO_geld_ok()
 	AI_Output(self,other,"DIA_Rumbold_HALLO_geld_ok_10_01");	//Меня не волнует, кто платит за Бенгара. Удачи. (себе под нос) Кретин!
 	AI_StopProcessInfos(self);
 	Rumbold_Bezahlt = TRUE;
-	if(other.guild == GIL_NONE)
+	if((VisibleGuild(other) == GIL_NONE) || (VisibleGuild(other) == GIL_NOV))
 	{
 		Npc_ExchangeRoutine(self,"Start");
 		B_StartOtherRoutine(Rick,"Start");

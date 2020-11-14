@@ -955,7 +955,7 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 };
 
 
-var int missingpeopleinfo[20];
+var int MISSINGPEOPLEINFO[20];
 
 instance DIA_Addon_Vatras_MissingPeople(C_Info)
 {

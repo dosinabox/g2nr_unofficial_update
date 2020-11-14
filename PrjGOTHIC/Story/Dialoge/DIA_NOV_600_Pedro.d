@@ -389,24 +389,6 @@ func void DIA_Pedro_AUFNAHME_YES()
 	NOV_Aufnahme = LOG_SUCCESS;
 	SLD_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_OBSOLETE;
-	if(MIS_Torlof_BengarMilizKlatschen == LOG_Running)
-	{
-		if(!Npc_IsDead(Rick))
-		{
-			Npc_ExchangeRoutine(Rick,"Flucht3");
-			Rick.aivar[AIV_DropDeadAndKill] = FALSE;
-		};
-		if(!Npc_IsDead(Rumbold))
-		{
-			Npc_ExchangeRoutine(Rumbold,"Flucht3");
-			Rumbold.aivar[AIV_DropDeadAndKill] = FALSE;
-		};
-		if(!Npc_IsDead(Bengar))
-		{
-			Npc_ExchangeRoutine(Bengar,"Start");
-		};
-		MIS_Torlof_BengarMilizKlatschen = LOG_FAILED;
-	};
 	B_GivePlayerXP(XP_AufnahmeNovize);
 	if(Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette))
 	{
@@ -420,7 +402,6 @@ func void DIA_Pedro_AUFNAHME_YES()
 		Log_AddEntry(TOPIC_Addon_HelpDaron,TOPIC_Addon_DaronGobbos);
 		Log_AddEntry(TOPIC_Addon_HelpDaron,TOPIC_Addon_PedroPass);
 	};
-//	Wld_AssignRoomToGuild("Kloster02",GIL_KDF);
 	AI_StopProcessInfos(self);
 };
 

@@ -481,7 +481,6 @@ func void DIA_Pyrokar_OATH_Info()
 	AI_Output(other,self,"DIA_Pyrokar_OATH_15_05");	//Клянусь.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_06");	//Произнеся слова этой клятвы, ты присоединился к Соглашению Огня.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_07");	//Носи эту робу в знак этих вечных уз.
-	///////////отмена квестов послушника///////////
 	if(MIS_NeorasPflanzen == LOG_Running)
 	{
 		MIS_NeorasPflanzen = LOG_OBSOLETE;
@@ -510,8 +509,6 @@ func void DIA_Pyrokar_OATH_Info()
 	{
 		MIS_MardukBeten = LOG_OBSOLETE;
 	};
-	B_CheckLog();
-	/////////////////////
 	B_SetGuild(hero,GIL_KDF);
 	CreateInvItem(hero,ITAR_KDF_L);
 	AI_PrintScreen("Легкая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
@@ -523,8 +520,7 @@ func void DIA_Pyrokar_OATH_Info()
 	};
 	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
 	KDF_Aufnahme = LOG_SUCCESS;
-//	SLD_Aufnahme = LOG_OBSOLETE;
-//	MIL_Aufnahme = LOG_OBSOLETE;
+	B_CancelBengarMilitiaProblem();
 	B_GivePlayerXP(XP_BecomeMage);
 	if(!Npc_IsDead(Gorax))
 	{
@@ -670,7 +666,7 @@ func void DIA_Pyrokar_Wunsch_Nothing()
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Nothing_11_01");	//(изумленно) Да будет так. Новый маг отказывается от первого шага.
 	if(!Npc_IsDead(Dyrian))
 	{
-		Dyrian.guild = GIL_NONE;
+		B_SetGuild(Dyrian,GIL_NONE);
 		Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		AI_Teleport(Dyrian,"TAVERNE");
 		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
@@ -720,7 +716,7 @@ func void DIA_Pyrokar_Wunsch_Babo()
 	B_StartOtherRoutine(Babo,"FAVOUR");
 	if(!Npc_IsDead(Dyrian))
 	{
-		Dyrian.guild = GIL_NONE;
+		B_SetGuild(Dyrian,GIL_NONE);
 		Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		AI_Teleport(Dyrian,"TAVERNE");
 		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
@@ -747,7 +743,7 @@ func void DIA_Pyrokar_Wunsch_Opolos()
 	B_StartOtherRoutine(Opolos,"FAVOUR");
 	if(!Npc_IsDead(Dyrian))
 	{
-		Dyrian.guild = GIL_NONE;
+		B_SetGuild(Dyrian,GIL_NONE);
 		Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		AI_Teleport(Dyrian,"TAVERNE");
 		B_StartOtherRoutine(Dyrian,"NOFAVOUR");

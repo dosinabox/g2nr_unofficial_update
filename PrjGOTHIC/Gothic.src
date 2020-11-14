@@ -35,6 +35,7 @@ Story\B_Story\B_UpdateKilledStats.d
 Story\B_Story\B_GetDayPlus.d
 Story\B_Story\B_BlessAttribute.d
 Story\B_Story\B_StartOtherRoutine.d
+Story\B_Story\B_CancelBengarMilitiaProblem.d
 Story\B_Content\B_RangerMeeting.d
 Story\B_Content\B_ScObsession.d
 Story\B_Content\B_Extro_AVI.d

@@ -565,38 +565,9 @@ func void DIA_Parlan_Stand_Info()
 	{
 		AI_Output(self,other,"DIA_Parlan_Stand_05_09");	//Да, ты хорошо поработал. Теперь пришло время начать постигать учение Инноса. Поговори с мастером Хигласом в библиотеке.
 		AI_Output(self,other,"DIA_Parlan_Stand_05_10");	//Я выдаю тебе этот ключ.
+		B_GiveInvItems(self,other,ItKe_KlosterBibliothek,1);
 		Parlan_Erlaubnis = TRUE;
 		MIS_KlosterArbeit = LOG_SUCCESS;
-//		Wld_AssignRoomToGuild("Kloster02",GIL_PUBLIC);
-		B_GiveInvItems(self,other,ItKe_KlosterBibliothek,1);
-		/*if(MIS_NeorasPflanzen == LOG_Running)
-		{
-			MIS_NeorasPflanzen = LOG_OBSOLETE;
-		};
-		if(MIS_NeorasRezept == LOG_Running)
-		{
-			MIS_NeorasRezept = LOG_OBSOLETE;
-		};
-		if(MIS_IsgarothWolf == LOG_Running)
-		{
-			MIS_IsgarothWolf = LOG_OBSOLETE;
-		};
-		if(MIS_ParlanFegen == LOG_Running)
-		{
-			MIS_ParlanFegen = LOG_OBSOLETE;
-		};
-		if(MIS_GoraxEssen == LOG_Running)
-		{
-			MIS_GoraxEssen = LOG_OBSOLETE;
-		};
-		if(MIS_GoraxWein == LOG_Running)
-		{
-			MIS_GoraxWein = LOG_OBSOLETE;
-		};
-		if(MIS_MardukBeten == LOG_Running)
-		{
-			MIS_MardukBeten = LOG_OBSOLETE;
-		};*/
 		B_CheckLog();
 	}
 	else if(Kloster_Punkte >= 1)

@@ -243,8 +243,6 @@ func void B_WhereAreHousesOfRulers()
 	if(B_WhereAreHousesOfRulersOneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_06");	//Надеюсь, тебе это поможет.
-		Log_CreateTopic(TOPIC_Addon_HousesOfRulers,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_HousesOfRulers,LOG_Running);
 		B_LogEntry(TOPIC_Addon_HousesOfRulers,"Замок ученых - это огромная библиотека. Она находится где-то на севере.");
 		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замок воинов - это окруженная скалами крепость на востоке.");
 		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замки жрецов и стражей мертвых находятся недалеко друг от друга. Я смогу найти их на юго-западе.");
@@ -278,6 +276,15 @@ func void DIA_Addon_Riordian_WhereAreHouses_Info()
 };
 
 
+var int FOUNDHOUSEINFO[6];
+const int Scientists = 1;
+const int Healers = 2;
+const int Warriors = 3;
+const int Priests = 4;
+const int Guardians = 5;
+var int RiordianHouseNeuigkeit;
+var int RiordianHousesFoundCount;
+
 instance DIA_Addon_Riordian_FoundHouse(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
@@ -296,15 +303,6 @@ func int DIA_Addon_Riordian_FoundHouse_Condition()
 		return TRUE;
 	};
 };
-
-var int foundhouseinfo[6];
-const int Scientists = 1;
-const int Healers = 2;
-const int Warriors = 3;
-const int Priests = 4;
-const int Guardians = 5;
-var int RiordianHouseNeuigkeit;
-var int RiordianHousesFoundCount;
 
 func void DIA_Addon_Riordian_FoundHouse_Info()
 {

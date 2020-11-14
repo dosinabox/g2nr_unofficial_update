@@ -337,8 +337,14 @@ func void DIA_Addon_Esteban_Away_Info()
 	AI_Output(self,other,"DIA_Addon_Esteban_Away_07_01");	//Что теперь будет? Я скажу тебе, что будет.
 	AI_Output(self,other,"DIA_Addon_Esteban_Away_07_02");	//Фиск умрет мучительной смертью. И весь лагерь будет знать, за что.
 	AI_Output(self,other,"DIA_Addon_Esteban_Away_07_03");	//Это послужит им всем предупреждением.
-	B_StartOtherRoutine(Wache_01,"AMBUSH");
-	B_StartOtherRoutine(Wache_02,"AMBUSH");
+	if(!Npc_IsDead(Wache_01))
+	{
+		B_StartOtherRoutine(Wache_01,"AMBUSH");
+	};
+	if(!Npc_IsDead(Wache_02))
+	{
+		B_StartOtherRoutine(Wache_02,"AMBUSH");
+	};
 };
 
 
