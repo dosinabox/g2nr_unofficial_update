@@ -52,6 +52,8 @@ func void DIA_PC_Thief_DI_Hallo_Info()
 };
 
 
+var int DIA_PC_Thief_DI_RAT_OneTime;
+
 instance DIA_PC_Thief_DI_RAT(C_Info)
 {
 	npc = PC_Thief_DI;
@@ -70,10 +72,6 @@ func int DIA_PC_Thief_DI_RAT_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_PC_Thief_DI_RAT_OneTime;
-var int DIA_PC_Thief_DI_RAT_OneTime2;
 
 func void DIA_PC_Thief_DI_RAT_Info()
 {
@@ -97,11 +95,11 @@ func void DIA_PC_Thief_DI_RAT_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_08");	//ѕриходи ко мне, если у теб€ возникает проблема, которую мой опыт может помочь разрешить.
-		if((OrkSturmDI == TRUE) && (DIA_PC_Thief_DI_RAT_OneTime2 == FALSE))
+		if((OrkSturmDI == TRUE) && (DIA_PC_Thief_DI_RAT_OneTime == FALSE))
 		{
 			AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_09");	//≈ще одно. я бы предпочел, чтобы ты не приводил всех этих тварей, что брод€т здесь, к кораблю. я надеюсь, этот рейд орков был последней атакой, которую нам пришлось отражать здесь!
 			B_GivePlayerXP(XP_AmbientKap6);
-			DIA_PC_Thief_DI_RAT_OneTime2 = TRUE;
+			DIA_PC_Thief_DI_RAT_OneTime = TRUE;
 		};
 	};
 };
@@ -248,6 +246,12 @@ func void DIA_PC_Thief_DI_Training_Talente_BACK()
 	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
 };
 
+func void B_PC_Thief_JustLucky()
+{
+	AI_Output(other,self,"DIA_PC_Thief_DI_UndeadDragonDead_15_03");	//ћне просто повезло, € думаю.
+	AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_04");	//(смеетс€) Ќу, если ты так думаешь...
+};
+
 var int DIA_PC_Thief_DI_UndeadDragonDead_OneTime;
 
 instance DIA_PC_Thief_DI_UndeadDragonDead(C_Info)
@@ -276,8 +280,7 @@ func void DIA_PC_Thief_DI_UndeadDragonDead_Info()
 	{
 		AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_01");	//“ы только посмотри на это. ¬ жизни не видел такого сооружени€.
 		AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_02");	// ак тебе, черт возьми, удалось пройти там?
-		AI_Output(other,self,"DIA_PC_Thief_DI_UndeadDragonDead_15_03");	//ћне просто повезло, € думаю.
-		AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_04");	//(смеетс€) Ќу, если ты так думаешь...
+		B_PC_Thief_JustLucky();
 	}
 	else
 	{

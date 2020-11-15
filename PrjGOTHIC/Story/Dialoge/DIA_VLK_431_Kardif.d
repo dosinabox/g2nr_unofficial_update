@@ -796,7 +796,7 @@ func void DIA_Kardif_DEFEATEDATTILA_Info()
 	AI_Output(self,other,"DIA_Kardif_DEFEATEDATTILA_14_01");	//Эй, откуда мне было знать? Я просто передал информацию.
 	AI_Output(self,other,"DIA_Kardif_DEFEATEDATTILA_14_02");	//Если кто-то решил насолить тебе, я думаю, у него были веские причины.
 	B_GivePlayerXP(XP_Kardif_Blame4Attila);
-//	B_KillNpc(Attila);
+//	B_KillNpc(VLK_494_Attila);
 //	Npc_RemoveInvItem(Attila,ItMi_OldCoin);
 };
 

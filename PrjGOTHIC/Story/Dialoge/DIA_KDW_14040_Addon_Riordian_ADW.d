@@ -75,7 +75,7 @@ func void DIA_Addon_Riordian_WhatToFind_Info()
 	AI_Output(self,other,"DIA_Addon_Riordian_Gegend_west_10_04");	//Тебе стоит на него взглянуть.
 	if(!Npc_HasItems(William,ITWr_Addon_William_01))
 	{
-		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
+		DIA_Common_IFoundHim();
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_04");	//Благодарю тебя.
 		if(FoundDeadWilliam == FALSE)
 		{

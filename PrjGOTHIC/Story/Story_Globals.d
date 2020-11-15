@@ -1343,3 +1343,4 @@ var int DragonScaleLearnedOutsideOW;
 var int DragonBloodLearnedOutsideOW;
 var int RosiToldAboutSekob;
 var int DiegoOW_Teach;
+var int PlayerPassedAbandonedMine;

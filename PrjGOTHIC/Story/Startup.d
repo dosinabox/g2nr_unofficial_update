@@ -30,7 +30,9 @@ func void startup_addon_part_adanostemple_01()
 {
 	Wld_InsertNpc(BDT_1090_Addon_Raven,"ADW_ADANOSTEMPEL_RAVEN_11");
 	Wld_InsertNpc(BDT_10400_Addon_DeadBandit,"ADW_ADANOSTEMPEL_RHADEMES_03");
+	B_KillNpc(BDT_10400_Addon_DeadBandit);
 	Wld_InsertNpc(BDT_10401_Addon_DeadBandit,"ADW_ADANOSTEMPEL_RHADEMES_DEADBDT_02");
+	B_KillNpc(BDT_10401_Addon_DeadBandit);
 	Wld_InsertNpc(Stoneguardian_ADANOSTEMPELENTRANCE_01,"ADW_ADANOSTEMPEL_ENTRANCE_15");
 	Wld_InsertNpc(Stoneguardian_ADANOSTEMPELENTRANCE_02,"ADW_ADANOSTEMPEL_ENTRANCE_18");
 	Wld_InsertNpc(Stoneguardian_ADANOSTEMPELENTRANCE_03,"ADW_ADANOSTEMPEL_ENTRANCE_20");
@@ -115,9 +117,13 @@ func void startup_addon_part_goldmine_01()
 	Wld_InsertNpc(Meatbug,"ADW_MINE_LAGER_05");
 	Wld_InsertNpc(Meatbug,"ADW_MINE_LAGER_SIDE_04");
 	Wld_InsertNpc(Stoneguardian_MineDead1,"ADW_GRUFT_01");
+	B_KillNpc(Stoneguardian_MineDead1);
 	Wld_InsertNpc(Stoneguardian_MineDead2,"ADW_GRUFT_02");
+	B_KillNpc(Stoneguardian_MineDead2);
 	Wld_InsertNpc(Stoneguardian_MineDead3,"ADW_MINE_TO_GRUFT_05");
+	B_KillNpc(Stoneguardian_MineDead3);
 	Wld_InsertNpc(Stoneguardian_MineDead4,"ADW_MINE_TO_GRUFT_06");
+	B_KillNpc(Stoneguardian_MineDead4);
 };
 
 func void init_sub_addon_part_goldmine_01()
@@ -531,10 +537,10 @@ func void startup_addon_part_piratescamp_01()
 	Wld_InsertNpc(PIR_1355_Addon_Skip,"STRAND");
 	Wld_InsertNpc(PIR_1356_Addon_Bill,"STRAND");
 	Wld_InsertNpc(PIR_1357_Addon_Garett,"STRAND");
-	Wld_InsertNpc(PIR_1360_Addon_PIRAT,"STRAND");
-	Wld_InsertNpc(PIR_1361_Addon_PIRAT,"STRAND");
+	Wld_InsertNpc(PIR_1360_Addon_Pirat,"STRAND");
+	Wld_InsertNpc(PIR_1361_Addon_Pirat,"STRAND");
 	Wld_InsertNpc(PIR_1362_Addon_Bones,"STRAND");
-	Wld_InsertNpc(PIR_1363_Addon_PIRAT,"STRAND");
+	Wld_InsertNpc(PIR_1363_Addon_Pirat,"STRAND");
 	Wld_InsertNpc(PIR_1364_Addon_Pirat,"STRAND");
 	Wld_InsertNpc(PIR_1365_Addon_Matt,"STRAND");
 	Wld_InsertNpc(PIR_1366_Addon_Brandon,"STRAND");
@@ -545,7 +551,6 @@ func void startup_addon_part_piratescamp_01()
 	Wld_InsertNpc(BDT_10100_Addon_TowerBandit,"STRAND");
 	Wld_InsertNpc(BDT_10101_Addon_TowerBandit,"STRAND");
 	Wld_InsertNpc(BDT_10102_Addon_TowerBandit,"STRAND");
-	Wld_InsertItem(ItMi_Addon_GregsTreasureBottle_MIS,"FP_ADW_GREGSBOTTLE");
 	Wld_InsertNpc(Lurker,"ADW_PIRATECAMP_ISLE1_01");
 	Wld_InsertNpc(Lurker,"ADW_PIRATECAMP_ISLE1_01");
 	Wld_InsertNpc(Lurker,"ADW_PIRATECAMP_ISLE1_01");
@@ -566,8 +571,6 @@ func void startup_addon_part_piratescamp_01()
 	Wld_InsertNpc(Zombie01,"ADW_PIRATECAMP_LONEBEACH_CAVE_03");
 	Wld_InsertNpc(MayaZombie02,"ADW_PIRATECAMP_LONEBEACH_CAVE_03");
 	Wld_InsertNpc(Zombie03,"ADW_PIRATECAMP_LONEBEACH_CAVE_03");
-//	Wld_InsertNpc(Lurker_SecretCave1,"ADW_PIRATECAMP_SECRETCAVE_01");
-//	Wld_InsertNpc(Lurker_SecretCave2,"ADW_PIRATECAMP_SECRETCAVE_01");
 	Wld_InsertNpc(Meatbug,"ADW_PIRATECAMP_LUMBER_01");
 	Wld_InsertNpc(Meatbug,"ADW_PIRATECAMP_LUMBER_01");
 	Wld_InsertNpc(Meatbug,"ADW_PIRATECAMP_LUMBER_01");
@@ -613,6 +616,7 @@ func void startup_addon_part_piratescamp_01()
 	Wld_InsertItem(ItMi_SilverCup,"FP_ITEMSPAWN_SHALLOWWATER_29");
 	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_ITEMSPAWN_SHALLOWWATER_30");
 	Wld_InsertItem(ItAm_Addon_STR,"FP_ITEMSPAWN_LONEBEACH_02");
+	Wld_InsertItem(ItMi_Addon_GregsTreasureBottle_MIS,"FP_ADW_GREGSBOTTLE");
 };
 
 func void init_sub_addon_part_piratescamp_01()
@@ -2814,9 +2818,9 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 	Wld_InsertNpc(BDT_10310_Addon_RangerBandit_M,"NW_BIGMILL_FARM3_RANGERBANDITS_04");
 	Wld_InsertNpc(VLK_4302_Addon_Elvrich,"NW_BIGMILL_FARM3_RANGERBANDITS_04");
 	Wld_InsertNpc(BDT_10311_Addon_RangerBandit_M,"NW_FARM4_WOOD_RANGERBANDITS_05");
-	Wld_InsertNpc(BDT_10312_Addon_RangerBandit_L,"NW_FARM4_WOOD_RANGERBANDITS_04");
-	Wld_InsertNpc(BDT_10313_Addon_RangerBandit_L,"NW_FARM4_WOOD_RANGERBANDITS_02");
-	Wld_InsertNpc(BDT_10314_Addon_RangerBandit_M,"NW_FARM4_WOOD_RANGERBANDITS_03");
+	Wld_InsertNpc(BDT_10312_Addon_RangerBandit_L,"NW_FARM4_WOOD_RANGERBANDITS_05");
+	Wld_InsertNpc(BDT_10313_Addon_RangerBandit_L,"NW_FARM4_WOOD_RANGERBANDITS_05");
+	Wld_InsertNpc(BDT_10314_Addon_RangerBandit_M,"NW_FARM4_WOOD_RANGERBANDITS_04");
 	Wld_InsertItem(ItWr_LuciasLoveLetter_Addon,"FP_ITEM_NW_FARM4_WOOD_LUCIASLETTER");
 	Wld_InsertItem(ItWr_HitPointStonePlate3_Addon,"FP_ITEM_GREATPEASANT_STPLATE_05");
 	Wld_InsertItem(ItWr_StonePlateCommon_Addon,"FP_ITEM_GREATPEASANT_STPLATE_07");

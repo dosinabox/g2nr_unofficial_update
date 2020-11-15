@@ -116,7 +116,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 			}
 			else
 			{
-				B_KillNpc(Engrom);
+				B_KillNpc(VLK_4131_Engrom);
 			};
 			EngromIsGone = TRUE;
 		};
@@ -127,8 +127,8 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		}
 		else
 		{
-			B_KillNpc(Geppert);
-			B_KillNpc(Kervo);
+			B_KillNpc(STRF_1115_Geppert);
+			B_KillNpc(STRF_1116_Kervo);
 			Wld_InsertNpc(Lurker,"OW_DJG_VORPOSTEN_01");
 		};
 		if(!Npc_IsDead(Sengrath))
@@ -457,7 +457,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 	};
 	if(Talbin_FollowsThroughPass == LOG_OBSOLETE)
 	{
-		B_KillNpc(Talbin);
+		B_KillNpc(VLK_4130_Talbin);
 		Wld_InsertNpc(DragonSnapper,"START");
 		Talbin_FollowsThroughPass = LOG_FAILED;
 	}

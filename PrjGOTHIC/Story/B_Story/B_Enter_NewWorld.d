@@ -349,7 +349,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Wld_InsertItem(ItMi_KarrasBlessedStone_Mis,"FP_NW_ITEM_TROLL_10");
 			/*if(!Npc_IsDead(Ulf))
 			{
-				B_KillNpc(Ulf);
+				B_KillNpc(NOV_602_Ulf);
 			};*/
 			if(!Npc_IsDead(Vino))
 			{

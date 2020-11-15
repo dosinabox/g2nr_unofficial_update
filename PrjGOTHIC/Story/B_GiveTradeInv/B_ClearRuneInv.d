@@ -3,7 +3,7 @@ func void B_ClearRuneInv(var C_Npc slf)
 {
 	if(!C_NpcIsHero(slf))
 	{
-		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Archol)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(AntiPaladin_NW)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bruder)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Angus)))
+		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Archol)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(AntiPaladin_NW)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bruder)))
 		{
 			return;
 		};
@@ -47,10 +47,6 @@ func void B_ClearRuneInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItRu_Deathbolt,Npc_HasItems(slf,ItRu_Deathbolt));
 		Npc_RemoveInvItems(slf,ItRu_Deathball,Npc_HasItems(slf,ItRu_Deathball));
 		Npc_RemoveInvItems(slf,ItRu_Concussionbolt,Npc_HasItems(slf,ItRu_Concussionbolt));
-		Npc_RemoveInvItems(slf,Fakescroll,Npc_HasItems(slf,Fakescroll));
-		Npc_RemoveInvItems(slf,Fakescroll_Addon,Npc_HasItems(slf,Fakescroll_Addon));
-		Npc_RemoveInvItems(slf,Fakeheroface,Npc_HasItems(slf,Fakeheroface));
-		Npc_RemoveInvItems(slf,Fakemap,Npc_HasItems(slf,Fakemap));
 		Npc_RemoveInvItems(slf,ItRu_Thunderstorm,Npc_HasItems(slf,ItRu_Thunderstorm));
 		Npc_RemoveInvItems(slf,ItRu_Whirlwind,Npc_HasItems(slf,ItRu_Whirlwind));
 		Npc_RemoveInvItems(slf,ItRu_Geyser,Npc_HasItems(slf,ItRu_Geyser));
@@ -63,6 +59,10 @@ func void B_ClearRuneInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItRu_Skull,Npc_HasItems(slf,ItRu_Skull));
 		Npc_RemoveInvItems(slf,ItRu_SummonZombie,Npc_HasItems(slf,ItRu_SummonZombie));
 		Npc_RemoveInvItems(slf,ItRu_SummonGuardian,Npc_HasItems(slf,ItRu_SummonGuardian));
+		Npc_RemoveInvItems(slf,Fakescroll,Npc_HasItems(slf,Fakescroll));
+		Npc_RemoveInvItems(slf,Fakescroll_Addon,Npc_HasItems(slf,Fakescroll_Addon));
+		Npc_RemoveInvItems(slf,Fakeheroface,Npc_HasItems(slf,Fakeheroface));
+		Npc_RemoveInvItems(slf,Fakemap,Npc_HasItems(slf,Fakemap));
 	};
 };
 

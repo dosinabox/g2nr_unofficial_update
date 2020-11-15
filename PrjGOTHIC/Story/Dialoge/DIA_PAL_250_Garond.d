@@ -518,7 +518,7 @@ func void DIA_Garond_Silvestro_Info()
 {
 	AI_Output(other,self,"DIA_Garond_Silvestro_15_00");	//Насчет шахты Сильвестро...
 	AI_Output(self,other,"DIA_Garond_Silvestro_10_01");	//Ты видел его? Ты говорил с ним?
-	if(!Npc_HasItems(PAL_Leiche1,ItWr_Silvestro_MIS) || Npc_KnowsInfo(other,DIA_DiegoOw_Mine))
+	if(!Npc_HasItems(Silvestro,ItWr_Silvestro_MIS) || Npc_KnowsInfo(other,DIA_DiegoOw_Mine))
 	{
 		AI_Output(other,self,"DIA_Garond_Silvestro_15_02");	//Все, кто находился в шахте, мертвы. Растерзаны краулерами.
 		AI_Output(self,other,"DIA_Garond_Silvestro_10_05");	//Черт! Это были хорошие люди - да проявит Иннос милосердие к их душам.

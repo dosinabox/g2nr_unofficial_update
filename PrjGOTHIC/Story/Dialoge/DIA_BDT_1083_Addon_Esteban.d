@@ -440,9 +440,9 @@ func void DIA_Addon_Esteban_fight_Info()
 	};
 	Bodyguard_Killer = FALSE;
 	B_StartOtherRoutine(Wache_01,"TOT");
-	B_KillNpc(Wache_01);
+	B_KillNpc(BDT_1081_Addon_Wache_01);
 	B_StartOtherRoutine(Wache_02,"TOT");
-	B_KillNpc(Wache_02);
+	B_KillNpc(BDT_10005_Addon_Wache_02);
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };

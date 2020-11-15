@@ -1705,6 +1705,7 @@ Story\Events\B_Function_Touch_And_Get_Killed.d
 Story\Events\NewWorld_FishFood_Trigger.d
 Story\Events\B_GiveStuntBonus.d
 Story\Events\B_RavensEscapeIntoTempelAVI.d
+Story\Events\B_PassedAbandonedMine.d
 Story\Events\B_Spawn_Skeleton.d
 Story\Events\B_TeleportOutOfOwDemonTower.d
 _misk_\player_victim_is_immortal.d

@@ -178,7 +178,7 @@ instance DIA_Brutus_Den(C_Info)
 
 func int DIA_Brutus_Den_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_Kasse) && (NpcObsessedByDMT_Brutus == FALSE) && (Npc_HasItems(VLK_Leiche3,ItMi_Gold) > 0))
+	if(Npc_KnowsInfo(hero,DIA_Brutus_Kasse) && (NpcObsessedByDMT_Brutus == FALSE) && (Npc_HasItems(Den,ItMi_Gold) > 0))
 	{
 		return TRUE;
 	};
