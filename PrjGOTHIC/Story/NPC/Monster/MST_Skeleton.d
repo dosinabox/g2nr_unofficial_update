@@ -80,23 +80,11 @@ instance Summoned_Skeleton(Mst_Default_Skeleton)
 	guild = GIL_SUMMONED_SKELETON;
 	aivar[AIV_MM_REAL_ID] = ID_SUMMONED_SKELETON;
 	level = 0;
-/*	attribute[ATR_STRENGTH] = 100;
-	attribute[ATR_DEXTERITY] = 150;
-	attribute[ATR_HITPOINTS_MAX] = 150;
-	attribute[ATR_HITPOINTS] = 150;
-	attribute[ATR_MANA_MAX] = 0;
-	attribute[ATR_MANA] = 0;
-	protection[PROT_BLUNT] = 125;
-	protection[PROT_EDGE] = 125;
-	protection[PROT_POINT] = 175;
-	protection[PROT_FIRE] = 65;	//125;
-	protection[PROT_FLY] = 125;	*/
 	fight_tactic = FAI_HUMAN_NORMAL;
 	B_SetVisuals_Lesser_Skeleton();
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	B_SetAttitude(self,ATT_FRIENDLY);
 	start_aistate = ZS_MM_Rtn_Summoned;
-//	B_SetVisuals_Lesser_Skeleton();
 	EquipItem(self,ItMw_2H_Sword_M_01);
 };
 
@@ -106,14 +94,10 @@ instance Lesser_Skeleton(Mst_Default_Skeleton)
 	level = 15;
 	attribute[ATR_STRENGTH] = 45;
 	attribute[ATR_DEXTERITY] = 75;
-/*	attribute[ATR_HITPOINTS_MAX] = 150;
-	attribute[ATR_HITPOINTS] = 150;
-	attribute[ATR_MANA_MAX] = 0;
-	attribute[ATR_MANA] = 0;*/
 	protection[PROT_BLUNT] = 80;
 	protection[PROT_EDGE] = 80;
 	protection[PROT_POINT] = 130;
-//	protection[PROT_FIRE] = 16;	//80;
+	protection[PROT_FIRE] = 80;
 	protection[PROT_FLY] = 80;
 	fight_tactic = FAI_HUMAN_NORMAL;
 	B_SetVisuals_Lesser_Skeleton();

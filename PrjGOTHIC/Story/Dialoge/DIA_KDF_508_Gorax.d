@@ -225,7 +225,7 @@ func int DIA_Gorax_Aufgabe_Condition()
 
 func void DIA_Gorax_Aufgabe_Info()
 {
-	AI_Output(other,self,"DIA_Gorax_Aufgabe_15_00");	//У тебя есть какое-нибудь задание для меня?
+	DIA_Common_AnyMissionForMe();
 	AI_Output(self,other,"DIA_Gorax_Aufgabe_14_01");	//Да, послушники хорошо поработали. А тот, кто хорошо работает, должен хорошо питаться.
 	AI_Output(self,other,"DIA_Gorax_Aufgabe_14_02");	//Я дам тебе ключ от кладовой. Ты найдешь там баранью колбасу. Раздай ее послушникам - но раздели ее по справедливости!
 	AI_Output(self,other,"DIA_Gorax_Aufgabe_14_03");	//А когда закончишь с этим, можешь опять обратиться ко мне.
@@ -312,6 +312,8 @@ func void DIA_Gorax_Aufgabe2_Info()
 };
 
 
+var int DIA_Gorax_Orlan_permanent;
+
 instance DIA_Gorax_Orlan(C_Info)
 {
 	npc = KDF_508_Gorax;
@@ -321,9 +323,6 @@ instance DIA_Gorax_Orlan(C_Info)
 	permanent = TRUE;
 	description = "Я отнес вино Орлану.";
 };
-
-
-var int DIA_Gorax_Orlan_permanent;
 
 func int DIA_Gorax_Orlan_Condition()
 {
@@ -335,9 +334,9 @@ func int DIA_Gorax_Orlan_Condition()
 
 func void DIA_Gorax_Orlan_Info()
 {
+	AI_Output(other,self,"DIA_Gorax_Orlan_15_00");	//Я отнес вино Орлану.
 	if(Npc_HasItems(other,ItMi_Gold) >= 100)
 	{
-		AI_Output(other,self,"DIA_Gorax_Orlan_15_00");	//Я отнес вино Орлану.
 		AI_Output(self,other,"DIA_Gorax_Orlan_14_01");	//И? Ты получил 240 золотых монет?
 		DIA_Gorax_Orlan_permanent = TRUE;
 		Info_ClearChoices(DIA_Gorax_Orlan);

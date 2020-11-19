@@ -99,9 +99,12 @@ func int DIA_GornOW_MetMilten_Condition()
 func void DIA_GornOW_MetMilten_Info()
 {
 	AI_Output(self,other,"DIA_GornOW_MetMilten_12_00");	//Послушай - мне здесь уже порядком надоело. Я думаю, нужно выбираться из этой долины.
-	AI_Output(self,other,"DIA_GornOW_MetMilten_12_01");	//Как ты прошел через Проход?
-	AI_Output(other,self,"DIA_GornOW_MetMilten_15_02");	//Там есть путь через заброшенную шахту.
-	AI_Output(self,other,"DIA_GornOW_MetMilten_12_03");	//Хорошо. Я выжду нужный момент и уберусь отсюда.
+	if(PlayerPassedAbandonedMine == TRUE)
+	{
+		AI_Output(self,other,"DIA_GornOW_MetMilten_12_01");	//Как ты прошел через Проход?
+		AI_Output(other,self,"DIA_GornOW_MetMilten_15_02");	//Там есть путь через заброшенную шахту.
+		AI_Output(self,other,"DIA_GornOW_MetMilten_12_03");	//Хорошо. Я выжду нужный момент и уберусь отсюда.
+	};
 	if(other.guild != GIL_SLD)
 	{
 		AI_Output(other,self,"DIA_GornOW_MetMilten_15_04");	//А куда ты пойдешь?

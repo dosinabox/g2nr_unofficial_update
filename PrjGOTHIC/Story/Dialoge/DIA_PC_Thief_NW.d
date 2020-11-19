@@ -203,7 +203,7 @@ func void DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold()
 	AI_Output(other,self,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold_15_03");	// ак € опознаю его?
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold_11_04");	//ќн полон золота. ƒоверху полон!
 	Info_AddChoice(DIA_DiegoNW_NeedHelp,"я попытаюсь найти твое золото.",DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold_End_TryIt);
-	B_LogEntry(TOPIC_HelpDiegoNW,"«олото ƒиего находитс€ где-то на старой торговой площади, там, где товары переправл€лись в колонию по канатной дороге, над заброшенной шахтой.");
+	B_LogEntry(TOPIC_HelpDiegoNW,"«олото ƒиего находитс€ где-то на старой торговой площади, там, где товары переправл€лись в колонию по канатной дороге, неподалеку от заброшенной шахты.");
 };
 
 func void DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold_End_TryIt()

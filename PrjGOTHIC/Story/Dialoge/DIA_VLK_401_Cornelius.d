@@ -55,14 +55,7 @@ func void DIA_Cornelius_Hello_Info()
 	}
 	else
 	{
-		if(other.guild != GIL_KDF)
-		{
-			AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_Monastery_13_03");	//Нет, пожалуйста, не нужно. Я скажу тебе все, что ты хочешь узнать.
-		}
-		else
-		{
-			B_Say(self,other,"$NOTNOW");
-		};
+		B_Say(self,other,"$NOTNOW");
 	};
 	B_PlayerEnteredUpperCity();
 	AI_StopProcessInfos(self);

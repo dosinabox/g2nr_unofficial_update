@@ -209,7 +209,7 @@ func void DIA_Agon_GetHerb_Info()
 {
 	if(Npc_GetDistToWP(self,"NW_MONASTERY_HERB_05") > 600)
 	{
-		AI_Output(other,self,"DIA_Addon_Nefarius_Neues_15_00");	//Чем вы здесь занимаетесь?
+		DIA_Common_WhatAreYouGuysDoingHere();
 	}
 	else
 	{

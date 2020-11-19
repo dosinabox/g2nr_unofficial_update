@@ -890,11 +890,21 @@ func void B_AndreSold()
 	B_GiveInvItems(self,other,ItMi_Gold,Andre_Sold);
 };
 
-func void B_AndreNoProof()
+func void B_AndreDoYouHaveProof()
 {
 	AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
-	DIA_Common_No();
+};
+
+func void B_AndreNoGossips()
+{
 	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
+};
+
+func void B_AndreNoProof()
+{
+	B_AndreDoYouHaveProof();
+	DIA_Common_No();
+	B_AndreNoGossips();
 };
 
 instance DIA_Andre_Auslieferung(C_Info)
@@ -1703,11 +1713,11 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 	{
 		AI_Teleport(Borka,"NW_CITY_HABOUR_KASERN_BORKA");
 		AI_Output(other,self,"DIA_Andre_REDLIGHT_SUCCESS_15_05");	//Я знаю, кто распространяет траву в городе. Это Борка, вышибала в Красном Фонаре.
-		AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
+		B_AndreDoYouHaveProof();
 		if(!Npc_HasItems(other,ItMi_Joint))
 		{
 			DIA_Common_No();
-			AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
+			B_AndreNoGossips();
 		}
 		else
 		{
@@ -2026,7 +2036,7 @@ func void DIA_Andre_Cornelius_Liar_Info()
 func void DIA_Andre_Cornelius_Liar_No()
 {
 	DIA_Common_No();
-	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
+	B_AndreNoGossips();
 	if(other.guild != GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_02");	//Корнелиус - влиятельный человек. Он может сделать твою жизнь адом, если захочет.

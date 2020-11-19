@@ -547,9 +547,9 @@ func void B_InitNpcGlobals()
 	Bandit_3 = Hlp_GetNpc(BDT_1011_Bandit_M);
 	Koch = Hlp_GetNpc(STRF_1107_Straefling);
 	Bruder = Hlp_GetNpc(PAL_2004_Bruder);
+	Den = Hlp_GetNpc(VLK_4112_Den);
 	Silvestro = Hlp_GetNpc(PAL_2002_Leiche);
 	Olav = Hlp_GetNpc(VLK_4152_Olav);
-	Den = Hlp_GetNpc(VLK_4112_Den);
 	Marcos_Guard1 = Hlp_GetNpc(PAL_253_Wache);
 	Marcos_Guard2 = Hlp_GetNpc(PAL_257_Ritter);
 	Jergan = Hlp_GetNpc(VLK_4110_Jergan);

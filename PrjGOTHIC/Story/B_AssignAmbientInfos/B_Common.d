@@ -74,6 +74,11 @@ func void DIA_Common_No()
 	AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
 };
 
+func void DIA_Common_IThinkNo()
+{
+	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_00");	//Думаю, что нет...
+};
+
 func void DIA_Common_CanYouRepairJewelry()
 {
 	AI_Output(other,self,"DIA_Harad_RepairNecklace_15_00");	//Ты можешь чинить драгоценности?
@@ -202,6 +207,26 @@ func void DIA_Common_WhatDoYouMean()
 func void DIA_Common_IFoundHim()
 {
 	AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
+};
+
+func void DIA_Common_WhatAreYouGuysDoingHere()
+{
+	AI_Output(other,self,"DIA_Addon_Nefarius_Neues_15_00");	//Чем вы здесь занимаетесь?
+};
+
+func void DIA_Common_WhatAreYouDoingHere()
+{
+	AI_Output(other,self,"DIA_Rengaru_Hauab_15_00");	//Что ты делаешь здесь?
+};
+
+func void DIA_Common_AnyMissionForMe()
+{
+	AI_Output(other,self,"DIA_Gorax_Aufgabe_15_00");	//У тебя есть какое-нибудь задание для меня?
+};
+
+func void DIA_Common_YouLookSoSad()
+{
+	AI_Output(other,self,"DIA_Keroloth_KAP4_HELLO_15_00");	//У тебя такой расстроенный вид...
 };
 
 func void DIA_Common_01_AreYouTryingToPissMeOff()

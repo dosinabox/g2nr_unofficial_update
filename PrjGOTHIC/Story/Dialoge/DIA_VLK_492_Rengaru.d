@@ -77,7 +77,7 @@ func int DIA_Rengaru_Hauab_Condition()
 
 func void DIA_Rengaru_Hauab_Info()
 {
-	AI_Output(other,self,"DIA_Rengaru_Hauab_15_00");	//Что ты делаешь здесь?
+	DIA_Common_WhatAreYouDoingHere();
 	AI_Output(self,other,"DIA_Rengaru_Hauab_07_01");	//Я не понимаю, какое тебе до этого дело. Проваливай!
 	AI_StopProcessInfos(self);
 };

@@ -50,14 +50,11 @@ instance YBloodfly(Mst_Default_Bloodfly)
 	attribute[ATR_DEXTERITY] = 5;
 	attribute[ATR_HITPOINTS_MAX] = 20;
 	attribute[ATR_HITPOINTS] = 20;
-	attribute[ATR_MANA_MAX] = 0;
-	attribute[ATR_MANA] = 0;
 	protection[PROT_BLUNT] = 0;
 	protection[PROT_EDGE] = 0;
 	protection[PROT_POINT] = 0;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_FLY] = 0;
-	protection[PROT_MAGIC] = 0;
 	B_SetVisuals_Bloodfly();
 	Mdl_SetModelScale(self,0.9,0.9,0.9);
 	Npc_SetToFistMode(self);

@@ -458,7 +458,7 @@ func void DIA_Rod_Wette_KeepIt()
 	{
 		Npc_RemoveInvItem(hero,ItMw_2h_Rod_Fake);
 	};
-	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_00");	//Думаю, что нет...
+	DIA_Common_IThinkNo();
 	AI_Output(self,other,"DIA_Rod_Wette_KeepIt_06_01");	//(угрожающе) Что это значит?
 	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_02");	//Лучше я подержу его у себя немного.
 	AI_Output(self,other,"DIA_Rod_Wette_GiveBack_06_01");	//Да ты просто подлец после этого!
