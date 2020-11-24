@@ -747,7 +747,7 @@ func void init_addon_part_valley_01()
 
 func void startup_sub_psicamp()
 {
-	if(C_WorldIsFixed(OLDWORLD_ZEN))
+	if(C_OldWorldIsWasteland())
 	{
 		B_Seed_Wasteland_World_Psicamp();
 	};
@@ -934,7 +934,7 @@ func void init_psicamp()
 
 func void startup_sub_freeminecamp()
 {
-	if(C_WorldIsFixed(OLDWORLD_ZEN))
+	if(C_OldWorldIsWasteland())
 	{
 		B_Seed_Wasteland_World_Freeminecamp();
 	};
@@ -1800,7 +1800,7 @@ func void Startup_Surface()
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
-	if(C_WorldIsFixed(OLDWORLD_ZEN))
+	if(C_OldWorldIsWasteland())
 	{
 		B_Seed_Wasteland_World_Main();
 	};
@@ -1829,7 +1829,7 @@ func void INIT_OldWorld()
 	INIT_SUB_Oldcamp();
 	INIT_SUB_Demontower();
 	INIT_SUB_Surface();
-	if(C_WorldIsFixed(OLDWORLD_ZEN))
+	if(C_OldWorldIsWasteland())
 	{
 		init_sub_psicamp();
 		init_sub_freeminecamp();
@@ -1852,12 +1852,11 @@ func void startup_oldworld()
 	Startup_Oldcamp();
 	Startup_Demontower();
 	Startup_Surface();
-//	Wld_SetTime(0,0);
 	if(Wld_IsTime(4,0,21,0))
 	{
 		Wld_SetTime(23,59);
 	};
-	if(C_WorldIsFixed(OLDWORLD_ZEN))
+	if(C_OldWorldIsWasteland())
 	{
 		startup_psicamp();
 		startup_freeminecamp();

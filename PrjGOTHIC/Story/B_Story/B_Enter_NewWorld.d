@@ -486,8 +486,8 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		Wld_InsertNpc(Draconian,"FP_ROAM_XARDAS_CAVE_09");
 		Wld_InsertNpc(Draconian,"FP_ROAM_XARDAS_TOWER_VALLEY_03");
 		Wld_InsertNpc(Draconian,"FP_ROAM_XARDAS_TOWER_VALLEY_01");
-		Wld_InsertNpc(OrcElite_AntiPaladin,"NW_TROLLAREA_PLANE_05");
-		Wld_InsertNpc(OrcWarrior_Roam,"NW_TROLLAREA_PATH_44");
+		Wld_InsertNpc(OrcElite_AntiPaladin,"NW_TROLLAREA_PATH_44");
+		Wld_InsertNpc(OrcWarrior_Roam,"NW_TROLLAREA_PLANE_05");
 		Wld_InsertNpc(OrcWarrior_Roam,"NW_TROLLAREA_PLANE_06");
 		Wld_InsertNpc(DragonSnapper,"NW_FARM3_BIGWOOD_04");
 		Wld_InsertNpc(DragonSnapper,"NW_FARM3_BIGWOOD_04");

@@ -416,6 +416,7 @@ Story\Dialog_Mobsis\BookstandDementor.d
 Story\Dialog_Mobsis\BookstandHistory.d
 Story\Dialog_Mobsis\BookstandKDW_Addon.d
 Story\Dialog_Mobsis\BookstandKloster.d
+Story\Dialog_Mobsis\BookstandOWXardas.d
 Story\Dialog_Mobsis\Bookstand_Addon.d
 Story\Dialog_Mobsis\Bookstand_OldCamp.d
 Story\Dialog_Mobsis\B_OnHotkey.d

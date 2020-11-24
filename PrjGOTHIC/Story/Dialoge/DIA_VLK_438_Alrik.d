@@ -640,7 +640,8 @@ func void DIA_Alrik_Ausbilden_Info()
 		Alrik_Teach1H = TRUE;
 		DIA_Alrik_Teach_permanent = true;
 	}
-	else if((Alrik_Kaempfe == 0) && (hero.guild == GIL_NONE))
+//	else if((Alrik_Kaempfe == 0) && (hero.guild == GIL_NONE))
+	else if(Alrik_Kaempfe == 0)
 	{
 		AI_Output(self,other,"DIA_Alrik_Ausbilden_09_01");	//Если ты действительно хочешь научиться сражаться, то выходи против меня. (ухмыляется) За этот урок я не возьму дополнительной платы.
 		Alrik_VorausErzaehlt = TRUE;
