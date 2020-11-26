@@ -135,7 +135,7 @@ func int ZS_Pal_ZOMBIE_Loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Pal_ZOMBIE_END()
+func void ZS_Pal_ZOMBIE_End()
 {
 };
 

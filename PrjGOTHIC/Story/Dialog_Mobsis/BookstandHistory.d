@@ -129,8 +129,7 @@ func void Use_BookstandKaserne_S1()
 			Doc_PrintLines(nDocID,0,"южные ворота (ночь)");
 		};
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
-		Doc_PrintLines(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"");
+		Doc_PrintLine(nDocID,1,"");
 		Doc_Show(nDocID);
 	};
 };

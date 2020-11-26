@@ -3267,10 +3267,14 @@ func void STARTUP_NewWorld_Part_TrollArea_01()
 	Wld_InsertNpc(Minecrawler,"FP_ROAM_NW_TROLLAREA_RUINS_CAVE_23");
 	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_NW_TROLLAREA_RUINS_CAVE_20");
 	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_NW_TROLLAREA_RUINS_CAVE_26");
-	Wld_InsertNpc(Shattered_Golem,"FP_SHATTERED_GOLEM_01");
-	Wld_InsertNpc(Shattered_Golem,"FP_SHATTERED_GOLEM_02");
-	Wld_InsertNpc(Shattered_Golem,"FP_SHATTERED_GOLEM_03");
-	Wld_InsertNpc(Shattered_Golem,"FP_SHATTERED_GOLEM_04");
+	Wld_InsertNpc(StoneGolem_Dead1,"FP_SHATTERED_GOLEM_01");
+	B_KillNpc(StoneGolem_Dead1);
+	Wld_InsertNpc(StoneGolem_Dead2,"FP_SHATTERED_GOLEM_02");
+	B_KillNpc(StoneGolem_Dead2);
+	Wld_InsertNpc(StoneGolem_Dead3,"FP_SHATTERED_GOLEM_03");
+	B_KillNpc(StoneGolem_Dead3);
+	Wld_InsertNpc(StoneGolem_Dead4,"FP_SHATTERED_GOLEM_04");
+	B_KillNpc(StoneGolem_Dead4);
 	Wld_InsertNpc(KDW_1400_Addon_Saturas_NW,"MAYA");
 	Wld_InsertNpc(KDW_1401_Addon_Cronos_NW,"MAYA");
 	Wld_InsertNpc(KDW_1402_Addon_Nefarius_NW,"MAYA");

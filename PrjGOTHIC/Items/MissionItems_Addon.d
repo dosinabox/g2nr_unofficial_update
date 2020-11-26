@@ -333,7 +333,7 @@ func void Use_MartinMilizEmpfehlung_Addon()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Уважаемый лорд Андрэ!");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"С этим письмом я отправляю вам нового рекрута для ополчения.");
 	Doc_PrintLines(nDocID,0,"Он уже помог мне в одном важном и непростом деле.");
 	Doc_PrintLines(nDocID,0,"Я уверен, что он достоин защищать короля и спокойствие граждан этого города.");
@@ -428,7 +428,7 @@ func void Use_VatrasKDFEmpfehlung_Addon()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Братья Огня!");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Мне стало известно, что за вход в ваш монастырь вы требуете плату.");
 	Doc_PrintLines(nDocID,0,"С этим письмом я направляю вам молодого человека, который страстно желает присоединиться к вам.");
 	Doc_PrintLine(nDocID,0,"");
@@ -481,7 +481,7 @@ func void Use_LuciasLoveLetter_Addon()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Дорогой Элврих!");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Я не могу найти слова, чтобы выразить свое сожаление.");
 	Doc_PrintLines(nDocID,0,"Я знаю, что ты не поймешь меня, но я пришла к выводу, что и для нас обоих будет лучше, если ты найдешь себе более достойную девушку, чем я.");
 	Doc_PrintLines(nDocID,0,"Я не вернусь оттуда, куда я сейчас направляюсь. Забудь меня. Такому честному парню, как ты, не нужна проститутка. Прощай!");
@@ -601,16 +601,16 @@ func void Use_ItWr_Addon_BanditTrader()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"15 коротких мечей");
 	Doc_PrintLines(nDocID,0,"20 шпаг");
 	Doc_PrintLines(nDocID,0,"25 буханок хлеба");
 	Doc_PrintLines(nDocID,0,"15 бутылок вина");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Это был последний раз.");
 	Doc_PrintLines(nDocID,0,"Все становится слишком опасным.");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"ФЕРНАНДО");
 	Doc_Show(nDocID);
 	if((MIS_Vatras_FindTheBanditTrader != FALSE) && (Use_ItWr_Addon_BanditTrader_OneTime == FALSE))
@@ -645,7 +645,7 @@ func void Use_Vatras2Saturas_FindRaven()
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLine(nDocID,0,"Дорогой Сатурас!");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Надеюсь, что скоро твоя цель будет достигнута. В городе ситуация, похоже, налаживается. Но я боюсь, что это обманчивое ощущение. Поторопись! Ты нужен мне здесь.");
 	Doc_PrintLines(nDocID,0,"Я изучил твои записи и могу подтвердить твои подозрения. Это действительно были последователи Аданоса. Будь осторожен и не дай лжепророкам ослепить себя.");
 	Doc_PrintLines(nDocID,0,"Пропавших жителей Хориниса отправили к бывшему рудному барону Ворону. Он находится там, куда должен вести портал.");

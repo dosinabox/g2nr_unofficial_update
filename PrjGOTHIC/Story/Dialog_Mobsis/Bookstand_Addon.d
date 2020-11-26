@@ -19,9 +19,6 @@ func void Use_Bookstand_Addon_BL_S1()
 		Doc_PrintLines(nDocID,0,"Гараз: получено 6 золотых самородков");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Все стражники: получено 9 золотых самородков");
-//		Doc_PrintLine(nDocID,0,"");
-//		Doc_PrintLine(nDocID,0,"");
-//		Doc_PrintLines(nDocID,0,"");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"Лагерь:");
 		Doc_PrintLine(nDocID,1,"");
@@ -80,7 +77,6 @@ func void Use_BookstandMaya()
 		Doc_PrintLine(StPl_nDocID,1,"");
 		Doc_PrintLine(StPl_nDocID,1,"");
 		Doc_PrintLines(StPl_nDocID,1,"Но мы, УЧЕНЫЕ, знаем горькую правду. ЯРКЕНДАР пал и скоро растворится в реке времени.");
-//		Doc_PrintLines(StPl_nDocID,1,"");
 	}
 	else if(BookstandMayaArt == 2)
 	{
@@ -164,8 +160,6 @@ func void Use_BookstandMaya()
 		Doc_PrintLines(StPl_nDocID,1,"Он понял наши планы, когда было уже слишком поздно.");
 		Doc_PrintLines(StPl_nDocID,1,"");
 		Doc_PrintLines(StPl_nDocID,1,"КУАРХОДРОН закрыл за ним священные покои нашего храма и РАДЕМЕС оказался навечно заперт в этой ловушке.");
-//		Doc_PrintLines(StPl_nDocID,1,"");
-//		Doc_PrintLines(StPl_nDocID,1,"");
 	};
 };
 

@@ -251,7 +251,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(Warg,"NW_XARDAS_GOBBO_01");
 		if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_ToCavalorn == TRUE))
 		{
-			B_KillNpc(Ambusher_1013);
+			B_KillNpc(BDT_1013_Bandit_L);
 		};
 		Wld_InsertNpc(Zombie02,"NW_FARM4_WOOD_MONSTER_MORE_02");
 		Wld_InsertNpc(Zombie01,"NW_FARM4_WOOD_MONSTER_MORE_02");

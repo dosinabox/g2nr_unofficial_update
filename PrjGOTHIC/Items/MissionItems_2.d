@@ -397,7 +397,7 @@ func void UsePfandbrief()
 	Doc_PrintLines(nDocID,0,"В качестве гарантии погашения долга принимается залог, стоимость которого равна сумме долга.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Залог: Орнаментированный золотой кубок из коллекции кровавых кубков.");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Подписали:");
 	Doc_PrintLine(nDocID,0,"Лютеро, торговец");
 	Doc_PrintLine(nDocID,0,"Лемар, ростовщик");
@@ -583,9 +583,9 @@ func void UseGilbertLetter()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"С меня хватит. Я устал прятаться здесь. И если слухи верны - Барьер, наконец, пал.");
 	Doc_PrintLines(nDocID,0,"Вряд ли кто-то будет искать меня сейчас. Меня уже достала эта пещера и вся эта чертова долина. Пришло время возвращаться домой.");
-	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Гилберт");
 	Doc_Show(nDocID);
 };
