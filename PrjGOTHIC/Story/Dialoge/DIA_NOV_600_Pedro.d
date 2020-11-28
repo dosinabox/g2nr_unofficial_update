@@ -380,8 +380,7 @@ func void DIA_Pedro_AUFNAHME_YES()
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_02");	//В знак твоего добровольного принятия этого решения, ты должен сам открыть эти ворота и войти внутрь.
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_03");	//Теперь ты послушник. Носи эту робу в знак того, что теперь ты член нашего братства.
 	B_SetGuild(hero,GIL_NOV);
-	CreateInvItem(hero,ITAR_NOV_L);
-	AI_PrintScreen("Роба послушника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+	B_GiveArmor(ITAR_NOV_L);
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_04");	//Когда ты войдешь в монастырь, подойди к Парлану. С этого момента он будет отвечать за тебя.
 	AI_Output(other,self,"DIA_Pedro_AUFNAHME_YES_15_05");	//Мои прегрешения теперь прощены?
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_06");	//Пока еще нет. Поговори с мастером Парланом. Он благословит тебя и очистит от твоих грехов.

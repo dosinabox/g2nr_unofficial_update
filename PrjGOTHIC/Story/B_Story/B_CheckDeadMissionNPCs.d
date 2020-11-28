@@ -141,6 +141,10 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 		{
 			MIS_Talbin_Runs = LOG_OBSOLETE;
 		};
+		if(MIS_TalbinCheese == LOG_Running)
+		{
+			MIS_TalbinCheese = LOG_OBSOLETE;
+		};
 	}
 	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Dyrian))
 	{

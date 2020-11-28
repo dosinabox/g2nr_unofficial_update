@@ -510,8 +510,7 @@ func void DIA_Pyrokar_OATH_Info()
 		MIS_MardukBeten = LOG_OBSOLETE;
 	};
 	B_SetGuild(hero,GIL_KDF);
-	CreateInvItem(hero,ITAR_KDF_L);
-	AI_PrintScreen("Легкая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+	B_GiveArmor(ITAR_KDF_L);
 	Fire_Contest = TRUE;
 	Snd_Play("LEVELUP");
 	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
@@ -1507,8 +1506,7 @@ func void DIA_Pyrokar_AUGEGEHEILT_Info()
 		AI_Output(self,other,"DIA_Pyrokar_AUGEGEHEILT_11_03");	//Ты уже неоднократно доказал, что готов к вступлению в Высший Орден Магов Огня.
 		AI_Output(self,other,"DIA_Pyrokar_AUGEGEHEILT_11_04");	//С этого дня ты являешься членом Совета и будешь представлять наш Орден по всему свету. Теперь ты один из высших Магов Огня.
 		AI_Output(self,other,"DIA_Pyrokar_AUGEGEHEILT_11_05");	//Носи эту священную робу с достоинством и неси в мир порядок, честь и славу, брат мой.
-		CreateInvItem(hero,ITAR_KDF_H);
-		AI_PrintScreen("Тяжелая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveArmor(ITAR_KDF_H);
 //		heroGIL_KDF2 = TRUE;
 	};
 };

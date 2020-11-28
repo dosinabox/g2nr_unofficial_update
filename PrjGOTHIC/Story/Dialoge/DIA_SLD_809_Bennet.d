@@ -995,8 +995,7 @@ func void DIA_Bennet_Present_Info()
 		AI_Output(self,other,"DIA_Bennet_Present_06_07");	//(гордо) Я разработал новый тип доспехов. Доспехи охотника на драконов!
 		AI_Output(self,other,"DIA_Bennet_Present_06_08");	//Они прочнее и легче, чем традиционные доспехи.
 		AI_Output(self,other,"DIA_Bennet_Present_06_09");	//Так как ты спас меня, я хочу, чтобы ты получил первый экземпляр. Это подарок!
-		CreateInvItem(hero,ITAR_DJG_L);
-		AI_PrintScreen("Легкие доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveArmor(ITAR_DJG_L);
 		AI_Output(self,other,"DIA_Bennet_Present_06_10");	//Я подумал, что, возможно, тебе тоже захочется позабавиться там. Тебе понадобится хорошее снаряжение, когда ты отправишься в эту долину.
 		AI_Output(self,other,"DIA_Bennet_Present_06_11");	//Также мне интересны драконьи чешуйки. Настоящие драконьи чешуйки. Я хорошо заплачу тебе за них.
 		AI_Output(other,self,"DIA_Bennet_Present_15_12");	//Сколько я получу за чешуйку?
@@ -1088,14 +1087,13 @@ func void DIA_Bennet_DJG_ARMOR_M_Info()
 		B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_DJG_M);
 		if(Helmets_Enabled == TRUE)
 		{
-			CreateInvItem(hero,ITAR_DJGN_M);
+			B_GiveArmor(ITAR_DJGN_M);
 			CreateInvItem(hero,ITHE_DJG_M);
 		}
 		else
 		{
-			CreateInvItem(hero,ITAR_DJG_M);
+			B_GiveArmor(ITAR_DJG_M);
 		};
-		AI_PrintScreen("Средние доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		Bennet_DIA_Bennet_DJG_ARMOR_M_permanent = TRUE;
 	}
 	else
@@ -1167,14 +1165,13 @@ func void DIA_Bennet_DJG_ARMOR_H_Info()
 		B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_DJG_H);
 		if(Helmets_Enabled == TRUE)
 		{
-			CreateInvItem(hero,ITAR_DJGN_H);
+			B_GiveArmor(ITAR_DJGN_H);
 			CreateInvItem(hero,ITHE_DJG_H);
 		}
 		else
 		{
-			CreateInvItem(hero,ITAR_DJG_H);
+			B_GiveArmor(ITAR_DJG_H);
 		};
-		AI_PrintScreen("Тяжелые доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		Bennet_DIA_Bennet_DJG_ARMOR_H_permanent = TRUE;
 	}
 	else

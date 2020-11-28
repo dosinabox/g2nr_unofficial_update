@@ -407,8 +407,7 @@ func void DIA_Peck_ARMOR_BUY()
 	if(B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_MIL_M_Dynamic))
 	{
 		AI_Output(self,other,"DIA_Peck_Add_12_05");	//Вот, возьми.
-		CreateInvItem(hero,ITAR_MIL_M);
-		AI_PrintScreen("Тяжелые доспехи ополчения получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveArmor(ITAR_MIL_M);
 		DIA_MIL_ARMOR_M_perm = TRUE;
 	}
 	else

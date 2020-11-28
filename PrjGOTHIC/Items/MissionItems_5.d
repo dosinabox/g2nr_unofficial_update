@@ -239,7 +239,6 @@ func void UseItWr_UseLampIdiot_Mis()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"               Лампа несет свет");
 	Doc_PrintLine(nDocID,0,"               нижним уровням.");
-	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
 

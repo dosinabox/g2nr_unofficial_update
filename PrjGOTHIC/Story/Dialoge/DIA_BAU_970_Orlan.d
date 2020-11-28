@@ -120,7 +120,7 @@ func void DIA_Orlan_WERBISTDU_Info()
 {
 	AI_Output(other,self,"DIA_Orlan_WERBISTDU_15_00");	//Ты кто?
 	AI_Output(self,other,"DIA_Orlan_WERBISTDU_05_01");	//Я Орлан, хозяин этой скромной таверны.
-	if(Kapitel <= 3)
+	if(VisibleGuild(other) == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Orlan_WERBISTDU_05_02");	//Ты что-нибудь ищешь, чужеземец? Может быть, приличный меч или хорошие доспехи?
 	};
@@ -381,8 +381,7 @@ func void DIA_Orlan_RUESTUNG_Buy()
 	if(B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_Leather_L))
 	{
 		AI_Output(self,other,"DIA_Orlan_RUESTUNG_Buy_05_01");	//Мудрый выбор.
-		CreateInvItem(hero,ITAR_Leather_L);
-		AI_PrintScreen("Кожаные доспехи получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveArmor(ITAR_Leather_L);
 		DIA_Orlan_RUESTUNG_noPerm = TRUE;
 	}
 	else

@@ -213,6 +213,7 @@ func void DIA_Talbin_AskTeacher_Info()
 	AI_Output(other,self,"DIA_Talbin_AskTeacher_15_02");	//Что ты хочешь за это?
 	AI_Output(self,other,"DIA_Talbin_AskTeacher_07_03");	//У тебя ничего нет поесть кроме мяса луркеров? Может быть, кусок сыра? Да, кусок сыра. Жизнь бы отдал за этот кусок...
 	AI_Output(other,self,"DIA_Talbin_AskTeacher_15_04");	//Я посмотрю, что можно сделать.
+	MIS_TalbinCheese = LOG_Running;
 	Log_CreateTopic(TOPIC_TalbinCheese,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_TalbinCheese,LOG_Running);
 	B_LogEntry(TOPIC_TalbinCheese,"Охотник в Долине Рудников по имени Талбин научит меня снимать трофеи с животных, если я принесу ему сыр.");
@@ -232,7 +233,7 @@ instance DIA_Talbin_PayTeacher(C_Info)
 
 func int DIA_Talbin_PayTeacher_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Talbin_AskTeacher) && (Talbin_TeachAnimalTrophy == FALSE) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE) && Npc_HasItems(other,ItFo_Cheese))
+	if((MIS_TalbinCheese == LOG_Running) && Npc_HasItems(other,ItFo_Cheese))
 	{
 		return TRUE;
 	};
@@ -246,6 +247,7 @@ func void DIA_Talbin_PayTeacher_Info()
 	Talbin_TeachAnimalTrophy = TRUE;
 	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
 	B_LogEntry(TOPIC_OutTeacher,"Талбин может обучить меня добывать трофеи животных.");
+	MIS_TalbinCheese = LOG_SUCCESS;
 	B_CheckLog();
 };
 
@@ -262,7 +264,7 @@ instance DIA_Talbin_PayTeacher_NoCheese(C_Info)
 
 func int DIA_Talbin_PayTeacher_NoCheese_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Talbin_AskTeacher) && (Talbin_TeachAnimalTrophy == FALSE) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE) && !Npc_HasItems(other,ItFo_Cheese))
+	if((MIS_TalbinCheese == LOG_Running) && !Npc_HasItems(other,ItFo_Cheese))
 	{
 		return TRUE;
 	};
@@ -273,7 +275,6 @@ func void DIA_Talbin_PayTeacher_NoCheese_Info()
 	AI_Output(other,self,"DIA_Talbin_PayTeacher_15_02");	//У меня сейчас нет сыра!
 	AI_Output(self,other,"DIA_Talbin_PayTeacher_07_03");	//Это было бы слишком хорошо, чтобы быть правдой. Ладно, скажешь, когда раздобудешь его!
 };
-
 
 
 instance DIA_Talbin_TEACHHUNTING(C_Info)
@@ -297,7 +298,7 @@ func int DIA_Talbin_TEACHHUNTING_Condition()
 
 func void DIA_Talbin_TEACHHUNTING_Info()
 {
-	AI_Output(other,self,"DIA_Talbin_TEACHHUNTING_15_00");	//Чему ты можешь обучить меня?
+	DIA_Common_WhatCanYouTeachMe();
 	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] == FALSE))
 	{
 		AI_Output(self,other,"DIA_Talbin_TEACHHUNTING_07_01");	//А что ты хочешь знать?
@@ -367,57 +368,6 @@ func void DIA_Talbin_TEACHHUNTING_Heart()
 	};
 	Info_ClearChoices(DIA_Talbin_TEACHHUNTING);
 };
-
-/*
-instance DIA_Talbin_KAP3_EXIT(C_Info)
-{
-	npc = VLK_4130_Talbin;
-	nr = 999;
-	condition = DIA_Talbin_KAP3_EXIT_Condition;
-	information = DIA_Talbin_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Talbin_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Talbin_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Talbin_KAP4_EXIT(C_Info)
-{
-	npc = VLK_4130_Talbin;
-	nr = 999;
-	condition = DIA_Talbin_KAP4_EXIT_Condition;
-	information = DIA_Talbin_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Talbin_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Talbin_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Talbin_KAP4_WASNEUES(C_Info)
 {
@@ -551,6 +501,7 @@ func void DIA_Talbin_FOUNDENGROM_Info()
 	};
 	AI_Output(self,other,"DIA_Talbin_FOUNDENGROM_07_08");	//О, Иннос. Мне нужно выбираться отсюда, даже если при этом я найду свою смерть. Сейчас или никогда!
 	AI_StopProcessInfos(self);
+	MIS_TalbinCheese = LOG_OBSOLETE;
 	MIS_Talbin_Runs = LOG_Running;
 	Log_CreateTopic(TOPIC_Talbin_Runs,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Talbin_Runs,LOG_Running);
@@ -610,6 +561,8 @@ func void DIA_Talbin_WOHIN_ok()
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"IntoPass");
 	Talbin_FollowsThroughPass = LOG_Running;
+	MIS_TalbinCheese = LOG_OBSOLETE;
+	B_CheckLog();
 	self.flags = NPC_FLAG_IMMORTAL;
 };
 
@@ -625,6 +578,7 @@ func void DIA_Talbin_WOHIN_()
 	AI_Output(self,other,"DIA_Talbin_WOHIN_schwein_07_01");	//Ты оставляешь меня здесь умирать?! Ты будешь гореть в аду за это!
 	Talbin_FollowsThroughPass = LOG_OBSOLETE;
 	MIS_Talbin_Runs = LOG_OBSOLETE;
+	MIS_TalbinCheese = LOG_FAILED;
 	B_CheckLog();
 	AI_StopProcessInfos(self);
 };
@@ -656,56 +610,6 @@ func void DIA_Talbin_VERSCHWINDE_Info()
 	AI_StopProcessInfos(self);
 };
 
-/*
-instance DIA_Talbin_KAP5_EXIT(C_Info)
-{
-	npc = VLK_4130_Talbin;
-	nr = 999;
-	condition = DIA_Talbin_KAP5_EXIT_Condition;
-	information = DIA_Talbin_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Talbin_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Talbin_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Talbin_KAP6_EXIT(C_Info)
-{
-	npc = VLK_4130_Talbin;
-	nr = 999;
-	condition = DIA_Talbin_KAP6_EXIT_Condition;
-	information = DIA_Talbin_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Talbin_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Talbin_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Talbin_PICKPOCKET(C_Info)
 {
@@ -740,6 +644,4 @@ func void DIA_Talbin_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Talbin_PICKPOCKET);
 };
-
-
 

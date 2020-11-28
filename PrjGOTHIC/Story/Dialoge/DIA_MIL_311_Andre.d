@@ -1340,8 +1340,7 @@ func void DIA_Andre_JOIN_Yes()
 	AI_Output(self,other,"DIA_Andre_JOIN_Yes_08_02");	//Вот твои доспехи.
 	AI_Output(self,other,"DIA_Andre_JOIN_Yes_08_03");	//Носи их с гордостью и достоинством.
 	B_SetGuild(hero,GIL_MIL);
-	CreateInvItem(hero,ITAR_MIL_L);
-	AI_PrintScreen("Легкие доспехи ополчения получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+	B_GiveArmor(ITAR_MIL_L);
 	Snd_Play("LEVELUP");
 	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
 	{

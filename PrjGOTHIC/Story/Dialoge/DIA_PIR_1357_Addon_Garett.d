@@ -463,8 +463,7 @@ func void DIA_Addon_Garett_ArmorM_Buy()
 	if(B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_PIR_M_Addon))
 	{
 		B_Say(self,other,"$ABS_GOOD");
-		CreateInvItem(hero,ITAR_PIR_M_Addon);
-		AI_PrintScreen("Доспехи пирата получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveArmor(ITAR_PIR_M_Addon);
 		Garett_Armor_Given = TRUE;
 	}
 	else

@@ -612,8 +612,7 @@ func void DIA_Lee_JoinNOW_Info()
 			AI_Output(self,other,"DIA_Lee_JoinNOW_04_13");	//Тогда добро пожаловать в наши ряды, приятель!
 			AI_Output(self,other,"DIA_Lee_JoinNOW_04_14");	//Вот, возьми для начала эти доспехи!
 			B_SetGuild(hero,GIL_SLD);
-			CreateInvItem(hero,ITAR_SLD_L);
-			AI_PrintScreen("Легкие доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+			B_GiveArmor(ITAR_SLD_L);
 			Snd_Play("LEVELUP");
 			if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
 			{
@@ -1048,8 +1047,7 @@ func void DIA_Lee_BuyArmorM_Info()
 	if(B_GiveInvItems(other,self,ItMi_Gold,1000))
 	{
 		AI_Output(self,other,"DIA_Lee_BuyArmorM_04_01");	//Держи. Это очень хорошие доспехи.
-		CreateInvItem(hero,ITAR_SLD_M);
-		AI_PrintScreen("Средние доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveArmor(ITAR_SLD_M);
 		Lee_SldMGiven = TRUE;
 	}
 	else
@@ -1111,8 +1109,7 @@ func void DIA_Lee_BuyArmorH_Info()
 	if(B_GiveInvItems(other,self,ItMi_Gold,2500))
 	{
 		AI_Output(self,other,"DIA_Lee_BuyArmorH_04_01");	//Держи. Это очень хорошие доспехи. Я сам такие ношу.
-		CreateInvItem(hero,ITAR_SLD_H);
-		AI_PrintScreen("Тяжелые доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveArmor(ITAR_SLD_H);
 		Lee_SldHGiven = TRUE;
 	}
 	else

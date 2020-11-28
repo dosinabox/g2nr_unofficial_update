@@ -774,14 +774,13 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	B_SetGuild(hero,GIL_PAL);
 	if(Helmets_Enabled == TRUE)
 	{
-		CreateInvItem(hero,ITAR_PALN_M);
+		B_GiveArmor(ITAR_PALN_M);
 		CreateInvItem(hero,ITHE_PAL_M);
 	}
 	else
 	{
-		CreateInvItem(hero,ITAR_PAL_M);
+		B_GiveArmor(ITAR_PAL_M);
 	};
-	AI_PrintScreen("Доспехи рыцаря получено",-1,43,FONT_ScreenSmall,2);
 	if(other.HitChance[NPC_TALENT_2H] > other.HitChance[NPC_TALENT_1H])
 	{
 		CreateInvItems(self,ItMw_2h_Pal_Sword,1);

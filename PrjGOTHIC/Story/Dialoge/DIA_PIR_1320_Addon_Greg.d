@@ -236,13 +236,11 @@ func void DIA_Addon_Greg_JoinPirates_Leave()
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_03");	//Вот, надень это. Надеюсь, тебе это снаряжение придется впору.
 	if(Greg_NoHelpInNW == FALSE)
 	{
-		CreateInvItem(hero,ITAR_PIR_M_Addon);
-		AI_PrintScreen("Доспехи пирата получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveArmor(ITAR_PIR_M_Addon);
 	}
 	else
 	{
-		CreateInvItem(hero,ITAR_PIR_L_Addon);
-		AI_PrintScreen("Одежда пирата получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveArmor(ITAR_PIR_L_Addon);
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_04");	//И не мешкай, скорее принимайся за дело!
 	Info_ClearChoices(DIA_Addon_Greg_JoinPirates);
@@ -345,7 +343,7 @@ func void DIA_Addon_Greg_AboutCanyon_RazorsDead()
 	B_LogEntry(TOPIC_Addon_ClearCanyon,"Грег был впечатлен, когда я сообщил ему, что убил всех бритвозубов в каньоне.");
 	MIS_Addon_Greg_ClearCanyon = LOG_SUCCESS;
 	B_Addon_PiratesGoHome();
-	B_GivePlayerXP(XP_addon_ClearCanyon);
+	B_GivePlayerXP(XP_Addon_ClearCanyon);
 	Info_ClearChoices(DIA_Addon_Greg_AboutCanyon);
 };
 
@@ -709,7 +707,7 @@ func void DIA_Addon_Greg_RavenDead_Info()
 		B_GiveInvItems(self,other,ItMi_Gold,500);
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_RavenDead_01_03");	//А ты смелый. Продолжай в том же духе.
-	B_GivePlayerXP(XP_ADDON_GregRavenLohn);
+	B_GivePlayerXP(XP_Addon_GregRavenLohn);
 	if(MIS_Henry_HolOwen == LOG_SUCCESS)
 	{
 		B_StartOtherRoutine(Owen,"PostStart");

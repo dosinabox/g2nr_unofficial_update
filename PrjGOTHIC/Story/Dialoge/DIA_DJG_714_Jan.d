@@ -543,14 +543,13 @@ func void DIA_Jan_DJG_ARMOR_M_Info()
 		Npc_RemoveInvItems(self,ItMi_Gold,VALUE_ITAR_DJG_M);
 		if(Helmets_Enabled == TRUE)
 		{
-			CreateInvItem(hero,ITAR_DJGN_M);
+			B_GiveArmor(ITAR_DJGN_M);
 			CreateInvItem(hero,ITHE_DJG_M);
 		}
 		else
 		{
-			CreateInvItem(hero,ITAR_DJG_M);
+			B_GiveArmor(ITAR_DJG_M);
 		};
-		AI_PrintScreen("—редние доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		Jan_DIA_Jan_DJG_ARMOR_M_permanent = TRUE;
 	}
 	else
