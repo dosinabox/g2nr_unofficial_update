@@ -46,7 +46,6 @@ func void DIA_Richter_Hello_Info()
 	AI_Output(self,other,"DIA_Richter_Hello_10_01");	//Что тебе от меня нужно? Кто ты вообще такой?
 	AI_Output(other,self,"DIA_Richter_Hello_15_02");	//Я, э-э...
 	AI_Output(self,other,"DIA_Richter_Hello_10_03");	//Скажи, мы раньше нигде не встречались?
-	B_PlayerEnteredUpperCity();
 	Info_ClearChoices(DIA_Richter_Hello);
 	Info_AddChoice(DIA_Richter_Hello,"Я такого не помню.",DIA_Richter_Hello_DontThinkSo);
 	Info_AddChoice(DIA_Richter_Hello,"Может и так.",DIA_Richter_Hello_MayBe);

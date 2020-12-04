@@ -92,7 +92,10 @@ func void B_ENTER_OLDWORLD_Kapitel_3()
 		{
 			B_RemoveNpc(VLK_4120_Bilgot);
 		};
-		B_RemoveNpc(OC_Sheep1);
+		if(!Npc_IsDead(OC_Sheep1))
+		{
+			Wld_RemoveNpc(OC_Sheep1);
+		};
 		B_StartOtherRoutine(Garond,"START");
 		EnterOW_Kapitel3 = TRUE;
 	};
@@ -444,7 +447,10 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		B_KillNpc(DJG_732_ToterDrachenjaeger);
 		B_KillNpc(DJG_733_ToterDrachenjaeger);
 		B_KillNpc(DJG_734_ToterDrachenjaeger);
-		B_RemoveNpc(OC_Sheep2);
+		if(!Npc_IsDead(OC_Sheep2))
+		{
+			Wld_RemoveNpc(OC_Sheep2);
+		};
 		B_StartOtherRoutine(Garond,"START");
 		Log_CreateTopic(TOPIC_Dragonhunter,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Dragonhunter,LOG_Running);
@@ -488,7 +494,10 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 		{
 			B_RemoveNpc(VLK_4120_Bilgot);
 		};
-		B_RemoveNpc(OC_Sheep3);
+		if(!Npc_IsDead(OC_Sheep3))
+		{
+			Wld_RemoveNpc(OC_Sheep3);
+		};
 		EnterOW_Kapitel5 = TRUE;
 	};
 	if(Biff_FollowsThroughPass == LOG_SUCCESS)

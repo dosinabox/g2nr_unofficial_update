@@ -25,6 +25,8 @@ instance ITAR_PIR_L_Addon(C_Item)
 	visual_change = "Armor_Pir_L_Addon.ASC";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_OpenArmor;
+	on_unequip = UnEquip_OpenArmor;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -54,6 +56,8 @@ instance ITAR_PIR_M_Addon(C_Item)
 	visual_change = "Armor_PIR_M_ADDON.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_OpenArmor;
+	on_unequip = UnEquip_OpenArmor;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -99,7 +103,6 @@ instance ITAR_PIR_H_Addon(C_Item)
 
 instance ITAR_Thorus_Addon(C_Item)
 {
-//	name = "Тяжелые доспехи стражника";
 	name = "Доспехи стражи Ворона";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
@@ -114,7 +117,6 @@ instance ITAR_Thorus_Addon(C_Item)
 	visual_change = "Armor_Thorus_ADDON.asc";
 	visual_skin = 0;
 	material = MAT_METAL;
-//	description = "Доспехи стражи Ворона";
 	description = name;
 	text[0] = PRINT_Addon_BDTArmor;
 	text[1] = NAME_Prot_Edge;

@@ -77,6 +77,14 @@ func void B_AssessTalk()
 				Kardif_Busted = TRUE;
 			};
 		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Greg_NW))
+		{
+			PlayerTalkedToGregNW = TRUE;
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Skip_NW))
+		{
+			PlayerTalkedToSkipNW = TRUE;
+		}
 		else if(MIS_Andre_REDLIGHT == LOG_Running)
 		{
 			if(C_LawArmorEquipped(other))

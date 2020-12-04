@@ -22,6 +22,7 @@ func void Use_XardasNotfallBeutel()
 {
 	B_PlayerFindItem(ItWr_XardasErmahnungFuerIdioten_MIS,1);
 	B_PlayerFindItem(ItMi_InnosEye_Discharged_Mis,1);
+	XardasDIBagOpened = TRUE;
 };
 
 

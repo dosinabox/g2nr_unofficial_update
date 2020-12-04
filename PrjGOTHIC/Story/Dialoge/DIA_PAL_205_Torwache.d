@@ -36,7 +36,6 @@ func void B_Mil_205_Torwache_Crimes()
 		AI_Output(self,other,"DIA_PAL_205_Torwache_FirstWarn_12_03");	//Говорят, ты принимал участие в драке. Я не пропущу тебя.
 	};
 	AI_Output(self,other,"DIA_PAL_205_Torwache_FirstWarn_12_04");	//Иди к лорду Андрэ и урегулируй этот вопрос!
-	B_PlayerEnteredUpperCity();
 };
 
 const string PAL_205_Checkpoint = "NW_CITY_CITYHALL_IN";
@@ -90,7 +89,6 @@ func void DIA_PAL_205_Torwache_FirstWarn_Info()
 	{
 		AI_Output(self,other,"DIA_PAL_205_Torwache_FirstWarn_12_05");	//Только люди, состоящие на службе у короля, могут войти в ратушу.
 	};
-	B_PlayerEnteredUpperCity();
 	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,PAL_205_Checkpoint);
 	self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;
 };
@@ -190,6 +188,13 @@ func void DIA_PAL_205_Torwache_Hagen_Info()
 };
 
 
+func void B_CityHallPass()
+{
+	self.aivar[AIV_PASSGATE] = TRUE;
+	PAL_205_schonmalreingelassen = TRUE;
+	B_PlayerEnteredUpperCity();
+};
+
 instance DIA_PAL_205_Torwache_PassAsArmoredMil(C_Info)
 {
 	npc = PAL_205_Torwache;
@@ -212,9 +217,7 @@ func int DIA_PAL_205_Torwache_PassAsArmoredMil_Condition()
 func void DIA_PAL_205_Torwache_PassAsArmoredMil_Info()
 {
 	AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsMil_12_01");	//Хорошо, ты можешь войти.
-	B_PlayerEnteredUpperCity();
-	self.aivar[AIV_PASSGATE] = TRUE;
-	PAL_205_schonmalreingelassen = TRUE;
+	B_CityHallPass();
 	AI_StopProcessInfos(self);
 };
 
@@ -248,10 +251,8 @@ func void DIA_PAL_205_Torwache_PassAsMil_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsMil_12_01");	//Хорошо, ты можешь войти.
-		self.aivar[AIV_PASSGATE] = TRUE;
-		PAL_205_schonmalreingelassen = TRUE;
+		B_CityHallPass();
 	};
-	B_PlayerEnteredUpperCity();
 	AI_StopProcessInfos(self);
 };
 
@@ -285,10 +286,8 @@ func void DIA_PAL_205_Torwache_PassAsMage_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsMage_12_01");	//Да, конечно. Прошу простить меня, о, Избранный, я просто выполняю свой долг.
-		self.aivar[AIV_PASSGATE] = TRUE;
-		PAL_205_schonmalreingelassen = TRUE;
+		B_CityHallPass();
 	};
-	B_PlayerEnteredUpperCity();
 	AI_StopProcessInfos(self);
 };
 
@@ -322,10 +321,8 @@ func void DIA_PAL_205_Torwache_PassAsSld_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsSld_12_01");	//Хорошо, но предупреждаю тебя. Если возникнут какие-нибудь проблемы, то ты не успеешь даже пожалеть об этом.
-		self.aivar[AIV_PASSGATE] = TRUE;
-		PAL_205_schonmalreingelassen = TRUE;
+		B_CityHallPass();
 	};
-	B_PlayerEnteredUpperCity();
 	AI_StopProcessInfos(self);
 };
 
@@ -368,7 +365,6 @@ func void DIA_PAL_205_Torwache_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_PAL_205_Torwache_PERM_12_04");	//Что тебе нужно?
 	};
-	B_PlayerEnteredUpperCity();
 	AI_StopProcessInfos(self);
 };
 

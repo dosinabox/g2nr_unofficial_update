@@ -706,6 +706,10 @@ func void CH_Lernpunkte_Info()
 {
 	Info_ClearChoices(CH_Lernpunkte);
 	Info_AddChoice(CH_Lernpunkte,Dialog_Back,CH_Lernpunkte_BACK);
+	if(hero.lp > 0)
+	{
+		Info_AddChoice(CH_Lernpunkte,"Обнулить",CH_Lernpunkte_0);
+	};
 	Info_AddChoice(CH_Lernpunkte,"Очки обучения + 50",CH_Lernpunkte_50);
 	Info_AddChoice(CH_Lernpunkte,"Очки обучения + 25",CH_Lernpunkte_25);
 	Info_AddChoice(CH_Lernpunkte,"Очки обучения + 10",CH_Lernpunkte_10);
@@ -715,6 +719,13 @@ func void CH_Lernpunkte_Info()
 func void CH_Lernpunkte_BACK()
 {
 	Info_ClearChoices(CH_Lernpunkte);
+};
+
+func void CH_Lernpunkte_0()
+{
+	hero.lp = 0;
+	PrintScreen("Очки обучения обнулены",-1,-1,FONT_Screen,3);
+	CH_Lernpunkte_Info();
 };
 
 func void CH_Lernpunkte_50()

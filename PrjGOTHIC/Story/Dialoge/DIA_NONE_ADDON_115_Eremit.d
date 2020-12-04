@@ -199,38 +199,10 @@ func void DIA_Addon_Eremit_Klamotten_Info()
 	{
 		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать доспехи пирата)",DIA_Addon_Eremit_Klamotten_PIR_M);
 	};
-/*	if(Npc_HasItems(other,ITAR_PIR_H_Addon))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать доспехи капитана)",DIA_Addon_Eremit_Klamotten_PIR_H);
-	}; */
 	if(Npc_HasItems(other,ITAR_RANGER_Addon))
 	{
 		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать доспехи 'Кольца Воды')",DIA_Addon_Eremit_Klamotten_Ranger);
 	};
-/*	if(Npc_HasItems(other,ITAR_KDW_L_Addon))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать легкую мантию мага Воды)",DIA_Addon_Eremit_Klamotten_KDW_L);
-	};
-	if(Npc_HasItems(other,ITAR_KDW_H))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать тяжелую мантию мага Воды)",DIA_Addon_Eremit_Klamotten_KDW_H);
-	};
-	if(Npc_HasItems(other,ITAR_Governor))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать изысканный дублет)",DIA_Addon_Eremit_Klamotten_Governor);
-	};
-	if(Npc_HasItems(other,ITAR_Judge))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать мантию судьи)",DIA_Addon_Eremit_Klamotten_Judge);
-	};
-	if(Npc_HasItems(other,ITAR_Smith))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать одежду кузнеца)",DIA_Addon_Eremit_Klamotten_Smith);
-	};
-	if(Npc_HasItems(other,ITAR_Barkeeper))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать одежду трактирщика)",DIA_Addon_Eremit_Klamotten_Barkeeper);
-	}; */
 	if(Npc_HasItems(other,ITAR_Vlk_L))
 	{
 		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать простой городской костюм)",DIA_Addon_Eremit_Klamotten_VLK_L);
@@ -243,38 +215,10 @@ func void DIA_Addon_Eremit_Klamotten_Info()
 	{
 		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать добротный городской костюм)",DIA_Addon_Eremit_Klamotten_VLK_H);
 	};
-/*	if(Npc_HasItems(other,ITAR_VlkBabe_L))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать простое городское платье)",DIA_Addon_Eremit_Klamotten_VlkBabe_L);
-	};
-	if(Npc_HasItems(other,ITAR_VlkBabe_M))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать хорошее городское платье)",DIA_Addon_Eremit_Klamotten_VlkBabe_M);
-	};
-	if(Npc_HasItems(other,ITAR_VlkBabe_H))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать добротное городское платье)",DIA_Addon_Eremit_Klamotten_VlkBabe_H);
-	};
-	if(Npc_HasItems(other,ITAR_PAL_Skel))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать старые доспехи паладина)",DIA_Addon_Eremit_Klamotten_PAL_Skel);
-	}; */
 	if(Npc_HasItems(other,ITAR_Bau_L))
 	{
 		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать рабочую одежду)",DIA_Addon_Eremit_Klamotten_BAU_L);
 	};
-/*	if(Npc_HasItems(other,ITAR_Bau_M))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать крестьянский костюм)",DIA_Addon_Eremit_Klamotten_BAU_M);
-	};
-	if(Npc_HasItems(other,ITAR_BauBabe_L))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать простое крестьянское платье)",DIA_Addon_Eremit_Klamotten_BauBabe_L);
-	};
-	if(Npc_HasItems(other,ITAR_BauBabe_M))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать хорошее крестьянское платье)",DIA_Addon_Eremit_Klamotten_BauBabe_M);
-	}; */
 	if(Npc_HasItems(other,ITAR_DJG_Crawler))
 	{
 		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать доспехи из панцирей краулеров)",DIA_Addon_Eremit_Klamotten_DJG_Crawler);
@@ -283,46 +227,6 @@ func void DIA_Addon_Eremit_Klamotten_Info()
 	{
 		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать кожаные доспехи)",DIA_Addon_Eremit_Klamotten_Leather);
 	};
-/*	if(Npc_HasItems(other,ITAR_Xardas))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать мантию некроманта)",DIA_Addon_Eremit_Klamotten_Xardas);
-	};
-	if(Npc_HasItems(other,ITAR_Lester))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать тяжелую робу послушника)",DIA_Addon_Eremit_Klamotten_Lester);
-	};
-	if(Npc_HasItems(other,ITAR_Diego))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать тяжелые доспехи призрака)",DIA_Addon_Eremit_Klamotten_Diego);
-	};
-	if(Npc_HasItems(other,ITAR_CorAngar))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать тяжелые доспехи храмовника)",DIA_Addon_Eremit_Klamotten_CorAngar);
-	};
-	if(Npc_HasItems(other,ITAR_Prisoner))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать штаны рудокопа)",DIA_Addon_Eremit_Klamotten_Prisoner);
-	};
-	if(Npc_HasItems(other,ITAR_Slave))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать штаны раба)",DIA_Addon_Eremit_Klamotten_Slave);
-	};
-	if(Npc_HasItems(other,ITAR_Larius))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать одежду губернатора)",DIA_Addon_Eremit_Klamotten_Larius);
-	};
-	if(Npc_HasItems(other,ITAR_Onar))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать одежду лендлорда)",DIA_Addon_Eremit_Klamotten_Onar);
-	};
-	if(Npc_HasItems(other,ITAR_Dementor))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать мантию ищущих)",DIA_Addon_Eremit_Klamotten_Dementor);
-	};
-	if(Npc_HasItems(other,ITAR_Dementor_Boss))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать мантию черного мага)",DIA_Addon_Eremit_Klamotten_Dementor_Boss);
-	}; */
 	if(Npc_HasItems(other,ITAR_BDT_M) && (Npc_HasItems(other,ITAR_BDT_H) || Npc_HasItems(other,ITAR_Thorus_Addon)))
 	{
 		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать средние доспехи бандита)",DIA_Addon_Eremit_Klamotten_BDT_M);

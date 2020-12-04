@@ -239,8 +239,6 @@ instance DIA_Jesper_Schleichen(C_Info)
 };
 
 
-//var int DIA_Jesper_Schleichen_permanent;
-
 func int DIA_Jesper_Schleichen_Condition()
 {
 	if((Jesper_TeachSneak == TRUE) && !Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
@@ -257,7 +255,6 @@ func void DIA_Jesper_Schleichen_Info()
 		AI_Output(self,other,"DIA_Jesper_Schleichen_09_01");	//”мение крастьс€ очень важно дл€ любого вора. ќсобенно, если ты ходишь по чужому дому.
 		AI_Output(self,other,"DIA_Jesper_Schleichen_09_02");	//“ам нельз€ топать, как ты это делаешь сейчас. Ѕольшинство людей спит очень чутким сном.
 		AI_Output(self,other,"DIA_Jesper_Schleichen_09_03");	//“олько когда ты крадешьс€, никто не услышит теб€, и ты сможешь работать беспреп€тственно.
-//		DIA_Jesper_Schleichen_permanent = TRUE;
 	};
 };
 

@@ -21,6 +21,14 @@ func void DIA_Mil_310_Stadtwache_EXIT_Info()
 };
 
 
+func void B_CityMainGatesPass()
+{
+	self.aivar[AIV_PASSGATE] = TRUE;
+	Stadtwache_333.aivar[AIV_PASSGATE] = TRUE;
+	Mil_310_schonmalreingelassen = TRUE;
+	B_CheckLog();
+};
+
 const string Mil_310_Checkpoint = "NW_CITY_ENTRANCE_MAIN";
 
 var int MIL_310_Personal_AbsolutionLevel;
@@ -80,7 +88,7 @@ func void DIA_Mil_310_Stadtwache_FirstWarn_Info()
 	}
 	else
 	{
-		if(!Npc_HasEquippedArmor(other) && (hero.guild == GIL_NONE))
+		if(!Npc_HasEquippedArmor(other))
 		{
 			AI_Output(other,self,"DIA_Mil_310_Stadtwache_FirstWarn_15_07");	//Что?
 			AI_Output(self,other,"DIA_Mil_310_Stadtwache_FirstWarn_07_08");	//Тебе туда нельзя!
@@ -112,7 +120,7 @@ func void DIA_Mil_310_Stadtwache_FirstWarn_Info()
 		else
 		{
 			AI_Output(other,self,"DIA_Mil_310_Stadtwache_FirstWarn_15_18");	//(спокойно) Что?
-			if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+			if((VisibleGuild(other) == GIL_PAL) || (VisibleGuild(other) == GIL_KDF))
 			{
 				AI_Output(self,other,"DIA_Mil_310_Stadtwache_FirstWarn_07_19");	//Прошу извинить меня, я просто выполняю приказ.
 				AI_Output(other,self,"DIA_Mil_310_Stadtwache_FirstWarn_15_20");	//Ты хочешь остановить меня?
@@ -122,10 +130,7 @@ func void DIA_Mil_310_Stadtwache_FirstWarn_Info()
 			{
 				AI_Output(self,other,"DIA_Mil_310_Stadtwache_FirstWarn_07_22");	//Я просто хотел рассмотреть тебя. Похоже, у тебя есть деньги. Можешь проходить.
 			};
-			self.aivar[AIV_PASSGATE] = TRUE;
-			Stadtwache_333.aivar[AIV_PASSGATE] = TRUE;
-			Mil_310_schonmalreingelassen = TRUE;
-			B_CheckLog();
+			B_CityMainGatesPass();
 			AI_StopProcessInfos(self);
 		};
 	};
@@ -220,10 +225,7 @@ func void DIA_Mil_310_Stadtwache_Bribe_Info()
 		{
 			AI_Output(self,other,"DIA_Mil_310_Stadtwache_Bribe_07_02");	//И сразу иди к Андрэ! Или я в следующий раз опять возьму с тебя 100 золотых!
 		};
-		self.aivar[AIV_PASSGATE] = TRUE;
-		Stadtwache_333.aivar[AIV_PASSGATE] = TRUE;
-		Mil_310_schonmalreingelassen = TRUE;
-		B_CheckLog();
+		B_CityMainGatesPass();
 		MIL_310_Personal_AbsolutionLevel = B_GetCurrentAbsolutionLevel(self) + 1;
 	}
 	else
@@ -266,10 +268,7 @@ func void DIA_Mil_310_Stadtwache_Passierschein_Info()
 	{
 		AI_Output(self,other,"DIA_Mil_310_Stadtwache_Passierschein_07_04");	//Все в порядке. Проходи.
 	};
-	self.aivar[AIV_PASSGATE] = TRUE;
-	Stadtwache_333.aivar[AIV_PASSGATE] = TRUE;
-	Mil_310_schonmalreingelassen = TRUE;
-	B_CheckLog();
+	B_CityMainGatesPass();
 	AI_StopProcessInfos(self);
 };
 
@@ -307,9 +306,7 @@ func void DIA_Mil_310_Stadtwache_ZumSchmied_Info()
 		AI_Output(self,other,"DIA_Mil_310_Stadtwache_ZumSchmied_07_04");	//Хорошо, ты можешь проходить.
 	};
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_ZumSchmied_07_05");	//И если увидишь Лобарта, скажи ему, чтобы лучше кормил своих овец: мы скоро зайдем к нему за ними! (грязный смех)
-	self.aivar[AIV_PASSGATE] = TRUE;
-	Stadtwache_333.aivar[AIV_PASSGATE] = TRUE;
-	Mil_310_schonmalreingelassen = TRUE;
+	B_CityMainGatesPass();
 	B_GivePlayerXP(XP_Ambient);
 	AI_StopProcessInfos(self);
 };
@@ -404,9 +401,7 @@ func void DIA_Addon_Mil_310_Stadtwache_Constantino_Info()
 		if(C_SCHasHerbs(MinimumPassagePlants))
 		{
 			AI_Output(self,other,"DIA_Addon_Mil_310_Stadtwache_Constantino_07_02");	//Хм-м. Выглядит неплохо. Хорошо, ты можешь пройти. Но не создавай проблем, ты понял?
-			self.aivar[AIV_PASSGATE] = TRUE;
-			Stadtwache_333.aivar[AIV_PASSGATE] = TRUE;
-			Mil_310_schonmalreingelassen = TRUE;
+			B_CityMainGatesPass();
 			MIS_Addon_Lester_PickForConstantino = LOG_SUCCESS;
 			B_GivePlayerXP(XP_Addon_PickForConstantino);
 			AI_StopProcessInfos(self);

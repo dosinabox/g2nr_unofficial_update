@@ -103,7 +103,7 @@ func void B_BaltramRangerCheck(var C_Npc npc)
 	};
 };
 
-func int C_HenryNiceArmorCheck(var C_Npc npc)
+func int C_ExpensiveArmorEquipped(var C_Npc npc)
 {
 	if(VisibleGuild(npc) == GIL_KDF)
 	{
@@ -130,6 +130,30 @@ func int C_HenryNiceArmorCheck(var C_Npc npc)
 		return TRUE;
 	};
 	if(ArmorEquipped(npc,ITAR_RANGER_Addon))
+	{
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_Thorus_Addon))
+	{
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_OreBaron_Addon))
+	{
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_Governor))
+	{
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_Larius))
+	{
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_OHT))
+	{
+		return TRUE;
+	};
+	if(VisibleGuild(npc) == GIL_KDW)
 	{
 		return TRUE;
 	};
@@ -185,11 +209,7 @@ func int C_PirateArmorEquipped(var C_Npc npc)
 func void B_SetHeroSkin()
 {
 	var int BodyTex;
-	if(TattoosBodySkin == TRUE)
-	{
-		BodyTex = BodyTex_Tattoo_N;
-	}
-	else if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE) || (SLDArmor_Equipped == TRUE) || (BDTArmor_Equipped == TRUE) || (BAUArmor_Equipped == TRUE) || (NakedBodySkin == TRUE))
+	if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE) || (SLDArmor_Equipped == TRUE) || (OpenArmor_Equipped == TRUE) || (NakedBodySkin == TRUE))
 	{
 		BodyTex = BodyTex_N;
 	}
@@ -200,6 +220,10 @@ func void B_SetHeroSkin()
 	else if(SequelBodySkin == TRUE)
 	{
 		BodyTex = BodyTex_Player_Sequel;
+	}
+	else if(TattoosBodySkin == TRUE)
+	{
+		BodyTex = BodyTex_Tattoo_N;
 	}
 	else
 	{

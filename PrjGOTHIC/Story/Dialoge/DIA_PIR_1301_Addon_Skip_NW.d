@@ -18,7 +18,6 @@ func int DIA_Addon_Skip_NW_EXIT_Condition()
 func void DIA_Addon_Skip_NW_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-	PlayerTalkedToSkipNW = TRUE;
 };
 
 
