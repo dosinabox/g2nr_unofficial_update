@@ -16,6 +16,13 @@ func int C_WorldIsFixed(var int world)
 			{
 				return TRUE;
 			};
+		}
+		else if(world == ADDONWORLD_ZEN)
+		{
+			if(Mob_HasItems("D36_SECRET_DEV_CHEST",ItPl_SwampHerb))
+			{
+				return TRUE;
+			};
 		};
 	};
 	return FALSE;

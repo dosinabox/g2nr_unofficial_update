@@ -8,28 +8,56 @@ func void ZS_Dead()
 	B_StopLookAt(self);
 	AI_StopPointAt(self);
 	B_GiveDeathXP(other,self);
-	if(C_IAmCanyonRazor(self))
+	if(CurrentLevel == ADDONWORLD_ZEN)
 	{
-		CanyonRazorBodyCount += 1;
-		if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+		if(C_IAmCanyonRazor(self))
 		{
-			B_CountCanyonRazor();
-		};
-	};
-	if(Greg_Rejected == TRUE)
-	{
-		if(C_AmIDexterBandit(self))
-		{
-			DexterBanditsBodyCount += 1;
-			if(DexterBanditsBodyCount >= 19)
+			CanyonRazorBodyCount += 1;
+			if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
 			{
-				B_Greg_ComesToDexterLater();
+				B_CountCanyonRazor();
+			};
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stoneguardian_NailedValleyShowcase_01))
+		{
+			if((MayaScrollGiven == FALSE) && !Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT) && (VALLEY_SHOWCASE_TRIGGERSCRIPT_FUNC_OneTime == FALSE))
+			{
+				CreateInvItems(self,ItSc_Teleport_Maya,1);
+				MayaScrollGiven = TRUE;
+			};
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GoldMinecrawler))
+		{
+			Minecrawler_Killed += 1;
+			if((Minecrawler_Killed > 9) && (Bloodwyn_Spawn == FALSE) && !Npc_IsDead(Bloodwyn))
+			{
+				AI_Teleport(Bloodwyn,"ADW_MINE_TO_MC_03");
+				B_StartOtherRoutine(Bloodwyn,"MINE");
+				Bloodwyn_Spawn = TRUE;
 			};
 		};
 	}
-	else
+	else if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		B_Greg_ComesToDexter();
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(OrcWarrior_Harad))
+		{
+			CityOrc_Killed_Day = Wld_GetDay();
+		}
+		else if(Greg_Rejected == TRUE)
+		{
+			if(C_AmIDexterBandit(self))
+			{
+				DexterBanditsBodyCount += 1;
+				if(DexterBanditsBodyCount >= 19)
+				{
+					B_Greg_ComesToDexterLater();
+				};
+			};
+		}
+		else
+		{
+			B_Greg_ComesToDexter();
+		};
 	};
 	if((self.aivar[AIV_MM_REAL_ID] == ID_SWAMPDRONE) || (self.aivar[AIV_MM_REAL_ID] == ID_SWAMPZOMBIE))
 	{
@@ -44,14 +72,6 @@ func void ZS_Dead()
 		};
 	};
 	B_CheckDeadMissionNPCs(self);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stoneguardian_NailedValleyShowcase_01))
-	{
-		if((MayaScrollGiven == FALSE) && !Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT))
-		{
-			CreateInvItems(self,ItSc_Teleport_Maya,1);
-			MayaScrollGiven = TRUE;
-		};
-	};
 	if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON))
 	{
 		Npc_RemoveInvItems(self,ItMw_1h_Bau_Mace,Npc_HasItems(self,ItMw_1h_Bau_Mace));
@@ -119,20 +139,6 @@ func void ZS_Dead()
 		{
 			Grimbald_Snappers_KilledByPlayer = TRUE;
 		};
-	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GoldMinecrawler))
-	{
-		Minecrawler_Killed += 1;
-		if((Minecrawler_Killed > 9) && (Bloodwyn_Spawn == FALSE) && !Npc_IsDead(Bloodwyn))
-		{
-			AI_Teleport(Bloodwyn,"ADW_MINE_TO_MC_03");
-			B_StartOtherRoutine(Bloodwyn,"MINE");
-			Bloodwyn_Spawn = TRUE;
-		};
-	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(OrcWarrior_Harad))
-	{
-		CityOrc_Killed_Day = Wld_GetDay();
 	};
 	B_GiveTradeInv(self);
 	B_GiveDeathInv(self);

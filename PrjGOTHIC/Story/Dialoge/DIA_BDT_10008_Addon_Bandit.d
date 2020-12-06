@@ -69,10 +69,12 @@ instance DIA_Addon_10008_Bandit_Hi(C_Info)
 
 func int DIA_Addon_10008_Bandit_Hi_Condition()
 {
-//	if((Npc_GetDistToNpc(other,Skinner) <= 600) && !Npc_IsDead(Skinner) && (Skinner.aivar[AIV_TalkedToPlayer] == FALSE))
-	if((Npc_GetDistToNpc(other,Skinner) <= 600) && !Npc_IsDead(Skinner) && (Skinner.aivar[AIV_TalkedToPlayer] == FALSE) && !Npc_IsInState(Skinner,ZS_Attack) && !Npc_KnowsInfo(other,DIA_Addon_Skinner_Hi))
+	if(!Npc_IsDead(Skinner) && !Npc_KnowsInfo(other,DIA_Addon_Skinner_Hi))
 	{
-		return TRUE;
+		if((Npc_GetDistToNpc(other,Skinner) <= 700) && (Skinner.aivar[AIV_TalkedToPlayer] == FALSE) && !Npc_IsInState(Skinner,ZS_Attack))
+		{
+			return TRUE;
+		};
 	};
 };
 

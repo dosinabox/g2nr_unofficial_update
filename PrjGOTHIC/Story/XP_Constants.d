@@ -285,3 +285,4 @@ const int XP_Captain_Success = 2000;
 const int XP_SwordBlessed2 = 1000;
 const int XP_Mario_Ambush = 5000;
 const int XP_Pedro_SerpentesMission = 3000;
+const int XP_BringBusterTrophy = 300;

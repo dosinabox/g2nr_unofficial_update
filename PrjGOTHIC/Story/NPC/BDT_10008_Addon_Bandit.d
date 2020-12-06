@@ -23,12 +23,12 @@ instance BDT_10008_Addon_Bandit(Npc_Default)
 
 func void Rtn_Start_10008()
 {
-	TA_Cook_Cauldron(8,0,12,0,"BL_DOWN_CENTER_07");
+	TA_Cook_Cauldron(8,0,12,0,"BL_DOWN_CENTER_07_B");
 	TA_Pee(12,0,12,5,"BL_DOWN_CENTER_07_C");
-	TA_Cook_Cauldron(12,5,16,0,"BL_DOWN_CENTER_07");
+	TA_Cook_Cauldron(12,5,16,0,"BL_DOWN_CENTER_07_B");
 	TA_Pee(16,0,16,5,"BL_DOWN_CENTER_07_C");
-	TA_Cook_Cauldron(16,5,0,0,"BL_DOWN_CENTER_07");
+	TA_Cook_Cauldron(16,5,0,0,"BL_DOWN_CENTER_07_B");
 	TA_Pee(0,0,0,5,"BL_DOWN_CENTER_07_C");
-	TA_Sit_Bench(0,5,8,0,"BL_DOWN_RING_05");
+	TA_Sit_Bench(0,5,8,0,"BL_DOWN_RING_04_B");
 };
 
