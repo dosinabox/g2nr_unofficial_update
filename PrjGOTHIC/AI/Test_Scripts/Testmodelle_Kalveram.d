@@ -186,7 +186,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_CorAngar);
 	CreateInvItem(self,ITAR_KDW_H);
 	CreateInvItem(self,ITAR_Dementor);
-	CreateInvItem(self,ITAR_Dementor_Boss);
+	CreateInvItem(self,ITAR_BlackMage);
 	CreateInvItem(self,ITAR_Prisoner);
 	CreateInvItem(self,ITAR_Larius);
 	CreateInvItem(self,ITAR_Slave);
@@ -1258,7 +1258,7 @@ func void UseArmor()
 	CreateInvItem(self,ITAR_RANGER_Addon);
 	CreateInvItem(self,ITAR_KDW_L_Addon);
 	CreateInvItem(self,ITAR_Bloodwyn_Addon);
-	CreateInvItem(self,ITAR_Dementor_Boss);
+	CreateInvItem(self,ITAR_BlackMage);
 	CreateInvItem(self,ITAR_Larius);
 	CreateInvItem(self,ITAR_Slave);
 	CreateInvItem(self,ITAR_Beggar);

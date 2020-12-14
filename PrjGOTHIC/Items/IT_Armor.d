@@ -1662,7 +1662,7 @@ instance ITAR_Prisoner(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_Dementor_Boss(C_Item)
+instance ITAR_BlackMage(C_Item)
 {
 	name = "Мантия черного мага";
 	mainflag = ITEM_KAT_ARMOR;
@@ -1670,12 +1670,12 @@ instance ITAR_Dementor_Boss(C_Item)
 	protection[PROT_EDGE] = 100;
 	protection[PROT_BLUNT] = 100;
 	protection[PROT_POINT] = 100;
-	protection[PROT_FIRE] = 65;	//50;
-	protection[PROT_MAGIC] = 65;	//50;
+	protection[PROT_FIRE] = 60;
+	protection[PROT_MAGIC] = 60;
 	value = VALUE_ITAR_Xardas;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Dementor.3ds";
-	visual_change = "Armor_Dementor_Boss.asc";
+	visual_change = "Armor_BlackMage.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;

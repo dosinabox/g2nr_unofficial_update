@@ -370,10 +370,8 @@ func void startup_addon_part_banditscamp_01()
 	Wld_InsertNpc(BDT_10031_Addon_Wache,"BANDIT");
 	Wld_InsertNpc(BDT_1086_Addon_Scatty,"BANDIT");
 	Wld_InsertNpc(BDT_1085_Addon_Bloodwyn,"BANDIT");
-	Wld_InsertNpc(STRF_1141_Addon_Sklave,"BANDIT");
 	Wld_InsertNpc(STRF_1142_Addon_Sklave,"BANDIT");
 	Wld_InsertNpc(STRF_1143_Addon_Sklave,"BANDIT");
-	Wld_InsertNpc(STRF_1144_Addon_Sklave,"BANDIT");
 	Wld_InsertNpc(BDT_10001_Addon_Bandit_L,"BANDIT");
 	Wld_InsertNpc(BDT_10002_Addon_Bandit_M,"BANDIT");
 	Wld_InsertNpc(BDT_10003_Addon_Bandit_H,"BANDIT");
@@ -2092,19 +2090,6 @@ func void STARTUP_NewWorld_Part_City_01()
 		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_09");
 		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_10");
 	};
-	/*Wld_InsertNpc(Waran,"FP_ROAM_INSEL_02");
-	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_01");
-	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_07");
-	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_08");
-	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_09");
-	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_10");*/
-	/*Wld_InsertNpc(Waran,"ISLAND_PATCH_WAYPOINT_02");
-	Wld_InsertNpc(Waran,"ISLAND_PATCH_WAYPOINT_03");
-	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_04");
-	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_04");
-	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_06");
-	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_06");*/
-//	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_13");
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_01");
 	Wld_InsertItem(ItWr_ManaStonePlate2_Addon,"FP_SHELLSPAWN_CITY_02");
 	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_SHELLSPAWN_CITY_02");

@@ -305,6 +305,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(Lurker,"OW_PATH_OW_PATH_WARAN05_SPAWN01");
 		Wld_InsertNpc(Lurker,"OW_PATH_OW_PATH_WARAN05_SPAWN01");
 //		Wld_InsertNpc(Shadowbeast,"FP_ROAM_OW_SCAVENGER_LONE_WALD_OC3");
+		Wld_InsertNpc(Shadowbeast,"SPAWN_OW_WOLF2_WALD_OC2");
 		Wld_InsertNpc(Warg,"SPAWN_OW_WOLF2_WALD_OC3");
 		Wld_InsertNpc(Warg,"SPAWN_OW_WOLF2_WALD_OC3");
 		Wld_InsertNpc(OrcWarrior_Roam,"SPAWN_WALD_OC_BLOODFLY01");

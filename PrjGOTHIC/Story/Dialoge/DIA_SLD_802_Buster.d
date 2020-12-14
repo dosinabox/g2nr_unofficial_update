@@ -649,13 +649,22 @@ func void DIA_Buster_SHADOWBEASTS_wer()
 	AI_Output(self,other,"DIA_Buster_SHADOWBEASTS_wer_13_02");	//Либо ты будешь иметь дело со МНОЙ, или можешь забыть об этом, понятно?
 };
 
+var int BusterTrophyCounter;
+
 func void B_BustersDealerIsDead()
 {
 	AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_13_00");	//Мой торговец из города передал прощальный привет.
 	AI_Output(other,self,"DIA_Buster_BringTrophyShadowbeast_15_01");	//Что это значит?
 	AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_13_02");	//Он мертв. Можешь оставить эти рога себе. Теперь я все равно не знаю, что с ними делать.
 	MIS_Buster_KillShadowbeasts_DJG = LOG_SUCCESS;
-	B_GivePlayerXP(XP_AmbientKap5);
+	if((BusterTrophyCounter > 0) || Npc_HasItems(other,ItAt_ShadowHorn))
+	{
+		B_GivePlayerXP(XP_AmbientKap5);
+	}
+	else
+	{
+		B_CheckLog();
+	};
 };
 
 var int Buster_Teacher;
@@ -739,8 +748,6 @@ func void DIA_Buster_TeachTrophyShadowbeast_back()
 	Info_ClearChoices(DIA_Buster_TeachTrophyShadowbeast);
 };
 
-var int BusterTrophyCounter;
-
 instance DIA_Buster_BringTrophyShadowbeast(C_Info)
 {
 	npc = SLD_802_Buster;
@@ -771,9 +778,9 @@ func int DIA_Buster_BringTrophyShadowbeast_Condition()
 func void DIA_Buster_BringTrophyShadowbeast_Info()
 {
 	var int BusterTrophyCount;
-	var int BusterTrophyOffer;
 	var int BusterTrophyGold;
-	if(Npc_HasItems(other,ItAt_ShadowHorn) > 1)
+	BusterTrophyCount = Npc_HasItems(other,ItAt_ShadowHorn);
+	if(BusterTrophyCount > 1)
 	{
 		AI_Output(other,self,"DIA_Buster_BringTrophyShadowbeast_15_06");	//Я принес рога мракорисов для твоего торговца.
 	}
@@ -788,17 +795,56 @@ func void DIA_Buster_BringTrophyShadowbeast_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_13_07");	//Отлично. Давай сюда. И принеси еще, если сможешь. Кто знает, как долго торговцу будут интересны эти рога.
-		BusterTrophyCount = Npc_HasItems(other,ItAt_ShadowHorn);
-		BusterTrophyCounter += BusterTrophyCount;
 		B_GiveInvItems(other,self,ItAt_ShadowHorn,BusterTrophyCount);
 		Npc_RemoveInvItems(self,ItAt_ShadowHorn,BusterTrophyCount);
-		B_GivePlayerXP(BusterTrophyCount * XP_BringBusterTrophy);
 		AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_13_08");	//Вот твоя доля.
-		BusterTrophyOffer = Value_ShadowHorn + Buster_Bonus;
-		BusterTrophyGold = BusterTrophyCount * BusterTrophyOffer;
+		BusterTrophyGold = BusterTrophyCount * (Value_ShadowHorn + Buster_Bonus);
 		CreateInvItems(self,ItMi_Gold,BusterTrophyGold);
 		B_GiveInvItems(self,other,ItMi_Gold,BusterTrophyGold);
+		B_GivePlayerXP(BusterTrophyCount * XP_BringBusterTrophy);
+		BusterTrophyCounter += BusterTrophyCount;
 	};
+};
+
+
+func int CountAvailableShadowbeastsHorns()
+{
+	var int AvailableShadowbeastsHorns;
+	AvailableShadowbeastsHorns = 4;
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == TRUE)
+	{
+		if(Wasteland_Seeded == TRUE)
+		{
+			AvailableShadowbeastsHorns += 1;
+		};
+		AvailableShadowbeastsHorns += 17;
+		AvailableShadowbeastsHorns -= ShadowbeastHornsWasted;
+	};
+	return AvailableShadowbeastsHorns;
+};
+
+instance DIA_Buster_DealerIsDead(C_Info)
+{
+	npc = SLD_802_Buster;
+	nr = 5;
+	condition = DIA_Buster_DealerIsDead_Condition;
+	information = DIA_Buster_DealerIsDead_Info;
+	important = TRUE;
+};
+
+
+func int DIA_Buster_DealerIsDead_Condition()
+{
+	if((MIS_Buster_KillShadowbeasts_DJG == LOG_Running) && (Kapitel >= 5) && (BusterTrophyCounter >= CountAvailableShadowbeastsHorns()))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Buster_DealerIsDead_Info()
+{
+	B_BustersDealerIsDead();
+	AI_StopProcessInfos(self);
 };
 
 
