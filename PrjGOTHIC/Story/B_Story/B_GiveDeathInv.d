@@ -585,10 +585,6 @@ func void B_GiveDeathInv(var C_Npc slf)
 			B_CheckLog();
 		};
 	};
-	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE) && (slf.aivar[AIV_MM_REAL_ID] == ID_SHADOWBEAST))
-	{
-		ShadowbeastHornsWasted += 1;
-	};
 	slf.aivar[AIV_DeathInvGiven] = TRUE;
 };
 

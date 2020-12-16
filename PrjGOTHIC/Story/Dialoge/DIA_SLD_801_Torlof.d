@@ -1027,7 +1027,6 @@ instance DIA_Torlof_WOISTSYLVIO(C_Info)
 
 func int DIA_Torlof_WOISTSYLVIO_Condition()
 {
-//	if((MIS_ReadyforChapter4 == TRUE) || (Kapitel == 4))
 	if(MIS_ReadyforChapter4 == TRUE)
 	{
 		return TRUE;

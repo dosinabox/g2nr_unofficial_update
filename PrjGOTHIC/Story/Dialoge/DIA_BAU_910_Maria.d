@@ -331,12 +331,12 @@ func void DIA_Maria_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Maria_PERM_17_01");	//Мимо прошли паладины.
 		AI_Output(self,other,"DIA_Maria_PERM_17_02");	//Сначала мы подумали, что они собираются напасть на нашу ферму, но они прошли мимо, в Долину Рудников.
-	};
-	if(Kapitel == 3)
+	}
+	else if(Kapitel == 3)
 	{
 		AI_Output(self,other,"DIA_Maria_PERM_17_03");	//Василий поймал вора несколько дней назад. А кроме этого, все спокойно.
-	};
-	if(Kapitel >= 4)
+	}
+	else if(Kapitel >= 4)
 	{
 		AI_Output(self,other,"DIA_Maria_PERM_17_04");	//С тех пор, как часть наемников ушла отсюда, стало значительно спокойнее.
 	};

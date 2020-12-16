@@ -57,7 +57,6 @@ instance OrcShaman_Hosh_Pak(Mst_Default_OrcShaman)
 	attribute[ATR_STRENGTH] = 105;
 	attribute[ATR_HITPOINTS_MAX] = 400;
 	attribute[ATR_HITPOINTS] = 400;
-//	B_SetVisuals_OrcShaman();
 //	EquipItem(self,ItMw_2H_OrcAxe_01);
 	B_SetVisuals_Hosh_Pak();
 	EquipItem(self,ItMw_2H_OrcMace_01);
@@ -72,7 +71,6 @@ instance OrcShaman_Sit_CanyonLibraryKey(Mst_Default_OrcShaman)
 	attribute[ATR_STRENGTH] = 105;
 	attribute[ATR_HITPOINTS_MAX] = 400;
 	attribute[ATR_HITPOINTS] = 400;
-//	B_SetVisuals_OrcShaman();
 //	EquipItem(self,ItMw_2H_OrcAxe_01);
 	B_SetVisuals_Hosh_Pak();
 	EquipItem(self,ItMw_2H_OrcAxe_03);

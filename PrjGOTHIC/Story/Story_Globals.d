@@ -1270,7 +1270,6 @@ var int OrkElite_AntiPaladin_Protection;
 var int OriginalAntipaladins;
 var int LostInnosStatueInMonastery;
 var int TrollBlackFurWasted;
-var int ShadowbeastHornsWasted;
 var int Stats_Killed_Draconian;
 var int Stats_Killed_Dementor;
 var int Stats_Killed_OrcElite;
