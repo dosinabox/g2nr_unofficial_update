@@ -5,6 +5,10 @@ func void enter_oldworld_firsttime_trigger()
 {
 	if(Enter_OldWorld_FirstTime_Trigger_OneTime == FALSE)
 	{
+		if(C_WorldIsFixed(OLDWORLD_ZEN))
+		{
+			Wld_InsertItem(ItRu_TeleportPassOW,"OW_ITEM_ICEREGION_RUNE");
+		};
 		B_KillNpc(PAL_2004_Bruder);
 		B_KillNpc(VLK_4150_Leiche);
 		B_KillNpc(VLK_4151_Leiche);

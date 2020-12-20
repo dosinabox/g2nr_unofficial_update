@@ -1,4 +1,6 @@
 
+var int TotalTheftGold;
+
 func int C_Beklauen(var int TheftDex,var int TheftGold)
 {
 	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (other.attribute[ATR_DEXTERITY] >= (TheftDex - Theftdiff)) && (NpcObsessedByDMT == FALSE))
@@ -25,6 +27,7 @@ func void B_Beklauen()
 	if(other.attribute[ATR_DEXTERITY] >= TheftDexGlob)
 	{
 		B_GiveInvItems(self,other,ItMi_Gold,TheftGoldGlob);
+		TotalTheftGold += TheftGoldGlob;
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
 		Snd_Play("Geldbeutel");

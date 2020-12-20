@@ -244,7 +244,7 @@ func void DIA_Opolos_rezept_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Opolos_rezept_15_06");	//Вернемся к этому позже.
+		DIA_Common_WeWillGetToThatLater();
 	};
 };
 

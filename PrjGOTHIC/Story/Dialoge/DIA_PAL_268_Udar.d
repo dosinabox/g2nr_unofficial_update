@@ -350,7 +350,7 @@ instance DIA_Udar_SENGRATHGEFUNDEN(C_Info)
 
 func int DIA_Udar_SENGRATHGEFUNDEN_Condition()
 {
-	if((Kapitel >= 4) && Npc_KnowsInfo(other,DIA_Udar_Sengrath) && Npc_HasItems(other,ItRw_SengrathsArmbrust_MIS))
+	if((Kapitel >= 4) && Npc_KnowsInfo(other,DIA_Udar_Sengrath) && !Npc_HasItems(DeadSengrath,ItRw_SengrathsArmbrust_MIS))
 	{
 		return TRUE;
 	};
@@ -360,8 +360,15 @@ func void DIA_Udar_SENGRATHGEFUNDEN_Info()
 {
 	AI_Output(other,self,"DIA_Udar_SENGRATHGEFUNDEN_15_00");	//Я нашел Сенграта.
 	AI_Output(self,other,"DIA_Udar_SENGRATHGEFUNDEN_09_01");	//Да? И где же он?
-	AI_Output(other,self,"DIA_Udar_SENGRATHGEFUNDEN_15_02");	//Он мертв. Вот его арбалет. Он был при нем.
-	AI_Output(self,other,"DIA_Udar_SENGRATHGEFUNDEN_09_03");	//Должно быть, он смог вернуть свой арбалет, но орки все же прикончили его.
+	if(Npc_HasItems(other,ItRw_SengrathsArmbrust_MIS))
+	{
+		AI_Output(other,self,"DIA_Udar_SENGRATHGEFUNDEN_15_02");	//Он мертв. Вот его арбалет. Он был при нем.
+		AI_Output(self,other,"DIA_Udar_SENGRATHGEFUNDEN_09_03");	//Должно быть, он смог вернуть свой арбалет, но орки все же прикончили его.
+	}
+	else
+	{
+		DIA_Common_HeIsDead();
+	};
 	AI_Output(self,other,"DIA_Udar_SENGRATHGEFUNDEN_09_04");	//Чертов дурак. Я знал, что так будет. Мы все тут погибнем.
 	TOPIC_END_Sengrath_Missing = TRUE;
 	B_GivePlayerXP(XP_SengrathFound);

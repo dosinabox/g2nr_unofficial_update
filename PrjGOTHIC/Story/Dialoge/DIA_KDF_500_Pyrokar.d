@@ -287,7 +287,7 @@ func void DIA_Pyrokar_TEST_Info()
 		AI_Teleport(Ulf,"NW_TROLLAREA_PATH_42");
 		B_StartOtherRoutine(Ulf,"SUCHE");
 	};
-	MIS_SCHNITZELJAGD = LOG_Running;
+	MIS_Schnitzeljagd = LOG_Running;
 	AI_StopProcessInfos(self);
 };
 
@@ -305,8 +305,8 @@ instance DIA_Pyrokar_RUNNING(C_Info)
 
 func int DIA_Pyrokar_RUNNING_Condition()
 {
-//	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
-	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV))
+//	if((MIS_Schnitzeljagd == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
+	if((MIS_Schnitzeljagd == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV))
 	{
 		if(C_WorldIsFixed(NEWWORLD_ZEN))
 		{
@@ -355,8 +355,8 @@ instance DIA_Pyrokar_SUCCESS(C_Info)
 
 func int DIA_Pyrokar_SUCCESS_Condition()
 {
-//	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV) && !Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && (Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt)))
-	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV))
+//	if((MIS_Schnitzeljagd == LOG_Running) && (hero.guild == GIL_NOV) && !Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && (Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt)))
+	if((MIS_Schnitzeljagd == LOG_Running) && (hero.guild == GIL_NOV))
 	{
 		if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
 		{
@@ -384,7 +384,7 @@ func void DIA_Pyrokar_SUCCESS_Info()
 	AI_Output(self,other,"DIA_Pyrokar_SUCCESS_11_03");	//А другие послушники? Что насчет Агона? Они не опередили тебя?
 	AI_Output(other,self,"DIA_Pyrokar_SUCCESS_15_04");	//Они не смогли. Я думаю, им было не суждено пройти это испытание.
 	AI_Output(self,other,"DIA_Pyrokar_SUCCESS_11_05");	//Что ж, в таком случае мы объявляем, что ты прошел это испытание. А этот рунный камень теперь твой.
-	MIS_SCHNITZELJAGD = LOG_SUCCESS;
+	MIS_Schnitzeljagd = LOG_SUCCESS;
 	B_GivePlayerXP(XP_SCHNITZELJAGD);
 };
 
@@ -402,7 +402,7 @@ instance DIA_Pyrokar_Todo(C_Info)
 
 func int DIA_Pyrokar_Todo_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_SUCCESS) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && ((MIS_RUNE != LOG_SUCCESS) || (MIS_GOLEM != LOG_SUCCESS)))
+	if((MIS_Schnitzeljagd == LOG_SUCCESS) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && ((MIS_Rune != LOG_SUCCESS) || (MIS_Golem != LOG_SUCCESS)))
 	{
 		return TRUE;
 	};
@@ -412,11 +412,11 @@ func void DIA_Pyrokar_Todo_Info()
 {
 	AI_Output(self,other,"DIA_Pyrokar_Todo_11_00");	//Ты прошел испытание, которому подверг тебя я.
 	AI_Output(self,other,"DIA_Pyrokar_Todo_11_01");	//Но...
-	if(MIS_RUNE != LOG_SUCCESS)
+	if(MIS_Rune != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_Todo_11_02");	//... тебе еще необходимо пройти испытание Ультара.
 	};
-	if(MIS_GOLEM != LOG_SUCCESS)
+	if(MIS_Golem != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_Todo_11_03");	//... тебе еще необходимо выполнить задание Серпентеса.
 	};
@@ -437,7 +437,7 @@ instance DIA_Pyrokar_MAGICAN(C_Info)
 
 func int DIA_Pyrokar_MAGICAN_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_SUCCESS) && (MIS_RUNE == LOG_SUCCESS) && (MIS_GOLEM == LOG_SUCCESS) && (other.guild == GIL_NOV))
+	if((MIS_Schnitzeljagd == LOG_SUCCESS) && (MIS_Rune == LOG_SUCCESS) && (MIS_Golem == LOG_SUCCESS) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};

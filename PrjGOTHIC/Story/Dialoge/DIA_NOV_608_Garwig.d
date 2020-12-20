@@ -296,7 +296,7 @@ func void DIA_Garwig_THIEF_Info()
 	if((Hammer_Taken == TRUE) || Hlp_IsItem(EquipWeap,Holy_Hammer_MIS))
 	{
 		AI_Output(self,other,"DIA_Garwig_THIEF_06_00");	//(разочаровано) Вор! Ты опозорил не только себя и меня, но и весь монастырь!
-		if((MIS_GOLEM != LOG_SUCCESS) && Npc_HasItems(other,Holy_Hammer_MIS))
+		if((MIS_Golem != LOG_SUCCESS) && Npc_HasItems(other,Holy_Hammer_MIS))
 		{
 			AI_Output(self,other,"DIA_Garwig_THIEF_06_01");	//Ты поплатишься за это святотатство. И, заклинаю Инносом - ВЕРНИ МНЕ ЭТОТ МОЛОТ!
 		}

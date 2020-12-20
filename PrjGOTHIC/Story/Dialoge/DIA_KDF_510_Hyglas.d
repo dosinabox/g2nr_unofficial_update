@@ -127,7 +127,7 @@ instance DIA_Hyglas_CONTEST(C_Info)
 
 func int DIA_Hyglas_CONTEST_Condition()
 {
-	if((MIS_RUNE == LOG_Running) && Npc_KnowsInfo(other,DIA_Hyglas_JOB))
+	if((MIS_Rune == LOG_Running) && Npc_KnowsInfo(other,DIA_Hyglas_JOB))
 	{
 		return TRUE;
 	};
@@ -242,7 +242,7 @@ instance DIA_Hyglas_BLANK_RUNE(C_Info)
 
 func int DIA_Hyglas_BLANK_RUNE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (MIS_RUNE == LOG_Running) && !Npc_HasItems(other,ItMi_RuneBlank) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (MIS_Rune == LOG_Running) && !Npc_HasItems(other,ItMi_RuneBlank) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
 	{
 		if(SC_KnowsBlankRuneForFirebolt == TRUE)
 		{
@@ -271,7 +271,7 @@ instance DIA_Hyglas_GOTRUNE(C_Info)
 
 func int DIA_Hyglas_GOTRUNE_Condition()
 {
-	if((MIS_RUNE == LOG_Running) && Npc_HasItems(other,ItRu_FireBolt) && !Npc_KnowsInfo(other,DIA_Ulthar_SUCCESS))
+	if((MIS_Rune == LOG_Running) && Npc_HasItems(other,ItRu_FireBolt) && !Npc_KnowsInfo(other,DIA_Ulthar_SUCCESS))
 	{
 		return TRUE;
 	};

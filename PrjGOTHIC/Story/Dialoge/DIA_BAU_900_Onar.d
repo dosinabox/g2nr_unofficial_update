@@ -312,7 +312,7 @@ func void DIA_Onar_HowMuch_Info()
 {
 	AI_Output(other,self,"DIA_Onar_HowMuch_15_00");	//Так что насчет моего жалования?
 	AI_Output(self,other,"DIA_Onar_HowMuch_14_01");	//Так, посмотрим...
-	SOLD = 50;
+	Onar_SOLD_Gold = 50;
 	if(Onar_WegenSldWerden == TRUE)
 	{
 		AI_Output(self,other,"DIA_Onar_HowMuch_14_02");	//Я не самого лучшего мнения о тебе.
@@ -320,21 +320,21 @@ func void DIA_Onar_HowMuch_Info()
 	if(Onar_WegenSekob == TRUE)
 	{
 		AI_Output(self,other,"DIA_Onar_HowMuch_14_03");	//Ты не отличаешься особой сообразительностью. Это очевидно после твоих похождений к Секобу.
-		SOLD -= 10;
+		Onar_SOLD_Gold -= 10;
 	};
 	if((ABSOLUTIONLEVEL_Farm > 1) || ((B_GetGreatestPetzCrime(self) > CRIME_NONE) && (ABSOLUTIONLEVEL_Farm > 0)))
 	{
 		AI_Output(self,other,"DIA_Onar_HowMuch_14_04");	//Ты уже неоднократно создавал проблемы здесь, на ферме.
-		SOLD -= 10;
+		Onar_SOLD_Gold -= 10;
 	};
 	if(Npc_KnowsInfo(other,DIA_Onar_WegenPepe) && ((Onar_WegenSekob == TRUE) || (Onar_WegenSldWerden == TRUE)))
 	{
 		AI_Output(self,other,"DIA_Onar_HowMuch_14_05");	//И ты постоянно допекаешь меня всяким вздором.
-		SOLD -= 10;
+		Onar_SOLD_Gold -= 10;
 	};
 	AI_Output(self,other,"DIA_Onar_HowMuch_14_06");	//Дай мне подумать...
-	B_Say_Gold(self,other,SOLD);
-	if(((Onar_WegenSldWerden == TRUE) && (SOLD <= 40)) || (SOLD <= 20))
+	B_Say_Gold(self,other,Onar_SOLD_Gold);
+	if(Onar_SOLD_Gold <= 30)
 	{
 		AI_Output(self,other,"DIA_Onar_HowMuch_14_06_add");	//Да и этого для тебя много.
 	};
@@ -357,7 +357,7 @@ func void DIA_Onar_HowMuch_PerDay()
 func void DIA_Onar_HowMuch_More()
 {
 	AI_Output(other,self,"DIA_Onar_HowMuch_More_15_00");	//Здесь не все...
-	if(SOLD >= 50)
+	if(Onar_SOLD_Gold >= 50)
 	{
 		AI_Output(self,other,"DIA_Onar_HowMuch_More_14_01_add");	//Кем ты себя возомнил?
 	}
@@ -448,8 +448,8 @@ func void DIA_Onar_CollectGold_Info()
 			AI_Output(self,other,"DIA_Onar_CollectGold_14_13");	//(сокрушенно) Ох, ладно. Вот твое жалование.
 			AI_Output(self,other,"DIA_Onar_HowMuch_PerDay_14_02");	//Давай, подойди сюда и забери свои деньги.
 			AI_Output(self,other,"DIA_Onar_HowMuch_PerDay_14_03");	//Я не собираюсь подносить их тебе.
-			B_GiveInvItems(self,other,ItMi_Gold,SOLD);
-			B_Say_Gold(self,other,SOLD);
+			B_GiveInvItems(self,other,ItMi_Gold,Onar_SOLD_Gold);
+			B_Say_Gold(self,other,Onar_SOLD_Gold);
 		}
 		else
 		{
@@ -491,7 +491,7 @@ func void DIA_Onar_MariaGold_Info()
 	AI_Output(other,self,"DIA_Onar_MariaGold_15_05");	//Нет.
 	AI_Output(self,other,"DIA_Onar_MariaGold_14_06");	//Хорошо, начиная со следующего жалования, ты будешь получать на 10 монет больше.
 	AI_Output(self,other,"DIA_Onar_MariaGold_14_07");	//Но ни монетой больше, понятно?
-	SOLD += 10;
+	Onar_SOLD_Gold += 10;
 };
 
 

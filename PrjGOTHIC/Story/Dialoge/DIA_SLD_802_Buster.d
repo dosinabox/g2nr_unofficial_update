@@ -681,14 +681,7 @@ func void DIA_Buster_TeachTrophyShadowbeast_Info()
 		Buster_TrophyTeacher = TRUE;
 	};
 	Info_ClearChoices(DIA_Buster_TeachTrophyShadowbeast);
-	if(MIS_Buster_KillShadowbeasts_DJG == LOG_Running)
-	{
-		Info_AddChoice(DIA_Buster_TeachTrophyShadowbeast,"Я вернусь к тебе с рогами.",DIA_Buster_TeachTrophyShadowbeast_back);
-	}
-	else
-	{
-		Info_AddChoice(DIA_Buster_TeachTrophyShadowbeast,"Может быть, позже...",DIA_Buster_TeachTrophyShadowbeast_back);
-	};
+	Info_AddChoice(DIA_Buster_TeachTrophyShadowbeast,"Вернемся к этому позже.",DIA_Buster_TeachTrophyShadowbeast_back);
 	Info_AddChoice(DIA_Buster_TeachTrophyShadowbeast,B_BuildLearnString("Научи меня.",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ShadowHorn)),DIA_Buster_TeachTrophyShadowbeast_teach);
 };
 
@@ -704,6 +697,7 @@ func void DIA_Buster_TeachTrophyShadowbeast_teach()
 		if(MIS_Buster_KillShadowbeasts_DJG == LOG_Running)
 		{
 			AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_teach_13_04");	//И приносишь его мне. Я думаю, у тебя получится.
+			AI_Output(other,self,"DIA_Buster_BringTrophyShadowbeast_back_15_00");	//Я вернусь к тебе с рогами.
 		};
 	};
 	Info_ClearChoices(DIA_Buster_TeachTrophyShadowbeast);
@@ -711,14 +705,10 @@ func void DIA_Buster_TeachTrophyShadowbeast_teach()
 
 func void DIA_Buster_TeachTrophyShadowbeast_back()
 {
+	DIA_Common_WeWillGetToThatLater();
 	if(MIS_Buster_KillShadowbeasts_DJG == LOG_Running)
 	{
-		AI_Output(other,self,"DIA_Buster_BringTrophyShadowbeast_back_15_00");	//Я вернусь к тебе с рогами.
 		AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_back_13_01");	//Надеюсь.
-	}
-	else
-	{
-		DIA_Common_MaybeLater();
 	};
 	Info_ClearChoices(DIA_Buster_TeachTrophyShadowbeast);
 };

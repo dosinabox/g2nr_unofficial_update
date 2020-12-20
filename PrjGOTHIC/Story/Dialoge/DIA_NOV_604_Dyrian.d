@@ -34,7 +34,7 @@ instance DIA_Dyrian_Hello(C_Info)
 
 func int DIA_Dyrian_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_Rune == FALSE) && (MIS_Schnitzeljagd == FALSE) && (MIS_Golem == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -108,7 +108,7 @@ instance DIA_Dyrian_Job(C_Info)
 
 func int DIA_Dyrian_Job_Condition()
 {
-	if((Kapitel == 1) && Npc_KnowsInfo(hero,DIA_Dyrian_Hello) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE))
+	if((Kapitel == 1) && Npc_KnowsInfo(hero,DIA_Dyrian_Hello) && (MIS_Rune == FALSE) && (MIS_Schnitzeljagd == FALSE) && (MIS_Golem == FALSE))
 	{
 		return TRUE;
 	};
@@ -135,7 +135,7 @@ instance DIA_Dyrian_WhatDone(C_Info)
 
 func int DIA_Dyrian_WhatDone_Condition()
 {
-	if((Kapitel == 1) && Npc_KnowsInfo(other,DIA_Dyrian_Job) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE))
+	if((Kapitel == 1) && Npc_KnowsInfo(other,DIA_Dyrian_Job) && (MIS_Rune == FALSE) && (MIS_Schnitzeljagd == FALSE) && (MIS_Golem == FALSE))
 	{
 		return TRUE;
 	};
@@ -164,7 +164,7 @@ instance DIA_Dyrian_CanHelp(C_Info)
 
 func int DIA_Dyrian_CanHelp_Condition()
 {
-	if((Kapitel == 1) && Npc_KnowsInfo(hero,DIA_Dyrian_Job) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE))
+	if((Kapitel == 1) && Npc_KnowsInfo(hero,DIA_Dyrian_Job) && (MIS_Rune == FALSE) && (MIS_Schnitzeljagd == FALSE) && (MIS_Golem == FALSE))
 	{
 		return TRUE;
 	};
@@ -190,7 +190,7 @@ instance DIA_Dyrian_Scroll(C_Info)
 
 func int DIA_Dyrian_Scroll_Condition()
 {
-	if((Kapitel == 1) && (MIS_SCHNITZELJAGD == LOG_Running) || (MIS_RUNE == LOG_Running) || (MIS_GOLEM == LOG_Running))
+	if((Kapitel == 1) && (MIS_Schnitzeljagd == LOG_Running) || (MIS_Rune == LOG_Running) || (MIS_Golem == LOG_Running))
 	{
 		return TRUE;
 	};

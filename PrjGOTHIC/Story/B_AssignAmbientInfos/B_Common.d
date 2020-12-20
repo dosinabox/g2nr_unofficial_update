@@ -114,6 +114,11 @@ func void DIA_Common_MaybeLater()
 	AI_Output(other,self,"DIA_Thorben_PleaseTeach_Later_15_00");	//Может быть, позже...
 };
 
+func void DIA_Common_WeWillGetToThatLater()
+{
+	AI_Output(other,self,"DIA_Opolos_rezept_15_06");	//Вернемся к этому позже.
+};
+
 func void DIA_Common_AboutThatRecipe()
 {
 	AI_Output(other,self,"DIA_Neoras_Rezept_15_00");	//Насчет рецепта...

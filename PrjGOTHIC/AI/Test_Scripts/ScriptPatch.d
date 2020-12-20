@@ -52,6 +52,10 @@ func void Use_StatsBook()
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(OrkRingCounter)," колец Хагену"));
 	};
 	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,ConcatStrings("Кражи (",ConcatStrings(IntToString(TotalThefts),"):")));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalTheftXP)," опыта получено"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalTheftGold)," золотых украдено"));
+	Doc_PrintLine(nDocID,0,"");
 	if(Player_IsApprentice == APP_Constantino)
 	{
 		Doc_PrintLine(nDocID,0,"Ремесло (Константино):");
@@ -96,7 +100,6 @@ func void Use_StatsBook()
 		Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(BeliarWeapCurrentLvL)," уровень (уничтожен)"));
 	};
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalThefts)," успешных краж"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Shell_Opener)," открытых моллюсков"));
 	if(HardModeEnabled == TRUE)
 	{

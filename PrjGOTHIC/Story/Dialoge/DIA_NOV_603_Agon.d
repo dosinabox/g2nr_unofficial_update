@@ -34,7 +34,7 @@ instance DIA_Agon_Hello(C_Info)
 
 func int DIA_Agon_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_SCHNITZELJAGD != LOG_Running) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_Schnitzeljagd != LOG_Running) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -110,7 +110,7 @@ instance DIA_Agon_New(C_Info)
 
 func int DIA_Agon_New_Condition()
 {
-	if((MIS_SCHNITZELJAGD == FALSE) && (other.guild == GIL_NOV))
+	if((MIS_Schnitzeljagd == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -137,7 +137,7 @@ instance DIA_Agon_YouAndBabo(C_Info)
 
 func int DIA_Agon_YouAndBabo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Opolos_Monastery) && (MIS_SCHNITZELJAGD == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Opolos_Monastery) && (MIS_Schnitzeljagd == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -191,7 +191,7 @@ instance DIA_Agon_GetHerb(C_Info)
 
 func int DIA_Agon_GetHerb_Condition()
 {
-	if(MIS_SCHNITZELJAGD == FALSE)
+	if(MIS_Schnitzeljagd == FALSE)
 	{
 		if(Npc_GetDistToWP(self,"NW_MONASTERY_HERB_05") > 600)
 		{
@@ -232,7 +232,7 @@ instance DIA_Agon_GolemDead(C_Info)
 
 func int DIA_Agon_GolemDead_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsDead(Magic_Golem))
+	if((MIS_Schnitzeljagd == LOG_Running) && Npc_IsDead(Magic_Golem))
 	{
 		return TRUE;
 	};
@@ -308,7 +308,7 @@ instance DIA_Agon_GolemLives(C_Info)
 
 func int DIA_Agon_GolemLives_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_Running) && !Npc_IsDead(Magic_Golem))
+	if((MIS_Schnitzeljagd == LOG_Running) && !Npc_IsDead(Magic_Golem))
 	{
 		return TRUE;
 	};

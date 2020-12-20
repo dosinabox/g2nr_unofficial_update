@@ -203,27 +203,27 @@ func void DIA_Maria_Belohnung_Info()
 		AI_Output(self,other,"DIA_Maria_Belohnung_17_03");	//Сколько мой муж платит тебе?
 		if(Npc_KnowsInfo(other,DIA_Onar_HowMuch))
 		{
-			if(SOLD == 50)
+			if(Onar_SOLD_Gold == 50)
 			{
 				AI_Output(other,self,"DIA_Lehmar_GELDLEIHEN_50_15_00");	//50 золотых.
 			}
-			else if(SOLD == 40)
+			else if(Onar_SOLD_Gold == 40)
 			{
 				AI_Output(other,self,"DIA_Maria_Belohnung_15_03_40_add");	//40 монет.
 			}
-			else if(SOLD == 30)
+			else if(Onar_SOLD_Gold == 30)
 			{
 				AI_Output(other,self,"DIA_Maria_Belohnung_15_03_30_add");	//30 золотых.
 			}
-			else if(SOLD == 20)
+			else if(Onar_SOLD_Gold == 20)
 			{
 				AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_20_15_00");	//20.
 			}
-			else if(SOLD == 10)
+			else if(Onar_SOLD_Gold == 10)
 			{
 				AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_10_15_00");	//10 золотых.
 			}
-			else if(SOLD < 10)
+			else if(Onar_SOLD_Gold < 10)
 			{
 				AI_Output(other,self,"DIA_Moe_Hallo_Zahlen_15_04");	//... но у меня нет даже и 10 монет.
 			};

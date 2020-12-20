@@ -244,6 +244,7 @@ var C_Npc Ferros;
 var C_Npc Jan;
 var C_Npc Hosh_Pak;
 var C_Npc Sengrath;
+var C_Npc DeadSengrath;
 var C_Npc HaupttorWache_4143;
 var C_Npc Engrom;
 var C_Npc DMT_1202;
@@ -578,6 +579,7 @@ func void B_InitNpcGlobals()
 	Jan = Hlp_GetNpc(DJG_714_Jan);
 	Hosh_Pak = Hlp_GetNpc(OrcShaman_Hosh_Pak);
 	Sengrath = Hlp_GetNpc(PAL_267_Sengrath);
+	DeadSengrath = Hlp_GetNpc(PAL_275_DeadSengrath);
 	HaupttorWache_4143 = Hlp_GetNpc(VLK_4143_HaupttorWache);
 	Engrom = Hlp_GetNpc(VLK_4131_Engrom);
 	DMT_1202 = Hlp_GetNpc(DMT_1202_Dementor);

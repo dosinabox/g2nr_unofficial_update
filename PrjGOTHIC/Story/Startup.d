@@ -1563,7 +1563,8 @@ func void Startup_Surface()
 	Wld_InsertNpc(Bloodfly,"SPAWN_OW_MOLERAT2_WALD_OC1");
 	Wld_InsertNpc(Lurker,"SPAWN_OW_LURKER_RIVER2");
 	Wld_InsertNpc(Bloodfly,"SPAWN_OW_LURKER_RIVER2");
-	Wld_InsertNpc(Bloodfly,"SPAWN_OW_SCAVENGER_OCWOODEND2");
+//	Wld_InsertNpc(Bloodfly,"SPAWN_OW_SCAVENGER_OCWOODEND2");
+	Wld_InsertNpc(Bloodfly,"SPAWN_OW_MOLERATS_WOOD_OM");
 	Wld_InsertNpc(Lurker,"SPAWN_OW_GOBBO_WATERFALLCAVE_2");
 	Wld_InsertNpc(Lurker,"SPAWN_OW_GOBBO_WATERFALLCAVE_2");
 	Wld_InsertNpc(Lurker,"SPAWN_OW_GOBBO_WATERFALLCAVE_2");

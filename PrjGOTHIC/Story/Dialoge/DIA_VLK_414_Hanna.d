@@ -544,10 +544,16 @@ func int DIA_Hanna_Blubb_Condition()
 func void DIA_Hanna_Blubb_Info()
 {
 	AI_Output(other,self,"DIA_Hanna_Add_15_37");	//В логове все в порядке?
-	AI_Output(self,other,"DIA_Hanna_Add_17_39");	//Я давно уже не видела их.
-	AI_Output(self,other,"DIA_Hanna_Add_17_40");	//Я, пожалуй, схожу туда, когда у меня будет время и проверю, как у них дела.
-	AI_Output(self,other,"DIA_Hanna_Add_17_38");	//Да. Но тебе лучше не говорить об этом...
-	B_Hanna_ThievesCheck();
+	if(!Npc_IsDead(Cassia) && !Npc_IsDead(Jesper) && !Npc_IsDead(Ramirez))
+	{
+		AI_Output(self,other,"DIA_Hanna_Add_17_38");	//Да. Но тебе лучше не говорить об этом...
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Hanna_Add_17_39");	//Я давно уже не видела их.
+		AI_Output(self,other,"DIA_Hanna_Add_17_40");	//Я, пожалуй, схожу туда, когда у меня будет время и проверю, как у них дела.
+		B_Hanna_ThievesCheck();
+	};
 };
 
 instance DIA_Hanna_Blubb2(C_Info)
