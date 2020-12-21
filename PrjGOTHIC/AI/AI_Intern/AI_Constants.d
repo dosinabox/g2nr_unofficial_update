@@ -92,6 +92,7 @@ const int AIV_GetBonusFood = 89;
 const int AIV_CommentedPlayerCrime = 90;
 const int AIV_ReadyForPainfulDeath = 91;
 const int REAL_LEVEL = 92;
+const int AIV_SchafswurstGiven = 93;
 
 const int AF_NONE = 0;
 const int AF_RUNNING = 1;

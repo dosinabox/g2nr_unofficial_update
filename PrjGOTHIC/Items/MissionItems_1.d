@@ -1270,7 +1270,6 @@ instance ItRw_DragomirsArmbrust_MIS(C_Item)
 	munition = ItRw_Bolt;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_LeichteArmbrust;
-//	visual = "ItRw_Crossbow_L_02.mms";
 	visual = "ItRw_Crossbow_Mission_01.mms";
 	description = name;
 	text[2] = NAME_Damage;
