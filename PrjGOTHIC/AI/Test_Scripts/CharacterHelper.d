@@ -220,60 +220,6 @@ func void B_SetPaladinEquipment()
 	CreateInvItems(hero,ItRu_PalTeleportSecret,1);
 };
 
-
-/*instance CH_kriegen(C_Info)
-{
-	npc = ch;
-	nr = 999;
-	condition = CH_kriegen_Condition;
-	information = CH_kriegen_Info;
-	permanent = TRUE;
-	description = "Отдать кусок руды";
-};
-
-
-func int CH_kriegen_Condition()
-{
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
-	{
-		return TRUE;
-	};
-};
-
-func void CH_kriegen_Info()
-{
-	B_GiveInvItems(other,self,ItMi_Nugget,1);
-};
-
-
-instance CH_Geben(C_Info)
-{
-	npc = ch;
-	nr = 999;
-	condition = CH_Geben_Condition;
-	information = CH_Geben_Info;
-	permanent = TRUE;
-	description = "Покажи-ка вещички";
-};
-
-
-func int CH_Geben_Condition()
-{
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
-	{
-		return TRUE;
-	};
-};
-
-func void CH_Geben_Info()
-{
-	AI_PrintScreen("Мед отдан",-1,34,FONT_ScreenSmall,2);
-	AI_PrintScreen("Хлеб отдан",-1,37,FONT_ScreenSmall,2);
-	AI_PrintScreen("Вино отдано",-1,40,FONT_ScreenSmall,2);
-	AI_PrintScreen("Колбаса отдана",-1,43,FONT_ScreenSmall,2);
-};*/
-
-
 instance CH_Exit(C_Info)
 {
 	npc = ch;
@@ -287,7 +233,7 @@ instance CH_Exit(C_Info)
 
 func int CH_Exit_Condition()
 {
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -312,7 +258,7 @@ instance CH_RESET(C_Info)
 
 func int CH_RESET_Condition()
 {
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -528,6 +474,57 @@ func void CH_RESET_Ok()
 //	Npc_SetTalentSkill(hero,NPC_TALENT_E,0);
 };
 
+var int GuildStart;
+
+instance CH_Guild_Start(C_Info)
+{
+	npc = ch;
+	condition = CH_Guild_Start_Condition;
+	information = CH_Guild_Start_Info;
+	description = "Гильдия и ремесло";
+	permanent = TRUE;
+};
+
+
+func int CH_Guild_Start_Condition()
+{
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void CH_Guild_Start_Info()
+{
+	GuildStart = TRUE;
+};
+
+
+instance CH_Guild_Stopper(C_Info)
+{
+	npc = ch;
+	nr = 99;
+	condition = CH_Guild_Stopper_Condition;
+	information = CH_Guild_Stopper_Info;
+	description = Dialog_Back;
+	permanent = TRUE;
+};
+
+
+func int CH_Guild_Stopper_Condition()
+{
+	if(GuildStart == TRUE)
+	{
+		return TRUE;
+	};
+};
+
+func void CH_Guild_Stopper_Info()
+{
+	Info_ClearChoices(CH_Guild_Stopper);
+	GuildStart = FALSE;
+};
+
 instance CH_Guild(C_Info)
 {
 	npc = ch;
@@ -542,7 +539,7 @@ instance CH_Guild(C_Info)
 
 func int CH_Guild_Condition()
 {
-	if(LevelStart == TRUE)
+	if(GuildStart == TRUE)
 	{
 		return TRUE;
 	};
@@ -552,19 +549,27 @@ func void CH_Guild_Info()
 {
 	Info_ClearChoices(CH_Guild);
 	Info_AddChoice(CH_Guild,Dialog_Back,CH_Guild_BACK);
-	Info_AddChoice(CH_Guild,"Послушник",ch_nov);
-	Info_AddChoice(CH_Guild,"Маг Огня",ch_kdf);
-	Info_AddChoice(CH_Guild,"Наемник",ch_sld);
-	Info_AddChoice(CH_Guild,"Охотник на драконов",ch_djg);
-	Info_AddChoice(CH_Guild,"Ополченец",ch_mil);
-	Info_AddChoice(CH_Guild,"Паладин",ch_pal);
 	Info_AddChoice(CH_Guild,"Нет гильдии",ch_none);
+	Info_AddChoice(CH_Guild,"Псевдопират",ch_pir);
 	Info_AddChoice(CH_Guild,"Псевдобандит",ch_bdt);
+	Info_AddChoice(CH_Guild,"Охотник на драконов",ch_djg);
+	Info_AddChoice(CH_Guild,"Наемник",ch_sld);
+	Info_AddChoice(CH_Guild,"Паладин",ch_pal);
+	Info_AddChoice(CH_Guild,"Ополченец",ch_mil);
+	Info_AddChoice(CH_Guild,"Маг Огня",ch_kdf);
+	Info_AddChoice(CH_Guild,"Послушник",ch_nov);
 };
 
 func void CH_Guild_BACK()
 {
 	Info_ClearChoices(CH_Guild);
+};
+
+func void ch_pir()
+{
+	Info_ClearChoices(CH_Guild);
+	CreateInvItem(hero,ITAR_PIR_L_Addon);
+	AI_EquipArmor(hero,ITAR_PIR_L_Addon);
 };
 
 func void ch_bdt()
@@ -631,6 +636,94 @@ func void ch_none()
 };
 
 
+instance CH_Apprentice(C_Info)
+{
+	npc = ch;
+	nr = 8;
+	condition = CH_Apprentice_Condition;
+	information = CH_Apprentice_Info;
+	important = FALSE;
+	permanent = TRUE;
+	description = "Выбор ремесла";
+};
+
+
+func int CH_Apprentice_Condition()
+{
+	if(GuildStart == TRUE)
+	{
+		return TRUE;
+	};
+};
+
+func void CH_Apprentice_Info()
+{
+	Info_ClearChoices(CH_Apprentice);
+	Info_AddChoice(CH_Apprentice,Dialog_Back,CH_Apprentice_BACK);
+	if(Player_IsApprentice != APP_NONE)
+	{
+		Info_AddChoice(CH_Apprentice,"Сброс",ch_apprentice_none);
+	};
+	if(Player_IsApprentice == APP_Bosper)
+	{
+		Info_AddChoice(CH_Apprentice,"Боспер (используется)",ch_apprentice_bosper);
+	}
+	else
+	{
+		Info_AddChoice(CH_Apprentice,"Боспер",ch_apprentice_bosper);
+	};
+	if(Player_IsApprentice == APP_Harad)
+	{
+		Info_AddChoice(CH_Apprentice,"Гарад (используется)",ch_apprentice_harad);
+	}
+	else
+	{
+		Info_AddChoice(CH_Apprentice,"Гарад",ch_apprentice_harad);
+	};
+	if(Player_IsApprentice == APP_Constantino)
+	{
+		Info_AddChoice(CH_Apprentice,"Константино (используется)",ch_apprentice_constantino);
+	}
+	else
+	{
+		Info_AddChoice(CH_Apprentice,"Константино",ch_apprentice_constantino);
+	};
+};
+
+func void CH_Apprentice_BACK()
+{
+	Info_ClearChoices(CH_Apprentice);
+};
+
+func void ch_apprentice_bosper()
+{
+	Player_IsApprentice = APP_Bosper;
+	PrintScreen("Учитель: Боспер",-1,-1,FONT_Screen,3);
+	CH_Apprentice_Info();
+};
+
+func void ch_apprentice_harad()
+{
+	Player_IsApprentice = APP_Harad;
+	PrintScreen("Учитель: Гарад",-1,-1,FONT_Screen,3);
+	CH_Apprentice_Info();
+};
+
+func void ch_apprentice_constantino()
+{
+	Player_IsApprentice = APP_Constantino;
+	PrintScreen("Учитель: Константино",-1,-1,FONT_Screen,3);
+	CH_Apprentice_Info();
+};
+
+func void ch_apprentice_none()
+{
+	Player_IsApprentice = APP_NONE;
+	PrintScreen("Учитель сброшен",-1,-1,FONT_Screen,3);
+	CH_Apprentice_Info();
+};
+
+
 var int LevelStart;
 
 instance CH_Level_Start(C_Info)
@@ -638,14 +731,14 @@ instance CH_Level_Start(C_Info)
 	npc = ch;
 	condition = CH_Level_Start_Condition;
 	information = CH_Level_Start_Info;
-	description = "Уровень, очки обучения и гильдия";
+	description = "Уровень и очки обучения";
 	permanent = TRUE;
 };
 
 
 func int CH_Level_Start_Condition()
 {
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -1358,7 +1451,7 @@ instance DIA_CH_Attribute_Start(C_Info)
 
 func int DIA_CH_Attribute_Start_Condition()
 {
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -1528,7 +1621,7 @@ instance DIA_CH_MAGIE(C_Info)
 
 func int DIA_CH_MAGIE_Condition()
 {
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -2249,7 +2342,7 @@ instance DIA_CH_Kampf_Start(C_Info)
 
 func int DIA_CH_Kampf_Start_Condition()
 {
-	if((KampfStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (LevelStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -2537,7 +2630,7 @@ instance DIA_CH_Dieb_Start(C_Info)
 
 func int DIA_CH_Dieb_Start_Condition()
 {
-	if((KampfStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (LevelStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (KampfStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (LevelStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -2606,7 +2699,7 @@ instance DIA_CH_Misc_Start(C_Info)
 
 func int DIA_CH_Misc_Start_Condition()
 {
-	if((KampfStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (LevelStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (KampfStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (LevelStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -2896,7 +2989,7 @@ instance DIA_CH_Misc_SmithStart(C_Info)
 	condition = DIA_CH_Misc_SmithStart_Condition;
 	information = DIA_CH_Misc_SmithStart_Info;
 	permanent = TRUE;
-	description = ConcatStrings(NAME_Skill_Smith," - работа для мужчин");
+	description = NAME_Skill_Smith;
 };
 
 
@@ -3807,7 +3900,7 @@ instance CH_Overlay(C_Info)
 
 func int CH_Overlay_Condition()
 {
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -3891,7 +3984,7 @@ instance CH_Skin(C_Info)
 
 func int CH_Skin_Condition()
 {
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};

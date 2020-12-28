@@ -177,6 +177,7 @@ AI\Human\C_Human\C_NpcHasAttackReasonToKill.d
 AI\Human\C_Human\C_NpcBelongsTo.d
 AI\Human\C_Human\C_DropUnconscious.d
 AI\Human\C_Human\C_NpcRansacksAlways.d
+AI\Human\C_Human\C_NpcIsDemon.d
 AI\Human\C_Human\C_NpcIsUndead.d
 AI\Human\C_Human\C_NpcIsEvil.d
 AI\Human\C_Human\C_NpcIsGolem.d

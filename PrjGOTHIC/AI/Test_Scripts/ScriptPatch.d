@@ -38,6 +38,7 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Отдано:");
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalStoneplatesForVatras)," табличек Ватрасу"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(OldCoinCounter)," монет Василию"));
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(BusterTrophyCounter)," рогов Бастеру"));

@@ -23,6 +23,6 @@ instance VLK_414_Hanna(Npc_Default)
 func void Rtn_Start_414()
 {
 	TA_Stand_ArmsCrossed(8,0,22,0,"NW_CITY_HANNA");
-	TA_Sit_Throne(22,0,8,0,"NW_CITY_MERCHANT_SHOP03_IN_02");
+	TA_Sit_Throne(22,0,8,0,"NW_CITY_TO_KANAL_07");
 };
 
