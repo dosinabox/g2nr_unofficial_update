@@ -205,6 +205,7 @@ var C_Npc Brian;
 var C_Npc Harad;
 var C_Npc Gerbrandt;
 var C_Npc GerbrandtsFrau;
+var C_Npc Garvell;
 var C_Npc Morgahard;
 var C_Npc Tengron;
 var C_Npc Engor;
@@ -540,6 +541,7 @@ func void B_InitNpcGlobals()
 	Harad = Hlp_GetNpc(VLK_412_Harad);
 	Gerbrandt = Hlp_GetNpc(VLK_403_Gerbrandt);
 	GerbrandtsFrau = Hlp_GetNpc(VLK_497_Buergerin);
+	Garvell = Hlp_GetNpc(VLK_441_Garvell);
 	Morgahard = Hlp_GetNpc(BDT_1030_Morgahard);
 	Tengron = Hlp_GetNpc(PAL_280_Tengron);
 	Engor = Hlp_GetNpc(VLK_4108_Engor);

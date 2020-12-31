@@ -355,7 +355,6 @@ instance ItMi_PowerEye(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 0;
-//	visual = "ItMi_DarkPearl.3ds";
 	visual = "ItMi_StoneOfKnowlegde_MIS.3ds";
 	material = MAT_METAL;
 	wear = WEAR_EFFECT;

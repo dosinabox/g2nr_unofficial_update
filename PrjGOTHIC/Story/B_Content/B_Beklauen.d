@@ -42,11 +42,8 @@ func void B_Beklauen()
 	};
 };
 
-//func int C_StealItems(var int TheftDex,var int Itm,var int Qty)
-//func int C_StealItem(var int TheftDex,var int Itm)
 func int C_StealItem(var int TheftDex)
 {
-//	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (other.attribute[ATR_DEXTERITY] >= (TheftDex - Theftdiff)) && (Npc_HasItems(self,Itm) >= Qty) && (NpcObsessedByDMT == FALSE))
 	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (other.attribute[ATR_DEXTERITY] >= (TheftDex - Theftdiff)) && (NpcObsessedByDMT == FALSE))
 	{
 		return TRUE;
@@ -54,12 +51,10 @@ func int C_StealItem(var int TheftDex)
 	return FALSE;
 };
 
-//func void B_StealItems(var int TheftDex,var int Itm,var int Qty)
 func void B_StealItem(var int TheftDex,var int Itm)
 {
 	if(other.attribute[ATR_DEXTERITY] >= TheftDex)
 	{
-//		B_GiveInvItems(self,other,Itm,Qty);
 		B_GiveInvItems(self,other,Itm,1);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
@@ -71,10 +66,18 @@ func void B_StealItem(var int TheftDex,var int Itm)
 			{
 				Lehmar_StealBook_Day += 1;
 			};
-		};
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Franco))
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Franco))
 		{
 			UnEquip_ItAm_Addon_Franco();
+		}
+		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Gerbrandt)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Fernando)))
+		{
+			TotalTheftGold += 100;
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Garvell))
+		{
+			TotalTheftGold += 25;
 		};
 	}
 	else

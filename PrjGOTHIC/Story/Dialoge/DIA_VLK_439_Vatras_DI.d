@@ -272,7 +272,7 @@ func void DIA_Vatras_DI_Talente_Info()
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,"Круги магии",DIA_Vatras_DI_Talente_CIRCLES);
 	};
-	Info_AddChoice(DIA_Vatras_DI_Talente,"Алхимия",DIA_Vatras_DI_Talente_ALCHIMIE);
+	Info_AddChoice(DIA_Vatras_DI_Talente,NAME_Skill_Alchemy,DIA_Vatras_DI_Talente_ALCHIMIE);
 };
 
 func void DIA_Vatras_DI_Talente_CIRCLES()

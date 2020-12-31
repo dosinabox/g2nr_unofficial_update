@@ -34,7 +34,6 @@ instance DIA_Garvell_PICKPOCKET(C_Info)
 
 func int DIA_Garvell_PICKPOCKET_Condition()
 {
-//	return C_StealItems(10,Hlp_GetInstanceID(ItSe_GoldPocket25),1);
 	if(Npc_HasItems(self,ItSe_GoldPocket25))
 	{
 		return C_StealItem(10);
@@ -51,7 +50,6 @@ func void DIA_Garvell_PICKPOCKET_Info()
 
 func void DIA_Garvell_PICKPOCKET_DoIt()
 {
-//	B_StealItems(10,Hlp_GetInstanceID(ItSe_GoldPocket25),1);
 	B_StealItem(10,Hlp_GetInstanceID(ItSe_GoldPocket25));
 	Info_ClearChoices(DIA_Garvell_PICKPOCKET);
 };

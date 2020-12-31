@@ -425,9 +425,12 @@ func void DIA_Constantino_HerbsRunning_Success()
 	MIS_Constantino_BringHerbs = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Constantino_Herbs);
 	B_CheckLog();
-	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
-	B_LogEntry(TOPIC_Lehrling,"Константино примет меня в ученики, если другие мастера будут не против.");
+	if(Player_IsApprentice == APP_NONE)
+	{
+		Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+		B_LogEntry(TOPIC_Lehrling,"Константино примет меня в ученики, если другие мастера будут не против.");
+	};
 	Info_ClearChoices(DIA_Constantino_HerbsRunning);
 };
 

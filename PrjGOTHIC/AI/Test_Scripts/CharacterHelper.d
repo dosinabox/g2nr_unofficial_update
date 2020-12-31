@@ -666,27 +666,27 @@ func void CH_Apprentice_Info()
 	};
 	if(Player_IsApprentice == APP_Bosper)
 	{
-		Info_AddChoice(CH_Apprentice,"Боспер (используется)",ch_apprentice_bosper);
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_TROPHY_Fur,": Боспер (используется)"),ch_apprentice_bosper);
 	}
 	else
 	{
-		Info_AddChoice(CH_Apprentice,"Боспер",ch_apprentice_bosper);
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_TROPHY_Fur,": Боспер"),ch_apprentice_bosper);
 	};
 	if(Player_IsApprentice == APP_Harad)
 	{
-		Info_AddChoice(CH_Apprentice,"Гарад (используется)",ch_apprentice_harad);
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Smith,": Гарад (используется)"),ch_apprentice_harad);
 	}
 	else
 	{
-		Info_AddChoice(CH_Apprentice,"Гарад",ch_apprentice_harad);
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Smith,": Гарад"),ch_apprentice_harad);
 	};
 	if(Player_IsApprentice == APP_Constantino)
 	{
-		Info_AddChoice(CH_Apprentice,"Константино (используется)",ch_apprentice_constantino);
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Alchemy,": Константино (используется)"),ch_apprentice_constantino);
 	}
 	else
 	{
-		Info_AddChoice(CH_Apprentice,"Константино",ch_apprentice_constantino);
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Alchemy,": Константино"),ch_apprentice_constantino);
 	};
 };
 
@@ -698,28 +698,28 @@ func void CH_Apprentice_BACK()
 func void ch_apprentice_bosper()
 {
 	Player_IsApprentice = APP_Bosper;
-	PrintScreen("Учитель: Боспер",-1,-1,FONT_Screen,3);
+	PrintScreen("Мастер: Боспер",-1,-1,FONT_Screen,3);
 	CH_Apprentice_Info();
 };
 
 func void ch_apprentice_harad()
 {
 	Player_IsApprentice = APP_Harad;
-	PrintScreen("Учитель: Гарад",-1,-1,FONT_Screen,3);
+	PrintScreen("Мастер: Гарад",-1,-1,FONT_Screen,3);
 	CH_Apprentice_Info();
 };
 
 func void ch_apprentice_constantino()
 {
 	Player_IsApprentice = APP_Constantino;
-	PrintScreen("Учитель: Константино",-1,-1,FONT_Screen,3);
+	PrintScreen("Мастер: Константино",-1,-1,FONT_Screen,3);
 	CH_Apprentice_Info();
 };
 
 func void ch_apprentice_none()
 {
 	Player_IsApprentice = APP_NONE;
-	PrintScreen("Учитель сброшен",-1,-1,FONT_Screen,3);
+	PrintScreen("Мастер сброшен",-1,-1,FONT_Screen,3);
 	CH_Apprentice_Info();
 };
 
@@ -2745,7 +2745,7 @@ instance DIA_CH_Misc_Alchemie(C_Info)
 	condition = DIA_CH_Misc_Alchemie_Condition;
 	information = DIA_CH_Misc_Alchemie_Info;
 	permanent = TRUE;
-	description = "Алхимия";
+	description = NAME_Skill_Alchemy;
 };
 
 

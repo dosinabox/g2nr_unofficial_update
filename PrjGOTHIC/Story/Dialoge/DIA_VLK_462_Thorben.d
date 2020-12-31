@@ -135,9 +135,12 @@ func void DIA_Thorben_Arbeit_Info()
 	AI_Output(other,self,"DIA_Thorben_Arbeit_15_04");	//Нуууу...
 	AI_Output(self,other,"DIA_Thorben_Arbeit_06_05");	//Извини, но я не могу взять тебя, если ты ничего не понимаешь в моем ремесле.
 	AI_Output(self,other,"DIA_Thorben_Arbeit_06_06");	//И у меня нет денег, чтобы платить ученику.
-	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
-	B_LogEntry(TOPIC_Lehrling,"Торбен не примет меня в ученики.");
+	if(Player_IsApprentice == APP_NONE)
+	{
+		Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+		B_LogEntry(TOPIC_Lehrling,"Торбен не примет меня в ученики.");
+	};
 };
 
 
