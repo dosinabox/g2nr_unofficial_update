@@ -3,7 +3,7 @@ func void ZS_Stand_Guarding()
 {
 	Perception_Set_Normal();
 	B_ResetAll(self);
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(PAL_261_Gerold)) && (MIS_GeroldGiveFood == LOG_Running))
+	if(C_IsNpc(self,PAL_261_Gerold) && (MIS_GeroldGiveFood == LOG_Running))
 	{
 		AI_SetWalkMode(self,NPC_RUN);
 	}

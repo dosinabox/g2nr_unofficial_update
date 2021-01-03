@@ -219,7 +219,7 @@ prototype Rangerring_Prototype(C_Item)
 
 func void Equip_ItRi_Ranger_Lares()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	if(Npc_IsPlayer(self))
 	{
 		RangerRingIsLaresRing = TRUE;
 		Print(PRINT_Addon_SCIsWearingRangerRing);
@@ -228,7 +228,7 @@ func void Equip_ItRi_Ranger_Lares()
 
 func void UnEquip_ItRi_Ranger_Lares()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	if(Npc_IsPlayer(self))
 	{
 		RangerRingIsLaresRing = FALSE;
 	};
@@ -236,7 +236,7 @@ func void UnEquip_ItRi_Ranger_Lares()
 
 func void Equip_ItRi_Ranger_My()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	if(Npc_IsPlayer(self))
 	{
 		RangerRingIsMyRing = TRUE;
 		Print(PRINT_Addon_SCIsWearingRangerRing);
@@ -245,7 +245,7 @@ func void Equip_ItRi_Ranger_My()
 
 func void UnEquip_ItRi_Ranger_My()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	if(Npc_IsPlayer(self))
 	{
 		RangerRingIsMyRing = FALSE;
 	};
@@ -253,7 +253,7 @@ func void UnEquip_ItRi_Ranger_My()
 
 func void Equip_ItRi_Ranger_Lance()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	if(Npc_IsPlayer(self))
 	{
 		RangerRingIsLanceRing = TRUE;
 		Print(PRINT_Addon_SCIsWearingRangerRing);
@@ -262,7 +262,7 @@ func void Equip_ItRi_Ranger_Lance()
 
 func void UnEquip_ItRi_Ranger_Lance()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	if(Npc_IsPlayer(self))
 	{
 		RangerRingIsLanceRing = FALSE;
 	};

@@ -1108,7 +1108,6 @@ var int Lee_Nerver;
 var int Lester_Nerver;
 var int Mario_Nerver;
 var int SC_IsWearingInnosEye;
-//var int SC_IsBlackEyeProtected;
 var int Player_TalkedAboutDragonsToSomeone;
 var int NpcWantToFlee;
 var int TradersHaveLimitedAmmo;

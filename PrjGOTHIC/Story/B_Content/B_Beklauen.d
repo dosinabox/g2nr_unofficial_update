@@ -85,7 +85,7 @@ func void B_StealItem(var int TheftDex,var int Itm)
 		B_ResetThiefLevel();
 		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lagerwache))
+		if(C_IsNpc(self,MIL_328_Miliz))
 		{
 			B_Attack(self,other,AR_KILL,1);
 		}

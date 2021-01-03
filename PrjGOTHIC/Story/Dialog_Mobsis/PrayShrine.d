@@ -24,10 +24,10 @@ var int ShrineIsObsessed_NW_FARM3_BIGWOOD_02;
 
 func void C_IsShrineObsessed(var C_Npc slf)
 {
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(hero))
+	if(Npc_IsPlayer(slf))
 	{
 		ShrineIsObsessed = TRUE;
-		if((Npc_GetDistToWP(hero,"NW_TROLLAREA_PATH_37") < 2000) && (ShrineIsObsessed_NW_TROLLAREA_PATH_37 == TRUE))
+		if((Npc_GetDistToWP(slf,"NW_TROLLAREA_PATH_37") < 2000) && (ShrineIsObsessed_NW_TROLLAREA_PATH_37 == TRUE))
 		{
 			if(ShrineHealing == TRUE)
 			{
@@ -35,7 +35,7 @@ func void C_IsShrineObsessed(var C_Npc slf)
 				ShrineIsObsessed = FALSE;
 			};
 		}
-		else if((Npc_GetDistToWP(hero,"NW_FARM1_CONNECT_XARDAS") < 2000) && (ShrineIsObsessed_NW_FARM1_CONNECT_XARDAS == TRUE))
+		else if((Npc_GetDistToWP(slf,"NW_FARM1_CONNECT_XARDAS") < 2000) && (ShrineIsObsessed_NW_FARM1_CONNECT_XARDAS == TRUE))
 		{
 			if(ShrineHealing == TRUE)
 			{
@@ -43,7 +43,7 @@ func void C_IsShrineObsessed(var C_Npc slf)
 				ShrineIsObsessed = FALSE;
 			};
 		}
-		else if((Npc_GetDistToWP(hero,"NW_TROLLAREA_PATH_66") < 2000) && (ShrineIsObsessed_NW_TROLLAREA_PATH_66 == TRUE))
+		else if((Npc_GetDistToWP(slf,"NW_TROLLAREA_PATH_66") < 2000) && (ShrineIsObsessed_NW_TROLLAREA_PATH_66 == TRUE))
 		{
 			if(ShrineHealing == TRUE)
 			{
@@ -51,7 +51,7 @@ func void C_IsShrineObsessed(var C_Npc slf)
 				ShrineIsObsessed = FALSE;
 			};
 		}
-		else if((Npc_GetDistToWP(hero,"NW_TROLLAREA_PATH_04") < 2000) && (ShrineIsObsessed_NW_TROLLAREA_PATH_04 == TRUE))
+		else if((Npc_GetDistToWP(slf,"NW_TROLLAREA_PATH_04") < 2000) && (ShrineIsObsessed_NW_TROLLAREA_PATH_04 == TRUE))
 		{
 			if(ShrineHealing == TRUE)
 			{
@@ -59,7 +59,7 @@ func void C_IsShrineObsessed(var C_Npc slf)
 				ShrineIsObsessed = FALSE;
 			};
 		}
-		else if((Npc_GetDistToWP(hero,"SAGITTA") < 2000) && (ShrineIsObsessed_SAGITTA == TRUE))
+		else if((Npc_GetDistToWP(slf,"SAGITTA") < 2000) && (ShrineIsObsessed_SAGITTA == TRUE))
 		{
 			if(ShrineHealing == TRUE)
 			{
@@ -67,7 +67,7 @@ func void C_IsShrineObsessed(var C_Npc slf)
 				ShrineIsObsessed = FALSE;
 			};
 		}
-		else if((Npc_GetDistToWP(hero,"NW_BIGMILL_MALAKSVERSTECK_02") < 2000) && (ShrineIsObsessed_NW_BIGMILL_MALAKSVERSTECK_02 == TRUE))
+		else if((Npc_GetDistToWP(slf,"NW_BIGMILL_MALAKSVERSTECK_02") < 2000) && (ShrineIsObsessed_NW_BIGMILL_MALAKSVERSTECK_02 == TRUE))
 		{
 			if(ShrineHealing == TRUE)
 			{
@@ -75,7 +75,7 @@ func void C_IsShrineObsessed(var C_Npc slf)
 				ShrineIsObsessed = FALSE;
 			};
 		}
-		else if((Npc_GetDistToWP(hero,"NW_FARM3_BIGWOOD_02") < 2000) && (ShrineIsObsessed_NW_FARM3_BIGWOOD_02 == TRUE))
+		else if((Npc_GetDistToWP(slf,"NW_FARM3_BIGWOOD_02") < 2000) && (ShrineIsObsessed_NW_FARM3_BIGWOOD_02 == TRUE))
 		{
 			if(ShrineHealing == TRUE)
 			{

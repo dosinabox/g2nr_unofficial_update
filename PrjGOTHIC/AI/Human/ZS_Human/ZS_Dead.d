@@ -39,7 +39,7 @@ func void ZS_Dead()
 	}
 	else if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(OrcWarrior_Harad))
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(CityOrc))
 		{
 			CityOrc_Killed_Day = Wld_GetDay();
 		}

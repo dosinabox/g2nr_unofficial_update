@@ -854,25 +854,7 @@ instance ItAm_Prot_BlackEye_Mis(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
-//	on_equip = Equip_Prot_BlackEye;
-//	on_unequip = UnEquip_Prot_BlackEye;
 };
-
-/*func void Equip_Prot_BlackEye()
-{
-	if(Npc_IsPlayer(self))
-	{
-		SC_IsBlackEyeProtected = TRUE;
-	};
-};
-
-func void UnEquip_Prot_BlackEye()
-{
-	if(Npc_IsPlayer(self))
-	{
-		SC_IsBlackEyeProtected = FALSE;
-	};
-};*/
 
 instance ItMi_KarrasBlessedStone_Mis(C_Item)
 {
@@ -919,7 +901,6 @@ func void Use_RichterKomproBrief()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"          Главный судья и");
 	Doc_PrintLine(nDocID,0,"          королевский секретарь");
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 	if(SCKnowsRichterKomproBrief == FALSE)
 	{
