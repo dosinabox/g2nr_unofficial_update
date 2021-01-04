@@ -1710,6 +1710,7 @@ Story\Events\NewWorld_FishFood_Trigger.d
 Story\Events\B_GiveStuntBonus.d
 Story\Events\B_RavensEscapeIntoTempelAVI.d
 Story\Events\B_PassedAbandonedMine.d
+Story\Events\B_HotelDoor.d
 Story\Events\B_GolemChest.d
 Story\Events\B_Spawn_Skeleton.d
 Story\Events\B_TeleportOutOfOwDemonTower.d

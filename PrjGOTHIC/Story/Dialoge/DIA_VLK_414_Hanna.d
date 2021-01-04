@@ -433,7 +433,7 @@ instance DIA_Hanna_AusKeller(C_Info)
 
 func int DIA_Hanna_AusKeller_Condition()
 {
-	if((Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) || (Knows_SecretSign == TRUE)) && !C_Hanna_ThievesGuildIsExposed())
+	if(((HotelDoorOpened == TRUE) || (Knows_SecretSign == TRUE)) && !C_Hanna_ThievesGuildIsExposed())
 	{
 		return TRUE;
 	};
@@ -441,22 +441,28 @@ func int DIA_Hanna_AusKeller_Condition()
 
 func void DIA_Hanna_AusKeller_Info()
 {
+	if(HotelDoorOpened == TRUE)
+	{
+		if(Knows_SecretSign == TRUE)
+		{
+			AI_Output(self,other,"DIA_Hanna_Add_17_19");	//(недоверчиво) Посмотри на себя! Ты откуда такой взялся? А?
+			AI_Output(other,self,"DIA_Hanna_Add_15_20");	//(смущенно) Я...
+			AI_Output(self,other,"DIA_Hanna_Add_17_21");	//(смеется) Я знаю!
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Hanna_Add_17_27");	//Откуда... ты пришел?
+			AI_Output(other,self,"DIA_Hanna_Add_15_28");	//Я нашел кое-что интересное в твоем подвале...
+			AI_Output(self,other,"DIA_Hanna_Add_17_29");	//Что ты делал в моем подвале?!
+			AI_Output(other,self,"DIA_Hanna_Add_15_30");	//Ты прекрасно знаешь это!
+			AI_Output(self,other,"DIA_Hanna_Add_17_31");	//(холодно) Я не знаю, о чем ты говоришь...
+		};
+	};
 	if(Knows_SecretSign == TRUE)
 	{
-		AI_Output(self,other,"DIA_Hanna_Add_17_19");	//(недоверчиво) Посмотри на себя! Ты откуда такой взялся? А?
-		AI_Output(other,self,"DIA_Hanna_Add_15_20");	//(смущенно) Я...
-		AI_Output(self,other,"DIA_Hanna_Add_17_21");	//(смеется) Я знаю!
 		AI_Output(self,other,"DIA_Hanna_Add_17_22");	//(заговорщицки) Не говори мне. Я все знаю.
 		AI_Output(self,other,"DIA_Hanna_Add_17_23");	//Даже и не думай украсть что-нибудь здесь, понял?
 		AI_Output(self,other,"DIA_Hanna_Add_17_24");	//Мы не можем себе позволить привлекать внимание к отелю.
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Hanna_Add_17_27");	//Откуда... ты пришел?
-		AI_Output(other,self,"DIA_Hanna_Add_15_28");	//Я нашел кое-что интересное в твоем подвале...
-		AI_Output(self,other,"DIA_Hanna_Add_17_29");	//Что ты делал в моем подвале?!
-		AI_Output(other,self,"DIA_Hanna_Add_15_30");	//Ты прекрасно знаешь это!
-		AI_Output(self,other,"DIA_Hanna_Add_17_31");	//(холодно) Я не знаю, о чем ты говоришь...
 	};
 	B_Hanna_ThievesCheck();
 	AI_StopProcessInfos(self);

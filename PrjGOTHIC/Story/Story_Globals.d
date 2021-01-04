@@ -1344,3 +1344,4 @@ var int RosiToldAboutSekob;
 var int DiegoOW_Teach;
 var int PlayerPassedAbandonedMine;
 var int XardasDIBagOpened;
+var int HotelDoorOpened;

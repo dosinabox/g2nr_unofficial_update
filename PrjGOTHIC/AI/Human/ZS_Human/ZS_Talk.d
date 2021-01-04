@@ -119,7 +119,7 @@ func void ZS_Talk_End()
 		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Salandril)) && Npc_KnowsInfo(hero,DIA_Salandril_GehinsKloster) && (Kapitel < 5))
 		{
 		}
-		else if((Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Joe)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Cornelius)))
+		else if(!C_IsNpc(self,VLK_448_Joe) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Cornelius)))
 		{
 			AI_StartState(self,ZS_ObservePlayer,0,"");
 		};

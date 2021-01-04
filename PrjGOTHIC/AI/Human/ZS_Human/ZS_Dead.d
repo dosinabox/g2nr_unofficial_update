@@ -124,18 +124,18 @@ func void ZS_Dead()
 				Festers_Giant_Bug_Killed += 1;
 			};
 		}
-		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Swamprat)) && (MIS_KrokoJagd == LOG_Running))
+		else if((self.aivar[AIV_MM_REAL_ID] == ID_Swamprat) && (MIS_KrokoJagd == LOG_Running))
 		{
 			if(Npc_GetDistToNpc(self,AlligatorJack) <= 1500)
 			{
 				AlligatorJack_KrokosKilled += 1;
 			};
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(OrcShaman_Sit_CanyonLibraryKey))
+		else if(C_IsNpc(self,OrcShaman_Sit_CanyonLibraryKey))
 		{
 			OrcShaman_CanyonLibrary_KilledByPlayer = TRUE;
 		}
-		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper1)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper2)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper3)))
+		else if(C_IsNpc(self,Grimbald_Snapper1) || C_IsNpc(self,Grimbald_Snapper2) || C_IsNpc(self,Grimbald_Snapper3))
 		{
 			Grimbald_Snappers_KilledByPlayer = TRUE;
 		};

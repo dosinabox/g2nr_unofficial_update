@@ -16,7 +16,7 @@ func void B_AssessFightSound()
 			return;
 		};
 	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Joe))
+	if(C_IsNpc(self,VLK_448_Joe))
 	{
 		if(Npc_GetDistToWP(self,"NW_CITY_MERCHANT_TOWER_01") < 600)
 		{

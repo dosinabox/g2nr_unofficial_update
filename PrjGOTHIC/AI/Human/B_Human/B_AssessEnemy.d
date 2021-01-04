@@ -14,13 +14,12 @@ func int B_AssessEnemy()
 				return FALSE;
 			};
 		};
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BDT_1031_Fluechtling)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius)))
+		if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius))
 		{
-			return FALSE;
-		};
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BDT_1032_Fluechtling)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius)))
-		{
-			return FALSE;
+			if(C_IsNpc(self,BDT_1031_Fluechtling) || C_IsNpc(self,BDT_1032_Fluechtling))
+			{
+				return FALSE;
+			};
 		};
 		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph)) && !Npc_IsPlayer(other))
 		{

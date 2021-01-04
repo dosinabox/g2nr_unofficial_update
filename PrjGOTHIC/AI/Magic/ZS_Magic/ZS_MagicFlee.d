@@ -29,7 +29,7 @@ func void ZS_MagicFlee()
 			return;
 		};
 	};
-	if((self.guild == GIL_KDF) || (self.guild == GIL_PAL) || (self.guild == GIL_KDW) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Xardas)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Andre)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Torwache_304)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Torwache_305)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Vatras)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Myxir_CITY)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Daron)))
+	if((self.guild == GIL_KDF) || (self.guild == GIL_PAL) || (self.guild == GIL_KDW) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Xardas)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Andre)) || C_IsNpc(self,MIL_304_Torwache) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Torwache_305)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Vatras)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Myxir_CITY)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Daron)))
 	{
 		if(!Npc_IsInState(self,ZS_ReactToWeapon))
 		{
