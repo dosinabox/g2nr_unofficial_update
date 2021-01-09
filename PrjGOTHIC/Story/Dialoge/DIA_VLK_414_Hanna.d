@@ -69,7 +69,7 @@ instance DIA_Hanna_Hello(C_Info)
 
 func int DIA_Hanna_Hello_Condition()
 {
-	if(!C_Hanna_ThievesGuildIsExposed() && !Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) && (Knows_SecretSign == FALSE))
+	if(!C_Hanna_ThievesGuildIsExposed() && (HotelDoorOpened == FALSE) && (Knows_SecretSign == FALSE))
 	{
 		return TRUE;
 	};

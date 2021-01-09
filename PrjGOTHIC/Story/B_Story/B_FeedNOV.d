@@ -1,5 +1,5 @@
 
-func int C_CanFeedNOV(var C_NPC slf)
+func int C_CanFeedNOV(var C_Npc slf)
 {
 	if((MIS_GoraxEssen == LOG_Running) && Npc_HasItems(hero,ItFo_Schafswurst) && (slf.aivar[AIV_SchafswurstGiven] == FALSE))
 	{
@@ -16,7 +16,7 @@ func int C_CanFeedNOV(var C_NPC slf)
 };
 
 
-func void B_FeedNOV(var C_NPC slf)
+func void B_FeedNOV(var C_Npc slf)
 {
 	var string NovizeLeft;
 	B_GiveInvItems(hero,slf,ItFo_Schafswurst,1);

@@ -371,7 +371,7 @@ func int DIA_Sylvio_DUHIER_Condition()
 
 func void DIA_Sylvio_DUHIER_Info()
 {
-	AI_Output(other,self,"DIA_Sylvio_DUHIER_15_00");	//Мне не помешала бы твоя помощь.
+	DIA_Common_INeedYourHelp();
 	AI_Output(self,other,"DIA_Sylvio_DUHIER_09_01");	//Чушь. Ты и так великолепно справляешься.
 	AI_StopProcessInfos(self);
 };

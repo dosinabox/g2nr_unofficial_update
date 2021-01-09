@@ -119,7 +119,12 @@ func void DIA_Bosper_SeekWork_Info()
 		AI_Output(other,self,"DIA_Bosper_SeekWork_15_07");	//Я могу дать тебе несколько шкур, если ты это имел в виду.
 		AI_Output(self,other,"DIA_Bosper_SeekWork_11_08");	//Превосходно! Приноси мне все шкуры, что тебе удастся добыть - я куплю их у тебя по очень хорошей цене.
 	};
-	B_LogEntry(TOPIC_Lehrling,"Боспер ищет нового ученика. Я могу начать работать у него.");
+	if(Player_IsApprentice == APP_NONE)
+	{
+		Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+		B_LogEntry(TOPIC_Lehrling,"Боспер ищет нового ученика. Я могу начать работать у него.");
+	};
 };
 
 

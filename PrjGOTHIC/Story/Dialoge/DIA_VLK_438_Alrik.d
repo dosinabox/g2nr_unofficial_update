@@ -638,7 +638,7 @@ func void DIA_Alrik_Ausbilden_Info()
 	{
 		B_Say(self,other,"$NOLEARNYOUREBETTER");
 		Alrik_Teach1H = TRUE;
-		DIA_Alrik_Teach_permanent = true;
+		DIA_Alrik_Teach_permanent = TRUE;
 	}
 //	else if((Alrik_Kaempfe == 0) && (hero.guild == GIL_NONE))
 	else if(Alrik_Kaempfe == 0)

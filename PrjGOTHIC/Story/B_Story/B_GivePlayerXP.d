@@ -1,4 +1,14 @@
 
+func int B_GetCurrentLevelExp(var C_Npc slf)
+{
+	return (XP_PER_LEVEL / 2) * (slf.level + 1) * slf.level;
+};
+
+func int B_GetNextLevelExp(var C_Npc slf)
+{
+	return B_GetCurrentLevelExp(slf) + (XP_PER_LEVEL * (slf.level + 1));
+};
+
 var int LevelUpsDuringTransform;
 
 func void B_LevelUp(var int levels)
@@ -8,7 +18,7 @@ func void B_LevelUp(var int levels)
 	{
 		LevelUpsDuringTransform += levels;
 	};
-	hero.exp_next = (XP_PER_LEVEL / 2) * (hero.level + 2) * (hero.level + 1);
+	hero.exp_next = B_GetNextLevelExp(hero);
 	hero.attribute[ATR_HITPOINTS_MAX] += levels * HP_PER_LEVEL;
 	hero.attribute[ATR_HITPOINTS] += levels * HP_PER_LEVEL;
 	hero.lp += levels * LP_PER_LEVEL;
@@ -31,10 +41,6 @@ func void B_GivePlayerXP(var int add_xp)
 	if(HardModeEnabled == TRUE)
 	{
 		add_xp = CalculateLowerXP(add_xp);
-	};
-	if(hero.level == 0)
-	{
-		hero.exp_next = XP_PER_LEVEL;
 	};
 	if(hero.attribute[ATR_HITPOINTS] > 0)
 	{

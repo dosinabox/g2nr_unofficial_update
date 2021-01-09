@@ -285,6 +285,7 @@ func void DIA_Harad_OrcSuccess_Info()
 	else if(Player_IsApprentice == APP_NONE)
 	{
 		AI_Output(self,other,"DIA_Harad_OrcSuccess_12_06");	//Я не думал, что тебе удастся это. Я поражен.
+		B_LogEntry(TOPIC_Lehrling,"Гарад примет меня в ученики, если я смогу получить одобрение других мастеров.");
 	}
 	else
 	{
@@ -300,7 +301,6 @@ func void DIA_Harad_OrcSuccess_Info()
 	{
 		B_GivePlayerXP(XP_Harad_Orc);
 	};
-	B_LogEntry(TOPIC_Lehrling,"Гарад примет меня в ученики, если я смогу получить одобрение других мастеров.");
 };
 
 

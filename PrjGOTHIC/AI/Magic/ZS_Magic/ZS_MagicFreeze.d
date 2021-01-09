@@ -63,7 +63,7 @@ func int PainfulDeath_Loop()
 	};
 	if(PainfulDeathState >= 3)
 	{
-		self.aivar[AIV_ReadyForPainfulDeath] = false;
+		self.aivar[AIV_ReadyForPainfulDeath] = FALSE;
 		return LOOP_END;
 	};
 	return LOOP_CONTINUE;

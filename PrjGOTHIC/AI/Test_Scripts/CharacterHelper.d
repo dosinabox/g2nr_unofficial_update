@@ -86,8 +86,11 @@ func void B_SetHeroExp(var int levels)
 	hero.attribute[ATR_HITPOINTS_MAX] = 40;
 	hero.attribute[ATR_HITPOINTS] = 40;
 	hero.lp = 0;
-	B_LevelUp(levels);
-	hero.exp = (XP_PER_LEVEL / 2) * (hero.level + 1) * hero.level;
+	if(levels > 0)
+	{
+		B_LevelUp(levels);
+	};
+	hero.exp = B_GetCurrentLevelExp(hero);
 	PrintScreen(ConcatStrings("Здоровье: ",IntToString(hero.attribute[ATR_HITPOINTS_MAX])),-1,55,FONT_Screen,2);
 	PrintScreen(ConcatStrings("Очки обучения: ",IntToString(hero.lp)),-1,60,FONT_Screen,2);
 };
@@ -96,32 +99,65 @@ func void B_SetHeroWeapon()
 {
 	if(hero.level <= 6)
 	{
-		CreateInvItems(hero,ItRw_Crossbow_L_01,1);
+		if(!Npc_HasItems(hero,ItRw_Crossbow_L_01))
+		{
+			CreateInvItems(hero,ItRw_Crossbow_L_01,1);
+		};
 	}
 	else if(hero.level <= 12)
 	{
-		CreateInvItems(hero,ItRw_Bow_L_04,1);
-		CreateInvItems(hero,ItRw_Crossbow_L_02,1);
+		if(!Npc_HasItems(hero,ItRw_Bow_L_04))
+		{
+			CreateInvItems(hero,ItRw_Bow_L_04,1);
+		};
+		if(!Npc_HasItems(hero,ItRw_Crossbow_L_02))
+		{
+			CreateInvItems(hero,ItRw_Crossbow_L_02,1);
+		};
 	}
 	else if(hero.level <= 18)
 	{
-		CreateInvItems(hero,ItRw_Bow_M_02,1);
-		CreateInvItems(hero,ItRw_Crossbow_M_02,1);
+		if(!Npc_HasItems(hero,ItRw_Bow_M_02))
+		{
+			CreateInvItems(hero,ItRw_Bow_M_02,1);
+		};
+		if(!Npc_HasItems(hero,ItRw_Crossbow_M_02))
+		{
+			CreateInvItems(hero,ItRw_Crossbow_M_02,1);
+		};
 	}
 	else if(hero.level <= 24)
 	{
-		CreateInvItems(hero,ItRw_Bow_M_04,1);
-		CreateInvItems(hero,ItRw_Crossbow_H_01,1);
+		if(!Npc_HasItems(hero,ItRw_Bow_M_04))
+		{
+			CreateInvItems(hero,ItRw_Bow_M_04,1);
+		};
+		if(!Npc_HasItems(hero,ItRw_Crossbow_H_01))
+		{
+			CreateInvItems(hero,ItRw_Crossbow_H_01,1);
+		};
 	}
 	else if(hero.level <= 30)
 	{
-		CreateInvItems(hero,ItRw_Bow_H_02,1);
-		CreateInvItems(hero,ItRw_Crossbow_H_02,1);
+		if(!Npc_HasItems(hero,ItRw_Bow_H_02))
+		{
+			CreateInvItems(hero,ItRw_Bow_H_02,1);
+		};
+		if(!Npc_HasItems(hero,ItRw_Crossbow_H_02))
+		{
+			CreateInvItems(hero,ItRw_Crossbow_H_02,1);
+		};
 	}
 	else if(hero.level <= 36)
 	{
-		CreateInvItems(hero,ItRw_Bow_H_04,1);
-		CreateInvItems(hero,ItRw_Bow_L_04,1);
+		if(!Npc_HasItems(hero,ItRw_Bow_H_04))
+		{
+			CreateInvItems(hero,ItRw_Bow_H_04,1);
+		};
+		if(!Npc_HasItems(hero,ItRw_Bow_L_04))
+		{
+			CreateInvItems(hero,ItRw_Bow_L_04,1);
+		};
 	};
 	AI_EquipBestMeleeWeapon(hero);
 	AI_EquipBestRangedWeapon(hero);
@@ -129,13 +165,41 @@ func void B_SetHeroWeapon()
 
 func void B_SetHeroEquipment()
 {
-	CreateInvItems(hero,ItRw_Arrow,100);
-	CreateInvItems(hero,ItRw_Bolt,100);
-	CreateInvItems(hero,ItLsTorch,30);
-	CreateInvItems(hero,ItMi_Gold,500);
-	CreateInvItems(hero,ItPo_Health_03,5);
-	CreateInvItems(hero,ItPo_Mana_03,5);
-	CreateInvItems(hero,ItKe_Lockpick,30);
+	if(Npc_HasItems(hero,ItRw_Arrow) < 100)
+	{
+		Npc_RemoveInvItems(hero,ItRw_Arrow,Npc_HasItems(hero,ItRw_Arrow));
+		CreateInvItems(hero,ItRw_Arrow,100);
+	};
+	if(Npc_HasItems(hero,ItRw_Bolt) < 100)
+	{
+		Npc_RemoveInvItems(hero,ItRw_Bolt,Npc_HasItems(hero,ItRw_Bolt));
+		CreateInvItems(hero,ItRw_Bolt,100);
+	};
+	if(Npc_HasItems(hero,ItLsTorch) < 30)
+	{
+		Npc_RemoveInvItems(hero,ItLsTorch,Npc_HasItems(hero,ItLsTorch));
+		CreateInvItems(hero,ItLsTorch,30);
+	};
+	if(Npc_HasItems(hero,ItMi_Gold) < 500)
+	{
+		Npc_RemoveInvItems(hero,ItMi_Gold,Npc_HasItems(hero,ItMi_Gold));
+		CreateInvItems(hero,ItMi_Gold,500);
+	};
+	if(Npc_HasItems(hero,ItPo_Health_03) < 5)
+	{
+		Npc_RemoveInvItems(hero,ItPo_Health_03,Npc_HasItems(hero,ItPo_Health_03));
+		CreateInvItems(hero,ItPo_Health_03,5);
+	};
+	if(Npc_HasItems(hero,ItPo_Mana_03) < 30)
+	{
+		Npc_RemoveInvItems(hero,ItPo_Mana_03,Npc_HasItems(hero,ItPo_Mana_03));
+		CreateInvItems(hero,ItPo_Mana_03,5);
+	};
+	if(Npc_HasItems(hero,ItKe_Lockpick) < 30)
+	{
+		Npc_RemoveInvItems(hero,ItKe_Lockpick,Npc_HasItems(hero,ItKe_Lockpick));
+		CreateInvItems(hero,ItKe_Lockpick,30);
+	};
 };
 
 func void B_SetKDFRunes()
@@ -824,7 +888,7 @@ func void CH_Lernpunkte_0()
 func void CH_Lernpunkte_50()
 {
 	hero.lp += 50;
-	PrintScreen("+ 50 очков обучения",-1,-1,FONT_Screen,3);
+	PrintScreen(ConcatStrings("+ 50",PRINT_LP),-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 	CH_Lernpunkte_Info();
 };
@@ -832,7 +896,7 @@ func void CH_Lernpunkte_50()
 func void CH_Lernpunkte_25()
 {
 	hero.lp += 25;
-	PrintScreen("+ 25 очков обучения",-1,-1,FONT_Screen,3);
+	PrintScreen(ConcatStrings("+ 25",PRINT_LP),-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 	CH_Lernpunkte_Info();
 };
@@ -840,7 +904,7 @@ func void CH_Lernpunkte_25()
 func void CH_Lernpunkte_10()
 {
 	hero.lp += 10;
-	PrintScreen("+ 10 очков обучения",-1,-1,FONT_Screen,3);
+	PrintScreen(ConcatStrings("+ 10",PRINT_LP),-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 	CH_Lernpunkte_Info();
 };
@@ -848,7 +912,7 @@ func void CH_Lernpunkte_10()
 func void CH_Lernpunkte_5()
 {
 	hero.lp += 5;
-	PrintScreen("+ 5 очков обучения",-1,-1,FONT_Screen,3);
+	PrintScreen(ConcatStrings("+ 5",PRINT_LP),-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 	CH_Lernpunkte_Info();
 };
@@ -860,7 +924,7 @@ instance CH_Level_niedrig(C_Info)
 	nr = 2;
 	condition = CH_Level_niedrig_Condition;
 	information = CH_Level_niedrig_Info;
-	description = "Выбор уровня 1 - 25";
+	description = "Выбор уровня 0 - 25";
 	permanent = TRUE;
 };
 
@@ -881,7 +945,7 @@ func void CH_Level_niedrig_Info()
 	Info_AddChoice(CH_Level_niedrig,"Уровень 16 - 20",CH_Level16);
 	Info_AddChoice(CH_Level_niedrig,"Уровень 11 - 15",CH_Level11);
 	Info_AddChoice(CH_Level_niedrig,"Уровень  6 - 10",CH_Level6);
-	Info_AddChoice(CH_Level_niedrig,"Уровень  1 -  5",CH_Level1);
+	Info_AddChoice(CH_Level_niedrig,"Уровень  0 -  5",CH_Level1);
 };
 
 
@@ -1023,6 +1087,7 @@ func void CH_Level1()
 	Info_AddChoice(CH_Level_niedrig,"Уровень 3",CH_Level_3);
 	Info_AddChoice(CH_Level_niedrig,"Уровень 2",CH_Level_2);
 	Info_AddChoice(CH_Level_niedrig,"Уровень 1",CH_Level_1);
+	Info_AddChoice(CH_Level_niedrig,"Уровень 0",CH_Level_0);
 };
 
 func void CH_Level_niedrig_BACK()
@@ -1033,6 +1098,14 @@ func void CH_Level_niedrig_BACK()
 func void CH_Level_hoch_BACK()
 {
 	Info_ClearChoices(CH_Level_hoch);
+};
+
+func void CH_Level_0()
+{
+	Info_ClearChoices(CH_Level_niedrig);
+	B_SetHeroExp(0);
+	B_SetHeroWeapon();
+	B_SetHeroEquipment();
 };
 
 func void CH_Level_1()

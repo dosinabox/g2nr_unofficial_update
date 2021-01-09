@@ -87,7 +87,7 @@ func int DIA_1017_BANDIT_AMBUSH_Condition()
 func void DIA_1017_BANDIT_AMBUSH_Info()
 {
 	AI_Output(self,other,"DIA_Canthar_Hallo_09_00");	//Посмотрите, кто у нас здесь!
-	B_UseFakeHeroFace();
+	B_UseFakeHeroFace(self,other);
 	B_Say(self,other,"$IGETYOUSTILL");
 	AI_Output(other,self,"DIA_Attila_Willkommen_15_01");	//Кто ты и что тебе нужно от меня?
 	AI_Output(self,other,"DIA_Addon_Dexter_Hallo_09_06");	//Мне? Абсолютно ничего. Но мой хозяин просто дьявольски жаждет твоей смерти.

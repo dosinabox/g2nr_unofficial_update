@@ -239,6 +239,21 @@ func void DIA_Common_WhatCanYouTeachMe()
 	AI_Output(other,self,"DIA_Talbin_TEACHHUNTING_15_00");	//Чему ты можешь обучить меня?
 };
 
+func void DIA_Common_INeedYou()
+{
+	AI_Output(other,self,"DIA_MiltenNW_StillNeedYou_15_00");	//Ты нужен мне.
+};
+
+func void DIA_Common_INeedYourHelp()
+{
+	AI_Output(other,self,"DIA_Sylvio_DUHIER_15_00");	//Мне не помешала бы твоя помощь.
+};
+
+func void DIA_Common_WhatDoYouKnowAboutBandits()
+{
+	AI_Output(other,self,"DIA_Addon_Garett_Bandits_15_00");	//Что ты знаешь о бандитах?
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?

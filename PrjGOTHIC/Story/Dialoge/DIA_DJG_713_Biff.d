@@ -801,7 +801,7 @@ func void DIA_Biff_KnowWhereEnemy_Info()
 		}
 		else
 		{
-			Info_AddChoice(DIA_Biff_KnowWhereEnemy,"Мы еще поговорим.",DIA_Biff_KnowWhereEnemy_No);
+			Info_AddChoice(DIA_Biff_KnowWhereEnemy,"Вернемся к этому позже.",DIA_Biff_KnowWhereEnemy_No);
 		};
 		Info_AddChoice(DIA_Biff_KnowWhereEnemy,"Ты не хочешь присоединиться?",DIA_Biff_KnowWhereEnemy_Yes);
 	};
@@ -828,7 +828,7 @@ func void DIA_Biff_KnowWhereEnemy_No()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Addon_BDT_10018_Torwache_EXIT_15_00");	//Мы еще поговорим.
+		DIA_Common_WeWillGetToThatLater();
 	};
 	AI_Output(self,other,"DIA_Biff_KnowWhereEnemy_No_07_01");	//Да, да. Тогда повеселимся.
 	Biff_ToldLaterOnce = TRUE;

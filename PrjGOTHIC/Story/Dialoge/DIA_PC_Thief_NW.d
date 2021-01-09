@@ -693,7 +693,7 @@ func void DIA_DiegoNW_StillNeedYou_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Sylvio_DUHIER_15_00");	//Ìםו םו ןמלוראכא בû עגמÿ ןמלמשü.
+		DIA_Common_INeedYourHelp();
 	};
 	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23") && !ArmorEquipped(self,ITAR_Diego))
 	{

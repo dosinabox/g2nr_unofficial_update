@@ -675,7 +675,7 @@ func int DIA_MiltenNW_StillNeedYou_Condition()
 
 func void DIA_MiltenNW_StillNeedYou_Info()
 {
-	AI_Output(other,self,"DIA_MiltenNW_StillNeedYou_15_00");	//Ты нужен мне.
+	DIA_Common_INeedYou();
 	AI_Output(self,other,"DIA_MiltenNW_StillNeedYou_03_01");	//Твое решение делает мне честь. Вперед, мы не можем терять время!
 	AI_Output(self,other,"DIA_MiltenNW_StillNeedYou_03_02");	//Я отправляюсь в порт. Встретимся там.
 	B_JoinShip(self);

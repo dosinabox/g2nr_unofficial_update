@@ -201,7 +201,7 @@ func int DIA_Addon_Garett_Bandits_Condition()
 
 func void DIA_Addon_Garett_Bandits_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Garett_Bandits_15_00");	//Что ты знаешь о бандитах?
+	DIA_Common_WhatDoYouKnowAboutBandits();
 	AI_Output(self,other,"DIA_Addon_Garett_Bandits_09_01");	//Об этом тебе лучше спросить у Скипа.
 	AI_Output(self,other,"DIA_Addon_Garett_Bandits_09_02");	//Он довольно много общался с этой шайкой.
 	AI_Output(self,other,"DIA_Addon_Garett_Bandits_09_03");	//А сейчас Грег приказал нам убивать каждого бандита, подходящего к лагерю.

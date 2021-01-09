@@ -44,7 +44,7 @@ func void B_RaiseFightTalent(var C_Npc oth,var int talent,var int percent)
 	B_AddFightSkill(oth,talent,percent);
 };
 
-func void B_RaiseTalentByPermBonus(var C_NPC npc,var int talent,var int value)
+func void B_RaiseTalentByPermBonus(var C_Npc npc,var int talent,var int value)
 {
 	var string text;
 	value = B_ChangeTalent(npc,talent,value,TS_PermBonus);

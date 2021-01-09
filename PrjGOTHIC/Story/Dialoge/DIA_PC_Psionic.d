@@ -448,56 +448,6 @@ func void DIA_Lester_PERM3_Info()
 };
 
 
-/*instance DIA_Lester_KAP4_EXIT(C_Info)
-{
-	npc = PC_Psionic;
-	nr = 999;
-	condition = DIA_Lester_KAP4_EXIT_Condition;
-	information = DIA_Lester_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lester_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lester_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Lester_KAP5_EXIT(C_Info)
-{
-	npc = PC_Psionic;
-	nr = 999;
-	condition = DIA_Lester_KAP5_EXIT_Condition;
-	information = DIA_Lester_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lester_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lester_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};*/
-
-
 instance DIA_Lester_XARDASWEG(C_Info)
 {
 	npc = PC_Psionic;
@@ -665,31 +615,6 @@ func void DIA_Lester_StillNeedYou_Info()
 	B_CheckLog();
 };
 
-/*
-instance DIA_Lester_KAP6_EXIT(C_Info)
-{
-	npc = PC_Psionic;
-	nr = 999;
-	condition = DIA_Lester_KAP6_EXIT_Condition;
-	information = DIA_Lester_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lester_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lester_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_PC_Psionic_PICKPOCKET(C_Info)
 {
