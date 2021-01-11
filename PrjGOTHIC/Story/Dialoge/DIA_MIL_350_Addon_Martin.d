@@ -414,6 +414,23 @@ func void DIA_Addon_Martin_AboutBandits_Info()
 };
 
 
+func int C_SCHasAnyFernandoEvidence()
+{
+	if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItRi_Addon_BanditTrader))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 instance DIA_Addon_Martin_Fernando(C_Info)
 {
 	npc = MIL_350_Addon_Martin;
@@ -439,10 +456,10 @@ var int Martin_IrrlichtHint;
 func void DIA_Addon_Martin_Fernando_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_00");	//Насчет торговца оружием...
-	if(Npc_HasItems(other,ItMw_Addon_BanditTrader) || Npc_HasItems(other,ItRi_Addon_BanditTrader) || (Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE)) || (Fernando_HatsZugegeben == TRUE))
+	if(C_SCHasAnyFernandoEvidence() || (Fernando_HatsZugegeben == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_01");	//Что тебе удалось узнать?
-		if(Npc_HasItems(other,ItMw_Addon_BanditTrader) || Npc_HasItems(other,ItRi_Addon_BanditTrader) || (Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE)))
+		if(C_SCHasAnyFernandoEvidence())
 		{
 			if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
 			{

@@ -21,6 +21,22 @@ func void DIA_Mika_EXIT_Info()
 };
 
 
+var int Mika_FreeHelp;
+
+func int C_Mika_FreeHelp()
+{
+	if(Mika_FreeHelp == TRUE)
+	{
+		return TRUE;
+	}
+	else if((VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_PAL) || ArmorEquipped(other,ITAR_MIL_M))
+	{
+		Mika_FreeHelp = TRUE;
+		return TRUE;
+	};
+	return FALSE;
+};
+
 instance DIA_Mika_Refuse(C_Info)
 {
 	npc = MIL_337_Mika;
@@ -34,8 +50,6 @@ instance DIA_Mika_Refuse(C_Info)
 
 func int DIA_Mika_Refuse_Condition()
 {
-//	if(Npc_IsInState(self,ZS_Talk) && (Lares.aivar[AIV_PARTYMEMBER] == TRUE))
-//	if(Npc_IsInState(self,ZS_Talk) && ((Lares.aivar[AIV_PARTYMEMBER] == TRUE) || (Npc_GetDistToWP(self,"NW_CITY_KASERN_BARRACK02_02") < 1000)))
 	if(Npc_IsInState(self,ZS_Talk) && (Npc_GetDistToWP(self,"NW_FARM2_PATH_03") >= 10000))
 	{
 		if((Lares.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToNpc(self,Lares) < 2000))
@@ -51,7 +65,14 @@ func int DIA_Mika_Refuse_Condition()
 
 func void DIA_Mika_Refuse_Info()
 {
-	B_Say(self,other,"$NOTNOW");
+	if(C_Mika_FreeHelp())
+	{
+		B_Say(self,other,"$AWAKE");
+	}
+	else
+	{
+		B_Say(self,other,"$NOTNOW");
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -66,8 +87,6 @@ instance DIA_Mika_WOHIN(C_Info)
 };
 
 
-var int Mika_FirstContactChapter;
-
 func int DIA_Mika_WOHIN_Condition()
 {
 	if((Lares.aivar[AIV_PARTYMEMBER] == FALSE) && (Npc_GetDistToWP(self,"NW_CITY_TO_FOREST_01") < 700))
@@ -78,15 +97,22 @@ func int DIA_Mika_WOHIN_Condition()
 
 func void DIA_Mika_WOHIN_Info()
 {
-	AI_Output(self,other,"DIA_Mika_WOHIN_12_00");	//Эй, эй! Не так быстро. Прогуливаться здесь одному довольно опасно. Откуда ты идешь?
-	Mika_FirstContactChapter = Kapitel;
-	Info_ClearChoices(DIA_Mika_WOHIN);
-	Info_AddChoice(DIA_Mika_WOHIN,"Это не твое дело.",DIA_Mika_WOHIN_weg);
-	if(other.guild == GIL_NONE)
+	if(C_Mika_FreeHelp())
 	{
-		Info_AddChoice(DIA_Mika_WOHIN,"С одной из ферм.",DIA_Mika_WOHIN_Bauern);
+		AI_Output(self,other,"DIA_Mika_WOHIN_Bauern_12_01_add");	//Не стоит бродить по этим опасным тропам совсем одному. Если тебе понадобится моя помощь, ты знаешь, где найти меня.
+		Mika_Helps = TRUE;
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Mika_WOHIN_12_00");	//Эй, эй! Не так быстро. Прогуливаться здесь одному довольно опасно. Откуда ты идешь?
+		Info_ClearChoices(DIA_Mika_WOHIN);
+		Info_AddChoice(DIA_Mika_WOHIN,"Это не твое дело.",DIA_Mika_WOHIN_weg);
+		if(other.guild == GIL_NONE)
+		{
+			Info_AddChoice(DIA_Mika_WOHIN,"С одной из ферм.",DIA_Mika_WOHIN_Bauern);
+		};
+		Info_AddChoice(DIA_Mika_WOHIN,"Из города!",DIA_Mika_WOHIN_stadt);
 	};
-	Info_AddChoice(DIA_Mika_WOHIN,"Из города!",DIA_Mika_WOHIN_stadt);
 };
 
 func void DIA_Mika_WOHIN_stadt()
@@ -123,7 +149,10 @@ instance DIA_Mika_WASGEFAEHRLICH(C_Info)
 
 func int DIA_Mika_WASGEFAEHRLICH_Condition()
 {
-	return TRUE;
+	if(!C_Mika_FreeHelp())
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Mika_WASGEFAEHRLICH_Info()
@@ -131,7 +160,7 @@ func void DIA_Mika_WASGEFAEHRLICH_Info()
 	AI_Output(other,self,"DIA_Mika_WASGEFAEHRLICH_15_00");	//А что такого опасного здесь?
 	AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_01");	//Много чего.
 	AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_02");	//Ну, например, бандиты. Они только и ждут, когда к ним в лапы попадет кто-нибудь вроде тебя.
-	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+	if((VisibleGuild(other) != GIL_SLD) && (VisibleGuild(other) != GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_03");	//А если тебя не поймают бандиты, то дикие животные из леса или наемники, которые шляются вокруг, позаботятся о тебе.
 	};
@@ -155,7 +184,7 @@ instance DIA_Mika_WASKOSTETHILFE(C_Info)
 
 func int DIA_Mika_WASKOSTETHILFE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Mika_WASGEFAEHRLICH) && (Mika_Helps == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Mika_WASGEFAEHRLICH) && (Mika_Helps == FALSE) && !C_Mika_FreeHelp())
 	{
 		return TRUE;
 	};
@@ -164,20 +193,12 @@ func int DIA_Mika_WASKOSTETHILFE_Condition()
 func void DIA_Mika_WASKOSTETHILFE_Info()
 {
 	AI_Output(other,self,"DIA_Mika_WASKOSTETHILFE_15_00");	//Ну, предположим, я обращусь к тебе за помощью. Сколько это будет мне стоить?
-	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF) || ArmorEquipped(other,ITAR_MIL_M))
-	{
-		AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_ja_12_01");	//Потрясающе. Если тебе понадобится моя помощь, ты знаешь, где найти меня.
-		Mika_Helps = TRUE;
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_01");	//Я всего лишь скромный слуга короля и мне не к лицу обирать беззащитных граждан нашего королевства.
-		AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_02");	//Но, знаешь, если уж ты так ставишь вопрос, то я бы не отказался от небольшой финансовой помощи. Это укрепит наши будущие деловые отношения.
-		AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_03");	//10 золотых будет достаточно для начала. Что скажешь?
-		Info_ClearChoices(DIA_Mika_WASKOSTETHILFE);
-		Info_AddChoice(DIA_Mika_WASKOSTETHILFE,"Я подумаю над этим.",DIA_Mika_WASKOSTETHILFE_nochnicht);
-		Info_AddChoice(DIA_Mika_WASKOSTETHILFE,"Почему бы и нет? Вот твои 10 монет.",DIA_Mika_WASKOSTETHILFE_ja);
-	};
+	AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_01");	//Я всего лишь скромный слуга короля и мне не к лицу обирать беззащитных граждан нашего королевства.
+	AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_02");	//Но, знаешь, если уж ты так ставишь вопрос, то я бы не отказался от небольшой финансовой помощи. Это укрепит наши будущие деловые отношения.
+	AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_03");	//10 золотых будет достаточно для начала. Что скажешь?
+	Info_ClearChoices(DIA_Mika_WASKOSTETHILFE);
+	Info_AddChoice(DIA_Mika_WASKOSTETHILFE,"Я подумаю над этим.",DIA_Mika_WASKOSTETHILFE_nochnicht);
+	Info_AddChoice(DIA_Mika_WASKOSTETHILFE,"Почему бы и нет? Вот твои 10 монет.",DIA_Mika_WASKOSTETHILFE_ja);
 };
 
 func void DIA_Mika_WASKOSTETHILFE_ja()
@@ -217,7 +238,7 @@ instance DIA_Mika_UEBERLEGT(C_Info)
 
 func int DIA_Mika_UEBERLEGT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Mika_WASKOSTETHILFE) && (Mika_Helps == FALSE) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF) && !ArmorEquipped(other,ITAR_MIL_M))
+	if(Npc_KnowsInfo(other,DIA_Mika_WASKOSTETHILFE) && (Mika_Helps == FALSE) && !C_Mika_FreeHelp())
 	{
 		return TRUE;
 	};
@@ -252,21 +273,13 @@ instance DIA_Mika_HILFE(C_Info)
 
 func int DIA_Mika_HILFE_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && Npc_KnowsInfo(other,DIA_Mika_WASKOSTETHILFE))
+	if(self.aivar[AIV_PARTYMEMBER] == FALSE)
 	{
-		if(Mika_Helps == TRUE)
+		if(C_Mika_FreeHelp())
 		{
 			return TRUE;
 		};
-		if(other.guild == GIL_PAL)
-		{
-			return TRUE;
-		};
-		if(other.guild == GIL_KDF)
-		{
-			return TRUE;
-		};
-		if(ArmorEquipped(other,ITAR_MIL_M))
+		if(Npc_KnowsInfo(other,DIA_Mika_WASKOSTETHILFE) && (Mika_Helps == TRUE))
 		{
 			return TRUE;
 		};
@@ -276,7 +289,14 @@ func int DIA_Mika_HILFE_Condition()
 func void DIA_Mika_HILFE_Info()
 {
 	AI_Output(other,self,"DIA_Mika_HILFE_15_00");	//Мне нужна твоя помощь.
-	AI_Output(self,other,"DIA_Mika_HILFE_12_01");	//Ну, если это так необходимо... Что случилось?
+	if(C_Mika_FreeHelp())
+	{
+		AI_Output(self,other,"DIA_Mika_HILFE_12_01_add");	//Что случилось?
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Mika_HILFE_12_01");	//Ну, если это так необходимо... Что случилось?
+	};
 	Mika_Helps = TRUE;
 	Info_ClearChoices(DIA_Mika_HILFE);
 	Info_AddChoice(DIA_Mika_HILFE,Dialog_Back,DIA_Mika_HILFE_BACK);
@@ -343,6 +363,7 @@ func int DIA_Mika_Zack_Condition()
 func void DIA_Mika_Zack_Info()
 {
 	AI_Output(self,other,"DIA_Mika_Zack_12_00");	//Теперь смотри, как это делается.
+	Info_ClearChoices(DIA_Mika_Zack);
 	Info_AddChoice(DIA_Mika_Zack,Dialog_Ende,DIA_Mika_Zack_los);
 };
 
@@ -408,13 +429,7 @@ instance DIA_Mika_Kap3u4u5_PERM(C_Info)
 
 func int DIA_Mika_Kap3u4u5_PERM_Condition()
 {
-//	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Mika_WOHIN) && Npc_IsDead(Alvares) && Npc_IsDead(Engardo))
-//	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Mika_WOHIN) && ((Npc_IsDead(Alvares) && Npc_IsDead(Engardo)) || (TOPIC_END_AkilsSLDStillthere == FALSE)))
-	if(Kapitel > Mika_FirstContactChapter)
-	{
-		return TRUE;
-	};
-	if(Npc_KnowsInfo(other,DIA_Mika_WIEDERNACHHAUSE))
+	if(Npc_KnowsInfo(other,DIA_Mika_WIEDERNACHHAUSE) || C_Mika_FreeHelp())
 	{
 		return TRUE;
 	};
@@ -423,7 +438,14 @@ func int DIA_Mika_Kap3u4u5_PERM_Condition()
 func void DIA_Mika_Kap3u4u5_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Mika_Kap3u4u5_PERM_15_00");	//Все тихо?
-	AI_Output(self,other,"DIA_Mika_Kap3u4u5_PERM_12_01");	//Ты все еще жив? Надо же!
+	if(C_Mika_FreeHelp())
+	{
+		AI_Output(self,other,"DIA_Mika_WOHIN_weg_12_01_add");	//Удачной прогулки!
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Mika_Kap3u4u5_PERM_12_01");	//Ты все еще жив? Надо же!
+	};
 };
 
 

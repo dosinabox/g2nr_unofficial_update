@@ -141,7 +141,7 @@ instance DIA_Fernando_Minental(C_Info)
 
 func int DIA_Fernando_Minental_Condition()
 {
-	if((NpcObsessedByDMT_Fernando == FALSE) && (MIS_OLDWORLD == LOG_Running) && (Kapitel == 2) && (EnterOW_Kapitel2 == FALSE) && (Fernando_HatsZugegeben == FALSE) && (Fernando_ImKnast == FALSE))
+	if((NpcObsessedByDMT_Fernando == FALSE) && (MIS_OLDWORLD == LOG_Running) && (EnterOW_Kapitel2 == FALSE) && (Fernando_Betrayal == FALSE) && (Fernando_ImKnast == FALSE))
 	{
 		return TRUE;
 	};
@@ -182,8 +182,7 @@ instance DIA_Addon_Fernando_BanditTrader(C_Info)
 
 func int DIA_Addon_Fernando_BanditTrader_Condition()
 {
-//	if((FernandoBlame_noPerm == FALSE) && (Vatras_ToMartin == TRUE) && Npc_KnowsInfo(other,DIA_Fernando_Hello) && (NpcObsessedByDMT_Fernando == FALSE) && (Npc_HasItems(other,ItMw_Addon_BanditTrader) || Npc_HasItems(other,ItRi_Addon_BanditTrader) || (Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))))
-	if((FernandoBlame_noPerm == FALSE) && (MIS_Vatras_FindTheBanditTrader == LOG_Running) && Npc_KnowsInfo(other,DIA_Fernando_Hello) && (NpcObsessedByDMT_Fernando == FALSE) && (Npc_HasItems(other,ItMw_Addon_BanditTrader) || Npc_HasItems(other,ItRi_Addon_BanditTrader) || (Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))))
+	if((FernandoBlame_noPerm == FALSE) && (MIS_Vatras_FindTheBanditTrader == LOG_Running) && Npc_KnowsInfo(other,DIA_Fernando_Hello) && (NpcObsessedByDMT_Fernando == FALSE) && C_SCHasAnyFernandoEvidence())
 	{
 		return TRUE;
 	};

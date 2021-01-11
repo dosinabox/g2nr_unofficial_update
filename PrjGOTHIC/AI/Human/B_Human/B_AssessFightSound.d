@@ -69,18 +69,15 @@ func void B_AssessFightSound()
 	{
 		return;
 	};
-//	if((victim.guild == GIL_SHEEP) && (victim.aivar[AIV_ToughGuy] == FALSE))
 	if(victim.guild == GIL_SHEEP)
 	{
 		if(C_WantToAttackSheepKiller(self,other))
 		{
 			B_Attack(self,other,AR_SheepKiller,0);
-			return;
 		}
 		else if(C_NpcIsGateGuard(self))
 		{
 			B_MemorizePlayerCrime(self,other,CRIME_SHEEPKILLER);
-			return;
 		};
 		return;
 	};
@@ -88,14 +85,17 @@ func void B_AssessFightSound()
 	{
 		return;
 	};
-	if((other.guild > GIL_SEPERATOR_HUM) && (victim.guild > GIL_SEPERATOR_HUM))
+	if(other.guild > GIL_SEPERATOR_HUM)
 	{
-		return;
-	};
-	if((other.guild > GIL_SEPERATOR_HUM) && (Npc_GetAttitude(self,victim) != ATT_HOSTILE))
-	{
-		B_Attack(self,other,AR_MonsterVsHuman,0);
-		return;
+		if(victim.guild > GIL_SEPERATOR_HUM)
+		{
+			return;
+		};
+		if(Npc_GetAttitude(self,victim) != ATT_HOSTILE)
+		{
+			B_Attack(self,other,AR_MonsterVsHuman,0);
+			return;
+		};
 	};
 	if((victim.guild > GIL_SEPERATOR_HUM) && (Npc_GetAttitude(self,other) != ATT_HOSTILE) && !Npc_IsDead(victim))
 	{
@@ -110,7 +110,6 @@ func void B_AssessFightSound()
 		if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other))
 		{
 			B_Attack(self,other,AR_GuildEnemy,0);
-			return;
 		};
 		return;
 	};
@@ -143,9 +142,6 @@ func void B_AssessFightSound()
 				return;
 			};
 		};
-	}
-	else
-	{
 	};
 	if(((other.aivar[AIV_ATTACKREASON] == AR_GuardStopsIntruder) || (other.aivar[AIV_ATTACKREASON] == AR_MonsterCloseToGate) || (other.aivar[AIV_ATTACKREASON] == AR_HumanMurderedHuman) || (other.aivar[AIV_ATTACKREASON] == AR_GuildEnemy) || (other.aivar[AIV_ATTACKREASON] == AR_GuardCalledToKill)) && (Npc_GetAttitude(self,other) == ATT_FRIENDLY))
 	{
@@ -190,28 +186,24 @@ func void B_AssessFightSound()
 		if((Npc_GetAttitude(self,other) == ATT_FRIENDLY) && (Npc_GetAttitude(self,victim) != ATT_FRIENDLY))
 		{
 			B_Attack(self,victim,AR_GuardStopsFight,0);
-			return;
 		}
 		else if((Npc_GetAttitude(self,victim) == ATT_FRIENDLY) && (Npc_GetAttitude(self,other) != ATT_FRIENDLY))
 		{
 			B_Attack(self,other,AR_GuardStopsFight,0);
-			return;
 		}
 		else if(Npc_IsPlayer(other))
 		{
 			B_Attack(self,victim,AR_GuardStopsFight,0);
-			return;
 		}
 		else if(Npc_IsPlayer(victim))
 		{
 			B_Attack(self,other,AR_GuardStopsFight,0);
-			return;
 		}
 		else
 		{
 			B_Attack(self,other,AR_GuardStopsFight,0);
-			return;
 		};
+		return;
 	};
 	if(((other.aivar[AIV_ATTACKREASON] == AR_UseMob) || (other.aivar[AIV_ATTACKREASON] == AR_Theft) || (other.aivar[AIV_ATTACKREASON] == AR_LeftPortalRoom)) && (Npc_GetAttitude(self,other) == ATT_FRIENDLY))
 	{
@@ -256,7 +248,7 @@ func void B_AssessFightSound()
 	};
 	if((self.guild != GIL_DMT) && ((victim.guild == GIL_DMT) || (other.guild == GIL_DMT)))
 	{
-		if(!C_IsBestFriend(self))
+		if(!C_NpcIsBestFriend(self))
 		{
 			Npc_SetTarget(self,other);
 			AI_StartState(self,ZS_Flee,0,"");

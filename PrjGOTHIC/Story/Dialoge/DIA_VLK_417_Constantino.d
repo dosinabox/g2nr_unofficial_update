@@ -424,7 +424,6 @@ func void DIA_Constantino_HerbsRunning_Success()
 	AI_Output(self,other,"DIA_Constantino_HerbsRunning_Success_10_03");	//Кто знает, может, когда-нибудь из тебя действительно получится приличный алхимик.
 	MIS_Constantino_BringHerbs = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Constantino_Herbs);
-	B_CheckLog();
 	if(Player_IsApprentice == APP_NONE)
 	{
 		Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);

@@ -58,8 +58,8 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 	};
 	if(EnterNW_Kapitel2 == FALSE)
 	{
-		Wld_InsertNpc(Gobbo_Skeleton,"FP_ROAM_MEDIUMFOREST_KAP2_24");
-		Wld_InsertNpc(Skeleton,"FP_ROAM_MEDIUMFOREST_KAP2_22");
+		Wld_InsertNpc(Gobbo_Skeleton,"NW_FOREST_PATH_04_9");
+		Wld_InsertNpc(Skeleton,"NW_FOREST_PATH_04_8");
 		Wld_InsertNpc(Lesser_Skeleton,"FP_ROAM_MEDIUMFOREST_KAP2_23");
 		Wld_InsertNpc(Wolf,"FP_ROAM_MEDIUMFOREST_KAP2_25");
 		Wld_InsertNpc(Wolf,"FP_ROAM_MEDIUMFOREST_KAP2_26");
