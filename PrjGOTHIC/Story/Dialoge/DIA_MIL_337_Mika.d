@@ -29,7 +29,7 @@ func int C_Mika_FreeHelp()
 	{
 		return TRUE;
 	}
-	else if((VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_PAL) || ArmorEquipped(other,ITAR_MIL_M))
+	else if((VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_PAL) || (VisibleGuild(other) == GIL_MIL))
 	{
 		Mika_FreeHelp = TRUE;
 		return TRUE;
@@ -67,7 +67,7 @@ func void DIA_Mika_Refuse_Info()
 {
 	if(C_Mika_FreeHelp())
 	{
-		B_Say(self,other,"$AWAKE");
+		AI_Output(self,other,"DIA_Mika_REFUSE_12_00_add");	//ћы еще поговорим.
 	}
 	else
 	{
@@ -91,16 +91,22 @@ func int DIA_Mika_WOHIN_Condition()
 {
 	if((Lares.aivar[AIV_PARTYMEMBER] == FALSE) && (Npc_GetDistToWP(self,"NW_CITY_TO_FOREST_01") < 700))
 	{
-		return TRUE;
+		if(ArmorEquipped(other,ITAR_MIL_L))
+		{
+			return TRUE;
+		};
+		if(!C_Mika_FreeHelp())
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Mika_WOHIN_Info()
 {
-	if(C_Mika_FreeHelp())
+	if(VisibleGuild(other) == GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Mika_WOHIN_Bauern_12_01_add");	//Ќе стоит бродить по этим опасным тропам совсем одному. ≈сли тебе понадобитс€ мо€ помощь, ты знаешь, где найти мен€.
-		Mika_Helps = TRUE;
 	}
 	else
 	{
@@ -168,7 +174,10 @@ func void DIA_Mika_WASGEFAEHRLICH_Info()
 	{
 		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_04");	//“ак что постарайс€ сначала хот€ бы добыть приличные доспехи. Ѕез них тут нечего делать.
 	};
-	AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_05");	//я уверен, что ты прибежишь за помощью ко мне, не успев даже дойти до следующего поворота этой дороги.
+	if(VisibleGuild(other) != GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_05");	//я уверен, что ты прибежишь за помощью ко мне, не успев даже дойти до следующего поворота этой дороги.
+	};
 };
 
 
@@ -273,16 +282,9 @@ instance DIA_Mika_HILFE(C_Info)
 
 func int DIA_Mika_HILFE_Condition()
 {
-	if(self.aivar[AIV_PARTYMEMBER] == FALSE)
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (C_Mika_FreeHelp() || (Mika_Helps == TRUE)))
 	{
-		if(C_Mika_FreeHelp())
-		{
-			return TRUE;
-		};
-		if(Npc_KnowsInfo(other,DIA_Mika_WASKOSTETHILFE) && (Mika_Helps == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 

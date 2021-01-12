@@ -416,15 +416,15 @@ func void DIA_Addon_Martin_AboutBandits_Info()
 
 func int C_SCHasAnyFernandoEvidence()
 {
-	if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
+	if(Npc_HasItems(hero,ItMw_Addon_BanditTrader))
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItRi_Addon_BanditTrader))
+	if(Npc_HasItems(hero,ItRi_Addon_BanditTrader))
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))
+	if(Npc_HasItems(hero,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))
 	{
 		return TRUE;
 	};

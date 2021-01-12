@@ -43,8 +43,8 @@ func void DIA_Ehnim_HALLO_Info()
 	if(Hlp_IsValidNpc(Egill) && !C_NpcIsDown(Egill))
 	{
 		AI_Output(self,other,"DIA_Ehnim_HALLO_12_02");	//А коротышка вон там - мой брат Эгилл.
+		AI_Output(self,other,"DIA_Ehnim_HALLO_12_03");	//Мы работаем здесь, на ферме Акила, уже несколько лет.
 	};
-	AI_Output(self,other,"DIA_Ehnim_HALLO_12_03");	//Мы работаем здесь, на ферме Акила, уже несколько лет.
 };
 
 
@@ -224,7 +224,10 @@ func int DIA_Ehnim_PERMKAP1_Condition()
 func void DIA_Ehnim_PERMKAP1_Info()
 {
 	AI_Output(self,other,"DIA_Ehnim_PERMKAP1_12_00");	//Тебе мало того, что ты натворил? Я думаю, тебе лучше уйти.
-	AI_StopProcessInfos(self);
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 66) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
+	{
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -276,7 +279,7 @@ func void DIA_Ehnim_MoleRatFett_was()
 	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_12_04");	//Последнее время шли дожди, и она заржавела. Лебедку заклинило, и он не может поднять решетку.
 	Log_CreateTopic(TOPIC_FoundVinosKellerei,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_FoundVinosKellerei,LOG_Running);
-	B_LogEntry(TOPIC_FoundVinosKellerei,"Эним рассказал мне, что Вино содержит секретный винокуренный завод в лесу около фермы Акила. Но механизм, открывающий дверь, заклинило, и починить его можно только смазав шестеренки жиром крысокрота.");
+	B_LogEntry(TOPIC_FoundVinosKellerei,"Эним рассказал мне, что Вино содержит секретный винокуренный завод в лесу около фермы Акила. Но механизм, открывающий решетку, заклинило, и починить его можно только смазав шестеренки жиром крысокрота.");
 	Info_AddChoice(DIA_Ehnim_MoleRatFett,"И? Ты достал смазку?",DIA_Ehnim_MoleRatFett_was_Fett);
 };
 
@@ -320,7 +323,7 @@ func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja()
 		{
 			AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_03");	//Черт, и куда же она подевалась? Что за досада. Извини. Похоже, у меня ее не осталось. Вот, возьми свои деньги назад.
 			B_GiveInvItems(self,other,ItMi_Gold,Ehnim_MoleRatFettOffer);
-			if(!Npc_IsDead(Egill))
+			if((Hlp_IsValidNpc(Egill) && !C_NpcIsDown(Egill)))
 			{
 				AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_04");	//Готов поклясться, это проделки моего брата. Вот ублюдок.
 				AI_StopProcessInfos(self);
@@ -382,7 +385,10 @@ func int DIA_Ehnim_PERMKAP3_Condition()
 func void DIA_Ehnim_PERMKAP3_Info()
 {
 	AI_Output(self,other,"DIA_Ehnim_PERMKAP3_12_00");	//У меня нет времени на тебя.
-	AI_StopProcessInfos(self);
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 66) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
+	{
+		AI_StopProcessInfos(self);
+	};
 };
 
 

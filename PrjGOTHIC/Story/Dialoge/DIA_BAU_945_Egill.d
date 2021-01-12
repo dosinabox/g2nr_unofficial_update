@@ -176,7 +176,10 @@ func int DIA_Egill_PERMKAP1_Condition()
 func void DIA_Egill_PERMKAP1_Info()
 {
 	AI_Output(self,other,"DIA_Egill_PERMKAP1_08_00");	//Тебе мало того, что ты натворил? Я думаю, тебе лучше уйти.
-	AI_StopProcessInfos(self);
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 35) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
+	{
+		AI_StopProcessInfos(self);
+	};
 };
 
 
