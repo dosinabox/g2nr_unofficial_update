@@ -248,26 +248,6 @@ func void DIA_Peck_WEAPON2_Info()
 
 func int C_PeckCanSellArmor()
 {
-	/*if(Kapitel >= 2)
-	{
-		return TRUE;
-	}
-	else if((MIS_Andre_WAREHOUSE == LOG_SUCCESS) && (MIS_Andre_REDLIGHT == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Andre_LOBART_SUCCESS))
-	{
-		return TRUE;
-	}
-	else if(CriminalsJailed >= 3)
-	{
-		return TRUE;
-	}
-	else if(MIS_Andre_GuildOfThieves == LOG_SUCCESS)
-	{
-		return TRUE;
-	}
-	else if(Andre_FoundThieves_Reported == TRUE)
-	{
-		return TRUE;
-	};*/
 	if(MIS_Addon_Andre_MissingPeople == LOG_SUCCESS)
 	{
 		return TRUE;

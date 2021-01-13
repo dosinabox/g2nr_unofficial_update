@@ -547,15 +547,18 @@ func void b_enter_oldworld()
 	};
 	CurrentLevel = OLDWORLD_ZEN;
 	B_InitNpcGlobals();
-	if((DJG_BiffParty == TRUE) && !Npc_IsDead(Biff))
+	if(DJG_BiffParty == TRUE)
 	{
-		if(DJG_Biff_HalbeHalbe == TRUE)
+		if(!Npc_IsDead(Biff))
 		{
-			Npc_SetRefuseTalk(Biff,500);
-		}
-		else
-		{
-			Npc_SetRefuseTalk(Biff,300);
+			if(DJG_Biff_HalbeHalbe == TRUE)
+			{
+				Npc_SetRefuseTalk(Biff,500);
+			}
+			else
+			{
+				Npc_SetRefuseTalk(Biff,300);
+			};
 		};
 	};
 	if(Npc_IsDead(Bilgot) && (MIS_RescueBilgot == LOG_Running))

@@ -6,12 +6,10 @@ var int IcDragnIsDead;
 
 func void B_DragonKillCounter(var C_Npc current_dragon)
 {
-//	var C_Npc Ravn;
 	var C_Npc SwapDragn;
 	var C_Npc RckDragn;
 	var C_Npc FreDragn;
 	var C_Npc IcDragn;
-//	Ravn = Hlp_GetNpc(BDT_1090_Addon_Raven);
 	if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(Raven))
 	{
 		if(RavenIsDead == FALSE)
@@ -61,9 +59,12 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 	if(MIS_KilledDragons == 4)
 	{
 		MIS_AllDragonsDead = TRUE;
-		if((DJG_BiffParty == TRUE) && !Npc_IsDead(Biff))
+		if(DJG_BiffParty == TRUE)
 		{
-			DJG_BiffSurvivedLastDragon = TRUE;
+			if(!Npc_IsDead(Biff))
+			{
+				DJG_BiffSurvivedLastDragon = TRUE;
+			};
 		};
 	};
 	if(current_dragon.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)

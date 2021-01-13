@@ -116,6 +116,10 @@ func void DIA_Mika_WOHIN_Info()
 		if(other.guild == GIL_NONE)
 		{
 			Info_AddChoice(DIA_Mika_WOHIN,"С одной из ферм.",DIA_Mika_WOHIN_Bauern);
+		}
+		else if(other.guild == GIL_NOV)
+		{
+			Info_AddChoice(DIA_Mika_WOHIN,"Из монастыря.",DIA_Mika_WOHIN_Kloster);
 		};
 		Info_AddChoice(DIA_Mika_WOHIN,"Из города!",DIA_Mika_WOHIN_stadt);
 	};
@@ -132,6 +136,13 @@ func void DIA_Mika_WOHIN_Bauern()
 {
 	AI_Output(other,self,"DIA_Mika_WOHIN_Bauern_15_00");	//С одной из ферм.
 	AI_Output(self,other,"DIA_Mika_WOHIN_Bauern_12_01");	//Ты фермер, да? Хмм. Тогда тебе не стоит бродить по этим опасным тропам совсем одному. Кто знает, что там может поджидать тебя.
+	Info_ClearChoices(DIA_Mika_WOHIN);
+};
+
+func void DIA_Mika_WOHIN_Kloster()
+{
+	AI_Output(other,self,"DIA_Mika_WOHIN_Kloster_15_00_add");	//Из монастыря.
+	AI_Output(self,other,"DIA_Mika_WOHIN_Kloster_12_01_add");	//Тогда тебе не стоит бродить по этим опасным тропам совсем одному. Кто знает, что там может поджидать тебя.
 	Info_ClearChoices(DIA_Mika_WOHIN);
 };
 

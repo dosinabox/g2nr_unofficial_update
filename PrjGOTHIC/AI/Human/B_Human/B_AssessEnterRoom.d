@@ -11,7 +11,7 @@ func int B_AssessEnterRoom()
 	{
 		return FALSE;
 	};
-	if(!Npc_IsInPlayersRoom(self) && !(Npc_GetPortalGuild(self) < GIL_NONE))
+	if(!Npc_IsInPlayersRoom(self) && (Npc_GetPortalGuild(self) >= GIL_NONE))
 	{
 		return FALSE;
 	};

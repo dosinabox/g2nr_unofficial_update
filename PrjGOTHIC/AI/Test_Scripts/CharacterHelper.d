@@ -763,6 +763,8 @@ func void ch_apprentice_bosper()
 {
 	Player_IsApprentice = APP_Bosper;
 	PrintScreen("Мастер: Боспер",-1,-1,FONT_Screen,3);
+	MIS_Apprentice = LOG_SUCCESS;
+	B_CheckLog();
 	CH_Apprentice_Info();
 };
 
@@ -770,6 +772,8 @@ func void ch_apprentice_harad()
 {
 	Player_IsApprentice = APP_Harad;
 	PrintScreen("Мастер: Гарад",-1,-1,FONT_Screen,3);
+	MIS_Apprentice = LOG_SUCCESS;
+	B_CheckLog();
 	CH_Apprentice_Info();
 };
 
@@ -777,6 +781,8 @@ func void ch_apprentice_constantino()
 {
 	Player_IsApprentice = APP_Constantino;
 	PrintScreen("Мастер: Константино",-1,-1,FONT_Screen,3);
+	MIS_Apprentice = LOG_SUCCESS;
+	B_CheckLog();
 	CH_Apprentice_Info();
 };
 
