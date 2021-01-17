@@ -646,7 +646,7 @@ func void DIA_Addon_Skip_Grog_gold()
 instance DIA_Addon_Skip_News(C_Info)
 {
 	npc = PIR_1355_Addon_Skip;
-	nr = 888;
+	nr = 776;
 	condition = DIA_Addon_Skip_News_Condition;
 	information = DIA_Addon_Skip_News_Info;
 	permanent = FALSE;

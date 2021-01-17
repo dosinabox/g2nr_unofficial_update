@@ -257,9 +257,11 @@ func void DIA_Addon_Edgor_Teach_Info()
 	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_03");	//Кроме того, я знаю, как выделять секрет из оторванных жал.
 	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_04");	//Если хочешь, я могу научить тебя всей этой фигне.
 	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_05");	//Конечно, я ничего не буду делать бесплатно...
-	Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Teacher,Log_Text_Addon_EdgorTeach);
-	Edgor_Teach = TRUE;
+	if(!Npc_KnowsInfo(other,DIA_Addon_Logan_Lern))
+	{
+		Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
+		B_LogEntry(Topic_Addon_BDT_Teacher,Log_Text_Addon_EdgorTeach);
+	};
 };
 
 func void B_Edgor_NotEnoughLP()
@@ -288,7 +290,7 @@ instance DIA_Addon_Edgor_TrainStart(C_Info)
 
 func int DIA_Addon_Edgor_Start_Condition()
 {
-	if((Edgor_Teach == TRUE) && (DIA_Edgor_Teach_permanent == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_Teach) && (DIA_Edgor_Teach_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -317,8 +319,8 @@ func void DIA_Addon_Edgor_Start_Info()
 	}
 	else
 	{
-		DIA_Edgor_Teach_permanent = TRUE;
 		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		DIA_Edgor_Teach_permanent = TRUE;
 	};
 };
 

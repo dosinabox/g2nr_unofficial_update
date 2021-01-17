@@ -986,5 +986,3 @@ func void DIA_Addon_AlligatorJack_TooFar_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-

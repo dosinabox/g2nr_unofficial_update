@@ -478,7 +478,7 @@ func void DIA_Lord_Hagen_Pass_Info()
 	Log_CreateTopic(Topic_MISOLDWORLD,LOG_MISSION);
 	Log_SetTopicStatus(Topic_MISOLDWORLD,LOG_Running);
 	B_LogEntry(Topic_MISOLDWORLD,"Лорд Хаген хочет, чтобы я принес ему доказательства существования армии Зла. Я должен отправиться в Долину Рудников и поговорить с командующим Гарондом.");
-	if(Fernando_ImKnast == FALSE)
+	if((Fernando_Betrayal == FALSE) && (Fernando_ImKnast == FALSE))
 	{
 		B_StartOtherRoutine(Fernando,"WAIT");
 	};

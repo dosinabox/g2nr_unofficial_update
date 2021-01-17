@@ -213,7 +213,7 @@ func void B_BuildLearnDialog_Brandon()
 instance DIA_Addon_Brandon_TeachPlayer(C_Info)
 {
 	npc = PIR_1366_Addon_Brandon;
-	nr = 777;
+	nr = 776;
 	condition = DIA_Addon_Brandon_TeachPlayer_Condition;
 	information = DIA_Addon_Brandon_TeachPlayer_Info;
 	permanent = TRUE;

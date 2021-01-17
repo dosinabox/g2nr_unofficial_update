@@ -33,7 +33,7 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 		};
 		if(Tonak_DiedInADW == FALSE)
 		{
-			Wld_InsertNpc(STRF_1125_Addon_Tonak_NW,"NW_FARM2_FIELD_TANOK");
+			Wld_InsertNpc(STRF_1125_Addon_Tonak_NW,"NW_FARM2_FIELD_TONAK");
 		};
 		if(Telbor_DiedInADW == FALSE)
 		{

@@ -357,7 +357,7 @@ func void DIA_Addon_Logan_Lern_Info()
 	AI_Output(other,self,"DIA_Addon_Logan_Lern_15_00");	//ѕокажи мне, как разделывать туши животных...
 	AI_Output(self,other,"DIA_Addon_Logan_Lern_10_01");	//≈сли ты хочешь научитьс€ разделывать кровавых мух, пойди к Ёдгору. ќн про них знает буквально все.
 	AI_Output(self,other,"DIA_Addon_Logan_Lern_10_02");	//ј если теб€ интересуют болотные акулы и €щеры, € могу научить теб€ снимать шкуру и вынимать зубы.
-	if(Edgor_Teach == FALSE)
+	if(!Npc_KnowsInfo(other,DIA_Addon_Edgor_Teach))
 	{
 		Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
 		B_LogEntry(Topic_Addon_BDT_Teacher,Log_Text_Addon_EdgorTeach);

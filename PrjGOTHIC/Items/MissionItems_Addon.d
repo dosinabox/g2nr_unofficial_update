@@ -494,9 +494,13 @@ func void Use_LuciasLoveLetter_Addon()
 		{
 			Log_CreateTopic(TOPIC_Addon_LuciasLetter,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_Addon_LuciasLetter,LOG_Running);
-			B_LogEntry(TOPIC_Addon_LuciasLetter,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
+			B_LogEntries(TOPIC_Addon_LuciasLetter,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
 		};
 		MIS_LuciasLetter = LOG_Running;
+	};
+	if(MIS_LookingForLucia == LOG_Running)
+	{
+		B_LogNextEntry(TOPIC_Addon_Lucia,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
 	};
 	LuciaMentionedInKhorinis = TRUE;
 };
@@ -542,18 +546,11 @@ instance ItMi_Rake(C_Item)
 	visual = "ItMi_Rake.3DS";
 	material = MAT_WOOD;
 	scemeName = "RAKE";
-//	on_state[1] = Use_Rake;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
-
-/*
-func void Use_Rake()
-{
-};
-*/
 
 instance ItRi_Addon_BanditTrader(C_Item)
 {
@@ -595,7 +592,6 @@ var int Use_ItWr_Addon_BanditTrader_OneTime;
 func void Use_ItWr_Addon_BanditTrader()
 {
 	var int nDocID;
-	BanditTrader_Lieferung_Gelesen = TRUE;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -618,6 +614,7 @@ func void Use_ItWr_Addon_BanditTrader()
 		B_LogEntry(TOPIC_Addon_Bandittrader,"Я нашел документ, доказывающий, что Фернандо является поставщиком оружия, которого я ищу.");
 		Use_ItWr_Addon_BanditTrader_OneTime = TRUE;
 	};
+	BanditTrader_Lieferung_Gelesen = TRUE;
 };
 
 
@@ -1172,7 +1169,6 @@ func void UseFrancisAbrechnung_Mis()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Личная доля: 2220");
 	Doc_PrintLine(nDocID,0,"");
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Торг. корабль 'Мириам'");
 	Doc_PrintLine(nDocID,0,"");

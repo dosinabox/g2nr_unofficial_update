@@ -220,7 +220,7 @@ var int Franco_Exit;
 var int MIS_HlpLogan;
 var int MIS_HlpEdgor;
 var int Logan_Inside;
-var int Edgor_Teach;
+//var int Edgor_Teach;
 //var int Sumpfi_Counter;
 var int LennarPaket_Open;
 var int Emilio_TellAll;
