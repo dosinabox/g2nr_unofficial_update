@@ -212,10 +212,6 @@ func void DIA_Addon_Scatty_Trinken_Info()
 	if(!Npc_IsDead(Lucia))
 	{
 		AI_Output(self,other,"DIA_Addon_Scatty_Trinken_01_02");	//Но, может быть, у Люсии есть бутылочка...
-		if(!Npc_HasItems(other,ItFo_Beer) && !Npc_HasItems(Lucia,ItFo_Beer))
-		{
-			CreateInvItem(Lucia,ItFo_Beer);
-		};
 		if(!Npc_KnowsInfo(other,DIA_Addon_Lucia_was))
 		{
 			Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
