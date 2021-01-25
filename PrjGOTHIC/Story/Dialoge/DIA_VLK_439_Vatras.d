@@ -2350,10 +2350,6 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut()
 	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut_15_00");	//Где мне найти болотную траву?
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut_05_01");	//Я слышал о старой шаманке Сагитте, живущей в лесу. Предположительно, она продает такие травы.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut_05_02");	//Но также ты можешь попытать счастья в местной гавани.
-	if(!Npc_IsDead(Sagitta) && (Npc_HasItems(Sagitta,ItPl_SwampHerb) < 3))
-	{
-		CreateInvItems(Sagitta,ItPl_SwampHerb,3);
-	};
 };
 
 func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer()

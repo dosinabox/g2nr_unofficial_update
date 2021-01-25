@@ -7,6 +7,7 @@ instance KDF_509_Isgaroth(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	self.attribute[ATR_STRENGTH] = 1;
 	self.attribute[ATR_DEXTERITY] = 1;

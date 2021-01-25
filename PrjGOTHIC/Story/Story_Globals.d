@@ -1159,7 +1159,7 @@ var int COUNT_MegaDrink_Setting;
 //var int COUNT_SchnellerHering_Setting;
 var int Zeitspalt_Used;
 var int MegaDrink_Used;
-var int UndeadSword;
+var int MIS_PickedUpUndeadSword;
 var int BloodwynIsHeadless;
 var int Bennet_DIA_Bennet_DJG_ARMOR_H_permanent;
 var int MayaScrollGiven;

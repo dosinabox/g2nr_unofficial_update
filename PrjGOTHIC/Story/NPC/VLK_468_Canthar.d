@@ -12,6 +12,7 @@ instance VLK_468_Canthar(Npc_Default)
 	aivar[AIV_IGNORE_Murder] = TRUE;
 	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_IGNORE_Sheepkiller] = TRUE;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_ShortSword5);

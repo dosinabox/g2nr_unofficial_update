@@ -10,6 +10,7 @@ instance KDW_14010_Addon_Cronos_ADW(Npc_Default)
 	aivar[AIV_MagicUser] = MAGIC_ALWAYS;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,5);
 	self.attribute[ATR_STRENGTH] = Condition_Stab05;
 	self.attribute[ATR_DEXTERITY] = 1;

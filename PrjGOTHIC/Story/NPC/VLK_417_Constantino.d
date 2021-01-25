@@ -7,6 +7,7 @@ instance VLK_417_Constantino(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	self.attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;

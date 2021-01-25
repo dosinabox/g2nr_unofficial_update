@@ -12,6 +12,7 @@ instance PC_Mage_DI(Npc_Default)
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	self.attribute[ATR_STRENGTH] = 1;
 	self.attribute[ATR_DEXTERITY] = 1;

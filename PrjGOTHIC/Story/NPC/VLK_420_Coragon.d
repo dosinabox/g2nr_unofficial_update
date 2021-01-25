@@ -7,6 +7,7 @@ instance VLK_420_Coragon(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetFightSkills(self,40);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Mace);

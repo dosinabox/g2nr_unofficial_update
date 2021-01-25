@@ -90,125 +90,16 @@ func int C_AmIWeaponTrader(var C_Npc slf)
 
 func void B_GiveTradeInv(var C_Npc slf)
 {
-	var C_Npc Trd_Cronos_NW;
-	var C_Npc Trd_Cronos_ADW;
-	var C_Npc Trd_Martin;
-	var C_Npc Trd_Garett;
-	var C_Npc Trd_Fisk;
-	var C_Npc Trd_Huno;
-	var C_Npc Trd_Erol;
-	var C_Npc Trd_Juan;
-	var C_Npc Trd_Lucia;
-	var C_Npc Trd_Samuel;
-	var C_Npc Trd_Miguel;
-	var C_Npc Trd_Scatty;
-	var C_Npc Trd_Engor;
-	var C_Npc Trd_Matteo;
-	var C_Npc Trd_Halvor;
-	var C_Npc Trd_Bosper;
-//	var C_Npc Trd_Harad;
-	var C_Npc Trd_Brian;
-	var C_Npc Trd_Brahim;
-	var C_Npc Trd_Constantino;
-	var C_Npc Trd_Kardif;
-	var C_Npc Trd_Zuris;
-	var C_Npc Trd_Baltram;
-	var C_Npc Trd_Canthar;
-	var C_Npc Trd_Sarah;
-	var C_Npc Trd_Jora;
-	var C_Npc Trd_Hakon;
-	var C_Npc Trd_Coragon;
-	var C_Npc Trd_Gorax;
-	var C_Npc Trd_Orlan;
-	var C_Npc Trd_Bennet;
-	var C_Npc Trd_Bennet_DI;
-	var C_Npc Trd_Elena;
-	var C_Npc Trd_Sagitta;
-	var C_Npc Trd_Kjorn;
-	var C_Npc Trd_Rethon;
-	var C_Npc Trd_Rosi;
-	var C_Npc Trd_Ignaz;
-	var C_Npc Trd_Milten_DI;
-	var C_Npc Trd_Vatras_DI;
-	var C_Npc Trd_Diego_DI;
-	var C_Npc Trd_Tandor;
-	var C_Npc Trd_Sengrath;
-	var C_Npc Trd_Isgaroth;
-	var C_Npc Trd_Fenia;
-	var C_Npc Trd_Khaled;
-	var C_Npc Trd_Karras;
-	var C_Npc Trd_Salandril;
-	var C_Npc Trd_Gaertner;
-	var C_Npc Trd_Lutero;
-	var C_Npc Trd_Rupert;
-	var C_Npc Trd_Thorben;
-	var C_Npc Trd_Cipher;
-	var C_Npc Trd_Hodges;
-	var C_Item EquipWeap;
-	Trd_Cronos_NW = Hlp_GetNpc(KDW_1401_Addon_Cronos_NW);
-	Trd_Cronos_ADW = Hlp_GetNpc(KDW_14010_Addon_Cronos_ADW);
-	Trd_Martin = Hlp_GetNpc(MIL_350_Addon_Martin);
-	Trd_Garett = Hlp_GetNpc(PIR_1357_Addon_Garett);
-	Trd_Fisk = Hlp_GetNpc(BDT_1097_Addon_Fisk);
-	Trd_Huno = Hlp_GetNpc(BDT_1099_Addon_Huno);
-	Trd_Erol = Hlp_GetNpc(VLK_4303_Addon_Erol);
-	Trd_Juan = Hlp_GetNpc(BDT_10017_Addon_Juan);
-	Trd_Lucia = Hlp_GetNpc(BDT_1091_Addon_Lucia);
-	Trd_Samuel = Hlp_GetNpc(PIR_1351_Addon_Samuel);
-	Trd_Miguel = Hlp_GetNpc(BDT_10022_Addon_Miguel);
-	Trd_Scatty = Hlp_GetNpc(BDT_1086_Addon_Scatty);
-	Trd_Engor = Hlp_GetNpc(VLK_4108_Engor);
-	Trd_Matteo = Hlp_GetNpc(VLK_416_Matteo);
-	Trd_Halvor = Hlp_GetNpc(VLK_469_Halvor);
-	Trd_Bosper = Hlp_GetNpc(VLK_413_Bosper);
-//	Trd_Harad = Hlp_GetNpc(VLK_412_Harad);
-	Trd_Brian = Hlp_GetNpc(VLK_457_Brian);
-	Trd_Brahim = Hlp_GetNpc(VLK_437_Brahim);
-	Trd_Constantino = Hlp_GetNpc(VLK_417_Constantino);
-	Trd_Kardif = Hlp_GetNpc(VLK_431_Kardif);
-	Trd_Zuris = Hlp_GetNpc(VLK_409_Zuris);
-	Trd_Baltram = Hlp_GetNpc(VLK_410_Baltram);
-	Trd_Canthar = Hlp_GetNpc(VLK_468_Canthar);
-	Trd_Sarah = Hlp_GetNpc(VLK_470_Sarah);
-	Trd_Jora = Hlp_GetNpc(VLK_408_Jora);
-	Trd_Hakon = Hlp_GetNpc(VLK_407_Hakon);
-	Trd_Coragon = Hlp_GetNpc(VLK_420_Coragon);
-	Trd_Gorax = Hlp_GetNpc(KDF_508_Gorax);
-	Trd_Orlan = Hlp_GetNpc(BAU_970_Orlan);
-	Trd_Bennet = Hlp_GetNpc(SLD_809_Bennet);
-	Trd_Bennet_DI = Hlp_GetNpc(SLD_809_Bennet_DI);
-	Trd_Elena = Hlp_GetNpc(BAU_911_Elena);
-	Trd_Sagitta = Hlp_GetNpc(BAU_980_Sagitta);
-	Trd_Kjorn = Hlp_GetNpc(DJG_710_Kjorn);
-	Trd_Rethon = Hlp_GetNpc(DJG_709_Rethon);
-	Trd_Rosi = Hlp_GetNpc(BAU_936_Rosi);
-	Trd_Ignaz = Hlp_GetNpc(VLK_498_Ignaz);
-	Trd_Milten_DI = Hlp_GetNpc(PC_Mage_DI);
-	Trd_Vatras_DI = Hlp_GetNpc(VLK_439_Vatras_DI);
-	Trd_Diego_DI = Hlp_GetNpc(PC_Thief_DI);
-	Trd_Tandor = Hlp_GetNpc(PAL_260_Tandor);
-	Trd_Sengrath = Hlp_GetNpc(PAL_267_Sengrath);
-	Trd_Isgaroth = Hlp_GetNpc(KDF_509_Isgaroth);
-	Trd_Fenia = Hlp_GetNpc(VLK_476_Fenia);
-	Trd_Khaled = Hlp_GetNpc(SLD_823_Khaled);
-	Trd_Karras = Hlp_GetNpc(KDF_503_Karras);
-	Trd_Salandril = Hlp_GetNpc(VLK_422_Salandril);
-	Trd_Gaertner = Hlp_GetNpc(VLK_411_Gaertner);
-	Trd_Lutero = Hlp_GetNpc(VLK_404_Lutero);
-	Trd_Rupert = Hlp_GetNpc(VLK_458_Rupert);
-	Trd_Thorben = Hlp_GetNpc(VLK_462_Thorben);
-	Trd_Cipher = Hlp_GetNpc(SLD_803_Cipher);
-	Trd_Hodges = Hlp_GetNpc(BAU_908_Hodges);
-//	разоружение перед началом торговли с ГГ
+	var C_Item EquipedMeleeWeapon;
+	var C_Item EquipedRangedWeapon;
 	if(C_AmIWeaponTrader(slf))
 	{
-//		AI_UnequipWeapons(slf);
-		EquipWeap = Npc_GetEquippedMeleeWeapon(slf);
-		Npc_RemoveInvItems(slf,Hlp_GetInstanceID(EquipWeap),Npc_HasItems(slf,Hlp_GetInstanceID(EquipWeap)));
-		CreateInvItem(slf,Hlp_GetInstanceID(EquipWeap));
-		EquipWeap = Npc_GetEquippedRangedWeapon(slf);
-		Npc_RemoveInvItems(slf,Hlp_GetInstanceID(EquipWeap),Npc_HasItems(slf,Hlp_GetInstanceID(EquipWeap)));
-		CreateInvItem(slf,Hlp_GetInstanceID(EquipWeap));
+		EquipedMeleeWeapon = Npc_GetEquippedMeleeWeapon(slf);
+		Npc_RemoveInvItems(slf,Hlp_GetInstanceID(EquipedMeleeWeapon),Npc_HasItems(slf,Hlp_GetInstanceID(EquipedMeleeWeapon)));
+		CreateInvItem(slf,Hlp_GetInstanceID(EquipedMeleeWeapon));
+		EquipedRangedWeapon = Npc_GetEquippedRangedWeapon(slf);
+		Npc_RemoveInvItems(slf,Hlp_GetInstanceID(EquipedRangedWeapon),Npc_HasItems(slf,Hlp_GetInstanceID(EquipedRangedWeapon)));
+		CreateInvItem(slf,Hlp_GetInstanceID(EquipedRangedWeapon));
 	};
 	B_ClearRuneInv(slf);
 	B_ClearTools(slf);
@@ -216,493 +107,227 @@ func void B_GiveTradeInv(var C_Npc slf)
 	B_CoolHotDraw(hero);
 	if(slf.aivar[AIV_ChapterInv] <= Kapitel)
 	{
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Cronos_NW))
+		if(slf.aivar[AIV_NPCIsTrader] == TRUE)
 		{
 			B_ClearJunkTradeInv(slf);
+		};
+		if(C_IsNpc(slf,KDW_1401_Addon_Cronos_NW))
+		{
 			B_GiveTradeInv_Addon_Cronos_NW(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Cronos_ADW))
+		else if(C_IsNpc(slf,KDW_14010_Addon_Cronos_ADW))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Addon_Cronos_ADW(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Martin))
+		else if(C_IsNpc(slf,MIL_350_Addon_Martin))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Addon_Martin(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Garett))
+		else if(C_IsNpc(slf,PIR_1357_Addon_Garett))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Addon_Garett(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Fisk))
+		else if(C_IsNpc(slf,BDT_1097_Addon_Fisk))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Addon_Fisk(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Huno))
+		else if(C_IsNpc(slf,BDT_1099_Addon_Huno))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Addon_Huno(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Erol))
+		else if(C_IsNpc(slf,VLK_4303_Addon_Erol))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Addon_Erol(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Juan))
+		else if(C_IsNpc(slf,BDT_10017_Addon_Juan))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Addon_Juan(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Lucia))
+		else if(C_IsNpc(slf,BDT_1091_Addon_Lucia))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Addon_Lucia(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Samuel))
+		else if(C_IsNpc(slf,PIR_1351_Addon_Samuel))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Addon_Samuel(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Scatty))
+		else if(C_IsNpc(slf,BDT_1086_Addon_Scatty))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Addon_Scatty(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Miguel))
+		else if(C_IsNpc(slf,BDT_10022_Addon_Miguel))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Addon_Miguel(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Engor))
+		else if(C_IsNpc(slf,VLK_4108_Engor))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Engor(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Matteo))
+		else if(C_IsNpc(slf,VLK_416_Matteo))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Matteo(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Halvor))
+		else if(C_IsNpc(slf,VLK_469_Halvor))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Halvor(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Bosper))
+		else if(C_IsNpc(slf,VLK_413_Bosper))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Bosper(slf);
 		}
-/*		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Harad))
+		else if(C_IsNpc(slf,VLK_457_Brian))
 		{
-			B_ClearJunkTradeInv(slf);
-			B_GiveTradeInv_Harad(slf);
-		} */
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Brian))
-		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Brian(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Brahim))
+		else if(C_IsNpc(slf,VLK_437_Brahim))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Brahim(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Constantino))
+		else if(C_IsNpc(slf,VLK_417_Constantino))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Constantino(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Kardif))
+		else if(C_IsNpc(slf,VLK_431_Kardif))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Kardif(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Zuris))
+		else if(C_IsNpc(slf,VLK_409_Zuris))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Zuris(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Baltram))
+		else if(C_IsNpc(slf,VLK_410_Baltram))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Baltram(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Canthar))
+		else if(C_IsNpc(slf,VLK_468_Canthar))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Canthar(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Sarah))
+		else if(C_IsNpc(slf,VLK_470_Sarah))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Sarah(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Jora))
+		else if(C_IsNpc(slf,VLK_408_Jora))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Jora(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Hakon))
+		else if(C_IsNpc(slf,VLK_407_Hakon))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Hakon(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Coragon))
+		else if(C_IsNpc(slf,VLK_420_Coragon))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Coragon(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Gorax))
+		else if(C_IsNpc(slf,KDF_508_Gorax))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Gorax(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Orlan))
+		else if(C_IsNpc(slf,BAU_970_Orlan))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Orlan(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Bennet))
+		else if(C_IsNpc(slf,SLD_809_Bennet))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Bennet(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Bennet_DI))
+		else if(C_IsNpc(slf,SLD_809_Bennet_DI))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Bennet_DI(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Elena))
+		else if(C_IsNpc(slf,BAU_911_Elena))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Elena(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Sagitta))
+		else if(C_IsNpc(slf,BAU_980_Sagitta))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Sagitta(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Kjorn))
+		else if(C_IsNpc(slf,DJG_710_Kjorn))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Kjorn(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Rethon))
+		else if(C_IsNpc(slf,DJG_709_Rethon))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Rethon(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Rosi))
+		else if(C_IsNpc(slf,BAU_936_Rosi))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Rosi(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Ignaz))
+		else if(C_IsNpc(slf,VLK_498_Ignaz))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Ignaz(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Milten_DI))
+		else if(C_IsNpc(slf,PC_Mage_DI))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Milten_DI(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Vatras_DI))
+		else if(C_IsNpc(slf,VLK_439_Vatras_DI))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Vatras_DI(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Diego_DI))
+		else if(C_IsNpc(slf,PC_Thief_DI))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Diego_DI(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Tandor))
+		else if(C_IsNpc(slf,PAL_260_Tandor))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Tandor(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Sengrath))
+		else if(C_IsNpc(slf,PAL_267_Sengrath))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Sengrath(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Isgaroth))
+		else if(C_IsNpc(slf,KDF_509_Isgaroth))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Isgaroth(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Fenia))
+		else if(C_IsNpc(slf,VLK_476_Fenia))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Fenia(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Khaled))
+		else if(C_IsNpc(slf,SLD_823_Khaled))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Khaled(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Karras))
+		else if(C_IsNpc(slf,KDF_503_Karras))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Karras(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Salandril))
+		else if(C_IsNpc(slf,VLK_422_Salandril))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Salandril(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Gaertner))
+		else if(C_IsNpc(slf,VLK_411_Gaertner))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Gaertner(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Lutero))
+		else if(C_IsNpc(slf,VLK_404_Lutero))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Lutero(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Rupert))
+		else if(C_IsNpc(slf,VLK_458_Rupert))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Rupert(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Thorben))
+		else if(C_IsNpc(slf,VLK_462_Thorben))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Thorben(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Cipher))
+		else if(C_IsNpc(slf,SLD_803_Cipher))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Cipher(slf);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Hodges))
+		else if(C_IsNpc(slf,BAU_908_Hodges))
 		{
-			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Hodges(slf);
 		};
 		slf.aivar[AIV_ChapterInv] = Kapitel + 1;
 	};
 	if(Npc_IsInState(slf,ZS_Dead) || Npc_IsInState(slf,ZS_Unconscious))
 	{
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Cronos_NW))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Cronos_ADW))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Martin))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Garett))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Fisk))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Huno))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Erol))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Juan))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Lucia))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Samuel))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Miguel))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Scatty))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Engor))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Matteo))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Halvor))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Bosper))
-		{
-			B_ClearDeadTrader(slf);
-		}
-/*		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Harad))
-		{
-			B_ClearDeadTrader(slf);
-		} */
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Brian))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Brahim))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Constantino))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Kardif))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Zuris))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Baltram))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Canthar))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Sarah))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Jora))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Hakon))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Coragon))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Gorax))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Orlan))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Bennet))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Bennet_DI))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Elena))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Sagitta))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Kjorn))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Rethon))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Rosi))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Ignaz))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Milten_DI))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Vatras_DI))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Diego_DI))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Tandor))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Sengrath))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Isgaroth))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Fenia))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Khaled))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Karras))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Salandril))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Gaertner))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Lutero))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Rupert))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Thorben))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Cipher))
-		{
-			B_ClearDeadTrader(slf);
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Hodges))
+		if(slf.aivar[AIV_NPCIsTrader] == TRUE)
 		{
 			B_ClearDeadTrader(slf);
 		};

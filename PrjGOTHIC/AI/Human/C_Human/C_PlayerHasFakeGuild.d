@@ -129,10 +129,6 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 			{
 				return FALSE;
 			};
-			if(Hlp_IsItem(itm,ITAR_Hagen))
-			{
-				return FALSE;
-			};
 		}
 		else if(oth.guild == GIL_SLD)
 		{

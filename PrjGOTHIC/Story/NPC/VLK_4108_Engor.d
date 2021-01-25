@@ -7,6 +7,7 @@ instance VLK_4108_Engor(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = NPCTYPE_OCMAIN;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	CreateInvItem(self,ItWr_Map_OldWorld);

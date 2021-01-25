@@ -1917,35 +1917,6 @@ instance ITAR_PAL_S(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_Hagen(C_Item)
-{
-	name = "Доспехи командующего";
-	mainflag = ITEM_KAT_ARMOR;
-	flags = 0;
-	protection[PROT_EDGE] = 155;
-	protection[PROT_BLUNT] = 155;
-	protection[PROT_POINT] = 155;
-	protection[PROT_FIRE] = 105;
-	protection[PROT_MAGIC] = 55;
-	value = 25000;
-	wear = WEAR_TORSO;
-	visual = "ItAr_Hagen.3ds";
-	visual_change = "Armor_Hagen.asc";
-	visual_skin = 0;
-	material = MAT_METAL;
-	description = name;
-	text[1] = NAME_Prot_Edge;
-	count[1] = protection[PROT_EDGE];
-	text[2] = NAME_Prot_Point;
-	count[2] = protection[PROT_POINT];
-	text[3] = NAME_Prot_Fire;
-	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-	text[5] = NAME_Value;
-	count[5] = value;
-};
-
 instance ITAR_OHT(C_Item)
 {
 	name = "Доспехи охотника на орков";

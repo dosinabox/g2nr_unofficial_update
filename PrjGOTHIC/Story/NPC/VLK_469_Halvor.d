@@ -9,6 +9,7 @@ instance VLK_469_Halvor(Npc_Default)
 	npcType = npctype_main;
 	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1H_Mace_L_03);

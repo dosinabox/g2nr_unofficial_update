@@ -7,6 +7,7 @@ instance PAL_260_Tandor(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = NPCTYPE_OCMAIN;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 //	EquipItem(self,ItMw_1h_Pal_Sword);

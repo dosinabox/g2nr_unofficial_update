@@ -156,7 +156,6 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_PAL_M);
 	CreateInvItem(self,ITAR_PAL_H);
 	CreateInvItem(self,ITAR_PAL_S);
-	CreateInvItem(self,ITAR_Hagen);
 	CreateInvItem(self,ITAR_Bau_L);
 	CreateInvItem(self,ITAR_Bau_M);
 	CreateInvItem(self,ITAR_BauBabe_L);

@@ -31,7 +31,7 @@ func int VisibleGuild(var C_Npc npc)
 	{
 		return GIL_MIL;
 	};
-	if(ArmorEquipped(npc,ITAR_PAL_M) || ArmorEquipped(npc,ITAR_PALN_M) || ArmorEquipped(npc,ITAR_PAL_H) || ArmorEquipped(npc,ITAR_PALN_H) || ArmorEquipped(npc,ITAR_PAL_S) || ArmorEquipped(npc,ITAR_Hagen))
+	if(ArmorEquipped(npc,ITAR_PAL_M) || ArmorEquipped(npc,ITAR_PALN_M) || ArmorEquipped(npc,ITAR_PAL_H) || ArmorEquipped(npc,ITAR_PALN_H) || ArmorEquipped(npc,ITAR_PAL_S))
 	{
 		return GIL_PAL;
 	};
