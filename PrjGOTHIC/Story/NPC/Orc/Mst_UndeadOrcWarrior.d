@@ -21,7 +21,8 @@ prototype Mst_Default_UndeadOrcWarrior(C_Npc)
 	HitChance[NPC_TALENT_2H] = 80;
 	HitChance[NPC_TALENT_BOW] = 80;
 	HitChance[NPC_TALENT_CROSSBOW] = 80;
-	damagetype = DAM_EDGE;
+//	damagetype = DAM_EDGE;
+	damagetype = DAM_BLUNT;
 	fight_tactic = FAI_ORC;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;

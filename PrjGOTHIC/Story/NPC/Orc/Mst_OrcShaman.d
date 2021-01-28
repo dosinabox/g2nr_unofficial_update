@@ -24,7 +24,7 @@ prototype Mst_Default_OrcShaman(C_Npc)
 	HitChance[NPC_TALENT_CROSSBOW] = 60;
 	damagetype = DAM_EDGE;
 	fight_tactic = FAI_ORC;
-	senses = SENSE_HEAR | SENSE_SEE;
+	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_ORC_ACTIVE_MAX;
 	aivar[AIV_MM_FollowTime] = FOLLOWTIME_MEDIUM;
 	aivar[AIV_MM_FollowInWater] = FALSE;
@@ -57,6 +57,7 @@ instance OrcShaman_Hosh_Pak(Mst_Default_OrcShaman)
 	attribute[ATR_STRENGTH] = 105;
 	attribute[ATR_HITPOINTS_MAX] = 400;
 	attribute[ATR_HITPOINTS] = 400;
+	damagetype = DAM_BLUNT;
 //	EquipItem(self,ItMw_2H_OrcAxe_01);
 	B_SetVisuals_Hosh_Pak();
 	EquipItem(self,ItMw_2H_OrcMace_01);

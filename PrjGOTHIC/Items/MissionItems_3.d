@@ -788,7 +788,7 @@ instance ItWr_MinenAnteil_Mis(C_Item)
 	name = "Акция рудника Хориниса";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
-	value = Value_HpElixier;
+	value = 50;
 	visual = "ItWr_Scroll_02.3DS";
 //	visual = "Fakescroll.3ds";
 	material = MAT_LEATHER;

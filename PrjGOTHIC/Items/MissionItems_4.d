@@ -190,7 +190,7 @@ instance ItPo_DragonEggDrinkNeoras_MIS(C_Item)
 	name = NAME_Trank;
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
-	value = Value_HpElixier;
+	value = 300;
 //	visual = "ItPo_Perm_STR.3ds";
 	visual = "ItPo_Special_01.3ds";
 	material = MAT_GLAS;

@@ -24,7 +24,7 @@ prototype Mst_Default_OrcElite(C_Npc)
 	HitChance[NPC_TALENT_CROSSBOW] = 100;
 	damagetype = DAM_EDGE;
 	fight_tactic = FAI_ORC;
-	senses = SENSE_HEAR | SENSE_SEE;
+	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_ORC_ACTIVE_MAX;
 	aivar[AIV_MM_FollowTime] = FOLLOWTIME_MEDIUM;
 	aivar[AIV_MM_FollowInWater] = FALSE;

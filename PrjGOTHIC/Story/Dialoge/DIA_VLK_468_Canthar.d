@@ -65,7 +65,8 @@ func void B_GetCantharReward()
 	{
 		AI_Output(other,self,"DIA_Canthar_Success_15_02");	//Ты собирался дать мне оружие.
 		AI_Output(self,other,"DIA_Canthar_Success_09_03");	//Правильно. Вот, это оружие - произведение оружейного искусства.
-		B_GiveInvItems(self,other,ItMw_Lightsaebel,1);
+//		B_GiveInvItems(self,other,ItMw_Lightsaebel,1);
+		B_GiveInvItems(self,other,ItMw_Schiffsaxt,1);
 	};
 };
 
