@@ -87,7 +87,7 @@ func void DIA_PC_Thief_DI_RAT_Info()
 		AI_Output(other,self,"DIA_PC_Thief_DI_RAT_15_04");	//я сражалс€ с драконом и теперь застр€л перед пропастью с подъемным мостом. Ётот мост подн€т, и € не знаю, как опустить его.
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_05");	//ћмм. ј ты не пробовал дальнобойное оружие? ћожет быть, механизм можно активировать при помощи выстрела.
 	}
-	else if(Npc_IsDead(Archol) && !Npc_KnowsInfo(other,DIA_Schwarzmagier_HELLO))
+	else if(Npc_IsDead(Archol) && (EnteredFinalDIHall == FALSE))
 	{
 		AI_Output(other,self,"DIA_PC_Thief_DI_RAT_15_06");	//я встречаю на своем пути полчища нежити и их изощренные ловушки.
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_07");	//»звини, но € никогда не имел дела с нежитью. «десь тебе придетс€ изобретать что-то самому.
@@ -95,12 +95,12 @@ func void DIA_PC_Thief_DI_RAT_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_08");	//ѕриходи ко мне, если у теб€ возникает проблема, которую мой опыт может помочь разрешить.
-		if((OrkSturmDI == TRUE) && (DIA_PC_Thief_DI_RAT_OneTime == FALSE))
-		{
-			AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_09");	//≈ще одно. я бы предпочел, чтобы ты не приводил всех этих тварей, что брод€т здесь, к кораблю. я надеюсь, этот рейд орков был последней атакой, которую нам пришлось отражать здесь!
-			B_GivePlayerXP(XP_AmbientKap6);
-			DIA_PC_Thief_DI_RAT_OneTime = TRUE;
-		};
+	};
+	if((OrkSturmDI == TRUE) && (DIA_PC_Thief_DI_RAT_OneTime == FALSE))
+	{
+		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_09");	//≈ще одно. я бы предпочел, чтобы ты не приводил всех этих тварей, что брод€т здесь, к кораблю. я надеюсь, этот рейд орков был последней атакой, которую нам пришлось отражать здесь!
+		B_GivePlayerXP(XP_AmbientKap6);
+		DIA_PC_Thief_DI_RAT_OneTime = TRUE;
 	};
 };
 

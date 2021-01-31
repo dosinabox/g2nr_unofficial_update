@@ -21,6 +21,7 @@ prototype Mst_Default_Dragon_Swamp(C_Npc)
 	damagetype = DAM_FIRE | DAM_FLY;
 	damage[DAM_INDEX_FIRE] = 129;
 	damage[DAM_INDEX_FLY] = 1;
+	fight_tactic = FAI_DRAGON;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_DRAGON_ACTIVE_MAX;
 	aivar[AIV_MM_FollowTime] = FOLLOWTIME_MEDIUM;
@@ -42,9 +43,7 @@ instance Dragon_Swamp(Mst_Default_Dragon_Swamp)
 {
 	name[0] = "Пандродор";
 	flags = NPC_FLAG_IMMORTAL;
-	fight_tactic = FAI_DRAGON;
 	B_SetVisuals_Dragon_Swamp();
 	Npc_SetToFistMode(self);
-	bodyStateInterruptableOverride = TRUE;
 };
 

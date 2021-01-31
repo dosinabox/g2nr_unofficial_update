@@ -14,5 +14,6 @@ func void evt_undeaddragondead_endsituation()
 		B_StartOtherRoutine(Lester_DI,"UNDEADDRAGONDEAD");
 		EVT_UNDEADDRAGONDEAD_ENDSITUATION_OneTime = TRUE;
 	};
+	EnteredFinalDIHall = TRUE;
 };
 

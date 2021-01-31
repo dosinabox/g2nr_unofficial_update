@@ -75,13 +75,13 @@ instance Zombie04(Mst_Default_Zombie)
 	Npc_SetToFistMode(self);
 };
 
-instance STT_Zombie(Mst_Default_Zombie)
+/*instance STT_Zombie(Mst_Default_Zombie)
 {
 	protection[PROT_FIRE] = 0;
 	Mdl_SetVisual(self,"Zombie.mds");
 	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",1,DEFAULT,ITAR_Bloodwyn_Addon);
 	Npc_SetToFistMode(self);
-};
+};*/
 
 instance Zombie_Addon_Knecht(Mst_Default_Zombie)
 {

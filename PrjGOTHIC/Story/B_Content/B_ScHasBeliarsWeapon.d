@@ -669,7 +669,7 @@ func void B_UpgrateBeliarsWeapon()
 		};
 		if(BeliarWeapCurrentLvL >= 3)
 		{
-			Info_AddChoice(PC_PrayShrine_UPGRATEBELIARSWEAPON,NAME_SPL_SummonGuardian,PC_PrayShrine_UPGRATEBELIARSWEAPON_NAME_SPL_SummonGuardian);
+			Info_AddChoice(PC_PrayShrine_UPGRATEBELIARSWEAPON,NAME_SPL_SummonGuardian,PC_PrayShrine_UPGRATEBELIARSWEAPON_SummonGuardian);
 			Info_AddChoice(PC_PrayShrine_UPGRATEBELIARSWEAPON,NAME_SPL_BeliarsRage,PC_PrayShrine_UPGRATEBELIARSWEAPON_BeliarsRage);
 		};
 		if(BeliarWeapCurrentLvL >= 4)
@@ -856,74 +856,55 @@ func void B_UpgrateBeliarsWeapon()
 	};
 };
 
-func void PC_PrayShrine_UPGRATEBELIARSWEAPON_GreenTentacle()
+func void B_UpgradeBeliarsWeapon()
 {
-	CreateInvItem(hero,ItRu_GreenTentacle);
 	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
 	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
 	Snd_Play("CS_Prayer_WaveOfInsanity");
 	BeliarsWeaponUpgrated = TRUE;
 	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
+};
+
+func void PC_PrayShrine_UPGRATEBELIARSWEAPON_GreenTentacle()
+{
+	CreateInvItem(hero,ItRu_GreenTentacle);
+	B_UpgradeBeliarsWeapon();
 };
 
 func void PC_PrayShrine_UPGRATEBELIARSWEAPON_SuckEnergy()
 {
 	CreateInvItem(hero,ItRu_SuckEnergy);
-	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
-	Snd_Play("CS_Prayer_WaveOfInsanity");
-	BeliarsWeaponUpgrated = TRUE;
-	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
+	B_UpgradeBeliarsWeapon();
 };
 
-func void PC_PrayShrine_UPGRATEBELIARSWEAPON_NAME_SPL_SummonGuardian()
+func void PC_PrayShrine_UPGRATEBELIARSWEAPON_SummonGuardian()
 {
 	CreateInvItem(hero,ItRu_SummonGuardian);
-	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
-	Snd_Play("CS_Prayer_WaveOfInsanity");
-	BeliarsWeaponUpgrated = TRUE;
-	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
+	B_UpgradeBeliarsWeapon();
 };
 
 func void PC_PrayShrine_UPGRATEBELIARSWEAPON_BeliarsRage()
 {
 	CreateInvItem(hero,ItRu_BeliarsRage);
-	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
-	Snd_Play("CS_Prayer_WaveOfInsanity");
-	BeliarsWeaponUpgrated = TRUE;
-	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
+	B_UpgradeBeliarsWeapon();
 };
 
 func void PC_PrayShrine_UPGRATEBELIARSWEAPON_Swarm()
 {
 	CreateInvItem(hero,ItRu_Swarm);
-	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
-	Snd_Play("CS_Prayer_WaveOfInsanity");
-	BeliarsWeaponUpgrated = TRUE;
-	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
+	B_UpgradeBeliarsWeapon();
 };
 
 func void PC_PrayShrine_UPGRATEBELIARSWEAPON_summonZombie()
 {
 	CreateInvItem(hero,ItRu_SummonZombie);
-	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
-	Snd_Play("CS_Prayer_WaveOfInsanity");
-	BeliarsWeaponUpgrated = TRUE;
-	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
+	B_UpgradeBeliarsWeapon();
 };
 
 func void PC_PrayShrine_UPGRATEBELIARSWEAPON_SPL_Skull()
 {
 	CreateInvItem(hero,ItRu_Skull);
-	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
-	Snd_Play("CS_Prayer_WaveOfInsanity");
-	BeliarsWeaponUpgrated = TRUE;
-	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
+	B_UpgradeBeliarsWeapon();
 };
 
 func int C_SCHasBlessedSword()

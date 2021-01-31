@@ -1,5 +1,5 @@
 
-func void EVT_Truhe_OW_01_S1()
+func void evt_truhe_ow_01_s1()
 {
 	if(TruheSfx == FALSE)
 	{

@@ -265,17 +265,6 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
 	};
-	if(EnterNW_Kapitel4 == FALSE)
-	{
-		if(OriginalAntipaladins == FALSE)
-		{
-			Info_AddChoice(StoryHelper_PatchSettings,"Выключить усиленных предводителей орков",StoryHelper_Antipaladins);
-		}
-		else
-		{
-			Info_AddChoice(StoryHelper_PatchSettings,"Включить усиленных предводителей орков",StoryHelper_Antipaladins);
-		};
-	};
 	if(AddonDisabled == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить возможность прохождения без аддона",StoryHelper_Addon);
@@ -704,29 +693,6 @@ func void StoryHelper_Addon()
 	{
 		AddonDisabled = TRUE;
 		PrintScreen("Прохождение без аддона включено",-1,-1,FONT_Screen,3);
-	};
-	b_build_settings_diag();
-};
-
-func void StoryHelper_Antipaladins()
-{
-	if(OriginalAntipaladins == TRUE)
-	{
-		OriginalAntipaladins = FALSE;
-		OrkElite_AntiPaladin_Level = 50;
-		OrkElite_AntiPaladin_Strength = 140;
-		OrkElite_AntiPaladin_HP = 550;
-		OrkElite_AntiPaladin_Protection = 170;
-		PrintScreen("Усиленные предводители орков включены",-1,-1,FONT_Screen,3);
-	}
-	else
-	{
-		OriginalAntipaladins = TRUE;
-		OrkElite_AntiPaladin_Level = 45;
-		OrkElite_AntiPaladin_Strength = 125;
-		OrkElite_AntiPaladin_HP = 450;
-		OrkElite_AntiPaladin_Protection = 160;
-		PrintScreen("Усиленные предводители орков выключены",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };

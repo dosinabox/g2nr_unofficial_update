@@ -20,9 +20,9 @@ func int DIA_Dragon_Fire_Island_Exit_Condition()
 
 func void DIA_Dragon_Fire_Island_Exit_Info()
 {
-	AI_StopProcessInfos(self);
-	DragonTalk_Exit_Free = FALSE;
 	self.flags = 0;
+	DragonTalk_Exit_Free = FALSE;
+	AI_StopProcessInfos(self);
 };
 
 
@@ -60,12 +60,7 @@ func void DIA_Dragon_Fire_Island_Hello_Info()
 	};
 	AI_Output(other,self,"DIA_Dragon_Fire_Island_Hello_15_06");	//’ватит попусту сотр€сать воздух. ƒавай перейдем к делу.
 	AI_Output(self,other,"DIA_Dragon_Fire_Island_Hello_20_07");	//“ы зашел слишком далеко, жалкий человечишка, но тебе не уйти отсюда живым.
-	Npc_RemoveInvItems(other,ItMi_InnosEye_MIS,1);
-	CreateInvItems(other,ItMi_InnosEye_Discharged_Mis,1);
-	SC_IsWearingInnosEye = FALSE;
-	AI_StopProcessInfos(self);
 	B_LogEntry(TOPIC_HallenVonIrdorath,"≈ще один огненный дракон. я уже по горло сыт этими твар€ми. ћне всего лишь нужно перебратьс€ через пропасть, что лежит за этим огненным драконом.");
-	DragonTalk_Exit_Free = FALSE;
-	self.flags = 0;
+	B_EndDragonTalk();
 };
 

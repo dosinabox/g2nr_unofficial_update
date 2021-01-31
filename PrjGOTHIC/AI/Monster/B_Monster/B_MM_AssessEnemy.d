@@ -99,7 +99,6 @@ func void B_MM_AssessEnemy()
 			Npc_SetTarget(self,other);
 			B_ClearPerceptions(self);
 			AI_StartState(self,ZS_MM_Attack,0,"");
-			return;
 		};
 		return;
 	};
@@ -111,12 +110,8 @@ func void B_MM_AssessEnemy()
 			Npc_SetTarget(self,other);
 			B_ClearPerceptions(self);
 			AI_StartState(self,ZS_MM_Attack,0,"");
-			return;
-		}
-		else
-		{
-			return;
 		};
+		return;
 	};
 	if(C_PredatorFoundPrey(self,other))
 	{
@@ -134,12 +129,8 @@ func void B_MM_AssessEnemy()
 			Npc_SetTarget(self,other);
 			B_ClearPerceptions(self);
 			AI_StartState(self,ZS_MM_Flee,0,"");
-			return;
-		}
-		else
-		{
-			return;
 		};
+		return;
 	};
 	Npc_ClearAIQueue(self);
 	B_ClearPerceptions(self);

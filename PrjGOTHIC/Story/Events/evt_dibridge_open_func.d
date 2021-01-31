@@ -1,5 +1,5 @@
 
-var int evt_dibridge_opened;
+var int EVT_DIBRIDGE_OPENED;
 
 func void evt_dibridge_open_func()
 {

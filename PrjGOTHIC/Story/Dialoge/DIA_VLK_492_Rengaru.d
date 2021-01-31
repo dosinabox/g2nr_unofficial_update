@@ -201,6 +201,12 @@ func void DIA_Rengaru_GOTYOU_Anteil()
 		Info_AddChoice(DIA_Rengaru_GOTYOU,"Нет, ты отдашь мне все!",DIA_Rengaru_GOTYOU_Anteil_alles);
 		Info_AddChoice(DIA_Rengaru_GOTYOU,"Хорошо, давай мне половину тогда.",DIA_Rengaru_GOTYOU_Anteil_GehtKlar);
 	}
+	else if(RengaruGold > 0)
+	{
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_alles_07_02");	//Ты просто грабишь меня. Ладно, возьми это золото. А теперь оставь меня в покое.
+		B_GiveInvItems(self,other,ItMi_Gold,RengaruGold);
+		Info_ClearChoices(DIA_Rengaru_GOTYOU);
+	}
 	else
 	{
 		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_GehtKlar_07_02");	//Я был бы не прочь отдать тебе половину, но у меня больше ничего нет.

@@ -3384,7 +3384,7 @@ func void STARTUP_NewWorld()
 	STARTUP_NewWorld_Part_Pass_To_OW_01();
 	Kapitel = 1;
 	PlayVideo("INTRO.BIK");
-	PlayVideo("Addon_Title.BIK");
+//	PlayVideo("Addon_Title.BIK");
 //	InitHeroHitchance();
 };
 

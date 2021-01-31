@@ -35,6 +35,6 @@ func void Rtn_WaitForShip_7050()
 func void Rtn_Ship_7050()
 {
 	TA_Stand_ArmsCrossed(8,0,23,0,"SHIP_CREW_03");
-	TA_Stand_ArmsCrossed(23,0,8,0,"SHIP_CREW_03");
+	TA_Sit_Chair(23,0,8,0,"SHIP_IN_02");
 };
 

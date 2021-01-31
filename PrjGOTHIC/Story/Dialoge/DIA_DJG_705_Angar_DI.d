@@ -109,8 +109,8 @@ func void B_AngarStays()
 		Npc_ExchangeRoutine(self,"FireDragonIsland");
 		if(Angar_DI_Party != LOG_SUCCESS)
 		{
-			Angar_DI_Party = LOG_SUCCESS;
 			B_GivePlayerXP(XP_AmbientKap6);
+			Angar_DI_Party = LOG_SUCCESS;
 		};
 	}
 	else

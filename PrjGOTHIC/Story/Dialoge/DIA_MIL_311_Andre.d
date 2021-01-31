@@ -20,7 +20,6 @@ func int DIA_Andre_EXIT_Condition()
 
 func void DIA_Andre_EXIT_Info()
 {
-	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 };
 
@@ -46,125 +45,115 @@ func int DIA_Andre_FIRSTEXIT_Condition()
 
 func void DIA_Andre_FIRSTEXIT_Info()
 {
+	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
 	B_StartOtherRoutine(Wulfgar,"START");
 };
 
 
-var int Andre_Steckbrief;
+var int Andre_ToldInfoFromPablo;
+var int Andre_ToldInfoFromCanthar;
 
-func void B_Andre_Steckbrief()
+func int C_Andre_InfoFromCanthar()
 {
-	AI_Output(self,other,"DIA_Andre_Add_08_00");	//ќдин из моих людей сказал мне, что бандиты распростран€ют объ€влени€ о розыске с твоим изображением.
-	AI_Output(self,other,"DIA_Andre_Add_08_01");	//ќн также сказал, что поначалу ты это отрицал.
-	AI_Output(self,other,"DIA_Andre_Add_08_02");	//“ак что все это значит?
-	AI_Output(other,self,"DIA_Andre_Add_15_03");	//я не знаю, почему они ищут мен€...
-	AI_Output(self,other,"DIA_Andre_Add_08_04");	//Ќадеюсь, ради твоего же блага, что ты говоришь мне правду.
-	if((other.guild == GIL_NONE) || (other.guild == GIL_MIL))
+	if((Andre_ToldInfoFromCanthar == FALSE) && !Npc_IsDead(Canthar))
 	{
-		if(Andre_CantharFalle == FALSE)
+		if(MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2))
 		{
-			AI_Output(self,other,"DIA_Andre_Add_08_05");	//ћне не нужны в ополчении люди с зап€тнанной репутацией.
+			return TRUE;
+		}
+		else if(Canthars_KomproBrief_Failed == TRUE)
+		{
+			return TRUE;
 		};
 	};
-	AI_Output(self,other,"DIA_Andre_Add_08_06");	//Ѕольшинство из этих бандитов - бывшие каторжники из колонии.
-	AI_Output(self,other,"DIA_Andre_Add_08_07");	//я надеюсь, что ты никак не св€зан с этими головорезами!
-	Andre_Steckbrief = TRUE;
+	return FALSE;
 };
 
-
-var int Andre_CantharFalle;
-
-func void B_Andre_CantharFalle()
+func int C_Andre_InfoFromPablo()
 {
-	AI_Output(self,other,"B_Andre_CantharFalle_08_00");	// о мне приходил торговец  антар. ќн сказал, что ты беглый каторжник из колонии.
-	AI_Output(self,other,"B_Andre_CantharFalle_08_01");	//я не знаю, правда ли это, и предпочитаю не спрашивать теб€ об этом, но ты должен уладить этот вопрос.
-	if((other.guild == GIL_NONE) || (other.guild == GIL_MIL))
+	if((Andre_ToldInfoFromPablo == FALSE) && !Npc_IsDead(Pablo))
 	{
-		if(Andre_Steckbrief == FALSE)
+		if(Pablo_AndreMelden == TRUE)
 		{
-			AI_Output(self,other,"DIA_Andre_Add_08_05");	//ћне не нужны в ополчении люди с зап€тнанной репутацией.
+			return TRUE;
 		};
 	};
-	if(SarahWeaponsRemoved == FALSE)
-	{
-		B_GiveTradeInv_Sarah(Sarah);
-		B_RemoveSarahWeapons();
-	};
-	B_RemoveNpc(VLK_470_Sarah);
-	if((Canthar_Ausgeliefert == TRUE) && (Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000))
-	{
-		B_NpcSetReleased(Canthar);
-		Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
-		Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
-		Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
-	};
-	B_StartOtherRoutine(Canthar,"MARKTSTAND");
-	AI_Teleport(Canthar,"NW_CITY_SARAH");
-	if((Canthar_Sperre == FALSE) && (Canthar_Pay == FALSE))
-	{
-		Canthar_Sperre = TRUE;
-	};
-	MIS_Canthars_KomproBrief = LOG_OBSOLETE;
-	B_CheckLog();
-	Andre_CantharFalle = TRUE;
+	return FALSE;
 };
 
+func void B_Andre_Informed()
+{
+	if(C_Andre_InfoFromPablo())
+	{
+		AI_Output(self,other,"DIA_Andre_Add_08_00");	//ќдин из моих людей сказал мне, что бандиты распростран€ют объ€влени€ о розыске с твоим изображением.
+		AI_Output(self,other,"DIA_Andre_Add_08_01");	//ќн также сказал, что поначалу ты это отрицал.
+		AI_Output(self,other,"DIA_Andre_Add_08_02");	//“ак что все это значит?
+		AI_Output(other,self,"DIA_Andre_Add_15_03");	//я не знаю, почему они ищут мен€...
+		AI_Output(self,other,"DIA_Andre_Add_08_04");	//Ќадеюсь, ради твоего же блага, что ты говоришь мне правду.
+		AI_Output(self,other,"DIA_Andre_Add_08_06");	//Ѕольшинство из этих бандитов - бывшие каторжники из колонии.
+		AI_Output(self,other,"DIA_Andre_Add_08_07");	//я надеюсь, что ты никак не св€зан с этими головорезами!
+		Andre_ToldInfoFromPablo = TRUE;
+	};
+	if(C_Andre_InfoFromCanthar())
+	{
+		AI_Output(self,other,"B_Andre_CantharFalle_08_00");	// о мне приходил торговец  антар. ќн сказал, что ты беглый каторжник из колонии.
+		AI_Output(self,other,"B_Andre_CantharFalle_08_01");	//я не знаю, правда ли это, и предпочитаю не спрашивать теб€ об этом, но ты должен уладить этот вопрос.
+		if(!Npc_IsDead(Sarah))
+		{
+			if(SarahWeaponsRemoved == FALSE)
+			{
+				B_GiveTradeInv_Sarah(Sarah);
+				B_RemoveSarahWeapons();
+			};
+			B_RemoveNpc(VLK_470_Sarah);
+		};
+		if((Canthar_Ausgeliefert == TRUE) && (Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000))
+		{
+			B_NpcSetReleased(Canthar);
+			Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
+			Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
+			Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
+		};
+		B_StartOtherRoutine(Canthar,"MARKTSTAND");
+		AI_Teleport(Canthar,"NW_CITY_SARAH");
+		if((Canthar_Sperre == FALSE) && (Canthar_Pay == FALSE))
+		{
+			Canthar_Sperre = TRUE;
+		};
+		MIS_Canthars_KomproBrief = LOG_OBSOLETE;
+		B_CheckLog();
+		Andre_ToldInfoFromCanthar = TRUE;
+	};
+	if((other.guild == GIL_MIL) || ((other.guild == GIL_NONE) && Npc_KnowsInfo(other,DIA_Andre_AskToJoin)))
+	{
+		AI_Output(self,other,"DIA_Andre_Add_08_05");	//ћне не нужны в ополчении люди с зап€тнанной репутацией.
+	};
+};
 
-instance DIA_Andre_CantharFalle(C_Info)
+instance DIA_Andre_Informed(C_Info)
 {
 	npc = MIL_311_Andre;
 	nr = 3;
-	condition = DIA_Andre_CantharFalle_Condition;
-	information = DIA_Andre_CantharFalle_Info;
+	condition = DIA_Andre_Informed_Condition;
+	information = DIA_Andre_Informed_Info;
 	permanent = TRUE;
 	important = TRUE;
 };
 
 
-func int DIA_Andre_CantharFalle_Condition()
+func int DIA_Andre_Informed_Condition()
 {
-	if((Andre_CantharFalle == FALSE) && !Npc_IsDead(Canthar))
+	if(C_Andre_InfoFromPablo() || C_Andre_InfoFromCanthar())
 	{
-		if(MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2))
-		{
-			return TRUE;
-		}
-		else if(Canthars_KomproBrief_Failed == TRUE)
-		{
-			return TRUE;
-		};
-	};
-	if((Andre_Steckbrief == FALSE) && !Npc_IsDead(Pablo))
-	{
-		if(Pablo_AndreMelden == TRUE)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
-func void DIA_Andre_CantharFalle_Info()
+func void DIA_Andre_Informed_Info()
 {
-	if((Andre_CantharFalle == FALSE) && !Npc_IsDead(Canthar))
-	{
-		if(MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2))
-		{
-			B_Andre_CantharFalle();
-		}
-		else if(Canthars_KomproBrief_Failed == TRUE)
-		{
-			B_Andre_CantharFalle();
-		};
-	};
-	if((Andre_Steckbrief == FALSE) && !Npc_IsDead(Pablo))
-	{
-		if(Pablo_AndreMelden == TRUE)
-		{
-			B_Andre_Steckbrief();
-		};
-	};
+	B_Andre_Informed();
 };
 
 
@@ -195,14 +184,7 @@ func void DIA_Andre_PMSchulden_Info()
 	var int diff;
 	B_PlayerEnteredCity();
 	AI_Output(self,other,"DIA_Andre_PMSchulden_08_00");	//“ы пришел заплатить штраф?
-	if((Pablo_AndreMelden == TRUE) && !Npc_IsDead(Pablo) && (Andre_Steckbrief == FALSE))
-	{
-		B_Andre_Steckbrief();
-	};
-	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2)) && (Andre_CantharFalle == FALSE))
-	{
-		B_Andre_CantharFalle();
-	};
+	B_Andre_Informed();
 	if(B_GetTotalPetzCounter(self) > Andre_LastPetzCounter)
 	{
 		AI_Output(self,other,"DIA_Andre_PMSchulden_08_01");	//я даже задавалс€ вопросом: осмелишьс€ ли ты по€витьс€ здесь?!
@@ -317,14 +299,7 @@ func void DIA_Andre_PETZMASTER_Info()
 	{
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_00");	//“ы тот новичок, что баламутит город.
 	};
-	if((Pablo_AndreMelden == TRUE) && !Npc_IsDead(Pablo) && (Andre_Steckbrief == FALSE))
-	{
-		B_Andre_Steckbrief();
-	};
-	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2)) && (Andre_CantharFalle == FALSE))
-	{
-		B_Andre_CantharFalle();
-	};
+	B_Andre_Informed();
 	if(B_GetGreatestPetzCrime(self) == CRIME_MURDER)
 	{
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_01");	//’орошо, что ты пришел ко мне пока все еще можно уладить.

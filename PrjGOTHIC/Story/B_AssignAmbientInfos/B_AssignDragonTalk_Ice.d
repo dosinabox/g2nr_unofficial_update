@@ -19,18 +19,8 @@ func int DIA_Dragon_Ice_Exit_Condition()
 
 func void DIA_Dragon_Ice_Exit_Info()
 {
-	Npc_RemoveInvItems(other,ItMi_InnosEye_MIS,1);
-	CreateInvItems(other,ItMi_InnosEye_Discharged_Mis,1);
-	SC_IsWearingInnosEye = FALSE;
 	AI_Output(self,other,"DIA_Dragon_Ice_Exit_20_00");	//Сила Глаза угасла, и твое время вышло.
-	AI_StopProcessInfos(self);
-	DragonTalk_Exit_Free = FALSE;
-	self.flags = 0;
-	if(DJG_Biff_Stay == TRUE)
-	{
-		B_StartOtherRoutine(Biff,"Follow");
-		DJG_Biff_Stay = FALSE;
-	};
+	B_EndDragonTalk();
 	Wld_InsertNpc(Draconian,"FP_ROAM_OW_ICEREGION_29_02");
 	Wld_InsertNpc(Draconian,"FP_ROAM_OW_ICEREGION_30_01");
 	Wld_InsertNpc(Draconian,"FP_ROAM_OW_BLOODFLY_05_01");

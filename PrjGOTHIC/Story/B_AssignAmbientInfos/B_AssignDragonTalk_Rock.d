@@ -19,13 +19,8 @@ func int DIA_Dragon_Rock_Exit_Condition()
 
 func void DIA_Dragon_Rock_Exit_Info()
 {
-	Npc_RemoveInvItems(other,ItMi_InnosEye_MIS,1);
-	CreateInvItems(other,ItMi_InnosEye_Discharged_Mis,1);
-	SC_IsWearingInnosEye = FALSE;
 	AI_Output(self,other,"DIA_Dragon_Rock_Exit_20_00");	//Но хватит болтать. Твоя временная сила иссякла. Глаз потерял свою силу. Приготовься умереть.
-	AI_StopProcessInfos(self);
-	DragonTalk_Exit_Free = FALSE;
-	self.flags = 0;
+	B_EndDragonTalk();
 };
 
 
