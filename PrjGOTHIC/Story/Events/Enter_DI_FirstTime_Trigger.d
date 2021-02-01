@@ -3,14 +3,6 @@ var int EnterDI_Kapitel6;
 
 func void enter_di_firsttime_trigger()
 {
-/*	if(Npc_HasItems(hero,ItKe_Ship_Levelchange_MIS))
-	{
-		Npc_RemoveInvItems(hero,ItKe_Ship_Levelchange_MIS,1);
-	};
-	if(hero.attribute[ATR_DEXTERITY] < 15)
-	{
-		Wld_InsertItem(ItPo_Perm_DEX,"FP_ITEM_DI_ENTER_05");
-	};*/
 	if(EnterDI_Kapitel6 == FALSE)
 	{
 		if(hero.attribute[ATR_DEXTERITY] <= (Condition_Weidenbogen - DEX_Elixier))
@@ -33,12 +25,12 @@ func void enter_di_firsttime_trigger()
 			Wld_InsertItem(ItMi_Flask,"FP_ITEM_SHIP_06");
 			if(!Npc_HasItems(hero,ItAt_IcedragonHeart) && !Npc_HasItems(hero,ItAt_RockdragonHeart) && !Npc_HasItems(hero,ItAt_FiredragonHeart) && !Npc_HasItems(hero,ItAt_SwampdragonHeart))
 			{
-				CreateInvItems(OrkElite_AntiPaladinOrkOberst_DI,ItAt_RockdragonHeart,1);
+				CreateInvItems(AntiPaladin_DI,ItAt_RockdragonHeart,1);
 			};
 		};
 		if(PedroGotLostInnosStatue == TRUE)
 		{
-			CreateInvItems(OrkElite_AntiPaladinOrkOberst_DI,ItMi_LostInnosStatue_Daron,1);
+			CreateInvItems(AntiPaladin_DI,ItMi_LostInnosStatue_Daron,1);
 		};
 		Log_CreateTopic(TOPIC_MyCrew,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_MyCrew,LOG_Running);

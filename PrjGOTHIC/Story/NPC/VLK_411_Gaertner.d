@@ -8,6 +8,7 @@ instance VLK_411_Gaertner(Npc_Default)
 	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_IGNORE_Theft] = TRUE;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);

@@ -8,6 +8,7 @@ instance VLK_498_Ignaz(Npc_Default)
 	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_ToughGuy] = TRUE;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);

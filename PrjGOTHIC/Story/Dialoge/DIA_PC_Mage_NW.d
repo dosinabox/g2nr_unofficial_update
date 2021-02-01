@@ -675,7 +675,7 @@ func int DIA_MiltenNW_StillNeedYou_Condition()
 
 func void DIA_MiltenNW_StillNeedYou_Info()
 {
-	AI_Output(other,self,"DIA_MiltenNW_StillNeedYou_15_00");	//Ты нужен мне.
+	DIA_Common_INeedYou();
 	AI_Output(self,other,"DIA_MiltenNW_StillNeedYou_03_01");	//Твое решение делает мне честь. Вперед, мы не можем терять время!
 	AI_Output(self,other,"DIA_MiltenNW_StillNeedYou_03_02");	//Я отправляюсь в порт. Встретимся там.
 	B_JoinShip(self);
@@ -746,16 +746,20 @@ func void DIA_MiltenNW_Teach_BACK()
 	Info_ClearChoices(DIA_MiltenNW_Teach);
 };
 
+var int Milten_NW_TeachMANA_NoPerm;
+
 func void B_BuildLearnDialog_Milten_NW()
 {
-	Info_ClearChoices(DIA_MiltenNW_Mana);
-	Info_AddChoice(DIA_MiltenNW_Mana,Dialog_Back,DIA_MiltenNW_Mana_BACK);
 	if(other.aivar[REAL_MANA_MAX] >= T_MED)
 	{
 		AI_Output(self,other,"DIA_MiltenNW_Mana_03_00");	//Твоя магическая энергия велика. Слишком велика, чтобы я мог увеличить ее.
+		Milten_NW_TeachMANA_NoPerm = TRUE;
 	}
 	else
 	{
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_04");	//Я посмотрю, что можно сделать.
+		Info_ClearChoices(DIA_MiltenNW_Mana);
+		Info_AddChoice(DIA_MiltenNW_Mana,Dialog_Back,DIA_MiltenNW_Mana_BACK);
 		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_MiltenNW_Mana_1);
 		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_MiltenNW_Mana_5);
 	};
@@ -774,11 +778,7 @@ instance DIA_MiltenNW_Mana(C_Info)
 
 func int DIA_MiltenNW_Mana_Condition()
 {
-	if(other.guild == GIL_KDF)
-	{
-		return TRUE;
-	}
-	else if((other.guild == GIL_NOV) && (GuildlessMode == TRUE))
+	if(((other.guild == GIL_KDF) || ((GuildlessMode == TRUE) && (other.guild == GIL_NOV))) && (Milten_NW_TeachMANA_NoPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -787,7 +787,6 @@ func int DIA_MiltenNW_Mana_Condition()
 func void DIA_MiltenNW_Mana_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_Mana_15_00");	//Я хочу повысить свои магические способности.
-	AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_04");	//Я посмотрю, что можно сделать.
 	B_BuildLearnDialog_Milten_NW();
 };
 

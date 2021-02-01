@@ -6,7 +6,7 @@ instance VLK_4130_Talbin(Npc_Default)
 	id = 4130;
 	voice = 7;
 	flags = 0;
-	npcType = NPCTYPE_FRIEND;
+	npcType = npctype_main;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);

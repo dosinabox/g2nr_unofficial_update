@@ -57,44 +57,21 @@ instance DIA_Pedro_Wurst(C_Info)
 
 func int DIA_Pedro_Wurst_Condition()
 {
-	if((MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
+	if(C_CanFeedNOV(self))
 	{
-		if(Kapitel == 1)
-		{
-			return TRUE;
-		}
-		else if(GuildlessMode == TRUE)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
 func void DIA_Pedro_Wurst_Info()
 {
-	var string NovizeText;
-	var string NovizeLeft;
 	AI_Output(other,self,"DIA_Pedro_Wurst_15_00");	//Вот, возьми колбасу, брат!
 	AI_Output(self,other,"DIA_Pedro_Wurst_09_01");	//Я рад, что ты подумал обо мне. Обычно обо мне забывают.
-	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
-	Wurst_Gegeben += 1;
-//	CreateInvItems(self,ItFo_Schafswurst,1);
-	B_UseItem(self,ItFo_Schafswurst);
-	if(Wurst_Gegeben >= 13)
-	{
-		AI_PrintScreen(PRINT_AllNovizen,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	}
-	else
-	{
-		NovizeLeft = IntToString(13 - Wurst_Gegeben);
-		NovizeText = ConcatStrings(PRINT_NovizenLeft,NovizeLeft);
-		AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	};
+	B_FeedNOV(self);
 	AI_Output(self,other,"DIA_Pedro_Wurst_09_02");	//Ты можешь дать мне еще одну колбаску?
 	AI_Output(other,self,"DIA_Pedro_Wurst_15_03");	//Забудь об этом, тогда ее на всех не хватит.
 	AI_Output(self,other,"DIA_Pedro_Wurst_09_04");	//Эй, всего одну колбаску - никто даже не заметит этого. А ты кое-что получишь за это - я знаю место, где растет огненная крапива.
 	AI_Output(self,other,"DIA_Pedro_Wurst_09_05");	//Если ты отнесешь ее Неорасу, он наверняка даст тебе ключ от библиотеки. Что скажешь?
-	
 	Info_ClearChoices(DIA_Pedro_Wurst);
 	if(Npc_HasItems(other,ItFo_Schafswurst))
 	{
@@ -379,10 +356,8 @@ func void DIA_Pedro_AUFNAHME_YES()
 	};
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_02");	//В знак твоего добровольного принятия этого решения, ты должен сам открыть эти ворота и войти внутрь.
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_03");	//Теперь ты послушник. Носи эту робу в знак того, что теперь ты член нашего братства.
-	hero.guild = GIL_NOV;
-	Npc_SetTrueGuild(hero,GIL_NOV);
-	CreateInvItem(hero,ITAR_NOV_L);
-	AI_PrintScreen("Роба послушника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+	B_SetGuild(hero,GIL_NOV);
+	B_GiveArmor(ITAR_NOV_L);
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_04");	//Когда ты войдешь в монастырь, подойди к Парлану. С этого момента он будет отвечать за тебя.
 	AI_Output(other,self,"DIA_Pedro_AUFNAHME_YES_15_05");	//Мои прегрешения теперь прощены?
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_06");	//Пока еще нет. Поговори с мастером Парланом. Он благословит тебя и очистит от твоих грехов.
@@ -390,22 +365,6 @@ func void DIA_Pedro_AUFNAHME_YES()
 	NOV_Aufnahme = LOG_SUCCESS;
 	SLD_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_OBSOLETE;
-	if(MIS_Torlof_BengarMilizKlatschen == LOG_Running)
-	{
-		if(!Npc_IsDead(Rick))
-		{
-			Npc_ExchangeRoutine(Rick,"Flucht3");
-		};
-		if(!Npc_IsDead(Rumbold))
-		{
-			Npc_ExchangeRoutine(Rumbold,"Flucht3");
-		};
-		if(!Npc_IsDead(Bengar))
-		{
-			Npc_ExchangeRoutine(Bengar,"Start");
-		};
-		MIS_Torlof_BengarMilizKlatschen = LOG_FAILED;
-	};
 	B_GivePlayerXP(XP_AufnahmeNovize);
 	if(Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette))
 	{
@@ -419,7 +378,6 @@ func void DIA_Pedro_AUFNAHME_YES()
 		Log_AddEntry(TOPIC_Addon_HelpDaron,TOPIC_Addon_DaronGobbos);
 		Log_AddEntry(TOPIC_Addon_HelpDaron,TOPIC_Addon_PedroPass);
 	};
-//	Wld_AssignRoomToGuild("Kloster02",GIL_KDF);
 	AI_StopProcessInfos(self);
 };
 

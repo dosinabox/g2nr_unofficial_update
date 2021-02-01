@@ -611,10 +611,8 @@ func void DIA_Lee_JoinNOW_Info()
 			Lee_OnarOK = TRUE;
 			AI_Output(self,other,"DIA_Lee_JoinNOW_04_13");	//Тогда добро пожаловать в наши ряды, приятель!
 			AI_Output(self,other,"DIA_Lee_JoinNOW_04_14");	//Вот, возьми для начала эти доспехи!
-			hero.guild = GIL_SLD;
-			Npc_SetTrueGuild(hero,GIL_SLD);
-			CreateInvItem(hero,ITAR_SLD_L);
-			AI_PrintScreen("Легкие доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+			B_SetGuild(hero,GIL_SLD);
+			B_GiveArmor(ITAR_SLD_L);
 			Snd_Play("LEVELUP");
 			if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
 			{
@@ -958,7 +956,7 @@ instance DIA_Lee_Report(C_Info)
 func int DIA_Lee_Report_Condition()
 {
 //	if((EnterOW_Kapitel2 == TRUE) && (Kapitel <= 3))
-	if(EnterOW_Kapitel2 == TRUE)
+	if(Enter_OldWorld_FirstTime_Trigger_OneTime == TRUE)
 	{
 		return TRUE;
 	};
@@ -1009,7 +1007,7 @@ func int DIA_Lee_ArmorM_Condition()
 
 func void DIA_Lee_ArmorM_Info()
 {
-	AI_Output(other,self,"DIA_Lee_ArmorM_15_00");	//А как насчет доспехов получше?
+	DIA_Common_WhatAboutBetterArmor();
 	if((MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS) && (MIS_Torlof_HolPachtVonSekob == LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Lee_ArmorM_04_01");	//Ты выполнил задание.
@@ -1045,12 +1043,11 @@ func int DIA_Lee_BuyArmorM_Condition()
 
 func void DIA_Lee_BuyArmorM_Info()
 {
-	AI_Output(other,self,"DIA_Lee_BuyArmorM_15_00");	//Дай мне эти доспехи.
+	DIA_Common_GiveMeThatArmor();
 	if(B_GiveInvItems(other,self,ItMi_Gold,1000))
 	{
 		AI_Output(self,other,"DIA_Lee_BuyArmorM_04_01");	//Держи. Это очень хорошие доспехи.
-		CreateInvItem(hero,ITAR_SLD_M);
-		AI_PrintScreen("Средние доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveArmor(ITAR_SLD_M);
 		Lee_SldMGiven = TRUE;
 	}
 	else
@@ -1112,8 +1109,7 @@ func void DIA_Lee_BuyArmorH_Info()
 	if(B_GiveInvItems(other,self,ItMi_Gold,2500))
 	{
 		AI_Output(self,other,"DIA_Lee_BuyArmorH_04_01");	//Держи. Это очень хорошие доспехи. Я сам такие ношу.
-		CreateInvItem(hero,ITAR_SLD_H);
-		AI_PrintScreen("Тяжелые доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveArmor(ITAR_SLD_H);
 		Lee_SldHGiven = TRUE;
 	}
 	else
@@ -1469,8 +1465,8 @@ func void DIA_Lee_CanTeach_Info()
 			if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 			{
 				Lee_TeachPlayer = TRUE;
-				Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-				B_LogEntry(Topic_SoldierTeacher,"Ли может обучить меня искусству обращения с двуручным оружием.");
+				Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+				B_LogEntry(TOPIC_SoldierTeacher,"Ли может обучить меня искусству обращения с двуручным оружием.");
 			}
 			else
 			{
@@ -1502,8 +1498,8 @@ func void DIA_Lee_CanTeach_Yes()
 	B_GiveInvItems(other,self,ItMi_Gold,1000);
 	Lee_TeachPlayer = TRUE;
 	Info_ClearChoices(DIA_Lee_CanTeach);
-	Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-	B_LogEntry(Topic_SoldierTeacher,"Ли может обучить меня искусству обращения с двуручным оружием.");
+	Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_SoldierTeacher,"Ли может обучить меня искусству обращения с двуручным оружием.");
 };
 
 func void B_BuildLearnDialog_Lee()

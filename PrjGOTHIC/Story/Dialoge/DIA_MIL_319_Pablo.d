@@ -76,11 +76,10 @@ instance DIA_Pablo_WANTED(C_Info)
 
 func int DIA_Pablo_WANTED_Condition()
 {
-	/*if((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
+	if((hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
 	{
 		return TRUE;
-	};*/
-	return TRUE;
+	};
 };
 
 func void DIA_Pablo_WANTED_Info()
@@ -88,10 +87,10 @@ func void DIA_Pablo_WANTED_Info()
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_00");	//Ёй, ты, подожди - мне кажетс€, € теб€ знаю.
 	AI_Output(other,self,"DIA_Pablo_WANTED_15_01");	//„то тебе нужно?
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_02");	//я где-то уже видел твое лицо... ах - точно!
-	B_UseFakeHeroFace();
+	B_UseFakeHeroFace(self,other);
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_03");	//¬от - мы нашли этот листок у одного из бандитов, на которых наткнулись несколько дней назад - рисунок очень похож на теб€.
 	B_GiveInvItems(self,other,ItWr_Poster_MIS,1);
-	B_UseFakeScroll_Hero();
+	B_UseFakeHeroFace(other,self);
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_04");	//ѕо-видимому, эти парни искали теб€.
 	B_PlayerEnteredCity();
 	Info_ClearChoices(DIA_Pablo_WANTED);
@@ -134,12 +133,27 @@ instance DIA_Pablo_Banditen(C_Info)
 
 func int DIA_Pablo_Banditen_Condition()
 {
+	if(Npc_KnowsInfo(other,DIA_Pablo_WANTED))
+	{
+		DIA_Pablo_Banditen.description = "„то ты знаешь об этих бандитах?";
+	}
+	else
+	{
+		DIA_Pablo_Banditen.description = "„то ты знаешь о бандитах?";
+	};
 	return TRUE;
 };
 
 func void DIA_Pablo_Banditen_Info()
 {
-	AI_Output(other,self,"DIA_Pablo_Add_15_03");	//„то ты знаешь об этих бандитах?
+	if(Npc_KnowsInfo(other,DIA_Pablo_WANTED))
+	{
+		AI_Output(other,self,"DIA_Pablo_Add_15_03");	//„то ты знаешь об этих бандитах?
+	}
+	else
+	{
+		DIA_Common_WhatDoYouKnowAboutBandits();
+	};
 	AI_Output(self,other,"DIA_Pablo_Add_12_04");	//¬се они пришли из этой чертовой колонии. Ќо затем разделились на несколько групп.
 	AI_Output(self,other,"DIA_Pablo_Add_12_05");	//„асть из них устроили себе логово в горах, а другие присоединились к ќнару, лендлорду.
 	AI_Output(self,other,"DIA_Pablo_Add_12_06");	//Ќо больше всего проблем доставл€ют бандиты около города.
@@ -160,7 +174,7 @@ instance DIA_Pablo_HakonBandits(C_Info)
 
 func int DIA_Pablo_HakonBandits_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hakon_Miliz) && Npc_KnowsInfo(other,DIA_Pablo_Banditen))
+	if(Npc_KnowsInfo(other,DIA_Pablo_Banditen) && Npc_KnowsInfo(other,DIA_Hakon_Miliz))
 	{
 		return TRUE;
 	};

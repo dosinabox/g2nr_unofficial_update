@@ -28,7 +28,7 @@ func void B_Vatras_ListenersControl()
 	};
 	if(Vatras_Listeners_ReadyToGo == TRUE)
 	{
-		B_StartOtherRoutine(VLK_421_Valentino,pos);
+		B_StartOtherRoutine(Valentino,pos);
 		B_StartOtherRoutine(VLK_426_Buergerin,pos);
 		B_StartOtherRoutine(VLK_428_Buergerin,pos);
 		B_StartOtherRoutine(VLK_450_Buerger,pos);
@@ -183,7 +183,6 @@ func void DIA_Vatras_EXIT_Info()
 		B_GiveInvItems(self,other,ItMi_Ornament_Addon_Vatras,1);
 		Vatras_LaresExit = TRUE;
 	};
-	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 	B_Vatras_ListenersControl();
 //	Vatras_MORE = FALSE;
@@ -956,7 +955,7 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 };
 
 
-var int missingpeopleinfo[20];
+var int MISSINGPEOPLEINFO[20];
 
 instance DIA_Addon_Vatras_MissingPeople(C_Info)
 {
@@ -1827,16 +1826,19 @@ func void DIA_Vatras_CanTeach_Info()
 };
 
 
+var int Vatras_TeachMANA_NoPerm;
+
 func void B_BuildLearnDialog_Vatras()
 {
-	Info_ClearChoices(DIA_Vatras_Teach);
-	Info_AddChoice(DIA_Vatras_Teach,Dialog_Back,DIA_Vatras_Teach_BACK);
 	if(other.aivar[REAL_MANA_MAX] >= T_HIGH)
 	{
 		AI_Output(self,other,"DIA_Vatras_Teach_05_00");	//Твоя магическая энергия стала слишком велика, чтобы я мог еще повысить ее.
+		Vatras_TeachMANA_NoPerm = TRUE;
 	}
 	else
 	{
+		Info_ClearChoices(DIA_Vatras_Teach);
+		Info_AddChoice(DIA_Vatras_Teach,Dialog_Back,DIA_Vatras_Teach_BACK);
 		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Vatras_Teach_1);
 		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Vatras_Teach_5);
 	};
@@ -1856,7 +1858,7 @@ instance DIA_Vatras_Teach(C_Info)
 func int DIA_Vatras_Teach_Condition()
 {
 //	if((Vatras_TeachMANA == TRUE) && (Vatras_MORE == TRUE))
-	if(Vatras_TeachMANA == TRUE)
+	if((Vatras_TeachMANA == TRUE) && (Vatras_TeachMANA_NoPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -2240,7 +2242,7 @@ func void DIA_Addon_Vatras_AddonSolved_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Garond_BACKINKAP4_15_00");	//Я вернулся.
+		DIA_Common_ImBack();
 	};
 	AI_Output(self,other,"DIA_Addon_Vatras_AddonSolved_05_01");	//Как обстоит дело с проблемой в северо-восточных горах?
 	AI_Output(other,self,"DIA_Addon_Vatras_AddonSolved_15_02");	//Нормально. Ворон мертв, угроза устранена.
@@ -2278,7 +2280,7 @@ func int DIA_Vatras_INNOSEYEKAPUTT_Condition()
 
 func void DIA_Vatras_INNOSEYEKAPUTT_Info()
 {
-	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
+	DIA_Common_InnosEyeBroken();
 	if(MIS_Pyrokar_GoToVatrasInnoseye == LOG_Running)
 	{
 		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_00");	//Меня прислал Пирокар.
@@ -2348,10 +2350,6 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut()
 	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut_15_00");	//Где мне найти болотную траву?
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut_05_01");	//Я слышал о старой шаманке Сагитте, живущей в лесу. Предположительно, она продает такие травы.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut_05_02");	//Но также ты можешь попытать счастья в местной гавани.
-	if(!Npc_IsDead(Sagitta) && (Npc_HasItems(Sagitta,ItPl_SwampHerb) < 3))
-	{
-		CreateInvItems(Sagitta,ItPl_SwampHerb,3);
-	};
 };
 
 func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer()

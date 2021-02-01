@@ -73,8 +73,8 @@ func void DIA_Cipher_TradeWhat_Info()
 	AI_Output(self,other,"DIA_Cipher_TradeWhat_07_02");	//Я принес с собой из колонии целый тюк болотной травы.
 	AI_Output(self,other,"DIA_Cipher_TradeWhat_07_03");	//Многие наемники не прочь иногда покурить травки. Я даже смог сколотить небольшое состояние на этом.
 	AI_Output(self,other,"DIA_Cipher_TradeWhat_07_04");	//Но какой-то ублюдок украл эту траву из моего сундука!
-	Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-	B_LogEntry(Topic_SoldierTrader,"Сифер - торговец на ферме Онара.");
+	Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
+	B_LogEntry(TOPIC_SoldierTrader,"Сифер - торговец на ферме Онара.");
 	Log_CreateTopic(Topic_CipherPaket,LOG_MISSION);
 	Log_SetTopicStatus(Topic_CipherPaket,LOG_Running);
 	B_LogEntry(Topic_CipherPaket,"Наемник Сифер потерял тюк болотной травы.");
@@ -334,7 +334,7 @@ instance DIA_Cipher_DarDieb(C_Info)
 
 func int DIA_Cipher_DarDieb_Condition()
 {
-	if(((Dar_Dieb == TRUE) || (Dar_Verdacht == TRUE)) && !Npc_IsDead(Dar))
+	if((Dar_Dieb == TRUE) || (Dar_Verdacht == TRUE))
 	{
 		return TRUE;
 	};
@@ -439,8 +439,8 @@ func void DIA_Cipher_KrautPaket_Info()
 	Npc_RemoveInvItems(self,ItMi_Joint,10);
 	CreateInvItems(other,ItMi_Joint,10);
 	CreateInvItems(other,ItMi_Gold,200);
-	AI_PrintScreen("10 косяков получено",-1,43,FONT_ScreenSmall,4);
-	AI_PrintScreen("200 золотых получено",-1,40,FONT_ScreenSmall,4);
+	AI_PrintScreen("10 косяков получено",-1,43,FONT_ScreenSmall,3);
+	AI_PrintScreen("200 золотых получено",-1,40,FONT_ScreenSmall,3);
 	AI_Output(self,other,"DIA_Cipher_KrautPaket_07_05");	//Сейчас я скручу пару косячков...
 	Npc_RemoveInvItems(self,ItMi_HerbPaket,1);
 	CreateInvItems(self,ItMi_Joint,40);

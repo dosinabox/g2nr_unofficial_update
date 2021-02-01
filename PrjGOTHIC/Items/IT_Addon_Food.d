@@ -222,7 +222,7 @@ instance ItFo_Addon_Pfeffer_01(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 100;
-	visual = "ItMi_FoodPocket.3ds";
+	visual = "ItMi_RedPepper.3ds";
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = "Красный жгучий перец";

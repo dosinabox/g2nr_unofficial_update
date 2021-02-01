@@ -660,23 +660,14 @@ const int NPC_TALENT_D = 20;
 const int NPC_TALENT_E = 21;
 const int NPC_TALENT_MAX = 22;
 
-var int player_talent_runes[MAX_SPELL];
+var int PLAYER_TALENT_RUNES[MAX_SPELL];
+
 const int LANGUAGE_1 = 0;
 const int LANGUAGE_2 = 1;
 const int LANGUAGE_3 = 2;
 const int MAX_LANGUAGE = 3;
+var int PLAYER_TALENT_FOREIGNLANGUAGE[MAX_LANGUAGE];
 
-var int player_talent_foreignlanguage[MAX_LANGUAGE];
-const int WISPSKILL_NF = 0;
-const int WISPSKILL_FF = 1;
-const int WISPSKILL_NONE = 2;
-const int WISPSKILL_RUNE = 3;
-const int WISPSKILL_MAGIC = 4;
-const int WISPSKILL_FOOD = 5;
-const int WISPSKILL_POTIONS = 6;
-const int MAX_WISPSKILL = 7;
-
-var int player_talent_wispdetector[MAX_WISPSKILL];
 var int WispSearching;
 const int WispSearch_Follow = 1;
 const int WispSearch_ALL = 2;
@@ -687,6 +678,16 @@ const int WispSearch_NF = 6;
 const int WispSearch_FF = 7;
 const int WispSearch_NONE = 8;
 const int WispSearch_RUNE = 9;
+const int WISPSKILL_NF = 0;
+const int WISPSKILL_FF = 1;
+const int WISPSKILL_NONE = 2;
+const int WISPSKILL_RUNE = 3;
+const int WISPSKILL_MAGIC = 4;
+const int WISPSKILL_FOOD = 5;
+const int WISPSKILL_POTIONS = 6;
+const int MAX_WISPSKILL = 7;
+var int PLAYER_TALENT_WISPDETECTOR[MAX_WISPSKILL];
+
 const int POTION_Health_01 = 0;
 const int POTION_Health_02 = 1;
 const int POTION_Health_03 = 2;
@@ -703,8 +704,8 @@ const int CHARGE_Innoseye = 12;
 const int POTION_Mana_04 = 13;
 const int POTION_Health_04 = 14;
 const int MAX_POTION = 15;
+var int PLAYER_TALENT_ALCHEMY[MAX_POTION];
 
-var int player_talent_alchemy[MAX_POTION];
 const int WEAPON_Common = 0;
 const int WEAPON_1H_Special_01 = 1;
 const int WEAPON_2H_Special_01 = 2;
@@ -719,8 +720,8 @@ const int WEAPON_1H_Harad_02 = 10;
 const int WEAPON_1H_Harad_03 = 11;
 const int WEAPON_1H_Harad_04 = 12;
 const int MAX_WEAPONS = 13;
+var int PLAYER_TALENT_SMITH[MAX_WEAPONS];
 
-var int player_talent_smith[MAX_WEAPONS];
 const int TROPHY_Teeth = 0;
 const int TROPHY_Claws = 1;
 const int TROPHY_Fur = 2;
@@ -736,13 +737,12 @@ const int TROPHY_DragonScale = 11;
 const int TROPHY_DragonBlood = 12;
 const int TROPHY_ReptileSkin = 13;
 const int MAX_TROPHIES = 14;
+var int PLAYER_TALENT_TAKEANIMALTROPHY[MAX_TROPHIES];
 
-var int player_talent_takeanimaltrophy[MAX_TROPHIES];
-
-const string TEXT_FONT_20 = "Font_old_20_white.tga";
-const string TEXT_FONT_10 = "Font_old_10_white.tga";
-const string TEXT_FONT_DEFAULT = "Font_old_10_white.tga";
-const string TEXT_FONT_Inventory = "Font_old_10_white.tga";
+const string TEXT_FONT_20 = "FONT_OLD_20_WHITE.TGA";
+const string TEXT_FONT_10 = "FONT_OLD_10_WHITE.TGA";
+const string TEXT_FONT_DEFAULT = "FONT_OLD_10_WHITE.TGA";
+const string TEXT_FONT_Inventory = "FONT_OLD_10_WHITE.TGA";
 
 const float VIEW_TIME_PER_CHAR = 550;
 
@@ -761,3 +761,8 @@ const int INVCAM_X_RING_STANDARD = 25;
 const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
+
+const string FIX_VERSION_DATE = "01/02/2021";
+const int FIX_VERSION_START = 26;
+const int LEAST_SUPPORTED = 24;
+var int FIX_VERSION_SAVE;

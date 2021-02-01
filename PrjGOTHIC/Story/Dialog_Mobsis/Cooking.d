@@ -32,26 +32,20 @@ func int pan_cond()
 
 func void pan_s1()
 {
-	var C_Npc her;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
-		player_mobsi_production = MOBSI_PAN;
-		//AI_ProcessInfos(her);
+		PLAYER_MOBSI_PRODUCTION = MOBSI_PAN;
 		AI_ProcessInfos(self);
 	};
 };
 
 func void stove_s1()
 {
-	var C_Npc her;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
-		player_mobsi_production = MOBSI_PAN;
-		//AI_ProcessInfos(her);
+		PLAYER_MOBSI_PRODUCTION = MOBSI_PAN;
 		AI_ProcessInfos(self);
 	};
 };

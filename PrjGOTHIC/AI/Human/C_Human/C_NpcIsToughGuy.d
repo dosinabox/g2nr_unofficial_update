@@ -5,7 +5,19 @@ func int C_NpcIsToughGuy(var C_Npc slf)
 	{
 		return TRUE;
 	};
-	if((slf.guild == GIL_SLD) || (slf.guild == GIL_DJG) || (slf.guild == GIL_BDT) || (slf.guild == GIL_PIR))
+	if(slf.guild == GIL_SLD)
+	{
+		return TRUE;
+	};
+	if(slf.guild == GIL_DJG)
+	{
+		return TRUE;
+	};
+	if(slf.guild == GIL_BDT)
+	{
+		return TRUE;
+	};
+	if(slf.guild == GIL_PIR)
 	{
 		return TRUE;
 	};

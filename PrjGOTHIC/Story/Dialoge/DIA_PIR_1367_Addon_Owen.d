@@ -76,16 +76,14 @@ func int DIA_Addon_Owen_Hello_Condition()
 
 func void DIA_Addon_Owen_Hello_Info()
 {
-	var C_Item itm;
 	AI_Output(other,self,"DIA_Addon_Owen_Hello_15_00");	//Как дела?
 	AI_Output(self,other,"DIA_Addon_Owen_Hello_13_01");	//А ты кто такой? Один из бандитов?
 	AI_Output(other,self,"DIA_Addon_Owen_Hello_15_02");	//А что, похож?
-	itm = Npc_GetEquippedArmor(other);
-	if(Hlp_IsItem(itm,ITAR_PIR_M_Addon) || Hlp_IsItem(itm,ITAR_PIR_L_Addon) || Hlp_IsItem(itm,ITAR_PIR_H_Addon))
+	if(C_PirateArmorEquipped(other))
 	{
 		AI_Output(self,other,"DIA_Addon_Owen_Hello_13_03");	//Одет ты так же, как и мы, но я тебя не знаю.
 	}
-	else if(Hlp_IsItem(itm,ITAR_BDT_M) || Hlp_IsItem(itm,ITAR_BDT_H) || Hlp_IsItem(itm,ITAR_Thorus_Addon))
+	else if(C_BanditArmorEquipped(other))
 	{
 		AI_Output(self,other,"DIA_Addon_Owen_Hello_13_04");	//Честно говоря, да.
 	}

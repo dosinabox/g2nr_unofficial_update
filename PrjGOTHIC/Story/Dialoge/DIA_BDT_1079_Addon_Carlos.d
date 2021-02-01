@@ -167,7 +167,7 @@ func void DIA_Addon_Carlos_PERM_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Addon_Edgor_Hi_15_00");	//Как дела?
+		DIA_Common_HowsItGoing();
 	};
 	AI_Output(self,other,"DIA_Addon_Carlos_PERM_12_00");	//Оставь меня в покое!
 	AI_StopProcessInfos(self);

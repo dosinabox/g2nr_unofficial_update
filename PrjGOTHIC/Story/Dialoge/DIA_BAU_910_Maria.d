@@ -203,27 +203,27 @@ func void DIA_Maria_Belohnung_Info()
 		AI_Output(self,other,"DIA_Maria_Belohnung_17_03");	//—колько мой муж платит тебе?
 		if(Npc_KnowsInfo(other,DIA_Onar_HowMuch))
 		{
-			if(SOLD == 50)
+			if(Onar_SOLD_Gold == 50)
 			{
 				AI_Output(other,self,"DIA_Lehmar_GELDLEIHEN_50_15_00");	//50 золотых.
 			}
-			else if(SOLD == 40)
+			else if(Onar_SOLD_Gold == 40)
 			{
 				AI_Output(other,self,"DIA_Maria_Belohnung_15_03_40_add");	//40 монет.
 			}
-			else if(SOLD == 30)
+			else if(Onar_SOLD_Gold == 30)
 			{
 				AI_Output(other,self,"DIA_Maria_Belohnung_15_03_30_add");	//30 золотых.
 			}
-			else if(SOLD == 20)
+			else if(Onar_SOLD_Gold == 20)
 			{
 				AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_20_15_00");	//20.
 			}
-			else if(SOLD == 10)
+			else if(Onar_SOLD_Gold == 10)
 			{
 				AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_10_15_00");	//10 золотых.
 			}
-			else if(SOLD < 10)
+			else if(Onar_SOLD_Gold < 10)
 			{
 				AI_Output(other,self,"DIA_Moe_Hallo_Zahlen_15_04");	//... но у мен€ нет даже и 10 монет.
 			};
@@ -331,12 +331,12 @@ func void DIA_Maria_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Maria_PERM_17_01");	//ћимо прошли паладины.
 		AI_Output(self,other,"DIA_Maria_PERM_17_02");	//—начала мы подумали, что они собираютс€ напасть на нашу ферму, но они прошли мимо, в ƒолину –удников.
-	};
-	if(Kapitel == 3)
+	}
+	else if(Kapitel == 3)
 	{
 		AI_Output(self,other,"DIA_Maria_PERM_17_03");	//¬асилий поймал вора несколько дней назад. ј кроме этого, все спокойно.
-	};
-	if(Kapitel >= 4)
+	}
+	else if(Kapitel >= 4)
 	{
 		AI_Output(self,other,"DIA_Maria_PERM_17_04");	//— тех пор, как часть наемников ушла отсюда, стало значительно спокойнее.
 	};

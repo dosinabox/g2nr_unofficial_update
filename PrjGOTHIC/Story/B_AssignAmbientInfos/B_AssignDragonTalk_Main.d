@@ -172,6 +172,24 @@ func void DIA_DragonTalk_Main_4_Info()
 	DragonTalk_Exit_Free = TRUE;
 };
 
+func void B_EndDragonTalk()
+{
+	self.flags = 0;
+	Npc_RemoveInvItems(other,ItMi_InnosEye_MIS,1);
+	CreateInvItems(other,ItMi_InnosEye_Discharged_Mis,1);
+	SC_IsWearingInnosEye = FALSE;
+	DragonTalk_Exit_Free = FALSE;
+	AI_StopProcessInfos(self);
+	if(CurrentLevel == OLDWORLD_ZEN)
+	{
+		if(DJG_Biff_Stay == TRUE)
+		{
+			B_StartOtherRoutine(Biff,"Follow");
+			DJG_Biff_Stay = FALSE;
+		};
+	};
+};
+
 func void B_AssignDragonTalk_Main(var C_Npc slf)
 {
 	DIA_DragonTalk_Main_1.npc = Hlp_GetInstanceID(slf);

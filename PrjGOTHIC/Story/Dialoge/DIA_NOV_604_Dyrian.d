@@ -17,10 +17,6 @@ func int DIA_Dyrian_EXIT_Condition()
 
 func void DIA_Dyrian_EXIT_Info()
 {
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
 	AI_StopProcessInfos(self);
 };
 
@@ -38,7 +34,7 @@ instance DIA_Dyrian_Hello(C_Info)
 
 func int DIA_Dyrian_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_Rune == FALSE) && (MIS_Schnitzeljagd == FALSE) && (MIS_Golem == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -63,39 +59,17 @@ instance DIA_Dyrian_Wurst(C_Info)
 
 func int DIA_Dyrian_Wurst_Condition()
 {
-	if((MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
+	if(C_CanFeedNOV(self))
 	{
-		if(Kapitel == 1)
-		{
-			return TRUE;
-		}
-		else if(GuildlessMode == TRUE)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
 func void DIA_Dyrian_Wurst_Info()
 {
-	var string NovizeText;
-	var string NovizeLeft;
 	AI_Output(other,self,"DIA_Dyrian_Wurst_15_00");	//Я занимаюсь распределением колбасы.
 	AI_Output(self,other,"DIA_Dyrian_Wurst_13_01");	//Спасибо. Надеюсь, это не последняя колбаса, что я получу здесь.
-	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
-	Wurst_Gegeben += 1;
-//	CreateInvItems(self,ItFo_Schafswurst,1);
-	B_UseItem(self,ItFo_Schafswurst);
-	if(Wurst_Gegeben >= 13)
-	{
-		AI_PrintScreen(PRINT_AllNovizen,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	}
-	else
-	{
-		NovizeLeft = IntToString(13 - Wurst_Gegeben);
-		NovizeText = ConcatStrings(PRINT_NovizenLeft,NovizeLeft);
-		AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	};
+	B_FeedNOV(self);
 };
 
 
@@ -112,7 +86,7 @@ instance DIA_Dyrian_Job(C_Info)
 
 func int DIA_Dyrian_Job_Condition()
 {
-	if((Kapitel == 1) && Npc_KnowsInfo(hero,DIA_Dyrian_Hello) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE))
+	if((Kapitel == 1) && Npc_KnowsInfo(hero,DIA_Dyrian_Hello) && (MIS_Rune == FALSE) && (MIS_Schnitzeljagd == FALSE) && (MIS_Golem == FALSE))
 	{
 		return TRUE;
 	};
@@ -139,7 +113,7 @@ instance DIA_Dyrian_WhatDone(C_Info)
 
 func int DIA_Dyrian_WhatDone_Condition()
 {
-	if((Kapitel == 1) && Npc_KnowsInfo(other,DIA_Dyrian_Job) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE))
+	if((Kapitel == 1) && Npc_KnowsInfo(other,DIA_Dyrian_Job) && (MIS_Rune == FALSE) && (MIS_Schnitzeljagd == FALSE) && (MIS_Golem == FALSE))
 	{
 		return TRUE;
 	};
@@ -168,7 +142,7 @@ instance DIA_Dyrian_CanHelp(C_Info)
 
 func int DIA_Dyrian_CanHelp_Condition()
 {
-	if((Kapitel == 1) && Npc_KnowsInfo(hero,DIA_Dyrian_Job) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE))
+	if((Kapitel == 1) && Npc_KnowsInfo(hero,DIA_Dyrian_Job) && (MIS_Rune == FALSE) && (MIS_Schnitzeljagd == FALSE) && (MIS_Golem == FALSE))
 	{
 		return TRUE;
 	};
@@ -194,7 +168,7 @@ instance DIA_Dyrian_Scroll(C_Info)
 
 func int DIA_Dyrian_Scroll_Condition()
 {
-	if((Kapitel == 1) && (MIS_SCHNITZELJAGD == LOG_Running) || (MIS_RUNE == LOG_Running) || (MIS_GOLEM == LOG_Running))
+	if((Kapitel == 1) && (MIS_Schnitzeljagd == LOG_Running) || (MIS_Rune == LOG_Running) || (MIS_Golem == LOG_Running))
 	{
 		return TRUE;
 	};

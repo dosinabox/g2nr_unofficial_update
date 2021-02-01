@@ -1,46 +1,7 @@
 
 func void B_AssessTalk()
 {
-	var C_Npc pcl;
-	var C_Npc pcr;
 	var int rnd;
-	pcl = Hlp_GetNpc(PC_Levelinspektor);
-	pcr = Hlp_GetNpc(PC_Rockefeller);
-	if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(pcl)) || (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(pcr)))
-	{
-		PrintScreen(ConcatStrings("Голос: ",IntToString(self.voice)),-1,70,FONT_Screen,2);
-		PrintScreen("Нет героя!",-1,-1,FONT_Screen,2);
-		PrintScreen(IntToString(self.aivar[AIV_FollowDist]),-1,65,FONT_Screen,2);
-		if(C_NpcIsInQuarter(self) == Q_KASERNE)
-		{
-			PrintScreen("Q_BARRACKS",-1,30,FONT_Screen,2);
-		};
-		if(C_NpcIsInQuarter(self) == Q_GALGEN)
-		{
-			PrintScreen("Q_GALLOWS",-1,30,FONT_Screen,2);
-		};
-		if(C_NpcIsInQuarter(self) == Q_MARKT)
-		{
-			PrintScreen("Q_MARKET",-1,30,FONT_Screen,2);
-		};
-		if(C_NpcIsInQuarter(self) == Q_TEMPEL)
-		{
-			PrintScreen("Q_TEMPLE",-1,30,FONT_Screen,2);
-		};
-		if(C_NpcIsInQuarter(self) == Q_UNTERSTADT)
-		{
-			PrintScreen("Q_LOWER CITY",-1,30,FONT_Screen,2);
-		};
-		if(C_NpcIsInQuarter(self) == Q_HAFEN)
-		{
-			PrintScreen("Q_HARBOR",-1,30,FONT_Screen,2);
-		};
-		if(C_NpcIsInQuarter(self) == Q_OBERSTADT)
-		{
-			PrintScreen("Q_UPPER CITY",-1,30,FONT_Screen,2);
-		};
-		return;
-	};
 	if(self.guild > GIL_SEPERATOR_HUM)
 	{
 		if(!Npc_CheckInfo(self,1))
@@ -50,29 +11,103 @@ func void B_AssessTalk()
 				return;
 			};
 		};
-	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru))
+	}
+	else if(self.guild < GIL_SEPERATOR_HUM)
 	{
-		if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU))
+		if(C_NpcIsLevelinspektor(other) || C_NpcIsRockefeller(other))
 		{
-			if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_05_01") > 1000)
+			PrintScreen(ConcatStrings("Голос: ",IntToString(self.voice)),-1,70,FONT_Screen,2);
+			PrintScreen("Нет героя!",-1,-1,FONT_Screen,2);
+			PrintScreen(IntToString(self.aivar[AIV_FollowDist]),-1,65,FONT_Screen,2);
+			if(C_NpcIsInQuarter(self) == Q_KASERNE)
 			{
-				return;
+				PrintScreen("Q_BARRACKS",-1,30,FONT_Screen,2);
+			};
+			if(C_NpcIsInQuarter(self) == Q_GALGEN)
+			{
+				PrintScreen("Q_GALLOWS",-1,30,FONT_Screen,2);
+			};
+			if(C_NpcIsInQuarter(self) == Q_MARKT)
+			{
+				PrintScreen("Q_MARKET",-1,30,FONT_Screen,2);
+			};
+			if(C_NpcIsInQuarter(self) == Q_TEMPEL)
+			{
+				PrintScreen("Q_TEMPLE",-1,30,FONT_Screen,2);
+			};
+			if(C_NpcIsInQuarter(self) == Q_UNTERSTADT)
+			{
+				PrintScreen("Q_LOWER CITY",-1,30,FONT_Screen,2);
+			};
+			if(C_NpcIsInQuarter(self) == Q_HAFEN)
+			{
+				PrintScreen("Q_HARBOR",-1,30,FONT_Screen,2);
+			};
+			if(C_NpcIsInQuarter(self) == Q_OBERSTADT)
+			{
+				PrintScreen("Q_UPPER CITY",-1,30,FONT_Screen,2);
+			};
+			return;
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Baltram))
+		{
+			B_BaltramRangerCheck(other);
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru))
+		{
+			if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU))
+			{
+				if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_05_01") > 1000)
+				{
+					return;
+				};
+			};
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Meldor))
+		{
+			if(C_LawArmorEquipped(other))
+			{
+				Meldor_Busted = TRUE;
+			};
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Kardif))
+		{
+			if(C_LawArmorEquipped(other) && !Npc_KnowsInfo(other,DIA_Kardif_Zeichen))
+			{
+				Kardif_Busted = TRUE;
+			};
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Greg_NW))
+		{
+			PlayerTalkedToGregNW = TRUE;
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Skip_NW))
+		{
+			PlayerTalkedToSkipNW = TRUE;
+		}
+		else if(MIS_Andre_REDLIGHT == LOG_Running)
+		{
+			if(C_LawArmorEquipped(other))
+			{
+				if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Borka))
+				{
+					Undercover_Failed_Borka = TRUE;
+					B_CheckRedLightUndercover();
+				}
+				else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nadja))
+				{
+					Undercover_Failed_Nadja = TRUE;
+					B_CheckRedLightUndercover();
+				};
 			};
 		};
-	};
-	if(MIS_Andre_REDLIGHT == LOG_Running)
-	{
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Meldor)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Borka)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nadja)))
+		if((self.guild == GIL_VLK) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Canthar)))
 		{
-			if(C_RedlightUndercoverCheckFailed(other))
+			if(CurrentLevel == NEWWORLD_ZEN)
 			{
-				Undercover_Failed = TRUE;
+				B_PlayerEnteredCity();
 			};
 		};
-	};
-	if(self.guild < GIL_SEPERATOR_HUM)
-	{
 		if(B_AssessEnemy())
 		{
 			return;
@@ -82,9 +117,10 @@ func void B_AssessTalk()
 			B_Attack(self,other,AR_HumanMurderedHuman,0);
 			return;
 		};
-		if(SewerThieves_KilledByPlayer == TRUE)
+		if(C_IAmThiefFromSewer(self))
 		{
-			if(C_IAmThiefFromSewer(self))
+			DG_gefunden = TRUE;
+			if(SewerThieves_KilledByPlayer == TRUE)
 			{
 				B_Attack(self,other,AR_KILL,0);
 				return;
@@ -107,6 +143,23 @@ func void B_AssessTalk()
 			{
 				B_Say(self,other,"$NOTNOW");
 				return;
+			};
+		};
+		if(self.guild == GIL_NOV)
+		{
+			if(Parlan_DontTalkToNovice == LOG_Running)
+			{
+				if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger1))
+				{
+					if(Npc_GetDistToWP(self,"NW_MONASTERY_CELLAR_08") > 900)
+					{
+						Parlan_DontTalkToNovice = LOG_FAILED;
+					};
+				}
+				else if((Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Garwig)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Pedro)))
+				{
+					Parlan_DontTalkToNovice = LOG_FAILED;
+				};
 			};
 		};
 	};

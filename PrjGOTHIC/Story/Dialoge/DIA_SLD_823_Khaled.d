@@ -58,8 +58,8 @@ func void DIA_Khaled_Hallo_Info()
 		};
 		if(!Npc_KnowsInfo(other,DIA_Bennet_HALLO))
 		{
-			Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-			B_LogEntry(Topic_SoldierTrader,"Халед - торговец оружием.");
+			Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
+			B_LogEntry(TOPIC_SoldierTrader,"Халед - торговец оружием.");
 		};
 		Khaled_weiter = TRUE;
 	}

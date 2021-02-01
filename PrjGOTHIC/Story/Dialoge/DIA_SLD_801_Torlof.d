@@ -494,7 +494,7 @@ func void B_Torlof_HolPachtVonSekob()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Torlof_Probe_15_06");	//Нет.
+		DIA_Common_No();
 	};
 	MIS_Torlof_HolPachtVonSekob = LOG_Running;
 	Sekob.flags = 0;
@@ -517,7 +517,7 @@ func void B_Torlof_BengarMilizKlatschen()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Torlof_Probe_15_06");	//Нет.
+		DIA_Common_No();
 	};
 	MIS_Torlof_BengarMilizKlatschen = LOG_Running;
 	Bengar.flags = 0;
@@ -554,7 +554,7 @@ func void B_Torlof_TheOtherMissionDay()
 	{
 		AI_Output(self,other,"B_Torlof_TheOtherMissionDay_01_00");	//Ты потратил на это слишком много времени. Онар будет недоволен.
 		Torlof_TheOtherMission_TooLate = TRUE;
-		if(EnterOW_Kapitel2 == TRUE)
+		if(Enter_OldWorld_FirstTime_Trigger_OneTime == TRUE)
 		{
 			AI_Output(self,other,"DIA_Torlof_Add_01_00");	//И ему все равно, погибнут паладины в Долине Рудников или нет...
 		};
@@ -838,8 +838,8 @@ func void DIA_Torlof_Teach_Info()
 	{
 		if(Log_TorlofTeach == FALSE)
 		{
-			Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-			B_LogEntry(Topic_SoldierTeacher,"Торлоф может повысить мою ловкость и силу.");
+			Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_SoldierTeacher,"Торлоф может повысить мою ловкость и силу.");
 			Log_TorlofTeach = TRUE;
 		};
 		Torlof_Merke_STR = other.aivar[REAL_STRENGTH];
@@ -854,8 +854,8 @@ func void DIA_Torlof_Teach_Info()
 			AI_Output(self,other,"DIA_Torlof_Teach_01_02");	//Пока ты не станешь одним из нас, тебе лучше поискать другого учителя!
 			if(Log_TorlofTeach == FALSE)
 			{
-				Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-				B_LogEntry(Topic_SoldierTeacher,"Торлоф может повысить мою ловкость и силу, если я решу присоединиться к наемникам.");
+				Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+				B_LogEntry(TOPIC_SoldierTeacher,"Торлоф может повысить мою ловкость и силу, если я решу присоединиться к наемникам.");
 				Log_TorlofTeach = TRUE;
 			};
 		};
@@ -1027,7 +1027,6 @@ instance DIA_Torlof_WOISTSYLVIO(C_Info)
 
 func int DIA_Torlof_WOISTSYLVIO_Condition()
 {
-//	if((MIS_ReadyforChapter4 == TRUE) || (Kapitel == 4))
 	if(MIS_ReadyforChapter4 == TRUE)
 	{
 		return TRUE;

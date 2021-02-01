@@ -1,11 +1,6 @@
 
 func void B_AssessDamage()
 {
-//	var C_Npc Quarho;
-//	var C_Npc Rhadem;
-//	var C_Npc rav;
-//	Quarho = Hlp_GetNpc(NONE_ADDON_111_Quarhodron);
-//	Rhadem = Hlp_GetNpc(NONE_ADDON_112_Rhademes);
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Greg_NW))
 	{
 		if((B_Greg_ComesToDexter_OneTime == TRUE) && Npc_IsPlayer(other) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_CaughtDexter) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_CaughtDexter2) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_WodennNu))
@@ -34,7 +29,6 @@ func void B_AssessDamage()
 	};
 	if(self.aivar[AIV_EnemyOverride] == TRUE)
 	{
-//		rav = Hlp_GetNpc(BDT_1090_Addon_Raven);
 		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Raven))
 		{
 			self.aivar[AIV_EnemyOverride] = FALSE;
@@ -54,7 +48,8 @@ func void B_AssessDamage()
 		};
 		if(Hlp_GetInstanceID(other) != self.aivar[AIV_LASTTARGET])
 		{
-			if((self.aivar[AIV_HitByOtherNpc] == Hlp_GetInstanceID(other)) || (Hlp_GetInstanceID(other) != Hlp_GetInstanceID(hero)))
+//			if((self.aivar[AIV_HitByOtherNpc] == Hlp_GetInstanceID(other)) || (Hlp_GetInstanceID(other) != Hlp_GetInstanceID(hero)))
+			if((self.aivar[AIV_HitByOtherNpc] == Hlp_GetInstanceID(other)) || !Npc_IsPlayer(other))
 			{
 				Npc_SetTarget(self,other);
 			}

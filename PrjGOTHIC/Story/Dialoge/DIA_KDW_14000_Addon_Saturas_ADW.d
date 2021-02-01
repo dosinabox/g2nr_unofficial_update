@@ -166,7 +166,7 @@ func void DIA_Addon_Saturas_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, это был рыбак из Хориниса. Взгляни там.
 	if(!Npc_HasItems(William,ITWr_Addon_William_01))
 	{
-		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
+		DIA_Common_IFoundHim();
 		AI_Output(self,other,"DIA_Addon_Saturas_LanceLeiche_14_01");	//Да пребудет его душа в царстве Аданоса.
 		if(FoundDeadWilliam == FALSE)
 		{

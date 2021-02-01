@@ -41,10 +41,9 @@ func int DIA_SylvioDJG_HelloAgain_Condition()
 
 func void DIA_SylvioDJG_HelloAgain_Info()
 {
-	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+	if(other.guild == GIL_PAL)
 	{
-		AI_Output(self,other,"DIA_SylvioDJG_HelloAgain_09_00");	//Ох, будь я проклят! Ты тоже решил подзаработать, ха? Я знал это! У тебя душа наемника.
-		AI_Output(self,other,"DIA_SylvioDJG_HelloAgain_09_01");	//Послушай, если ты думаешь, что загребешь здесь кучу золота, ты жестоко ошибаешься. Я был здесь первым.
+		AI_Output(self,other,"DIA_SylvioDJG_HelloAgain_09_03");	//Эй ты, паладин! Возвращайся в свою шахту. Здесь для тебя ничего нет.
 	}
 	else if(other.guild == GIL_KDF)
 	{
@@ -52,7 +51,8 @@ func void DIA_SylvioDJG_HelloAgain_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_SylvioDJG_HelloAgain_09_03");	//Эй ты, паладин! Возвращайся в свою шахту. Здесь для тебя ничего нет.
+		AI_Output(self,other,"DIA_SylvioDJG_HelloAgain_09_00");	//Ох, будь я проклят! Ты тоже решил подзаработать, ха? Я знал это! У тебя душа наемника.
+		AI_Output(self,other,"DIA_SylvioDJG_HelloAgain_09_01");	//Послушай, если ты думаешь, что загребешь здесь кучу золота, ты жестоко ошибаешься. Я был здесь первым.
 	};
 	AI_Output(other,self,"DIA_SylvioDJG_HelloAgain_15_04");	//Понял. Никто не хочет расставаться с награбленным.
 	AI_Output(self,other,"DIA_SylvioDJG_HelloAgain_09_05");	//Ты сам сказал это. Исчезни.
@@ -371,7 +371,7 @@ func int DIA_Sylvio_DUHIER_Condition()
 
 func void DIA_Sylvio_DUHIER_Info()
 {
-	AI_Output(other,self,"DIA_Sylvio_DUHIER_15_00");	//Мне не помешала бы твоя помощь.
+	DIA_Common_INeedYourHelp();
 	AI_Output(self,other,"DIA_Sylvio_DUHIER_09_01");	//Чушь. Ты и так великолепно справляешься.
 	AI_StopProcessInfos(self);
 };

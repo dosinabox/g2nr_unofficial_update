@@ -139,8 +139,8 @@ func void DIA_Wolf_WannaLearn_Info()
 	AI_Output(other,self,"DIA_Wolf_WannaLearn_15_00");	//Ты можешь научить меня чему-нибудь?
 	AI_Output(self,other,"DIA_Wolf_WannaLearn_08_01");	//Я могу научить тебя секретам обращения с луком, если хочешь. Все равно мне сейчас нечего делать.
 	Wolf_TeachBow = TRUE;
-	Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-	B_LogEntry(Topic_SoldierTeacher,"Вольф может обучить меня обращению с луком.");
+	Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_SoldierTeacher,"Вольф может обучить меня обращению с луком.");
 };
 
 
@@ -461,8 +461,7 @@ func void DIA_Wolf_ArmorReady_Info()
 		{
 			Npc_RemoveInvItems(self,ItAt_CrawlerPlate,10);
 			AI_Output(self,other,"DIA_Wolf_ArmorReady_08_02");	//Я закончил их. Вот, держи.
-			CreateInvItem(hero,ITAR_DJG_Crawler);
-			AI_PrintScreen("Доспехи из панцирей краулеров получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+			B_GiveArmor(ITAR_DJG_Crawler);
 			AI_Output(self,other,"DIA_Wolf_ArmorReady_08_03");	//Получилось неплохо, мне кажется...
 			AI_Output(other,self,"DIA_Wolf_ArmorReady_15_04");	//Спасибо!
 			AI_Output(self,other,"DIA_Wolf_ArmorReady_08_05");	//Да ладно.
@@ -477,31 +476,6 @@ func void DIA_Wolf_ArmorReady_Info()
 		MIS_Wolf_BringCrawlerPlates = LOG_Running;
 	};
 };
-
-
-/*instance DIA_Wolf_KAP3_EXIT(C_Info)
-{
-	npc = SLD_811_Wolf;
-	nr = 999;
-	condition = DIA_Wolf_KAP3_EXIT_Condition;
-	information = DIA_Wolf_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Wolf_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Wolf_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};*/
 
 
 instance DIA_Wolf_BENGAR(C_Info)

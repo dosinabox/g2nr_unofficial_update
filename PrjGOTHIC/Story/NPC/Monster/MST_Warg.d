@@ -58,8 +58,6 @@ instance BlackWolf(Mst_Default_Warg)
 	attribute[ATR_DEXTERITY] = 20;
 	attribute[ATR_HITPOINTS_MAX] = 120;
 	attribute[ATR_HITPOINTS] = 120;
-	attribute[ATR_MANA_MAX] = 0;
-	attribute[ATR_MANA] = 0;
 	protection[PROT_BLUNT] = 12;
 	protection[PROT_EDGE] = 12;
 	protection[PROT_POINT] = 12;

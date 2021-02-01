@@ -107,8 +107,8 @@ func void DIA_Rod_WannaLearn_Info()
 			AI_Output(self,other,"DIA_Rod_WannaLearn_06_01");	//Я неплохой боец, но это не означает, что я хороший учитель.
 			AI_Output(self,other,"DIA_Rod_WannaLearn_06_02");	//И все же я думаю, я могу показать тебе основы боя двуручным оружием.
 			Rod_Teach2H = TRUE;
-			Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-			B_LogEntry(Topic_SoldierTeacher,"Род может показать мне, как лучше владеть двуручным оружием.");
+			Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_SoldierTeacher,"Род может показать мне, как лучше владеть двуручным оружием.");
 		};
 	}
 	else
@@ -458,7 +458,7 @@ func void DIA_Rod_Wette_KeepIt()
 	{
 		Npc_RemoveInvItem(hero,ItMw_2h_Rod_Fake);
 	};
-	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_00");	//Думаю, что нет...
+	DIA_Common_IThinkNo();
 	AI_Output(self,other,"DIA_Rod_Wette_KeepIt_06_01");	//(угрожающе) Что это значит?
 	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_02");	//Лучше я подержу его у себя немного.
 	AI_Output(self,other,"DIA_Rod_Wette_GiveBack_06_01");	//Да ты просто подлец после этого!

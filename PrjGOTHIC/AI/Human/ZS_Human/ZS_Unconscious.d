@@ -65,7 +65,7 @@ func void ZS_Unconscious()
 
 func int ZS_Unconscious_Loop()
 {
-	if(Npc_GetStateTime(self) < HAI_TIME_UNCONSCIOUS)
+	if(Npc_GetStateTime(self) < NPC_TIME_UNCONSCIOUS)
 	{
 		return LOOP_CONTINUE;
 	};

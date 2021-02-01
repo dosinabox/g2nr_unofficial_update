@@ -85,7 +85,7 @@ func int DIA_Addon_Edgor_Hi_Condition()
 
 func void DIA_Addon_Edgor_Hi_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Edgor_Hi_15_00");	// ак дела?
+	DIA_Common_HowsItGoing();
 	AI_Output(self,other,"DIA_Addon_Edgor_Hi_06_01");	//“ы хочешь узнать, как у мен€ дела? я тебе расскажу, как у мен€ дела.
 	AI_Output(self,other,"DIA_Addon_Edgor_Hi_06_02");	//—начала какие-то пираты привезли мен€ сюда в шторм. я облевал всю их посудину.
 	AI_Output(self,other,"DIA_Addon_Edgor_Hi_06_03");	//«атем ¬орон запер шахту, потому что какие-то идиоты слишком сильно хот€т золота.
@@ -257,9 +257,11 @@ func void DIA_Addon_Edgor_Teach_Info()
 	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_03");	// роме того, € знаю, как выдел€ть секрет из оторванных жал.
 	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_04");	//≈сли хочешь, € могу научить теб€ всей этой фигне.
 	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_05");	// онечно, € ничего не буду делать бесплатно...
-	Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Teacher,Log_Text_Addon_EdgorTeach);
-	Edgor_Teach = TRUE;
+	if(!Npc_KnowsInfo(other,DIA_Addon_Logan_Lern))
+	{
+		Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
+		B_LogEntry(Topic_Addon_BDT_Teacher,Log_Text_Addon_EdgorTeach);
+	};
 };
 
 func void B_Edgor_NotEnoughLP()
@@ -288,7 +290,7 @@ instance DIA_Addon_Edgor_TrainStart(C_Info)
 
 func int DIA_Addon_Edgor_Start_Condition()
 {
-	if((Edgor_Teach == TRUE) && (DIA_Edgor_Teach_permanent == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_Teach) && (DIA_Edgor_Teach_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -317,8 +319,8 @@ func void DIA_Addon_Edgor_Start_Info()
 	}
 	else
 	{
-		DIA_Edgor_Teach_permanent = TRUE;
 		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		DIA_Edgor_Teach_permanent = TRUE;
 	};
 };
 
@@ -377,7 +379,6 @@ func void DIA_Addon_Edgor_TrainStart_GIFT()
 		AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_GIFT_06_02");	//Ёто совершенно безопасный способ высосать его из жала - или использовать его дл€ лечебного зель€.
 		other.lp -= 1;
 		Knows_Bloodfly = TRUE;
-		Knows_Bloodfly_LP = TRUE;
 		PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
 		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
 		B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);

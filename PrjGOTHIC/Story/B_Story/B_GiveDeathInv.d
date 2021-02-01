@@ -258,38 +258,60 @@ func void B_GiveDeathInv(var C_Npc slf)
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == TRUE)
 	{
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE)
+		if(DragonScaleLearnedOutsideOW == TRUE)
+		{
+			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(SwampDragon))
+			{
+				CreateInvItems(slf,ItAt_DragonScale,12);
+			}
+			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(RockDragon))
+			{
+				CreateInvItems(slf,ItAt_DragonScale,12);
+			}
+			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(FireDragon))
+			{
+				CreateInvItems(slf,ItAt_DragonScale,12);
+			}
+			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(IceDragon))
+			{
+				CreateInvItems(slf,ItAt_DragonScale,12);
+			};
+		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(FireDragonIsland))
 		{
 			CreateInvItems(slf,ItAt_DragonScale,12);
 		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE)
-		{
-			CreateInvItems(slf,ItAt_DragonScale,12);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ROCK)
-		{
-			CreateInvItems(slf,ItAt_DragonScale,12);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_SWAMP)
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(UndeadDragon))
 		{
 			CreateInvItems(slf,ItAt_DragonScale,12);
 		};
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == TRUE)
 	{
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE)
+		if(DragonBloodLearnedOutsideOW == TRUE)
+		{
+			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(SwampDragon))
+			{
+				CreateInvItems(slf,ItAt_DragonBlood,2);
+			}
+			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(RockDragon))
+			{
+				CreateInvItems(slf,ItAt_DragonBlood,2);
+			}
+			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(FireDragon))
+			{
+				CreateInvItems(slf,ItAt_DragonBlood,2);
+			}
+			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(IceDragon))
+			{
+				CreateInvItems(slf,ItAt_DragonBlood,2);
+			};
+		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(FireDragonIsland))
 		{
 			CreateInvItems(slf,ItAt_DragonBlood,2);
 		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE)
-		{
-			CreateInvItems(slf,ItAt_DragonBlood,2);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ROCK)
-		{
-			CreateInvItems(slf,ItAt_DragonBlood,2);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_SWAMP)
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(UndeadDragon))
 		{
 			CreateInvItems(slf,ItAt_DragonBlood,2);
 		};

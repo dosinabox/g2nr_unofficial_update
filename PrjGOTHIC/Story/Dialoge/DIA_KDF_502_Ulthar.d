@@ -134,7 +134,7 @@ func void DIA_Ulthar_TEST_Info()
 	AI_Output(other,self,"DIA_Ulthar_TEST_15_05");	//Недолго ему осталось быть единственным, кто прошел это испытание.
 	AI_Output(self,other,"DIA_Ulthar_TEST_05_06");	//Тогда я не буду больше испытывать твое терпение. Вот мое испытание для тебя:
 	AI_Output(self,other,"DIA_Ulthar_TEST_05_07");	//Создай руну 'Огненная стрела'. Это все - да поможет тебе Иннос.
-	MIS_RUNE = LOG_Running;
+	MIS_Rune = LOG_Running;
 	Log_CreateTopic(TOPIC_Rune,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Rune,LOG_Running);
 	B_LogEntry(TOPIC_Rune,"Ультар дал мне испытание. Я должен создать руну 'Огненная стрела'.");
@@ -155,7 +155,7 @@ instance DIA_Ulthar_RUNNING(C_Info)
 
 func int DIA_Ulthar_RUNNING_Condition()
 {
-	if((MIS_RUNE == LOG_Running) && Npc_IsInState(self,ZS_Talk) && !Npc_HasItems(other,ItRu_FireBolt))
+	if((MIS_Rune == LOG_Running) && Npc_IsInState(self,ZS_Talk) && !Npc_HasItems(other,ItRu_FireBolt))
 	{
 		return TRUE;
 	};
@@ -181,7 +181,7 @@ instance DIA_Ulthar_SUCCESS(C_Info)
 
 func int DIA_Ulthar_SUCCESS_Condition()
 {
-	if((MIS_RUNE == LOG_Running) && Npc_HasItems(hero,ItRu_FireBolt))
+	if((MIS_Rune == LOG_Running) && Npc_HasItems(hero,ItRu_FireBolt))
 	{
 		return TRUE;
 	};
@@ -193,11 +193,11 @@ func void DIA_Ulthar_SUCCESS_Info()
 	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_01");	//Отлично, послушник. Храни ее - свою первую руну.
 	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_02");	//Когда ты достигнешь первого Круга Огня, ты сможешь использовать ее.
 	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_03");	//Ты прошел это испытание, к моему полному удовлетворению.
-	if((MIS_GOLEM == LOG_Running) && !Npc_IsDead(Magic_Golem))
+	if((MIS_Golem == LOG_Running) && !Npc_IsDead(Magic_Golem))
 	{
 		AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_04");	//Но опасное испытание, что приготовил Серпентес, еще ожидает тебя!
 	};
-	MIS_RUNE = LOG_SUCCESS;
+	MIS_Rune = LOG_SUCCESS;
 	B_GivePlayerXP(XP_RUNE);
 };
 

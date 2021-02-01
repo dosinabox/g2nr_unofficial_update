@@ -35,7 +35,6 @@ prototype Mst_Default_Dragon_Ice(C_Npc)
 func void B_SetVisuals_Dragon_Ice()
 {
 	Mdl_SetVisual(self,"Dragon.mds");
-//	Mdl_SetVisual(self,"Dragon_Ice.mds");
 	Mdl_SetVisualBody(self,"Dragon_Ice_Body",DEFAULT,DEFAULT,"",DEFAULT,DEFAULT,-1);
 };
 

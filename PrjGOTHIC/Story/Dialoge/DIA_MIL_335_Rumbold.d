@@ -88,7 +88,7 @@ func int DIA_Rumbold_Hallo_Condition()
 func void DIA_Rumbold_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Rumbold_Hallo_10_00");	//Посмотрите на него! Еще один клоун! Что ты здесь делаешь, а?
-	if(SLDArmor_Equipped == TRUE)
+	if(VisibleGuild(other) == GIL_SLD)
 	{
 		AI_Output(self,other,"DIA_Rumbold_Hallo_10_02");	//Еще один из этих грязных наемников!
 	};
@@ -147,7 +147,7 @@ func void DIA_Rumbold_HALLO_geld_ok()
 	AI_Output(self,other,"DIA_Rumbold_HALLO_geld_ok_10_01");	//Меня не волнует, кто платит за Бенгара. Удачи. (себе под нос) Кретин!
 	AI_StopProcessInfos(self);
 	Rumbold_Bezahlt = TRUE;
-	if(other.guild == GIL_NONE)
+	if((VisibleGuild(other) == GIL_NONE) || (VisibleGuild(other) == GIL_NOV))
 	{
 		Npc_ExchangeRoutine(self,"Start");
 		B_StartOtherRoutine(Rick,"Start");
@@ -155,7 +155,12 @@ func void DIA_Rumbold_HALLO_geld_ok()
 	else
 	{
 		Npc_ExchangeRoutine(self,"Flucht3");
-		B_StartOtherRoutine(Rick,"Flucht3");
+		self.aivar[AIV_DropDeadAndKill] = FALSE;
+		if(!Npc_IsDead(Rick))
+		{
+			B_StartOtherRoutine(Rick,"Flucht3");
+			Rick.aivar[AIV_DropDeadAndKill] = FALSE;
+		};
 		Miliz_Flucht = TRUE;
 	};
 	if(Hlp_IsValidNpc(Bengar) && !Npc_IsDead(Bengar))

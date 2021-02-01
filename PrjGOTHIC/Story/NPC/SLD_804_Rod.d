@@ -15,8 +15,8 @@ instance SLD_804_Rod(Npc_Default)
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
-//	B_SetFightSkills(self,50);
-	B_SetTeacherFightSkills(self,50,TeachLimit_2H_Rod,50,50);
+	B_SetFightSkills(self,50);
+//	B_SetTeacherFightSkills(self,50,TeachLimit_2H_Rod,50,50);
 	daily_routine = Rtn_Start_804;
 };
 

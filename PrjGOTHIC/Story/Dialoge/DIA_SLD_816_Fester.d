@@ -224,6 +224,7 @@ func void DIA_Fester_TogetherNOW_NOW()
 {
 	AI_Output(other,self,"DIA_Fester_TogetherNOW_Now_15_00");	//Лучшей возможности, чем сейчас, не будет.
 	AI_Output(self,other,"DIA_Fester_TogetherNOW_Now_08_01");	//Хорошо, давай посмотрим, на что ты способен.
+	self.npcType = NPCTYPE_FRIEND;
 	Npc_ExchangeRoutine(self,"GUIDE");
 	Fester_Losgeh_Day = B_GetDayPlus();
 	MIS_Fester_KillBugs = LOG_Running;

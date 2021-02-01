@@ -67,7 +67,7 @@ func int DIA_Addon_Nefarius_Neues_Condition()
 
 func void DIA_Addon_Nefarius_Neues_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Nefarius_Neues_15_00");	//„ем вы здесь занимаетесь?
+	DIA_Common_WhatAreYouGuysDoingHere();
 	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_05_01");	//я изучаю историю зодчих и пытаюсь вы€снить, почему они закрыли портал.
 	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_05_02");	//ѕохоже, что они хотели скрыть затонувший город от всего остального мира.
 	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_05_03");	//¬ прошлом здесь случилось что-то ужасное. »ми овладела кака€-то зла€ сила.

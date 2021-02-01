@@ -11,7 +11,7 @@ func int B_AssessEnterRoom()
 	{
 		return FALSE;
 	};
-	if(!Npc_IsInPlayersRoom(self) && !(Npc_GetPortalGuild(self) < GIL_NONE))
+	if(!Npc_IsInPlayersRoom(self) && (Npc_GetPortalGuild(self) >= GIL_NONE))
 	{
 		return FALSE;
 	};
@@ -108,11 +108,11 @@ func void B_AssessPortalCollision()
 	};
 	if((self.guild == formerportalguild) || (Wld_GetGuildAttitude(self.guild,formerportalguild) == ATT_FRIENDLY))
 	{
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(KDF_507_Talamon))
+		if(C_IsNpc(self,KDF_507_Talamon))
 		{
 			return;
 		};
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(MIL_309_Stadtwache)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stadtwache_310)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(MIL_332_Stadtwache)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stadtwache_333)))
+		if(C_IsNpc(self,MIL_309_Stadtwache) || C_IsNpc(self,MIL_310_Stadtwache) || C_IsNpc(self,MIL_332_Stadtwache) || C_IsNpc(self,MIL_333_Stadtwache))
 		{
 			return;
 		};

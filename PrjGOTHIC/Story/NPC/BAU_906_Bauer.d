@@ -1,5 +1,5 @@
 
-instance BAU_906_Bauer(Npc_Default)
+/*instance BAU_906_Bauer(Npc_Default)
 {
 	name[0] = NAME_Bauer;
 	guild = GIL_BAU;
@@ -22,5 +22,5 @@ instance BAU_906_Bauer(Npc_Default)
 
 func void Rtn_Start_906()
 {
-};
+};*/
 

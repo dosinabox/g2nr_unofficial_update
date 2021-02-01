@@ -36,8 +36,8 @@ func void Rtn_FollowToOCBridge_4120()
 
 func void Rtn_FleeOutOfOW_4120()
 {
-	TA_Sit_Campfire(8,0,23,0,"START");
-	TA_Sit_Campfire(23,0,8,0,"START");
+	TA_Sit_Campfire(8,0,23,0,"OW_PATH_1_17");
+	TA_Sit_Campfire(23,0,8,0,"OW_PATH_1_17");
 };
 
 func void Rtn_Tot_4120()

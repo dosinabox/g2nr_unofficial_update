@@ -12,7 +12,7 @@ func void ZS_MM_Rtn_Summoned()
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_AssessDamage);
 	Npc_PercEnable(self,PERC_ASSESSFIGHTSOUND,B_MM_AssessOthersDamage);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Wisp_Detector))
+	if(C_IsNpc(self,Wisp_Detector))
 	{
 		Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessTalk);
 	}
@@ -28,7 +28,7 @@ func void ZS_MM_Rtn_Summoned()
 
 func int ZS_MM_Rtn_Summoned_Loop()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Wisp_Detector))
+	if(C_IsNpc(self,Wisp_Detector))
 	{
 		B_MM_WispDetect();
 	};

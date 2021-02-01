@@ -106,7 +106,8 @@ instance DIA_Bennet_DI_Smith(C_Info)
 
 func int DIA_Bennet_DI_Smith_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && (Bennet_TeachSmith == TRUE))
+//	if(!Npc_IsDead(UndeadDragon) && (Bennet_TeachSmith == TRUE))
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -120,9 +121,9 @@ func void DIA_Bennet_DI_Smith_Info()
 	Info_AddChoice(DIA_Bennet_DI_Smith,Dialog_Back,DIA_Bennet_DI_Smith_BACK);
 	if(PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE)
 	{
-		Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString("Кузнечное дело",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),DIA_Bennet_DI_Smith_Common);
-	};
-	if(PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE)
+		Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_Skill_Smith,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),DIA_Bennet_DI_Smith_Common);
+	}
+	else
 	{
 		if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] == FALSE)
 		{

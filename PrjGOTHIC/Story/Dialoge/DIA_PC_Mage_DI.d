@@ -106,7 +106,7 @@ func void DIA_Milten_DI_Rat_Info()
 	AI_Output(self,other,"DIA_Milten_DI_Rat_03_01");	//Ммм. Это большая честь, что ты спрашиваешь у меня совета. Но у меня в голове все это время вертится только одно.
 	AI_Output(self,other,"DIA_Milten_DI_Rat_03_02");	//У тебя есть Глаз Инноса?
 	Info_ClearChoices(DIA_Milten_DI_Rat);
-	if(SC_InnosEyeVergessen_DI == TRUE)
+	if((SC_InnosEyeVergessen_DI == TRUE) && (XardasDIBagOpened == FALSE))
 	{
 		Info_AddChoice(DIA_Milten_DI_Rat,"Нет.",DIA_Milten_DI_Rat_nein);
 	}
@@ -129,7 +129,10 @@ func void DIA_Milten_DI_Rat_ja()
 {
 	AI_Output(other,self,"DIA_Milten_DI_Rat_ja_15_00");	//Конечно.
 	AI_Output(self,other,"DIA_Milten_DI_Rat_ja_03_01");	//Извини, что я задаю такой глупый вопрос. Я немного нервничаю.
-	B_GivePlayerXP(XP_AmbientKap6);
+	if(SC_InnosEyeVergessen_DI == FALSE)
+	{
+		B_GivePlayerXP(XP_AmbientKap6);
+	};
 	Info_ClearChoices(DIA_Milten_DI_Rat);
 };
 

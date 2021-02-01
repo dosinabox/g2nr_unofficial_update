@@ -66,7 +66,7 @@ instance CH(Npc_Default)
 	B_GiveNpcTalents(self);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player_G1,-1);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player_G1,NO_ARMOR);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	daily_routine = Rtn_Start_0;
@@ -86,8 +86,11 @@ func void B_SetHeroExp(var int levels)
 	hero.attribute[ATR_HITPOINTS_MAX] = 40;
 	hero.attribute[ATR_HITPOINTS] = 40;
 	hero.lp = 0;
-	B_LevelUp(levels);
-	hero.exp = (XP_PER_LEVEL / 2) * (hero.level + 1) * hero.level;
+	if(levels > 0)
+	{
+		B_LevelUp(levels);
+	};
+	hero.exp = B_GetCurrentLevelExp(hero);
 	PrintScreen(ConcatStrings("Здоровье: ",IntToString(hero.attribute[ATR_HITPOINTS_MAX])),-1,55,FONT_Screen,2);
 	PrintScreen(ConcatStrings("Очки обучения: ",IntToString(hero.lp)),-1,60,FONT_Screen,2);
 };
@@ -96,32 +99,65 @@ func void B_SetHeroWeapon()
 {
 	if(hero.level <= 6)
 	{
-		CreateInvItems(hero,ItRw_Crossbow_L_01,1);
+		if(!Npc_HasItems(hero,ItRw_Crossbow_L_01))
+		{
+			CreateInvItems(hero,ItRw_Crossbow_L_01,1);
+		};
 	}
 	else if(hero.level <= 12)
 	{
-		CreateInvItems(hero,ItRw_Bow_L_04,1);
-		CreateInvItems(hero,ItRw_Crossbow_L_02,1);
+		if(!Npc_HasItems(hero,ItRw_Bow_L_04))
+		{
+			CreateInvItems(hero,ItRw_Bow_L_04,1);
+		};
+		if(!Npc_HasItems(hero,ItRw_Crossbow_L_02))
+		{
+			CreateInvItems(hero,ItRw_Crossbow_L_02,1);
+		};
 	}
 	else if(hero.level <= 18)
 	{
-		CreateInvItems(hero,ItRw_Bow_M_02,1);
-		CreateInvItems(hero,ItRw_Crossbow_M_02,1);
+		if(!Npc_HasItems(hero,ItRw_Bow_M_02))
+		{
+			CreateInvItems(hero,ItRw_Bow_M_02,1);
+		};
+		if(!Npc_HasItems(hero,ItRw_Crossbow_M_02))
+		{
+			CreateInvItems(hero,ItRw_Crossbow_M_02,1);
+		};
 	}
 	else if(hero.level <= 24)
 	{
-		CreateInvItems(hero,ItRw_Bow_M_04,1);
-		CreateInvItems(hero,ItRw_Crossbow_H_01,1);
+		if(!Npc_HasItems(hero,ItRw_Bow_M_04))
+		{
+			CreateInvItems(hero,ItRw_Bow_M_04,1);
+		};
+		if(!Npc_HasItems(hero,ItRw_Crossbow_H_01))
+		{
+			CreateInvItems(hero,ItRw_Crossbow_H_01,1);
+		};
 	}
 	else if(hero.level <= 30)
 	{
-		CreateInvItems(hero,ItRw_Bow_H_02,1);
-		CreateInvItems(hero,ItRw_Crossbow_H_02,1);
+		if(!Npc_HasItems(hero,ItRw_Bow_H_02))
+		{
+			CreateInvItems(hero,ItRw_Bow_H_02,1);
+		};
+		if(!Npc_HasItems(hero,ItRw_Crossbow_H_02))
+		{
+			CreateInvItems(hero,ItRw_Crossbow_H_02,1);
+		};
 	}
 	else if(hero.level <= 36)
 	{
-		CreateInvItems(hero,ItRw_Bow_H_04,1);
-		CreateInvItems(hero,ItRw_Bow_L_04,1);
+		if(!Npc_HasItems(hero,ItRw_Bow_H_04))
+		{
+			CreateInvItems(hero,ItRw_Bow_H_04,1);
+		};
+		if(!Npc_HasItems(hero,ItRw_Bow_L_04))
+		{
+			CreateInvItems(hero,ItRw_Bow_L_04,1);
+		};
 	};
 	AI_EquipBestMeleeWeapon(hero);
 	AI_EquipBestRangedWeapon(hero);
@@ -129,13 +165,41 @@ func void B_SetHeroWeapon()
 
 func void B_SetHeroEquipment()
 {
-	CreateInvItems(hero,ItRw_Arrow,100);
-	CreateInvItems(hero,ItRw_Bolt,100);
-	CreateInvItems(hero,ItLsTorch,30);
-	CreateInvItems(hero,ItMi_Gold,500);
-	CreateInvItems(hero,ItPo_Health_03,5);
-	CreateInvItems(hero,ItPo_Mana_03,5);
-	CreateInvItems(hero,ItKe_Lockpick,30);
+	if(Npc_HasItems(hero,ItRw_Arrow) < 100)
+	{
+		Npc_RemoveInvItems(hero,ItRw_Arrow,Npc_HasItems(hero,ItRw_Arrow));
+		CreateInvItems(hero,ItRw_Arrow,100);
+	};
+	if(Npc_HasItems(hero,ItRw_Bolt) < 100)
+	{
+		Npc_RemoveInvItems(hero,ItRw_Bolt,Npc_HasItems(hero,ItRw_Bolt));
+		CreateInvItems(hero,ItRw_Bolt,100);
+	};
+	if(Npc_HasItems(hero,ItLsTorch) < 30)
+	{
+		Npc_RemoveInvItems(hero,ItLsTorch,Npc_HasItems(hero,ItLsTorch));
+		CreateInvItems(hero,ItLsTorch,30);
+	};
+	if(Npc_HasItems(hero,ItMi_Gold) < 500)
+	{
+		Npc_RemoveInvItems(hero,ItMi_Gold,Npc_HasItems(hero,ItMi_Gold));
+		CreateInvItems(hero,ItMi_Gold,500);
+	};
+	if(Npc_HasItems(hero,ItPo_Health_03) < 5)
+	{
+		Npc_RemoveInvItems(hero,ItPo_Health_03,Npc_HasItems(hero,ItPo_Health_03));
+		CreateInvItems(hero,ItPo_Health_03,5);
+	};
+	if(Npc_HasItems(hero,ItPo_Mana_03) < 30)
+	{
+		Npc_RemoveInvItems(hero,ItPo_Mana_03,Npc_HasItems(hero,ItPo_Mana_03));
+		CreateInvItems(hero,ItPo_Mana_03,5);
+	};
+	if(Npc_HasItems(hero,ItKe_Lockpick) < 30)
+	{
+		Npc_RemoveInvItems(hero,ItKe_Lockpick,Npc_HasItems(hero,ItKe_Lockpick));
+		CreateInvItems(hero,ItKe_Lockpick,30);
+	};
 };
 
 func void B_SetKDFRunes()
@@ -220,60 +284,6 @@ func void B_SetPaladinEquipment()
 	CreateInvItems(hero,ItRu_PalTeleportSecret,1);
 };
 
-
-/*instance CH_kriegen(C_Info)
-{
-	npc = ch;
-	nr = 999;
-	condition = CH_kriegen_Condition;
-	information = CH_kriegen_Info;
-	permanent = TRUE;
-	description = "Отдать кусок руды";
-};
-
-
-func int CH_kriegen_Condition()
-{
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
-	{
-		return TRUE;
-	};
-};
-
-func void CH_kriegen_Info()
-{
-	B_GiveInvItems(other,self,ItMi_Nugget,1);
-};
-
-
-instance CH_Geben(C_Info)
-{
-	npc = ch;
-	nr = 999;
-	condition = CH_Geben_Condition;
-	information = CH_Geben_Info;
-	permanent = TRUE;
-	description = "Покажи-ка вещички";
-};
-
-
-func int CH_Geben_Condition()
-{
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
-	{
-		return TRUE;
-	};
-};
-
-func void CH_Geben_Info()
-{
-	AI_PrintScreen("Мед отдан",-1,34,FONT_ScreenSmall,2);
-	AI_PrintScreen("Хлеб отдан",-1,37,FONT_ScreenSmall,2);
-	AI_PrintScreen("Вино отдано",-1,40,FONT_ScreenSmall,2);
-	AI_PrintScreen("Колбаса отдана",-1,43,FONT_ScreenSmall,2);
-};*/
-
-
 instance CH_Exit(C_Info)
 {
 	npc = ch;
@@ -287,7 +297,7 @@ instance CH_Exit(C_Info)
 
 func int CH_Exit_Condition()
 {
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -312,7 +322,7 @@ instance CH_RESET(C_Info)
 
 func int CH_RESET_Condition()
 {
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -350,7 +360,7 @@ func void CH_RESET_Ok()
 	B_UnEquipHeroItem(ItRi_Dex_01);
 	B_UnEquipHeroItem(ItRi_Dex_02);
 	B_UnEquipHeroItem(ItRi_HP_01);
-	B_UnEquipHeroItem(ItRi_Hp_02);
+	B_UnEquipHeroItem(ItRi_HP_02);
 	B_UnEquipHeroItem(ItRi_Str_01);
 	B_UnEquipHeroItem(ItRi_Str_02);
 	B_UnEquipHeroItem(ItRi_Mana_01);
@@ -367,8 +377,7 @@ func void CH_RESET_Ok()
 	B_UnEquipHeroItem(ItRi_OrcEliteRing);
 	B_UnEquipHeroItem(ItAm_Mana_Angar_MIS);
 	AI_UnequipArmor(hero);
-	hero.guild = GIL_NONE;
-	Npc_SetTrueGuild(hero,GIL_NONE);
+	B_SetGuild(hero,GIL_NONE);
 	hero.lp = 0;
 	hero.level = 0;
 	hero.exp = 0;
@@ -402,10 +411,6 @@ func void CH_RESET_Ok()
 	hero.attribute[ATR_REGENERATEHP] = 0;
 	hero.attribute[ATR_REGENERATEMANA] = 0;
 	Hero_HackChance = 10;
-	if(Knows_Bloodfly_LP == TRUE)
-	{
-		Knows_Bloodfly = FALSE;
-	};
 	G1BodySkin = FALSE;
 	SequelBodySkin = FALSE;
 	TattoosBodySkin = FALSE;
@@ -425,15 +430,19 @@ func void CH_RESET_Ok()
 	PLAYER_TALENT_SMITH[WEAPON_2H_Special_02] = FALSE;
 	PLAYER_TALENT_SMITH[WEAPON_1H_Special_03] = FALSE;
 	PLAYER_TALENT_SMITH[WEAPON_2H_Special_03] = FALSE;
-	if(PlayergetsFinalDJGArmor == FALSE)
-	{
-		PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] = FALSE;
-		PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] = FALSE;
-	};
+	PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] = FALSE;
 	PLAYER_TALENT_SMITH[WEAPON_1H_Harad_01] = FALSE;
 	PLAYER_TALENT_SMITH[WEAPON_1H_Harad_02] = FALSE;
 	PLAYER_TALENT_SMITH[WEAPON_1H_Harad_03] = FALSE;
 	PLAYER_TALENT_SMITH[WEAPON_1H_Harad_04] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_PalLight] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_PalLightHeal] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_PalHolyBolt] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_PalMediumHeal] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_PalRepelEvil] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_PalDestroyEvil] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_PalTeleportSecret] = FALSE;
 	PLAYER_TALENT_RUNES[SPL_Light] = FALSE;
 	PLAYER_TALENT_RUNES[SPL_Firebolt] = FALSE;
 	PLAYER_TALENT_RUNES[SPL_Icebolt] = FALSE;
@@ -463,22 +472,33 @@ func void CH_RESET_Ok()
 	PLAYER_TALENT_RUNES[SPL_MassDeath] = FALSE;
 	PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] = FALSE;
 	PLAYER_TALENT_RUNES[SPL_Shrink] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Thunderstorm] = FALSE;
 	PLAYER_TALENT_RUNES[SPL_Whirlwind] = FALSE;
 	PLAYER_TALENT_RUNES[SPL_WaterFist] = FALSE;
 	PLAYER_TALENT_RUNES[SPL_IceLance] = FALSE;
 	PLAYER_TALENT_RUNES[SPL_Geyser] = FALSE;
-	PLAYER_TALENT_RUNES[SPL_Thunderstorm] = FALSE;
 	PLAYER_TALENT_ALCHEMY[POTION_Health_01] = FALSE;
 	PLAYER_TALENT_ALCHEMY[POTION_Health_02] = FALSE;
 	PLAYER_TALENT_ALCHEMY[POTION_Health_03] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Health_04] = FALSE;
 	PLAYER_TALENT_ALCHEMY[POTION_Mana_01] = FALSE;
 	PLAYER_TALENT_ALCHEMY[POTION_Mana_02] = FALSE;
 	PLAYER_TALENT_ALCHEMY[POTION_Mana_03] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Mana_04] = FALSE;
 	PLAYER_TALENT_ALCHEMY[POTION_Speed] = FALSE;
 	PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] = FALSE;
 	PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] = FALSE;
 	PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] = FALSE;
 	PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] = FALSE;
+	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = FALSE;
+	Knows_LousHammer = FALSE;
+	Knows_Schlafhammer = FALSE;
+	Knows_SchnellerHering = FALSE;
+	Knows_MCELIXIER = FALSE;
+	Knows_MushroomMana = FALSE;
+	Knows_Bloodfly = FALSE;
 	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] = FALSE;
 	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] = FALSE;
 	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] = FALSE;
@@ -493,6 +513,16 @@ func void CH_RESET_Ok()
 	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] = FALSE;
 	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] = FALSE;
 	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] = FALSE;
+	PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] = FALSE;
+	PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] = FALSE;
+	PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] = FALSE;
+	PLAYER_TALENT_WISPDETECTOR[WISPSKILL_NF] = FALSE;
+	PLAYER_TALENT_WISPDETECTOR[WISPSKILL_FF] = FALSE;
+	PLAYER_TALENT_WISPDETECTOR[WISPSKILL_NONE] = FALSE;
+	PLAYER_TALENT_WISPDETECTOR[WISPSKILL_RUNE] = FALSE;
+	PLAYER_TALENT_WISPDETECTOR[WISPSKILL_MAGIC] = FALSE;
+	PLAYER_TALENT_WISPDETECTOR[WISPSKILL_FOOD] = FALSE;
+	PLAYER_TALENT_WISPDETECTOR[WISPSKILL_POTIONS] = FALSE;
 	PrintScreen("Восстановлен исходный PC_Hero",-1,-1,FONT_Screen,2);
 	Info_ClearChoices(CH_RESET);
 //	Npc_SetTalentSkill(hero,NPC_TALENT_1H,0);
@@ -506,6 +536,57 @@ func void CH_RESET_Ok()
 //	Npc_SetTalentSkill(hero,NPC_TALENT_FIREMASTER,0);
 //	Npc_SetTalentSkill(hero,NPC_TALENT_D,0);
 //	Npc_SetTalentSkill(hero,NPC_TALENT_E,0);
+};
+
+var int GuildStart;
+
+instance CH_Guild_Start(C_Info)
+{
+	npc = ch;
+	condition = CH_Guild_Start_Condition;
+	information = CH_Guild_Start_Info;
+	description = "Гильдия и ремесло";
+	permanent = TRUE;
+};
+
+
+func int CH_Guild_Start_Condition()
+{
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void CH_Guild_Start_Info()
+{
+	GuildStart = TRUE;
+};
+
+
+instance CH_Guild_Stopper(C_Info)
+{
+	npc = ch;
+	nr = 99;
+	condition = CH_Guild_Stopper_Condition;
+	information = CH_Guild_Stopper_Info;
+	description = Dialog_Back;
+	permanent = TRUE;
+};
+
+
+func int CH_Guild_Stopper_Condition()
+{
+	if(GuildStart == TRUE)
+	{
+		return TRUE;
+	};
+};
+
+func void CH_Guild_Stopper_Info()
+{
+	Info_ClearChoices(CH_Guild_Stopper);
+	GuildStart = FALSE;
 };
 
 instance CH_Guild(C_Info)
@@ -522,7 +603,7 @@ instance CH_Guild(C_Info)
 
 func int CH_Guild_Condition()
 {
-	if(LevelStart == TRUE)
+	if(GuildStart == TRUE)
 	{
 		return TRUE;
 	};
@@ -532,14 +613,15 @@ func void CH_Guild_Info()
 {
 	Info_ClearChoices(CH_Guild);
 	Info_AddChoice(CH_Guild,Dialog_Back,CH_Guild_BACK);
-	Info_AddChoice(CH_Guild,"Послушник",ch_nov);
-	Info_AddChoice(CH_Guild,"Маг Огня",ch_kdf);
-	Info_AddChoice(CH_Guild,"Наемник",ch_sld);
-	Info_AddChoice(CH_Guild,"Охотник на драконов",ch_djg);
-	Info_AddChoice(CH_Guild,"Ополченец",ch_mil);
-	Info_AddChoice(CH_Guild,"Паладин",ch_pal);
 	Info_AddChoice(CH_Guild,"Нет гильдии",ch_none);
-	Info_AddChoice(CH_Guild,"Псевдобандит",CH_FakeBandit);
+	Info_AddChoice(CH_Guild,"Псевдопират",ch_pir);
+	Info_AddChoice(CH_Guild,"Псевдобандит",ch_bdt);
+	Info_AddChoice(CH_Guild,"Охотник на драконов",ch_djg);
+	Info_AddChoice(CH_Guild,"Наемник",ch_sld);
+	Info_AddChoice(CH_Guild,"Паладин",ch_pal);
+	Info_AddChoice(CH_Guild,"Ополченец",ch_mil);
+	Info_AddChoice(CH_Guild,"Маг Огня",ch_kdf);
+	Info_AddChoice(CH_Guild,"Послушник",ch_nov);
 };
 
 func void CH_Guild_BACK()
@@ -547,19 +629,24 @@ func void CH_Guild_BACK()
 	Info_ClearChoices(CH_Guild);
 };
 
-func void CH_FakeBandit()
+func void ch_pir()
 {
-	CreateInvItems(hero,ITAR_BDT_M,1);
-	CreateInvItems(hero,ITAR_BDT_H,1);
-	CreateInvItems(hero,ITAR_Thorus_Addon,1);
-	AI_EquipBestArmor(hero);
+	Info_ClearChoices(CH_Guild);
+	CreateInvItem(hero,ITAR_PIR_L_Addon);
+	AI_EquipArmor(hero,ITAR_PIR_L_Addon);
+};
+
+func void ch_bdt()
+{
+	Info_ClearChoices(CH_Guild);
+	CreateInvItem(hero,ITAR_BDT_M);
+	AI_EquipArmor(hero,ITAR_BDT_M);
 };
 
 func void ch_nov()
 {
 	Info_ClearChoices(CH_Guild);
-	hero.guild = GIL_NOV;
-	Npc_SetTrueGuild(hero,GIL_NOV);
+	B_SetGuild(hero,GIL_NOV);
 	CreateInvItem(hero,ITAR_NOV_L);
 	AI_EquipArmor(hero,ITAR_NOV_L);
 };
@@ -567,8 +654,7 @@ func void ch_nov()
 func void ch_kdf()
 {
 	Info_ClearChoices(CH_Guild);
-	hero.guild = GIL_KDF;
-	Npc_SetTrueGuild(hero,GIL_KDF);
+	B_SetGuild(hero,GIL_KDF);
 	CreateInvItem(hero,ITAR_KDF_L);
 	AI_EquipArmor(hero,ITAR_KDF_L);
 };
@@ -576,8 +662,7 @@ func void ch_kdf()
 func void ch_sld()
 {
 	Info_ClearChoices(CH_Guild);
-	hero.guild = GIL_SLD;
-	Npc_SetTrueGuild(hero,GIL_SLD);
+	B_SetGuild(hero,GIL_SLD);
 	CreateInvItem(hero,ITAR_SLD_M);
 	AI_EquipArmor(hero,ITAR_SLD_M);
 };
@@ -585,8 +670,7 @@ func void ch_sld()
 func void ch_djg()
 {
 	Info_ClearChoices(CH_Guild);
-	hero.guild = GIL_DJG;
-	Npc_SetTrueGuild(hero,GIL_DJG);
+	B_SetGuild(hero,GIL_DJG);
 	CreateInvItem(hero,ITAR_DJG_M);
 	AI_EquipArmor(hero,ITAR_DJG_M);
 };
@@ -594,8 +678,7 @@ func void ch_djg()
 func void ch_mil()
 {
 	Info_ClearChoices(CH_Guild);
-	hero.guild = GIL_MIL;
-	Npc_SetTrueGuild(hero,GIL_MIL);
+	B_SetGuild(hero,GIL_MIL);
 	CreateInvItem(hero,ITAR_MIL_L);
 	AI_EquipArmor(hero,ITAR_MIL_L);
 };
@@ -603,8 +686,7 @@ func void ch_mil()
 func void ch_pal()
 {
 	Info_ClearChoices(CH_Guild);
-	hero.guild = GIL_PAL;
-	Npc_SetTrueGuild(hero,GIL_PAL);
+	B_SetGuild(hero,GIL_PAL);
 	CreateInvItem(hero,ITAR_PAL_M);
 	AI_EquipArmor(hero,ITAR_PAL_M);
 	B_SetPaladinEquipment();
@@ -613,9 +695,102 @@ func void ch_pal()
 func void ch_none()
 {
 	Info_ClearChoices(CH_Guild);
-	hero.guild = GIL_NONE;
-	Npc_SetTrueGuild(hero,GIL_NONE);
+	B_SetGuild(hero,GIL_NONE);
 	AI_UnequipArmor(hero);
+};
+
+
+instance CH_Apprentice(C_Info)
+{
+	npc = ch;
+	nr = 8;
+	condition = CH_Apprentice_Condition;
+	information = CH_Apprentice_Info;
+	important = FALSE;
+	permanent = TRUE;
+	description = "Выбор ремесла";
+};
+
+
+func int CH_Apprentice_Condition()
+{
+	if(GuildStart == TRUE)
+	{
+		return TRUE;
+	};
+};
+
+func void CH_Apprentice_Info()
+{
+	Info_ClearChoices(CH_Apprentice);
+	Info_AddChoice(CH_Apprentice,Dialog_Back,CH_Apprentice_BACK);
+	if(Player_IsApprentice != APP_NONE)
+	{
+		Info_AddChoice(CH_Apprentice,"Сброс",ch_apprentice_none);
+	};
+	if(Player_IsApprentice == APP_Bosper)
+	{
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_TROPHY_Fur,": Боспер (используется)"),ch_apprentice_bosper);
+	}
+	else
+	{
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_TROPHY_Fur,": Боспер"),ch_apprentice_bosper);
+	};
+	if(Player_IsApprentice == APP_Harad)
+	{
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Smith,": Гарад (используется)"),ch_apprentice_harad);
+	}
+	else
+	{
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Smith,": Гарад"),ch_apprentice_harad);
+	};
+	if(Player_IsApprentice == APP_Constantino)
+	{
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Alchemy,": Константино (используется)"),ch_apprentice_constantino);
+	}
+	else
+	{
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Alchemy,": Константино"),ch_apprentice_constantino);
+	};
+};
+
+func void CH_Apprentice_BACK()
+{
+	Info_ClearChoices(CH_Apprentice);
+};
+
+func void ch_apprentice_bosper()
+{
+	Player_IsApprentice = APP_Bosper;
+	PrintScreen("Мастер: Боспер",-1,-1,FONT_Screen,3);
+	MIS_Apprentice = LOG_SUCCESS;
+	B_CheckLog();
+	CH_Apprentice_Info();
+};
+
+func void ch_apprentice_harad()
+{
+	Player_IsApprentice = APP_Harad;
+	PrintScreen("Мастер: Гарад",-1,-1,FONT_Screen,3);
+	MIS_Apprentice = LOG_SUCCESS;
+	B_CheckLog();
+	CH_Apprentice_Info();
+};
+
+func void ch_apprentice_constantino()
+{
+	Player_IsApprentice = APP_Constantino;
+	PrintScreen("Мастер: Константино",-1,-1,FONT_Screen,3);
+	MIS_Apprentice = LOG_SUCCESS;
+	B_CheckLog();
+	CH_Apprentice_Info();
+};
+
+func void ch_apprentice_none()
+{
+	Player_IsApprentice = APP_NONE;
+	PrintScreen("Мастер сброшен",-1,-1,FONT_Screen,3);
+	CH_Apprentice_Info();
 };
 
 
@@ -626,14 +801,14 @@ instance CH_Level_Start(C_Info)
 	npc = ch;
 	condition = CH_Level_Start_Condition;
 	information = CH_Level_Start_Info;
-	description = "Уровень, очки обучения и гильдия";
+	description = "Уровень и очки обучения";
 	permanent = TRUE;
 };
 
 
 func int CH_Level_Start_Condition()
 {
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -694,6 +869,10 @@ func void CH_Lernpunkte_Info()
 {
 	Info_ClearChoices(CH_Lernpunkte);
 	Info_AddChoice(CH_Lernpunkte,Dialog_Back,CH_Lernpunkte_BACK);
+	if(hero.lp > 0)
+	{
+		Info_AddChoice(CH_Lernpunkte,"Обнулить",CH_Lernpunkte_0);
+	};
 	Info_AddChoice(CH_Lernpunkte,"Очки обучения + 50",CH_Lernpunkte_50);
 	Info_AddChoice(CH_Lernpunkte,"Очки обучения + 25",CH_Lernpunkte_25);
 	Info_AddChoice(CH_Lernpunkte,"Очки обучения + 10",CH_Lernpunkte_10);
@@ -705,10 +884,17 @@ func void CH_Lernpunkte_BACK()
 	Info_ClearChoices(CH_Lernpunkte);
 };
 
+func void CH_Lernpunkte_0()
+{
+	hero.lp = 0;
+	PrintScreen("Очки обучения обнулены",-1,-1,FONT_Screen,3);
+	CH_Lernpunkte_Info();
+};
+
 func void CH_Lernpunkte_50()
 {
 	hero.lp += 50;
-	PrintScreen("+ 50 очков обучения",-1,-1,FONT_Screen,3);
+	PrintScreen(ConcatStrings("+ 50",PRINT_LP),-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 	CH_Lernpunkte_Info();
 };
@@ -716,7 +902,7 @@ func void CH_Lernpunkte_50()
 func void CH_Lernpunkte_25()
 {
 	hero.lp += 25;
-	PrintScreen("+ 25 очков обучения",-1,-1,FONT_Screen,3);
+	PrintScreen(ConcatStrings("+ 25",PRINT_LP),-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 	CH_Lernpunkte_Info();
 };
@@ -724,7 +910,7 @@ func void CH_Lernpunkte_25()
 func void CH_Lernpunkte_10()
 {
 	hero.lp += 10;
-	PrintScreen("+ 10 очков обучения",-1,-1,FONT_Screen,3);
+	PrintScreen(ConcatStrings("+ 10",PRINT_LP),-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 	CH_Lernpunkte_Info();
 };
@@ -732,7 +918,7 @@ func void CH_Lernpunkte_10()
 func void CH_Lernpunkte_5()
 {
 	hero.lp += 5;
-	PrintScreen("+ 5 очков обучения",-1,-1,FONT_Screen,3);
+	PrintScreen(ConcatStrings("+ 5",PRINT_LP),-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 	CH_Lernpunkte_Info();
 };
@@ -744,7 +930,7 @@ instance CH_Level_niedrig(C_Info)
 	nr = 2;
 	condition = CH_Level_niedrig_Condition;
 	information = CH_Level_niedrig_Info;
-	description = "Выбор уровня 1 - 25";
+	description = "Выбор уровня 0 - 25";
 	permanent = TRUE;
 };
 
@@ -765,7 +951,7 @@ func void CH_Level_niedrig_Info()
 	Info_AddChoice(CH_Level_niedrig,"Уровень 16 - 20",CH_Level16);
 	Info_AddChoice(CH_Level_niedrig,"Уровень 11 - 15",CH_Level11);
 	Info_AddChoice(CH_Level_niedrig,"Уровень  6 - 10",CH_Level6);
-	Info_AddChoice(CH_Level_niedrig,"Уровень  1 -  5",CH_Level1);
+	Info_AddChoice(CH_Level_niedrig,"Уровень  0 -  5",CH_Level1);
 };
 
 
@@ -907,6 +1093,7 @@ func void CH_Level1()
 	Info_AddChoice(CH_Level_niedrig,"Уровень 3",CH_Level_3);
 	Info_AddChoice(CH_Level_niedrig,"Уровень 2",CH_Level_2);
 	Info_AddChoice(CH_Level_niedrig,"Уровень 1",CH_Level_1);
+	Info_AddChoice(CH_Level_niedrig,"Уровень 0",CH_Level_0);
 };
 
 func void CH_Level_niedrig_BACK()
@@ -917,6 +1104,14 @@ func void CH_Level_niedrig_BACK()
 func void CH_Level_hoch_BACK()
 {
 	Info_ClearChoices(CH_Level_hoch);
+};
+
+func void CH_Level_0()
+{
+	Info_ClearChoices(CH_Level_niedrig);
+	B_SetHeroExp(0);
+	B_SetHeroWeapon();
+	B_SetHeroEquipment();
 };
 
 func void CH_Level_1()
@@ -1335,7 +1530,7 @@ instance DIA_CH_Attribute_Start(C_Info)
 
 func int DIA_CH_Attribute_Start_Condition()
 {
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -1505,7 +1700,7 @@ instance DIA_CH_MAGIE(C_Info)
 
 func int DIA_CH_MAGIE_Condition()
 {
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -2226,7 +2421,7 @@ instance DIA_CH_Kampf_Start(C_Info)
 
 func int DIA_CH_Kampf_Start_Condition()
 {
-	if((KampfStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (LevelStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -2514,7 +2709,7 @@ instance DIA_CH_Dieb_Start(C_Info)
 
 func int DIA_CH_Dieb_Start_Condition()
 {
-	if((KampfStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (LevelStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (KampfStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (LevelStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -2526,19 +2721,19 @@ func void DIA_CH_Dieb_Start_Info()
 	Info_AddChoice(DIA_CH_Dieb_Start,Dialog_Back,DIA_CH_Dieb_Start_BACK);
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 	{
-		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString("Карманная кража",B_GetLearnCostTalent(other,NPC_TALENT_PICKPOCKET,1)),CH_Training_Thief_Pickpocket);
+		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString(NAME_Skill_PickPocket,B_GetLearnCostTalent(other,NPC_TALENT_PICKPOCKET,1)),CH_Training_Thief_Pickpocket);
 	};
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
-		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),CH_Training_Thief_Picklock);
+		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString(NAME_Skill_PickLock,B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),CH_Training_Thief_Picklock);
 	};
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
 	{
-		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),CH_Training_Thief_Sneak);
+		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString(NAME_Skill_Sneak,B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),CH_Training_Thief_Sneak);
 	};
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_ACROBAT))
 	{
-		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString("Акробатика",B_GetLearnCostTalent(other,NPC_TALENT_ACROBAT,1)),CH_Training_Thief_Acrobat);
+		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString(NAME_Skill_Acrobat,B_GetLearnCostTalent(other,NPC_TALENT_ACROBAT,1)),CH_Training_Thief_Acrobat);
 	};
 };
 
@@ -2583,7 +2778,7 @@ instance DIA_CH_Misc_Start(C_Info)
 
 func int DIA_CH_Misc_Start_Condition()
 {
-	if((KampfStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (LevelStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (KampfStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (LevelStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -2629,7 +2824,7 @@ instance DIA_CH_Misc_Alchemie(C_Info)
 	condition = DIA_CH_Misc_Alchemie_Condition;
 	information = DIA_CH_Misc_Alchemie_Info;
 	permanent = TRUE;
-	description = "Алхимия";
+	description = NAME_Skill_Alchemy;
 };
 
 
@@ -2873,7 +3068,7 @@ instance DIA_CH_Misc_SmithStart(C_Info)
 	condition = DIA_CH_Misc_SmithStart_Condition;
 	information = DIA_CH_Misc_SmithStart_Info;
 	permanent = TRUE;
-	description = "Ковка - работа для мужчин";
+	description = NAME_Skill_Smith;
 };
 
 
@@ -3280,7 +3475,6 @@ func void CH_Training_TROPHYS_BFGift()
 	{
 		other.lp -= 1;
 		Knows_Bloodfly = TRUE;
-		Knows_Bloodfly_LP = TRUE;
 		PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
 		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
 		B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);
@@ -3674,15 +3868,15 @@ func string B_BuildCurrentRegenerateValue(var int stats)
 	concatText = ConcatStrings(concatText,IntToString(cost));
 	if(cost == 1)
 	{
-		concatText = ConcatStrings(concatText," очко обучения)");
+		concatText = ConcatStrings(concatText,PRINT_1LP);
 	}
 	else if(cost == 2)
 	{
-		concatText = ConcatStrings(concatText," очка обучения)");
+		concatText = ConcatStrings(concatText,PRINT_2LP);
 	}
 	else
 	{
-		concatText = ConcatStrings(concatText," очков обучения)");
+		concatText = ConcatStrings(concatText,PRINT_LP);
 	};
 	return concatText;
 };
@@ -3785,7 +3979,7 @@ instance CH_Overlay(C_Info)
 
 func int CH_Overlay_Condition()
 {
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -3869,7 +4063,7 @@ instance CH_Skin(C_Info)
 
 func int CH_Skin_Condition()
 {
-	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};

@@ -12,10 +12,7 @@ instance DIA_Akil_EXIT(C_Info)
 
 func int DIA_Akil_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Akil_EXIT_Info()
@@ -113,7 +110,6 @@ instance DIA_Akil_NachKampf(C_Info)
 
 func int DIA_Akil_NachKampf_Condition()
 {
-//	if(Npc_IsDead(Alvares) && Npc_IsDead(Engardo))
 	if(C_AkilFarmIsFree() && (Kapitel < 4))
 	{
 		return TRUE;
@@ -257,7 +253,6 @@ instance DIA_Addon_Akil_ReturnPeople(C_Info)
 
 func int DIA_Addon_Akil_ReturnPeople_Condition()
 {
-//	if((MIS_Akil_BringMissPeopleBack == LOG_Running) && (MissingPeopleReturnedHome == TRUE) && ((Npc_GetDistToWP(Tonak_NW,"NW_FARM2_FIELD_TANOK") <= 1000) || (Npc_GetDistToWP(Telbor_NW,"NW_FARM2_FIELD_TELBOR") <= 1000)))
 	if((MIS_Akil_BringMissPeopleBack == LOG_Running) && (MissingPeopleReturnedHome == TRUE) && (!Npc_IsDead(Tonak_NW) || !Npc_IsDead(Telbor_NW)))
 	{
 		return TRUE;
@@ -267,7 +262,6 @@ func int DIA_Addon_Akil_ReturnPeople_Condition()
 func void DIA_Addon_Akil_ReturnPeople_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Akil_ReturnPeople_15_00");	//Насчет твоих работников...
-//	if((Npc_GetDistToWP(Tonak_NW,"NW_FARM2_FIELD_TANOK") <= 1000) && (Npc_GetDistToWP(Telbor_NW,"NW_FARM2_FIELD_TELBOR") <= 1000))
 	if(!Npc_IsDead(Tonak_NW) && !Npc_IsDead(Telbor_NW))
 	{
 		AI_Output(self,other,"DIA_Addon_Akil_ReturnPeople_13_01");	//Ты привел их назад! Ты очень храбрый человек.
@@ -282,6 +276,15 @@ func void DIA_Addon_Akil_ReturnPeople_Info()
 	MIS_Akil_BringMissPeopleBack = LOG_SUCCESS;
 };
 
+
+func void B_GetBaltramPaket()
+{
+	CreateInvItems(self,ItMi_BaltramPaket,1);
+	B_GiveInvItems(self,other,ItMi_BaltramPaket,1);
+	B_LogEntries(TOPIC_Baltram,"Я получил посылку. Теперь я могу отнести ее Бальтраму...");
+	B_LogNextEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
+	Lieferung_Geholt = TRUE;
+};
 
 instance DIA_Akil_Lieferung(C_Info)
 {
@@ -306,11 +309,7 @@ func void DIA_Akil_Lieferung_Info()
 {
 	AI_Output(other,self,"DIA_Akil_Lieferung_15_00");	//Меня прислал Бальтрам. Я должен забрать посылку для него.
 	AI_Output(self,other,"DIA_Akil_Lieferung_13_01");	//Так ты его новый посыльный. Хорошо, я уже приготовил ее.
-	CreateInvItems(self,ItMi_BaltramPaket,1);
-	B_GiveInvItems(self,other,ItMi_BaltramPaket,1);
-	Lieferung_Geholt = TRUE;
-	B_LogEntry(TOPIC_Baltram,"Я получил посылку. Теперь я могу отнести ее Бальтраму...");
-	B_LogEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
+	B_GetBaltramPaket();
 };
 
 
@@ -482,31 +481,6 @@ func void DIA_Akil_Perm_Info()
 };
 
 
-instance DIA_Akil_KAP3_EXIT(C_Info)
-{
-	npc = BAU_940_Akil;
-	nr = 999;
-	condition = DIA_Akil_KAP3_EXIT_Condition;
-	information = DIA_Akil_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Akil_KAP3_EXIT_Condition()
-{
-	if(Kapitel >= 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Akil_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Akil_SCHAFDIEB(C_Info)
 {
 	npc = BAU_940_Akil;
@@ -621,9 +595,12 @@ instance DIA_Akil_AkilsSchaf(C_Info)
 
 func int DIA_Akil_AkilsSchaf_Condition()
 {
-	if((Kapitel >= 3) && (Npc_GetDistToNpc(self,Follow_Sheep_AKIL) < 1000) && (MIS_Akil_SchafDiebe != FALSE))
+	if((Kapitel >= 3) && !Npc_IsDead(Follow_Sheep_AKIL) && (MIS_Akil_SchafDiebe != FALSE))
 	{
-		return TRUE;
+		if(Npc_GetDistToNpc(self,Follow_Sheep_AKIL) < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 

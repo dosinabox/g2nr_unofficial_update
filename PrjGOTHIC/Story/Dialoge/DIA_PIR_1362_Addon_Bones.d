@@ -215,6 +215,8 @@ func void DIA_Addon_Bones_Francis_Info()
 };
 
 
+var int DIA_Addon_Bones_WantArmor_Once;
+
 instance DIA_Addon_Bones_WantArmor(C_Info)
 {
 	npc = PIR_1362_Addon_Bones;
@@ -233,8 +235,6 @@ func int DIA_Addon_Bones_WantArmor_Condition()
 		return TRUE;
 	};
 };
-
-var int DIA_Addon_Bones_WantArmor_Once;
 
 func void DIA_Addon_Bones_WantArmor_Info()
 {
@@ -280,7 +280,7 @@ func void DIA_Addon_Bones_GiveArmor_Info()
 	AI_Output(self,other,"DIA_Addon_Bones_GiveArmor_01_03");	//Пусть уж лучше Грег взвалит на меня какую-нибудь скучную работу...
 	AI_Output(other,self,"DIA_Addon_Bones_GiveArmor_15_04");	//(раздраженно) Доспехи.
 	AI_Output(self,other,"DIA_Addon_Bones_GiveArmor_01_05");	//Да, конечно, вот они.
-	B_GiveInvItems(self,other,ITAR_BDT_M,1);
+	B_GiveArmor(ITAR_BDT_M);
 	AI_Output(self,other,"DIA_Addon_Bones_GiveArmor_01_06");	//Будь осторожнее. С этими бандитами шутки плохи.
 	self.flags = 0;
 	Greg.flags = 0;

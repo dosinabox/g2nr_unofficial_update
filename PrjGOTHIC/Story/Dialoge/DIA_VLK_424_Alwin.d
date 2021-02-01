@@ -69,7 +69,10 @@ instance DIA_Alwin_Sheep(C_Info)
 
 func int DIA_Alwin_Sheep_Condition()
 {
-	return TRUE;
+	if(!Npc_IsDead(Alwin_Sheep1) || !Npc_IsDead(Alwin_Sheep2) || !Npc_IsDead(Alwin_Sheep3))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Alwin_Sheep_Info()
@@ -78,7 +81,7 @@ func void DIA_Alwin_Sheep_Info()
 	AI_Output(self,other,"DIA_Alwin_Sheep_12_01");	//Единственная овца, что принадлежит мне, отзывается на имя Люси. (смеется) Это моя жена - Люси.
 	if(SC_KnowsKlosterTribut == TRUE)
 	{
-		AI_Output(other,self,"DIA_Pepe_Liesel_15_00");	//Могу я купить овцу?
+		DIA_Common_CanIBuySheep();
 	};
 	AI_Output(self,other,"DIA_Alwin_Sheep_12_02");	//Эти овцы принадлежат ополчению. Они забирают их у фермеров и приводят ко мне.
 };
@@ -125,7 +128,7 @@ instance DIA_Alwin_FellanRunning(C_Info)
 
 func int DIA_Alwin_FellanRunning_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Fellan))
+	if(Npc_KnowsInfo(other,DIA_Alwin_Fellan))
 	{
 		return TRUE;
 	};
@@ -187,9 +190,9 @@ func int DIA_Alwin_FellanSuccess_Condition()
 func void DIA_Alwin_FellanSuccess_Info()
 {
 	AI_Output(other,self,"DIA_Alwin_FellanSuccess_15_00");	//Феллан больше не будет стучать.
-	AI_Output(self,other,"DIA_Alwin_FellanSuccess_12_01");	//Надо же! Больше нет этого стука. Наконец-то. Я уж думал, он никогда не перестанет.
 	if(!Npc_IsDead(Fellan))
 	{
+		AI_Output(self,other,"DIA_Alwin_FellanSuccess_12_01");	//Надо же! Больше нет этого стука. Наконец-то. Я уж думал, он никогда не перестанет.
 		AI_Output(self,other,"DIA_Alwin_FellanSuccess_12_02");	//Ты оказал мне большую услугу. Знаешь что, я дам тебе 30 золотых монет.
 		B_GiveInvItems(self,other,ItMi_Gold,30);
 		MIS_AttackFellan = LOG_SUCCESS;
@@ -202,9 +205,15 @@ func void DIA_Alwin_FellanSuccess_Info()
 		MIS_AttackFellan = LOG_FAILED;
 		B_MemorizePlayerCrime(self,other,CRIME_MURDER);
 		B_CheckLog();
+		AI_StopProcessInfos(self);
 	};
 };
 
+
+func void B_AlwinAboutDeadSheeps()
+{
+	AI_Output(self,other,"DIA_Alwin_Endlos_12_13");	//Ну, теперь я хотя бы буду проводить больше времени со своей женой.
+};
 
 instance DIA_Alwin_Endlos(C_Info)
 {
@@ -228,7 +237,11 @@ func int DIA_Alwin_Endlos_Condition()
 func void DIA_Alwin_Endlos_Info()
 {
 	AI_Output(other,self,"DIA_Alwin_Endlos_15_00");	//Как твои овцы?
-	if((MIS_AttackFellan != LOG_SUCCESS) && !Npc_IsDead(Fellan))
+	if(Npc_IsDead(Alwin_Sheep1) && Npc_IsDead(Alwin_Sheep2) && Npc_IsDead(Alwin_Sheep3))
+	{
+		B_AlwinAboutDeadSheeps();
+	}
+	else if((MIS_AttackFellan != LOG_SUCCESS) && !Npc_IsDead(Fellan))
 	{
 		AI_Output(self,other,"DIA_Alwin_Endlos_12_01");	//Стук этого Феллана сведет их с ума. Однажды они все разбегутся.
 	}
@@ -259,8 +272,8 @@ func void DIA_Alwin_Endlos_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Alwin_Endlos_12_12");	//Я говорю им - прощайте. Лорд Хаген приказал, чтобы все овцы пошли на провиант для его армии.
-		AI_Output(self,other,"DIA_Alwin_Endlos_12_13");	//Ну, теперь я хотя бы буду проводить больше времени со своей женой.
+		AI_Output(self,other,"DIA_Alwin_Endlos_12_12");	//Я говорю им 'прощайте'. Лорд Хаген приказал, чтобы все овцы пошли на провиант для его армии.
+		B_AlwinAboutDeadSheeps();
 	};
 };
 

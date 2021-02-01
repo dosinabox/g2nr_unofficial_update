@@ -12,10 +12,7 @@ instance DIA_Parcival_EXIT(C_Info)
 
 func int DIA_Parcival_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Parcival_EXIT_Info()
@@ -214,31 +211,6 @@ func void DIA_Parcival_BRAVE_Info()
 };
 
 
-instance DIA_Parcival_KAP3_EXIT(C_Info)
-{
-	npc = PAL_252_Parcival;
-	nr = 999;
-	condition = DIA_Parcival_KAP3_EXIT_Condition;
-	information = DIA_Parcival_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Parcival_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Parcival_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Parcival_ALLESKLAR(C_Info)
 {
 	npc = PAL_252_Parcival;
@@ -281,31 +253,6 @@ func void DIA_Parcival_ALLESKLAR_Info()
 		AI_Output(self,other,"DIA_Parcival_ALLESKLAR_13_04");	//Не отвлекай меня.
 	};
 	DIA_Parcival_ALLESKLAR_NervCounter += 1;
-};
-
-
-instance DIA_Parcival_KAP4_EXIT(C_Info)
-{
-	npc = PAL_252_Parcival;
-	nr = 999;
-	condition = DIA_Parcival_KAP4_EXIT_Condition;
-	information = DIA_Parcival_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Parcival_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Parcival_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -483,31 +430,6 @@ func void DIA_Parcival_PERMKAP4_Info()
 };
 
 
-instance DIA_Parcival_KAP5_EXIT(C_Info)
-{
-	npc = PAL_252_Parcival;
-	nr = 999;
-	condition = DIA_Parcival_KAP5_EXIT_Condition;
-	information = DIA_Parcival_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Parcival_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Parcival_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Parcival_VERRAETER(C_Info)
 {
 	npc = PAL_252_Parcival;
@@ -535,31 +457,6 @@ func void DIA_Parcival_VERRAETER_Info()
 	B_Attack(self,other,AR_KILL,1);
 };
 
-/*
-instance DIA_Parcival_KAP6_EXIT(C_Info)
-{
-	npc = PAL_252_Parcival;
-	nr = 999;
-	condition = DIA_Parcival_KAP6_EXIT_Condition;
-	information = DIA_Parcival_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Parcival_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Parcival_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Parcival_PICKPOCKET(C_Info)
 {

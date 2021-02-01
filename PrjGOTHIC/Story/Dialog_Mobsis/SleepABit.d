@@ -1,15 +1,10 @@
 
 func void sleepabit_s1()
 {
-	var C_Npc her;
-	var C_Npc rock;
-	her = Hlp_GetNpc(PC_Hero);
-	rock = Hlp_GetNpc(PC_Rockefeller);
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(rock)))
+	if(C_NpcIsHero(self) || C_NpcIsRockefeller(self))
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_SleepAbit;
-		//AI_ProcessInfos(her);
 		AI_ProcessInfos(self);
 		if(SC_IsObsessed == TRUE)
 		{

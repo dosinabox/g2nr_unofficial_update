@@ -219,7 +219,7 @@ prototype Rangerring_Prototype(C_Item)
 
 func void Equip_ItRi_Ranger_Lares()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	if(Npc_IsPlayer(self))
 	{
 		RangerRingIsLaresRing = TRUE;
 		Print(PRINT_Addon_SCIsWearingRangerRing);
@@ -228,7 +228,7 @@ func void Equip_ItRi_Ranger_Lares()
 
 func void UnEquip_ItRi_Ranger_Lares()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	if(Npc_IsPlayer(self))
 	{
 		RangerRingIsLaresRing = FALSE;
 	};
@@ -236,7 +236,7 @@ func void UnEquip_ItRi_Ranger_Lares()
 
 func void Equip_ItRi_Ranger_My()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	if(Npc_IsPlayer(self))
 	{
 		RangerRingIsMyRing = TRUE;
 		Print(PRINT_Addon_SCIsWearingRangerRing);
@@ -245,7 +245,7 @@ func void Equip_ItRi_Ranger_My()
 
 func void UnEquip_ItRi_Ranger_My()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	if(Npc_IsPlayer(self))
 	{
 		RangerRingIsMyRing = FALSE;
 	};
@@ -253,7 +253,7 @@ func void UnEquip_ItRi_Ranger_My()
 
 func void Equip_ItRi_Ranger_Lance()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	if(Npc_IsPlayer(self))
 	{
 		RangerRingIsLanceRing = TRUE;
 		Print(PRINT_Addon_SCIsWearingRangerRing);
@@ -262,7 +262,7 @@ func void Equip_ItRi_Ranger_Lance()
 
 func void UnEquip_ItRi_Ranger_Lance()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	if(Npc_IsPlayer(self))
 	{
 		RangerRingIsLanceRing = FALSE;
 	};
@@ -333,7 +333,7 @@ func void Use_MartinMilizEmpfehlung_Addon()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Уважаемый лорд Андрэ!");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"С этим письмом я отправляю вам нового рекрута для ополчения.");
 	Doc_PrintLines(nDocID,0,"Он уже помог мне в одном важном и непростом деле.");
 	Doc_PrintLines(nDocID,0,"Я уверен, что он достоин защищать короля и спокойствие граждан этого города.");
@@ -428,7 +428,7 @@ func void Use_VatrasKDFEmpfehlung_Addon()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Братья Огня!");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Мне стало известно, что за вход в ваш монастырь вы требуете плату.");
 	Doc_PrintLines(nDocID,0,"С этим письмом я направляю вам молодого человека, который страстно желает присоединиться к вам.");
 	Doc_PrintLine(nDocID,0,"");
@@ -481,7 +481,7 @@ func void Use_LuciasLoveLetter_Addon()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Дорогой Элврих!");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Я не могу найти слова, чтобы выразить свое сожаление.");
 	Doc_PrintLines(nDocID,0,"Я знаю, что ты не поймешь меня, но я пришла к выводу, что и для нас обоих будет лучше, если ты найдешь себе более достойную девушку, чем я.");
 	Doc_PrintLines(nDocID,0,"Я не вернусь оттуда, куда я сейчас направляюсь. Забудь меня. Такому честному парню, как ты, не нужна проститутка. Прощай!");
@@ -494,9 +494,13 @@ func void Use_LuciasLoveLetter_Addon()
 		{
 			Log_CreateTopic(TOPIC_Addon_LuciasLetter,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_Addon_LuciasLetter,LOG_Running);
-			B_LogEntry(TOPIC_Addon_LuciasLetter,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
+			B_LogEntries(TOPIC_Addon_LuciasLetter,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
 		};
 		MIS_LuciasLetter = LOG_Running;
+	};
+	if(MIS_LookingForLucia == LOG_Running)
+	{
+		B_LogNextEntry(TOPIC_Addon_Lucia,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
 	};
 	LuciaMentionedInKhorinis = TRUE;
 };
@@ -542,18 +546,11 @@ instance ItMi_Rake(C_Item)
 	visual = "ItMi_Rake.3DS";
 	material = MAT_WOOD;
 	scemeName = "RAKE";
-//	on_state[1] = Use_Rake;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
-
-/*
-func void Use_Rake()
-{
-};
-*/
 
 instance ItRi_Addon_BanditTrader(C_Item)
 {
@@ -595,22 +592,21 @@ var int Use_ItWr_Addon_BanditTrader_OneTime;
 func void Use_ItWr_Addon_BanditTrader()
 {
 	var int nDocID;
-	BanditTrader_Lieferung_Gelesen = TRUE;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"15 коротких мечей");
 	Doc_PrintLines(nDocID,0,"20 шпаг");
 	Doc_PrintLines(nDocID,0,"25 буханок хлеба");
 	Doc_PrintLines(nDocID,0,"15 бутылок вина");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Это был последний раз.");
 	Doc_PrintLines(nDocID,0,"Все становится слишком опасным.");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"ФЕРНАНДО");
 	Doc_Show(nDocID);
 	if((MIS_Vatras_FindTheBanditTrader != FALSE) && (Use_ItWr_Addon_BanditTrader_OneTime == FALSE))
@@ -618,6 +614,7 @@ func void Use_ItWr_Addon_BanditTrader()
 		B_LogEntry(TOPIC_Addon_Bandittrader,"Я нашел документ, доказывающий, что Фернандо является поставщиком оружия, которого я ищу.");
 		Use_ItWr_Addon_BanditTrader_OneTime = TRUE;
 	};
+	BanditTrader_Lieferung_Gelesen = TRUE;
 };
 
 
@@ -645,7 +642,7 @@ func void Use_Vatras2Saturas_FindRaven()
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLine(nDocID,0,"Дорогой Сатурас!");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Надеюсь, что скоро твоя цель будет достигнута. В городе ситуация, похоже, налаживается. Но я боюсь, что это обманчивое ощущение. Поторопись! Ты нужен мне здесь.");
 	Doc_PrintLines(nDocID,0,"Я изучил твои записи и могу подтвердить твои подозрения. Это действительно были последователи Аданоса. Будь осторожен и не дай лжепророкам ослепить себя.");
 	Doc_PrintLines(nDocID,0,"Пропавших жителей Хориниса отправили к бывшему рудному барону Ворону. Он находится там, куда должен вести портал.");
@@ -1172,7 +1169,6 @@ func void UseFrancisAbrechnung_Mis()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Личная доля: 2220");
 	Doc_PrintLine(nDocID,0,"");
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Торг. корабль 'Мириам'");
 	Doc_PrintLine(nDocID,0,"");
@@ -1332,6 +1328,17 @@ instance ItMi_Addon_Bloodwyn_Kopf(C_Item)
 	value = 0;
 	visual = "ItMi_Head_Bloodwyn_01.3ds";
 	material = MAT_LEATHER;
+	description = name;
+};
+
+instance ItMi_FakeBloodwynHead(C_Item)
+{
+	name = "Голова Бладвина";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	visual = "ItMi_Head_Bloodwyn_01.3ds";
+	material = MAT_LEATHER;
+	scemeName = "MAPSEALED";
 	description = name;
 };
 

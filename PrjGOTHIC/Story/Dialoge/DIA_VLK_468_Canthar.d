@@ -65,7 +65,8 @@ func void B_GetCantharReward()
 	{
 		AI_Output(other,self,"DIA_Canthar_Success_15_02");	//Ты собирался дать мне оружие.
 		AI_Output(self,other,"DIA_Canthar_Success_09_03");	//Правильно. Вот, это оружие - произведение оружейного искусства.
-		B_GiveInvItems(self,other,ItMw_Lightsaebel,1);
+//		B_GiveInvItems(self,other,ItMw_Lightsaebel,1);
+		B_GiveInvItems(self,other,ItMw_Schiffsaxt,1);
 	};
 };
 
@@ -135,7 +136,7 @@ func void DIA_Canthar_PersonalCRIMES_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_09_02");	//Либо ты сейчас извинишься, либо я позабочусь, чтобы ты горько пожалел о том, что сделал!
-		AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_03");	//Что ты имеешь в виду?
+		DIA_Common_WhatDoYouMean();
 		B_Say_Gold(self,other,100);
 		Info_ClearChoices(DIA_Canthar_PersonalCRIMES);
 		Info_AddChoice(DIA_Canthar_PersonalCRIMES,"У меня нет столько!",DIA_Canthar_PersonalCRIMES_NotEnough);
@@ -197,7 +198,7 @@ func void DIA_Canthar_Hallo_Info()
 		AI_Output(self,other,"DIA_Canthar_Hallo_09_05");	//(торопливо) Меня не волнует, откуда ты пришел. Но мне кажется, у меня есть интересное предложение для тебя...
 		Canthar_GotMe = TRUE;
 	}
-	else if(C_BAUCheck(other))
+	else if(VisibleGuild(other) == GIL_BAU)
 	{
 		AI_Output(self,other,"DIA_Canthar_HelloArmor_09_06");	//Как идет работа, крестьянин?
 		Info_ClearChoices(DIA_Canthar_Hallo);
@@ -445,7 +446,7 @@ func void DIA_Canthar_PAYPRICEINCITY_Ok()
 	{
 		B_LogEntry(TOPIC_Canthar,"Кантар пообещал дать мне оружие взамен на оказанную ему услугу.");
 	};
-	B_LogEntry(TOPIC_Canthar,"Я должен подложить письмо торговке Саре, которое даст повод подозревать ее в том, что она продает оружие Онару. Затем я должен пойти к лорду Андрэ и настучать на нее.");
+	Log_AddEntry(TOPIC_Canthar,"Я должен подложить письмо торговке Саре, которое даст повод подозревать ее в том, что она продает оружие Онару. Затем я должен пойти к лорду Андрэ и настучать на нее.");
 	Info_ClearChoices(DIA_Canthar_PAYPRICEINCITY);
 };
 

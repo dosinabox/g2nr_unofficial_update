@@ -70,7 +70,7 @@ instance DIA_Constantino_Hallo(C_Info)
 
 func int DIA_Constantino_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (VisibleGuild(other) != GIL_PAL) && (VisibleGuild(other) != GIL_MIL) && (VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_KDW))
 	{
 		return TRUE;
 	};
@@ -79,7 +79,6 @@ func int DIA_Constantino_Hallo_Condition()
 func void DIA_Constantino_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Constantino_Hallo_10_00");	//„то тебе нужно? я не подаю милостыню.
-	B_PlayerEnteredCity();
 };
 
 
@@ -204,7 +203,7 @@ func int DIA_Constantino_Trade_Condition()
 
 func void DIA_Constantino_Trade_Info()
 {
-	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//ѕокажи мне свои товары.
+	DIA_Common_ShowMeYourGoods();
 	if(Constantino_flag == TRUE)
 	{
 		B_ClearAlchemyInv(self);
@@ -251,7 +250,7 @@ func int DIA_Constantino_NoTrade_Condition()
 
 func void DIA_Constantino_NoTrade_Info()
 {
-	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//ѕокажи мне свои товары.
+	DIA_Common_ShowMeYourGoods();
 	B_Constantino_NoYouAreWanted();
 	AI_StopProcessInfos(self);
 };
@@ -425,10 +424,12 @@ func void DIA_Constantino_HerbsRunning_Success()
 	AI_Output(self,other,"DIA_Constantino_HerbsRunning_Success_10_03");	// то знает, может, когда-нибудь из теб€ действительно получитс€ приличный алхимик.
 	MIS_Constantino_BringHerbs = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Constantino_Herbs);
-	B_CheckLog();
-	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
-	B_LogEntry(TOPIC_Lehrling," онстантино примет мен€ в ученики, если другие мастера будут не против.");
+	if(Player_IsApprentice == APP_NONE)
+	{
+		Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+		B_LogEntry(TOPIC_Lehrling," онстантино примет мен€ в ученики, если другие мастера будут не против.");
+	};
 	Info_ClearChoices(DIA_Constantino_HerbsRunning);
 };
 
@@ -581,6 +582,7 @@ func void DIA_Constantino_LEHRLING_Yes()
 	AI_Output(self,other,"DIA_Constantino_LEHRLING_Yes_10_01");	//(вздыхает) ’орошо! Ќадеюсь, € не пожалею об этом решении.
 	AI_Output(self,other,"DIA_Constantino_LEHRLING_Yes_10_02");	//— этого момента, ты можешь считать себ€ моим учеником.
 	Player_IsApprentice = APP_Constantino;
+	ApprenticeGoldCounter = 0;
 	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
 	{
 		Npc_ExchangeRoutine(Lothar,"START");
@@ -655,7 +657,7 @@ func void DIA_Constantino_AlsLehrling_Info()
 		Constantino_MILKommentar = TRUE;
 		Constantino_Lehrling_Day = Wld_GetDay();
 	}
-	else if(((other.guild == GIL_NOV) || (other.guild == GIL_KDF) || (other.guild == GIL_PAL)) && (Constantino_StartGuild != GIL_NOV) && (Constantino_StartGuild != GIL_KDF) && (Constantino_StartGuild != GIL_PAL) && (Constantino_INNOSKommentar == FALSE))
+	else if(((VisibleGuild(other) == GIL_NOV) || (VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_PAL)) && (Constantino_StartGuild != GIL_NOV) && (Constantino_StartGuild != GIL_KDF) && (Constantino_StartGuild != GIL_PAL) && (Constantino_INNOSKommentar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_06");	//я вижу, ты поступил в услужение к »нносу. я полагаю, это значит, что с этого времени ты не сможешь удел€ть много внимани€ сбору трав дл€ старика.
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_07");	//Ќо все же, € сочту за большую честь поддерживать теб€ на твоем пути.

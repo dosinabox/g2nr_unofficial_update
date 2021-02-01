@@ -15,7 +15,6 @@ instance PC_Mage_NW(Npc_Default)
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,30);
-//	daily_routine = Rtn_Start_12;
 	daily_routine = Rtn_PreStart_12;
 };
 
@@ -23,7 +22,8 @@ instance PC_Mage_NW(Npc_Default)
 func void Rtn_PreStart_12()
 {
 	TA_Read_Bookstand(9,0,19,0,"NW_MONASTERY_ALCHEMY_01");
-	TA_Sit_Throne(19,0,9,0,"NW_MONASTERY_ARMCHAIR_05");
+	TA_Sit_Throne(19,0,0,0,"NW_MONASTERY_ARMCHAIR_05");
+	TA_Sleep(0,0,9,0,"NW_MONASTERY_MAGE01_013");
 };
 
 func void Rtn_Start_12()

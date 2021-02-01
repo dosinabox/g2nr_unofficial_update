@@ -90,7 +90,7 @@ func void DIA_Addon_Skip_Hello_Info()
 		AI_Output(self,other,"DIA_Addon_Skip_Hello_08_05");	//Но мне кажется, что я где-то еще видел твою рожу...
 		AI_Output(self,other,"DIA_Addon_Skip_Hello_08_06");	//Ну конечно!
 	};
-	B_UseFakeHeroFace();
+	B_UseFakeHeroFace(self,other);
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_07");	//Не полное сходство, конечно, но это точно ты.
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_08");	//Но не расстраивайся, приятель. Мое лицо на объявлении о розыске выглядит не лучше.
 	Npc_ExchangeRoutine(self,"Start");
@@ -646,7 +646,7 @@ func void DIA_Addon_Skip_Grog_gold()
 instance DIA_Addon_Skip_News(C_Info)
 {
 	npc = PIR_1355_Addon_Skip;
-	nr = 888;
+	nr = 776;
 	condition = DIA_Addon_Skip_News_Condition;
 	information = DIA_Addon_Skip_News_Info;
 	permanent = FALSE;

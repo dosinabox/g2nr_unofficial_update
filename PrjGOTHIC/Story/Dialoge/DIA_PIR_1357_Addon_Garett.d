@@ -201,7 +201,7 @@ func int DIA_Addon_Garett_Bandits_Condition()
 
 func void DIA_Addon_Garett_Bandits_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Garett_Bandits_15_00");	//Что ты знаешь о бандитах?
+	DIA_Common_WhatDoYouKnowAboutBandits();
 	AI_Output(self,other,"DIA_Addon_Garett_Bandits_09_01");	//Об этом тебе лучше спросить у Скипа.
 	AI_Output(self,other,"DIA_Addon_Garett_Bandits_09_02");	//Он довольно много общался с этой шайкой.
 	AI_Output(self,other,"DIA_Addon_Garett_Bandits_09_03");	//А сейчас Грег приказал нам убивать каждого бандита, подходящего к лагерю.
@@ -412,7 +412,7 @@ func int DIA_Addon_Garett_Trade_Condition()
 
 func void DIA_Addon_Garett_Trade_Info()
 {
-	AI_Output(other,self,"DIA_Orlan_TRADE_15_00");	//Покажи мне свои товары.
+	DIA_Common_ShowMeYourGoods();
 	B_GiveTradeInv(self);
 	if(TradersHaveLimitedAmmo == TRUE)
 	{
@@ -450,7 +450,7 @@ func int DIA_Addon_Garett_ArmorM_Condition()
 
 func void DIA_Addon_Garett_ArmorM_Info()
 {
-	AI_Output(other,self,"DIA_Lee_ArmorM_15_00");	//А как насчет доспехов получше?
+	DIA_Common_WhatAboutBetterArmor();
 	AI_Output(self,other,"DIA_Matteo_LEATHER_09_01");	//Они тебе понравятся. (ухмыляется)
 	Info_ClearChoices(DIA_Addon_Garett_ArmorM);
 	Info_AddChoice(DIA_Addon_Garett_ArmorM,Dialog_Back,DIA_Addon_Garett_ArmorM_Back);
@@ -459,12 +459,11 @@ func void DIA_Addon_Garett_ArmorM_Info()
 
 func void DIA_Addon_Garett_ArmorM_Buy()
 {
-	AI_Output(other,self,"DIA_Lee_BuyArmorM_15_00");	//Дай мне эти доспехи.
+	DIA_Common_GiveMeThatArmor();
 	if(B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_PIR_M_Addon))
 	{
 		B_Say(self,other,"$ABS_GOOD");
-		CreateInvItem(hero,ITAR_PIR_M_Addon);
-		AI_PrintScreen("Доспехи пирата получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveArmor(ITAR_PIR_M_Addon);
 		Garett_Armor_Given = TRUE;
 	}
 	else

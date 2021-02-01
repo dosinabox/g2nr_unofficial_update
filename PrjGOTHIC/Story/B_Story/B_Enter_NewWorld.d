@@ -33,7 +33,7 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 		};
 		if(Tonak_DiedInADW == FALSE)
 		{
-			Wld_InsertNpc(STRF_1125_Addon_Tonak_NW,"NW_FARM2_FIELD_TANOK");
+			Wld_InsertNpc(STRF_1125_Addon_Tonak_NW,"NW_FARM2_FIELD_TONAK");
 		};
 		if(Telbor_DiedInADW == FALSE)
 		{
@@ -58,8 +58,8 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 	};
 	if(EnterNW_Kapitel2 == FALSE)
 	{
-		Wld_InsertNpc(Gobbo_Skeleton,"FP_ROAM_MEDIUMFOREST_KAP2_24");
-		Wld_InsertNpc(Skeleton,"FP_ROAM_MEDIUMFOREST_KAP2_22");
+		Wld_InsertNpc(Gobbo_Skeleton,"NW_FOREST_PATH_04_9");
+		Wld_InsertNpc(Skeleton,"NW_FOREST_PATH_04_8");
 		Wld_InsertNpc(Lesser_Skeleton,"FP_ROAM_MEDIUMFOREST_KAP2_23");
 		Wld_InsertNpc(Wolf,"FP_ROAM_MEDIUMFOREST_KAP2_25");
 		Wld_InsertNpc(Wolf,"FP_ROAM_MEDIUMFOREST_KAP2_26");
@@ -134,8 +134,7 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		};
 		if((MIS_HelpDyrian != LOG_SUCCESS) && !Npc_IsDead(Dyrian))
 		{
-			Dyrian.guild = GIL_NONE;
-			Npc_SetTrueGuild(Dyrian,GIL_NONE);
+			B_SetGuild(Dyrian,GIL_NONE);
 			Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 			B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 		};
@@ -252,7 +251,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(Warg,"NW_XARDAS_GOBBO_01");
 		if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_ToCavalorn == TRUE))
 		{
-			B_KillNpc(Ambusher_1013);
+			B_KillNpc(BDT_1013_Bandit_L);
 		};
 		Wld_InsertNpc(Zombie02,"NW_FARM4_WOOD_MONSTER_MORE_02");
 		Wld_InsertNpc(Zombie01,"NW_FARM4_WOOD_MONSTER_MORE_02");
@@ -350,7 +349,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Wld_InsertItem(ItMi_KarrasBlessedStone_Mis,"FP_NW_ITEM_TROLL_10");
 			/*if(!Npc_IsDead(Ulf))
 			{
-				B_KillNpc(Ulf);
+				B_KillNpc(NOV_602_Ulf);
 			};*/
 			if(!Npc_IsDead(Vino))
 			{
@@ -435,16 +434,14 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		};
 		if(!Npc_IsDead(Rick))
 		{
-			Rick.guild = GIL_MIL;
-			Npc_SetTrueGuild(Rick,GIL_MIL);
+			B_SetGuild(Rick,GIL_MIL);
 			Rick.aivar[AIV_DropDeadAndKill] = FALSE;
 			Npc_ExchangeRoutine(Rick,"Ch3");
 			RickReturnedToCity = TRUE;
 		};
 		if(!Npc_IsDead(Rumbold))
 		{
-			Rumbold.guild = GIL_MIL;
-			Npc_SetTrueGuild(Rumbold,GIL_MIL);
+			B_SetGuild(Rumbold,GIL_MIL);
 			Rumbold.aivar[AIV_DropDeadAndKill] = FALSE;
 			Npc_ExchangeRoutine(Rumbold,"Ch3");
 			RumboldReturnedToCity = TRUE;
@@ -489,8 +486,8 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		Wld_InsertNpc(Draconian,"FP_ROAM_XARDAS_CAVE_09");
 		Wld_InsertNpc(Draconian,"FP_ROAM_XARDAS_TOWER_VALLEY_03");
 		Wld_InsertNpc(Draconian,"FP_ROAM_XARDAS_TOWER_VALLEY_01");
-		Wld_InsertNpc(OrcElite_AntiPaladin,"NW_TROLLAREA_PLANE_05");
-		Wld_InsertNpc(OrcWarrior_Roam,"NW_TROLLAREA_PATH_44");
+		Wld_InsertNpc(OrcElite_AntiPaladin,"NW_TROLLAREA_PATH_44");
+		Wld_InsertNpc(OrcWarrior_Roam,"NW_TROLLAREA_PLANE_05");
 		Wld_InsertNpc(OrcWarrior_Roam,"NW_TROLLAREA_PLANE_06");
 		Wld_InsertNpc(DragonSnapper,"NW_FARM3_BIGWOOD_04");
 		Wld_InsertNpc(DragonSnapper,"NW_FARM3_BIGWOOD_04");
@@ -706,7 +703,6 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(DMT_DementorAmbientWalker10,"CITY1");
 			Wld_InsertNpc(DMT_DementorAmbientWalker8,"CITY1");
 			Wld_InsertNpc(DMT_DementorAmbientWalker7,"CITY1");
-			B_KillNpc(BDT_1020_Bandit_L);
 			if(!Npc_IsDead(Randolph))
 			{
 				CreateInvItems(Randolph,ITWR_DementorObsessionBook_MIS,1);
@@ -717,14 +713,12 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		{
 			if(!Npc_IsDead(Alvares))
 			{
-				Alvares.guild = GIL_SLD;
-				Npc_SetTrueGuild(Alvares,GIL_SLD);
+				B_SetGuild(Alvares,GIL_SLD);
 				B_StartOtherRoutine(Alvares,"Bigfarm");
 			};
 			if(!Npc_IsDead(Engardo))
 			{
-				Engardo.guild = GIL_SLD;
-				Npc_SetTrueGuild(Engardo,GIL_SLD);
+				B_SetGuild(Engardo,GIL_SLD);
 				B_StartOtherRoutine(Engardo,"Bigfarm");
 			};
 			if(!Npc_IsDead(Kati))
@@ -803,13 +797,13 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 			{
 				B_StartOtherRoutine(Rosi,"FleeFromSekob");
 				Rosi.aivar[AIV_CommentedPlayerCrime] = FALSE;
+				Rosi_FleeFromSekob_Kap5 = TRUE;
+				if(!Npc_IsDead(Till))
+				{
+					B_StartOtherRoutine(Till,"FleeFromSekob");
+					Till.aivar[AIV_CommentedPlayerCrime] = FALSE;
+				};
 			};
-			if(!Npc_IsDead(Till))
-			{
-				B_StartOtherRoutine(Till,"FleeFromSekob");
-				Till.aivar[AIV_CommentedPlayerCrime] = FALSE;
-			};
-			Rosi_FleeFromSekob_Kap5 = TRUE;
 		};
 		if(GornDJG_is_alive == TRUE)
 		{

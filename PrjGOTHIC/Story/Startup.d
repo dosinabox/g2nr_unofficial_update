@@ -1,8 +1,4 @@
 
-const int FIX_VERSION_START = 25;
-const int LEAST_SUPPORTED = 21;
-var int FIX_VERSION_SAVE;
-
 func void startup_global()
 {
 	Game_InitGerman();
@@ -34,7 +30,9 @@ func void startup_addon_part_adanostemple_01()
 {
 	Wld_InsertNpc(BDT_1090_Addon_Raven,"ADW_ADANOSTEMPEL_RAVEN_11");
 	Wld_InsertNpc(BDT_10400_Addon_DeadBandit,"ADW_ADANOSTEMPEL_RHADEMES_03");
+	B_KillNpc(BDT_10400_Addon_DeadBandit);
 	Wld_InsertNpc(BDT_10401_Addon_DeadBandit,"ADW_ADANOSTEMPEL_RHADEMES_DEADBDT_02");
+	B_KillNpc(BDT_10401_Addon_DeadBandit);
 	Wld_InsertNpc(Stoneguardian_ADANOSTEMPELENTRANCE_01,"ADW_ADANOSTEMPEL_ENTRANCE_15");
 	Wld_InsertNpc(Stoneguardian_ADANOSTEMPELENTRANCE_02,"ADW_ADANOSTEMPEL_ENTRANCE_18");
 	Wld_InsertNpc(Stoneguardian_ADANOSTEMPELENTRANCE_03,"ADW_ADANOSTEMPEL_ENTRANCE_20");
@@ -119,9 +117,13 @@ func void startup_addon_part_goldmine_01()
 	Wld_InsertNpc(Meatbug,"ADW_MINE_LAGER_05");
 	Wld_InsertNpc(Meatbug,"ADW_MINE_LAGER_SIDE_04");
 	Wld_InsertNpc(Stoneguardian_MineDead1,"ADW_GRUFT_01");
+	B_KillNpc(Stoneguardian_MineDead1);
 	Wld_InsertNpc(Stoneguardian_MineDead2,"ADW_GRUFT_02");
+	B_KillNpc(Stoneguardian_MineDead2);
 	Wld_InsertNpc(Stoneguardian_MineDead3,"ADW_MINE_TO_GRUFT_05");
+	B_KillNpc(Stoneguardian_MineDead3);
 	Wld_InsertNpc(Stoneguardian_MineDead4,"ADW_MINE_TO_GRUFT_06");
+	B_KillNpc(Stoneguardian_MineDead4);
 };
 
 func void init_sub_addon_part_goldmine_01()
@@ -368,10 +370,8 @@ func void startup_addon_part_banditscamp_01()
 	Wld_InsertNpc(BDT_10031_Addon_Wache,"BANDIT");
 	Wld_InsertNpc(BDT_1086_Addon_Scatty,"BANDIT");
 	Wld_InsertNpc(BDT_1085_Addon_Bloodwyn,"BANDIT");
-	Wld_InsertNpc(STRF_1141_Addon_Sklave,"BANDIT");
 	Wld_InsertNpc(STRF_1142_Addon_Sklave,"BANDIT");
 	Wld_InsertNpc(STRF_1143_Addon_Sklave,"BANDIT");
-	Wld_InsertNpc(STRF_1144_Addon_Sklave,"BANDIT");
 	Wld_InsertNpc(BDT_10001_Addon_Bandit_L,"BANDIT");
 	Wld_InsertNpc(BDT_10002_Addon_Bandit_M,"BANDIT");
 	Wld_InsertNpc(BDT_10003_Addon_Bandit_H,"BANDIT");
@@ -535,10 +535,10 @@ func void startup_addon_part_piratescamp_01()
 	Wld_InsertNpc(PIR_1355_Addon_Skip,"STRAND");
 	Wld_InsertNpc(PIR_1356_Addon_Bill,"STRAND");
 	Wld_InsertNpc(PIR_1357_Addon_Garett,"STRAND");
-	Wld_InsertNpc(PIR_1360_Addon_PIRAT,"STRAND");
-	Wld_InsertNpc(PIR_1361_Addon_PIRAT,"STRAND");
+	Wld_InsertNpc(PIR_1360_Addon_Pirat,"STRAND");
+	Wld_InsertNpc(PIR_1361_Addon_Pirat,"STRAND");
 	Wld_InsertNpc(PIR_1362_Addon_Bones,"STRAND");
-	Wld_InsertNpc(PIR_1363_Addon_PIRAT,"STRAND");
+	Wld_InsertNpc(PIR_1363_Addon_Pirat,"STRAND");
 	Wld_InsertNpc(PIR_1364_Addon_Pirat,"STRAND");
 	Wld_InsertNpc(PIR_1365_Addon_Matt,"STRAND");
 	Wld_InsertNpc(PIR_1366_Addon_Brandon,"STRAND");
@@ -549,7 +549,6 @@ func void startup_addon_part_piratescamp_01()
 	Wld_InsertNpc(BDT_10100_Addon_TowerBandit,"STRAND");
 	Wld_InsertNpc(BDT_10101_Addon_TowerBandit,"STRAND");
 	Wld_InsertNpc(BDT_10102_Addon_TowerBandit,"STRAND");
-	Wld_InsertItem(ItMi_Addon_GregsTreasureBottle_MIS,"FP_ADW_GREGSBOTTLE");
 	Wld_InsertNpc(Lurker,"ADW_PIRATECAMP_ISLE1_01");
 	Wld_InsertNpc(Lurker,"ADW_PIRATECAMP_ISLE1_01");
 	Wld_InsertNpc(Lurker,"ADW_PIRATECAMP_ISLE1_01");
@@ -570,8 +569,6 @@ func void startup_addon_part_piratescamp_01()
 	Wld_InsertNpc(Zombie01,"ADW_PIRATECAMP_LONEBEACH_CAVE_03");
 	Wld_InsertNpc(MayaZombie02,"ADW_PIRATECAMP_LONEBEACH_CAVE_03");
 	Wld_InsertNpc(Zombie03,"ADW_PIRATECAMP_LONEBEACH_CAVE_03");
-//	Wld_InsertNpc(Lurker_SecretCave1,"ADW_PIRATECAMP_SECRETCAVE_01");
-//	Wld_InsertNpc(Lurker_SecretCave2,"ADW_PIRATECAMP_SECRETCAVE_01");
 	Wld_InsertNpc(Meatbug,"ADW_PIRATECAMP_LUMBER_01");
 	Wld_InsertNpc(Meatbug,"ADW_PIRATECAMP_LUMBER_01");
 	Wld_InsertNpc(Meatbug,"ADW_PIRATECAMP_LUMBER_01");
@@ -617,6 +614,7 @@ func void startup_addon_part_piratescamp_01()
 	Wld_InsertItem(ItMi_SilverCup,"FP_ITEMSPAWN_SHALLOWWATER_29");
 	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_ITEMSPAWN_SHALLOWWATER_30");
 	Wld_InsertItem(ItAm_Addon_STR,"FP_ITEMSPAWN_LONEBEACH_02");
+	Wld_InsertItem(ItMi_Addon_GregsTreasureBottle_MIS,"FP_ADW_GREGSBOTTLE");
 };
 
 func void init_sub_addon_part_piratescamp_01()
@@ -747,7 +745,7 @@ func void init_addon_part_valley_01()
 
 func void startup_sub_psicamp()
 {
-	if(C_WorldIsFixed(OLDWORLD_ZEN))
+	if(C_OldWorldIsWasteland())
 	{
 		B_Seed_Wasteland_World_Psicamp();
 	};
@@ -934,7 +932,7 @@ func void init_psicamp()
 
 func void startup_sub_freeminecamp()
 {
-	if(C_WorldIsFixed(OLDWORLD_ZEN))
+	if(C_OldWorldIsWasteland())
 	{
 		B_Seed_Wasteland_World_Freeminecamp();
 	};
@@ -1565,7 +1563,8 @@ func void Startup_Surface()
 	Wld_InsertNpc(Bloodfly,"SPAWN_OW_MOLERAT2_WALD_OC1");
 	Wld_InsertNpc(Lurker,"SPAWN_OW_LURKER_RIVER2");
 	Wld_InsertNpc(Bloodfly,"SPAWN_OW_LURKER_RIVER2");
-	Wld_InsertNpc(Bloodfly,"SPAWN_OW_SCAVENGER_OCWOODEND2");
+//	Wld_InsertNpc(Bloodfly,"SPAWN_OW_SCAVENGER_OCWOODEND2");
+	Wld_InsertNpc(Bloodfly,"SPAWN_OW_MOLERATS_WOOD_OM");
 	Wld_InsertNpc(Lurker,"SPAWN_OW_GOBBO_WATERFALLCAVE_2");
 	Wld_InsertNpc(Lurker,"SPAWN_OW_GOBBO_WATERFALLCAVE_2");
 	Wld_InsertNpc(Lurker,"SPAWN_OW_GOBBO_WATERFALLCAVE_2");
@@ -1647,7 +1646,7 @@ func void Startup_Surface()
 	Wld_InsertNpc(Draconian,"FP_ROAM_SWAMP_15_02");
 	Wld_InsertNpc(Draconian,"FP_ROAM_SWAMP_16_01");
 	Wld_InsertNpc(Draconian,"FP_ROAM_SWAMP_16_02");
-	Wld_InsertNpc(DragonSnapper_NC_Cave,"OW_PATH_07_15_CAVE3");
+	Wld_InsertNpc(DragonSnapper,"OW_PATH_07_15_CAVE3");
 	Wld_InsertNpc(DragonSnapper,"OW_PATH_07_15");
 	Wld_InsertNpc(DragonSnapper,"OW_PATH_07_15");
 	Wld_InsertNpc(DragonSnapper,"OW_PATH_07_15");
@@ -1659,12 +1658,12 @@ func void Startup_Surface()
 	Wld_InsertNpc(Skeleton,"OW_PATH_07_03");
 	Wld_InsertNpc(Skeleton,"OW_PATH_07_04");
 	Wld_InsertNpc(Skeleton,"OW_PATH_07_04");
-	Wld_InsertNpc(Skeleton,"OW_PATH_35");
 	Wld_InsertNpc(Skeleton,"OW_PATH_033_TO_CAVE5");
 	Wld_InsertNpc(Skeleton,"OW_PATH_033_TO_CAVE5");
 	Wld_InsertNpc(Skeleton,"OW_PATH_092");
 	Wld_InsertNpc(Skeleton,"OW_PATH_092");
 	Wld_InsertNpc(Skeleton,"OW_PATH_091");
+	Wld_InsertNpc(Skeleton,"OW_PATH_035");
 	Wld_InsertNpc(Skeleton,"OW_PATH_036");
 	Wld_InsertNpc(Keiler,"OW_PATH_274_RIGHT2");
 	Wld_InsertNpc(OrcWarrior_Roam,"FP_ROAM_ORC_05");
@@ -1800,7 +1799,7 @@ func void Startup_Surface()
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
-	if(C_WorldIsFixed(OLDWORLD_ZEN))
+	if(C_OldWorldIsWasteland())
 	{
 		B_Seed_Wasteland_World_Main();
 	};
@@ -1829,7 +1828,7 @@ func void INIT_OldWorld()
 	INIT_SUB_Oldcamp();
 	INIT_SUB_Demontower();
 	INIT_SUB_Surface();
-	if(C_WorldIsFixed(OLDWORLD_ZEN))
+	if(C_OldWorldIsWasteland())
 	{
 		init_sub_psicamp();
 		init_sub_freeminecamp();
@@ -1852,12 +1851,11 @@ func void startup_oldworld()
 	Startup_Oldcamp();
 	Startup_Demontower();
 	Startup_Surface();
-//	Wld_SetTime(0,0);
 	if(Wld_IsTime(4,0,21,0))
 	{
 		Wld_SetTime(23,59);
 	};
-	if(C_WorldIsFixed(OLDWORLD_ZEN))
+	if(C_OldWorldIsWasteland())
 	{
 		startup_psicamp();
 		startup_freeminecamp();
@@ -1932,9 +1930,9 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertNpc(VLK_489_Buerger,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(VLK_424_Alwin,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(VLK_479_Lucy,"NW_CITY_ENTRANCE_01");
-	Wld_InsertNpc(Hammel,"NW_CITY_SHEEP_SPAWN_02");
-	Wld_InsertNpc(Sheep,"NW_CITY_SHEEP_SPAWN_01");
-	Wld_InsertNpc(Sheep,"NW_CITY_SHEEP_SPAWN_01");
+	Wld_InsertNpc(Alwin_Sheep1,"NW_CITY_SHEEP_SPAWN_01");
+	Wld_InsertNpc(Alwin_Sheep2,"NW_CITY_SHEEP_SPAWN_01");
+	Wld_InsertNpc(Alwin_Sheep3,"NW_CITY_SHEEP_SPAWN_02");
 	Wld_InsertNpc(VLK_461_Carl,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(VLK_429_Buergerin,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(VLK_453_Buerger,"NW_CITY_ENTRANCE_01");
@@ -2093,19 +2091,6 @@ func void STARTUP_NewWorld_Part_City_01()
 		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_09");
 		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_10");
 	};
-	/*Wld_InsertNpc(Waran,"FP_ROAM_INSEL_02");
-	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_01");
-	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_07");
-	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_08");
-	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_09");
-	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_10");*/
-	/*Wld_InsertNpc(Waran,"ISLAND_PATCH_WAYPOINT_02");
-	Wld_InsertNpc(Waran,"ISLAND_PATCH_WAYPOINT_03");
-	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_04");
-	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_04");
-	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_06");
-	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_06");*/
-//	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_13");
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_01");
 	Wld_InsertItem(ItWr_ManaStonePlate2_Addon,"FP_SHELLSPAWN_CITY_02");
 	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_SHELLSPAWN_CITY_02");
@@ -2366,6 +2351,7 @@ func void STARTUP_NewWorld_Part_Xardas_01()
 		Wld_InsertNpc(Giant_Rat,"SOME_NW_WAYPOINT_049");
 		Wld_InsertNpc(Meatbug,"SOME_NW_WAYPOINT_037");
 		Wld_InsertNpc(Meatbug,"SOME_NW_WAYPOINT_037");
+		Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_03");
 	}
 	else
 	{
@@ -2381,14 +2367,14 @@ func void STARTUP_NewWorld_Part_Xardas_01()
 		Wld_InsertNpc(Giant_Rat,"FP_ROAM_XARDAS_SECRET_27");
 		Wld_InsertNpc(Meatbug,"FP_ROAM_XARDAS_SECRET_01");
 		Wld_InsertNpc(Meatbug,"FP_ROAM_XARDAS_SECRET_01");
+		Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_02");
 	};
+	Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_02");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_TOWER_WATERFALL_CAVE_03");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_TOWER_WATERFALL_CAVE_ENTRANCE_02");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_TOWER_WATERFALL_CAVE_ENTRANCE_05");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_TOWER_WATERFALL_CAVE_ENTRANCE_05");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_TOWER_WATERFALL_CAVE_ENTRANCE_GOBBO");
-	Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_02");
-	Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_02");
 	Wld_InsertNpc(YWolf,"NW_XARDAS_VALLEY_03");
 	Wld_InsertNpc(YWolf,"NW_XARDAS_VALLEY_04");
 	Wld_InsertNpc(YWolf,"NW_XARDAS_VALLEY_06");
@@ -2816,10 +2802,10 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 	Wld_InsertNpc(BDT_10309_Addon_RangerBandit_L,"NW_BIGMILL_FARM3_RANGERBANDITS_03");
 	Wld_InsertNpc(BDT_10310_Addon_RangerBandit_M,"NW_BIGMILL_FARM3_RANGERBANDITS_04");
 	Wld_InsertNpc(VLK_4302_Addon_Elvrich,"NW_BIGMILL_FARM3_RANGERBANDITS_04");
-	Wld_InsertNpc(BDT_10311_Addon_RangerBandit_M,"NW_FARM4_WOOD_RANGERBANDITS_04");
-	Wld_InsertNpc(BDT_10312_Addon_RangerBandit_L,"NW_FARM4_WOOD_RANGERBANDITS_03");
-	Wld_InsertNpc(BDT_10313_Addon_RangerBandit_L,"NW_FARM4_WOOD_RANGERBANDITS_04");
-	Wld_InsertNpc(BDT_10314_Addon_RangerBandit_M,"NW_FARM4_WOOD_RANGERBANDITS_05");
+	Wld_InsertNpc(BDT_10311_Addon_RangerBandit_M,"NW_FARM4_WOOD_RANGERBANDITS_05");
+	Wld_InsertNpc(BDT_10312_Addon_RangerBandit_L,"NW_FARM4_WOOD_RANGERBANDITS_05");
+	Wld_InsertNpc(BDT_10313_Addon_RangerBandit_L,"NW_FARM4_WOOD_RANGERBANDITS_05");
+	Wld_InsertNpc(BDT_10314_Addon_RangerBandit_M,"NW_FARM4_WOOD_RANGERBANDITS_04");
 	Wld_InsertItem(ItWr_LuciasLoveLetter_Addon,"FP_ITEM_NW_FARM4_WOOD_LUCIASLETTER");
 	Wld_InsertItem(ItWr_HitPointStonePlate3_Addon,"FP_ITEM_GREATPEASANT_STPLATE_05");
 	Wld_InsertItem(ItWr_StonePlateCommon_Addon,"FP_ITEM_GREATPEASANT_STPLATE_07");
@@ -3267,10 +3253,14 @@ func void STARTUP_NewWorld_Part_TrollArea_01()
 	Wld_InsertNpc(Minecrawler,"FP_ROAM_NW_TROLLAREA_RUINS_CAVE_23");
 	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_NW_TROLLAREA_RUINS_CAVE_20");
 	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_NW_TROLLAREA_RUINS_CAVE_26");
-	Wld_InsertNpc(Shattered_Golem,"FP_SHATTERED_GOLEM_01");
-	Wld_InsertNpc(Shattered_Golem,"FP_SHATTERED_GOLEM_02");
-	Wld_InsertNpc(Shattered_Golem,"FP_SHATTERED_GOLEM_03");
-	Wld_InsertNpc(Shattered_Golem,"FP_SHATTERED_GOLEM_04");
+	Wld_InsertNpc(StoneGolem_Dead1,"FP_SHATTERED_GOLEM_01");
+	B_KillNpc(StoneGolem_Dead1);
+	Wld_InsertNpc(StoneGolem_Dead2,"FP_SHATTERED_GOLEM_02");
+	B_KillNpc(StoneGolem_Dead2);
+	Wld_InsertNpc(StoneGolem_Dead3,"FP_SHATTERED_GOLEM_03");
+	B_KillNpc(StoneGolem_Dead3);
+	Wld_InsertNpc(StoneGolem_Dead4,"FP_SHATTERED_GOLEM_04");
+	B_KillNpc(StoneGolem_Dead4);
 	Wld_InsertNpc(KDW_1400_Addon_Saturas_NW,"MAYA");
 	Wld_InsertNpc(KDW_1401_Addon_Cronos_NW,"MAYA");
 	Wld_InsertNpc(KDW_1402_Addon_Nefarius_NW,"MAYA");
@@ -3394,7 +3384,7 @@ func void STARTUP_NewWorld()
 	STARTUP_NewWorld_Part_Pass_To_OW_01();
 	Kapitel = 1;
 	PlayVideo("INTRO.BIK");
-	PlayVideo("Addon_Title.BIK");
+//	PlayVideo("Addon_Title.BIK");
 //	InitHeroHitchance();
 };
 

@@ -34,7 +34,6 @@ instance DIA_Garvell_PICKPOCKET(C_Info)
 
 func int DIA_Garvell_PICKPOCKET_Condition()
 {
-//	return C_StealItems(10,Hlp_GetInstanceID(ItSe_GoldPocket25),1);
 	if(Npc_HasItems(self,ItSe_GoldPocket25))
 	{
 		return C_StealItem(10);
@@ -51,7 +50,6 @@ func void DIA_Garvell_PICKPOCKET_Info()
 
 func void DIA_Garvell_PICKPOCKET_DoIt()
 {
-//	B_StealItems(10,Hlp_GetInstanceID(ItSe_GoldPocket25),1);
 	B_StealItem(10,Hlp_GetInstanceID(ItSe_GoldPocket25));
 	Info_ClearChoices(DIA_Garvell_PICKPOCKET);
 };
@@ -305,8 +303,18 @@ func void DIA_Garvell_MISSION_Info()
 	B_LogEntry(TOPIC_Garvell,"Гарвелл хочет получить информацию об орках и о цели прибытия паладинов.");
 };
 
-func void B_GarvellGivePlayerXP()
+func void B_GarvellInfoCheck()
 {
+	Tell_Garvell += 1;
+	if(Tell_Garvell >= 3)
+	{
+		AI_Output(self,other,"DIA_Garvell_Success_04_00");	//Спасибо за информацию. Судя по всему, у нас сколько угодно времени на постройку судна.
+		MIS_Garvell_Infos = LOG_SUCCESS;
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Garvell_Weiter_04_00");	//Хорошо. Если еще что-нибудь выяснишь, дай мне знать.
+	};
 	if(EnterOW_Kapitel2 == FALSE)
 	{
 		B_GivePlayerXP(100);
@@ -324,19 +332,6 @@ func void B_GarvellGivePlayerXP()
 		B_GivePlayerXP(25);
 	};
 };
-
-func void B_GarvellWeiter()
-{
-	AI_Output(self,other,"DIA_Garvell_Weiter_04_00");	//Хорошо. Если еще что-нибудь выяснишь, дай мне знать.
-};
-
-func void B_GarvellSuccess()
-{
-	AI_Output(self,other,"DIA_Garvell_Success_04_00");	//Спасибо за информацию. Судя по всему, у нас сколько угодно времени на постройку судна.
-	MIS_Garvell_Infos = LOG_SUCCESS;
-	B_CheckLog();
-};
-
 
 instance DIA_Garvell_Orks(C_Info)
 {
@@ -363,16 +358,7 @@ func void DIA_Garvell_Orks_Info()
 	AI_Output(self,other,"DIA_Garvell_Orks_04_01");	//Выкладывай.
 	AI_Output(other,self,"DIA_Garvell_Orks_15_02");	//Они застряли в Долине Рудников, и, похоже, они собираются остаться там.
 	AI_Output(other,self,"DIA_Garvell_Orks_15_03");	//Чтобы здесь было безопасно, паладины охраняют Проход.
-	Tell_Garvell += 1;
-	B_GarvellGivePlayerXP();
-	if(Tell_Garvell >= 3)
-	{
-		B_GarvellSuccess();
-	}
-	else
-	{
-		B_GarvellWeiter();
-	};
+	B_GarvellInfoCheck();
 };
 
 
@@ -401,16 +387,7 @@ func void DIA_Garvell_Paladine_Info()
 	AI_Output(self,other,"DIA_Garvell_Paladine_04_01");	//Правда? Скажи мне!
 	AI_Output(other,self,"DIA_Garvell_Paladine_15_02");	//Паладины здесь, чтобы добывать магическую руду в Долине Рудников, а не потому, что они ожидают нападения орков на город.
 	AI_Output(other,self,"DIA_Garvell_Paladine_15_03");	//Как только они добудут руду, они вернутся на материк.
-	Tell_Garvell += 1;
-	B_GarvellGivePlayerXP();
-	if(Tell_Garvell >= 3)
-	{
-		B_GarvellSuccess();
-	}
-	else
-	{
-		B_GarvellWeiter();
-	};
+	B_GarvellInfoCheck();
 };
 
 
@@ -445,16 +422,7 @@ func void DIA_Garvell_City_Info()
 	{
 		AI_Output(other,self,"DIA_Garvell_City_15_02");	//Не волнуйся насчет него. Городская стража позаботится о нем.
 	};
-	Tell_Garvell += 1;
-	B_GarvellGivePlayerXP();
-	if(Tell_Garvell >= 3)
-	{
-		B_GarvellSuccess();
-	}
-	else
-	{
-		B_GarvellWeiter();
-	};
+	B_GarvellInfoCheck();
 };
 
 

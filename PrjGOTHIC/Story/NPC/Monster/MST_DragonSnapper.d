@@ -42,12 +42,6 @@ instance DragonSnapper(Mst_Default_DragonSnapper)
 	Npc_SetToFistMode(self);
 };
 
-instance DragonSnapper_NC_Cave(Mst_Default_DragonSnapper)
-{
-	B_SetVisuals_DragonSnapper();
-	Npc_SetToFistMode(self);
-};
-
 instance Gaans_Snapper(Mst_Default_DragonSnapper)
 {
 	name[0] = "‘ыркающий драконий снеппер";

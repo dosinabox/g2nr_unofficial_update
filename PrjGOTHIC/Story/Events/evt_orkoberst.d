@@ -5,7 +5,7 @@ func void evt_orkoberst()
 {
 	if(EVT_ORKOBERST_OneTime == FALSE)
 	{
-		OrkElite_AntiPaladinOrkOberst_DI.aivar[AIV_EnemyOverride] = FALSE;
+		AntiPaladin_DI.aivar[AIV_EnemyOverride] = FALSE;
 		OrcElite_DIOberst1_Rest.aivar[AIV_EnemyOverride] = FALSE;
 		OrcElite_DIOberst2_Rest.aivar[AIV_EnemyOverride] = FALSE;
 		OrcElite_DIOberst3_Rest.aivar[AIV_EnemyOverride] = FALSE;

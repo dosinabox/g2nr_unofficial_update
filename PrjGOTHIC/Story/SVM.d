@@ -3114,8 +3114,8 @@ instance SVM_18(C_SVM)
 
 instance SVM_19(C_SVM)
 {
-	DieEnemy = "SVM_19_DieEnemy";	//(шипит) Вот он!
-	RunCoward = "SVM_19_RunCoward";	//(шипит) Мы до тебя доберемся!
+	DieEnemy = "SVM_19_DieEnemy";	//Вот он!
+	RunCoward = "SVM_19_RunCoward";	//Мы до тебя доберемся!
 	Dead = "SVM_19_Dead";	//Аааааа!
 	Aargh_1 = "SVM_19_Aargh_1";	//Аааааа!
 	Aargh_2 = "SVM_19_Aargh_2";	//Аааааа!

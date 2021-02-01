@@ -17,10 +17,6 @@ func int DIA_Agon_EXIT_Condition()
 
 func void DIA_Agon_EXIT_Info()
 {
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
 	AI_StopProcessInfos(self);
 };
 
@@ -38,7 +34,7 @@ instance DIA_Agon_Hello(C_Info)
 
 func int DIA_Agon_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_SCHNITZELJAGD != LOG_Running) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_Schnitzeljagd != LOG_Running) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -63,41 +59,19 @@ instance DIA_Agon_Wurst(C_Info)
 
 func int DIA_Agon_Wurst_Condition()
 {
-	if((MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
+	if(C_CanFeedNOV(self))
 	{
-		if(Kapitel == 1)
-		{
-			return TRUE;
-		}
-		else if(GuildlessMode == TRUE)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
 func void DIA_Agon_Wurst_Info()
 {
-	var string NovizeText;
-	var string NovizeLeft;
 	AI_Output(other,self,"DIA_Agon_Wurst_15_00");	//Вот, у меня есть баранья колбаса для тебя.
 	AI_Output(self,other,"DIA_Agon_Wurst_07_01");	//Овечья колбаса, овечий сыр... овечье молоко... меня уже тошнит от одного их вида.
 	AI_Output(other,self,"DIA_Agon_Wurst_15_02");	//Так ты хочешь колбасу или нет?
 	AI_Output(self,other,"DIA_Agon_Wurst_07_03");	//Ладно, давай ее сюда!
-	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
-	Wurst_Gegeben += 1;
-//	CreateInvItems(self,ItFo_Schafswurst,1);
-	B_UseItem(self,ItFo_Schafswurst);
-	if(Wurst_Gegeben >= 13)
-	{
-		AI_PrintScreen(PRINT_AllNovizen,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	}
-	else
-	{
-		NovizeLeft = IntToString(13 - Wurst_Gegeben);
-		NovizeText = ConcatStrings(PRINT_NovizenLeft,NovizeLeft);
-		AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	};
+	B_FeedNOV(self);
 };
 
 
@@ -114,7 +88,7 @@ instance DIA_Agon_New(C_Info)
 
 func int DIA_Agon_New_Condition()
 {
-	if((MIS_SCHNITZELJAGD == FALSE) && (other.guild == GIL_NOV))
+	if((MIS_Schnitzeljagd == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -141,7 +115,7 @@ instance DIA_Agon_YouAndBabo(C_Info)
 
 func int DIA_Agon_YouAndBabo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Opolos_Monastery) && (MIS_SCHNITZELJAGD == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Opolos_Monastery) && (MIS_Schnitzeljagd == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -195,7 +169,7 @@ instance DIA_Agon_GetHerb(C_Info)
 
 func int DIA_Agon_GetHerb_Condition()
 {
-	if(MIS_SCHNITZELJAGD == FALSE)
+	if(MIS_Schnitzeljagd == FALSE)
 	{
 		if(Npc_GetDistToWP(self,"NW_MONASTERY_HERB_05") > 600)
 		{
@@ -213,7 +187,7 @@ func void DIA_Agon_GetHerb_Info()
 {
 	if(Npc_GetDistToWP(self,"NW_MONASTERY_HERB_05") > 600)
 	{
-		AI_Output(other,self,"DIA_Addon_Nefarius_Neues_15_00");	//Чем вы здесь занимаетесь?
+		DIA_Common_WhatAreYouGuysDoingHere();
 	}
 	else
 	{
@@ -236,7 +210,7 @@ instance DIA_Agon_GolemDead(C_Info)
 
 func int DIA_Agon_GolemDead_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsDead(Magic_Golem))
+	if((MIS_Schnitzeljagd == LOG_Running) && Npc_IsDead(Magic_Golem))
 	{
 		return TRUE;
 	};
@@ -312,7 +286,7 @@ instance DIA_Agon_GolemLives(C_Info)
 
 func int DIA_Agon_GolemLives_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_Running) && !Npc_IsDead(Magic_Golem))
+	if((MIS_Schnitzeljagd == LOG_Running) && !Npc_IsDead(Magic_Golem))
 	{
 		return TRUE;
 	};

@@ -119,7 +119,7 @@ func void DIA_Neoras_Rezept_Info()
 	DIA_Common_AboutThatRecipe();
 	if(B_GiveInvItems(other,self,ItWr_ManaRezept,1))
 	{
-		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//я нашел его.
+		DIA_Common_IFoundHim();
 		AI_Output(self,other,"DIA_Neoras_Rezept_01_02");	//’орошо. я бо€лс€, что он потер€н дл€ мен€ навсегда.
 		AI_Output(self,other,"DIA_Neoras_Rezept_01_03");	//¬от, возьми в знак моей благодарности это магическое зелье.
 		MIS_NeorasRezept = LOG_SUCCESS;

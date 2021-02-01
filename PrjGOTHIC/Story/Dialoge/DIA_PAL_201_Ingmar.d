@@ -58,7 +58,6 @@ func void DIA_Ingmar_Hallo_Info()
 		AI_Output(self,other,"DIA_Ingmar_Hallo_06_02");	//Обстановка в Долине Рудников очень тревожит меня. Но мы разработаем план, чтобы преодолеть все опасности и вытащить наших парней оттуда вместе с рудой.
 		DIA_Ingmar_Hallo_permanent = TRUE;
 	};
-	B_PlayerEnteredUpperCity();
 };
 
 
@@ -266,7 +265,7 @@ instance DIA_Ingmar_HAUPTQUARTIER(C_Info)
 
 func int DIA_Ingmar_HAUPTQUARTIER_Condition()
 {
-	if(Npc_IsDead(OrkElite_AntiPaladinOrkOberst) && Npc_KnowsInfo(other,DIA_Ingmar_ORKELITE))
+	if(Npc_IsDead(AntiPaladin_NW) && Npc_KnowsInfo(other,DIA_Ingmar_ORKELITE))
 	{
 		return TRUE;
 	};

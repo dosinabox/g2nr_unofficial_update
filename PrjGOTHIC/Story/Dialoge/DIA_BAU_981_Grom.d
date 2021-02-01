@@ -319,5 +319,3 @@ func void DIA_Grom_PICKPOCKET_BACK()
 	Info_ClearChoices(DIA_Grom_PICKPOCKET);
 };
 
-
-

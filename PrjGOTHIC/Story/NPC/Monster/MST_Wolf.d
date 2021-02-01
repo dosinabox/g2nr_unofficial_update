@@ -77,10 +77,9 @@ instance YWolf(Mst_Default_Wolf)
 	attribute[ATR_HITPOINTS] = 20;
 	protection[PROT_BLUNT] = 10;
 	protection[PROT_EDGE] = 10;
-	protection[PROT_POINT] = 0;
 	protection[PROT_FIRE] = 10;	//15;
 	protection[PROT_FLY] = 10;
-//	fight_tactic = FAI_MONSTER_COWARD;
+	fight_tactic = FAI_MONSTER_COWARD;
 	B_SetVisuals_Wolf();
 	Npc_SetToFistMode(self);
 	CreateInvItems(self,ItFoMuttonRaw,1);
@@ -96,7 +95,6 @@ instance PEPES_YWolf1(Mst_Default_Wolf)
 	attribute[ATR_HITPOINTS] = 30;
 	protection[PROT_BLUNT] = 15;
 	protection[PROT_EDGE] = 15;
-	protection[PROT_POINT] = 0;
 	protection[PROT_FIRE] = 15;
 	protection[PROT_FLY] = 15;
 	B_SetVisuals_Wolf();
@@ -114,7 +112,6 @@ instance PEPES_YWolf2(Mst_Default_Wolf)
 	attribute[ATR_HITPOINTS] = 30;
 	protection[PROT_BLUNT] = 15;
 	protection[PROT_EDGE] = 15;
-	protection[PROT_POINT] = 0;
 	protection[PROT_FIRE] = 15;
 	protection[PROT_FLY] = 15;
 	B_SetVisuals_Wolf();
@@ -132,7 +129,6 @@ instance PEPES_YWolf3(Mst_Default_Wolf)
 	attribute[ATR_HITPOINTS] = 30;
 	protection[PROT_BLUNT] = 15;
 	protection[PROT_EDGE] = 15;
-	protection[PROT_POINT] = 0;
 	protection[PROT_FIRE] = 15;
 	protection[PROT_FLY] = 15;
 	B_SetVisuals_Wolf();
@@ -150,7 +146,6 @@ instance PEPES_YWolf4(Mst_Default_Wolf)
 	attribute[ATR_HITPOINTS] = 30;
 	protection[PROT_BLUNT] = 15;
 	protection[PROT_EDGE] = 15;
-	protection[PROT_POINT] = 0;
 	protection[PROT_FIRE] = 15;
 	protection[PROT_FLY] = 15;
 	B_SetVisuals_Wolf();

@@ -29,7 +29,7 @@ func int Spell_Logic_Sleep(var int manaInvested)
 			B_ClearPerceptions(other);
 			AI_StartState(other,ZS_MagicSleep,0,"");
 		}
-		else if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Richter)) || (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Larius)) || (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius)))
+		else if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Richter)) || C_IsNpc(other,VLK_400_Larius) || (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius)))
 		{
 			Npc_ClearAIQueue(other);
 			B_ClearPerceptions(other);

@@ -48,9 +48,10 @@ func void DIA_Meldor_Hallo_Info()
 	AI_Output(self,other,"DIA_Meldor_Hallo_07_00");	//Что тебе нужно?
 	AI_Output(other,self,"DIA_Meldor_Hallo_15_01");	//Я просто любуюсь окрестностями...
 	AI_Output(self,other,"DIA_Meldor_Hallo_07_02");	//А куда именно ты направляешься?
-	B_PlayerEnteredCity();
 };
 
+
+var int MeldorToldAboutLehmar;
 
 instance DIA_Meldor_Interessantes(C_Info)
 {
@@ -72,40 +73,19 @@ func void DIA_Meldor_Interessantes_Info()
 {
 	AI_Output(other,self,"DIA_Meldor_Interessantes_15_00");	//Что здесь интересного?
 	AI_Output(self,other,"DIA_Meldor_Interessantes_07_01");	//Здесь есть бордель и кабак. Хозяина кабака зовут Кардиф. Если тебе нужна информация, я советую поговорить именно с ним.
-	AI_Output(self,other,"DIA_Meldor_Interessantes_07_02");	//Тебе, кстати, не нужны деньги?
 	if(!Npc_KnowsInfo(other,DIA_Kardif_Hallo))
 	{
 		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTrader,"Кардиф, владелец кабака в гавани, приторговывает информацией.");
 	};
-};
-
-
-instance DIA_Meldor_Lehmar(C_Info)
-{
-	npc = VLK_415_Meldor;
-	nr = 3;
-	condition = DIA_Meldor_Lehmar_Condition;
-	information = DIA_Meldor_Lehmar_Info;
-	permanent = FALSE;
-	description = "А ты даешь их?";
-};
-
-
-func int DIA_Meldor_Lehmar_Condition()
-{
-	if(Npc_KnowsInfo(other,DIA_Meldor_Interessantes))
+	if(!Npc_IsDead(Lehmar) && (Lehmar_GeldGeliehen == 0))
 	{
-		return TRUE;
+		AI_Output(self,other,"DIA_Meldor_Interessantes_07_02");	//Тебе, кстати, не нужны деньги?
+		AI_Output(other,self,"DIA_Meldor_Lehmar_15_00");	//А ты даешь их?
+		AI_Output(self,other,"DIA_Meldor_Lehmar_07_01");	//(скучая) Нет. Но прямо через улицу находится дом Лемара, ростовщика.
+		AI_Output(self,other,"DIA_Meldor_Lehmar_07_02");	//Я уверен, что он сможет одолжить тебе несколько золотых.
+		MeldorToldAboutLehmar = TRUE;
 	};
-};
-
-func void DIA_Meldor_Lehmar_Info()
-{
-	AI_Output(other,self,"DIA_Meldor_Lehmar_15_00");	//А ты даешь их?
-	AI_Output(self,other,"DIA_Meldor_Lehmar_07_01");	//(скучая) Нет. Но прямо через улицу находится дом Лемара, ростовщика.
-	AI_Output(self,other,"DIA_Meldor_Lehmar_07_02");	//Я уверен, что он сможет одолжить тебе несколько золотых.
-//	Npc_ExchangeRoutine(self,"START");
 };
 
 
@@ -122,7 +102,7 @@ instance DIA_Meldor_Arbeitest(C_Info)
 
 func int DIA_Meldor_Arbeitest_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Meldor_Lehmar))
+	if((MeldorToldAboutLehmar == TRUE) && !Npc_IsDead(Lehmar) && !Npc_KnowsInfo(other,DIA_Meldor_VonLehmar))
 	{
 		return TRUE;
 	};
@@ -148,7 +128,7 @@ instance DIA_Meldor_InsOV(C_Info)
 
 func int DIA_Meldor_InsOV_Condition()
 {
-	if(other.guild == GIL_NONE)
+	if(Npc_KnowsInfo(other,DIA_Meldor_Hallo) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -212,10 +192,11 @@ func int DIA_Meldor_Smoke_Condition()
 func void DIA_Meldor_Smoke_Info()
 {
 	AI_Output(other,self,"DIA_Meldor_Smoke_15_00");	//Ты не знаешь, где мне купить травки?
-	if(C_RedlightUndercoverCheckFailed(other))
+	if(Meldor_Busted == TRUE)
 	{
 		AI_Output(self,other,"DIA_Meldor_Smoke_07_01");	//(оценивающе) Нет, понятия не имею.
-		Undercover_Failed = TRUE;
+		Undercover_Failed_Meldor = TRUE;
+		B_CheckRedLightUndercover();
 	}
 	else
 	{
@@ -300,7 +281,6 @@ func void DIA_Meldor_VonLehmar_Info()
 {
 	AI_Output(self,other,"DIA_Meldor_VonLehmar_07_00");	//Эй, подожди...
 	AI_Output(self,other,"DIA_Meldor_VonLehmar_07_01");	//У меня есть для тебя сообщение от Лемара...
-	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };

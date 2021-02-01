@@ -3,14 +3,7 @@ func void ZS_Stand_Guarding()
 {
 	Perception_Set_Normal();
 	B_ResetAll(self);
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(PAL_261_Gerold)) && (MIS_GeroldGiveFood == LOG_Running))
-	{
-		AI_SetWalkMode(self,NPC_RUN);
-	}
-	else
-	{
-		AI_SetWalkMode(self,NPC_WALK);
-	};
+	AI_SetWalkMode(self,NPC_WALK);
 	if(Npc_GetDistToWP(self,self.wp) > TA_DIST_SELFWP_MAX)
 	{
 		AI_GotoWP(self,self.wp);

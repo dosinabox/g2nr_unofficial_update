@@ -84,7 +84,7 @@ func void DIA_Rupert_Hello_Info()
 	};
 	AI_Output(self,other,"DIA_Rupert_Hello_03_01");	//Ты, должно быть, голоден и хочешь пить. Может, тебя заинтересуют мои товары?
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTrader,"Руперт - торговец едой у восточных ворот.");
+	B_LogEntry(TOPIC_CityTrader,"Руперт - торговец едой у южных ворот.");
 };
 
 
@@ -127,7 +127,7 @@ instance DIA_Rupert_HelpMeIntoOV(C_Info)
 
 func int DIA_Rupert_HelpMeIntoOV_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rupert_ZuPal) && (hero.guild == GIL_NONE) && (Player_IsApprentice == APP_NONE))
+	if(Npc_KnowsInfo(other,DIA_Rupert_ZuPal) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV)) && (Player_IsApprentice == APP_NONE))
 	{
 		return TRUE;
 	};
@@ -159,7 +159,7 @@ instance DIA_Rupert_WoMatteo(C_Info)
 
 func int DIA_Rupert_WoMatteo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rupert_HelpMeIntoOV) && (hero.guild == GIL_NONE) && (Knows_Matteo == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Rupert_HelpMeIntoOV) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV)) && (Knows_Matteo == FALSE))
 	{
 		return TRUE;
 	};
@@ -191,7 +191,7 @@ instance DIA_Rupert_WerEinfluss(C_Info)
 
 func int DIA_Rupert_WerEinfluss_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rupert_HelpMeIntoOV) && (hero.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Rupert_HelpMeIntoOV) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV)))
 	{
 		return TRUE;
 	};
@@ -200,10 +200,13 @@ func int DIA_Rupert_WerEinfluss_Condition()
 func void DIA_Rupert_WerEinfluss_Info()
 {
 	AI_Output(other,self,"DIA_Rupert_WerEinfluss_15_00");	//А что насчет других влиятельных горожан?
-	AI_Output(self,other,"DIA_Rupert_WerEinfluss_03_01");	//Торговцы и мастера ремесленники, здесь, на главной улице - самые влиятельные фигуры в городе.
-	AI_Output(self,other,"DIA_Rupert_WerEinfluss_03_02");	//Ты должен попытаться стать учеником одного из них, как я.
+	AI_Output(self,other,"DIA_Rupert_WerEinfluss_03_01");	//Торговцы и мастера-ремесленники, здесь, на главной улице - самые влиятельные фигуры в городе.
+	if(Player_IsApprentice == APP_NONE)
+	{
+		AI_Output(self,other,"DIA_Rupert_WerEinfluss_03_02");	//Ты должен попытаться стать учеником одного из них, как я.
+		B_LogEntry(TOPIC_OV,"Я должен попытаться стать учеником одного из мастеров.");
+	};
 	AI_Output(self,other,"DIA_Rupert_WerEinfluss_03_03");	//С тех пор, как я работаю на Маттео, люди в городе относятся ко мне с уважением!
-	B_LogEntry(TOPIC_OV,"Я должен попытаться стать учеником одного из мастеров.");
 };
 
 
@@ -220,7 +223,7 @@ instance DIA_Rupert_Work(C_Info)
 
 func int DIA_Rupert_Work_Condition()
 {
-	if(hero.guild == GIL_NONE)
+	if(((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV)) && (Player_IsApprentice == APP_NONE))
 	{
 		return TRUE;
 	};
@@ -233,6 +236,8 @@ func void DIA_Rupert_Work_Info()
 	AI_Output(self,other,"DIA_Rupert_Work_03_02");	//Говорят, он платит довольно хорошо.
 };
 
+
+var int RupertMentionedOnar;
 
 instance DIA_Rupert_YourOffer(C_Info)
 {
@@ -257,6 +262,7 @@ func void DIA_Rupert_YourOffer_Info()
 	if((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Rupert_YourOffer_03_02");	//Этот чертов лендлорд не поставляет больше продукты, а того, что мы получаем с маленьких ферм, недостаточно для удовлетворения потребностей города.
+		RupertMentionedOnar = TRUE;
 	};
 };
 
@@ -310,7 +316,7 @@ instance DIA_Rupert_Bauernaufstand(C_Info)
 
 func int DIA_Rupert_Bauernaufstand_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rupert_YourOffer) && (hero.guild == GIL_NONE))
+	if((RupertMentionedOnar == TRUE) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -349,7 +355,7 @@ func int DIA_Rupert_Mercs_Condition()
 func void DIA_Rupert_Mercs_Info()
 {
 	AI_Output(other,self,"DIA_Rupert_Mercs_15_00");	//Что ты знаешь о наемниках Онара?
-	AI_Output(self,other,"DIA_Rupert_Mercs_03_01");	//Я слышал, что большинство из них бывшие каторжники из колонии.
+	AI_Output(self,other,"DIA_Rupert_Mercs_03_01");	//Я слышал, что большинство из них - бывшие каторжники из колонии.
 	AI_Output(self,other,"DIA_Rupert_Mercs_03_02");	//А их главарь, по слухам, был большой шишкой при короле - генералом или что-то в этом роде, которого осудили за предательство!
 	AI_Output(self,other,"DIA_Rupert_Mercs_03_03");	//Ужасные времена!
 };

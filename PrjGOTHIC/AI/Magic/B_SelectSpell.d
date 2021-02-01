@@ -53,7 +53,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			CreateInvItems(slf,ItRu_Skull,1);
 		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(DMT_1299_OberDementor_DI))
+		if(C_IsNpc(slf,DMT_1299_OberDementor_DI))
 		{
 			B_ReadySpell(slf,SPL_Skull,SPL_Cost_Skull);
 			return TRUE;

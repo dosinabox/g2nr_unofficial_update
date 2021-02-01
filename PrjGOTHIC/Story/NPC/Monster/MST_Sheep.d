@@ -226,3 +226,31 @@ instance OC_Sheep3(Mst_Default_Sheep)
 	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
+instance Alwin_Sheep1(Mst_Default_Sheep)
+{
+	B_SetVisuals_Sheep();
+	Npc_SetToFistMode(self);
+	start_aistate = ZS_MM_AllScheduler;
+	aivar[AIV_MM_RoamStart] = OnlyRoutine;
+	CreateInvItems(self,ItFoMuttonRaw,1);
+};
+
+instance Alwin_Sheep2(Mst_Default_Sheep)
+{
+	B_SetVisuals_Sheep();
+	Npc_SetToFistMode(self);
+	start_aistate = ZS_MM_AllScheduler;
+	aivar[AIV_MM_RoamStart] = OnlyRoutine;
+	CreateInvItems(self,ItFoMuttonRaw,1);
+};
+
+instance Alwin_Sheep3(Mst_Default_Sheep)
+{
+	name[0] = NAME_Hammel;
+	B_SetVisuals_Hammel();
+	Npc_SetToFistMode(self);
+	start_aistate = ZS_MM_AllScheduler;
+	aivar[AIV_MM_RoamStart] = OnlyRoutine;
+	CreateInvItems(self,ItFoMuttonRaw,1);
+};
+

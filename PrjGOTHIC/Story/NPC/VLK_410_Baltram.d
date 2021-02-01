@@ -8,6 +8,7 @@ instance VLK_410_Baltram(Npc_Default)
 	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_NPCIsRanger] = TRUE;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_ShortSword2);

@@ -5,10 +5,8 @@ var int History_3_permanent;
 
 func void Use_BookstandHistory1_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -37,10 +35,8 @@ func void Use_BookstandHistory1_S1()
 
 func void Use_BookstandHistory2_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -67,10 +63,8 @@ func void Use_BookstandHistory2_S1()
 
 func void Use_BookstandHistory3_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -97,10 +91,8 @@ func void Use_BookstandHistory3_S1()
 
 func void Use_BookstandKaserne_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -137,8 +129,7 @@ func void Use_BookstandKaserne_S1()
 			Doc_PrintLines(nDocID,0,"южные ворота (ночь)");
 		};
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
-		Doc_PrintLines(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"");
+		Doc_PrintLine(nDocID,1,"");
 		Doc_Show(nDocID);
 	};
 };

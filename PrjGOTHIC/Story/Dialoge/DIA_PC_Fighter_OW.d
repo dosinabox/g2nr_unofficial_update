@@ -52,14 +52,12 @@ func void DIA_GornOW_Hello_Info()
 //		if(!Npc_KnowsInfo(other,DIA_MiltenOW_Preis) && !Npc_KnowsInfo(other,DIA_DiegoOw_Gorn)) 
 		if(Npc_KnowsInfo(other,DIA_MiltenOW_Preis) && Npc_KnowsInfo(other,DIA_DiegoOw_Gorn) && (GornsTreasure == TRUE) && (Npc_HasItems(other,ItMi_GornsTreasure_MIS) || (Gorns_Beutel == TRUE)))
 		{
-//			CreateInvItem(hero,ITAR_SLD_H);
-			CreateInvItem(hero,ITAR_SLD_S);
-			AI_PrintScreen("Старые доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+//			B_GiveArmor(ITAR_SLD_H);
+			B_GiveArmor(ITAR_SLD_S);
 		}
 		else
 		{
-			CreateInvItem(hero,ITAR_SLD_M2);
-			AI_PrintScreen("Средние доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+			B_GiveArmor(ITAR_SLD_M);
 			Lee_SldMGiven = TRUE;
 		};
 		AI_Output(other,self,"DIA_GornOW_Add_15_03");	//Спасибо! Увидимся у Милтена.
@@ -99,9 +97,12 @@ func int DIA_GornOW_MetMilten_Condition()
 func void DIA_GornOW_MetMilten_Info()
 {
 	AI_Output(self,other,"DIA_GornOW_MetMilten_12_00");	//Послушай - мне здесь уже порядком надоело. Я думаю, нужно выбираться из этой долины.
-	AI_Output(self,other,"DIA_GornOW_MetMilten_12_01");	//Как ты прошел через Проход?
-	AI_Output(other,self,"DIA_GornOW_MetMilten_15_02");	//Там есть путь через заброшенную шахту.
-	AI_Output(self,other,"DIA_GornOW_MetMilten_12_03");	//Хорошо. Я выжду нужный момент и уберусь отсюда.
+	if(PlayerPassedAbandonedMine == TRUE)
+	{
+		AI_Output(self,other,"DIA_GornOW_MetMilten_12_01");	//Как ты прошел через Проход?
+		AI_Output(other,self,"DIA_GornOW_MetMilten_15_02");	//Там есть путь через заброшенную шахту.
+		AI_Output(self,other,"DIA_GornOW_MetMilten_12_03");	//Хорошо. Я выжду нужный момент и уберусь отсюда.
+	};
 	if(other.guild != GIL_SLD)
 	{
 		AI_Output(other,self,"DIA_GornOW_MetMilten_15_04");	//А куда ты пойдешь?

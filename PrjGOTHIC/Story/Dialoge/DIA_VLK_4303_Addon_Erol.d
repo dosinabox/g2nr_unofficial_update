@@ -422,8 +422,8 @@ func void DIA_Addon_Erol_PreTeach_Info()
 	AI_Output(other,self,"DIA_Addon_Erol_PreTeach_15_02");	//Ты можешь научить меня такому удару?
 	AI_Output(self,other,"DIA_Addon_Erol_PreTeach_10_03");	//Конечно.
 	Erol_Addon_TeachPlayer = TRUE;
-	Log_CreateTopic(Topic_OutTeacher,LOG_NOTE);
-	B_LogEntry(Topic_OutTeacher,LogText_Addon_Erol_Teach);
+	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_OutTeacher,LogText_Addon_Erol_Teach);
 };
 
 
@@ -525,8 +525,8 @@ func void DIA_Addon_Erol_Trade_Info()
 	if(Erol_IsAtHome == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Erol_Trade_10_00");	//Впрочем, выбора у меня нет.
-		Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
-		B_LogEntry(Topic_OutTrader,LogText_Addon_ErolTrade);
+		Log_CreateTopic(TOPIC_OutTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_OutTrader,LogText_Addon_ErolTrade);
 		Npc_ExchangeRoutine(self,"HOME");
 		Erol_IsAtHome = TRUE;
 	};

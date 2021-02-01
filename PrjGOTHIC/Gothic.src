@@ -20,6 +20,8 @@ Story\Story_Globals.d
 Story\Npc_Globals.d
 Story\SVM.d
 Story\Text.d
+AI\Human\C_Human\C_IsNpc.d
+AI\Human\C_Human\C_NpcIsHero.d
 Story\B_Story\C_NpcIsInQuarter.d
 Story\B_Story\C_DiegoTooFar.d
 Story\B_Story\B_ArmorChecks.d
@@ -30,9 +32,11 @@ Story\NPC_Scripts\B_SetFightSkills.d
 Story\B_Story\B_RaiseAttribute.d
 Story\B_Story\B_LogEntry.d
 Story\B_Story\B_CheckDynamicText.d
+Story\B_Story\B_UpdateKilledStats.d
 Story\B_Story\B_GetDayPlus.d
 Story\B_Story\B_BlessAttribute.d
 Story\B_Story\B_StartOtherRoutine.d
+Story\B_Story\B_CancelBengarMilitiaProblem.d
 Story\B_Content\B_RangerMeeting.d
 Story\B_Content\B_ScObsession.d
 Story\B_Content\B_Extro_AVI.d
@@ -46,6 +50,7 @@ Story\B_Content\C_ArtefaktValues.d
 Story\Dialog_Mobsis\B_PlayerMap.d
 AI\Human\B_Human\B_Say.d
 AI\Human\B_Human\B_Say_Overlay.d
+AI\AI_Intern\Player_Plunder_Is_Empty.d
 Story\Log_Entries\B_CloseTopic.d
 Story\Log_Entries\B_CloseTopics_Hoshi.d
 Story\Log_Entries\B_CloseTopics_Mattes.d
@@ -69,6 +74,7 @@ Story\B_Content\B_PlayerFindItem.d
 Story\B_Story\b_meleeweaponchange.d
 Story\B_Story\B_NpcSetDrunk.d
 Story\B_Story\B_InspectMeleeWeapon.d
+Story\B_Story\B_CheckRedLightUndercover.d
 Story\B_Story\B_UnEquipHeroItem.d
 Story\B_Story\B_UnEquipIllegalMagicItems.d
 Story\B_Story\B_Check_Talents.d
@@ -140,6 +146,8 @@ AI\Human\C_Human\C_IsUsedMobMyPossession.d
 AI\Human\C_Human\C_IsTakenItemMyPossession.d
 AI\Human\C_Human\C_NpcIsDown.d
 AI\Human\C_Human\C_NpcIsToughGuy.d
+AI\Human\C_Human\C_NpcIsAfraidOfOrcs.d
+AI\Human\C_Human\C_NpcIsSummon.d
 AI\Human\C_Human\C_PlayerIsFakePirate.d
 AI\Human\C_Human\C_PlayerHasFakeGuild.d
 AI\Human\C_Human\C_BanditHelpsStoryBandit.d
@@ -148,6 +156,7 @@ AI\Human\B_Human\B_LookAtNpc.d
 AI\Human\B_Human\B_ResetAll.d
 Story\B_Story\B_UseItem.d
 Story\B_AssignAmbientInfos\B_Common.d
+Story\B_AssignAmbientInfos\B_Union_GiveItem.d
 Story\B_AssignAmbientInfos\B_LastWarningVatras.d
 Story\B_AssignAmbientInfos\B_Addon_Myxir_TeachRequest.d
 Story\B_AssignAmbientInfos\B_Addon_Riordian_TeachWisp.d
@@ -162,15 +171,15 @@ AI\Human\B_Human\B_Say_GuildGreetings.d
 AI\Human\B_Human\B_Say_Smalltalk.d
 AI\Human\B_Human\B_Say_FleeReason.d
 AI\Human\B_Human\B_SetAttitude.d
-AI\AI_Intern\Player_Plunder_Is_Empty.d
 AI\Human\C_Human\C_NpcIsBotheredByWeapon.d
+AI\Human\C_Human\C_NpcIsBestFriend.d
 AI\Human\C_Human\C_WantToFlee.d
 AI\Human\C_Human\C_WantToRansack.d
 AI\Human\C_Human\C_NpcHasAttackReasonToKill.d
 AI\Human\C_Human\C_NpcBelongsTo.d
 AI\Human\C_Human\C_DropUnconscious.d
 AI\Human\C_Human\C_NpcRansacksAlways.d
-AI\Human\C_Human\C_NpcIsHero.d
+AI\Human\C_Human\C_NpcIsDemon.d
 AI\Human\C_Human\C_NpcIsUndead.d
 AI\Human\C_Human\C_NpcIsEvil.d
 AI\Human\C_Human\C_NpcIsGolem.d
@@ -217,6 +226,8 @@ AI\Human\B_Human\B_MoveMob.d
 AI\Human\B_Human\B_RemoveWeapon.d
 Story\B_Content\B_GiveThiefXP.d
 Story\B_Story\B_GiveInvItems.d
+Story\B_Story\B_FeedNOV.d
+Story\B_Story\B_SetGuild.d
 Story\B_Content\B_Beklauen.d
 Story\B_AssignAmbientInfos\B_Announce_Herold.d
 Story\B_AssignAmbientInfos\B_Preach_Vatras.d
@@ -409,6 +420,7 @@ Story\Dialog_Mobsis\BookstandDementor.d
 Story\Dialog_Mobsis\BookstandHistory.d
 Story\Dialog_Mobsis\BookstandKDW_Addon.d
 Story\Dialog_Mobsis\BookstandKloster.d
+Story\Dialog_Mobsis\BookstandOWXardas.d
 Story\Dialog_Mobsis\Bookstand_Addon.d
 Story\Dialog_Mobsis\Bookstand_OldCamp.d
 Story\Dialog_Mobsis\B_OnHotkey.d
@@ -731,7 +743,7 @@ Story\NPC\NONE_101_Mario.d
 Story\NPC\NONE_101_Mario_DI.d
 Story\NPC\NONE_ADDON_111_Quarhodron.d
 Story\NPC\NONE_ADDON_112_Rhademes.d
-Story\NPC\NONE_Addon_114_Lance_ADW.d
+Story\NPC\NONE_ADDON_114_Lance_ADW.d
 Story\NPC\NONE_ADDON_115_Eremit.d
 Story\NPC\NOV_600_Pedro.d
 Story\NPC\NOV_600_Pedro_DI.d
@@ -1344,6 +1356,7 @@ Story\Dialoge\DIA_BDT_1096_Addon_Lennar.d
 Story\Dialoge\DIA_BDT_1097_Addon_Fisk.d
 Story\Dialoge\DIA_BDT_1098_Addon_Snaf.d
 Story\Dialoge\DIA_BDT_1099_Addon_Huno.d
+Story\Dialoge\DIA_BDT_10314_Addon_RangerBandit_M.d
 Story\Dialoge\DIA_KDW_14000_Addon_Saturas_ADW.d
 Story\Dialoge\DIA_KDW_1400_Addon_Saturas_NW.d
 Story\Dialoge\DIA_KDW_14010_Addon_Cronos_ADW.d
@@ -1694,8 +1707,12 @@ AI\Monster\ZS_Monster\ZS_MM_ThreatenEnemy.d
 Story\B_Story\b_magecavetrigger.d
 Story\Events\B_Addon_Portal_Activated.d
 Story\Events\B_Function_Touch_And_Get_Killed.d
+Story\Events\NewWorld_FishFood_Trigger.d
 Story\Events\B_GiveStuntBonus.d
 Story\Events\B_RavensEscapeIntoTempelAVI.d
+Story\Events\B_PassedAbandonedMine.d
+Story\Events\B_HotelDoor.d
+Story\Events\B_GolemChest.d
 Story\Events\B_Spawn_Skeleton.d
 Story\Events\B_TeleportOutOfOwDemonTower.d
 _misk_\player_victim_is_immortal.d
@@ -1719,7 +1736,7 @@ Story\Events\evt_ornament_switch_bigfarm_01_func.d
 Story\Events\evt_scopenslastdoor_func.d
 Story\Events\evt_sc_enter_library.d
 Story\Events\evt_troll_grave_01.d
-Story\Events\EVT_Truhe_OW_01_S1.d
+Story\Events\evt_truhe_ow_01.d
 Story\Events\evt_undeaddragondead_endsituation.d
 Story\Events\evt_undeaddragon_trap_01_func.d
 Story\Events\evt_vinoskellerei_func_s1.d
@@ -1728,6 +1745,7 @@ Story\Events\SC_ComesInto_CanyonLibrary_Func.d
 Story\Events\Valley_Showcase_TriggerScript_Func.d
 AI\Test_Scripts\CharacterHelper.d
 AI\Test_Scripts\PC_ItemFeller.d
+AI\Test_Scripts\ScriptPatch.d
 AI\Test_Scripts\StoryHelper.d
 AI\Test_Scripts\Testmodelle_Bendlin.d
 AI\Test_Scripts\Testmodelle_Kalveram.d

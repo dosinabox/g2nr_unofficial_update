@@ -14,7 +14,7 @@ prototype Mst_Default_Wisp(C_Npc)
 	protection[PROT_BLUNT] = 30;
 	protection[PROT_EDGE] = 30;
 	protection[PROT_POINT] = 30;
-	protection[PROT_FIRE] = 16;
+	protection[PROT_FIRE] = 0;
 	protection[PROT_FLY] = 0;
 	protection[PROT_MAGIC] = 0;
 //	damagetype = DAM_EDGE;
@@ -58,34 +58,4 @@ instance Wisp_Detector(Mst_Default_Wisp)
 	aivar[AIV_NoFightParker] = TRUE;
 	start_aistate = ZS_MM_Rtn_Summoned;
 };
-
-/*instance Wisp_Detector2(Mst_Default_Wisp)
-{
-	level = 0;
-	npcType = npctype_main;
-	B_SetVisuals_Wisp();
-	Mdl_SetModelScale(self,1.1,1.1,1.1);
-	damage[DAM_INDEX_MAGIC] = 100;
-	senses_range = 3000;
-	aivar[AIV_PARTYMEMBER] = TRUE;
-	B_SetAttitude(self,ATT_FRIENDLY);
-	Npc_SetToFistMode(self);
-	aivar[AIV_NoFightParker] = TRUE;
-	start_aistate = ZS_MM_Rtn_Summoned;
-};
-
-instance Wisp_Detector3(Mst_Default_Wisp)
-{
-	level = 0;
-	npcType = npctype_main;
-	B_SetVisuals_Wisp();
-	Mdl_SetModelScale(self,1.2,1.2,1.2);
-	damage[DAM_INDEX_MAGIC] = 150;
-	senses_range = 3000;
-	aivar[AIV_PARTYMEMBER] = TRUE;
-	B_SetAttitude(self,ATT_FRIENDLY);
-	Npc_SetToFistMode(self);
-	aivar[AIV_NoFightParker] = TRUE;
-	start_aistate = ZS_MM_Rtn_Summoned;
-};*/
 

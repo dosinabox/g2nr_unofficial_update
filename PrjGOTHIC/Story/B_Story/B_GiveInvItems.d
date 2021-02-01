@@ -67,3 +67,10 @@ func int B_GiveInvItems(var C_Npc giver,var C_Npc taker,var int itemInstance,var
 	return TRUE;
 };
 
+func void B_GiveArmor(var int itemInstance)
+{
+	CreateInvItem(hero,itemInstance);
+	Npc_GetInvItem(hero,itemInstance);
+	AI_PrintScreen(ConcatStrings(item.description,PRINT_ItemTaken),-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+};
+

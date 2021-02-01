@@ -111,13 +111,10 @@ func int B_GoldMob_Bestimmung()
 
 func void Goldhacken_S1()
 {
-	var C_Npc her;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_GOLDHACKEN;
-		//AI_ProcessInfos(her);
 		AI_ProcessInfos(self);
 	};
 };

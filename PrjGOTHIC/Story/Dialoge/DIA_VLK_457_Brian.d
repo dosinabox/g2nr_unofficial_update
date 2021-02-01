@@ -376,7 +376,7 @@ func int DIA_Brian_LIGHTHOUSEFREE_Condition()
 
 func void DIA_Brian_LIGHTHOUSEFREE_Info()
 {
-	AI_Output(other,self,"DIA_Brian_LIGHTHOUSEFREE_15_00");	//И, что скажешь?
+	DIA_Common_SoWhatYouSay();
 	AI_Output(self,other,"DIA_Brian_LIGHTHOUSEFREE_04_01");	//Боже, какой бардак. Джек не узнает это место, когда я все здесь устрою как надо.
 };
 

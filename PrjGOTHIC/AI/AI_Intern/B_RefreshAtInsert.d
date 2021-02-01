@@ -45,7 +45,7 @@ func int C_NpcCanEquipWeapons(var C_Npc slf)
 	{
 		return FALSE;
 	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Canthar)) && (Canthar_Ausgeliefert == TRUE) && (Andre_CantharFalle == FALSE))
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Canthar)) && (Canthar_Ausgeliefert == TRUE) && (Andre_ToldInfoFromCanthar == FALSE))
 	{
 		return FALSE;
 	};
@@ -117,7 +117,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 			CreateInvItem(slf,ItMw_1H_Mace_L_03);
 		};
 	}
-	else if((slf.guild == GIL_VLK) && C_NpcCanEquipWeapons(slf))
+	else if(slf.guild == GIL_VLK)
 	{
 		if(rnd == 0)
 		{
@@ -136,13 +136,11 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 
 func void B_RefreshAtInsert()
 {
-	var C_Npc her;
 	if((self.attribute[ATR_HITPOINTS] <= 0) || ((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Pardos)) && (Pardos_Geheilt == FALSE)))
 	{
 		return;
 	};
-	her = Hlp_GetNpc(PC_Hero);
-	if((self.guild < GIL_SEPERATOR_HUM) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(her)))
+	if((self.guild < GIL_SEPERATOR_HUM) && !C_NpcIsHero(self))
 	{
 		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 		if(!Npc_HasEquippedWeapon(self))

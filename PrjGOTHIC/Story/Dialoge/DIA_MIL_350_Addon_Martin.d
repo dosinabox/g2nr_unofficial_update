@@ -137,7 +137,7 @@ func void DIA_Addon_Martin_WasMachstDu_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Martin_WasMachstDu_15_00");	//А что это за место?
 	AI_Output(self,other,"DIA_Addon_Martin_WasMachstDu_07_01");	//Здесь хранятся запасы королевской гвардии паладинов.
-	if((other.guild == GIL_NONE) && (SC_IsRanger == FALSE))
+	if((VisibleGuild(other) == GIL_NONE) && (SC_IsRanger == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_WasMachstDu_07_02");	//Я - интендант, и я отвечаю за то, чтобы не пропало ничего из находящегося здесь. А тебе здесь не место.
 		AI_Output(self,other,"DIA_Addon_Martin_WasMachstDu_07_03");	//Так что не трогай здесь ничего, иначе останешься без рук.
@@ -310,7 +310,7 @@ func void DIA_Addon_Martin_Auftrag_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Auftrag_07_03");	//Возвращайся вечером и заступай на стражу. Я в это время буду в таверне.
 	};
-	B_StartOtherRoutine(MIL_321_Rangar,"PrePalCampKlau");
+	B_StartOtherRoutine(Rangar,"PrePalCampKlau");
 	Info_ClearChoices(DIA_Addon_Martin_Auftrag);
 //	Info_AddChoice(DIA_Addon_Martin_Auftrag,"(еще)",DIA_Addon_Martin_Auftrag_weiter);
 	Info_AddChoice(DIA_Addon_Martin_Auftrag,Dialog_Ende,DIA_Addon_Martin_Auftrag_weiter);
@@ -323,7 +323,7 @@ func void DIA_Addon_Martin_Auftrag_weiter()
 	MIS_Addon_Martin_GetRangar_Day = Wld_GetDay();
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
-	B_StartOtherRoutine(MIL_321_Rangar,"PalCampKlau");
+	B_StartOtherRoutine(Rangar,"PalCampKlau");
 };
 
 
@@ -414,6 +414,23 @@ func void DIA_Addon_Martin_AboutBandits_Info()
 };
 
 
+func int C_SCHasAnyFernandoEvidence()
+{
+	if(Npc_HasItems(hero,ItMw_Addon_BanditTrader))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ItRi_Addon_BanditTrader))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 instance DIA_Addon_Martin_Fernando(C_Info)
 {
 	npc = MIL_350_Addon_Martin;
@@ -439,10 +456,10 @@ var int Martin_IrrlichtHint;
 func void DIA_Addon_Martin_Fernando_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_00");	//Насчет торговца оружием...
-	if(Npc_HasItems(other,ItMw_Addon_BanditTrader) || Npc_HasItems(other,ItRi_Addon_BanditTrader) || (Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE)) || (Fernando_HatsZugegeben == TRUE))
+	if(C_SCHasAnyFernandoEvidence() || (Fernando_HatsZugegeben == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_01");	//Что тебе удалось узнать?
-		if(Npc_HasItems(other,ItMw_Addon_BanditTrader) || Npc_HasItems(other,ItRi_Addon_BanditTrader) || (Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE)))
+		if(C_SCHasAnyFernandoEvidence())
 		{
 			if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
 			{
@@ -488,7 +505,6 @@ func void DIA_Addon_Martin_Fernando_Info()
 			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_11");	//Ватрас будет доволен, когда узнает эту новость.
 			B_NpcSetJailed(Fernando);
 			B_StartOtherRoutine(Fernando,"PRISON");
-			CriminalsJailed += 1;
 			Fernando_ImKnast = TRUE;
 			MIS_Martin_FindTheBanditTrader = LOG_SUCCESS;
 			B_LogEntry(TOPIC_Addon_Bandittrader,"Мартин позаботится о том, чтобы Фернандо был наказан. Я должен сообщить об этом Ватрасу.");

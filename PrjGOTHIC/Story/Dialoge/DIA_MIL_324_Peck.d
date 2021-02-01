@@ -248,26 +248,6 @@ func void DIA_Peck_WEAPON2_Info()
 
 func int C_PeckCanSellArmor()
 {
-	/*if(Kapitel >= 2)
-	{
-		return TRUE;
-	}
-	else if((MIS_Andre_WAREHOUSE == LOG_SUCCESS) && (MIS_Andre_REDLIGHT == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Andre_LOBART_SUCCESS))
-	{
-		return TRUE;
-	}
-	else if(CriminalsJailed >= 3)
-	{
-		return TRUE;
-	}
-	else if(MIS_Andre_GuildOfThieves == LOG_SUCCESS)
-	{
-		return TRUE;
-	}
-	else if(Andre_FoundThieves_Reported == TRUE)
-	{
-		return TRUE;
-	};*/
 	if(MIS_Addon_Andre_MissingPeople == LOG_SUCCESS)
 	{
 		return TRUE;
@@ -354,7 +334,7 @@ func int DIA_Peck_ARMOR_Condition()
 
 func void DIA_Peck_ARMOR_Info()
 {
-	AI_Output(other,self,"DIA_Lee_ArmorM_15_00");	//А как насчет доспехов получше?
+	DIA_Common_WhatAboutBetterArmor();
 	if(MIS_Andre_Peck == LOG_Running)
 	{
 		AI_Output(self,other,"DIA_Peck_WEAPON_12_01");	//Сходи сначала к Андрэ и доложи ему.
@@ -403,12 +383,11 @@ func void DIA_Peck_ARMOR_Back()
 
 func void DIA_Peck_ARMOR_BUY()
 {
-	AI_Output(other,self,"DIA_Engor_RSkaufen_15_00");	//Дай мне доспехи.
+	DIA_Common_GiveMeThatArmor();
 	if(B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_MIL_M_Dynamic))
 	{
 		AI_Output(self,other,"DIA_Peck_Add_12_05");	//Вот, возьми.
-		CreateInvItem(hero,ITAR_MIL_M);
-		AI_PrintScreen("Тяжелые доспехи ополчения получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveArmor(ITAR_MIL_M);
 		DIA_MIL_ARMOR_M_perm = TRUE;
 	}
 	else

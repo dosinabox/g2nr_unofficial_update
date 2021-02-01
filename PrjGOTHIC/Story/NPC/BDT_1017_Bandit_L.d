@@ -18,3 +18,4 @@ instance BDT_1017_Bandit_L(Npc_Default)
 	B_SetFightSkills(self,30);
 	start_aistate = ZS_Bandit;
 };
+

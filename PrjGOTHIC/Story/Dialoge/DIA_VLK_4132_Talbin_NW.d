@@ -139,11 +139,11 @@ func int DIA_Talbin_TEACHHUNTING_NW_Condition()
 
 func void DIA_Talbin_TEACHHUNTING_NW_Info()
 {
-	AI_Output(other,self,"DIA_Talbin_TEACHHUNTING_15_00");	//Чему ты можешь обучить меня?
+	DIA_Common_WhatCanYouTeachMe();
 	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] == FALSE))
 	{
 		AI_Output(self,other,"DIA_Talbin_TEACHHUNTING_07_01");	//А что ты хочешь знать?
-		if(!Npc_KnowsInfo(other,DIA_Talbin_AskTeacher) && (Talbin_TeachAnimalTrophy == FALSE))
+		if(Talbin_TeachAnimalTrophy == FALSE)
 		{
 			Talbin_TeachAnimalTrophy = TRUE;
 			Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
@@ -178,5 +178,4 @@ func void DIA_Talbin_TEACHHUNTING_NW_BACK()
 {
 	Info_ClearChoices(DIA_Talbin_TEACHHUNTING_NW);
 };
-
 

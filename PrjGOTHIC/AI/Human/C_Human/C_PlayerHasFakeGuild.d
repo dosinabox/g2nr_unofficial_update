@@ -103,6 +103,10 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 			{
 				return FALSE;
 			};
+			if(Hlp_IsItem(itm,ITAR_DJG_Crawler) || Hlp_IsItem(itm,ITAR_OHT) || Hlp_IsItem(itm,ITAR_DHT) || Hlp_IsItem(itm,ITAR_RANGER_Addon))
+			{
+				return FALSE;
+			};
 		}
 		else if(oth.guild == GIL_MIL)
 		{
@@ -121,17 +125,21 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 			{
 				return FALSE;
 			};
+			if(Hlp_IsItem(itm,ITAR_PAL_S))
+			{
+				return FALSE;
+			};
 		}
 		else if(oth.guild == GIL_SLD)
 		{
-			if(Hlp_IsItem(itm,ITAR_SLD_L) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_M2) || Hlp_IsItem(itm,ITAR_SLD_S) || Hlp_IsItem(itm,ITAR_SLD_H))
+			if(Hlp_IsItem(itm,ITAR_SLD_L) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_S) || Hlp_IsItem(itm,ITAR_SLD_H))
 			{
 				return FALSE;
 			};
 		}
 		else if(oth.guild == GIL_DJG)
 		{
-			if(Hlp_IsItem(itm,ITAR_SLD_L) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_M2) || Hlp_IsItem(itm,ITAR_SLD_S) || Hlp_IsItem(itm,ITAR_SLD_H) || Hlp_IsItem(itm,ITAR_DJG_L) || Hlp_IsItem(itm,ITAR_DJG_M) || Hlp_IsItem(itm,ITAR_DJG_H) || Hlp_IsItem(itm,ITAR_DJG_Crawler))
+			if(Hlp_IsItem(itm,ITAR_SLD_L) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_S) || Hlp_IsItem(itm,ITAR_SLD_H) || Hlp_IsItem(itm,ITAR_DJG_L) || Hlp_IsItem(itm,ITAR_DJG_M) || Hlp_IsItem(itm,ITAR_DJG_H) || Hlp_IsItem(itm,ITAR_DJG_Crawler))
 			{
 				return FALSE;
 			};

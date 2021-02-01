@@ -316,14 +316,14 @@ func void DIA_Garond_NeedProof_Info()
 		Jergan.aivar[AIV_IgnoresFakeGuild] = FALSE;
 		Jergan.aivar[AIV_IgnoresArmor] = FALSE;
 	};
-	B_LogEntry(Topic_MISOLDWORLD,"Прежде чем командующий Гаронд отправит меня назад, он хочет, чтобы я разыскал три группы старателей и сообщил ему, сколько руды удалось им добыть.");
+	B_LogEntries(Topic_MISOLDWORLD,"Прежде чем командующий Гаронд отправит меня назад, он хочет, чтобы я разыскал три группы старателей и сообщил ему, сколько руды удалось им добыть.");
 	Log_CreateTopic(TOPIC_ScoutMine,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_ScoutMine,LOG_Running);
-	B_LogEntry(TOPIC_ScoutMine,"Командующий Гаронд дал мне поручение. Он отправил три группы старателей добывать магическую руду. И до сих пор они не вернулись.");
-	B_LogEntry(TOPIC_ScoutMine,"Я должен найти эти три группы старателей и выяснить, сколько руды удалось им добыть.");
+	B_LogNextEntry(TOPIC_ScoutMine,"Командующий Гаронд дал мне поручение. Он отправил три группы старателей добывать магическую руду. И до сих пор они не вернулись.");
+	Log_AddEntry(TOPIC_ScoutMine,"Я должен найти эти три группы старателей и выяснить, сколько руды удалось им добыть.");
 	if(Npc_KnowsInfo(other,DIA_DiegoOw_Beweise))
 	{
-		B_LogEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
+		Log_AddEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
 	};
 };
 
@@ -518,7 +518,7 @@ func void DIA_Garond_Silvestro_Info()
 {
 	AI_Output(other,self,"DIA_Garond_Silvestro_15_00");	//Насчет шахты Сильвестро...
 	AI_Output(self,other,"DIA_Garond_Silvestro_10_01");	//Ты видел его? Ты говорил с ним?
-	if(!Npc_HasItems(PAL_Leiche1,ItWr_Silvestro_MIS) || Npc_KnowsInfo(other,DIA_DiegoOw_Mine))
+	if(!Npc_HasItems(Silvestro,ItWr_Silvestro_MIS) || Npc_KnowsInfo(other,DIA_DiegoOw_Mine))
 	{
 		AI_Output(other,self,"DIA_Garond_Silvestro_15_02");	//Все, кто находился в шахте, мертвы. Растерзаны краулерами.
 		AI_Output(self,other,"DIA_Garond_Silvestro_10_05");	//Черт! Это были хорошие люди - да проявит Иннос милосердие к их душам.
@@ -828,7 +828,7 @@ func int DIA_Garond_BACKINKAP4_Condition()
 
 func void DIA_Garond_BACKINKAP4_Info()
 {
-	AI_Output(other,self,"DIA_Garond_BACKINKAP4_15_00");	//Я вернулся.
+	DIA_Common_ImBack();
 	AI_Output(self,other,"DIA_Garond_BACKINKAP4_10_01");	//Я сам это вижу. А что насчет подкрепления?
 	AI_Output(other,self,"DIA_Garond_BACKINKAP4_15_02");	//Лорд Хаген прибудет, как только со всем разберется. Столько всего произошло.
 	AI_Output(self,other,"DIA_Garond_BACKINKAP4_10_03");	//Меня это не волнует. Мне нужны войска. Орки все прибывают и прибывают. Нам не продержаться долго.
@@ -974,7 +974,7 @@ func void DIA_Garond_OricExperte_Info()
 	{
 		AI_Output(self,other,"DIA_Garond_DragonPlettBericht_10_08");	//Мне нужно заниматься другими делами. Пусть мой помощник-стратег Орик расскажет тебе об этом.
 		B_LogEntry(TOPIC_DRACHENJAGD,"Гаронда по долгу службы должно интересовать, как обстоят дела с драконами, хотя мне кажется, ему на это наплевать.");
-		B_LogEntry(TOPIC_DRACHENJAGD,"У офицера Орика, отвечающего за стратегию, возможно, есть полезная информация для меня.");
+		Log_AddEntry(TOPIC_DRACHENJAGD,"У офицера Орика, отвечающего за стратегию, возможно, есть полезная информация для меня.");
 	}
 	else
 	{

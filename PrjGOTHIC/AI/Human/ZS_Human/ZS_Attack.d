@@ -173,9 +173,12 @@ func int ZS_Attack_Loop()
 	else
 	{
 		Npc_ClearAIQueue(self);
-		if(Hlp_IsValidNpc(other) && Npc_IsPlayer(other) && C_NpcIsDown(other))
+		if(Hlp_IsValidNpc(other))
 		{
-			Npc_SetTempAttitude(self,Npc_GetPermAttitude(self,hero));
+			if(Npc_IsPlayer(other) && C_NpcIsDown(other))
+			{
+				Npc_SetTempAttitude(self,Npc_GetPermAttitude(self,hero));
+			};
 		};
 		if(self.aivar[AIV_ATTACKREASON] != AR_KILL)
 		{

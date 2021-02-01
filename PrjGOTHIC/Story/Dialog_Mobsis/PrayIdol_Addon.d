@@ -82,14 +82,11 @@ func void B_GetBeliarsGold(var int Kohle)
 
 func void PrayIdol_S1()
 {
-	var C_Npc her;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		Wld_PlayEffect("DEMENTOR_FX",hero,hero,0,0,0,FALSE);
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_PRAYIDOL;
-		//AI_ProcessInfos(her);
 		AI_ProcessInfos(self);
 	};
 };

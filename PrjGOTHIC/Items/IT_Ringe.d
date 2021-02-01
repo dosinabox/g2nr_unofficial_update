@@ -623,7 +623,7 @@ func void UnEquip_ItRi_Hp_01()
 };
 
 
-instance ItRi_Hp_02(C_Item)
+instance ItRi_HP_02(C_Item)
 {
 	name = NAME_Ring;
 	mainflag = ITEM_KAT_MAGIC;

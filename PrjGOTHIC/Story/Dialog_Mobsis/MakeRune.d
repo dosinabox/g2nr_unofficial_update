@@ -16,13 +16,10 @@ func int makerune_cond()
 
 func void makerune_s1()
 {
-	var C_Npc her;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_MakeRune;
-		//AI_ProcessInfos(her);
 		AI_ProcessInfos(self);
 	};
 };

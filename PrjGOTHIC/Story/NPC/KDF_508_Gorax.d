@@ -7,8 +7,9 @@ instance KDF_508_Gorax(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,4);
-	self.attribute[ATR_STRENGTH] = 40;
+	self.attribute[ATR_STRENGTH] = Condition_Stab04;
 	self.attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMW_Addon_Stab04);
@@ -25,7 +26,8 @@ instance KDF_508_Gorax(Npc_Default)
 func void Rtn_Start_508()
 {
 	TA_Stand_Guarding(8,0,23,0,"NW_MONASTERY_WINEMAKER_01");
-	TA_Sleep(23,0,8,0,"NW_MONASTERY_MAGE02_BED_01");
+	TA_Sit_Throne(23,0,0,0,"NW_MONASTERY_ARMCHAIR_03");
+	TA_Sleep(0,0,8,0,"NW_MONASTERY_MAGE02_BED_01");
 };
 
 func void Rtn_Wait_508()

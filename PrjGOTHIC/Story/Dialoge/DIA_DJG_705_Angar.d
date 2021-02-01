@@ -235,7 +235,7 @@ func void DIA_Angar_FOUNDAMULETT_nun()
 	AI_Output(self,other,"DIA_Angar_FOUNDAMULETT_nun_04_01");	//Выбираться из этой проклятой долины.
 	AI_Output(self,other,"DIA_Angar_FOUNDAMULETT_nun_04_02");	//Может быть, мы еще встретимся. Прощай.
 	AI_StopProcessInfos(self);
-	if((Npc_GetDistToWP(self,"OC_TO_MAGE") < 1000) == FALSE)
+	if(Npc_GetDistToWP(self,"OC_TO_MAGE") >= 1000)
 	{
 		Npc_ExchangeRoutine(self,"LeavingOW");
 	};

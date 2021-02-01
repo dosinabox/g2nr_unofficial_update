@@ -340,15 +340,15 @@ func void DIA_Raoul_TROLL_Info()
 {
 	AI_Output(self,other,"DIA_Raoul_TROLL_01_00");	//(цинично) Только посмотрите на это!
 	AI_Output(other,self,"DIA_Raoul_TROLL_15_01");	//Чего тебе нужно?
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if((VisibleGuild(other) == GIL_MIL) || (VisibleGuild(other) == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Raoul_TROLL_01_02");	//Ты присоединился к городским нищим? Похоже на то.
 	};
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if((VisibleGuild(other) == GIL_SLD) || (VisibleGuild(other) == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Raoul_TROLL_01_03");	//Не думай, что я стану уважать тебя только за то, что ты стал одним из нас.
 	};
-	if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
+	if((VisibleGuild(other) == GIL_NOV) || (VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_KDW))
 	{
 		AI_Output(self,other,"DIA_Raoul_TROLL_01_04");	//Разыгрываешь из себя великого мага, ха?
 	};

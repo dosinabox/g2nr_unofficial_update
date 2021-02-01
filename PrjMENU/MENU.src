@@ -10,7 +10,6 @@ Menu\Menu_Opt_Graphics.d
 Menu\Menu_Opt_Video.d
 Menu\Menu_Opt_Audio.d
 Menu\Menu_Opt_Union.d
-Menu\Menu_Opt_Gamepad.d
 Menu\Menu_Opt_Controls.d
 Menu\Menu_Misk.d
 Menu\Menu_Savegame.d

@@ -102,7 +102,7 @@ instance DIA_Serpentes_YOURSTORY(C_Info)
 
 func int DIA_Serpentes_YOURSTORY_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Ulthar_TEST) && (other.guild == GIL_NOV) && !Npc_KnowsInfo(hero,DIA_Pyrokar_MAGICAN) && (MIS_GOLEM != LOG_SUCCESS))
+	if(Npc_KnowsInfo(hero,DIA_Ulthar_TEST) && (other.guild == GIL_NOV) && !Npc_KnowsInfo(hero,DIA_Pyrokar_MAGICAN) && (MIS_Golem != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -146,8 +146,8 @@ func void DIA_Serpentes_TEST_Info()
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_04");	//А теперь слушай: В Месте Камней найди того, кто никогда не был рожден - найди того, кто когда-то был вызван.
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_05");	//Одолей того, кого нельзя одолеть - померься силами с живой скалой, сразись с бессмертным камнем - и уничтожь его.
 	Wld_InsertNpc(MagicGolem,"FP_MAGICGOLEM");
-	Magic_Golem = Hlp_GetNpc(MagicGolem);
-	MIS_GOLEM = LOG_Running;
+	B_InitNpcGlobals();
+	MIS_Golem = LOG_Running;
 	Log_CreateTopic(TOPIC_Golem,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Golem,LOG_Running);
 	B_LogEntry(TOPIC_Golem,"Серпентес дал мне испытание. Он хочет, чтобы я нашел 'того, кто когда-то был вызван', живую скалу, и победил его.");
@@ -167,7 +167,7 @@ instance DIA_Serpentes_NOIDEA(C_Info)
 
 func int DIA_Serpentes_NOIDEA_Condition()
 {
-	if((MIS_GOLEM == LOG_Running) && (hero.guild == GIL_NOV))
+	if((MIS_Golem == LOG_Running) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -195,7 +195,7 @@ instance DIA_Serpentes_NOHELP(C_Info)
 
 func int DIA_Serpentes_NOHELP_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Serpentes_NOIDEA) && !Npc_IsDead(Magic_Golem) && (MIS_GOLEM == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && (!Npc_KnowsInfo(other,DIA_Ulthar_TEST) || Npc_KnowsInfo(other,DIA_Serpentes_YOURSTORY)))
+	if(Npc_KnowsInfo(hero,DIA_Serpentes_NOIDEA) && !Npc_IsDead(Magic_Golem) && (MIS_Golem == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && (!Npc_KnowsInfo(other,DIA_Ulthar_TEST) || Npc_KnowsInfo(other,DIA_Serpentes_YOURSTORY)))
 	{
 		return TRUE;
 	};
@@ -221,7 +221,7 @@ instance DIA_Serpentes_SUCCESS(C_Info)
 
 func int DIA_Serpentes_SUCCESS_Condition()
 {
-	if(Npc_IsDead(MagicGolem) && (MIS_GOLEM == LOG_Running) && (hero.guild == GIL_NOV))
+	if(Npc_IsDead(Magic_Golem) && (MIS_Golem == LOG_Running) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -250,7 +250,7 @@ func void DIA_Serpentes_SUCCESS_Info()
 		Wld_InsertItem(Holy_Hammer_MIS,"FP_HAMMER");
 		GarwigThiefOneTime = FALSE;
 	};
-	MIS_GOLEM = LOG_SUCCESS;
+	MIS_Golem = LOG_SUCCESS;
 	B_GivePlayerXP(XP_GOLEM);
 };
 
@@ -361,7 +361,7 @@ func void DIA_Serpentes_MinenAnteile_nein()
 func void DIA_Serpentes_MinenAnteile_nein_sld()
 {
 	AI_Output(other,self,"DIA_Vatras_Mission_No_15_00");	//Найди себе другого мальчика на побегушках, старик!
-	B_Say(self,other,"$YesGoOutOfHere");
+	B_Say(self,other,"$YESGOOUTOFHERE");
 	AI_StopProcessInfos(self);
 };
 

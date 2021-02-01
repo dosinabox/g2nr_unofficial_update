@@ -22,6 +22,7 @@ func void Use_XardasNotfallBeutel()
 {
 	B_PlayerFindItem(ItWr_XardasErmahnungFuerIdioten_MIS,1);
 	B_PlayerFindItem(ItMi_InnosEye_Discharged_Mis,1);
+	XardasDIBagOpened = TRUE;
 };
 
 
@@ -45,7 +46,6 @@ func void Use_XardasErmahnungFuerIdioten()
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
-	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
@@ -238,7 +238,6 @@ func void Use_RezeptFuerMegaTrank()
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
-	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
@@ -288,7 +287,6 @@ func void Use_Diary_BlackNovice()
 	Doc_SetPage(nDocID,0,"Book_Wood_L.tga",0);
 	Doc_SetPage(nDocID,1,"Book_Wood_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
-	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Я жду посвящения вот уже 36 дней. Я начинаю сомневаться, что меня вообще посвятят. Но я сделал все, что они просили. Я прислуживал им как мальчик на побегушках.");
@@ -343,7 +341,7 @@ func void Use_ZugBruecke()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Меня не интересует, сможете вы пересечь мост с другой стороны или нет. Если вам интересно мое мнение - вы все заслуживаете гореть в аду.");
 	Doc_PrintLines(nDocID,0,"Я собираюсь оставить мост поднятым до тех пор, пока я нахожусь здесь. И если я замечу, что кто-то пытается нажать переключатели при помощи лука и стрелы, я лично вздерну этого идиота на ближайшем дереве!");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"                      Архол");
@@ -357,7 +355,6 @@ instance ItMi_PowerEye(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 0;
-//	visual = "ItMi_DarkPearl.3ds";
 	visual = "ItMi_StoneOfKnowlegde_MIS.3ds";
 	material = MAT_METAL;
 	wear = WEAR_EFFECT;

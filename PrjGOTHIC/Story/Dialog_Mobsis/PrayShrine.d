@@ -12,7 +12,7 @@ var int Shrine_DEX_Bonus;
 var int Shrine_MANA_Bonus;
 var int SpecialBless;
 var int ShrineIsObsessed;
-var int shrinehealing;
+var int ShrineHealing;
 var int ShrinesHealed;
 var int ShrineIsObsessed_NW_TROLLAREA_PATH_37;
 var int ShrineIsObsessed_NW_FARM1_CONNECT_XARDAS;
@@ -24,60 +24,60 @@ var int ShrineIsObsessed_NW_FARM3_BIGWOOD_02;
 
 func void C_IsShrineObsessed(var C_Npc slf)
 {
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(hero))
+	if(Npc_IsPlayer(slf))
 	{
 		ShrineIsObsessed = TRUE;
-		if((Npc_GetDistToWP(hero,"NW_TROLLAREA_PATH_37") < 2000) && (ShrineIsObsessed_NW_TROLLAREA_PATH_37 == TRUE))
+		if((Npc_GetDistToWP(slf,"NW_TROLLAREA_PATH_37") < 2000) && (ShrineIsObsessed_NW_TROLLAREA_PATH_37 == TRUE))
 		{
-			if(SHRINEHEALING == TRUE)
+			if(ShrineHealing == TRUE)
 			{
 				ShrineIsObsessed_NW_TROLLAREA_PATH_37 = FALSE;
 				ShrineIsObsessed = FALSE;
 			};
 		}
-		else if((Npc_GetDistToWP(hero,"NW_FARM1_CONNECT_XARDAS") < 2000) && (ShrineIsObsessed_NW_FARM1_CONNECT_XARDAS == TRUE))
+		else if((Npc_GetDistToWP(slf,"NW_FARM1_CONNECT_XARDAS") < 2000) && (ShrineIsObsessed_NW_FARM1_CONNECT_XARDAS == TRUE))
 		{
-			if(SHRINEHEALING == TRUE)
+			if(ShrineHealing == TRUE)
 			{
 				ShrineIsObsessed_NW_FARM1_CONNECT_XARDAS = FALSE;
 				ShrineIsObsessed = FALSE;
 			};
 		}
-		else if((Npc_GetDistToWP(hero,"NW_TROLLAREA_PATH_66") < 2000) && (ShrineIsObsessed_NW_TROLLAREA_PATH_66 == TRUE))
+		else if((Npc_GetDistToWP(slf,"NW_TROLLAREA_PATH_66") < 2000) && (ShrineIsObsessed_NW_TROLLAREA_PATH_66 == TRUE))
 		{
-			if(SHRINEHEALING == TRUE)
+			if(ShrineHealing == TRUE)
 			{
 				ShrineIsObsessed_NW_TROLLAREA_PATH_66 = FALSE;
 				ShrineIsObsessed = FALSE;
 			};
 		}
-		else if((Npc_GetDistToWP(hero,"NW_TROLLAREA_PATH_04") < 2000) && (ShrineIsObsessed_NW_TROLLAREA_PATH_04 == TRUE))
+		else if((Npc_GetDistToWP(slf,"NW_TROLLAREA_PATH_04") < 2000) && (ShrineIsObsessed_NW_TROLLAREA_PATH_04 == TRUE))
 		{
-			if(SHRINEHEALING == TRUE)
+			if(ShrineHealing == TRUE)
 			{
 				ShrineIsObsessed_NW_TROLLAREA_PATH_04 = FALSE;
 				ShrineIsObsessed = FALSE;
 			};
 		}
-		else if((Npc_GetDistToWP(hero,"SAGITTA") < 2000) && (ShrineIsObsessed_SAGITTA == TRUE))
+		else if((Npc_GetDistToWP(slf,"SAGITTA") < 2000) && (ShrineIsObsessed_SAGITTA == TRUE))
 		{
-			if(SHRINEHEALING == TRUE)
+			if(ShrineHealing == TRUE)
 			{
 				ShrineIsObsessed_SAGITTA = FALSE;
 				ShrineIsObsessed = FALSE;
 			};
 		}
-		else if((Npc_GetDistToWP(hero,"NW_BIGMILL_MALAKSVERSTECK_02") < 2000) && (ShrineIsObsessed_NW_BIGMILL_MALAKSVERSTECK_02 == TRUE))
+		else if((Npc_GetDistToWP(slf,"NW_BIGMILL_MALAKSVERSTECK_02") < 2000) && (ShrineIsObsessed_NW_BIGMILL_MALAKSVERSTECK_02 == TRUE))
 		{
-			if(SHRINEHEALING == TRUE)
+			if(ShrineHealing == TRUE)
 			{
 				ShrineIsObsessed_NW_BIGMILL_MALAKSVERSTECK_02 = FALSE;
 				ShrineIsObsessed = FALSE;
 			};
 		}
-		else if((Npc_GetDistToWP(hero,"NW_FARM3_BIGWOOD_02") < 2000) && (ShrineIsObsessed_NW_FARM3_BIGWOOD_02 == TRUE))
+		else if((Npc_GetDistToWP(slf,"NW_FARM3_BIGWOOD_02") < 2000) && (ShrineIsObsessed_NW_FARM3_BIGWOOD_02 == TRUE))
 		{
-			if(SHRINEHEALING == TRUE)
+			if(ShrineHealing == TRUE)
 			{
 				ShrineIsObsessed_NW_FARM3_BIGWOOD_02 = FALSE;
 				ShrineIsObsessed = FALSE;
@@ -116,9 +116,9 @@ func void PC_PrayShrine_HEALSHRINE_Info()
 	var string ShrinesLeft;
 	Wld_PlayEffect("spellFX_HealShrine",hero,hero,0,0,0,FALSE);
 	Snd_Play("MFX_Heal_Cast");
-	SHRINEHEALING = TRUE;
+	ShrineHealing = TRUE;
 	C_IsShrineObsessed(self);
-	SHRINEHEALING = FALSE;
+	ShrineHealing = FALSE;
 	ShrinesHealed += 1;
 	if(ShrinesHealed < 7)
 	{
@@ -139,9 +139,7 @@ func void PC_PrayShrine_HEALSHRINE_Info()
 
 func void PrayShrine_S1()
 {
-	var C_Npc her;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		C_IsShrineObsessed(self);
 		if(ShrineIsObsessed == TRUE)
@@ -150,7 +148,6 @@ func void PrayShrine_S1()
 		};
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_PrayShrine;
-		//AI_ProcessInfos(her);
 		AI_ProcessInfos(self);
 	};
 };

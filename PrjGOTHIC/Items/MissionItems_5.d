@@ -28,7 +28,7 @@ func void Use_XardasLetterToOpenBook()
 	Doc_PrintLines(nDocID,0,"Я полагал, что один из драконов в Долине Рудников являлся источником Зла.");
 	Doc_PrintLines(nDocID,0,"Я ошибался.");
 	Doc_PrintLines(nDocID,0,"Если все прошло так, как я предполагаю, ты сейчас должен искать Чертоги Ирдората.");
-	Doc_PrintLines(nDocID,0,"В книге, что ты отдал Пирокару, содержатся все необходимые тебе ключи.");
+	Doc_PrintLines(nDocID,0,"В книге, что ты отдал Пирокару, содержатся все необходимые тебе подсказки.");
 	Doc_PrintLines(nDocID,0,"Я должен был догадаться, почему Ищущие так хотели заполучить ее.");
 	Doc_PrintLines(nDocID,0,"Ты должен вернуть ее себе!");
 	Doc_PrintLines(nDocID,0,"Эту книгу открывают слова 'ХАРАК БЕНДАРО'. Никому не говори об этом!");
@@ -125,16 +125,14 @@ func void Use_HallsofIrdorath_Open()
 	Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
 	Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
-	Doc_SetFont(nDocID,0,FONT_BookHeadline);
-	Doc_PrintLine(nDocID,0,"");
 	Doc_SetFont(nDocID,0,FONT_Book);
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"... и я закрыл вход в библиотеку секретной дверью, чтобы защитить мои записи о храмах Белиара.");
 	Doc_PrintLines(nDocID,0,"Если бы мои братья узнали об этих записях, эти идиоты, вероятно, уничтожили бы их.");
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
-	Doc_SetFont(nDocID,1,FONT_BookHeadline);
-	Doc_PrintLine(nDocID,1,"");
 	Doc_SetFont(nDocID,1,FONT_Book);
+	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"А теперь они знают только то, что эти храмы когда-то существовали.");
 	Doc_PrintLine(nDocID,1,"");
@@ -176,7 +174,6 @@ func void Use_XardasSeamapBook_Mis()
 	Doc_SetPage(nDocID,0,"Book_Wood_L.tga",0);
 	Doc_SetPage(nDocID,1,"Book_Wood_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
-	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLines(nDocID,0,"... Теперь я почти уверен, что здание, о котором идет речь - Чертоги Ирдората. Они находятся на острове, недалеко от гавани Хориниса. Интерес Белиара к этим шахтам вполне очевиден ...");
 	Doc_PrintLine(nDocID,0,"");
@@ -184,7 +181,6 @@ func void Use_XardasSeamapBook_Mis()
 	{
 		Doc_PrintLines(nDocID,0,"... Чем они сильнее, тем, похоже, для него выше их ценность как слуг-нежити. Эти обращенные паладины очень сильны, и с ними очень тяжело справиться. Один из них попал в мои руки. Мне остается только надеяться, что другие не почувствуют его присутствие здесь ...");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
-		Doc_SetFont(nDocID,1,FONT_BookHeadline);
 		Doc_SetFont(nDocID,1,FONT_Book);
 		Doc_PrintLines(nDocID,1,"... Обращенный паладин, похоже, ни на что не реагирует. Я запер его доспехи и остальные его вещи в задней комнате. Дверь в нее можно открыть только изнутри. Я создал руну телепортации, позволяющую переместиться туда. Инструкции по пользованию ей находятся в альманахе, где Избранный сможет найти их ...");
 	};
@@ -192,7 +188,6 @@ func void Use_XardasSeamapBook_Mis()
 	{
 		Doc_PrintLines(nDocID,0,"... В значении этих знамений невозможно ошибиться! Когда Избранный придет, ему понадобится вся помощь, которую мы сможем дать. Белиар уже очень силен. Мне удалось раздобыть несколько ценных артефактов, которые я схороню здесь, на всякий случай.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
-		Doc_SetFont(nDocID,1,FONT_BookHeadline);
 		Doc_SetFont(nDocID,1,FONT_Book);
 		Doc_PrintLines(nDocID,1,"Я полагаю, что Избранный будет выходцем из наших рядов, поэтому я записал в этом альманахе инструкции для него.");
 		Doc_PrintLine(nDocID,1,"");
@@ -202,7 +197,6 @@ func void Use_XardasSeamapBook_Mis()
 	{
 		Doc_PrintLines(nDocID,0,"... И будет война, война за судьбу мира. Похоже, только я один могу интерпретировать эти знамения. Все вокруг меня, похоже, игнорируют их. Избранный придет, и его пришествие возвестит о начале войны. Эта война стара как сам мир, но ее конец, похоже, уже близок.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
-		Doc_SetFont(nDocID,1,FONT_BookHeadline);
 		Doc_SetFont(nDocID,1,FONT_Book);
 		Doc_PrintLines(nDocID,1,"Я же не буду сидеть, сложа руки и наблюдать за тем, как другие берут судьбу мира в свои руки.");
 		Doc_PrintLine(nDocID,1,"");
@@ -236,17 +230,15 @@ func void UseItWr_UseLampIdiot_Mis()
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
-	Doc_SetFont(nDocID,-1,FONT_BookHeadline);
+	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"               Лампа несет свет");
 	Doc_PrintLine(nDocID,0,"               нижним уровням.");
-	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
 

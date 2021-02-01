@@ -99,7 +99,6 @@ instance ItRw_SengrathsArmbrust_MIS(C_Item)
 	munition = ItRw_Bolt;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_MilArmbrust;
-//	visual = "ItRw_Mil_Crossbow.mms";
 	visual = "ItRw_Crossbow_Mission_02.mms";
 	description = name;
 	text[2] = NAME_Damage;
@@ -191,7 +190,7 @@ instance ItPo_DragonEggDrinkNeoras_MIS(C_Item)
 	name = NAME_Trank;
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
-	value = Value_HpElixier;
+	value = 300;
 //	visual = "ItPo_Perm_STR.3ds";
 	visual = "ItPo_Special_01.3ds";
 	material = MAT_GLAS;

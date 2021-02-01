@@ -297,7 +297,7 @@ func void DIA_Addon_Nadja_LuciaInfo_sonst()
 
 func void DIA_Nadja_Poppen_Start1()
 {
-	AI_Output(other,self,"DIA_Addon_Greg_NW_Hallo_ja_15_00");	//Почему бы и нет?
+	DIA_Common_WhyNot();
 	B_Nadja_Poppen_Start();
 	Info_ClearChoices(DIA_Addon_Nadja_LuciaInfo);
 	Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Хорошо...",DIA_Nadja_Poppen_Start);
@@ -316,21 +316,17 @@ func void DIA_Addon_Nadja_LuciaInfo_weiter()
 func void B_Nadja_BUYHERB()
 {
 	AI_Output(other,self,"DIA_Nadja_BUYHERB_15_00");	//Могу я здесь купить травки?
-	if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 300)
+	if(Undercover_Failed_Nadja == TRUE)
 	{
-		if(C_RedlightUndercoverCheckFailed(other))
-		{
-			AI_Output(self,other,"DIA_Nadja_BUYHERB_16_01");	//Откуда мне знать? Да и если бы знала, все равно не сказала бы городскому стражнику.
-			Undercover_Failed = TRUE;
-			Nadja_BuyHerb_Failed = TRUE;
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Nadja_BUYHERB_16_02");	//Заплати несколько золотых, и я скажу, где ее достать.
-			AI_Output(other,self,"DIA_Nadja_BUYHERB_15_03");	//Сколько ты хочешь?
-			AI_Output(self,other,"DIA_Nadja_BUYHERB_16_04");	//50 золотых будет достаточно.
-			Nadja_Money = TRUE;
-		};
+		AI_Output(self,other,"DIA_Nadja_BUYHERB_16_01");	//Откуда мне знать? Да и если бы знала, все равно не сказала бы городскому стражнику.
+		Nadja_BuyHerb_Failed = TRUE;
+	}
+	else if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 300)
+	{
+		AI_Output(self,other,"DIA_Nadja_BUYHERB_16_02");	//Заплати несколько золотых, и я скажу, где ее достать.
+		AI_Output(other,self,"DIA_Nadja_BUYHERB_15_03");	//Сколько ты хочешь?
+		AI_Output(self,other,"DIA_Nadja_BUYHERB_16_04");	//50 золотых будет достаточно.
+		Nadja_Money = TRUE;
 	}
 	else
 	{
@@ -341,14 +337,13 @@ func void B_Nadja_BUYHERB()
 func void B_Nadja_WANT_HERB()
 {
 	AI_Output(other,self,"DIA_Nadja_WANT_HERB_15_00");	//А теперь скажи мне, где можно купить травки.
-	if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 300)
+	if(Undercover_Failed_Nadja == TRUE)
 	{
-		if(C_RedlightUndercoverCheckFailed(other))
-		{
-			AI_Output(self,other,"DIA_Nadja_WANT_HERB_16_01");	//Извини, я забыла.
-			Undercover_Failed = TRUE;
-		}
-		else if(B_GiveInvItems(other,self,ItMi_Gold,50))
+		AI_Output(self,other,"DIA_Nadja_WANT_HERB_16_01");	//Извини, я забыла.
+	}
+	else if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 300)
+	{
+		if(B_GiveInvItems(other,self,ItMi_Gold,50))
 		{
 			AI_Output(self,other,"DIA_Nadja_WANT_HERB_16_02");	//Поговори с Боркой, детка. У него найдется травка для тебя.
 			Knows_Borka_Dealer = TRUE;
@@ -367,7 +362,7 @@ func void B_Nadja_WANT_HERB()
 
 func void B_Nadja_GiveGoldLater()
 {
-	AI_Output(other,self,"DIA_Thorben_PleaseTeach_Later_15_00");	//Может быть, позже...
+	DIA_Common_MaybeLater();
 	B_Nadja_WhatsNextHoney();
 };
 
@@ -386,7 +381,7 @@ func void DIA_Addon_Nadja_WAIT()
 	if(Npc_HasItems(other,ItMi_Gold) >= 50)
 	{
 		Info_ClearChoices(DIA_Addon_Nadja_LuciaInfo);
-		Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Хорошо, вот деньги.",DIA_Addon_Nadja_WAIT_GiveGold);
+		Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Держи.",DIA_Addon_Nadja_WAIT_GiveGold);
 		Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Может быть, позже...",DIA_Addon_Nadja_WAIT_GiveGoldLater);
 	}
 	else
@@ -405,7 +400,7 @@ func void DIA_Addon_Nadja_WAIT_GiveGoldLater()
 
 func void DIA_Addon_Nadja_WAIT_GiveGold()
 {
-	AI_Output(other,self,"DIA_Grimbald_Jagd_ja_15_00");	//Хорошо, вот деньги.
+	DIA_Common_TakeIt();
 	B_Nadja_GiveGoldNow();
 };
 

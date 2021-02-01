@@ -209,8 +209,6 @@ var int DIA_Ruga_TEACHDEX_permanent;
 
 func void B_BuildLearnDialog_Ruga_DEX()
 {
-	Info_ClearChoices(DIA_Ruga_TEACHDEX);
-	Info_AddChoice(DIA_Ruga_TEACHDEX,Dialog_Back,DIA_Ruga_TEACHDEX_BACK);
 	if(other.aivar[REAL_DEXTERITY] >= T_HIGH)
 	{
 		AI_Output(self,other,"DIA_Ruga_TEACHDEX_11_00");	//Ёто все, чему € мог обучить теб€. ≈сли ты хочешь стать еще более ловким, тебе лучше поискать другого учител€.
@@ -218,6 +216,8 @@ func void B_BuildLearnDialog_Ruga_DEX()
 	}
 	else
 	{
+		Info_ClearChoices(DIA_Ruga_TEACHDEX);
+		Info_AddChoice(DIA_Ruga_TEACHDEX,Dialog_Back,DIA_Ruga_TEACHDEX_BACK);
 		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Ruga_TEACHDEX_1);
 		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Ruga_TEACHDEX_5);
 	};

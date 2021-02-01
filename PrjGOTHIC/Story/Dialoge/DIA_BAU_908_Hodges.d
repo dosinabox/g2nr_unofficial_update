@@ -151,8 +151,8 @@ func void DIA_Hodges_TRADE_Info()
 	B_GiveTradeInv(self);
 	if(Hodges_Trader == FALSE)
 	{
-		Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-		B_LogEntry(Topic_SoldierTrader,"Ходжес может продать мне немного оружия.");
+		Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_SoldierTrader,"Ходжес может продать мне немного оружия.");
 		Hodges_Trader = TRUE;
 	};
 	Trade_IsActive = TRUE;

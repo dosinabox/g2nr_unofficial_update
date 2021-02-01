@@ -116,7 +116,6 @@ func void DIA_Salandril_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Salandril_PERM_13_00");	//Добро пожаловать, путник. Ищешь хорошее зелье?
 	B_SalandrilTradeInfo();
-	B_PlayerEnteredUpperCity();
 };
 
 

@@ -21,6 +21,8 @@ func void DIA_Kati_EXIT_Info()
 };
 
 
+var int Kati_AskedForHelp;
+
 instance DIA_Kati_SLDNOCHDA(C_Info)
 {
 	npc = BAU_941_Kati;
@@ -45,9 +47,10 @@ func int DIA_Kati_SLDNOCHDA_Condition()
 
 func void DIA_Kati_SLDNOCHDA_Info()
 {
-	if(Akils_SLDStillthere == FALSE)
+	if(Kati_AskedForHelp == FALSE)
 	{
 		AI_Output(self,other,"DIA_Kati_SLDNOCHDA_16_00");	//Эти головорезы угрожают моему мужу! Мы простые граждане Хориниса, преданные королю, а эти наемники хотят ограбить нас!
+		Kati_AskedForHelp = TRUE;
 	};
 	AI_Output(self,other,"DIA_Kati_SLDNOCHDA_16_01");	//Ну не стой же здесь. Сделай что-нибудь! Помоги нам!
 	if(Akils_SLDStillthere == FALSE)
@@ -166,11 +169,7 @@ func void DIA_Kati_Baltram_Info()
 {
 	AI_Output(other,self,"DIA_Kati_Baltram_15_00");	//Меня прислал Бальтрам. Я должен забрать посылку для него.
 	AI_Output(self,other,"DIA_Kati_Baltram_16_01");	//Да, конечно. Вот, я уже упаковала ее.
-	CreateInvItems(self,ItMi_BaltramPaket,1);
-	B_GiveInvItems(self,other,ItMi_BaltramPaket,1);
-	Lieferung_Geholt = TRUE;
-	B_LogEntries(TOPIC_Baltram,"Я получил посылку. Теперь я могу отнести ее Бальтраму...");
-	B_LogNextEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
+	B_GetBaltramPaket();
 };
 
 

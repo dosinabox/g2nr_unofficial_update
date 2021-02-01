@@ -41,7 +41,7 @@ func void DIA_Addon_Myxir_ADWHello_Info()
 	AI_Output(other,self,"DIA_Addon_Myxir_ADWHello_15_00");	//Есть новые находки?
 	AI_Output(self,other,"DIA_Addon_Myxir_ADWHello_12_01");	//Зодчие просто поражают меня!
 	AI_Output(self,other,"DIA_Addon_Myxir_ADWHello_12_02");	//Жаль, что все они мертвы, как и их язык.
-	AI_Output(self,other,"DIA_Addon_Myxir_ADWHello_12_03");	//Даже их могущественные ритуалы и духи предков не могли спасти их.
+	AI_Output(self,other,"DIA_Addon_Myxir_ADWHello_12_03");	//(задумчиво) Даже их могущественные ритуалы и духи предков не могли спасти их.
 	AI_Output(other,self,"DIA_Addon_Myxir_ADWHello_15_04");	//Духи предков?
 	AI_Output(self,other,"DIA_Addon_Myxir_ADWHello_12_05");	//Зодчие жили в тесной связи с миром духов.
 	AI_Output(self,other,"DIA_Addon_Myxir_ADWHello_12_06");	//Если я правильно понял, они верили, что их предки поддерживают с ними постоянный контакт.

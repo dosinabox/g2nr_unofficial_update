@@ -299,7 +299,7 @@ func int DIA_Keroloth_KAP4_HELLO_Condition()
 
 func void DIA_Keroloth_KAP4_HELLO_Info()
 {
-	AI_Output(other,self,"DIA_Keroloth_KAP4_HELLO_15_00");	//У тебя такой расстроенный вид...
+	DIA_Common_YouLookSoSad();
 	AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_07_01");	//(возбужденно) Будь они прокляты. Мой тебе совет: глаз не спускай со своих вещей.
 	AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_07_02");	//Чуть отвернешься, и все - вещички уже увели. Вот подонки!
 //	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,Dialog_Back,DIA_Keroloth_KAP4_HELLO_ende);
@@ -414,7 +414,7 @@ func void DIA_Keroloth_KAP4_GELDGEFUNDEN_keineAhnung()
 	else if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_CipherDJG_GOTOGETHERAGAIN_07_01");	//Просто дай мне слово!
-		AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_15_02");	//Да, да, просто успокойся.
+		DIA_Common_YeahJustRelax();
 		AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_ruhig_07_01");	//Но я не хочу успокаиваться. Это были все мои сбережения, черт!
 		AI_StopProcessInfos(self);
 	}

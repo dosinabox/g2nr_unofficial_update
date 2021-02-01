@@ -17,7 +17,7 @@ func int DIA_Jora_EXIT_Condition()
 
 func void DIA_Jora_EXIT_Info()
 {
-	AI_Output(other,self,"DIA_JAN_Dragons_ShitHappen_15_00");	//Мне нужно идти.
+	DIA_Common_IHaveToGo_v2();
 	if(((Jora_Dieb == LOG_FAILED) || (Jora_Dieb == LOG_SUCCESS)) && (Jora_Gold == LOG_Running))
 	{
 		AI_Output(self,other,"DIA_Jora_EXIT_08_00");	//Эй! Как насчет моих денег?

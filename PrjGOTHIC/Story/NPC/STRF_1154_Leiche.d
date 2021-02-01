@@ -3,7 +3,7 @@ instance STRF_1154_Leiche(Npc_Default)
 {
 	name[0] = NAME_Straefling;
 	guild = GIL_STRF;
-	id = 1153;
+	id = 1154;
 	voice = 8;
 	flags = 0;
 	npcType = NPCTYPE_OCMAIN;

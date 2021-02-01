@@ -361,15 +361,18 @@ instance DIA_Addon_Daron_GuildHelp(C_Info)
 
 func int DIA_Addon_Daron_GuildHelp_Condition()
 {
-	if((MIS_Addon_Vatras_Go2Daron == FALSE) && (other.guild != GIL_NONE) && (other.guild != GIL_NOV))
+	if(MIS_Addon_Vatras_Go2Daron == FALSE)
 	{
-		DIA_Addon_Daron_GuildHelp.description = "” теб€ такой расстроенный вид...";
-		return TRUE;
-	}
-	else if((MIS_Addon_Vatras_Go2Daron == FALSE) && (other.guild == GIL_NOV))
-	{
-		DIA_Addon_Daron_GuildHelp.description = "” теб€ есть какое-нибудь задание дл€ мен€?";
-		return TRUE;
+		if(other.guild == GIL_NOV)
+		{
+			DIA_Addon_Daron_GuildHelp.description = "” теб€ есть какое-нибудь задание дл€ мен€?";
+			return TRUE;
+		}
+		else if(other.guild != GIL_NONE)
+		{
+			DIA_Addon_Daron_GuildHelp.description = "” теб€ такой расстроенный вид...";
+			return TRUE;
+		};
 	}
 	else if(MIS_Addon_Vatras_Go2Daron == LOG_Running)
 	{
@@ -380,13 +383,16 @@ func int DIA_Addon_Daron_GuildHelp_Condition()
 
 func void DIA_Addon_Daron_GuildHelp_Info()
 {
-	if((MIS_Addon_Vatras_Go2Daron == FALSE) && (other.guild != GIL_NONE) && (other.guild != GIL_NOV))
+	if(MIS_Addon_Vatras_Go2Daron == FALSE)
 	{
-		AI_Output(other,self,"DIA_Keroloth_KAP4_HELLO_15_00");	//” теб€ такой расстроенный вид...
-	}
-	else if((MIS_Addon_Vatras_Go2Daron == FALSE) && (other.guild == GIL_NOV))
-	{
-		AI_Output(other,self,"DIA_Gorax_Aufgabe_15_00");	//” теб€ есть какое-нибудь задание дл€ мен€?
+		if(other.guild == GIL_NOV)
+		{
+			DIA_Common_AnyMissionForMe();
+		}
+		else if(other.guild != GIL_NONE)
+		{
+			DIA_Common_YouLookSoSad();
+		};
 	}
 	else if(MIS_Addon_Vatras_Go2Daron == LOG_Running)
 	{
@@ -565,6 +571,8 @@ func void DIA_Daron_arm_Info()
 };
 
 
+var int DIA_Daron_Spende_permanent;
+
 instance DIA_Daron_Spende(C_Info)
 {
 	npc = KDF_511_Daron;
@@ -574,9 +582,6 @@ instance DIA_Daron_Spende(C_Info)
 	permanent = TRUE;
 	description = "я хочу сделать пожертвование...";
 };
-
-
-var int DIA_Daron_Spende_permanent;
 
 func int DIA_Daron_Spende_Condition()
 {

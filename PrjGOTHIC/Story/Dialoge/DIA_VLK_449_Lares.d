@@ -96,7 +96,6 @@ func int DIA_Lares_Kap1_EXIT_Condition()
 
 func void DIA_Lares_Kap1_EXIT_Info()
 {
-	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 };
 
@@ -230,7 +229,6 @@ func void DIA_Lares_HALLO_Info()
 	{
 		B_Lares_Comment_SLD();
 	};
-	B_PlayerEnteredCity();
 	Info_ClearChoices(DIA_Lares_HALLO);
 	Info_AddChoice(DIA_Lares_HALLO,"Мы уже встречались раньше?",DIA_Lares_HALLO_NO);
 	Info_AddChoice(DIA_Lares_HALLO,"Эй, Ларес, старый пройдоха! А как ты попал сюда?",DIA_Lares_HALLO_YES);
@@ -605,8 +603,7 @@ func void DIA_Addon_Lares_GetRangerArmor_Info()
 		Lares_ArmorComment = TRUE;
 	};
 	AI_WaitTillEnd(other,self);
-	CreateInvItem(hero,ITAR_RANGER_Addon);
-	AI_PrintScreen("Доспехи 'Кольца Воды' получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+	B_GiveArmor(ITAR_RANGER_Addon);
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_05");	//Носи их с гордостью! Но никогда не надевай их в городе или каком-либо другом населенном месте.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_06");	//Помни: наши имена должны оставаться в тайне. Никто не должен знать, что мы являемся членами общества.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_07");	//Болтать о Кольце Воды запрещено. Это наше главное правило. Запомни его.

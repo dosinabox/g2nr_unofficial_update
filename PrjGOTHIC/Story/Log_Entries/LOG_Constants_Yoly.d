@@ -100,7 +100,7 @@ const string LogText_Addon_Language_2 = "Я знаю язык воинов.";
 const string LogText_Addon_Language_3 = "Я знаю язык жрецов.";
 const string TOPIC_Bronkoeingeschuechtert = "Ленивый фермер";
 const string TOPIC_BalthasarsSchafe = "Запретное пастбище";
-const string TOPIC_AkilsSLDStillthere = "Фермер в нужде";
+const string TOPIC_AkilsSLDStillthere = "Фермер в беде";
 
 var int TOPIC_END_AkilsSLDStillthere;
 
@@ -166,7 +166,7 @@ const string TOPIC_OrcElite = "Орды элитных орков";
 var int TOPIC_END_OrcElite;
 
 const string TOPIC_Dar_BringOrcEliteRing = "Позерство";
-const string TOPIC_FoundVinosKellerei = "Лунный свет";
+const string TOPIC_FoundVinosKellerei = "Секретная винокурня";
 const string TOPIC_Talbin_Runs = "Я должен выбраться отсюда!";
 const string TOPIC_BrutusMeatbugs = "Мерзкие твари";
 

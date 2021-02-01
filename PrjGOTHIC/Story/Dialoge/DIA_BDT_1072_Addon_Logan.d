@@ -357,7 +357,7 @@ func void DIA_Addon_Logan_Lern_Info()
 	AI_Output(other,self,"DIA_Addon_Logan_Lern_15_00");	//ѕокажи мне, как разделывать туши животных...
 	AI_Output(self,other,"DIA_Addon_Logan_Lern_10_01");	//≈сли ты хочешь научитьс€ разделывать кровавых мух, пойди к Ёдгору. ќн про них знает буквально все.
 	AI_Output(self,other,"DIA_Addon_Logan_Lern_10_02");	//ј если теб€ интересуют болотные акулы и €щеры, € могу научить теб€ снимать шкуру и вынимать зубы.
-	if(Edgor_Teach == FALSE)
+	if(!Npc_KnowsInfo(other,DIA_Addon_Edgor_Teach))
 	{
 		Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
 		B_LogEntry(Topic_Addon_BDT_Teacher,Log_Text_Addon_EdgorTeach);
@@ -372,7 +372,7 @@ instance DIA_Addon_Logan_Allg(C_Info)
 	condition = DIA_Addon_Logan_Allg_Condition;
 	information = DIA_Addon_Logan_Allg_Info;
 	permanent = TRUE;
-	description = "я хочу обучитьс€ тому, что ты умеешь.";
+	description = "ќбучи мен€.";
 };
 
 
@@ -386,7 +386,7 @@ func int DIA_Addon_Logan_Allg_Condition()
 
 func void DIA_Addon_Logan_Allg_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Cavalorn_TEACH_15_00");	//я хочу обучитьс€ тому, что ты умеешь.
+	AI_Output(other,self,"DIA_Karras_TEACH_15_00");	//ќбучи мен€.
 	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE))
 	{
 		Info_ClearChoices(DIA_Addon_Logan_Allg);

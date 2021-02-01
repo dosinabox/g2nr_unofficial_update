@@ -126,7 +126,6 @@ instance ItRw_Bow_L_03(C_Item)
 	munition = ItRw_Arrow;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_Jagdbogen;
-//	visual = "ItRw_Bow_M_01.mms";
 	visual = "ItRw_Bow_L_03.mms";
 	description = name;
 	text[2] = NAME_Damage;
@@ -149,7 +148,6 @@ instance ItRw_Bow_L_04(C_Item)
 	munition = ItRw_Arrow;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_Ulmenbogen;
-//	visual = "ItRw_Bow_M_02.mms";
 	visual = "ItRw_Bow_L_04.mms";
 	description = name;
 	text[2] = NAME_Damage;

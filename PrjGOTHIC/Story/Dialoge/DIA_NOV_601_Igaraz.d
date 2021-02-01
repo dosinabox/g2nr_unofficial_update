@@ -17,10 +17,6 @@ func int DIA_Igaraz_Kap1_EXIT_Condition()
 
 func void DIA_Igaraz_Kap1_EXIT_Info()
 {
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
 	AI_StopProcessInfos(self);
 };
 
@@ -70,39 +66,17 @@ instance DIA_Igaraz_Wurst(C_Info)
 
 func int DIA_Igaraz_Wurst_Condition()
 {
-	if((MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
+	if(C_CanFeedNOV(self))
 	{
-		if(Kapitel == 1)
-		{
-			return TRUE;
-		}
-		else if(GuildlessMode == TRUE)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
 func void DIA_Igaraz_Wurst_Info()
 {
-	var string NovizeText;
-	var string NovizeLeft;
 	AI_Output(other,self,"DIA_Igaraz_Wurst_15_00");	//Я раздаю колбасу.
 	AI_Output(self,other,"DIA_Igaraz_Wurst_13_01");	//Ты работаешь на Горакса, да? Хорошо, тогда давай сюда эту колбасу.
-	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
-	Wurst_Gegeben += 1;
-//	CreateInvItems(self,ItFo_Schafswurst,1);
-	B_UseItem(self,ItFo_Schafswurst);
-	if(Wurst_Gegeben >= 13)
-	{
-		AI_PrintScreen(PRINT_AllNovizen,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	}
-	else
-	{
-		NovizeLeft = IntToString(13 - Wurst_Gegeben);
-		NovizeText = ConcatStrings(PRINT_NovizenLeft,NovizeLeft);
-		AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	};
+	B_FeedNOV(self);
 };
 
 
@@ -222,7 +196,7 @@ instance DIA_Igaraz_IMTHEMAN(C_Info)
 
 func int DIA_Igaraz_IMTHEMAN_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_Running) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500))
+	if((MIS_Schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500))
 	{
 		return TRUE;
 	};
@@ -306,7 +280,7 @@ instance DIA_Igaraz_ADD(C_Info)
 
 func int DIA_Igaraz_ADD_Condition()
 {
-	if(((Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) || (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_66") <= 3500)) && (MIS_GOLEM == LOG_Running) && !Npc_IsDead(Magic_Golem) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
+	if(((Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) || (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_66") <= 3500)) && (MIS_Golem == LOG_Running) && !Npc_IsDead(Magic_Golem) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
 	{
 		return TRUE;
 	};
@@ -373,7 +347,7 @@ instance DIA_Igaraz_Stein(C_Info)
 
 func int DIA_Igaraz_Stein_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_Running) && (other.guild == GIL_NOV) && Npc_HasItems(other,ItMi_RuneBlank))
+	if((MIS_Schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV) && Npc_HasItems(other,ItMi_RuneBlank))
 	{
 		return TRUE;
 	};

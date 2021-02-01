@@ -3,7 +3,7 @@ func void b_cycle_function()
 {
 	if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		if(UNDEADSWORD == FALSE)
+		if(MIS_PickedUpUndeadSword == FALSE)
 		{
 			if(Npc_HasItems(hero,ItMw_Drachenschneide))
 			{
@@ -11,7 +11,7 @@ func void b_cycle_function()
 				{
 					Wld_SendTrigger("EVT_TROLL_GRAVE_TRIGGERLIST_01");
 				};
-				UNDEADSWORD = TRUE;
+				MIS_PickedUpUndeadSword = TRUE;
 			};
 		};
 		if(MIS_PickedUpInnosEye == FALSE)

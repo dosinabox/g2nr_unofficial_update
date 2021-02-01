@@ -17,7 +17,7 @@ instance PIR_1395_Addon_InExtremo_Lutter(Npc_Default)
 	CreateInvItem(self,ItMi_IEDrumScheit);
 	B_CreateAmbientInv(self);
 	Mdl_SetVisual(self,"HUMANS.MDS");
-	Mdl_SetVisualBody(self,"Hum_IE_Lutter_INSTRUMENT",DEFAULT,DEFAULT,"HUM_HEAD_Lutter",DEFAULT,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"Hum_IE_Lutter_INSTRUMENT",DEFAULT,DEFAULT,"HUM_HEAD_Lutter",DEFAULT,DEFAULT,NO_ARMOR);
 	fight_tactic = FAI_HUMAN_STRONG;
 	Npc_SetTalentSkill(self,NPC_TALENT_1H,1);
 	daily_routine = Rtn_Start_1395;

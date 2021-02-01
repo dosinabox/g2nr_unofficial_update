@@ -8,28 +8,56 @@ func void ZS_Dead()
 	B_StopLookAt(self);
 	AI_StopPointAt(self);
 	B_GiveDeathXP(other,self);
-	if(C_IAmCanyonRazor(self))
+	if(CurrentLevel == ADDONWORLD_ZEN)
 	{
-		CanyonRazorBodyCount += 1;
-		if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+		if(C_IAmCanyonRazor(self))
 		{
-			B_CountCanyonRazor();
-		};
-	};
-	if(Greg_Rejected == TRUE)
-	{
-		if(C_AmIDexterBandit(self))
-		{
-			DexterBanditsBodyCount += 1;
-			if(DexterBanditsBodyCount >= 19)
+			CanyonRazorBodyCount += 1;
+			if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
 			{
-				B_Greg_ComesToDexterLater();
+				B_CountCanyonRazor();
+			};
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stoneguardian_NailedValleyShowcase_01))
+		{
+			if((MayaScrollGiven == FALSE) && !Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT) && (VALLEY_SHOWCASE_TRIGGERSCRIPT_FUNC_OneTime == FALSE))
+			{
+				CreateInvItems(self,ItSc_Teleport_Maya,1);
+				MayaScrollGiven = TRUE;
+			};
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GoldMinecrawler))
+		{
+			Minecrawler_Killed += 1;
+			if((Minecrawler_Killed > 9) && (Bloodwyn_Spawn == FALSE) && !Npc_IsDead(Bloodwyn))
+			{
+				AI_Teleport(Bloodwyn,"ADW_MINE_TO_MC_03");
+				B_StartOtherRoutine(Bloodwyn,"MINE");
+				Bloodwyn_Spawn = TRUE;
 			};
 		};
 	}
-	else
+	else if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		B_Greg_ComesToDexter();
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(CityOrc))
+		{
+			CityOrc_Killed_Day = Wld_GetDay();
+		}
+		else if(Greg_Rejected == TRUE)
+		{
+			if(C_AmIDexterBandit(self))
+			{
+				DexterBanditsBodyCount += 1;
+				if(DexterBanditsBodyCount >= 19)
+				{
+					B_Greg_ComesToDexterLater();
+				};
+			};
+		}
+		else
+		{
+			B_Greg_ComesToDexter();
+		};
 	};
 	if((self.aivar[AIV_MM_REAL_ID] == ID_SWAMPDRONE) || (self.aivar[AIV_MM_REAL_ID] == ID_SWAMPZOMBIE))
 	{
@@ -44,15 +72,6 @@ func void ZS_Dead()
 		};
 	};
 	B_CheckDeadMissionNPCs(self);
-	B_UpdateKilledStats(self);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stoneguardian_NailedValleyShowcase_01))
-	{
-		if((MayaScrollGiven == FALSE) && !Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT))
-		{
-			CreateInvItems(self,ItSc_Teleport_Maya,1);
-			MayaScrollGiven = TRUE;
-		};
-	};
 	if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON))
 	{
 		Npc_RemoveInvItems(self,ItMw_1h_Bau_Mace,Npc_HasItems(self,ItMw_1h_Bau_Mace));
@@ -62,6 +81,34 @@ func void ZS_Dead()
 	else if(self.guild == GIL_SUMMONED_SKELETON)
 	{
 		Npc_RemoveInvItems(self,ItMw_2H_Sword_M_01,Npc_HasItems(self,ItMw_2H_Sword_M_01));
+	};
+	if(Npc_IsPlayer(other) || ((other.aivar[AIV_PARTYMEMBER] == TRUE) && C_NpcIsSummon(other)))
+	{
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ramon))
+		{
+			Player_HasTalkedToBanditCamp = TRUE;
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru))
+		{
+			if(Npc_IsDead(Halvor) && Npc_IsDead(Nagur))
+			{
+				MIS_ThiefGuild_sucked = TRUE;
+			};
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Halvor))
+		{
+			if(Npc_IsDead(Rengaru) && Npc_IsDead(Nagur))
+			{
+				MIS_ThiefGuild_sucked = TRUE;
+			};
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nagur))
+		{
+			if(Npc_IsDead(Rengaru) && Npc_IsDead(Halvor))
+			{
+				MIS_ThiefGuild_sucked = TRUE;
+			};
+		};
 	};
 	if(Npc_IsPlayer(other))
 	{
@@ -77,46 +124,21 @@ func void ZS_Dead()
 				Festers_Giant_Bug_Killed += 1;
 			};
 		}
-		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Swamprat)) && (MIS_KrokoJagd == LOG_Running))
+		else if((self.aivar[AIV_MM_REAL_ID] == ID_Swamprat) && (MIS_KrokoJagd == LOG_Running))
 		{
 			if(Npc_GetDistToNpc(self,AlligatorJack) <= 1500)
 			{
 				AlligatorJack_KrokosKilled += 1;
 			};
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ramon))
-		{
-			Player_HasTalkedToBanditCamp = TRUE;
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(OrcShaman_Sit_CanyonLibraryKey))
+		else if(C_IsNpc(self,OrcShaman_Sit_CanyonLibraryKey))
 		{
 			OrcShaman_CanyonLibrary_KilledByPlayer = TRUE;
 		}
-		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper1)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper2)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper3)))
+		else if(C_IsNpc(self,Grimbald_Snapper1) || C_IsNpc(self,Grimbald_Snapper2) || C_IsNpc(self,Grimbald_Snapper3))
 		{
 			Grimbald_Snappers_KilledByPlayer = TRUE;
-		}
-		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Halvor)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nagur)))
-		{
-			if(Npc_IsDead(Rengaru) && Npc_IsDead(Halvor) && Npc_IsDead(Nagur))
-			{
-				MIS_ThiefGuild_sucked = TRUE;
-			};
 		};
-	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GoldMinecrawler))
-	{
-		Minecrawler_Killed += 1;
-		if((Minecrawler_Killed > 9) && (Bloodwyn_Spawn == FALSE) && !Npc_IsDead(Bloodwyn))
-		{
-			AI_Teleport(Bloodwyn,"ADW_MINE_TO_MC_03");
-			B_StartOtherRoutine(Bloodwyn,"MINE");
-			Bloodwyn_Spawn = TRUE;
-		};
-	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(OrcWarrior_Harad))
-	{
-		CityOrc_Killed_Day = Wld_GetDay();
 	};
 	B_GiveTradeInv(self);
 	B_GiveDeathInv(self);

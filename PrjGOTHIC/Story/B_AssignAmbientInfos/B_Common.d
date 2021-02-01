@@ -74,6 +74,11 @@ func void DIA_Common_No()
 	AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
 };
 
+func void DIA_Common_IThinkNo()
+{
+	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_00");	//Думаю, что нет...
+};
+
 func void DIA_Common_CanYouRepairJewelry()
 {
 	AI_Output(other,self,"DIA_Harad_RepairNecklace_15_00");	//Ты можешь чинить драгоценности?
@@ -106,7 +111,12 @@ func void DIA_Common_SoundsGood()
 
 func void DIA_Common_MaybeLater()
 {
-	AI_Output(other,self,"DIA_Bennet_WannaSmith_Later_15_00");	//Ну, может быть, позже.
+	AI_Output(other,self,"DIA_Thorben_PleaseTeach_Later_15_00");	//Может быть, позже...
+};
+
+func void DIA_Common_WeWillGetToThatLater()
+{
+	AI_Output(other,self,"DIA_Opolos_rezept_15_06");	//Вернемся к этому позже.
 };
 
 func void DIA_Common_AboutThatRecipe()
@@ -139,6 +149,111 @@ func void DIA_Common_IsEverythingOk()
 	AI_Output(other,self,"DIA_Brutus_PERM4_15_00");	//Все в порядке?
 };
 
+func void DIA_Common_ShowMeYourGoods()
+{
+	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//Покажи мне свои товары.
+};
+
+func void DIA_Common_HowsItGoing()
+{
+	AI_Output(other,self,"DIA_Addon_Edgor_Hi_15_00");	//Как дела?
+};
+
+func void DIA_Common_TellMeAboutSLD()
+{
+	AI_Output(other,self,"DIA_BAU_7_JOIN_15_00");	//Что ты знаешь о наемниках?
+};
+
+func void DIA_Common_CanIBuySheep()
+{
+	AI_Output(other,self,"DIA_Pepe_Liesel_15_00");	//Могу я купить овцу?
+};
+
+func void DIA_Common_SoWhatYouSay()
+{
+	AI_Output(other,self,"DIA_Brian_LIGHTHOUSEFREE_15_00");	//И, что скажешь?
+};
+
+func void DIA_Common_WhatAboutBetterArmor()
+{
+	AI_Output(other,self,"DIA_Lee_ArmorM_15_00");	//А как насчет доспехов получше?
+};
+
+func void DIA_Common_GiveMeThatArmor()
+{
+	AI_Output(other,self,"DIA_Lee_BuyArmorM_15_00");	//Дай мне эти доспехи.
+};
+
+func void DIA_Common_WhyNot()
+{
+	AI_Output(other,self,"DIA_Addon_Greg_NW_Hallo_ja_15_00");	//Почему бы и нет?
+};
+
+func void DIA_Common_ImBack()
+{
+	AI_Output(other,self,"DIA_Garond_BACKINKAP4_15_00");	//Я вернулся.
+};
+
+func void DIA_Common_InnosEyeBroken()
+{
+	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
+};
+
+func void DIA_Common_YeahJustRelax()
+{
+	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_15_02");	//Да, да, просто успокойся.
+};
+
+func void DIA_Common_WhatDoYouMean()
+{
+	AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_03");	//Что ты имеешь в виду?
+};
+
+func void DIA_Common_IFoundHim()
+{
+	AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
+};
+
+func void DIA_Common_WhatAreYouGuysDoingHere()
+{
+	AI_Output(other,self,"DIA_Addon_Nefarius_Neues_15_00");	//Чем вы здесь занимаетесь?
+};
+
+func void DIA_Common_WhatAreYouDoingHere()
+{
+	AI_Output(other,self,"DIA_Rengaru_Hauab_15_00");	//Что ты делаешь здесь?
+};
+
+func void DIA_Common_AnyMissionForMe()
+{
+	AI_Output(other,self,"DIA_Gorax_Aufgabe_15_00");	//У тебя есть какое-нибудь задание для меня?
+};
+
+func void DIA_Common_YouLookSoSad()
+{
+	AI_Output(other,self,"DIA_Keroloth_KAP4_HELLO_15_00");	//У тебя такой расстроенный вид...
+};
+
+func void DIA_Common_WhatCanYouTeachMe()
+{
+	AI_Output(other,self,"DIA_Talbin_TEACHHUNTING_15_00");	//Чему ты можешь обучить меня?
+};
+
+func void DIA_Common_INeedYou()
+{
+	AI_Output(other,self,"DIA_MiltenNW_StillNeedYou_15_00");	//Ты нужен мне.
+};
+
+func void DIA_Common_INeedYourHelp()
+{
+	AI_Output(other,self,"DIA_Sylvio_DUHIER_15_00");	//Мне не помешала бы твоя помощь.
+};
+
+func void DIA_Common_WhatDoYouKnowAboutBandits()
+{
+	AI_Output(other,self,"DIA_Addon_Garett_Bandits_15_00");	//Что ты знаешь о бандитах?
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?
@@ -152,5 +267,10 @@ func void DIA_Common_06_IKnowNothingAboutIt()
 func void DIA_Common_09_AllQuiet()
 {
 	AI_Output(self,other,"DIA_PAL_298_Perm2_09_01");	//Все спокойно. Мы держим ситуацию под контролем.
+};
+
+func void DIA_Common_17_Thanks()
+{
+	AI_Output(self,other,"DIA_Hanna_Add_17_46");	//Спасибо.
 };
 

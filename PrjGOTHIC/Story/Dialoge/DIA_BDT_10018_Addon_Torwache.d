@@ -63,7 +63,7 @@ func void DIA_Addon_BDT_10018_Torwache_FirstWarn_Info()
 	{
 		other.aivar[AIV_LastDistToWP] = 0;
 		self.aivar[AIV_Guardpassage_Status] = GP_NONE;
-		B_Say(self,other,"$Alarm");
+		B_Say(self,other,"$ALARM");
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_GuardStopsIntruder,0);
 	}
@@ -112,7 +112,7 @@ func void DIA_Addon_BDT_10018_Torwache_SecondWarn_Info()
 	{
 		other.aivar[AIV_LastDistToWP] = 0;
 		self.aivar[AIV_Guardpassage_Status] = GP_NONE;
-		B_Say(self,other,"$Alarm");
+		B_Say(self,other,"$ALARM");
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_GuardStopsIntruder,0);
 	}
@@ -151,7 +151,7 @@ func void DIA_Addon_BDT_10018_Torwache_Attack_Info()
 	{
 		other.aivar[AIV_LastDistToWP] = 0;
 		self.aivar[AIV_Guardpassage_Status] = GP_NONE;
-		B_Say(self,other,"$Alarm");
+		B_Say(self,other,"$ALARM");
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_GuardStopsIntruder,0);
 	}

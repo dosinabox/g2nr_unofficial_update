@@ -135,19 +135,17 @@ func int DIA_Randolph_Baltram_Condition()
 func void DIA_Randolph_Baltram_Info()
 {
 	AI_Output(other,self,"DIA_Randolph_Baltram_15_00");	//Меня прислал Бальтрам. Я должен забрать пакет для него.
-	CreateInvItems(self,ItMi_BaltramPaket,1);
 	if((Kapitel >= 4) && (hero.guild == GIL_KDF) && (NpcObsessedByDMT_Randolph == FALSE))
 	{
+		CreateInvItems(self,ItMi_BaltramPaket,1);
+		Lieferung_Geholt = TRUE;
 		B_NpcObsessedByDMT(self);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Randolph_Baltram_06_01");	//Хорошо. Я уже все приготовил. Вот твой пакет.
-		B_GiveInvItems(self,other,ItMi_BaltramPaket,1);
-		B_LogEntries(TOPIC_Baltram,"Я получил посылку. Теперь я могу отнести ее Бальтраму...");
-		B_LogNextEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
+		B_GetBaltramPaket();
 	};
-	Lieferung_Geholt = TRUE;
 };
 
 

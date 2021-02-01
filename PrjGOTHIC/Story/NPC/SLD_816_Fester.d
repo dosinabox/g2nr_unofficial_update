@@ -6,7 +6,8 @@ instance SLD_816_Fester(Npc_Default)
 	id = 816;
 	voice = 8;
 	flags = 0;
-	npcType = NPCTYPE_FRIEND;
+//	npcType = NPCTYPE_FRIEND;
+	npcType = npctype_main;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Sld_Axe);
@@ -40,7 +41,7 @@ func void Rtn_Start_816()
 	TA_Practice_Sword(17,0,18,0,"NW_BIGFARM_ALLEE_04");
 	TA_Practice_Sword(18,0,19,0,"NW_BIGFARM_ALLEE_02");
 	TA_Practice_Sword(19,0,20,0,"NW_BIGFARM_ALLEE_04");
-	TA_Sit_Campfire(20,0,6,0,"NW_BIGFARM_VORPOSTEN1_01");
+	TA_Sit_Campfire(20,0,5,0,"NW_BIGFARM_VORPOSTEN1_01");
 };
 
 func void Rtn_Ch3_816()
@@ -60,7 +61,7 @@ func void Rtn_Ch3_816()
 	TA_Practice_Sword(17,0,18,0,"NW_BIGFARM_ALLEE_03");
 	TA_Practice_Sword(18,0,19,0,"NW_BIGFARM_ALLEE_02");
 	TA_Practice_Sword(19,0,20,0,"NW_BIGFARM_ALLEE_03");
-	TA_Sit_Campfire(20,0,6,0,"NW_BIGFARM_VORPOSTEN1_01");
+	TA_Sit_Campfire(20,0,5,0,"NW_BIGFARM_VORPOSTEN1_01");
 };
 
 func void Rtn_Guide_816()

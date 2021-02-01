@@ -4,7 +4,7 @@ instance MIL_337_Mika(Npc_Default)
 	name[0] = "Мика";
 	guild = GIL_MIL;
 	id = 337;
-	voice = 12;
+	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,1);

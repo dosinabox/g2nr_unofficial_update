@@ -159,7 +159,7 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		{
 			Npc_RemoveInvItems(slf,ItMi_Sextant,Npc_HasItems(slf,ItMi_Sextant));
 		};
-		if(MIS_CassiaKelche == LOG_SUCCESS)
+		if((MIS_CassiaKelche == LOG_SUCCESS) || (MIS_CassiaKelche == LOG_FAILED))
 		{
 			Npc_RemoveInvItems(slf,ItMi_BloodCup_MIS,Npc_HasItems(slf,ItMi_BloodCup_MIS));
 		};

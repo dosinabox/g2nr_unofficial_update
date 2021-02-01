@@ -223,14 +223,6 @@ func void B_Quarhodron_Fragen_Choices()
 			Quarhodrons_NextQuestion = 3;
 		};
 		Info_ClearChoices(DIA_Addon_Quarhodron_Fragen);
-/*		if(Quarhodrons_NextQuestion >= Quarhodron_AlleFragenGestellt)
-		{
-			Info_AddChoice(DIA_Addon_Quarhodron_Fragen,"Я не знаю.",DIA_Addon_Quarhodron_Fragen_NoPlan);
-		}
-		else
-		{
-			Info_AddChoice(DIA_Addon_Quarhodron_Fragen,"Я не знаю.",DIA_Addon_Quarhodron_Fragen_NoPlan);
-		}; */
 		Info_AddChoice(DIA_Addon_Quarhodron_Fragen,"Я не знаю.",DIA_Addon_Quarhodron_Fragen_NoPlan);
 		Info_AddChoice(DIA_Addon_Quarhodron_Fragen,"Ученые.",DIA_Addon_Quarhodron_Fragen_gele);
 		Info_AddChoice(DIA_Addon_Quarhodron_Fragen,"Стражи мертвых.",DIA_Addon_Quarhodron_Fragen_totenw);
