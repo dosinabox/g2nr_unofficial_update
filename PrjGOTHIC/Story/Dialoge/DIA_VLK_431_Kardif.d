@@ -521,6 +521,17 @@ func void DIA_Kardif_Diebeswerk_Info()
 };
 
 
+var int DIA_Kardif_Diebeswerk2_permanent;
+
+func void B_Kardif_AboutDaronChest()
+{
+	AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_03");	//Ну, у Зуриса, торговца зельями на рынке, сейчас гостит Дарон, маг Огня.
+	AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_04");	//И?
+	AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_05");	//При нем есть новый сундучок, сделанный специально для него Торбеном, плотником.
+	AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_06");	//Говорят, что этот Дарон носит с собой несметные сокровища. Но ты ничего не слышал от меня, понятно?
+	DIA_Kardif_Diebeswerk2_permanent = TRUE;
+};
+
 instance DIA_Kardif_Diebeswerk2(C_Info)
 {
 	npc = VLK_431_Kardif;
@@ -531,8 +542,6 @@ instance DIA_Kardif_Diebeswerk2(C_Info)
 	description = "Есть что-нибудь 'особенное' для меня?";
 };
 
-
-var int DIA_Kardif_Diebeswerk2_permanent;
 
 func int DIA_Kardif_Diebeswerk2_Condition()
 {
@@ -563,11 +572,7 @@ func void DIA_Kardif_Diebeswerk2_Info()
 			AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_01");	//Да, есть кое-что - но это заинтересует тебя, только если ты блещешь разносторонними талантами.
 			AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_02");	//Выкладывай, что там у тебя?
 		};
-		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_03");	//Ну, у Зуриса, торговца зельями на рынке, сейчас гостит Дарон, маг Огня.
-		AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_04");	//И?
-		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_05");	//При нем есть новый сундучок, сделанный специально для него Торбеном, плотником.
-		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_06");	//Говорят, что этот Дарон носит с собой несметные сокровища. Но ты ничего не слышал от меня, понятно?
-		DIA_Kardif_Diebeswerk2_permanent = TRUE;
+		B_Kardif_AboutDaronChest();
 	}
 	else
 	{
@@ -830,10 +835,7 @@ func void DIA_Kardif_Zeichen_Info()
 		if((Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") >= 700) && !Npc_IsDead(Martin))
 		{
 			AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_00");	//Есть что-нибудь 'особенное' для меня?
-			AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_03");	//Ну, у Зуриса, торговца зельями на рынке, сейчас гостит Дарон, маг Огня.
-			AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_05");	//При нем есть новый сундучок, сделанный специально для него Торбеном, плотником.
-			AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_06");	//Говорят, что этот Дарон носит с собой несметные сокровища. Но ты ничего не слышал от меня, понятно?
-			DIA_Kardif_Diebeswerk2_permanent = TRUE;
+			B_Kardif_AboutDaronChest();
 		};
 	};
 	CreateInvItems(self,ItKe_Lockpick,20);
