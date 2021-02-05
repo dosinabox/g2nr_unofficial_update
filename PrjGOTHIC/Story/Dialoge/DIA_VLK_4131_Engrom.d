@@ -253,31 +253,6 @@ func void DIA_Engrom_KAP5_EXIT_Info()
 	B_NpcClearObsessionByDMT(self);
 };
 
-/*
-instance DIA_Engrom_KAP6_EXIT(C_Info)
-{
-	npc = VLK_4131_Engrom;
-	nr = 999;
-	condition = DIA_Engrom_KAP6_EXIT_Condition;
-	information = DIA_Engrom_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Engrom_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Engrom_KAP6_EXIT_Info()
-{
-	B_NpcClearObsessionByDMT(self);
-};
-*/
 
 instance DIA_Engrom_PICKPOCKET(C_Info)
 {

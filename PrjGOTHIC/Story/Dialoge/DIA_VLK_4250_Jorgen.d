@@ -119,9 +119,9 @@ func void DIA_Jorgen_Novice_Info()
 	if(Npc_IsOnFP(self,"STAND"))
 	{
 		AI_Output(self,other,"DIA_Jorgen_Novice_07_01");	//Да, конечно, он побежал туда.
-		AI_AlignToFP(self);
 		AI_StopLookAt(self);
-		AI_PlayAni(self,"T_DIALOGGESTURE_14");
+		AI_AlignToFP(self);
+		AI_PlayAni(self,"T_DIALOGGESTURE_04");
 		AI_TurnToNpc(self,other);
 	};
 	AI_Output(self,other,"DIA_Jorgen_Novice_07_02");	//Он прыгнул в воду с моста и поплыл так, как будто за ним гналась акула.

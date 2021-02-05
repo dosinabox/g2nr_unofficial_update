@@ -12,10 +12,7 @@ instance DIA_Torlof_EXIT(C_Info)
 
 func int DIA_Torlof_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Torlof_EXIT_Info()
@@ -903,31 +900,6 @@ func void DIA_Torlof_Teach_DEX_5()
 	};
 };
 
-instance DIA_Torlof_KAP3_EXIT(C_Info)
-{
-	npc = SLD_801_Torlof;
-	nr = 999;
-	condition = DIA_Torlof_KAP3_EXIT_Condition;
-	information = DIA_Torlof_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Torlof_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Torlof_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Torlof_DEMENTOREN(C_Info)
 {
 	npc = SLD_801_Torlof;
@@ -990,31 +962,6 @@ func void DIA_Torlof_DmtSuccess_Info()
 };
 
 
-instance DIA_Torlof_KAP4_EXIT(C_Info)
-{
-	npc = SLD_801_Torlof;
-	nr = 999;
-	condition = DIA_Torlof_KAP4_EXIT_Condition;
-	information = DIA_Torlof_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Torlof_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Torlof_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Torlof_WOISTSYLVIO(C_Info)
 {
 	npc = SLD_801_Torlof;
@@ -1041,31 +988,6 @@ func void DIA_Torlof_WOISTSYLVIO_Info()
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_03");	//Кто знает? Сокровища драконов можно очень дорого продать.
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_04");	//Но меня это не касается. Я моряк. Я принадлежу морю, и мне нет дела до душного логова дракона.
 	TorlofIsSailor = TRUE;
-};
-
-
-instance DIA_Torlof_KAP5_EXIT(C_Info)
-{
-	npc = SLD_801_Torlof;
-	nr = 999;
-	condition = DIA_Torlof_KAP5_EXIT_Condition;
-	information = DIA_Torlof_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Torlof_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Torlof_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -1316,31 +1238,6 @@ func void DIA_Torlof_PERM5_NOTCAPTAIN_Info()
 	AI_StopProcessInfos(self);
 };
 
-/*
-instance DIA_Torlof_KAP6_EXIT(C_Info)
-{
-	npc = SLD_801_Torlof;
-	nr = 999;
-	condition = DIA_Torlof_KAP6_EXIT_Condition;
-	information = DIA_Torlof_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Torlof_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Torlof_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Torlof_PICKPOCKET(C_Info)
 {

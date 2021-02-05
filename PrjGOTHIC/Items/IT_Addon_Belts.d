@@ -62,7 +62,7 @@ func void Equip_ItBE_Addon_Leather_01()
 	self.protection[PROT_POINT] += Belt_Prot_01;
 	if(Npc_IsPlayer(self))
 	{
-		Leather01_Equipped = TRUE;
+		LeatherBelt_Equipped = TRUE;
 		if(LeatherArmor_Equipped == TRUE)
 		{
 			self.protection[PROT_EDGE] += BA_Bonus01;
@@ -81,7 +81,7 @@ func void UnEquip_ItBE_Addon_Leather_01()
 	self.protection[PROT_POINT] -= Belt_Prot_01;
 	if(Npc_IsPlayer(self))
 	{
-		Leather01_Equipped = FALSE;
+		LeatherBelt_Equipped = FALSE;
 		if(LeatherArmor_Equipped == TRUE)
 		{
 			self.protection[PROT_EDGE] -= BA_Bonus01;
@@ -121,7 +121,7 @@ instance ItBE_Addon_SLD_01(C_Item)
 
 func void Equip_ItBE_Addon_SLD_01()
 {
-	SLD01_Equipped = TRUE;
+	SLDBelt_Equipped = TRUE;
 	self.protection[PROT_EDGE] += Belt_Prot_01;
 	self.protection[PROT_BLUNT] += Belt_Prot_01;
 	self.protection[PROT_POINT] += Belt_Prot_01;
@@ -137,7 +137,7 @@ func void Equip_ItBE_Addon_SLD_01()
 
 func void UnEquip_ItBE_Addon_SLD_01()
 {
-	SLD01_Equipped = FALSE;
+	SLDBelt_Equipped = FALSE;
 	self.protection[PROT_EDGE] -= Belt_Prot_01;
 	self.protection[PROT_BLUNT] -= Belt_Prot_01;
 	self.protection[PROT_POINT] -= Belt_Prot_01;
@@ -179,7 +179,7 @@ instance ItBE_Addon_NOV_01(C_Item)
 
 func void Equip_ItBE_Addon_NOV_01()
 {
-	NOV01_Equipped = TRUE;
+	NOVBelt_Equipped = TRUE;
 	self.protection[PROT_EDGE] += Belt_Prot_01;
 	self.protection[PROT_BLUNT] += Belt_Prot_01;
 	self.protection[PROT_POINT] += Belt_Prot_01;
@@ -195,7 +195,7 @@ func void Equip_ItBE_Addon_NOV_01()
 
 func void UnEquip_ItBE_Addon_NOV_01()
 {
-	NOV01_Equipped = FALSE;
+	NOVBelt_Equipped = FALSE;
 	self.protection[PROT_EDGE] -= Belt_Prot_01;
 	self.protection[PROT_BLUNT] -= Belt_Prot_01;
 	self.protection[PROT_POINT] -= Belt_Prot_01;
@@ -237,7 +237,7 @@ instance ItBE_Addon_MIL_01(C_Item)
 
 func void Equip_ItBE_Addon_MIL_01()
 {
-	MIL01_Equipped = TRUE;
+	MILBelt_Equipped = TRUE;
 	self.protection[PROT_EDGE] += Belt_Prot_01;
 	self.protection[PROT_BLUNT] += Belt_Prot_01;
 	self.protection[PROT_POINT] += Belt_Prot_01;
@@ -253,7 +253,7 @@ func void Equip_ItBE_Addon_MIL_01()
 
 func void UnEquip_ItBE_Addon_MIL_01()
 {
-	MIL01_Equipped = FALSE;
+	MILBelt_Equipped = FALSE;
 	self.protection[PROT_EDGE] -= Belt_Prot_01;
 	self.protection[PROT_BLUNT] -= Belt_Prot_01;
 	self.protection[PROT_POINT] -= Belt_Prot_01;
@@ -295,7 +295,7 @@ instance ItBE_Addon_KDF_01(C_Item)
 
 func void Equip_ItBE_Addon_KDF_01()
 {
-	KDF01_Equipped = TRUE;
+	KDFBelt_Equipped = TRUE;
 	self.protection[PROT_EDGE] += Belt_Prot_01;
 	self.protection[PROT_BLUNT] += Belt_Prot_01;
 	self.protection[PROT_POINT] += Belt_Prot_01;
@@ -311,7 +311,7 @@ func void Equip_ItBE_Addon_KDF_01()
 
 func void UnEquip_ItBE_Addon_KDF_01()
 {
-	KDF01_Equipped = FALSE;
+	KDFBelt_Equipped = FALSE;
 	self.protection[PROT_EDGE] -= Belt_Prot_01;
 	self.protection[PROT_BLUNT] -= Belt_Prot_01;
 	self.protection[PROT_POINT] -= Belt_Prot_01;
@@ -353,7 +353,7 @@ instance ItBE_Addon_MC(C_Item)
 
 func void Equip_ItBE_Addon_MC()
 {
-	MC_Equipped = TRUE;
+	MCBelt_Equipped = TRUE;
 	self.protection[PROT_EDGE] += Belt_Prot_01;
 	self.protection[PROT_BLUNT] += Belt_Prot_01;
 	self.protection[PROT_POINT] += Belt_Prot_01;
@@ -369,7 +369,7 @@ func void Equip_ItBE_Addon_MC()
 
 func void UnEquip_ItBE_Addon_MC()
 {
-	MC_Equipped = FALSE;
+	MCBelt_Equipped = FALSE;
 	self.protection[PROT_EDGE] -= Belt_Prot_01;
 	self.protection[PROT_BLUNT] -= Belt_Prot_01;
 	self.protection[PROT_POINT] -= Belt_Prot_01;

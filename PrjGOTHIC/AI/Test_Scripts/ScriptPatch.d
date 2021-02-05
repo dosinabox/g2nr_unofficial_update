@@ -206,17 +206,6 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Получить книгу статистики",StoryHelper_StatsBook);
 	};
-	if(MIS_ReadyforChapter4 == FALSE)
-	{
-		if(StartChapter4InNewWorld == FALSE)
-		{
-			Info_AddChoice(StoryHelper_PatchSettings,"Включить начало четвертой главы в Хоринисе",StoryHelper_Chapter4InNewWorld);
-		}
-		else
-		{
-			Info_AddChoice(StoryHelper_PatchSettings,"Выключить начало четвертой главы в Хоринисе",StoryHelper_Log);
-		};
-	};
 	if(FullNPCRemoval == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить полное удаление NPC из мира",StoryHelper_FullNPCRemoval);
@@ -834,21 +823,6 @@ func void StoryHelper_FullNPCRemoval()
 	{
 		FullNPCRemoval = TRUE;
 		PrintScreen("Полное удаление NPC из мира включено",-1,-1,FONT_Screen,3);
-	};
-	b_build_settings_diag();
-};
-
-func void StoryHelper_Chapter4InNewWorld()
-{
-	if(StartChapter4InNewWorld == TRUE)
-	{
-		StartChapter4InNewWorld = FALSE;
-		PrintScreen("Четвертая глава начнется в Долине рудников",-1,-1,FONT_Screen,3);
-	}
-	else
-	{
-		StartChapter4InNewWorld = TRUE;
-		PrintScreen("Четвертая глава начнется в Хоринисе",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };

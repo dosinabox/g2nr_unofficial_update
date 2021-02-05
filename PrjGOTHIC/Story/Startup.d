@@ -1825,6 +1825,7 @@ func void INIT_OldWorld()
 	B_Check_Version();
 	B_Check_Talents();
 	B_SetHeroSkin();
+	B_CheckDynamicText();
 	INIT_SUB_Oldcamp();
 	INIT_SUB_Demontower();
 	INIT_SUB_Surface();
@@ -1833,13 +1834,12 @@ func void INIT_OldWorld()
 		init_sub_psicamp();
 		init_sub_freeminecamp();
 	};
-	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
 	b_enter_oldworld();
 	b_cycle_function();
-	if((MIS_ReadyforChapter4 == TRUE) && (StartChapter4InNewWorld == FALSE) && (B_Chapter4_OneTime == FALSE))
+	if((MIS_ReadyforChapter4 == TRUE) && (B_Chapter4_OneTime == FALSE))
 	{
 		B_Kapitelwechsel(4,OLDWORLD_ZEN);
 		B_Chapter4_OneTime = TRUE;
@@ -3438,6 +3438,7 @@ func void INIT_AddonWorld()
 	B_Check_Version();
 	B_Check_Talents();
 	B_SetHeroSkin();
+	B_CheckDynamicText();
 	if((BloodwynIsHeadless == TRUE) && (Saturas_RiesenPlan == FALSE))
 	{
 		Mdl_SetVisualBody(BDT_1085_Addon_Bloodwyn,"hum_body_Bloodwyn_Headless",1,0,"Hum_Headless",0,DEFAULT,NO_ARMOR);
@@ -3449,7 +3450,6 @@ func void INIT_AddonWorld()
 	init_sub_addon_part_canyon_01();
 	init_sub_addon_part_valley_01();
 	init_sub_addon_part_adanostemple_01();
-	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();
 	B_InitNpcGlobals();

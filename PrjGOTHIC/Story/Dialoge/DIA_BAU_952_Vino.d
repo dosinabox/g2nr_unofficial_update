@@ -517,31 +517,6 @@ func void DIA_Vino_KAP5_EXIT_Info()
 	B_NpcClearObsessionByDMT(self);
 };
 
-/*
-instance DIA_Vino_KAP6_EXIT(C_Info)
-{
-	npc = BAU_952_Vino;
-	nr = 999;
-	condition = DIA_Vino_KAP6_EXIT_Condition;
-	information = DIA_Vino_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Vino_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Vino_KAP6_EXIT_Info()
-{
-	B_NpcClearObsessionByDMT(self);
-};
-*/
 
 instance DIA_Vino_PICKPOCKET(C_Info)
 {

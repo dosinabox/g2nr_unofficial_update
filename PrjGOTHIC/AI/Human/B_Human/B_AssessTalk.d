@@ -49,7 +49,7 @@ func void B_AssessTalk()
 			};
 			return;
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Baltram))
+		else if(C_IsNpc(self,VLK_410_Baltram))
 		{
 			B_BaltramRangerCheck(other);
 		}
@@ -81,7 +81,7 @@ func void B_AssessTalk()
 		{
 			PlayerTalkedToGregNW = TRUE;
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Skip_NW))
+		else if(C_IsNpc(self,PIR_1301_Addon_Skip_NW))
 		{
 			PlayerTalkedToSkipNW = TRUE;
 		}
