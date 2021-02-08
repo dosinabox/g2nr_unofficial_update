@@ -1,4 +1,22 @@
 
+func void B_SetBeltBonus(var int bonus)
+{
+	self.protection[PROT_EDGE] += bonus;
+	self.protection[PROT_BLUNT] += bonus;
+	self.protection[PROT_POINT] += bonus;
+	self.protection[PROT_MAGIC] += bonus;
+	self.protection[PROT_FIRE] += bonus;
+};
+
+func void B_RemoveBeltBonus(var int bonus)
+{
+	self.protection[PROT_EDGE] -= bonus;
+	self.protection[PROT_BLUNT] -= bonus;
+	self.protection[PROT_POINT] -= bonus;
+	self.protection[PROT_MAGIC] -= bonus;
+	self.protection[PROT_FIRE] -= bonus;
+};
+
 func void Equip_ArmorSet()
 {
 	if(Npc_IsPlayer(self))
@@ -38,11 +56,7 @@ func void Equip_ITAR_MIL()
 		B_SetHeroSkin();
 		if(MILBelt_Equipped == TRUE)
 		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
+			B_SetBeltBonus(BA_Bonus01);
 		};
 	};
 };
@@ -55,11 +69,7 @@ func void UnEquip_ITAR_MIL()
 		B_SetHeroSkin();
 		if(MILBelt_Equipped == TRUE)
 		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
+			B_RemoveBeltBonus(BA_Bonus01);
 		};
 	};
 };
@@ -72,11 +82,7 @@ func void Equip_ITAR_SLD()
 		B_SetHeroSkin();
 		if(SLDBelt_Equipped == TRUE)
 		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
+			B_SetBeltBonus(BA_Bonus01);
 		};
 	};
 };
@@ -89,11 +95,7 @@ func void UnEquip_ITAR_SLD()
 		B_SetHeroSkin();
 		if(SLDBelt_Equipped == TRUE)
 		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
+			B_RemoveBeltBonus(BA_Bonus01);
 		};
 	};
 };
@@ -105,11 +107,7 @@ func void Equip_ITAR_DJG_Crawler()
 		MCArmor_Equipped = TRUE;
 		if(MCBelt_Equipped == TRUE)
 		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
+			B_SetBeltBonus(BA_Bonus01);
 		};
 	};
 };
@@ -121,11 +119,7 @@ func void UnEquip_ITAR_DJG_Crawler()
 		MCArmor_Equipped = FALSE;
 		if(MCBelt_Equipped == TRUE)
 		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
+			B_RemoveBeltBonus(BA_Bonus01);
 		};
 	};
 };
@@ -138,11 +132,7 @@ func void Equip_ITAR_NOV()
 		B_SetHeroSkin();
 		if(NOVBelt_Equipped == TRUE)
 		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
+			B_SetBeltBonus(BA_Bonus01);
 		};
 	};
 };
@@ -155,11 +145,7 @@ func void UnEquip_ITAR_NOV()
 		B_SetHeroSkin();
 		if(NOVBelt_Equipped == TRUE)
 		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
+			B_RemoveBeltBonus(BA_Bonus01);
 		};
 	};
 };
@@ -171,11 +157,7 @@ func void Equip_ITAR_KDF()
 		KDFArmor_Equipped = TRUE;
 		if(KDFBelt_Equipped == TRUE)
 		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
+			B_SetBeltBonus(BA_Bonus01);
 		};
 	};
 };
@@ -187,11 +169,7 @@ func void UnEquip_ITAR_KDF()
 		KDFArmor_Equipped = FALSE;
 		if(KDFBelt_Equipped == TRUE)
 		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
+			B_RemoveBeltBonus(BA_Bonus01);
 		};
 	};
 };
@@ -203,11 +181,7 @@ func void Equip_ITAR_Leather()
 		LeatherArmor_Equipped = TRUE;
 		if(LeatherBelt_Equipped == TRUE)
 		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
+			B_SetBeltBonus(BA_Bonus01);
 		};
 	};
 };
@@ -219,11 +193,7 @@ func void UnEquip_ITAR_Leather()
 		LeatherArmor_Equipped = FALSE;
 		if(LeatherBelt_Equipped == TRUE)
 		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
+			B_RemoveBeltBonus(BA_Bonus01);
 		};
 	};
 };

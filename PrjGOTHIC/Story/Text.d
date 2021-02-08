@@ -615,6 +615,7 @@ const string NAME_ADDON_TWOHANDED_BELIAR = "ƒвуручное оружие, шанс дополнительно
 const string NAME_ADDON_SPECIALDAMEGE_BELIAR = "ƒополнительный чистый урон:";
 const string NAME_ADDON_UPGRATEBELIARSWEAPON = "”лучшить ' оготь Ѕелиара'";
 const string NAME_ADDON_BETEN = "ѕомолитьс€";
+const string NAME_ADDON_PRAYIDOL_GIVE = "я хочу помолитьс€ и пожертвовать ";
 const string NAME_ADDON_PRAYIDOL_GIVENOTHING = "я хочу помолитьс€ и ничего не пожертвовать.";
 const string NAME_ADDON_PRAYIDOL_GIVEHITPOINT1 = "я хочу помолитьс€ и пожертвовать 1 единицу макс. здоровь€.";
 const string NAME_ADDON_PRAYIDOL_GIVEHITPOINT2 = "я хочу помолитьс€ и пожертвовать 5 единиц макс. здоровь€.";

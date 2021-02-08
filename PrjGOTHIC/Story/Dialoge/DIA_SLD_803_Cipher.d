@@ -74,14 +74,14 @@ func void DIA_Cipher_TradeWhat_Info()
 	AI_Output(self,other,"DIA_Cipher_TradeWhat_07_03");	//Многие наемники не прочь иногда покурить травки. Я даже смог сколотить небольшое состояние на этом.
 	AI_Output(self,other,"DIA_Cipher_TradeWhat_07_04");	//Но какой-то ублюдок украл эту траву из моего сундука!
 	Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
-	B_LogEntry(TOPIC_SoldierTrader,"Сифер - торговец на ферме Онара.");
+	B_LogEntries(TOPIC_SoldierTrader,"Сифер - торговец на ферме Онара.");
 	Log_CreateTopic(Topic_CipherPaket,LOG_MISSION);
 	Log_SetTopicStatus(Topic_CipherPaket,LOG_Running);
-	B_LogEntry(Topic_CipherPaket,"Наемник Сифер потерял тюк болотной травы.");
+	B_LogNextEntry(Topic_CipherPaket,"Наемник Сифер потерял тюк болотной травы.");
 	if(!Npc_IsDead(Bodo))
 	{
 		AI_Output(self,other,"DIA_Cipher_TradeWhat_07_05");	//Я почти уверен, что это Бодо. Он спит в той же комнате, что и я, и всегда ухмыляется при встрече, как идиот...
-		B_LogEntry(Topic_CipherPaket,"Он подозревает, что его украл Бодо.");
+		Log_AddEntry(Topic_CipherPaket,"Он подозревает, что его украл Бодо.");
 	};
 	MIS_Cipher_Paket = LOG_Running;
 };

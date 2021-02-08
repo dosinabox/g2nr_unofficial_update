@@ -1,12 +1,29 @@
 
 var int PrayIdolDay;
-var int PrayIdolDayOne_1;
-var int PrayIdolDayOne_5;
-var int PrayIdolDayOne_10;
+var int PrayIdolDayOne;
+
 var int RecievedMoney;
 var int GivenHitpoints;
 var int GivenMana;
+
+const int BeliarsGoldMultiplier = 50;
 const int BeliarsDispo = 10000;
+
+func int C_PrayedIdolToday()
+{
+	if(Wld_GetDay() == 0)
+	{
+		if(PrayIdolDayOne == TRUE)
+		{
+			return TRUE;
+		};
+	}
+	else if(PrayIdolDay == Wld_GetDay())
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
 
 func void B_HitpointAngleich(var int BeliarsCost)
 {
@@ -47,8 +64,6 @@ func void B_BlitzInArsch()
 	var int BlitzInArsch_Hitpoints;
 	var int CurrentHitpoints;
 	var int Abzug;
-//	var string concatText1;
-//	var string concatText2;
 	CurrentHitpoints = hero.attribute[ATR_HITPOINTS];
 	BlitzInArsch_Hitpoints = (CurrentHitpoints * 4) / 5;
 	if(BlitzInArsch_Hitpoints < 2)
@@ -58,9 +73,6 @@ func void B_BlitzInArsch()
 	Abzug = hero.attribute[ATR_HITPOINTS] - BlitzInArsch_Hitpoints;
 	if(Abzug > 0)
 	{
-//		concatText1 = ConcatStrings(NAME_Damage," ");
-//		concatText2 = ConcatStrings(concatText1,IntToString(Abzug));
-//		AI_PrintScreen(concatText2,-1,YPOS_GoldTaken,FONT_ScreenSmall,2);
 		Wld_PlayEffect("spellFX_BELIARSRAGE",hero,hero,0,0,0,FALSE);
 	};
 	hero.attribute[ATR_HITPOINTS] = BlitzInArsch_Hitpoints;
@@ -78,6 +90,39 @@ func void B_GetBeliarsGold(var int Kohle)
 	concatText = ConcatStrings(IntToString(Kohle),PRINT_GoldTaken);
 	AI_PrintScreen(concatText,-1,YPOS_GoldTaken,FONT_ScreenSmall,2);
 	Snd_Play("CS_Prayer_FokusFinal");
+};
+
+
+func void B_PrayIdol(var int attribute,var int amount)
+{
+	var int gold;
+	if(attribute == ATR_HITPOINTS_MAX)
+	{
+		B_HitpointAngleich(amount);
+		gold = amount * BeliarsGoldMultiplier;
+	}
+	else if(attribute = ATR_MANA_MAX)
+	{
+		B_ManaAngleich(amount);
+		gold = amount * BeliarsGoldMultiplier * 10;
+	};
+	if(C_PrayedIdolToday() || (RecievedMoney >= BeliarsDispo))
+	{
+		B_BlitzInArsch();
+	}
+	else if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+	{
+		B_GetBeliarsGold(gold / 2);
+	}
+	else
+	{
+		B_GetBeliarsGold(gold);
+	};
+	PrayIdolDay = Wld_GetDay();
+	if(PrayIdolDay == 0)
+	{
+		PrayIdolDayOne = TRUE;
+	};
 };
 
 func void PrayIdol_S1()
@@ -154,13 +199,7 @@ func void PC_PrayIdol_PrayIdol_Info()
 		if(hero.attribute[ATR_HITPOINTS_MAX] >= 40)
 		{
 			Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVEHITPOINT1,PC_PrayIdol_PrayIdol_SmallPay);
-		};
-		if(hero.attribute[ATR_HITPOINTS_MAX] >= 40)
-		{
 			Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVEHITPOINT2,PC_PrayIdol_PrayIdol_MediumPay);
-		};
-		if(hero.attribute[ATR_HITPOINTS_MAX] >= 40)
-		{
 			Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVEHITPOINT3,PC_PrayIdol_PrayIdol_BigPay);
 		};
 	};
@@ -179,82 +218,26 @@ func void PC_PrayIdol_PrayIdol_NoPay()
 
 func void PC_PrayIdol_PrayIdol_SmallPay()
 {
-	B_HitpointAngleich(1);
-	if(((PrayIdolDay == Wld_GetDay()) && (PrayIdolDay != 0)) || ((Wld_GetDay() == 0) && (PrayIdolDayOne_1 == TRUE)) || (RecievedMoney >= BeliarsDispo))
-	{
-		B_BlitzInArsch();
-	}
-	else if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
-	{
-		B_GetBeliarsGold(25);
-	}
-	else
-	{
-		B_GetBeliarsGold(50);
-	};
-	PrayIdolDay = Wld_GetDay();
-	if(PrayIdolDay == 0)
-	{
-		PrayIdolDayOne_1 = TRUE;
-	};
+	B_PrayIdol(ATR_HITPOINTS_MAX,1);
 	Info_ClearChoices(PC_PrayIdol_PrayIdol);
 };
 
 func void PC_PrayIdol_PrayIdol_MediumPay()
 {
-	B_HitpointAngleich(5);
-	if(((PrayIdolDay == Wld_GetDay()) && (PrayIdolDay != 0)) || ((Wld_GetDay() == 0) && (PrayIdolDayOne_5 == TRUE)) || (RecievedMoney >= BeliarsDispo))
-	{
-		B_BlitzInArsch();
-	}
-	else if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
-	{
-		B_GetBeliarsGold(125);
-	}
-	else
-	{
-		B_GetBeliarsGold(250);
-	};
-	PrayIdolDay = Wld_GetDay();
-	if(PrayIdolDay == 0)
-	{
-		PrayIdolDayOne_5 = TRUE;
-	};
-	Info_ClearChoices(PC_PrayIdol_PrayIdol);
-};
-
-func void PC_PrayIdol_PrayIdol_BigPayManaPay()
-{
-	if(((PrayIdolDay == Wld_GetDay()) && (PrayIdolDay != 0)) || ((Wld_GetDay() == 0) && (PrayIdolDayOne_10 == TRUE)) || (RecievedMoney >= BeliarsDispo))
-	{
-		B_BlitzInArsch();
-	}
-	else if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
-	{
-		B_GetBeliarsGold(250);
-	}
-	else
-	{
-		B_GetBeliarsGold(500);
-	};
-	PrayIdolDay = Wld_GetDay();
-	if(PrayIdolDay == 0)
-	{
-		PrayIdolDayOne_10 = TRUE;
-	};
+	B_PrayIdol(ATR_HITPOINTS_MAX,5);
 	Info_ClearChoices(PC_PrayIdol_PrayIdol);
 };
 
 func void PC_PrayIdol_PrayIdol_BigPay()
 {
-	B_HitpointAngleich(10);
-	PC_PrayIdol_PrayIdol_BigPayManaPay();
+	B_PrayIdol(ATR_HITPOINTS_MAX,10);
+	Info_ClearChoices(PC_PrayIdol_PrayIdol);
 };
 
 func void PC_PrayIdol_PrayIdol_ManaPay()
 {
-	B_ManaAngleich(1);
-	PC_PrayIdol_PrayIdol_BigPayManaPay();
+	B_PrayIdol(ATR_MANA_MAX,1);
+	Info_ClearChoices(PC_PrayIdol_PrayIdol);
 };
 
 

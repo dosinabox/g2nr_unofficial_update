@@ -1,5 +1,5 @@
 
-func string B_BuildRunesIngredientsText(var string spell, var string ingredients)
+func string B_BuildRunesIngredientsText(var string spell,var string ingredients)
 {
 	var string text;
 	text = ConcatStrings("Ингредиенты для руны '",spell);

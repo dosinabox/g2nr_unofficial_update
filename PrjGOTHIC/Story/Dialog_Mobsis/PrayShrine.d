@@ -1,16 +1,12 @@
 
 var int PrayDay;
-var int PrayDayOne_0;
-var int PrayDayOne_10;
-var int PrayDayOne_50;
-var int PrayDayOne_100;
+var int PrayDayOne;
 
 var string concatDonation;
 
 var int Shrine_STR_Bonus;
 var int Shrine_DEX_Bonus;
 var int Shrine_MANA_Bonus;
-var int SpecialBless;
 var int ShrineIsObsessed;
 var int ShrineHealing;
 var int ShrinesHealed;
@@ -21,6 +17,98 @@ var int ShrineIsObsessed_NW_TROLLAREA_PATH_04;
 var int ShrineIsObsessed_SAGITTA;
 var int ShrineIsObsessed_NW_BIGMILL_MALAKSVERSTECK_02;
 var int ShrineIsObsessed_NW_FARM3_BIGWOOD_02;
+
+const int PrayAmountSmall = 10;
+const int PrayAmountMedium = 50;
+const int PrayAmountBig = 100;
+
+func int C_PrayedToday()
+{
+	if(Wld_GetDay() == 0)
+	{
+		if(PrayDayOne == TRUE)
+		{
+			return TRUE;
+		};
+	}
+	else if(PrayDay == Wld_GetDay())
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+func void B_Pray(var int gold)
+{
+	var int zufall;
+	zufall = Hlp_Random(100);
+	if(C_PrayedToday())
+	{
+		PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
+	}
+	else if(gold == 0)
+	{
+		if(zufall < 5)
+		{
+			B_BlessAttribute(hero,ATR_HITPOINTS_MAX,1);
+		}
+		else
+		{
+			PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
+		};
+	}
+	else if(gold == PrayAmountSmall)
+	{
+		B_BlessAttribute(hero,ATR_HITPOINTS_MAX,1);
+	}
+	else if(gold == PrayAmountMedium)
+	{
+		B_BlessAttribute(hero,ATR_HITPOINTS_MAX,2);
+	}
+	else if(gold == PrayAmountBig)
+	{
+		if((Shrine_STR_Bonus < 10) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV) && (zufall < 50))
+		{
+			B_BlessAttribute(hero,ATR_STRENGTH,1);
+			Shrine_STR_Bonus += 1;
+		}
+		else if((Shrine_DEX_Bonus < 10) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV) && (zufall >= 50))
+		{
+			B_BlessAttribute(hero,ATR_DEXTERITY,1);
+			Shrine_DEX_Bonus += 1;
+		}
+		else if((Shrine_MANA_Bonus < 20) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
+		{
+			B_BlessAttribute(hero,ATR_MANA_MAX,1);
+			Shrine_MANA_Bonus += 1;
+		}
+		else
+		{
+			B_BlessAttribute(hero,ATR_HITPOINTS_MAX,3);
+		};
+	};
+	PrayDay = Wld_GetDay();
+	if(PrayDay == 0)
+	{
+		PrayDayOne = TRUE;
+	};
+	if(gold > 0)
+	{
+		Npc_RemoveInvItems(hero,ItMi_Gold,gold);
+		Stats_Blessings_GoldGiven += gold;
+		concatDonation = ConcatStrings(IntToString(gold),PRINT_GoldGiven);
+		AI_PrintScreen(concatDonation,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	};
+};
+
+func string B_BuildBlessString(var int gold)
+{
+	var string concatText;
+	concatText = ConcatStrings(NAME_ADDON_PRAYIDOL_GIVE,IntToString(gold));
+	concatText = ConcatStrings(concatText,PRINT_Gold);
+	concatText = ConcatStrings(concatText," монет.");
+	return concatText;
+};
 
 func void C_IsShrineObsessed(var C_Npc slf)
 {
@@ -245,17 +333,17 @@ func void PC_PrayShrine_Pray_Info()
 		Info_ClearChoices(PC_PrayShrine_Pray);
 		Info_AddChoice(PC_PrayShrine_Pray,Dialog_Back,PC_PrayShrine_Pray_Back);
 		Info_AddChoice(PC_PrayShrine_Pray,NAME_ADDON_PRAYIDOL_GIVENOTHING,PC_PrayShrine_Pray_NoPay);
-		if(Npc_HasItems(hero,ItMi_Gold) >= 10)
+		if(Npc_HasItems(hero,ItMi_Gold) >= PrayAmountSmall)
 		{
-			Info_AddChoice(PC_PrayShrine_Pray,"Я хочу помолиться и пожертвовать 10 золотых монет.",PC_PrayShrine_Pray_SmallPay);
+			Info_AddChoice(PC_PrayShrine_Pray,B_BuildBlessString(PrayAmountSmall),PC_PrayShrine_Pray_SmallPay);
 		};
-		if(Npc_HasItems(hero,ItMi_Gold) >= 50)
+		if(Npc_HasItems(hero,ItMi_Gold) >= PrayAmountMedium)
 		{
-			Info_AddChoice(PC_PrayShrine_Pray,"Я хочу помолиться и пожертвовать 50 золотых монет.",PC_PrayShrine_Pray_MediumPay);
+			Info_AddChoice(PC_PrayShrine_Pray,B_BuildBlessString(PrayAmountMedium),PC_PrayShrine_Pray_MediumPay);
 		};
-		if(Npc_HasItems(hero,ItMi_Gold) >= 100)
+		if(Npc_HasItems(hero,ItMi_Gold) >= PrayAmountBig)
 		{
-			Info_AddChoice(PC_PrayShrine_Pray,"Я хочу помолиться и пожертвовать 100 золотых монет.",PC_PrayShrine_Pray_BigPay);
+			Info_AddChoice(PC_PrayShrine_Pray,B_BuildBlessString(PrayAmountBig),PC_PrayShrine_Pray_BigPay);
 		};
 	};
 };
@@ -267,108 +355,25 @@ func void PC_PrayShrine_Pray_Back()
 
 func void PC_PrayShrine_Pray_NoPay()
 {
-	var int zufall;
-	zufall = Hlp_Random(100);
-	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && ((PrayDayOne_0 == TRUE) || (PrayDayOne_10 == TRUE) || (PrayDayOne_50 == TRUE) || (PrayDayOne_100 == TRUE))))
-	{
-		PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
-	}
-	else if(zufall < 5)
-	{
-		B_BlessAttribute(hero,ATR_HITPOINTS_MAX,1);
-	}
-	else
-	{
-		PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
-	};
-	PrayDay = Wld_GetDay();
-	if(PrayDay == 0)
-	{
-		PrayDayOne_0 = TRUE;
-	};
+	B_Pray(0);
 	Info_ClearChoices(PC_PrayShrine_Pray);
 };
 
 func void PC_PrayShrine_Pray_SmallPay()
 {
-	Npc_RemoveInvItems(hero,ItMi_Gold,10);
-	Stats_Blessings_GoldGiven += 10;
-	concatDonation = ConcatStrings(IntToString(10),PRINT_GoldGiven);
-	AI_PrintScreen(concatDonation,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && ((PrayDayOne_0 == TRUE) || (PrayDayOne_10 == TRUE) || (PrayDayOne_50 == TRUE) || (PrayDayOne_100 == TRUE))))
-	{
-		PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
-	}
-	else
-	{
-		B_BlessAttribute(hero,ATR_HITPOINTS_MAX,1);
-	};
-	PrayDay = Wld_GetDay();
-	if(PrayDay == 0)
-	{
-		PrayDayOne_10 = TRUE;
-	};
+	B_Pray(PrayAmountSmall);
 	Info_ClearChoices(PC_PrayShrine_Pray);
 };
 
 func void PC_PrayShrine_Pray_MediumPay()
 {
-	Npc_RemoveInvItems(hero,ItMi_Gold,50);
-	Stats_Blessings_GoldGiven += 50;
-	concatDonation = ConcatStrings(IntToString(50),PRINT_GoldGiven);
-	AI_PrintScreen(concatDonation,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && ((PrayDayOne_0 == TRUE) || (PrayDayOne_10 == TRUE) || (PrayDayOne_50 == TRUE) || (PrayDayOne_100 == TRUE))))
-	{
-		PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
-	}
-	else
-	{
-		B_BlessAttribute(hero,ATR_HITPOINTS_MAX,2);
-	};
-	PrayDay = Wld_GetDay();
-	if(PrayDay == 0)
-	{
-		PrayDayOne_50 = TRUE;
-	};
+	B_Pray(PrayAmountMedium);
 	Info_ClearChoices(PC_PrayShrine_Pray);
 };
 
 func void PC_PrayShrine_Pray_BigPay()
 {
-	var int zufall;
-	zufall = Hlp_Random(100);
-	Npc_RemoveInvItems(hero,ItMi_Gold,100);
-	Stats_Blessings_GoldGiven += 100;
-	concatDonation = ConcatStrings(IntToString(100),PRINT_GoldGiven);
-	AI_PrintScreen(concatDonation,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && ((PrayDayOne_0 == TRUE) || (PrayDayOne_10 == TRUE) || (PrayDayOne_50 == TRUE) || (PrayDayOne_100 == TRUE))))
-	{
-		PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
-	}
-	else if((Shrine_STR_Bonus < 10) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV) && (zufall < 50))
-	{
-		B_BlessAttribute(hero,ATR_STRENGTH,1);
-		Shrine_STR_Bonus += 1;
-	}
-	else if((Shrine_DEX_Bonus < 10) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV) && (zufall >= 50))
-	{
-		B_BlessAttribute(hero,ATR_DEXTERITY,1);
-		Shrine_DEX_Bonus += 1;
-	}
-	else if((Shrine_MANA_Bonus < 20) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
-	{
-		B_BlessAttribute(hero,ATR_MANA_MAX,1);
-		Shrine_MANA_Bonus += 1;
-	}
-	else
-	{
-		B_BlessAttribute(hero,ATR_HITPOINTS_MAX,3);
-	};
-	PrayDay = Wld_GetDay();
-	if(PrayDay == 0)
-	{
-		PrayDayOne_100 = TRUE;
-	};
+	B_Pray(PrayAmountBig);
 	Info_ClearChoices(PC_PrayShrine_Pray);
 };
 
