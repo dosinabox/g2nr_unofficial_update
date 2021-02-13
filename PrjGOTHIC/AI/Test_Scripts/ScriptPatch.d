@@ -35,6 +35,7 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalDexEaten)," гоблинских ягод"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalStrEaten)," драконьих корней"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalPermEaten)," царских щавелей"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Shell_Opener)," моллюсков"));
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Отдано:");
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalStoneplatesForVatras)," табличек Ватрасу"));
@@ -52,10 +53,6 @@ func void Use_StatsBook()
 	{
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(OrkRingCounter)," колец Хагену"));
 	};
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,ConcatStrings("Кражи (",ConcatStrings(IntToString(TotalThefts),"):")));
-	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalTheftXP)," опыта получено"));
-	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalTheftGold)," золотых украдено"));
 	Doc_PrintLine(nDocID,0,"");
 	if(Player_IsApprentice == APP_Constantino)
 	{
@@ -101,17 +98,19 @@ func void Use_StatsBook()
 		Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(BeliarWeapCurrentLvL)," уровень (уничтожен)"));
 	};
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Shell_Opener)," открытых моллюсков"));
-	if(HardModeEnabled == TRUE)
-	{
-		Doc_PrintLine(nDocID,1,ConcatStrings(ConcatStrings("Опыт снижен на ",IntToString(HardModeXPModifier)),"%"));
-	};
+	Doc_PrintLine(nDocID,1,"Кражи:");
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalThefts)," успешных краж"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalTheftXP)," опыта получено"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalTheftGold)," золотых украдено"));
+	Doc_PrintLine(nDocID,1,"");
 	if(UnionActivated == TRUE)
 	{
-		Doc_PrintLine(nDocID,1,"Union активирован");
+		Doc_PrintLine(nDocID,1,"Информация о сборке:");
+	}
+	else
+	{
+		Doc_PrintLine(nDocID,1,"Сборка (без Union):");
 	};
-	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLine(nDocID,1,"Информация о сборке:");
 	Doc_PrintLine(nDocID,1,ConcatStrings(ConcatStrings(IntToString(FIX_VERSION_START)," версия от "),FIX_VERSION_DATE));
 	if(FIX_VERSION_SAVE == FALSE)
 	{
@@ -127,6 +126,11 @@ func void Use_StatsBook()
 	else
 	{
 		Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_SAVE)," версия в сохранении"));
+	};
+	if(HardModeEnabled == TRUE)
+	{
+		Doc_PrintLine(nDocID,1,"");
+		Doc_PrintLine(nDocID,1,ConcatStrings(ConcatStrings("Опыт снижен на ",IntToString(HardModeXPModifier)),"%"));
 	};
 	Doc_Show(nDocID);
 };
@@ -202,10 +206,6 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
 	};*/
-	if(!Npc_HasItems(other,StatsBook))
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Получить книгу статистики",StoryHelper_StatsBook);
-	};
 	if(FullNPCRemoval == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить полное удаление NPC из мира",StoryHelper_FullNPCRemoval);
@@ -824,12 +824,6 @@ func void StoryHelper_FullNPCRemoval()
 		FullNPCRemoval = TRUE;
 		PrintScreen("Полное удаление NPC из мира включено",-1,-1,FONT_Screen,3);
 	};
-	b_build_settings_diag();
-};
-
-func void StoryHelper_StatsBook()
-{
-	B_GiveInvItems(self,other,StatsBook,1);
 	b_build_settings_diag();
 };
 

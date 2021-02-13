@@ -987,7 +987,6 @@ func void b_enter_newworld()
 	{
 		B_ENTER_NEWWORLD_Kapitel_6();
 	};
-	CurrentLevel = NEWWORLD_ZEN;
 	B_InitNpcGlobals();
 };
 

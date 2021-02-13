@@ -4170,3 +4170,30 @@ func void CH_Skin_Naked()
 	CH_Skin_Info();
 };
 
+instance CH_StatsBook(C_Info)
+{
+	npc = ch;
+	nr = 38;
+	condition = CH_StatsBook_Condition;
+	information = CH_StatsBook_Info;
+	permanent = TRUE;
+	description = "Получить книгу статистики";
+};
+
+
+func int CH_StatsBook_Condition()
+{
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	{
+		if(!Npc_HasItems(other,StatsBook))
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void CH_StatsBook_Info()
+{
+	B_GiveInvItems(self,other,StatsBook,1);
+};
+

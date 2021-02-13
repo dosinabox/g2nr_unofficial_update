@@ -245,7 +245,6 @@ func void b_enter_addonworld()
 	{
 		B_ENTER_ADDONWORLD_Kapitel_6();
 	};
-	CurrentLevel = ADDONWORLD_ZEN;
 	B_InitNpcGlobals();
 };
 

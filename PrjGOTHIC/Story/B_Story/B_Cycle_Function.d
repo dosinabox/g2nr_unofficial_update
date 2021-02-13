@@ -1,5 +1,5 @@
 
-func void b_cycle_function()
+func void B_Cycle_Function()
 {
 	if(CurrentLevel == NEWWORLD_ZEN)
 	{
