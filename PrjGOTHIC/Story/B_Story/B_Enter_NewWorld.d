@@ -1,50 +1,80 @@
 
 func void B_ENTER_NEWWORLD_Kapitel_1()
 {
-	if((RavenIsDead == TRUE) && (MyxirMovedToNW == FALSE))
-	{
-		Wld_InsertNpc(KDW_140300_Addon_Myxir_CITY,"CITY1");
-		MyxirMovedToNW = TRUE;
-	};
 	if(ENTERED_ADDONWORLD == TRUE)
 	{
-		B_RemoveNpc(KDW_1400_Addon_Saturas_NW);
-		B_RemoveNpc(KDW_1401_Addon_Cronos_NW);
-		B_RemoveNpc(KDW_1402_Addon_Nefarius_NW);
-		B_RemoveNpc(KDW_1403_Addon_Myxir_NW);
-		B_RemoveNpc(KDW_1404_Addon_Riordian_NW);
-		B_RemoveNpc(KDW_1405_Addon_Merdarion_NW);
-		B_RemoveNpc(PIR_1301_Addon_Skip_NW);
+		if(NW_KDW_Removed_Forever == FALSE)
+		{
+			B_RemoveNpc(KDW_1400_Addon_Saturas_NW);
+			B_RemoveNpc(KDW_1401_Addon_Cronos_NW);
+			B_RemoveNpc(KDW_1402_Addon_Nefarius_NW);
+			B_RemoveNpc(KDW_1403_Addon_Myxir_NW);
+			B_RemoveNpc(KDW_1404_Addon_Riordian_NW);
+			B_RemoveNpc(KDW_1405_Addon_Merdarion_NW);
+			B_RemoveNpc(PIR_1301_Addon_Skip_NW);
+			if(FullNPCRemoval == TRUE)
+			{
+				NW_KDW_Removed_Forever = TRUE;
+			};
+		};
 		if(SC_GotPortalTempelWalkthroughKey == FALSE)
 		{
 			Wld_InsertNpc(Stoneguardian_MerdarionsSchluessel,"NW_TROLLAREA_PORTALTEMPEL_22");
 			SC_GotPortalTempelWalkthroughKey = TRUE;
 		};
 	};
-	if((Sklaven_Flucht == TRUE) && (MissingPeopleReturnedHome == FALSE))
+	if(GregIsBack == TRUE)
 	{
-		if(Patrick_DiedInADW == FALSE)
+		if(NW_Greg_Removed_Forever == FALSE)
 		{
-			Wld_InsertNpc(STRF_1123_Addon_Patrick_NW,"NW_BIGFARM_PATRICK");
+			B_RemoveNpc(PIR_1300_Addon_Greg_NW);
+			if(FullNPCRemoval == TRUE)
+			{
+				NW_Greg_Removed_Forever = TRUE;
+			};
 		};
-		if(Monty_DiedInADW == FALSE)
-		{
-			Wld_InsertNpc(STRF_1124_Addon_Monty_NW,"NW_CITY_HABOUR_WERFT_IN_01");
-		};
-		if(Tonak_DiedInADW == FALSE)
-		{
-			Wld_InsertNpc(STRF_1125_Addon_Tonak_NW,"NW_FARM2_FIELD_TONAK");
-		};
-		if(Telbor_DiedInADW == FALSE)
-		{
-			Wld_InsertNpc(STRF_1126_Addon_Telbor_NW,"NW_FARM2_FIELD_TELBOR");
-		};
-		if(Pardos_DiedInADW == FALSE)
-		{
-			Wld_InsertNpc(STRF_1127_Addon_Pardos_NW,"NW_FARM3_BENGAR");
-		};
-		MissingPeopleReturnedHome = TRUE;
 	};
+	if(Sklaven_Flucht == TRUE)
+	{
+		if(MissingPeopleReturnedHome == FALSE)
+		{
+			if(Patrick_DiedInADW == FALSE)
+			{
+				Wld_InsertNpc(STRF_1123_Addon_Patrick_NW,"NW_BIGFARM_PATRICK");
+			};
+			if(Monty_DiedInADW == FALSE)
+			{
+				Wld_InsertNpc(STRF_1124_Addon_Monty_NW,"NW_CITY_HABOUR_WERFT_IN_01");
+			};
+			if(Tonak_DiedInADW == FALSE)
+			{
+				Wld_InsertNpc(STRF_1125_Addon_Tonak_NW,"NW_FARM2_FIELD_TONAK");
+			};
+			if(Telbor_DiedInADW == FALSE)
+			{
+				Wld_InsertNpc(STRF_1126_Addon_Telbor_NW,"NW_FARM2_FIELD_TELBOR");
+			};
+			if(Pardos_DiedInADW == FALSE)
+			{
+				Wld_InsertNpc(STRF_1127_Addon_Pardos_NW,"NW_FARM3_BENGAR");
+			};
+			MissingPeopleReturnedHome = TRUE;
+		};
+	};
+	if(RavenIsDead == TRUE)
+	{
+		if(MyxirMovedToNW == FALSE)
+		{
+			Wld_InsertNpc(KDW_140300_Addon_Myxir_CITY,"CITY1");
+			MyxirMovedToNW = TRUE;
+		};
+	};
+	if(Npc_IsDead(Hanna))
+	{
+		B_SendMilitiaToHotel();
+	};
+	B_KillThievesGuild();
+	B_ResetSergio();
 };
 
 
@@ -52,10 +82,6 @@ var int EnterNW_Kapitel2;
 
 func void B_ENTER_NEWWORLD_Kapitel_2()
 {
-	if(GregIsBack == TRUE)
-	{
-		B_RemoveNpc(PIR_1300_Addon_Greg_NW);
-	};
 	if(EnterNW_Kapitel2 == FALSE)
 	{
 		Wld_InsertNpc(Gobbo_Skeleton,"NW_FOREST_PATH_04_9");
@@ -138,12 +164,6 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 			Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 			B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 		};
-		if(Npc_IsDead(Hanna))
-		{
-			B_SendMilitiaToHotel();
-		};
-		B_KillThievesGuild();
-		B_ResetSergio();
 		EnterNW_Kapitel2 = TRUE;
 	};
 };
@@ -450,12 +470,6 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			Npc_ExchangeRoutine(Bengar,"Start");
 		};
-		if(Npc_IsDead(Hanna))
-		{
-			B_SendMilitiaToHotel();
-		};
-		B_KillThievesGuild();
-		B_ResetSergio();
 		EnterNW_Kapitel3 = TRUE;
 	};
 };
@@ -761,12 +775,6 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 				Randolph_ExchangeRoutine_Once = TRUE;
 			};
 		};
-		if(Npc_IsDead(Hanna))
-		{
-			B_SendMilitiaToHotel();
-		};
-		B_KillThievesGuild();
-		B_ResetSergio();
 		EnterNW_Kapitel4 = TRUE;
 	};
 	if(Talbin_FollowsThroughPass == LOG_Running)
@@ -930,12 +938,6 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		{
 			B_StartOtherRoutine(Girion,"WaitForShip");
 		};
-		if(Npc_IsDead(Hanna))
-		{
-			B_SendMilitiaToHotel();
-		};
-		B_KillThievesGuild();
-		B_ResetSergio();
 		EnterNW_Kapitel5 = TRUE;
 	};
 //	if(MIS_OCGateOpen == TRUE)

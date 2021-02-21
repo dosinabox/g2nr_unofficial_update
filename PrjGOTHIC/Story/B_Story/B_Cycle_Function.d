@@ -20,7 +20,6 @@ func void B_Cycle_Function()
 			{
 				if(Npc_HasItems(hero,ItMi_InnosEye_Broken_Mis))
 				{
-					MIS_SCKnowsInnosEyeIsBroken = TRUE;
 					if(Pedro_Traitor == TRUE)
 					{
 						B_LogEntries(TOPIC_INNOSEYE,"Эти жуткие ребята действуют мне на нервы. Они испортили Глаз Инноса. И теперь я не знаю, как мне починить его.");
@@ -31,6 +30,7 @@ func void B_Cycle_Function()
 						B_LogEntry(TOPIC_INNOSEYE,"Эти жуткие ребята действуют мне на нервы. Они испортили Глаз Инноса. И теперь я не знаю, как мне починить его.");
 					};
 					B_GivePlayerXP(XP_SCKnowsInnosEyeIsBroken);
+					MIS_SCKnowsInnosEyeIsBroken = TRUE;
 					MIS_PickedUpInnosEye = TRUE;
 				};
 			};

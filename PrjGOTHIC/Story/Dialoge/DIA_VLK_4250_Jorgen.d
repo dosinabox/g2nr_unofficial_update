@@ -116,12 +116,13 @@ func int DIA_Jorgen_Novice_Condition()
 func void DIA_Jorgen_Novice_Info()
 {
 	AI_Output(other,self,"DIA_Jorgen_Novice_15_00");	//Мимо тебя не проходил послушник?
-	if(Npc_IsOnFP(self,"STAND"))
+	if((Npc_GetDistToWP(self,"NW_MONASTERY_BRIDGE_01") <= 250) && Wld_IsFPAvailable(self,"LOOKOUT"))
 	{
 		AI_Output(self,other,"DIA_Jorgen_Novice_07_01");	//Да, конечно, он побежал туда.
 		AI_StopLookAt(self);
+		AI_GotoFP(self,"LOOKOUT");
 		AI_AlignToFP(self);
-		AI_PlayAni(self,"T_DIALOGGESTURE_04");
+		AI_PlayAni(self,"T_GREETCOOL");
 		AI_TurnToNpc(self,other);
 	};
 	AI_Output(self,other,"DIA_Jorgen_Novice_07_02");	//Он прыгнул в воду с моста и поплыл так, как будто за ним гналась акула.

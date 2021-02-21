@@ -8,6 +8,7 @@ func void STARTUP_DragonIsland_Part_Island_01()
 	Wld_InsertItem(ItMi_DarkPearl,"FP_ITEM_DI_ENTER_03");
 	Wld_InsertItem(ItMi_Sulfur,"FP_ITEM_DI_ENTER_07");
 	Wld_InsertItem(ItWr_ZugBruecke_MIS,"FP_ITEM_DI_ENTER_09");
+	Wld_InsertItem(ItRw_Bow_L_01,"FP_ITEM_SHIP_16");
 	Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_DI_ORK_01");
 	Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_DI_ORK_02");
 	Wld_InsertNpc(Warg,"FP_ROAM_DI_ORK_03");

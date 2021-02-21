@@ -27,6 +27,10 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 			{
 				return TRUE;
 			};
+			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cord)) && (Npc_GetDistToWP(slf,"NW_BIGFARM_HOUSE_15") < 1000))
+			{
+				return TRUE;
+			};
 		};
 	};
 	if(slf.aivar[AIV_IgnoresArmor] == TRUE)
