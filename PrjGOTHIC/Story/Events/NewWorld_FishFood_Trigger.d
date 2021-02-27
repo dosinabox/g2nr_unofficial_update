@@ -1,7 +1,6 @@
 
 func void newworld_fishfood_trigger()
 {
-	PlayVideo("FISHFOOD.BIK");
-	ExitSession();
+	PlayVideoEx("FISHFOOD.BIK",FALSE,TRUE);
 };
 

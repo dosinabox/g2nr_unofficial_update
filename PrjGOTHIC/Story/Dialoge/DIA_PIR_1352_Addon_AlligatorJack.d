@@ -203,7 +203,7 @@ instance DIA_Addon_AlligatorJack_BDTRuestung(C_Info)
 
 func int DIA_Addon_AlligatorJack_BDTRuestung_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Vorschlag) && (MIS_Greg_ScoutBandits == FALSE) && !Npc_HasItems(other,ITAR_BDT_M) && !Npc_HasItems(other,ITAR_BDT_H) && !Npc_HasItems(other,ITAR_Thorus_Addon))
+	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Vorschlag) && (MIS_Greg_ScoutBandits == FALSE) && !C_SCHasBDTArmor())
 	{
 		return TRUE;
 	};

@@ -1,5 +1,5 @@
 
-instance DMT_1203_Dementor(Npc_Default)
+/*instance DMT_1203_Dementor(Npc_Default)
 {
 	name[0] = NAME_Dementor;
 	guild = GIL_DMT;
@@ -48,5 +48,5 @@ func void Rtn_Start_1203()
 	TA_Stand_Dementor(3,0,4,0,"NW_FARM3_PATH_12_MONSTER_03");
 	TA_Stand_Dementor(4,0,5,0,"NW_CITY_TO_FARM2_10");
 	TA_Stand_Dementor(5,0,6,0,"NW_FARM3_PATH_12_MONSTER_03");
-};
+};*/
 

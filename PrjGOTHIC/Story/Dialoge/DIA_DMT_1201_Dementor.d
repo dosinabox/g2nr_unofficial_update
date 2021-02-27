@@ -1,5 +1,5 @@
 
-instance DIA_DMT_1201_Dementor_EXIT(C_Info)
+/*instance DIA_DMT_1201_Dementor_EXIT(C_Info)
 {
 	npc = DMT_1201_Dementor;
 	nr = 999;
@@ -43,7 +43,7 @@ func int DIA_DMT_1201_Dementor_Condition()
 func void DIA_DMT_1201_Dementor_Info()
 {
 	B_AssignDementorTalk_Ritual();
-};
+};*/
 
 
 instance DIA_DMT_1202_Dementor_EXIT(C_Info)
@@ -93,7 +93,7 @@ func void DIA_DMT_1202_Dementor_Info()
 };
 
 
-instance DIA_DMT_1203_Dementor_EXIT(C_Info)
+/*instance DIA_DMT_1203_Dementor_EXIT(C_Info)
 {
 	npc = DMT_1203_Dementor;
 	nr = 999;
@@ -137,7 +137,7 @@ func int DIA_DMT_1203_Dementor_Condition()
 func void DIA_DMT_1203_Dementor_Info()
 {
 	B_AssignDementorTalk_Ritual();
-};
+};*/
 
 
 instance DIA_DMT_1204_Dementor_EXIT(C_Info)
@@ -187,7 +187,7 @@ func void DIA_DMT_1204_Dementor_Info()
 };
 
 
-instance DIA_DMT_1205_Dementor_EXIT(C_Info)
+/*instance DIA_DMT_1205_Dementor_EXIT(C_Info)
 {
 	npc = DMT_1205_Dementor;
 	nr = 999;
@@ -231,7 +231,7 @@ func int DIA_DMT_1205_Dementor_Condition()
 func void DIA_DMT_1205_Dementor_Info()
 {
 	B_AssignDementorTalk_Ritual();
-};
+};*/
 
 
 instance DIA_DMT_1206_Dementor_EXIT(C_Info)
@@ -328,7 +328,7 @@ func void DIA_DMT_1207_Dementor_Info()
 };
 
 
-instance DIA_DMT_1208_Dementor_EXIT(C_Info)
+/*instance DIA_DMT_1208_Dementor_EXIT(C_Info)
 {
 	npc = DMT_1208_Dementor;
 	nr = 999;
@@ -372,7 +372,7 @@ func int DIA_DMT_1208_Dementor_Condition()
 func void DIA_DMT_1208_Dementor_Info()
 {
 	B_AssignDementorTalk_Ritual();
-};
+};*/
 
 
 instance DIA_DMT_1209_Dementor_EXIT(C_Info)
