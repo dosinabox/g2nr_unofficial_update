@@ -1455,6 +1455,40 @@ instance Hosh4(C_Item)
 func void UseHoshiTagebuch()
 {
 	GregIsBack_S1();
+};
+
+var int TimeDemoStarted;
+
+instance TimeDemo(C_Item)
+{
+	name = "Руна TimeDemo";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItRu_TeleportOWDemonTower.3DS";
+	material = MAT_STONE;
+	scemeName = "MAP";
+	description = name;
+	text[0] = "Запустить камеру TimeDemo.";
+	on_state[0] = UseTimeDemo;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
+};
+
+
+func void UseTimeDemo()
+{
+	if(TimeDemoStarted == FALSE)
+	{
+		Wld_SendTrigger("TIMEDEMO");
+		TimeDemoStarted = TRUE;
+	}
+	else
+	{
+		Wld_SendUntrigger("TIMEDEMO");
+		TimeDemoStarted = FALSE;
+	};
 };*/
 
 instance MobsiBrief(C_Item)

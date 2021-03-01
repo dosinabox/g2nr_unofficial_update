@@ -2,9 +2,9 @@
 var int PrayIdolDay;
 var int PrayIdolDayOne;
 
-var int RecievedMoney;
-var int GivenHitpoints;
-var int GivenMana;
+var int Stats_Beliar_GoldTaken;
+var int Stats_Beliar_HpGiven;
+var int Stats_Beliar_ManaGiven;
 
 const int BeliarsGoldMultiplier = 50;
 const int BeliarsDispo = 10000;
@@ -28,8 +28,7 @@ func int C_PrayedIdolToday()
 func void B_HitpointAngleich(var int BeliarsCost)
 {
 	var int CurrentHitpoints;
-	var string concatText;
-	GivenHitpoints += BeliarsCost;
+	Stats_Beliar_HpGiven += BeliarsCost;
 	hero.attribute[ATR_HITPOINTS_MAX] -= BeliarsCost;
 	CurrentHitpoints = hero.attribute[ATR_HITPOINTS] - BeliarsCost;
 	if(CurrentHitpoints < 2)
@@ -37,15 +36,13 @@ func void B_HitpointAngleich(var int BeliarsCost)
 		CurrentHitpoints = 2;
 	};
 	hero.attribute[ATR_HITPOINTS] = CurrentHitpoints;
-	concatText = ConcatStrings(PRINT_Beliarshitpoints_MAX,IntToString(BeliarsCost));
-	PrintScreen(concatText,-1,-1,FONT_Screen,4);
+	PrintScreen(ConcatStrings(PRINT_Beliarshitpoints_MAX,IntToString(BeliarsCost)),-1,-1,FONT_Screen,4);
 };
 
 func void B_ManaAngleich(var int BeliarsCost)
 {
 	var int CurrentMana;
-	var string concatText;
-	GivenMana += BeliarsCost;
+	Stats_Beliar_ManaGiven += BeliarsCost;
 	B_UnEquipIllegalMagicItems(BeliarsCost);
 	hero.attribute[ATR_MANA_MAX] -= BeliarsCost;
 	hero.aivar[REAL_MANA_MAX] -= BeliarsCost;
@@ -55,8 +52,7 @@ func void B_ManaAngleich(var int BeliarsCost)
 		CurrentMana = 0;
 	};
 	hero.attribute[ATR_MANA] = CurrentMana;
-	concatText = ConcatStrings(PRINT_Beliarsmana_MAX,IntToString(BeliarsCost));
-	PrintScreen(concatText,-1,-1,FONT_Screen,4);
+	PrintScreen(ConcatStrings(PRINT_Beliarsmana_MAX,IntToString(BeliarsCost)),-1,-1,FONT_Screen,4);
 };
 
 func void B_BlitzInArsch()
@@ -80,15 +76,13 @@ func void B_BlitzInArsch()
 
 func void B_GetBeliarsGold(var int Kohle)
 {
-	var string concatText;
-	RecievedMoney += Kohle;
-	if(RecievedMoney > BeliarsDispo)
+	Stats_Beliar_GoldTaken += Kohle;
+	if(Stats_Beliar_GoldTaken > BeliarsDispo)
 	{
 		Kohle = 100;
 	};
 	CreateInvItems(hero,ItMi_Gold,Kohle);
-	concatText = ConcatStrings(IntToString(Kohle),PRINT_GoldTaken);
-	AI_PrintScreen(concatText,-1,YPOS_GoldTaken,FONT_ScreenSmall,2);
+	AI_PrintScreen(ConcatStrings(IntToString(Kohle),PRINT_GoldTaken),-1,YPOS_GoldTaken,FONT_ScreenSmall,2);
 	Snd_Play("CS_Prayer_FokusFinal");
 };
 
@@ -106,7 +100,7 @@ func void B_PrayIdol(var int attribute,var int amount)
 		B_ManaAngleich(amount);
 		gold = amount * BeliarsGoldMultiplier * 10;
 	};
-	if(C_PrayedIdolToday() || (RecievedMoney >= BeliarsDispo))
+	if(C_PrayedIdolToday() || (Stats_Beliar_GoldTaken >= BeliarsDispo))
 	{
 		B_BlitzInArsch();
 	}
@@ -186,7 +180,7 @@ func void PC_PrayIdol_PrayIdol_Info()
 	Info_ClearChoices(PC_PrayIdol_PrayIdol);
 	Info_AddChoice(PC_PrayIdol_PrayIdol,Dialog_Back,PC_PrayIdol_PrayIdol_Back);
 	Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVENOTHING,PC_PrayIdol_PrayIdol_NoPay);
-	if(GivenMana <= 10)
+	if(Stats_Beliar_ManaGiven <= 10)
 	{
 		//if(hero.attribute[ATR_MANA_MAX] > 10)
 		if(hero.aivar[REAL_MANA_MAX] > 10)
@@ -194,7 +188,7 @@ func void PC_PrayIdol_PrayIdol_Info()
 			Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVEMANA,PC_PrayIdol_PrayIdol_ManaPay);
 		};
 	};
-	if(GivenHitpoints <= 50)
+	if(Stats_Beliar_HpGiven <= 50)
 	{
 		if(hero.attribute[ATR_HITPOINTS_MAX] >= 40)
 		{

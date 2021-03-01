@@ -226,7 +226,7 @@ instance DIA_Pepe_BullcoDefeated(C_Info)
 
 func int DIA_Pepe_BullcoDefeated_Condition()
 {
-	if((MIS_Pepe_KickBullco == LOG_Running) && (DJG_or_SLD_Bullco_Defeated == TRUE))
+	if((MIS_Pepe_KickBullco == LOG_Running) && ((SLD_Bullco_Defeated == TRUE) || (DJG_Bullco_Defeated == TRUE)))
 	{
 		return TRUE;
 	};

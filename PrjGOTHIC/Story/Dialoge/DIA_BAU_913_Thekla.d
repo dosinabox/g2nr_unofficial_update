@@ -244,9 +244,15 @@ instance DIA_Thekla_Manieren(C_Info)
 
 func int DIA_Thekla_Manieren_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Thekla_Problem) && (Sylvio.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE) && (Bullco.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE) && (Kapitel <= 3))
+	if(Npc_KnowsInfo(other,DIA_Thekla_Problem) && (Kapitel <= 3))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Bullco))
+		{
+			if(SLD_Bullco_Defeated == FALSE)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -272,19 +278,36 @@ instance DIA_Thekla_AfterFight(C_Info)
 
 func int DIA_Thekla_AfterFight_Condition()
 {
-	if((Sylvio.aivar[AIV_LastFightAgainstPlayer] == FIGHT_WON) || (Bullco.aivar[AIV_LastFightAgainstPlayer] == FIGHT_WON) || ((Bullco.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST) && (Kapitel <= 3)))
+	if(Kapitel <= 3)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Bullco))
+		{
+			if(SLD_Bullco_Defeated == TRUE)
+			{
+				return TRUE;
+			};
+			if(SLD_Bullco_Defeated_SC == TRUE)
+			{
+				return TRUE;
+			};
+		};
+		if(SLD_Sylvio_Defeated_SC == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Thekla_AfterFight_Info()
 {
-	if(Bullco.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
+	if(SLD_Bullco_Defeated == TRUE)
 	{
 		AI_Output(self,other,"DIA_Thekla_AfterFight_17_00");	//Ты действительно смог выбить дурь из этого Буллко.
 		AI_Output(self,other,"DIA_Thekla_AfterFight_17_01");	//Должно быть, ты очень устал, пока молотил эту жирную свинью.
-		B_GivePlayerXP(XP_Thekla_BlameSylvio);
+		if(Npc_KnowsInfo(other,DIA_Thekla_Manieren))
+		{
+			B_GivePlayerXP(XP_Thekla_BlameSylvio);
+		};
 	}
 	else
 	{

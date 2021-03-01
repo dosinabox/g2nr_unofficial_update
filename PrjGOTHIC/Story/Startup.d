@@ -1616,6 +1616,7 @@ func void STARTUP_OldWorld()
 		B_Seed_Wasteland_World_Main();
 		B_Seed_Wasteland_World_Psicamp();
 		B_Seed_Wasteland_World_Freeminecamp();
+		Wasteland_Seeded = TRUE;
 	};
 };
 

@@ -116,6 +116,9 @@ Section "Основные файлы" SecMain
 	File "${MOD_NAME}.ini"
 	File "${MOD_NAME}.rtf"
 
+	SetOutPath "$INSTDIR\_work\Data\Music\newworld"
+	File "KAS_Loop_DayStd.sgt"
+
 	SetOutPath $INSTDIR
 	File "Changelog_${MOD_NAME}.txt"
 	WriteUninstaller "$INSTDIR\${UNINSTALLER_NAME}.exe"
@@ -167,6 +170,7 @@ Section "Un.Удалить обновление" SecUninstall_Main
 	Delete "$INSTDIR\system\${MOD_NAME}.ico"
 	Delete "$INSTDIR\system\${MOD_NAME}.ini"
 	Delete "$INSTDIR\system\${MOD_NAME}.rtf"
+	Delete "$INSTDIR\_work\Data\Music\newworld\KAS_Loop_DayStd.sgt"
 	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}.mod"
 	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_autoscale.mod"
 	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_speech_add.mod"

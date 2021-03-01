@@ -204,4 +204,3 @@ func void DIA_Torlof_DI_PICKPOCKET_BACK()
 	Info_ClearChoices(DIA_Torlof_DI_PICKPOCKET);
 };
 
-

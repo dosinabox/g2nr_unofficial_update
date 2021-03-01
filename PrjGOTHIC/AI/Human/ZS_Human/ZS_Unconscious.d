@@ -27,11 +27,15 @@ func void ZS_Unconscious()
 		{
 			self.aivar[AIV_ArenaFight] = AF_AFTER;
 		};
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bullco)))
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bullco))
 		{
-			DJG_or_SLD_Bullco_Defeated = TRUE;
-		};
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Valentino))
+			SLD_Bullco_Defeated = TRUE;
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco))
+		{
+			DJG_Bullco_Defeated = TRUE;
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Valentino))
 		{
 			Valentino_Day = B_GetDayPlus();
 		};
@@ -42,6 +46,14 @@ func void ZS_Unconscious()
 		if(other.aivar[AIV_ArenaFight] == AF_RUNNING)
 		{
 			other.aivar[AIV_ArenaFight] = AF_AFTER;
+		};
+		if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Bullco))
+		{
+			SLD_Bullco_Defeated_SC = TRUE;
+		}
+		else if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Sylvio))
+		{
+			SLD_Sylvio_Defeated_SC = TRUE;
 		};
 	};
 	B_GiveTradeInv(self);

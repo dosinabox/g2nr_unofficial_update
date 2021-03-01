@@ -83,9 +83,9 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_MaxMana)," макс. маны получено"));
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Молитвы Белиару:");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(GivenHitpoints)," макс. здоровья отдано"));
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(GivenMana)," макс. маны отдано"));
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(RecievedMoney),PRINT_GoldTaken));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Beliar_HpGiven)," макс. здоровья отдано"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Beliar_ManaGiven)," макс. маны отдано"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Beliar_GoldTaken),PRINT_GoldTaken));
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Улучшения Когтя:");
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Beliar_ClawMaxHp)," макс. здоровья отдано"));
@@ -127,9 +127,12 @@ func void Use_StatsBook()
 	{
 		Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_SAVE)," версия в сохранении"));
 	};
+	if(Wasteland_Seeded == TRUE)
+	{
+		Doc_PrintLine(nDocID,1,"Расширенная Рудниковая долина заселена");
+	};
 	if(HardModeEnabled == TRUE)
 	{
-		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,ConcatStrings(ConcatStrings("Опыт снижен на ",IntToString(HardModeXPModifier)),"%"));
 	};
 	Doc_Show(nDocID);
@@ -188,10 +191,17 @@ instance WastelandRune(C_Item)
 
 func void UseWastelandRune()
 {
-	PrintScreen("Заселяем...",-1,-1,FONT_Screen,1);
-	B_Seed_Wasteland_World_Main();
-	B_Seed_Wasteland_World_Psicamp();
-	B_Seed_Wasteland_World_Freeminecamp();
+	if(CurrentLevel == OLDWORLD_ZEN)
+	{
+		PrintScreen("Заселяем...",-1,-1,FONT_Screen,1);
+		B_Seed_Wasteland_World_Main();
+		B_Seed_Wasteland_World_Psicamp();
+		B_Seed_Wasteland_World_Freeminecamp();
+	}
+	else
+	{
+		PrintScreen(PRINT_TeleportTooFarAway,-1,-1,FONT_Screen,1);
+	};
 };
 
 func void b_build_settings_diag()

@@ -2,8 +2,6 @@
 var int PrayDay;
 var int PrayDayOne;
 
-var string concatDonation;
-
 var int Shrine_STR_Bonus;
 var int Shrine_DEX_Bonus;
 var int Shrine_MANA_Bonus;
@@ -96,8 +94,7 @@ func void B_Pray(var int gold)
 	{
 		Npc_RemoveInvItems(hero,ItMi_Gold,gold);
 		Stats_Blessings_GoldGiven += gold;
-		concatDonation = ConcatStrings(IntToString(gold),PRINT_GoldGiven);
-		AI_PrintScreen(concatDonation,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen(ConcatStrings(IntToString(gold),PRINT_GoldGiven),-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	};
 };
 
@@ -411,8 +408,7 @@ func void PC_PrayShrine_BlessSword_Info()
 	else if(Npc_HasItems(hero,ItMi_Gold) >= Gold_BlessSword)
 	{
 		Npc_RemoveInvItems(hero,ItMi_Gold,Gold_BlessSword);
-		concatDonation = ConcatStrings(IntToString(Gold_BlessSword),PRINT_GoldGiven);
-		AI_PrintScreen(concatDonation,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen(ConcatStrings(IntToString(Gold_BlessSword),PRINT_GoldGiven),-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 		if(Npc_HasItems(hero,ItMw_2H_Blessed_01))
 		{
 			Npc_RemoveInvItems(hero,ItMw_2H_Blessed_01,1);
