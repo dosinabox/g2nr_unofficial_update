@@ -50,7 +50,6 @@ func void DIA_Jorgen_DI_Hallo_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Jorgen_DI_Hallo_07_02");	//Нам не пережить следующую атаку орков. Так что поторопись - нужно убираться отсюда.
-		B_StartOtherRoutine(Jorgen_DI,"Start");
 	};
 	AI_StopProcessInfos(self);
 };
@@ -96,5 +95,4 @@ func void DIA_Jorgen_DI_UndeadDragonDead_over()
 	AI_StopProcessInfos(self);
 	B_Extro_Avi();
 };
-
 

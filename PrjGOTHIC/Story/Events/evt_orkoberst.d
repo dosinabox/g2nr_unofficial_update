@@ -13,19 +13,25 @@ func void evt_orkoberst()
 		Wld_InsertNpc(OrcWarrior_Roam,"SHIP_DECK_17");
 		Wld_InsertNpc(OrcWarrior_Roam,"SHIP_IN_22");
 		Wld_InsertNpc(OrcWarrior_Roam,"DI_SHIP_04");
+		Wld_InsertNpc(OrcWarrior_Roam,"FP_ROAM_DI_ORK_02");
+		Wld_InsertNpc(OrcWarrior_Roam,"FP_ROAM_DI_ORK_03");
 		if(TorlofIsCaptain == TRUE)
 		{
 			Wld_InsertNpc(OrcWarrior_Roam,"DI_SHIP_04");
+			B_StartOtherRoutine(Torlof_DI,"OrkSturmDI");
+		}
+		else if(JackIsCaptain == TRUE)
+		{
+			B_StartOtherRoutine(Jack_DI,"OrkSturmDI");
+		};
+		if(!Npc_IsDead(Biff_DI))
+		{
+			B_StartOtherRoutine(Biff_DI,"OrkSturmDI");
 		};
 		if(!Npc_IsDead(Vatras_DI))
 		{
 			Vatras_DI.flags = NPC_FLAG_IMMORTAL;
 		};
-		Wld_InsertNpc(OrcWarrior_Roam,"FP_ROAM_DI_ORK_02");
-		Wld_InsertNpc(OrcWarrior_Roam,"FP_ROAM_DI_ORK_03");
-		B_StartOtherRoutine(Biff_DI,"OrkSturmDI");
-		B_StartOtherRoutine(Jack_DI,"OrkSturmDI");
-		B_StartOtherRoutine(Torlof_DI,"OrkSturmDI");
 		if(!Npc_IsDead(Mario_DI))
 		{
 			CreateInvItem(Mario_DI,ITWR_DementorObsessionBook_MIS);

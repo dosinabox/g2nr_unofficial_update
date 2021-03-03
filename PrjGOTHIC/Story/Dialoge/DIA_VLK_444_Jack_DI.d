@@ -64,7 +64,11 @@ func void DIA_Jack_DI_GREET_Info()
 		AI_Output(other,self,"DIA_Jack_DI_GREET_15_05");	//Не болтай ерунды. Я со всем справлюсь.
 		AI_Output(self,other,"DIA_Jack_DI_GREET_14_06");	//Тогда поторопись.
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"Start");
+		if(CaptainIsBackToStartPosition == FALSE)
+		{
+			Npc_ExchangeRoutine(self,"Start");
+			CaptainIsBackToStartPosition = TRUE;
+		};
 	};
 };
 
@@ -110,5 +114,4 @@ func void DIA_Jack_DI_UndeadDragonDead_over()
 	AI_StopProcessInfos(self);
 	B_Extro_Avi();
 };
-
 

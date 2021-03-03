@@ -196,7 +196,7 @@ instance DIA_Igaraz_IMTHEMAN(C_Info)
 
 func int DIA_Igaraz_IMTHEMAN_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500))
+	if((MIS_Schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein))
 	{
 		return TRUE;
 	};
@@ -219,11 +219,9 @@ instance DIA_Igaraz_METOO(C_Info)
 };
 
 
-//var int DIA_Igaraz_METOO_NOPERM;
-
 func int DIA_Igaraz_METOO_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) && (other.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Igaraz_IMTHEMAN) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein))
 	{
 		return TRUE;
 	};
@@ -308,15 +306,26 @@ instance DIA_Igaraz_Pruefung(C_Info)
 	nr = 22;
 	condition = DIA_Igaraz_Pruefung_Condition;
 	information = DIA_Igaraz_Pruefung_Info;
+	permanent = TRUE;
 	description = "Выяснил что-нибудь новое?";
 };
 
 
 func int DIA_Igaraz_Pruefung_Condition()
 {
-	if((other.guild == GIL_NOV) && !Npc_HasItems(other,ItMi_RuneBlank) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
+	if((other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
 	{
-		return TRUE;
+		if(C_WorldIsFixed(NEWWORLD_ZEN))
+		{
+			if(Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
+			{
+				return TRUE;
+			};
+		}
+		else if(!Npc_HasItems(other,ItMi_RuneBlank))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -327,7 +336,6 @@ func void DIA_Igaraz_Pruefung_Info()
 	AI_StopProcessInfos(self);
 	if(Igaraz_Wait == FALSE)
 	{
-		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"CONTESTWAIT");
 		Igaraz_Wait = TRUE;
 	};
@@ -347,9 +355,19 @@ instance DIA_Igaraz_Stein(C_Info)
 
 func int DIA_Igaraz_Stein_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV) && Npc_HasItems(other,ItMi_RuneBlank))
+	if((MIS_Schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV))
 	{
-		return TRUE;
+		if(C_WorldIsFixed(NEWWORLD_ZEN))
+		{
+			if(!Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
+			{
+				return TRUE;
+			};
+		}
+		else if(Npc_HasItems(other,ItMi_RuneBlank))
+		{
+			return TRUE;
+		};
 	};
 };
 
