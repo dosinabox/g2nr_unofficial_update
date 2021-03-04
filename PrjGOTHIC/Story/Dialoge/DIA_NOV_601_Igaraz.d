@@ -315,14 +315,7 @@ func int DIA_Igaraz_Pruefung_Condition()
 {
 	if((other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
 	{
-		if(C_WorldIsFixed(NEWWORLD_ZEN))
-		{
-			if(Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
-			{
-				return TRUE;
-			};
-		}
-		else if(!Npc_HasItems(other,ItMi_RuneBlank))
+		if(!C_FireContestRuneFound())
 		{
 			return TRUE;
 		};
@@ -357,14 +350,7 @@ func int DIA_Igaraz_Stein_Condition()
 {
 	if((MIS_Schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV))
 	{
-		if(C_WorldIsFixed(NEWWORLD_ZEN))
-		{
-			if(!Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
-			{
-				return TRUE;
-			};
-		}
-		else if(Npc_HasItems(other,ItMi_RuneBlank))
+		if(C_FireContestRuneFound())
 		{
 			return TRUE;
 		};

@@ -132,7 +132,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMW_Addon_Hacker_2h_02,1);
 	CreateInvItems(self,ItMW_Addon_Keule_1h_01,1);
 	CreateInvItems(self,ItMW_Addon_Keule_2h_01,1);
-	CreateInvItems(self,ItMw_FrancisDagger_Mis,1);
+	CreateInvItems(self,ItMw_1h_Pir_Dagger,1);
 	CreateInvItems(self,ItMw_RangerStaff_Addon,1);
 	CreateInvItems(self,ItMw_Addon_PIR2hAxe,1);
 	CreateInvItems(self,ItMw_Addon_PIR2hSword,1);

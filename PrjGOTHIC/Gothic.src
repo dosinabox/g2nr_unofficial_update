@@ -996,6 +996,7 @@ Story\NPC\VLK_4003_Buergerin.d
 Story\NPC\VLK_4004_Arbeiter.d
 Story\NPC\VLK_4005_Arbeiter.d
 Story\NPC\VLK_4006_Bote.d
+Story\NPC\VLK_4007_Agon.d
 Story\NPC\VLK_400_Larius.d
 Story\NPC\VLK_401_Cornelius.d
 Story\NPC\VLK_402_Richter.d
@@ -1609,6 +1610,7 @@ Story\Dialoge\DIA_VLK_4110_Jergan.d
 Story\Dialoge\DIA_VLK_4111_Grimes.d
 Story\Dialoge\DIA_VLK_411_Gaertner.d
 Story\Dialoge\DIA_VLK_4006_Bote.d
+Story\Dialoge\DIA_VLK_4007_Agon.d
 Story\Dialoge\DIA_VLK_4120_Bilgot.d
 Story\Dialoge\DIA_VLK_412_Harad.d
 Story\Dialoge\DIA_VLK_4130_Talbin.d

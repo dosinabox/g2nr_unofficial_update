@@ -486,7 +486,7 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 		}; */
 		if(!Npc_IsDead(Brutus))
 		{
-			CreateInvItems(VLK_4100_Brutus,ITWR_DementorObsessionBook_MIS,1);
+			CreateInvItems(Brutus,ITWR_DementorObsessionBook_MIS,1);
 		};
 		if(TschuessBilgot == TRUE)
 		{

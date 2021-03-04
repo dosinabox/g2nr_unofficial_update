@@ -260,6 +260,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Igaraz.aivar[AIV_NewsOverride] = TRUE;
 		Igaraz.aivar[AIV_IgnoresArmor] = TRUE;
 		Igaraz.aivar[AIV_IgnoresFakeGuild] = TRUE;
+		Igaraz.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		CreateInvItems(Igaraz,ItKe_MagicChest,1);
 		AI_Teleport(Igaraz,"NW_TAVERNE_BIGFARM_05");
 		B_StartOtherRoutine(Igaraz,"CONTEST");
@@ -271,6 +272,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Agon.aivar[AIV_NewsOverride] = TRUE;
 		Agon.aivar[AIV_IgnoresArmor] = TRUE;
 		Agon.aivar[AIV_IgnoresFakeGuild] = TRUE;
+		Agon.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		CreateInvItems(Agon,ItKe_MagicChest,1);
 		AI_Teleport(Agon,"NW_MAGECAVE_RUNE");
 		B_StartOtherRoutine(Agon,"GOLEMDEAD");
@@ -292,6 +294,22 @@ func void DIA_Pyrokar_TEST_Info()
 };
 
 
+func int C_FireContestRuneFound()
+{
+	if(C_WorldIsFixed(NEWWORLD_ZEN))
+	{
+		if(!Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
+		{
+			return TRUE;
+		};
+	}
+	else if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 instance DIA_Pyrokar_RUNNING(C_Info)
 {
 	npc = KDF_500_Pyrokar;
@@ -305,17 +323,9 @@ instance DIA_Pyrokar_RUNNING(C_Info)
 
 func int DIA_Pyrokar_RUNNING_Condition()
 {
-//	if((MIS_Schnitzeljagd == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
 	if((MIS_Schnitzeljagd == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV))
 	{
-		if(C_WorldIsFixed(NEWWORLD_ZEN))
-		{
-			if(Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
-			{
-				return TRUE;
-			};
-		};
-		if(!Npc_HasItems(other,ItMi_RuneBlank) && !Npc_HasItems(other,ItRu_FireBolt))
+		if(!C_FireContestRuneFound())
 		{
 			return TRUE;
 		};
@@ -355,19 +365,11 @@ instance DIA_Pyrokar_SUCCESS(C_Info)
 
 func int DIA_Pyrokar_SUCCESS_Condition()
 {
-//	if((MIS_Schnitzeljagd == LOG_Running) && (hero.guild == GIL_NOV) && !Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && (Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt)))
 	if((MIS_Schnitzeljagd == LOG_Running) && (hero.guild == GIL_NOV))
 	{
 		if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
 		{
-			if(C_WorldIsFixed(NEWWORLD_ZEN))
-			{
-				if(!Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
-				{
-					return TRUE;
-				};
-			}
-			else
+			if(C_FireContestRuneFound())
 			{
 				return TRUE;
 			};
@@ -529,30 +531,52 @@ func void DIA_Pyrokar_OATH_Info()
 	{
 		CreateInvItems(Karras,ItMi_RuneBlank,1);
 	};
-	if(!Npc_IsDead(Ulf))
-	{
-		B_StartOtherRoutine(Ulf,"BackToMonastery");
-		Ulf.aivar[AIV_DropDeadAndKill] = FALSE;
-		Ulf.aivar[AIV_NewsOverride] = FALSE;
-		Ulf.aivar[AIV_IgnoresArmor] = FALSE;
-		Ulf.aivar[AIV_IgnoresFakeGuild] = FALSE;
-	};
 	if(!Npc_IsDead(Igaraz))
 	{
-		B_StartOtherRoutine(Igaraz,"Start");
-		Igaraz.aivar[AIV_DropDeadAndKill] = FALSE;
-		Igaraz.aivar[AIV_NewsOverride] = FALSE;
-		Igaraz.aivar[AIV_IgnoresArmor] = FALSE;
-		Igaraz.aivar[AIV_IgnoresFakeGuild] = FALSE;
+		if(Npc_KnowsInfo(other,DIA_Igaraz_Stein))
+		{
+			B_RemoveNpc(NOV_601_Igaraz);
+		}
+		else
+		{
+			B_StartOtherRoutine(Igaraz,"Start");
+			Igaraz.aivar[AIV_DropDeadAndKill] = FALSE;
+			Igaraz.aivar[AIV_NewsOverride] = FALSE;
+			Igaraz.aivar[AIV_IgnoresArmor] = FALSE;
+			Igaraz.aivar[AIV_IgnoresFakeGuild] = FALSE;
+		};
+	};
+	if(!Npc_IsDead(Ulf))
+	{
+		if(Npc_KnowsInfo(other,DIA_Ulf_Abrechnung))
+		{
+			B_RemoveNpc(NOV_602_Ulf);
+		}
+		else
+		{
+			B_StartOtherRoutine(Ulf,"BackToMonastery");
+			Ulf.aivar[AIV_DropDeadAndKill] = FALSE;
+			Ulf.aivar[AIV_NewsOverride] = FALSE;
+			Ulf.aivar[AIV_IgnoresArmor] = FALSE;
+			Ulf.aivar[AIV_IgnoresFakeGuild] = FALSE;
+		};
 	};
 	if(!Npc_IsDead(Agon))
 	{
-		B_StartOtherRoutine(Nov607,"Start");
-		B_StartOtherRoutine(Agon,"Start");
-		Agon.aivar[AIV_DropDeadAndKill] = FALSE;
-		Agon.aivar[AIV_NewsOverride] = FALSE;
-		Agon.aivar[AIV_IgnoresArmor] = FALSE;
-		Agon.aivar[AIV_IgnoresFakeGuild] = FALSE;
+		if(Npc_KnowsInfo(other,DIA_Agon_GolemDead) || Npc_KnowsInfo(other,DIA_Agon_GolemLives))
+		{
+			B_RemoveNpc(NOV_603_Agon);
+			Wld_InsertNpc(VLK_4007_Agon,"CITY2");
+		}
+		else
+		{
+			B_StartOtherRoutine(Nov607,"Start");
+			B_StartOtherRoutine(Agon,"Start");
+			Agon.aivar[AIV_DropDeadAndKill] = FALSE;
+			Agon.aivar[AIV_NewsOverride] = FALSE;
+			Agon.aivar[AIV_IgnoresArmor] = FALSE;
+			Agon.aivar[AIV_IgnoresFakeGuild] = FALSE;
+		};
 	};
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_08");	//Теперь, когда ты был принят в наши ряды, ты можешь поговорить с лордом Хагеном, главнокомандующим паладинов.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_09");	//Нам также очень интересно знать, как он оценивает ситуацию. Так что ты теперь можешь отправляться в Хоринис.
@@ -691,9 +715,6 @@ func void DIA_Pyrokar_Wunsch_Dyrian()
 	AI_Output(other,self,"DIA_Pyrokar_Wunsch_Dyrian_15_00");	//Позволь послушнику Дуриану остаться в монастыре.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Dyrian_11_01");	//Да будет так.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Dyrian_11_02");	//Этому послушнику будет позволено остаться в монастыре, и он займет место садовника, которое сейчас вакантно.
-	B_GivePlayerXP(XP_HelpDyrian);
-	B_StartOtherRoutine(Dyrian,"FAVOUR");
-	MIS_HelpDyrian = LOG_SUCCESS;
 	if(MIS_HelpOpolos == LOG_Running)
 	{
 		MIS_HelpOpolos = LOG_FAILED;
@@ -702,7 +723,9 @@ func void DIA_Pyrokar_Wunsch_Dyrian()
 	{
 		MIS_HelpBabo = LOG_FAILED;
 	};
-	B_CheckLog();
+	B_StartOtherRoutine(Dyrian,"FAVOUR");
+	MIS_HelpDyrian = LOG_SUCCESS;
+	B_GivePlayerXP(XP_HelpDyrian);
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
 };
 
@@ -711,8 +734,6 @@ func void DIA_Pyrokar_Wunsch_Babo()
 	AI_Output(other,self,"DIA_Pyrokar_Wunsch_Babo_15_00");	//Позволь послушнику Бабо возглавить монастырский сад.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Babo_11_01");	//Да будет так.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Babo_11_02");	//С сего момента послушник Бабо будет отвечать за монастырский сад.
-	B_GivePlayerXP(XP_HelpBabo);
-	B_StartOtherRoutine(Babo,"FAVOUR");
 	if(!Npc_IsDead(Dyrian))
 	{
 		B_SetGuild(Dyrian,GIL_NONE);
@@ -720,7 +741,6 @@ func void DIA_Pyrokar_Wunsch_Babo()
 		AI_Teleport(Dyrian,"TAVERNE");
 		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	};
-	MIS_HelpBabo = LOG_SUCCESS;
 	if(MIS_HelpDyrian == LOG_Running)
 	{
 		MIS_HelpDyrian = LOG_FAILED;
@@ -729,7 +749,9 @@ func void DIA_Pyrokar_Wunsch_Babo()
 	{
 		MIS_HelpOpolos = LOG_FAILED;
 	};
-	B_CheckLog();
+	B_StartOtherRoutine(Babo,"FAVOUR");
+	MIS_HelpBabo = LOG_SUCCESS;
+	B_GivePlayerXP(XP_HelpBabo);
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
 };
 
@@ -738,8 +760,6 @@ func void DIA_Pyrokar_Wunsch_Opolos()
 	AI_Output(other,self,"DIA_Pyrokar_Wunsch_Opolos_15_00");	//Позволь послушнику Ополосу получить доступ в библиотеку.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Opolos_11_01");	//Да будет так.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Opolos_11_02");	//С сего момента послушнику Ополосу будет позволено изучать писания Инноса.
-	B_GivePlayerXP(XP_HelpOpolos);
-	B_StartOtherRoutine(Opolos,"FAVOUR");
 	if(!Npc_IsDead(Dyrian))
 	{
 		B_SetGuild(Dyrian,GIL_NONE);
@@ -747,7 +767,6 @@ func void DIA_Pyrokar_Wunsch_Opolos()
 		AI_Teleport(Dyrian,"TAVERNE");
 		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	};
-	MIS_HelpOpolos = LOG_SUCCESS;
 	if(MIS_HelpDyrian == LOG_Running)
 	{
 		MIS_HelpDyrian = LOG_FAILED;
@@ -756,7 +775,9 @@ func void DIA_Pyrokar_Wunsch_Opolos()
 	{
 		MIS_HelpBabo = LOG_FAILED;
 	};
-	B_CheckLog();
+	B_StartOtherRoutine(Opolos,"FAVOUR");
+	MIS_HelpOpolos = LOG_SUCCESS;
+	B_GivePlayerXP(XP_HelpOpolos);
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
 };
 

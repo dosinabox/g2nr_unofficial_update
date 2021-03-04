@@ -362,15 +362,11 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Wld_InsertNpc(BDT_1007_Bandit_H,"FP_STAND_DEMENTOR_KDF_30");
 			Wld_InsertNpc(BDT_1008_Bandit_H,"NW_FARM1_BANDITS_CAVE_03");
 			Wld_InsertNpc(BDT_1016_Bandit_M,"NW_FARM1_BANDITS_CAVE_04");
-		};
-		if(hero.guild == GIL_KDF)
+		}
+		else if(hero.guild == GIL_KDF)
 		{
 			Wld_InsertItem(ItMi_KarrasBlessedStone_Mis,"FP_ITEM_FARM1_03");
 			Wld_InsertItem(ItMi_KarrasBlessedStone_Mis,"FP_NW_ITEM_TROLL_10");
-			/*if(!Npc_IsDead(Ulf))
-			{
-				B_KillNpc(NOV_602_Ulf);
-			};*/
 			if(!Npc_IsDead(Vino))
 			{
 				B_StartOtherRoutine(Vino,"OBESESSIONRITUAL");
@@ -854,8 +850,8 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 				Wld_InsertItem(ITAR_PAL_H,"FP_ITEM_PALFINALARMOR");
 			};
 			Wld_InsertItem(ItMi_RuneBlank,"FP_NW_ITEM_LIBRARY_SEAMAP");
-		};
-		if(hero.guild == GIL_KDF)
+		}
+		else if(hero.guild == GIL_KDF)
 		{
 			Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_KDF_01");
 			Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_KDF_02");

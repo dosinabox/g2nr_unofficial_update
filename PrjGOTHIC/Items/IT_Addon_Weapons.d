@@ -335,7 +335,7 @@ instance ItMW_Addon_Keule_2h_01(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_FrancisDagger_Mis(C_Item)
+instance ItMw_1h_Pir_Dagger(C_Item)
 {
 	name = "Хороший кинжал";
 	mainflag = ITEM_KAT_NF;

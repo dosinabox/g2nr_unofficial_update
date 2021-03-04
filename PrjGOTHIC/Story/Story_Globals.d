@@ -716,6 +716,7 @@ var int Liesel_Giveaway;
 var int Hammer_Taken;
 //var int Igaraz_Anger;
 var int Igaraz_Wait;
+var int Agon_Wait;
 //var int MIS_Gorax_Bote;
 //var int Paket_Opend;
 var int Goraxday;
