@@ -430,7 +430,6 @@ func void DIA_Serpentes_MinenAnteile_was_ja()
 		CreateInvItems(Canthar,ItWr_MinenAnteil_Mis,3);
 		SalandrilMinenAnteil_MAINCounter += 3;
 	};
-	SalandrilVerteilteMinenAnteil = SalandrilMinenAnteil_MAINCounter;
 	Log_CreateTopic(TOPIC_MinenAnteileKDF,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_MinenAnteileKDF,LOG_Running);
 	B_LogEntry(TOPIC_MinenAnteileKDF,"Кто-то продает фальшивые акции шахты и обогащается таким незаконным способом. Я должен найти того, кто продает эти акции торговцам. Серпентес хочет заполучить все эти поддельные документы.");
@@ -495,48 +494,31 @@ var int SerpentesMinenAnteilCounter;
 func void DIA_Serpentes_MinenAnteileBringen_Info()
 {
 	var int SerpentesMinenAnteilCount;
-	var int XP_BringSerpentesMinenAnteils;
-	var int SerpentesMinenAnteilOffer;
 	var int SerpentesMinenAnteilGeld;
-	var string MinenAnteilText;
-	var string MinenAnteilLeft;
+	var int MinenAnteilLeft;
 	SerpentesMinenAnteilCount = Npc_HasItems(other,ItWr_MinenAnteil_Mis);
-	SerpentesMinenAnteilOffer = 200;
 	if(SerpentesMinenAnteilCount == 1)
 	{
 		AI_Output(other,self,"DIA_Serpentes_MinenAnteileBringen_15_00");	//Я смог найти акции шахт.
-		B_GivePlayerXP(XP_BringSerpentesMinenAnteil);
-		B_GiveInvItems(other,self,ItWr_MinenAnteil_Mis,1);
-		Npc_RemoveInvItem(self,ItWr_MinenAnteil_Mis);
-		SerpentesMinenAnteilCounter += 1;
 	}
 	else
 	{
 		AI_Output(other,self,"DIA_Serpentes_MinenAnteileBringen_15_01");	//Я смог найти несколько акций шахт.
-		B_GiveInvItems(other,self,ItWr_MinenAnteil_Mis,SerpentesMinenAnteilCount);
-		Npc_RemoveInvItems(self,ItWr_MinenAnteil_Mis,SerpentesMinenAnteilCount);
-		XP_BringSerpentesMinenAnteils = SerpentesMinenAnteilCount * XP_BringSerpentesMinenAnteil;
-		SerpentesMinenAnteilCounter += SerpentesMinenAnteilCount;
-		B_GivePlayerXP(XP_BringSerpentesMinenAnteils);
 	};
-	SalandrilMinenAnteil_MAINCounter -= SerpentesMinenAnteilCount;
-	if(SalandrilMinenAnteil_MAINCounter > 0)
+	B_GiveInvItems(other,self,ItWr_MinenAnteil_Mis,SerpentesMinenAnteilCount);
+	Npc_RemoveInvItems(self,ItWr_MinenAnteil_Mis,SerpentesMinenAnteilCount);
+	B_GivePlayerXP(SerpentesMinenAnteilCount * XP_BringSerpentesMinenAnteil);
+	SerpentesMinenAnteilCounter += SerpentesMinenAnteilCount;
+	MinenAnteilLeft = SalandrilMinenAnteil_MAINCounter - SerpentesMinenAnteilCounter;
+	if(MinenAnteilLeft > 0)
 	{
-		MinenAnteilLeft = IntToString(SalandrilMinenAnteil_MAINCounter);
-		MinenAnteilText = ConcatStrings(PRINT_MinenAnteilLeft,MinenAnteilLeft);
-		AI_PrintScreen(MinenAnteilText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	}
-	else
-	{
-		AI_PrintScreen("Все акции собраны!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	};
-	if(SerpentesMinenAnteilCounter < SalandrilVerteilteMinenAnteil)
-	{
+		AI_PrintScreen(ConcatStrings(PRINT_MinenAnteilLeft,IntToString(MinenAnteilLeft)),-1,YPOS_ItemTaken,FONT_ScreenSmall,3);
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_02");	//Очень хорошо. Ты должен изъять из обращения все акции. Это отрава для наших людей. Принеси их все мне.
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_03");	//Вот. Это компенсирует твои расходы.
 	}
-	else if(SerpentesMinenAnteilCounter == SalandrilVerteilteMinenAnteil)
+	else if(MinenAnteilLeft == 0)
 	{
+		AI_PrintScreen(PRINT_AllMinenAnteil,-1,YPOS_ItemTaken,FONT_ScreenSmall,3);
 		AI_Output(other,self,"DIA_Serpentes_MinenAnteileBringen_15_04");	//Это все акции, как мне кажется.
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_07");	//Это действительно последняя акция, да?
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_05");	//Отлично. Ты заслужил награду.

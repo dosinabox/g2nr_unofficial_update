@@ -25,12 +25,12 @@ func void B_FeedNOV(var C_Npc slf)
 	Wurst_Gegeben += 1;
 	if(Wurst_Gegeben >= 13)
 	{
-		AI_PrintScreen(PRINT_AllNovizen,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen(PRINT_AllNovizen,-1,YPOS_ItemTaken,FONT_ScreenSmall,3);
 	}
 	else
 	{
 		NovizeLeft = IntToString(13 - Wurst_Gegeben);
-		AI_PrintScreen(ConcatStrings(PRINT_NovizenLeft,NovizeLeft),-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen(ConcatStrings(PRINT_NovizenLeft,NovizeLeft),-1,YPOS_ItemTaken,FONT_ScreenSmall,3);
 	};
 };
 

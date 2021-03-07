@@ -386,10 +386,12 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			};
 			if(!Npc_IsDead(Bromor))
 			{
+				Bromor_isAlive_Kap3 = TRUE;
 				CreateInvItems(Bromor,ITWR_DementorObsessionBook_MIS,1);
 			};
 			if(!Npc_IsDead(Fernando))
 			{
+				Fernando_isAlive_Kap3 = TRUE;
 				CreateInvItems(Fernando,ITWR_DementorObsessionBook_MIS,1);
 			};
 		};
@@ -881,6 +883,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 			Wld_InsertNpc(DMT_DementorAmbientWalker2,"CITY1");
 			if(!Npc_IsDead(Sekob))
 			{
+				Sekob_isAlive_Kap5 = TRUE;
 				CreateInvItems(Sekob,ITWR_DementorObsessionBook_MIS,1);
 				B_StartOtherRoutine(Sekob,"Obsessed");
 			};

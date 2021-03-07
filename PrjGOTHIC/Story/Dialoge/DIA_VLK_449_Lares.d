@@ -2024,7 +2024,7 @@ func int DIA_Addon_Lares_Albern_Condition()
 		{
 			return TRUE;
 		}
-		else if((Npc_GetDistToWP(self,"NW_TROLLAREA_RUINS_41") <= 1000) && Npc_IsInState(self,ZS_Talk))
+		else if(Npc_IsInState(self,ZS_Talk))
 		{
 			return TRUE;
 		};
@@ -2036,7 +2036,7 @@ func void DIA_Addon_Lares_Albern_Info()
 	if(Npc_GetDistToWP(self,"HAFEN") < 2000)
 	{
 		AI_Output(self,other,"DIA_Canthar_WhatOffer_Price_09_05");	//Ну что, договорились?
-		AI_Output(other,self,"DIA_Addon_Brandon_Hello_15_07");	//Еще нет.
+		DIA_Common_NoNotYet();
 	};
 	AI_Output(self,other,"DIA_Addon_Lares_Albern_09_00");	//(строго) Прекрати паясничать! Немедленно отнеси орнамент Сатурасу!
 	AI_StopProcessInfos(self);

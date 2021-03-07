@@ -49,6 +49,8 @@ const int DiegosTreasure = 2000;
 const int Gold_BlessSword = 5000;
 const int Garond_KilledDragonGeld = 300;
 const int OrcRingPenalty = 20;
+const int PyrokarsAlmanachOffer = 400;
+const int SerpentesMinenAnteilOffer = 200;
 
 var int Saturas_KlaueInsMeer;
 var int FoundDeadWilliam;
@@ -947,7 +949,7 @@ var int SCIstRichtersLakai;
 var int SCFoundMorgahard;
 //const int CostForPAlSpells = 5;
 var int SalandrilMinenAnteil_MAINCounter;
-var int SalandrilVerteilteMinenAnteil;
+//var int SalandrilVerteilteMinenAnteil;
 var int SCKnowsRichterKomproBrief;
 var int Girion_Labercount;
 var int TschuessBilgot;

@@ -271,30 +271,54 @@ func void Use_DementorObsessionBook()
 		Doc_PrintLine(nDocID,1,"");
 		if(Kapitel >= 3)
 		{
-			Doc_PrintLine(nDocID,1,"           ¬»ÕŒ");
-			Doc_PrintLine(nDocID,1,"‘≈–Õ¿ÕƒŒ");
-			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"        Ã¿À¿ ");
-			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"¡–ŒÃŒ–");
+			if(Vino_isAlive_Kap3 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"           ¬»ÕŒ");
+			};
+			if(Fernando_isAlive_Kap3 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"‘≈–Õ¿ÕƒŒ");
+			};
+			if(Malak_isAlive_Kap3 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"");
+				Doc_PrintLine(nDocID,1,"        Ã¿À¿ ");
+			};
+			if(Bromor_isAlive_Kap3 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"");
+				Doc_PrintLine(nDocID,1,"¡–ŒÃŒ–");
+			};
 		};
 		if(Kapitel >= 4)
 		{
-			Doc_PrintLine(nDocID,1,"    ›Õ√–ŒÃ");
-			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"        –›ÕƒŒÀ‹‘");
+			if(Engrom_isAlive_Kap4 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"    ›Õ√–ŒÃ");
+				Doc_PrintLine(nDocID,1,"");
+			};
+			if(Randolph_isAlive_preKap4 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"");
+				Doc_PrintLine(nDocID,1,"        –›ÕƒŒÀ‹‘");
+			};
 			Doc_PrintLine(nDocID,1,"");
 		};
 		if(Kapitel >= 5)
 		{
 			Doc_PrintLine(nDocID,1,"");
+			if(Sekob_isAlive_Kap5 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"");
+				Doc_PrintLine(nDocID,1,"—≈ Œ¡");
+			};
 			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"—≈ Œ¡");
 			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"            ¡–”“”—");
+			if(Brutus_isAlive_preKap5 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"");
+				Doc_PrintLine(nDocID,1,"            ¡–”“”—");
+			};
 			Doc_PrintLine(nDocID,1,"");
 		};
 		if((Kapitel == 6) && (Mario_IsOnBoard == LOG_SUCCESS) && (OrkSturmDI == TRUE))
@@ -334,28 +358,52 @@ func void Use_PyrokarsObsessionList()
 	if(Kapitel >= 3)
 	{
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"‘≈–Õ¿ÕƒŒ");
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"¬»ÕŒ");
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"Ã¿À¿ ");
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"¡–ŒÃŒ–");
+		if(Fernando_isAlive_Kap3 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"‘≈–Õ¿ÕƒŒ");
+		};
+		if(Vino_isAlive_Kap3 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"¬»ÕŒ");
+		};
+		if(Malak_isAlive_Kap3 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"Ã¿À¿ ");
+		};
+		if(Bromor_isAlive_Kap3 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"¡–ŒÃŒ–");
+		};
 	};
 	if(Kapitel >= 4)
 	{
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"›Õ√–ŒÃ");
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"–›ÕƒŒÀ‹‘");
+		if(Engrom_isAlive_Kap4 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"›Õ√–ŒÃ");
+		};
+		if(Randolph_isAlive_preKap4 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"–›ÕƒŒÀ‹‘");
+		};
 	};
 	if(Kapitel >= 5)
 	{
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"—≈ Œ¡");
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"¡–”“”—");
+		if(Sekob_isAlive_Kap5 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"—≈ Œ¡");
+		};
+		if(Brutus_isAlive_preKap5 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"¡–”“”—");
+		};
 	};
 	if((Kapitel == 6) && (Mario_IsOnBoard == LOG_SUCCESS) && (OrkSturmDI == TRUE))
 	{

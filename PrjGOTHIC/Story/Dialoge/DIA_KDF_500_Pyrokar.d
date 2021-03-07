@@ -1660,8 +1660,8 @@ func int DIA_Pyrokar_SCOBSESSED_KDF_Condition()
 		if(hero.guild == GIL_KDF)
 		{
 			return TRUE;
-		};
-		if(hero.guild == GIL_NOV)
+		}
+		else if(hero.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -1776,28 +1776,21 @@ func int DIA_Pyrokar_AlmanachBringen_Condition()
 func void DIA_Pyrokar_AlmanachBringen_Info()
 {
 	var int AlmanachCount;
-	var int XP_KDF_BringAlmanachs;
 	var int AlmanachGeld;
-	var int PyrokarsAlmanachOffer;
 	AI_Output(other,self,"DIA_Pyrokar_AlmanachBringen_15_00");	//я могу рассказать еще кое-что об этих одержимых.
 	AI_Output(self,other,"DIA_Pyrokar_AlmanachBringen_11_01");	//√овори, брат.
-	PyrokarsAlmanachOffer = 400;
 	AlmanachCount = Npc_HasItems(other,ITWR_DementorObsessionBook_MIS);
 	if(AlmanachCount == 1)
 	{
 		AI_Output(other,self,"DIA_Pyrokar_AlmanachBringen_15_02");	//я нашел еще один альманах.
-		B_GivePlayerXP(XP_KDF_BringAlmanach);
-		B_GiveInvItems(other,self,ITWR_DementorObsessionBook_MIS,1);
-		AlmanachCounter += 1;
 	}
 	else
 	{
 		AI_Output(other,self,"DIA_Pyrokar_AlmanachBringen_15_03");	//я нашел еще несколько книг »щущих.
-		B_GiveInvItems(other,self,ITWR_DementorObsessionBook_MIS,AlmanachCount);
-		XP_KDF_BringAlmanachs = AlmanachCount * XP_KDF_BringAlmanach;
-		AlmanachCounter += AlmanachCount;
-		B_GivePlayerXP(XP_KDF_BringAlmanachs);
 	};
+	B_GiveInvItems(other,self,ITWR_DementorObsessionBook_MIS,AlmanachCount);
+	B_GivePlayerXP(AlmanachCount * XP_KDF_BringAlmanach);
+	AlmanachCounter += AlmanachCount;
 	if(AlmanachCounter <= 5)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_AlmanachBringen_11_04");	//Ёто хорошо. Ѕоюсь, впрочем, что это далеко не все. ѕродолжай поиски.

@@ -216,7 +216,7 @@ func void PC_PrayShrine_HEALSHRINE_Info()
 	{
 		B_Say(self,self,"$HEALLASTSHRINE");
 		MIS_Ulthar_HeileSchreine_PAL = LOG_SUCCESS;
-		AI_PrintScreen("Все алтари очищены!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen(PRINT_AllShrines,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	};
 	B_GivePlayerXP(XP_Ambient);
 	b_endproductiondialog();

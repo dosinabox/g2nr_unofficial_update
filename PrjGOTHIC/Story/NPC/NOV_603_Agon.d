@@ -40,6 +40,12 @@ func void Rtn_GolemDead_603()
 	TA_Stand_Guarding(23,10,8,0,"NW_MAGECAVE_RUNE");
 };
 
+func void Rtn_Tot_603()
+{
+	TA_Sleep(8,0,23,0,"TOT");
+	TA_Sleep(23,0,8,0,"TOT");
+};
+
 /* func void Rtn_StillAlive_603()
 {
 	TA_Stand_Guarding(8,0,23,10,"TAVERNE");
