@@ -516,7 +516,7 @@ func void B_ENTER_OLDWORLD_Kapitel_6()
 	};
 };
 
-func void b_enter_oldworld()
+func void B_Enter_OldWorld()
 {
 	B_InitNpcGlobals();
 	if(Kapitel >= 1)

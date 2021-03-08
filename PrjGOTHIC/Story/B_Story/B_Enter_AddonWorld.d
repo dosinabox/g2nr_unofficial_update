@@ -232,7 +232,7 @@ func void B_ENTER_ADDONWORLD_Kapitel_6()
 	};
 };
 
-func void b_enter_addonworld()
+func void B_Enter_AddonWorld()
 {
 	B_InitNpcGlobals();
 	if(Kapitel >= 1)

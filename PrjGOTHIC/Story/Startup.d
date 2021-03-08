@@ -13,7 +13,6 @@ func void INIT_Global()
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
-	B_Cycle_Function();
 };
 
 func void STARTUP_Addon_Part_AdanosTemple_01()
@@ -1588,13 +1587,13 @@ func void INIT_SUB_Surface()
 func void INIT_OldWorld()
 {
 	CurrentLevel = OLDWORLD_ZEN;
+	B_Enter_OldWorld();
 	INIT_SUB_Oldcamp();
 	INIT_SUB_Surface();
 	if(C_OldWorldIsWasteland())
 	{
 		INIT_SUB_Psicamp();
 	};
-	b_enter_oldworld();
 	if((MIS_ReadyforChapter4 == TRUE) && (B_Chapter4_OneTime == FALSE))
 	{
 		B_Kapitelwechsel(4,OLDWORLD_ZEN);
@@ -3069,7 +3068,7 @@ func void STARTUP_NewWorld()
 func void INIT_NewWorld()
 {
 	CurrentLevel = NEWWORLD_ZEN;
-	b_enter_newworld();
+	B_Enter_NewWorld();
 	INIT_SUB_NewWorld_Part_City_01();
 	INIT_SUB_NewWorld_Part_Farm_01();
 	INIT_SUB_NewWorld_Part_Monastery_01();
@@ -3084,6 +3083,7 @@ func void INIT_NewWorld()
 		B_Kapitelwechsel(5,NEWWORLD_ZEN);
 		B_Chapter5_OneTime = TRUE;
 	};
+	B_Cycle_Function();
 };
 
 func void STARTUP_AddonWorld()
@@ -3102,12 +3102,19 @@ func void STARTUP_AddonWorld()
 func void INIT_AddonWorld()
 {
 	CurrentLevel = ADDONWORLD_ZEN;
-	if((BloodwynIsHeadless == TRUE) && (Saturas_RiesenPlan == FALSE))
-	{
-		Mdl_SetVisualBody(BDT_1085_Addon_Bloodwyn,"hum_body_Bloodwyn_Headless",1,0,"Hum_Headless",0,DEFAULT,NO_ARMOR);
-	};
+	B_Enter_AddonWorld();
 	INIT_SUB_Addon_Part_BanditsCamp_01();
-	b_enter_addonworld();
+	if(BloodwynIsHeadless == TRUE)
+	{
+		if(Hlp_IsValidNpc(Bloodwyn))
+		{
+			Mdl_SetVisualBody(Bloodwyn,"hum_body_Bloodwyn_Headless",1,0,"Hum_Headless",0,DEFAULT,NO_ARMOR);
+		};
+	}
+	else
+	{
+		B_Cycle_Function();
+	};
 };
 
 func void STARTUP_FreeMine()

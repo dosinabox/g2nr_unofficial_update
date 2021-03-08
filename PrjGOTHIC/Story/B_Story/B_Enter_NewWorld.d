@@ -961,7 +961,7 @@ func void B_ENTER_NEWWORLD_Kapitel_6()
 	};
 };
 
-func void b_enter_newworld()
+func void B_Enter_NewWorld()
 {
 	B_InitNpcGlobals();
 	if(Kapitel >= 1)

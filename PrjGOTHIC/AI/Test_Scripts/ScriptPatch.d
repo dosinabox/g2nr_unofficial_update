@@ -216,6 +216,7 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
 	};*/
+	Info_AddChoice(StoryHelper_PatchSettings,"Изменить магию ледяного дракона",StoryHelper_IceDragonSpell);
 	if(FullNPCRemoval == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить полное удаление NPC из мира",StoryHelper_FullNPCRemoval);
@@ -834,6 +835,66 @@ func void StoryHelper_FullNPCRemoval()
 		FullNPCRemoval = TRUE;
 		PrintScreen("Полное удаление NPC из мира включено",-1,-1,FONT_Screen,3);
 	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_IceDragonSpell()
+{
+	Info_ClearChoices(StoryHelper_PatchSettings);
+	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_IceDragonSpell_BACK);
+	if(IceDragonSpell == SPL_InstantFireball)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,ConcatStrings(NAME_SPL_InstantFireball," (используется)"),StoryHelper_IceDragonSpell_InstantFireball);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,NAME_SPL_InstantFireball,StoryHelper_IceDragonSpell_InstantFireball);
+	};
+	if(IceDragonSpell == SPL_IceLance)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,ConcatStrings(NAME_SPL_IceLance," (используется)"),StoryHelper_IceDragonSpell_IceLance);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,NAME_SPL_IceLance,StoryHelper_IceDragonSpell_IceLance);
+	};
+	if(IceDragonSpell == SPL_ChargeZap)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,ConcatStrings(NAME_SPL_ChargeZap," (используется)"),StoryHelper_IceDragonSpell_ChargeZap);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,NAME_SPL_ChargeZap,StoryHelper_IceDragonSpell_ChargeZap);
+	};
+};
+
+func void StoryHelper_IceDragonSpell_InstantFireball()
+{
+	IceDragonSpell = SPL_InstantFireball;
+	PrintScreen(ConcatStrings("Магия ледяного дракона: ",NAME_SPL_InstantFireball),-1,-1,FONT_Screen,3);
+	Info_ClearChoices(StoryHelper_PatchSettings);
+	b_build_settings_diag();
+};
+
+func void StoryHelper_IceDragonSpell_IceLance()
+{
+	IceDragonSpell = SPL_IceLance;
+	PrintScreen(ConcatStrings("Магия ледяного дракона: ",NAME_SPL_IceLance),-1,-1,FONT_Screen,3);
+	Info_ClearChoices(StoryHelper_PatchSettings);
+	b_build_settings_diag();
+};
+
+func void StoryHelper_IceDragonSpell_ChargeZap()
+{
+	IceDragonSpell = SPL_ChargeZap;
+	PrintScreen(ConcatStrings("Магия ледяного дракона: ",NAME_SPL_ChargeZap),-1,-1,FONT_Screen,3);
+	Info_ClearChoices(StoryHelper_PatchSettings);
+	b_build_settings_diag();
+};
+
+func void StoryHelper_IceDragonSpell_BACK()
+{
+	Info_ClearChoices(StoryHelper_PatchSettings);
 	b_build_settings_diag();
 };
 

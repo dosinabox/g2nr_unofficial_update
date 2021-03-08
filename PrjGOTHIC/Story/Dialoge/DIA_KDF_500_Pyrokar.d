@@ -1660,8 +1660,8 @@ func int DIA_Pyrokar_SCOBSESSED_KDF_Condition()
 		if(hero.guild == GIL_KDF)
 		{
 			return TRUE;
-		}
-		else if(hero.guild == GIL_NOV)
+		};
+		if(hero.guild == GIL_NOV)
 		{
 			return TRUE;
 		};

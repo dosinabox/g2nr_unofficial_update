@@ -461,6 +461,9 @@ func void DIA_Serpentes_MinenAnteile_was_jaSLD()
 };
 
 
+var int SerpentesMinenAnteilCounter;
+var int AllMinenAnteilFound;
+
 instance DIA_Serpentes_MinenAnteileBringen(C_Info)
 {
 	npc = KDF_501_Serpentes;
@@ -488,9 +491,6 @@ func int DIA_Serpentes_MinenAnteileBringen_Condition()
 	};
 };
 
-
-var int SerpentesMinenAnteilCounter;
-
 func void DIA_Serpentes_MinenAnteileBringen_Info()
 {
 	var int SerpentesMinenAnteilCount;
@@ -516,19 +516,23 @@ func void DIA_Serpentes_MinenAnteileBringen_Info()
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_02");	//Очень хорошо. Ты должен изъять из обращения все акции. Это отрава для наших людей. Принеси их все мне.
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_03");	//Вот. Это компенсирует твои расходы.
 	}
-	else if(MinenAnteilLeft == 0)
+	else if(AllMinenAnteilFound == FALSE)
 	{
 		AI_PrintScreen(PRINT_AllMinenAnteil,-1,YPOS_ItemTaken,FONT_ScreenSmall,3);
 		AI_Output(other,self,"DIA_Serpentes_MinenAnteileBringen_15_04");	//Это все акции, как мне кажется.
-		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_07");	//Это действительно последняя акция, да?
+		if(SerpentesMinenAnteilCount == 1)
+		{
+			AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_07");	//Это действительно последняя акция, да?
+		};
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_05");	//Отлично. Ты заслужил награду.
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_06");	//Возьми этот защитный амулет. Он поможет тебе пройти по пути, который еще только ожидает тебя.
 		CreateInvItems(self,ItAm_Prot_Mage_01,1);
 		B_GiveInvItems(self,other,ItAm_Prot_Mage_01,1);
+		AllMinenAnteilFound = TRUE;
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_07");	//Это действительно последняя акция, да?
+		B_Say(self,other,"$NOTBAD");
 	};
 	SerpentesMinenAnteilGeld = SerpentesMinenAnteilCount * SerpentesMinenAnteilOffer;
 	CreateInvItems(self,ItMi_Gold,SerpentesMinenAnteilGeld);

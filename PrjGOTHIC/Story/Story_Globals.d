@@ -1351,3 +1351,4 @@ var int NW_Greg_Removed_Forever;
 var int ADW_STRF_Removed_Forever;
 var int ADW_Myxir_Removed_Forever;
 var int CaptainIsBackToStartPosition;
+var int IceDragonSpell;
