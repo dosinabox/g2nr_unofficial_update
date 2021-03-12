@@ -8,6 +8,12 @@ var int GornDJG_is_alive;
 var int DJG_Angar_is_alive;
 var int Vino_isAlive_Kap3;
 var int Malak_isAlive_Kap3;
+var int Bromor_isAlive_Kap3;
+var int Fernando_isAlive_Kap3;
+var int Engrom_isAlive_Kap4;
+var int Randolph_isAlive_preKap4;
+var int Brutus_isAlive_preKap5;
+var int Sekob_isAlive_Kap5;
 
 func void B_NPC_IsAliveCheck(var int Zen)
 {
@@ -15,6 +21,14 @@ func void B_NPC_IsAliveCheck(var int Zen)
 	{
 		if(MIS_ReadyforChapter4 == TRUE)
 		{
+			if(Npc_IsDead(Randolph))
+			{
+				Randolph_isAlive_preKap4 = FALSE;
+			}
+			else
+			{
+				Randolph_isAlive_preKap4 = TRUE;
+			};
 			if(Npc_IsDead(GornNW_vor_DJG))
 			{
 				SLD_Gorn_is_alive = FALSE;
@@ -60,13 +74,24 @@ func void B_NPC_IsAliveCheck(var int Zen)
 				SLD_Rod_is_alive = TRUE;
 				B_RemoveNpc(SLD_804_Rod);
 			};
-			Npc_ExchangeRoutine(SLD_821_Soeldner,"RODWEG");
+			if(!Npc_IsDead(SLD_821_Soeldner))
+			{
+				Npc_ExchangeRoutine(SLD_821_Soeldner,"RODWEG");
+			};
 		};
-	};
-	if(Zen == OLDWORLD_ZEN)
+	}
+	else if(Zen == OLDWORLD_ZEN)
 	{
 		if(Kapitel >= 4)
 		{
+			if(Npc_IsDead(Brutus))
+			{
+				Brutus_isAlive_preKap5 = FALSE;
+			}
+			else
+			{
+				Brutus_isAlive_preKap5 = TRUE;
+			};
 			if(Npc_IsDead(GornDJG))
 			{
 				GornDJG_is_alive = FALSE;

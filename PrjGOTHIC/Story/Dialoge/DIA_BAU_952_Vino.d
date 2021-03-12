@@ -251,7 +251,7 @@ instance DIA_Vino_KAP3_EXIT(C_Info)
 
 func int DIA_Vino_KAP3_EXIT_Condition()
 {
-	if(Kapitel == 3)
+	if(Kapitel >= 3)
 	{
 		return TRUE;
 	};
@@ -393,31 +393,6 @@ func void DIA_Vino_Heilung_Info()
 };
 
 
-instance DIA_Vino_KAP4_EXIT(C_Info)
-{
-	npc = BAU_952_Vino;
-	nr = 999;
-	condition = DIA_Vino_KAP4_EXIT_Condition;
-	information = DIA_Vino_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Vino_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Vino_KAP4_EXIT_Info()
-{
-	B_NpcClearObsessionByDMT(self);
-};
-
-
 instance DIA_Vino_PERM4OBSESSED(C_Info)
 {
 	npc = BAU_952_Vino;
@@ -492,56 +467,6 @@ func void DIA_Vino_PERM45UND6_Info()
 	};
 };
 
-
-instance DIA_Vino_KAP5_EXIT(C_Info)
-{
-	npc = BAU_952_Vino;
-	nr = 999;
-	condition = DIA_Vino_KAP5_EXIT_Condition;
-	information = DIA_Vino_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Vino_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Vino_KAP5_EXIT_Info()
-{
-	B_NpcClearObsessionByDMT(self);
-};
-
-/*
-instance DIA_Vino_KAP6_EXIT(C_Info)
-{
-	npc = BAU_952_Vino;
-	nr = 999;
-	condition = DIA_Vino_KAP6_EXIT_Condition;
-	information = DIA_Vino_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Vino_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Vino_KAP6_EXIT_Info()
-{
-	B_NpcClearObsessionByDMT(self);
-};
-*/
 
 instance DIA_Vino_PICKPOCKET(C_Info)
 {

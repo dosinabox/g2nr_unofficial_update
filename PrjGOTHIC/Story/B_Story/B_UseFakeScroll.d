@@ -76,7 +76,7 @@ func void B_UseStoneTablet(var int tablet)
 	};
 };
 
-func void B_UseFakeHeroFace(var C_Npc slf, var C_Npc oth)
+func void B_UseFakeHeroFace(var C_Npc slf,var C_Npc oth)
 {
 	var C_Npc target;
 	if(C_BodyStateContains(slf,BS_SIT))

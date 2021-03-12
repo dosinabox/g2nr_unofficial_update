@@ -353,9 +353,6 @@ func int DIA_Bromor_Obsession_Condition()
 	};
 };
 
-
-var int DIA_Bromor_Obsession_GotMoney;
-
 func void DIA_Bromor_Obsession_Info()
 {
 	DIA_Common_IsEverythingOk();

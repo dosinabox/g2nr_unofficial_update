@@ -78,8 +78,11 @@ func int DIA_Abuyin_Hallo_Condition()
 func void DIA_Abuyin_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Abuyin_Hallo_13_00");	//(задумчиво) ...Как странно... Мне кажется, мы с тобой уже встречались, путник...
-	AI_Output(self,other,"DIA_Addon_Abuyin_Hallo_13_01");	//Что ж... велики загадки нашего мира... О, прошу простить мою грубость, Сын Терпения, я даже не поприветствовал тебя.
-	AI_Output(self,other,"DIA_Addon_Abuyin_Hallo_13_02");	//Добро пожаловать, друг мой, присядь на мой скромный ковер и выкури трубку, наслаждаясь покоем.
+	if(Npc_GetDistToWP(self,"NW_CITY_MERCHANT_BENCH_02") < 600)
+	{
+		AI_Output(self,other,"DIA_Addon_Abuyin_Hallo_13_01");	//Что ж... велики загадки нашего мира... О, прошу простить мою грубость, Сын Терпения, я даже не поприветствовал тебя.
+		AI_Output(self,other,"DIA_Addon_Abuyin_Hallo_13_02");	//Добро пожаловать, друг мой, присядь на мой скромный ковер и выкури трубку, наслаждаясь покоем.
+	};
 };
 
 
@@ -129,7 +132,10 @@ func void DIA_Abuyin_Kraut_Info()
 {
 	AI_Output(other,self,"DIA_Abuyin_Kraut_15_00");	//Что за табак ты предлагаешь?
 	AI_Output(self,other,"DIA_Abuyin_Kraut_13_01");	//Мои трубки набиты острым, освежающим яблочным табаком.
-	AI_Output(self,other,"DIA_Abuyin_Kraut_13_02");	//Выбирай, что хочешь, Сын Приключений.
+	if(Npc_GetDistToWP(self,"NW_CITY_MERCHANT_BENCH_02") < 600)
+	{
+		AI_Output(self,other,"DIA_Abuyin_Kraut_13_02");	//Выбирай, что хочешь, Сын Приключений.
+	};
 };
 
 

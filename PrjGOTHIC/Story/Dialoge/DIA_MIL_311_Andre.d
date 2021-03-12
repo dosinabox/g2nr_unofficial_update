@@ -1316,6 +1316,10 @@ func void DIA_Andre_JOIN_Yes()
 	{
 		Npc_ExchangeRoutine(Lothar,"START");
 	};
+	if(Hlp_IsValidNpc(Babo) && !Npc_IsDead(Babo))
+	{
+		Npc_ExchangeRoutine(Babo,"FAVOUR");
+	};
 	SLD_Aufnahme = LOG_OBSOLETE;
 	KDF_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;

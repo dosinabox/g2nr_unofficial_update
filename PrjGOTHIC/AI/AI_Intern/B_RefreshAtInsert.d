@@ -136,9 +136,16 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 
 func void B_RefreshAtInsert()
 {
-	if((self.attribute[ATR_HITPOINTS] <= 0) || ((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Pardos)) && (Pardos_Geheilt == FALSE)))
+	if(self.attribute[ATR_HITPOINTS] <= 0)
 	{
 		return;
+	};
+	if((CurrentLevel == ADDONWORLD_ZEN) && (Sklaven_Flucht == FALSE))
+	{
+		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Pardos)) && (Pardos_Geheilt == FALSE))
+		{
+			return;
+		};
 	};
 	if((self.guild < GIL_SEPERATOR_HUM) && !C_NpcIsHero(self))
 	{

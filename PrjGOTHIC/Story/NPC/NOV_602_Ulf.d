@@ -51,3 +51,9 @@ func void Rtn_BackToMonastery_602()
 	TA_Sleep(23,0,8,0,"NW_MONASTERY_NOVICE03_06");
 };
 
+func void Rtn_Tot_602()
+{
+	TA_Sleep(8,0,23,0,"TOT");
+	TA_Sleep(23,0,8,0,"TOT");
+};
+

@@ -1,5 +1,5 @@
 
-instance STRF_1136_Addon_Sklave(Npc_Default)
+/*instance STRF_1136_Addon_Sklave(Npc_Default)
 {
 	name[0] = NAME_Addon_Sklave;
 	guild = GIL_STRF;
@@ -31,5 +31,5 @@ func void rtn_tot_1136()
 {
 	TA_Sleep(8,0,23,0,"TOT");
 	TA_Sleep(23,0,8,0,"TOT");
-};
+};*/
 

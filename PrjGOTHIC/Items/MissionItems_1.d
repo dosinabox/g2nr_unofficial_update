@@ -851,14 +851,14 @@ func void UseBanditLetter()
 	Doc_PrintLines(nDocID,0,"Не дайте ему обмануть вас -");
 	Doc_PrintLines(nDocID,0,"    это очень опасный колдун.");
 	Doc_PrintLines(nDocID,0,"Присматривайте за ним.");
-	Doc_PrintLine(nDocID,0," ");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Возможно, человек, которого мы ищем,");
 	Doc_PrintLines(nDocID,0,"    выйдет с ним на связь.");
 	Doc_PrintLines(nDocID,0,"С этим письмом я посылаю вам");
 	Doc_PrintLines(nDocID,0,"    тридцать золотых самородков.");
 	Doc_PrintLines(nDocID,0,"Я дам еще тридцать любому,");
 	Doc_PrintLines(nDocID,0,"    кто убьет этого человека.");
-	Doc_PrintLine(nDocID,0," ");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Принесите его голову к старой шахте");
 	Doc_PrintLines(nDocID,0,"    около поместья землевладельца.");
 	Doc_PrintLine(nDocID,0,"");

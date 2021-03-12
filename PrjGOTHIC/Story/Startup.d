@@ -1,32 +1,21 @@
 
-func void startup_global()
+func void STARTUP_Global()
 {
-	Game_InitGerman();
 	FIX_VERSION_SAVE = FIX_VERSION_START;
 };
 
-func void init_global()
+func void INIT_Global()
 {
-	Game_InitGerman();
-};
-
-func void STARTUP_Testlevel()
-{
-};
-
-func void INIT_SUB_Testlevel()
-{
-};
-
-func void INIT_Testlevel()
-{
+	B_Check_Version();
+	B_Check_Talents();
+	B_SetHeroSkin();
+	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
-	INIT_SUB_Testlevel();
 };
 
-func void startup_addon_part_adanostemple_01()
+func void STARTUP_Addon_Part_AdanosTemple_01()
 {
 	Wld_InsertNpc(BDT_1090_Addon_Raven,"ADW_ADANOSTEMPEL_RAVEN_11");
 	Wld_InsertNpc(BDT_10400_Addon_DeadBandit,"ADW_ADANOSTEMPEL_RHADEMES_03");
@@ -60,20 +49,7 @@ func void startup_addon_part_adanostemple_01()
 	Wld_InsertNpc(NONE_ADDON_112_Rhademes,"ADW_ADANOSTEMPEL_RHADEMES_02");
 };
 
-func void init_sub_addon_part_adanostemple_01()
-{
-};
-
-func void init_addon_part_adanostemple_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	CurrentLevel = ADDONWORLD_ZEN;
-	init_sub_addon_part_adanostemple_01();
-};
-
-func void startup_addon_part_goldmine_01()
+func void STARTUP_Addon_Part_GoldMine_01()
 {
 	Wld_InsertNpc(STRF_1118_Addon_Patrick,"ADDON_GOLDMINE");
 	Wld_InsertNpc(STRF_1119_Addon_Monty,"ADDON_GOLDMINE");
@@ -126,19 +102,7 @@ func void startup_addon_part_goldmine_01()
 	B_KillNpc(Stoneguardian_MineDead4);
 };
 
-func void init_sub_addon_part_goldmine_01()
-{
-};
-
-func void init_addon_part_goldmine_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	init_sub_addon_part_goldmine_01();
-};
-
-func void startup_addon_part_canyon_01()
+func void STARTUP_Addon_Part_Canyon_01()
 {
 	Wld_InsertNpc(Blattcrawler,"ADW_CANYON_TELEPORT_PATH_09");
 	Wld_InsertNpc(Blattcrawler,"ADW_CANYON_TELEPORT_PATH_09");
@@ -228,19 +192,7 @@ func void startup_addon_part_canyon_01()
 	Wld_InsertItem(ItMi_Zeitspalt_Addon,"FP_ITEM_CANYON_UNIQUE");
 };
 
-func void init_sub_addon_part_canyon_01()
-{
-};
-
-func void init_addon_part_canyon_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	init_sub_addon_part_canyon_01();
-};
-
-func void startup_addon_part_entrance_01()
+func void STARTUP_Addon_Part_Entrance_01()
 {
 	Wld_InsertNpc(KDW_14000_Addon_Saturas_ADW,"ADW_ENTRANCE");
 	Wld_InsertNpc(KDW_14010_Addon_Cronos_ADW,"ADW_ENTRANCE");
@@ -288,19 +240,7 @@ func void startup_addon_part_entrance_01()
 	Wld_InsertItem(ItRi_Addon_Health_01,"FP_ITEM_ENTRANCE_09");
 };
 
-func void init_sub_addon_part_entrance_01()
-{
-};
-
-func void init_addon_part_entrance_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	init_sub_addon_part_entrance_01();
-};
-
-func void startup_addon_part_banditscamp_01()
+func void STARTUP_Addon_Part_BanditsCamp_01()
 {
 	Wld_InsertItem(ItPl_Health_Herb_02,"FP_ITEM_BL_STAIRS_01");
 	Wld_InsertItem(ItPl_Mana_Herb_01,"FP_ITEM_BL_STAIRS_02");
@@ -508,7 +448,7 @@ func void startup_addon_part_banditscamp_01()
 	Wld_InsertNpc(Swamprat,"ADW_SWAMP_07");
 };
 
-func void init_sub_addon_part_banditscamp_01()
+func void INIT_SUB_Addon_Part_BanditsCamp_01()
 {
 	Wld_AssignRoomToGuild("tavern01",GIL_NONE);
 	Wld_AssignRoomToGuild("beds01",GIL_PUBLIC);
@@ -518,15 +458,7 @@ func void init_sub_addon_part_banditscamp_01()
 	Wld_AssignRoomToGuild("raven01",GIL_PUBLIC);
 };
 
-func void init_addon_part_banditscamp_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	init_sub_addon_part_banditscamp_01();
-};
-
-func void startup_addon_part_piratescamp_01()
+func void STARTUP_Addon_Part_PiratesCamp_01()
 {
 	Wld_InsertNpc(PIR_1350_Addon_Francis,"STRAND");
 	Wld_InsertNpc(PIR_1351_Addon_Samuel,"STRAND");
@@ -617,19 +549,7 @@ func void startup_addon_part_piratescamp_01()
 	Wld_InsertItem(ItMi_Addon_GregsTreasureBottle_MIS,"FP_ADW_GREGSBOTTLE");
 };
 
-func void init_sub_addon_part_piratescamp_01()
-{
-};
-
-func void init_addon_part_piratescamp_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	init_sub_addon_part_piratescamp_01();
-};
-
-func void startup_addon_part_valley_01()
+func void STARTUP_Addon_Part_Valley_01()
 {
 	Wld_InsertNpc(NONE_ADDON_115_Eremit,"ADW_VALLEY_PATH_031_HUT");
 	Wld_InsertNpc(Valley_Troll,"ADW_VALLEY_BIGCAVE_07");
@@ -731,27 +651,7 @@ func void startup_addon_part_valley_01()
 	Wld_InsertItem(ItRi_Addon_STR_02,"FP_ITEM_VALLEY_12");
 };
 
-func void init_sub_addon_part_valley_01()
-{
-};
-
-func void init_addon_part_valley_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	init_sub_addon_part_valley_01();
-};
-
-func void startup_sub_psicamp()
-{
-	if(C_OldWorldIsWasteland())
-	{
-		B_Seed_Wasteland_World_Psicamp();
-	};
-};
-
-func void init_sub_psicamp()
+func void INIT_SUB_Psicamp()
 {
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_01",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_01",1);
@@ -774,9 +674,6 @@ func void init_sub_psicamp()
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_07",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_07",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_07",0);
-	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_08",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_08",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_08",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_09",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_09",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_09",0);
@@ -789,30 +686,12 @@ func void init_sub_psicamp()
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_12",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_12",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_12",0);
-	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_13",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_13",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_13",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_14",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_14",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_14",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_15",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_15",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_15",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_16",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_16",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_16",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_17",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_17",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_17",0);
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_18",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_18",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_18",0);
-	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_19",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_19",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_19",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_20",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_20",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_20",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_21",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_21",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_21",0);
@@ -825,87 +704,45 @@ func void init_sub_psicamp()
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_24",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_24",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_24",0);
-	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_25",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_25",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_25",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_26",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_26",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_26",0);
-	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_27",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_27",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_27",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_28",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_28",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_28",0);
-	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_29",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_29",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_29",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_30",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_30",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_30",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_31",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_31",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_31",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_32",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_32",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_32",0);
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_33",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_33",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_33",0);
-	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_34",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_34",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_34",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_35",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_35",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_35",0);
-	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_36",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_36",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_36",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_37",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_37",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_37",0);
-	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_38",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_38",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_38",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_39",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_39",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_39",0);
-	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_40",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_40",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_40",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_41",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_41",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_41",0);
-	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_42",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_42",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_42",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_43",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_43",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_43",0);
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_44",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_44",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_44",0);
-	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_45",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_45",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_45",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_46",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_46",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_46",0);
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_47",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_47",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_47",0);
-	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_48",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_48",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_48",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_49",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_49",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_49",0);
-	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_50",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_50",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_50",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_51",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_51",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_51",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_52",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_52",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_52",0);
@@ -915,49 +752,6 @@ func void init_sub_psicamp()
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_54",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_54",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_54",0);
-	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_55",1);
-	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_55",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_55",0);*/
-};
-
-func void startup_psicamp()
-{
-	startup_sub_psicamp();
-};
-
-func void init_psicamp()
-{
-	init_sub_psicamp();
-};
-
-func void startup_sub_freeminecamp()
-{
-	if(C_OldWorldIsWasteland())
-	{
-		B_Seed_Wasteland_World_Freeminecamp();
-	};
-};
-
-func void init_sub_freeminecamp()
-{
-};
-
-func void startup_freeminecamp()
-{
-	startup_sub_freeminecamp();
-};
-
-func void init_freeminecamp()
-{
-	init_sub_freeminecamp();
-};
-
-func void startup_sub_newcamp()
-{
-};
-
-func void init_sub_newcamp()
-{
 };
 
 func void Startup_Oldcamp()
@@ -1164,14 +958,6 @@ func void INIT_SUB_Oldcamp()
 	Wld_AssignRoomToGuild("tu2",GIL_MIL);
 };
 
-func void init_oldcamp()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	INIT_SUB_Oldcamp();
-};
-
 func void Startup_Demontower()
 {
 	Wld_InsertNpc(Gobbo_SkeletonOWDemonTower,"DT_E1_06");
@@ -1184,15 +970,6 @@ func void Startup_Demontower()
 	Wld_InsertItem(ItMi_Zeitspalt_Addon,"FP_ITEM_XARDASALTERTURM_01");
 	Wld_InsertNpc(Skeleton,"DT_E3_07");
 	Wld_InsertNpc(Skeleton,"DT_E3_04");
-};
-
-func void INIT_SUB_Demontower()
-{
-};
-
-func void init_demontower()
-{
-	INIT_SUB_Demontower();
 };
 
 func void Startup_Surface()
@@ -1710,7 +1487,7 @@ func void Startup_Surface()
 	Wld_InsertNpc(Draconian,"LOCATION_19_03_SECOND_HARPYE3");
 	Wld_InsertNpc(Draconian,"LOCATION_19_03_SECOND_HARPYE4");
 	Wld_InsertNpc(Draconian,"LOCATION_19_03_SECOND_ETAGE7");
-	//Wld_InsertNpc(Draconian,"LOCATION_19_03_SECOND_ETAGE_BALCON2");
+//	Wld_InsertNpc(Draconian,"LOCATION_19_03_SECOND_ETAGE_BALCON2");
 	Wld_InsertNpc(Draconian,"LOCATION_19_03_SECOND_ETAGE_BALCON");
 	Wld_InsertNpc(Harpie,"OW_ROCKDRAGON_15");
 	Wld_InsertNpc(Harpie,"OW_ROCKDRAGON_14");
@@ -1799,54 +1576,32 @@ func void Startup_Surface()
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
-	if(C_OldWorldIsWasteland())
-	{
-		B_Seed_Wasteland_World_Main();
-	};
 };
 
 func void INIT_SUB_Surface()
 {
 	Wld_AssignRoomToGuild("DT1",GIL_DMT);
 	Wld_AssignRoomToGuild("DT2",GIL_DMT);
-	b_enter_oldworld();
-};
-
-func void init_surface()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	INIT_SUB_Surface();
 };
 
 func void INIT_OldWorld()
 {
-	B_Check_Version();
-	B_Check_Talents();
-	B_SetHeroSkin();
+	CurrentLevel = OLDWORLD_ZEN;
+	B_Enter_OldWorld();
 	INIT_SUB_Oldcamp();
-	INIT_SUB_Demontower();
 	INIT_SUB_Surface();
 	if(C_OldWorldIsWasteland())
 	{
-		init_sub_psicamp();
-		init_sub_freeminecamp();
+		INIT_SUB_Psicamp();
 	};
-	B_CheckDynamicText();
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	b_enter_oldworld();
-	b_cycle_function();
-	if((MIS_ReadyforChapter4 == TRUE) && (StartChapter4InNewWorld == FALSE) && (B_Chapter4_OneTime == FALSE))
+	if((MIS_ReadyforChapter4 == TRUE) && (B_Chapter4_OneTime == FALSE))
 	{
 		B_Kapitelwechsel(4,OLDWORLD_ZEN);
 		B_Chapter4_OneTime = TRUE;
 	};
 };
 
-func void startup_oldworld()
+func void STARTUP_OldWorld()
 {
 	Startup_Oldcamp();
 	Startup_Demontower();
@@ -1857,8 +1612,10 @@ func void startup_oldworld()
 	};
 	if(C_OldWorldIsWasteland())
 	{
-		startup_psicamp();
-		startup_freeminecamp();
+		B_Seed_Wasteland_World_Main();
+		B_Seed_Wasteland_World_Psicamp();
+		B_Seed_Wasteland_World_Freeminecamp();
+		Wasteland_Seeded = TRUE;
 	};
 };
 
@@ -2218,14 +1975,6 @@ func void INIT_SUB_NewWorld_Part_City_01()
 	Wld_AssignRoomToGuild("leomar",GIL_VLK);
 };
 
-func void INIT_NewWorld_Part_City_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	INIT_SUB_NewWorld_Part_City_01();
-};
-
 func void STARTUP_NewWorld_Part_Farm_01()
 {
 	Wld_InsertNpc(BAU_954_Maleth,"NW_FARM1_OUT_01");
@@ -2314,14 +2063,6 @@ func void INIT_SUB_NewWorld_Part_Farm_01()
 	};
 };
 
-func void INIT_NewWorld_Part_Farm_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	INIT_SUB_NewWorld_Part_Farm_01();
-};
-
 func void STARTUP_NewWorld_Part_Xardas_01()
 {
 	Wld_InsertItem(ItBe_Addon_STR_5,"FP_SPAWN_X_GUERTEL");
@@ -2390,18 +2131,6 @@ func void STARTUP_NewWorld_Part_Xardas_01()
 	Wld_InsertNpc(PIR_1300_Addon_Greg_NW,"FARM1");
 };
 
-func void INIT_SUB_NewWorld_Part_Xardas_01()
-{
-};
-
-func void INIT_NewWorld_Part_Xardas_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	INIT_SUB_NewWorld_Part_Xardas_01();
-};
-
 func void STARTUP_NewWorld_Part_Monastery_01()
 {
 	Wld_InsertItem(ItWr_ManaRezept,"FP_ITEM_KLOSTER_01");
@@ -2462,14 +2191,6 @@ func void INIT_SUB_NewWorld_Part_Monastery_01()
 	Wld_AssignRoomToGuild("kloster11",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("kloster12",GIL_NOV);
 	Wld_AssignRoomToGuild("kloster13",GIL_PUBLIC);
-};
-
-func void INIT_NewWorld_Part_Monastery_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	INIT_SUB_NewWorld_Part_Monastery_01();
 };
 
 func void STARTUP_NewWorld_Part_GreatPeasant_01()
@@ -2869,14 +2590,6 @@ func void INIT_SUB_NewWorld_Part_GreatPeasant_01()
 	Wld_AssignRoomToGuild("grpwaldhuette02",GIL_PUBLIC);
 };
 
-func void INIT_NewWorld_Part_GreatPeasant_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	INIT_SUB_NewWorld_Part_GreatPeasant_01();
-};
-
 func void STARTUP_NewWorld_Part_Pass_To_OW_01()
 {
 	Wld_InsertNpc(PAL_297_Ritter,"NW_PASS_01");
@@ -2915,18 +2628,6 @@ func void STARTUP_NewWorld_Part_Pass_To_OW_01()
 	Wld_InsertNpc(OrcWarrior_Roam,"NW_PASS_ORKS_09");
 	Wld_InsertNpc(OrcWarrior_Roam,"NW_PASS_ORKS_10");
 	Wld_InsertNpc(OrcWarrior_Roam,"NW_PASS_ORKS_11");
-};
-
-func void INIT_SUB_NewWorld_Part_Pass_To_OW_01()
-{
-};
-
-func void INIT_NewWorld_Part_Pass_To_OW_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	INIT_SUB_NewWorld_Part_Pass_To_OW_01();
 };
 
 func void STARTUP_NewWorld_Part_Forest_01()
@@ -3180,18 +2881,6 @@ func void STARTUP_NewWorld_Part_Forest_01()
 	Wld_InsertItem(ItWr_HitPointStonePlate1_Addon,"FP_ITEM_FOREST_STPLATE_06");
 };
 
-func void INIT_SUB_NewWorld_Part_Forest_01()
-{
-};
-
-func void INIT_NewWorld_Part_Forest_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	INIT_SUB_NewWorld_Part_Forest_01();
-};
-
 func void STARTUP_NewWorld_Part_TrollArea_01()
 {
 	Wld_InsertNpc(Meatbug,"NW_MAGECAVE_20");
@@ -3360,18 +3049,6 @@ func void STARTUP_NewWorld_Part_TrollArea_01()
 	Wld_InsertNpc(BDT_1020_Bandit_L,"NW_TROLLAREA_PATH_47");
 };
 
-func void INIT_SUB_NewWorld_Part_TrollArea_01()
-{
-};
-
-func void INIT_NewWorld_Part_TrollArea_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	INIT_SUB_NewWorld_Part_TrollArea_01();
-};
-
 func void STARTUP_NewWorld()
 {
 	STARTUP_NewWorld_Part_City_01();
@@ -3390,23 +3067,12 @@ func void STARTUP_NewWorld()
 
 func void INIT_NewWorld()
 {
-	B_Check_Version();
-	B_Check_Talents();
-	B_SetHeroSkin();
-	B_CheckDynamicText();
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	b_enter_newworld();
-	b_cycle_function();
+	CurrentLevel = NEWWORLD_ZEN;
+	B_Enter_NewWorld();
 	INIT_SUB_NewWorld_Part_City_01();
 	INIT_SUB_NewWorld_Part_Farm_01();
-	INIT_SUB_NewWorld_Part_Xardas_01();
 	INIT_SUB_NewWorld_Part_Monastery_01();
 	INIT_SUB_NewWorld_Part_GreatPeasant_01();
-	INIT_SUB_NewWorld_Part_TrollArea_01();
-	INIT_SUB_NewWorld_Part_Forest_01();
-	INIT_SUB_NewWorld_Part_Pass_To_OW_01();
 	if((MIS_ReadyForChapter3 == TRUE) && (B_Chapter3_OneTime == FALSE))
 	{
 		B_Kapitelwechsel(3,NEWWORLD_ZEN);
@@ -3417,47 +3083,41 @@ func void INIT_NewWorld()
 		B_Kapitelwechsel(5,NEWWORLD_ZEN);
 		B_Chapter5_OneTime = TRUE;
 	};
+	B_Cycle_Function();
 };
 
 func void STARTUP_AddonWorld()
 {
-	startup_addon_part_banditscamp_01();
-	startup_addon_part_piratescamp_01();
-	startup_addon_part_entrance_01();
-	startup_addon_part_goldmine_01();
-	startup_addon_part_canyon_01();
-	startup_addon_part_valley_01();
-	startup_addon_part_adanostemple_01();
+	STARTUP_Addon_Part_BanditsCamp_01();
+	STARTUP_Addon_Part_PiratesCamp_01();
+	STARTUP_Addon_Part_Entrance_01();
+	STARTUP_Addon_Part_GoldMine_01();
+	STARTUP_Addon_Part_Canyon_01();
+	STARTUP_Addon_Part_Valley_01();
+	STARTUP_Addon_Part_AdanosTemple_01();
 	ENTERED_ADDONWORLD = TRUE;
-	CurrentLevel = ADDONWORLD_ZEN;
 	Wld_SetTime(60,0);
 };
 
 func void INIT_AddonWorld()
 {
-	B_Check_Version();
-	B_Check_Talents();
-	B_SetHeroSkin();
-	if((BloodwynIsHeadless == TRUE) && (Saturas_RiesenPlan == FALSE))
+	CurrentLevel = ADDONWORLD_ZEN;
+	B_Enter_AddonWorld();
+	INIT_SUB_Addon_Part_BanditsCamp_01();
+	if(BloodwynIsHeadless == TRUE)
 	{
-		Mdl_SetVisualBody(BDT_1085_Addon_Bloodwyn,"hum_body_Bloodwyn_Headless",1,0,"Hum_Headless",0,DEFAULT,NO_ARMOR);
+		if(Hlp_IsValidNpc(Bloodwyn))
+		{
+			Mdl_SetVisualBody(Bloodwyn,"hum_body_Bloodwyn_Headless",1,0,"Hum_Headless",0,DEFAULT,NO_ARMOR);
+		};
+	}
+	else
+	{
+		B_Cycle_Function();
 	};
-	init_sub_addon_part_banditscamp_01();
-	init_sub_addon_part_piratescamp_01();
-	init_sub_addon_part_entrance_01();
-	init_sub_addon_part_goldmine_01();
-	init_sub_addon_part_canyon_01();
-	init_sub_addon_part_valley_01();
-	init_sub_addon_part_adanostemple_01();
-	B_CheckDynamicText();
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-	b_enter_addonworld();
-	b_cycle_function();
 };
 
-func void startup_freemine()
+func void STARTUP_FreeMine()
 {
 	Wld_InsertNpc(OrcWarrior_Roam,"FM_09");
 	Wld_InsertNpc(OrcWarrior_Roam,"FM_09");
@@ -3497,14 +3157,13 @@ func void startup_freemine()
 	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_CRAWLER_34");
 };
 
-func void init_freemine()
+func void INIT_FreeMine()
 {
+	CurrentLevel = FREEMINE_ZEN;
 	Wld_SetMobRoutine(0,0,"FIREPLACE",1);
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
 };
 
-func void startup_orcgraveyard()
+func void STARTUP_OrcGraveyard()
 {
 	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_006");
 	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_015");
@@ -3527,10 +3186,9 @@ func void startup_orcgraveyard()
 	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_055");
 };
 
-func void init_orcgraveyard()
+func void INIT_OrcGraveyard()
 {
+	CurrentLevel = ORCGRAVEYARD_ZEN;
 	Wld_SetMobRoutine(0,0,"FIREPLACE",1);
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
 };
 

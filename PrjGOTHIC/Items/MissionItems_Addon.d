@@ -1106,7 +1106,7 @@ instance ItSE_Addon_FrancisChest(C_Item)
 func void FrancisChest()
 {
 	CreateInvItems(hero,ITWR_Addon_FrancisAbrechnung_Mis,1);
-	CreateInvItems(hero,ItMw_FrancisDagger_Mis,1);
+	CreateInvItems(hero,ItMw_1h_Pir_Dagger,1);
 	CreateInvItems(hero,ItMi_Gold,153);
 	CreateInvItems(hero,ItMi_GoldCup,1);
 	CreateInvItems(hero,ItMi_SilverNecklace,1);

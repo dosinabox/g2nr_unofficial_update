@@ -279,7 +279,7 @@ instance DIA_Addon_Skip_ArmorPrice(C_Info)
 
 func int DIA_Addon_Skip_ArmorPrice_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Skip_Bandits) && (GregIsBack == FALSE) && !Npc_HasItems(other,ITAR_BDT_M) && !Npc_HasItems(other,ITAR_BDT_H) && !Npc_HasItems(other,ITAR_Thorus_Addon))
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_Bandits) && (GregIsBack == FALSE) && !C_SCHasBDTArmor())
 	{
 		return TRUE;
 	};
@@ -323,7 +323,10 @@ func void DIA_Addon_Skip_GregsHut_Info()
 	AI_Output(self,other,"DIA_Addon_Skip_GregsHut_08_01");	//Эй-эй-эй, не так быстро!
 	AI_Output(self,other,"DIA_Addon_Skip_GregsHut_08_02");	//Ты же не собираешься копаться в вещах Грега?
 	AI_Output(self,other,"DIA_Addon_Skip_GregsHut_08_03");	//Когда Грег уезжал, он оставил ключ от хижины Фрэнсису и приказал ему никого не пускать внутрь.
-	B_LogEntry(TOPIC_Addon_BDTRuestung,"У Фрэнсиса есть ключ от хижины, но ему приказано никого в нее не пускать.");
+	if(!C_SCHasBDTArmor())
+	{
+		B_LogEntry(TOPIC_Addon_BDTRuestung,"У Фрэнсиса есть ключ от хижины, но ему приказано никого в нее не пускать.");
+	};
 	Knows_GregsHut = TRUE;
 };
 
@@ -358,7 +361,7 @@ func void DIA_Addon_Skip_Francis_Info()
 		AI_Output(self,other,"DIA_Addon_Skip_Francis_08_04");	//Если хочешь узнать больше, поговори с Сэмюэлем.
 		AI_Output(self,other,"DIA_Addon_Skip_Francis_08_05");	//У него лаборатория в небольшой пещере на севере отсюда.
 		AI_Output(self,other,"DIA_Addon_Skip_Francis_08_06");	//Нет в лагере такого человека, о котором Сэмюэль не знал бы всю подноготную...
-		if(MIS_Greg_ScoutBandits == FALSE)
+		if((MIS_Greg_ScoutBandits == FALSE) && !C_SCHasBDTArmor())
 		{
 			B_LogEntry(TOPIC_Addon_BDTRuestung,"Я должен поговорить с Сэмюэлем. Возможно, он поможет мне.");
 		};

@@ -162,18 +162,15 @@ func void Use_BookstandMaya()
 	else if(BookstandMayaArt == 6)
 	{
 		Doc_PrintLines(StPl_nDocID,0,"");
-		Doc_PrintLines(StPl_nDocID,0,"1");
+		Doc_PrintLines(StPl_nDocID,0,"...");
 		Doc_PrintLines(StPl_nDocID,0,"");
-		Doc_PrintLines(StPl_nDocID,0,"2");
-		Doc_PrintLines(StPl_nDocID,0,"");
-		Doc_PrintLines(StPl_nDocID,0,"3");
 		Doc_SetMargins(StPl_nDocID,-1,30,20,275,20,1);
-		Doc_PrintLines(StPl_nDocID,1,"");
-		Doc_PrintLines(StPl_nDocID,1,"4");
-		Doc_PrintLines(StPl_nDocID,1,"");
-		Doc_PrintLines(StPl_nDocID,1,"5");
-		Doc_PrintLines(StPl_nDocID,1,"");
-		Doc_PrintLines(StPl_nDocID,1,"6");
+		Doc_PrintLine(StPl_nDocID,1,"");
+		Doc_PrintLines(StPl_nDocID,1,"...");
+		Doc_PrintLine(StPl_nDocID,1,"");
+		Doc_PrintLines(StPl_nDocID,1,"...");
+		Doc_PrintLine(StPl_nDocID,1,"");
+		Doc_PrintLines(StPl_nDocID,1,"... отправились в путь, чтобы навечно закрыть ...");
 	};
 };
 

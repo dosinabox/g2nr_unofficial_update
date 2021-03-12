@@ -110,6 +110,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 	{
 		if(!Npc_IsDead(Engrom))
 		{
+			Engrom_isAlive_Kap4 = TRUE;
 			B_StartOtherRoutine(Engrom,"Obsessed");
 			AI_Teleport(Engrom,"OW_SAWHUT_MOLERAT_MOVEMENT");
 			CreateInvItems(Engrom,ItAt_TalbinsLurkerSkin,1);
@@ -456,10 +457,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Log_CreateTopic(TOPIC_Dragonhunter,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Dragonhunter,LOG_Running);
 		B_LogEntry(TOPIC_Dragonhunter,"Началась масштабная охота на драконов. Она привлекла многих искателей приключений в Долину Рудников. Мне остается только надеяться, что они не будут мешаться у меня под ногами.");
-		if(StartChapter4InNewWorld == FALSE)
-		{
-			IntroduceChapter(KapWechsel_4,KapWechsel_4_Text,"chapter4.tga","chapter_01.wav",6000);
-		};
+		IntroduceChapter(KapWechsel_4,KapWechsel_4_Text,"chapter4.tga","chapter_01.wav",6000);
 		EnterOW_Kapitel4 = TRUE;
 	};
 	if(Talbin_FollowsThroughPass == LOG_OBSOLETE)
@@ -489,7 +487,7 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 		}; */
 		if(!Npc_IsDead(Brutus))
 		{
-			CreateInvItems(VLK_4100_Brutus,ITWR_DementorObsessionBook_MIS,1);
+			CreateInvItems(Brutus,ITWR_DementorObsessionBook_MIS,1);
 		};
 		if(TschuessBilgot == TRUE)
 		{
@@ -518,7 +516,7 @@ func void B_ENTER_OLDWORLD_Kapitel_6()
 	};
 };
 
-func void b_enter_oldworld()
+func void B_Enter_OldWorld()
 {
 	B_InitNpcGlobals();
 	if(Kapitel >= 1)
@@ -545,7 +543,6 @@ func void b_enter_oldworld()
 	{
 		B_ENTER_OLDWORLD_Kapitel_6();
 	};
-	CurrentLevel = OLDWORLD_ZEN;
 	B_InitNpcGlobals();
 	if(DJG_BiffParty == TRUE)
 	{

@@ -750,6 +750,9 @@ const int NEWWORLD_ZEN = 1;
 const int OLDWORLD_ZEN = 2;
 const int DRAGONISLAND_ZEN = 3;
 const int ADDONWORLD_ZEN = 4;
+const int FREEMINE_ZEN = 5;
+const int ORCGRAVEYARD_ZEN = 6;
+
 const int INVCAM_ENTF_RING_STANDARD = 400;
 const int INVCAM_ENTF_AMULETTE_STANDARD = 150;
 const int INVCAM_ENTF_MISC_STANDARD = 200;
@@ -762,7 +765,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "01/02/2021";
+const string FIX_VERSION_DATE = "12/03/2021";
 const int FIX_VERSION_START = 26;
 const int LEAST_SUPPORTED = 24;
 var int FIX_VERSION_SAVE;

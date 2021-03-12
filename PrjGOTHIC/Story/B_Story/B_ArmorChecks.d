@@ -209,26 +209,29 @@ func int C_PirateArmorEquipped(var C_Npc npc)
 func void B_SetHeroSkin()
 {
 	var int BodyTex;
-	if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE) || (SLDArmor_Equipped == TRUE) || (OpenArmor_Equipped == TRUE) || (NakedBodySkin == TRUE))
+	if(C_NpcIsHero(hero))
 	{
-		BodyTex = BodyTex_N;
-	}
-	else if(G1BodySkin == TRUE)
-	{
-		BodyTex = BodyTex_Player_G1;
-	}
-	else if(SequelBodySkin == TRUE)
-	{
-		BodyTex = BodyTex_Player_Sequel;
-	}
-	else if(TattoosBodySkin == TRUE)
-	{
-		BodyTex = BodyTex_Tattoo_N;
-	}
-	else
-	{
-		BodyTex = BodyTex_Player_G2;
+		if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE) || (SLDArmor_Equipped == TRUE) || (OpenArmor_Equipped == TRUE) || (NakedBodySkin == TRUE))
+		{
+			BodyTex = BodyTex_N;
+		}
+		else if(G1BodySkin == TRUE)
+		{
+			BodyTex = BodyTex_Player_G1;
+		}
+		else if(SequelBodySkin == TRUE)
+		{
+			BodyTex = BodyTex_Player_Sequel;
+		}
+		else if(TattoosBodySkin == TRUE)
+		{
+			BodyTex = BodyTex_Tattoo_N;
+		}
+		else
+		{
+			BodyTex = BodyTex_Player_G2;
+		};
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 	};
-	Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 };
 

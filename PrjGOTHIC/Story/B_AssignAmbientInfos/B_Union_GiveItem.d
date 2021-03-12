@@ -11,10 +11,11 @@ instance DIA_Union_GiveItem(C_Info)
 
 func int DIA_Union_GiveItem_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (UnionActivated == TRUE))
+	/*if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (UnionActivated == TRUE))
 	{
 		return TRUE;
-	};
+	};*/
+	return FALSE;
 };
 
 func void DIA_Union_GiveItem_Info()

@@ -809,6 +809,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner()
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_03_01");	//(ошеломленно) Что? Ты не можешь поступить со мной так.
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_15_02");	//А я думаю, что могу. Я придержу у себя эти бумаги, пусть все пока останется так, как есть.
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_15_03");	//Я должен обговорить финансовую часть с Игарацем.
+	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_15_04");	//А ты пока занимайся своими растениями.
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_03_05");	//Ты свинья. Презренная жадная свинья. Иннос покарает тебя.
 	BabosDocsRejected = TRUE;
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
@@ -936,15 +937,8 @@ func void DIA_Babo_Kap3_Perm_Info()
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_01");	//(неубедительно) Да, конечно. Моя вера в мудрость и силу Инноса придает мне силы.
-		if(MIS_HelpBabo == LOG_SUCCESS)
-		{
-			AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_15_04");	//А ты пока занимайся своими растениями.
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_02");	//(уклончиво) Я не хочу показаться невежливым, но у меня много дел сегодня.
-			AI_Output(other,self,"DIA_Babo_Kap3_Perm_15_03");	//Можешь продолжать.
-		};
+		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_02");	//(уклончиво) Я не хочу показаться невежливым, но у меня много дел сегодня.
+		AI_Output(other,self,"DIA_Babo_Kap3_Perm_15_03");	//Можешь продолжать.
 		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_04");	//(облегченно) Спасибо.
 	}
 	else

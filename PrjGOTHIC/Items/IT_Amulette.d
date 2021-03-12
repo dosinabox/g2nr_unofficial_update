@@ -298,12 +298,12 @@ instance ItAm_Hp_01(C_Item)
 
 func void Equip_ItAm_Hp_01()
 {
-	UnEquip_MaxHP(Am_Hp);
+	Equip_MaxHP(Am_Hp);
 };
 
 func void UnEquip_ItAm_Hp_01()
 {
-	Equip_MaxHP(Am_Hp);
+	UnEquip_MaxHP(Am_Hp);
 };
 
 

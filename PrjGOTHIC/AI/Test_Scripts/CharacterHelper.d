@@ -894,7 +894,7 @@ func void CH_Lernpunkte_0()
 func void CH_Lernpunkte_50()
 {
 	hero.lp += 50;
-	PrintScreen(ConcatStrings("+ 50",PRINT_LP),-1,-1,FONT_Screen,3);
+	PrintScreen(ConcatStrings(PRINT_LearnLP,"50"),-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 	CH_Lernpunkte_Info();
 };
@@ -902,7 +902,7 @@ func void CH_Lernpunkte_50()
 func void CH_Lernpunkte_25()
 {
 	hero.lp += 25;
-	PrintScreen(ConcatStrings("+ 25",PRINT_LP),-1,-1,FONT_Screen,3);
+	PrintScreen(ConcatStrings(PRINT_LearnLP,"25"),-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 	CH_Lernpunkte_Info();
 };
@@ -910,7 +910,7 @@ func void CH_Lernpunkte_25()
 func void CH_Lernpunkte_10()
 {
 	hero.lp += 10;
-	PrintScreen(ConcatStrings("+ 10",PRINT_LP),-1,-1,FONT_Screen,3);
+	PrintScreen(ConcatStrings(PRINT_LearnLP,"10"),-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 	CH_Lernpunkte_Info();
 };
@@ -918,7 +918,7 @@ func void CH_Lernpunkte_10()
 func void CH_Lernpunkte_5()
 {
 	hero.lp += 5;
-	PrintScreen(ConcatStrings("+ 5",PRINT_LP),-1,-1,FONT_Screen,3);
+	PrintScreen(ConcatStrings(PRINT_LearnLP,"5"),-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 	CH_Lernpunkte_Info();
 };
@@ -4168,5 +4168,32 @@ func void CH_Skin_Naked()
 	NakedBodySkin = TRUE;
 	B_SetHeroSkin();
 	CH_Skin_Info();
+};
+
+instance CH_StatsBook(C_Info)
+{
+	npc = ch;
+	nr = 38;
+	condition = CH_StatsBook_Condition;
+	information = CH_StatsBook_Info;
+	permanent = TRUE;
+	description = "Получить книгу статистики";
+};
+
+
+func int CH_StatsBook_Condition()
+{
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	{
+		if(!Npc_HasItems(other,StatsBook))
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void CH_StatsBook_Info()
+{
+	B_GiveInvItems(self,other,StatsBook,1);
 };
 

@@ -293,6 +293,8 @@ func void DIA_Addon_Morgan_JoinMorgan_Info()
 };
 
 
+var int Morgan_CaveComment;
+
 instance DIA_Addon_Morgan_LurkerPlatt(C_Info)
 {
 	npc = PIR_1353_Addon_Morgan;
@@ -331,7 +333,11 @@ func void DIA_Addon_Morgan_LurkerPlatt_Info()
 	{
 		AI_Output(other,self,"DIA_Addon_Morgan_LurkerPlatt_15_05");	//Ё-э-э...
 		AI_Output(self,other,"DIA_Addon_Morgan_LurkerPlatt_07_06");	//Ёто тоже часть твоего задани€. ¬озвращайс€, когда закончишь.
-		B_LogEntry(TOPIC_Addon_MorganBeach,"ћорган попросил мен€ зан€тьс€ пещерой.");
+		if(Morgan_CaveComment == FALSE)
+		{
+			B_LogEntry(TOPIC_Addon_MorganBeach,"ћорган попросил мен€ зан€тьс€ пещерой.");
+			Morgan_CaveComment = TRUE;
+		};
 		AI_StopProcessInfos(self);
 	};
 };

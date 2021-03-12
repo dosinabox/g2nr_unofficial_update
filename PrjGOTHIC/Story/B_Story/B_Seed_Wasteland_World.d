@@ -373,7 +373,6 @@ func void B_Seed_Wasteland_World_Main()
 	Wld_InsertNpc(DragonSnapper,"SPAWN_CAES_DRAGONSNAPPER5");
 	Wld_InsertNpc(YGobbo_Green,"SPAWN_OW_GOBBO_01_01");
 	Wld_InsertNpc(YGobbo_Green,"SPAWN_OW_GOBBO_01_01");
-	Wasteland_Seeded = TRUE;
 };
 
 func void B_Seed_Wasteland_World_Psicamp()

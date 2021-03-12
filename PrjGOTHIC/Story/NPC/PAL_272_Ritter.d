@@ -23,7 +23,7 @@ instance PAL_272_Ritter(Npc_Default)
 
 func void Rtn_Start_272()
 {
-	TA_Guard_Passage(8,0,22,0,"OC_GUARD_ENTRANCE");
+	TA_Stand_ArmsCrossed(8,0,22,0,"OC_GUARD_ENTRANCE");
 	TA_Sit_Chair(22,0,8,0,"OC_GUARD_ROOM_01_FIRE");
 };
 

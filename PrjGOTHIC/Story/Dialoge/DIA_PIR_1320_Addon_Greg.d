@@ -56,6 +56,35 @@ func void DIA_Addon_Greg_PICKPOCKET_BACK()
 };
 
 
+func int C_NorthBeachMonstersDead()
+{
+	if(!Npc_IsDead(BeachLurker1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BeachLurker2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BeachLurker3))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BeachWaran1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BeachWaran2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BeachShadowbeast1))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 instance DIA_Addon_Greg_ImNew(C_Info)
 {
 	npc = PIR_1320_Addon_Greg;
@@ -93,7 +122,7 @@ func void DIA_Addon_Greg_ImNew_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_07");	//А ТЫ? Что ТЫ сделал?
 	Info_ClearChoices(DIA_Addon_Greg_ImNew);
 	Info_AddChoice(DIA_Addon_Greg_ImNew,"Пока не так много.",DIA_Addon_Greg_ImNew_nich);
-	if((Npc_IsDead(BeachLurker1) && Npc_IsDead(BeachLurker2) && Npc_IsDead(BeachLurker3) && Npc_IsDead(BeachWaran1) && Npc_IsDead(BeachWaran2) && Npc_IsDead(BeachShadowbeast1) && (MIS_Addon_MorganLurker != FALSE)) || C_TowerBanditsDead())
+	if((C_NorthBeachMonstersDead() && (MIS_Addon_MorganLurker != FALSE)) || C_TowerBanditsDead())
 	{
 		Info_AddChoice(DIA_Addon_Greg_ImNew,"Я работал.",DIA_Addon_Greg_ImNew_turm);
 	};
@@ -144,7 +173,7 @@ func void DIA_Addon_Greg_ImNew_turm()
 	{
 		AI_Output(other,self,"DIA_Addon_Greg_ImNew_turm_15_02");	//Я разобрался с бандитами из башни.
 	};
-	if(Npc_IsDead(BeachLurker1) && Npc_IsDead(BeachLurker2) && Npc_IsDead(BeachLurker3) && Npc_IsDead(BeachWaran1) && Npc_IsDead(BeachWaran2) && Npc_IsDead(BeachShadowbeast1) && (MIS_Addon_MorganLurker != 0))
+	if(C_NorthBeachMonstersDead() && (MIS_Addon_MorganLurker != FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Greg_ImNew_turm_15_03");	//На побережье к северу больше нет диких зверей.
 	};
@@ -361,7 +390,7 @@ instance DIA_Addon_Greg_BanditArmor(C_Info)
 
 func int DIA_Addon_Greg_BanditArmor_Condition()
 {
-	if(MIS_Greg_ScoutBandits == FALSE)
+	if((MIS_Greg_ScoutBandits == FALSE) && !C_SCHasBDTArmor())
 	{
 		return TRUE;
 	};
@@ -415,7 +444,7 @@ instance DIA_Addon_Greg_Auftraege2(C_Info)
 
 func int DIA_Addon_Greg_Auftraege2_Condition()
 {
-	if((MIS_Greg_ScoutBandits != FALSE) && (!C_TowerBanditsDead() || (!Npc_IsDead(BeachLurker1) && !Npc_IsDead(BeachLurker2) && !Npc_IsDead(BeachLurker3) && !Npc_IsDead(BeachWaran1) && !Npc_IsDead(BeachWaran2) && !Npc_IsDead(BeachShadowbeast1))))
+	if((MIS_Greg_ScoutBandits != FALSE) && (!C_TowerBanditsDead() || !C_NorthBeachMonstersDead()))
 	{
 		return TRUE;
 	};
@@ -424,7 +453,7 @@ func int DIA_Addon_Greg_Auftraege2_Condition()
 func void DIA_Addon_Greg_Auftraege2_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_Auftraege2_15_00");	//Есть для меня еще работа?
-	if(!Npc_IsDead(BeachLurker1) && !Npc_IsDead(BeachLurker2) && !Npc_IsDead(BeachLurker3) && !Npc_IsDead(BeachWaran1) && !Npc_IsDead(BeachWaran2) && !Npc_IsDead(BeachShadowbeast1))
+	if(!C_NorthBeachMonstersDead())
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_Auftraege2_01_01");	//Северное побережье все еще населяют звери.
 		AI_Output(self,other,"DIA_Addon_Greg_Auftraege2_01_02");	//Похоже, Морган ничего не сделал.
@@ -458,7 +487,7 @@ instance DIA_Addon_Greg_Sauber2(C_Info)
 
 func int DIA_Addon_Greg_Sauber2_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Greg_Auftraege2) && Npc_IsDead(BeachLurker1) && Npc_IsDead(BeachLurker2) && Npc_IsDead(BeachLurker3) && Npc_IsDead(BeachWaran1) && Npc_IsDead(BeachWaran2) && Npc_IsDead(BeachShadowbeast1))
+	if(Npc_KnowsInfo(other,DIA_Addon_Greg_Auftraege2) && C_NorthBeachMonstersDead())
 	{
 		return TRUE;
 	};

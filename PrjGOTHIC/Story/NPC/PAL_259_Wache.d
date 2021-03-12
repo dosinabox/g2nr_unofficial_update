@@ -23,6 +23,6 @@ instance PAL_259_Wache(Npc_Default)
 func void Rtn_Start_259()
 {
 	TA_Stand_Guarding(8,0,23,0,"OC_OPEN_ROOM_GUARD_01");
-	TA_Stand_Guarding(23,0,8,0,"OC_OPEN_ROOM_GUARD_01");
+	TA_Stand_Guarding(23,0,8,0,"OC_GUARD_PALISADE_03");
 };
 

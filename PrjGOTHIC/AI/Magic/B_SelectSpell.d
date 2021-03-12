@@ -345,58 +345,71 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			return FALSE;
 		};
 	};
-/*	if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ROCK)
-	{
-		if(!Npc_HasItems(slf,ItRu_InstantFireball))
-		{
-			CreateInvItems(slf,ItRu_InstantFireball,1);
-		};
-		if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
-		{
-			B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
-			return TRUE;
-		}
-		else
-		{
-			return FALSE;
-		};
-	};
-	if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE)
-	{
-//		if(!Npc_HasItems(slf,ItRu_InstantFireball))
-		if(!Npc_HasItems(slf,ItRu_ChargeFireball))
-		{
-//			CreateInvItems(slf,ItRu_InstantFireball,1);
-			CreateInvItems(slf,ItRu_ChargeFireball,1);
-		};
-		if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
-		{
-//			B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
-			B_ReadySpell(slf,SPL_ChargeFireball,SPL_Cost_ChargeFireball);
-			return TRUE;
-		}
-		else
-		{
-			return FALSE;
-		};
-	}; */
 	if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE)
 	{
-//		if(!Npc_HasItems(slf,ItRu_InstantFireball))
-		if(!Npc_HasItems(slf,ItRu_ThunderBall))
+		if(IceDragonSpell == SPL_InstantFireball)
 		{
-//			CreateInvItems(slf,ItRu_InstantFireball,1);
-			CreateInvItems(slf,ItRu_ThunderBall,1);
-		};
-		if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
-		{
-//			B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
-			B_ReadySpell(slf,SPL_ChargeZap,SPL_COST_ChargeZap);
-			return TRUE;
+			if(!Npc_HasItems(slf,ItRu_InstantFireball))
+			{
+				CreateInvItems(slf,ItRu_InstantFireball,1);
+			};
+			if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
+			{
+				B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+				return TRUE;
+			}
+			else
+			{
+				return FALSE;
+			};
 		}
-		else
+		else if(IceDragonSpell == SPL_IceLance)
 		{
-			return FALSE;
+			if(!Npc_HasItems(slf,ItRu_Icelance))
+			{
+				CreateInvItems(slf,ItRu_Icelance,1);
+			};
+			if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
+			{
+				B_ReadySpell(slf,SPL_IceLance,SPL_Cost_IceLance);
+				return TRUE;
+			}
+			else
+			{
+				return FALSE;
+			};
+		}
+		else if(IceDragonSpell == SPL_ChargeZap)
+		{
+			if(!Npc_HasItems(slf,ItRu_ThunderBall))
+			{
+				CreateInvItems(slf,ItRu_ThunderBall,1);
+			};
+			if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
+			{
+				B_ReadySpell(slf,SPL_ChargeZap,SPL_COST_ChargeZap);
+				return TRUE;
+			}
+			else
+			{
+				return FALSE;
+			};
+		}
+		else if(IceDragonSpell == SPL_Icebolt)
+		{
+			if(!Npc_HasItems(slf,ItRu_Icebolt))
+			{
+				CreateInvItems(slf,ItRu_Icebolt,1);
+			};
+			if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
+			{
+				B_ReadySpell(slf,SPL_Icebolt,SPL_COST_Icebolt);
+				return TRUE;
+			}
+			else
+			{
+				return FALSE;
+			};
 		};
 	};
 	if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)

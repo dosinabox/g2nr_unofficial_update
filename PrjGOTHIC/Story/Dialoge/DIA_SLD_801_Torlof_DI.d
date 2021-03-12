@@ -46,13 +46,18 @@ func void DIA_Torlof_DI_Hallo_Info()
 	if(OrkSturmDI == FALSE)
 	{
 		AI_Output(self,other,"DIA_Torlof_DI_Hallo_01_01");	//Пока да. Но все может измениться в одно мгновение. Будь осторожен.
+		AI_StopProcessInfos(self);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Torlof_DI_Hallo_01_02");	//Если эти презренные орки будут оставаться там, где они есть сейчас, я не вижу никакой проблемы.
-		B_StartOtherRoutine(Torlof_DI,"Start");
+		AI_StopProcessInfos(self);
+		if(CaptainIsBackToStartPosition == FALSE)
+		{
+			Npc_ExchangeRoutine(self,"Start");
+			CaptainIsBackToStartPosition = TRUE;
+		};
 	};
-	AI_StopProcessInfos(self);
 };
 
 
@@ -169,7 +174,6 @@ func void DIA_Torlof_DI_UndeadDragonDead_over()
 	B_Extro_Avi();
 };
 
-
 instance DIA_Torlof_DI_PICKPOCKET(C_Info)
 {
 	npc = SLD_801_Torlof_DI;
@@ -203,5 +207,4 @@ func void DIA_Torlof_DI_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Torlof_DI_PICKPOCKET);
 };
-
 

@@ -230,7 +230,7 @@ instance DIA_Addon_Bones_WantArmor(C_Info)
 
 func int DIA_Addon_Bones_WantArmor_Condition()
 {
-	if((Greg_GaveArmorToBones == TRUE) && (MIS_Greg_ScoutBandits == FALSE))
+	if((Greg_GaveArmorToBones == TRUE) && (MIS_Greg_ScoutBandits == FALSE) && !C_SCHasBDTArmor())
 	{
 		return TRUE;
 	};
@@ -266,7 +266,7 @@ instance DIA_Addon_Bones_GiveArmor(C_Info)
 
 func int DIA_Addon_Bones_GiveArmor_Condition()
 {
-	if(MIS_Greg_ScoutBandits == LOG_Running)
+	if((MIS_Greg_ScoutBandits == LOG_Running) && !C_SCHasBDTArmor())
 	{
 		return TRUE;
 	};

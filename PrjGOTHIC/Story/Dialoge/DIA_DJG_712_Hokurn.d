@@ -710,7 +710,7 @@ func void DIA_Hokurn_Dragon_Info()
 {
 	AI_Output(other,self,"DIA_Hokurn_Dragon_15_00");	//Хорошо, теперь скажи, где все эти драконы?
 	AI_Output(self,other,"DIA_Hokurn_Dragon_01_01");	//Ну, если честно, я не могу сказать тебе ничего определенного, но я слышал, что всего должно быть четыре дракона.
-	if(FreDragnIsDead == FALSE)
+	if(FireDragonIsDead == FALSE)
 	{
 		AI_Output(self,other,"DIA_Hokurn_Dragon_01_02");	//Прошлой ночью над самой высокой горой мы видели багровое свечение.
 		AI_Output(self,other,"DIA_Hokurn_Dragon_01_03");	//Готов поклясться своей матерью, что если ты ищешь драконов, одного из них ты найдешь там.

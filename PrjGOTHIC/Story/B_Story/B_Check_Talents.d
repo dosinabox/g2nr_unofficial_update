@@ -1,6 +1,7 @@
 
 func void B_Check_Talents()
 {
+	//удалить, когда сохранения версии 25 перестанут поддерживаться
 	if(TalentSystemSynced == FALSE)
 	{
 		if(FIX_VERSION_SAVE < 25)

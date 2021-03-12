@@ -40,3 +40,9 @@ func void Rtn_CONTESTWAIT_601()
 	TA_Stand_ArmsCrossed(23,4,8,0,"NW_TROLLAREA_PATH_66");
 };
 
+func void Rtn_Tot_601()
+{
+	TA_Sleep(8,0,23,0,"TOT");
+	TA_Sleep(23,0,8,0,"TOT");
+};
+

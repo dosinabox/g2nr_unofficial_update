@@ -586,55 +586,6 @@ func void DIA_Wolf_PERMKAP3_Info()
 };
 
 
-/*instance DIA_Wolf_KAP4_EXIT(C_Info)
-{
-	npc = SLD_811_Wolf;
-	nr = 999;
-	condition = DIA_Wolf_KAP4_EXIT_Condition;
-	information = DIA_Wolf_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Wolf_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Wolf_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Wolf_KAP5_EXIT(C_Info)
-{
-	npc = SLD_811_Wolf;
-	nr = 999;
-	condition = DIA_Wolf_KAP5_EXIT_Condition;
-	information = DIA_Wolf_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Wolf_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Wolf_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};*/
-
 var int Wolf_SaidNo;
 
 instance DIA_Wolf_KAP5_EXIT(C_Info)

@@ -1,5 +1,5 @@
 
-func void startup_newworld_part_dragon_island_01()
+func void STARTUP_DragonIsland_Part_Island_01()
 {
 	Wld_InsertNpc(FireWaran,"FP_ROAM_DI_WARAN_01");
 	Wld_InsertNpc(FireWaran,"FP_ROAM_DI_WARAN_02");
@@ -8,6 +8,7 @@ func void startup_newworld_part_dragon_island_01()
 	Wld_InsertItem(ItMi_DarkPearl,"FP_ITEM_DI_ENTER_03");
 	Wld_InsertItem(ItMi_Sulfur,"FP_ITEM_DI_ENTER_07");
 	Wld_InsertItem(ItWr_ZugBruecke_MIS,"FP_ITEM_DI_ENTER_09");
+	Wld_InsertItem(ItRw_Bow_L_01,"FP_ITEM_SHIP_16");
 	Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_DI_ORK_01");
 	Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_DI_ORK_02");
 	Wld_InsertNpc(Warg,"FP_ROAM_DI_ORK_03");
@@ -71,14 +72,7 @@ func void startup_newworld_part_dragon_island_01()
 	Wld_InsertNpc(Draconian,"FP_ROAM_DI_DRACONIAN_25");
 };
 
-func void init_newworld_part_dragon_island_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-};
-
-func void startup_newworld_part_dragon_undead_01()
+func void STARTUP_DragonIsland_Part_Undead_01()
 {
 	Wld_InsertItem(ItWr_Rezept_MegaDrink_MIS,"FP_ITEM_DI_BLACKNOV_01");
 	Wld_InsertItem(ItWr_Diary_BlackNovice_MIS,"FP_ITEM_DI_BLACKNOV_02");
@@ -129,14 +123,7 @@ func void startup_newworld_part_dragon_undead_01()
 	Wld_InsertNpc(Skeleton,"WP_UNDEAD_MIDDLE_05");
 };
 
-func void init_newworld_part_dragon_undead_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-};
-
-func void startup_newworld_part_dragon_final_01()
+func void STARTUP_DragonIsland_Part_Final_01()
 {
 	Wld_InsertNpc(DMT_DementorAmbientWalker_DI_01,"DI_UNDEADDRAGONTEMPEL_01");
 	Wld_InsertNpc(DMT_DementorAmbientWalker_DI_02,"DI_UNDEADDRAGONTEMPEL_01");
@@ -153,14 +140,7 @@ func void startup_newworld_part_dragon_final_01()
 	Wld_InsertNpc(UndeadOrcWarrior,"DI_UNDEADDRAGON_TRAP_03");
 };
 
-func void init_newworld_part_dragon_final_01()
-{
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
-};
-
-func void startup_dragonisland()
+func void STARTUP_DragonIsland()
 {
 	if(JorgenIsCaptain == TRUE)
 	{
@@ -245,9 +225,9 @@ func void startup_dragonisland()
 	Wld_InsertNpc(NOV_600_Pedro_DI,"SHIP_DECK_01");
 	Wld_InsertItem(ItMi_Flask,"FP_ITEM_SHIP_03");
 	Wld_InsertItem(ItMi_Flask,"FP_ITEM_SHIP_07");
-	startup_newworld_part_dragon_island_01();
-	startup_newworld_part_dragon_undead_01();
-	startup_newworld_part_dragon_final_01();
+	STARTUP_DragonIsland_Part_Island_01();
+	STARTUP_DragonIsland_Part_Undead_01();
+	STARTUP_DragonIsland_Part_Final_01();
 	PlayVideo("SHIP.BIK");
 	Log_CreateTopic(TOPIC_HallenVonIrdorath,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_HallenVonIrdorath,LOG_Running);
@@ -257,13 +237,6 @@ func void startup_dragonisland()
 
 func void INIT_DragonIsland()
 {
-	B_Check_Version();
-	B_Check_Talents();
-	B_SetHeroSkin();
-	B_CheckDynamicText();
-	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
-	B_InitNpcGlobals();
 	CurrentLevel = DRAGONISLAND_ZEN;
 };
 

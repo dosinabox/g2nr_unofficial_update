@@ -3,22 +3,36 @@ func void B_ENTER_ADDONWORLD_Kapitel_1()
 {
 	if(RavenIsDead == TRUE)
 	{
-		B_RemoveNpc(KDW_14030_Addon_Myxir_ADW);
+		if(ADW_Myxir_Removed_Forever == FALSE)
+		{
+			B_RemoveNpc(KDW_14030_Addon_Myxir_ADW);
+			if(FullNPCRemoval == TRUE)
+			{
+				ADW_Myxir_Removed_Forever = TRUE;
+			};
+		};
 	};
 	if(MissingPeopleReturnedHome == TRUE)
 	{
-		B_RemoveNpc(STRF_1118_Addon_Patrick);
-		B_RemoveNpc(STRF_1119_Addon_Monty);
-		B_RemoveNpc(STRF_1120_Addon_Tonak);
-		B_RemoveNpc(STRF_1121_Addon_Telbor);
-		B_RemoveNpc(STRF_1122_Addon_Pardos);
-		B_RemoveNpc(STRF_1128_Addon_Sklave);
-		B_RemoveNpc(STRF_1129_Addon_Sklave);
-		B_RemoveNpc(STRF_1130_Addon_Sklave);
-		B_RemoveNpc(STRF_1137_Addon_Sklave);
-		B_RemoveNpc(STRF_1138_Addon_Sklave);
-		B_RemoveNpc(STRF_1139_Addon_Sklave);
-		B_RemoveNpc(STRF_1140_Addon_Sklave);
+		if(ADW_STRF_Removed_Forever == FALSE)
+		{
+			B_RemoveNpc(STRF_1118_Addon_Patrick);
+			B_RemoveNpc(STRF_1119_Addon_Monty);
+			B_RemoveNpc(STRF_1120_Addon_Tonak);
+			B_RemoveNpc(STRF_1121_Addon_Telbor);
+			B_RemoveNpc(STRF_1122_Addon_Pardos);
+			B_RemoveNpc(STRF_1128_Addon_Sklave);
+			B_RemoveNpc(STRF_1129_Addon_Sklave);
+			B_RemoveNpc(STRF_1130_Addon_Sklave);
+			B_RemoveNpc(STRF_1137_Addon_Sklave);
+			B_RemoveNpc(STRF_1138_Addon_Sklave);
+			B_RemoveNpc(STRF_1139_Addon_Sklave);
+			B_RemoveNpc(STRF_1140_Addon_Sklave);
+			if(FullNPCRemoval == TRUE)
+			{
+				ADW_STRF_Removed_Forever = TRUE;
+			};
+		};
 	};
 };
 
@@ -218,7 +232,7 @@ func void B_ENTER_ADDONWORLD_Kapitel_6()
 	};
 };
 
-func void b_enter_addonworld()
+func void B_Enter_AddonWorld()
 {
 	B_InitNpcGlobals();
 	if(Kapitel >= 1)
@@ -245,7 +259,6 @@ func void b_enter_addonworld()
 	{
 		B_ENTER_ADDONWORLD_Kapitel_6();
 	};
-	CurrentLevel = ADDONWORLD_ZEN;
 	B_InitNpcGlobals();
 };
 

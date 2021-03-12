@@ -17,16 +17,90 @@ func void B_Addon_PiratesGoHome()
 
 func int C_GregsPiratesTooFar()
 {
-	if((Npc_GetDistToWP(hero,"ADW_CANYON_MINE1_09") < 3000) || (Npc_GetDistToWP(hero,"ADW_CANYON_MINE2_04") < 2000) || (Npc_GetDistToWP(hero,"ADW_CANYON_LIBRARY_04") < 2000) || (Npc_GetDistToWP(hero,"ADW_CANYON_PATH_TO_BANDITS_25") < 6000) || (Npc_GetDistToWP(hero,"ADW_PIRATECAMP_WAY_16") < 8000))
+	if(Npc_GetDistToWP(hero,"ADW_CANYON_MINE1_09") < 3000)
 	{
 		return TRUE;
 	};
+	if(Npc_GetDistToWP(hero,"ADW_CANYON_MINE2_04") < 2000)
+	{
+		return TRUE;
+	};
+	if(Npc_GetDistToWP(hero,"ADW_CANYON_LIBRARY_04") < 2000)
+	{
+		return TRUE;
+	};
+	if(Npc_GetDistToWP(hero,"ADW_CANYON_PATH_TO_BANDITS_25") < 6000)
+	{
+		return TRUE;
+	};
+	if(Npc_GetDistToWP(hero,"ADW_PIRATECAMP_WAY_16") < 8000)
+	{
+		return TRUE;
+	};
+	//пляж с огненными ящерами - нет связи с точками в лагере
+	/*if(Npc_GetDistToWP(hero,"ADW_PIRATECAMP_LONEBEACH_11") < 2000)
+	{
+		return TRUE;
+	};
+	if(Npc_GetDistToWP(hero,"ADW_PIRATECAMP_LONEBEACH_12") < 2500)
+	{
+		return TRUE;
+	};*/
+	//северный пляж, точка у пещеры с мракорисом
+	/*if(Npc_GetDistToWP(hero,"ADW_PIRATECAMP_BEACH_28") < 3500)
+	{
+		return TRUE;
+	};*/
 	return FALSE;
 };
 
 func int C_HowManyPiratesInParty()
 {
-	return Skip.aivar[AIV_PARTYMEMBER] + Matt.aivar[AIV_PARTYMEMBER] + Brandon.aivar[AIV_PARTYMEMBER] + RoastPirate.aivar[AIV_PARTYMEMBER] + BenchPirate.aivar[AIV_PARTYMEMBER] + AlligatorJack.aivar[AIV_PARTYMEMBER];
+	var int count;
+	count = 0;
+	if(!Npc_IsDead(Skip))
+	{
+		if(Skip.aivar[AIV_PARTYMEMBER] == TRUE)
+		{
+			count += 1;
+		};
+	};
+	if(!Npc_IsDead(Matt))
+	{
+		if(Matt.aivar[AIV_PARTYMEMBER] == TRUE)
+		{
+			count += 1;
+		};
+	};
+	if(!Npc_IsDead(Brandon))
+	{
+		if(Brandon.aivar[AIV_PARTYMEMBER] == TRUE)
+		{
+			count += 1;
+		};
+	};
+	if(!Npc_IsDead(RoastPirate))
+	{
+		if(RoastPirate.aivar[AIV_PARTYMEMBER] == TRUE)
+		{
+			count += 1;
+		};
+	};
+	if(!Npc_IsDead(BenchPirate))
+	{
+		if(BenchPirate.aivar[AIV_PARTYMEMBER] == TRUE)
+		{
+			count += 1;
+		};
+	};
+	if(!Npc_IsDead(AlligatorJack))
+	{
+		if(AlligatorJack.aivar[AIV_PARTYMEMBER] == TRUE)
+		{
+			count += 1;
+		};
+	};
+	return count;
 };
 
 func void B_Addon_PiratesFollowAgain()
