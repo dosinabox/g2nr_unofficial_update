@@ -105,9 +105,14 @@ func void DIA_Addon_Samuel_Versteck_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_02");	//Я должен попасть в хижину Грега.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_05");	//Неужели? А зачем, интересно?
-	if(!Npc_HasItems(other,ITAR_BDT_M) && !Npc_HasItems(other,ITAR_BDT_H) && !Npc_HasItems(other,ITAR_Thorus_Addon))
+	if(!C_SCHasBDTArmor())
 	{
 		AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_01");	//Мне нужны бандитские доспехи.
+		B_LogEntry(TOPIC_Addon_BDTRuestung,"Самогонщик Сэмюэль упомянул тайник Фрэнсиса, который находится в одной из пещер каньона. Возможно, я найду там что-либо, что поможет мне попасть в хижину.");
+	}
+	else
+	{
+		DIA_Common_Well();
 	};
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_06");	//(смеется) Фрэнсис ни за что не пустит тебя в хижину, чтоб ты мог покопаться в вещах Грега.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_07");	//Если только...
@@ -117,7 +122,6 @@ func void DIA_Addon_Samuel_Versteck_Info()
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_10");	//Однажды мы вместе стояли в карауле, и он как всегда заснул. Я услышал, как он бормочет об этом во сне.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_11");	//Не знаю, что он там зарыл, но возможно, что это настолько для него важно, что за этот предмет он пропустит тебя в хижину...
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_12");	//(радостно) Когда капитан вернется и увидит, что что-то из его вещей пропало, он спустит с Фрэнсиса шкуру!
-	B_LogEntry(TOPIC_Addon_BDTRuestung,"Самогонщик Сэмюэль упомянул тайник Фрэнсиса, который находится в одной из пещер каньона. Возможно, я найду там что-либо, что поможет мне попасть в хижину.");
 };
 
 

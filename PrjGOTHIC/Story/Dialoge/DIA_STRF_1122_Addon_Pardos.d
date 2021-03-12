@@ -205,6 +205,10 @@ func int DIA_Addon_Pardos_perm_Condition()
 	{
 		return TRUE;
 	};
+	if(Npc_KnowsInfo(other,DIA_Addon_Pardos_Hi) && (Sklaven_Flucht == TRUE))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Addon_Pardos_perm_Info()

@@ -1,10 +1,8 @@
 
 func void Use_Bookstand_Rune_01_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -15,21 +13,19 @@ func void Use_Bookstand_Rune_01_S1()
 		Doc_PrintLine(nDocID,0,"Страница 1");
 		Doc_PrintLine(nDocID,0,"Рунные камни");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLines(nDocID,0,"");
+		Doc_PrintLine(nDocID,0,"");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"Страница 2");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"");
+		Doc_PrintLine(nDocID,1,"");
 		Doc_Show(nDocID);
 	};
 };
 
 func void Use_Bookstand_Rune_02_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -40,21 +36,19 @@ func void Use_Bookstand_Rune_02_S1()
 		Doc_PrintLine(nDocID,0,"Страница 1");
 		Doc_PrintLine(nDocID,0,"Руны и ингредиенты");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLines(nDocID,0,"");
+		Doc_PrintLine(nDocID,0,"");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"Страница 2");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"");
+		Doc_PrintLine(nDocID,1,"");
 		Doc_Show(nDocID);
 	};
 };
 
 func void Use_Bookstand_Innos_01_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -65,21 +59,19 @@ func void Use_Bookstand_Innos_01_S1()
 		Doc_PrintLine(nDocID,0,"Страница 1");
 		Doc_PrintLine(nDocID,0,"Учение Инноса");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLines(nDocID,0,"");
+		Doc_PrintLine(nDocID,0,"");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"Страница 2");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"");
+		Doc_PrintLine(nDocID,1,"");
 		Doc_Show(nDocID);
 	};
 };
 
 func void Use_Bookstand_Innos_02_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -90,21 +82,19 @@ func void Use_Bookstand_Innos_02_S1()
 		Doc_PrintLine(nDocID,0,"Страница 1");
 		Doc_PrintLine(nDocID,0,"Заповеди Инноса");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLines(nDocID,0,"");
+		Doc_PrintLine(nDocID,0,"");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"Страница 2");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"");
+		Doc_PrintLine(nDocID,1,"");
 		Doc_Show(nDocID);
 	};
 };
 
 func void Use_Bookstand_Kreise_01_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -146,10 +136,8 @@ func void Use_Bookstand_Kreise_01_S1()
 
 func void Use_Bookstand_Kreise_02_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -191,10 +179,8 @@ func void Use_Bookstand_Kreise_02_S1()
 
 func void Use_Bookstand_Kreise_03_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -241,10 +227,8 @@ func void Use_Bookstand_Kreise_03_S1()
 
 func void Use_Bookstand_Kreise_04_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -285,10 +269,8 @@ func void Use_Bookstand_Kreise_04_S1()
 
 func void Use_Bookstand_Kreise_05_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -333,10 +315,8 @@ func void Use_Bookstand_Kreise_05_S1()
 
 func void Use_Bookstand_Kreise_06_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -382,10 +362,8 @@ func void Use_Bookstand_Kreise_06_S1()
 
 func void Use_Bookstand_Rules_01_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -396,11 +374,11 @@ func void Use_Bookstand_Rules_01_S1()
 		Doc_PrintLine(nDocID,0,"Страница 1");
 		Doc_PrintLine(nDocID,0,"Правила");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLines(nDocID,0,"");
+		Doc_PrintLine(nDocID,0,"");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"Страница 2");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"");
+		Doc_PrintLine(nDocID,1,"");
 		Doc_Show(nDocID);
 	};
 };

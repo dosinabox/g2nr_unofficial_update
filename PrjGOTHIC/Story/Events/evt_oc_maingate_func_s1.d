@@ -46,7 +46,7 @@ func void evt_oc_maingate_func_s1()
 		B_StartOtherRoutine(Engor,"OrcAttack");
 		AI_Teleport(Engor,"OC_GUARD_IN_01");
 		B_ClearDeadTrader(Engor);
-		B_KillNpc(Engor);
+		B_KillNpc(VLK_4108_Engor);
 		Garond.flags = 0;
 		Brutus.flags = NPC_FLAG_IMMORTAL;
 		PlayVideo("ORCATTACK.BIK");

@@ -1,8 +1,6 @@
 
 func void B_MM_AssessEnemy()
 {
-	var C_Npc pcl;
-	var C_Npc mgo;
 	if((self.guild == GIL_DRAGON) && Npc_HasItems(hero,ItMi_InnosEye_MIS))
 	{
 		return;
@@ -15,13 +13,11 @@ func void B_MM_AssessEnemy()
 	{
 		return;
 	};
-	pcl = Hlp_GetNpc(PC_Levelinspektor);
-	if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(pcl))
+	if(C_NpcIsLevelinspektor(other))
 	{
 		return;
 	};
-	mgo = Hlp_GetNpc(MagicGolem);
-	if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Lares)) && (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(mgo)))
+	if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Lares)) && (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Magic_Golem)))
 	{
 		return;
 	};
@@ -103,7 +99,6 @@ func void B_MM_AssessEnemy()
 			Npc_SetTarget(self,other);
 			B_ClearPerceptions(self);
 			AI_StartState(self,ZS_MM_Attack,0,"");
-			return;
 		};
 		return;
 	};
@@ -115,12 +110,8 @@ func void B_MM_AssessEnemy()
 			Npc_SetTarget(self,other);
 			B_ClearPerceptions(self);
 			AI_StartState(self,ZS_MM_Attack,0,"");
-			return;
-		}
-		else
-		{
-			return;
 		};
+		return;
 	};
 	if(C_PredatorFoundPrey(self,other))
 	{
@@ -138,12 +129,8 @@ func void B_MM_AssessEnemy()
 			Npc_SetTarget(self,other);
 			B_ClearPerceptions(self);
 			AI_StartState(self,ZS_MM_Flee,0,"");
-			return;
-		}
-		else
-		{
-			return;
 		};
+		return;
 	};
 	Npc_ClearAIQueue(self);
 	B_ClearPerceptions(self);

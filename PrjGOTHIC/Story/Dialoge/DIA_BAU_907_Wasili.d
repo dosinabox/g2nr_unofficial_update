@@ -34,7 +34,7 @@ instance DIA_Wasili_HALLO(C_Info)
 
 func int DIA_Wasili_HALLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild == GIL_NONE))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && ((VisibleGuild(other) == GIL_NONE) || (VisibleGuild(other) == GIL_NOV)))
 	{
 		return TRUE;
 	};
@@ -211,6 +211,8 @@ func void DIA_Wasili_FirstOldCoin_ZumTeufel()
 };
 
 
+var int OldCoinCounter;
+
 instance DIA_Wasili_BringOldCoin(C_Info)
 {
 	npc = BAU_907_Wasili;
@@ -230,38 +232,29 @@ func int DIA_Wasili_BringOldCoin_Condition()
 	};
 };
 
-
-var int OldCoinCounter;
-
 func void DIA_Wasili_BringOldCoin_Info()
 {
 	var int OldCoinCount;
-	var int XP_BringOldCoins;
-	var int OldCoinGeld;
+	var int OldCoinGold;
+	OldCoinCount = Npc_HasItems(other,ItMi_OldCoin);
 	AI_Output(other,self,"DIA_Wasili_BringOldCoin_15_00");	//Нужны еще старинные монетки?
 	AI_Output(self,other,"DIA_Wasili_BringOldCoin_01_01");	//Конечно. У тебя есть еще?
-	OldCoinCount = Npc_HasItems(other,ItMi_OldCoin);
 	if(OldCoinCount == 1)
 	{
 		AI_Output(other,self,"DIA_Wasili_BringOldCoin_15_02");	//Одна.
-		B_GivePlayerXP(XP_BringOldCoin);
-		B_GiveInvItems(other,self,ItMi_OldCoin,1);
-		Npc_RemoveInvItem(self,ItMi_OldCoin);
-		OldCoinCounter += 1;
 	}
 	else
 	{
 		AI_Output(other,self,"DIA_Wasili_BringOldCoin_15_03");	//Несколько.
-		B_GiveInvItems(other,self,ItMi_OldCoin,OldCoinCount);
-		Npc_RemoveInvItems(self,ItMi_OldCoin,Npc_HasItems(self,ItMi_OldCoin));
-		XP_BringOldCoins = OldCoinCount * XP_BringOldCoin;
-		OldCoinCounter += OldCoinCount;
-		B_GivePlayerXP(XP_BringOldCoins);
 	};
+	B_GiveInvItems(other,self,ItMi_OldCoin,OldCoinCount);
+	Npc_RemoveInvItems(self,ItMi_OldCoin,Npc_HasItems(self,ItMi_OldCoin));
 	AI_Output(self,other,"DIA_Wasili_BringOldCoin_01_04");	//Спасибо. Вот твои деньги. Приноси мне все, что найдешь.
-	OldCoinGeld = OldCoinCount * WasilisOldCoinOffer;
-	CreateInvItems(self,ItMi_Gold,OldCoinGeld);
-	B_GiveInvItems(self,other,ItMi_Gold,OldCoinGeld);
+	OldCoinGold = OldCoinCount * WasilisOldCoinOffer;
+	CreateInvItems(self,ItMi_Gold,OldCoinGold);
+	B_GiveInvItems(self,other,ItMi_Gold,OldCoinGold);
+	B_GivePlayerXP(XP_BringOldCoin * OldCoinCount);
+	OldCoinCounter += OldCoinCount;
 };
 
 

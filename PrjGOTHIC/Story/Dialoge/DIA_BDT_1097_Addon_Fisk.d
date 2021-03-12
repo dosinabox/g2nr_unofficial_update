@@ -183,7 +183,7 @@ func void DIA_Addon_Fisk_Lieferung_Info()
 	MIS_Lennar_Lockpick = LOG_Running;
 	Log_CreateTopic(Topic_Addon_Fisk,LOG_MISSION);
 	Log_SetTopicStatus(Topic_Addon_Fisk,LOG_Running);
-	B_LogEntry(Topic_Addon_Fisk,"Человек по имени Хуан украл посылку (пакет с отмычками) у Фиска. Он прячется где-то на болоте.");
+	B_LogEntry(Topic_Addon_Fisk,"Человек по имени Хуан украл у Фиска посылку - пакет с отмычками. Он прячется где-то на болоте.");
 	if(MIS_Addon_Bill_SearchAngusMurder == LOG_Running)
 	{
 		if(SC_Knows_JuanMurderedAngus == TRUE)

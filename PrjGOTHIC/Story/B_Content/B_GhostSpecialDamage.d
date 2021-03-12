@@ -1,18 +1,12 @@
 
 func int B_GhostSpecialDamage(var C_Npc oth,var C_Npc slf)
 {
-//	var C_Npc Quarho;
-//	var C_Npc Rhadem;
-	var C_Npc her;
-//	Quarho = Hlp_GetNpc(NONE_ADDON_111_Quarhodron);
-//	Rhadem = Hlp_GetNpc(NONE_ADDON_112_Rhademes);
-	her = Hlp_GetNpc(PC_Hero);
 	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Quarhodron)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rhademes)))
 	{
 		Wld_PlayEffect("spellFX_BELIARSRAGE",oth,oth,0,0,0,FALSE);
 		if(oth.flags != NPC_FLAG_IMMORTAL)
 		{
-			if(Hlp_GetInstanceID(oth) != Hlp_GetInstanceID(her))
+			if(!C_NpcIsHero(oth))
 			{
 				Npc_ChangeAttribute(oth,ATR_HITPOINTS,-oth.attribute[ATR_HITPOINTS_MAX]);
 			}
@@ -23,14 +17,13 @@ func int B_GhostSpecialDamage(var C_Npc oth,var C_Npc slf)
 				{
 					oth.attribute[ATR_HITPOINTS] /= 2;
 				}
-				else if(Hlp_GetInstanceID(oth) == Hlp_GetInstanceID(her))
+				else
 				{
 					oth.attribute[ATR_HITPOINTS] = 0;
 					AI_PlayAni(oth,"T_DEAD");
 				};
 			};
 		};
-		return FALSE;
 	};
 	return FALSE;
 };

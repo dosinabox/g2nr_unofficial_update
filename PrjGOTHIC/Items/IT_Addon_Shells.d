@@ -43,8 +43,7 @@ func void B_OpenShell()
 	}
 	else
 	{
-		B_Say_Overlay(self,self,"$NOTHINGTOGET02");
-		AI_PrintScreen(PRINT_NOTHINGTOGET02,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		player_plunder_is_empty();
 	};
 };
 

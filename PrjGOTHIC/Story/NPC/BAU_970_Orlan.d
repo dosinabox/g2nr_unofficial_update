@@ -8,6 +8,7 @@ instance BAU_970_Orlan(Npc_Default)
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
 	aivar[AIV_NPCIsRanger] = TRUE;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1H_Sword_L_03);

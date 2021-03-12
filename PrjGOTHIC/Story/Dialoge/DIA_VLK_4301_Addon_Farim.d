@@ -76,7 +76,7 @@ func void DIA_Addon_Farim_Hallo_Info()
 	AI_Output(other,self,"DIA_Addon_Farim_Hallo_15_00");	//Ты рыбак?
 	AI_Output(self,other,"DIA_Addon_Farim_Hallo_11_01");	//Интересно, как ты догадался?
 	AI_Output(self,other,"DIA_Addon_Farim_Hallo_11_02");	//Не мог бы ты оставить меня в покое?
-	if(hero.guild == GIL_MIL)
+	if(VisibleGuild(other) == GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Addon_Farim_Landstreicher_Add_11_02");	//Не принимай это на свой счет, но в последнее время от ополчения у меня одни неприятности.
 	}
@@ -108,7 +108,7 @@ func int DIA_Addon_Farim_MilizProbs_Condition()
 func void DIA_Addon_Farim_MilizProbs_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Farim_MilizProbs_15_00");	//Неприятности с ополчением?
-	if((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL))
+	if((VisibleGuild(other) != GIL_MIL) && (VisibleGuild(other) != GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Addon_Farim_MilizProbs_11_01");	//Эти подонки приходят ко мне и забирают все, что им вздумается.
 	};
@@ -118,7 +118,7 @@ func void DIA_Addon_Farim_MilizProbs_Info()
 	AI_Output(self,other,"DIA_Addon_Farim_MilizProbs_11_05");	//Но если они продолжат так поступать, мне самому нечего будет есть.
 	Info_ClearChoices(DIA_Addon_Farim_MilizProbs);
 	Info_AddChoice(DIA_Addon_Farim_MilizProbs,"Отдай мне всю свою рыбу.",DIA_Addon_Farim_MilizProbs_klauen);
-	Info_AddChoice(DIA_Addon_Farim_MilizProbs,"Может быть, я смогу помочь.",DIA_Addon_Farim_MilizProbs_helfen);
+	Info_AddChoice(DIA_Addon_Farim_MilizProbs,"Может быть, я смогу тебе помочь.",DIA_Addon_Farim_MilizProbs_helfen);
 	Info_AddChoice(DIA_Addon_Farim_MilizProbs,"Ты рассказывал об этом паладинам?",DIA_Addon_Farim_MilizProbs_paladine);
 };
 
@@ -135,7 +135,7 @@ func void DIA_Addon_Farim_MilizProbs_klauen()
 {
 	AI_Output(other,self,"DIA_Addon_Farim_MilizProbs_klauen_15_00");	//Отдай мне всю свою рыбу.
 	AI_Output(self,other,"DIA_Addon_Farim_MilizProbs_klauen_11_01");	//(сердито) Я так и знал! Ты просто очередной подонок.
-	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
+	if((VisibleGuild(other) == GIL_MIL) || (VisibleGuild(other) == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Addon_Farim_MilizProbs_klauen_11_02");	//Боюсь, ты опоздал. Здесь уже побывали твои друзья, которые все забрали.
 	};
@@ -153,7 +153,7 @@ func void DIA_Addon_Farim_MilizProbs_helfen()
 	Info_ClearChoices(DIA_Addon_Farim_MilizProbs);
 	Log_CreateTopic(TOPIC_Addon_FarimsFish,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_FarimsFish,LOG_Running);
-	B_LogEntry(TOPIC_Addon_FarimsFish,"У рыбака Фарима проблемы с ополчением. Они забирают у него столько рыбы, что ему не хватает на жизнь. Чтобы помочь ему, я должен поговорить с кем-нибудь, имеющим влияние среди паладинов.");
+	B_LogEntry(TOPIC_Addon_FarimsFish,"У рыбака Фарима проблемы с ополчением. Они забирают у него столько рыбы, что ему не хватает на жизнь. Чтобы помочь ему, я должен поговорить с кем-нибудь, имеющим влияние среди ополчения или паладинов.");
 	MIS_Addon_Farim_PaladinFisch = LOG_Running;
 };
 

@@ -1,20 +1,14 @@
 
-var int SwapDragnIsDead;
-var int RckDragnIsDead;
-var int FreDragnIsDead;
-var int IcDragnIsDead;
+var int SwampDragonIsDead;
+var int RockDragonIsDead;
+var int FireDragonIsDead;
+var int IceDragonIsDead;
 
 func void B_DragonKillCounter(var C_Npc current_dragon)
 {
-//	var C_Npc Ravn;
-	var C_Npc SwapDragn;
-	var C_Npc RckDragn;
-	var C_Npc FreDragn;
-	var C_Npc IcDragn;
-//	Ravn = Hlp_GetNpc(BDT_1090_Addon_Raven);
-	if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(Raven))
+	if(RavenIsDead == FALSE)
 	{
-		if(RavenIsDead == FALSE)
+		if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(Raven))
 		{
 			PlayVideoEx("EXTRO_RAVEN.BIK",TRUE,FALSE);
 			RavenIsDead = TRUE;
@@ -23,47 +17,49 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 			B_CheckLog();
 		};
 	};
-	if(current_dragon.guild == GIL_DRAGON)
+	if(MIS_AllDragonsDead == FALSE)
 	{
-		SwapDragn = Hlp_GetNpc(Dragon_Swamp);
-		RckDragn = Hlp_GetNpc(Dragon_Rock);
-		FreDragn = Hlp_GetNpc(Dragon_Fire);
-		IcDragn = Hlp_GetNpc(Dragon_Ice);
-		if((Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(SwapDragn)) && (SwapDragnIsDead == FALSE))
+		if(current_dragon.guild == GIL_DRAGON)
 		{
-			MIS_KilledDragons += 1;
-			SwapDragnIsDead = TRUE;
-		};
-		if((Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(RckDragn)) && (RckDragnIsDead == FALSE))
-		{
-			MIS_KilledDragons += 1;
-			RckDragnIsDead = TRUE;
-		};
-		if((Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(FreDragn)) && (FreDragnIsDead == FALSE))
-		{
-			MIS_KilledDragons += 1;
-			FreDragnIsDead = TRUE;
-		};
-		if((Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(IcDragn)) && (IcDragnIsDead == FALSE))
-		{
-			MIS_KilledDragons += 1;
-			if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2) && !Npc_IsDead(DJG_Sylvio))
+			if((Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(SwampDragon)) && (SwampDragonIsDead == FALSE))
 			{
-				B_StartOtherRoutine(DJG_Sylvio,"IceDragon");
-				if(!Npc_IsDead(DJG_Bullco))
+				MIS_KilledDragons += 1;
+				SwampDragonIsDead = TRUE;
+			};
+			if((Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(RockDragon)) && (RockDragonIsDead == FALSE))
+			{
+				MIS_KilledDragons += 1;
+				RockDragonIsDead = TRUE;
+			};
+			if((Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(FireDragon)) && (FireDragonIsDead == FALSE))
+			{
+				MIS_KilledDragons += 1;
+				FireDragonIsDead = TRUE;
+			};
+			if((Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(IceDragon)) && (IceDragonIsDead == FALSE))
+			{
+				MIS_KilledDragons += 1;
+				if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2) && !Npc_IsDead(DJG_Sylvio))
 				{
-					B_StartOtherRoutine(DJG_Bullco,"IceDragon");
+					B_StartOtherRoutine(DJG_Sylvio,"IceDragon");
+					if(!Npc_IsDead(DJG_Bullco))
+					{
+						B_StartOtherRoutine(DJG_Bullco,"IceDragon");
+					};
+				};
+				IceDragonIsDead = TRUE;
+			};
+		};
+		if(MIS_KilledDragons == 4)
+		{
+			if(DJG_BiffParty == TRUE)
+			{
+				if(!Npc_IsDead(Biff))
+				{
+					DJG_BiffSurvivedLastDragon = TRUE;
 				};
 			};
-			IcDragnIsDead = TRUE;
-		};
-	};
-	if(MIS_KilledDragons == 4)
-	{
-		MIS_AllDragonsDead = TRUE;
-		if((DJG_BiffParty == TRUE) && !Npc_IsDead(Biff))
-		{
-			DJG_BiffSurvivedLastDragon = TRUE;
+			MIS_AllDragonsDead = TRUE;
 		};
 	};
 	if(current_dragon.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)

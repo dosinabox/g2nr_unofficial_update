@@ -4,7 +4,7 @@ var int SC_ObsessionCounter;
 
 func void B_ClearSCObsession(var C_Npc heiler)
 {
-	if(Hlp_GetInstanceID(heiler) != Hlp_GetInstanceID(hero))
+	if(!Npc_IsPlayer(heiler))
 	{
 		AI_StopProcessInfos(heiler);
 	};
@@ -15,11 +15,10 @@ func void B_ClearSCObsession(var C_Npc heiler)
 
 func void B_SCIsObsessed(var C_Npc dementor)
 {
-	if(Hlp_GetInstanceID(dementor) != Hlp_GetInstanceID(hero))
+	if(!Npc_IsPlayer(dementor))
 	{
 		AI_StopProcessInfos(dementor);
 	};
-//	if(SC_IsBlackEyeProtected == FALSE)
 	if(!Npc_HasItems(hero,ItAm_Prot_BlackEye_Mis))
 	{
 		if(SC_ObsessionCounter >= 2)

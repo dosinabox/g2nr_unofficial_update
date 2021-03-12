@@ -22,6 +22,7 @@ func void Use_XardasNotfallBeutel()
 {
 	B_PlayerFindItem(ItWr_XardasErmahnungFuerIdioten_MIS,1);
 	B_PlayerFindItem(ItMi_InnosEye_Discharged_Mis,1);
+	XardasDIBagOpened = TRUE;
 };
 
 
@@ -45,7 +46,6 @@ func void Use_XardasErmahnungFuerIdioten()
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
-	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
@@ -93,7 +93,7 @@ func void Use_Krypta_Garon()
 	Doc_PrintLines(nDocID,0,"¬месте с ним многие из его последователей. я не могу пон€ть, как такой предводитель, как »нубис, мог стать таким «лом.");
 	Doc_PrintLines(nDocID,0,"я нашел его могилу в этом склепе. Ќо € не уверен, удастс€ ли мне сообщить о своей находке. ѕоэтому € пишу эти строки и надеюсь, что кто-нибудь найдет их.");
 	Doc_PrintLines(nDocID,0,"«найте. √розный враг пытаетс€ дот€нутьс€ до праведных душ. »нубис будет не последним.");
-	Doc_PrintLine(nDocID,0," ");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"ƒа спасет »ннос ваши души.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"                                 »ван");
@@ -238,7 +238,6 @@ func void Use_RezeptFuerMegaTrank()
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
-	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
@@ -288,7 +287,6 @@ func void Use_Diary_BlackNovice()
 	Doc_SetPage(nDocID,0,"Book_Wood_L.tga",0);
 	Doc_SetPage(nDocID,1,"Book_Wood_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
-	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"я жду посв€щени€ вот уже 36 дней. я начинаю сомневатьс€, что мен€ вообще посв€т€т. Ќо € сделал все, что они просили. я прислуживал им как мальчик на побегушках.");
@@ -343,7 +341,7 @@ func void Use_ZugBruecke()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"ћен€ не интересует, сможете вы пересечь мост с другой стороны или нет. ≈сли вам интересно мое мнение - вы все заслуживаете гореть в аду.");
 	Doc_PrintLines(nDocID,0,"я собираюсь оставить мост подн€тым до тех пор, пока € нахожусь здесь. » если € замечу, что кто-то пытаетс€ нажать переключатели при помощи лука и стрелы, € лично вздерну этого идиота на ближайшем дереве!");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"                      јрхол");
@@ -357,7 +355,6 @@ instance ItMi_PowerEye(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 0;
-//	visual = "ItMi_DarkPearl.3ds";
 	visual = "ItMi_StoneOfKnowlegde_MIS.3ds";
 	material = MAT_METAL;
 	wear = WEAR_EFFECT;

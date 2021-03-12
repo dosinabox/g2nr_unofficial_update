@@ -102,7 +102,7 @@ instance DIA_Serpentes_YOURSTORY(C_Info)
 
 func int DIA_Serpentes_YOURSTORY_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Ulthar_TEST) && (other.guild == GIL_NOV) && !Npc_KnowsInfo(hero,DIA_Pyrokar_MAGICAN) && (MIS_GOLEM != LOG_SUCCESS))
+	if(Npc_KnowsInfo(hero,DIA_Ulthar_TEST) && (other.guild == GIL_NOV) && !Npc_KnowsInfo(hero,DIA_Pyrokar_MAGICAN) && (MIS_Golem != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -146,8 +146,8 @@ func void DIA_Serpentes_TEST_Info()
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_04");	//А теперь слушай: В Месте Камней найди того, кто никогда не был рожден - найди того, кто когда-то был вызван.
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_05");	//Одолей того, кого нельзя одолеть - померься силами с живой скалой, сразись с бессмертным камнем - и уничтожь его.
 	Wld_InsertNpc(MagicGolem,"FP_MAGICGOLEM");
-	Magic_Golem = Hlp_GetNpc(MagicGolem);
-	MIS_GOLEM = LOG_Running;
+	B_InitNpcGlobals();
+	MIS_Golem = LOG_Running;
 	Log_CreateTopic(TOPIC_Golem,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Golem,LOG_Running);
 	B_LogEntry(TOPIC_Golem,"Серпентес дал мне испытание. Он хочет, чтобы я нашел 'того, кто когда-то был вызван', живую скалу, и победил его.");
@@ -167,7 +167,7 @@ instance DIA_Serpentes_NOIDEA(C_Info)
 
 func int DIA_Serpentes_NOIDEA_Condition()
 {
-	if((MIS_GOLEM == LOG_Running) && (hero.guild == GIL_NOV))
+	if((MIS_Golem == LOG_Running) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -195,7 +195,7 @@ instance DIA_Serpentes_NOHELP(C_Info)
 
 func int DIA_Serpentes_NOHELP_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Serpentes_NOIDEA) && !Npc_IsDead(Magic_Golem) && (MIS_GOLEM == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && (!Npc_KnowsInfo(other,DIA_Ulthar_TEST) || Npc_KnowsInfo(other,DIA_Serpentes_YOURSTORY)))
+	if(Npc_KnowsInfo(hero,DIA_Serpentes_NOIDEA) && !Npc_IsDead(Magic_Golem) && (MIS_Golem == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && (!Npc_KnowsInfo(other,DIA_Ulthar_TEST) || Npc_KnowsInfo(other,DIA_Serpentes_YOURSTORY)))
 	{
 		return TRUE;
 	};
@@ -221,7 +221,7 @@ instance DIA_Serpentes_SUCCESS(C_Info)
 
 func int DIA_Serpentes_SUCCESS_Condition()
 {
-	if(Npc_IsDead(MagicGolem) && (MIS_GOLEM == LOG_Running) && (hero.guild == GIL_NOV))
+	if(Npc_IsDead(Magic_Golem) && (MIS_Golem == LOG_Running) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -250,7 +250,7 @@ func void DIA_Serpentes_SUCCESS_Info()
 		Wld_InsertItem(Holy_Hammer_MIS,"FP_HAMMER");
 		GarwigThiefOneTime = FALSE;
 	};
-	MIS_GOLEM = LOG_SUCCESS;
+	MIS_Golem = LOG_SUCCESS;
 	B_GivePlayerXP(XP_GOLEM);
 };
 
@@ -361,7 +361,7 @@ func void DIA_Serpentes_MinenAnteile_nein()
 func void DIA_Serpentes_MinenAnteile_nein_sld()
 {
 	AI_Output(other,self,"DIA_Vatras_Mission_No_15_00");	//Найди себе другого мальчика на побегушках, старик!
-	B_Say(self,other,"$YesGoOutOfHere");
+	B_Say(self,other,"$YESGOOUTOFHERE");
 	AI_StopProcessInfos(self);
 };
 
@@ -430,7 +430,6 @@ func void DIA_Serpentes_MinenAnteile_was_ja()
 		CreateInvItems(Canthar,ItWr_MinenAnteil_Mis,3);
 		SalandrilMinenAnteil_MAINCounter += 3;
 	};
-	SalandrilVerteilteMinenAnteil = SalandrilMinenAnteil_MAINCounter;
 	Log_CreateTopic(TOPIC_MinenAnteileKDF,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_MinenAnteileKDF,LOG_Running);
 	B_LogEntry(TOPIC_MinenAnteileKDF,"Кто-то продает фальшивые акции шахты и обогащается таким незаконным способом. Я должен найти того, кто продает эти акции торговцам. Серпентес хочет заполучить все эти поддельные документы.");
@@ -462,6 +461,9 @@ func void DIA_Serpentes_MinenAnteile_was_jaSLD()
 };
 
 
+var int SerpentesMinenAnteilCounter;
+var int AllMinenAnteilFound;
+
 instance DIA_Serpentes_MinenAnteileBringen(C_Info)
 {
 	npc = KDF_501_Serpentes;
@@ -489,64 +491,48 @@ func int DIA_Serpentes_MinenAnteileBringen_Condition()
 	};
 };
 
-
-var int SerpentesMinenAnteilCounter;
-
 func void DIA_Serpentes_MinenAnteileBringen_Info()
 {
 	var int SerpentesMinenAnteilCount;
-	var int XP_BringSerpentesMinenAnteils;
-	var int SerpentesMinenAnteilOffer;
 	var int SerpentesMinenAnteilGeld;
-	var string MinenAnteilText;
-	var string MinenAnteilLeft;
+	var int MinenAnteilLeft;
 	SerpentesMinenAnteilCount = Npc_HasItems(other,ItWr_MinenAnteil_Mis);
-	SerpentesMinenAnteilOffer = 200;
 	if(SerpentesMinenAnteilCount == 1)
 	{
 		AI_Output(other,self,"DIA_Serpentes_MinenAnteileBringen_15_00");	//Я смог найти акции шахт.
-		B_GivePlayerXP(XP_BringSerpentesMinenAnteil);
-		B_GiveInvItems(other,self,ItWr_MinenAnteil_Mis,1);
-		Npc_RemoveInvItem(self,ItWr_MinenAnteil_Mis);
-		SerpentesMinenAnteilCounter += 1;
 	}
 	else
 	{
 		AI_Output(other,self,"DIA_Serpentes_MinenAnteileBringen_15_01");	//Я смог найти несколько акций шахт.
-		B_GiveInvItems(other,self,ItWr_MinenAnteil_Mis,SerpentesMinenAnteilCount);
-		Npc_RemoveInvItems(self,ItWr_MinenAnteil_Mis,SerpentesMinenAnteilCount);
-		XP_BringSerpentesMinenAnteils = SerpentesMinenAnteilCount * XP_BringSerpentesMinenAnteil;
-		SerpentesMinenAnteilCounter += SerpentesMinenAnteilCount;
-		B_GivePlayerXP(XP_BringSerpentesMinenAnteils);
 	};
-	SalandrilMinenAnteil_MAINCounter -= SerpentesMinenAnteilCount;
-	if(SalandrilMinenAnteil_MAINCounter > 0)
+	B_GiveInvItems(other,self,ItWr_MinenAnteil_Mis,SerpentesMinenAnteilCount);
+	Npc_RemoveInvItems(self,ItWr_MinenAnteil_Mis,SerpentesMinenAnteilCount);
+	B_GivePlayerXP(SerpentesMinenAnteilCount * XP_BringSerpentesMinenAnteil);
+	SerpentesMinenAnteilCounter += SerpentesMinenAnteilCount;
+	MinenAnteilLeft = SalandrilMinenAnteil_MAINCounter - SerpentesMinenAnteilCounter;
+	if(MinenAnteilLeft > 0)
 	{
-		MinenAnteilLeft = IntToString(SalandrilMinenAnteil_MAINCounter);
-		MinenAnteilText = ConcatStrings(PRINT_MinenAnteilLeft,MinenAnteilLeft);
-		AI_PrintScreen(MinenAnteilText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	}
-	else
-	{
-		AI_PrintScreen("Все акции собраны!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	};
-	if(SerpentesMinenAnteilCounter < SalandrilVerteilteMinenAnteil)
-	{
+		AI_PrintScreen(ConcatStrings(PRINT_MinenAnteilLeft,IntToString(MinenAnteilLeft)),-1,YPOS_ItemTaken,FONT_ScreenSmall,3);
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_02");	//Очень хорошо. Ты должен изъять из обращения все акции. Это отрава для наших людей. Принеси их все мне.
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_03");	//Вот. Это компенсирует твои расходы.
 	}
-	else if(SerpentesMinenAnteilCounter == SalandrilVerteilteMinenAnteil)
+	else if(AllMinenAnteilFound == FALSE)
 	{
+		AI_PrintScreen(PRINT_AllMinenAnteil,-1,YPOS_ItemTaken,FONT_ScreenSmall,3);
 		AI_Output(other,self,"DIA_Serpentes_MinenAnteileBringen_15_04");	//Это все акции, как мне кажется.
-		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_07");	//Это действительно последняя акция, да?
+		if(SerpentesMinenAnteilCount == 1)
+		{
+			AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_07");	//Это действительно последняя акция, да?
+		};
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_05");	//Отлично. Ты заслужил награду.
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_06");	//Возьми этот защитный амулет. Он поможет тебе пройти по пути, который еще только ожидает тебя.
 		CreateInvItems(self,ItAm_Prot_Mage_01,1);
 		B_GiveInvItems(self,other,ItAm_Prot_Mage_01,1);
+		AllMinenAnteilFound = TRUE;
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_07");	//Это действительно последняя акция, да?
+		B_Say(self,other,"$NOTBAD");
 	};
 	SerpentesMinenAnteilGeld = SerpentesMinenAnteilCount * SerpentesMinenAnteilOffer;
 	CreateInvItems(self,ItMi_Gold,SerpentesMinenAnteilGeld);

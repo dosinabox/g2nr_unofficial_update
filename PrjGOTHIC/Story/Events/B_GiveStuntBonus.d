@@ -7,8 +7,8 @@ func void B_GiveStuntBonus_FUNC()
 		{
 			PrintScreen(PRINT_Addon_StuntBonus,-1,45,FONT_Screen,2);
 			B_GivePlayerXP(XP_STUNTBONUS);
-			StuntBonus_Once = TRUE;
 			Snd_Play("THRILLJINGLE_01");
+			StuntBonus_Once = TRUE;
 		};
 	}
 	else if(StuntBonus_Once == FALSE)

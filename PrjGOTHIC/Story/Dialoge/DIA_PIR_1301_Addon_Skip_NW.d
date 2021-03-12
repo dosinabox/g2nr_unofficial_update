@@ -18,7 +18,6 @@ func int DIA_Addon_Skip_NW_EXIT_Condition()
 func void DIA_Addon_Skip_NW_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-	PlayerTalkedToSkipNW = TRUE;
 };
 
 
@@ -80,7 +79,7 @@ func void DIA_Addon_Skip_NW_WerBistDu_ja()
 	AI_Output(self,other,"DIA_Addon_Skip_NW_WerBistDu_ja_08_01");	//Правда? Ты действительно обо мне слышал?
 	AI_Output(self,other,"DIA_Addon_Skip_NW_WerBistDu_ja_08_02");	//А я-то думал вернуться в город.
 	AI_Output(self,other,"DIA_Addon_Skip_NW_WerBistDu_ja_08_03");	//Хорошо, что я этого не сделал.
-	if((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL))
+	if((VisibleGuild(other) != GIL_MIL) && (VisibleGuild(other) != GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_NW_WerBistDu_ja_08_04");	//Меня бы сразу бросили за решетку.
 	}
@@ -203,7 +202,7 @@ func void DIA_Addon_Skip_NW_Woher_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_NW_Woher_15_00");	//Откуда ты приплыл?
 	AI_Output(self,other,"DIA_Addon_Skip_NW_Woher_08_01");	//Ты хочешь знать, где наше убежище?
-	if(hero.guild == GIL_MIL)
+	if(VisibleGuild(other) == GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_NW_Woher_08_02");	//Это последнее, что я сказал бы солдату ополчения.
 	}

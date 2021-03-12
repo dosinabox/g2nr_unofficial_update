@@ -1,9 +1,7 @@
 
 func void B_ClearAlchemyInv(var C_Npc slf)
 {
-	var C_Npc her;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(her))
+	if(!C_NpcIsHero(slf))
 	{
 		if(Dont_Fix_Unlim == FALSE)
 		{

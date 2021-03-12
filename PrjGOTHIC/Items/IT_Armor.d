@@ -162,6 +162,8 @@ instance ITAR_Smith(C_Item)
 	visual_change = "Armor_Smith.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_OpenArmor;
+	on_unequip = UnEquip_OpenArmor;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -189,6 +191,8 @@ instance ITAR_Barkeeper(C_Item)
 	visual_change = "Armor_Barkeeper.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_OpenArmor;
+	on_unequip = UnEquip_OpenArmor;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -377,15 +381,15 @@ instance ITAR_MIL_L(C_Item)
 	protection[PROT_BLUNT] = 40;
 	protection[PROT_POINT] = 40;
 	protection[PROT_FIRE] = 0;	//15;
-	protection[PROT_MAGIC] = 5;
+	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_MIL_L;
 	wear = WEAR_TORSO;
 	visual = "ItAr_MIL_L.3DS";
 	visual_change = "Armor_Mil_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_MIL_L;
-	on_unequip = UnEquip_ITAR_MIL_L;
+	on_equip = Equip_ITAR_MIL;
+	on_unequip = UnEquip_ITAR_MIL;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -398,42 +402,6 @@ instance ITAR_MIL_L(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 };
-
-
-func void Equip_ITAR_MIL_L()
-{
-	if(Npc_IsPlayer(self))
-	{
-		MILArmor_Equipped = TRUE;
-		B_SetHeroSkin();
-		if(MIL01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
-		};
-	};
-};
-
-func void UnEquip_ITAR_MIL_L()
-{
-	if(Npc_IsPlayer(self))
-	{
-		MILArmor_Equipped = FALSE;
-		B_SetHeroSkin();
-		if(MIL01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
-		};
-	};
-};
-
 
 instance ITAR_MIL_M(C_Item)
 {
@@ -451,8 +419,8 @@ instance ITAR_MIL_M(C_Item)
 	visual_change = "Armor_MIL_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_MIL_M;
-	on_unequip = UnEquip_ITAR_MIL_M;
+	on_equip = Equip_ITAR_MIL;
+	on_unequip = UnEquip_ITAR_MIL;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -465,42 +433,6 @@ instance ITAR_MIL_M(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 };
-
-
-func void Equip_ITAR_MIL_M()
-{
-	if(Npc_IsPlayer(self))
-	{
-		MILArmor_Equipped = TRUE;
-		B_SetHeroSkin();
-		if(MIL01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
-		};
-	};
-};
-
-func void UnEquip_ITAR_MIL_M()
-{
-	if(Npc_IsPlayer(self))
-	{
-		MILArmor_Equipped = FALSE;
-		B_SetHeroSkin();
-		if(MIL01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
-		};
-	};
-};
-
 
 instance ITAR_PAL_M(C_Item)
 {
@@ -578,8 +510,8 @@ instance ITAR_Bau_L(C_Item)
 	visual_change = "Armor_Bau_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_BAU;
-	on_unequip = UnEquip_ITAR_BAU;
+	on_equip = Equip_OpenArmor;
+	on_unequip = UnEquip_OpenArmor;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -591,24 +523,6 @@ instance ITAR_Bau_L(C_Item)
 	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
-};
-
-func void Equip_ITAR_BAU()
-{
-	if(Npc_IsPlayer(self))
-	{
-		BAUArmor_Equipped = TRUE;
-		B_SetHeroSkin();
-	};
-};
-
-func void UnEquip_ITAR_BAU()
-{
-	if(Npc_IsPlayer(self))
-	{
-		BAUArmor_Equipped = FALSE;
-		B_SetHeroSkin();
-	};
 };
 
 instance ITAR_Bau_M(C_Item)
@@ -627,8 +541,8 @@ instance ITAR_Bau_M(C_Item)
 	visual_change = "Armor_Bau_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_BAU;
-	on_unequip = UnEquip_ITAR_BAU;
+	on_equip = Equip_OpenArmor;
+	on_unequip = UnEquip_OpenArmor;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -712,8 +626,8 @@ instance ITAR_SLD_L(C_Item)
 	visual_change = "Armor_Sld_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_SLD_L;
-	on_unequip = UnEquip_ITAR_SLD_L;
+	on_equip = Equip_ITAR_SLD;
+	on_unequip = UnEquip_ITAR_SLD;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -726,74 +640,6 @@ instance ITAR_SLD_L(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 };
-
-
-func void Equip_ITAR_SLD_L()
-{
-	if(Npc_IsPlayer(self))
-	{
-		SLDArmor_Equipped = TRUE;
-		B_SetHeroSkin();
-		if(SLD01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
-		};
-	};
-};
-
-func void UnEquip_ITAR_SLD_L()
-{
-	if(Npc_IsPlayer(self))
-	{
-		SLDArmor_Equipped = FALSE;
-		B_SetHeroSkin();
-		if(SLD01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
-		};
-	};
-};
-
-
-instance ITAR_SLD_M2(C_Item)
-{
-	name = "Средние доспехи наемника";
-	mainflag = ITEM_KAT_ARMOR;
-	flags = 0;
-	protection[PROT_EDGE] = 50;
-	protection[PROT_BLUNT] = 50;
-	protection[PROT_POINT] = 50;
-	protection[PROT_FIRE] = 0;	//20;
-	protection[PROT_MAGIC] = 5;
-	value = VALUE_ITAR_SLD_M;
-	wear = WEAR_TORSO;
-	visual = "ItAr_Sld_M.3ds";
-	visual_change = "Armor_Sld_M.asc";
-	visual_skin = 0;
-	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_SLD_M;
-	on_unequip = UnEquip_ITAR_SLD_M;
-	description = name;
-	text[1] = NAME_Prot_Edge;
-	count[1] = protection[PROT_EDGE];
-	text[2] = NAME_Prot_Point;
-	count[2] = protection[PROT_POINT];
-	text[3] = NAME_Prot_Fire;
-	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-	text[5] = NAME_Value;
-	count[5] = value;
-};
-
 
 instance ITAR_SLD_M(C_Item)
 {
@@ -811,8 +657,8 @@ instance ITAR_SLD_M(C_Item)
 	visual_change = "Armor_Sld_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_SLD_M;
-	on_unequip = UnEquip_ITAR_SLD_M;
+	on_equip = Equip_ITAR_SLD;
+	on_unequip = UnEquip_ITAR_SLD;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -825,42 +671,6 @@ instance ITAR_SLD_M(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 };
-
-
-func void Equip_ITAR_SLD_M()
-{
-	if(Npc_IsPlayer(self))
-	{
-		SLDArmor_Equipped = TRUE;
-		B_SetHeroSkin();
-		if(SLD01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
-		};
-	};
-};
-
-func void UnEquip_ITAR_SLD_M()
-{
-	if(Npc_IsPlayer(self))
-	{
-		SLDArmor_Equipped = FALSE;
-		B_SetHeroSkin();
-		if(SLD01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
-		};
-	};
-};
-
 
 instance ITAR_SLD_H(C_Item)
 {
@@ -878,8 +688,8 @@ instance ITAR_SLD_H(C_Item)
 	visual_change = "Armor_Sld_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_SLD_H;
-	on_unequip = UnEquip_ITAR_SLD_H;
+	on_equip = Equip_ITAR_SLD;
+	on_unequip = UnEquip_ITAR_SLD;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -892,74 +702,6 @@ instance ITAR_SLD_H(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 };
-
-
-func void Equip_ITAR_SLD_H()
-{
-	if(Npc_IsPlayer(self))
-	{
-		SLDArmor_Equipped = TRUE;
-		B_SetHeroSkin();
-		if(SLD01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
-		};
-	};
-};
-
-func void UnEquip_ITAR_SLD_H()
-{
-	if(Npc_IsPlayer(self))
-	{
-		SLDArmor_Equipped = FALSE;
-		B_SetHeroSkin();
-		if(SLD01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
-		};
-	};
-};
-
-// Спасибо Zorres за новую броню наемника!
-instance ITAR_SLD_S(C_Item)
-{
-	name = "Старые доспехи наемника";
-	mainflag = ITEM_KAT_ARMOR;
-	flags = 0;
-	protection[PROT_EDGE] = 65;
-	protection[PROT_BLUNT] = 65;
-	protection[PROT_POINT] = 65;
-	protection[PROT_FIRE] = 5;	//15;
-	protection[PROT_MAGIC] = 5;
-	value = VALUE_ITAR_SLD_S;
-	wear = WEAR_TORSO;
-	visual = "ItAr_Sld_S.3ds";
-	visual_change = "Armor_Sld_S.asc";
-	visual_skin = 0;
-	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_SLD_H;
-	on_unequip = UnEquip_ITAR_SLD_H;
-	description = name;
-	text[1] = NAME_Prot_Edge;
-	count[1] = protection[PROT_EDGE];
-	text[2] = NAME_Prot_Point;
-	count[2] = protection[PROT_POINT];
-	text[3] = NAME_Prot_Fire;
-	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-	text[5] = NAME_Value;
-	count[5] = value;
-};
-
 
 instance ITAR_DJG_Crawler(C_Item)
 {
@@ -991,40 +733,6 @@ instance ITAR_DJG_Crawler(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 };
-
-
-func void Equip_ITAR_DJG_Crawler()
-{
-	if(Npc_IsPlayer(self))
-	{
-		MCArmor_Equipped = TRUE;
-		if(MC_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
-		};
-	};
-};
-
-func void UnEquip_ITAR_DJG_Crawler()
-{
-	if(Npc_IsPlayer(self))
-	{
-		MCArmor_Equipped = FALSE;
-		if(MC_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
-		};
-	};
-};
-
 
 instance ITAR_DJG_L(C_Item)
 {
@@ -1115,19 +823,6 @@ instance ITAR_DJG_H(C_Item)
 	count[5] = value;
 };
 
-func void Equip_ArmorSet()
-{
-	if(Npc_IsPlayer(self))
-	{
-		B_UnEquipHeroItem(ITHE_OHT);
-		B_UnEquipHeroItem(ITHE_DHT);
-		B_UnEquipHeroItem(ITHE_DJG_M);
-		B_UnEquipHeroItem(ITHE_DJG_H);
-		B_UnEquipHeroItem(ITHE_PAL_M);
-		B_UnEquipHeroItem(ITHE_PAL_H);
-	};
-};
-
 /*instance ITAR_DJG_Babe(C_Item)
 {
 	name = "Доспехи охотницы на драконов";
@@ -1171,8 +866,8 @@ instance ITAR_NOV_L(C_Item)
 	visual_change = "Armor_Nov_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_NOV_L;
-	on_unequip = UnEquip_ITAR_NOV_L;
+	on_equip = Equip_ITAR_NOV;
+	on_unequip = UnEquip_ITAR_NOV;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -1185,42 +880,6 @@ instance ITAR_NOV_L(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 };
-
-
-func void Equip_ITAR_NOV_L()
-{
-	if(Npc_IsPlayer(self))
-	{
-		NOVArmor_Equipped = TRUE;
-		B_SetHeroSkin();
-		if(NOV01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
-		};
-	};
-};
-
-func void UnEquip_ITAR_NOV_L()
-{
-	if(Npc_IsPlayer(self))
-	{
-		NOVArmor_Equipped = FALSE;
-		B_SetHeroSkin();
-		if(NOV01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
-		};
-	};
-};
-
 
 instance ITAR_KDF_L(C_Item)
 {
@@ -1238,8 +897,8 @@ instance ITAR_KDF_L(C_Item)
 	visual_change = "Armor_Kdf_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_KDF_L;
-	on_unequip = UnEquip_ITAR_KDF_L;
+	on_equip = Equip_ITAR_KDF;
+	on_unequip = UnEquip_ITAR_KDF;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -1252,40 +911,6 @@ instance ITAR_KDF_L(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 };
-
-
-func void Equip_ITAR_KDF_L()
-{
-	if(Npc_IsPlayer(self))
-	{
-		KDFArmor_Equipped = TRUE;
-		if(KDF01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
-		};
-	};
-};
-
-func void UnEquip_ITAR_KDF_L()
-{
-	if(Npc_IsPlayer(self))
-	{
-		KDFArmor_Equipped = FALSE;
-		if(KDF01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
-		};
-	};
-};
-
 
 instance ITAR_KDF_H(C_Item)
 {
@@ -1303,8 +928,8 @@ instance ITAR_KDF_H(C_Item)
 	visual_change = "Armor_Kdf_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_KDF_H;
-	on_unequip = UnEquip_ITAR_KDF_H;
+	on_equip = Equip_ITAR_KDF;
+	on_unequip = UnEquip_ITAR_KDF;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -1317,40 +942,6 @@ instance ITAR_KDF_H(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 };
-
-
-func void Equip_ITAR_KDF_H()
-{
-	if(Npc_IsPlayer(self))
-	{
-		KDFArmor_Equipped = TRUE;
-		if(KDF01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
-		};
-	};
-};
-
-func void UnEquip_ITAR_KDF_H()
-{
-	if(Npc_IsPlayer(self))
-	{
-		KDFArmor_Equipped = FALSE;
-		if(KDF01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
-		};
-	};
-};
-
 
 instance ITAR_Leather_L(C_Item)
 {
@@ -1368,8 +959,8 @@ instance ITAR_Leather_L(C_Item)
 	visual_change = "Armor_Leather_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_Leather_L;
-	on_unequip = UnEquip_ITAR_Leather_L;
+	on_equip = Equip_ITAR_Leather;
+	on_unequip = UnEquip_ITAR_Leather;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -1382,40 +973,6 @@ instance ITAR_Leather_L(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 };
-
-
-func void Equip_ITAR_Leather_L()
-{
-	if(Npc_IsPlayer(self))
-	{
-		LeatherArmor_Equipped = TRUE;
-		if(Leather01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus01;
-			self.protection[PROT_FIRE] += BA_Bonus01;
-		};
-	};
-};
-
-func void UnEquip_ITAR_Leather_L()
-{
-	if(Npc_IsPlayer(self))
-	{
-		LeatherArmor_Equipped = FALSE;
-		if(Leather01_Equipped == TRUE)
-		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus01;
-			self.protection[PROT_FIRE] -= BA_Bonus01;
-		};
-	};
-};
-
 
 instance ITAR_BDT_M(C_Item)
 {
@@ -1433,8 +990,8 @@ instance ITAR_BDT_M(C_Item)
 	visual_change = "Armor_Bdt_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_BDT;
-	on_unequip = UnEquip_ITAR_BDT;
+	on_equip = Equip_OpenArmor;
+	on_unequip = UnEquip_OpenArmor;
 	description = name;
 	text[0] = PRINT_Addon_BDTArmor;
 	text[1] = NAME_Prot_Edge;
@@ -1465,8 +1022,8 @@ instance ITAR_BDT_H(C_Item)
 	visual_change = "Armor_Bdt_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_BDT;
-	on_unequip = UnEquip_ITAR_BDT;
+	on_equip = Equip_OpenArmor;
+	on_unequip = UnEquip_OpenArmor;
 	description = name;
 	text[0] = PRINT_Addon_BDTArmor;
 	text[1] = NAME_Prot_Edge;
@@ -1479,24 +1036,6 @@ instance ITAR_BDT_H(C_Item)
 	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
-};
-
-func void Equip_ITAR_BDT()
-{
-	if(Npc_IsPlayer(self))
-	{
-		BDTArmor_Equipped = TRUE;
-		B_SetHeroSkin();
-	};
-};
-
-func void UnEquip_ITAR_BDT()
-{
-	if(Npc_IsPlayer(self))
-	{
-		BDTArmor_Equipped = FALSE;
-		B_SetHeroSkin();
-	};
 };
 
 instance ITAR_Xardas(C_Item)
@@ -1544,6 +1083,8 @@ instance ITAR_Lester(C_Item)
 	visual_change = "Armor_Lester.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_OpenArmor;
+	on_unequip = UnEquip_OpenArmor;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -1573,7 +1114,10 @@ instance ITAR_Diego(C_Item)
 	visual_change = "Armor_Diego.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_OpenArmor;
+	on_unequip = UnEquip_OpenArmor;
 	description = name;
+	text[0] = PRINT_Addon_BDTArmor;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
 	text[2] = NAME_Prot_Point;
@@ -1703,7 +1247,7 @@ instance ITAR_Prisoner(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_Dementor_Boss(C_Item)
+instance ITAR_BlackMage(C_Item)
 {
 	name = "Мантия черного мага";
 	mainflag = ITEM_KAT_ARMOR;
@@ -1711,12 +1255,12 @@ instance ITAR_Dementor_Boss(C_Item)
 	protection[PROT_EDGE] = 100;
 	protection[PROT_BLUNT] = 100;
 	protection[PROT_POINT] = 100;
-	protection[PROT_FIRE] = 65;	//50;
-	protection[PROT_MAGIC] = 65;	//50;
+	protection[PROT_FIRE] = 60;
+	protection[PROT_MAGIC] = 60;
 	value = VALUE_ITAR_Xardas;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Dementor.3ds";
-	visual_change = "Armor_Dementor_Boss.asc";
+	visual_change = "Armor_BlackMage.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
@@ -1939,7 +1483,7 @@ instance ITAR_PAL_S(C_Item)
 	protection[PROT_POINT] = 160;
 	protection[PROT_FIRE] = 110;
 	protection[PROT_MAGIC] = 60;
-	value = 25000;
+	value = 30000;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Pal_S.3ds";
 	visual_change = "Armor_Pal_S.asc";
@@ -2032,8 +1576,8 @@ instance ITAR_KDF_M(C_Item)
 	visual_change = "Armor_Kdf_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_KDF_L;
-	on_unequip = UnEquip_ITAR_KDF_L;
+	on_equip = Equip_ITAR_KDF;
+	on_unequip = UnEquip_ITAR_KDF;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -2063,8 +1607,39 @@ instance ITAR_KDF_S(C_Item)
 	visual_change = "Armor_Kdf_S.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITAR_KDF_H;
-	on_unequip = UnEquip_ITAR_KDF_H;
+	on_equip = Equip_ITAR_KDF;
+	on_unequip = UnEquip_ITAR_KDF;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ITAR_SLD_S(C_Item)
+{
+	name = "Старые доспехи наемника";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 65;
+	protection[PROT_BLUNT] = 65;
+	protection[PROT_POINT] = 65;
+	protection[PROT_FIRE] = 5;	//15;
+	protection[PROT_MAGIC] = 5;
+	value = VALUE_ITAR_SLD_S;
+	wear = WEAR_TORSO;
+	visual = "ItAr_Sld_S.3ds";
+	visual_change = "Armor_Sld_S.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+	on_equip = Equip_ITAR_SLD;
+	on_unequip = UnEquip_ITAR_SLD;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];

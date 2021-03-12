@@ -232,7 +232,7 @@ func void DIA_Nagur_Auftrag_Info()
 			AI_Output(self,other,"DIA_Nagur_Auftrag_08_03");	//Вернее, у него БЫЛ посыльный, пока я не перерезал ему глотку. И теперь Бальтраму придется искать нового мальчика на побегушках. И им будешь ты.
 			AI_Teleport(Bote,"NW_CITY_HABOUR_KASERN_05_01");
 			B_StartOtherRoutine(Bote,"Dead");
-			B_KillNpc(Bote);
+			B_KillNpc(VLK_4006_Bote);
 			Bote_Killed = TRUE;
 			if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_INKNAST) && !Npc_KnowsInfo(other,DIA_Rengaru_SPARE) && (Rengaru_Ausgeliefert == FALSE))
 			{

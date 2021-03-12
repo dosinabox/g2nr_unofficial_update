@@ -169,7 +169,7 @@ func void DIA_Angar_NW_StillNeedYou_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_MiltenNW_StillNeedYou_15_00");	//Ты нужен мне.
+		DIA_Common_INeedYou();
 		AI_Output(self,other,"DIA_Angar_NW_KnowWhereEnemy_Yes_04_01");	//Уже иду.
 	};
 	B_JoinShip(self);

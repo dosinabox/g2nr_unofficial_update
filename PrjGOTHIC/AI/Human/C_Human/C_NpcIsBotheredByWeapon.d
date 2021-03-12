@@ -33,7 +33,7 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lagerwache))
+	if(C_IsNpc(slf,MIL_328_Miliz))
 	{
 		return FALSE;
 	};
@@ -45,7 +45,7 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(BDTWache) && !Npc_KnowsInfo(hero,DIA_1061_Wache_Hallo))
+	if(C_IsNpc(slf,BDT_1061_Wache) && !Npc_KnowsInfo(hero,DIA_1061_Wache_Hallo))
 	{
 		return FALSE;
 	};

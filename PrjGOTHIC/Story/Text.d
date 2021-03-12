@@ -89,8 +89,8 @@ const string MOBNAME_GRAVE_02 = "Бертран 465-480 - 'Я всегда любил есть поганки'
 const string MOBNAME_GRAVE_03 = "Изольда 525-550";
 const string MOBNAME_GRAVE_04 = "Неизвестный";
 const string MOBNAME_GRAVE_05 = "Декс Кантионис 325-431 - 'Я уже несколько дней ничего не ел'";
-const string MOBNAME_GRAVE_06 = "Утар Лайтбрингер 205-532";
-const string MOBNAME_GRAVE_07 = "Жасмин 510-546";
+const string MOBNAME_GRAVE_06 = "Утар Лайтбрингер 205-531";
+const string MOBNAME_GRAVE_07 = "Жасмин 510-545";
 const string MOBNAME_GRAVE_08 = "Онурб 634-579 - 'Дерепан модаз'";
 const string MOBNAME_GRAVE_09 = "Неизвестный солдат";
 const string MOBNAME_GRAVE_10 = "Могучий инопланетный гном 2894-3787 - 'Все это ложь! Поверь мне...'";
@@ -421,7 +421,7 @@ const string TXT_TALENTS[22] =
 	"",
 	"Акробатика",
 	"Карманная кража",
-	"Ковка оружия",
+	"Кузнечное дело",
 	"Создание рун",
 	"Алхимия",
 	"Снятие шкур",
@@ -510,6 +510,7 @@ const string NAME_Addon_Summoned_Zombie = "Вызванный зомби";
 const string NAME_ADDON_BELIARSWEAPON = "Коготь Белиара";
 const string NAME_Addon_Undead_Mud = "Мад-нежить";
 const string NAME_Addon_Summoned_Mud = "Вызванный Мад";
+const string NAME_Hero = "Я";
 const string Dialog_Ende = "КОНЕЦ";
 const string Dialog_Ende_v1 = "Я должен идти!";
 const string Dialog_Ende_v2 = "Мне нужно идти.";
@@ -543,6 +544,8 @@ const string PRINT_Addon_KUMU_02 = "Вместе мы сильнее.";
 //const string PRINT_Addon_NadjaWait = "Подожди. Насчет травы...";
 const string NAME_Currency = "Золото: ";
 const string PRINT_Trade_Not_Enough_Gold = "У вас недостаточно золота для покупки этого предмета.";
+const string PRINT_CantGive = "Я не могу отдать это!";
+const string PRINT_CantTake = "Я не могу забрать это!";
 const string NAME_Value = "Цена:";
 const string NAME_Mag_Circle = "Круг:";
 const string NAME_Manakosten = "Расход маны:";
@@ -612,6 +615,7 @@ const string NAME_ADDON_TWOHANDED_BELIAR = "Двуручное оружие, шанс дополнительно
 const string NAME_ADDON_SPECIALDAMEGE_BELIAR = "Дополнительный чистый урон:";
 const string NAME_ADDON_UPGRATEBELIARSWEAPON = "Улучшить 'Коготь Белиара'";
 const string NAME_ADDON_BETEN = "Помолиться";
+const string NAME_ADDON_PRAYIDOL_GIVE = "Я хочу помолиться и пожертвовать ";
 const string NAME_ADDON_PRAYIDOL_GIVENOTHING = "Я хочу помолиться и ничего не пожертвовать.";
 const string NAME_ADDON_PRAYIDOL_GIVEHITPOINT1 = "Я хочу помолиться и пожертвовать 1 единицу макс. здоровья.";
 const string NAME_ADDON_PRAYIDOL_GIVEHITPOINT2 = "Я хочу помолиться и пожертвовать 5 единиц макс. здоровья.";
@@ -630,6 +634,12 @@ const string NAME_Addon_Harad_01 = "Изысканный меч";
 const string NAME_Addon_Harad_02 = "Изысканный длинный меч";
 const string NAME_Addon_Harad_03 = "Рубиновый клинок";
 const string NAME_Addon_Harad_04 = "Эль-бастардо";
+const string NAME_Skill_Sneak = "Подкрадывание";
+const string NAME_Skill_PickPocket = "Карманная кража";
+const string NAME_Skill_PickLock = "Взлом замков";
+const string NAME_Skill_Acrobat = "Акробатика";
+const string NAME_Skill_Smith = "Кузнечное дело";
+const string NAME_Skill_Alchemy = "Алхимия";
 const string NAME_ItMw_Banditenaxt = "Бандитский топор";
 const string PRINT_ItemGiven = " отдано";
 const string PRINT_ItemTaken = " получено";
@@ -674,7 +684,7 @@ const string PRINT_UpgradeRegenerateHP = "Улучшено: Регенерация здоровья";
 const string PRINT_UpgradeRegenerateMana = "Улучшено: Регенерация маны";
 const string PRINT_LearnAcrobat = "Изучено: Акробатика";
 const string PRINT_Addon_AcrobatBonus = "Получен бонус акробатики!";
-const string PRINT_LearnPickpocket = "Изучено: Искусство карманного воровства";
+const string PRINT_LearnPickpocket = "Изучено: Искусство карманной кражи";
 const string PRINT_Beliarshitpoints_MAX = "Макс. здоровье - ";
 const string PRINT_Beliarsmana_MAX = "Макс. мана - ";
 const string PRINT_LearnSmithLog = "Чтобы выковать оружие, прежде всего мне нужна сырая сталь. Я должен докрасна нагреть ее в огне кузнечного горна, а затем придать форму на наковальне. Продвинутое оружие зачастую требует редких материалов, придающих клинку особые свойства.";
@@ -772,12 +782,14 @@ const string PRINT_OrcEliteRingEquip = "Вы чувствуете слабость.";
 const string PRINT_SCIsObsessed = "Вы чувствуете удушье!";
 const string PRINT_ClearSCObsession = "Вы чувствуете себя освобожденным!";
 //const string PRINT_NumberLeft = " осталось";
-const string PRINT_MinenAnteilLeft = "Осталось акций: ";
-const string PRINT_NovizenLeft = "Осталось послушников: ";
 const string PRINT_BloodLeft = "Осталось пробирок: ";
-const string PRINT_ShrinesLeft = "Осталось алтарей: ";
-const string PRINT_Addon_CanyonRazorsLeft = "Осталось бритвозубов: ";
+const string PRINT_MinenAnteilLeft = "Осталось акций: ";
+const string PRINT_AllMinenAnteil = "Все акции собраны!";
+const string PRINT_NovizenLeft = "Осталось послушников: ";
 const string PRINT_AllNovizen = "Все послушники накормлены!";
+const string PRINT_ShrinesLeft = "Осталось алтарей: ";
+const string PRINT_AllShrines = "Все алтари очищены!";
+const string PRINT_Addon_CanyonRazorsLeft = "Осталось бритвозубов: ";
 const string PRINT_AllCanyonRazors = "Все бритвозубы убиты!";
 const string PRINT_DragKillCount = "Враг повержен. На этот раз я не буду гнить под камнями. Пришло время возвращаться на корабль.";
 const string PRINT_Smith_1H_Special_01 = " (1 кусок руды)";

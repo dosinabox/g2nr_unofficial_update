@@ -103,9 +103,9 @@ instance MENUITEM_LOADSAVE_THUMBPIC(C_MENU_ITEM_DEF)
 {
 	backpic = "";
 	posx = SAVEGAME_X2;
-	posy = 1350;
-	dimx = 2048;
-	dimy = 2048;
+	posy = 1000;
+	dimx = 2430;
+	dimy = 1830;
 	flags = flags & ~IT_SELECTABLE;
 };
 

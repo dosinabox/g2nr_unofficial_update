@@ -38,6 +38,8 @@ func int DIA_Grimbald_HALLO_Condition()
 
 
 var int Grimbald_PissOff;
+var int Grimbald_HuntInProgress;
+var int Grimbald_HuntStart_Day;
 
 func void DIA_Grimbald_HALLO_Info()
 {
@@ -82,10 +84,18 @@ func void DIA_Grimbald_HALLO_Was_neinnein()
 func void DIA_Grimbald_HALLO_Was_ja()
 {
 	AI_Output(other,self,"DIA_Grimbald_HALLO_Was_ja_15_00");	//Хорошо, я помогу тебе. Но ты пойдешь впереди.
-	AI_Output(self,other,"DIA_Grimbald_HALLO_Was_ja_07_01");	//Конечно. Только не приближайся слишком близко к черному троллю. Он разорвет тебя на куски, понял?
+	if(!Npc_IsDead(Troll_Black))
+	{
+		AI_Output(self,other,"DIA_Grimbald_HALLO_Was_ja_07_01");	//Конечно. Только не приближайся слишком близко к черному троллю. Он разорвет тебя на куски, понял?
+	}
+	else
+	{
+		B_Say(self,other,"$ABS_GOOD");
+	};
 	AI_Output(self,other,"DIA_Grimbald_HALLO_Was_ja_07_02");	//И я не прощу тебе, если ты решишь выйти из игры.
-	self.aivar[AIV_PARTYMEMBER] = TRUE;
-//	B_StartOtherRoutine(self,"Jagd");
+	Grimbald_HuntInProgress = TRUE;
+	Grimbald_HuntStart_Day = B_GetDayPlus();
+//	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	Npc_ExchangeRoutine(self,"Jagd");
 	AI_StopProcessInfos(self);
 };
@@ -96,6 +106,13 @@ func void DIA_Grimbald_HALLO_nein()
 	AI_Output(self,other,"DIA_Grimbald_HALLO_nein_07_01");	//Не мели чепуху. Что такого важного может ждать тебя в этой глуши?
 };
 
+
+func void B_Grimbald_IsTeacher()
+{
+	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_OutTeacher,"Охотник Гримбальд, стоящий неподалеку от пещеры черного тролля, может обучить меня разделке животных.");
+	Grimbald_TeachAnimalTrophy = TRUE;
+};
 
 instance DIA_Grimbald_Jagd(C_Info)
 {
@@ -116,8 +133,6 @@ func int DIA_Grimbald_Jagd_Condition()
 	};
 };
 
-const string Grimbald_IsTeacher = "Охотник Гримбальд, стоящий неподалеку от пещеры черного тролля, может обучить меня разделке животных.";
-
 func void DIA_Grimbald_Jagd_Info()
 {
 	AI_Output(other,self,"DIA_Grimbald_Jagd_15_00");	//Ты можешь научить меня охотиться?
@@ -131,12 +146,7 @@ func void DIA_Grimbald_Jagd_Info()
 		{
 			AI_Output(self,other,"DIA_Grimbald_Jagd_07_01");	//Ммм. Хорошо. Ты не особенно-то помог мне, но не стоит быть слишком строгим.
 		};
-		self.aivar[AIV_PARTYMEMBER] = FALSE;
-//		B_StartOtherRoutine(self,"JagdOver");
-		Npc_ExchangeRoutine(self,"JagdOver");
-		Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_OutTeacher,Grimbald_IsTeacher);
-		Grimbald_TeachAnimalTrophy = TRUE;
+		B_Grimbald_IsTeacher();
 	}
 	else
 	{
@@ -154,9 +164,7 @@ func void DIA_Grimbald_Jagd_ja()
 	if(B_GiveInvItems(other,self,ItMi_Gold,200))
 	{
 		AI_Output(self,other,"DIA_Grimbald_Jagd_ja_07_01");	//Отлично. Скажешь, когда захочешь научиться чему-нибудь.
-		Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_OutTeacher,Grimbald_IsTeacher);
-		Grimbald_TeachAnimalTrophy = TRUE;
+		B_Grimbald_IsTeacher();
 	}
 	else
 	{
@@ -342,15 +350,27 @@ instance DIA_Grimbald_Success(C_Info)
 
 func int DIA_Grimbald_Success_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && Npc_IsDead(Grimbald_Snapper1) && Npc_IsDead(Grimbald_Snapper2) && Npc_IsDead(Grimbald_Snapper3))
+	if(Grimbald_HuntInProgress == TRUE)
 	{
-		return TRUE;
+		if(Grimbald_HuntStart_Day < Wld_GetDay())
+		{
+			return TRUE;
+		};
+		if(Npc_IsDead(Grimbald_Snapper1) && Npc_IsDead(Grimbald_Snapper2) && Npc_IsDead(Grimbald_Snapper3))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Grimbald_Success_Info()
 {
-	if(Grimbald_Snappers_KilledByPlayer == TRUE)
+	if(Grimbald_HuntStart_Day < Wld_GetDay())
+	{
+		B_Say(self,other,"$NEVERHITMEAGAIN");
+		Grimbald_PissOff = TRUE;
+	}
+	else if(Grimbald_Snappers_KilledByPlayer == TRUE)
 	{
 		B_Say(self,other,"$NOTBAD");
 	}
@@ -358,7 +378,8 @@ func void DIA_Grimbald_Success_Info()
 	{
 		B_Say(self,other,"$GOODMONSTERKILL");
 	};
-	self.aivar[AIV_PARTYMEMBER] = FALSE;
+	Grimbald_HuntInProgress = FALSE;
+//	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"JagdOver");
 	AI_StopProcessInfos(self);
 };
@@ -397,6 +418,4 @@ func void DIA_Grimbald_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Grimbald_PICKPOCKET);
 };
-
-
 

@@ -1,9 +1,7 @@
 
 func void B_AssessPlayer()
 {
-	var C_Npc pcl;
-	pcl = Hlp_GetNpc(PC_Levelinspektor);
-	if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(pcl))
+	if(C_NpcIsLevelinspektor(other))
 	{
 		return;
 	};

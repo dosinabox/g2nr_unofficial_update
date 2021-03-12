@@ -17,7 +17,7 @@ const int Value_ItBE_Addon_Prot_Fire = 500;
 const int Value_ItBE_Addon_Prot_EdgPoi = 1000;
 const int Value_ItBE_Addon_Prot_Total = 2000;
 const int BA_Bonus01 = 5;
-const int BA_Bonus02 = 5;
+//const int BA_Bonus02 = 5;
 const int Belt_Prot_01 = 5;
 const int BeltBonus_STR01 = 5;
 const int BeltBonus_STR02 = 10;
@@ -62,14 +62,10 @@ func void Equip_ItBE_Addon_Leather_01()
 	self.protection[PROT_POINT] += Belt_Prot_01;
 	if(Npc_IsPlayer(self))
 	{
-		Leather01_Equipped = TRUE;
+		LeatherBelt_Equipped = TRUE;
 		if(LeatherArmor_Equipped == TRUE)
 		{
-			self.protection[PROT_EDGE] += BA_Bonus01;
-			self.protection[PROT_BLUNT] += BA_Bonus01;
-			self.protection[PROT_POINT] += BA_Bonus01;
-			self.protection[PROT_MAGIC] += BA_Bonus02;
-			self.protection[PROT_FIRE] += BA_Bonus02;
+			B_SetBeltBonus(BA_Bonus01);
 		};
 	};
 };
@@ -81,14 +77,10 @@ func void UnEquip_ItBE_Addon_Leather_01()
 	self.protection[PROT_POINT] -= Belt_Prot_01;
 	if(Npc_IsPlayer(self))
 	{
-		Leather01_Equipped = FALSE;
+		LeatherBelt_Equipped = FALSE;
 		if(LeatherArmor_Equipped == TRUE)
 		{
-			self.protection[PROT_EDGE] -= BA_Bonus01;
-			self.protection[PROT_BLUNT] -= BA_Bonus01;
-			self.protection[PROT_POINT] -= BA_Bonus01;
-			self.protection[PROT_MAGIC] -= BA_Bonus02;
-			self.protection[PROT_FIRE] -= BA_Bonus02;
+			B_RemoveBeltBonus(BA_Bonus01);
 		};
 	};
 };
@@ -121,33 +113,25 @@ instance ItBE_Addon_SLD_01(C_Item)
 
 func void Equip_ItBE_Addon_SLD_01()
 {
-	SLD01_Equipped = TRUE;
+	SLDBelt_Equipped = TRUE;
 	self.protection[PROT_EDGE] += Belt_Prot_01;
 	self.protection[PROT_BLUNT] += Belt_Prot_01;
 	self.protection[PROT_POINT] += Belt_Prot_01;
 	if(SLDArmor_Equipped == TRUE)
 	{
-		self.protection[PROT_EDGE] += BA_Bonus01;
-		self.protection[PROT_BLUNT] += BA_Bonus01;
-		self.protection[PROT_POINT] += BA_Bonus01;
-		self.protection[PROT_MAGIC] += BA_Bonus02;
-		self.protection[PROT_FIRE] += BA_Bonus02;
+		B_SetBeltBonus(BA_Bonus01);
 	};
 };
 
 func void UnEquip_ItBE_Addon_SLD_01()
 {
-	SLD01_Equipped = FALSE;
+	SLDBelt_Equipped = FALSE;
 	self.protection[PROT_EDGE] -= Belt_Prot_01;
 	self.protection[PROT_BLUNT] -= Belt_Prot_01;
 	self.protection[PROT_POINT] -= Belt_Prot_01;
 	if(SLDArmor_Equipped == TRUE)
 	{
-		self.protection[PROT_EDGE] -= BA_Bonus01;
-		self.protection[PROT_BLUNT] -= BA_Bonus01;
-		self.protection[PROT_POINT] -= BA_Bonus01;
-		self.protection[PROT_MAGIC] -= BA_Bonus02;
-		self.protection[PROT_FIRE] -= BA_Bonus02;
+		B_RemoveBeltBonus(BA_Bonus01);
 	};
 };
 
@@ -179,33 +163,25 @@ instance ItBE_Addon_NOV_01(C_Item)
 
 func void Equip_ItBE_Addon_NOV_01()
 {
-	NOV01_Equipped = TRUE;
+	NOVBelt_Equipped = TRUE;
 	self.protection[PROT_EDGE] += Belt_Prot_01;
 	self.protection[PROT_BLUNT] += Belt_Prot_01;
 	self.protection[PROT_POINT] += Belt_Prot_01;
 	if(NOVArmor_Equipped == TRUE)
 	{
-		self.protection[PROT_EDGE] += BA_Bonus01;
-		self.protection[PROT_BLUNT] += BA_Bonus01;
-		self.protection[PROT_POINT] += BA_Bonus01;
-		self.protection[PROT_MAGIC] += BA_Bonus02;
-		self.protection[PROT_FIRE] += BA_Bonus02;
+		B_SetBeltBonus(BA_Bonus01);
 	};
 };
 
 func void UnEquip_ItBE_Addon_NOV_01()
 {
-	NOV01_Equipped = FALSE;
+	NOVBelt_Equipped = FALSE;
 	self.protection[PROT_EDGE] -= Belt_Prot_01;
 	self.protection[PROT_BLUNT] -= Belt_Prot_01;
 	self.protection[PROT_POINT] -= Belt_Prot_01;
 	if(NOVArmor_Equipped == TRUE)
 	{
-		self.protection[PROT_EDGE] -= BA_Bonus01;
-		self.protection[PROT_BLUNT] -= BA_Bonus01;
-		self.protection[PROT_POINT] -= BA_Bonus01;
-		self.protection[PROT_MAGIC] -= BA_Bonus02;
-		self.protection[PROT_FIRE] -= BA_Bonus02;
+		B_RemoveBeltBonus(BA_Bonus01);
 	};
 };
 
@@ -237,33 +213,25 @@ instance ItBE_Addon_MIL_01(C_Item)
 
 func void Equip_ItBE_Addon_MIL_01()
 {
-	MIL01_Equipped = TRUE;
+	MILBelt_Equipped = TRUE;
 	self.protection[PROT_EDGE] += Belt_Prot_01;
 	self.protection[PROT_BLUNT] += Belt_Prot_01;
 	self.protection[PROT_POINT] += Belt_Prot_01;
 	if(MILArmor_Equipped == TRUE)
 	{
-		self.protection[PROT_EDGE] += BA_Bonus01;
-		self.protection[PROT_BLUNT] += BA_Bonus01;
-		self.protection[PROT_POINT] += BA_Bonus01;
-		self.protection[PROT_MAGIC] += BA_Bonus02;
-		self.protection[PROT_FIRE] += BA_Bonus02;
+		B_SetBeltBonus(BA_Bonus01);
 	};
 };
 
 func void UnEquip_ItBE_Addon_MIL_01()
 {
-	MIL01_Equipped = FALSE;
+	MILBelt_Equipped = FALSE;
 	self.protection[PROT_EDGE] -= Belt_Prot_01;
 	self.protection[PROT_BLUNT] -= Belt_Prot_01;
 	self.protection[PROT_POINT] -= Belt_Prot_01;
 	if(MILArmor_Equipped == TRUE)
 	{
-		self.protection[PROT_EDGE] -= BA_Bonus01;
-		self.protection[PROT_BLUNT] -= BA_Bonus01;
-		self.protection[PROT_POINT] -= BA_Bonus01;
-		self.protection[PROT_MAGIC] -= BA_Bonus02;
-		self.protection[PROT_FIRE] -= BA_Bonus02;
+		B_RemoveBeltBonus(BA_Bonus01);
 	};
 };
 
@@ -295,33 +263,25 @@ instance ItBE_Addon_KDF_01(C_Item)
 
 func void Equip_ItBE_Addon_KDF_01()
 {
-	KDF01_Equipped = TRUE;
+	KDFBelt_Equipped = TRUE;
 	self.protection[PROT_EDGE] += Belt_Prot_01;
 	self.protection[PROT_BLUNT] += Belt_Prot_01;
 	self.protection[PROT_POINT] += Belt_Prot_01;
 	if(KDFArmor_Equipped == TRUE)
 	{
-		self.protection[PROT_EDGE] += BA_Bonus01;
-		self.protection[PROT_BLUNT] += BA_Bonus01;
-		self.protection[PROT_POINT] += BA_Bonus01;
-		self.protection[PROT_MAGIC] += BA_Bonus02;
-		self.protection[PROT_FIRE] += BA_Bonus02;
+		B_SetBeltBonus(BA_Bonus01);
 	};
 };
 
 func void UnEquip_ItBE_Addon_KDF_01()
 {
-	KDF01_Equipped = FALSE;
+	KDFBelt_Equipped = FALSE;
 	self.protection[PROT_EDGE] -= Belt_Prot_01;
 	self.protection[PROT_BLUNT] -= Belt_Prot_01;
 	self.protection[PROT_POINT] -= Belt_Prot_01;
 	if(KDFArmor_Equipped == TRUE)
 	{
-		self.protection[PROT_EDGE] -= BA_Bonus01;
-		self.protection[PROT_BLUNT] -= BA_Bonus01;
-		self.protection[PROT_POINT] -= BA_Bonus01;
-		self.protection[PROT_MAGIC] -= BA_Bonus02;
-		self.protection[PROT_FIRE] -= BA_Bonus02;
+		B_RemoveBeltBonus(BA_Bonus01);
 	};
 };
 
@@ -353,33 +313,25 @@ instance ItBE_Addon_MC(C_Item)
 
 func void Equip_ItBE_Addon_MC()
 {
-	MC_Equipped = TRUE;
+	MCBelt_Equipped = TRUE;
 	self.protection[PROT_EDGE] += Belt_Prot_01;
 	self.protection[PROT_BLUNT] += Belt_Prot_01;
 	self.protection[PROT_POINT] += Belt_Prot_01;
 	if(MCArmor_Equipped == TRUE)
 	{
-		self.protection[PROT_EDGE] += BA_Bonus01;
-		self.protection[PROT_BLUNT] += BA_Bonus01;
-		self.protection[PROT_POINT] += BA_Bonus01;
-		self.protection[PROT_MAGIC] += BA_Bonus02;
-		self.protection[PROT_FIRE] += BA_Bonus02;
+		B_SetBeltBonus(BA_Bonus01);
 	};
 };
 
 func void UnEquip_ItBE_Addon_MC()
 {
-	MC_Equipped = FALSE;
+	MCBelt_Equipped = FALSE;
 	self.protection[PROT_EDGE] -= Belt_Prot_01;
 	self.protection[PROT_BLUNT] -= Belt_Prot_01;
 	self.protection[PROT_POINT] -= Belt_Prot_01;
 	if(MCArmor_Equipped == TRUE)
 	{
-		self.protection[PROT_EDGE] -= BA_Bonus01;
-		self.protection[PROT_BLUNT] -= BA_Bonus01;
-		self.protection[PROT_POINT] -= BA_Bonus01;
-		self.protection[PROT_MAGIC] -= BA_Bonus02;
-		self.protection[PROT_FIRE] -= BA_Bonus02;
+		B_RemoveBeltBonus(BA_Bonus01);
 	};
 };
 

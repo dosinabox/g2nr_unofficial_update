@@ -131,7 +131,7 @@ func void Use_PermissionToWearInnosEye()
 	Doc_PrintLines(nDocID,0,"Предъявителю этого документа даровано право входа в священные залы монастыря.");
 	Doc_PrintLines(nDocID,0,"Его пожелания, касательно владения Глазом Инноса должны выполняться немедленно.");
 	Doc_PrintLines(nDocID,0,"Вышеуказанное следует считать действительным вследствие силы моей позиции в качестве властителя этого острова и представителя короля, а также учитывая договор о разделении церкви Инноса во 2 году от Огня.");
-	Doc_PrintLines(nDocID,0,"P.S. Я ожидаю неукоснительного выполнения моих указаний.");
+	Doc_PrintLines(nDocID,0,"Я не буду давать никаких дальнейших объяснений и ожидаю неукоснительного выполнения моих указаний.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Да хранит Иннос короля.");
 	Doc_PrintLine(nDocID,0,"");
@@ -248,9 +248,8 @@ func void Use_DementorObsessionBook()
 		Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
 		Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
-		Doc_SetFont(nDocID,0,FONT_BookHeadline);
-		Doc_PrintLine(nDocID,0,"");
 		Doc_SetFont(nDocID,0,FONT_Book);
+		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"edef Kon dirandorix");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");
@@ -260,43 +259,66 @@ func void Use_DementorObsessionBook()
 		Doc_PrintLine(nDocID,0,"el utoy");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Kho ray xaondron");
-		Doc_PrintLines(nDocID,0,"");
+		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"em piratoram endro");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
-		Doc_SetFont(nDocID,1,FONT_BookHeadline);
 		Doc_SetFont(nDocID,1,FONT_Book);
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
 		if(Kapitel >= 3)
 		{
-			Doc_PrintLine(nDocID,1,"           ВИНО");
-			Doc_PrintLine(nDocID,1,"ФЕРНАНДО");
-			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"        МАЛАК");
-			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"БРОМОР");
+			if(Vino_isAlive_Kap3 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"           ВИНО");
+			};
+			if(Fernando_isAlive_Kap3 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"ФЕРНАНДО");
+			};
+			if(Malak_isAlive_Kap3 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"");
+				Doc_PrintLine(nDocID,1,"        МАЛАК");
+			};
+			if(Bromor_isAlive_Kap3 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"");
+				Doc_PrintLine(nDocID,1,"БРОМОР");
+			};
 		};
 		if(Kapitel >= 4)
 		{
-			Doc_PrintLine(nDocID,1,"    ЭНГРОМ");
-			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"        РЭНДОЛЬФ");
+			if(Engrom_isAlive_Kap4 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"    ЭНГРОМ");
+				Doc_PrintLine(nDocID,1,"");
+			};
+			if(Randolph_isAlive_preKap4 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"");
+				Doc_PrintLine(nDocID,1,"        РЭНДОЛЬФ");
+			};
 			Doc_PrintLine(nDocID,1,"");
 		};
 		if(Kapitel >= 5)
 		{
 			Doc_PrintLine(nDocID,1,"");
+			if(Sekob_isAlive_Kap5 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"");
+				Doc_PrintLine(nDocID,1,"СЕКОБ");
+			};
 			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"СЕКОБ");
 			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"            БРУТУС");
+			if(Brutus_isAlive_preKap5 == TRUE)
+			{
+				Doc_PrintLine(nDocID,1,"");
+				Doc_PrintLine(nDocID,1,"            БРУТУС");
+			};
 			Doc_PrintLine(nDocID,1,"");
 		};
 		if((Kapitel == 6) && (Mario_IsOnBoard == LOG_SUCCESS) && (OrkSturmDI == TRUE))
@@ -336,28 +358,52 @@ func void Use_PyrokarsObsessionList()
 	if(Kapitel >= 3)
 	{
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"ФЕРНАНДО");
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"ВИНО");
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"МАЛАК");
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"БРОМОР");
+		if(Fernando_isAlive_Kap3 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"ФЕРНАНДО");
+		};
+		if(Vino_isAlive_Kap3 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"ВИНО");
+		};
+		if(Malak_isAlive_Kap3 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"МАЛАК");
+		};
+		if(Bromor_isAlive_Kap3 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"БРОМОР");
+		};
 	};
 	if(Kapitel >= 4)
 	{
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"ЭНГРОМ");
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"РЭНДОЛЬФ");
+		if(Engrom_isAlive_Kap4 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"ЭНГРОМ");
+		};
+		if(Randolph_isAlive_preKap4 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"РЭНДОЛЬФ");
+		};
 	};
 	if(Kapitel >= 5)
 	{
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"СЕКОБ");
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"БРУТУС");
+		if(Sekob_isAlive_Kap5 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"СЕКОБ");
+		};
+		if(Brutus_isAlive_preKap5 == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLine(nDocID,0,"БРУТУС");
+		};
 	};
 	if((Kapitel == 6) && (Mario_IsOnBoard == LOG_SUCCESS) && (OrkSturmDI == TRUE))
 	{
@@ -790,7 +836,7 @@ instance ItWr_MinenAnteil_Mis(C_Item)
 	name = "Акция рудника Хориниса";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
-	value = Value_HpElixier;
+	value = 50;
 	visual = "ItWr_Scroll_02.3DS";
 //	visual = "Fakescroll.3ds";
 	material = MAT_LEATHER;
@@ -856,25 +902,7 @@ instance ItAm_Prot_BlackEye_Mis(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
-//	on_equip = Equip_Prot_BlackEye;
-//	on_unequip = UnEquip_Prot_BlackEye;
 };
-
-/*func void Equip_Prot_BlackEye()
-{
-	if(Npc_IsPlayer(self))
-	{
-		SC_IsBlackEyeProtected = TRUE;
-	};
-};
-
-func void UnEquip_Prot_BlackEye()
-{
-	if(Npc_IsPlayer(self))
-	{
-		SC_IsBlackEyeProtected = FALSE;
-	};
-};*/
 
 instance ItMi_KarrasBlessedStone_Mis(C_Item)
 {
@@ -921,7 +949,6 @@ func void Use_RichterKomproBrief()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"          Главный судья и");
 	Doc_PrintLine(nDocID,0,"          королевский секретарь");
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 	if(SCKnowsRichterKomproBrief == FALSE)
 	{
@@ -1033,14 +1060,12 @@ func void Use_VinosKellergeister_Mis()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"... Я уже многое перепробовал, но этот плод, что был привезен мне из-за границы на прошлой неделе, превзошел все ожидания ...");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"... сок этого винограда несравним с тем, что можно найти в этой части страны ...");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
-	Doc_SetFont(nDocID,1,FONT_BookHeadline);
 	Doc_SetFont(nDocID,1,FONT_Book);
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"... пока все хорошо. Но мне все же не по себе от мысли, что может произойти, если меня застанут за моими секретными экспериментами. Не представляю, что будет делать ополчение, если они найдут меня здесь. Они могут даже засунуть меня за Барьер ...");

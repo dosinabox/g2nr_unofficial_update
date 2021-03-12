@@ -135,9 +135,12 @@ func void DIA_Thorben_Arbeit_Info()
 	AI_Output(other,self,"DIA_Thorben_Arbeit_15_04");	//Нуууу...
 	AI_Output(self,other,"DIA_Thorben_Arbeit_06_05");	//Извини, но я не могу взять тебя, если ты ничего не понимаешь в моем ремесле.
 	AI_Output(self,other,"DIA_Thorben_Arbeit_06_06");	//И у меня нет денег, чтобы платить ученику.
-	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
-	B_LogEntry(TOPIC_Lehrling,"Торбен не примет меня в ученики.");
+	if(Player_IsApprentice == APP_NONE)
+	{
+		Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+		B_LogEntry(TOPIC_Lehrling,"Торбен не примет меня в ученики.");
+	};
 };
 
 
@@ -459,7 +462,7 @@ func void DIA_Thorben_PleaseTeach_Pay100()
 
 func void DIA_Thorben_PleaseTeach_Later()
 {
-	AI_Output(other,self,"DIA_Thorben_PleaseTeach_Later_15_00");	//Может быть, позже...
+	DIA_Common_MaybeLater();
 	Info_ClearChoices(DIA_Thorben_PleaseTeach);
 };
 
@@ -471,7 +474,7 @@ instance DIA_Thorben_Teach(C_Info)
 	condition = DIA_Thorben_Teach_Condition;
 	information = DIA_Thorben_Teach_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1));
+	description = B_BuildLearnString(NAME_Skill_PickLock,B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1));
 };
 
 
@@ -697,7 +700,7 @@ func void DIA_Thorben_Bauernaufstand_Info()
 	AI_Output(self,other,"DIA_Thorben_Bauernaufstand_06_02");	//Он, вероятно, устал отдавать весь свой урожай паладинам и ополчению.
 	AI_Output(self,other,"DIA_Thorben_Bauernaufstand_06_03");	//Ну а в городе после этого стали расти цены на продовольствие.
 	AI_Output(self,other,"DIA_Thorben_Bauernaufstand_06_04");	//Ферма Онара находится далеко на восток отсюда. Мы не знаем, были там сражения или нет.
-	AI_Output(self,other,"DIA_Thorben_Bauernaufstand_06_05");	//Если ты хочешь узнать больше, поспрашивай торговцев на рыночной пощади. Они лучше знают обстановку на острове, чем я.
+	AI_Output(self,other,"DIA_Thorben_Bauernaufstand_06_05");	//Если ты хочешь узнать больше, поспрашивай торговцев на рыночной площади. Они лучше знают обстановку на острове, чем я.
 };
 
 

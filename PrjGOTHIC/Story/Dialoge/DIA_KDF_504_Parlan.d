@@ -565,38 +565,9 @@ func void DIA_Parlan_Stand_Info()
 	{
 		AI_Output(self,other,"DIA_Parlan_Stand_05_09");	//Да, ты хорошо поработал. Теперь пришло время начать постигать учение Инноса. Поговори с мастером Хигласом в библиотеке.
 		AI_Output(self,other,"DIA_Parlan_Stand_05_10");	//Я выдаю тебе этот ключ.
+		B_GiveInvItems(self,other,ItKe_KlosterBibliothek,1);
 		Parlan_Erlaubnis = TRUE;
 		MIS_KlosterArbeit = LOG_SUCCESS;
-//		Wld_AssignRoomToGuild("Kloster02",GIL_PUBLIC);
-		B_GiveInvItems(self,other,ItKe_KlosterBibliothek,1);
-		/*if(MIS_NeorasPflanzen == LOG_Running)
-		{
-			MIS_NeorasPflanzen = LOG_OBSOLETE;
-		};
-		if(MIS_NeorasRezept == LOG_Running)
-		{
-			MIS_NeorasRezept = LOG_OBSOLETE;
-		};
-		if(MIS_IsgarothWolf == LOG_Running)
-		{
-			MIS_IsgarothWolf = LOG_OBSOLETE;
-		};
-		if(MIS_ParlanFegen == LOG_Running)
-		{
-			MIS_ParlanFegen = LOG_OBSOLETE;
-		};
-		if(MIS_GoraxEssen == LOG_Running)
-		{
-			MIS_GoraxEssen = LOG_OBSOLETE;
-		};
-		if(MIS_GoraxWein == LOG_Running)
-		{
-			MIS_GoraxWein = LOG_OBSOLETE;
-		};
-		if(MIS_MardukBeten == LOG_Running)
-		{
-			MIS_MardukBeten = LOG_OBSOLETE;
-		};*/
 		B_CheckLog();
 	}
 	else if(Kloster_Punkte >= 1)
@@ -746,9 +717,7 @@ func void DIA_Parlan_KNOWSJUDGE_Info()
 
 func void B_BuildLearnDialog_Parlan()
 {
-	Info_ClearChoices(DIA_Parlan_TEACH_MANA);
-	Info_AddChoice(DIA_Parlan_TEACH_MANA,Dialog_Back,DIA_Parlan_TEACH_MANA_BACK);
-	if(other.aivar[REAL_MANA_MAX] >= T_MED)
+	if((other.aivar[REAL_MANA_MAX] >= T_MED) || ((IgnoreBonuses == TRUE) && (other.attribute[ATR_MANA_MAX] >= T_MED)))
 	{
 		AI_Output(self,other,"DIA_Parlan_TEACH_MANA_05_00");	//Твоя магическая энергия выросла. Я не могу помочь тебе повысить ее еще больше.
 		AI_Output(self,other,"DIA_Parlan_TEACH_MANA_05_01");	//Если ты хочешь научиться большему, поговори с Пирокаром.
@@ -756,6 +725,8 @@ func void B_BuildLearnDialog_Parlan()
 	}
 	else
 	{
+		Info_ClearChoices(DIA_Parlan_TEACH_MANA);
+		Info_AddChoice(DIA_Parlan_TEACH_MANA,Dialog_Back,DIA_Parlan_TEACH_MANA_BACK);
 		Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Parlan_TEACH_MANA_1);
 		Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Parlan_TEACH_MANA_5);
 	};
@@ -1201,7 +1172,7 @@ instance DIA_Parlan_DontDisturb(C_Info)
 func int DIA_Parlan_DontDisturb_Condition()
 {
 //	if((Parlan_DontTalkToNovice == LOG_SUCCESS) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && ((other.guild != GIL_PAL) || (other.guild != GIL_NOV) || (other.guild != GIL_KDF)))
-	if((Parlan_DontTalkToNovice == LOG_SUCCESS) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && (other.guild != GIL_PAL))
+	if((Parlan_DontTalkToNovice == LOG_FAILED) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && (other.guild != GIL_PAL))
 	{
 		return TRUE;
 	};

@@ -314,31 +314,6 @@ func void DIA_Gerold_Perm_Info()
 	AI_Output(self,other,"DIA_Gerold_Perm_12_01");	//Нет. Сам Иннос дарует мне силу никогда не спать на посту.
 };
 
-/*
-instance DIA_Gerold_KAP4_EXIT(C_Info)
-{
-	npc = PAL_261_Gerold;
-	nr = 999;
-	condition = DIA_Gerold_KAP4_EXIT_Condition;
-	information = DIA_Gerold_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Gerold_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Gerold_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Gerold_KAP4_ALLESRUHIG(C_Info)
 {
@@ -627,56 +602,6 @@ func void DIA_Gerold_PERM4_Info()
 	AI_StopProcessInfos(self);
 };
 
-/*
-instance DIA_Gerold_KAP5_EXIT(C_Info)
-{
-	npc = PAL_261_Gerold;
-	nr = 999;
-	condition = DIA_Gerold_KAP5_EXIT_Condition;
-	information = DIA_Gerold_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Gerold_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Gerold_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Gerold_KAP6_EXIT(C_Info)
-{
-	npc = PAL_261_Gerold;
-	nr = 999;
-	condition = DIA_Gerold_KAP6_EXIT_Condition;
-	information = DIA_Gerold_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Gerold_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Gerold_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Gerold_PICKPOCKET(C_Info)
 {

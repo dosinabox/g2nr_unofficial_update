@@ -588,8 +588,7 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 	AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_08");	//Что ж, ты выполнил условия сделки...
 	MIS_Addon_Cord_Look4Patrick = LOG_SUCCESS;
 	TOPIC_End_RangerHelpSLD = TRUE;
-	B_GivePlayerXP(XP_Addon_Cord_Look4Patrick);
-	if(other.guild == GIL_NONE)
+	if((other.guild == GIL_NONE) && (Torlof_ProbeBestanden == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_09");	//Что насчет задания Торлофа?
 		AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_10");	//Не беспокойся, я обо всем позаботился. Твое задание выполнено, и ты прошел испытание. Можешь поговорить с Торлофом.
@@ -603,12 +602,20 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 	{
 		if(Kapitel < 3)
 		{
-			B_StartOtherRoutine(Rumbold,"Flucht3");
-			B_StartOtherRoutine(Rick,"Flucht3");
+			if(!Npc_IsDead(Rick))
+			{
+				Npc_ExchangeRoutine(Rick,"Flucht3");
+				Rick.aivar[AIV_DropDeadAndKill] = FALSE;
+			};
+			if(!Npc_IsDead(Rumbold))
+			{
+				Npc_ExchangeRoutine(Rumbold,"Flucht3");
+				Rumbold.aivar[AIV_DropDeadAndKill] = FALSE;
+			};
 		};
 		MIS_Torlof_BengarMilizKlatschen = LOG_SUCCESS;
 	};
-	B_CheckLog();
+	B_GivePlayerXP(XP_Addon_Cord_Look4Patrick);
 };
 
 
@@ -741,8 +748,8 @@ func void B_Cord_Teach()
 {
 	if(Cord_Teacher == FALSE)
 	{
-		Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-		B_LogEntry(Topic_SoldierTeacher,"Корд может обучить меня владению одноручным и двуручным оружием.");
+		Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_SoldierTeacher,"Корд может обучить меня владению одноручным и двуручным оружием.");
 		Cord_Teacher = TRUE;
 	};
 	Info_ClearChoices(DIA_Cord_Teach);

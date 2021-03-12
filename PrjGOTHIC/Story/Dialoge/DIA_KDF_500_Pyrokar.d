@@ -260,6 +260,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Igaraz.aivar[AIV_NewsOverride] = TRUE;
 		Igaraz.aivar[AIV_IgnoresArmor] = TRUE;
 		Igaraz.aivar[AIV_IgnoresFakeGuild] = TRUE;
+		Igaraz.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		CreateInvItems(Igaraz,ItKe_MagicChest,1);
 		AI_Teleport(Igaraz,"NW_TAVERNE_BIGFARM_05");
 		B_StartOtherRoutine(Igaraz,"CONTEST");
@@ -271,6 +272,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Agon.aivar[AIV_NewsOverride] = TRUE;
 		Agon.aivar[AIV_IgnoresArmor] = TRUE;
 		Agon.aivar[AIV_IgnoresFakeGuild] = TRUE;
+		Agon.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		CreateInvItems(Agon,ItKe_MagicChest,1);
 		AI_Teleport(Agon,"NW_MAGECAVE_RUNE");
 		B_StartOtherRoutine(Agon,"GOLEMDEAD");
@@ -282,15 +284,31 @@ func void DIA_Pyrokar_TEST_Info()
 		Ulf.aivar[AIV_IgnoresArmor] = TRUE;
 		Ulf.aivar[AIV_IgnoresFakeGuild] = TRUE;
 		Ulf.aivar[AIV_CommentedPlayerCrime] = FALSE;
-		Ulf.guild = GIL_NOV;
+		B_SetGuild(Ulf,GIL_NOV);
 		CreateInvItems(Ulf,ItKe_MagicChest,1);
 		AI_Teleport(Ulf,"NW_TROLLAREA_PATH_42");
 		B_StartOtherRoutine(Ulf,"SUCHE");
 	};
-	MIS_SCHNITZELJAGD = LOG_Running;
+	MIS_Schnitzeljagd = LOG_Running;
 	AI_StopProcessInfos(self);
 };
 
+
+func int C_FireContestRuneFound()
+{
+	if(C_WorldIsFixed(NEWWORLD_ZEN))
+	{
+		if(!Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
+		{
+			return TRUE;
+		};
+	}
+	else if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
 
 instance DIA_Pyrokar_RUNNING(C_Info)
 {
@@ -305,17 +323,9 @@ instance DIA_Pyrokar_RUNNING(C_Info)
 
 func int DIA_Pyrokar_RUNNING_Condition()
 {
-//	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
-	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV))
+	if((MIS_Schnitzeljagd == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV))
 	{
-		if(C_WorldIsFixed(NEWWORLD_ZEN))
-		{
-			if(Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
-			{
-				return TRUE;
-			};
-		};
-		if(!Npc_HasItems(other,ItMi_RuneBlank) && !Npc_HasItems(other,ItRu_FireBolt))
+		if(!C_FireContestRuneFound())
 		{
 			return TRUE;
 		};
@@ -355,19 +365,11 @@ instance DIA_Pyrokar_SUCCESS(C_Info)
 
 func int DIA_Pyrokar_SUCCESS_Condition()
 {
-//	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV) && !Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && (Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt)))
-	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV))
+	if((MIS_Schnitzeljagd == LOG_Running) && (hero.guild == GIL_NOV))
 	{
 		if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
 		{
-			if(C_WorldIsFixed(NEWWORLD_ZEN))
-			{
-				if(!Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
-				{
-					return TRUE;
-				};
-			}
-			else
+			if(C_FireContestRuneFound())
 			{
 				return TRUE;
 			};
@@ -384,7 +386,7 @@ func void DIA_Pyrokar_SUCCESS_Info()
 	AI_Output(self,other,"DIA_Pyrokar_SUCCESS_11_03");	//А другие послушники? Что насчет Агона? Они не опередили тебя?
 	AI_Output(other,self,"DIA_Pyrokar_SUCCESS_15_04");	//Они не смогли. Я думаю, им было не суждено пройти это испытание.
 	AI_Output(self,other,"DIA_Pyrokar_SUCCESS_11_05");	//Что ж, в таком случае мы объявляем, что ты прошел это испытание. А этот рунный камень теперь твой.
-	MIS_SCHNITZELJAGD = LOG_SUCCESS;
+	MIS_Schnitzeljagd = LOG_SUCCESS;
 	B_GivePlayerXP(XP_SCHNITZELJAGD);
 };
 
@@ -402,7 +404,7 @@ instance DIA_Pyrokar_Todo(C_Info)
 
 func int DIA_Pyrokar_Todo_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_SUCCESS) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && ((MIS_RUNE != LOG_SUCCESS) || (MIS_GOLEM != LOG_SUCCESS)))
+	if((MIS_Schnitzeljagd == LOG_SUCCESS) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && ((MIS_Rune != LOG_SUCCESS) || (MIS_Golem != LOG_SUCCESS)))
 	{
 		return TRUE;
 	};
@@ -412,11 +414,11 @@ func void DIA_Pyrokar_Todo_Info()
 {
 	AI_Output(self,other,"DIA_Pyrokar_Todo_11_00");	//Ты прошел испытание, которому подверг тебя я.
 	AI_Output(self,other,"DIA_Pyrokar_Todo_11_01");	//Но...
-	if(MIS_RUNE != LOG_SUCCESS)
+	if(MIS_Rune != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_Todo_11_02");	//... тебе еще необходимо пройти испытание Ультара.
 	};
-	if(MIS_GOLEM != LOG_SUCCESS)
+	if(MIS_Golem != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_Todo_11_03");	//... тебе еще необходимо выполнить задание Серпентеса.
 	};
@@ -437,7 +439,7 @@ instance DIA_Pyrokar_MAGICAN(C_Info)
 
 func int DIA_Pyrokar_MAGICAN_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_SUCCESS) && (MIS_RUNE == LOG_SUCCESS) && (MIS_GOLEM == LOG_SUCCESS) && (other.guild == GIL_NOV))
+	if((MIS_Schnitzeljagd == LOG_SUCCESS) && (MIS_Rune == LOG_SUCCESS) && (MIS_Golem == LOG_SUCCESS) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -481,7 +483,6 @@ func void DIA_Pyrokar_OATH_Info()
 	AI_Output(other,self,"DIA_Pyrokar_OATH_15_05");	//Клянусь.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_06");	//Произнеся слова этой клятвы, ты присоединился к Соглашению Огня.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_07");	//Носи эту робу в знак этих вечных уз.
-	///////////отмена квестов послушника///////////
 	if(MIS_NeorasPflanzen == LOG_Running)
 	{
 		MIS_NeorasPflanzen = LOG_OBSOLETE;
@@ -510,12 +511,8 @@ func void DIA_Pyrokar_OATH_Info()
 	{
 		MIS_MardukBeten = LOG_OBSOLETE;
 	};
-	B_CheckLog();
-	/////////////////////
-	hero.guild = GIL_KDF;
-	Npc_SetTrueGuild(hero,GIL_KDF);
-	CreateInvItem(hero,ITAR_KDF_L);
-	AI_PrintScreen("Легкая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+	B_SetGuild(hero,GIL_KDF);
+	B_GiveArmor(ITAR_KDF_L);
 	Fire_Contest = TRUE;
 	Snd_Play("LEVELUP");
 	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
@@ -524,8 +521,7 @@ func void DIA_Pyrokar_OATH_Info()
 	};
 	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
 	KDF_Aufnahme = LOG_SUCCESS;
-//	SLD_Aufnahme = LOG_OBSOLETE;
-//	MIL_Aufnahme = LOG_OBSOLETE;
+	B_CancelBengarMilitiaProblem();
 	B_GivePlayerXP(XP_BecomeMage);
 	if(!Npc_IsDead(Gorax))
 	{
@@ -535,30 +531,52 @@ func void DIA_Pyrokar_OATH_Info()
 	{
 		CreateInvItems(Karras,ItMi_RuneBlank,1);
 	};
-	if(!Npc_IsDead(Ulf))
-	{
-		B_StartOtherRoutine(Ulf,"BackToMonastery");
-		Ulf.aivar[AIV_DropDeadAndKill] = FALSE;
-		Ulf.aivar[AIV_NewsOverride] = FALSE;
-		Ulf.aivar[AIV_IgnoresArmor] = FALSE;
-		Ulf.aivar[AIV_IgnoresFakeGuild] = FALSE;
-	};
 	if(!Npc_IsDead(Igaraz))
 	{
-		B_StartOtherRoutine(Igaraz,"Start");
-		Igaraz.aivar[AIV_DropDeadAndKill] = FALSE;
-		Igaraz.aivar[AIV_NewsOverride] = FALSE;
-		Igaraz.aivar[AIV_IgnoresArmor] = FALSE;
-		Igaraz.aivar[AIV_IgnoresFakeGuild] = FALSE;
+		if(Npc_KnowsInfo(other,DIA_Igaraz_Stein))
+		{
+			B_RemoveNpc(NOV_601_Igaraz);
+		}
+		else
+		{
+			B_StartOtherRoutine(Igaraz,"Start");
+			Igaraz.aivar[AIV_DropDeadAndKill] = FALSE;
+			Igaraz.aivar[AIV_NewsOverride] = FALSE;
+			Igaraz.aivar[AIV_IgnoresArmor] = FALSE;
+			Igaraz.aivar[AIV_IgnoresFakeGuild] = FALSE;
+		};
+	};
+	if(!Npc_IsDead(Ulf))
+	{
+		if(Npc_KnowsInfo(other,DIA_Ulf_Abrechnung))
+		{
+			B_RemoveNpc(NOV_602_Ulf);
+		}
+		else
+		{
+			B_StartOtherRoutine(Ulf,"BackToMonastery");
+			Ulf.aivar[AIV_DropDeadAndKill] = FALSE;
+			Ulf.aivar[AIV_NewsOverride] = FALSE;
+			Ulf.aivar[AIV_IgnoresArmor] = FALSE;
+			Ulf.aivar[AIV_IgnoresFakeGuild] = FALSE;
+		};
 	};
 	if(!Npc_IsDead(Agon))
 	{
-		B_StartOtherRoutine(Nov607,"Start");
-		B_StartOtherRoutine(Agon,"Start");
-		Agon.aivar[AIV_DropDeadAndKill] = FALSE;
-		Agon.aivar[AIV_NewsOverride] = FALSE;
-		Agon.aivar[AIV_IgnoresArmor] = FALSE;
-		Agon.aivar[AIV_IgnoresFakeGuild] = FALSE;
+		if(Npc_KnowsInfo(other,DIA_Agon_GolemDead) || Npc_KnowsInfo(other,DIA_Agon_GolemLives))
+		{
+			B_RemoveNpc(NOV_603_Agon);
+			Wld_InsertNpc(VLK_4007_Agon,"CITY2");
+		}
+		else
+		{
+			B_StartOtherRoutine(Nov607,"Start");
+			B_StartOtherRoutine(Agon,"Start");
+			Agon.aivar[AIV_DropDeadAndKill] = FALSE;
+			Agon.aivar[AIV_NewsOverride] = FALSE;
+			Agon.aivar[AIV_IgnoresArmor] = FALSE;
+			Agon.aivar[AIV_IgnoresFakeGuild] = FALSE;
+		};
 	};
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_08");	//Теперь, когда ты был принят в наши ряды, ты можешь поговорить с лордом Хагеном, главнокомандующим паладинов.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_09");	//Нам также очень интересно знать, как он оценивает ситуацию. Так что ты теперь можешь отправляться в Хоринис.
@@ -671,8 +689,7 @@ func void DIA_Pyrokar_Wunsch_Nothing()
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Nothing_11_01");	//(изумленно) Да будет так. Новый маг отказывается от первого шага.
 	if(!Npc_IsDead(Dyrian))
 	{
-		Dyrian.guild = GIL_NONE;
-		Npc_SetTrueGuild(Dyrian,GIL_NONE);
+		B_SetGuild(Dyrian,GIL_NONE);
 		Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		AI_Teleport(Dyrian,"TAVERNE");
 		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
@@ -698,9 +715,6 @@ func void DIA_Pyrokar_Wunsch_Dyrian()
 	AI_Output(other,self,"DIA_Pyrokar_Wunsch_Dyrian_15_00");	//Позволь послушнику Дуриану остаться в монастыре.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Dyrian_11_01");	//Да будет так.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Dyrian_11_02");	//Этому послушнику будет позволено остаться в монастыре, и он займет место садовника, которое сейчас вакантно.
-	B_GivePlayerXP(XP_HelpDyrian);
-	B_StartOtherRoutine(Dyrian,"FAVOUR");
-	MIS_HelpDyrian = LOG_SUCCESS;
 	if(MIS_HelpOpolos == LOG_Running)
 	{
 		MIS_HelpOpolos = LOG_FAILED;
@@ -709,7 +723,9 @@ func void DIA_Pyrokar_Wunsch_Dyrian()
 	{
 		MIS_HelpBabo = LOG_FAILED;
 	};
-	B_CheckLog();
+	B_StartOtherRoutine(Dyrian,"FAVOUR");
+	MIS_HelpDyrian = LOG_SUCCESS;
+	B_GivePlayerXP(XP_HelpDyrian);
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
 };
 
@@ -718,14 +734,13 @@ func void DIA_Pyrokar_Wunsch_Babo()
 	AI_Output(other,self,"DIA_Pyrokar_Wunsch_Babo_15_00");	//Позволь послушнику Бабо возглавить монастырский сад.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Babo_11_01");	//Да будет так.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Babo_11_02");	//С сего момента послушник Бабо будет отвечать за монастырский сад.
-	B_GivePlayerXP(XP_HelpBabo);
-	B_StartOtherRoutine(Babo,"FAVOUR");
-	Dyrian.guild = GIL_NONE;
-	Npc_SetTrueGuild(Dyrian,GIL_NONE);
-	Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
-	AI_Teleport(Dyrian,"TAVERNE");
-	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
-	MIS_HelpBabo = LOG_SUCCESS;
+	if(!Npc_IsDead(Dyrian))
+	{
+		B_SetGuild(Dyrian,GIL_NONE);
+		Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		AI_Teleport(Dyrian,"TAVERNE");
+		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
+	};
 	if(MIS_HelpDyrian == LOG_Running)
 	{
 		MIS_HelpDyrian = LOG_FAILED;
@@ -734,7 +749,9 @@ func void DIA_Pyrokar_Wunsch_Babo()
 	{
 		MIS_HelpOpolos = LOG_FAILED;
 	};
-	B_CheckLog();
+	B_StartOtherRoutine(Babo,"FAVOUR");
+	MIS_HelpBabo = LOG_SUCCESS;
+	B_GivePlayerXP(XP_HelpBabo);
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
 };
 
@@ -743,14 +760,13 @@ func void DIA_Pyrokar_Wunsch_Opolos()
 	AI_Output(other,self,"DIA_Pyrokar_Wunsch_Opolos_15_00");	//Позволь послушнику Ополосу получить доступ в библиотеку.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Opolos_11_01");	//Да будет так.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Opolos_11_02");	//С сего момента послушнику Ополосу будет позволено изучать писания Инноса.
-	B_GivePlayerXP(XP_HelpOpolos);
-	B_StartOtherRoutine(Opolos,"FAVOUR");
-	Dyrian.guild = GIL_NONE;
-	Npc_SetTrueGuild(Dyrian,GIL_NONE);
-	Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
-	AI_Teleport(Dyrian,"TAVERNE");
-	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
-	MIS_HelpOpolos = LOG_SUCCESS;
+	if(!Npc_IsDead(Dyrian))
+	{
+		B_SetGuild(Dyrian,GIL_NONE);
+		Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		AI_Teleport(Dyrian,"TAVERNE");
+		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
+	};
 	if(MIS_HelpDyrian == LOG_Running)
 	{
 		MIS_HelpDyrian = LOG_FAILED;
@@ -759,7 +775,9 @@ func void DIA_Pyrokar_Wunsch_Opolos()
 	{
 		MIS_HelpBabo = LOG_FAILED;
 	};
-	B_CheckLog();
+	B_StartOtherRoutine(Opolos,"FAVOUR");
+	MIS_HelpOpolos = LOG_SUCCESS;
+	B_GivePlayerXP(XP_HelpOpolos);
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
 };
 
@@ -963,16 +981,19 @@ func void DIA_Pyrokar_Parlan_Info()
 };
 
 
+var int Pyrokar_TeachMANA_NoPerm;
+
 func void B_BuildLearnDialog_Pyrokar()
 {
-	Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
 	if(other.aivar[REAL_MANA_MAX] >= T_MEGA)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_TEACH_MANA_11_00");	//Я чувствую, как магическая энергия течет через тебя, не зная преград. Даже я не могу показать тебе, как повысить ее еще больше.
+		Pyrokar_TeachMANA_NoPerm = TRUE;
 	}
 	else
 	{
+		Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
 		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Pyrokar_TEACH_MANA_1);
 		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Pyrokar_TEACH_MANA_5);
 	};
@@ -991,7 +1012,7 @@ instance DIA_Pyrokar_TEACH_MANA(C_Info)
 
 func int DIA_Pyrokar_TEACH_MANA_Condition()
 {
-	if(((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV) || (hero.guild == GIL_PAL)) && Npc_KnowsInfo(hero,DIA_Pyrokar_Parlan))
+	if(((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV) || (hero.guild == GIL_PAL)) && Npc_KnowsInfo(hero,DIA_Pyrokar_Parlan) && (Pyrokar_TeachMANA_NoPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -1130,12 +1151,12 @@ func void DIA_Pyrokar_BACKFROMOW_Info()
 		Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
 		B_LogEntry(TOPIC_DEMENTOREN,"Пирокар рассказал мне об Ищущих, людях в черных рясах. Это приспешники Белиара. Он предупредил меня, что они могут сделать меня одержимым. Если это произойдет, я должен немедленно возвращаться в монастырь.");
-	};
-	if(!Npc_IsDead(Karras) && (hero.guild == GIL_KDF))
-	{
-		AI_Output(self,other,"DIA_Pyrokar_BACKFROMOW_11_09");	//Я попросил Карраса заняться этим вопросом. Ему наверняка скоро удастся лучше понять эту проблему, что позволит нам видеть яснее.
-		PyrokarToldKarrasToResearchDMT = TRUE;
-		B_LogEntry(TOPIC_DEMENTOREN,"Пирокар приказал Каррасу ликвидировать угрозу, исходящую от Ищущих.");
+		if(!Npc_IsDead(Karras))
+		{
+			AI_Output(self,other,"DIA_Pyrokar_BACKFROMOW_11_09");	//Я попросил Карраса заняться этим вопросом. Ему наверняка скоро удастся лучше понять эту проблему, что позволит нам видеть яснее.
+			PyrokarToldKarrasToResearchDMT = TRUE;
+			Log_AddEntry(TOPIC_DEMENTOREN,"Пирокар приказал Каррасу ликвидировать угрозу, исходящую от Ищущих.");
+		};
 	};
 	AI_Output(self,other,"DIA_Pyrokar_Add_11_00");	//Вот - эта руна всегда перенесет тебя прямо в монастырь, если тебе понадобится помощь.
 	B_GiveInvItems(self,other,ItRu_TeleportMonastery,1);
@@ -1285,7 +1306,7 @@ func void DIA_Pyrokar_FOUNDINNOSEYE_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
+		DIA_Common_InnosEyeBroken();
 	};
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_11_01");	//Но... этого не может быть. Что произошло?
 	AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_15_02");	//Его заполучили в свои руки заказчики весьма отвратительного вида. Так получилось, что я прибыл слишком поздно.
@@ -1506,8 +1527,7 @@ func void DIA_Pyrokar_AUGEGEHEILT_Info()
 		AI_Output(self,other,"DIA_Pyrokar_AUGEGEHEILT_11_03");	//Ты уже неоднократно доказал, что готов к вступлению в Высший Орден Магов Огня.
 		AI_Output(self,other,"DIA_Pyrokar_AUGEGEHEILT_11_04");	//С этого дня ты являешься членом Совета и будешь представлять наш Орден по всему свету. Теперь ты один из высших Магов Огня.
 		AI_Output(self,other,"DIA_Pyrokar_AUGEGEHEILT_11_05");	//Носи эту священную робу с достоинством и неси в мир порядок, честь и славу, брат мой.
-		CreateInvItem(hero,ITAR_KDF_H);
-		AI_PrintScreen("Тяжелая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveArmor(ITAR_KDF_H);
 //		heroGIL_KDF2 = TRUE;
 	};
 };
@@ -1558,10 +1578,6 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	B_LogEntry(TOPIC_DRACHENJAGD,"Теперь я готов к встрече с драконами. Глаз Инноса поможет мне уничтожить их. Но прежде чем вступать в битву с драконами, я должен не забыть надеть его. Я должен поговорить с драконами, прежде чем начинать сражение. Проблема состоит в том, что Глаз теряет свою силу каждый раз, когда я разговариваю с одним из них. Чтобы восстановить силу этого амулета, мне необходимо сердце дракона и пустая мензурка. Я должен объединить ослабленный камень и экстракт из драконьего сердца на алхимическом столе, прежде чем противостоять другому дракону.");
 	MIS_ReadyforChapter4 = TRUE;
 	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
-	if(StartChapter4InNewWorld == TRUE)
-	{
-		B_Kapitelwechsel(4,NEWWORLD_ZEN);
-	};
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
 };
@@ -1621,7 +1637,7 @@ func void DIA_Pyrokar_BUCHDERBESSENEN_Info()
 		AI_Output(other,self,"DIA_Pyrokar_BUCHDERBESSENEN_15_15");	//А от их ментальных атак нет никакой защиты?
 		AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_16");	//Защита возможна. Каррас может знать что-нибудь об этом.
 		Pyrokar_AskKarrasAboutDMTAmulett = TRUE;
-		B_LogEntry(TOPIC_DEMENTOREN,"Каррас должен помочь мне найти защиту от ментальных атак Ищущих.");
+		Log_AddEntry(TOPIC_DEMENTOREN,"Каррас должен помочь мне найти защиту от ментальных атак Ищущих.");
 	};
 };
 
@@ -1736,6 +1752,8 @@ func void DIA_Pyrokar_SCOBSESSED_nein()
 };
 
 
+var int DIA_Pyrokar_AlmanachBringen_OneTime;
+
 instance DIA_Pyrokar_AlmanachBringen(C_Info)
 {
 	npc = KDF_500_Pyrokar;
@@ -1755,34 +1773,24 @@ func int DIA_Pyrokar_AlmanachBringen_Condition()
 	};
 };
 
-
-var int DIA_Pyrokar_AlmanachBringen_OneTime;
-
 func void DIA_Pyrokar_AlmanachBringen_Info()
 {
 	var int AlmanachCount;
-	var int XP_KDF_BringAlmanachs;
 	var int AlmanachGeld;
-	var int PyrokarsAlmanachOffer;
 	AI_Output(other,self,"DIA_Pyrokar_AlmanachBringen_15_00");	//Я могу рассказать еще кое-что об этих одержимых.
 	AI_Output(self,other,"DIA_Pyrokar_AlmanachBringen_11_01");	//Говори, брат.
-	PyrokarsAlmanachOffer = 400;
 	AlmanachCount = Npc_HasItems(other,ITWR_DementorObsessionBook_MIS);
 	if(AlmanachCount == 1)
 	{
 		AI_Output(other,self,"DIA_Pyrokar_AlmanachBringen_15_02");	//Я нашел еще один альманах.
-		B_GivePlayerXP(XP_KDF_BringAlmanach);
-		B_GiveInvItems(other,self,ITWR_DementorObsessionBook_MIS,1);
-		AlmanachCounter += 1;
 	}
 	else
 	{
 		AI_Output(other,self,"DIA_Pyrokar_AlmanachBringen_15_03");	//Я нашел еще несколько книг Ищущих.
-		B_GiveInvItems(other,self,ITWR_DementorObsessionBook_MIS,AlmanachCount);
-		XP_KDF_BringAlmanachs = AlmanachCount * XP_KDF_BringAlmanach;
-		AlmanachCounter += AlmanachCount;
-		B_GivePlayerXP(XP_KDF_BringAlmanachs);
 	};
+	B_GiveInvItems(other,self,ITWR_DementorObsessionBook_MIS,AlmanachCount);
+	B_GivePlayerXP(AlmanachCount * XP_KDF_BringAlmanach);
+	AlmanachCounter += AlmanachCount;
 	if(AlmanachCounter <= 5)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_AlmanachBringen_11_04");	//Это хорошо. Боюсь, впрочем, что это далеко не все. Продолжай поиски.

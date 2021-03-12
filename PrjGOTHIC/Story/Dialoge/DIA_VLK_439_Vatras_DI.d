@@ -196,7 +196,7 @@ func void DIA_Vatras_DI_PEDROTOT_Info()
 	{
 		AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_01");	//Он мертв.
 		AI_Output(self,other,"DIA_Vatras_DI_PEDROTOT_05_02");	//Я крайне разочарован. Я не ожидал этого от тебя.
-		AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_03");	//Что ты имеешь в виду?
+		DIA_Common_WhatDoYouMean();
 		AI_Output(self,other,"DIA_Vatras_DI_PEDROTOT_05_04");	//Я знаю о твоем отвратительном соглашении с Серпентесом. Я глубоко потрясен тем, что так ошибался в тебе.
 		DIA_Vatras_DI_PEDROTOT_VatrasSucked = TRUE;
 		AI_StopProcessInfos(self);
@@ -272,7 +272,7 @@ func void DIA_Vatras_DI_Talente_Info()
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,"Круги магии",DIA_Vatras_DI_Talente_CIRCLES);
 	};
-	Info_AddChoice(DIA_Vatras_DI_Talente,"Алхимия",DIA_Vatras_DI_Talente_ALCHIMIE);
+	Info_AddChoice(DIA_Vatras_DI_Talente,NAME_Skill_Alchemy,DIA_Vatras_DI_Talente_ALCHIMIE);
 };
 
 func void DIA_Vatras_DI_Talente_CIRCLES()

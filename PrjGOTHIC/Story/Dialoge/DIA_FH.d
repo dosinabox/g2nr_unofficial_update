@@ -16,13 +16,13 @@ func void Change_FH_Visual()
 	if(FH_SkinTexture < 0)
 	{
 		FH_SkinTexture = 0;
-		PrintScreen("Нет лиц с отрицательными номерами!",-1,-1,"FONT_OLD_10_WHITE.TGA",2);
+		PrintScreen("Нет лиц с отрицательными номерами!",-1,-1,FONT_ScreenSmall,2);
 	};
 	B_SetNpcVisual(self,sex,FH_HeadMesh,FH_SkinTexture,BodyTex_N,NO_ARMOR);
-	PrintScreen("Текстура кожи:",-1,10,"FONT_OLD_10_WHITE.TGA",4);
-	PrintScreen(IntToString(FH_SkinTexture),-1,12,"FONT_OLD_10_WHITE.TGA",2);
-	PrintScreen("Меш головы:",-1,20,"FONT_OLD_10_WHITE.TGA",2);
-	PrintScreen(FH_HeadMesh,-1,22,"FONT_OLD_10_WHITE.TGA",2);
+	PrintScreen("Текстура лица:",-1,10,FONT_ScreenSmall,2);
+	PrintScreen(IntToString(FH_SkinTexture),-1,12,FONT_ScreenSmall,2);
+	PrintScreen("Меш головы:",-1,20,FONT_ScreenSmall,2);
+	PrintScreen(FH_HeadMesh,-1,22,FONT_ScreenSmall,2);
 };
 
 
@@ -158,6 +158,8 @@ func int DIA_FH_ResetFace_Condition()
 
 func void DIA_FH_ResetFace_Info()
 {
+	sex = MALE;
+	FH_HeadMesh = "Hum_Head_Bald";
 	FH_SkinTexture = 0;
 	Change_FH_Visual();
 };
@@ -257,7 +259,7 @@ func int DIA_FH_Choose_HeadMesh_Condition()
 func void DIA_FH_Choose_HeadMesh_Info()
 {
 	Info_ClearChoices(DIA_FH_Choose_HeadMesh);
-	Info_AddChoice(DIA_FH_Choose_HeadMesh,"Назад",DIA_FH_Choose_HeadMesh_7);
+	Info_AddChoice(DIA_FH_Choose_HeadMesh,Dialog_Back,DIA_FH_Choose_HeadMesh_7);
 	Info_AddChoice(DIA_FH_Choose_HeadMesh,"Hum_Head_Psionic",DIA_FH_Choose_HeadMesh_6);
 	Info_AddChoice(DIA_FH_Choose_HeadMesh,"Hum_Head_Thief",DIA_FH_Choose_HeadMesh_5);
 	Info_AddChoice(DIA_FH_Choose_HeadMesh,"Hum_Head_Bald",DIA_FH_Choose_HeadMesh_4);

@@ -21,38 +21,38 @@ func void DIA_Cassia_EXIT_Info()
 };
 
 
-instance DIA_Cassia_PICKME(C_Info)
+instance DIA_Cassia_PICKPOCKET(C_Info)
 {
 	npc = VLK_447_Cassia;
 	nr = 900;
-	condition = DIA_Cassia_PICKME_Condition;
-	information = DIA_Cassia_PICKME_Info;
+	condition = DIA_Cassia_PICKPOCKET_Condition;
+	information = DIA_Cassia_PICKPOCKET_Info;
 	permanent = TRUE;
 	description = Pickpocket_100_Female;
 };
 
 
-func int DIA_Cassia_PICKME_Condition()
+func int DIA_Cassia_PICKPOCKET_Condition()
 {
 	return C_Beklauen(100,400);
 };
 
-func void DIA_Cassia_PICKME_Info()
+func void DIA_Cassia_PICKPOCKET_Info()
 {
-	Info_ClearChoices(DIA_Cassia_PICKME);
-	Info_AddChoice(DIA_Cassia_PICKME,Dialog_Back,DIA_Cassia_PICKME_BACK);
-	Info_AddChoice(DIA_Cassia_PICKME,DIALOG_PICKPOCKET,DIA_Cassia_PICKME_DoIt);
+	Info_ClearChoices(DIA_Cassia_PICKPOCKET);
+	Info_AddChoice(DIA_Cassia_PICKPOCKET,Dialog_Back,DIA_Cassia_PICKPOCKET_BACK);
+	Info_AddChoice(DIA_Cassia_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Cassia_PICKPOCKET_DoIt);
 };
 
-func void DIA_Cassia_PICKME_DoIt()
+func void DIA_Cassia_PICKPOCKET_DoIt()
 {
 	B_Beklauen();
-	Info_ClearChoices(DIA_Cassia_PICKME);
+	Info_ClearChoices(DIA_Cassia_PICKPOCKET);
 };
 
-func void DIA_Cassia_PICKME_BACK()
+func void DIA_Cassia_PICKPOCKET_BACK()
 {
-	Info_ClearChoices(DIA_Cassia_PICKME);
+	Info_ClearChoices(DIA_Cassia_PICKPOCKET);
 };
 
 
@@ -81,8 +81,8 @@ func void DIA_Cassia_Gilde_Info()
 	{
 		AI_Output(self,other,"DIA_Cassia_Gilde_16_00");	//Я вижу, ты стал служителем закона и порядка.
 		AI_Output(self,other,"DIA_Cassia_Gilde_16_01");	//Но то, что ты теперь служишь Инносу, для нас значения не имеет. Ты один из нас. И я надеюсь, что ты это тоже понимаешь.
-	};
-	if(other.guild == GIL_KDF)
+	}
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Cassia_Gilde_16_02");	//Так ты теперь служитель церкви Инноса? Отлично. Но ты помимо этого один из нас - надеюсь, ты никогда это не забудешь.
 	};
@@ -138,7 +138,7 @@ func int DIA_Cassia_News_Condition()
 
 func void DIA_Cassia_News_Info()
 {
-	if(MIS_ThiefGuild_sucked == FALSE)
+	if(Attila_Key == TRUE)
 	{
 		AI_Output(self,other,"DIA_Cassia_News_16_00");	//Я вижу, ты получил наш подарок. Я Кассия.
 		AI_Output(other,self,"DIA_Cassia_News_15_01");	//Хорошо, Кассия. Теперь скажи мне, зачем я здесь?
@@ -147,21 +147,23 @@ func void DIA_Cassia_News_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Cassia_News_16_04");	//Только посмотрите, кто нашел дорогу сюда. Аттила недооценил тебя. Но я не сделаю такой ошибки.
-		if((Betrayal_Halvor == TRUE) || (Rengaru_InKnast == TRUE) || (Nagur_Ausgeliefert == TRUE))
+		if(Npc_KnowsInfo(other,DIA_Kardif_SENDATTILA))
 		{
-			AI_Output(other,self,"DIA_Cassia_News_15_05");	//Что это за игры?
-			AI_Output(self,other,"DIA_Cassia_News_16_06");	//Мы хотели, чтобы ты умер за то, что сдал одного из наших друзей. Вот почему мы послали Аттилу.
+			AI_Output(self,other,"DIA_Cassia_News_16_04");	//Только посмотрите, кто нашел дорогу сюда. Аттила недооценил тебя. Но я не сделаю такой ошибки.
+			if((Betrayal_Halvor == TRUE) || (Rengaru_InKnast == TRUE) || (Nagur_Ausgeliefert == TRUE))
+			{
+				AI_Output(other,self,"DIA_Cassia_News_15_05");	//Что это за игры?
+				AI_Output(self,other,"DIA_Cassia_News_16_06");	//Мы хотели, чтобы ты умер за то, что сдал одного из наших друзей. Вот почему мы послали Аттилу.
+			};
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Cassia_News_16_04_add");	//Только посмотрите, кто нашел дорогу сюда.
 		};
 		AI_Output(self,other,"DIA_Cassia_News_16_07");	//Твое присутствие здесь, однако, открывает новые возможности...
 		AI_Output(other,self,"DIA_Cassia_News_15_08");	//Что ты хочешь предложить мне?
 		AI_Output(self,other,"DIA_Cassia_News_16_09");	//Ты можешь присоединиться к нам.
 	};
-	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
-	{
-		Cassia_Gildencheck = TRUE;
-	};
-	DG_gefunden = TRUE;
 };
 
 
@@ -379,13 +381,17 @@ func void DIA_Cassia_beweisen_Info()
 func void B_AgreedToJoinThiefs()
 {
 	Log_CreateTopic(Topic_Diebesgilde,LOG_NOTE);
-	B_LogEntry(Topic_Diebesgilde,"Я согласился работать с городской гильдией воров. Теперь мне предстоит испытание.");
+	B_LogEntries(Topic_Diebesgilde,"Я согласился работать с городской гильдией воров. Теперь мне предстоит испытание.");
 	if(Npc_KnowsInfo(other,DIA_Cassia_Lernen))
 	{
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher,"Кассия может обучить меня карманному воровству и помочь мне стать более ловким.");
+		B_LogNextEntry(TOPIC_CityTeacher,"Кассия может обучить меня карманному воровству и помочь мне стать более ловким.");
 		Log_AddEntry(TOPIC_CityTeacher,"Рамирез может обучить меня пользоваться отмычками.");
 		Log_AddEntry(TOPIC_CityTeacher,"Джеспер может обучить меня красться.");
+	};
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+	{
+		Cassia_Gildencheck = TRUE;
 	};
 	Join_Thiefs = TRUE;
 	Cassia_Frist = FALSE;
@@ -516,7 +522,7 @@ func void DIA_Cassia_BevorLernen_Info()
 	{
 		AI_Output(self,other,"DIA_Cassia_BevorLernen_16_02");	//Конечно. Карманное воровство и ловкость обойдутся тебе по 100 золотых монет.
 		Info_ClearChoices(DIA_Cassia_BevorLernen);
-		Info_AddChoice(DIA_Cassia_BevorLernen,"Ну, может быть, позже...",DIA_Cassia_BevorLernen_Spaeter);
+		Info_AddChoice(DIA_Cassia_BevorLernen,"Может быть, позже...",DIA_Cassia_BevorLernen_Spaeter);
 		if((Cassia_TeachPickpocket == FALSE) && !Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 		{
 			Info_AddChoice(DIA_Cassia_BevorLernen,"Я хочу научиться карманному воровству. (заплатить 100 золотых)",DIA_Cassia_BevorLernen_Pickpocket);
@@ -621,18 +627,18 @@ func void DIA_Cassia_TEACH_5()
 	};
 };
 
-instance DIA_Cassia_Pickpocket(C_Info)
+instance DIA_Cassia_PickMe(C_Info)
 {
 	npc = VLK_447_Cassia;
 	nr = 10;
-	condition = DIA_Cassia_Pickpocket_Condition;
-	information = DIA_Cassia_Pickpocket_Info;
+	condition = DIA_Cassia_PickMe_Condition;
+	information = DIA_Cassia_PickMe_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Карманная кража",B_GetLearnCostTalent(other,NPC_TALENT_PICKPOCKET,1));
+	description = B_BuildLearnString(NAME_Skill_PickPocket,B_GetLearnCostTalent(other,NPC_TALENT_PICKPOCKET,1));
 };
 
 
-func int DIA_Cassia_Pickpocket_Condition()
+func int DIA_Cassia_PickMe_Condition()
 {
 	if((Cassia_TeachPickpocket == TRUE) && !Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 	{
@@ -640,7 +646,7 @@ func int DIA_Cassia_Pickpocket_Condition()
 	};
 };
 
-func void DIA_Cassia_Pickpocket_Info()
+func void DIA_Cassia_PickMe_Info()
 {
 	AI_Output(other,self,"DIA_Cassia_Pickpocket_15_00");	//Научи меня карманному воровству.
 	if(B_TeachThiefTalent(self,other,NPC_TALENT_PICKPOCKET))

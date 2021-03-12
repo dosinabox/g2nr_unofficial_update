@@ -21,6 +21,14 @@ func void DIA_Mil_333_Stadtwache_EXIT_Info()
 };
 
 
+func void B_CitySecondGatesPass()
+{
+	self.aivar[AIV_PASSGATE] = TRUE;
+	Stadtwache_310.aivar[AIV_PASSGATE] = TRUE;
+	Mil_333_schonmalreingelassen = TRUE;
+	B_CheckLog();
+};
+
 const string Mil_333_Checkpoint = "NW_CITY_MERCHANT_PATH_29";
 
 var int MIL_333_Personal_AbsolutionLevel;
@@ -80,7 +88,7 @@ func void DIA_Mil_333_Stadtwache_FirstWarn_Info()
 	}
 	else
 	{
-		if(!Npc_HasEquippedArmor(other) || C_BAUCheck(other))
+		if(!Npc_HasEquippedArmor(other) || (VisibleGuild(other) == GIL_BAU))
 		{
 			AI_Output(other,self,"DIA_Mil_333_Stadtwache_FirstWarn_15_07");	//Да?
 			AI_Output(self,other,"DIA_Mil_333_Stadtwache_FirstWarn_06_08");	//Ты похож на нищего. В этом городе нам не нужны люди, у которых нет денег.
@@ -89,7 +97,7 @@ func void DIA_Mil_333_Stadtwache_FirstWarn_Info()
 				AI_Output(other,self,"DIA_Mil_333_Stadtwache_FirstWarn_15_09");	//Но у меня есть пропуск!
 				AI_Output(self,other,"DIA_Mil_333_Stadtwache_FirstWarn_06_10");	//Он годен только для других ворот!
 			};
-			if(Npc_KnowsInfo(other,DIA_Mil_310_Stadtwache_MilizWerden))
+			if(Npc_KnowsInfo(other,DIA_Mil_310_Stadtwache_MilizWerden) && (other.guild == GIL_NONE))
 			{
 				AI_Output(other,self,"DIA_Mil_333_Stadtwache_FirstWarn_15_11");	//Но я хочу вступить в городскую стражу!
 				AI_Output(self,other,"DIA_Mil_333_Stadtwache_FirstWarn_06_12");	//Ха! Не смеши меня! Иди к другим воротам и попробуй рассказать это там.
@@ -101,10 +109,7 @@ func void DIA_Mil_333_Stadtwache_FirstWarn_Info()
 		{
 			AI_Output(other,self,"DIA_Mil_333_Stadtwache_FirstWarn_15_15");	//(спокойно) Что?
 			AI_Output(self,other,"DIA_Mil_333_Stadtwache_FirstWarn_06_16");	//Я просто хотел посмотреть на тебя. Ох, да похоже, у тебя есть деньги. Проходи.
-			self.aivar[AIV_PASSGATE] = TRUE;
-			Stadtwache_310.aivar[AIV_PASSGATE] = TRUE;
-			Mil_333_schonmalreingelassen = TRUE;
-			B_CheckLog();
+			B_CitySecondGatesPass();
 			AI_StopProcessInfos(self);
 		};
 	};
@@ -199,10 +204,7 @@ func void DIA_Mil_333_Stadtwache_Bribe_Info()
 		{
 			AI_Output(self,other,"DIA_Mil_333_Stadtwache_Bribe_06_02");	//И сразу иди к Андрэ! Или я в следующий раз опять возьму с тебя 100 золотых!
 		};
-		self.aivar[AIV_PASSGATE] = TRUE;
-		Stadtwache_310.aivar[AIV_PASSGATE] = TRUE;
-		Mil_333_schonmalreingelassen = TRUE;
-		B_CheckLog();
+		B_CitySecondGatesPass();
 		MIL_333_Personal_AbsolutionLevel = B_GetCurrentAbsolutionLevel(self) + 1;
 	}
 	else

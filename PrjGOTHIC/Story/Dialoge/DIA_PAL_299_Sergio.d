@@ -125,6 +125,7 @@ func void DIA_Sergio_Aufgabe_Info()
 	AI_Output(self,other,"DIA_Sergio_Aufgabe_04_02");	//Но я могу помочь тебе. Иди к мастеру Исгароту и поговори с ним. Я слышал, ему нужна помощь и собирался сам помочь ему, но я поручаю эту задачу тебе.
 	Sergio_Sends = TRUE;
 	Wld_InsertNpc(BlackWolf,"NW_PATH_TO_MONASTER_AREA_01");
+	B_InitNpcGlobals();
 	Log_CreateTopic(Topic_IsgarothWolf,LOG_MISSION);
 	Log_SetTopicStatus(Topic_IsgarothWolf,LOG_Running);
 	MIS_IsgarothWolf = LOG_Running;

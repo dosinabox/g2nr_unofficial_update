@@ -337,7 +337,7 @@ instance DLC_DAY_FGT(C_MUSICTHEME_FIGHT)
 
 instance KAS_DAY_STD(C_MUSICTHEME_STANDARD)
 {
-	file = "kas_daystd.sgt";
+	file = "kas_loop_daystd.sgt";
 };
 
 instance KHO_DAY_STD(C_MUSICTHEME_STANDARD)

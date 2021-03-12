@@ -552,16 +552,19 @@ func void DIA_MiltenOW_Teach_Light()
 	B_TeachPlayerTalentRunes(self,other,SPL_Light);
 };
 
+var int Milten_OW_TeachMANA_NoPerm;
+
 func void B_BuildLearnDialog_Milten_OW()
 {
-	Info_ClearChoices(DIA_MiltenOW_Mana);
-	Info_AddChoice(DIA_MiltenOW_Mana,Dialog_Back,DIA_MiltenOW_Mana_BACK);
 	if(other.aivar[REAL_MANA_MAX] >= T_MED)
 	{
 		AI_Output(self,other,"DIA_MiltenOW_Mana_03_00");	//Твоя магическая энергия велика. Слишком велика, чтобы я мог увеличить ее.
+		Milten_OW_TeachMANA_NoPerm = TRUE;
 	}
 	else
 	{
+		Info_ClearChoices(DIA_MiltenOW_Mana);
+		Info_AddChoice(DIA_MiltenOW_Mana,Dialog_Back,DIA_MiltenOW_Mana_BACK);
 		Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_MiltenOW_Mana_1);
 		Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_MiltenOW_Mana_5);
 	};
@@ -580,7 +583,7 @@ instance DIA_MiltenOW_Mana(C_Info)
 
 func int DIA_MiltenOW_Mana_Condition()
 {
-	if((other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_MiltenOW_Lehren) && (Kapitel == 2))
+	if((other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_MiltenOW_Lehren) && (Kapitel == 2) && (Milten_OW_TeachMANA_NoPerm == FALSE))
 	{
 		return TRUE;
 	};

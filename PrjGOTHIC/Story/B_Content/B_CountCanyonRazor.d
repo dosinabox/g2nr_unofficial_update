@@ -15,63 +15,43 @@ func int C_AllCanyonRazorDead()
 
 func int C_IAmCanyonRazor(var C_Npc slf)
 {
-	var C_Npc raz01;
-	var C_Npc raz02;
-	var C_Npc raz03;
-	var C_Npc raz04;
-	var C_Npc raz05;
-	var C_Npc raz06;
-	var C_Npc raz07;
-	var C_Npc raz08;
-	var C_Npc raz09;
-	var C_Npc raz10;
-	raz01 = Hlp_GetNpc(CanyonRazor01);
-	raz02 = Hlp_GetNpc(CanyonRazor02);
-	raz03 = Hlp_GetNpc(CanyonRazor03);
-	raz04 = Hlp_GetNpc(CanyonRazor04);
-	raz05 = Hlp_GetNpc(CanyonRazor05);
-	raz06 = Hlp_GetNpc(CanyonRazor06);
-	raz07 = Hlp_GetNpc(CanyonRazor07);
-	raz08 = Hlp_GetNpc(CanyonRazor08);
-	raz09 = Hlp_GetNpc(CanyonRazor09);
-	raz10 = Hlp_GetNpc(CanyonRazor10);
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz01))
+	if(C_IsNpc(slf,CanyonRazor01))
 	{
 		return TRUE;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz02))
+	else if(C_IsNpc(slf,CanyonRazor02))
 	{
 		return TRUE;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz03))
+	else if(C_IsNpc(slf,CanyonRazor03))
 	{
 		return TRUE;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz04))
+	else if(C_IsNpc(slf,CanyonRazor04))
 	{
 		return TRUE;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz05))
+	else if(C_IsNpc(slf,CanyonRazor05))
 	{
 		return TRUE;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz06))
+	else if(C_IsNpc(slf,CanyonRazor06))
 	{
 		return TRUE;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz07))
+	else if(C_IsNpc(slf,CanyonRazor07))
 	{
 		return TRUE;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz08))
+	else if(C_IsNpc(slf,CanyonRazor08))
 	{
 		return TRUE;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz09))
+	else if(C_IsNpc(slf,CanyonRazor09))
 	{
 		return TRUE;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz10))
+	else if(C_IsNpc(slf,CanyonRazor10))
 	{
 		return TRUE;
 	};

@@ -165,8 +165,8 @@ func void DIA_Elena_AUFGABE_Info()
 	AI_Output(other,self,"DIA_Elena_AUFGABE_15_00");	//А чем ты занимаешься?
 	AI_Output(self,other,"DIA_Elena_AUFGABE_16_01");	//Я продаю то, что мы выращиваем на ферме. Если захочешь купить что-нибудь, дай мне знать.
 	AI_Output(self,other,"DIA_Elena_AUFGABE_16_02");	//Но я хочу предупредить тебя. Я не люблю торговаться и не потерплю воровства. Понятно?
-	Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-	B_LogEntry(Topic_SoldierTrader,"Елена продает товары на ферме Онара.");
+	Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
+	B_LogEntry(TOPIC_SoldierTrader,"Елена продает товары на ферме Онара.");
 };
 
 

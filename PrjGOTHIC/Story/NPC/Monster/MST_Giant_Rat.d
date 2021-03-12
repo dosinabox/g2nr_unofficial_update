@@ -51,14 +51,10 @@ instance YGiant_Rat(Mst_Default_Giant_Rat)
 	attribute[ATR_DEXTERITY] = 5;
 	attribute[ATR_HITPOINTS_MAX] = 10;
 	attribute[ATR_HITPOINTS] = 10;
-	attribute[ATR_MANA_MAX] = 0;
-	attribute[ATR_MANA] = 0;
 	protection[PROT_BLUNT] = 5;
 	protection[PROT_EDGE] = 5;
-	protection[PROT_POINT] = 5;
 	protection[PROT_FIRE] = 5;
 	protection[PROT_FLY] = 5;
-	protection[PROT_MAGIC] = 0;
 	fight_tactic = FAI_MONSTER_COWARD;
 	B_SetVisuals_Giant_Rat();
 	Mdl_SetModelScale(self,0.9,0.9,0.9);

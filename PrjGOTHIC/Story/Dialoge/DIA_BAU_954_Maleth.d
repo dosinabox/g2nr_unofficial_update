@@ -214,7 +214,7 @@ func void DIA_Maleth_ToTheCity_Info()
 		Log_SetTopicStatus(TOPIC_City,LOG_Running);
 		B_LogEntry(TOPIC_City,"„тобы попасть в город, € могу сказать стражникам у ворот, что € иду с фермы Ћобарта и хочу повидать кузнеца.");
 	};
-	if(!C_BAUCheck(other))
+	if(VisibleGuild(other) != GIL_BAU)
 	{
 		AI_Output(self,other,"DIA_Maleth_ToTheCity_08_06");	//Ќо это тебе не поможет. “ы не похож на фермера.
 		Log_AddEntry(TOPIC_City," онечно, € должен быть похож на фермера.");
@@ -495,81 +495,6 @@ func void DIA_Maleth_PERM3_Info()
 	AI_StopProcessInfos(self);
 };
 
-/*
-instance DIA_Maleth_KAP4_EXIT(C_Info)
-{
-	npc = BAU_954_Maleth;
-	nr = 999;
-	condition = DIA_Maleth_KAP4_EXIT_Condition;
-	information = DIA_Maleth_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Maleth_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Maleth_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Maleth_KAP5_EXIT(C_Info)
-{
-	npc = BAU_954_Maleth;
-	nr = 999;
-	condition = DIA_Maleth_KAP5_EXIT_Condition;
-	information = DIA_Maleth_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Maleth_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Maleth_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Maleth_KAP6_EXIT(C_Info)
-{
-	npc = BAU_954_Maleth;
-	nr = 999;
-	condition = DIA_Maleth_KAP6_EXIT_Condition;
-	information = DIA_Maleth_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Maleth_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Maleth_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Maleth_PICKPOCKET(C_Info)
 {

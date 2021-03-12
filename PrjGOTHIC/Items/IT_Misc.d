@@ -720,7 +720,7 @@ instance ItMi_ApfelTabak(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = VALUE_ItMi_ApfelTabak;
-	visual = "ItMi_FoodPocket.3ds";
+	visual = "ItMi_TabakPocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = " исет с €блочным табаком.";
@@ -735,7 +735,7 @@ instance ItMi_PilzTabak(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = VALUE_ItMi_PilzTabak;
-	visual = "ItMi_FoodPocket.3ds";
+	visual = "ItMi_TabakPocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = "“емный €блочно-грибной табак.";
@@ -750,7 +750,7 @@ instance ItMi_DoppelTabak(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = VALUE_ItMi_DoppelTabak;
-	visual = "ItMi_FoodPocket.3ds";
+	visual = "ItMi_TabakPocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = "Ќа вкус похоже на €блоко...";
@@ -765,7 +765,7 @@ instance ItMi_Honigtabak(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = VALUE_ItMi_HonigTabak;
-	visual = "ItMi_FoodPocket.3ds";
+	visual = "ItMi_TabakPocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = "—ладкий €блочный табак.";
@@ -780,7 +780,7 @@ instance ItMi_SumpfTabak(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = VALUE_ItMi_SumpfTabak;
-	visual = "ItMi_FoodPocket.3ds";
+	visual = "ItMi_TabakPocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = "—месь из болотной травы.";

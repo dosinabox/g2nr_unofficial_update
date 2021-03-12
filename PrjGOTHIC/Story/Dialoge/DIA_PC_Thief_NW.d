@@ -203,7 +203,7 @@ func void DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold()
 	AI_Output(other,self,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold_15_03");	//Как я опознаю его?
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold_11_04");	//Он полон золота. Доверху полон!
 	Info_AddChoice(DIA_DiegoNW_NeedHelp,"Я попытаюсь найти твое золото.",DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold_End_TryIt);
-	B_LogEntry(TOPIC_HelpDiegoNW,"Золото Диего находится где-то на старой торговой площади, там, где товары переправлялись в колонию по канатной дороге, над заброшенной шахтой.");
+	B_LogEntry(TOPIC_HelpDiegoNW,"Золото Диего находится где-то на старой торговой площади, там, где товары переправлялись в колонию по канатной дороге, неподалеку от заброшенной шахты.");
 };
 
 func void DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold_End_TryIt()
@@ -435,6 +435,11 @@ func void DIA_DiegoNW_CanYouTeach_Info()
 	if(Npc_KnowsInfo(other,DIA_DiegoNW_DeliveredLetter))
 	{
 		AI_Output(self,other,"DIA_DiegoNW_CanYouTeach_11_01");	//Да, конечно. Дай мне знать, когда будешь готов.
+		if(DiegoOW_Teach == FALSE)
+		{
+			Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_CityTeacher,"Диего может помочь мне повысить мою ловкость и силу.");
+		};
 		Diego_Teach = TRUE;
 	}
 	else
@@ -577,11 +582,9 @@ func void DIA_DiegoNW_KnowWhereEnemy_Info()
 
 func void DIA_DiegoNW_KnowWhereEnemy_Yes()
 {
-	var C_Item DiegoArmor;
-	DiegoArmor = Npc_GetEquippedArmor(self);
 	AI_Output(other,self,"DIA_DiegoNW_KnowWhereEnemy_Yes_15_00");	//Почему бы тебе не отправиться в путь со мной? Встретимся у гавани.
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_01");	//Хм-м, ты прав, в Хоринисе все равно нечего делать. Я поплыву с тобой.
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23") && !Hlp_IsItem(DiegoArmor,ITAR_Diego))
+	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23") && !ArmorEquipped(self,ITAR_Diego))
 	{
 		AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_02");	//Подожди, я буду готов через минуту.
 		AI_SetWalkMode(self,NPC_RUN);
@@ -628,8 +631,6 @@ func int DIA_DiegoNW_LeaveMyShip_Condition()
 
 func void DIA_DiegoNW_LeaveMyShip_Info()
 {
-	var C_Item DiegoArmor;
-	DiegoArmor = Npc_GetEquippedArmor(self);
 	AI_Output(other,self,"DIA_DiegoNW_LeaveMyShip_15_00");	//Ты должен заботиться о городе.
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_01");	//Да? Я тебе больше не нужен? Ох, ладно. Не забудь заглянуть ко мне, когда вернешься в город.
 	AI_Output(other,self,"DIA_DiegoNW_LeaveMyShip_15_02");	//Ты думаешь, мы еще встретимся?
@@ -639,7 +640,7 @@ func void DIA_DiegoNW_LeaveMyShip_Info()
 	{
 		CreateInvItems(self,ITAR_Vlk_H,1);
 	};
-	if(!Hlp_IsItem(DiegoArmor,ITAR_Vlk_H))
+	if(!ArmorEquipped(self,ITAR_Vlk_H))
 	{
 		AI_EquipArmor(self,ITAR_Vlk_H);
 	};
@@ -685,8 +686,6 @@ func int DIA_DiegoNW_StillNeedYou_Condition()
 
 func void DIA_DiegoNW_StillNeedYou_Info()
 {
-	var C_Item DiegoArmor;
-	DiegoArmor = Npc_GetEquippedArmor(self);
 	if(Diego_WasOnBoard == TRUE)
 	{
 		AI_Output(other,self,"DIA_DiegoNW_StillNeedYou_15_00");	//Возвращайся. Я хочу, чтобы ты сопровождал меня.
@@ -694,9 +693,9 @@ func void DIA_DiegoNW_StillNeedYou_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Sylvio_DUHIER_15_00");	//Мне не помешала бы твоя помощь.
+		DIA_Common_INeedYourHelp();
 	};
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23") && !Hlp_IsItem(DiegoArmor,ITAR_Diego))
+	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23") && !ArmorEquipped(self,ITAR_Diego))
 	{
 		AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_02");	//Подожди, я буду готов через минуту.
 		AI_SetWalkMode(self,NPC_RUN);

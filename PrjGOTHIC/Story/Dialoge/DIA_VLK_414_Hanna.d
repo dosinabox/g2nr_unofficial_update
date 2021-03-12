@@ -69,7 +69,7 @@ instance DIA_Hanna_Hello(C_Info)
 
 func int DIA_Hanna_Hello_Condition()
 {
-	if(!C_Hanna_ThievesGuildIsExposed() && !Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) && (Knows_SecretSign == FALSE))
+	if(!C_Hanna_ThievesGuildIsExposed() && (HotelDoorOpened == FALSE) && (Knows_SecretSign == FALSE))
 	{
 		return TRUE;
 	};
@@ -78,7 +78,6 @@ func int DIA_Hanna_Hello_Condition()
 func void DIA_Hanna_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Hanna_Hello_17_00");	//Ага, клиент - что я могу сделать для тебя?
-	B_PlayerEnteredCity();
 };
 
 
@@ -434,7 +433,7 @@ instance DIA_Hanna_AusKeller(C_Info)
 
 func int DIA_Hanna_AusKeller_Condition()
 {
-	if((Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) || (Knows_SecretSign == TRUE)) && !C_Hanna_ThievesGuildIsExposed())
+	if(((HotelDoorOpened == TRUE) || (Knows_SecretSign == TRUE)) && !C_Hanna_ThievesGuildIsExposed())
 	{
 		return TRUE;
 	};
@@ -442,22 +441,28 @@ func int DIA_Hanna_AusKeller_Condition()
 
 func void DIA_Hanna_AusKeller_Info()
 {
+	if(HotelDoorOpened == TRUE)
+	{
+		if(Knows_SecretSign == TRUE)
+		{
+			AI_Output(self,other,"DIA_Hanna_Add_17_19");	//(недоверчиво) Посмотри на себя! Ты откуда такой взялся? А?
+			AI_Output(other,self,"DIA_Hanna_Add_15_20");	//(смущенно) Я...
+			AI_Output(self,other,"DIA_Hanna_Add_17_21");	//(смеется) Я знаю!
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Hanna_Add_17_27");	//Откуда... ты пришел?
+			AI_Output(other,self,"DIA_Hanna_Add_15_28");	//Я нашел кое-что интересное в твоем подвале...
+			AI_Output(self,other,"DIA_Hanna_Add_17_29");	//Что ты делал в моем подвале?!
+			AI_Output(other,self,"DIA_Hanna_Add_15_30");	//Ты прекрасно знаешь это!
+			AI_Output(self,other,"DIA_Hanna_Add_17_31");	//(холодно) Я не знаю, о чем ты говоришь...
+		};
+	};
 	if(Knows_SecretSign == TRUE)
 	{
-		AI_Output(self,other,"DIA_Hanna_Add_17_19");	//(недоверчиво) Посмотри на себя! Ты откуда такой взялся? А?
-		AI_Output(other,self,"DIA_Hanna_Add_15_20");	//(смущенно) Я...
-		AI_Output(self,other,"DIA_Hanna_Add_17_21");	//(смеется) Я знаю!
 		AI_Output(self,other,"DIA_Hanna_Add_17_22");	//(заговорщицки) Не говори мне. Я все знаю.
 		AI_Output(self,other,"DIA_Hanna_Add_17_23");	//Даже и не думай украсть что-нибудь здесь, понял?
 		AI_Output(self,other,"DIA_Hanna_Add_17_24");	//Мы не можем себе позволить привлекать внимание к отелю.
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Hanna_Add_17_27");	//Откуда... ты пришел?
-		AI_Output(other,self,"DIA_Hanna_Add_15_28");	//Я нашел кое-что интересное в твоем подвале...
-		AI_Output(self,other,"DIA_Hanna_Add_17_29");	//Что ты делал в моем подвале?!
-		AI_Output(other,self,"DIA_Hanna_Add_15_30");	//Ты прекрасно знаешь это!
-		AI_Output(self,other,"DIA_Hanna_Add_17_31");	//(холодно) Я не знаю, о чем ты говоришь...
 	};
 	B_Hanna_ThievesCheck();
 	AI_StopProcessInfos(self);
@@ -515,7 +520,7 @@ func void DIA_Hanna_GiveSchuldenbuch_Info()
 {
 	AI_Output(other,self,"DIA_Hanna_Add_15_45");	//Вот - возьми эту книгу.
 	B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
-	AI_Output(self,other,"DIA_Hanna_Add_17_46");	//Спасибо.
+	DIA_Common_17_Thanks();
 	AI_Output(self,other,"DIA_Hanna_Add_17_47");	//Возьми это в качестве награды.
 	B_GiveInvItems(self,other,ItSe_HannasBeutel,1);
 	B_GivePlayerXP(XP_Schuldenbuch);
@@ -545,10 +550,16 @@ func int DIA_Hanna_Blubb_Condition()
 func void DIA_Hanna_Blubb_Info()
 {
 	AI_Output(other,self,"DIA_Hanna_Add_15_37");	//В логове все в порядке?
-	AI_Output(self,other,"DIA_Hanna_Add_17_39");	//Я давно уже не видела их.
-	AI_Output(self,other,"DIA_Hanna_Add_17_40");	//Я, пожалуй, схожу туда, когда у меня будет время и проверю, как у них дела.
-	AI_Output(self,other,"DIA_Hanna_Add_17_38");	//Да. Но тебе лучше не говорить об этом...
-	B_Hanna_ThievesCheck();
+	if(!Npc_IsDead(Cassia) && !Npc_IsDead(Jesper) && !Npc_IsDead(Ramirez))
+	{
+		AI_Output(self,other,"DIA_Hanna_Add_17_38");	//Да. Но тебе лучше не говорить об этом...
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Hanna_Add_17_39");	//Я давно уже не видела их.
+		AI_Output(self,other,"DIA_Hanna_Add_17_40");	//Я, пожалуй, схожу туда, когда у меня будет время и проверю, как у них дела.
+		B_Hanna_ThievesCheck();
+	};
 };
 
 instance DIA_Hanna_Blubb2(C_Info)

@@ -107,6 +107,17 @@ func int B_TeachPlayerTalentTakeAnimalTrophy(var C_Npc slf,var C_Npc oth,var int
 	{
 		PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] = TRUE;
 		Npc_SetTalentSkill(hero,NPC_TALENT_TAKEANIMALTROPHY,1);
+		if(CurrentLevel == OLDWORLD_ZEN)
+		{
+			CreateInvItems(SwampDragon,ItAt_DragonScale,12);
+			CreateInvItems(RockDragon,ItAt_DragonScale,12);
+			CreateInvItems(FireDragon,ItAt_DragonScale,12);
+			CreateInvItems(IceDragon,ItAt_DragonScale,12);
+		}
+		else
+		{
+			DragonScaleLearnedOutsideOW = TRUE;
+		};
 		PrintScreen(PRINT_LearnTakeAnimalTrophy,-1,-1,FONT_Screen,2);
 		B_LogEntry(TOPIC_TalentAnimalTrophy,"...снимать чешую с мертвых драконов.");
 	};
@@ -114,6 +125,17 @@ func int B_TeachPlayerTalentTakeAnimalTrophy(var C_Npc slf,var C_Npc oth,var int
 	{
 		PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] = TRUE;
 		Npc_SetTalentSkill(hero,NPC_TALENT_TAKEANIMALTROPHY,1);
+		if(CurrentLevel == OLDWORLD_ZEN)
+		{
+			CreateInvItems(SwampDragon,ItAt_DragonBlood,2);
+			CreateInvItems(RockDragon,ItAt_DragonBlood,2);
+			CreateInvItems(FireDragon,ItAt_DragonBlood,2);
+			CreateInvItems(IceDragon,ItAt_DragonBlood,2);
+		}
+		else
+		{
+			DragonBloodLearnedOutsideOW = TRUE;
+		};
 		PrintScreen(PRINT_LearnTakeAnimalTrophy,-1,-1,FONT_Screen,2);
 		B_LogEntry(TOPIC_TalentAnimalTrophy,"...собирать кровь из мертвых драконов.");
 	};

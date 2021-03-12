@@ -18,7 +18,7 @@ instance PIR_1391_Addon_InExtremo_TheFlail(Npc_Default)
 	CreateInvItem(self,ItMi_IEDrum);
 	B_CreateAmbientInv(self);
 	Mdl_SetVisual(self,"HUMANS.MDS");
-	Mdl_SetVisualBody(self,"HUM_IE_FLAIL_INSTRUMENT",DEFAULT,DEFAULT,"HUM_HEAD_FLAIL",DEFAULT,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"HUM_IE_FLAIL_INSTRUMENT",DEFAULT,DEFAULT,"HUM_HEAD_FLAIL",DEFAULT,DEFAULT,NO_ARMOR);
 	fight_tactic = FAI_HUMAN_STRONG;
 	Npc_SetTalentSkill(self,NPC_TALENT_1H,1);
 	daily_routine = Rtn_Start_1391;

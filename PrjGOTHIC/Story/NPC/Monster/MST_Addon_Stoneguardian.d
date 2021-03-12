@@ -18,7 +18,8 @@ prototype Mst_Addon_Stoneguardian(C_Npc)
 	protection[PROT_FIRE] = 90;
 	protection[PROT_FLY] = 90;
 	protection[PROT_MAGIC] = 90;
-	damagetype = DAM_EDGE;
+//	damagetype = DAM_EDGE;
+	damagetype = DAM_BLUNT;
 	fight_tactic = FAI_Stoneguardian;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;

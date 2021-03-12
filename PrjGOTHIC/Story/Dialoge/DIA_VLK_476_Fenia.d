@@ -17,7 +17,7 @@ func int DIA_Fenia_EXIT_Condition()
 
 func void DIA_Fenia_EXIT_Info()
 {
-	if(other.guild == GIL_KDF)
+	if((VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_KDW))
 	{
 		AI_Output(self,other,"DIA_Fenia_EXIT_17_01");	//Удачной тебе дороги, о, достопочтенный маг.
 	};
@@ -105,7 +105,7 @@ instance DIA_Fenia_Hallo_Pal(C_Info)
 
 func int DIA_Fenia_Hallo_Pal_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_PAL) && Npc_KnowsInfo(other,DIA_Fenia_Hallo))
+	if(Npc_IsInState(self,ZS_Talk) && (VisibleGuild(other) == GIL_PAL) && Npc_KnowsInfo(other,DIA_Fenia_Hallo))
 	{
 		return TRUE;
 	};

@@ -52,6 +52,8 @@ func void DIA_PC_Thief_DI_Hallo_Info()
 };
 
 
+var int DIA_PC_Thief_DI_RAT_OneTime;
+
 instance DIA_PC_Thief_DI_RAT(C_Info)
 {
 	npc = PC_Thief_DI;
@@ -71,14 +73,10 @@ func int DIA_PC_Thief_DI_RAT_Condition()
 	};
 };
 
-
-var int DIA_PC_Thief_DI_RAT_OneTime;
-var int DIA_PC_Thief_DI_RAT_OneTime2;
-
 func void DIA_PC_Thief_DI_RAT_Info()
 {
 	AI_Output(other,self,"DIA_PC_Thief_DI_RAT_15_00");	//Мне нужен твой совет.
-	if(Npc_IsDead(OrkElite_AntiPaladinOrkOberst_DI) && (EVT_ORKOBERST_SWITCH_FOUND == FALSE))
+	if(Npc_IsDead(AntiPaladin_DI) && (EVT_ORKOBERST_SWITCH_FOUND == FALSE))
 	{
 		AI_Output(other,self,"DIA_PC_Thief_DI_RAT_15_01");	//У полковника орков здесь есть штаб-квартира. Я не могу продвинуться вглубь острова дальше этой точки.
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_02");	//Орки - хитрые создания. Зачастую их недооценивают. Я полагаю, у них там что-то вроде секретного прохода. Осмотри стены на предмет скрытых выключателей.
@@ -89,7 +87,7 @@ func void DIA_PC_Thief_DI_RAT_Info()
 		AI_Output(other,self,"DIA_PC_Thief_DI_RAT_15_04");	//Я сражался с драконом и теперь застрял перед пропастью с подъемным мостом. Этот мост поднят, и я не знаю, как опустить его.
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_05");	//Ммм. А ты не пробовал дальнобойное оружие? Может быть, механизм можно активировать при помощи выстрела.
 	}
-	else if(Npc_IsDead(Archol) && !Npc_KnowsInfo(other,DIA_Schwarzmagier_HELLO))
+	else if(Npc_IsDead(Archol) && (EnteredFinalDIHall == FALSE))
 	{
 		AI_Output(other,self,"DIA_PC_Thief_DI_RAT_15_06");	//Я встречаю на своем пути полчища нежити и их изощренные ловушки.
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_07");	//Извини, но я никогда не имел дела с нежитью. Здесь тебе придется изобретать что-то самому.
@@ -97,12 +95,12 @@ func void DIA_PC_Thief_DI_RAT_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_08");	//Приходи ко мне, если у тебя возникает проблема, которую мой опыт может помочь разрешить.
-		if((OrkSturmDI == TRUE) && (DIA_PC_Thief_DI_RAT_OneTime2 == FALSE))
-		{
-			AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_09");	//Еще одно. Я бы предпочел, чтобы ты не приводил всех этих тварей, что бродят здесь, к кораблю. Я надеюсь, этот рейд орков был последней атакой, которую нам пришлось отражать здесь!
-			B_GivePlayerXP(XP_AmbientKap6);
-			DIA_PC_Thief_DI_RAT_OneTime2 = TRUE;
-		};
+	};
+	if((OrkSturmDI == TRUE) && (DIA_PC_Thief_DI_RAT_OneTime == FALSE))
+	{
+		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_09");	//Еще одно. Я бы предпочел, чтобы ты не приводил всех этих тварей, что бродят здесь, к кораблю. Я надеюсь, этот рейд орков был последней атакой, которую нам пришлось отражать здесь!
+		B_GivePlayerXP(XP_AmbientKap6);
+		DIA_PC_Thief_DI_RAT_OneTime = TRUE;
 	};
 };
 
@@ -154,7 +152,7 @@ func void B_BuildLearnDialog_Diego_DI()
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
-		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
+		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(NAME_Skill_PickLock,B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
 	};
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_PC_Thief_DI_Training_DEX_1);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_PC_Thief_DI_Training_DEX_5);
@@ -248,6 +246,12 @@ func void DIA_PC_Thief_DI_Training_Talente_BACK()
 	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
 };
 
+func void B_PC_Thief_JustLucky()
+{
+	AI_Output(other,self,"DIA_PC_Thief_DI_UndeadDragonDead_15_03");	//Мне просто повезло, я думаю.
+	AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_04");	//(смеется) Ну, если ты так думаешь...
+};
+
 var int DIA_PC_Thief_DI_UndeadDragonDead_OneTime;
 
 instance DIA_PC_Thief_DI_UndeadDragonDead(C_Info)
@@ -276,8 +280,7 @@ func void DIA_PC_Thief_DI_UndeadDragonDead_Info()
 	{
 		AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_01");	//Ты только посмотри на это. В жизни не видел такого сооружения.
 		AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_02");	//Как тебе, черт возьми, удалось пройти там?
-		AI_Output(other,self,"DIA_PC_Thief_DI_UndeadDragonDead_15_03");	//Мне просто повезло, я думаю.
-		AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_04");	//(смеется) Ну, если ты так думаешь...
+		B_PC_Thief_JustLucky();
 	}
 	else
 	{

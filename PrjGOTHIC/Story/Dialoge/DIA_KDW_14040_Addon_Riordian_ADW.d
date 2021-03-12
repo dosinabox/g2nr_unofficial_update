@@ -75,7 +75,7 @@ func void DIA_Addon_Riordian_WhatToFind_Info()
 	AI_Output(self,other,"DIA_Addon_Riordian_Gegend_west_10_04");	//Тебе стоит на него взглянуть.
 	if(!Npc_HasItems(William,ITWr_Addon_William_01))
 	{
-		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
+		DIA_Common_IFoundHim();
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_04");	//Благодарю тебя.
 		if(FoundDeadWilliam == FALSE)
 		{
@@ -243,8 +243,6 @@ func void B_WhereAreHousesOfRulers()
 	if(B_WhereAreHousesOfRulersOneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_06");	//Надеюсь, тебе это поможет.
-		Log_CreateTopic(TOPIC_Addon_HousesOfRulers,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_HousesOfRulers,LOG_Running);
 		B_LogEntry(TOPIC_Addon_HousesOfRulers,"Замок ученых - это огромная библиотека. Она находится где-то на севере.");
 		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замок воинов - это окруженная скалами крепость на востоке.");
 		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замки жрецов и стражей мертвых находятся недалеко друг от друга. Я смогу найти их на юго-западе.");
@@ -278,6 +276,15 @@ func void DIA_Addon_Riordian_WhereAreHouses_Info()
 };
 
 
+var int FOUNDHOUSEINFO[6];
+const int Scientists = 1;
+const int Healers = 2;
+const int Warriors = 3;
+const int Priests = 4;
+const int Guardians = 5;
+var int RiordianHouseNeuigkeit;
+var int RiordianHousesFoundCount;
+
 instance DIA_Addon_Riordian_FoundHouse(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
@@ -297,66 +304,57 @@ func int DIA_Addon_Riordian_FoundHouse_Condition()
 	};
 };
 
-var int foundhouseinfo[6];
-const int Library = 1;
-const int heiler = 2;
-const int Warrior = 3;
-const int Priest = 4;
-const int Totenw = 5;
-var int RiordianHouseNeuigkeit;
-var int RiordianHousesFoundCount;
-
 func void DIA_Addon_Riordian_FoundHouse_Info()
 {
 	var int RiordianHouseXPs;
 	RiordianHouseNeuigkeit = 0;
 	AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_00");	//Насчет дворцов...
 	AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_01");	//Да?
-	if((SC_COMESINTO_CANYONLIBRARY_FUNC_OneTime == TRUE) && (FOUNDHOUSEINFO[1] == FALSE))
+	if((SC_COMESINTO_CANYONLIBRARY_FUNC_OneTime == TRUE) && (FOUNDHOUSEINFO[Scientists] == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_02");	//Библиотекой ученых, похоже, заинтересовались орки.
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_03");	//Ты полагаешь, что они способны прочитать записи на древнем языке?
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_04");	//Нет, я так не думаю, но кто знает...
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_05");	//Ладно, в любом случае, тебе лучше от них избавиться.
-		FOUNDHOUSEINFO[1] = TRUE;
+		FOUNDHOUSEINFO[Scientists] = TRUE;
 		RiordianHouseNeuigkeit += 1;
 		Log_CreateTopic(TOPIC_Addon_CanyonOrcs,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_CanyonOrcs,LOG_Running);
 		B_LogEntry(TOPIC_Addon_CanyonOrcs,"Риордиан будет доволен, если я очищу каньон от орков.");
 	};
-	if((Npc_IsDead(Stoneguardian_Heiler) || Npc_HasItems(other,ItMi_Addon_Stone_04) || (Saturas_SCFound_ItMi_Addon_Stone_04 == TRUE)) && (FOUNDHOUSEINFO[2] == FALSE))
+	if((Npc_IsDead(Stoneguardian_Heiler) || Npc_HasItems(other,ItMi_Addon_Stone_04) || (Saturas_SCFound_ItMi_Addon_Stone_04 == TRUE)) && (FOUNDHOUSEINFO[Healers] == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_06");	//Дворец целителей находится в центре болота. Его охраняют каменные стражи.
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_07");	//Значит, он все еще стоит?
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_08");	//Да, но неизвестно, сколько это еще продлится...
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_09");	//Мне больно видеть разрушение древних строений, свидетелей прошлого...
-		FOUNDHOUSEINFO[2] = TRUE;
+		FOUNDHOUSEINFO[Healers] = TRUE;
 		RiordianHouseNeuigkeit += 1;
 	};
-	if((RavenIsInTempel == TRUE) && (FOUNDHOUSEINFO[3] == FALSE))
+	if((RavenIsInTempel == TRUE) && (FOUNDHOUSEINFO[Warriors] == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_10");	//Во дворце воинов поселился Ворон.
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_11");	//(цинично) Он сделал хороший выбор.
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_12");	//Это самая неприступная крепость во всей долине.
-		FOUNDHOUSEINFO[3] = TRUE;
+		FOUNDHOUSEINFO[Warriors] = TRUE;
 		RiordianHouseNeuigkeit += 1;
 	};
-	if((Npc_IsDead(Minecrawler_Priest) || Npc_HasItems(other,ItMi_Addon_Stone_03) || (Saturas_SCFound_ItMi_Addon_Stone_03 == TRUE)) && (FOUNDHOUSEINFO[4] == FALSE))
+	if((Npc_IsDead(Minecrawler_Priest) || Npc_HasItems(other,ItMi_Addon_Stone_03) || (Saturas_SCFound_ItMi_Addon_Stone_03 == TRUE)) && (FOUNDHOUSEINFO[Priests] == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_13");	//Во дворце жрецов было множество краулеров...
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_14");	//Но ведь эти животные встречаются здесь очень редко, верно?
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_15");	//Да, ты прав.
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_16");	//Странные вещи здесь творятся...
-		FOUNDHOUSEINFO[4] = TRUE;
+		FOUNDHOUSEINFO[Priests] = TRUE;
 		RiordianHouseNeuigkeit += 1;
 	};
-	if((Npc_IsDead(MayaZombie04_Totenw) || Npc_HasItems(other,ItMi_Addon_Stone_02) || (Saturas_SCFound_ItMi_Addon_Stone_02 == TRUE)) && (FOUNDHOUSEINFO[5] == FALSE))
+	if((Npc_IsDead(MayaZombie04_Totenw) || Npc_HasItems(other,ItMi_Addon_Stone_02) || (Saturas_SCFound_ItMi_Addon_Stone_02 == TRUE)) && (FOUNDHOUSEINFO[Guardians] == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_17");	//Дом стражей мертвых защищают силы Зла.
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_18");	//Я раньше никогда не встречал такое количество зомби в одном месте.
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_19");	//Какая печальная судьба! Стражи мертвых пали жертвой своих же способностей.
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_20");	//Их тесная связь с миром мертвых сослужила им злую службу. Надеюсь, ты освободил их от страданий.
-		FOUNDHOUSEINFO[5] = TRUE;
+		FOUNDHOUSEINFO[Guardians] = TRUE;
 		RiordianHouseNeuigkeit += 1;
 	};
 	if(RiordianHouseNeuigkeit > 0)
@@ -415,7 +413,7 @@ instance DIA_Addon_Riordian_OrksWeg(C_Info)
 
 func int DIA_Addon_Riordian_OrksWeg_Condition()
 {
-	if(Npc_IsDead(OrcShaman_Sit_CanyonLibraryKey) && (FOUNDHOUSEINFO[1] == TRUE))
+	if(Npc_IsDead(OrcShaman_Sit_CanyonLibraryKey) && (FOUNDHOUSEINFO[Scientists] == TRUE))
 	{
 		return TRUE;
 	};

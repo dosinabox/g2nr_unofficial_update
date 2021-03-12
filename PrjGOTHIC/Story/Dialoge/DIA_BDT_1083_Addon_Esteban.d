@@ -337,8 +337,14 @@ func void DIA_Addon_Esteban_Away_Info()
 	AI_Output(self,other,"DIA_Addon_Esteban_Away_07_01");	//Что теперь будет? Я скажу тебе, что будет.
 	AI_Output(self,other,"DIA_Addon_Esteban_Away_07_02");	//Фиск умрет мучительной смертью. И весь лагерь будет знать, за что.
 	AI_Output(self,other,"DIA_Addon_Esteban_Away_07_03");	//Это послужит им всем предупреждением.
-	B_StartOtherRoutine(Wache_01,"AMBUSH");
-	B_StartOtherRoutine(Wache_02,"AMBUSH");
+	if(!Npc_IsDead(Wache_01))
+	{
+		B_StartOtherRoutine(Wache_01,"AMBUSH");
+	};
+	if(!Npc_IsDead(Wache_02))
+	{
+		B_StartOtherRoutine(Wache_02,"AMBUSH");
+	};
 };
 
 
@@ -430,13 +436,13 @@ func void DIA_Addon_Esteban_fight_Info()
 	else
 	{
 		AI_Output(other,self,"DIA_Addon_Esteban_Duell_15_00");	//Давай сюда камень СЕЙЧАС ЖЕ, или я заберу его сам!
-		B_Say(self,other,"$StupidBeastKilled");
+		B_Say(self,other,"$STUPIDBEASTKILLED");
 	};
 	Bodyguard_Killer = FALSE;
 	B_StartOtherRoutine(Wache_01,"TOT");
-	B_KillNpc(Wache_01);
+	B_KillNpc(BDT_1081_Addon_Wache_01);
 	B_StartOtherRoutine(Wache_02,"TOT");
-	B_KillNpc(Wache_02);
+	B_KillNpc(BDT_10005_Addon_Wache_02);
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };

@@ -1,7 +1,7 @@
 
 func void B_Dragon_Undead_Bla()
 {
-	AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_00");	//Ну, сынок? У тебя есть оригинал?
+	//AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_00");	//Ну, сынок? У тебя есть оригинал?
 };
 
 
@@ -26,9 +26,9 @@ func int DIA_Dragon_Undead_Exit_Condition()
 
 func void DIA_Dragon_Undead_Exit_Info()
 {
-	AI_StopProcessInfos(self);
-	DragonTalk_Exit_Free = FALSE;
 	self.flags = 0;
+	DragonTalk_Exit_Free = FALSE;
+	AI_StopProcessInfos(self);
 };
 
 
@@ -60,21 +60,24 @@ func void DIA_Dragon_Undead_Hello_Info()
 	if((hero.guild == GIL_DJG) && (DragonEggCounter >= 7))
 	{
 		AI_Output(self,other,"DIA_Dragon_Undead_Hello_20_05");	//А разве драконьи яйца, из которых сделаны твои доспехи, не помогли тебе добраться до меня?
-	};
-	if(hero.guild == GIL_PAL)
+	}
+	else if(hero.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Dragon_Undead_Hello_20_06");	//Разве обращенные паладины были недостаточной причиной для тебя, чтобы искать силу, управляющую ими?
-	};
-	if(hero.guild == GIL_KDF)
+	}
+	else if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Dragon_Undead_Hello_20_07");	//Разве одержимые из твоего племени были недостаточной причиной для тебя, чтобы искать силу, управляющую ими?
 	};
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_20_08");	//Как бы ты не изворачивался, ты не можешь поспорить со всем этим.
-	AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_01");	//Есть только одна вещь, которая не была предопределена!
-	AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_02");	//Ты убил одного из моих слуг! Он должен был нести Коготь.
-	if(C_ScHasEquippedBeliarsWeapon() || C_ScHasReadiedBeliarsWeapon() || C_SCHasBeliarsRune())
+	if(RavenIsDead == TRUE)
 	{
-		AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_03");	//Как я вижу, теперь его носишь ты. За это бесчинство ты сейчас умрешь!
+		AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_01");	//Есть только одна вещь, которая не была предопределена!
+		AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_02");	//Ты убил одного из моих слуг! Он должен был нести Коготь.
+		if(C_ScHasEquippedBeliarsWeapon() || C_ScHasReadiedBeliarsWeapon() || C_SCHasBeliarsRune())
+		{
+			AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_03");	//Как я вижу, теперь его носишь ты. За это бесчинство ты сейчас умрешь!
+		};
 	};
 	Info_AddChoice(DIA_Dragon_Undead_Hello,"Хватит болтать. Я загоню тебя обратно под камень, из-под которого ты вылез, монстр.",DIA_Dragon_Undead_Hello_attack);
 	Info_AddChoice(DIA_Dragon_Undead_Hello,"По чьему повелению ты ведешь своих прихвостней на войну против человечества?",DIA_Dragon_Undead_Hello_Auftraggeber);
@@ -93,12 +96,12 @@ func void DIA_Dragon_Undead_Hello_wer()
 	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_05");	//Так же, как твоя судьба определяется прямотой и добродетелями паладина.
-	};
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	}
+	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_06");	//Так же, как твоя рука несет смерть определенным созданиям, охотник на драконов.
-	};
-	if(hero.guild == GIL_KDF)
+	}
+	else if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_07");	//Так же, как твоя судьба - проповедовать веру в Инноса, маг Огня.
 	};
@@ -131,11 +134,6 @@ func void DIA_Dragon_Undead_Hello_attack()
 		AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_04");	//Ты действительно веришь, что можешь ранить меня Когтем? (смеется)
 	};
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_attack_20_02");	//Твои кости помогут мне выпустить ветра смерти в этот мир.
-	Npc_RemoveInvItems(other,ItMi_InnosEye_MIS,1);
-	CreateInvItems(other,ItMi_InnosEye_Discharged_Mis,1);
-	SC_IsWearingInnosEye = FALSE;
-	AI_StopProcessInfos(self);
-	DragonTalk_Exit_Free = FALSE;
-	self.flags = 0;
+	B_EndDragonTalk();
 };
 

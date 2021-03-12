@@ -6,102 +6,92 @@ var int SLD_Gorn_is_alive;
 var int SLD_Sylvio_is_alive;
 var int GornDJG_is_alive;
 var int DJG_Angar_is_alive;
-var int DiegoOW_is_alive;
-var int GornOw_is_alive;
 var int Vino_isAlive_Kap3;
 var int Malak_isAlive_Kap3;
+var int Bromor_isAlive_Kap3;
+var int Fernando_isAlive_Kap3;
+var int Engrom_isAlive_Kap4;
+var int Randolph_isAlive_preKap4;
+var int Brutus_isAlive_preKap5;
+var int Sekob_isAlive_Kap5;
 
 func void B_NPC_IsAliveCheck(var int Zen)
 {
-	var C_Npc SLD_Bullco_OWCheck;
-	var C_Npc SLD_Rod_OWCheck;
-	var C_Npc Sld_821;
-	var C_Npc SLD_Cipher_OWCheck;
-	var C_Npc SLD_Gorn_OWCheck;
-	var C_Npc SLD_Sylvio_OWCheck;
-	var C_Npc GornDJG_NWCheck;
-	var C_Npc DJG_Angar_NWCheck;
 	if(Zen == NEWWORLD_ZEN)
 	{
-		if(Kapitel >= 2)
-		{
-		};
-		if(Kapitel >= 3)
-		{
-		};
 		if(MIS_ReadyforChapter4 == TRUE)
 		{
-			SLD_Bullco_OWCheck = Hlp_GetNpc(Sld_807_Bullco);
-			if(Npc_IsDead(SLD_Bullco_OWCheck))
+			if(Npc_IsDead(Randolph))
 			{
-				SLD_Bullco_is_alive = FALSE;
+				Randolph_isAlive_preKap4 = FALSE;
 			}
 			else
 			{
-				SLD_Bullco_is_alive = TRUE;
-				B_RemoveNpc(SLD_Bullco_OWCheck);
+				Randolph_isAlive_preKap4 = TRUE;
 			};
-			SLD_Rod_OWCheck = Hlp_GetNpc(Sld_804_Rod);
-			if(Npc_IsDead(SLD_Rod_OWCheck))
-			{
-				SLD_Rod_is_alive = FALSE;
-			}
-			else
-			{
-				SLD_Rod_is_alive = TRUE;
-				B_RemoveNpc(SLD_Rod_OWCheck);
-			};
-			Sld_821 = Hlp_GetNpc(SLD_821_Soeldner);
-			Npc_ExchangeRoutine(Sld_821,"RODWEG");
-			SLD_Cipher_OWCheck = Hlp_GetNpc(Sld_803_Cipher);
-			if(Npc_IsDead(SLD_Cipher_OWCheck))
-			{
-				SLD_Cipher_is_alive = FALSE;
-			}
-			else
-			{
-				SLD_Cipher_is_alive = TRUE;
-				B_RemoveNpc(SLD_Cipher_OWCheck);
-			};
-			SLD_Gorn_OWCheck = Hlp_GetNpc(PC_Fighter_NW_vor_DJG);
-			if(Npc_IsDead(SLD_Gorn_OWCheck))
+			if(Npc_IsDead(GornNW_vor_DJG))
 			{
 				SLD_Gorn_is_alive = FALSE;
 			}
 			else
 			{
 				SLD_Gorn_is_alive = TRUE;
-				B_RemoveNpc(SLD_Gorn_OWCheck);
+				B_RemoveNpc(PC_Fighter_NW_vor_DJG);
 			};
-			SLD_Sylvio_OWCheck = Hlp_GetNpc(SLD_806_Sylvio);
-			if(Npc_IsDead(SLD_Sylvio_OWCheck))
+			if(Npc_IsDead(Sylvio))
 			{
 				SLD_Sylvio_is_alive = FALSE;
 			}
 			else
 			{
 				SLD_Sylvio_is_alive = TRUE;
-				B_RemoveNpc(SLD_Sylvio_OWCheck);
+				B_RemoveNpc(SLD_806_Sylvio);
+			};
+			if(Npc_IsDead(Bullco))
+			{
+				SLD_Bullco_is_alive = FALSE;
+			}
+			else
+			{
+				SLD_Bullco_is_alive = TRUE;
+				B_RemoveNpc(SLD_807_Bullco);
+			};
+			if(Npc_IsDead(Cipher))
+			{
+				SLD_Cipher_is_alive = FALSE;
+			}
+			else
+			{
+				SLD_Cipher_is_alive = TRUE;
+				B_RemoveNpc(SLD_803_Cipher);
+			};
+			if(Npc_IsDead(Rod))
+			{
+				SLD_Rod_is_alive = FALSE;
+			}
+			else
+			{
+				SLD_Rod_is_alive = TRUE;
+				B_RemoveNpc(SLD_804_Rod);
+			};
+			if(!Npc_IsDead(SLD_821_Soeldner))
+			{
+				Npc_ExchangeRoutine(SLD_821_Soeldner,"RODWEG");
 			};
 		};
-		if(Kapitel >= 5)
-		{
-		};
-		if(Kapitel >= 6)
-		{
-		};
-	};
-	if(Zen == OLDWORLD_ZEN)
+	}
+	else if(Zen == OLDWORLD_ZEN)
 	{
-		if(Kapitel >= 2)
-		{
-		};
-		if(Kapitel >= 3)
-		{
-		};
 		if(Kapitel >= 4)
 		{
-			GornDJG_NWCheck = Hlp_GetNpc(GornDJG);
+			if(Npc_IsDead(Brutus))
+			{
+				Brutus_isAlive_preKap5 = FALSE;
+			}
+			else
+			{
+				Brutus_isAlive_preKap5 = TRUE;
+			};
 			if(Npc_IsDead(GornDJG))
 			{
 				GornDJG_is_alive = FALSE;
@@ -109,9 +99,8 @@ func void B_NPC_IsAliveCheck(var int Zen)
 			else
 			{
 				GornDJG_is_alive = TRUE;
-				B_RemoveNpc(GornDJG_NWCheck);
+				B_RemoveNpc(PC_Fighter_DJG);
 			};
-			DJG_Angar_NWCheck = Hlp_GetNpc(DJG_Angar);
 			if(Npc_IsDead(DJG_Angar))
 			{
 				DJG_Angar_is_alive = FALSE;
@@ -119,14 +108,8 @@ func void B_NPC_IsAliveCheck(var int Zen)
 			else
 			{
 				DJG_Angar_is_alive = TRUE;
-				B_RemoveNpc(DJG_Angar_NWCheck);
+				B_RemoveNpc(DJG_705_Angar);
 			};
-		};
-		if(Kapitel >= 5)
-		{
-		};
-		if(Kapitel >= 6)
-		{
 		};
 	};
 };

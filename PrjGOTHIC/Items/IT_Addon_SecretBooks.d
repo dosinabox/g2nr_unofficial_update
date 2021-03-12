@@ -26,16 +26,9 @@ func void UseLPBook(var int constanze)
 
 func void UseXPBook(var int constanze)
 {
-/*	var int Wert;
-	var string concatText;
-	Wert = constanze;	*/
 	if(Npc_IsPlayer(self))
 	{
 		B_Say_Overlay(self,self,"$VERSTEHE");
-/*		Snd_Play("LEVELUP");
-		self.exp += constanze;
-		concatText = ConcatStrings(PRINT_XPGained,IntToString(constanze));
-		Print(concatText);	*/
 		B_GivePlayerXP(constanze);
 	};
 };
@@ -48,7 +41,6 @@ prototype ItWr_Addon_XPBook(C_Item)
 	flags = ITEM_MISSION;
 	visual = "ItWr_Book_02_01.3ds";
 	material = MAT_LEATHER;
-//	scemeName = "MAPSEALED";
 	scemeName = "MAP";
 	description = name;
 	text[0] = PRINT_XPGained;
@@ -107,7 +99,6 @@ prototype ItWr_Addon_LPBook(C_Item)
 	flags = ITEM_MISSION;
 	visual = "ItWr_Book_02_02.3ds";
 	material = MAT_LEATHER;
-//	scemeName = "MAPSEALED";
 	scemeName = "MAP";
 	description = name;
 	text[0] = PRINT_LearnLP;

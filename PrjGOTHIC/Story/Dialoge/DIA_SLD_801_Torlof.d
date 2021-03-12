@@ -12,10 +12,7 @@ instance DIA_Torlof_EXIT(C_Info)
 
 func int DIA_Torlof_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Torlof_EXIT_Info()
@@ -494,7 +491,7 @@ func void B_Torlof_HolPachtVonSekob()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Torlof_Probe_15_06");	//Нет.
+		DIA_Common_No();
 	};
 	MIS_Torlof_HolPachtVonSekob = LOG_Running;
 	Sekob.flags = 0;
@@ -517,7 +514,7 @@ func void B_Torlof_BengarMilizKlatschen()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Torlof_Probe_15_06");	//Нет.
+		DIA_Common_No();
 	};
 	MIS_Torlof_BengarMilizKlatschen = LOG_Running;
 	Bengar.flags = 0;
@@ -554,7 +551,7 @@ func void B_Torlof_TheOtherMissionDay()
 	{
 		AI_Output(self,other,"B_Torlof_TheOtherMissionDay_01_00");	//Ты потратил на это слишком много времени. Онар будет недоволен.
 		Torlof_TheOtherMission_TooLate = TRUE;
-		if(EnterOW_Kapitel2 == TRUE)
+		if(Enter_OldWorld_FirstTime_Trigger_OneTime == TRUE)
 		{
 			AI_Output(self,other,"DIA_Torlof_Add_01_00");	//И ему все равно, погибнут паладины в Долине Рудников или нет...
 		};
@@ -838,8 +835,8 @@ func void DIA_Torlof_Teach_Info()
 	{
 		if(Log_TorlofTeach == FALSE)
 		{
-			Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-			B_LogEntry(Topic_SoldierTeacher,"Торлоф может повысить мою ловкость и силу.");
+			Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_SoldierTeacher,"Торлоф может повысить мою ловкость и силу.");
 			Log_TorlofTeach = TRUE;
 		};
 		Torlof_Merke_STR = other.aivar[REAL_STRENGTH];
@@ -854,8 +851,8 @@ func void DIA_Torlof_Teach_Info()
 			AI_Output(self,other,"DIA_Torlof_Teach_01_02");	//Пока ты не станешь одним из нас, тебе лучше поискать другого учителя!
 			if(Log_TorlofTeach == FALSE)
 			{
-				Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-				B_LogEntry(Topic_SoldierTeacher,"Торлоф может повысить мою ловкость и силу, если я решу присоединиться к наемникам.");
+				Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+				B_LogEntry(TOPIC_SoldierTeacher,"Торлоф может повысить мою ловкость и силу, если я решу присоединиться к наемникам.");
 				Log_TorlofTeach = TRUE;
 			};
 		};
@@ -902,31 +899,6 @@ func void DIA_Torlof_Teach_DEX_5()
 		B_BuildLearnDialog_Torlof_NW();
 	};
 };
-
-instance DIA_Torlof_KAP3_EXIT(C_Info)
-{
-	npc = SLD_801_Torlof;
-	nr = 999;
-	condition = DIA_Torlof_KAP3_EXIT_Condition;
-	information = DIA_Torlof_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Torlof_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Torlof_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
 
 instance DIA_Torlof_DEMENTOREN(C_Info)
 {
@@ -990,31 +962,6 @@ func void DIA_Torlof_DmtSuccess_Info()
 };
 
 
-instance DIA_Torlof_KAP4_EXIT(C_Info)
-{
-	npc = SLD_801_Torlof;
-	nr = 999;
-	condition = DIA_Torlof_KAP4_EXIT_Condition;
-	information = DIA_Torlof_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Torlof_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Torlof_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Torlof_WOISTSYLVIO(C_Info)
 {
 	npc = SLD_801_Torlof;
@@ -1027,7 +974,6 @@ instance DIA_Torlof_WOISTSYLVIO(C_Info)
 
 func int DIA_Torlof_WOISTSYLVIO_Condition()
 {
-//	if((MIS_ReadyforChapter4 == TRUE) || (Kapitel == 4))
 	if(MIS_ReadyforChapter4 == TRUE)
 	{
 		return TRUE;
@@ -1042,31 +988,6 @@ func void DIA_Torlof_WOISTSYLVIO_Info()
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_03");	//Кто знает? Сокровища драконов можно очень дорого продать.
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_04");	//Но меня это не касается. Я моряк. Я принадлежу морю, и мне нет дела до душного логова дракона.
 	TorlofIsSailor = TRUE;
-};
-
-
-instance DIA_Torlof_KAP5_EXIT(C_Info)
-{
-	npc = SLD_801_Torlof;
-	nr = 999;
-	condition = DIA_Torlof_KAP5_EXIT_Condition;
-	information = DIA_Torlof_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Torlof_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Torlof_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -1317,31 +1238,6 @@ func void DIA_Torlof_PERM5_NOTCAPTAIN_Info()
 	AI_StopProcessInfos(self);
 };
 
-/*
-instance DIA_Torlof_KAP6_EXIT(C_Info)
-{
-	npc = SLD_801_Torlof;
-	nr = 999;
-	condition = DIA_Torlof_KAP6_EXIT_Condition;
-	information = DIA_Torlof_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Torlof_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Torlof_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Torlof_PICKPOCKET(C_Info)
 {

@@ -76,7 +76,7 @@ instance DIA_Marcos_Hagen(C_Info)
 
 func int DIA_Marcos_Hagen_Condition()
 {
-	if((Kapitel == 2) && (Garond.aivar[AIV_TalkedToPlayer] == FALSE))
+	if((Kapitel == 2) && (MIS_ScoutMine == FALSE))
 	{
 		return TRUE;
 	};
@@ -105,7 +105,7 @@ instance DIA_Marcos_Garond(C_Info)
 
 func int DIA_Marcos_Garond_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2))
+	if((Kapitel == 2) && (MIS_ScoutMine == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -120,10 +120,10 @@ func void DIA_Marcos_Garond_Info()
 	AI_Output(self,other,"DIA_Marcos_Garond_04_04");	//Скажи ему, что я буду охранять руду, пока жив. Но я не знаю, сколько времени пройдет, прежде чем орки найдут меня здесь.
 	AI_Output(self,other,"DIA_Marcos_Garond_04_05");	//Скажи ему, чтобы прислал подкрепление.
 	AI_Output(other,self,"DIA_Marcos_Garond_15_06");	//Я дам ему знать.
-	B_LogEntry(TOPIC_ScoutMine,"Паладин Маркос охраняет ЧЕТЫРЕ ящика в небольшой долине.");
+	B_LogEntries(TOPIC_ScoutMine,"Паладин Маркос охраняет ЧЕТЫРЕ ящика в небольшой долине.");
 	Log_CreateTopic(Topic_MarcosJungs,LOG_MISSION);
 	Log_SetTopicStatus(Topic_MarcosJungs,LOG_Running);
-	B_LogEntry(Topic_MarcosJungs,"Маркос хочет, чтобы Гаронд послал ему подмогу.");
+	B_LogNextEntry(Topic_MarcosJungs,"Маркос хочет, чтобы Гаронд послал ему подмогу.");
 	MIS_Marcos_Jungs = LOG_Running;
 	Marcos_Ore = TRUE;
 	self.flags = 0;

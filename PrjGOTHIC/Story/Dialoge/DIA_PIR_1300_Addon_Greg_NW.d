@@ -18,7 +18,6 @@ func int DIA_Addon_Greg_NW_EXIT_Condition()
 func void DIA_Addon_Greg_NW_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-	PlayerTalkedToGregNW = TRUE;
 	if(GregWolfs == FALSE)
 	{
 		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
@@ -60,7 +59,6 @@ func void DIA_Addon_Greg_NW_Hallo_Info()
 		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
 		GregWolfs = TRUE;
 	};
-	PlayerTalkedToGregNW = TRUE;
 //	SC_MeetsGregTime = 1;
 	Info_ClearChoices(DIA_Addon_Greg_NW_Hallo);
 	Info_AddChoice(DIA_Addon_Greg_NW_Hallo,"Мне надо идти.",DIA_Addon_Greg_NW_Hallo_weg);
@@ -81,7 +79,7 @@ func void DIA_Addon_Greg_NW_Hallo_weg()
 
 func void DIA_Addon_Greg_NW_Hallo_ja()
 {
-	AI_Output(other,self,"DIA_Addon_Greg_NW_Hallo_ja_15_00");	//Почему бы и нет?
+	DIA_Common_WhyNot();
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_ja_01_01");	//Ты должен простить невежественного старого моряка! Я чужой в ваших краях и не знаю местных законов.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_ja_01_02");	//Поэтому мне пришлось на своей шкуре испытать, как стражники встречают в этом городе простых путников.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_ja_01_03");	//И вот теперь мне нужно попасть в город, а я не знаю, как это сделать.
@@ -928,7 +926,6 @@ func void DIA_Addon_Greg_NW_CaughtDexter_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_CaughtDexter_01_00");	//(громко) Ну и где эта свинья?
 	AI_Output(other,self,"DIA_Addon_Greg_NW_CaughtDexter_15_01");	//Кто, главарь? Прямо здесь.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_CaughtDexter_01_02");	//Тогда прочь с моей дороги!
-	PlayerTalkedToGregNW = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"DexterHouseRun");
 };
@@ -957,7 +954,6 @@ func void DIA_Addon_Greg_NW_WodennNu_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WodennNu_01_00");	//И куда же он делся?
 	AI_Output(other,self,"DIA_Addon_Greg_NW_WodennNu_15_01");	//Был здесь.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WodennNu_01_02");	//Ну так пойди и отыщи его!
-	PlayerTalkedToGregNW = TRUE;
 	AI_StopProcessInfos(self);
 };
 
@@ -985,7 +981,6 @@ func void DIA_Addon_Greg_NW_CaughtDexter2_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_CaughtDexter2_01_00");	//Ага. Значит, Декстер свое получил?
 	AI_Output(other,self,"DIA_Addon_Greg_NW_CaughtDexter2_15_01");	//Похоже, он мертв.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_CaughtDexter2_01_02");	//Не могу сказать, что мне его жалко. Проверь, что у него было с собой.
-	PlayerTalkedToGregNW = TRUE;
 	Npc_ExchangeRoutine(self,"DexterHouseWalk");
 	B_GivePlayerXP(XP_Ambient);
 };

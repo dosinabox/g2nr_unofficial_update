@@ -81,7 +81,6 @@ func int DIA_Moe_Hallo_Condition()
 func void DIA_Moe_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Moe_Hallo_01_00");	//Эй, я не знаю тебя. Чего тебе здесь нужно? Ты идешь в кабак?
-	B_PlayerEnteredCity();
 	Info_ClearChoices(DIA_Moe_Hallo);
 	Info_AddChoice(DIA_Moe_Hallo,"Нет, я не иду в кабак...",DIA_Moe_Hallo_Gehen);
 	Info_AddChoice(DIA_Moe_Hallo,"Ох, так это портовый трактир. А я-то принял его за дворец губернатора.",DIA_Moe_Hallo_Witz);
@@ -338,7 +337,6 @@ func int DIA_Moe_LEHMARGELDEINTREIBEN_Condition()
 func void DIA_Moe_LEHMARGELDEINTREIBEN_Info()
 {
 	AI_Output(self,other,"DIA_Moe_LEHMARGELDEINTREIBEN_01_00");	//Эй, ты! Лемар передает тебе привет.
-	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };

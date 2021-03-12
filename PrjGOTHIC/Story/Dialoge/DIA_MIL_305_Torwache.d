@@ -53,7 +53,7 @@ instance DIA_Mil_305_Torwache_FirstWarn(C_Info)
 
 func int DIA_Mil_305_Torwache_FirstWarn_Condition()
 {
-	if((MILArmor_Equipped == TRUE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((VisibleGuild(other) == GIL_MIL) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
 	{
 		return FALSE;
 	}
@@ -106,7 +106,7 @@ instance DIA_Mil_305_Torwache_SecondWarn(C_Info)
 
 func int DIA_Mil_305_Torwache_SecondWarn_Condition()
 {
-	if((MILArmor_Equipped == TRUE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((VisibleGuild(other) == GIL_MIL) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
 	{
 		return FALSE;
 	}
@@ -138,7 +138,7 @@ instance DIA_Mil_305_Torwache_Attack(C_Info)
 
 func int DIA_Mil_305_Torwache_Attack_Condition()
 {
-	if((MILArmor_Equipped == TRUE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((VisibleGuild(other) == GIL_MIL) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
 	{
 		return FALSE;
 	}
@@ -220,6 +220,15 @@ func void DIA_Mil_305_Torwache_Ausnahme_Info()
 };
 
 
+func void B_UpperCityPass()
+{
+	B_StartOtherRoutine(Lothar,"START");
+	self.aivar[AIV_PASSGATE] = TRUE;
+	Mil_305_schonmalreingelassen = TRUE;
+	B_PlayerEnteredCity();
+	B_CheckLog();
+};
+
 instance DIA_Mil_305_Torwache_PassAsCitizen(C_Info)
 {
 	npc = MIL_305_Torwache;
@@ -250,10 +259,7 @@ func void DIA_Mil_305_Torwache_PassAsCitizen_Info()
 	{
 		AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsCitizen_03_01");	//Я не знаю, что заставило мастеров Хориниса принять тебя в ученики - и не хочу знать.
 		AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsCitizen_03_02");	//Ты можешь войти! Но веди себя как положено! Если не хочешь нарваться на серьезные неприятности!
-		B_StartOtherRoutine(Lothar,"START");
-		self.aivar[AIV_PASSGATE] = TRUE;
-		Mil_305_schonmalreingelassen = TRUE;
-		B_CheckLog();
+		B_UpperCityPass();
 	}
 	else if((MIS_Matteo_Gold == LOG_SUCCESS) || (MIS_Thorben_GetBlessings == LOG_SUCCESS) || (MIS_Bosper_Bogen == LOG_SUCCESS) || (MIS_Bosper_WolfFurs == LOG_SUCCESS) || (MIS_Harad_Orc == LOG_SUCCESS) || (MIS_HakonBandits == LOG_SUCCESS))
 	{
@@ -281,7 +287,7 @@ instance DIA_Mil_305_Torwache_PassAsArmoredMil(C_Info)
 
 func int DIA_Mil_305_Torwache_PassAsArmoredMil_Condition()
 {
-	if((MILArmor_Equipped == TRUE) && (Mil_305_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((VisibleGuild(other) == GIL_MIL) && (Mil_305_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
 	{
 		return TRUE;
 	};
@@ -294,10 +300,7 @@ func void DIA_Mil_305_Torwache_PassAsArmoredMil_Info()
 		AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsMil_03_01");	//Так Андрэ принял тебя? Возможно, ты не такой уж плохой парень, как кажешься!
 	};
 	AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsMil_03_02");	//Теперь ты один из защитников города! Так что постарайся быть вежливым и дружелюбным с горожанами!
-	B_StartOtherRoutine(Lothar,"START");
-	self.aivar[AIV_PASSGATE] = TRUE;
-	Mil_305_schonmalreingelassen = TRUE;
-	B_CheckLog();
+	B_UpperCityPass();
 	AI_StopProcessInfos(self);
 };
 
@@ -332,10 +335,7 @@ func void DIA_Mil_305_Torwache_PassAsMil_Info()
 	{
 		AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsMil_03_01");	//Так Андрэ принял тебя? Возможно, ты не такой уж плохой парень, как кажешься!
 		AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsMil_03_02");	//Теперь ты один из защитников города! Так что постарайся быть вежливым и дружелюбным с горожанами!
-		B_StartOtherRoutine(Lothar,"START");
-		self.aivar[AIV_PASSGATE] = TRUE;
-		Mil_305_schonmalreingelassen = TRUE;
-		B_CheckLog();
+		B_UpperCityPass();
 	};
 	AI_StopProcessInfos(self);
 };
@@ -372,10 +372,7 @@ func void DIA_Mil_305_Torwache_PassAsMage_Info()
 		AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsMage_03_01");	//Ээээ... нет! Конечно, нет! Для Избранных Инноса вход открыт!
 		AI_Output(other,self,"DIA_Mil_305_Torwache_PassAsMage_15_02");	//Молись, чтобы Иннос простил тебе это кощунство!
 		AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsMage_03_03");	//Да, о, Избранный!
-		B_StartOtherRoutine(Lothar,"START");
-		self.aivar[AIV_PASSGATE] = TRUE;
-		Mil_305_schonmalreingelassen = TRUE;
-		B_CheckLog();
+		B_UpperCityPass();
 	};
 	AI_StopProcessInfos(self);
 };
@@ -419,10 +416,7 @@ func void DIA_Mil_305_Torwache_PassAsSld_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsSld_03_03");	//Ах! Значит, наконец, до вас, подлецов, дошел голос разума. Тогда проходи к лорду Хагену, но постарайся быть милым и вежливым, или я так отделаю тебя, что мало не покажется!
-		B_StartOtherRoutine(Lothar,"START");
-		self.aivar[AIV_PASSGATE] = TRUE;
-		Mil_305_schonmalreingelassen = TRUE;
-		B_CheckLog();
+		B_UpperCityPass();
 	};
 	AI_StopProcessInfos(self);
 };

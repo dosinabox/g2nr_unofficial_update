@@ -53,9 +53,8 @@ instance YGiant_Bug(Mst_Default_Giant_Bug)
 	protection[PROT_BLUNT] = 10;
 	protection[PROT_EDGE] = 10;
 	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 16;	//10;
+	protection[PROT_FIRE] = 10;	//16;
 	protection[PROT_FLY] = 10;
-	protection[PROT_MAGIC] = 0;
 	B_SetVisuals_Giant_Bug();
 	Mdl_SetModelScale(self,0.9,0.9,0.9);
 	Npc_SetToFistMode(self);
@@ -72,9 +71,8 @@ instance YGiant_Bug_VinoRitual1(Mst_Default_Giant_Bug)
 	protection[PROT_BLUNT] = 10;
 	protection[PROT_EDGE] = 10;
 	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 16;	//10;
+	protection[PROT_FIRE] = 10;	//16;
 	protection[PROT_FLY] = 10;
-	protection[PROT_MAGIC] = 0;
 	B_SetVisuals_Giant_Bug();
 	Mdl_SetModelScale(self,0.9,0.9,0.9);
 	Npc_SetToFistMode(self);
@@ -91,9 +89,8 @@ instance YGiant_Bug_VinoRitual2(Mst_Default_Giant_Bug)
 	protection[PROT_BLUNT] = 10;	//0;
 	protection[PROT_EDGE] = 10;	//0;
 	protection[PROT_POINT] = 10;	//0;
-	protection[PROT_FIRE] = 16;	//0;
+	protection[PROT_FIRE] = 10;	//0;
 	protection[PROT_FLY] = 10;	//0;
-	protection[PROT_MAGIC] = 0;
 	B_SetVisuals_Giant_Bug();
 	Mdl_SetModelScale(self,0.9,0.9,0.9);
 	Npc_SetToFistMode(self);

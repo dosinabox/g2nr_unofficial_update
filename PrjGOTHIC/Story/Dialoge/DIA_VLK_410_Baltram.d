@@ -17,7 +17,6 @@ func int DIA_Baltram_EXIT_Condition()
 
 func void DIA_Baltram_EXIT_Info()
 {
-	B_BaltramRangerCheck(other);
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
@@ -37,7 +36,6 @@ instance DIA_Baltram_Sperre(C_Info)
 
 func int DIA_Baltram_Sperre_Condition()
 {
-	B_BaltramRangerCheck(other);
 	if((Canthar_Sperre == TRUE) && Npc_IsInState(self,ZS_Talk))
 	{
 		if(AnyRangerRingEquipped() && (MIS_Lares_BringRangerToMe == LOG_Running))
@@ -93,7 +91,6 @@ func int DIA_Baltram_Hallo_Condition()
 
 func void DIA_Baltram_Hallo_Info()
 {
-	B_BaltramRangerCheck(other);
 	if(((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG)) || (SC_KnowsBaltramAsRanger == TRUE))
 	{
 		AI_Output(self,other,"DIA_Baltram_Hallo_01_00");	//Добро пожаловать, чужеземец, меня зовут Бальтрам. Ты хочешь запастись продовольствием?
@@ -163,7 +160,6 @@ func int DIA_Baltram_Job_Condition()
 
 func void DIA_Baltram_Job_Info()
 {
-	B_BaltramRangerCheck(other);
 	AI_Output(other,self,"DIA_Baltram_Job_15_00");	//У тебя есть работа для меня?
 	AI_Output(self,other,"DIA_Baltram_Job_01_01");	//Нет, у меня уже есть мальчик на побегушках. Попробуй поговорить с другими торговцами.
 };
@@ -190,7 +186,6 @@ func int DIA_Baltram_Trick_Condition()
 
 func void DIA_Baltram_Trick_Info()
 {
-	B_BaltramRangerCheck(other);
 	AI_Output(self,other,"DIA_Baltram_Trick_01_00");	//Ты ищешь работу?
 	AI_Output(other,self,"DIA_Baltram_Trick_15_01");	//Конечно, а что нужно?
 	AI_Output(self,other,"DIA_Baltram_Trick_01_02");	//Мой мальчик на побегушках не вернулся, а я жду поставку от фермера Акила.
@@ -232,7 +227,6 @@ func int DIA_Baltram_WAREZ_Condition()
 
 func void DIA_Baltram_WAREZ_Info()
 {
-	B_BaltramRangerCheck(other);
 	AI_Output(other,self,"DIA_Baltram_WAREZ_15_00");	//Покажи мне свои товары.
 	if((MIS_Baltram_ScoutAkil == LOG_SUCCESS) && (Baltram_ItemsGiven_Paket == FALSE))
 	{
@@ -295,7 +289,6 @@ func int DIA_Addon_Baltram_Skip_Condition()
 
 func void DIA_Addon_Baltram_Skip_Info()
 {
-	B_BaltramRangerCheck(other);
 	AI_Output(other,self,"DIA_Addon_Baltram_Skip_15_00");	//(мимоходом) Значит, ты торгуешь с пиратами?
 	AI_Output(self,other,"DIA_Addon_Baltram_Skip_01_01");	//(испуганно) Что? Кто тебе это сказал?
 	AI_Output(other,self,"DIA_Addon_Baltram_Skip_15_02");	//Я говорил с одним из них. Похоже, он ждет тебя в своей бухте.
@@ -381,7 +374,6 @@ func int DIA_Addon_Baltram_SkipsRum_Condition()
 
 func void DIA_Addon_Baltram_SkipsRum_Info()
 {
-	B_BaltramRangerCheck(other);
 	AI_Output(other,self,"DIA_Addon_Baltram_SkipsRum_15_00");	//Я принес ром. Но Скип дал мне всего две бутылки.
 	AI_Output(self,other,"DIA_Addon_Baltram_SkipsRum_01_01");	//(сердито) Дороговато получается... Что он о себе возомнил? Ладно, давай их сюда.
 	B_GiveInvItems(other,self,ItFo_Addon_Rum,2);
@@ -414,7 +406,6 @@ func int DIA_Baltram_AkilsHof_Condition()
 
 func void DIA_Baltram_AkilsHof_Info()
 {
-	B_BaltramRangerCheck(other);
 	AI_Output(other,self,"DIA_Baltram_AkilsHof_15_00");	//Где мне найти ферму Акила?
 	AI_Output(self,other,"DIA_Baltram_AkilsHof_01_01");	//Как только выйдешь из восточных ворот, держись дороги, ведущей на юго-восток.
 	AI_Output(self,other,"DIA_Baltram_AkilsHof_01_02");	//Вскоре ты увидишь каменную лестницу. Когда ты поднимешься по ней, ты уже сможешь видеть ферму Акила.
@@ -442,7 +433,6 @@ func int DIA_Baltram_Lieferung_Condition()
 
 func void DIA_Baltram_Lieferung_Info()
 {
-	B_BaltramRangerCheck(other);
 	AI_Output(other,self,"DIA_Baltram_Lieferung_15_00");	//Я принес пакет от Акила.
 	B_GiveInvItems(other,self,ItMi_BaltramPaket,1);
 	Npc_RemoveInvItem(self,ItMi_BaltramPaket);
@@ -478,7 +468,6 @@ func int DIA_Baltram_LetUsTrade_Condition()
 
 func void DIA_Baltram_LetUsTrade_Info()
 {
-	B_BaltramRangerCheck(other);
 	AI_Output(other,self,"DIA_Baltram_LetUsTrade_15_00");	//Может, нам опять поработать вместе?
 	AI_Output(self,other,"DIA_Baltram_LetUsTrade_01_01");	//Послушай, если ты принесешь мне 10 окороков и 10 бутылок вина, тогда я опять готов иметь с тобой дело.
 	AI_Output(other,self,"DIA_Baltram_LetUsTrade_15_02");	//Я попробую.
@@ -513,7 +502,6 @@ func int DIA_Baltram_HaveYourWarez_Condition()
 
 func void DIA_Baltram_HaveYourWarez_Info()
 {
-	B_BaltramRangerCheck(other);
 	AI_Output(other,self,"DIA_Baltram_HaveYourWarez_15_00");	//Я принес то, что ты просил.
 	AI_Output(self,other,"DIA_Baltram_HaveYourWarez_01_01");	//Покажи.
 	if(Npc_HasItems(other,ItFo_Bacon) < 10)

@@ -7,6 +7,7 @@ instance BAU_911_Elena(Npc_Default)
 	voice = 16;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	self.attribute[ATR_STRENGTH] = 50;
 	self.attribute[ATR_DEXTERITY] = 1;

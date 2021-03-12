@@ -7,6 +7,7 @@ instance SLD_803_Cipher(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	CreateInvItems(self,ItRw_Arrow,10);

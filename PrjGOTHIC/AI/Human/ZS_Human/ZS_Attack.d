@@ -86,7 +86,9 @@ func int ZS_Attack_Loop()
 		self.aivar[AIV_StateTime] = Npc_GetStateTime(self);
 		if(other.guild < GIL_SEPERATOR_HUM)
 		{
-			B_Say(self,other,"$RUNCOWARD");
+			//B_Say(self,other,"$RUNCOWARD");
+			AI_PlayAni(self,"T_IGETYOU");
+			B_Say_Overlay(self,other,"$RUNCOWARD");
 		};
 	};
 	if(self.aivar[AIV_PursuitEnd] == TRUE)
@@ -173,9 +175,12 @@ func int ZS_Attack_Loop()
 	else
 	{
 		Npc_ClearAIQueue(self);
-		if(Hlp_IsValidNpc(other) && Npc_IsPlayer(other) && C_NpcIsDown(other))
+		if(Hlp_IsValidNpc(other))
 		{
-			Npc_SetTempAttitude(self,Npc_GetPermAttitude(self,hero));
+			if(Npc_IsPlayer(other) && C_NpcIsDown(other))
+			{
+				Npc_SetTempAttitude(self,Npc_GetPermAttitude(self,hero));
+			};
 		};
 		if(self.aivar[AIV_ATTACKREASON] != AR_KILL)
 		{

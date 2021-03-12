@@ -190,14 +190,14 @@ func void DIA_Mortis_CanTeach_Info()
 
 func void B_BuildLearnDialog_Mortis()
 {
-	Info_ClearChoices(DIA_Mortis_Teach);
-	Info_AddChoice(DIA_Mortis_Teach,Dialog_Back,DIA_Mortis_Teach_BACK);
 	if(other.aivar[REAL_STRENGTH] >= 150)
 	{
 		AI_Output(self,other,"DIA_Mortis_Teach_13_00");	//“ы и так достаточно силен. ≈сли же ты стремишьс€ к большему, найди себе другого учител€.
 	}
 	else
 	{
+		Info_ClearChoices(DIA_Mortis_Teach);
+		Info_AddChoice(DIA_Mortis_Teach,Dialog_Back,DIA_Mortis_Teach_BACK);
 		Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Mortis_Teach_1);
 		Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Mortis_Teach_5);
 	};

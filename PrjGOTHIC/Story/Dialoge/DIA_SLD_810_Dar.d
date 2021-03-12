@@ -309,56 +309,6 @@ func void DIA_Dar_Pilztabak_Info()
 };
 
 
-/*instance DIA_Dar_KAP3_EXIT(C_Info)
-{
-	npc = SLD_810_Dar;
-	nr = 999;
-	condition = DIA_Dar_KAP3_EXIT_Condition;
-	information = DIA_Dar_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Dar_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Dar_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Dar_KAP4_EXIT(C_Info)
-{
-	npc = SLD_810_Dar;
-	nr = 999;
-	condition = DIA_Dar_KAP4_EXIT_Condition;
-	information = DIA_Dar_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Dar_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Dar_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};*/
-
-
 instance DIA_Dar_ORCRING(C_Info)
 {
 	npc = SLD_810_Dar;
@@ -580,57 +530,6 @@ func void DIA_Dar_BRINGORCELITERING_was_am()
 	Npc_ExchangeRoutine(self,"Start");
 	Info_ClearChoices(DIA_Dar_BRINGORCELITERING);
 };
-
-
-/*instance DIA_Dar_KAP5_EXIT(C_Info)
-{
-	npc = SLD_810_Dar;
-	nr = 999;
-	condition = DIA_Dar_KAP5_EXIT_Condition;
-	information = DIA_Dar_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Dar_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Dar_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Dar_KAP6_EXIT(C_Info)
-{
-	npc = SLD_810_Dar;
-	nr = 999;
-	condition = DIA_Dar_KAP6_EXIT_Condition;
-	information = DIA_Dar_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Dar_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Dar_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Dar_PICKPOCKET(C_Info)
 {

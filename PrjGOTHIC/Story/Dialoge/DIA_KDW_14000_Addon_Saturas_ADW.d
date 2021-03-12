@@ -1,4 +1,33 @@
 
+func int C_SCHasBDTArmor()
+{
+	if(Npc_HasItems(hero,ITAR_BDT_M))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ITAR_BDT_H))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ITAR_Thorus_Addon))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ITAR_OreBaron_Addon))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ITAR_Bloodwyn_Addon))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ITAR_Diego))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 instance DIA_Addon_Saturas_ADW_EXIT(C_Info)
 {
 	npc = KDW_14000_Addon_Saturas_ADW;
@@ -131,11 +160,17 @@ func void DIA_Addon_Saturas_ADWStart_back()
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_back_14_02");	//В твое отсутствие к нам прибыл еще один член Кольца Воды.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_back_14_03");	//Мы отправили его на болото. Он не вернулся.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_back_14_04");	//Подозреваем, что бандиты нападают на всех, кто выглядит иначе, чем они.
-	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_back_14_05");	//Поэтому тебе следует обзавестись такими же доспехами, как у них.
-	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_back_14_06");	//Это единственный способ подобраться к ним поближе так, чтобы на тебя сразу же не напали.
-	Log_CreateTopic(TOPIC_Addon_BDTRuestung,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_BDTRuestung,LOG_Running);
-	B_LogEntry(TOPIC_Addon_BDTRuestung,"Бандиты убивают всех, кто не выглядит, как они. Чтобы попасть к ним, мне нужны бандитские доспехи.");
+	if(!C_BanditArmorEquipped(other))
+	{
+		AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_back_14_05");	//Поэтому тебе следует обзавестись такими же доспехами, как у них.
+		AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_back_14_06");	//Это единственный способ подобраться к ним поближе так, чтобы на тебя сразу же не напали.
+		if(!C_SCHasBDTArmor())
+		{
+			Log_CreateTopic(TOPIC_Addon_BDTRuestung,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_BDTRuestung,LOG_Running);
+			B_LogEntry(TOPIC_Addon_BDTRuestung,"Бандиты убивают всех, кто не выглядит, как они. Чтобы попасть к ним, мне нужны бандитские доспехи.");
+		};
+	};
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
 };
@@ -166,7 +201,7 @@ func void DIA_Addon_Saturas_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, это был рыбак из Хориниса. Взгляни там.
 	if(!Npc_HasItems(William,ITWr_Addon_William_01))
 	{
-		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
+		DIA_Common_IFoundHim();
 		AI_Output(self,other,"DIA_Addon_Saturas_LanceLeiche_14_01");	//Да пребудет его душа в царстве Аданоса.
 		if(FoundDeadWilliam == FALSE)
 		{
@@ -230,7 +265,7 @@ instance DIA_Addon_Saturas_Piraten(C_Info)
 func int DIA_Addon_Saturas_Piraten_Condition()
 {
 //	if((AlligatorJack.aivar[AIV_TalkedToPlayer] == FALSE) && (Greg.aivar[AIV_TalkedToPlayer] == FALSE))
-	if(!Npc_HasItems(other,ITAR_Thorus_Addon) && !Npc_HasItems(other,ITAR_BDT_M) && !Npc_HasItems(other,ITAR_BDT_H) && (RavenIsDead == FALSE))
+	if(!C_SCHasBDTArmor() && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};

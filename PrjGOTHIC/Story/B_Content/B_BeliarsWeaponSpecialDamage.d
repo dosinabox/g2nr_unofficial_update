@@ -28,7 +28,8 @@ func void B_BeliarsWeaponSpecialDamage(var C_Npc oth,var C_Npc slf)
 			RavenBlitz += 1;
 		};
 	}
-	else if(Hlp_GetInstanceID(oth) == Hlp_GetInstanceID(hero))
+//	else if(Hlp_GetInstanceID(oth) == Hlp_GetInstanceID(hero))
+	else if(Npc_IsPlayer(oth))
 	{
 		DamageRandy = Hlp_Random(100);
 		if(C_ScHasReadiedBeliarsWeapon() && (DamageRandy <= BeliarDamageChance))

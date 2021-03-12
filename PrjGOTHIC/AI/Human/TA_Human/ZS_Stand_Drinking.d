@@ -4,7 +4,7 @@ func void ZS_Stand_Drinking()
 	var int random;
 	Perception_Set_Normal();
 	B_ResetAll(self);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Joe))
+	if(C_IsNpc(self,VLK_448_Joe))
 	{
 		AI_SetWalkMode(self,NPC_RUN);
 	}

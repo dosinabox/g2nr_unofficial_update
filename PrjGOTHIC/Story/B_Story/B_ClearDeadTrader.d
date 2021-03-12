@@ -11,9 +11,7 @@ func void B_ClearDeadTrader(var C_Npc Trader)
 
 func void B_ClearInfiniteTools(var C_Npc slf)
 {
-	var C_Npc her;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(her))
+	if(!C_NpcIsHero(slf))
 	{
 		Npc_RemoveInvItems(slf,ItMi_Stomper,Npc_HasItems(slf,ItMi_Stomper));
 		Npc_RemoveInvItems(slf,ItMi_Hammer,Npc_HasItems(slf,ItMi_Hammer));

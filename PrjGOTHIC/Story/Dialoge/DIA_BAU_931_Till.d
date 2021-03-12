@@ -44,14 +44,11 @@ func void DIA_Till_HALLO_Info()
 	AI_Output(other,self,"DIA_Till_HALLO_15_00");	//Привет.
 	AI_Output(self,other,"DIA_Till_HALLO_03_01");	//Я не разговариваю с рабочими. Сколько тебе это повторять?
 	Info_ClearChoices(DIA_Till_HALLO);
-//	if(Kapitel < 5)
-//	{
 	Info_AddChoice(DIA_Till_HALLO,"Я не рабочий.",DIA_Till_HALLO_keinervoneuch);
 	if(!Npc_IsDead(Sekob))
 	{
 		Info_AddChoice(DIA_Till_HALLO,"Ты командуешь здесь?",DIA_Till_HALLO_selber);
 	};
-//	};
 	if((Kapitel < 3) || (TOPIC_END_SekobDMT == TRUE))
 	{
 		B_StartOtherRoutine(self,"Start");
@@ -61,7 +58,7 @@ func void DIA_Till_HALLO_Info()
 func void DIA_Till_HALLO_selber()
 {
 	AI_Output(other,self,"DIA_Till_HALLO_selber_15_00");	//Ты командуешь здесь?
-	AI_Output(self,other,"DIA_Till_HALLO_selber_03_01");	//Э-э. Нет, я всего лишь сын Секоба. Но когда старика больше не будет с нами, вся земля, что ты видишь вокруг, перейдет ко мне.
+	AI_Output(self,other,"DIA_Till_HALLO_selber_03_01");	//(запуганно) Э-э. Нет, я всего лишь сын Секоба. Но когда старика больше не будет с нами, вся земля, что ты видишь вокруг, перейдет ко мне.
 	AI_Output(other,self,"DIA_Till_HALLO_selber_15_02");	//Потрясающе!
 	Info_ClearChoices(DIA_Till_HALLO);
 };

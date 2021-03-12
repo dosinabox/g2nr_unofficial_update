@@ -33,7 +33,7 @@ instance DIA_BDT_1014_BANDIT_KILLER(C_Info)
 
 func int DIA_BDT_1014_BANDIT_KILLER_Condition()
 {
-	if(Npc_KnowsInfo(other,dia_1013_bandit_ambush) || Npc_IsDead(Ambusher_1013) || (Bdt13_Friend == TRUE) || Npc_IsInState(self,ZS_Talk))
+	if(Npc_KnowsInfo(other,DIA_1013_BANDIT_AMBUSH) || Npc_IsDead(Ambusher_1013) || (Bdt13_Friend == TRUE) || Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};

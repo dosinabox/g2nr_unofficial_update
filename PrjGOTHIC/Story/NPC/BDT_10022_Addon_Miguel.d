@@ -7,6 +7,7 @@ instance BDT_10022_Addon_Miguel(Npc_Default)
 	voice = 11;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Nagelknueppel);

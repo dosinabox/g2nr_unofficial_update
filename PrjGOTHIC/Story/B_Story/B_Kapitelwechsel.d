@@ -19,10 +19,7 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		Cronos_NW_ItSc_Icelance_Count = 5;
 		Cronos_NW_ItSc_Whirlwind_Count = 1;
 		Bennet_NW_ItMi_Swordraw_Count = 3;
-		OrkElite_AntiPaladin_Level = 50;
-		OrkElite_AntiPaladin_Strength = 140;
-		OrkElite_AntiPaladin_HP = 550;
-		OrkElite_AntiPaladin_Protection = 170;
+		IceDragonSpell = SPL_InstantFireball;
 		IntroduceChapter(KapWechsel_1,KapWechsel_1_Text,"chapter1.tga","chapter_01.wav",6000);
 	}
 	else if(neues_Kapitel == 2)
@@ -42,10 +39,6 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		Bennet_NW_ItMi_Swordraw_Count += 3;
 		Bennet_NW_ItMi_Nugget_Count += 2;
 		PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
-		if(StartChapter4InNewWorld == TRUE)
-		{
-			IntroduceChapter(KapWechsel_4,KapWechsel_4_Text,"chapter4.tga","chapter_01.wav",6000);
-		};
 	}
 	else if(neues_Kapitel == 5)
 	{
@@ -59,11 +52,11 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 	};
 	if(aktuelles_Level_Zen == OLDWORLD_ZEN)
 	{
-		b_enter_oldworld();
-	};
-	if(aktuelles_Level_Zen == NEWWORLD_ZEN)
+		B_Enter_OldWorld();
+	}
+	else if(aktuelles_Level_Zen == NEWWORLD_ZEN)
 	{
-		b_enter_newworld();
+		B_Enter_NewWorld();
 	};
 	B_CheckLog();
 	if(XP_Static == FALSE)
@@ -71,24 +64,24 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		if(Kapitel == 1)
 		{
 			XP_Ambient = XP_AmbientKap1;
-		};
-		if(Kapitel == 2)
+		}
+		else if(Kapitel == 2)
 		{
 			XP_Ambient = XP_AmbientKap2;
-		};
-		if(Kapitel == 3)
+		}
+		else if(Kapitel == 3)
 		{
 			XP_Ambient = XP_AmbientKap3;
-		};
-		if(Kapitel == 4)
+		}
+		else if(Kapitel == 4)
 		{
 			XP_Ambient = XP_AmbientKap4;
-		};
-		if(Kapitel == 5)
+		}
+		else if(Kapitel == 5)
 		{
 			XP_Ambient = XP_AmbientKap5;
-		};
-		if(Kapitel == 6)
+		}
+		else if(Kapitel == 6)
 		{
 			XP_Ambient = XP_AmbientKap6;
 		};

@@ -13,8 +13,8 @@ instance PC_Itemfeller(Npc_Default)
 	attribute[ATR_MANA] = 400;
 	attribute[ATR_HITPOINTS_MAX] = 400;
 	attribute[ATR_HITPOINTS] = 400;
-	exp = XP_PER_LEVEL * ((level + 1) / 2) * (level + 1);
-	exp_next = XP_PER_LEVEL * ((level + 2) / 2) * (level + 1);
+	exp = B_GetCurrentLevelExp(self);
+	exp_next = B_GetNextLevelExp(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player_G1,ITAR_PAL_H);
 	Npc_SetTalentSkill(self,NPC_TALENT_MAGE,6);
 	Npc_SetTalentSkill(self,NPC_TALENT_PICKLOCK,1);
@@ -88,7 +88,6 @@ instance PC_Itemfeller(Npc_Default)
 	PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] = TRUE;
 	PLAYER_TALENT_RUNES[SPL_Shrink] = TRUE;
 	B_SetFightSkills(self,100);
-	EquipItem(self,ItMw_2h_Pal_Sword);
 	CreateInvItems(self,ItMw_1h_Vlk_Dagger,1);
 	CreateInvItems(self,ItMw_1H_Mace_L_01,1);
 	CreateInvItems(self,ItMw_1h_Bau_Axe,1);
@@ -472,7 +471,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItRi_Dex_01,1);
 	CreateInvItems(self,ItRi_Dex_02,1);
 	CreateInvItems(self,ItRi_HP_01,1);
-	CreateInvItems(self,ItRi_Hp_02,1);
+	CreateInvItems(self,ItRi_HP_02,1);
 	CreateInvItems(self,ItRi_Str_01,1);
 	CreateInvItems(self,ItRi_Str_02,1);
 	CreateInvItems(self,ItRi_Mana_01,1);

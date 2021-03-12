@@ -82,15 +82,17 @@ func void DIA_Jesper_Hallo_Info()
 	Info_ClearChoices(DIA_Jesper_Hallo);
 	Info_AddChoice(DIA_Jesper_Hallo,"Я пришел убить тебя.",DIA_Jesper_Hallo_Kill);
 	Info_AddChoice(DIA_Jesper_Hallo,"Я просто прогуливаюсь здесь.",DIA_Jesper_Hallo_NurSo);
-	if(Attila_Key == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Kardif_SENDATTILA))
 	{
-		Info_AddChoice(DIA_Jesper_Hallo,"Аттила дал мне ключ. Вот почему я здесь. Так что вам нужно от меня?",DIA_Jesper_Hallo_Willkommen);
-	}
-	else
-	{
-		Info_AddChoice(DIA_Jesper_Hallo,"Я прикончил Аттилу. При нем был ключ от канализации.",DIA_Jesper_Hallo_Umgelegt);
+		if(Attila_Key == TRUE)
+		{
+			Info_AddChoice(DIA_Jesper_Hallo,"Аттила дал мне ключ. Вот почему я здесь. Так что вам нужно от меня?",DIA_Jesper_Hallo_Willkommen);
+		}
+		else if(Npc_IsDead(Attila))
+		{
+			Info_AddChoice(DIA_Jesper_Hallo,"Я прикончил Аттилу. При нем был ключ от канализации.",DIA_Jesper_Hallo_Umgelegt);
+		};
 	};
-	DG_gefunden = TRUE;
 };
 
 func void DIA_Jesper_Hallo_Kill()
@@ -107,6 +109,17 @@ func void DIA_Jesper_Hallo_NurSo()
 	AI_Output(other,self,"DIA_Jesper_Hallo_NurSo_15_00");	//Я просто прогуливаюсь здесь.
 	AI_Output(self,other,"DIA_Jesper_Hallo_NurSo_09_01");	//Здесь не стоит гулять. Это слишком опасно, понятно?
 	AI_Output(self,other,"DIA_Jesper_Hallo_NurSo_09_02");	//Так что оставь свое оружие на месте и скажи мне, зачем ты здесь?
+	if(!Npc_KnowsInfo(other,DIA_Kardif_SENDATTILA))
+	{
+		Info_AddChoice(DIA_Jesper_Hallo,"Отведи меня к вашему главарю.",DIA_Jesper_Hallo_Anfuehrer);
+	}
+	else if(!Npc_IsDead(Attila))
+	{
+		if(Npc_HasItems(Attila,ItKe_ThiefGuildKey_MIS))
+		{
+			Info_AddChoice(DIA_Jesper_Hallo,"Отведи меня к вашему главарю.",DIA_Jesper_Hallo_Anfuehrer);
+		};
+	};
 };
 
 func void DIA_Jesper_Hallo_Willkommen()
@@ -192,7 +205,7 @@ func void DIA_Jesper_Bezahlen_Info()
 
 func void DIA_Jesper_Bezahlen_Spaeter()
 {
-	AI_Output(other,self,"DIA_Thorben_PleaseTeach_Later_15_00");	//Может быть, позже...
+	DIA_Common_MaybeLater();
 	Info_ClearChoices(DIA_Jesper_Bezahlen);
 };
 
@@ -222,11 +235,9 @@ instance DIA_Jesper_Schleichen(C_Info)
 	information = DIA_Jesper_Schleichen_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Научи меня красться",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
-	description = B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
+	description = B_BuildLearnString(NAME_Skill_Sneak,B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
 };
 
-
-//var int DIA_Jesper_Schleichen_permanent;
 
 func int DIA_Jesper_Schleichen_Condition()
 {
@@ -244,7 +255,6 @@ func void DIA_Jesper_Schleichen_Info()
 		AI_Output(self,other,"DIA_Jesper_Schleichen_09_01");	//Умение красться очень важно для любого вора. Особенно, если ты ходишь по чужому дому.
 		AI_Output(self,other,"DIA_Jesper_Schleichen_09_02");	//Там нельзя топать, как ты это делаешь сейчас. Большинство людей спит очень чутким сном.
 		AI_Output(self,other,"DIA_Jesper_Schleichen_09_03");	//Только когда ты крадешься, никто не услышит тебя, и ты сможешь работать беспрепятственно.
-//		DIA_Jesper_Schleichen_permanent = TRUE;
 	};
 };
 

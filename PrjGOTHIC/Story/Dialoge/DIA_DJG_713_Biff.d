@@ -279,6 +279,18 @@ func void DIA_Biff_ARBEITEN_lebenlassen()
 };
 
 
+var int BIFF_LABERT_GELDEINTREIBEN;
+
+func void B_GiveBiffsAnteil()
+{
+	AI_Output(self,other,"DIA_Biff_GELDEINTREIBEN_geben_07_01");	//Хорошо. Тогда в путь.
+	AI_StopProcessInfos(self);
+	B_GiveInvItems(other,self,ItMi_Gold,BiffsAnteil);
+	B_Biff_SetRefuseTalk();
+	BIFF_LABERT_GELDEINTREIBEN = FALSE;
+	DJG_Biff_SCGold = Npc_HasItems(hero,ItMi_Gold);
+};
+
 instance DIA_Biff_GELDEINTREIBEN(C_Info)
 {
 	npc = DJG_713_Biff;
@@ -289,8 +301,6 @@ instance DIA_Biff_GELDEINTREIBEN(C_Info)
 	permanent = TRUE;
 };
 
-
-var int biff_labert_geldeintreiben;
 
 func int DIA_Biff_GELDEINTREIBEN_Condition()
 {
@@ -314,12 +324,13 @@ func void DIA_Biff_GELDEINTREIBEN_Info()
 func void DIA_Biff_GELDEINTREIBEN_geben()
 {
 	AI_Output(other,self,"DIA_Biff_GELDEINTREIBEN_geben_15_00");	//Вот твоя доля.
-	AI_Output(self,other,"DIA_Biff_GELDEINTREIBEN_geben_07_01");	//Хорошо. Тогда в путь.
-	AI_StopProcessInfos(self);
-	B_GiveInvItems(other,self,ItMi_Gold,BiffsAnteil);
-	B_Biff_SetRefuseTalk();
-	BIFF_LABERT_GELDEINTREIBEN = FALSE;
-	DJG_Biff_SCGold = Npc_HasItems(hero,ItMi_Gold);
+	B_GiveBiffsAnteil();
+};
+
+func void DIA_Biff_GELDEINTREIBEN_geben2()
+{
+	AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_15_02");	//Хорошо, похоже, у меня нет выбора. Давай разделим пополам.
+	B_GiveBiffsAnteil();
 };
 
 func void DIA_Biff_GELDEINTREIBEN_zuTeuer()
@@ -344,18 +355,6 @@ func void DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen()
 	DJG_Biff_HalbeHalbe = FALSE;
 	DJG_BiffParty_nomore += 1;
 };
-
-func void DIA_Biff_GELDEINTREIBEN_geben2()
-{
-	AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_15_02");	//Хорошо, похоже, у меня нет выбора. Давай разделим пополам.
-	AI_Output(self,other,"DIA_Biff_GELDEINTREIBEN_geben_07_01");	//Хорошо. Тогда в путь.
-	AI_StopProcessInfos(self);
-	B_GiveInvItems(other,self,ItMi_Gold,BiffsAnteil);
-	B_Biff_SetRefuseTalk();
-	BIFF_LABERT_GELDEINTREIBEN = FALSE;
-	DJG_Biff_SCGold = Npc_HasItems(hero,ItMi_Gold);
-};
-
 
 instance DIA_Biff_ICHBLEIBHIER(C_Info)
 {
@@ -801,7 +800,7 @@ func void DIA_Biff_KnowWhereEnemy_Info()
 		}
 		else
 		{
-			Info_AddChoice(DIA_Biff_KnowWhereEnemy,"Мы еще поговорим.",DIA_Biff_KnowWhereEnemy_No);
+			Info_AddChoice(DIA_Biff_KnowWhereEnemy,"Вернемся к этому позже.",DIA_Biff_KnowWhereEnemy_No);
 		};
 		Info_AddChoice(DIA_Biff_KnowWhereEnemy,"Ты не хочешь присоединиться?",DIA_Biff_KnowWhereEnemy_Yes);
 	};
@@ -828,7 +827,7 @@ func void DIA_Biff_KnowWhereEnemy_No()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Addon_BDT_10018_Torwache_EXIT_15_00");	//Мы еще поговорим.
+		DIA_Common_WeWillGetToThatLater();
 	};
 	AI_Output(self,other,"DIA_Biff_KnowWhereEnemy_No_07_01");	//Да, да. Тогда повеселимся.
 	Biff_ToldLaterOnce = TRUE;

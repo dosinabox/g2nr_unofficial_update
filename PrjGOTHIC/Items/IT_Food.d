@@ -617,7 +617,7 @@ func void Use_DarkWine()
 	Npc_ChangeAttribute(self,ATR_MANA,Mana_DarkWine);
 	if(Npc_IsPlayer(self) && !Npc_GetTalentSkill(self,NPC_TALENT_ACROBAT))
 	{
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_ACROBATIC.MDS",10000);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_ACROBATIC.MDS",15000);
 	};
 };
 

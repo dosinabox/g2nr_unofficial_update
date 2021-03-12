@@ -22,7 +22,7 @@ func void ZS_RansackBody_End()
 		{
 			CreateInvItems(self,Holy_Hammer_MIS,1);
 			Npc_RemoveInvItems(other,Holy_Hammer_MIS,1);
-			B_Say(self,self,"$GetUpAndBeGone");
+			B_Say(self,self,"$GETUPANDBEGONE");
 			GarwigThiefOneTime = FALSE;
 		};
 		if(Npc_HasItems(other,ItMw_2h_Rod) && (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rod)))

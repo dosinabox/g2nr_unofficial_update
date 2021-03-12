@@ -48,8 +48,8 @@ func void DIA_Kjorn_Hello_Info()
 	AI_Output(self,other,"DIA_Kjorn_Hello_06_02");	//Эта долина - опасное место, и без правильного снаряжения ты сразу можешь считать себя трупом.
 	AI_Output(other,self,"DIA_Kjorn_Hello_15_03");	//Я полагаю, что у ТЕБЯ как раз правильное снаряжение.
 	AI_Output(self,other,"DIA_Kjorn_Hello_06_04");	//Угадал. И я даже могу продать его тебе.
-	Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
-	B_LogEntry(Topic_OutTrader,"Охотник на драконов Кйорн продает снаряжение и припасы.");
+	Log_CreateTopic(TOPIC_OutTrader,LOG_NOTE);
+	B_LogEntry(TOPIC_OutTrader,"Охотник на драконов Кйорн продает снаряжение и припасы.");
 };
 
 

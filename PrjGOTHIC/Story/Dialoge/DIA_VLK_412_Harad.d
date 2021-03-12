@@ -43,7 +43,6 @@ func int DIA_Harad_Hallo_Condition()
 func void DIA_Harad_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Harad_Hallo_12_00");	//(раздраженно) Что ты хочешь?
-	B_PlayerEnteredCity();
 };
 
 
@@ -76,9 +75,12 @@ func void DIA_Harad_Arbeit_Info()
 	{
 		AI_Output(self,other,"DIA_Harad_Arbeit_12_07");	//А я не хочу, чтобы мой ученик опозорил мое имя, сбежав из города вместе с женщинами и никчемными бездельниками, вместо того, чтобы держать оборону вместе с другими мужчинами.
 	};
-	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
-	B_LogEntry(TOPIC_Lehrling,"Если я смогу убедить Гарада, что я хоть на что-нибудь гожусь, он примет меня в ученики.");
+	if(Player_IsApprentice == APP_NONE)
+	{
+		Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+		B_LogEntry(TOPIC_Lehrling,"Если я смогу убедить Гарада, что я хоть на что-нибудь гожусь, он примет меня в ученики.");
+	};
 };
 
 
@@ -156,15 +158,18 @@ func void DIA_Harad_OrcRunning_TooHard()
 	AI_Output(self,other,"DIA_Harad_OrcRunning_TooHard_12_06");	//Эти трусливые шакалы не должны быть так уж сильны.
 	AI_Output(self,other,"DIA_Harad_OrcRunning_TooHard_12_07");	//Убей этих ублюдков! Всех! Тогда я пойму, что ты не опозоришь наш город.
 	Harad_HakonMission = TRUE;
-	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
-	if(MIS_HakonBandits == FALSE)
+	if(Player_IsApprentice == APP_NONE)
 	{
-		B_LogEntry(TOPIC_Lehrling,"Гарад сказал мне, что бандиты ограбили торговца Хакона недалеко от города. Если я смогу убить их, это убедит его, что я хоть на что-то гожусь. Я должен поговорить с Хаконом. Возможно, он знает, где скрываются эти бандиты.");
-	}
-	else
-	{
-		B_LogEntry(TOPIC_Lehrling,"Гарад сказал мне, что бандиты ограбили торговца Хакона недалеко от города. Если я смогу убить их, это убедит его, что я хоть на что-то гожусь.");
+		Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+		if(MIS_HakonBandits == FALSE)
+		{
+			B_LogEntry(TOPIC_Lehrling,"Гарад сказал мне, что бандиты ограбили торговца Хакона недалеко от города. Если я смогу убить их, это убедит его, что я хоть на что-то гожусь. Я должен поговорить с Хаконом. Возможно, он знает, где скрываются эти бандиты.");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_Lehrling,"Гарад сказал мне, что бандиты ограбили торговца Хакона недалеко от города. Если я смогу убить их, это убедит его, что я хоть на что-то гожусь.");
+		};
 	};
 	Info_ClearChoices(DIA_Harad_OrcRunning);
 };
@@ -280,6 +285,7 @@ func void DIA_Harad_OrcSuccess_Info()
 	else if(Player_IsApprentice == APP_NONE)
 	{
 		AI_Output(self,other,"DIA_Harad_OrcSuccess_12_06");	//Я не думал, что тебе удастся это. Я поражен.
+		B_LogEntry(TOPIC_Lehrling,"Гарад примет меня в ученики, если я смогу получить одобрение других мастеров.");
 	}
 	else
 	{
@@ -295,7 +301,6 @@ func void DIA_Harad_OrcSuccess_Info()
 	{
 		B_GivePlayerXP(XP_Harad_Orc);
 	};
-	B_LogEntry(TOPIC_Lehrling,"Гарад примет меня в ученики, если я смогу получить одобрение других мастеров.");
 };
 
 
@@ -459,6 +464,7 @@ func void DIA_Harad_LEHRLING_OK()
 		AI_Output(self,other,"DIA_Harad_LEHRLING_OK_12_04");	//Кроме того, пришло время стать немного сильнее. Ты чахнешь прямо у меня на глазах!
 	};
 	Player_IsApprentice = APP_Harad;
+	ApprenticeGoldCounter = 0;
 	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
 	{
 		Npc_ExchangeRoutine(Lothar,"START");
@@ -809,7 +815,7 @@ func void B_HaradSmithChoices()
 	};
 	if(PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE)
 	{
-		Info_AddChoice(DIA_Harad_TeachSmith,B_BuildLearnString("Кузнечное дело",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),DIA_Harad_TeachSmith_Common);
+		Info_AddChoice(DIA_Harad_TeachSmith,B_BuildLearnString(NAME_Skill_Smith,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),DIA_Harad_TeachSmith_Common);
 	};
 };
 

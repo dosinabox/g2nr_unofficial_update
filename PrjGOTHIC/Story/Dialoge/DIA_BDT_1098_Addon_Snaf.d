@@ -279,39 +279,33 @@ func void DIA_Addon_Snaf_Abrechnung_Info()
 		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_04");	//Ты прибил одного из парней Эстебана. Я полагаю, тот, кого ты ищешь, будет больше тебе доверять, когда ты его встретишь.
 		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_05");	//Но он вряд ли так просто раскроется. Тебе нужно узнать больше.
 	}
+	else if(Finn_Petzt == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_06");	//Финн заметно взволнован с тех пор, как ты с ним поговорил.
+		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_07");	//И все здесь знают, что он хорошо ладит с Эстебаном.
+		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_08");	//Это значит, что ты сказал ему что-то, чего он явно не хотел слышать.
+		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_09");	//Это наверняка понравится тому, кого ты ищешь.
+		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_10");	//Хотя вполне возможно, что он бросится к Эстебану с этой информацией. (ухмыляется) Ну, хотя ты сам все прекрасно понимаешь.
+	};
+	if(Finn_TellAll == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_11");	//Говорят, ты сболтнул Финну, что работаешь на Эстебана.
+		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_12");	//Не знаю, чего ты там задумал, но теперь человек, которого ты ищешь, наверняка станет осторожней.
+	}
 	else
 	{
-		if(Finn_Petzt == TRUE)
-		{
-			AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_06");	//Финн заметно взволнован с тех пор, как ты с ним поговорил.
-			AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_07");	//И все здесь знают, что он хорошо ладит с Эстебаном.
-			AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_08");	//Это значит, что ты сказал ему что-то, чего он явно не хотел слышать.
-			AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_09");	//Это наверняка понравится тому, кого ты ищешь.
-			AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_10");	//Хотя вполне возможно, что он бросится к Эстебану с этой информацией. (ухмыляется) Ну, хотя ты сам все прекрасно понимаешь.
-		};
-		if(Finn_TellAll == TRUE)
-		{
-			AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_11");	//Говорят, ты сболтнул Финну, что работаешь на Эстебана.
-			AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_12");	//Не знаю, чего ты там задумал, но теперь человек, которого ты ищешь, наверняка станет осторожней.
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_13");	//Ну, хотя вряд ли можно говорить об этом с уверенностью.
-		};
+		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_13");	//Ну, хотя вряд ли можно говорить об этом с уверенностью.
 	};
-	if(Snaf_Rechnung == FALSE)
+	if(Snaf_Einmal == FALSE)
 	{
-		if(Snaf_Einmal == FALSE)
-		{
-			AI_Output(other,self,"DIA_Addon_Snaf_Abschied_15_14");	//Спасибо тебе.
-			AI_Output(self,other,"DIA_Addon_Snaf_Abschied_01_15");	//(резко) Эй! Ты от меня ничего не слышал, ясно?!
-			Snaf_Einmal = TRUE;
-		}
-		else
-		{
-			AI_Output(other,self,"DIA_Addon_Snaf_Abschied_15_16");	//Само собой.
-			AI_Output(self,other,"DIA_Addon_Snaf_Abschied_01_17");	//Вот именно.
-		};
+		AI_Output(other,self,"DIA_Addon_Snaf_Abschied_15_14");	//Спасибо тебе.
+		AI_Output(self,other,"DIA_Addon_Snaf_Abschied_01_15");	//(резко) Эй! Ты от меня ничего не слышал, ясно?!
+		Snaf_Einmal = TRUE;
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Addon_Snaf_Abschied_15_16");	//Само собой.
+		AI_Output(self,other,"DIA_Addon_Snaf_Abschied_01_17");	//Вот именно.
 	};
 };
 

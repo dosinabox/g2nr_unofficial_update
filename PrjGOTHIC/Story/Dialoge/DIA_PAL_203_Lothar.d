@@ -22,10 +22,6 @@ func int DIA_Lothar_EXIT_Condition()
 
 func void DIA_Lothar_EXIT_Info()
 {
-	if(Npc_GetDistToWP(self,"NW_CITY_LOTHAR") < 1000)
-	{
-		B_PlayerEnteredUpperCity();
-	};
 	AI_StopProcessInfos(self);
 };
 
@@ -73,14 +69,6 @@ func void DIA_Lothar_FirstEXIT_Info()
 		};
 		Lothar_ImOV = TRUE;
 		Npc_ExchangeRoutine(self,"START");
-	};
-	if(Npc_GetDistToWP(self,"NW_CITY_LOTHAR") < 1000)
-	{
-		B_PlayerEnteredUpperCity();
-	}
-	else
-	{
-		B_PlayerEnteredCity();
 	};
 	AI_StopProcessInfos(self);
 };
@@ -619,7 +607,7 @@ instance DIA_Lothar_Schlafen(C_Info)
 
 func int DIA_Lothar_Schlafen_Condition()
 {
-	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+	if(other.guild != GIL_MIL)
 	{
 		return TRUE;
 	};
@@ -701,6 +689,15 @@ func void B_Lothar_Blubb()
 
 var int Lothar_Reported;
 
+func int C_Lothar_Reported()
+{
+	if((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (Lothar_Day < Wld_GetDay()) && (Lothar_Reported == FALSE))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 func void B_Lothar_Reported()
 {
 	AI_Output(self,other,"DIA_Lothar_Add_01_48");	//Я доложил лорду Хагену, что ты желаешь поговорить с ним...
@@ -710,10 +707,6 @@ func void B_Lothar_Reported()
 	{
 		AI_Output(other,self,"DIA_Lothar_Add_15_51");	//Конечно нет. Ты сказал ему о драконах?
 		AI_Output(self,other,"DIA_Lothar_Add_01_52");	//Разве я не говорил тебе, чтобы ты прекратил нести этот вздор?!
-	};
-	if(Npc_GetDistToWP(self,"NW_CITY_LOTHAR") < 1000)
-	{
-		B_PlayerEnteredUpperCity();
 	};
 	Lothar_Reported = TRUE;
 };
@@ -759,13 +752,16 @@ func void DIA_Lothar_HelloAgain_Info()
 		AI_Output(self,other,"DIA_Lothar_HelloAgain_01_01");	//Так тебе все же удалось получить доступ в верхний квартал!
 		AI_Output(self,other,"DIA_Lothar_Add_01_13");	//Похоже, ты полон решимости добиться своего, да?
 	};
-	if(other.guild == GIL_KDF)
+	if((VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_KDW))
 	{
 		AI_Output(self,other,"DIA_Lothar_Add_01_36");	//Где ты взял эту мантию?
+	};
+	if(other.guild == GIL_KDF)
+	{
 		AI_Output(other,self,"DIA_Lothar_Add_15_37");	//Я прошел Испытание Огнем.
 		AI_Output(self,other,"DIA_Lothar_Add_01_38");	//Невероятно. Тогда то, что происходит здесь, может быть волей Инноса...
-	};
-	if(other.guild == GIL_SLD)
+	}
+	else if(other.guild == GIL_SLD)
 	{
 		if(self.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
@@ -786,11 +782,11 @@ func void DIA_Lothar_HelloAgain_Info()
 			}
 			else
 			{
-				AI_Output(other,self,"DIA_Lothar_Hallo_15_04");	//Нуууу...
+				DIA_Common_Well();
 			};
 		};
-	};
-	if(other.guild == GIL_MIL)
+	}
+	else if(other.guild == GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Lothar_Add_01_43");	//Как я слышал, ты разговаривал с лордом Андрэ?
 		if(Npc_KnowsInfo(other,DIA_Lothar_ToMiliz))
@@ -810,20 +806,26 @@ func void DIA_Lothar_HelloAgain_Info()
 	};
 	AI_Output(self,other,"DIA_Lothar_HelloAgain_01_02");	//Есть вещи, о которых ты всегда должен помнить. В противном случае ты будешь вышвырнут отсюда так же быстро, как попал сюда.
 	AI_Output(self,other,"DIA_Lothar_HelloAgain_01_03");	//Тебе можно входить только в дома торговцев. Ты узнаешь их по вывескам над дверьми - тут тяжело ошибиться.
-	AI_Output(self,other,"DIA_Lothar_HelloAgain_01_04");	//Другие здания здесь принадлежат знатным горожанам - там тебе совершенно нечего делать!
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV) || (other.guild == GIL_SLD))
+	{
+		AI_Output(self,other,"DIA_Lothar_HelloAgain_01_04");	//Другие здания здесь принадлежат знатным горожанам - там тебе совершенно нечего делать!
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Lothar_HelloAgain_01_08");	//В этом квартале живут знатные горожане. Так что относись к ним с уважением.
+	};
 	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Lothar_HelloAgain_01_05");	//Даже несмотря на то, что ты теперь член ордена Инноса.
-	};
-	if(other.guild == GIL_MIL)
+	}
+	else if(other.guild == GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Lothar_HelloAgain_01_06");	//Будучи членом ополчения, ты также получаешь доступ в покои паладинов.
 		AI_Output(self,other,"DIA_Lothar_HelloAgain_01_07");	//Но твое место по-прежнему в казармах.
 	};
-	AI_Output(self,other,"DIA_Lothar_HelloAgain_01_08");	//В этом квартале живут знатные горожане. Так что относись к ним с уважением.
 	AI_Output(self,other,"DIA_Lothar_HelloAgain_01_09");	//Мы поняли друг друга?
 	AI_Output(other,self,"DIA_Lothar_HelloAgain_15_10");	//Конечно.
-	if((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (Lothar_Day < Wld_GetDay()) && (Lothar_Reported == FALSE))
+	if(C_Lothar_Reported())
 	{
 		B_Lothar_Reported();
 	};
@@ -877,7 +879,7 @@ instance DIA_Lothar_Reported(C_Info)
 
 func int DIA_Lothar_Reported_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (Lothar_Day < Wld_GetDay()) && (Lothar_Reported == FALSE))
+	if(C_Lothar_Reported())
 	{
 		return TRUE;
 	};

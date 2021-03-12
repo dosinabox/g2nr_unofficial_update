@@ -17,7 +17,6 @@ func int DIA_Hagen_EXIT_Condition()
 
 func void DIA_Hagen_EXIT_Info()
 {
-	B_PlayerEnteredUpperCity();
 	AI_StopProcessInfos(self);
 };
 
@@ -52,7 +51,6 @@ func int DIA_Hagen_PMSchulden_Condition()
 func void DIA_Hagen_PMSchulden_Info()
 {
 	var int diff;
-	B_PlayerEnteredUpperCity();
 	AI_Output(self,other,"DIA_Hagen_PMSchulden_04_00");	//Хорошо, что ты пришел. Ты можешь заплатить штраф прямо сейчас.
 	if(B_GetTotalPetzCounter(self) > Hagen_LastPetzCounter)
 	{
@@ -163,7 +161,6 @@ func int DIA_Hagen_PETZMASTER_Condition()
 func void DIA_Hagen_PETZMASTER_Info()
 {
 	Hagen_Schulden = 0;
-	B_PlayerEnteredUpperCity();
 	if(self.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_00");	//Твоя слава опережает тебя. Ты нарушил законы города.
@@ -293,7 +290,6 @@ func void DIA_Lord_Hagen_Hallo_Info()
 		AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_03");	//Паладин короля, воин нашего владыки Инноса и главнокомандующий Хориниса.
 	};
 	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_04");	//Я очень занятой человек. Поэтому не трать мое время попусту. А теперь скажи, зачем ты здесь.
-	B_PlayerEnteredUpperCity();
 };
 
 
@@ -482,11 +478,10 @@ func void DIA_Lord_Hagen_Pass_Info()
 	Log_CreateTopic(Topic_MISOLDWORLD,LOG_MISSION);
 	Log_SetTopicStatus(Topic_MISOLDWORLD,LOG_Running);
 	B_LogEntry(Topic_MISOLDWORLD,"Лорд Хаген хочет, чтобы я принес ему доказательства существования армии Зла. Я должен отправиться в Долину Рудников и поговорить с командующим Гарондом.");
-	if(Fernando_ImKnast == FALSE)
+	if((Fernando_Betrayal == FALSE) && (Fernando_ImKnast == FALSE))
 	{
 		B_StartOtherRoutine(Fernando,"WAIT");
 	};
-	B_PlayerEnteredUpperCity();
 };
 
 
@@ -771,18 +766,16 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_05");	//Тогда отныне ты принадлежишь к нашему братству.
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_06");	//Я произвожу тебя в воины Инноса.
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_07");	//Я даю тебе оружие и доспехи рыцаря. Носи их с гордостью, рыцарь!
-	hero.guild = GIL_PAL;
-	Npc_SetTrueGuild(hero,GIL_PAL);
+	B_SetGuild(hero,GIL_PAL);
 	if(Helmets_Enabled == TRUE)
 	{
-		CreateInvItem(hero,ITAR_PALN_M);
+		B_GiveArmor(ITAR_PALN_M);
 		CreateInvItem(hero,ITHE_PAL_M);
 	}
 	else
 	{
-		CreateInvItem(hero,ITAR_PAL_M);
+		B_GiveArmor(ITAR_PAL_M);
 	};
-	AI_PrintScreen("Доспехи рыцаря получено",-1,43,FONT_ScreenSmall,2);
 	if(other.HitChance[NPC_TALENT_2H] > other.HitChance[NPC_TALENT_1H])
 	{
 		CreateInvItems(self,ItMw_2h_Pal_Sword,1);
@@ -913,7 +906,7 @@ func void DIA_Lord_Hagen_EyeBroken_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
+		DIA_Common_InnosEyeBroken();
 	};
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_08");	//ЧТО? О, Иннос! Что ты наделал? Нам нужен этот Глаз!
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_09");	//Поговори с Пирокаром! Должен быть способ восстановить его.

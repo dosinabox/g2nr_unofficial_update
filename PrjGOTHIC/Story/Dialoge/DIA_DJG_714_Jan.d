@@ -309,7 +309,7 @@ func void Jan_Training_Talente_Info()
 		Info_AddChoice(Jan_Training_Talente,Dialog_Back,Jan_Training_Smith_Back);
 		if(PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE)
 		{
-			Info_AddChoice(Jan_Training_Talente,B_BuildLearnString("Кузнечное дело",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),Jan_Training_Smith_Common);
+			Info_AddChoice(Jan_Training_Talente,B_BuildLearnString(NAME_Skill_Smith,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),Jan_Training_Smith_Common);
 		}
 		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 		{
@@ -543,14 +543,13 @@ func void DIA_Jan_DJG_ARMOR_M_Info()
 		Npc_RemoveInvItems(self,ItMi_Gold,VALUE_ITAR_DJG_M);
 		if(Helmets_Enabled == TRUE)
 		{
-			CreateInvItem(hero,ITAR_DJGN_M);
+			B_GiveArmor(ITAR_DJGN_M);
 			CreateInvItem(hero,ITHE_DJG_M);
 		}
 		else
 		{
-			CreateInvItem(hero,ITAR_DJG_M);
+			B_GiveArmor(ITAR_DJG_M);
 		};
-		AI_PrintScreen("Средние доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		Jan_DIA_Jan_DJG_ARMOR_M_permanent = TRUE;
 	}
 	else

@@ -12,9 +12,10 @@ instance VLK_468_Canthar(Npc_Default)
 	aivar[AIV_IGNORE_Murder] = TRUE;
 	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_IGNORE_Sheepkiller] = TRUE;
+	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Vlk_Sword);
+	EquipItem(self,ItMw_ShortSword5);
 	CreateInvItems(self,ItMi_Gold,50);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Orry,BodyTex_N,ITAR_Vlk_M);
 	Mdl_SetModelFatness(self,1.8);

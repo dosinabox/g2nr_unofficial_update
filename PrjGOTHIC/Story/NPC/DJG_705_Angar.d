@@ -6,7 +6,7 @@ instance DJG_705_Angar(Npc_Default)
 	id = 705;
 	voice = 4;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_FRIEND;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_Zweihaender2);

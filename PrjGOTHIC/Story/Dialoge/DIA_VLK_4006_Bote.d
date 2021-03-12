@@ -43,7 +43,7 @@ func int DIA_Bote_Hello_Condition()
 func void DIA_Bote_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_00");	//У тебя нет работы для меня?
-	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_00");	//Думаю, что нет...
+	DIA_Common_IThinkNo();
 	AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_NotEnough_09_01");	//Тогда зачем ты попусту тратишь мое время?
 	AI_StopProcessInfos(self);
 };
@@ -66,7 +66,7 @@ func int DIA_Bote_Talk_Condition()
 
 func void DIA_Bote_Talk_Info()
 {
-	AI_Output(other,self,"DIA_Rengaru_Hauab_15_00");	//Что ты делаешь здесь?
+	DIA_Common_WhatAreYouDoingHere();
 	B_Say(self,other,"$NOTNOW");
 	AI_StopProcessInfos(self);
 };

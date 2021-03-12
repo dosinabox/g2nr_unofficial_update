@@ -44,7 +44,7 @@ func void dia_bdt_4_standard_info()
 	randy = Hlp_Random(3);
 	if(randy == 0)
 	{
-		B_Say(self,other,"$WhatsThisSupposedToBe");
+		B_Say(self,other,"$WHATSTHISSUPPOSEDTOBE");
 	};
 	if(randy == 1)
 	{
@@ -57,7 +57,7 @@ func void dia_bdt_4_standard_info()
 	AI_StopProcessInfos(self);
 };
 
-func void b_assignambientinfos_bdt_4(var C_Npc slf)
+func void B_AssignAmbientInfos_BDT_4(var C_Npc slf)
 {
 	dia_bdt_4_exit.npc = Hlp_GetInstanceID(slf);
 	dia_bdt_4_standard.npc = Hlp_GetInstanceID(slf);

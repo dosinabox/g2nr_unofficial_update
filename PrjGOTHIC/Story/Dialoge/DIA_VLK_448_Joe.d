@@ -69,7 +69,7 @@ instance DIA_Joe_Hallo(C_Info)
 
 func int DIA_Joe_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) || (Npc_GetDistToWP(hero,"NW_CITY_MERCHANT_TOWER_01") <= 210))
 	{
 		return TRUE;
 	};

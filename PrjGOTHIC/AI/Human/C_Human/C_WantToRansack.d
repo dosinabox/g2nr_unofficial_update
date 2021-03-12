@@ -5,7 +5,7 @@ func int C_WantToRansack(var C_Npc slf)
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Torwache_304))
+	if(C_IsNpc(slf,MIL_304_Torwache))
 	{
 		return FALSE;
 	};

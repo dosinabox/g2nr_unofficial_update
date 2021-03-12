@@ -6,7 +6,7 @@ instance DJG_703_Cipher(Npc_Default)
 	id = 703;
 	voice = 7;
 	flags = 0;
-	npcType = NPCTYPE_FRIEND;
+	npcType = npctype_main;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Sword);
@@ -26,7 +26,7 @@ instance DJG_703_Cipher(Npc_Default)
 func void Rtn_Start_703()
 {
 	TA_Sit_Bench(8,0,23,0,"OW_DJG_SWAMPCAMP_02");
-	TA_Sit_Bench(23,0,8,0,"OW_DJG_SWAMPCAMP_03");
+	TA_Sit_Bench(23,0,8,0,"OW_DJG_SWAMPCAMP_02");
 };
 
 func void Rtn_SwampWait1_703()

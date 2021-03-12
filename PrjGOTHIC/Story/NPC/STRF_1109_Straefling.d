@@ -23,6 +23,6 @@ instance STRF_1109_Straefling(Npc_Default)
 func void Rtn_Start_1109()
 {
 	TA_Repair_Hut(8,0,23,0,"OC_OPEN_ROOM_REPAIR_02");
-	TA_Stand_WP(23,0,8,0,"OC_OPEN_ROOM_IN_01");
+	TA_Sit_Campfire(23,0,8,0,"OC_OPEN_ROOM_REPAIR_03");
 };
 

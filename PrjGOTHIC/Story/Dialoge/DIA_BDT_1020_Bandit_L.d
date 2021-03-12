@@ -29,7 +29,7 @@ func void B_BuildWegelagererDialogOptions()
 	};
 	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Извини, у меня нет денег.",DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney);
 	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Прочь с моей дороги!",DIA_BDT_1020_Wegelagerer_FirstWarn_Never);
-	if((Wegelagerer_Surprise == FALSE) && (MIS_SCHNITZELJAGD == LOG_Running) && !Npc_KnowsInfo(other,DIA_Agon_GolemDead) && !Npc_KnowsInfo(other,DIA_Agon_GolemLives))
+	if((Wegelagerer_Surprise == FALSE) && (MIS_Schnitzeljagd == LOG_Running) && !Npc_KnowsInfo(other,DIA_Agon_GolemDead) && !Npc_KnowsInfo(other,DIA_Agon_GolemLives))
 	{
 		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Скажи, ты не видел послушника?",DIA_BDT_1020_Wegelagerer_AGON);
 	};
@@ -80,7 +80,7 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_Info()
 		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Сколько ты хочешь?",DIA_BDT_1020_Wegelagerer_FirstWarn_HowMuch);
 		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Ты шутишь.",DIA_BDT_1020_Wegelagerer_FirstWarn_Joke);
 		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Убирайся с дороги!",DIA_BDT_1020_Wegelagerer_PissOff);
-		if((Wegelagerer_Surprise == FALSE) && (MIS_SCHNITZELJAGD == LOG_Running) && !Npc_KnowsInfo(other,DIA_Agon_GolemDead) && !Npc_KnowsInfo(other,DIA_Agon_GolemLives))
+		if((Wegelagerer_Surprise == FALSE) && (MIS_Schnitzeljagd == LOG_Running) && !Npc_KnowsInfo(other,DIA_Agon_GolemDead) && !Npc_KnowsInfo(other,DIA_Agon_GolemLives))
 		{
 			Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Скажи, ты не видел послушника?",DIA_BDT_1020_Wegelagerer_AGON);
 		};
@@ -210,13 +210,12 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon()
 	}
 	else
 	{
-		B_Say(self,other,"$WeaponDown");
+		B_Say(self,other,"$WEAPONDOWN");
 		AI_DrawWeapon(self);
 		AI_Output(other,self,"DIA_Dar_ORCRING_necken_schlagen_15_00");	//Ладно. Попробуй.
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_GuardStopsIntruder,1);
 	};
-//	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon_06_01");	//Отойди от этого оружия. Ну подожди!
 };
 
 
@@ -341,7 +340,7 @@ instance DIA_BDT_1020_Wegelagerer_AGON2(C_Info)
 
 func int DIA_Wegelagerer_AGON2_Condition()
 {
-	if((Wegelagerer_Surprise == FALSE) && (MIS_SCHNITZELJAGD == LOG_Running) && !Npc_KnowsInfo(other,DIA_Agon_GolemDead) && !Npc_KnowsInfo(other,DIA_Agon_GolemLives))
+	if((Wegelagerer_Surprise == FALSE) && (MIS_Schnitzeljagd == LOG_Running) && !Npc_KnowsInfo(other,DIA_Agon_GolemDead) && !Npc_KnowsInfo(other,DIA_Agon_GolemLives))
 	{
 		return TRUE;
 	};

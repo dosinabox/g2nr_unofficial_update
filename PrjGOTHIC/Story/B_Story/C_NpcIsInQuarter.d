@@ -65,7 +65,7 @@ func int C_GetDistToCenter(var C_Npc slf,var int quarter)
 	}
 	else
 	{
-		PrintPlus("WRONG Q-PARAMETER!");
+		PrintPlus("Неправильный параметр квартала!");
 	};
 	return dist;
 };

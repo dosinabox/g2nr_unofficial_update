@@ -29,7 +29,7 @@ func void Rtn_Start_261()
 
 func void Rtn_Food_261()
 {
-	TA_Stand_Guarding(8,0,23,10,"OC_PRISON_GUARD_01");
-	TA_Stand_Guarding(23,10,8,0,"OC_MAGE_IN");
+	TA_RunToWP(8,0,23,10,"OC_PRISON_GUARD_01");
+	TA_RunToWP(23,10,8,0,"OC_MAGE_IN");
 };
 

@@ -1,10 +1,8 @@
 
 func void Bookstand_Milten_03_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -35,10 +33,8 @@ func void Bookstand_Milten_03_S1()
 
 func void Bookstand_Milten_02_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -51,7 +47,7 @@ func void Bookstand_Milten_02_S1()
 		Doc_PrintLines(nDocID,0,"Ну, не могу сказать, что я рад возвращению. На самом деле мне очень хочется убраться отсюда.");
 		Doc_PrintLines(nDocID,0,"Этой экспедиции не суждено увенчаться успехом.");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLines(nDocID,0,"");
+		Doc_PrintLine(nDocID,0,"");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"Старатели ушли вчера. Они взяли с собой Диего - не удивлюсь, если он сбежит.");
@@ -69,10 +65,8 @@ func void Bookstand_Milten_02_S1()
 
 func void Bookstand_Milten_01_S1()
 {
-	var C_Npc her;
 	var int Document;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		Document = Doc_CreateMap();
 		Doc_SetPages(Document,1);
@@ -85,10 +79,8 @@ func void Bookstand_Milten_01_S1()
 
 func void Bookstand_Engor_01_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);

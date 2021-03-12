@@ -4,7 +4,7 @@ const int VALUE_ITAR_PIR_M_Addon = 1300;
 const int VALUE_ITAR_PIR_H_Addon = 1500;
 const int VALUE_ITAR_Thorus_Addon = 1300;
 const int VALUE_ITAR_Raven_Addon = 1300;
-const int VALUE_Itar_OreBaron_Addon = 1300;
+const int VALUE_ITAR_OreBaron_Addon = 3000;
 const int VALUE_ITAR_RANGER_Addon = 1300;
 const int VALUE_ITAR_KDW_L_Addon = 700;
 const int VALUE_ITAR_Bloodwyn_Addon = 1300;
@@ -25,6 +25,8 @@ instance ITAR_PIR_L_Addon(C_Item)
 	visual_change = "Armor_Pir_L_Addon.ASC";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_OpenArmor;
+	on_unequip = UnEquip_OpenArmor;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -54,6 +56,8 @@ instance ITAR_PIR_M_Addon(C_Item)
 	visual_change = "Armor_PIR_M_ADDON.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_OpenArmor;
+	on_unequip = UnEquip_OpenArmor;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -99,7 +103,6 @@ instance ITAR_PIR_H_Addon(C_Item)
 
 instance ITAR_Thorus_Addon(C_Item)
 {
-//	name = "Тяжелые доспехи стражника";
 	name = "Доспехи стражи Ворона";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
@@ -114,7 +117,6 @@ instance ITAR_Thorus_Addon(C_Item)
 	visual_change = "Armor_Thorus_ADDON.asc";
 	visual_skin = 0;
 	material = MAT_METAL;
-//	description = "Доспехи стражи Ворона";
 	description = name;
 	text[0] = PRINT_Addon_BDTArmor;
 	text[1] = NAME_Prot_Edge;
@@ -163,18 +165,19 @@ instance ITAR_OreBaron_Addon(C_Item)
 	name = "Доспехи рудного барона";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
-	protection[PROT_EDGE] = 70;
-	protection[PROT_BLUNT] = 70;
-	protection[PROT_POINT] = 70;
-	protection[PROT_FIRE] = 0;	//20
-	protection[PROT_MAGIC] = 0;
-	value = VALUE_Itar_OreBaron_Addon;
+	protection[PROT_EDGE] = 80;
+	protection[PROT_BLUNT] = 80;
+	protection[PROT_POINT] = 80;
+	protection[PROT_FIRE] = 5;	//20
+	protection[PROT_MAGIC] = 10;
+	value = VALUE_ITAR_OreBaron_Addon;
 	wear = WEAR_TORSO;
 	visual = "ItAr_CHAOS_ADDON.3ds";
 	visual_change = "Armor_CHAOS_ADDON.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
+	text[0] = PRINT_Addon_BDTArmor;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
 	text[2] = NAME_Prot_Point;
@@ -283,6 +286,7 @@ instance ITAR_Bloodwyn_Addon(C_Item)
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
+	text[0] = PRINT_Addon_BDTArmor;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
 	text[2] = NAME_Prot_Point;

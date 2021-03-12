@@ -12,15 +12,12 @@ instance DIA_Hilda_EXIT(C_Info)
 
 func int DIA_Hilda_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Hilda_EXIT_Info()
 {
-	if(!Npc_HasEquippedArmor(other))
+	if((Kapitel < 3) && !Npc_HasEquippedArmor(other))
 	{
 		PlayerVisitedLobartFarmArmorless = TRUE;
 	};
@@ -150,9 +147,8 @@ func int DIA_Hilda_BringBeet_Condition()
 func void DIA_Hilda_BringBeet_Info()
 {
 	AI_Output(other,self,"DIA_Hilda_BringBeet_15_00");	//я принес тебе репу...
-	if(Npc_HasItems(other,ItPl_Beet) >= 20)
+	if(B_GiveInvItems(other,self,ItPl_Beet,20))
 	{
-		B_GiveInvItems(other,self,ItPl_Beet,20);
 		AI_Output(self,other,"DIA_Hilda_BringBeet_17_01");	//ќтлично! (смеетс€) Ётого должно хватить, чтобы накормить наших работников до отвала!
 		AI_Output(self,other,"DIA_Hilda_BringBeet_17_02");	//–аз уж ты все равно здесь... я видела, как мимо прошел странствующий торговец. Ёто было несколько минут назад.
 		AI_Output(self,other,"DIA_Hilda_BringBeet_17_03");	//я думаю, он где-нибудь остановилс€ по пути в город. —ходи к нему. ћожет у него найдетс€ сковородка дл€ мен€.
@@ -237,14 +233,13 @@ func void DIA_Hilda_PfanneGeholt_Info()
 {
 	AI_Output(other,self,"DIA_Hilda_PfanneGeholt_15_00");	//¬от тво€ сковородка.
 	B_GiveInvItems(other,self,ItMi_Pan,1);
-//	if(Npc_GetDistToWP(self,"NW_FARM1_INHOUSE_02") < 500)
-	if(Wld_IsTime(8,0,22,0))
+	if(Wld_IsTime(8,0,21,55) && (Npc_GetDistToWP(self,"NW_FARM1_INHOUSE_02") < 500))
 	{
 		AI_Output(self,other,"DIA_Hilda_PfanneGeholt_17_01");	//ќтлично. ѕосмотрим, хороша€ ли она...
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Hanna_Add_17_46");	//—пасибо.
+		DIA_Common_17_Thanks();
 	};
 	MIS_Hilda_PfanneKaufen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HildaHolPfanne);
@@ -308,31 +303,6 @@ func void DIA_Hilda_PfanneTooLate_Info()
 		B_CheckLog();
 		AI_StopProcessInfos(self);
 	};
-};
-
-
-instance DIA_Hilda_KAP3_EXIT(C_Info)
-{
-	npc = BAU_951_Hilda;
-	nr = 999;
-	condition = DIA_Hilda_KAP3_EXIT_Condition;
-	information = DIA_Hilda_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Hilda_KAP3_EXIT_Condition()
-{
-	if(Kapitel >= 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Hilda_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

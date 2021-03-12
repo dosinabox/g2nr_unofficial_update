@@ -122,38 +122,13 @@ instance DIA_Engrom_KAP3_EXIT(C_Info)
 
 func int DIA_Engrom_KAP3_EXIT_Condition()
 {
-	if(Kapitel == 3)
+	if(Kapitel >= 3)
 	{
 		return TRUE;
 	};
 };
 
 func void DIA_Engrom_KAP3_EXIT_Info()
-{
-	B_NpcClearObsessionByDMT(self);
-};
-
-
-instance DIA_Engrom_KAP4_EXIT(C_Info)
-{
-	npc = VLK_4131_Engrom;
-	nr = 999;
-	condition = DIA_Engrom_KAP4_EXIT_Condition;
-	information = DIA_Engrom_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Engrom_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Engrom_KAP4_EXIT_Info()
 {
 	B_NpcClearObsessionByDMT(self);
 };
@@ -228,56 +203,6 @@ func void DIA_Engrom_BESSEN_Info()
 	};
 };
 
-
-instance DIA_Engrom_KAP5_EXIT(C_Info)
-{
-	npc = VLK_4131_Engrom;
-	nr = 999;
-	condition = DIA_Engrom_KAP5_EXIT_Condition;
-	information = DIA_Engrom_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Engrom_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Engrom_KAP5_EXIT_Info()
-{
-	B_NpcClearObsessionByDMT(self);
-};
-
-/*
-instance DIA_Engrom_KAP6_EXIT(C_Info)
-{
-	npc = VLK_4131_Engrom;
-	nr = 999;
-	condition = DIA_Engrom_KAP6_EXIT_Condition;
-	information = DIA_Engrom_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Engrom_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Engrom_KAP6_EXIT_Info()
-{
-	B_NpcClearObsessionByDMT(self);
-};
-*/
 
 instance DIA_Engrom_PICKPOCKET(C_Info)
 {

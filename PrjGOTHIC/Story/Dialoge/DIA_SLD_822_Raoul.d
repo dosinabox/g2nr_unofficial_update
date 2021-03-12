@@ -340,15 +340,15 @@ func void DIA_Raoul_TROLL_Info()
 {
 	AI_Output(self,other,"DIA_Raoul_TROLL_01_00");	//(цинично) Только посмотрите на это!
 	AI_Output(other,self,"DIA_Raoul_TROLL_15_01");	//Чего тебе нужно?
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if((VisibleGuild(other) == GIL_MIL) || (VisibleGuild(other) == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Raoul_TROLL_01_02");	//Ты присоединился к городским нищим? Похоже на то.
 	};
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if((VisibleGuild(other) == GIL_SLD) || (VisibleGuild(other) == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Raoul_TROLL_01_03");	//Не думай, что я стану уважать тебя только за то, что ты стал одним из нас.
 	};
-	if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
+	if((VisibleGuild(other) == GIL_NOV) || (VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_KDW))
 	{
 		AI_Output(self,other,"DIA_Raoul_TROLL_01_04");	//Разыгрываешь из себя великого мага, ха?
 	};
@@ -571,81 +571,6 @@ func void DIA_Raoul_GotTrollFurBack_Info()
 };
 
 
-/*instance DIA_Raoul_KAP3_EXIT(C_Info)
-{
-	npc = SLD_822_Raoul;
-	nr = 999;
-	condition = DIA_Raoul_KAP3_EXIT_Condition;
-	information = DIA_Raoul_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Raoul_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Raoul_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Raoul_KAP4_EXIT(C_Info)
-{
-	npc = SLD_822_Raoul;
-	nr = 999;
-	condition = DIA_Raoul_KAP4_EXIT_Condition;
-	information = DIA_Raoul_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Raoul_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Raoul_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Raoul_KAP5_EXIT(C_Info)
-{
-	npc = SLD_822_Raoul;
-	nr = 999;
-	condition = DIA_Raoul_KAP5_EXIT_Condition;
-	information = DIA_Raoul_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Raoul_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Raoul_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};*/
-
-
 instance DIA_Raoul_Ship(C_Info)
 {
 	npc = SLD_822_Raoul;
@@ -679,31 +604,6 @@ func void DIA_Raoul_Ship_Info()
 	};
 };
 
-/*
-instance DIA_Raoul_KAP6_EXIT(C_Info)
-{
-	npc = SLD_822_Raoul;
-	nr = 999;
-	condition = DIA_Raoul_KAP6_EXIT_Condition;
-	information = DIA_Raoul_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Raoul_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Raoul_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Raoul_PICKPOCKET(C_Info)
 {
@@ -738,6 +638,4 @@ func void DIA_Raoul_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Raoul_PICKPOCKET);
 };
-
-
 

@@ -125,8 +125,8 @@ func void DIA_Sagitta_Pre_Trade_Info()
 	AI_Output(other,self,"DIA_Sagitta_HALLO_was_15_00");	//Что ты делаешь здесь?
 	AI_Output(self,other,"DIA_Sagitta_HALLO_was_17_01");	//Я живу здесь столько, сколько себя помню, и занимаюсь травами.
 	AI_Output(self,other,"DIA_Sagitta_HALLO_was_17_02");	//Лес - мой друг. Он дает мне то, что мне нужно.
-	Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-	B_LogEntry(Topic_SoldierTrader,"У Сагитты, живущей за фермой Секоба, можно купить различные товары.");
+	Log_CreateTopic(TOPIC_OutTrader,LOG_NOTE);
+	B_LogEntry(TOPIC_OutTrader,"У Сагитты, живущей за фермой Секоба, можно купить различные товары.");
 };
 
 
@@ -197,8 +197,8 @@ func void DIA_Sagitta_TeachAlchemyRequest_Info()
 		Sagitta_TeachAlchemy = TRUE;
 		MIS_Sagitta_Herb = LOG_SUCCESS;
 		B_CheckLog();
-		Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-		B_LogEntry(Topic_SoldierTeacher,"Целительница Сагитта за фермой Секоба может рассказать мне о способах приготовления различных зелий.");
+		Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_OutTeacher,"Целительница Сагитта за фермой Секоба может рассказать мне о способах приготовления различных зелий.");
 	}
 	else if(DIA_Sagitta_TeachAlchemyRequest_OneTime == FALSE)
 	{
@@ -294,8 +294,8 @@ func void DIA_Sagitta_Sagitta_Herb_Info()
 	Sagitta_TeachAlchemy = TRUE;
 	MIS_Sagitta_Herb = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Sagitta_Sonnenaloe);
-	Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-	B_LogEntry(Topic_SoldierTeacher,"Целительница Сагитта за фермой Секоба может рассказать мне о способах приготовления различных зелий.");
+	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_OutTeacher,"Целительница Сагитта за фермой Секоба может рассказать мне о способах приготовления различных зелий.");
 };
 
 

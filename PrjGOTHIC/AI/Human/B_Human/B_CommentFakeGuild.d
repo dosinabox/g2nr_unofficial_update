@@ -19,6 +19,10 @@ func void ZS_CommentFakeGuild()
 	{
 		B_Say(self,other,"$ADDON_WRONGARMOR");
 	}
+	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cord)) && (other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+	{
+		B_Say(self,other,"$ADDON_WRONGARMOR");
+	}
 	else if((self.guild == GIL_MIL) || (self.guild == GIL_PAL))
 	{
 		B_Say(self,other,"$ADDON_WRONGARMOR_MIL");

@@ -240,11 +240,11 @@ func void DIA_Addon_Henry_WantEnter_Info()
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_04");	//В лагере полно всего того, что может тебя заинтересовать...
 		Henry_Zoll_WhatFor = TRUE;
 	};
-	if(C_HenryNiceArmorCheck(other))
+	if(C_ExpensiveArmorEquipped(other))
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_07");	//А ты выглядишь человеком состоятельным.
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_08");	//Так что небольшая плата за вход тебя не разорит.
-		if(!C_RobeCheck(other))
+		if((VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_KDW))
 		{
 			AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_09");	//Или свою роскошную броню ты у кого-то украл?
 		};
@@ -867,8 +867,11 @@ func void DIA_Addon_Henry_Palisade_CanHelp_Info()
 		AI_Output(other,self,"DIA_Addon_Henry_Palisade_CanHelp_15_02");	//Честно говоря, нет.
 		AI_Output(self,other,"DIA_Addon_Henry_Palisade_CanHelp_04_03");	//Тогда пользы от тебя здесь не будет. Помоги кому-нибудь еще.
 		Henry_PERM_Once = TRUE;
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Henry_Palisade_CanHelp_04_04");	//Можешь напиться до потери памяти, я не возражаю. Только не мешай моим рабочим.
 	};
-	AI_Output(self,other,"DIA_Addon_Henry_Palisade_CanHelp_04_04");	//Можешь напиться до потери памяти, я не возражаю. Только не мешай моим рабочим.
 };
 
 

@@ -17,10 +17,6 @@ func int DIA_Opolos_Kap1_EXIT_Condition()
 
 func void DIA_Opolos_Kap1_EXIT_Info()
 {
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
 	AI_StopProcessInfos(self);
 };
 
@@ -64,39 +60,17 @@ instance DIA_Opolos_Wurst(C_Info)
 
 func int DIA_Opolos_Wurst_Condition()
 {
-	if((MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
+	if(C_CanFeedNOV(self))
 	{
-		if(Kapitel == 1)
-		{
-			return TRUE;
-		}
-		else if(GuildlessMode == TRUE)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
 func void DIA_Opolos_Wurst_Info()
 {
-	var string NovizeText;
-	var string NovizeLeft;
 	AI_Output(other,self,"DIA_Opolos_Wurst_15_00");	//Я принес баранью колбасу...
 	AI_Output(self,other,"DIA_Opolos_Wurst_12_01");	//Ох, фантастика! Наконец-то! Вкуснейшая баранья колбаса!
-	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
-	Wurst_Gegeben += 1;
-//	CreateInvItems(self,ItFo_Schafswurst,1);
-	B_UseItem(self,ItFo_Schafswurst);
-	if(Wurst_Gegeben >= 13)
-	{
-		AI_PrintScreen(PRINT_AllNovizen,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	}
-	else
-	{
-		NovizeLeft = IntToString(13 - Wurst_Gegeben);
-		NovizeText = ConcatStrings(PRINT_NovizenLeft,NovizeLeft);
-		AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	};
+	B_FeedNOV(self);
 };
 
 
@@ -248,7 +222,7 @@ func void DIA_Opolos_rezept_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Opolos_rezept_15_06");	//Вернемся к этому позже.
+		DIA_Common_WeWillGetToThatLater();
 	};
 };
 

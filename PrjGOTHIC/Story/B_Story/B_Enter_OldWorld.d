@@ -92,7 +92,10 @@ func void B_ENTER_OLDWORLD_Kapitel_3()
 		{
 			B_RemoveNpc(VLK_4120_Bilgot);
 		};
-		B_RemoveNpc(OC_Sheep1);
+		if(!Npc_IsDead(OC_Sheep1))
+		{
+			Wld_RemoveNpc(OC_Sheep1);
+		};
 		B_StartOtherRoutine(Garond,"START");
 		EnterOW_Kapitel3 = TRUE;
 	};
@@ -107,6 +110,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 	{
 		if(!Npc_IsDead(Engrom))
 		{
+			Engrom_isAlive_Kap4 = TRUE;
 			B_StartOtherRoutine(Engrom,"Obsessed");
 			AI_Teleport(Engrom,"OW_SAWHUT_MOLERAT_MOVEMENT");
 			CreateInvItems(Engrom,ItAt_TalbinsLurkerSkin,1);
@@ -116,7 +120,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 			}
 			else
 			{
-				B_KillNpc(Engrom);
+				B_KillNpc(VLK_4131_Engrom);
 			};
 			EngromIsGone = TRUE;
 		};
@@ -127,8 +131,8 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		}
 		else
 		{
-			B_KillNpc(Geppert);
-			B_KillNpc(Kervo);
+			B_KillNpc(STRF_1115_Geppert);
+			B_KillNpc(STRF_1116_Kervo);
 			Wld_InsertNpc(Lurker,"OW_DJG_VORPOSTEN_01");
 		};
 		if(!Npc_IsDead(Sengrath))
@@ -167,7 +171,10 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(Meatbug_Brutus2,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus3,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus4,"OC_FOLTER_SHARP");
-		Wld_InsertNpc(DJG_700_Sylvio,"OC1");
+		if(SLD_Sylvio_is_alive == TRUE)
+		{
+			Wld_InsertNpc(DJG_700_Sylvio,"OC1");
+		};
 		if(SLD_Bullco_is_alive == TRUE)
 		{
 			Wld_InsertNpc(DJG_701_Bullco,"OC1");
@@ -299,6 +306,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(Lurker,"OW_PATH_OW_PATH_WARAN05_SPAWN01");
 		Wld_InsertNpc(Lurker,"OW_PATH_OW_PATH_WARAN05_SPAWN01");
 //		Wld_InsertNpc(Shadowbeast,"FP_ROAM_OW_SCAVENGER_LONE_WALD_OC3");
+		Wld_InsertNpc(Shadowbeast,"SPAWN_OW_WOLF2_WALD_OC2");
 		Wld_InsertNpc(Warg,"SPAWN_OW_WOLF2_WALD_OC3");
 		Wld_InsertNpc(Warg,"SPAWN_OW_WOLF2_WALD_OC3");
 		Wld_InsertNpc(OrcWarrior_Roam,"SPAWN_WALD_OC_BLOODFLY01");
@@ -373,10 +381,6 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_SCAVENGER13_SPAWN01");
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_SCAVENGER13_SPAWN01");
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_SCAVENGER13_SPAWN01");
-		if(Npc_IsDead(DragonSnapper_NC_Cave))
-		{
-			Wld_InsertNpc(Shadowbeast,"OW_PATH_07_15_CAVE3");
-		};
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_07_19");
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_146");
 		Wld_InsertNpc(FireWaran,"OW_PATH_182");
@@ -445,15 +449,15 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		B_KillNpc(DJG_732_ToterDrachenjaeger);
 		B_KillNpc(DJG_733_ToterDrachenjaeger);
 		B_KillNpc(DJG_734_ToterDrachenjaeger);
-		B_RemoveNpc(OC_Sheep2);
+		if(!Npc_IsDead(OC_Sheep2))
+		{
+			Wld_RemoveNpc(OC_Sheep2);
+		};
 		B_StartOtherRoutine(Garond,"START");
 		Log_CreateTopic(TOPIC_Dragonhunter,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Dragonhunter,LOG_Running);
 		B_LogEntry(TOPIC_Dragonhunter,"Началась масштабная охота на драконов. Она привлекла многих искателей приключений в Долину Рудников. Мне остается только надеяться, что они не будут мешаться у меня под ногами.");
-		if(StartChapter4InNewWorld == FALSE)
-		{
-			IntroduceChapter(KapWechsel_4,KapWechsel_4_Text,"chapter4.tga","chapter_01.wav",6000);
-		};
+		IntroduceChapter(KapWechsel_4,KapWechsel_4_Text,"chapter4.tga","chapter_01.wav",6000);
 		EnterOW_Kapitel4 = TRUE;
 	};
 	if(Talbin_FollowsThroughPass == LOG_OBSOLETE)
@@ -483,13 +487,16 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 		}; */
 		if(!Npc_IsDead(Brutus))
 		{
-			CreateInvItems(VLK_4100_Brutus,ITWR_DementorObsessionBook_MIS,1);
+			CreateInvItems(Brutus,ITWR_DementorObsessionBook_MIS,1);
 		};
 		if(TschuessBilgot == TRUE)
 		{
 			B_RemoveNpc(VLK_4120_Bilgot);
 		};
-		B_RemoveNpc(OC_Sheep3);
+		if(!Npc_IsDead(OC_Sheep3))
+		{
+			Wld_RemoveNpc(OC_Sheep3);
+		};
 		EnterOW_Kapitel5 = TRUE;
 	};
 	if(Biff_FollowsThroughPass == LOG_SUCCESS)
@@ -509,7 +516,7 @@ func void B_ENTER_OLDWORLD_Kapitel_6()
 	};
 };
 
-func void b_enter_oldworld()
+func void B_Enter_OldWorld()
 {
 	B_InitNpcGlobals();
 	if(Kapitel >= 1)
@@ -536,17 +543,19 @@ func void b_enter_oldworld()
 	{
 		B_ENTER_OLDWORLD_Kapitel_6();
 	};
-	CurrentLevel = OLDWORLD_ZEN;
 	B_InitNpcGlobals();
-	if((DJG_BiffParty == TRUE) && !Npc_IsDead(Biff))
+	if(DJG_BiffParty == TRUE)
 	{
-		if(DJG_Biff_HalbeHalbe == TRUE)
+		if(!Npc_IsDead(Biff))
 		{
-			Npc_SetRefuseTalk(Biff,500);
-		}
-		else
-		{
-			Npc_SetRefuseTalk(Biff,300);
+			if(DJG_Biff_HalbeHalbe == TRUE)
+			{
+				Npc_SetRefuseTalk(Biff,500);
+			}
+			else
+			{
+				Npc_SetRefuseTalk(Biff,300);
+			};
 		};
 	};
 	if(Npc_IsDead(Bilgot) && (MIS_RescueBilgot == LOG_Running))

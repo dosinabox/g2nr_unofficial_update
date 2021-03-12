@@ -1,10 +1,8 @@
 
 func void Use_Bookstand_Addon_BL_S1()
 {
-	var C_Npc her;
 	var int nDocID;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
@@ -21,9 +19,6 @@ func void Use_Bookstand_Addon_BL_S1()
 		Doc_PrintLines(nDocID,0,"Гараз: получено 6 золотых самородков");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Все стражники: получено 9 золотых самородков");
-//		Doc_PrintLine(nDocID,0,"");
-//		Doc_PrintLine(nDocID,0,"");
-//		Doc_PrintLines(nDocID,0,"");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"Лагерь:");
 		Doc_PrintLine(nDocID,1,"");
@@ -82,7 +77,6 @@ func void Use_BookstandMaya()
 		Doc_PrintLine(StPl_nDocID,1,"");
 		Doc_PrintLine(StPl_nDocID,1,"");
 		Doc_PrintLines(StPl_nDocID,1,"Но мы, УЧЕНЫЕ, знаем горькую правду. ЯРКЕНДАР пал и скоро растворится в реке времени.");
-//		Doc_PrintLines(StPl_nDocID,1,"");
 	}
 	else if(BookstandMayaArt == 2)
 	{
@@ -151,14 +145,12 @@ func void Use_BookstandMaya()
 	}
 	else if(BookstandMayaArt == 5)
 	{
-//		Doc_PrintLines(StPl_nDocID,0,"");
 		Doc_PrintLines(StPl_nDocID,0,"В этих залах КУАРХОДРОН, верховный жрец КАРДИМОН и я обсуждали способы уничтожить РАДЕМЕСА и меч.");
 		Doc_PrintLines(StPl_nDocID,0,"");
 		Doc_PrintLines(StPl_nDocID,0,"КУАРХОДРОН и КАРДИМОН считали, что РАДЕМЕСА можно победить в бою, если объединить все оставшиеся силы. Но я слишком хорошо знал силу этого меча, и понимал, что это невозможно.");
 		Doc_PrintLines(StPl_nDocID,0,"");
 		Doc_PrintLines(StPl_nDocID,0,"Поэтому я использовал свое право вето на решения остальных. Я решил, что РАДЕМЕСА нужно заманить в ловушку.");
 		Doc_SetMargins(StPl_nDocID,-1,30,20,275,20,1);
-//		Doc_PrintLines(StPl_nDocID,1,"");
 		Doc_PrintLines(StPl_nDocID,1,"КУАРХОДРОН подчинился этому решению Совета. Он вошел в храм Аданоса и послал за своим сыном.");
 		Doc_PrintLines(StPl_nDocID,1,"");
 		Doc_PrintLines(StPl_nDocID,1,"Ненависть его сына приняла такие формы, что РАДЕМЕС ворвался в храм в дикой ярости, чтобы убить своего отца.");
@@ -166,16 +158,25 @@ func void Use_BookstandMaya()
 		Doc_PrintLines(StPl_nDocID,1,"Он понял наши планы, когда было уже слишком поздно.");
 		Doc_PrintLines(StPl_nDocID,1,"");
 		Doc_PrintLines(StPl_nDocID,1,"КУАРХОДРОН закрыл за ним священные покои нашего храма и РАДЕМЕС оказался навечно заперт в этой ловушке.");
-//		Doc_PrintLines(StPl_nDocID,1,"");
-//		Doc_PrintLines(StPl_nDocID,1,"");
+	}
+	else if(BookstandMayaArt == 6)
+	{
+		Doc_PrintLines(StPl_nDocID,0,"");
+		Doc_PrintLines(StPl_nDocID,0,"...");
+		Doc_PrintLines(StPl_nDocID,0,"");
+		Doc_SetMargins(StPl_nDocID,-1,30,20,275,20,1);
+		Doc_PrintLine(StPl_nDocID,1,"");
+		Doc_PrintLines(StPl_nDocID,1,"...");
+		Doc_PrintLine(StPl_nDocID,1,"");
+		Doc_PrintLines(StPl_nDocID,1,"...");
+		Doc_PrintLine(StPl_nDocID,1,"");
+		Doc_PrintLines(StPl_nDocID,1,"... отправились в путь, чтобы навечно закрыть ...");
 	};
 };
 
 func void InitUse_BookstandMaya()
 {
-	var C_Npc her;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(C_NpcIsHero(self))
 	{
 		if(!C_CanReadBookStand())
 		{
@@ -257,5 +258,11 @@ func void Use_BookstandMayaHierchary_05_S1()
 		B_GivePlayerXP(XP_Ambient);
 		BookstandMayaHierchary_5_permanent = TRUE;
 	};
+};
+
+func void Use_BookstandMayaCommon_01_S1()
+{
+	BookstandMayaArt = 6;
+	InitUse_BookstandMaya();
 };
 

@@ -851,14 +851,14 @@ func void UseBanditLetter()
 	Doc_PrintLines(nDocID,0,"Не дайте ему обмануть вас -");
 	Doc_PrintLines(nDocID,0,"    это очень опасный колдун.");
 	Doc_PrintLines(nDocID,0,"Присматривайте за ним.");
-	Doc_PrintLine(nDocID,0," ");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Возможно, человек, которого мы ищем,");
 	Doc_PrintLines(nDocID,0,"    выйдет с ним на связь.");
 	Doc_PrintLines(nDocID,0,"С этим письмом я посылаю вам");
 	Doc_PrintLines(nDocID,0,"    тридцать золотых самородков.");
 	Doc_PrintLines(nDocID,0,"Я дам еще тридцать любому,");
 	Doc_PrintLines(nDocID,0,"    кто убьет этого человека.");
-	Doc_PrintLine(nDocID,0," ");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Принесите его голову к старой шахте");
 	Doc_PrintLines(nDocID,0,"    около поместья землевладельца.");
 	Doc_PrintLine(nDocID,0,"");
@@ -1213,7 +1213,6 @@ func void UseSchuldBuch()
 	Doc_PrintLines(nDocID,0,"Я, Корагон, трактирщик Хориниса, должен глубокоуважаемому Лемару 150 золотых монет.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"             Корагон");
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 	Doc_SetFont(nDocID,1,FONT_Book);
 	Doc_PrintLine(nDocID,1,"");
@@ -1222,7 +1221,6 @@ func void UseSchuldBuch()
 	Doc_PrintLines(nDocID,1,"Я, Ханна, владелица отеля Хориниса, должна глубокоуважаемому Лемару 250 золотых монет.");
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"               Ханна");
-//	Doc_PrintLines(nDocID,1,"");
 	Doc_Show(nDocID);
 	SchuldBuchNamesKnown = TRUE;
 };
@@ -1272,7 +1270,6 @@ instance ItRw_DragomirsArmbrust_MIS(C_Item)
 	munition = ItRw_Bolt;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_LeichteArmbrust;
-//	visual = "ItRw_Crossbow_L_02.mms";
 	visual = "ItRw_Crossbow_Mission_01.mms";
 	description = name;
 	text[2] = NAME_Damage;

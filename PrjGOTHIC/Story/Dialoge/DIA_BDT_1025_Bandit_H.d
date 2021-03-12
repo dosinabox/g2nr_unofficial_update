@@ -41,7 +41,7 @@ func void DIA_NAME_BANDIT_SCHAFBLEIBTHIER_Info()
 {
 	if(C_PlayerIsFakeBandit(self,other))
 	{
-		B_Say(self,other,"$NeverEnterRoomAgain");
+		B_Say(self,other,"$NEVERENTERROOMAGAIN");
 	}
 	else
 	{

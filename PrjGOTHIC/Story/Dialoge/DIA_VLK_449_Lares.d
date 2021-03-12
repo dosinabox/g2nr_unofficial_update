@@ -96,7 +96,6 @@ func int DIA_Lares_Kap1_EXIT_Condition()
 
 func void DIA_Lares_Kap1_EXIT_Info()
 {
-	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 };
 
@@ -230,7 +229,6 @@ func void DIA_Lares_HALLO_Info()
 	{
 		B_Lares_Comment_SLD();
 	};
-	B_PlayerEnteredCity();
 	Info_ClearChoices(DIA_Lares_HALLO);
 	Info_AddChoice(DIA_Lares_HALLO,"Мы уже встречались раньше?",DIA_Lares_HALLO_NO);
 	Info_AddChoice(DIA_Lares_HALLO,"Эй, Ларес, старый пройдоха! А как ты попал сюда?",DIA_Lares_HALLO_YES);
@@ -605,8 +603,7 @@ func void DIA_Addon_Lares_GetRangerArmor_Info()
 		Lares_ArmorComment = TRUE;
 	};
 	AI_WaitTillEnd(other,self);
-	CreateInvItem(hero,ITAR_RANGER_Addon);
-	AI_PrintScreen("Доспехи 'Кольца Воды' получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+	B_GiveArmor(ITAR_RANGER_Addon);
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_05");	//Носи их с гордостью! Но никогда не надевай их в городе или каком-либо другом населенном месте.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_06");	//Помни: наши имена должны оставаться в тайне. Никто не должен знать, что мы являемся членами общества.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_07");	//Болтать о Кольце Воды запрещено. Это наше главное правило. Запомни его.
@@ -2027,7 +2024,7 @@ func int DIA_Addon_Lares_Albern_Condition()
 		{
 			return TRUE;
 		}
-		else if((Npc_GetDistToWP(self,"NW_TROLLAREA_RUINS_41") <= 1000) && Npc_IsInState(self,ZS_Talk))
+		else if(Npc_IsInState(self,ZS_Talk))
 		{
 			return TRUE;
 		};
@@ -2039,7 +2036,7 @@ func void DIA_Addon_Lares_Albern_Info()
 	if(Npc_GetDistToWP(self,"HAFEN") < 2000)
 	{
 		AI_Output(self,other,"DIA_Canthar_WhatOffer_Price_09_05");	//Ну что, договорились?
-		AI_Output(other,self,"DIA_Addon_Brandon_Hello_15_07");	//Еще нет.
+		DIA_Common_NoNotYet();
 	};
 	AI_Output(self,other,"DIA_Addon_Lares_Albern_09_00");	//(строго) Прекрати паясничать! Немедленно отнеси орнамент Сатурасу!
 	AI_StopProcessInfos(self);

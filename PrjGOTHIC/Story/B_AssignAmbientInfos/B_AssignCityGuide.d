@@ -4,31 +4,31 @@ func void B_AddCityGuideChoices()
 	Info_ClearChoices(dia_cityguide);
 	if(!C_IsQuarterNearest(self,Q_UNTERSTADT))
 	{
-		Info_AddChoice(dia_cityguide,"В нижнюю часть города.",dia_cityguide_unterstadt);
+		Info_AddChoice(dia_cityguide,"Как мне попасть в нижнюю часть города?",dia_cityguide_unterstadt);
 	};
 	if(!C_IsQuarterNearest(self,Q_OBERSTADT))
 	{
-		Info_AddChoice(dia_cityguide,"В верхний квартал.",dia_cityguide_oberstadt);
+		Info_AddChoice(dia_cityguide,"Как мне попасть в верхний квартал?",dia_cityguide_oberstadt);
 	};
 	if(!C_IsQuarterNearest(self,Q_TEMPEL))
 	{
-		Info_AddChoice(dia_cityguide,"К храму Аданоса.",dia_cityguide_tempel);
+		Info_AddChoice(dia_cityguide,"Я ищу храм.",dia_cityguide_tempel);
 	};
 	if(!C_IsQuarterNearest(self,Q_MARKT))
 	{
-		Info_AddChoice(dia_cityguide,"На рыночную площадь.",dia_cityguide_markt);
+		Info_AddChoice(dia_cityguide,"Где находится рыночная площадь?",dia_cityguide_markt);
 	};
 	if(!C_IsQuarterNearest(self,Q_GALGEN))
 	{
-		Info_AddChoice(dia_cityguide,"На площадь Правосудия.",dia_cityguide_galgen);
+		Info_AddChoice(dia_cityguide,"Как мне попасть на площадь Правосудия?",dia_cityguide_galgen);
 	};
 	if(!C_IsQuarterNearest(self,Q_KASERNE))
 	{
-		Info_AddChoice(dia_cityguide,"К казармам.",dia_cityguide_kaserne);
+		Info_AddChoice(dia_cityguide,"Где находятся казармы?",dia_cityguide_kaserne);
 	};
 	if(!C_IsQuarterNearest(self,Q_HAFEN))
 	{
-		Info_AddChoice(dia_cityguide,"В портовый квартал.",dia_cityguide_hafen);
+		Info_AddChoice(dia_cityguide,"Где находится портовый квартал?",dia_cityguide_hafen);
 	};
 	Info_AddChoice(dia_cityguide,"Спасибо. Именно это я и хотел узнать!",dia_cityguide_back);
 };

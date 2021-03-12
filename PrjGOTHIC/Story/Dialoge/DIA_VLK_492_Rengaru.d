@@ -34,7 +34,11 @@ instance DIA_Rengaru_PICKPOCKET(C_Info)
 
 func int DIA_Rengaru_PICKPOCKET_Condition()
 {
-	return C_Beklauen(20,5);
+	if(Npc_HasItems(self,ItMi_Gold) > 5)
+	{
+		return C_Beklauen(20,5);
+	};
+	return FALSE;
 };
 
 func void DIA_Rengaru_PICKPOCKET_Info()
@@ -77,7 +81,7 @@ func int DIA_Rengaru_Hauab_Condition()
 
 func void DIA_Rengaru_Hauab_Info()
 {
-	AI_Output(other,self,"DIA_Rengaru_Hauab_15_00");	//Что ты делаешь здесь?
+	DIA_Common_WhatAreYouDoingHere();
 	AI_Output(self,other,"DIA_Rengaru_Hauab_07_01");	//Я не понимаю, какое тебе до этого дело. Проваливай!
 	AI_StopProcessInfos(self);
 };
@@ -112,6 +116,20 @@ func void DIA_Rengaru_HALLODIEB_Info()
 };
 
 
+var int RengaruGold;
+
+func void B_Rengaru_NoGoldReason()
+{
+	if(self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE)
+	{
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_03");	//Но зачем я говорю тебе это? Ведь это ты меня обокрал!
+	}
+	else if(self.aivar[AIV_DefeatedByPlayer] == TRUE)
+	{
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_07_01");	//Ты уже забрал все, что у меня было, после того, как вырубил меня! Пусти!
+	};
+};
+
 instance DIA_Rengaru_GOTYOU(C_Info)
 {
 	npc = VLK_492_Rengaru;
@@ -140,11 +158,12 @@ func int DIA_Rengaru_GOTYOU_Condition()
 
 func void DIA_Rengaru_GOTYOU_Info()
 {
-	B_GivePlayerXP(XP_RengaruGotThief);
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_15_00");	//Поймал!
 	AI_Output(self,other,"DIA_Rengaru_GOTYOU_07_01");	//Что тебе нужно от меня?
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_15_02");	//Ты украл кошелек у Джоры средь бела дня, и он даже видел, как ты сделал это.
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_15_03");	//Поэтому я пришел сказать тебе, что ты грязный вор и что...
+	B_GivePlayerXP(XP_RengaruGotThief);
+	RengaruGold = Npc_HasItems(self,ItMi_Gold);
 	Info_ClearChoices(DIA_Rengaru_GOTYOU);
 	Info_AddChoice(DIA_Rengaru_GOTYOU,"... я заслуживаю долю от награбленного.",DIA_Rengaru_GOTYOU_Anteil);
 	Info_AddChoice(DIA_Rengaru_GOTYOU,"... тебе лучше вернуть золото Джоры. И немедленно.",DIA_Rengaru_GOTYOU_YouThief);
@@ -154,18 +173,20 @@ func void DIA_Rengaru_GOTYOU_Info()
 func void DIA_Rengaru_GOTYOU_YouThief()
 {
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_YouThief_15_00");	//... тебе лучше вернуть золото Джоры. И немедленно.
-	if(Npc_HasItems(self,ItMi_Gold))
+	if(RengaruGold >= 50)
 	{
 		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим!
-		B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
+		B_GiveInvItems(self,other,ItMi_Gold,50);
+	}
+	else if(RengaruGold > 0)
+	{
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_02");	//У меня уже нет этого золота.
+		B_Rengaru_NoGoldReason();
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_02");	//У меня уже нет этого золота.
-		if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
-		{
-			AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_03");	//Но зачем я говорю тебе это? Ведь это ты меня обокрал!
-		};
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_alles_07_03");	//Я бы отдал тебе золото, но у меня больше ничего нет.
+		B_Rengaru_NoGoldReason();
 	};
 	Info_ClearChoices(DIA_Rengaru_GOTYOU);
 };
@@ -173,46 +194,40 @@ func void DIA_Rengaru_GOTYOU_YouThief()
 func void DIA_Rengaru_GOTYOU_Anteil()
 {
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_15_00");	//... я заслуживаю долю от награбленного.
-	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST) && !Npc_HasItems(self,ItMi_Gold))
-	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_07_01");	//Ты уже забрал все, что у меня было, после того, как вырубил меня! Пусти!
-		Info_ClearChoices(DIA_Rengaru_GOTYOU);
-	}
-	else
+	if(RengaruGold >= 25)
 	{
 		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_GehtKlar_07_01");	//Вот твоя половина! А теперь отпусти меня!
 		Info_ClearChoices(DIA_Rengaru_GOTYOU);
 		Info_AddChoice(DIA_Rengaru_GOTYOU,"Нет, ты отдашь мне все!",DIA_Rengaru_GOTYOU_Anteil_alles);
 		Info_AddChoice(DIA_Rengaru_GOTYOU,"Хорошо, давай мне половину тогда.",DIA_Rengaru_GOTYOU_Anteil_GehtKlar);
+	}
+	else if(RengaruGold > 0)
+	{
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_alles_07_02");	//Ты просто грабишь меня. Ладно, возьми это золото. А теперь оставь меня в покое.
+		B_GiveInvItems(self,other,ItMi_Gold,RengaruGold);
+		Info_ClearChoices(DIA_Rengaru_GOTYOU);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_GehtKlar_07_02");	//Я был бы не прочь отдать тебе половину, но у меня больше ничего нет.
+		B_Rengaru_NoGoldReason();
+		Info_ClearChoices(DIA_Rengaru_GOTYOU);
 	};
 };
 
 func void DIA_Rengaru_GOTYOU_Anteil_alles()
 {
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_alles_15_00");	//Нет, ты отдашь мне все!
-	if(Npc_HasItems(self,ItMi_Gold) >= 2)
-	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_alles_07_02");	//Ты просто грабишь меня. Ладно, возьми это золото. А теперь оставь меня в покое.
-		B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_alles_07_03");	//Я бы отдал тебе золото, но у меня больше ничего нет.
-	};
+	AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_alles_07_02");	//Ты просто грабишь меня. Ладно, возьми это золото. А теперь оставь меня в покое.
+	B_GiveInvItems(self,other,ItMi_Gold,RengaruGold);
 	Info_ClearChoices(DIA_Rengaru_GOTYOU);
 };
 
 func void DIA_Rengaru_GOTYOU_Anteil_GehtKlar()
 {
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_GehtKlar_15_00");	//Хорошо, давай мне половину тогда.
-	if(B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold) / 2))
-	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим!
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_GehtKlar_07_02");	//Я был бы не прочь отдать тебе половину, но у меня больше ничего нет.
-	};
+	AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим!
+	B_GiveInvItems(self,other,ItMi_Gold,25);
 	Info_ClearChoices(DIA_Rengaru_GOTYOU);
 };
 

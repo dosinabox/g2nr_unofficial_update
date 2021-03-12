@@ -638,9 +638,10 @@ func void DIA_Alrik_Ausbilden_Info()
 	{
 		B_Say(self,other,"$NOLEARNYOUREBETTER");
 		Alrik_Teach1H = TRUE;
-		DIA_Alrik_Teach_permanent = true;
+		DIA_Alrik_Teach_permanent = TRUE;
 	}
-	else if((Alrik_Kaempfe == 0) && (hero.guild == GIL_NONE))
+//	else if((Alrik_Kaempfe == 0) && (hero.guild == GIL_NONE))
+	else if(Alrik_Kaempfe == 0)
 	{
 		AI_Output(self,other,"DIA_Alrik_Ausbilden_09_01");	//Если ты действительно хочешь научиться сражаться, то выходи против меня. (ухмыляется) За этот урок я не возьму дополнительной платы.
 		Alrik_VorausErzaehlt = TRUE;
@@ -669,6 +670,11 @@ func void B_BuildLearnDialog_Alrik()
 {
 	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Alrik)
 	{
+		if(C_BodyStateContains(self,BS_SIT))
+		{
+			AI_Standup(self);
+			B_TurnToNpc(self,other);
+		};
 		Info_ClearChoices(DIA_Alrik_Teach);
 		Info_AddChoice(DIA_Alrik_Teach,Dialog_Back,DIA_Alrik_Teach_Back);
 		Info_AddChoice(DIA_Alrik_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Alrik_Teach_1H_1);
@@ -709,11 +715,6 @@ func void DIA_Alrik_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Alrik_Teach_15_00");	//Научи меня обращаться с мечом!
 	Alrik_Merke_1h = other.HitChance[NPC_TALENT_1H];
-	/*if(C_BodyStateContains(self,BS_SIT))
-	{
-		AI_Standup(self);
-		B_TurnToNpc(self,other);
-	};*/
 	B_BuildLearnDialog_Alrik();
 };
 

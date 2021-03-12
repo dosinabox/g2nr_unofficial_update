@@ -16,7 +16,7 @@ instance DMT_1299_OberDementor_DI(Npc_Default)
 	CreateInvItems(self,ItWr_LastDoorToUndeadDrgDI_MIS,1);
 	CreateInvItems(self,ItKe_ChestMasterDementor_MIS,1);
 //	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_MadPsi,BodyTex_N,ITAR_Xardas);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_MadPsi,BodyTex_N,ITAR_Dementor_Boss);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_MadPsi,BodyTex_Tattoo_N,ITAR_BlackMage);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);

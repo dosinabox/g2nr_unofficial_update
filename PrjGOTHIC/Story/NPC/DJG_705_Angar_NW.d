@@ -6,7 +6,7 @@ instance DJG_705_Angar_NW(Npc_Default)
 	id = 7050;
 	voice = 4;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_FRIEND;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_Zweihaender2);
@@ -35,6 +35,6 @@ func void Rtn_WaitForShip_7050()
 func void Rtn_Ship_7050()
 {
 	TA_Stand_ArmsCrossed(8,0,23,0,"SHIP_CREW_03");
-	TA_Stand_ArmsCrossed(23,0,8,0,"SHIP_CREW_03");
+	TA_Sit_Chair(23,0,8,0,"SHIP_IN_02");
 };
 

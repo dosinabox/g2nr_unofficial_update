@@ -15,7 +15,7 @@ func void ZS_Stand_Dementor()
 	Npc_PercEnable(self,PERC_ASSESSENEMY,B_AssessEnemy);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_AssessDamage);
-	if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(DMT_1299_OberDementor_DI))
+	if(!C_IsNpc(self,DMT_1299_OberDementor_DI))
 	{
 		Npc_PercEnable(self,PERC_ASSESSFIGHTSOUND,B_AssessFightSound);
 	};

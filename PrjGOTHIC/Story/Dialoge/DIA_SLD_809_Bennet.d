@@ -226,8 +226,8 @@ func void DIA_Bennet_HALLO_Info()
 	AI_Output(self,other,"DIA_Bennet_HALLO_06_00");	//Я не продаю оружие. Халед продает. Он находится в доме Онара.
 	if(Khaled_weiter == FALSE)
 	{
-		Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-		B_LogEntry(Topic_SoldierTrader,"Халед - торговец оружием.");
+		Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_SoldierTrader,"Халед - торговец оружием.");
 	};
 };
 
@@ -280,8 +280,8 @@ func void DIA_Bennet_TRADE_Info()
 	AI_Output(self,other,"DIA_Bennet_TRADE_06_01");	//Что тебе нужно?
 	if(BennetLOG == FALSE)
 	{
-		Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-		B_LogEntry(Topic_SoldierTrader,"Беннет продает кузнечное снаряжение.");
+		Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_SoldierTrader,"Беннет продает кузнечное снаряжение.");
 		BennetLOG = TRUE;
 	};
 	if(!Npc_HasItems(self,ItMw_1H_Mace_L_04) && !Npc_HasItems(other,ItMw_1H_Mace_L_04) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE))
@@ -420,8 +420,8 @@ func void DIA_Bennet_WannaSmith_Pay()
 	{
 		AI_Output(self,other,"DIA_Bennet_WannaSmith_Pay_06_01");	//Должен сказать, это очень хорошая цена! Я готов приступить к обучению, как только ты будешь готов.
 		Bennet_TeachCommon = TRUE;
-		Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-		B_LogEntry(Topic_SoldierTeacher,"Беннет может обучить меня кузнечному делу.");
+		Log_CreateTopic(TOPIC_SoldierTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_SoldierTeacher,"Беннет может обучить меня кузнечному делу.");
 	}
 	else
 	{
@@ -432,7 +432,7 @@ func void DIA_Bennet_WannaSmith_Pay()
 
 func void DIA_Bennet_WannaSmith_Later()
 {
-	DIA_Common_MaybeLater();
+	AI_Output(other,self,"DIA_Bennet_WannaSmith_Later_15_00");	//Ну, может быть, позже.
 	Info_ClearChoices(DIA_Bennet_WannaSmith);
 };
 
@@ -445,7 +445,7 @@ instance DIA_Bennet_TeachCOMMON(C_Info)
 	information = DIA_Bennet_TeachCOMMON_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Научиться кузнечному делу",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common));
-	description = B_BuildLearnString("Кузнечное дело",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common));
+	description = B_BuildLearnString(NAME_Skill_Smith,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common));
 };
 
 
@@ -950,11 +950,6 @@ func int DIA_Bennet_ThankYou_Condition()
 
 func void DIA_Bennet_ThankYou_Info()
 {
-	/*if(hero.guild == GIL_SLD)
-	{
-		hero.guild = GIL_DJG;
-		Npc_SetTrueGuild(hero,GIL_DJG);
-	};*/
 	AI_Output(self,other,"DIA_Bennet_ThankYou_06_00");	//Ох, я уж думал, что меня наверняка повесят!
 	AI_Output(other,self,"DIA_Bennet_ThankYou_15_01");	//Что ж, в конце концов, все окончилось хорошо.
 	AI_Output(self,other,"DIA_Bennet_ThankYou_06_02");	//Да уж. Ты бы видел выражение лица солдата, который выпускал меня!
@@ -962,6 +957,7 @@ func void DIA_Bennet_ThankYou_Info()
 	AI_Output(self,other,"DIA_Bennet_ThankYou_06_04");	//Да, чуть не забыл. У меня есть кое-что для тебя.
 	AI_Output(other,self,"DIA_Bennet_ThankYou_15_05");	//Что ты имеешь в виду?
 	AI_Output(self,other,"DIA_Bennet_ThankYou_06_06");	//(ухмыляется) Презент.
+	self.npcType = NPCTYPE_FRIEND;
 };
 
 
@@ -992,16 +988,14 @@ func void DIA_Bennet_Present_Info()
 	AI_Output(self,other,"DIA_Bennet_Present_06_03");	//Хорошо, я верю тебе.
 	if(hero.guild == GIL_SLD)
 	{
-		hero.guild = GIL_DJG;
-		Npc_SetTrueGuild(hero,GIL_DJG);
+		B_SetGuild(hero,GIL_DJG);
 		AI_Output(self,other,"DIA_Bennet_Present_06_04");	//Как бы там ни было, некоторые из парней решили отправиться в Долину.
 		AI_Output(self,other,"DIA_Bennet_Present_06_05");	//(ухмыляется) Они собираются навести там порядок.
 		AI_Output(other,self,"DIA_Bennet_Present_15_06");	//А какое это имеет отношение ко мне?
 		AI_Output(self,other,"DIA_Bennet_Present_06_07");	//(гордо) Я разработал новый тип доспехов. Доспехи охотника на драконов!
 		AI_Output(self,other,"DIA_Bennet_Present_06_08");	//Они прочнее и легче, чем традиционные доспехи.
 		AI_Output(self,other,"DIA_Bennet_Present_06_09");	//Так как ты спас меня, я хочу, чтобы ты получил первый экземпляр. Это подарок!
-		CreateInvItem(hero,ITAR_DJG_L);
-		AI_PrintScreen("Легкие доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveArmor(ITAR_DJG_L);
 		AI_Output(self,other,"DIA_Bennet_Present_06_10");	//Я подумал, что, возможно, тебе тоже захочется позабавиться там. Тебе понадобится хорошее снаряжение, когда ты отправишься в эту долину.
 		AI_Output(self,other,"DIA_Bennet_Present_06_11");	//Также мне интересны драконьи чешуйки. Настоящие драконьи чешуйки. Я хорошо заплачу тебе за них.
 		AI_Output(other,self,"DIA_Bennet_Present_15_12");	//Сколько я получу за чешуйку?
@@ -1093,14 +1087,13 @@ func void DIA_Bennet_DJG_ARMOR_M_Info()
 		B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_DJG_M);
 		if(Helmets_Enabled == TRUE)
 		{
-			CreateInvItem(hero,ITAR_DJGN_M);
+			B_GiveArmor(ITAR_DJGN_M);
 			CreateInvItem(hero,ITHE_DJG_M);
 		}
 		else
 		{
-			CreateInvItem(hero,ITAR_DJG_M);
+			B_GiveArmor(ITAR_DJG_M);
 		};
-		AI_PrintScreen("Средние доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		Bennet_DIA_Bennet_DJG_ARMOR_M_permanent = TRUE;
 	}
 	else
@@ -1172,14 +1165,13 @@ func void DIA_Bennet_DJG_ARMOR_H_Info()
 		B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_DJG_H);
 		if(Helmets_Enabled == TRUE)
 		{
-			CreateInvItem(hero,ITAR_DJGN_H);
+			B_GiveArmor(ITAR_DJGN_H);
 			CreateInvItem(hero,ITHE_DJG_H);
 		}
 		else
 		{
-			CreateInvItem(hero,ITAR_DJG_H);
+			B_GiveArmor(ITAR_DJG_H);
 		};
-		AI_PrintScreen("Тяжелые доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		Bennet_DIA_Bennet_DJG_ARMOR_H_permanent = TRUE;
 	}
 	else
@@ -1375,7 +1367,7 @@ func void DIA_Bennet_DRACHENEIER_Info()
 		AI_Output(self,other,"DIA_Bennet_DRACHENEIER_06_03");	//Давай посмотрим.
 	};
 	Npc_RemoveInvItems(other,ItAt_DragonEgg_MIS,1);
-	AI_PrintScreen("Яйцо отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	AI_PrintScreen("Драконье яйцо отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	if(DRACHENEIER_angebotenXP_OneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Bennet_DRACHENEIER_06_04");	//Ммм. Очень твердый материал. Идеально подходит для доспехов. Если только удастся открыть их.
@@ -1445,7 +1437,7 @@ func void DIA_Bennet_DRACHENEIER_nein()
 	AI_Output(other,self,"DIA_Bennet_DRACHENEIER_nein_15_00");	//Тогда можешь оставить золото себе. Я пока попридержу эти яйца.
 	AI_Output(self,other,"DIA_Bennet_DRACHENEIER_nein_06_01");	//Дай мне знать, если передумаешь.
 	CreateInvItems(other,ItAt_DragonEgg_MIS,1);
-	AI_PrintScreen("Яйцо получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+	AI_PrintScreen("Драконье яйцо получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	BennetsDragonEggOffer = 0;
 	Info_ClearChoices(DIA_Bennet_DRACHENEIER);
 };
@@ -1486,7 +1478,7 @@ func void DIA_Bennet_EierBringen_Info()
 	{
 		AI_Output(other,self,"DIA_Bennet_EierBringen_15_02");	//Вот. Я принес еще одно.
 		Npc_RemoveInvItems(other,ItAt_DragonEgg_MIS,1);
-		AI_PrintScreen("Яйцо отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen("Драконье яйцо отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		DragonEggCounter += 1;
 		B_GivePlayerXP(XP_DJG_BringDragonEgg);
 	}

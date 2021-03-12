@@ -271,8 +271,6 @@ var int Merdarion_ADW_Empty;
 
 func void B_BuildLearnDialog_Merdarion()
 {
-	Info_ClearChoices(DIA_Addon_Merdarion_ADW_TEACH_MANA);
-	Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,Dialog_Back,DIA_Addon_Merdarion_ADW_TEACH_MANA_BACK);
 	if(other.aivar[REAL_MANA_MAX] >= T_HIGH)
 	{
 		AI_Output(self,other,"DIA_Addon_Merdarion_ADW_TEACH_MANA_06_00");	//То, что ты просишь, выходит за рамки моих способностей.
@@ -281,6 +279,8 @@ func void B_BuildLearnDialog_Merdarion()
 	}
 	else
 	{
+		Info_ClearChoices(DIA_Addon_Merdarion_ADW_TEACH_MANA);
+		Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,Dialog_Back,DIA_Addon_Merdarion_ADW_TEACH_MANA_BACK);
 		Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Addon_Merdarion_ADW_TEACH_MANA_1);
 		Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Addon_Merdarion_ADW_TEACH_MANA_5);
 	};

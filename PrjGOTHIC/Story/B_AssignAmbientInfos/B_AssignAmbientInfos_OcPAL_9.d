@@ -82,7 +82,7 @@ func int DIA_OCPAL_9_STANDARD_Condition()
 
 func void DIA_OCPAL_9_STANDARD_Info()
 {
-	AI_Output(other,self,"DIA_OCPAL_4_STANDARD_15_00");	//Как дела?
+	DIA_Common_HowsItGoing();
 	if(Kapitel <= 3)
 	{
 		AI_Output(self,other,"DIA_OCPAL_4_STANDARD_09_01");	//Драконы опять напали на нас! Но Иннос защитил нас в этом бою. Создания Белиара дорого заплатят за это!

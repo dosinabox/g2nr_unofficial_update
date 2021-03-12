@@ -9,7 +9,11 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(Npc_GetDistToNpc(slf,hero) <= 100)
+	if(Npc_GetDistToNpc(slf,hero) <= 300)
+	{
+		return FALSE;
+	};
+	if(Npc_GetDistToNpc(hero,oth) <= 300)
 	{
 		return FALSE;
 	};

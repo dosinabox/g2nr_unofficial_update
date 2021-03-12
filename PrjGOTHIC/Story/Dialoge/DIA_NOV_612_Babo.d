@@ -17,10 +17,6 @@ func int DIA_Babo_Kap1_EXIT_Condition()
 
 func void DIA_Babo_Kap1_EXIT_Info()
 {
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
 	AI_StopProcessInfos(self);
 };
 
@@ -254,39 +250,17 @@ instance DIA_Babo_Wurst(C_Info)
 
 func int DIA_Babo_Wurst_Condition()
 {
-	if((MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
+	if(C_CanFeedNOV(self))
 	{
-		if(Kapitel == 1)
-		{
-			return TRUE;
-		}
-		else if(GuildlessMode == TRUE)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
 func void DIA_Babo_Wurst_Info()
 {
-	var string NovizeText;
-	var string NovizeLeft;
 	AI_Output(other,self,"DIA_Babo_Wurst_15_00");	//Вот, держи колбасу.
 	AI_WaitTillEnd(self,other);
-	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
-	Wurst_Gegeben += 1;
-//	CreateInvItems(self,ItFo_Schafswurst,1);
-	B_UseItem(self,ItFo_Schafswurst);
-	if(Wurst_Gegeben >= 13)
-	{
-		AI_PrintScreen(PRINT_AllNovizen,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	}
-	else
-	{
-		NovizeLeft = IntToString(13 - Wurst_Gegeben);
-		NovizeText = ConcatStrings(PRINT_NovizenLeft,NovizeLeft);
-		AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	};
+	B_FeedNOV(self);
 	AI_Output(self,other,"DIA_Babo_Wurst_03_01");	//У-у-у, баранья колбаса, отлично! Какой потрясающий вкус - м-м-м, дай мне еще одну колбаску!
 	AI_Output(other,self,"DIA_Babo_Wurst_15_02");	//Тогда у меня не хватит колбасы для других.
 	AI_Output(self,other,"DIA_Babo_Wurst_03_03");	//У тебя все равно на одну колбаску больше, чем нужно. Ну, на ту, что предназначена для тебя. Мы же друзья. Что мы будем делить какую-то колбасу?
@@ -785,7 +759,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_Info()
 {
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_15_00");	//Я нашел твои записки.
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_03_01");	//Правда? Спасибо, ты спас меня. Я даже не знаю, как благодарить тебя.
-	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_15_02");	//Да, да, просто успокойся.
+	DIA_Common_YeahJustRelax();
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_03_03");	//(нервно) Это действительно мои? Ты уверен? Покажи мне.
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Я подержу их пока у себя.",DIA_Babo_Kap3_HaveYourDocs_KeepThem);
@@ -835,12 +809,9 @@ func void DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner()
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_03_01");	//(ошеломленно) Что? Ты не можешь поступить со мной так.
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_15_02");	//А я думаю, что могу. Я придержу у себя эти бумаги, пусть все пока останется так, как есть.
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_15_03");	//Я должен обговорить финансовую часть с Игарацем.
+	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_15_04");	//А ты пока занимайся своими растениями.
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_03_05");	//Ты свинья. Презренная жадная свинья. Иннос покарает тебя.
 	BabosDocsRejected = TRUE;
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,Dialog_Ende,DIA_Babo_Kap3_HaveYourDocs_End);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Придержи язык.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_KeepCalm);
@@ -966,25 +937,14 @@ func void DIA_Babo_Kap3_Perm_Info()
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_01");	//(неубедительно) Да, конечно. Моя вера в мудрость и силу Инноса придает мне силы.
-		if(MIS_HelpBabo == LOG_SUCCESS)
-		{
-			AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_15_04");	//А ты пока занимайся своими растениями.
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_02");	//(уклончиво) Я не хочу показаться невежливым, но у меня много дел сегодня.
-			AI_Output(other,self,"DIA_Babo_Kap3_Perm_15_03");	//Можешь продолжать.
-		};
+		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_02");	//(уклончиво) Я не хочу показаться невежливым, но у меня много дел сегодня.
+		AI_Output(other,self,"DIA_Babo_Kap3_Perm_15_03");	//Можешь продолжать.
 		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_04");	//(облегченно) Спасибо.
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_05");	//Все хорошо, но мне нужно возвращаться к работе, иначе мне ни за что не закончить ее сегодня.
 		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_06");	//Я не хочу опять трудиться до полуночи, чтобы выполнить свою работу и не быть наказанным.
-	};
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
 	};
 	AI_StopProcessInfos(self);
 };

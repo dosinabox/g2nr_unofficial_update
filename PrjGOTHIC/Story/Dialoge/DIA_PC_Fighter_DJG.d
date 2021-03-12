@@ -303,7 +303,7 @@ func void DIA_GornDJG_DRAGONDEAD_Info()
 	AI_Output(self,other,"DIA_GornDJG_DRAGONDEAD_12_05");	//Я побуду здесь еще немного, а затем вернусь к Ли. Может, мы там еще встретимся!
 	AI_Output(self,other,"DIA_GornDJG_DRAGONDEAD_12_06");	//Меня уже тошнит от этих мест. Пришло время убираться с этого острова.
 	AI_Output(other,self,"DIA_GornDJG_DRAGONDEAD_15_07");	//Еще увидимся!
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap4);
 };
 
 

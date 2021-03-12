@@ -224,7 +224,7 @@ func void Use_Sting()
 	{
 		if(Bloodfly_Bonus <= 10)
 		{
-			Npc_ChangeAttribute(self,ATR_HITPOINTS,self.attribute[ATR_HITPOINTS_MAX]);
+			self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 			Print(PRINT_FullyHealed);
 			Bloodfly_Bonus += 1;
 		}

@@ -314,14 +314,8 @@ func void DIA_Dexter_Kill_Info()
 
 func void DIA_Dexter_Kill_ENDE()
 {
-//	var C_Item itm;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_SuddenEnemyInferno,1);
-/*	itm = Npc_GetEquippedArmor(Greg_NW);
-	if(!Hlp_IsItem(itm,ITAR_PIR_H_Addon))
-	{
-		AI_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
-	};*/
 };
 
 

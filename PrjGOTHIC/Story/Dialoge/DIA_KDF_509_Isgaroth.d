@@ -121,8 +121,6 @@ instance DIA_Isgaroth_tot(C_Info)
 
 func int DIA_Isgaroth_tot_Condition()
 {
-	Wolfi = Hlp_GetNpc(BlackWolf);
-//	if((MIS_IsgarothWolf == LOG_Running) && Npc_IsDead(Wolfi))
 	if(Npc_KnowsInfo(other,DIA_Isgaroth_Wolf) && Npc_IsDead(Wolfi))
 	{
 		return TRUE;

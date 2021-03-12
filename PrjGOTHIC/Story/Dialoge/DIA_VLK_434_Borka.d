@@ -84,10 +84,6 @@ func void DIA_Borka_PISSOFF_Info()
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_02");	//Моряки из самых дальних уголков света приплывают сюда, чтобы провести несколько незабываемых ночей в 'Красном Фонаре'.
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_03");	//А теперь и у тебя появился такой шанс - нет, честь - провести ночь с Надей, самым страстным цветком богов!
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_04");	//Заходи же, и ты познаешь наслаждение, о котором другие не могут даже и мечтать!
-	if((MIS_Andre_REDLIGHT == LOG_Running) && C_RedlightUndercoverCheckFailed(other))
-	{
-		Undercover_Failed = TRUE;
-	};
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 70) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
 	{
 		if(MIS_Andre_REDLIGHT != LOG_Running)
@@ -121,10 +117,6 @@ func void DIA_Borka_TROUBLE_Info()
 {
 	AI_Output(self,other,"DIA_Borka_TROUBLE_11_00");	//Что ты стоишь здесь и колеблешься? Заходи внутрь, познакомься с нашей любвеобильной Надей.
 	AI_Output(self,other,"DIA_Borka_TROUBLE_11_01");	//Это страстное создание ночи придаст твоей жизни новый смысл!
-	if((MIS_Andre_REDLIGHT == LOG_Running) && C_RedlightUndercoverCheckFailed(other))
-	{
-		Undercover_Failed = TRUE;
-	};
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 70) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
 	{
 		if(MIS_Andre_REDLIGHT != LOG_Running)
@@ -158,13 +150,15 @@ func void DIA_Borka_Smoke_Info()
 {
 	AI_Output(other,self,"DIA_Borka_Smoke_15_00");	//Ты не знаешь, где можно купить травки?
 	AI_Output(self,other,"DIA_Borka_Smoke_11_01");	//Нет, проваливай!
-	if(C_RedlightUndercoverCheckFailed(other))
-	{
-		Undercover_Failed = TRUE;
-	};
 	AI_StopProcessInfos(self);
 };
 
+
+func void B_Borka_RefuseToTalk()
+{
+	AI_Output(self,other,"DIA_Borka_BUYHERB_11_01");	//Извините, мистер стражник, сэр. Это, должно быть, какая-то ошибка. Я ничего не знаю ни о какой травке.
+	Borka_RefuseToTalk = TRUE;
+};
 
 instance DIA_Borka_BUYHERB(C_Info)
 {
@@ -172,14 +166,14 @@ instance DIA_Borka_BUYHERB(C_Info)
 	nr = 2;
 	condition = DIA_Borka_BUYHERB_Condition;
 	information = DIA_Borka_BUYHERB_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	description = "Я слышал, ты продаешь травку.";
 };
 
 
 func int DIA_Borka_BUYHERB_Condition()
 {
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == TRUE) && (Borka_Deal == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == TRUE) && (Borka_RefuseToTalk == FALSE) && (Nadja_Victim == FALSE) && (Borka_Deal == FALSE))
 	{
 		return TRUE;
 	};
@@ -188,10 +182,9 @@ func int DIA_Borka_BUYHERB_Condition()
 func void DIA_Borka_BUYHERB_Info()
 {
 	AI_Output(other,self,"DIA_Borka_BUYHERB_15_00");	//Я слышал, ты продаешь травку.
-	if(C_RedlightUndercoverCheckFailed(other))
+	if(Undercover_Failed_Borka == TRUE)
 	{
-		AI_Output(self,other,"DIA_Borka_BUYHERB_11_01");	//Извините, мистер стражник, сэр. Это, должно быть, какая-то ошибка. Я ничего не знаю ни о какой травке.
-		Undercover_Failed = TRUE;
+		B_Borka_RefuseToTalk();
 	}
 	else
 	{
@@ -224,7 +217,7 @@ func void DIA_Borka_BUYHERB_Deal()
 {
 	AI_Output(other,self,"DIA_Borka_BUYHERB_Deal_15_00");	//Так мы с тобой договоримся или нет?
 	AI_PlayAni(self,"T_SEARCH");
-	AI_Output(self,other,"DIA_Borka_BUYHERB_Deal_11_01");	//... хорошо... договоримся. Ты даешь мне 50 золотых монет, и получаешь свою травку. Никакой торговли.
+	AI_Output(self,other,"DIA_Borka_BUYHERB_Deal_11_01");	//Хорошо... договоримся. Ты даешь мне 50 золотых монет, и получаешь свою травку. Никакой торговли.
 	Info_ClearChoices(DIA_Borka_BUYHERB);
 	Borka_Deal = TRUE;
 };
@@ -243,7 +236,7 @@ instance DIA_Borka_SECOND_CHANCE(C_Info)
 
 func int DIA_Borka_SECOND_CHANCE_Condition()
 {
-	if((Borka_Deal == TRUE) && (Npc_HasItems(other,ItMi_Gold) >= 50) && (Borka_Second_Chance_Failed == FALSE))
+	if((Borka_Deal == TRUE) && (Npc_HasItems(other,ItMi_Gold) >= 50) && (Borka_RefuseToTalk == FALSE))
 	{
 		return TRUE;
 	};
@@ -252,11 +245,9 @@ func int DIA_Borka_SECOND_CHANCE_Condition()
 func void DIA_Borka_SECOND_CHANCE_Info()
 {
 	AI_Output(other,self,"DIA_Borka_SECOND_CHANCE_15_00");	//Договорились. Вот твое золото.
-	if(C_RedlightUndercoverCheckFailed(other))
+	if(Undercover_Failed_Borka == TRUE)
 	{
-		AI_Output(self,other,"DIA_Borka_BUYHERB_11_01");	//Извините, мистер стражник, сэр. Это, должно быть, какая-то ошибка. Я ничего не знаю ни о какой травке.
-		Undercover_Failed = TRUE;
-		Borka_Second_Chance_Failed = TRUE;
+		B_Borka_RefuseToTalk();
 	}
 	else
 	{

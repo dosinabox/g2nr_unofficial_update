@@ -23,7 +23,7 @@ instance STRF_1143_Addon_Sklave(Npc_Default)
 
 func void Rtn_Start_1143()
 {
-	TA_Stand_WP(8,0,23,0,"BL_UP_PLACE_06_SIDE_01");
-	TA_Stand_WP(23,0,8,0,"BL_UP_PLACE_06_SIDE_01");
+	TA_Stand_WP(8,0,23,0,"BL_UP_PLACE_06_SIDE_00");
+	TA_Stand_WP(23,0,8,0,"BL_UP_PLACE_06_SIDE_00");
 };
 

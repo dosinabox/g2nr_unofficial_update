@@ -152,8 +152,8 @@ func void DIA_Babera_Rosi_Info()
 	AI_Output(self,other,"DIA_Babera_Rosi_16_01");	//Она больше не могла выносить такую жизнь и ушла на север, в лес.
 	Log_CreateTopic(TOPIC_RosisFlucht,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_RosisFlucht,LOG_Running);
-	B_LogEntry(TOPIC_RosisFlucht,"Рози сбежала с фермы Секоба. Бабера говорит, что она направилась на север, в лес.");
-	B_LogEntry(TOPIC_bringRosiBackToSekob,"Рози сбежала с фермы Секоба. Бабера говорит, что она направилась на север, в лес.");
+	B_LogEntries(TOPIC_RosisFlucht,"Рози сбежала с фермы Секоба. Бабера говорит, что она направилась на север, в лес.");
+	B_LogNextEntry(TOPIC_bringRosiBackToSekob,"Рози сбежала с фермы Секоба. Бабера говорит, что она направилась на север, в лес.");
 };
 
 

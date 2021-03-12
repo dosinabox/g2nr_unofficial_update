@@ -159,7 +159,7 @@ func int DIA_GornNW_nach_DJG_StillNeedYou_Condition()
 		}
 		else
 		{
-			DIA_GornNW_nach_DJG_StillNeedYou.description = "Мне нужен друг, всегда готовый помочь.";
+			DIA_GornNW_nach_DJG_StillNeedYou.description = "Мне не помешала бы твоя помощь.";
 		};
 		return TRUE;
 	};
@@ -173,7 +173,7 @@ func void DIA_GornNW_nach_DJG_StillNeedYou_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Lester_StillNeedYou_15_00");	//Мне нужен друг, всегда готовый помочь.
+		DIA_Common_INeedYourHelp();
 	};
 	AI_Output(self,other,"DIA_GornNW_nach_DJG_StillNeedYou_12_01");	//Наконец-то. А я уж думал, ты оставишь гнить меня здесь, пока будешь развлекаться там. До скорой встречи.
 	B_JoinShip(self);

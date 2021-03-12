@@ -156,7 +156,7 @@ func void DIA_Pedro_DI_ArrivedAtShip_OrkOberst()
 	AI_Output(self,other,"DIA_Pedro_DI_ArrivedAtShip_OrkOberst_09_01");	//Он отнял у меня последний лучик надежды когда-либо увидеть мою родную землю.
 	AI_Output(self,other,"DIA_Pedro_DI_ArrivedAtShip_OrkOberst_09_02");	//С тех пор, как я прибыл сюда, он допрашивал меня о стратегическом размещении паладинов на Хоринисе.
 	AI_Output(self,other,"DIA_Pedro_DI_ArrivedAtShip_OrkOberst_09_03");	//Конечно, я не мог рассказать ему много. Откуда мне знать об этом, черт возьми? Я послушник Огня.
-	if(Npc_IsDead(OrkElite_AntiPaladinOrkOberst_DI))
+	if(Npc_IsDead(AntiPaladin_DI))
 	{
 		Info_AddChoice(DIA_Pedro_DI_ArrivedAtShip,"Полковник орков мертв.",DIA_Pedro_DI_ArrivedAtShip_OberstTot);
 	};

@@ -37,7 +37,7 @@ const int TwoHStonePlate = 7;
 const int BowStonePlate = 8;
 const int CrsBowStonePlate = 9;
 
-func void B_PrintPlayerMiddle(var C_NPC npc,var string text)
+func void B_PrintPlayerMiddle(var C_Npc npc,var string text)
 {
 	if(Npc_IsPlayer(npc))
 	{
@@ -70,7 +70,7 @@ func void B_RaiseAttributeByStonePlate(var int talent,var int value)
 	Snd_Play("SFX_HealObsession");
 };
 
-func void B_RaiseTalentByStonePlate(var C_NPC npc,var int talent,var int value)
+func void B_RaiseTalentByStonePlate(var C_Npc npc,var int talent,var int value)
 {
 	var string text;
 	value = B_ChangeTalent(npc,talent,value,TS_PermBonus);
@@ -78,7 +78,7 @@ func void B_RaiseTalentByStonePlate(var C_NPC npc,var int talent,var int value)
 	{
 		B_PrintPlayerMiddle(npc,PRINT_NoLearnOverMAX);
 		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-		B_Say(self,self,"$PickBroke");
+		B_Say(self,self,"$PICKBROKE");
 		AI_Waitms(self,500);
 		return;
 	};

@@ -20,7 +20,6 @@ func int DIA_Andre_EXIT_Condition()
 
 func void DIA_Andre_EXIT_Info()
 {
-	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 };
 
@@ -46,125 +45,115 @@ func int DIA_Andre_FIRSTEXIT_Condition()
 
 func void DIA_Andre_FIRSTEXIT_Info()
 {
+	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
 	B_StartOtherRoutine(Wulfgar,"START");
 };
 
 
-var int Andre_Steckbrief;
+var int Andre_ToldInfoFromPablo;
+var int Andre_ToldInfoFromCanthar;
 
-func void B_Andre_Steckbrief()
+func int C_Andre_InfoFromCanthar()
 {
-	AI_Output(self,other,"DIA_Andre_Add_08_00");	//Один из моих людей сказал мне, что бандиты распространяют объявления о розыске с твоим изображением.
-	AI_Output(self,other,"DIA_Andre_Add_08_01");	//Он также сказал, что поначалу ты это отрицал.
-	AI_Output(self,other,"DIA_Andre_Add_08_02");	//Так что все это значит?
-	AI_Output(other,self,"DIA_Andre_Add_15_03");	//Я не знаю, почему они ищут меня...
-	AI_Output(self,other,"DIA_Andre_Add_08_04");	//Надеюсь, ради твоего же блага, что ты говоришь мне правду.
-	if((other.guild == GIL_NONE) || (other.guild == GIL_MIL))
+	if((Andre_ToldInfoFromCanthar == FALSE) && !Npc_IsDead(Canthar))
 	{
-		if(Andre_CantharFalle == FALSE)
+		if(MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2))
 		{
-			AI_Output(self,other,"DIA_Andre_Add_08_05");	//Мне не нужны в ополчении люди с запятнанной репутацией.
+			return TRUE;
+		}
+		else if(Canthars_KomproBrief_Failed == TRUE)
+		{
+			return TRUE;
 		};
 	};
-	AI_Output(self,other,"DIA_Andre_Add_08_06");	//Большинство из этих бандитов - бывшие каторжники из колонии.
-	AI_Output(self,other,"DIA_Andre_Add_08_07");	//Я надеюсь, что ты никак не связан с этими головорезами!
-	Andre_Steckbrief = TRUE;
+	return FALSE;
 };
 
-
-var int Andre_CantharFalle;
-
-func void B_Andre_CantharFalle()
+func int C_Andre_InfoFromPablo()
 {
-	AI_Output(self,other,"B_Andre_CantharFalle_08_00");	//Ко мне приходил торговец Кантар. Он сказал, что ты беглый каторжник из колонии.
-	AI_Output(self,other,"B_Andre_CantharFalle_08_01");	//Я не знаю, правда ли это, и предпочитаю не спрашивать тебя об этом, но ты должен уладить этот вопрос.
-	if((other.guild == GIL_NONE) || (other.guild == GIL_MIL))
+	if((Andre_ToldInfoFromPablo == FALSE) && !Npc_IsDead(Pablo))
 	{
-		if(Andre_Steckbrief == FALSE)
+		if(Pablo_AndreMelden == TRUE)
 		{
-			AI_Output(self,other,"DIA_Andre_Add_08_05");	//Мне не нужны в ополчении люди с запятнанной репутацией.
+			return TRUE;
 		};
 	};
-	if(SarahWeaponsRemoved == FALSE)
-	{
-		B_GiveTradeInv_Sarah(Sarah);
-		B_RemoveSarahWeapons();
-	};
-	B_RemoveNpc(VLK_470_Sarah);
-	if((Canthar_Ausgeliefert == TRUE) && (Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000))
-	{
-		B_NpcSetReleased(Canthar);
-		Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
-		Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
-		Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
-	};
-	B_StartOtherRoutine(Canthar,"MARKTSTAND");
-	AI_Teleport(Canthar,"NW_CITY_SARAH");
-	if((Canthar_Sperre == FALSE) && (Canthar_Pay == FALSE))
-	{
-		Canthar_Sperre = TRUE;
-	};
-	MIS_Canthars_KomproBrief = LOG_OBSOLETE;
-	B_CheckLog();
-	Andre_CantharFalle = TRUE;
+	return FALSE;
 };
 
+func void B_Andre_Informed()
+{
+	if(C_Andre_InfoFromPablo())
+	{
+		AI_Output(self,other,"DIA_Andre_Add_08_00");	//Один из моих людей сказал мне, что бандиты распространяют объявления о розыске с твоим изображением.
+		AI_Output(self,other,"DIA_Andre_Add_08_01");	//Он также сказал, что поначалу ты это отрицал.
+		AI_Output(self,other,"DIA_Andre_Add_08_02");	//Так что все это значит?
+		AI_Output(other,self,"DIA_Andre_Add_15_03");	//Я не знаю, почему они ищут меня...
+		AI_Output(self,other,"DIA_Andre_Add_08_04");	//Надеюсь, ради твоего же блага, что ты говоришь мне правду.
+		AI_Output(self,other,"DIA_Andre_Add_08_06");	//Большинство из этих бандитов - бывшие каторжники из колонии.
+		AI_Output(self,other,"DIA_Andre_Add_08_07");	//Я надеюсь, что ты никак не связан с этими головорезами!
+		Andre_ToldInfoFromPablo = TRUE;
+	};
+	if(C_Andre_InfoFromCanthar())
+	{
+		AI_Output(self,other,"B_Andre_CantharFalle_08_00");	//Ко мне приходил торговец Кантар. Он сказал, что ты беглый каторжник из колонии.
+		AI_Output(self,other,"B_Andre_CantharFalle_08_01");	//Я не знаю, правда ли это, и предпочитаю не спрашивать тебя об этом, но ты должен уладить этот вопрос.
+		if(!Npc_IsDead(Sarah))
+		{
+			if(SarahWeaponsRemoved == FALSE)
+			{
+				B_GiveTradeInv_Sarah(Sarah);
+				B_RemoveSarahWeapons();
+			};
+			B_RemoveNpc(VLK_470_Sarah);
+		};
+		if((Canthar_Ausgeliefert == TRUE) && (Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000))
+		{
+			B_NpcSetReleased(Canthar);
+			Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
+			Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
+			Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
+		};
+		B_StartOtherRoutine(Canthar,"MARKTSTAND");
+		AI_Teleport(Canthar,"NW_CITY_SARAH");
+		if((Canthar_Sperre == FALSE) && (Canthar_Pay == FALSE))
+		{
+			Canthar_Sperre = TRUE;
+		};
+		MIS_Canthars_KomproBrief = LOG_OBSOLETE;
+		B_CheckLog();
+		Andre_ToldInfoFromCanthar = TRUE;
+	};
+	if((other.guild == GIL_MIL) || ((other.guild == GIL_NONE) && Npc_KnowsInfo(other,DIA_Andre_AskToJoin)))
+	{
+		AI_Output(self,other,"DIA_Andre_Add_08_05");	//Мне не нужны в ополчении люди с запятнанной репутацией.
+	};
+};
 
-instance DIA_Andre_CantharFalle(C_Info)
+instance DIA_Andre_Informed(C_Info)
 {
 	npc = MIL_311_Andre;
 	nr = 3;
-	condition = DIA_Andre_CantharFalle_Condition;
-	information = DIA_Andre_CantharFalle_Info;
+	condition = DIA_Andre_Informed_Condition;
+	information = DIA_Andre_Informed_Info;
 	permanent = TRUE;
 	important = TRUE;
 };
 
 
-func int DIA_Andre_CantharFalle_Condition()
+func int DIA_Andre_Informed_Condition()
 {
-	if((Andre_CantharFalle == FALSE) && !Npc_IsDead(Canthar))
+	if(C_Andre_InfoFromPablo() || C_Andre_InfoFromCanthar())
 	{
-		if(MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2))
-		{
-			return TRUE;
-		}
-		else if(Canthars_KomproBrief_Failed == TRUE)
-		{
-			return TRUE;
-		};
-	};
-	if((Andre_Steckbrief == FALSE) && !Npc_IsDead(Pablo))
-	{
-		if(Pablo_AndreMelden == TRUE)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
-func void DIA_Andre_CantharFalle_Info()
+func void DIA_Andre_Informed_Info()
 {
-	if((Andre_CantharFalle == FALSE) && !Npc_IsDead(Canthar))
-	{
-		if(MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2))
-		{
-			B_Andre_CantharFalle();
-		}
-		else if(Canthars_KomproBrief_Failed == TRUE)
-		{
-			B_Andre_CantharFalle();
-		};
-	};
-	if((Andre_Steckbrief == FALSE) && !Npc_IsDead(Pablo))
-	{
-		if(Pablo_AndreMelden == TRUE)
-		{
-			B_Andre_Steckbrief();
-		};
-	};
+	B_Andre_Informed();
 };
 
 
@@ -195,14 +184,7 @@ func void DIA_Andre_PMSchulden_Info()
 	var int diff;
 	B_PlayerEnteredCity();
 	AI_Output(self,other,"DIA_Andre_PMSchulden_08_00");	//Ты пришел заплатить штраф?
-	if((Pablo_AndreMelden == TRUE) && !Npc_IsDead(Pablo) && (Andre_Steckbrief == FALSE))
-	{
-		B_Andre_Steckbrief();
-	};
-	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2)) && (Andre_CantharFalle == FALSE))
-	{
-		B_Andre_CantharFalle();
-	};
+	B_Andre_Informed();
 	if(B_GetTotalPetzCounter(self) > Andre_LastPetzCounter)
 	{
 		AI_Output(self,other,"DIA_Andre_PMSchulden_08_01");	//Я даже задавался вопросом: осмелишься ли ты появиться здесь?!
@@ -317,14 +299,7 @@ func void DIA_Andre_PETZMASTER_Info()
 	{
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_00");	//Ты тот новичок, что баламутит город.
 	};
-	if((Pablo_AndreMelden == TRUE) && !Npc_IsDead(Pablo) && (Andre_Steckbrief == FALSE))
-	{
-		B_Andre_Steckbrief();
-	};
-	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2)) && (Andre_CantharFalle == FALSE))
-	{
-		B_Andre_CantharFalle();
-	};
+	B_Andre_Informed();
 	if(B_GetGreatestPetzCrime(self) == CRIME_MURDER)
 	{
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_01");	//Хорошо, что ты пришел ко мне пока все еще можно уладить.
@@ -890,11 +865,21 @@ func void B_AndreSold()
 	B_GiveInvItems(self,other,ItMi_Gold,Andre_Sold);
 };
 
-func void B_AndreNoProof()
+func void B_AndreDoYouHaveProof()
 {
 	AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
-	DIA_Common_No();
+};
+
+func void B_AndreNoGossips()
+{
 	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
+};
+
+func void B_AndreNoProof()
+{
+	B_AndreDoYouHaveProof();
+	DIA_Common_No();
+	B_AndreNoGossips();
 };
 
 instance DIA_Andre_Auslieferung(C_Info)
@@ -972,7 +957,6 @@ func void DIA_Andre_Auslieferung_Rengaru()
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
 	B_NpcSetJailed(Rengaru);
 	B_StartOtherRoutine(Rengaru,"PRISON");
-	CriminalsJailed += 1;
 	Rengaru_Ausgeliefert = TRUE;
 	MIS_ThiefGuild_sucked = TRUE;
 	B_GivePlayerXP(XP_Andre_Auslieferung);
@@ -993,7 +977,6 @@ func void DIA_Andre_Auslieferung_Halvor()
 		B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
 		B_NpcSetJailed(Halvor);
 		B_StartOtherRoutine(Halvor,"PRISON");
-		CriminalsJailed += 1;
 		MIS_ThiefGuild_sucked = TRUE;
 		Halvor_Ausgeliefert = TRUE;
 		B_GivePlayerXP(XP_Andre_Auslieferung);
@@ -1021,7 +1004,6 @@ func void DIA_Andre_Auslieferung_Nagur()
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
 	B_NpcSetJailed(Nagur);
 	B_StartOtherRoutine(Nagur,"PRISON");
-	CriminalsJailed += 1;
 	MIS_ThiefGuild_sucked = TRUE;
 	Nagur_Ausgeliefert = TRUE;
 	B_GivePlayerXP(XP_Andre_Auslieferung);
@@ -1042,7 +1024,6 @@ func void DIA_Andre_Auslieferung_Canthar()
 		B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
 		B_NpcSetJailed(Canthar);
 		B_StartOtherRoutine(Canthar,"KNAST");
-		CriminalsJailed += 1;
 		MIS_Canthars_KomproBrief = LOG_FAILED;
 		B_CheckLog();
 		Canthar_Ausgeliefert = TRUE;
@@ -1073,7 +1054,6 @@ func void DIA_Andre_Auslieferung_Sarah()
 	B_NpcSetJailed(Sarah);
 	B_StartOtherRoutine(Sarah,"KNAST");
 	B_StartOtherRoutine(Canthar,"MARKTSTAND");
-	CriminalsJailed += 1;
 	Sarah_Ausgeliefert = TRUE;
 	MIS_Canthars_KomproBrief = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Andre_Auslieferung);
@@ -1137,7 +1117,7 @@ func void DIA_Andre_DGRunning_Info()
 	{
 		Info_AddChoice(DIA_Andre_DGRunning,"Я всех их ликвидировал!",DIA_Andre_DGRunning_Success);
 	};
-	if(((Cassia.aivar[AIV_TalkedToPlayer] == TRUE) || (Jesper.aivar[AIV_TalkedToPlayer] == TRUE) || (Ramirez.aivar[AIV_TalkedToPlayer] == TRUE) || (DG_gefunden == TRUE)) && (Andre_FoundThieves_Reported == FALSE))
+	if((DG_gefunden == TRUE) && (Andre_FoundThieves_Reported == FALSE))
 	{
 		Info_AddChoice(DIA_Andre_DGRunning,"Я нашел логово гильдии воров!",DIA_Andre_DGRunning_Verrat);
 	};
@@ -1164,7 +1144,6 @@ func void DIA_Andre_DGRunning_Verrat()
 	AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_05");	//Ты ликвидировал этих преступников?
 	Andre_FoundThieves_Reported_Day = Wld_GetDay();
 	Andre_FoundThieves_Reported = TRUE;
-	DG_gefunden = TRUE;
 };
 
 func void DIA_Andre_DGRunning_Success()
@@ -1175,7 +1154,6 @@ func void DIA_Andre_DGRunning_Success()
 		B_AndreAskAboutSewer();
 	};
 	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_01");	//Ты оказал городу большую услугу.
-	DG_gefunden = TRUE;
 	MIS_Andre_GuildOfThieves = LOG_SUCCESS;
 	B_GivePlayerXP(XP_GuildOfThievesPlatt);
 	if(other.guild == GIL_NONE)
@@ -1331,34 +1309,21 @@ func void DIA_Andre_JOIN_Yes()
 	AI_Output(self,other,"DIA_Andre_JOIN_Yes_08_01");	//Тогда так тому и быть. Добро пожаловать в ряды ополчения.
 	AI_Output(self,other,"DIA_Andre_JOIN_Yes_08_02");	//Вот твои доспехи.
 	AI_Output(self,other,"DIA_Andre_JOIN_Yes_08_03");	//Носи их с гордостью и достоинством.
-	hero.guild = GIL_MIL;
-	Npc_SetTrueGuild(hero,GIL_MIL);
-	CreateInvItem(hero,ITAR_MIL_L);
-	AI_PrintScreen("Легкие доспехи ополчения получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+	B_SetGuild(hero,GIL_MIL);
+	B_GiveArmor(ITAR_MIL_L);
 	Snd_Play("LEVELUP");
 	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
 	{
 		Npc_ExchangeRoutine(Lothar,"START");
 	};
+	if(Hlp_IsValidNpc(Babo) && !Npc_IsDead(Babo))
+	{
+		Npc_ExchangeRoutine(Babo,"FAVOUR");
+	};
 	SLD_Aufnahme = LOG_OBSOLETE;
 	KDF_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;
-	if(MIS_Torlof_BengarMilizKlatschen == LOG_Running)
-	{
-		if(!Npc_IsDead(Rick))
-		{
-			Npc_ExchangeRoutine(Rick,"Flucht3");
-		};
-		if(!Npc_IsDead(Rumbold))
-		{
-			Npc_ExchangeRoutine(Rumbold,"Flucht3");
-		};
-		if(!Npc_IsDead(Bengar))
-		{
-			Npc_ExchangeRoutine(Bengar,"Start");
-		};
-		MIS_Torlof_BengarMilizKlatschen = LOG_FAILED;
-	};
+	B_CancelBengarMilitiaProblem();
 	B_GivePlayerXP(XP_BecomeMiliz);
 	if(MIS_Addon_Daron_GetStatue == LOG_Running)
 	{
@@ -1721,11 +1686,11 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 	{
 		AI_Teleport(Borka,"NW_CITY_HABOUR_KASERN_BORKA");
 		AI_Output(other,self,"DIA_Andre_REDLIGHT_SUCCESS_15_05");	//Я знаю, кто распространяет траву в городе. Это Борка, вышибала в Красном Фонаре.
-		AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
+		B_AndreDoYouHaveProof();
 		if(!Npc_HasItems(other,ItMi_Joint))
 		{
 			DIA_Common_No();
-			AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
+			B_AndreNoGossips();
 		}
 		else
 		{
@@ -1767,9 +1732,9 @@ func int DIA_Andre_HILFBAUERLOBART_Condition()
 
 func void DIA_Andre_HILFBAUERLOBART_Info()
 {
+	AI_Output(other,self,"DIA_Andre_HILFBAUERLOBART_15_00");	//У тебя есть еще задания для меня?
 	if(other.guild == GIL_MIL)
 	{
-		AI_Output(other,self,"DIA_Andre_HILFBAUERLOBART_15_00");	//У тебя есть еще задания для меня?
 		AI_Output(self,other,"DIA_Andre_HILFBAUERLOBART_08_01");	//У фермера Лобарта какие-то проблемы на его полях.
 		AI_Output(self,other,"DIA_Andre_HILFBAUERLOBART_08_02");	//Если мы поможем ему, это укрепит его отношения с городом. Так что отправляйся туда и посмотри, что там не так.
 		Log_CreateTopic(TOPIC_Feldraeuber,LOG_MISSION);
@@ -1965,7 +1930,7 @@ instance DIA_Andre_BerichtDrachen(C_Info)
 
 func int DIA_Andre_BerichtDrachen_Condition()
 {
-	if((EnterOW_Kapitel2 == TRUE) && (MIS_OLDWORLD != LOG_SUCCESS))
+	if((Enter_OldWorld_FirstTime_Trigger_OneTime == TRUE) && (MIS_OLDWORLD != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -1977,9 +1942,13 @@ func void DIA_Andre_BerichtDrachen_Info()
 	if(Npc_HasItems(hero,ItWr_PaladinLetter_MIS))
 	{
 		AI_Output(other,self,"DIA_Andre_Add_15_14");	//У меня есть письмо от командующего Гаронда, подтверждающее то, что я сказал.
+		AI_Output(self,other,"DIA_Andre_Add_08_10");	//Это заинтересует лорда Хагена!
+		B_Andre_GotoLordHagen();
+	}
+	else
+	{
+		B_AndreNoProof();
 	};
-	AI_Output(self,other,"DIA_Andre_Add_08_10");	//Это заинтересует лорда Хагена!
-	B_Andre_GotoLordHagen();
 };
 
 
@@ -2040,7 +2009,7 @@ func void DIA_Andre_Cornelius_Liar_Info()
 func void DIA_Andre_Cornelius_Liar_No()
 {
 	DIA_Common_No();
-	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
+	B_AndreNoGossips();
 	if(other.guild != GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_02");	//Корнелиус - влиятельный человек. Он может сделать твою жизнь адом, если захочет.
@@ -2120,8 +2089,8 @@ func void DIA_Andre_PERM_Info()
 	if(other.guild == GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Andre_PERM_08_02");	//Выполняй свои задания.
-	};
-	if(other.guild == GIL_PAL)
+	}
+	else if(other.guild == GIL_PAL)
 	{
 		B_ReportToHagenNow();
 	};
