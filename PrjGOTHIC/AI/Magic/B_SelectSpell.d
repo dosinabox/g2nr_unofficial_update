@@ -394,6 +394,22 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			{
 				return FALSE;
 			};
+		}
+		else if(IceDragonSpell == SPL_Icebolt)
+		{
+			if(!Npc_HasItems(slf,ItRu_Icebolt))
+			{
+				CreateInvItems(slf,ItRu_Icebolt,1);
+			};
+			if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
+			{
+				B_ReadySpell(slf,SPL_Icebolt,SPL_COST_Icebolt);
+				return TRUE;
+			}
+			else
+			{
+				return FALSE;
+			};
 		};
 	};
 	if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)

@@ -9,12 +9,12 @@
 ##            Основное           ##
 ###################################
 
-!define MOD_VERSION "25"
-!define MOD_DATE "9.1"
+!define MOD_VERSION "26"
+!define MOD_DATE "3.12"
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"
-!define MOD_AUTHOR "Fizzban, Efectivo, Dimus, D36, Kvincius"
+!define MOD_AUTHOR "Fizzban, Efectivo, Dimus, D36, Kvincius, N1kX"
 !define INSTALLER_NAME "${MOD_NAME}_install"
 !define UNINSTALLER_NAME "${MOD_NAME}_uninstall"
 !define REGISTRY_PATH "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}"
@@ -131,7 +131,7 @@ Section "Основные файлы" SecMain
 	WriteRegStr HKLM "${REGISTRY_PATH}" "HelpLink" "http://worldofplayers.ru/threads/36817"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "Publisher" "${MOD_AUTHOR}"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "DisplayIcon" "$INSTDIR\system\${MOD_NAME}.ico"
-	WriteRegDWORD HKLM "${REGISTRY_PATH}" "EstimatedSize" "263000"
+	WriteRegDWORD HKLM "${REGISTRY_PATH}" "EstimatedSize" "265700"
 SectionEnd
 
 Section "Дополнительная русская озвучка" SecAdditional_1
@@ -173,6 +173,7 @@ Section "Un.Удалить обновление" SecUninstall_Main
 	Delete "$INSTDIR\_work\Data\Music\newworld\KAS_Loop_DayStd.sgt"
 	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}.mod"
 	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_autoscale.mod"
+	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_plugins.mod"
 	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_speech_add.mod"
 	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_speech_fix.mod"
 	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_wasteland.mod"

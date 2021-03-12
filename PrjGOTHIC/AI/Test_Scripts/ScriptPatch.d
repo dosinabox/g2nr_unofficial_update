@@ -129,7 +129,7 @@ func void Use_StatsBook()
 	};
 	if(Wasteland_Seeded == TRUE)
 	{
-		Doc_PrintLine(nDocID,1,"Расширенная Рудниковая долина заселена");
+		Doc_PrintLine(nDocID,1,"Мир Wasteland заселен");
 	};
 	if(HardModeEnabled == TRUE)
 	{
@@ -866,30 +866,42 @@ func void StoryHelper_IceDragonSpell()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,NAME_SPL_ChargeZap,StoryHelper_IceDragonSpell_ChargeZap);
 	};
+	if(IceDragonSpell == SPL_Icebolt)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,ConcatStrings(NAME_SPL_Icebolt," (используется)"),StoryHelper_IceDragonSpell_Icebolt);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,NAME_SPL_Icebolt,StoryHelper_IceDragonSpell_Icebolt);
+	};
 };
 
 func void StoryHelper_IceDragonSpell_InstantFireball()
 {
 	IceDragonSpell = SPL_InstantFireball;
 	PrintScreen(ConcatStrings("Магия ледяного дракона: ",NAME_SPL_InstantFireball),-1,-1,FONT_Screen,3);
-	Info_ClearChoices(StoryHelper_PatchSettings);
-	b_build_settings_diag();
+	StoryHelper_IceDragonSpell();
 };
 
 func void StoryHelper_IceDragonSpell_IceLance()
 {
 	IceDragonSpell = SPL_IceLance;
 	PrintScreen(ConcatStrings("Магия ледяного дракона: ",NAME_SPL_IceLance),-1,-1,FONT_Screen,3);
-	Info_ClearChoices(StoryHelper_PatchSettings);
-	b_build_settings_diag();
+	StoryHelper_IceDragonSpell();
 };
 
 func void StoryHelper_IceDragonSpell_ChargeZap()
 {
 	IceDragonSpell = SPL_ChargeZap;
 	PrintScreen(ConcatStrings("Магия ледяного дракона: ",NAME_SPL_ChargeZap),-1,-1,FONT_Screen,3);
-	Info_ClearChoices(StoryHelper_PatchSettings);
-	b_build_settings_diag();
+	StoryHelper_IceDragonSpell();
+};
+
+func void StoryHelper_IceDragonSpell_Icebolt()
+{
+	IceDragonSpell = SPL_Icebolt;
+	PrintScreen(ConcatStrings("Магия ледяного дракона: ",NAME_SPL_Icebolt),-1,-1,FONT_Screen,3);
+	StoryHelper_IceDragonSpell();
 };
 
 func void StoryHelper_IceDragonSpell_BACK()
