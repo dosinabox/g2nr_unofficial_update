@@ -283,3 +283,4 @@ func void ZS_Bandit_End()
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 	self.aivar[AIV_STATETIME] = 0;
 };
+

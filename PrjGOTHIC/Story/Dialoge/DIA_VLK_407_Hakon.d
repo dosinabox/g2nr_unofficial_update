@@ -37,7 +37,7 @@ instance DIA_Hakon_Sperre(C_Info)
 
 func int DIA_Hakon_Sperre_Condition()
 {
-	if((Canthar_Sperre == TRUE) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (Canthar_Sperre == TRUE))
 	{
 		return TRUE;
 	};
@@ -228,7 +228,7 @@ func int DIA_Hakon_WoWaffen_Condition()
 func void DIA_Hakon_WoWaffen_Info()
 {
 	AI_Output(other,self,"DIA_Hakon_Add_15_12");	//√де ты берешь оружие?
-	if(Npc_KnowsInfo(other,DIA_Hakon_Kapitel2) && !Npc_IsDead(Harad))
+	if((Kapitel > 1) && !Npc_IsDead(Harad))
 	{
 		AI_Output(self,other,"DIA_Hakon_Add_12_21_add");	//—тарый добрый √арад.
 	}
@@ -240,12 +240,12 @@ func void DIA_Hakon_WoWaffen_Info()
 	{
 		AI_Output(self,other,"DIA_Hakon_Add_12_14");	//–аньше моим поставщиком был кузнец √арад.
 	};
-	if(!Npc_KnowsInfo(other,DIA_Hakon_Kapitel2) && !Npc_IsDead(Harad))
+	if((Kapitel == 1) && !Npc_IsDead(Harad))
 	{
 		AI_Output(self,other,"DIA_Hakon_Add_12_15");	//ј теперь все, что он делает, забирают паладины.
 		AI_Output(self,other,"DIA_Hakon_Add_12_16");	//ќн работает на этих парней днем и ночью как безумный, без какой-либо оплаты. ќн думает, что это его долг.
 	};
-	if(!Npc_KnowsInfo(other,DIA_Hakon_Kapitel2) || Npc_IsDead(Harad))
+	if((Kapitel == 1) || Npc_IsDead(Harad))
 	{
 		AI_Output(self,other,"DIA_Hakon_Add_12_17");	//¬се, что € могу предложить тебе сейчас - это остатки...
 	};
@@ -276,7 +276,7 @@ func void DIA_Hakon_HaradBandits_Info()
 	AI_Output(other,self,"DIA_Hakon_Add_15_18");	//√арад рассказал мне о нападении бандитов...
 	AI_Output(self,other,"DIA_Hakon_Add_12_19");	//ќх? »?
 	AI_Output(other,self,"DIA_Hakon_Add_15_20");	//ќн проголосует за мен€ при поступлении в ученики, если € уничтожу этих бандитов.
-	if(!Npc_KnowsInfo(other,DIA_Hakon_Kapitel2))
+	if(Kapitel == 1)
 	{
 		AI_Output(self,other,"DIA_Hakon_Add_12_21");	//(смеетс€) —тарый добрый √арад. ¬озможно, он так хочет сказать мне 'извини' за то, что он не может сейчас делать оружие дл€ мен€.
 	}
@@ -312,10 +312,6 @@ func void DIA_Hakon_Banditen_Info()
 	AI_Output(self,other,"DIA_Hakon_Banditen_12_01");	//„то € знаю о них? ќни ограбили мен€ на пути в город!
 	AI_Output(self,other,"DIA_Hakon_Banditen_12_02");	//» не только мен€. ќни давно уже здесь разбойничают.
 	AI_Output(self,other,"DIA_Hakon_Banditen_12_03");	//ќполчение пыталось выследить их, но безуспешно.
-	/*MIS_HakonBandits = LOG_Running;
-	Log_CreateTopic(TOPIC_HakonBanditen,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_HakonBanditen,LOG_Running);
-	B_LogEntry(TOPIC_HakonBanditen,"’акон, торговец оружием, был ограблен бандитами неподалеку от города.");*/
 };
 
 
@@ -332,7 +328,6 @@ instance DIA_Hakon_Wieviel(C_Info)
 
 func int DIA_Hakon_Wieviel_Condition()
 {
-//	if(MIS_HakonBandits == LOG_Running)
 	if(Npc_KnowsInfo(hero,DIA_Hakon_Banditen))
 	{
 		return TRUE;
@@ -359,7 +354,6 @@ func void DIA_Hakon_Wieviel_Info()
 	Log_CreateTopic(TOPIC_HakonBanditen,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_HakonBanditen,LOG_Running);
 	B_LogEntry(TOPIC_HakonBanditen,"’акон, торговец оружием, был ограблен бандитами неподалеку от города.");
-	Info_ClearChoices(DIA_Hakon_Banditen);
 };
 
 
@@ -496,7 +490,6 @@ instance DIA_Hakon_Minenanteil(C_Info)
 
 func int DIA_Hakon_Minenanteil_Condition()
 {
-	//if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running))
 	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (HakonMinenAnteil == TRUE))
 	{
 		return TRUE;
@@ -559,7 +552,7 @@ instance DIA_Hakon_Kapitel2(C_Info)
 
 func int DIA_Hakon_Kapitel2_Condition()
 {
-	if((Kapitel > HakonTalkedToPlayerChapter) && (Canthar_Sperre == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_Hakon_Hallo) && (Kapitel > HakonTalkedToPlayerChapter) && (Canthar_Sperre == FALSE) && (Kapitel < 5))
 	{
 		return TRUE;
 	};
@@ -568,7 +561,14 @@ func int DIA_Hakon_Kapitel2_Condition()
 func void DIA_Hakon_Kapitel2_Info()
 {
 	AI_Output(self,other,"DIA_Hakon_Add_12_22");	//ќп€ть ты!
-	AI_Output(self,other,"DIA_Hakon_Add_12_23");	//√арад, наконец, закончил эту свою чертову работу дл€ паладинов.
-	AI_Output(self,other,"DIA_Hakon_Add_12_24");	//Ёто означает, что € теперь могу предложить новое оружие. “ебе это интересно?
+	if(HakonTalkedToPlayerChapter == 1)
+	{
+		AI_Output(self,other,"DIA_Hakon_Add_12_23");	//√арад, наконец, закончил эту свою чертову работу дл€ паладинов.
+		AI_Output(self,other,"DIA_Hakon_Add_12_24");	//Ёто означает, что € теперь могу предложить новое оружие. “ебе это интересно?
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Hakon_Add_12_24_add");	//я теперь могу предложить новое оружие. “ебе это интересно?
+	};
 };
 

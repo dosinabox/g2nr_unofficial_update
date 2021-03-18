@@ -725,7 +725,7 @@ instance DIA_Garond_Pay(C_Info)
 	condition = DIA_Garond_Pay_Condition;
 	information = DIA_Garond_Pay_Info;
 	permanent = TRUE;
-	description = "Я хочу купить Горну свободу. (1000 золотых)";
+	description = B_BuildPriceString("Я хочу купить Горну свободу.",1000);
 };
 
 

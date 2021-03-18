@@ -57,7 +57,7 @@ func void B_AssessTalk()
 		{
 			if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU))
 			{
-				if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_05_01") > 1000)
+				if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_05_01") > 700)
 				{
 					return;
 				};

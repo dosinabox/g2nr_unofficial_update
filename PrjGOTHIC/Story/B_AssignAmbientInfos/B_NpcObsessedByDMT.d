@@ -24,32 +24,32 @@ func void B_NpcClearObsessionByDMT(var C_Npc medium)
 		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Sekob))
 		{
 			AI_EquipArmor(medium,ITAR_Vlk_H);
-		};
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Randolph))
+		}
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Randolph))
 		{
 			AI_EquipArmor(medium,ITAR_Bau_L);
-		};
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Vino))
+		}
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Vino))
 		{
 			AI_EquipArmor(medium,ITAR_Bau_L);
-		};
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Malak))
+		}
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Malak))
 		{
 			AI_EquipArmor(medium,ITAR_Bau_M);
-		};
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Fernando))
+		}
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Fernando))
 		{
 			AI_EquipArmor(medium,ITAR_Governor);
-		};
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Brutus))
+		}
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Brutus))
 		{
 			AI_EquipArmor(medium,ITAR_MIL_L);
-		};
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Engrom))
+		}
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Engrom))
 		{
 			AI_EquipArmor(medium,ITAR_Leather_L);
-		};
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Bromor))
+		}
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Bromor))
 		{
 			AI_EquipArmor(medium,ITAR_Vlk_H);
 		};
@@ -87,15 +87,10 @@ func void B_NpcObsessedByDMT(var C_Npc medium)
 		Wld_PlayEffect("DEMENTOR_FX",hero,hero,0,0,0,FALSE);
 		AI_UnequipWeapons(medium);
 		CreateInvItems(medium,ITAR_Dementor,1);
-//		AI_UnequipArmor(medium);
 		AI_EquipArmor(medium,ITAR_Dementor);
 		AI_PlayAni(medium,"T_PRACTICEMAGIC5");
 		Wld_PlayEffect("spellFX_Fear",medium,medium,0,0,0,FALSE);
 		NpcObsessedByDMT = TRUE;
-/*		if(!Npc_HasItems(medium,ITWR_DementorObsessionBook_MIS))
-		{
-			CreateInvItems(medium,ITWR_DementorObsessionBook_MIS,1);
-		}; */
 		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Brutus))
 		{
 			if(MIS_OCGateOpen == TRUE)
@@ -139,8 +134,8 @@ func void B_NpcObsessedByDMT(var C_Npc medium)
 			if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Bromor))
 			{
 				NpcObsessedByDMT_Bromor = TRUE;
-			};
-			if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Fernando))
+			}
+			else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Fernando))
 			{
 				NpcObsessedByDMT_Fernando = TRUE;
 			};

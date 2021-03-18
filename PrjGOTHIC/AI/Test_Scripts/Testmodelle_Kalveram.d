@@ -893,6 +893,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_IEHarfe,1);
 	CreateInvItems(self,ItMi_IELaute,1);
 	CreateInvItems(self,ItMi_AlarmHorn,1);
+	CreateInvItems(self,StatsBook,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_OldBald_Jeremiah,BodyTex_N,NO_ARMOR);
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,70);
