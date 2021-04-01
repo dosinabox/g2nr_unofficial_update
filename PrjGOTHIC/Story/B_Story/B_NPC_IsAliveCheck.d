@@ -6,6 +6,7 @@ var int SLD_Gorn_is_alive;
 var int SLD_Sylvio_is_alive;
 var int GornDJG_is_alive;
 var int DJG_Angar_is_alive;
+var int Hodges_isAlive_Kap3;
 var int Vino_isAlive_Kap3;
 var int Malak_isAlive_Kap3;
 var int Bromor_isAlive_Kap3;

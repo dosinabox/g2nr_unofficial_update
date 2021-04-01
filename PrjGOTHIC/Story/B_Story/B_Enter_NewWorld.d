@@ -332,6 +332,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				MIS_Fester_KillBugs = LOG_FAILED;
 			};
 		};
+		if(!Npc_IsDead(Hodges))
+		{
+			Hodges_isAlive_Kap3 = TRUE;
+		};
 		if(!Npc_IsDead(Malak))
 		{
 			B_StartOtherRoutine(Malak,"FleeFromPass");

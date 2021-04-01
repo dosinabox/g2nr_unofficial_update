@@ -55,12 +55,9 @@ func void B_AssessTalk()
 		}
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru))
 		{
-			if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU))
+			if(!C_RengaruIsReadyToTalk())
 			{
-				if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_05_01") > 700)
-				{
-					return;
-				};
+				return;
 			};
 		}
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Meldor))

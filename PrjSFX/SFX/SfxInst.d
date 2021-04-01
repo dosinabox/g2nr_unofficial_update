@@ -134,7 +134,7 @@ instance ENV_WATER_DUNGEONENTRANCE(C_SFX_DEF)
 instance ENV_NIGHT_TONSOFINSECTS(C_SFX_DEF)
 {
 	file = "ENV_Night_TonsOfInsects.wav";
-	vol = 127;
+	vol = 50;
 };
 
 instance VOB_WINDMILL(C_SFX_DEF)

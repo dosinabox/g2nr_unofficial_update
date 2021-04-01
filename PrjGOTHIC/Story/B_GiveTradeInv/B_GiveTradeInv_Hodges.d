@@ -1,9 +1,9 @@
 
 var int Hodges_ItemsGiven_Chapter_1;
-var int Hodges_ItemsGiven_Chapter_2;
-var int Hodges_ItemsGiven_Chapter_3;
-var int Hodges_ItemsGiven_Chapter_4;
-var int Hodges_ItemsGiven_Chapter_5;
+//var int Hodges_ItemsGiven_Chapter_2;
+//var int Hodges_ItemsGiven_Chapter_3;
+//var int Hodges_ItemsGiven_Chapter_4;
+//var int Hodges_ItemsGiven_Chapter_5;
 
 func void B_GiveTradeInv_Hodges(var C_Npc slf)
 {
@@ -19,7 +19,7 @@ func void B_GiveTradeInv_Hodges(var C_Npc slf)
 		CreateInvItems(slf,ItMw_1H_Sword_L_03,1);
 		Hodges_ItemsGiven_Chapter_1 = TRUE;
 	};
-	if((Kapitel >= 2) && (Hodges_ItemsGiven_Chapter_2 == FALSE))
+	/*if((Kapitel >= 2) && (Hodges_ItemsGiven_Chapter_2 == FALSE))
 	{
 		Hodges_ItemsGiven_Chapter_2 = TRUE;
 	};
@@ -34,6 +34,6 @@ func void B_GiveTradeInv_Hodges(var C_Npc slf)
 	if((Kapitel >= 5) && (Hodges_ItemsGiven_Chapter_5 == FALSE))
 	{
 		Hodges_ItemsGiven_Chapter_5 = TRUE;
-	};
+	};*/
 };
 

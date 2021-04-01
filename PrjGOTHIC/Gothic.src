@@ -205,6 +205,7 @@ AI\Human\C_Human\C_WantToAttackRoomIntruder.d
 AI\Human\C_Human\C_WantToReactToSneaker.d
 AI\Magic\B_ReadySpell.d
 AI\Magic\B_SelectSpell.d
+Story\B_Story\C_RengaruIsReadyToTalk.d
 AI\Human\B_Human\B_FinishingMove.d
 AI\Human\B_Human\B_SelectWeapon.d
 AI\Human\B_Human\B_AssessEnemy.d

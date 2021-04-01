@@ -830,7 +830,14 @@ func int DIA_Bennet_WhatHappened_Condition()
 func void DIA_Bennet_WhatHappened_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_WhatHappened_15_00");	//Что произошло?
-	AI_Output(self,other,"DIA_Bennet_WhatHappened_06_01");	//Я пошел в нижнюю часть города с Ходжесом, чтобы купить кое-что для наших парней.
+	if(Hodges_isAlive_Kap3 == TRUE)
+	{
+		AI_Output(self,other,"DIA_Bennet_WhatHappened_06_01");	//Я пошел в нижнюю часть города с Ходжесом, чтобы купить кое-что для наших парней.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Bennet_WhatHappened_06_01_add");	//Я пошел в нижнюю часть города, чтобы купить кое-что для наших парней.
+	};
 	AI_Output(self,other,"DIA_Bennet_WhatHappened_06_02");	//Неожиданно мы услышали громкий крик и звук топота убегающих ног.
 	AI_Output(other,self,"DIA_Bennet_WhatHappened_15_03");	//Давай к делу.
 	AI_Output(self,other,"DIA_Bennet_WhatHappened_06_04");	//Мы сразу поняли - что-то случилось, и нас тут же схватят, если застанут там.

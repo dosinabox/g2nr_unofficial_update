@@ -3,14 +3,22 @@ var int HotRawSwordsCount;
 var int Erzwaffen;
 var int Normalwaffen;
 
-func int C_PlayerHasHotRawSwords()
+func int smithweapon_cond()
 {
-	if(HotRawSwordsCount > 0)
+	if(Npc_IsPlayer(self))
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItMw_1H_Mace_L_04))
+		{
+			return TRUE;
+		}
+		else
+		{
+			AI_PlayAni(self,"T_DONTKNOW");
+			AI_PrintScreen("“ребуетс€ молот кузнеца!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+			return FALSE;
+		};
 	};
-	AI_PrintScreen("«акончилась раскаленна€ сталь!",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-	return FALSE;
+	return TRUE;
 };
 
 func void smithweapon_s1()
@@ -22,40 +30,34 @@ func void smithweapon_s1()
 		Npc_RemoveInvItems(self,ItMiSwordrawhot,Npc_HasItems(self,ItMiSwordrawhot));
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_SmithWeapon;
+		//перенести сн€тие оружи€ в smithweapon_cond(), если будут готовы зены
 		if(Npc_HasEquippedMeleeWeapon(self))
 		{
 			EquipWeap = Npc_GetEquippedMeleeWeapon(self);
 			if(Hlp_IsItem(EquipWeap,ItMw_1H_Mace_L_04))
 			{
-				AI_UnequipWeapons(self);
+				if(UnionActivated == TRUE)
+				{
+					B_UnEquipHeroItem(ItMw_1H_Mace_L_04);
+				}
+				else
+				{
+					AI_UnequipWeapons(self);
+				};
 			};
 		};
 		AI_ProcessInfos(self);
 	};
 };
 
-func int smithweapon_cond()
+func int C_PlayerHasHotRawSwords()
 {
-	var C_Item EquipWeap;
-	if(Npc_IsPlayer(self))
+	if(HotRawSwordsCount > 0)
 	{
-		if(Npc_HasItems(self,ItMw_1H_Mace_L_04) && Npc_HasEquippedMeleeWeapon(self))
-		{
-			EquipWeap = Npc_GetEquippedMeleeWeapon(self);
-			if(Hlp_IsItem(EquipWeap,ItMw_1H_Mace_L_04))
-			{
-				AI_UnequipWeapons(self);
-			};
-		}
-		else
-		{
-			AI_UseMob(self,"BSANVIL",0);
-			AI_UseMob(self,"BSANVIL",-1);
-			AI_PrintScreen("нужен молот",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-			AI_PlayAni(self,"T_DONTKNOW");
-		};
+		return TRUE;
 	};
-	return TRUE;
+	AI_PrintScreen("«акончилась раскаленна€ сталь!",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	return FALSE;
 };
 
 func void B_CountAnvilUses()
