@@ -37,6 +37,7 @@ Story\B_Story\B_GetDayPlus.d
 Story\B_Story\B_BlessAttribute.d
 Story\B_Story\B_StartOtherRoutine.d
 Story\B_Story\B_CancelBengarMilitiaProblem.d
+Story\B_Story\B_ResetNpcPosition.d
 Story\B_Content\B_RangerMeeting.d
 Story\B_Content\B_ScObsession.d
 Story\B_Content\B_Extro_AVI.d
@@ -64,7 +65,6 @@ Story\B_Story\C_WorldIsFixed.d
 Story\B_Story\B_Check_Dist.d
 Story\B_Story\B_Check_Version.d
 Story\B_Story\B_KillThievesGuild.d
-Story\B_Story\B_ResetSergio.d
 Story\B_Story\B_Cycle_Function.d
 Story\B_Story\B_PlayerEnteredCity.d
 Story\B_Story\B_CheckDeadMissionNPCs.d

@@ -143,7 +143,7 @@ instance DIA_Rengaru_GOTYOU(C_Info)
 
 func int DIA_Rengaru_GOTYOU_Condition()
 {
-	if(C_RengaruIsReadyToTalk())
+	if(C_RengaruIsReadyToTalk() && Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB))
 	{
 		return TRUE;
 	};

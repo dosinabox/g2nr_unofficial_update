@@ -1,4 +1,14 @@
 
+func void B_InsertGregWolfs()
+{
+	if(GregWolfs == FALSE)
+	{
+		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
+		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
+		GregWolfs = TRUE;
+	};
+};
+
 instance DIA_Addon_Greg_NW_EXIT(C_Info)
 {
 	npc = PIR_1300_Addon_Greg_NW;
@@ -18,12 +28,6 @@ func int DIA_Addon_Greg_NW_EXIT_Condition()
 func void DIA_Addon_Greg_NW_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-	if(GregWolfs == FALSE)
-	{
-		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
-		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
-		GregWolfs = TRUE;
-	};
 };
 
 
@@ -53,12 +57,7 @@ func void DIA_Addon_Greg_NW_Hallo_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_01_03");	//Послушай, ты выглядишь сообразительным парнем. Уверен, ты в жизни далеко пойдешь.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_01_04");	//Ты не дурак, я вижу это по твоим глазам.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_01_05");	//Наверняка ты хочешь заработать пригоршню золотых монет, не так ли?
-	if(GregWolfs == FALSE)
-	{
-		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
-		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
-		GregWolfs = TRUE;
-	};
+	B_InsertGregWolfs();
 //	SC_MeetsGregTime = 1;
 	Info_ClearChoices(DIA_Addon_Greg_NW_Hallo);
 	Info_AddChoice(DIA_Addon_Greg_NW_Hallo,"Мне надо идти.",DIA_Addon_Greg_NW_Hallo_weg);

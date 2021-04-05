@@ -185,12 +185,7 @@ func void UseJOLY2_Storyhelpletter()
 {
 	B_StartOtherRoutine(PIR_1300_Addon_Greg_NW,"Taverne");
 	GregLocation = Greg_Taverne;
-	if(GregWolfs == FALSE)
-	{
-		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
-		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
-		GregWolfs = TRUE;
-	};
+	B_InsertGregWolfs();
 };
 
 
