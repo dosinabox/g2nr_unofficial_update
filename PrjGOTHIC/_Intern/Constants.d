@@ -164,7 +164,7 @@ const int NEWS_SPREAD_NPC_FRIENDLY_TOWARDS_VICTIM = 1;
 const int NEWS_SPREAD_NPC_FRIENDLY_TOWARDS_WITNESS = 2;
 const int NEWS_SPREAD_NPC_FRIENDLY_TOWARDS_OFFENDER = 3;
 const int NEWS_SPREAD_NPC_SAME_GUILD_VICTIM = 4;
-const int important = 1;
+const int IMPORTANT = 1;
 const int INF_TELL = 0;
 const int INF_UNKNOWN = 2;
 const int LOG_Running = 1;
@@ -765,7 +765,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "05/04/2021";
+const string FIX_VERSION_DATE = "07/04/2021";
 const int FIX_VERSION_START = 26;
 const int LEAST_SUPPORTED = 24;
 var int FIX_VERSION_SAVE;

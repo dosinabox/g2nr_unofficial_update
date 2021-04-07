@@ -266,6 +266,8 @@ const int LOC_MONASTERY = 3;
 const int LOC_FARM = 4;
 //const int LOC_BL = 5;
 const int LOC_ALL = 6;
+const int LOC_TAVERNE = 7;
+const int LOC_FOREST_ORNAMENT = 8;
 
 const int Q_KASERNE = 1;
 const int Q_GALGEN = 2;

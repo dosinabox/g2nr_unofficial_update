@@ -226,7 +226,7 @@ func void DIA_Lares_HALLO_Info()
 	};
 	if(other.guild == GIL_NONE)
 	{
-		if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (Npc_GetDistToWP(self,"HAFEN") < 10000))
+		if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (B_GetLaresLocation() == LOC_CITY))
 		{
 			AI_Output(self,other,"DIA_Lares_HALLO_09_01");	//Ты что, ПРИПЛЫЛ сюда?
 			AI_Output(self,other,"DIA_Lares_HALLO_09_02");	//(смеется) Это единственный способ миновать стражу у городских ворот.
@@ -2042,7 +2042,7 @@ func int DIA_Addon_Lares_Albern_Condition()
 
 func void DIA_Addon_Lares_Albern_Info()
 {
-	if(Npc_GetDistToWP(self,"HAFEN") < 2000)
+	if(B_GetLaresLocation() == LOC_CITY)
 	{
 		AI_Output(self,other,"DIA_Canthar_WhatOffer_Price_09_05");	//Ну что, договорились?
 		DIA_Common_NoNotYet();
@@ -2071,25 +2071,6 @@ func int DIA_Addon_Lares_GOFORESTPRE_Condition()
 	};
 };
 
-func void DIA_Addon_Lares_GOFORESTPRE_ja()
-{
-	B_MakeRangerReadyForMeeting(self);
-	DIA_Common_Yes();
-	AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_ja_09_01");	//Прекрасно, друг мой. В таком случае, следуй за мной. Здесь может быть небезопасно.
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"GUIDEMEDIUMWALD2");
-	LaresGuide_OrnamentForest = 2;
-};
-
-func void DIA_Addon_Lares_GOFORESTPRE_nein()
-{
-	AI_Output(other,self,"DIA_Addon_Lares_GOFORESTPRE_nein_15_00");	//Нет, можешь идти.
-	AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_nein_09_01");	//Я так понимаю, проблема решилась сама собой? Ладно, увидимся позже.
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
-	LaresGuide_OrnamentForest = 3;
-};
-
 func void DIA_Addon_Lares_GOFORESTPRE_Info()
 {
 	if(Lares_Guide <= (Wld_GetDay() - 2))
@@ -2109,6 +2090,24 @@ func void DIA_Addon_Lares_GOFORESTPRE_Info()
 	Info_AddChoice(DIA_Addon_Lares_GOFORESTPRE,"Да.",DIA_Addon_Lares_GOFORESTPRE_ja);
 };
 
+func void DIA_Addon_Lares_GOFORESTPRE_ja()
+{
+	B_MakeRangerReadyForMeeting(self);
+	DIA_Common_Yes();
+	AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_ja_09_01");	//Прекрасно, друг мой. В таком случае, следуй за мной. Здесь может быть небезопасно.
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"GUIDEMEDIUMWALD2");
+	LaresGuide_OrnamentForest = 2;
+};
+
+func void DIA_Addon_Lares_GOFORESTPRE_nein()
+{
+	AI_Output(other,self,"DIA_Addon_Lares_GOFORESTPRE_nein_15_00");	//Нет, можешь идти.
+	AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_nein_09_01");	//Я так понимаю, проблема решилась сама собой? Ладно, увидимся позже.
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"Start");
+	LaresGuide_OrnamentForest = 3;
+};
 
 instance DIA_Addon_Lares_GOFOREST(C_Info)
 {
@@ -2227,15 +2226,18 @@ func void DIA_Addon_Lares_PortalInterWEITER_Info()
 	else if(LaresGuide_ZumPortal == 5)
 	{
 		Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL5");
-		if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_01) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_01))
+		if(!Npc_IsDead(BridgeBandit))
 		{
-			Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_01,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_01.attribute[ATR_HITPOINTS_MAX]);
+			if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_01) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_01))
+			{
+				Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_01,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_01.attribute[ATR_HITPOINTS_MAX]);
+			};
+			if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_02) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_02))
+			{
+				Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_02,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_02.attribute[ATR_HITPOINTS_MAX]);
+			};
+			B_StartOtherRoutine(BridgeBandit,"Hide");
 		};
-		if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_02) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_02))
-		{
-			Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_02,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_02.attribute[ATR_HITPOINTS_MAX]);
-		};
-		B_StartOtherRoutine(BridgeBandit,"Hide");
 	}
 	else if(LaresGuide_ZumPortal == 6)
 	{

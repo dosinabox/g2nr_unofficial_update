@@ -23,6 +23,7 @@ Story\Text.d
 AI\Human\C_Human\C_IsNpc.d
 AI\Human\C_Human\C_NpcIsHero.d
 Story\B_Story\C_NpcIsInQuarter.d
+Story\B_Story\B_GetLaresLocation.d
 Story\B_Story\C_DiegoTooFar.d
 Story\B_Story\B_ArmorChecks.d
 Story\B_Story\B_NewTalentSystem.d

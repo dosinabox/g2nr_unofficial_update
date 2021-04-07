@@ -189,6 +189,18 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_NoWeapon()
 	B_Attack(self,other,AR_NONE,1);
 };
 
+func void B_BDT_1020_Wegelagerer_PassGranted()
+{
+	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_06_01");	//Ох, как мы заговорили.
+	self.aivar[AIV_PASSGATE] = TRUE;
+	if(Wegelagerer_Surprise == TRUE)
+	{
+		DIA_Common_NovicePassedBy();
+		B_WegelagererToldAboutAgon();
+	};
+	AI_StopProcessInfos(self);
+};
+
 var C_Item PlayerWeapon;
 
 func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon()
@@ -198,15 +210,8 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon()
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon_15_00");	//Вот, возьми мое оружие.
 	if(!Npc_HasReadiedWeapon(other))
 	{
-		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_06_01");	//Ох, как мы заговорили.
 		AI_EquipBestMeleeWeapon(self);
-		self.aivar[AIV_PASSGATE] = TRUE;
-		if(Wegelagerer_Surprise == TRUE)
-		{
-			AI_Output(other,self,"DIA_Jorgen_Novice_15_00");	//Мимо тебя не проходил послушник?
-			B_WegelagererToldAboutAgon();
-		};
-		AI_StopProcessInfos(self);
+		B_BDT_1020_Wegelagerer_PassGranted();
 	}
 	else
 	{
@@ -255,14 +260,7 @@ func void DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney()
 {
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_15_00");	//Вот твои деньги.
 	B_GiveInvItems(other,self,ItMi_Gold,20);
-	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_06_01");	//Ох, как мы заговорили.
-	self.aivar[AIV_PASSGATE] = TRUE;
-	if(Wegelagerer_Surprise == TRUE)
-	{
-		AI_Output(other,self,"DIA_Jorgen_Novice_15_00");	//Мимо тебя не проходил послушник?
-		B_WegelagererToldAboutAgon();
-	};
-	AI_StopProcessInfos(self);
+	B_BDT_1020_Wegelagerer_PassGranted();
 };
 
 func void DIA_BDT_1020_Wegelagerer_SecondWarn_NoMoney()
@@ -334,7 +332,7 @@ instance DIA_BDT_1020_Wegelagerer_AGON2(C_Info)
 	condition = DIA_Wegelagerer_AGON2_Condition;
 	information = DIA_Wegelagerer_AGON2_Info;
 	permanent = FALSE;
-	description = "Скажи, ты не видел послушника?";
+	description = "Мимо тебя не проходил послушник?";
 };
 
 
@@ -348,7 +346,7 @@ func int DIA_Wegelagerer_AGON2_Condition()
 
 func void DIA_Wegelagerer_AGON2_Info()
 {
-	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_AGON_15_00");	//Скажи, ты не видел послушника?
+	DIA_Common_NovicePassedBy();
 	B_WegelagererToldAboutAgon();
 	AI_StopProcessInfos(self);
 };

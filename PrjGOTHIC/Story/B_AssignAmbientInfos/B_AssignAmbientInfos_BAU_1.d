@@ -32,7 +32,7 @@ instance DIA_BAU_1_JOIN(C_Info)
 
 func int DIA_BAU_1_JOIN_Condition()
 {
-	if(Kapitel == 1)
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -42,8 +42,11 @@ func void DIA_BAU_1_JOIN_Info()
 {
 	AI_Output(other,self,"DIA_BAU_1_JOIN_15_00");	//Расскажи мне подробнее об этих наемниках.
 	AI_Output(self,other,"DIA_BAU_1_JOIN_01_01");	//Я могу только посоветовать держаться от них подальше.
-	AI_Output(self,other,"DIA_BAU_1_JOIN_01_02");	//Если одному из них не понравится твое лицо, он может не раздумывая заехать тебе по носу.
-	AI_Output(self,other,"DIA_BAU_1_JOIN_01_03");	//Конечно, после этого ты можешь пожаловаться Ли, но нос-то уже будет сломан.
+	if((VisibleGuild(other) != GIL_PAL) && (VisibleGuild(other) != GIL_KDF))
+	{
+		AI_Output(self,other,"DIA_BAU_1_JOIN_01_02");	//Если одному из них не понравится твое лицо, он может не раздумывая заехать тебе по носу.
+		AI_Output(self,other,"DIA_BAU_1_JOIN_01_03");	//Конечно, после этого ты можешь пожаловаться Ли, но нос-то уже будет сломан.
+	};
 };
 
 
@@ -59,15 +62,21 @@ instance DIA_BAU_1_PEOPLE(C_Info)
 
 func int DIA_BAU_1_PEOPLE_Condition()
 {
-	return TRUE;
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_BAU_1_PEOPLE_Info()
 {
 	AI_Output(other,self,"DIA_BAU_1_PEOPLE_15_00");	//Кто заправляет здесь?
 	AI_Output(self,other,"DIA_BAU_1_PEOPLE_01_01");	//Это ферма Онара. Здесь он принимает все решения.
-	AI_Output(self,other,"DIA_BAU_1_PEOPLE_01_02");	//Позволь мне дать тебе совет: не ввязывайся в драку с его наемниками. С этими парнями шутить не стоит.
-	AI_Output(self,other,"DIA_BAU_1_PEOPLE_01_03");	//Сильвио - это вообще отъявленный бандит. Но их предводитель, Ли, вполне нормальный парень.
+	if((VisibleGuild(other) != GIL_PAL) && (VisibleGuild(other) != GIL_KDF))
+	{
+		AI_Output(self,other,"DIA_BAU_1_PEOPLE_01_02");	//Позволь мне дать тебе совет: не ввязывайся в драку с его наемниками. С этими парнями шутить не стоит.
+		AI_Output(self,other,"DIA_BAU_1_PEOPLE_01_03");	//Сильвио - это вообще отъявленный бандит. Но их предводитель, Ли, вполне нормальный парень.
+	};
 };
 
 
@@ -116,20 +125,20 @@ func void DIA_BAU_1_STANDARD_Info()
 	if(Kapitel == 1)
 	{
 		AI_Output(self,other,"DIA_BAU_1_STANDARD_01_01");	//Онар нанял наемников, чтобы те защищали его от городского ополчения. Если бы не наемники, они отняли бы у нас все, до последней овцы!
-	};
-	if(Kapitel == 2)
+	}
+	else if(Kapitel == 2)
 	{
 		AI_Output(self,other,"DIA_BAU_1_STANDARD_01_02");	//Немного. Как всегда, одни и те же проблемы. Ополчение, орки и полевые хищники.
-	};
-	if(Kapitel == 3)
+	}
+	else if(Kapitel == 3)
 	{
 		AI_Output(self,other,"DIA_BAU_1_STANDARD_01_03");	//Странные дела творятся здесь. Несколько дней назад я видел фигуру в черном. Это был не человек.
-	};
-	if(Kapitel == 4)
+	}
+	else if(Kapitel == 4)
 	{
 		AI_Output(self,other,"DIA_BAU_1_STANDARD_01_04");	//Здесь все чаще и чаще появляются орки. Иногда мне кажется, что вместо каждого убитого орка появляются еще двое.
-	};
-	if(Kapitel >= 5)
+	}
+	else if(Kapitel >= 5)
 	{
 		AI_Output(self,other,"DIA_BAU_1_STANDARD_01_05");	//Паладины идут в Долину Рудников. Что все это означает? Здесь никого не останется, кто держал бы ополчение в узде.
 	};
