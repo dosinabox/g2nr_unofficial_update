@@ -868,7 +868,7 @@ instance DIA_Addon_Cavalorn_Triggered(C_Info)
 
 func int DIA_Addon_Cavalorn_Triggered_Condition()
 {
-	if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Ornament) && (ORNAMENT_SWITCHED_FARM == TRUE))
+	if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Ornament) && (Ornament_Switched_Farm == TRUE))
 	{
 		return TRUE;
 	};

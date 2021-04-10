@@ -186,6 +186,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		};
 		if(!Npc_IsDead(Hodges))
 		{
+			Hodges_isAlive_Kap3 = TRUE;
 			B_StartOtherRoutine(Hodges,"BENNETWEG");
 		};
 		if(!Npc_IsDead(Lares) && (RangerMeetingRunning != LOG_Running))
@@ -320,14 +321,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				MIS_Fester_KillBugs = LOG_FAILED;
 			};
 		};
-		if(!Npc_IsDead(Hodges))
-		{
-			Hodges_isAlive_Kap3 = TRUE;
-		};
 		if(!Npc_IsDead(Malak))
 		{
-			B_StartOtherRoutine(Malak,"FleeFromPass");
 			Malak_isAlive_Kap3 = TRUE;
+			B_StartOtherRoutine(Malak,"FleeFromPass");
 			B_StartOtherRoutine(BAU_962_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_964_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_965_Bauer,"FleeFromPass");
@@ -361,10 +358,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Wld_InsertItem(ItMi_KarrasBlessedStone_Mis,"FP_NW_ITEM_TROLL_10");
 			if(!Npc_IsDead(Vino))
 			{
+				Vino_isAlive_Kap3 = TRUE;
 				B_StartOtherRoutine(Vino,"OBESESSIONRITUAL");
 				Vino.aivar[AIV_NoFightParker] = TRUE;
 				CreateInvItems(Vino,ITWR_DementorObsessionBook_MIS,1);
-				Vino_isAlive_Kap3 = TRUE;
 				if(!Npc_IsDead(Lobart))
 				{
 					B_StartOtherRoutine(Lobart,"OBESESSIONRITUAL");

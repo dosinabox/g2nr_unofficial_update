@@ -150,6 +150,7 @@ AI\Human\C_Human\C_NpcIsDown.d
 AI\Human\C_Human\C_NpcIsToughGuy.d
 AI\Human\C_Human\C_NpcIsAfraidOfOrcs.d
 AI\Human\C_Human\C_NpcIsSummon.d
+AI\Human\C_Human\C_NpcIsNearWP.d
 AI\Human\C_Human\C_PlayerIsFakePirate.d
 AI\Human\C_Human\C_PlayerHasFakeGuild.d
 AI\Human\C_Human\C_BanditHelpsStoryBandit.d
