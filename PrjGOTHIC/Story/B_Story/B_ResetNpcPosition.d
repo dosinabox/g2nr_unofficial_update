@@ -27,5 +27,6 @@ func void B_ResetLares()
 		LaresGuide_OrnamentForest = 0;
 	};
 	B_StartOtherRoutine(Lares,"Start");
+	B_StartOtherRoutine(BridgeBandit,"Intercept");
 };
 

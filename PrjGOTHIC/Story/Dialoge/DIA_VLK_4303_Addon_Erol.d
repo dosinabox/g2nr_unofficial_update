@@ -515,9 +515,6 @@ func int DIA_Addon_Erol_Trade_Condition()
 	};
 };
 
-
-//var int DIA_Addon_Erol_Trade_OneTime;
-
 func void DIA_Addon_Erol_Trade_Info()
 {
 	B_Say(other,self,"$TRADE_2");
