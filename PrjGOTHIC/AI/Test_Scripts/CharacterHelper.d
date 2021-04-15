@@ -91,166 +91,145 @@ func void B_SetHeroExp(var int levels)
 		B_LevelUp(levels);
 	};
 	hero.exp = B_GetCurrentLevelExp(hero);
-	PrintScreen(ConcatStrings("Здоровье: ",IntToString(hero.attribute[ATR_HITPOINTS_MAX])),-1,55,FONT_Screen,2);
+	PrintScreen(ConcatStrings("Макс. здоровье: ",IntToString(hero.attribute[ATR_HITPOINTS_MAX])),-1,55,FONT_Screen,2);
 	PrintScreen(ConcatStrings("Очки обучения: ",IntToString(hero.lp)),-1,60,FONT_Screen,2);
-};
-
-func void B_SetHeroWeapon()
-{
-	if(hero.level <= 6)
-	{
-		if(!Npc_HasItems(hero,ItRw_Crossbow_L_01))
-		{
-			CreateInvItems(hero,ItRw_Crossbow_L_01,1);
-		};
-	}
-	else if(hero.level <= 12)
-	{
-		if(!Npc_HasItems(hero,ItRw_Bow_L_04))
-		{
-			CreateInvItems(hero,ItRw_Bow_L_04,1);
-		};
-		if(!Npc_HasItems(hero,ItRw_Crossbow_L_02))
-		{
-			CreateInvItems(hero,ItRw_Crossbow_L_02,1);
-		};
-	}
-	else if(hero.level <= 18)
-	{
-		if(!Npc_HasItems(hero,ItRw_Bow_M_02))
-		{
-			CreateInvItems(hero,ItRw_Bow_M_02,1);
-		};
-		if(!Npc_HasItems(hero,ItRw_Crossbow_M_02))
-		{
-			CreateInvItems(hero,ItRw_Crossbow_M_02,1);
-		};
-	}
-	else if(hero.level <= 24)
-	{
-		if(!Npc_HasItems(hero,ItRw_Bow_M_04))
-		{
-			CreateInvItems(hero,ItRw_Bow_M_04,1);
-		};
-		if(!Npc_HasItems(hero,ItRw_Crossbow_H_01))
-		{
-			CreateInvItems(hero,ItRw_Crossbow_H_01,1);
-		};
-	}
-	else if(hero.level <= 30)
-	{
-		if(!Npc_HasItems(hero,ItRw_Bow_H_02))
-		{
-			CreateInvItems(hero,ItRw_Bow_H_02,1);
-		};
-		if(!Npc_HasItems(hero,ItRw_Crossbow_H_02))
-		{
-			CreateInvItems(hero,ItRw_Crossbow_H_02,1);
-		};
-	}
-	else if(hero.level <= 36)
-	{
-		if(!Npc_HasItems(hero,ItRw_Bow_H_04))
-		{
-			CreateInvItems(hero,ItRw_Bow_H_04,1);
-		};
-		if(!Npc_HasItems(hero,ItRw_Bow_L_04))
-		{
-			CreateInvItems(hero,ItRw_Bow_L_04,1);
-		};
-	};
-	AI_EquipBestMeleeWeapon(hero);
-	AI_EquipBestRangedWeapon(hero);
-};
-
-func void B_SetHeroEquipment()
-{
-	if(Npc_HasItems(hero,ItRw_Arrow) < 100)
-	{
-		Npc_RemoveInvItems(hero,ItRw_Arrow,Npc_HasItems(hero,ItRw_Arrow));
-		CreateInvItems(hero,ItRw_Arrow,100);
-	};
-	if(Npc_HasItems(hero,ItRw_Bolt) < 100)
-	{
-		Npc_RemoveInvItems(hero,ItRw_Bolt,Npc_HasItems(hero,ItRw_Bolt));
-		CreateInvItems(hero,ItRw_Bolt,100);
-	};
-	if(Npc_HasItems(hero,ItLsTorch) < 30)
-	{
-		Npc_RemoveInvItems(hero,ItLsTorch,Npc_HasItems(hero,ItLsTorch));
-		CreateInvItems(hero,ItLsTorch,30);
-	};
-	if(Npc_HasItems(hero,ItMi_Gold) < 500)
-	{
-		Npc_RemoveInvItems(hero,ItMi_Gold,Npc_HasItems(hero,ItMi_Gold));
-		CreateInvItems(hero,ItMi_Gold,500);
-	};
-	if(Npc_HasItems(hero,ItPo_Health_03) < 5)
-	{
-		Npc_RemoveInvItems(hero,ItPo_Health_03,Npc_HasItems(hero,ItPo_Health_03));
-		CreateInvItems(hero,ItPo_Health_03,5);
-	};
-	if(Npc_HasItems(hero,ItPo_Mana_03) < 30)
-	{
-		Npc_RemoveInvItems(hero,ItPo_Mana_03,Npc_HasItems(hero,ItPo_Mana_03));
-		CreateInvItems(hero,ItPo_Mana_03,5);
-	};
-	if(Npc_HasItems(hero,ItKe_Lockpick) < 30)
-	{
-		Npc_RemoveInvItems(hero,ItKe_Lockpick,Npc_HasItems(hero,ItKe_Lockpick));
-		CreateInvItems(hero,ItKe_Lockpick,30);
-	};
 };
 
 func void B_SetKDFRunes()
 {
 	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 1)
 	{
-		CreateInvItems(hero,ItRu_Light,1);
-		CreateInvItems(hero,ItRu_FireBolt,1);
-		CreateInvItems(hero,ItRu_LightHeal,1);
-		CreateInvItems(hero,ItRu_SumGobSkel,1);
-		CreateInvItems(hero,ItRu_Zap,1);
+		if(!Npc_HasItems(hero,ItRu_Light))
+		{
+			CreateInvItem(hero,ItRu_Light);
+		};
+		if(!Npc_HasItems(hero,ItRu_FireBolt))
+		{
+			CreateInvItem(hero,ItRu_FireBolt);
+		};
+		if(!Npc_HasItems(hero,ItRu_LightHeal))
+		{
+			CreateInvItem(hero,ItRu_LightHeal);
+		};
+		if(!Npc_HasItems(hero,ItRu_SumGobSkel))
+		{
+			CreateInvItem(hero,ItRu_SumGobSkel);
+		};
+		if(!Npc_HasItems(hero,ItRu_Zap))
+		{
+			CreateInvItem(hero,ItRu_Zap);
+		};
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 2)
 	{
-		CreateInvItems(hero,ItRu_InstantFireball,1);
-		CreateInvItems(hero,ItRu_Icebolt,1);
-		CreateInvItems(hero,ItRu_SumWolf,1);
-		CreateInvItems(hero,ItRu_Windfist,1);
-		CreateInvItems(hero,ItRu_Sleep,1);
+		if(!Npc_HasItems(hero,ItRu_InstantFireball))
+		{
+			CreateInvItem(hero,ItRu_InstantFireball);
+		};
+		if(!Npc_HasItems(hero,ItRu_Icebolt))
+		{
+			CreateInvItem(hero,ItRu_Icebolt);
+		};
+		if(!Npc_HasItems(hero,ItRu_SumWolf))
+		{
+			CreateInvItem(hero,ItRu_SumWolf);
+		};
+		if(!Npc_HasItems(hero,ItRu_Windfist))
+		{
+			CreateInvItem(hero,ItRu_Windfist);
+		};
+		if(!Npc_HasItems(hero,ItRu_Sleep))
+		{
+			CreateInvItem(hero,ItRu_Sleep);
+		};
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 3)
 	{
-		CreateInvItems(hero,ItRu_MediumHeal,1);
-		CreateInvItems(hero,ItRu_Firestorm,1);
-		CreateInvItems(hero,ItRu_ThunderBall,1);
-		CreateInvItems(hero,ItRu_SumSkel,1);
-		CreateInvItems(hero,ItRu_Fear,1);
-		CreateInvItems(hero,ItRu_IceCube,1);
+		if(!Npc_HasItems(hero,ItRu_MediumHeal))
+		{
+			CreateInvItem(hero,ItRu_MediumHeal);
+		};
+		if(!Npc_HasItems(hero,ItRu_Firestorm))
+		{
+			CreateInvItem(hero,ItRu_Firestorm);
+		};
+		if(!Npc_HasItems(hero,ItRu_ThunderBall))
+		{
+			CreateInvItem(hero,ItRu_ThunderBall);
+		};
+		if(!Npc_HasItems(hero,ItRu_SumSkel))
+		{
+			CreateInvItem(hero,ItRu_SumSkel);
+		};
+		if(!Npc_HasItems(hero,ItRu_Fear))
+		{
+			CreateInvItem(hero,ItRu_Fear);
+		};
+		if(!Npc_HasItems(hero,ItRu_IceCube))
+		{
+			CreateInvItem(hero,ItRu_IceCube);
+		};
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 4)
 	{
-		CreateInvItems(hero,ItRu_SumGol,1);
-		CreateInvItems(hero,ItRu_HarmUndead,1);
-		CreateInvItems(hero,ItRu_LightningFlash,1);
-		CreateInvItems(hero,ItRu_ChargeFireball,1);
+		if(!Npc_HasItems(hero,ItRu_SumGol))
+		{
+			CreateInvItem(hero,ItRu_SumGol);
+		};
+		if(!Npc_HasItems(hero,ItRu_HarmUndead))
+		{
+			CreateInvItem(hero,ItRu_HarmUndead);
+		};
+		if(!Npc_HasItems(hero,ItRu_LightningFlash))
+		{
+			CreateInvItem(hero,ItRu_LightningFlash);
+		};
+		if(!Npc_HasItems(hero,ItRu_ChargeFireball))
+		{
+			CreateInvItem(hero,ItRu_ChargeFireball);
+		};
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 5)
 	{
-		CreateInvItems(hero,ItRu_Pyrokinesis,1);
-		CreateInvItems(hero,ItRu_IceWave,1);
-		CreateInvItems(hero,ItRu_SumDemon,1);
-		CreateInvItems(hero,ItRu_FullHeal,1);
-		CreateInvItems(hero,ItRu_Shrink,1);
+		if(!Npc_HasItems(hero,ItRu_Pyrokinesis))
+		{
+			CreateInvItem(hero,ItRu_Pyrokinesis);
+		};
+		if(!Npc_HasItems(hero,ItRu_IceWave))
+		{
+			CreateInvItem(hero,ItRu_IceWave);
+		};
+		if(!Npc_HasItems(hero,ItRu_SumDemon))
+		{
+			CreateInvItem(hero,ItRu_SumDemon);
+		};
+		if(!Npc_HasItems(hero,ItRu_FullHeal))
+		{
+			CreateInvItem(hero,ItRu_FullHeal);
+		};
+		if(!Npc_HasItems(hero,ItRu_Shrink))
+		{
+			CreateInvItem(hero,ItRu_Shrink);
+		};
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 6)
 	{
-		CreateInvItems(hero,ItRu_Firerain,1);
-		CreateInvItems(hero,ItRu_BreathOfDeath,1);
-		CreateInvItems(hero,ItRu_MassDeath,1);
-		CreateInvItems(hero,ItRu_ArmyOfDarkness,1);
-//		CreateInvItems(hero,ItRu_Shrink,1);
+		if(!Npc_HasItems(hero,ItRu_Firerain))
+		{
+			CreateInvItem(hero,ItRu_Firerain);
+		};
+		if(!Npc_HasItems(hero,ItRu_BreathOfDeath))
+		{
+			CreateInvItem(hero,ItRu_BreathOfDeath);
+		};
+		if(!Npc_HasItems(hero,ItRu_MassDeath))
+		{
+			CreateInvItem(hero,ItRu_MassDeath);
+		};
+		if(!Npc_HasItems(hero,ItRu_ArmyOfDarkness))
+		{
+			CreateInvItem(hero,ItRu_ArmyOfDarkness);
+		};
 	};
 };
 
@@ -258,30 +237,69 @@ func void B_SetKDWRunes()
 {
 	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 2)
 	{
-		CreateInvItem(hero,ItRu_Icelance);
-		CreateInvItem(hero,ItRu_Whirlwind);
+		if(!Npc_HasItems(hero,ItRu_Icelance))
+		{
+			CreateInvItem(hero,ItRu_Icelance);
+		};
+		if(!Npc_HasItems(hero,ItRu_Whirlwind))
+		{
+			CreateInvItem(hero,ItRu_Whirlwind);
+		};
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 3)
 	{
-		CreateInvItem(hero,ItRu_Thunderstorm);
-		CreateInvItem(hero,ItRu_Geyser);
+		if(!Npc_HasItems(hero,ItRu_Thunderstorm))
+		{
+			CreateInvItem(hero,ItRu_Thunderstorm);
+		};
+		if(!Npc_HasItems(hero,ItRu_Geyser))
+		{
+			CreateInvItem(hero,ItRu_Geyser);
+		};
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 4)
 	{
-		CreateInvItem(hero,ItRu_Waterfist);
+		if(!Npc_HasItems(hero,ItRu_Waterfist))
+		{
+			CreateInvItem(hero,ItRu_Waterfist);
+		};
 	};
 };
 
 func void B_SetPaladinEquipment()
 {
-	CreateInvItems(hero,ItRu_PalLight,1);
-	CreateInvItems(hero,ItRu_PalLightHeal,1);
-	CreateInvItems(hero,ItRu_PalHolyBolt,1);
-	CreateInvItems(hero,ItRu_PalMediumHeal,1);
-	CreateInvItems(hero,ItRu_PalRepelEvil,1);
-	CreateInvItems(hero,ItRu_PalFullHeal,1);
-	CreateInvItems(hero,ItRu_PalDestroyEvil,1);
-	CreateInvItems(hero,ItRu_PalTeleportSecret,1);
+	if(!Npc_HasItems(hero,ItRu_PalLight))
+	{
+		CreateInvItem(hero,ItRu_PalLight);
+	};
+	if(!Npc_HasItems(hero,ItRu_PalLightHeal))
+	{
+		CreateInvItem(hero,ItRu_PalLightHeal);
+	};
+	if(!Npc_HasItems(hero,ItRu_PalHolyBolt))
+	{
+		CreateInvItem(hero,ItRu_PalHolyBolt);
+	};
+	if(!Npc_HasItems(hero,ItRu_PalMediumHeal))
+	{
+		CreateInvItem(hero,ItRu_PalMediumHeal);
+	};
+	if(!Npc_HasItems(hero,ItRu_PalRepelEvil))
+	{
+		CreateInvItem(hero,ItRu_PalRepelEvil);
+	};
+	if(!Npc_HasItems(hero,ItRu_PalFullHeal))
+	{
+		CreateInvItem(hero,ItRu_PalFullHeal);
+	};
+	if(!Npc_HasItems(hero,ItRu_PalDestroyEvil))
+	{
+		CreateInvItem(hero,ItRu_PalDestroyEvil);
+	};
+	if(!Npc_HasItems(hero,ItRu_PalTeleportSecret))
+	{
+		CreateInvItem(hero,ItRu_PalTeleportSecret);
+	};
 };
 
 instance CH_Exit(C_Info)
@@ -632,63 +650,155 @@ func void CH_Guild_BACK()
 func void ch_pir()
 {
 	Info_ClearChoices(CH_Guild);
-	CreateInvItem(hero,ITAR_PIR_L_Addon);
-	AI_EquipArmor(hero,ITAR_PIR_L_Addon);
+	if(!Npc_HasItems(hero,ITAR_PIR_L_Addon))
+	{
+		CreateInvItem(hero,ITAR_PIR_L_Addon);
+	};
+	if(!ArmorEquipped(hero,ITAR_PIR_L_Addon))
+	{
+		AI_EquipArmor(hero,ITAR_PIR_L_Addon);
+	};
 };
 
 func void ch_bdt()
 {
 	Info_ClearChoices(CH_Guild);
-	CreateInvItem(hero,ITAR_BDT_M);
-	AI_EquipArmor(hero,ITAR_BDT_M);
+	if(!Npc_HasItems(hero,ITAR_BDT_M))
+	{
+		CreateInvItem(hero,ITAR_BDT_M);
+	};
+	if(!ArmorEquipped(hero,ITAR_BDT_M))
+	{
+		AI_EquipArmor(hero,ITAR_BDT_M);
+	};
 };
 
 func void ch_nov()
 {
 	Info_ClearChoices(CH_Guild);
 	B_SetGuild(hero,GIL_NOV);
-	CreateInvItem(hero,ITAR_NOV_L);
-	AI_EquipArmor(hero,ITAR_NOV_L);
+	if(!Npc_HasItems(hero,ITAR_NOV_L))
+	{
+		CreateInvItem(hero,ITAR_NOV_L);
+	};
+	if(!ArmorEquipped(hero,ITAR_NOV_L))
+	{
+		AI_EquipArmor(hero,ITAR_NOV_L);
+	};
 };
 
 func void ch_kdf()
 {
 	Info_ClearChoices(CH_Guild);
 	B_SetGuild(hero,GIL_KDF);
-	CreateInvItem(hero,ITAR_KDF_L);
-	AI_EquipArmor(hero,ITAR_KDF_L);
+	if(!Npc_HasItems(hero,ITAR_KDF_L))
+	{
+		CreateInvItem(hero,ITAR_KDF_L);
+	};
+	if(!ArmorEquipped(hero,ITAR_KDF_L))
+	{
+		AI_EquipArmor(hero,ITAR_KDF_L);
+	};
 };
 
 func void ch_sld()
 {
 	Info_ClearChoices(CH_Guild);
 	B_SetGuild(hero,GIL_SLD);
-	CreateInvItem(hero,ITAR_SLD_M);
-	AI_EquipArmor(hero,ITAR_SLD_M);
+	if(!Npc_HasItems(hero,ITAR_SLD_M))
+	{
+		CreateInvItem(hero,ITAR_SLD_M);
+	};
+	if(!ArmorEquipped(hero,ITAR_SLD_M))
+	{
+		AI_EquipArmor(hero,ITAR_SLD_M);
+	};
 };
 
 func void ch_djg()
 {
 	Info_ClearChoices(CH_Guild);
 	B_SetGuild(hero,GIL_DJG);
-	CreateInvItem(hero,ITAR_DJG_M);
-	AI_EquipArmor(hero,ITAR_DJG_M);
+	if(Helmets_Enabled == TRUE)
+	{
+		if(!Npc_HasItems(hero,ITHE_DJG_M))
+		{
+			CreateInvItem(hero,ITHE_DJG_M);
+		};
+		if(DJGMHelmet_Equipped == FALSE)
+		{
+			AI_EquipArmor(hero,ITHE_DJG_M);
+		};
+		if(!Npc_HasItems(hero,ITAR_DJGN_M))
+		{
+			CreateInvItem(hero,ITAR_DJGN_M);
+		};
+		if(!ArmorEquipped(hero,ITAR_DJGN_M))
+		{
+			AI_EquipArmor(hero,ITAR_DJGN_M);
+		};
+	}
+	else
+	{
+		if(!Npc_HasItems(hero,ITAR_DJG_M))
+		{
+			CreateInvItem(hero,ITAR_DJG_M);
+		};
+		if(!ArmorEquipped(hero,ITAR_DJG_M))
+		{
+			AI_EquipArmor(hero,ITAR_DJG_M);
+		};
+	};
 };
 
 func void ch_mil()
 {
 	Info_ClearChoices(CH_Guild);
 	B_SetGuild(hero,GIL_MIL);
-	CreateInvItem(hero,ITAR_MIL_L);
-	AI_EquipArmor(hero,ITAR_MIL_L);
+	if(!Npc_HasItems(hero,ITAR_MIL_L))
+	{
+		CreateInvItem(hero,ITAR_MIL_L);
+	};
+	if(!ArmorEquipped(hero,ITAR_MIL_L))
+	{
+		AI_EquipArmor(hero,ITAR_MIL_L);
+	};
 };
 
 func void ch_pal()
 {
 	Info_ClearChoices(CH_Guild);
 	B_SetGuild(hero,GIL_PAL);
-	CreateInvItem(hero,ITAR_PAL_M);
-	AI_EquipArmor(hero,ITAR_PAL_M);
+	if(Helmets_Enabled == TRUE)
+	{
+		if(!Npc_HasItems(hero,ITHE_PAL_M))
+		{
+			CreateInvItem(hero,ITHE_PAL_M);
+		};
+		if(PALMHelmet_Equipped == FALSE)
+		{
+			AI_EquipArmor(hero,ITHE_PAL_M);
+		};
+		if(!Npc_HasItems(hero,ITAR_PALN_M))
+		{
+			CreateInvItem(hero,ITAR_PALN_M);
+		};
+		if(!ArmorEquipped(hero,ITAR_PALN_M))
+		{
+			AI_EquipArmor(hero,ITAR_PALN_M);
+		};
+	}
+	else
+	{
+		if(!Npc_HasItems(hero,ITAR_PAL_M))
+		{
+			CreateInvItem(hero,ITAR_PAL_M);
+		};
+		if(!ArmorEquipped(hero,ITAR_PAL_M))
+		{
+			AI_EquipArmor(hero,ITAR_PAL_M);
+		};
+	};
 	B_SetPaladinEquipment();
 };
 
@@ -1110,408 +1220,306 @@ func void CH_Level_0()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(0);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_1()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(1);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_2()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(2);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_3()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(3);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_4()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(4);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_5()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(5);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_6()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(6);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_7()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(7);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_8()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(8);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_9()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(9);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_10()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(10);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_11()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(11);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_12()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(12);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_13()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(13);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_14()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(14);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_15()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(15);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_16()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(16);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_17()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(17);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_18()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(18);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_19()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(19);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_20()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(20);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_21()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(21);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_22()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(22);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_23()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(23);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_24()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(24);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_25()
 {
 	Info_ClearChoices(CH_Level_niedrig);
 	B_SetHeroExp(25);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_26()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(26);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_27()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(27);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_28()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(28);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_29()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(29);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_30()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(30);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_31()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(31);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_32()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(32);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_33()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(33);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_34()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(34);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_35()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(35);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_36()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(36);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_37()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(37);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_38()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(38);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_39()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(39);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_40()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(40);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_41()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(41);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_42()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(42);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_43()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(43);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_44()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(44);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_45()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(45);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_46()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(46);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_47()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(47);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_48()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(48);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_49()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(49);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 func void CH_Level_50()
 {
 	Info_ClearChoices(CH_Level_hoch);
 	B_SetHeroExp(50);
-	B_SetHeroWeapon();
-	B_SetHeroEquipment();
 };
 
 
@@ -4169,6 +4177,71 @@ func void CH_Skin_Naked()
 	B_SetHeroSkin();
 	CH_Skin_Info();
 };
+
+func void B_SetHeroEquipment()
+{
+	if(Npc_HasItems(hero,ItRw_Arrow) < 100)
+	{
+		Npc_RemoveInvItems(hero,ItRw_Arrow,Npc_HasItems(hero,ItRw_Arrow));
+		CreateInvItems(hero,ItRw_Arrow,100);
+	};
+	if(Npc_HasItems(hero,ItRw_Bolt) < 100)
+	{
+		Npc_RemoveInvItems(hero,ItRw_Bolt,Npc_HasItems(hero,ItRw_Bolt));
+		CreateInvItems(hero,ItRw_Bolt,100);
+	};
+	if(Npc_HasItems(hero,ItLsTorch) < 20)
+	{
+		Npc_RemoveInvItems(hero,ItLsTorch,Npc_HasItems(hero,ItLsTorch));
+		CreateInvItems(hero,ItLsTorch,20);
+	};
+	if(Npc_HasItems(hero,ItMi_Gold) < 500)
+	{
+		Npc_RemoveInvItems(hero,ItMi_Gold,Npc_HasItems(hero,ItMi_Gold));
+		CreateInvItems(hero,ItMi_Gold,500);
+	};
+	if(Npc_HasItems(hero,ItPo_Health_03) < 10)
+	{
+		Npc_RemoveInvItems(hero,ItPo_Health_03,Npc_HasItems(hero,ItPo_Health_03));
+		CreateInvItems(hero,ItPo_Health_03,10);
+	};
+	if(Npc_HasItems(hero,ItPo_Mana_03) < 10)
+	{
+		Npc_RemoveInvItems(hero,ItPo_Mana_03,Npc_HasItems(hero,ItPo_Mana_03));
+		CreateInvItems(hero,ItPo_Mana_03,10);
+	};
+	if(Npc_HasItems(hero,ItKe_Lockpick) < 30)
+	{
+		Npc_RemoveInvItems(hero,ItKe_Lockpick,Npc_HasItems(hero,ItKe_Lockpick));
+		CreateInvItems(hero,ItKe_Lockpick,30);
+	};
+};
+
+instance CH_Equipment(C_Info)
+{
+	npc = ch;
+	nr = 38;
+	condition = CH_Equipment_Condition;
+	information = CH_Equipment_Info;
+	permanent = TRUE;
+	description = "Получить снаряжение";
+};
+
+
+func int CH_Equipment_Condition()
+{
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void CH_Equipment_Info()
+{
+	B_SetHeroEquipment();
+	PrintScreen("Снаряжение обновлено",-1,-1,FONT_Screen,3);
+};
+
 
 instance CH_StatsBook(C_Info)
 {

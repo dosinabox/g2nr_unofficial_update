@@ -1,4 +1,26 @@
 
+var int OHTHelmet_Equipped;
+var int DHTHelmet_Equipped;
+var int DJGMHelmet_Equipped;
+var int DJGHHelmet_Equipped;
+var int PALMHelmet_Equipped;
+var int PALHHelmet_Equipped;
+
+func void Equip_Helmet()
+{
+	if(Npc_IsPlayer(self))
+	{
+		B_UnEquipHeroItem(ITAR_PAL_M);
+		B_UnEquipHeroItem(ITAR_PAL_H);
+		B_UnEquipHeroItem(ITAR_DJG_M);
+		B_UnEquipHeroItem(ITAR_DJG_H);
+		B_UnEquipHeroItem(ITAR_PIR_H_Addon);
+		B_UnEquipHeroItem(ITAR_PAL_Skel);
+		B_UnEquipHeroItem(ITAR_Dementor);
+		B_UnEquipHeroItem(ITAR_Judge);
+	};
+};
+
 INSTANCE ITHE_OHT(C_Item)
 {
 	name = "Шлем охотника на орков";
@@ -14,7 +36,8 @@ INSTANCE ITHE_OHT(C_Item)
 	visual = "ITHE_OHT.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_Helmet;
+	on_equip = Equip_ITHE_OHT;
+	on_unequip = UnEquip_ITHE_OHT;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -26,6 +49,18 @@ INSTANCE ITHE_OHT(C_Item)
 	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
+};
+
+
+func void Equip_ITHE_OHT()
+{
+	Equip_Helmet();
+	OHTHelmet_Equipped = TRUE;
+};
+
+func void UnEquip_ITHE_OHT()
+{
+	OHTHelmet_Equipped = FALSE;
 };
 
 INSTANCE ITHE_DHT(C_Item)
@@ -43,7 +78,8 @@ INSTANCE ITHE_DHT(C_Item)
 	visual = "ITHE_DHT.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_Helmet;
+	on_equip = Equip_ITHE_DHT;
+	on_unequip = UnEquip_ITHE_DHT;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -55,6 +91,18 @@ INSTANCE ITHE_DHT(C_Item)
 	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
+};
+
+
+func void Equip_ITHE_DHT()
+{
+	Equip_Helmet();
+	DHTHelmet_Equipped = TRUE;
+};
+
+func void UnEquip_ITHE_DHT()
+{
+	DHTHelmet_Equipped = FALSE;
 };
 
 INSTANCE ITHE_DJG_M(C_Item)
@@ -72,7 +120,8 @@ INSTANCE ITHE_DJG_M(C_Item)
 	visual = "ITHE_DJG_M.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_Helmet;
+	on_equip = Equip_ITHE_DJG_M;
+	on_unequip = UnEquip_ITHE_DJG_M;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -84,6 +133,18 @@ INSTANCE ITHE_DJG_M(C_Item)
 	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
+};
+
+
+func void Equip_ITHE_DJG_M()
+{
+	Equip_Helmet();
+	DJGMHelmet_Equipped = TRUE;
+};
+
+func void UnEquip_ITHE_DJG_M()
+{
+	DJGMHelmet_Equipped = FALSE;
 };
 
 INSTANCE ITHE_DJG_H(C_Item)
@@ -101,7 +162,8 @@ INSTANCE ITHE_DJG_H(C_Item)
 	visual = "ITHE_DJG_H.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_Helmet;
+	on_equip = Equip_ITHE_DJG_H;
+	on_unequip = UnEquip_ITHE_DJG_H;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -113,6 +175,18 @@ INSTANCE ITHE_DJG_H(C_Item)
 	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
+};
+
+
+func void Equip_ITHE_DJG_H()
+{
+	Equip_Helmet();
+	DJGHHelmet_Equipped = TRUE;
+};
+
+func void UnEquip_ITHE_DJG_H()
+{
+	DJGHHelmet_Equipped = FALSE;
 };
 
 INSTANCE ITHE_PAL_M(C_Item)
@@ -130,7 +204,8 @@ INSTANCE ITHE_PAL_M(C_Item)
 	visual = "ITHE_PAL_M.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	on_equip = Equip_Helmet;
+	on_equip = Equip_ITHE_PAL_M;
+	on_unequip = UnEquip_ITHE_PAL_M;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -143,6 +218,18 @@ INSTANCE ITHE_PAL_M(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = 130;
+};
+
+
+func void Equip_ITHE_PAL_M()
+{
+	Equip_Helmet();
+	PALMHelmet_Equipped = TRUE;
+};
+
+func void UnEquip_ITHE_PAL_M()
+{
+	PALMHelmet_Equipped = FALSE;
 };
 
 INSTANCE ITHE_PAL_H(C_Item)
@@ -160,7 +247,8 @@ INSTANCE ITHE_PAL_H(C_Item)
 	visual = "ITHE_PAL_H.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	on_equip = Equip_Helmet;
+	on_equip = Equip_ITHE_PAL_H;
+	on_unequip = UnEquip_ITHE_PAL_H;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -175,18 +263,15 @@ INSTANCE ITHE_PAL_H(C_Item)
 	inv_zbias = 130;
 };
 
-func void Equip_Helmet()
+
+func void Equip_ITHE_PAL_H()
 {
-	if(Npc_IsPlayer(self))
-	{
-		B_UnEquipHeroItem(ITAR_PAL_M);
-		B_UnEquipHeroItem(ITAR_PAL_H);
-		B_UnEquipHeroItem(ITAR_DJG_M);
-		B_UnEquipHeroItem(ITAR_DJG_H);
-		B_UnEquipHeroItem(ITAR_PIR_H_Addon);
-		B_UnEquipHeroItem(ITAR_PAL_Skel);
-		B_UnEquipHeroItem(ITAR_Dementor);
-		B_UnEquipHeroItem(ITAR_Judge);
-	};
+	Equip_Helmet();
+	PALHHelmet_Equipped = TRUE;
+};
+
+func void UnEquip_ITHE_PAL_H()
+{
+	PALHHelmet_Equipped = FALSE;
 };
 

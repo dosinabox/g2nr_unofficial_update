@@ -188,7 +188,7 @@ func void B_Lares_Comment_MIL()
 
 func void B_Lares_Comment_PAL()
 {
-	AI_Output(self,other,"DIA_Lares_OtherGuild_09_02");	//Так теперь ты один из паладинов короля!
+	AI_Output(self,other,"DIA_Lares_OtherGuild_09_02");	//Так, теперь ты один из паладинов короля!
 };
 
 func void B_Lares_Comment_SLD()
@@ -554,7 +554,14 @@ func void DIA_Addon_Lares_RingBack2_Info()
 	AI_Output(other,self,"DIA_Addon_Lares_RingBack2_15_00");	//Вот твое кольцо.
 	B_GiveInvItems(other,self,ItRi_Ranger_Lares_Addon,1);
 	AI_Output(self,other,"DIA_Addon_Lares_RingBack2_09_01");	//Замечательно. Я боялся, что ты его потерял.
-	B_GivePlayerXP(XP_Ambient);
+	if(CurrentLevel == NEWWORLD_ZEN)
+	{
+		B_GivePlayerXP(XP_Ambient);
+	}
+	else
+	{
+		B_GivePlayerXP(XP_AmbientKap1);
+	};
 	Lares_GotRingBack = TRUE;
 };
 
@@ -1590,11 +1597,6 @@ func void B_StartLaresGuideToPortal()
 		LaresGuide_ZumPortal = 1;
 		Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL1");
 	}
-	else if(B_GetLaresLocation() == LOC_FOREST_ORNAMENT)
-	{
-		LaresGuide_ZumPortal = 2;
-		Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL2");
-	}
 	else
 	{
 		LaresGuide_ZumPortal = 3;
@@ -1674,7 +1676,9 @@ func void DIA_Lares_GoNow_Maya()
 	AI_Output(other,self,"DIA_Addon_Lares_GoNow_Maya_15_00");	//Давай вернем орнамент Ватраса.
 	if(B_GetLaresLocation() == LOC_CITY)
 	{
-		B_StartLaresGuideToPortal();
+		LaresGuide_ZumPortal = 1;
+		Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL1");
+		DIA_Lares_GoNow_GoingConditions();
 	}
 	else
 	{

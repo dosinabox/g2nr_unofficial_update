@@ -29,6 +29,8 @@ func void DIA_Xardas_FirstEXIT_Info()
 };
 
 
+var int Xardas_GoodLevelComment;
+
 instance DIA_Xardas_EXIT(C_Info)
 {
 	npc = NONE_100_Xardas;
@@ -50,10 +52,12 @@ func int DIA_Xardas_EXIT_Condition()
 
 func void DIA_Xardas_EXIT_Info()
 {
-	if(Npc_HasItems(hero,ItMw_BeliarWeapon_Fake))
+	if((other.guild == GIL_NONE) && (other.level >= 15) && (Xardas_GoodLevelComment == FALSE))
 	{
-		Npc_RemoveInvItem(hero,ItMw_BeliarWeapon_Fake);
+		AI_Output(self,other,"DIA_Xardas_Hello_14_02_add");	//Ты скоро восстановишь свои силы.
+		Xardas_GoodLevelComment = TRUE;
 	};
+	B_ClearFakeItems(other);
 	AI_StopProcessInfos(self);
 };
 
@@ -90,7 +94,7 @@ func void DIA_Xardas_Hello_Info()
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_04");	//Но хватит об этом. Сейчас-то ты здесь.
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_05");	//И над нами нависла новая угроза.
 	Info_ClearChoices(DIA_Xardas_Hello);
-	Info_AddChoice(DIA_Xardas_Hello,"Ну, по крайней мере, у нас сейчас достаточно времени. Я сделал это. Спящий...",DIA_Addon_Xardas_Hello_Dragons);
+	Info_AddChoice(DIA_Xardas_Hello,"Ну, по крайней мере, у нас сейчас достаточно времени. Я сделал это. Спящий уничтожен.",DIA_Addon_Xardas_Hello_Dragons);
 	Info_AddChoice(DIA_Xardas_Hello,"Что это за НОВАЯ угроза, о которой ты говоришь?",DIA_Addon_Xardas_Hello_Man);
 };
 

@@ -148,6 +148,7 @@ func void B_GiveTradeInv(var C_Npc slf)
 	B_ClearTools(slf);
 	B_ClearSpecialAmmo(slf);
 	B_CoolHotDraw(hero);
+	B_ClearFakeItems(hero);
 	if(slf.aivar[AIV_ChapterInv] <= Kapitel)
 	{
 		if(slf.aivar[AIV_NPCIsTrader] == TRUE)

@@ -76,6 +76,7 @@ Story\B_Story\b_meleeweaponchange.d
 Story\B_Story\B_NpcSetDrunk.d
 Story\B_Story\B_InspectMeleeWeapon.d
 Story\B_Story\B_CheckRedLightUndercover.d
+Story\B_Story\B_ClearFakeItems.d
 Story\B_Story\B_UnEquipHeroItem.d
 Story\B_Story\B_UnEquipIllegalMagicItems.d
 Story\B_Story\B_Check_Talents.d
