@@ -765,7 +765,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "15/04/2021";
+const string FIX_VERSION_DATE = "22/04/2021";
 const int FIX_VERSION_START = 26;
 const int LEAST_SUPPORTED = 24;
 var int FIX_VERSION_SAVE;

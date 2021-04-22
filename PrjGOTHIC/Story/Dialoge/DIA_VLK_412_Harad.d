@@ -34,7 +34,7 @@ instance DIA_Harad_Hallo(C_Info)
 
 func int DIA_Harad_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == TRUE))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -553,7 +553,7 @@ func void DIA_Harad_Zustimmung_Info()
 
 func void B_HaradCommentAnvilUses()
 {
-	if(HaradsAnvilUsed < 10)
+	if(HaradsAnvilUsed < 5)
 	{
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_04_02_add");	//Даже хотя ты и не проводил много времени за наковальней.
 	}

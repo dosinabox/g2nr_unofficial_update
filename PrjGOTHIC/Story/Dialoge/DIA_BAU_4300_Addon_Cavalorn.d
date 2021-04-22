@@ -103,12 +103,12 @@ func int DIA_Addon_Cavalorn_MeetingIsRunning_Condition()
 		if(Npc_GetDistToWP(self,"NW_LITTLESTONEHENDGE") < 2000)
 		{
 			return FALSE;
-		}
-		else if(Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 2000)
+		};
+		if(Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 2000)
 		{
 			return FALSE;
-		}
-		else if(Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") < 2000)
+		};
+		if(Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") < 2000)
 		{
 			return FALSE;
 		};
@@ -287,6 +287,17 @@ func void DIA_Addon_Cavalorn_Beutel_Info()
 	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"Нет.",DIA_Addon_Cavalorn_Beutel_no);
 };
 
+func void B_BuildCavalornOreDialog()
+{
+	Info_ClearChoices(DIA_Addon_Cavalorn_Beutel);
+	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,Dialog_Back,DIA_Addon_Cavalorn_Beutel_back);
+	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"Почему ты не оставил ее себе?",DIA_Addon_Cavalorn_Beutel_why);
+	if(Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel) || Npc_HasItems(other,ItMi_Nugget))
+	{
+		Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"Давай мне 100 золотых - и я отдам тебе твою руду.",DIA_Addon_Cavalorn_ErzGeben_Info);
+	};
+};
+
 func void DIA_Addon_Cavalorn_Beutel_back()
 {
 	if(!Npc_HasItems(self,ItSe_ADDON_CavalornsBeutel) && !Npc_HasItems(self,ItMi_Nugget))
@@ -300,26 +311,14 @@ func void DIA_Addon_Cavalorn_Beutel_jaerz()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Beutel_jaerz_15_00");	//Нет, но у меня есть другой кусок руды.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Beutel_jaerz_08_01");	//Тоже неплохо.
-	Info_ClearChoices(DIA_Addon_Cavalorn_Beutel);
-	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,Dialog_Back,DIA_Addon_Cavalorn_Beutel_back);
-	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"А почему ты вообще оттуда ушел?",DIA_Addon_Cavalorn_Beutel_why);
-	if(Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel) || Npc_HasItems(other,ItMi_Nugget))
-	{
-		Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"Давай мне 100 золотых - и я отдам тебе твою руду.",DIA_Addon_Cavalorn_ErzGeben_Info);
-	};
+	B_BuildCavalornOreDialog();
 };
 
 func void DIA_Addon_Cavalorn_Beutel_ja()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Beutel_ja_15_00");	//Конечно.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_OBack_08_01");	//Отлично.
-	Info_ClearChoices(DIA_Addon_Cavalorn_Beutel);
-	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,Dialog_Back,DIA_Addon_Cavalorn_Beutel_back);
-	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"А почему ты вообще оттуда ушел?",DIA_Addon_Cavalorn_Beutel_why);
-	if(Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel) || Npc_HasItems(other,ItMi_Nugget))
-	{
-		Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"Давай мне 100 золотых - и я отдам тебе твою руду.",DIA_Addon_Cavalorn_ErzGeben_Info);
-	};
+	B_BuildCavalornOreDialog();
 };
 
 func void DIA_Addon_Cavalorn_Beutel_no()
@@ -327,18 +326,12 @@ func void DIA_Addon_Cavalorn_Beutel_no()
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Beutel_no_15_00");	//Нет.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Beutel_no_08_01");	//Тогда ПРИНЕСИ его мне. Я собирался сам идти в эту чертову Долину Рудников.
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Beutel_no_15_02");	//Я почти плачу.
-	Info_ClearChoices(DIA_Addon_Cavalorn_Beutel);
-	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,Dialog_Back,DIA_Addon_Cavalorn_Beutel_back);
-	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"А почему ты вообще оттуда ушел?",DIA_Addon_Cavalorn_Beutel_why);
-	if(Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel) || Npc_HasItems(other,ItMi_Nugget))
-	{
-		Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"Давай мне 100 золотых - и я отдам тебе твою руду.",DIA_Addon_Cavalorn_ErzGeben_Info);
-	};
+	B_BuildCavalornOreDialog();
 };
 
 func void DIA_Addon_Cavalorn_Beutel_why()
 {
-	AI_Output(other,self,"DIA_Addon_Cavalorn_Beutel_why_15_00");	//А почему ты вообще оттуда ушел?
+	AI_Output(other,self,"DIA_Brahim_Kap3_First_EXIT_KeepIt_15_00");	//Почему ты не оставил ее себе?
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Beutel_why_08_01");	//Я и не думал, что в Хоринисе руда стоит так много.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Beutel_why_08_02");	//За такой жалкий кусочек руды в колонии ты бы и место, где поспать, себе не выбил.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Beutel_why_08_03");	//А в портовом городе тебе без лишних сомнений раскроят череп, если узнают, что при тебе есть руда.
@@ -902,11 +895,7 @@ func void B_Cavalorn_Triggered_Wohin()
 
 func void DIA_Addon_Cavalorn_Triggered_OBack()
 {
-//	AI_UnequipArmor(self);
 	CreateInvItems(self,ITAR_Bau_L,1);
-//	Npc_RemoveInvItems(self,ITAR_RANGER_Addon,Npc_HasItems(self,ITAR_RANGER_Addon));
-//	Npc_RemoveInvItems(self,ITAR_Fake_RANGER,Npc_HasItems(self,ITAR_Fake_RANGER));
-//	AI_EquipBestArmor(self);
 	AI_EquipArmor(self,ITAR_Bau_L);
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Triggered_OBack_15_00");	//Тогда я пойду и попрошу у них орнамент.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_OBack_08_01");	//Отлично.
@@ -915,11 +904,7 @@ func void DIA_Addon_Cavalorn_Triggered_OBack()
 
 func void DIA_Addon_Cavalorn_Triggered_Pal()
 {
-//	AI_UnequipArmor(self);
 	CreateInvItems(self,ITAR_Bau_L,1);
-//	Npc_RemoveInvItems(self,ITAR_RANGER_Addon,Npc_HasItems(self,ITAR_RANGER_Addon));
-//	Npc_RemoveInvItems(self,ITAR_Fake_RANGER,Npc_HasItems(self,ITAR_Fake_RANGER));
-//	AI_EquipBestArmor(self);
 	AI_EquipArmor(self,ITAR_Bau_L);
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Triggered_Pal_15_00");	//Кому-то из нас придется подняться в верхнюю часть города.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_Pal_08_01");	//У меня нет на это времени. Это придется сделать тебе.

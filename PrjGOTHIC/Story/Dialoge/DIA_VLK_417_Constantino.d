@@ -89,16 +89,9 @@ instance DIA_Constantino_Hallo(C_Info)
 
 func int DIA_Constantino_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		if(C_CanAskConstantinoAboutHerbs())
-		{
-			return TRUE;
-		};
-		if((VisibleGuild(other) != GIL_PAL) && (VisibleGuild(other) != GIL_MIL) && (VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_KDW))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -107,6 +100,10 @@ func void DIA_Constantino_Hallo_Info()
 	if((VisibleGuild(other) != GIL_PAL) && (VisibleGuild(other) != GIL_MIL) && (VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_KDW))
 	{
 		AI_Output(self,other,"DIA_Addon_Constantino_Hallo_10_00");	//Что тебе нужно? Я не подаю милостыню.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Constantino_Hallo_10_00_add");	//Что тебе нужно?
 	};
 	if(C_CanAskConstantinoAboutHerbs())
 	{

@@ -50,16 +50,6 @@ func void smithweapon_s1()
 	};
 };
 
-func int C_PlayerHasHotRawSwords()
-{
-	if(HotRawSwordsCount > 0)
-	{
-		return TRUE;
-	};
-	AI_PrintScreen("Закончилась раскаленная сталь!",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-	return FALSE;
-};
-
 func void B_CountAnvilUses()
 {
 	if(CurrentLevel == NEWWORLD_ZEN)
@@ -74,25 +64,41 @@ func void B_CountAnvilUses()
 
 func void B_CraftSword(var int sword,var int ore,var int blood)
 {
-	if((ore == 0) && (blood == 0))
+	var int time;
+	var float waittime;
+	if(HotRawSwordsCount <= 0)
 	{
-		AI_Wait(self,0.5);
-	}
-	else
+		AI_PrintScreen("Закончилась раскаленная сталь!",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		b_endproductiondialog();
+		return;
+	};
+	time = 1;
+	if(ore > 0)
 	{
-		if(((ore > 0) && (Npc_HasItems(self,ItMi_Nugget) < ore)) || ((blood > 0) && (Npc_HasItems(self,ItAt_DragonBlood) < blood)))
+		if(Npc_HasItems(self,ItMi_Nugget) < ore)
 		{
 			AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 			return;
 		};
-		Npc_RemoveInvItems(self,ItMi_Nugget,ore);
-		Npc_RemoveInvItems(self,ItAt_DragonBlood,blood);
-		AI_Wait(self,1.5);
+		time += 1;
 	};
+	if(blood > 0)
+	{
+		if(Npc_HasItems(self,ItAt_DragonBlood) < blood)
+		{
+			AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
+			return;
+		};
+		time += 1;
+	};
+	waittime = IntToFloat(time);
+	AI_Wait(self,waittime);
+	Npc_RemoveInvItems(self,ItMi_Nugget,ore);
+	Npc_RemoveInvItems(self,ItAt_DragonBlood,blood);
 	HotRawSwordsCount -= 1;
 	CreateInvItem(self,sword);
-	AI_PrintScreen(PRINT_SmithSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 	B_CountAnvilUses();
+	AI_PrintScreen(PRINT_SmithSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 };
 
 instance PC_SmithWeapon_End(C_Info)
@@ -245,14 +251,7 @@ func int PC_ItMw_1H_Common_Condition()
 
 func void PC_ItMw_1H_Common_Info()
 {
-	if(!C_PlayerHasHotRawSwords())
-	{
-		b_endproductiondialog();
-	}
-	else
-	{
-		B_CraftSword(ItMw_1H_Common_01,0,0);
-	};
+	B_CraftSword(ItMw_1H_Common_01,0,0);
 };
 
 
@@ -277,14 +276,7 @@ func int PC_WEAPON_1H_Harad_01_Condition()
 
 func void PC_WEAPON_1H_Harad_01_Info()
 {
-	if(!C_PlayerHasHotRawSwords())
-	{
-		b_endproductiondialog();
-	}
-	else
-	{
-		B_CraftSword(ItMw_Schwert1,0,0);
-	};
+	B_CraftSword(ItMw_Schwert1,0,0);
 };
 
 
@@ -309,14 +301,7 @@ func int PC_WEAPON_1H_Harad_02_Condition()
 
 func void PC_WEAPON_1H_Harad_02_Info()
 {
-	if(!C_PlayerHasHotRawSwords())
-	{
-		b_endproductiondialog();
-	}
-	else
-	{
-		B_CraftSword(ItMw_Schwert4,0,0);
-	};
+	B_CraftSword(ItMw_Schwert4,0,0);
 };
 
 
@@ -341,14 +326,7 @@ func int PC_WEAPON_1H_Harad_03_Condition()
 
 func void PC_WEAPON_1H_Harad_03_Info()
 {
-	if(!C_PlayerHasHotRawSwords())
-	{
-		b_endproductiondialog();
-	}
-	else
-	{
-		B_CraftSword(ItMw_Rubinklinge,0,0);
-	};
+	B_CraftSword(ItMw_Rubinklinge,0,0);
 };
 
 
@@ -373,14 +351,7 @@ func int PC_WEAPON_1H_Harad_04_Condition()
 
 func void PC_WEAPON_1H_Harad_04_Info()
 {
-	if(!C_PlayerHasHotRawSwords())
-	{
-		b_endproductiondialog();
-	}
-	else
-	{
-		B_CraftSword(ItMw_ElBastardo,0,0);
-	};
+	B_CraftSword(ItMw_ElBastardo,0,0);
 };
 
 
@@ -405,14 +376,7 @@ func int PC_ItMw_1H_Special_01_Condition()
 
 func void PC_ItMw_1H_Special_01_Info()
 {
-	if(!C_PlayerHasHotRawSwords())
-	{
-		b_endproductiondialog();
-	}
-	else
-	{
-		B_CraftSword(ItMw_1H_Special_01,1,0);
-	};
+	B_CraftSword(ItMw_1H_Special_01,1,0);
 };
 
 
@@ -437,14 +401,7 @@ func int PC_ItMw_2H_Special_01_Condition()
 
 func void PC_ItMw_2H_Special_01_Info()
 {
-	if(!C_PlayerHasHotRawSwords())
-	{
-		b_endproductiondialog();
-	}
-	else
-	{
-		B_CraftSword(ItMw_2H_Special_01,2,0);
-	};
+	B_CraftSword(ItMw_2H_Special_01,2,0);
 };
 
 
@@ -469,14 +426,7 @@ func int PC_ItMw_1H_Special_02_Condition()
 
 func void PC_ItMw_1H_Special_02_Info()
 {
-	if(!C_PlayerHasHotRawSwords())
-	{
-		b_endproductiondialog();
-	}
-	else
-	{
-		B_CraftSword(ItMw_1H_Special_02,2,0);
-	};
+	B_CraftSword(ItMw_1H_Special_02,2,0);
 };
 
 
@@ -501,14 +451,7 @@ func int PC_ItMw_2H_Special_02_Condition()
 
 func void PC_ItMw_2H_Special_02_Info()
 {
-	if(!C_PlayerHasHotRawSwords())
-	{
-		b_endproductiondialog();
-	}
-	else
-	{
-		B_CraftSword(ItMw_2H_Special_02,3,0);
-	};
+	B_CraftSword(ItMw_2H_Special_02,3,0);
 };
 
 
@@ -533,14 +476,7 @@ func int PC_ItMw_1H_Special_03_Condition()
 
 func void PC_ItMw_1H_Special_03_Info()
 {
-	if(!C_PlayerHasHotRawSwords())
-	{
-		b_endproductiondialog();
-	}
-	else
-	{
-		B_CraftSword(ItMw_1H_Special_03,3,0);
-	};
+	B_CraftSword(ItMw_1H_Special_03,3,0);
 };
 
 
@@ -565,14 +501,7 @@ func int PC_ItMw_2H_Special_03_Condition()
 
 func void PC_ItMw_2H_Special_03_Info()
 {
-	if(!C_PlayerHasHotRawSwords())
-	{
-		b_endproductiondialog();
-	}
-	else
-	{
-		B_CraftSword(ItMw_2H_Special_03,4,0);
-	};
+	B_CraftSword(ItMw_2H_Special_03,4,0);
 };
 
 
@@ -597,14 +526,7 @@ func int PC_ItMw_1H_Special_04_Condition()
 
 func void PC_ItMw_1H_Special_04_Info()
 {
-	if(!C_PlayerHasHotRawSwords())
-	{
-		b_endproductiondialog();
-	}
-	else
-	{
-		B_CraftSword(ItMw_1H_Special_04,4,5);
-	};
+	B_CraftSword(ItMw_1H_Special_04,4,5);
 };
 
 
@@ -629,14 +551,7 @@ func int PC_ItMw_2H_Special_04_Condition()
 
 func void PC_ItMw_2H_Special_04_Info()
 {
-	if(!C_PlayerHasHotRawSwords())
-	{
-		b_endproductiondialog();
-	}
-	else
-	{
-		B_CraftSword(ItMw_2H_Special_04,5,5);
-	};
+	B_CraftSword(ItMw_2H_Special_04,5,5);
 };
 
 
@@ -661,8 +576,9 @@ func int PC_ItMw_Streitaxt1_Condition()
 
 func void PC_ItMw_Streitaxt1_Info()
 {
-	if(!C_PlayerHasHotRawSwords())
+	if(HotRawSwordsCount <= 0)
 	{
+		AI_PrintScreen("Закончилась раскаленная сталь!",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		b_endproductiondialog();
 	}
 	else
