@@ -13,13 +13,9 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			};
 			B_ReadySpell(slf,SPL_Sleep,SPL_Cost_Sleep);
 			return TRUE;
-		}
-		else
-		{
-			return FALSE;
 		};
-	};
-	if((slf.guild == GIL_DMT) && (slf.aivar[AIV_MagicUser] == MAGIC_ALWAYS))
+	}
+	else if((slf.guild == GIL_DMT) && (slf.aivar[AIV_MagicUser] == MAGIC_ALWAYS))
 	{
 		if(!Npc_HasItems(slf,ItRu_InstantFireball))
 		{
@@ -75,17 +71,14 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 				{
 					B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
 					return TRUE;
-				}
-				else if(Kapitel <= 4)
+				};
+				if(Kapitel == 4)
 				{
 					B_ReadySpell(slf,SPL_Deathbolt,SPL_COST_Deathbolt);
 					return TRUE;
-				}
-				else
-				{
-					B_ReadySpell(slf,SPL_Deathball,SPL_COST_Deathball);
-					return TRUE;
 				};
+				B_ReadySpell(slf,SPL_Deathball,SPL_COST_Deathball);
+				return TRUE;
 			}
 			else if(slf.aivar[AIV_SelectSpell] == 10)
 			{
@@ -93,24 +86,27 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 				dK_Mega = Hlp_Random(100);
 				if(dK_Mega <= 2)
 				{
-					B_ReadySpell(slf,SPL_Firerain,SPL_Cost_Firerain);
-					return TRUE;
-				}
-				else if(dK_Mega <= 5)
+					if(!Wld_DetectNpcEx(slf,-1,NOFUNC,GIL_DMT,TRUE))
+					{
+						B_ReadySpell(slf,SPL_Firerain,SPL_Cost_Firerain);
+						return TRUE;
+					};
+				};
+				if(dK_Mega <= 5)
 				{
-					B_ReadySpell(slf,SPL_Thunderstorm,SPL_Cost_Thunderstorm);
-					return TRUE;
-				}
-				else if(dK_Mega <= 10)
+					if(!Wld_DetectNpcEx(slf,-1,NOFUNC,GIL_DMT,TRUE))
+					{
+						B_ReadySpell(slf,SPL_Thunderstorm,SPL_Cost_Thunderstorm);
+						return TRUE;
+					};
+				};
+				if(dK_Mega <= 10)
 				{
 					B_ReadySpell(slf,SPL_LightningFlash,SPL_Cost_LightningFlash);
 					return TRUE;
-				}
-				else
-				{
-					B_ReadySpell(slf,SPL_Firestorm,SPL_COST_Firestorm);
-					return TRUE;
 				};
+				B_ReadySpell(slf,SPL_Firestorm,SPL_COST_Firestorm);
+				return TRUE;
 			}
 			else if(slf.aivar[AIV_SelectSpell] == 12)
 			{
@@ -118,8 +114,8 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			};
 		};
 		return TRUE;
-	};
-	if((slf.guild == GIL_KDF) || (slf.guild == GIL_KDW) || (slf.aivar[AIV_MagicUser] == MAGIC_ALWAYS))
+	}
+	else if((slf.guild == GIL_KDF) || (slf.guild == GIL_KDW) || (slf.aivar[AIV_MagicUser] == MAGIC_ALWAYS))
 	{
 		if(!Npc_HasItems(slf,ItRu_Concussionbolt))
 		{
@@ -157,8 +153,8 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			B_ReadySpell(slf,SPL_FullHeal,SPL_Cost_FullHeal);
 			return TRUE;
-		}
-		else if(C_NpcHasAttackReasonToKill(slf))
+		};
+		if(C_NpcHasAttackReasonToKill(slf))
 		{
 			if((oth.flags == NPC_FLAG_IMMORTAL) || (Hlp_GetInstanceID(oth) == Hlp_GetInstanceID(Raven)))
 			{
@@ -191,14 +187,11 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 				};
 			};
 			return TRUE;
-		}
-		else
-		{
-			B_ReadySpell(slf,SPL_ConcussionBolt,SPL_COST_Concussionbolt);
-			return TRUE;
 		};
-	};
-	if(slf.guild == GIL_PAL)
+		B_ReadySpell(slf,SPL_ConcussionBolt,SPL_COST_Concussionbolt);
+		return TRUE;
+	}
+	else if(slf.guild == GIL_PAL)
 	{
 		if(slf.fight_tactic == FAI_NAILED)
 		{
@@ -232,13 +225,9 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 				B_ReadySpell(slf,SPL_PalHolyBolt,SPL_Cost_PalHolyBolt);
 			};
 			return TRUE;
-		}
-		else
-		{
-			return FALSE;
 		};
-	};
-	if(slf.guild == GIL_SKELETON_MAGE)
+	}
+	else if(slf.guild == GIL_SKELETON_MAGE)
 	{
 		if(!Npc_HasItems(slf,ItRu_SumSkel))
 		{
@@ -260,35 +249,16 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			B_ReadySpell(slf,SPL_IceCube,SPL_Cost_IceCube);
 			return TRUE;
-		}
-		else if(slf.aivar[AIV_SelectSpell] == 1)
+		};
+		if(slf.aivar[AIV_SelectSpell] == 1)
 		{
 			B_ReadySpell(slf,SPL_SummonSkeleton,SPL_Cost_SummonSkeleton);
 			return TRUE;
-		}
-		else
-		{
-			B_ReadySpell(slf,SPL_Icebolt,SPL_COST_Icebolt);
-			return TRUE;
 		};
-	};
-	/*if(slf.guild == GIL_ICEGOLEM)
-	{
-		if(!Npc_HasItems(slf,ItRu_IceCube))
-		{
-			CreateInvItems(slf,ItRu_IceCube,1);
-		};
-		if((Npc_GetDistToNpc(slf,oth) < FIGHT_DIST_MELEE) || Npc_IsInState(oth,ZS_MagicFreeze))
-		{
-			return FALSE;
-		}
-		else
-		{
-			B_ReadySpell(slf,SPL_IceCube,SPL_Cost_IceCube);
-			return TRUE;
-		};
-	};*/
-	if(slf.guild == GIL_ICEGOLEM)
+		B_ReadySpell(slf,SPL_Icebolt,SPL_COST_Icebolt);
+		return TRUE;
+	}
+	else if(slf.guild == GIL_ICEGOLEM)
 	{
 		if(!Npc_HasItems(slf,ItRu_Icelance))
 		{
@@ -301,19 +271,16 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		if(Npc_GetDistToNpc(slf,oth) < FIGHT_DIST_MELEE)
 		{
 			return FALSE;
-		}
-		else if(Npc_IsInState(oth,ZS_MagicFreeze))
+		};
+		if(Npc_IsInState(oth,ZS_MagicFreeze))
 		{
 			B_ReadySpell(slf,SPL_Icelance,SPL_Cost_Icelance);
 			return TRUE;
-		}
-		else
-		{
-			B_ReadySpell(slf,SPL_IceCube,SPL_Cost_IceCube);
-			return TRUE;
 		};
-	};
-	if(slf.guild == GIL_FIREGOLEM)
+		B_ReadySpell(slf,SPL_IceCube,SPL_Cost_IceCube);
+		return TRUE;
+	}
+	else if(slf.guild == GIL_FIREGOLEM)
 	{
 		if(!Npc_HasItems(slf,ItRu_InstantFireball))
 		{
@@ -323,13 +290,9 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
 			return TRUE;
-		}
-		else
-		{
-			return FALSE;
 		};
-	};
-	if((slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_SWAMP) || (slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ROCK) || (slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE))
+	}
+	else if((slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_SWAMP) || (slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ROCK) || (slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE))
 	{
 		if(!Npc_HasItems(slf,ItRu_InstantFireball))
 		{
@@ -339,13 +302,9 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
 			return TRUE;
-		}
-		else
-		{
-			return FALSE;
 		};
-	};
-	if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE)
+	}
+	else if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE)
 	{
 		if(IceDragonSpell == SPL_InstantFireball)
 		{
@@ -357,10 +316,6 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			{
 				B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
 				return TRUE;
-			}
-			else
-			{
-				return FALSE;
 			};
 		}
 		else if(IceDragonSpell == SPL_IceLance)
@@ -373,10 +328,6 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			{
 				B_ReadySpell(slf,SPL_IceLance,SPL_Cost_IceLance);
 				return TRUE;
-			}
-			else
-			{
-				return FALSE;
 			};
 		}
 		else if(IceDragonSpell == SPL_ChargeZap)
@@ -389,10 +340,6 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			{
 				B_ReadySpell(slf,SPL_ChargeZap,SPL_COST_ChargeZap);
 				return TRUE;
-			}
-			else
-			{
-				return FALSE;
 			};
 		}
 		else if(IceDragonSpell == SPL_Icebolt)
@@ -405,16 +352,11 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			{
 				B_ReadySpell(slf,SPL_Icebolt,SPL_COST_Icebolt);
 				return TRUE;
-			}
-			else
-			{
-				return FALSE;
 			};
 		};
-	};
-	if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)
+	}
+	else if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)
 	{
-//		Npc_ClearAIQueue(self);
 		if(!Npc_HasItems(slf,ItRu_Deathball))
 		{
 			CreateInvItems(slf,ItRu_Deathball,1);
@@ -423,13 +365,9 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			B_ReadySpell(slf,SPL_Deathball,SPL_COST_Deathball);
 			return TRUE;
-		}
-		else
-		{
-			return FALSE;
 		};
-	};
-	if(slf.aivar[AIV_MM_REAL_ID] == ID_ORCSHAMAN)
+	}
+	else if(slf.aivar[AIV_MM_REAL_ID] == ID_ORCSHAMAN)
 	{
 		if(!Npc_HasItems(slf,ItRu_InstantFireball))
 		{
@@ -439,13 +377,9 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
 			return TRUE;
-		}
-		else
-		{
-			return FALSE;
 		};
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Hanna))
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Hanna))
 	{
 		if(!Npc_IsInState(oth,ZS_MagicFreeze) && Npc_HasItems(slf,ItSc_IceCube))
 		{
@@ -456,10 +390,6 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			B_ReadySpell(slf,SPL_Firestorm,SPL_Cost_Scroll);
 			return TRUE;
-		}
-		else
-		{
-			return FALSE;
 		};
 	};
 	return FALSE;

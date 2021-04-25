@@ -1427,7 +1427,7 @@ func void DIA_Lord_Hagen_NeedShip_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_03");	//У тебя даже нет капитана, не говоря уже о команде.
 	if((SCGotCaptain == TRUE) && (Crewmember_Count >= Min_Crew))
 	{
-		AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_15_00");	//Ты ошибаешься.
+		DIA_Common_YouAreWrong();
 	};
 	AI_Output(other,self,"DIA_Lord_Hagen_NeedShip_15_04");	//Как насчет корабля, стоящего в гавани?
 	AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_05");	//Он принадлежит мне, и точка. Мы должны перевозить руду на этом корабле.

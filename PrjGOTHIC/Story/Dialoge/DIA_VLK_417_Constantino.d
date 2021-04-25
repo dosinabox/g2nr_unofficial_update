@@ -103,7 +103,7 @@ func void DIA_Constantino_Hallo_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Constantino_Hallo_10_00_add");	//Что тебе нужно?
+		AI_Output(self,other,"DIA_Constantino_Hallo_10_00_add");	//Что тебе нужно?
 	};
 	if(C_CanAskConstantinoAboutHerbs())
 	{
