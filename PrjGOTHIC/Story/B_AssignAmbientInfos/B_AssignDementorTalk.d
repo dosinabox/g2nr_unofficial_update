@@ -28,7 +28,7 @@ func void DIA_AmbientDementor_EXIT_Info()
 		DMT_Vino3.aivar[AIV_EnemyOverride] = FALSE;
 		DMT_Vino4.aivar[AIV_EnemyOverride] = FALSE;
 		//попытка бегства Вино
-		Npc_SetTarget(Vino,DMT_Vino4);
+		Npc_SetTarget(Vino,other);
 		AI_StartState(Vino,ZS_Flee,0,"");
 	}
 	else

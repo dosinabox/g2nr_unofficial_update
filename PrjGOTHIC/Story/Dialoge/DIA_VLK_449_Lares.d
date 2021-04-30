@@ -566,6 +566,50 @@ func void DIA_Addon_Lares_RingBack2_Info()
 };
 
 
+func int C_AllRangersAreInPositions()
+{
+	if(Npc_GetDistToWP(self,"NW_TAVERNE_IN_RANGERMEETING_LARES") > 200)
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Cord))
+	{
+		if(Npc_GetDistToWP(Cord,"NW_TAVERNE_IN_RANGERMEETING") >= 500)
+		{
+			return FALSE;
+		};
+	};
+	if(!Npc_IsDead(Gaan))
+	{
+		if(Npc_GetDistToWP(Gaan,"NW_TAVERNE_IN_RANGERMEETING") >= 500)
+		{
+			return FALSE;
+		};
+	};
+	if(!Npc_IsDead(Martin))
+	{
+		if(Npc_GetDistToWP(Martin,"NW_TAVERNE_IN_RANGERMEETING") >= 500)
+		{
+			return FALSE;
+		};
+	};
+	if(!Npc_IsDead(Cavalorn) && (MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE))
+	{
+		if(Npc_GetDistToWP(Cavalorn,"NW_TAVERNE_IN_RANGERMEETING") >= 500)
+		{
+			return FALSE;
+		};
+	};
+	if(!Npc_IsDead(Orlan))
+	{
+		if(Npc_GetDistToWP(Orlan,"NW_TAVERNE_IN_RANGERMEETING") >= 500)
+		{
+			return FALSE;
+		};
+	};
+	return TRUE;
+};
+
 instance DIA_Addon_Lares_Geduld(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -579,7 +623,7 @@ instance DIA_Addon_Lares_Geduld(C_Info)
 
 func int DIA_Addon_Lares_Geduld_Condition()
 {
-	if((RangerMeetingRunning == LOG_Running) && (Npc_GetDistToWP(self,"NW_TAVERNE_IN_RANGERMEETING_LARES") > 200) && Npc_IsInState(self,ZS_Talk))
+	if((RangerMeetingRunning == LOG_Running) && !C_AllRangersAreInPositions() && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -606,7 +650,7 @@ instance DIA_Addon_Lares_GetRangerArmor(C_Info)
 
 func int DIA_Addon_Lares_GetRangerArmor_Condition()
 {
-	if((MIS_Addon_Lares_ComeToRangerMeeting == LOG_Running) && (Npc_GetDistToWP(self,"NW_TAVERNE_IN_RANGERMEETING_LARES") <= 200) && (RangerMeetingRunning == LOG_Running) && Npc_IsInState(self,ZS_Talk))
+	if((MIS_Addon_Lares_ComeToRangerMeeting == LOG_Running) && C_AllRangersAreInPositions() && (RangerMeetingRunning == LOG_Running) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};

@@ -53,65 +53,63 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			B_ReadySpell(slf,SPL_Skull,SPL_Cost_Skull);
 			return TRUE;
-		}
-		else
+		};
+		if(Npc_IsDrawingWeapon(slf))
 		{
-			if(Npc_IsDrawingWeapon(slf))
+			return TRUE;
+		};
+		if(slf.aivar[AIV_SelectSpell] <= 0)
+		{
+			dK_rnd = Hlp_Random(10);
+			slf.aivar[AIV_SelectSpell] += dK_rnd;
+		};
+		if(slf.aivar[AIV_SelectSpell] < 10)
+		{
+			if(Kapitel <= 3)
 			{
-				return TRUE;
-			};
-			if(slf.aivar[AIV_SelectSpell] <= 0)
+				B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+			}
+			else if(Kapitel == 4)
 			{
-				dK_rnd = Hlp_Random(10);
-				slf.aivar[AIV_SelectSpell] += dK_rnd;
-			};
-			if(slf.aivar[AIV_SelectSpell] < 10)
+				B_ReadySpell(slf,SPL_Deathbolt,SPL_COST_Deathbolt);
+			}
+			else
 			{
-				if(Kapitel <= 3)
-				{
-					B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
-					return TRUE;
-				};
-				if(Kapitel == 4)
-				{
-					B_ReadySpell(slf,SPL_Deathbolt,SPL_COST_Deathbolt);
-					return TRUE;
-				};
 				B_ReadySpell(slf,SPL_Deathball,SPL_COST_Deathball);
-				return TRUE;
-			}
-			else if(slf.aivar[AIV_SelectSpell] == 10)
+			};
+		}
+		else if(slf.aivar[AIV_SelectSpell] == 10)
+		{
+			slf.aivar[AIV_SelectSpell] = 11;
+			dK_Mega = Hlp_Random(100);
+			if(dK_Mega <= 2)
 			{
-				slf.aivar[AIV_SelectSpell] = 11;
-				dK_Mega = Hlp_Random(100);
-				if(dK_Mega <= 2)
+				if(!Wld_DetectNpcEx(slf,-1,NOFUNC,GIL_DMT,TRUE))
 				{
-					if(!Wld_DetectNpcEx(slf,-1,NOFUNC,GIL_DMT,TRUE))
-					{
-						B_ReadySpell(slf,SPL_Firerain,SPL_Cost_Firerain);
-						return TRUE;
-					};
-				};
-				if(dK_Mega <= 5)
-				{
-					if(!Wld_DetectNpcEx(slf,-1,NOFUNC,GIL_DMT,TRUE))
-					{
-						B_ReadySpell(slf,SPL_Thunderstorm,SPL_Cost_Thunderstorm);
-						return TRUE;
-					};
-				};
-				if(dK_Mega <= 10)
-				{
-					B_ReadySpell(slf,SPL_LightningFlash,SPL_Cost_LightningFlash);
+					B_ReadySpell(slf,SPL_Firerain,SPL_Cost_Firerain);
 					return TRUE;
 				};
-				B_ReadySpell(slf,SPL_Firestorm,SPL_COST_Firestorm);
-				return TRUE;
-			}
-			else if(slf.aivar[AIV_SelectSpell] == 12)
-			{
-				slf.aivar[AIV_SelectSpell] = 0;
 			};
+			if(dK_Mega <= 5)
+			{
+				if(!Wld_DetectNpcEx(slf,-1,NOFUNC,GIL_DMT,TRUE))
+				{
+					B_ReadySpell(slf,SPL_Thunderstorm,SPL_Cost_Thunderstorm);
+					return TRUE;
+				};
+			};
+			if(dK_Mega <= 10)
+			{
+				B_ReadySpell(slf,SPL_LightningFlash,SPL_Cost_LightningFlash);
+			}
+			else
+			{
+				B_ReadySpell(slf,SPL_Firestorm,SPL_COST_Firestorm);
+			};
+		}
+		else if(slf.aivar[AIV_SelectSpell] == 12)
+		{
+			slf.aivar[AIV_SelectSpell] = 0;
 		};
 		return TRUE;
 	}

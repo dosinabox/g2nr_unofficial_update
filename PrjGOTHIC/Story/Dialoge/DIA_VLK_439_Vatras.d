@@ -2119,7 +2119,7 @@ func void DIA_Vatras_MESSAGE_SUCCESS_Info()
 
 func void DIA_Vatras_MESSAGE_SUCCESS_Plant()
 {
-	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Plant_Add");	//Я возьму царский щавель.
+	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Plant_add");	//Я возьму царский щавель.
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(self,other,ItPl_Perm_Herb,1);
 	Info_ClearChoices(DIA_Vatras_MESSAGE_SUCCESS);
@@ -2135,7 +2135,7 @@ func void DIA_Vatras_MESSAGE_SUCCESS_Ring()
 
 func void DIA_Vatras_MESSAGE_SUCCESS_Ore()
 {
-	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Ore_Add");	//Я возьму руду.
+	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Ore_add");	//Я возьму руду.
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(self,other,ItMi_Nugget,1);
 	Info_ClearChoices(DIA_Vatras_MESSAGE_SUCCESS);

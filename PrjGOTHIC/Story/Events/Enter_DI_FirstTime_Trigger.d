@@ -37,12 +37,12 @@ func void enter_di_firsttime_trigger()
 		if(JorgenIsCaptain == TRUE)
 		{
 			Log_AddEntry(TOPIC_MyCrew,"Йорген, мой капитан, будет ждать на корабле моего возвращения.");
-		};
-		if(TorlofIsCaptain == TRUE)
+		}
+		else if(TorlofIsCaptain == TRUE)
 		{
 			Log_AddEntry(TOPIC_MyCrew,"Торлоф, мой капитан, будет ждать на корабле и оборонять его во время моего отсутствия. Он также может помочь мне повысить мою силу и ловкость.");
-		};
-		if(JackIsCaptain == TRUE)
+		}
+		else if(JackIsCaptain == TRUE)
 		{
 			Log_AddEntry(TOPIC_MyCrew,"Джек, мой капитан, будет ждать на корабле моего возвращения. Похоже, он немного испуган. Надеюсь, он возьмет себя в руки. Он нужен мне.");
 		};

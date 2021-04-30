@@ -934,8 +934,8 @@ func void DIA_Addon_Cavalorn_GotOrnaFromHagen_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_GotOrnaFromHagen_15_00");	//Я достал у лорда Хагена пропавший орнамент.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_GotOrnaFromHagen_08_01");	//Видишь! Я же говорил, что он у паладинов.
-	B_GivePlayerXP(XP_Ambient);
 	MIS_Addon_Cavalorn_GetOrnamentFromPAL = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Ambient);
 };
 
 
