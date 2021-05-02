@@ -25,28 +25,28 @@ func void B_MakeRangerReadyToLeaveMeeting(var C_Npc Ranger)
 	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Martin))
 	{
 		AI_EquipArmor(Ranger,ITAR_MIL_L);
-	};
-	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Lares))
+	}
+	else if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Lares))
 	{
 		if(LaresRangerArmorEquipped == TRUE)
 		{
 			AI_EquipArmor(Ranger,ITAR_Vlk_L);
 			LaresRangerArmorEquipped = FALSE;
 		};
-	};
-	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Cord))
+	}
+	else if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Cord))
 	{
 		AI_EquipArmor(Ranger,ITAR_SLD_H);
-	};
-	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Gaan))
+	}
+	else if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Gaan))
 	{
 		AI_EquipArmor(Ranger,ITAR_Bau_L);
-	};
-	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Orlan))
+	}
+	else if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Orlan))
 	{
 		AI_EquipArmor(Ranger,ITAR_Bau_M);
-	};
-	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Cavalorn))
+	}
+	else if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Cavalorn))
 	{
 		if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE)
 		{

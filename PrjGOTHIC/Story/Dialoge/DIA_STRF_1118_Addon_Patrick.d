@@ -134,13 +134,13 @@ func void DIA_Addon_Patrick_ready_Info()
 
 func void DIA_Addon_Patrick_ready_END()
 {
-	var C_NPC Slave_1;
-	var C_NPC Slave_2;
-	var C_NPC Slave_3;
-	var C_NPC Slave_4;
-	var C_NPC Slave_5;
-	var C_NPC Slave_6;
-	var C_NPC Slave_7;
+	var C_Npc Slave_1;
+	var C_Npc Slave_2;
+	var C_Npc Slave_3;
+	var C_Npc Slave_4;
+	var C_Npc Slave_5;
+	var C_Npc Slave_6;
+	var C_Npc Slave_7;
 	var C_Npc Buddler_1;
 	var C_Npc Buddler_2;
 	var C_Npc Buddler_3;

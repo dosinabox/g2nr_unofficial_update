@@ -16,7 +16,7 @@ instance BDT_1090_Addon_Raven(Npc_Default)
 	attribute[ATR_HITPOINTS] = 500;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_EnemyOverride] = TRUE;
-	attribute[ATR_MANA_MAX] = 666666;
+	attribute[ATR_MANA_MAX] = CONDITION_WEAPON_RAVEN;
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_BeliarWeapon_Raven);
 //	B_CreateAmbientInv(self);

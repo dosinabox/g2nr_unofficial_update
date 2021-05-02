@@ -113,6 +113,9 @@ const int DAMAGE_FLY_CM_PER_POINT = 5;
 const int NPC_DAM_DIVE_TIME = 100;
 const int IMMUNE = -1;
 
+const int CONDITION_WEAPON_RAVEN = 666666;
+const int CONDITION_ARMOR_DEMENTOR = 777777;
+
 const float NPC_COLLISION_CORRECTION_SCALER = 0.75;
 
 const int PROT_BARRIER = 0;
@@ -124,14 +127,16 @@ const int PROT_MAGIC = 5;
 const int PROT_POINT = 6;
 const int PROT_FALL = 7;
 const int PROT_INDEX_MAX = 8;
+
+const int SENSE_SEE = 1;
+const int SENSE_HEAR = 2;
+const int SENSE_SMELL = 4;
+
 const int PERC_ASSESSPLAYER = 1;
 const int PERC_ASSESSENEMY = 2;
 const int PERC_ASSESSFIGHTER = 3;
 const int PERC_ASSESSBODY = 4;
 const int PERC_ASSESSITEM = 5;
-const int SENSE_SEE = 1;
-const int SENSE_HEAR = 2;
-const int SENSE_SMELL = 4;
 const int PERC_ASSESSMURDER = 6;
 const int PERC_ASSESSDEFEAT = 7;
 const int PERC_ASSESSDAMAGE = 8;
@@ -765,7 +770,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "30/04/2021";
+const string FIX_VERSION_DATE = "02/05/2021";
 const int FIX_VERSION_START = 26;
 const int LEAST_SUPPORTED = 24;
 var int FIX_VERSION_SAVE;

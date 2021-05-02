@@ -23,13 +23,24 @@ func void G_CanNotUse(var int bIsPlayer,var int nAttribute,var int nValue)
 	}
 	else if(nAttribute == ATR_MANA_MAX)
 	{
-		if(nValue == 666666)
+		if(nValue == CONDITION_WEAPON_RAVEN)
 		{
-			if(Npc_IsPlayer(self))
+			if(bIsPlayer)
 			{
 				B_BlitzInArsch();
 				SC_FailedToEquipBeliarsWeapon = TRUE;
 				Print(PRINT_ADDON_BELIARSCOURSE_MISSING);
+				return;
+			};
+		};
+		if(nValue == CONDITION_ARMOR_DEMENTOR)
+		{
+			if(bIsPlayer)
+			{
+				Wld_PlayEffect("spellFX_Fear",self,self,0,0,0,FALSE);
+				Snd_Play("MFX_FEAR_CAST");
+				SC_IsObsessed = TRUE;
+				PrintScreen(PRINT_SCIsObsessed,-1,-1,FONT_Screen,2);
 				return;
 			};
 		};

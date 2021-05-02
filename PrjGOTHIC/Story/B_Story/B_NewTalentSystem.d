@@ -41,7 +41,7 @@ const int TeachCondition_Cord = 30;
 const int TeachCondition_2H_Lee = 75;
 const int TeachCondition_2H_Hagen = 90;
 
-var C_NPC RealHero;
+var C_Npc RealHero;
 
 // Talent Sources
 const int TS_Training = 0;
@@ -127,7 +127,7 @@ func int CoerceInRange(var int value,var int min,var int max)
 	return GetMin(value,max);
 };
 
-func int IsHero(var C_NPC npc)
+func int IsHero(var C_Npc npc)
 {
 	if(C_NpcIsHero(npc))
 	{
@@ -137,7 +137,7 @@ func int IsHero(var C_NPC npc)
 	return FALSE;
 };
 
-func void ValidateNpc(var C_NPC npc)
+func void ValidateNpc(var C_Npc npc)
 {
 	if(!Hlp_IsValidNpc(npc))
 	{
@@ -157,7 +157,7 @@ func void ValidateTalent(var int talent)
 	};
 };
 
-func int GetTalent(var C_NPC npc,var int talent)
+func int GetTalent(var C_Npc npc,var int talent)
 {
 	if(talent == NPC_TALENT_1H)
 	{
@@ -179,7 +179,7 @@ func int GetTalent(var C_NPC npc,var int talent)
 };
 
 // removes and applies overlays when talent skill changed
-func void UpdateOverlay(var C_NPC npc,var int oldSkill,var int newSkill,var string mds1,var string mds2)
+func void UpdateOverlay(var C_Npc npc,var int oldSkill,var int newSkill,var string mds1,var string mds2)
 {
 	if (oldSkill == newSkill)
 	{
@@ -373,7 +373,7 @@ func int VisibleTalentValue(var int talent)
 	return 0;
 };
 
-func void UpdateTalent(var C_NPC npc,var int talent,var int value)
+func void UpdateTalent(var C_Npc npc,var int talent,var int value)
 {
 	var int oldSkill;
 	var int newSkill;
@@ -475,7 +475,7 @@ func int CutChange_Hero(var int talent,var int change,var int source)
 
 // changes talent by the value with specified Talent Source
 // returns talent's real change, also set SecondaryChange variable
-func int ChangeTalent(var C_NPC npc,var int talent,var int change,var int source)
+func int ChangeTalent(var C_Npc npc,var int talent,var int change,var int source)
 {
 	SecondaryChange = 0;
 	if(talent == NPC_TALENT_1H)
@@ -706,7 +706,7 @@ func int GetTalentTrainCost_Hero(var int talent,var int change)
 };
 
 // calculates lp-cost of increasing talent by 'change'
-func int GetTalentTrainCost(var C_NPC npc,var int talent,var int change)
+func int GetTalentTrainCost(var C_Npc npc,var int talent,var int change)
 {
 	return GetTalentTrainCost_Impl(talent,GetTalent(npc,talent),change);
 };
@@ -765,7 +765,7 @@ func int GetTeachLimitReason_Hero(var int talent,var int change,var int teacherM
 	return TLR_None;
 };
 
-func int GetTeachLimitReason(var C_NPC npc,var int talent,var int change,var int teacherMax)
+func int GetTeachLimitReason(var C_Npc npc,var int talent,var int change,var int teacherMax)
 {
 	var int value;
 	value = GetTalent(npc,talent);
@@ -828,7 +828,7 @@ func void B_InitTalentSystem()
 };
 
 // returns the reason the teacher can't teach talent
-func int B_GetTeachLimitReason(var C_NPC npc,var int talent,var int change,var int teacherMax)
+func int B_GetTeachLimitReason(var C_Npc npc,var int talent,var int change,var int teacherMax)
 {
 	ValidateNpc(npc);
 	ValidateTalent(talent);
@@ -839,7 +839,7 @@ func int B_GetTeachLimitReason(var C_NPC npc,var int talent,var int change,var i
 	return GetTeachLimitReason(npc,talent,change,teacherMax);
 };
 
-func int B_GetTalentTrainCost(var C_NPC npc,var int talent,var int change)
+func int B_GetTalentTrainCost(var C_Npc npc,var int talent,var int change)
 {
 	ValidateNpc(npc);
 	ValidateTalent(talent);
@@ -850,7 +850,7 @@ func int B_GetTalentTrainCost(var C_NPC npc,var int talent,var int change)
 	return GetTalentTrainCost(npc,talent,change);
 };
 
-func int B_ChangeTalent(var C_NPC npc,var int talent,var int change,var int source)
+func int B_ChangeTalent(var C_Npc npc,var int talent,var int change,var int source)
 {
 	ValidateNpc(npc);
 	ValidateTalent(talent);

@@ -302,18 +302,21 @@ func void DIA_PC_Thief_DI_UndeadDragonDead_Info()
 			};
 		};
 		AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_09");	//Ммм. Ну, или, может быть, я просто продолжу бизнес Бромора. Это очень неплохие деньги. Честные деньги.
-		DIA_PC_Thief_DI_UndeadDragonDead_OneTime = TRUE;
 	};
 	AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_10");	//Иди к капитану. Пусть он поднимает якорь.
 	AI_StopProcessInfos(self);
-	if(Lares_IsOnBoard != LOG_SUCCESS)
+	if(DIA_PC_Thief_DI_UndeadDragonDead_OneTime == FALSE)
 	{
-		Npc_ExchangeRoutine(self,"SittingShipDI");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"Start");
+		if(Lares_IsOnBoard != LOG_SUCCESS)
+		{
+			Npc_ExchangeRoutine(self,"SittingShipDI");
+		}
+		else
+		{
+			Npc_ExchangeRoutine(self,"Start");
+		};
 	};
+	DIA_PC_Thief_DI_UndeadDragonDead_OneTime = TRUE;
 };
 
 
