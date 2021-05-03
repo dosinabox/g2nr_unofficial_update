@@ -298,7 +298,7 @@ func void DIA_Halvor_MESSAGE_Okay()
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_Okay_06_01");	//—пасибо. «аходи, когда оп€ть будешь неподалеку. я приготовлю очень интересные вещички дл€ теб€.
 	B_GiveInvItems(other,self,ItWr_HalvorMessage,1);
 	Npc_RemoveInvItems(self,ItWr_HalvorMessage,1);
-//	Halvor_Deal = TRUE;
+	Halvor_Deal = TRUE;
 	Diebesgilde_Okay += 1;
 	CreateInvItems(self,ItSe_ErzFisch,1);
 	CreateInvItems(self,ItSe_GoldFisch,1);

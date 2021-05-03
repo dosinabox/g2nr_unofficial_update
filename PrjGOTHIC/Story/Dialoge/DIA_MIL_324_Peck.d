@@ -148,6 +148,19 @@ func void B_GetWeaponFromPeckCh3()
 	DIA_Peck_WEAPON2_perm = TRUE;
 };
 
+func int C_PeckIsInBarracks()
+{
+	if(Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000)
+	{
+		return TRUE;
+	};
+	if(Npc_GetDistToWP(self,"NW_CITY_BARRACK02_BED_PECK") <= 2000)
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 instance DIA_Peck_WEAPON(C_Info)
 {
 	npc = MIL_324_Peck;
@@ -163,7 +176,7 @@ func int DIA_Peck_WEAPON_Condition()
 {
 	if((other.guild == GIL_MIL) && (DIA_Peck_WEAPON_perm == FALSE))
 	{
-		if((Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) || (Npc_GetDistToWP(self,"NW_CITY_BARRACK02_BED_PECK") <= 2000))
+		if(C_PeckIsInBarracks())
 		{
 			return TRUE;
 		};
@@ -219,7 +232,7 @@ func int DIA_Peck_WEAPON2_Condition()
 {
 	if((other.guild == GIL_MIL) && (DIA_Peck_WEAPON_perm == TRUE) && (DIA_Peck_WEAPON2_perm == FALSE))
 	{
-		if((Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) || (Npc_GetDistToWP(self,"NW_CITY_BARRACK02_BED_PECK") <= 2000))
+		if(C_PeckIsInBarracks())
 		{
 			return TRUE;
 		};
@@ -259,55 +272,55 @@ func int C_PeckCanSellArmor()
 	return FALSE;
 };
 
-var int VALUE_ITAR_MIL_M_Dynamic;
-
-func void B_SetPeckArmorPrice()
+func int B_GetPeckArmorPrice()
 {
-	VALUE_ITAR_MIL_M_Dynamic = 4500;
+	var int value;
+	value = 4500;
 	if(MIS_Andre_Peck == LOG_SUCCESS)
 	{
-		VALUE_ITAR_MIL_M_Dynamic += 500;
+		value += 500;
 	};
 	if((MIS_Andre_WAREHOUSE == LOG_SUCCESS) && (MIS_Andre_REDLIGHT == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Andre_LOBART_SUCCESS))
 	{
-		VALUE_ITAR_MIL_M_Dynamic -= 500;
+		value -= 500;
 	};
 	if(Rengaru_Ausgeliefert == TRUE)
 	{
-		VALUE_ITAR_MIL_M_Dynamic -= 100;
+		value -= 100;
 	};
 	if(Halvor_Ausgeliefert == TRUE)
 	{
-		VALUE_ITAR_MIL_M_Dynamic -= 100;
+		value -= 100;
 	};
 	if(Nagur_Ausgeliefert == TRUE)
 	{
-		VALUE_ITAR_MIL_M_Dynamic -= 100;
+		value -= 100;
 	};
 	if(Sarah_Ausgeliefert == TRUE)
 	{
-		VALUE_ITAR_MIL_M_Dynamic -= 100;
+		value -= 100;
 	};
 	if(Canthar_Ausgeliefert == TRUE)
 	{
-		VALUE_ITAR_MIL_M_Dynamic -= 100;
+		value -= 100;
 	};
 	if(Fernando_ImKnast == TRUE)
 	{
-		VALUE_ITAR_MIL_M_Dynamic -= 100;
+		value -= 100;
 	};
 	if(Andre_Knows_MartinEmpfehlung == TRUE)
 	{
-		VALUE_ITAR_MIL_M_Dynamic -= 100;
+		value -= 100;
 	};
 	if(MIS_Andre_GuildOfThieves == LOG_SUCCESS)
 	{
-		VALUE_ITAR_MIL_M_Dynamic -= 1000;
+		value -= 1000;
 	}
 	else if(Andre_FoundThieves_Reported == TRUE)
 	{
-		VALUE_ITAR_MIL_M_Dynamic -= 500;
+		value -= 500;
 	};
+	return value;
 };
 
 instance DIA_Peck_ARMOR(C_Info)
@@ -325,7 +338,7 @@ func int DIA_Peck_ARMOR_Condition()
 {
 	if((other.guild == GIL_MIL) && (DIA_MIL_ARMOR_M_perm == FALSE))
 	{
-		if((Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) || (Npc_GetDistToWP(self,"NW_CITY_BARRACK02_BED_PECK") <= 2000))
+		if(C_PeckIsInBarracks())
 		{
 			return TRUE;
 		};
@@ -347,7 +360,6 @@ func void DIA_Peck_ARMOR_Info()
 	{
 		if(C_PeckCanSellArmor())
 		{
-			B_SetPeckArmorPrice();
 			if(MIS_Andre_Peck == LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Rein_12_01");	//Хорошо.
@@ -358,7 +370,7 @@ func void DIA_Peck_ARMOR_Info()
 			};
 			Info_ClearChoices(DIA_Peck_ARMOR);
 			Info_AddChoice(DIA_Peck_ARMOR,Dialog_Back,DIA_Peck_ARMOR_Back);
-			Info_AddChoice(DIA_Peck_ARMOR,B_BuildPriceString("Купить тяжелые доспехи ополчения. Защита: 70/70/10/10.",VALUE_ITAR_MIL_M_Dynamic),DIA_Peck_ARMOR_BUY);
+			Info_AddChoice(DIA_Peck_ARMOR,B_BuildPriceString("Купить тяжелые доспехи ополчения. Защита: 70/70/10/10.",B_GetPeckArmorPrice()),DIA_Peck_ARMOR_BUY);
 		}
 		else
 		{
@@ -384,7 +396,7 @@ func void DIA_Peck_ARMOR_Back()
 func void DIA_Peck_ARMOR_BUY()
 {
 	DIA_Common_GiveMeThatArmor();
-	if(B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_MIL_M_Dynamic))
+	if(B_GiveInvItems(other,self,ItMi_Gold,B_GetPeckArmorPrice()))
 	{
 		AI_Output(self,other,"DIA_Peck_Add_12_05");	//Вот, возьми.
 		B_GiveArmor(ITAR_MIL_M);
@@ -412,7 +424,7 @@ func int DIA_Peck_TRADE_Condition()
 {
 	if((other.guild == GIL_MIL) && (DIA_Peck_ARMOR_perm == FALSE))
 	{
-		if((Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) || (Npc_GetDistToWP(self,"NW_CITY_BARRACK02_BED_PECK") <= 2000))
+		if(C_PeckIsInBarracks())
 		{
 			return TRUE;
 		};
@@ -439,7 +451,7 @@ instance DIA_Peck_PERM(C_Info)
 
 func int DIA_Peck_PERM_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) || (Npc_GetDistToWP(self,"NW_CITY_BARRACK02_BED_PECK") <= 2000))
+	if(C_PeckIsInBarracks())
 	{
 		return TRUE;
 	};

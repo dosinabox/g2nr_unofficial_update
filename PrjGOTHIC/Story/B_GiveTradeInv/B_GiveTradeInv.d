@@ -127,22 +127,9 @@ func int C_TraderCanEquipRangedWeapon(var C_Npc slf)
 
 func void B_GiveTradeInv(var C_Npc slf)
 {
-	var C_Item EquipedMeleeWeapon;
-	var C_Item EquipedRangedWeapon;
 	if(C_AmIWeaponTrader(slf))
 	{
-		if(Npc_HasEquippedMeleeWeapon(slf))
-		{
-			EquipedMeleeWeapon = Npc_GetEquippedMeleeWeapon(slf);
-			Npc_RemoveInvItems(slf,Hlp_GetInstanceID(EquipedMeleeWeapon),Npc_HasItems(slf,Hlp_GetInstanceID(EquipedMeleeWeapon)));
-			CreateInvItem(slf,Hlp_GetInstanceID(EquipedMeleeWeapon));
-		};
-		if(Npc_HasEquippedRangedWeapon(slf))
-		{
-			EquipedRangedWeapon = Npc_GetEquippedRangedWeapon(slf);
-			Npc_RemoveInvItems(slf,Hlp_GetInstanceID(EquipedRangedWeapon),Npc_HasItems(slf,Hlp_GetInstanceID(EquipedRangedWeapon)));
-			CreateInvItem(slf,Hlp_GetInstanceID(EquipedRangedWeapon));
-		};
+		B_UnEquipAllWeapons(slf,TRUE);
 	};
 	B_ClearRuneInv(slf);
 	B_ClearTools(slf);

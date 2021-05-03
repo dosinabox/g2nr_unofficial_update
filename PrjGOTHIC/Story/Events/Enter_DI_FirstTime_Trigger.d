@@ -7,10 +7,6 @@ func void enter_di_firsttime_trigger()
 	{
 		var C_Npc player;
 		player = Hlp_GetNpc(PC_Hero);
-		if(hero.attribute[ATR_DEXTERITY] <= (Condition_Weidenbogen - DEX_Elixier))
-		{
-			Wld_InsertItem(ItPo_Perm_DEX,"FP_ITEM_DI_ENTER_05");
-		};
 		if(player.guild == GIL_PAL)
 		{
 			CreateInvItems(Archol,ItRu_PalDestroyEvil,1);
