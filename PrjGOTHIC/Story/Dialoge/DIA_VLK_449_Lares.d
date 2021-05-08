@@ -697,6 +697,8 @@ func void DIA_Addon_Lares_GetRangerArmor_end()
 	AI_Output(other,self,"DIA_Addon_Lares_GetRangerArmor_end_15_00");	//Я должен идти.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_01");	//Прекрасно, мы не будем тебя задерживать.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_02");	//Отправляйся к Ватрасу и попроси его дать тебе твое первое задание.
+	B_StopLookAt(self);
+	AI_AlignToWP(self);
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_03");	//Братья! Пришло время вернуться к нашей работе.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_04");	//Нападения бандитов все еще продолжаются. Мы должны ликвидировать эту угрозу.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_05");	//Да сохранит Аданос равновесие нашего мира.
@@ -833,7 +835,10 @@ func void DIA_Addon_Lares_OrnamentBringJob_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_OrnamentBringJob_15_00");	//Я могу отнести орнамент!
 	AI_Output(self,other,"DIA_Addon_Lares_OrnamentBringJob_09_01");	//(задумчиво) Хм-м... Нет, лучше я займусь этим сам. Впрочем, ты можешь пойти со мной.
-	B_LaresCantGoToPlaces();
+	if(Lares_CanBringScToPlaces == FALSE)
+	{
+		B_LaresCantGoToPlaces();
+	};
 	B_LogEntry(TOPIC_Addon_KDW,"Я передал Ларесу орнамент Ватраса. Он хочет отнести его магам Воды и просит меня сопровождать его.");
 	MIS_Addon_Lares_Ornament2Saturas = LOG_Running;
 };
@@ -911,7 +916,14 @@ func int DIA_Addon_Lares_BaltramAbloese_Condition()
 func void DIA_Addon_Lares_BaltramAbloese_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_BaltramAbloese_15_00");	//Я говорил с Бальтрамом. Он найдет тебе замену.
-	AI_Output(self,other,"DIA_Addon_Lares_BaltramAbloese_09_01");	//Очень хорошо! В таком случае, мы можем отправляться.
+	if(Kapitel < 3)
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_BaltramAbloese_09_01");	//Очень хорошо! В таком случае, мы можем отправляться.
+	}
+	else
+	{
+		B_Say(self,other,"$ABS_GOOD");
+	};
 	if(SC_IsRanger == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_BaltramAbloese_09_02");	//Мое кольцо пока можешь оставить себе.

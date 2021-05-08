@@ -108,7 +108,7 @@ func void B_RangerMeetingParking()
 	{
 		B_StartOtherRoutine(Cavalorn,"Stadt");
 	};
-	B_StartOtherRoutine(Orlan,"START");
+	B_StartOtherRoutine(Orlan,"Start");
 	B_StartOtherRoutine(Lares,"Parking");
 	B_StartOtherRoutine(Cord,"Parking");
 	B_StartOtherRoutine(Gaan,"Parking");

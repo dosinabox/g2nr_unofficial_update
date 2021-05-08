@@ -414,3 +414,99 @@ func void UnEquip_ItAm_Hp_Mana_01()
 };
 
 
+instance ItAm_Hp_Regen(C_Item)
+{
+	name = NAME_Amulett;
+	mainflag = ITEM_KAT_MAGIC;
+	flags = ITEM_AMULET;
+	value = 3000;
+	visual = "ItAm_Hp_Regen.3ds";
+	visual_skin = 0;
+	material = MAT_METAL;
+	on_equip = Equip_ItAm_Hp_Regen;
+	on_unequip = UnEquip_ItAm_Hp_Regen;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_ITEMGLIMMER";
+	description = "Амулет заживления";
+	text[2] = "Восстановление здоровья.";
+	text[5] = NAME_Value;
+	count[5] = value;
+	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
+};
+
+
+func void Equip_ItAm_Hp_Regen()
+{
+	self.attribute[ATR_REGENERATEHP] = 1;
+};
+
+func void UnEquip_ItAm_Hp_Regen()
+{
+	self.attribute[ATR_REGENERATEHP] = 0;
+};
+
+
+instance ItAm_Mana_Regen(C_Item)
+{
+	name = NAME_Amulett;
+	mainflag = ITEM_KAT_MAGIC;
+	flags = ITEM_AMULET;
+	value = 3000;
+	visual = "ItAm_Mana_Regen.3ds";
+	visual_skin = 0;
+	material = MAT_METAL;
+	on_equip = Equip_ItAm_Mana_Regen;
+	on_unequip = UnEquip_ItAm_Mana_Regen;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_ITEMGLIMMER";
+	description = "Амулет медитации";
+	text[2] = "Восстановление маны.";
+	text[5] = NAME_Value;
+	count[5] = value;
+	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
+};
+
+
+func void Equip_ItAm_Mana_Regen()
+{
+	self.attribute[ATR_REGENERATEMANA] = 1;
+};
+
+func void UnEquip_ItAm_Mana_Regen()
+{
+	self.attribute[ATR_REGENERATEMANA] = 0;
+};
+
+
+instance ItAm_Fall(C_Item)
+{
+	name = NAME_Amulett;
+	mainflag = ITEM_KAT_MAGIC;
+	flags = ITEM_AMULET;
+	value = 3000;
+	visual = "ItMi_SilverNecklace.3ds";
+	visual_skin = 0;
+	material = MAT_METAL;
+	on_equip = Equip_ItAm_Fall;
+	on_unequip = UnEquip_ItAm_Fall;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_ITEMGLIMMER";
+	description = "Амулет невесомости";
+	text[2] = "Защита от падения.";
+	text[5] = NAME_Value;
+	count[5] = value;
+	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
+};
+
+
+func void Equip_ItAm_Fall()
+{
+	self.protection[PROT_FALL] = IMMUNE;
+};
+
+func void UnEquip_ItAm_Fall()
+{
+	self.protection[PROT_FALL] = 0;
+};
+
+

@@ -464,8 +464,11 @@ func void DIA_Addon_Martin_Fernando_Info()
 			if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_02");	//Такие шпаги я нашел у бандитов. На эфесе выгравирована буква 'Ф'.
-				Npc_RemoveInvItems(other,ItMw_Addon_BanditTrader,1);
-				FernandoHints_ItMw = TRUE;
+				if(FernandoHints_ItMw == FALSE)
+				{
+					Npc_RemoveInvItems(other,ItMw_Addon_BanditTrader,1);
+					FernandoHints_ItMw = TRUE;
+				};
 			};
 			if(Npc_HasItems(other,ItRi_Addon_BanditTrader))
 			{
@@ -492,7 +495,7 @@ func void DIA_Addon_Martin_Fernando_Info()
 			AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_06");	//Фернандо сказал, что снабжает бандитов оружием.
 			FernandoHints_Confession = TRUE;
 		};
-		if(((FernandoHints_ItMw == TRUE) && (FernandoHints_ItRi) && (FernandoHints_Confession)) || (FernandoHints_ItWr == TRUE))
+		if(((FernandoHints_ItMw == TRUE) && (FernandoHints_ItRi == TRUE) && (FernandoHints_Confession == TRUE)) || (FernandoHints_ItWr == TRUE))
 		{
 			if(!Npc_IsDead(Fernando))
 			{

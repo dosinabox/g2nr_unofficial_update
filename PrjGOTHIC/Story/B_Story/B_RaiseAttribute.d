@@ -54,7 +54,7 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 	{
 		if(oth.attribute[ATR_REGENERATEHP] == 0)
 		{
-			oth.attribute[ATR_REGENERATEHP] = 60;
+			oth.attribute[ATR_REGENERATEHP] = 30;
 			Npc_SetTalentSkill(oth,NPC_TALENT_REGENERATE,1);
 			PrintScreen(PRINT_LearnRegenerateHP,-1,-1,FONT_Screen,2);
 		}
@@ -72,7 +72,7 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 	{
 		if(oth.attribute[ATR_REGENERATEMANA] == 0)
 		{
-			oth.attribute[ATR_REGENERATEMANA] = 60;
+			oth.attribute[ATR_REGENERATEMANA] = 30;
 			Npc_SetTalentSkill(oth,NPC_TALENT_REGENERATE,1);
 			PrintScreen(PRINT_LearnRegenerateMana,-1,-1,FONT_Screen,2);
 		}

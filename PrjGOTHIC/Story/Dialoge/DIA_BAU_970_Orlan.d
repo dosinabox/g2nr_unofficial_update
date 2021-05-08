@@ -665,7 +665,10 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 		AI_Output(self,other,"DIA_Orlan_EINGEBROCKT_05_00");	//Да уж, доставил ты мне проблем. Теперь мне нужно быть поосторожнее с Рухаром.
 	};
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	if(RangerMeetingRunning != LOG_Running)
+	{
+		Npc_ExchangeRoutine(self,"Start");
+	};
 	if(Hlp_IsValidNpc(Randolph))
 	{
 		if((Kapitel < 4) || ((Kapitel >= 4) && (other.guild != GIL_KDF)))

@@ -84,9 +84,9 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 {
 	if(EnterNW_Kapitel2 == FALSE)
 	{
-		Wld_InsertNpc(Gobbo_Skeleton,"NW_FOREST_PATH_04_9");
-		Wld_InsertNpc(Skeleton,"NW_FOREST_PATH_04_8");
-		Wld_InsertNpc(Lesser_Skeleton,"FP_ROAM_MEDIUMFOREST_KAP2_23");
+//		Wld_InsertNpc(Gobbo_Skeleton,"NW_FOREST_PATH_04_9");
+//		Wld_InsertNpc(Skeleton,"NW_FOREST_PATH_04_8");
+//		Wld_InsertNpc(Lesser_Skeleton,"FP_ROAM_MEDIUMFOREST_KAP2_23");
 		Wld_InsertNpc(Wolf,"FP_ROAM_MEDIUMFOREST_KAP2_25");
 		Wld_InsertNpc(Wolf,"FP_ROAM_MEDIUMFOREST_KAP2_26");
 		Wld_InsertNpc(Bloodfly,"FP_ROAM_CITY_TO_FOREST_50");
@@ -134,26 +134,18 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		Wld_InsertNpc(Gobbo_Green,"NW_BIGFARM_LAKE_MONSTER_05_01");
 		Wld_InsertNpc(Gobbo_Green,"NW_BIGFARM_LAKE_MONSTER_05_01");
 		Wld_InsertNpc(Gobbo_Green,"NW_BIGFARM_LAKE_MONSTER_05_01");
-		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+		if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
+		{
+			Wld_InsertItem(ItAm_Hp_Mana_01,"FP_ROAM_XARDAS_SECRET_26");
+		}
+		else if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 		{
 			Wld_InsertItem(ItAm_Dex_01,"FP_ROAM_XARDAS_SECRET_26");
 		}
-		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
-		{
-			Wld_InsertItem(ItAm_Hp_01,"FP_ROAM_XARDAS_SECRET_26");
-		}
 		else
 		{
-			Wld_InsertItem(ItAm_Hp_Mana_01,"FP_ROAM_XARDAS_SECRET_26");
+			Wld_InsertItem(ItAm_Hp_01,"FP_ROAM_XARDAS_SECRET_26");
 		};
-/*		if(hero.guild == GIL_KDF))
-		{
-			B_StartOtherRoutine(Agon,"StillAlive");
-		};
-		if(!Npc_IsDead(Ambusher_1013))
-		{
-			B_StartOtherRoutine(Ambusher_1013,"AWAY");
-		}; */
 		if(!Npc_IsDead(Lobart))
 		{
 			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;

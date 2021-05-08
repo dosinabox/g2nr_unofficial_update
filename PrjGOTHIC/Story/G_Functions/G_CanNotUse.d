@@ -6,6 +6,10 @@ func void G_CanNotUse(var int bIsPlayer,var int nAttribute,var int nValue)
 	var int nAttributeValue;
 	var int nDifference;
 	var string strDifference;
+	if(!bIsPlayer)
+	{
+		return;
+	};
 	if(nAttribute == ATR_HITPOINTS)
 	{
 		strAttributeMissing = PRINT_HITPOINTS_MISSING;
@@ -25,24 +29,18 @@ func void G_CanNotUse(var int bIsPlayer,var int nAttribute,var int nValue)
 	{
 		if(nValue == CONDITION_WEAPON_RAVEN)
 		{
-			if(bIsPlayer)
-			{
-				B_BlitzInArsch();
-				SC_FailedToEquipBeliarsWeapon = TRUE;
-				Print(PRINT_ADDON_BELIARSCOURSE_MISSING);
-				return;
-			};
+			B_BlitzInArsch();
+			SC_FailedToEquipBeliarsWeapon = TRUE;
+			Print(PRINT_ADDON_BELIARSCOURSE_MISSING);
+			return;
 		};
 		if(nValue == CONDITION_ARMOR_DEMENTOR)
 		{
-			if(bIsPlayer)
-			{
-				Wld_PlayEffect("spellFX_Fear",self,self,0,0,0,FALSE);
-				Snd_Play("MFX_FEAR_CAST");
-				SC_IsObsessed = TRUE;
-				PrintScreen(PRINT_SCIsObsessed,-1,-1,FONT_Screen,2);
-				return;
-			};
+			Wld_PlayEffect("spellFX_Fear",self,self,0,0,0,FALSE);
+			Snd_Play("MFX_FEAR_CAST");
+			SC_IsObsessed = TRUE;
+			PrintScreen(PRINT_SCIsObsessed,-1,-1,FONT_Screen,2);
+			return;
 		};
 		strAttributeMissing = PRINT_MANA_MAX_MISSING;
 		nAttributeValue = self.attribute[ATR_MANA_MAX];
@@ -65,9 +63,6 @@ func void G_CanNotUse(var int bIsPlayer,var int nAttribute,var int nValue)
 	nDifference = nValue - nAttributeValue;
 	strDifference = IntToString(nDifference);
 	strMessage = ConcatStrings(strAttributeMissing,strDifference);
-	if(bIsPlayer)
-	{
-		Print(strMessage);
-	};
+	Print(strMessage);
 };
 

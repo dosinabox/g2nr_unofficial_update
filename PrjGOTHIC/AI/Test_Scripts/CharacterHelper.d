@@ -302,6 +302,17 @@ func void B_SetPaladinEquipment()
 	};
 };
 
+func void B_ClearHeroOverlays()
+{
+	Mdl_RemoveOverlayMDS(hero,"Humans_Arrogance.mds");
+	Mdl_RemoveOverlayMDS(hero,"Humans_Babe.mds");
+	Mdl_RemoveOverlayMDS(hero,"Humans_Mage.mds");
+	Mdl_RemoveOverlayMDS(hero,"Humans_Militia.mds");
+	Mdl_RemoveOverlayMDS(hero,"Humans_Relaxed.mds");
+	Mdl_RemoveOverlayMDS(hero,"Humans_Tired.mds");
+	Mdl_RemoveOverlayMDS(hero,"Humans_Drunken.mds");
+};
+
 instance CH_Exit(C_Info)
 {
 	npc = ch;
@@ -434,12 +445,7 @@ func void CH_RESET_Ok()
 	TattoosBodySkin = FALSE;
 	NakedBodySkin = FALSE;
 	B_SetHeroSkin();
-	Mdl_RemoveOverlayMDS(hero,"Humans_Arrogance.mds");
-	Mdl_RemoveOverlayMDS(hero,"Humans_Babe.mds");
-	Mdl_RemoveOverlayMDS(hero,"Humans_Mage.mds");
-	Mdl_RemoveOverlayMDS(hero,"Humans_Militia.mds");
-	Mdl_RemoveOverlayMDS(hero,"Humans_Relaxed.mds");
-	Mdl_RemoveOverlayMDS(hero,"Humans_Tired.mds");
+	B_ClearHeroOverlays();
 	B_ResetTalentSystem();
 	PLAYER_TALENT_SMITH[WEAPON_Common] = FALSE;
 	PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] = FALSE;
@@ -3863,22 +3869,30 @@ func string B_BuildCurrentRegenerateValue(var int stats)
 {
 	var string concatText;
 	var int cost;
+	var int next;
 	cost = B_GetLearnCostAttribute(other,stats);
 	if(stats == ATR_REGENERATEMANA)
 	{
-		concatText = ConcatStrings("Регенерация маны (1 ед. в ",IntToString(other.attribute[ATR_REGENERATEMANA] - 1));
+		next = other.attribute[ATR_REGENERATEMANA] - 1;
+		concatText = "Регенерация маны (1 ед. в ";
 	}
 	else if(stats == ATR_REGENERATEHP)
 	{
-		concatText = ConcatStrings("Регенерация здоровья (1 ед. в ",IntToString(other.attribute[ATR_REGENERATEHP] - 1));
+		next = other.attribute[ATR_REGENERATEHP] - 1;
+		concatText = "Регенерация здоровья (1 ед. в ";
 	};
+	if(next < 0)
+	{
+		next = 30;
+	};
+	concatText = ConcatStrings(concatText,IntToString(next));
 	concatText = ConcatStrings(concatText," секунд, ");
 	concatText = ConcatStrings(concatText,IntToString(cost));
 	if(cost == 1)
 	{
 		concatText = ConcatStrings(concatText,PRINT_1LP);
 	}
-	else if(cost == 2)
+	else if((cost > 1) && (cost < 5))
 	{
 		concatText = ConcatStrings(concatText,PRINT_2LP);
 	}
@@ -3907,8 +3921,8 @@ func int DIA_CH_Misc_Regenerate_Condition()
 		if(other.attribute[ATR_REGENERATEMANA] != 1)
 		{
 			return TRUE;
-		}
-		else if(other.attribute[ATR_REGENERATEHP] != 1)
+		};
+		if(other.attribute[ATR_REGENERATEHP] != 1)
 		{
 			return TRUE;
 		};
@@ -3919,19 +3933,11 @@ func void DIA_CH_Misc_Regenerate_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Regenerate);
 	Info_AddChoice(DIA_CH_Misc_Regenerate,Dialog_Back,DIA_CH_Misc_Regenerate_BACK);
-	if(other.attribute[ATR_REGENERATEMANA] == 0)
-	{
-		Info_AddChoice(DIA_CH_Misc_Regenerate,"Регенерация маны (1 ед. в минуту, 1 очко обучения)",DIA_CH_Misc_Regenerate_Mana);
-	}
-	else if(other.attribute[ATR_REGENERATEMANA] > 1)
+	if(other.attribute[ATR_REGENERATEMANA] != 1)
 	{
 		Info_AddChoice(DIA_CH_Misc_Regenerate,B_BuildCurrentRegenerateValue(ATR_REGENERATEMANA),DIA_CH_Misc_Regenerate_Mana);
 	};
-	if(other.attribute[ATR_REGENERATEHP] == 0)
-	{
-		Info_AddChoice(DIA_CH_Misc_Regenerate,"Регенерация здоровья (1 ед. в минуту, 1 очко обучения)",DIA_CH_Misc_Regenerate_HP);
-	}
-	else if(other.attribute[ATR_REGENERATEHP] > 1)
+	if(other.attribute[ATR_REGENERATEHP] != 1)
 	{
 		Info_AddChoice(DIA_CH_Misc_Regenerate,B_BuildCurrentRegenerateValue(ATR_REGENERATEHP),DIA_CH_Misc_Regenerate_HP);
 	};
@@ -4003,6 +4009,8 @@ func void CH_Overlay_Info()
 	Info_AddChoice(CH_Overlay,"Крутой",CH_Overlay_Arrogance);
 	Info_AddChoice(CH_Overlay,"Спокойный",CH_Overlay_Relaxed);
 	Info_AddChoice(CH_Overlay,"Уставший",CH_Overlay_Tired);
+	Info_AddChoice(CH_Overlay,"Пьяный",CH_Overlay_Drunken);
+	Info_AddChoice(CH_Overlay,"Спринтер",CH_Overlay_Sprint);
 	Info_AddChoice(CH_Overlay,"Стандарт",CH_Overlay_Clear);
 };
 
@@ -4013,48 +4021,63 @@ func void CH_Overlay_BACK()
 
 func void CH_Overlay_Babe()
 {
+	B_ClearHeroOverlays();
 	Mdl_ApplyOverlayMds(other,"Humans_Babe.mds");
 	Info_ClearChoices(CH_Overlay);
 };
 
 func void CH_Overlay_Mage()
 {
+	B_ClearHeroOverlays();
 	Mdl_ApplyOverlayMds(other,"Humans_Mage.mds");
 	Info_ClearChoices(CH_Overlay);
 };
 
 func void CH_Overlay_Militia()
 {
+	B_ClearHeroOverlays();
 	Mdl_ApplyOverlayMds(other,"Humans_Militia.mds");
 	Info_ClearChoices(CH_Overlay);
 };
 
 func void CH_Overlay_Arrogance()
 {
+	B_ClearHeroOverlays();
 	Mdl_ApplyOverlayMds(other,"Humans_Arrogance.mds");
 	Info_ClearChoices(CH_Overlay);
 };
 
 func void CH_Overlay_Relaxed()
 {
+	B_ClearHeroOverlays();
 	Mdl_ApplyOverlayMds(other,"Humans_Relaxed.mds");
 	Info_ClearChoices(CH_Overlay);
 };
 
 func void CH_Overlay_Tired()
 {
+	B_ClearHeroOverlays();
 	Mdl_ApplyOverlayMds(other,"Humans_Tired.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Drunken()
+{
+	B_ClearHeroOverlays();
+	Mdl_ApplyOverlayMds(other,"Humans_Drunken.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Sprint()
+{
+	B_ClearHeroOverlays();
+	Mdl_ApplyOverlayMds(other,"Humans_Sprint.mds");
 	Info_ClearChoices(CH_Overlay);
 };
 
 func void CH_Overlay_Clear()
 {
-	Mdl_RemoveOverlayMDS(other,"Humans_Arrogance.mds");
-	Mdl_RemoveOverlayMDS(other,"Humans_Babe.mds");
-	Mdl_RemoveOverlayMDS(other,"Humans_Mage.mds");
-	Mdl_RemoveOverlayMDS(other,"Humans_Militia.mds");
-	Mdl_RemoveOverlayMDS(other,"Humans_Relaxed.mds");
-	Mdl_RemoveOverlayMDS(other,"Humans_Tired.mds");
+	B_ClearHeroOverlays();
 	Info_ClearChoices(CH_Overlay);
 };
 
