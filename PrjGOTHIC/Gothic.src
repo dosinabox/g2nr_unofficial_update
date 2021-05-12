@@ -1687,6 +1687,7 @@ Story\Dialoge\DIA_OrcElite_AntiPaladin1.d
 Story\Dialoge\DIA_PAL_220_Schiffswache.d
 Story\B_AssignAmbientInfos\B_Urshak.d
 Story\B_AssignAmbientInfos\B_Video.d
+Story\B_Story\B_DragonHeal.d
 AI\Monster\C_Monster\C_NpcIsMonsterMage.d
 AI\Monster\C_Monster\C_PredatorFoundPrey.d
 AI\Monster\C_Monster\C_WantToEat.d

@@ -172,10 +172,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Salandril.aivar[AIV_ToughGuy] = TRUE;
 		};
 		Cornelius.flags = 0;
-		if(!Npc_HasItems(Cornelius,ItWr_CorneliusTagebuch_Mis))
-		{
-			CreateInvItems(Cornelius,ItWr_CorneliusTagebuch_Mis,1);
-		};
+		CreateInvItems(Cornelius,ItWr_CorneliusTagebuch_Mis,1);
 		if(!Npc_IsDead(Hodges))
 		{
 			Hodges_isAlive_Kap3 = TRUE;

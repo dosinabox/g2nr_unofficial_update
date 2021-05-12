@@ -398,7 +398,7 @@ func void UseItPo_PotionOfDeath()
 		PrintScreen(PRINT_LearnSTR5,-1,43,FONT_Screen,2);
 		PrintScreen(PRINT_LearnDEX5,-1,48,FONT_Screen,2);
 		PrintScreen(PRINT_FullyHealed,-1,53,FONT_Screen,2);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_SPRINT.MDS",Time_Speed);
+		Mdl_ApplyOverlayMdsTimed(self,"Humans_Sprint.mds",Time_Speed);
 	}
 	else
 	{

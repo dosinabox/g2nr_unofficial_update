@@ -311,6 +311,7 @@ func void B_ClearHeroOverlays()
 	Mdl_RemoveOverlayMDS(hero,"Humans_Relaxed.mds");
 	Mdl_RemoveOverlayMDS(hero,"Humans_Tired.mds");
 	Mdl_RemoveOverlayMDS(hero,"Humans_Drunken.mds");
+	Mdl_RemoveOverlayMDS(hero,"Humans_Sprint.mds");
 };
 
 instance CH_Exit(C_Info)

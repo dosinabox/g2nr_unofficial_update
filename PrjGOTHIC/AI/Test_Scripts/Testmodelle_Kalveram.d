@@ -599,6 +599,9 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ItAm_Addon_Health);
 	CreateInvItem(self,ItAm_Addon_MANA);
 	CreateInvItem(self,ItAm_Addon_STR);
+	CreateInvItem(self,ItAm_Hp_Regen);
+	CreateInvItem(self,ItAm_Mana_Regen);
+	CreateInvItem(self,ItAm_Fall);
 	CreateInvItem(self,ItRi_Dex_01);
 	CreateInvItem(self,ItRi_Dex_02);
 	CreateInvItem(self,ItRi_HP_01);

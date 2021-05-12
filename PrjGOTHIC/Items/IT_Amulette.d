@@ -428,7 +428,7 @@ instance ItAm_Hp_Regen(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет заживления";
-	text[2] = "Восстановление здоровья.";
+	text[2] = "Регенерация здоровья.";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
@@ -437,12 +437,18 @@ instance ItAm_Hp_Regen(C_Item)
 
 func void Equip_ItAm_Hp_Regen()
 {
-	self.attribute[ATR_REGENERATEHP] = 1;
+	if(self.attribute[ATR_REGENERATEHP] == 0)
+	{
+		self.attribute[ATR_REGENERATEHP] = 3;
+	};
 };
 
 func void UnEquip_ItAm_Hp_Regen()
 {
-	self.attribute[ATR_REGENERATEHP] = 0;
+	if(self.attribute[ATR_REGENERATEHP] == 3)
+	{
+		self.attribute[ATR_REGENERATEHP] = 0;
+	};
 };
 
 
@@ -460,7 +466,7 @@ instance ItAm_Mana_Regen(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет медитации";
-	text[2] = "Восстановление маны.";
+	text[2] = "Регенерация маны.";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
@@ -469,12 +475,18 @@ instance ItAm_Mana_Regen(C_Item)
 
 func void Equip_ItAm_Mana_Regen()
 {
-	self.attribute[ATR_REGENERATEMANA] = 1;
+	if(self.attribute[ATR_REGENERATEMANA] == 0)
+	{
+		self.attribute[ATR_REGENERATEMANA] = 3;
+	};
 };
 
 func void UnEquip_ItAm_Mana_Regen()
 {
-	self.attribute[ATR_REGENERATEMANA] = 0;
+	if(self.attribute[ATR_REGENERATEMANA] == 3)
+	{
+		self.attribute[ATR_REGENERATEMANA] = 0;
+	};
 };
 
 

@@ -147,6 +147,13 @@ func void DIA_Mil_325_Miliz_Attack_Info()
 };
 
 
+func void B_Mil_325_Storage_Pass()
+{
+	AI_Output(self,other,"DIA_Mil_325_Miliz_Pass_Yes_12_01");	//Хорошо, ты можешь войти!
+	self.aivar[AIV_PASSGATE] = TRUE;
+	AI_StopProcessInfos(self);
+};
+
 instance DIA_Mil_325_Miliz_Pass(C_Info)
 {
 	npc = MIL_325_Miliz;
@@ -178,17 +185,13 @@ func void DIA_Mil_325_Miliz_Pass_Info()
 func void DIA_Mil_325_Miliz_Pass_Yes()
 {
 	AI_Output(other,self,"DIA_Mil_325_Miliz_Pass_Yes_15_00");	//Конечно.
-	AI_Output(self,other,"DIA_Mil_325_Miliz_Pass_Yes_12_01");	//Хорошо, ты можешь войти!
-	self.aivar[AIV_PASSGATE] = TRUE;
-	Info_ClearChoices(DIA_Mil_325_Miliz_Pass);
-	AI_StopProcessInfos(self);
+	B_Mil_325_Storage_Pass();
 };
 
 func void DIA_Mil_325_Miliz_Pass_No()
 {
 	AI_Output(other,self,"DIA_Mil_325_Miliz_Pass_No_15_00");	//Нет.
 	AI_Output(self,other,"DIA_Mil_325_Miliz_Pass_No_12_01");	//Тогда убирайся отсюда.
-	Info_ClearChoices(DIA_Mil_325_Miliz_Pass);
 	AI_StopProcessInfos(self);
 };
 
@@ -215,9 +218,7 @@ func int DIA_Mil_325_Miliz_PassAsMage_Condition()
 func void DIA_Mil_325_Miliz_PassAsMage_Info()
 {
 	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsMage_15_00");	//Я маг Огня.
-	AI_Output(self,other,"DIA_Mil_325_Miliz_Pass_Yes_12_01");	//Хорошо, ты можешь войти!
-	self.aivar[AIV_PASSGATE] = TRUE;
-	AI_StopProcessInfos(self);
+	B_Mil_325_Storage_Pass();
 };
 
 
