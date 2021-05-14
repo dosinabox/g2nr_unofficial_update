@@ -563,13 +563,12 @@ func void DIA_Cassia_BevorLernen_Pickpocket()
 	{
 		AI_Output(self,other,"DIA_Cassia_BevorLernen_Pickpocket_16_01");	//ћы можем начать, когда ты будешь готов.
 		Cassia_TeachPickpocket = TRUE;
-		Info_ClearChoices(DIA_Cassia_BevorLernen);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Cassia_BevorLernen_Pickpocket_16_02");	//¬озвращайс€, когда у теб€ будет золото.
-		Info_ClearChoices(DIA_Cassia_BevorLernen);
 	};
+	Info_ClearChoices(DIA_Cassia_BevorLernen);
 };
 
 

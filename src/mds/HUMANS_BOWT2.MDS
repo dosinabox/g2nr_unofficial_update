@@ -1,0 +1,90 @@
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// HUMAN OVERLAY	BOGENSCHIESSEN TALENT 2
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Model ("HuS")
+{
+
+
+	meshAndTree ("Hum_Body_Naked0.ASC" DONT_USE_MESH)
+
+	aniEnum
+	{
+		modelTag	("DEF_HIT_LIMB"		"zs_RightHand")
+
+
+	// BOW
+		ani			("t_Run_2_Bow"			1	"s_Bow"			0.1 0.0 M.	"Hum_BowDrawT2_GMF.asc"		F	1	5)
+		ani			("s_Bow"				1	"s_Bow"			0.0 0.0 M.	"Hum_BowDrawT2_GMF.asc"		F	6	6)
+		ani			("t_Bow_2_BowRun"		1	"s_BowRun"		0.0 0.1 M.	"Hum_BowDrawT2_GMF.asc"		F   7	15)
+		{
+			*eventTag			(7	"DEF_FIGHTMODE"  		"BOW")
+			*eventSFX			(7	"Bow_DrawSound"			R:800)
+			*eventTag			(9	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
+		}
+		
+		ani			("t_BowRun_2_Bow"		1	"s_Bow"			0.0 0.1 M.	"Hum_BowDrawT2_GMF.asc"		R	7	15)
+		{
+			*eventTag			(7	"DEF_FIGHTMODE" 		"")
+			*eventMMStartAni	(8	"S_NORMAL"				"ZS_LEFTHAND")
+			*eventSFX			(9	"Bow_UndrawSound"		R:800)
+			*eventTag			(10	"DEF_REMOVE_MUNITION")
+		}				
+		aniAlias	("t_Bow_2_Run"			1	""				0.0 0.1 M.	"t_Run_2_Bow"				R)
+		
+		ani			("s_BowRun"				1	"s_BowRun"		0.1 0.1 M.	"Hum_Amb_BowRun_GMF.asc"	F	1	60)
+
+//////////////////////////
+// BOW FIGHTING
+//////////////////////////
+		ani			("t_BowRun_2_BowAim"		1	"s_BowAim"		0.0 0.0 M.	"Hum_BowAimT2_GMF.asc"	F	1	12)
+		{
+			*eventMMStartAni	(2	"S_SHOOT"		"ZS_LEFTHAND")
+			*eventSFX			(3	"Bow_Charge"	R:800)
+			*eventMMStartAni	(10	"S_READY"		"ZS_LEFTHAND")
+		}
+			
+		aniAlias	("t_BowWalk_2_BowAim"		1	"s_BowAim"		0.0 0.0 M.	"t_BowRun_2_BowAim"		F)
+// Seitenwinkel: +/- 30°	Höhenwinkel: +/- 45°
+		ani			("c_bow_1"					4	""				0.0	0.0	..	"Hum_BowAutoAimT2_GMF.asc"	F	0	0)
+		ani			("c_bow_2"					4	""				0.0	0.0	..	"Hum_BowAutoAimT2_GMF.asc"	F	1	1)
+		ani			("c_bow_3"					4	""				0.0	0.0	..	"Hum_BowAutoAimT2_GMF.asc"	F	2	2)
+		ani			("c_bow_4"					4	""				0.0	0.0	..	"Hum_BowAutoAimT2_GMF.asc"	F	3	3)
+		ani			("c_bow_5"					4	""				0.0	0.0	..	"Hum_BowAutoAimT2_GMF.asc"	F	4	4)
+		ani			("c_bow_6"					4	""				0.0	0.0	..	"Hum_BowAutoAimT2_GMF.asc"	F	5	5)
+		ani			("c_bow_7"					4	""				0.0	0.0	..	"Hum_BowAutoAimT2_GMF.asc"	F	6	6)
+		ani			("c_bow_8"					4	""				0.0	0.0	..	"Hum_BowAutoAimT2_GMF.asc"	F	7	7)
+		ani			("c_bow_9"					4	""				0.0	0.0	..	"Hum_BowAutoAimT2_GMF.asc"	F	8	8)
+		aniComb		("s_BowAim"					1	"s_BowAim"		0.0	0.0	M.	"c_bow_"	9)
+			
+// Shoot + Reload
+		aniBlend	("t_BowAim_2_BowShoot"			"s_BowShoot")
+			
+		ani			("s_BowShoot"				1	"s_BowShoot"	0.0 0.0 M.	"Hum_BowAimT2_GMF.asc"	F	12	12)
+		ani			("t_BowReload"				1	"s_BowAim"		0.0 0.0 M.	"Hum_BowAimT2_GMF.asc"	F	13	35)
+		{
+			*eventSFX			(13	"BowShoot"				R:1000)
+			*eventMMStartAni	(13	"S_RELAX"				"ZS_LEFTHAND")
+			*eventTag			(20	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
+			*eventSFX			(30	"Bow_Charge" 			R:800)
+			*eventMMStartAni 	(34	"S_READY"				"ZS_LEFTHAND")
+		}
+			
+		ani			("t_BowAim_2_BowRun"		1	""				0.0 0.0 M.	"Hum_BowAimT2_GMF.asc"	R	1	11)
+		{
+			*eventMMStartAni	(11	"S_NORMAL"		"ZS_LEFTHAND")
+			*eventSFX			(11	"Bow_Refuse"	R:800)
+		}
+		aniAlias	("t_BowAim_2_BowWalk"		1	""				0.0	0.0	M.	"t_BowAim_2_BowRun"		R)
+			
+		ani			("t_BowFakeShoot"			1	"s_BowAim"		0.0 0.0 M.	"Hum_BowAimT2_GMF.asc"	F	13	35)
+		{
+			*eventMMStartAni	(13	"S_RELAX"				"ZS_LEFTHAND")
+			*eventSFX			(13	"BowShoot" 				R:1000)
+			*eventTag			(20	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
+			*eventSFX			(25	"Bow_Charge" 			R:800)
+			*eventMMStartAni	(34	"S_READY"				"ZS_LEFTHAND")
+		}
+	}
+}

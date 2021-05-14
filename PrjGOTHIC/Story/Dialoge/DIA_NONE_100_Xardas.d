@@ -52,7 +52,7 @@ func int DIA_Xardas_EXIT_Condition()
 
 func void DIA_Xardas_EXIT_Info()
 {
-	if((other.guild == GIL_NONE) && (other.level >= 15) && (Xardas_GoodLevelComment == FALSE))
+	if((other.guild == GIL_NONE) && (other.level > 10) && (Xardas_GoodLevelComment == FALSE))
 	{
 		AI_Output(self,other,"DIA_Xardas_Hello_14_02_add");	//Ты скоро восстановишь свои силы.
 		Xardas_GoodLevelComment = TRUE;

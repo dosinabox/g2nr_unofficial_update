@@ -821,37 +821,37 @@ Model ("HuS")
 
 
 	// BOW
-			ani			("t_Run_2_Bow"			1	"s_Bow"			0.0 0.0 M.	"Hum_BowDraw.asc"		F	1	5)
-			ani			("s_Bow"				1	"s_Bow"			0.0 0.0 M.	"Hum_BowDraw.asc"		F	6	6)
-			ani			("t_Bow_2_BowRun"		1	"s_BowRun"		0.0 0.0 M.	"Hum_BowDraw.asc"		F   7	19)
-			{
-				*eventTag		(7	"DEF_FIGHTMODE"  "BOW")
-				*eventSFX		(7	"Bow_DrawSound")
-		        	*eventTag		(9	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
-			}
+	//		ani			("t_Run_2_Bow"			1	"s_Bow"			0.0 0.0 M.	"Hum_BowDraw.asc"		F	1	5)
+	//		ani			("s_Bow"				1	"s_Bow"			0.0 0.0 M.	"Hum_BowDraw.asc"		F	6	6)
+	//		ani			("t_Bow_2_BowRun"		1	"s_BowRun"		0.0 0.0 M.	"Hum_BowDraw.asc"		F   7	19)
+	//		{
+	//			*eventTag		(7	"DEF_FIGHTMODE"  "BOW")
+	//			*eventSFX		(7	"Bow_DrawSound")
+	//	        	*eventTag		(9	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
+	//		}
 
-			ani			("t_BowRun_2_Bow"		1	"s_Bow"			0.0 0.0 M.	"Hum_BowDraw.asc"		R	7	19)
-			{
-				*eventTag		(7	"DEF_FIGHTMODE"  "")
-				*eventMMStartAni  (9	"S_NORMAL"	"ZS_LEFTHAND")
-				*eventSFX		(12	"Bow_UndrawSound")
-			      *eventTag		(19	"DEF_REMOVE_MUNITION")
-			}
-			aniAlias	("t_Bow_2_Run"			1	""				0.0 0.1 M.	"t_Run_2_Bow"			R)
+	//		ani			("t_BowRun_2_Bow"		1	"s_Bow"			0.0 0.0 M.	"Hum_BowDraw.asc"		R	7	19)
+	//		{
+	//			*eventTag		(7	"DEF_FIGHTMODE"  "")
+	//			*eventMMStartAni  (9	"S_NORMAL"	"ZS_LEFTHAND")
+	//			*eventSFX		(12	"Bow_UndrawSound")
+	//		      *eventTag		(19	"DEF_REMOVE_MUNITION")
+	//		}
+	//		aniAlias	("t_Bow_2_Run"			1	""				0.0 0.1 M.	"t_Run_2_Bow"			R)
 
 		// Bogen beim Rennen ziehen
-			ani			("t_Move_2_BowMove"		2	""				0.2	0.2	M.	"Hum_BowDrawMove.asc"	F	1	19)
-			{
-				*eventTag		(7	"DEF_FIGHTMODE"  "BOW")
-				*eventSFX		(7	"Bow_DrawSound")
-		        	*eventTag		(9	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
-			}
-			ani			("t_BowMove_2_Move"		2	""				0.2	0.2	M.	"Hum_BowDrawMove.asc"	R	1	19)
-			{
-				*eventTag		(7	"DEF_FIGHTMODE"  "")
-				*eventSFX		(12	"Bow_UndrawSound")
-		        	*eventTag		(19	"DEF_REMOVE_MUNITION")
-			}
+	//		ani			("t_Move_2_BowMove"		2	""				0.2	0.2	M.	"Hum_BowDrawMove.asc"	F	1	19)
+	//		{
+	//			*eventTag		(7	"DEF_FIGHTMODE"  "BOW")
+	//			*eventSFX		(7	"Bow_DrawSound")
+	//	        	*eventTag		(9	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
+	//		}
+	//		ani			("t_BowMove_2_Move"		2	""				0.2	0.2	M.	"Hum_BowDrawMove.asc"	R	1	19)
+	//		{
+	//			*eventTag		(7	"DEF_FIGHTMODE"  "")
+	//			*eventSFX		(12	"Bow_UndrawSound")
+	//	        	*eventTag		(19	"DEF_REMOVE_MUNITION")
+	//		}
 
 
 	// CROSSBOW
@@ -1147,9 +1147,9 @@ Model ("HuS")
 
 			aniBlend	("t_MagWalkBL_2_MagWalk"		"s_MagWalk"		0.2	0.2)
 			aniBlend	("t_MagWalkBR_2_MagWalk"		"s_MagWalk"		0.2	0.2)
-			{
-				*eventSFXGrnd	(22	"Run")
-			}
+	//		{
+	//			*eventSFXGrnd	(22	"Run")
+	//		}
 
 //	Mag-SNEAK
 			aniAlias	("s_MagSneak"				1	"s_MagSneak"	0.3	0.3	MI	"s_Sneak"				F)
@@ -1597,7 +1597,8 @@ Model ("HuS")
 				*eventSFXGrnd	(9	"Run")
 			}
 
-			aniAlias	("t_1hWalkStrafeL"			1	"t_1hWalkStrafeL"	0.1	0.1	M.	"t_1hRunStrafeR"		R)
+	//		aniAlias	("t_1hWalkStrafeL"			1	"t_1hWalkStrafeL"	0.1	0.1	M.	"t_1hRunStrafeR"		R)
+			aniAlias	("t_1hWalkStrafeL"			1	"t_1hWalkStrafeL"	0.1	0.1	M.	"t_1hRunStrafeL"		F)
 			aniAlias	("t_1hWalkStrafeR"			1	"t_1hWalkStrafeR"	0.1	0.1	M.	"t_1hRunStrafeR"		F)
 
 			ani			("t_1hSneakStrafeL"			1	"t_1hSneakStrafeL"	0.1	0.1	M.	"Hum_1hSneakStrafeLR_A01.asc"	F	1	20)
@@ -1839,7 +1840,8 @@ Model ("HuS")
 			}
 
 			aniAlias	("t_2hWalkStrafeL"			1	"t_2hWalkStrafeL"	0.1	0.1	M.	"t_2hRunStrafeL"		F)
-			aniAlias	("t_2hWalkStrafeR"			1	"t_2hWalkStrafeR"	0.1	0.1	M.	"t_2hRunStrafeL"		R)
+	//		aniAlias	("t_2hWalkStrafeR"			1	"t_2hWalkStrafeR"	0.1	0.1	M.	"t_2hRunStrafeL"		R)
+			aniAlias	("t_2hWalkStrafeR"			1	"t_2hWalkStrafeR"	0.1	0.1	M.	"t_2hRunStrafeR"		F)
 
 			ani			("t_2hSneakStrafeL"			1	"t_2hSneakStrafeL"	0.1	0.1	M.	"Hum_2hSneakStrafe_A01.asc"	F	1	20)
 			aniAlias	("t_2hSneakStrafeR"			1	"t_2hSneakStrafeR"	0.0	0.0	M.	"t_2hSneakStrafeL"		R)
@@ -1945,179 +1947,179 @@ Model ("HuS")
 //////////////////////////
 
 //	Bow-RUN
-			ani			("s_BowRun"					1	"s_BowRun"		0.1 0.1 MI	"Hum_Amb_BowRun_M01.asc"	F	1	60	FPS:10)
-			ani			("t_BowRun_2_BowRunL"		1	"s_BowRunL"		0.0	0.0	M.	"Hum_BowRun.asc"			F	1	11)
-			ani			("s_BowRunL"				1	"s_BowRunL"		0.0	0.0	M.	"Hum_BowRun.asc"			F	12	31)
-			{
-				*eventSFXGrnd	(12	"Run")
-				*eventSFXGrnd	(22	"Run")
-			}
-			ani			("t_BowRunL_2_BowRun"		1	"s_BowRun"		0.0	0.0	M.	"Hum_BowRun.asc"			F	32	38)
-			{
-				*eventSFXGrnd	(32	"Run")
-				*eventSFXGrnd	(37	"Run")
-			}
-			aniBlend	("t_BowRunR_2_BowRun"			"s_BowRun"		0.2	0.2)
+	//		ani			("s_BowRun"					1	"s_BowRun"		0.1 0.1 MI	"Hum_Amb_BowRun_M01.asc"	F	1	60	FPS:10)
+	//		ani			("t_BowRun_2_BowRunL"		1	"s_BowRunL"		0.0	0.0	M.	"Hum_BowRun.asc"			F	1	11)
+	//		ani			("s_BowRunL"				1	"s_BowRunL"		0.0	0.0	M.	"Hum_BowRun.asc"			F	12	31)
+	//		{
+	//			*eventSFXGrnd	(12	"Run")
+	//			*eventSFXGrnd	(22	"Run")
+	//		}
+	//		ani			("t_BowRunL_2_BowRun"		1	"s_BowRun"		0.0	0.0	M.	"Hum_BowRun.asc"			F	32	38)
+	//		{
+	//			*eventSFXGrnd	(32	"Run")
+	//			*eventSFXGrnd	(37	"Run")
+	//		}
+	//		aniBlend	("t_BowRunR_2_BowRun"			"s_BowRun"		0.2	0.2)
 
 //	Bow-Run Backwards Movement
-			ani			("t_BowJumpB"				1	"s_BowRun"		0.1 0.1 M. 	"Hum_BowJumpB.asc"			F	1	14)
-			{
-				*eventSFXGrnd	(9	"Run")
-				*eventSFXGrnd	(12	"Run")
-			}
+	//		ani			("t_BowJumpB"				1	"s_BowRun"		0.1 0.1 M. 	"Hum_BowJumpB.asc"			F	1	14)
+	//		{
+	//			*eventSFXGrnd	(9	"Run")
+	//			*eventSFXGrnd	(12	"Run")
+	//		}
 
 //	Bow-WALK
-			aniAlias	("s_BowWalk"				1	"s_BowWalk"		0.1	0.1	MI	"s_BowRun"					F)
-			ani			("t_BowWalk_2_BowWalkL"		1	"s_BowWalkL"	0.1	0.0	M.	"Hum_BowWalk.asc"			F	1	18)
-			{
-				*eventSFXGrnd	(15	"Run")
-			}
-			ani			("s_BowWalkL"				1	"s_BowWalkL"	0.0	0.1	M.	"Hum_BowWalk.asc"			F	19	38)
-			{
-				*eventSFXGrnd	(27	"Run")
-				*eventSFXGrnd	(36	"Run")
-			}
-			ani			("t_BowWalkL_2_BowWalk"		1	"s_BowWalk"		0.0	0.1	M.	"Hum_BowWalk.asc"			F	39	49)
-			{
-				*eventSFXGrnd	(47	"Run")
-				*eventSFXGrnd	(49	"Run")
-			}
-			aniBlend	("t_BowWalkR_2_BowWalk"			"s_BowWalk"		0.2	0.2)
+	//		aniAlias	("s_BowWalk"				1	"s_BowWalk"		0.1	0.1	MI	"s_BowRun"					F)
+	//		ani			("t_BowWalk_2_BowWalkL"		1	"s_BowWalkL"	0.1	0.0	M.	"Hum_BowWalk.asc"			F	1	18)
+	//		{
+	//			*eventSFXGrnd	(15	"Run")
+	//		}
+	//		ani			("s_BowWalkL"				1	"s_BowWalkL"	0.0	0.1	M.	"Hum_BowWalk.asc"			F	19	38)
+	//		{
+	//			*eventSFXGrnd	(27	"Run")
+	//			*eventSFXGrnd	(36	"Run")
+	//		}
+	//		ani			("t_BowWalkL_2_BowWalk"		1	"s_BowWalk"		0.0	0.1	M.	"Hum_BowWalk.asc"			F	39	49)
+	//		{
+	//			*eventSFXGrnd	(47	"Run")
+	//			*eventSFXGrnd	(49	"Run")
+	//		}
+	//		aniBlend	("t_BowWalkR_2_BowWalk"			"s_BowWalk"		0.2	0.2)
 
 //	Bow-Walk Backwards Movement
-			aniAlias	("t_BowWalk_2_BowWalkBL"	1	"s_BowWalkBL"	0.0	0.0	M.	"t_BowWalkL_2_BowWalk"		R)
-			aniAlias	("s_BowWalkBL"				1	"s_BowWalkBL"	0.0	0.1	M.	"s_BowWalkL"				R)
-			aniAlias	("t_BowWalkBL_2_BowWalk"	1	"s_BowWalk"		0.0	0.0	M.	"t_BowWalk_2_BowWalkL"		R)
-			aniBlend	("t_BowWalkBR_2_BowWalk"		"s_BowWalk"		0.2	0.2)
+	//		aniAlias	("t_BowWalk_2_BowWalkBL"	1	"s_BowWalkBL"	0.0	0.0	M.	"t_BowWalkL_2_BowWalk"		R)
+	//		aniAlias	("s_BowWalkBL"				1	"s_BowWalkBL"	0.0	0.1	M.	"s_BowWalkL"				R)
+	//		aniAlias	("t_BowWalkBL_2_BowWalk"	1	"s_BowWalk"		0.0	0.0	M.	"t_BowWalk_2_BowWalkL"		R)
+	//		aniBlend	("t_BowWalkBR_2_BowWalk"		"s_BowWalk"		0.2	0.2)
 
 
 //	Bow-SNEAK
-			ani			("s_BowSneak"				1	"s_BowSneak"	0.1	0.1	MI	"Hum_Amb_BowSneak_M01.asc"	F	1	50	FPS:10)
-			ani			("t_BowSneak_2_BowSneakL"	1	"s_BowSneakL"	0.0	0.0	M.	"Hum_BowSneak.asc"			F	11	21)
+	//		ani			("s_BowSneak"				1	"s_BowSneak"	0.1	0.1	MI	"Hum_Amb_BowSneak_M01.asc"	F	1	50	FPS:10)
+	//		ani			("t_BowSneak_2_BowSneakL"	1	"s_BowSneakL"	0.0	0.0	M.	"Hum_BowSneak.asc"			F	11	21)
 
 //	Bow-Sneak-Loop
-			ani			("s_BowSneakL"				1	"s_BowSneakL"	0.0	0.0	M.	"Hum_BowSneak.asc"			F	22	61)
-			ani			("t_BowSneakL_2_BowSneak"	1	"s_BowSneak"	0.0	0.1	M.	"Hum_BowSneak.asc"			F	62	98 FPS:10)
-			aniBlend	("t_BowSneakR_2_BowSneak"		"s_BowSneak"	0.2	0.2)
+	//		ani			("s_BowSneakL"				1	"s_BowSneakL"	0.0	0.0	M.	"Hum_BowSneak.asc"			F	22	61)
+	//		ani			("t_BowSneakL_2_BowSneak"	1	"s_BowSneak"	0.0	0.1	M.	"Hum_BowSneak.asc"			F	62	98 FPS:10)
+	//		aniBlend	("t_BowSneakR_2_BowSneak"		"s_BowSneak"	0.2	0.2)
 
 //	Bow-Sneak Backwards Movement
-			aniAlias	("t_BowSneak_2_BowSneakBL"	1	"s_BowSneakBL"	0.0	0.0	M.	"t_BowSneakL_2_BowSneak"	R)
-			aniAlias	("s_BowSneakBL"				1	"s_BowSneakBL"	0.0	0.0	M.	"s_BowSneakL"				R)
-			aniAlias	("t_BowSneakBL_2_BowSneak"	1	"s_BowSneak"	0.0	0.0	M.	"t_BowSneak_2_BowSneakL"	R)
-			aniBlend	("t_BowSneakBR_2_BowSneak"		"s_BowSneak"	0.2	0.2)
+	//		aniAlias	("t_BowSneak_2_BowSneakBL"	1	"s_BowSneakBL"	0.0	0.0	M.	"t_BowSneakL_2_BowSneak"	R)
+	//		aniAlias	("s_BowSneakBL"				1	"s_BowSneakBL"	0.0	0.0	M.	"s_BowSneakL"				R)
+	//		aniAlias	("t_BowSneakBL_2_BowSneak"	1	"s_BowSneak"	0.0	0.0	M.	"t_BowSneak_2_BowSneakL"	R)
+	//		aniBlend	("t_BowSneakBR_2_BowSneak"		"s_BowSneak"	0.2	0.2)
 
 
 //////////////////////////
 // BOW TURNING
 //////////////////////////
-			ani			("t_BowRunTurnL"			20	"t_BowRunTurnL"		0.1	0.1	M.	"Hum_BowTurn.asc"		F	0	24)
-			{
-				*eventSFXGrnd	(8	"Run")
-				*eventSFXGrnd	(19	"Run")
-			}
-			ani			("t_BowRunTurnR"			20	"t_BowRunTurnR"		0.1	0.1	M.	"Hum_BowTurn.asc"		F	25	49)
-			{
-				*eventSFXGrnd	(30	"Run")
-				*eventSFXGrnd	(41	"Run")
-			}
+	//		ani			("t_BowRunTurnL"			20	"t_BowRunTurnL"		0.1	0.1	M.	"Hum_BowTurn.asc"		F	0	24)
+	//		{
+	//			*eventSFXGrnd	(8	"Run")
+	//			*eventSFXGrnd	(19	"Run")
+	//		}
+	//		ani			("t_BowRunTurnR"			20	"t_BowRunTurnR"		0.1	0.1	M.	"Hum_BowTurn.asc"		F	25	49)
+	//		{
+	//			*eventSFXGrnd	(30	"Run")
+	//			*eventSFXGrnd	(41	"Run")
+	//		}
 
-			aniAlias	("t_BowWalkTurnL"			20	"t_BowWalkTurnL"	0.1	0.1	M.	"t_BowRunTurnL"			F)
-			aniAlias	("t_BowWalkTurnR"			20	"t_BowWalkTurnR"	0.1	0.1	M.	"t_BowRunTurnR"			F)
+	//		aniAlias	("t_BowWalkTurnL"			20	"t_BowWalkTurnL"	0.1	0.1	M.	"t_BowRunTurnL"			F)
+	//		aniAlias	("t_BowWalkTurnR"			20	"t_BowWalkTurnR"	0.1	0.1	M.	"t_BowRunTurnR"			F)
 
-			ani			("t_BowSneakTurnL"			20	"t_BowSneakTurnL"	0.1	0.1	M.	"Hum_BowSneakTurn.asc"	F	0	24)
-			ani			("t_BowSneakTurnR"			20	"t_BowSneakTurnR"	0.1	0.1	M.	"Hum_BowSneakTurn.asc"	F	25	49)
+	//		ani			("t_BowSneakTurnL"			20	"t_BowSneakTurnL"	0.1	0.1	M.	"Hum_BowSneakTurn.asc"	F	0	24)
+	//		ani			("t_BowSneakTurnR"			20	"t_BowSneakTurnR"	0.1	0.1	M.	"Hum_BowSneakTurn.asc"	F	25	49)
 
 
 //////////////////////////
 // BOW STRAFING
 //////////////////////////
-			ani			("t_BowRunStrafeL"			1	"t_BowRunStrafeL"	0.1	0.1	M.	"Hum_BowStrafeL_M01.asc"	F	0	18)
-			{
-				*eventSFXGrnd	(0	"Run")
-				*eventSFXGrnd	(9	"Run")
-			}
-			ani			("t_BowRunStrafeR"			1	"t_BowRunStrafeR"	0.1	0.1	M.	"Hum_BowStrafeR_M01.asc"	F	0	18)
-			{
-				*eventSFXGrnd	(0	"Run")
-				*eventSFXGrnd	(9	"Run")
-			}
+	//		ani			("t_BowRunStrafeL"			1	"t_BowRunStrafeL"	0.1	0.1	M.	"Hum_BowStrafeL_M01.asc"	F	0	18)
+	//		{
+	//			*eventSFXGrnd	(0	"Run")
+	//			*eventSFXGrnd	(9	"Run")
+	//		}
+	//		ani			("t_BowRunStrafeR"			1	"t_BowRunStrafeR"	0.1	0.1	M.	"Hum_BowStrafeR_M01.asc"	F	0	18)
+	//		{
+	//			*eventSFXGrnd	(0	"Run")
+	//			*eventSFXGrnd	(9	"Run")
+	//		}
 
-			aniAlias	("t_BowWalkStrafeL"			1	"t_BowWalkStrafeL"	0.1	0.1	M.	"t_BowRunStrafeL"			F)
-			aniAlias	("t_BowWalkStrafeR"			1	"t_BowWalkStrafeR"	0.1	0.1	M.	"t_BowRunStrafeR"			F)
+	//		aniAlias	("t_BowWalkStrafeL"			1	"t_BowWalkStrafeL"	0.1	0.1	M.	"t_BowRunStrafeL"			F)
+	//		aniAlias	("t_BowWalkStrafeR"			1	"t_BowWalkStrafeR"	0.1	0.1	M.	"t_BowRunStrafeR"			F)
 
-			ani			("t_BowSneakStrafeL"		1	"s_BowSneak"		0.1	0.1	M.	"Hum_BowSneakStrafe.asc"	F	1	19)
-			aniAlias	("t_BowSneakStrafeR"		1	"s_BowSneak"		0.1	0.1	M.	"t_BowSneakStrafeL"			R)
+	//		ani			("t_BowSneakStrafeL"		1	"s_BowSneak"		0.1	0.1	M.	"Hum_BowSneakStrafe.asc"	F	1	19)
+	//		aniAlias	("t_BowSneakStrafeR"		1	"s_BowSneak"		0.1	0.1	M.	"t_BowSneakStrafeL"			R)
 
 
 //////////////////////////
 // BOW TRANSITIONS
 //////////////////////////
 //	Movement-Modes
-			aniBlend	("t_BowRun_2_BowWalk"			"s_BowWalk"		0.2	0.2)
-			aniBlend	("t_BowWalk_2_BowRun"			"s_BowRun"		0.2	0.2)
+	//		aniBlend	("t_BowRun_2_BowWalk"			"s_BowWalk"		0.2	0.2)
+	//		aniBlend	("t_BowWalk_2_BowRun"			"s_BowRun"		0.2	0.2)
 
-			ani			("t_BowRun_2_BowSneak"		1	"s_BowSneak"	0.0	0.0	M.	"Hum_BowSneak.asc"		F	1	9)
-			aniAlias	("t_BowSneak_2_BowRun"		1	"s_BowRun"		0.0	0.0	M.	"t_BowRun_2_BowSneak"	R)
+	//		ani			("t_BowRun_2_BowSneak"		1	"s_BowSneak"	0.0	0.0	M.	"Hum_BowSneak.asc"		F	1	9)
+	//		aniAlias	("t_BowSneak_2_BowRun"		1	"s_BowRun"		0.0	0.0	M.	"t_BowRun_2_BowSneak"	R)
 
-			aniBlend	("t_BowRunL_2_BowWalkL"			"s_BowWalkL"	0.2	0.2)
-			aniBlend	("t_BowWalkL_2_BowRunL"			"s_BowRunL"		0.2	0.2)
+	//		aniBlend	("t_BowRunL_2_BowWalkL"			"s_BowWalkL"	0.2	0.2)
+	//		aniBlend	("t_BowWalkL_2_BowRunL"			"s_BowRunL"		0.2	0.2)
 
-			aniBlend	("t_BowSneakL_2_BowRunL"		"s_BowRunL"		0.2	0.2)
-			aniBlend	("t_BowRunL_2_BowSneakL"		"s_BowSneakL"	0.2	0.2)
+	//		aniBlend	("t_BowSneakL_2_BowRunL"		"s_BowRunL"		0.2	0.2)
+	//		aniBlend	("t_BowRunL_2_BowSneakL"		"s_BowSneakL"	0.2	0.2)
 
-			aniBlend	("t_BowSneak_2_BowWalk"			"s_BowWalk"		0.2	0.2)
-			aniBlend	("t_BowWalk_2_BowSneak"			"s_BowSneak"	0.2	0.2)
+	//		aniBlend	("t_BowSneak_2_BowWalk"			"s_BowWalk"		0.2	0.2)
+	//		aniBlend	("t_BowWalk_2_BowSneak"			"s_BowSneak"	0.2	0.2)
 
 //	aus dem Rennen direkt Springen
-			aniAlias	("t_BowRunL_2_Jump"			1	"s_Jump"		0.1	0.1	MF	"t_RunL_2_Jump"			F)
-			aniAlias	("t_BowRunR_2_Jump"			1	"s_Jump"		0.1	0.1	MF	"t_RunL_2_Jump"			F)
+	//		aniAlias	("t_BowRunL_2_Jump"			1	"s_Jump"		0.1	0.1	MF	"t_RunL_2_Jump"			F)
+	//		aniAlias	("t_BowRunR_2_Jump"			1	"s_Jump"		0.1	0.1	MF	"t_RunL_2_Jump"			F)
 //	nach dem Sprung direkt weiterrennen, wenn CursorUp weiterhin gedrückt
-			aniBlend	("t_Jump_2_BowRunL"				"s_BowRunL"		0.2	0.1)
+	//		aniBlend	("t_Jump_2_BowRunL"				"s_BowRunL"		0.2	0.1)
 
 
 //////////////////////////
 // BOW FIGHTING
 //////////////////////////
-			ani			("t_BowRun_2_BowAim"		1	"s_BowAim"		0.0 0.0 M.	"Hum_BowAim.asc"		F	1	11)
-			{
-				*eventMMStartAni	(1	"S_SHOOT"	"ZS_LEFTHAND")
-				*eventSFX		(3	"Bow_Charge")
-				*eventMMStartAni	(10	"S_READY"	"ZS_LEFTHAND")
-			}
-			aniAlias	("t_BowWalk_2_BowAim"		1	"s_BowAim"		0.0 0.0 M.	"t_BowRun_2_BowAim"		F)
+	//		ani			("t_BowRun_2_BowAim"		1	"s_BowAim"		0.0 0.0 M.	"Hum_BowAim.asc"		F	1	11)
+	//		{
+	//			*eventMMStartAni	(1	"S_SHOOT"	"ZS_LEFTHAND")
+	//			*eventSFX		(3	"Bow_Charge")
+	//			*eventMMStartAni	(10	"S_READY"	"ZS_LEFTHAND")
+	//		}
+	//		aniAlias	("t_BowWalk_2_BowAim"		1	"s_BowAim"		0.0 0.0 M.	"t_BowRun_2_BowAim"		F)
 // Seitenwinkel: +/- 30°	Höhenwinkel: +/- 45°
-			ani			("c_bow_1"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	0	0)
-			ani			("c_bow_2"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	1	1)
-			ani			("c_bow_3"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	2	2)
-			ani			("c_bow_4"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	3	3)
-			ani			("c_bow_5"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	4	4)
-			ani			("c_bow_6"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	5	5)
-			ani			("c_bow_7"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	6	6)
-			ani			("c_bow_8"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	7	7)
-			ani			("c_bow_9"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	8	8)
-			aniComb		("s_BowAim"					1	"s_BowAim"		0.0	0.0	M.	"c_bow_"	9)
+	//		ani			("c_bow_1"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	0	0)
+	//		ani			("c_bow_2"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	1	1)
+	//		ani			("c_bow_3"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	2	2)
+	//		ani			("c_bow_4"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	3	3)
+	//		ani			("c_bow_5"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	4	4)
+	//		ani			("c_bow_6"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	5	5)
+	//		ani			("c_bow_7"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	6	6)
+	//		ani			("c_bow_8"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	7	7)
+	//		ani			("c_bow_9"					4	""				0.0	0.0	..	"Hum_BowAutoAim.asc"	F	8	8)
+	//		aniComb		("s_BowAim"					1	"s_BowAim"		0.0	0.0	M.	"c_bow_"	9)
 
 // Shoot + Reload
-			aniBlend	("t_BowAim_2_BowShoot"			"s_BowShoot")
-			ani			("s_BowShoot"				1	"s_BowShoot"	0.0 0.0 M.	"Hum_BowAim.asc"		F	12	12)
-			{
-				*eventSFX		(12	"BowShoot")
-			}
-			ani			("t_BowReload"				1	"s_BowAim"		0.0 0.0 M.	"Hum_BowAim.asc"		F	13	41)
-			{
-				*eventMMStartAni	(13	"S_RELAX"	"ZS_LEFTHAND")
-		       	*eventTag		(18	"DEF_PLACE_MUNITION" "ZS_RIGHTHAND")
-				*eventSFX		(30	"Bow_Charge")
-				*eventMMStartAni	(40	"S_READY"	"ZS_LEFTHAND")
-			}
+	//		aniBlend	("t_BowAim_2_BowShoot"			"s_BowShoot")
+	//		ani			("s_BowShoot"				1	"s_BowShoot"	0.0 0.0 M.	"Hum_BowAim.asc"		F	12	12)
+	//		{
+	//			*eventSFX		(12	"BowShoot")
+	//		}
+	//		ani			("t_BowReload"				1	"s_BowAim"		0.0 0.0 M.	"Hum_BowAim.asc"		F	13	41)
+	//		{
+	//			*eventMMStartAni	(13	"S_RELAX"	"ZS_LEFTHAND")
+	//	       	*eventTag		(18	"DEF_PLACE_MUNITION" "ZS_RIGHTHAND")
+	//			*eventSFX		(30	"Bow_Charge")
+	//			*eventMMStartAni	(40	"S_READY"	"ZS_LEFTHAND")
+	//		}
 
-			ani			("t_BowAim_2_BowRun"		1	""				0.0 0.0 M.	"Hum_BowAim.asc"			F	1	11)
-			{
-				*eventMMStartAni	(11	"S_NORMAL"	"ZS_LEFTHAND")
-				*eventSFX		(11	"Bow_Refuse")
-			}
-			aniAlias	("t_BowAim_2_BowWalk"		1	""				0.0	0.0	M.	"t_BowAim_2_BowRun"			R)
-			aniAlias	("t_BowAim_2_Stand"			1	""				0.0	0.0	M.	"t_BowAim_2_BowRun"			R)
+	//		ani			("t_BowAim_2_BowRun"		1	""				0.0 0.0 M.	"Hum_BowAim.asc"			F	1	11)
+	//		{
+	//			*eventMMStartAni	(11	"S_NORMAL"	"ZS_LEFTHAND")
+	//			*eventSFX		(11	"Bow_Refuse")
+	//		}
+	//		aniAlias	("t_BowAim_2_BowWalk"		1	""				0.0	0.0	M.	"t_BowAim_2_BowRun"			R)
+	//		aniAlias	("t_BowAim_2_Stand"			1	""				0.0	0.0	M.	"t_BowAim_2_BowRun"			R)
 
 
 
@@ -2309,50 +2311,50 @@ Model ("HuS")
 // POTIONFAST	(für schnelle Benutzung von Heiltränken!)
 
 		// Potion aus "Tasche" holen
-			ani			("t_potionfast_Stand_2_S0"	1	"s_potionfast_S0"	0.1	0.0	M.	"Hum_DrinkPotion_M02.ASC"	F	1	5)
-			{
-				*eventTag	(5	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
-			}
+	//		ani			("t_potionfast_Stand_2_S0"	1	"s_potionfast_S0"	0.1	0.0	M.	"Hum_DrinkPotion_M02.ASC"	F	1	5)
+	//		{
+	//			*eventTag	(5	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
+	//		}
 
 		// Potion halten
-			ani			("s_potionfast_S0"			1	"s_potionfast_S0"	0.0	0.0	M.	"Hum_DrinkPotion_M02.asc"	F	6	6)
+	//		ani			("s_potionfast_S0"			1	"s_potionfast_S0"	0.0	0.0	M.	"Hum_DrinkPotion_M02.asc"	F	6	6)
 
 		// Potion trinken und wieder weg
-			ani			("t_potionfast_S0_2_Stand"	1	""					0.0	0.1	M.	"Hum_DrinkPotion_M02.asc"	F	7	39)
-			{
-				*eventSFX	(19	"DrinkBottle"	R:1000	)
-				*eventTag	(35	"DEF_DESTROY_ITEM")
-			}
+	//		ani			("t_potionfast_S0_2_Stand"	1	""					0.0	0.1	M.	"Hum_DrinkPotion_M02.asc"	F	7	39)
+	//		{
+	//			*eventSFX	(19	"DrinkBottle"	R:1000	)
+	//			*eventTag	(35	"DEF_DESTROY_ITEM")
+	//		}
 
 // ---------------------------------------------------------------------------------------------------------------
 // POTION	- 3 Randoms (für Ambient-Getränke)
 
 		// Flasche aus "Tasche" holen
-			ani			("t_Potion_Stand_2_S0"		1	"s_Potion_S0"	0.1	0.1	M.	"Hum_DrinkPotion_Jue00_fr44_161_175.ASC"	F	1	43 FPS:10)
-			{
-				*eventTag	(20	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
-				*eventSFX	(30	"RELEASECORK"	R:1000	EMPTY_SLOT	)
-			}
+	//		ani			("t_Potion_Stand_2_S0"		1	"s_Potion_S0"	0.1	0.1	M.	"Hum_DrinkPotion_Jue00_fr44_161_175.ASC"	F	1	43 FPS:10)
+	//		{
+	//			*eventTag	(20	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
+	//			*eventSFX	(30	"RELEASECORK"	R:1000	EMPTY_SLOT	)
+	//		}
 
 		// Flasche halten
-			ani			("s_Potion_S0"				1	"s_Potion_S0"	0.0	0.0	M.	"Hum_DrinkPotion_Jue00_fr44_161_175.asc"	F	44	44)
+	//		ani			("s_Potion_S0"				1	"s_Potion_S0"	0.0	0.0	M.	"Hum_DrinkPotion_Jue00_fr44_161_175.asc"	F	44	44)
 
 		// Trinken
-			ani			("t_Potion_Random_1"		2	""				0.0	0.0	M.	"Hum_DrinkPotion_Jue00_fr44_161_175.asc"	F	45	161	FPS:10)
-			{
-				*eventSFX	(75	"DrinkBottle"	R:1000)
-			}
+	//		ani			("t_Potion_Random_1"		2	""				0.0	0.0	M.	"Hum_DrinkPotion_Jue00_fr44_161_175.asc"	F	45	161	FPS:10)
+	//		{
+	//			*eventSFX	(75	"DrinkBottle"	R:1000)
+	//		}
 		// Mund abwischen
-			ani			("t_Potion_Random_2"		2	""				0.1	0.1	M.	"Hum_DrinkMundwisch_Jue00_fr30.asc"			F	1	29	FPS:10)
+	//		ani			("t_Potion_Random_2"		2	""				0.1	0.1	M.	"Hum_DrinkMundwisch_Jue00_fr30.asc"			F	1	29	FPS:10)
 		// Flasche gegens Licht  halten und schütteln (Noch was drin ???)
-			ani			("t_Potion_Random_3"		2	""				0.1	0.1	M.	"Hum_DrinkPotion_Var01_Jue00_fr125.asc"		F	1	124	FPS:10)
+	//		ani			("t_Potion_Random_3"		2	""				0.1	0.1	M.	"Hum_DrinkPotion_Var01_Jue00_fr125.asc"		F	1	124	FPS:10)
 
 		// Flasche wieder weg
-			ani			("t_Potion_S0_2_Stand"		1	""				0.0	0.2	M.	"Hum_DrinkPotion_Jue00_fr44_161_175.asc"	F	45	174	FPS:10)
-			{
-				*eventSFX	(75	"DrinkBottle"	R:1000	)
-				*eventTag	(152	"DEF_DESTROY_ITEM")
-			}
+	//		ani			("t_Potion_S0_2_Stand"		1	""				0.0	0.2	M.	"Hum_DrinkPotion_Jue00_fr44_161_175.asc"	F	45	174	FPS:10)
+	//		{
+	//			*eventSFX	(75	"DrinkBottle"	R:1000	)
+	//			*eventTag	(152	"DEF_DESTROY_ITEM")
+	//		}
 
 // ---------------------------------------------------------------------------------------------------------------
 // Generic Food (Apple, Mushroom)
@@ -2527,7 +2529,7 @@ Model ("HuS")
 			ani			("t_FIRESPIT_Stand_2_S0"	1	"s_FIRESPIT_S0"	0.2	0.0	M.	"Hum_FireSpit_M01.asc"		F	0	69	FPS:10)
 			{
 				*eventTag		(1	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
-				*eventTag		(3	"DEF_CREATE_ITEM"	"ZS_LEFTHAND" "ItLsTorchFirespit")
+				*eventTag		(1	"DEF_CREATE_ITEM"	"ZS_LEFTHAND" "ItLsTorchFirespit")
 			}
 			ani			("s_FIRESPIT_S0"			1	"s_FIRESPIT_S0"	0.0	0.0	M.	"Hum_FireSpit_M01.asc"		F	70	70)
 			ani			("t_FIRESPIT_S0_2_Stand"	1	""				0.0	0.1	M.	"Hum_FireSpit_M01.asc"		R	0	69	FPS:10)
@@ -2606,6 +2608,9 @@ Model ("HuS")
 // CHESTSMALL
 	// geschlossene Truhe, Anivisieren
 			ani			("t_CHESTSMALL_Stand_2_S0"		1	"s_CHESTSMALL_S0"	0.1	0.0	M.	"Hum_OpenSmall_M01.asc"		F	1	14)
+			{
+				*eventTag   (4   "DEF_INV_TORCH")
+			}
 			ani			("s_CHESTSMALL_S0"				1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"Hum_OpenSmall_M01.asc"		F	15	15)
 			aniAlias	("t_CHESTSMALL_S0_2_Stand"		1	""					0.0	0.1	M.	"t_CHESTSMALL_Stand_2_S0"	R)
 	// Truhe öffnen
@@ -2631,6 +2636,9 @@ Model ("HuS")
 // CHESTBIG
 	// geschlossene Truhe, Anivisieren
 			ani			("t_CHESTBIG_Stand_2_S0"		1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	1	14) 
+			{
+				*eventTag   (4   "DEF_INV_TORCH")
+			}
 			ani			("s_CHESTBIG_S0"				1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	15	15) 
 			aniAlias	("t_CHESTBIG_S0_2_Stand"		1	""					0.0	0.0	M.	"t_CHESTBIG_Stand_2_S0"		R)          
 	// Truhe öffnen                                                                                                                 
@@ -2984,6 +2992,7 @@ Model ("HuS")
 // Repair MOB
 			ani			("t_Repair_Stand_2_S0"		1	"s_Repair_S0"	0.2	0.0	M.	"Hum_RepairHut_M01.asc"		F	1	19)
 			{
+				*eventTag	(3		"DEF_INV_TORCH")
 				*eventTag	(5		"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
 			}
 			ani			("s_Repair_S0"				1	"s_Repair_S0"	0.0	0.0	M.	"Hum_RepairHut_M01.asc"		F	20	20)
@@ -3005,6 +3014,7 @@ Model ("HuS")
 // Cooking
 			ani			("t_Cauldron_Stand_2_S0"	1	"s_Cauldron_S0"	0.2	0.0	M.	"Hum_Cooking_M01.asc"		F	1	30)
 			{
+				*eventTag	(3	"DEF_INV_TORCH")
 				*eventTag 	(5	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
 				*eventSFX	(28	"PSILAB_DRAWLIQUID"	R:1000	EMPTY_SLOT	)
 			}
@@ -3015,9 +3025,6 @@ Model ("HuS")
 			}
 
 			ani			("t_Cauldron_S0_2_S1"		1	"s_Cauldron_S1"	0.0	0.0	M.	"Hum_Cooking_M01.asc"		F	70	120 FPS:10)
-			{
-				*eventTag	(71	"DEF_INV_TORCH")
-			}
 
 			ani			("s_Cauldron_S1"			1	"s_Cauldron_S1"	0.0	0.0	M.	"Hum_Cooking_M01.asc"		F	31	70 FPS:10)
 			{
@@ -3099,6 +3106,9 @@ Model ("HuS")
 // TA_PotionAlchemy (Labortisch)
 
 			ani			("t_Lab_Stand_2_S0"			1	"s_Lab_S0"		0.1	0.0	M.	"Hum_Alchemie_A01.asc"		F	0	5)
+			{
+				*eventTag   (4   "DEF_INV_TORCH")
+			}
 			ani			("s_Lab_S0"					1	"s_Lab_S0"		0.0	0.0	M.	"Hum_Alchemie_A01.asc"		F	5	5)
 			ani			("t_Lab_S0_2_Stand"			1	""				0.1	0.1	M.	"Hum_Alchemie_A01.asc"		R	0	5)
 
@@ -3127,7 +3137,8 @@ Model ("HuS")
 // TA_HerbAlchemy (Krautstampfer)
 			ani			("t_Herb_Stand_2_S0"		1	"s_Herb_S0"		0.1	0.0	M.	"Hum_AlHerb_Jue00.asc"		F	0	5	FPS:10)
 			{
-				*eventTag	(1	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
+				*eventTag   (3   "DEF_INV_TORCH")
+				*eventTag	(5	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
 			}
 			ani			("s_Herb_S0"				1	"s_Herb_S0"		0.0	0.0	M.	"Hum_AlHerb_Jue00.asc"		F	5	5)
 			ani			("t_Herb_S0_2_Stand"		1	""				0.0	0.0	M.	"Hum_AlHerb_Jue00.asc"		R	0	5	FPS:10)
@@ -3191,6 +3202,9 @@ Model ("HuS")
 
 	// Anvil - useWithItem = BS_SWORD_RAWHOT
 			ani			("t_BSANVIL_Stand_2_S0"		1	"s_BSANVIL_S0"		0.1	0.0	M.	"Hum_BSAnvil_Jue00.asc"		F	0	2)
+			{
+				*eventTag   (2   "DEF_INV_TORCH")
+			}
 
 			ani			("s_BSANVIL_S0"				1	"s_BSANVIL_S0"		0.0	0.0	M.	"Hum_BSAnvil_Jue00.asc"		F	3	3)
 			ani			("t_BSANVIL_S0_2_Stand"		1	""					0.0	0.1	M.	"Hum_BSAnvil_Jue00.asc"		R	0	2)
@@ -3226,6 +3240,9 @@ Model ("HuS")
 
 	// Sharpen - useWithItem = BS_SWORD_BLADE
 			ani			("t_BSSHARP_Stand_2_S0"		1	"s_BSSHARP_S0"		0.1	0.0	M.	"Hum_BSSharp_M01.asc"		F	0	2)
+			{
+				*eventTag   (2   "DEF_INV_TORCH")
+			}
 
 			ani			("s_BSSHARP_S0"				1	"s_BSSHARP_S0"		0.0	0.0	M.	"Hum_BSSharp_M01.asc"		F	3	3)
 			ani			("t_BSSHARP_S0_2_Stand"		1	""					0.0	0.1	M.	"Hum_BSSharp_M01.asc"		R	0	2)
@@ -3244,6 +3261,9 @@ Model ("HuS")
 // ---------------------------------------------------------------------------------------------------------------
 // BARBQ_Scavenger - Chickenstick - Grillhühnchen
 			ani			("t_BARBQ_Stand_2_S0"		1	"s_BARBQ_S0"		0.1	0.0	M.	"Hum_BarBQ_M01.ASC"			F	1	3)
+			{
+				*eventTag   (3   "DEF_INV_TORCH")
+			}
 			ani			("s_BARBQ_S0"				1	"s_BARBQ_S0"		0.0	0.0	M.	"Hum_BarBQ_M01.ASC"			F	4	4)
 			aniAlias	("t_BARBQ_S0_2_Stand"		1	""					0.0	0.1	M.	"t_BARBQ_Stand_2_S0"		R)
 
@@ -3270,12 +3290,14 @@ Model ("HuS")
 
 			ani			("t_RMAKER_Stand_2_S0"		1	"s_RMAKER_S0"		0.0	0.0	M.	"Hum_RuneMaker2_M01.asc"	F	0	25)
 			{
-				*eventTag	(2	"DEF_CREATE_ITEM"	"ZS_RIGHTHAND"	"ItMi_Pliers")
+	//			*eventTag	(2	"DEF_CREATE_ITEM"	"ZS_RIGHTHAND"	"ItMi_Pliers")
+				*eventTag   (4   "DEF_INV_TORCH")
 			}
 			ani			("s_RMAKER_S0"				1	"s_RMAKER_S0"		0.0	0.0	M.	"Hum_RuneMaker2_M01.asc"	F	25	25)
 			ani			("t_RMAKER_S0_2_Stand"		1	""					0.0	0.1	M.	"Hum_RuneMaker2_M01.asc"	R	0	25)
 			ani			("t_RMAKER_S0_2_S1"			1	"s_RMAKER_S1"		0.0	0.0	M.	"Hum_RuneMaker2_Random_M01.asc"	F	0	50)
 			{
+				*eventTag	(1	"DEF_CREATE_ITEM"	"ZS_RIGHTHAND"	"ItMi_Pliers")
 				*eventTag	(1	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
 			}
 			ani			("s_RMAKER_S1"				1	"s_RMAKER_S1"		0.0	0.0	M.	"Hum_RuneMaker2_Random_M01.asc"	F	50	180)
@@ -3305,6 +3327,9 @@ Model ("HuS")
 			}
 
 			ani			("t_BRUSH_S0_2_S1"		1	"s_BRUSH_S1"	0.0	0.0	M.	"Hum_BrushFloor_A01.asc"			F	4	39)
+			{
+				*eventTag   (4   "DEF_INV_TORCH")
+			}
 			ani			("s_BRUSH_S1"			1	"s_BRUSH_S1"	0.0	0.0	M.	"Hum_BrushFloor_A01.asc"			F	40	120	FPS:12.5)
 			{
 				*eventPFX	(43	1	"SOAPFOAM"	"BIP01 L Finger0"	ATTACH	)
@@ -3340,7 +3365,8 @@ Model ("HuS")
 
 			ani			("t_Stove_Stand_2_S0"			1	"s_Stove_S0"		0.1	0.0	M.	"Hum_Stove_A01.ASC"		F	0	5)
 			{
-					*eventTag	(1	"DEF_CREATE_ITEM"	"ZS_RIGHTHAND"	"ItMi_PanFull")
+				*eventTag   (1	"DEF_INV_TORCH")
+				*eventTag	(1	"DEF_CREATE_ITEM"	"ZS_RIGHTHAND"	"ItMi_PanFull")
 			}
 			ani			("s_Stove_S0"					1	"s_Stove_S0"		0.0	0.0	M.	"Hum_Stove_A01.asc"		F	5	5)
 			ani			("t_Stove_S0_2_Stand"			1	""				0.1	0.1	M.	"Hum_Stove_A01.asc"		R	0	5)
@@ -3364,6 +3390,7 @@ Model ("HuS")
 
 			ani			("t_BROOM_Stand_2_S0"		1	"s_BROOM_S0"		0.2	0.0	M.	"Hum_Fegen_A01.ASC"		F	0	5)
 			{
+				*eventTag	(3	"DEF_INV_TORCH")
 				*eventTag	(5	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
 			}
 			
@@ -3374,7 +3401,6 @@ Model ("HuS")
 			}
 			
 			ani			("t_BROOM_S0_2_S1"			1	"s_BROOM_S1"		0.0	0.0	M.	"Hum_Fegen_A01.asc"		F	7	35)
-			
 			
 			ani			("s_BROOM_S1"				1	"s_BROOM_S1"		0.0	0.0	M.	"Hum_Fegen_A01.asc"		F	35	85)
 			{
@@ -3387,6 +3413,7 @@ Model ("HuS")
 
 			ani			("t_RAKE_Stand_2_S0"		1	"s_RAKE_S0"		0.2	0.0	M.	"Hum_Haken_A01.ASC"		F	0	5)
 			{
+				*eventTag	(3	"DEF_INV_TORCH")
 				*eventTag	(5	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
 			}
 			
@@ -4003,6 +4030,266 @@ Model ("HuS")
 				*eventTag	(7		"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
 				*eventTag	(107	"DEF_DESTROY_ITEM")
 			}
+			
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// BOW: GMF Version /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////
+// BOW DRAW
+//////////////////////////
+			ani			("t_Run_2_Bow"				1	"s_Bow"				0.1 0.0 M.	"Hum_BowDraw_GMF.asc"		F	1	5)
+			ani			("s_Bow"					1	"s_Bow"				0.0 0.0 M.	"Hum_BowDraw_GMF.asc"		F	6	6)
+			ani			("t_Bow_2_BowRun"			1	"s_BowRun"			0.0 0.2 M.	"Hum_BowDraw_GMF.asc"		F   7	19)
+			{
+				*eventTag			(7	"DEF_FIGHTMODE"			"BOW")
+				*eventSFX			(7	"Bow_DrawSound"			R:800)
+				*eventTag			(9	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
+			}
+			ani			("t_BowRun_2_Bow"			1	"s_Bow"				0.0 0.1 M.	"Hum_BowDraw_GMF.asc"		R	7	19)
+			{
+				*eventTag			(7	"DEF_FIGHTMODE"			"")
+				*eventMMStartAni	(9	"S_NORMAL"				"ZS_LEFTHAND")
+				*eventSFX			(12	"Bow_UndrawSound"		R:800)
+				*eventTag			(19	"DEF_REMOVE_MUNITION")
+			}
+			aniAlias	("t_Bow_2_Run"				1	""					0.0 0.2 M.	"t_Run_2_Bow"				R)
+			
+			ani			("t_Move_2_BowMove"			2	""					0.2	0.2	M.	"Hum_BowDrawMove_GMF.asc"	F	1	19)
+			{
+				*eventTag		(7	"DEF_FIGHTMODE"			"BOW")
+				*eventSFX		(7	"Bow_DrawSound" 		R:800)
+				*eventTag		(9	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
+			}
+			ani			("t_BowMove_2_Move"			2	""					0.2	0.2	M.	"Hum_BowDrawMove_GMF.asc"	R	1	19)
+			{
+				*eventTag		(7	"DEF_FIGHTMODE"			"")
+				*eventTag		(9	"DEF_REMOVE_MUNITION")
+				*eventSFX		(12	"Bow_UndrawSound"		R:800)
+			}
+			
+//////////////////////////
+// BOW RUN
+//////////////////////////
+			ani			("s_BowRun"					1	"s_BowRun"			0.1 0.1 M.	"Hum_Amb_BowRun_GMF.asc"	F	1	60)
+			ani			("t_BowRun_2_BowRunL"		1	"s_BowRunL"			0.0	0.0	M.	"Hum_BowRun_GMF.asc"		F	1	11)
+			ani			("s_BowRunL"				1	"s_BowRunL"			0.0	0.0	M.	"Hum_BowRun_GMF.asc"		F	12	31)
+			{
+				*eventSFXGrnd	(12	"Run")
+				*eventSFXGrnd	(22	"Run")
+			}
+			ani			("t_BowRunL_2_BowRun"		1	"s_BowRun"			0.0	0.0	M.	"Hum_BowRun_GMF.asc"		F	32	38)
+			{
+				*eventSFXGrnd	(32	"Run")
+				*eventSFXGrnd	(37	"Run")
+			}
+			aniBlend	("t_BowRunR_2_BowRun"			"s_BowRun"			0.2	0.2)
+
+			ani			("t_BowJumpB"				1	"s_BowRun"			0.1 0.2 M. 	"Hum_BowJumpB_GMF.asc"		F	1	16)
+			{
+				*eventSFXGrnd	(9	"Run")
+				*eventSFXGrnd	(12	"Run")
+			}
+
+//////////////////////////
+// BOW WALK
+//////////////////////////
+			aniAlias	("s_BowWalk"				1	"s_BowWalk"			0.1	0.1	M.	"s_BowRun"					F)
+			ani			("t_BowWalk_2_BowWalkL"		1	"s_BowWalkL"		0.1	0.0	M.	"Hum_BowWalk_GMF.asc"		F	1	9)
+			ani			("s_BowWalkL"				1	"s_BowWalkL"		0.0	0.1	M.	"Hum_BowWalk_GMF.asc"		F	10	33)
+			{
+				*eventSFXGrnd	(10	"Run")
+				*eventSFXGrnd	(21	"Run")
+			}
+			ani			("t_BowWalkL_2_BowWalk"		1	"s_BowWalk"			0.0	0.1	M.	"Hum_BowWalk_GMF.asc"		F	33	39)
+			{
+				*eventSFXGrnd	(34	"Run")
+				*eventSFXGrnd	(37	"Run")
+			}
+			aniBlend	("t_BowWalkR_2_BowWalk"			"s_BowWalk"			0.2	0.2)
+			
+			aniAlias	("t_BowWalk_2_BowWalkBL"	1	"s_BowWalkBL"		0.0	0.0	M.	"t_BowWalkL_2_BowWalk"		R)
+			aniAlias	("s_BowWalkBL"				1	"s_BowWalkBL"		0.0	0.1	M.	"s_BowWalkL"				R)
+			aniAlias	("t_BowWalkBL_2_BowWalk"	1	"s_BowWalk"			0.0	0.0	M.	"t_BowWalk_2_BowWalkL"		R)
+			aniBlend	("t_BowWalkBR_2_BowWalk"		"s_BowWalk"			0.2	0.2)
+
+//////////////////////////
+// BOW SNEAK
+//////////////////////////
+			ani			("s_BowSneak"				1	"s_BowSneak"		0.1	0.1	MI	"Hum_Amb_BowSneak_GMF.asc"	F	1	50)
+			ani			("t_BowSneak_2_BowSneakL"	1	"s_BowSneakL"		0.0	0.0	M.	"Hum_BowSneak_GMF.asc"		F	10	21)
+			
+			ani			("s_BowSneakL"				1	"s_BowSneakL"		0.0	0.0	M.	"Hum_BowSneak_GMF.asc"		F	22	61)
+			{
+				*eventSFXGrnd   (32	"Sneak")
+				*eventSFXGrnd   (52	"Sneak")
+			}
+			aniBlend	("t_BowSneakL_2_BowSneak"		"s_BowSneak"		0.2	0.2)
+			aniBlend	("t_BowSneakR_2_BowSneak"		"s_BowSneak"		0.2	0.2)
+
+			aniBlend	("t_BowSneak_2_BowSneakBL"		"s_BowSneakBL"		0.3	0.3)
+			ani			("s_BowSneakBL"				1	"s_BowSneakBL"		0.0	0.0	M.	"Hum_BowSneak_GMF.asc"		R	22	61 SPD:20)
+			{
+				*eventSFXGrnd   	(32	"Sneak")
+				*eventSFXGrnd   	(52	"Sneak")
+			}
+			aniBlend	("t_BowSneakBL_2_BowSneak"		"s_BowSneak"		0.2	0.2)
+			aniBlend	("t_BowSneakBR_2_BowSneak"		"s_BowSneak"		0.2	0.2)
+			
+//////////////////////////
+// BOW TURNING
+//////////////////////////
+			ani			("t_BowRunTurnL"			20	"t_BowRunTurnL"		0.2	0.1	M.	"Hum_BowTurn_GMF.asc"		F	0	24)
+			{
+				*eventSFXGrnd	(8	"Run")
+				*eventSFXGrnd	(19	"Run")
+			}
+			ani			("t_BowRunTurnR"			20	"t_BowRunTurnR"		0.2	0.1	M.	"Hum_BowTurn_GMF.asc"		F	25	49)
+			{
+				*eventSFXGrnd	(30	"Run")
+				*eventSFXGrnd	(41	"Run")
+			}
+
+			aniAlias	("t_BowWalkTurnL"			20	"t_BowWalkTurnL"	0.1	0.1	M.	"t_BowRunTurnL"				F)
+			aniAlias	("t_BowWalkTurnR"			20	"t_BowWalkTurnR"	0.1	0.1	M.	"t_BowRunTurnR"				F)
+
+			ani			("t_BowSneakTurnL"			20	"t_BowSneakTurnL"	0.2	0.2	M.	"Hum_BowSneakTurn_GMF.asc"	F	0	24)
+			ani			("t_BowSneakTurnR"			20	"t_BowSneakTurnR"	0.2	0.2	M.	"Hum_BowSneakTurn_GMF.asc"	F	25	49)
+			
+//////////////////////////
+// BOW STRAFING
+//////////////////////////
+			ani			("t_BowRunStrafeL"			1	"t_BowRunStrafeL"	0.2	0.2	M.	"Hum_BowStrafeL_GMF.asc"	F	0	18)
+			{
+				*eventSFXGrnd	(0	"Run")
+				*eventSFXGrnd	(9	"Run")
+			}
+			ani			("t_BowRunStrafeR"			1	"t_BowRunStrafeR"	0.2	0.2	M.	"Hum_BowStrafeR_GMF.asc"	F	0	18)
+			{
+				*eventSFXGrnd	(0	"Run")
+				*eventSFXGrnd	(9	"Run")
+			}
+			
+			aniAlias	("t_BowWalkStrafeL"			1	"t_BowWalkStrafeL"	0.1	0.1	M.	"t_BowRunStrafeL"			F)
+			aniAlias	("t_BowWalkStrafeR"			1	"t_BowWalkStrafeR"	0.1	0.1	M.	"t_BowRunStrafeR"			F)
+
+			ani			("t_BowSneakStrafeL"		1	"s_BowSneak"		0.1	0.1	M.	"Hum_BowSneakStrafe_GMF.asc"	F	1	19)
+			aniAlias	("t_BowSneakStrafeR"		1	"s_BowSneak"		0.1	0.1	M.	"t_BowSneakStrafeL"			R)
+		
+//////////////////////////
+// BOW TRANSITIONS
+//////////////////////////
+			aniBlend	("t_BowRun_2_BowWalk"			"s_BowWalk"			0.2	0.2)
+			aniBlend	("t_BowWalk_2_BowRun"			"s_BowRun"			0.2	0.2)
+
+			ani			("t_BowRun_2_BowSneak"		1	"s_BowSneak"		0.0	0.0	M.	"Hum_BowSneak_GMF.asc"		F	1	10)
+			aniAlias	("t_BowSneak_2_BowRun"		1	"s_BowRun"			0.0	0.0	M.	"t_BowRun_2_BowSneak"		R)
+
+			aniBlend	("t_BowRunL_2_BowWalkL"			"s_BowWalkL"		0.2	0.2)
+			aniBlend	("t_BowWalkL_2_BowRunL"			"s_BowRunL"			0.2	0.2)
+
+			aniBlend	("t_BowSneakL_2_BowRunL"		"s_BowRunL"			0.2	0.2)
+			aniBlend	("t_BowRunL_2_BowSneakL"		"s_BowSneakL"		0.2	0.2)
+
+			aniBlend	("t_BowSneak_2_BowWalk"			"s_BowWalk"			0.2	0.2)
+			aniBlend	("t_BowWalk_2_BowSneak"			"s_BowSneak"		0.2	0.2)
+
+			aniAlias	("t_BowRunL_2_Jump"			1	"s_Jump"			0.1	0.1	MF	"t_RunL_2_Jump"				F)
+			aniAlias	("t_BowRunR_2_Jump"			1	"s_Jump"			0.1	0.1	MF	"t_RunL_2_Jump"				F)
+			
+			aniBlend	("t_Jump_2_BowRunL"				"s_BowRunL"			0.2	0.1)
+			
+//////////////////////////
+// BOW FIGHTING
+//////////////////////////
+			ani			("t_BowRun_2_BowAim"		1	"s_BowAim"			0.0 0.0 M.	"Hum_BowAim_GMF.asc"		F	1	12)
+			{
+				*eventMMStartAni	(3	"S_SHOOT"		"ZS_LEFTHAND")
+				*eventSFX			(3	"Bow_Charge"	R:800)
+				*eventMMStartAni	(11	"S_READY"		"ZS_LEFTHAND")
+			}
+			
+			aniAlias	("t_BowWalk_2_BowAim"		1	"s_BowAim"			0.0 0.0 M.	"t_BowRun_2_BowAim"			F)
+
+// Seitenwinkel: +/- 30°	Höhenwinkel: +/- 45°
+			ani			("c_bow_1"					4	""					0.0	0.0	..	"Hum_BowAutoAim_GMF.asc"	F	0	0)
+			ani			("c_bow_2"					4	""					0.0	0.0	..	"Hum_BowAutoAim_GMF.asc"	F	1	1)
+			ani			("c_bow_3"					4	""					0.0	0.0	..	"Hum_BowAutoAim_GMF.asc"	F	2	2)
+			ani			("c_bow_4"					4	""					0.0	0.0	..	"Hum_BowAutoAim_GMF.asc"	F	3	3)
+			ani			("c_bow_5"					4	""					0.0	0.0	..	"Hum_BowAutoAim_GMF.asc"	F	4	4)
+			ani			("c_bow_6"					4	""					0.0	0.0	..	"Hum_BowAutoAim_GMF.asc"	F	5	5)
+			ani			("c_bow_7"					4	""					0.0	0.0	..	"Hum_BowAutoAim_GMF.asc"	F	6	6)
+			ani			("c_bow_8"					4	""					0.0	0.0	..	"Hum_BowAutoAim_GMF.asc"	F	7	7)
+			ani			("c_bow_9"					4	""					0.0	0.0	..	"Hum_BowAutoAim_GMF.asc"	F	8	8)
+			aniComb		("s_BowAim"					1	"s_BowAim"			0.0	0.0	M.	"c_bow_"	9)
+
+// Shoot + Reload
+			aniBlend	("t_BowAim_2_BowShoot"			"s_BowShoot")
+			ani			("s_BowShoot"				1	"s_BowShoot"		0.0 0.0 M.	"Hum_BowAim_GMF.asc"		F	12	12)
+			ani			("t_BowReload"				1	"s_BowAim"			0.0 0.0 M.	"Hum_BowAim_GMF.asc"		F	13	41)
+			{
+				*eventSFX			(13	"BowShoot" 				R:1000)
+				*eventMMStartAni 	(13	"S_RELAX"				"ZS_LEFTHAND")
+				*eventTag			(18	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
+				*eventSFX			(30	"Bow_Charge" 			R:800)
+				*eventMMStartAni 	(40	"S_READY"				"ZS_LEFTHAND")
+			}
+			
+			ani			("t_BowAim_2_BowRun"		1	""					0.0 0.0 M.	"Hum_BowAim_GMF.asc"		R	1	11)
+			{
+				*eventMMStartAni 	(11	"S_NORMAL"				"ZS_LEFTHAND")
+				*eventSFX			(11	"Bow_Refuse" 			R:800)
+			}
+			
+			aniAlias	("t_BowAim_2_BowWalk"		1	""					0.0	0.0	M.	"t_BowAim_2_BowRun"			R)
+			aniAlias	("t_BowAim_2_Stand"			1	""					0.0	0.0	M.	"t_BowAim_2_BowRun"			R)
+
+			ani			("t_BowFakeShoot"			1	"s_BowAim"			0.0 0.0 M.	"Hum_BowAim_GMF.asc"		F	13	41)
+			{
+				*eventMMStartAni 	(13	"S_RELAX"				"ZS_LEFTHAND")
+				*eventSFX			(13	"BowShoot" 				R:1000)
+				*eventTag			(18	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
+				*eventSFX			(30	"Bow_Charge" 			R:800)
+				*eventMMStartAni 	(40	"S_READY"				"ZS_LEFTHAND")
+			}
+				
+// BOW: GMF Version /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// POTION: GMF Version //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_PotionFast_Stand_2_S0"	1	"s_PotionFast_S0"	0.1	0.0	M.	"Hum_DrinkPotion_Fast_GMF.ASC"	F	1	5)
+			{
+				*eventTag			(5	"DEF_INSERT_ITEM"		"ZS_LEFTHAND")
+			}
+			ani			("s_PotionFast_S0"			1	"s_PotionFast_S0"	0.0	0.0	M.	"Hum_DrinkPotion_Fast_GMF.asc"	F	6	6)
+			ani			("t_PotionFast_S0_2_Stand"	1	""					0.0	0.3	M.	"Hum_DrinkPotion_Fast_GMF.asc"	F	7	39)
+			{
+				*eventSFX			(19	"DrinkBottle"			R:800)
+				*eventTag			(35	"DEF_DESTROY_ITEM")
+			}
+			
+			ani			("t_Potion_Stand_2_S0"		1	"s_Potion_S0"	0.1	0.1	M.	"Hum_DrinkPotion_GMF.asc"			F	1	43)
+			{
+				*eventTag			(20		"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
+				*eventSFX			(30		"RELEASECORK"		R:800			EMPTY_SLOT)
+			}
+			ani			("s_Potion_S0"				1	"s_Potion_S0"	0.0	0.0	M.	"Hum_DrinkPotion_GMF.asc"			F	44	44)
+			ani			("t_Potion_S0_2_Stand"		1	""				0.0	0.3	M.	"Hum_DrinkPotion_GMF.asc"			F	45	174)
+			{
+				*eventSFX			(75		"DrinkBottle"		R:800)
+				*eventTag			(152	"DEF_DESTROY_ITEM")
+			}
+			
+			ani			("t_Potion_Random_1"		2	""				0.0	0.3	M.	"Hum_DrinkPotion_GMF_Random_1.asc"	F	1	95)
+			{
+				*eventSFX			(75		"DrinkBottle"		R:800)
+			}
+			ani			("t_Potion_Random_2"		2	""				0.1	0.1	M.	"Hum_DrinkMundwisch_Jue00_fr30.asc"	F	1	29)
+			ani			("t_Potion_Random_3"		2	""				0.1	0.1	M.	"Hum_DrinkPotion_GMF_Random_3.asc"	F	1	124)
+			
+// POTION: GMF Version //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	}
 }
 

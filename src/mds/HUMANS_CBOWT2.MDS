@@ -1,0 +1,86 @@
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// HUMAN OVERLAY	ARMBRUST TALENT 2
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Model ("HuS")
+{
+
+
+	meshAndTree ("Hum_Body_Naked0.ASC" DONT_USE_MESH)
+
+	aniEnum
+	{
+		modelTag	("DEF_HIT_LIMB"		"zs_RightHand")
+
+
+	// CROSSBOW
+			ani		("t_Run_2_CBow"			1	"s_CBow"		0.0 0.0 M.	"Hum_CBowDrawT2.asc"		F	1	4)
+			ani		("s_CBow"				1	"s_CBow"		0.0 0.0 M.	"Hum_CBowDrawT2.asc"		F	5	5)
+			ani		("t_CBow_2_CBowRun"		1	"s_CBowRun"		0.0 0.0 M.	"Hum_CBowDrawT2.asc"		F  	6	31)
+			{
+				*eventTag		(6	"DEF_FIGHTMODE"	"CBOW")
+				*eventSFX		(6	"Crossbow_DrawSound")
+				*eventSFX		(23	"Crossbow_Charge")
+				*eventMMStartAni	(24	"S_CHARGE"		"ZS_RIGHTHAND")
+				*eventMMStartAni	(27	"S_SHOOT"		"ZS_RIGHTHAND")
+		        	*eventTag		(29	"DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
+			}
+			ani		("t_CBowRun_2_CBow"		1	"s_CBow"		0.0 0.0 M.	"Hum_CBowDrawT2.asc"		R  	6	31)
+			{
+				*eventTag		(7 	"DEF_FIGHTMODE"	"")
+				*eventSFX		(14	"Crossbow_UndrawSound")
+				*eventMMStartAni	(24	"S_NORMAL"		"ZS_RIGHTHAND")
+				*eventMMStartAni	(27	"S_REFUSE"		"ZS_RIGHTHAND")
+				*eventSFX		(27	"Crossbow_Refuse")
+		   	     	*eventTag		(29	"DEF_REMOVE_MUNITION")
+			}
+			aniAlias	("t_CBow_2_Run"			1	""			0.0 0.0 M.	"t_Run_2_CBow"				R)
+
+
+//////////////////////////
+// CROSSBOW FIGHTING
+//////////////////////////
+// CROSSBOW Kampfanims
+			ani		("t_CBowRun_2_CBowAim"		1	"s_CBowAim"		0.0 0.0 M.	"Hum_CBowAimT2.asc"			F	1	6)
+			aniAlias	("t_CBowAim_2_CBowRun"		1	""			0.0 0.0 M.	"t_CBowRun_2_CBowAim"		R)
+
+			aniAlias	("t_CBowWalk_2_CBowAim"		1	"s_CBowAim"		0.0 0.0 M.	"t_CBowRun_2_CBowAim"		F)
+			aniAlias	("t_CBowAim_2_CBowWalk"		1	""			0.0 0.0 M.	"t_CBowRun_2_CBowAim"		R)
+
+
+// Shoot + Reload
+			aniBlend	("t_CBowAim_2_CBowShoot"		"s_CbowShoot")
+			ani		("s_CBowShoot"			1	"s_CBowShoot"	0.0 0.0 M.	"Hum_CBowAimT2.asc"		F	6	6)
+			{			
+				*eventMMStartAni	(6	"S_SHOOT"	"ZS_RIGHTHAND")
+				*eventSFX			(6	"CrossbowShoot"  )
+			}
+			ani		("t_CBowReload"			1	"s_CBowAim"		0.0 0.0 M.	"Hum_CBowAimT2.asc"		F	6	29)
+			{
+				*eventMMStartAni	(6	"S_RELAX"	"ZS_RIGHTHAND")
+				*eventSFX		(10	"Crossbow_Charge")
+		     		*eventTag		(10 "DEF_PLACE_MUNITION" "ZS_LEFTHAND")
+				*eventMMStartAni	(29	"S_READY"	"ZS_RIGHTHAND")
+			}
+//			aniAlias	("t_CBowReload1"			1	"s_CBowAim"		0.1 0.1 M.	"t_CBowReload"			F)
+//			aniAlias	("t_CBowReload2"			1	"s_CBowAim"		0.1 0.1 M.	"t_CBowReload"			F)
+//			aniAlias	("t_CBowReload3"			1	"s_CBowAim"		0.1 0.1 M.	"t_CBowReload"			F)
+
+
+// Autoaiming 9 Posen
+			ani		("c_Cbow_1"				4	""			0.0	0.0	..	"Hum_CBowAutoAimT2.asc"	F	0	0)
+			ani		("c_Cbow_2"				4	""			0.0	0.0	..	"Hum_CBowAutoAimT2.asc"	F	1	1)
+			ani		("c_Cbow_3"				4	""			0.0	0.0	..	"Hum_CBowAutoAimT2.asc"	F	2	2)
+			ani		("c_Cbow_4"				4	""			0.0	0.0	..	"Hum_CBowAutoAimT2.asc"	F	3	3)
+			ani		("c_Cbow_5"				4	""			0.0	0.0	..	"Hum_CBowAutoAimT2.asc"	F	4	4)
+			ani		("c_Cbow_6"				4	""			0.0	0.0	..	"Hum_CBowAutoAimT2.asc"	F	5	5)
+			ani		("c_Cbow_7"				4	""			0.0	0.0	..	"Hum_CBowAutoAimT2.asc"	F	6	6)
+			ani		("c_Cbow_8"				4	""			0.0	0.0	..	"Hum_CBowAutoAimT2.asc"	F	7	7)
+			ani		("c_Cbow_9"				4	""			0.0	0.0	..	"Hum_CBowAutoAimT2.asc"	F	8	8)
+
+			aniComb	("s_CBowAim"			1	"s_CBowAim"		0.3	0.3	M.	"c_Cbow_"	9)
+
+
+	}
+}
