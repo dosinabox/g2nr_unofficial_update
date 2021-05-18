@@ -792,16 +792,17 @@ func void DIA_Biff_KnowWhereEnemy_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Biff_KnowWhereEnemy_15_04");	//Я собираюсь покинуть Хоринис и отправиться на другой остров. Там должны быть еще враги.
-		Info_ClearChoices(DIA_Biff_KnowWhereEnemy);
-		if(Biff_ToldLaterOnce == TRUE)
+		if(Biff_ToldLaterOnce == FALSE)
 		{
-			Info_AddChoice(DIA_Biff_KnowWhereEnemy,"Мне казалось, я уже говорил об этом.",DIA_Biff_KnowWhereEnemy_No);
+			AI_Output(other,self,"DIA_Biff_KnowWhereEnemy_15_04");	//Я собираюсь покинуть Хоринис и отправиться на другой остров. Там должны быть еще враги.
+			Biff_ToldLaterOnce = TRUE;
 		}
 		else
 		{
-			Info_AddChoice(DIA_Biff_KnowWhereEnemy,"Вернемся к этому позже.",DIA_Biff_KnowWhereEnemy_No);
+			AI_Output(other,self,"DIA_Biff_KnowWhereEnemy_No_15_00");	//Мне казалось, я уже говорил об этом.
 		};
+		Info_ClearChoices(DIA_Biff_KnowWhereEnemy);
+		Info_AddChoice(DIA_Biff_KnowWhereEnemy,"Вернемся к этому позже.",DIA_Biff_KnowWhereEnemy_No);
 		Info_AddChoice(DIA_Biff_KnowWhereEnemy,"Ты не хочешь присоединиться?",DIA_Biff_KnowWhereEnemy_Yes);
 	};
 };
@@ -821,16 +822,8 @@ func void DIA_Biff_KnowWhereEnemy_Yes()
 
 func void DIA_Biff_KnowWhereEnemy_No()
 {
-	if(Biff_ToldLaterOnce == TRUE)
-	{
-		AI_Output(other,self,"DIA_Biff_KnowWhereEnemy_No_15_00");	//Мне казалось, я уже говорил об этом.
-	}
-	else
-	{
-		DIA_Common_WeWillGetToThatLater();
-	};
+	DIA_Common_WeWillGetToThatLater();
 	AI_Output(self,other,"DIA_Biff_KnowWhereEnemy_No_07_01");	//Да, да. Тогда повеселимся.
-	Biff_ToldLaterOnce = TRUE;
 	Biff_IsOnBoard = LOG_OBSOLETE;
 	Info_ClearChoices(DIA_Biff_KnowWhereEnemy);
 };

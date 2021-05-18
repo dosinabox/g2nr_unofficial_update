@@ -4229,7 +4229,7 @@ Model ("HuS")
 			{
 				*eventSFX			(13	"BowShoot" 				R:1000)
 				*eventMMStartAni 	(13	"S_RELAX"				"ZS_LEFTHAND")
-				*eventTag			(18	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
+				*eventTag			(23	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
 				*eventSFX			(30	"Bow_Charge" 			R:800)
 				*eventMMStartAni 	(40	"S_READY"				"ZS_LEFTHAND")
 			}
@@ -4247,7 +4247,7 @@ Model ("HuS")
 			{
 				*eventMMStartAni 	(13	"S_RELAX"				"ZS_LEFTHAND")
 				*eventSFX			(13	"BowShoot" 				R:1000)
-				*eventTag			(18	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
+				*eventTag			(23	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
 				*eventSFX			(30	"Bow_Charge" 			R:800)
 				*eventMMStartAni 	(40	"S_READY"				"ZS_LEFTHAND")
 			}

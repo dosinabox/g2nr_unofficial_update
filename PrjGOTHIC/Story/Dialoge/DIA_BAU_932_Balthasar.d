@@ -175,7 +175,7 @@ func int DIA_Balthasar_WOBENGAR_Condition()
 	};
 	if(Npc_KnowsInfo(other,DIA_Rosi_BENGAR))
 	{
-		DIA_Balthasar_WOBENGAR.description = "Как я могу попасть на ферму Бенгара?";
+		DIA_Balthasar_WOBENGAR.description = "Как мне попасть на ферму Бенгара?";
 		return TRUE;
 	};
 };
@@ -188,7 +188,7 @@ func void DIA_Balthasar_WOBENGAR_Info()
 	}
 	else if(Npc_KnowsInfo(other,DIA_Rosi_BENGAR))
 	{
-		AI_Output(other,self,"DIA_Balthasar_WOBENGAR_15_00_add");	//Как я могу попасть на ферму Бенгара?
+		DIA_Common_WhereBengarsFarm();
 	};
 	AI_Output(self,other,"DIA_Balthasar_WOBENGAR_05_01");	//Иди по этой дороге до перекрестка.
 	AI_Output(self,other,"DIA_Balthasar_WOBENGAR_05_02");	//Если там ты повернешь направо, ты увидишь большую скалу. За ней, справа, и находятся высокогорные пастбища и Проход.

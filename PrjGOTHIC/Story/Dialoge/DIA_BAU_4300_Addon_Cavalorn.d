@@ -1,11 +1,19 @@
 
 func int C_BragoBanditsDead()
 {
-	if((Npc_IsDead(Ambusher_1013) || (Bdt_1013_Away == TRUE)) && Npc_IsDead(Ambusher_1014) && Npc_IsDead(Ambusher_1015))
+	if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_Away == FALSE))
 	{
-		return TRUE;
+		return FALSE;
 	};
-	return FALSE;
+	if(!Npc_IsDead(Ambusher_1014))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Ambusher_1015))
+	{
+		return FALSE;
+	};
+	return TRUE;
 };
 
 

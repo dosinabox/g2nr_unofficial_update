@@ -1224,7 +1224,14 @@ func void B_LaresOffersWayToOnar()
 {
 	if(Lares_WayToOnar == FALSE)
 	{
-		AI_Output(self,other,"DIA_Lares_WegZumHof_09_01");	//я могу отвести теб€ туда, если хочешь. я все равно уже слишком долго здесь ошиваюсь.
+		if(Lares_CanBringScToPlaces == FALSE)
+		{
+			AI_Output(self,other,"DIA_Addon_Lares_WegZumHof_09_01");	//≈сли хочешь, € могу теб€ проводить.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Lares_WegZumHof_09_01");	//я могу отвести теб€ туда, если хочешь. я все равно уже слишком долго здесь ошиваюсь.
+		};
 		Lares_WayToOnar = TRUE;
 	};
 };
@@ -1387,11 +1394,7 @@ func void DIA_Lares_AboutSld_Schiff()
 	AI_Output(self,other,"DIA_Lares_Schiff_09_02");	//Ќо это может зан€ть некоторое врем€...
 	AI_Output(other,self,"DIA_Lares_Schiff_15_03");	//ѕочему?
 	AI_Output(self,other,"DIA_Lares_Schiff_09_04");	//“ебе лучше спросить об этом Ћи, если встретишь его... ” него есть план.
-	if(Lares_WayToOnar == FALSE)
-	{
-		AI_Output(self,other,"DIA_Addon_Lares_WegZumHof_09_01");	//≈сли хочешь, € могу теб€ проводить.
-		Lares_WayToOnar = TRUE;
-	};
+	B_LaresOffersWayToOnar();
 };
 
 func void DIA_Lares_AboutSld_WayToOnar()
