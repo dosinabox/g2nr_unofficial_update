@@ -104,7 +104,7 @@ func void B_NpcObsessedByDMT(var C_Npc medium)
 	{
 		Wld_PlayEffect("DEMENTOR_FX",hero,hero,0,0,0,FALSE);
 		AI_UnequipWeapons(medium);
-		medium.attribute[ATR_MANA_MAX] = CONDITION_ARMOR_DEMENTOR;
+		medium.attribute[ATR_MANA_MAX] = CONDITION_ARMOR_FAKE_DEMENTOR;
 		CreateInvItems(medium,ITAR_Fake_Dementor,1);
 		AI_EquipArmor(medium,ITAR_Fake_Dementor);
 		AI_PlayAni(medium,"T_PRACTICEMAGIC5");

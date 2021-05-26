@@ -20,7 +20,6 @@ func void B_VatrasPissedOff()
 			Crewmember_Count -= 1;
 		};
 		Vatras_IsOnBoard = LOG_FAILED;
-		B_CheckLog();
 		self.flags = 0;
 		VatrasPissedOffForever = TRUE;
 		AI_StopProcessInfos(self);

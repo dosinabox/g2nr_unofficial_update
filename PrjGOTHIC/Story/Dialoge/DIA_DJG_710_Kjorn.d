@@ -146,7 +146,7 @@ func void DIA_Kjorn_BuyInfos_GiveMoney()
 	B_GiveInvItems(other,self,ItMi_Gold,50);
 	AI_Output(other,self,"DIA_Kjorn_BuyInfos_GiveMoney_15_01");	//Теперь скажи мне...
 	Info_ClearChoices(DIA_Kjorn_BuyInfos);
-	Info_AddChoice(DIA_Kjorn_BuyInfos,Dialog_Back,DIA_Kjorn_BuyInfos_Back);
+	Info_AddChoice(DIA_Kjorn_BuyInfos,"Знаешь, верни мне мои деньги, я передумал.",DIA_Kjorn_BuyInfos_Back);
 	if(KjornToldDragon == 0)
 	{
 		Info_AddChoice(DIA_Kjorn_BuyInfos,"... о драконах.",DIA_Kjorn_BuyInfos_Dragon1);

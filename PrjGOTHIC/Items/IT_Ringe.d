@@ -371,55 +371,6 @@ func void UnEquip_ItRi_Prot_Mage_03()
 };
 
 
-instance ItRi_Prot_Total_00(C_Item)
-{
-	name = NAME_Ring;
-	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_RING;
-	value = 550;
-	visual = "ItRi_Fernando.3ds";
-	visual_skin = 0;
-	material = MAT_METAL;
-	on_equip = Equip_Fernando;
-	on_unequip = UnEquip_Fernando;
-	wear = WEAR_EFFECT;
-	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Кольцо мореплавателя";
-	text[1] = NAME_Prot_Edge;
-	count[1] = 2;
-	text[2] = NAME_Prot_Point;
-	count[2] = 2;
-	text[3] = NAME_Prot_Fire;
-	count[3] = 1;
-	text[4] = NAME_Prot_Magic;
-	count[4] = 1;
-	text[5] = NAME_Value;
-	count[5] = value;
-	inv_zbias = INVCAM_ENTF_RING_STANDARD;
-	inv_rotz = INVCAM_Z_RING_STANDARD;
-	inv_rotx = INVCAM_X_RING_STANDARD;
-};
-
-
-func void Equip_Fernando()
-{
-	self.protection[PROT_EDGE] += 2;
-	self.protection[PROT_BLUNT] += 2;
-	self.protection[PROT_POINT] += 2;
-	self.protection[PROT_FIRE] += 1;
-	self.protection[PROT_MAGIC] += 1;
-};
-
-func void UnEquip_Fernando()
-{
-	self.protection[PROT_EDGE] -= 2;
-	self.protection[PROT_BLUNT] -= 2;
-	self.protection[PROT_POINT] -= 2;
-	self.protection[PROT_FIRE] -= 1;
-	self.protection[PROT_MAGIC] -= 1;
-};
-
-
 instance ItRi_Prot_Total_01(C_Item)
 {
 	name = NAME_Ring;
@@ -515,6 +466,55 @@ func void UnEquip_ItRi_Prot_Total_02()
 	self.protection[PROT_POINT] -= Ri_TProtPoint02;
 	self.protection[PROT_FIRE] -= Ri_TProtFire02;
 	self.protection[PROT_MAGIC] -= Ri_TProtMage02;
+};
+
+
+instance ItRi_Prot_Total_03(C_Item)
+{
+	name = NAME_Ring;
+	mainflag = ITEM_KAT_MAGIC;
+	flags = ITEM_RING;
+	value = 550;
+	visual = "ItRi_Fernando.3ds";
+	visual_skin = 0;
+	material = MAT_METAL;
+	on_equip = Equip_ItRi_Prot_Total_03;
+	on_unequip = UnEquip_ItRi_Prot_Total_03;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_ITEMGLIMMER";
+	description = "Кольцо мореплавателя";
+	text[1] = NAME_Prot_Edge;
+	count[1] = 2;
+	text[2] = NAME_Prot_Point;
+	count[2] = 2;
+	text[3] = NAME_Prot_Fire;
+	count[3] = 1;
+	text[4] = NAME_Prot_Magic;
+	count[4] = 1;
+	text[5] = NAME_Value;
+	count[5] = value;
+	inv_zbias = INVCAM_ENTF_RING_STANDARD;
+	inv_rotz = INVCAM_Z_RING_STANDARD;
+	inv_rotx = INVCAM_X_RING_STANDARD;
+};
+
+
+func void Equip_ItRi_Prot_Total_03()
+{
+	self.protection[PROT_EDGE] += 2;
+	self.protection[PROT_BLUNT] += 2;
+	self.protection[PROT_POINT] += 2;
+	self.protection[PROT_FIRE] += 1;
+	self.protection[PROT_MAGIC] += 1;
+};
+
+func void UnEquip_ItRi_Prot_Total_03()
+{
+	self.protection[PROT_EDGE] -= 2;
+	self.protection[PROT_BLUNT] -= 2;
+	self.protection[PROT_POINT] -= 2;
+	self.protection[PROT_FIRE] -= 1;
+	self.protection[PROT_MAGIC] -= 1;
 };
 
 

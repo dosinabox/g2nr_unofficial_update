@@ -2676,7 +2676,6 @@ func void DIA_Lares_KnowWhereEnemy_No()
 	{
 		Lares_IsOnBoard = LOG_FAILED;
 	};
-	B_CheckLog();
 	Info_ClearChoices(DIA_Lares_KnowWhereEnemy);
 };
 
@@ -2712,7 +2711,6 @@ func void DIA_Lares_LeaveMyShip_Info()
 	{
 		Lares_IsOnBoard = LOG_FAILED;
 	};
-	B_CheckLog();
 	Crewmember_Count -= 1;
 	Npc_ExchangeRoutine(self,"ShipOff");
 };

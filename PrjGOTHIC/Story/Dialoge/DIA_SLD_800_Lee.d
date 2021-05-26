@@ -1904,6 +1904,5 @@ func void DIA_Lee_StillNeedYou_Info()
 		AI_StopProcessInfos(self);
 		Lee_IsOnBoard = LOG_FAILED;
 	};
-	B_CheckLog();
 };
 

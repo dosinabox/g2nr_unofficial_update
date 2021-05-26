@@ -1202,7 +1202,7 @@ instance ITAR_Fake_Dementor(C_Item)
 	value = 0;
 	wear = WEAR_TORSO;
 	cond_atr[2] = ATR_MANA_MAX;
-	cond_value[2] = CONDITION_ARMOR_DEMENTOR;
+	cond_value[2] = CONDITION_ARMOR_FAKE_DEMENTOR;
 	visual = "ItAr_Dementor.3ds";
 	visual_change = "Armor_Dementor.asc";
 	visual_skin = 0;

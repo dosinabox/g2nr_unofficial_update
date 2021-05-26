@@ -114,7 +114,7 @@ const int NPC_DAM_DIVE_TIME = 100;
 const int IMMUNE = -1;
 
 const int CONDITION_WEAPON_RAVEN = 666666;
-const int CONDITION_ARMOR_DEMENTOR = 777777;
+const int CONDITION_ARMOR_FAKE_DEMENTOR = 777777;
 
 const float NPC_COLLISION_CORRECTION_SCALER = 0.75;
 
@@ -770,7 +770,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "18/05/2021";
+const string FIX_VERSION_DATE = "26/05/2021";
 const int FIX_VERSION_START = 26;
 const int LEAST_SUPPORTED = 24;
 var int FIX_VERSION_SAVE;

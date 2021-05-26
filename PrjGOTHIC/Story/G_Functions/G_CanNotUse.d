@@ -34,7 +34,7 @@ func void G_CanNotUse(var int bIsPlayer,var int nAttribute,var int nValue)
 			Print(PRINT_ADDON_BELIARSCOURSE_MISSING);
 			return;
 		};
-		if(nValue == CONDITION_ARMOR_DEMENTOR)
+		if(nValue == CONDITION_ARMOR_FAKE_DEMENTOR)
 		{
 			Wld_PlayEffect("spellFX_Fear",self,self,0,0,0,FALSE);
 			Snd_Play("MFX_FEAR_CAST");
