@@ -187,7 +187,7 @@ func int DIA_Baltram_Trick_Condition()
 func void DIA_Baltram_Trick_Info()
 {
 	AI_Output(self,other,"DIA_Baltram_Trick_01_00");	//Ты ищешь работу?
-	AI_Output(other,self,"DIA_Baltram_Trick_15_01");	//Конечно, а что нужно?
+	DIA_Common_SureWhatsNeeded();
 	AI_Output(self,other,"DIA_Baltram_Trick_01_02");	//Мой мальчик на побегушках не вернулся, а я жду поставку от фермера Акила.
 	AI_Output(other,self,"DIA_Baltram_Trick_15_03");	//И во сколько ты оцениваешь эту работу?
 	AI_Output(self,other,"DIA_Baltram_Trick_01_04");	//Я дам тебе 50 золотых монет.

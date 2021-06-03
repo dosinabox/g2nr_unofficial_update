@@ -66,12 +66,7 @@ func void B_Hokurn_WineComment()
 func void B_GiveDrinkToHokurn()
 {
 	AI_WaitTillEnd(self,other);
-	if(Npc_HasItems(other,ItFo_Beer))
-	{
-		B_GiveInvItems(other,self,ItFo_Beer,1);
-		B_UseItem(self,ItFo_Beer);
-	}
-	else if(Npc_HasItems(other,ItFo_Booze))
+	if(Npc_HasItems(other,ItFo_Booze))
 	{
 		B_GiveInvItems(other,self,ItFo_Booze,1);
 		B_UseItem(self,ItFo_Booze);
@@ -107,6 +102,11 @@ func void B_GiveDrinkToHokurn()
 	{
 		B_GiveInvItems(other,self,ItFo_Addon_SchlafHammer,1);
 		B_UseItem(self,ItFo_Addon_SchlafHammer);
+	}
+	else if(Npc_HasItems(other,ItFo_Beer))
+	{
+		B_GiveInvItems(other,self,ItFo_Beer,1);
+		B_UseItem(self,ItFo_Beer);
 	}
 	else if(Npc_HasItems(other,ItFo_DarkWine))
 	{

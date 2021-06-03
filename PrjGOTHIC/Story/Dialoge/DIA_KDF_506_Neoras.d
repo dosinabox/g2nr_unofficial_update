@@ -471,7 +471,7 @@ func void DIA_Neoras_BrewForMe_Health()
 		AI_Output(self,other,"DIA_Neoras_BrewForMe_Health_01_04");	//У тебя нет необходимых ингредиентов. Возвращайся, когда соберешь их.
 		if(Neoras_Ingrediences_Advice == FALSE)
 		{
-			AI_Output(other,self,"DIA_Neoras_INGREDIENCES_Health_15_00_add");	//Какие ингредиенты нужны для лечебного экстракта?
+			DIA_Common_SureWhatsNeeded();
 			DIA_Common_14_GoReadAboutIt();
 			Neoras_Ingrediences_Advice = TRUE;
 		};

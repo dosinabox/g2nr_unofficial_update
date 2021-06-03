@@ -124,6 +124,8 @@ func void DIA_Addon_Bromor_Lucia_Info()
 };
 
 
+var int DIA_Addon_Bromor_LuciaGold_Lucia_OneTime;
+
 instance DIA_Addon_Bromor_LuciaGold(C_Info)
 {
 	npc = VLK_433_Bromor;
@@ -154,9 +156,9 @@ func void DIA_Addon_Bromor_LuciaGold_Info()
 		Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Как насчет награды?",DIA_Addon_Bromor_LuciaGold_lohn);
 	};
 	Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Вот блюдо.",DIA_Addon_Bromor_LuciaGold_einfachgeben);
-	if(DIA_Addon_Bromor_LuciaGold_lucia_OneTime == FALSE)
+	if(DIA_Addon_Bromor_LuciaGold_Lucia_OneTime == FALSE)
 	{
-		Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Тебе не интересно, что случилось с Люсией?",DIA_Addon_Bromor_LuciaGold_lucia);
+		Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Тебе не интересно, что случилось с Люсией?",DIA_Addon_Bromor_LuciaGold_Lucia);
 	};
 };
 
@@ -172,14 +174,12 @@ func void DIA_Addon_Bromor_LuciaGold_einfachgeben()
 };
 
 
-var int DIA_Addon_Bromor_LuciaGold_lucia_OneTime;
-
-func void DIA_Addon_Bromor_LuciaGold_lucia()
+func void DIA_Addon_Bromor_LuciaGold_Lucia()
 {
-	AI_Output(other,self,"DIA_Addon_Bromor_LuciaGold_lucia_15_00");	//Тебе не интересно, что случилось с Люсией?
-	AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_lucia_07_01");	//Нет. А зачем мне знать? Главное, что блюдо у меня.
-	AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_lucia_07_02");	//Я обходился без Люсии все это время, обойдусь и дальше. Почему я должен пытаться ее вернуть?
-	DIA_Addon_Bromor_LuciaGold_lucia_OneTime = TRUE;
+	AI_Output(other,self,"DIA_Addon_Bromor_LuciaGold_Lucia_15_00");	//Тебе не интересно, что случилось с Люсией?
+	AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_Lucia_07_01");	//Нет. А зачем мне знать? Главное, что блюдо у меня.
+	AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_Lucia_07_02");	//Я обходился без Люсии все это время, обойдусь и дальше. Почему я должен пытаться ее вернуть?
+	DIA_Addon_Bromor_LuciaGold_Lucia_OneTime = TRUE;
 };
 
 func void DIA_Addon_Bromor_LuciaGold_lohn()
@@ -194,9 +194,9 @@ func void DIA_Addon_Bromor_LuciaGold_lohn()
 		AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_lohn_07_01_add");	//50 золотых монет. Что скажешь?
 	};
 	Info_ClearChoices(DIA_Addon_Bromor_LuciaGold);
-	if(DIA_Addon_Bromor_LuciaGold_lucia_OneTime == FALSE)
+	if(DIA_Addon_Bromor_LuciaGold_Lucia_OneTime == FALSE)
 	{
-		Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Тебе не интересно, что случилось с Люсией?",DIA_Addon_Bromor_LuciaGold_lucia);
+		Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Тебе не интересно, что случилось с Люсией?",DIA_Addon_Bromor_LuciaGold_Lucia);
 	};
 	Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Этого недостаточно.",DIA_Addon_Bromor_LuciaGold_mehr);
 	Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Согласен. Вот блюдо.",DIA_Addon_Bromor_LuciaGold_geben);

@@ -1114,7 +1114,16 @@ func void DIA_Addon_Greg_NW_Skip_Info()
 	B_GivePlayerXP(XP_Ambient);
 };
 
-func void B_GiveGregItems()
+func int C_SCHasGregsItems()
+{
+	if((Npc_HasItems(other,ItSe_GoldPocket100) || (Npc_HasItems(other,ItMi_Gold) >= 100)) && Npc_HasItems(other,ItMi_GoldChalice) && Npc_HasItems(other,ItMi_GregsSilverPlate) && Npc_HasItems(other,ItAm_Addon_Greg))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+func void B_GiveGregsItems()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_00");	//Вот твои вещи.
 	if(B_GiveInvItems(other,self,ItSe_GoldPocket100,1))
@@ -1161,7 +1170,7 @@ func void DIA_Addon_Greg_NW_FoundTreasure_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_FoundTreasure_01_01");	//Тогда у тебя должно быть около ста золотых, золотая чаша, серебряное блюдо и амулет. Давай их сюда!
 	Info_ClearChoices(DIA_Addon_Greg_NW_FoundTreasure);
 	Info_AddChoice(DIA_Addon_Greg_NW_FoundTreasure,"У меня с собой их нет.",DIA_Addon_Greg_NW_FoundTreasure_not);
-	if((Npc_HasItems(other,ItSe_GoldPocket100) || (Npc_HasItems(other,ItMi_Gold) >= 100)) && Npc_HasItems(other,ItMi_GoldChalice) && Npc_HasItems(other,ItMi_GregsSilverPlate) && Npc_HasItems(other,ItAm_Addon_Greg))
+	if(C_SCHasGregsItems())
 	{
 		Info_AddChoice(DIA_Addon_Greg_NW_FoundTreasure,"Вот твои вещи.",DIA_Addon_Greg_NW_FoundTreasure_ja);
 	};
@@ -1169,7 +1178,7 @@ func void DIA_Addon_Greg_NW_FoundTreasure_Info()
 
 func void DIA_Addon_Greg_NW_FoundTreasure_ja()
 {
-	B_GiveGregItems();
+	B_GiveGregsItems();
 	AI_Output(self,other,"DIA_Addon_Greg_NW_FoundTreasure_ja_01_07");	//Вот твоя доля.
 	B_GiveInvItems(self,other,ItMi_Gold,30);
 	Info_ClearChoices(DIA_Addon_Greg_NW_FoundTreasure);
