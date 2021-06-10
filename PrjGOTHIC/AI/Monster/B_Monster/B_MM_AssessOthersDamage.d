@@ -2,7 +2,6 @@
 func void B_MM_AssessOthersDamage()
 {
 	var C_Item readyweap;
-	readyweap = Npc_GetReadiedWeapon(other);
 	if((Npc_GetDistToNpc(self,victim) > PERC_DIST_INTERMEDIAT) && (Npc_GetDistToNpc(self,other) > PERC_DIST_INTERMEDIAT))
 	{
 		return;
@@ -18,6 +17,7 @@ func void B_MM_AssessOthersDamage()
 	};
 	if(Npc_HasReadiedRangedWeapon(other))
 	{
+		readyweap = Npc_GetReadiedWeapon(other);
 		if((Npc_GetDistToNpc(self,victim) <= 600) && (readyweap.munition == ItRw_Addon_FireArrow))
 		{
 			Wld_PlayEffect("VOB_MAGICBURN",self,self,0,0,0,FALSE);

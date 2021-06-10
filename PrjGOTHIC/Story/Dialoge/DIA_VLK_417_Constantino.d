@@ -885,7 +885,7 @@ func void B_Constantino_TeachAlchemyBasics()
 	AI_Output(self,other,"DIA_Constantino_Alchemy_10_04");	//Чтобы приготовить зелье на алхимическом столе, тебе понадобится лабораторная пробирка.
 	AI_Output(self,other,"DIA_Constantino_Alchemy_10_05");	//Ты должен знать правильную формулу и иметь соответствующие ингредиенты.
 	AI_Output(self,other,"DIA_Constantino_Alchemy_10_06");	//Я могу научить тебя многим таким формулам.
-	Alchemy_Explain = TRUE;
+	Alchemy_Explain_Constantino = TRUE;
 };
 
 instance DIA_Constantino_Alchemy(C_Info)
@@ -1053,7 +1053,7 @@ func void DIA_Constantino_TEACH_Info()
 		};
 		if(talente > 0)
 		{
-			if(Alchemy_Explain == FALSE)
+			if(Alchemy_Explain_Constantino == FALSE)
 			{
 				B_Constantino_TeachAlchemyBasics();
 			};

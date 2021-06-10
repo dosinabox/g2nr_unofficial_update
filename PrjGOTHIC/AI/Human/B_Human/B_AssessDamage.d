@@ -90,9 +90,9 @@ func void B_AssessOthersDamage()
 	var C_Item readyweap;
 	if(Hlp_IsValidNpc(other))
 	{
-		readyweap = Npc_GetReadiedWeapon(other);
 		if(Npc_HasReadiedRangedWeapon(other))
 		{
+			readyweap = Npc_GetReadiedWeapon(other);
 			if(readyweap.munition == ItRw_Addon_FireArrow)
 			{
 				if((Npc_GetDistToNpc(self,victim) <= 600) && (readyweap.munition == ItRw_Addon_FireArrow))

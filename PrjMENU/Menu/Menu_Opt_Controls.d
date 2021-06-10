@@ -52,8 +52,8 @@ instance MENU_OPT_CONTROLS(C_MENU_DEF)
 	items[48] = "MENU_ITEM_INP_QUICKHEALTH";
 	items[49] = "MENU_ITEM_CHG_KEYS_SET_DEFAULT";
 	items[50] = "MENU_ITEM_CHG_KEYS_SET_ALTERNATIVE";
-	items[51] = "MENU_ITEM_CHG_KEYS_GAMEPAD";
-	items[52] = "MENUITEM_CHG_KEYS_BACK";
+//	items[51] = "MENU_ITEM_CHG_KEYS_GAMEPAD";
+	items[51] = "MENUITEM_CHG_KEYS_BACK";
 	flags = flags | MENU_SHOW_INFO;
 };
 
@@ -779,7 +779,7 @@ instance MENU_ITEM_CHG_KEYS_SET_ALTERNATIVE(C_MENU_ITEM_DEF)
 	flags = flags | IT_TXT_CENTER;
 };
 
-instance MENU_ITEM_CHG_KEYS_GAMEPAD(C_MENU_ITEM_DEF)
+/*instance MENU_ITEM_CHG_KEYS_GAMEPAD(C_MENU_ITEM_DEF)
 {
 	text[0] = "Настройки контроллера";
 	text[1] = "Подсказки, чувствительность, передвижение";
@@ -790,7 +790,7 @@ instance MENU_ITEM_CHG_KEYS_GAMEPAD(C_MENU_ITEM_DEF)
 	onselaction_s[0] = "MENU_OPT_GAMEPAD";
 	fontname = MENU_FONT_SMALL;
 	flags = flags | IT_TXT_CENTER;
-};
+};*/
 
 instance MENUITEM_CHG_KEYS_BACK(C_MENU_ITEM_DEF)
 {

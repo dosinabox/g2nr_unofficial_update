@@ -1,5 +1,5 @@
 
-instance MENU_OPT_GAMEPAD(C_MENU_DEF)
+/*instance MENU_OPT_GAMEPAD(C_MENU_DEF)
 {
 	backpic = MENU_BACK_PIC;
 	items[0] = "MENUITEM_GAMEPAD_ENABLED";
@@ -261,5 +261,5 @@ instance MENUITEM_GAMEPAD_BACK(C_MENU_ITEM_DEF)
 	dimy = MENU_MAIN_DY;
 	onselaction[0] = SEL_ACTION_BACK;
 	flags = flags | IT_TXT_CENTER;
-};
+};*/
 

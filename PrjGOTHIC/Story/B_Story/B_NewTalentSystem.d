@@ -181,7 +181,7 @@ func int GetTalent(var C_Npc npc,var int talent)
 // removes and applies overlays when talent skill changed
 func void UpdateOverlay(var C_Npc npc,var int oldSkill,var int newSkill,var string mds1,var string mds2)
 {
-	if (oldSkill == newSkill)
+	if(oldSkill == newSkill)
 	{
 		return;
 	};
@@ -244,7 +244,7 @@ func int GetTalentPart_Game_Hero(var int talent)
 // calculates talent value, which determines learning cost value
 func int GetTalentPart_Cost_Hero(var int talent)
 {
-	if (talent == NPC_TALENT_1H)
+	if(talent == NPC_TALENT_1H)
 	{
 		return 
 			TAL_Training[NPC_TALENT_1H] * TAL_CostFlags_TS_Training + 
@@ -714,19 +714,19 @@ func int GetTalentTrainCost(var C_Npc npc,var int talent,var int change)
 // gets maximum in-game value of talent
 func int GetTalentMax(var int talent)
 {
-	if (talent == NPC_TALENT_1H)
+	if(talent == NPC_TALENT_1H)
 	{
 		return TAL_MaxValue[NPC_TALENT_1H];
 	};
-	if (talent == NPC_TALENT_2H)
+	if(talent == NPC_TALENT_2H)
 	{
 		return TAL_MaxValue[NPC_TALENT_2H];
 	};
-	if (talent == NPC_TALENT_BOW)
+	if(talent == NPC_TALENT_BOW)
 	{
 		return TAL_MaxValue[NPC_TALENT_BOW];
 	};
-	if (talent == NPC_TALENT_CROSSBOW)
+	if(talent == NPC_TALENT_CROSSBOW)
 	{
 		return TAL_MaxValue[NPC_TALENT_CROSSBOW];
 	};
