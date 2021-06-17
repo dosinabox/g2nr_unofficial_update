@@ -11,6 +11,7 @@ instance KDW_1401_Addon_Cronos_NW(Npc_Default)
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
+	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,5);
 	self.attribute[ATR_STRENGTH] = 1;
 	self.attribute[ATR_DEXTERITY] = 1;

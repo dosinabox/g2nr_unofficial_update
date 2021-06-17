@@ -31,7 +31,7 @@ func void B_SetVisuals_SwampZombie()
 {
 //	Mdl_SetVisual(self,"SwampZombie.mds");
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"ZomSwamp_Body",0,0,"ZomSwamp_Head",0,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"ZomSwamp_Body",0,0,"ZomSwamp_Head",3,DEFAULT,-1);
 };
 
 

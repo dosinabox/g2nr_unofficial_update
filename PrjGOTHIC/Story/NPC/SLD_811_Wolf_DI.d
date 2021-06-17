@@ -12,6 +12,7 @@ instance SLD_811_Wolf_DI(Npc_Default)
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
+	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Axe);

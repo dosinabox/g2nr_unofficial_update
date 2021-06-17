@@ -8,6 +8,7 @@ instance SLD_803_Cipher(Npc_Default)
 	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_NPCIsTrader] = TRUE;
+	aivar[AIV_Teeth] = 2;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	CreateInvItems(self,ItRw_Arrow,10);

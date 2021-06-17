@@ -10,6 +10,7 @@ instance KDW_14030_Addon_Myxir_ADW(Npc_Default)
 	aivar[AIV_MagicUser] = MAGIC_ALWAYS;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
+	aivar[AIV_Teeth] = 4;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);

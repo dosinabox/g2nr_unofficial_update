@@ -9,7 +9,7 @@ instance NONE_110_Urshak(Mst_Default_OrcShaman)
 	npcType = npctype_main;
 	aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
 	Mdl_SetVisual(self,"Orc.mds");
-	Mdl_SetVisualBody(self,"Orc_BodyShaman",DEFAULT,DEFAULT,"Orc_HeadShaman",DEFAULT,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"Orc_BodyShaman",DEFAULT,DEFAULT,"Orc_HeadShaman",DEFAULT,DEFAULT,NO_ARMOR);
 	fight_tactic = FAI_ORC;
 	EquipItem(self,ItMw_2H_OrcAxe_01);
 	daily_routine = Rtn_PreStart_110;

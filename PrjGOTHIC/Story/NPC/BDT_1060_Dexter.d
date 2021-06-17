@@ -8,6 +8,7 @@ instance BDT_1060_Dexter(Npc_Default)
 	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_EnemyOverride] = TRUE;
+	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_ShortSword2);

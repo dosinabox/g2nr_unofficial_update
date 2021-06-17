@@ -10,6 +10,7 @@ instance KDW_1404_Addon_Riordian_NW(Npc_Default)
 	aivar[AIV_MagicUser] = MAGIC_ALWAYS;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
+	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);

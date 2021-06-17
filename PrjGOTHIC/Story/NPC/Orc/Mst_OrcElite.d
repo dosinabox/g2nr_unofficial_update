@@ -33,13 +33,13 @@ prototype Mst_Default_OrcElite(C_Npc)
 func void B_SetVisuals_OrcElite()
 {
 	Mdl_SetVisual(self,"Orc.mds");
-	Mdl_SetVisualBody(self,"Orc_BodyElite",DEFAULT,DEFAULT,"Orc_HeadWarrior",DEFAULT,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"Orc_BodyElite",DEFAULT,DEFAULT,"Orc_HeadWarrior",DEFAULT,DEFAULT,NO_ARMOR);
 };
 
 func void B_SetVisuals_OrcCommander()
 {
 	Mdl_SetVisual(self,"Orc.mds");
-	Mdl_SetVisualBody(self,"Orc_BodyCommander",DEFAULT,DEFAULT,"Orc_HeadShaman",DEFAULT,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"Orc_BodyCommander",DEFAULT,DEFAULT,"Orc_HeadShaman",DEFAULT,DEFAULT,NO_ARMOR);
 };
 
 instance OrcElite_Roam(Mst_Default_OrcElite)
