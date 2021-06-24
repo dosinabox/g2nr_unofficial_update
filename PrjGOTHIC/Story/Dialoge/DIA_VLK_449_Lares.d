@@ -2,7 +2,7 @@
 var int LaresToldAboutKDW1;
 var int LaresToldAboutKDW2;
 
-func void DIA_Addon_Lares_Patch_WhereTo()
+func void B_LaresTellAboutKDW1()
 {
 	if(LaresToldAboutKDW1 == FALSE)
 	{
@@ -11,20 +11,42 @@ func void DIA_Addon_Lares_Patch_WhereTo()
 		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_02");	//Чтобы поддерживать связь с магами, я практически постоянно нахожусь в городе, работая вместе с Ватрасом.
 		LaresToldAboutKDW1 = TRUE;
 	};
+};
+
+func void B_LaresTellAboutKDW2()
+{
 	if(LaresToldAboutKDW2 == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_00");	//Маги Воды полностью погружены в работу. Они уже несколько недель раскапывают какие-то руины на северо-востоке. Никто не знает, что они пытаются там найти.
 		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_01");	//Все началось с землетрясений, таких, какие бывали в худшие дни Барьера.
 		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_02");	//Из-под земли появились ужасные каменные создания, убивающие каждого, кто подходил к ним ближе, чем на тридцать метров.
 		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_03");	//Маги Воды взяли ситуацию в свои руки и уничтожили монстров. А теперь они проводят раскопки, пытаясь найти объяснение этим странным событиям.
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_04");	//Но ты скоро сам все увидишь.
 		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
 		B_LogEntry(TOPIC_Addon_KDW,"Ларес рассказал мне о раскопках магов Воды. Маги занимаются расследованием необычных событий, происходящих в последнее время - странных землетрясений и появления из-под земли загадочных каменных существ.");
 		LaresToldAboutKDW2 = TRUE;
 	};
+};
+
+func void B_SCForgotSaturas()
+{
+	AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_wer_15_00");	//Сатурас? Кто это такой?
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_wer_09_01");	//Он был главным у магов Воды в Новом Лагере в Долине Рудников, когда Барьер еще не был разрушен.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_wer_09_02");	//Мы с Ли тогда заключили с магами Воды союз.
+};
+
+func void B_SCRememberSaturas()
+{
+	AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_ja_15_00");	//Конечно. Он был предводителем магов Воды в Новом Лагере.
+};
+
+func void DIA_Addon_Lares_Patch_WhereTo()
+{
+	B_LaresTellAboutKDW1();
+	B_LaresTellAboutKDW2();
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_04");	//Да, и еще одно. Не стоит бродить по округе с этим орнаментом. Сразу же отправляйся к Сатурасу.
 	B_GiveInvItems(self,other,ItMi_Ornament_Addon_Vatras,1);
-	Info_ClearChoices(DIA_Addon_Lares_Patch);
 };
 
 instance DIA_Addon_Lares_Patch(C_Info)
@@ -48,8 +70,6 @@ func int DIA_Addon_Lares_Patch_Condition()
 func void DIA_Addon_Lares_Patch_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_OrnamentBringJob_15_00");	//Я могу отнести орнамент!
-	AI_Output(self,other,"DIA_Addon_Lares_OrnamentBringJob_09_02");	//Но сейчас я не могу уйти. Я должен наблюдать за гаванью.
-	AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_06");	//Но ты можешь мне помочь.
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_09_01");	//Орнамент, который ты мне отдал, нужно отнести Сатурасу. Ты же помнишь Сатураса, не так ли?
 	if(LaresToldAboutKDW1 == FALSE)
 	{
@@ -66,16 +86,16 @@ func void DIA_Addon_Lares_Patch_Info()
 
 func void DIA_Addon_Lares_Patch_wer()
 {
-	AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_wer_15_00");	//Сатурас? Кто это такой?
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_wer_09_01");	//Он был главным у магов Воды в Новом Лагере в Долине Рудников, когда Барьер еще не был разрушен.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_wer_09_02");	//Мы с Ли тогда заключили с магами Воды союз.
+	B_SCForgotSaturas();
 	DIA_Addon_Lares_Patch_WhereTo();
+	Info_ClearChoices(DIA_Addon_Lares_Patch);
 };
 
 func void DIA_Addon_Lares_Patch_ja()
 {
-	AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_ja_15_00");	//Конечно. Он был предводителем магов Воды в Новом Лагере.
+	B_SCRememberSaturas();
 	DIA_Addon_Lares_Patch_WhereTo();
+	Info_ClearChoices(DIA_Addon_Lares_Patch);
 };
 
 instance DIA_Lares_Kap1_EXIT(C_Info)
@@ -168,7 +188,7 @@ func void B_Lares_Comment_MIL()
 
 func void B_Lares_Comment_PAL()
 {
-	AI_Output(self,other,"DIA_Lares_OtherGuild_09_02");	//Так теперь ты один из паладинов короля!
+	AI_Output(self,other,"DIA_Lares_OtherGuild_09_02");	//Так, теперь ты один из паладинов короля!
 };
 
 func void B_Lares_Comment_SLD()
@@ -206,7 +226,7 @@ func void DIA_Lares_HALLO_Info()
 	};
 	if(other.guild == GIL_NONE)
 	{
-		if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (Npc_GetDistToWP(self,"HAFEN") < 10000))
+		if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (B_GetLaresLocation() == LOC_CITY))
 		{
 			AI_Output(self,other,"DIA_Lares_HALLO_09_01");	//Ты что, ПРИПЛЫЛ сюда?
 			AI_Output(self,other,"DIA_Lares_HALLO_09_02");	//(смеется) Это единственный способ миновать стражу у городских ворот.
@@ -314,7 +334,7 @@ instance DIA_Addon_Lares_Vatras(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Lares_Vatras_Condition;
 	information = DIA_Addon_Lares_Vatras_Info;
-	description = "Меня послал Ватрас.";
+	description = "Меня послал Ватрас. Он сказал, что если мне понадобится помощь, я могу обратиться к тебе.";
 };
 
 
@@ -338,12 +358,7 @@ func void DIA_Addon_Lares_Vatras_Info()
 		B_StartOtherRoutine(BAU_974_Bauer,"GregInTaverne");
 		GregLocation = Greg_Taverne;
 		B_StartOtherRoutine(Greg_NW,"Taverne");
-		if(GregWolfs == FALSE)
-		{
-			Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
-			Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
-			GregWolfs = TRUE;
-		};
+		B_InsertGregWolfs();
 	};
 };
 
@@ -539,10 +554,61 @@ func void DIA_Addon_Lares_RingBack2_Info()
 	AI_Output(other,self,"DIA_Addon_Lares_RingBack2_15_00");	//Вот твое кольцо.
 	B_GiveInvItems(other,self,ItRi_Ranger_Lares_Addon,1);
 	AI_Output(self,other,"DIA_Addon_Lares_RingBack2_09_01");	//Замечательно. Я боялся, что ты его потерял.
-	B_GivePlayerXP(XP_Ambient);
+	if(CurrentLevel == NEWWORLD_ZEN)
+	{
+		B_GivePlayerXP(XP_Ambient);
+	}
+	else
+	{
+		B_GivePlayerXP(XP_AmbientKap1);
+	};
 	Lares_GotRingBack = TRUE;
 };
 
+
+func int C_AllRangersAreInPositions()
+{
+	if(Npc_GetDistToWP(self,"NW_TAVERNE_IN_RANGERMEETING_LARES") > 200)
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Cord))
+	{
+		if(Npc_GetDistToWP(Cord,"NW_TAVERNE_IN_RANGERMEETING") >= 500)
+		{
+			return FALSE;
+		};
+	};
+	if(!Npc_IsDead(Gaan))
+	{
+		if(Npc_GetDistToWP(Gaan,"NW_TAVERNE_IN_RANGERMEETING") >= 500)
+		{
+			return FALSE;
+		};
+	};
+	if(!Npc_IsDead(Martin))
+	{
+		if(Npc_GetDistToWP(Martin,"NW_TAVERNE_IN_RANGERMEETING") >= 500)
+		{
+			return FALSE;
+		};
+	};
+	if(!Npc_IsDead(Cavalorn) && (MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE))
+	{
+		if(Npc_GetDistToWP(Cavalorn,"NW_TAVERNE_IN_RANGERMEETING") >= 500)
+		{
+			return FALSE;
+		};
+	};
+	if(!Npc_IsDead(Orlan))
+	{
+		if(Npc_GetDistToWP(Orlan,"NW_TAVERNE_IN_RANGERMEETING") >= 500)
+		{
+			return FALSE;
+		};
+	};
+	return TRUE;
+};
 
 instance DIA_Addon_Lares_Geduld(C_Info)
 {
@@ -557,7 +623,7 @@ instance DIA_Addon_Lares_Geduld(C_Info)
 
 func int DIA_Addon_Lares_Geduld_Condition()
 {
-	if((RangerMeetingRunning == LOG_Running) && (Npc_GetDistToWP(self,"NW_TAVERNE_IN_RANGERMEETING_LARES") > 200) && Npc_IsInState(self,ZS_Talk))
+	if((RangerMeetingRunning == LOG_Running) && !C_AllRangersAreInPositions() && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -584,7 +650,7 @@ instance DIA_Addon_Lares_GetRangerArmor(C_Info)
 
 func int DIA_Addon_Lares_GetRangerArmor_Condition()
 {
-	if((MIS_Addon_Lares_ComeToRangerMeeting == LOG_Running) && (Npc_GetDistToWP(self,"NW_TAVERNE_IN_RANGERMEETING_LARES") <= 200) && (RangerMeetingRunning == LOG_Running) && Npc_IsInState(self,ZS_Talk))
+	if((MIS_Addon_Lares_ComeToRangerMeeting == LOG_Running) && C_AllRangersAreInPositions() && (RangerMeetingRunning == LOG_Running) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -631,6 +697,8 @@ func void DIA_Addon_Lares_GetRangerArmor_end()
 	AI_Output(other,self,"DIA_Addon_Lares_GetRangerArmor_end_15_00");	//Я должен идти.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_01");	//Прекрасно, мы не будем тебя задерживать.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_02");	//Отправляйся к Ватрасу и попроси его дать тебе твое первое задание.
+	B_StopLookAt(self);
+	AI_AlignToWP(self);
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_03");	//Братья! Пришло время вернуться к нашей работе.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_04");	//Нападения бандитов все еще продолжаются. Мы должны ликвидировать эту угрозу.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_05");	//Да сохранит Аданос равновесие нашего мира.
@@ -710,7 +778,6 @@ func void DIA_Addon_Lares_Teleportstation_Info()
 	{
 		B_LogEntry(TOPIC_Addon_TeleportsNW,"Ларес рассказал мне, что неподалеку от таверны Орлана спрятан телепорт.");
 	};
-//	Orlan_Hint_Lares = TRUE;
 };
 
 
@@ -741,6 +808,11 @@ func void DIA_Addon_Lares_Ornament_Info()
 };
 
 
+func void B_LaresCantGoToPlaces()
+{
+	AI_Output(self,other,"DIA_Addon_Lares_OrnamentBringJob_09_02");	//Но сейчас я не могу уйти. Я должен наблюдать за гаванью.
+};
+
 instance DIA_Addon_Lares_OrnamentBringJob(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -763,7 +835,10 @@ func void DIA_Addon_Lares_OrnamentBringJob_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_OrnamentBringJob_15_00");	//Я могу отнести орнамент!
 	AI_Output(self,other,"DIA_Addon_Lares_OrnamentBringJob_09_01");	//(задумчиво) Хм-м... Нет, лучше я займусь этим сам. Впрочем, ты можешь пойти со мной.
-	AI_Output(self,other,"DIA_Addon_Lares_OrnamentBringJob_09_02");	//Но сейчас я не могу уйти. Я должен наблюдать за гаванью.
+	if(Lares_CanBringScToPlaces == FALSE)
+	{
+		B_LaresCantGoToPlaces();
+	};
 	B_LogEntry(TOPIC_Addon_KDW,"Я передал Ларесу орнамент Ватраса. Он хочет отнести его магам Воды и просит меня сопровождать его.");
 	MIS_Addon_Lares_Ornament2Saturas = LOG_Running;
 };
@@ -841,7 +916,14 @@ func int DIA_Addon_Lares_BaltramAbloese_Condition()
 func void DIA_Addon_Lares_BaltramAbloese_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_BaltramAbloese_15_00");	//Я говорил с Бальтрамом. Он найдет тебе замену.
-	AI_Output(self,other,"DIA_Addon_Lares_BaltramAbloese_09_01");	//Очень хорошо! В таком случае, мы можем отправляться.
+	if(Kapitel < 3)
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_BaltramAbloese_09_01");	//Очень хорошо! В таком случае, мы можем отправляться.
+	}
+	else
+	{
+		B_Say(self,other,"$ABS_GOOD");
+	};
 	if(SC_IsRanger == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_BaltramAbloese_09_02");	//Мое кольцо пока можешь оставить себе.
@@ -1013,13 +1095,16 @@ func void DIA_Addon_Lares_RangerHelp_ruestung()
 	AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_ruestung_09_02");	//Но ты можешь получить доспехи бесплатно, если, конечно, ты не против того, чтобы немного нарушить закон...
 	AI_Output(other,self,"DIA_Addon_Lares_RangerHelp_ruestung_15_03");	//Что ты имеешь в виду?
 	AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_ruestung_09_04");	//Рядом с домом Маттео есть небольшой открытый склад. Но все находящиеся там товары были конфискованы ополчением.
-	AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_ruestung_09_05");	//Отправляйся на рынок и купи у Зуриса заклинание сна. Оно позволит тебе усыпить охранника.
+	if(!Npc_IsDead(Zuris))
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_ruestung_09_05");	//Отправляйся на рынок и купи у Зуриса заклинание сна. Оно позволит тебе усыпить охранника.
+		if(!Npc_HasItems(other,ItSc_Sleep) && !Npc_HasItems(Zuris,ItSc_Sleep))
+		{
+			CreateInvItem(Zuris,ItSc_Sleep);
+		};
+	};
 	AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_ruestung_09_06");	//Уверен, что среди вещей Маттео ты найдешь себе достойную броню...
 	DIA_Addon_Lares_RangerHelp_gilde_OneTime_ruestung = TRUE;
-	if(!Npc_HasItems(other,ItSc_Sleep) && !Npc_HasItems(Zuris,ItSc_Sleep))
-	{
-		CreateInvItem(Zuris,ItSc_Sleep);
-	};
 };
 
 func void DIA_Addon_Lares_RangerHelp_waffe()
@@ -1036,7 +1121,6 @@ func void DIA_Addon_Lares_RangerHelp_geld()
 	AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_geld_09_02");	//Отправляйся к нему и одолжи столько, сколько тебе нужно. Об остальном я позабочусь. Дом Лемара находится на границе порта и нижнего квартала города.
 	DIA_Addon_Lares_RangerHelp_gilde_OneTime_geld = TRUE;
 	RangerHelp_LehmarKohle = TRUE;
-//	Info_ClearChoices(DIA_Addon_Lares_RangerHelp);
 };
 
 func void DIA_Addon_Lares_RangerHelp_nix()
@@ -1048,7 +1132,6 @@ func void DIA_Addon_Lares_RangerHelp_Moe()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_Moe_15_00");	//Этот парень мне надоедает...
 	AI_Output(self,other,"DIA_Addon_Lares_Moe_09_01");	//Ничего, это пройдет...
-//	Info_ClearChoices(DIA_Addon_Lares_RangerHelp);
 	AI_StopProcessInfos(self);
 	other.aivar[AIV_INVINCIBLE] = FALSE;
 	B_Attack(self,Moe,AR_GuardStopsFight,0);
@@ -1141,7 +1224,14 @@ func void B_LaresOffersWayToOnar()
 {
 	if(Lares_WayToOnar == FALSE)
 	{
-		AI_Output(self,other,"DIA_Lares_WegZumHof_09_01");	//Я могу отвести тебя туда, если хочешь. Я все равно уже слишком долго здесь ошиваюсь.
+		if(Lares_CanBringScToPlaces == FALSE)
+		{
+			AI_Output(self,other,"DIA_Addon_Lares_WegZumHof_09_01");	//Если хочешь, я могу тебя проводить.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Lares_WegZumHof_09_01");	//Я могу отвести тебя туда, если хочешь. Я все равно уже слишком долго здесь ошиваюсь.
+		};
 		Lares_WayToOnar = TRUE;
 	};
 };
@@ -1209,7 +1299,6 @@ func void DIA_Addon_Lares_Gilde_SLD()
 		B_LogEntry(TOPIC_Addon_RangerHelpSLD,"Ларес сказал, что наемник Корд может сделать мою жизнь среди наемников проще.");
 	};
 	RangerHelp_gildeSLD = TRUE;
-//	SC_KnowsCordAsRangerFromLares = TRUE;
 	Info_ClearChoices(DIA_Addon_Lares_Gilde);
 };
 
@@ -1305,11 +1394,7 @@ func void DIA_Lares_AboutSld_Schiff()
 	AI_Output(self,other,"DIA_Lares_Schiff_09_02");	//Но это может занять некоторое время...
 	AI_Output(other,self,"DIA_Lares_Schiff_15_03");	//Почему?
 	AI_Output(self,other,"DIA_Lares_Schiff_09_04");	//Тебе лучше спросить об этом Ли, если встретишь его... У него есть план.
-	if(Lares_WayToOnar == FALSE)
-	{
-		AI_Output(self,other,"DIA_Addon_Lares_WegZumHof_09_01");	//Если хочешь, я могу тебя проводить.
-		Lares_WayToOnar = TRUE;
-	};
+	B_LaresOffersWayToOnar();
 };
 
 func void DIA_Lares_AboutSld_WayToOnar()
@@ -1472,14 +1557,14 @@ func void DIA_Lares_OtherGuild_Info()
 			AI_Output(self,other,"DIA_Lares_OtherGuild_09_04");	//(озабоченно) Ты ведь никому не расскажешь, что я работаю на Ли, правда?
 			AI_Output(other,self,"DIA_Lares_OtherGuild_15_05");	//Ты же знаешь меня...
 		};
-	};
-	if((other.guild == GIL_KDF) || (other.guild == GIL_NOV))
+	}
+	else if((other.guild == GIL_KDF) || (other.guild == GIL_NOV))
 	{
 		AI_Output(self,other,"DIA_Lares_OtherGuild_09_06");	//Я не понимаю. Ты поступил в монастырь. Как там тебе?
 		AI_Output(other,self,"DIA_Lares_OtherGuild_15_07");	//По-разному.
 		AI_Output(self,other,"DIA_Lares_OtherGuild_09_08");	//Представляю.
-	};
-	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+	}
+	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		B_Lares_Comment_SLD();
 		AI_Output(self,other,"DIA_Lares_OtherGuild_09_10");	//Поздравляю.
@@ -1523,10 +1608,61 @@ func void DIA_Addon_Lares_Forest_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Lares_OrnamentBringJob_09_02");	//Но сейчас я не могу уйти. Я должен наблюдать за гаванью.
+		B_LaresCantGoToPlaces();
 	};
 };
 
+
+func void DIA_Lares_GoNow_GoingConditions()
+{
+	AI_Output(self,other,"DIA_Lares_GoNow_09_01");	//Пошли... Иди за мной.
+	AI_StopProcessInfos(self);
+	Lares_Distracted = FALSE;
+	Lares_Guide = Wld_GetDay();
+	self.aivar[AIV_PARTYMEMBER] = TRUE;
+	if(!Npc_KnowsInfo(other,DIA_Moe_Hallo) && !Npc_IsDead(Moe))
+	{
+		Npc_SetRefuseTalk(Moe,30);
+	};
+};
+
+func void DIA_Addon_Lares_InfoOutsideTheCity1()
+{
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_09_00");	//Теперь, когда мы покинули город и нас не могут подслушать, я хочу тебе кое-что рассказать.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_09_01");	//Орнамент, который ты мне отдал, нужно отнести Сатурасу. Ты же помнишь Сатураса, не так ли?
+};
+
+func void DIA_Addon_Lares_InfoOutsideTheCity2()
+{
+	B_LaresTellAboutKDW1();
+	B_MakeRangerReadyForMeeting(self);
+	if(Lares_ArmorComment == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_03");	//А такие доспехи выдают маги Воды каждому из нас. Члены общества Кольца Воды носили такую броню еще до войны с орками.
+		Lares_ArmorComment = TRUE;
+	};
+	if(Cavalorn_RangerHint == TRUE)
+	{
+		AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_15_04");	//А как ко всему этому относится Кавалорн? Насколько я знаю, в Новом Лагере он ничем таким не занимался.
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_05");	//Ты прав. Но наше сообщество растет, и даже я не знаю, сколько членов оно сейчас насчитывает.
+	};
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_06");	//Но нам нужно идти. Когда мы отойдем подальше от города, мы сможем поговорить еще.
+};
+
+func void B_StartLaresGuideToPortal()
+{
+	if(B_GetLaresLocation() == LOC_CITY)
+	{
+		LaresGuide_ZumPortal = 1;
+		Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL1");
+	}
+	else
+	{
+		LaresGuide_ZumPortal = 3;
+		Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL3");
+	};
+	DIA_Lares_GoNow_GoingConditions();
+};
 
 instance DIA_Lares_GoNow(C_Info)
 {
@@ -1541,22 +1677,25 @@ instance DIA_Lares_GoNow(C_Info)
 
 func int DIA_Lares_GoNow_Condition()
 {
-	if(((Lares_WayToOnar == TRUE) || (MIS_Addon_Lares_Ornament2Saturas == LOG_Running) || (RangerHelp_OrnamentForest == TRUE)) && ((LaresGuide_ZumPortal == 0) || (LaresGuide_ZumPortal == 8)) && ((LaresGuide_ZuOnar == FALSE) || (LaresGuide_ZuOnar == LOG_SUCCESS)) && ((LaresGuide_OrnamentForest == 0) || (LaresGuide_OrnamentForest == 3)) && (Kapitel < 3))
+	if((Lares_WayToOnar == TRUE) || (MIS_Addon_Lares_Ornament2Saturas == LOG_Running) || (RangerHelp_OrnamentForest == TRUE))
 	{
+		if(Kapitel >= 3)
+		{
+			return FALSE;
+		};
+		if((LaresGuide_ZumPortal > 0) && (LaresGuide_ZumPortal < 8))
+		{
+			return FALSE;
+		};
+		if(LaresGuide_ZuOnar == 1)
+		{
+			return FALSE;
+		};
+		if((LaresGuide_OrnamentForest > 0) && (LaresGuide_OrnamentForest < 3))
+		{
+			return FALSE;
+		};
 		return TRUE;
-	};
-};
-
-func void DIA_Lares_GoNow_GoingConditions()
-{
-	AI_Output(self,other,"DIA_Lares_GoNow_09_01");	//Пошли... Иди за мной.
-	AI_StopProcessInfos(self);
-	Lares_Guide = Wld_GetDay();
-	Lares_Distracted = FALSE;
-	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	if(!Npc_KnowsInfo(other,DIA_Moe_Hallo))
-	{
-		Npc_SetRefuseTalk(Moe,30);
 	};
 };
 
@@ -1576,15 +1715,15 @@ func void DIA_Lares_GoNow_Info()
 		AI_Output(self,other,"DIA_Addon_Lares_GoNow_09_04");	//Куда?
 		Info_ClearChoices(DIA_Lares_GoNow);
 		Info_AddChoice(DIA_Lares_GoNow,Dialog_Back,DIA_Lares_GoNow_warte);
-		if((Lares_WayToOnar == TRUE) && (LaresGuide_ZuOnar != LOG_SUCCESS))
+		if((Lares_WayToOnar == TRUE) && (LaresGuide_ZuOnar != 2))
 		{
 			Info_AddChoice(DIA_Lares_GoNow,"На ферму Онара.",DIA_Lares_GoNow_Onar);
 		};
-		if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && (Lares_Angekommen == FALSE))
+		if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && (LaresGuide_ZumPortal != 8))
 		{
 			Info_AddChoice(DIA_Lares_GoNow,"Давай вернем орнамент Ватраса.",DIA_Lares_GoNow_Maya);
 		};
-		if((ORNAMENT_SWITCHED_FOREST == FALSE) && (LaresGuide_OrnamentForest == 0) && (RangerHelp_OrnamentForest == TRUE))
+		if((RangerHelp_OrnamentForest == TRUE) && (LaresGuide_OrnamentForest != 3))
 		{
 			Info_AddChoice(DIA_Lares_GoNow,"В лес на востоке.",DIA_Lares_GoNow_Forest);
 		};
@@ -1594,16 +1733,46 @@ func void DIA_Lares_GoNow_Info()
 func void DIA_Lares_GoNow_Maya()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_GoNow_Maya_15_00");	//Давай вернем орнамент Ватраса.
-	LaresGuide_ZumPortal = 1;
-	Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL1");
-	B_StartOtherRoutine(BridgeBandit,"Intercept");
-	DIA_Lares_GoNow_GoingConditions();
+	if(B_GetLaresLocation() == LOC_CITY)
+	{
+		LaresGuide_ZumPortal = 1;
+		Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL1");
+		DIA_Lares_GoNow_GoingConditions();
+	}
+	else
+	{
+		if(LaresToldAboutKDW1 == FALSE)
+		{
+			DIA_Addon_Lares_InfoOutsideTheCity1();
+			Info_ClearChoices(DIA_Lares_GoNow);
+			Info_AddChoice(DIA_Lares_GoNow,"Конечно.",DIA_Lares_GoNow_Maya_ja);
+			Info_AddChoice(DIA_Lares_GoNow,"Сатурас? Кто это такой?",DIA_Lares_GoNow_Maya_wer);
+		}
+		else
+		{
+			B_StartLaresGuideToPortal();
+		};
+	};
+};
+
+func void DIA_Lares_GoNow_Maya_wer()
+{
+	B_SCForgotSaturas();
+	DIA_Addon_Lares_InfoOutsideTheCity2();
+	B_StartLaresGuideToPortal();
+};
+
+func void DIA_Lares_GoNow_Maya_ja()
+{
+	B_SCRememberSaturas();
+	DIA_Addon_Lares_InfoOutsideTheCity2();
+	B_StartLaresGuideToPortal();
 };
 
 func void DIA_Lares_GoNow_Onar()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_GoNow_Onar_15_00");	//На ферму Онара.
-	LaresGuide_ZuOnar = TRUE;
+	LaresGuide_ZuOnar = 1;
 	Npc_ExchangeRoutine(self,"GUIDE");
 	DIA_Lares_GoNow_GoingConditions();
 };
@@ -1622,34 +1791,44 @@ func void DIA_Lares_GoNow_warte()
 };
 
 
-func void B_LaresSoLate()
-{
-	AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
-};
-
 func void B_LaresDistractionCheck()
 {
-	if(Lares_Distracted == TRUE)
+	if(Lares_Guide > (Wld_GetDay() - 2))
 	{
-		if(LaresGuide_ZumPortal == 3)
+		if(C_NpcIsNearWP(self,"NW_TAVERNE_BIGFARM_05"))
 		{
-			AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter2_09_00");	//Не отвлекай меня.
+			AI_Output(self,other,"DIA_Lares_GUIDE_09_00");	//Пришли.
+		}
+		else if(C_NpcIsNearWP(self,"NW_TROLLAREA_RUINS_41") || C_NpcIsNearWP(self,"NW_FOREST_PATH_62"))
+		{
+			AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_00");	//Мы на месте.
+		}
+		else if(Lares_Distracted == TRUE)
+		{
+			if(LaresGuide_ZumPortal == 3)
+			{
+				AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter2_09_00");	//Не отвлекай меня.
+			}
+			else
+			{
+				AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter_09_00");	//В чем дело? Почему ты задерживаешься?
+			};
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter_09_00");	//В чем дело? Почему ты задерживаешься?
+			if(LaresGuide_ZumPortal == 3)
+			{
+				AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_08");	//Вопросы есть?
+			}
+			else if(!C_NpcIsNearWP(self,"NW_CITY_TO_FARM2_04"))
+			{
+				AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter3_09_00");	//Ты идешь дальше?
+			};
 		};
 	}
 	else
 	{
-		if(LaresGuide_ZumPortal == 3)
-		{
-			AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_08");	//Вопросы есть?
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter3_09_00");	//Ты идешь дальше?
-		};
+		AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
 	};
 };
 
@@ -1666,7 +1845,7 @@ instance DIA_Lares_GUIDE(C_Info)
 
 func int DIA_Lares_GUIDE_Condition()
 {
-	if((LaresGuide_ZuOnar == TRUE) && Hlp_StrCmp(Npc_GetNearestWP(self),"NW_TAVERNE_BIGFARM_05"))
+	if((LaresGuide_ZuOnar == 1) && C_NpcIsNearWP(self,"NW_TAVERNE_BIGFARM_05"))
 	{
 		return TRUE;
 	};
@@ -1674,14 +1853,7 @@ func int DIA_Lares_GUIDE_Condition()
 
 func void DIA_Lares_GUIDE_Info()
 {
-	if(Lares_Guide > (Wld_GetDay() - 2))
-	{
-		AI_Output(self,other,"DIA_Lares_GUIDE_09_00");	//Пришли.
-	}
-	else
-	{
-		B_LaresSoLate();
-	};
+	B_LaresDistractionCheck();
 	AI_Output(self,other,"DIA_Lares_GUIDE_09_02");	//Что ж, оставшуюся часть пути ты сможешь пройти сам. А мне нужно возвращаться в город...
 	AI_Output(self,other,"DIA_Lares_GUIDE_09_03");	//Просто пойдешь по этой дороге. Но помни - сумей постоять за себя, не нарушай закон и все будет в порядке.
 	if((other.guild == GIL_NONE) && Npc_KnowsInfo(other,DIA_Lares_Paladine))
@@ -1693,7 +1865,7 @@ func void DIA_Lares_GUIDE_Info()
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"START");
-	LaresGuide_ZuOnar = LOG_SUCCESS;
+	LaresGuide_ZuOnar = 2;
 };
 
 
@@ -1710,7 +1882,7 @@ instance DIA_Addon_Lares_ArrivedPortalInter1(C_Info)
 
 func int DIA_Addon_Lares_ArrivedPortalInter1_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_TO_FOREST_11") && (LaresGuide_ZumPortal == 1))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && C_NpcIsNearWP(self,"NW_CITY_TO_FOREST_11") && (LaresGuide_ZumPortal == 1))
 	{
 		return TRUE;
 	};
@@ -1720,63 +1892,54 @@ func void DIA_Addon_Lares_ArrivedPortalInter1_Info()
 {
 	if(LaresToldAboutKDW1 == FALSE)
 	{
-		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_09_00");	//Теперь, когда мы покинули город и нас не могут подслушать, я хочу тебе кое-что рассказать.
-		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_09_01");	//Орнамент, который ты мне отдал, нужно отнести Сатурасу. Ты же помнишь Сатураса, не так ли?
-		LaresToldAboutKDW1 = TRUE;
+		DIA_Addon_Lares_InfoOutsideTheCity1();
 		Info_ClearChoices(DIA_Addon_Lares_ArrivedPortalInter1);
 		Info_AddChoice(DIA_Addon_Lares_ArrivedPortalInter1,"Конечно.",DIA_Addon_Lares_ArrivedPortalInter1_ja);
 		Info_AddChoice(DIA_Addon_Lares_ArrivedPortalInter1,"Сатурас? Кто это такой?",DIA_Addon_Lares_ArrivedPortalInter1_wer);
 	}
 	else 
 	{
-		if(Lares_Guide > (Wld_GetDay() - 2))
-		{
-			B_LaresDistractionCheck();
-		}
-		else
-		{
-			B_LaresSoLate();
-		};
+		B_LaresDistractionCheck();
 		B_MakeRangerReadyForMeeting(self);
 	};
-	Lares_Distracted = FALSE;
 	LaresGuide_ZumPortal = 2;
-};
-
-func void DIA_Addon_Lares_ArrivedPortalInter1_teil2()
-{
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_00");	//Мы, ребята из бывшего Нового Лагеря, сохранили хорошие отношения с магами Воды.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_01");	//Даже Ли готов защищать магов Воды от любой опасности, если только это будет в его силах.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_02");	//Чтобы поддерживать связь с магами, я практически постоянно нахожусь в городе, работая вместе с Ватрасом.
-	B_MakeRangerReadyForMeeting(self);
-	if(Lares_ArmorComment == FALSE)
-	{
-		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_03");	//А такие доспехи выдают маги Воды каждому из нас. Члены общества Кольца Воды носили такую броню еще до войны с орками.
-		Lares_ArmorComment = TRUE;
-	};
-	if(Cavalorn_RangerHint == TRUE)
-	{
-		AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_15_04");	//А как ко всему этому относится Кавалорн? Насколько я знаю, в Новом Лагере он ничем таким не занимался.
-		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_05");	//Ты прав. Но наше сообщество растет, и даже я не знаю, сколько членов оно сейчас насчитывает.
-	};
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_06");	//Но нам нужно идти. Когда мы отойдем подальше от города, мы сможем поговорить еще.
-	Info_ClearChoices(DIA_Addon_Lares_ArrivedPortalInter1);
 };
 
 func void DIA_Addon_Lares_ArrivedPortalInter1_wer()
 {
-	AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_wer_15_00");	//Сатурас? Кто это такой?
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_wer_09_01");	//Он был главным у магов Воды в Новом Лагере в Долине Рудников, когда Барьер еще не был разрушен.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_wer_09_02");	//Мы с Ли тогда заключили с магами Воды союз.
-	DIA_Addon_Lares_ArrivedPortalInter1_teil2();
+	B_SCForgotSaturas();
+	DIA_Addon_Lares_InfoOutsideTheCity2();
+	Info_ClearChoices(DIA_Addon_Lares_ArrivedPortalInter1);
 };
 
 func void DIA_Addon_Lares_ArrivedPortalInter1_ja()
 {
-	AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_ja_15_00");	//Конечно. Он был предводителем магов Воды в Новом Лагере.
-	DIA_Addon_Lares_ArrivedPortalInter1_teil2();
+	B_SCRememberSaturas();
+	DIA_Addon_Lares_InfoOutsideTheCity2();
+	Info_ClearChoices(DIA_Addon_Lares_ArrivedPortalInter1);
 };
 
+
+var int LaresKnowsErolProblem;
+
+func void B_TellLaresAboutErolProblem()
+{
+	AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInterWeiter_15_01");	//У этого парня проблемы с бандитами.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter_09_02");	//Бедняга. К сожалению, сейчас у нас нет на него времени.
+	LaresKnowsErolProblem = TRUE;
+};
+
+func int C_SCCanTellLaresAboutErolProblem()
+{
+	if((MIS_Addon_Erol_BanditStuff == LOG_Running) && !Npc_IsDead(Erol) && (LaresKnowsErolProblem == FALSE))
+	{
+		if((Npc_GetDistToWP(self,"NW_TAVERN_TO_FOREST_03") < 1000) && (Npc_GetDistToWP(Erol,"NW_TAVERN_TO_FOREST_03") < 1000))
+		{
+			return TRUE;
+		};
+	};
+	return FALSE;
+};
 
 instance DIA_Addon_Lares_ArrivedPortalInterWeiter(C_Info)
 {
@@ -1791,7 +1954,7 @@ instance DIA_Addon_Lares_ArrivedPortalInterWeiter(C_Info)
 
 func int DIA_Addon_Lares_ArrivedPortalInterWeiter_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && Hlp_StrCmp(Npc_GetNearestWP(self),"NW_TAVERN_TO_FOREST_02") && (LaresGuide_ZumPortal == 2))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && C_NpcIsNearWP(self,"NW_TAVERN_TO_FOREST_02") && (LaresGuide_ZumPortal == 2))
 	{
 		return TRUE;
 	};
@@ -1799,20 +1962,11 @@ func int DIA_Addon_Lares_ArrivedPortalInterWeiter_Condition()
 
 func void DIA_Addon_Lares_ArrivedPortalInterWeiter_Info()
 {
-	if(Lares_Guide > (Wld_GetDay() - 2))
+	B_LaresDistractionCheck();
+	if(C_SCCanTellLaresAboutErolProblem())
 	{
-		B_LaresDistractionCheck();
-	}
-	else
-	{
-		B_LaresSoLate();
+		B_TellLaresAboutErolProblem();
 	};
-	if((MIS_Addon_Erol_BanditStuff == LOG_Running) && (Npc_GetDistToWP(Erol,"NW_TAVERN_TO_FOREST_03") < 1000) && !Npc_IsDead(Erol))
-	{
-		AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInterWeiter_15_01");	//У этого парня проблемы с бандитами.
-		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter_09_02");	//Бедняга. К сожалению, сейчас у нас нет на него времени.
-	};
-	Lares_Distracted = FALSE;
 	LaresGuide_ZumPortal = 3;
 };
 
@@ -1830,7 +1984,7 @@ instance DIA_Addon_Lares_ArrivedPortalInterWeiter2(C_Info)
 
 func int DIA_Addon_Lares_ArrivedPortalInterWeiter2_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && Hlp_StrCmp(Npc_GetNearestWP(self),"NW_TAVERNE_TROLLAREA_14") && (LaresGuide_ZumPortal == 3))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && C_NpcIsNearWP(self,"NW_TAVERNE_TROLLAREA_14") && (LaresGuide_ZumPortal == 3))
 	{
 		return TRUE;
 	};
@@ -1838,15 +1992,7 @@ func int DIA_Addon_Lares_ArrivedPortalInterWeiter2_Condition()
 
 func void DIA_Addon_Lares_ArrivedPortalInterWeiter2_Info()
 {
-	if(Lares_Guide > (Wld_GetDay() - 2))
-	{
-		B_LaresDistractionCheck();
-	}
-	else
-	{
-		B_LaresSoLate();
-	};
-	Lares_Distracted = FALSE;
+	B_LaresDistractionCheck();
 	LaresGuide_ZumPortal = 4;
 };
 
@@ -1864,7 +2010,7 @@ instance DIA_Addon_Lares_ArrivedPortalInter2(C_Info)
 
 func int DIA_Addon_Lares_ArrivedPortalInter2_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && Hlp_StrCmp(Npc_GetNearestWP(self),"NW_TROLLAREA_PATH_58") && (LaresGuide_ZumPortal == 4))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && C_NpcIsNearWP(self,"NW_TROLLAREA_PATH_58") && (LaresGuide_ZumPortal == 4))
 	{
 		return TRUE;
 	};
@@ -1874,26 +2020,12 @@ func void DIA_Addon_Lares_ArrivedPortalInter2_Info()
 {
 	if(LaresToldAboutKDW2 == FALSE)
 	{
-		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_00");	//Маги Воды полностью погружены в работу. Они уже несколько недель раскапывают какие-то руины на северо-востоке. Никто не знает, что они пытаются там найти.
-		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_01");	//Все началось с землетрясений, таких, какие бывали в худшие дни Барьера.
-		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_02");	//Из-под земли появились ужасные каменные создания, убивающие каждого, кто подходил к ним ближе, чем на тридцать метров.
-		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_03");	//Маги Воды взяли ситуацию в свои руки и уничтожили монстров. А теперь они проводят раскопки, пытаясь найти объяснение этим странным событиям.
-		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_04");	//Но ты скоро сам все увидишь.
-		B_LogEntry(TOPIC_Addon_KDW,"Ларес рассказал мне о раскопках магов Воды. Маги занимаются расследованием необычных событий, происходящих в последнее время - странных землетрясений и появления из-под земли загадочных каменных существ.");
-		LaresToldAboutKDW2 = TRUE;
+		B_LaresTellAboutKDW2();
 	}
 	else
 	{
-		if(Lares_Guide > (Wld_GetDay() - 2))
-		{
-			B_LaresDistractionCheck();
-		}
-		else
-		{
-			B_LaresSoLate();
-		};
+		B_LaresDistractionCheck();
 	};
-	Lares_Distracted = FALSE;
 	LaresGuide_ZumPortal = 5;
 };
 
@@ -1919,15 +2051,7 @@ func int DIA_Addon_Lares_ArrivedPortalInterWeiter3_Condition()
 
 func void DIA_Addon_Lares_ArrivedPortalInterWeiter3_Info()
 {
-	if(Lares_Guide > (Wld_GetDay() - 2))
-	{
-		B_LaresDistractionCheck();
-	}
-	else
-	{
-		B_LaresSoLate();
-	};
-	Lares_Distracted = FALSE;
+	B_LaresDistractionCheck();
 	LaresGuide_ZumPortal = 6;
 };
 
@@ -1945,7 +2069,7 @@ instance DIA_Addon_Lares_ArrivedPortalInterWeiter4(C_Info)
 
 func int DIA_Addon_Lares_ArrivedPortalInterWeiter4_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && Hlp_StrCmp(Npc_GetNearestWP(self),"NW_TROLLAREA_RUINS_02") && (LaresGuide_ZumPortal == 6))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && C_NpcIsNearWP(self,"NW_TROLLAREA_RUINS_02") && (LaresGuide_ZumPortal == 6))
 	{
 		return TRUE;
 	};
@@ -1955,7 +2079,6 @@ func void DIA_Addon_Lares_ArrivedPortalInterWeiter4_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter4_09_00");	//Очень хорошо. Здесь может быть опасно.
 	B_StartOtherRoutine(BridgeBandit,"Intercept");
-	Lares_Distracted = FALSE;
 	LaresGuide_ZumPortal = 7;
 };
 
@@ -1972,7 +2095,7 @@ instance DIA_Addon_Lares_ArrivedPortal(C_Info)
 
 func int DIA_Addon_Lares_ArrivedPortal_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && Hlp_StrCmp(Npc_GetNearestWP(self),"NW_TROLLAREA_RUINS_41") && (LaresGuide_ZumPortal == 7))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && C_NpcIsNearWP(self,"NW_TROLLAREA_RUINS_41") && (LaresGuide_ZumPortal == 7))
 	{
 		return TRUE;
 	};
@@ -1981,14 +2104,7 @@ func int DIA_Addon_Lares_ArrivedPortal_Condition()
 func void DIA_Addon_Lares_ArrivedPortal_Info()
 {
 	B_MakeRangerReadyToLeaveMeeting(self);
-	if(Lares_Guide > (Wld_GetDay() - 2))
-	{
-		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_00");	//Мы на месте.
-	}
-	else
-	{
-		B_LaresSoLate();
-	};
+	B_LaresDistractionCheck();
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_01");	//Возьми орнамент. Маги Воды должны быть где-то внизу. Отнеси орнамент им.
 	AI_WaitTillEnd(other,self);
 	B_GiveInvItems(self,other,ItMi_Ornament_Addon_Vatras,1);
@@ -2000,7 +2116,6 @@ func void DIA_Addon_Lares_ArrivedPortal_Info()
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"START");
-	Lares_Distracted = FALSE;
 	LaresGuide_ZumPortal = 8;
 	Lares_Angekommen = TRUE;
 };
@@ -2033,7 +2148,7 @@ func int DIA_Addon_Lares_Albern_Condition()
 
 func void DIA_Addon_Lares_Albern_Info()
 {
-	if(Npc_GetDistToWP(self,"HAFEN") < 2000)
+	if(B_GetLaresLocation() == LOC_CITY)
 	{
 		AI_Output(self,other,"DIA_Canthar_WhatOffer_Price_09_05");	//Ну что, договорились?
 		DIA_Common_NoNotYet();
@@ -2056,10 +2171,27 @@ instance DIA_Addon_Lares_GOFORESTPRE(C_Info)
 
 func int DIA_Addon_Lares_GOFORESTPRE_Condition()
 {
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_TO_FARM2_04") && (LaresGuide_OrnamentForest == 1))
+	if(C_NpcIsNearWP(self,"NW_CITY_TO_FARM2_04") && (LaresGuide_OrnamentForest == 1))
 	{
 		return TRUE;
 	};
+};
+
+func void DIA_Addon_Lares_GOFORESTPRE_Info()
+{
+	B_LaresDistractionCheck();
+	if(Ornament_Switched_Forest == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_09_00");	//Ты все еще хочешь пойти со мной в лес?
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_09_01");	//Ты уже подумал о походе в лес? Ты действительно хочешь туда направиться?
+	};
+	Lares_Distracted = FALSE;
+	Info_ClearChoices(DIA_Addon_Lares_GOFORESTPRE);
+	Info_AddChoice(DIA_Addon_Lares_GOFORESTPRE,"Нет, можешь идти.",DIA_Addon_Lares_GOFORESTPRE_nein);
+	Info_AddChoice(DIA_Addon_Lares_GOFORESTPRE,"Да.",DIA_Addon_Lares_GOFORESTPRE_ja);
 };
 
 func void DIA_Addon_Lares_GOFORESTPRE_ja()
@@ -2081,26 +2213,6 @@ func void DIA_Addon_Lares_GOFORESTPRE_nein()
 	LaresGuide_OrnamentForest = 3;
 };
 
-func void DIA_Addon_Lares_GOFORESTPRE_Info()
-{
-	if(Lares_Guide <= (Wld_GetDay() - 2))
-	{
-		B_LaresSoLate();
-	};
-	if(ORNAMENT_SWITCHED_FOREST == TRUE)
-	{
-		AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_09_00");	//Ты все еще хочешь пойти со мной в лес?
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_09_01");	//Ты уже подумал о походе в лес? Ты действительно хочешь туда направиться?
-	};
-	Info_ClearChoices(DIA_Addon_Lares_GOFORESTPRE);
-	Info_AddChoice(DIA_Addon_Lares_GOFORESTPRE,"Нет, можешь идти.",DIA_Addon_Lares_GOFORESTPRE_nein);
-	Info_AddChoice(DIA_Addon_Lares_GOFORESTPRE,"Да.",DIA_Addon_Lares_GOFORESTPRE_ja);
-};
-
-
 instance DIA_Addon_Lares_GOFOREST(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -2114,17 +2226,17 @@ instance DIA_Addon_Lares_GOFOREST(C_Info)
 
 func int DIA_Addon_Lares_GOFOREST_Condition()
 {
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_FOREST_PATH_62") && (LaresGuide_OrnamentForest == 2) && Npc_IsDead(Stoneguardian_Ornament))
+	if(C_NpcIsNearWP(self,"NW_FOREST_PATH_62") && (LaresGuide_OrnamentForest == 2) && Npc_IsDead(Stoneguardian_Ornament))
 	{
 		if(Lares_ArrivedToForest == FALSE)
 		{
 			return TRUE;
 		};
-		if((ORNAMENT_SWITCHED_FOREST == FALSE) && Npc_IsInState(self,ZS_Talk))
+		if((Ornament_Switched_Forest == FALSE) && Npc_IsInState(self,ZS_Talk))
 		{
 			return TRUE;
 		};
-		if(ORNAMENT_SWITCHED_FOREST == TRUE)
+		if(Ornament_Switched_Forest == TRUE)
 		{
 			return TRUE;
 		};
@@ -2135,17 +2247,10 @@ func void DIA_Addon_Lares_GOFOREST_Info()
 {
 	if(Lares_ArrivedToForest == FALSE)
 	{
-		if(Lares_Guide > (Wld_GetDay() - 2))
-		{
-			AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_00");	//Мы на месте.
-		}
-		else
-		{
-			B_LaresSoLate();
-		};
+		B_LaresDistractionCheck();
 		Lares_ArrivedToForest = TRUE;
 	};
-	if(ORNAMENT_SWITCHED_FOREST == TRUE)
+	if(Ornament_Switched_Forest == TRUE)
 	{
 		B_MakeRangerReadyToLeaveMeeting(self);
 		AI_Output(self,other,"DIA_Addon_Lares_GOFOREST_09_00");	//Ну вот. Дальше ты дойдешь сам. А я отправляюсь обратно.
@@ -2218,15 +2323,18 @@ func void DIA_Addon_Lares_PortalInterWEITER_Info()
 	else if(LaresGuide_ZumPortal == 5)
 	{
 		Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL5");
-		if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_01) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_01))
+		if(!Npc_IsDead(BridgeBandit))
 		{
-			Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_01,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_01.attribute[ATR_HITPOINTS_MAX]);
+			if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_01) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_01))
+			{
+				Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_01,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_01.attribute[ATR_HITPOINTS_MAX]);
+			};
+			if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_02) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_02))
+			{
+				Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_02,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_02.attribute[ATR_HITPOINTS_MAX]);
+			};
+			B_StartOtherRoutine(BridgeBandit,"Hide");
 		};
-		if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_02) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_02))
-		{
-			Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_02,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_02.attribute[ATR_HITPOINTS_MAX]);
-		};
-		B_StartOtherRoutine(BridgeBandit,"Hide");
 	}
 	else if(LaresGuide_ZumPortal == 6)
 	{
@@ -2236,6 +2344,31 @@ func void DIA_Addon_Lares_PortalInterWEITER_Info()
 	{
 		Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPELEND");
 	};
+};
+
+
+instance DIA_Addon_Lares_ErolProblem(C_Info)
+{
+	npc = VLK_449_Lares;
+	nr = 5;
+	condition = DIA_Addon_Lares_ErolProblem_Condition;
+	information = DIA_Addon_Lares_ErolProblem_Info;
+	permanent = FALSE;
+	description = "У этого парня проблемы с бандитами.";
+};
+
+
+func int DIA_Addon_Lares_ErolProblem_Condition()
+{
+	if(C_SCCanTellLaresAboutErolProblem())
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Lares_ErolProblem_Info()
+{
+	B_TellLaresAboutErolProblem();
 };
 
 
@@ -2405,14 +2538,17 @@ func void DIA_Lares_AnyNews_Info()
 		{
 			AI_Output(other,self,"DIA_Lares_AnyNews_15_06");	//Как это случилось?
 			AI_Output(self,other,"DIA_Lares_AnyNews_09_07");	//Беннет пришел в город за покупками. Но вернуться ему было не суждено.
-			AI_Output(self,other,"DIA_Lares_AnyNews_09_08");	//Если хочешь узнать больше, расспроси Ходжеса, он был в городе вместе с Беннетом.
 			MIS_RescueBennet = LOG_Running;
 			Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
 			B_LogEntry(TOPIC_RescueBennet,"Кузнец Беннет арестован паладинами в городе.");
-			if(!Npc_KnowsInfo(other,DIA_Hodges_WhatHappened) || !Npc_KnowsInfo(other,DIA_Hodges_BennetsCrime))
+			if(Hodges_isAlive_Kap3 == TRUE)
 			{
-				Log_AddEntry(TOPIC_RescueBennet,"Чтобы узнать больше, мне надо поговорить с его учеником Ходжесом.");
+				AI_Output(self,other,"DIA_Lares_AnyNews_09_08");	//Если хочешь узнать больше, расспроси Ходжеса, он был в городе вместе с Беннетом.
+				if(!Npc_KnowsInfo(other,DIA_Hodges_BennetsCrime))
+				{
+					Log_AddEntry(TOPIC_RescueBennet,"Чтобы узнать больше, мне надо поговорить с его учеником Ходжесом.");
+				};
 			};
  		};
 	};
@@ -2540,7 +2676,6 @@ func void DIA_Lares_KnowWhereEnemy_No()
 	{
 		Lares_IsOnBoard = LOG_FAILED;
 	};
-	B_CheckLog();
 	Info_ClearChoices(DIA_Lares_KnowWhereEnemy);
 };
 
@@ -2576,7 +2711,6 @@ func void DIA_Lares_LeaveMyShip_Info()
 	{
 		Lares_IsOnBoard = LOG_FAILED;
 	};
-	B_CheckLog();
 	Crewmember_Count -= 1;
 	Npc_ExchangeRoutine(self,"ShipOff");
 };

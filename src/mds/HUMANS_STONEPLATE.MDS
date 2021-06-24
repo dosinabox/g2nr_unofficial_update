@@ -1,0 +1,23 @@
+Model ("HuS")
+{
+
+	meshAndTree ("Hum_Body_Naked0.ASC" DONT_USE_MESH)
+
+	aniEnum
+	{
+		modelTag	("DEF_HIT_LIMB"		"zs_RightHand")
+
+		//aniAlias	("t_MAPSEALED_Stand_2_S0"	1	"s_MAPSEALED_S0"	0.1	0.0	M.	"t_MAP_Stand_2_S0"	F)
+		//aniAlias	("s_MAPSEALED_S0"			1	"s_MAPSEALED_S0"	0.0	0.0	M.	"s_MAP_S0"			F)
+		//ani		("t_MAPSEALED_Stand_2_S0"	1	"s_MAPSEALED_S0"	0.1	0.0	M.	"Hum_MapRead_M01.asc"	F	1	24)
+		//{
+		//	*eventTag	(18	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+		//	*eventSFX	(18	"Scroll_Unfold")
+		//}
+		//ani		("s_MAPSEALED_S0"			1	"s_MAPSEALED_S0"	0.0	0.0	M.	"Hum_MapRead_M01.asc"	F	25	25)
+		ani		("t_MAPSEALED_S0_2_Stand"	1	""			0.0	0.1	M.	"Hum_MapRead_M01.asc"	R	1	24)
+		{
+			*eventTag	(18	"DEF_REMOVE_ITEM")
+		}
+	}
+}

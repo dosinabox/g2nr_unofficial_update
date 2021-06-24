@@ -421,7 +421,6 @@ func void DIA_Bartok_Zusammen_Later()
 
 func void DIA_Bartok_Zusammen_Pay()
 {
-	Info_ClearChoices(DIA_Bartok_Zusammen);
 	AI_Output(other,self,"DIA_Bartok_HuntNOW_GO_15_00");	//Вот, держи...
 	if(B_GiveInvItems(other,self,ItMi_Gold,50))
 	{
@@ -431,6 +430,7 @@ func void DIA_Bartok_Zusammen_Pay()
 	{
 		AI_Output(self,other,"DIA_Bartok_HuntNOW_GO_04_03");	//Где? Не вижу! У тебя нет золота.
 	};
+	Info_ClearChoices(DIA_Bartok_Zusammen);
 };
 
 

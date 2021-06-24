@@ -327,8 +327,11 @@ func void DIA_Randolph_ICHGEBEDIRGELD_Info()
 		B_NpcClearObsessionByDMT(self);
 		MIS_Rukhar_Wettkampf_Day = Wld_GetDay();
 		Npc_ExchangeRoutine(self,"Wettkampf");
-		B_StartOtherRoutine(Orlan,"Wettkampf");
 		B_StartOtherRoutine(Rukhar,"Wettkampf");
+		if(RangerMeetingRunning != LOG_Running)
+		{
+			B_StartOtherRoutine(Orlan,"Wettkampf");
+		};
 	}
 	else
 	{

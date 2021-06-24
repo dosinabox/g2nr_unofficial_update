@@ -504,9 +504,9 @@ func void DIA_Orlan_HotelZimmer_Info()
 
 func void DIA_Orlan_HotelZimmer_ja()
 {
+	AI_Output(other,self,"DIA_Orlan_HotelZimmer_ja_15_00");	//Хорошо. Вот золото.
 	if(B_GiveInvItems(other,self,ItMi_Gold,50))
 	{
-		AI_Output(other,self,"DIA_Orlan_HotelZimmer_ja_15_00");	//Хорошо. Вот золото.
 		AI_Output(self,other,"DIA_Orlan_HotelZimmer_ja_05_01");	//А вот ключ. Комнаты находятся вверх по лестнице. Но не загадь ее и не забывай платить ренту вовремя, понятно?
 		CreateInvItems(self,ItKe_Orlan_HotelZimmer,1);
 		B_GiveInvItems(self,other,ItKe_Orlan_HotelZimmer,1);
@@ -665,7 +665,10 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 		AI_Output(self,other,"DIA_Orlan_EINGEBROCKT_05_00");	//Да уж, доставил ты мне проблем. Теперь мне нужно быть поосторожнее с Рухаром.
 	};
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	if(RangerMeetingRunning != LOG_Running)
+	{
+		Npc_ExchangeRoutine(self,"Start");
+	};
 	if(Hlp_IsValidNpc(Randolph))
 	{
 		if((Kapitel < 4) || ((Kapitel >= 4) && (other.guild != GIL_KDF)))

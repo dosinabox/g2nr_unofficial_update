@@ -10,10 +10,11 @@ instance KDW_140300_Addon_Myxir_CITY(Npc_Default)
 	aivar[AIV_MagicUser] = MAGIC_ALWAYS;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
+	aivar[AIV_Teeth] = 4;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_P_NormalBart_Cronos,BodyTex_P,ITAR_KDW_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_P_NormalBart_Cronos,BodyTex_P,ITAR_KDW_L_Addon);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);

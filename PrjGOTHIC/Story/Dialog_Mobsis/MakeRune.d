@@ -3,12 +3,15 @@ func int makerune_cond()
 {
 	if(Npc_IsPlayer(self))
 	{
-		if(!Npc_HasItems(hero,ItMi_Pliers))
+		if(Npc_HasItems(self,ItMi_Pliers))
 		{
-			AI_UseMob(hero,"RMAKER",0);
-			AI_UseMob(hero,"RMAKER",-1);
-			AI_PrintScreen("нужны щипцы",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+			return TRUE;
+		}
+		else
+		{
 			AI_PlayAni(self,"T_DONTKNOW");
+			AI_PrintScreen("Требуются щипцы!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+			return FALSE;
 		};
 	};
 	return TRUE;
@@ -23,7 +26,6 @@ func void makerune_s1()
 		AI_ProcessInfos(self);
 	};
 };
-
 
 instance PC_MakeRune_End(C_Info)
 {

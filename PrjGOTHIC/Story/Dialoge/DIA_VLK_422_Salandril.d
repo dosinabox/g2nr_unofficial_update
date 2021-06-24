@@ -56,8 +56,6 @@ instance DIA_Salandril_PICKPOCKET(C_Info)
 
 func int DIA_Salandril_PICKPOCKET_Condition()
 {
-//	return C_StealItems(30,Hlp_GetInstanceID(ItKe_Salandril),0);
-//	return C_StealItem(30,Hlp_GetInstanceID(ItKe_Salandril));
 	if(Npc_HasItems(self,ItKe_Salandril) || (SalandrilKeyRemoved == TRUE))
 	{
 		return C_StealItem(30);
@@ -75,7 +73,6 @@ func void DIA_Salandril_PICKPOCKET_Info()
 func void DIA_Salandril_PICKPOCKET_DoIt()
 {
 	B_GiveSalandrilKey();
-//	B_StealItems(30,Hlp_GetInstanceID(ItKe_Salandril),1);
 	B_StealItem(30,Hlp_GetInstanceID(ItKe_Salandril));
 	Info_ClearChoices(DIA_Salandril_PICKPOCKET);
 };
@@ -189,11 +186,10 @@ func void DIA_Salandril_Trade_Info()
 		AI_Output(self,other,"DIA_Salandril_Trade_13_01");	//С удовольствием, преподобный брат.
 		if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
 		{
-			//SC_KnowsProspektorSalandril = TRUE;
 			SalandrilMinenAnteil = TRUE;
 		};
-	};
-	if(other.guild == GIL_PAL)
+	}
+	else if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Salandril_Trade_13_02");	//С удовольствием, о, благородный воин.
 	};

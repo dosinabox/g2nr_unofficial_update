@@ -51,7 +51,7 @@ instance DIA_10314_BANDIT_AMBUSH(C_Info)
 
 func int DIA_10314_BANDIT_AMBUSH_Condition()
 {
-	if(Npc_GetDistToWP(self,"NW_FARM4_WOOD_RANGERBANDITS_03") <= 500)
+	if(Npc_GetDistToWP(other,"NW_FARM4_WOOD_RANGERBANDITS_03") <= 500)
 	{
 		return TRUE;
 	};

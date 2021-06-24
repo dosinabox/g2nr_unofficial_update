@@ -1,5 +1,5 @@
 
-instance ITKE_PORTALTEMPELWALKTHROUGH_ADDON(C_Item)
+instance ItKe_PortalTempelWalkthrough_Addon(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -16,7 +16,7 @@ instance ITKE_PORTALTEMPELWALKTHROUGH_ADDON(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_Greg_ADDON_MIS(C_Item)
+instance ItKe_Greg_Addon_MIS(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -33,7 +33,7 @@ instance ITKE_Greg_ADDON_MIS(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_Addon_Tavern_01(C_Item)
+instance ItKe_Addon_Tavern_01(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -50,7 +50,7 @@ instance ITKE_Addon_Tavern_01(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_ADDON_ESTEBAN(C_Item)
+instance ItKe_Addon_Esteban(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -67,7 +67,7 @@ instance ITKE_ADDON_ESTEBAN(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_ORLAN_TELEPORTSTATION(C_Item)
+instance ItKe_Orlan_TeleportStation(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -84,7 +84,7 @@ instance ITKE_ORLAN_TELEPORTSTATION(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_CANYONLIBRARY_HIERARCHY_BOOKS_ADDON(C_Item)
+instance ItKe_CanyonLibrary_Hierarchy_Books_Addon(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -101,7 +101,7 @@ instance ITKE_CANYONLIBRARY_HIERARCHY_BOOKS_ADDON(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_ADDON_BUDDLER_01(C_Item)
+instance ItKe_Addon_Buddler_01(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -118,7 +118,7 @@ instance ITKE_ADDON_BUDDLER_01(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_ADDON_SKINNER(C_Item)
+instance ItKe_Addon_Skinner(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -134,7 +134,7 @@ instance ITKE_ADDON_SKINNER(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_Addon_Thorus(C_Item)
+instance ItKe_Addon_Thorus(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;

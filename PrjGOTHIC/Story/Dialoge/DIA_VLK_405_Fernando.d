@@ -304,8 +304,8 @@ func void DIA_Addon_Fernando_BanditTrader_ja()
 	}
 	else
 	{
-		CreateInvItems(self,ItRi_Prot_Total_00,1);
-		B_GiveInvItems(self,other,ItRi_Prot_Total_00,1);
+		CreateInvItems(self,ItRi_Prot_Total_03,1);
+		B_GiveInvItems(self,other,ItRi_Prot_Total_03,1);
 		MIS_Martin_FindTheBanditTrader = LOG_FAILED;
 		MIS_Vatras_FindTheBanditTrader = LOG_FAILED;
 		B_LogEntry(TOPIC_Addon_Bandittrader,"Я решил не отправлять Фернандо в тюрьму и отдал ему все улики.");

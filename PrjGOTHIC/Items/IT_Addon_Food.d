@@ -184,7 +184,7 @@ func void UseSchnellerHering()
 {
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_SPRINT.MDS",Time_SchnellerHering);
+		Mdl_ApplyOverlayMdsTimed(self,"Humans_Sprint.mds",Time_SchnellerHering);
 	};
 	Player_KnowsSchnellerHering = TRUE;
 };

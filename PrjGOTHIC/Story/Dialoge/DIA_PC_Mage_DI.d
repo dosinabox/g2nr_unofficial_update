@@ -108,32 +108,20 @@ func void DIA_Milten_DI_Rat_Info()
 	Info_ClearChoices(DIA_Milten_DI_Rat);
 	if((SC_InnosEyeVergessen_DI == TRUE) && (XardasDIBagOpened == FALSE))
 	{
-		Info_AddChoice(DIA_Milten_DI_Rat,"Нет.",DIA_Milten_DI_Rat_nein);
+		AI_Output(other,self,"DIA_Milten_DI_Rat_nein_15_00");	//Нет.
+		AI_Output(self,other,"DIA_Milten_DI_Rat_nein_03_01");	//(возмущенно) Ты такой... Что ты будешь делать, если ты встретишься с драконами здесь, на острове?
+		AI_Output(self,other,"DIA_Milten_DI_Rat_nein_03_02");	//Ты так и не поумнел? Здесь у нас есть даже алхимический стол, мы могли бы спокойно перезарядить Глаз.
+		AI_Output(self,other,"DIA_Milten_DI_Rat_nein_03_03");	//А ты о чем думаешь? Мне остается только надеяться, что твоя непредусмотрительность не будет стоить нам жизней.
 	}
 	else
 	{
-		Info_AddChoice(DIA_Milten_DI_Rat,"Конечно.",DIA_Milten_DI_Rat_ja);
+		AI_Output(other,self,"DIA_Milten_DI_Rat_ja_15_00");	//Конечно.
+		AI_Output(self,other,"DIA_Milten_DI_Rat_ja_03_01");	//Извини, что я задаю такой глупый вопрос. Я немного нервничаю.
+		if(SC_InnosEyeVergessen_DI == FALSE)
+		{
+			B_GivePlayerXP(XP_AmbientKap6);
+		};
 	};
-};
-
-func void DIA_Milten_DI_Rat_nein()
-{
-	AI_Output(other,self,"DIA_Milten_DI_Rat_nein_15_00");	//Нет.
-	AI_Output(self,other,"DIA_Milten_DI_Rat_nein_03_01");	//(возмущенно) Ты такой... Что ты будешь делать, если ты встретишься с драконами здесь, на острове?
-	AI_Output(self,other,"DIA_Milten_DI_Rat_nein_03_02");	//Ты так и не поумнел? Здесь у нас есть даже алхимический стол, мы могли бы спокойно перезарядить Глаз.
-	AI_Output(self,other,"DIA_Milten_DI_Rat_nein_03_03");	//А ты о чем думаешь? Мне остается только надеяться, что твоя непредусмотрительность не будет стоить нам жизней.
-	Info_ClearChoices(DIA_Milten_DI_Rat);
-};
-
-func void DIA_Milten_DI_Rat_ja()
-{
-	AI_Output(other,self,"DIA_Milten_DI_Rat_ja_15_00");	//Конечно.
-	AI_Output(self,other,"DIA_Milten_DI_Rat_ja_03_01");	//Извини, что я задаю такой глупый вопрос. Я немного нервничаю.
-	if(SC_InnosEyeVergessen_DI == FALSE)
-	{
-		B_GivePlayerXP(XP_AmbientKap6);
-	};
-	Info_ClearChoices(DIA_Milten_DI_Rat);
 };
 
 
@@ -593,11 +581,21 @@ func void DIA_Milten_DI_UndeadDragonDead_Info()
 			AI_Output(other,self,"DIA_Milten_DI_UndeadDragonDead_15_09");	//Ммм. Может быть.
 		};
 		AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_10");	//Да ладно, дружище, я думаю, что главное, что тебе сейчас нужно - немного поспать.
-		DIA_Milten_DI_UndeadDragonDead_OneTime = TRUE;
 	};
 	AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_11");	//Тебе нужно пойти к капитану и сказать ему, чтобы он поднимал якорь.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	if(DIA_Milten_DI_UndeadDragonDead_OneTime == FALSE)
+	{
+		if(Lester_IsOnBoard != LOG_SUCCESS)
+		{
+			Npc_ExchangeRoutine(self,"SittingShipDI");
+		}
+		else
+		{
+			Npc_ExchangeRoutine(self,"Start");
+		};
+	};
+	DIA_Milten_DI_UndeadDragonDead_OneTime = TRUE;
 };
 
 

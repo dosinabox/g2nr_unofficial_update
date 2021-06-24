@@ -133,7 +133,7 @@ func void DIA_SLD_6_STANDARD_Info()
 	AI_Output(other,self,"DIA_SLD_6_STANDARD_15_00");	//В чем дело?
 	if(Kapitel <= 2)
 	{
-		if(EnterOW_Kapitel2 == FALSE)
+		if((Torlof_KnowsDragons == FALSE) && !Npc_KnowsInfo(other,DIA_Lee_Report))
 		{
 			if(other.guild == GIL_SLD)
 			{
@@ -154,8 +154,8 @@ func void DIA_SLD_6_STANDARD_Info()
 			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_05");	//Как там лорд Хаген, он еще не обгадил штаны от страха перед драконами?
 			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_06");	//Похоже, теперь ему придется оторвать свою вельможную задницу от кресла и выползти из города.
 		};
-	};
-	if(Kapitel == 3)
+	}
+	else if(Kapitel == 3)
 	{
 		if(MIS_RescueBennet == LOG_SUCCESS)
 		{
@@ -172,20 +172,20 @@ func void DIA_SLD_6_STANDARD_Info()
 				B_LogEntry(TOPIC_RescueBennet,"У кузнеца Беннета серьезные проблемы. Говорят, что он был арестован.");
 			};
 		};
-	};
-	if(Kapitel == 4)
+	}
+	else if(Kapitel == 4)
 	{
 		if(hero.guild == GIL_DJG)
 		{
 			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_09");	//Что ты все ошиваешься здесь? Разве ты не отправился в долину вместе с остальными?
-			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_10");	//Чтобы вы там все и остались.
+			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_10");	//Чтоб вы там все и остались.
 		}
 		else
 		{
 			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_11");	//Ты должен идти в Долину Рудников. Я слышал, что этим беднягам там необходима помощь.
 		};
-	};
-	if(Kapitel >= 5)
+	}
+	else if(Kapitel >= 5)
 	{
 		if(hero.guild == GIL_DJG)
 		{

@@ -10,25 +10,38 @@ func void B_AssessSurprise()
 
 func void ZS_Attack()
 {
-	B_Greg_ComesToDexter();
 	Perception_Set_Minimal();
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_AssessSurprise);
 	B_ValidateOther();
 	self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph))
+	if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		if(Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000)
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Dexter))
 		{
-			B_Flee();
-			return;
-		};
-	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cornelius))
-	{
-		if(Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") <= 5000)
+			B_Greg_ComesToDexter();
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph))
 		{
-			B_Flee();
-			return;
+			if(Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000)
+			{
+				B_Flee();
+				return;
+			};
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cornelius))
+		{
+			if(Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") <= 5000)
+			{
+				B_Flee();
+				return;
+			};
+		}
+		else if((BragoBanditsAttacked == FALSE) && (Kapitel < 3))
+		{
+			if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ambusher_1013)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ambusher_1014)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ambusher_1015)))
+			{
+				BragoBanditsAttacked = TRUE;
+			};
 		};
 	};
 	if(C_WantToFlee(self,other))
@@ -60,11 +73,6 @@ func void ZS_Attack()
 
 func int ZS_Attack_Loop()
 {
-//	B_Greg_ComesToDexter();
-	if((BragoBanditsAttacked == FALSE) && ((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ambusher_1013)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ambusher_1014)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ambusher_1015))))
-	{
-		BragoBanditsAttacked = TRUE;
-	};
 	Npc_GetTarget(self);
 	if(C_WantToFlee(self,other))
 	{
@@ -187,26 +195,37 @@ func int ZS_Attack_Loop()
 			Npc_PerceiveAll(self);
 			Npc_GetNextTarget(self);
 		};
-		if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other) && ((Npc_GetDistToNpc(self,other) < PERC_DIST_INTERMEDIAT) || Npc_IsPlayer(other)) && (Npc_GetHeightToNpc(self,other) < PERC_DIST_HEIGHT) && (other.aivar[AIV_INVINCIBLE] == FALSE) && !(C_PlayerIsFakeBandit(self,other) && (self.guild == GIL_BDT)))
+		if(Hlp_IsValidNpc(other))
 		{
-			if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_HOSTILE)
+			if(!C_NpcIsDown(other) && ((Npc_GetDistToNpc(self,other) < PERC_DIST_INTERMEDIAT) || Npc_IsPlayer(other)) && (Npc_GetHeightToNpc(self,other) < PERC_DIST_HEIGHT) && (other.aivar[AIV_INVINCIBLE] == FALSE) && !(C_PlayerIsFakeBandit(self,other) && (self.guild == GIL_BDT)))
 			{
-				if(!C_NpcIsHero(self))
+				if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_HOSTILE)
 				{
-					self.aivar[AIV_ATTACKREASON] = AR_GuildEnemy;
-				};
-				if(C_NpcIsHero(other))
+					if(!C_NpcIsHero(self))
+					{
+						self.aivar[AIV_ATTACKREASON] = AR_GuildEnemy;
+					};
+					if(C_NpcIsHero(other))
+					{
+						self.aivar[AIV_LastPlayerAR] = AR_GuildEnemy;
+						self.aivar[AIV_LastFightAgainstPlayer] = FIGHT_CANCEL;
+						self.aivar[AIV_LastFightComment] = FALSE;
+					};
+				}
+				else if((Npc_GetAttitude(self,other) == ATT_HOSTILE) && !C_NpcIsHero(self))
 				{
-					self.aivar[AIV_LastPlayerAR] = AR_GuildEnemy;
-					self.aivar[AIV_LastFightAgainstPlayer] = FIGHT_CANCEL;
-					self.aivar[AIV_LastFightComment] = FALSE;
+					self.aivar[AIV_ATTACKREASON] = self.aivar[AIV_LastPlayerAR];
 				};
+				return LOOP_CONTINUE;
 			}
-			else if((Npc_GetAttitude(self,other) == ATT_HOSTILE) && !C_NpcIsHero(self))
+			else
 			{
-				self.aivar[AIV_ATTACKREASON] = self.aivar[AIV_LastPlayerAR];
+				Npc_ClearAIQueue(self);
+				if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_CANCEL) && (self.aivar[AIV_LASTTARGET] != Hlp_GetInstanceID(hero)))
+				{
+					self.aivar[AIV_LastFightComment] = TRUE;
+				};
 			};
-			return LOOP_CONTINUE;
 		}
 		else
 		{

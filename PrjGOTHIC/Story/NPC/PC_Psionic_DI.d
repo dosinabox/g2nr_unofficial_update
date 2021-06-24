@@ -12,6 +12,7 @@ instance PC_Psionic_DI(Npc_Default)
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
+	aivar[AIV_Teeth] = 2;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);

@@ -213,16 +213,16 @@ func void DIA_Addon_Nadja_LuciaInfo_Info()
 	LuciaMentionedInKhorinis = TRUE;
 	Info_ClearChoices(DIA_Addon_Nadja_LuciaInfo);
 	Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"А куда она исчезла?",DIA_Addon_Nadja_LuciaInfo_wo);
-	Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Рассказывай.",DIA_Addon_Nadja_LuciaInfo_lucia);
+	Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Рассказывай.",DIA_Addon_Nadja_LuciaInfo_Lucia);
 };
 
-func void DIA_Addon_Nadja_LuciaInfo_lucia()
+func void DIA_Addon_Nadja_LuciaInfo_Lucia()
 {
-	AI_Output(other,self,"DIA_Addon_Nadja_LuciaInfo_lucia_15_00");	//Рассказывай.
-	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_lucia_16_01");	//Никто здесь особо не жалеет, что она исчезла.
-	AI_Output(other,self,"DIA_Addon_Nadja_LuciaInfo_lucia_15_02");	//Почему?
-	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_lucia_16_03");	//Здесь нет ни одного человека, которого она не пыталась использовать в своих интересах.
-	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_lucia_16_04");	//Она была настоящей сукой!
+	AI_Output(other,self,"DIA_Addon_Nadja_LuciaInfo_Lucia_15_00");	//Рассказывай.
+	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_Lucia_16_01");	//Никто здесь особо не жалеет, что она исчезла.
+	AI_Output(other,self,"DIA_Addon_Nadja_LuciaInfo_Lucia_15_02");	//Почему?
+	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_Lucia_16_03");	//Здесь нет ни одного человека, которого она не пыталась использовать в своих интересах.
+	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_Lucia_16_04");	//Она была настоящей сукой!
 };
 
 func void DIA_Addon_Nadja_LuciaInfo_wo()

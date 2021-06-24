@@ -620,8 +620,12 @@ func int C_ShowAlchemySTRDEXDialog()
 	if(ClassicAlchemy == FALSE)
 	{
 		return TRUE;
-	}
-	else if((PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE) || (PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE))
+	};
+	if(PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE)
+	{
+		return TRUE;
+	};
+	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE)
 	{
 		return TRUE;
 	};

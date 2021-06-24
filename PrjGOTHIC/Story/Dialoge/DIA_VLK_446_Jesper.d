@@ -217,13 +217,12 @@ func void DIA_Jesper_Bezahlen_Okay()
 		AI_Output(other,self,"DIA_Jesper_Bezahlen_Okay_15_01");	//Вот золото.
 		AI_Output(self,other,"DIA_Jesper_Bezahlen_Okay_09_02");	//Скажешь, когда будешь готов.
 		Jesper_TeachSneak = TRUE;
-		Info_ClearChoices(DIA_Jesper_Bezahlen);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Jesper_Bezahlen_Okay_09_03");	//Без золота ты не сможешь ничему научиться.
-		Info_ClearChoices(DIA_Jesper_Bezahlen);
 	};
+	Info_ClearChoices(DIA_Jesper_Bezahlen);
 };
 
 

@@ -8,6 +8,7 @@ instance BAU_4300_Addon_Cavalorn(Npc_Default)
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_FRIEND;
 	aivar[AIV_NPCIsRanger] = TRUE;
+	aivar[AIV_Teeth] = 2;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_ShortSword2);

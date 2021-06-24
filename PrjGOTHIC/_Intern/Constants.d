@@ -113,6 +113,9 @@ const int DAMAGE_FLY_CM_PER_POINT = 5;
 const int NPC_DAM_DIVE_TIME = 100;
 const int IMMUNE = -1;
 
+const int CONDITION_WEAPON_RAVEN = 666666;
+const int CONDITION_ARMOR_FAKE_DEMENTOR = 777777;
+
 const float NPC_COLLISION_CORRECTION_SCALER = 0.75;
 
 const int PROT_BARRIER = 0;
@@ -124,14 +127,16 @@ const int PROT_MAGIC = 5;
 const int PROT_POINT = 6;
 const int PROT_FALL = 7;
 const int PROT_INDEX_MAX = 8;
+
+const int SENSE_SEE = 1;
+const int SENSE_HEAR = 2;
+const int SENSE_SMELL = 4;
+
 const int PERC_ASSESSPLAYER = 1;
 const int PERC_ASSESSENEMY = 2;
 const int PERC_ASSESSFIGHTER = 3;
 const int PERC_ASSESSBODY = 4;
 const int PERC_ASSESSITEM = 5;
-const int SENSE_SEE = 1;
-const int SENSE_HEAR = 2;
-const int SENSE_SMELL = 4;
 const int PERC_ASSESSMURDER = 6;
 const int PERC_ASSESSDEFEAT = 7;
 const int PERC_ASSESSDAMAGE = 8;
@@ -164,7 +169,7 @@ const int NEWS_SPREAD_NPC_FRIENDLY_TOWARDS_VICTIM = 1;
 const int NEWS_SPREAD_NPC_FRIENDLY_TOWARDS_WITNESS = 2;
 const int NEWS_SPREAD_NPC_FRIENDLY_TOWARDS_OFFENDER = 3;
 const int NEWS_SPREAD_NPC_SAME_GUILD_VICTIM = 4;
-const int important = 1;
+const int IMPORTANT = 1;
 const int INF_TELL = 0;
 const int INF_UNKNOWN = 2;
 const int LOG_Running = 1;
@@ -765,7 +770,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "12/03/2021";
-const int FIX_VERSION_START = 26;
-const int LEAST_SUPPORTED = 24;
+const string FIX_VERSION_DATE = "24/06/2021";
+const int FIX_VERSION_START = 27;
+const int LEAST_SUPPORTED = 26;
 var int FIX_VERSION_SAVE;

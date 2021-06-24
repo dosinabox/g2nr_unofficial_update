@@ -8,6 +8,7 @@ instance BDT_1085_Addon_Bloodwyn(Npc_Default)
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
 	aivar[AIV_StoryBandit] = TRUE;
+	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Sld_Sword);

@@ -13,6 +13,7 @@ instance NONE_100_Xardas(Npc_Default)
 	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_IGNORE_Sheepkiller] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
+	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);

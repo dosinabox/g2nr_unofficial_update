@@ -144,8 +144,6 @@ func void DIA_Addon_Snaf_Cook_YES()
 };
 
 
-var int Snaf_Tip_Kosten;
-
 instance DIA_Addon_Snaf_Booze(C_Info)
 {
 	npc = BDT_1098_Addon_Snaf;
@@ -175,12 +173,10 @@ func void DIA_Addon_Snaf_Booze_Info()
 	AI_Wait(self,2);
 	AI_UseMob(self,"CAULDRON",-1);
 	AI_Wait(self,1);
-//	AI_GotoNpc(self,other);
 	AI_GotoWP(self,"BL_INN_BAR_05");
 	AI_TurnToNPC(self,other);
 	AI_Output(self,other,"DIA_Addon_Snaf_Booze_01_02");	//Вот, готово. Можешь попробовать прямо сейчас. Силушки-то в ручонках прибавится, спору нет.
 	AI_Output(self,other,"DIA_Addon_Snaf_Booze_01_03");	//А еще, если тебе понадобится моя помощь... Теперь вся информация для тебя - бесплатно.
-	Snaf_Tip_Kosten = 0;
 	B_GiveInvItems(self,other,ItFo_Addon_FireStew,1);
 	MIS_SnafHammer = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Loushammer);
@@ -341,7 +337,21 @@ func void DIA_Addon_Snaf_HOCH_Info()
 };
 
 
+const int Snaf_Tip_Kosten = 10;
 var int Kosten_Einmal;
+
+func int C_Snaf_ReadyToTip()
+{
+	if(MIS_SnafHammer == LOG_SUCCESS)
+	{
+		return TRUE;
+	};
+	if(B_GiveInvItems(other,self,ItMi_Gold,Snaf_Tip_Kosten))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
 
 instance DIA_Addon_Snaf_People(C_Info)
 {
@@ -371,7 +381,6 @@ func void DIA_Addon_Snaf_People_Info()
 		AI_Output(self,other,"DIA_Addon_Snaf_People_01_02");	//Информация стоит денег, приятель...
 		AI_Output(other,self,"DIA_Addon_Snaf_People_15_03");	//Ну, и сколько же она стоит?
 		AI_Output(self,other,"DIA_Addon_Snaf_People_01_04");	//Десятка вполне сойдет.
-		Snaf_Tip_Kosten = 10;
 		Kosten_Einmal = TRUE;
 	};
 	Info_ClearChoices(DIA_Addon_Snaf_People);
@@ -401,7 +410,7 @@ func void DIA_Addon_Snaf_People_BACK()
 func void DIA_Addon_Snaf_People_Paul()
 {
 	AI_Output(other,self,"DIA_Addon_Snaf_People_Paul_15_00");	//А что Пол?
-	if(B_GiveInvItems(other,self,ItMi_Gold,Snaf_Tip_Kosten))
+	if(C_Snaf_ReadyToTip())
 	{
 		AI_Output(self,other,"DIA_Addon_Snaf_People_Paul_01_01");	//Не думаю, что он без ума от Эстебана. Из-за того, что он работает на Хуно, в шахту ему никогда не попасть.
 	}
@@ -424,7 +433,7 @@ func void DIA_Addon_Snaf_People_Huno()
 func void DIA_Addon_Snaf_People_Fisk()
 {
 	AI_Output(other,self,"DIA_Addon_Snaf_People_Fisk_15_00");	//А Фиск?
-	if(B_GiveInvItems(other,self,ItMi_Gold,Snaf_Tip_Kosten))
+	if(C_Snaf_ReadyToTip())
 	{
 		AI_Output(self,other,"DIA_Addon_Snaf_People_Fisk_01_01");	//Фиск есть Фиск. Он платит долю Эстебану и перепродает добро, которое он, в основном, получает от пиратов.
 		AI_Output(self,other,"DIA_Addon_Snaf_People_Fisk_01_02");	//По мне, так он вряд ли питает добрые чувства к Эстебану.
@@ -438,7 +447,7 @@ func void DIA_Addon_Snaf_People_Fisk()
 func void DIA_Addon_Snaf_People_Emilio()
 {
 	AI_Output(other,self,"DIA_Addon_Snaf_People_Emilio_15_00");	//Как Эмилио относится к Эстебану?
-	if(B_GiveInvItems(other,self,ItMi_Gold,Snaf_Tip_Kosten))
+	if(C_Snaf_ReadyToTip())
 	{
 		AI_Output(self,other,"DIA_Addon_Snaf_People_Emilio_01_01");	//Ну, свечку за его душу он вряд ли когда-нибудь поставит, это точно.
 	}
@@ -451,7 +460,7 @@ func void DIA_Addon_Snaf_People_Emilio()
 func void DIA_Addon_Snaf_People_Senyan()
 {
 	AI_Output(other,self,"DIA_Addon_Snaf_People_Senyan_15_00");	//А Сеньян?
-	if(B_GiveInvItems(other,self,ItMi_Gold,Snaf_Tip_Kosten))
+	if(C_Snaf_ReadyToTip())
 	{
 		AI_Output(self,other,"DIA_Addon_Snaf_People_Senyan_01_01");	//Сеньян - один из ребят Эстебана. Довольно давно работает на него.
 	}
@@ -470,7 +479,7 @@ func void DIA_Addon_Snaf_People_Lennar()
 func void DIA_Addon_Snaf_People_Finn()
 {
 	AI_Output(other,self,"DIA_Addon_Snaf_People_Finn_15_00");	//А что с Финном?
-	if(B_GiveInvItems(other,self,ItMi_Gold,Snaf_Tip_Kosten))
+	if(C_Snaf_ReadyToTip())
 	{
 		AI_Output(self,other,"DIA_Addon_Snaf_People_Finn_01_01");	//Отличный рудокоп. Он золото носом чует.
 		AI_Output(self,other,"DIA_Addon_Snaf_People_Finn_01_02");	//Эстебан высоко его за это ценит. Так что они друг с другом отлично ладят.

@@ -175,7 +175,7 @@ func void DIA_Addon_Elvrich_WhatExactly_Info()
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_04_04");	//Конечно, я сопротивлялся, но их было слишком много. Ты, кстати, их не встречал?
 	LuciaMentionedInKhorinis = TRUE;
 	Info_ClearChoices(DIA_Addon_Elvrich_WhatExactly);
-	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Расскажи мне о Люсии.",DIA_Addon_Elvrich_WhatExactly_lucia);
+	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Расскажи мне о Люсии.",DIA_Addon_Elvrich_WhatExactly_Lucia);
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Что хотели от тебя бандиты?",DIA_Addon_Elvrich_WhatExactly_Want);
 };
 
@@ -212,10 +212,10 @@ func void DIA_Addon_Elvrich_WhatExactly_Here()
 	Elvrich_AskedPirates = TRUE;
 };
 
-func void DIA_Addon_Elvrich_WhatExactly_lucia()
+func void DIA_Addon_Elvrich_WhatExactly_Lucia()
 {
-	AI_Output(other,self,"DIA_Addon_Elvrich_WhatExactly_lucia_15_00");	//Расскажи мне о Люсии.
-	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_lucia_04_01");	//Это девушка из портового района. Очень красивая. Она работала на этого мерзавца Бромора.
+	AI_Output(other,self,"DIA_Addon_Elvrich_WhatExactly_Lucia_15_00");	//Расскажи мне о Люсии.
+	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_Lucia_04_01");	//Это девушка из портового района. Очень красивая. Она работала на этого мерзавца Бромора.
 	Elvrich_AskedLucia = TRUE;
 };
 
@@ -232,7 +232,7 @@ func void DIA_Addon_Elvrich_WhatExactly_pirat()
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,Dialog_Back,DIA_Addon_Elvrich_WhatExactly_Back);
 	if(Elvrich_AskedLucia == FALSE)
 	{
-		Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Расскажи мне о Люсии.",DIA_Addon_Elvrich_WhatExactly_lucia);
+		Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Расскажи мне о Люсии.",DIA_Addon_Elvrich_WhatExactly_Lucia);
 	};
 	if(Elvrich_AskedPirates == FALSE)
 	{

@@ -32,9 +32,9 @@ func int B_GhostSpecialDamage(var C_Npc oth,var C_Npc slf)
 func void B_ArrowBonusDamage(var C_Npc oth,var C_Npc slf)
 {
 	var C_Item readyweap;
-	readyweap = Npc_GetReadiedWeapon(oth);
 	if(Npc_HasReadiedRangedWeapon(oth))
 	{
+		readyweap = Npc_GetReadiedWeapon(oth);
 		if(readyweap.munition == ItRw_Addon_FireArrow)
 		{
 			Wld_PlayEffect("spellFX_Firestorm_SPREAD",slf,slf,0,0,0,FALSE);

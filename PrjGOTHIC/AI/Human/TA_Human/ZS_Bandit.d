@@ -81,7 +81,7 @@ func int ZS_Bandit_Loop()
 			if(Npc_GetStateTime(self) > self.aivar[AIV_STATETIME])
 			{
 				AI_PlayAni(self,"T_HGUARD_LOOKAROUND");
-				self.aivar[AIV_STATETIME] = Hlp_Random(100)%6 + 6; // от 6 до 11 секунд. Нужно подобрать приемлемые промежутки времени.
+				self.aivar[AIV_StateTime] = Hlp_Random(100)%6 + 6; // от 6 до 11 секунд. Нужно подобрать приемлемые промежутки времени.
 				Npc_SetStateTime(self,0);
 			};
 		};
@@ -114,7 +114,7 @@ func int ZS_Bandit_Loop()
 	};
 	
 	// Первоначальная установка значения таймера выдержки времени между анимациями.
-	self.aivar[AIV_STATETIME] = Hlp_Random(100)%4 + 4; // от 4 до 7 секунд.
+	self.aivar[AIV_StateTime] = Hlp_Random(100)%4 + 4; // от 4 до 7 секунд.
 	
 	// Поблизости имеется фрипоинт "STAND" -> занятие фрипоинта, проигрывание анимации.
 	if(Wld_IsFPAvailable(self,"STAND"))
@@ -156,7 +156,7 @@ func void ZS_Bandit_End()
 	};
 	
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
-	self.aivar[AIV_STATETIME] = 0;
+	self.aivar[AIV_StateTime] = 0;
 };
 */
 
@@ -202,7 +202,7 @@ func int ZS_Bandit_Loop()
 			if(Npc_GetStateTime(self) > self.aivar[AIV_STATETIME])
 			{
 				AI_PlayAni(self,"T_HGUARD_LOOKAROUND");
-				self.aivar[AIV_STATETIME] = Hlp_Random(100)%8 + 10; // от 10 до 17 секунд.
+				self.aivar[AIV_StateTime] = Hlp_Random(100)%8 + 10; // от 10 до 17 секунд.
 				Npc_SetStateTime(self,0);
 			};
 		};
@@ -235,7 +235,7 @@ func int ZS_Bandit_Loop()
 	};
 	
 	// Первоначальная установка значения таймера выдержки времени между анимациями.
-	self.aivar[AIV_STATETIME] = Hlp_Random(100)%5 + 5; // от 5 до 9 секунд.
+	self.aivar[AIV_StateTime] = Hlp_Random(100)%5 + 5; // от 5 до 9 секунд.
 	Npc_SetStateTime(self,0);
 	
 	// Поблизости имеется фрипоинт "STAND" -> занятие фрипоинта, проигрывание анимации.
@@ -281,5 +281,6 @@ func void ZS_Bandit_End()
 	};
 	
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
-	self.aivar[AIV_STATETIME] = 0;
+	self.aivar[AIV_StateTime] = 0;
 };
+

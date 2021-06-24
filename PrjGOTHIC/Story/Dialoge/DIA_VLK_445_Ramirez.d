@@ -289,13 +289,12 @@ func void DIA_Ramirez_Bezahlen_Okay()
 		AI_Output(self,other,"DIA_Ramirez_Bezahlen_Okay_14_02");	//Отлично. Я к твоим услугам.
 		Ramirez_TeachPlayer = TRUE;
 		DIA_Ramirez_Bezahlen_permanent = TRUE;
-		Info_ClearChoices(DIA_Ramirez_Bezahlen);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Ramirez_Bezahlen_Okay_14_03");	//Возвращайся, когда раздобудешь золото.
-		Info_ClearChoices(DIA_Ramirez_Bezahlen);
 	};
+	Info_ClearChoices(DIA_Ramirez_Bezahlen);
 };
 
 

@@ -21,6 +21,18 @@ func void B_GiveTradeInv_Addon_Scatty(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Health_02,4);
 		CreateInvItems(slf,ItRw_Crossbow_L_01,1);
 		CreateInvItems(slf,ItRw_Crossbow_L_02,1);
+		if(ClassicMeleeWeaponsTraders == FALSE)
+		{
+			
+		}
+		else
+		{
+			CreateInvItems(slf,ItMw_Schwert2,1);
+			CreateInvItems(slf,ItMw_Zweihaender1,1);
+			CreateInvItems(slf,ItMw_Schwert5,1);
+			CreateInvItems(slf,ItMw_Streitaxt2,1);
+			CreateInvItems(slf,ItMw_Inquisitor,1);
+		};
 		Scatty_ItemsGiven_Chapter_1 = TRUE;
 	};
 	if((Kapitel >= 2) && (Scatty_ItemsGiven_Chapter_2 == FALSE))
@@ -34,9 +46,11 @@ func void B_GiveTradeInv_Addon_Scatty(var C_Npc slf)
 		CreateInvItems(slf,ItFo_Stew,5);
 		CreateInvItems(slf,ItPo_Mana_02,4);
 		CreateInvItems(slf,ItPo_Health_02,4);
-		CreateInvItems(slf,ItMw_Schwert2,1);
-//		CreateInvItems(slf,ItMw_Zweihaender1,1);
 		CreateInvItems(slf,ItRw_Crossbow_M_02,1);
+		if(ClassicMeleeWeaponsTraders == FALSE)
+		{
+			CreateInvItems(slf,ItMw_Schwert2,1);
+		};
 		Scatty_ItemsGiven_Chapter_2 = TRUE;
 	};
 	if((Kapitel >= 3) && (Scatty_ItemsGiven_Chapter_3 == FALSE))
@@ -50,9 +64,12 @@ func void B_GiveTradeInv_Addon_Scatty(var C_Npc slf)
 		CreateInvItems(slf,ItFo_Stew,5);
 		CreateInvItems(slf,ItPo_Mana_02,4);
 		CreateInvItems(slf,ItPo_Health_02,4);
-		CreateInvItems(slf,ItMw_Schwert5,1);
-		CreateInvItems(slf,ItMw_Streitaxt2,1);
-		CreateInvItems(slf,ItMw_Inquisitor,1);
+		if(ClassicMeleeWeaponsTraders == FALSE)
+		{
+			CreateInvItems(slf,ItMw_Schwert5,1);
+			CreateInvItems(slf,ItMw_Streitaxt2,1);
+			CreateInvItems(slf,ItMw_Inquisitor,1);
+		};
 		Scatty_ItemsGiven_Chapter_3 = TRUE;
 	};
 	if((Kapitel >= 4) && (Scatty_ItemsGiven_Chapter_4 == FALSE))

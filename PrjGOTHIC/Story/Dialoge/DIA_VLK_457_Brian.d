@@ -257,6 +257,7 @@ func int DIA_Brian_WASKAUFEN_Condition()
 func void DIA_Brian_WASKAUFEN_Info()
 {
 	AI_Output(other,self,"DIA_Brian_WASKAUFEN_15_00");	//Что я могу купить у тебя?
+	Npc_RemoveInvItems(self,ItMiSwordblade,Npc_HasItems(self,ItMiSwordblade));
 	B_GiveTradeInv(self);
 	if(Npc_IsDead(Harad))
 	{
@@ -273,11 +274,18 @@ func void DIA_Brian_WASKAUFEN_Info()
 	};
 	if(Brian_Trade_einmal == FALSE)
 	{
-		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTrader,"Брайан, подмастерье Гарада, продает стальные заготовки.");
+		if(MIS_Jack_NewLighthouseOfficer != LOG_SUCCESS)
+		{
+			Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+			B_LogEntry(TOPIC_CityTrader,"Брайан, подмастерье Гарада, продает стальные заготовки.");
+		}
+		else
+		{
+			Log_CreateTopic(TOPIC_OutTrader,LOG_NOTE);
+			B_LogEntry(TOPIC_OutTrader,"Брайан, бывший подмастерье Гарада, продает стальные заготовки в маяке неподалеку от города.");
+		};
 		Brian_Trade_einmal = TRUE;
 	};
-	Npc_RemoveInvItems(self,ItMiSwordblade,Npc_HasItems(self,ItMiSwordblade));
 	if(!Npc_HasItems(self,ItMw_1H_Mace_L_04) && !Npc_HasItems(other,ItMw_1H_Mace_L_04) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE) && (Player_IsApprentice == APP_Harad))
 	{
 		CreateInvItems(self,ItMw_1H_Mace_L_04,1);

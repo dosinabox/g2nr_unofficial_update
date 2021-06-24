@@ -5,25 +5,22 @@ func void enter_di_firsttime_trigger()
 {
 	if(EnterDI_Kapitel6 == FALSE)
 	{
-		if(hero.attribute[ATR_DEXTERITY] <= (Condition_Weidenbogen - DEX_Elixier))
-		{
-			Wld_InsertItem(ItPo_Perm_DEX,"FP_ITEM_DI_ENTER_05");
-		};
-		if(hero.guild == GIL_PAL)
+		var C_Npc player;
+		player = Hlp_GetNpc(PC_Hero);
+		if(player.guild == GIL_PAL)
 		{
 			CreateInvItems(Archol,ItRu_PalDestroyEvil,1);
 		};
-		Wld_InsertItem(ItMi_Flask,"FP_ITEM_SHIP_12");
-		if(!Npc_HasItems(hero,ItMi_InnosEye_MIS))
+		if(!Npc_HasItems(player,ItMi_InnosEye_MIS))
 		{
-			if(!Npc_HasItems(hero,ItMi_InnosEye_Discharged_Mis))
+			Wld_InsertItem(ItMi_Flask,"FP_ITEM_SHIP_06");
+			if(!Npc_HasItems(player,ItMi_InnosEye_Discharged_Mis))
 			{
 				Wld_InsertItem(ItSe_XardasNotfallBeutel_MIS,"FP_ITEM_SHIP_12");
 				SC_InnosEyeVergessen_DI = TRUE;
 				B_LogEntry(TOPIC_HallenVonIrdorath,"Прошлой ночью мне приснился сон. Со мной говорил Ксардас, он попросил меня подойти к алхимическому столу на корабле, чтобы забрать кое-что с него. Это очень странно, но я ничего не пил вчера вечером.");
 			};
-			Wld_InsertItem(ItMi_Flask,"FP_ITEM_SHIP_06");
-			if(!Npc_HasItems(hero,ItAt_IcedragonHeart) && !Npc_HasItems(hero,ItAt_RockdragonHeart) && !Npc_HasItems(hero,ItAt_FiredragonHeart) && !Npc_HasItems(hero,ItAt_SwampdragonHeart))
+			if(!Npc_HasItems(player,ItAt_IcedragonHeart) && !Npc_HasItems(player,ItAt_RockdragonHeart) && !Npc_HasItems(player,ItAt_FiredragonHeart) && !Npc_HasItems(player,ItAt_SwampdragonHeart))
 			{
 				CreateInvItems(AntiPaladin_DI,ItAt_RockdragonHeart,1);
 			};
@@ -37,12 +34,12 @@ func void enter_di_firsttime_trigger()
 		if(JorgenIsCaptain == TRUE)
 		{
 			Log_AddEntry(TOPIC_MyCrew,"Йорген, мой капитан, будет ждать на корабле моего возвращения.");
-		};
-		if(TorlofIsCaptain == TRUE)
+		}
+		else if(TorlofIsCaptain == TRUE)
 		{
 			Log_AddEntry(TOPIC_MyCrew,"Торлоф, мой капитан, будет ждать на корабле и оборонять его во время моего отсутствия. Он также может помочь мне повысить мою силу и ловкость.");
-		};
-		if(JackIsCaptain == TRUE)
+		}
+		else if(JackIsCaptain == TRUE)
 		{
 			Log_AddEntry(TOPIC_MyCrew,"Джек, мой капитан, будет ждать на корабле моего возвращения. Похоже, он немного испуган. Надеюсь, он возьмет себя в руки. Он нужен мне.");
 		};
@@ -52,7 +49,7 @@ func void enter_di_firsttime_trigger()
 		};
 		if(MiltenNW_IsOnBoard == LOG_SUCCESS)
 		{
-			if(hero.guild == GIL_KDF)
+			if(player.guild == GIL_KDF)
 			{
 				Log_AddEntry(TOPIC_MyCrew,"Милтен может помочь мне с повышением маны и созданием новых рун.");
 			}
@@ -75,7 +72,7 @@ func void enter_di_firsttime_trigger()
 		};
 		if(Vatras_IsOnBoard == LOG_SUCCESS)
 		{
-			if(hero.guild == GIL_KDF)
+			if(player.guild == GIL_KDF)
 			{
 				Log_AddEntry(TOPIC_MyCrew,"Ватрас удалился в каюту магов. Он может лечить меня и знает множество рецептов приготовления зелий. Также с его помощью я смогу повысить свой Круг магии.");
 			}

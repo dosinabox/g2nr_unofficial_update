@@ -30,25 +30,25 @@ prototype Mst_Default_Zombie(C_Npc)
 func void B_SetVisuals_Zombie01()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,3,NO_ARMOR);
 };
 
 func void B_SetVisuals_Zombie02()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",1,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",1,3,NO_ARMOR);
 };
 
 func void B_SetVisuals_Zombie03()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",0,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",0,3,NO_ARMOR);
 };
 
 func void B_SetVisuals_Zombie04()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",1,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",1,3,NO_ARMOR);
 };
 
 instance Zombie01(Mst_Default_Zombie)
@@ -88,7 +88,7 @@ instance Zombie_Addon_Knecht(Mst_Default_Zombie)
 	name[0] = "Приспешник Ворона";
 	protection[PROT_FIRE] = 0;
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,DEFAULT,ITAR_Thorus_Addon);
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,3,ITAR_Thorus_Addon);
 	Npc_SetToFistMode(self);
 };
 
@@ -100,7 +100,7 @@ instance Zombie_Addon_Bloodwyn(Mst_Default_Zombie)
 	attribute[ATR_HITPOINTS] = 1600;
 	protection[PROT_FIRE] = 0;
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,DEFAULT,ITAR_Thorus_Addon);
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,3,ITAR_Thorus_Addon);
 	Npc_SetToFistMode(self);
 };
 
@@ -154,25 +154,25 @@ func void B_Pal_ZOMBIE_RISE()
 func void B_SetVisuals_Pal_Zombie01()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,DEFAULT,ITAR_PAL_Skel);
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,3,ITAR_PAL_Skel);
 };
 
 func void B_SetVisuals_Pal_Zombie02()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",1,DEFAULT,ITAR_PAL_Skel);
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",1,3,ITAR_PAL_Skel);
 };
 
 func void B_SetVisuals_Pal_Zombie03()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",0,DEFAULT,ITAR_PAL_Skel);
+	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",0,3,ITAR_PAL_Skel);
 };
 
 func void B_SetVisuals_Pal_Zombie04()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",1,DEFAULT,ITAR_PAL_Skel);
+	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",1,3,ITAR_PAL_Skel);
 };
 
 
@@ -229,25 +229,25 @@ instance Pal_Zombie06(Mst_Default_Zombie)
 func void B_SetVisuals_Maya_Zombie01()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,DEFAULT,ITAR_MayaZombie_Addon);
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,3,ITAR_MayaZombie_Addon);
 };
 
 func void B_SetVisuals_Maya_Zombie02()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",1,DEFAULT,ITAR_MayaZombie_Addon);
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",1,3,ITAR_MayaZombie_Addon);
 };
 
 func void B_SetVisuals_Maya_Zombie03()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",0,DEFAULT,ITAR_MayaZombie_Addon);
+	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",0,3,ITAR_MayaZombie_Addon);
 };
 
 func void B_SetVisuals_Maya_Zombie04()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",1,DEFAULT,ITAR_MayaZombie_Addon);
+	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",1,3,ITAR_MayaZombie_Addon);
 };
 
 

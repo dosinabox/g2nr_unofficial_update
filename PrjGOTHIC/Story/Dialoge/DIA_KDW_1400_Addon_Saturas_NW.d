@@ -60,7 +60,7 @@ func void DIA_Addon_Saturas_Nefarius_Info()
 	AI_Output(other,self,"DIA_ADDON_Saturas_Nefarius_15_00");	//Я взялся помочь Нефариусу и найти потерянные части орнамента.
 	AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_01");	//Что? Быть того не может! Ты опять вмешиваешься?
 	AI_Output(other,self,"DIA_ADDON_Saturas_Nefarius_15_02");	//Не надо беспокоиться. Все доставлю как есть.
-	if((ORNAMENT_SWITCHED_FOREST == FALSE) && Npc_HasItems(other,ItWr_Map_NewWorld_Ornaments_Addon))
+	if((Ornament_Switched_Forest == FALSE) && Npc_HasItems(other,ItWr_Map_NewWorld_Ornaments_Addon))
 	{
 		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
@@ -286,6 +286,9 @@ func void DIA_Addon_Saturas_Ornament_Info()
 	AI_Output(other,self,"DIA_Addon_Saturas_Ornament_15_05");	//Ведь я тогда уже работал на вас. На меня можно было положиться.
 	AI_Output(self,other,"DIA_Addon_Saturas_Ornament_14_06");	//(вздыхает) И к чему это нас привело, ответь? Хм-м, даже не думай, что я тебе доверяю...
 	MIS_Addon_Lares_Ornament2Saturas = LOG_SUCCESS;
+	Wld_InsertNpc(Gobbo_Skeleton,"NW_FOREST_PATH_04_9");
+	Wld_InsertNpc(Skeleton,"NW_FOREST_PATH_04_8");
+	Wld_InsertNpc(Lesser_Skeleton,"FP_ROAM_MEDIUMFOREST_KAP2_23");
 	Wld_InsertNpc(Bloodfly,"FP_ROAM_NW_TROLLAREA_RUINS_07");
 	Wld_InsertNpc(Giant_Bug,"FP_ROAM_NW_TROLLAREA_RUINS_03");
 	Wld_InsertNpc(Lurker,"NW_TROLLAREA_RIVERSIDE_01");

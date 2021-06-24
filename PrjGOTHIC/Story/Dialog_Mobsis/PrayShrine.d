@@ -2,9 +2,6 @@
 var int PrayDay;
 var int PrayDayOne;
 
-var int Shrine_STR_Bonus;
-var int Shrine_DEX_Bonus;
-var int Shrine_MANA_Bonus;
 var int ShrineIsObsessed;
 var int ShrineHealing;
 var int ShrinesHealed;
@@ -65,20 +62,17 @@ func void B_Pray(var int gold)
 	}
 	else if(gold == PrayAmountBig)
 	{
-		if((Shrine_STR_Bonus < 10) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV) && (zufall < 50))
+		if((Stats_Blessings_Str < 10) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV) && (zufall < 50))
 		{
 			B_BlessAttribute(hero,ATR_STRENGTH,1);
-			Shrine_STR_Bonus += 1;
 		}
-		else if((Shrine_DEX_Bonus < 10) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV) && (zufall >= 50))
+		else if((Stats_Blessings_Dex < 10) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV) && (zufall >= 50))
 		{
 			B_BlessAttribute(hero,ATR_DEXTERITY,1);
-			Shrine_DEX_Bonus += 1;
 		}
-		else if((Shrine_MANA_Bonus < 20) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
+		else if((Stats_Blessings_MaxMana < 20) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
 		{
 			B_BlessAttribute(hero,ATR_MANA_MAX,1);
-			Shrine_MANA_Bonus += 1;
 		}
 		else
 		{
@@ -382,7 +376,7 @@ instance PC_PrayShrine_BlessSword(C_Info)
 	condition = PC_PrayShrine_BlessSword_Condition;
 	information = PC_PrayShrine_BlessSword_Info;
 	permanent = TRUE;
-	description = Bless_Sword;
+	description = B_BuildPriceString(Bless_Sword,Gold_BlessSword);
 };
 
 
@@ -437,7 +431,7 @@ instance PC_PrayShrine_BlessSword_Final(C_Info)
 	condition = PC_PrayShrine_BlessSword_Final_Condition;
 	information = PC_PrayShrine_BlessSword_Final_Info;
 	permanent = TRUE;
-	description = Bless_Sword2;
+	description = ConcatStrings(Bless_Sword," Слезами Инноса");
 };
 
 

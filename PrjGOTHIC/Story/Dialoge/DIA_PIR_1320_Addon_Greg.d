@@ -755,18 +755,15 @@ instance DIA_Addon_Greg_ItemsInADW(C_Info)
 
 func int DIA_Addon_Greg_ItemsInADW_Condition()
 {
-	if((RAKEPLACE[1] == TRUE) && (RAKEPLACE[2] == TRUE) && (RAKEPLACE[3] == TRUE) && (RAKEPLACE[4] == TRUE) && (RAKEPLACE[5] == TRUE) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (Greg_SuchWeiter == TRUE))
+	if((RAKEPLACE[1] == TRUE) && (RAKEPLACE[2] == TRUE) && (RAKEPLACE[3] == TRUE) && (RAKEPLACE[4] == TRUE) && (RAKEPLACE[5] == TRUE) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (Greg_SuchWeiter == TRUE) && C_SCHasGregsItems())
 	{
-		if((Npc_HasItems(other,ItSe_GoldPocket100) || (Npc_HasItems(other,ItMi_Gold) >= 100)) && Npc_HasItems(other,ItMi_GoldChalice) && Npc_HasItems(other,ItMi_GregsSilverPlate) && Npc_HasItems(other,ItAm_Addon_Greg))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
 func void DIA_Addon_Greg_ItemsInADW_Info()
 {
-	B_GiveGregItems();
+	B_GiveGregsItems();
 	B_GivePlayerXP(XP_Addon_Greg_RakeCave / 3);
 };
 

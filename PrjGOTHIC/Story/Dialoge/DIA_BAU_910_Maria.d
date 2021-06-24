@@ -164,8 +164,8 @@ func int DIA_Maria_BringPlate_Condition()
 
 func void DIA_Maria_BringPlate_Info()
 {
-	B_GiveInvItems(other,self,ItMi_MariasGoldPlate,1);
 	AI_Output(other,self,"DIA_Maria_BringPlate_15_00");	//Я принес золотую тарелку. Это не твоя?
+	B_GiveInvItems(other,self,ItMi_MariasGoldPlate,1);
 	AI_Output(self,other,"DIA_Maria_BringPlate_17_01");	//Да! Это она! Огромное тебе спасибо!
 	MIS_Maria_BringPlate = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Maria_Teller);

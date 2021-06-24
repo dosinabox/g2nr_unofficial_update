@@ -38,8 +38,6 @@ func void Rtn_BugsThere_952()
 
 func void Rtn_ObesessionRitual_952()
 {
-	/*TA_Smoke_Joint(7,30,23,0,"NW_LITTLESTONEHENDGE_01");
-	TA_Smoke_Joint(23,0,7,30,"NW_LITTLESTONEHENDGE_01");*/
 	TA_Obesession(7,30,23,0,"NW_LITTLESTONEHENDGE_01");
 	TA_Obesession(23,0,7,30,"NW_LITTLESTONEHENDGE_01");
 };

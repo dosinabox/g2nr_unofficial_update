@@ -320,7 +320,7 @@ instance ItPl_Speed_Herb_01(C_Item)
 
 func void Use_Speed_Herb_01()
 {
-	Mdl_ApplyOverlayMdsTimed(self,"HUMANS_SPRINT.MDS",Speed_Boost);
+	Mdl_ApplyOverlayMdsTimed(self,"Humans_Sprint.mds",Speed_Boost);
 };
 
 

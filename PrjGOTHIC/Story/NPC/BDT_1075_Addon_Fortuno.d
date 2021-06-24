@@ -9,6 +9,7 @@ instance BDT_1075_Addon_Fortuno(Npc_Default)
 	npcType = NPCTYPE_BL_MAIN;
 	aivar[AIV_NewsOverride] = TRUE;
 	aivar[AIV_NoFightParker] = TRUE;
+	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1H_Sword_L_03);

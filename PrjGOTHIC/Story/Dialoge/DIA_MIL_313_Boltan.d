@@ -27,36 +27,36 @@ func int C_PrisonIsEmpty()
 	if((MIS_Andre_REDLIGHT == LOG_SUCCESS) && !Npc_IsDead(Borka))
 	{
 		return FALSE;
-	}
-	else if((Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 600) && !Npc_IsDead(Canthar))
+	};
+	if((Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 600) && !Npc_IsDead(Canthar))
 	{
 		return FALSE;
-	}
-	else if((Sarah_Ausgeliefert == TRUE) && !Npc_IsDead(Sarah))
+	};
+	if((Sarah_Ausgeliefert == TRUE) && !Npc_IsDead(Sarah))
 	{
 		return FALSE;
-	}
-	else if((Rengaru_Ausgeliefert == TRUE) && !Npc_IsDead(Rengaru))
+	};
+	if((Rengaru_Ausgeliefert == TRUE) && !Npc_IsDead(Rengaru))
 	{
 		return FALSE;
-	}
-	else if((Nagur_Ausgeliefert == TRUE) && !Npc_IsDead(Nagur))
+	};
+	if((Nagur_Ausgeliefert == TRUE) && !Npc_IsDead(Nagur))
 	{
 		return FALSE;
-	}
-	else if((Halvor_Ausgeliefert == TRUE) && !Npc_IsDead(Halvor))
+	};
+	if((Halvor_Ausgeliefert == TRUE) && !Npc_IsDead(Halvor))
 	{
 		return FALSE;
-	}
-	else if((Fernando_ImKnast == TRUE) && !Npc_IsDead(Fernando))
+	};
+	if((Fernando_ImKnast == TRUE) && !Npc_IsDead(Fernando))
 	{
 		return FALSE;
-	}
-	else if((MIS_RescueBennet != LOG_SUCCESS) && (Kapitel == 3))
+	};
+	if((MIS_RescueBennet != LOG_SUCCESS) && (Kapitel == 3))
 	{
 		return FALSE;
-	}
-	else if((MIS_RescueBennet == LOG_SUCCESS) && (CorneliusFlee == FALSE) && !Npc_IsDead(Cornelius))
+	};
+	if((MIS_RescueBennet == LOG_SUCCESS) && (CorneliusFlee == FALSE) && !Npc_IsDead(Cornelius))
 	{
 		return FALSE;
 	};

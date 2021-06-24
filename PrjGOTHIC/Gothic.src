@@ -23,6 +23,7 @@ Story\Text.d
 AI\Human\C_Human\C_IsNpc.d
 AI\Human\C_Human\C_NpcIsHero.d
 Story\B_Story\C_NpcIsInQuarter.d
+Story\B_Story\B_GetLaresLocation.d
 Story\B_Story\C_DiegoTooFar.d
 Story\B_Story\B_ArmorChecks.d
 Story\B_Story\B_NewTalentSystem.d
@@ -37,6 +38,7 @@ Story\B_Story\B_GetDayPlus.d
 Story\B_Story\B_BlessAttribute.d
 Story\B_Story\B_StartOtherRoutine.d
 Story\B_Story\B_CancelBengarMilitiaProblem.d
+Story\B_Story\B_ResetNpcPosition.d
 Story\B_Content\B_RangerMeeting.d
 Story\B_Content\B_ScObsession.d
 Story\B_Content\B_Extro_AVI.d
@@ -64,7 +66,6 @@ Story\B_Story\C_WorldIsFixed.d
 Story\B_Story\B_Check_Dist.d
 Story\B_Story\B_Check_Version.d
 Story\B_Story\B_KillThievesGuild.d
-Story\B_Story\B_ResetSergio.d
 Story\B_Story\B_Cycle_Function.d
 Story\B_Story\B_PlayerEnteredCity.d
 Story\B_Story\B_CheckDeadMissionNPCs.d
@@ -75,6 +76,8 @@ Story\B_Story\b_meleeweaponchange.d
 Story\B_Story\B_NpcSetDrunk.d
 Story\B_Story\B_InspectMeleeWeapon.d
 Story\B_Story\B_CheckRedLightUndercover.d
+Story\B_Story\B_ClearFakeItems.d
+Story\B_Story\B_UnEquipAllWeapons.d
 Story\B_Story\B_UnEquipHeroItem.d
 Story\B_Story\B_UnEquipIllegalMagicItems.d
 Story\B_Story\B_Check_Talents.d
@@ -149,6 +152,7 @@ AI\Human\C_Human\C_NpcIsDown.d
 AI\Human\C_Human\C_NpcIsToughGuy.d
 AI\Human\C_Human\C_NpcIsAfraidOfOrcs.d
 AI\Human\C_Human\C_NpcIsSummon.d
+AI\Human\C_Human\C_NpcIsNearWP.d
 AI\Human\C_Human\C_PlayerIsFakePirate.d
 AI\Human\C_Human\C_PlayerHasFakeGuild.d
 AI\Human\C_Human\C_BanditHelpsStoryBandit.d
@@ -205,6 +209,7 @@ AI\Human\C_Human\C_WantToAttackRoomIntruder.d
 AI\Human\C_Human\C_WantToReactToSneaker.d
 AI\Magic\B_ReadySpell.d
 AI\Magic\B_SelectSpell.d
+Story\B_Story\C_RengaruIsReadyToTalk.d
 AI\Human\B_Human\B_FinishingMove.d
 AI\Human\B_Human\B_SelectWeapon.d
 AI\Human\B_Human\B_AssessEnemy.d
@@ -368,6 +373,7 @@ AI\Human\TA_Human\ZS_Ghost.d
 AI\Human\TA_Human\ZS_Guard_Hammer.d
 AI\Human\TA_Human\ZS_Guard_Passage.d
 AI\Human\TA_Human\ZS_AssessGuidePlayer.d
+AI\Human\TA_Human\ZS_Obesession.d
 AI\Human\TA_Human\ZS_Pee.d
 AI\Human\TA_Human\ZS_Pick_FP.d
 AI\Human\TA_Human\ZS_Pick_Ore.d
@@ -414,6 +420,7 @@ AI\Human\TA_Human\ZS_Study_WP.d
 AI\Human\TA_Human\ZS_Sweep_FP.d
 AI\Human\TA_Human\ZS_Wash_FP.d
 Story\B_Story\b_endproductiondialog.d
+Story\B_Story\B_BuildPriceString.d
 Story\Dialog_Mobsis\Bookstand.d
 Story\Dialog_Mobsis\BookstandAlchemy.d
 Story\Dialog_Mobsis\BookstandAnimals.d
@@ -1680,6 +1687,7 @@ Story\Dialoge\DIA_OrcElite_AntiPaladin1.d
 Story\Dialoge\DIA_PAL_220_Schiffswache.d
 Story\B_AssignAmbientInfos\B_Urshak.d
 Story\B_AssignAmbientInfos\B_Video.d
+Story\B_Story\B_DragonHeal.d
 AI\Monster\C_Monster\C_NpcIsMonsterMage.d
 AI\Monster\C_Monster\C_PredatorFoundPrey.d
 AI\Monster\C_Monster\C_WantToEat.d

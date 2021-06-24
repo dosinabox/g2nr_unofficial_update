@@ -1189,6 +1189,27 @@ instance ITAR_Dementor(C_Item)
 	count[5] = value;
 };
 
+instance ITAR_Fake_Dementor(C_Item)
+{
+	name = "Мантия ищущих";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 0;
+	protection[PROT_BLUNT] = 0;
+	protection[PROT_POINT] = 0;
+	protection[PROT_FIRE] = 0;
+	protection[PROT_MAGIC] = 0;
+	value = 0;
+	wear = WEAR_TORSO;
+	cond_atr[2] = ATR_MANA_MAX;
+	cond_value[2] = CONDITION_ARMOR_FAKE_DEMENTOR;
+	visual = "ItAr_Dementor.3ds";
+	visual_change = "Armor_Dementor.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+	description = name;
+};
+
 instance ITAR_KDW_H(C_Item)
 {
 	name = "Тяжелая мантия мага Воды";

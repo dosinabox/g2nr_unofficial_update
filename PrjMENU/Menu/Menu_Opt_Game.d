@@ -192,11 +192,9 @@ instance MENUITEM_MSENSITIVITY_SLIDER(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_SLIDER_BACK_PIC;
 	type = MENU_ITEM_SLIDER;
-	text[0] = "";
-	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
 	posy = MENU_START_Y + (MENU_STEP_Y * 5) + MENU_SLIDER_YPLUS;
-	dimx = 2000;
+	dimx = MENU_SLIDER_DX;
 	dimy = MENU_SLIDER_DY;
 	onchgsetoption = "mouseSensitivity";
 	onchgsetoptionsection = "GAME";

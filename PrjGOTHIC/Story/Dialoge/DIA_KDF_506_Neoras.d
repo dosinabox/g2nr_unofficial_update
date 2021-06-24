@@ -374,6 +374,15 @@ func void DIA_Neoras_BrewForMe_Back()
 
 var int Neoras_Ingrediences_Advice;
 
+func void B_Neoras_BuildBrewDialog()
+{
+	Info_ClearChoices(DIA_Neoras_BrewForMe);
+	Info_AddChoice(DIA_Neoras_BrewForMe,Dialog_Back,DIA_Neoras_BrewForMe_Back);
+	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне зелье скорости.",DIA_Neoras_BrewForMe_Speed);
+	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне экстракт маны.",DIA_Neoras_BrewForMe_Mana);
+	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне лечебный экстракт.",DIA_Neoras_BrewForMe_Health);
+};
+
 func void DIA_Neoras_BrewForMe_Speed()
 {
 	AI_Output(other,self,"DIA_Neoras_BrewForMe_Speed_15_00");	//Свари мне зелье скорости.
@@ -399,15 +408,11 @@ func void DIA_Neoras_BrewForMe_Speed()
 		if(Neoras_Ingrediences_Advice == FALSE)
 		{
 			AI_Output(other,self,"DIA_Neoras_INGREDIENCES_Speed_15_00");	//Какие ингредиенты нужны для зелья ускорения?
-			AI_Output(self,other,"DIA_Hyglas_FIREBOLT_14_01");	//Прочти об этом - ты найдешь эту информацию здесь, в книгах.
+			DIA_Common_14_GoReadAboutIt();
 			Neoras_Ingrediences_Advice = TRUE;
 		};
 	};
-	Info_ClearChoices(DIA_Neoras_BrewForMe);
-	Info_AddChoice(DIA_Neoras_BrewForMe,Dialog_Back,DIA_Neoras_BrewForMe_Back);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне зелье скорости.",DIA_Neoras_BrewForMe_Speed);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне экстракт маны.",DIA_Neoras_BrewForMe_Mana);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне лечебный экстракт.",DIA_Neoras_BrewForMe_Health);
+	B_Neoras_BuildBrewDialog();
 };
 
 func void DIA_Neoras_BrewForMe_Mana()
@@ -435,15 +440,11 @@ func void DIA_Neoras_BrewForMe_Mana()
 		if(Neoras_Ingrediences_Advice == FALSE)
 		{
 			AI_Output(other,self,"DIA_Neoras_INGREDIENCES_Mana_15_00");	//Какие ингредиенты нужны для экстракта маны?
-			AI_Output(self,other,"DIA_Hyglas_FIREBOLT_14_01");	//Прочти об этом - ты найдешь эту информацию здесь, в книгах.
+			DIA_Common_14_GoReadAboutIt();
 			Neoras_Ingrediences_Advice = TRUE;
 		};
 	};
-	Info_ClearChoices(DIA_Neoras_BrewForMe);
-	Info_AddChoice(DIA_Neoras_BrewForMe,Dialog_Back,DIA_Neoras_BrewForMe_Back);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне зелье скорости.",DIA_Neoras_BrewForMe_Speed);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне экстракт маны.",DIA_Neoras_BrewForMe_Mana);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне лечебный экстракт.",DIA_Neoras_BrewForMe_Health);
+	B_Neoras_BuildBrewDialog();
 };
 
 func void DIA_Neoras_BrewForMe_Health()
@@ -468,12 +469,14 @@ func void DIA_Neoras_BrewForMe_Health()
 	else
 	{
 		AI_Output(self,other,"DIA_Neoras_BrewForMe_Health_01_04");	//У тебя нет необходимых ингредиентов. Возвращайся, когда соберешь их.
+		if(Neoras_Ingrediences_Advice == FALSE)
+		{
+			DIA_Common_SureWhatsNeeded();
+			DIA_Common_14_GoReadAboutIt();
+			Neoras_Ingrediences_Advice = TRUE;
+		};
 	};
-	Info_ClearChoices(DIA_Neoras_BrewForMe);
-	Info_AddChoice(DIA_Neoras_BrewForMe,Dialog_Back,DIA_Neoras_BrewForMe_Back);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне зелье скорости.",DIA_Neoras_BrewForMe_Speed);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне экстракт маны.",DIA_Neoras_BrewForMe_Mana);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне лечебный экстракт.",DIA_Neoras_BrewForMe_Health);
+	B_Neoras_BuildBrewDialog();
 };
 
 

@@ -7,6 +7,7 @@ instance SLD_808_Jarvis(Npc_Default)
 	voice = 4;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Sword);

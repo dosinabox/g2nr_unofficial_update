@@ -1,4 +1,23 @@
 
+var int SC_AskedConstantinoAboutHerbs;
+
+func int C_CanAskConstantinoAboutHerbs()
+{
+	if((MIS_Constantino_BringHerbs == FALSE) && (MIS_Addon_Lester_PickForConstantino != FALSE) && (SC_AskedConstantinoAboutHerbs == FALSE))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+func void B_AskConstantinoAboutHerbs()
+{
+	AI_Output(other,self,"DIA_Addon_Constantino_LestersKraeuter_15_00");	//“ы покупаешь травы?
+	AI_Output(self,other,"DIA_Addon_Constantino_LestersKraeuter_10_01");	//Ќу, если тебе есть, что предложить...
+	B_GivePlayerXP(XP_Ambient);
+	SC_AskedConstantinoAboutHerbs = TRUE;
+};
+
 instance DIA_Constantino_EXIT(C_Info)
 {
 	npc = VLK_417_Constantino;
@@ -70,7 +89,7 @@ instance DIA_Constantino_Hallo(C_Info)
 
 func int DIA_Constantino_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (VisibleGuild(other) != GIL_PAL) && (VisibleGuild(other) != GIL_MIL) && (VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_KDW))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -78,7 +97,18 @@ func int DIA_Constantino_Hallo_Condition()
 
 func void DIA_Constantino_Hallo_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Constantino_Hallo_10_00");	//„то тебе нужно? я не подаю милостыню.
+	if((VisibleGuild(other) != GIL_PAL) && (VisibleGuild(other) != GIL_MIL) && (VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_KDW))
+	{
+		AI_Output(self,other,"DIA_Addon_Constantino_Hallo_10_00");	//„то тебе нужно? я не подаю милостыню.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Constantino_Hallo_10_00_add");	//„то тебе нужно?
+	};
+	if(C_CanAskConstantinoAboutHerbs())
+	{
+		B_AskConstantinoAboutHerbs();
+	};
 };
 
 
@@ -167,7 +197,7 @@ instance DIA_Addon_Constantino_LestersKraeuter(C_Info)
 
 func int DIA_Addon_Constantino_LestersKraeuter_Condition()
 {
-	if((MIS_Constantino_BringHerbs == FALSE) && (MIS_Addon_Lester_PickForConstantino != FALSE))
+	if(C_CanAskConstantinoAboutHerbs())
 	{
 		return TRUE;
 	};
@@ -175,9 +205,7 @@ func int DIA_Addon_Constantino_LestersKraeuter_Condition()
 
 func void DIA_Addon_Constantino_LestersKraeuter_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Constantino_LestersKraeuter_15_00");	//“ы покупаешь травы?
-	AI_Output(self,other,"DIA_Addon_Constantino_LestersKraeuter_10_01");	//Ќу, если тебе есть, что предложить...
-	B_GivePlayerXP(XP_Ambient);
+	B_AskConstantinoAboutHerbs();
 };
 
 
@@ -857,7 +885,7 @@ func void B_Constantino_TeachAlchemyBasics()
 	AI_Output(self,other,"DIA_Constantino_Alchemy_10_04");	//„тобы приготовить зелье на алхимическом столе, тебе понадобитс€ лабораторна€ пробирка.
 	AI_Output(self,other,"DIA_Constantino_Alchemy_10_05");	//“ы должен знать правильную формулу и иметь соответствующие ингредиенты.
 	AI_Output(self,other,"DIA_Constantino_Alchemy_10_06");	//я могу научить теб€ многим таким формулам.
-	Alchemy_Explain = TRUE;
+	Alchemy_Explain_Constantino = TRUE;
 };
 
 instance DIA_Constantino_Alchemy(C_Info)
@@ -1025,7 +1053,7 @@ func void DIA_Constantino_TEACH_Info()
 		};
 		if(talente > 0)
 		{
-			if(Alchemy_Explain == FALSE)
+			if(Alchemy_Explain_Constantino == FALSE)
 			{
 				B_Constantino_TeachAlchemyBasics();
 			};

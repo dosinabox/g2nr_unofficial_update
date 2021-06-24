@@ -11,12 +11,13 @@ instance KDW_1401_Addon_Cronos_NW(Npc_Default)
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
+	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,5);
 	self.attribute[ATR_STRENGTH] = 1;
 	self.attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_STRONG;
 //	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_P_NormalBart_Cronos,BodyTex_P,ITAR_KDW_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_P_NormalBart_Cronos,BodyTex_P,ITAR_KDW_L_Addon);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);

@@ -574,8 +574,7 @@ instance ItKe_ThiefGuildKey_MIS(C_Item)
 	visual = "ItKe_Key_05.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "Этот ключ изъеден";
-	text[1] = "соленой морской водой.";
+	text[0] = "Этот ключ изъеден соленой морской водой.";
 	inv_rotz = -45;
 	inv_rotx = -25;
 	inv_roty = 0;
@@ -607,8 +606,7 @@ instance ItKe_Innos_MIS(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "Это ключ от входа";
-	text[1] = "в монастырь Инноса.";
+	text[0] = "Это ключ от входа в монастырь Инноса.";
 	inv_rotz = -45;
 	inv_rotx = -25;
 	inv_roty = 0;

@@ -51,14 +51,14 @@ func void B_BeliarsWeaponSpecialDamage(var C_Npc oth,var C_Npc slf)
 			Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",hero,hero,0,0,0,FALSE);
 		};
 	};
-	otherweap = Npc_GetReadiedWeapon(oth);
 	if(Npc_HasReadiedWeapon(oth))
 	{
+		otherweap = Npc_GetReadiedWeapon(oth);
 		if(Hlp_IsItem(otherweap,ItMw_BeliarWeapon_Fire))
 		{
 			Wld_PlayEffect("VOB_MAGICBURN",slf,slf,0,0,0,FALSE);
-		};
-		if(Hlp_IsItem(otherweap,ItRw_Addon_FireBow))
+		}
+		else if(Hlp_IsItem(otherweap,ItRw_Addon_FireBow))
 		{
 			//Wld_PlayEffect("spellFX_FIREBOLT_COLLIDE",slf,slf,0,0,0,FALSE);
 			//что-то тут не так
@@ -70,8 +70,8 @@ func void B_BeliarsWeaponSpecialDamage(var C_Npc oth,var C_Npc slf)
 			{
 				B_GiveDeathXP(oth,slf);
 			};
-		};
-		if(Hlp_IsItem(otherweap,ItRw_Addon_MagicBow))
+		}
+		else if(Hlp_IsItem(otherweap,ItRw_Addon_MagicBow))
 		{
 			Wld_PlayEffect("spellFX_ICEBOLT_COLLIDE",slf,slf,0,0,0,FALSE);
 			if(slf.flags != NPC_FLAG_IMMORTAL)
@@ -82,8 +82,8 @@ func void B_BeliarsWeaponSpecialDamage(var C_Npc oth,var C_Npc slf)
 			{
 				B_GiveDeathXP(oth,slf);
 			};
-		};
-		if(Hlp_IsItem(otherweap,ItRw_Addon_MagicCrossbow))
+		}
+		else if(Hlp_IsItem(otherweap,ItRw_Addon_MagicCrossbow))
 		{
 			Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",slf,slf,0,0,0,FALSE);
 			if(slf.flags != NPC_FLAG_IMMORTAL)

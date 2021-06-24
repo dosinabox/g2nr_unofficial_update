@@ -910,7 +910,7 @@ func void DIA_Andre_Auslieferung_Info()
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"Ренгару украл у торговца Джоры.",DIA_Andre_Auslieferung_Rengaru);
 	};
-	if((Halvor_Ausgeliefert == FALSE) && !Npc_IsDead(Halvor))
+	if((Halvor_Ausgeliefert == FALSE) && (Halvor_Deal == FALSE) && !Npc_IsDead(Halvor))
 	{
 		if((Betrayal_Halvor == TRUE) || ((SC_KnowsCitySmuggler == TRUE) && (Knows_Halvor == TRUE)))
 		{
@@ -928,18 +928,17 @@ func void DIA_Andre_Auslieferung_Info()
 			Info_AddChoice(DIA_Andre_Auslieferung,"Нагур пытался использовать меня, чтобы перехватить товар с фермы Акила.",DIA_Andre_Auslieferung_Nagur);
 		};
 	};
-	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day > (Wld_GetDay() - 2)) && !Npc_IsDead(Canthar))
+	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day > (Wld_GetDay() - 2)))
 	{
-		Info_AddChoice(DIA_Andre_Auslieferung,"Торговец Кантар пытается избавиться от Сары!",DIA_Andre_Auslieferung_Canthar);
+		if(!Npc_IsDead(Canthar))
+		{
+			Info_AddChoice(DIA_Andre_Auslieferung,"Торговец Кантар пытается избавиться от Сары!",DIA_Andre_Auslieferung_Canthar);
+		};
+		if(!Npc_IsDead(Sarah))
+		{
+			Info_AddChoice(DIA_Andre_Auslieferung,"Сара продает оружие Онару.",DIA_Andre_Auslieferung_Sarah);
+		};
 	};
-	if((MIS_Canthars_KomproBrief == LOG_Running) && Npc_HasItems(Sarah,ItWr_Canthars_KomproBrief_MIS) && (MIS_Canthars_KomproBrief_Day > (Wld_GetDay() - 2)) && !Npc_IsDead(Sarah))
-	{
-		Info_AddChoice(DIA_Andre_Auslieferung,"Сара продает оружие Онару.",DIA_Andre_Auslieferung_Sarah);
-	};
-	/*if((Fernando_ImKnast == TRUE) && (Fernando_Ausgeliefert == FALSE) && !Npc_IsDead(Fernando))
-	{
-		Info_AddChoice(DIA_Andre_Auslieferung,"Я знаю торговца, который продает оружие бандитам!",DIA_Andre_Auslieferung_Fernando);
-	};*/
 };
 
 func void DIA_Andre_Auslieferung_Back()
@@ -1038,46 +1037,37 @@ func void DIA_Andre_Auslieferung_Canthar()
 
 func void DIA_Andre_Auslieferung_Sarah()
 {
-	AI_Teleport(Sarah,"NW_CITY_HABOUR_KASERN_RENGARU");
-	AI_Teleport(Canthar,"NW_CITY_SARAH");
 	AI_Output(other,self,"DIA_Andre_Auslieferung_Sarah_15_00");	//Сара продает оружие Онару.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Sarah_08_01");	//Сара? Торговка оружием с рыночной площади? У тебя есть доказательство?
-	AI_Output(other,self,"DIA_Andre_Auslieferung_Sarah_15_02");	//В ее кармане письмо с деталями поставки оружия ему.
-	AI_Output(self,other,"DIA_Andre_Auslieferung_Sarah_08_03");	//Она поплатится за это. Я прикажу арестовать ее.
-	AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_02");	//Вот, получи награду. Ты ее заслужил.
-	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
-	if(SarahWeaponsRemoved == FALSE)
+	if(Npc_HasItems(Sarah,ItWr_Canthars_KomproBrief_MIS))
 	{
-		B_GiveTradeInv_Sarah(Sarah);
-		B_RemoveSarahWeapons();
-	};
-	B_NpcSetJailed(Sarah);
-	B_StartOtherRoutine(Sarah,"KNAST");
-	B_StartOtherRoutine(Canthar,"MARKTSTAND");
-	Sarah_Ausgeliefert = TRUE;
-	MIS_Canthars_KomproBrief = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Andre_Auslieferung);
-	Info_ClearChoices(DIA_Andre_Auslieferung);
-};
-
-/*func void DIA_Andre_Auslieferung_Fernando()
-{
-	AI_Output(other,self,"DIA_Addon_Vatras_Waffen_Success_15_00");	//Я знаю торговца, который продает оружие бандитам!
-	AI_Output(other,self,"DIA_Addon_Vatras_Waffen_Success_15_01");	//Его зовут Фернандо.
-	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_01");	//Ты оказал городу большую услугу.
-	if(other.guild == GIL_MIL)
-	{
-		B_AndreSold();
+		AI_Teleport(Sarah,"NW_CITY_HABOUR_KASERN_RENGARU");
+		if(!Npc_IsDead(Canthar))
+		{
+			AI_Teleport(Canthar,"NW_CITY_SARAH");
+		};
+		AI_Output(other,self,"DIA_Andre_Auslieferung_Sarah_15_02");	//В ее кармане письмо с деталями поставки оружия ему.
+		AI_Output(self,other,"DIA_Andre_Auslieferung_Sarah_08_03");	//Она поплатится за это. Я прикажу арестовать ее.
+		AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_02");	//Вот, получи награду. Ты ее заслужил.
+		B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
+		if(SarahWeaponsRemoved == FALSE)
+		{
+			B_GiveTradeInv_Sarah(Sarah);
+			B_RemoveSarahWeapons();
+		};
+		B_NpcSetJailed(Sarah);
+		B_StartOtherRoutine(Sarah,"KNAST");
+		B_StartOtherRoutine(Canthar,"MARKTSTAND");
+		Sarah_Ausgeliefert = TRUE;
+		MIS_Canthars_KomproBrief = LOG_SUCCESS;
+		B_GivePlayerXP(XP_Andre_Auslieferung);
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_02");	//Вот, получи награду. Ты ее заслужил.
-		B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
+		B_AndreNoProof();
 	};
-	Fernando_Ausgeliefert = TRUE;
-	B_GivePlayerXP(XP_Andre_Auslieferung);
 	Info_ClearChoices(DIA_Andre_Auslieferung);
-};*/
+};
 
 
 func void B_AndreAskAboutSewer()

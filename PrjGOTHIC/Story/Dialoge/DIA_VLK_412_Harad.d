@@ -34,7 +34,7 @@ instance DIA_Harad_Hallo(C_Info)
 
 func int DIA_Harad_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == TRUE))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -553,7 +553,7 @@ func void DIA_Harad_Zustimmung_Info()
 
 func void B_HaradCommentAnvilUses()
 {
-	if(HaradsAnvilUsed < 10)
+	if(HaradsAnvilUsed < 5)
 	{
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_04_02_add");	//Даже хотя ты и не проводил много времени за наковальней.
 	}
@@ -1022,6 +1022,16 @@ func void DIA_Harad_AboutErzklingen_Info()
 };
 
 
+var int OreBladeBought;
+
+func void B_ChooseHaradOreBlade()
+{
+	Info_ClearChoices(DIA_Harad_Erzklingen);
+	Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
+	Info_AddChoice(DIA_Harad_Erzklingen,B_BuildPriceString("Двуручный меч",Value_Blessed_2H_1),DIA_Harad_Erzklingen_2h);
+	Info_AddChoice(DIA_Harad_Erzklingen,B_BuildPriceString("Одноручный меч",Value_Blessed_1H_1),DIA_Harad_Erzklingen_1h);
+};
+
 instance DIA_Harad_Erzklingen(C_Info)
 {
 	npc = VLK_412_Harad;
@@ -1041,9 +1051,6 @@ func int DIA_Harad_Erzklingen_Condition()
 	};
 };
 
-
-var int OreBladeBought;
-
 func void DIA_Harad_Erzklingen_Info()
 {
 	AI_Output(other,self,"DIA_Harad_Erzklingen_15_00");	//Я хочу купить меч из магической руды.
@@ -1056,10 +1063,7 @@ func void DIA_Harad_Erzklingen_Info()
 		AI_Output(self,other,"DIA_Harad_Erzklingen_12_02");	//Вы, паладины, можете считать себя счастливчиками, что вам дозволено владеть такими превосходными мечами.
 		AI_Output(self,other,"DIA_Harad_Erzklingen_12_03");	//Согласно декрету лорда Хагена, я могу продать тебе только одно магическое оружие.
 		AI_Output(self,other,"DIA_Harad_Erzklingen_12_04");	//Так... Что я могу предложить тебе?
-		Info_ClearChoices(DIA_Harad_Erzklingen);
-		Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Двуручный меч (2000 золотых)",DIA_Harad_Erzklingen_2h);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Одноручный меч (2000 золотых)",DIA_Harad_Erzklingen_1h);
+		B_ChooseHaradOreBlade();
 	};
 };
 
@@ -1093,10 +1097,7 @@ func void DIA_Harad_Erzklingen_2h()
 	else
 	{
 		B_Harad_NotEnoughGold();
-		Info_ClearChoices(DIA_Harad_Erzklingen);
-		Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Двуручный меч (2000 золотых)",DIA_Harad_Erzklingen_2h);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Одноручный меч (2000 золотых)",DIA_Harad_Erzklingen_1h);
+		B_ChooseHaradOreBlade();
 	};
 };
 
@@ -1113,10 +1114,7 @@ func void DIA_Harad_Erzklingen_1h()
 	else
 	{
 		B_Harad_NotEnoughGold();
-		Info_ClearChoices(DIA_Harad_Erzklingen);
-		Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Двуручный меч (2000 золотых)",DIA_Harad_Erzklingen_2h);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Одноручный меч (2000 золотых)",DIA_Harad_Erzklingen_1h);
+		B_ChooseHaradOreBlade();
 	};
 };
 

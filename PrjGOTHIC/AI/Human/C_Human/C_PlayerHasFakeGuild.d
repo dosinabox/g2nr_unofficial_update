@@ -54,11 +54,8 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 		if(!Npc_HasEquippedArmor(oth))
 		{
 			return TRUE;
-		}
-		else
-		{
-			return FALSE;
 		};
+		return FALSE;
 	};
 	if(!Npc_HasEquippedArmor(oth))
 	{

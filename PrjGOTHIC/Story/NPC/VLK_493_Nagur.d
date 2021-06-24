@@ -25,7 +25,7 @@ instance VLK_493_Nagur(Npc_Default)
 func void Rtn_Start_493()
 {
 	TA_Sit_Chair(8,0,23,0,"NW_CITY_HABOUR_TAVERN01_02");
-	TA_Stand_Drinking(23,0,8,0,"NW_CITY_HABOUR_TAVERN01_02");
+	TA_Stand_Drinking(23,0,8,0,"NW_CITY_HABOUR_TAVERN01_STAND_01");
 };
 
 func void Rtn_Prison_493()

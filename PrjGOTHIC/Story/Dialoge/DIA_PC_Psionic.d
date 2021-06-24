@@ -612,7 +612,6 @@ func void DIA_Lester_StillNeedYou_Info()
 		AI_StopProcessInfos(self);
 		Lester_IsOnBoard = LOG_FAILED;
 	};
-	B_CheckLog();
 };
 
 

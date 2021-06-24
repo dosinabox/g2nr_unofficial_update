@@ -944,10 +944,10 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 	CreateInvItems(self,ItWr_Vatras2Saturas_FindRaven,1);
 	B_GiveInvItems(self,other,ItWr_Vatras2Saturas_FindRaven,1);
 	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_06");	//Да пребудет с тобой Аданос.
-	B_LogEntry(TOPIC_Addon_KDW,"Ватрас дал мне письмо для Сатураса. Я должен присоединиться к магам Воды и пройти через портал в неизвестную часть Хориниса, чтобы найти бывшего рудного барона Ворона.");
 	Log_CreateTopic(TOPIC_Addon_Sklaven,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Sklaven,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Sklaven,"Я должен узнать, с какой целью Ворон похищает жителей Хориниса.");
+	B_LogEntries(TOPIC_Addon_Sklaven,"Я должен узнать, с какой целью Ворон похищает жителей Хориниса.");
+	B_LogNextEntry(TOPIC_Addon_KDW,"Ватрас дал мне письмо для Сатураса. Я должен присоединиться к магам Воды и пройти через портал в неизвестную часть Хориниса, чтобы найти бывшего рудного барона Ворона.");
 	RangerMeetingRunning = LOG_SUCCESS;
 	B_SchlussMitRangerMeeting();
 	B_GivePlayerXP(XP_AmbientKap3);
@@ -2119,7 +2119,7 @@ func void DIA_Vatras_MESSAGE_SUCCESS_Info()
 
 func void DIA_Vatras_MESSAGE_SUCCESS_Plant()
 {
-	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Plant_Add");	//Я возьму царский щавель.
+	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Plant_add");	//Я возьму царский щавель.
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(self,other,ItPl_Perm_Herb,1);
 	Info_ClearChoices(DIA_Vatras_MESSAGE_SUCCESS);
@@ -2135,7 +2135,7 @@ func void DIA_Vatras_MESSAGE_SUCCESS_Ring()
 
 func void DIA_Vatras_MESSAGE_SUCCESS_Ore()
 {
-	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Ore_Add");	//Я возьму руду.
+	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Ore_add");	//Я возьму руду.
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(self,other,ItMi_Nugget,1);
 	Info_ClearChoices(DIA_Vatras_MESSAGE_SUCCESS);

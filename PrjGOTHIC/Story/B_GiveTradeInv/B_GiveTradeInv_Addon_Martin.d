@@ -19,7 +19,6 @@ func void B_GiveTradeInv_Addon_Martin(var C_Npc slf)
 		CreateInvItems(slf,ItMw_Schwert2,2);
 		CreateInvItems(slf,ItMW_Addon_Hacker_1h_01,1);
 		CreateInvItems(slf,ItMW_Addon_Hacker_2h_01,1);
-//		CreateInvItems(slf,ItMw_Meisterdegen,1);
 		CreateInvItems(slf,ItMw_ShortSword5,1);
 		CreateInvItems(slf,ItMw_Schwert4,1);
 		CreateInvItems(slf,ItMw_Runenschwert,1);
@@ -32,8 +31,6 @@ func void B_GiveTradeInv_Addon_Martin(var C_Npc slf)
 		CreateInvItems(slf,ItSc_PalMediumHeal,1);
 		CreateInvItems(slf,ItSc_PalRepelEvil,1);
 		CreateInvItems(slf,ItSc_PalFullHeal,1);
-//		CreateInvItems(slf,ItMw_Schwert2,2);
-//		CreateInvItems(slf,ItMw_Schwert4,1);
 		Martin_ItemsGiven_Chapter_2 = TRUE;
 	};
 	if((Kapitel >= 3) && (Martin_ItemsGiven_Chapter_3 == FALSE))
@@ -42,10 +39,6 @@ func void B_GiveTradeInv_Addon_Martin(var C_Npc slf)
 		CreateInvItems(slf,ItSc_PalMediumHeal,1);
 		CreateInvItems(slf,ItSc_PalRepelEvil,1);
 		CreateInvItems(slf,ItSc_PalFullHeal,2);
-//		CreateInvItems(slf,ItMW_Addon_Hacker_1h_01,1);
-//		CreateInvItems(slf,ItMW_Addon_Hacker_2h_01,1);
-//		CreateInvItems(slf,ItMw_Meisterdegen,1);
-//		CreateInvItems(slf,ItMw_Runenschwert,1);
 		Martin_ItemsGiven_Chapter_3 = TRUE;
 	};
 	if((Kapitel >= 4) && (Martin_ItemsGiven_Chapter_4 == FALSE))

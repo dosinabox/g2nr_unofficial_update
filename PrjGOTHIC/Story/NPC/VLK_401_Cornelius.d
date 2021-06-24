@@ -12,7 +12,6 @@ instance VLK_401_Cornelius(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_ShortSword5);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItWr_CorneliusTagebuch_Mis,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Weak_Ulf_Wohlers,BodyTex_P,ITAR_Governor);
 	Mdl_SetModelFatness(self,0.9);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

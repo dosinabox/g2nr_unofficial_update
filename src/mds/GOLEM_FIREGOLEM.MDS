@@ -1,0 +1,170 @@
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Last Changes:
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Model ("Golem")
+{
+
+	meshAndTree ("Gol_Body.asc" DONT_USE_MESH)
+
+	aniEnum
+	{
+//	Fist-RUN
+			ani			("s_FistRun"					1	"s_FistRun"		0.0	0.0	MI	"golem_walkambient01_KP01.asc"	F	0	89 FPS:12.5)
+			{
+				*eventPFX	(20		"Firegolem_Fire"	"BIP01 L UpperArm"	ATTACH	)
+				*eventPFX	(30		"Firegolem_Fire"	"BIP01 L UpperArm"	ATTACH	)
+				*eventPFX	(35		"Firegolem_Fire"	"BIP01 L Foot"		ATTACH	)
+				*eventPFX	(40		"Firegolem_Fire"	"BIP01 Head"		ATTACH	)
+				*eventPFX	(50		"Firegolem_Fire"	"BIP01 L ForeArm"	ATTACH	)
+				*eventPFX	(55		"Firegolem_Fire"	"BIP01 R Foot"		ATTACH	)
+				*eventPFX	(60		"Firegolem_Fire"	"BIP01"				ATTACH	)
+				*eventPFX	(70		"Firegolem_Fire"	"BIP01 R ForeArm"	ATTACH	)
+			}
+
+			ani			("s_FistRunL"					1	"s_FistRunL"	0.0	0.0	M.	"Golem_Run_M01.asc"				F	12	31)
+			{
+				*eventSFX	(12	"GOL_StepBoom"	)
+				*eventPFX	(12	1	"GolemDust"	"BIP01 L Foot"	ATTACH	)
+				*eventCamTremor (12 1000	700	  2  8 )
+				
+				*eventPFX	(15		"Firegolem_Fire"	"BIP01 Head"	ATTACH	)
+				
+				*eventSFX	(22	"GOL_StepBoom"	)
+				*eventPFX	(22	2	"GolemDust"	"BIP01 R Foot"	ATTACH	)
+				*eventCamTremor (22 1000	700	  2  5 )
+				
+				*eventPFX	(25		"Firegolem_Fire"	"BIP01 L UpperArm"	ATTACH	)
+				*eventPFX	(27		"Firegolem_Fire"	"BIP01 R UpperArm"	ATTACH	)
+			}
+
+			ani			("t_FistJumpB"					1	"s_FistRun"		0.1	0.1	M.	"Gol_JumpB_M01.asc"			F	3	27)
+			{
+				*eventSFX	(8	"GOL_StepBoom"	)
+				*eventPFX	(8	1	"GolemDust"	"BIP01 L Foot"	ATTACH	)
+
+				*eventSFX	(17	"GOL_StepBoom"	)
+				*eventPFX	(17	2	"GolemDust"	"BIP01 R Foot"	ATTACH	)
+
+				*eventSFX	(26	"GOL_StepBoom"	)
+				*eventPFX	(26	3	"GolemDust"	"BIP01 L Foot"	ATTACH	)
+			}
+
+	// Turning
+			ani			("t_FistRunTurnL"				20	"t_FistRunTurnL"	0.2	0.2	M.	"golem_walkTurnL_A01.asc"	R	1	24)
+			{
+				//*eventSFX	(5	"GOL_StepBoom_Turn"	)
+				//*eventSFX	(18	"GOL_StepBoom_Turn"	EMPTY_SLOT	)
+			}
+			ani			("t_FistRunTurnR"				20	"t_FistRunTurnR"	0.2	0.2	M.	"golem_walkTurnR_A01.asc"	F	1	24)
+			{
+				//*eventSFX	(5	"GOL_StepBoom_Turn"	)
+				//*eventSFX	(18	"GOL_StepBoom_Turn"	EMPTY_SLOT	)
+			}
+
+//	Fist-WALK
+			aniAlias	("s_FistWalk"					1	"s_FistWalk"		0.0	0.0	MI	"s_FistRun"					F)
+
+			ani			("s_FistWalkL"					1	"s_FistWalkL"		0.0	0.0	M.	"golem_walk_03d.asc"		F	10	49)
+			{
+				*eventSFX	(22	"GOL_StepBoom"	)
+				*eventPFX	(22	1	"GolemDust"	"BIP01 R Foot"	ATTACH	)
+
+				*eventSFX	(42	"GOL_StepBoom"	)
+				*eventPFX	(42	 2	"GolemDust"	"Bip01 L Foot"	ATTACH	)
+			}
+
+//	Fist-Walk Backwards Movement
+			aniAlias	("s_FistWalkBL"					1	"s_FistWalkBL"		0.0	0.0	M.	"s_FistWalkL"				R)
+
+	// Turning
+			aniAlias	("t_FistWalkTurnL"				20	"t_FistWalkTurnL"	0.0	0.0	M.	"t_FistRunTurnL"		F)
+			aniAlias	("t_FistWalkTurnR"				20	"t_FistWalkTurnR"	0.0	0.0	M.	"t_FistRunTurnR"		F)
+
+
+	// Strafing
+			ani			("t_FistRunStrafeL"				1	"t_FistRunStrafeL"	0.0	0.2	M.	"Gol_StrafeL_M02.asc"	F	1	20)
+			{
+				*eventSFX	(10	"GOL_StepBoom"	)
+				*eventPFX	(10	1	"GolemDust"	"BIP01 R Foot"	ATTACH	)
+
+				*eventSFX	(19	"GOL_StepBoom"		)
+				*eventPFX	(19	 2	"GolemDust"	"BIP01 L Foot"	ATTACH	)
+			}
+
+			ani			("t_FistRunStrafeR"				1	"t_FistRunStrafeR"	0.0	0.2	M.	"Gol_StrafeR_M02.asc"	F	1	20)
+			{
+				*eventSFX	(10	"GOL_StepBoom"	)
+				*eventPFX	(10	2	"GolemDust"	"BIP01 L Foot"	ATTACH	)
+
+				*eventSFX	(19	"GOL_StepBoom"		)
+				*eventPFX	(19	 2	"GolemDust"	"BIP01 R Foot"	ATTACH	)
+			}
+
+			aniAlias	("t_FistWalkStrafeL"			1	"t_FistWalkStrafeL"	0.0	0.2	M.	"t_FistRunStrafeL"		F)
+			aniAlias	("t_FistWalkStrafeR"			1	"t_FistWalkStrafeR"	0.0	0.2	M.	"t_FistRunStrafeR"		F)
+
+
+
+/////////////////////////
+// DIE
+//////////////////////////
+
+			aniAlias	("t_Dead"					1	"s_Dead"		0.0 0.0 M.	"t_DeadB"				F)
+			aniAlias	("s_Dead"					1	"s_Dead"		0.0 0.0 M.	"s_DeadB"				F)
+
+			ani			("t_DeadB"					1	"s_DeadB"		0.4 0.0 M.	"Gol_Dead2_M02.ASC"		F	1	74)
+			{
+				*eventPFX	(4	1	"GolemDust"	"BIP01 R HAND")
+
+
+				*eventSFX	(1	"GOL_Falldown"	EMPTY_SLOT	)
+				
+				*eventPFX	(20		"Firegolem_Fire"	"BIP01 Head"	ATTACH	)
+				
+				*eventPFX	(17		"GolemDust"	"BIP01 R HAND")
+
+				*eventPFX	(45		"GolemDust"	"BIP01 SPINE1")
+
+				*eventPFX	(58		"GolemDust"	"BIP01 SPINE")
+				
+				*eventPFX	(65		 "Firegolem_Deadsmoke"	"BIP01"	)
+			}
+			ani			("s_DeadB"					1	"s_DeadB"		0.0 0.0 M.	"Gol_Dead2_M02.asc"		F	75	75)
+
+
+
+
+/////////////////////////
+// ATTACK
+//////////////////////////
+
+			ani			("s_FistAttack"				1	"s_FistAttack"	0.0	0.0	M.	"golem_attackstep_KP01.asc"	F	1	49)
+			{
+				*eventTag	(0	"DEF_HIT_LIMB"	"BIP01 R HAND")
+				*eventTag	(0 	"DEF_OPT_FRAME"	"27")
+				*eventTag	(0 	"DEF_HIT_END"	"49")
+				*eventTag	(0	"DEF_WINDOW"	"27 49")
+//				*eventTag	(0	"DEF_DIR"		"O")
+				*eventSFX	(1	"FGO_Attack"	EMPTY_SLOT	)
+			}
+
+//			ani			("t_FistAttackMove"			2	""				0.1	0.1	M.	"Golem_AttackMove_A02.asc"	F	1	31)
+
+
+
+/////////////////////////
+// SCRIPT
+//////////////////////////
+
+		// Drohen
+			ani			("t_Warn"					1	""				0.1	0.1	M.	"golem_drohen_a04.asc"	F	1	34	FPS:12.5)
+			{
+				*eventSFX	(1	"GOL_WARN"	EMPTY_SLOT	)
+				*eventSFX	(15	"GOL_StepBoom"	EMPTY_SLOT	)
+			}
+
+	}
+}

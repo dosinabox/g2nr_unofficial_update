@@ -310,7 +310,7 @@ instance ItPo_Speed(C_Item)
 
 func void UseItPo_Speed()
 {
-	Mdl_ApplyOverlayMdsTimed(self,"HUMANS_SPRINT.MDS",Time_Speed);
+	Mdl_ApplyOverlayMdsTimed(self,"Humans_Sprint.mds",Time_Speed);
 };
 
 

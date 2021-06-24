@@ -414,9 +414,9 @@ func void DIA_Addon_Morgan_FOUNDTHEM_Info()
 		AI_Output(self,other,"DIA_Addon_Morgan_FOUNDTHEM_07_05");	//Но я бы обязательно отыгрался. А теперь оно пропало навсегда!
 		Morgan_AngusStory = TRUE;
 	};
-	Info_ClearChoices(DIA_Addon_Morgan_FOUNDTHEM);
 	if(Npc_HasItems(other,ItRi_Addon_MorgansRing_Mission))
 	{
+		Info_ClearChoices(DIA_Addon_Morgan_FOUNDTHEM);
 		Info_AddChoice(DIA_Addon_Morgan_FOUNDTHEM,"Я нашел их.",DIA_Addon_Morgan_FOUNDTHEM_Now);
 	}
 	else

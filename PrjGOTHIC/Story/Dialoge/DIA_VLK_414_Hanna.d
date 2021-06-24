@@ -283,7 +283,7 @@ func void DIA_Hanna_AnyNews_Depends()
 
 func void DIA_Hanna_AnyNews_Yes()
 {
-	AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_15_00");	//Ты ошибаешься.
+	DIA_Common_YouAreWrong();
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_17_01");	//Ох, понимаешь какое дело... Я разбирала недавно у себя всякий хлам и продала пачку старых карт Ибрагиму, картографу в гавани.
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_17_02");	//Но потом я заметила, что у меня не хватает одного документа.
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_17_03");	//Я думаю, он мог случайно оказаться в стопке этих карт.

@@ -39,12 +39,7 @@ func int ZS_MM_Rtn_DragonRest_Loop()
 	};
 	if(self.guild == GIL_DRAGON)
 	{
-		self.aivar[AIV_TAPOSITION] += 1;
-		if((self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX]) && (self.aivar[AIV_TAPOSITION] >= 2))
-		{
-			self.attribute[ATR_HITPOINTS] += 1;
-			self.aivar[AIV_TAPOSITION] = 0;
-		};
+		B_DragonHeal(self);
 	};
 	if(Hlp_Random(1000) <= 5)
 	{

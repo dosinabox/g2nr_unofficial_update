@@ -146,6 +146,24 @@ func void PC_Goldhacken_End_Info()
 };
 
 
+func void B_GetGoldNugget(var int count)
+{
+	var string text;
+	CreateInvItems(hero,ItMi_GoldNugget_Addon,count);
+	Snd_Play("Geldbeutel");
+	if(count == 1)
+	{
+		PrintScreen("Добыт 1 золотой самородок!",-1,-1,FONT_ScreenSmall,1);
+	}
+	else
+	{
+		text = ConcatStrings("Добыто ",IntToString(count));
+		PrintScreen(ConcatStrings(text," золотых самородка!"),-1,-1,FONT_ScreenSmall,1);
+	};
+};
+
+var int GoldCounter;
+
 instance PC_Goldhacken_Addon_Hour(C_Info)
 {
 	npc = PC_Hero;
@@ -165,26 +183,10 @@ func int PC_Goldhacken_Addon_Hour_Condition()
 	};
 };
 
-
-var int GoldCounter;
-
 func void PC_Goldhacken_Addon_Hour_Info()
 {
 	var int CurrentChance;
 	var int MultiNugget;
-/*	Learn_by_doing += 1;
-	if(Learn_by_doing == 10)
-	{
-		B_Upgrade_Hero_HackChance(2);
-	}
-	else if(Learn_by_doing == 15)
-	{
-		B_Upgrade_Hero_HackChance(3);
-	}
-	else if(Learn_by_doing == 20)
-	{
-		B_Upgrade_Hero_HackChance(5);
-	};*/
 	CurrentChance = Hlp_Random(100);
 	MultiNugget = Hlp_Random(10);
 	if(B_GoldMob_Bestimmung())
@@ -206,24 +208,18 @@ func void PC_Goldhacken_Addon_Hour_Info()
 		{
 			if((GoldCounter >= 20) && (MultiNugget >= 8))
 			{
-				CreateInvItems(hero,ItMi_GoldNugget_Addon,3);
-				Snd_Play("Geldbeutel");
-				PrintScreen("Добыто 3 золотых самородка!",-1,-1,FONT_ScreenSmall,1);
+				B_GetGoldNugget(3);
 				Truemmer_Count = 0;
 			}
 			else if((GoldCounter >= 7) && (MultiNugget >= 5))
 			{
-				CreateInvItems(hero,ItMi_GoldNugget_Addon,2);
-				Snd_Play("Geldbeutel");
-				PrintScreen("Добыто 2 золотых самородка!",-1,-1,FONT_ScreenSmall,1);
+				B_GetGoldNugget(2);
 				Truemmer_Count = 0;
 				GoldCounter += 1;
 			}
 			else
 			{
-				CreateInvItems(hero,ItMi_GoldNugget_Addon,1);
-				Snd_Play("Geldbeutel");
-				PrintScreen("Добыт 1 золотой самородок!",-1,-1,FONT_ScreenSmall,1);
+				B_GetGoldNugget(1);
 				Truemmer_Count = 0;
 				GoldCounter += 1;
 			};
@@ -275,21 +271,15 @@ func void PC_Goldhacken_Addon_TSchlag_Info()
 		Wld_PlayEffect("FX_EarthQuake",self,self,0,0,0,FALSE);
 		if(TruemmerChance >= 85)
 		{
-			CreateInvItems(hero,ItMi_GoldNugget_Addon,3);
-			Snd_Play("Geldbeutel");
-			PrintScreen("Добыто 3 золотых самородка!",-1,-1,FONT_ScreenSmall,1);
+			B_GetGoldNugget(3);
 		}
 		else if(TruemmerChance >= 50)
 		{
-			CreateInvItems(hero,ItMi_GoldNugget_Addon,2);
-			Snd_Play("Geldbeutel");
-			PrintScreen("Добыто 2 золотых самородка!",-1,-1,FONT_ScreenSmall,1);
+			B_GetGoldNugget(2);
 		}
 		else
 		{
-			CreateInvItems(hero,ItMi_GoldNugget_Addon,1);
-			Snd_Play("Geldbeutel");
-			PrintScreen("Добыт 1 золотой самородок!",-1,-1,FONT_ScreenSmall,1);
+			B_GetGoldNugget(1);
 		};
 	};
 	Truemmer_Count = 0;

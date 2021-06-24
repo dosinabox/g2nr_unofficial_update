@@ -124,7 +124,7 @@ instance DIA_Maleth_BanditsDEAD(C_Info)
 
 func int DIA_Maleth_BanditsDEAD_Condition()
 {
-	if((Npc_IsDead(Ambusher_1013) || (Bdt_1013_Away == TRUE)) && Npc_IsDead(Ambusher_1014) && Npc_IsDead(Ambusher_1015) && Npc_KnowsInfo(other,DIA_Maleth_BANDITS))
+	if(C_BragoBanditsDead() && Npc_KnowsInfo(other,DIA_Maleth_BANDITS))
 	{
 		return TRUE;
 	};
@@ -137,9 +137,9 @@ func void DIA_Maleth_BanditsDEAD_Info()
 	AI_Output(other,self,"DIA_Maleth_BanditsDEAD_15_02");	//Они не на того напали...
 	AI_Output(self,other,"DIA_Maleth_BanditsDEAD_08_03");	//Слава Инносу! Вот - здесь немного, но я хочу, чтобы ты принял это!
 	B_GiveInvItems(self,other,ItFo_Wine,3);
+	AI_Output(self,other,"DIA_Maleth_BanditsDEAD_08_04");	//Я расскажу остальным об этом!
 	MIS_Maleth_Bandits = LOG_SUCCESS;
 	B_GivePlayerXP(XP_MalethKillBandits);
-	AI_Output(self,other,"DIA_Maleth_BanditsDEAD_08_04");	//Я расскажу остальным об этом!
 };
 
 
@@ -156,7 +156,7 @@ instance DIA_Maleth_BanditsALIVE(C_Info)
 
 func int DIA_Maleth_BanditsALIVE_Condition()
 {
-	if((!Npc_IsDead(Ambusher_1013) || !Npc_IsDead(Ambusher_1014) || !Npc_IsDead(Ambusher_1015)) && Npc_KnowsInfo(other,DIA_Maleth_BANDITS) && (MIS_Maleth_Bandits != LOG_SUCCESS))
+	if(!C_BragoBanditsDead() && Npc_KnowsInfo(other,DIA_Maleth_BANDITS) && (MIS_Maleth_Bandits != LOG_SUCCESS))
 	{
 		return TRUE;
 	};

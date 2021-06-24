@@ -102,7 +102,7 @@ func void B_AssessPortalCollision()
 		return;
 	};
 	Npc_PerceiveAll(self);
-	if(Wld_DetectNpcEx(self,-1,ZS_ClearRoom,-1,FALSE))
+	if(Wld_DetectNpc(self,-1,ZS_ClearRoom,-1))
 	{
 		return;
 	};

@@ -521,9 +521,8 @@ func void DIA_Matteo_GoldRunning_Info()
 		B_CheckLog();
 		B_EquipTrader(self);
 		AI_StopProcessInfos(self);
-		return;
-	};
-	if(B_GiveInvItems(other,self,ItMi_Gold,100))
+	}
+	else if(B_GiveInvItems(other,self,ItMi_Gold,100))
 	{
 		if(Npc_HasItems(Gritta,ItMi_Gold) < 80)
 		{

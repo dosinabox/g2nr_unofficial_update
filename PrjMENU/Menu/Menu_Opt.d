@@ -85,8 +85,8 @@ instance MENUITEM_OPT_CONTROLS(C_MENU_ITEM_DEF)
 instance MENUITEM_OPT_UNION(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
-	text[0] = "Плагины";
-	text[1] = "Настройки плагинов Union";
+	text[0] = "Опции обновления";
+	text[1] = "Настройки неофициального обновления";
 	posx = 0;
 	posy = MENU_MAIN_START_Y + (MENU_MAIN_STEP_Y * 4);
 	dimx = MENU_MAIN_DX;

@@ -8,6 +8,7 @@ instance BDT_1086_Addon_Scatty(Npc_Default)
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
+	aivar[AIV_Teeth] = 2;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Zweihaender1);

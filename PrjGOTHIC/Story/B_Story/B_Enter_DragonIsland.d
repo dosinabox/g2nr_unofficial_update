@@ -145,12 +145,12 @@ func void STARTUP_DragonIsland()
 	if(JorgenIsCaptain == TRUE)
 	{
 		Wld_InsertNpc(VLK_4250_Jorgen_DI,"SHIP_DECK_01");
-	};
-	if(TorlofIsCaptain == TRUE)
+	}
+	else if(TorlofIsCaptain == TRUE)
 	{
 		Wld_InsertNpc(SLD_801_Torlof_DI,"SHIP_DECK_01");
-	};
-	if(JackIsCaptain == TRUE)
+	}
+	else if(JackIsCaptain == TRUE)
 	{
 		Wld_InsertNpc(VLK_444_Jack_DI,"SHIP_DECK_01");
 	};
@@ -163,7 +163,7 @@ func void STARTUP_DragonIsland()
 		Wld_InsertNpc(PC_Mage_DI,"SHIP_DECK_01");
 		if(Lester_IsOnBoard != LOG_SUCCESS)
 		{
-			B_StartOtherRoutine(Milten_DI,"SittingShipDI");
+			B_StartOtherRoutine(PC_Mage_DI,"SittingShipDI");
 		};
 	};
 	if(Lester_IsOnBoard == LOG_SUCCESS)
@@ -171,7 +171,7 @@ func void STARTUP_DragonIsland()
 		Wld_InsertNpc(PC_Psionic_DI,"SHIP_DECK_01");
 		if(MiltenNW_IsOnBoard != LOG_SUCCESS)
 		{
-			B_StartOtherRoutine(Lester_DI,"SittingShipDI");
+			B_StartOtherRoutine(PC_Psionic_DI,"SittingShipDI");
 		};
 	};
 	if(Mario_IsOnBoard == LOG_SUCCESS)
@@ -195,7 +195,7 @@ func void STARTUP_DragonIsland()
 		Wld_InsertNpc(PC_Thief_DI,"SHIP_DECK_01");
 		if(Lares_IsOnBoard != LOG_SUCCESS)
 		{
-			B_StartOtherRoutine(Diego_DI,"SittingShipDI");
+			B_StartOtherRoutine(PC_Thief_DI,"SittingShipDI");
 		};
 	};
 	if(Gorn_IsOnBoard == LOG_SUCCESS)
@@ -225,6 +225,7 @@ func void STARTUP_DragonIsland()
 	Wld_InsertNpc(NOV_600_Pedro_DI,"SHIP_DECK_01");
 	Wld_InsertItem(ItMi_Flask,"FP_ITEM_SHIP_03");
 	Wld_InsertItem(ItMi_Flask,"FP_ITEM_SHIP_07");
+	Wld_InsertItem(ItMi_Flask,"FP_ITEM_SHIP_12");
 	STARTUP_DragonIsland_Part_Island_01();
 	STARTUP_DragonIsland_Part_Undead_01();
 	STARTUP_DragonIsland_Part_Final_01();

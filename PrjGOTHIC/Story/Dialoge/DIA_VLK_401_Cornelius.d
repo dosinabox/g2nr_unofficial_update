@@ -178,12 +178,12 @@ func void DIA_Cornelius_DontBelieveYou_Info()
 	if(hero.guild == GIL_KDF)
 	{
 		Info_AddChoice(DIA_Cornelius_DontBelieveYou,"Тебя могли бы заставить говорить в монастыре.",DIA_Cornelius_DontBelieveYou_Monastery);
-	};
-	if(hero.guild == GIL_SLD)
+	}
+	else if(hero.guild == GIL_SLD)
 	{
 		Info_AddChoice(DIA_Cornelius_DontBelieveYou,"Я могу сказать наемникам, где ты живешь.",DIA_Cornelius_DontBelieveYou_KnowYourHome);
-	};
-	if(hero.guild == GIL_MIL)
+	}
+	else if(hero.guild == GIL_MIL)
 	{
 		Info_AddChoice(DIA_Cornelius_DontBelieveYou,"За лжесвидетельство тебя посадят в тюрьму - и надолго!",DIA_Cornelius_DontBelieveYou_Perjury);
 	};

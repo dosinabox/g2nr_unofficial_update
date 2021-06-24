@@ -599,6 +599,9 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ItAm_Addon_Health);
 	CreateInvItem(self,ItAm_Addon_MANA);
 	CreateInvItem(self,ItAm_Addon_STR);
+	CreateInvItem(self,ItAm_Hp_Regen);
+	CreateInvItem(self,ItAm_Mana_Regen);
+	CreateInvItem(self,ItAm_Fall);
 	CreateInvItem(self,ItRi_Dex_01);
 	CreateInvItem(self,ItRi_Dex_02);
 	CreateInvItem(self,ItRi_HP_01);
@@ -618,9 +621,9 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ItRi_Prot_Mage_03);
 	CreateInvItem(self,ItRi_Prot_Point_01);
 	CreateInvItem(self,ItRi_Prot_Point_02);
-	CreateInvItem(self,ItRi_Prot_Total_00);
 	CreateInvItem(self,ItRi_Prot_Total_01);
 	CreateInvItem(self,ItRi_Prot_Total_02);
+	CreateInvItem(self,ItRi_Prot_Total_03);
 	CreateInvItem(self,ItRi_Addon_Health_01);
 	CreateInvItem(self,ItRi_Addon_Health_02);
 	CreateInvItem(self,ItRi_Addon_MANA_01);
@@ -893,6 +896,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_IEHarfe,1);
 	CreateInvItems(self,ItMi_IELaute,1);
 	CreateInvItems(self,ItMi_AlarmHorn,1);
+	CreateInvItems(self,StatsBook,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_OldBald_Jeremiah,BodyTex_N,NO_ARMOR);
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,70);
