@@ -21,7 +21,7 @@ func void Equip_Helmet()
 	};
 };
 
-INSTANCE ITHE_OHT(C_Item)
+instance ITHE_OHT(C_Item)
 {
 	name = "Шлем охотника на орков";
 	mainflag = ITEM_KAT_ARMOR;
@@ -63,7 +63,7 @@ func void UnEquip_ITHE_OHT()
 	OHTHelmet_Equipped = FALSE;
 };
 
-INSTANCE ITHE_DHT(C_Item)
+instance ITHE_DHT(C_Item)
 {
 	name = "Шлем охотника на демонов";
 	mainflag = ITEM_KAT_ARMOR;
@@ -105,7 +105,7 @@ func void UnEquip_ITHE_DHT()
 	DHTHelmet_Equipped = FALSE;
 };
 
-INSTANCE ITHE_DJG_M(C_Item)
+instance ITHE_DJG_M(C_Item)
 {
 	name = "Шлем охотника на драконов";
 	mainflag = ITEM_KAT_ARMOR;
@@ -147,7 +147,7 @@ func void UnEquip_ITHE_DJG_M()
 	DJGMHelmet_Equipped = FALSE;
 };
 
-INSTANCE ITHE_DJG_H(C_Item)
+instance ITHE_DJG_H(C_Item)
 {
 	name = "Крепкий шлем охотника на драконов";
 	mainflag = ITEM_KAT_ARMOR;
@@ -189,7 +189,7 @@ func void UnEquip_ITHE_DJG_H()
 	DJGHHelmet_Equipped = FALSE;
 };
 
-INSTANCE ITHE_PAL_M(C_Item)
+instance ITHE_PAL_M(C_Item)
 {
 	name = "Кольчужный капюшон";
 	mainflag = ITEM_KAT_ARMOR;
@@ -232,7 +232,7 @@ func void UnEquip_ITHE_PAL_M()
 	PALMHelmet_Equipped = FALSE;
 };
 
-INSTANCE ITHE_PAL_H(C_Item)
+instance ITHE_PAL_H(C_Item)
 {
 	name = "Шлем паладина";
 	mainflag = ITEM_KAT_ARMOR;

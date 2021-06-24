@@ -217,6 +217,17 @@ func void b_build_settings_diag()
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
 	};*/
 	Info_AddChoice(StoryHelper_PatchSettings,"Изменить магию ледяного дракона",StoryHelper_IceDragonSpell);
+	if((Tandor_ItemsGiven_Chapter_1 == FALSE) && (Sarah_ItemsGiven_Chapter_1 == FALSE) && (Rethon_ItemsGiven_Chapter_4 == FALSE) && (Orlan_ItemsGiven_Chapter_1 == FALSE) && (Jora_ItemsGiven_Chapter_1 == FALSE) && (Hakon_ItemsGiven_Chapter_1 == FALSE) && (Canthar_ItemsGiven_Chapter_1 == FALSE) && (Scatty_ItemsGiven_Chapter_1 == FALSE) && (Huno_ItemsGiven_Chapter_1 == FALSE) && (Garett_ItemsGiven_Chapter_1 == FALSE) && (Fisk_ItemsGiven_Chapter_1 == FALSE) && (Erol_ItemsGiven_Chapter_1 == FALSE))
+	{
+		if(ClassicMeleeWeaponsTraders == FALSE)
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Включить оригинальный ассортимент оружия ближнего боя в продаже",StoryHelper_ClassicMeleeWeaponsTraders);
+		}
+		else
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Включить альтернативный ассортимент оружия ближнего боя в продаже",StoryHelper_ClassicMeleeWeaponsTraders);
+		};
+	};
 	if(FullNPCRemoval == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить полное удаление NPC из мира",StoryHelper_FullNPCRemoval);
@@ -834,6 +845,21 @@ func void StoryHelper_FullNPCRemoval()
 	{
 		FullNPCRemoval = TRUE;
 		PrintScreen("Полное удаление NPC из мира включено",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_ClassicMeleeWeaponsTraders()
+{
+	if(ClassicMeleeWeaponsTraders == TRUE)
+	{
+		ClassicMeleeWeaponsTraders = FALSE;
+		PrintScreen("Альтернативный ассортимент включен",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		ClassicMeleeWeaponsTraders = TRUE;
+		PrintScreen("Оригинальный ассортимент включен",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };
