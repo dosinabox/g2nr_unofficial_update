@@ -1356,3 +1356,4 @@ var int ADW_Myxir_Removed_Forever;
 var int CaptainIsBackToStartPosition;
 var int IceDragonSpell;
 var int ClassicMeleeWeaponsTraders;
+var int PardosLeftFarmWithMalak;

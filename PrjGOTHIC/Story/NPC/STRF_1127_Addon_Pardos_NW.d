@@ -30,3 +30,9 @@ func void Rtn_Start_1127()
 	TA_Sit_Throne(22,0,8,0,"NW_FARM3_HOUSE_IN_NAVI_2");
 };
 
+func void Rtn_FleeFromPass_1127()
+{
+	TA_Stand_WP(8,0,22,0,"NW_BIGMILL_MALAKSVERSTECK_05");
+	TA_Stand_WP(22,0,8,0,"NW_BIGMILL_MALAKSVERSTECK_05");
+};
+

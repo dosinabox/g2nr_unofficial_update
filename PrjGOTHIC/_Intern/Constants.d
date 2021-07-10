@@ -31,6 +31,7 @@ const int NPC_SNEAK_WEAPON = 130;
 const int WEAR_TORSO = 1;
 const int WEAR_HEAD = 2;
 const int WEAR_EFFECT = 16;
+
 const int INV_WEAPON = 1;
 const int INV_ARMOR = 2;
 const int INV_RUNE = 3;
@@ -83,6 +84,7 @@ const int ITEM_DRINK = 1 << 27;
 const int ITEM_TORCH = 1 << 28;
 const int ITEM_THROW = 1 << 29;
 const int ITEM_ACTIVE = 1 << 30;
+
 const int DAM_INVALID = 0;
 const int DAM_BARRIER = 1;
 const int DAM_BLUNT = 2;
@@ -101,6 +103,7 @@ const int DAM_INDEX_MAGIC = 5;
 const int DAM_INDEX_POINT = 6;
 const int DAM_INDEX_FALL = 7;
 const int DAM_INDEX_MAX = 8;
+
 const int NPC_ATTACK_FINISH_DISTANCE = 180;
 const int NPC_BURN_TICKS_PER_DAMAGE_POINT = 1000;
 const int NPC_BURN_DAMAGE_POINTS_PER_INTERVALL = 50;	//20;
@@ -172,14 +175,17 @@ const int NEWS_SPREAD_NPC_SAME_GUILD_VICTIM = 4;
 const int IMPORTANT = 1;
 const int INF_TELL = 0;
 const int INF_UNKNOWN = 2;
+
 const int LOG_Running = 1;
 const int LOG_SUCCESS = 2;
 const int LOG_FAILED = 3;
 const int LOG_OBSOLETE = 4;
+
 const int ATT_FRIENDLY = 3;
 const int ATT_NEUTRAL = 2;
 const int ATT_ANGRY = 1;
 const int ATT_HOSTILE = 0;
+
 const int GIL_NONE = 0;
 const int GIL_HUMAN = 1;
 const int GIL_PAL = 1;
@@ -770,7 +776,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "24/06/2021";
+const string FIX_VERSION_DATE = "10/07/2021";
 const int FIX_VERSION_START = 27;
 const int LEAST_SUPPORTED = 26;
 var int FIX_VERSION_SAVE;

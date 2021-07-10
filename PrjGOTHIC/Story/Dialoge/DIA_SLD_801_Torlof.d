@@ -1051,7 +1051,7 @@ func void DIA_Torlof_BEMYCAPTAIN2_Info()
 	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN2_15_01");	//Паладины в замке несут тяжелые потери.
 	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN2_15_02");	//И, я думаю, не пройдет много времени, когда паладины из города выступят в Долину Рудников, чтобы выручить парней, осажденных в замке.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN2_01_03");	//Это хорошие новости. Теперь ничто не мешает мне покинуть это богом проклятое место.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap5);
 };
 
 

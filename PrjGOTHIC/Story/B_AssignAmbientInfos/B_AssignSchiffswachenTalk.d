@@ -47,7 +47,7 @@ func void B_AssignSchiffswachenGuard(var C_Npc Schiffswache)
 
 func void B_AssignSchiffswachenInfos(var C_Npc Schiffswache)
 {
-	if(MIS_ShipIsFree == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Lord_Hagen_GateOpen))
 	{
 		if(Schiffswache.voice == 4)
 		{

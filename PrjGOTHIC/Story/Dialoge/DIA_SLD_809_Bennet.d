@@ -1341,6 +1341,9 @@ func void DIA_Bennet_GetInnosEye_Info()
 };
 
 
+var int BennetsDragonEggOffer;
+var int DRACHENEIER_angebotenXP_OneTime;
+
 instance DIA_Bennet_DRACHENEIER(C_Info)
 {
 	npc = SLD_809_Bennet;
@@ -1360,10 +1363,6 @@ func int DIA_Bennet_DRACHENEIER_Condition()
 	};
 };
 
-
-var int BennetsDragonEggOffer;
-var int DRACHENEIER_angebotenXP_OneTime;
-
 func void DIA_Bennet_DRACHENEIER_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_DRACHENEIER_15_00");	//Ты можешь что-нибудь сделать с драконьими яйцами?
@@ -1380,6 +1379,9 @@ func void DIA_Bennet_DRACHENEIER_Info()
 		AI_Output(self,other,"DIA_Bennet_DRACHENEIER_06_04");	//Ммм. Очень твердый материал. Идеально подходит для доспехов. Если только удастся открыть их.
 		AI_Output(other,self,"DIA_Bennet_DRACHENEIER_15_05");	//Ну и как? Они нужны тебе?
 		AI_Output(self,other,"DIA_Bennet_DRACHENEIER_06_06");	//Конечно! Давай сюда.
+		B_LogEntry(TOPIC_DRACHENEIER,"Беннет готов дать хорошую цену за драконьи яйца, которые я найду.");
+		B_GivePlayerXP(XP_DJG_BringDragonEgg);
+		DRACHENEIER_angebotenXP_OneTime = TRUE;
 	}
 	else
 	{
@@ -1390,12 +1392,6 @@ func void DIA_Bennet_DRACHENEIER_Info()
 	Info_AddChoice(DIA_Bennet_DRACHENEIER,"Тогда можешь оставить золото себе. Я пока попридержу эти яйца.",DIA_Bennet_DRACHENEIER_nein);
 	Info_AddChoice(DIA_Bennet_DRACHENEIER,"Это яйца дракона, а не какие-нибудь куриные.",DIA_Bennet_DRACHENEIER_mehr);
 	Info_AddChoice(DIA_Bennet_DRACHENEIER,"Договорились.",DIA_Bennet_DRACHENEIER_ok);
-	if(DRACHENEIER_angebotenXP_OneTime == FALSE)
-	{
-		B_LogEntry(TOPIC_DRACHENEIER,"Беннет готов дать хорошую цену за драконьи яйца, которые я найду.");
-		B_GivePlayerXP(XP_DJG_BringDragonEgg);
-		DRACHENEIER_angebotenXP_OneTime = TRUE;
-	};
 };
 
 func void DIA_Bennet_DRACHENEIER_ok()

@@ -208,6 +208,15 @@ func void DIA_Serpentes_NOHELP_Info()
 };
 
 
+func void B_ReturnHolyHammer()
+{
+	AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_05");	//И будет лучше, если я заберу этот молот.
+	Npc_RemoveInvItems(other,Holy_Hammer_MIS,1);
+	AI_PrintScreen("Священный молот отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	Wld_InsertItem(Holy_Hammer_MIS,"FP_HAMMER");
+	GarwigThiefOneTime = FALSE;
+};
+
 instance DIA_Serpentes_SUCCESS(C_Info)
 {
 	npc = KDF_501_Serpentes;
@@ -231,24 +240,20 @@ func void DIA_Serpentes_SUCCESS_Info()
 {
 	AI_Output(other,self,"DIA_Serpentes_SUCCESS_15_00");	//Я победил голема.
 	AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_01");	//Что? Ты действительно сделал это? Но без Молота Инноса ты никогда бы не смог уничтожить этого голема.
-	if(Npc_IsDead(Garwig))
+	if(!Npc_IsDead(Garwig))
 	{
-		AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_02");	//(с триумфом) Но ты выдал себя! Это ты убил Гарвига!
-		AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_03");	//ТЫ ПОНЕСЕШЬ НАКАЗАНИЕ ЗА УБИЙСТВО СЛУГИ ИННОСА!!!
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_HumanMurderedHuman,0);
+		AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_04");	//(с сожалением) Тем не менее, я должен признать, что ты выполнил задание, которое я дал тебе.
+		if(Npc_HasItems(other,Holy_Hammer_MIS))
+		{
+			B_ReturnHolyHammer();
+		};
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_04");	//(с сожалением) Тем не менее, я должен признать, что ты выполнил задание, которое я дал тебе.
-	};
-	if(Npc_HasItems(other,Holy_Hammer_MIS))
-	{
-		AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_05");	//И будет лучше, если я заберу этот молот.
-		Npc_RemoveInvItems(other,Holy_Hammer_MIS,1);
-		AI_PrintScreen("Священный молот отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-		Wld_InsertItem(Holy_Hammer_MIS,"FP_HAMMER");
-		GarwigThiefOneTime = FALSE;
+		AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_02");	//(торжествующе) Но ты выдал себя! Это ты убил Гарвига!
+		AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_03");	//ТЫ ПОНЕСЕШЬ НАКАЗАНИЕ ЗА УБИЙСТВО СЛУГИ ИННОСА!!!
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_HumanMurderedHuman,0);
 	};
 	MIS_Golem = LOG_SUCCESS;
 	B_GivePlayerXP(XP_GOLEM);

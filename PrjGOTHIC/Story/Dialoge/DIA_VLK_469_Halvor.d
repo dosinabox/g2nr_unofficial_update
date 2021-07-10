@@ -467,7 +467,10 @@ func void DIA_Halvor_Crew_MyThing()
 func void DIA_Halvor_Crew_StealShip()
 {
 	AI_Output(other,self,"DIA_Halvor_Crew_StealShip_15_00");	//Здесь есть подходящий корабль.
-	AI_Output(self,other,"DIA_Halvor_Crew_StealShip_06_01");	//Да, точно. Ты это серьезно? Паладины сделают из тебя котлету, если доберутся до тебя.
+	if(other.guild != GIL_PAL)
+	{
+		AI_Output(self,other,"DIA_Halvor_Crew_StealShip_06_01");	//Да, точно. Ты это серьезно? Паладины сделают из тебя котлету, если доберутся до тебя.
+	};
 	AI_Output(self,other,"DIA_Halvor_Crew_StealShip_06_02");	//Поступай как знаешь, но я не собираюсь рисковать своей шкурой.
 	Info_ClearChoices(DIA_Halvor_Crew);
 	Info_AddChoice(DIA_Halvor_Crew,Dialog_Back,DIA_Halvor_Crew_BACK);

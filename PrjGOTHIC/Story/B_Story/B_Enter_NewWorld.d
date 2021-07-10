@@ -321,6 +321,11 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			B_StartOtherRoutine(BAU_967_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_968_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_969_Bauer,"FleeFromPass");
+			if(!Npc_IsDead(Pardos_NW))
+			{
+				B_StartOtherRoutine(Pardos_NW,"FleeFromPass");
+				PardosLeftFarmWithMalak = TRUE;
+			};
 			if(hero.guild == GIL_KDF)
 			{
 				CreateInvItems(Malak,ITWR_DementorObsessionBook_MIS,1);
