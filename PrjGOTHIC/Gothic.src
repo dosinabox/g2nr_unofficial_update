@@ -1736,7 +1736,6 @@ Story\Events\evt_open_door_library_s1.d
 Story\Events\evt_orkoberst.d
 Story\Events\evt_orkoberst_switch_s1.d
 Story\Events\evt_ornament_switch_bigfarm_01_func.d
-Story\Events\evt_scopenslastdoor_func.d
 Story\Events\evt_sc_enter_library.d
 Story\Events\evt_troll_grave_01.d
 Story\Events\evt_truhe_ow_01.d
