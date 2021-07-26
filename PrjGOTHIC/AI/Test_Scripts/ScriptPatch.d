@@ -22,7 +22,7 @@ func void Use_StatsBook()
 	Doc_SetPage(nDocID,1,"Book_Blue_R.tga",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,0,270,20,30,20,1);
-	Doc_PrintLine(nDocID,0,ConcatStrings("Убито:                     ГЛАВА ",IntToString(Kapitel)));
+	Doc_PrintLine(nDocID,0,ConcatStrings("Убито:                  ГЛАВА ",IntToString(Kapitel)));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Draconian)," людей-ящеров"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Dementor)," ищущих"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_OrcElite)," элитных орков"));
@@ -40,6 +40,7 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,0,"Отдано:");
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalStoneplatesForVatras)," табличек Ватрасу"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(OldCoinCounter)," монет Василию"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalSwampHerbsForFortuno)," болотных трав Фортуно"));
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(BusterTrophyCounter)," рогов Бастеру"));
@@ -204,7 +205,7 @@ func void UseWastelandRune()
 	};
 };
 
-func void b_build_settings_diag()
+func void B_Build_Settings_Diag()
 {
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
@@ -389,7 +390,7 @@ func void StoryHelper_Limit()
 		TradersHaveLimitedAmmo = TRUE;
 		PrintScreen("Лимит включен",-1,-1,FONT_Screen,2);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_Flee()
@@ -404,7 +405,7 @@ func void StoryHelper_Flee()
 		NpcWantToFlee = TRUE;
 		PrintScreen("Режим трусости включен",-1,-1,FONT_Screen,2);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_Unlimfix()
@@ -419,7 +420,7 @@ func void StoryHelper_Unlimfix()
 		Dont_Fix_Unlim = TRUE;
 		PrintScreen("Сталь и мензурки бесконечны",-1,-1,FONT_Screen,2);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_Bonuses()
@@ -436,7 +437,7 @@ func void StoryHelper_Bonuses()
 		TAL_CostFlags_TS_PermBonus = 0;
 		PrintScreen("Теперь бонусы можно не копить",-1,-1,FONT_Screen,2);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_GoblinBerries()
@@ -451,7 +452,7 @@ func void StoryHelper_GoblinBerries()
 		RandomGoblinBerries = TRUE;
 		PrintScreen("Рандомное количество ягод у паладинов",-1,-1,FONT_Screen,3);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_Apples()
@@ -466,7 +467,7 @@ func void StoryHelper_Apples()
 		InfiniteApples = TRUE;
 		PrintScreen("Яблоки бесконечны",-1,-1,FONT_Screen,2);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_Helmets()
@@ -529,7 +530,7 @@ func void StoryHelper_Helmets()
 		};
 		Helmets_Enabled = TRUE;
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_ClassicAlchemy()
@@ -544,7 +545,7 @@ func void StoryHelper_ClassicAlchemy()
 		ClassicAlchemy = TRUE;
 		PrintScreen("Алхимия из Готики 2 без аддона включена",-1,-1,FONT_Screen,3);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_AlternativeSmithing()
@@ -559,7 +560,7 @@ func void StoryHelper_AlternativeSmithing()
 		AlternativeSmithing = TRUE;
 		PrintScreen("Альтернативное обучение у Беннета включено",-1,-1,FONT_Screen,3);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_Log()
@@ -574,7 +575,7 @@ func void StoryHelper_Log()
 		NewLogEnabled = TRUE;
 		PrintScreen("Показ заголовков включен",-1,-1,FONT_Screen,3);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_Skeletons()
@@ -589,7 +590,7 @@ func void StoryHelper_Skeletons()
 		NoXPFromSummonedSkeletons = TRUE;
 		PrintScreen("Опыт за бесконечных скелетов выключен",-1,-1,FONT_Screen,3);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_HardMode()
@@ -597,14 +598,14 @@ func void StoryHelper_HardMode()
 	if(HardModeEnabled == TRUE)
 	{
 		HardModeEnabled = FALSE;
+		HardModeXPModifier = 0;
 		PrintScreen("Повышенный уровень сложности выключен",-1,-1,FONT_Screen,3);
-		b_build_settings_diag();
+		B_Build_Settings_Diag();
 	}
 	else
 	{
-		HardModeEnabled = TRUE;
-		PrintScreen("Повышенный уровень сложности включен",-1,-1,FONT_Screen,3);
 		Info_ClearChoices(StoryHelper_PatchSettings);
+		Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_HardMode_Back);
 		Info_AddChoice(StoryHelper_PatchSettings,"-50% опыта",StoryHelper_HardMode_50);
 		Info_AddChoice(StoryHelper_PatchSettings,"-40% опыта",StoryHelper_HardMode_40);
 		Info_AddChoice(StoryHelper_PatchSettings,"-30% опыта",StoryHelper_HardMode_30);
@@ -613,39 +614,44 @@ func void StoryHelper_HardMode()
 	};
 };
 
+func void B_SetHardMode(var int modifier)
+{
+	HardModeEnabled = TRUE;
+	HardModeXPModifier = modifier;
+	PrintScreen("Повышенный уровень сложности включен",-1,YPOS_LOGENTRY,FONT_Screen,3);
+	PrintScreen(ConcatStrings(ConcatStrings("Получаемый опыт снижен на ",IntToString(modifier)),"%"),-1,-1,FONT_ScreenSmall,3);
+	B_Build_Settings_Diag();
+};
+
 func void StoryHelper_HardMode_10()
 {
-	HardModeXPModifier = 10;
-	PrintScreen("Получаемый опыт снижен на 10%",-1,YPOS_LOGENTRY,FONT_ScreenSmall,3);
-	b_build_settings_diag();
+	B_SetHardMode(10);
 };
 
 func void StoryHelper_HardMode_20()
 {
-	HardModeXPModifier = 20;
-	PrintScreen("Получаемый опыт снижен на 20%",-1,YPOS_LOGENTRY,FONT_ScreenSmall,3);
-	b_build_settings_diag();
+	B_SetHardMode(20);
 };
 
 func void StoryHelper_HardMode_30()
 {
-	HardModeXPModifier = 30;
-	PrintScreen("Получаемый опыт снижен на 30%",-1,YPOS_LOGENTRY,FONT_ScreenSmall,3);
-	b_build_settings_diag();
+	B_SetHardMode(30);
 };
 
 func void StoryHelper_HardMode_40()
 {
-	HardModeXPModifier = 40;
-	PrintScreen("Получаемый опыт снижен на 40%",-1,YPOS_LOGENTRY,FONT_ScreenSmall,3);
-	b_build_settings_diag();
+	B_SetHardMode(40);
 };
 
 func void StoryHelper_HardMode_50()
 {
-	HardModeXPModifier = 50;
-	PrintScreen("Получаемый опыт снижен на 50%",-1,YPOS_LOGENTRY,FONT_ScreenSmall,3);
-	b_build_settings_diag();
+	B_SetHardMode(50);
+};
+
+func void StoryHelper_HardMode_Back()
+{
+	Info_ClearChoices(StoryHelper_PatchSettings);
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_Penalties()
@@ -660,7 +666,7 @@ func void StoryHelper_Penalties()
 		PenaltiesAffectLearnCost = TRUE;
 		PrintScreen("Влияние штрафов на стоимость обучения включено",-1,-1,FONT_Screen,3);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_LehmarBook()
@@ -675,7 +681,7 @@ func void StoryHelper_LehmarBook()
 		ClassicLehmarBook = TRUE;
 		PrintScreen("Выкуп гроссбуха как в оригинале",-1,-1,FONT_Screen,3);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_Guildless()
@@ -690,7 +696,7 @@ func void StoryHelper_Guildless()
 		GuildlessMode = TRUE;
 		PrintScreen("Прохождение без гильдии включено",-1,-1,FONT_Screen,3);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_Addon()
@@ -705,7 +711,7 @@ func void StoryHelper_Addon()
 		AddonDisabled = TRUE;
 		PrintScreen("Прохождение без аддона включено",-1,-1,FONT_Screen,3);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_XP()
@@ -738,7 +744,7 @@ func void StoryHelper_XP()
 			XP_Ambient = XP_AmbientKap6;
 		};
 		PrintScreen("Оригинал: динамический опыт по главам",-1,-1,FONT_Screen,3);
-		b_build_settings_diag();
+		B_Build_Settings_Diag();
 	}
 	else
 	{
@@ -753,12 +759,6 @@ func void StoryHelper_XP()
 	};
 };
 
-func void StoryHelper_XP_Back()
-{
-	Info_ClearChoices(StoryHelper_PatchSettings);
-	b_build_settings_diag();
-};
-
 func void StoryHelper_XP_6()
 {
 	XP_Static = TRUE;
@@ -766,7 +766,7 @@ func void StoryHelper_XP_6()
 	PrintScreen("Теперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 300 (глава 6)",-1,45,FONT_Screen,3);
 	Info_ClearChoices(StoryHelper_PatchSettings);
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_XP_5()
@@ -776,7 +776,7 @@ func void StoryHelper_XP_5()
 	PrintScreen("Теперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 250 (глава 5)",-1,45,FONT_Screen,3);
 	Info_ClearChoices(StoryHelper_PatchSettings);
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_XP_4()
@@ -786,7 +786,7 @@ func void StoryHelper_XP_4()
 	PrintScreen("Теперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 200 (глава 4)",-1,45,FONT_Screen,3);
 	Info_ClearChoices(StoryHelper_PatchSettings);
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_XP_3()
@@ -796,7 +796,7 @@ func void StoryHelper_XP_3()
 	PrintScreen("Теперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 150 (глава 3)",-1,45,FONT_Screen,3);
 	Info_ClearChoices(StoryHelper_PatchSettings);
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_XP_2()
@@ -806,7 +806,7 @@ func void StoryHelper_XP_2()
 	PrintScreen("Теперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 100 (глава 2)",-1,45,FONT_Screen,3);
 	Info_ClearChoices(StoryHelper_PatchSettings);
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_XP_1()
@@ -816,7 +816,13 @@ func void StoryHelper_XP_1()
 	PrintScreen("Теперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 50 (глава 1)",-1,45,FONT_Screen,3);
 	Info_ClearChoices(StoryHelper_PatchSettings);
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_XP_Back()
+{
+	Info_ClearChoices(StoryHelper_PatchSettings);
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_HonestStatCalculation()
@@ -831,7 +837,7 @@ func void StoryHelper_HonestStatCalculation()
 		HonestStatCalculation = TRUE;
 		PrintScreen("Честный расчет стоимости обучения включен",-1,-1,FONT_Screen,3);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_FullNPCRemoval()
@@ -846,7 +852,7 @@ func void StoryHelper_FullNPCRemoval()
 		FullNPCRemoval = TRUE;
 		PrintScreen("Полное удаление NPC из мира включено",-1,-1,FONT_Screen,3);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_ClassicMeleeWeaponsTraders()
@@ -861,7 +867,7 @@ func void StoryHelper_ClassicMeleeWeaponsTraders()
 		ClassicMeleeWeaponsTraders = TRUE;
 		PrintScreen("Оригинальный ассортимент включен",-1,-1,FONT_Screen,3);
 	};
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_IceDragonSpell()
@@ -933,7 +939,7 @@ func void StoryHelper_IceDragonSpell_Icebolt()
 func void StoryHelper_IceDragonSpell_BACK()
 {
 	Info_ClearChoices(StoryHelper_PatchSettings);
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_PatchSettings_BACK()

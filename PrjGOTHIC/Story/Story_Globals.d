@@ -1308,6 +1308,7 @@ var int Sergio_Follow_End;
 var int Randolph_ExchangeRoutine_Once;
 var int TaverneTopicStarted;
 var int TotalStoneplatesForVatras;
+var int TotalSwampHerbsForFortuno;
 var int TotalApplesEaten;
 var int TotalMushroomsEaten;
 var int TotalDexEaten;
