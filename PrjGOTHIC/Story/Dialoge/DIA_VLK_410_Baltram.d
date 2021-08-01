@@ -457,12 +457,9 @@ instance DIA_Baltram_LetUsTrade(C_Info)
 
 func int DIA_Baltram_LetUsTrade_Condition()
 {
-	if(MIS_BaltramTrade == LOG_FAILED)
+	if((MIS_BaltramTrade == LOG_FAILED) && (SC_KnowsBaltramAsRanger == FALSE))
 	{
-		if(SC_KnowsBaltramAsRanger == FALSE)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -491,12 +488,9 @@ instance DIA_Baltram_HaveYourWarez(C_Info)
 
 func int DIA_Baltram_HaveYourWarez_Condition()
 {
-	if((MIS_BaltramTrade == LOG_Running) && (MIS_BaltramTrade != LOG_SUCCESS))
+	if((MIS_BaltramTrade == LOG_Running) && (MIS_BaltramTrade != LOG_SUCCESS) && (SC_KnowsBaltramAsRanger == FALSE))
 	{
-		if(SC_KnowsBaltramAsRanger == FALSE)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 

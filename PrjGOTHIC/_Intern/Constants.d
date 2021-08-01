@@ -61,8 +61,11 @@ const int ITEM_KAT_POTIONS = 128;
 const int ITEM_KAT_LIGHT = 256;
 const int ITEM_KAT_RUNE = 512;
 const int ITEM_KAT_MAGIC = 1 << 31;
-//const int ITEM_KAT_KEYS = 1;
 const int ITEM_KAT_KEYS = 64;
+
+const int ITEM_DROPPED = 1 << 10;
+const int ITEM_RING = 1 << 11;
+const int ITEM_MISSION = 1 << 12;
 const int ITEM_DAG = 1 << 13;
 const int ITEM_SWD = 1 << 14;
 const int ITEM_AXE = 1 << 15;
@@ -71,13 +74,10 @@ const int ITEM_2HD_AXE = 1 << 17;
 const int ITEM_SHIELD = 1 << 18;
 const int ITEM_BOW = 1 << 19;
 const int ITEM_CROSSBOW = 1 << 20;
-const int ITEM_RING = 1 << 11;
-const int ITEM_AMULET = 1 << 22;
-const int ITEM_BELT = 1 << 24;
-const int ITEM_DROPPED = 1 << 10;
-const int ITEM_MISSION = 1 << 12;
 const int ITEM_MULTI = 1 << 21;
+const int ITEM_AMULET = 1 << 22;
 const int ITEM_NFOCUS = 1 << 23;
+const int ITEM_BELT = 1 << 24;
 const int ITEM_CREATEAMMO = 1 << 25;
 const int ITEM_NSPLIT = 1 << 26;
 const int ITEM_DRINK = 1 << 27;
@@ -776,7 +776,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "26/07/2021";
+const string FIX_VERSION_DATE = "01/08/2021";
 const int FIX_VERSION_START = 27;
 const int LEAST_SUPPORTED = 26;
 var int FIX_VERSION_SAVE;

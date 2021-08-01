@@ -1,4 +1,13 @@
 
+func void B_EquipFakeRangerArmor(var C_Npc Ranger)
+{
+	if(!Npc_HasItems(Ranger,ITAR_Fake_RANGER))
+	{
+		CreateInvItems(Ranger,ITAR_Fake_RANGER,1);
+	};
+	AI_EquipArmor(Ranger,ITAR_Fake_RANGER);
+};
+
 var int LaresRangerArmorEquipped;
 
 func void B_MakeRangerReadyForMeeting(var C_Npc Ranger)
@@ -7,15 +16,13 @@ func void B_MakeRangerReadyForMeeting(var C_Npc Ranger)
 	{
 		if(LaresRangerArmorEquipped == FALSE)
 		{
-			CreateInvItems(Ranger,ITAR_Fake_RANGER,1);
-			AI_EquipArmor(Ranger,ITAR_Fake_RANGER);
+			B_EquipFakeRangerArmor(Ranger);
 			LaresRangerArmorEquipped = TRUE;
 		};
 	}
 	else
 	{
-		CreateInvItems(Ranger,ITAR_Fake_RANGER,1);
-		AI_EquipArmor(Ranger,ITAR_Fake_RANGER);
+		B_EquipFakeRangerArmor(Ranger);
 	};
 	Ranger.npcType = NPCTYPE_FRIEND;
 };
