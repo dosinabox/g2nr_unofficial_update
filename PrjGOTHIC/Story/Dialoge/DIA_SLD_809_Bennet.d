@@ -265,18 +265,7 @@ func void DIA_Bennet_TRADE_Info()
 	};
 	AI_Output(other,self,"DIA_Bennet_TRADE_15_00");	//А как насчет кузнечного инструмента?
 	B_GiveTradeInv(self);
-	if(TradersHaveLimitedAmmo == TRUE)
-	{
-		if(Bennet_Ammo_Day <= Wld_GetDay())
-		{
-			B_RefreshAmmo(self,50);
-	 		Bennet_Ammo_Day = Wld_GetDay() + 1;
-		};
-	}
-	else
-	{
-		B_RefreshAmmo(self,50);
-	};
+	B_RefreshTraderAmmo(self,50);
 	AI_Output(self,other,"DIA_Bennet_TRADE_06_01");	//Что тебе нужно?
 	if(BennetLOG == FALSE)
 	{

@@ -309,6 +309,7 @@ func void DIA_Cipher_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Cipher_TRADE_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 	if(Npc_HasItems(self,ItMi_Joint))
 	{
 		AI_Output(self,other,"DIA_Cipher_TRADE_07_01");	//Конечно. Выбирай.
@@ -317,7 +318,6 @@ func void DIA_Cipher_TRADE_Info()
 	{
 		AI_Output(self,other,"DIA_Cipher_TRADE_07_02");	//У меня сейчас нет болотной травы. Ты хочешь что-нибудь еще?
 	};
-	Trade_IsActive = TRUE;
 };
 
 

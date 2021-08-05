@@ -109,9 +109,6 @@ func int DIA_Addon_Cronos_ADW_Trade_Condition()
 	return TRUE;
 };
 
-
-var int DIA_Addon_Cronos_ADW_Trade_OneTime;
-
 func void DIA_Addon_Cronos_ADW_Trade_Info()
 {
 	if(CronosTraded == FALSE)
@@ -120,8 +117,8 @@ func void DIA_Addon_Cronos_ADW_Trade_Info()
 		B_LogEntry(TOPIC_Addon_KDWTrader,LogText_Addon_CronosTrade);
 		CronosTraded = TRUE;
 	};
-	B_GiveTradeInv(self);
 	B_Say(other,self,"$TRADE_1");
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 

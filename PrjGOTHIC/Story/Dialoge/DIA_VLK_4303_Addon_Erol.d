@@ -255,6 +255,8 @@ func void DIA_Addon_Erol_FernandosWeapons_back()
 	Info_ClearChoices(DIA_Addon_Erol_FernandosWeapons);
 };
 
+var int StoneplatesCounter;
+const int Addon_ErolsStoneplatesOffer = 10;
 
 instance DIA_Addon_Erol_Stoneplates(C_Info)
 {
@@ -269,15 +271,11 @@ instance DIA_Addon_Erol_Stoneplates(C_Info)
 
 func int DIA_Addon_Erol_Stoneplates_Condition()
 {
-	if(MIS_Addon_Erol_BanditStuff == LOG_Running)
+	if(Npc_KnowsInfo(other,DIA_Addon_Erol_what) && (MIS_Addon_Erol_BanditStuff != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
 };
-
-
-var int StoneplatesCounter;
-const int Addon_ErolsStoneplatesOffer = 10;
 
 func void DIA_Addon_Erol_Stoneplates_Info()
 {
@@ -326,7 +324,6 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 			AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_06");	//Этого достаточно. Маг Воды получит то, что я обещал, и я смогу, наконец, вернуться домой.
 			MIS_Addon_Erol_BanditStuff = LOG_SUCCESS;
 			B_CheckLog();
-//			Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
 		};
 		AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_07");	//Конечно же, я тебе заплачу.
 		StoneplatesGeld = Addon_ErolsStoneplatesOffer * Npc_HasItems(self,ItWr_StonePlateCommon_Addon);
@@ -344,7 +341,6 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 			};
 			AI_GotoWP(self,"NW_TAVERN_TO_FOREST_03");
 			Npc_ExchangeRoutine(self,"Start");
-//			Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
 		};
 	}
 	else if(C_ScHasMagicStonePlate() || C_ScHasColoredStonePlate() || Npc_HasItems(other,ItMi_TempelTorKey))
@@ -440,7 +436,7 @@ instance DIA_Addon_Erol_PreTrade(C_Info)
 
 func int DIA_Addon_Erol_PreTrade_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Erol_what) && (Npc_GetDistToWP(self,"NW_BIGFARM_HUT_IN_01") > 2000) && (MIS_Addon_Erol_BanditStuff != LOG_FAILED))
+	if(Npc_KnowsInfo(other,DIA_Addon_Erol_what) && (Npc_GetDistToWP(self,"NW_BIGFARM_HUT_IN_01") > 2000))
 	{
 		return TRUE;
 	};
@@ -449,7 +445,10 @@ func int DIA_Addon_Erol_PreTrade_Condition()
 func void DIA_Addon_Erol_PreTrade_Info()
 {
 	B_Say(other,self,"$TRADE_2");
-	AI_Output(self,other,"DIA_Addon_Erol_PreTrade_10_00");	//Я ничего не могу тебе продать. Все мои вещи остались под мостом.
+	if(MIS_Addon_Erol_BanditStuff != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Addon_Erol_PreTrade_10_00");	//Я ничего не могу тебе продать. Все мои вещи остались под мостом.
+	};
 	AI_Output(self,other,"DIA_Addon_Erol_PreTrade_10_01");	//Что-то у меня купить ты сможешь только тогда, когда я доберусь до дома.
 	if(MIS_Addon_Erol_BanditStuff != LOG_SUCCESS)
 	{
@@ -457,6 +456,19 @@ func void DIA_Addon_Erol_PreTrade_Info()
 	};
 };
 
+
+var int Erol_IsAtHome;
+
+func void B_Erol_IsAtHome()
+{
+	if(Erol_IsAtHome == FALSE)
+	{
+		Log_CreateTopic(TOPIC_OutTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_OutTrader,LogText_Addon_ErolTrade);
+		Npc_ExchangeRoutine(self,"HOME");
+		Erol_IsAtHome = TRUE;
+	};
+};
 
 instance DIA_Addon_Erol_SLD(C_Info)
 {
@@ -470,14 +482,11 @@ instance DIA_Addon_Erol_SLD(C_Info)
 
 func int DIA_Addon_Erol_SLD_Condition()
 {
-	if(Npc_GetDistToWP(self,"NW_BIGFARM_HUT_IN_01") < 2000)
+	if((MIS_Addon_Erol_BanditStuff == LOG_SUCCESS) && (Npc_GetDistToWP(self,"NW_BIGFARM_HUT_IN_01") <= 2000))
 	{
 		return TRUE;
 	};
 };
-
-
-var int Erol_IsAtHome;
 
 func void DIA_Addon_Erol_SLD_Info()
 {
@@ -487,11 +496,7 @@ func void DIA_Addon_Erol_SLD_Info()
 	AI_Output(self,other,"DIA_Addon_Erol_SLD_10_03");	//Пока я не сую нос в их дела, они меня не трогают.
 	AI_Output(self,other,"DIA_Addon_Erol_SLD_10_04");	//К тому же, они неплохие покупатели. И я плачу им, чтобы они охраняли мой дом, пока я в отъезде.
 	B_GivePlayerXP(XP_Ambient);
-	if(Erol_IsAtHome == FALSE)
-	{
-		Npc_ExchangeRoutine(self,"HOME");
-		Erol_IsAtHome = TRUE;
-	};
+	B_Erol_IsAtHome();
 };
 
 
@@ -509,7 +514,7 @@ instance DIA_Addon_Erol_Trade(C_Info)
 
 func int DIA_Addon_Erol_Trade_Condition()
 {
-	if((MIS_Addon_Erol_BanditStuff == LOG_SUCCESS) && (Npc_GetDistToWP(self,"NW_BIGFARM_HUT_IN_01") < 3000))
+	if((MIS_Addon_Erol_BanditStuff == LOG_SUCCESS) && (Npc_GetDistToWP(self,"NW_BIGFARM_HUT_IN_01") <= 2000))
 	{
 		return TRUE;
 	};
@@ -518,15 +523,9 @@ func int DIA_Addon_Erol_Trade_Condition()
 func void DIA_Addon_Erol_Trade_Info()
 {
 	B_Say(other,self,"$TRADE_2");
+	AI_Output(self,other,"DIA_Addon_Erol_Trade_10_00");	//Впрочем, выбора у меня нет.
+	B_Erol_IsAtHome();
 	B_GiveTradeInv(self);
-	if(Erol_IsAtHome == FALSE)
-	{
-		AI_Output(self,other,"DIA_Addon_Erol_Trade_10_00");	//Впрочем, выбора у меня нет.
-		Log_CreateTopic(TOPIC_OutTrader,LOG_NOTE);
-		B_LogEntry(TOPIC_OutTrader,LogText_Addon_ErolTrade);
-		Npc_ExchangeRoutine(self,"HOME");
-		Erol_IsAtHome = TRUE;
-	};
 	Trade_IsActive = TRUE;
 };
 
@@ -552,7 +551,7 @@ instance DIA_Addon_Erol_Teach(C_Info)
 
 func int DIA_Addon_Erol_Teach_Condition()
 {
-	if((Erol_Addon_TeachPlayer == TRUE) && (MIS_Addon_Erol_BanditStuff != LOG_FAILED))
+	if(Erol_Addon_TeachPlayer == TRUE)
 	{
 		return TRUE;
 	};

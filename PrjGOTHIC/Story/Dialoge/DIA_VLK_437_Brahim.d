@@ -155,17 +155,17 @@ func int DIA_Brahim_BUY_Condition()
 func void DIA_Brahim_BUY_Info()
 {
 	AI_Output(other,self,"DIA_Brahim_BUY_15_00");	//Покажи мне свои карты.
-	B_GiveTradeInv(self);
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Brahim_BUY_07_01");	//Ты не найдешь лучше даже в монастыре.
-	};
-	if(hero.guild == GIL_PAL)
+	}
+	else if(hero.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Brahim_BUY_07_02");	//Хорошая карта - это очень важно, особенно для людей, прибывших с материка, мистер паладин.
 	};
-	Brahim_ShowedMaps = TRUE;
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
+	Brahim_ShowedMaps = TRUE;
 };
 
 

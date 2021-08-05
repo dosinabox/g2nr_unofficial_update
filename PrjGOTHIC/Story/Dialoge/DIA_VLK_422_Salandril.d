@@ -180,7 +180,6 @@ func void DIA_Salandril_Trade_Info()
 		Salandril_flag = FALSE;
 	};
 	AI_Output(other,self,"DIA_Salandril_Trade_15_00");	//Покажи мне свои товары.
-	B_GiveTradeInv(self);
 	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Salandril_Trade_13_01");	//С удовольствием, преподобный брат.
@@ -193,6 +192,7 @@ func void DIA_Salandril_Trade_Info()
 	{
 		AI_Output(self,other,"DIA_Salandril_Trade_13_02");	//С удовольствием, о, благородный воин.
 	};
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 

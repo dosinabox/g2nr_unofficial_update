@@ -87,8 +87,8 @@ func void DIA_Bennet_DI_TRADE_Info()
 		Bennet_DI_flag = FALSE;
 	};
 	AI_Output(other,self,"DIA_Bennet_DI_TRADE_15_00");	//Какое оружие ты можешь продать мне?
-	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Bennet_DI_TRADE_06_01");	//Только лучшее. Ты же знаешь.
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 

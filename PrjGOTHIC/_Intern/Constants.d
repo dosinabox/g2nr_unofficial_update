@@ -4,7 +4,6 @@ const string FONT_ScreenSmall = "FONT_OLD_10_WHITE.TGA";
 const string FONT_Book = "FONT_10_BOOK.TGA";
 const string FONT_BookHeadline = "FONT_20_BOOK.TGA";
 
-const int SPL_Cost_Scroll = 5;
 const int ATR_HITPOINTS = 0;
 const int ATR_HITPOINTS_MAX = 1;
 const int ATR_MANA = 2;
@@ -298,24 +297,27 @@ const int NPC_SOUND_THROWCOLL = 5;
 const int NPC_SOUND_DRAWWEAPON = 6;
 const int NPC_SOUND_SCREAM = 7;
 const int NPC_SOUND_FIGHT = 8;
+const int NPC_VOICE_VARIATION_MAX = 10;
+
 const int MAT_WOOD = 0;
 const int MAT_STONE = 1;
 const int MAT_METAL = 2;
 const int MAT_LEATHER = 3;
 const int MAT_CLAY = 4;
 const int MAT_GLAS = 5;
+
 const int LOG_MISSION = 0;
 const int LOG_NOTE = 1;
+
 const int TIME_INFINITE = -1000;
-const int NPC_VOICE_VARIATION_MAX = 10;
 
 const float TRADE_VALUE_MULTIPLIER = 0.15;
-
 const string TRADE_CURRENCY_INSTANCE = "ITMI_GOLD";
 
 const int SPELL_GOOD = 0;
 const int SPELL_NEUTRAL = 1;
 const int SPELL_BAD = 2;
+
 const int SPL_DONTINVEST = 0;
 const int SPL_RECEIVEINVEST = 1;
 const int SPL_SENDCAST = 2;
@@ -323,6 +325,8 @@ const int SPL_SENDSTOP = 3;
 const int SPL_NEXTLEVEL = 4;
 const int SPL_STATUS_CANINVEST_NO_MANADEC = 8;
 const int SPL_FORCEINVEST = 1 << 16;
+const int SPL_Cost_Scroll = 5;
+
 const int TARGET_COLLECT_NONE = 0;
 const int TARGET_COLLECT_CASTER = 1;
 const int TARGET_COLLECT_FOCUS = 2;
@@ -337,6 +341,7 @@ const int TARGET_TYPE_NPCS = 4;
 const int TARGET_TYPE_ORCS = 8;
 const int TARGET_TYPE_HUMANS = 16;
 const int TARGET_TYPE_UNDEAD = 32;
+
 const int SPL_PalLight = 0;
 const int SPL_PalLightHeal = 1;
 const int SPL_PalHolyBolt = 2;
@@ -776,7 +781,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "01/08/2021";
+const string FIX_VERSION_DATE = "05/08/2021";
 const int FIX_VERSION_START = 27;
 const int LEAST_SUPPORTED = 26;
 var int FIX_VERSION_SAVE;

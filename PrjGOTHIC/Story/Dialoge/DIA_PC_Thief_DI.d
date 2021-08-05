@@ -129,20 +129,9 @@ func void DIA_Diego_DI_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Diego_DI_TRADE_15_00");	//Мне нужна амуниция.
 	B_GiveTradeInv(self);
-	if(TradersHaveLimitedAmmo == TRUE)
-	{
-		if(Diego_DI_Ammo_Day <= Wld_GetDay())
-		{
-			B_RefreshAmmo(self,50);
-			Diego_DI_Ammo_Day = Wld_GetDay() + 1;
-		};
-	}
-	else
-	{
-		B_RefreshAmmo(self,50);
-	};
-	AI_Output(self,other,"DIA_Diego_DI_TRADE_11_01");	//Возможно, я смогу помочь тебе.
 	Trade_IsActive = TRUE;
+	B_RefreshTraderAmmo(self,50);
+	AI_Output(self,other,"DIA_Diego_DI_TRADE_11_01");	//Возможно, я смогу помочь тебе.
 };
 
 

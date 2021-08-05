@@ -18,6 +18,7 @@ func int DIA_Isgaroth_EXIT_Condition()
 func void DIA_Isgaroth_EXIT_Info()
 {
 	AI_Output(self,other,"DIA_Isgaroth_EXIT_01_00");	//Пусть Иннос всегда освещает твой путь.
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -140,6 +141,7 @@ func void DIA_Isgaroth_tot_Info()
 	};
 	MIS_IsgarothWolf = LOG_SUCCESS;
 	B_GivePlayerXP(XP_IsgarothWolf);
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -199,6 +201,7 @@ func void DIA_Isgaroth_Trade_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_Trade_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 };
 
 
@@ -286,6 +289,7 @@ func void DIA_Isgaroth_Vatras_Info()
 		B_UseFakeScroll();
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_05");	//Печать сломана. О чем ты думал, идиот!
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_06");	//Иди и скажи Ватрасу, что я получил его сообщение.
+		B_EquipTrader(self);
 		AI_StopProcessInfos(self);
 	};
 	Vatras_Return = TRUE;
