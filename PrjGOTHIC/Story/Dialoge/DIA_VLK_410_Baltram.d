@@ -1,4 +1,13 @@
 	
+func int C_BaltramCanTalkAboutLares()
+{
+	if((MIS_Lares_BringRangerToMe == LOG_Running) && (AnyRangerRingEquipped() || ArmorEquipped(other,ITAR_RANGER_Addon)))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 instance DIA_Baltram_EXIT(C_Info)
 {
 	npc = VLK_410_Baltram;
@@ -21,7 +30,6 @@ func void DIA_Baltram_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-///////////////////////////////////////////////////////////////////
 
 instance DIA_Baltram_Sperre(C_Info)
 {
@@ -36,20 +44,8 @@ instance DIA_Baltram_Sperre(C_Info)
 
 func int DIA_Baltram_Sperre_Condition()
 {
-	if((Canthar_Sperre == TRUE) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (Canthar_Sperre == TRUE) && !C_BaltramCanTalkAboutLares() && (SC_KnowsBaltramAsRanger == FALSE))
 	{
-		if(AnyRangerRingEquipped() && (MIS_Lares_BringRangerToMe == LOG_Running))
-		{
-			return FALSE;
-		}
-		else if(SC_KnowsBaltramAsRanger == TRUE)
-		{
-			return FALSE;
-		}
-		else if(Npc_KnowsInfo(hero,DIA_Addon_Baltram_LaresAbloese))
-		{
-			return FALSE;
-		};
 		return TRUE;
 	};
 };
@@ -60,7 +56,6 @@ func void DIA_Baltram_Sperre_Info()
 	AI_StopProcessInfos(self);
 };
 
-///////////////////////////////////////////////////////////////////
 
 instance DIA_Baltram_Hallo(C_Info)
 {
@@ -75,16 +70,8 @@ instance DIA_Baltram_Hallo(C_Info)
 
 func int DIA_Baltram_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_Nagur_Bote == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_Nagur_Bote == FALSE) && (Canthar_Sperre == FALSE) && !C_BaltramCanTalkAboutLares())
 	{
-		if(Canthar_Sperre == TRUE)
-		{
-			if(AnyRangerRingEquipped() && (MIS_Lares_BringRangerToMe == LOG_Running))
-			{
-				return TRUE;
-			};
-			return FALSE;
-		};
 		return TRUE;
 	};
 };
@@ -117,7 +104,7 @@ instance DIA_Addon_Baltram_LaresAbloese(C_Info)
 
 func int DIA_Addon_Baltram_LaresAbloese_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_Lares_BringRangerToMe == LOG_Running) && AnyRangerRingEquipped())
+	if(Npc_IsInState(self,ZS_Talk) && C_BaltramCanTalkAboutLares())
 	{
 		return TRUE;
 	};
@@ -126,15 +113,22 @@ func int DIA_Addon_Baltram_LaresAbloese_Condition()
 func void DIA_Addon_Baltram_LaresAbloese_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Baltram_LaresAbloese_15_00");	//Почему ты так подозрительно на меня смотришь?
-	AI_Output(self,other,"DIA_Addon_Baltram_LaresAbloese_01_01");	//Я заметил у тебя знак Кольца Воды.
+	if(ArmorEquipped(other,ITAR_RANGER_Addon))
+	{
+		B_Say(self,other,"$ADDON_WRONGARMOR");
+		B_GivePlayerXP(XP_Ambient / 2);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Baltram_LaresAbloese_01_01");	//Я заметил у тебя знак Кольца Воды.
+		B_GivePlayerXP(XP_Ambient);
+	};
 	AI_Output(other,self,"DIA_Addon_Baltram_LaresAbloese_15_02");	//Ты тоже член этого общества?
 	AI_Output(self,other,"DIA_Addon_Baltram_LaresAbloese_01_03");	//А что, если так?
 	AI_Output(other,self,"DIA_Addon_Baltram_LaresAbloese_15_04");	//Я должен передать тебе, что дежурящий в порту Ларес хочет, чтобы его сменили.
 	AI_Output(self,other,"DIA_Addon_Baltram_LaresAbloese_01_05");	//Хорошо. Я прослежу, чтобы это сделали.
 	AI_Output(other,self,"DIA_Addon_Baltram_LaresAbloese_15_06");	//Понятно.
-	B_GivePlayerXP(XP_Ambient);
 	B_LogEntry(TOPIC_Addon_BringRangerToLares,"Бальтрам, торговец на рыночной площади, позаботится, чтобы Лареса сменили на его посту. Ларес может покинуть гавань ПРЯМО СЕЙЧАС.");
-	SC_KnowsBaltramAsRanger = TRUE;
 	Baltram_Exchange4Lares = TRUE;
 };
 
@@ -243,7 +237,6 @@ func void DIA_Baltram_WAREZ_Info()
 		CreateInvItems(self,ItFo_Wine,10);
 		Baltram_ItemsGiven_Warez = TRUE;
 	};
-	B_GiveTradeInv(self);
 	if(Baltram_TradeLOG == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
@@ -255,6 +248,7 @@ func void DIA_Baltram_WAREZ_Info()
 		AI_Output(self,other,"DIA_Baltram_WAREZ_01_01");	//Им не стоило допускать, чтобы все зашло так далеко. Теперь вот один из наемников убил паладина.
 		AI_Output(self,other,"DIA_Baltram_WAREZ_01_02");	//Что-то подобное обязательно должно было случиться!
 	};
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 	if((MIS_BaltramTrade != LOG_SUCCESS) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (SC_KnowsBaltramAsRanger == FALSE))
 	{

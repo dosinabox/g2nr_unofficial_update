@@ -49,7 +49,7 @@ func void B_AssessTalk()
 			};
 			return;
 		}
-		else if(C_IsNpc(self,VLK_410_Baltram))
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Baltram))
 		{
 			B_BaltramRangerCheck(other);
 		}

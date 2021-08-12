@@ -295,7 +295,7 @@ var C_Npc Pepe;
 var C_Npc Garwig;
 var C_Npc Lucia;
 var C_Npc Huno;
-//var C_Npc Baltram;
+var C_Npc Baltram;
 var C_Npc Zuris;
 var C_Npc Jora;
 var C_Npc Tandor;
@@ -619,7 +619,7 @@ func void B_InitNpcGlobals()
 	Pepe = Hlp_GetNpc(BAU_912_Pepe);
 	Lucia = Hlp_GetNpc(BDT_1091_Addon_Lucia);
 	Huno = Hlp_GetNpc(BDT_1099_Addon_Huno);
-//	Baltram = Hlp_GetNpc(VLK_410_Baltram);
+	Baltram = Hlp_GetNpc(VLK_410_Baltram);
 	Zuris = Hlp_GetNpc(VLK_409_Zuris);
 	Jora = Hlp_GetNpc(VLK_408_Jora);
 	Tandor = Hlp_GetNpc(PAL_260_Tandor);

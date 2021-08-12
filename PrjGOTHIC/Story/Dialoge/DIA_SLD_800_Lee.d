@@ -1136,7 +1136,7 @@ instance DIA_Lee_Richter(C_Info)
 
 func int DIA_Lee_Richter_Condition()
 {
-	if((Kapitel >= 3) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && !Npc_IsDead(Richter))
+	if((Kapitel >= 3) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
 	{
 		return TRUE;
 	};
@@ -1156,13 +1156,23 @@ func void DIA_Lee_Richter_Info()
 	AI_Output(self,other,"DIA_Lee_Richter_04_09");	//ƒай мне что-нибудь, что € смогу использовать, чтобы зап€тнать его им€ перед лицом ополчени€. я хочу, чтобы он провел остаток своих дней за решеткой.
 	AI_Output(self,other,"DIA_Lee_Richter_04_10");	//Ќо € не хочу, чтобы ты убивал его. Ёто дл€ него слишком мало. я хочу, чтобы он страдал, понимаешь?
 	AI_Output(self,other,"DIA_Lee_Richter_04_11");	// ак ты думаешь, справишьс€?
-	Log_CreateTopic(TOPIC_RichterLakai,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_RichterLakai,LOG_Running);
-	B_LogEntry(TOPIC_RichterLakai,"Ћи хочет, чтобы € нашел доказательства, обвин€ющие судью ’ориниса. ƒл€ этого, € должен предложить свои услуги судье и должен держать ушки на макушке.");
-	MIS_Lee_JudgeRichter = LOG_Running;
-	Info_ClearChoices(DIA_Lee_Richter);
-	Info_AddChoice(DIA_Lee_Richter,"я не буду заниматьс€ этим. я не хочу прислуживать этой свинье.",DIA_Lee_Richter_nein);
-	Info_AddChoice(DIA_Lee_Richter,"Ќет проблем. —колько?",DIA_Lee_Richter_wieviel);
+	if(!Npc_IsDead(Richter))
+	{
+		Log_CreateTopic(TOPIC_RichterLakai,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_RichterLakai,LOG_Running);
+		B_LogEntry(TOPIC_RichterLakai,"Ћи хочет, чтобы € нашел доказательства, обвин€ющие судью ’ориниса. ƒл€ этого, € должен предложить свои услуги судье и должен держать ушки на макушке.");
+		MIS_Lee_JudgeRichter = LOG_Running;
+		Info_ClearChoices(DIA_Lee_Richter);
+		Info_AddChoice(DIA_Lee_Richter,"я не буду заниматьс€ этим. я не хочу прислуживать этой свинье.",DIA_Lee_Richter_nein);
+		Info_AddChoice(DIA_Lee_Richter,"Ќет проблем. —колько?",DIA_Lee_Richter_wieviel);
+	}
+	else
+	{
+		DIA_Common_HeIsDead();
+		AI_Output(self,other,"DIA_Lee_PMSchulden_04_04");	//я думал, ты умнее.
+		B_GivePlayerXP(XP_JudgeRichter / 3);
+		AI_StopProcessInfos(self);
+	};
 };
 
 func void DIA_Lee_Richter_wieviel()

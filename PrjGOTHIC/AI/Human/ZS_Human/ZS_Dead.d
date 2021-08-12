@@ -18,7 +18,7 @@ func void ZS_Dead()
 		}
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stoneguardian_NailedValleyShowcase_01))
 		{
-			if((MayaScrollGiven == FALSE) && !Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT) && (VALLEY_SHOWCASE_TRIGGERSCRIPT_FUNC_OneTime == FALSE))
+			if((MayaScrollGiven == FALSE) && !Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT))
 			{
 				CreateInvItems(self,ItSc_Teleport_Maya,1);
 				MayaScrollGiven = TRUE;

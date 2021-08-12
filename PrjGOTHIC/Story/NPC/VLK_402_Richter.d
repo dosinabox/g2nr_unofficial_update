@@ -5,7 +5,7 @@ instance VLK_402_Richter(Npc_Default)
 	guild = GIL_VLK;
 	id = 402;
 	voice = 10;
-	flags = NPC_FLAG_IMMORTAL;
+	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_NORMAL;
