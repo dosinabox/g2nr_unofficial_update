@@ -356,16 +356,17 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				B_StartOtherRoutine(Vino,"OBESESSIONRITUAL");
 				Vino.aivar[AIV_NoFightParker] = TRUE;
 				CreateInvItems(Vino,ITWR_DementorObsessionBook_MIS,1);
-				if(!Npc_IsDead(Lobart))
-				{
-					B_StartOtherRoutine(Lobart,"OBESESSIONRITUAL");
-				};
+				B_StartOtherRoutine(Lobart,"OBESESSIONRITUAL");
 				Wld_InsertNpc(DMT_DementorSpeakerVino1,"FP_STAND_DEMENTOR_KDF_31");
 				Wld_InsertNpc(DMT_DementorSpeakerVino2,"FP_STAND_DEMENTOR_KDF_32");
 				Wld_InsertNpc(DMT_DementorSpeakerVino3,"FP_STAND_DEMENTOR_KDF_33");
 				Wld_InsertNpc(DMT_DementorSpeakerVino4,"NW_LITTLESTONEHENDGE_02");
 				B_KillNpc(YGiant_Bug_VinoRitual1);
 				B_KillNpc(YGiant_Bug_VinoRitual2);
+				if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_Running) && (MIS_Addon_Cavalorn_GetOrnamentFromPAL == FALSE))
+				{
+					B_StartOtherRoutine(Cavalorn,"OrnamentSteinringCh3KDF");
+				};
 			};
 			if(!Npc_IsDead(Bromor))
 			{

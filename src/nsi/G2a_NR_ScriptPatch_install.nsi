@@ -128,7 +128,7 @@ Section "Основные файлы" SecMain
 	WriteRegStr HKLM "${REGISTRY_PATH}" "DisplayVersion" "${MOD_DETAILED_VERSION}" 
 	WriteRegStr HKLM "${REGISTRY_PATH}" "InstallLocation" $INSTDIR
 	WriteRegStr HKLM "${REGISTRY_PATH}" "UninstallString" "$INSTDIR\${UNINSTALLER_NAME}.exe"
-	WriteRegStr HKLM "${REGISTRY_PATH}" "HelpLink" "http://worldofplayers.ru/threads/36817"
+	WriteRegStr HKLM "${REGISTRY_PATH}" "HelpLink" "https://worldofplayers.ru/threads/36817"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "Publisher" "${MOD_AUTHOR}"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "DisplayIcon" "$INSTDIR\system\${MOD_NAME}.ico"
 	WriteRegDWORD HKLM "${REGISTRY_PATH}" "EstimatedSize" "265700"

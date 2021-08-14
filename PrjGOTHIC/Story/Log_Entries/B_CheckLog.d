@@ -110,7 +110,7 @@ func void B_CheckLog()
 	B_CloseTopic(Topic_Crew,0,MIS_ReadyforChapter6,6);
 	B_CloseTopic(TOPIC_Addon_RatHunt,MIS_KrokoJagd,0,6);
 	B_CloseTopic(TOPIC_Addon_BringMeat,MIS_AlligatorJack_BringMeat,GregIsBack,6);
-	B_CloseTopic(TOPIC_Addon_BanditsTower,MIS_Henry_FreeBDTTower,TowerBanditsDead,6);
+	B_CloseTopic(TOPIC_Addon_BanditsTower,MIS_Henry_FreeBDTTower,0,6);
 	B_CloseTopic(TOPIC_Addon_HolOwen,MIS_Henry_HolOwen,0,6);
 	B_CloseTopic(TOPIC_Addon_Kompass,MIS_ADDON_GARett_BringKompass,0,6);
 	B_CloseTopic(TOPIC_Addon_RoastGrog,0,PIR_1364_Grog,6);

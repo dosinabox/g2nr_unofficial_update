@@ -28,7 +28,7 @@ func void Rtn_Start_950()
 
 func void Rtn_ObesessionRitual_950()
 {
-	TA_Stand_Guarding(7,30,23,0,"NW_FARM1_OUT_05");
-	TA_Stand_Guarding(23,0,7,30,"NW_FARM1_OUT_05");
+	TA_Stand_Guarding(7,30,23,0,"NW_FARM1_ENTRANCE_02");
+	TA_Stand_Guarding(23,0,7,30,"NW_FARM1_ENTRANCE_02");
 };
 

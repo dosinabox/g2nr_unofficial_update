@@ -718,19 +718,16 @@ instance DIA_Lobart_BUGDEAD(C_Info)
 	npc = BAU_950_Lobart;
 	condition = DIA_Lobart_BUGDEAD_Condition;
 	information = DIA_Lobart_BUGDEAD_Info;
-	permanent = TRUE;
+	permanent = FALSE;
 	description = "Я разделался с этими тварями!";
 };
 
 
 func int DIA_Lobart_BUGDEAD_Condition()
 {
-	if(MIS_LobartKillBugs == LOG_Running)
+	if((MIS_LobartKillBugs == LOG_Running) && C_LobartBugsDead())
 	{
-		if(Npc_IsDead(Lobarts_Giant_Bug1) && Npc_IsDead(Lobarts_Giant_Bug2) && Npc_IsDead(Lobarts_Giant_Bug3) && Npc_IsDead(Lobarts_Giant_Bug4) && Npc_IsDead(Lobarts_Giant_Bug5) && Npc_IsDead(Lobarts_Giant_Bug6) && Npc_IsDead(Lobarts_Giant_Bug7))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -762,12 +759,9 @@ instance DIA_Lobart_BUGALIVE(C_Info)
 
 func int DIA_Lobart_BUGALIVE_Condition()
 {
-	if(MIS_LobartKillBugs == LOG_Running)
+	if((MIS_LobartKillBugs == LOG_Running) && !C_LobartBugsDead())
 	{
-		if(!Npc_IsDead(Lobarts_Giant_Bug1) || !Npc_IsDead(Lobarts_Giant_Bug2) || !Npc_IsDead(Lobarts_Giant_Bug3) || !Npc_IsDead(Lobarts_Giant_Bug4) || !Npc_IsDead(Lobarts_Giant_Bug5) || !Npc_IsDead(Lobarts_Giant_Bug6) || !Npc_IsDead(Lobarts_Giant_Bug7))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -816,12 +810,12 @@ func void DIA_Lobart_DMT_Info()
 	if(!Npc_IsDead(Hilda) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)))
 	{
 		AI_Output(self,other,"DIA_Lobart_DMT_05_04");	//Вскоре после этого моя жена опять тяжело заболела. Она почти не встает с постели. С ней часто бывает такое.
+		if(MIS_HealHilda != LOG_SUCCESS)
+		{
+			Info_AddChoice(DIA_Lobart_DMT,"Почему ты не отведешь жену к лекарю?",DIA_Lobart_DMT_FrauHeilen);
+		};
 	};
 	AI_Output(self,other,"DIA_Lobart_DMT_05_05");	//Все пошло наперекосяк!
-	if((MIS_HealHilda != LOG_SUCCESS) && !Npc_IsDead(Hilda) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)))
-	{
-		Info_AddChoice(DIA_Lobart_DMT,"Почему ты не отведешь жену к лекарю?",DIA_Lobart_DMT_FrauHeilen);
-	};
 	Info_AddChoice(DIA_Lobart_DMT,"Почему ты ничего не сделаешь с этими людьми в черном?",DIA_Lobart_DMT_hof);
 	Info_AddChoice(DIA_Lobart_DMT,"Ты говорил с людьми в черном?",DIA_Lobart_DMT_spokeToThem);
 };
@@ -946,12 +940,9 @@ instance DIA_Lobart_ORKPROBLEM(C_Info)
 
 func int DIA_Lobart_ORKPROBLEM_Condition()
 {
-	if((Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)) && Npc_KnowsInfo(other,DIA_Lobart_DMT))
+	if((Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)) && Npc_KnowsInfo(other,DIA_Lobart_DMT) && !C_LobartOrksDead())
 	{
-		if(!Npc_IsDead(OrcWarrior_Lobart1) || !Npc_IsDead(OrcWarrior_Lobart2) || !Npc_IsDead(OrcWarrior_Lobart3) || !Npc_IsDead(OrcWarrior_Lobart4) || !Npc_IsDead(OrcWarrior_Lobart5) || !Npc_IsDead(OrcWarrior_Lobart6))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -979,12 +970,9 @@ instance DIA_Lobart_ORKSWEG(C_Info)
 
 func int DIA_Lobart_ORKSWEG_Condition()
 {
-	if((Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)))
+	if((Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)) && C_LobartOrksDead())
 	{
-		if(Npc_IsDead(OrcWarrior_Lobart1) && Npc_IsDead(OrcWarrior_Lobart2) && Npc_IsDead(OrcWarrior_Lobart3) && Npc_IsDead(OrcWarrior_Lobart4) && Npc_IsDead(OrcWarrior_Lobart5) && Npc_IsDead(OrcWarrior_Lobart6))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 

@@ -1,22 +1,4 @@
 
-func int C_BragoBanditsDead()
-{
-	if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_Away == FALSE))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(Ambusher_1014))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(Ambusher_1015))
-	{
-		return FALSE;
-	};
-	return TRUE;
-};
-
-
 var int SC_ForgotAboutCavalorn;
 var int CavalornWeakComment;
 

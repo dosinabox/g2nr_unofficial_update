@@ -316,6 +316,9 @@ var C_Npc Hanna;
 var C_Npc Kardif;
 var C_Npc AntiPaladin_NW;
 var C_Npc AntiPaladin_DI;
+var C_Npc TowerBandit1;
+var C_Npc TowerBandit2;
+var C_Npc TowerBandit3;
 
 func void B_InitNpcGlobals()
 {
@@ -640,5 +643,8 @@ func void B_InitNpcGlobals()
 	Kardif = Hlp_GetNpc(VLK_431_Kardif);
 	AntiPaladin_NW = Hlp_GetNpc(OrkElite_AntiPaladinOrkOberst);
 	AntiPaladin_DI = Hlp_GetNpc(OrkElite_AntiPaladinOrkOberst_DI);
+	TowerBandit1 = Hlp_GetNpc(BDT_10100_Addon_TowerBandit);
+	TowerBandit2 = Hlp_GetNpc(BDT_10101_Addon_TowerBandit);
+	TowerBandit3 = Hlp_GetNpc(BDT_10102_Addon_TowerBandit);
 };
 
