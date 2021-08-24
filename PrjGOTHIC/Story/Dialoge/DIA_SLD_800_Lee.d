@@ -1170,7 +1170,6 @@ func void DIA_Lee_Richter_Info()
 	{
 		DIA_Common_HeIsDead();
 		AI_Output(self,other,"DIA_Lee_PMSchulden_04_04");	//Я думал, ты умнее.
-		B_GivePlayerXP(XP_JudgeRichter / 3);
 		AI_StopProcessInfos(self);
 	};
 };
