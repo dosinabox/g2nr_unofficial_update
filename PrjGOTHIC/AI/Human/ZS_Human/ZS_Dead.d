@@ -136,6 +136,26 @@ func void ZS_Dead()
 					AlligatorJack_KrokosKilled += 1;
 				};
 			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rod))
+			{
+				Rod_KilledByPlayer = TRUE;
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Sentenza))
+			{
+				Sentenza_KilledByPlayer = TRUE;
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Fester))
+			{
+				Fester_KilledByPlayer = TRUE;
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Raoul))
+			{
+				Raoul_KilledByPlayer = TRUE;
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bullco))
+			{
+				Bullco_KilledByPlayer = TRUE;
+			}
 			else if(C_IsNpc(self,OrcShaman_Sit_CanyonLibraryKey))
 			{
 				OrcShaman_CanyonLibrary_KilledByPlayer = TRUE;

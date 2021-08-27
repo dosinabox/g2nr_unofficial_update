@@ -230,7 +230,7 @@ instance DIA_Borka_SECOND_CHANCE(C_Info)
 	condition = DIA_Borka_SECOND_CHANCE_Condition;
 	information = DIA_Borka_SECOND_CHANCE_Info;
 	permanent = TRUE;
-	description = "Договорились. Вот твое золото. (заплатить 50 золотых)";
+	description = B_BuildPriceString("Договорились. Вот твое золото.",50);
 };
 
 

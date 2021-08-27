@@ -452,6 +452,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			Npc_ExchangeRoutine(Bengar,"Start");
 		};
+		if(!Npc_IsDead(Richter))
+		{
+			Richter.flags = 0;
+		};
 		EnterNW_Kapitel3 = TRUE;
 	};
 };

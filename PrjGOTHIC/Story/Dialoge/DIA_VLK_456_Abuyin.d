@@ -387,7 +387,7 @@ instance DIA_Abuyin_Zukunft(C_Info)
 	condition = DIA_Abuyin_Zukunft_Condition;
 	information = DIA_Abuyin_Zukunft_Info;
 	permanent = TRUE;
-	description = "Расскажи мне о будущем. (заплатить 25 золотых)";
+	description = B_BuildPriceString("Расскажи мне о будущем.",25);
 };
 
 
@@ -508,7 +508,7 @@ instance DIA_Abuyin_Zukunft2(C_Info)
 	condition = DIA_Abuyin_Zukunft2_Condition;
 	information = DIA_Abuyin_Zukunft2_Info;
 	permanent = TRUE;
-	description = "Расскажи мне о будущем. (заплатить 100 золотых)";
+	description = B_BuildPriceString("Расскажи мне о будущем.",100);
 };
 
 
@@ -587,7 +587,7 @@ instance DIA_Abuyin_Zukunft3(C_Info)
 	condition = DIA_Abuyin_Zukunft3_Condition;
 	information = DIA_Abuyin_Zukunft3_Info;
 	permanent = TRUE;
-	description = "Расскажи мне о будущем. (заплатить 250 золотых)";
+	description = B_BuildPriceString("Расскажи мне о будущем.",250);
 };
 
 
@@ -666,7 +666,7 @@ instance DIA_Abuyin_Zukunft4(C_Info)
 	condition = DIA_Abuyin_Zukunft4_Condition;
 	information = DIA_Abuyin_Zukunft4_Info;
 	permanent = TRUE;
-	description = "Расскажи мне о будущем. (заплатить 500 золотых)";
+	description = B_BuildPriceString("Расскажи мне о будущем.",500);
 };
 
 
@@ -745,7 +745,7 @@ instance DIA_Abuyin_Zukunft5(C_Info)
 	condition = DIA_Abuyin_Zukunft5_Condition;
 	information = DIA_Abuyin_Zukunft5_Info;
 	permanent = TRUE;
-	description = "Расскажи мне о будущем. (заплатить 1000 золотых)";
+	description = B_BuildPriceString("Расскажи мне о будущем.",1000);
 };
 
 
