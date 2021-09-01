@@ -176,8 +176,8 @@ func void DIA_Hagen_PETZMASTER_Info()
 		};
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_04");	//Страже приказано казнить убийц на месте.
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_05");	//Убийства неприемлемы в этом городе. Но ты можешь подтвердить свое раскаяние, заплатив штраф.
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
 	{
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_06");	//Ты обвиняешься в воровстве!
 		if((PETZCOUNTER_City_Attack + PETZCOUNTER_City_Sheepkiller) > 0)
@@ -186,8 +186,8 @@ func void DIA_Hagen_PETZMASTER_Info()
 		};
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_08");	//Это нарушение законов города. Ты должен заплатить штраф.
 		Hagen_Schulden = B_GetTotalPetzCounter(self) * 50;
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
 	{
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_09");	//Ты ввязался в драку. Таким образом ты нарушил закон.
 		if(PETZCOUNTER_City_Sheepkiller > 0)
@@ -197,8 +197,8 @@ func void DIA_Hagen_PETZMASTER_Info()
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_11");	//Нарушение законов города - это нарушение законов Инноса.
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_12");	//Следовательно, ты должен заплатить за это.
 		Hagen_Schulden = B_GetTotalPetzCounter(self) * 50;
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_SHEEPKILLER)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_SHEEPKILLER)
 	{
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_13");	//Ты убил нашу овцу - я сначала даже не поверил в это.
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_14");	//Зачем ты делаешь все это?!

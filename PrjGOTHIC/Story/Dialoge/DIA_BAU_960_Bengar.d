@@ -799,7 +799,7 @@ func int DIA_Bengar_PERM_Condition()
 
 func void DIA_Bengar_PERM_Info()
 {
-	AI_Output(other,self,"DIA_Bengar_PERM_15_00");	//Все будет в порядке.
+	DIA_Common_EverythingWillBeAlright();
 	if((Npc_GetDistToWP(Malak,"FARM3") < 3000) && !Npc_IsDead(Malak))
 	{
 		AI_Output(self,other,"DIA_Bengar_PERM_10_01");	//Малак опять здесь, но ситуация почти не изменилась.

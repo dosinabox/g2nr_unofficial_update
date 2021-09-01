@@ -314,8 +314,8 @@ func void DIA_Andre_PETZMASTER_Info()
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_06");	//Но я не заинтересован в том, чтобы повесить тебя. Идет война, и нам нужен каждый солдат.
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_07");	//Но будет не так-то просто успокоить народ.
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_08");	//Ты мог бы подтвердить свое раскаяние, заплатив штраф - естественно, он должен быть довольно значительным.
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
 	{
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_09");	//Хорошо, что ты пришел! Тебя обвиняют в воровстве! Есть свидетели!
 		if((PETZCOUNTER_City_Attack + PETZCOUNTER_City_Sheepkiller) > 0)
@@ -325,8 +325,8 @@ func void DIA_Andre_PETZMASTER_Info()
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_11");	//Я не потерплю такого поведения в моем городе!
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_12");	//Ты должен заплатить штраф, чтобы искупить свою вину.
 		Andre_Schulden = B_GetTotalPetzCounter(self) * 50;
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
 	{
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_13");	//Если ты дерешься со всяким сбродом в гавани - это одно...
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_14");	//Но когда ты нападаешь на граждан или королевских солдат, я должен принять меры.
@@ -337,8 +337,8 @@ func void DIA_Andre_PETZMASTER_Info()
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_16");	//Если я просто так отпущу тебя, скоро все будут делать то, что хотят.
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_17");	//Так что тебе придется заплатить соответствующий штраф - и твои прегрешения будут забыты.
 		Andre_Schulden = B_GetTotalPetzCounter(self) * 50;
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_SHEEPKILLER)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_SHEEPKILLER)
 	{
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_18");	//Я слышал, что ты зарезал овцу.
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_19");	//Ты же понимаешь, что я не могу оставить это дело просто так.

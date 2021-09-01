@@ -1360,3 +1360,5 @@ var int CaptainIsBackToStartPosition;
 var int IceDragonSpell;
 var int ClassicMeleeWeaponsTraders;
 var int PardosLeftFarmWithMalak;
+var int Lares_FirstMetAsGuildless;
+var int Lee_FirstMetAsGuildless;

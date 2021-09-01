@@ -196,8 +196,6 @@ func void B_Lares_Comment_SLD()
 	AI_Output(self,other,"DIA_Addon_Lares_OtherGuild_09_00");	//Я слышал, тебя приняли в ряды наемников Ли?
 };
 
-var int Lares_FirstMetAsGuildless;
-
 instance DIA_Lares_HALLO(C_Info)
 {
 	npc = VLK_449_Lares;
