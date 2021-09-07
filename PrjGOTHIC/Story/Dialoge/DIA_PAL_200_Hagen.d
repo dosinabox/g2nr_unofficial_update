@@ -1001,6 +1001,15 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 };
 
 
+func int C_SCReadyToRescueBennet()
+{
+	if((RescueBennet_KnowsCornelius == TRUE) && Npc_HasItems(hero,ItWr_CorneliusTagebuch_Mis) && (Cornelius_IsLiar == TRUE))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 var int Hagen_einmalBennet;
 
 instance DIA_Lord_Hagen_RescueBennet(C_Info)
@@ -1016,16 +1025,9 @@ instance DIA_Lord_Hagen_RescueBennet(C_Info)
 
 func int DIA_Lord_Hagen_RescueBennet_Condition()
 {
-	if(MIS_RescueBennet == LOG_Running)
+	if((MIS_RescueBennet == LOG_Running) && !C_SCReadyToRescueBennet())
 	{
-		if((RescueBennet_KnowsCornelius == TRUE) && Npc_HasItems(other,ItWr_CorneliusTagebuch_Mis) && (Cornelius_IsLiar == TRUE))
-		{
-			return FALSE;
-		}
-		else
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -1103,12 +1105,9 @@ instance DIA_Lord_Hagen_Cornelius(C_Info)
 
 func int DIA_Lord_Hagen_Cornelius_Condition()
 {
-	if((MIS_RescueBennet == LOG_Running) && (RescueBennet_KnowsCornelius == TRUE))
+	if((MIS_RescueBennet == LOG_Running) && C_SCReadyToRescueBennet())
 	{
-		if(Npc_HasItems(other,ItWr_CorneliusTagebuch_Mis) && (Cornelius_IsLiar == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -1140,7 +1139,6 @@ func void DIA_Lord_Hagen_Cornelius_Info()
 	{
 		AI_Output(other,self,"DIA_Lord_Hagen_Cornelius_15_10");	//Он сбежал.
 		AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_11");	//Рано или поздно, он объявится. И тогда мы арестуем его.
-		//B_StartOtherRoutine(Cornelius,"FLED");
 	}
 	else
 	{

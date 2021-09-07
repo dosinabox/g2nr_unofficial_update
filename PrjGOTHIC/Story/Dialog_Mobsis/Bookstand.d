@@ -25,9 +25,9 @@ func void Use_Bookstand_01_S1()
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"Высший Cовет");
 		Doc_Show(nDocID);
-		if((hero.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == FALSE))
+		if((hero.guild == GIL_NOV) && (Knows_Fire_Contest == FALSE))
 		{
-			KNOWS_FIRE_CONTEST = TRUE;
+			Knows_Fire_Contest = TRUE;
 			Log_CreateTopic(TOPIC_FireContest,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_FireContest,LOG_Running);
 			B_LogEntry(TOPIC_FireContest,"Будучи послушником, я имею право требовать прохождения Испытания Огнем. Каждый из трех магов Высшего Совета должен дать мне задание. Если я пройду эти испытания, я буду принят в Круг Огня.");

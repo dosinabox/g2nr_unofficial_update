@@ -91,6 +91,12 @@ func void DIA_VLK_6_LOCATION_Info()
 	AI_Output(self,other,"DIA_VLK_6_LOCATION_06_01");	//Тебе кажется, что здесь не так-то просто найти дорогу? Даже указатели не всегда помогают?
 	AI_Output(self,other,"DIA_VLK_6_LOCATION_06_02");	//Если у тебя так плохо с ориентированием, тебе лучше спуститься в гавань - если ты найдешь путь туда - и поискать дом картографа.
 	AI_Output(self,other,"DIA_VLK_6_LOCATION_06_03");	//Он находится рядом с кабаком у причала. У Ибрагима наверняка найдется карта города для тебя.
+	if(Brahim_Trade == FALSE)
+	{
+		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTrader,"Ибрагим рисует карты и продает их в гавани.");
+		Brahim_Trade = TRUE;
+	};
 };
 
 
@@ -115,12 +121,12 @@ func void DIA_VLK_6_STANDARD_Info()
 	if(Kapitel == 1)
 	{
 		AI_Output(self,other,"DIA_VLK_6_STANDARD_06_01");	//С тех пор, как рухнул Барьер, город заполонили бандиты. Но паладины сидят сложа руки. Что они вообще тогда здесь делают, черт возьми?
-	};
-	if(Kapitel == 2)
+	}
+	else if(Kapitel == 2)
 	{
 		AI_Output(self,other,"DIA_VLK_6_STANDARD_06_02");	//Последнее время проблема с бандитами не стоит так остро. Похоже, кто-то, наконец, взялся за них.
-	};
-	if(Kapitel == 3)
+	}
+	else if(Kapitel == 3)
 	{
 		if(MIS_RescueBennet == LOG_SUCCESS)
 		{
@@ -130,12 +136,12 @@ func void DIA_VLK_6_STANDARD_Info()
 		{
 			AI_Output(self,other,"DIA_VLK_6_STANDARD_06_04");	//Говорят, что один из наемников Онара убил паладина. Убийцу поймали и бросили за решетку. Скоро его повесят.
 		};
-	};
-	if(Kapitel == 4)
+	}
+	else if(Kapitel == 4)
 	{
 		AI_Output(self,other,"DIA_VLK_6_STANDARD_06_05");	//Интересно, есть хоть доля правды в этих рассказах о драконах...
-	};
-	if(Kapitel >= 5)
+	}
+	else if(Kapitel >= 5)
 	{
 		AI_Output(self,other,"DIA_VLK_6_STANDARD_06_06");	//Говорят, что лорд Хаген собирает своих людей, чтобы освободить Долину Рудников. Наконец-то паладины зашевелились!
 	};

@@ -97,10 +97,11 @@ func void DIA_Brahim_GREET_Info()
 		AI_Output(self,other,"DIA_Brahim_GREET_07_02");	//Так как ты недавно здесь, возможно, тебе пригодится карта города.
 		AI_Output(self,other,"DIA_Brahim_GREET_07_03");	//Это очень недорого и очень полезно, пока ты здесь не освоишься.
 	};
-	if(DIA_Kardif_Lernen_permanent == FALSE)
+	if(Brahim_Trade == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTrader,"Ибрагим рисует карты и продает их в гавани.");
+		Brahim_Trade = TRUE;
 	};
 };
 

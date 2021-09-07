@@ -699,7 +699,7 @@ instance DIA_Parlan_KNOWSJUDGE(C_Info)
 
 func int DIA_Parlan_KNOWSJUDGE_Condition()
 {
-	if((other.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == TRUE) && !Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE))
+	if((other.guild == GIL_NOV) && (Knows_Fire_Contest == TRUE) && !Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE))
 	{
 		return TRUE;
 	};

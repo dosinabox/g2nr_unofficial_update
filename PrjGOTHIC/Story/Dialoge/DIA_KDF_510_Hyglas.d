@@ -34,7 +34,7 @@ instance DIA_Hyglas_Feuer(C_Info)
 
 func int DIA_Hyglas_Feuer_Condition()
 {
-	if((other.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == TRUE) && !Npc_KnowsInfo(other,DIA_Pyrokar_FIRE) && Npc_KnowsInfo(other,DIA_Hyglas_JOB))
+	if((other.guild == GIL_NOV) && (Knows_Fire_Contest == TRUE) && !Npc_KnowsInfo(other,DIA_Pyrokar_FIRE) && Npc_KnowsInfo(other,DIA_Hyglas_JOB))
 	{
 		return TRUE;
 	};

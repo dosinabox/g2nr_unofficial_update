@@ -7,18 +7,18 @@ func void b_event_portal_earthquake()
 	if(randy == 0)
 	{
 		Snd_Play("Ravens_Earthquake4");
-	};
-	if(randy == 1)
+	}
+	else if(randy == 1)
 	{
 		Snd_Play("Ravens_Earthquake4");
 		Snd_Play("Ravens_Earthquake2");
-	};
-	if(randy == 2)
+	}
+	else if(randy == 2)
 	{
 		Snd_Play("Ravens_Earthquake3");
 		Snd_Play("Ravens_Earthquake1");
-	};
-	if(randy == 3)
+	}
+	else if(randy == 3)
 	{
 		Snd_Play("Ravens_Earthquake3");
 	};

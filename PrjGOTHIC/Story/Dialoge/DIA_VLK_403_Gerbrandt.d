@@ -10,10 +10,12 @@ func void B_StartNewLife()
 			B_StartOtherRoutine(DiegoNW,"GERBRANDT");
 		};
 		self.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		self.aivar[AIV_ToughGuy] = TRUE;
 		Npc_ExchangeRoutine(self,"FLEE");
 		if(!Npc_IsDead(GerbrandtsFrau))
 		{
 			GerbrandtsFrau.aivar[AIV_CommentedPlayerCrime] = FALSE;
+			GerbrandtsFrau.aivar[AIV_ToughGuy] = TRUE;
 			B_StartOtherRoutine(GerbrandtsFrau,"NEWLIFE");
 		};
 		B_StartOtherRoutine(VLK_419_Buerger,"NEWPLACE");

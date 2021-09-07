@@ -34,7 +34,7 @@ instance DIA_Pyrokar_WELCOME(C_Info)
 
 func int DIA_Pyrokar_WELCOME_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (KNOWS_FIRE_CONTEST == FALSE) && (hero.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (Knows_Fire_Contest == FALSE) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -96,7 +96,7 @@ instance DIA_Pyrokar_Auge(C_Info)
 
 func int DIA_Pyrokar_Auge_Condition()
 {
-	if((KNOWS_FIRE_CONTEST == FALSE) && (other.guild == GIL_NOV))
+	if((Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -147,7 +147,7 @@ func void DIA_Addon_Pyrokar_MissingPeople_Info()
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Маги Огня огорчены исчезновениями горожан. Однако, они говорят, что этим должны заниматься маги Воды. В монастыре мне не удастся найти помощи по этому вопросу.");
-	if((other.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == FALSE))
+	if((other.guild == GIL_NOV) && (Knows_Fire_Contest == FALSE))
 	{
 		AI_StopProcessInfos(self);
 	};
@@ -171,7 +171,7 @@ func int DIA_Pyrokar_GOAWAY_Condition()
 	{
 		return FALSE;
 	};
-	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(hero,DIA_Pyrokar_Hagen) && Npc_KnowsInfo(hero,DIA_Pyrokar_Auge) && (KNOWS_FIRE_CONTEST == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(hero,DIA_Pyrokar_Hagen) && Npc_KnowsInfo(hero,DIA_Pyrokar_Auge) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -197,7 +197,7 @@ instance DIA_Pyrokar_FIRE(C_Info)
 
 func int DIA_Pyrokar_FIRE_Condition()
 {
-	if((KNOWS_FIRE_CONTEST == TRUE) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Pyrokar_Hagen))
+	if((Knows_Fire_Contest == TRUE) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Pyrokar_Hagen))
 	{
 		return TRUE;
 	};

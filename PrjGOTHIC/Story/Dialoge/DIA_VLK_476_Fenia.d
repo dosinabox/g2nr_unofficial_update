@@ -206,6 +206,12 @@ func void DIA_Fenia_MoreTraders_Info()
 	AI_Output(other,self,"DIA_Fenia_Infos_haendler_15_00");	//Есть здесь, в порту, другие торговцы?
 	AI_Output(self,other,"DIA_Fenia_Infos_haendler_17_01");	//Если ты пойдешь налево вдоль причала, то увидишь Халвора, моего мужа. Он торгует рыбой.
 	AI_Output(self,other,"DIA_Fenia_Infos_haendler_17_02");	//А если ты пойдешь в другую сторону, там живет Ибрагим, картограф.
+	if(Brahim_Trade == FALSE)
+	{
+		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTrader,"Ибрагим рисует карты и продает их в гавани.");
+		Brahim_Trade = TRUE;
+	};
 };
 
 

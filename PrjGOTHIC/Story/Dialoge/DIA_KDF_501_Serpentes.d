@@ -34,7 +34,7 @@ instance DIA_Serpentes_NOTALK(C_Info)
 
 func int DIA_Serpentes_NOTALK_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (KNOWS_FIRE_CONTEST == FALSE) && (hero.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (Knows_Fire_Contest == FALSE) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
