@@ -1220,7 +1220,7 @@ func void DIA_Pyrokar_GIVEINNOSEYE_Info()
 
 func void DIA_Pyrokar_GIVEINNOSEYE_wer()
 {
-	if(hero.guild == GIL_KDF)
+	if((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV))
 	{
 		AI_Output(other,self,"DIA_Pyrokar_GIVEINNOSEYE_wer_15_00");	//Кто мог совершить столь дерзкий поступок, Мастер?
 	}
@@ -2168,12 +2168,12 @@ func void DIA_Pyrokar_AmulettofDeath_Info()
 	AI_Output(other,self,"DIA_Pyrokar_AmulettofDeath_15_00");	//В пророчестве упоминается священная Аура Инноса.
 	AI_Output(self,other,"DIA_Pyrokar_AmulettofDeath_11_01");	//Аура Инноса - это амулет, который могут носить только величайшие маги всех времен и народов.
 	Info_ClearChoices(DIA_Pyrokar_AmulettofDeath);
-	Info_AddChoice(DIA_Pyrokar_AmulettofDeath,Dialog_Back,DIA_Pyrokar_AmulettofDeath_BAck);
+	Info_AddChoice(DIA_Pyrokar_AmulettofDeath,Dialog_Back,DIA_Pyrokar_AmulettofDeath_Back);
 	Info_AddChoice(DIA_Pyrokar_AmulettofDeath,"Могу я взять его?",DIA_Pyrokar_AmulettofDeath_CanHaveIt);
 	Info_AddChoice(DIA_Pyrokar_AmulettofDeath,"Что делает этот амулет?",DIA_Pyrokar_AmulettofDeath_Amulett);
 };
 
-func void DIA_Pyrokar_AmulettofDeath_BAck()
+func void DIA_Pyrokar_AmulettofDeath_Back()
 {
 	Info_ClearChoices(DIA_Pyrokar_AmulettofDeath);
 };

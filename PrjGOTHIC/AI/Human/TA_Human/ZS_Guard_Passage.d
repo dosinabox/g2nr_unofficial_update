@@ -10,11 +10,12 @@ func void ZS_Guard_Passage()
 	if(Npc_GetDistToNpc(self,hero) > PERC_DIST_DIALOG)
 	{
 		AI_AlignToWP(self);
-	}
-	else if(!C_BodyStateContains(other,BS_SNEAK))
+	};
+	/*else if(!C_BodyStateContains(other,BS_SNEAK))
 	{
 		AI_TurnToNPC(self,hero);
-	};
+	};*/
+	AI_TurnToNPC(self,hero);
 };
 
 func int ZS_Guard_Passage_Loop()
@@ -33,11 +34,12 @@ func int ZS_Guard_Passage_Loop()
 			{
 				AI_AlignToWP(self);
 			};
-		}
-		else if(!C_BodyStateContains(other,BS_SNEAK))
+		};
+		/*else if(!C_BodyStateContains(other,BS_SNEAK))
 		{
 			AI_TurnToNPC(self,hero);
-		};
+		};*/
+		AI_TurnToNPC(self,hero);
 		Npc_SetStateTime(self,0);
 	};
 	return LOOP_CONTINUE;

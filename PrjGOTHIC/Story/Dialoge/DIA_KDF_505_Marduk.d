@@ -333,8 +333,8 @@ func void DIA_Marduk_Kap3_Hello_Info()
 	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_Info_05_01");	//С каких это пор ты стал паладином?
-	};
-	if((other.guild == GIL_DJG) || (other.guild == GIL_SLD) || (other.guild == GIL_NONE))
+	}
+	else if((other.guild == GIL_DJG) || (other.guild == GIL_SLD) || (other.guild == GIL_NONE))
 	{
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_Info_05_02");	//Откуда ты пришел?
 	};
@@ -343,8 +343,8 @@ func void DIA_Marduk_Kap3_Hello_Info()
 	if(other.guild == GIL_PAL)
 	{
 		Info_AddChoice(DIA_Marduk_Kap3_Hello,"Совсем недавно.",DIA_Marduk_Kap3_Hello_Soon);
-	};
-	if((other.guild == GIL_DJG) || (other.guild == GIL_SLD))
+	}
+	else if((other.guild == GIL_DJG) || (other.guild == GIL_SLD))
 	{
 		Info_AddChoice(DIA_Marduk_Kap3_Hello,"Я пришел с фермы.",DIA_Marduk_Kap3_Hello_DJG);
 	};
@@ -504,6 +504,9 @@ func void DIA_Marduk_SwordBlessing_OreBlade()
 };
 
 
+var int Marduk_PedroIsTraitor;
+var int Marduk_BennetIsKiller;
+
 instance DIA_Marduk_Kap3_PERM(C_Info)
 {
 	npc = KDF_505_Marduk;
@@ -517,7 +520,7 @@ instance DIA_Marduk_Kap3_PERM(C_Info)
 
 func int DIA_Marduk_Kap3_PERM_Condition()
 {
-	if(Kapitel == 3)
+	if(Kapitel >= 3)
 	{
 		return TRUE;
 	};
@@ -526,33 +529,47 @@ func int DIA_Marduk_Kap3_PERM_Condition()
 func void DIA_Marduk_Kap3_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Marduk_Kap3_PERM_15_00");	//Есть новости?
-	if(MIS_NovizenChase == LOG_Running)
+	if((Kapitel >= 4) || ((Marduk_PedroIsTraitor == TRUE) && (Marduk_BennetIsKiller == TRUE)))
 	{
-		AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_01");	//Да, врагу удалось внедрить предателя в наши ряды.
-		AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_02");	//Он украл Глаз Инноса, один из самых важных наших артефактов. И это только вершина айсберга.
-	};
-	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_04");	//(озабоченно) Враг, по-видимому, уже вошел в город.
-	AI_Output(other,self,"DIA_Marduk_Kap3_PERM_15_05");	//Что ты имеешь в виду?
-	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_06");	//Один из паладинов, Лотар, был убит на улице.
-	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_07");	//(зло) Прямо средь бела дня! Это зашло слишком далеко, но я боюсь, что это только начало.
-	Info_ClearChoices(DIA_Marduk_Kap3_PERM);
-	Info_AddChoice(DIA_Marduk_Kap3_PERM,Dialog_Back,DIA_Marduk_Kap3_PERM_BAck);
-	Info_AddChoice(DIA_Marduk_Kap3_PERM,"Что будет теперь?",DIA_Marduk_Kap3_PERM_AndNow);
-	if((RescueBennet_KnowsCornelius == TRUE) && (Cornelius_IsLiar == TRUE))
-	{
-		Info_AddChoice(DIA_Marduk_Kap3_PERM,"Беннет невиновен. Свидетель солгал.",DIA_Marduk_Kap3_PERM_BennetisNotGuilty);
+		AI_Output(self,other,"DIA_Marduk_Kap4U5_PERM_05_01");	//Нет, о, боже, ситуация все еще очень критическая.
 	}
 	else
 	{
-		Info_AddChoice(DIA_Marduk_Kap3_PERM,"Убийца был пойман?",DIA_Marduk_Kap3_PERM_Murderer);
+		if((Pedro_Traitor == TRUE) && (MIS_NovizenChase != LOG_SUCCESS))
+		{
+			if(Marduk_PedroIsTraitor == FALSE)
+			{
+				AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_01");	//Да, врагу удалось внедрить предателя в наши ряды.
+				AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_02");	//Он украл Глаз Инноса, один из самых важных наших артефактов. И это только вершина айсберга.
+				Marduk_PedroIsTraitor = TRUE;
+			};
+		};
+		AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_04");	//(озабоченно) Враг, по-видимому, уже вошел в город.
+		if(Marduk_BennetIsKiller == FALSE)
+		{
+			AI_Output(other,self,"DIA_Marduk_Kap3_PERM_15_05");	//Что ты имеешь в виду?
+			AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_06");	//Один из паладинов, Лотар, был убит на улице.
+			AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_07");	//(зло) Прямо средь бела дня! Это зашло слишком далеко, но я боюсь, что это только начало.
+			Marduk_BennetIsKiller = TRUE;
+		};
 	};
-	if(MIS_NovizenChase == LOG_Running)
+	if(Kapitel == 3)
 	{
-		Info_AddChoice(DIA_Marduk_Kap3_PERM,"Куда побежал вор?",DIA_Marduk_Kap3_PERM_thief);
+		Info_ClearChoices(DIA_Marduk_Kap3_PERM);
+		Info_AddChoice(DIA_Marduk_Kap3_PERM,Dialog_Back,DIA_Marduk_Kap3_PERM_Back);
+		Info_AddChoice(DIA_Marduk_Kap3_PERM,"Что будет теперь?",DIA_Marduk_Kap3_PERM_AndNow);
+		if(MIS_RescueBennet == FALSE)
+		{
+			Info_AddChoice(DIA_Marduk_Kap3_PERM,"Убийца был пойман?",DIA_Marduk_Kap3_PERM_Murderer);
+		};
+		if((Pedro_Traitor == TRUE) && (MIS_NovizenChase != LOG_SUCCESS))
+		{
+			Info_AddChoice(DIA_Marduk_Kap3_PERM,"Куда побежал вор?",DIA_Marduk_Kap3_PERM_thief);
+		};
 	};
 };
 
-func void DIA_Marduk_Kap3_PERM_BAck()
+func void DIA_Marduk_Kap3_PERM_Back()
 {
 	Info_ClearChoices(DIA_Marduk_Kap3_PERM);
 };
@@ -560,7 +577,7 @@ func void DIA_Marduk_Kap3_PERM_BAck()
 func void DIA_Marduk_Kap3_PERM_AndNow()
 {
 	AI_Output(other,self,"DIA_Marduk_Kap3_PERM_AndNow_15_00");	//Что будет теперь?
-	if(MIS_NovizenChase == LOG_Running)
+	if((Pedro_Traitor == TRUE) && (MIS_NovizenChase != LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Marduk_Kap3_PERM_AndNow_05_01");	//Мы будем преследовать вора, куда бы он не побежал. Мы найдем его, и он понесет заслуженное наказание.
 		AI_Output(other,self,"DIA_Marduk_Kap3_PERM_AndNow_15_02");	//Для этого сначала нужно знать, кто этот вор.
@@ -572,14 +589,6 @@ func void DIA_Marduk_Kap3_PERM_AndNow()
 		AI_Output(self,other,"DIA_Marduk_Kap3_PERM_AndNow_05_05");	//Убийство, а тем более паладина, несомненно, одно из самых тяжелых преступлений.
 		AI_Output(self,other,"DIA_Marduk_Kap3_PERM_AndNow_05_06");	//Убийца наверняка будет приговорен к смерти.
 	};
-};
-
-func void DIA_Marduk_Kap3_PERM_BennetisNotGuilty()
-{
-	AI_Output(other,self,"DIA_Marduk_Kap3_PERM_BennetisNotGuilty_15_00");	//Беннет невиновен. Свидетель солгал.
-	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_BennetisNotGuilty_05_01");	//Откуда ты это знаешь?
-	AI_Output(other,self,"DIA_Marduk_Kap3_PERM_BennetisNotGuilty_15_02");	//Я нашел доказательства.
-	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_BennetisNotGuilty_05_03");	//Иногда мне кажется, что предательство и жадность - наши самые величайшие враги.
 };
 
 func void DIA_Marduk_Kap3_PERM_Murderer()
@@ -598,29 +607,31 @@ func void DIA_Marduk_Kap3_PERM_thief()
 };
 
 
-instance DIA_Marduk_Kap4U5_PERM(C_Info)
+instance DIA_Marduk_BennetIsNotGuilty(C_Info)
 {
 	npc = KDF_505_Marduk;
-	nr = 49;
-	condition = DIA_Marduk_Kap4U5_PERM_Condition;
-	information = DIA_Marduk_Kap4U5_PERM_Info;
-	permanent = TRUE;
-	description = "Есть новости?";
+	nr = 40;
+	condition = DIA_Marduk_BennetIsNotGuilty_Condition;
+	information = DIA_Marduk_BennetIsNotGuilty_Info;
+	permanent = FALSE;
+	description = "Беннет невиновен. Свидетель солгал.";
 };
 
 
-func int DIA_Marduk_Kap4U5_PERM_Condition()
+func int DIA_Marduk_BennetIsNotGuilty_Condition()
 {
-	if(Kapitel >= 4)
+	if((Marduk_BennetIsKiller == TRUE) && (RescueBennet_KnowsCornelius == TRUE) && (Cornelius_IsLiar == TRUE) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_Marduk_Kap4U5_PERM_Info()
+func void DIA_Marduk_BennetIsNotGuilty_Info()
 {
-	AI_Output(other,self,"DIA_Marduk_Kap4U5_PERM_15_00");	//Есть новости?
-	AI_Output(self,other,"DIA_Marduk_Kap4U5_PERM_05_01");	//Нет, о, боже, ситуация все еще очень критическая.
+	AI_Output(other,self,"DIA_Marduk_Kap3_PERM_BennetisNotGuilty_15_00");	//Беннет невиновен. Свидетель солгал.
+	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_BennetisNotGuilty_05_01");	//Откуда ты это знаешь?
+	AI_Output(other,self,"DIA_Marduk_Kap3_PERM_BennetisNotGuilty_15_02");	//Я нашел доказательства.
+	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_BennetisNotGuilty_05_03");	//Иногда мне кажется, что предательство и жадность - наши самые величайшие враги.
 };
 
 
