@@ -1170,7 +1170,6 @@ func void Rtn_Start_1501()
 func void Startup_TA_Testlevel()
 {
 	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
 	Wld_InsertNpc(PIR_1350_Addon_Francis,"WP_SMITH_SHARP");
 	Wld_InsertNpc(PIR_1351_Addon_Samuel,"WP_COOK_STOVE");
@@ -1189,7 +1188,6 @@ func void init_sub_ta_testlevel()
 func void INIT_TA_Testlevel()
 {
 	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
 	init_sub_ta_testlevel();
 };

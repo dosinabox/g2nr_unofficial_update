@@ -30,3 +30,23 @@ func void B_ResetLares()
 	B_StartOtherRoutine(BridgeBandit,"Intercept");
 };
 
+func void B_ResetHenryPirates()
+{
+	if(!Npc_IsDead(SawPirate))
+	{
+		if(SawPirate.aivar[AIV_PARTYMEMBER] == TRUE)
+		{
+			SawPirate.aivar[AIV_PARTYMEMBER] = FALSE;
+			Npc_ExchangeRoutine(SawPirate,"START");
+		};
+	};
+	if(!Npc_IsDead(HammerPirate))
+	{
+		if(HammerPirate.aivar[AIV_PARTYMEMBER] == TRUE)
+		{
+			HammerPirate.aivar[AIV_PARTYMEMBER] = FALSE;
+			Npc_ExchangeRoutine(HammerPirate,"START");
+		};
+	};
+};
+

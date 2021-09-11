@@ -414,19 +414,8 @@ func void DIA_Addon_Garett_Trade_Info()
 {
 	DIA_Common_ShowMeYourGoods();
 	B_GiveTradeInv(self);
-	if(TradersHaveLimitedAmmo == TRUE)
-	{
-		if(Garett_Ammo_Day <= Wld_GetDay())
-		{
-			B_RefreshAmmo(self,25);
-			Garett_Ammo_Day = Wld_GetDay() + 1;
-		};
-	}
-	else
-	{
-		B_RefreshAmmo(self,25);
-	};
 	Trade_IsActive = TRUE;
+	B_RefreshTraderAmmo(self,25);
 };
 
 instance DIA_Addon_Garett_ArmorM(C_Info)

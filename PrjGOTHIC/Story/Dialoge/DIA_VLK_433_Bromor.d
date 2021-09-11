@@ -253,7 +253,7 @@ instance DIA_Bromor_Pay(C_Info)
 	condition = DIA_Bromor_Pay_Condition;
 	information = DIA_Bromor_Pay_Info;
 	permanent = TRUE;
-	description = "Я хочу развлечься. (заплатить 50 золотых)";
+	description = B_BuildPriceString("Я хочу развлечься.",50);
 };
 
 

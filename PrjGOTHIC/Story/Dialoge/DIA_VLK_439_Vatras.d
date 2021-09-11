@@ -541,7 +541,7 @@ func void B_Vatras_First_Truth()
 		AI_Output(self,other,"DIA_Vatras_INFLUENCE_FIRST_TRUTH_05_02");	//(задумчиво) Драконы? Ты говоришь о существах, которые до последнего времени упоминались только в легендах. Откуда ты знаешь это?
 	};
 	Vatras_First = TRUE;
-	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && Wld_IsTime(5,5,20,10))
+	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && Wld_IsTime(6,0,20,10))
 	{
 		Player_TalkedAboutDragonsToSomeone = TRUE;
 	};

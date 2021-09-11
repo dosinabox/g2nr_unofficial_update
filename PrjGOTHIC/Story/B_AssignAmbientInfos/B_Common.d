@@ -279,6 +279,16 @@ func void DIA_Common_SureWhatsNeeded()
 	AI_Output(other,self,"DIA_Baltram_Trick_15_01");	//Конечно, а что нужно?
 };
 
+func void DIA_Common_Yeah()
+{
+	AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_06");	//Ну да.
+};
+
+func void DIA_Common_EverythingWillBeAlright()
+{
+	AI_Output(other,self,"DIA_Bengar_PERM_15_00");	//Все будет в порядке.
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?

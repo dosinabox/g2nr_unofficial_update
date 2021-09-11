@@ -92,7 +92,7 @@ instance DIA_Ulthar_WHEN(C_Info)
 
 func int DIA_Ulthar_WHEN_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Ulthar_MAGETEST) && (KNOWS_FIRE_CONTEST == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_Ulthar_MAGETEST) && (Knows_Fire_Contest == FALSE))
 	{
 		return TRUE;
 	};

@@ -152,7 +152,7 @@ func int ZS_MM_Attack_Loop()
 		AI_Wait(self,0.8);
 		self.aivar[AIV_WaitBeforeAttack] = 0;
 	};
-	if(self.level == 0)
+	if(C_NpcIsSummon(self))
 	{
 		if(Npc_GetStateTime(self) > self.aivar[AIV_StateTime])
 		{

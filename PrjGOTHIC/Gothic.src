@@ -54,9 +54,6 @@ AI\Human\B_Human\B_Say.d
 AI\Human\B_Human\B_Say_Overlay.d
 AI\AI_Intern\Player_Plunder_Is_Empty.d
 Story\Log_Entries\B_CloseTopic.d
-Story\Log_Entries\B_CloseTopics_Hoshi.d
-Story\Log_Entries\B_CloseTopics_Mattes.d
-Story\Log_Entries\B_CloseTopics_Yoly.d
 Story\Log_Entries\B_CheckLog.d
 Story\B_Story\B_GivePlayerXP.d
 Story\B_Content\B_ScUsesRake.d
@@ -155,8 +152,6 @@ AI\Human\C_Human\C_NpcIsSummon.d
 AI\Human\C_Human\C_NpcIsNearWP.d
 AI\Human\C_Human\C_PlayerIsFakePirate.d
 AI\Human\C_Human\C_PlayerHasFakeGuild.d
-AI\Human\C_Human\C_BanditHelpsStoryBandit.d
-AI\Human\C_Human\C_BanditAttackBandit.d
 AI\Human\B_Human\B_LookAtNpc.d
 AI\Human\B_Human\B_ResetAll.d
 Story\B_Story\B_UseItem.d
@@ -1297,7 +1292,6 @@ Story\B_Story\B_TeachPlayerTalentSmith.d
 Story\B_Story\B_TeachPlayerTalentTakeAnimalTrophy.d
 Story\B_Story\B_TeachThiefTalent.d
 Story\B_Story\B_UseFakeScroll.d
-Story\B_Story\B_InitGuildAttitudes.d
 Story\B_Story\B_NPC_IsAliveCheck.d
 Story\B_Story\B_NpcSetJailed.d
 Story\B_AssignAmbientInfos\B_AssignDragonTalk_Main.d
@@ -1725,8 +1719,6 @@ Story\Events\B_PassedAbandonedMine.d
 Story\Events\B_HotelDoor.d
 Story\Events\B_GolemChest.d
 Story\Events\B_Spawn_Skeleton.d
-Story\Events\B_TeleportOutOfOwDemonTower.d
-_misk_\player_victim_is_immortal.d
 Story\Events\Enter_AddonWorld_FirstTime_Trigger.d
 Story\Events\Enter_DI_FirstTime_Trigger.d
 Story\Events\Enter_OldWorld_FirstTime_Trigger.d
@@ -1744,14 +1736,12 @@ Story\Events\evt_open_door_library_s1.d
 Story\Events\evt_orkoberst.d
 Story\Events\evt_orkoberst_switch_s1.d
 Story\Events\evt_ornament_switch_bigfarm_01_func.d
-Story\Events\evt_scopenslastdoor_func.d
 Story\Events\evt_sc_enter_library.d
 Story\Events\evt_troll_grave_01.d
 Story\Events\evt_truhe_ow_01.d
 Story\Events\evt_undeaddragondead_endsituation.d
 Story\Events\evt_undeaddragon_trap_01_func.d
 Story\Events\evt_vinoskellerei_func_s1.d
-Story\Events\Parse_It.d
 Story\Events\SC_ComesInto_CanyonLibrary_Func.d
 Story\Events\Valley_Showcase_TriggerScript_Func.d
 AI\Test_Scripts\CharacterHelper.d

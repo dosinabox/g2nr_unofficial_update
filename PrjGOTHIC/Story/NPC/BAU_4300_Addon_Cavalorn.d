@@ -46,6 +46,12 @@ func void Rtn_OrnamentSteinring_4300()
 	TA_Stand_WP(20,0,5,0,"NW_LITTLESTONEHENDGE");
 };
 
+func void Rtn_OrnamentSteinringCh3KDF_4300()
+{
+	TA_Stand_WP(5,0,20,0,"NW_FARM1_OUT_05");
+	TA_Stand_WP(20,0,5,0,"NW_FARM1_OUT_05");
+};
+
 func void Rtn_PreRangerMeeting_4300()
 {
 	TA_RangerMeeting(5,0,20,0,"NW_TAVERNE_06");

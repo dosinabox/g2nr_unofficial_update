@@ -571,23 +571,12 @@ func void DIA_Bosper_Trade_Info()
 	if(DIA_Bosper_Trade.trade == TRUE)
 	{
 		B_GiveTradeInv(self);
-		if(TradersHaveLimitedAmmo == TRUE)
-		{
-			if(Bosper_Ammo_Day <= Wld_GetDay())
-			{
-				B_RefreshAmmo(self,50);
-				Bosper_Ammo_Day = Wld_GetDay() + 1;
-			};
-		}
-		else
-		{
-			B_RefreshAmmo(self,50);
-		};
+		Trade_IsActive = TRUE;
+		B_RefreshTraderAmmo(self,50);
 		if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
 		{
 			BosperMinenAnteil = TRUE;
 		};
-		Trade_IsActive = TRUE;
 	}
 	else
 	{

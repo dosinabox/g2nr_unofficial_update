@@ -18,7 +18,7 @@ func void ZS_Dead()
 		}
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stoneguardian_NailedValleyShowcase_01))
 		{
-			if((MayaScrollGiven == FALSE) && !Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT) && (VALLEY_SHOWCASE_TRIGGERSCRIPT_FUNC_OneTime == FALSE))
+			if((MayaScrollGiven == FALSE) && !Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT))
 			{
 				CreateInvItems(self,ItSc_Teleport_Maya,1);
 				MayaScrollGiven = TRUE;
@@ -135,6 +135,26 @@ func void ZS_Dead()
 				{
 					AlligatorJack_KrokosKilled += 1;
 				};
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rod))
+			{
+				Rod_KilledByPlayer = TRUE;
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Sentenza))
+			{
+				Sentenza_KilledByPlayer = TRUE;
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Fester))
+			{
+				Fester_KilledByPlayer = TRUE;
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Raoul))
+			{
+				Raoul_KilledByPlayer = TRUE;
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bullco))
+			{
+				Bullco_KilledByPlayer = TRUE;
 			}
 			else if(C_IsNpc(self,OrcShaman_Sit_CanyonLibraryKey))
 			{

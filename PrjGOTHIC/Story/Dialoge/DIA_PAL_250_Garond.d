@@ -173,8 +173,8 @@ func void DIA_Garond_PETZMASTER_Info()
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_06");	//И у меня на счету каждый человек. Включая тебя.
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_07");	//Если тебе хочется убить кого-нибудь, просто выйди за ворота замка. И убивай там орков себе на здоровье.
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_08");	//Я вынужден наложить на тебя штраф - и мне крайне неприятно применять такие меры.
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
 	{
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_09");	//Ходят слухи, что ты шарил в чужих вещах.
 		if((PETZCOUNTER_City_Attack + PETZCOUNTER_City_Sheepkiller) > 0)
@@ -184,8 +184,8 @@ func void DIA_Garond_PETZMASTER_Info()
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_11");	//Тебе так просто не уйти от ответственности. Ты, похоже, не понимаешь всей серьезности ситуации.
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_12");	//Тебе придется заплатить штраф в качестве компенсации за твои преступления!
 		Garond_Schulden = B_GetTotalPetzCounter(self) * 50;
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
 	{
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_13");	//Я не люблю, когда среди моих людей случаются драки.
 		if(PETZCOUNTER_City_Sheepkiller > 0)
@@ -194,8 +194,8 @@ func void DIA_Garond_PETZMASTER_Info()
 		};
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_15");	//Тебе придется заплатить за это штраф!
 		Garond_Schulden = B_GetTotalPetzCounter(self) * 50;
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_SHEEPKILLER)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_SHEEPKILLER)
 	{
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_16");	//Ты убиваешь наших овец?! Это общественная собственность.
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_17");	//Тебе придется заплатить за это мясо.

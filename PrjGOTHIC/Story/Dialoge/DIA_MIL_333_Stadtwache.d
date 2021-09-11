@@ -75,12 +75,12 @@ func void DIA_Mil_333_Stadtwache_FirstWarn_Info()
 		if(B_GetGreatestPetzCrime(self) == CRIME_MURDER)
 		{
 			AI_Output(self,other,"DIA_Mil_333_Stadtwache_FirstWarn_06_03");	//Ты разыскиваешься за убийство в городе!
-		};
-		if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
+		}
+		else if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
 		{
 			AI_Output(self,other,"DIA_Mil_333_Stadtwache_FirstWarn_06_04");	//Мы не потерпим здесь грязных воров!
-		};
-		if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
+		}
+		else if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
 		{
 			AI_Output(self,other,"DIA_Mil_333_Stadtwache_FirstWarn_06_05");	//Нам не нужны смутьяны в городе!
 		};

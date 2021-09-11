@@ -3,11 +3,7 @@ func int pan_cond()
 {
 	if(Npc_IsPlayer(self))
 	{
-		if(Npc_HasItems(self,ItMi_Pan) && Npc_HasItems(self,ItFoMuttonRaw))
-		{
-			return TRUE;
-		}
-		else
+		if(!Npc_HasItems(self,ItMi_Pan) || !Npc_HasItems(self,ItFoMuttonRaw))
 		{
 			AI_PlayAni(self,"T_DONTKNOW");
 			if(!Npc_HasItems(self,ItMi_Pan) && !Npc_HasItems(self,ItFoMuttonRaw))

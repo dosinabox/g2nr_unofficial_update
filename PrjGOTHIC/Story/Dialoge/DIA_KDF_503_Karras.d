@@ -63,6 +63,11 @@ func void DIA_Karras_Hello_Info()
 };
 
 
+func void B_Karras_Good()
+{
+	AI_Output(self,other,"DIA_Karras_Success_10_01");	//Отлично, мой юный друг.
+};
+
 instance DIA_Karras_Mission(C_Info)
 {
 	npc = KDF_503_Karras;
@@ -89,7 +94,7 @@ func void DIA_Karras_Mission_Info()
 	}
 	else if((other.guild == GIL_PAL) || (other.guild == GIL_KDF) || Npc_KnowsInfo(other,DIA_Karras_InnosEyeRetrieved))
 	{
-		AI_Output(self,other,"DIA_Karras_Success_10_01");	//Отлично, мой юный друг.
+		B_Karras_Good();
 	}
 	else
 	{
@@ -166,7 +171,7 @@ func void DIA_Karras_Success_Info()
 {
 	AI_Output(other,self,"DIA_Karras_Success_15_00");	//Вот свитки, которые ты хотел получить.
 	B_GiveInvItems(other,self,ItSc_Charm,3);
-	AI_Output(self,other,"DIA_Karras_Success_10_01");	//Отлично, мой юный друг.
+	B_Karras_Good();
 	if(other.guild == GIL_NOV)
 	{
 		AI_Output(self,other,"DIA_Karras_Success_10_02");	//Теперь ты можешь полностью посвятить себя обучению в библиотеке.
@@ -255,12 +260,8 @@ func void DIA_Karras_Trade_Info()
 	AI_Output(other,self,"DIA_Karras_Trade_15_00");	//Покажи мне свои товары.
 	if(Npc_HasItems(other,Holy_Hammer_MIS))
 	{
-		AI_Output(self,other,"DIA_Karras_Success_10_01");	//Отлично, мой юный друг.
-		AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_05");	//И будет лучше, если я заберу этот молот.
-		Npc_RemoveInvItems(other,Holy_Hammer_MIS,1);
-		AI_PrintScreen("Священный молот отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-		Wld_InsertItem(Holy_Hammer_MIS,"FP_HAMMER");
-		GarwigThiefOneTime = FALSE;
+		B_Karras_Good();
+		B_ReturnHolyHammer();
 	};
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;

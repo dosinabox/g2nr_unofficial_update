@@ -212,8 +212,8 @@ func void DIA_Parlan_PETZMASTER_Info()
 		};
 		AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_03");	//Если было бы решать мне, ты был бы проклят на месте! Ты убийца!
 		AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_04");	//Но если ты заплатишь штраф за свое преступление, впрочем, мы простим тебе твои грехи.
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
 	{
 		AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_05");	//Воровство - нарушение законов монастыря!
 		if((PETZCOUNTER_City_Attack + PETZCOUNTER_City_Sheepkiller) > 0)
@@ -223,8 +223,8 @@ func void DIA_Parlan_PETZMASTER_Info()
 		AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_07");	//Эти прегрешения должны быть наказаны. Таков закон Инноса.
 		AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_08");	//Ты должен заплатить штраф монастырю.
 		Parlan_Schulden = B_GetTotalPetzCounter(self) * 50;
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
 	{
 		AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_09");	//Мы не терпим драк в монастыре. Такое поведение нарушает наши правила.
 		if(PETZCOUNTER_City_Sheepkiller > 0)
@@ -234,8 +234,8 @@ func void DIA_Parlan_PETZMASTER_Info()
 		AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_11");	//Мы живем здесь в соответствии с законами. Они касаются и тебя.
 		AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_12");	//За твое преступление ты должен сделать пожертвование монастырю.
 		Parlan_Schulden = B_GetTotalPetzCounter(self) * 50;
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_SHEEPKILLER)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_SHEEPKILLER)
 	{
 		AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_13");	//Ты убил нашу овцу. Ты должен заплатить компенсацию за нее!
 		Parlan_Schulden = 100;
@@ -699,7 +699,7 @@ instance DIA_Parlan_KNOWSJUDGE(C_Info)
 
 func int DIA_Parlan_KNOWSJUDGE_Condition()
 {
-	if((other.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == TRUE) && !Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE))
+	if((other.guild == GIL_NOV) && (Knows_Fire_Contest == TRUE) && !Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE))
 	{
 		return TRUE;
 	};

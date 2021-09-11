@@ -112,15 +112,8 @@ func void DIA_Addon_Fisk_Trade_Info()
 {
 	B_Say(other,self,"$TRADE_2");
 	B_GiveTradeInv(self);
-	if(Npc_HasItems(self,ItRw_Bolt) < 50)
-	{
-		CreateInvItems(self,ItRw_Bolt,50 - Npc_HasItems(self,ItRw_Bolt));
-	};
-	if(Npc_HasItems(self,ItRw_Arrow) < 50)
-	{
-		CreateInvItems(self,ItRw_Arrow,50 - Npc_HasItems(self,ItRw_Arrow));
-	};
 	Trade_IsActive = TRUE;
+	B_RefreshTraderAmmo(self,25);
 };
 
 

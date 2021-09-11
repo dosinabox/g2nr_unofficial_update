@@ -1,5 +1,5 @@
 
-func int C_Addon_Knows_Schnaps()
+/*func int C_Addon_Knows_Schnaps()
 {
 	if(Knows_LousHammer == TRUE)
 	{
@@ -14,5 +14,5 @@ func int C_Addon_Knows_Schnaps()
 		return TRUE;
 	};
 	return FALSE;
-};
+};*/
 

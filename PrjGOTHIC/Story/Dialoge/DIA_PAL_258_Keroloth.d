@@ -447,17 +447,26 @@ func void DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG()
 	};
 	AI_StopProcessInfos(self);
 	other.aivar[AIV_INVINCIBLE] = FALSE;
-	if(!Npc_IsDead(Ferros) && (Npc_GetDistToNpc(self,Ferros) <= 2000))
+	if(!Npc_IsDead(Ferros))
 	{
-		B_Attack(self,Ferros,AR_NONE,1);
+		if(Npc_GetDistToNpc(self,Ferros) <= 2000)
+		{
+			B_Attack(self,Ferros,AR_NONE,1);
+		};
 	}
-	else if(!Npc_IsDead(Jan) && (Npc_GetDistToNpc(self,Jan) <= 2000))
+	else if(!Npc_IsDead(Jan))
 	{
-		B_Attack(self,Jan,AR_NONE,1);
+		if(Npc_GetDistToNpc(self,Jan) <= 2000)
+		{
+			B_Attack(self,Jan,AR_NONE,1);
+		};
 	}
-	else if(!Npc_IsDead(Rethon) && (Npc_GetDistToNpc(self,Rethon) <= 2000))
+	else if(!Npc_IsDead(Rethon))
 	{
-		B_Attack(self,Rethon,AR_NONE,1);
+		if(Npc_GetDistToNpc(self,Rethon) <= 2000)
+		{
+			B_Attack(self,Rethon,AR_NONE,1);
+		};
 	};
 };
 

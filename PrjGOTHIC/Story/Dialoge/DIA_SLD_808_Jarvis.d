@@ -352,18 +352,18 @@ func void DIA_Jarvis_HowManyLeft_Info()
 	else
 	{
 		victories = 0;
-		if((Bullco.aivar[AIV_DefeatedByPlayer] == TRUE) || (Bullco.aivar[AIV_KilledByPlayer] == TRUE))
+		if(C_Bullco_Defeated())
 		{
 			AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_01");	//Я отдубасил Буллко.
 			AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_02");	//Я слышал. Неплохо.
 			victories += 1;
 		};
-		if((Rod.aivar[AIV_DefeatedByPlayer] == TRUE) || (Rod.aivar[AIV_KilledByPlayer] == TRUE))
+		if(C_Rod_Defeated())
 		{
 			AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_03");	//Род теперь ходит сильно потрепанным.
 			victories += 1;
 		};
-		if((Sentenza.aivar[AIV_DefeatedByPlayer] == TRUE) || (Sentenza.aivar[AIV_KilledByPlayer] == TRUE))
+		if(C_Sentenza_Defeated())
 		{
 			if(Npc_KnowsInfo(other,DIA_Sentenza_Hello))
 			{
@@ -375,9 +375,8 @@ func void DIA_Jarvis_HowManyLeft_Info()
 			};
 			victories += 1;
 		};
-		if((Fester.aivar[AIV_DefeatedByPlayer] == TRUE) || (Fester.aivar[AIV_KilledByPlayer] == TRUE))
+		if(C_Fester_Defeated())
 		{
-	//		if(MIS_Fester_KillBugs == LOG_OBSOLETE)
 			if(MIS_Fester_KillBugs == LOG_SUCCESS)
 			{
 				AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_06");	//Фестер пытался провести меня - это была его ошибка.
@@ -388,7 +387,7 @@ func void DIA_Jarvis_HowManyLeft_Info()
 			};
 			victories += 1;
 		};
-		if((Raoul.aivar[AIV_DefeatedByPlayer] == TRUE) || (Raoul.aivar[AIV_KilledByPlayer] == TRUE))
+		if(C_Raoul_Defeated())
 		{
 			if(victories == 0)
 			{

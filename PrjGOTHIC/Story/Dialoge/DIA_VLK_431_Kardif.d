@@ -357,7 +357,10 @@ func void DIA_Kardif_Arbeit_Info()
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
 		AI_Output(self,other,"DIA_Kardif_Arbeit_14_01");	//Ты вряд ли найдешь работу здесь, в порту. Тебе нужно обратиться к мастерам в нижней части города.
-		AI_Output(self,other,"DIA_Kardif_Arbeit_14_02");	//Но если у тебя есть приличный меч, ты можешь вызвать Альрика на поединок. Ты найдешь его за складом, он сражается за золото.
+		if(!Npc_IsDead(VLK_438_Alrik))
+		{
+			AI_Output(self,other,"DIA_Kardif_Arbeit_14_02");	//Но если у тебя есть приличный меч, ты можешь вызвать Альрика на поединок. Ты найдешь его за складом, он сражается за золото.
+		};
 		DIA_Kardif_Arbeit_permanent = TRUE;
 	}
 	else
@@ -398,6 +401,8 @@ func void DIA_Addon_Kardif_MissingPeople_Info()
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_03");	//В нижней части города тоже исчезли люди.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_04");	//Если хочешь знать больше, поговори с Корагоном.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_05");	//У него пивная в нижней части города, и думаю, что от его уха не укрываются такие новости.
+		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
 		if((Halvor_Ausgeliefert == FALSE) && !Npc_IsDead(Halvor))
 		{
 			AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_06");	//Халвор, торговец рыбой из лавки на пристани, тоже может кое-что знать - к нему заходит много людей.
@@ -407,8 +412,6 @@ func void DIA_Addon_Kardif_MissingPeople_Info()
 		{
 			B_LogEntry(TOPIC_Addon_WhoStolePeople,"Кардиф говорит, что мне стоит поговорить о пропавших людях с Корагоном, владельцем трактира в нижней части города.");
 		};
-		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
 		DIA_Addon_Kardif_MissingPeople_permanent = TRUE;
 	}
 	else
@@ -441,38 +444,93 @@ func int DIA_Kardif_Lernen_Condition()
 
 func void DIA_Kardif_Lernen_Info()
 {
+	var int Kardif_Log_Carl;
+	var int Kardif_Log_Alrik;
+	var int Kardif_Log_Lares;
+	var int Kardif_Log_Ignaz;
+	var int Kardif_Log_Brahim;
 	AI_Output(other,self,"DIA_Kardif_Lernen_15_00");	//А у кого здесь можно поучиться чему-нибудь?
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
 		AI_Output(self,other,"DIA_Kardif_Lernen_14_01");	//Здесь, в портовом районе, есть несколько знающих людей.
-		AI_Output(self,other,"DIA_Kardif_Lernen_14_02");	//Карл, кузнец - крепкий парень. Ручаюсь, он сможет помочь тебе стать сильнее.
-		AI_Output(self,other,"DIA_Kardif_Lernen_14_03");	//Альрик опытен в боевых искусствах. А Ларес - мошенник, каких свет не видывал. Он тоже заходит иногда в порт.
-		AI_Output(self,other,"DIA_Kardif_Lernen_14_04");	//А если ты настолько выжил из ума, чтоб пойти к старому Игнацу - он знает толк в алхем... алхим... ну, как это... зельях.
-		AI_Output(other,self,"DIA_Kardif_Lernen_15_05");	//И где мне найти всех этих людей?
-		AI_Output(self,other,"DIA_Kardif_Lernen_14_06");	//(стонет) Боже, король успеет выиграть войну против орков, прежде чем я тебе объясню все это.
-		AI_Output(self,other,"DIA_Kardif_Lernen_14_07");	//Просто осмотрись в портовом районе, ты обязательно найдешь их. А если ты хочешь лучше ориентироваться здесь, зайди к Ибрагиму и купи у него карту.
-		AI_Output(self,other,"DIA_Kardif_Lernen_14_08");	//Его совсем легко найти. Он живет в соседнем доме направо от моего трактира. (бормочет) Я должен был взять в два раза больше за эту информацию.
-		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		if(!Npc_KnowsInfo(other,DIA_Carl_Lernen))
+		if(!Npc_IsDead(VLK_461_Carl))
 		{
-			B_LogEntry(TOPIC_CityTeacher,"Карл, кузнец в портовом квартале, может сделать меня сильнее.");
+			AI_Output(self,other,"DIA_Kardif_Lernen_14_02");	//Карл, кузнец - крепкий парень. Ручаюсь, он сможет помочь тебе стать сильнее.
+			if(!Npc_KnowsInfo(other,DIA_Carl_Lernen))
+			{
+				Kardif_Log_Carl = TRUE;
+			};
+		};
+		if(!Npc_IsDead(VLK_438_Alrik))
+		{
+			AI_Output(self,other,"DIA_Kardif_Lernen_14_03");	//Альрик опытен в боевых искусствах. А Ларес - мошенник, каких свет не видывал. Он тоже заходит иногда в порт.
+			if(Alrik_Teach1H == FALSE)
+			{
+				Kardif_Log_Alrik = TRUE;
+			};
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Kardif_Lernen_14_03_add");	//А Ларес - мошенник, каких свет не видывал. Он тоже заходит иногда в порт.
 		};
 		if(Lares_TeachDEX == FALSE)
 		{
-			B_LogEntry(TOPIC_CityTeacher,"Ларес может помочь мне повысить мою ловкость и силу.");
+			Kardif_Log_Lares = TRUE;
 		};
-		if(Alrik_Teach1H == FALSE)
+		if(!Npc_IsDead(Ignaz))
 		{
-			B_LogEntry(TOPIC_CityTeacher,"Альрик из портового квартала опытен в боевых искусствах.");
+			AI_Output(self,other,"DIA_Kardif_Lernen_14_04");	//А если ты настолько выжил из ума, чтоб пойти к старому Игнацу - он знает толк в алхем... алхим... ну, как это... зельях.
+			if(Ignaz_TeachAlchemy == FALSE)
+			{
+				Kardif_Log_Ignaz = TRUE;
+			};
 		};
-		if(Ignaz_TeachAlchemy == FALSE)
+		AI_Output(other,self,"DIA_Kardif_Lernen_15_05");	//И где мне найти всех этих людей?
+		AI_Output(self,other,"DIA_Kardif_Lernen_14_06");	//(стонет) Боже, король успеет выиграть войну против орков, прежде чем я тебе объясню все это.
+		if(!Npc_IsDead(Brahim))
 		{
-			B_LogEntry(TOPIC_CityTeacher,"Игнац может показать мне рецепты приготовления зелий. Он живет в портовом квартале.");
+			AI_Output(self,other,"DIA_Kardif_Lernen_14_07");	//Просто осмотрись в портовом районе, ты обязательно найдешь их. А если ты хочешь лучше ориентироваться здесь, зайди к Ибрагиму и купи у него карту.
+			AI_Output(self,other,"DIA_Kardif_Lernen_14_08");	//Его совсем легко найти. Он живет в соседнем доме направо от моего трактира. (бормочет) Я должен был взять в два раза больше за эту информацию.
+			if(Brahim_Trade == FALSE)
+			{
+				Kardif_Log_Brahim = TRUE;
+			};
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Kardif_Lernen_14_07_add");	//Просто осмотрись в портовом районе, ты обязательно найдешь их.
 		};
-		if(!Npc_KnowsInfo(other,DIA_Brahim_GREET))
+		if((Kardif_Log_Carl == TRUE) || (Kardif_Log_Alrik == TRUE) || (Kardif_Log_Lares == TRUE) || (Kardif_Log_Ignaz == TRUE))
+		{
+			Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+			if(Kardif_Log_Carl == TRUE)
+			{
+				B_LogEntries(TOPIC_CityTeacher,"Карл, кузнец в портовом квартале, может сделать меня сильнее.");
+			};
+			if(Kardif_Log_Alrik == TRUE)
+			{
+				B_LogEntries(TOPIC_CityTeacher,"Альрик из портового квартала опытен в боевых искусствах.");
+			};
+			if(Kardif_Log_Lares == TRUE)
+			{
+				B_LogEntries(TOPIC_CityTeacher,"Ларес может помочь мне повысить мою ловкость и силу.");
+			};
+			if(Kardif_Log_Ignaz == TRUE)
+			{
+				B_LogEntries(TOPIC_CityTeacher,"Игнац может показать мне рецепты приготовления зелий. Он живет в портовом квартале.");
+			};
+			if(Kardif_Log_Brahim == TRUE)
+			{
+				Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+				B_LogNextEntry(TOPIC_CityTrader,"Ибрагим рисует карты и продает их в гавани.");
+				Brahim_Trade = TRUE;
+			};
+		}
+		else if(Kardif_Log_Brahim == TRUE)
 		{
 			Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 			B_LogEntry(TOPIC_CityTrader,"Ибрагим рисует карты и продает их в гавани.");
+			Brahim_Trade = TRUE;
 		};
 		DIA_Kardif_Lernen_permanent = TRUE;
 	}

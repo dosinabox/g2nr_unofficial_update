@@ -46,6 +46,17 @@ func int B_AssessEnterRoom()
 	{
 		return FALSE;
 	};
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF))
+	{
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rick))
+		{
+			return FALSE;
+		};
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rumbold))
+		{
+			return FALSE;
+		};
+	};
 	if(!Npc_IsInPlayersRoom(self) && Npc_IsInState(self,ZS_Sleep))
 	{
 		return FALSE;
@@ -112,7 +123,19 @@ func void B_AssessPortalCollision()
 		{
 			return;
 		};
-		if(C_IsNpc(self,MIL_309_Stadtwache) || C_IsNpc(self,MIL_310_Stadtwache) || C_IsNpc(self,MIL_332_Stadtwache) || C_IsNpc(self,MIL_333_Stadtwache))
+		if(C_IsNpc(self,MIL_309_Stadtwache))
+		{
+			return;
+		};
+		if(C_IsNpc(self,MIL_310_Stadtwache))
+		{
+			return;
+		};
+		if(C_IsNpc(self,MIL_332_Stadtwache))
+		{
+			return;
+		};
+		if(C_IsNpc(self,MIL_333_Stadtwache))
 		{
 			return;
 		};

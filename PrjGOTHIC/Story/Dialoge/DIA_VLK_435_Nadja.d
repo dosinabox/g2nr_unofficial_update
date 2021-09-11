@@ -483,7 +483,7 @@ instance DIA_Nadja_WANT_HERB(C_Info)
 	condition = DIA_Nadja_WANT_HERB_Condition;
 	information = DIA_Nadja_WANT_HERB_Info;
 	permanent = TRUE;
-	description = "А теперь скажи мне, где можно купить травки. (заплатить 50 золотых)";
+	description = B_BuildPriceString("А теперь скажи мне, где можно купить травки.",50);
 };
 
 

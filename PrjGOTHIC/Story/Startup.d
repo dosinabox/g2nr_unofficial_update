@@ -10,7 +10,6 @@ func void INIT_Global()
 	B_SetHeroSkin();
 	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
 };
 

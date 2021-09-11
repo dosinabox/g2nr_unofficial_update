@@ -64,8 +64,8 @@ func int DIA_Oric_Bruder_Condition()
 		if(Npc_KnowsInfo(other,DIA_Jergan_Burg))
 		{
 			return TRUE;
-		}
-		else if(Npc_KnowsInfo(other,DIA_Jergan_Mine))
+		};
+		if(Npc_KnowsInfo(other,DIA_Jergan_Mine))
 		{
 			return TRUE;
 		};
@@ -262,7 +262,6 @@ instance DIA_Oric_NeedStuff(C_Info)
 
 func int DIA_Oric_NeedStuff_Condition()
 {
-//	if((OrikToldMissionChapter4 == TRUE) && (MIS_KillHoshPak == FALSE))
 	if(OrikToldMissionChapter4 == TRUE)
 	{
 		return TRUE;
@@ -396,8 +395,8 @@ func int DIA_Oric_HoshDead_Condition()
 		if(MIS_KillHoshPak == LOG_Running)
 		{
 			return TRUE;
-		}
-		else if(OrikToldMissionChapter4 == TRUE)
+		};
+		if(OrikToldMissionChapter4 == TRUE)
 		{
 			return TRUE;
 		};

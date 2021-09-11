@@ -34,7 +34,7 @@ instance DIA_Igaranz_Hello(C_Info)
 
 func int DIA_Igaraz_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (KNOWS_FIRE_CONTEST == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (Knows_Fire_Contest == FALSE))
 	{
 		return TRUE;
 	};
@@ -93,7 +93,7 @@ instance DIA_Igaranz_NotWork(C_Info)
 
 func int DIA_Igaraz_NotWork_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500) && (KNOWS_FIRE_CONTEST == FALSE) && (other.guild == GIL_NOV))
+	if((Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -120,7 +120,7 @@ instance DIA_Igaranz_Choosen(C_Info)
 
 func int DIA_Igaraz_Choosen_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaranz_NotWork) && (Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500) && (KNOWS_FIRE_CONTEST == FALSE) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Igaranz_NotWork) && (Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500) && (Knows_Fire_Contest == FALSE) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};

@@ -7,6 +7,10 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 	{
 		if(Hlp_IsItem(itm,ITAR_RANGER_Addon) && (CurrentLevel == NEWWORLD_ZEN))
 		{
+			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Baltram)) && (Npc_GetDistToWP(slf,"NW_CITY_HOTEL_BED_02") < 5000) && (Baltram_Exchange4Lares == TRUE))
+			{
+				return TRUE;
+			};
 			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cavalorn)) && ((Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_PATH_15") < 5000) || (Npc_GetDistToWP(slf,"NW_CITY_TAVERN_IN_07") < 5000)))
 			{
 				return TRUE;

@@ -116,13 +116,22 @@ func void ZS_Talk_End()
 	Npc_SetRefuseTalk(other,20);
 	if(C_NpcIsBotheredByPlayerRoomGuild(self) || ((Wld_GetPlayerPortalGuild() == GIL_PUBLIC) && (Npc_GetAttitude(self,other) != ATT_FRIENDLY)))
 	{
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Salandril)) && Npc_KnowsInfo(hero,DIA_Salandril_GehinsKloster) && (Kapitel < 5))
+		if(C_IsNpc(self,VLK_448_Joe))
 		{
-		}
-		else if(!C_IsNpc(self,VLK_448_Joe) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Cornelius)))
-		{
-			AI_StartState(self,ZS_ObservePlayer,0,"");
+			return;
 		};
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cornelius))
+		{
+			return;
+		};
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Salandril))
+		{
+			if(Npc_KnowsInfo(hero,DIA_Salandril_GehinsKloster) && (Kapitel < 5))
+			{
+				return;
+			};
+		};
+		AI_StartState(self,ZS_ObservePlayer,0,"");
 	};
 };
 

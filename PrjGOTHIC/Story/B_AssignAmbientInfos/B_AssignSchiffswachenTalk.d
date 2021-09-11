@@ -15,7 +15,7 @@ func void B_AssignSchiffswachenGuard(var C_Npc Schiffswache)
 		{
 			AI_Output(self,other,"DIA_Pal_Schiffswache_Ambient_12_02");	//Даже не думай воровать здесь, понял?
 		};
-		AI_StopProcessInfos(Schiffswache);
+		AI_StopProcessInfos(self);
 		Npc_SetRefuseTalk(Schiffswache,60);
 		Npc_SetRefuseTalk(PAL_220_Schiffswache,60);
 		Npc_SetRefuseTalk(PAL_221_Schiffswache,60);
@@ -47,7 +47,7 @@ func void B_AssignSchiffswachenGuard(var C_Npc Schiffswache)
 
 func void B_AssignSchiffswachenInfos(var C_Npc Schiffswache)
 {
-	if(MIS_ShipIsFree == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Lord_Hagen_GateOpen))
 	{
 		if(Schiffswache.voice == 4)
 		{

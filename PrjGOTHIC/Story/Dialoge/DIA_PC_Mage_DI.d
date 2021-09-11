@@ -291,15 +291,15 @@ func void DIA_Milten_DI_TeachMagic_RUNES()
 	{
 		Info_ClearChoices(DIA_Milten_DI_TeachMagic);
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,Dialog_Back,DIA_Milten_DI_TeachMagic_BACK);
-		Info_AddChoice(DIA_Milten_DI_TeachMagic,NAME_Circle_4,DIA_Milten_DI_TeachMagic_Runen_Circle_4);
-		if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 5)
-		{
-			Info_AddChoice(DIA_Milten_DI_TeachMagic,NAME_Circle_5,DIA_Milten_DI_TeachMagic_Runen_Circle_5);
-		};
 		if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 6)
 		{
 			Info_AddChoice(DIA_Milten_DI_TeachMagic,NAME_Circle_6,DIA_Milten_DI_TeachMagic_Runen_Circle_6);
 		};
+		if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 5)
+		{
+			Info_AddChoice(DIA_Milten_DI_TeachMagic,NAME_Circle_5,DIA_Milten_DI_TeachMagic_Runen_Circle_5);
+		};
+		Info_AddChoice(DIA_Milten_DI_TeachMagic,NAME_Circle_4,DIA_Milten_DI_TeachMagic_Runen_Circle_4);
 	}
 	else
 	{

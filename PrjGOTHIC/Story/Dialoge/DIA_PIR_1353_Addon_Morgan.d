@@ -285,10 +285,13 @@ func void DIA_Addon_Morgan_JoinMorgan_Info()
 		AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_06");	//Разберись с ними, и ты заработаешь... (зевает) уважение людей...
 		AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_07");	//Добро пожаловать в мой отряд. Хе-хе. А я (зевает) еще посплю...
 	};
-	Log_CreateTopic(TOPIC_Addon_MorganBeach,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_MorganBeach,LOG_Running);
-	B_LogEntry(TOPIC_Addon_MorganBeach,"Я присоединился к боевой группе Моргана. Он хочет, чтобы я очистил северный пляж от монстров.");
-	MIS_Addon_MorganLurker = LOG_Running;
+	if(MIS_Addon_MorganLurker != LOG_SUCCESS)
+	{
+		Log_CreateTopic(TOPIC_Addon_MorganBeach,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_MorganBeach,LOG_Running);
+		B_LogEntry(TOPIC_Addon_MorganBeach,"Я присоединился к боевой группе Моргана. Он хочет, чтобы я очистил северный пляж от монстров.");
+		MIS_Addon_MorganLurker = LOG_Running;
+	};
 	AI_StopProcessInfos(self);
 };
 

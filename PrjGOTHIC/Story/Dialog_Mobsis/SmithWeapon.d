@@ -7,11 +7,7 @@ func int smithweapon_cond()
 {
 	if(Npc_IsPlayer(self))
 	{
-		if(Npc_HasItems(self,ItMw_1H_Mace_L_04))
-		{
-			return TRUE;
-		}
-		else
+		if(!Npc_HasItems(self,ItMw_1H_Mace_L_04))
 		{
 			AI_PlayAni(self,"T_DONTKNOW");
 			AI_PrintScreen("Требуется молот кузнеца!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);

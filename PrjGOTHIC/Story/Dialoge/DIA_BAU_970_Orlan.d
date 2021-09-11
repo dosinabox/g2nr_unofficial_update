@@ -422,7 +422,6 @@ func int DIA_Orlan_TRADE_Condition()
 func void DIA_Orlan_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Orlan_TRADE_15_00");	//Покажи мне свои товары.
-	B_GiveTradeInv(self);
 	if((SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Orlan_TRADE_05_00");	//Конечно, брат по Кольцу.
@@ -443,6 +442,7 @@ func void DIA_Orlan_TRADE_Info()
 	{
 		OrlanMinenAnteil = TRUE;
 	};
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 

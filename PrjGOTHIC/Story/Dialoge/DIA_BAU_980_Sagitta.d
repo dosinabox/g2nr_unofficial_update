@@ -495,8 +495,8 @@ func void DIA_Sagitta_TRADE_Info()
 		Sagitta_flag = FALSE;
 	};
 	AI_Output(other,self,"DIA_Sagitta_TRADE_15_00");	//Какие товары ты можешь предложить мне?
-	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Sagitta_TRADE_17_01");	//Выбирай.
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 

@@ -23,10 +23,22 @@ func void DIA_AmbientDementor_EXIT_Info()
 	Snd_Play("MFX_FEAR_CAST");
 	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino1)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino2)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino3)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino4)))
 	{
-		DMT_Vino1.aivar[AIV_EnemyOverride] = FALSE;
-		DMT_Vino2.aivar[AIV_EnemyOverride] = FALSE;
-		DMT_Vino3.aivar[AIV_EnemyOverride] = FALSE;
-		DMT_Vino4.aivar[AIV_EnemyOverride] = FALSE;
+		if(!Npc_IsDead(DMT_Vino1))
+		{
+			DMT_Vino1.aivar[AIV_EnemyOverride] = FALSE;
+		};
+		if(!Npc_IsDead(DMT_Vino2))
+		{
+			DMT_Vino2.aivar[AIV_EnemyOverride] = FALSE;
+		};
+		if(!Npc_IsDead(DMT_Vino3))
+		{
+			DMT_Vino3.aivar[AIV_EnemyOverride] = FALSE;
+		};
+		if(!Npc_IsDead(DMT_Vino4))
+		{
+			DMT_Vino4.aivar[AIV_EnemyOverride] = FALSE;
+		};
 		//попытка бегства Вино
 		Npc_SetTarget(Vino,other);
 		AI_StartState(Vino,ZS_Flee,0,"");

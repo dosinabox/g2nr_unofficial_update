@@ -17,10 +17,7 @@ func int DIA_Addon_Cronos_EXIT_Condition()
 
 func void DIA_Addon_Cronos_EXIT_Info()
 {
-	if(Trade_IsActive == TRUE)
-	{
-		Trade_IsActive = FALSE;
-	};
+	B_EquipTrader(self);
 	if(Cronos_NW_ItemsGiven_Chapter_1 == TRUE)
 	{
 		Cronos_NW_ItMi_Flask_Count = Npc_HasItems(self,ItMi_Flask);
@@ -140,13 +137,9 @@ func int DIA_Addon_Cronos_NW_Trade_Condition()
 	};
 };
 
-
-//var int DIA_Addon_Cronos_NW_Trade_OneTime;
-
 func void DIA_Addon_Cronos_NW_Trade_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cronos_NW_Trade_15_00");	//Ты можешь продать мне какие-нибудь припасы?
-	B_GiveTradeInv(self);
 	if(CronosTraded == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Cronos_NW_Trade_04_01");	//Почему бы и нет? Если я правильно помню, мы с тобой уже вели дела.
@@ -155,6 +148,7 @@ func void DIA_Addon_Cronos_NW_Trade_Info()
 		CronosTraded = TRUE;
 	};
 	AI_Output(self,other,"DIA_Addon_Cronos_NW_Trade_04_02");	//Итак, что тебе нужно?
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 

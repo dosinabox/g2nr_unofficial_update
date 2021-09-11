@@ -552,9 +552,12 @@ func void DIA_Addon_Henry_Palisade_WhatFor_Info()
 	AI_Output(self,other,"DIA_Addon_Henry_Palisade_WhatFor_04_11");	//Несколько бандитов даже поселились в башне к югу отсюда.
 	AI_Output(self,other,"DIA_Addon_Henry_Palisade_WhatFor_04_12");	//Я уверен, что это передовой отряд.
 	AI_Output(self,other,"DIA_Addon_Henry_Palisade_WhatFor_04_03");	//Но если они настолько глупы, что решат напасть на нас, мы их так встретим, что они не скоро это забудут.
-	Log_CreateTopic(TOPIC_Addon_BanditsTower,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_BanditsTower,LOG_Running);
-	B_LogEntry(TOPIC_Addon_BanditsTower,"Несколько бандитов заняли башню к югу от пиратского лагеря.");
+	if(MIS_Henry_FreeBDTTower != LOG_SUCCESS)
+	{
+		Log_CreateTopic(TOPIC_Addon_BanditsTower,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_BanditsTower,LOG_Running);
+		B_LogEntry(TOPIC_Addon_BanditsTower,"Несколько бандитов заняли башню к югу от пиратского лагеря.");
+	};
 };
 
 func void B_Henry_WhereIsTower()
@@ -591,25 +594,16 @@ func void DIA_Addon_Henry_Turmbanditen_WhatFor_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_Turmbanditen_04_01");	//Да?
 		AI_Output(other,self,"DIA_Addon_Francis_BanditsDead_15_01");	//Они мертвы.
-		if(MIS_Henry_FreeBDTTower == LOG_Running)
-		{
-			AI_Output(self,other,"DIA_Addon_Henry_Turmbanditen_04_02");	//Прекрасно! Что ж, одной проблемой меньше.
-		}
-		else
+		if(GotPartyMemberForTowerBandits == FALSE)
 		{
 			AI_Output(self,other,"DIA_Addon_Henry_Turmbanditen_04_03");	//Ты разобрался с ними в одиночку? Позволь выразить тебе свое уважение!
 			AI_Output(self,other,"DIA_Addon_Henry_Turmbanditen_04_04");	//Может быть, когда-нибудь ты даже станешь настоящим пиратом!
-		};
-		if(!Npc_IsDead(SawPirate))
+		}
+		else
 		{
-			SawPirate.aivar[AIV_PARTYMEMBER] = FALSE;
-			Npc_ExchangeRoutine(SawPirate,"START");
+			AI_Output(self,other,"DIA_Addon_Henry_Turmbanditen_04_02");	//Прекрасно! Что ж, одной проблемой меньше.
 		};
-		if(!Npc_IsDead(HammerPirate))
-		{
-			HammerPirate.aivar[AIV_PARTYMEMBER] = FALSE;
-			Npc_ExchangeRoutine(HammerPirate,"START");
-		};
+		B_ResetHenryPirates();
 		MIS_Henry_FreeBDTTower = LOG_SUCCESS;
 		B_LogEntry(TOPIC_Addon_BanditsTower,"Бандиты из башни убиты.");
 		B_GivePlayerXP(XP_Addon_Henry_FreeBDTTower);
@@ -660,7 +654,6 @@ func void DIA_Addon_Henry_Palisade_Bandits_Info()
 	if(self.aivar[AIV_PASSGATE] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_Palisade_Bandits_04_11");	//(издевательски) Жаль только, что тебе с ним поговорить не удастся. За вход-то ты не заплатил...
-//		Henry_Zoll_WhatFor = TRUE;
 	};
 };
 
@@ -693,7 +686,6 @@ func void DIA_Addon_Henry_Entercrew_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_Entercrew_Add_04_00");	//(смеется) Нет, так дело не пойдет, приятель!
 		AI_Output(self,other,"DIA_Addon_Henry_Entercrew_Add_04_01");	//Сначала тебе надо попасть в лагерь!
-//		Henry_Zoll_WhatFor = TRUE;
 	}
 	else
 	{
@@ -715,8 +707,8 @@ func void DIA_Addon_Henry_Entercrew_Info()
 			else
 			{
 				AI_Output(self,other,"DIA_Addon_Henry_Entercrew_Add_04_06");	//Возьми одного из моих ребят, и разберись с этими бандитами.
-//				Henry_GetPartyMember = TRUE;
 				B_LogEntry(TOPIC_Addon_BanditsTower,"Генри хочет, чтобы я разобрался с занявшими башню бандитами. Я могу взять с собой одного из его парней.");
+				Henry_GetPartyMember = TRUE;
 			};
 			B_Henry_WhereIsTower();
 			AI_Output(other,self,"DIA_Addon_Henry_Entercrew_15_09");	//Есть, сэр!

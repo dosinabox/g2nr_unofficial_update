@@ -322,7 +322,7 @@ func int DIA_Vino_Obesessed_Condition()
 func void DIA_Vino_Obesessed_Info()
 {
 	AI_Output(other,self,"DIA_Vino_Obesessed_15_00");	//Что с тобой?
-	if(Npc_IsDead(DMT_Vino1) && Npc_IsDead(DMT_Vino2) && Npc_IsDead(DMT_Vino3) && Npc_IsDead(DMT_Vino4))
+	if(C_VinoDementorsDead())
 	{
 		self.aivar[AIV_NoFightParker] = FALSE;
 		B_NpcObsessedByDMT(self);

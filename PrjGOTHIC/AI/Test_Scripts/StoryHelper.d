@@ -90,7 +90,7 @@ func int StoryHelper_PatchSettings_Condition()
 
 func void StoryHelper_PatchSettings_Info()
 {
-	b_build_settings_diag();
+	B_Build_Settings_Diag();
 };
 
 

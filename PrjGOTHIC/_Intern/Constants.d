@@ -4,7 +4,6 @@ const string FONT_ScreenSmall = "FONT_OLD_10_WHITE.TGA";
 const string FONT_Book = "FONT_10_BOOK.TGA";
 const string FONT_BookHeadline = "FONT_20_BOOK.TGA";
 
-const int SPL_Cost_Scroll = 5;
 const int ATR_HITPOINTS = 0;
 const int ATR_HITPOINTS_MAX = 1;
 const int ATR_MANA = 2;
@@ -31,6 +30,7 @@ const int NPC_SNEAK_WEAPON = 130;
 const int WEAR_TORSO = 1;
 const int WEAR_HEAD = 2;
 const int WEAR_EFFECT = 16;
+
 const int INV_WEAPON = 1;
 const int INV_ARMOR = 2;
 const int INV_RUNE = 3;
@@ -60,8 +60,11 @@ const int ITEM_KAT_POTIONS = 128;
 const int ITEM_KAT_LIGHT = 256;
 const int ITEM_KAT_RUNE = 512;
 const int ITEM_KAT_MAGIC = 1 << 31;
-//const int ITEM_KAT_KEYS = 1;
 const int ITEM_KAT_KEYS = 64;
+
+const int ITEM_DROPPED = 1 << 10;
+const int ITEM_RING = 1 << 11;
+const int ITEM_MISSION = 1 << 12;
 const int ITEM_DAG = 1 << 13;
 const int ITEM_SWD = 1 << 14;
 const int ITEM_AXE = 1 << 15;
@@ -70,19 +73,17 @@ const int ITEM_2HD_AXE = 1 << 17;
 const int ITEM_SHIELD = 1 << 18;
 const int ITEM_BOW = 1 << 19;
 const int ITEM_CROSSBOW = 1 << 20;
-const int ITEM_RING = 1 << 11;
-const int ITEM_AMULET = 1 << 22;
-const int ITEM_BELT = 1 << 24;
-const int ITEM_DROPPED = 1 << 10;
-const int ITEM_MISSION = 1 << 12;
 const int ITEM_MULTI = 1 << 21;
+const int ITEM_AMULET = 1 << 22;
 const int ITEM_NFOCUS = 1 << 23;
+const int ITEM_BELT = 1 << 24;
 const int ITEM_CREATEAMMO = 1 << 25;
 const int ITEM_NSPLIT = 1 << 26;
 const int ITEM_DRINK = 1 << 27;
 const int ITEM_TORCH = 1 << 28;
 const int ITEM_THROW = 1 << 29;
 const int ITEM_ACTIVE = 1 << 30;
+
 const int DAM_INVALID = 0;
 const int DAM_BARRIER = 1;
 const int DAM_BLUNT = 2;
@@ -101,6 +102,7 @@ const int DAM_INDEX_MAGIC = 5;
 const int DAM_INDEX_POINT = 6;
 const int DAM_INDEX_FALL = 7;
 const int DAM_INDEX_MAX = 8;
+
 const int NPC_ATTACK_FINISH_DISTANCE = 180;
 const int NPC_BURN_TICKS_PER_DAMAGE_POINT = 1000;
 const int NPC_BURN_DAMAGE_POINTS_PER_INTERVALL = 50;	//20;
@@ -172,14 +174,17 @@ const int NEWS_SPREAD_NPC_SAME_GUILD_VICTIM = 4;
 const int IMPORTANT = 1;
 const int INF_TELL = 0;
 const int INF_UNKNOWN = 2;
+
 const int LOG_Running = 1;
 const int LOG_SUCCESS = 2;
 const int LOG_FAILED = 3;
 const int LOG_OBSOLETE = 4;
+
 const int ATT_FRIENDLY = 3;
 const int ATT_NEUTRAL = 2;
 const int ATT_ANGRY = 1;
 const int ATT_HOSTILE = 0;
+
 const int GIL_NONE = 0;
 const int GIL_HUMAN = 1;
 const int GIL_PAL = 1;
@@ -292,24 +297,27 @@ const int NPC_SOUND_THROWCOLL = 5;
 const int NPC_SOUND_DRAWWEAPON = 6;
 const int NPC_SOUND_SCREAM = 7;
 const int NPC_SOUND_FIGHT = 8;
+const int NPC_VOICE_VARIATION_MAX = 10;
+
 const int MAT_WOOD = 0;
 const int MAT_STONE = 1;
 const int MAT_METAL = 2;
 const int MAT_LEATHER = 3;
 const int MAT_CLAY = 4;
 const int MAT_GLAS = 5;
+
 const int LOG_MISSION = 0;
 const int LOG_NOTE = 1;
+
 const int TIME_INFINITE = -1000;
-const int NPC_VOICE_VARIATION_MAX = 10;
 
 const float TRADE_VALUE_MULTIPLIER = 0.15;
-
 const string TRADE_CURRENCY_INSTANCE = "ITMI_GOLD";
 
 const int SPELL_GOOD = 0;
 const int SPELL_NEUTRAL = 1;
 const int SPELL_BAD = 2;
+
 const int SPL_DONTINVEST = 0;
 const int SPL_RECEIVEINVEST = 1;
 const int SPL_SENDCAST = 2;
@@ -317,6 +325,8 @@ const int SPL_SENDSTOP = 3;
 const int SPL_NEXTLEVEL = 4;
 const int SPL_STATUS_CANINVEST_NO_MANADEC = 8;
 const int SPL_FORCEINVEST = 1 << 16;
+const int SPL_Cost_Scroll = 5;
+
 const int TARGET_COLLECT_NONE = 0;
 const int TARGET_COLLECT_CASTER = 1;
 const int TARGET_COLLECT_FOCUS = 2;
@@ -331,6 +341,7 @@ const int TARGET_TYPE_NPCS = 4;
 const int TARGET_TYPE_ORCS = 8;
 const int TARGET_TYPE_HUMANS = 16;
 const int TARGET_TYPE_UNDEAD = 32;
+
 const int SPL_PalLight = 0;
 const int SPL_PalLightHeal = 1;
 const int SPL_PalHolyBolt = 2;
@@ -770,7 +781,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "24/06/2021";
+const string FIX_VERSION_DATE = "11/09/2021";
 const int FIX_VERSION_START = 27;
 const int LEAST_SUPPORTED = 26;
 var int FIX_VERSION_SAVE;

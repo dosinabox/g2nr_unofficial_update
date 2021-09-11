@@ -525,11 +525,11 @@ func void DIA_Cassia_BevorLernen_Info()
 		Info_AddChoice(DIA_Cassia_BevorLernen,"Может быть, позже...",DIA_Cassia_BevorLernen_Spaeter);
 		if((Cassia_TeachPickpocket == FALSE) && !Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 		{
-			Info_AddChoice(DIA_Cassia_BevorLernen,"Я хочу научиться карманному воровству. (заплатить 100 золотых)",DIA_Cassia_BevorLernen_Pickpocket);
+			Info_AddChoice(DIA_Cassia_BevorLernen,B_BuildPriceString("Я хочу научиться карманному воровству.",100),DIA_Cassia_BevorLernen_Pickpocket);
 		};
 		if(Cassia_TeachDEX == FALSE)
 		{
-			Info_AddChoice(DIA_Cassia_BevorLernen,"Я хочу стать более ловким. (заплатить 100 золотых)",DIA_Cassia_BevorLernen_DEX);
+			Info_AddChoice(DIA_Cassia_BevorLernen,B_BuildPriceString("Я хочу стать более ловким.",100),DIA_Cassia_BevorLernen_DEX);
 		};
 	};
 };

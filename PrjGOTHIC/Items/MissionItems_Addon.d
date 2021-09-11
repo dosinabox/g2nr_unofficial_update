@@ -149,7 +149,7 @@ func void Use_Map_NewWorld_Ornaments()
 	{
 		B_SetPlayerMap(ItWr_Map_NewWorld_Ornaments_Addon);
 	};
-	SC_SAW_ORNAMENT_MAP = TRUE;
+//	SC_Saw_Ornament_Map = TRUE;
 	Document = Doc_CreateMap();
 	Doc_SetPages(Document,1);
 	Doc_SetPage(Document,0,"Map_NewWorld_Ornaments.tga",TRUE);

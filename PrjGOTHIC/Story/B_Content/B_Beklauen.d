@@ -78,6 +78,10 @@ func void B_StealItem(var int TheftDex,var int Itm)
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Garvell))
 		{
 			TotalTheftGold += 25;
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Richter))
+		{
+			self.flags = 0;
 		};
 	}
 	else

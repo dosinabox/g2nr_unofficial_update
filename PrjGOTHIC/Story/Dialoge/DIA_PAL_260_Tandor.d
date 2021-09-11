@@ -260,31 +260,6 @@ func void DIA_Tandor_WASISTLOS_Info()
 	};
 };
 
-/*
-instance DIA_Tandor_KAP6_EXIT(C_Info)
-{
-	npc = PAL_260_Tandor;
-	nr = 999;
-	condition = DIA_Tandor_KAP6_EXIT_Condition;
-	information = DIA_Tandor_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Tandor_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Tandor_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Tandor_PICKPOCKET(C_Info)
 {

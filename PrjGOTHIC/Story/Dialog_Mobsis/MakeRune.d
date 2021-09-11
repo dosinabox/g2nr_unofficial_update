@@ -3,11 +3,7 @@ func int makerune_cond()
 {
 	if(Npc_IsPlayer(self))
 	{
-		if(Npc_HasItems(self,ItMi_Pliers))
-		{
-			return TRUE;
-		}
-		else
+		if(!Npc_HasItems(self,ItMi_Pliers))
 		{
 			AI_PlayAni(self,"T_DONTKNOW");
 			AI_PrintScreen("Требуются щипцы!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);

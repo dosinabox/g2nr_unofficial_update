@@ -176,8 +176,8 @@ func void DIA_Hagen_PETZMASTER_Info()
 		};
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_04");	//Страже приказано казнить убийц на месте.
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_05");	//Убийства неприемлемы в этом городе. Но ты можешь подтвердить свое раскаяние, заплатив штраф.
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
 	{
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_06");	//Ты обвиняешься в воровстве!
 		if((PETZCOUNTER_City_Attack + PETZCOUNTER_City_Sheepkiller) > 0)
@@ -186,8 +186,8 @@ func void DIA_Hagen_PETZMASTER_Info()
 		};
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_08");	//Это нарушение законов города. Ты должен заплатить штраф.
 		Hagen_Schulden = B_GetTotalPetzCounter(self) * 50;
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
 	{
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_09");	//Ты ввязался в драку. Таким образом ты нарушил закон.
 		if(PETZCOUNTER_City_Sheepkiller > 0)
@@ -197,8 +197,8 @@ func void DIA_Hagen_PETZMASTER_Info()
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_11");	//Нарушение законов города - это нарушение законов Инноса.
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_12");	//Следовательно, ты должен заплатить за это.
 		Hagen_Schulden = B_GetTotalPetzCounter(self) * 50;
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_SHEEPKILLER)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_SHEEPKILLER)
 	{
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_13");	//Ты убил нашу овцу - я сначала даже не поверил в это.
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_14");	//Зачем ты делаешь все это?!
@@ -1001,6 +1001,15 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 };
 
 
+func int C_SCReadyToRescueBennet()
+{
+	if((RescueBennet_KnowsCornelius == TRUE) && Npc_HasItems(hero,ItWr_CorneliusTagebuch_Mis) && (Cornelius_IsLiar == TRUE))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 var int Hagen_einmalBennet;
 
 instance DIA_Lord_Hagen_RescueBennet(C_Info)
@@ -1016,16 +1025,9 @@ instance DIA_Lord_Hagen_RescueBennet(C_Info)
 
 func int DIA_Lord_Hagen_RescueBennet_Condition()
 {
-	if(MIS_RescueBennet == LOG_Running)
+	if((MIS_RescueBennet == LOG_Running) && !C_SCReadyToRescueBennet())
 	{
-		if((RescueBennet_KnowsCornelius == TRUE) && Npc_HasItems(other,ItWr_CorneliusTagebuch_Mis) && (Cornelius_IsLiar == TRUE))
-		{
-			return FALSE;
-		}
-		else
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -1103,12 +1105,9 @@ instance DIA_Lord_Hagen_Cornelius(C_Info)
 
 func int DIA_Lord_Hagen_Cornelius_Condition()
 {
-	if((MIS_RescueBennet == LOG_Running) && (RescueBennet_KnowsCornelius == TRUE))
+	if((MIS_RescueBennet == LOG_Running) && C_SCReadyToRescueBennet())
 	{
-		if(Npc_HasItems(other,ItWr_CorneliusTagebuch_Mis) && (Cornelius_IsLiar == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -1140,7 +1139,6 @@ func void DIA_Lord_Hagen_Cornelius_Info()
 	{
 		AI_Output(other,self,"DIA_Lord_Hagen_Cornelius_15_10");	//Он сбежал.
 		AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_11");	//Рано или поздно, он объявится. И тогда мы арестуем его.
-		//B_StartOtherRoutine(Cornelius,"FLED");
 	}
 	else
 	{
