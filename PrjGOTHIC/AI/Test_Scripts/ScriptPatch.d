@@ -330,11 +330,11 @@ func void B_Build_Settings_Diag()
 	};
 	if(IgnoreBonuses == FALSE)
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование бонусов при прокачке",StoryHelper_Bonuses);
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование постоянных бонусов при прокачке",StoryHelper_Bonuses);
 	}
 	else
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование бонусов при прокачке",StoryHelper_Bonuses);
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование постоянных бонусов при прокачке",StoryHelper_Bonuses);
 	};
 	if(RandomGoblinBerries == FALSE)
 	{

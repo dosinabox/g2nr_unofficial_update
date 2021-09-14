@@ -17,11 +17,6 @@ func int dia_bdt_6_exit_condition()
 func void dia_bdt_6_exit_info()
 {
 	AI_StopProcessInfos(self);
-	if(C_IsNpc(self,BDT_10314_Addon_RangerBandit_M))
-	{
-		B_Attack(self,other,AR_SuddenEnemyInferno,1);
-		self.aivar[AIV_IgnoresArmor] = TRUE;
-	};
 };
 
 
@@ -47,26 +42,19 @@ func void dia_bdt_6_standard_info()
 {
 	var int randy;
 	randy = Hlp_Random(3);
-	if(C_IsNpc(self,BDT_10314_Addon_RangerBandit_M))
+	if(randy == 0)
 	{
-		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon_06_01");	//Отойди от этого оружия. Ну подожди!
+		B_Say(self,other,"$WHATSTHISSUPPOSEDTOBE");
 	}
-	else
+	else if(randy == 1)
 	{
-		if(randy == 0)
-		{
-			B_Say(self,other,"$WHATSTHISSUPPOSEDTOBE");
-		}
-		else if(randy == 1)
-		{
-			B_Say(self,other,"$GETOUTOFHERE");
-		}
-		else if(randy == 2)
-		{
-			B_Say(self,other,"$NOTNOW");
-		};
-		AI_StopProcessInfos(self);
+		B_Say(self,other,"$GETOUTOFHERE");
+	}
+	else if(randy == 2)
+	{
+		B_Say(self,other,"$NOTNOW");
 	};
+	AI_StopProcessInfos(self);
 };
 
 func void B_AssignAmbientInfos_BDT_6(var C_Npc slf)

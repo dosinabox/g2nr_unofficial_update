@@ -183,7 +183,7 @@ func void B_GiveLostStatueToPedro()
 	PedroGotLostInnosStatue = TRUE;
 	LostInnosStatueInMonastery = TRUE;
 	MIS_Addon_Daron_GetStatue = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Addon_ReportLostInnosStatue2Daron);
+	B_GivePlayerXP(XP_Addon_ReturnedLostInnosStatue_Daron);
 };
 
 instance DIA_Addon_Pedro_Statuette(C_Info)

@@ -166,9 +166,9 @@ func void DIA_Addon_Gorax_DaronsStatue_Info()
 			B_Say(self,other,"$ABS_GOOD");
 		};
 		Npc_RemoveInvItem(self,ItMi_LostInnosStatue_Daron);
+		LostInnosStatueInMonastery = TRUE;
 		MIS_Addon_Daron_GetStatue = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Addon_ReturnedLostInnosStatue_Daron);
-		LostInnosStatueInMonastery = TRUE;
 	}
 	else
 	{

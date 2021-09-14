@@ -732,18 +732,6 @@ func void DIA_Cord_CantTeach1H()
 	AI_Output(self,other,"DIA_Cord_Teach_14_05");	//Если ты захочешь потренироваться с одноручным оружием, тебе придется найти другого учителя.
 };
 
-func void DIA_Cord_TeachAny()
-{
-	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Cord)
-	{
-		AI_Output(self,other,"DIA_Cord_Teach_14_01");	//Я могу обучить тебя владению любым оружием - с чего начнем?
-	}
-	else
-	{
-		DIA_Cord_CantTeach1H();
-	};
-};
-
 func void B_Cord_Teach()
 {
 	if(Cord_Teacher == FALSE)
@@ -836,12 +824,11 @@ func void DIA_Cord_Teach_Info()
 	{
 		if(TeacherCanTrainTalent(NPC_TALENT_1H,TeachCondition_Cord) && TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_Cord))
 		{
-			DIA_Cord_TeachAny();
+			AI_Output(self,other,"DIA_Cord_Teach_14_01");	//Я могу обучить тебя владению любым оружием - с чего начнем?
 			Cord_Approved = TRUE;
 		}
 		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (Cord_RangerHelp_Fight == TRUE))
 		{
-			DIA_Cord_TeachAny();
 			Cord_Approved = TRUE;
 		}
 		else if(TeacherCanTrainTalent(NPC_TALENT_1H,TeachCondition_Cord))

@@ -470,7 +470,6 @@ func void B_DaronGivesReward()
 	B_GiveInvItems(self,other,ItMi_Gold,150);
 	MIS_Addon_Daron_GetStatue = LOG_SUCCESS;
 	TOPIC_End_RangerHelpKDF = TRUE;
-	B_GivePlayerXP(XP_Addon_ReportLostInnosStatue2Daron);
 };
 
 instance DIA_Addon_Daron_FoundStatue(C_Info)
@@ -494,11 +493,12 @@ func int DIA_Addon_Daron_FoundStatue_Condition()
 func void DIA_Addon_Daron_FoundStatue_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Daron_FoundStatue_15_00");	//Я нашел статуэтку.
-	if((other.guild == GIL_KDF) || (MIS_OLDWORLD == LOG_SUCCESS))
+	if(other.guild == GIL_KDF)
 	{
 		B_GiveInvItems(other,self,ItMi_LostInnosStatue_Daron,1);
 		Npc_RemoveInvItem(self,ItMi_LostInnosStatue_Daron);
 		B_DaronGivesReward();
+		B_GivePlayerXP(XP_Addon_ReturnedLostInnosStatue_Daron + XP_Addon_ReportLostInnosStatue2Daron);
 	}
 	else
 	{
@@ -538,6 +538,7 @@ func void DIA_Addon_Daron_ReturnedStatue_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Daron_ReturnedStatue_15_00");	//Я отнес твою статуэтку в монастырь. Можешь быть спокоен.
 	B_DaronGivesReward();
+	B_GivePlayerXP(XP_Addon_ReportLostInnosStatue2Daron);
 };
 
 

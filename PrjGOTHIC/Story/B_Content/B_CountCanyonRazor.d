@@ -56,7 +56,7 @@ func void B_CountCanyonRazor()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_AllCanyonRazors,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen(PRINT_AllCanyonRazors,-1,YPOS_GoldGiven,FONT_ScreenSmall,3);
 	};
 };
 

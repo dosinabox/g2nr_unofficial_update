@@ -6,8 +6,7 @@ instance BDT_10314_Addon_RangerBandit_M(Npc_Default)
 	id = 10314;
 	voice = 6;
 	flags = 0;
-//	npcType = npctype_main;
-	npcType = NPCTYPE_AMBIENT;
+	npcType = npctype_main;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Addon_BanditTrader);
@@ -25,7 +24,7 @@ instance BDT_10314_Addon_RangerBandit_M(Npc_Default)
 
 func void Rtn_Start_10314()
 {
-	TA_Guard_Passage(8,0,23,0,"NW_FARM4_WOOD_RANGERBANDITS_04");
-	TA_Guard_Passage(23,0,8,0,"NW_FARM4_WOOD_RANGERBANDITS_04");
+	TA_Stand_ArmsCrossed(8,0,23,0,"NW_FARM4_WOOD_RANGERBANDITS_04");
+	TA_Stand_ArmsCrossed(23,0,8,0,"NW_FARM4_WOOD_RANGERBANDITS_04");
 };
 
