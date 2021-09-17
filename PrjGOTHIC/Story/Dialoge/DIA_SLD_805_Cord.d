@@ -848,6 +848,7 @@ func void DIA_Cord_Teach_Info()
 			B_Cord_Zeitverschwendung();
 			B_Cord_BeBetter();
 		};
+		B_CheckLog();
 		if(Cord_Approved == TRUE)
 		{
 			Cord_Merke_1h = other.HitChance[NPC_TALENT_1H];

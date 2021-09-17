@@ -209,16 +209,8 @@ func void B_Build_Settings_Diag()
 {
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
-	/*if(PenaltiesAffectLearnCost == FALSE)
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
-	};*/
 	Info_AddChoice(StoryHelper_PatchSettings,"Изменить магию ледяного дракона",StoryHelper_IceDragonSpell);
-	if((Tandor_ItemsGiven_Chapter_1 == FALSE) && (Sarah_ItemsGiven_Chapter_1 == FALSE) && (Rethon_ItemsGiven_Chapter_4 == FALSE) && (Orlan_ItemsGiven_Chapter_1 == FALSE) && (Jora_ItemsGiven_Chapter_1 == FALSE) && (Hakon_ItemsGiven_Chapter_1 == FALSE) && (Canthar_ItemsGiven_Chapter_1 == FALSE) && (Scatty_ItemsGiven_Chapter_1 == FALSE) && (Huno_ItemsGiven_Chapter_1 == FALSE) && (Garett_ItemsGiven_Chapter_1 == FALSE) && (Fisk_ItemsGiven_Chapter_1 == FALSE) && (Erol_ItemsGiven_Chapter_1 == FALSE))
+	if((Tandor_ItemsGiven_Chapter_1 == FALSE) && (Sarah_ItemsGiven_Chapter_1 == FALSE) && (Rethon_ItemsGiven_Chapter_4 == FALSE) && (Orlan_ItemsGiven_Chapter_1 == FALSE) && (Jora_ItemsGiven_Chapter_1 == FALSE) && (Hakon_ItemsGiven_Chapter_1 == FALSE) && (Canthar_ItemsGiven_Chapter_1 == FALSE) && (Scatty_ItemsGiven_Chapter_1 == FALSE) && (Huno_ItemsGiven_Chapter_1 == FALSE) && (Garett_ItemsGiven_Chapter_1 == FALSE) && (Fisk_ItemsGiven_Chapter_1 == FALSE) && (Erol_ItemsGiven_Chapter_1 == FALSE) && (Khaled_ItemsGiven_Chapter_1 == FALSE))
 	{
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
@@ -277,6 +269,22 @@ func void B_Build_Settings_Diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
 	};
+	/*if(PenaltiesAffectLearnCost == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
+	};*/
+	if(IgnoreBonuses == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование постоянных бонусов при расчете стоимости обучения",StoryHelper_Bonuses);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование постоянных бонусов при расчете стоимости обучения",StoryHelper_Bonuses);
+	};
 	if(AddonDisabled == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить возможность прохождения без аддона",StoryHelper_Addon);
@@ -327,14 +335,6 @@ func void B_Build_Settings_Diag()
 	else
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить режим трусости у людей и животных",StoryHelper_Flee);
-	};
-	if(IgnoreBonuses == FALSE)
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование постоянных бонусов при прокачке",StoryHelper_Bonuses);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование постоянных бонусов при прокачке",StoryHelper_Bonuses);
 	};
 	if(RandomGoblinBerries == FALSE)
 	{

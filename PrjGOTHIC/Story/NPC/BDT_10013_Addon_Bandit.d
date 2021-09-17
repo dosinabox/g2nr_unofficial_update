@@ -1,5 +1,5 @@
 
-instance BDT_10013_Addon_Bandit(Npc_Default)
+/*instance BDT_10013_Addon_Bandit(Npc_Default)
 {
 	name[0] = NAME_Bandit;
 	guild = GIL_BDT;
@@ -24,5 +24,5 @@ func void Rtn_Start_10013()
 {
 	TA_Stand_Guarding(0,0,12,0,"XXX");
 	TA_Stand_Guarding(0,0,12,0,"XXX");
-};
+};*/
 

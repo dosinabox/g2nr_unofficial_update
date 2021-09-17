@@ -143,7 +143,7 @@ func void B_AssessTalk()
 		};
 		if(self.guild == GIL_NOV)
 		{
-			if(Parlan_DontTalkToNovice == LOG_Running)
+			if((Parlan_DontTalkToNovice == LOG_Running) && Wld_IsTime(8,0,0,0))
 			{
 				if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger1))
 				{

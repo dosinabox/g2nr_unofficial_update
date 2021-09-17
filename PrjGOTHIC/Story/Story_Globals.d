@@ -905,7 +905,7 @@ var int KnowsAboutGorn;
 var int DayContactGorn;
 //var int PriceForGorn;
 var int Gorns_Beutel;
-var int SLDChooseMoreMoney;
+//var int SLDChooseMoreMoney;
 //var int FoodForGerold;
 //var int WantinDungeon;
 var int SetGornFree;
