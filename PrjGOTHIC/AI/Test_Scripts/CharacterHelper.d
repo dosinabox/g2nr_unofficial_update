@@ -1605,10 +1605,10 @@ func void DIA_CH_Strength_Info()
 {
 	Info_ClearChoices(DIA_CH_Strength);
 	Info_AddChoice(DIA_CH_Strength,Dialog_Back,DIA_CH_Strength_BACK);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 20",B_GetLearnCostAttribute(other,ATR_STRENGTH) * 20),DIA_CH_Strength_20);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 10",B_GetLearnCostAttribute(other,ATR_STRENGTH) * 10),DIA_CH_Strength_10);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 5",B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_CH_Strength_5);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 1",B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_CH_Strength_1);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 20",B_GetLearnCostAttribute(other,ATR_STRENGTH,20)),DIA_CH_Strength_20);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 10",B_GetLearnCostAttribute(other,ATR_STRENGTH,10)),DIA_CH_Strength_10);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 5",B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_CH_Strength_5);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 1",B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_CH_Strength_1);
 };
 
 func void DIA_CH_Strength_BACK()
@@ -1664,10 +1664,10 @@ func void DIA_CH_Dex_Info()
 {
 	Info_ClearChoices(DIA_CH_Dex);
 	Info_AddChoice(DIA_CH_Dex,Dialog_Back,DIA_CH_Dex_BACK);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 20",B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 20),dia_ch_dex_20);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 10",B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 10),dia_ch_dex_10);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 5",B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),dia_ch_dex_5);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 1",B_GetLearnCostAttribute(other,ATR_DEXTERITY)),dia_ch_dex_1);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 20",B_GetLearnCostAttribute(other,ATR_DEXTERITY,20)),dia_ch_dex_20);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 10",B_GetLearnCostAttribute(other,ATR_DEXTERITY,10)),dia_ch_dex_10);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 5",B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),dia_ch_dex_5);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 1",B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),dia_ch_dex_1);
 };
 
 func void DIA_CH_Dex_BACK()
@@ -1775,10 +1775,10 @@ func void DIA_CH_Mana_Info()
 {
 	Info_ClearChoices(DIA_CH_Mana);
 	Info_AddChoice(DIA_CH_Mana,Dialog_Back,DIA_CH_Mana_BACK);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 20",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 20),dia_ch_mana_20);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 10",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 10),dia_ch_mana_10);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 5",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),dia_ch_mana_5);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 1",B_GetLearnCostAttribute(other,ATR_MANA_MAX)),dia_ch_mana_1);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 20",B_GetLearnCostAttribute(other,ATR_MANA_MAX,20)),dia_ch_mana_20);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 10",B_GetLearnCostAttribute(other,ATR_MANA_MAX,10)),dia_ch_mana_10);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 5",B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),dia_ch_mana_5);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 1",B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),dia_ch_mana_1);
 };
 
 func void DIA_CH_Mana_BACK()
@@ -3871,7 +3871,7 @@ func string B_BuildCurrentRegenerateValue(var int stats)
 	var string concatText;
 	var int cost;
 	var int next;
-	cost = B_GetLearnCostAttribute(other,stats);
+	cost = B_GetLearnCostAttribute(other,stats,1);
 	if(stats == ATR_REGENERATEMANA)
 	{
 		next = other.attribute[ATR_REGENERATEMANA] - 1;
@@ -3952,7 +3952,7 @@ func void DIA_CH_Misc_Regenerate_BACK()
 func void DIA_CH_Misc_Regenerate_Mana()
 {
 	var int cost;
-	cost = B_GetLearnCostAttribute(other,ATR_REGENERATEMANA);
+	cost = B_GetLearnCostAttribute(other,ATR_REGENERATEMANA,1);
 	if(other.lp >= cost)
 	{
 		other.lp -= cost;
@@ -3968,7 +3968,7 @@ func void DIA_CH_Misc_Regenerate_Mana()
 func void DIA_CH_Misc_Regenerate_HP()
 {
 	var int cost;
-	cost = B_GetLearnCostAttribute(other,ATR_REGENERATEHP);
+	cost = B_GetLearnCostAttribute(other,ATR_REGENERATEHP,1);
 	if(other.lp >= cost)
 	{
 		other.lp -= cost;

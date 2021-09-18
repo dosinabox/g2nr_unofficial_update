@@ -67,8 +67,8 @@ func void B_BuildLearnDialog_Lares_DI()
 	};
 	if(other.attribute[ATR_DEXTERITY] < T_MED)
 	{
-		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_DI_Training_DEX_1);
-		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_DI_Training_DEX_5);
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_Lares_DI_Training_DEX_1);
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_Lares_DI_Training_DEX_5);
 	};
 	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Lares)
 	{

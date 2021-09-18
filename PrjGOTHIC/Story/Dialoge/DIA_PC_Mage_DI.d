@@ -165,8 +165,8 @@ func void B_BuildLearnDialog_Milten_DI()
 {
 	Info_ClearChoices(DIA_Milten_DI_TeachMagic);
 	Info_AddChoice(DIA_Milten_DI_TeachMagic,Dialog_Back,DIA_Milten_DI_TeachMagic_BACK);
-	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Milten_DI_TeachMagic_MANA_1);
-	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Milten_DI_TeachMagic_MANA_5);
+	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),DIA_Milten_DI_TeachMagic_MANA_1);
+	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),DIA_Milten_DI_TeachMagic_MANA_5);
 	if(hero.guild == GIL_KDF)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,"Создание рун",DIA_Milten_DI_TeachMagic_RUNES);
