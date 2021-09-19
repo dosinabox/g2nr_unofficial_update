@@ -29,6 +29,10 @@ func int GetMainAttributeCost(var int current,var int amount)
 		};
 		return 2 * amount;
 	};
+	if((HonestStatCalculation == TRUE) && (current + amount > 30))
+	{
+		return (2 * amount) + current - 30;
+	};
 	return amount;
 };
 
