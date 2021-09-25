@@ -648,6 +648,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItPo_Mana_Addon_04,10);
 	CreateInvItems(self,ItPo_Perm_LittleMana,10);
 	CreateInvItems(self,ItPo_Perm_MushroomMana,10);
+	CreateInvItems(self,ItPo_Perm_AppleSTR,10);
 	CreateInvItems(self,ItAt_Meatbugflesh,10);
 	CreateInvItems(self,ItAt_SheepFur,10);
 	CreateInvItems(self,ItAt_WolfFur,10);

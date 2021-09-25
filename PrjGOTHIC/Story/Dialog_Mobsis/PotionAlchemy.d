@@ -934,12 +934,12 @@ func void PC_ItPo_Perm_MushroomMana_Info()
 	{
 		b_endproductiondialog();
 	}
-	else if((Npc_HasItems(self,ItPl_Mushroom_01) >= 50) && Npc_HasItems(self,ItPl_Planeberry))
+	else if((Npc_HasItems(self,ItPl_Mushroom_01) >= MushroomsNeededForBonus) && Npc_HasItems(self,ItPl_Planeberry))
 	{
-		Npc_RemoveInvItems(self,ItPl_Mushroom_01,50);
+		Npc_RemoveInvItems(self,ItPl_Mushroom_01,MushroomsNeededForBonus);
 		Npc_RemoveInvItems(self,ItPl_Planeberry,1);
 		B_BrewPotion(ItPo_Perm_MushroomMana);
-		TotalMushroomsEaten += 50;
+		TotalMushroomsEaten += MushroomsNeededForBonus;
 	}
 	else
 	{
