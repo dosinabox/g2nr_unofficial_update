@@ -33,12 +33,5 @@ func void B_GrantAbsolution(var int location)
 		PETZCOUNTER_Farm_Attack = 0;
 		PETZCOUNTER_Farm_Sheepkiller = 0;
 	};
-/*	if(location == LOC_BL)
-	{
-		ABSOLUTIONLEVEL_BL += 1;
-		PETZCOUNTER_BL_Murder = 0;
-		PETZCOUNTER_BL_Theft = 0;
-		PETZCOUNTER_BL_Attack = 0;
-	}; */
 };
 

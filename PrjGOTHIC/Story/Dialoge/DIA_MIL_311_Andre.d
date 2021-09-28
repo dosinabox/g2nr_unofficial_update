@@ -160,6 +160,39 @@ func void DIA_Andre_Informed_Info()
 var int Andre_LastPetzCounter;
 var int Andre_LastPetzCrime;
 
+func void DIA_Andre_PayForCrimesNow()
+{
+	AI_Output(other,self,"DIA_Andre_PETZMASTER_PayNow_15_00");	//Я хочу заплатить штраф!
+	B_GiveInvItems(other,self,ItMi_Gold,Andre_Schulden);
+	AI_Output(self,other,"DIA_Andre_PETZMASTER_PayNow_08_01");	//Хорошо! Я позабочусь, чтобы все в городе узнали об этом - это хоть как-то восстановит твою репутацию.
+	B_GrantAbsolution(LOC_CITY);
+	Andre_Schulden = 0;
+	Andre_LastPetzCounter = 0;
+	Andre_LastPetzCrime = CRIME_NONE;
+	AI_StopProcessInfos(self);
+};
+
+func void DIA_Andre_PayForCrimesLater()
+{
+	AI_Output(other,self,"DIA_Andre_PETZMASTER_PayLater_15_00");	//У меня недостаточно золота.
+	AI_Output(self,other,"DIA_Andre_PETZMASTER_PayLater_08_01");	//Тогда постарайся собрать необходимую сумму как можно быстрее.
+	AI_Output(self,other,"DIA_Andre_PETZMASTER_PayLater_08_02");	//Но должен предупредить тебя: если ты при этом усугубишь свою вину, то твой штраф только возрастет.
+	Andre_LastPetzCounter = B_GetTotalPetzCounter(self);
+	Andre_LastPetzCrime = B_GetGreatestPetzCrime(self);
+	AI_StopProcessInfos(self);
+};
+
+func void DIA_Andre_BuildCrimesDialog()
+{
+	Info_ClearChoices(DIA_Andre_PMSchulden);
+	Info_AddChoice(DIA_Andre_PMSchulden,"У меня недостаточно золота.",DIA_Andre_PayForCrimesLater);
+	Info_AddChoice(DIA_Andre_PMSchulden,"Сколько там еще?",DIA_Andre_PMSchulden_HowMuchAgain);
+	if(Npc_HasItems(other,ItMi_Gold) >= Andre_Schulden)
+	{
+		Info_AddChoice(DIA_Andre_PMSchulden,"Я хочу заплатить штраф!",DIA_Andre_PayForCrimesNow);
+	};
+};
+
 instance DIA_Andre_PMSchulden(C_Info)
 {
 	npc = MIL_311_Andre;
@@ -183,7 +216,10 @@ func void DIA_Andre_PMSchulden_Info()
 {
 	var int diff;
 	B_PlayerEnteredCity();
-	AI_Output(self,other,"DIA_Andre_PMSchulden_08_00");	//Ты пришел заплатить штраф?
+	if(B_GetGreatestPetzCrime(self) != CRIME_NONE)
+	{
+		AI_Output(self,other,"DIA_Andre_PMSchulden_08_00");	//Ты пришел заплатить штраф?
+	};
 	B_Andre_Informed();
 	if(B_GetTotalPetzCounter(self) > Andre_LastPetzCounter)
 	{
@@ -246,14 +282,7 @@ func void DIA_Andre_PMSchulden_Info()
 	};
 	if(B_GetGreatestPetzCrime(self) != CRIME_NONE)
 	{
-		Info_ClearChoices(DIA_Andre_PMSchulden);
-		Info_ClearChoices(DIA_Andre_PETZMASTER);
-		Info_AddChoice(DIA_Andre_PMSchulden,"У меня недостаточно золота.",DIA_Andre_PETZMASTER_PayLater);
-		Info_AddChoice(DIA_Andre_PMSchulden,"Сколько там еще?",DIA_Andre_PMSchulden_HowMuchAgain);
-		if(Npc_HasItems(other,ItMi_Gold) >= Andre_Schulden)
-		{
-			Info_AddChoice(DIA_Andre_PMSchulden,"Я хочу заплатить штраф!",DIA_Andre_PETZMASTER_PayNow);
-		};
+		DIA_Andre_BuildCrimesDialog();
 	};
 };
 
@@ -261,14 +290,7 @@ func void DIA_Andre_PMSchulden_HowMuchAgain()
 {
 	AI_Output(other,self,"DIA_Andre_PMSchulden_HowMuchAgain_15_00");	//Сколько там еще?
 	B_Say_Gold(self,other,Andre_Schulden);
-	Info_ClearChoices(DIA_Andre_PMSchulden);
-	Info_ClearChoices(DIA_Andre_PETZMASTER);
-	Info_AddChoice(DIA_Andre_PMSchulden,"У меня недостаточно золота.",DIA_Andre_PETZMASTER_PayLater);
-	Info_AddChoice(DIA_Andre_PMSchulden,"Сколько там еще?",DIA_Andre_PMSchulden_HowMuchAgain);
-	if(Npc_HasItems(other,ItMi_Gold) >= Andre_Schulden)
-	{
-		Info_AddChoice(DIA_Andre_PMSchulden,"Я хочу заплатить штраф!",DIA_Andre_PETZMASTER_PayNow);
-	};
+	DIA_Andre_BuildCrimesDialog();
 };
 
 
@@ -351,36 +373,12 @@ func void DIA_Andre_PETZMASTER_Info()
 		Andre_Schulden = 1000;
 	};
 	B_Say_Gold(self,other,Andre_Schulden);
-	Info_ClearChoices(DIA_Andre_PMSchulden);
 	Info_ClearChoices(DIA_Andre_PETZMASTER);
-	Info_AddChoice(DIA_Andre_PETZMASTER,"У меня недостаточно золота.",DIA_Andre_PETZMASTER_PayLater);
+	Info_AddChoice(DIA_Andre_PETZMASTER,"У меня недостаточно золота.",DIA_Andre_PayForCrimesLater);
 	if(Npc_HasItems(other,ItMi_Gold) >= Andre_Schulden)
 	{
-		Info_AddChoice(DIA_Andre_PETZMASTER,"Я хочу заплатить штраф!",DIA_Andre_PETZMASTER_PayNow);
+		Info_AddChoice(DIA_Andre_PETZMASTER,"Я хочу заплатить штраф!",DIA_Andre_PayForCrimesNow);
 	};
-};
-
-func void DIA_Andre_PETZMASTER_PayNow()
-{
-	AI_Output(other,self,"DIA_Andre_PETZMASTER_PayNow_15_00");	//Я хочу заплатить штраф!
-	B_GiveInvItems(other,self,ItMi_Gold,Andre_Schulden);
-	AI_Output(self,other,"DIA_Andre_PETZMASTER_PayNow_08_01");	//Хорошо! Я позабочусь, чтобы все в городе узнали об этом - это хоть как-то восстановит твою репутацию.
-	B_GrantAbsolution(LOC_CITY);
-	Andre_Schulden = 0;
-	Andre_LastPetzCounter = 0;
-	Andre_LastPetzCrime = CRIME_NONE;
-	Info_ClearChoices(DIA_Andre_PETZMASTER);
-	Info_ClearChoices(DIA_Andre_PMSchulden);
-};
-
-func void DIA_Andre_PETZMASTER_PayLater()
-{
-	AI_Output(other,self,"DIA_Andre_PETZMASTER_PayLater_15_00");	//У меня недостаточно золота.
-	AI_Output(self,other,"DIA_Andre_PETZMASTER_PayLater_08_01");	//Тогда постарайся собрать необходимую сумму как можно быстрее.
-	AI_Output(self,other,"DIA_Andre_PETZMASTER_PayLater_08_02");	//Но должен предупредить тебя: если ты при этом усугубишь свою вину, то твой штраф только возрастет.
-	Andre_LastPetzCounter = B_GetTotalPetzCounter(self);
-	Andre_LastPetzCrime = B_GetGreatestPetzCrime(self);
-	AI_StopProcessInfos(self);
 };
 
 

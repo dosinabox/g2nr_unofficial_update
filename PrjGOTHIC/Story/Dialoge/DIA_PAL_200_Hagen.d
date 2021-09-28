@@ -29,6 +29,39 @@ func void B_Hagen_CityLaws()
 	AI_Output(self,other,"DIA_Hagen_PMSchulden_04_01");	//Ты не очень-то серьезно относишься к законам города, да?
 };
 
+func void DIA_Hagen_PayForCrimesNow()
+{
+	AI_Output(other,self,"DIA_Hagen_PETZMASTER_PayNow_15_00");	//Я хочу заплатить штраф!
+	B_GiveInvItems(other,self,ItMi_Gold,Hagen_Schulden);
+	AI_Output(self,other,"DIA_Hagen_PETZMASTER_PayNow_04_01");	//Хорошо! Я позабочусь, чтобы все в городе узнали об этом. Это в некоторой степени восстановит твою репутацию.
+	B_GrantAbsolution(LOC_CITY);
+	Hagen_Schulden = 0;
+	Hagen_LastPetzCounter = 0;
+	Hagen_LastPetzCrime = CRIME_NONE;
+	AI_StopProcessInfos(self);
+};
+
+func void DIA_Hagen_PayForCrimesLater()
+{
+	AI_Output(other,self,"DIA_Hagen_PETZMASTER_PayLater_15_00");	//У меня нет столько золота!
+	AI_Output(self,other,"DIA_Hagen_PETZMASTER_PayLater_04_01");	//Тогда позаботься о том, чтобы раздобыть это золото как можно быстрее.
+	AI_Output(self,other,"DIA_Hagen_PETZMASTER_PayLater_04_02");	//И я предупреждаю тебя: если ты при этом усугубишь свою вину, на пощаду не рассчитывай.
+	Hagen_LastPetzCounter = B_GetTotalPetzCounter(self);
+	Hagen_LastPetzCrime = B_GetGreatestPetzCrime(self);
+	AI_StopProcessInfos(self);
+};
+
+func void DIA_Hagen_BuildCrimesDialog()
+{
+	Info_ClearChoices(DIA_Hagen_PMSchulden);
+	Info_AddChoice(DIA_Hagen_PMSchulden,"У меня нет столько золота!",DIA_Hagen_PayForCrimesLater);
+	Info_AddChoice(DIA_Hagen_PMSchulden,"Сколько там на этот раз?",DIA_Hagen_PMSchulden_HowMuchAgain);
+	if(Npc_HasItems(other,ItMi_Gold) >= Hagen_Schulden)
+	{
+		Info_AddChoice(DIA_Hagen_PMSchulden,"Я хочу заплатить штраф!",DIA_Hagen_PayForCrimesNow);
+	};
+};
+
 instance DIA_Hagen_PMSchulden(C_Info)
 {
 	npc = PAL_200_Hagen;
@@ -51,7 +84,10 @@ func int DIA_Hagen_PMSchulden_Condition()
 func void DIA_Hagen_PMSchulden_Info()
 {
 	var int diff;
-	AI_Output(self,other,"DIA_Hagen_PMSchulden_04_00");	//Хорошо, что ты пришел. Ты можешь заплатить штраф прямо сейчас.
+	if(B_GetGreatestPetzCrime(self) != CRIME_NONE)
+	{
+		AI_Output(self,other,"DIA_Hagen_PMSchulden_04_00");	//Хорошо, что ты пришел. Ты можешь заплатить штраф прямо сейчас.
+	};
 	if(B_GetTotalPetzCounter(self) > Hagen_LastPetzCounter)
 	{
 		diff = B_GetTotalPetzCounter(self) - Hagen_LastPetzCounter;
@@ -113,14 +149,7 @@ func void DIA_Hagen_PMSchulden_Info()
 	};
 	if(B_GetGreatestPetzCrime(self) != CRIME_NONE)
 	{
-		Info_ClearChoices(DIA_Hagen_PMSchulden);
-		Info_ClearChoices(DIA_Hagen_PETZMASTER);
-		Info_AddChoice(DIA_Hagen_PMSchulden,"У меня нет столько золота!",DIA_Hagen_PETZMASTER_PayLater);
-		Info_AddChoice(DIA_Hagen_PMSchulden,"Сколько там на этот раз?",DIA_Hagen_PMSchulden_HowMuchAgain);
-		if(Npc_HasItems(other,ItMi_Gold) >= Hagen_Schulden)
-		{
-			Info_AddChoice(DIA_Hagen_PMSchulden,"Я хочу заплатить штраф!",DIA_Hagen_PETZMASTER_PayNow);
-		};
+		DIA_Hagen_BuildCrimesDialog();
 	};
 };
 
@@ -128,14 +157,7 @@ func void DIA_Hagen_PMSchulden_HowMuchAgain()
 {
 	AI_Output(other,self,"DIA_Hagen_PMSchulden_HowMuchAgain_15_00");	//Сколько там на этот раз?
 	B_Say_Gold(self,other,Hagen_Schulden);
-	Info_ClearChoices(DIA_Hagen_PMSchulden);
-	Info_ClearChoices(DIA_Hagen_PETZMASTER);
-	Info_AddChoice(DIA_Hagen_PMSchulden,"У меня нет столько золота!",DIA_Hagen_PETZMASTER_PayLater);
-	Info_AddChoice(DIA_Hagen_PMSchulden,"Сколько там на этот раз?",DIA_Hagen_PMSchulden_HowMuchAgain);
-	if(Npc_HasItems(other,ItMi_Gold) >= Hagen_Schulden)
-	{
-		Info_AddChoice(DIA_Hagen_PMSchulden,"Я хочу заплатить штраф!",DIA_Hagen_PETZMASTER_PayNow);
-	};
+	DIA_Hagen_BuildCrimesDialog();
 };
 
 
@@ -211,36 +233,12 @@ func void DIA_Hagen_PETZMASTER_Info()
 		Hagen_Schulden = 1000;
 	};
 	B_Say_Gold(self,other,Hagen_Schulden);
-	Info_ClearChoices(DIA_Hagen_PMSchulden);
 	Info_ClearChoices(DIA_Hagen_PETZMASTER);
-	Info_AddChoice(DIA_Hagen_PETZMASTER,"У меня нет столько золота!",DIA_Hagen_PETZMASTER_PayLater);
+	Info_AddChoice(DIA_Hagen_PETZMASTER,"У меня нет столько золота!",DIA_Hagen_PayForCrimesLater);
 	if(Npc_HasItems(other,ItMi_Gold) >= Hagen_Schulden)
 	{
-		Info_AddChoice(DIA_Hagen_PETZMASTER,"Я хочу заплатить штраф!",DIA_Hagen_PETZMASTER_PayNow);
+		Info_AddChoice(DIA_Hagen_PETZMASTER,"Я хочу заплатить штраф!",DIA_Hagen_PayForCrimesNow);
 	};
-};
-
-func void DIA_Hagen_PETZMASTER_PayNow()
-{
-	AI_Output(other,self,"DIA_Hagen_PETZMASTER_PayNow_15_00");	//Я хочу заплатить штраф!
-	B_GiveInvItems(other,self,ItMi_Gold,Hagen_Schulden);
-	AI_Output(self,other,"DIA_Hagen_PETZMASTER_PayNow_04_01");	//Хорошо! Я позабочусь, чтобы все в городе узнали об этом. Это в некоторой степени восстановит твою репутацию.
-	B_GrantAbsolution(LOC_CITY);
-	Hagen_Schulden = 0;
-	Hagen_LastPetzCounter = 0;
-	Hagen_LastPetzCrime = CRIME_NONE;
-	Info_ClearChoices(DIA_Hagen_PETZMASTER);
-	Info_ClearChoices(DIA_Hagen_PMSchulden);
-};
-
-func void DIA_Hagen_PETZMASTER_PayLater()
-{
-	AI_Output(other,self,"DIA_Hagen_PETZMASTER_PayLater_15_00");	//У меня нет столько золота!
-	AI_Output(self,other,"DIA_Hagen_PETZMASTER_PayLater_04_01");	//Тогда позаботься о том, чтобы раздобыть это золото как можно быстрее.
-	AI_Output(self,other,"DIA_Hagen_PETZMASTER_PayLater_04_02");	//И я предупреждаю тебя: если ты при этом усугубишь свою вину, на пощаду не рассчитывай.
-	Hagen_LastPetzCounter = B_GetTotalPetzCounter(self);
-	Hagen_LastPetzCrime = B_GetGreatestPetzCrime(self);
-	AI_StopProcessInfos(self);
 };
 
 

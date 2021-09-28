@@ -3,6 +3,7 @@ func void B_AddPetzCrime(var C_Npc slf,var int crime)
 {
 	if(C_NpcBelongsToOldCamp(slf))
 	{
+		TotalOldCampCrimes += 1;
 		if(crime == CRIME_MURDER)
 		{
 			PETZCOUNTER_OldCamp_Murder += 1;
@@ -22,6 +23,7 @@ func void B_AddPetzCrime(var C_Npc slf,var int crime)
 	};
 	if(C_NpcBelongsToCity(slf))
 	{
+		TotalCityCrimes += 1;
 		if(crime == CRIME_MURDER)
 		{
 			PETZCOUNTER_City_Murder += 1;
@@ -41,6 +43,7 @@ func void B_AddPetzCrime(var C_Npc slf,var int crime)
 	};
 	if(C_NpcBelongsToMonastery(slf))
 	{
+		TotalMonasteryCrimes += 1;
 		if(crime == CRIME_MURDER)
 		{
 			PETZCOUNTER_Monastery_Murder += 1;
@@ -60,6 +63,7 @@ func void B_AddPetzCrime(var C_Npc slf,var int crime)
 	};
 	if(C_NpcBelongsToFarm(slf))
 	{
+		TotalFarmCrimes += 1;
 		if(crime == CRIME_MURDER)
 		{
 			PETZCOUNTER_Farm_Murder += 1;
@@ -77,20 +81,5 @@ func void B_AddPetzCrime(var C_Npc slf,var int crime)
 			PETZCOUNTER_Farm_Sheepkiller += 1;
 		};
 	};
-/*	if(C_NpcBelongsToBL(slf))
-	{
-		if(crime == CRIME_MURDER)
-		{
-			PETZCOUNTER_BL_Murder += 1;
-		};
-		if(crime == CRIME_THEFT)
-		{
-			PETZCOUNTER_BL_Theft += 1;
-		};
-		if(crime == CRIME_ATTACK)
-		{
-			PETZCOUNTER_BL_Attack += 1;
-		};
-	};*/
 };
 

@@ -17,10 +17,6 @@ func int B_GetCurrentAbsolutionLevel(var C_Npc slf)
 	{
 		return ABSOLUTIONLEVEL_Farm;
 	};
-/*	if(C_NpcBelongsToBL(slf))
-	{
-		return ABSOLUTIONLEVEL_BL;
-	};*/
 	return 0;
 };
 

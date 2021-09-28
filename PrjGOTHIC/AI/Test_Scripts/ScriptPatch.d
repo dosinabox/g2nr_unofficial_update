@@ -99,9 +99,10 @@ func void Use_StatsBook()
 		Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(BeliarWeapCurrentLvL)," уровень (уничтожен)"));
 	};
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLine(nDocID,1,"Кражи:");
+	Doc_PrintLine(nDocID,1,"Преступления:");
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalOldCampCrimes + TotalCityCrimes + TotalMonasteryCrimes + TotalFarmCrimes)," преступлений"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalThefts)," успешных краж"));
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalTheftXP)," опыта получено"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalTheftXP)," опыта с краж получено"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalTheftGold)," золотых украдено"));
 	Doc_PrintLine(nDocID,1,"");
 	if(UnionActivated == TRUE)

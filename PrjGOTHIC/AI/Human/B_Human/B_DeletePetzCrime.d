@@ -77,20 +77,5 @@ func void B_DeletePetzCrime(var C_Npc slf)
 			PETZCOUNTER_Farm_Sheepkiller -= 1;
 		};
 	};
-/*	if(C_NpcBelongsToBL(slf))
-	{
-		if(B_GetPlayerCrime(slf) == CRIME_MURDER)
-		{
-			PETZCOUNTER_BL_Murder -= 1;
-		};
-		if(B_GetPlayerCrime(slf) == CRIME_THEFT)
-		{
-			PETZCOUNTER_BL_Theft -= 1;
-		};
-		if(B_GetPlayerCrime(slf) == CRIME_ATTACK)
-		{
-			PETZCOUNTER_BL_Attack -= 1;
-		};
-	};*/
 };
 
