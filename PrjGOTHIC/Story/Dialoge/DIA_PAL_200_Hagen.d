@@ -38,7 +38,6 @@ func void DIA_Hagen_PayForCrimesNow()
 	Hagen_Schulden = 0;
 	Hagen_LastPetzCounter = 0;
 	Hagen_LastPetzCrime = CRIME_NONE;
-	AI_StopProcessInfos(self);
 };
 
 func void DIA_Hagen_PayForCrimesLater()
@@ -54,12 +53,31 @@ func void DIA_Hagen_PayForCrimesLater()
 func void DIA_Hagen_BuildCrimesDialog()
 {
 	Info_ClearChoices(DIA_Hagen_PMSchulden);
-	Info_AddChoice(DIA_Hagen_PMSchulden,"У меня нет столько золота!",DIA_Hagen_PayForCrimesLater);
+	Info_AddChoice(DIA_Hagen_PMSchulden,"У меня нет столько золота!",DIA_Hagen_PMSchulden_PayForCrimesLater);
 	Info_AddChoice(DIA_Hagen_PMSchulden,"Сколько там на этот раз?",DIA_Hagen_PMSchulden_HowMuchAgain);
 	if(Npc_HasItems(other,ItMi_Gold) >= Hagen_Schulden)
 	{
-		Info_AddChoice(DIA_Hagen_PMSchulden,"Я хочу заплатить штраф!",DIA_Hagen_PayForCrimesNow);
+		Info_AddChoice(DIA_Hagen_PMSchulden,"Я хочу заплатить штраф!",DIA_Hagen_PMSchulden_PayForCrimesNow);
 	};
+};
+
+func void DIA_Hagen_PMSchulden_PayForCrimesNow()
+{
+	DIA_Hagen_PayForCrimesNow();
+	Info_ClearChoices(DIA_Hagen_PMSchulden);
+};
+
+func void DIA_Hagen_PMSchulden_PayForCrimesLater()
+{
+	DIA_Hagen_PayForCrimesLater();
+	Info_ClearChoices(DIA_Hagen_PMSchulden);
+};
+
+func void DIA_Hagen_PMSchulden_HowMuchAgain()
+{
+	AI_Output(other,self,"DIA_Hagen_PMSchulden_HowMuchAgain_15_00");	//Сколько там на этот раз?
+	B_Say_Gold(self,other,Hagen_Schulden);
+	DIA_Hagen_BuildCrimesDialog();
 };
 
 instance DIA_Hagen_PMSchulden(C_Info)
@@ -153,13 +171,18 @@ func void DIA_Hagen_PMSchulden_Info()
 	};
 };
 
-func void DIA_Hagen_PMSchulden_HowMuchAgain()
+
+func void DIA_Hagen_PETZMASTER_PayForCrimesNow()
 {
-	AI_Output(other,self,"DIA_Hagen_PMSchulden_HowMuchAgain_15_00");	//Сколько там на этот раз?
-	B_Say_Gold(self,other,Hagen_Schulden);
-	DIA_Hagen_BuildCrimesDialog();
+	DIA_Hagen_PayForCrimesNow();
+	Info_ClearChoices(DIA_Hagen_PETZMASTER);
 };
 
+func void DIA_Hagen_PETZMASTER_PayForCrimesLater()
+{
+	DIA_Hagen_PayForCrimesLater();
+	Info_ClearChoices(DIA_Hagen_PETZMASTER);
+};
 
 instance DIA_Hagen_PETZMASTER(C_Info)
 {
@@ -234,10 +257,10 @@ func void DIA_Hagen_PETZMASTER_Info()
 	};
 	B_Say_Gold(self,other,Hagen_Schulden);
 	Info_ClearChoices(DIA_Hagen_PETZMASTER);
-	Info_AddChoice(DIA_Hagen_PETZMASTER,"У меня нет столько золота!",DIA_Hagen_PayForCrimesLater);
+	Info_AddChoice(DIA_Hagen_PETZMASTER,"У меня нет столько золота!",DIA_Hagen_PETZMASTER_PayForCrimesLater);
 	if(Npc_HasItems(other,ItMi_Gold) >= Hagen_Schulden)
 	{
-		Info_AddChoice(DIA_Hagen_PETZMASTER,"Я хочу заплатить штраф!",DIA_Hagen_PayForCrimesNow);
+		Info_AddChoice(DIA_Hagen_PETZMASTER,"Я хочу заплатить штраф!",DIA_Hagen_PETZMASTER_PayForCrimesNow);
 	};
 };
 

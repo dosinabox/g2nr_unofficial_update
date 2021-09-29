@@ -364,6 +364,7 @@ func void STARTUP_Addon_Part_BanditsCamp_01()
 	Wld_InsertNpc(Sleepfly,"ADW_LITTLE_HILL_04");
 	Wld_InsertNpc(Sleepfly,"ADW_SWAMP_04");
 	Wld_InsertNpc(Sleepfly,"ADW_SWAMP_04");
+	Wld_InsertNpc(Sleepfly,"ADW_SWAMP_04");
 	Wld_InsertNpc(Sleepfly,"ADW_SWAMP_05");
 	Wld_InsertNpc(Sleepfly,"ADW_SWAMP_05");
 	Wld_InsertNpc(Bloodfly,"ADW_SWAMP_LITTLE_SEA_01");
@@ -400,7 +401,6 @@ func void STARTUP_Addon_Part_BanditsCamp_01()
 	Wld_InsertNpc(SwampDrone,"ADW_SWAMP_13");
 	Wld_InsertNpc(SwampDrone,"ADW_SWAMP_14");
 	Wld_InsertNpc(SwampDrone,"ADW_SWAMP_06");
-	Wld_InsertNpc(Bloodfly,"ADW_SWAMP_05");
 	Wld_InsertNpc(SwampDrone,"ADW_SWAMP_12");
 	Wld_InsertNpc(SwampDrone,"ADW_SWAMP_BF_NEST_06");
 	Wld_InsertNpc(SwampDrone,"ADW_SWAMP_HOHLWEG_03");

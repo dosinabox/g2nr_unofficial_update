@@ -329,11 +329,14 @@ func void DIA_Addon_Snaf_HOCH_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Snaf_HOCH_15_00");	//Я от Хуно.
 	AI_Output(self,other,"DIA_Addon_Snaf_HOCH_01_01");	//Гляжу, ты нашел того, кого искал.
-	AI_Output(self,other,"DIA_Addon_Snaf_HOCH_01_02");	//Поднимись наверх, тебя там ждут.
-	AI_StopProcessInfos(self);
-	AI_Teleport(Fisk,"BL_INN_UP_06");
-	B_StartOtherRoutine(Fisk,"MEETING");
-	B_GivePlayerXP(XP_Addon_Auftraggeber);
+	if(!Npc_IsDead(Fisk))
+	{
+		AI_Output(self,other,"DIA_Addon_Snaf_HOCH_01_02");	//Поднимись наверх, тебя там ждут.
+		AI_StopProcessInfos(self);
+		AI_Teleport(Fisk,"BL_INN_UP_06");
+		B_StartOtherRoutine(Fisk,"MEETING");
+		B_GivePlayerXP(XP_Addon_Auftraggeber);
+	};
 };
 
 

@@ -69,7 +69,6 @@ func void DIA_Lee_PayForCrimesNow()
 	Lee_Schulden = 0;
 	Lee_LastPetzCounter = 0;
 	Lee_LastPetzCrime = CRIME_NONE;
-	AI_StopProcessInfos(self);
 };
 
 func void DIA_Lee_PayForCrimesLater()
@@ -85,12 +84,31 @@ func void DIA_Lee_PayForCrimesLater()
 func void DIA_Lee_BuildCrimesDialog()
 {
 	Info_ClearChoices(DIA_Lee_PMSchulden);
-	Info_AddChoice(DIA_Lee_PMSchulden,"У меня нет столько золота!",DIA_Lee_PayForCrimesLater);
+	Info_AddChoice(DIA_Lee_PMSchulden,"У меня нет столько золота!",DIA_Lee_PMSchulden_PayForCrimesLater);
 	Info_AddChoice(DIA_Lee_PMSchulden,"Сколько там нужно?",DIA_Lee_PMSchulden_HowMuchAgain);
 	if(Npc_HasItems(other,ItMi_Gold) >= Lee_Schulden)
 	{
-		Info_AddChoice(DIA_Lee_PMSchulden,"Я хочу заплатить штраф!",DIA_Lee_PayForCrimesNow);
+		Info_AddChoice(DIA_Lee_PMSchulden,"Я хочу заплатить штраф!",DIA_Lee_PMSchulden_PayForCrimesNow);
 	};
+};
+
+func void DIA_Lee_PMSchulden_PayForCrimesNow()
+{
+	DIA_Lee_PayForCrimesNow();
+	Info_ClearChoices(DIA_Lee_PMSchulden);
+};
+
+func void DIA_Lee_PMSchulden_PayForCrimesLater()
+{
+	DIA_Lee_PayForCrimesLater();
+	Info_ClearChoices(DIA_Lee_PMSchulden);
+};
+
+func void DIA_Lee_PMSchulden_HowMuchAgain()
+{
+	AI_Output(other,self,"DIA_Lee_PMSchulden_HowMuchAgain_15_00");	//Сколько там нужно?
+	B_Say_Gold(self,other,Lee_Schulden);
+	DIA_Lee_BuildCrimesDialog();
 };
 
 instance DIA_Lee_PMSchulden(C_Info)
@@ -184,13 +202,18 @@ func void DIA_Lee_PMSchulden_Info()
 	};
 };
 
-func void DIA_Lee_PMSchulden_HowMuchAgain()
+
+func void DIA_Lee_PETZMASTER_PayForCrimesNow()
 {
-	AI_Output(other,self,"DIA_Lee_PMSchulden_HowMuchAgain_15_00");	//Сколько там нужно?
-	B_Say_Gold(self,other,Lee_Schulden);
-	DIA_Lee_BuildCrimesDialog();
+	DIA_Lee_PayForCrimesNow();
+	Info_ClearChoices(DIA_Lee_PETZMASTER);
 };
 
+func void DIA_Lee_PETZMASTER_PayForCrimesLater()
+{
+	DIA_Lee_PayForCrimesLater();
+	Info_ClearChoices(DIA_Lee_PETZMASTER);
+};
 
 instance DIA_Lee_PETZMASTER(C_Info)
 {
@@ -278,10 +301,10 @@ func void DIA_Lee_PETZMASTER_Info()
 	};
 	B_Say_Gold(self,other,Lee_Schulden);
 	Info_ClearChoices(DIA_Lee_PETZMASTER);
-	Info_AddChoice(DIA_Lee_PETZMASTER,"У меня нет столько золота!",DIA_Lee_PayForCrimesLater);
+	Info_AddChoice(DIA_Lee_PETZMASTER,"У меня нет столько золота!",DIA_Lee_PETZMASTER_PayForCrimesLater);
 	if(Npc_HasItems(other,ItMi_Gold) >= Lee_Schulden)
 	{
-		Info_AddChoice(DIA_Lee_PETZMASTER,"Я хочу заплатить штраф!",DIA_Lee_PayForCrimesNow);
+		Info_AddChoice(DIA_Lee_PETZMASTER,"Я хочу заплатить штраф!",DIA_Lee_PETZMASTER_PayForCrimesNow);
 	};
 };
 

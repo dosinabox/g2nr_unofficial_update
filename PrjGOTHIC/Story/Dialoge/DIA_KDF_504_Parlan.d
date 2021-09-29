@@ -54,7 +54,6 @@ func void DIA_Parlan_PayForCrimesNow()
 	Parlan_Schulden = 0;
 	Parlan_LastPetzCounter = 0;
 	Parlan_LastPetzCrime = CRIME_NONE;
-	AI_StopProcessInfos(self);
 };
 
 func void DIA_Parlan_PayForCrimesLater()
@@ -70,12 +69,31 @@ func void DIA_Parlan_PayForCrimesLater()
 func void DIA_Parlan_BuildCrimesDialog()
 {
 	Info_ClearChoices(DIA_Parlan_PMSchulden);
-	Info_AddChoice(DIA_Parlan_PMSchulden,"У меня недостаточно золота!",DIA_Parlan_PayForCrimesLater);
+	Info_AddChoice(DIA_Parlan_PMSchulden,"У меня недостаточно золота!",DIA_Parlan_PMSchulden_PayForCrimesLater);
 	Info_AddChoice(DIA_Parlan_PMSchulden,"Сколько там нужно?",DIA_Parlan_PMSchulden_HowMuchAgain);
 	if(Npc_HasItems(other,ItMi_Gold) >= Parlan_Schulden)
 	{
-		Info_AddChoice(DIA_Parlan_PMSchulden,"Я хочу заплатить штраф!",DIA_Parlan_PayForCrimesNow);
+		Info_AddChoice(DIA_Parlan_PMSchulden,"Я хочу заплатить штраф!",DIA_Parlan_PMSchulden_PayForCrimesNow);
 	};
+};
+
+func void DIA_Parlan_PMSchulden_PayForCrimesNow()
+{
+	DIA_Parlan_PayForCrimesNow();
+	Info_ClearChoices(DIA_Parlan_PMSchulden);
+};
+
+func void DIA_Parlan_PMSchulden_PayForCrimesLater()
+{
+	DIA_Parlan_PayForCrimesLater();
+	Info_ClearChoices(DIA_Parlan_PMSchulden);
+};
+
+func void DIA_Parlan_PMSchulden_HowMuchAgain()
+{
+	AI_Output(other,self,"DIA_Parlan_PMSchulden_HowMuchAgain_15_00");	//Сколько там нужно?
+	B_Say_Gold(self,other,Parlan_Schulden);
+	DIA_Parlan_BuildCrimesDialog();
 };
 
 instance DIA_Parlan_PMSchulden(C_Info)
@@ -179,13 +197,18 @@ func void DIA_Parlan_PMSchulden_Info()
 	};
 };
 
-func void DIA_Parlan_PMSchulden_HowMuchAgain()
+
+func void DIA_Parlan_PETZMASTER_PayForCrimesNow()
 {
-	AI_Output(other,self,"DIA_Parlan_PMSchulden_HowMuchAgain_15_00");	//Сколько там нужно?
-	B_Say_Gold(self,other,Parlan_Schulden);
-	DIA_Parlan_BuildCrimesDialog();
+	DIA_Parlan_PayForCrimesNow();
+	Info_ClearChoices(DIA_Parlan_PETZMASTER);
 };
 
+func void DIA_Parlan_PETZMASTER_PayForCrimesLater()
+{
+	DIA_Parlan_PayForCrimesLater();
+	Info_ClearChoices(DIA_Parlan_PETZMASTER);
+};
 
 instance DIA_Parlan_PETZMASTER(C_Info)
 {
@@ -269,10 +292,10 @@ func void DIA_Parlan_PETZMASTER_Info()
 	};
 	B_Say_Gold(self,other,Parlan_Schulden);
 	Info_ClearChoices(DIA_Parlan_PETZMASTER);
-	Info_AddChoice(DIA_Parlan_PETZMASTER,"У меня недостаточно золота!",DIA_Parlan_PayForCrimesLater);
+	Info_AddChoice(DIA_Parlan_PETZMASTER,"У меня недостаточно золота!",DIA_Parlan_PETZMASTER_PayForCrimesLater);
 	if(Npc_HasItems(other,ItMi_Gold) >= Parlan_Schulden)
 	{
-		Info_AddChoice(DIA_Parlan_PETZMASTER,"Я хочу заплатить штраф!",DIA_Parlan_PayForCrimesNow);
+		Info_AddChoice(DIA_Parlan_PETZMASTER,"Я хочу заплатить штраф!",DIA_Parlan_PETZMASTER_PayForCrimesNow);
 	};
 };
 
