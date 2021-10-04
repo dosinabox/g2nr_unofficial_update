@@ -157,18 +157,12 @@ func void DIA_Andre_Informed_Info()
 };
 
 
-var int Andre_LastPetzCounter;
-var int Andre_LastPetzCrime;
-
 func void DIA_Andre_PayForCrimesNow()
 {
 	AI_Output(other,self,"DIA_Andre_PETZMASTER_PayNow_15_00");	//Я хочу заплатить штраф!
 	B_GiveInvItems(other,self,ItMi_Gold,Andre_Schulden);
 	AI_Output(self,other,"DIA_Andre_PETZMASTER_PayNow_08_01");	//Хорошо! Я позабочусь, чтобы все в городе узнали об этом - это хоть как-то восстановит твою репутацию.
-	B_GrantAbsolution(LOC_CITY);
-	Andre_Schulden = 0;
-	Andre_LastPetzCounter = 0;
-	Andre_LastPetzCrime = CRIME_NONE;
+	B_GrantPersonalAbsolution(self);
 };
 
 func void DIA_Andre_PayForCrimesLater()
@@ -287,9 +281,7 @@ func void DIA_Andre_PMSchulden_Info()
 		{
 			AI_Output(self,other,"DIA_Andre_PMSchulden_08_11");	//Как бы то ни было, я решил снять с тебя все обвинения.
 			AI_Output(self,other,"DIA_Andre_PMSchulden_08_12");	//Смотри, чтобы больше не было никаких проблем!
-			Andre_Schulden = 0;
-			Andre_LastPetzCounter = 0;
-			Andre_LastPetzCrime = CRIME_NONE;
+			B_GrantPersonalAbsolution(self);
 		}
 		else
 		{

@@ -42,18 +42,12 @@ func void DIA_Parlan_Kap1_EXIT_Info()
 };
 
 
-var int Parlan_LastPetzCounter;
-var int Parlan_LastPetzCrime;
-
 func void DIA_Parlan_PayForCrimesNow()
 {
 	AI_Output(other,self,"DIA_Parlan_PETZMASTER_PayNow_15_00");	//Я хочу заплатить штраф!
 	B_GiveInvItems(other,self,ItMi_Gold,Parlan_Schulden);
 	AI_Output(self,other,"DIA_Parlan_PETZMASTER_PayNow_05_01");	//Я принимаю твое пожертвование. Твои прегрешения забыты. Я надеюсь, Иннос даст тебе мудрость не совершать больше подобных ошибок.
-	B_GrantAbsolution(LOC_MONASTERY);
-	Parlan_Schulden = 0;
-	Parlan_LastPetzCounter = 0;
-	Parlan_LastPetzCrime = CRIME_NONE;
+	B_GrantPersonalAbsolution(self);
 };
 
 func void DIA_Parlan_PayForCrimesLater()
@@ -111,12 +105,9 @@ func int DIA_Parlan_PMSchulden_Condition()
 {
 	if(Npc_IsInState(self,ZS_Talk) && (Parlan_Schulden > 0) && (B_GetGreatestPetzCrime(self) <= Parlan_LastPetzCrime))
 	{
-		if(other.guild == GIL_NOV)
+		if((other.guild == GIL_NOV) && !Npc_KnowsInfo(other,DIA_Parlan_WELCOME))
 		{
-			if(!Npc_KnowsInfo(other,DIA_Parlan_WELCOME))
-			{
-				return FALSE;
-			};
+			return FALSE;
 		};
 		return TRUE;
 	};
@@ -180,9 +171,7 @@ func void DIA_Parlan_PMSchulden_Info()
 		{
 			AI_Output(self,other,"DIA_Parlan_PMSchulden_05_10");	//Твои грехи забыты.
 			AI_Output(self,other,"DIA_Parlan_PMSchulden_05_11");	//И постарайся, чтобы мы больше не возвращались к этому разговору!
-			Parlan_Schulden = 0;
-			Parlan_LastPetzCounter = 0;
-			Parlan_LastPetzCrime = CRIME_NONE;
+			B_GrantPersonalAbsolution(self);
 		}
 		else
 		{
@@ -225,12 +214,9 @@ func int DIA_Parlan_PETZMASTER_Condition()
 {
 	if(B_GetGreatestPetzCrime(self) > Parlan_LastPetzCrime)
 	{
-		if(other.guild == GIL_NOV)
+		if((other.guild == GIL_NOV) && !Npc_KnowsInfo(other,DIA_Parlan_WELCOME))
 		{
-			if(!Npc_KnowsInfo(other,DIA_Parlan_WELCOME))
-			{
-				return FALSE;
-			};
+			return FALSE;
 		};
 		return TRUE;
 	};

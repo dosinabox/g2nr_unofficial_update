@@ -1,5 +1,5 @@
 
-instance DIA_garond_EXIT(C_Info)
+instance DIA_Garond_EXIT(C_Info)
 {
 	npc = PAL_250_Garond;
 	nr = 999;
@@ -21,18 +21,12 @@ func void DIA_Garond_EXIT_Info()
 };
 
 
-var int Garond_LastPetzCounter;
-var int Garond_LastPetzCrime;
-
 func void DIA_Garond_PayForCrimesNow()
 {
 	AI_Output(other,self,"DIA_Garond_PETZMASTER_PayNow_15_00");	//Я хочу заплатить штраф!
 	B_GiveInvItems(other,self,ItMi_Gold,Garond_Schulden);
 	AI_Output(self,other,"DIA_Garond_PETZMASTER_PayNow_10_01");	//Хорошо, я скажу об этом нашим парням, чтобы немного успокоить их. Но чтобы больше такого не повторялось!
-	B_GrantAbsolution(LOC_OLDCAMP);
-	Garond_Schulden = 0;
-	Garond_LastPetzCounter = 0;
-	Garond_LastPetzCrime = CRIME_NONE;
+	B_GrantPersonalAbsolution(self);
 };
 
 func void DIA_Garond_PayForCrimesLater()
@@ -148,9 +142,7 @@ func void DIA_Garond_PMSchulden_Info()
 		{
 			AI_Output(self,other,"DIA_Garond_PMSchulden_10_11");	//Я принял решение освободить тебя от штрафа.
 			AI_Output(self,other,"DIA_Garond_PMSchulden_10_12");	//И больше я не хочу слышать о том, что ты сеешь смуту в замке!
-			Garond_Schulden = 0;
-			Garond_LastPetzCounter = 0;
-			Garond_LastPetzCrime = CRIME_NONE;
+			B_GrantPersonalAbsolution(self);
 		}
 		else
 		{

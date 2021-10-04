@@ -57,18 +57,12 @@ func void DIA_Lee_EXIT_Info()
 };
 
 
-var int Lee_LastPetzCounter;
-var int Lee_LastPetzCrime;
-
 func void DIA_Lee_PayForCrimesNow()
 {
 	AI_Output(other,self,"DIA_Lee_PETZMASTER_PayNow_15_00");	//Я хочу заплатить штраф!
 	B_GiveInvItems(other,self,ItMi_Gold,Lee_Schulden);
 	AI_Output(self,other,"DIA_Lee_PETZMASTER_PayNow_04_01");	//Хорошо! Я прослежу, чтобы эти деньги дошли до Онара. Можешь считать эту проблему забытой.
-	B_GrantAbsolution(LOC_FARM);
-	Lee_Schulden = 0;
-	Lee_LastPetzCounter = 0;
-	Lee_LastPetzCrime = CRIME_NONE;
+	B_GrantPersonalAbsolution(self);
 };
 
 func void DIA_Lee_PayForCrimesLater()
@@ -185,9 +179,7 @@ func void DIA_Lee_PMSchulden_Info()
 		{
 			AI_Output(self,other,"DIA_Lee_PMSchulden_04_11");	//Как бы то ни было, тебе больше не нужно платить.
 			AI_Output(self,other,"DIA_Lee_PMSchulden_04_12");	//Но будь осторожнее в будущем.
-			Lee_Schulden = 0;
-			Lee_LastPetzCounter = 0;
-			Lee_LastPetzCrime = CRIME_NONE;
+			B_GrantPersonalAbsolution(self);
 		}
 		else
 		{

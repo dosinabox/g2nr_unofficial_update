@@ -21,9 +21,6 @@ func void DIA_Hagen_EXIT_Info()
 };
 
 
-var int Hagen_LastPetzCounter;
-var int Hagen_LastPetzCrime;
-
 func void B_Hagen_CityLaws()
 {
 	AI_Output(self,other,"DIA_Hagen_PMSchulden_04_01");	//“ы не очень-то серьезно относишьс€ к законам города, да?
@@ -34,10 +31,7 @@ func void DIA_Hagen_PayForCrimesNow()
 	AI_Output(other,self,"DIA_Hagen_PETZMASTER_PayNow_15_00");	//я хочу заплатить штраф!
 	B_GiveInvItems(other,self,ItMi_Gold,Hagen_Schulden);
 	AI_Output(self,other,"DIA_Hagen_PETZMASTER_PayNow_04_01");	//’орошо! я позабочусь, чтобы все в городе узнали об этом. Ёто в некоторой степени восстановит твою репутацию.
-	B_GrantAbsolution(LOC_CITY);
-	Hagen_Schulden = 0;
-	Hagen_LastPetzCounter = 0;
-	Hagen_LastPetzCrime = CRIME_NONE;
+	B_GrantPersonalAbsolution(self);
 };
 
 func void DIA_Hagen_PayForCrimesLater()
@@ -154,9 +148,7 @@ func void DIA_Hagen_PMSchulden_Info()
 		{
 			AI_Output(self,other,"DIA_Hagen_PMSchulden_04_12");	// ак бы то ни было, € решил простить твои прегрешени€.
 			AI_Output(self,other,"DIA_Hagen_PMSchulden_04_13");	//—мотри, чтобы этого больше не повтор€лось.
-			Hagen_Schulden = 0;
-			Hagen_LastPetzCounter = 0;
-			Hagen_LastPetzCrime = CRIME_NONE;
+			B_GrantPersonalAbsolution(self);
 		}
 		else
 		{
