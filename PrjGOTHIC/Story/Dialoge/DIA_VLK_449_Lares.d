@@ -621,9 +621,12 @@ instance DIA_Addon_Lares_Geduld(C_Info)
 
 func int DIA_Addon_Lares_Geduld_Condition()
 {
-	if((RangerMeetingRunning == LOG_Running) && !C_AllRangersAreInPositions() && Npc_IsInState(self,ZS_Talk))
+	if((RangerMeetingRunning == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (Lares_HaltsMaul == FALSE))
 	{
-		return TRUE;
+		if(!C_AllRangersAreInPositions())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -648,9 +651,12 @@ instance DIA_Addon_Lares_GetRangerArmor(C_Info)
 
 func int DIA_Addon_Lares_GetRangerArmor_Condition()
 {
-	if((MIS_Addon_Lares_ComeToRangerMeeting == LOG_Running) && C_AllRangersAreInPositions() && (RangerMeetingRunning == LOG_Running) && Npc_IsInState(self,ZS_Talk))
+	if((MIS_Addon_Lares_ComeToRangerMeeting == LOG_Running) && (RangerMeetingRunning == LOG_Running) && Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(C_AllRangersAreInPositions())
+		{
+			return TRUE;
+		};
 	};
 };
 

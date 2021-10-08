@@ -143,6 +143,27 @@ func void DIA_Rukhar_HOLERANDOLPH_Info()
 };
 
 
+var int DIA_Rukhar_RANDOLPHWILL_noPerm;
+var int DIA_Rukhar_RANDOLPHComment_Once;
+
+func void B_ChooseRukharBet()
+{
+	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
+	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"Ќоль.",DIA_Rukhar_RANDOLPHWILL_nix);
+	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"100.",DIA_Rukhar_RANDOLPHWILL_100);
+	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"50.",DIA_Rukhar_RANDOLPHWILL_50);
+	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"20.",DIA_Rukhar_RANDOLPHWILL_20);
+	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"10 золотых.",DIA_Rukhar_RANDOLPHWILL_10);
+};
+
+func void B_ConfirmRukharBet(var int amount)
+{
+	Rukhar_Einsatz = amount;
+	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
+	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(выбрать другую ставку)",DIA_Rukhar_RANDOLPHWILL_mehr);
+	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(прин€ть ставку)",DIA_Rukhar_RANDOLPHWILL_annehmen);
+};
+
 instance DIA_Rukhar_RANDOLPHWILL(C_Info)
 {
 	npc = BAU_973_Rukhar;
@@ -153,9 +174,6 @@ instance DIA_Rukhar_RANDOLPHWILL(C_Info)
 	description = "я нашел человека, который хочет сразитьс€ с тобой.";
 };
 
-
-var int DIA_Rukhar_RANDOLPHWILL_noPerm;
-var int DIA_Rukhar_RANDOLPHComment_Once;
 
 func int DIA_Rukhar_RANDOLPHWILL_Condition()
 {
@@ -178,12 +196,7 @@ func void DIA_Rukhar_RANDOLPHWILL_Info()
 		DIA_Rukhar_RANDOLPHComment_Once = TRUE;
 	};
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_06");	// акова тво€ ставка?
-	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"Ќоль.",DIA_Rukhar_RANDOLPHWILL_nix);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"100.",DIA_Rukhar_RANDOLPHWILL_100);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"50.",DIA_Rukhar_RANDOLPHWILL_50);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"20.",DIA_Rukhar_RANDOLPHWILL_20);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"10 золотых.",DIA_Rukhar_RANDOLPHWILL_10);
+	B_ChooseRukharBet();
 };
 
 func void DIA_Rukhar_RANDOLPHWILL_annehmen()
@@ -195,12 +208,7 @@ func void DIA_Rukhar_RANDOLPHWILL_annehmen()
 
 func void DIA_Rukhar_RANDOLPHWILL_mehr()
 {
-	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"Ќоль.",DIA_Rukhar_RANDOLPHWILL_nix);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"100.",DIA_Rukhar_RANDOLPHWILL_100);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"50.",DIA_Rukhar_RANDOLPHWILL_50);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"20.",DIA_Rukhar_RANDOLPHWILL_20);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"10 золотых.",DIA_Rukhar_RANDOLPHWILL_10);
+	B_ChooseRukharBet();
 };
 
 func void DIA_Rukhar_RANDOLPHWILL_nix()
@@ -214,40 +222,28 @@ func void DIA_Rukhar_RANDOLPHWILL_10()
 {
 	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_10_15_00");	//10 золотых.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_10_12_01");	//ƒа ладно, ты, должно быть, шутишь. ≈ще несколько золотых не разор€т теб€.
-	Rukhar_Einsatz = 10;
-	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(выбрать другую ставку)",DIA_Rukhar_RANDOLPHWILL_mehr);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(прин€ть ставку)",DIA_Rukhar_RANDOLPHWILL_annehmen);
+	B_ConfirmRukharBet(10);
 };
 
 func void DIA_Rukhar_RANDOLPHWILL_20()
 {
 	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_20_15_00");	//20.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_20_12_01");	//≈сли ты хочешь сделать ставку, то делай уж это по-человечески.
-	Rukhar_Einsatz = 20;
-	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(выбрать другую ставку)",DIA_Rukhar_RANDOLPHWILL_mehr);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(прин€ть ставку)",DIA_Rukhar_RANDOLPHWILL_annehmen);
+	B_ConfirmRukharBet(20);
 };
 
 func void DIA_Rukhar_RANDOLPHWILL_50()
 {
 	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_50_15_00");	//50.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_50_12_01");	//Ќе робей. —мелее.
-	Rukhar_Einsatz = 50;
-	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(выбрать другую ставку)",DIA_Rukhar_RANDOLPHWILL_mehr);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(прин€ть ставку)",DIA_Rukhar_RANDOLPHWILL_annehmen);
+	B_ConfirmRukharBet(50);
 };
 
 func void DIA_Rukhar_RANDOLPHWILL_100()
 {
 	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_100_15_00");	//100.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_100_12_01");	//¬от это уже мне нравитс€.
-	Rukhar_Einsatz = 100;
-	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(выбрать другую ставку)",DIA_Rukhar_RANDOLPHWILL_mehr);
-	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(прин€ть ставку)",DIA_Rukhar_RANDOLPHWILL_annehmen);
+	B_ConfirmRukharBet(100);
 };
 
 

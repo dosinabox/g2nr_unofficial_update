@@ -2125,7 +2125,7 @@ func void STARTUP_NewWorld_Part_Xardas_01()
 	Wld_InsertNpc(YGiant_Rat,"NW_XARDAS_TOWER_SECRET_CAVE_01");
 	Wld_InsertNpc(YGiant_Rat,"NW_XARDAS_TOWER_SECRET_CAVE_01");
 	Wld_InsertNpc(YGiant_Rat,"NW_XARDAS_TOWER_SECRET_CAVE_03");
-	Wld_InsertNpc(BAU_4300_Addon_Cavalorn,"NW_XARDAS_START");
+	Wld_InsertNpc(BAU_4300_Addon_Cavalorn,"NW_XARDAS_GOBBO_01");
 	Wld_InsertNpc(PIR_1300_Addon_Greg_NW,"FARM1");
 };
 

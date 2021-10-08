@@ -97,18 +97,18 @@ func void DIA_AmbientDementor_Info()
 			if(randy == 0)
 			{
 				AI_Output(self,other,"DIA_AmbientDementor_19_03");	//Ты уже зашел слишком далеко, презренный червь. Тебе никогда не добраться до внутреннего святилища.
-			};
-			if(randy == 1)
+			}
+			else if(randy == 1)
 			{
 				AI_Output(self,other,"DIA_AmbientDementor_19_04");	//Стой, где стоишь. Ни шагу дальше!
-			};
-			if(randy == 2)
+			}
+			else if(randy == 2)
 			{
 				AI_Output(self,other,"DIA_AmbientDementor_19_05");	//Да, тебе удалось добраться сюда, но мимо меня тебе не пройти.
-			};
-			if(randy == 3)
+			}
+			else
 			{
-				AI_Output(self,other,"DIA_AmbientDementor_19_06");	//Ты пришел, чтоб бросить вызов Хозяину, но сначала тебе придется пройти мимо меня.
+				AI_Output(self,other,"DIA_AmbientDementor_19_06");	//Ты пришел, чтобы бросить вызов Хозяину, но сначала тебе придется пройти мимо меня.
 			};
 		};
 	}
@@ -117,16 +117,16 @@ func void DIA_AmbientDementor_Info()
 		if(randy == 0)
 		{
 			AI_Output(self,other,"DIA_AmbientDementor_19_07");	//Жалкий маг, тебе никогда не сравниться с силой Хозяина.
-		};
-		if(randy == 1)
+		}
+		else if(randy == 1)
 		{
 			AI_Output(self,other,"DIA_AmbientDementor_19_08");	//Ты выбрал путь магии, чтобы противостоять нам. Умный ход. Но даже это тебе не поможет.
-		};
-		if(randy == 2)
+		}
+		else if(randy == 2)
 		{
 			AI_Output(self,other,"DIA_AmbientDementor_19_09");	//Даже будучи магом, тебе не остановить нас.
-		};
-		if(randy == 3)
+		}
+		else
 		{
 			AI_Output(self,other,"DIA_AmbientDementor_19_10");	//Мой Хозяин раздавит тебя. Твоя жалкая магия не спасет тебя.
 		};
@@ -136,19 +136,23 @@ func void DIA_AmbientDementor_Info()
 		if(randy == 0)
 		{
 			AI_Output(self,other,"DIA_AmbientDementor_19_11");	//Сдайся на нашу милость, пока еще можешь. Тебе отсюда не уйти.
-		};
-		if(randy == 1)
+		}
+		else if(randy == 1)
 		{
 			AI_Output(self,other,"DIA_AmbientDementor_19_12");	//Теперь ты познаешь силу Хозяина. Тебе не уйти от него.
-		};
-		if(randy == 2)
+		}
+		else if(randy == 2)
 		{
 			AI_Output(self,other,"DIA_AmbientDementor_19_13");	//Хозяин хочет получить твою голову. Ничто не спасет тебя теперь.
-		};
-		if(randy == 3)
+		}
+		else
 		{
 			AI_Output(self,other,"DIA_AmbientDementor_19_14");	//Мы поймали тебя в ловушку, и теперь уничтожим тебя.
 		};
+	};
+	if(DementorsDialogeAutoEndDisabled == FALSE)
+	{
+		AI_StartState(self,DIA_AmbientDementor_EXIT_Info,1,"");
 	};
 };
 

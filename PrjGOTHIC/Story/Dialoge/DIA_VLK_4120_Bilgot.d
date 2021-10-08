@@ -108,7 +108,7 @@ instance DIA_Bilgot_Hilfe(C_Info)
 
 func int DIA_Bilgot_Hilfe_Condition()
 {
-	if(MIS_Fajeth_Kill_Snapper == LOG_Running)
+	if(Npc_KnowsInfo(other,DIA_Bilgot_Job) && (MIS_Fajeth_Kill_Snapper == LOG_Running))
 	{
 		return TRUE;
 	};

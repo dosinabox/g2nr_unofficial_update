@@ -861,16 +861,19 @@ func void DIA_Garond_BACKINKAP4_Info()
 	};
 	AI_Output(self,other,"DIA_Garond_BACKINKAP4_10_08");	//Если Хаген не пришлет в ближайшее время своих людей, я ничего не могу гарантировать.
 	B_InitNpcGlobals();
-	if(DJG_AngarGotAmulett == TRUE)
+	if(!Npc_IsDead(DJG_Angar))
 	{
-		AI_Teleport(DJG_Angar,"OW_CAVALORN_01");
-		B_StartOtherRoutine(DJG_Angar,"LeavingOW");
-	}
-	else
-	{
-		AI_Teleport(DJG_Angar,"OW_DJG_WATCH_STONEHENGE_01");
-		B_StartOtherRoutine(DJG_Angar,"Start");
-		DJG_Angar_SentToStones = TRUE;
+		if(DJG_AngarGotAmulett == TRUE)
+		{
+			AI_Teleport(DJG_Angar,"OW_CAVALORN_01");
+			B_StartOtherRoutine(DJG_Angar,"LeavingOW");
+		}
+		else
+		{
+			AI_Teleport(DJG_Angar,"OW_DJG_WATCH_STONEHENGE_01");
+			B_StartOtherRoutine(DJG_Angar,"Start");
+			DJG_Angar_SentToStones = TRUE;
+		};
 	};
 	B_StartOtherRoutine(Kjorn,"START");
 	B_StartOtherRoutine(Godar,"START");

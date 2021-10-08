@@ -1377,3 +1377,5 @@ var int Garond_LastPetzCounter;
 var int Garond_LastPetzCrime;
 var int Lee_LastPetzCounter;
 var int Lee_LastPetzCrime;
+var int SC_KnowsAngarsAmulett;
+var int DementorsDialogeAutoEndDisabled;

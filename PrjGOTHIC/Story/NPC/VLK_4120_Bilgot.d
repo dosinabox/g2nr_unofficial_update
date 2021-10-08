@@ -30,8 +30,8 @@ func void Rtn_Start_4120()
 
 func void Rtn_FollowToOCBridge_4120()
 {
-	TA_Follow_Player(8,0,23,0,"START");
-	TA_Follow_Player(23,0,8,0,"START");
+	TA_Follow_Player(8,0,23,0,"NEWMINE");
+	TA_Follow_Player(23,0,8,0,"NEWMINE");
 };
 
 func void Rtn_FleeOutOfOW_4120()
