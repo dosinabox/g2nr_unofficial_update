@@ -12,6 +12,17 @@ func void B_ResetSergio()
 	};
 };
 
+func void B_ResetFernando()
+{
+	if(!Npc_IsDead(Fernando))
+	{
+		if((Fernando_ImKnast == FALSE) && (Kapitel >= 2) && !Npc_KnowsInfo(hero,DIA_Fernando_Minental))
+		{
+			Npc_ExchangeRoutine(Fernando,"START");
+		};
+	};
+};
+
 func void B_ResetLares()
 {
 	if(LaresGuide_ZuOnar != 2)
@@ -26,7 +37,7 @@ func void B_ResetLares()
 	{
 		LaresGuide_OrnamentForest = 0;
 	};
-	B_StartOtherRoutine(Lares,"Start");
+	B_StartOtherRoutine(Lares,"START");
 	B_StartOtherRoutine(BridgeBandit,"Intercept");
 };
 

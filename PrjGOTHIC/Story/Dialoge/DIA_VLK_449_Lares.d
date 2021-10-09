@@ -2213,7 +2213,7 @@ func void DIA_Addon_Lares_GOFORESTPRE_nein()
 	AI_Output(other,self,"DIA_Addon_Lares_GOFORESTPRE_nein_15_00");	//Нет, можешь идти.
 	AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_nein_09_01");	//Я так понимаю, проблема решилась сама собой? Ладно, увидимся позже.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	LaresGuide_OrnamentForest = 3;
 };
 

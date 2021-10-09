@@ -127,24 +127,24 @@ func void DIA_Angar_WIEKOMMSTDUHIERHER_Info()
 func void DIA_Angar_WIEKOMMSTDUHIERHER_amulett()
 {
 	AI_Output(other,self,"DIA_Angar_WIEKOMMSTDUHIERHER_amulett_15_00");	//А где именно ты потерял свой амулет?
-	if(CurrentLevel == OLDWORLD_ZEN)
+	if((DJG_Angar_SentToStones == FALSE) || (CurrentLevel != OLDWORLD_ZEN))
 	{
-		if(DJG_Angar_SentToStones == FALSE)
+		AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_amulett_04_01");	//Где-то на юге, вскоре после того, как я очнулся в замке.
+		if(CurrentLevel == OLDWORLD_ZEN)
 		{
-			AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_amulett_04_01");	//Где-то на юге, вскоре после того, как я очнулся в замке.
 			B_LogEntry(TOPIC_AngarsAmulett,"Этот амулет должен быть где-то на юге. Ангар собирается отправиться на его поиски.");
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_amulett_04_02");	//Он должен быть где-то там.
-			B_LogEntry(TOPIC_AngarsAmulett,"Амулет находится около склепа на юге Долины Рудников.");
+			B_LogEntry(TOPIC_AngarsAmulett,"Этот амулет должен быть где-то на юге Долины Рудников.");
 		};
-		AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_amulett_04_03");	//Я подозреваю, что он был украден. Мне крайне необходимо вернуть его себе.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Angar_DJG_ANWERBEN_wo_04_02_add");	//В Долине Рудников. Там есть склеп в пещере, окруженной кучей валунов.
+		AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_amulett_04_02");	//Он должен быть где-то там.
+		B_LogEntry(TOPIC_AngarsAmulett,"Амулет находится около склепа на юге Долины Рудников.");
 	};
+	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_amulett_04_03");	//Я подозреваю, что он был украден. Мне крайне необходимо вернуть его себе.
 };
 
 func void DIA_Angar_WIEKOMMSTDUHIERHER_andere()
