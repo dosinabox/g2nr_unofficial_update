@@ -539,7 +539,7 @@ func void DIA_Bosper_TeachFUR_Info()
 		if(MIS_Bosper_WolfFurs == LOG_Running)
 		{
 			AI_Output(self,other,"DIA_Bosper_TeachFUR_11_03");	//Принеси мне волчьи шкуры, а там посмотрим...
-			B_LogEntry(TOPIC_BosperWolf,"Боспер научил меня снимать шкуры с животных.");
+			Log_AddEntry(TOPIC_BosperWolf,"Боспер научил меня снимать шкуры с животных.");
 		};
 	};
 };
@@ -804,7 +804,7 @@ instance DIA_Bosper_SellFur(C_Info)
 
 func int DIA_Bosper_SellFur_Condition()
 {
-	if(Player_IsApprentice == APP_Bosper)
+	if((Player_IsApprentice == APP_Bosper) && Npc_KnowsInfo(other,DIA_Bosper_Aufgaben))
 	{
 		return TRUE;
 	};

@@ -693,7 +693,7 @@ instance DIA_Harad_SellBlades(C_Info)
 
 func int DIA_Harad_SellBlades_Condition()
 {
-	if(Player_IsApprentice == APP_Harad)
+	if((Player_IsApprentice == APP_Harad) && Npc_KnowsInfo(other,DIA_Harad_Aufgaben))
 	{
 		return TRUE;
 	};

@@ -643,13 +643,26 @@ func int DIA_Addon_Martin_GetMiliz_Condition()
 func void DIA_Addon_Martin_GetMiliz_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Martin_GetMiliz_15_00");	//Ты знаешь, что мне от тебя нужно.
-	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_01");	//А, да. Ты хочешь вступить в ополчение, верно?
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_01");	//А, да. Ты хочешь вступить в ополчение, верно?
+	};
 	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_02");	//Что ж, ты уже доказал мне, на что способен.
-	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_03");	//Скажем так, я бы скорее хотел бы видеть тебя на нашей стороне, чем на чьей-либо еще.
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_03");	//Скажем так, я бы скорее хотел бы видеть тебя на нашей стороне, чем на чьей-либо еще.
+	};
 	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_04");	//Поэтому я помогу тебе. Возьми мое рекомендательное письмо и покажи его Андрэ, нашему командиру.
 	CreateInvItems(self,ItWr_Martin_MilizEmpfehlung_Addon,1);
 	B_GiveInvItems(self,other,ItWr_Martin_MilizEmpfehlung_Addon,1);
-	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_05");	//Ты найдешь его в казармах. Уверен, он сможет найти тебе применение.
-	B_LogEntry(TOPIC_Addon_RangerHelpMIL,"Мартин дал мне рекомендательное письмо для лорда Андрэ. Прочитав его, Андрэ примет меня в ополчение. Найти Андрэ можно в казармах.");
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_05");	//Ты найдешь его в казармах. Уверен, он сможет найти тебе применение.
+		B_LogEntry(TOPIC_Addon_RangerHelpMIL,"Мартин дал мне рекомендательное письмо для лорда Андрэ. Прочитав его, Андрэ примет меня в ополчение. Найти Андрэ можно в казармах.");
+	}
+	else
+	{
+		B_LogEntry(TOPIC_Addon_RangerHelpMIL,"Мартин дал мне рекомендательное письмо для лорда Андрэ.");
+	};
 };
 

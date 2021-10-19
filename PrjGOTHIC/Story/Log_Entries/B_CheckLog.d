@@ -97,7 +97,7 @@ func void B_CheckLog()
 	B_CloseTopic(Topic_MarcosJungs,MIS_Marcos_Jungs,0,3);
 	B_CloseTopic(TOPIC_Botschaft,MIS_Vatras_Message,0,6);
 	B_CloseTopic(TOPIC_Lutero,Lutero_Krallen,0,6);
-	B_CloseTopic(TOPIC_Fernando,0,Fernando_Erz,6);
+	B_CloseTopic(TOPIC_Fernando,MIS_Fernando_Erz,0,6);
 	B_CloseTopic(TOPIC_PyrokarClearDemonTower,MIS_PyrokarClearDemonTower,0,6);
 	B_CloseTopic(TOPIC_HyglasBringBook,MIS_HyglasBringBook,0,6);
 	B_CloseTopic(Topic_BabosDocs,MIS_BabosDocs,0,6);

@@ -1293,10 +1293,10 @@ func void DIA_Addon_Vatras_WISP_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_05");	//Он будет помогать тебе искать предметы, которые без него ты мог бы и не найти.
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_06");	//Чтобы вызвать огонька, просто надень амулет.
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_07");	//Если огонек потеряет свою силу или потеряется, сними амулет и надень его снова, и огонек вернется.
-	B_LogEntry(TOPIC_Addon_Bandittrader,"Ватрас дал мне амулет ищущего блуждающего огонька, который поможет мне в поисках торговца оружием.");
+	B_LogEntries(TOPIC_Addon_Bandittrader,"Ватрас дал мне амулет ищущего блуждающего огонька, который поможет мне в поисках торговца оружием.");
 	Log_CreateTopic(TOPIC_WispDetector,LOG_NOTE);
-	B_LogEntry(TOPIC_WispDetector,LogText_Addon_WispLearned);
-	B_LogEntry(TOPIC_WispDetector,LogText_Addon_WispLearned_NF);
+	B_LogNextEntry(TOPIC_WispDetector,LogText_Addon_WispLearned);
+	Log_AddEntry(TOPIC_WispDetector,LogText_Addon_WispLearned_NF);
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_08");	//Ищущий огонек поможет тебе искать оружие.
 	if((MIS_Vatras_FindTheBanditTrader == LOG_Running) || (MIS_Vatras_FindTheBanditTrader == LOG_FAILED))
 	{
@@ -1686,7 +1686,7 @@ instance DIA_Vatras_WoKdF(C_Info)
 func int DIA_Vatras_WoKdF_Condition()
 {
 //	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Segen > 0) && (Vatras_SentToDaron == FALSE) && !Npc_KnowsInfo(other,DIA_Daron_Hallo) && (Vatras_MORE == TRUE))
-	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Blessing == TRUE) && (Vatras_SentToDaron == FALSE) && (GotInnosBlessingForThorben == FALSE))
+	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Blessing == TRUE) && (Vatras_SentToDaron == FALSE) && !C_GotAnyInnosBlessing() && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -2135,7 +2135,7 @@ func void DIA_Vatras_MESSAGE_SUCCESS_Ring()
 
 func void DIA_Vatras_MESSAGE_SUCCESS_Ore()
 {
-	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Ore_add");	//Я возьму руду.
+	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Ore_add");	//Я возьму кусок руды.
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(self,other,ItMi_Nugget,1);
 	Info_ClearChoices(DIA_Vatras_MESSAGE_SUCCESS);

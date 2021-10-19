@@ -107,11 +107,19 @@ func void DIA_Addon_Balthasar_Rangerbandits_Info()
 
 func int C_BalthasarSheepsAreDead()
 {
-	if(Npc_IsDead(BalthasarSheep1) && Npc_IsDead(BalthasarSheep2) && Npc_IsDead(BalthasarSheep3))
+	if(!Npc_IsDead(BalthasarSheep1))
 	{
-		return TRUE;
+		return FALSE;
 	};
-	return FALSE;
+	if(!Npc_IsDead(BalthasarSheep2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BalthasarSheep3))
+	{
+		return FALSE;
+	};
+	return TRUE;
 };
 
 func void B_BalthasarLostHisSheeps()

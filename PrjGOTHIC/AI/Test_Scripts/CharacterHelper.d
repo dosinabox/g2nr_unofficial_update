@@ -1010,33 +1010,25 @@ func void CH_Lernpunkte_0()
 
 func void CH_Lernpunkte_50()
 {
-	hero.lp += 50;
-	PrintScreen(ConcatStrings(PRINT_LearnLP,"50"),-1,-1,FONT_Screen,3);
-	Snd_Play("LEVELUP");
+	B_GivePlayerLP(50);
 	CH_Lernpunkte_Info();
 };
 
 func void CH_Lernpunkte_25()
 {
-	hero.lp += 25;
-	PrintScreen(ConcatStrings(PRINT_LearnLP,"25"),-1,-1,FONT_Screen,3);
-	Snd_Play("LEVELUP");
+	B_GivePlayerLP(25);
 	CH_Lernpunkte_Info();
 };
 
 func void CH_Lernpunkte_10()
 {
-	hero.lp += 10;
-	PrintScreen(ConcatStrings(PRINT_LearnLP,"10"),-1,-1,FONT_Screen,3);
-	Snd_Play("LEVELUP");
+	B_GivePlayerLP(10);
 	CH_Lernpunkte_Info();
 };
 
 func void CH_Lernpunkte_5()
 {
-	hero.lp += 5;
-	PrintScreen(ConcatStrings(PRINT_LearnLP,"5"),-1,-1,FONT_Screen,3);
-	Snd_Play("LEVELUP");
+	B_GivePlayerLP(5);
 	CH_Lernpunkte_Info();
 };
 
@@ -4152,51 +4144,48 @@ func void CH_Skin_BACK()
 	Info_ClearChoices(CH_Skin);
 };
 
-func void CH_Skin_G1()
+func void B_ResetHeroSkin()
 {
-	G1BodySkin = TRUE;
+	G1BodySkin = FALSE;
 	SequelBodySkin = FALSE;
 	TattoosBodySkin = FALSE;
 	NakedBodySkin = FALSE;
+};
+
+func void CH_Skin_G1()
+{
+	B_ResetHeroSkin();
+	G1BodySkin = TRUE;
 	B_SetHeroSkin();
 	CH_Skin_Info();
 };
 
 func void CH_Skin_G2()
 {
-	G1BodySkin = FALSE;
-	SequelBodySkin = FALSE;
-	TattoosBodySkin = FALSE;
-	NakedBodySkin = FALSE;
+	B_ResetHeroSkin();
 	B_SetHeroSkin();
 	CH_Skin_Info();
 };
 
 func void CH_Skin_Sequel()
 {
-	G1BodySkin = FALSE;
+	B_ResetHeroSkin();
 	SequelBodySkin = TRUE;
-	TattoosBodySkin = FALSE;
-	NakedBodySkin = FALSE;
 	B_SetHeroSkin();
 	CH_Skin_Info();
 };
 
 func void CH_Skin_Tattoos()
 {
-	G1BodySkin = FALSE;
-	SequelBodySkin = FALSE;
+	B_ResetHeroSkin();
 	TattoosBodySkin = TRUE;
-	NakedBodySkin = FALSE;
 	B_SetHeroSkin();
 	CH_Skin_Info();
 };
 
 func void CH_Skin_Naked()
 {
-	G1BodySkin = FALSE;
-	SequelBodySkin = FALSE;
-	TattoosBodySkin = FALSE;
+	B_ResetHeroSkin();
 	NakedBodySkin = TRUE;
 	B_SetHeroSkin();
 	CH_Skin_Info();

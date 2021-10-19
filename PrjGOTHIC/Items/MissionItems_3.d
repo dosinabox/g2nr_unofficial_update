@@ -437,7 +437,7 @@ instance ItPo_HealHilda_MIS(C_Item)
 func void Use_HealHilda()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Essenz);
-	if(MIS_HealHilda == LOG_RUNNING)
+	if(MIS_HealHilda == LOG_Running)
 	{
 		MIS_HealHilda = LOG_FAILED;
 		B_CheckLog();

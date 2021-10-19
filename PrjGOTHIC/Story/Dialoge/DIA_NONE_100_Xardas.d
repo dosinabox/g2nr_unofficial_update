@@ -191,7 +191,7 @@ func void DIA_Xardas_TODO_Info()
 	AI_Output(self,other,"DIA_Xardas_TODO_14_02");	//В городе Хоринис, что неподалеку отсюда, остановился отряд паладинов.
 	AI_Output(self,other,"DIA_Xardas_TODO_14_03");	//Они обладают сильным артефактом, который может помочь нам победить этих драконов.
 	AI_Output(self,other,"DIA_Xardas_TODO_14_04");	//Они называют его 'Глаз Инноса'. Ты должен завладеть этим артефактом.
-	AI_Output(self,other,"DIA_Xardas_TODO_14_05");	//Расскажи паладинам о надвигающейся угрозе. Ты ДОЛЖЕН убедить их предводителя поддержать нас!
+	AI_Output(self,other,"DIA_Xardas_TODO_14_05");	//Расскажи паладинам о надвигающейся угрозе. Ты должен убедить их предводителя поддержать нас!
 	AI_Output(self,other,"DIA_Addon_Xardas_Add_14_07");	//А после этого ты должен найти артефакт Белиара.
 	AI_Output(self,other,"DIA_Addon_Xardas_Add_14_08");	//Это противоположность Глаза Инноса. Он не должен попасть в руки Зла.
 	Log_CreateTopic(TOPIC_INNOSEYE,LOG_MISSION);

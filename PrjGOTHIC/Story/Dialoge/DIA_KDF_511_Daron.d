@@ -1,50 +1,47 @@
 
-func void B_DaronSegen()
+var int Daron_Spende;
+
+func void B_DaronSegen(var int gold)
 {
-	var string concatText;
-	var int Bonus_1;
-	var int Bonus_2;
-	var int Bonus_3;
-	if(Daron_Spende < 100)
+	if(gold > 0)
 	{
-		if(other.attribute[ATR_HITPOINTS] < other.attribute[ATR_HITPOINTS_MAX])
+		Daron_Spende += gold;
+		if(Daron_Spende < 100)
 		{
+			if(other.attribute[ATR_HITPOINTS] < other.attribute[ATR_HITPOINTS_MAX])
+			{
+				other.attribute[ATR_HITPOINTS] = other.attribute[ATR_HITPOINTS_MAX];
+				PrintScreen(PRINT_FullyHealed,-1,-1,FONT_Screen,2);
+			};
+		}
+		else if((Daron_Spende < 250) && (Daron_Bonus1 == FALSE))
+		{
+			B_RaiseAttribute(other,ATR_MANA_MAX,2);
+			other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
+			Daron_Bonus1 = TRUE;
+		}
+		else if((Daron_Spende < 500) && (Daron_Bonus2 == FALSE))
+		{
+			B_GivePlayerXP(XP_Ambient);
+			Daron_Bonus2 = TRUE;
+		}
+		else if((Daron_Spende >= 750) && (Daron_Spende < 1000) && (Daron_Bonus3 == FALSE))
+		{
+			B_GivePlayerLP(1);
+			Daron_Bonus3 = TRUE;
+		}
+		else
+		{
+			B_RaiseAttribute(other,ATR_HITPOINTS_MAX,5);
 			other.attribute[ATR_HITPOINTS] = other.attribute[ATR_HITPOINTS_MAX];
-			PrintScreen(PRINT_FullyHealed,-1,-1,FONT_Screen,2);
+			other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
 		};
-	}
-	else if((Daron_Spende < 250) && (Bonus_1 == FALSE))
-	{
-		B_RaiseAttribute(other,ATR_MANA_MAX,2);
-		other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
-		Bonus_1 = TRUE;
-	}
-	else if((Daron_Spende < 500) && (Bonus_2 == FALSE))
-	{
-		B_GivePlayerXP(XP_Ambient);
-		Bonus_2 = TRUE;
-	}
-	else if((Daron_Spende >= 750) && (Daron_Spende < 1000) && (Bonus_3 == FALSE))
-	{
-		other.lp += 1;
-		concatText = ConcatStrings(PRINT_LearnLP,IntToString(1));
-		PrintScreen(concatText,-1,-1,FONT_Screen,2);
-		Bonus_3 = TRUE;
-	}
-	else
-	{
-		other.attribute[ATR_HITPOINTS_MAX] += 5;
-		other.attribute[ATR_HITPOINTS] = other.attribute[ATR_HITPOINTS_MAX];
-		other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
-		concatText = ConcatStrings(PRINT_LearnHP_MAX,IntToString(5));
-		PrintScreen(concatText,-1,-1,FONT_Screen,2);
 	};
-	if((MIS_Thorben_GetBlessings == LOG_Running) && (GotInnosBlessingForThorben == FALSE))
+	if((MIS_Thorben_GetBlessings == LOG_Running) && !C_GotAnyInnosBlessing())
 	{
 		B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон благословил меня.");
 	};
-	GotInnosBlessingForThorben = TRUE;
-	Daron_Segen = TRUE;
+	Daron_Blessing = TRUE;
 };
 
 
@@ -160,7 +157,7 @@ func void DIA_Daron_AboutSegen_Info()
 	AI_Output(other,self,"DIA_Daron_AboutSegen_15_00");	//Я пришел, чтобы получить твое благословение!
 	AI_Output(self,other,"DIA_Daron_AboutSegen_10_01");	//Это хорошо - тогда ты, вероятно, захочешь пожертвовать золото святой церкви Инноса, правда?
 	AI_Output(other,self,"DIA_Daron_AboutSegen_15_02");	//Вообще-то я хотел получить твое благословение, чтобы поступить в ученики к одному из мастеров в нижней части города...
-	if(Daron_Segen == TRUE)
+	if(Daron_Blessing == TRUE)
 	{
 		AI_Output(self,other,"DIA_Daron_AboutSegen_10_03");	//Но я уже дал тебе мое благословение, сын мой.
 		AI_Output(self,other,"DIA_Daron_AboutSegen_10_04");	//Ступай с Инносом, сын мой!
@@ -201,7 +198,7 @@ func void DIA_Daron_Spenden_Info()
 	if(Npc_HasItems(other,ItMi_Gold) < 10)
 	{
 		AI_Output(self,other,"DIA_Daron_Spenden_10_03");	//Хм, ты ведь бедняк, да? Оставь себе то немногое, что у тебя есть.
-		if((MIS_Thorben_GetBlessings == LOG_Running) && (GotInnosBlessingForThorben == FALSE))
+		if((MIS_Thorben_GetBlessings == LOG_Running) && !C_GotAnyInnosBlessing())
 		{
 			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон не благословил меня. Мне кажется, это означает, что я должен пожертвовать ему немного золота. Без этого он не благословит меня.");
 		};
@@ -225,12 +222,7 @@ func void DIA_Daron_Spenden_Info()
 			B_GiveInvItems(other,self,ItMi_Gold,50);
 		};
 		AI_Output(self,other,"DIA_Daron_Spenden_10_08");	//Благословляю тебя от имени Инноса. Он несет в этот мир свет и справедливость.
-		if((MIS_Thorben_GetBlessings == LOG_Running) && (GotInnosBlessingForThorben == FALSE))
-		{
-			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон благословил меня.");
-		};
-		GotInnosBlessingForThorben = TRUE;
-		Daron_Segen = TRUE;
+		B_DaronSegen(0);
 		B_GivePlayerXP(XP_InnosSegen);
 	};
 };
@@ -542,8 +534,6 @@ func void DIA_Addon_Daron_ReturnedStatue_Info()
 };
 
 
-var int Daron_Spende;
-
 instance DIA_Daron_arm(C_Info)
 {
 	npc = KDF_511_Daron;
@@ -609,7 +599,7 @@ func void DIA_Daron_Spende_Info()
 		AI_Output(self,other,"DIA_Daron_Spende_10_01");	//Ты уже пожертвовал мне более 1000 золотых монет.
 		AI_Output(self,other,"DIA_Daron_Spende_10_02");	//Благословение Инноса всегда пребудет с тобой.
 		DIA_Daron_Spende_permanent = TRUE;
-		B_DaronSegen();
+		B_DaronSegen(0);
 	};
 };
 
@@ -631,8 +621,7 @@ func void DIA_Daron_Spende_50()
 	if(B_GiveInvItems(other,self,ItMi_Gold,50))
 	{
 		AI_Output(self,other,"DIA_Daron_Spende_50_10_00");	//Благословляю тебя от имени Инноса. Он несет в этот мир свет и справедливость.
-		Daron_Spende += 50;
-		B_DaronSegen();
+		B_DaronSegen(50);
 	}
 	else
 	{
@@ -647,8 +636,7 @@ func void DIA_Daron_Spende_100()
 	{
 		AI_Output(self,other,"DIA_Daron_Spende_100_10_00");	//Иннос, ты свет, озаряющий путь праведников.
 		AI_Output(self,other,"DIA_Daron_Spende_100_10_01");	//Я благословляю этого человека от твоего имени. Да будет твой свет сиять над ним вечно.
-		Daron_Spende += 100;
-		B_DaronSegen();
+		B_DaronSegen(100);
 	}
 	else
 	{
@@ -663,8 +651,7 @@ func void DIA_Daron_Spende_200()
 	{
 		AI_Output(self,other,"DIA_Daron_Spende_200_10_00");	//Иннос, благослови этого человека. Да будет твой свет сиять над ним вечно.
 		AI_Output(self,other,"DIA_Daron_Spende_200_10_01");	//Придай ему силы жить праведной жизнью.
-		Daron_Spende += 200;
-		B_DaronSegen();
+		B_DaronSegen(200);
 	}
 	else
 	{

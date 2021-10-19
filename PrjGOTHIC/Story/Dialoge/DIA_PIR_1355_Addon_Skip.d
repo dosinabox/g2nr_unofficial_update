@@ -17,7 +17,7 @@ func int DIA_Addon_Skip_EXIT_Condition()
 
 func void DIA_Addon_Skip_EXIT_Info()
 {
-	if((MIS_ADDON_SkipsGrog == LOG_RUNNING) && (Npc_GetDistToWP(self,"ADW_PIRATECAMP_HUT3_01") < 2000))
+	if((MIS_ADDON_SkipsGrog == LOG_Running) && (Npc_GetDistToWP(self,"ADW_PIRATECAMP_HUT3_01") < 2000))
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_03");	//Мне бы свой грог назад получить...
 	};
@@ -491,7 +491,7 @@ func int DIA_Addon_Skip_AngusHankMurder_Condition()
 func void DIA_Addon_Skip_AngusHankMurder_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_JuanMurder_15_00");	//Я знаю, кто убил Хэнка и Ангуса.
-	if(MIS_ADDON_SkipsGrog == LOG_RUNNING)
+	if(MIS_ADDON_SkipsGrog == LOG_Running)
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_04");	//Меня не интересует, кто их убил. Что с моим грогом?!
 	}

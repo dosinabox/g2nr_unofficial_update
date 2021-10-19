@@ -16,7 +16,7 @@ func void B_ResetFernando()
 {
 	if(!Npc_IsDead(Fernando))
 	{
-		if((Fernando_ImKnast == FALSE) && (Kapitel >= 2) && !Npc_KnowsInfo(hero,DIA_Fernando_Minental))
+		if((Fernando_ImKnast == FALSE) && (Kapitel >= 2) && (MIS_Fernando_Erz == FALSE))
 		{
 			Npc_ExchangeRoutine(Fernando,"START");
 		};

@@ -413,7 +413,7 @@ instance DIA_Hilda_DISTURB(C_Info)
 func int DIA_Hilda_DISTURB_Condition()
 {
 //	if((MIS_HealHilda == LOG_SUCCESS) || (((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (Kapitel > 3)))
-	if(((MIS_HealHilda == LOG_SUCCESS) || (MIS_HealHilda == LOG_RUNNING)) && (DIA_Hilda_KRANK_OnTime == TRUE))
+	if(((MIS_HealHilda == LOG_SUCCESS) || (MIS_HealHilda == LOG_Running)) && (DIA_Hilda_KRANK_OnTime == TRUE))
 	{
 		return TRUE;
 	};
