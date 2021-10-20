@@ -58,6 +58,7 @@ var int MIS_Eremit_Klamotten;
 var int Diego_angekommen;
 var int Diego_Nostalgie;
 var int Diego_IsDead;
+var int Elvrich_IsDead;
 var int PlayerTalkedToSkipNW;
 var int PlayerTalkedToGregNW;
 var int HP_Ring_1_Equipped;

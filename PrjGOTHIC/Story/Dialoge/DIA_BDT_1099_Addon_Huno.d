@@ -341,6 +341,7 @@ func void DIA_Addon_Huno_SomeThings_Info()
 		if(Huno_Counter > 0)
 		{
 			AI_Output(other,self,"DIA_Addon_Huno_SomeThings_15_09");	//Он далеко не единственный, кто подозревает тебя!
+			AI_WaitTillEnd(self,other);
 			AI_PlayAni(self,"T_SEARCH");
 			AI_Output(self,other,"DIA_Addon_Huno_SomeThings_06_10");	//А это что еще значит?
 			Huno_SomeThings_PERM = TRUE;

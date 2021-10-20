@@ -2584,7 +2584,8 @@ func void INIT_SUB_NewWorld_Part_GreatPeasant_01()
 	Wld_AssignRoomToGuild("grpbauer02",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("grpbauerscheune02",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("grpturm02",GIL_PUBLIC);
-	Wld_AssignRoomToGuild("grpturm01",GIL_PUBLIC);
+//	Wld_AssignRoomToGuild("grpturm01",GIL_PUBLIC);
+	Wld_AssignRoomToGuild("grpturm01",GIL_NONE);
 	Wld_AssignRoomToGuild("grpwaldhuette02",GIL_PUBLIC);
 };
 

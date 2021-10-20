@@ -490,17 +490,17 @@ func void Use_LuciasLoveLetter_Addon()
 	Doc_Show(nDocID);
 	if(MIS_LuciasLetter == FALSE)
 	{
-		if(!Npc_IsDead(Elvrich))
+		if(MIS_LookingForLucia == LOG_Running)
+		{
+			Log_AddEntry(TOPIC_Addon_Lucia,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
+		};
+		if(Elvrich_IsDead == FALSE)
 		{
 			Log_CreateTopic(TOPIC_Addon_LuciasLetter,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_Addon_LuciasLetter,LOG_Running);
-			B_LogEntries(TOPIC_Addon_LuciasLetter,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
+			B_LogEntry(TOPIC_Addon_LuciasLetter,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
 		};
 		MIS_LuciasLetter = LOG_Running;
-	};
-	if(MIS_LookingForLucia == LOG_Running)
-	{
-		B_LogNextEntry(TOPIC_Addon_Lucia,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
 	};
 	LuciaMentionedInKhorinis = TRUE;
 };

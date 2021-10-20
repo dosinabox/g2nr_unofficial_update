@@ -107,6 +107,14 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 				Log_SalandrilIsDead = TRUE;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Elvrich))
+		{
+			if(MIS_LuciasLetter == LOG_Running)
+			{
+				MIS_LuciasLetter = LOG_FAILED;
+			};
+			Elvrich_IsDead = TRUE;
+		}
 		else if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Malak)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bengar)))
 		{
 			if(MIS_GetMalakBack == LOG_Running)

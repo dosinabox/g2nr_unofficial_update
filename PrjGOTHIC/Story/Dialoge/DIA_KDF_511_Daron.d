@@ -3,7 +3,7 @@ var int Daron_Spende;
 
 func void B_DaronSegen(var int gold)
 {
-	if(gold > 0)
+	if((gold > 0) || (Daron_Spende >= 1000))
 	{
 		Daron_Spende += gold;
 		if(Daron_Spende < 100)
@@ -299,7 +299,7 @@ instance DIA_Daron_Kloster(C_Info)
 
 func int DIA_Daron_Kloster_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Daron_Woher) || (Npc_KnowsInfo(other,DIA_Daron_Paladine) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF)))
+	if(Npc_KnowsInfo(other,DIA_Daron_Woher) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -585,9 +585,9 @@ func int DIA_Daron_Spende_Condition()
 func void DIA_Daron_Spende_Info()
 {
 	AI_Output(other,self,"DIA_Daron_Spende_15_00");	//я хочу сделать пожертвование...
-	Info_ClearChoices(DIA_Daron_Spende);
 	if(Daron_Spende < 1000)
 	{
+		Info_ClearChoices(DIA_Daron_Spende);
 		Info_AddChoice(DIA_Daron_Spende,"я должен еще подумать.",DIA_Daron_Spende_BACK);
 		Info_AddChoice(DIA_Daron_Spende,"Ќо у мен€ недостаточно золота...",DIA_Daron_Spende_NoGold);
 		Info_AddChoice(DIA_Daron_Spende,"(50 золотых)",DIA_Daron_Spende_50);
@@ -598,8 +598,8 @@ func void DIA_Daron_Spende_Info()
 	{
 		AI_Output(self,other,"DIA_Daron_Spende_10_01");	//“ы уже пожертвовал мне более 1000 золотых монет.
 		AI_Output(self,other,"DIA_Daron_Spende_10_02");	//Ѕлагословение »нноса всегда пребудет с тобой.
-		DIA_Daron_Spende_permanent = TRUE;
 		B_DaronSegen(0);
+		DIA_Daron_Spende_permanent = TRUE;
 	};
 };
 

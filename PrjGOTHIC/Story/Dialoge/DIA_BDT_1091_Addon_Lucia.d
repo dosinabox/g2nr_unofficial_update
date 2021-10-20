@@ -279,6 +279,10 @@ func void DIA_Addon_Lucia_Paladine_MURDER()
 	Info_AddChoice(DIA_Addon_Lucia_Paladine,"Ты отвергаешь Инноса, падшая девица?",DIA_Addon_Lucia_Paladine_WEIB);
 };
 
+func void B_Lucia_SoWhat()
+{
+	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_MURDER_16_01_add");	//И что с того?
+};
 
 instance DIA_Addon_Lucia_Attentat(C_Info)
 {
@@ -303,8 +307,30 @@ func void DIA_Addon_Lucia_Attentat_Info()
 {
 	B_Say(other,self,"$ATTENTAT_ADDON_DESCRIPTION");
 	AI_Output(self,other,"DIA_Addon_Lucia_Attentat_16_00");	//Ничего.
+	Info_ClearChoices(DIA_Addon_Lucia_Attentat);
+	Info_AddChoice(DIA_Addon_Lucia_Attentat,"(промолчать)",DIA_Addon_Lucia_Attentat_BACK);
+	Info_AddChoice(DIA_Addon_Lucia_Attentat,"Я ищу этих ребят, чтобы выступить против Эстебана.",DIA_Addon_Lucia_Attentat_CONTRA);
+	Info_AddChoice(DIA_Addon_Lucia_Attentat,"Я убью этих предателей.",DIA_Addon_Lucia_Attentat_PRO);
 };
 
+func void DIA_Addon_Lucia_Attentat_BACK()
+{
+	Info_ClearChoices(DIA_Addon_Lucia_Attentat);
+};
+
+func void DIA_Addon_Lucia_Attentat_CONTRA()
+{
+	B_Say(other,self,"$ATTENTAT_ADDON_CONTRA");
+	B_Lucia_SoWhat();
+	Info_ClearChoices(DIA_Addon_Lucia_Attentat);
+};
+
+func void DIA_Addon_Lucia_Attentat_PRO()
+{
+	B_Say(other,self,"$ATTENTAT_ADDON_PRO");
+	B_Lucia_SoWhat();
+	Info_ClearChoices(DIA_Addon_Lucia_Attentat);
+};
 
 instance DIA_Addon_Lucia_Trade(C_Info)
 {
