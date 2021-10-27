@@ -56,23 +56,6 @@ func void DIA_Alwin_PICKPOCKET_BACK()
 };
 
 
-func int C_AlwinSheepsAreDead()
-{
-	if(!Npc_IsDead(Alwin_Sheep1))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(Alwin_Sheep2))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(Alwin_Sheep3))
-	{
-		return FALSE;
-	};
-	return TRUE;
-};
-
 instance DIA_Alwin_Sheep(C_Info)
 {
 	npc = VLK_424_Alwin;
@@ -86,7 +69,7 @@ instance DIA_Alwin_Sheep(C_Info)
 
 func int DIA_Alwin_Sheep_Condition()
 {
-	if(!C_AlwinSheepsAreDead())
+	if(!C_AlwinSheepsDead())
 	{
 		return TRUE;
 	};
@@ -254,7 +237,7 @@ func int DIA_Alwin_Endlos_Condition()
 func void DIA_Alwin_Endlos_Info()
 {
 	AI_Output(other,self,"DIA_Alwin_Endlos_15_00");	//Как твои овцы?
-	if(C_AlwinSheepsAreDead())
+	if(C_AlwinSheepsDead())
 	{
 		B_AlwinAboutDeadSheeps();
 	}

@@ -361,7 +361,6 @@ func void DIA_Till_BRONKOWIEDERANARBEIT_Info()
 	AI_Output(other,self,"DIA_Till_BRONKOWIEDERANARBEIT_15_00");	//Бронко вернулся к работе.
 	AI_Output(self,other,"DIA_Till_BRONKOWIEDERANARBEIT_03_01");	//Правда? Это превосходно.
 	AI_Output(other,self,"DIA_Till_BRONKOWIEDERANARBEIT_15_02");	//Да. И теперь я хочу получить мои деньги.
-	IntToFloat(Till_Angebot);
 	if(Till_Angebot <= 50)
 	{
 		AI_Output(self,other,"DIA_Till_BRONKOWIEDERANARBEIT_03_03");	//(колеблясь) Мммм. Хорошо. Сделка есть сделка, правда?
@@ -391,9 +390,31 @@ instance DIA_Till_PERMKAP1(C_Info)
 
 func int DIA_Till_PERMKAP1_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Till_HALLO) || (Kapitel >= 5))
 	if(Npc_KnowsInfo(other,DIA_Till_HALLO))
 	{
+		if(Kapitel == 5)
+		{
+			if((MIS_bringRosiBackToSekob != LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE))
+			{
+				DIA_Till_PERMKAP1.description = "А до дома-то далеко, а? Папочка не сможет помочь тебе здесь.";
+			}
+			else
+			{
+				DIA_Till_PERMKAP1.description = "Ты, трус, радуйся, если я оставлю тебя в живых.";
+			};
+		}
+		else if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
+		{
+			DIA_Till_PERMKAP1.description = "Может, тебе стоит питаться получше, чтобы ты вырос большим и сильным.";
+		}
+		else if(Till_HatSeinGeldBehalten == TRUE)
+		{
+			DIA_Till_PERMKAP1.description = "Ах ты, жалкий маленький...";
+		}
+		else
+		{
+			DIA_Till_PERMKAP1.description = "Тебе сегодня никто еще не бил в морду?";
+		};
 		return TRUE;
 	};
 };

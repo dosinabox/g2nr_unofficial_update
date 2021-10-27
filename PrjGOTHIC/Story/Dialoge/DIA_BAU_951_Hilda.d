@@ -49,12 +49,12 @@ func void DIA_Hilda_Hallo_Info()
 	if(hero.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Hilda_Hallo_17_00");	//Эй, тебя сюда звали? Немедленно убирайся из моего дома. Здесь не подают милостыню.
+		AI_StopProcessInfos(self);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Hilda_Hallo_17_01");	//Да, что еще?
 	};
-	AI_StopProcessInfos(self);
 };
 
 
@@ -131,7 +131,7 @@ instance DIA_Hilda_BringBeet(C_Info)
 	nr = 1;
 	condition = DIA_Hilda_BringBeet_Condition;
 	information = DIA_Hilda_BringBeet_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	description = "Я принес тебе репу...";
 };
 

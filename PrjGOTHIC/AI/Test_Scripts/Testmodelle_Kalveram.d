@@ -384,6 +384,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ITWr_Addon_Lou_Rezept2,1);
 	CreateInvItems(self,ITWr_Addon_Piratentod,1);
 	CreateInvItems(self,ItWr_MushroomMana,1);
+	CreateInvItems(self,ItWr_AppleSTR,1);
 //	CreateInvItems(self,Fakescroll_Addon,1);
 	CreateInvItems(self,ItWr_Addon_AxtAnleitung,1);
 	CreateInvItems(self,ItWr_Addon_SUMMONANCIENTGHOST,1);

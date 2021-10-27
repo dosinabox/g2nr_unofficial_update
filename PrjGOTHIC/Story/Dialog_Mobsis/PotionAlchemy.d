@@ -797,6 +797,10 @@ func int PC_Special_Start_Condition()
 		{
 			return TRUE;
 		};
+		if(Knows_AppleSTR == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -948,9 +952,48 @@ func void PC_ItPo_Perm_MushroomMana_Info()
 };
 
 
-instance PC_ItPo_Dex(C_Info)
+instance PC_ItPo_Perm_AppleSTR(C_Info)
 {
 	nr = 4;
+	npc = PC_Hero;
+	condition = PC_ItPo_Perm_AppleSTR_Condition;
+	information = PC_ItPo_Perm_AppleSTR_Info;
+	permanent = TRUE;
+	description = ConcatStrings(NAME_AppleSTR," (25 €блок, 1 лесна€ €года)");
+};
+
+
+func int PC_ItPo_Perm_AppleSTR_Condition()
+{
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (Knows_AppleSTR == TRUE) && (SpecialStart == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void PC_ItPo_Perm_AppleSTR_Info()
+{
+	if(!C_PlayerHasFlasks())
+	{
+		b_endproductiondialog();
+	}
+	else if((Npc_HasItems(self,ItFo_Apple) >= ApplesNeededForBonus) && Npc_HasItems(self,ItPl_Forestberry))
+	{
+		Npc_RemoveInvItems(self,ItFo_Apple,ApplesNeededForBonus);
+		Npc_RemoveInvItems(self,ItPl_Forestberry,1);
+		B_BrewPotion(ItPo_Perm_AppleSTR);
+		TotalApplesEaten += ApplesNeededForBonus;
+	}
+	else
+	{
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
+	};
+};
+
+
+instance PC_ItPo_Dex(C_Info)
+{
+	nr = 5;
 	npc = PC_Hero;
 	condition = PC_ItPo_Dex_Condition;
 	information = PC_ItPo_Dex_Info;
@@ -990,7 +1033,7 @@ func void PC_ItPo_Dex_Info()
 
 instance PC_ItPo_Strg(C_Info)
 {
-	nr = 5;
+	nr = 6;
 	npc = PC_Hero;
 	condition = PC_ItPo_Strg_Condition;
 	information = PC_ItPo_Strg_Info;
@@ -1030,7 +1073,7 @@ func void PC_ItPo_Strg_Info()
 
 instance PC_ItPo_Speed(C_Info)
 {
-	nr = 6;
+	nr = 7;
 	npc = PC_Hero;
 	condition = PC_ItPo_Speed_Condition;
 	information = PC_ItPo_Speed_Info;
@@ -1068,7 +1111,7 @@ func void PC_ItPo_Speed_Info()
 
 instance PC_ItPo_Addon_Geist(C_Info)
 {
-	nr = 7;
+	nr = 8;
 	npc = PC_Hero;
 	condition = PC_ItPo_Addon_Geist_Condition;
 	information = PC_ItPo_Addon_Geist_Info;
@@ -1115,7 +1158,7 @@ func void PC_ItPo_Addon_Geist_Info()
 
 instance PC_ItPo_MegaDrink(C_Info)
 {
-	nr = 8;
+	nr = 9;
 	npc = PC_Hero;
 	condition = PC_ItPo_MegaDrink_Condition;
 	information = PC_ItPo_MegaDrink_Info;

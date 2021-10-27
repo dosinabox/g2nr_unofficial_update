@@ -1133,7 +1133,7 @@ func void DIA_Addon_Vatras_MissingPeople_Success()
 		Vatras_MissingPeopleReports += 1;
 		MISSINGPEOPLEINFO[6] = TRUE;
 	};
-	if((Npc_HasItems(other,ItWr_LuciasLoveLetter_Addon) || (MIS_LuciasLetter == LOG_SUCCESS)) && (MISSINGPEOPLEINFO[7] == FALSE))
+	if(((MIS_LuciasLetter == LOG_Running) || (MIS_LuciasLetter == LOG_SUCCESS)) && (MISSINGPEOPLEINFO[7] == FALSE))
 	{
 		Vatras_MissingPeopleReports += 1;
 		MISSINGPEOPLEINFO[7] = TRUE;

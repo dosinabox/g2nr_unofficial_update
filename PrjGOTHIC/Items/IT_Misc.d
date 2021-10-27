@@ -217,6 +217,21 @@ instance ItMiSwordblade(C_Item)
 	count[5] = value;
 };
 
+instance ItMi_Rake(C_Item)
+{
+	name = "Мотыга";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = Value_Rake;
+	visual = "ItMi_Rake.3DS";
+	material = MAT_WOOD;
+	scemeName = "RAKE";
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
+};
+
 instance ItMi_Broom(C_Item)
 {
 	name = "Метла";
@@ -297,18 +312,6 @@ func void Use_Joint()
 	};
 };
 
-
-/*instance ItMi_Packet(C_Item)
-{
-	name = "Пакет";
-	mainflag = ITEM_KAT_NONE;
-	flags = 0;
-	value = 0;
-	visual = "ItMi_Packet.3ds";
-	scemeName = "MAPSEALED";
-	material = MAT_LEATHER;
-	description = name;
-};*/
 
 instance ItMi_Pocket(C_Item)
 {
@@ -630,7 +633,6 @@ instance ItMi_Quartz(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = 300;
-//	inv_zbias = INVCAM_ENTF_RING_STANDARD;
 };
 
 instance ItMi_Pitch(C_Item)

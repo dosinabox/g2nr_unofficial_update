@@ -206,8 +206,6 @@ prototype Rangerring_Prototype(C_Item)
 	visual = "ItRi_Rangerring.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-//	on_equip = Equip_ItRi_Ranger_Addon;
-//	on_unequip = UnEquip_ItRi_Ranger_Addon;
 	description = name;
 	text[0] = "Опознавательный знак членов Кольца Воды.";
 	text[5] = NAME_Value;
@@ -537,21 +535,6 @@ instance ItMi_OrnamentEffekt_BIGFARM_Addon(EffectItemPrototype_Addon)
 {
 };
 
-instance ItMi_Rake(C_Item)
-{
-	name = "Мотыга";
-	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI;
-	value = Value_Rake;
-	visual = "ItMi_Rake.3DS";
-	material = MAT_WOOD;
-	scemeName = "RAKE";
-	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
-	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
-};
-
 instance ItRi_Addon_BanditTrader(C_Item)
 {
 	name = NAME_Ring;
@@ -641,6 +624,7 @@ func void Use_Vatras2Saturas_FindRaven()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Дорогой Сатурас!");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Надеюсь, что скоро твоя цель будет достигнута. В городе ситуация, похоже, налаживается. Но я боюсь, что это обманчивое ощущение. Поторопись! Ты нужен мне здесь.");
@@ -756,8 +740,6 @@ instance ItRi_Addon_MorgansRing_Mission(C_Item)
 	value = 500;
 	visual = "ItRi_Addon_MorgansRing.3DS";
 	material = MAT_METAL;
-//	on_equip = Equip_MorgansRing;
-//	on_unequip = UnEquip_MorgansRing;
 	on_equip = Equip_1H_10;
 	on_unequip = UnEquip_1H_10;
 	wear = WEAR_EFFECT;
@@ -772,18 +754,6 @@ instance ItRi_Addon_MorgansRing_Mission(C_Item)
 	inv_rotz = INVCAM_Z_RING_STANDARD;
 	inv_rotx = INVCAM_X_RING_STANDARD;
 };
-
-/*
-func void Equip_MorgansRing()
-{
-	B_AddFightSkill(self,NPC_TALENT_1H,10);
-};
-
-func void UnEquip_MorgansRing()
-{
-	B_AddFightSkill(self,NPC_TALENT_1H,-10);
-};
-*/
 
 instance ItMi_Focus(C_Item)
 {

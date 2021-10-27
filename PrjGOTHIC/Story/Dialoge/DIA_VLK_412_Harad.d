@@ -187,28 +187,28 @@ func int C_ScHasOrcWeapon()
 	if(Npc_HasItems(hero,ItMw_2H_OrcMace_01))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcSword_02))
+	};
+	if(Npc_HasItems(hero,ItMw_2H_OrcSword_02))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_04))
+	};
+	if(Npc_HasItems(hero,ItMw_2H_OrcAxe_04))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcSword_01))
+	};
+	if(Npc_HasItems(hero,ItMw_2H_OrcSword_01))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_03))
+	};
+	if(Npc_HasItems(hero,ItMw_2H_OrcAxe_03))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_02))
+	};
+	if(Npc_HasItems(hero,ItMw_2H_OrcAxe_02))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_01))
+	};
+	if(Npc_HasItems(hero,ItMw_2H_OrcAxe_01))
 	{
 		return TRUE;
 	};
@@ -459,10 +459,6 @@ func void DIA_Harad_LEHRLING_OK()
 		AI_Output(other,self,"DIA_Harad_LEHRLING_OK_15_02");	//Я уже умею это!
 		AI_Output(self,other,"DIA_Harad_LEHRLING_OK_12_03");	//Что ж. Тем лучше!
 	};
-	if(other.attribute[ATR_STRENGTH] < (T_MED - 30))
-	{
-		AI_Output(self,other,"DIA_Harad_LEHRLING_OK_12_04");	//Кроме того, пришло время стать немного сильнее. Ты чахнешь прямо у меня на глазах!
-	};
 	Player_IsApprentice = APP_Harad;
 	ApprenticeGoldCounter = 0;
 	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
@@ -483,9 +479,16 @@ func void DIA_Harad_LEHRLING_OK()
 	{
 		B_LogEntries(Topic_Bonus,"Гарад принял меня в ученики.");
 	};
-	Log_AddEntry(Topic_Bonus,"Гарад будет покупать оружие, выкованное мной, по хорошей цене.");
 	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogNextEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу. Также он может помочь мне стать сильнее.");
+	if(other.attribute[ATR_STRENGTH] < (T_MED - 30))
+	{
+		AI_Output(self,other,"DIA_Harad_LEHRLING_OK_12_04");	//Кроме того, пришло время стать немного сильнее. Ты чахнешь прямо у меня на глазах!
+		B_LogNextEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу. Также он может помочь мне стать сильнее.");
+	}
+	else
+	{
+		B_LogNextEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу.");
+	};
 	Info_ClearChoices(DIA_Harad_LEHRLING);
 };
 
@@ -580,7 +583,7 @@ instance DIA_Harad_AlsLehrling(C_Info)
 
 func int DIA_Harad_AlsLehrling_Condition()
 {
-	if((Player_IsApprentice == APP_Harad) && Npc_IsInState(self,ZS_Talk))
+	if((Player_IsApprentice == APP_Harad) && Npc_IsInState(self,ZS_Talk) && (Harad_Lehrling_Day != Wld_GetDay()))
 	{
 		return TRUE;
 	};
@@ -612,13 +615,12 @@ func void DIA_Harad_AlsLehrling_Info()
 	else if((Harad_Lehrling_Day <= (Wld_GetDay() - 4)) && (Harad_MILKommentar == FALSE) && (Harad_PALKommentar == FALSE) && (Harad_INNOSKommentar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_08");	//Давненько тебя не было видно здесь. Где ты был все это время, хм?
-		Harad_Lehrling_Day = Wld_GetDay();
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_09");	//Опять ты...
-		Harad_Lehrling_Day = Wld_GetDay();
 	};
+	Harad_Lehrling_Day = Wld_GetDay();
 };
 
 
@@ -677,6 +679,7 @@ func void DIA_Harad_Aufgaben_Info()
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_05");	//Кроме того, я научу тебя всему, что нужно знать для изготовления обычных мечей.
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_06");	//Изготовление магических мечей - работа для опытного кузнеца. Тебе до этого еще далеко...
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_07");	//Если тебе нужно место для сна, ты можешь прилечь где-нибудь в моем доме. Все понятно?
+	B_LogEntry(Topic_Bonus,"Гарад будет покупать оружие, выкованное мной, по хорошей цене.");
 };
 
 

@@ -44,7 +44,7 @@ var int Grimbald_HuntStart_Day;
 func void DIA_Grimbald_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Grimbald_HALLO_15_00");	//Ты чего-то ждешь?
-	if(Npc_IsDead(Grimbald_Snapper1) && Npc_IsDead(Grimbald_Snapper2) && Npc_IsDead(Grimbald_Snapper3))
+	if(C_GrimbaldSnappersDead())
 	{
 		AI_Output(self,other,"DIA_Grimbald_HALLO_07_01");	//Я охочусь. По-моему, это очевидно.
 		Grimbald_PissOff = TRUE;
@@ -136,7 +136,7 @@ func int DIA_Grimbald_Jagd_Condition()
 func void DIA_Grimbald_Jagd_Info()
 {
 	AI_Output(other,self,"DIA_Grimbald_Jagd_15_00");	//Ты можешь научить меня охотиться?
-	if(Npc_IsDead(Grimbald_Snapper1) && Npc_IsDead(Grimbald_Snapper2) && Npc_IsDead(Grimbald_Snapper3) && (Grimbald_PissOff == FALSE))
+	if(C_GrimbaldSnappersDead() && (Grimbald_PissOff == FALSE))
 	{
 		if(Grimbald_Snappers_KilledByPlayer == TRUE)
 		{
@@ -356,7 +356,7 @@ func int DIA_Grimbald_Success_Condition()
 		{
 			return TRUE;
 		};
-		if(Npc_IsDead(Grimbald_Snapper1) && Npc_IsDead(Grimbald_Snapper2) && Npc_IsDead(Grimbald_Snapper3))
+		if(C_GrimbaldSnappersDead())
 		{
 			return TRUE;
 		};

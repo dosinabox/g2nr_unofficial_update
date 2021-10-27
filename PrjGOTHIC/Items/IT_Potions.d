@@ -393,7 +393,7 @@ instance ItPo_Perm_AppleSTR(C_Item)
 	effect = "SPELLFX_MANAPOTION";
 	description = NAME_AppleSTR;
 	text[1] = NAME_Bonus_Str;
-	count[1] = 1;
+	count[1] = AppleSTRBonus;
 	text[2] = NAME_Bonus_HP_Full;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -402,7 +402,7 @@ instance ItPo_Perm_AppleSTR(C_Item)
 
 func void UseItPo_Perm_AppleSTR()
 {
-	B_RaiseAttribute(self,ATR_STRENGTH,1);
+	B_RaiseAttribute(self,ATR_STRENGTH,AppleSTRBonus);
 	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 };
 

@@ -455,6 +455,8 @@ var int Martin_IrrlichtHint;
 
 func void DIA_Addon_Martin_Fernando_Info()
 {
+	var int FernandoHintsCount;
+	FernandoHintsCount = 0;
 	AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_00");	//Насчет торговца оружием...
 	if(C_SCHasAnyFernandoEvidence() || (Fernando_HatsZugegeben == TRUE))
 	{
@@ -467,6 +469,7 @@ func void DIA_Addon_Martin_Fernando_Info()
 				if(FernandoHints_ItMw == FALSE)
 				{
 					Npc_RemoveInvItems(other,ItMw_Addon_BanditTrader,1);
+					FernandoHintsCount += 1;
 					FernandoHints_ItMw = TRUE;
 				};
 			};
@@ -474,6 +477,7 @@ func void DIA_Addon_Martin_Fernando_Info()
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_03");	//У бандитов я нашел это кольцо. Оно указывает на морского торговца.
 				Npc_RemoveInvItem(other,ItRi_Addon_BanditTrader);
+				FernandoHintsCount += 1;
 				FernandoHints_ItRi = TRUE;
 			};
 			if(Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))
@@ -481,9 +485,13 @@ func void DIA_Addon_Martin_Fernando_Info()
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_04");	//Этот список оружия и прочих доставленных бандитам вещей подписан неким Фернандо.
 				Npc_RemoveInvItem(other,ItWr_Addon_BanditTrader);
 				B_UseFakeScroll();
+				FernandoHintsCount += 1;
 				FernandoHints_ItWr = TRUE;
 			};
-			AI_PrintScreen(PRINT_Addon_EvidenceGiven,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+			if(FernandoHintsCount > 0)
+			{
+				AI_PrintScreen(PRINT_Addon_EvidenceGiven,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+			};
 			if(Fernando_HatsZugegeben == TRUE)
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_05");	//И кроме того, Фернандо, старый торговец из верхнего квартала, сознался в том, что ведет дела с бандитами.

@@ -9,8 +9,8 @@
 ##            Основное           ##
 ###################################
 
-!define MOD_VERSION "26"
-!define MOD_DATE "3.12"
+!define MOD_VERSION "27"
+!define MOD_DATE "10.29"
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"
@@ -156,11 +156,6 @@ Section /o "Расширенная Рудниковая долина" SecAdditional_4
 	File "g2a_nr_scriptpatch_v${MOD_VERSION}_wasteland.mod"
 SectionEnd
 
-Section /o "Увеличенное меню" SecAdditional_5
-	SetOutPath "$INSTDIR\Data\ModVDF"
-	File "g2a_nr_scriptpatch_v${MOD_VERSION}_autoscale.mod"
-SectionEnd
-
 ###################################
 ##         Деинсталляция         ##
 ###################################
@@ -172,7 +167,6 @@ Section "Un.Удалить обновление" SecUninstall_Main
 	Delete "$INSTDIR\system\${MOD_NAME}.rtf"
 	Delete "$INSTDIR\_work\Data\Music\newworld\KAS_Loop_DayStd.sgt"
 	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}.mod"
-	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_autoscale.mod"
 	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_plugins.mod"
 	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_speech_add.mod"
 	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_speech_fix.mod"
@@ -198,7 +192,6 @@ LangString DESC_SecAdditional_1 ${LANG_RUSSIAN} "Снимите галочку, если установка
 LangString DESC_SecAdditional_2 ${LANG_RUSSIAN} "Неофициальное исправление русской озвучки от Акеллы (версия 1.14)."
 LangString DESC_SecAdditional_3 ${LANG_RUSSIAN} "Установка фона главного меню и загрузочных экранов для широкоформатных мониторов."
 LangString DESC_SecAdditional_4 ${LANG_RUSSIAN} "Мод Wasteland, расширяющий и заполняющий мир Рудниковой долины до размеров Готики 1."
-LangString DESC_SecAdditional_5 ${LANG_RUSSIAN} "Увеличенные окна дневника, характеристик и главного меню для больших разрешений."
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
 !insertmacro MUI_DESCRIPTION_TEXT ${SecMain} $(DESC_SecMain)
@@ -206,7 +199,6 @@ LangString DESC_SecAdditional_5 ${LANG_RUSSIAN} "Увеличенные окна дневника, хара
 !insertmacro MUI_DESCRIPTION_TEXT ${SecAdditional_2} $(DESC_SecAdditional_2)
 !insertmacro MUI_DESCRIPTION_TEXT ${SecAdditional_3} $(DESC_SecAdditional_3)
 !insertmacro MUI_DESCRIPTION_TEXT ${SecAdditional_4} $(DESC_SecAdditional_4)
-!insertmacro MUI_DESCRIPTION_TEXT ${SecAdditional_5} $(DESC_SecAdditional_5)
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 ###################################

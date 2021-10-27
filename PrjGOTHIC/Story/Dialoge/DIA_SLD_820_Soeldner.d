@@ -48,7 +48,7 @@ func void DIA_Sld_820_Halt_Info()
 		AI_Output(other,self,"DIA_Sld_820_Halt_15_01");	//В дом, конечно же.
 	};
 	AI_Output(self,other,"DIA_Sld_820_Halt_07_02");	//Онар платит нам за то, чтобы мы не пускали в дом парней вроде тебя!
-	if(other.guild == GIL_MIL)
+	if(VisibleGuild(other) == GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Sld_820_Halt_07_03");	//Здесь не место ополчению! Он именно так и сказал.
 	};
