@@ -590,6 +590,19 @@ func void B_Kardif_AboutDaronChest()
 	DIA_Kardif_Diebeswerk2_permanent = TRUE;
 };
 
+func int C_MartinIsNear()
+{
+	if(Npc_IsDead(Martin))
+	{
+		return FALSE;
+	};
+	if(Npc_GetDistToNpc(self,Martin) >= PERC_DIST_DIALOG)
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 instance DIA_Kardif_Diebeswerk2(C_Info)
 {
 	npc = VLK_431_Kardif;
@@ -617,7 +630,7 @@ func void DIA_Kardif_Diebeswerk2_Info()
 	{
 		AI_Output(self,other,"DIA_Kardif_Crew_14_04");	//Ты обращаешься не по адресу. Я простой трактирщик.
 	}
-	else if((Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700) && !Npc_IsDead(Martin))
+	else if(C_MartinIsNear())
 	{
 		AI_WaitTillEnd(self,other);
 		AI_PlayAni(self,"T_SEARCH");

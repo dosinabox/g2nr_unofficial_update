@@ -585,7 +585,7 @@ func void DIA_Addon_Martin_Perm_Info()
 			AI_Output(self,other,"DIA_Addon_Martin_Perm_07_03");	//И этой ночью, когда я уйду, будь повнимательнее!
 		};
 	}
-	else if((MIS_Addon_Martin_GetRangar != 0) || (hero.guild != GIL_NONE) || (SC_IsRanger == TRUE))
+	else if((MIS_Addon_Martin_GetRangar != FALSE) || (hero.guild != GIL_NONE) || (SC_IsRanger == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Perm_07_04");	//Давай, давай, смейся. Попробовал бы ты постоять целый день на пирсе, пытаясь разобраться во всем этом хаосе.
 		AI_Output(self,other,"DIA_Addon_Martin_Perm_07_05");	//Паладины привезли с собой столько всякого хлама, что это даже не смешно.
