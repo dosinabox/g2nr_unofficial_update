@@ -1,5 +1,5 @@
 
-instance PIR_1389_Addon_Tom(Npc_Default)
+/*instance PIR_1389_Addon_Tom(Npc_Default)
 {
 	name[0] = "Том";
 	guild = GIL_PIR;
@@ -24,5 +24,5 @@ func void Rtn_Start_1389()
 {
 	TA_Stand_WP(9,0,21,0,"ADW_PIRATECAMP_BEACH_15");
 	TA_Stand_WP(21,0,9,0,"ADW_PIRATECAMP_BEACH_15");
-};
+};*/
 

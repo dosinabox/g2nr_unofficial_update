@@ -140,7 +140,7 @@ func void StoryHelper_Cavalorn()
 	//Кольцо колец :)
 	CreateInvItems(hero,ItRi_Ranger_Addon,1);
 	//Найти каменные круги
-	MIS_Addon_Nefarius_BringMissingOrnaments = LOG_RUNNING;
+	MIS_Addon_Nefarius_BringMissingOrnaments = LOG_Running;
 	//...и Кавалорн отправился в один из них
 	B_StartotherRoutine(Cavalorn,"OrnamentSteinring");
 	//Игрок получил карту кругов

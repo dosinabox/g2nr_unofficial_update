@@ -272,8 +272,8 @@ func void DIA_Addon_Akil_ReturnPeople_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Akil_ReturnPeople_13_03");	//Возьми в качестве награды это золото.
 	B_GiveInvItems(self,other,ItMi_Gold,100);
-	B_GivePlayerXP(XP_Ambient);
 	MIS_Akil_BringMissPeopleBack = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Ambient);
 };
 
 

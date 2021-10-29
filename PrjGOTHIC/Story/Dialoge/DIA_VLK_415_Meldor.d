@@ -21,6 +21,23 @@ func void DIA_Meldor_EXIT_Info()
 };
 
 
+func int C_LehmarDebtIsOverdue()
+{
+	if(Lehmar_GeldGeliehen_Day > (Wld_GetDay() - 2))
+	{
+		return FALSE;
+	};
+	if(Lehmar_GeldGeliehen == 0)
+	{
+		return FALSE;
+	};
+	if(RangerHelp_LehmarKohle == TRUE)
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 instance DIA_Meldor_Hallo(C_Info)
 {
 	npc = VLK_415_Meldor;
@@ -34,12 +51,9 @@ instance DIA_Meldor_Hallo(C_Info)
 
 func int DIA_Meldor_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && !C_LehmarDebtIsOverdue())
 	{
-		if((Lehmar_GeldGeliehen_Day > (Wld_GetDay() - 2)) || (Lehmar_GeldGeliehen == 0) || (RangerHelp_LehmarKohle == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -271,7 +285,7 @@ instance DIA_Meldor_VonLehmar(C_Info)
 
 func int DIA_Meldor_VonLehmar_Condition()
 {
-	if((Lehmar_GeldGeliehen_Day <= (Wld_GetDay() - 2)) && (Lehmar_GeldGeliehen != 0) && (RangerHelp_LehmarKohle == FALSE))
+	if(C_LehmarDebtIsOverdue())
 	{
 		return TRUE;
 	};

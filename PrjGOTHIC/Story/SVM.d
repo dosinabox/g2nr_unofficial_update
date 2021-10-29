@@ -83,7 +83,7 @@ class C_SVM
 	var string sheepkiller_crime;
 	var string attack_crime;
 	var string theft_crime;
-	var string murder_crime;
+//	var string murder_crime;
 	var string pal_city_crime;
 	var string mil_city_crime;
 	var string city_crime;
@@ -314,7 +314,7 @@ instance SVM_1(C_SVM)
 	Ooh01 = "SVM_1_Ooh01";	//Не позволяй ему этого делать!
 	Ooh02 = "SVM_1_Ooh02";	//Покажи ему, кто тут главный!
 	Ooh03 = "SVM_1_Ooh03";	//Черт побери!
-	WhatWasThat = "SVM_1_WhatWasThat";	//(себе под нос, просыпаясь) Что это было?!
+	WhatWasThat = "SVM_1_WhatWasThat";	//(просыпаясь) Что это было?!
 	GetOutOfMyBed = "SVM_1_GetOutOfMyBed";	//Убирайся с моей кровати!
 	Awake = "SVM_1_Awake";	//(зевает)
 	abs_commander = "SVM_1_ABS_COMMANDER";	//Я слышал, ты ходил к командующему и все уладил.
@@ -506,7 +506,7 @@ instance SVM_3(C_SVM)
 	Ooh01 = "SVM_3_Ooh01";	//Держись!
 	Ooh02 = "SVM_3_Ooh02";	//Осторожно!
 	Ooh03 = "SVM_3_Ooh03";	//Ох! Какой удар!
-	WhatWasThat = "SVM_3_WhatWasThat";	//(себе под нос, просыпаясь) Что это было?!
+	WhatWasThat = "SVM_3_WhatWasThat";	//(просыпаясь) Что это было?!
 	GetOutOfMyBed = "SVM_3_GetOutOfMyBed";	//Убирайся с моей кровати!
 	Awake = "SVM_3_Awake";	//(зевает)
 	abs_commander = "SVM_3_ABS_COMMANDER";	//Говорят, ты ходил к командующему и все уладил.
@@ -694,7 +694,7 @@ instance SVM_4(C_SVM)
 	Ooh01 = "SVM_4_Ooh01";	//Защищайся!
 	Ooh02 = "SVM_4_Ooh02";	//Вперед, ответь ему!
 	Ooh03 = "SVM_4_Ooh03";	//Охх! Это больно!
-	WhatWasThat = "SVM_4_WhatWasThat";	//(себе под нос, просыпаясь) Черт, что это было?!
+	WhatWasThat = "SVM_4_WhatWasThat";	//(просыпаясь) Черт, что это было?!
 	GetOutOfMyBed = "SVM_4_GetOutOfMyBed";	//Убирайся с моей кровати!
 	Awake = "SVM_4_Awake";	//(зевает)
 	abs_commander = "SVM_4_ABS_COMMANDER";	//Я слышал, ты ходил к командующему и все уладил.
@@ -882,7 +882,7 @@ instance SVM_5(C_SVM)
 	Ooh01 = "SVM_5_Ooh01";	//Не позволяй ему этого делать!
 	Ooh02 = "SVM_5_Ooh02";	//Покажи ему, кто тут главный!
 	Ooh03 = "SVM_5_Ooh03";	//Черт побери!
-	WhatWasThat = "SVM_5_WhatWasThat";	//(себе под нос, просыпаясь) Что это было?!
+	WhatWasThat = "SVM_5_WhatWasThat";	//(просыпаясь) Что это было?!
 	GetOutOfMyBed = "SVM_5_GetOutOfMyBed";	//Убирайся с моей кровати!
 	Awake = "SVM_5_Awake";	//(зевает)
 	abs_commander = "SVM_5_ABS_COMMANDER";	//Я слышал, ты ходил к командующему и все уладил.
@@ -1070,7 +1070,7 @@ instance SVM_6(C_SVM)
 	Ooh01 = "SVM_6_Ooh01";	//Осторожно!
 	Ooh02 = "SVM_6_Ooh02";	//Защищайся же!
 	Ooh03 = "SVM_6_Ooh03";	//Ох, как больно!
-	WhatWasThat = "SVM_6_WhatWasThat";	//(себе под нос, просыпаясь) Что это было?!
+	WhatWasThat = "SVM_6_WhatWasThat";	//(просыпаясь) Что это было?!
 	GetOutOfMyBed = "SVM_6_GetOutOfMyBed";	//Убирайся с моей кровати!
 	Awake = "SVM_6_Awake";	//(зевает)
 	abs_commander = "SVM_6_ABS_COMMANDER";	//Так значит, ты утряс все проблемы с командующим.
@@ -1258,7 +1258,7 @@ instance SVM_7(C_SVM)
 	Ooh01 = "SVM_7_Ooh01";	//Защищайся!
 	Ooh02 = "SVM_7_Ooh02";	//Вперед, ответь ему!
 	Ooh03 = "SVM_7_Ooh03";	//Охх! Это больно!
-	WhatWasThat = "SVM_7_WhatWasThat";	//(себе под нос, просыпаясь) Черт, что это было?!
+	WhatWasThat = "SVM_7_WhatWasThat";	//(просыпаясь) Черт, что это было?!
 	GetOutOfMyBed = "SVM_7_GetOutOfMyBed";	//Убирайся с моей кровати!
 	Awake = "SVM_7_Awake";	//(зевает)
 	abs_commander = "SVM_7_ABS_COMMANDER";	//Я слышал, ты ходил к командующему и все уладил.
@@ -1446,7 +1446,7 @@ instance SVM_8(C_SVM)
 	Ooh01 = "SVM_8_Ooh01";	//Держись!
 	Ooh02 = "SVM_8_Ooh02";	//Осторожно!
 	Ooh03 = "SVM_8_Ooh03";	//О! Как он ему дал!
-	WhatWasThat = "SVM_8_WhatWasThat";	//(себе под нос, просыпаясь) Что это было?!
+	WhatWasThat = "SVM_8_WhatWasThat";	//(просыпаясь) Что это было?!
 	GetOutOfMyBed = "SVM_8_GetOutOfMyBed";	//Убирайся с моей кровати!
 	Awake = "SVM_8_Awake";	//(зевает)
 	abs_commander = "SVM_8_ABS_COMMANDER";	//Говорят, ты ходил к командующему и все уладил.
@@ -1637,7 +1637,7 @@ instance SVM_9(C_SVM)
 	Ooh01 = "SVM_9_Ooh01";	//Осторожно!
 	Ooh02 = "SVM_9_Ooh02";	//Защищайся же!
 	Ooh03 = "SVM_9_Ooh03";	//Ох, как больно!
-	WhatWasThat = "SVM_9_WhatWasThat";	//(себе под нос, просыпаясь) Что это было?!
+	WhatWasThat = "SVM_9_WhatWasThat";	//(просыпаясь) Что это было?!
 	GetOutOfMyBed = "SVM_9_GetOutOfMyBed";	//Убирайся с моей кровати!
 	Awake = "SVM_9_Awake";	//(зевает)
 	abs_commander = "SVM_9_ABS_COMMANDER";	//Так значит, ты утряс все проблемы с командующим.
@@ -1826,7 +1826,7 @@ instance SVM_10(C_SVM)
 	Ooh01 = "SVM_10_Ooh01";	//Защищайся!
 	Ooh02 = "SVM_10_Ooh02";	//Давай же, отвечай!
 	Ooh03 = "SVM_10_Ooh03";	//Ох-х! Это больно!
-	WhatWasThat = "SVM_10_WhatWasThat";	//(себе под нос, просыпаясь) Черт, что это было?!
+	WhatWasThat = "SVM_10_WhatWasThat";	//(просыпаясь) Черт, что это было?!
 	GetOutOfMyBed = "SVM_10_GetOutOfMyBed";	//Убирайся с моей кровати!
 	Awake = "SVM_10_Awake";	//(зевает)
 	abs_commander = "SVM_10_ABS_COMMANDER";	//Я слышал, ты ходил к командующему и все уладил.
@@ -2015,7 +2015,7 @@ instance SVM_11(C_SVM)
 	Ooh01 = "SVM_11_Ooh01";	//Не нарушай закон!
 	Ooh02 = "SVM_11_Ooh02";	//Покажи ему, кто тут главный!
 	Ooh03 = "SVM_11_Ooh03";	//Черт побери!
-	WhatWasThat = "SVM_11_WhatWasThat";	//(себе под нос, просыпаясь) Что это было!?
+	WhatWasThat = "SVM_11_WhatWasThat";	//(просыпаясь) Что это было!?
 	GetOutOfMyBed = "SVM_11_GetOutOfMyBed";	//Убирайся с моей кровати!
 	Awake = "SVM_11_Awake";	//(зевает)
 	abs_commander = "SVM_11_ABS_COMMANDER";	//Я слышал, ты ходил к командующему и все уладил.
@@ -2204,7 +2204,7 @@ instance SVM_12(C_SVM)
 	Ooh01 = "SVM_12_Ooh01";	//Осторожно!
 	Ooh02 = "SVM_12_Ooh02";	//Защищайся же!
 	Ooh03 = "SVM_12_Ooh03";	//Ох, как больно!
-	WhatWasThat = "SVM_12_WhatWasThat";	//(себе под нос, просыпаясь) Что это было!?
+	WhatWasThat = "SVM_12_WhatWasThat";	//(просыпаясь) Что это было!?
 	GetOutOfMyBed = "SVM_12_GetOutOfMyBed";	//Убирайся с моей кровати!
 	Awake = "SVM_12_Awake";	//(зевает)
 	abs_commander = "SVM_12_ABS_COMMANDER";	//Так значит, ты утряс все проблемы с командующим.
@@ -2392,7 +2392,7 @@ instance SVM_13(C_SVM)
 	Ooh01 = "SVM_13_Ooh01";	//Держись!
 	Ooh02 = "SVM_13_Ooh02";	//Осторожно!
 	Ooh03 = "SVM_13_Ooh03";	//Ох! Какой удар!
-	WhatWasThat = "SVM_13_WhatWasThat";	//(себе под нос, просыпаясь) Что это было?!
+	WhatWasThat = "SVM_13_WhatWasThat";	//(просыпаясь) Что это было?!
 	GetOutOfMyBed = "SVM_13_GetOutOfMyBed";	//Убирайся с моей кровати!
 	Awake = "SVM_13_Awake";	//(зевает)
 	abs_commander = "SVM_13_ABS_COMMANDER";	//Говорят, ты ходил к командующему и все уладил.
@@ -2580,7 +2580,7 @@ instance SVM_14(C_SVM)
 	Ooh01 = "SVM_14_Ooh01";	//Не нарушай закон!
 	Ooh02 = "SVM_14_Ooh02";	//Покажи ему, кто тут главный!
 	Ooh03 = "SVM_14_Ooh03";	//Черт побери!
-	WhatWasThat = "SVM_14_WhatWasThat";	//(себе под нос, просыпаясь) Что это было?!
+	WhatWasThat = "SVM_14_WhatWasThat";	//(просыпаясь) Что это было?!
 	GetOutOfMyBed = "SVM_14_GetOutOfMyBed";	//Убирайся с моей кровати!
 	Awake = "SVM_14_Awake";	//(зевает)
 	abs_commander = "SVM_14_ABS_COMMANDER";	//Я слышал, ты ходил к командующему и все уладил.
@@ -2827,7 +2827,7 @@ instance SVM_16(C_SVM)
 	Ooh01 = "SVM_16_Ooh01";	//Обороняйся!
 	Ooh02 = "SVM_16_Ooh02";	//Осторожно!
 	Ooh03 = "SVM_16_Ooh03";	//Ох! Это, наверное, больно!
-	WhatWasThat = "SVM_16_WhatWasThat";	//(про себя, просыпаясь) Что это было?!
+	WhatWasThat = "SVM_16_WhatWasThat";	//(просыпаясь) Что это было?!
 	GetOutOfMyBed = "SVM_16_GetOutOfMyBed";	//Убирайся с моей кровати!
 	Awake = "SVM_16_Awake";	//(зевает)
 	abs_commander = "SVM_16_ABS_COMMANDER";	//Говорят, ты ходил к командующему и все уладил.
@@ -3002,7 +3002,7 @@ instance SVM_17(C_SVM)
 	Ooh01 = "SVM_17_Ooh01";	//Обороняйся!
 	Ooh02 = "SVM_17_Ooh02";	//Осторожно!
 	Ooh03 = "SVM_17_Ooh03";	//Ох! Это, наверное, больно!
-	WhatWasThat = "SVM_17_WhatWasThat";	//(про себя, просыпаясь) Что это было?!
+	WhatWasThat = "SVM_17_WhatWasThat";	//(просыпаясь) Что это было?!
 	GetOutOfMyBed = "SVM_17_GetOutOfMyBed";	//Убирайся с моей кровати!
 	Awake = "SVM_17_Awake";	//(зевает)
 	abs_commander = "SVM_17_ABS_COMMANDER";	//Говорят, ты ходил к командующему и все уладил.

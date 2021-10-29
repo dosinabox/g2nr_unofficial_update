@@ -1,5 +1,5 @@
 
-/*instance DIA_10314_BANDIT_EXIT(C_Info)
+instance DIA_10314_BANDIT_EXIT(C_Info)
 {
 	npc = BDT_10314_Addon_RangerBandit_M;
 	nr = 999;
@@ -60,5 +60,5 @@ func int DIA_10314_BANDIT_AMBUSH_Condition()
 func void DIA_10314_BANDIT_AMBUSH_Info()
 {
 	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon_06_01");	//Отойди от этого оружия. Ну подожди!
-};*/
+};
 

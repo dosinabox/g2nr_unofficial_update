@@ -994,8 +994,8 @@ func void B_BuildLearnDialog_Pyrokar()
 	{
 		Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
 		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
-		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Pyrokar_TEACH_MANA_1);
-		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Pyrokar_TEACH_MANA_5);
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),DIA_Pyrokar_TEACH_MANA_1);
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),DIA_Pyrokar_TEACH_MANA_5);
 	};
 };
 
@@ -1045,6 +1045,23 @@ func void DIA_Pyrokar_TEACH_MANA_5()
 	};
 };
 
+func int C_GotAnyInnosBlessing()
+{
+	if(Daron_Blessing == TRUE)
+	{
+		return TRUE;
+	};
+	if(Isgaroth_Blessing == TRUE)
+	{
+		return TRUE;
+	};
+	if(Pyrokar_Blessing == TRUE)
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 func void B_Pyrokar_BLESSING()
 {
 	if((Kapitel == 5) && (MIS_PyrokarClearDemonTower == LOG_SUCCESS))
@@ -1056,6 +1073,11 @@ func void B_Pyrokar_BLESSING()
 		AI_Output(self,other,"DIA_Pyrokar_PERM_11_03");	//Да встанет Иннос между тобой и болью на всех нечестивых путях, по которым тебе суждено пройти.
 	};
 	other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
+	if((MIS_Thorben_GetBlessings == LOG_Running) && !C_GotAnyInnosBlessing())
+	{
+		B_LogEntry(TOPIC_Thorben,"Маг Огня Пирокар благословил меня.");
+	};
+	Pyrokar_Blessing = TRUE;
 };
 
 instance DIA_Pyrokar_PERM(C_Info)

@@ -69,7 +69,7 @@ instance DIA_Alwin_Sheep(C_Info)
 
 func int DIA_Alwin_Sheep_Condition()
 {
-	if(!Npc_IsDead(Alwin_Sheep1) || !Npc_IsDead(Alwin_Sheep2) || !Npc_IsDead(Alwin_Sheep3))
+	if(!C_AlwinSheepsDead())
 	{
 		return TRUE;
 	};
@@ -237,7 +237,7 @@ func int DIA_Alwin_Endlos_Condition()
 func void DIA_Alwin_Endlos_Info()
 {
 	AI_Output(other,self,"DIA_Alwin_Endlos_15_00");	//Как твои овцы?
-	if(Npc_IsDead(Alwin_Sheep1) && Npc_IsDead(Alwin_Sheep2) && Npc_IsDead(Alwin_Sheep3))
+	if(C_AlwinSheepsDead())
 	{
 		B_AlwinAboutDeadSheeps();
 	}

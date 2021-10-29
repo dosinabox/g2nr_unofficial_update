@@ -236,7 +236,7 @@ func void DIA_Thorben_ZUSTIMMUNG_Info()
 	{
 		AI_Output(other,self,"DIA_Thorben_ZUSTIMMUNG_15_02");	//Да.
 		AI_Output(self,other,"DIA_Thorben_ZUSTIMMUNG_06_03");	//А благословение жреца Инноса ты получил?
-		if((GotInnosBlessingForThorben == TRUE) || (other.guild == GIL_KDF))
+		if(C_GotAnyInnosBlessing() || (other.guild == GIL_KDF))
 		{
 			AI_Output(other,self,"DIA_Thorben_ZUSTIMMUNG_15_04");	//Да, получил.
 			AI_Output(self,other,"DIA_Thorben_ZUSTIMMUNG_06_05");	//Тогда ты получишь и мое благословение. Не важно, какому пути ты решил следовать, гордись своим ремеслом, мой мальчик!

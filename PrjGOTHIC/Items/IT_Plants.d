@@ -16,12 +16,13 @@ const int HP_Health_Herb_02 = 20;
 const int Value_Health_Herb_03 = 30;
 const int HP_Health_Herb_03 = 30;
 const int Value_Dex_Herb_01 = 250;
-//const int Value_Dex_Herb_01 = 500;
 const int Value_Strength_Herb_01 = 500;
 const int Value_Speed_Herb_01 = 100;
 const int Speed_Boost = 15000;
 const int Value_Mushroom_01 = 10;
 const int HP_Mushroom_01 = 5;
+const int MushroomManaBonus = 5;
+const int MushroomsNeededForBonus = 50;
 const int Value_Mushroom_02 = 30;
 const int HP_Mushroom_02 = 15;
 const int Value_Forestberry = 5;
@@ -349,9 +350,9 @@ func void Use_Mushroom_01()
 	{
 		TotalMushroomsEaten += 1;
 		Dunkelpilz_Bonus += 1;
-		if(Dunkelpilz_Bonus == 50)
+		if(Dunkelpilz_Bonus == MushroomsNeededForBonus)
 		{
-			B_RaiseAttribute(self,ATR_MANA_MAX,ManaMax_Mushrooms);
+			B_RaiseAttribute(self,ATR_MANA_MAX,MushroomManaBonus);
 			Snd_Play("LEVELUP");
 			Dunkelpilz_Bonus = 0;
 		};

@@ -1,5 +1,5 @@
 
-instance VLK_464_Buerger(Npc_Default)
+/*instance VLK_464_Buerger(Npc_Default)
 {
 	name[0] = NAME_Buerger;
 	guild = GIL_VLK;
@@ -23,5 +23,5 @@ func void Rtn_Start_464()
 {
 	TA_Smalltalk(8,0,23,0,"NW_CITY_PATH_HABOUR_BACK_ALLEY_02");
 	TA_Smalltalk(23,0,8,0,"NW_CITY_PATH_HABOUR_BACK_ALLEY_02");
-};
+};*/
 

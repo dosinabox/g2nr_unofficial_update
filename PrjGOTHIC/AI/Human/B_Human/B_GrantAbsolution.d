@@ -33,12 +33,40 @@ func void B_GrantAbsolution(var int location)
 		PETZCOUNTER_Farm_Attack = 0;
 		PETZCOUNTER_Farm_Sheepkiller = 0;
 	};
-/*	if(location == LOC_BL)
+};
+
+func void B_GrantPersonalAbsolution(var C_Npc slf)
+{
+	if(C_IsNpc(slf,PAL_250_Garond))
 	{
-		ABSOLUTIONLEVEL_BL += 1;
-		PETZCOUNTER_BL_Murder = 0;
-		PETZCOUNTER_BL_Theft = 0;
-		PETZCOUNTER_BL_Attack = 0;
-	}; */
+		B_GrantAbsolution(LOC_OLDCAMP);
+		Garond_Schulden = 0;
+		Garond_LastPetzCounter = 0;
+		Garond_LastPetzCrime = 0;
+	}
+	else if(C_IsNpc(slf,PAL_200_Hagen) || C_IsNpc(slf,MIL_311_Andre))
+	{
+		B_GrantAbsolution(LOC_CITY);
+		Hagen_Schulden = 0;
+		Hagen_LastPetzCounter = 0;
+		Hagen_LastPetzCrime = 0;
+		Andre_Schulden = 0;
+		Andre_LastPetzCounter = 0;
+		Andre_LastPetzCrime = 0;
+	}
+	else if(C_IsNpc(slf,KDF_504_Parlan))
+	{
+		B_GrantAbsolution(LOC_MONASTERY);
+		Parlan_Schulden = 0;
+		Parlan_LastPetzCounter = 0;
+		Parlan_LastPetzCrime = 0;
+	}
+	else if(C_IsNpc(slf,SLD_800_Lee))
+	{
+		B_GrantAbsolution(LOC_FARM);
+		Lee_Schulden = 0;
+		Lee_LastPetzCounter = 0;
+		Lee_LastPetzCrime = 0;
+	};
 };
 

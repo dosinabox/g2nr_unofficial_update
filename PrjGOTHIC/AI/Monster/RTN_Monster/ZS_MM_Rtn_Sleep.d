@@ -25,8 +25,11 @@ func void ZS_MM_Rtn_Sleep()
 	{
 		AI_GotoFP(self,"FP_ROAM");
 	};
-	AI_PlayAni(self,"T_PERCEPTION");
-	AI_PlayAniBS(self,"T_STAND_2_SLEEP",BS_LIE);
+	if(self.aivar[AIV_MM_REAL_ID] != ID_BLOODFLY)
+	{
+		AI_PlayAni(self,"T_PERCEPTION");
+		AI_PlayAniBS(self,"T_STAND_2_SLEEP",BS_LIE);
+	};
 	self.aivar[AIV_StateTime] = Hlp_Random(100) % 8 + 1;
 };
 
@@ -42,6 +45,9 @@ func int ZS_MM_Rtn_Sleep_Loop()
 
 func void ZS_MM_Rtn_Sleep_End()
 {
-	AI_PlayAniBS(self,"T_SLEEP_2_STAND",BS_STAND);
+	if(self.aivar[AIV_MM_REAL_ID] != ID_BLOODFLY)
+	{
+		AI_PlayAniBS(self,"T_SLEEP_2_STAND",BS_STAND);
+	};
 };
 

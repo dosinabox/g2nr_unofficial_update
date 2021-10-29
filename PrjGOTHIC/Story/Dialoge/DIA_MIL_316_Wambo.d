@@ -141,6 +141,7 @@ func void DIA_Wambo_Ramirez_Info()
 	AI_Output(other,self,"DIA_Wambo_Ramirez_15_00");	//я пришел от нашего общего друга, –амиреза.
 	AI_Output(self,other,"DIA_Wambo_Ramirez_03_01");	//ќх? Ётот –амирез тот еще подлец. » он мне не друг. ƒа, ладно. “ы принес мне что-нибудь?
 	AI_Output(other,self,"DIA_Wambo_Ramirez_15_02");	//Ёто зависит от того, что ты хочешь.
+	AI_WaitTillEnd(self,other);
 	AI_PlayAni(self,"T_SEARCH");
 	AI_Output(self,other,"DIA_Wambo_Ramirez_03_03");	//(тихо) ’орошо, поступим так: ты платишь мне 250 золотых монет. » мен€ не будет здесь всю ночь.
 	AI_Output(self,other,"DIA_Wambo_Ramirez_03_04");	//», если ты уж такой подозрительный, давай договоримс€ так: если € по€влюсь здесь, то нашу сделку можно будет считать расторгнутой.

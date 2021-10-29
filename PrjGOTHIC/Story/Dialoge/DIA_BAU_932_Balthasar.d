@@ -105,15 +105,6 @@ func void DIA_Addon_Balthasar_Rangerbandits_Info()
 };
 
 
-func int C_BalthasarSheepsAreDead()
-{
-	if(Npc_IsDead(BalthasarSheep1) && Npc_IsDead(BalthasarSheep2) && Npc_IsDead(BalthasarSheep3))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
 func void B_BalthasarLostHisSheeps()
 {
 	AI_WaitTillEnd(self,other);
@@ -216,7 +207,7 @@ func int DIA_Balthasar_TALKTOBENGAR_Condition()
 func void DIA_Balthasar_TALKTOBENGAR_Info()
 {
 	AI_Output(other,self,"DIA_Balthasar_TALKTOBENGAR_15_00");	//Возможно, мне стоит поговорить с Бенгаром.
-	if(!C_BalthasarSheepsAreDead())
+	if(!C_BalthasarSheepsDead())
 	{
 		AI_Output(self,other,"DIA_Balthasar_TALKTOBENGAR_05_01");	//Ты сделаешь это для меня? Но что бы ты ни говорил ему, имей в виду, я не хочу никаких проблем, хорошо?
 		AI_Output(other,self,"DIA_Balthasar_TALKTOBENGAR_15_02");	//Посмотрим.
@@ -253,7 +244,7 @@ func int DIA_Balthasar_BENGARUEBERREDET_Condition()
 func void DIA_Balthasar_BENGARUEBERREDET_Info()
 {
 	AI_Output(other,self,"DIA_Balthasar_BENGARUEBERREDET_15_00");	//Ты можешь опять водить своих овец на пастбища Бенгара. Я поговорил с ним.
-	if(!C_BalthasarSheepsAreDead())
+	if(!C_BalthasarSheepsDead())
 	{
 		AI_Output(self,other,"DIA_Balthasar_BENGARUEBERREDET_05_01");	//Спасибо. Я отправляюсь туда прямо сейчас.
 		AI_Output(self,other,"DIA_Balthasar_BENGARUEBERREDET_05_02");	//Вот, возьми эти овечьи шкуры в знак моей благодарности.
@@ -310,7 +301,7 @@ func int DIA_Balthasar_PERMKAP1_Condition()
 func void DIA_Balthasar_PERMKAP1_Info()
 {
 	AI_Output(other,self,"DIA_Balthasar_PERMKAP1_15_00");	//Все в порядке?
-	if(!C_BalthasarSheepsAreDead())
+	if(!C_BalthasarSheepsDead())
 	{
 		AI_Output(self,other,"DIA_Balthasar_PERMKAP1_05_01");	//Мне не на что жаловаться. Спасибо, что спросил.
 		AI_StopProcessInfos(self);

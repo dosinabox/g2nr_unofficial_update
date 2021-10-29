@@ -565,22 +565,58 @@ func void UseMushroomManaRecipe()
 };
 
 
+instance ItWr_AppleSTR(C_Item)
+{
+	name = "Рецепт яблочного экстракта";
+	mainflag = ITEM_KAT_DOCS;
+	flags = 0;
+	value = 50;
+	visual = "ItWr_Recipe.3DS";
+	material = MAT_LEATHER;
+	on_state[0] = UseAppleSTRRecipe;
+	scemeName = "MAP";
+	description = name;
+	text[0] = PRINT_RequiresAlchemyTalent;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+
+func void UseAppleSTRRecipe()
+{
+	var int nDocID;
+	nDocID = Doc_Create();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"letters.TGA",0);
+	Doc_SetFont(nDocID,0,FONT_Book);
+	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"Создание яблочного экстракта:");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"");
+	Doc_Show(nDocID);
+	if(Npc_IsPlayer(self))
+	{
+		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_AppleSTR == FALSE))
+		{
+			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЯБЛОЧНОГО ЭКСТРАКТА': 25 яблок и 1 лесная ягода.");
+			Knows_AppleSTR = TRUE;
+		};
+		Opened_AppleSTR = TRUE;
+	};
+};
+
+
 instance Fakescroll_Addon(C_Item)
 {
 	name = "Клочок бумаги";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-/*	hp = 5;
-	hp_max = 5;
-	weight = 1;
-	value = 0; */
-//	visual = "Fakescroll.3ds";
 	visual = "ItWr_Scroll_01.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	description = name;
-//	text[5] = NAME_Value;
-//	count[5] = value;
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;

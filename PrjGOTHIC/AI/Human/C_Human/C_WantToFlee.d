@@ -31,9 +31,20 @@ func int C_WantToFlee(var C_Npc slf,var C_Npc oth)
 			{
 				return TRUE;	// ...убегает овца!
 			};
-			if((((slf.fight_tactic == FAI_SCAVENGER) && (slf.aivar[AIV_MM_REAL_ID] != ID_OrcBiter)) || (slf.fight_tactic == FAI_GIANT_RAT) || (slf.fight_tactic == FAI_MOLERAT)) && (slf.attribute[ATR_HITPOINTS] < (slf.attribute[ATR_HITPOINTS_MAX] / 2)))
+			if(slf.attribute[ATR_HITPOINTS] < (slf.attribute[ATR_HITPOINTS_MAX] / 2))
 			{
-				return TRUE;	// ...убегает падальщик, крыса или крысокрот!
+				if((slf.fight_tactic == FAI_SCAVENGER) && (slf.aivar[AIV_MM_REAL_ID] != ID_OrcBiter))
+				{
+					return TRUE;	// ...убегает падальщик!
+				};
+				if(slf.fight_tactic == FAI_GIANT_RAT)
+				{
+					return TRUE;	// ...убегает крыса!
+				};
+				if(slf.fight_tactic == FAI_MOLERAT)
+				{
+					return TRUE;	// ...убегает крысокрот!
+				};
 			};
 			if((slf.fight_tactic == FAI_MONSTER_COWARD) && ((slf.attribute[ATR_HITPOINTS] < (slf.attribute[ATR_HITPOINTS_MAX] / 2)) || C_AmIWeaker(slf,oth)))
 			{

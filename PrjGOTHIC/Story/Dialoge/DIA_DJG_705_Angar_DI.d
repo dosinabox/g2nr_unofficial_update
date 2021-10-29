@@ -306,7 +306,7 @@ instance DIA_Angar_DI_FOUNDAMULETT(C_Info)
 
 func int DIA_Angar_DI_FOUNDAMULETT_Condition()
 {
-	if(Npc_HasItems(other,ItAm_Mana_Angar_MIS) && Npc_KnowsInfo(other,DIA_Angar_WIEKOMMSTDUHIERHER) && (DJG_AngarGotAmulett == FALSE))
+	if(Npc_HasItems(other,ItAm_Mana_Angar_MIS) && (SC_KnowsAngarsAmulett == TRUE) && (DJG_AngarGotAmulett == FALSE))
 	{
 		return TRUE;
 	};
@@ -315,6 +315,7 @@ func int DIA_Angar_DI_FOUNDAMULETT_Condition()
 func void DIA_Angar_DI_FOUNDAMULETT_Info()
 {
 	B_AngarsAmulettAbgeben();
+	DIA_Angar_FOUNDAMULETT_besonders();
 };
 
 

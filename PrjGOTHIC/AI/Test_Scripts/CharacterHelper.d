@@ -314,6 +314,14 @@ func void B_ClearHeroOverlays()
 	Mdl_RemoveOverlayMDS(hero,"Humans_Sprint.mds");
 };
 
+func void B_ResetHeroSkin()
+{
+	G1BodySkin = FALSE;
+	SequelBodySkin = FALSE;
+	TattoosBodySkin = FALSE;
+	NakedBodySkin = FALSE;
+};
+
 instance CH_Exit(C_Info)
 {
 	npc = ch;
@@ -441,10 +449,7 @@ func void CH_RESET_Ok()
 	hero.attribute[ATR_REGENERATEHP] = 0;
 	hero.attribute[ATR_REGENERATEMANA] = 0;
 	Hero_HackChance = 10;
-	G1BodySkin = FALSE;
-	SequelBodySkin = FALSE;
-	TattoosBodySkin = FALSE;
-	NakedBodySkin = FALSE;
+	B_ResetHeroSkin();
 	B_SetHeroSkin();
 	B_ClearHeroOverlays();
 	B_ResetTalentSystem();
@@ -523,6 +528,7 @@ func void CH_RESET_Ok()
 	Knows_SchnellerHering = FALSE;
 	Knows_MCELIXIER = FALSE;
 	Knows_MushroomMana = FALSE;
+	Knows_AppleSTR = FALSE;
 	Knows_Bloodfly = FALSE;
 	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] = FALSE;
 	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] = FALSE;
@@ -1010,33 +1016,25 @@ func void CH_Lernpunkte_0()
 
 func void CH_Lernpunkte_50()
 {
-	hero.lp += 50;
-	PrintScreen(ConcatStrings(PRINT_LearnLP,"50"),-1,-1,FONT_Screen,3);
-	Snd_Play("LEVELUP");
+	B_GivePlayerLP(50);
 	CH_Lernpunkte_Info();
 };
 
 func void CH_Lernpunkte_25()
 {
-	hero.lp += 25;
-	PrintScreen(ConcatStrings(PRINT_LearnLP,"25"),-1,-1,FONT_Screen,3);
-	Snd_Play("LEVELUP");
+	B_GivePlayerLP(25);
 	CH_Lernpunkte_Info();
 };
 
 func void CH_Lernpunkte_10()
 {
-	hero.lp += 10;
-	PrintScreen(ConcatStrings(PRINT_LearnLP,"10"),-1,-1,FONT_Screen,3);
-	Snd_Play("LEVELUP");
+	B_GivePlayerLP(10);
 	CH_Lernpunkte_Info();
 };
 
 func void CH_Lernpunkte_5()
 {
-	hero.lp += 5;
-	PrintScreen(ConcatStrings(PRINT_LearnLP,"5"),-1,-1,FONT_Screen,3);
-	Snd_Play("LEVELUP");
+	B_GivePlayerLP(5);
 	CH_Lernpunkte_Info();
 };
 
@@ -1605,10 +1603,10 @@ func void DIA_CH_Strength_Info()
 {
 	Info_ClearChoices(DIA_CH_Strength);
 	Info_AddChoice(DIA_CH_Strength,Dialog_Back,DIA_CH_Strength_BACK);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 20",B_GetLearnCostAttribute(other,ATR_STRENGTH) * 20),DIA_CH_Strength_20);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 10",B_GetLearnCostAttribute(other,ATR_STRENGTH) * 10),DIA_CH_Strength_10);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 5",B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_CH_Strength_5);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 1",B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_CH_Strength_1);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 20",B_GetLearnCostAttribute(other,ATR_STRENGTH,20)),DIA_CH_Strength_20);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 10",B_GetLearnCostAttribute(other,ATR_STRENGTH,10)),DIA_CH_Strength_10);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 5",B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_CH_Strength_5);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 1",B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_CH_Strength_1);
 };
 
 func void DIA_CH_Strength_BACK()
@@ -1664,10 +1662,10 @@ func void DIA_CH_Dex_Info()
 {
 	Info_ClearChoices(DIA_CH_Dex);
 	Info_AddChoice(DIA_CH_Dex,Dialog_Back,DIA_CH_Dex_BACK);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 20",B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 20),dia_ch_dex_20);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 10",B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 10),dia_ch_dex_10);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 5",B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),dia_ch_dex_5);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 1",B_GetLearnCostAttribute(other,ATR_DEXTERITY)),dia_ch_dex_1);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 20",B_GetLearnCostAttribute(other,ATR_DEXTERITY,20)),dia_ch_dex_20);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 10",B_GetLearnCostAttribute(other,ATR_DEXTERITY,10)),dia_ch_dex_10);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 5",B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),dia_ch_dex_5);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 1",B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),dia_ch_dex_1);
 };
 
 func void DIA_CH_Dex_BACK()
@@ -1775,10 +1773,10 @@ func void DIA_CH_Mana_Info()
 {
 	Info_ClearChoices(DIA_CH_Mana);
 	Info_AddChoice(DIA_CH_Mana,Dialog_Back,DIA_CH_Mana_BACK);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 20",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 20),dia_ch_mana_20);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 10",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 10),dia_ch_mana_10);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 5",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),dia_ch_mana_5);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 1",B_GetLearnCostAttribute(other,ATR_MANA_MAX)),dia_ch_mana_1);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 20",B_GetLearnCostAttribute(other,ATR_MANA_MAX,20)),dia_ch_mana_20);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 10",B_GetLearnCostAttribute(other,ATR_MANA_MAX,10)),dia_ch_mana_10);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 5",B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),dia_ch_mana_5);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 1",B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),dia_ch_mana_1);
 };
 
 func void DIA_CH_Mana_BACK()
@@ -3871,7 +3869,7 @@ func string B_BuildCurrentRegenerateValue(var int stats)
 	var string concatText;
 	var int cost;
 	var int next;
-	cost = B_GetLearnCostAttribute(other,stats);
+	cost = B_GetLearnCostAttribute(other,stats,1);
 	if(stats == ATR_REGENERATEMANA)
 	{
 		next = other.attribute[ATR_REGENERATEMANA] - 1;
@@ -3952,7 +3950,7 @@ func void DIA_CH_Misc_Regenerate_BACK()
 func void DIA_CH_Misc_Regenerate_Mana()
 {
 	var int cost;
-	cost = B_GetLearnCostAttribute(other,ATR_REGENERATEMANA);
+	cost = B_GetLearnCostAttribute(other,ATR_REGENERATEMANA,1);
 	if(other.lp >= cost)
 	{
 		other.lp -= cost;
@@ -3968,7 +3966,7 @@ func void DIA_CH_Misc_Regenerate_Mana()
 func void DIA_CH_Misc_Regenerate_HP()
 {
 	var int cost;
-	cost = B_GetLearnCostAttribute(other,ATR_REGENERATEHP);
+	cost = B_GetLearnCostAttribute(other,ATR_REGENERATEHP,1);
 	if(other.lp >= cost)
 	{
 		other.lp -= cost;
@@ -4154,49 +4152,38 @@ func void CH_Skin_BACK()
 
 func void CH_Skin_G1()
 {
+	B_ResetHeroSkin();
 	G1BodySkin = TRUE;
-	SequelBodySkin = FALSE;
-	TattoosBodySkin = FALSE;
-	NakedBodySkin = FALSE;
 	B_SetHeroSkin();
 	CH_Skin_Info();
 };
 
 func void CH_Skin_G2()
 {
-	G1BodySkin = FALSE;
-	SequelBodySkin = FALSE;
-	TattoosBodySkin = FALSE;
-	NakedBodySkin = FALSE;
+	B_ResetHeroSkin();
 	B_SetHeroSkin();
 	CH_Skin_Info();
 };
 
 func void CH_Skin_Sequel()
 {
-	G1BodySkin = FALSE;
+	B_ResetHeroSkin();
 	SequelBodySkin = TRUE;
-	TattoosBodySkin = FALSE;
-	NakedBodySkin = FALSE;
 	B_SetHeroSkin();
 	CH_Skin_Info();
 };
 
 func void CH_Skin_Tattoos()
 {
-	G1BodySkin = FALSE;
-	SequelBodySkin = FALSE;
+	B_ResetHeroSkin();
 	TattoosBodySkin = TRUE;
-	NakedBodySkin = FALSE;
 	B_SetHeroSkin();
 	CH_Skin_Info();
 };
 
 func void CH_Skin_Naked()
 {
-	G1BodySkin = FALSE;
-	SequelBodySkin = FALSE;
-	TattoosBodySkin = FALSE;
+	B_ResetHeroSkin();
 	NakedBodySkin = TRUE;
 	B_SetHeroSkin();
 	CH_Skin_Info();

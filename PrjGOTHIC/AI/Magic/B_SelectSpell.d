@@ -82,23 +82,16 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			slf.aivar[AIV_SelectSpell] = 11;
 			dK_Mega = Hlp_Random(100);
+//			if(!Wld_DetectNpcEx(slf,-1,NOFUNC,GIL_DMT,TRUE)) - не работает?
 			if(dK_Mega <= 2)
 			{
-				if(!Wld_DetectNpcEx(slf,-1,NOFUNC,GIL_DMT,TRUE))
-				{
-					B_ReadySpell(slf,SPL_Firerain,SPL_Cost_Firerain);
-					return TRUE;
-				};
-			};
-			if(dK_Mega <= 5)
+				B_ReadySpell(slf,SPL_Firerain,SPL_Cost_Firerain);
+			}
+			else if(dK_Mega <= 5)
 			{
-				if(!Wld_DetectNpcEx(slf,-1,NOFUNC,GIL_DMT,TRUE))
-				{
-					B_ReadySpell(slf,SPL_Thunderstorm,SPL_Cost_Thunderstorm);
-					return TRUE;
-				};
-			};
-			if(dK_Mega <= 10)
+				B_ReadySpell(slf,SPL_Thunderstorm,SPL_Cost_Thunderstorm);
+			}
+			else if(dK_Mega <= 10)
 			{
 				B_ReadySpell(slf,SPL_LightningFlash,SPL_Cost_LightningFlash);
 			}

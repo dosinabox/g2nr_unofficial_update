@@ -55,12 +55,12 @@ AI\Human\B_Human\B_Say_Overlay.d
 AI\AI_Intern\Player_Plunder_Is_Empty.d
 Story\Log_Entries\B_CloseTopic.d
 Story\Log_Entries\B_CheckLog.d
+Story\B_Story\B_GivePlayerLP.d
 Story\B_Story\B_GivePlayerXP.d
 Story\B_Content\B_ScUsesRake.d
 Story\B_GiveTradeInv\B_ClearRuneInv.d
 Story\B_Story\B_KillNpc.d
 Story\B_Story\C_WorldIsFixed.d
-Story\B_Story\B_Check_Dist.d
 Story\B_Story\B_Check_Version.d
 Story\B_Story\B_KillThievesGuild.d
 Story\B_Story\B_Cycle_Function.d

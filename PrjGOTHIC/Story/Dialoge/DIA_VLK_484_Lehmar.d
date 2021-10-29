@@ -49,6 +49,22 @@ func void DIA_Lehmar_ENTSCHULDIGUNG_Info()
 };
 
 
+var int DIA_Lehmar_GELDLEIHEN_noPerm;
+
+func void B_BorrowLehmarGold(var int gold)
+{
+	CreateInvItems(self,ItMi_Gold,gold);
+	B_GiveInvItems(self,other,ItMi_Gold,gold);
+	Lehmar_GeldGeliehen = gold;
+	Lehmar_GeldGeliehen_Day = Wld_GetDay();
+	DIA_Lehmar_GELDLEIHEN_noPerm = TRUE;
+};
+
+func void B_CalculateLehmarDebt(var int percentage)
+{
+	Lehmar_GeldGeliehen_MitZinsen = Lehmar_GeldGeliehen * (100 + percentage) / 100;
+};
+
 instance DIA_Lehmar_GELDLEIHEN(C_Info)
 {
 	npc = VLK_484_Lehmar;
@@ -59,8 +75,6 @@ instance DIA_Lehmar_GELDLEIHEN(C_Info)
 	description = "Одолжи мне денег!";
 };
 
-
-var int DIA_Lehmar_GELDLEIHEN_noPerm;
 
 func int DIA_Lehmar_GELDLEIHEN_Condition()
 {
@@ -92,11 +106,7 @@ func void DIA_Lehmar_GELDLEIHEN_50()
 {
 	AI_Output(other,self,"DIA_Lehmar_GELDLEIHEN_50_15_00");	//50 золотых.
 	AI_Output(self,other,"DIA_Lehmar_GELDLEIHEN_50_09_01");	//Мелочь, да? Я хочу, чтобы ты вернул их завтра, понятно?
-	CreateInvItems(self,ItMi_Gold,50);
-	B_GiveInvItems(self,other,ItMi_Gold,50);
-	DIA_Lehmar_GELDLEIHEN_noPerm = TRUE;
-	Lehmar_GeldGeliehen_Day = Wld_GetDay();
-	Lehmar_GeldGeliehen = 50;
+	B_BorrowLehmarGold(50);
 	Info_ClearChoices(DIA_Lehmar_GELDLEIHEN);
 };
 
@@ -104,11 +114,7 @@ func void DIA_Lehmar_GELDLEIHEN_200()
 {
 	AI_Output(other,self,"DIA_Lehmar_GELDLEIHEN_200_15_00");	//200 золотых.
 	AI_Output(self,other,"DIA_Lehmar_GELDLEIHEN_200_09_01");	//Это большая сумма денег. Я хочу видеть тебя завтра, и деньги тоже, понятно?
-	CreateInvItems(self,ItMi_Gold,200);
-	B_GiveInvItems(self,other,ItMi_Gold,200);
-	DIA_Lehmar_GELDLEIHEN_noPerm = TRUE;
-	Lehmar_GeldGeliehen_Day = Wld_GetDay();
-	Lehmar_GeldGeliehen = 200;
+	B_BorrowLehmarGold(200);
 	Info_ClearChoices(DIA_Lehmar_GELDLEIHEN);
 };
 
@@ -117,11 +123,7 @@ func void DIA_Lehmar_GELDLEIHEN_1000()
 	AI_Output(other,self,"DIA_Lehmar_GELDLEIHEN_1000_15_00");	//1000 золотых.
 	AI_Output(self,other,"DIA_Lehmar_GELDLEIHEN_1000_09_01");	//У тебя с головой все в порядке?
 	AI_Output(self,other,"DIA_Lehmar_GELDLEIHEN_1000_09_02");	//Я дам тебе 100. И не забудь вернуть их завтра!
-	CreateInvItems(self,ItMi_Gold,100);
-	B_GiveInvItems(self,other,ItMi_Gold,100);
-	DIA_Lehmar_GELDLEIHEN_noPerm = TRUE;
-	Lehmar_GeldGeliehen_Day = Wld_GetDay();
-	Lehmar_GeldGeliehen = 100;
+	B_BorrowLehmarGold(100);
 	Info_ClearChoices(DIA_Lehmar_GELDLEIHEN);
 };
 
@@ -169,7 +171,7 @@ instance DIA_Lehmar_GELDEINTREIBEN(C_Info)
 
 func int DIA_Lehmar_GELDEINTREIBEN_Condition()
 {
-	if((Lehmar_GeldGeliehen_Day <= (Wld_GetDay() - 2)) && (Lehmar_GeldGeliehen != 0) && (RangerHelp_LehmarKohle == FALSE))
+	if(C_LehmarDebtIsOverdue())
 	{
 		return TRUE;
 	};
@@ -200,22 +202,9 @@ func void DIA_Lehmar_GELDEINTREIBEN_kannstmich()
 func void DIA_Lehmar_GELDEINTREIBEN_schuldenzahlen()
 {
 	AI_Output(other,self,"DIA_Lehmar_GELDEINTREIBEN_schuldenzahlen_15_00");	//Я верну свой долг.
-	if(Lehmar_GeldGeliehen == 50)
+	B_CalculateLehmarDebt(30);
+	if(B_GiveInvItems(other,self,ItMi_Gold,Lehmar_GeldGeliehen_MitZinsen))
 	{
-		Lehmar_GeldGeliehen_MitZinsen = 65;
-	};
-	if(Lehmar_GeldGeliehen == 200)
-	{
-		Lehmar_GeldGeliehen_MitZinsen = 260;
-	};
-	if(Lehmar_GeldGeliehen == 100)
-	{
-		Lehmar_GeldGeliehen_MitZinsen = 130;
-	};
-	IntToFloat(Lehmar_GeldGeliehen_MitZinsen);
-	if(Npc_HasItems(other,ItMi_Gold) >= Lehmar_GeldGeliehen_MitZinsen)
-	{
-		B_GiveInvItems(other,self,ItMi_Gold,Lehmar_GeldGeliehen_MitZinsen);
 		AI_Output(self,other,"DIA_Lehmar_GELDEINTREIBEN_schuldenzahlen_09_01");	//Тебе повезло! А теперь проваливай!
 		Lehmar_GeldGeliehen = 0;
 		AI_StopProcessInfos(self);
@@ -257,6 +246,7 @@ func int DIA_Lehmar_GELDZURUECK_Condition()
 func void DIA_Lehmar_GELDZURUECK_Info()
 {
 	AI_Output(other,self,"DIA_Lehmar_GELDZURUECK_15_00");	//Вот твои деньги!
+	B_CalculateLehmarDebt(20);
 	if(RangerHelp_LehmarKohle == TRUE)
 	{
 		AI_Output(self,other,"DIA_Addon_Lehmar_GELDZURUECK_09_00");	//Оставь их. Ларес уже обо всем позаботился.
@@ -265,22 +255,8 @@ func void DIA_Lehmar_GELDZURUECK_Info()
 	}
 	else
 	{
-		if(Lehmar_GeldGeliehen == 50)
+		if(B_GiveInvItems(other,self,ItMi_Gold,Lehmar_GeldGeliehen_MitZinsen))
 		{
-			Lehmar_GeldGeliehen_MitZinsen = 60;
-		};
-		if(Lehmar_GeldGeliehen == 200)
-		{
-			Lehmar_GeldGeliehen_MitZinsen = 240;
-		};
-		if(Lehmar_GeldGeliehen == 100)
-		{
-			Lehmar_GeldGeliehen_MitZinsen = 120;
-		};
-		IntToFloat(Lehmar_GeldGeliehen_MitZinsen);
-		if(Npc_HasItems(other,ItMi_Gold) >= Lehmar_GeldGeliehen_MitZinsen)
-		{
-			B_GiveInvItems(other,self,ItMi_Gold,Lehmar_GeldGeliehen_MitZinsen);
 			AI_Output(self,other,"DIA_Lehmar_GELDZURUECK_09_01");	//Превосходно! Приятно иметь с тобой дело.
 			Lehmar_GeldGeliehen = 0;
 		}

@@ -204,10 +204,10 @@ func void B_BuildLearnDialog_Brandon()
 {
 	Info_ClearChoices(DIA_Addon_Brandon_TeachPlayer);
 	Info_AddChoice(DIA_Addon_Brandon_TeachPlayer,Dialog_Back,DIA_Addon_Brandon_TeachPlayer_Back);
-	Info_AddChoice(DIA_Addon_Brandon_TeachPlayer,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Addon_Brandon_TeachPlayer_DEX_1);
-	Info_AddChoice(DIA_Addon_Brandon_TeachPlayer,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Addon_Brandon_TeachPlayer_DEX_5);
-	Info_AddChoice(DIA_Addon_Brandon_TeachPlayer,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Addon_Brandon_TeachPlayer_STR_1);
-	Info_AddChoice(DIA_Addon_Brandon_TeachPlayer,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Addon_Brandon_TeachPlayer_STR_5);
+	Info_AddChoice(DIA_Addon_Brandon_TeachPlayer,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_Addon_Brandon_TeachPlayer_DEX_1);
+	Info_AddChoice(DIA_Addon_Brandon_TeachPlayer,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_Addon_Brandon_TeachPlayer_DEX_5);
+	Info_AddChoice(DIA_Addon_Brandon_TeachPlayer,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Addon_Brandon_TeachPlayer_STR_1);
+	Info_AddChoice(DIA_Addon_Brandon_TeachPlayer,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Addon_Brandon_TeachPlayer_STR_5);
 };
 
 instance DIA_Addon_Brandon_TeachPlayer(C_Info)

@@ -108,7 +108,7 @@ instance DIA_Bilgot_Hilfe(C_Info)
 
 func int DIA_Bilgot_Hilfe_Condition()
 {
-	if(MIS_Fajeth_Kill_Snapper == LOG_Running)
+	if(Npc_KnowsInfo(other,DIA_Bilgot_Job) && (MIS_Fajeth_Kill_Snapper == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -194,11 +194,11 @@ func void DIA_Bilgot_TAKEYOUWITHME_Info()
 {
 	AI_Output(other,self,"DIA_Bilgot_TAKEYOUWITHME_15_00");	//Время пришло, Билгот! Пакуй свои вещи, мы отправляемся в путь.
 	AI_Output(self,other,"DIA_Bilgot_TAKEYOUWITHME_05_03");	//Я готов!
-	Npc_ExchangeRoutine(self,"FOLLOWTOOCBRIDGE");
-	Bilgot.flags = 0;
 	MIS_RescueBilgot = LOG_Running;
-	self.aivar[AIV_PARTYMEMBER] = TRUE;
+	self.flags = 0;
 	AI_StopProcessInfos(self);
+	self.aivar[AIV_PARTYMEMBER] = TRUE;
+	Npc_ExchangeRoutine(self,"FOLLOWTOOCBRIDGE");
 };
 
 

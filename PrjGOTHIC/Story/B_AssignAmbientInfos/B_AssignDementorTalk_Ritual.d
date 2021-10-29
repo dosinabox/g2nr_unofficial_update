@@ -19,21 +19,25 @@ func void B_AssignDementorTalk_Ritual()
 		if(randy == 0)
 		{
 			AI_Output(self,other,"DIA_RitualDementor_19_03");	//Почувствуй нашу силу!
-		};
-		if(randy == 1)
+		}
+		else if(randy == 1)
 		{
 			AI_Output(self,other,"DIA_RitualDementor_19_04");	//За Хозяина!
-		};
-		if(randy == 2)
+		}
+		else if(randy == 2)
 		{
 			AI_Output(self,other,"DIA_RitualDementor_19_05");	//Тебе нигде не скрыться.
-		};
-		if(randy == 3)
+		}
+		else
 		{
 			AI_Output(self,other,"DIA_RitualDementor_19_06");	//Мы убьем тебя.
 		};
 	};
 	Npc_SetRefuseTalk(self,30);
+	if(DementorsDialogeAutoEndDisabled == FALSE)
+	{
+		AI_StartState(self,B_AssignDementorTalk_Ritual_Exit,1,"");
+	};
 };
 
 func void B_AssignDementorTalk_Ritual_Exit()

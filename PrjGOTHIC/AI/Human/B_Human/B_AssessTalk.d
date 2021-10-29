@@ -134,17 +134,16 @@ func void B_AssessTalk()
 			{
 				Npc_ClearAIQueue(self);
 				AI_StartState(self,ZS_CommentFakeGuild,1,"");
-				return;
 			}
 			else
 			{
 				B_Say(self,other,"$NOTNOW");
-				return;
 			};
+			return;
 		};
 		if(self.guild == GIL_NOV)
 		{
-			if(Parlan_DontTalkToNovice == LOG_Running)
+			if((Parlan_DontTalkToNovice == LOG_Running) && Wld_IsTime(8,0,0,0))
 			{
 				if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger1))
 				{

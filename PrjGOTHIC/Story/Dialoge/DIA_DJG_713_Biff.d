@@ -33,11 +33,11 @@ func void B_Biff_SetRefuseTalk()
 {
 	if(DJG_Biff_HalbeHalbe == TRUE)
 	{
-		Npc_SetRefuseTalk(Biff,1000);
+		Npc_SetRefuseTalk(self,1000);
 	}
 	else
 	{
-		Npc_SetRefuseTalk(Biff,600);
+		Npc_SetRefuseTalk(self,600);
 	};
 };
 
@@ -190,6 +190,14 @@ func void DIA_Biff_WASHIERIMTAL_vielglueck()
 	Info_ClearChoices(DIA_Biff_WASHIERIMTAL);
 };
 
+func void B_StartBiffParty()
+{
+	DJG_BiffParty = TRUE;
+	B_Biff_SetRefuseTalk();
+	AI_StopProcessInfos(self);
+	self.aivar[AIV_PARTYMEMBER] = TRUE;
+	Npc_ExchangeRoutine(self,"Follow");
+};
 
 instance DIA_Biff_ARBEITEN(C_Info)
 {
@@ -234,11 +242,7 @@ func void DIA_Biff_ARBEITEN_100()
 	if(B_GiveInvItems(other,self,ItMi_Gold,100))
 	{
 		AI_Output(self,other,"DIA_Biff_ARBEITEN_100_07_01");	//Хорошо. Меня устраивает. Иди вперед. Я пойду за тобой.
-		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"Follow");
-		B_Biff_SetRefuseTalk();
-		self.aivar[AIV_PARTYMEMBER] = TRUE;
-		DJG_BiffParty = TRUE;
+		B_StartBiffParty();
 	}
 	else
 	{
@@ -253,12 +257,8 @@ func void DIA_Biff_ARBEITEN_HalbeHalbe()
 	AI_Output(other,self,"DIA_Biff_ARBEITEN_HalbeHalbe_15_00");	//Ты получишь половину добычи.
 	AI_Output(self,other,"DIA_Biff_ARBEITEN_HalbeHalbe_07_01");	//Звучит заманчиво. Но предупреждаю тебя: не пытайся обмануть меня! Ты пожалеешь об этом!
 	AI_Output(self,other,"DIA_Biff_ARBEITEN_HalbeHalbe_07_02");	//И еще одно: мне не нужно оружие и другое барахло, что ты соберешь там. Меня интересует только золото! Понятно?
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Follow");
-	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	DJG_BiffParty = TRUE;
 	DJG_Biff_HalbeHalbe = TRUE;
-	B_Biff_SetRefuseTalk();
+	B_StartBiffParty();
 	if(DJG_Biff_HalbeHalbe_again == FALSE)
 	{
 		DJG_Biff_SCGold = Npc_HasItems(hero,ItMi_Gold);
@@ -356,6 +356,58 @@ func void DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen()
 	DJG_BiffParty_nomore += 1;
 };
 
+func int B_GetBiffLocation(var int tolerance)
+{
+	if(Npc_GetDistToWP(self,"OC_CENTER_GUARD_02") < (4500 + tolerance))
+	{	
+		return LOC_BURG;
+	};
+	if(!Npc_IsDead(SwampDragon))
+	{
+		if(SwampDragon.flags != 0)
+		{
+			if(Npc_GetDistToWP(self,"OW_SWAMPDRAGON_01") < (4000 + tolerance))
+			{
+				return LOC_SWAMP;
+			};
+		};
+	};
+	if(!Npc_IsDead(RockDragon))
+	{
+		if(RockDragon.flags != 0)
+		{
+			if(Npc_GetDistToWP(self,"LOCATION_19_03_PATH_RUIN8") < (2000 + tolerance))
+			{
+				return LOC_ROCK;
+			};
+		};
+	};
+	if(!Npc_IsDead(FireDragon))
+	{
+		if(FireDragon.flags != 0)
+		{
+			if(Npc_GetDistToWP(self,"CASTLE_36") < (4000 + tolerance))
+			{
+				if(Npc_GetHeightToNpc(self,FireDragon) < 500)
+				{
+					return LOC_FIRE;
+				};
+			};
+		};
+	};
+	if(!Npc_IsDead(IceDragon))
+	{
+		if(IceDragon.flags != 0)
+		{
+			if(Npc_GetDistToWP(self,"OW_ICEDRAGON_01") < (4000 + tolerance))
+			{
+				return LOC_ICE;
+			};
+		};
+	};
+	return LOC_NONE;
+};
+
 instance DIA_Biff_ICHBLEIBHIER(C_Info)
 {
 	npc = DJG_713_Biff;
@@ -371,24 +423,26 @@ func int DIA_Biff_ICHBLEIBHIER_Condition()
 {
 	if((Npc_GetBodyState(hero) != BS_INVENTORY) && (Npc_GetBodyState(hero) != BS_MOBINTERACT_INTERRUPT) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE))
 	{
-		if((Npc_GetDistToWP(self,"OW_SWAMPDRAGON_01") < 4000) && !Npc_IsDead(SwampDragon) && (SwampDragon.flags != 0))
+		var int location;
+		location = B_GetBiffLocation(0);
+		if(location == LOC_BURG)
 		{
 			return TRUE;
-		}
-		else if((Npc_GetDistToWP(self,"LOCATION_19_03_PATH_RUIN8") < 2000) && !Npc_IsDead(RockDragon) && (RockDragon.flags != 0))
+		};
+		if(location == LOC_SWAMP)
 		{
 			return TRUE;
-		}
-		else if((Npc_GetDistToWP(self,"CASTLE_36") < 4000) && !Npc_IsDead(FireDragon) && (FireDragon.flags != 0))
+		};
+		if(location == LOC_ROCK)
 		{
 			return TRUE;
-		}
-		else if((Npc_GetDistToWP(self,"OW_ICEDRAGON_01") < 4000) && !Npc_IsDead(IceDragon) && (IceDragon.flags != 0))
+		};
+		if(location == LOC_FIRE)
 		{
 			return TRUE;
-		}
-		else if(Npc_GetDistToWP(self,"OC_CENTER_GUARD_02") < 4500)
-		{	
+		};
+		if(location == LOC_ICE)
+		{
 			return TRUE;
 		};
 	};
@@ -396,29 +450,30 @@ func int DIA_Biff_ICHBLEIBHIER_Condition()
 
 func void DIA_Biff_ICHBLEIBHIER_Info()
 {
+	var int location;
+	location = B_GetBiffLocation(1000);
 	AI_Output(self,other,"DIA_Biff_ICHBLEIBHIER_07_00");	//Очень опасная местность. Ты иди первым. А я буду прикрывать тебя сзади.
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,300);
-	if(Npc_GetDistToWP(self,"OW_SWAMPDRAGON_01") < 10000)
-	{
-		Npc_ExchangeRoutine(self,"Stay_Swamp");
-	};
-	if(Npc_GetDistToWP(self,"LOCATION_19_03_PATH_RUIN8") < 10000)
-	{
-		Npc_ExchangeRoutine(self,"Stay_Rock");
-	};
-//	if(Npc_GetDistToWP(self,"CASTLE_36") < 10000)
-	if(Npc_GetDistToWP(self,"CASTLE_30") < 1000)
-	{
-		Npc_ExchangeRoutine(self,"Stay_Fire");
-	};
-	if(Npc_GetDistToWP(self,"OW_ICEDRAGON_01") < 10000)
-	{
-		Npc_ExchangeRoutine(self,"Stay_Ice");
-	};
-	if(Npc_GetDistToWP(self,"OC_CENTER_GUARD_02") < 10000)
+	if(location == LOC_BURG)
 	{
 		Npc_ExchangeRoutine(self,"Stay_AwayFromOC");
+	}
+	else if(location == LOC_SWAMP)
+	{
+		Npc_ExchangeRoutine(self,"Stay_Swamp");
+	}
+	else if(location == LOC_ROCK)
+	{
+		Npc_ExchangeRoutine(self,"Stay_Rock");
+	}
+	else if(location == LOC_FIRE)
+	{
+		Npc_ExchangeRoutine(self,"Stay_Fire");
+	}
+	else if(location == LOC_ICE)
+	{
+		Npc_ExchangeRoutine(self,"Stay_Ice");
 	};
 	DJG_Biff_Stay = TRUE;
 	DJG_Biff_SCGold = Npc_HasItems(hero,ItMi_Gold);
@@ -438,15 +493,35 @@ instance DIA_Biff_Stay_AwayFromOC(C_Info)
 
 func int DIA_Biff_Stay_AwayFromOC_Condition()
 {
-	if(((Npc_GetDistToWP(self,"OW_PATH_298") < 500) || (Npc_GetDistToWP(self,"LOCATION_19_01") < 500)) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == TRUE))
+	if((DJG_BiffParty == TRUE) && (DJG_Biff_Stay == TRUE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"OW_PATH_298") < 500)
+		{
+			return TRUE;
+		};
+		if(Npc_GetDistToWP(self,"SWAMPDRAGON") < 500)
+		{
+			return TRUE;
+		};
+		if(Npc_GetDistToWP(self,"LOCATION_19_01") < 500)
+		{
+			return TRUE;
+		};
+		if(Npc_GetDistToWP(self,"CASTLE_14") < 500)
+		{
+			return TRUE;
+		};
+		if(Npc_GetDistToWP(self,"OW_ICEDRAGON_09") < 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Biff_Stay_AwayFromOC_Info()
 {
 	B_KommMit();
+	AI_WaitTillEnd(self,other);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Follow");
 	DJG_Biff_Stay = FALSE;

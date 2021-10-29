@@ -40,10 +40,14 @@ func void PC_Sleep(var int t)
 		hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
 		hero.attribute[ATR_MANA] = hero.attribute[ATR_MANA_MAX];
 	};
+	if(Parlan_DontTalkToNovice == LOG_FAILED)
+	{
+		Parlan_DontTalkToNovice = LOG_Running;
+	};
 	B_CheckLog();
 	B_CoolHotDraw(hero);
 	B_ClearFakeItems(hero);
-	PrintGlobals(PD_ITEM_MOBSI);
+//	PrintGlobals(PD_ITEM_MOBSI);
 	Npc_SendPassivePerc(hero,PERC_ASSESSENTERROOM,NULL,hero);
 };
 

@@ -616,7 +616,6 @@ func void DIA_Orlan_MieteFaellig_nein()
 	AI_Output(other,self,"DIA_Orlan_MieteFaellig_nein_15_00");	//Забудь об этом. Я больше не буду платить тебе.
 	AI_Output(self,other,"DIA_Orlan_MieteFaellig_nein_05_01");	//Тогда мне придется проучить тебя. Презренный жулик!
 	Orlan_AngriffWegenMiete = TRUE;
-	Info_ClearChoices(DIA_Orlan_MieteFaellig);
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };

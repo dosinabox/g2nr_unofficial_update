@@ -42,8 +42,53 @@ func void DIA_Parlan_Kap1_EXIT_Info()
 };
 
 
-var int Parlan_LastPetzCounter;
-var int Parlan_LastPetzCrime;
+func void DIA_Parlan_PayForCrimesNow()
+{
+	AI_Output(other,self,"DIA_Parlan_PETZMASTER_PayNow_15_00");	//Я хочу заплатить штраф!
+	B_GiveInvItems(other,self,ItMi_Gold,Parlan_Schulden);
+	AI_Output(self,other,"DIA_Parlan_PETZMASTER_PayNow_05_01");	//Я принимаю твое пожертвование. Твои прегрешения забыты. Я надеюсь, Иннос даст тебе мудрость не совершать больше подобных ошибок.
+	B_GrantPersonalAbsolution(self);
+};
+
+func void DIA_Parlan_PayForCrimesLater()
+{
+	AI_Output(other,self,"DIA_Parlan_PETZMASTER_PayLater_15_00");	//У меня недостаточно золота!
+	AI_Output(self,other,"DIA_Parlan_PETZMASTER_PayLater_05_01");	//Тебе стоило подумать об этом до того, как грешить.
+	AI_Output(self,other,"DIA_Parlan_PETZMASTER_PayLater_05_02");	//Возможно, это тебя чему-нибудь научит. Не создавай проблем, и тебе не нужно будет платить.
+	Parlan_LastPetzCounter = B_GetTotalPetzCounter(self);
+	Parlan_LastPetzCrime = B_GetGreatestPetzCrime(self);
+	AI_StopProcessInfos(self);
+};
+
+func void DIA_Parlan_BuildCrimesDialog()
+{
+	Info_ClearChoices(DIA_Parlan_PMSchulden);
+	Info_AddChoice(DIA_Parlan_PMSchulden,"У меня недостаточно золота!",DIA_Parlan_PMSchulden_PayForCrimesLater);
+	Info_AddChoice(DIA_Parlan_PMSchulden,"Сколько там нужно?",DIA_Parlan_PMSchulden_HowMuchAgain);
+	if(Npc_HasItems(other,ItMi_Gold) >= Parlan_Schulden)
+	{
+		Info_AddChoice(DIA_Parlan_PMSchulden,"Я хочу заплатить штраф!",DIA_Parlan_PMSchulden_PayForCrimesNow);
+	};
+};
+
+func void DIA_Parlan_PMSchulden_PayForCrimesNow()
+{
+	DIA_Parlan_PayForCrimesNow();
+	Info_ClearChoices(DIA_Parlan_PMSchulden);
+};
+
+func void DIA_Parlan_PMSchulden_PayForCrimesLater()
+{
+	DIA_Parlan_PayForCrimesLater();
+	Info_ClearChoices(DIA_Parlan_PMSchulden);
+};
+
+func void DIA_Parlan_PMSchulden_HowMuchAgain()
+{
+	AI_Output(other,self,"DIA_Parlan_PMSchulden_HowMuchAgain_15_00");	//Сколько там нужно?
+	B_Say_Gold(self,other,Parlan_Schulden);
+	DIA_Parlan_BuildCrimesDialog();
+};
 
 instance DIA_Parlan_PMSchulden(C_Info)
 {
@@ -60,12 +105,9 @@ func int DIA_Parlan_PMSchulden_Condition()
 {
 	if(Npc_IsInState(self,ZS_Talk) && (Parlan_Schulden > 0) && (B_GetGreatestPetzCrime(self) <= Parlan_LastPetzCrime))
 	{
-		if(other.guild == GIL_NOV)
+		if((other.guild == GIL_NOV) && !Npc_KnowsInfo(other,DIA_Parlan_WELCOME))
 		{
-			if(!Npc_KnowsInfo(other,DIA_Parlan_WELCOME))
-			{
-				return FALSE;
-			};
+			return FALSE;
 		};
 		return TRUE;
 	};
@@ -78,7 +120,10 @@ func void DIA_Parlan_PMSchulden_Info()
 	{
 		B_Parlan_HAMMER();
 	};
-	AI_Output(self,other,"DIA_Parlan_PMSchulden_05_00");	//Ты нарушил законы нашей общины.
+	if(B_GetGreatestPetzCrime(self) != CRIME_NONE)
+	{
+		AI_Output(self,other,"DIA_Parlan_PMSchulden_05_00");	//Ты нарушил законы нашей общины.
+	};
 	if(B_GetTotalPetzCounter(self) > Parlan_LastPetzCounter)
 	{
 		AI_Output(self,other,"DIA_Parlan_PMSchulden_05_01");	//И хотя ты уже был обвинен, ты лишь усугубляешь свою вину.
@@ -126,9 +171,7 @@ func void DIA_Parlan_PMSchulden_Info()
 		{
 			AI_Output(self,other,"DIA_Parlan_PMSchulden_05_10");	//Твои грехи забыты.
 			AI_Output(self,other,"DIA_Parlan_PMSchulden_05_11");	//И постарайся, чтобы мы больше не возвращались к этому разговору!
-			Parlan_Schulden = 0;
-			Parlan_LastPetzCounter = 0;
-			Parlan_LastPetzCrime = CRIME_NONE;
+			B_GrantPersonalAbsolution(self);
 		}
 		else
 		{
@@ -139,31 +182,22 @@ func void DIA_Parlan_PMSchulden_Info()
 	};
 	if(B_GetGreatestPetzCrime(self) != CRIME_NONE)
 	{
-		Info_ClearChoices(DIA_Parlan_PMSchulden);
-		Info_ClearChoices(DIA_Parlan_PETZMASTER);
-		Info_AddChoice(DIA_Parlan_PMSchulden,"У меня недостаточно золота!",DIA_Parlan_PETZMASTER_PayLater);
-		Info_AddChoice(DIA_Parlan_PMSchulden,"Сколько там нужно?",DIA_Parlan_PMSchulden_HowMuchAgain);
-		if(Npc_HasItems(other,ItMi_Gold) >= Parlan_Schulden)
-		{
-			Info_AddChoice(DIA_Parlan_PMSchulden,"Я хочу заплатить штраф!",DIA_Parlan_PETZMASTER_PayNow);
-		};
+		DIA_Parlan_BuildCrimesDialog();
 	};
 };
 
-func void DIA_Parlan_PMSchulden_HowMuchAgain()
+
+func void DIA_Parlan_PETZMASTER_PayForCrimesNow()
 {
-	AI_Output(other,self,"DIA_Parlan_PMSchulden_HowMuchAgain_15_00");	//Сколько там нужно?
-	B_Say_Gold(self,other,Parlan_Schulden);
-	Info_ClearChoices(DIA_Parlan_PMSchulden);
+	DIA_Parlan_PayForCrimesNow();
 	Info_ClearChoices(DIA_Parlan_PETZMASTER);
-	Info_AddChoice(DIA_Parlan_PMSchulden,"У меня недостаточно золота!",DIA_Parlan_PETZMASTER_PayLater);
-	Info_AddChoice(DIA_Parlan_PMSchulden,"Сколько там нужно?",DIA_Parlan_PMSchulden_HowMuchAgain);
-	if(Npc_HasItems(other,ItMi_Gold) >= Parlan_Schulden)
-	{
-		Info_AddChoice(DIA_Parlan_PMSchulden,"Я хочу заплатить штраф!",DIA_Parlan_PETZMASTER_PayNow);
-	};
 };
 
+func void DIA_Parlan_PETZMASTER_PayForCrimesLater()
+{
+	DIA_Parlan_PayForCrimesLater();
+	Info_ClearChoices(DIA_Parlan_PETZMASTER);
+};
 
 instance DIA_Parlan_PETZMASTER(C_Info)
 {
@@ -180,12 +214,9 @@ func int DIA_Parlan_PETZMASTER_Condition()
 {
 	if(B_GetGreatestPetzCrime(self) > Parlan_LastPetzCrime)
 	{
-		if(other.guild == GIL_NOV)
+		if((other.guild == GIL_NOV) && !Npc_KnowsInfo(other,DIA_Parlan_WELCOME))
 		{
-			if(!Npc_KnowsInfo(other,DIA_Parlan_WELCOME))
-			{
-				return FALSE;
-			};
+			return FALSE;
 		};
 		return TRUE;
 	};
@@ -246,40 +277,13 @@ func void DIA_Parlan_PETZMASTER_Info()
 		Parlan_Schulden = 1000;
 	};
 	B_Say_Gold(self,other,Parlan_Schulden);
-	Info_ClearChoices(DIA_Parlan_PMSchulden);
 	Info_ClearChoices(DIA_Parlan_PETZMASTER);
-	Info_AddChoice(DIA_Parlan_PETZMASTER,"У меня недостаточно золота!",DIA_Parlan_PETZMASTER_PayLater);
+	Info_AddChoice(DIA_Parlan_PETZMASTER,"У меня недостаточно золота!",DIA_Parlan_PETZMASTER_PayForCrimesLater);
 	if(Npc_HasItems(other,ItMi_Gold) >= Parlan_Schulden)
 	{
-		Info_AddChoice(DIA_Parlan_PETZMASTER,"Я хочу заплатить штраф!",DIA_Parlan_PETZMASTER_PayNow);
+		Info_AddChoice(DIA_Parlan_PETZMASTER,"Я хочу заплатить штраф!",DIA_Parlan_PETZMASTER_PayForCrimesNow);
 	};
 };
-
-func void DIA_Parlan_PETZMASTER_PayNow()
-{
-	AI_Output(other,self,"DIA_Parlan_PETZMASTER_PayNow_15_00");	//Я хочу заплатить штраф!
-	B_GiveInvItems(other,self,ItMi_Gold,Parlan_Schulden);
-	AI_Output(self,other,"DIA_Parlan_PETZMASTER_PayNow_05_01");	//Я принимаю твое пожертвование. Твои прегрешения забыты. Я надеюсь, Иннос даст тебе мудрость не совершать больше подобных ошибок.
-	B_GrantAbsolution(LOC_MONASTERY);
-	Parlan_Schulden = 0;
-	Parlan_LastPetzCounter = 0;
-	Parlan_LastPetzCrime = CRIME_NONE;
-	Info_ClearChoices(DIA_Parlan_PMSchulden);
-	Info_ClearChoices(DIA_Parlan_PETZMASTER);
-};
-
-func void DIA_Parlan_PETZMASTER_PayLater()
-{
-	AI_Output(other,self,"DIA_Parlan_PETZMASTER_PayLater_15_00");	//У меня недостаточно золота!
-	AI_Output(self,other,"DIA_Parlan_PETZMASTER_PayLater_05_01");	//Тебе стоило подумать об этом до того, как грешить.
-	AI_Output(self,other,"DIA_Parlan_PETZMASTER_PayLater_05_02");	//Возможно, это тебя чему-нибудь научит. Не создавай проблем, и тебе не нужно будет платить.
-	Parlan_LastPetzCounter = B_GetTotalPetzCounter(self);
-	Parlan_LastPetzCrime = B_GetGreatestPetzCrime(self);
-	Info_ClearChoices(DIA_Parlan_PMSchulden);
-	Info_ClearChoices(DIA_Parlan_PETZMASTER);
-	AI_StopProcessInfos(self);
-};
-
 
 func void B_DIA_Parlan_WELCOME_GoForTribute()
 {
@@ -727,8 +731,8 @@ func void B_BuildLearnDialog_Parlan()
 	{
 		Info_ClearChoices(DIA_Parlan_TEACH_MANA);
 		Info_AddChoice(DIA_Parlan_TEACH_MANA,Dialog_Back,DIA_Parlan_TEACH_MANA_BACK);
-		Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Parlan_TEACH_MANA_1);
-		Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Parlan_TEACH_MANA_5);
+		Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),DIA_Parlan_TEACH_MANA_1);
+		Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),DIA_Parlan_TEACH_MANA_5);
 	};
 };
 

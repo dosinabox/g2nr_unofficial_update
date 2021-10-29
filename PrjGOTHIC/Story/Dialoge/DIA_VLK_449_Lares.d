@@ -621,9 +621,12 @@ instance DIA_Addon_Lares_Geduld(C_Info)
 
 func int DIA_Addon_Lares_Geduld_Condition()
 {
-	if((RangerMeetingRunning == LOG_Running) && !C_AllRangersAreInPositions() && Npc_IsInState(self,ZS_Talk))
+	if((RangerMeetingRunning == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (Lares_HaltsMaul == FALSE))
 	{
-		return TRUE;
+		if(!C_AllRangersAreInPositions())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -648,9 +651,12 @@ instance DIA_Addon_Lares_GetRangerArmor(C_Info)
 
 func int DIA_Addon_Lares_GetRangerArmor_Condition()
 {
-	if((MIS_Addon_Lares_ComeToRangerMeeting == LOG_Running) && C_AllRangersAreInPositions() && (RangerMeetingRunning == LOG_Running) && Npc_IsInState(self,ZS_Talk))
+	if((MIS_Addon_Lares_ComeToRangerMeeting == LOG_Running) && (RangerMeetingRunning == LOG_Running) && Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(C_AllRangersAreInPositions())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -2207,7 +2213,7 @@ func void DIA_Addon_Lares_GOFORESTPRE_nein()
 	AI_Output(other,self,"DIA_Addon_Lares_GOFORESTPRE_nein_15_00");	//Нет, можешь идти.
 	AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_nein_09_01");	//Я так понимаю, проблема решилась сама собой? Ладно, увидимся позже.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	LaresGuide_OrnamentForest = 3;
 };
 
@@ -2406,10 +2412,10 @@ func void B_BuildLearnDialog_Lares()
 {
 	Info_ClearChoices(DIA_Lares_TEACH);
 	Info_AddChoice(DIA_Lares_TEACH,Dialog_Back,DIA_Lares_TEACH_BACK);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_TEACH_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_TEACH_5);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Lares_TEACHSTR_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Lares_TEACHSTR_5);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_Lares_TEACH_1);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_Lares_TEACH_5);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Lares_TEACHSTR_1);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Lares_TEACHSTR_5);
 };
 
 instance DIA_Lares_TEACH(C_Info)

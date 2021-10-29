@@ -216,6 +216,7 @@ func void DIA_Borka_BUYHERB_Nadja()
 func void DIA_Borka_BUYHERB_Deal()
 {
 	AI_Output(other,self,"DIA_Borka_BUYHERB_Deal_15_00");	//Так мы с тобой договоримся или нет?
+	AI_WaitTillEnd(self,other);
 	AI_PlayAni(self,"T_SEARCH");
 	AI_Output(self,other,"DIA_Borka_BUYHERB_Deal_11_01");	//Хорошо... договоримся. Ты даешь мне 50 золотых монет, и получаешь свою травку. Никакой торговли.
 	Info_ClearChoices(DIA_Borka_BUYHERB);

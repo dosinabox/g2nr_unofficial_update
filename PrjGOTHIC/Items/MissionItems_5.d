@@ -392,9 +392,12 @@ func void UseItPo_PotionOfDeath()
 		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
 		Npc_ChangeAttribute(self,ATR_STRENGTH,5);
-		self.aivar[REAL_STRENGTH] += 5;
 		Npc_ChangeAttribute(self,ATR_DEXTERITY,5);
-		self.aivar[REAL_DEXTERITY] += 5;
+		if(IgnoreBonuses == FALSE)
+		{
+			B_RaiseRealAttributeLearnCounter(self,ATR_STRENGTH,5);
+			B_RaiseRealAttributeLearnCounter(self,ATR_DEXTERITY,5);
+		};
 		PrintScreen(PRINT_LearnSTR5,-1,43,FONT_Screen,2);
 		PrintScreen(PRINT_LearnDEX5,-1,48,FONT_Screen,2);
 		PrintScreen(PRINT_FullyHealed,-1,53,FONT_Screen,2);

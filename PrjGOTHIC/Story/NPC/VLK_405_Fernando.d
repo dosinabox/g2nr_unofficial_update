@@ -27,16 +27,13 @@ func void Rtn_Start_405()
 	TA_Stand_WP(11,0,14,59,"NW_CITY_UPTOWN_PATH_04");
 	TA_Smalltalk(14,59,18,0,"NW_CITY_UPTOWN_PATH_08");
 	TA_Read_Bookstand(18,0,22,5,"NW_CITY_REICH02_READ");
-//	TA_Read_Bookstand(20,0,22,5,"NW_CITY_REICH02_READ");
 	TA_Sleep(22,5,7,59,"NW_CITY_REICH02_BED_01");
 };
 
 func void Rtn_Wait_405()
 {
-	TA_Smalltalk(7,59,11,0,"NW_CITY_UPTOWN_PATH_08");
-	TA_Stand_WP(11,0,14,59,"NW_CITY_UPTOWN_PATH_04");
-	TA_Smalltalk(14,59,18,0,"NW_CITY_UPTOWN_PATH_08");
-	TA_Stand_WP(18,0,7,59,"NW_CITY_UPTOWN_PATH_04");
+	TA_Stand_ArmsCrossed(8,0,18,0,"REICH");
+	TA_Stand_ArmsCrossed(18,0,8,0,"REICH");
 };
 
 func void Rtn_Prison_405()

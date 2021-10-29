@@ -99,6 +99,11 @@ func void DIA_Wasili_Sammler_Info()
 };
 
 
+var int WasilisOldCoinOffer;
+var int FirstOldCoin_angebotenXP_OneTime;
+var int DIA_Wasili_FirstOldCoin_mehr_OneTime;
+var int OldCoinCounter;
+
 instance DIA_Wasili_FirstOldCoin(C_Info)
 {
 	npc = BAU_907_Wasili;
@@ -110,20 +115,13 @@ instance DIA_Wasili_FirstOldCoin(C_Info)
 };
 
 
-var int Wasili_BringOldCoin_NoMore;
-
 func int DIA_Wasili_FirstOldCoin_Condition()
 {
-	if((MIS_Wasili_BringOldCoin == LOG_Running) && (WasilisOldCoinOffer == 0) && Npc_HasItems(other,ItMi_OldCoin) && (Wasili_BringOldCoin_NoMore == FALSE))
+	if((MIS_Wasili_BringOldCoin == LOG_Running) && Npc_HasItems(other,ItMi_OldCoin))
 	{
 		return TRUE;
 	};
 };
-
-
-var int WasilisOldCoinOffer;
-var int FirstOldCoin_angebotenXP_OneTime;
-var int DIA_Wasili_FirstOldCoin_mehr_OneTime;
 
 func void DIA_Wasili_FirstOldCoin_Info()
 {
@@ -136,23 +134,29 @@ func void DIA_Wasili_FirstOldCoin_Info()
 	if(FirstOldCoin_angebotenXP_OneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Wasili_FirstOldCoin_01_02");	//Ох, да. На рынке такую не продашь за приличную цену.
-	};
-	if(DIA_Wasili_FirstOldCoin_mehr_OneTime == FALSE)
-	{
-		AI_Output(self,other,"DIA_Wasili_FirstOldCoin_01_03");	//Я заплачу тебе за нее одну золотую монету. Больше она не стоит.
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Wasili_FirstOldCoin_01_04");	//Ты знаешь, что я готов заплатить за нее, пес. Одну золотую монету. И ни центом больше.
+		B_GivePlayerXP(XP_BringOldCoin);
+		FirstOldCoin_angebotenXP_OneTime = TRUE;
 	};
 	Info_ClearChoices(DIA_Wasili_FirstOldCoin);
 	Info_AddChoice(DIA_Wasili_FirstOldCoin,"Нет, я лучше оставлю ее себе.",DIA_Wasili_FirstOldCoin_nein);
-	Info_AddChoice(DIA_Wasili_FirstOldCoin,"Этого недостаточно. Как насчет двух?",DIA_Wasili_FirstOldCoin_mehr);
 	Info_AddChoice(DIA_Wasili_FirstOldCoin,"Договорились.",DIA_Wasili_FirstOldCoin_ok);
-	if(FirstOldCoin_angebotenXP_OneTime == FALSE)
+	if(WasilisOldCoinOffer == 2)
 	{
-		B_GivePlayerXP(XP_BringOldCoin);
-		FirstOldCoin_angebotenXP_OneTime = TRUE;
+		AI_Output(self,other,"DIA_Wasili_FirstOldCoin_mehr_01_02_add");	//2 золотые монеты за каждую старинную монетку - это мое последнее предложение.
+		Info_AddChoice(DIA_Wasili_FirstOldCoin,"В таком случае, 3 было бы неплохо.",DIA_Wasili_FirstOldCoin_ZumTeufel);
+	}
+	else
+	{
+		if(DIA_Wasili_FirstOldCoin_mehr_OneTime == FALSE)
+		{
+			AI_Output(self,other,"DIA_Wasili_FirstOldCoin_01_03");	//Я заплачу тебе за нее одну золотую монету. Больше она не стоит.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Wasili_FirstOldCoin_01_04");	//Ты знаешь, что я готов заплатить за нее, пес. Одну золотую монету. И ни центом больше.
+		};
+		WasilisOldCoinOffer = 1;
+		Info_AddChoice(DIA_Wasili_FirstOldCoin,"Этого недостаточно. Как насчет двух?",DIA_Wasili_FirstOldCoin_mehr);
 	};
 };
 
@@ -167,10 +171,11 @@ func void DIA_Wasili_FirstOldCoin_ok()
 	else
 	{
 		AI_Output(self,other,"DIA_Wasili_FirstOldCoin_ok_01_03");	//Если найдешь еще монетки, ты знаешь, где меня найти.
-		WasilisOldCoinOffer = 1;
 	};
 	CreateInvItems(self,ItMi_Gold,WasilisOldCoinOffer);
 	B_GiveInvItems(self,other,ItMi_Gold,WasilisOldCoinOffer);
+	OldCoinCounter += 1;
+	MIS_Wasili_BringOldCoin = LOG_SUCCESS;
 	Info_ClearChoices(DIA_Wasili_FirstOldCoin);
 };
 
@@ -180,8 +185,8 @@ func void DIA_Wasili_FirstOldCoin_mehr()
 	if(DIA_Wasili_FirstOldCoin_mehr_OneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Wasili_FirstOldCoin_mehr_01_01");	//Не пойдет! Я еще не выжил из ума! Проваливай.
-		DIA_Wasili_FirstOldCoin_mehr_OneTime = TRUE;
 		B_GiveInvItems(self,other,ItMi_OldCoin,1);
+		DIA_Wasili_FirstOldCoin_mehr_OneTime = TRUE;
 		AI_StopProcessInfos(self);
 	}
 	else
@@ -197,7 +202,6 @@ func void DIA_Wasili_FirstOldCoin_nein()
 	AI_Output(other,self,"DIA_Wasili_FirstOldCoin_nein_15_00");	//Нет, я лучше оставлю ее себе.
 	AI_Output(self,other,"DIA_Wasili_FirstOldCoin_nein_01_01");	//Она для тебя бесполезна. Ты еще вернешься.
 	B_GiveInvItems(self,other,ItMi_OldCoin,1);
-	WasilisOldCoinOffer = 0;
 	Info_ClearChoices(DIA_Wasili_FirstOldCoin);
 };
 
@@ -205,13 +209,10 @@ func void DIA_Wasili_FirstOldCoin_ZumTeufel()
 {
 	AI_Output(other,self,"DIA_Wasili_FirstOldCoin_ZumTeufel_15_00");	//В таком случае, 3 было бы неплохо.
 	AI_Output(self,other,"DIA_Wasili_FirstOldCoin_ZumTeufel_01_01");	//Катись к черту, ублюдок.
+	MIS_Wasili_BringOldCoin = LOG_FAILED;
 	AI_StopProcessInfos(self);
-	Wasili_BringOldCoin_NoMore = TRUE;
-	WasilisOldCoinOffer = 0;
 };
 
-
-var int OldCoinCounter;
 
 instance DIA_Wasili_BringOldCoin(C_Info)
 {
@@ -226,7 +227,7 @@ instance DIA_Wasili_BringOldCoin(C_Info)
 
 func int DIA_Wasili_BringOldCoin_Condition()
 {
-	if((WasilisOldCoinOffer > 0) && Npc_HasItems(other,ItMi_OldCoin) && (Wasili_BringOldCoin_NoMore == FALSE))
+	if(Npc_HasItems(other,ItMi_OldCoin) && (MIS_Wasili_BringOldCoin == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -280,25 +281,25 @@ func int DIA_Wasili_PERM_Condition()
 func void DIA_Wasili_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Wasili_PERM_15_00");	//Никто не пытался ничего украсть?
+	if(PETZCOUNTER_Farm_Theft > 0)
+	{
+		AI_Output(self,other,"DIA_Wasili_PERM_01_01");	//Ты имеешь в виду: кроме тебя?
+	};
 	if(Kapitel <= 2)
 	{
-		if(PETZCOUNTER_Farm_Theft > 0)
-		{
-			AI_Output(self,other,"DIA_Wasili_PERM_01_01");	//Ты имеешь в виду: кроме тебя?
-		};
 		AI_Output(self,other,"DIA_Wasili_PERM_01_02");	//Были такие! Но я их всех поймал!
-	};
-	if(Kapitel == 3)
+	}
+	else if(Kapitel == 3)
 	{
 		AI_Output(self,other,"DIA_Wasili_PERM_01_03");	//Несколько дней назад, один из наемников пробрался в дом.
 		AI_Output(self,other,"DIA_Wasili_PERM_01_04");	//Он был одет в черную рясу с капюшоном, так что я не разглядел его.
 		AI_Output(self,other,"DIA_Wasili_PERM_01_05");	//Но я видел, как он удирал.
-	};
-	if(Kapitel == 4)
+	}
+	else if(Kapitel == 4)
 	{
 		AI_Output(self,other,"DIA_Wasili_perm_01_06");	//Нет. Последнее время нет.
-	};
-	if(Kapitel >= 5)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_Wasili_perm_01_07");	//Наемники, похоже, готовятся покинуть лагерь.
 		AI_Output(self,other,"DIA_Wasili_perm_01_08");	//Я не удивлюсь, если Ли и его парни покинут остров уже сегодня ночью.

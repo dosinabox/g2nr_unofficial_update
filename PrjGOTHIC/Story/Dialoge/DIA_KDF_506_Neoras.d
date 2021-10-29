@@ -409,6 +409,7 @@ func void DIA_Neoras_BrewForMe_Speed()
 		{
 			AI_Output(other,self,"DIA_Neoras_INGREDIENCES_Speed_15_00");	//Какие ингредиенты нужны для зелья ускорения?
 			DIA_Common_14_GoReadAboutIt();
+			//AI_Output(self,other,"DIA_Neoras_INGREDIENCES_Speed_01_02");	//And don't forget the gold!
 			Neoras_Ingrediences_Advice = TRUE;
 		};
 	};
@@ -440,7 +441,9 @@ func void DIA_Neoras_BrewForMe_Mana()
 		if(Neoras_Ingrediences_Advice == FALSE)
 		{
 			AI_Output(other,self,"DIA_Neoras_INGREDIENCES_Mana_15_00");	//Какие ингредиенты нужны для экстракта маны?
+			//AI_Output(self,other,"DIA_Neoras_INGREDIENCES_Mana_01_01");	//A mana potion is not terribly complicated.
 			DIA_Common_14_GoReadAboutIt();
+			//AI_Output(self,other,"DIA_Neoras_INGREDIENCES_Mana_01_03");	//And don't forget the gold!
 			Neoras_Ingrediences_Advice = TRUE;
 		};
 	};
@@ -472,7 +475,9 @@ func void DIA_Neoras_BrewForMe_Health()
 		if(Neoras_Ingrediences_Advice == FALSE)
 		{
 			DIA_Common_SureWhatsNeeded();
+			//AI_Output(other,self,"DIA_Neoras_INGREDIENCES_Health_01_01");	//A potion like that is not especially complicated.
 			DIA_Common_14_GoReadAboutIt();
+			//AI_Output(other,self,"DIA_Neoras_INGREDIENCES_Health_01_03");	//And don't forget the gold!
 			Neoras_Ingrediences_Advice = TRUE;
 		};
 	};

@@ -71,7 +71,7 @@ func int DIA_Moe_Hallo_Condition()
 {
 	if((Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist) || Npc_IsInState(self,ZS_Talk))
 	{
-		if((other.guild != GIL_PAL) && (other.guild != GIL_KDF) && (other.guild != GIL_MIL))
+		if((other.guild != GIL_PAL) && (other.guild != GIL_KDF) && (other.guild != GIL_MIL) && !C_LehmarDebtIsOverdue())
 		{
 			return TRUE;
 		};
@@ -328,7 +328,7 @@ instance DIA_Moe_LEHMARGELDEINTREIBEN(C_Info)
 
 func int DIA_Moe_LEHMARGELDEINTREIBEN_Condition()
 {
-	if((Lehmar_GeldGeliehen_Day <= (Wld_GetDay() - 2)) && (Lehmar_GeldGeliehen != 0) && (RangerHelp_LehmarKohle == FALSE))
+	if(C_LehmarDebtIsOverdue())
 	{
 		return TRUE;
 	};

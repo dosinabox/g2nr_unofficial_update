@@ -77,21 +77,6 @@ func int B_GetGreatestPetzCrime(var C_Npc slf)
 			return CRIME_SHEEPKILLER;
 		};
 	};
-/*	if(C_NpcBelongsToBL(slf))
-	{
-		if(PETZCOUNTER_BL_Murder > 0)
-		{
-			return CRIME_MURDER;
-		};
-		if(PETZCOUNTER_BL_Theft > 0)
-		{
-			return CRIME_THEFT;
-		};
-		if(PETZCOUNTER_BL_Attack > 0)
-		{
-			return CRIME_ATTACK;
-		};
-	};*/
 	return CRIME_NONE;
 };
 

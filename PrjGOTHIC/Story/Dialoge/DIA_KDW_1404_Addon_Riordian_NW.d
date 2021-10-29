@@ -95,10 +95,6 @@ func void DIA_Addon_Riordian_Atlantis_Info()
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_01");	//ƒа. ƒо последнего времени мы были уверены, что знаем об острове все.
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_02");	//ћы считали, что весь северо-восток острова - один большой горный массив.
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_03");	//Ќо мы ошибались.
-	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe) || Npc_KnowsInfo(other,DIA_Addon_Saturas_WhatsOrnament))
-	{
-		AI_Output(other,self,"DIA_Schwarzmagier_HELLO_hinterTor_15_00");	//ј что скрываетс€ за тем огромным порталом, вон там?
-	};
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_04");	//«а этими горами лежит долина. “ам и располагаетс€ этот древний город.
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_05");	//(вздыхает) я бы очень хотел взгл€нуть на его старинные здани€, но они наверн€ка давно рассыпались в прах...
 	if(SC_KnowsPortal == FALSE)
@@ -156,7 +152,7 @@ func void DIA_Addon_Riordian_SaturasWantYou_Info()
 };
 
 
-//var int Riordian_PermNews;
+var int Riordian_PermNews;
 
 instance DIA_Addon_Riordian_Perm(C_Info)
 {
@@ -171,8 +167,7 @@ instance DIA_Addon_Riordian_Perm(C_Info)
 
 func int DIA_Addon_Riordian_Perm_Condition()
 {
-//	if(MIS_Addon_Saturas_BringRiordian2Me == LOG_SUCCESS)
-	if(Npc_KnowsInfo(other,DIA_Addon_Riordian_Hallo))
+	if(MIS_Addon_Saturas_BringRiordian2Me == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -181,19 +176,10 @@ func int DIA_Addon_Riordian_Perm_Condition()
 func void DIA_Addon_Riordian_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Riordian_Perm_15_00");	//≈сть что-нибудь новое?
-	/*if(Riordian_PermNews == FALSE)
+	if(Riordian_PermNews == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Riordian_Perm_10_01");	//ƒа! я нашел подтверждение, что эта древн€€ цивилизаци€ действительно поклон€лась јданосу!
 		Riordian_PermNews = TRUE;
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Addon_Riordian_Perm_10_02");	//Ќет, пока нет. ѕриходи позже.
-	};*/
-	if(MIS_Addon_Saturas_BringRiordian2Me == LOG_SUCCESS)
-	{
-		AI_Output(self,other,"DIA_Addon_Riordian_Perm_10_01");	//ƒа! я нашел подтверждение, что эта древн€€ цивилизаци€ действительно поклон€лась јданосу!
-//		Riordian_PermNews = TRUE;
 	}
 	else
 	{

@@ -87,6 +87,11 @@ func int B_TeachPlayerTalentAlchemy(var C_Npc slf,var C_Npc oth,var int potion)
 		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ГРИБНОГО ЭКСТРАКТА': 50 черных грибов и 1 луговая ягода.");
 		Knows_MushroomMana = TRUE;
 	};
+	if((Opened_AppleSTR == TRUE) && (Knows_AppleSTR == FALSE))
+	{
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЯБЛОЧНОГО ЭКСТРАКТА': 25 яблок и 1 лесная ягода.");
+		Knows_AppleSTR = TRUE;
+	};
 	if((Opened_MegaDrink == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == FALSE))
 	{
 		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭМБАРЛА ФИРГАСТО': 10 драконьих яиц, 1 черная жемчужина и 1 сера.");

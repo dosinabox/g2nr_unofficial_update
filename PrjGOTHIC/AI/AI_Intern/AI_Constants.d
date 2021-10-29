@@ -239,7 +239,6 @@ var int ABSOLUTIONLEVEL_OldCamp;
 var int ABSOLUTIONLEVEL_City;
 var int ABSOLUTIONLEVEL_Monastery;
 var int ABSOLUTIONLEVEL_Farm;
-var int ABSOLUTIONLEVEL_BL;
 
 var int PETZCOUNTER_OldCamp_Murder;
 var int PETZCOUNTER_OldCamp_Theft;
@@ -257,16 +256,12 @@ var int PETZCOUNTER_Farm_Murder;
 var int PETZCOUNTER_Farm_Theft;
 var int PETZCOUNTER_Farm_Attack;
 var int PETZCOUNTER_Farm_Sheepkiller;
-var int PETZCOUNTER_BL_Murder;
-var int PETZCOUNTER_BL_Theft;
-var int PETZCOUNTER_BL_Attack;
 
 const int LOC_NONE = 0;
 const int LOC_OLDCAMP = 1;
 const int LOC_CITY = 2;
 const int LOC_MONASTERY = 3;
 const int LOC_FARM = 4;
-//const int LOC_BL = 5;
 const int LOC_ALL = 6;
 
 const int Q_KASERNE = 1;

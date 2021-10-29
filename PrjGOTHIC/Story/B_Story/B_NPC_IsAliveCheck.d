@@ -306,3 +306,54 @@ func int C_LobartBugsDead()
 	return TRUE;
 };
 
+func int C_BalthasarSheepsDead()
+{
+	if(!Npc_IsDead(BalthasarSheep1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BalthasarSheep2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BalthasarSheep3))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_AlwinSheepsDead()
+{
+	if(!Npc_IsDead(Alwin_Sheep1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Alwin_Sheep2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Alwin_Sheep3))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_GrimbaldSnappersDead()
+{
+	if(!Npc_IsDead(Grimbald_Snapper1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Grimbald_Snapper2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Grimbald_Snapper3))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+

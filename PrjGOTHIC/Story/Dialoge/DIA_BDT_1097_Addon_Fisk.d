@@ -403,7 +403,7 @@ instance DIA_Addon_Fisk_Meeting(C_Info)
 
 func int DIA_Addon_Fisk_Meeting_Condition()
 {
-	if((Npc_GetDistToWP(self,"BL_INN_UP_06") <= 500) && Npc_IsInState(self,ZS_Talk) && (MIS_Judas == LOG_Running))
+	if((Npc_GetDistToWP(self,"BL_INN_UP_06") <= 500) && Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH) && (MIS_Judas == LOG_Running))
 	{
 		return TRUE;
 	};

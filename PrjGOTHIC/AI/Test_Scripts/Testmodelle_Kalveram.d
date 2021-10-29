@@ -384,6 +384,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ITWr_Addon_Lou_Rezept2,1);
 	CreateInvItems(self,ITWr_Addon_Piratentod,1);
 	CreateInvItems(self,ItWr_MushroomMana,1);
+	CreateInvItems(self,ItWr_AppleSTR,1);
 //	CreateInvItems(self,Fakescroll_Addon,1);
 	CreateInvItems(self,ItWr_Addon_AxtAnleitung,1);
 	CreateInvItems(self,ItWr_Addon_SUMMONANCIENTGHOST,1);
@@ -648,6 +649,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItPo_Mana_Addon_04,10);
 	CreateInvItems(self,ItPo_Perm_LittleMana,10);
 	CreateInvItems(self,ItPo_Perm_MushroomMana,10);
+	CreateInvItems(self,ItPo_Perm_AppleSTR,10);
 	CreateInvItems(self,ItAt_Meatbugflesh,10);
 	CreateInvItems(self,ItAt_SheepFur,10);
 	CreateInvItems(self,ItAt_WolfFur,10);
