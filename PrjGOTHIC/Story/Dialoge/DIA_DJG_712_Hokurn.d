@@ -2,6 +2,7 @@
 var int Hokurn_BoozeGiven;
 var int Hokurn_WineGiven;
 var int Hokurn_DarkWineGiven;
+var int Hokurn_WineComment;
 
 func int C_GotDrinkForHokurn()
 {
@@ -44,15 +45,28 @@ func int C_GotDrinkForHokurn()
 	return FALSE;
 };
 
+func void B_GiveDarkWineHokurnXP()
+{
+	if(Hokurn_DarkWineGiven == FALSE)
+	{
+		B_GivePlayerXP(200);
+		Hokurn_DarkWineGiven = TRUE;
+	};
+};
+
+func void B_Hokurn_WineComment()
+{
+	if((Hokurn_WineGiven == TRUE) && (Hokurn_WineComment == FALSE))
+	{
+		AI_Output(self,other,"DIA_Hokurn_WhereDragon_Booze_01_01");	//За хорошее вино я готов сразиться со всеми драконами мира.
+		Hokurn_WineComment = TRUE;
+	};
+};
+
 func void B_GiveDrinkToHokurn()
 {
 	AI_WaitTillEnd(self,other);
-	if(Npc_HasItems(other,ItFo_Beer))
-	{
-		B_GiveInvItems(other,self,ItFo_Beer,1);
-		B_UseItem(self,ItFo_Beer);
-	}
-	else if(Npc_HasItems(other,ItFo_Booze))
+	if(Npc_HasItems(other,ItFo_Booze))
 	{
 		B_GiveInvItems(other,self,ItFo_Booze,1);
 		B_UseItem(self,ItFo_Booze);
@@ -89,17 +103,31 @@ func void B_GiveDrinkToHokurn()
 		B_GiveInvItems(other,self,ItFo_Addon_SchlafHammer,1);
 		B_UseItem(self,ItFo_Addon_SchlafHammer);
 	}
+	else if(Npc_HasItems(other,ItFo_Beer))
+	{
+		B_GiveInvItems(other,self,ItFo_Beer,1);
+		B_UseItem(self,ItFo_Beer);
+	}
 	else if(Npc_HasItems(other,ItFo_DarkWine))
 	{
 		B_GiveInvItems(other,self,ItFo_DarkWine,1);
 		B_UseItem(self,ItFo_DarkWine);
 		Hokurn_WineGiven = TRUE;
-		if(Hokurn_DarkWineGiven == FALSE)
-		{
-			B_GivePlayerXP(200);
-			Hokurn_DarkWineGiven = TRUE;
-		};
+		B_GiveDarkWineHokurnXP();
 	};
+	if(HokurnGetsDrink == FALSE)
+	{
+		AI_Output(self,other,"B_Hokurn_Sauf_01_00");	//(рыгает) Ох, какое блаженство!
+		B_Hokurn_WineComment();
+		AI_Output(self,other,"B_Hokurn_Sauf_01_01");	//Теперь я опять могу размышлять здраво. Что я могу сделать для тебя?
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Hokurn_DrinkAndLearn_01_01");	//Мне стало гораздо лучше. Я теперь готов ко всему.
+		B_Hokurn_WineComment();
+	};
+	HokurnLastDrink = B_GetDayPlus();
+	HokurnGetsDrink = TRUE;
 };
 
 instance DIA_Hokurn_EXIT(C_Info)
@@ -178,7 +206,7 @@ func void DIA_Hokurn_Hello_ASK1()
 func void DIA_Hokurn_Hello_ASK2()
 {
 	AI_Output(other,self,"DIA_Hokurn_Hello_ASK2_15_00");	//Это важно.
-	AI_Output(self,other,"DIA_Hokurn_Hello_ASK2_01_01");	//(ревет) Ты сам напросился.
+	AI_Output(self,other,"DIA_Hokurn_Hello_ASK2_01_01");	//(ревет) Ты сам напросился!
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
@@ -188,23 +216,10 @@ func void DIA_Hokurn_Hello_END()
 	AI_StopProcessInfos(self);
 };
 
-func void B_Hokurn_Sauf()
-{
-	HokurnLastDrink = Wld_GetDay();
-	HokurnGetsDrink = TRUE;
-	AI_Output(self,other,"B_Hokurn_Sauf_01_00");	//(рыгает) Ох, какое блаженство!
-	if(Hokurn_WineGiven == TRUE)
-	{
-		AI_Output(self,other,"DIA_Hokurn_WhereDragon_Booze_01_01");	//За хорошее вино я готов сразиться со всеми драконами мира.
-	};
-	AI_Output(self,other,"B_Hokurn_Sauf_01_01");	//Теперь я опять могу размышлять здраво. Что я могу сделать для тебя?
-};
-
 func void DIA_Hokurn_Hello_Yes()
 {
 	AI_Output(other,self,"DIA_Hokurn_Hello_Yes_15_00");	//Вот, возьми это.
 	B_GiveDrinkToHokurn();
-	B_Hokurn_Sauf();
 	Info_ClearChoices(DIA_Hokurn_Hello);
 };
 
@@ -233,7 +248,6 @@ func void DIA_Hokurn_Drink_Info()
 	AI_Output(other,self,"DIA_Hokurn_Drink_15_00");	//Я принес тебе выпивку.
 	AI_Output(self,other,"DIA_Hokurn_Drink_01_01");	//(жадно) Давай сюда!!!
 	B_GiveDrinkToHokurn();
-	B_Hokurn_Sauf();
 };
 
 
@@ -288,7 +302,7 @@ func int DIA_Hokurn_Learn_Condition()
 func void DIA_Hokurn_Learn_Info()
 {
 	AI_Output(other,self,"DIA_Hokurn_Learn_15_00");	//Я ищу человека, который мог бы научить меня чему-нибудь.
-	if(other.guild == GIL_KDF)
+	if(VisibleGuild(other) == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Hokurn_Teach_01_03");	//Что ты понимаешь. Даже маги не чуждаются оружия ближнего боя.
 	};
@@ -394,8 +408,6 @@ func void DIA_Hokurn_DrinkAndLearn_Info()
 {
 	AI_Output(other,self,"DIA_Hokurn_DrinkAndLearn_15_00");	//Вот, держи выпивку.
 	B_GiveDrinkToHokurn();
-	HokurnLastDrink = Wld_GetDay();
-	AI_Output(self,other,"DIA_Hokurn_DrinkAndLearn_01_01");	//Мне стало гораздо лучше. Я теперь готов ко всему.
 };
 
 
@@ -490,7 +502,7 @@ func void DIA_Hokurn_Teach_Info()
 	if(HokurnLastDrink < Wld_GetDay())
 	{
 		AI_Output(self,other,"DIA_Hokurn_Teach_01_01");	//Сначала принеси мне что-нибудь выпить!
-		if(hero.guild == GIL_PAL)
+		if(VisibleGuild(other) == GIL_PAL)
 		{
 			AI_Output(self,other,"DIA_Hokurn_Teach_01_02");	//А потом посмотрим, что можно выжать из твоих ржавых паладинских костей, ха?
 		};
@@ -579,7 +591,7 @@ instance DIA_Hokurn_WhereDragon(C_Info)
 
 func int DIA_Hokurn_WhereDragon_Condition()
 {
-	if((HokurnGetsDrink == TRUE) && (HokurnTellsDragon == FALSE) && Npc_KnowsInfo(other,DIA_Hokurn_StayHere))
+	if(Npc_KnowsInfo(other,DIA_Hokurn_StayHere) && (MIS_AllDragonsDead == FALSE) && (HokurnTellsDragon == FALSE))
 	{
 		return TRUE;
 	};
@@ -592,7 +604,7 @@ func void DIA_Hokurn_WhereDragon_Info()
 	Info_ClearChoices(DIA_Hokurn_WhereDragon);
 	Info_AddChoice(DIA_Hokurn_WhereDragon,"Ничего, я сам их найду.",DIA_Hokurn_WhereDragon_FindMyself);
 	Info_AddChoice(DIA_Hokurn_WhereDragon,"Я был бы не прочь заплатить тебе за эту информацию.",DIA_Hokurn_WhereDragon_Gold);
-	if((Hokurn_WineGiven == TRUE) && (Npc_HasItems(other,ItFo_Wine) || Npc_HasItems(other,ItFo_DarkWine)))
+	if((Hokurn_WineComment == TRUE) && (Npc_HasItems(other,ItFo_Wine) || Npc_HasItems(other,ItFo_DarkWine)))
 	{
 		Info_AddChoice(DIA_Hokurn_WhereDragon,"Вот твое вино.",DIA_Hokurn_WhereDragon_GiveDrink);
 	}
@@ -651,7 +663,7 @@ func void B_HokurnGiveMeThat()
 
 func void DIA_Hokurn_WhereDragon_GiveDrink()
 {
-	if((Hokurn_WineGiven == TRUE) && (Npc_HasItems(other,ItFo_Wine) || Npc_HasItems(other,ItFo_DarkWine)))
+	if((Hokurn_WineComment == TRUE) && (Npc_HasItems(other,ItFo_Wine) || Npc_HasItems(other,ItFo_DarkWine)))
 	{
 		AI_Output(other,self,"DIA_Vino_BringWine_15_00");	//Вот твое вино.
 		B_HokurnGiveMeThat();
@@ -662,11 +674,7 @@ func void DIA_Hokurn_WhereDragon_GiveDrink()
 		else if(Npc_HasItems(other,ItFo_DarkWine))
 		{
 			B_GiveInvItems(other,self,ItFo_DarkWine,1);
-			if(Hokurn_DarkWineGiven == FALSE)
-			{
-				B_GivePlayerXP(200);
-				Hokurn_DarkWineGiven = TRUE;
-			};
+			B_GiveDarkWineHokurnXP();
 		};
 	}
 	else if(Npc_HasItems(other,ItFo_Booze))
@@ -700,7 +708,7 @@ instance DIA_Hokurn_Dragon(C_Info)
 
 func int DIA_Hokurn_Dragon_Condition()
 {
-	if(HokurnTellsDragon == TRUE)
+	if((HokurnTellsDragon == TRUE) && (MIS_AllDragonsDead == FALSE))
 	{
 		return TRUE;
 	};

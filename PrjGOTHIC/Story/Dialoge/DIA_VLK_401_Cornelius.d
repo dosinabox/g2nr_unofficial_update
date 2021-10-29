@@ -178,12 +178,12 @@ func void DIA_Cornelius_DontBelieveYou_Info()
 	if(hero.guild == GIL_KDF)
 	{
 		Info_AddChoice(DIA_Cornelius_DontBelieveYou,"Тебя могли бы заставить говорить в монастыре.",DIA_Cornelius_DontBelieveYou_Monastery);
-	};
-	if(hero.guild == GIL_SLD)
+	}
+	else if(hero.guild == GIL_SLD)
 	{
 		Info_AddChoice(DIA_Cornelius_DontBelieveYou,"Я могу сказать наемникам, где ты живешь.",DIA_Cornelius_DontBelieveYou_KnowYourHome);
-	};
-	if(hero.guild == GIL_MIL)
+	}
+	else if(hero.guild == GIL_MIL)
 	{
 		Info_AddChoice(DIA_Cornelius_DontBelieveYou,"За лжесвидетельство тебя посадят в тюрьму - и надолго!",DIA_Cornelius_DontBelieveYou_Perjury);
 	};
@@ -192,11 +192,14 @@ func void DIA_Cornelius_DontBelieveYou_Info()
 func void DIA_Cornelius_DontBelieveYou_WhatYouWant()
 {
 	AI_Output(other,self,"DIA_Cornelius_DontBelieveYou_WhatYouWant_15_00");	//Сколько ты хочешь?
-	AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_WhatYouWant_13_01");	//(надменно) У тебя не хватит золота, чтобы заплатить мне.
-	AI_Output(other,self,"DIA_Cornelius_DontBelieveYou_WhatYouWant_15_02");	//Сколько?
+	if(Cornelius_PayForProof == FALSE)
+	{
+		AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_WhatYouWant_13_01");	//(надменно) У тебя не хватит золота, чтобы заплатить мне.
+		AI_Output(other,self,"DIA_Cornelius_DontBelieveYou_WhatYouWant_15_02");	//Сколько?
+		B_LogEntry(TOPIC_RescueBennet,"Корнелиус готов разговаривать со мной за 2000 золотых.");
+		Cornelius_PayForProof = TRUE;
+	};
 	AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_WhatYouWant_13_03");	//2000 золотых. Ну... Тогда я, возможно, пересмотрю свою точку зрения.
-	B_LogEntry(TOPIC_RescueBennet,"Корнелиус готов разговаривать со мной за 2000 золотых.");
-	Cornelius_PayForProof = TRUE;
 	Info_ClearChoices(DIA_Cornelius_DontBelieveYou);
 };
 

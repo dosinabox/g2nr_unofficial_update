@@ -8,6 +8,7 @@ instance SLD_805_Cord(Npc_Default)
 	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_NPCIsRanger] = TRUE;
+	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Sword);

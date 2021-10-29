@@ -80,8 +80,8 @@ func int DIA_Vatras_DI_TRADE_Condition()
 func void DIA_Vatras_DI_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_DI_TRADE_15_00");	//Ты можешь продать мне что-нибудь?
-	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Vatras_DI_TRADE_05_01");	//В чем ты нуждаешься?
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 

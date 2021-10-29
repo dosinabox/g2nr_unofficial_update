@@ -45,9 +45,12 @@ func int ZS_Sleep_Loop()
 			Player_GetOutOfMyBedComment = TRUE;
 		};
 	};
-	if(Npc_GetDistToNpc(self,hero) > 1000)
+	if(self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX])
 	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
+		if(Npc_GetDistToNpc(self,hero) > 1000)
+		{
+			self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
+		};
 	};
 	return LOOP_CONTINUE;
 };

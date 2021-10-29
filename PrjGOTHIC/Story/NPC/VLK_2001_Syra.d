@@ -1,5 +1,5 @@
 
-instance VLK_2001_Syra(Npc_Default)
+/*instance VLK_2001_Syra(Npc_Default)
 {
 	name[0] = "Сира";
 	guild = GIL_VLK;
@@ -24,5 +24,5 @@ func void Rtn_Start_2001()
 {
 	TA_Stand_Eating(22,0,6,0,"XXX");
 	TA_Sleep(6,0,22,0,"XXX");
-};
+};*/
 

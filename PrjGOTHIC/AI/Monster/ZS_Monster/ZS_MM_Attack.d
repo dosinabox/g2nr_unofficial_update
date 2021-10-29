@@ -57,13 +57,8 @@ func int ZS_MM_Attack_Loop()
 	};
 	if(self.guild == GIL_DRAGON)
 	{
-		self.aivar[AIV_TAPOSITION] += 1;
-		if((self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX]) && (self.aivar[AIV_TAPOSITION] >= 2))
-		{
-			self.attribute[ATR_HITPOINTS] += 1;
-			self.aivar[AIV_TAPOSITION] = 0;
-		};
-//костыли для перехода из режима ближнего боя к магии: начало
+		B_DragonHeal(self);
+		//костыли для перехода из режима ближнего боя к магии: начало
 		if(Npc_IsInFightMode(self,FMODE_FIST) && (Npc_GetDistToNpc(self,other) > FIGHT_DIST_DRAGON_MAGIC))
 		{
 			AI_RemoveWeapon(self);
@@ -76,7 +71,7 @@ func int ZS_MM_Attack_Loop()
 			AI_RemoveWeapon(self);
 		};
 	};
-//костыли для перехода из режима ближнего боя к магии: конец
+	//костыли для перехода из режима ближнего боя к магии: конец
 	if((RavenIsDead == TRUE) && (self.guild == GIL_Stoneguardian))
 	{
 		B_KillNpc(self);
@@ -157,7 +152,7 @@ func int ZS_MM_Attack_Loop()
 		AI_Wait(self,0.8);
 		self.aivar[AIV_WaitBeforeAttack] = 0;
 	};
-	if(self.level == 0)
+	if(C_NpcIsSummon(self))
 	{
 		if(Npc_GetStateTime(self) > self.aivar[AIV_StateTime])
 		{

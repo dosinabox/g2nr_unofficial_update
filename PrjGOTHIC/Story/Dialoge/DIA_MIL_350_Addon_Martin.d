@@ -233,8 +233,8 @@ func int DIA_Addon_Martin_Trade_Condition()
 func void DIA_Addon_Martin_Trade_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Martin_Trade_15_00");	//Что ты можешь предложить?
-	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Addon_Martin_Trade_07_01");	//Что ж, смотри внимательно.
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 
@@ -455,6 +455,8 @@ var int Martin_IrrlichtHint;
 
 func void DIA_Addon_Martin_Fernando_Info()
 {
+	var int FernandoHintsCount;
+	FernandoHintsCount = 0;
 	AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_00");	//Насчет торговца оружием...
 	if(C_SCHasAnyFernandoEvidence() || (Fernando_HatsZugegeben == TRUE))
 	{
@@ -464,13 +466,18 @@ func void DIA_Addon_Martin_Fernando_Info()
 			if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_02");	//Такие шпаги я нашел у бандитов. На эфесе выгравирована буква 'Ф'.
-				Npc_RemoveInvItems(other,ItMw_Addon_BanditTrader,1);
-				FernandoHints_ItMw = TRUE;
+				if(FernandoHints_ItMw == FALSE)
+				{
+					Npc_RemoveInvItems(other,ItMw_Addon_BanditTrader,1);
+					FernandoHintsCount += 1;
+					FernandoHints_ItMw = TRUE;
+				};
 			};
 			if(Npc_HasItems(other,ItRi_Addon_BanditTrader))
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_03");	//У бандитов я нашел это кольцо. Оно указывает на морского торговца.
 				Npc_RemoveInvItem(other,ItRi_Addon_BanditTrader);
+				FernandoHintsCount += 1;
 				FernandoHints_ItRi = TRUE;
 			};
 			if(Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))
@@ -478,9 +485,13 @@ func void DIA_Addon_Martin_Fernando_Info()
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_04");	//Этот список оружия и прочих доставленных бандитам вещей подписан неким Фернандо.
 				Npc_RemoveInvItem(other,ItWr_Addon_BanditTrader);
 				B_UseFakeScroll();
+				FernandoHintsCount += 1;
 				FernandoHints_ItWr = TRUE;
 			};
-			AI_PrintScreen(PRINT_Addon_EvidenceGiven,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+			if(FernandoHintsCount > 0)
+			{
+				AI_PrintScreen(PRINT_Addon_EvidenceGiven,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+			};
 			if(Fernando_HatsZugegeben == TRUE)
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_05");	//И кроме того, Фернандо, старый торговец из верхнего квартала, сознался в том, что ведет дела с бандитами.
@@ -492,7 +503,7 @@ func void DIA_Addon_Martin_Fernando_Info()
 			AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_06");	//Фернандо сказал, что снабжает бандитов оружием.
 			FernandoHints_Confession = TRUE;
 		};
-		if(((FernandoHints_ItMw == TRUE) && (FernandoHints_ItRi) && (FernandoHints_Confession)) || (FernandoHints_ItWr == TRUE))
+		if(((FernandoHints_ItMw == TRUE) && (FernandoHints_ItRi == TRUE) && (FernandoHints_Confession == TRUE)) || (FernandoHints_ItWr == TRUE))
 		{
 			if(!Npc_IsDead(Fernando))
 			{
@@ -574,7 +585,7 @@ func void DIA_Addon_Martin_Perm_Info()
 			AI_Output(self,other,"DIA_Addon_Martin_Perm_07_03");	//И этой ночью, когда я уйду, будь повнимательнее!
 		};
 	}
-	else if((MIS_Addon_Martin_GetRangar != 0) || (hero.guild != GIL_NONE) || (SC_IsRanger == TRUE))
+	else if((MIS_Addon_Martin_GetRangar != FALSE) || (hero.guild != GIL_NONE) || (SC_IsRanger == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Perm_07_04");	//Давай, давай, смейся. Попробовал бы ты постоять целый день на пирсе, пытаясь разобраться во всем этом хаосе.
 		AI_Output(self,other,"DIA_Addon_Martin_Perm_07_05");	//Паладины привезли с собой столько всякого хлама, что это даже не смешно.
@@ -640,13 +651,26 @@ func int DIA_Addon_Martin_GetMiliz_Condition()
 func void DIA_Addon_Martin_GetMiliz_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Martin_GetMiliz_15_00");	//Ты знаешь, что мне от тебя нужно.
-	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_01");	//А, да. Ты хочешь вступить в ополчение, верно?
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_01");	//А, да. Ты хочешь вступить в ополчение, верно?
+	};
 	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_02");	//Что ж, ты уже доказал мне, на что способен.
-	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_03");	//Скажем так, я бы скорее хотел бы видеть тебя на нашей стороне, чем на чьей-либо еще.
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_03");	//Скажем так, я бы скорее хотел бы видеть тебя на нашей стороне, чем на чьей-либо еще.
+	};
 	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_04");	//Поэтому я помогу тебе. Возьми мое рекомендательное письмо и покажи его Андрэ, нашему командиру.
 	CreateInvItems(self,ItWr_Martin_MilizEmpfehlung_Addon,1);
 	B_GiveInvItems(self,other,ItWr_Martin_MilizEmpfehlung_Addon,1);
-	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_05");	//Ты найдешь его в казармах. Уверен, он сможет найти тебе применение.
-	B_LogEntry(TOPIC_Addon_RangerHelpMIL,"Мартин дал мне рекомендательное письмо для лорда Андрэ. Прочитав его, Андрэ примет меня в ополчение. Найти Андрэ можно в казармах.");
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_05");	//Ты найдешь его в казармах. Уверен, он сможет найти тебе применение.
+		B_LogEntry(TOPIC_Addon_RangerHelpMIL,"Мартин дал мне рекомендательное письмо для лорда Андрэ. Прочитав его, Андрэ примет меня в ополчение. Найти Андрэ можно в казармах.");
+	}
+	else
+	{
+		B_LogEntry(TOPIC_Addon_RangerHelpMIL,"Мартин дал мне рекомендательное письмо для лорда Андрэ.");
+	};
 };
 

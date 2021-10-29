@@ -181,6 +181,7 @@ func void DIA_Addon_Emilio_Attentat_Info()
 		AI_Output(self,other,"DIA_Addon_Emilio_Attentat_10_02");	//(испуганно) ВООБЩЕ НИЧЕГО!
 		Emilio_Switch = 0;
 	};
+	AI_StopProcessInfos(self);
 };
 
 

@@ -34,7 +34,7 @@ instance DIA_Hyglas_Feuer(C_Info)
 
 func int DIA_Hyglas_Feuer_Condition()
 {
-	if((other.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == TRUE) && !Npc_KnowsInfo(other,DIA_Pyrokar_FIRE) && Npc_KnowsInfo(other,DIA_Hyglas_JOB))
+	if((other.guild == GIL_NOV) && (Knows_Fire_Contest == TRUE) && !Npc_KnowsInfo(other,DIA_Pyrokar_FIRE) && Npc_KnowsInfo(other,DIA_Hyglas_JOB))
 	{
 		return TRUE;
 	};
@@ -225,7 +225,7 @@ func int DIA_Hyglas_FIREBOLT_Condition()
 func void DIA_Hyglas_FIREBOLT_Info()
 {
 	AI_Output(other,self,"DIA_Hyglas_FIREBOLT_15_00");	// акие ингредиенты нужны дл€ создани€ руны огненной стрелы?
-	AI_Output(self,other,"DIA_Hyglas_FIREBOLT_14_01");	//ѕрочти об этом - ты найдешь эту информацию здесь, в книгах.
+	DIA_Common_14_GoReadAboutIt();
 };
 
 

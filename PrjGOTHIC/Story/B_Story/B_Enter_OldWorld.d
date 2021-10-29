@@ -162,11 +162,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		B_KillNpc(DJG_739_ToterDrachenjaeger);
 		Wld_InsertNpc(DJG_740_ToterDrachenjaeger,"OC1");
 		B_KillNpc(DJG_740_ToterDrachenjaeger);
-		if(!Npc_IsDead(Brutus))
-		{
-//			Npc_ExchangeRoutine(Brutus,"Meatbugs");
-			B_StartOtherRoutine(Brutus,"Meatbugs");
-		};
+		B_StartOtherRoutine(Brutus,"Meatbugs");
 		Wld_InsertNpc(Meatbug_Brutus1,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus2,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus3,"OC_FOLTER_SHARP");

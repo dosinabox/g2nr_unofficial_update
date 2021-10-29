@@ -62,9 +62,12 @@ func int ZS_Study_WP_Loop()
 			AI_Wait(self,waittime);
 			AI_UseItemToState(self,Fakescroll_Addon,-1);
 			Npc_SetStateTime(self,0);
-			if((((Eventrandy < 5) && (CurrentLevel == NEWWORLD_ZEN)) || ((Eventrandy == 1) && (CurrentLevel == ADDONWORLD_ZEN))) && (self.guild == GIL_KDW) && (RavenIsDead == FALSE))
+			if((self.guild == GIL_KDW) && (RavenIsDead == FALSE))
 			{
-				b_event_portal_earthquake();
+				if(((Eventrandy < 5) && (CurrentLevel == NEWWORLD_ZEN)) || ((Eventrandy == 1) && (CurrentLevel == ADDONWORLD_ZEN)))
+				{
+					b_event_portal_earthquake();
+				};
 			};
 		};
 	};

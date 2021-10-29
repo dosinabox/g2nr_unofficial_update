@@ -46,15 +46,15 @@ func int DIA_Khaled_Hallo_Condition()
 func void DIA_Khaled_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Khaled_Hallo_15_00");	//С тобой все в порядке?
-	if(Npc_KnowsInfo(other,DIA_Lee_WannaJoin) || Npc_KnowsInfo(other,DIA_Lee_KeinSld))
+	if(Npc_KnowsInfo(other,DIA_Lee_WannaJoin) || Npc_KnowsInfo(other,DIA_Lee_KeinSld) || (Lee_IsOnBoard == TRUE))
 	{
 		if(Npc_KnowsInfo(other,DIA_Lee_WannaJoin) && (other.guild == GIL_NONE))
 		{
 			AI_Output(self,other,"DIA_Khaled_Hallo_11_01");	//Хм, так ты хочешь присоединиться к нам, да? А у тебя есть хотя бы приличное оружие?
 		}
-		else if(Npc_KnowsInfo(other,DIA_Lee_KeinSld) || (Lee_IsOnBoard == TRUE))
+		else
 		{
-			AI_Output(self,other,"DIA_Bosper_PERM_11_05");	//Пока нет никаких новостей. Если хочешь, зайди позже.
+			AI_Output(self,other,"DIA_Khaled_Hallo_11_01_add");	//А у тебя есть хотя бы приличное оружие?
 		};
 		if(!Npc_KnowsInfo(other,DIA_Bennet_HALLO))
 		{

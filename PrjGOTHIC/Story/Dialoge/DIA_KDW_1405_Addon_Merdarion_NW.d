@@ -76,6 +76,7 @@ func void DIA_Addon_Merdarion_Aufgabe_Info()
 			B_LogEntry(TOPIC_Addon_KDW,"Ќефариус ищет пропавший орнамент.");
 		};
 	};
+	AI_Output(other,self,"DIA_Schwarzmagier_HELLO_hinterTor_15_00");	//ј что скрываетс€ за тем огромным порталом, вон там?
 	AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_03");	//ћожно сказать с уверенностью, что этот портал ведет в ту часть острова, котора€ доселе нам была неизвестна.
 	AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_04");	//(задумыва€сь) я даже, пожалуй, никогда не слышал и не читал про нее...
 	Npc_ExchangeRoutine(self,"START");

@@ -54,5 +54,9 @@ func void DIA_BridgeDementor_Info()
 	AI_Output(self,other,"DIA_BridgeDementor_19_01");	//Мой Хозяин одержит победу и склонит весь мир к своим ногам.
 	AI_Output(self,other,"DIA_BridgeDementor_19_02");	//Ты наивный идиот! Ты понятия не имеешь, на что ты замахнулся, и я накажу тебя за это здесь и сейчас!
 	Npc_SetRefuseTalk(self,30);
+	if(DementorsDialogeAutoEndDisabled == FALSE)
+	{
+		AI_StartState(self,DIA_BridgeDementor_EXIT_Info,1,"");
+	};
 };
 

@@ -137,7 +137,7 @@ func void DIA_SLD_7_STANDARD_Info()
 	AI_Output(other,self,"DIA_SLD_7_STANDARD_15_00");	//Что новенького?
 	if(Kapitel <= 2)
 	{
-		if(EnterOW_Kapitel2 == FALSE)
+		if((Torlof_KnowsDragons == FALSE) && !Npc_KnowsInfo(other,DIA_Lee_Report))
 		{
 			if(other.guild == GIL_SLD)
 			{
@@ -148,17 +148,13 @@ func void DIA_SLD_7_STANDARD_Info()
 				AI_Output(self,other,"DIA_SLD_7_STANDARD_07_02");	//Здесь ничего. Лучше поспрашивай в городе. Я думаю, они страдают от нехватки продовольствия. (смеется)
 			};
 		}
-		else if(other.guild == GIL_SLD)
+		else
 		{
 			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_03");	//Драконы в Долине Рудников! Не хотел бы я сейчас оказаться на месте паладинов.
 			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_04");	//Я думаю, король даст лорду Хагену хорошего пинка под зад, когда тот вернется с пустыми руками из-за драконов.
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_05");	//Разве вы, паладины, не можете справиться с драконами? Вот это была бы работа для настоящих мужчин.
 		};
-	};
-	if(Kapitel == 3)
+	}
+	else if(Kapitel == 3)
 	{
 		if(MIS_RescueBennet == LOG_SUCCESS)
 		{
@@ -180,10 +176,14 @@ func void DIA_SLD_7_STANDARD_Info()
 		{
 			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_10");	//Что вы собираетесь сделать с Беннетом? А, ладно, я даже не хочу знать, вы скоро сами поймете, к чему это приведет.
 		};
-	};
-	if(Kapitel == 4)
+	}
+	else if(Kapitel == 4)
 	{
-		if(hero.guild == GIL_DJG)
+		if(hero.guild == GIL_PAL)
+		{
+			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_05");	//Разве вы, паладины, не можете справиться с драконами? Вот это была бы работа для настоящих мужчин.
+		}
+		else if(hero.guild == GIL_DJG)
 		{
 			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_11");	//Я думал, ты тоже отправился в Долину. Вместе с Сильвио.
 			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_12");	//Никто из нас не будет против, если Сильвио останется в долине навсегда!
@@ -193,8 +193,8 @@ func void DIA_SLD_7_STANDARD_Info()
 			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_13");	//Это мужественный поступок - прийти сюда одному.
 			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_14");	//Но меня это не волнует, если только ты не начнешь собирать здесь налоги.
 		};
-	};
-	if(Kapitel >= 5)
+	}
+	else if(Kapitel >= 5)
 	{
 		AI_Output(self,other,"DIA_SLD_7_STANDARD_07_15");	//Ох, я больше не могу выносить все это. Овцы, пастбища, деревья... Я хочу свалить отсюда.
 	};

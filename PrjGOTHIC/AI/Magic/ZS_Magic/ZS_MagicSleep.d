@@ -2,7 +2,14 @@
 func void B_StopMagicSleep()
 {
 	Npc_PercDisable(self,PERC_ASSESSDAMAGE);
-	B_Say_Overlay(self,other,"$AWAKE");
+	if(!Npc_IsPlayer(self))
+	{
+		B_Say_Overlay(self,other,"$WHATWASTHAT");
+	}
+	else
+	{
+		B_Say_Overlay(self,self,"$AWAKE");
+	};
 	AI_PlayAni(self,"T_VICTIM_SLE_2_STAND");
 };
 

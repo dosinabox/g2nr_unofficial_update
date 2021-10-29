@@ -1,6 +1,8 @@
 
 const int Value_Apple = 8;
 const int HP_Apple = 3;
+const int AppleSTRBonus = 1;
+const int ApplesNeededForBonus = 25;
 const int Value_Cheese = 20;
 const int HP_Cheese = 15;
 const int Value_Bacon = 25;
@@ -83,10 +85,10 @@ func void Use_Apple()
 		{
 			Print(PRINT_Eat2);
 		};
-		if(Apple_Bonus == 25)
+		if(Apple_Bonus == ApplesNeededForBonus)
 		{
 			Print(PRINT_Eat3);
-			B_RaiseAttribute(self,ATR_STRENGTH,1);
+			B_RaiseAttribute(self,ATR_STRENGTH,AppleSTRBonus);
 			Snd_Play("LEVELUP");
 			Apple_Bonus = 0;
 		};
@@ -345,7 +347,7 @@ instance ItFo_CoragonsBeer(C_Item)
 	value = Value_CoragonsBeer;
 	visual = "ItFo_CoragonsBeer.3DS";
 	material = MAT_WOOD;
-	scemeName = "POTIONFAST";
+	scemeName = "POTION";
 	on_state[0] = Use_CoragonsBeer;
 	description = name;
 	text[0] = "Особое пиво Корагона.";
@@ -498,7 +500,7 @@ instance ItFo_Beer(C_Item)
 	value = Value_Beer;
 	visual = "ItFo_Beer.3DS";
 	material = MAT_WOOD;
-	scemeName = "POTIONFAST";
+	scemeName = "POTION";
 	on_state[0] = Use_Beer;
 	description = name;
 	text[0] = "Темное паладинское.";

@@ -97,10 +97,11 @@ func void DIA_Brahim_GREET_Info()
 		AI_Output(self,other,"DIA_Brahim_GREET_07_02");	//“ак как ты недавно здесь, возможно, тебе пригодитс€ карта города.
 		AI_Output(self,other,"DIA_Brahim_GREET_07_03");	//Ёто очень недорого и очень полезно, пока ты здесь не освоишьс€.
 	};
-	if(DIA_Kardif_Lernen_permanent == FALSE)
+	if(Brahim_Trade == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTrader,"»брагим рисует карты и продает их в гавани.");
+		Brahim_Trade = TRUE;
 	};
 };
 
@@ -155,17 +156,17 @@ func int DIA_Brahim_BUY_Condition()
 func void DIA_Brahim_BUY_Info()
 {
 	AI_Output(other,self,"DIA_Brahim_BUY_15_00");	//ѕокажи мне свои карты.
-	B_GiveTradeInv(self);
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Brahim_BUY_07_01");	//“ы не найдешь лучше даже в монастыре.
-	};
-	if(hero.guild == GIL_PAL)
+	}
+	else if(hero.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Brahim_BUY_07_02");	//’ороша€ карта - это очень важно, особенно дл€ людей, прибывших с материка, мистер паладин.
 	};
-	Brahim_ShowedMaps = TRUE;
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
+	Brahim_ShowedMaps = TRUE;
 };
 
 

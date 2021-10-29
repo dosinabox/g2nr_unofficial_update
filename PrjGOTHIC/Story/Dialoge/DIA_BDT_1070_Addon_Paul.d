@@ -242,7 +242,7 @@ func void DIA_Addon_Paul_MaulPaul_Info()
 	AI_Output(other,self,"DIA_Addon_Paul_MaulPaul_15_02");	//(любезно) Могу!
 	AI_Output(self,other,"DIA_Addon_Paul_MaulPaul_03_03");	//Не говори глупостей!
 	AI_Output(other,self,"DIA_Addon_Paul_MaulPaul_15_04");	//(нетерпеливо) Пол...
-	AI_Output(self,other,"DIA_Addon_Paul_MaulPaul_03_05");	//(лихорадочно) Я знаю только, что у Хуно с Эстебаном ну, какие-то разногласия.
+	AI_Output(self,other,"DIA_Addon_Paul_MaulPaul_03_05");	//(лихорадочно) Я знаю только, что у Хуно с Эстебаном, ну, какие-то разногласия.
 	AI_Output(self,other,"DIA_Addon_Paul_MaulPaul_03_06");	//(лихорадочно) При мне он... он постоянно ругается на Эстебана. Что тот испортил ему дело, ну и все такое...
 	AI_Output(self,other,"DIA_Addon_Paul_MaulPaul_03_07");	//Я только слушал и никогда ничего не говорил.
 	AI_Output(other,self,"DIA_Addon_Paul_MaulPaul_15_08");	//Отлично! Вот видишь, это было не так сложно.

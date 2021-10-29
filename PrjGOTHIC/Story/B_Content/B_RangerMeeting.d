@@ -1,4 +1,13 @@
 
+func void B_EquipFakeRangerArmor(var C_Npc Ranger)
+{
+	if(!Npc_HasItems(Ranger,ITAR_Fake_RANGER))
+	{
+		CreateInvItems(Ranger,ITAR_Fake_RANGER,1);
+	};
+	AI_EquipArmor(Ranger,ITAR_Fake_RANGER);
+};
+
 var int LaresRangerArmorEquipped;
 
 func void B_MakeRangerReadyForMeeting(var C_Npc Ranger)
@@ -7,15 +16,13 @@ func void B_MakeRangerReadyForMeeting(var C_Npc Ranger)
 	{
 		if(LaresRangerArmorEquipped == FALSE)
 		{
-			CreateInvItems(Ranger,ITAR_Fake_RANGER,1);
-			AI_EquipArmor(Ranger,ITAR_Fake_RANGER);
+			B_EquipFakeRangerArmor(Ranger);
 			LaresRangerArmorEquipped = TRUE;
 		};
 	}
 	else
 	{
-		CreateInvItems(Ranger,ITAR_Fake_RANGER,1);
-		AI_EquipArmor(Ranger,ITAR_Fake_RANGER);
+		B_EquipFakeRangerArmor(Ranger);
 	};
 	Ranger.npcType = NPCTYPE_FRIEND;
 };
@@ -25,28 +32,28 @@ func void B_MakeRangerReadyToLeaveMeeting(var C_Npc Ranger)
 	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Martin))
 	{
 		AI_EquipArmor(Ranger,ITAR_MIL_L);
-	};
-	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Lares))
+	}
+	else if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Lares))
 	{
 		if(LaresRangerArmorEquipped == TRUE)
 		{
 			AI_EquipArmor(Ranger,ITAR_Vlk_L);
 			LaresRangerArmorEquipped = FALSE;
 		};
-	};
-	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Cord))
+	}
+	else if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Cord))
 	{
 		AI_EquipArmor(Ranger,ITAR_SLD_H);
-	};
-	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Gaan))
+	}
+	else if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Gaan))
 	{
 		AI_EquipArmor(Ranger,ITAR_Bau_L);
-	};
-	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Orlan))
+	}
+	else if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Orlan))
 	{
 		AI_EquipArmor(Ranger,ITAR_Bau_M);
-	};
-	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Cavalorn))
+	}
+	else if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Cavalorn))
 	{
 		if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE)
 		{
@@ -108,7 +115,7 @@ func void B_RangerMeetingParking()
 	{
 		B_StartOtherRoutine(Cavalorn,"Stadt");
 	};
-	B_StartOtherRoutine(Orlan,"START");
+	B_StartOtherRoutine(Orlan,"Start");
 	B_StartOtherRoutine(Lares,"Parking");
 	B_StartOtherRoutine(Cord,"Parking");
 	B_StartOtherRoutine(Gaan,"Parking");
@@ -122,21 +129,6 @@ func void B_SchlussMitRangerMeeting()
 	{
 		B_StartOtherRoutine(Cavalorn,"Stadt");
 	};
-	if(LaresGuide_ZuOnar != LOG_SUCCESS)
-	{
-		LaresGuide_ZuOnar = FALSE;
-	};
-	if(LaresGuide_ZumPortal != 8)
-	{
-		LaresGuide_ZumPortal = 0;
-	};
-	if(LaresGuide_OrnamentForest != 3)
-	{
-		LaresGuide_OrnamentForest = 0;
-	};
-	B_StartOtherRoutine(Orlan,"Start");
-	B_StartOtherRoutine(Lares,"Start");
-	B_StartOtherRoutine(Cord,"Start");
 	if(Gaan.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
 		B_StartOtherRoutine(Gaan,"PreStart");
@@ -153,6 +145,9 @@ func void B_SchlussMitRangerMeeting()
 	{
 		B_StartOtherRoutine(Martin,"Start");
 	};
+	B_StartOtherRoutine(Orlan,"Start");
+	B_StartOtherRoutine(Cord,"Start");
+	B_ResetLares();
 	Lares_HaltsMaul = LOG_OBSOLETE;
 };
 

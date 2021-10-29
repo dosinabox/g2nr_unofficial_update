@@ -502,6 +502,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItPo_MegaDrink,10);
 	CreateInvItems(self,ItPo_Perm_LittleMana,10);
 	CreateInvItems(self,ItPo_Perm_MushroomMana,10);
+	CreateInvItems(self,ItPo_Perm_AppleSTR,10);
 	CreateInvItems(self,ItAt_Meatbugflesh,10);
 	CreateInvItems(self,ItAt_SheepFur,10);
 	CreateInvItems(self,ItAt_WolfFur,10);

@@ -62,7 +62,7 @@ instance Gil_Values(C_GILVALUES)
 	dive_time[GIL_GOBBO] = 30;
 	water_depth_knee[GIL_GOBBO] = 30;
 	water_depth_chest[GIL_GOBBO] = 80;
-	step_height[GIL_GOBBO] = 25;
+	step_height[GIL_GOBBO] = 50;
 	jumplow_height[GIL_GOBBO] = 105;
 	jumpmid_height[GIL_GOBBO] = 155;
 	jumpup_height[GIL_GOBBO] = 200;

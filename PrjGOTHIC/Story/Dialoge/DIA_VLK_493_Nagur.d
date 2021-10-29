@@ -55,7 +55,7 @@ func void DIA_Nagur_PICKPOCKET_BACK()
 	Info_ClearChoices(DIA_Nagur_PICKPOCKET);
 };
 
-func void B_Kardif_LeaveMeAlone()
+func void B_Nagur_LeaveMeAlone()
 {
 	AI_Output(self,other,"DIA_Nagur_Hallo_08_01");	//Послушай, оставь меня в покое, хорошо?
 };
@@ -84,13 +84,12 @@ func void DIA_Nagur_Hallo_Info()
 	if(self.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Nagur_Hallo_08_00");	//Эй, у меня нет времени, чтобы болтать с тобой. Если тебе нужна информация, поговори с Кардифом.
-		AI_StopProcessInfos(self);
 	}
 	else
 	{
-		B_Kardif_LeaveMeAlone();
-		AI_StopProcessInfos(self);
+		B_Nagur_LeaveMeAlone();
 	};
+	AI_StopProcessInfos(self);
 };
 
 
@@ -104,11 +103,21 @@ func void B_Nagur_Abfertigen()
 	};
 	AI_Output(self,other,"DIA_Nagur_Add_08_03");	//(заговорщицки) Не суй нос туда, куда не следует!
 	AI_Output(self,other,"DIA_Nagur_Add_08_04");	//Проваливай!
-	MIS_Nagur_Bote = LOG_SUCCESS;
 	NagurHack = TRUE;
 	AI_StopProcessInfos(self);
 };
 
+func void B_Nagur_RefuseToTalk()
+{
+	if(!C_BodyStateContains(self,BS_SIT))
+	{
+		AI_WaitTillEnd(self,other);
+		AI_PlayAni(self,"T_SEARCH");
+	};
+	B_Nagur_LeaveMeAlone();
+	DIA_Common_IllBeBackLater();
+	AI_StopProcessInfos(self);
+};
 
 instance DIA_Nagur_Job(C_Info)
 {
@@ -116,7 +125,6 @@ instance DIA_Nagur_Job(C_Info)
 	nr = 3;
 	condition = DIA_Nagur_Job_Condition;
 	information = DIA_Nagur_Job_Info;
-//	permanent = FALSE;
 	permanent = TRUE;
 	description = "Кардиф говорит, что у тебя может быть работа для меня.";
 };
@@ -124,7 +132,7 @@ instance DIA_Nagur_Job(C_Info)
 
 func int DIA_Nagur_Job_Condition()
 {
-	if((DIA_Kardif_Diebeswerk_permanent == TRUE) && (Nagur_Job_Dia1_Passed == FALSE) && (MIS_Nagur_Bote != LOG_SUCCESS))
+	if((DIA_Kardif_Diebeswerk_permanent == TRUE) && (Nagur_Job_Dia1_Passed == FALSE) && (NagurHack == FALSE))
 	{
 		return TRUE;
 	};
@@ -145,16 +153,9 @@ func void DIA_Nagur_Job_Info()
 	}
 	else
 	{
-		if((Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700) && !Npc_IsDead(Martin))
+		if(C_MartinIsNear())
 		{
-			if(!C_BodyStateContains(self,BS_SIT))
-			{
-				AI_WaitTillEnd(self,other);
-				AI_PlayAni(self,"T_SEARCH");
-			};
-			B_Kardif_LeaveMeAlone();
-			DIA_Common_IllBeBackLater();
-			AI_StopProcessInfos(self);
+			B_Nagur_RefuseToTalk();
 		}
 		else
 		{
@@ -193,7 +194,6 @@ instance DIA_Nagur_Auftrag(C_Info)
 	nr = 4;
 	condition = DIA_Nagur_Auftrag_Condition;
 	information = DIA_Nagur_Auftrag_Info;
-//	permanent = FALSE;
 	permanent = TRUE;
 	description = "Договорились. Так какой у тебя план?";
 };
@@ -201,8 +201,7 @@ instance DIA_Nagur_Auftrag(C_Info)
 
 func int DIA_Nagur_Auftrag_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Nagur_Job) && (MIS_Nagur_Bote != LOG_SUCCESS) && (Nagur_Job_Dia2_Passed == FALSE))
-	if((Nagur_Job_Dia1_Passed == TRUE) && (MIS_Nagur_Bote != LOG_SUCCESS) && (Nagur_Job_Dia2_Passed == FALSE))
+	if((Nagur_Job_Dia1_Passed == TRUE) && (Nagur_Job_Dia2_Passed == FALSE))
 	{
 		return TRUE;
 	};
@@ -211,16 +210,9 @@ func int DIA_Nagur_Auftrag_Condition()
 func void DIA_Nagur_Auftrag_Info()
 {
 	AI_Output(other,self,"DIA_Nagur_Auftrag_15_00");	//Договорились. Так какой у тебя план?
-	if((Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700) && !Npc_IsDead(Martin))
+	if(C_MartinIsNear())
 	{
-		if(!C_BodyStateContains(self,BS_SIT))
-		{
-			AI_WaitTillEnd(self,other);
-			AI_PlayAni(self,"T_SEARCH");
-		};
-		B_Kardif_LeaveMeAlone();
-		DIA_Common_IllBeBackLater();
-		AI_StopProcessInfos(self);
+		B_Nagur_RefuseToTalk();
 	}
 	else
 	{
@@ -395,7 +387,7 @@ instance DIA_Nagur_Auftraggeber(C_Info)
 
 func int DIA_Nagur_Auftraggeber_Condition()
 {
-	if(MIS_Nagur_Bote == LOG_SUCCESS)
+	if((MIS_Nagur_Bote == LOG_SUCCESS) && !Npc_KnowsInfo(other,DIA_Nagur_Sign))
 	{
 		return TRUE;
 	};
@@ -405,32 +397,6 @@ func void DIA_Nagur_Auftraggeber_Info()
 {
 	AI_Output(other,self,"DIA_Nagur_Auftraggeber_15_00");	//Кто твои хозяева?
 	AI_Output(self,other,"DIA_Nagur_Auftraggeber_08_01");	//Ты что, действительно думаешь, что я просто так возьму и скажу тебе?
-};
-
-
-instance DIA_Nagur_Fazit(C_Info)
-{
-	npc = VLK_493_Nagur;
-	nr = 7;
-	condition = DIA_Nagur_Fazit_Condition;
-	information = DIA_Nagur_Fazit_Info;
-	permanent = TRUE;
-	important = TRUE;
-};
-
-
-func int DIA_Nagur_Fazit_Condition()
-{
-	if(Npc_KnowsInfo(other,DIA_Nagur_Auftraggeber) && Npc_IsInState(self,ZS_Talk) && (Knows_SecretSign == FALSE) && (NagurHack == FALSE))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Nagur_Fazit_Info()
-{
-	AI_Output(self,other,"DIA_Nagur_Fazit_08_00");	//Дело прошло удачно, но я не говорю о своих хозяевах. Так что можешь расслабиться.
-	AI_StopProcessInfos(self);
 };
 
 
@@ -447,16 +413,22 @@ instance DIA_Nagur_Knast(C_Info)
 
 func int DIA_Nagur_Knast_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_NAGUR") <= 1000) && (Nagur_Ausgeliefert == TRUE))
+	if(Npc_IsInState(self,ZS_Talk) && (Nagur_Ausgeliefert == TRUE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_NAGUR") <= 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Nagur_Knast_Info()
 {
 	AI_Output(self,other,"DIA_Nagur_Knast_08_00");	//Ты предал меня! Это была большая ошибка - а теперь проваливай!
-	AI_StopProcessInfos(self);
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 65) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
+	{
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -473,7 +445,7 @@ instance DIA_Nagur_Sign(C_Info)
 
 func int DIA_Nagur_Sign_Condition()
 {
-	if((MIS_Nagur_Bote == LOG_SUCCESS) && (Knows_SecretSign == TRUE))
+	if((MIS_Nagur_Bote == LOG_SUCCESS) && (Knows_SecretSign == TRUE) && (Nagur_Ausgeliefert == FALSE))
 	{
 		return TRUE;
 	};
@@ -502,15 +474,29 @@ instance DIA_Nagur_Perm(C_Info)
 
 func int DIA_Nagur_Perm_Condition()
 {
-	if((MIS_Nagur_Bote == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Nagur_Sign) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_Nagur_Bote == LOG_SUCCESS) && (Nagur_Ausgeliefert == FALSE))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Nagur_Sign))
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Nagur_Auftraggeber))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Nagur_Perm_Info()
 {
-	AI_Output(self,other,"DIA_Nagur_Perm_08_00");	//Поищи кого-нибудь еще, здесь бродит много народа. А у меня больше ничего нет для тебя.
+	if(Npc_KnowsInfo(other,DIA_Nagur_Sign))
+	{
+		AI_Output(self,other,"DIA_Nagur_Perm_08_00");	//Поищи кого-нибудь еще, здесь бродит много народа. А у меня больше ничего нет для тебя.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Nagur_Fazit_08_00");	//Дело прошло удачно, но я не говорю о своих хозяевах. Так что можешь расслабиться.
+	};
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 65) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
 	{
 		AI_StopProcessInfos(self);

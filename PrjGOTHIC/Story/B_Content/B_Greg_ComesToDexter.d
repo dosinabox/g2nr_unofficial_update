@@ -5,24 +5,21 @@ func void B_Greg_ComesToDexter()
 {
 	if(Greg_Rejected == FALSE)
 	{
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Dexter))
+		if(!ArmorEquipped(Greg_NW,ITAR_PIR_H_Addon))
 		{
-			if(!ArmorEquipped(Greg_NW,ITAR_PIR_H_Addon))
-			{
-				AI_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
-			};
-			if(B_Greg_ComesToDexter_OneTime == FALSE)
-			{
-				Dexter.aivar[AIV_EnemyOverride] = FALSE;
-				BanditGuard.aivar[AIV_EnemyOverride] = FALSE;
-				Npc_SendPassivePerc(Dexter,PERC_ASSESSFIGHTSOUND,Dexter,hero);
-				GregLocation = Greg_Dexter;
-				B_StartOtherRoutine(Greg_NW,"Dexter");
-				B_StartOtherRoutine(BanditGuard,"Attack");
-				B_StartOtherRoutine(BDT_1067_Bandit_L,"Attack");
-				B_StartOtherRoutine(BDT_1068_Bandit_L,"Attack");
-				B_Greg_ComesToDexter_OneTime = TRUE;
-			};
+			AI_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
+		};
+		if(B_Greg_ComesToDexter_OneTime == FALSE)
+		{
+			self.aivar[AIV_EnemyOverride] = FALSE;
+			BanditGuard.aivar[AIV_EnemyOverride] = FALSE;
+			Npc_SendPassivePerc(self,PERC_ASSESSFIGHTSOUND,self,hero);
+			GregLocation = Greg_Dexter;
+			B_StartOtherRoutine(Greg_NW,"Dexter");
+			B_StartOtherRoutine(BanditGuard,"Attack");
+			B_StartOtherRoutine(BDT_1067_Bandit_L,"Attack");
+			B_StartOtherRoutine(BDT_1068_Bandit_L,"Attack");
+			B_Greg_ComesToDexter_OneTime = TRUE;
 		};
 	};
 };

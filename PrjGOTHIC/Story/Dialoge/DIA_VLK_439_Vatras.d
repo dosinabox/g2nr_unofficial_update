@@ -541,7 +541,7 @@ func void B_Vatras_First_Truth()
 		AI_Output(self,other,"DIA_Vatras_INFLUENCE_FIRST_TRUTH_05_02");	//(задумчиво) Драконы? Ты говоришь о существах, которые до последнего времени упоминались только в легендах. Откуда ты знаешь это?
 	};
 	Vatras_First = TRUE;
-	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && Wld_IsTime(5,5,20,10))
+	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && Wld_IsTime(6,0,20,10))
 	{
 		Player_TalkedAboutDragonsToSomeone = TRUE;
 	};
@@ -944,10 +944,10 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 	CreateInvItems(self,ItWr_Vatras2Saturas_FindRaven,1);
 	B_GiveInvItems(self,other,ItWr_Vatras2Saturas_FindRaven,1);
 	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_06");	//Да пребудет с тобой Аданос.
-	B_LogEntry(TOPIC_Addon_KDW,"Ватрас дал мне письмо для Сатураса. Я должен присоединиться к магам Воды и пройти через портал в неизвестную часть Хориниса, чтобы найти бывшего рудного барона Ворона.");
 	Log_CreateTopic(TOPIC_Addon_Sklaven,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Sklaven,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Sklaven,"Я должен узнать, с какой целью Ворон похищает жителей Хориниса.");
+	B_LogEntries(TOPIC_Addon_Sklaven,"Я должен узнать, с какой целью Ворон похищает жителей Хориниса.");
+	B_LogNextEntry(TOPIC_Addon_KDW,"Ватрас дал мне письмо для Сатураса. Я должен присоединиться к магам Воды и пройти через портал в неизвестную часть Хориниса, чтобы найти бывшего рудного барона Ворона.");
 	RangerMeetingRunning = LOG_SUCCESS;
 	B_SchlussMitRangerMeeting();
 	B_GivePlayerXP(XP_AmbientKap3);
@@ -1133,7 +1133,7 @@ func void DIA_Addon_Vatras_MissingPeople_Success()
 		Vatras_MissingPeopleReports += 1;
 		MISSINGPEOPLEINFO[6] = TRUE;
 	};
-	if((Npc_HasItems(other,ItWr_LuciasLoveLetter_Addon) || (MIS_LuciasLetter == LOG_SUCCESS)) && (MISSINGPEOPLEINFO[7] == FALSE))
+	if(((MIS_LuciasLetter == LOG_Running) || (MIS_LuciasLetter == LOG_SUCCESS)) && (MISSINGPEOPLEINFO[7] == FALSE))
 	{
 		Vatras_MissingPeopleReports += 1;
 		MISSINGPEOPLEINFO[7] = TRUE;
@@ -1293,10 +1293,10 @@ func void DIA_Addon_Vatras_WISP_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_05");	//Он будет помогать тебе искать предметы, которые без него ты мог бы и не найти.
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_06");	//Чтобы вызвать огонька, просто надень амулет.
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_07");	//Если огонек потеряет свою силу или потеряется, сними амулет и надень его снова, и огонек вернется.
-	B_LogEntry(TOPIC_Addon_Bandittrader,"Ватрас дал мне амулет ищущего блуждающего огонька, который поможет мне в поисках торговца оружием.");
+	B_LogEntries(TOPIC_Addon_Bandittrader,"Ватрас дал мне амулет ищущего блуждающего огонька, который поможет мне в поисках торговца оружием.");
 	Log_CreateTopic(TOPIC_WispDetector,LOG_NOTE);
-	B_LogEntry(TOPIC_WispDetector,LogText_Addon_WispLearned);
-	B_LogEntry(TOPIC_WispDetector,LogText_Addon_WispLearned_NF);
+	B_LogNextEntry(TOPIC_WispDetector,LogText_Addon_WispLearned);
+	Log_AddEntry(TOPIC_WispDetector,LogText_Addon_WispLearned_NF);
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_08");	//Ищущий огонек поможет тебе искать оружие.
 	if((MIS_Vatras_FindTheBanditTrader == LOG_Running) || (MIS_Vatras_FindTheBanditTrader == LOG_FAILED))
 	{
@@ -1686,7 +1686,7 @@ instance DIA_Vatras_WoKdF(C_Info)
 func int DIA_Vatras_WoKdF_Condition()
 {
 //	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Segen > 0) && (Vatras_SentToDaron == FALSE) && !Npc_KnowsInfo(other,DIA_Daron_Hallo) && (Vatras_MORE == TRUE))
-	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Blessing == TRUE) && (Vatras_SentToDaron == FALSE) && (GotInnosBlessingForThorben == FALSE))
+	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Blessing == TRUE) && (Vatras_SentToDaron == FALSE) && !C_GotAnyInnosBlessing() && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -1839,8 +1839,8 @@ func void B_BuildLearnDialog_Vatras()
 	{
 		Info_ClearChoices(DIA_Vatras_Teach);
 		Info_AddChoice(DIA_Vatras_Teach,Dialog_Back,DIA_Vatras_Teach_BACK);
-		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Vatras_Teach_1);
-		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Vatras_Teach_5);
+		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),DIA_Vatras_Teach_1);
+		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),DIA_Vatras_Teach_5);
 	};
 };
 
@@ -2119,7 +2119,7 @@ func void DIA_Vatras_MESSAGE_SUCCESS_Info()
 
 func void DIA_Vatras_MESSAGE_SUCCESS_Plant()
 {
-	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Plant_Add");	//Я возьму царский щавель.
+	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Plant_add");	//Я возьму царский щавель.
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(self,other,ItPl_Perm_Herb,1);
 	Info_ClearChoices(DIA_Vatras_MESSAGE_SUCCESS);
@@ -2135,7 +2135,7 @@ func void DIA_Vatras_MESSAGE_SUCCESS_Ring()
 
 func void DIA_Vatras_MESSAGE_SUCCESS_Ore()
 {
-	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Ore_Add");	//Я возьму руду.
+	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Ore_add");	//Я возьму кусок руды.
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(self,other,ItMi_Nugget,1);
 	Info_ClearChoices(DIA_Vatras_MESSAGE_SUCCESS);

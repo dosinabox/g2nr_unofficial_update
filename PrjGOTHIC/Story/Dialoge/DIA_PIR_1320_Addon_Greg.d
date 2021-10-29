@@ -55,36 +55,6 @@ func void DIA_Addon_Greg_PICKPOCKET_BACK()
 	Info_ClearChoices(DIA_Addon_Greg_PICKPOCKET);
 };
 
-
-func int C_NorthBeachMonstersDead()
-{
-	if(!Npc_IsDead(BeachLurker1))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(BeachLurker2))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(BeachLurker3))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(BeachWaran1))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(BeachWaran2))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(BeachShadowbeast1))
-	{
-		return FALSE;
-	};
-	return TRUE;
-};
-
 instance DIA_Addon_Greg_ImNew(C_Info)
 {
 	npc = PIR_1320_Addon_Greg;
@@ -507,9 +477,12 @@ func void DIA_Addon_Greg_Sauber2_Info()
 		CreateInvItems(self,ItMi_Gold,50);
 		B_GiveInvItems(self,other,ItMi_Gold,50);
 	};
-	B_LogEntry(TOPIC_Addon_MorganBeach,"Я доложил Грегу, что пляж на севере очищен от монстров.");
-	MIS_Addon_MorganLurker = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Addon_Morgan_LurkerPlatt);
+	if(MIS_Addon_MorganLurker != LOG_SUCCESS)
+	{
+		B_LogEntry(TOPIC_Addon_MorganBeach,"Я доложил Грегу, что пляж на севере очищен от монстров.");
+		MIS_Addon_MorganLurker = LOG_SUCCESS;
+		B_GivePlayerXP(XP_Addon_Morgan_LurkerPlatt);
+	};
 };
 
 
@@ -539,16 +512,19 @@ func void DIA_Addon_Greg_BanditPlatt2_Info()
 	{
 		CreateInvItems(self,ItMi_Gold,200);
 		B_GiveInvItems(self,other,ItMi_Gold,200);
-		B_LogEntry(TOPIC_Addon_BanditsTower,"Бандиты из башни мертвы. Грег очень доволен.");
 	}
 	else
 	{
 		CreateInvItems(self,ItMi_Gold,50);
 		B_GiveInvItems(self,other,ItMi_Gold,50);
-		B_LogEntry(TOPIC_Addon_BanditsTower,"Бандиты из башни мертвы.");
 	};
-	MIS_Henry_FreeBDTTower = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Addon_Henry_FreeBDTTower);
+	B_ResetHenryPirates();
+	if(MIS_Henry_FreeBDTTower != LOG_SUCCESS)
+	{
+		B_LogEntry(TOPIC_Addon_BanditsTower,"Бандиты из башни мертвы. Грег очень доволен.");
+		MIS_Henry_FreeBDTTower = LOG_SUCCESS;
+		B_GivePlayerXP(XP_Addon_Henry_FreeBDTTower);
+	};
 };
 
 
@@ -755,18 +731,15 @@ instance DIA_Addon_Greg_ItemsInADW(C_Info)
 
 func int DIA_Addon_Greg_ItemsInADW_Condition()
 {
-	if((RAKEPLACE[1] == TRUE) && (RAKEPLACE[2] == TRUE) && (RAKEPLACE[3] == TRUE) && (RAKEPLACE[4] == TRUE) && (RAKEPLACE[5] == TRUE) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (Greg_SuchWeiter == TRUE))
+	if((RAKEPLACE[1] == TRUE) && (RAKEPLACE[2] == TRUE) && (RAKEPLACE[3] == TRUE) && (RAKEPLACE[4] == TRUE) && (RAKEPLACE[5] == TRUE) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (Greg_SuchWeiter == TRUE) && C_SCHasGregsItems())
 	{
-		if((Npc_HasItems(other,ItSe_GoldPocket100) || (Npc_HasItems(other,ItMi_Gold) >= 100)) && Npc_HasItems(other,ItMi_GoldChalice) && Npc_HasItems(other,ItMi_GregsSilverPlate) && Npc_HasItems(other,ItAm_Addon_Greg))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
 func void DIA_Addon_Greg_ItemsInADW_Info()
 {
-	B_GiveGregItems();
+	B_GiveGregsItems();
 	B_GivePlayerXP(XP_Addon_Greg_RakeCave / 3);
 };
 

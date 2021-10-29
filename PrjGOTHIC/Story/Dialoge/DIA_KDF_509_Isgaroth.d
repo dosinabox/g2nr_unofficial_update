@@ -1,4 +1,9 @@
 
+func void B_Isgaroth_BlessYou()
+{
+	AI_Output(self,other,"DIA_Isgaroth_EXIT_01_00");	//Пусть Иннос всегда освещает твой путь.
+};
+
 instance DIA_Isgaroth_EXIT(C_Info)
 {
 	npc = KDF_509_Isgaroth;
@@ -17,7 +22,8 @@ func int DIA_Isgaroth_EXIT_Condition()
 
 func void DIA_Isgaroth_EXIT_Info()
 {
-	AI_Output(self,other,"DIA_Isgaroth_EXIT_01_00");	//Пусть Иннос всегда освещает твой путь.
+	B_Isgaroth_BlessYou();
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -35,7 +41,7 @@ instance DIA_Isgaroth_Hello(C_Info)
 
 func int DIA_Isgaroth_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (other.guild != GIL_KDF) && (other.guild != GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -70,11 +76,11 @@ func void DIA_Isgaroth_Segen_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_Segen_15_00");	//Благослови меня!
 	AI_Output(self,other,"DIA_Isgaroth_Segen_01_01");	//Благословляю тебя во имя Инноса. Пусть огонь Всевышнего горит в твоем сердце и дает тебе силы жить согласно его заветам.
-	if((MIS_Thorben_GetBlessings == LOG_Running) && (GotInnosBlessingForThorben == FALSE))
+	if((MIS_Thorben_GetBlessings == LOG_Running) && !C_GotAnyInnosBlessing())
 	{
 		B_LogEntry(TOPIC_Thorben,"Маг Огня Исгарот благословил меня.");
 	};
-	GotInnosBlessingForThorben = TRUE;
+	Isgaroth_Blessing = TRUE;
 };
 
 
@@ -91,7 +97,6 @@ instance DIA_Isgaroth_Wolf(C_Info)
 
 func int DIA_Isgaroth_Wolf_Condition()
 {
-//	if((MIS_KlosterArbeit == LOG_Running) && (Sergio_Sends == TRUE) && (Kapitel == 1))
 	if((MIS_IsgarothWolf == LOG_Running) && (Sergio_Sends == TRUE) && (Kapitel == 1))
 	{
 		return TRUE;
@@ -102,7 +107,6 @@ func void DIA_Isgaroth_Wolf_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_Wolf_15_00");	//Меня послал Сержио. Он поручил мне свои обязанности. Что нужно сделать?
 	AI_Output(self,other,"DIA_Isgaroth_Wolf_01_01");	//Здесь недавно появился черный волк. Найди его и убей.
-//	MIS_IsgarothWolf = LOG_Running;
 	B_LogEntry(Topic_IsgarothWolf,"Около алтаря бродит черный волк. Я должен найти его и убить.");
 };
 
@@ -113,7 +117,6 @@ instance DIA_Isgaroth_tot(C_Info)
 	nr = 2;
 	condition = DIA_Isgaroth_tot_Condition;
 	information = DIA_Isgaroth_tot_Info;
-//	permanent = TRUE;
 	permanent = FALSE;
 	description = "Я убил волка.";
 };
@@ -132,7 +135,7 @@ func void DIA_Isgaroth_tot_Info()
 	AI_Output(other,self,"DIA_Isgaroth_tot_15_00");	//Я убил волка.
 	if(other.guild == GIL_KDF)
 	{
-		AI_Output(self,other,"DIA_Isgaroth_EXIT_01_00");	//Пусть Иннос всегда освещает твой путь.
+		B_Isgaroth_BlessYou();
 	}
 	else
 	{
@@ -140,6 +143,7 @@ func void DIA_Isgaroth_tot_Info()
 	};
 	MIS_IsgarothWolf = LOG_SUCCESS;
 	B_GivePlayerXP(XP_IsgarothWolf);
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -163,7 +167,7 @@ func int DIA_Isgaroth_Job_Condition()
 func void DIA_Isgaroth_Job_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_Job_15_00");	//Что ты делаешь здесь?
-	if((hero.guild != GIL_KDF) && (hero.guild != GIL_NOV))
+	if((other.guild != GIL_KDF) && (other.guild != GIL_NOV))
 	{
 		AI_Output(self,other,"DIA_Isgaroth_Job_01_01");	//Я маг Огня. Жрец нашего бога Инноса.
 		AI_Output(self,other,"DIA_Isgaroth_Job_01_02");	//Этот алтарь посвящен ЕМУ, высшему богу, создателю огня и верховному судье.
@@ -199,6 +203,7 @@ func void DIA_Isgaroth_Trade_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_Trade_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 };
 
 
@@ -231,10 +236,10 @@ func void DIA_Isgaroth_Kloster_Info()
 		B_Say_Gold(self,other,Summe_Kloster);
 		if(SC_KnowsKlosterTribut == FALSE)
 		{
-			SC_KnowsKlosterTribut = TRUE;
 			Log_CreateTopic(Topic_Kloster,LOG_MISSION);
 			Log_SetTopicStatus(Topic_Kloster,LOG_Running);
 			B_LogEntry(Topic_Kloster,"Чтобы стать послушником монастыря Инноса, мне нужна овца и 1000 золотых монет.");
+			SC_KnowsKlosterTribut = TRUE;
 		};
 	}
 	else
@@ -286,6 +291,7 @@ func void DIA_Isgaroth_Vatras_Info()
 		B_UseFakeScroll();
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_05");	//Печать сломана. О чем ты думал, идиот!
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_06");	//Иди и скажи Ватрасу, что я получил его сообщение.
+		B_EquipTrader(self);
 		AI_StopProcessInfos(self);
 	};
 	Vatras_Return = TRUE;

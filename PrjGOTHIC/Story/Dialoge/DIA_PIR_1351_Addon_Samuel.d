@@ -445,15 +445,15 @@ func void DIA_Addon_Samuel_Trade_Info()
 		Samuel_flag = FALSE;
 	};
 	AI_Output(other,self,"DIA_Addon_Samuel_Trade_15_00");	//Что у тебя еще есть?
+	AI_Output(self,other,"DIA_Addon_Samuel_Trade_14_01");	//Я могу продать тебе все, что нужно пирату для жизни.
 	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 	Npc_RemoveInvItems(self,ItFo_Addon_Grog,Npc_HasItems(self,ItFo_Addon_Grog));
 	CreateInvItems(self,ItFo_Addon_Grog,15);
 	if((Player_KnowsSchnellerHering == TRUE) && !Npc_HasItems(self,ITWr_Addon_Piratentod))
 	{
 		CreateInvItem(self,ITWr_Addon_Piratentod);
 	};
-	AI_Output(self,other,"DIA_Addon_Samuel_Trade_14_01");	//Я могу продать тебе все, что нужно пирату для жизни.
-	Trade_IsActive = TRUE;
 };
 
 

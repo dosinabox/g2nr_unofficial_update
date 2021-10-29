@@ -29,6 +29,8 @@ func void DIA_Xardas_FirstEXIT_Info()
 };
 
 
+var int Xardas_GoodLevelComment;
+
 instance DIA_Xardas_EXIT(C_Info)
 {
 	npc = NONE_100_Xardas;
@@ -50,10 +52,12 @@ func int DIA_Xardas_EXIT_Condition()
 
 func void DIA_Xardas_EXIT_Info()
 {
-	if(Npc_HasItems(hero,ItMw_BeliarWeapon_Fake))
+	if((other.guild == GIL_NONE) && (other.level > 10) && (Xardas_GoodLevelComment == FALSE))
 	{
-		Npc_RemoveInvItem(hero,ItMw_BeliarWeapon_Fake);
+		AI_Output(self,other,"DIA_Xardas_Hello_14_02_add");	//Ты скоро восстановишь свои силы.
+		Xardas_GoodLevelComment = TRUE;
 	};
+	B_ClearFakeItems(other);
 	AI_StopProcessInfos(self);
 };
 
@@ -90,7 +94,7 @@ func void DIA_Xardas_Hello_Info()
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_04");	//Но хватит об этом. Сейчас-то ты здесь.
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_05");	//И над нами нависла новая угроза.
 	Info_ClearChoices(DIA_Xardas_Hello);
-	Info_AddChoice(DIA_Xardas_Hello,"Ну, по крайней мере, у нас сейчас достаточно времени. Я сделал это. Спящий...",DIA_Addon_Xardas_Hello_Dragons);
+	Info_AddChoice(DIA_Xardas_Hello,"Ну, по крайней мере, у нас сейчас достаточно времени. Я сделал это. Спящий уничтожен.",DIA_Addon_Xardas_Hello_Dragons);
 	Info_AddChoice(DIA_Xardas_Hello,"Что это за НОВАЯ угроза, о которой ты говоришь?",DIA_Addon_Xardas_Hello_Man);
 };
 
@@ -187,7 +191,7 @@ func void DIA_Xardas_TODO_Info()
 	AI_Output(self,other,"DIA_Xardas_TODO_14_02");	//В городе Хоринис, что неподалеку отсюда, остановился отряд паладинов.
 	AI_Output(self,other,"DIA_Xardas_TODO_14_03");	//Они обладают сильным артефактом, который может помочь нам победить этих драконов.
 	AI_Output(self,other,"DIA_Xardas_TODO_14_04");	//Они называют его 'Глаз Инноса'. Ты должен завладеть этим артефактом.
-	AI_Output(self,other,"DIA_Xardas_TODO_14_05");	//Расскажи паладинам о надвигающейся угрозе. Ты ДОЛЖЕН убедить их предводителя поддержать нас!
+	AI_Output(self,other,"DIA_Xardas_TODO_14_05");	//Расскажи паладинам о надвигающейся угрозе. Ты должен убедить их предводителя поддержать нас!
 	AI_Output(self,other,"DIA_Addon_Xardas_Add_14_07");	//А после этого ты должен найти артефакт Белиара.
 	AI_Output(self,other,"DIA_Addon_Xardas_Add_14_08");	//Это противоположность Глаза Инноса. Он не должен попасть в руки Зла.
 	Log_CreateTopic(TOPIC_INNOSEYE,LOG_MISSION);
@@ -530,7 +534,7 @@ instance DIA_Xardas_EQUIPMENT(C_Info)
 
 func int DIA_Xardas_EQUIPMENT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_WEAPON) && Npc_KnowsInfo(other,DIA_Xardas_FirstEXIT) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Xardas_FirstEXIT) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -886,6 +890,10 @@ func void B_XardasGivesProofForPyrokar()
 	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_02");	//Ах, неужели! Пирокар. Как интересно.
 	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_03");	//Этот старый чудак становится совершенно невыносимым. Но я думаю, у меня есть кое-что, что поможет тебе.
 	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_04");	//Когда я покидал орден магов Огня, я взял с собой из монастыря несколько вещей.
+	/*if(Npc_GetDistToWP(self,"NW_XARDAS_START") <= 2000)
+	{
+		AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_05");	//Now that I've built my tower so close to town, I have to be prepared. Someone could come here and look for them at anytime.
+	};*/
 	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_06");	//Я не хотел, чтобы паладины или маги Огня перевернули все в моей башне вверх дном, и нашли эти вещи.
 	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_07");	//Поэтому я спрятал их в надежном месте, где магам никогда не придет в голову искать их.
 	AI_Output(other,self,"DIA_Xardas_PYROWILLNICHT_15_08");	//И где же?

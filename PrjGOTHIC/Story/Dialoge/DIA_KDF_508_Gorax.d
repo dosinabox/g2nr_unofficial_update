@@ -142,8 +142,8 @@ func int DIA_Addon_Gorax_DaronsStatue_Condition()
 	if((other.guild == GIL_NOV) && (DIA_Gorax_GOLD_perm == FALSE) && (Pedro_NOV_Aufnahme_LostInnosStatue_Daron == TRUE))
 	{
 		return TRUE;
-	}
-	else if((MIS_OLDWORLD == LOG_SUCCESS) && (MIS_Addon_Daron_GetStatue == LOG_Running) && (LostInnosStatueInMonastery == FALSE))
+	};
+	if((MIS_OLDWORLD == LOG_SUCCESS) && (MIS_Addon_Daron_GetStatue == LOG_Running) && (LostInnosStatueInMonastery == FALSE))
 	{
 		return TRUE;
 	};
@@ -163,12 +163,12 @@ func void DIA_Addon_Gorax_DaronsStatue_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Addon_Gorax_DaronsStatue_14_02");	//Это еще раз доказывает твою устремленность в служении Инносу.
+			B_Say(self,other,"$ABS_GOOD");
 		};
 		Npc_RemoveInvItem(self,ItMi_LostInnosStatue_Daron);
+		LostInnosStatueInMonastery = TRUE;
 		MIS_Addon_Daron_GetStatue = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Addon_ReturnedLostInnosStatue_Daron);
-		LostInnosStatueInMonastery = TRUE;
 	}
 	else
 	{

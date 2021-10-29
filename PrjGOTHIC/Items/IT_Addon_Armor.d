@@ -221,7 +221,7 @@ instance ITAR_RANGER_Addon(C_Item)
 
 instance ITAR_Fake_RANGER(C_Item)
 {
-	name = "Разбитые доспехи";
+	name = "Старые доспехи 'Кольца Воды'";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 50;

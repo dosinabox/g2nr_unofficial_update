@@ -17,7 +17,7 @@ func int C_DiegoTooFar(var int tolerance)
 {
 	if(CurrentLevel != OLDWORLD_ZEN)
 	{
-		return FALSE;
+		return LOC_NONE;
 	}
 	else if(Npc_GetDistToWP(hero,"SPAWN_OW_SHADOWBEAST_10_01") < (4000 + tolerance))
 	{
@@ -39,7 +39,7 @@ func int C_DiegoTooFar(var int tolerance)
 	{
 		return LOC_LAKE;
 	}
-	else if((Npc_GetDistToWP(hero,"DT_MAINGATE") < (500 + tolerance)) || (Wld_GetPlayerPortalGuild() == GIL_DMT) || ((Npc_GetDistToWP(hero,"DT_E3_03") < 1000) && (Npc_GetHeightToNpc(self,hero) > 1000)))
+	else if((Npc_GetDistToWP(hero,"DT_MAINGATE") < (500 + tolerance)) || (Wld_GetPlayerPortalGuild() == GIL_DMT) || ((Npc_GetDistToWP(hero,"DT_E3_03") < 1000) && (Npc_GetHeightToNpc(self,hero) > PERC_DIST_HEIGHT)))
 	{
 		return LOC_XARDAS;
 	}
@@ -71,6 +71,6 @@ func int C_DiegoTooFar(var int tolerance)
 	{
 		return LOC_ROCK;
 	};
-	return FALSE;
+	return LOC_NONE;
 };
 

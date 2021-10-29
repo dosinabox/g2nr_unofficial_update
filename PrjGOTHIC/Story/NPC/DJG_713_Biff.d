@@ -7,7 +7,6 @@ instance DJG_713_Biff(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
-//	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
@@ -40,8 +39,8 @@ func void Rtn_Start_713()
 
 func void Rtn_Follow_713()
 {
-	TA_Follow_Player(8,0,23,0,"OW_PATH_298");
-	TA_Follow_Player(23,0,8,0,"OW_PATH_298");
+	TA_Follow_Player(8,0,23,0,"OW_DJG_STARTCAMP_01");
+	TA_Follow_Player(23,0,8,0,"OW_DJG_STARTCAMP_01");
 };
 
 func void Rtn_Stay_Swamp_713()
@@ -58,10 +57,8 @@ func void Rtn_Stay_Rock_713()
 
 func void Rtn_Stay_Fire_713()
 {
-//	TA_Stand_Guarding(8,0,23,0,"CASTLE_29");
-//	TA_Stand_Guarding(23,0,8,0,"CASTLE_29");
-	TA_Stand_Guarding(8,0,23,0,"CASTLE_28");
-	TA_Stand_Guarding(23,0,8,0,"CASTLE_28");
+	TA_Stand_Guarding(8,0,23,0,"CASTLE_14");
+	TA_Stand_Guarding(23,0,8,0,"CASTLE_14");
 };
 
 func void Rtn_Stay_Ice_713()

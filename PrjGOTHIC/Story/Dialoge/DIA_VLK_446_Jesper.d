@@ -193,7 +193,7 @@ func void DIA_Jesper_Bezahlen_Info()
 	//		B_Say_Gold(self,other,Jesper_Cost);
 			Info_ClearChoices(DIA_Jesper_Bezahlen);
 			Info_AddChoice(DIA_Jesper_Bezahlen,"Может быть, позже...",DIA_Jesper_Bezahlen_Spaeter);
-			Info_AddChoice(DIA_Jesper_Bezahlen,"Хорошо, я хочу научиться красться. (заплатить 100 золотых)",DIA_Jesper_Bezahlen_Okay);
+			Info_AddChoice(DIA_Jesper_Bezahlen,B_BuildPriceString("Хорошо, я хочу научиться красться.",100),DIA_Jesper_Bezahlen_Okay);
 		};
 	}
 	else
@@ -217,13 +217,12 @@ func void DIA_Jesper_Bezahlen_Okay()
 		AI_Output(other,self,"DIA_Jesper_Bezahlen_Okay_15_01");	//Вот золото.
 		AI_Output(self,other,"DIA_Jesper_Bezahlen_Okay_09_02");	//Скажешь, когда будешь готов.
 		Jesper_TeachSneak = TRUE;
-		Info_ClearChoices(DIA_Jesper_Bezahlen);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Jesper_Bezahlen_Okay_09_03");	//Без золота ты не сможешь ничему научиться.
-		Info_ClearChoices(DIA_Jesper_Bezahlen);
 	};
+	Info_ClearChoices(DIA_Jesper_Bezahlen);
 };
 
 

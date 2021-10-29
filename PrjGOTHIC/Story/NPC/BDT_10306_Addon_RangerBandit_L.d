@@ -1,5 +1,5 @@
 
-instance BDT_10306_Addon_RangerBandit_L(Npc_Default)
+/*instance BDT_10306_Addon_RangerBandit_L(Npc_Default)
 {
 	name[0] = NAME_Bandit;
 	guild = GIL_BDT;
@@ -17,5 +17,5 @@ instance BDT_10306_Addon_RangerBandit_L(Npc_Default)
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,30);
 	start_aistate = ZS_Bandit;
-};
+};*/
 

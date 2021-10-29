@@ -21,6 +21,32 @@ func void DIA_Angar_NW_KAP5_EXIT_Info()
 };
 
 
+instance DIA_Angar_NW_HALLO(C_Info)
+{
+	npc = DJG_705_Angar_NW;
+	nr = 1;
+	condition = DIA_Angar_NW_HALLO_Condition;
+	information = DIA_Angar_NW_HALLO_Info;
+	description = "Я знаю тебя. Ты Кор Ангар. Ты был храмовником в болотном лагере.";
+};
+
+
+func int DIA_Angar_NW_HALLO_Condition()
+{
+	if(!Npc_KnowsInfo(other,DIA_AngarDJG_HALLO))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Angar_NW_HALLO_Info()
+{
+	B_Angar_HALLO();
+	B_AngarTellsAboutAmulett();
+	DIA_Angar_WIEKOMMSTDUHIERHER_andere();
+};
+
+
 instance DIA_Angar_NW_AllDragonsDead(C_Info)
 {
 	npc = DJG_705_Angar_NW;
@@ -33,13 +59,17 @@ instance DIA_Angar_NW_AllDragonsDead(C_Info)
 
 func int DIA_Angar_NW_AllDragonsDead_Condition()
 {
-	return TRUE;
+	if(Npc_KnowsInfo(other,DIA_AngarDJG_HALLO) || Npc_KnowsInfo(other,DIA_Angar_NW_HALLO))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Angar_NW_AllDragonsDead_Info()
 {
 	AI_Output(other,self,"DIA_Angar_NW_AllDragonsDead_15_00");	//Как дела?
 	AI_Output(self,other,"DIA_Angar_NW_AllDragonsDead_04_01");	//Хорошо, но меня все равно мучают головные боли, хотя они уменьшились с тех пор, как я покинул Долину Рудников.
+	B_AngarTellsAboutAmulett();
 	if(Angar_IsOnBoard != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Angar_NW_AllDragonsDead_04_02");	//Я останусь здесь. Ты будешь знать, где найти меня, если я тебе понадоблюсь.
@@ -211,6 +241,30 @@ func void DIA_Angar_NW_PICKPOCKET_BACK()
 };
 
 
+instance DIA_Angar_NW_WHEREAMULETT(C_Info)
+{
+	npc = DJG_705_Angar_NW;
+	nr = 7;
+	condition = DIA_Angar_NW_WHEREAMULETT_Condition;
+	information = DIA_Angar_NW_WHEREAMULETT_Info;
+	description = "А где именно ты потерял свой амулет?";
+};
+
+
+func int DIA_Angar_NW_WHEREAMULETT_Condition()
+{
+	if(!Npc_HasItems(other,ItAm_Mana_Angar_MIS) && (SC_KnowsAngarsAmulett == TRUE) && (DJG_AngarGotAmulett == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Angar_NW_WHEREAMULETT_Info()
+{
+	DIA_Angar_WIEKOMMSTDUHIERHER_amulett();
+};
+
+
 instance DIA_Angar_NW_FOUNDAMULETT(C_Info)
 {
 	npc = DJG_705_Angar_NW;
@@ -223,7 +277,7 @@ instance DIA_Angar_NW_FOUNDAMULETT(C_Info)
 
 func int DIA_Angar_NW_FOUNDAMULETT_Condition()
 {
-	if(Npc_HasItems(other,ItAm_Mana_Angar_MIS) && Npc_KnowsInfo(other,DIA_Angar_WIEKOMMSTDUHIERHER) && (DJG_AngarGotAmulett == FALSE))
+	if(Npc_HasItems(other,ItAm_Mana_Angar_MIS) && (SC_KnowsAngarsAmulett == TRUE) && (DJG_AngarGotAmulett == FALSE))
 	{
 		return TRUE;
 	};
@@ -232,6 +286,7 @@ func int DIA_Angar_NW_FOUNDAMULETT_Condition()
 func void DIA_Angar_NW_FOUNDAMULETT_Info()
 {
 	B_AngarsAmulettAbgeben();
+	DIA_Angar_FOUNDAMULETT_besonders();
 };
 
 
@@ -249,7 +304,10 @@ func int DIA_Angar_SCTellsAngarAboutMadPsi2_NW_Condition()
 {
 	if((SC_KnowsMadPsi == TRUE) && (Angar_KnowsMadPsi == FALSE))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_AngarDJG_HALLO) || Npc_KnowsInfo(other,DIA_Angar_NW_HALLO))
+		{
+			return TRUE;
+		};
 	};
 };
 

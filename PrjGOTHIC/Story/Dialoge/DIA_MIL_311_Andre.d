@@ -157,8 +157,53 @@ func void DIA_Andre_Informed_Info()
 };
 
 
-var int Andre_LastPetzCounter;
-var int Andre_LastPetzCrime;
+func void DIA_Andre_PayForCrimesNow()
+{
+	AI_Output(other,self,"DIA_Andre_PETZMASTER_PayNow_15_00");	//Я хочу заплатить штраф!
+	B_GiveInvItems(other,self,ItMi_Gold,Andre_Schulden);
+	AI_Output(self,other,"DIA_Andre_PETZMASTER_PayNow_08_01");	//Хорошо! Я позабочусь, чтобы все в городе узнали об этом - это хоть как-то восстановит твою репутацию.
+	B_GrantPersonalAbsolution(self);
+};
+
+func void DIA_Andre_PayForCrimesLater()
+{
+	AI_Output(other,self,"DIA_Andre_PETZMASTER_PayLater_15_00");	//У меня недостаточно золота.
+	AI_Output(self,other,"DIA_Andre_PETZMASTER_PayLater_08_01");	//Тогда постарайся собрать необходимую сумму как можно быстрее.
+	AI_Output(self,other,"DIA_Andre_PETZMASTER_PayLater_08_02");	//Но должен предупредить тебя: если ты при этом усугубишь свою вину, то твой штраф только возрастет.
+	Andre_LastPetzCounter = B_GetTotalPetzCounter(self);
+	Andre_LastPetzCrime = B_GetGreatestPetzCrime(self);
+	AI_StopProcessInfos(self);
+};
+
+func void DIA_Andre_BuildCrimesDialog()
+{
+	Info_ClearChoices(DIA_Andre_PMSchulden);
+	Info_AddChoice(DIA_Andre_PMSchulden,"У меня недостаточно золота.",DIA_Andre_PMSchulden_PayForCrimesLater);
+	Info_AddChoice(DIA_Andre_PMSchulden,"Сколько там еще?",DIA_Andre_PMSchulden_HowMuchAgain);
+	if(Npc_HasItems(other,ItMi_Gold) >= Andre_Schulden)
+	{
+		Info_AddChoice(DIA_Andre_PMSchulden,"Я хочу заплатить штраф!",DIA_Andre_PMSchulden_PayForCrimesNow);
+	};
+};
+
+func void DIA_Andre_PMSchulden_PayForCrimesNow()
+{
+	DIA_Andre_PayForCrimesNow();
+	Info_ClearChoices(DIA_Andre_PMSchulden);
+};
+
+func void DIA_Andre_PMSchulden_PayForCrimesLater()
+{
+	DIA_Andre_PayForCrimesLater();
+	Info_ClearChoices(DIA_Andre_PMSchulden);
+};
+
+func void DIA_Andre_PMSchulden_HowMuchAgain()
+{
+	AI_Output(other,self,"DIA_Andre_PMSchulden_HowMuchAgain_15_00");	//Сколько там еще?
+	B_Say_Gold(self,other,Andre_Schulden);
+	DIA_Andre_BuildCrimesDialog();
+};
 
 instance DIA_Andre_PMSchulden(C_Info)
 {
@@ -183,7 +228,10 @@ func void DIA_Andre_PMSchulden_Info()
 {
 	var int diff;
 	B_PlayerEnteredCity();
-	AI_Output(self,other,"DIA_Andre_PMSchulden_08_00");	//Ты пришел заплатить штраф?
+	if(B_GetGreatestPetzCrime(self) != CRIME_NONE)
+	{
+		AI_Output(self,other,"DIA_Andre_PMSchulden_08_00");	//Ты пришел заплатить штраф?
+	};
 	B_Andre_Informed();
 	if(B_GetTotalPetzCounter(self) > Andre_LastPetzCounter)
 	{
@@ -233,9 +281,7 @@ func void DIA_Andre_PMSchulden_Info()
 		{
 			AI_Output(self,other,"DIA_Andre_PMSchulden_08_11");	//Как бы то ни было, я решил снять с тебя все обвинения.
 			AI_Output(self,other,"DIA_Andre_PMSchulden_08_12");	//Смотри, чтобы больше не было никаких проблем!
-			Andre_Schulden = 0;
-			Andre_LastPetzCounter = 0;
-			Andre_LastPetzCrime = CRIME_NONE;
+			B_GrantPersonalAbsolution(self);
 		}
 		else
 		{
@@ -246,31 +292,22 @@ func void DIA_Andre_PMSchulden_Info()
 	};
 	if(B_GetGreatestPetzCrime(self) != CRIME_NONE)
 	{
-		Info_ClearChoices(DIA_Andre_PMSchulden);
-		Info_ClearChoices(DIA_Andre_PETZMASTER);
-		Info_AddChoice(DIA_Andre_PMSchulden,"У меня недостаточно золота.",DIA_Andre_PETZMASTER_PayLater);
-		Info_AddChoice(DIA_Andre_PMSchulden,"Сколько там еще?",DIA_Andre_PMSchulden_HowMuchAgain);
-		if(Npc_HasItems(other,ItMi_Gold) >= Andre_Schulden)
-		{
-			Info_AddChoice(DIA_Andre_PMSchulden,"Я хочу заплатить штраф!",DIA_Andre_PETZMASTER_PayNow);
-		};
+		DIA_Andre_BuildCrimesDialog();
 	};
 };
 
-func void DIA_Andre_PMSchulden_HowMuchAgain()
+
+func void DIA_Andre_PETZMASTER_PayForCrimesNow()
 {
-	AI_Output(other,self,"DIA_Andre_PMSchulden_HowMuchAgain_15_00");	//Сколько там еще?
-	B_Say_Gold(self,other,Andre_Schulden);
-	Info_ClearChoices(DIA_Andre_PMSchulden);
+	DIA_Andre_PayForCrimesNow();
 	Info_ClearChoices(DIA_Andre_PETZMASTER);
-	Info_AddChoice(DIA_Andre_PMSchulden,"У меня недостаточно золота.",DIA_Andre_PETZMASTER_PayLater);
-	Info_AddChoice(DIA_Andre_PMSchulden,"Сколько там еще?",DIA_Andre_PMSchulden_HowMuchAgain);
-	if(Npc_HasItems(other,ItMi_Gold) >= Andre_Schulden)
-	{
-		Info_AddChoice(DIA_Andre_PMSchulden,"Я хочу заплатить штраф!",DIA_Andre_PETZMASTER_PayNow);
-	};
 };
 
+func void DIA_Andre_PETZMASTER_PayForCrimesLater()
+{
+	DIA_Andre_PayForCrimesLater();
+	Info_ClearChoices(DIA_Andre_PETZMASTER);
+};
 
 instance DIA_Andre_PETZMASTER(C_Info)
 {
@@ -314,8 +351,8 @@ func void DIA_Andre_PETZMASTER_Info()
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_06");	//Но я не заинтересован в том, чтобы повесить тебя. Идет война, и нам нужен каждый солдат.
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_07");	//Но будет не так-то просто успокоить народ.
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_08");	//Ты мог бы подтвердить свое раскаяние, заплатив штраф - естественно, он должен быть довольно значительным.
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
 	{
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_09");	//Хорошо, что ты пришел! Тебя обвиняют в воровстве! Есть свидетели!
 		if((PETZCOUNTER_City_Attack + PETZCOUNTER_City_Sheepkiller) > 0)
@@ -325,8 +362,8 @@ func void DIA_Andre_PETZMASTER_Info()
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_11");	//Я не потерплю такого поведения в моем городе!
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_12");	//Ты должен заплатить штраф, чтобы искупить свою вину.
 		Andre_Schulden = B_GetTotalPetzCounter(self) * 50;
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
 	{
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_13");	//Если ты дерешься со всяким сбродом в гавани - это одно...
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_14");	//Но когда ты нападаешь на граждан или королевских солдат, я должен принять меры.
@@ -337,8 +374,8 @@ func void DIA_Andre_PETZMASTER_Info()
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_16");	//Если я просто так отпущу тебя, скоро все будут делать то, что хотят.
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_17");	//Так что тебе придется заплатить соответствующий штраф - и твои прегрешения будут забыты.
 		Andre_Schulden = B_GetTotalPetzCounter(self) * 50;
-	};
-	if(B_GetGreatestPetzCrime(self) == CRIME_SHEEPKILLER)
+	}
+	else if(B_GetGreatestPetzCrime(self) == CRIME_SHEEPKILLER)
 	{
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_18");	//Я слышал, что ты зарезал овцу.
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_19");	//Ты же понимаешь, что я не могу оставить это дело просто так.
@@ -351,36 +388,12 @@ func void DIA_Andre_PETZMASTER_Info()
 		Andre_Schulden = 1000;
 	};
 	B_Say_Gold(self,other,Andre_Schulden);
-	Info_ClearChoices(DIA_Andre_PMSchulden);
 	Info_ClearChoices(DIA_Andre_PETZMASTER);
-	Info_AddChoice(DIA_Andre_PETZMASTER,"У меня недостаточно золота.",DIA_Andre_PETZMASTER_PayLater);
+	Info_AddChoice(DIA_Andre_PETZMASTER,"У меня недостаточно золота.",DIA_Andre_PETZMASTER_PayForCrimesLater);
 	if(Npc_HasItems(other,ItMi_Gold) >= Andre_Schulden)
 	{
-		Info_AddChoice(DIA_Andre_PETZMASTER,"Я хочу заплатить штраф!",DIA_Andre_PETZMASTER_PayNow);
+		Info_AddChoice(DIA_Andre_PETZMASTER,"Я хочу заплатить штраф!",DIA_Andre_PETZMASTER_PayForCrimesNow);
 	};
-};
-
-func void DIA_Andre_PETZMASTER_PayNow()
-{
-	AI_Output(other,self,"DIA_Andre_PETZMASTER_PayNow_15_00");	//Я хочу заплатить штраф!
-	B_GiveInvItems(other,self,ItMi_Gold,Andre_Schulden);
-	AI_Output(self,other,"DIA_Andre_PETZMASTER_PayNow_08_01");	//Хорошо! Я позабочусь, чтобы все в городе узнали об этом - это хоть как-то восстановит твою репутацию.
-	B_GrantAbsolution(LOC_CITY);
-	Andre_Schulden = 0;
-	Andre_LastPetzCounter = 0;
-	Andre_LastPetzCrime = CRIME_NONE;
-	Info_ClearChoices(DIA_Andre_PETZMASTER);
-	Info_ClearChoices(DIA_Andre_PMSchulden);
-};
-
-func void DIA_Andre_PETZMASTER_PayLater()
-{
-	AI_Output(other,self,"DIA_Andre_PETZMASTER_PayLater_15_00");	//У меня недостаточно золота.
-	AI_Output(self,other,"DIA_Andre_PETZMASTER_PayLater_08_01");	//Тогда постарайся собрать необходимую сумму как можно быстрее.
-	AI_Output(self,other,"DIA_Andre_PETZMASTER_PayLater_08_02");	//Но должен предупредить тебя: если ты при этом усугубишь свою вину, то твой штраф только возрастет.
-	Andre_LastPetzCounter = B_GetTotalPetzCounter(self);
-	Andre_LastPetzCrime = B_GetGreatestPetzCrime(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -910,7 +923,7 @@ func void DIA_Andre_Auslieferung_Info()
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"Ренгару украл у торговца Джоры.",DIA_Andre_Auslieferung_Rengaru);
 	};
-	if((Halvor_Ausgeliefert == FALSE) && !Npc_IsDead(Halvor))
+	if((Halvor_Ausgeliefert == FALSE) && (Halvor_Deal == FALSE) && !Npc_IsDead(Halvor))
 	{
 		if((Betrayal_Halvor == TRUE) || ((SC_KnowsCitySmuggler == TRUE) && (Knows_Halvor == TRUE)))
 		{
@@ -928,18 +941,17 @@ func void DIA_Andre_Auslieferung_Info()
 			Info_AddChoice(DIA_Andre_Auslieferung,"Нагур пытался использовать меня, чтобы перехватить товар с фермы Акила.",DIA_Andre_Auslieferung_Nagur);
 		};
 	};
-	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day > (Wld_GetDay() - 2)) && !Npc_IsDead(Canthar))
+	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day > (Wld_GetDay() - 2)))
 	{
-		Info_AddChoice(DIA_Andre_Auslieferung,"Торговец Кантар пытается избавиться от Сары!",DIA_Andre_Auslieferung_Canthar);
+		if(!Npc_IsDead(Canthar))
+		{
+			Info_AddChoice(DIA_Andre_Auslieferung,"Торговец Кантар пытается избавиться от Сары!",DIA_Andre_Auslieferung_Canthar);
+		};
+		if(!Npc_IsDead(Sarah))
+		{
+			Info_AddChoice(DIA_Andre_Auslieferung,"Сара продает оружие Онару.",DIA_Andre_Auslieferung_Sarah);
+		};
 	};
-	if((MIS_Canthars_KomproBrief == LOG_Running) && Npc_HasItems(Sarah,ItWr_Canthars_KomproBrief_MIS) && (MIS_Canthars_KomproBrief_Day > (Wld_GetDay() - 2)) && !Npc_IsDead(Sarah))
-	{
-		Info_AddChoice(DIA_Andre_Auslieferung,"Сара продает оружие Онару.",DIA_Andre_Auslieferung_Sarah);
-	};
-	/*if((Fernando_ImKnast == TRUE) && (Fernando_Ausgeliefert == FALSE) && !Npc_IsDead(Fernando))
-	{
-		Info_AddChoice(DIA_Andre_Auslieferung,"Я знаю торговца, который продает оружие бандитам!",DIA_Andre_Auslieferung_Fernando);
-	};*/
 };
 
 func void DIA_Andre_Auslieferung_Back()
@@ -1038,46 +1050,37 @@ func void DIA_Andre_Auslieferung_Canthar()
 
 func void DIA_Andre_Auslieferung_Sarah()
 {
-	AI_Teleport(Sarah,"NW_CITY_HABOUR_KASERN_RENGARU");
-	AI_Teleport(Canthar,"NW_CITY_SARAH");
 	AI_Output(other,self,"DIA_Andre_Auslieferung_Sarah_15_00");	//Сара продает оружие Онару.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Sarah_08_01");	//Сара? Торговка оружием с рыночной площади? У тебя есть доказательство?
-	AI_Output(other,self,"DIA_Andre_Auslieferung_Sarah_15_02");	//В ее кармане письмо с деталями поставки оружия ему.
-	AI_Output(self,other,"DIA_Andre_Auslieferung_Sarah_08_03");	//Она поплатится за это. Я прикажу арестовать ее.
-	AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_02");	//Вот, получи награду. Ты ее заслужил.
-	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
-	if(SarahWeaponsRemoved == FALSE)
+	if(Npc_HasItems(Sarah,ItWr_Canthars_KomproBrief_MIS))
 	{
-		B_GiveTradeInv_Sarah(Sarah);
-		B_RemoveSarahWeapons();
-	};
-	B_NpcSetJailed(Sarah);
-	B_StartOtherRoutine(Sarah,"KNAST");
-	B_StartOtherRoutine(Canthar,"MARKTSTAND");
-	Sarah_Ausgeliefert = TRUE;
-	MIS_Canthars_KomproBrief = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Andre_Auslieferung);
-	Info_ClearChoices(DIA_Andre_Auslieferung);
-};
-
-/*func void DIA_Andre_Auslieferung_Fernando()
-{
-	AI_Output(other,self,"DIA_Addon_Vatras_Waffen_Success_15_00");	//Я знаю торговца, который продает оружие бандитам!
-	AI_Output(other,self,"DIA_Addon_Vatras_Waffen_Success_15_01");	//Его зовут Фернандо.
-	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_01");	//Ты оказал городу большую услугу.
-	if(other.guild == GIL_MIL)
-	{
-		B_AndreSold();
+		AI_Teleport(Sarah,"NW_CITY_HABOUR_KASERN_RENGARU");
+		if(!Npc_IsDead(Canthar))
+		{
+			AI_Teleport(Canthar,"NW_CITY_SARAH");
+		};
+		AI_Output(other,self,"DIA_Andre_Auslieferung_Sarah_15_02");	//В ее кармане письмо с деталями поставки оружия ему.
+		AI_Output(self,other,"DIA_Andre_Auslieferung_Sarah_08_03");	//Она поплатится за это. Я прикажу арестовать ее.
+		AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_02");	//Вот, получи награду. Ты ее заслужил.
+		B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
+		if(SarahWeaponsRemoved == FALSE)
+		{
+			B_GiveTradeInv_Sarah(Sarah);
+			B_RemoveSarahWeapons();
+		};
+		B_NpcSetJailed(Sarah);
+		B_StartOtherRoutine(Sarah,"KNAST");
+		B_StartOtherRoutine(Canthar,"MARKTSTAND");
+		Sarah_Ausgeliefert = TRUE;
+		MIS_Canthars_KomproBrief = LOG_SUCCESS;
+		B_GivePlayerXP(XP_Andre_Auslieferung);
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_02");	//Вот, получи награду. Ты ее заслужил.
-		B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
+		B_AndreNoProof();
 	};
-	Fernando_Ausgeliefert = TRUE;
-	B_GivePlayerXP(XP_Andre_Auslieferung);
 	Info_ClearChoices(DIA_Andre_Auslieferung);
-};*/
+};
 
 
 func void B_AndreAskAboutSewer()

@@ -2,9 +2,20 @@
 func void B_ClearJunkTradeInv(var C_Npc slf)
 {
 	var C_Item EquipWeap;
-	EquipWeap = Npc_GetEquippedMeleeWeapon(slf);
 	if(Hlp_IsValidNpc(slf))
 	{
+		if(Npc_HasEquippedMeleeWeapon(slf))
+		{
+			EquipWeap = Npc_GetEquippedMeleeWeapon(slf);
+			if(!Hlp_IsItem(EquipWeap,ItMw_1h_Bau_Mace))
+			{
+				Npc_RemoveInvItems(slf,ItMw_1h_Bau_Mace,Npc_HasItems(slf,ItMw_1h_Bau_Mace));
+			};
+		}
+		else
+		{
+			Npc_RemoveInvItems(slf,ItMw_1h_Bau_Mace,Npc_HasItems(slf,ItMw_1h_Bau_Mace));
+		};
 		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Cipher))
 		{
 			Npc_RemoveInvItems(slf,ItMi_Joint,Npc_HasItems(slf,ItMi_Joint));
@@ -17,13 +28,12 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItMw_2H_OrcSword_01,Npc_HasItems(slf,ItMw_2H_OrcSword_01));
 		Npc_RemoveInvItems(slf,ItMw_2H_OrcSword_02,Npc_HasItems(slf,ItMw_2H_OrcSword_02));
 		Npc_RemoveInvItems(slf,ItMw_TrainSword,Npc_HasItems(slf,ItMw_TrainSword));
-		if(!Hlp_IsItem(EquipWeap,ItMw_1h_Bau_Mace))
-		{
-			Npc_RemoveInvItems(slf,ItMw_1h_Bau_Mace,Npc_HasItems(slf,ItMw_1h_Bau_Mace));
-		};
 		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Lutero))
 		{
 			Npc_RemoveInvItems(slf,ItAt_CrawlerMandibles,Npc_HasItems(slf,ItAt_CrawlerMandibles));
+		};
+		if((Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Lutero)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Fisk)))
+		{
 			Npc_RemoveInvItems(slf,ItAt_Sting,Npc_HasItems(slf,ItAt_Sting));
 		};
 		if((Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Gorax)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Cronos_ADW)))

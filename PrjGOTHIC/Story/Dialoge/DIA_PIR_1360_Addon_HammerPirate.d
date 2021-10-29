@@ -71,7 +71,7 @@ instance DIA_Addon_HammerPirate_Anheuern(C_Info)
 
 func int DIA_Addon_HammerPirate_Anheuern_Condition()
 {
-	if(MIS_Henry_FreeBDTTower == LOG_Running)
+	if(Henry_GetPartyMember == TRUE)
 	{
 		return TRUE;
 	};
@@ -124,6 +124,7 @@ func void DIA_Addon_HammerPirate_ComeOn_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_HammerPirate_ComeOn_07_03");	//Есть!
+		GotPartyMemberForTowerBandits = TRUE;
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"FOLLOW");
 		self.aivar[AIV_PARTYMEMBER] = TRUE;
@@ -154,6 +155,7 @@ func void DIA_Addon_HammerPirate_GoHome_Info()
 {
 	AI_Output(other,self,"DIA_Addon_HammerPirate_GoHome_15_00");	//Ты мне больше не нужен.
 	AI_Output(self,other,"DIA_Addon_HammerPirate_GoHome_07_01");	//Как скажешь...
+	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"START");
 };
@@ -182,9 +184,9 @@ func void DIA_Addon_HammerPirate_TooFar_Info()
 {
 	AI_Output(self,other,"DIA_Addon_HammerPirate_TooFar_07_01");	//Если ты пойдешь дальше, то я тебе не помощник...
 	AI_Output(self,other,"DIA_Addon_HammerPirate_GoHome_07_02");	//Думаю, я пойду назад.
+	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"START");
-	AI_StopProcessInfos(self);
 };
 
 
@@ -211,8 +213,8 @@ func void DIA_Addon_HammerPirate_Success_Info()
 {
 	AI_Output(self,other,"DIA_Addon_HammerPirate_Success_07_01");	//Знаешь, что? Я тут подумал... а ты, пожалуй, не такой уж и плохой парень.
 	AI_Output(self,other,"DIA_Addon_HammerPirate_Success_07_02");	//Ладно, я возвращаюсь в лагерь. Увидимся!
+	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"START");
-	AI_StopProcessInfos(self);
 };
 

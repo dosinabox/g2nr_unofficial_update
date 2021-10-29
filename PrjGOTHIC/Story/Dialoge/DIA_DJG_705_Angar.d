@@ -21,6 +21,15 @@ func void DIA_AngarDJG_EXIT_Info()
 };
 
 
+func void B_Angar_HALLO()
+{
+	AI_Output(other,self,"DIA_AngarDJG_HALLO_15_00");	//Я знаю тебя. Ты Кор Ангар. Ты был храмовником в болотном лагере.
+	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_01");	//(смиренно) Зови меня просто Ангаром. Я потерял свой титул. Братства Спящего больше нет.
+	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_02");	//Забавно, но мне кажется, что я тебя тоже знаю. Но я точно не помню откуда.
+	AI_Output(other,self,"DIA_AngarDJG_HALLO_15_03");	//Что с тобой?
+	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_04");	//Ох. Я уже давно не мог нормально спать. Эти постоянные кошмары...
+};
+
 instance DIA_AngarDJG_HALLO(C_Info)
 {
 	npc = DJG_705_Angar;
@@ -38,11 +47,7 @@ func int DIA_AngarDJG_HALLO_Condition()
 
 func void DIA_AngarDJG_HALLO_Info()
 {
-	AI_Output(other,self,"DIA_AngarDJG_HALLO_15_00");	//Я знаю тебя. Ты Кор Ангар. Ты был храмовником в болотном лагере.
-	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_01");	//(смиренно) Зови меня просто Ангаром. Я потерял свой титул. Братства Спящего больше нет.
-	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_02");	//Забавно, но мне кажется, что я тебя тоже знаю. Но я точно не помню откуда.
-	AI_Output(other,self,"DIA_AngarDJG_HALLO_15_03");	//Что с тобой?
-	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_04");	//Ох. Я уже давно не мог нормально спать. Эти постоянные кошмары...
+	B_Angar_HALLO();
 	B_LogEntry(TOPIC_Dragonhunter,"Я нашел Ангара в Долине Рудников.");
 };
 
@@ -67,6 +72,17 @@ func void B_SCTellsAngarAboutMadPsi2()
 	};
 };
 
+func void B_AngarTellsAboutAmulett()
+{
+	if(SC_KnowsAngarsAmulett == FALSE)
+	{
+		AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_04_03");	//И что еще хуже, я также потерял амулет, который был со мной многие годы. Я сойду с ума, если не найду его.
+		Log_CreateTopic(TOPIC_AngarsAmulett,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_AngarsAmulett,LOG_Running);
+		B_LogEntry(TOPIC_AngarsAmulett,"Ангар потерял свой амулет и теперь в отчаянии пытается найти его.");
+		SC_KnowsAngarsAmulett = TRUE;
+	};
+};
 
 instance DIA_Angar_WIEKOMMSTDUHIERHER(C_Info)
 {
@@ -91,10 +107,7 @@ func void DIA_Angar_WIEKOMMSTDUHIERHER_Info()
 	AI_Output(other,self,"DIA_Angar_WIEKOMMSTDUHIERHER_15_00");	//Как ты оказался здесь?
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_04_01");	//После обрушения магического барьера я спрятался в горах. Затем пришло время что-то делать.
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_04_02");	//Я бесцельно брел четыре дня, пока неожиданно не очнулся в замке. Не спрашивай меня, что произошло, я не знаю.
-	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_04_03");	//И что еще хуже, я также потерял амулет, который был со мной многие годы. Я сойду с ума, если не найду его.
-	Log_CreateTopic(TOPIC_AngarsAmulett,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_AngarsAmulett,LOG_Running);
-	B_LogEntry(TOPIC_AngarsAmulett,"Ангар потерял свой амулет и теперь в отчаянии пытается найти его.");
+	B_AngarTellsAboutAmulett();
 	Info_AddChoice(DIA_Angar_WIEKOMMSTDUHIERHER,Dialog_Back,DIA_Angar_WIEKOMMSTDUHIERHER_gehen);
 	Info_AddChoice(DIA_Angar_WIEKOMMSTDUHIERHER,"А где именно ты потерял свой амулет?",DIA_Angar_WIEKOMMSTDUHIERHER_amulett);
 	if(SC_KnowsMadPsi == TRUE)
@@ -114,10 +127,17 @@ func void DIA_Angar_WIEKOMMSTDUHIERHER_Info()
 func void DIA_Angar_WIEKOMMSTDUHIERHER_amulett()
 {
 	AI_Output(other,self,"DIA_Angar_WIEKOMMSTDUHIERHER_amulett_15_00");	//А где именно ты потерял свой амулет?
-	if(DJG_Angar_SentToStones == FALSE)
+	if((DJG_Angar_SentToStones == FALSE) || (CurrentLevel != OLDWORLD_ZEN))
 	{
 		AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_amulett_04_01");	//Где-то на юге, вскоре после того, как я очнулся в замке.
-		B_LogEntry(TOPIC_AngarsAmulett,"Этот амулет должен быть где-то на юге. Ангар собирается отправиться на его поиски.");
+		if(CurrentLevel == OLDWORLD_ZEN)
+		{
+			B_LogEntry(TOPIC_AngarsAmulett,"Этот амулет должен быть где-то на юге. Ангар собирается отправиться на его поиски.");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_AngarsAmulett,"Этот амулет должен быть где-то на юге Долины Рудников.");
+		};
 	}
 	else
 	{
@@ -254,7 +274,7 @@ instance DIA_Angar_DJG_ANWERBEN(C_Info)
 
 func int DIA_Angar_DJG_ANWERBEN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Angar_WIEKOMMSTDUHIERHER) && (DJG_AngarGotAmulett == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Angar_WIEKOMMSTDUHIERHER) && (DJG_AngarGotAmulett == FALSE) && !Npc_HasItems(other,ItAm_Mana_Angar_MIS))
 	{
 		return TRUE;
 	};
@@ -370,7 +390,7 @@ func void DIA_AngarDJG_WHATSINTHERE_Info()
 		AI_Output(self,other,"DIA_AngarDJG_WHATSINTHERE_04_02");	//Его охраняет магическое существо. Я видел его ночью, он тут рыскал. Отвратительное создание.
 		AI_Output(self,other,"DIA_AngarDJG_WHATSINTHERE_04_03");	//Он шнырял между деревьями, и у меня было впечатление, что он высасывает всю жизнь вокруг и впитывает ее, как губка.
 	};
-	B_LogEntry(TOPIC_Dragonhunter,"Я нашел Ангара в Долине Рудников.");
+	B_LogEntry(TOPIC_Dragonhunter,"В поисках своего амулета Ангар намеревался спуститься в какой-то жуткий склеп, но слишком напуган для этого.");
 };
 
 
@@ -488,7 +508,6 @@ func void DIA_Angar_WASISTLOS_Info()
 	AI_Output(self,other,"DIA_Angar_WASISTLOS_04_02");	//Что-то подсказывает мне, что мне не выбраться отсюда живым.
 	AI_Output(self,other,"DIA_Angar_WASISTLOS_04_03");	//Я не могу объяснить это, но...
 	AI_PlayAni(self,"T_SEARCH");
-//	if(SC_KnowsMadPsi == TRUE)
 	if(Angar_KnowsMadPsi == TRUE)
 	{
 		AI_Output(self,other,"DIA_Angar_WASISTLOS_04_04");	//Я должен уходить из этой проклятой земли как можно быстрее, иначе меня ждет та же судьба, что и моих братьев.

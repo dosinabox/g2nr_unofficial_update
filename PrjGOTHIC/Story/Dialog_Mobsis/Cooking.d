@@ -3,26 +3,20 @@ func int pan_cond()
 {
 	if(Npc_IsPlayer(self))
 	{
-		if(Npc_HasItems(hero,ItMi_Pan) && Npc_HasItems(hero,ItFoMuttonRaw))
+		if(!Npc_HasItems(self,ItMi_Pan) || !Npc_HasItems(self,ItFoMuttonRaw))
 		{
-			return TRUE;
-		}
-		else
-		{
-			if(!Npc_HasItems(hero,ItMi_Pan))
+			AI_PlayAni(self,"T_DONTKNOW");
+			if(!Npc_HasItems(self,ItMi_Pan) && !Npc_HasItems(self,ItFoMuttonRaw))
+			{
+				AI_PrintScreen("Требуется сковорода и сырое мясо!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+			}
+			else if(!Npc_HasItems(self,ItMi_Pan))
 			{
 				AI_PrintScreen("Требуется сковорода!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-				AI_PlayAni(self,"T_DONTKNOW");
 			}
-			else if(!Npc_HasItems(hero,ItFoMuttonRaw))
+			else if(!Npc_HasItems(self,ItFoMuttonRaw))
 			{
-				AI_PlayAni(self,"T_DONTKNOW");
-				if(!Npc_RefuseTalk(self))
-				{
-					Print("Требуется сырое мясо!");
-					B_Say_Overlay(self,self,"$MISSINGITEM");
-					Npc_SetRefuseTalk(self,1);
-				};
+				AI_PrintScreen("Требуется сырое мясо!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 			};
 			return FALSE;
 		};

@@ -539,7 +539,7 @@ func void DIA_Bosper_TeachFUR_Info()
 		if(MIS_Bosper_WolfFurs == LOG_Running)
 		{
 			AI_Output(self,other,"DIA_Bosper_TeachFUR_11_03");	//Принеси мне волчьи шкуры, а там посмотрим...
-			B_LogEntry(TOPIC_BosperWolf,"Боспер научил меня снимать шкуры с животных.");
+			Log_AddEntry(TOPIC_BosperWolf,"Боспер научил меня снимать шкуры с животных.");
 		};
 	};
 };
@@ -571,23 +571,12 @@ func void DIA_Bosper_Trade_Info()
 	if(DIA_Bosper_Trade.trade == TRUE)
 	{
 		B_GiveTradeInv(self);
-		if(TradersHaveLimitedAmmo == TRUE)
-		{
-			if(Bosper_Ammo_Day <= Wld_GetDay())
-			{
-				B_RefreshAmmo(self,50);
-				Bosper_Ammo_Day = Wld_GetDay() + 1;
-			};
-		}
-		else
-		{
-			B_RefreshAmmo(self,50);
-		};
+		Trade_IsActive = TRUE;
+		B_RefreshTraderAmmo(self,50);
 		if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
 		{
 			BosperMinenAnteil = TRUE;
 		};
-		Trade_IsActive = TRUE;
 	}
 	else
 	{
@@ -726,7 +715,7 @@ instance DIA_Bosper_AlsLehrling(C_Info)
 
 func int DIA_Bosper_AlsLehrling_Condition()
 {
-	if((Player_IsApprentice == APP_Bosper) && Npc_IsInState(self,ZS_Talk))
+	if((Player_IsApprentice == APP_Bosper) && Npc_IsInState(self,ZS_Talk) && (Bosper_Lehrling_Day != Wld_GetDay()))
 	{
 		return TRUE;
 	};
@@ -754,14 +743,16 @@ func void DIA_Bosper_AlsLehrling_Info()
 	else if((Bosper_Lehrling_Day <= (Wld_GetDay() - 4)) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Bosper_AlsLehrling_11_05");	//Где ты болтаешься так долго?
-		AI_Output(self,other,"DIA_Bosper_AlsLehrling_11_06");	//Мне нужны еще шкуры. Ты принес их?
-		Bosper_Lehrling_Day = Wld_GetDay();
+		if(Npc_KnowsInfo(other,DIA_Bosper_Aufgaben))
+		{
+			AI_Output(self,other,"DIA_Bosper_AlsLehrling_11_06");	//Мне нужны еще шкуры. Ты принес их?
+		};
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Bosper_AlsLehrling_11_07");	//Пришел, наконец...
-		Bosper_Lehrling_Day = Wld_GetDay();
 	};
+	Bosper_Lehrling_Day = Wld_GetDay();
 };
 
 
@@ -795,7 +786,6 @@ func void DIA_Bosper_Aufgaben_Info()
 		AI_Output(other,self,"DIA_Bosper_Aufgaben_15_04");	//А где я буду спать?
 		AI_Output(self,other,"DIA_Bosper_Aufgaben_11_05");	//У меня здесь нет места для тебя. Но ты всегда найдешь свободную койку в отеле на рыночной площади.
 	};
-	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
 	B_LogEntry(Topic_Bonus,"Боспер готов платить очень хорошую цену за шкуры животных.");
 };
 
@@ -815,7 +805,7 @@ instance DIA_Bosper_SellFur(C_Info)
 
 func int DIA_Bosper_SellFur_Condition()
 {
-	if(Player_IsApprentice == APP_Bosper)
+	if((Player_IsApprentice == APP_Bosper) && Npc_KnowsInfo(other,DIA_Bosper_Aufgaben))
 	{
 		return TRUE;
 	};

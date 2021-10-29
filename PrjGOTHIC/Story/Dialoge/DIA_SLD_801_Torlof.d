@@ -803,10 +803,10 @@ func void B_BuildLearnDialog_Torlof_NW()
 {
 	Info_ClearChoices(DIA_Torlof_Teach);
 	Info_AddChoice(DIA_Torlof_Teach,Dialog_Back,DIA_Torlof_Teach_Back);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Torlof_Teach_DEX_1);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Torlof_Teach_DEX_5);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Torlof_Teach_STR_1);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Torlof_Teach_STR_5);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_Torlof_Teach_DEX_1);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_Torlof_Teach_DEX_5);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Torlof_Teach_STR_1);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Torlof_Teach_STR_5);
 };
 
 instance DIA_Torlof_Teach(C_Info)
@@ -1017,7 +1017,7 @@ func void DIA_Torlof_BEMYCAPTAIN_Info()
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_03");	//(смеетс€) ƒо острова? ƒа у теб€ даже нет корабл€, не говор€ уже о команде.
 	if((MIS_ShipIsFree == TRUE) && (Crewmember_Count >= Min_Crew))
 	{
-		AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_15_00");	//“ы ошибаешьс€.
+		DIA_Common_YouAreWrong();
 	};
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_04");	//Ќет, мой мальчик. ≈сли ты хочешь воспользоватьс€ моими услугами в качестве капитана и учител€ силы, ты должен сначала доказать мне, что ты понимаешь, о чем говоришь.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_05");	// роме того, у мен€ хватает и других проблем. ѕаладины не ушли из города, как € ожидал.
@@ -1051,7 +1051,7 @@ func void DIA_Torlof_BEMYCAPTAIN2_Info()
 	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN2_15_01");	//ѕаладины в замке несут т€желые потери.
 	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN2_15_02");	//», € думаю, не пройдет много времени, когда паладины из города выступ€т в ƒолину –удников, чтобы выручить парней, осажденных в замке.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN2_01_03");	//Ёто хорошие новости. “еперь ничто не мешает мне покинуть это богом прокл€тое место.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap5);
 };
 
 

@@ -41,7 +41,7 @@ const int TeachCondition_Cord = 30;
 const int TeachCondition_2H_Lee = 75;
 const int TeachCondition_2H_Hagen = 90;
 
-var C_NPC RealHero;
+var C_Npc RealHero;
 
 // Talent Sources
 const int TS_Training = 0;
@@ -127,7 +127,7 @@ func int CoerceInRange(var int value,var int min,var int max)
 	return GetMin(value,max);
 };
 
-func int IsHero(var C_NPC npc)
+func int IsHero(var C_Npc npc)
 {
 	if(C_NpcIsHero(npc))
 	{
@@ -137,7 +137,7 @@ func int IsHero(var C_NPC npc)
 	return FALSE;
 };
 
-func void ValidateNpc(var C_NPC npc)
+func void ValidateNpc(var C_Npc npc)
 {
 	if(!Hlp_IsValidNpc(npc))
 	{
@@ -157,31 +157,32 @@ func void ValidateTalent(var int talent)
 	};
 };
 
-func int GetTalent(var C_NPC npc,var int talent)
+func int GetTalent(var C_Npc npc,var int talent)
 {
 	if(talent == NPC_TALENT_1H)
 	{
 		return npc.HitChance[NPC_TALENT_1H];
-	}
-	else if(talent == NPC_TALENT_2H)
+	};
+	if(talent == NPC_TALENT_2H)
 	{
 		return npc.HitChance[NPC_TALENT_2H];
-	}
-	else if(talent == NPC_TALENT_BOW)
+	};
+	if(talent == NPC_TALENT_BOW)
 	{
 		return npc.HitChance[NPC_TALENT_BOW];
-	}
-	else if(talent == NPC_TALENT_CROSSBOW)
+	};
+	if(talent == NPC_TALENT_CROSSBOW)
 	{
 		return npc.HitChance[NPC_TALENT_CROSSBOW];
 	};
+	Print(PRINT_WrongParameter);
 	return 0;
 };
 
 // removes and applies overlays when talent skill changed
-func void UpdateOverlay(var C_NPC npc,var int oldSkill,var int newSkill,var string mds1,var string mds2)
+func void UpdateOverlay(var C_Npc npc,var int oldSkill,var int newSkill,var string mds1,var string mds2)
 {
-	if (oldSkill == newSkill)
+	if(oldSkill == newSkill)
 	{
 		return;
 	};
@@ -213,24 +214,24 @@ func int GetTalentPart_Game_Hero(var int talent)
 			TAL_MinValue[NPC_TALENT_1H],
 			TAL_MaxValue[NPC_TALENT_1H]
 		);
-	}
-	else if(talent == NPC_TALENT_2H)
+	};
+	if(talent == NPC_TALENT_2H)
 	{
 		return CoerceInRange(
 			TAL_Training[NPC_TALENT_2H] + TAL_TempBonus[NPC_TALENT_2H] + TAL_PermBonus[NPC_TALENT_2H],
 			TAL_MinValue[NPC_TALENT_2H],
 			TAL_MaxValue[NPC_TALENT_2H]
 		);
-	}
-	else if(talent == NPC_TALENT_BOW)
+	};
+	if(talent == NPC_TALENT_BOW)
 	{
 		return CoerceInRange(
 			TAL_Training[NPC_TALENT_BOW] + TAL_TempBonus[NPC_TALENT_BOW] + TAL_PermBonus[NPC_TALENT_BOW],
 			TAL_MinValue[NPC_TALENT_BOW],
 			TAL_MaxValue[NPC_TALENT_BOW]
 		);
-	}
-	else if(talent == NPC_TALENT_CROSSBOW)
+	};
+	if(talent == NPC_TALENT_CROSSBOW)
 	{
 		return CoerceInRange(
 			TAL_Training[NPC_TALENT_CROSSBOW] + TAL_TempBonus[NPC_TALENT_CROSSBOW] + TAL_PermBonus[NPC_TALENT_CROSSBOW],
@@ -244,28 +245,28 @@ func int GetTalentPart_Game_Hero(var int talent)
 // calculates talent value, which determines learning cost value
 func int GetTalentPart_Cost_Hero(var int talent)
 {
-	if (talent == NPC_TALENT_1H)
+	if(talent == NPC_TALENT_1H)
 	{
 		return 
 			TAL_Training[NPC_TALENT_1H] * TAL_CostFlags_TS_Training + 
 			TAL_TempBonus[NPC_TALENT_1H] * TAL_CostFlags_TS_TempBonus +
 			TAL_PermBonus[NPC_TALENT_1H] * TAL_CostFlags_TS_PermBonus;
-	}
-	else if(talent == NPC_TALENT_2H)
+	};
+	if(talent == NPC_TALENT_2H)
 	{
 		return 
 			TAL_Training[NPC_TALENT_2H] * TAL_CostFlags_TS_Training + 
 			TAL_TempBonus[NPC_TALENT_2H] * TAL_CostFlags_TS_TempBonus +
 			TAL_PermBonus[NPC_TALENT_2H] * TAL_CostFlags_TS_PermBonus;		
-	}
-	else if(talent == NPC_TALENT_BOW)
+	};
+	if(talent == NPC_TALENT_BOW)
 	{
 		return 
 			TAL_Training[NPC_TALENT_BOW] * TAL_CostFlags_TS_Training + 
 			TAL_TempBonus[NPC_TALENT_BOW] * TAL_CostFlags_TS_TempBonus +
 			TAL_PermBonus[NPC_TALENT_BOW] * TAL_CostFlags_TS_PermBonus;
-	}
-	else if(talent == NPC_TALENT_CROSSBOW)
+	};
+	if(talent == NPC_TALENT_CROSSBOW)
 	{
 		return 
 			TAL_Training[NPC_TALENT_CROSSBOW] * TAL_CostFlags_TS_Training + 
@@ -284,22 +285,22 @@ func int GetTalentPart_TeachLimit_Hero(var int talent)
 			TAL_Training[NPC_TALENT_1H] * TAL_TeachLimitFlags[TS_Training] + 
 			TAL_TempBonus[NPC_TALENT_1H] * TAL_TeachLimitFlags[TS_TempBonus] +
 			TAL_PermBonus[NPC_TALENT_1H] * TAL_TeachLimitFlags[TS_PermBonus];
-	}
-	else if(talent == NPC_TALENT_2H)
+	};
+	if(talent == NPC_TALENT_2H)
 	{
 		return 
 			TAL_Training[NPC_TALENT_2H] * TAL_TeachLimitFlags[TS_Training] + 
 			TAL_TempBonus[NPC_TALENT_2H] * TAL_TeachLimitFlags[TS_TempBonus] +
 			TAL_PermBonus[NPC_TALENT_2H] * TAL_TeachLimitFlags[TS_PermBonus];		
-	}
-	else if(talent == NPC_TALENT_BOW)
+	};
+	if(talent == NPC_TALENT_BOW)
 	{
 		return 
 			TAL_Training[NPC_TALENT_BOW] * TAL_TeachLimitFlags[TS_Training] + 
 			TAL_TempBonus[NPC_TALENT_BOW] * TAL_TeachLimitFlags[TS_TempBonus] +
 			TAL_PermBonus[NPC_TALENT_BOW] * TAL_TeachLimitFlags[TS_PermBonus];
-	}
-	else if(talent == NPC_TALENT_CROSSBOW)
+	};
+	if(talent == NPC_TALENT_CROSSBOW)
 	{
 		return 
 			TAL_Training[NPC_TALENT_CROSSBOW] * TAL_TeachLimitFlags[TS_Training] + 
@@ -327,23 +328,20 @@ func int RealTalentValue(var int talent)
 	if(talent == NPC_TALENT_1H)
 	{
 		return TAL_Training[NPC_TALENT_1H] + TAL_PermBonus[NPC_TALENT_1H];
-	}
-	else if(talent == NPC_TALENT_2H)
+	};
+	if(talent == NPC_TALENT_2H)
 	{
 		return TAL_Training[NPC_TALENT_2H] + TAL_PermBonus[NPC_TALENT_2H];
-	}
-	else if(talent == NPC_TALENT_BOW)
+	};
+	if(talent == NPC_TALENT_BOW)
 	{
 		return TAL_Training[NPC_TALENT_BOW] + TAL_PermBonus[NPC_TALENT_BOW];
-	}
-	else if(talent == NPC_TALENT_CROSSBOW)
+	};
+	if(talent == NPC_TALENT_CROSSBOW)
 	{
 		return TAL_Training[NPC_TALENT_CROSSBOW] + TAL_PermBonus[NPC_TALENT_CROSSBOW];
-	}
-	else
-	{
-		Print(PRINT_WrongParameter);
 	};
+	Print(PRINT_WrongParameter);
 	return 0;
 };
 
@@ -353,27 +351,24 @@ func int VisibleTalentValue(var int talent)
 	if(talent == NPC_TALENT_1H)
 	{
 		return hero.HitChance[NPC_TALENT_1H];
-	}
-	else if(talent == NPC_TALENT_2H)
+	};
+	if(talent == NPC_TALENT_2H)
 	{
 		return hero.HitChance[NPC_TALENT_2H];
-	}
-	else if(talent == NPC_TALENT_BOW)
+	};
+	if(talent == NPC_TALENT_BOW)
 	{
 		return hero.HitChance[NPC_TALENT_BOW];
-	}
-	else if(talent == NPC_TALENT_CROSSBOW)
+	};
+	if(talent == NPC_TALENT_CROSSBOW)
 	{
 		return hero.HitChance[NPC_TALENT_CROSSBOW];
-	}
-	else
-	{
-		Print(PRINT_WrongParameter);
 	};
+	Print(PRINT_WrongParameter);
 	return 0;
 };
 
-func void UpdateTalent(var C_NPC npc,var int talent,var int value)
+func void UpdateTalent(var C_Npc npc,var int talent,var int value)
 {
 	var int oldSkill;
 	var int newSkill;
@@ -475,7 +470,7 @@ func int CutChange_Hero(var int talent,var int change,var int source)
 
 // changes talent by the value with specified Talent Source
 // returns talent's real change, also set SecondaryChange variable
-func int ChangeTalent(var C_NPC npc,var int talent,var int change,var int source)
+func int ChangeTalent(var C_Npc npc,var int talent,var int change,var int source)
 {
 	SecondaryChange = 0;
 	if(talent == NPC_TALENT_1H)
@@ -706,7 +701,7 @@ func int GetTalentTrainCost_Hero(var int talent,var int change)
 };
 
 // calculates lp-cost of increasing talent by 'change'
-func int GetTalentTrainCost(var C_NPC npc,var int talent,var int change)
+func int GetTalentTrainCost(var C_Npc npc,var int talent,var int change)
 {
 	return GetTalentTrainCost_Impl(talent,GetTalent(npc,talent),change);
 };
@@ -714,23 +709,23 @@ func int GetTalentTrainCost(var C_NPC npc,var int talent,var int change)
 // gets maximum in-game value of talent
 func int GetTalentMax(var int talent)
 {
-	if (talent == NPC_TALENT_1H)
+	if(talent == NPC_TALENT_1H)
 	{
 		return TAL_MaxValue[NPC_TALENT_1H];
 	};
-	if (talent == NPC_TALENT_2H)
+	if(talent == NPC_TALENT_2H)
 	{
 		return TAL_MaxValue[NPC_TALENT_2H];
 	};
-	if (talent == NPC_TALENT_BOW)
+	if(talent == NPC_TALENT_BOW)
 	{
 		return TAL_MaxValue[NPC_TALENT_BOW];
 	};
-	if (talent == NPC_TALENT_CROSSBOW)
+	if(talent == NPC_TALENT_CROSSBOW)
 	{
 		return TAL_MaxValue[NPC_TALENT_CROSSBOW];
 	};
-	Print("ERROR");
+	Print(PRINT_WrongParameter);
 	return 0;
 };
 
@@ -765,7 +760,7 @@ func int GetTeachLimitReason_Hero(var int talent,var int change,var int teacherM
 	return TLR_None;
 };
 
-func int GetTeachLimitReason(var C_NPC npc,var int talent,var int change,var int teacherMax)
+func int GetTeachLimitReason(var C_Npc npc,var int talent,var int change,var int teacherMax)
 {
 	var int value;
 	value = GetTalent(npc,talent);
@@ -828,7 +823,7 @@ func void B_InitTalentSystem()
 };
 
 // returns the reason the teacher can't teach talent
-func int B_GetTeachLimitReason(var C_NPC npc,var int talent,var int change,var int teacherMax)
+func int B_GetTeachLimitReason(var C_Npc npc,var int talent,var int change,var int teacherMax)
 {
 	ValidateNpc(npc);
 	ValidateTalent(talent);
@@ -839,7 +834,7 @@ func int B_GetTeachLimitReason(var C_NPC npc,var int talent,var int change,var i
 	return GetTeachLimitReason(npc,talent,change,teacherMax);
 };
 
-func int B_GetTalentTrainCost(var C_NPC npc,var int talent,var int change)
+func int B_GetTalentTrainCost(var C_Npc npc,var int talent,var int change)
 {
 	ValidateNpc(npc);
 	ValidateTalent(talent);
@@ -850,7 +845,7 @@ func int B_GetTalentTrainCost(var C_NPC npc,var int talent,var int change)
 	return GetTalentTrainCost(npc,talent,change);
 };
 
-func int B_ChangeTalent(var C_NPC npc,var int talent,var int change,var int source)
+func int B_ChangeTalent(var C_Npc npc,var int talent,var int change,var int source)
 {
 	ValidateNpc(npc);
 	ValidateTalent(talent);
@@ -864,21 +859,24 @@ func int B_ChangeTalent(var C_NPC npc,var int talent,var int change,var int sour
 // reset hero talents
 func void B_ResetTalentSystem()
 {
-	if(!IsHero(hero))
+	if(IsHero(hero))
+	{
+		TAL_Training[NPC_TALENT_1H] = 10;
+		TAL_Training[NPC_TALENT_2H] = 10;
+		TAL_Training[NPC_TALENT_BOW] = 10;
+		TAL_Training[NPC_TALENT_CROSSBOW] = 10;
+		TAL_PermBonus[NPC_TALENT_1H] = 0;
+		TAL_PermBonus[NPC_TALENT_2H] = 0;
+		TAL_PermBonus[NPC_TALENT_BOW] = 0;
+		TAL_PermBonus[NPC_TALENT_CROSSBOW] = 0;
+		UpdateTalent_Hero(NPC_TALENT_1H);
+		UpdateTalent_Hero(NPC_TALENT_2H);
+		UpdateTalent_Hero(NPC_TALENT_BOW);
+		UpdateTalent_Hero(NPC_TALENT_CROSSBOW);
+	}
+	else
 	{
 		Print("ERROR");
 	};
-	TAL_Training[NPC_TALENT_1H] = 10;
-	TAL_Training[NPC_TALENT_2H] = 10;
-	TAL_Training[NPC_TALENT_BOW] = 10;
-	TAL_Training[NPC_TALENT_CROSSBOW] = 10;
-	TAL_PermBonus[NPC_TALENT_1H] = 0;
-	TAL_PermBonus[NPC_TALENT_2H] = 0;
-	TAL_PermBonus[NPC_TALENT_BOW] = 0;
-	TAL_PermBonus[NPC_TALENT_CROSSBOW] = 0;
-	UpdateTalent_Hero(NPC_TALENT_1H);
-	UpdateTalent_Hero(NPC_TALENT_2H);
-	UpdateTalent_Hero(NPC_TALENT_BOW);
-	UpdateTalent_Hero(NPC_TALENT_CROSSBOW);
 };
 

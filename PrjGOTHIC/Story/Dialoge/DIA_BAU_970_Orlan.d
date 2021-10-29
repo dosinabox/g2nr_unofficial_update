@@ -422,7 +422,6 @@ func int DIA_Orlan_TRADE_Condition()
 func void DIA_Orlan_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Orlan_TRADE_15_00");	//Покажи мне свои товары.
-	B_GiveTradeInv(self);
 	if((SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Orlan_TRADE_05_00");	//Конечно, брат по Кольцу.
@@ -443,6 +442,7 @@ func void DIA_Orlan_TRADE_Info()
 	{
 		OrlanMinenAnteil = TRUE;
 	};
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 
@@ -504,9 +504,9 @@ func void DIA_Orlan_HotelZimmer_Info()
 
 func void DIA_Orlan_HotelZimmer_ja()
 {
+	AI_Output(other,self,"DIA_Orlan_HotelZimmer_ja_15_00");	//Хорошо. Вот золото.
 	if(B_GiveInvItems(other,self,ItMi_Gold,50))
 	{
-		AI_Output(other,self,"DIA_Orlan_HotelZimmer_ja_15_00");	//Хорошо. Вот золото.
 		AI_Output(self,other,"DIA_Orlan_HotelZimmer_ja_05_01");	//А вот ключ. Комнаты находятся вверх по лестнице. Но не загадь ее и не забывай платить ренту вовремя, понятно?
 		CreateInvItems(self,ItKe_Orlan_HotelZimmer,1);
 		B_GiveInvItems(self,other,ItKe_Orlan_HotelZimmer,1);
@@ -616,7 +616,6 @@ func void DIA_Orlan_MieteFaellig_nein()
 	AI_Output(other,self,"DIA_Orlan_MieteFaellig_nein_15_00");	//Забудь об этом. Я больше не буду платить тебе.
 	AI_Output(self,other,"DIA_Orlan_MieteFaellig_nein_05_01");	//Тогда мне придется проучить тебя. Презренный жулик!
 	Orlan_AngriffWegenMiete = TRUE;
-	Info_ClearChoices(DIA_Orlan_MieteFaellig);
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
@@ -665,7 +664,10 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 		AI_Output(self,other,"DIA_Orlan_EINGEBROCKT_05_00");	//Да уж, доставил ты мне проблем. Теперь мне нужно быть поосторожнее с Рухаром.
 	};
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	if(RangerMeetingRunning != LOG_Running)
+	{
+		Npc_ExchangeRoutine(self,"Start");
+	};
 	if(Hlp_IsValidNpc(Randolph))
 	{
 		if((Kapitel < 4) || ((Kapitel >= 4) && (other.guild != GIL_KDF)))

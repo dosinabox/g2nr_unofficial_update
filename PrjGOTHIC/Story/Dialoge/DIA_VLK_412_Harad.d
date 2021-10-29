@@ -34,7 +34,7 @@ instance DIA_Harad_Hallo(C_Info)
 
 func int DIA_Harad_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == TRUE))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -187,28 +187,28 @@ func int C_ScHasOrcWeapon()
 	if(Npc_HasItems(hero,ItMw_2H_OrcMace_01))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcSword_02))
+	};
+	if(Npc_HasItems(hero,ItMw_2H_OrcSword_02))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_04))
+	};
+	if(Npc_HasItems(hero,ItMw_2H_OrcAxe_04))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcSword_01))
+	};
+	if(Npc_HasItems(hero,ItMw_2H_OrcSword_01))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_03))
+	};
+	if(Npc_HasItems(hero,ItMw_2H_OrcAxe_03))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_02))
+	};
+	if(Npc_HasItems(hero,ItMw_2H_OrcAxe_02))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_01))
+	};
+	if(Npc_HasItems(hero,ItMw_2H_OrcAxe_01))
 	{
 		return TRUE;
 	};
@@ -459,10 +459,6 @@ func void DIA_Harad_LEHRLING_OK()
 		AI_Output(other,self,"DIA_Harad_LEHRLING_OK_15_02");	//Я уже умею это!
 		AI_Output(self,other,"DIA_Harad_LEHRLING_OK_12_03");	//Что ж. Тем лучше!
 	};
-	if(other.attribute[ATR_STRENGTH] < (T_MED - 30))
-	{
-		AI_Output(self,other,"DIA_Harad_LEHRLING_OK_12_04");	//Кроме того, пришло время стать немного сильнее. Ты чахнешь прямо у меня на глазах!
-	};
 	Player_IsApprentice = APP_Harad;
 	ApprenticeGoldCounter = 0;
 	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
@@ -483,9 +479,16 @@ func void DIA_Harad_LEHRLING_OK()
 	{
 		B_LogEntries(Topic_Bonus,"Гарад принял меня в ученики.");
 	};
-	Log_AddEntry(Topic_Bonus,"Гарад будет покупать оружие, выкованное мной, по хорошей цене.");
 	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogNextEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу. Также он может помочь мне стать сильнее.");
+	if(other.attribute[ATR_STRENGTH] < (T_MED - 30))
+	{
+		AI_Output(self,other,"DIA_Harad_LEHRLING_OK_12_04");	//Кроме того, пришло время стать немного сильнее. Ты чахнешь прямо у меня на глазах!
+		B_LogNextEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу. Также он может помочь мне стать сильнее.");
+	}
+	else
+	{
+		B_LogNextEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу.");
+	};
 	Info_ClearChoices(DIA_Harad_LEHRLING);
 };
 
@@ -553,7 +556,7 @@ func void DIA_Harad_Zustimmung_Info()
 
 func void B_HaradCommentAnvilUses()
 {
-	if(HaradsAnvilUsed < 10)
+	if(HaradsAnvilUsed < 5)
 	{
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_04_02_add");	//Даже хотя ты и не проводил много времени за наковальней.
 	}
@@ -580,7 +583,7 @@ instance DIA_Harad_AlsLehrling(C_Info)
 
 func int DIA_Harad_AlsLehrling_Condition()
 {
-	if((Player_IsApprentice == APP_Harad) && Npc_IsInState(self,ZS_Talk))
+	if((Player_IsApprentice == APP_Harad) && Npc_IsInState(self,ZS_Talk) && (Harad_Lehrling_Day != Wld_GetDay()))
 	{
 		return TRUE;
 	};
@@ -612,13 +615,12 @@ func void DIA_Harad_AlsLehrling_Info()
 	else if((Harad_Lehrling_Day <= (Wld_GetDay() - 4)) && (Harad_MILKommentar == FALSE) && (Harad_PALKommentar == FALSE) && (Harad_INNOSKommentar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_08");	//Давненько тебя не было видно здесь. Где ты был все это время, хм?
-		Harad_Lehrling_Day = Wld_GetDay();
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_09");	//Опять ты...
-		Harad_Lehrling_Day = Wld_GetDay();
 	};
+	Harad_Lehrling_Day = Wld_GetDay();
 };
 
 
@@ -677,6 +679,7 @@ func void DIA_Harad_Aufgaben_Info()
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_05");	//Кроме того, я научу тебя всему, что нужно знать для изготовления обычных мечей.
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_06");	//Изготовление магических мечей - работа для опытного кузнеца. Тебе до этого еще далеко...
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_07");	//Если тебе нужно место для сна, ты можешь прилечь где-нибудь в моем доме. Все понятно?
+	B_LogEntry(Topic_Bonus,"Гарад будет покупать оружие, выкованное мной, по хорошей цене.");
 };
 
 
@@ -693,7 +696,7 @@ instance DIA_Harad_SellBlades(C_Info)
 
 func int DIA_Harad_SellBlades_Condition()
 {
-	if(Player_IsApprentice == APP_Harad)
+	if((Player_IsApprentice == APP_Harad) && Npc_KnowsInfo(other,DIA_Harad_Aufgaben))
 	{
 		return TRUE;
 	};
@@ -906,8 +909,8 @@ func void B_BuildLearnDialog_Harad()
 {
 	Info_ClearChoices(DIA_Harad_TeachSTR);
 	Info_AddChoice(DIA_Harad_TeachSTR,Dialog_Back,DIA_Harad_TeachSTR_BACK);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Harad_TeachSTR_1);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Harad_TeachSTR_5);
+	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Harad_TeachSTR_1);
+	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Harad_TeachSTR_5);
 };
 
 instance DIA_Harad_TeachSTR(C_Info)
@@ -1022,6 +1025,16 @@ func void DIA_Harad_AboutErzklingen_Info()
 };
 
 
+var int OreBladeBought;
+
+func void B_ChooseHaradOreBlade()
+{
+	Info_ClearChoices(DIA_Harad_Erzklingen);
+	Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
+	Info_AddChoice(DIA_Harad_Erzklingen,B_BuildPriceString("Двуручный меч",Value_Blessed_2H_1),DIA_Harad_Erzklingen_2h);
+	Info_AddChoice(DIA_Harad_Erzklingen,B_BuildPriceString("Одноручный меч",Value_Blessed_1H_1),DIA_Harad_Erzklingen_1h);
+};
+
 instance DIA_Harad_Erzklingen(C_Info)
 {
 	npc = VLK_412_Harad;
@@ -1041,9 +1054,6 @@ func int DIA_Harad_Erzklingen_Condition()
 	};
 };
 
-
-var int OreBladeBought;
-
 func void DIA_Harad_Erzklingen_Info()
 {
 	AI_Output(other,self,"DIA_Harad_Erzklingen_15_00");	//Я хочу купить меч из магической руды.
@@ -1056,10 +1066,7 @@ func void DIA_Harad_Erzklingen_Info()
 		AI_Output(self,other,"DIA_Harad_Erzklingen_12_02");	//Вы, паладины, можете считать себя счастливчиками, что вам дозволено владеть такими превосходными мечами.
 		AI_Output(self,other,"DIA_Harad_Erzklingen_12_03");	//Согласно декрету лорда Хагена, я могу продать тебе только одно магическое оружие.
 		AI_Output(self,other,"DIA_Harad_Erzklingen_12_04");	//Так... Что я могу предложить тебе?
-		Info_ClearChoices(DIA_Harad_Erzklingen);
-		Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Двуручный меч (2000 золотых)",DIA_Harad_Erzklingen_2h);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Одноручный меч (2000 золотых)",DIA_Harad_Erzklingen_1h);
+		B_ChooseHaradOreBlade();
 	};
 };
 
@@ -1093,10 +1100,7 @@ func void DIA_Harad_Erzklingen_2h()
 	else
 	{
 		B_Harad_NotEnoughGold();
-		Info_ClearChoices(DIA_Harad_Erzklingen);
-		Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Двуручный меч (2000 золотых)",DIA_Harad_Erzklingen_2h);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Одноручный меч (2000 золотых)",DIA_Harad_Erzklingen_1h);
+		B_ChooseHaradOreBlade();
 	};
 };
 
@@ -1113,10 +1117,7 @@ func void DIA_Harad_Erzklingen_1h()
 	else
 	{
 		B_Harad_NotEnoughGold();
-		Info_ClearChoices(DIA_Harad_Erzklingen);
-		Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Двуручный меч (2000 золотых)",DIA_Harad_Erzklingen_2h);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Одноручный меч (2000 золотых)",DIA_Harad_Erzklingen_1h);
+		B_ChooseHaradOreBlade();
 	};
 };
 

@@ -525,11 +525,11 @@ func void DIA_Cassia_BevorLernen_Info()
 		Info_AddChoice(DIA_Cassia_BevorLernen,"Может быть, позже...",DIA_Cassia_BevorLernen_Spaeter);
 		if((Cassia_TeachPickpocket == FALSE) && !Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 		{
-			Info_AddChoice(DIA_Cassia_BevorLernen,"Я хочу научиться карманному воровству. (заплатить 100 золотых)",DIA_Cassia_BevorLernen_Pickpocket);
+			Info_AddChoice(DIA_Cassia_BevorLernen,B_BuildPriceString("Я хочу научиться карманному воровству.",100),DIA_Cassia_BevorLernen_Pickpocket);
 		};
 		if(Cassia_TeachDEX == FALSE)
 		{
-			Info_AddChoice(DIA_Cassia_BevorLernen,"Я хочу стать более ловким. (заплатить 100 золотых)",DIA_Cassia_BevorLernen_DEX);
+			Info_AddChoice(DIA_Cassia_BevorLernen,B_BuildPriceString("Я хочу стать более ловким.",100),DIA_Cassia_BevorLernen_DEX);
 		};
 	};
 };
@@ -563,13 +563,12 @@ func void DIA_Cassia_BevorLernen_Pickpocket()
 	{
 		AI_Output(self,other,"DIA_Cassia_BevorLernen_Pickpocket_16_01");	//Мы можем начать, когда ты будешь готов.
 		Cassia_TeachPickpocket = TRUE;
-		Info_ClearChoices(DIA_Cassia_BevorLernen);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Cassia_BevorLernen_Pickpocket_16_02");	//Возвращайся, когда у тебя будет золото.
-		Info_ClearChoices(DIA_Cassia_BevorLernen);
 	};
+	Info_ClearChoices(DIA_Cassia_BevorLernen);
 };
 
 
@@ -577,8 +576,8 @@ func void B_BuildLearnDialog_Cassia()
 {
 	Info_ClearChoices(DIA_Cassia_TEACH);
 	Info_AddChoice(DIA_Cassia_TEACH,Dialog_Back,DIA_Cassia_TEACH_BACK);
-	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Cassia_TEACH_1);
-	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Cassia_TEACH_5);
+	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_Cassia_TEACH_1);
+	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_Cassia_TEACH_5);
 };
 
 instance DIA_Cassia_TEACH(C_Info)

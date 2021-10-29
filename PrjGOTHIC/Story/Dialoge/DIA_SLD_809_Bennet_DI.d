@@ -87,8 +87,8 @@ func void DIA_Bennet_DI_TRADE_Info()
 		Bennet_DI_flag = FALSE;
 	};
 	AI_Output(other,self,"DIA_Bennet_DI_TRADE_15_00");	// акое оружие ты можешь продать мне?
-	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Bennet_DI_TRADE_06_01");	//“олько лучшее. “ы же знаешь.
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 
@@ -115,12 +115,14 @@ func int DIA_Bennet_DI_Smith_Condition()
 
 func void DIA_Bennet_DI_Smith_Info()
 {
+	var int abletolearn;
+	abletolearn = 0;
 	AI_Output(other,self,"DIA_Bennet_DI_Smith_15_00");	//“ы можешь обучить мен€ своему мастерству?
-	AI_Output(self,other,"DIA_Bennet_DI_Smith_06_01");	//Ёто зависит от того, что ты хочешь научитьс€ делать.
 	Info_ClearChoices(DIA_Bennet_DI_Smith);
 	Info_AddChoice(DIA_Bennet_DI_Smith,Dialog_Back,DIA_Bennet_DI_Smith_BACK);
 	if(PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE)
 	{
+		B_Bennet_PleaseLearnBasics();
 		Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_Skill_Smith,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),DIA_Bennet_DI_Smith_Common);
 	}
 	else
@@ -128,34 +130,51 @@ func void DIA_Bennet_DI_Smith_Info()
 		if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_1H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_01)),DIA_Bennet_DI_Smith_1hSpecial1);
+			abletolearn += 1;
 		};
 		if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_2H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_01)),DIA_Bennet_DI_Smith_2hSpecial1);
+			abletolearn += 1;
 		};
 		if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_02] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_1H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_02)),DIA_Bennet_DI_Smith_1hSpecial2);
+			abletolearn += 1;
 		};
 		if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_02] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_2H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_02)),DIA_Bennet_DI_Smith_2hSpecial2);
+			abletolearn += 1;
 		};
 		if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_03] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_1H_Special_03,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_03)),DIA_Bennet_DI_Smith_1hSpecial3);
+			abletolearn += 1;
 		};
 		if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_03] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_2H_Special_03,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_03)),DIA_Bennet_DI_Smith_2hSpecial3);
+			abletolearn += 1;
 		};
 		if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_1H_Special_04,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_04)),DIA_Bennet_DI_Smith_1hSpecial4);
+			abletolearn += 1;
 		};
 		if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_2H_Special_04,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_04)),DIA_Bennet_DI_Smith_2hSpecial4);
+			abletolearn += 1;
+		};
+		if(abletolearn < 1)
+		{
+			B_Say(self,other,"$NOLEARNYOUREBETTER");
+			Info_ClearChoices(DIA_Bennet_DI_Smith);
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Bennet_DI_Smith_06_01");	//Ёто зависит от того, что ты хочешь научитьс€ делать.
 		};
 	};
 };
@@ -167,7 +186,8 @@ func void DIA_Bennet_DI_Smith_BACK()
 
 func void DIA_Bennet_DI_Smith_Common()
 {
-	B_TeachPlayerTalentSmith(self,other,WEAPON_Common);
+	DIA_Bennet_TeachCOMMON_Info();
+	Info_ClearChoices(DIA_Bennet_DI_Smith);
 };
 
 func void DIA_Bennet_DI_Smith_1hSpecial1()
@@ -215,8 +235,8 @@ func void B_BuildLearnDialog_Bennet_DI()
 {
 	Info_ClearChoices(DIA_Bennet_TeachSTR);
 	Info_AddChoice(DIA_Bennet_TeachSTR,Dialog_Back,DIA_Bennet_TeachSTR_Back);
-	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Bennet_TeachSTR_STR_1);
-	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Bennet_TeachSTR_STR_5);
+	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Bennet_TeachSTR_STR_1);
+	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Bennet_TeachSTR_STR_5);
 };
 
 instance DIA_Bennet_TeachSTR(C_Info)

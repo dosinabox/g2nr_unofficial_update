@@ -45,12 +45,12 @@ func void dia_bdt_6_standard_info()
 	if(randy == 0)
 	{
 		B_Say(self,other,"$WHATSTHISSUPPOSEDTOBE");
-	};
-	if(randy == 1)
+	}
+	else if(randy == 1)
 	{
 		B_Say(self,other,"$GETOUTOFHERE");
-	};
-	if(randy == 2)
+	}
+	else if(randy == 2)
 	{
 		B_Say(self,other,"$NOTNOW");
 	};

@@ -15,8 +15,8 @@ func void player_mob_missing_key()
 	{
 		Print(PRINT_KeyMissing);
 		B_Say_Overlay(self,self,"$KEYMISSING");
-	};
-	if(rnd == 1)
+	}
+	else if(rnd == 1)
 	{
 		Print("Здесь мне нужен ключ...");
 		B_Say_Overlay(self,self,"$NEEDKEY");
@@ -26,7 +26,6 @@ func void player_mob_missing_key()
 func void player_mob_missing_lockpick()
 {
 	var int rnd;
-	rnd = Hlp_Random(2);
 	if(!Npc_GetTalentSkill(hero,NPC_TALENT_PICKLOCK))
 	{
 		Print(PRINT_NoPicklockTalent);
@@ -36,12 +35,13 @@ func void player_mob_missing_lockpick()
 	else
 	{
 		AI_PlayAni(self,"T_DONTKNOW");
+		rnd = Hlp_Random(2);
 		if(rnd == 0)
 		{
 			Print(PRINT_PicklockMissing);
 			B_Say_Overlay(self,self,"$PICKLOCKMISSING");
-		};
-		if(rnd == 1)
+		}
+		else if(rnd == 1)
 		{
 			Print("У меня больше нет отмычек!");
 			B_Say_Overlay(self,self,"$NOMOREPICKS");

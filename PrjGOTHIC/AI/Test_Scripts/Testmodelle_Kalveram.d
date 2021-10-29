@@ -384,6 +384,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ITWr_Addon_Lou_Rezept2,1);
 	CreateInvItems(self,ITWr_Addon_Piratentod,1);
 	CreateInvItems(self,ItWr_MushroomMana,1);
+	CreateInvItems(self,ItWr_AppleSTR,1);
 //	CreateInvItems(self,Fakescroll_Addon,1);
 	CreateInvItems(self,ItWr_Addon_AxtAnleitung,1);
 	CreateInvItems(self,ItWr_Addon_SUMMONANCIENTGHOST,1);
@@ -599,6 +600,9 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ItAm_Addon_Health);
 	CreateInvItem(self,ItAm_Addon_MANA);
 	CreateInvItem(self,ItAm_Addon_STR);
+	CreateInvItem(self,ItAm_Hp_Regen);
+	CreateInvItem(self,ItAm_Mana_Regen);
+	CreateInvItem(self,ItAm_Fall);
 	CreateInvItem(self,ItRi_Dex_01);
 	CreateInvItem(self,ItRi_Dex_02);
 	CreateInvItem(self,ItRi_HP_01);
@@ -618,9 +622,9 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ItRi_Prot_Mage_03);
 	CreateInvItem(self,ItRi_Prot_Point_01);
 	CreateInvItem(self,ItRi_Prot_Point_02);
-	CreateInvItem(self,ItRi_Prot_Total_00);
 	CreateInvItem(self,ItRi_Prot_Total_01);
 	CreateInvItem(self,ItRi_Prot_Total_02);
+	CreateInvItem(self,ItRi_Prot_Total_03);
 	CreateInvItem(self,ItRi_Addon_Health_01);
 	CreateInvItem(self,ItRi_Addon_Health_02);
 	CreateInvItem(self,ItRi_Addon_MANA_01);
@@ -645,6 +649,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItPo_Mana_Addon_04,10);
 	CreateInvItems(self,ItPo_Perm_LittleMana,10);
 	CreateInvItems(self,ItPo_Perm_MushroomMana,10);
+	CreateInvItems(self,ItPo_Perm_AppleSTR,10);
 	CreateInvItems(self,ItAt_Meatbugflesh,10);
 	CreateInvItems(self,ItAt_SheepFur,10);
 	CreateInvItems(self,ItAt_WolfFur,10);
@@ -893,6 +898,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_IEHarfe,1);
 	CreateInvItems(self,ItMi_IELaute,1);
 	CreateInvItems(self,ItMi_AlarmHorn,1);
+	CreateInvItems(self,StatsBook,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_OldBald_Jeremiah,BodyTex_N,NO_ARMOR);
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,70);
@@ -1166,7 +1172,6 @@ func void Rtn_Start_1501()
 func void Startup_TA_Testlevel()
 {
 	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
 	Wld_InsertNpc(PIR_1350_Addon_Francis,"WP_SMITH_SHARP");
 	Wld_InsertNpc(PIR_1351_Addon_Samuel,"WP_COOK_STOVE");
@@ -1185,7 +1190,6 @@ func void init_sub_ta_testlevel()
 func void INIT_TA_Testlevel()
 {
 	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
 	init_sub_ta_testlevel();
 };

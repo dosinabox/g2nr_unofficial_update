@@ -4,84 +4,121 @@ func int C_AmIWeaponTrader(var C_Npc slf)
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Erol))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fisk))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fisk))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Garett))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Garett))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Huno))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Huno))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Martin))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Martin))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Scatty))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Scatty))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bennet_DI))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bennet_DI))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Canthar))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Canthar))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cipher))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cipher))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Hakon))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Hakon))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Hodges))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Hodges))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Jora))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Jora))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Khaled))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Khaled))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Matteo))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Matteo))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Orlan))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Orlan))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rethon))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rethon))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sarah))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sarah))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Tandor))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Tandor))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bosper))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bosper))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Engor))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Engor))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+func int C_TraderCanEquipRangedWeapon(var C_Npc slf)
+{
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Garett))
+	{
+		return TRUE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Engor))
+	{
+		return TRUE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bosper))
+	{
+		return TRUE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Diego_DI))
+	{
+		return TRUE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Tandor))
+	{
+		return TRUE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sengrath))
+	{
+		return TRUE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Khaled))
+	{
+		return TRUE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cipher))
 	{
 		return TRUE;
 	};
@@ -90,21 +127,15 @@ func int C_AmIWeaponTrader(var C_Npc slf)
 
 func void B_GiveTradeInv(var C_Npc slf)
 {
-	var C_Item EquipedMeleeWeapon;
-	var C_Item EquipedRangedWeapon;
 	if(C_AmIWeaponTrader(slf))
 	{
-		EquipedMeleeWeapon = Npc_GetEquippedMeleeWeapon(slf);
-		Npc_RemoveInvItems(slf,Hlp_GetInstanceID(EquipedMeleeWeapon),Npc_HasItems(slf,Hlp_GetInstanceID(EquipedMeleeWeapon)));
-		CreateInvItem(slf,Hlp_GetInstanceID(EquipedMeleeWeapon));
-		EquipedRangedWeapon = Npc_GetEquippedRangedWeapon(slf);
-		Npc_RemoveInvItems(slf,Hlp_GetInstanceID(EquipedRangedWeapon),Npc_HasItems(slf,Hlp_GetInstanceID(EquipedRangedWeapon)));
-		CreateInvItem(slf,Hlp_GetInstanceID(EquipedRangedWeapon));
+		B_UnEquipAllWeapons(slf,TRUE);
 	};
 	B_ClearRuneInv(slf);
 	B_ClearTools(slf);
 	B_ClearSpecialAmmo(slf);
 	B_CoolHotDraw(hero);
+	B_ClearFakeItems(hero);
 	if(slf.aivar[AIV_ChapterInv] <= Kapitel)
 	{
 		if(slf.aivar[AIV_NPCIsTrader] == TRUE)
@@ -339,7 +370,7 @@ func void B_EquipTrader(var C_Npc slf)
 	if(Trade_IsActive == TRUE)
 	{
 		AI_EquipBestMeleeWeapon(slf);
-		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Garett)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Engor)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bosper)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Diego_DI)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Tandor)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sengrath)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Khaled)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cipher)))
+		if(C_TraderCanEquipRangedWeapon(slf))
 		{
 			AI_EquipBestRangedWeapon(slf);
 		};

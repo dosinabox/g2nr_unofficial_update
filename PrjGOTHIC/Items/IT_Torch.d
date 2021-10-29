@@ -30,7 +30,6 @@ instance ItLsTorchburned(C_Item)
 {
 	name = "—горевший факел";
 	mainflag = ITEM_KAT_NONE;
-//	flags = ITEM_TORCH | ITEM_MULTI;
 	flags = ITEM_MULTI;
 	value = 0;
 	visual = "ItLs_Torchburned_01.3ds";

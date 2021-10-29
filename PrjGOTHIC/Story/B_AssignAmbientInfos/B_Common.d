@@ -254,6 +254,41 @@ func void DIA_Common_WhatDoYouKnowAboutBandits()
 	AI_Output(other,self,"DIA_Addon_Garett_Bandits_15_00");	//Что ты знаешь о бандитах?
 };
 
+func void DIA_Common_NovicePassedBy()
+{
+	AI_Output(other,self,"DIA_Jorgen_Novice_15_00");	//Мимо тебя не проходил послушник?
+};
+
+func void DIA_Common_YouAreWrong()
+{
+	AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_15_00");	//Ты ошибаешься.
+};
+
+func void DIA_Common_WhereBengarsFarm()
+{
+	AI_Output(other,self,"DIA_Rosi_BENGAR_15_00");	//Как мне попасть на ферму Бенгара?
+};
+
+func void DIA_Common_SoWhatNeedsToBeDone()
+{
+	AI_Output(other,self,"DIA_Engor_HELP_15_02");	//Так что нужно сделать?
+};
+
+func void DIA_Common_SureWhatsNeeded()
+{
+	AI_Output(other,self,"DIA_Baltram_Trick_15_01");	//Конечно, а что нужно?
+};
+
+func void DIA_Common_Yeah()
+{
+	AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_06");	//Ну да.
+};
+
+func void DIA_Common_EverythingWillBeAlright()
+{
+	AI_Output(other,self,"DIA_Bengar_PERM_15_00");	//Все будет в порядке.
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?
@@ -267,6 +302,11 @@ func void DIA_Common_06_IKnowNothingAboutIt()
 func void DIA_Common_09_AllQuiet()
 {
 	AI_Output(self,other,"DIA_PAL_298_Perm2_09_01");	//Все спокойно. Мы держим ситуацию под контролем.
+};
+
+func void DIA_Common_14_GoReadAboutIt()
+{
+	AI_Output(self,other,"DIA_Hyglas_FIREBOLT_14_01");	//Прочти об этом - ты найдешь эту информацию здесь, в книгах.
 };
 
 func void DIA_Common_17_Thanks()

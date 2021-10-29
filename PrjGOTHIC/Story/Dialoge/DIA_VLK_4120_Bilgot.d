@@ -88,8 +88,9 @@ func void DIA_Bilgot_Job_Info()
 	AI_Output(other,self,"DIA_Bilgot_Job_15_00");	//А что ты вообще здесь делаешь, кстати?
 	AI_Output(self,other,"DIA_Bilgot_Job_05_01");	//Я здесь как мальчик на побегушках. Поднеси-подай, посмотри, где там снепперы, Билгот туда, Билгот сюда.
 	AI_Output(self,other,"DIA_Bilgot_Job_05_02");	//Мне лучше было остаться дома со своей старухой. Там было не лучше, но, по крайней мере, там была приличная еда.
-	AI_Output(self,other,"DIA_Bilgot_Job_05_03");	//А теперь я - все, что осталось от отряда, которым командовал Фаджет.
+	AI_Output(other,self,"DIA_Addon_Cavalorn_Beutel_why_15_00");	//А почему ты вообще оттуда ушел?
 	AI_Output(self,other,"DIA_Bilgot_Job_05_04");	//Откуда мне было знать, что этой экспедиции не суждено было вернуться?
+	AI_Output(self,other,"DIA_Bilgot_Job_05_03");	//А теперь я - все, что осталось от отряда, которым командовал Фаджет.
 	AI_Output(self,other,"DIA_Bilgot_Job_05_05");	//Мой приятель Олав улизнул. Может быть, хотя бы ему удалось вырваться...
 };
 
@@ -107,7 +108,7 @@ instance DIA_Bilgot_Hilfe(C_Info)
 
 func int DIA_Bilgot_Hilfe_Condition()
 {
-	if(MIS_Fajeth_Kill_Snapper == LOG_Running)
+	if(Npc_KnowsInfo(other,DIA_Bilgot_Job) && (MIS_Fajeth_Kill_Snapper == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -193,11 +194,11 @@ func void DIA_Bilgot_TAKEYOUWITHME_Info()
 {
 	AI_Output(other,self,"DIA_Bilgot_TAKEYOUWITHME_15_00");	//Время пришло, Билгот! Пакуй свои вещи, мы отправляемся в путь.
 	AI_Output(self,other,"DIA_Bilgot_TAKEYOUWITHME_05_03");	//Я готов!
-	Npc_ExchangeRoutine(self,"FOLLOWTOOCBRIDGE");
-	Bilgot.flags = 0;
 	MIS_RescueBilgot = LOG_Running;
-	self.aivar[AIV_PARTYMEMBER] = TRUE;
+	self.flags = 0;
 	AI_StopProcessInfos(self);
+	self.aivar[AIV_PARTYMEMBER] = TRUE;
+	Npc_ExchangeRoutine(self,"FOLLOWTOOCBRIDGE");
 };
 
 

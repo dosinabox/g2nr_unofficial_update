@@ -25,9 +25,9 @@ func void Use_Bookstand_01_S1()
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"Высший Cовет");
 		Doc_Show(nDocID);
-		if((hero.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == FALSE))
+		if((hero.guild == GIL_NOV) && (Knows_Fire_Contest == FALSE))
 		{
-			KNOWS_FIRE_CONTEST = TRUE;
+			Knows_Fire_Contest = TRUE;
 			Log_CreateTopic(TOPIC_FireContest,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_FireContest,LOG_Running);
 			B_LogEntry(TOPIC_FireContest,"Будучи послушником, я имею право требовать прохождения Испытания Огнем. Каждый из трех магов Высшего Совета должен дать мне задание. Если я пройду эти испытания, я буду принят в Круг Огня.");
@@ -71,7 +71,7 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 			Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 			Doc_PrintLines(nDocID,1,"Чтобы достичь секретного места, необходимо создать руну телепортации. Для этого необходим чистый рунный камень и небольшая бутылочка святой воды. При помощи этой руны можно телепортироваться в комнату.");
 //			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLines(nDocID,1,"Теперь я вполне уверен, что слезы Инноса - именно то, что древние паладины использовали в давно забытом ритуале 'Освящение Меча'. Это означает, что при помощи этой бутылочки можно придать дополнительную силу освящаемому оружию.");
+			Doc_PrintLines(nDocID,1,"Теперь я уверен, что это Слезы Инноса - то, что древние паладины использовали в давно забытом ритуале 'Освящение Меча'. Это значит, что при помощи обнаруженного мною флакона можно придать дополнительную силу освящаемому оружию.");
 			Doc_Show(nDocID);
 			PAL_KnowsAbout_FINAL_BLESSING = TRUE;
 			if(FinalDragonEquipment_Once == FALSE)

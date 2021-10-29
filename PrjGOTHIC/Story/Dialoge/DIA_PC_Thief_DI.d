@@ -129,20 +129,9 @@ func void DIA_Diego_DI_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Diego_DI_TRADE_15_00");	//Мне нужна амуниция.
 	B_GiveTradeInv(self);
-	if(TradersHaveLimitedAmmo == TRUE)
-	{
-		if(Diego_DI_Ammo_Day <= Wld_GetDay())
-		{
-			B_RefreshAmmo(self,50);
-			Diego_DI_Ammo_Day = Wld_GetDay() + 1;
-		};
-	}
-	else
-	{
-		B_RefreshAmmo(self,50);
-	};
-	AI_Output(self,other,"DIA_Diego_DI_TRADE_11_01");	//Возможно, я смогу помочь тебе.
 	Trade_IsActive = TRUE;
+	B_RefreshTraderAmmo(self,50);
+	AI_Output(self,other,"DIA_Diego_DI_TRADE_11_01");	//Возможно, я смогу помочь тебе.
 };
 
 
@@ -154,8 +143,8 @@ func void B_BuildLearnDialog_Diego_DI()
 	{
 		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(NAME_Skill_PickLock,B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
 	};
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_PC_Thief_DI_Training_DEX_1);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_PC_Thief_DI_Training_DEX_5);
+	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_PC_Thief_DI_Training_DEX_1);
+	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_PC_Thief_DI_Training_DEX_5);
 	if(VisibleTalentValue(NPC_TALENT_BOW) < 100)
 	{
 		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_PC_Thief_DI_Training_Combat_BOW_1);
@@ -302,18 +291,21 @@ func void DIA_PC_Thief_DI_UndeadDragonDead_Info()
 			};
 		};
 		AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_09");	//Ммм. Ну, или, может быть, я просто продолжу бизнес Бромора. Это очень неплохие деньги. Честные деньги.
-		DIA_PC_Thief_DI_UndeadDragonDead_OneTime = TRUE;
 	};
 	AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_10");	//Иди к капитану. Пусть он поднимает якорь.
 	AI_StopProcessInfos(self);
-	if(Lares_IsOnBoard != LOG_SUCCESS)
+	if(DIA_PC_Thief_DI_UndeadDragonDead_OneTime == FALSE)
 	{
-		Npc_ExchangeRoutine(self,"SittingShipDI");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"Start");
+		if(Lares_IsOnBoard != LOG_SUCCESS)
+		{
+			Npc_ExchangeRoutine(self,"SittingShipDI");
+		}
+		else
+		{
+			Npc_ExchangeRoutine(self,"Start");
+		};
 	};
+	DIA_PC_Thief_DI_UndeadDragonDead_OneTime = TRUE;
 };
 
 

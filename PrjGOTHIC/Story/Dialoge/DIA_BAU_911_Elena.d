@@ -75,7 +75,7 @@ func void DIA_Elena_Aufstand_Info()
 {
 	AI_Output(other,self,"DIA_Elena_Aufstand_15_00");	//Говорят, что вы восстали против короля?
 	AI_Output(self,other,"DIA_Elena_Aufstand_16_01");	//Мой отец решил, что пришло время защищать себя самим.
-	if(other.guild != GIL_MIL)
+	if(VisibleGuild(other) != GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Elena_Aufstand_16_02");	//Ополчение никогда не помогало нам. Они приходили сюда только, чтобы забрать провизию.
 	};
@@ -141,6 +141,18 @@ func void DIA_Elena_Regeln_Info()
 };
 
 
+var int Elena_Trade;
+
+func void B_Elena_Trade()
+{
+	if(Elena_Trade == FALSE)
+	{
+		Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_SoldierTrader,"Елена продает товары на ферме Онара.");
+		Elena_Trade = TRUE;
+	};
+};
+
 instance DIA_Elena_AUFGABE(C_Info)
 {
 	npc = BAU_911_Elena;
@@ -165,12 +177,9 @@ func void DIA_Elena_AUFGABE_Info()
 	AI_Output(other,self,"DIA_Elena_AUFGABE_15_00");	//А чем ты занимаешься?
 	AI_Output(self,other,"DIA_Elena_AUFGABE_16_01");	//Я продаю то, что мы выращиваем на ферме. Если захочешь купить что-нибудь, дай мне знать.
 	AI_Output(self,other,"DIA_Elena_AUFGABE_16_02");	//Но я хочу предупредить тебя. Я не люблю торговаться и не потерплю воровства. Понятно?
-	Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
-	B_LogEntry(TOPIC_SoldierTrader,"Елена продает товары на ферме Онара.");
+	B_Elena_Trade();
 };
 
-
-var int Elena_Trade_mit_mir;
 
 instance DIA_Elena_TRADE(C_Info)
 {
@@ -186,7 +195,7 @@ instance DIA_Elena_TRADE(C_Info)
 
 func int DIA_Elena_TRADE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Elena_AUFGABE) || (Elena_Trade_mit_mir == TRUE))
+	if(Elena_Trade == TRUE)
 	{
 		return TRUE;
 	};
@@ -195,12 +204,12 @@ func int DIA_Elena_TRADE_Condition()
 func void DIA_Elena_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Elena_TRADE_15_00");	//Покажи мне свои товары.
-	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Elena_TRADE_16_01");	//Выбирай.
 	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
 	{
 		ElenaMinenAnteil = TRUE;
 	};
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 
@@ -231,7 +240,7 @@ func void DIA_Elena_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Elena_PERM_16_01");	//Несколько дней назад мой отец объявил, что нам больше нельзя ничего продавать городу.
 		AI_Output(self,other,"DIA_Elena_PERM_16_02");	//Поэтому я теперь все время на ферме и продаю товары только здесь.
-		Elena_Trade_mit_mir = TRUE;
+		B_Elena_Trade();
 	}
 	else if(Kapitel == 2)
 	{
@@ -264,8 +273,6 @@ instance DIA_Elena_MINENANTEIL(C_Info)
 
 func int DIA_Elena_MINENANTEIL_Condition()
 {
-//	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Elena_HALLO))
-//	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Elena_TRADE))
 	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (ElenaMinenAnteil == TRUE))
 	{
 		return TRUE;

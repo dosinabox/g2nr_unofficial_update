@@ -9,6 +9,7 @@ instance VLK_4201_Wirt(Npc_Default)
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
+	EquipItem(self,ItMw_ShortSword2);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_OldBald_Jeremiah,BodyTex_N,ITAR_Barkeeper);
 	Mdl_SetModelFatness(self,2);

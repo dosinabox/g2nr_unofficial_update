@@ -15,7 +15,11 @@ func void ZS_CommentFakeGuild()
 			AI_Dodge(other);
 		};
 	};
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Martin)) && (other.guild != GIL_MIL))
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Baltram))
+	{
+		B_Say(self,other,"$ADDON_WRONGARMOR_SLD");
+	}
+	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Martin)) && (other.guild != GIL_MIL))
 	{
 		B_Say(self,other,"$ADDON_WRONGARMOR");
 	}

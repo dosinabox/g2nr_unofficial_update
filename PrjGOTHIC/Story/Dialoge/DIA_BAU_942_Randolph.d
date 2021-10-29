@@ -327,8 +327,11 @@ func void DIA_Randolph_ICHGEBEDIRGELD_Info()
 		B_NpcClearObsessionByDMT(self);
 		MIS_Rukhar_Wettkampf_Day = Wld_GetDay();
 		Npc_ExchangeRoutine(self,"Wettkampf");
-		B_StartOtherRoutine(Orlan,"Wettkampf");
 		B_StartOtherRoutine(Rukhar,"Wettkampf");
+		if(RangerMeetingRunning != LOG_Running)
+		{
+			B_StartOtherRoutine(Orlan,"Wettkampf");
+		};
 	}
 	else
 	{
@@ -426,7 +429,7 @@ func void DIA_Randolph_PERM_Info()
 		{
 			AI_Output(self,other,"DIA_Randolph_PERM_06_07");	//Я все еще чувствую слабость в ногах, но мне уже стало лучше.
 		}
-		else if(MIS_HealRandolph == LOG_RUNNING)
+		else if(MIS_HealRandolph == LOG_Running)
 		{
 			AI_Output(self,other,"DIA_Randolph_PERM_06_04");	//Мне плохо. Каждый раз, когда я перестаю пить, это похмелье убивает меня. Мне очень нужна помощь.
 		}

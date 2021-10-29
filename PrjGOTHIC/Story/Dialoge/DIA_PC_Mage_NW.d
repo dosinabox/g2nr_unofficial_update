@@ -82,7 +82,7 @@ func void DIA_MiltenNW_KAP3_Hello_FirstMeet_YES()
 	{
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_04");	//Проблема не только в орках.
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_05");	//Я знаю, но все равно хорошо, что ты на нашей стороне.
-		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_06");	//Ну да.
+		DIA_Common_Yeah();
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_07");	//Что ты делаешь здесь, в монастыре? Дай я угадаю. Ты хочешь быть посвященным в искусство магии.
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_08");	//Возможно.
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_09");	//Я знал это - лучше всего тебе поговорить с Мардуком, он отвечает за вас, паладинов. Ты найдешь его перед часовней.
@@ -95,7 +95,7 @@ func void DIA_MiltenNW_KAP3_Hello_FirstMeet_YES()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Bengar_PERM_15_00");	//Все будет в порядке.
+		DIA_Common_EverythingWillBeAlright();
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_18");	//Ты победил Спящего. Нам всем может понадобиться твоя помощь однажды.
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_19");	//Ох, ладно.
 		Knows_Milten = TRUE;
@@ -144,12 +144,12 @@ func void DIA_MiltenNW_KAP3_Hello_Info()
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_03");	//Какая-то горстка орков для тебя не проблема.
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_04");	//Проблема не только в орках.
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_05");	//Я знаю, но все равно хорошо, что ты на нашей стороне.
-		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_06");	//Ну да.
+		DIA_Common_Yeah();
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_07");	//Что ты делаешь здесь, в монастыре? Дай я угадаю. Ты хочешь быть посвященным в искусство магии.
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_08");	//Возможно.
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_09");	//Я знал это - лучше всего тебе поговорить с Мардуком, он отвечает за вас, паладинов. Ты найдешь его перед часовней.
-	};
-	if(hero.guild == GIL_DJG)
+	}
+	else if(hero.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_10");	//Я вижу, что слухи оказались правдой.
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_11");	//Какие слухи?
@@ -760,8 +760,8 @@ func void B_BuildLearnDialog_Milten_NW()
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_04");	//Я посмотрю, что можно сделать.
 		Info_ClearChoices(DIA_MiltenNW_Mana);
 		Info_AddChoice(DIA_MiltenNW_Mana,Dialog_Back,DIA_MiltenNW_Mana_BACK);
-		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_MiltenNW_Mana_1);
-		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_MiltenNW_Mana_5);
+		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),DIA_MiltenNW_Mana_1);
+		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),DIA_MiltenNW_Mana_5);
 	};
 };
 

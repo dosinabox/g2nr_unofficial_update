@@ -168,7 +168,6 @@ instance DIA_Lothar_EyeInnos(C_Info)
 
 func int DIA_Lothar_EyeInnos_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
 	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE))
 	{
 		return TRUE;
@@ -212,7 +211,6 @@ instance DIA_Lothar_Dragons(C_Info)
 
 func int DIA_Lothar_Dragons_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
 	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || (other.guild == GIL_KDF))
 	{
 		return TRUE;
@@ -256,7 +254,6 @@ instance DIA_Addon_Lothar_Ornament(C_Info)
 
 func int DIA_Addon_Lothar_Ornament_Condition()
 {
-//	if((LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_Addon_Cavalorn_GetOrnamentFromPAL == LOG_Running))
 	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL == LOG_Running)
 	{
 		return TRUE;
@@ -308,7 +305,6 @@ instance DIA_Lothar_WhoDragons(C_Info)
 
 func int DIA_Lothar_WhoDragons_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
 	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && !Npc_KnowsInfo(other,DIA_DiegoOw_Hallo))
 	{
 		return TRUE;
@@ -373,8 +369,8 @@ func int DIA_Addon_Lothar_MissingPeople_Condition()
 	if(SC_HearedAboutMissingPeople == TRUE)
 	{
 		return TRUE;
-	}
-	else if(Npc_KnowsInfo(other,DIA_Lothar_Hallo))
+	};
+	if(Npc_KnowsInfo(other,DIA_Lothar_Hallo))
 	{
 		return TRUE;
 	};
@@ -478,7 +474,7 @@ instance DIA_Lothar_ToOV(C_Info)
 
 func int DIA_Lothar_ToOV_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lothar_Regeln) && (Mil_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE))
+	if(Npc_KnowsInfo(other,DIA_Lothar_Regeln) && (Mil_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE) && !Npc_KnowsInfo(other,DIA_Lothar_HelloAgain))
 	{
 		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 		{
@@ -635,7 +631,7 @@ instance DIA_Lothar_PermB4OV(C_Info)
 
 func int DIA_Lothar_PermB4OV_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Mil_305_schonmalreingelassen == FALSE) && (Lothar_Regeln == TRUE))
+	if(Npc_IsInState(self,ZS_Talk) && (Mil_305_schonmalreingelassen == FALSE) && (Lothar_Regeln == TRUE) && !Npc_KnowsInfo(other,DIA_Lothar_HelloAgain))
 	{
 		if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen))
 		{
@@ -657,35 +653,6 @@ func void DIA_Lothar_PermB4OV_Info()
 	AI_StopProcessInfos(self);
 };
 
-/*
-func void B_Lothar_Blubb()
-{
-//	AI_Output(other,self,"DIA_Lothar_Add_15_00");	//Но я ДОЛЖЕН увидеться с лордом Хагеном!
-//	AI_Output(other,self,"DIA_Lothar_Add_15_20");	//Сколько мастеров работает в городе?
-//	AI_Output(self,other,"DIA_Lothar_Add_01_21");	//Насколько я знаю, всего их пять.
-//	AI_Output(self,other,"DIA_Lothar_Add_01_62");	//Скажи мне, разве я говорил недостаточно внятно? Хватит разговоров о драконах!
-//	AI_Output(other,self,"DIA_Lothar_Add_15_63");	//Откуда тебе знать?..
-//	AI_Output(self,other,"DIA_Lothar_Add_01_64");	//Это НЕ ТВОЕ дело!
-//	AI_Output(self,other,"DIA_Lothar_Add_01_65");	//Это было последний раз, понятно?!
-//	AI_Output(other,self,"DIA_Lothar_Add_15_66");	//Где мне найти командира ополчения?
-//	AI_Output(other,self,"DIA_Lothar_Add_15_08");	//Теперь я ученик одного из мастеров!
-//	AI_Output(self,other,"DIA_Lothar_Add_01_43");	//Как я слышал, ты разговаривал с лордом Андрэ?
-//	AI_Output(self,other,"DIA_Lothar_Add_01_44");	//Я говорил тебе, что ты можешь присоединиться к ополчению, только если станешь гражданином города.
-//	AI_Output(self,other,"DIA_Lothar_Add_01_45");	//Как я понимаю, он принял тебя в ряды ополчения.
-//	AI_Output(self,other,"DIA_Lothar_Add_01_46");	//Хмм... Надеюсь, он знает, что делает.
-//	AI_Output(self,other,"DIA_Lothar_Add_01_47");	//Опять ты.
-//	AI_Output(self,other,"DIA_Lothar_Add_01_48");	//Я доложил лорду Хагену, что ты желаешь поговорить с ним...
-//	AI_Output(other,self,"DIA_Lothar_Add_15_49");	//И? Что он сказал?
-//	AI_Output(self,other,"DIA_Lothar_Add_01_50");	//Он никогда не слышал о тебе.
-//	AI_Output(other,self,"DIA_Lothar_Add_15_51");	//Конечно нет. Ты сказал ему о драконах?
-//	AI_Output(self,other,"DIA_Lothar_Add_01_52");	//Разве я не говорил тебе, чтобы ты прекратил нести этот вздор?!
-//	AI_Output(self,other,"DIA_Lothar_Add_01_12");	//Я слышал, ты уже получил одобрение некоторых мастеров.
-//	AI_Output(self,other,"DIA_Lothar_Add_01_13");	//Похоже, ты полон решимости добиться своего, да?
-//	AI_Output(self,other,"DIA_Lothar_Add_01_01");	//Ты должен повиноваться законам, как и все остальные!
-//	AI_Output(self,other,"DIA_Lothar_Add_01_02");	//Лорд Хаген не принимает.
-//	AI_Output(self,other,"DIA_Lothar_Add_01_03");	//Если у тебя действительно есть что-то ВАЖНОЕ, иди к лорду Андрэ. Он поможет тебе!
-};
-*/
 
 var int Lothar_Reported;
 
@@ -727,6 +694,13 @@ func int DIA_Lothar_HelloAgain_Condition()
 	if(Mil_305_schonmalreingelassen == TRUE)
 	{
 		return TRUE;
+	};
+	if(Lothar_ImOV == TRUE)
+	{
+		if(Npc_GetDistToWP(self,"NW_CITY_LOTHAR") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -971,7 +945,6 @@ instance DIA_Lothar_PERM(C_Info)
 
 func int DIA_Lothar_PERM_Condition()
 {
-//	if((Mil_305_schonmalreingelassen == TRUE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
 	if(Mil_305_schonmalreingelassen == TRUE)
 	{
 		return TRUE;

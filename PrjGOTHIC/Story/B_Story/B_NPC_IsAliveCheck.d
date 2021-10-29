@@ -6,6 +6,7 @@ var int SLD_Gorn_is_alive;
 var int SLD_Sylvio_is_alive;
 var int GornDJG_is_alive;
 var int DJG_Angar_is_alive;
+var int Hodges_isAlive_Kap3;
 var int Vino_isAlive_Kap3;
 var int Malak_isAlive_Kap3;
 var int Bromor_isAlive_Kap3;
@@ -112,5 +113,247 @@ func void B_NPC_IsAliveCheck(var int Zen)
 			};
 		};
 	};
+};
+
+func int C_TowerBanditsDead()
+{
+	if(!Npc_IsDead(TowerBandit1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(TowerBandit2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(TowerBandit3))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_BragoBanditsDead()
+{
+	if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_Away == FALSE))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Ambusher_1014))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Ambusher_1015))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_NorthBeachMonstersDead()
+{
+	if(!Npc_IsDead(BeachLurker1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BeachLurker2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BeachLurker3))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BeachWaran1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BeachWaran2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BeachShadowbeast1))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_AllCanyonRazorDead()
+{
+	if(!Npc_IsDead(CanyonRazor01))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(CanyonRazor02))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(CanyonRazor03))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(CanyonRazor04))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(CanyonRazor05))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(CanyonRazor06))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(CanyonRazor07))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(CanyonRazor08))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(CanyonRazor09))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(CanyonRazor10))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_VinoDementorsDead()
+{
+	if(!Npc_IsDead(DMT_Vino1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(DMT_Vino2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(DMT_Vino3))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(DMT_Vino4))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_LobartOrksDead()
+{
+	if(!Npc_IsDead(OrcWarrior_Lobart1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(OrcWarrior_Lobart2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(OrcWarrior_Lobart3))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(OrcWarrior_Lobart4))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(OrcWarrior_Lobart5))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(OrcWarrior_Lobart6))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_LobartBugsDead()
+{
+	if(!Npc_IsDead(Lobarts_Giant_Bug1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Lobarts_Giant_Bug2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Lobarts_Giant_Bug3))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Lobarts_Giant_Bug4))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Lobarts_Giant_Bug5))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Lobarts_Giant_Bug6))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Lobarts_Giant_Bug7))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_BalthasarSheepsDead()
+{
+	if(!Npc_IsDead(BalthasarSheep1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BalthasarSheep2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BalthasarSheep3))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_AlwinSheepsDead()
+{
+	if(!Npc_IsDead(Alwin_Sheep1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Alwin_Sheep2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Alwin_Sheep3))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_GrimbaldSnappersDead()
+{
+	if(!Npc_IsDead(Grimbald_Snapper1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Grimbald_Snapper2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Grimbald_Snapper3))
+	{
+		return FALSE;
+	};
+	return TRUE;
 };
 

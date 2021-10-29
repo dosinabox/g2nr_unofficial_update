@@ -49,18 +49,15 @@ func void B_AssessTalk()
 			};
 			return;
 		}
-		else if(C_IsNpc(self,VLK_410_Baltram))
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Baltram))
 		{
 			B_BaltramRangerCheck(other);
 		}
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru))
 		{
-			if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU))
+			if(!C_RengaruIsReadyToTalk())
 			{
-				if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_05_01") > 1000)
-				{
-					return;
-				};
+				return;
 			};
 		}
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Meldor))
@@ -137,17 +134,16 @@ func void B_AssessTalk()
 			{
 				Npc_ClearAIQueue(self);
 				AI_StartState(self,ZS_CommentFakeGuild,1,"");
-				return;
 			}
 			else
 			{
 				B_Say(self,other,"$NOTNOW");
-				return;
 			};
+			return;
 		};
 		if(self.guild == GIL_NOV)
 		{
-			if(Parlan_DontTalkToNovice == LOG_Running)
+			if((Parlan_DontTalkToNovice == LOG_Running) && Wld_IsTime(8,0,0,0))
 			{
 				if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger1))
 				{

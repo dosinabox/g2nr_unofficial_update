@@ -1,0 +1,216 @@
+// Overlay-MDS für Betrunken, neuer Run, Walk und Sleep auf Boden
+// Ersetzt: Run (->aufs Maul fallen), Walk, 1h-Draw (-> aufs Maul fallen), SleepGround, Pee
+
+Model ("HuS")
+{
+
+	meshAndTree ("Hum_Body_Naked0.ASC" DONT_USE_MESH)
+
+	aniEnum
+	{
+
+	// Movements Disable
+			AniDisable	("s_Sneak")
+			AniDisable	("t_Run_2_Sneak")
+			AniDisable	("t_Walk_2_Sneak")
+			aniDisable	("t_RunL_2_SneakL")
+			AniDisable	("t_WalkL_2_SneakL")
+
+//			AniDisable	("t_stand_2_jump")
+//			AniDisable	("t_RunL_2_Jump")
+//			AniDisable	("t_RunR_2_Jump")
+//			AniDisable	("s_jump")
+//			AniDisable	("t_jump_2_Stand")
+
+			AniDisable	("t_Stand_2_JumpUpLow")
+			AniDisable	("s_JumpUpLow")
+			AniDisable	("t_JumpUpLow_2_Stand")
+			AniDisable	("t_RunL_2_JumpUpLow")
+			AniDisable	("t_RunR_2_JumpUpLow")
+
+			AniDisable	("t_Stand_2_JumpUpMid")
+			AniDisable	("s_JumpUpMid")
+			AniDisable	("t_JumpUpMid_2_Stand")
+			AniDisable	("t_RunL_2_JumpUpMid")
+			AniDisable	("t_RunR_2_JumpUpMid")
+
+			AniDisable	("t_Jump_2_Hang")
+			AniDisable	("t_FallDn_2_Hang")
+			AniDisable	("t_Stand_2_JumpUp")
+			AniDisable	("s_JumpUp")
+			AniDisable	("t_JumpUp_2_Hang")
+			AniDisable	("s_Hang")
+			AniDisable	("t_Hang_2_Stand")
+			AniDisable	("t_Stand_2_Hang")
+
+//			AniDisable	("t_RunStrafeL")
+//			AniDisable	("t_RunStrafeR")
+//			AniDisable	("t_WalkStrafeL")
+//			AniDisable	("t_WalkStrafeR")
+
+
+
+	// Fight Mode Disable
+			AniDisable	("t_Run_2_Fist")
+			AniDisable	("s_Fist")
+			AniDisable	("t_Fist_2_FistRun")
+			AniDisable	("t_Move_2_FistMove")
+			AniDisable	("t_FistMove_2_Move")
+			AniDisable	("t_FistRun_2_Fist")
+			AniDisable	("t_Fist_2_Run")
+			AniDisable	("s_FistRun")
+
+			AniDisable	("t_Run_2_Bow")
+			AniDisable	("s_Bow")
+			AniDisable	("t_Bow_2_BowRun")
+			AniDisable	("t_Move_2_BowMove")
+			AniDisable	("t_BowMove_2_Move")
+			AniDisable	("t_BowRun_2_Bow")
+			AniDisable	("t_Bow_2_Run")
+			AniDisable	("s_BowRun")
+
+			AniDisable	("t_Run_2_CBow")
+			AniDisable	("s_CBow")
+			AniDisable	("t_CBow_2_CBowRun")
+			AniDisable	("t_Move_2_CBowMove")
+			AniDisable	("t_CBowMove_2_Move")
+			AniDisable	("t_CBowRun_2_CBow")
+			AniDisable	("t_CBow_2_Run")
+			AniDisable	("s_CBowRun")
+
+
+
+
+// ---------------------------------------------------------------------------------------------------------------
+// DRUNKEN RUN
+// ---------------------------------------------------------------------------------------------------------------
+			aniAlias	("s_Run"		1	"s_Run"			0.2	0.2	M.	"s_Walk"		F)
+			aniAlias	("t_Run_2_RunL"		1	"s_RunL"		0.1	0.0	M.	"t_Walk_2_WalkL"	F)
+			aniAlias	("s_RunL"		1	"s_RunL"		0.0	0.2	M.	"s_WalkL"		F)
+			aniAlias	("t_RunL_2_Run"		1	"s_Run"			0.3	0.0	M.	"t_WalkL_2_Walk"	F)
+			aniAlias	("t_RunR_2_Run"		1	"s_Run"			0.3	0.1	M.	"t_WalkL_2_Walk"	F)
+
+			aniBlend	("t_Run_2_Walk"			"s_Walk"		0.1	0.1)
+			aniBlend	("t_Walk_2_Run"			"s_Run"			0.1	0.1)
+
+			aniAlias	("t_JumpB"		1	"s_Run"	0.0	0.2	M	"t_Walk_2_WalkL"		R)
+
+// ---------------------------------------------------------------------------------------------------------------
+// DRUNKEN WALK
+// ---------------------------------------------------------------------------------------------------------------
+//	WALK-Mode, Standing
+			ani			("s_Walk"		1	"s_Walk"	0.2	0.2	M.	"Hum_DrunkenAmbient_A01.asc"	F	0	249	FPS:5)
+			ani			("t_Walk_2_WalkL"	1	"s_WalkL"	0.1	0.0	M.	"Hum_DrunkenWalk_A01.asc"	F	1	51)
+			{
+				*eventSFXGrnd	(14	"Run")
+				*eventSFXGrnd	(24	"Run")
+				*eventSFXGrnd	(14	"Run")
+				*eventSFXGrnd	(40	"Run")
+			}
+
+//	Walk-Loop (linker Fuß vorn)
+			ani			("s_WalkL"		1	"s_WalkL"	0.0	0.3	M.	"Hum_DrunkenWalk_A01.asc"	F	52	86)
+			{
+				*eventSFXGrnd	(54	"Run")
+				*eventSFXGrnd	(66	"Run")
+			}
+
+			ani			("t_WalkL_2_Walk"	1	"s_Walk"	0.3	0.0	M.	"Hum_DrunkenWalk_A01.asc"	F	87	146	FPS:10)
+			{
+				*eventSFXGrnd	(88	"Run")
+				*eventSFXGrnd	(102	"Run")
+				*eventSFXGrnd	(116	"Run")
+				*eventSFXGrnd	(136	"Run")
+			}
+
+			aniAlias	("t_WalkR_2_Walk"		1	"s_Walk"	0.3	0.1	M.	"t_WalkL_2_Walk"		F)
+
+//	Walk Backwards Movement
+			aniAlias	("t_Walk_2_WalkBL"		1	"s_WalkBL"	0.0	0.0	M	"t_Walk_2_WalkL"		R)
+
+//	WalkB-Loop
+			aniAlias	("s_WalkBL"			1	"s_WalkBL"	0.0	0.0	M.	"s_WalkL"			R)
+			aniBlend	("t_WalkBL_2_Walk"			"s_Walk"	0.2	0.2)
+			aniBlend	("t_WalkBR_2_Walk"			"s_Walk"	0.2	0.2)
+
+
+// TURNING
+
+			ani			("t_WalkTurnL"		20	"t_WalkTurnL"	0.1	0.1	M.	"Hum_Drunken_TurnL_A02.asc"	F	0	24)
+			{
+				*eventSFXGrnd	(6	"Turn")
+				*eventSFXGrnd	(12	"Turn")
+				*eventSFXGrnd	(18	"Turn")
+				*eventSFXGrnd	(24	"Turn")
+			}
+			ani			("t_WalkTurnR"		20	"t_WalkTurnR"	0.1	0.1	M.	"Hum_Drunken_TurnR_A02.asc"	R	0	24)
+			{
+				*eventSFXGrnd	(6	"Turn")
+				*eventSFXGrnd	(12	"Turn")
+				*eventSFXGrnd	(18	"Turn")
+				*eventSFXGrnd	(24	"Turn")
+			}
+
+			aniAlias	("t_RunTurnL"		20	"t_RunTurnL"	0.1	0.1	M.	"t_WalkTurnL"			F)
+			aniAlias	("t_RunTurnR"		20	"t_RunTurnR"	0.1	0.1	M.	"t_WalkTurnR"			F)
+
+// ---------------------------------------------------------------------------------------------------------------
+//	STRAFING
+			aniAlias	("t_RunStrafeL"		1	"s_Run"		0.1	0.1	M.	"t_WalkTurnL"			F)
+			aniAlias	("t_RunStrafeR"		1	"s_Run"		0.1	0.1	M.	"t_WalkTurnR"			F)
+			aniAlias	("t_WalkStrafeL"		1	"s_Walk"		0.1	0.1	M.	"t_WalkTurnL"			F)
+			aniAlias	("t_WalkStrafeR"		1	"s_Walk"		0.1	0.1	M.	"t_WalkTurnR"			F)
+
+//			ani		("t_SneakStrafeL"		1	"s_Sneak"		0.1	0.1	M.	"Hum_SneakStrafeLR_M01.ASC"	F	1	25)
+//			aniAlias	("t_SneakStrafeR"		1	"s_Sneak"		0.1	0.1	M.	"t_SneakStrafeL"		R)
+
+
+/////////////////
+// JUMP
+/////////////////
+//	Jump
+			ani			("t_Stand_2_Jump"		1	"s_Jump"		0.1	0.0	M.	"Hum_DrunkenRunFall_A01.asc"	F	1	52)
+			ani			("s_Jump"				1	"s_Jump"		0.0	0.0 M.	"Hum_DrunkenRunFall_A01.asc"	F	53	53)
+
+// Aufrappeln nach dem Hinfallen beim Sprungversuch
+
+			ani			("t_Jump_2_Stand"		1	""				0.2 0.2 M.	"Hum_Fall_M01.asc"		F	 23	46)
+		
+
+	//		aniBlend	("t_Jump_2_Stand"			""				0.0 0.2)
+			aniBlend	("t_Jump_2_RunL"			"s_RunL"		0.2	0.2)
+
+//	aus dem Rennen direkt Springen
+			aniAlias	("t_RunL_2_Jump"		1	"s_Jump"		0.3	0.1	M.	"t_Stand_2_Jump"				F)
+			aniAlias	("t_RunR_2_Jump"		1	"s_Jump"		0.3	0.1	M.	"t_Stand_2_Jump"				F)
+
+
+
+//---------------------------
+//	Versuch, Waffe zu ziehen (-> Fallen)
+//			ani			("t_Run_2_1h"		1	"s_FallenB"	0.1 	0.0 	M.	"Hum_Drunken1hDraw_A01.asc"		F	1	49	FPS:15)
+//			ani			("t_Run_2_2h"		1	"s_Fallen"	0.1	0.0	M.	"Hum_Drunken2HSwordFallDown_Jue00.asc"	F	1	199	FPS:15)
+//---------------------------
+// Pinkeln
+//			ani			("t_Pee"				2	""				0.1 0.1 M.	"Hum_DrunkenPee_A01.asc"			F	1	133	FPS:15)
+//			{
+//				*eventSFX		(5  "PissOff")
+//				*eventPFX		(35 1 "PEE" "BIP01"  ATTACH)
+//				*eventPFXStop	(107 1)
+//			}
+
+
+//---------------------------
+// Auf Boden pennen
+		// Hinlegen
+			ani			("t_Stand_2_SleepGround"	1	"s_SleepGround"	0.1	0.0	M.	"Hum_Drunken_Sleep_Jue00_fr325.asc"			F	1	324	FPS:5)
+		// Schlaf-Loop
+			ani			("s_SleepGround"		1	"s_SleepGround"	0.0	0.0	M.	"Hum_Drunken_Sleep_AmbientJue00_fr75.asc"	F	1	74	FPS:5)
+		// Aufstehen
+			ani			("t_SleepGround_2_Stand"	1	""		0.0	0.2	M.	"Hum_Drunken_Sleep_StandUpJue00.ASC"		F	1	279	FPS:5)
+
+// ---------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------
+
+	}
+}

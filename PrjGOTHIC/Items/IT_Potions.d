@@ -25,7 +25,6 @@ const int Value_Speed = 200;
 const int Time_Speed = 300000;
 const int Value_ManaTrunk = 200;
 const int Value_HpTrunk = 150;
-const int ManaMax_Mushrooms = 5;
 
 instance ItPo_Mana_01(C_Item)
 {
@@ -310,7 +309,7 @@ instance ItPo_Speed(C_Item)
 
 func void UseItPo_Speed()
 {
-	Mdl_ApplyOverlayMdsTimed(self,"HUMANS_SPRINT.MDS",Time_Speed);
+	Mdl_ApplyOverlayMdsTimed(self,"Humans_Sprint.mds",Time_Speed);
 };
 
 
@@ -345,7 +344,6 @@ func void UseItPo_MegaDrink()
 	{
 		B_RaiseAttribute(self,ATR_STRENGTH,STRorDEX_MegaDrink);
 	};
-//	Npc_ChangeAttribute(self,ATR_MANA,-ATR_MANA);
 	self.attribute[ATR_MANA] = 0;
 	Snd_Play("DEM_Warn");
 	TEXT_MegaDrink_Setting_Desc = TEXT_MegaDrink_Setting_Desc_Print;
@@ -368,8 +366,8 @@ instance ItPo_Perm_MushroomMana(C_Item)
 	effect = "SPELLFX_MANAPOTION";
 	description = NAME_MushroomMana;
 	text[1] = NAME_Bonus_ManaMax;
-	count[1] = ManaMax_Mushrooms;
-	text[2] = "Полное восстановление маны.";
+	count[1] = MushroomManaBonus;
+	text[2] = NAME_Bonus_Mana_Full;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -377,7 +375,34 @@ instance ItPo_Perm_MushroomMana(C_Item)
 
 func void UseItPo_MushroomMana()
 {
-	B_RaiseAttribute(self,ATR_MANA_MAX,ManaMax_Mushrooms);
+	B_RaiseAttribute(self,ATR_MANA_MAX,MushroomManaBonus);
 	self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
+};
+
+instance ItPo_Perm_AppleSTR(C_Item)
+{
+	name = NAME_Trank;
+	mainflag = ITEM_KAT_POTIONS;
+	flags = ITEM_MULTI;
+	value = 600;
+	visual = "ItPo_Perm_AppleSTR.3ds";
+	material = MAT_GLAS;
+	on_state[0] = UseItPo_Perm_AppleSTR;
+	scemeName = "POTIONFAST";
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_MANAPOTION";
+	description = NAME_AppleSTR;
+	text[1] = NAME_Bonus_Str;
+	count[1] = AppleSTRBonus;
+	text[2] = NAME_Bonus_HP_Full;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+
+func void UseItPo_Perm_AppleSTR()
+{
+	B_RaiseAttribute(self,ATR_STRENGTH,AppleSTRBonus);
+	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 };
 

@@ -17,10 +17,7 @@ func int DIA_Rod_EXIT_Condition()
 
 func void DIA_Rod_EXIT_Info()
 {
-	if(Npc_HasItems(hero,ItMw_2h_Rod_Fake))
-	{
-		Npc_RemoveInvItem(hero,ItMw_2h_Rod_Fake);
-	};
+	B_ClearFakeItems(other);
 	AI_EquipBestMeleeWeapon(self);
 	AI_StopProcessInfos(self);
 };
@@ -439,10 +436,7 @@ func void DIA_Rod_Wette_Yes()
 
 func void DIA_Rod_Wette_GiveBack()
 {
-	if(Npc_HasItems(hero,ItMw_2h_Rod_Fake))
-	{
-		Npc_RemoveInvItem(hero,ItMw_2h_Rod_Fake);
-	};
+	B_ClearFakeItems(other);
 	AI_Output(other,self,"DIA_Rod_Wette_GiveBack_15_00");	//Вот, держи.
 	B_GiveInvItems(other,self,ItMw_2h_Rod,1);
 	if(Rod_WetteGewonnen == FALSE)
@@ -454,10 +448,7 @@ func void DIA_Rod_Wette_GiveBack()
 
 func void DIA_Rod_Wette_KeepIt()
 {
-	if(Npc_HasItems(hero,ItMw_2h_Rod_Fake))
-	{
-		Npc_RemoveInvItem(hero,ItMw_2h_Rod_Fake);
-	};
+	B_ClearFakeItems(other);
 	DIA_Common_IThinkNo();
 	AI_Output(self,other,"DIA_Rod_Wette_KeepIt_06_01");	//(угрожающе) Что это значит?
 	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_02");	//Лучше я подержу его у себя немного.
@@ -501,7 +492,7 @@ func void DIA_Rod_GiveItBack_Info()
 		}
 		else
 		{
-			B_GivePlayerXP(50);
+			B_GivePlayerXP(XP_AmbientKap1);
 		};
 		Rod_SchwertXPGiven = TRUE;
 	};

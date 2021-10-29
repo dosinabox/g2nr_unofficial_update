@@ -1,113 +1,87 @@
 
-func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut)
+func int GetMainAttributeCost(var int current,var int amount)
 {
-	var int kosten;
-	var int penalty;
-	kosten = 0;
-	penalty = 0;
+	if(current >= 120)
+	{
+		return 5 * amount;
+	};
+	if(current >= 90)
+	{
+		if((HonestStatCalculation == TRUE) && (current + amount > 120))
+		{
+			return (5 * amount) + current - 120;
+		};
+		return 4 * amount;
+	};
+	if(current >= 60)
+	{
+		if((HonestStatCalculation == TRUE) && (current + amount > 90))
+		{
+			return (4 * amount) + current - 90;
+		};
+		return 3 * amount;
+	};
+	if(current >= 30)
+	{
+		if((HonestStatCalculation == TRUE) && (current + amount > 60))
+		{
+			return (3 * amount) + current - 60;
+		};
+		return 2 * amount;
+	};
+	if((HonestStatCalculation == TRUE) && (current + amount > 30))
+	{
+		return (2 * amount) + current - 30;
+	};
+	return amount;
+};
+
+func int GetRegenerationAttributeCost(var int current)
+{
+	if(current == 0)
+	{
+		return 1;
+	};
+	if(current <= 11)
+	{
+		return 3;
+	};
+	if(current <= 21)
+	{
+		return 2;
+	};
+	return 1;
+};
+
+func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut,var int amount)
+{
+	var int current;
 	if(attribut == ATR_STRENGTH)
 	{
+		current = oth.aivar[REAL_STRENGTH];
 		if(PenaltiesAffectLearnCost == TRUE)
 		{
-			penalty = OrcRingCurrentPenalty;
+			current -= OrcRingCurrentPenalty;
 		};
-		if((oth.aivar[REAL_STRENGTH] - penalty) >= 120)
-		{
-			kosten = 5;
-		}
-		else if((oth.aivar[REAL_STRENGTH] - penalty) >= 90)
-		{
-			kosten = 4;
-		}
-		else if((oth.aivar[REAL_STRENGTH] - penalty) >= 60)
-		{
-			kosten = 3;
-		}
-		else if((oth.aivar[REAL_STRENGTH] - penalty) >= 30)
-		{
-			kosten = 2;
-		}
-		else
-		{
-			kosten = 1;
-		};
-	}
-	else if(attribut == ATR_DEXTERITY)
-	{
-		if(oth.aivar[REAL_DEXTERITY] >= 120)
-		{
-			kosten = 5;
-		}
-		else if(oth.aivar[REAL_DEXTERITY] >= 90)
-		{
-			kosten = 4;
-		}
-		else if(oth.aivar[REAL_DEXTERITY] >= 60)
-		{
-			kosten = 3;
-		}
-		else if(oth.aivar[REAL_DEXTERITY] >= 30)
-		{
-			kosten = 2;
-		}
-		else
-		{
-			kosten = 1;
-		};
-	}
-	else if(attribut == ATR_MANA_MAX)
-	{
-		if(oth.aivar[REAL_MANA_MAX] >= 120)
-		{
-			kosten = 5;
-		}
-		else if(oth.aivar[REAL_MANA_MAX] >= 90)
-		{
-			kosten = 4;
-		}
-		else if(oth.aivar[REAL_MANA_MAX] >= 60)
-		{
-			kosten = 3;
-		}
-		else if(oth.aivar[REAL_MANA_MAX] >= 30)
-		{
-			kosten = 2;
-		}
-		else
-		{
-			kosten = 1;
-		};
-	}
-	else if(attribut == ATR_REGENERATEHP)
-	{
-		if(oth.attribute[ATR_REGENERATEHP] > 30)
-		{
-			kosten = 1;
-		}
-		else if(oth.attribute[ATR_REGENERATEHP] > 10)
-		{
-			kosten = 2;
-		}
-		else
-		{
-			kosten = 3;
-		};
-	}
-	else if(attribut == ATR_REGENERATEMANA)
-	{
-		if(oth.attribute[ATR_REGENERATEMANA] > 30)
-		{
-			kosten = 1;
-		}
-		else if(oth.attribute[ATR_REGENERATEMANA] > 10)
-		{
-			kosten = 2;
-		}
-		else
-		{
-			kosten = 3;
-		};
+		return GetMainAttributeCost(current,amount);
 	};
-	return kosten;
+	if(attribut == ATR_DEXTERITY)
+	{
+		return GetMainAttributeCost(oth.aivar[REAL_DEXTERITY],amount);
+	};
+	if(attribut == ATR_MANA_MAX)
+	{
+		return GetMainAttributeCost(oth.aivar[REAL_MANA_MAX],amount);
+	};
+	if(attribut == ATR_REGENERATEHP)
+	{
+		return GetRegenerationAttributeCost(oth.attribute[ATR_REGENERATEHP]);
+	};
+	if(attribut == ATR_REGENERATEMANA)
+	{
+		return GetRegenerationAttributeCost(oth.attribute[ATR_REGENERATEMANA]);
+	};
+	Print(PRINT_WrongParameter);
+	return 0;
 };
 

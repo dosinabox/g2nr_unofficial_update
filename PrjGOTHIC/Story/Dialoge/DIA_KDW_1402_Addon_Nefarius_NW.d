@@ -155,7 +155,14 @@ func void DIA_Addon_Nefarius_SCbringOrnaments_Info()
 	B_LogEntry(TOPIC_Addon_Ornament,"Маги Воды нашли портал, который ведет в неизвестную часть Хориниса.");
 	Log_AddEntry(TOPIC_Addon_Ornament,"Нефариус хочет активировать портал при помощи украшенного кольца. Ему все еще не хватает трех частей этого кольца. Я должен найти их. Он дал мне карту, на которой отмечены места, где я должен искать фрагменты.");
 	SC_KnowsPortal = TRUE;
-	B_StartOtherRoutine(Cavalorn,"OrnamentSteinring");
+	if((Kapitel >= 3) && (hero.guild == GIL_KDF) && (Vino_isAlive_Kap3 == TRUE) && !C_VinoDementorsDead())
+	{
+		B_StartOtherRoutine(Cavalorn,"OrnamentSteinringCh3KDF");
+	}
+	else
+	{
+		B_StartOtherRoutine(Cavalorn,"OrnamentSteinring");
+	};
 	if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_FromCavalorn == TRUE) && (Bdt_1013_ToCavalorn == FALSE))
 	{
 		B_StartOtherRoutine(Ambusher_1013,"AWAY");

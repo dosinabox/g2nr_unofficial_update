@@ -730,7 +730,6 @@ func void DIA_Wolf_LeaveMyShip_Info()
 	AI_Output(other,self,"DIA_Wolf_LeaveMyShip_15_00");	//Я решил, что ты мне не нужен.
 	AI_Output(self,other,"DIA_Wolf_LeaveMyShip_08_01");	//Сначала ты вселяешь в меня надежду, а потом даешь от ворот поворот. Ты еще пожалеешь об этом!
 	Wolf_IsOnBoard = LOG_FAILED;
-	B_CheckLog();
 	Crewmember_Count -= 1;
 	AI_StopProcessInfos(self);
 	self.flags = 0;

@@ -368,13 +368,13 @@ func void DIA_Sagitta_Teach_Info()
 	};
 	if(talente > 0)
 	{
-		if(Alchemy_Explain == FALSE)
+		if(Alchemy_Explain_Sagitta == FALSE)
 		{
 			AI_Output(self,other,"DIA_Sagitta_Teach_17_01");	//Прежде чем приступить к обучению тебя алхимии, я сначала расскажу, что необходимо иметь для приготовления зелий.
 			AI_Output(self,other,"DIA_Sagitta_Teach_17_02");	//Все зелья готовятся на алхимическом столе. Тебе также понадобится пустая мензурка, в которой будет храниться приготовленное зелье.
 			AI_Output(self,other,"DIA_Sagitta_Teach_17_03");	//Тебе нужно смешать необходимые ингредиенты и все - зелье готово.
 			AI_Output(self,other,"DIA_Sagitta_Teach_17_04");	//Ну а дополнительные подробности ты всегда можешь узнать у меня, если захочешь.
-			Alchemy_Explain = TRUE;
+			Alchemy_Explain_Sagitta = TRUE;
 		};
 		AI_Output(self,other,"DIA_Sagitta_Teach_17_05");	//Так какое зелье тебя интересует?
 	}
@@ -495,8 +495,8 @@ func void DIA_Sagitta_TRADE_Info()
 		Sagitta_flag = FALSE;
 	};
 	AI_Output(other,self,"DIA_Sagitta_TRADE_15_00");	//Какие товары ты можешь предложить мне?
-	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Sagitta_TRADE_17_01");	//Выбирай.
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 

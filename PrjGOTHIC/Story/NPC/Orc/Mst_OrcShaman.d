@@ -33,13 +33,13 @@ prototype Mst_Default_OrcShaman(C_Npc)
 func void B_SetVisuals_OrcShaman()
 {
 	Mdl_SetVisual(self,"Orc.mds");
-	Mdl_SetVisualBody(self,"Orc_BodyShaman",DEFAULT,DEFAULT,"Orc_HeadShaman",DEFAULT,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"Orc_BodyShaman",DEFAULT,DEFAULT,"Orc_HeadShaman",DEFAULT,DEFAULT,NO_ARMOR);
 };
 
 func void B_SetVisuals_Hosh_Pak()
 {
 	Mdl_SetVisual(self,"Orc.mds");
-	Mdl_SetVisualBody(self,"Hosh_Body",DEFAULT,DEFAULT,"",DEFAULT,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"Hosh_Body",DEFAULT,DEFAULT,"",DEFAULT,DEFAULT,NO_ARMOR);
 };
 
 instance OrcShaman_Sit(Mst_Default_OrcShaman)

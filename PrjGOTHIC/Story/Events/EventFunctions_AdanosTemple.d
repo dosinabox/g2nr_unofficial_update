@@ -5,10 +5,10 @@ func void adw_adanostempel_stonegrd_trigg_func_01()
 {
 	if(ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_01_OneTime == FALSE)
 	{
-		var C_NPC StoneGuardianAdanos_01;
-		var C_NPC StoneGuardianAdanos_02;
-		var C_NPC StoneGuardianAdanos_03;
-		var C_NPC StoneGuardianAdanos_04;
+		var C_Npc StoneGuardianAdanos_01;
+		var C_Npc StoneGuardianAdanos_02;
+		var C_Npc StoneGuardianAdanos_03;
+		var C_Npc StoneGuardianAdanos_04;
 		StoneGuardianAdanos_01 = Hlp_GetNpc(Stoneguardian_ADANOSTEMPELENTRANCE_01);
 		StoneGuardianAdanos_02 = Hlp_GetNpc(Stoneguardian_ADANOSTEMPELENTRANCE_02);
 		StoneGuardianAdanos_03 = Hlp_GetNpc(Stoneguardian_ADANOSTEMPELENTRANCE_03);
@@ -32,9 +32,9 @@ func void open_adanostempelchest_01_func_s1()
 {
 	if(OPEN_ADANOSTEMPELCHEST_01_FUNC_OneTime == FALSE)
 	{
-		var C_NPC StoneGuardianAdanos_05A;
-		var C_NPC StoneGuardianAdanos_05C;
-		var C_NPC StoneGuardianAdanos_05E;
+		var C_Npc StoneGuardianAdanos_05A;
+		var C_Npc StoneGuardianAdanos_05C;
+		var C_Npc StoneGuardianAdanos_05E;
 		StoneGuardianAdanos_05A = Hlp_GetNpc(Stoneguardian_TREASUREPITS_05A);
 		StoneGuardianAdanos_05C = Hlp_GetNpc(Stoneguardian_TREASUREPITS_05C);
 		StoneGuardianAdanos_05E = Hlp_GetNpc(Stoneguardian_TREASUREPITS_05E);
@@ -43,9 +43,9 @@ func void open_adanostempelchest_01_func_s1()
 		b_awake_stoneguardian(StoneGuardianAdanos_05E);
 		if(Kapitel > 2)
 		{
-			var C_NPC StoneGuardianAdanos_05B;
-			var C_NPC StoneGuardianAdanos_05D;
-			var C_NPC StoneGuardianAdanos_05F;
+			var C_Npc StoneGuardianAdanos_05B;
+			var C_Npc StoneGuardianAdanos_05D;
+			var C_Npc StoneGuardianAdanos_05F;
 			StoneGuardianAdanos_05B = Hlp_GetNpc(Stoneguardian_TREASUREPITS_05B);
 			StoneGuardianAdanos_05D = Hlp_GetNpc(Stoneguardian_TREASUREPITS_05D);
 			StoneGuardianAdanos_05F = Hlp_GetNpc(Stoneguardian_TREASUREPITS_05F);
@@ -75,9 +75,9 @@ func void open_adanostempelchest_02_func_s1()
 {
 	if(OPEN_ADANOSTEMPELCHEST_02_FUNC_OneTime == FALSE)
 	{
-		var C_NPC StoneGuardianAdanos_09A;
-		var C_NPC StoneGuardianAdanos_09C;
-		var C_NPC StoneGuardianAdanos_09E;
+		var C_Npc StoneGuardianAdanos_09A;
+		var C_Npc StoneGuardianAdanos_09C;
+		var C_Npc StoneGuardianAdanos_09E;
 		StoneGuardianAdanos_09A = Hlp_GetNpc(Stoneguardian_TREASUREPITS_09A);
 		StoneGuardianAdanos_09C = Hlp_GetNpc(Stoneguardian_TREASUREPITS_09C);
 		StoneGuardianAdanos_09E = Hlp_GetNpc(Stoneguardian_TREASUREPITS_09E);
@@ -86,9 +86,9 @@ func void open_adanostempelchest_02_func_s1()
 		b_awake_stoneguardian(StoneGuardianAdanos_09E);
 		if(Kapitel > 2)
 		{
-			var C_NPC StoneGuardianAdanos_09B;
-			var C_NPC StoneGuardianAdanos_09D;
-			var C_NPC StoneGuardianAdanos_09F;
+			var C_Npc StoneGuardianAdanos_09B;
+			var C_Npc StoneGuardianAdanos_09D;
+			var C_Npc StoneGuardianAdanos_09F;
 			StoneGuardianAdanos_09B = Hlp_GetNpc(Stoneguardian_TREASUREPITS_09B);
 			StoneGuardianAdanos_09D = Hlp_GetNpc(Stoneguardian_TREASUREPITS_09D);
 			StoneGuardianAdanos_09F = Hlp_GetNpc(Stoneguardian_TREASUREPITS_09F);
@@ -118,12 +118,12 @@ func void adw_adanostempel_stonegrd_trigg_func_02()
 {
 	if(ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_02_OneTime == FALSE)
 	{
-		var C_NPC StoneGuardianAdanos_14A;
-		var C_NPC StoneGuardianAdanos_14B;
-		var C_NPC StoneGuardianAdanos_14C;
-		var C_NPC StoneGuardianAdanos_14D;
-		var C_NPC StoneGuardianAdanos_14E;
-		var C_NPC StoneGuardianAdanos_14F;
+		var C_Npc StoneGuardianAdanos_14A;
+		var C_Npc StoneGuardianAdanos_14B;
+		var C_Npc StoneGuardianAdanos_14C;
+		var C_Npc StoneGuardianAdanos_14D;
+		var C_Npc StoneGuardianAdanos_14E;
+		var C_Npc StoneGuardianAdanos_14F;
 		StoneGuardianAdanos_14A = Hlp_GetNpc(Stoneguardian_RHADEMES_14A);
 		StoneGuardianAdanos_14B = Hlp_GetNpc(Stoneguardian_RHADEMES_14B);
 		StoneGuardianAdanos_14C = Hlp_GetNpc(Stoneguardian_RHADEMES_14C);

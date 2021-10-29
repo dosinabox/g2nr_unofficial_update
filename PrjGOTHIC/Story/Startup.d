@@ -7,11 +7,9 @@ func void STARTUP_Global()
 func void INIT_Global()
 {
 	B_Check_Version();
-	B_Check_Talents();
 	B_SetHeroSkin();
 	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
-	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
 };
 
@@ -366,6 +364,7 @@ func void STARTUP_Addon_Part_BanditsCamp_01()
 	Wld_InsertNpc(Sleepfly,"ADW_LITTLE_HILL_04");
 	Wld_InsertNpc(Sleepfly,"ADW_SWAMP_04");
 	Wld_InsertNpc(Sleepfly,"ADW_SWAMP_04");
+	Wld_InsertNpc(Sleepfly,"ADW_SWAMP_04");
 	Wld_InsertNpc(Sleepfly,"ADW_SWAMP_05");
 	Wld_InsertNpc(Sleepfly,"ADW_SWAMP_05");
 	Wld_InsertNpc(Bloodfly,"ADW_SWAMP_LITTLE_SEA_01");
@@ -402,7 +401,6 @@ func void STARTUP_Addon_Part_BanditsCamp_01()
 	Wld_InsertNpc(SwampDrone,"ADW_SWAMP_13");
 	Wld_InsertNpc(SwampDrone,"ADW_SWAMP_14");
 	Wld_InsertNpc(SwampDrone,"ADW_SWAMP_06");
-	Wld_InsertNpc(Bloodfly,"ADW_SWAMP_05");
 	Wld_InsertNpc(SwampDrone,"ADW_SWAMP_12");
 	Wld_InsertNpc(SwampDrone,"ADW_SWAMP_BF_NEST_06");
 	Wld_InsertNpc(SwampDrone,"ADW_SWAMP_HOHLWEG_03");
@@ -2127,7 +2125,7 @@ func void STARTUP_NewWorld_Part_Xardas_01()
 	Wld_InsertNpc(YGiant_Rat,"NW_XARDAS_TOWER_SECRET_CAVE_01");
 	Wld_InsertNpc(YGiant_Rat,"NW_XARDAS_TOWER_SECRET_CAVE_01");
 	Wld_InsertNpc(YGiant_Rat,"NW_XARDAS_TOWER_SECRET_CAVE_03");
-	Wld_InsertNpc(BAU_4300_Addon_Cavalorn,"NW_XARDAS_START");
+	Wld_InsertNpc(BAU_4300_Addon_Cavalorn,"NW_XARDAS_GOBBO_01");
 	Wld_InsertNpc(PIR_1300_Addon_Greg_NW,"FARM1");
 };
 
@@ -2586,7 +2584,8 @@ func void INIT_SUB_NewWorld_Part_GreatPeasant_01()
 	Wld_AssignRoomToGuild("grpbauer02",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("grpbauerscheune02",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("grpturm02",GIL_PUBLIC);
-	Wld_AssignRoomToGuild("grpturm01",GIL_PUBLIC);
+//	Wld_AssignRoomToGuild("grpturm01",GIL_PUBLIC);
+	Wld_AssignRoomToGuild("grpturm01",GIL_NONE);
 	Wld_AssignRoomToGuild("grpwaldhuette02",GIL_PUBLIC);
 };
 

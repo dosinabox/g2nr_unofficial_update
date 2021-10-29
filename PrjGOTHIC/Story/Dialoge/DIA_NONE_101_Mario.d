@@ -338,7 +338,6 @@ func void DIA_Mario_StillNeedYou_Info()
 		self.flags = 0;
 		B_Attack(self,other,AR_NONE,1);
 	};
-	B_CheckLog();
 };
 
 

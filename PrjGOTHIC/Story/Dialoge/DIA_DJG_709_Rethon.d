@@ -278,7 +278,6 @@ func void DIA_Rethon_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Rethon_TRADE_15_00");	//Что ты можешь продать мне?
 	B_ClearSmithInv(self);
-	B_GiveTradeInv(self);
 	if(hero.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Rethon_TRADE_12_01");	//Ох, как низко я опустился! Теперь я даже продаю мое оружие паладину!
@@ -291,6 +290,7 @@ func void DIA_Rethon_TRADE_Info()
 	{
 		AI_Output(self,other,"DIA_Rethon_TRADE_12_03");	//Думаю, у меня есть именно то, что тебе нужно, приятель.
 	};
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 

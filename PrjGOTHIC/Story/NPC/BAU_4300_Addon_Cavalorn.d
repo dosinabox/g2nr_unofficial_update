@@ -8,6 +8,7 @@ instance BAU_4300_Addon_Cavalorn(Npc_Default)
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_FRIEND;
 	aivar[AIV_NPCIsRanger] = TRUE;
+	aivar[AIV_Teeth] = 2;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_ShortSword2);
@@ -43,6 +44,12 @@ func void Rtn_OrnamentSteinring_4300()
 {
 	TA_Stand_WP(5,0,20,0,"NW_LITTLESTONEHENDGE");
 	TA_Stand_WP(20,0,5,0,"NW_LITTLESTONEHENDGE");
+};
+
+func void Rtn_OrnamentSteinringCh3KDF_4300()
+{
+	TA_Stand_WP(5,0,20,0,"NW_FARM1_OUT_05");
+	TA_Stand_WP(20,0,5,0,"NW_FARM1_OUT_05");
 };
 
 func void Rtn_PreRangerMeeting_4300()

@@ -1,18 +1,4 @@
 
-func int C_AllCanyonRazorDead()
-{
-	if(AllCanyonRazorDead == TRUE)
-	{
-		return TRUE;
-	}
-	else if((GregIsBack == TRUE) && Npc_IsDead(CanyonRazor01) && Npc_IsDead(CanyonRazor02) && Npc_IsDead(CanyonRazor03) && Npc_IsDead(CanyonRazor04) && Npc_IsDead(CanyonRazor05) && Npc_IsDead(CanyonRazor06) && Npc_IsDead(CanyonRazor07) && Npc_IsDead(CanyonRazor08) && Npc_IsDead(CanyonRazor09) && Npc_IsDead(CanyonRazor10))
-	{
-		AllCanyonRazorDead = TRUE;
-		return TRUE;
-	};
-	return FALSE;
-};
-
 func int C_IAmCanyonRazor(var C_Npc slf)
 {
 	if(C_IsNpc(slf,CanyonRazor01))
@@ -70,7 +56,7 @@ func void B_CountCanyonRazor()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_AllCanyonRazors,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen(PRINT_AllCanyonRazors,-1,YPOS_GoldGiven,FONT_ScreenSmall,3);
 	};
 };
 

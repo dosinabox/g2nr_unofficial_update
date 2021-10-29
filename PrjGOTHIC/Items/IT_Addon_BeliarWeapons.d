@@ -231,7 +231,7 @@ instance ItMw_BeliarWeapon_Raven(BeliarWeaponPrototype_2H)
 	value = Value_BeliarW_Raven;
 	damageTotal = Damage_BeliarW_Raven;
 	cond_atr[2] = ATR_MANA_MAX;
-	cond_value[2] = 666666;
+	cond_value[2] = CONDITION_WEAPON_RAVEN;
 	text[2] = NAME_DamageUnknown;
 	count[2] = 0;
 	text[3] = NAME_Unknown_needed;

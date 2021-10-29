@@ -119,10 +119,12 @@ func void DIA_Addon_Bromor_Lucia_Info()
 	AI_Output(self,other,"DIA_Addon_Bromor_Lucia_07_05");	//Но тебе-то какое до этого дело? Ты что, хочешь надо мной посмеяться?
 	Log_CreateTopic(TOPIC_Addon_BromorsGold,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_BromorsGold,LOG_Running);
-	B_LogEntry(TOPIC_Addon_BromorsGold,"Шлюха Люсия украла золотое блюдо у своего босса, Бромора. Бромор хочет вернуть эту чашу назад.");
+	B_LogEntry(TOPIC_Addon_BromorsGold,"Шлюха Люсия украла золотое блюдо у своего босса, Бромора. Бромор хочет вернуть его назад.");
 	MIS_Bromor_LuciaStoleGold = LOG_Running;
 };
 
+
+var int DIA_Addon_Bromor_LuciaGold_Lucia_OneTime;
 
 instance DIA_Addon_Bromor_LuciaGold(C_Info)
 {
@@ -154,9 +156,9 @@ func void DIA_Addon_Bromor_LuciaGold_Info()
 		Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Как насчет награды?",DIA_Addon_Bromor_LuciaGold_lohn);
 	};
 	Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Вот блюдо.",DIA_Addon_Bromor_LuciaGold_einfachgeben);
-	if(DIA_Addon_Bromor_LuciaGold_lucia_OneTime == FALSE)
+	if(DIA_Addon_Bromor_LuciaGold_Lucia_OneTime == FALSE)
 	{
-		Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Тебе не интересно, что случилось с Люсией?",DIA_Addon_Bromor_LuciaGold_lucia);
+		Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Тебе не интересно, что случилось с Люсией?",DIA_Addon_Bromor_LuciaGold_Lucia);
 	};
 };
 
@@ -172,14 +174,12 @@ func void DIA_Addon_Bromor_LuciaGold_einfachgeben()
 };
 
 
-var int DIA_Addon_Bromor_LuciaGold_lucia_OneTime;
-
-func void DIA_Addon_Bromor_LuciaGold_lucia()
+func void DIA_Addon_Bromor_LuciaGold_Lucia()
 {
-	AI_Output(other,self,"DIA_Addon_Bromor_LuciaGold_lucia_15_00");	//Тебе не интересно, что случилось с Люсией?
-	AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_lucia_07_01");	//Нет. А зачем мне знать? Главное, что блюдо у меня.
-	AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_lucia_07_02");	//Я обходился без Люсии все это время, обойдусь и дальше. Почему я должен пытаться ее вернуть?
-	DIA_Addon_Bromor_LuciaGold_lucia_OneTime = TRUE;
+	AI_Output(other,self,"DIA_Addon_Bromor_LuciaGold_Lucia_15_00");	//Тебе не интересно, что случилось с Люсией?
+	AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_Lucia_07_01");	//Нет. А зачем мне знать? Главное, что блюдо у меня.
+	AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_Lucia_07_02");	//Я обходился без Люсии все это время, обойдусь и дальше. Почему я должен пытаться ее вернуть?
+	DIA_Addon_Bromor_LuciaGold_Lucia_OneTime = TRUE;
 };
 
 func void DIA_Addon_Bromor_LuciaGold_lohn()
@@ -194,9 +194,9 @@ func void DIA_Addon_Bromor_LuciaGold_lohn()
 		AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_lohn_07_01_add");	//50 золотых монет. Что скажешь?
 	};
 	Info_ClearChoices(DIA_Addon_Bromor_LuciaGold);
-	if(DIA_Addon_Bromor_LuciaGold_lucia_OneTime == FALSE)
+	if(DIA_Addon_Bromor_LuciaGold_Lucia_OneTime == FALSE)
 	{
-		Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Тебе не интересно, что случилось с Люсией?",DIA_Addon_Bromor_LuciaGold_lucia);
+		Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Тебе не интересно, что случилось с Люсией?",DIA_Addon_Bromor_LuciaGold_Lucia);
 	};
 	Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Этого недостаточно.",DIA_Addon_Bromor_LuciaGold_mehr);
 	Info_AddChoice(DIA_Addon_Bromor_LuciaGold,"Согласен. Вот блюдо.",DIA_Addon_Bromor_LuciaGold_geben);
@@ -253,7 +253,7 @@ instance DIA_Bromor_Pay(C_Info)
 	condition = DIA_Bromor_Pay_Condition;
 	information = DIA_Bromor_Pay_Info;
 	permanent = TRUE;
-	description = "Я хочу развлечься. (заплатить 50 золотых)";
+	description = B_BuildPriceString("Я хочу развлечься.",50);
 };
 
 

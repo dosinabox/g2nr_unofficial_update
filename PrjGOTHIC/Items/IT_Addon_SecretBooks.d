@@ -11,16 +11,10 @@ const int XPMultiplier = 5;
 
 func void UseLPBook(var int constanze)
 {
-	var int Wert;
-	var string concatText;
-	Wert = constanze;
 	if(Npc_IsPlayer(self))
 	{
 		B_Say_Overlay(self,self,"$VERSTEHE");
-		Snd_Play("LEVELUP");
-		self.lp += constanze;
-		concatText = ConcatStrings(PRINT_LearnLP,IntToString(constanze));
-		Print(concatText);
+		B_GivePlayerLP(constanze);
 	};
 };
 

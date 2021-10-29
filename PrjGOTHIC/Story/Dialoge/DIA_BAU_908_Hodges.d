@@ -148,13 +148,13 @@ func void DIA_Hodges_TRADE_Info()
 	AI_Output(other,self,"DIA_Hodges_TRADE_15_00");	//Могу я купить оружие у тебя?
 	AI_Output(self,other,"DIA_Hodges_TRADE_03_01");	//У меня мало что есть. Мы относим почти все мечи и топоры в дом Онара.
 	Npc_RemoveInvItems(self,ItMiSwordblade,Npc_HasItems(self,ItMiSwordblade));
-	B_GiveTradeInv(self);
 	if(Hodges_Trader == FALSE)
 	{
 		Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
 		B_LogEntry(TOPIC_SoldierTrader,"Ходжес может продать мне немного оружия.");
 		Hodges_Trader = TRUE;
 	};
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 

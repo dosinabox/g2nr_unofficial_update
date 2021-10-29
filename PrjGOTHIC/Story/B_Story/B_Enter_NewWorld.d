@@ -75,6 +75,7 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 	};
 	B_KillThievesGuild();
 	B_ResetSergio();
+	B_ResetFernando();
 };
 
 
@@ -84,9 +85,9 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 {
 	if(EnterNW_Kapitel2 == FALSE)
 	{
-		Wld_InsertNpc(Gobbo_Skeleton,"NW_FOREST_PATH_04_9");
-		Wld_InsertNpc(Skeleton,"NW_FOREST_PATH_04_8");
-		Wld_InsertNpc(Lesser_Skeleton,"FP_ROAM_MEDIUMFOREST_KAP2_23");
+//		Wld_InsertNpc(Gobbo_Skeleton,"NW_FOREST_PATH_04_9");
+//		Wld_InsertNpc(Skeleton,"NW_FOREST_PATH_04_8");
+//		Wld_InsertNpc(Lesser_Skeleton,"FP_ROAM_MEDIUMFOREST_KAP2_23");
 		Wld_InsertNpc(Wolf,"FP_ROAM_MEDIUMFOREST_KAP2_25");
 		Wld_InsertNpc(Wolf,"FP_ROAM_MEDIUMFOREST_KAP2_26");
 		Wld_InsertNpc(Bloodfly,"FP_ROAM_CITY_TO_FOREST_50");
@@ -134,26 +135,18 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		Wld_InsertNpc(Gobbo_Green,"NW_BIGFARM_LAKE_MONSTER_05_01");
 		Wld_InsertNpc(Gobbo_Green,"NW_BIGFARM_LAKE_MONSTER_05_01");
 		Wld_InsertNpc(Gobbo_Green,"NW_BIGFARM_LAKE_MONSTER_05_01");
-		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+		if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
+		{
+			Wld_InsertItem(ItAm_Hp_Mana_01,"FP_ROAM_XARDAS_SECRET_26");
+		}
+		else if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 		{
 			Wld_InsertItem(ItAm_Dex_01,"FP_ROAM_XARDAS_SECRET_26");
 		}
-		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
-		{
-			Wld_InsertItem(ItAm_Hp_01,"FP_ROAM_XARDAS_SECRET_26");
-		}
 		else
 		{
-			Wld_InsertItem(ItAm_Hp_Mana_01,"FP_ROAM_XARDAS_SECRET_26");
+			Wld_InsertItem(ItAm_Hp_01,"FP_ROAM_XARDAS_SECRET_26");
 		};
-/*		if(hero.guild == GIL_KDF))
-		{
-			B_StartOtherRoutine(Agon,"StillAlive");
-		};
-		if(!Npc_IsDead(Ambusher_1013))
-		{
-			B_StartOtherRoutine(Ambusher_1013,"AWAY");
-		}; */
 		if(!Npc_IsDead(Lobart))
 		{
 			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
@@ -180,29 +173,15 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Salandril.aivar[AIV_ToughGuy] = TRUE;
 		};
 		Cornelius.flags = 0;
-		if(!Npc_HasItems(Cornelius,ItWr_CorneliusTagebuch_Mis))
-		{
-			CreateInvItems(Cornelius,ItWr_CorneliusTagebuch_Mis,1);
-		};
+		CreateInvItems(Cornelius,ItWr_CorneliusTagebuch_Mis,1);
 		if(!Npc_IsDead(Hodges))
 		{
+			Hodges_isAlive_Kap3 = TRUE;
 			B_StartOtherRoutine(Hodges,"BENNETWEG");
 		};
 		if(!Npc_IsDead(Lares) && (RangerMeetingRunning != LOG_Running))
 		{
-			if(LaresGuide_ZuOnar != LOG_SUCCESS)
-			{
-				LaresGuide_ZuOnar = FALSE;
-			};
-			if(LaresGuide_ZumPortal != 8)
-			{
-				LaresGuide_ZumPortal = 0;
-			};
-			if(LaresGuide_OrnamentForest != 3)
-			{
-				LaresGuide_OrnamentForest = 0;
-			};
-			B_StartOtherRoutine(Lares,"START");
+			B_ResetLares();
 		};
 		Wld_InsertNpc(PC_Fighter_NW_vor_DJG,"BIGFARM");
 		Wld_InsertNpc(PC_Thief_NW,"NW_CITY_ENTRANCE_01");
@@ -334,8 +313,8 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		};
 		if(!Npc_IsDead(Malak))
 		{
-			B_StartOtherRoutine(Malak,"FleeFromPass");
 			Malak_isAlive_Kap3 = TRUE;
+			B_StartOtherRoutine(Malak,"FleeFromPass");
 			B_StartOtherRoutine(BAU_962_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_964_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_965_Bauer,"FleeFromPass");
@@ -343,6 +322,11 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			B_StartOtherRoutine(BAU_967_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_968_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_969_Bauer,"FleeFromPass");
+			if(!Npc_IsDead(Pardos_NW))
+			{
+				B_StartOtherRoutine(Pardos_NW,"FleeFromPass");
+				PardosLeftFarmWithMalak = TRUE;
+			};
 			if(hero.guild == GIL_KDF)
 			{
 				CreateInvItems(Malak,ITWR_DementorObsessionBook_MIS,1);
@@ -369,20 +353,21 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Wld_InsertItem(ItMi_KarrasBlessedStone_Mis,"FP_NW_ITEM_TROLL_10");
 			if(!Npc_IsDead(Vino))
 			{
+				Vino_isAlive_Kap3 = TRUE;
 				B_StartOtherRoutine(Vino,"OBESESSIONRITUAL");
 				Vino.aivar[AIV_NoFightParker] = TRUE;
 				CreateInvItems(Vino,ITWR_DementorObsessionBook_MIS,1);
-				Vino_isAlive_Kap3 = TRUE;
-				if(!Npc_IsDead(Lobart))
-				{
-					B_StartOtherRoutine(Lobart,"OBESESSIONRITUAL");
-				};
+				B_StartOtherRoutine(Lobart,"OBESESSIONRITUAL");
 				Wld_InsertNpc(DMT_DementorSpeakerVino1,"FP_STAND_DEMENTOR_KDF_31");
 				Wld_InsertNpc(DMT_DementorSpeakerVino2,"FP_STAND_DEMENTOR_KDF_32");
 				Wld_InsertNpc(DMT_DementorSpeakerVino3,"FP_STAND_DEMENTOR_KDF_33");
 				Wld_InsertNpc(DMT_DementorSpeakerVino4,"NW_LITTLESTONEHENDGE_02");
 				B_KillNpc(YGiant_Bug_VinoRitual1);
 				B_KillNpc(YGiant_Bug_VinoRitual2);
+				if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_Running) && (MIS_Addon_Cavalorn_GetOrnamentFromPAL == FALSE))
+				{
+					B_StartOtherRoutine(Cavalorn,"OrnamentSteinringCh3KDF");
+				};
 			};
 			if(!Npc_IsDead(Bromor))
 			{
@@ -467,6 +452,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		if(!Npc_IsDead(Bengar))
 		{
 			Npc_ExchangeRoutine(Bengar,"Start");
+		};
+		if(!Npc_IsDead(Richter))
+		{
+			Richter.flags = 0;
 		};
 		EnterNW_Kapitel3 = TRUE;
 	};

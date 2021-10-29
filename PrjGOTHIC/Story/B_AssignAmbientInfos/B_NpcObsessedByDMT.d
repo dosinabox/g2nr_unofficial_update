@@ -24,32 +24,72 @@ func void B_NpcClearObsessionByDMT(var C_Npc medium)
 		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Sekob))
 		{
 			AI_EquipArmor(medium,ITAR_Vlk_H);
-		};
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Randolph))
+		}
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Randolph))
 		{
 			AI_EquipArmor(medium,ITAR_Bau_L);
-		};
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Vino))
+		}
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Vino))
 		{
 			AI_EquipArmor(medium,ITAR_Bau_L);
-		};
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Malak))
+		}
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Malak))
 		{
 			AI_EquipArmor(medium,ITAR_Bau_M);
-		};
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Fernando))
+			if(!Npc_IsDead(BAU_962_Bauer))
+			{
+				Npc_SetTarget(BAU_962_Bauer,medium);
+				AI_StartState(BAU_962_Bauer,ZS_Flee,0,"");
+			};
+			if(!Npc_IsDead(BAU_964_Bauer))
+			{
+				Npc_SetTarget(BAU_964_Bauer,medium);
+				AI_StartState(BAU_964_Bauer,ZS_Flee,0,"");
+			};
+			if(!Npc_IsDead(BAU_965_Bauer))
+			{
+				Npc_SetTarget(BAU_965_Bauer,medium);
+				AI_StartState(BAU_965_Bauer,ZS_Flee,0,"");
+			};
+			if(!Npc_IsDead(BAU_966_Bauer))
+			{
+				Npc_SetTarget(BAU_966_Bauer,medium);
+				AI_StartState(BAU_966_Bauer,ZS_Flee,0,"");
+			};
+			if(!Npc_IsDead(BAU_967_Bauer))
+			{
+				Npc_SetTarget(BAU_967_Bauer,medium);
+				AI_StartState(BAU_967_Bauer,ZS_Flee,0,"");
+			};
+			if(!Npc_IsDead(BAU_968_Bauer))
+			{
+				Npc_SetTarget(BAU_968_Bauer,medium);
+				AI_StartState(BAU_968_Bauer,ZS_Flee,0,"");
+			};
+			if(!Npc_IsDead(BAU_969_Bauer))
+			{
+				Npc_SetTarget(BAU_969_Bauer,medium);
+				AI_StartState(BAU_969_Bauer,ZS_Flee,0,"");
+			};
+			if(!Npc_IsDead(Pardos_NW) && (PardosLeftFarmWithMalak == TRUE))
+			{
+				Npc_SetTarget(Pardos_NW,medium);
+				AI_StartState(Pardos_NW,ZS_Flee,0,"");
+			};
+		}
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Fernando))
 		{
 			AI_EquipArmor(medium,ITAR_Governor);
-		};
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Brutus))
+		}
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Brutus))
 		{
 			AI_EquipArmor(medium,ITAR_MIL_L);
-		};
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Engrom))
+		}
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Engrom))
 		{
 			AI_EquipArmor(medium,ITAR_Leather_L);
-		};
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Bromor))
+		}
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Bromor))
 		{
 			AI_EquipArmor(medium,ITAR_Vlk_H);
 		};
@@ -60,23 +100,6 @@ func void B_NpcClearObsessionByDMT(var C_Npc medium)
 		Wld_StopEffect("DEMENTOR_FX");
 		Snd_Play("MFX_FEAR_CAST");
 		B_SCIsObsessed(medium);
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Malak))
-		{
-			Npc_SetTarget(BAU_962_Bauer,medium);
-			AI_StartState(BAU_962_Bauer,ZS_Flee,0,"");
-			Npc_SetTarget(BAU_964_Bauer,medium);
-			AI_StartState(BAU_964_Bauer,ZS_Flee,0,"");
-			Npc_SetTarget(BAU_965_Bauer,medium);
-			AI_StartState(BAU_965_Bauer,ZS_Flee,0,"");
-			Npc_SetTarget(BAU_966_Bauer,medium);
-			AI_StartState(BAU_966_Bauer,ZS_Flee,0,"");
-			Npc_SetTarget(BAU_967_Bauer,medium);
-			AI_StartState(BAU_967_Bauer,ZS_Flee,0,"");
-			Npc_SetTarget(BAU_968_Bauer,medium);
-			AI_StartState(BAU_968_Bauer,ZS_Flee,0,"");
-			Npc_SetTarget(BAU_969_Bauer,medium);
-			AI_StartState(BAU_969_Bauer,ZS_Flee,0,"");
-		};
 	};
 };
 
@@ -86,16 +109,12 @@ func void B_NpcObsessedByDMT(var C_Npc medium)
 	{
 		Wld_PlayEffect("DEMENTOR_FX",hero,hero,0,0,0,FALSE);
 		AI_UnequipWeapons(medium);
-		CreateInvItems(medium,ITAR_Dementor,1);
-//		AI_UnequipArmor(medium);
-		AI_EquipArmor(medium,ITAR_Dementor);
+		medium.attribute[ATR_MANA_MAX] = CONDITION_ARMOR_FAKE_DEMENTOR;
+		CreateInvItems(medium,ITAR_Fake_Dementor,1);
+		AI_EquipArmor(medium,ITAR_Fake_Dementor);
 		AI_PlayAni(medium,"T_PRACTICEMAGIC5");
 		Wld_PlayEffect("spellFX_Fear",medium,medium,0,0,0,FALSE);
 		NpcObsessedByDMT = TRUE;
-/*		if(!Npc_HasItems(medium,ITWR_DementorObsessionBook_MIS))
-		{
-			CreateInvItems(medium,ITWR_DementorObsessionBook_MIS,1);
-		}; */
 		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Brutus))
 		{
 			if(MIS_OCGateOpen == TRUE)
@@ -133,17 +152,15 @@ func void B_NpcObsessedByDMT(var C_Npc medium)
 			AI_Output(self,other,"DIA_Randolph_ObsessedByDMT_19_00");	//Не трать свои усилия на этого слабака. Мы поработим их всех.
 			NpcObsessedByDMT_Randolph = TRUE;
 		}
-		else
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Bromor))
 		{
 			B_DMTWurm();
-			if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Bromor))
-			{
-				NpcObsessedByDMT_Bromor = TRUE;
-			};
-			if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Fernando))
-			{
-				NpcObsessedByDMT_Fernando = TRUE;
-			};
+			NpcObsessedByDMT_Bromor = TRUE;
+		}
+		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Fernando))
+		{
+			B_DMTWurm();
+			NpcObsessedByDMT_Fernando = TRUE;
 		};
 		B_GivePlayerXP(XP_SCFoundObsessedNpc);
 	}

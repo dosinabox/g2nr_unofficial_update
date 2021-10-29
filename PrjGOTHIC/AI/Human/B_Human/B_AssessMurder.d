@@ -2,7 +2,6 @@
 func void B_AssessMurder()
 {
 	var C_Item readyweap;
-	readyweap = Npc_GetReadiedWeapon(other);
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(other))
 	{
 		return;
@@ -10,6 +9,7 @@ func void B_AssessMurder()
 	//********** огненная стрела
 	if(Npc_HasReadiedRangedWeapon(other))
 	{
+		readyweap = Npc_GetReadiedWeapon(other);
 		if(readyweap.munition == ItRw_Addon_FireArrow)
 		{
 			if(Npc_GetDistToNpc(self,victim) <= 600)

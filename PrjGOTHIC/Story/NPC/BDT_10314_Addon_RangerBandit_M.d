@@ -24,7 +24,7 @@ instance BDT_10314_Addon_RangerBandit_M(Npc_Default)
 
 func void Rtn_Start_10314()
 {
-	TA_Guard_Passage(8,0,23,0,"NW_FARM4_WOOD_RANGERBANDITS_04");
-	TA_Guard_Passage(23,0,8,0,"NW_FARM4_WOOD_RANGERBANDITS_04");
+	TA_Stand_ArmsCrossed(8,0,23,0,"NW_FARM4_WOOD_RANGERBANDITS_04");
+	TA_Stand_ArmsCrossed(23,0,8,0,"NW_FARM4_WOOD_RANGERBANDITS_04");
 };
 

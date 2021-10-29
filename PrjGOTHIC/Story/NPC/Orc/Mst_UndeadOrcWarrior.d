@@ -33,7 +33,7 @@ prototype Mst_Default_UndeadOrcWarrior(C_Npc)
 func void B_SetVisuals_UndeadOrcWarrior()
 {
 	Mdl_SetVisual(self,"Orc.mds");
-	Mdl_SetVisualBody(self,"UOW_Body",DEFAULT,DEFAULT,"",DEFAULT,DEFAULT,-1);
+	Mdl_SetVisualBody(self,"UOW_Body",DEFAULT,DEFAULT,"",DEFAULT,DEFAULT,NO_ARMOR);
 };
 
 

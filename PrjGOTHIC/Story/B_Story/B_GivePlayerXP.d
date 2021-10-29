@@ -28,11 +28,11 @@ func void B_LevelUp(var int levels)
 
 func int CalculateLowerXP(var int add_xp)
 {
-	var int modifier;
-	var int lower_xp;
-	modifier = 100 - HardModeXPModifier;
-	lower_xp = add_xp * modifier / 100;
-	return lower_xp;
+	if(add_xp > 0)
+	{
+		return add_xp * (100 - HardModeXPModifier) / 100;
+	};
+	return add_xp;
 };
 
 func void B_GivePlayerXP(var int add_xp)

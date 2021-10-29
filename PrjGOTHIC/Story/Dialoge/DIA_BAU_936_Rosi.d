@@ -163,11 +163,11 @@ func void DIA_Rosi_WAREZ_Info()
 	AI_Output(other,self,"DIA_Rosi_WAREZ_15_00");	//Что ты можешь предложить мне?
 	B_RosiTradeInfo();
 	AI_Output(self,other,"DIA_Rosi_WAREZ_17_01");	//Выбирай.
-	B_GiveTradeInv(self);
 	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
 	{
 		RosiMinenAnteil = TRUE;
 	};
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 
@@ -243,7 +243,7 @@ func int DIA_Rosi_BENGAR_Condition()
 
 func void DIA_Rosi_BENGAR_Info()
 {
-	AI_Output(other,self,"DIA_Rosi_BENGAR_15_00");	//Как мне попасть на ферму Бенгара?
+	DIA_Common_WhereBengarsFarm();
 	AI_Output(self,other,"DIA_Rosi_DuInBarriere_17_02");	//Его ферма находится очень близко от прохода, ведущего в Долину Рудников.
 	if((BalthasarMovedToBengar == FALSE) && !Npc_IsDead(Balthasar))
 	{

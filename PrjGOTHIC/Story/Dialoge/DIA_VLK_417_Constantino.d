@@ -1,4 +1,23 @@
 
+var int SC_AskedConstantinoAboutHerbs;
+
+func int C_CanAskConstantinoAboutHerbs()
+{
+	if((MIS_Constantino_BringHerbs == FALSE) && (MIS_Addon_Lester_PickForConstantino != FALSE) && (SC_AskedConstantinoAboutHerbs == FALSE))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+func void B_AskConstantinoAboutHerbs()
+{
+	AI_Output(other,self,"DIA_Addon_Constantino_LestersKraeuter_15_00");	//“ы покупаешь травы?
+	AI_Output(self,other,"DIA_Addon_Constantino_LestersKraeuter_10_01");	//Ќу, если тебе есть, что предложить...
+	B_GivePlayerXP(XP_Ambient);
+	SC_AskedConstantinoAboutHerbs = TRUE;
+};
+
 instance DIA_Constantino_EXIT(C_Info)
 {
 	npc = VLK_417_Constantino;
@@ -70,7 +89,7 @@ instance DIA_Constantino_Hallo(C_Info)
 
 func int DIA_Constantino_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (VisibleGuild(other) != GIL_PAL) && (VisibleGuild(other) != GIL_MIL) && (VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_KDW))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -78,7 +97,18 @@ func int DIA_Constantino_Hallo_Condition()
 
 func void DIA_Constantino_Hallo_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Constantino_Hallo_10_00");	//„то тебе нужно? я не подаю милостыню.
+	if((VisibleGuild(other) != GIL_PAL) && (VisibleGuild(other) != GIL_MIL) && (VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_KDW))
+	{
+		AI_Output(self,other,"DIA_Addon_Constantino_Hallo_10_00");	//„то тебе нужно? я не подаю милостыню.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Constantino_Hallo_10_00_add");	//„то тебе нужно?
+	};
+	if(C_CanAskConstantinoAboutHerbs())
+	{
+		B_AskConstantinoAboutHerbs();
+	};
 };
 
 
@@ -167,7 +197,7 @@ instance DIA_Addon_Constantino_LestersKraeuter(C_Info)
 
 func int DIA_Addon_Constantino_LestersKraeuter_Condition()
 {
-	if((MIS_Constantino_BringHerbs == FALSE) && (MIS_Addon_Lester_PickForConstantino != FALSE))
+	if(C_CanAskConstantinoAboutHerbs())
 	{
 		return TRUE;
 	};
@@ -175,9 +205,7 @@ func int DIA_Addon_Constantino_LestersKraeuter_Condition()
 
 func void DIA_Addon_Constantino_LestersKraeuter_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Constantino_LestersKraeuter_15_00");	//“ы покупаешь травы?
-	AI_Output(self,other,"DIA_Addon_Constantino_LestersKraeuter_10_01");	//Ќу, если тебе есть, что предложить...
-	B_GivePlayerXP(XP_Ambient);
+	B_AskConstantinoAboutHerbs();
 };
 
 
@@ -635,7 +663,14 @@ func int DIA_Constantino_AlsLehrling_Condition()
 {
 	if((Player_IsApprentice == APP_Constantino) && Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) > CRIME_NONE)
+		{
+			return TRUE;
+		};
+		if(Constantino_Lehrling_Day != Wld_GetDay())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -645,17 +680,18 @@ func void DIA_Constantino_AlsLehrling_Info()
 	{
 		B_Constantino_NoLearnYouAreWanted();
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_01");	//»ди к лорду јндрэ и уладь этот вопрос с ним.
-		Constantino_Lehrling_Day = Wld_GetDay();
 		AI_StopProcessInfos(self);
 	}
 	else if((other.guild == GIL_MIL) && (Constantino_StartGuild != GIL_MIL) && (Constantino_MILKommentar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_02");	//“ак ты поступил в ополчение? я уже слышал об этом.
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_03");	//“ы так торопилс€ стать учеником, а затем вот так просто вз€л и поступил в ополчение? Ќо € не стану делать тебе скидку на это.
-		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_04");	//я ожидаю, что ты будешь строго придерживатьс€ нашего соглашени€, и будешь регул€рно приносить мне растени€ и грибы.
+		if(Npc_KnowsInfo(other,DIA_Constantino_Aufgaben))
+		{
+			AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_04");	//я ожидаю, что ты будешь строго придерживатьс€ нашего соглашени€, и будешь регул€рно приносить мне растени€ и грибы.
+		};
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_05");	//≈сли это слишком т€жело дл€ теб€ - работать на двух работах одновременно, тебе просто придетс€ меньше спать!
 		Constantino_MILKommentar = TRUE;
-		Constantino_Lehrling_Day = Wld_GetDay();
 	}
 	else if(((VisibleGuild(other) == GIL_NOV) || (VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_PAL)) && (Constantino_StartGuild != GIL_NOV) && (Constantino_StartGuild != GIL_KDF) && (Constantino_StartGuild != GIL_PAL) && (Constantino_INNOSKommentar == FALSE))
 	{
@@ -668,14 +704,16 @@ func void DIA_Constantino_AlsLehrling_Info()
 	{
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_09");	//√де ты пропадал?
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_10");	//я ожидаю от моего ученика большего усерди€. Ёто никуда не годитс€, что ты по€вл€ешьс€ здесь раз в мес€ц!
-		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_11");	//“ы хот€ бы принес мне грибы?
-		Constantino_Lehrling_Day = Wld_GetDay();
+		if(MIS_Constantino_Mushrooms == LOG_Running)
+		{
+			AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_11");	//“ы хот€ бы принес мне грибы?
+		};
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_12");	//ќп€ть ты...
-		Constantino_Lehrling_Day = Wld_GetDay();
 	};
+	Constantino_Lehrling_Day = Wld_GetDay();
 };
 
 
@@ -733,7 +771,6 @@ func void DIA_Constantino_Mushrooms_Info()
 	AI_Output(self,other,"DIA_Constantino_Mushrooms_10_01");	//я буду покупать все, что ты принесешь мне - и буду платить за травы обычную цену.
 	AI_Output(self,other,"DIA_Constantino_Mushrooms_10_02");	//Ќо что касаетс€ грибов, дл€ них у мен€ особа€ цена.
 	MIS_Constantino_Mushrooms = LOG_Running;
-	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
 	B_LogEntry(Topic_Bonus,"я могу продавать грибы  онстантино по очень хорошей цене.");
 };
 
@@ -820,7 +857,7 @@ func void DIA_Constantino_MushroomsRunning_Why()
 	{
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Why_10_01");	//ƒаже несмотр€ на то, что ты мой ученик, € не могу сказать тебе все.
 	}
-	else if(Constantino_DunkelpilzCounter >= 50)
+	else if(Constantino_DunkelpilzCounter >= MushroomsNeededForBonus)
 	{
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Why_10_02");	//’орошо - € все же скажу тебе. Ќо ты должен сохранить это в тайне.
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Why_10_03");	//„ерные грибы полны магической энергии. » каждый раз, когда ты съедаешь такой гриб, немного этой энергии аккумулируетс€ твоим телом.
@@ -857,7 +894,7 @@ func void B_Constantino_TeachAlchemyBasics()
 	AI_Output(self,other,"DIA_Constantino_Alchemy_10_04");	//„тобы приготовить зелье на алхимическом столе, тебе понадобитс€ лабораторна€ пробирка.
 	AI_Output(self,other,"DIA_Constantino_Alchemy_10_05");	//“ы должен знать правильную формулу и иметь соответствующие ингредиенты.
 	AI_Output(self,other,"DIA_Constantino_Alchemy_10_06");	//я могу научить теб€ многим таким формулам.
-	Alchemy_Explain = TRUE;
+	Alchemy_Explain_Constantino = TRUE;
 };
 
 instance DIA_Constantino_Alchemy(C_Info)
@@ -1025,7 +1062,7 @@ func void DIA_Constantino_TEACH_Info()
 		};
 		if(talente > 0)
 		{
-			if(Alchemy_Explain == FALSE)
+			if(Alchemy_Explain_Constantino == FALSE)
 			{
 				B_Constantino_TeachAlchemyBasics();
 			};

@@ -362,6 +362,10 @@ func void B_Malak_BackToBengar()
 	B_StartOtherRoutine(BAU_967_Bauer,"Start");
 	B_StartOtherRoutine(BAU_968_Bauer,"Start");
 	B_StartOtherRoutine(BAU_969_Bauer,"Start");
+	if(PardosLeftFarmWithMalak == TRUE)
+	{
+		B_StartOtherRoutine(Pardos_NW,"Start");
+	};
 };
 
 var int DIA_Malak_Heilung_oneTime;

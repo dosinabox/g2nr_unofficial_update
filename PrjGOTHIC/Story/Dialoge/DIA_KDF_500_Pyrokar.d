@@ -34,7 +34,7 @@ instance DIA_Pyrokar_WELCOME(C_Info)
 
 func int DIA_Pyrokar_WELCOME_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (KNOWS_FIRE_CONTEST == FALSE) && (hero.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (Knows_Fire_Contest == FALSE) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -96,7 +96,7 @@ instance DIA_Pyrokar_Auge(C_Info)
 
 func int DIA_Pyrokar_Auge_Condition()
 {
-	if((KNOWS_FIRE_CONTEST == FALSE) && (other.guild == GIL_NOV))
+	if((Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -147,7 +147,7 @@ func void DIA_Addon_Pyrokar_MissingPeople_Info()
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Маги Огня огорчены исчезновениями горожан. Однако, они говорят, что этим должны заниматься маги Воды. В монастыре мне не удастся найти помощи по этому вопросу.");
-	if((other.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == FALSE))
+	if((other.guild == GIL_NOV) && (Knows_Fire_Contest == FALSE))
 	{
 		AI_StopProcessInfos(self);
 	};
@@ -171,7 +171,7 @@ func int DIA_Pyrokar_GOAWAY_Condition()
 	{
 		return FALSE;
 	};
-	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(hero,DIA_Pyrokar_Hagen) && Npc_KnowsInfo(hero,DIA_Pyrokar_Auge) && (KNOWS_FIRE_CONTEST == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(hero,DIA_Pyrokar_Hagen) && Npc_KnowsInfo(hero,DIA_Pyrokar_Auge) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -197,7 +197,7 @@ instance DIA_Pyrokar_FIRE(C_Info)
 
 func int DIA_Pyrokar_FIRE_Condition()
 {
-	if((KNOWS_FIRE_CONTEST == TRUE) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Pyrokar_Hagen))
+	if((Knows_Fire_Contest == TRUE) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Pyrokar_Hagen))
 	{
 		return TRUE;
 	};
@@ -994,8 +994,8 @@ func void B_BuildLearnDialog_Pyrokar()
 	{
 		Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
 		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
-		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Pyrokar_TEACH_MANA_1);
-		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Pyrokar_TEACH_MANA_5);
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),DIA_Pyrokar_TEACH_MANA_1);
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),DIA_Pyrokar_TEACH_MANA_5);
 	};
 };
 
@@ -1045,6 +1045,23 @@ func void DIA_Pyrokar_TEACH_MANA_5()
 	};
 };
 
+func int C_GotAnyInnosBlessing()
+{
+	if(Daron_Blessing == TRUE)
+	{
+		return TRUE;
+	};
+	if(Isgaroth_Blessing == TRUE)
+	{
+		return TRUE;
+	};
+	if(Pyrokar_Blessing == TRUE)
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 func void B_Pyrokar_BLESSING()
 {
 	if((Kapitel == 5) && (MIS_PyrokarClearDemonTower == LOG_SUCCESS))
@@ -1056,6 +1073,11 @@ func void B_Pyrokar_BLESSING()
 		AI_Output(self,other,"DIA_Pyrokar_PERM_11_03");	//Да встанет Иннос между тобой и болью на всех нечестивых путях, по которым тебе суждено пройти.
 	};
 	other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
+	if((MIS_Thorben_GetBlessings == LOG_Running) && !C_GotAnyInnosBlessing())
+	{
+		B_LogEntry(TOPIC_Thorben,"Маг Огня Пирокар благословил меня.");
+	};
+	Pyrokar_Blessing = TRUE;
 };
 
 instance DIA_Pyrokar_PERM(C_Info)
@@ -1220,7 +1242,7 @@ func void DIA_Pyrokar_GIVEINNOSEYE_Info()
 
 func void DIA_Pyrokar_GIVEINNOSEYE_wer()
 {
-	if(hero.guild == GIL_KDF)
+	if((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV))
 	{
 		AI_Output(other,self,"DIA_Pyrokar_GIVEINNOSEYE_wer_15_00");	//Кто мог совершить столь дерзкий поступок, Мастер?
 	}
@@ -2168,12 +2190,12 @@ func void DIA_Pyrokar_AmulettofDeath_Info()
 	AI_Output(other,self,"DIA_Pyrokar_AmulettofDeath_15_00");	//В пророчестве упоминается священная Аура Инноса.
 	AI_Output(self,other,"DIA_Pyrokar_AmulettofDeath_11_01");	//Аура Инноса - это амулет, который могут носить только величайшие маги всех времен и народов.
 	Info_ClearChoices(DIA_Pyrokar_AmulettofDeath);
-	Info_AddChoice(DIA_Pyrokar_AmulettofDeath,Dialog_Back,DIA_Pyrokar_AmulettofDeath_BAck);
+	Info_AddChoice(DIA_Pyrokar_AmulettofDeath,Dialog_Back,DIA_Pyrokar_AmulettofDeath_Back);
 	Info_AddChoice(DIA_Pyrokar_AmulettofDeath,"Могу я взять его?",DIA_Pyrokar_AmulettofDeath_CanHaveIt);
 	Info_AddChoice(DIA_Pyrokar_AmulettofDeath,"Что делает этот амулет?",DIA_Pyrokar_AmulettofDeath_Amulett);
 };
 
-func void DIA_Pyrokar_AmulettofDeath_BAck()
+func void DIA_Pyrokar_AmulettofDeath_Back()
 {
 	Info_ClearChoices(DIA_Pyrokar_AmulettofDeath);
 };
@@ -2278,31 +2300,6 @@ func void DIA_Pyrokar_PotionofDeath_Weapon()
 	CreateInvItems(hero,ItPo_PotionOfDeath_02_Mis,1);
 };
 
-/*
-instance DIA_Pyrokar_KAP6_EXIT(C_Info)
-{
-	npc = KDF_500_Pyrokar;
-	nr = 999;
-	condition = DIA_Pyrokar_KAP6_EXIT_Condition;
-	information = DIA_Pyrokar_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Pyrokar_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Pyrokar_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Pyrokar_PICKPOCKET(C_Info)
 {

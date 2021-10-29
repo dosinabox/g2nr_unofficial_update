@@ -115,7 +115,7 @@ func int DIA_Jorgen_Novice_Condition()
 
 func void DIA_Jorgen_Novice_Info()
 {
-	AI_Output(other,self,"DIA_Jorgen_Novice_15_00");	//Мимо тебя не проходил послушник?
+	DIA_Common_NovicePassedBy();
 	if((Npc_GetDistToWP(self,"NW_MONASTERY_BRIDGE_01") <= 250) && Wld_IsFPAvailable(self,"LOOKOUT"))
 	{
 		AI_Output(self,other,"DIA_Jorgen_Novice_07_01");	//Да, конечно, он побежал туда.

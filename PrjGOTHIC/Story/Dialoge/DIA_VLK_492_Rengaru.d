@@ -143,16 +143,9 @@ instance DIA_Rengaru_GOTYOU(C_Info)
 
 func int DIA_Rengaru_GOTYOU_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB))
+	if(C_RengaruIsReadyToTalk() && Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB))
 	{
-		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_05_01") <= 1000)
-		{
-			return TRUE;
-		};
-		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_POOR_AREA_PATH_01_03") <= 1000)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -317,12 +310,7 @@ func int DIA_Rengaru_SPARE_Condition()
 
 func void DIA_Rengaru_SPARE_Info()
 {
-	AI_Output(other,self,"DIA_Rengaru_INKNAST_HauAb_15_00");	//Проваливай! И чтоб больше я тебя здесь не видел!
-	AI_Output(self,other,"DIA_Rengaru_INKNAST_HauAb_07_01");	//Ты не пожалеешь об этом! Спасибо, парень!
-	self.aivar[AIV_ToughGuy] = FALSE;
-	Npc_ExchangeRoutine(self,"Start");
-	AI_StopProcessInfos(self);
-	Diebesgilde_Okay += 1;
+	DIA_Rengaru_INKNAST_HauAb();
 };
 
 

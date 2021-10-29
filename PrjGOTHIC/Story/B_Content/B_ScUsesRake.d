@@ -1,5 +1,5 @@
 
-var int rakeplace[50];
+var int RAKEPLACE[50];
 const int RAKE_BUDDEL_DIST_MIN = 200;
 
 const string RAKEPLACE_WP_01 = "NW_BIGFARM_LAKE_CAVE_07";

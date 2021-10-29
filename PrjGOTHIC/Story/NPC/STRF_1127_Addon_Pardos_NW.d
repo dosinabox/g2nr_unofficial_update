@@ -25,8 +25,13 @@ instance STRF_1127_Addon_Pardos_NW(Npc_Default)
 
 func void Rtn_Start_1127()
 {
-	TA_Rake_FP(8,0,15,0,"NW_FARM3_FIELD_02");
-	TA_Rake_FP(15,0,22,0,"NW_FARM3_FIELD_04");
-	TA_Sit_Throne(22,0,8,0,"NW_FARM3_HOUSE_IN_NAVI_2");
+	TA_Sit_Throne(0,0,12,0,"NW_FARM3_HOUSE_IN_NAVI_2");
+	TA_Sit_Throne(12,0,0,0,"NW_FARM3_HOUSE_IN_NAVI_2");
+};
+
+func void Rtn_FleeFromPass_1127()
+{
+	TA_Stand_WP(8,0,22,0,"NW_BIGMILL_MALAKSVERSTECK_05");
+	TA_Stand_WP(22,0,8,0,"NW_BIGMILL_MALAKSVERSTECK_05");
 };
 

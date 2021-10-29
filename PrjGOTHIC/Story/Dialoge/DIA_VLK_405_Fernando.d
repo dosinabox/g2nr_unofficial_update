@@ -163,6 +163,7 @@ func void DIA_Fernando_Minental_Info()
 	AI_Output(other,self,"DIA_Fernando_Minental_15_05");	//Я посмотрю, что можно сделать.
 	B_NpcClearObsessionByDMT(self);
 	Npc_ExchangeRoutine(self,"START");
+	MIS_Fernando_Erz = LOG_Running;
 	Log_CreateTopic(TOPIC_Fernando,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Fernando,LOG_Running);
 	B_LogEntry(TOPIC_Fernando,"Торговец Фернандо хочет знать, как обстоят дела с рудой в Долине Рудников.");
@@ -304,8 +305,8 @@ func void DIA_Addon_Fernando_BanditTrader_ja()
 	}
 	else
 	{
-		CreateInvItems(self,ItRi_Prot_Total_00,1);
-		B_GiveInvItems(self,other,ItRi_Prot_Total_00,1);
+		CreateInvItems(self,ItRi_Prot_Total_03,1);
+		B_GiveInvItems(self,other,ItRi_Prot_Total_03,1);
 		MIS_Martin_FindTheBanditTrader = LOG_FAILED;
 		MIS_Vatras_FindTheBanditTrader = LOG_FAILED;
 		B_LogEntry(TOPIC_Addon_Bandittrader,"Я решил не отправлять Фернандо в тюрьму и отдал ему все улики.");
@@ -336,7 +337,7 @@ instance DIA_Fernando_Success(C_Info)
 
 func int DIA_Fernando_Success_Condition()
 {
-	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Fernando_Minental))
+	if((Kapitel >= 3) && (MIS_Fernando_Erz == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -347,7 +348,7 @@ func void DIA_Fernando_Success_Info()
 	AI_Output(other,self,"DIA_Fernando_Success_15_00");	//Я был в Долине Рудников.
 	if((Fernando_ImKnast == FALSE) && (NpcObsessedByDMT_Fernando == FALSE))
 	{
-		Fernando_Erz = TRUE;
+		MIS_Fernando_Erz = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Ambient);
 		AI_Output(self,other,"DIA_Fernando_Success_14_01");	//И? Как там обстоят дела?
 		AI_Output(other,self,"DIA_Fernando_Success_15_02");	//Шахты истощены, там можно добыть всего каких-нибудь несколько ящиков руды. Вряд ли эта овчинка стоит выделки.
@@ -376,8 +377,9 @@ func void DIA_Fernando_Success_Info()
 	else
 	{
 		B_Say(self,other,"$NOTNOW");
-		Log_SetTopicStatus(TOPIC_Fernando,LOG_FAILED);
 		B_LogEntry(TOPIC_Fernando,"Фернандо больше не нуждается в информации. И денег за нее он мне не заплатит.");
+		MIS_Fernando_Erz = LOG_FAILED;
+		B_CheckLog();
 	};
 };
 
