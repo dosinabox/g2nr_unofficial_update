@@ -388,8 +388,8 @@ func void DIA_Addon_Lothar_MissingPeople_Info()
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
 		B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
+		SC_HearedAboutMissingPeople = TRUE;
 	};
-	SC_HearedAboutMissingPeople = TRUE;
 };
 
 

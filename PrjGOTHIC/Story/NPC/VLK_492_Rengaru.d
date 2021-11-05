@@ -12,7 +12,7 @@ instance VLK_492_Rengaru(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Sword);
 //	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItMi_Gold,50);
+	CreateInvItems(self,ItMi_Gold,55);
 	CreateInvItems(self,ItFo_Bread,1);
 	CreateInvItems(self,ItFo_Water,1);
 	CreateInvItems(self,ItFo_Cheese,1);

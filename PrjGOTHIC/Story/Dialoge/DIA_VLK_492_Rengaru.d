@@ -34,7 +34,7 @@ instance DIA_Rengaru_PICKPOCKET(C_Info)
 
 func int DIA_Rengaru_PICKPOCKET_Condition()
 {
-	if(Npc_HasItems(self,ItMi_Gold) > 5)
+	if(Npc_HasItems(self,ItMi_Gold) >= 5)
 	{
 		return C_Beklauen(20,5);
 	};

@@ -769,23 +769,26 @@ func void DIA_Addon_Vatras_HowToJoin_WhatsGreat()
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_03");	//Если сумеешь объяснить мне причину их исчезновения, то займешь достойное место среди нас.
 	Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
-	B_LogEntry(TOPIC_Addon_RingOfWater,LogText_Addon_KDWRight);
+	if(!Npc_KnowsInfo(other,DIA_Addon_Lares_WannaBeRanger))
+	{
+		Log_AddEntry(TOPIC_Addon_RingOfWater,LogText_Addon_KDWRight);
+	};
 	B_LogEntry(TOPIC_Addon_RingOfWater,"Ватрас примет меня в Кольцо Воды только в том случае, если я найду пропавших людей.");
 	if(SC_HearedAboutMissingPeople == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
 		B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
+		SC_HearedAboutMissingPeople = TRUE;
 	};
 	MIS_Addon_Vatras_WhereAreMissingPeople = LOG_Running;
-	SC_HearedAboutMissingPeople = TRUE;
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_04");	//Однако...
 	AI_Output(other,self,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_15_05");	//Что еще?
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_06");	//... сначала ты должен доставить сообщение паладинам.
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_07");	//Это дело первостепенной важности!
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_08");	//Поговори с лордом Хагеном.
 	Player_KnowsLordHagen = TRUE;
-	B_LogEntry(TOPIC_Addon_RingOfWater,"Ватрас хочет, чтобы я передал лорду Хагену важное сообщение.");
+	Log_AddEntry(TOPIC_Addon_RingOfWater,"Ватрас хочет, чтобы я передал лорду Хагену важное сообщение.");
 	Info_ClearChoices(DIA_Addon_Vatras_HowToJoin);
 };
 
