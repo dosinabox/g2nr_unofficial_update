@@ -218,8 +218,10 @@ func void DIA_Addon_Emilio_Senyan_Info()
 	AI_Output(other,self,"DIA_Addon_BDT_10015_Emilio_Senyan_15_03");	//А что? Какие-то проблемы?
 	AI_Output(self,other,"DIA_Addon_BDT_10015_Emilio_Senyan_10_04");	//(быстро) Нет, приятель, у меня к тебе по этому поводу никаких претензий.
 	AI_Output(self,other,"DIA_Addon_BDT_10015_Emilio_Senyan_10_05");	//Даже наоборот. (фальшиво) Этот ублюдок работал на Эстебана.
-//	Senyan_CONTRA = LOG_SUCCESS;
-	B_LogEntry(Topic_Addon_Esteban,"Эмилио не на стороне Эстебана.");
+	if(MIS_Judas == LOG_Running)
+	{
+		B_LogEntry(Topic_Addon_Esteban,"Эмилио не на стороне Эстебана.");
+	};
 };
 
 
@@ -275,14 +277,14 @@ func void DIA_Addon_Emilio_VonEmilio_Info()
 	AI_Output(self,other,"DIA_Addon_Emilio_VonEmilio_10_01");	//Леннар? Этот парень - идиот. Ты, наверное, заметил.
 	AI_Output(other,self,"DIA_Addon_Emilio_VonEmilio_15_02");	//Он сказал, что ты не был в шахте с тех пор, как произошло нападение.
 	AI_Output(self,other,"DIA_Addon_Emilio_VonEmilio_10_03");	//(испуганно) Я... ничего не знаю!
-	if(!Npc_IsDead(Senyan))
+	if(!Npc_IsDead(Senyan) && (Senyan_Contact == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Emilio_VonEmilio_10_04");	//Ты работаешь вместе с Сеньяном!
 		AI_Output(self,other,"DIA_Addon_Emilio_VonEmilio_10_05");	//И вы оба в сговоре с Эстебаном! Я в точности слышал, о чем вы там болтали!
 		AI_Output(self,other,"DIA_Addon_Emilio_VonEmilio_10_06");	//Пока что Эстебан ничем не помог нам. Почему я должен верить его людям?
 		AI_Output(self,other,"DIA_Addon_Emilio_VonEmilio_10_07");	//Оставь меня в покое!
-		AI_StopProcessInfos(self);
 	};
+	AI_StopProcessInfos(self);
 	B_LogEntry(Topic_Addon_Esteban,"Эмилио думает, что Леннар - идиот.");
 };
 
@@ -309,8 +311,11 @@ func int DIA_Addon_Emilio_HilfMir_Condition()
 func void DIA_Addon_Emilio_HilfMir_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Emilio_HilfMir_15_00");	//Помоги мне выяснить, кто организовал нападение!
-	AI_Output(self,other,"DIA_Addon_Emilio_HilfMir_10_01");	//Нет! Я не хочу в это ввязываться!
-	AI_Output(other,self,"DIA_Addon_Emilio_HilfMir_15_02");	//Если даже такой идиот, как Леннар, заметил, что ты ведешь себя странно, вряд ли пройдет много времени, прежде чем это заметит Эстебан.
+	if(!Npc_IsDead(Esteban))
+	{
+		AI_Output(self,other,"DIA_Addon_Emilio_HilfMir_10_01");	//Нет! Я не хочу в это ввязываться!
+		AI_Output(other,self,"DIA_Addon_Emilio_HilfMir_15_02");	//Если даже такой идиот, как Леннар, заметил, что ты ведешь себя странно, вряд ли пройдет много времени, прежде чем это заметит Эстебан.
+	};
 	AI_Output(self,other,"DIA_Addon_Emilio_HilfMir_10_03");	//(неловко) Я... черт! Я скажу тебе одно имя. И больше ничего.
 	AI_Output(other,self,"DIA_Addon_Emilio_HilfMir_15_04");	//Слушаю.
 	AI_Output(self,other,"DIA_Addon_Emilio_HilfMir_10_05");	//Хуно... поговори с Хуно. Он должен что-то знать об этом деле.
@@ -332,7 +337,7 @@ instance DIA_Addon_Emilio_GegenEsteban(C_Info)
 
 func int DIA_Addon_Emilio_GegenEsteban_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_BDT_10015_Emilio_Senyan))
+	if(Npc_KnowsInfo(other,DIA_Addon_BDT_10015_Emilio_Senyan) && !Npc_IsDead(Esteban))
 	{
 		return TRUE;
 	};
