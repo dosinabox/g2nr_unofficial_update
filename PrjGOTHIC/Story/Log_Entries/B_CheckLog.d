@@ -8,7 +8,7 @@ func void B_CheckLog()
 	B_CloseTopic(Topic_Addon_Stoneplate,MIS_HlpEdgor,0,4);
 	B_CloseTopic(Topic_Addon_Esteban,MIS_Judas,0,4);
 	B_CloseTopic(Topic_Addon_Huno,MIS_Huno_Stahl,0,6);
-	B_CloseTopic(Topic_Addon_Fisk,MIS_Lennar_Lockpick,0,6);
+	B_CloseTopic(Topic_Addon_Fisk,MIS_Fisk_Lockpicks,0,6);
 	B_CloseTopic(Topic_Addon_Tempel,MIS_BloodwynRaus,0,4);
 	B_CloseTopic(Topic_Addon_Franco,0,Player_HasTalkedToBanditCamp,4);
 	B_CloseTopic(Topic_Addon_Senyan,Senyan_Erpressung,0,4);

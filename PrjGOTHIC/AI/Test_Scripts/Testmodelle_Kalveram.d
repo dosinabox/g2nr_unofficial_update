@@ -869,7 +869,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItRi_Addon_MorgansRing_Mission,1);
 	CreateInvItems(self,ItMi_Focus,1);
 	CreateInvItems(self,ItMi_Addon_Steel_Paket,1);
-	CreateInvItems(self,ItMi_Addon_Lennar_Paket,1);
+	CreateInvItems(self,ItMi_Addon_Fisk_Paket,1);
 	CreateInvItems(self,ItMi_Zeitspalt_Addon,1);
 	CreateInvItems(self,ItWr_StonePlateCommon_Addon,1);
 	CreateInvItems(self,ItMi_Addon_Stone_01,1);

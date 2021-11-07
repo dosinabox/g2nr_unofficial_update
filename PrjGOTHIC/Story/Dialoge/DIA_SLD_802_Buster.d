@@ -552,7 +552,7 @@ func int DIA_Buster_Teach_Condition()
 
 func void DIA_Buster_Teach_Info()
 {
-	AI_Output(other,self,"DIA_Pyrokar_SPELLS_15_00");	//Обучи меня.
+	DIA_Common_TeachMe();
 	B_BuildLearnDialog_Buster();
 };
 

@@ -386,7 +386,7 @@ func int DIA_Addon_Logan_Allg_Condition()
 
 func void DIA_Addon_Logan_Allg_Info()
 {
-	AI_Output(other,self,"DIA_Karras_TEACH_15_00");	//Обучи меня.
+	DIA_Common_TeachMe();
 	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE))
 	{
 		Info_ClearChoices(DIA_Addon_Logan_Allg);
