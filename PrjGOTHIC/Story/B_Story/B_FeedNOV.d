@@ -6,8 +6,8 @@ func int C_CanFeedNOV(var C_Npc slf)
 		if(Kapitel == 1)
 		{
 			return TRUE;
-		}
-		else if(GuildlessMode == TRUE)
+		};
+		if(GuildlessMode == TRUE)
 		{
 			return TRUE;
 		};

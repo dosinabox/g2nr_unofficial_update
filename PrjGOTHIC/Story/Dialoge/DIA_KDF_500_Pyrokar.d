@@ -651,11 +651,11 @@ func int DIA_Pyrokar_Wunsch_Condition()
 {
 	if(other.guild == GIL_KDF)
 	{
-		if(Kapitel < 2)
+		if(Kapitel == 1)
 		{
 			return TRUE;
-		}
-		else if(GuildlessMode == TRUE)
+		};
+		if(GuildlessMode == TRUE)
 		{
 			return TRUE;
 		};

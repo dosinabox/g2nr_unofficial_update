@@ -87,7 +87,7 @@ instance DIA_Opolos_HowLong(C_Info)
 
 func int DIA_Opolos_HowLong_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Opolos_Hello))
+	if(Npc_KnowsInfo(other,DIA_Opolos_Hello))
 	{
 		return TRUE;
 	};
@@ -100,10 +100,13 @@ func void DIA_Opolos_HowLong_Info()
 	AI_Output(other,self,"DIA_Opolos_HowLong_15_02");	//А почему?
 	AI_Output(self,other,"DIA_Opolos_HowLong_12_03");	//Моя работа здесь - пасти овец, а не изучать писания.
 	AI_Output(self,other,"DIA_Opolos_HowLong_12_04");	//И пока мастер Парлан не освободит меня от этой обязанности, мне не позволят начать обучение в библиотеке.
-	MIS_HelpOpolos = LOG_Running;
-	Log_CreateTopic(Topic_OpolosStudy,LOG_MISSION);
-	Log_SetTopicStatus(Topic_OpolosStudy,LOG_Running);
-	B_LogEntry(Topic_OpolosStudy,"Ополос сторожит овец. А он хотел бы изучать свитки в библиотеке.");
+	if(!Npc_KnowsInfo(other,DIA_Pyrokar_Wunsch))
+	{
+		MIS_HelpOpolos = LOG_Running;
+		Log_CreateTopic(Topic_OpolosStudy,LOG_MISSION);
+		Log_SetTopicStatus(Topic_OpolosStudy,LOG_Running);
+		B_LogEntry(Topic_OpolosStudy,"Ополос пасет овец, а хотел бы изучать свитки в библиотеке.");
+	};
 };
 
 
@@ -120,7 +123,7 @@ instance DIA_Opolos_Monastery(C_Info)
 
 func int DIA_Opolos_Monastery_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Opolos_Hello) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Opolos_Hello) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -148,7 +151,7 @@ instance DIA_Opolos_beibringen(C_Info)
 
 func int DIA_Opolos_beibringen_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Opolos_Hello) && ((other.guild == GIL_NOV) || (other.guild == GIL_KDF)))
+	if(Npc_KnowsInfo(other,DIA_Opolos_Hello) && ((other.guild == GIL_NOV) || (other.guild == GIL_KDF)))
 	{
 		return TRUE;
 	};
@@ -183,7 +186,7 @@ var int DIA_Opolos_rezept_permanent;
 
 func int DIA_Opolos_rezept_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Opolos_beibringen) && ((other.guild == GIL_NOV) || (other.guild == GIL_KDF)) && (DIA_Opolos_rezept_permanent == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Opolos_beibringen) && ((other.guild == GIL_NOV) || (other.guild == GIL_KDF)) && (DIA_Opolos_rezept_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -255,7 +258,7 @@ instance DIA_Opolos_TEACH_STR(C_Info)
 
 func int DIA_Opolos_TEACH_STR_Condition()
 {
-	if(((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV)) && (Opolos_TeachSTR == TRUE))
+	if(((other.guild == GIL_KDF) || (other.guild == GIL_NOV)) && (Opolos_TeachSTR == TRUE))
 	{
 		return TRUE;
 	};
@@ -301,7 +304,7 @@ instance DIA_Opolos_Agon(C_Info)
 
 func int DIA_Opolos_Agon_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Opolos_Monastery) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Opolos_Monastery) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -345,7 +348,6 @@ func void DIA_Opolos_LIESEL_Info()
 	{
 		other.aivar[AIV_PARTYMEMBER] = FALSE;
 		other.aivar[AIV_TAPOSITION] = NOTINPOS;
-//		other.wp = "FP_ROAM_MONASTERY_04";
 		other.wp = "NW_MONASTERY_SHEEP_02";
 		other.start_aistate = ZS_MM_AllScheduler;
 		B_StartOtherRoutine(other,"Monastery");
@@ -500,7 +502,7 @@ func void DIA_Opolos_Kap3_PERM_Info()
 		{
 			Info_AddChoice(DIA_Opolos_Kap3_PERM,"Неизвестные в черных рясах стоят на каждом перекрестке.",DIA_Opolos_Kap3_PERM_DMT);
 		};
-		if(((MIS_NovizenChase == LOG_Running) || (MIS_NovizenChase == LOG_SUCCESS)) && (Opolos_Pedro == FALSE))
+		if((MIS_NovizenChase != FALSE) && (Opolos_Pedro == FALSE))
 		{
 			Info_AddChoice(DIA_Opolos_Kap3_PERM,"Педро предал нас.",DIA_Opolos_Kap3_PERM_PEDRO);
 		};

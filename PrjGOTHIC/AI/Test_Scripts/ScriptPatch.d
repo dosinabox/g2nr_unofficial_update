@@ -651,7 +651,6 @@ func void StoryHelper_HardMode_50()
 
 func void StoryHelper_HardMode_Back()
 {
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 
@@ -719,31 +718,8 @@ func void StoryHelper_XP()
 {
 	if(XP_Static == TRUE)
 	{
+		B_SetAmbientXP();
 		XP_Static = FALSE;
-		if(Kapitel == 1)
-		{
-			XP_Ambient = XP_AmbientKap1;
-		};
-		if(Kapitel == 2)
-		{
-			XP_Ambient = XP_AmbientKap2;
-		};
-		if(Kapitel == 3)
-		{
-			XP_Ambient = XP_AmbientKap3;
-		};
-		if(Kapitel == 4)
-		{
-			XP_Ambient = XP_AmbientKap4;
-		};
-		if(Kapitel == 5)
-		{
-			XP_Ambient = XP_AmbientKap5;
-		};
-		if(Kapitel == 6)
-		{
-			XP_Ambient = XP_AmbientKap6;
-		};
 		PrintScreen("ќригинал: динамический опыт по главам",-1,-1,FONT_Screen,3);
 		B_Build_Settings_Diag();
 	}
@@ -766,7 +742,6 @@ func void StoryHelper_XP_6()
 	XP_Ambient = XP_AmbientKap6;
 	PrintScreen("“еперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 300 (глава 6)",-1,45,FONT_Screen,3);
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 
@@ -776,7 +751,6 @@ func void StoryHelper_XP_5()
 	XP_Ambient = XP_AmbientKap5;
 	PrintScreen("“еперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 250 (глава 5)",-1,45,FONT_Screen,3);
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 
@@ -786,7 +760,6 @@ func void StoryHelper_XP_4()
 	XP_Ambient = XP_AmbientKap4;
 	PrintScreen("“еперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 200 (глава 4)",-1,45,FONT_Screen,3);
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 
@@ -796,7 +769,6 @@ func void StoryHelper_XP_3()
 	XP_Ambient = XP_AmbientKap3;
 	PrintScreen("“еперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 150 (глава 3)",-1,45,FONT_Screen,3);
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 
@@ -806,7 +778,6 @@ func void StoryHelper_XP_2()
 	XP_Ambient = XP_AmbientKap2;
 	PrintScreen("“еперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 100 (глава 2)",-1,45,FONT_Screen,3);
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 
@@ -816,13 +787,11 @@ func void StoryHelper_XP_1()
 	XP_Ambient = XP_AmbientKap1;
 	PrintScreen("“еперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 50 (глава 1)",-1,45,FONT_Screen,3);
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_XP_Back()
 {
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 
@@ -939,7 +908,6 @@ func void StoryHelper_IceDragonSpell_Icebolt()
 
 func void StoryHelper_IceDragonSpell_BACK()
 {
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 

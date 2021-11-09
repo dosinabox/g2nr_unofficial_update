@@ -101,7 +101,7 @@ instance DIA_Rupert_ZuPal(C_Info)
 
 func int DIA_Rupert_ZuPal_Condition()
 {
-	if(Kapitel < 2)
+	if(Kapitel == 1)
 	{
 		return TRUE;
 	};

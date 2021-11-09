@@ -275,8 +275,8 @@ func int PC_PrayShrine_Paladine_Condition()
 		if(Kapitel == 1)
 		{
 			return TRUE;
-		}
-		else if(GuildlessMode == TRUE)
+		};
+		if(GuildlessMode == TRUE)
 		{
 			return TRUE;
 		};

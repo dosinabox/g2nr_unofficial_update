@@ -454,8 +454,8 @@ func int DIA_Parlan_WORK_Condition()
 		if(Kapitel == 1)
 		{
 			return TRUE;
-		}
-		else if(GuildlessMode == TRUE)
+		};
+		if(GuildlessMode == TRUE)
 		{
 			return TRUE;
 		};

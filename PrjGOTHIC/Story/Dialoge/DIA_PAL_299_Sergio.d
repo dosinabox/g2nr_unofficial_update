@@ -67,8 +67,8 @@ func int DIA_Sergio_Isgaroth_Condition()
 		if(Kapitel == 1)
 		{
 			return TRUE;
-		}
-		else if(GuildlessMode == TRUE)
+		};
+		if(GuildlessMode == TRUE)
 		{
 			return TRUE;
 		};
