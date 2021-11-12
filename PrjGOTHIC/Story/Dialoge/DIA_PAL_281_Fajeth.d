@@ -187,9 +187,12 @@ instance DIA_Fajeth_Leader(C_Info)
 
 func int DIA_Fajeth_Leader_Condition()
 {
-	if((NewMine_LeadSnapper_Spawned == TRUE) && Npc_IsDead(NewMine_LeadSnapper) && (MIS_Fajeth_Kill_Snapper == LOG_Running))
+	if((NewMine_LeadSnapper_Spawned == TRUE) && (MIS_Fajeth_Kill_Snapper == LOG_Running))
 	{
-		return TRUE;
+		if(Npc_IsDead(NewMine_LeadSnapper))
+		{
+			return TRUE;
+		};
 	};
 };
 

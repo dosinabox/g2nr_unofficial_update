@@ -560,9 +560,20 @@ instance DIA_Addon_Cord_TalkedToDexter(C_Info)
 
 func int DIA_Addon_Cord_TalkedToDexter_Condition()
 {
-	if(((Dexter.aivar[AIV_TalkedToPlayer] == TRUE) || Npc_IsDead(Dexter)) && (MIS_Addon_Cord_Look4Patrick == LOG_Running))
+	if(MIS_Addon_Cord_Look4Patrick == LOG_Running)
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Dexter_Hallo))
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Dexter_Kill))
+		{
+			return TRUE;
+		};
+		if(Npc_IsDead(Dexter))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -632,9 +643,15 @@ instance DIA_Cord_ReturnPatrick(C_Info)
 
 func int DIA_Cord_ReturnPatrick_Condition()
 {
-	if((Npc_GetDistToWP(Patrick_NW,"NW_BIGFARM_PATRICK") <= 1000) && (MissingPeopleReturnedHome == TRUE) && !Npc_IsDead(Patrick_NW))
+	if(MissingPeopleReturnedHome == TRUE)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Patrick_NW))
+		{
+			if(Npc_GetDistToWP(Patrick_NW,"NW_BIGFARM_PATRICK") <= 1000)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 

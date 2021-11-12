@@ -613,9 +613,12 @@ instance DIA_Addon_Cavalorn_BragoKilled(C_Info)
 
 func int DIA_Addon_Cavalorn_BragoKilled_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") < 500) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running) && C_BragoBanditsDead())
+	if((Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") < 500) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running))
 	{
-		return TRUE;
+		if(C_BragoBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -638,9 +641,12 @@ instance DIA_Addon_Cavalorn_PCKilledBrago(C_Info)
 
 func int DIA_Addon_Cavalorn_PCKilledBrago_Condition()
 {
-	if(((MIS_Addon_Cavalorn_KillBrago == FALSE) || ((Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 500) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running))) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen) && C_BragoBanditsDead())
+	if(((MIS_Addon_Cavalorn_KillBrago == FALSE) || ((Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 500) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running))) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen))
 	{
-		return TRUE;
+		if(C_BragoBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -942,9 +948,12 @@ instance DIA_Addon_Cavalorn_WannaLearn(C_Info)
 
 func int DIA_Addon_Cavalorn_WannaLearn_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO) && C_BragoBanditsDead())
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO))
 	{
-		return TRUE;
+		if(C_BragoBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 

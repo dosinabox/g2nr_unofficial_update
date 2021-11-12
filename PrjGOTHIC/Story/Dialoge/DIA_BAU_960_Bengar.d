@@ -201,10 +201,12 @@ instance DIA_Addon_Bengar_ReturnPardos(C_Info)
 
 func int DIA_Addon_Bengar_ReturnPardos_Condition()
 {
-//	if((MIS_Bengar_BringMissPeopleBack == LOG_Running) && (Npc_GetDistToWP(Pardos_NW,"NW_FARM3_HOUSE_IN_NAVI_2") <= 1000) && (MissingPeopleReturnedHome == TRUE))
-	if((MIS_Bengar_BringMissPeopleBack == LOG_Running) && !Npc_IsDead(Pardos_NW) && (MissingPeopleReturnedHome == TRUE))
+	if((MIS_Bengar_BringMissPeopleBack == LOG_Running) && (MissingPeopleReturnedHome == TRUE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Pardos_NW))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -446,9 +448,9 @@ instance DIA_Bengar_MILIZKLATSCHEN(C_Info)
 
 func int DIA_Bengar_MILIZKLATSCHEN_Condition()
 {
-	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && Npc_KnowsInfo(other,DIA_Bengar_MILIZ) && !Npc_IsDead(Rick) && !Npc_IsDead(Rumbold))
+	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && Npc_KnowsInfo(other,DIA_Bengar_MILIZ) && (Miliz_Flucht == FALSE))
 	{
-		if(Miliz_Flucht == FALSE)
+		if(!Npc_IsDead(Rick) && !Npc_IsDead(Rumbold))
 		{
 			return TRUE;
 		};

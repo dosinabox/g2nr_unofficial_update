@@ -584,7 +584,7 @@ func void DIA_DiegoNW_KnowWhereEnemy_Yes()
 {
 	AI_Output(other,self,"DIA_DiegoNW_KnowWhereEnemy_Yes_15_00");	//Почему бы тебе не отправиться в путь со мной? Встретимся у гавани.
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_01");	//Хм-м, ты прав, в Хоринисе все равно нечего делать. Я поплыву с тобой.
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23") && !ArmorEquipped(self,ITAR_Diego))
+	if(C_NpcIsNearWP(self,"NW_CITY_UPTOWN_PATH_23") && !ArmorEquipped(self,ITAR_Diego))
 	{
 		AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_02");	//Подожди, я буду готов через минуту.
 		AI_SetWalkMode(self,NPC_RUN);
@@ -695,7 +695,7 @@ func void DIA_DiegoNW_StillNeedYou_Info()
 	{
 		DIA_Common_INeedYourHelp();
 	};
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23") && !ArmorEquipped(self,ITAR_Diego))
+	if(C_NpcIsNearWP(self,"NW_CITY_UPTOWN_PATH_23") && !ArmorEquipped(self,ITAR_Diego))
 	{
 		AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_02");	//Подожди, я буду готов через минуту.
 		AI_SetWalkMode(self,NPC_RUN);

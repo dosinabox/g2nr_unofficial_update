@@ -313,9 +313,12 @@ instance DIA_Jergan_Leader(C_Info)
 
 func int DIA_Jergan_Leader_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && Npc_IsDead(NewMine_LeadSnapper) && (NewMine_LeadSnapper_Spawned == TRUE))
+	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && (NewMine_LeadSnapper_Spawned == TRUE))
 	{
-		return TRUE;
+		if(Npc_IsDead(NewMine_LeadSnapper))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -1,107 +1,107 @@
 
 func int B_GoldMob_Bestimmung()
 {
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_PICK_01") && (GoldMob_01_AmounT_MAX > GoldMob_01_Amount))
+	if(C_NpcIsNearWP(self,"ADW_MINE_PICK_01") && (GoldMob_01_AmounT_MAX > GoldMob_01_Amount))
 	{
 		GoldMob_01_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_PICK_02") && (GoldMob_02_AmounT_MAX > GoldMob_02_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_PICK_02") && (GoldMob_02_AmounT_MAX > GoldMob_02_Amount))
 	{
 		GoldMob_02_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_PICK_03") && (GoldMob_03_AmounT_MAX > GoldMob_03_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_PICK_03") && (GoldMob_03_AmounT_MAX > GoldMob_03_Amount))
 	{
 		GoldMob_03_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_PICK_04") && (GoldMob_04_AmounT_MAX > GoldMob_04_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_PICK_04") && (GoldMob_04_AmounT_MAX > GoldMob_04_Amount))
 	{
 		GoldMob_04_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_LAGER_SIDE_PICK_01") && (GoldMob_05_AmounT_MAX > GoldMob_05_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_LAGER_SIDE_PICK_01") && (GoldMob_05_AmounT_MAX > GoldMob_05_Amount))
 	{
 		GoldMob_05_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_LAGER_SIDE_PICK_02") && (GoldMob_06_AmounT_MAX > GoldMob_06_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_LAGER_SIDE_PICK_02") && (GoldMob_06_AmounT_MAX > GoldMob_06_Amount))
 	{
 		GoldMob_06_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_LAGER_06") && (GoldMob_07_AmounT_MAX > GoldMob_07_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_LAGER_06") && (GoldMob_07_AmounT_MAX > GoldMob_07_Amount))
 	{
 		GoldMob_07_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_MC_PICK_01") && (GoldMob_08_AmounT_MAX > GoldMob_08_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_MC_PICK_01") && (GoldMob_08_AmounT_MAX > GoldMob_08_Amount))
 	{
 		GoldMob_08_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_MC_PICK_02") && (GoldMob_09_AmounT_MAX > GoldMob_09_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_MC_PICK_02") && (GoldMob_09_AmounT_MAX > GoldMob_09_Amount))
 	{
 		GoldMob_09_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_MC_PICK_03") && (GoldMob_10_AmounT_MAX > GoldMob_10_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_MC_PICK_03") && (GoldMob_10_AmounT_MAX > GoldMob_10_Amount))
 	{
 		GoldMob_10_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_MC_PICK_04") && (GoldMob_11_AmounT_MAX > GoldMob_11_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_MC_PICK_04") && (GoldMob_11_AmounT_MAX > GoldMob_11_Amount))
 	{
 		GoldMob_11_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_09_PICK") && (GoldMob_12_AmounT_MAX > GoldMob_12_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_09_PICK") && (GoldMob_12_AmounT_MAX > GoldMob_12_Amount))
 	{
 		GoldMob_12_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_TO_MC_04_B") && (GoldMob_13_AmounT_MAX > GoldMob_13_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_TO_MC_04_B") && (GoldMob_13_AmounT_MAX > GoldMob_13_Amount))
 	{
 		GoldMob_13_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_PICK_06") && (GoldMob_14_AmounT_MAX > GoldMob_14_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_PICK_06") && (GoldMob_14_AmounT_MAX > GoldMob_14_Amount))
 	{
 		GoldMob_14_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_PICK_07") && (GoldMob_15_AmounT_MAX > GoldMob_15_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_PICK_07") && (GoldMob_15_AmounT_MAX > GoldMob_15_Amount))
 	{
 		GoldMob_15_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_PICK_08") && (GoldMob_16_AmounT_MAX > GoldMob_16_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_PICK_08") && (GoldMob_16_AmounT_MAX > GoldMob_16_Amount))
 	{
 		GoldMob_16_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_PICK_09") && (GoldMob_17_AmounT_MAX > GoldMob_17_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_PICK_09") && (GoldMob_17_AmounT_MAX > GoldMob_17_Amount))
 	{
 		GoldMob_17_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_19") && (GoldMob_18_AmounT_MAX > GoldMob_18_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_19") && (GoldMob_18_AmounT_MAX > GoldMob_18_Amount))
 	{
 		GoldMob_18_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_SLAVE_01") && (GoldMob_19_AmounT_MAX > GoldMob_19_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_SLAVE_01") && (GoldMob_19_AmounT_MAX > GoldMob_19_Amount))
 	{
 		GoldMob_19_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_LAGER_05") && (GoldMob_20_AmounT_MAX > GoldMob_20_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_LAGER_05") && (GoldMob_20_AmounT_MAX > GoldMob_20_Amount))
 	{
 		GoldMob_20_Amount += 1;
 		return TRUE;
 	}
-	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_SKLAVENTOD_02") && (GoldMob_21_AmounT_MAX > GoldMob_21_Amount))
+	else if(C_NpcIsNearWP(self,"ADW_MINE_SKLAVENTOD_02") && (GoldMob_21_AmounT_MAX > GoldMob_21_Amount))
 	{
 		GoldMob_21_Amount += 1;
 		return TRUE;
