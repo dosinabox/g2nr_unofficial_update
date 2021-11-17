@@ -28,9 +28,12 @@ func int C_PrisonIsEmpty()
 	{
 		return FALSE;
 	};
-	if((Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 600) && !Npc_IsDead(Canthar))
+	if(!Npc_IsDead(Canthar))
 	{
-		return FALSE;
+		if(Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 600)
+		{
+			return FALSE;
+		};
 	};
 	if((Sarah_Ausgeliefert == TRUE) && !Npc_IsDead(Sarah))
 	{
@@ -80,19 +83,16 @@ func int DIA_Boltan_HALLO_Condition()
 	if(Npc_KnowsInfo(other,DIA_Boltan_HalloBennet) || Npc_KnowsInfo(other,DIA_Boltan_HalloCanthar))
 	{
 		return FALSE;
-	}
-	else if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (other.guild == GIL_SLD))
-	{
-		return FALSE;
-	}
-	else if((Kapitel >= 3) && (Canthar_Ausgeliefert == TRUE) && !Npc_IsDead(Canthar))
-	{
-		return FALSE;
-	}
-	else
-	{
-		return TRUE;
 	};
+	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (other.guild == GIL_SLD))
+	{
+		return FALSE;
+	};
+	if((Kapitel >= 3) && (Canthar_Ausgeliefert == TRUE) && !Npc_IsDead(Canthar))
+	{
+		return FALSE;
+	};
+	return TRUE;
 };
 
 func void DIA_Boltan_HALLO_Info()
@@ -193,8 +193,8 @@ func int DIA_Boltan_HalloCanthar_Condition()
 	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (other.guild == GIL_SLD) && !Npc_KnowsInfo(other,DIA_Boltan_HalloBennet))
 	{
 		return FALSE;
-	}
-	else if((Kapitel >= 3) && (Canthar_Ausgeliefert == TRUE) && !Npc_IsDead(Canthar))
+	};
+	if((Kapitel >= 3) && (Canthar_Ausgeliefert == TRUE) && !Npc_IsDead(Canthar))
 	{
 		return TRUE;
 	};

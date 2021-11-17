@@ -736,9 +736,12 @@ instance DIA_Bengar_SLDDA(C_Info)
 
 func int DIA_Bengar_SLDDA_Condition()
 {
-	if((Npc_GetDistToWP(SLD_Wolf,"FARM3") < 3000) && (MIS_BengarsHelpingSLD == LOG_SUCCESS) && !Npc_IsDead(SLD_Wolf))
+	if((MIS_BengarsHelpingSLD == LOG_SUCCESS) && !Npc_IsDead(SLD_Wolf))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(SLD_Wolf,"FARM3") < 3000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -765,9 +768,12 @@ instance DIA_Bengar_MALAKWIEDERDA(C_Info)
 
 func int DIA_Bengar_MALAKWIEDERDA_Condition()
 {
-	if((Npc_GetDistToWP(Malak,"FARM3") < 3000) && (MalakIsBackToBengar == TRUE) && !Npc_IsDead(Malak) && Npc_KnowsInfo(other,DIA_Bengar_ALLEIN))
+	if((MalakIsBackToBengar == TRUE) && !Npc_IsDead(Malak) && Npc_KnowsInfo(other,DIA_Bengar_ALLEIN))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(Malak,"FARM3") < 3000)
+		{
+			return TRUE;
+		};
 	};
 };
 

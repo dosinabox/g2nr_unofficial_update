@@ -85,17 +85,17 @@ func int DIA_Addon_Franco_HI_Condition()
 
 func void DIA_Addon_Franco_HI_Info()
 {
-	Log_CreateTopic(Topic_Addon_Franco,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Franco,LOG_Running);
-	B_LogEntry(Topic_Addon_Franco,"Если я выполню задания Франко, он впустит меня в лагерь.");
 	AI_Output(self,other,"DIA_Addon_Franco_HI_08_00");	//Эй, что ты здесь делаешь? Ты хочешь попасть в лагерь?
 	AI_Output(other,self,"DIA_Addon_Franco_HI_15_01");	//Да, я...
 	AI_Output(self,other,"DIA_Addon_Franco_HI_08_02");	//Меня не интересует, кто ты такой. Меня зовут Франко. Я здесь командую.
 	AI_Output(self,other,"DIA_Addon_Franco_HI_08_03");	//Если ты будешь хорошо работать, я отправлю тебя в лагерь.
+	Log_CreateTopic(Topic_Addon_Franco,LOG_MISSION);
+	Log_SetTopicStatus(Topic_Addon_Franco,LOG_Running);
+	B_LogEntry(Topic_Addon_Franco,"Если я выполню задания Франко, он впустит меня в лагерь.");
 	if(Ramon_News == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Franco_HI_08_04");	//Стражник Рамон может тебе сказать, нужны ли в лагере новые люди. Поговори с ним.
-		B_LogEntry(Topic_Addon_Franco,"Я должен спросить Рамона, нужны ли в лагере еще люди.");
+		Log_AddEntry(Topic_Addon_Franco,"Я должен спросить Рамона, нужны ли в лагере еще люди.");
 	};
 };
 
@@ -312,8 +312,8 @@ func int DIA_Addon_Franco_WOEDGOR_Condition()
 		if(!Npc_HasItems(other,ItMi_Addon_Stone_04))
 		{
 			return TRUE;
-		}
-		else if(SC_KnowsEdgorStoneLocation == FALSE)
+		};
+		if(SC_KnowsEdgorStoneLocation == FALSE)
 		{
 			return TRUE;
 		};

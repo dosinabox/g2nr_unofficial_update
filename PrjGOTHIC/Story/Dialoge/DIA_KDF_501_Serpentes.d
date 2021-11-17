@@ -583,15 +583,18 @@ instance DIA_Serpentes_SalandrilHERE(C_Info)
 
 func int DIA_Serpentes_SalandrilHERE_Condition()
 {
-	if((Npc_GetDistToWP(Salandril,"ALTAR") < 10000) && !Npc_IsDead(Salandril))
+	if(!Npc_IsDead(Salandril))
 	{
-		if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+		if(Npc_GetDistToWP(Salandril,"ALTAR") < 10000)
 		{
-			return TRUE;
-		}
-		else if(Npc_KnowsInfo(other,DIA_Serpentes_GOTSalandril) && (hero.guild == GIL_KDF))
-		{
-			return TRUE;
+			if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+			{
+				return TRUE;
+			};
+			if(Npc_KnowsInfo(other,DIA_Serpentes_GOTSalandril) && (hero.guild == GIL_KDF))
+			{
+				return TRUE;
+			};
 		};
 	};
 };
