@@ -345,6 +345,14 @@ func void B_Build_Settings_Diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить рандомные гоблинские ягоды у паладинов",StoryHelper_GoblinBerries);
 	};
+	if(RandomPepper == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить рандомные перцы у пиратов",StoryHelper_Pepper);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить рандомные перцы у пиратов",StoryHelper_Pepper);
+	};
 	if(InfiniteApples == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить выбивание бесконечных яблок",StoryHelper_Apples);
@@ -452,6 +460,21 @@ func void StoryHelper_GoblinBerries()
 	{
 		RandomGoblinBerries = TRUE;
 		PrintScreen("Рандомное количество ягод у паладинов",-1,-1,FONT_Screen,3);
+	};
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_Pepper()
+{
+	if(RandomPepper == TRUE)
+	{
+		RandomPepper = FALSE;
+		PrintScreen("Фиксированное количество перцев у продавцов",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		RandomPepper = TRUE;
+		PrintScreen("Рандомное количество перцев у пиратов",-1,-1,FONT_Screen,3);
 	};
 	B_Build_Settings_Diag();
 };

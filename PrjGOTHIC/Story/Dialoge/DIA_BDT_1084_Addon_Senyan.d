@@ -338,6 +338,10 @@ func int DIA_Addon_Senyan_derbe_Condition()
 		{
 			return TRUE;
 		};
+		if(Npc_KnowsInfo(other,DIA_Addon_Esteban_Duell))
+		{
+			return TRUE;
+		};
 		if(Esteban_KnowsFiskAsTraitor == TRUE)
 		{
 			return TRUE;

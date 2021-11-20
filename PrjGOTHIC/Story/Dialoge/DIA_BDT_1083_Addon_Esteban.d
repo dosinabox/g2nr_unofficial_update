@@ -471,8 +471,16 @@ func void DIA_Addon_Esteban_Duell_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Esteban_Duell_15_00");	//Давай сюда камень СЕЙЧАС ЖЕ, или я заберу его сам!
 	AI_Output(self,other,"DIA_Addon_Esteban_Duell_07_01");	//О, у тебя есть последнее желание. Как мило. Я сделаю тебе одолжение и избавлю тебя от твоей тупости!
-	Info_ClearChoices(DIA_Addon_Esteban_Duell);
-	Info_AddChoice(DIA_Addon_Esteban_Duell,Dialog_Ende,DIA_Addon_Esteban_Duell_End);
+	if(Npc_IsDead(Wache_01) && Npc_IsDead(Wache_02))
+	{
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_NONE,1);
+	}
+	else
+	{
+		Info_ClearChoices(DIA_Addon_Esteban_Duell);
+		Info_AddChoice(DIA_Addon_Esteban_Duell,Dialog_Ende,DIA_Addon_Esteban_Duell_End);
+	};
 };
 
 func void DIA_Addon_Esteban_Duell_End()

@@ -1131,6 +1131,7 @@ var int TradersHaveLimitedAmmo;
 var int Dont_Fix_Unlim;
 var int IgnoreBonuses;
 var int RandomGoblinBerries;
+var int RandomPepper;
 var int InfiniteApples;
 var int Helmets_Enabled;
 var int ClassicLehmarBook;
