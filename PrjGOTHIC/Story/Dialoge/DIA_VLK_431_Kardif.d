@@ -807,6 +807,8 @@ func void DIA_Kardif_SENDATTILA_Info()
 };
 
 
+var int DIA_Kardif_Kerl_permanent;
+
 instance DIA_Kardif_Kerl(C_Info)
 {
 	npc = VLK_431_Kardif;
@@ -818,13 +820,14 @@ instance DIA_Kardif_Kerl(C_Info)
 };
 
 
-var int DIA_Kardif_Kerl_permanent;
-
 func int DIA_Kardif_Kerl_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Kardif_SENDATTILA) && (Attila.aivar[AIV_TalkedToPlayer] == FALSE) && !Npc_IsDead(Attila) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_Kerl_permanent == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Kardif_SENDATTILA) && !Npc_IsDead(Attila) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_Kerl_permanent == FALSE))
 	{
-		return TRUE;
+		if(Attila.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -860,9 +863,16 @@ instance DIA_Kardif_DEFEATEDATTILA(C_Info)
 
 func int DIA_Kardif_DEFEATEDATTILA_Condition()
 {
-	if((Kardif_OneQuestion == FALSE) && Npc_KnowsInfo(other,DIA_Attila_Hallo) && (!Npc_HasItems(Attila,ItKe_ThiefGuildKey_MIS) || (Npc_GetDistToWP(Attila,"NW_CITY_KARDIF") > 2000) || Npc_IsDead(Attila)))
+	if(Npc_KnowsInfo(other,DIA_Attila_Hallo) && (Kardif_OneQuestion == FALSE))
 	{
-		return TRUE;
+		if(Npc_IsDead(Attila))
+		{
+			return TRUE;
+		};
+		if(Npc_GetDistToWP(Attila,"NW_CITY_KARDIF") > 2000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -872,8 +882,6 @@ func void DIA_Kardif_DEFEATEDATTILA_Info()
 	AI_Output(self,other,"DIA_Kardif_DEFEATEDATTILA_14_01");	//Эй, откуда мне было знать? Я просто передал информацию.
 	AI_Output(self,other,"DIA_Kardif_DEFEATEDATTILA_14_02");	//Если кто-то решил насолить тебе, я думаю, у него были веские причины.
 	B_GivePlayerXP(XP_Kardif_Blame4Attila);
-//	B_KillNpc(VLK_494_Attila);
-//	Npc_RemoveInvItem(Attila,ItMi_OldCoin);
 };
 
 

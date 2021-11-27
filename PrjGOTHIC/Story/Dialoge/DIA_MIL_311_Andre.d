@@ -1324,7 +1324,7 @@ func void DIA_Andre_JOIN_Yes()
 		Npc_ExchangeRoutine(Babo,"FAVOUR");
 	};
 	SLD_Aufnahme = LOG_OBSOLETE;
-	KDF_Aufnahme = LOG_OBSOLETE;
+	NOV_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;
 	B_CancelBengarMilitiaProblem();
 	B_GivePlayerXP(XP_BecomeMiliz);

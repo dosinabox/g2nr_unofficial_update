@@ -653,7 +653,7 @@ func void DIA_Lee_JoinNOW_Info()
 			{
 				Npc_ExchangeRoutine(Babo,"FAVOUR");
 			};
-			KDF_Aufnahme = LOG_OBSOLETE;
+			NOV_Aufnahme = LOG_OBSOLETE;
 			SLD_Aufnahme = LOG_SUCCESS;
 			MIL_Aufnahme = LOG_OBSOLETE;
 			B_GivePlayerXP(XP_BecomeMercenary);

@@ -161,13 +161,7 @@ func void DIA_Pedro_TEMPEL_Info()
 			AI_Output(self,other,"DIA_ADDON_Pedro_TEMPEL_09_04");	//Овцу и 1000 золотых.
 			AI_Output(other,self,"DIA_Pedro_TEMPEL_15_04");	//Это целая куча золота.
 			AI_Output(self,other,"DIA_Pedro_TEMPEL_09_05");	//Это знак того, что ты начинаешь новую жизнь в качестве слуги Инноса. Когда ты будешь принят, все твои предыдущие прегрешения будут прощены.
-			if(SC_KnowsKlosterTribut == FALSE)
-			{
-				SC_KnowsKlosterTribut = TRUE;
-				Log_CreateTopic(Topic_Kloster,LOG_MISSION);
-				Log_SetTopicStatus(Topic_Kloster,LOG_Running);
-				B_LogEntry(Topic_Kloster,"Чтобы стать послушником монастыря Инноса, мне нужна овца и 1000 золотых монет.");
-			};
+			B_KlosterTributInfo();
 		};
 		AI_Output(self,other,"DIA_Pedro_TEMPEL_09_06");	//И хорошенько подумай - потом ты не сможешь отказаться от своего решения стать слугой Инноса.
 	};

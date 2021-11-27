@@ -729,6 +729,10 @@ func void DIA_Lothar_HelloAgain_Info()
 	if((VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_KDW))
 	{
 		AI_Output(self,other,"DIA_Lothar_Add_01_36");	//Где ты взял эту мантию?
+		if(other.guild != GIL_KDF)
+		{
+			DIA_Common_Well();
+		};
 	};
 	if(other.guild == GIL_KDF)
 	{

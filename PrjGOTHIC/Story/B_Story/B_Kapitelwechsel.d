@@ -20,6 +20,8 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		Cronos_NW_ItSc_Whirlwind_Count = 1;
 		Bennet_NW_ItMi_Swordraw_Count = 3;
 		IceDragonSpell = SPL_InstantFireball;
+		FullNPCRemoval = TRUE;
+		NewLogEnabled = TRUE;
 		IntroduceChapter(KapWechsel_1,KapWechsel_1_Text,"chapter1.tga","chapter_01.wav",6000);
 	}
 	else if(neues_Kapitel == 2)
