@@ -210,9 +210,12 @@ instance DIA_Agon_GolemDead(C_Info)
 
 func int DIA_Agon_GolemDead_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_Running) && Npc_IsDead(Magic_Golem))
+	if(MIS_Schnitzeljagd == LOG_Running)
 	{
-		return TRUE;
+		if(Npc_IsDead(Magic_Golem))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -286,9 +289,12 @@ instance DIA_Agon_GolemLives(C_Info)
 
 func int DIA_Agon_GolemLives_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_Running) && !Npc_IsDead(Magic_Golem))
+	if(MIS_Schnitzeljagd == LOG_Running)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Magic_Golem))
+		{
+			return TRUE;
+		};
 	};
 };
 

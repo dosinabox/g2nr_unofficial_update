@@ -398,9 +398,9 @@ func void UseItPo_PotionOfDeath()
 			B_RaiseRealAttributeLearnCounter(self,ATR_STRENGTH,5);
 			B_RaiseRealAttributeLearnCounter(self,ATR_DEXTERITY,5);
 		};
-		PrintScreen(PRINT_LearnSTR5,-1,43,FONT_Screen,2);
-		PrintScreen(PRINT_LearnDEX5,-1,48,FONT_Screen,2);
-		PrintScreen(PRINT_FullyHealed,-1,53,FONT_Screen,2);
+		PrintScreen(PRINT_LearnSTR5,-1,43,FONT_Screen,3);
+		PrintScreen(PRINT_LearnDEX5,-1,48,FONT_Screen,3);
+		PrintScreen(PRINT_FullyHealed,-1,53,FONT_Screen,3);
 		Mdl_ApplyOverlayMdsTimed(self,"Humans_Sprint.mds",Time_Speed);
 	}
 	else

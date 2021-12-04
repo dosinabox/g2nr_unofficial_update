@@ -357,3 +357,40 @@ func int C_GrimbaldSnappersDead()
 	return TRUE;
 };
 
+func int C_FajethSnappersDead()
+{
+	if(!Npc_IsDead(NewMine_Snapper1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(NewMine_Snapper2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(NewMine_Snapper3))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(NewMine_Snapper4))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(NewMine_Snapper5))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(NewMine_Snapper6))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(NewMine_Snapper7))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(NewMine_Snapper8))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+

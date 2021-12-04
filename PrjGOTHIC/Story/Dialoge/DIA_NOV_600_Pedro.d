@@ -363,6 +363,11 @@ func void DIA_Pedro_AUFNAHME_YES()
 	SLD_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_OBSOLETE;
 	B_GivePlayerXP(XP_AufnahmeNovize);
+	if(!Npc_IsDead(Gorax))
+	{
+		CreateInvItems(Gorax,ItBE_Addon_NOV_01,1);
+		CreateInvItems(Gorax,ItWr_Map_Shrine_MIS,1);
+	};
 	if(Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette))
 	{
 		Pedro_NOV_Aufnahme_LostInnosStatue_Daron = TRUE;

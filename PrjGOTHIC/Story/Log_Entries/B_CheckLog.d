@@ -70,7 +70,7 @@ func void B_CheckLog()
 	B_CloseTopic(Topic_BaboGaertner,MIS_HelpBabo,0,2);
 	B_CloseTopic(Topic_DyrianDrin,MIS_HelpDyrian,0,2);
 	B_CloseTopic(Topic_OpolosStudy,MIS_HelpOpolos,0,2);
-	B_CloseTopic(TOPIC_BecomeSLD,SLD_Aufnahme,0,2);
+//	B_CloseTopic(TOPIC_BecomeSLD,SLD_Aufnahme,0,2);
 	B_CloseTopic(TOPIC_SLDRespekt,0,Torlof_GenugStimmen,2);
 	B_CloseTopic(TOPIC_TorlofPacht,MIS_Torlof_HolPachtVonSekob,0,3);
 	B_CloseTopic(TOPIC_TorlofMiliz,MIS_Torlof_BengarMilizKlatschen,0,3);
@@ -177,7 +177,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_KillLighthouseBandits,MIS_Jack_KillLighthouseBandits,0,6);
 	B_CloseTopic(TOPIC_Torlof_Dmt,MIS_Torlof_Dmt,0,6);
 	B_CloseTopic(TOPIC_HannaRetrieveLetter,MIS_HannaRetrieveLetter,0,6);
-	B_CloseTopic(Topic_MarcosJungs,MIS_Marcos_Jungs,0,6);
+//	B_CloseTopic(Topic_MarcosJungs,MIS_Marcos_Jungs,0,6);
 	B_CloseTopic(TOPIC_Buster_KillShadowbeasts,MIS_Buster_KillShadowbeasts_DJG,0,6);
 	B_CloseTopic(TOPIC_Ulthar_HeileSchreine_PAL,MIS_Ulthar_HeileSchreine_PAL,0,6);
 	B_CloseTopic(TOPIC_DEMENTOREN,0,TOPIC_END_DEMENTOREN,999);

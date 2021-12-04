@@ -526,6 +526,7 @@ func void DIA_Pyrokar_OATH_Info()
 	if(!Npc_IsDead(Gorax))
 	{
 		CreateInvItems(Gorax,ItMi_RuneBlank,2);
+		CreateInvItems(Gorax,ItBE_Addon_KDF_01,1);
 	};
 	if(!Npc_IsDead(Karras))
 	{

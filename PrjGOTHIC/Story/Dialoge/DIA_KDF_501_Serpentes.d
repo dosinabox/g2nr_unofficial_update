@@ -195,9 +195,12 @@ instance DIA_Serpentes_NOHELP(C_Info)
 
 func int DIA_Serpentes_NOHELP_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Serpentes_NOIDEA) && !Npc_IsDead(Magic_Golem) && (MIS_Golem == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && (!Npc_KnowsInfo(other,DIA_Ulthar_TEST) || Npc_KnowsInfo(other,DIA_Serpentes_YOURSTORY)))
+	if(Npc_KnowsInfo(hero,DIA_Serpentes_NOIDEA) && (MIS_Golem == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && (!Npc_KnowsInfo(other,DIA_Ulthar_TEST) || Npc_KnowsInfo(other,DIA_Serpentes_YOURSTORY)))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Magic_Golem))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -230,9 +233,12 @@ instance DIA_Serpentes_SUCCESS(C_Info)
 
 func int DIA_Serpentes_SUCCESS_Condition()
 {
-	if(Npc_IsDead(Magic_Golem) && (MIS_Golem == LOG_Running) && (hero.guild == GIL_NOV))
+	if((MIS_Golem == LOG_Running) && (hero.guild == GIL_NOV))
 	{
-		return TRUE;
+		if(Npc_IsDead(Magic_Golem))
+		{
+			return TRUE;
+		};
 	};
 };
 

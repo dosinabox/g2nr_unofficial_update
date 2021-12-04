@@ -2886,7 +2886,7 @@ func void STARTUP_NewWorld_Part_TrollArea_01()
 	Wld_InsertNpc(Meatbug,"NW_MAGECAVE_20");
 	Wld_InsertNpc(Meatbug,"NW_MAGECAVE_20");
 	Wld_InsertNpc(Minecrawler,"NW_MAGECAVE_23");
-	Wld_InsertNpc(Minecrawler,"NW_MAGECAVE_23");
+	Wld_InsertNpc(Minecrawler,"NW_MAGECAVE_24");
 	Wld_InsertNpc(MinecrawlerWarrior,"NW_MAGECAVE_27");
 	Wld_InsertNpc(MinecrawlerWarrior,"NW_MAGECAVE_27");
 	Wld_InsertItem(ItWr_HitPointStonePlate3_Addon,"FP_NW_ITEM_MAGECAVE_EGG");

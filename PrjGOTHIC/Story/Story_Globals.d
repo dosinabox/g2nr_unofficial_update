@@ -478,7 +478,7 @@ var int Hilda_Stew_Day;
 var int MIS_LobartKillBugs;
 var int MIL_Aufnahme;
 var int SLD_Aufnahme;
-var int KDF_Aufnahme;
+//var int KDF_Aufnahme;
 var int NOV_Aufnahme;
 var int Player_IsApprentice;
 var int MIS_Apprentice;
