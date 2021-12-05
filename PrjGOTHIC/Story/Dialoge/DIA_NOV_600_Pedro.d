@@ -347,10 +347,6 @@ func void DIA_Pedro_AUFNAHME_YES()
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_01");	//“огда добро пожаловать, брат. я даю тебе этот ключ от монастырских ворот.
 	CreateInvItems(self,ItKe_Innos_MIS,1);
 	B_GiveInvItems(self,other,ItKe_Innos_MIS,1);
-	if(Npc_HasItems(Gorax,ItKe_Innos_MIS))
-	{
-		Npc_RemoveInvItem(Gorax,ItKe_Innos_MIS);
-	};
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_02");	//¬ знак твоего добровольного прин€ти€ этого решени€, ты должен сам открыть эти ворота и войти внутрь.
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_03");	//“еперь ты послушник. Ќоси эту робу в знак того, что теперь ты член нашего братства.
 	B_SetGuild(hero,GIL_NOV);
@@ -365,8 +361,11 @@ func void DIA_Pedro_AUFNAHME_YES()
 	B_GivePlayerXP(XP_AufnahmeNovize);
 	if(!Npc_IsDead(Gorax))
 	{
+		if(Npc_HasItems(Gorax,ItKe_Innos_MIS))
+		{
+			Npc_RemoveInvItem(Gorax,ItKe_Innos_MIS);
+		};
 		CreateInvItems(Gorax,ItBE_Addon_NOV_01,1);
-		CreateInvItems(Gorax,ItWr_Map_Shrine_MIS,1);
 	};
 	if(Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette))
 	{

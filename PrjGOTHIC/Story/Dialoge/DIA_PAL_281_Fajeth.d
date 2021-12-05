@@ -1,14 +1,4 @@
 
-func int C_SnapperDeath()
-{
-	if(Npc_IsDead(NewMine_Snapper1) && Npc_IsDead(NewMine_Snapper2) && Npc_IsDead(NewMine_Snapper3) && Npc_IsDead(NewMine_Snapper4) && Npc_IsDead(NewMine_Snapper5) && Npc_IsDead(NewMine_Snapper6) && Npc_IsDead(NewMine_Snapper7) && Npc_IsDead(NewMine_Snapper8))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
-
 instance DIA_Fajeth_EXIT(C_Info)
 {
 	npc = PAL_281_Fajeth;
@@ -121,6 +111,10 @@ func void DIA_Fajeth_Hallo_Tun()
 	if(!Npc_IsDead(Bilgot))
 	{
 		AI_Output(self,other,"DIA_Fajeth_Hallo_Tun_12_04");	//И кого мне послать? Билгота? Ха - он тоже слабак.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Fajeth_Hallo_Tun_12_04_add");	//И кого мне послать?
 	};
 	if(!Npc_IsDead(Tengron))
 	{
@@ -187,7 +181,7 @@ instance DIA_Fajeth_Leader(C_Info)
 
 func int DIA_Fajeth_Leader_Condition()
 {
-	if((NewMine_LeadSnapper_Spawned == TRUE) && (MIS_Fajeth_Kill_Snapper == LOG_Running))
+	if((MIS_Fajeth_Kill_Snapper == LOG_Running) && (NewMine_LeadSnapper_Spawned == TRUE))
 	{
 		if(Npc_IsDead(NewMine_LeadSnapper))
 		{
@@ -224,9 +218,12 @@ instance DIA_Fajeth_SNAPPER_KILLED(C_Info)
 
 func int DIA_Fajeth_SNAPPER_KILLED_Condition()
 {
-	if((MIS_Fajeth_Kill_Snapper == LOG_Running) && C_SnapperDeath())
+	if(MIS_Fajeth_Kill_Snapper == LOG_Running)
 	{
-		return TRUE;
+		if(C_FajethSnappersDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
