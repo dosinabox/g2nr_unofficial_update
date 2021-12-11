@@ -203,12 +203,16 @@ func void DIA_Addon_Garvell_MissingPeopleMore_Info()
 	SCKnowsFarimAsWilliamsFriend = TRUE;
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
-	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Похоже, рыбак Фарим что-то знает об исчезновении своего друга Вильяма.");
-	if(!Npc_KnowsInfo(other,DIA_Addon_Farim_William))
+	if(Npc_KnowsInfo(other,DIA_Addon_Farim_William))
 	{
+		B_LogEntry(TOPIC_Addon_WhoStolePeople,"Похоже, рыбак Фарим что-то знает об исчезновении своего друга Вильяма.");
+	}
+	else
+	{
+		B_LogEntries(TOPIC_Addon_WhoStolePeople,"Похоже, рыбак Фарим что-то знает об исчезновении своего друга Вильяма.");
 		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
-		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
+		B_LogNextEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
 	};
 	Info_ClearChoices(DIA_Addon_Garvell_MissingPeopleMore);
 	Info_AddChoice(DIA_Addon_Garvell_MissingPeopleMore,Dialog_Back,DIA_Addon_Garvell_MissingPeopleMore_BACK);

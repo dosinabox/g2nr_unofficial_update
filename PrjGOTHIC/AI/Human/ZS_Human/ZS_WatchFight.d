@@ -52,12 +52,16 @@ func void B_CheerFight()
 		if(C_NpcBelongsToCity(self))
 		{
 			B_Say_Overlay(self,self,"$GETOUTOFHERE");
-		};
-		if(C_NpcBelongsToMonastery(self))
+		}
+		else if(C_NpcBelongsToFarm(self))
+		{
+			B_Say_Overlay(self,self,"$YOUDAREHITME");
+		}
+		else if(C_NpcBelongsToMonastery(self))
 		{
 			B_Say_Overlay(self,self,"$MONA_CRIME");
-		};
-		if(C_NpcBelongsToOldCamp(self))
+		}
+		else if(C_NpcBelongsToOldCamp(self))
 		{
 			B_Say_Overlay(self,self,"$OC_CRIME");
 		};
@@ -82,7 +86,10 @@ func void B_AssessDefeat()
 	else if(victim.aivar[AIV_ATTACKREASON] != AR_NONE)
 	{
 		B_Say(self,other,"$OHMYGODHESDOWN");
-		B_MemorizePlayerCrime(self,other,CRIME_ATTACK);
+		if(victim.guild != GIL_SLD)
+		{
+			B_MemorizePlayerCrime(self,other,CRIME_ATTACK);
+		};
 	}
 	else
 	{
