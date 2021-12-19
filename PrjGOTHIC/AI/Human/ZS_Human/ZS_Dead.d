@@ -96,25 +96,15 @@ func void ZS_Dead()
 			{
 				Player_HasTalkedToBanditCamp = TRUE;
 			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru))
+			else if(MIS_ThiefGuild_sucked == FALSE)
 			{
-				if(Npc_IsDead(Halvor) && Npc_IsDead(Nagur))
+				if(C_IAmThiefFromCity(self))
 				{
-					MIS_ThiefGuild_sucked = TRUE;
-				};
-			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Halvor))
-			{
-				if(Npc_IsDead(Rengaru) && Npc_IsDead(Nagur))
-				{
-					MIS_ThiefGuild_sucked = TRUE;
-				};
-			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nagur))
-			{
-				if(Npc_IsDead(Rengaru) && Npc_IsDead(Halvor))
-				{
-					MIS_ThiefGuild_sucked = TRUE;
+					CityThieves_KilledByPlayer_Count += 1;
+					if(CityThieves_KilledByPlayer_Count >= 3)
+					{
+						MIS_ThiefGuild_sucked = TRUE;
+					};
 				};
 			};
 		};

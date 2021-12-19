@@ -1031,7 +1031,7 @@ func void DIA_Addon_Greg_NW_RavensLetter_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_02");	//Черт возьми! Это мне совсем не поможет.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_03");	//Нельзя было его просто так убивать.
 	B_GregTalksAboutPortal();
-	AI_PrintScreen("Приказы получено",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	AI_PrintScreen("Приказы получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 };
 
 

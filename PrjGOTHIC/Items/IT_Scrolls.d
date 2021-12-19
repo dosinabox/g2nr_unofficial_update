@@ -87,7 +87,7 @@ instance ItSc_PalLight(C_Item)
 	count[5] = value;
 };
 
-instance ItSc_PalLightHeal(C_Item)
+instance ItSc_PalHeal_01(C_Item)
 {
 	name = NAME_Spruchrolle;
 	mainflag = ITEM_KAT_RUNE;
@@ -133,7 +133,7 @@ instance ItSc_PalHolyBolt(C_Item)
 	count[5] = value;
 };
 
-instance ItSc_PalMediumHeal(C_Item)
+instance ItSc_PalHeal_02(C_Item)
 {
 	name = NAME_Spruchrolle;
 	mainflag = ITEM_KAT_RUNE;
@@ -179,7 +179,7 @@ instance ItSc_PalRepelEvil(C_Item)
 	count[5] = value;
 };
 
-instance ItSc_PalFullHeal(C_Item)
+instance ItSc_PalHeal_03(C_Item)
 {
 	name = NAME_Spruchrolle;
 	mainflag = ITEM_KAT_RUNE;

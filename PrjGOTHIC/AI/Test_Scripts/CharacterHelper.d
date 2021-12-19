@@ -272,25 +272,25 @@ func void B_SetPaladinEquipment()
 	{
 		CreateInvItem(hero,ItRu_PalLight);
 	};
-	if(!Npc_HasItems(hero,ItRu_PalLightHeal))
+	if(!Npc_HasItems(hero,ItRu_PalHeal_01))
 	{
-		CreateInvItem(hero,ItRu_PalLightHeal);
+		CreateInvItem(hero,ItRu_PalHeal_01);
 	};
 	if(!Npc_HasItems(hero,ItRu_PalHolyBolt))
 	{
 		CreateInvItem(hero,ItRu_PalHolyBolt);
 	};
-	if(!Npc_HasItems(hero,ItRu_PalMediumHeal))
+	if(!Npc_HasItems(hero,ItRu_PalHeal_02))
 	{
-		CreateInvItem(hero,ItRu_PalMediumHeal);
+		CreateInvItem(hero,ItRu_PalHeal_02);
 	};
 	if(!Npc_HasItems(hero,ItRu_PalRepelEvil))
 	{
 		CreateInvItem(hero,ItRu_PalRepelEvil);
 	};
-	if(!Npc_HasItems(hero,ItRu_PalFullHeal))
+	if(!Npc_HasItems(hero,ItRu_PalHeal_03))
 	{
-		CreateInvItem(hero,ItRu_PalFullHeal);
+		CreateInvItem(hero,ItRu_PalHeal_03);
 	};
 	if(!Npc_HasItems(hero,ItRu_PalDestroyEvil))
 	{

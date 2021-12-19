@@ -4,12 +4,29 @@ func int C_IAmThiefFromSewer(var C_Npc slf)
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Ramirez))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Jesper))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Jesper))
 	{
 		return TRUE;
-	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cassia))
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cassia))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+func int C_IAmThiefFromCity(var C_Npc slf)
+{
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rengaru))
+	{
+		return TRUE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Halvor))
+	{
+		return TRUE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Nagur))
 	{
 		return TRUE;
 	};

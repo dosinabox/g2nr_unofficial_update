@@ -391,8 +391,8 @@ func int B_TeachPlayerPalRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	if(spell == SPL_PalLightHeal)
 	{
 		PLAYER_TALENT_RUNES[SPL_PalLightHeal] = TRUE;
-		CreateInvItems(slf,ItRu_PalLightHeal,1);
-		B_GiveInvItems(slf,oth,ItRu_PalLightHeal,1);
+		CreateInvItems(slf,ItRu_PalHeal_01,1);
+		B_GiveInvItems(slf,oth,ItRu_PalHeal_01,1);
 	};
 	if(spell == SPL_PalHolyBolt)
 	{
@@ -403,8 +403,8 @@ func int B_TeachPlayerPalRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	if(spell == SPL_PalMediumHeal)
 	{
 		PLAYER_TALENT_RUNES[SPL_PalMediumHeal] = TRUE;
-		CreateInvItems(slf,ItRu_PalMediumHeal,1);
-		B_GiveInvItems(slf,oth,ItRu_PalMediumHeal,1);
+		CreateInvItems(slf,ItRu_PalHeal_02,1);
+		B_GiveInvItems(slf,oth,ItRu_PalHeal_02,1);
 	};
 	if(spell == SPL_PalRepelEvil)
 	{
@@ -415,8 +415,8 @@ func int B_TeachPlayerPalRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	if(spell == SPL_PalFullHeal)
 	{
 		PLAYER_TALENT_RUNES[SPL_PalFullHeal] = TRUE;
-		CreateInvItems(slf,ItRu_PalFullHeal,1);
-		B_GiveInvItems(slf,oth,ItRu_PalFullHeal,1);
+		CreateInvItems(slf,ItRu_PalHeal_03,1);
+		B_GiveInvItems(slf,oth,ItRu_PalHeal_03,1);
 	};
 	if(spell == SPL_PalDestroyEvil)
 	{

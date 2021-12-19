@@ -15,9 +15,9 @@ func void B_ClearRuneInv(var C_Npc slf)
 		{
 			return;
 		};
-		Npc_RemoveInvItems(slf,ItRu_PalLightHeal,Npc_HasItems(slf,ItRu_PalLightHeal));
-		Npc_RemoveInvItems(slf,ItRu_PalMediumHeal,Npc_HasItems(slf,ItRu_PalMediumHeal));
-		Npc_RemoveInvItems(slf,ItRu_PalFullHeal,Npc_HasItems(slf,ItRu_PalFullHeal));
+		Npc_RemoveInvItems(slf,ItRu_PalHeal_01,Npc_HasItems(slf,ItRu_PalHeal_01));
+		Npc_RemoveInvItems(slf,ItRu_PalHeal_02,Npc_HasItems(slf,ItRu_PalHeal_02));
+		Npc_RemoveInvItems(slf,ItRu_PalHeal_03,Npc_HasItems(slf,ItRu_PalHeal_03));
 		Npc_RemoveInvItems(slf,ItRu_PalHolyBolt,Npc_HasItems(slf,ItRu_PalHolyBolt));
 		Npc_RemoveInvItems(slf,ItRu_PalRepelEvil,Npc_HasItems(slf,ItRu_PalRepelEvil));
 		Npc_RemoveInvItems(slf,ItRu_PalDestroyEvil,Npc_HasItems(slf,ItRu_PalDestroyEvil));

@@ -932,7 +932,7 @@ func void DIA_Lothar_OWRunningBrief_Info()
 	};
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Lothar_Add_01_61");	//Я был несправедлив к тебе. Я буду молить Инноса о прощении за мое поведение.
-	AI_PrintScreen("Письмо Гаронда лорду Хагену получено",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	AI_PrintScreen("Письмо Гаронда лорду Хагену получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 };
 
 

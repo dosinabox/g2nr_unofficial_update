@@ -1350,6 +1350,7 @@ var int Player_KnowsLariusAsGovernor;
 var int Mario_DI_ReadyForAmbush;
 var int NoXPFromSummonedSkeletons;
 var int SewerThieves_KilledByPlayer;
+var int CityThieves_KilledByPlayer_Count;
 var int MilitiaSentToHotel;
 var int MalakIsBackToBengar;
 var int MIS_PickedUpInnosEye;

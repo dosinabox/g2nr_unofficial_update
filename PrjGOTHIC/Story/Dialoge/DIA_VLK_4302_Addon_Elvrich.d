@@ -369,7 +369,7 @@ func void DIA_Addon_Elvrich_LuciaLetter_Info()
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_02");	//(в отчаянии) Нет! Я не верю! Я просто не могу поверить.
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_03");	//(в отчаянии) Она не может меня вот так вот бросить.
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_04");	//Забери это письмо! Я не хочу его видеть. Я верю, что когда-нибудь она ко мне вернется.
-	AI_PrintScreen("Прощальное письмо Люсии получено",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	AI_PrintScreen("Прощальное письмо Люсии получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	MIS_LuciasLetter = LOG_SUCCESS;
 	if(MIS_LookingForLucia == FALSE)
 	{
