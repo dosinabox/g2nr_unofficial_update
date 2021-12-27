@@ -41,8 +41,8 @@ func void Rtn_FollowDI_70500()
 
 func void Rtn_FireDragonIsland_70500()
 {
-	TA_Stand_ArmsCrossed(8,0,23,0,"DI_DRACONIANAREA_FIREDRAGON");
-	TA_Stand_ArmsCrossed(23,0,8,0,"DI_DRACONIANAREA_FIREDRAGON");
+	TA_Stand_ArmsCrossed(8,0,23,0,"DI_DRACONIANAREA_16");
+	TA_Stand_ArmsCrossed(23,0,8,0,"DI_DRACONIANAREA_16");
 };
 
 func void Rtn_ORKOBERST_DI_70500()

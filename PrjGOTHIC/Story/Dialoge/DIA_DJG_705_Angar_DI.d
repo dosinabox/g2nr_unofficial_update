@@ -209,9 +209,19 @@ instance DIA_Angar_DI_FOLLOWSTOP(C_Info)
 
 func int DIA_Angar_DI_FOLLOWSTOP_Condition()
 {
-	if((Angar_DI_Party == LOG_Running) && (((Npc_GetDistToWP(self,"DI_DRACONIANAREA_FIREDRAGON") < 3000) && !Npc_IsDead(FireDragonIsland)) || (Npc_GetDistToWP(self,"SKELETTE") < 3000)))
+	if(Angar_DI_Party == LOG_Running)
 	{
-		return TRUE;
+		if(!Npc_IsDead(FireDragonIsland))
+		{
+			if(Npc_GetDistToWP(self,"DI_DRACONIANAREA_16") < 3000)
+			{
+				return TRUE;
+			};
+		};
+		if(Npc_GetDistToWP(self,"SKELETTE") < 3000)
+		{
+			return TRUE;
+		};
 	};
 };
 
