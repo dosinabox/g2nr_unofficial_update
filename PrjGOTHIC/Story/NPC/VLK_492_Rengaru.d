@@ -12,10 +12,11 @@ instance VLK_492_Rengaru(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Sword);
 //	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItMi_Gold,55);
+	CreateInvItems(self,ItMi_Gold,50);
 	CreateInvItems(self,ItFo_Bread,1);
 	CreateInvItems(self,ItFo_Water,1);
 	CreateInvItems(self,ItFo_Cheese,1);
+	CreateInvItems(self,ItMi_SilverRing,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_ToughBart01,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

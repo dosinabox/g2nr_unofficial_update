@@ -687,6 +687,10 @@ func int GetTalentTrainCost_Impl(var int talent,var int value,var int change)
 	costBefore = GetTalentPointCost(talent,value);
 	costAfter = GetTalentPointCost(talent,barrier);
 	pointsBefore = GetMin(barrier - value,change);
+	if(LP_Static > 0)
+	{
+		return change * LP_Static;
+	};
 	if(HonestStatCalculation == FALSE)
 	{
 		return change * costBefore;

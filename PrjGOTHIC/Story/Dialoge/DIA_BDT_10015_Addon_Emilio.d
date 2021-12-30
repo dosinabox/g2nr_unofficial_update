@@ -302,9 +302,16 @@ instance DIA_Addon_Emilio_HilfMir(C_Info)
 
 func int DIA_Addon_Emilio_HilfMir_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Emilio_VonEmilio) && Npc_IsDead(Senyan))
+	if(Npc_KnowsInfo(other,DIA_Addon_Emilio_VonEmilio))
 	{
-		return TRUE;
+		if(Npc_IsDead(Senyan))
+		{
+			return TRUE;
+		};
+		if(Senyan_Contact == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 

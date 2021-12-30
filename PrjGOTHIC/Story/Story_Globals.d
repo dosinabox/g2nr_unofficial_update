@@ -1138,6 +1138,7 @@ var int ClassicLehmarBook;
 var int GuildlessMode;
 var int AddonDisabled;
 var int XP_Static;
+var int LP_Static;
 var int ClassicAlchemy;
 var int HardModeEnabled;
 var int HardModeXPModifier;

@@ -369,6 +369,14 @@ func void B_Build_Settings_Diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить фиксированный опыт по главам",StoryHelper_XP);
 	};
+	if(LP_Static == 0)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить фиксированную стоимость обучения",StoryHelper_LP);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить фиксированную стоимость обучения",StoryHelper_LP);
+	};
 	if(NoXPFromSummonedSkeletons == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить опыт с бесконечно призываемых скелетов",StoryHelper_Skeletons);
@@ -814,6 +822,66 @@ func void StoryHelper_XP_1()
 };
 
 func void StoryHelper_XP_Back()
+{
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_LP()
+{
+	if(LP_Static > 0)
+	{
+		LP_Static = 0;
+		PrintScreen("Оригинал: динамическая стоимость обучения",-1,-1,FONT_Screen,3);
+		B_Build_Settings_Diag();
+	}
+	else
+	{
+		Info_ClearChoices(StoryHelper_PatchSettings);
+		Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_LP_Back);
+		Info_AddChoice(StoryHelper_PatchSettings,"5 очков обучения за единицу навыка",StoryHelper_LP_5);
+		Info_AddChoice(StoryHelper_PatchSettings,"4 очка обучения за единицу навыка",StoryHelper_LP_4);
+		Info_AddChoice(StoryHelper_PatchSettings,"3 очка обучения за единицу навыка",StoryHelper_LP_3);
+		Info_AddChoice(StoryHelper_PatchSettings,"2 очка обучения за единицу навыка",StoryHelper_LP_2);
+		Info_AddChoice(StoryHelper_PatchSettings,"1 очко обучения за единицу навыка",StoryHelper_LP_1);
+	};
+};
+
+func void StoryHelper_LP_1()
+{
+	LP_Static = 1;
+	PrintScreen("1 очко обучения за единицу навыка",-1,45,FONT_Screen,3);
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_LP_2()
+{
+	LP_Static = 2;
+	PrintScreen("2 очка обучения за единицу навыка",-1,45,FONT_Screen,3);
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_LP_3()
+{
+	LP_Static = 3;
+	PrintScreen("3 очка обучения за единицу навыка",-1,45,FONT_Screen,3);
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_LP_4()
+{
+	LP_Static = 4;
+	PrintScreen("4 очка обучения за единицу навыка",-1,45,FONT_Screen,3);
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_LP_5()
+{
+	LP_Static = 5;
+	PrintScreen("5 очков обучения за единицу навыка",-1,45,FONT_Screen,3);
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_LP_Back()
 {
 	B_Build_Settings_Diag();
 };
