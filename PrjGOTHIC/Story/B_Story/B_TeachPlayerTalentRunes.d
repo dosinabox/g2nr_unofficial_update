@@ -64,8 +64,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_Light,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Light,"1 золотая монета."));
-	};
-	if(spell == SPL_Firebolt)
+	}
+	else if(spell == SPL_Firebolt)
 	{
 		PLAYER_TALENT_RUNES[SPL_Firebolt] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_Firebolt))
@@ -73,8 +73,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_Firebolt,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Firebolt,"1 сера."));
-	};
-	if(spell == SPL_Icebolt)
+	}
+	else if(spell == SPL_Icebolt)
 	{
 		PLAYER_TALENT_RUNES[SPL_Icebolt] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_Icebolt))
@@ -82,8 +82,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_Icebolt,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Icebolt,"1 ледяной кварц."));
-	};
-	if(spell == SPL_LightHeal)
+	}
+	else if(spell == SPL_LightHeal)
 	{
 		PLAYER_TALENT_RUNES[SPL_LightHeal] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_LightHeal))
@@ -91,8 +91,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_LightHeal,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_LightHeal,"1 лечебная трава."));
-	};
-	if(spell == SPL_SummonGoblinSkeleton)
+	}
+	else if(spell == SPL_SummonGoblinSkeleton)
 	{
 		PLAYER_TALENT_RUNES[SPL_SummonGoblinSkeleton] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_SumGobSkel))
@@ -100,8 +100,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_SumGobSkel,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_SummonGoblinSkeleton,"1 кость гоблина."));
-	};
-	if(spell == SPL_InstantFireball)
+	}
+	else if(spell == SPL_InstantFireball)
 	{
 		PLAYER_TALENT_RUNES[SPL_InstantFireball] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_InstantFireball))
@@ -109,8 +109,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_InstantFireball,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_InstantFireball,"1 смола."));
-	};
-	if(spell == SPL_Zap)
+	}
+	else if(spell == SPL_Zap)
 	{
 		PLAYER_TALENT_RUNES[SPL_Zap] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_Zap))
@@ -118,8 +118,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_Zap,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Zap,"1 горный хрусталь."));
-	};
-	if(spell == SPL_SummonWolf)
+	}
+	else if(spell == SPL_SummonWolf)
 	{
 		PLAYER_TALENT_RUNES[SPL_SummonWolf] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_SumWolf))
@@ -127,8 +127,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_SumWolf,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_SummonWolf,"1 шкура волка."));
-	};
-	if(spell == SPL_WindFist)
+	}
+	else if(spell == SPL_WindFist)
 	{
 		PLAYER_TALENT_RUNES[SPL_WindFist] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_Windfist))
@@ -136,8 +136,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_Windfist,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_WindFist,"1 уголь."));
-	};
-	if(spell == SPL_Sleep)
+	}
+	else if(spell == SPL_Sleep)
 	{
 		PLAYER_TALENT_RUNES[SPL_Sleep] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_Sleep))
@@ -145,8 +145,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_Sleep,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Sleep,"1 болотная трава."));
-	};
-	if(spell == SPL_MediumHeal)
+	}
+	else if(spell == SPL_MediumHeal)
 	{
 		PLAYER_TALENT_RUNES[SPL_MediumHeal] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_MediumHeal))
@@ -154,8 +154,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_MediumHeal,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_MediumHeal,"1 лечебное растение."));
-	};
-	if(spell == SPL_LightningFlash)
+	}
+	else if(spell == SPL_LightningFlash)
 	{
 		PLAYER_TALENT_RUNES[SPL_LightningFlash] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_LightningFlash))
@@ -163,8 +163,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_LightningFlash,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_LightningFlash,"1 горный хрусталь и 1 ледяной кварц."));
-	};
-	if(spell == SPL_ChargeFireball)
+	}
+	else if(spell == SPL_ChargeFireball)
 	{
 		PLAYER_TALENT_RUNES[SPL_ChargeFireball] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_ChargeFireBall))
@@ -172,8 +172,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_ChargeFireBall,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_ChargeFireball,"1 сера и 1 смола."));
-	};
-	if(spell == SPL_SummonSkeleton)
+	}
+	else if(spell == SPL_SummonSkeleton)
 	{
 		PLAYER_TALENT_RUNES[SPL_SummonSkeleton] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_SumSkel))
@@ -181,8 +181,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_SumSkel,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_SummonSkeleton,"1 кость скелета."));
-	};
-	if(spell == SPL_Fear)
+	}
+	else if(spell == SPL_Fear)
 	{
 		PLAYER_TALENT_RUNES[SPL_Fear] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_Fear))
@@ -190,8 +190,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_Fear,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Fear,"1 черная жемчужина."));
-	};
-	if(spell == SPL_IceCube)
+	}
+	else if(spell == SPL_IceCube)
 	{
 		PLAYER_TALENT_RUNES[SPL_IceCube] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_IceCube))
@@ -199,8 +199,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_IceCube,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_IceCube,"1 ледяной кварц и 1 аквамарин."));
-	};
-	if(spell == SPL_ChargeZap)
+	}
+	else if(spell == SPL_ChargeZap)
 	{
 		PLAYER_TALENT_RUNES[SPL_ChargeZap] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_ThunderBall))
@@ -208,8 +208,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_ThunderBall,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_ChargeZap,"1 сера и 1 горный хрусталь."));
-	};
-	if(spell == SPL_SummonGolem)
+	}
+	else if(spell == SPL_SummonGolem)
 	{
 		PLAYER_TALENT_RUNES[SPL_SummonGolem] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_SumGol))
@@ -217,8 +217,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_SumGol,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_SummonGolem,"1 сердце каменного голема."));
-	};
-	if(spell == SPL_DestroyUndead)
+	}
+	else if(spell == SPL_DestroyUndead)
 	{
 		PLAYER_TALENT_RUNES[SPL_DestroyUndead] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_HarmUndead))
@@ -226,8 +226,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_HarmUndead,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_DestroyUndead,"1 святая вода."));
-	};
-	if(spell == SPL_Pyrokinesis)
+	}
+	else if(spell == SPL_Pyrokinesis)
 	{
 		PLAYER_TALENT_RUNES[SPL_Pyrokinesis] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_Pyrokinesis))
@@ -235,8 +235,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_Pyrokinesis,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Pyrokinesis,"1 сера и 1 язык огненного ящера."));
-	};
-	if(spell == SPL_Firestorm)
+	}
+	else if(spell == SPL_Firestorm)
 	{
 		PLAYER_TALENT_RUNES[SPL_Firestorm] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_Firestorm))
@@ -244,8 +244,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_Firestorm,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Firestorm,"1 сера и 1 смола."));
-	};
-	if(spell == SPL_IceWave)
+	}
+	else if(spell == SPL_IceWave)
 	{
 		PLAYER_TALENT_RUNES[SPL_IceWave] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_IceWave))
@@ -253,8 +253,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_IceWave,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_IceWave,"1 ледяной кварц и 1 аквамарин."));
-	};
-	if(spell == SPL_SummonDemon)
+	}
+	else if(spell == SPL_SummonDemon)
 	{
 		PLAYER_TALENT_RUNES[SPL_SummonDemon] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_SumDemon))
@@ -262,8 +262,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_SumDemon,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_SummonDemon,"1 сердце демона."));
-	};
-	if(spell == SPL_FullHeal)
+	}
+	else if(spell == SPL_FullHeal)
 	{
 		PLAYER_TALENT_RUNES[SPL_FullHeal] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_FullHeal))
@@ -271,8 +271,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_FullHeal,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_FullHeal,"1 лечебный корень."));
-	};
-	if(spell == SPL_Firerain)
+	}
+	else if(spell == SPL_Firerain)
 	{
 		PLAYER_TALENT_RUNES[SPL_Firerain] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_Firerain))
@@ -280,8 +280,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_Firerain,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Firerain,"1 смола, 1 сера и 1 язык огненного ящера."));
-	};
-	if(spell == SPL_BreathOfDeath)
+	}
+	else if(spell == SPL_BreathOfDeath)
 	{
 		PLAYER_TALENT_RUNES[SPL_BreathOfDeath] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_BreathOfDeath))
@@ -289,8 +289,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_BreathOfDeath,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_BreathOfDeath,"1 уголь и 1 черная жемчужина."));
-	};
-	if(spell == SPL_MassDeath)
+	}
+	else if(spell == SPL_MassDeath)
 	{
 		PLAYER_TALENT_RUNES[SPL_MassDeath] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_MassDeath))
@@ -298,8 +298,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_MassDeath,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_MassDeath,"1 кость скелета и 1 черная жемчужина."));
-	};
-	if(spell == SPL_ArmyOfDarkness)
+	}
+	else if(spell == SPL_ArmyOfDarkness)
 	{
 		PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_ArmyOfDarkness))
@@ -307,8 +307,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_ArmyOfDarkness,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_ArmyOfDarkness,"1 кость скелета, 1 черная жемчужина, 1 сердце каменного голема и 1 cердце демона."));
-	};
-	if(spell == SPL_Shrink)
+	}
+	else if(spell == SPL_Shrink)
 	{
 		PLAYER_TALENT_RUNES[SPL_Shrink] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_Shrink))
@@ -320,8 +320,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(Constantino,ItAt_GoblinBone,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Shrink,"1 кость гоблина и 1 клык тролля."));
-	};
-	if(spell == SPL_Whirlwind)
+	}
+	else if(spell == SPL_Whirlwind)
 	{
 		PLAYER_TALENT_RUNES[SPL_Whirlwind] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_Whirlwind))
@@ -329,8 +329,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_Whirlwind,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Whirlwind,"1 крыло кровавой мухи."));
-	};
-	if(spell == SPL_WaterFist)
+	}
+	else if(spell == SPL_WaterFist)
 	{
 		PLAYER_TALENT_RUNES[SPL_WaterFist] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_Waterfist))
@@ -338,8 +338,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_Waterfist,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_WaterFist,"1 аквамарин и 1 горный хрусталь."));
-	};
-	if(spell == SPL_IceLance)
+	}
+	else if(spell == SPL_IceLance)
 	{
 		PLAYER_TALENT_RUNES[SPL_IceLance] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_Icelance))
@@ -347,8 +347,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_Icelance,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_IceLance,"1 ледяной кварц."));
-	};
-	if(spell == SPL_Geyser)
+	}
+	else if(spell == SPL_Geyser)
 	{
 		PLAYER_TALENT_RUNES[SPL_Geyser] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_Geyser))
@@ -356,8 +356,8 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			CreateInvItems(ScrollTrader,ItSc_Geyser,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Geyser,"1 аквамарин."));
-	};
-	if(spell == SPL_Thunderstorm)
+	}
+	else if(spell == SPL_Thunderstorm)
 	{
 		PLAYER_TALENT_RUNES[SPL_Thunderstorm] = TRUE;
 		if(!Npc_HasItems(ScrollTrader,ItSc_Thunderstorm))
@@ -387,38 +387,38 @@ func int B_TeachPlayerPalRunes(var C_Npc slf,var C_Npc oth,var int spell)
 		PLAYER_TALENT_RUNES[SPL_PalLight] = TRUE;
 		CreateInvItems(slf,ItRu_PalLight,1);
 		B_GiveInvItems(slf,oth,ItRu_PalLight,1);
-	};
-	if(spell == SPL_PalLightHeal)
+	}
+	else if(spell == SPL_PalLightHeal)
 	{
 		PLAYER_TALENT_RUNES[SPL_PalLightHeal] = TRUE;
 		CreateInvItems(slf,ItRu_PalHeal_01,1);
 		B_GiveInvItems(slf,oth,ItRu_PalHeal_01,1);
-	};
-	if(spell == SPL_PalHolyBolt)
+	}
+	else if(spell == SPL_PalHolyBolt)
 	{
 		PLAYER_TALENT_RUNES[SPL_PalHolyBolt] = TRUE;
 		CreateInvItems(slf,ItRu_PalHolyBolt,1);
 		B_GiveInvItems(slf,oth,ItRu_PalHolyBolt,1);
-	};
-	if(spell == SPL_PalMediumHeal)
+	}
+	else if(spell == SPL_PalMediumHeal)
 	{
 		PLAYER_TALENT_RUNES[SPL_PalMediumHeal] = TRUE;
 		CreateInvItems(slf,ItRu_PalHeal_02,1);
 		B_GiveInvItems(slf,oth,ItRu_PalHeal_02,1);
-	};
-	if(spell == SPL_PalRepelEvil)
+	}
+	else if(spell == SPL_PalRepelEvil)
 	{
 		PLAYER_TALENT_RUNES[SPL_PalRepelEvil] = TRUE;
 		CreateInvItems(slf,ItRu_PalRepelEvil,1);
 		B_GiveInvItems(slf,oth,ItRu_PalRepelEvil,1);
-	};
-	if(spell == SPL_PalFullHeal)
+	}
+	else if(spell == SPL_PalFullHeal)
 	{
 		PLAYER_TALENT_RUNES[SPL_PalFullHeal] = TRUE;
 		CreateInvItems(slf,ItRu_PalHeal_03,1);
 		B_GiveInvItems(slf,oth,ItRu_PalHeal_03,1);
-	};
-	if(spell == SPL_PalDestroyEvil)
+	}
+	else if(spell == SPL_PalDestroyEvil)
 	{
 		PLAYER_TALENT_RUNES[SPL_PalDestroyEvil] = TRUE;
 		CreateInvItems(slf,ItRu_PalDestroyEvil,1);

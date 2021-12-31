@@ -161,8 +161,8 @@ func int DIA_Addon_Emilio_Attentat_Condition()
 	if(Npc_KnowsInfo(other,DIA_Addon_Emilio_VonEmilio) && Npc_IsDead(Senyan))
 	{
 		return FALSE;
-	}
-	else if(MIS_Judas == LOG_Running)
+	};
+	if(MIS_Judas == LOG_Running)
 	{
 		return TRUE;
 	};
@@ -302,16 +302,9 @@ instance DIA_Addon_Emilio_HilfMir(C_Info)
 
 func int DIA_Addon_Emilio_HilfMir_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Emilio_VonEmilio))
+	if(Npc_KnowsInfo(other,DIA_Addon_Emilio_VonEmilio) && Npc_IsDead(Senyan))
 	{
-		if(Npc_IsDead(Senyan))
-		{
-			return TRUE;
-		};
-		if(Senyan_Contact == FALSE)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 

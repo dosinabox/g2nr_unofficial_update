@@ -3899,6 +3899,7 @@ func string B_BuildCurrentRegenerateValue(var int stats)
 	{
 		concatText = ConcatStrings(concatText,PRINT_LP);
 	};
+	concatText = ConcatStrings(concatText,")");
 	return concatText;
 };
 

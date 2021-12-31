@@ -51,6 +51,7 @@ const int Garond_KilledDragonGeld = 300;
 const int OrcRingPenalty = 20;
 const int PyrokarsAlmanachOffer = 400;
 const int SerpentesMinenAnteilOffer = 200;
+const int PremiumTeachersPrice = 20;
 
 var int Saturas_KlaueInsMeer;
 var int FoundDeadWilliam;
@@ -1391,3 +1392,4 @@ var int Lee_LastPetzCounter;
 var int Lee_LastPetzCrime;
 var int SC_KnowsAngarsAmulett;
 var int DementorsDialogeAutoEndDisabled;
+var int PremiumTeachersEnabled;

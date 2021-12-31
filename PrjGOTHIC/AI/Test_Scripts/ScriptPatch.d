@@ -246,6 +246,14 @@ func void B_Build_Settings_Diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить повышенный уровень сложности",StoryHelper_HardMode);
 	};
+	if(PremiumTeachersEnabled == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить платное обучение",StoryHelper_PremiumTeachers);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить платное обучение",StoryHelper_PremiumTeachers);
+	};
 	if(ClassicAlchemy == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить алхимию из Готики 2 без аддона",StoryHelper_ClassicAlchemy);
@@ -621,6 +629,21 @@ func void StoryHelper_Skeletons()
 	{
 		NoXPFromSummonedSkeletons = TRUE;
 		PrintScreen("Опыт за бесконечных скелетов выключен",-1,-1,FONT_Screen,3);
+	};
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_PremiumTeachers()
+{
+	if(PremiumTeachersEnabled == TRUE)
+	{
+		PremiumTeachersEnabled = FALSE;
+		PrintScreen("Платное обучение выключено",-1,-1,FONT_Screen,2);
+	}
+	else
+	{
+		PremiumTeachersEnabled = TRUE;
+		PrintScreen("Платное обучение включено",-1,-1,FONT_Screen,2);
 	};
 	B_Build_Settings_Diag();
 };
