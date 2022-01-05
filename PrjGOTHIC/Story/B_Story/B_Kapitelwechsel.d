@@ -22,6 +22,19 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		IceDragonSpell = SPL_InstantFireball;
 		FullNPCRemoval = TRUE;
 		NewLogEnabled = TRUE;
+		if(C_WorldIsFixed(NEWWORLD_ZEN))
+		{
+			Wld_InsertItem(ItRu_LightHeal,"FP_ITEM_PASS_02");
+			Wld_InsertItem(ItWr_OneHStonePlate1_Addon,"FP_ITEM_NW_BIGMILL_01");
+			Wld_InsertItem(ItWr_StrStonePlate1_Addon,"FP_ITEM_NW_BIGMILL_02");
+			Wld_InsertItem(ItWr_HitPointStonePlate3_Addon,"FP_ITEM_CASTLEMINE_01");
+		}
+		else
+		{
+			Wld_InsertItem(ItWr_OneHStonePlate1_Addon,"FP_ROAM_NW_BIGMILL_FIELD_MONSTER_04_03");
+			Wld_InsertItem(ItWr_StrStonePlate1_Addon,"FP_STAND_DEMENTOR_09");
+			Wld_InsertItem(ItWr_HitPointStonePlate3_Addon,"FP_STAND_DEMENTOR_KDF_12");
+		};
 		IntroduceChapter(KapWechsel_1,KapWechsel_1_Text,"chapter1.tga","chapter_01.wav",6000);
 	}
 	else if(neues_Kapitel == 2)
