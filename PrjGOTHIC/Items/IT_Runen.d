@@ -71,7 +71,7 @@ instance ItRu_PalLight(C_Item)
 	count[5] = value;
 };
 
-instance ItRu_PalLightHeal(C_Item)
+instance ItRu_PalHeal_01(C_Item)
 {
 	name = NAME_Rune;
 	mainflag = ITEM_KAT_RUNE;
@@ -92,7 +92,7 @@ instance ItRu_PalLightHeal(C_Item)
 	count[5] = value;
 };
 
-instance ItRu_PalMediumHeal(C_Item)
+instance ItRu_PalHeal_02(C_Item)
 {
 	name = NAME_Rune;
 	mainflag = ITEM_KAT_RUNE;
@@ -113,7 +113,7 @@ instance ItRu_PalMediumHeal(C_Item)
 	count[5] = value;
 };
 
-instance ItRu_PalFullHeal(C_Item)
+instance ItRu_PalHeal_03(C_Item)
 {
 	name = NAME_Rune;
 	mainflag = ITEM_KAT_RUNE;

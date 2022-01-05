@@ -1,4 +1,9 @@
 
+const string WORLDNAME_NEWWORLD = "Хоринис";
+const string WORLDNAME_ADDONWORLD = "Яркендар";
+const string WORLDNAME_OLDWORLD = "Долина Рудников";
+const string WORLDNAME_DRAGONISLAND = "Ирдорат";
+
 instance MENU_SAVEGAME_LOAD(C_MENU_DEF)
 {
 	backpic = MENU_SAVELOAD_BACK_PIC;
@@ -103,7 +108,7 @@ instance MENUITEM_LOADSAVE_THUMBPIC(C_MENU_ITEM_DEF)
 {
 	backpic = "";
 	posx = SAVEGAME_X2;
-	posy = 1000;
+	posy = 545;
 	dimx = 2430;
 	dimy = 1830;
 	flags = flags & ~IT_SELECTABLE;
@@ -136,7 +141,7 @@ instance MENUITEM_LOADSAVE_DATETIME(C_MENU_ITEM_DEF)
 	type = MENU_ITEM_TEXT;
 	text[0] = "Сохранено:";
 	posx = SAVEGAME_X2;
-	posy = 4900 - 95;
+	posy = 2925;
 	fontname = MENU_FONT_SMALL;
 	flags = flags & ~IT_SELECTABLE;
 };
@@ -146,7 +151,7 @@ instance MENUITEM_LOADSAVE_DATETIME_VALUE(C_MENU_ITEM_DEF)
 	type = MENU_ITEM_TEXT;
 	text[0] = "";
 	posx = SAVEGAME_X2;
-	posy = (4900 + 320) - 95;
+	posy = 2925 + 320;
 	dimx = 8192 - posx;
 	dimy = 350;
 	fontname = MENU_FONT_SMALL;

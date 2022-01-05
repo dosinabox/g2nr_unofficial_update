@@ -52,7 +52,7 @@ func void evt_teleportstation_func()
 	}
 	else if(CurrentLevel == ADDONWORLD_ZEN)
 	{
-		if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ENTRANCE_TELEPORT_NORTH_WP"))
+		if(C_NpcIsNearWP(hero,"ADW_ENTRANCE_TELEPORT_NORTH_WP"))
 		{
 			AI_Teleport(hero,"ADW_PORTALTEMPEL_TELEPORTSTATION");
 			if(SCUsed_ADW_TELEPORTSTATION_PORTALTEMPEL == FALSE)
@@ -64,7 +64,7 @@ func void evt_teleportstation_func()
 				SCUsed_ADW_TELEPORTSTATION_PORTALTEMPEL = TRUE;
 			};
 		}
-		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ENTRANCE_TELEPORT_EAST_WP"))
+		else if(C_NpcIsNearWP(hero,"ADW_ENTRANCE_TELEPORT_EAST_WP"))
 		{
 			AI_Teleport(hero,"ADW_ADANOSTEMPEL_TELEPORTSTATION");
 			if(SCUsed_ADW_TELEPORTSTATION_ADANOSTEMPEL == FALSE)
@@ -76,7 +76,7 @@ func void evt_teleportstation_func()
 				SCUsed_ADW_TELEPORTSTATION_ADANOSTEMPEL = TRUE;
 			};
 		}
-		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ENTRANCE_TELEPORT_SOUTHEAST_WP"))
+		else if(C_NpcIsNearWP(hero,"ADW_ENTRANCE_TELEPORT_SOUTHEAST_WP"))
 		{
 			AI_Teleport(hero,"ADW_SOUTHEAST_TELEPORTSTATION");
 			if(SCUsed_ADW_TELEPORTSTATION_SOUTHEAST == FALSE)
@@ -88,7 +88,7 @@ func void evt_teleportstation_func()
 				SCUsed_ADW_TELEPORTSTATION_SOUTHEAST = TRUE;
 			};
 		}
-		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ENTRANCE_TELEPORT_SOUTHWEST_WP"))
+		else if(C_NpcIsNearWP(hero,"ADW_ENTRANCE_TELEPORT_SOUTHWEST_WP"))
 		{
 			AI_Teleport(hero,"ADW_SOUTHWEST_TELEPORTSTATION");
 			if(SCUsed_ADW_TELEPORTSTATION_SOUTHWEST == FALSE)
@@ -100,7 +100,7 @@ func void evt_teleportstation_func()
 				SCUsed_ADW_TELEPORTSTATION_SOUTHWEST = TRUE;
 			};
 		}
-		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ENTRANCE_TELEPORT_WEST_WP"))
+		else if(C_NpcIsNearWP(hero,"ADW_ENTRANCE_TELEPORT_WEST_WP"))
 		{
 			AI_Teleport(hero,"ADW_PIRATES_TELEPORTSTATION");
 			if(SCUsed_ADW_TELEPORTSTATION_PIRATES == FALSE)
@@ -122,7 +122,7 @@ func void evt_teleportstation_func()
 				SCUsed_ADW_TELEPORTSTATION_PIRATES_JACKSMONSTER = TRUE;
 			};
 		}
-		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ADANOSTEMPEL_RAVENTELEPORT_OUT"))
+		else if(C_NpcIsNearWP(hero,"ADW_ADANOSTEMPEL_RAVENTELEPORT_OUT"))
 		{
 			AI_Teleport(hero,"ADW_ADANOSTEMPEL_TELEPORTSTATION");
 			/*if(SCUsed_ADW_TELEPORTSTATION_RAVENTELEPORT_OUT == FALSE)

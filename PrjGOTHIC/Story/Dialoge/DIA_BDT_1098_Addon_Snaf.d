@@ -274,8 +274,8 @@ func void DIA_Addon_Snaf_Abrechnung_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_04");	//Ты прибил одного из парней Эстебана. Я полагаю, тот, кого ты ищешь, будет больше тебе доверять, когда ты его встретишь.
 		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_05");	//Но он вряд ли так просто раскроется. Тебе нужно узнать больше.
-	}
-	else if(Finn_Petzt == TRUE)
+	};
+	if(Finn_Petzt == TRUE)
 	{
 		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_06");	//Финн заметно взволнован с тех пор, как ты с ним поговорил.
 		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_07");	//И все здесь знают, что он хорошо ладит с Эстебаном.

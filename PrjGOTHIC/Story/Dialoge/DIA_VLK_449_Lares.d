@@ -448,7 +448,10 @@ func void DIA_Addon_Lares_WannaBeRanger_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_WannaBeRanger_15_00");	//Я хочу присоединиться к Кольцу Воды...
 	AI_Output(self,other,"DIA_Addon_Lares_WannaBeRanger_09_01");	//Я не против. Но решение о том, можешь ли ты вступить в наши ряды, должны принять маги.
-	B_LogEntry(TOPIC_Addon_RingOfWater,LogText_Addon_KDWRight);
+	if(!Npc_KnowsInfo(other,DIA_Addon_Vatras_HowToJoin))
+	{
+		B_LogEntry(TOPIC_Addon_RingOfWater,LogText_Addon_KDWRight);
+	};
 	Info_ClearChoices(DIA_Addon_Lares_WannaBeRanger);
 	Info_AddChoice(DIA_Addon_Lares_WannaBeRanger,"Понимаю.",DIA_Addon_Lares_WannaBeRanger_BACK);
 	Info_AddChoice(DIA_Addon_Lares_WannaBeRanger,"А что это значит - быть членом вашего общества?",DIA_Addon_Lares_WannaBeRanger_HowIsIt);
@@ -2230,19 +2233,22 @@ instance DIA_Addon_Lares_GOFOREST(C_Info)
 
 func int DIA_Addon_Lares_GOFOREST_Condition()
 {
-	if(C_NpcIsNearWP(self,"NW_FOREST_PATH_62") && (LaresGuide_OrnamentForest == 2) && Npc_IsDead(Stoneguardian_Ornament))
+	if(C_NpcIsNearWP(self,"NW_FOREST_PATH_62") && (LaresGuide_OrnamentForest == 2))
 	{
-		if(Lares_ArrivedToForest == FALSE)
+		if(Npc_IsDead(Stoneguardian_Ornament))
 		{
-			return TRUE;
-		};
-		if((Ornament_Switched_Forest == FALSE) && Npc_IsInState(self,ZS_Talk))
-		{
-			return TRUE;
-		};
-		if(Ornament_Switched_Forest == TRUE)
-		{
-			return TRUE;
+			if(Lares_ArrivedToForest == FALSE)
+			{
+				return TRUE;
+			};
+			if((Ornament_Switched_Forest == FALSE) && Npc_IsInState(self,ZS_Talk))
+			{
+				return TRUE;
+			};
+			if(Ornament_Switched_Forest == TRUE)
+			{
+				return TRUE;
+			};
 		};
 	};
 };

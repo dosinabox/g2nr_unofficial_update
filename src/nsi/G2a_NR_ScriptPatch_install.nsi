@@ -45,7 +45,7 @@ SetCompressor lzma
 
 Caption "${MOD_NAME_RU} (v${MOD_VERSION}) - установка"
 !define MUI_TEXT_WELCOME_INFO_TITLE " "
-!define MUI_TEXT_WELCOME_INFO_TEXT "Данное обновление исправляет множество различных ошибок и недоработок в игре «Готика 2: Ночь Ворона». Установка рекомендуется на русскую версию игры от Акеллы с установленным Player Kit. Старые сохренения любой другой версии не поддерживаются: начало новой игры обязательно!"
+!define MUI_TEXT_WELCOME_INFO_TEXT "Данное обновление исправляет множество различных ошибок и недоработок в игре «Готика 2: Ночь Ворона». Установка рекомендуется на русскую версию игры от Акеллы с установленным Player Kit. Старые сохранения любой другой версии не поддерживаются: начало новой игры обязательно!"
 
 !define MUI_TEXT_DIRECTORY_SUBTITLE " "
 DirText "Программа установит неофициальное обновление в указанную папку. \
@@ -210,7 +210,7 @@ Function .onInit
 	!insertmacro MUI_LANGDLL_DISPLAY
 	ReadRegStr $INSTDIR HKCU "Software\${MOD_NAME}" "InstallLocation"
 	StrCmp $INSTDIR "" "" InstallPathIsFound
-	StrCpy $INSTDIR "$PROGRAMFILES\Akella\Gothic II"
+	StrCpy $INSTDIR "$PROGRAMFILES\Akella Games\Gothic II"
 	InstallPathIsFound:
 FunctionEnd
 

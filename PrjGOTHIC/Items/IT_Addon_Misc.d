@@ -290,7 +290,7 @@ instance ItMi_IELaute(C_Item)
 	inv_roty = 295;
 };
 
-instance ItMi_Addon_Lennar_Paket(C_Item)
+instance ItMi_Addon_Fisk_Paket(C_Item)
 {
 	name = "Звенящий пакет";
 	mainflag = ITEM_KAT_NONE;
@@ -298,7 +298,7 @@ instance ItMi_Addon_Lennar_Paket(C_Item)
 	value = 300;
 	visual = "ItMi_Packet.3ds";
 	scemeName = "MAPSEALED";
-	on_state[0] = Use_LennarPaket;
+	on_state[0] = Use_FiskPaket;
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = "Внутри находятся отмычки.";
@@ -308,11 +308,11 @@ instance ItMi_Addon_Lennar_Paket(C_Item)
 };
 
 
-func void Use_LennarPaket()
+func void Use_FiskPaket()
 {
-	B_PlayerFindItem(ItKe_Lockpick,Lennar_picklock_amount);
+	B_PlayerFindItem(ItKe_Lockpick,Fisk_Lockpicks_amount);
 	Snd_Play("Geldbeutel");
-	LennarPaket_Open = TRUE;
+	FiskPaket_Open = TRUE;
 };
 
 

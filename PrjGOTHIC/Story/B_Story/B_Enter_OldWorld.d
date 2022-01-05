@@ -137,13 +137,13 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		};
 		if(!Npc_IsDead(Sengrath))
 		{
+			B_RemoveNpc(PAL_267_Sengrath);
 			Wld_InsertNpc(PAL_275_DeadSengrath,"OC1");
 			B_KillNpc(PAL_275_DeadSengrath);
 			Sengrath_Missing = TRUE;
 		};
 		B_RemoveNpc(VLK_4106_Dobar);
 		B_RemoveNpc(VLK_4107_Parlaf);
-		B_RemoveNpc(PAL_267_Sengrath);
 		if(TschuessBilgot == TRUE)
 		{
 			B_RemoveNpc(VLK_4120_Bilgot);

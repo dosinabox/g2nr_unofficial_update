@@ -2204,7 +2204,7 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 	Wld_InsertNpc(Giant_Bug,"FP_ROAM_MONSTERMILL_03");
 	Wld_InsertNpc(Lurker,"NW_BIGMILL_FIELD_MONSTER_03");
 	Wld_InsertNpc(Lurker,"NW_BIGMILL_FIELD_MONSTER_03");
-	Wld_InsertItem(ItWr_OneHStonePlate1_Addon,"FP_ROAM_NW_BIGMILL_FIELD_MONSTER_04_03");
+//	Wld_InsertItem(ItWr_OneHStonePlate1_Addon,"FP_ROAM_NW_BIGMILL_FIELD_MONSTER_04_03");
 	Wld_InsertNpc(Giant_Bug,"NW_BIGMILL_FIELD_MONSTER_01");
 	Wld_InsertNpc(Giant_Bug,"NW_BIGMILL_FIELD_MONSTER_01");
 	Wld_InsertNpc(Giant_Bug,"NW_BIGMILL_FIELD_MONSTER_01");
@@ -2362,7 +2362,7 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 	Wld_InsertItem(ItMi_Zeitspalt_Addon,"EVT_CRYPT_ROOM_01_SPAWN_03");
 	Wld_InsertItem(ItWr_ManaStonePlate2_Addon,"EVT_CRYPT_ROOM_FINAL_SPAWN_01");
 	Wld_InsertItem(ItWr_ManaStonePlate3_Addon,"EVT_CRYPT_ROOM_02_SPAWN_05");
-	Wld_InsertItem(ItWr_HitPointStonePlate3_Addon,"FP_STAND_DEMENTOR_KDF_12");
+//	Wld_InsertItem(ItWr_HitPointStonePlate3_Addon,"FP_STAND_DEMENTOR_KDF_12");
 	Wld_InsertItem(ItWr_StonePlateCommon_Addon,"FP_SIT_CAMPFIRE_TOWER_01");
 	Wld_InsertNpc(BDT_1040_Bandit_L,"NW_CASTLEMINE_01");
 	Wld_InsertNpc(BDT_1041_Bandit_L,"NW_CASTLEMINE_TOWER_REP_HUT");
@@ -2530,7 +2530,7 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 	Wld_InsertItem(ItWr_StonePlateCommon_Addon,"FP_ITEM_GREATPEASANT_STPLATE_07");
 	Wld_InsertItem(ItWr_DexStonePlate2_Addon,"FP_ITEM_GREATPEASANT_STPLATE_08");
 	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_STAND_DEMENTOR_05");
-	Wld_InsertItem(ItWr_StrStonePlate1_Addon,"FP_STAND_DEMENTOR_09");
+//	Wld_InsertItem(ItWr_StrStonePlate1_Addon,"FP_STAND_DEMENTOR_09");
 	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ROAM_NW_FARM3_PATH_11_SMALLRIVER_09");
 	Wld_InsertItem(ItWr_DexStonePlate1_Addon,"FP_ROAM_NW_FARM3_PATH_11_SMALLRIVER_05");
 	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ROAM_NW_FARM3_BIGWOOD_02_04");
@@ -2886,7 +2886,7 @@ func void STARTUP_NewWorld_Part_TrollArea_01()
 	Wld_InsertNpc(Meatbug,"NW_MAGECAVE_20");
 	Wld_InsertNpc(Meatbug,"NW_MAGECAVE_20");
 	Wld_InsertNpc(Minecrawler,"NW_MAGECAVE_23");
-	Wld_InsertNpc(Minecrawler,"NW_MAGECAVE_23");
+	Wld_InsertNpc(Minecrawler,"NW_MAGECAVE_24");
 	Wld_InsertNpc(MinecrawlerWarrior,"NW_MAGECAVE_27");
 	Wld_InsertNpc(MinecrawlerWarrior,"NW_MAGECAVE_27");
 	Wld_InsertItem(ItWr_HitPointStonePlate3_Addon,"FP_NW_ITEM_MAGECAVE_EGG");

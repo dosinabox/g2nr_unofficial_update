@@ -8,7 +8,7 @@ func void B_CheckLog()
 	B_CloseTopic(Topic_Addon_Stoneplate,MIS_HlpEdgor,0,4);
 	B_CloseTopic(Topic_Addon_Esteban,MIS_Judas,0,4);
 	B_CloseTopic(Topic_Addon_Huno,MIS_Huno_Stahl,0,6);
-	B_CloseTopic(Topic_Addon_Fisk,MIS_Lennar_Lockpick,0,6);
+	B_CloseTopic(Topic_Addon_Fisk,MIS_Fisk_Lockpicks,0,6);
 	B_CloseTopic(Topic_Addon_Tempel,MIS_BloodwynRaus,0,4);
 	B_CloseTopic(Topic_Addon_Franco,0,Player_HasTalkedToBanditCamp,4);
 	B_CloseTopic(Topic_Addon_Senyan,Senyan_Erpressung,0,4);
@@ -46,7 +46,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Garvell,MIS_Garvell_Infos,0,3);
 	B_CloseTopic(TOPIC_BecomeMIL,MIL_Aufnahme,0,2);
 	B_CloseTopic(TOPIC_BecomeSLD,SLD_Aufnahme,0,2);
-	B_CloseTopic(TOPIC_BecomeKDF,KDF_Aufnahme,0,2);
+//	B_CloseTopic(TOPIC_BecomeKDF,KDF_Aufnahme,0,2);
 	B_CloseTopic(TOPIC_Peck,MIS_Andre_Peck,0,6);
 	B_CloseTopic(TOPIC_Warehouse,MIS_Andre_WAREHOUSE,0,6);
 	B_CloseTopic(TOPIC_Redlight,MIS_Andre_REDLIGHT,0,6);
@@ -70,7 +70,7 @@ func void B_CheckLog()
 	B_CloseTopic(Topic_BaboGaertner,MIS_HelpBabo,0,2);
 	B_CloseTopic(Topic_DyrianDrin,MIS_HelpDyrian,0,2);
 	B_CloseTopic(Topic_OpolosStudy,MIS_HelpOpolos,0,2);
-	B_CloseTopic(TOPIC_BecomeSLD,SLD_Aufnahme,0,2);
+//	B_CloseTopic(TOPIC_BecomeSLD,SLD_Aufnahme,0,2);
 	B_CloseTopic(TOPIC_SLDRespekt,0,Torlof_GenugStimmen,2);
 	B_CloseTopic(TOPIC_TorlofPacht,MIS_Torlof_HolPachtVonSekob,0,3);
 	B_CloseTopic(TOPIC_TorlofMiliz,MIS_Torlof_BengarMilizKlatschen,0,3);
@@ -177,7 +177,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_KillLighthouseBandits,MIS_Jack_KillLighthouseBandits,0,6);
 	B_CloseTopic(TOPIC_Torlof_Dmt,MIS_Torlof_Dmt,0,6);
 	B_CloseTopic(TOPIC_HannaRetrieveLetter,MIS_HannaRetrieveLetter,0,6);
-	B_CloseTopic(Topic_MarcosJungs,MIS_Marcos_Jungs,0,6);
+//	B_CloseTopic(Topic_MarcosJungs,MIS_Marcos_Jungs,0,6);
 	B_CloseTopic(TOPIC_Buster_KillShadowbeasts,MIS_Buster_KillShadowbeasts_DJG,0,6);
 	B_CloseTopic(TOPIC_Ulthar_HeileSchreine_PAL,MIS_Ulthar_HeileSchreine_PAL,0,6);
 	B_CloseTopic(TOPIC_DEMENTOREN,0,TOPIC_END_DEMENTOREN,999);

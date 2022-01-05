@@ -1,4 +1,17 @@
 
+var int Fisk_Trade;
+
+func void B_Fisk_Trade()
+{
+	if(Fisk_Trade == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Fisk_Hi_12_01");	//Моя лавка находится за домом Эстебана. Если тебе что-нибудь понадобится, заходи.
+		Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
+		B_LogEntry(Topic_Addon_BDT_Trader,"Фиск продает самые разные товары.");
+		Fisk_Trade = TRUE;
+	};
+};
+
 instance DIA_Addon_Fisk_EXIT(C_Info)
 {
 	npc = BDT_1097_Addon_Fisk;
@@ -17,6 +30,7 @@ func int DIA_Addon_Fisk_EXIT_Condition()
 
 func void DIA_Addon_Fisk_EXIT_Info()
 {
+	B_Fisk_Trade();
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
@@ -70,7 +84,7 @@ instance DIA_Addon_Fisk_Hi(C_Info)
 
 func int DIA_Addon_Fisk_Hi_Condition()
 {
-	if(Npc_GetDistToWP(self,"BL_INN_UP_06") > 500)
+	if((Npc_GetDistToWP(self,"BL_INN_UP_06") > 500) && !Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH))
 	{
 		return TRUE;
 	};
@@ -79,9 +93,7 @@ func int DIA_Addon_Fisk_Hi_Condition()
 func void DIA_Addon_Fisk_Hi_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Fisk_Hi_12_00");	//Эй, если тебе нужен торговец, то ты его нашел.
-	AI_Output(self,other,"DIA_Addon_Fisk_Hi_12_01");	//Моя лавка находится за домом Эстебана. Если тебе что-нибудь понадобится, заходи.
-	Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Trader,"Фиск продает самые разные товары.");
+	B_Fisk_Trade();
 	EnteredBanditsCamp = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
@@ -102,9 +114,16 @@ instance DIA_Addon_Fisk_Trade(C_Info)
 
 func int DIA_Addon_Fisk_Trade_Condition()
 {
-	if(Npc_GetDistToWP(self,"BL_INN_UP_06") > 500)
+	if(Fisk_Trade == TRUE)
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Addon_Fisk_Meeting))
+		{
+			return TRUE;
+		};
+		if(Npc_GetDistToWP(self,"BL_INN_UP_06") > 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -116,6 +135,16 @@ func void DIA_Addon_Fisk_Trade_Info()
 	B_RefreshTraderAmmo(self,25);
 };
 
+
+var int Fisk_LostLockpicks;
+
+func void B_Fisk_LostLockpicks()
+{
+	AI_Output(self,other,"DIA_Addon_Fisk_Attentat_12_03");	//За последнюю партию товара я заплатил солидную сумму золотом.
+	AI_Output(self,other,"DIA_Addon_Fisk_Attentat_12_04");	//Но товар я так и не получил! Один подонок украл его у меня.
+	AI_Output(self,other,"DIA_Addon_Fisk_Attentat_12_05");	//Меня обокрали, и это сделал кое-кто из моих же людей!
+	Fisk_LostLockpicks = TRUE;
+};
 
 instance DIA_Addon_Fisk_Attentat(C_Info)
 {
@@ -130,7 +159,7 @@ instance DIA_Addon_Fisk_Attentat(C_Info)
 
 func int DIA_Addon_Fisk_Attentat_Condition()
 {
-	if(MIS_Judas == LOG_Running)
+	if((MIS_Judas == LOG_Running) && !Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH))
 	{
 		return TRUE;
 	};
@@ -140,11 +169,12 @@ func void DIA_Addon_Fisk_Attentat_Info()
 {
 	B_Say(other,self,"$ATTENTAT_ADDON_DESCRIPTION");
 	AI_Output(self,other,"DIA_Addon_Fisk_Attentat_12_00");	//Слушай, я не имею к этому делу никакого отношения, понятно?
-	AI_Output(self,other,"DIA_Addon_Fisk_Attentat_12_01");	//У меня свои заботы. К тому же, я сам стал жертвой злодеяния.
-	AI_Output(other,self,"DIA_Addon_Fisk_Attentat_15_02");	//Каким образом?
-	AI_Output(self,other,"DIA_Addon_Fisk_Attentat_12_03");	//За последнюю партию товара я заплатил солидную сумму золотом.
-	AI_Output(self,other,"DIA_Addon_Fisk_Attentat_12_04");	//Но товар я так и не получил! Один подонок украл его у меня.
-	AI_Output(self,other,"DIA_Addon_Fisk_Attentat_12_05");	//Меня обокрали, и это сделал кое-кто из моих же людей!
+	if(Fisk_LostLockpicks == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Fisk_Attentat_12_01");	//У меня свои заботы. К тому же, я сам стал жертвой злодеяния.
+		AI_Output(other,self,"DIA_Addon_Fisk_Attentat_15_02");	//Каким образом?
+		B_Fisk_LostLockpicks();
+	};
 };
 
 
@@ -161,7 +191,7 @@ instance DIA_Addon_Fisk_Lieferung(C_Info)
 
 func int DIA_Addon_Fisk_Lieferung_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Fisk_Attentat))
+	if(Fisk_LostLockpicks == TRUE)
 	{
 		return TRUE;
 	};
@@ -173,20 +203,24 @@ func void DIA_Addon_Fisk_Lieferung_Info()
 	AI_Output(self,other,"DIA_Addon_Fisk_Lieferung_12_01");	//Пакет с отмычками. Кто-то должен был принести мне его от пиратов.
 	AI_Output(self,other,"DIA_Addon_Fisk_Lieferung_12_02");	//Но парень по имени Хуан украл и отмычки, и золото, которое я заплатил!
 	AI_Output(self,other,"DIA_Addon_Fisk_Lieferung_12_03");	//Этот ублюдок прячется где-то на болоте.
-	MIS_Lennar_Lockpick = LOG_Running;
+	MIS_Fisk_Lockpicks = LOG_Running;
 	Log_CreateTopic(Topic_Addon_Fisk,LOG_MISSION);
 	Log_SetTopicStatus(Topic_Addon_Fisk,LOG_Running);
-	B_LogEntry(Topic_Addon_Fisk,"Человек по имени Хуан украл у Фиска посылку - пакет с отмычками. Он прячется где-то на болоте.");
 	if(MIS_Addon_Bill_SearchAngusMurder == LOG_Running)
 	{
+		B_LogEntries(Topic_Addon_Fisk,"Человек по имени Хуан украл у Фиска посылку - пакет с отмычками. Он прячется где-то на болоте.");
 		if(SC_Knows_JuanMurderedAngus == TRUE)
 		{
-			B_LogEntry(TOPIC_Addon_KillJuan,"Парень по имени Хуан украл посылку для Фиска, сорвав сделку пиратов и бандитов. Он прячется где-то на болоте.");
+			B_LogNextEntry(TOPIC_Addon_KillJuan,"Парень по имени Хуан украл посылку для Фиска, сорвав сделку пиратов и бандитов. Он прячется где-то на болоте.");
 		}
 		else
 		{
-			B_LogEntry(TOPIC_Addon_KillJuan,"Парень по имени Хуан украл посылку для Фиска, сорвав сделку пиратов и бандитов. Он прячется где-то на болоте. Возможно, он причастен к убийству Ангуса и Хэнка.");
+			B_LogNextEntry(TOPIC_Addon_KillJuan,"Парень по имени Хуан украл посылку для Фиска, сорвав сделку пиратов и бандитов. Он прячется где-то на болоте. Возможно, он причастен к убийству Ангуса и Хэнка.");
 		};
+	}
+	else
+	{
+		B_LogEntry(Topic_Addon_Fisk,"Человек по имени Хуан украл у Фиска посылку - пакет с отмычками. Он прячется где-то на болоте.");
 	};
 };
 
@@ -231,6 +265,8 @@ func void B_Addon_Fisk_Belohnung()
 		};
 	};
 	AI_Output(self,other,"DIA_Addon_Fisk_Belohnung_12_06");	//Рука руку моет. Старый принцип, который работает и по сей день.
+	MIS_Fisk_Lockpicks = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Addon_FiskPaket);
 };
 
 
@@ -247,7 +283,7 @@ instance DIA_Addon_Fisk_GivePaket(C_Info)
 
 func int DIA_Addon_Fisk_GivePaket_Condition()
 {
-	if((MIS_Lennar_Lockpick == LOG_Running) && Npc_HasItems(other,ItMi_Addon_Lennar_Paket))
+	if((MIS_Fisk_Lockpicks == LOG_Running) && Npc_HasItems(other,ItMi_Addon_Fisk_Paket))
 	{
 		return TRUE;
 	};
@@ -256,11 +292,9 @@ func int DIA_Addon_Fisk_GivePaket_Condition()
 func void DIA_Addon_Fisk_GivePaket_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Fisk_GivePaket_15_00");	//Я принес тебе твой пакет.
-	B_GiveInvItems(other,self,ItMi_Addon_Lennar_Paket,1);
-	MIS_Lennar_Lockpick = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Addon_LennarPaket);
-	Npc_RemoveInvItems(self,ItMi_Addon_Lennar_Paket,1);
-	CreateInvItems(self,ItKe_Lockpick,Lennar_picklock_amount);
+	B_GiveInvItems(other,self,ItMi_Addon_Fisk_Paket,1);
+	Npc_RemoveInvItems(self,ItMi_Addon_Fisk_Paket,1);
+	CreateInvItems(self,ItKe_Lockpick,Fisk_Lockpicks_amount);
 	AI_Output(self,other,"DIA_Addon_Fisk_GivePaket_12_01");	//Замечательно! (подозрительно) А что с Хуаном?
 	B_Addon_Fisk_AboutJuan();
 	B_Addon_Fisk_Belohnung();
@@ -280,7 +314,7 @@ instance DIA_Addon_Fisk_PaketOpen(C_Info)
 
 func int DIA_Addon_Fisk_PaketOpen_Condition()
 {
-	if((MIS_Lennar_Lockpick == LOG_Running) && (LennarPaket_Open == TRUE))
+	if((MIS_Fisk_Lockpicks == LOG_Running) && (FiskPaket_Open == TRUE))
 	{
 		return TRUE;
 	};
@@ -309,7 +343,7 @@ instance DIA_Addon_Fisk_GivePicks(C_Info)
 
 func int DIA_Addon_Fisk_GivePicks_Condition()
 {
-	if((MIS_Lennar_Lockpick == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Fisk_PaketOpen))
+	if((MIS_Fisk_Lockpicks == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Fisk_PaketOpen))
 	{
 		return TRUE;
 	};
@@ -318,12 +352,10 @@ func int DIA_Addon_Fisk_GivePicks_Condition()
 func void DIA_Addon_Fisk_GivePicks_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Fisk_GivePicks_15_00");	//Вот твоя дюжина отмычек...
-	if(B_GiveInvItems(other,self,ItKe_Lockpick,Lennar_picklock_amount))
+	if(B_GiveInvItems(other,self,ItKe_Lockpick,Fisk_Lockpicks_amount))
 	{
 		AI_Output(self,other,"DIA_Addon_Fisk_GivePicks_12_01");	//Очень хорошо! Покупатели их уже заждались.
 		B_Addon_Fisk_Belohnung();
-		MIS_Lennar_Lockpick = LOG_SUCCESS;
-		B_GivePlayerXP(XP_Addon_LennarPaket);
 	}
 	else
 	{
@@ -345,7 +377,7 @@ instance DIA_Addon_Fisk_Inspektor(C_Info)
 
 func int DIA_Addon_Fisk_Inspektor_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Fisk_Lieferung) && Npc_KnowsInfo(other,DIA_Addon_Tom_Esteban))
+	if(Npc_KnowsInfo(other,DIA_Addon_Fisk_Lieferung) && Npc_KnowsInfo(other,DIA_Addon_Tom_Esteban) && !Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH))
 	{
 		return TRUE;
 	};
@@ -390,6 +422,25 @@ func void DIA_Addon_Fisk_Inspektor_AntiEsteban()
 };
 
 
+var int Fisk_KillEsteban;
+
+func void B_Fisk_EstebanIsDead()
+{
+	AI_Output(self,other,"DIA_Addon_Fisk_Sieg_12_01");	//Давненько я этого ждал.
+	AI_Output(self,other,"DIA_Addon_Fisk_Sieg_12_02");	//Я полагаю, у тебя дел невпроворот, да и у меня немало, так что давай расставаться.
+	if(Fisk_Trade == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Fisk_Sieg_12_03");	//А если вдруг понадобится чего, ты знаешь, где меня искать.
+	}
+	else
+	{
+		B_Fisk_Trade();
+	};
+	B_GivePlayerXP(XP_Ambient);
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"START");
+};
+
 instance DIA_Addon_Fisk_Meeting(C_Info)
 {
 	npc = BDT_1097_Addon_Fisk;
@@ -415,12 +466,18 @@ func void DIA_Addon_Fisk_Meeting_Info()
 	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_12_01");	//Да. Эстебан стоит на моем пути. И это нехорошо.
 	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_12_02");	//Он не позволяет никому из бандитов работать на меня на руднике. Он хочет, чтобы все работали только на него.
 	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_12_03");	//Так он хочет получать свою долю с каждой сделки и держать весь лагерь за задницу.
+	B_LogEntry(Topic_Addon_Esteban,"Нападение на Эстебана заказал Фиск.");
+	MIS_Judas = LOG_SUCCESS;
+	B_CheckLog();
 	Info_ClearChoices(DIA_Addon_Fisk_Meeting);
-	Info_AddChoice(DIA_Addon_Fisk_Meeting,"Что за идея?",DIA_Addon_Fisk_Meeting_now);
 	Info_AddChoice(DIA_Addon_Fisk_Meeting,"И ты, я полагаю, хочешь сам контролировать лагерь.",DIA_Addon_Fisk_Meeting_You);
 	if(!Npc_IsDead(Esteban))
 	{
 		Info_AddChoice(DIA_Addon_Fisk_Meeting,"Знаешь, а я ведь могу тебя выдать Эстебану.",DIA_Addon_Fisk_Meeting_sell);
+	}
+	else
+	{
+		Info_AddChoice(DIA_Addon_Fisk_Meeting,"Он мертв.",DIA_Addon_Fisk_Meeting_now);
 	};
 };
 
@@ -435,13 +492,14 @@ func void DIA_Addon_Fisk_Meeting_sell()
 	AI_Output(other,self,"DIA_Addon_Fisk_Meeting_sell_15_00");	//Знаешь, а я ведь могу тебя выдать Эстебану.
 	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_sell_12_01");	//И что? Что с того? Думаешь, что он даст все, что тебе нужно? Ха!
 	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_sell_12_02");	//Забудь и выслушай меня. У меня есть идея получше.
+	Info_AddChoice(DIA_Addon_Fisk_Meeting,"Что за идея?",DIA_Addon_Fisk_Meeting_now);
 };
 
 func void DIA_Addon_Fisk_Meeting_now()
 {
-	AI_Output(other,self,"DIA_Addon_Fisk_Meeting_now_15_00");	//Что за идея?
 	if(!Npc_IsDead(Esteban))
 	{
+		AI_Output(other,self,"DIA_Addon_Fisk_Meeting_now_15_00");	//Что за идея?
 		AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_01");	//Мы уберем Эстебана с нашего пути. А это значит, ты его убьешь и займешь его место.
 		if(!Npc_IsDead(Wache_01) || !Npc_IsDead(Wache_02))
 		{
@@ -451,19 +509,25 @@ func void DIA_Addon_Fisk_Meeting_now()
 			AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_05");	//Ты ведь выполнил свою работу. Ты узнал, что за нападением стоял я.
 			AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_06");	//Скажи так Эстебану, и он отправит своих ребят сюда, чтобы покончить со мной. Тут-то я их и буду ждать.
 			AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_07");	//Когда они уйдут, ты займешься ублюдком, а я - охранниками.
+			AI_StopProcessInfos(self);
+			Npc_ExchangeRoutine(self,"AMBUSH");
+		}
+		else
+		{
+			B_Fisk_Trade();
+			AI_StopProcessInfos(self);
+			Npc_ExchangeRoutine(self,"START");
 		};
+		Fisk_KillEsteban = TRUE;
 	}
 	else
 	{
+		DIA_Common_HeIsDead();
 		AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_08");	//Эстебан мертв. Наконец-то я смогу вновь заняться своим делом.
 		AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_09");	//Вот, держи, это для тебя.
 		B_GiveInvItems(self,other,ItMi_Gold,500);
+		B_Fisk_EstebanIsDead();
 	};
-	Info_ClearChoices(DIA_Addon_Fisk_Meeting);
-	MIS_Judas = LOG_SUCCESS;
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"AMBUSH");
-	B_LogEntry(Topic_Addon_Esteban,"Нападение на Эстебана заказал Фиск.");
 };
 
 
@@ -480,7 +544,7 @@ instance DIA_Addon_Fisk_Sieg(C_Info)
 
 func int DIA_Addon_Fisk_Sieg_Condition()
 {
-	if((MIS_Judas == LOG_SUCCESS) && Npc_IsDead(Esteban))
+	if((Fisk_KillEsteban == TRUE) && Npc_IsDead(Esteban))
 	{
 		return TRUE;
 	};
@@ -489,12 +553,32 @@ func int DIA_Addon_Fisk_Sieg_Condition()
 func void DIA_Addon_Fisk_Sieg_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Fisk_Sieg_15_00");	//С Эстебаном можно больше не считаться. Он мертв.
-	AI_Output(self,other,"DIA_Addon_Fisk_Sieg_12_01");	//Давненько я этого ждал.
-	AI_Output(self,other,"DIA_Addon_Fisk_Sieg_12_02");	//Я полагаю, у тебя дел невпроворот, да и у меня немало, так что давай расставаться.
-	AI_Output(self,other,"DIA_Addon_Fisk_Sieg_12_03");	//А если вдруг понадобится чего, ты знаешь, где меня искать.
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"START");
-	B_GivePlayerXP(XP_Ambient);
+	B_Fisk_EstebanIsDead();
 };
 
+
+instance DIA_Addon_Fisk_WhatsNew(C_Info)
+{
+	npc = BDT_1097_Addon_Fisk;
+	nr = 9;
+	condition = DIA_Addon_Fisk_WhatsNew_Condition;
+	information = DIA_Addon_Fisk_WhatsNew_Info;
+	permanent = FALSE;
+	description = "Есть новости?";
+};
+
+
+func int DIA_Addon_Fisk_WhatsNew_Condition()
+{
+	if((MIS_Judas == LOG_SUCCESS) && (Fisk_LostLockpicks == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Fisk_WhatsNew_Info()
+{
+	AI_Output(other,self,"DIA_Marduk_Kap4U5_PERM_15_00");	//Есть новости?
+	B_Fisk_LostLockpicks();
+};
 

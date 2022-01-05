@@ -273,7 +273,7 @@ instance DIA_Addon_Esteban_Auftrag(C_Info)
 
 func int DIA_Addon_Esteban_Auftrag_Condition()
 {
-	if(((MIS_Judas == LOG_Running) || (MIS_Judas == LOG_SUCCESS)) && (Bodyguard_Killer == FALSE))
+	if(((MIS_Judas == LOG_Running) || (MIS_Judas == LOG_SUCCESS)) && (Esteban_KnowsFiskAsTraitor == FALSE))
 	{
 		return TRUE;
 	};
@@ -302,6 +302,7 @@ func void DIA_Addon_Esteban_Auftrag_Info()
 			AI_Output(self,other,"DIA_Addon_Esteban_Auftrag_07_06");	//Вы слышали, что он сказал, ребята. Пойдите и схватите Фиска.
 			AI_TurnToNPC(self,other);
 		};
+		Esteban_KnowsFiskAsTraitor = TRUE;
 		Bodyguard_Killer = TRUE;
 	}
 	else
@@ -325,7 +326,7 @@ instance DIA_Addon_Esteban_Away(C_Info)
 
 func int DIA_Addon_Esteban_Away_Condition()
 {
-	if(Bodyguard_Killer == TRUE)
+	if(Esteban_KnowsFiskAsTraitor == TRUE)
 	{
 		return TRUE;
 	};
@@ -361,7 +362,7 @@ instance DIA_Addon_Esteban_Stone(C_Info)
 
 func int DIA_Addon_Esteban_Stone_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Esteban_Away) && (Bodyguard_Killer == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Esteban_Away))
 	{
 		return TRUE;
 	};
@@ -415,7 +416,6 @@ instance DIA_Addon_Esteban_fight(C_Info)
 
 func int DIA_Addon_Esteban_fight_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Addon_Esteban_Stone) && (Npc_GetDistToWP(Wache_01,"BL_INN_OUTSIDE_01") <= 1000) && (Npc_GetDistToWP(Wache_02,"BL_INN_OUTSIDE_02") <= 1000))
 	if(Npc_KnowsInfo(other,DIA_Addon_Esteban_Stone))
 	{
 		return TRUE;
@@ -471,8 +471,16 @@ func void DIA_Addon_Esteban_Duell_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Esteban_Duell_15_00");	//Давай сюда камень СЕЙЧАС ЖЕ, или я заберу его сам!
 	AI_Output(self,other,"DIA_Addon_Esteban_Duell_07_01");	//О, у тебя есть последнее желание. Как мило. Я сделаю тебе одолжение и избавлю тебя от твоей тупости!
-	Info_ClearChoices(DIA_Addon_Esteban_Duell);
-	Info_AddChoice(DIA_Addon_Esteban_Duell,Dialog_Ende,DIA_Addon_Esteban_Duell_End);
+	if(Npc_IsDead(Wache_01) && Npc_IsDead(Wache_02))
+	{
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_NONE,1);
+	}
+	else
+	{
+		Info_ClearChoices(DIA_Addon_Esteban_Duell);
+		Info_AddChoice(DIA_Addon_Esteban_Duell,Dialog_Ende,DIA_Addon_Esteban_Duell_End);
+	};
 };
 
 func void DIA_Addon_Esteban_Duell_End()

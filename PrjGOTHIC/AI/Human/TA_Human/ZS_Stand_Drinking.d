@@ -20,7 +20,7 @@ func void ZS_Stand_Drinking()
 	if(self.aivar[AIV_Gender] == FEMALE)
 	{
 		random = Hlp_Random(2);
-		if(random == DRINK_Wine)
+		if(random == 0)
 		{
 			if(!Npc_HasItems(self,ItFo_Wine))
 			{
@@ -39,8 +39,8 @@ func void ZS_Stand_Drinking()
 	}
 	else if(self.guild == GIL_PIR)
 	{
-		random = Hlp_Random(2) + DRINK_Booze;
-		if(random == DRINK_Rum)
+		random = Hlp_Random(2);
+		if(random == 0)
 		{
 			if(!Npc_HasItems(self,ItFo_Addon_Rum))
 			{
@@ -67,8 +67,8 @@ func void ZS_Stand_Drinking()
 	}
 	else
 	{
-		random = Hlp_Random(2) + DRINK_Beer;
-		if(random == DRINK_Booze)
+		random = Hlp_Random(2);
+		if(random == 0)
 		{
 			if(!Npc_HasItems(self,ItFo_Booze))
 			{
@@ -118,20 +118,20 @@ func int ZS_Stand_Drinking_Loop()
 		if(self.aivar[AIV_Food] == DRINK_Water)
 		{
 			AI_UseItemToState(self,ItFo_Water,0);
-		};
-		if(self.aivar[AIV_Food] == DRINK_Wine)
+		}
+		else if(self.aivar[AIV_Food] == DRINK_Wine)
 		{
 			AI_UseItemToState(self,ItFo_Wine,0);
-		};
-		if(self.aivar[AIV_Food] == DRINK_Beer)
+		}
+		else if(self.aivar[AIV_Food] == DRINK_Beer)
 		{
 			AI_UseItemToState(self,ItFo_Beer,0);
-		};
-		if(self.aivar[AIV_Food] == DRINK_Booze)
+		}
+		else if(self.aivar[AIV_Food] == DRINK_Booze)
 		{
 			AI_UseItemToState(self,ItFo_Booze,0);
-		};
-		if(self.aivar[AIV_Food] == DRINK_Rum)
+		}
+		else if(self.aivar[AIV_Food] == DRINK_Rum)
 		{
 			AI_UseItemToState(self,ItFo_Addon_Rum,0);
 		};
@@ -139,20 +139,35 @@ func int ZS_Stand_Drinking_Loop()
 	};
 	if((Npc_GetStateTime(self) > 7) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
 	{
-		random = Hlp_Random(10);
-		if(random == 0)
+		if(self.aivar[AIV_Food] == DRINK_Beer)
 		{
-			AI_PlayAniBS(self,"T_POTION_RANDOM_3",BS_ITEMINTERACT);
-			AI_PlayAniBS(self,"T_POTION_RANDOM_1",BS_ITEMINTERACT);
-		}
-		else if(random == 1)
-		{
-			AI_PlayAniBS(self,"T_POTION_RANDOM_1",BS_ITEMINTERACT);
-			AI_PlayAniBS(self,"T_POTION_RANDOM_2",BS_ITEMINTERACT);
+			random = Hlp_Random(5);
+			if(random == 0)
+			{
+				AI_PlayAniBS(self,"T_POTION_RANDOM_2",BS_ITEMINTERACT);
+			}
+			else
+			{
+				AI_PlayAniBS(self,"T_POTION_RANDOM_1",BS_ITEMINTERACT);
+			};
 		}
 		else
 		{
-			AI_PlayAniBS(self,"T_POTION_RANDOM_1",BS_ITEMINTERACT);
+			random = Hlp_Random(10);
+			if(random == 0)
+			{
+				AI_PlayAniBS(self,"T_POTION_RANDOM_3",BS_ITEMINTERACT);
+				AI_PlayAniBS(self,"T_POTION_RANDOM_1",BS_ITEMINTERACT);
+			}
+			else if(random == 1)
+			{
+				AI_PlayAniBS(self,"T_POTION_RANDOM_1",BS_ITEMINTERACT);
+				AI_PlayAniBS(self,"T_POTION_RANDOM_2",BS_ITEMINTERACT);
+			}
+			else
+			{
+				AI_PlayAniBS(self,"T_POTION_RANDOM_1",BS_ITEMINTERACT);
+			};
 		};
 		Npc_SetStateTime(self,0);
 	};
@@ -164,20 +179,20 @@ func void ZS_Stand_Drinking_End()
 	if(self.aivar[AIV_Food] == DRINK_Water)
 	{
 		AI_UseItemToState(self,ItFo_Water,-1);
-	};
-	if(self.aivar[AIV_Food] == DRINK_Wine)
+	}
+	else if(self.aivar[AIV_Food] == DRINK_Wine)
 	{
 		AI_UseItemToState(self,ItFo_Wine,-1);
-	};
-	if(self.aivar[AIV_Food] == DRINK_Beer)
+	}
+	else if(self.aivar[AIV_Food] == DRINK_Beer)
 	{
 		AI_UseItemToState(self,ItFo_Beer,-1);
-	};
-	if(self.aivar[AIV_Food] == DRINK_Booze)
+	}
+	else if(self.aivar[AIV_Food] == DRINK_Booze)
 	{
 		AI_UseItemToState(self,ItFo_Booze,-1);
-	};
-	if(self.aivar[AIV_Food] == DRINK_Rum)
+	}
+	else if(self.aivar[AIV_Food] == DRINK_Rum)
 	{
 		AI_UseItemToState(self,ItFo_Addon_Rum,-1);
 	};

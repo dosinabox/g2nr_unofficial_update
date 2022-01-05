@@ -74,6 +74,17 @@ func void DIA_Jergan_Vermisste_Info()
 };
 
 
+func void B_Jergan_NewsForOric()
+{
+	AI_Output(self,other,"DIA_Jergan_Burg_13_02");	//Если тебе удастся добраться до замка, поговори с паладином Ориком. Скажи ему, что его брат погиб здесь, у Прохода.
+	if(!Npc_IsDead(Oric))
+	{
+		Log_CreateTopic(Topic_OricBruder,LOG_MISSION);
+		Log_SetTopicStatus(Topic_OricBruder,LOG_Running);
+		B_LogEntry(Topic_OricBruder,"Когда я окажусь в замке, то должен буду сказать Орику, что его брат погиб у Прохода.");
+	};
+};
+
 instance DIA_Jergan_Burg(C_Info)
 {
 	npc = VLK_4110_Jergan;
@@ -97,13 +108,7 @@ func void DIA_Jergan_Burg_Info()
 {
 	AI_Output(other,self,"DIA_Jergan_Burg_15_00");	//Ты можешь помочь мне пробраться в замок?
 	AI_Output(self,other,"DIA_Jergan_Burg_13_01");	//Конечно, но ты должен оказать мне услугу.
-	AI_Output(self,other,"DIA_Jergan_Burg_13_02");	//Если тебе удастся добраться до замка, поговори с паладином Ориком. Скажи ему, что его брат погиб здесь, у Прохода.
-	if(!Npc_IsDead(Oric))
-	{
-		Log_CreateTopic(Topic_OricBruder,LOG_MISSION);
-		Log_SetTopicStatus(Topic_OricBruder,LOG_Running);
-		B_LogEntry(Topic_OricBruder,"Когда я окажусь в замке, то должен буду сказать Орику, что его брат погиб у Прохода.");
-	};
+	B_Jergan_NewsForOric();
 };
 
 
@@ -199,13 +204,7 @@ func void DIA_Jergan_Mine_Info()
 	};
 	if(!Npc_KnowsInfo(other,DIA_Jergan_Burg))
 	{
-		AI_Output(self,other,"DIA_Jergan_Burg_13_02");	//Если тебе удастся добраться до замка, поговори с паладином Ориком. Скажи ему, что его брат погиб здесь, у Прохода.
-		if(!Npc_IsDead(Oric))
-		{
-			Log_CreateTopic(Topic_OricBruder,LOG_MISSION);
-			Log_SetTopicStatus(Topic_OricBruder,LOG_Running);
-			B_LogEntry(Topic_OricBruder,"Когда я окажусь в замке, то должен буду сказать Орику, что его брат погиб у Прохода.");
-		};
+		B_Jergan_NewsForOric();
 	};
 	AI_Output(self,other,"DIA_Jergan_Mine_13_01");	//Я разведчик. Моя работа - следить за врагом. Но все эти снепперы совсем не облегчают мне жизнь.
 	AI_Output(self,other,"DIA_Jergan_Mine_13_02");	//Хотя сейчас самое время насобирать трофеев - если, конечно, ты знаешь, что делаешь.
@@ -313,9 +312,12 @@ instance DIA_Jergan_Leader(C_Info)
 
 func int DIA_Jergan_Leader_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && Npc_IsDead(NewMine_LeadSnapper) && (NewMine_LeadSnapper_Spawned == TRUE))
+	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && (NewMine_LeadSnapper_Spawned == TRUE))
 	{
-		return TRUE;
+		if(Npc_IsDead(NewMine_LeadSnapper))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -373,6 +375,4 @@ func void DIA_Jergan_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Jergan_PICKPOCKET);
 };
-
-
 

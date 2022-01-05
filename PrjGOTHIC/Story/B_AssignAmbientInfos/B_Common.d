@@ -239,6 +239,11 @@ func void DIA_Common_WhatCanYouTeachMe()
 	AI_Output(other,self,"DIA_Talbin_TEACHHUNTING_15_00");	//Чему ты можешь обучить меня?
 };
 
+func void DIA_Common_TeachMe()
+{
+	AI_Output(other,self,"DIA_Pyrokar_SPELLS_15_00");	//Обучи меня.
+};
+
 func void DIA_Common_INeedYou()
 {
 	AI_Output(other,self,"DIA_MiltenNW_StillNeedYou_15_00");	//Ты нужен мне.

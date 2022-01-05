@@ -347,7 +347,7 @@ instance ItFo_CoragonsBeer(C_Item)
 	value = Value_CoragonsBeer;
 	visual = "ItFo_CoragonsBeer.3DS";
 	material = MAT_WOOD;
-	scemeName = "POTION";
+	scemeName = "BEER";
 	on_state[0] = Use_CoragonsBeer;
 	description = name;
 	text[0] = "Особое пиво Корагона.";
@@ -500,7 +500,7 @@ instance ItFo_Beer(C_Item)
 	value = Value_Beer;
 	visual = "ItFo_Beer.3DS";
 	material = MAT_WOOD;
-	scemeName = "POTION";
+	scemeName = "BEER";
 	on_state[0] = Use_Beer;
 	description = name;
 	text[0] = "Темное паладинское.";

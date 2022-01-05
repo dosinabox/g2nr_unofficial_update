@@ -253,9 +253,16 @@ instance DIA_Addon_Akil_ReturnPeople(C_Info)
 
 func int DIA_Addon_Akil_ReturnPeople_Condition()
 {
-	if((MIS_Akil_BringMissPeopleBack == LOG_Running) && (MissingPeopleReturnedHome == TRUE) && (!Npc_IsDead(Tonak_NW) || !Npc_IsDead(Telbor_NW)))
+	if((MIS_Akil_BringMissPeopleBack == LOG_Running) && (MissingPeopleReturnedHome == TRUE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Tonak_NW))
+		{
+			return TRUE;
+		};
+		if(!Npc_IsDead(Telbor_NW))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -552,9 +559,12 @@ instance DIA_Akil_SCHAFDIEBEPLATT(C_Info)
 
 func int DIA_Akil_SCHAFDIEBEPLATT_Condition()
 {
-	if((Kapitel >= 3) && (MIS_Akil_SchafDiebe == LOG_Running) && Npc_IsDead(BDT_1025_Bandit_H) && Npc_IsDead(BDT_1026_Bandit_H) && Npc_IsDead(BDT_1027_Bandit_H))
+	if((Kapitel >= 3) && (MIS_Akil_SchafDiebe == LOG_Running))
 	{
-		return TRUE;
+		if(Npc_IsDead(BDT_1025_Bandit_H) && Npc_IsDead(BDT_1026_Bandit_H) && Npc_IsDead(BDT_1027_Bandit_H))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -595,11 +605,14 @@ instance DIA_Akil_AkilsSchaf(C_Info)
 
 func int DIA_Akil_AkilsSchaf_Condition()
 {
-	if((Kapitel >= 3) && !Npc_IsDead(Follow_Sheep_AKIL) && (MIS_Akil_SchafDiebe != FALSE))
+	if((Kapitel >= 3) && (MIS_Akil_SchafDiebe != FALSE))
 	{
-		if(Npc_GetDistToNpc(self,Follow_Sheep_AKIL) < 1000)
+		if(!Npc_IsDead(Follow_Sheep_AKIL))
 		{
-			return TRUE;
+			if(Npc_GetDistToNpc(self,Follow_Sheep_AKIL) < 1000)
+			{
+				return TRUE;
+			};
 		};
 	};
 };

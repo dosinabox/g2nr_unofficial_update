@@ -161,13 +161,7 @@ func void DIA_Pedro_TEMPEL_Info()
 			AI_Output(self,other,"DIA_ADDON_Pedro_TEMPEL_09_04");	//ќвцу и 1000 золотых.
 			AI_Output(other,self,"DIA_Pedro_TEMPEL_15_04");	//Ёто цела€ куча золота.
 			AI_Output(self,other,"DIA_Pedro_TEMPEL_09_05");	//Ёто знак того, что ты начинаешь новую жизнь в качестве слуги »нноса.  огда ты будешь прин€т, все твои предыдущие прегрешени€ будут прощены.
-			if(SC_KnowsKlosterTribut == FALSE)
-			{
-				SC_KnowsKlosterTribut = TRUE;
-				Log_CreateTopic(Topic_Kloster,LOG_MISSION);
-				Log_SetTopicStatus(Topic_Kloster,LOG_Running);
-				B_LogEntry(Topic_Kloster,"„тобы стать послушником монастыр€ »нноса, мне нужна овца и 1000 золотых монет.");
-			};
+			B_KlosterTributInfo();
 		};
 		AI_Output(self,other,"DIA_Pedro_TEMPEL_09_06");	//» хорошенько подумай - потом ты не сможешь отказатьс€ от своего решени€ стать слугой »нноса.
 	};
@@ -353,10 +347,6 @@ func void DIA_Pedro_AUFNAHME_YES()
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_01");	//“огда добро пожаловать, брат. я даю тебе этот ключ от монастырских ворот.
 	CreateInvItems(self,ItKe_Innos_MIS,1);
 	B_GiveInvItems(self,other,ItKe_Innos_MIS,1);
-	if(Npc_HasItems(Gorax,ItKe_Innos_MIS))
-	{
-		Npc_RemoveInvItem(Gorax,ItKe_Innos_MIS);
-	};
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_02");	//¬ знак твоего добровольного прин€ти€ этого решени€, ты должен сам открыть эти ворота и войти внутрь.
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_03");	//“еперь ты послушник. Ќоси эту робу в знак того, что теперь ты член нашего братства.
 	B_SetGuild(hero,GIL_NOV);
@@ -369,6 +359,14 @@ func void DIA_Pedro_AUFNAHME_YES()
 	SLD_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_OBSOLETE;
 	B_GivePlayerXP(XP_AufnahmeNovize);
+	if(!Npc_IsDead(Gorax))
+	{
+		if(Npc_HasItems(Gorax,ItKe_Innos_MIS))
+		{
+			Npc_RemoveInvItem(Gorax,ItKe_Innos_MIS);
+		};
+		CreateInvItems(Gorax,ItBE_Addon_NOV_01,1);
+	};
 	if(Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette))
 	{
 		Pedro_NOV_Aufnahme_LostInnosStatue_Daron = TRUE;

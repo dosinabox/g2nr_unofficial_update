@@ -257,8 +257,17 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	B_ChangeTalent(oth,talent,percent,TS_Training);
+	if(PremiumTeachersEnabled == TRUE)
+	{
+		if(!B_GiveInvItems(oth,slf,ItMi_Gold,cost * PremiumTeachersPrice))
+		{
+			B_PrintPlayerMiddle(oth,Print_NotEnoughGold);
+			DIA_Common_WeWillGetToThatLater();
+			return FALSE;
+		};
+	};
 	oth.lp -= cost;
+	B_ChangeTalent(oth,talent,percent,TS_Training);
 	if(SecondaryChange > 0)
 	{
 		if(talent == NPC_TALENT_1H)

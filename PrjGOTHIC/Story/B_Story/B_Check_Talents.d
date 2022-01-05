@@ -1,5 +1,5 @@
 
-func void B_Check_Talents()
+/*func void B_Check_Talents()
 {
 	//начиная с 27 версии не вызывается в INIT_Global при каждой загрузке
 	var C_Item weapon;
@@ -14,5 +14,5 @@ func void B_Check_Talents()
 	};
 	B_UnEquipHeroItem(ItRi_Addon_MorgansRing_Mission);
 	B_InitTalentSystem();
-};
+};*/
 

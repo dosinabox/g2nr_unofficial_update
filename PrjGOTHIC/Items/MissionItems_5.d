@@ -183,8 +183,8 @@ func void Use_XardasSeamapBook_Mis()
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_SetFont(nDocID,1,FONT_Book);
 		Doc_PrintLines(nDocID,1,"... Обращенный паладин, похоже, ни на что не реагирует. Я запер его доспехи и остальные его вещи в задней комнате. Дверь в нее можно открыть только изнутри. Я создал руну телепортации, позволяющую переместиться туда. Инструкции по пользованию ей находятся в альманахе, где Избранный сможет найти их ...");
-	};
-	if(hero.guild == GIL_KDF)
+	}
+	else if(hero.guild == GIL_KDF)
 	{
 		Doc_PrintLines(nDocID,0,"... В значении этих знамений невозможно ошибиться! Когда Избранный придет, ему понадобится вся помощь, которую мы сможем дать. Белиар уже очень силен. Мне удалось раздобыть несколько ценных артефактов, которые я схороню здесь, на всякий случай.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
@@ -192,8 +192,8 @@ func void Use_XardasSeamapBook_Mis()
 		Doc_PrintLines(nDocID,1,"Я полагаю, что Избранный будет выходцем из наших рядов, поэтому я записал в этом альманахе инструкции для него.");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"... Теперь я уверен. Мы не можем противиться судьбе. Как только Белиар почувствует, что достаточно силен, он поднимется и попытается взять бразды правления миром в свои руки. Я должен найти Избранного, иначе нам всем конец.");
-	};
-	if(hero.guild == GIL_DJG)
+	}
+	else if(hero.guild == GIL_DJG)
 	{
 		Doc_PrintLines(nDocID,0,"... И будет война, война за судьбу мира. Похоже, только я один могу интерпретировать эти знамения. Все вокруг меня, похоже, игнорируют их. Избранный придет, и его пришествие возвестит о начале войны. Эта война стара как сам мир, но ее конец, похоже, уже близок.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
@@ -398,9 +398,9 @@ func void UseItPo_PotionOfDeath()
 			B_RaiseRealAttributeLearnCounter(self,ATR_STRENGTH,5);
 			B_RaiseRealAttributeLearnCounter(self,ATR_DEXTERITY,5);
 		};
-		PrintScreen(PRINT_LearnSTR5,-1,43,FONT_Screen,2);
-		PrintScreen(PRINT_LearnDEX5,-1,48,FONT_Screen,2);
-		PrintScreen(PRINT_FullyHealed,-1,53,FONT_Screen,2);
+		PrintScreen(PRINT_LearnSTR5,-1,43,FONT_Screen,3);
+		PrintScreen(PRINT_LearnDEX5,-1,48,FONT_Screen,3);
+		PrintScreen(PRINT_FullyHealed,-1,53,FONT_Screen,3);
 		Mdl_ApplyOverlayMdsTimed(self,"Humans_Sprint.mds",Time_Speed);
 	}
 	else

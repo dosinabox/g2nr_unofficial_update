@@ -167,7 +167,10 @@ func void DIA_Attila_Hallo_Warum()
 	AI_Output(self,other,"DIA_Attila_Hallo_Warum_09_04");	//ћои хоз€ева недовольны этим. „тобы не дать тебе совершить еще одну ошибку, они послали мен€.
 	Info_ClearChoices(DIA_Attila_Hallo);
 	Info_AddChoice(DIA_Attila_Hallo,"я могу дать тебе золото - много золота.",DIA_Attila_Hallo_Gold);
-	Info_AddChoice(DIA_Attila_Hallo,"ƒай мне хот€ бы вынуть свое оружие.",DIA_Attila_Hallo_Attacke);
+	if(!Npc_HasReadiedWeapon(other))
+	{
+		Info_AddChoice(DIA_Attila_Hallo,"ƒай мне хот€ бы вынуть свое оружие.",DIA_Attila_Hallo_Attacke);
+	};
 };
 
 func void DIA_Attila_Hallo_Gold()

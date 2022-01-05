@@ -196,9 +196,9 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			CreateInvItems(slf,ItRu_PalRepelEvil,1);
 		};
-		if(!Npc_HasItems(slf,ItRu_PalFullHeal))
+		if(!Npc_HasItems(slf,ItRu_PalHeal_03))
 		{
-			CreateInvItems(slf,ItRu_PalFullHeal,1);
+			CreateInvItems(slf,ItRu_PalHeal_03,1);
 		};
 		if((slf.attribute[ATR_HITPOINTS] < 100) && (C_NpcIsDown(oth) || (Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_RANGED_OUTER)))
 		{

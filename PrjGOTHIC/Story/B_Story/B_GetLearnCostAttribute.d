@@ -1,6 +1,10 @@
 
 func int GetMainAttributeCost(var int current,var int amount)
 {
+	if(LP_Static > 0)
+	{
+		return LP_Static * amount;
+	};
 	if(current >= 120)
 	{
 		return 5 * amount;

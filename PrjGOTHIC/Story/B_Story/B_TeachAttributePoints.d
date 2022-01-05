@@ -13,17 +13,14 @@ func int B_TeachAttributePoints(var C_Npc slf,var C_Npc oth,var int attrib,var i
 	if(attrib == ATR_STRENGTH)
 	{
 		realAttribute = oth.attribute[ATR_STRENGTH];
-//		realAttribute = oth.aivar[REAL_STRENGTH] - OrcRingCurrentPenalty;
 	}
 	else if(attrib == ATR_DEXTERITY)
 	{
 		realAttribute = oth.attribute[ATR_DEXTERITY];
-//		realAttribute = oth.aivar[REAL_DEXTERITY];
 	}
 	else if(attrib == ATR_MANA_MAX)
 	{
 		realAttribute = oth.attribute[ATR_MANA_MAX];
-//		realAttribute = oth.aivar[REAL_MANA_MAX];
 	};
 	if(realAttribute >= teacherMAX)
 	{
@@ -44,6 +41,15 @@ func int B_TeachAttributePoints(var C_Npc slf,var C_Npc oth,var int attrib,var i
 		PrintScreen(PRINT_NotEnoughLP,-1,-1,FONT_Screen,2);
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
+	};
+	if(PremiumTeachersEnabled == TRUE)
+	{
+		if(!B_GiveInvItems(oth,slf,ItMi_Gold,kosten * PremiumTeachersPrice))
+		{
+			PrintScreen(Print_NotEnoughGold,-1,-1,FONT_Screen,2);
+			DIA_Common_WeWillGetToThatLater();
+			return FALSE;
+		};
 	};
 	oth.lp -= kosten;
 	B_RaiseAttribute(oth,attrib,points);

@@ -89,6 +89,10 @@ func void B_Senyan_Erpressung()
 };
 
 
+var int Senyan_Msg;
+var int Senyan_Bad;
+var int Senyan_Good;
+
 instance DIA_Addon_BDT_1084_Senyan_Hi(C_Info)
 {
 	npc = BDT_1084_Addon_Senyan;
@@ -105,21 +109,25 @@ func int DIA_Addon_Senyan_Hi_Condition()
 	return TRUE;
 };
 
-
-var int Senyan_Msg;
-var int Senyan_Bad;
-var int Senyan_Good;
-
 func void DIA_Addon_Senyan_Hi_Info()
 {
 	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_12_00");	//А! Кто это у нас здесь?
-	B_UseFakeHeroFace(self,other);
-	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_12_01");	//Ну-ка, ну-ка. Вот ты где. У меня для тебя есть хорошие новости и плохие новости.
-	Npc_ExchangeRoutine(self,"Bar");
-	EnteredBanditsCamp = TRUE;
-	Info_ClearChoices(DIA_Addon_BDT_1084_Senyan_Hi);
-	Info_AddChoice(DIA_Addon_BDT_1084_Senyan_Hi,"Сначала - хорошие.",DIA_Addon_BDT_1084_Senyan_Hi_good);
-	Info_AddChoice(DIA_Addon_BDT_1084_Senyan_Hi,"Сначала расскажи мне плохие новости.",DIA_Addon_BDT_1084_Senyan_Hi_bad);
+	if(Npc_IsDead(Esteban))
+	{
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_NONE,1);
+	}
+	else
+	{
+		B_UseFakeHeroFace(self,other);
+		AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_12_01");	//Ну-ка, ну-ка. Вот ты где. У меня для тебя есть хорошие новости и плохие новости.
+		Npc_ExchangeRoutine(self,"Bar");
+		EnteredBanditsCamp = TRUE;
+		Senyan_Contact = TRUE;
+		Info_ClearChoices(DIA_Addon_BDT_1084_Senyan_Hi);
+		Info_AddChoice(DIA_Addon_BDT_1084_Senyan_Hi,"Сначала - хорошие.",DIA_Addon_BDT_1084_Senyan_Hi_good);
+		Info_AddChoice(DIA_Addon_BDT_1084_Senyan_Hi,"Сначала расскажи мне плохие новости.",DIA_Addon_BDT_1084_Senyan_Hi_bad);
+	};
 };
 
 func void DIA_Addon_BDT_1084_Senyan_Hi_good()
@@ -190,7 +198,7 @@ instance DIA_Addon_Senyan_unterwegs(C_Info)
 
 func int DIA_Addon_Senyan_unterwegs_Condition()
 {
-	if((MIS_Judas != LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_BDT_1084_Senyan_Hi))
+	if((MIS_Judas == FALSE) && Npc_KnowsInfo(other,DIA_Addon_BDT_1084_Senyan_Hi) && !Npc_IsDead(Esteban))
 	{
 		return TRUE;
 	};
@@ -199,17 +207,10 @@ func int DIA_Addon_Senyan_unterwegs_Condition()
 func void DIA_Addon_Senyan_unterwegs_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Senyan_unterwegs_15_00");	//По поводу Эстебана...
-	if(!Npc_IsDead(Esteban))
-	{
-		AI_Output(self,other,"DIA_Addon_Senyan_unterwegs_12_01");	//Ты уже поговорил с ним?
-		AI_Output(other,self,"DIA_Addon_Senyan_unterwegs_15_02");	//Еще нет.
-		AI_Output(self,other,"DIA_Addon_Senyan_unterwegs_12_03");	//Тогда тебе следует сделать это поскорее.
-	}
-	else
-	{
-		AI_Output(other,self,"DIA_Addon_Tom_Dead_15_00");	//Эстебан мертв.
-		B_Senyan_Attack();
-	};
+	AI_Output(self,other,"DIA_Addon_Senyan_unterwegs_12_01");	//Ты уже поговорил с ним?
+	AI_Output(other,self,"DIA_Addon_Senyan_unterwegs_15_02");	//Еще нет.
+	AI_Output(self,other,"DIA_Addon_Senyan_unterwegs_12_03");	//Тогда тебе следует сделать это поскорее.
+	AI_StopProcessInfos(self);
 };
 
 
@@ -292,7 +293,7 @@ func void DIA_Addon_Senyan_ChangePlan_Info()
 };
 
 
-instance DIA_Addon_BDT_1084_Senyan_Found(C_Info)
+/*instance DIA_Addon_BDT_1084_Senyan_Found(C_Info)
 {
 	npc = BDT_1084_Addon_Senyan;
 	nr = 3;
@@ -315,7 +316,7 @@ func void DIA_Addon_Senyan_Found_Info()
 {
 	AI_Output(other,self,"DIA_Addon_BDT_1084_Senyan_Found_15_00");	//Я нашел предателя. Это Фиск.
 	B_Senyan_Attack();
-};
+};*/
 
 
 instance DIA_Addon_BDT_1084_Senyan_derbe(C_Info)
@@ -331,15 +332,26 @@ instance DIA_Addon_BDT_1084_Senyan_derbe(C_Info)
 
 func int DIA_Addon_Senyan_derbe_Condition()
 {
-	if((Senyan_Erpressung == LOG_Running) && (MIS_Judas == LOG_SUCCESS) && (Npc_IsDead(Fisk) || Npc_IsDead(Esteban)))
+	if(Senyan_Contact == TRUE)
 	{
-		return TRUE;
+		if(Npc_IsDead(Esteban))
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Addon_Esteban_Duell))
+		{
+			return TRUE;
+		};
+		if(Esteban_KnowsFiskAsTraitor == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Addon_Senyan_derbe_Info()
 {
-	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_derbe_12_00");	//(в ярости) Ты не выполнил наше соглашение.
+	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_derbe_12_00");	//(в ярости) Ты не выполнил наше соглашение!
 	B_Senyan_Attack();
 };
 

@@ -31,6 +31,9 @@ const int MENU_INFO_X = 300;
 const int MENU_INFO_Y = 7780;
 const int MENU_BUTTONS = 5300;
 
+//для инъекций Ninja
+const int MENU_SOUND_DY = 510;
+
 const int MENU_MAIN_START_Y = 2500;
 const int MENU_MAIN_STEP_Y = 550;
 const int MENU_MAIN_DX = 8192;

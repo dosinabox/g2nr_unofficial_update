@@ -10,52 +10,52 @@ func void B_GiveDeathInv(var C_Npc slf)
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_WOLF)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_Icewolf)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Icewolf)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_WARG)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_WARG)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_SNAPPER)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_SNAPPER)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGONSNAPPER)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGONSNAPPER)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_Razor)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Razor)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_SHADOWBEAST)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_SHADOWBEAST)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_Bloodhound)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Bloodhound)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_SWAMPSHARK)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_SWAMPSHARK)
 		{
 			CreateInvItems(slf,ItAt_SharkTeeth,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_TROLL)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_TROLL)
 		{
 			CreateInvItems(slf,ItAt_TrollTooth,2);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_TROLL_BLACK)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_TROLL_BLACK)
 		{
 			CreateInvItems(slf,ItAt_TrollTooth,4);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_ALLIGATOR)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_ALLIGATOR)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_Keiler)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Keiler)
 		{
 			CreateInvItems(slf,ItAt_KeilerHorn,2);
 		};
@@ -65,35 +65,35 @@ func void B_GiveDeathInv(var C_Npc slf)
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_WARAN)
 		{
 			CreateInvItems(slf,ItAt_Claw,2);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN)
 		{
 			CreateInvItems(slf,ItAt_Claw,4);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_SNAPPER)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_SNAPPER)
 		{
 			if(!Npc_HasItems(slf,ItAt_ClawLeader))
 			{
 				CreateInvItems(slf,ItAt_Claw,2);
 			};
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_Razor)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Razor)
 		{
 			CreateInvItems(slf,ItAt_Claw,2);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGONSNAPPER)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGONSNAPPER)
 		{
 			CreateInvItems(slf,ItAt_Claw,4);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_SHADOWBEAST)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_SHADOWBEAST)
 		{
 			CreateInvItems(slf,ItAt_Claw,4);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_Bloodhound)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Bloodhound)
 		{
 			CreateInvItems(slf,ItAt_Claw,4);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_LURKER)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_LURKER)
 		{
 			CreateInvItems(slf,ItAt_LurkerClaw,1);
 		};
@@ -103,32 +103,32 @@ func void B_GiveDeathInv(var C_Npc slf)
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_SHEEP)
 		{
 			CreateInvItems(slf,ItAt_SheepFur,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_WOLF)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_WOLF)
 		{
 			CreateInvItems(slf,ItAt_WolfFur,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_Icewolf)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Icewolf)
 		{
 			CreateInvItems(slf,ItAt_IceWolfFur,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_WARG)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_WARG)
 		{
 			CreateInvItems(slf,ItAt_WargFur,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_SHADOWBEAST)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_SHADOWBEAST)
 		{
 			CreateInvItems(slf,ItAt_ShadowFur,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_TROLL)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_TROLL)
 		{
 			CreateInvItems(slf,ItAt_TrollFur,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_TROLL_BLACK)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_TROLL_BLACK)
 		{
 			CreateInvItems(slf,ItAt_TrollBlackFur,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_Keiler)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Keiler)
 		{
 			CreateInvItems(slf,ItAt_Addon_KeilerFur,1);
 		};
@@ -138,32 +138,32 @@ func void B_GiveDeathInv(var C_Npc slf)
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_LURKER)
 		{
 			CreateInvItems(slf,ItAt_LurkerSkin,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_SNAPPER)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_SNAPPER)
 		{
 			CreateInvItems(slf,ItAt_SnapperSkin,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_Razor)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Razor)
 		{
 			CreateInvItems(slf,ItAt_RazorSkin,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGONSNAPPER)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGONSNAPPER)
 		{
 			CreateInvItems(slf,ItAt_DragonSnapperSkin,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_WARAN)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_WARAN)
 		{
 			CreateInvItems(slf,ItAt_WaranSkin,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN)
 		{
 			CreateInvItems(slf,ItAt_FireWaranSkin,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_SWAMPSHARK)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_SWAMPSHARK)
 		{
 			CreateInvItems(slf,ItAt_SharkSkin,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_ALLIGATOR)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_ALLIGATOR)
 		{
 			CreateInvItems(slf,ItAt_AlligatorSkin,1);
 		};
@@ -173,24 +173,24 @@ func void B_GiveDeathInv(var C_Npc slf)
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_STONEGOLEM)
 		{
 			CreateInvItems(slf,ItAt_StoneGolemHeart,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_FIREGOLEM)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_FIREGOLEM)
 		{
 			CreateInvItems(slf,ItAt_FireGolemHeart,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_ICEGOLEM)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_ICEGOLEM)
 		{
 			CreateInvItems(slf,ItAt_IceGolemHeart,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_SWAMPGOLEM)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_SWAMPGOLEM)
 		{
 			CreateInvItems(slf,ItAt_SwampGolemHeart,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_DEMON)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_DEMON)
 		{
 			CreateInvItems(slf,ItAt_DemonHeart,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_DEMON_LORD)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_DEMON_LORD)
 		{
 			CreateInvItems(slf,ItAt_DemonHeart,1);
 		};
@@ -228,12 +228,12 @@ func void B_GiveDeathInv(var C_Npc slf)
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_GIANT_BUG)
 		{
 			CreateInvItems(slf,ItAt_BugMandibles,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_MINECRAWLER)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_MINECRAWLER)
 		{
 			CreateInvItems(slf,ItAt_CrawlerMandibles,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_MINECRAWLERWARRIOR)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_MINECRAWLERWARRIOR)
 		{
 			CreateInvItems(slf,ItAt_CrawlerMandibles,1);
 		};
@@ -243,8 +243,8 @@ func void B_GiveDeathInv(var C_Npc slf)
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_MINECRAWLER)
 		{
 			CreateInvItems(slf,ItAt_CrawlerPlate,1);
-		};
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_MINECRAWLERWARRIOR)
+		}
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_MINECRAWLERWARRIOR)
 		{
 			CreateInvItems(slf,ItAt_CrawlerPlate,2);
 		};
@@ -280,8 +280,8 @@ func void B_GiveDeathInv(var C_Npc slf)
 		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(FireDragonIsland))
 		{
 			CreateInvItems(slf,ItAt_DragonScale,12);
-		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(UndeadDragon))
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(UndeadDragon))
 		{
 			CreateInvItems(slf,ItAt_DragonScale,12);
 		};
@@ -310,8 +310,8 @@ func void B_GiveDeathInv(var C_Npc slf)
 		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(FireDragonIsland))
 		{
 			CreateInvItems(slf,ItAt_DragonBlood,2);
-		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(UndeadDragon))
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(UndeadDragon))
 		{
 			CreateInvItems(slf,ItAt_DragonBlood,2);
 		};
@@ -518,7 +518,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 			}
 			else if(Orc_Randomizer <= 7)
 			{
-				CreateInvItems(slf,ItSc_PalLightHeal,1);
+				CreateInvItems(slf,ItSc_PalHeal_01,1);
 				CreateInvItems(slf,ItPo_Health_01,2);
 				CreateInvItems(slf,ItMi_Gold,20);
 			}

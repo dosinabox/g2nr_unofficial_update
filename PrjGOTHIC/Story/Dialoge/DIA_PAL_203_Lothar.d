@@ -388,8 +388,8 @@ func void DIA_Addon_Lothar_MissingPeople_Info()
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
 		B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
+		SC_HearedAboutMissingPeople = TRUE;
 	};
-	SC_HearedAboutMissingPeople = TRUE;
 };
 
 
@@ -729,6 +729,10 @@ func void DIA_Lothar_HelloAgain_Info()
 	if((VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_KDW))
 	{
 		AI_Output(self,other,"DIA_Lothar_Add_01_36");	//Где ты взял эту мантию?
+		if(other.guild != GIL_KDF)
+		{
+			DIA_Common_Well();
+		};
 	};
 	if(other.guild == GIL_KDF)
 	{
@@ -928,7 +932,7 @@ func void DIA_Lothar_OWRunningBrief_Info()
 	};
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Lothar_Add_01_61");	//Я был несправедлив к тебе. Я буду молить Инноса о прощении за мое поведение.
-	AI_PrintScreen("Письмо Гаронда лорду Хагену получено",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	AI_PrintScreen("Письмо Гаронда лорду Хагену получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 };
 
 

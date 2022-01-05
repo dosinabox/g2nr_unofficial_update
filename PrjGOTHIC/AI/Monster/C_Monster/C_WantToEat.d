@@ -5,7 +5,15 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(Npc_IsInState(slf,ZS_MM_ThreatenEnemy) || Npc_IsInState(slf,ZS_MM_Attack) || Npc_IsInState(slf,ZS_MM_Flee))
+	if(Npc_IsInState(slf,ZS_MM_ThreatenEnemy))
+	{
+		return FALSE;
+	};
+	if(Npc_IsInState(slf,ZS_MM_Attack))
+	{
+		return FALSE;
+	};
+	if(Npc_IsInState(slf,ZS_MM_Flee))
 	{
 		return FALSE;
 	};
@@ -87,8 +95,8 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-	};
-	if(slf.guild == GIL_Giant_Rat)
+	}
+	else if(slf.guild == GIL_Giant_Rat)
 	{
 		if(oth.guild < GIL_SEPERATOR_HUM)
 		{
@@ -162,8 +170,8 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-	};
-	if(slf.guild == GIL_GIANT_BUG)
+	}
+	else if(slf.guild == GIL_GIANT_BUG)
 	{
 		if(oth.guild == GIL_MEATBUG)
 		{
@@ -177,8 +185,8 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-	};
-	if(slf.guild == GIL_WARAN)
+	}
+	else if(slf.guild == GIL_WARAN)
 	{
 		if(oth.guild == GIL_SCAVENGER)
 		{
@@ -192,42 +200,30 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-	};
-	if((slf.guild == GIL_WOLF) && (slf.aivar[AIV_MM_REAL_ID] != ID_Keiler))
+	}
+	else if(slf.guild == GIL_WOLF)
 	{
-		if(oth.guild < GIL_SEPERATOR_HUM)
+		if(slf.aivar[AIV_MM_REAL_ID] != ID_Keiler)
 		{
-			return TRUE;
+			if(oth.guild < GIL_SEPERATOR_HUM)
+			{
+				return TRUE;
+			};
+			if(oth.guild == GIL_SHEEP)
+			{
+				return TRUE;
+			};
+			if(oth.guild == GIL_Giant_Rat)
+			{
+				return TRUE;
+			};
+			if(oth.guild == GIL_MOLERAT)
+			{
+				return TRUE;
+			};
 		};
-		if(oth.guild == GIL_SHEEP)
-		{
-			return TRUE;
-		};
-		if(oth.guild == GIL_Giant_Rat)
-		{
-			return TRUE;
-		};
-		if(oth.guild == GIL_MOLERAT)
-		{
-			return TRUE;
-		};
-	};
-	/*if(slf.guild == GIL_SUMMONED_WOLF)
-	{
-		if(oth.guild == GIL_SHEEP)
-		{
-			return TRUE;
-		};
-		if(oth.guild == GIL_Giant_Rat)
-		{
-			return TRUE;
-		};
-		if(oth.guild == GIL_MOLERAT)
-		{
-			return TRUE;
-		};
-	};*/
-	if(slf.guild == GIL_MINECRAWLER)
+	}
+	else if(slf.guild == GIL_MINECRAWLER)
 	{
 		if(oth.guild < GIL_SEPERATOR_HUM)
 		{
@@ -249,8 +245,8 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-	};
-	if(slf.guild == GIL_LURKER)
+	}
+	else if(slf.guild == GIL_LURKER)
 	{
 		if(oth.guild == GIL_GOBBO)
 		{
@@ -264,19 +260,8 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-	};
-	/*if(slf.guild == GIL_ZOMBIE)
-	{
-		if(oth.guild < GIL_SEPERATOR_HUM)
-		{
-			return TRUE;
-		};
-		if(oth.guild > GIL_SEPERATOR_ORC)
-		{
-			return TRUE;
-		};
-	};*/
-	if(slf.guild == GIL_SNAPPER)
+	}
+	else if(slf.guild == GIL_SNAPPER)
 	{
 		if(oth.guild < GIL_SEPERATOR_HUM)
 		{
@@ -330,8 +315,8 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-	};
-	if(slf.guild == GIL_SHADOWBEAST)
+	}
+	else if(slf.guild == GIL_SHADOWBEAST)
 	{
 		if(oth.guild < GIL_SEPERATOR_HUM)
 		{

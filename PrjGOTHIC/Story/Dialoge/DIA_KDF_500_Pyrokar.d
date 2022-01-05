@@ -214,7 +214,7 @@ func void DIA_Pyrokar_FIRE_Info()
 	AI_Output(other,self,"DIA_Pyrokar_FIRE_15_06");	//Я настаиваю на прохождении Испытания Огнем.
 	AI_Output(self,other,"DIA_Pyrokar_FIRE_11_07");	//В таком случае - так тому и быть. Когда ты будешь готов, каждый из магов Высшего Совета даст тебе задание, которое ты должен будешь выполнить.
 	AI_Output(self,other,"DIA_Pyrokar_FIRE_11_08");	//Да сжалится Иннос над твоей душой.
-	KDF_Aufnahme = LOG_Running;
+//	KDF_Aufnahme = LOG_Running;
 	B_LogEntry(TOPIC_FireContest,"Я потребовал у Пирокара пройти Испытание Огнем. Теперь я должен выполнить три задания Высшего Совета.");
 };
 
@@ -520,12 +520,14 @@ func void DIA_Pyrokar_OATH_Info()
 		Npc_ExchangeRoutine(Lothar,"START");
 	};
 	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
-	KDF_Aufnahme = LOG_SUCCESS;
+//	KDF_Aufnahme = LOG_SUCCESS;
 	B_CancelBengarMilitiaProblem();
 	B_GivePlayerXP(XP_BecomeMage);
 	if(!Npc_IsDead(Gorax))
 	{
 		CreateInvItems(Gorax,ItMi_RuneBlank,2);
+		CreateInvItems(Gorax,ItBE_Addon_KDF_01,1);
+		CreateInvItems(Gorax,ItWr_Map_Shrine_MIS,1);
 	};
 	if(!Npc_IsDead(Karras))
 	{
@@ -651,11 +653,11 @@ func int DIA_Pyrokar_Wunsch_Condition()
 {
 	if(other.guild == GIL_KDF)
 	{
-		if(Kapitel < 2)
+		if(Kapitel == 1)
 		{
 			return TRUE;
-		}
-		else if(GuildlessMode == TRUE)
+		};
+		if(GuildlessMode == TRUE)
 		{
 			return TRUE;
 		};
@@ -800,8 +802,8 @@ func int DIA_Pyrokar_Nachricht_Condition()
 		if(other.guild == GIL_KDF)
 		{
 			return TRUE;
-		}
-		else if((other.guild == GIL_NOV) && (GuildlessMode == TRUE))
+		};
+		if((other.guild == GIL_NOV) && (GuildlessMode == TRUE))
 		{
 			return TRUE;
 		};

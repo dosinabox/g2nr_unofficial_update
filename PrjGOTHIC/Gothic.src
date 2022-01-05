@@ -156,7 +156,6 @@ AI\Human\B_Human\B_LookAtNpc.d
 AI\Human\B_Human\B_ResetAll.d
 Story\B_Story\B_UseItem.d
 Story\B_AssignAmbientInfos\B_Common.d
-Story\B_AssignAmbientInfos\B_Union_GiveItem.d
 Story\B_AssignAmbientInfos\B_LastWarningVatras.d
 Story\B_AssignAmbientInfos\B_Addon_Myxir_TeachRequest.d
 Story\B_AssignAmbientInfos\B_Addon_Riordian_TeachWisp.d
@@ -1309,6 +1308,7 @@ Story\B_Story\C_AkilFarmIsFree.d
 Story\B_Story\B_Enter_OldWorld.d
 Story\B_Story\B_Enter_NewWorld.d
 Story\B_Story\B_Seed_Wasteland_World.d
+Story\B_Story\B_SetAmbientXP.d
 Story\B_Story\B_Kapitelwechsel.d
 Story\B_Content\B_CaptainConditions.d
 Story\B_Content\B_JoinShip.d

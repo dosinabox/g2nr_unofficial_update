@@ -80,7 +80,7 @@ instance PC_L20(Npc_Default)
 	EquipItem(self,ItMw_Rubinklinge);
 	EquipItem(self,ItRw_Crossbow_M_02);
 	CreateInvItems(self,ItRu_PalLight,1);
-	CreateInvItems(self,ItRu_PalLightHeal,1);
+	CreateInvItems(self,ItRu_PalHeal_01,1);
 	CreateInvItems(self,ItRu_PalHolyBolt,1);
 };
 
@@ -118,9 +118,9 @@ instance PC_L40(Npc_Default)
 	CreateInvItems(self,ItPo_Speed,5);
 	CreateInvItems(self,ItLsTorch,50);
 	CreateInvItems(self,ItRu_PalLight,1);
-	CreateInvItems(self,ItRu_PalLightHeal,1);
+	CreateInvItems(self,ItRu_PalHeal_01,1);
 	CreateInvItems(self,ItRu_PalHolyBolt,1);
-	CreateInvItems(self,ItRu_PalMediumHeal,1);
+	CreateInvItems(self,ItRu_PalHeal_02,1);
 	CreateInvItems(self,ItRu_PalRepelEvil,1);
 };
 
@@ -152,11 +152,11 @@ instance PC_L60(Npc_Default)
 	EquipItem(self,ItMw_1H_Blessed_03);
 	EquipItem(self,ItRw_Crossbow_M_02);
 	CreateInvItems(self,ItRu_PalLight,1);
-	CreateInvItems(self,ItRu_PalLightHeal,1);
+	CreateInvItems(self,ItRu_PalHeal_01,1);
 	CreateInvItems(self,ItRu_PalHolyBolt,1);
-	CreateInvItems(self,ItRu_PalMediumHeal,1);
+	CreateInvItems(self,ItRu_PalHeal_02,1);
 	CreateInvItems(self,ItRu_PalRepelEvil,1);
-	CreateInvItems(self,ItRu_PalFullHeal,1);
+	CreateInvItems(self,ItRu_PalHeal_03,1);
 	CreateInvItems(self,ItRu_PalDestroyEvil,1);
 };
 
@@ -350,7 +350,7 @@ instance PC_E3Paladin(Npc_Default)
 	CreateInvItems(self,ItRw_Arrow,1000);
 	CreateInvItems(self,ItRw_Bolt,1000);
 	EquipItem(self,ItAm_Strg_01);
-	EquipItem(self,ItRu_PalMediumHeal);
+	EquipItem(self,ItRu_PalHeal_02);
 	EquipItem(self,ItRu_PalRepelEvil);
 	CreateInvItems(self,ItMi_Gold,100);
 	CreateInvItems(self,ItMi_Nugget,50);

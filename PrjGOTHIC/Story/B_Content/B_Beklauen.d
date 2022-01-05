@@ -61,11 +61,7 @@ func void B_StealItem(var int TheftDex,var int Itm)
 		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketSuccess));
 		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lehmar))
 		{
-			Lehmar_StealBook_Day = Wld_GetDay();
-			if(Wld_IsTime(23,0,23,59))
-			{
-				Lehmar_StealBook_Day += 1;
-			};
+			Lehmar_StealBook_Day = B_GetDayPlus();
 		}
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Franco))
 		{
@@ -75,7 +71,7 @@ func void B_StealItem(var int TheftDex,var int Itm)
 		{
 			TotalTheftGold += 100;
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Garvell))
+		else if(C_IsNpc(self,VLK_441_Garvell))
 		{
 			TotalTheftGold += 25;
 		}

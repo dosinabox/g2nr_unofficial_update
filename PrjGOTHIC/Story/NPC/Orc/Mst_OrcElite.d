@@ -70,7 +70,7 @@ instance OrkElite_AntiPaladinOrkOberst(Mst_Default_OrcElite)
 	EquipItem(self,ItMw_Schlachtaxt);
 	CreateInvItems(self,ItRi_OrcEliteRing,1);
 	CreateInvItems(self,ItWr_Map_Orcelite_MIS,1);
-	CreateInvItems(self,ItRu_PalFullHeal,1);
+	CreateInvItems(self,ItRu_PalHeal_03,1);
 	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };

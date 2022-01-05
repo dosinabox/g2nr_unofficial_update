@@ -588,10 +588,11 @@ instance ItWr_BabosDocs_MIS(C_Item)
 func void Use_BabosDocs()
 {
 	Snd_Play("MOB_BOOK_TURNPAGE_A1");
-	BabosDocsOpen = TRUE;
-	AI_PrintScreen("Получено письмо и рисунок",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	CreateInvItems(self,ItWr_BabosLetter_MIS,1);
 	CreateInvItems(self,ItWr_BabosPinUp_MIS,1);
+	AI_PrintScreen("Письмо Бабо получено",-1,40,FONT_ScreenSmall,2);
+	AI_PrintScreen("Рисунок получено",-1,43,FONT_ScreenSmall,2);
+	BabosDocsOpen = TRUE;
 };
 
 

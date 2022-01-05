@@ -213,7 +213,6 @@ func void DIA_Sekob_Defeated_weich()
 
 func void B_Sekob_Kassieren()
 {
-	AI_Output(other,self,"DIA_Sekob_Kassieren_15_00");	//Хватит нести чушь. Дожди шли почти не переставая, и твои закрома ломятся от зерна. Заплати ренту, или я убью тебя.
 	AI_Output(self,other,"DIA_Sekob_Kassieren_01_01");	//(подобострастно) Нет, пожалуйста, вот, возьми золото. Я даже прибавлю сверху, если ты оставишь меня в живых.
 	CreateInvItems(self,ItMi_Gold,60);
 	B_GiveInvItems(self,other,ItMi_Gold,60);
@@ -225,6 +224,7 @@ func void B_Sekob_Kassieren()
 
 func void DIA_Sekob_Defeated_hart()
 {
+	AI_Output(other,self,"DIA_Sekob_Kassieren_15_00_add");	//Заплати ренту, или я убью тебя.
 	B_Sekob_Kassieren();
 };
 
@@ -267,7 +267,7 @@ func void DIA_Sekob_Again_Info()
 func void DIA_Sekob_Again_Nein()
 {
 	AI_Output(other,self,"DIA_Sekob_Again_Nein_15_00");	//Я передумал.
-	B_Sekob_Kassieren();
+	DIA_Sekob_Defeated_hart();
 };
 
 func void DIA_Sekob_Again_Ja()
@@ -286,6 +286,7 @@ func void DIA_Sekob_Again_verarscht()
 	AI_Output(self,other,"DIA_Sekob_Again_verarscht_01_03");	//За что? Что такого я сделал?
 	AI_Output(other,self,"DIA_Sekob_Again_verarscht_15_04");	//Ты пытался провести меня.
 	AI_Output(self,other,"DIA_Sekob_Again_verarscht_01_05");	//Я сказал правду - честно!
+	AI_Output(other,self,"DIA_Sekob_Kassieren_15_00");	//Хватит нести чушь. Дожди шли почти не переставая, и твои закрома ломятся от зерна. Заплати ренту, или я убью тебя.
 	B_Sekob_Kassieren();
 };
 

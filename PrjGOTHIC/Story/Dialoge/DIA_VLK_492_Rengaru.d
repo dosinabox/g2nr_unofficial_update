@@ -28,15 +28,15 @@ instance DIA_Rengaru_PICKPOCKET(C_Info)
 	condition = DIA_Rengaru_PICKPOCKET_Condition;
 	information = DIA_Rengaru_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_20;
+	description = "(нет ничего проще, чем украсть его кольцо)";
 };
 
 
 func int DIA_Rengaru_PICKPOCKET_Condition()
 {
-	if(Npc_HasItems(self,ItMi_Gold) > 5)
+	if(Npc_HasItems(self,ItMi_SilverRing))
 	{
-		return C_Beklauen(20,5);
+		return C_StealItem(20);
 	};
 	return FALSE;
 };
@@ -50,7 +50,7 @@ func void DIA_Rengaru_PICKPOCKET_Info()
 
 func void DIA_Rengaru_PICKPOCKET_DoIt()
 {
-	B_Beklauen();
+	B_StealItem(20,Hlp_GetInstanceID(ItMi_SilverRing));
 	Info_ClearChoices(DIA_Rengaru_PICKPOCKET);
 };
 
@@ -118,16 +118,10 @@ func void DIA_Rengaru_HALLODIEB_Info()
 
 var int RengaruGold;
 
-func void B_Rengaru_NoGoldReason()
+func void B_TakeAllRengaruGold()
 {
-	if(self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE)
-	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_03");	//Но зачем я говорю тебе это? Ведь это ты меня обокрал!
-	}
-	else if(self.aivar[AIV_DefeatedByPlayer] == TRUE)
-	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_07_01");	//Ты уже забрал все, что у меня было, после того, как вырубил меня! Пусти!
-	};
+	AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_alles_07_02");	//Ты просто грабишь меня. Ладно, возьми это золото. А теперь оставь меня в покое.
+	B_GiveInvItems(self,other,ItMi_Gold,RengaruGold);
 };
 
 instance DIA_Rengaru_GOTYOU(C_Info)
@@ -173,13 +167,15 @@ func void DIA_Rengaru_GOTYOU_YouThief()
 	}
 	else if(RengaruGold > 0)
 	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_02");	//У меня уже нет этого золота.
-		B_Rengaru_NoGoldReason();
+		B_TakeAllRengaruGold();
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_alles_07_03");	//Я бы отдал тебе золото, но у меня больше ничего нет.
-		B_Rengaru_NoGoldReason();
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_02");	//У меня уже нет этого золота.
+		if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
+		{
+			AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_03");	//Но зачем я говорю тебе это? Ведь это ты меня обокрал!
+		};
 	};
 	Info_ClearChoices(DIA_Rengaru_GOTYOU);
 };
@@ -196,14 +192,16 @@ func void DIA_Rengaru_GOTYOU_Anteil()
 	}
 	else if(RengaruGold > 0)
 	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_alles_07_02");	//Ты просто грабишь меня. Ладно, возьми это золото. А теперь оставь меня в покое.
-		B_GiveInvItems(self,other,ItMi_Gold,RengaruGold);
+		B_TakeAllRengaruGold();
 		Info_ClearChoices(DIA_Rengaru_GOTYOU);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_GehtKlar_07_02");	//Я был бы не прочь отдать тебе половину, но у меня больше ничего нет.
-		B_Rengaru_NoGoldReason();
+		if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
+		{
+			AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_07_01");	//Ты уже забрал все, что у меня было, после того, как вырубил меня! Пусти!
+		};
 		Info_ClearChoices(DIA_Rengaru_GOTYOU);
 	};
 };
@@ -211,8 +209,7 @@ func void DIA_Rengaru_GOTYOU_Anteil()
 func void DIA_Rengaru_GOTYOU_Anteil_alles()
 {
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_alles_15_00");	//Нет, ты отдашь мне все!
-	AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_alles_07_02");	//Ты просто грабишь меня. Ладно, возьми это золото. А теперь оставь меня в покое.
-	B_GiveInvItems(self,other,ItMi_Gold,RengaruGold);
+	B_TakeAllRengaruGold();
 	Info_ClearChoices(DIA_Rengaru_GOTYOU);
 };
 
@@ -229,6 +226,10 @@ func void DIA_Rengaru_GOTYOU_WhoAreYou()
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_WhoAreYou_15_00");	//... и теперь ты расскажешь мне, кто ты такой.
 	AI_Output(self,other,"DIA_Rengaru_GOTYOU_WhoAreYou_07_01");	//Я просто бедный человек, пытающийся свести концы с концами.
 	AI_Output(self,other,"DIA_Rengaru_GOTYOU_WhoAreYou_07_02");	//А что еще мне делать? Я не могу найти работу в городе...
+	if(RengaruGold == 0)
+	{
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_alles_07_03");	//Я бы отдал тебе золото, но у меня больше ничего нет.
+	};
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_WhoAreYou_15_03");	//... хорошо, я понимаю. Хватит хныкать.
 };
 

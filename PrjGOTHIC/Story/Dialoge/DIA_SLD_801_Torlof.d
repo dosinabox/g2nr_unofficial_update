@@ -635,10 +635,20 @@ instance DIA_Torlof_BengarSuccess(C_Info)
 
 func int DIA_Torlof_BengarSuccess_Condition()
 {
-//	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && Npc_IsDead(Rumbold) && Npc_IsDead(Rick))
-	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && ((Npc_IsDead(Rumbold) && Npc_IsDead(Rick)) || (Miliz_Flucht == TRUE) || (Bengar_MilSuccess == TRUE)))
+	if(MIS_Torlof_BengarMilizKlatschen == LOG_Running)
 	{
-		return TRUE;
+		if(Miliz_Flucht == TRUE)
+		{
+			return TRUE;
+		};
+		if(Bengar_MilSuccess == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_IsDead(Rumbold) && Npc_IsDead(Rick))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -946,9 +956,12 @@ instance DIA_Torlof_DmtSuccess(C_Info)
 
 func int DIA_Torlof_DmtSuccess_Condition()
 {
-	if((MIS_Torlof_Dmt == LOG_Running) && Npc_IsDead(CastlemineDMT))
+	if(MIS_Torlof_Dmt == LOG_Running)
 	{
-		return TRUE;
+		if(Npc_IsDead(CastlemineDMT))
+		{
+			return TRUE;
+		};
 	};
 };
 
