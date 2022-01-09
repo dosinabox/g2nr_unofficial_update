@@ -288,11 +288,11 @@ func void B_Build_Settings_Diag()
 	};*/
 	if(IgnoreBonuses == FALSE)
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование постоянных бонусов при расчете стоимости обучения",StoryHelper_Bonuses);
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование постоянных бонусов при обучении",StoryHelper_Bonuses);
 	}
 	else
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование постоянных бонусов при расчете стоимости обучения",StoryHelper_Bonuses);
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование постоянных бонусов при обучении",StoryHelper_Bonuses);
 	};
 	if(AddonDisabled == FALSE)
 	{
@@ -453,12 +453,14 @@ func void StoryHelper_Bonuses()
 	if(IgnoreBonuses == TRUE)
 	{
 		IgnoreBonuses = FALSE;
+		TAL_TeachLimitFlags_TS_PermBonus = 1;
 		TAL_CostFlags_TS_PermBonus = 1;
 		PrintScreen("Оригинал: бонусы нужно копить",-1,-1,FONT_Screen,2);
 	}
 	else
 	{
 		IgnoreBonuses = TRUE;
+		TAL_TeachLimitFlags_TS_PermBonus = 0;
 		TAL_CostFlags_TS_PermBonus = 0;
 		PrintScreen("Теперь бонусы можно не копить",-1,-1,FONT_Screen,2);
 	};
@@ -708,7 +710,7 @@ func void StoryHelper_HardMode_Back()
 	B_Build_Settings_Diag();
 };
 
-func void StoryHelper_Penalties()
+/*func void StoryHelper_Penalties()
 {
 	if(PenaltiesAffectLearnCost == TRUE)
 	{
@@ -721,7 +723,7 @@ func void StoryHelper_Penalties()
 		PrintScreen("Влияние штрафов на стоимость обучения включено",-1,-1,FONT_Screen,3);
 	};
 	B_Build_Settings_Diag();
-};
+};*/
 
 func void StoryHelper_LehmarBook()
 {

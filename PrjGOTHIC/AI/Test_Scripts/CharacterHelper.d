@@ -421,12 +421,9 @@ func void CH_RESET_Ok()
 	hero.exp = 0;
 	hero.exp_next = XP_PER_LEVEL;
 	hero.attribute[ATR_STRENGTH] = 10;
-	hero.aivar[REAL_STRENGTH] = 10;
 	hero.attribute[ATR_DEXTERITY] = 10;
-	hero.aivar[REAL_DEXTERITY] = 10;
 	hero.attribute[ATR_MANA_MAX] = 10;
 	hero.attribute[ATR_MANA] = 10;
-	hero.aivar[REAL_MANA_MAX] = 10;
 	hero.attribute[ATR_HITPOINTS_MAX] = 40;
 	hero.attribute[ATR_HITPOINTS] = 40;
 	hero.HitChance[NPC_TALENT_1H] = 10;
@@ -556,17 +553,6 @@ func void CH_RESET_Ok()
 	PLAYER_TALENT_WISPDETECTOR[WISPSKILL_POTIONS] = FALSE;
 	PrintScreen("Восстановлен исходный PC_Hero",-1,-1,FONT_Screen,2);
 	Info_ClearChoices(CH_RESET);
-//	Npc_SetTalentSkill(hero,NPC_TALENT_1H,0);
-//	hero.aivar[REAL_TALENT_1H] = 10;
-//	Npc_SetTalentSkill(hero,NPC_TALENT_2H,0);
-//	hero.aivar[REAL_TALENT_2H] = 10;
-//	Npc_SetTalentSkill(hero,NPC_TALENT_BOW,0);
-//	hero.aivar[REAL_TALENT_BOW] = 10;
-//	Npc_SetTalentSkill(hero,NPC_TALENT_CROSSBOW,0);
-//	hero.aivar[REAL_TALENT_CROSSBOW] = 10;
-//	Npc_SetTalentSkill(hero,NPC_TALENT_FIREMASTER,0);
-//	Npc_SetTalentSkill(hero,NPC_TALENT_D,0);
-//	Npc_SetTalentSkill(hero,NPC_TALENT_E,0);
 };
 
 var int GuildStart;
