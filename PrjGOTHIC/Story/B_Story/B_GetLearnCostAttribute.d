@@ -59,24 +59,6 @@ func int GetRegenerationAttributeCost(var int current)
 
 func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut,var int amount)
 {
-	var int current;
-	if(attribut == ATR_STRENGTH)
-	{
-		current = oth.aivar[REAL_STRENGTH];
-		if(PenaltiesAffectLearnCost == TRUE)
-		{
-			current -= OrcRingCurrentPenalty;
-		};
-		return GetMainAttributeCost(current,amount);
-	};
-	if(attribut == ATR_DEXTERITY)
-	{
-		return GetMainAttributeCost(oth.aivar[REAL_DEXTERITY],amount);
-	};
-	if(attribut == ATR_MANA_MAX)
-	{
-		return GetMainAttributeCost(oth.aivar[REAL_MANA_MAX],amount);
-	};
 	if(attribut == ATR_REGENERATEHP)
 	{
 		return GetRegenerationAttributeCost(oth.attribute[ATR_REGENERATEHP]);
@@ -85,7 +67,6 @@ func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut,var int amount)
 	{
 		return GetRegenerationAttributeCost(oth.attribute[ATR_REGENERATEMANA]);
 	};
-	Print(PRINT_WrongParameter);
-	return 0;
+	return GetMainAttributeCost(RealAttributeValue(attribut),amount);
 };
 
