@@ -374,7 +374,7 @@ func void DIA_Rengaru_Zeichen_Info()
 	AI_Output(self,other,"DIA_Rengaru_Zeichen_07_01");	//Я скажу тебе кое-что. Если ты намереваешься залезть в чей-нибудь карман в городе, будь особенно осторожен с торговцами!
 	AI_Output(self,other,"DIA_Rengaru_Zeichen_07_02");	//Они очень бдительны и глаз не спускают со своих вещей. Но я могу дать тебе совет.
 	AI_Output(self,other,"DIA_Rengaru_Zeichen_07_03");	//Попробуй взять нужный тебе предмет одной рукой, размахивая при этом другой. Это отвлечет их.
-	B_RaiseAttribute(other,ATR_DEXTERITY,1);
+	B_RaiseAttributeByPermBonus(other,ATR_DEXTERITY,1);
 	Snd_Play("LEVELUP");
 };
 

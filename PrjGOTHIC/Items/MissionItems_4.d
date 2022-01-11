@@ -36,7 +36,6 @@ instance ItMW_1H_FerrosSword_Mis(C_Item)
 	range = Range_Special_1H_2;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Special_1H_2;
-//	visual = "ItMw_060_1h_Sword_smith_03.3DS";
 	visual = "ItMw_060_1h_Sword_smith_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -191,7 +190,6 @@ instance ItPo_DragonEggDrinkNeoras_MIS(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	value = 300;
-//	visual = "ItPo_Perm_STR.3ds";
 	visual = "ItPo_Special_01.3ds";
 	material = MAT_GLAS;
 	on_state[0] = Use_DragonEggDrinkNeoras;
@@ -208,7 +206,7 @@ instance ItPo_DragonEggDrinkNeoras_MIS(C_Item)
 func void Use_DragonEggDrinkNeoras()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Elixier);
-	B_RaiseAttribute(self,ATR_STRENGTH,3);
+	B_RaiseAttributeByPermBonus(self,ATR_STRENGTH,3);
 	Snd_Play("DEM_Warn");
 	Neoras_SCUsedDragonEggDrink = TRUE;
 };

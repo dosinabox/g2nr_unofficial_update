@@ -16,7 +16,7 @@ func void B_DaronSegen(var int gold)
 		}
 		else if((Daron_Spende < 250) && (Daron_Bonus1 == FALSE))
 		{
-			B_RaiseAttribute(other,ATR_MANA_MAX,2);
+			B_RaiseAttributeByPermBonus(other,ATR_MANA_MAX,2);
 			other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
 			Daron_Bonus1 = TRUE;
 		}
@@ -32,7 +32,7 @@ func void B_DaronSegen(var int gold)
 		}
 		else
 		{
-			B_RaiseAttribute(other,ATR_HITPOINTS_MAX,5);
+			B_RaiseAttributeByPermBonus(other,ATR_HITPOINTS_MAX,5);
 			other.attribute[ATR_HITPOINTS] = other.attribute[ATR_HITPOINTS_MAX];
 			other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
 		};

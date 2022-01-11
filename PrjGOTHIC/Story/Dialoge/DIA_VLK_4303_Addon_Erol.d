@@ -572,7 +572,7 @@ func void DIA_Addon_Erol_Teach_Info()
 		AI_Output(self,other,"DIA_Addon_Erol_Teach_Add_10_01");	//Когда ты наносишь удар, используй не силу руки, а силу всего тела.
 		AI_Output(self,other,"DIA_Addon_Erol_Teach_Add_10_02");	//В одно и то же время ты должен развернуть бедро, вынести вперед плечо и распрямить руку.
 		AI_Output(self,other,"DIA_Addon_Erol_Teach_Add_10_03");	//(смеется) Если ты нанесешь удар правильно, то ты это поймешь!
-		B_RaiseAttribute(other,ATR_STRENGTH,1);
+		B_RaiseAttributeByPermBonus(other,ATR_STRENGTH,1);
 		Erol_Bonus = TRUE;
 	}
 	else

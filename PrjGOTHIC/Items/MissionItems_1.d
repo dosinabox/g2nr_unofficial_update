@@ -723,7 +723,7 @@ instance ItPo_Perm_LittleMana(C_Item)
 
 func void UseItPo_LittleMana()
 {
-	B_RaiseAttribute(self,ATR_MANA_MAX,3);
+	B_RaiseAttributeByPermBonus(self,ATR_MANA_MAX,3);
 };
 
 

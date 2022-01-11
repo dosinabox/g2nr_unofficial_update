@@ -2446,18 +2446,18 @@ func int DIA_Lares_TEACH_Condition()
 func void DIA_Lares_TEACH_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_Teach_15_00");	//Тренируй меня.
-	Lares_MerkeDEX = other.aivar[REAL_DEXTERITY];
-	Lares_MerkeSTR = other.aivar[REAL_STRENGTH];
+	Lares_MerkeDEX = ATR_Training[ATR_DEXTERITY];
+	Lares_MerkeSTR = ATR_Training[ATR_STRENGTH];
 	B_BuildLearnDialog_Lares();
 };
 
 func void DIA_Lares_TEACH_BACK()
 {
-	if(other.aivar[REAL_DEXTERITY] > Lares_MerkeDEX)
+	if(ATR_Training[ATR_DEXTERITY] > Lares_MerkeDEX)
 	{
 		AI_Output(self,other,"DIA_Lares_TEACH_BACK_09_00");	//Ты уже стал более ловким.
 	};
-	if(other.aivar[REAL_STRENGTH] > Lares_MerkeSTR)
+	if(ATR_Training[ATR_STRENGTH] > Lares_MerkeSTR)
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_TEACH_BACK_Add_09_00");	//(оценивающе) Очень хорошо. Ты стал сильнее.
 	};

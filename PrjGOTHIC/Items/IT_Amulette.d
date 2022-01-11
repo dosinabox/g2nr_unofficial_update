@@ -232,12 +232,12 @@ instance ItAm_Dex_01(C_Item)
 
 func void Equip_ItAm_Dex_01()
 {
-	Npc_ChangeAttribute(self,ATR_DEXTERITY,Am_Dex);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,Am_Dex);
 };
 
 func void UnEquip_ItAm_Dex_01()
 {
-	Npc_ChangeAttribute(self,ATR_DEXTERITY,-Am_Dex);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,-Am_Dex);
 };
 
 
@@ -265,12 +265,12 @@ instance ItAm_Strg_01(C_Item)
 
 func void Equip_ItAm_Strg_01()
 {
-	Npc_ChangeAttribute(self,ATR_STRENGTH,Am_Strg);
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,Am_Strg);
 };
 
 func void UnEquip_ItAm_Strg_01()
 {
-	Npc_ChangeAttribute(self,ATR_STRENGTH,-Am_Strg);
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,-Am_Strg);
 };
 
 
@@ -366,14 +366,14 @@ instance ItAm_Dex_Strg_01(C_Item)
 
 func void Equip_ItAm_Dex_Strg_01()
 {
-	Npc_ChangeAttribute(self,ATR_DEXTERITY,Am_DexStrg_Dex);
-	Npc_ChangeAttribute(self,ATR_STRENGTH,Am_DexStrg_Strg);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,Am_DexStrg_Dex);
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,Am_DexStrg_Strg);
 };
 
 func void UnEquip_ItAm_Dex_Strg_01()
 {
-	Npc_ChangeAttribute(self,ATR_DEXTERITY,-Am_DexStrg_Dex);
-	Npc_ChangeAttribute(self,ATR_STRENGTH,-Am_DexStrg_Strg);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,-Am_DexStrg_Dex);
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,-Am_DexStrg_Strg);
 };
 
 
