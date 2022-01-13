@@ -271,7 +271,7 @@ var int Merdarion_ADW_Empty;
 
 func void B_BuildLearnDialog_Merdarion()
 {
-	if(other.aivar[REAL_MANA_MAX] >= T_HIGH)
+	if(RealAttributeValue(ATR_MANA_MAX) >= T_HIGH)
 	{
 		AI_Output(self,other,"DIA_Addon_Merdarion_ADW_TEACH_MANA_06_00");	//То, что ты просишь, выходит за рамки моих способностей.
 		AI_Output(self,other,"DIA_Addon_Merdarion_ADW_TEACH_MANA_06_01");	//Ты уже знаешь все, чему бы я тебя мог научить.

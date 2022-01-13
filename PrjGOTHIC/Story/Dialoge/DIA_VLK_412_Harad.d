@@ -935,17 +935,17 @@ func int DIA_Harad_TeachSTR_Condition()
 func void DIA_Harad_TeachSTR_Info()
 {
 	AI_Output(other,self,"DIA_Harad_TeachSTR_15_00");	//Я хочу стать сильнее!
-	Harad_Merke_STR = other.aivar[REAL_STRENGTH];
+	Harad_Merke_STR = ATR_Training[ATR_STRENGTH];
 	B_BuildLearnDialog_Harad();
 };
 
 func void DIA_Harad_TeachSTR_BACK()
 {
-	if(Harad_Merke_STR < other.aivar[REAL_STRENGTH])
+	if(Harad_Merke_STR < ATR_Training[ATR_STRENGTH])
 	{
 		AI_Output(self,other,"DIA_Harad_TeachSTR_BACK_12_01");	//Ты уже нарастил немного мускулов.
 	};
-	if(other.aivar[REAL_STRENGTH] < T_MED)
+	if(RealAttributeValue(ATR_STRENGTH) < T_MED)
 	{
 		AI_Output(self,other,"DIA_Harad_TeachSTR_BACK_12_02");	//Возвращайся, если хочешь поучиться еще.
 	};

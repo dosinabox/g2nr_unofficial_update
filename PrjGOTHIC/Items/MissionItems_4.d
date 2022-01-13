@@ -163,9 +163,9 @@ instance ItRi_OrcEliteRing(C_Item)
 
 func void Equip_OrcEliteRing()
 {
-	if(self.attribute[ATR_STRENGTH] >= OrcRingPenalty)
+	if(RealAttributeValue(ATR_STRENGTH) >= OrcRingPenalty)
 	{
-		Npc_ChangeAttribute(self,ATR_STRENGTH,-OrcRingPenalty);
+		B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,-OrcRingPenalty);
 		Print(PRINT_OrcEliteRingEquip);
 		OrcRingCurrentPenalty = OrcRingPenalty;
 	};
@@ -175,7 +175,7 @@ func void UnEquip_OrcEliteRing()
 {
 	if(OrcRingCurrentPenalty != 0)
 	{
-		Npc_ChangeAttribute(self,ATR_STRENGTH,OrcRingPenalty);
+		B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,OrcRingPenalty);
 		Print(PRINT_Eat3);
 		OrcRingCurrentPenalty = 0;
 	};

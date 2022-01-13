@@ -987,7 +987,7 @@ var int Pyrokar_TeachMANA_NoPerm;
 
 func void B_BuildLearnDialog_Pyrokar()
 {
-	if(other.aivar[REAL_MANA_MAX] >= T_MEGA)
+	if(RealAttributeValue(ATR_MANA_MAX) >= T_MEGA)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_TEACH_MANA_11_00");	//Я чувствую, как магическая энергия течет через тебя, не зная преград. Даже я не могу показать тебе, как повысить ее еще больше.
 		Pyrokar_TeachMANA_NoPerm = TRUE;

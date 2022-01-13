@@ -450,6 +450,7 @@ func void CH_RESET_Ok()
 	B_SetHeroSkin();
 	B_ClearHeroOverlays();
 	B_ResetTalentSystem();
+	B_ResetAttributeSystem();
 	PLAYER_TALENT_SMITH[WEAPON_Common] = FALSE;
 	PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] = FALSE;
 	PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] = FALSE;

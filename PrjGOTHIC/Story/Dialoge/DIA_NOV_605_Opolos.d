@@ -234,7 +234,7 @@ func void B_BuildLearnDialog_Opolos()
 {
 	Info_ClearChoices(DIA_Opolos_TEACH_STR);
 	Info_AddChoice(DIA_Opolos_TEACH_STR,Dialog_Back,DIA_Opolos_TEACH_STR_BACK);
-	if(other.aivar[REAL_STRENGTH] >= T_MED)
+	if(RealAttributeValue(ATR_STRENGTH) >= T_MED)
 	{
 		AI_Output(self,other,"DIA_Opolos_TEACH_STR_12_00");	//Ты стал очень сильным. Мне больше нечему учить тебя.
 	}

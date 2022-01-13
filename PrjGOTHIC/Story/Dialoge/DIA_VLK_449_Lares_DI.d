@@ -77,7 +77,7 @@ func void B_BuildLearnDialog_Lares_DI()
 	};
 	if(Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (other.attribute[ATR_DEXTERITY] >= T_MED) && (VisibleTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Lares))
 	{
-		if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Lares) && (other.aivar[REAL_DEXTERITY] >= T_MED))
+		if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Lares) && (RealAttributeValue(ATR_DEXTERITY) >= T_MED))
 		{
 			DIA_Lares_DI_Teacher_permanent = TRUE;
 		};

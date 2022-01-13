@@ -387,21 +387,18 @@ func void UseItPo_PotionOfDeath()
 {
 	if(self.guild == GIL_KDF)
 	{
-		Wld_PlayEffect("spellFX_LIGHTSTAR_BLUE",self,self,0,0,0,FALSE);
-		Snd_Play("SFX_HealObsession");
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
-		Npc_ChangeAttribute(self,ATR_STRENGTH,5);
-		Npc_ChangeAttribute(self,ATR_DEXTERITY,5);
-		if(IgnoreBonuses == FALSE)
-		{
-			B_RaiseRealAttributeLearnCounter(self,ATR_STRENGTH,5);
-			B_RaiseRealAttributeLearnCounter(self,ATR_DEXTERITY,5);
-		};
+		ATR_PermBonus[ATR_STRENGTH] += 5;
+		self.attribute[ATR_STRENGTH] += 5;
 		PrintScreen(PRINT_LearnSTR5,-1,43,FONT_Screen,3);
+		ATR_PermBonus[ATR_DEXTERITY] += 5;
+		self.attribute[ATR_DEXTERITY] += 5;
 		PrintScreen(PRINT_LearnDEX5,-1,48,FONT_Screen,3);
+		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
+		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 		PrintScreen(PRINT_FullyHealed,-1,53,FONT_Screen,3);
 		Mdl_ApplyOverlayMdsTimed(self,"Humans_Sprint.mds",Time_Speed);
+		Wld_PlayEffect("spellFX_LIGHTSTAR_BLUE",self,self,0,0,0,FALSE);
+		Snd_Play("SFX_HealObsession");
 	}
 	else
 	{

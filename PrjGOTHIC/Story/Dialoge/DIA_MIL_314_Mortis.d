@@ -190,7 +190,7 @@ func void DIA_Mortis_CanTeach_Info()
 
 func void B_BuildLearnDialog_Mortis()
 {
-	if(other.aivar[REAL_STRENGTH] >= 150)
+	if(RealAttributeValue(ATR_STRENGTH) >= 150)
 	{
 		AI_Output(self,other,"DIA_Mortis_Teach_13_00");	//“ы и так достаточно силен. ≈сли же ты стремишьс€ к большему, найди себе другого учител€.
 	}

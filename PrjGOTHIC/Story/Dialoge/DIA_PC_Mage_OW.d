@@ -556,7 +556,7 @@ var int Milten_OW_TeachMANA_NoPerm;
 
 func void B_BuildLearnDialog_Milten_OW()
 {
-	if(other.aivar[REAL_MANA_MAX] >= T_MED)
+	if(RealAttributeValue(ATR_MANA_MAX) >= T_MED)
 	{
 		AI_Output(self,other,"DIA_MiltenOW_Mana_03_00");	//Твоя магическая энергия велика. Слишком велика, чтобы я мог увеличить ее.
 		Milten_OW_TeachMANA_NoPerm = TRUE;

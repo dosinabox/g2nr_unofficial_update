@@ -115,7 +115,7 @@ func void UseLouHammer()
 {
 	if(Hammer_Once == FALSE)
 	{
-		B_RaiseAttribute(self,ATR_MANA_MAX,Mana_LousHammer);
+		B_RaiseAttributeByPermBonus(self,ATR_MANA_MAX,Mana_LousHammer);
 		TEXT_LousHammer_Setting = PRINT_LousHammerNoEffect;
 		Hammer_Once = TRUE;
 	};
@@ -255,15 +255,13 @@ instance ItFo_Addon_FireStew(C_Item)
 
 func void Use_FireStew()
 {
-	var string concatText;
-	B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HP_FireStew);
+	ATR_PermBonus[ATR_HITPOINTS_MAX] += HP_FireStew;
+	self.attribute[ATR_HITPOINTS_MAX] += HP_FireStew;
+	self.attribute[ATR_HITPOINTS] += HP_FireStew;
+	PrintScreen(ConcatStrings(PRINT_LearnHP_MAX,IntToString(HP_FireStew)),-1,43,FONT_Screen,2);
+	ATR_PermBonus[ATR_STRENGTH] += STR_FireStew;
 	self.attribute[ATR_STRENGTH] += STR_FireStew;
-	if(IgnoreBonuses == FALSE)
-	{
-		B_RaiseRealAttributeLearnCounter(self,ATR_STRENGTH,STR_FireStew);
-	};
-	concatText = ConcatStrings(PRINT_LearnSTR,IntToString(STR_FireStew));
-	PrintScreen(concatText,-1,53,FONT_Screen,2);
+	PrintScreen(ConcatStrings(PRINT_LearnSTR,IntToString(Mana_CoragonsBeer)),-1,-1,FONT_Screen,2);
 };
 
 
@@ -293,7 +291,7 @@ func void Use_MeatSoup()
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Stew);
 	if(Npc_IsPlayer(self))
 	{
-		B_RaiseAttribute(self,ATR_STRENGTH,STR_MeatSoup);
+		B_RaiseAttributeByPermBonus(self,ATR_STRENGTH,STR_MeatSoup);
 	};
 };
 

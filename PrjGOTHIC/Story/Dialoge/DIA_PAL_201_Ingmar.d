@@ -126,7 +126,7 @@ func void B_BuildLearnDialog_Ingmar()
 {
 	Info_ClearChoices(DIA_Ingmar_Teach);
 	Info_AddChoice(DIA_Ingmar_Teach,Dialog_Back,DIA_Ingmar_Teach_BACK);
-	if(other.aivar[REAL_STRENGTH] >= T_MAX)
+	if(RealAttributeValue(ATR_STRENGTH) >= T_MAX)
 	{
 		AI_Output(self,other,"DIA_Ingmar_Teach_06_00");	//Ты и так силен как тролль. Мне нечему учить тебя.
 	}

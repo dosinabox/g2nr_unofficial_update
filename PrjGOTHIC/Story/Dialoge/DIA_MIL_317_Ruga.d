@@ -209,7 +209,7 @@ var int DIA_Ruga_TEACHDEX_permanent;
 
 func void B_BuildLearnDialog_Ruga_DEX()
 {
-	if(other.aivar[REAL_DEXTERITY] >= T_HIGH)
+	if(RealAttributeValue(ATR_DEXTERITY) >= T_HIGH)
 	{
 		AI_Output(self,other,"DIA_Ruga_TEACHDEX_11_00");	//Ёто все, чему € мог обучить теб€. ≈сли ты хочешь стать еще более ловким, тебе лучше поискать другого учител€.
 		DIA_Ruga_TEACHDEX_permanent = TRUE;
