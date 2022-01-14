@@ -255,11 +255,14 @@ instance ItFo_Addon_FireStew(C_Item)
 
 func void Use_FireStew()
 {
-	ATR_PermBonus[ATR_HITPOINTS_MAX] += HP_FireStew;
+	if(C_NpcIsHero(self))
+	{
+		ATR_PermBonus[ATR_HITPOINTS_MAX] += HP_FireStew;
+		ATR_PermBonus[ATR_STRENGTH] += STR_FireStew;
+	};
 	self.attribute[ATR_HITPOINTS_MAX] += HP_FireStew;
 	self.attribute[ATR_HITPOINTS] += HP_FireStew;
 	PrintScreen(ConcatStrings(PRINT_LearnHP_MAX,IntToString(HP_FireStew)),-1,43,FONT_Screen,2);
-	ATR_PermBonus[ATR_STRENGTH] += STR_FireStew;
 	self.attribute[ATR_STRENGTH] += STR_FireStew;
 	PrintScreen(ConcatStrings(PRINT_LearnSTR,IntToString(Mana_CoragonsBeer)),-1,-1,FONT_Screen,2);
 };

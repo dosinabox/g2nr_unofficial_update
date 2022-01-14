@@ -387,10 +387,13 @@ func void UseItPo_PotionOfDeath()
 {
 	if(self.guild == GIL_KDF)
 	{
-		ATR_PermBonus[ATR_STRENGTH] += 5;
+		if(C_NpcIsHero(self))
+		{
+			ATR_PermBonus[ATR_STRENGTH] += 5;
+			ATR_PermBonus[ATR_DEXTERITY] += 5;
+		};
 		self.attribute[ATR_STRENGTH] += 5;
 		PrintScreen(PRINT_LearnSTR5,-1,43,FONT_Screen,3);
-		ATR_PermBonus[ATR_DEXTERITY] += 5;
 		self.attribute[ATR_DEXTERITY] += 5;
 		PrintScreen(PRINT_LearnDEX5,-1,48,FONT_Screen,3);
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];

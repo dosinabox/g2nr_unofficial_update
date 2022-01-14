@@ -9,8 +9,8 @@ instance KDF_503_Karras(Npc_Default)
 	npcType = npctype_main;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,6);
-	self.attribute[ATR_STRENGTH] = 1;
-	self.attribute[ATR_DEXTERITY] = 1;
+	attribute[ATR_STRENGTH] = 1;
+	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_STRONG;
 //	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_L_NormalBart02,BodyTex_L,ITAR_KDF_L);

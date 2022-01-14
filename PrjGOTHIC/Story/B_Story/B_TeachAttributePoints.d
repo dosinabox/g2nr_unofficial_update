@@ -3,28 +3,28 @@ func int B_TeachAttributePoints(var C_Npc slf,var C_Npc oth,var int attrib,var i
 {
 	var string concatText;
 	var int kosten;
-	var int realAttribute;
+	var int currentAttribute;
 	if((attrib != ATR_STRENGTH) && (attrib != ATR_DEXTERITY) && (attrib != ATR_MANA_MAX))
 	{
 		Print(PRINT_WrongParameter);
 		return FALSE;
 	};
-	realAttribute = RealAttributeValue(attrib);
-	if(realAttribute == teacherMAX)
+	currentAttribute = CurrentAttributeValue(attrib);
+	if(currentAttribute == teacherMAX)
 	{
 		concatText = ConcatStrings(PRINT_NoLearnOverPersonalMAX,IntToString(teacherMAX));
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);
 		B_Say(slf,oth,"$NOLEARNYOUREBETTER");
 		return FALSE;
 	};
-	if(realAttribute > teacherMAX)
+	if(currentAttribute > teacherMAX)
 	{
 		concatText = ConcatStrings(PRINT_NoLearnOverPersonalMAX,IntToString(teacherMAX));
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);
 		B_Say(slf,oth,"$YOULEARNEDSOMETHING");
 		return FALSE;
 	};
-	if((realAttribute + points) > teacherMAX)
+	if((currentAttribute + points) > teacherMAX)
 	{
 		concatText = ConcatStrings(PRINT_NoLearnOverPersonalMAX,IntToString(teacherMAX));
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);

@@ -362,11 +362,14 @@ instance ItFo_CoragonsBeer(C_Item)
 
 func void Use_CoragonsBeer()
 {
-	ATR_PermBonus[ATR_HITPOINTS_MAX] += HP_CoragonsBeer;
+	if(C_NpcIsHero(self))
+	{
+		ATR_PermBonus[ATR_HITPOINTS_MAX] += HP_CoragonsBeer;
+		ATR_PermBonus[ATR_MANA_MAX] += Mana_CoragonsBeer;
+	};
 	self.attribute[ATR_HITPOINTS_MAX] += HP_CoragonsBeer;
 	self.attribute[ATR_HITPOINTS] += HP_CoragonsBeer;
 	PrintScreen(ConcatStrings(PRINT_LearnHP_MAX,IntToString(HP_CoragonsBeer)),-1,43,FONT_Screen,2);
-	ATR_PermBonus[ATR_MANA_MAX] += Mana_CoragonsBeer;
 	self.attribute[ATR_MANA_MAX] += Mana_CoragonsBeer;
 	self.attribute[ATR_MANA] += Mana_CoragonsBeer;
 	PrintScreen(ConcatStrings(PRINT_LearnMANA_MAX,IntToString(Mana_CoragonsBeer)),-1,-1,FONT_Screen,2);

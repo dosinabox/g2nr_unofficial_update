@@ -9,7 +9,7 @@ instance BAU_980_Sagitta(Npc_Default)
 	npcType = npctype_main;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
-	self.attribute[ATR_DEXTERITY] = 1;
+	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Axe);
 //	B_CreateAmbientInv(self);

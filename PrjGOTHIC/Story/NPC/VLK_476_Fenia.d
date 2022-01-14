@@ -10,7 +10,7 @@ instance VLK_476_Fenia(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,1);
-	self.attribute[ATR_DEXTERITY] = 1;
+	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_NORMAL;
 //	B_CreateAmbientInv(self);
 	EquipItem(self,ItMw_1h_Vlk_Dagger);

@@ -9,7 +9,7 @@ instance VLK_470_Sarah(Npc_Default)
 	npcType = npctype_main;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,1);
-	self.attribute[ATR_DEXTERITY] = 1;
+	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_ShortSword5);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe8",FaceBabe_N_Blondie,BodyTexBabe_N,ITAR_VlkBabe_L);
