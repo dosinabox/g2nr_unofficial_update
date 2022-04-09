@@ -82,10 +82,11 @@ func void Rtn_Start_0()
 func void B_SetHeroExp(var int levels)
 {
 	hero.level = 0;
+	hero.lp = 0;
 	hero.exp_next = XP_PER_LEVEL;
 	hero.attribute[ATR_HITPOINTS_MAX] = 40;
 	hero.attribute[ATR_HITPOINTS] = 40;
-	hero.lp = 0;
+	ATR_Training[ATR_HITPOINTS_MAX] = 40;
 	if(levels > 0)
 	{
 		B_LevelUp(levels);

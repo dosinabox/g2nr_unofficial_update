@@ -3,6 +3,8 @@ const string WORLDNAME_NEWWORLD = "Хоринис";
 const string WORLDNAME_ADDONWORLD = "Яркендар";
 const string WORLDNAME_OLDWORLD = "Долина Рудников";
 const string WORLDNAME_DRAGONISLAND = "Ирдорат";
+const string WORLDNAME_FREEMINE = "Свободная шахта";
+const string WORLDNAME_ORCGRAVEYARD = "Кладбище орков";
 
 instance MENU_SAVEGAME_LOAD(C_MENU_DEF)
 {

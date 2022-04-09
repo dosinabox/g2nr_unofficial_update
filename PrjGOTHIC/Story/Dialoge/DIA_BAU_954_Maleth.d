@@ -1,13 +1,4 @@
 
-func void B_InsertMalethWolf()
-{
-	if(Maleth_ersterWolf == FALSE)
-	{
-		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_SHEEP_06");
-		Maleth_ersterWolf = TRUE;
-	};
-};
-
 instance DIA_Maleth_EXIT(C_Info)
 {
 	npc = BAU_954_Maleth;

@@ -24,7 +24,8 @@ const int VALUE_ITAR_DJG_L = 3000;
 const int VALUE_ITAR_DJG_M = 12000;
 const int VALUE_ITAR_DJG_H = 20000;
 const int VALUE_ITAR_Xardas = 15000;
-const int VALUE_ITAR_Lester = 300;
+const int VALUE_ITAR_PSI_M = 300;
+const int VALUE_ITAR_PSI_H = 500;
 const int VALUE_ITAR_Diego = 450;
 const int VALUE_ITAR_CorAngar = 600;
 const int VALUE_ITAR_Dementor = 500;
@@ -1067,7 +1068,38 @@ instance ITAR_Xardas(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_Lester(C_Item)
+instance ITAR_PSI_M(C_Item)
+{
+	name = "—редн€€ роба сектанта";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 20;
+	protection[PROT_BLUNT] = 20;
+	protection[PROT_POINT] = 20;
+	protection[PROT_FIRE] = 0;
+	protection[PROT_MAGIC] = 0;
+	value = VALUE_ITAR_PSI_M;
+	wear = WEAR_TORSO;
+	visual = "ItAr_Lester.3ds";
+	visual_change = "Armor_Psi_M.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+	on_equip = Equip_OpenArmor;
+	on_unequip = UnEquip_OpenArmor;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ITAR_PSI_H(C_Item)
 {
 	name = "“€жела€ роба сектанта";
 	mainflag = ITEM_KAT_ARMOR;
@@ -1077,10 +1109,10 @@ instance ITAR_Lester(C_Item)
 	protection[PROT_POINT] = 25;
 	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_Lester;
+	value = VALUE_ITAR_PSI_H;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Lester.3ds";
-	visual_change = "Armor_Lester.asc";
+	visual_change = "Armor_Psi_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_OpenArmor;

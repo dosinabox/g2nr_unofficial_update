@@ -548,7 +548,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 		}
 		else 
 		{
-			Print("ERROR");
+			Print(PRINT_Error);
 		};
 		UpdateTalent_Hero(NPC_TALENT_1H);
 		UpdateTalent_Hero(NPC_TALENT_2H);
@@ -580,7 +580,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 		}
 		else 
 		{
-			Print("ERROR");
+			Print(PRINT_Error);
 		};
 		UpdateTalent_Hero(NPC_TALENT_2H);
 		UpdateTalent_Hero(NPC_TALENT_1H);
@@ -612,7 +612,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 		}
 		else 
 		{
-			Print("ERROR");
+			Print(PRINT_Error);
 		};
 		UpdateTalent_Hero(NPC_TALENT_BOW);
 		UpdateTalent_Hero(NPC_TALENT_CROSSBOW);
@@ -644,7 +644,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 		}
 		else 
 		{
-			Print("ERROR");
+			Print(PRINT_Error);
 		};
 		UpdateTalent_Hero(NPC_TALENT_CROSSBOW);
 		UpdateTalent_Hero(NPC_TALENT_BOW);
@@ -877,7 +877,7 @@ func void B_ResetTalentSystem()
 	}
 	else
 	{
-		Print("ERROR");
+		Print(PRINT_Error);
 	};
 };
 

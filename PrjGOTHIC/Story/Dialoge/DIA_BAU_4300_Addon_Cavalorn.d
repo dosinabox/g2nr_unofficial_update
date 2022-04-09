@@ -552,10 +552,19 @@ func void DIA_Addon_Cavalorn_LETSKILLBANDITS_Info()
 	Npc_ExchangeRoutine(self,"KillBandits");
 	if(Bdt_1013_Away == FALSE)
 	{
-		Ambusher_1013.aivar[AIV_EnemyOverride] = FALSE;
+		if(!Npc_IsDead(Ambusher_1013))
+		{
+			Ambusher_1013.aivar[AIV_EnemyOverride] = FALSE;
+		};
 	};
-	Ambusher_1014.aivar[AIV_EnemyOverride] = FALSE;
-	Ambusher_1015.aivar[AIV_EnemyOverride] = FALSE;
+	if(!Npc_IsDead(Ambusher_1014))
+	{
+		Ambusher_1014.aivar[AIV_EnemyOverride] = FALSE;
+	};
+	if(!Npc_IsDead(Ambusher_1015))
+	{
+		Ambusher_1015.aivar[AIV_EnemyOverride] = FALSE;
+	};
 };
 
 func void B_Addon_Cavalorn_VatrasBrief()

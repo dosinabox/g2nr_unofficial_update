@@ -67,6 +67,7 @@ Story\B_Story\B_KillThievesGuild.d
 Story\B_Story\B_Cycle_Function.d
 Story\B_Story\B_PlayerEnteredCity.d
 Story\B_Story\B_CheckDeadMissionNPCs.d
+Story\B_Story\B_InsertNpc.d
 Story\B_Story\B_RemoveNpc.d
 Story\B_Content\B_RemoveQuarhodron.d
 Story\B_Content\B_PlayerFindItem.d

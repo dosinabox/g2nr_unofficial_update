@@ -995,4 +995,5 @@ const string PRINT_OldSave1 = "Загруженное сохранение не поддерживается!";
 const string PRINT_OldSave2 = "Пожалуйста, начните новую игру.";
 
 const string PRINT_WrongParameter = "*** ОШИБКА: Неправильный параметр ***";
+const string PRINT_Error = "*** ОШИБКА ***";
 

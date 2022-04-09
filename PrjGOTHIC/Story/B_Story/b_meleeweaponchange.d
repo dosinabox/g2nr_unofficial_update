@@ -124,6 +124,7 @@ func void b_stopmagictransform()
 		{
 			hero.exp_next = Saved_exp_next;
 		};
+		ATR_Training[ATR_HITPOINTS_MAX] += LevelUpsDuringTransform * HP_PER_LEVEL;
 		hero.attribute[ATR_HITPOINTS_MAX] += LevelUpsDuringTransform * HP_PER_LEVEL;
 		hero.attribute[ATR_HITPOINTS] += LevelUpsDuringTransform * HP_PER_LEVEL;
 		//после возврата ГГ в облик человека убить зверя

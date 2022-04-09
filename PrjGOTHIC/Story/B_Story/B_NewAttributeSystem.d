@@ -150,13 +150,13 @@ func void B_ResetAttributeSystem()
 	}
 	else
 	{
-		Print("ERROR");
+		Print(PRINT_Error);
 	};
 };
 
 func void B_CheckAttributeSystem()
 {
-	if(C_NpcIsHero(hero))
+	if(C_NpcIsHero(hero) && Npc_KnowsInfo(hero,DIA_Xardas_FirstEXIT))
 	{
 		if((ATR_Training[ATR_STRENGTH] + ATR_PermBonus[ATR_STRENGTH] + ATR_TempBonus[ATR_STRENGTH]) != hero.attribute[ATR_STRENGTH])
 		{

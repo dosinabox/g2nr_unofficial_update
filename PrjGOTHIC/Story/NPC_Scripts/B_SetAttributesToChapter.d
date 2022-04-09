@@ -62,7 +62,7 @@ func void B_SetAttributesToChapter(var C_Npc slf,var int kap)
 		slf.attribute[ATR_HITPOINTS_MAX] = 640;
 		slf.attribute[ATR_HITPOINTS] = 640;
 	}
-	else if(kap >= 6)
+	else
 	{
 		slf.level = 60;
 		slf.attribute[ATR_STRENGTH] = 200;

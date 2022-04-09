@@ -45,7 +45,7 @@ func void B_CreateAmbientInv_VLK(var int InventorySet)
 		CreateInvItems(self,ItPo_Health_01,1);
 		CreateInvItems(self,ItMi_Gold,11);
 	}
-	else if(InventorySet == 0)
+	else
 	{
 		CreateInvItems(self,ItPl_Planeberry,1);
 		CreateInvItems(self,ItFo_Apple,1);
@@ -103,7 +103,7 @@ func void B_CreateAmbientInv_BAU(var int InventorySet)
 		CreateInvItems(self,ItLsTorchburned,1);
 		CreateInvItems(self,ItMi_Gold,11);
 	}
-	else if(InventorySet == 0)
+	else
 	{
 		CreateInvItems(self,ItPl_Planeberry,1);
 		CreateInvItems(self,ItFo_Apple,1);
@@ -151,7 +151,7 @@ func void B_CreateAmbientInv_NOV(var int InventorySet)
 		CreateInvItems(self,ItFo_Fish,1);
 		CreateInvItems(self,ItPo_Mana_01,1);
 	}
-	else if(InventorySet == 0)
+	else
 	{
 		CreateInvItems(self,ItPl_Planeberry,2);
 		CreateInvItems(self,ItFo_Apple,1);
@@ -198,7 +198,7 @@ func void B_CreateAmbientInv_SLD(var int InventorySet)
 		CreateInvItems(self,ItFo_FishSoup,1);
 		CreateInvItems(self,ItMi_Gold,19);
 	}
-	else if(InventorySet == 0)
+	else
 	{
 		CreateInvItems(self,ItPl_Mushroom_02,3);
 		CreateInvItems(self,ItFo_Booze,1);
@@ -252,7 +252,7 @@ func void B_CreateAmbientInv_KDF(var int InventorySet)
 		CreateInvItems(self,ItPl_Blueplant,1);
 		CreateInvItems(self,ItMi_Gold,34);
 	}
-	else if(InventorySet == 0)
+	else
 	{
 		CreateInvItems(self,ItPl_Mushroom_02,1);
 		CreateInvItems(self,ItMi_Quartz,1);
@@ -302,7 +302,7 @@ func void B_CreateAmbientInv_MIL(var int InventorySet)
 		CreateInvItems(self,ItPl_Mushroom_02,1);
 		CreateInvItems(self,ItMi_Gold,26);
 	}
-	else if(InventorySet == 0)
+	else
 	{
 		CreateInvItems(self,ItPl_Mushroom_02,1);
 		CreateInvItems(self,ItFo_Booze,1);
@@ -356,7 +356,7 @@ func void B_CreateAmbientInv_DJG(var int InventorySet)
 		CreateInvItems(self,ItFo_Wine,1);
 		CreateInvItems(self,ItMi_Gold,46);
 	}
-	else if(InventorySet == 0)
+	else
 	{
 		CreateInvItems(self,ItFo_Sausage,1);
 		CreateInvItems(self,ItFoMuttonRaw,2);
@@ -413,7 +413,7 @@ func void B_CreateAmbientInv_PAL(var int InventorySet)
 		CreateInvItems(self,ItMi_Coal,1);
 		CreateInvItems(self,ItMi_Gold,37);
 	}
-	else if(InventorySet == 0)
+	else
 	{
 		CreateInvItems(self,ItFo_Sausage,1);
 		CreateInvItems(self,ItMi_Coal,1);
@@ -460,7 +460,7 @@ func void B_CreateAmbientInv_DMT(var int InventorySet)
 		CreateInvItems(self,ItMi_Coal,1);
 		CreateInvItems(self,ItMi_Gold,37);
 	}
-	else if(InventorySet == 0)
+	else
 	{
 		CreateInvItems(self,ItMi_Rockcrystal,1);
 		CreateInvItems(self,ItPo_Health_01,1);
@@ -497,7 +497,7 @@ func void B_CreateAmbientInv_STRF(var int InventorySet)
 	{
 		CreateInvItems(self,ItLsTorchburned,1);
 	}
-	else if(InventorySet == 0)
+	else
 	{
 		CreateInvItems(self,ItFo_Bread,1);
 		CreateInvItems(self,ItLsTorchburned,1);
@@ -545,7 +545,7 @@ func void B_CreateAmbientInv_PIR(var int InventorySet)
 		CreateInvItems(self,ItPl_Forestberry,1);
 		CreateInvItems(self,ItMw_1h_Vlk_Axe,1);
 	}
-	else if(InventorySet == 0)
+	else
 	{
 		CreateInvItems(self,ItFo_Fish,1);
 		CreateInvItems(self,ItFo_Addon_Grog,1);
@@ -597,7 +597,7 @@ func void B_CreateAmbientInv_BDT(var int InventorySet)
 			CreateInvItems(self,ItMw_Addon_BanditTrader,1);
 		};
 	}
-	else if(InventorySet == 0)
+	else
 	{
 		CreateInvItems(self,ItFo_Fish,1);
 		CreateInvItems(self,ItFo_Addon_Grog,1);
@@ -613,10 +613,6 @@ func void B_CreateAmbientInv(var C_Npc slf)
 	if(slf.guild == GIL_VLK)
 	{
 		B_CreateAmbientInv_VLK(zufall);
-	}
-	else if(slf.guild == GIL_BAU)
-	{
-		B_CreateAmbientInv_BAU(zufall);
 	}
 	else if(slf.guild == GIL_NOV)
 	{

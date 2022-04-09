@@ -217,7 +217,8 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ITAR_BDT_M,1);
 	CreateInvItems(self,ITAR_BDT_H,1);
 	CreateInvItems(self,ITAR_Xardas,1);
-	CreateInvItems(self,ITAR_Lester,1);
+	CreateInvItems(self,ITAR_PSI_M,1);
+	CreateInvItems(self,ITAR_PSI_H,1);
 	CreateInvItems(self,ITAR_Diego,1);
 	CreateInvItems(self,ITAR_CorAngar,1);
 	CreateInvItems(self,ITAR_KDW_H,1);

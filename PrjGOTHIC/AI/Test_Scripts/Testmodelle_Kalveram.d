@@ -180,7 +180,8 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_OHT);
 //	CreateInvItem(self,ITAR_DJG_Babe);
 	CreateInvItem(self,ITAR_Xardas);
-	CreateInvItem(self,ITAR_Lester);
+	CreateInvItem(self,ITAR_PSI_M);
+	CreateInvItem(self,ITAR_PSI_H);
 	CreateInvItem(self,ITAR_Diego);
 	CreateInvItem(self,ITAR_CorAngar);
 	CreateInvItem(self,ITAR_KDW_H);
@@ -1246,7 +1247,8 @@ func void UseArmor()
 	CreateInvItem(self,ITAR_DJG_H);
 	CreateInvItem(self,ITAR_DJG_Crawler);
 	CreateInvItem(self,ITAR_Xardas);
-	CreateInvItem(self,ITAR_Lester);
+	CreateInvItem(self,ITAR_PSI_M);
+	CreateInvItem(self,ITAR_PSI_H);
 	CreateInvItem(self,ITAR_Diego);
 	CreateInvItem(self,ITAR_CorAngar);
 	CreateInvItem(self,ITAR_KDW_H);
@@ -1494,6 +1496,42 @@ func void UseTimeDemo()
 		TimeDemoStarted = FALSE;
 	};
 };*/
+
+instance AttributesSyncer(C_Item)
+{
+	name = "Руна синхронизации";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItRu_TeleportOWDemonTower.3DS";
+	material = MAT_STONE;
+	scemeName = "MAP";
+	description = name;
+	text[0] = "Синхронизировать характеристики ГГ.";
+	text[1] = "Перед использованием снимите все предметы с бонусами!";
+	on_state[0] = UseAttributesSyncer;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
+};
+
+
+func void UseAttributesSyncer()
+{
+	ATR_Training[ATR_STRENGTH] = hero.attribute[ATR_STRENGTH];
+	ATR_Training[ATR_DEXTERITY] = hero.attribute[ATR_DEXTERITY];
+	ATR_Training[ATR_MANA_MAX] = hero.attribute[ATR_MANA_MAX];
+	ATR_Training[ATR_HITPOINTS_MAX] = hero.attribute[ATR_HITPOINTS_MAX];
+	ATR_PermBonus[ATR_STRENGTH] = 0;
+	ATR_PermBonus[ATR_DEXTERITY] = 0;
+	ATR_PermBonus[ATR_MANA_MAX] = 0;
+	ATR_PermBonus[ATR_HITPOINTS_MAX] = 0;
+	ATR_TempBonus[ATR_STRENGTH] = 0;
+	ATR_TempBonus[ATR_DEXTERITY] = 0;
+	ATR_TempBonus[ATR_MANA_MAX] = 0;
+	ATR_TempBonus[ATR_HITPOINTS_MAX] = 0;
+	PrintScreen("Характеристики синхронизированы",-1,55,FONT_Screen,4);
+};
 
 instance MobsiBrief(C_Item)
 {

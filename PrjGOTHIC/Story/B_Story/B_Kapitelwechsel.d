@@ -22,7 +22,6 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		Bennet_NW_ItMi_Swordraw_Count = 3;
 		IceDragonSpell = SPL_InstantFireball;
 		FullNPCRemoval = TRUE;
-		NewLogEnabled = TRUE;
 		if(C_WorldIsFixed(NEWWORLD_ZEN))
 		{
 			Wld_InsertItem(ItRu_LightHeal,"FP_ITEM_PASS_02");
