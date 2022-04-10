@@ -18,6 +18,10 @@ func int B_GiveInvItems(var C_Npc giver,var C_Npc taker,var int itemInstance,var
 	{
 		Npc_GetInvItem(giver,itemInstance);
 		itemname = item.description;
+		if(item.flags & ITEM_MISSION)
+		{
+			item.flags = item.flags & ~ITEM_MISSION;
+		};
 		if(itemInstance == ItMi_Gold)
 		{
 			concatText = ConcatStrings(IntToString(amount),PRINT_GoldGiven);
