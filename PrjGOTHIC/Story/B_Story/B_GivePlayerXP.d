@@ -9,23 +9,28 @@ func int B_GetNextLevelExp(var C_Npc slf)
 	return B_GetCurrentLevelExp(slf) + (XP_PER_LEVEL * (slf.level + 1));
 };
 
-var int LevelUpsDuringTransform;
-
-func void B_LevelUp(var int levels)
+func void B_IncreaseHeroMaxHP(var int levels)
 {
-	hero.level += levels;
-	if(PlayerIsTransformed == TRUE)
-	{
-		LevelUpsDuringTransform += levels;
-	};
-	hero.exp_next = B_GetNextLevelExp(hero);
 	hero.attribute[ATR_HITPOINTS_MAX] += levels * HP_PER_LEVEL;
 	hero.attribute[ATR_HITPOINTS] += levels * HP_PER_LEVEL;
 	if(C_NpcIsHero(hero))
 	{
 		ATR_Training[ATR_HITPOINTS_MAX] += levels * HP_PER_LEVEL;
 	};
+};
+
+var int LevelUpsDuringTransform;
+
+func void B_LevelUp(var int levels)
+{
+	if(PlayerIsTransformed == TRUE)
+	{
+		LevelUpsDuringTransform += levels;
+	};
+	hero.level += levels;
+	hero.exp_next = B_GetNextLevelExp(hero);
 	hero.lp += levels * LP_PER_LEVEL;
+	B_IncreaseHeroMaxHP(levels);
 	PrintScreen(PRINT_LevelUp,-1,YPOS_LevelUp,FONT_Screen,2);
 	Snd_Play("LEVELUP");
 };

@@ -64,7 +64,7 @@ instance YGiant_Rat(Mst_Default_Giant_Rat)
 
 instance GIANT_RATTRANSFORM(Mst_Default_Giant_Rat)
 {
-	Npc_PercEnable(self,PERC_ASSESSSURPRISE,b_stopmagictransform);
+	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_Giant_Rat();
 	Npc_SetToFistMode(self);
 	CreateInvItems(self,ItFoMuttonRaw,1);

@@ -1146,7 +1146,7 @@ var int HardModeXPModifier;
 var int AlternativeSmithing;
 var int PenaltiesAffectLearnCost;
 var int HonestStatCalculation;
-var int MonsterTransformLevel;
+//var int MonsterTransformLevel;
 var int OrcRingCurrentPenalty;
 //var int Keule1HCurrentPenalty;
 //var int Keule2HCurrentPenalty;

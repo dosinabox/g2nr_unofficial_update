@@ -70,7 +70,7 @@ Story\B_Story\B_InsertNpc.d
 Story\B_Story\B_RemoveNpc.d
 Story\B_Content\B_RemoveQuarhodron.d
 Story\B_Content\B_PlayerFindItem.d
-Story\B_Story\b_meleeweaponchange.d
+Story\B_Story\B_MagicTransform.d
 Story\B_Story\B_NpcSetDrunk.d
 Story\B_Story\B_InspectMeleeWeapon.d
 Story\B_Story\B_CheckRedLightUndercover.d
@@ -142,7 +142,6 @@ AI\AI_Intern\B_RefreshAtInsert.d
 AI\Human\Guilds.d
 AI\Human\B_RefreshArmor.d
 AI\Human\C_Human\C_BodyStateContains.d
-AI\Human\C_Human\C_DetectOpponentStrength.d
 AI\Human\C_Human\C_NpcIsBotheredByPlayerRoomGuild.d
 AI\Human\C_Human\C_IsUsedMobMyPossession.d
 AI\Human\C_Human\C_IsTakenItemMyPossession.d

@@ -122,7 +122,7 @@ instance Grimbald_Snapper3(Mst_Default_Snapper)
 
 instance SNAPPERTRANSFORM(Mst_Default_Snapper)
 {
-	Npc_PercEnable(self,PERC_ASSESSSURPRISE,b_stopmagictransform);
+	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_Snapper();
 	Npc_SetToFistMode(self);
 };

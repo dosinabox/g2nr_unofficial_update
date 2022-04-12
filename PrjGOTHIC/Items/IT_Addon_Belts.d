@@ -504,7 +504,6 @@ instance ItBe_Addon_Prot_Point(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_Prot_Point;
-//	visual = "ItMi_Belt_11.3ds";
 	visual = "ItMi_Belt_18.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
