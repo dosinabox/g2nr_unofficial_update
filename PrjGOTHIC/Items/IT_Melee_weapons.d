@@ -2323,7 +2323,7 @@ instance ItMw_1H_Blessed_01(C_Item)
 	range = Range_Blessed_1H_1;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Blessed_1H_1;
-	visual = "itmw_030_1h_PAL_sword_bastard_RAW_01.3ds";
+	visual = "ItMw_030_1h_PAL_sword_bastard_RAW_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;

@@ -457,7 +457,7 @@ instance DIA_Addon_AlligatorJack_AlligatorJackInter1(C_Info)
 
 func int DIA_Addon_AlligatorJack_AlligatorJackInter1_Condition()
 {
-	if((AlligatorJack_JagdStart == AlligatorJack_Inter1) && (Npc_GetDistToWP(self,"ADW_PIRATECAMP_WAY_16") <= 500))
+	if((AlligatorJack_JagdStart == AlligatorJack_Inter1) && (Npc_GetDistToWP(self,"ADW_PIRATECAMP_WAY_16") <= 500) && (GregIsBack == FALSE))
 	{
 		return TRUE;
 	};
@@ -537,7 +537,7 @@ instance DIA_Addon_AlligatorJack_AlligatorJackInter2(C_Info)
 
 func int DIA_Addon_AlligatorJack_AlligatorJackInter2_Condition()
 {
-	if((AlligatorJack_JagdStart == AlligatorJack_Inter2) && (Npc_GetDistToWP(self,"ADW_PIRATECAMP_WAY_16") <= 500) && (GregIsBack == FALSE))
+	if((AlligatorJack_JagdStart == AlligatorJack_Inter2) && (Npc_GetDistToWP(self,"ADW_PIRATECAMP_WAY_16") <= 250) && (GregIsBack == FALSE))
 	{
 		return TRUE;
 	};

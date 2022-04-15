@@ -1,5 +1,5 @@
 
-const int SPL_MAGICBURN_DAMAGE_PER_SEC = 1;
+/*const int SPL_MAGICBURN_DAMAGE_PER_SEC = 1;
 
 func void B_StopMagicBurn()
 {
@@ -72,5 +72,5 @@ func int ZS_MagicBurn_Loop()
 
 func void ZS_MagicBurn_End()
 {
-};
+};*/
 

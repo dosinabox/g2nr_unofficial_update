@@ -1,18 +1,30 @@
 
-func int C_NpcRansacksAlways(var C_Npc slf)
+/*func int C_NpcRansacksAlways(var C_Npc slf,var C_Npc oth)
 {
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Garwig)) && (Hammer_Taken == TRUE))
+	if(Npc_HasItems(oth,Holy_Hammer_MIS))
 	{
-		return TRUE;
+		if(MIS_Golem == LOG_SUCCESS)
+		{
+			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Serpentes))
+			{
+				return TRUE;
+			};
+		};
+		if(Hammer_Taken == TRUE)
+		{
+			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Garwig))
+			{
+				return TRUE;
+			};
+		};
 	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Serpentes)) && Npc_HasItems(other,Holy_Hammer_MIS) && Npc_KnowsInfo(hero,DIA_Serpentes_SUCCESS))
+	if(Npc_HasItems(oth,ItMw_2h_Rod))
 	{
-		return TRUE;
-	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rod)) && Npc_HasItems(other,ItMw_2h_Rod))
-	{
-		return TRUE;
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rod))
+		{
+			return TRUE;
+		};
 	};
 	return FALSE;
-};
+};*/
 

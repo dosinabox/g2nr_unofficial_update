@@ -143,7 +143,6 @@ func int ZS_MagicFlee_Loop()
 	if(Npc_GetStateTime(self) > SPL_TIME_Fear)
 	{
 		Npc_ClearAIQueue(self);
-//		other = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
 		B_StopMagicFlee();
 		return LOOP_END;
 	};

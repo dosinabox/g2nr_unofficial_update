@@ -82,7 +82,7 @@ func void ZS_RansackBody_End()
 
 func void ZS_GetMeat()
 {
-	var int x;
+	var int count;
 	Perception_Set_Minimal();
 	AI_Standup(self);
 	AI_GotoNpc(self,other);
@@ -90,9 +90,12 @@ func void ZS_GetMeat()
 	{
 		AI_TurnToNPC(self,other);
 		AI_PlayAni(self,"T_PLUNDER");
-		x = Npc_HasItems(other,ItFoMuttonRaw);
-		CreateInvItems(self,ItFoMuttonRaw,x);
-		Npc_RemoveInvItems(other,ItFoMuttonRaw,x);
+		count = Npc_HasItems(other,ItFoMuttonRaw);
+		if(count > 0)
+		{
+			CreateInvItems(self,ItFoMuttonRaw,count);
+			Npc_RemoveInvItems(other,ItFoMuttonRaw,count);
+		};
 	};
 	if(self.attribute[ATR_HITPOINTS] < (self.attribute[ATR_HITPOINTS_MAX] / 2))
 	{
