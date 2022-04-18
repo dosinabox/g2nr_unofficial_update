@@ -401,6 +401,10 @@ func int DIA_Fernando_Prison_Condition()
 {
 	if((Fernando_ImKnast == TRUE) && Npc_IsInState(self,ZS_Talk) && (NpcObsessedByDMT_Fernando == FALSE))
 	{
+		if((Kapitel >= 3) && (hero.guild == GIL_KDF))
+		{
+			return FALSE;
+		};
 		return TRUE;
 	};
 };

@@ -13,7 +13,7 @@ instance VLK_439_Vatras_DI(Npc_Default)
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
-	B_SetAttributesToChapter(self,2);
+	B_SetAttributesToChapter(self,6);
 	attribute[ATR_STRENGTH] = 1;
 	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;

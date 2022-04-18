@@ -10,7 +10,7 @@ instance VLK_439_Vatras(Npc_Default)
 	aivar[AIV_MagicUser] = MAGIC_ALWAYS;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
-	B_SetAttributesToChapter(self,2);
+	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItSc_LightHeal,2);

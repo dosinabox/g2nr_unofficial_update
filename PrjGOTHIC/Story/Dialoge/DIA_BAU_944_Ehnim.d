@@ -286,7 +286,7 @@ func void DIA_Ehnim_MoleRatFett_was()
 	}
 	else
 	{
-		B_Say(other,self,"$VERSTEHE");
+		DIA_Common_Yeah();
 	};
 };
 

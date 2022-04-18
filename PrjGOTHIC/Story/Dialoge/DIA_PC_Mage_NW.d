@@ -78,9 +78,16 @@ func void DIA_MiltenNW_KAP3_Hello_FirstMeet_Info()
 
 func void DIA_MiltenNW_KAP3_Hello_FirstMeet_YES()
 {
-	if(hero.guild == GIL_PAL)
+	if((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG))
 	{
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_04");	//Проблема не только в орках.
+	}
+	else
+	{
+		DIA_Common_EverythingWillBeAlright();
+	};
+	if(hero.guild == GIL_PAL)
+	{
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_05");	//Я знаю, но все равно хорошо, что ты на нашей стороне.
 		DIA_Common_Yeah();
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_07");	//Что ты делаешь здесь, в монастыре? Дай я угадаю. Ты хочешь быть посвященным в искусство магии.
@@ -89,13 +96,10 @@ func void DIA_MiltenNW_KAP3_Hello_FirstMeet_YES()
 	}
 	else if(hero.guild == GIL_DJG)
 	{
-		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_04");	//Проблема не только в орках.
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_17");	//Я знаю, но, тем не менее, они доставляют проблемы. А ты важная птица.
-		
 	}
 	else
 	{
-		DIA_Common_EverythingWillBeAlright();
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_18");	//Ты победил Спящего. Нам всем может понадобиться твоя помощь однажды.
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_19");	//Ох, ладно.
 		Knows_Milten = TRUE;
