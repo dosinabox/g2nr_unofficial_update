@@ -55,14 +55,6 @@ func int C_WantToRansack(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(slf.guild == GIL_ORC)
-	{
-		return FALSE;
-	};
-	if(slf.guild == GIL_FRIENDLY_ORC)
-	{
-		return FALSE;
-	};
 	if(slf.guild == GIL_PAL)
 	{
 		return FALSE;

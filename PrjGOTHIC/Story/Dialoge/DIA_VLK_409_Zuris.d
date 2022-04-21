@@ -35,7 +35,7 @@ instance DIA_Zuris_PICKPOCKET(C_Info)
 
 func int DIA_Zuris_PICKPOCKET_Condition()
 {
-	return C_StealItem(40);
+	return C_CanStealFromNpc(40);
 };
 
 func void DIA_Zuris_PICKPOCKET_Info()

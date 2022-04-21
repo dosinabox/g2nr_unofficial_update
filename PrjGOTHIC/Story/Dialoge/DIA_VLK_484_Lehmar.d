@@ -317,10 +317,9 @@ instance DIA_Lehmar_PICKPOCKET(C_Info)
 
 func int DIA_Lehmar_PICKPOCKET_Condition()
 {
-//	return C_StealItems(20,Hlp_GetInstanceID(ItWr_Schuldenbuch),1);
 	if(Npc_HasItems(self,ItWr_Schuldenbuch))
 	{
-		return C_StealItem(20);
+		return C_CanStealFromNpc(20);
 	};
 	return FALSE;
 };
@@ -334,8 +333,7 @@ func void DIA_Lehmar_PICKPOCKET_Info()
 
 func void DIA_Lehmar_PICKPOCKET_DoIt()
 {
-//	B_StealItems(20,Hlp_GetInstanceID(ItWr_Schuldenbuch),1);
-	B_StealItem(20,Hlp_GetInstanceID(ItWr_Schuldenbuch));
+	B_StealItem(20,ItWr_Schuldenbuch);
 	Info_ClearChoices(DIA_Lehmar_PICKPOCKET);
 };
 

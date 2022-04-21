@@ -14,7 +14,7 @@ func int DIA_264_Ritter_PICKPOCKET_Condition()
 {
 	if(Npc_HasItems(self,ItKe_OC_Store))
 	{
-		return C_StealItem(70);
+		return C_CanStealFromNpc(70);
 	};
 	return FALSE;
 };
@@ -28,7 +28,7 @@ func void DIA_264_Ritter_PICKPOCKET_Info()
 
 func void DIA_264_Ritter_PICKPOCKET_DoIt()
 {
-	B_StealItem(70,Hlp_GetInstanceID(ItKe_OC_Store));
+	B_StealItem(70,ItKe_OC_Store);
 	Info_ClearChoices(DIA_264_Ritter_PICKPOCKET);
 };
 

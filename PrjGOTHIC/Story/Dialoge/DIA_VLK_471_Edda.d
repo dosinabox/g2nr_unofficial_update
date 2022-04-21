@@ -240,15 +240,15 @@ func int DIA_Edda_PICKPOCKET_Condition()
 {
 	if(Npc_HasItems(self,ItMi_EddasStatue))
 	{
-		return C_StealItem(20);
+		return C_CanStealFromNpc(20);
 	}
 	else if(Npc_HasItems(self,ItMi_InnosStatue))
 	{
-		return C_StealItem(20);
+		return C_CanStealFromNpc(20);
 	}
 	else if(Npc_HasItems(self,ItMi_LostInnosStatue_Daron))
 	{
-		return C_StealItem(20);
+		return C_CanStealFromNpc(20);
 	};
 	return FALSE;
 };
@@ -264,15 +264,15 @@ func void DIA_Edda_PICKPOCKET_DoIt()
 {
 	if(Npc_HasItems(self,ItMi_EddasStatue))
 	{
-		B_StealItem(20,Hlp_GetInstanceID(ItMi_EddasStatue));
+		B_StealItem(20,ItMi_EddasStatue);
 	}
 	else if(Npc_HasItems(self,ItMi_InnosStatue))
 	{
-		B_StealItem(20,Hlp_GetInstanceID(ItMi_InnosStatue));
+		B_StealItem(20,ItMi_InnosStatue);
 	}
 	else if(Npc_HasItems(self,ItMi_LostInnosStatue_Daron))
 	{
-		B_StealItem(20,Hlp_GetInstanceID(ItMi_LostInnosStatue_Daron));
+		B_StealItem(20,ItMi_LostInnosStatue_Daron);
 	};
 	Info_ClearChoices(DIA_Edda_PICKPOCKET);
 };

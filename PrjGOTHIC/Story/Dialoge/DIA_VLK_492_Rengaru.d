@@ -36,7 +36,7 @@ func int DIA_Rengaru_PICKPOCKET_Condition()
 {
 	if(Npc_HasItems(self,ItMi_SilverRing))
 	{
-		return C_StealItem(20);
+		return C_CanStealFromNpc(20);
 	};
 	return FALSE;
 };
@@ -50,7 +50,7 @@ func void DIA_Rengaru_PICKPOCKET_Info()
 
 func void DIA_Rengaru_PICKPOCKET_DoIt()
 {
-	B_StealItem(20,Hlp_GetInstanceID(ItMi_SilverRing));
+	B_StealItem(20,ItMi_SilverRing);
 	Info_ClearChoices(DIA_Rengaru_PICKPOCKET);
 };
 

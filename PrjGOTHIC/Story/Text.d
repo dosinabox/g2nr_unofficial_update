@@ -947,7 +947,7 @@ const string NAME_Letter = "Письмо";
 const string NAME_LetterSealed = "Запечатанное письмо";
 
 const string PRINT_PickPocketFailed = " - карманная кража не удалась!";
-const string PRINT_PickPocketSuccess = " - карманная кража удалась!";
+const string PRINT_PickPocketSuccess = " - карманная кража удалась! Украдено: ";
 
 const string PRINT_RequiresAlchemyTalent = "Для его создания нужно знание основ алхимии.";
 const string PRINT_KnowsBloodfly = "Теперь я знаю, что необходимо сделать, чтобы добыть целебный секрет из жала кровавой мухи.";

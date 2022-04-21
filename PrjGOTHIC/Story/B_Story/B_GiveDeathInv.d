@@ -352,52 +352,54 @@ func void B_GiveDeathInv(var C_Npc slf)
 	{
 		CreateInvItems(slf,ItAt_Addon_BCKopf,1);
 	};
-	if(slf.aivar[AIV_MM_REAL_ID] == ID_GOBBO_GREEN)
+	if(slf.guild == GIL_GOBBO)
 	{
-		GoblinGreen_Randomizer = Hlp_Random(100);
-		if(GoblinGreen_Randomizer == 0)
+		Goblin_Randomizer = Hlp_Random(100);
+		if(slf.aivar[AIV_MM_REAL_ID] == ID_GOBBO_GREEN)
 		{
-			CreateInvItems(slf,ItMi_SilverRing,1);
+			if(Goblin_Randomizer == 0)
+			{
+				CreateInvItems(slf,ItMi_SilverRing,1);
+			}
+			else if(Goblin_Randomizer <= 5)
+			{
+				CreateInvItems(slf,ItPl_Mushroom_01,1);
+			}
+			else if(Goblin_Randomizer <= 15)
+			{
+				CreateInvItems(slf,ItMi_Gold,5);
+			}
+			else if(Goblin_Randomizer <= 30)
+			{
+				CreateInvItems(slf,ItFo_Fish,1);
+			}
+			else if(Goblin_Randomizer <= 50)
+			{
+				CreateInvItems(slf,ItMi_Gold,2);
+			};
 		}
-		else if(GoblinGreen_Randomizer <= 5)
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_GOBBO_BLACK)
 		{
-			CreateInvItems(slf,ItPl_Mushroom_01,1);
-		}
-		else if(GoblinGreen_Randomizer <= 15)
-		{
-			CreateInvItems(slf,ItMi_Gold,5);
-		}
-		else if(GoblinGreen_Randomizer <= 30)
-		{
-			CreateInvItems(slf,ItFo_Fish,1);
-		}
-		else if(GoblinGreen_Randomizer <= 50)
-		{
-			CreateInvItems(slf,ItMi_Gold,2);
-		};
-	};
-	if(slf.aivar[AIV_MM_REAL_ID] == ID_GOBBO_BLACK)
-	{
-		GoblinBlack_Randomizer = Hlp_Random(100);
-		if(GoblinBlack_Randomizer == 0)
-		{
-			CreateInvItems(slf,ItMi_GoldRing,1);
-		}
-		else if(GoblinBlack_Randomizer <= 5)
-		{
-			CreateInvItems(slf,ItFo_Fish,1);
-		}
-		else if(GoblinBlack_Randomizer <= 15)
-		{
-			CreateInvItems(slf,ItMi_Gold,10);
-		}
-		else if(GoblinBlack_Randomizer <= 30)
-		{
-			CreateInvItems(slf,ItPl_Mushroom_02,1);
-		}
-		else if(GoblinBlack_Randomizer <= 50)
-		{
-			CreateInvItems(slf,ItMi_Gold,5);
+			if(Goblin_Randomizer == 0)
+			{
+				CreateInvItems(slf,ItMi_GoldRing,1);
+			}
+			else if(Goblin_Randomizer <= 5)
+			{
+				CreateInvItems(slf,ItFo_Fish,1);
+			}
+			else if(Goblin_Randomizer <= 15)
+			{
+				CreateInvItems(slf,ItMi_Gold,10);
+			}
+			else if(Goblin_Randomizer <= 30)
+			{
+				CreateInvItems(slf,ItPl_Mushroom_02,1);
+			}
+			else if(Goblin_Randomizer <= 50)
+			{
+				CreateInvItems(slf,ItMi_Gold,5);
+			};
 		};
 	}
 	else if(slf.guild == GIL_ORC)

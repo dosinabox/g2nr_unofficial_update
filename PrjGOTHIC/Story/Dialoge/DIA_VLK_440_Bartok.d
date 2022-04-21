@@ -34,8 +34,7 @@ instance DIA_Bartok_PICKPOCKET(C_Info)
 
 func int DIA_Bartok_PICKPOCKET_Condition()
 {
-//	return C_StealItems(30,Hlp_GetInstanceID(ItRw_Arrow),0);
-	return C_StealItem(30);
+	return C_CanStealFromNpc(30);
 };
 
 func void DIA_Bartok_PICKPOCKET_Info()
@@ -47,7 +46,6 @@ func void DIA_Bartok_PICKPOCKET_Info()
 
 func void DIA_Bartok_PICKPOCKET_DoIt()
 {
-//	B_StealItems(30,Hlp_GetInstanceID(ItRw_Arrow),40);
 	if(other.attribute[ATR_DEXTERITY] >= 30)
 	{
 		CreateInvItems(self,ItRw_Arrow,40);
