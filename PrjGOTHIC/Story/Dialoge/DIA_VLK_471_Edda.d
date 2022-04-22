@@ -238,15 +238,7 @@ instance DIA_Edda_PICKPOCKET(C_Info)
 
 func int DIA_Edda_PICKPOCKET_Condition()
 {
-	if(Npc_HasItems(self,ItMi_EddasStatue))
-	{
-		return C_CanStealFromNpc(20);
-	}
-	else if(Npc_HasItems(self,ItMi_InnosStatue))
-	{
-		return C_CanStealFromNpc(20);
-	}
-	else if(Npc_HasItems(self,ItMi_LostInnosStatue_Daron))
+	if(Npc_HasItems(self,ItMi_EddasStatue) || Npc_HasItems(self,ItMi_InnosStatue) || Npc_HasItems(self,ItMi_LostInnosStatue_Daron))
 	{
 		return C_CanStealFromNpc(20);
 	};

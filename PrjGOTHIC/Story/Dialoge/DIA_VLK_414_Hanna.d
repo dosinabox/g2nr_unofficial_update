@@ -684,7 +684,7 @@ func void DIA_Hanna_PICKPOCKET_Book_DoIt()
 		CreateInvItem(other,ItWr_Schuldenbuch);
 		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Ханна",PRINT_PickPocketSuccess));
+		B_LogEntry(Topic_PickPocket,ConcatStrings("Ханна",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
 	}
 	else
 	{

@@ -224,10 +224,7 @@ func int DIA_Ehnim_PERMKAP1_Condition()
 func void DIA_Ehnim_PERMKAP1_Info()
 {
 	AI_Output(self,other,"DIA_Ehnim_PERMKAP1_12_00");	//Тебе мало того, что ты натворил? Я думаю, тебе лучше уйти.
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 66) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-	{
-		AI_StopProcessInfos(self);
-	};
+	AI_StopProcessInfos_Pickpocket(76);
 };
 
 
@@ -392,10 +389,7 @@ func int DIA_Ehnim_PERMKAP3_Condition()
 func void DIA_Ehnim_PERMKAP3_Info()
 {
 	AI_Output(self,other,"DIA_Ehnim_PERMKAP3_12_00");	//У меня нет времени на тебя.
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 66) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-	{
-		AI_StopProcessInfos(self);
-	};
+	AI_StopProcessInfos_Pickpocket(76);
 };
 
 

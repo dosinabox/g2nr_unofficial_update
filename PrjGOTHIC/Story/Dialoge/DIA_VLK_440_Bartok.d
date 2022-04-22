@@ -52,7 +52,7 @@ func void DIA_Bartok_PICKPOCKET_DoIt()
 		B_GiveInvItems(self,other,ItRw_Arrow,40);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Барток",PRINT_PickPocketSuccess));
+		B_LogEntry(Topic_PickPocket,ConcatStrings("Барток",ConcatStrings(PRINT_PickPocketSuccess,"40 стрел.")));
 	}
 	else
 	{

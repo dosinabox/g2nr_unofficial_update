@@ -55,7 +55,7 @@ func void DIA_Addon_Cavalorn_PICKPOCKET_DoIt()
 		B_GiveInvItems(self,other,ItRw_Arrow,44);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Кавалорн",PRINT_PickPocketSuccess));
+		B_LogEntry(Topic_PickPocket,ConcatStrings("Кавалорн",ConcatStrings(PRINT_PickPocketSuccess,"44 стрелы.")));
 	}
 	else
 	{

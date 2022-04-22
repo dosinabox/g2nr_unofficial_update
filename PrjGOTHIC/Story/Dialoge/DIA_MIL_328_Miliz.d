@@ -55,10 +55,7 @@ func void DIA_328_Miliz_Hi_Info()
 		AI_Output(other,self,"DIA_328_Miliz_Hi_15_03");	//Главный? Над чем? Над этими сундуками?
 		AI_Output(self,other,"DIA_328_Miliz_Hi_08_04");	//Эй, этот склад находится в моем ведении, понял? Так что проваливай, или я раскрою твой череп.
 		other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,Mil_328_Checkpoint);
-		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 25) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-		{
-			AI_StopProcessInfos(self);
-		};
+		AI_StopProcessInfos_Pickpocket(35);
 		Npc_SetRefuseTalk(self,20);
 	};
 };

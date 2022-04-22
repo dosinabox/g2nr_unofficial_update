@@ -30,7 +30,7 @@ func int C_Beklauen(var int TheftDex,var int TheftGold)
 	};
 	if(Npc_IsInState(self,ZS_Talk))
 	{
-		if(TheftDex <= 20)
+		if((TheftDex <= 20) && (EasyLowDexPickpocketDisabled == FALSE))
 		{
 			TheftDexGlob = 10;
 		}
@@ -115,6 +115,14 @@ func void B_StealItem(var int TheftDex,var int itemInstance)
 		{
 			B_Attack(self,other,AR_Theft,1);
 		};
+	};
+};
+
+func void AI_StopProcessInfos_Pickpocket(var int TheftDex)
+{
+	if(!C_CanStealFromNpc(TheftDex))
+	{
+		AI_StopProcessInfos(self);
 	};
 };
 

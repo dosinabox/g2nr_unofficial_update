@@ -110,7 +110,7 @@ func int DIA_Morgahard_Perm_Condition()
 func void DIA_Morgahard_Perm_Info()
 {
 	AI_Output(self,other,"DIA_Morgahard_Perm_07_00");	//А этот подлец судья... Я еще увижу его болтающимся на виселице.
-	AI_StopProcessInfos(self);
+	AI_StopProcessInfos_Pickpocket(73);
 };
 
 
@@ -136,7 +136,7 @@ func int DIA_Morgahard_Perm2_Condition()
 func void DIA_Morgahard_Perm2_Info()
 {
 	AI_Output(self,other,"DIA_Morgahard_Perm2_07_00");	//Почему бы тебе просто не исчезнуть?
-	AI_StopProcessInfos(self);
+	AI_StopProcessInfos_Pickpocket(73);
 };
 
 

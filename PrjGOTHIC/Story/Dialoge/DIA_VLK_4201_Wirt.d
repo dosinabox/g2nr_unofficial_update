@@ -111,9 +111,6 @@ func void DIA_Wirt_Hallo_Info()
 	{
 		AI_Output(self,other,"DIA_Wirt_Hallo_14_03");	//Паладины со всем разберутся сами. А ты можешь потягивать здесь пиво и наслаждаться жизнью.
 	};
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 50) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-	{
-		AI_StopProcessInfos(self);
-	};
+	AI_StopProcessInfos_Pickpocket(60);
 };
 
