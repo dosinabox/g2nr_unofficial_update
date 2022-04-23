@@ -7,6 +7,8 @@ instance VLK_4100_Brutus(Npc_Default)
 	voice = 6;
 	flags = 0;
 	npcType = NPCTYPE_OCMAIN;
+	aivar[AIV_DexToSteal] = 14;
+	aivar[AIV_GoldToSteal] = 35;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,2);

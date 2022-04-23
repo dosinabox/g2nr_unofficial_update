@@ -7,6 +7,8 @@ instance KDF_507_Talamon(Npc_Default)
 	voice = 4;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 87;
+	aivar[AIV_GoldToSteal] = 140;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;

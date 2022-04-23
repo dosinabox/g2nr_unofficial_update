@@ -7,6 +7,8 @@ instance BDT_1095_Addon_Crimson(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
+	aivar[AIV_DexToSteal] = 66;
+	aivar[AIV_GoldToSteal] = 66;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_BattleSense);

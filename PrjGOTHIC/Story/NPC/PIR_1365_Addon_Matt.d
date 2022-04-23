@@ -7,6 +7,8 @@ instance PIR_1365_Addon_Matt(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 55;
+	aivar[AIV_GoldToSteal] = 91;
 	aivar[AIV_FollowDist] = 500;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_MASTER;

@@ -7,6 +7,8 @@ instance VLK_4302_Addon_Elvrich(Npc_Default)
 	voice = 4;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 62;
+	aivar[AIV_GoldToSteal] = 110;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_NoFightParker] = TRUE;

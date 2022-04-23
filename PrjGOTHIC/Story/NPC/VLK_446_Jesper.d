@@ -7,6 +7,8 @@ instance VLK_446_Jesper(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 80;
+	aivar[AIV_GoldToSteal] = 180;
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);

@@ -7,6 +7,8 @@ instance PIR_1355_Addon_Skip(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 20;
+	aivar[AIV_GoldToSteal] = 43;
 	aivar[AIV_FollowDist] = 300;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;

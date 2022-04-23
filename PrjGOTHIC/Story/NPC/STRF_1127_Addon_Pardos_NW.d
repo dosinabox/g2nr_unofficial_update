@@ -7,6 +7,8 @@ instance STRF_1127_Addon_Pardos_NW(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 85;
+	aivar[AIV_GoldToSteal] = 10;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;

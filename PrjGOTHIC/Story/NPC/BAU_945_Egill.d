@@ -7,6 +7,8 @@ instance BAU_945_Egill(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 45;
+	aivar[AIV_GoldToSteal] = 24;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Axe);

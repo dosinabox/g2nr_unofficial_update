@@ -7,6 +7,8 @@ instance VLK_445_Ramirez(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 90;
+	aivar[AIV_GoldToSteal] = 300;
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,4);

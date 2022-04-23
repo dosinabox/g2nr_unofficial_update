@@ -7,6 +7,8 @@ instance BAU_907_Wasili(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 55;
+	aivar[AIV_GoldToSteal] = 90;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);

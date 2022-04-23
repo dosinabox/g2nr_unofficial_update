@@ -8,6 +8,8 @@ instance SLD_816_Fester(Npc_Default)
 	flags = 0;
 //	npcType = NPCTYPE_FRIEND;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 27;
+	aivar[AIV_GoldToSteal] = 45;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Sld_Axe);

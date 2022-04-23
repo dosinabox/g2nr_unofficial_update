@@ -7,6 +7,8 @@ instance BDT_1082_Addon_Skinner(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
+	aivar[AIV_DexToSteal] = 100;
+	aivar[AIV_GoldToSteal] = 200;
 	aivar[AIV_StoryBandit] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_NORMAL;

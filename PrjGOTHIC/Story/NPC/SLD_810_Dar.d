@@ -7,6 +7,8 @@ instance SLD_810_Dar(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 67;
+	aivar[AIV_GoldToSteal] = 35;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_STRONG;

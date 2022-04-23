@@ -7,6 +7,8 @@ instance SLD_809_Bennet_DI(Npc_Default)
 	voice = 6;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 35;
+	aivar[AIV_GoldToSteal] = 65;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;

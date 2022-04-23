@@ -7,6 +7,8 @@ instance PC_Thief_DI(Npc_Default)
 	voice = 11;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 120;
+	aivar[AIV_GoldToSteal] = 600;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;

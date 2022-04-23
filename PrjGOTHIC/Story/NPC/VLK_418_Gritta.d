@@ -7,6 +7,8 @@ instance VLK_418_Gritta(Npc_Default)
 	voice = 16;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 20;
+	aivar[AIV_GoldToSteal] = 20;
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;

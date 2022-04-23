@@ -8,6 +8,8 @@ instance BDT_10008_Addon_Bandit(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
+	aivar[AIV_DexToSteal] = 55;
+	aivar[AIV_GoldToSteal] = 99;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2H_OrcAxe_01);

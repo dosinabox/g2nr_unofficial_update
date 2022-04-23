@@ -7,6 +7,8 @@ instance VLK_437_Brahim(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 15;
+	aivar[AIV_GoldToSteal] = 15;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);

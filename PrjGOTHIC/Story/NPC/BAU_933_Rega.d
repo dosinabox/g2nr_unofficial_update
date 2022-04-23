@@ -7,6 +7,8 @@ instance BAU_933_Rega(Npc_Default)
 	voice = 17;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 25;
+	aivar[AIV_GoldToSteal] = 40;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Mace);

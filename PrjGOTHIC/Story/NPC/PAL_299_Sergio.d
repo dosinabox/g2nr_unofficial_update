@@ -7,6 +7,8 @@ instance PAL_299_Sergio(Npc_Default)
 	voice = 4;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 78;
+	aivar[AIV_GoldToSteal] = 85;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Pal_Sword);

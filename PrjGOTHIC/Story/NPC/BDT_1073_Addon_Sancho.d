@@ -7,6 +7,8 @@ instance BDT_1073_Addon_Sancho(Npc_Default)
 	voice = 6;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 50;
+	aivar[AIV_GoldToSteal] = 40;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);

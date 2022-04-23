@@ -7,6 +7,8 @@ instance VLK_432_Moe(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 25;
+	aivar[AIV_GoldToSteal] = 30;
 	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,1);

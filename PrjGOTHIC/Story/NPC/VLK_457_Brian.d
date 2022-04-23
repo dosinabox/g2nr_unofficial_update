@@ -7,6 +7,8 @@ instance VLK_457_Brian(Npc_Default)
 	voice = 4;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 55;
+	aivar[AIV_GoldToSteal] = 100;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;

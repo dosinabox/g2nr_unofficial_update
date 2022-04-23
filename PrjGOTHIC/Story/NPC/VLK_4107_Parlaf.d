@@ -7,6 +7,8 @@ instance VLK_4107_Parlaf(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = NPCTYPE_OCMAIN;
+	aivar[AIV_DexToSteal] = 34;
+	aivar[AIV_GoldToSteal] = 12;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_ShortSword1);

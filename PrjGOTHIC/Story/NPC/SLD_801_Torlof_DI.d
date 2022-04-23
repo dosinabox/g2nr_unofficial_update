@@ -7,6 +7,8 @@ instance SLD_801_Torlof_DI(Npc_Default)
 	voice = 1;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 76;
+	aivar[AIV_GoldToSteal] = 120;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;

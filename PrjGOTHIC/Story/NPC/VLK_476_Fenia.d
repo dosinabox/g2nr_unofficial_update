@@ -7,6 +7,8 @@ instance VLK_476_Fenia(Npc_Default)
 	voice = 17;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 50;
+	aivar[AIV_GoldToSteal] = 75;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,1);

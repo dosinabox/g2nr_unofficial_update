@@ -7,6 +7,8 @@ instance NONE_101_Mario_DI(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 71;
+	aivar[AIV_GoldToSteal] = 110;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_EnemyOverride] = TRUE;
@@ -17,7 +19,7 @@ instance NONE_101_Mario_DI(Npc_Default)
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Normal_Kirgo,BodyTex_B,ITAR_MIL_M);
 	Mdl_SetModelFatness(self,1.2);
-	Mdl_ApplyOverlayMds(self,"Humans_MILITIA.mds");
+	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,95);
 	daily_routine = Rtn_Start_1010;

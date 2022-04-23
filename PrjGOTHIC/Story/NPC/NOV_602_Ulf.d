@@ -8,6 +8,8 @@ instance NOV_602_Ulf(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 34;
+	aivar[AIV_GoldToSteal] = 50;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Nov_Mace);

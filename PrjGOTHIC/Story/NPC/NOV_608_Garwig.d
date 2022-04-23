@@ -7,6 +7,8 @@ instance NOV_608_Garwig(Npc_Default)
 	voice = 6;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 52;
+	aivar[AIV_GoldToSteal] = 80;
 	aivar[AIV_NewsOverride] = TRUE;
 	level = 1;
 	attribute[ATR_STRENGTH] = 60;

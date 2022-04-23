@@ -7,6 +7,8 @@ instance MIL_314_Mortis(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 38;
+	aivar[AIV_GoldToSteal] = 60;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Mil_Sword);

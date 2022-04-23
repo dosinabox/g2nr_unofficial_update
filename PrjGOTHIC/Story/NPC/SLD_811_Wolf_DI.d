@@ -7,6 +7,8 @@ instance SLD_811_Wolf_DI(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 32;
+	aivar[AIV_GoldToSteal] = 45;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;

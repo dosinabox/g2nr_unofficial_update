@@ -7,6 +7,8 @@ instance PIR_1362_Addon_Bones(Npc_Default)
 	voice = 1;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 75;
+	aivar[AIV_GoldToSteal] = 104;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Addon_PIR2hAxe);

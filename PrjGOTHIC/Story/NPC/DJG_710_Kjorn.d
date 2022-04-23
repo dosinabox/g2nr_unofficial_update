@@ -7,6 +7,8 @@ instance DJG_710_Kjorn(Npc_Default)
 	voice = 6;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 47;
+	aivar[AIV_GoldToSteal] = 75;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;

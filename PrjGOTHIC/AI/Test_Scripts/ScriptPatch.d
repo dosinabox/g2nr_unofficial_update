@@ -238,6 +238,14 @@ func void B_Build_Settings_Diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить альтернативное обучение у Беннета",StoryHelper_AlternativeSmithing);
 	};
+	if(EasyLowDexPickpocketDisabled == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить пониженную сложность краж при низкой ловкости",StoryHelper_EasyLowDexPickpocket);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить пониженную сложность краж при низкой ловкости",StoryHelper_EasyLowDexPickpocket);
+	};
 	if(HardModeEnabled == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить повышенный уровень сложности",StoryHelper_HardMode);
@@ -646,6 +654,21 @@ func void StoryHelper_PremiumTeachers()
 	{
 		PremiumTeachersEnabled = TRUE;
 		PrintScreen("Платное обучение включено",-1,-1,FONT_Screen,2);
+	};
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_EasyLowDexPickpocket()
+{
+	if(EasyLowDexPickpocketDisabled == TRUE)
+	{
+		EasyLowDexPickpocketDisabled = FALSE;
+		PrintScreen("Пониженная сложность краж включена",-1,-1,FONT_Screen,2);
+	}
+	else
+	{
+		EasyLowDexPickpocketDisabled = TRUE;
+		PrintScreen("Пониженная сложность краж выключена",-1,-1,FONT_Screen,2);
 	};
 	B_Build_Settings_Diag();
 };

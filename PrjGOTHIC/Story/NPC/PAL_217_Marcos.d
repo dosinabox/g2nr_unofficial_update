@@ -7,6 +7,8 @@ instance PAL_217_Marcos(Npc_Default)
 	voice = 4;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_OCMAIN;
+	aivar[AIV_DexToSteal] = 65;
+	aivar[AIV_GoldToSteal] = 380;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;

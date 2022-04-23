@@ -7,6 +7,8 @@ instance VLK_417_Constantino(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 59;
+	aivar[AIV_GoldToSteal] = 90;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	attribute[ATR_DEXTERITY] = 1;

@@ -7,6 +7,8 @@ instance BDT_1083_Addon_Esteban(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
+	aivar[AIV_DexToSteal] = 105;
+	aivar[AIV_GoldToSteal] = 500;
 	aivar[AIV_StoryBandit_Esteban] = TRUE;
 	aivar[AIV_StoryBandit] = TRUE;
 	aivar[AIV_NewsOverride] = TRUE;

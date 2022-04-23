@@ -7,11 +7,13 @@ instance PIR_1320_Addon_Greg(Npc_Default)
 	voice = 1;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	B_SetAttributesToChapter(self,5);
+	aivar[AIV_DexToSteal] = 111;
+	aivar[AIV_GoldToSteal] = 666;
 	aivar[AIV_IGNORE_Murder] = TRUE;
 	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_IGNORE_Sheepkiller] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
+	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_Piratensaebel);
 	B_CreateAmbientInv(self);

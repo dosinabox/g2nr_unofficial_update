@@ -7,6 +7,8 @@ instance VLK_444_Jack(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 50;
+	aivar[AIV_GoldToSteal] = 100;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;

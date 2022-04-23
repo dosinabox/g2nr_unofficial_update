@@ -7,6 +7,8 @@ instance BAU_980_Sagitta(Npc_Default)
 	voice = 17;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 103;
+	aivar[AIV_GoldToSteal] = 360;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	attribute[ATR_DEXTERITY] = 1;

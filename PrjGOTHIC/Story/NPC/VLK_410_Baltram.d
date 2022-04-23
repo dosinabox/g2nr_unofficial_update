@@ -7,6 +7,8 @@ instance VLK_410_Baltram(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 76;
+	aivar[AIV_GoldToSteal] = 175;
 	aivar[AIV_NPCIsRanger] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);

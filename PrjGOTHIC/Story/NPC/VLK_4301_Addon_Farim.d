@@ -7,6 +7,8 @@ instance VLK_4301_Addon_Farim(Npc_Default)
 	voice = 11;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 20;
+	aivar[AIV_GoldToSteal] = 11;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;

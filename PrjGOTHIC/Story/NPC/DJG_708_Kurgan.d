@@ -7,6 +7,8 @@ instance DJG_708_Kurgan(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 34;
+	aivar[AIV_GoldToSteal] = 120;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Sword);

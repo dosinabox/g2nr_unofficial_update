@@ -7,6 +7,8 @@ instance KDF_503_Karras(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 49;
+	aivar[AIV_GoldToSteal] = 35;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	attribute[ATR_STRENGTH] = 1;

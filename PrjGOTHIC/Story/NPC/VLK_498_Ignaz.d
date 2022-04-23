@@ -7,6 +7,8 @@ instance VLK_498_Ignaz(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 38;
+	aivar[AIV_GoldToSteal] = 50;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,1);

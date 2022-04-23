@@ -7,6 +7,8 @@ instance PAL_207_Girion_DI(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 71;
+	aivar[AIV_GoldToSteal] = 260;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;

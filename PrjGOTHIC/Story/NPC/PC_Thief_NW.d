@@ -7,6 +7,8 @@ instance PC_Thief_NW(Npc_Default)
 	voice = 11;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 120;
+	aivar[AIV_GoldToSteal] = 600;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_Teeth] = 4;

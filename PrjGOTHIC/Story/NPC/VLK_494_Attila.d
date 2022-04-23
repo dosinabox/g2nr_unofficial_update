@@ -7,6 +7,8 @@ instance VLK_494_Attila(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 55;
+	aivar[AIV_GoldToSteal] = 100;
 	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	B_SetAttributesToChapter(self,2);

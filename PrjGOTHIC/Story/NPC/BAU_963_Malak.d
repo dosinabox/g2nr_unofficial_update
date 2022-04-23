@@ -7,6 +7,8 @@ instance BAU_963_Malak(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 43;
+	aivar[AIV_GoldToSteal] = 40;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Axe);

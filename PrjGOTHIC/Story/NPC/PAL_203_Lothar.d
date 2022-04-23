@@ -7,6 +7,8 @@ instance PAL_203_Lothar(Npc_Default)
 	voice = 1;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 56;
+	aivar[AIV_GoldToSteal] = 95;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
 //	EquipItem(self,ItMw_1h_Pal_Sword);

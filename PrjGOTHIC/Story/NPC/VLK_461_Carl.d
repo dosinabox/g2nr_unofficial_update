@@ -7,6 +7,8 @@ instance VLK_461_Carl(Npc_Default)
 	voice = 5;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 34;
+	aivar[AIV_GoldToSteal] = 40;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;

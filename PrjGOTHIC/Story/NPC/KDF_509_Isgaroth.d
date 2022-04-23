@@ -7,6 +7,8 @@ instance KDF_509_Isgaroth(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 48;
+	aivar[AIV_GoldToSteal] = 50;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	attribute[ATR_STRENGTH] = 1;

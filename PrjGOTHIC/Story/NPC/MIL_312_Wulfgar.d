@@ -7,6 +7,8 @@ instance MIL_312_Wulfgar(Npc_Default)
 	voice = 4;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 58;
+	aivar[AIV_GoldToSteal] = 80;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Mil_Sword);

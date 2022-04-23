@@ -7,6 +7,8 @@ instance PAL_280_Tengron(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = NPCTYPE_OCMAIN;
+	aivar[AIV_DexToSteal] = 32;
+	aivar[AIV_GoldToSteal] = 50;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;

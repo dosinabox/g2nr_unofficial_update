@@ -7,6 +7,8 @@ instance KDF_511_Daron(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 47;
+	aivar[AIV_GoldToSteal] = 80;
 	aivar[AIV_MagicUser] = MAGIC_ALWAYS;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;

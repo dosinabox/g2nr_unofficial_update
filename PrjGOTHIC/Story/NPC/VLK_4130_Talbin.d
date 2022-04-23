@@ -7,6 +7,8 @@ instance VLK_4130_Talbin(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 40;
+	aivar[AIV_GoldToSteal] = 25;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);

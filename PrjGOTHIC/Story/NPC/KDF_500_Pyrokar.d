@@ -7,6 +7,8 @@ instance KDF_500_Pyrokar(Npc_Default)
 	voice = 11;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 108;
+	aivar[AIV_GoldToSteal] = 550;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);

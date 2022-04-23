@@ -7,6 +7,8 @@ instance VLK_468_Canthar(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 20;
+	aivar[AIV_GoldToSteal] = 25;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IGNORE_Murder] = TRUE;

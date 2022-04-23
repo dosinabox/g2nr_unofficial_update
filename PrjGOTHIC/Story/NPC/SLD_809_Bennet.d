@@ -7,6 +7,8 @@ instance SLD_809_Bennet(Npc_Default)
 	voice = 6;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 35;
+	aivar[AIV_GoldToSteal] = 45;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;

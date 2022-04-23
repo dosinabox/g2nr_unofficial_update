@@ -7,6 +7,8 @@ instance PIR_1367_Addon_Owen(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 20;
+	aivar[AIV_GoldToSteal] = 30;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Addon_PIR1hAxe);

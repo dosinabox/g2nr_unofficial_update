@@ -7,6 +7,8 @@ instance VLK_4303_Addon_Erol(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 43;
+	aivar[AIV_GoldToSteal] = 42;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;

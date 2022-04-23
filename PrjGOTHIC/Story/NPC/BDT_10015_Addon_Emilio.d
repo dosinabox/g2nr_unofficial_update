@@ -7,6 +7,8 @@ instance BDT_10015_Addon_Emilio(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 76;
+	aivar[AIV_GoldToSteal] = 112;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2H_Axe_L_01);

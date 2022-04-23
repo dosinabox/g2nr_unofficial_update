@@ -7,6 +7,8 @@ instance PAL_281_Fajeth(Npc_Default)
 	voice = 12;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_OCMAIN;
+	aivar[AIV_DexToSteal] = 56;
+	aivar[AIV_GoldToSteal] = 95;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;

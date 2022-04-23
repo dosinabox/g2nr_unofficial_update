@@ -7,6 +7,8 @@ instance STRF_1115_Geppert(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 56;
+	aivar[AIV_GoldToSteal] = 5;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_2H_Axe_L_01);

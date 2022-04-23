@@ -7,6 +7,8 @@ instance BAU_940_Akil(Npc_Default)
 	voice = 13;
 //	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 37;
+	aivar[AIV_GoldToSteal] = 30;
 	B_SetAttributesToChapter(self,2);
 	attribute[ATR_HITPOINTS] = 300;
 	attribute[ATR_HITPOINTS_MAX] = 300;

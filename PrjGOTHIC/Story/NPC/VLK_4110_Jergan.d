@@ -7,6 +7,8 @@ instance VLK_4110_Jergan(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 84;
+	aivar[AIV_GoldToSteal] = 110;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;

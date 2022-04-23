@@ -7,6 +7,8 @@ instance VLK_434_Borka(Npc_Default)
 	voice = 11;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 80;
+	aivar[AIV_GoldToSteal] = 120;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;

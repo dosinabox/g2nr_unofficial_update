@@ -7,6 +7,8 @@ instance BAU_935_Bronko(Npc_Default)
 	voice = 6;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 54;
+	aivar[AIV_GoldToSteal] = 80;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,2);

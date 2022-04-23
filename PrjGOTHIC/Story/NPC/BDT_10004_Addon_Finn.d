@@ -7,6 +7,8 @@ instance BDT_10004_Addon_Finn(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 35;
+	aivar[AIV_GoldToSteal] = 50;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_2H_Axe_L_01);

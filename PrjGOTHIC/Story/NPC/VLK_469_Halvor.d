@@ -7,6 +7,8 @@ instance VLK_469_Halvor(Npc_Default)
 	voice = 6;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 78;
+	aivar[AIV_GoldToSteal] = 150;
 	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;

@@ -7,6 +7,8 @@ instance BDT_1097_Addon_Fisk(Npc_Default)
 	voice = 12;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 118;
+	aivar[AIV_GoldToSteal] = 300;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	aivar[AIV_Teeth] = 2;
 	B_SetAttributesToChapter(self,3);

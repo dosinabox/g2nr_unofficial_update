@@ -7,6 +7,8 @@ instance BAU_944_Ehnim(Npc_Default)
 	voice = 12;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 76;
+	aivar[AIV_GoldToSteal] = 35;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Axe);

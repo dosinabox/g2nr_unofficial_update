@@ -7,6 +7,8 @@ instance KDF_506_Neoras(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 72;
+	aivar[AIV_GoldToSteal] = 140;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);

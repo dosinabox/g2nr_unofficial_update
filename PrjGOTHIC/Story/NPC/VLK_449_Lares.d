@@ -7,6 +7,8 @@ instance VLK_449_Lares(Npc_Default)
 	voice = 9;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 95;
+	aivar[AIV_GoldToSteal] = 350;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_NPCIsRanger] = TRUE;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;

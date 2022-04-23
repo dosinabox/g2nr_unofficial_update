@@ -7,6 +7,8 @@ instance SLD_805_Cord(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 65;
+	aivar[AIV_GoldToSteal] = 75;
 	aivar[AIV_NPCIsRanger] = TRUE;
 	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,5);

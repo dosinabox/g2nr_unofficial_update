@@ -7,6 +7,8 @@ instance VLK_438_Alrik(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 55;
+	aivar[AIV_GoldToSteal] = 50;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_MM_FollowTime] = 1000;

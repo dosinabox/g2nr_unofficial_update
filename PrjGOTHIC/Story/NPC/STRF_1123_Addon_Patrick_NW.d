@@ -7,6 +7,8 @@ instance STRF_1123_Addon_Patrick_NW(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 35;
+	aivar[AIV_GoldToSteal] = 50;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;

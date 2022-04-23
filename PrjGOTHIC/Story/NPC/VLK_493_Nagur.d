@@ -7,6 +7,8 @@ instance VLK_493_Nagur(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 75;
+	aivar[AIV_GoldToSteal] = 150;
 	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);

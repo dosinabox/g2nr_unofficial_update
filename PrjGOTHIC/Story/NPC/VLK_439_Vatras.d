@@ -7,6 +7,8 @@ instance VLK_439_Vatras(Npc_Default)
 	voice = 5;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 91;
+	aivar[AIV_GoldToSteal] = 250;
 	aivar[AIV_MagicUser] = MAGIC_ALWAYS;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;

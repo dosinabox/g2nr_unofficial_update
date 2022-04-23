@@ -7,6 +7,8 @@ instance BDT_1070_Addon_Paul(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
+	aivar[AIV_DexToSteal] = 22;
+	aivar[AIV_GoldToSteal] = 19;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Sld_Axe);

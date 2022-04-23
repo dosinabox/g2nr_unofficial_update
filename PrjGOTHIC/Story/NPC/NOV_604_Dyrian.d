@@ -7,6 +7,8 @@ instance NOV_604_Dyrian(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 10;
+	aivar[AIV_GoldToSteal] = 15;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Nov_Mace);

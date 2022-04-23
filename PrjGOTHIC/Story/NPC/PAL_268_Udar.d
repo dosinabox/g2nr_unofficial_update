@@ -7,6 +7,8 @@ instance PAL_268_Udar(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = NPCTYPE_OCMAIN;
+	aivar[AIV_DexToSteal] = 20;
+	aivar[AIV_GoldToSteal] = 15;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_NAILED;
 	EquipItem(self,ItMw_2h_Pal_Sword);

@@ -7,6 +7,8 @@ instance VLK_447_Cassia(Npc_Default)
 	voice = 16;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 100;
+	aivar[AIV_GoldToSteal] = 400;
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,5);

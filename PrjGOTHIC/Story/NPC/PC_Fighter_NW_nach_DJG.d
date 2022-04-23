@@ -7,6 +7,8 @@ instance PC_Fighter_NW_nach_DJG(Npc_Default)
 	voice = 12;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 10;
+	aivar[AIV_GoldToSteal] = 25;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2h_Sld_Axe);

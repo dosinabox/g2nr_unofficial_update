@@ -7,6 +7,8 @@ instance PC_ThiefOW(Npc_Default)
 	voice = 11;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 120;
+	aivar[AIV_GoldToSteal] = 600;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_FollowDist] = 300;

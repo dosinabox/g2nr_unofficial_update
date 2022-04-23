@@ -7,6 +7,8 @@ instance SLD_807_Bullco(Npc_Default)
 	voice = 6;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 56;
+	aivar[AIV_GoldToSteal] = 35;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IGNORE_Sheepkiller] = TRUE;
 	aivar[AIV_IGNORE_Theft] = TRUE;

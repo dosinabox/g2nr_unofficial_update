@@ -7,6 +7,8 @@ instance BAU_941_Kati(Npc_Default)
 	voice = 16;
 //	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 13;
+	aivar[AIV_GoldToSteal] = 15;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);

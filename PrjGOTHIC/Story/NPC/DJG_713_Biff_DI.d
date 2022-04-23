@@ -7,6 +7,8 @@ instance DJG_713_Biff_DI(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 92;
+	aivar[AIV_GoldToSteal] = 450;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;

@@ -7,6 +7,8 @@ instance PAL_202_Albrecht(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 41;
+	aivar[AIV_GoldToSteal] = 160;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Pal_Sword);

@@ -274,6 +274,7 @@ Story\B_AssignAmbientInfos\B_AssignAmbientInfos_VLK_8.d
 Story\B_AssignAmbientInfos\B_AssignAmbientNews.d
 Story\B_AssignAmbientInfos\B_AssignToughGuyNews.d
 Story\B_AssignAmbientInfos\B_AssignCityGuide.d
+Story\B_AssignAmbientInfos\B_AssignPickpocket.d
 Story\B_AssignAmbientInfos\B_AssignAmbientInfos.d
 AI\Magic\C_Spell_Proto.d
 AI\Magic\B_AssessMagic.d

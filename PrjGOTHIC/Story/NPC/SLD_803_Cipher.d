@@ -7,6 +7,8 @@ instance SLD_803_Cipher(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 65;
+	aivar[AIV_GoldToSteal] = 65;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	aivar[AIV_Teeth] = 2;
 	B_SetAttributesToChapter(self,2);

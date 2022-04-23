@@ -7,6 +7,8 @@ instance BDT_1091_Addon_Lucia(Npc_Default)
 	voice = 16;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
+	aivar[AIV_DexToSteal] = 80;
+	aivar[AIV_GoldToSteal] = 100;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_NORMAL;

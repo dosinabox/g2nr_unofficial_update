@@ -7,6 +7,8 @@ instance BDT_10017_Addon_Juan(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 65;
+	aivar[AIV_GoldToSteal] = 73;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;

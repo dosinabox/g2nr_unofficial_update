@@ -7,6 +7,8 @@ instance BDT_1072_Addon_Logan(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 59;
+	aivar[AIV_GoldToSteal] = 50;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;

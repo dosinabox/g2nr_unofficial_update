@@ -7,6 +7,8 @@ instance SLD_840_Alvares(Npc_Default)
 	voice = 11;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 20;
+	aivar[AIV_GoldToSteal] = 15;
 	B_SetAttributesToChapter(self,2);
 	aivar[AIV_EnemyOverride] = TRUE;
 	fight_tactic = FAI_HUMAN_NORMAL;

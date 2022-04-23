@@ -7,6 +7,8 @@ instance BDT_1075_Addon_Fortuno(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
+	aivar[AIV_DexToSteal] = 10;
+	aivar[AIV_GoldToSteal] = 25;
 	aivar[AIV_NewsOverride] = TRUE;
 	aivar[AIV_NoFightParker] = TRUE;
 	aivar[AIV_Teeth] = 1;

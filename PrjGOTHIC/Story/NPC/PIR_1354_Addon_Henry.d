@@ -7,6 +7,8 @@ instance PIR_1354_Addon_Henry(Npc_Default)
 	voice = 4;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 40;
+	aivar[AIV_GoldToSteal] = 60;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;

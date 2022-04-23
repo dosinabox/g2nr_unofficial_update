@@ -7,6 +7,8 @@ instance BDT_1085_Addon_Bloodwyn(Npc_Default)
 	voice = 4;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
+	aivar[AIV_DexToSteal] = 90;
+	aivar[AIV_GoldToSteal] = 250;
 	aivar[AIV_StoryBandit] = TRUE;
 	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,3);

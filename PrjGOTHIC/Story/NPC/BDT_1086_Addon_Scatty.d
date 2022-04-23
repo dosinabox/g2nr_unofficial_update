@@ -7,6 +7,8 @@ instance BDT_1086_Addon_Scatty(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
+	aivar[AIV_DexToSteal] = 60;
+	aivar[AIV_GoldToSteal] = 90;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	aivar[AIV_Teeth] = 2;
 	B_SetAttributesToChapter(self,5);

@@ -7,6 +7,8 @@ instance MIL_350_Addon_Martin(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 65;
+	aivar[AIV_GoldToSteal] = 77;
 	aivar[AIV_NPCIsRanger] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);

@@ -7,6 +7,8 @@ instance BDT_1060_Dexter(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 96;
+	aivar[AIV_GoldToSteal] = 370;
 	aivar[AIV_EnemyOverride] = TRUE;
 	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,2);

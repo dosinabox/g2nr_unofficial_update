@@ -7,6 +7,8 @@ instance BAU_952_Vino(Npc_Default)
 	voice = 5;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 34;
+	aivar[AIV_GoldToSteal] = 60;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Axe);

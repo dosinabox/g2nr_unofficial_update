@@ -7,6 +7,8 @@ instance VLK_470_Sarah(Npc_Default)
 	voice = 16;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 57;
+	aivar[AIV_GoldToSteal] = 60;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	attribute[ATR_DEXTERITY] = 1;

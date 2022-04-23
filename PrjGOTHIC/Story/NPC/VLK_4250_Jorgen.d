@@ -7,6 +7,8 @@ instance VLK_4250_Jorgen(Npc_Default)
 	voice = 7;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 59;
+	aivar[AIV_GoldToSteal] = 70;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);

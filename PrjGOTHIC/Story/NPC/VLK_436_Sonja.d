@@ -7,6 +7,8 @@ instance VLK_436_Sonja(Npc_Default)
 	voice = 16;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 58;
+	aivar[AIV_GoldToSteal] = 70;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;

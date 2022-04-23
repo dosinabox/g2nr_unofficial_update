@@ -7,6 +7,8 @@ instance BAU_970_Orlan(Npc_Default)
 	voice = 5;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 89;
+	aivar[AIV_GoldToSteal] = 260;
 	aivar[AIV_NPCIsRanger] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,4);

@@ -7,6 +7,8 @@ instance BDT_1084_Addon_Senyan(Npc_Default)
 	voice = 12;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
+	aivar[AIV_DexToSteal] = 45;
+	aivar[AIV_GoldToSteal] = 88;
 	aivar[AIV_NewsOverride] = TRUE;
 	aivar[AIV_StoryBandit] = TRUE;
 	B_SetAttributesToChapter(self,2);

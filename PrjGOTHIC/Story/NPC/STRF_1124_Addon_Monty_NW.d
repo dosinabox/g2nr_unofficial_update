@@ -7,6 +7,8 @@ instance STRF_1124_Addon_Monty_NW(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 60;
+	aivar[AIV_GoldToSteal] = 60;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);

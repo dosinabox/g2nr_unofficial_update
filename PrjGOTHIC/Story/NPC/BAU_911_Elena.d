@@ -7,6 +7,8 @@ instance BAU_911_Elena(Npc_Default)
 	voice = 16;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 30;
+	aivar[AIV_GoldToSteal] = 35;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	attribute[ATR_STRENGTH] = 50;

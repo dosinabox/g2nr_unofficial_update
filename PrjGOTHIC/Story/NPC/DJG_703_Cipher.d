@@ -7,6 +7,8 @@ instance DJG_703_Cipher(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 79;
+	aivar[AIV_GoldToSteal] = 220;
 	aivar[AIV_Teeth] = 2;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;

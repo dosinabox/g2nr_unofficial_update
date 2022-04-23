@@ -7,6 +7,8 @@ instance BAU_961_Gaan(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 23;
+	aivar[AIV_GoldToSteal] = 35;
 	aivar[AIV_NPCIsRanger] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;

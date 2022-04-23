@@ -7,6 +7,8 @@ instance BDT_1098_Addon_Snaf(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 49;
+	aivar[AIV_GoldToSteal] = 56;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Sld_Sword);

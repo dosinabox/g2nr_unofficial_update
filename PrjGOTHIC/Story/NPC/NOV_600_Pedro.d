@@ -7,8 +7,10 @@ instance NOV_600_Pedro(Npc_Default)
 	voice = 9;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	B_SetAttributesToChapter(self,2);
+	aivar[AIV_DexToSteal] = 45;
+	aivar[AIV_GoldToSteal] = 60;
 	aivar[AIV_NewsOverride] = TRUE;
+	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Nov_Mace);
 	B_CreateAmbientInv(self);

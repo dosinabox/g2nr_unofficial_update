@@ -7,6 +7,8 @@ instance STRF_1106_Fed(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 32;
+	aivar[AIV_GoldToSteal] = 8;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_2H_Axe_L_01);

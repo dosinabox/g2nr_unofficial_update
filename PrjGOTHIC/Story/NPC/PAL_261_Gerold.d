@@ -7,6 +7,8 @@ instance PAL_261_Gerold(Npc_Default)
 	voice = 12;
 	flags = 0;
 	npcType = NPCTYPE_OCMAIN;
+	aivar[AIV_DexToSteal] = 71;
+	aivar[AIV_GoldToSteal] = 170;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2h_Pal_Sword);

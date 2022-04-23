@@ -7,6 +7,8 @@ instance DJG_705_Angar(Npc_Default)
 	voice = 4;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 47;
+	aivar[AIV_GoldToSteal] = 55;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_Zweihaender2);

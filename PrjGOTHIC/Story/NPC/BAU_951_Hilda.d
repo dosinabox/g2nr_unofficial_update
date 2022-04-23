@@ -7,6 +7,8 @@ instance BAU_951_Hilda(Npc_Default)
 	voice = 17;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 26;
+	aivar[AIV_GoldToSteal] = 35;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Mace);

@@ -7,6 +7,8 @@ instance SLD_800_Lee_DI(Npc_Default)
 	voice = 4;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 110;
+	aivar[AIV_GoldToSteal] = 570;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;

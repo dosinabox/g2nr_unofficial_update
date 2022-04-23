@@ -7,6 +7,8 @@ instance SLD_806_Sylvio(Npc_Default)
 	voice = 9;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 80;
+	aivar[AIV_GoldToSteal] = 120;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);

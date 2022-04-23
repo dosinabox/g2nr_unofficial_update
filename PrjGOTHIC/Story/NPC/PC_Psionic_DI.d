@@ -7,6 +7,8 @@ instance PC_Psionic_DI(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 56;
+	aivar[AIV_GoldToSteal] = 25;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;

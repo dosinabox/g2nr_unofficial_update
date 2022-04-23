@@ -7,6 +7,8 @@ instance BAU_960_Bengar(Npc_Default)
 	voice = 10;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 28;
+	aivar[AIV_GoldToSteal] = 50;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Axe);

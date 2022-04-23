@@ -7,6 +7,8 @@ instance VLK_414_Hanna(Npc_Default)
 	voice = 17;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 45;
+	aivar[AIV_GoldToSteal] = 25;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);

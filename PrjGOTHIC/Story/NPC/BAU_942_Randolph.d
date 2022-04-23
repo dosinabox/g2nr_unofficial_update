@@ -7,6 +7,8 @@ instance BAU_942_Randolph(Npc_Default)
 	voice = 6;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 58;
+	aivar[AIV_GoldToSteal] = 2;
 	B_SetAttributesToChapter(self,4);
 	protection[PROT_POINT] = 30;
 	fight_tactic = FAI_HUMAN_NORMAL;

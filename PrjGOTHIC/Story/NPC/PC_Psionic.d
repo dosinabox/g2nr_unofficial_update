@@ -7,6 +7,8 @@ instance PC_Psionic(Npc_Default)
 	voice = 13;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 76;
+	aivar[AIV_GoldToSteal] = 20;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_Teeth] = 2;

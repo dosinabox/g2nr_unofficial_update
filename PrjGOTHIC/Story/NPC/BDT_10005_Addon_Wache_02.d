@@ -7,6 +7,8 @@ instance BDT_10005_Addon_Wache_02(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
+	aivar[AIV_DexToSteal] = 38;
+	aivar[AIV_GoldToSteal] = 101;
 	aivar[AIV_StoryBandit_Esteban] = TRUE;
 	aivar[AIV_StoryBandit] = TRUE;
 	B_SetAttributesToChapter(self,2);

@@ -7,6 +7,8 @@ instance KDF_510_Hyglas(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 73;
+	aivar[AIV_GoldToSteal] = 200;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
