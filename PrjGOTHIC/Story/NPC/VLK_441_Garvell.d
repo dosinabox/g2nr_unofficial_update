@@ -7,6 +7,7 @@ instance VLK_441_Garvell(Npc_Default)
 	voice = 4;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 10;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;

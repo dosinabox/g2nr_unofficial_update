@@ -7,6 +7,7 @@ instance MIL_328_Miliz(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 35;
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;

@@ -7,6 +7,7 @@ instance VLK_484_Lehmar(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 20;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;

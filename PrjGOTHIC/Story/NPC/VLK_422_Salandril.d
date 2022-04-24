@@ -7,6 +7,7 @@ instance VLK_422_Salandril(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 30;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	attribute[ATR_DEXTERITY] = 1;

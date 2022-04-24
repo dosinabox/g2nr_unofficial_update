@@ -7,6 +7,7 @@ instance NOV_601_Igaraz(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 40;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Nov_Mace);

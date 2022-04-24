@@ -7,6 +7,7 @@ instance BAU_4300_Addon_Cavalorn(Npc_Default)
 	voice = 8;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 25;
 	aivar[AIV_NPCIsRanger] = TRUE;
 	aivar[AIV_Teeth] = 2;
 	B_SetAttributesToChapter(self,3);

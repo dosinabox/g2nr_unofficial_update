@@ -49,21 +49,7 @@ func void DIA_Addon_Cavalorn_PICKPOCKET_Info()
 
 func void DIA_Addon_Cavalorn_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 25)
-	{
-		CreateInvItems(self,ItRw_Arrow,44);
-		B_GiveInvItems(self,other,ItRw_Arrow,44);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Кавалорн",ConcatStrings(PRINT_PickPocketSuccess,"44 стрелы.")));
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Кавалорн",PRINT_PickPocketFailed));
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItem(25,ItMi_ArrowPack);
 	Info_ClearChoices(DIA_Addon_Cavalorn_PICKPOCKET);
 };
 

@@ -7,6 +7,7 @@ instance VLK_4143_HaupttorWache(Npc_Default)
 	voice = 13;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_OCMAIN;
+	aivar[AIV_DexToSteal] = 20;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Sword);

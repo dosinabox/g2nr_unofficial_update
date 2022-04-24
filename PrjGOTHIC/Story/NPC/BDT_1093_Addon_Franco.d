@@ -7,6 +7,7 @@ instance BDT_1093_Addon_Franco(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
+	aivar[AIV_DexToSteal] = 60;
 	aivar[AIV_StoryBandit] = TRUE;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);

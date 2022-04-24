@@ -7,6 +7,7 @@ instance VLK_440_Bartok(Npc_Default)
 	voice = 4;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 30;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 //	EquipItem(self,ItRw_Bow_M_03);

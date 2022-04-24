@@ -7,6 +7,7 @@ instance PC_Mage_OW(Npc_Default)
 	voice = 3;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_DexToSteal] = 80;
 	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;

@@ -10,13 +10,9 @@ instance NOV_608_Garwig(Npc_Default)
 	aivar[AIV_DexToSteal] = 52;
 	aivar[AIV_GoldToSteal] = 80;
 	aivar[AIV_NewsOverride] = TRUE;
-	level = 1;
-	attribute[ATR_STRENGTH] = 60;
-	attribute[ATR_DEXTERITY] = 60;
-	attribute[ATR_MANA_MAX] = 60;
-	attribute[ATR_MANA] = 60;
-	attribute[ATR_HITPOINTS_MAX] = 500;
-	attribute[ATR_HITPOINTS] = 500;
+	B_SetAttributesToChapter(self,3);
+	attribute[ATR_HITPOINTS_MAX] = 600;
+	attribute[ATR_HITPOINTS] = 600;
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Nov_Mace);
 	B_CreateAmbientInv(self);

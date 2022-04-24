@@ -541,6 +541,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_Addon_Shell_01,10);
 	CreateInvItems(self,ItMi_Addon_Shell_02,10);
 	CreateInvItems(self,ItMi_Grog_Crate,5);
+	CreateInvItems(self,ItMi_ArrowPack,10);
 	CreateInvItems(self,ItRw_Bow_L_01,1);
 	CreateInvItems(self,ItRw_Bow_L_02,1);
 	CreateInvItems(self,ItRw_Bow_L_03,1);

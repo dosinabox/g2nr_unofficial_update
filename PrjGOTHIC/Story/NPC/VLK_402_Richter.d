@@ -7,6 +7,7 @@ instance VLK_402_Richter(Npc_Default)
 	voice = 10;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 30;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_ShortSword5);

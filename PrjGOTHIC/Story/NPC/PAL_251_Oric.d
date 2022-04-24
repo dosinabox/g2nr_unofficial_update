@@ -7,6 +7,7 @@ instance PAL_251_Oric(Npc_Default)
 	voice = 11;
 	flags = 0;
 	npcType = NPCTYPE_OCMAIN;
+	aivar[AIV_DexToSteal] = 85;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2h_Pal_Sword);

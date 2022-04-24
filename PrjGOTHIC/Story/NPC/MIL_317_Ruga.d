@@ -7,6 +7,7 @@ instance MIL_317_Ruga(Npc_Default)
 	voice = 11;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 40;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Mil_Sword);

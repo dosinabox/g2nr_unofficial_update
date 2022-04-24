@@ -7,6 +7,7 @@ instance MIL_316_Wambo(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 50;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Mil_Sword);

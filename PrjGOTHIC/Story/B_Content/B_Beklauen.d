@@ -103,7 +103,7 @@ func void B_StealGold()
 	};
 };
 
-func void B_StealItem(var int TheftDex,var int itemInstance)
+func void B_StealItem(var int TheftDex,var int itemInstance) //TODO убрать TheftDex и использовать AIV_DexToSteal
 {
 	if(other.attribute[ATR_DEXTERITY] >= TheftDex)
 	{
@@ -116,6 +116,10 @@ func void B_StealItem(var int TheftDex,var int itemInstance)
 		text = ConcatStrings(text,item.description);
 		text = ConcatStrings(text,".");
 		B_LogEntry(Topic_PickPocket,text);
+		if(Hlp_IsItem(item,ItSe_GoldPocket25) || Hlp_IsItem(item,ItSe_GoldPocket50) || Hlp_IsItem(item,ItSe_GoldPocket100))
+		{
+			TotalTheftGold += item.value;
+		};
 		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lehmar))
 		{
 			Lehmar_StealBook_Day = B_GetDayPlus();
@@ -123,14 +127,6 @@ func void B_StealItem(var int TheftDex,var int itemInstance)
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Franco))
 		{
 			UnEquip_ItAm_Addon_Franco();
-		}
-		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Gerbrandt)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Fernando)))
-		{
-			TotalTheftGold += 100;
-		}
-		else if(C_IsNpc(self,VLK_441_Garvell))
-		{
-			TotalTheftGold += 25;
 		}
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Richter))
 		{

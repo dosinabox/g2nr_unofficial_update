@@ -8,6 +8,7 @@ instance VLK_401_Cornelius(Npc_Default)
 	voice = 13;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 60;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_ShortSword5);

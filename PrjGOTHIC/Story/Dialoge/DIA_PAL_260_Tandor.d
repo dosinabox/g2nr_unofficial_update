@@ -177,8 +177,8 @@ func void DIA_Tandor_Equipment_Bow()
 	AI_Output(self,other,"DIA_Tandor_Equipment_Bow_08_01");	//Этот охотничий лук как нельзя лучше подойдет тебе. Я также дам тебе колчан стрел.
 	CreateInvItems(self,ItRw_Bow_L_03,1);
 	B_GiveInvItems(self,other,ItRw_Bow_L_03,1);
-	CreateInvItems(other,ItRw_Arrow,50);
-	AI_PrintScreen("50 предметов получено (Стрела)",-1,43,FONT_ScreenSmall,2);
+	CreateInvItems(other,ItMi_ArrowPack,1);
+	AI_PrintScreen("Колчан стрел получено",-1,43,FONT_ScreenSmall,2);
 	Info_ClearChoices(DIA_Tandor_Equipment);
 };
 

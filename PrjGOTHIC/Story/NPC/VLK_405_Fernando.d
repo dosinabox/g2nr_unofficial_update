@@ -7,6 +7,7 @@ instance VLK_405_Fernando(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 50;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Vlk_Mace);

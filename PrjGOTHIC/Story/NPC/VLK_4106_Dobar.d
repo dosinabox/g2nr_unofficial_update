@@ -7,6 +7,7 @@ instance VLK_4106_Dobar(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = NPCTYPE_OCMAIN;
+	aivar[AIV_DexToSteal] = 79;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Axe);

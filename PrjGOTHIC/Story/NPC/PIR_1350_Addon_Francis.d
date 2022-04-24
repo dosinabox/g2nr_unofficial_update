@@ -7,6 +7,7 @@ instance PIR_1350_Addon_Francis(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 40;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Schwert1);

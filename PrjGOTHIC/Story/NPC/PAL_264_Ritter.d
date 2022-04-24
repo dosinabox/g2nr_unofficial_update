@@ -7,6 +7,7 @@ instance PAL_264_Ritter(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = NPCTYPE_OCAMBIENT;
+	aivar[AIV_DexToSteal] = 70;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Pal_Sword);

@@ -7,6 +7,7 @@ instance VLK_433_Bromor(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 50;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;

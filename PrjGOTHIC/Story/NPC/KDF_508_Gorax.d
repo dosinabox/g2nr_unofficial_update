@@ -7,6 +7,7 @@ instance KDF_508_Gorax(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 80;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	attribute[ATR_STRENGTH] = Condition_Stab04;
