@@ -437,18 +437,14 @@ instance ItAm_Hp_Regen(C_Item)
 
 func void Equip_ItAm_Hp_Regen()
 {
-	if(self.attribute[ATR_REGENERATEHP] == 0)
-	{
-		self.attribute[ATR_REGENERATEHP] = 3;
-	};
+	self.attribute[ATR_REGENERATEHP] = 1;
+	HpRegenAmuletEquipped = TRUE;
 };
 
 func void UnEquip_ItAm_Hp_Regen()
 {
-	if(self.attribute[ATR_REGENERATEHP] == 3)
-	{
-		self.attribute[ATR_REGENERATEHP] = 0;
-	};
+	self.attribute[ATR_REGENERATEHP] = ATR_Training[ATR_REGENERATEHP];
+	HpRegenAmuletEquipped = FALSE;
 };
 
 
@@ -475,18 +471,14 @@ instance ItAm_Mana_Regen(C_Item)
 
 func void Equip_ItAm_Mana_Regen()
 {
-	if(self.attribute[ATR_REGENERATEMANA] == 0)
-	{
-		self.attribute[ATR_REGENERATEMANA] = 3;
-	};
+	self.attribute[ATR_REGENERATEMANA] = 1;
+	ManaRegenAmuletEquipped = TRUE;
 };
 
 func void UnEquip_ItAm_Mana_Regen()
 {
-	if(self.attribute[ATR_REGENERATEMANA] == 3)
-	{
-		self.attribute[ATR_REGENERATEMANA] = 0;
-	};
+	self.attribute[ATR_REGENERATEMANA] = ATR_Training[ATR_REGENERATEMANA];
+	ManaRegenAmuletEquipped = FALSE;
 };
 
 

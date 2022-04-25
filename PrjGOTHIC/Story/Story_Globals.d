@@ -95,6 +95,8 @@ var int LeatherBelt_Equipped;
 //var int SLD03_Equipped;
 //var int Leather02_Equipped;
 //var int Rhobar_Equipped;
+var int ManaRegenAmuletEquipped;
+var int HpRegenAmuletEquipped;
 var int WISPSKILL_LEVEL;
 var int MIS_Addon_Cavalorn_TheHut;
 var int MIS_Addon_Cavalorn_KillBrago;

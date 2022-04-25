@@ -36,15 +36,21 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 	}
 	else if(attrib == ATR_REGENERATEHP)
 	{
-		if(oth.attribute[ATR_REGENERATEHP] == 0)
+		if(ATR_Training[ATR_REGENERATEHP] == 0)
 		{
-			oth.attribute[ATR_REGENERATEHP] = 30;
+			if(HpRegenAmuletEquipped == FALSE)
+			{
+				oth.attribute[ATR_REGENERATEHP] = 30;
+			};
 			Npc_SetTalentSkill(oth,NPC_TALENT_REGENERATE,1);
 			PrintScreen(PRINT_LearnRegenerateHP,-1,-1,FONT_Screen,2);
 		}
-		else if(oth.attribute[ATR_REGENERATEHP] > 1)
+		else if(ATR_Training[ATR_REGENERATEHP] > 1)
 		{
-			oth.attribute[ATR_REGENERATEHP] -= points;
+			if(HpRegenAmuletEquipped == FALSE)
+			{
+				oth.attribute[ATR_REGENERATEHP] -= points;
+			};
 			PrintScreen(PRINT_UpgradeRegenerateHP,-1,-1,FONT_Screen,2);
 		}
 		else
@@ -54,15 +60,21 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 	}
 	else if(attrib == ATR_REGENERATEMANA)
 	{
-		if(oth.attribute[ATR_REGENERATEMANA] == 0)
+		if(ATR_Training[ATR_REGENERATEMANA] == 0)
 		{
-			oth.attribute[ATR_REGENERATEMANA] = 30;
+			if(ManaRegenAmuletEquipped == FALSE)
+			{
+				oth.attribute[ATR_REGENERATEMANA] = 30;
+			};
 			Npc_SetTalentSkill(oth,NPC_TALENT_REGENERATE,1);
 			PrintScreen(PRINT_LearnRegenerateMana,-1,-1,FONT_Screen,2);
 		}
-		else if(oth.attribute[ATR_REGENERATEMANA] > 1)
+		else if(ATR_Training[ATR_REGENERATEMANA] > 1)
 		{
-			oth.attribute[ATR_REGENERATEMANA] -= points;
+			if(ManaRegenAmuletEquipped == FALSE)
+			{
+				oth.attribute[ATR_REGENERATEMANA] -= points;
+			};
 			PrintScreen(PRINT_UpgradeRegenerateMana,-1,-1,FONT_Screen,2);
 		}
 		else

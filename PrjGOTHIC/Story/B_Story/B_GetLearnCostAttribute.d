@@ -61,11 +61,11 @@ func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut,var int amount)
 {
 	if(attribut == ATR_REGENERATEHP)
 	{
-		return GetRegenerationAttributeCost(oth.attribute[ATR_REGENERATEHP]);
+		return GetRegenerationAttributeCost(ATR_Training[ATR_REGENERATEHP]);
 	};
 	if(attribut == ATR_REGENERATEMANA)
 	{
-		return GetRegenerationAttributeCost(oth.attribute[ATR_REGENERATEMANA]);
+		return GetRegenerationAttributeCost(ATR_Training[ATR_REGENERATEMANA]);
 	};
 	return GetMainAttributeCost(RealAttributeValue(attribut),amount);
 };

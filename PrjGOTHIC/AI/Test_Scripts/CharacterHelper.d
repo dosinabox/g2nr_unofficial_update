@@ -415,6 +415,8 @@ func void CH_RESET_Ok()
 	B_UnEquipHeroItem(ItRi_HP_01_Tengron);
 	B_UnEquipHeroItem(ItRi_OrcEliteRing);
 	B_UnEquipHeroItem(ItAm_Mana_Angar_MIS);
+	B_UnEquipHeroItem(ItAm_Hp_Regen);
+	B_UnEquipHeroItem(ItAm_Mana_Regen);
 	AI_UnequipArmor(hero);
 	B_SetGuild(hero,GIL_NONE);
 	hero.lp = 0;
@@ -3860,12 +3862,12 @@ func string B_BuildCurrentRegenerateValue(var int stats)
 	cost = B_GetLearnCostAttribute(other,stats,1);
 	if(stats == ATR_REGENERATEMANA)
 	{
-		next = other.attribute[ATR_REGENERATEMANA] - 1;
+		next = ATR_Training[ATR_REGENERATEMANA] - 1;
 		concatText = "Регенерация маны (1 ед. в ";
 	}
 	else if(stats == ATR_REGENERATEHP)
 	{
-		next = other.attribute[ATR_REGENERATEHP] - 1;
+		next = ATR_Training[ATR_REGENERATEHP] - 1;
 		concatText = "Регенерация здоровья (1 ед. в ";
 	};
 	if(next < 0)
@@ -3906,11 +3908,11 @@ func int DIA_CH_Misc_Regenerate_Condition()
 {
 	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE))
 	{
-		if(other.attribute[ATR_REGENERATEMANA] != 1)
+		if(ATR_Training[ATR_REGENERATEMANA] != 1)
 		{
 			return TRUE;
 		};
-		if(other.attribute[ATR_REGENERATEHP] != 1)
+		if(ATR_Training[ATR_REGENERATEHP] != 1)
 		{
 			return TRUE;
 		};
@@ -3921,11 +3923,11 @@ func void DIA_CH_Misc_Regenerate_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Regenerate);
 	Info_AddChoice(DIA_CH_Misc_Regenerate,Dialog_Back,DIA_CH_Misc_Regenerate_BACK);
-	if(other.attribute[ATR_REGENERATEMANA] != 1)
+	if(ATR_Training[ATR_REGENERATEMANA] != 1)
 	{
 		Info_AddChoice(DIA_CH_Misc_Regenerate,B_BuildCurrentRegenerateValue(ATR_REGENERATEMANA),DIA_CH_Misc_Regenerate_Mana);
 	};
-	if(other.attribute[ATR_REGENERATEHP] != 1)
+	if(ATR_Training[ATR_REGENERATEHP] != 1)
 	{
 		Info_AddChoice(DIA_CH_Misc_Regenerate,B_BuildCurrentRegenerateValue(ATR_REGENERATEHP),DIA_CH_Misc_Regenerate_HP);
 	};
@@ -3943,7 +3945,7 @@ func void DIA_CH_Misc_Regenerate_Mana()
 	if(other.lp >= cost)
 	{
 		other.lp -= cost;
-		B_RaiseAttribute(other,ATR_REGENERATEMANA,1);
+		B_RaiseAttributeByTraining(other,ATR_REGENERATEMANA,1);
 	}
 	else
 	{
@@ -3959,7 +3961,7 @@ func void DIA_CH_Misc_Regenerate_HP()
 	if(other.lp >= cost)
 	{
 		other.lp -= cost;
-		B_RaiseAttribute(other,ATR_REGENERATEHP,1);
+		B_RaiseAttributeByTraining(other,ATR_REGENERATEHP,1);
 	}
 	else
 	{

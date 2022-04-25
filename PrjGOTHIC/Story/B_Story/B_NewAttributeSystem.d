@@ -23,6 +23,28 @@ func void B_RaiseAttributeByTraining(var C_Npc oth,var int attrib,var int points
 		else if(attrib == ATR_HITPOINTS_MAX)
 		{
 			ATR_Training[ATR_HITPOINTS_MAX] += points;
+		}
+		else if(attrib == ATR_REGENERATEHP)
+		{
+			if(ATR_Training[ATR_REGENERATEHP] == 0)
+			{
+				ATR_Training[ATR_REGENERATEHP] = 30;
+			}
+			else if(ATR_Training[ATR_REGENERATEHP] > 1)
+			{
+				ATR_Training[ATR_REGENERATEHP] -= points;
+			};
+		}
+		else if(attrib == ATR_REGENERATEMANA)
+		{
+			if(ATR_Training[ATR_REGENERATEMANA] == 0)
+			{
+				ATR_Training[ATR_REGENERATEMANA] = 30;
+			}
+			else if(ATR_Training[ATR_REGENERATEMANA] > 1)
+			{
+				ATR_Training[ATR_REGENERATEMANA] -= points;
+			};
 		};
 	};
 };
@@ -143,6 +165,8 @@ func void B_ResetAttributeSystem()
 		ATR_Training[ATR_DEXTERITY] = 10;
 		ATR_Training[ATR_MANA_MAX] = 10;
 		ATR_Training[ATR_HITPOINTS_MAX] = 40;
+		ATR_Training[ATR_REGENERATEHP] = 0;
+		ATR_Training[ATR_REGENERATEMANA] = 0;
 		ATR_PermBonus[ATR_STRENGTH] = 0;
 		ATR_PermBonus[ATR_DEXTERITY] = 0;
 		ATR_PermBonus[ATR_MANA_MAX] = 0;

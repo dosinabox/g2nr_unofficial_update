@@ -452,7 +452,7 @@ func int DIA_Hakon_Success_Condition()
 {
 	if((MIS_HakonBandits == LOG_Running) && Npc_KnowsInfo(other,DIA_Hakon_Wo))
 	{
-		if(Npc_IsDead(Bandit_1) && Npc_IsDead(Bandit_2) && Npc_IsDead(Bandit_3))
+		if(C_HakonBanditsDead())
 		{
 			return TRUE;
 		};
