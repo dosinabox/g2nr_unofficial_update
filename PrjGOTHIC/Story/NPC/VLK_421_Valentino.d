@@ -12,8 +12,8 @@ instance VLK_421_Valentino(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Vlk_Mace);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,ItKe_Valentino);
 	CreateInvItems(self,ItMi_Gold,200);
-	CreateInvItems(self,ItKe_Valentino,1);
 //	B_SetNpcVisual(self,MALE,"Hum_Head_Bald.",Face_N_Normal03,BodyTex_N,ITAR_Vlk_H);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal03,BodyTex_N,ITAR_Vlk_H);
 	Mdl_SetModelFatness(self,0);

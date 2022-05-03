@@ -12,7 +12,7 @@ instance VLK_4106_Dobar(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Axe);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItMi_Nugget,1);
+	B_CreateItemToSteal(self,ItMi_Nugget);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Snaf,BodyTex_N,ITAR_Smith);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

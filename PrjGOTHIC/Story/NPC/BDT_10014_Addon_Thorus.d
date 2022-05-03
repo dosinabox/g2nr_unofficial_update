@@ -12,7 +12,7 @@ instance BDT_10014_Addon_Thorus(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2h_Sld_Sword);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItKe_Addon_Thorus,1);
+	B_CreateItemToSteal(self,ItKe_Addon_Thorus);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Thorus,BodyTex_B,ITAR_Thorus_Addon);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

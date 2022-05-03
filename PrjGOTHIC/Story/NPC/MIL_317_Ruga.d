@@ -13,7 +13,7 @@ instance MIL_317_Ruga(Npc_Default)
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItKe_City_Tower_03,1);
+	B_CreateItemToSteal(self,ItKe_City_Tower_03);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_NormalBart03,BodyTex_N,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

@@ -17,6 +17,13 @@ func int C_CanStealFromNpc(var int TheftDex) //TODO убрать TheftDex и использова
 	{
 		return FALSE;
 	};
+	if(self.aivar[AIV_ItemToSteal] != 0)
+	{
+		if(!Npc_HasItems(self,self.aivar[AIV_ItemToSteal]))
+		{
+			return FALSE;
+		};
+	};
 	return TRUE;
 };
 
@@ -116,7 +123,7 @@ func void B_StealItem(var int TheftDex,var int itemInstance) //TODO убрать Theft
 		text = ConcatStrings(text,item.description);
 		text = ConcatStrings(text,".");
 		B_LogEntry(Topic_PickPocket,text);
-		if(Hlp_IsItem(item,ItSe_GoldPocket25) || Hlp_IsItem(item,ItSe_GoldPocket50) || Hlp_IsItem(item,ItSe_GoldPocket100))
+		if(Hlp_StrCmp(item.name,NAME_Beutel))
 		{
 			TotalTheftGold += item.value;
 		};

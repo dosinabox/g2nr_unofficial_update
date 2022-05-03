@@ -1,51 +1,104 @@
 
 func string B_BuildPickpocketString()
 {
+	var string text;
 	if(self.aivar[AIV_DexToSteal] <= 20)
 	{
-		if(self.aivar[AIV_Gender] == FEMALE)
-		{
-			return Pickpocket_20_Female;
-		};
-		return Pickpocket_20;
-	};
-	if(self.aivar[AIV_DexToSteal] <= 40)
+		text = "(нет ничего проще, чем украсть ";
+	}
+	else
 	{
-		if(self.aivar[AIV_Gender] == FEMALE)
-		{
-			return Pickpocket_40_Female;
-		};
-		return Pickpocket_40;
-	};
-	if(self.aivar[AIV_DexToSteal] <= 60)
-	{
-		if(self.aivar[AIV_Gender] == FEMALE)
-		{
-			return Pickpocket_60_Female;
-		};
-		return Pickpocket_60;
-	};
-	if(self.aivar[AIV_DexToSteal] <= 80)
-	{
-		if(self.aivar[AIV_Gender] == FEMALE)
-		{
-			return Pickpocket_80_Female;
-		};
-		return Pickpocket_80;
-	};
-	if(self.aivar[AIV_DexToSteal] <= 100)
-	{
-		if(self.aivar[AIV_Gender] == FEMALE)
-		{
-			return Pickpocket_100_Female;
-		};
-		return Pickpocket_100;
+		text = "(украсть ";
 	};
 	if(self.aivar[AIV_Gender] == FEMALE)
 	{
-		return Pickpocket_120_Female;
+		text = ConcatStrings(text,"ee ");
+	}
+	else
+	{
+		text = ConcatStrings(text,"eго ");
 	};
-	return Pickpocket_120;
+	if(self.aivar[AIV_GoldToSteal] > 0)
+	{
+		text = ConcatStrings(text,"кошелек");
+	}
+	else
+	{
+		Npc_GetInvItem(self,self.aivar[AIV_ItemToSteal]);
+		if(Hlp_StrCmp(item.name,NAME_Amulett))
+		{
+			text = ConcatStrings(text,"амулет");
+		}
+		else if(Hlp_StrCmp(item.name,NAME_Key))
+		{
+			text = ConcatStrings(text,"ключ");
+		}
+		else if(Hlp_StrCmp(item.name,NAME_Trank))
+		{
+			text = ConcatStrings(text,"зелье");
+		}
+		else if(Hlp_StrCmp(item.name,NAME_Beutel))
+		{
+			text = ConcatStrings(text,"кошелек");
+		}
+		else if(Hlp_StrCmp(item.name,NAME_Spruchrolle))
+		{
+			text = ConcatStrings(text,"свиток");
+		}
+		else if(Hlp_IsItem(item,ItMi_Nugget))
+		{
+			text = ConcatStrings(text,"кусок руды");
+		}
+		else if(Hlp_IsItem(item,ItWr_Map_OldWorld))
+		{
+			text = ConcatStrings(text,"карту");
+		}
+		else if(Hlp_IsItem(item,ItWr_Schuldenbuch) || Hlp_IsItem(item,ItWr_CorneliusTagebuch_Mis))
+		{
+			text = ConcatStrings(text,"книгу");
+		}
+		else if(Hlp_IsItem(item,ItWr_Manowar))
+		{
+			text = ConcatStrings(text,"документ");
+		}
+		else if(Hlp_IsItem(item,ItMi_ArrowPack))
+		{
+			text = ConcatStrings(text,"колчан");
+		}
+		else if(Hlp_IsItem(item,ItMi_SilverRing))
+		{
+			text = ConcatStrings(text,"кольцо");
+		}
+		else
+		{
+			text = ConcatStrings(text,"предмет");
+		};
+	};
+	if(self.aivar[AIV_DexToSteal] <= 20)
+	{
+		text = ConcatStrings(text,")");
+	}
+	else if(self.aivar[AIV_DexToSteal] <= 40)
+	{
+		text = ConcatStrings(text," будет довольно просто)");
+	}
+	else if(self.aivar[AIV_DexToSteal] <= 60)
+	{
+		text = ConcatStrings(text," будет довольно рискованно)");
+	}
+	else if(self.aivar[AIV_DexToSteal] <= 80)
+	{
+		text = ConcatStrings(text," будет довольно трудно)");
+	}
+	else if(self.aivar[AIV_DexToSteal] <= 100)
+	{
+		text = ConcatStrings(text," будет чертовски трудно)");
+	}
+	else
+	{
+		text = ConcatStrings(text," практически невозможно)");
+	};
+	return text;
 };
 
 instance DIA_Pickpocket(C_Info)
@@ -76,7 +129,14 @@ func void DIA_Pickpocket_Info()
 
 func void DIA_Pickpocket_DoIt()
 {
-	B_StealGold();
+	if(self.aivar[AIV_GoldToSteal])
+	{
+		B_StealGold();
+	}
+	else
+	{
+		B_StealItem(self.aivar[AIV_DexToSteal],self.aivar[AIV_ItemToSteal]);
+	};
 	Info_ClearChoices(DIA_Pickpocket);
 };
 

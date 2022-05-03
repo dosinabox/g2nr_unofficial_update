@@ -18,7 +18,7 @@ instance MIL_328_Miliz(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItKe_Storage,1);
+	B_CreateItemToSteal(self,ItKe_Storage);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart17,BodyTex_N,ITAR_Leather_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

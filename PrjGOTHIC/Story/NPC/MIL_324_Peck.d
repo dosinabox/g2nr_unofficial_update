@@ -18,7 +18,7 @@ instance MIL_324_Peck(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItKe_City_Tower_05,1);
+	B_CreateItemToSteal(self,ItKe_City_Tower_05);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Normal_Orik,BodyTex_B,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

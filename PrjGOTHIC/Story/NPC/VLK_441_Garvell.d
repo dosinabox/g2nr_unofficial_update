@@ -13,7 +13,7 @@ instance VLK_441_Garvell(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Vlk_Axe);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItSe_GoldPocket25,1);
+	B_CreateItemToSteal(self,ItSe_GoldPocket25);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Lefty,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

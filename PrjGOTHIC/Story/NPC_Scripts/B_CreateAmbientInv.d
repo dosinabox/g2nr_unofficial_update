@@ -660,4 +660,9 @@ func void B_CreateAmbientInv(var C_Npc slf)
 	};
 };
 
+func void B_CreateItemToSteal(var C_Npc slf,var int itemInstance)
+{
+	CreateInvItems(slf,itemInstance,1);
+	slf.aivar[AIV_ItemToSteal] = itemInstance;
+};
 
