@@ -17,13 +17,6 @@ func int C_CanStealFromNpc(var int TheftDex) //TODO убрать TheftDex и использова
 	{
 		return FALSE;
 	};
-	if(self.aivar[AIV_ItemToSteal] != 0)
-	{
-		if(!Npc_HasItems(self,self.aivar[AIV_ItemToSteal]))
-		{
-			return FALSE;
-		};
-	};
 	return TRUE;
 };
 

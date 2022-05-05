@@ -37,7 +37,11 @@ instance DIA_Addon_Cavalorn_PICKPOCKET(C_Info)
 
 func int DIA_Addon_Cavalorn_PICKPOCKET_Condition()
 {
-	return C_CanStealFromNpc(25);
+	if(Npc_HasItems(self,ItMi_ArrowPack))
+	{
+		return C_CanStealFromNpc(25);
+	};
+	return FALSE;
 };
 
 func void DIA_Addon_Cavalorn_PICKPOCKET_Info()

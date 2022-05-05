@@ -34,7 +34,11 @@ instance DIA_Bartok_PICKPOCKET(C_Info)
 
 func int DIA_Bartok_PICKPOCKET_Condition()
 {
-	return C_CanStealFromNpc(30);
+	if(Npc_HasItems(self,ItMi_ArrowPack))
+	{
+		return C_CanStealFromNpc(30);
+	};
+	return FALSE;
 };
 
 func void DIA_Bartok_PICKPOCKET_Info()
