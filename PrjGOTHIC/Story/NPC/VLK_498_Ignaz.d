@@ -7,14 +7,13 @@ instance VLK_498_Ignaz(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 38;
-	aivar[AIV_GoldToSteal] = 50;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);
 //	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,38,ItMi_Gold,50);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Corristo,BodyTex_N,ITAR_Smith);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

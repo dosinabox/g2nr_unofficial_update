@@ -7,8 +7,6 @@ instance DJG_713_Biff(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 92;
-	aivar[AIV_GoldToSteal] = 320;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
@@ -16,6 +14,7 @@ instance DJG_713_Biff(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Sld_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,92,ItMi_Gold,320);
 	CreateInvItems(self,ItPo_Health_02,4);
 	CreateInvItems(self,ItMi_OldCoin,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal16,BodyTex_N,ITAR_DJG_M);

@@ -7,14 +7,13 @@ instance BDT_1093_Addon_Franco(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
-	aivar[AIV_DexToSteal] = 60;
 	aivar[AIV_StoryBandit] = TRUE;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
-	B_CreateItemToSteal(self,ItAm_Addon_Franco);
+	B_CreateItemToSteal(self,60,ItAm_Addon_Franco,1);
 	CreateInvItems(self,ItMi_GoldNugget_Addon,7);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Tough01,BodyTex_L,ITAR_BDT_H);
 	Mdl_SetModelFatness(self,0);

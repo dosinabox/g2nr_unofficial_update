@@ -7,8 +7,6 @@ instance NOV_608_Garwig(Npc_Default)
 	voice = 6;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 52;
-	aivar[AIV_GoldToSteal] = 80;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	attribute[ATR_HITPOINTS_MAX] = 600;
@@ -16,6 +14,7 @@ instance NOV_608_Garwig(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Nov_Mace);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,52,ItMi_Gold,80);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Tough02,BodyTex_L,ITAR_NOV_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

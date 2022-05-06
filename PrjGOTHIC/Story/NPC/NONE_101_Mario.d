@@ -7,12 +7,11 @@ instance NONE_101_Mario(Npc_Default)
 	voice = 7;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 71;
-	aivar[AIV_GoldToSteal] = 220;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_Sturmbringer);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,71,ItMi_Gold,220);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Normal_Kirgo,BodyTex_B,ITAR_MIL_M);
 	Mdl_SetModelFatness(self,1.2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

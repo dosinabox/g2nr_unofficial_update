@@ -7,13 +7,12 @@ instance MIL_335_Rumbold(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 24;
-	aivar[AIV_GoldToSteal] = 45;
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,24,ItMi_Gold,45);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Important_Arto,BodyTex_N,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

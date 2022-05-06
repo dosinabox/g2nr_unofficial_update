@@ -7,8 +7,6 @@ instance PIR_1320_Addon_Greg(Npc_Default)
 	voice = 1;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 111;
-	aivar[AIV_GoldToSteal] = 666;
 	aivar[AIV_IGNORE_Murder] = TRUE;
 	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_IGNORE_Sheepkiller] = TRUE;
@@ -17,6 +15,7 @@ instance PIR_1320_Addon_Greg(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_Piratensaebel);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,111,ItMi_Gold,666);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_P_Greg,BodyTex_N,ITAR_PIR_H_Addon);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

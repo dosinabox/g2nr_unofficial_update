@@ -7,13 +7,12 @@ instance BAU_982_Grimbald(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 85;
-	aivar[AIV_GoldToSteal] = 250;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Sld_Bow);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,85,ItMi_Gold,250);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_B_Normal_Kirgo,BodyTex_B,ITAR_Leather_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

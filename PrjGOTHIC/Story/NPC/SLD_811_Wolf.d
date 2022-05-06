@@ -7,14 +7,13 @@ instance SLD_811_Wolf(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 32;
-	aivar[AIV_GoldToSteal] = 35;
 	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Axe);
 	EquipItem(self,ItRw_Sld_Bow);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,32,ItMi_Gold,35);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Wolf,BodyTex_N,ITAR_SLD_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

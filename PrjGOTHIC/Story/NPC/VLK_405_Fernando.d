@@ -7,12 +7,11 @@ instance VLK_405_Fernando(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 50;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Vlk_Mace);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItSe_GoldPocket100,1);
+	B_CreateItemToSteal(self,50,ItSe_GoldPocket100,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Corristo,BodyTex_N,ITAR_Governor);
 	Mdl_SetModelFatness(self,3);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

@@ -7,14 +7,13 @@ instance BAU_940_Akil(Npc_Default)
 	voice = 13;
 //	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 37;
-	aivar[AIV_GoldToSteal] = 30;
 	B_SetAttributesToChapter(self,2);
 	attribute[ATR_HITPOINTS] = 300;
 	attribute[ATR_HITPOINTS_MAX] = 300;
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_ShortSword2);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,37,ItMi_Gold,30);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart_Grim,BodyTex_N,ITAR_Bau_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

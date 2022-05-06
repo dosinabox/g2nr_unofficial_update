@@ -7,12 +7,11 @@ instance BDT_10014_Addon_Thorus(Npc_Default)
 	voice = 12;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 60;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2h_Sld_Sword);
 	B_CreateAmbientInv(self);
-	B_CreateItemToSteal(self,ItKe_Addon_Thorus);
+	B_CreateItemToSteal(self,60,ItKe_Addon_Thorus,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Thorus,BodyTex_B,ITAR_Thorus_Addon);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

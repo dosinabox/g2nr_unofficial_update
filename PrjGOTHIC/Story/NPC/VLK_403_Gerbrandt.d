@@ -7,12 +7,11 @@ instance VLK_403_Gerbrandt(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 30;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Vlk_Mace);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItSe_GoldPocket100,1);
+	B_CreateItemToSteal(self,30,ItSe_GoldPocket100,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_L_Tough_Santino,BodyTex_L,ITAR_Vlk_H);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

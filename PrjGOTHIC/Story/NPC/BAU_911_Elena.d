@@ -7,8 +7,6 @@ instance BAU_911_Elena(Npc_Default)
 	voice = 16;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 30;
-	aivar[AIV_GoldToSteal] = 35;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	attribute[ATR_STRENGTH] = 50;
@@ -16,6 +14,7 @@ instance BAU_911_Elena(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);
 //	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,30,ItMi_Gold,35);
 //	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabe_N_GreyCloth,BodyTexBabe_N,ITAR_BauBabe_L);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe7",FaceBabe_N_GreyCloth,BodyTexBabe_N,ITAR_BauBabe_L);
 	Mdl_SetModelFatness(self,0);

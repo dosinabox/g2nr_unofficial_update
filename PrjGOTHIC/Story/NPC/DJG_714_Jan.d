@@ -7,12 +7,11 @@ instance DJG_714_Jan(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 37;
-	aivar[AIV_GoldToSteal] = 95;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,37,ItMi_Gold,95);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Richter,BodyTex_N,ITAR_DJG_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

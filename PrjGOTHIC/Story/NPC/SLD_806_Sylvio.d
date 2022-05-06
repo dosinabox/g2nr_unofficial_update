@@ -7,13 +7,12 @@ instance SLD_806_Sylvio(Npc_Default)
 	voice = 9;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 80;
-	aivar[AIV_GoldToSteal] = 120;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Sld_Bow);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,80,ItMi_Gold,120);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Scar,BodyTex_N,ITAR_SLD_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

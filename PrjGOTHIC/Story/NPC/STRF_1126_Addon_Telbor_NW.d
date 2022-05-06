@@ -7,13 +7,12 @@ instance STRF_1126_Addon_Telbor_NW(Npc_Default)
 	voice = 12;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 60;
-	aivar[AIV_GoldToSteal] = 55;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,60,ItMi_Gold,55);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_B_Normal01,BodyTex_B,ITAR_Bau_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

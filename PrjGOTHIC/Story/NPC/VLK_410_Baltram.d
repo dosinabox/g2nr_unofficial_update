@@ -7,13 +7,12 @@ instance VLK_410_Baltram(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 76;
-	aivar[AIV_GoldToSteal] = 175;
 	aivar[AIV_NPCIsRanger] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_ShortSword2);
+	B_CreateItemToSteal(self,76,ItMi_Gold,175);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Markus_Kark,BodyTex_N,ITAR_Vlk_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

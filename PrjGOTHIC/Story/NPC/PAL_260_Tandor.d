@@ -7,8 +7,6 @@ instance PAL_260_Tandor(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = NPCTYPE_OCMAIN;
-	aivar[AIV_DexToSteal] = 47;
-	aivar[AIV_GoldToSteal] = 90;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
@@ -17,6 +15,7 @@ instance PAL_260_Tandor(Npc_Default)
 	EquipItem(self,ItRw_Crossbow_M_02);
 //	EquipItem(self,ItRw_Mil_Crossbow);
 //	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,47,ItMi_Gold,90);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_P_Tough_Rodriguez,BodyTex_P,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

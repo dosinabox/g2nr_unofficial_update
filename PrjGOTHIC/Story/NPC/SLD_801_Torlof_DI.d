@@ -7,8 +7,6 @@ instance SLD_801_Torlof_DI(Npc_Default)
 	voice = 1;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 76;
-	aivar[AIV_GoldToSteal] = 120;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
@@ -20,6 +18,7 @@ instance SLD_801_Torlof_DI(Npc_Default)
 	EquipItem(self,ItMw_2h_Sld_Sword);
 	EquipItem(self,ItRw_Sld_Bow);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,76,ItMi_Gold,120);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Torlof,BodyTex_N,ITAR_SLD_H);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

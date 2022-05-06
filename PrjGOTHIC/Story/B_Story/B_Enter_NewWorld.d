@@ -173,7 +173,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Salandril.aivar[AIV_ToughGuy] = TRUE;
 		};
 		Cornelius.flags = 0;
-		B_CreateItemToSteal(Cornelius,ItWr_CorneliusTagebuch_Mis);
+		B_CreateItemToSteal(Cornelius,60,ItWr_CorneliusTagebuch_Mis,1);
 		if(!Npc_IsDead(Hodges))
 		{
 			Hodges_isAlive_Kap3 = TRUE;

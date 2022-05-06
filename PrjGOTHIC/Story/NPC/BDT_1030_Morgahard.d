@@ -7,12 +7,11 @@ instance BDT_1030_Morgahard(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 73;
-	aivar[AIV_GoldToSteal] = 45;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,73,ItMi_Gold,45);
 	CreateInvItems(self,ItWr_RichterKomproBrief_MIS,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Bartholo,BodyTex_N,ITAR_BDT_H);
 	Mdl_SetModelFatness(self,0);

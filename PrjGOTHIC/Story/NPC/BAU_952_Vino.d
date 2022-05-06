@@ -7,12 +7,11 @@ instance BAU_952_Vino(Npc_Default)
 	voice = 5;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 34;
-	aivar[AIV_GoldToSteal] = 60;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,34,ItMi_Gold,60);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_N_Weak_Herek,BodyTex_N,ITAR_Bau_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

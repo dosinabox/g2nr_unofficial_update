@@ -7,14 +7,13 @@ instance VLK_476_Fenia(Npc_Default)
 	voice = 17;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 50;
-	aivar[AIV_GoldToSteal] = 75;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_NORMAL;
 //	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,50,ItMi_Gold,75);
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe1",FaceBabe_N_GreyCloth,BodyTex_N,ITAR_VlkBabe_L);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");

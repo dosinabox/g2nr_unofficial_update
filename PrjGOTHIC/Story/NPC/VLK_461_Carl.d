@@ -7,14 +7,13 @@ instance VLK_461_Carl(Npc_Default)
 	voice = 5;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 34;
-	aivar[AIV_GoldToSteal] = 40;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
 //	EquipItem(self,ItMw_1H_Mace_L_04);
 	EquipItem(self,ItMw_Nagelknueppel);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,34,ItMi_Gold,40);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_L_NormalBart01,BodyTex_L,ITAR_Smith);
 	Mdl_SetModelFatness(self,0);
 	B_GiveNpcTalents(self);

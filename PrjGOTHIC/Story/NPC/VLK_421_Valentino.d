@@ -7,12 +7,11 @@ instance VLK_421_Valentino(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 30;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Vlk_Mace);
 	B_CreateAmbientInv(self);
-	B_CreateItemToSteal(self,ItKe_Valentino);
+	B_CreateItemToSteal(self,30,ItKe_Valentino,1);
 	CreateInvItems(self,ItMi_Gold,200);
 //	B_SetNpcVisual(self,MALE,"Hum_Head_Bald.",Face_N_Normal03,BodyTex_N,ITAR_Vlk_H);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal03,BodyTex_N,ITAR_Vlk_H);

@@ -7,12 +7,11 @@ instance PAL_252_Parcival(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = NPCTYPE_OCMAIN;
-	aivar[AIV_DexToSteal] = 84;
-	aivar[AIV_GoldToSteal] = 460;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Pal_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,84,ItMi_Gold,460);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_P_Tough_Drago,BodyTex_P,ITAR_PAL_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

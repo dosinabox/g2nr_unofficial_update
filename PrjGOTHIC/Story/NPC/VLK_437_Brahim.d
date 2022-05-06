@@ -7,13 +7,12 @@ instance VLK_437_Brahim(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 15;
-	aivar[AIV_GoldToSteal] = 15;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Vlk_Mace);
+	B_CreateItemToSteal(self,15,ItMi_Gold,15);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_CoolPock,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

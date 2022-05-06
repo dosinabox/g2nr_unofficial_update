@@ -7,12 +7,11 @@ instance BAU_941_Kati(Npc_Default)
 	voice = 16;
 //	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 13;
-	aivar[AIV_GoldToSteal] = 15;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,13,ItMi_Gold,15);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe6",FaceBabe_N_Lilo,BodyTexBabe_N,ITAR_BauBabe_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");

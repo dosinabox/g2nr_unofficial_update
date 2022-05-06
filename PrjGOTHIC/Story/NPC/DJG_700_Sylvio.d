@@ -7,14 +7,13 @@ instance DJG_700_Sylvio(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 78;
-	aivar[AIV_GoldToSteal] = 560;
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Crossbow_M_01);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,78,ItMi_Gold,560);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Scar,BodyTex_N,ITAR_DJG_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

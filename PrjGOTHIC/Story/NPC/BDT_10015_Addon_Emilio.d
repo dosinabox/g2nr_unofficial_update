@@ -7,12 +7,11 @@ instance BDT_10015_Addon_Emilio(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 76;
-	aivar[AIV_GoldToSteal] = 112;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2H_Axe_L_01);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,76,ItMi_Gold,112);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_P_NormalBart01,BodyTex_P,ITAR_Prisoner);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

@@ -7,12 +7,11 @@ instance KDF_507_Talamon(Npc_Default)
 	voice = 4;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 87;
-	aivar[AIV_GoldToSteal] = 140;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,87,ItMi_Gold,140);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Saturas,BodyTex_B,ITAR_KDF_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

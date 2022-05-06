@@ -7,8 +7,6 @@ instance KDF_502_Ulthar(Npc_Default)
 	voice = 5;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 74;
-	aivar[AIV_GoldToSteal] = 320;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IGNORE_Murder] = TRUE;
@@ -17,6 +15,7 @@ instance KDF_502_Ulthar(Npc_Default)
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,74,ItMi_Gold,320);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_L_NormalBart01,BodyTex_L,ITAR_KDF_H);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

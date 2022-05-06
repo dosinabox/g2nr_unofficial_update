@@ -7,13 +7,12 @@ instance VLK_441_Garvell(Npc_Default)
 	voice = 4;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 10;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Vlk_Axe);
 	B_CreateAmbientInv(self);
-	B_CreateItemToSteal(self,ItSe_GoldPocket25);
+	B_CreateItemToSteal(self,10,ItSe_GoldPocket25,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Lefty,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

@@ -7,12 +7,11 @@ instance NOV_612_Babo(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 17;
-	aivar[AIV_GoldToSteal] = 25;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Nov_Mace);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,17,ItMi_Gold,25);
 	CreateInvItems(self,ItMw_1h_Nov_Mace,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal07,BodyTex_N,ITAR_NOV_L);
 	Mdl_SetModelFatness(self,-1);

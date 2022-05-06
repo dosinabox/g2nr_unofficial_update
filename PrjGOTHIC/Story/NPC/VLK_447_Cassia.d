@@ -7,14 +7,13 @@ instance VLK_447_Cassia(Npc_Default)
 	voice = 16;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 100;
-	aivar[AIV_GoldToSteal] = 400;
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Meisterdegen);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,100,ItMi_Gold,400);
 	CreateInvItems(self,ItKe_ThiefGuildKey_Hotel_MIS,1);
 	CreateInvItems(self,ItKe_ThiefTreasure,1);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabe_N_BlackHair,BodyTexBabe_N,ITAR_VlkBabe_H);

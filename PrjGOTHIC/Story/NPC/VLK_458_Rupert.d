@@ -7,12 +7,11 @@ instance VLK_458_Rupert(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 18;
-	aivar[AIV_GoldToSteal] = 10;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
+	B_CreateItemToSteal(self,18,ItMi_Gold,10);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal20,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

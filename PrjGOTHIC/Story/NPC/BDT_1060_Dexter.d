@@ -7,14 +7,13 @@ instance BDT_1060_Dexter(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 96;
-	aivar[AIV_GoldToSteal] = 370;
 	aivar[AIV_EnemyOverride] = TRUE;
 	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_ShortSword2);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,96,ItMi_Gold,370);
 	CreateInvItems(self,ItKe_Dexter,1);
 	CreateInvItems(self,ItWr_RavensKidnapperMission_Addon,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart_Dexter,BodyTex_N,ITAR_Diego);

@@ -7,8 +7,6 @@ instance PC_Mage_DI(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
-	aivar[AIV_DexToSteal] = 45;
-	aivar[AIV_GoldToSteal] = 120;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
@@ -21,6 +19,7 @@ instance PC_Mage_DI(Npc_Default)
 	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_STRONG;
 //	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,45,ItMi_Gold,120);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Milten,BodyTex_N,ITAR_KDF_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

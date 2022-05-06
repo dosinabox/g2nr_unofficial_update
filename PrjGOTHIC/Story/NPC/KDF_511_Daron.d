@@ -7,13 +7,12 @@ instance KDF_511_Daron(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 47;
-	aivar[AIV_GoldToSteal] = 80;
 	aivar[AIV_MagicUser] = MAGIC_ALWAYS;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Nov_Mace);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,47,ItMi_Gold,80);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_Raven,BodyTex_N,ITAR_KDF_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

@@ -7,13 +7,12 @@ instance VLK_400_Larius(Npc_Default)
 	voice = 1;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 35;
-	aivar[AIV_GoldToSteal] = 120;
 	B_SetAttributesToChapter(self,1);
 //	fight_tactic = FAI_HUMAN_COWARD;
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Schwert1);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,35,ItMi_Gold,120);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Weak_Cipher_alt,BodyTex_N,ITAR_Larius);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

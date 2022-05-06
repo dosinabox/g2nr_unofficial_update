@@ -7,8 +7,6 @@ instance PC_Fighter_DJG(Npc_Default)
 	voice = 12;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
-	aivar[AIV_DexToSteal] = 10;
-	aivar[AIV_GoldToSteal] = 35;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,6);
@@ -18,6 +16,7 @@ instance PC_Fighter_DJG(Npc_Default)
 	CreateInvItems(self,ItPo_Health_02,6);
 	CreateInvItems(self,ItMi_OldCoin,1);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,10,ItMi_Gold,35);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Gorn,BodyTex_B,ITAR_DJG_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

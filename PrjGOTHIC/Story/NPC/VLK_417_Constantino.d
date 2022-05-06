@@ -7,13 +7,12 @@ instance VLK_417_Constantino(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 59;
-	aivar[AIV_GoldToSteal] = 90;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);
+	B_CreateItemToSteal(self,59,ItMi_Gold,90);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_OldBald_Jeremiah,BodyTex_N,ITAR_Smith);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

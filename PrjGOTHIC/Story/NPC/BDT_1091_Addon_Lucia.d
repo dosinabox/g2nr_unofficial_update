@@ -7,13 +7,12 @@ instance BDT_1091_Addon_Lucia(Npc_Default)
 	voice = 16;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
-	aivar[AIV_DexToSteal] = 80;
-	aivar[AIV_GoldToSteal] = 100;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
 //	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,80,ItMi_Gold,100);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe1",FaceBabe_N_GreyCloth,BodyTexBabe_F,NO_ARMOR);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");

@@ -7,13 +7,12 @@ instance PAL_261_Gerold(Npc_Default)
 	voice = 12;
 	flags = 0;
 	npcType = NPCTYPE_OCMAIN;
-	aivar[AIV_DexToSteal] = 71;
-	aivar[AIV_GoldToSteal] = 170;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2h_Pal_Sword);
 	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,71,ItMi_Gold,170);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal_Blade,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

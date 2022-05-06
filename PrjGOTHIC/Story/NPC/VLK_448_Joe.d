@@ -8,8 +8,6 @@ instance VLK_448_Joe(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 25;
-	aivar[AIV_GoldToSteal] = 25;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IGNORE_Murder] = TRUE;
@@ -19,6 +17,7 @@ instance VLK_448_Joe(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_ShortSword5);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,25,ItMi_Gold,25);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_ToughBald,BodyTex_P,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

@@ -7,8 +7,6 @@ instance BDT_1075_Addon_Fortuno(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
-	aivar[AIV_DexToSteal] = 10;
-	aivar[AIV_GoldToSteal] = 25;
 	aivar[AIV_NewsOverride] = TRUE;
 	aivar[AIV_NoFightParker] = TRUE;
 	aivar[AIV_Teeth] = 1;
@@ -16,6 +14,7 @@ instance BDT_1075_Addon_Fortuno(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1H_Sword_L_03);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,10,ItMi_Gold,25);
 	CreateInvItems(self,ItMi_Joint,5);
 	CreateInvItems(self,ItPl_SwampHerb,3);
 	CreateInvItems(self,ItPl_Mushroom_01,5);

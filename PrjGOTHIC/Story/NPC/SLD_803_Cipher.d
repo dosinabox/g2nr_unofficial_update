@@ -7,8 +7,6 @@ instance SLD_803_Cipher(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 65;
-	aivar[AIV_GoldToSteal] = 65;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	aivar[AIV_Teeth] = 2;
 	B_SetAttributesToChapter(self,2);
@@ -23,6 +21,7 @@ instance SLD_803_Cipher(Npc_Default)
 	CreateInvItems(self,ItRw_Sld_Bow,1);
 	CreateInvItems(self,ItMw_2H_OrcAxe_01,1);
 	CreateInvItems(self,ItLsTorch,8);	*/
+	B_CreateItemToSteal(self,65,ItMi_Gold,65);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart10,BodyTex_N,ITAR_SLD_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

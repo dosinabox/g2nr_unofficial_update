@@ -7,14 +7,13 @@ instance SLD_805_Cord(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 65;
-	aivar[AIV_GoldToSteal] = 75;
 	aivar[AIV_NPCIsRanger] = TRUE;
 	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,65,ItMi_Gold,75);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal_Cord,BodyTex_N,ITAR_SLD_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

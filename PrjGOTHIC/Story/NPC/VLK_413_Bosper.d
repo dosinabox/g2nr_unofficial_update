@@ -8,13 +8,12 @@ instance VLK_413_Bosper(Npc_Default)
 //	flags = NPC_FLAG_IMMORTAL;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 67;
-	aivar[AIV_GoldToSteal] = 120;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
 	EquipItem(self,ItRw_Bow_M_02);
+	B_CreateItemToSteal(self,67,ItMi_Gold,120);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_L_Tough_Santino,BodyTex_L,ITAR_Leather_L);
 	Mdl_SetModelFatness(self,0.8);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

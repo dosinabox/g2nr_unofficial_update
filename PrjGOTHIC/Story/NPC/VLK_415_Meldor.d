@@ -7,14 +7,13 @@ instance VLK_415_Meldor(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 34;
-	aivar[AIV_GoldToSteal] = 55;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
 //	EquipItem(self,ItMw_1h_Vlk_Dagger);
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,34,ItMi_Gold,55);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_P_NormalBald,BodyTex_P,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0.8);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

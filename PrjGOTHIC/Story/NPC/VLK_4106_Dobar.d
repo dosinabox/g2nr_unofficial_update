@@ -7,12 +7,11 @@ instance VLK_4106_Dobar(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = NPCTYPE_OCMAIN;
-	aivar[AIV_DexToSteal] = 79;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Axe);
 	B_CreateAmbientInv(self);
-	B_CreateItemToSteal(self,ItMi_Nugget);
+	B_CreateItemToSteal(self,79,ItMi_Nugget,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Snaf,BodyTex_N,ITAR_Smith);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

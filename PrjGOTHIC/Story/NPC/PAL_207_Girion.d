@@ -7,12 +7,11 @@ instance PAL_207_Girion(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 73;
-	aivar[AIV_GoldToSteal] = 280;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2h_Pal_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,73,ItMi_Gold,280);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Lefty,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

@@ -180,24 +180,33 @@ func void B_ResetAttributeSystem()
 
 func void B_CheckAttributeSystem()
 {
-	if(C_NpcIsHero(hero) && Npc_KnowsInfo(hero,DIA_Xardas_FirstEXIT))
+	if(FIX_VERSION_SAVE < 28)
 	{
-		if((ATR_Training[ATR_STRENGTH] + ATR_PermBonus[ATR_STRENGTH] + ATR_TempBonus[ATR_STRENGTH]) != hero.attribute[ATR_STRENGTH])
-		{
-			PrintScreen("Рассинхронизация ATR_STRENGTH!",-1,70,FONT_Screen,1);
-		};
-		if((ATR_Training[ATR_DEXTERITY] + ATR_PermBonus[ATR_DEXTERITY] + ATR_TempBonus[ATR_DEXTERITY]) != hero.attribute[ATR_DEXTERITY])
-		{
-			PrintScreen("Рассинхронизация ATR_DEXTERITY!",-1,75,FONT_Screen,1);
-		};
-		if((ATR_Training[ATR_MANA_MAX] + ATR_PermBonus[ATR_MANA_MAX] + ATR_TempBonus[ATR_MANA_MAX]) != hero.attribute[ATR_MANA_MAX])
-		{
-			PrintScreen("Рассинхронизация ATR_MANA_MAX!",-1,80,FONT_Screen,1);
-		};
-		if((ATR_Training[ATR_HITPOINTS_MAX] + ATR_PermBonus[ATR_HITPOINTS_MAX] + ATR_TempBonus[ATR_HITPOINTS_MAX]) != hero.attribute[ATR_HITPOINTS_MAX])
-		{
-			PrintScreen("Рассинхронизация ATR_HITPOINTS_MAX!",-1,85,FONT_Screen,1);
-		};
+		return;
+	};
+	if(!C_NpcIsHero(hero))
+	{
+		return;
+	};
+	if(!Npc_KnowsInfo(hero,DIA_Xardas_FirstEXIT))
+	{
+		return;
+	};
+	if((ATR_Training[ATR_STRENGTH] + ATR_PermBonus[ATR_STRENGTH] + ATR_TempBonus[ATR_STRENGTH]) != hero.attribute[ATR_STRENGTH])
+	{
+		PrintScreen("Рассинхронизация ATR_STRENGTH!",-1,70,FONT_Screen,1);
+	};
+	if((ATR_Training[ATR_DEXTERITY] + ATR_PermBonus[ATR_DEXTERITY] + ATR_TempBonus[ATR_DEXTERITY]) != hero.attribute[ATR_DEXTERITY])
+	{
+		PrintScreen("Рассинхронизация ATR_DEXTERITY!",-1,75,FONT_Screen,1);
+	};
+	if((ATR_Training[ATR_MANA_MAX] + ATR_PermBonus[ATR_MANA_MAX] + ATR_TempBonus[ATR_MANA_MAX]) != hero.attribute[ATR_MANA_MAX])
+	{
+		PrintScreen("Рассинхронизация ATR_MANA_MAX!",-1,80,FONT_Screen,1);
+	};
+	if((ATR_Training[ATR_HITPOINTS_MAX] + ATR_PermBonus[ATR_HITPOINTS_MAX] + ATR_TempBonus[ATR_HITPOINTS_MAX]) != hero.attribute[ATR_HITPOINTS_MAX])
+	{
+		PrintScreen("Рассинхронизация ATR_HITPOINTS_MAX!",-1,85,FONT_Screen,1);
 	};
 };
 

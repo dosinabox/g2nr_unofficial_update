@@ -7,8 +7,6 @@ instance PIR_1355_Addon_Skip(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 20;
-	aivar[AIV_GoldToSteal] = 43;
 	aivar[AIV_FollowDist] = 300;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
@@ -17,6 +15,7 @@ instance PIR_1355_Addon_Skip(Npc_Default)
 	CreateInvItems(self,ItPo_Health_03,2);
 	CreateInvItem(self,ItWr_Poster_MIS);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,20,ItMi_Gold,43);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Pirat01,BodyTex_N,ITAR_PIR_L_Addon);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

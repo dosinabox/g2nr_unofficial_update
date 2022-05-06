@@ -7,12 +7,11 @@ instance MIL_312_Wulfgar(Npc_Default)
 	voice = 4;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 58;
-	aivar[AIV_GoldToSteal] = 80;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,58,ItMi_Gold,80);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart06,BodyTex_N,ITAR_MIL_M);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

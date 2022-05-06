@@ -7,11 +7,10 @@ instance KDF_510_Hyglas(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 73;
-	aivar[AIV_GoldToSteal] = 200;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,73,ItMi_Gold,200);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_NormalBart09,BodyTex_N,ITAR_KDF_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

@@ -7,13 +7,12 @@ instance MIL_317_Ruga(Npc_Default)
 	voice = 11;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 40;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
-	B_CreateItemToSteal(self,ItKe_City_Tower_03);
+	B_CreateItemToSteal(self,40,ItKe_City_Tower_03,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_NormalBart03,BodyTex_N,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

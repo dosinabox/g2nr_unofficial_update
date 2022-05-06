@@ -7,14 +7,13 @@ instance PC_Psionic(Npc_Default)
 	voice = 13;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_FRIEND;
-	aivar[AIV_DexToSteal] = 76;
-	aivar[AIV_GoldToSteal] = 20;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_Teeth] = 2;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,76,ItMi_Gold,20);
 	EquipItem(self,ItMw_Kriegshammer2);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Lester,BodyTex_Tattoo_P,ITAR_PSI_M);
 	Mdl_SetModelFatness(self,0);

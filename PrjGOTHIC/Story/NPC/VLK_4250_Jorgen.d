@@ -7,12 +7,11 @@ instance VLK_4250_Jorgen(Npc_Default)
 	voice = 7;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 59;
-	aivar[AIV_GoldToSteal] = 70;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,59,ItMi_Gold,70);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_Tough_Skip,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

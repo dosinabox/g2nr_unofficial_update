@@ -7,14 +7,13 @@ instance SLD_802_Buster(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 34;
-	aivar[AIV_GoldToSteal] = 60;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Sld_Axe);
 	EquipItem(self,ItRw_Sld_Bow);
 	CreateInvItems(self,ItRw_Arrow,10);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,34,ItMi_Gold,60);
 	CreateInvItems(self,ItFo_Apple,2);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Drax,BodyTex_N,ITAR_SLD_L);
 	Mdl_SetModelFatness(self,0);

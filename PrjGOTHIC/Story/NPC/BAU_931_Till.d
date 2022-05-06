@@ -7,12 +7,11 @@ instance BAU_931_Till(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 36;
-	aivar[AIV_GoldToSteal] = 40;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,36,ItMi_Gold,40);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Weak_Cutter,BodyTex_P,ITAR_Bau_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

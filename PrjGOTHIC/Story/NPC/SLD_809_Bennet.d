@@ -7,13 +7,12 @@ instance SLD_809_Bennet(Npc_Default)
 	voice = 6;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 35;
-	aivar[AIV_GoldToSteal] = 45;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 //	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,35,ItMi_Gold,45);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_CoolPock,BodyTex_N,ITAR_Smith);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

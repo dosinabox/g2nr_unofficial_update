@@ -7,8 +7,6 @@ instance PC_Psionic_DI(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
-	aivar[AIV_DexToSteal] = 56;
-	aivar[AIV_GoldToSteal] = 25;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
@@ -18,6 +16,7 @@ instance PC_Psionic_DI(Npc_Default)
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,56,ItMi_Gold,25);
 	EquipItem(self,ItMw_Kriegshammer2);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Lester,BodyTex_Tattoo_P,ITAR_PSI_M);
 	Mdl_SetModelFatness(self,0);

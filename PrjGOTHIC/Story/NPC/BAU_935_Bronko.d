@@ -7,14 +7,13 @@ instance BAU_935_Bronko(Npc_Default)
 	voice = 6;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 54;
-	aivar[AIV_GoldToSteal] = 80;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Bau_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,54,ItMi_Gold,80);
 	CreateInvItems(self,ItMi_Gold,35);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Normal_Kirgo,BodyTex_B,ITAR_Bau_M);
 	Mdl_SetModelFatness(self,1);

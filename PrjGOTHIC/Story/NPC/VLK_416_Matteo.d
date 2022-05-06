@@ -7,12 +7,11 @@ instance VLK_416_Matteo(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 80;
-	aivar[AIV_GoldToSteal] = 150;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Sword);
+	B_CreateItemToSteal(self,80,ItMi_Gold,150);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Gomez,BodyTex_N,ITAR_Vlk_M);
 	Mdl_SetModelFatness(self,1.8);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

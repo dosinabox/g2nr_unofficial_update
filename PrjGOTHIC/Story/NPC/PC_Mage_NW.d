@@ -7,12 +7,11 @@ instance PC_Mage_NW(Npc_Default)
 	voice = 3;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_FRIEND;
-	aivar[AIV_DexToSteal] = 56;
-	aivar[AIV_GoldToSteal] = 75;
 	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,56,ItMi_Gold,75);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Milten,BodyTex_N,ITAR_KDF_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

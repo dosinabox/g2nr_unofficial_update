@@ -7,14 +7,13 @@ instance DJG_703_Cipher(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 79;
-	aivar[AIV_GoldToSteal] = 220;
 	aivar[AIV_Teeth] = 2;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Crossbow_M_01);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,79,ItMi_Gold,220);
 	CreateInvItems(self,ItPo_Health_02,6);
 	CreateInvItems(self,ItMi_OldCoin,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart10,BodyTex_N,ITAR_DJG_H);

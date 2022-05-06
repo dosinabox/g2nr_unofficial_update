@@ -7,12 +7,11 @@ instance DJG_711_Godar(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 16;
-	aivar[AIV_GoldToSteal] = 160;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,16,ItMi_Gold,160);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal14,BodyTex_N,ITAR_DJG_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

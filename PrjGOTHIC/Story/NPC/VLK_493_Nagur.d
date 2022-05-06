@@ -7,14 +7,13 @@ instance VLK_493_Nagur(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 75;
-	aivar[AIV_GoldToSteal] = 150;
 	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,75,ItMi_Gold,150);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal17,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

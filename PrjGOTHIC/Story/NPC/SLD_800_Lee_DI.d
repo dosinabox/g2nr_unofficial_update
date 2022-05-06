@@ -7,8 +7,6 @@ instance SLD_800_Lee_DI(Npc_Default)
 	voice = 4;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
-	aivar[AIV_DexToSteal] = 110;
-	aivar[AIV_GoldToSteal] = 570;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
@@ -18,6 +16,7 @@ instance SLD_800_Lee_DI(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2h_Sld_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,110,ItMi_Gold,570);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Lee,BodyTex_Tattoo_N,ITAR_SLD_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

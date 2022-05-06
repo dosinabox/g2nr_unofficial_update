@@ -7,12 +7,11 @@ instance PAL_202_Albrecht(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 41;
-	aivar[AIV_GoldToSteal] = 160;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Pal_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,41,ItMi_Gold,160);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_P_Tough_Rodriguez,BodyTex_P,ITAR_PAL_H);
 	Mdl_SetModelFatness(self,1.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

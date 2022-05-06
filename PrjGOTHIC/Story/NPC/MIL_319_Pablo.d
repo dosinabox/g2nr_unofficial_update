@@ -7,13 +7,12 @@ instance MIL_319_Pablo(Npc_Default)
 	voice = 12;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 20;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
 	CreateInvItem(self,ItWr_Poster_MIS);
-	B_CreateItemToSteal(self,ItKe_City_Tower_01);
+	B_CreateItemToSteal(self,20,ItKe_City_Tower_01,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart_Dusty,BodyTex_N,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

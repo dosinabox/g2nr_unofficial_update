@@ -7,12 +7,11 @@ instance PIR_1356_Addon_Bill(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 80;
-	aivar[AIV_GoldToSteal] = 205;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Addon_PIR1hAxe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,80,ItMi_Gold,205);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Drax,BodyTex_N,ITAR_PIR_L_Addon);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

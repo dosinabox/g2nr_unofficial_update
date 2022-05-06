@@ -7,12 +7,11 @@ instance BAU_907_Wasili(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 55;
-	aivar[AIV_GoldToSteal] = 90;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,55,ItMi_Gold,90);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart02,BodyTex_N,ITAR_Bau_M);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

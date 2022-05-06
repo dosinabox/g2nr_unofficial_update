@@ -7,8 +7,6 @@ instance PC_Thief_DI(Npc_Default)
 	voice = 11;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
-	aivar[AIV_DexToSteal] = 120;
-	aivar[AIV_GoldToSteal] = 600;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
@@ -23,6 +21,7 @@ instance PC_Thief_DI(Npc_Default)
 	EquipItem(self,ItRw_Bow_M_03);
 //	EquipItem(self,ItRw_Bow_M_02);
 //	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,120,ItMi_Gold,600);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_L_Diego,BodyTex_L,ITAR_Diego);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

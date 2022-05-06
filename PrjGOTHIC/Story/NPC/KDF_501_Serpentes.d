@@ -7,8 +7,6 @@ instance KDF_501_Serpentes(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 86;
-	aivar[AIV_GoldToSteal] = 380;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IGNORE_Murder] = TRUE;
@@ -17,6 +15,7 @@ instance KDF_501_Serpentes(Npc_Default)
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,86,ItMi_Gold,380);
 	B_SetNpcVisual(self,MALE,"Hum_Head_PSIONIC",Face_N_ImportantGrey,BodyTex_N,ITAR_KDF_H);
 	Mdl_SetModelFatness(self,-2);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

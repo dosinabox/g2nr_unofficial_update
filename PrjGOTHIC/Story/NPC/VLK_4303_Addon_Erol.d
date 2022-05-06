@@ -7,13 +7,12 @@ instance VLK_4303_Addon_Erol(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 43;
-	aivar[AIV_GoldToSteal] = 42;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Vlk_Sword);
 	CreateInvItems(self,ItPo_Health_01,3);
+	B_CreateItemToSteal(self,43,ItMi_Gold,42);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Corristo,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

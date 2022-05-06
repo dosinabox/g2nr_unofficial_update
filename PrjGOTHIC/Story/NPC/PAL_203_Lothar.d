@@ -7,13 +7,12 @@ instance PAL_203_Lothar(Npc_Default)
 	voice = 1;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 56;
-	aivar[AIV_GoldToSteal] = 95;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
 //	EquipItem(self,ItMw_1h_Pal_Sword);
 	EquipItem(self,ItMw_1H_Blessed_02);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,56,ItMi_Gold,95);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_P_NormalBart_Nefarius,BodyTex_P,ITAR_PAL_H);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

@@ -7,13 +7,12 @@ instance SLD_840_Alvares(Npc_Default)
 	voice = 11;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 20;
-	aivar[AIV_GoldToSteal] = 15;
 	B_SetAttributesToChapter(self,2);
 	aivar[AIV_EnemyOverride] = TRUE;
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_2h_Sld_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,20,ItMi_Gold,15);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Tough_Silas,BodyTex_B,ITAR_SLD_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

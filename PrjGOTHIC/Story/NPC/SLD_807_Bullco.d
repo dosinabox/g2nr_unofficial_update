@@ -7,8 +7,6 @@ instance SLD_807_Bullco(Npc_Default)
 	voice = 6;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 56;
-	aivar[AIV_GoldToSteal] = 35;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IGNORE_Sheepkiller] = TRUE;
 	aivar[AIV_IGNORE_Theft] = TRUE;
@@ -17,6 +15,7 @@ instance SLD_807_Bullco(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,56,ItMi_Gold,35);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal_Olli_Kahn,BodyTex_N,ITAR_SLD_M);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

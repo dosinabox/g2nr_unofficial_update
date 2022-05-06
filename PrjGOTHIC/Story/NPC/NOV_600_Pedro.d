@@ -7,13 +7,12 @@ instance NOV_600_Pedro(Npc_Default)
 	voice = 9;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 45;
-	aivar[AIV_GoldToSteal] = 60;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Nov_Mace);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,45,ItMi_Gold,60);
 	B_SetNpcVisual(self,MALE,"Hum_Head_PSIONIC",Face_L_Normal_GorNaBar,BodyTex_L,ITAR_NOV_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

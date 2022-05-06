@@ -7,12 +7,11 @@ instance SLD_804_Rod(Npc_Default)
 	voice = 6;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 15;
-	aivar[AIV_GoldToSteal] = 35;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Rod);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,15,ItMi_Gold,35);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_ToughBart01,BodyTex_N,ITAR_SLD_M);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

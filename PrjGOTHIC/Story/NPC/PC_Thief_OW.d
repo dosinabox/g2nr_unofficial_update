@@ -7,8 +7,6 @@ instance PC_ThiefOW(Npc_Default)
 	voice = 11;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
-	aivar[AIV_DexToSteal] = 120;
-	aivar[AIV_GoldToSteal] = 600;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_FollowDist] = 300;
@@ -18,6 +16,7 @@ instance PC_ThiefOW(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Bow_M_03);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,120,ItMi_Gold,600);
 	CreateInvItems(self,ItPo_Health_03,10);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_L_Diego,BodyTex_L,ITAR_Diego);
 	Mdl_SetModelFatness(self,0);

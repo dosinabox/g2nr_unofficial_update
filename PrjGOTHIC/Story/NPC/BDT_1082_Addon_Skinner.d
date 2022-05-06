@@ -7,13 +7,12 @@ instance BDT_1082_Addon_Skinner(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
-	aivar[AIV_DexToSteal] = 100;
-	aivar[AIV_GoldToSteal] = 200;
 	aivar[AIV_StoryBandit] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Addon_Betty);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,100,ItMi_Gold,200);
 	CreateInvItems(self,ItKe_Addon_Skinner,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Tough01,BodyTex_L,ITAR_BDT_H);
 	Mdl_SetModelFatness(self,0);

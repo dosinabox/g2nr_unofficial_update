@@ -7,8 +7,6 @@ instance DJG_713_Biff_DI(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
-	aivar[AIV_DexToSteal] = 92;
-	aivar[AIV_GoldToSteal] = 450;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
@@ -18,6 +16,7 @@ instance DJG_713_Biff_DI(Npc_Default)
 	EquipItem(self,ItMw_2h_Sld_Axe);
 	CreateInvItems(self,ItPo_Health_02,6);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,92,ItMi_Gold,450);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal16,BodyTex_N,ITAR_DJG_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

@@ -7,13 +7,12 @@ instance SLD_841_Engardo(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 34;
-	aivar[AIV_GoldToSteal] = 45;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	aivar[AIV_EnemyOverride] = TRUE;
 	EquipItem(self,ItMw_2h_Sld_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,34,ItMi_Gold,45);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Normal_Erpresser,BodyTex_N,ITAR_SLD_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

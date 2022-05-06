@@ -7,13 +7,12 @@ instance BAU_930_Sekob(Npc_Default)
 	voice = 1;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 75;
-	aivar[AIV_GoldToSteal] = 230;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_ShortSword2);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,75,ItMi_Gold,230);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_P_OldMan_Gravo,BodyTex_P,ITAR_Vlk_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

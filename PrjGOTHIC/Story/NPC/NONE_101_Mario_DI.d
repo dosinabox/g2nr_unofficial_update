@@ -7,8 +7,6 @@ instance NONE_101_Mario_DI(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 71;
-	aivar[AIV_GoldToSteal] = 110;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_EnemyOverride] = TRUE;
@@ -17,6 +15,7 @@ instance NONE_101_Mario_DI(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_Sturmbringer);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,71,ItMi_Gold,110);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Normal_Kirgo,BodyTex_B,ITAR_MIL_M);
 	Mdl_SetModelFatness(self,1.2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

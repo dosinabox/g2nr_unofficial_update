@@ -7,14 +7,13 @@ instance BDT_1072_Addon_Logan(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 59;
-	aivar[AIV_GoldToSteal] = 50;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Bow_M_02);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,59,ItMi_Gold,50);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_Cipher_neu,BodyTex_N,ITAR_BDT_M);
 	Mdl_SetModelFatness(self,-0.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

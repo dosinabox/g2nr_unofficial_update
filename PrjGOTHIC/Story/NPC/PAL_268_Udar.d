@@ -7,14 +7,13 @@ instance PAL_268_Udar(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = NPCTYPE_OCMAIN;
-	aivar[AIV_DexToSteal] = 20;
-	aivar[AIV_GoldToSteal] = 15;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_NAILED;
 	EquipItem(self,ItMw_2h_Pal_Sword);
 	EquipItem(self,ItRw_Crossbow_H_01);
 	CreateInvItems(self,ItRw_Bolt,10);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,20,ItMi_Gold,15);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal_Stone,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

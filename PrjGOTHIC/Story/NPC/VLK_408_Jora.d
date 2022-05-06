@@ -7,13 +7,12 @@ instance VLK_408_Jora(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 31;
-	aivar[AIV_GoldToSteal] = 45;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_ShortSword3);
 	CreateInvItems(self,ItMw_AlriksSword_Mis,1);
+	B_CreateItemToSteal(self,31,ItMi_Gold,45);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal02,BodyTex_N,ITAR_Vlk_M);
 	Mdl_SetModelFatness(self,1.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

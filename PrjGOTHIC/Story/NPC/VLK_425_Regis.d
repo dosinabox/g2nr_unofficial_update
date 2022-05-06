@@ -7,12 +7,11 @@ instance VLK_425_Regis(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 40;
-	aivar[AIV_GoldToSteal] = 35;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Vlk_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,40,ItMi_Gold,35);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Mordrag,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

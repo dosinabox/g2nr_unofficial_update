@@ -7,8 +7,6 @@ instance BDT_1086_Addon_Scatty(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
-	aivar[AIV_DexToSteal] = 60;
-	aivar[AIV_GoldToSteal] = 90;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	aivar[AIV_Teeth] = 2;
 	B_SetAttributesToChapter(self,5);
@@ -16,6 +14,7 @@ instance BDT_1086_Addon_Scatty(Npc_Default)
 	EquipItem(self,ItMw_Zweihaender1);
 	CreateInvItems(self,ItMi_GoldNugget_Addon,5);
 	CreateInvItems(self,ItPo_Health_03,2);
+	B_CreateItemToSteal(self,60,ItMi_Gold,90);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_L_Scatty,BodyTex_L,ITAR_Diego);
 	Mdl_SetModelFatness(self,1.6);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

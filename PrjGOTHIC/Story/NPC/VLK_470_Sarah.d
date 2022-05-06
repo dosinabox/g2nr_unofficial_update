@@ -7,13 +7,12 @@ instance VLK_470_Sarah(Npc_Default)
 	voice = 16;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 57;
-	aivar[AIV_GoldToSteal] = 60;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_ShortSword5);
+	B_CreateItemToSteal(self,57,ItMi_Gold,60);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe8",FaceBabe_N_Blondie,BodyTexBabe_N,ITAR_VlkBabe_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

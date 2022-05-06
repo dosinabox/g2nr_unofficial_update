@@ -7,12 +7,11 @@ instance BDT_1095_Addon_Crimson(Npc_Default)
 	voice = 10;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
-	aivar[AIV_DexToSteal] = 66;
-	aivar[AIV_GoldToSteal] = 66;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_BattleSense);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,66,ItMi_Gold,66);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_NormalBart10,BodyTex_N,ITAR_Smith);
 	Mdl_SetModelFatness(self,-2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

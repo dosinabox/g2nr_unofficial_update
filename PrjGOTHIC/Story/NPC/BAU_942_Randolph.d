@@ -7,13 +7,12 @@ instance BAU_942_Randolph(Npc_Default)
 	voice = 6;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 58;
-	aivar[AIV_GoldToSteal] = 2;
 	B_SetAttributesToChapter(self,4);
 	protection[PROT_POINT] = 30;
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Mace);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,58,ItMi_Gold,2);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Normal_Kharim,BodyTex_B,ITAR_Bau_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

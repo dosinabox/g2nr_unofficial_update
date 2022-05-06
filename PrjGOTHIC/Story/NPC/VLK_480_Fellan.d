@@ -7,14 +7,13 @@ instance VLK_480_Fellan(Npc_Default)
 	voice = 6;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 40;
-	aivar[AIV_GoldToSteal] = 40;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,0);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_ShortSword2);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,40,ItMi_Gold,40);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal19,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

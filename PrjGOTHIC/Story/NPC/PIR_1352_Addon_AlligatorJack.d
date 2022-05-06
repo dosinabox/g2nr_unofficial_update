@@ -7,14 +7,13 @@ instance PIR_1352_Addon_AlligatorJack(Npc_Default)
 	voice = 12;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 100;
-	aivar[AIV_GoldToSteal] = 333;
 	aivar[AIV_FollowDist] = 800;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_Piratensaebel);
 	CreateInvItems(self,ItPo_Health_02,4);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,100,ItMi_Gold,333);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_CorAngar,BodyTex_B,ITAR_PIR_M_Addon);
 	Mdl_SetModelFatness(self,1.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

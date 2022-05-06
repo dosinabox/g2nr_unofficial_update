@@ -8,14 +8,13 @@ instance SLD_816_Fester(Npc_Default)
 	flags = 0;
 //	npcType = NPCTYPE_FRIEND;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 27;
-	aivar[AIV_GoldToSteal] = 45;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Sld_Axe);
 	EquipItem(self,ItRw_Sld_Bow);
 	CreateInvItems(self,ItRw_Arrow,10);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,27,ItMi_Gold,45);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart05,BodyTex_N,ITAR_SLD_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

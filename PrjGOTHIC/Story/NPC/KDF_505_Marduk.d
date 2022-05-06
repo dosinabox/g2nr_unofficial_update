@@ -7,11 +7,10 @@ instance KDF_505_Marduk(Npc_Default)
 	voice = 5;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 36;
-	aivar[AIV_GoldToSteal] = 40;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,36,ItMi_Gold,40);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_OldMan_Gravo,BodyTex_P,ITAR_KDF_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

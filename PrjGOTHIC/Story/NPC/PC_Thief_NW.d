@@ -7,8 +7,6 @@ instance PC_Thief_NW(Npc_Default)
 	voice = 11;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_FRIEND;
-	aivar[AIV_DexToSteal] = 120;
-	aivar[AIV_GoldToSteal] = 600;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_Teeth] = 4;
@@ -16,6 +14,7 @@ instance PC_Thief_NW(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,120,ItMi_Gold,600);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_L_Diego,BodyTex_L,ITAR_Vlk_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

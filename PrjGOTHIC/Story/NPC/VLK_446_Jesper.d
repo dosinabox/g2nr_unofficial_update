@@ -7,14 +7,13 @@ instance VLK_446_Jesper(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 80;
-	aivar[AIV_GoldToSteal] = 180;
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,80,ItMi_Gold,180);
 	CreateInvItems(self,ItKe_Fingers,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Normal07,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);

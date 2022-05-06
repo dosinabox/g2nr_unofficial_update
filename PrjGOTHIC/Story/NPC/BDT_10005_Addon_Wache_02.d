@@ -7,8 +7,6 @@ instance BDT_10005_Addon_Wache_02(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
-	aivar[AIV_DexToSteal] = 38;
-	aivar[AIV_GoldToSteal] = 101;
 	aivar[AIV_StoryBandit_Esteban] = TRUE;
 	aivar[AIV_StoryBandit] = TRUE;
 	B_SetAttributesToChapter(self,2);
@@ -16,6 +14,7 @@ instance BDT_10005_Addon_Wache_02(Npc_Default)
 	EquipItem(self,ItMw_2h_Sld_Axe);
 	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,38,ItMi_Gold,101);
 	CreateInvItem(self,ItWr_Poster_MIS);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Normal_Orik,BodyTex_B,ITAR_Bloodwyn_Addon);
 	Mdl_SetModelFatness(self,2);
