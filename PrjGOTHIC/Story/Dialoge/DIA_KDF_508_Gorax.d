@@ -35,8 +35,7 @@ instance DIA_Gorax_PICKPOCKET(C_Info)
 
 func int DIA_Gorax_PICKPOCKET_Condition()
 {
-//	return C_StealItems(80,Hlp_GetInstanceID(ItKe_KlosterSchatz),0);
-	return C_StealItem(80);
+	return C_CanStealFromNpc(80);
 };
 
 func void DIA_Gorax_PICKPOCKET_Info()
@@ -52,8 +51,7 @@ func void DIA_Gorax_PICKPOCKET_DoIt()
 	{
 		CreateInvItem(self,ItKe_KlosterSchatz);
 	};
-//	B_StealItems(80,Hlp_GetInstanceID(ItKe_KlosterSchatz),1);
-	B_StealItem(80,Hlp_GetInstanceID(ItKe_KlosterSchatz));
+	B_StealItem(80,ItKe_KlosterSchatz,1);
 	Info_ClearChoices(DIA_Gorax_PICKPOCKET);
 };
 

@@ -440,11 +440,9 @@ instance DIA_Engor_PICKPOCKET(C_Info)
 
 func int DIA_Engor_PICKPOCKET_Condition()
 {
-//	return C_StealItems(40,Hlp_GetInstanceID(ItWr_Map_OldWorld),0);
-//	return C_StealItem(40,Hlp_GetInstanceID(ItWr_Map_OldWorld));
 	if(Npc_HasItems(self,ItWr_Map_OldWorld))
 	{
-		return C_StealItem(40);
+		return C_CanStealFromNpc(40);
 	};
 	return FALSE;
 };
@@ -458,9 +456,7 @@ func void DIA_Engor_PICKPOCKET_Info()
 
 func void DIA_Engor_PICKPOCKET_DoIt()
 {
-//	CreateInvItem(self,ItWr_Map_OldWorld);
-//	B_StealItems(40,Hlp_GetInstanceID(ItWr_Map_OldWorld),1);
-	B_StealItem(40,Hlp_GetInstanceID(ItWr_Map_OldWorld));
+	B_StealItem(40,ItWr_Map_OldWorld,1);
 	Info_ClearChoices(DIA_Engor_PICKPOCKET);
 };
 

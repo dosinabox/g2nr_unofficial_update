@@ -238,6 +238,14 @@ func void B_Build_Settings_Diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить альтернативное обучение у Беннета",StoryHelper_AlternativeSmithing);
 	};
+	if(EasyLowDexPickpocketDisabled == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить пониженную сложность краж при низкой ловкости",StoryHelper_EasyLowDexPickpocket);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить пониженную сложность краж при низкой ловкости",StoryHelper_EasyLowDexPickpocket);
+	};
 	if(HardModeEnabled == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить повышенный уровень сложности",StoryHelper_HardMode);
@@ -288,11 +296,11 @@ func void B_Build_Settings_Diag()
 	};*/
 	if(IgnoreBonuses == FALSE)
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование постоянных бонусов при расчете стоимости обучения",StoryHelper_Bonuses);
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование постоянных бонусов при обучении",StoryHelper_Bonuses);
 	}
 	else
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование постоянных бонусов при расчете стоимости обучения",StoryHelper_Bonuses);
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование постоянных бонусов при обучении",StoryHelper_Bonuses);
 	};
 	if(AddonDisabled == FALSE)
 	{
@@ -453,12 +461,14 @@ func void StoryHelper_Bonuses()
 	if(IgnoreBonuses == TRUE)
 	{
 		IgnoreBonuses = FALSE;
+		TAL_TeachLimitFlags_TS_PermBonus = 1;
 		TAL_CostFlags_TS_PermBonus = 1;
 		PrintScreen("Оригинал: бонусы нужно копить",-1,-1,FONT_Screen,2);
 	}
 	else
 	{
 		IgnoreBonuses = TRUE;
+		TAL_TeachLimitFlags_TS_PermBonus = 0;
 		TAL_CostFlags_TS_PermBonus = 0;
 		PrintScreen("Теперь бонусы можно не копить",-1,-1,FONT_Screen,2);
 	};
@@ -648,6 +658,21 @@ func void StoryHelper_PremiumTeachers()
 	B_Build_Settings_Diag();
 };
 
+func void StoryHelper_EasyLowDexPickpocket()
+{
+	if(EasyLowDexPickpocketDisabled == TRUE)
+	{
+		EasyLowDexPickpocketDisabled = FALSE;
+		PrintScreen("Пониженная сложность краж включена",-1,-1,FONT_Screen,2);
+	}
+	else
+	{
+		EasyLowDexPickpocketDisabled = TRUE;
+		PrintScreen("Пониженная сложность краж выключена",-1,-1,FONT_Screen,2);
+	};
+	B_Build_Settings_Diag();
+};
+
 func void StoryHelper_HardMode()
 {
 	if(HardModeEnabled == TRUE)
@@ -708,7 +733,7 @@ func void StoryHelper_HardMode_Back()
 	B_Build_Settings_Diag();
 };
 
-func void StoryHelper_Penalties()
+/*func void StoryHelper_Penalties()
 {
 	if(PenaltiesAffectLearnCost == TRUE)
 	{
@@ -721,7 +746,7 @@ func void StoryHelper_Penalties()
 		PrintScreen("Влияние штрафов на стоимость обучения включено",-1,-1,FONT_Screen,3);
 	};
 	B_Build_Settings_Diag();
-};
+};*/
 
 func void StoryHelper_LehmarBook()
 {

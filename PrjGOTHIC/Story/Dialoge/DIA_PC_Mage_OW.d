@@ -556,7 +556,7 @@ var int Milten_OW_TeachMANA_NoPerm;
 
 func void B_BuildLearnDialog_Milten_OW()
 {
-	if(other.aivar[REAL_MANA_MAX] >= T_MED)
+	if(RealAttributeValue(ATR_MANA_MAX) >= T_MED)
 	{
 		AI_Output(self,other,"DIA_MiltenOW_Mana_03_00");	//Твоя магическая энергия велика. Слишком велика, чтобы я мог увеличить ее.
 		Milten_OW_TeachMANA_NoPerm = TRUE;
@@ -686,10 +686,9 @@ instance DIA_MiltenOW_PICKPOCKET(C_Info)
 
 func int DIA_MiltenOW_PICKPOCKET_Condition()
 {
-//	return C_StealItems(80,Hlp_GetInstanceID(ItPo_Perm_Mana),1);
 	if(Npc_HasItems(self,ItPo_Perm_Mana))
 	{
-		return C_StealItem(80);
+		return C_CanStealFromNpc(80);
 	};
 	return FALSE;
 };
@@ -703,8 +702,7 @@ func void DIA_MiltenOW_PICKPOCKET_Info()
 
 func void DIA_MiltenOW_PICKPOCKET_DoIt()
 {
-//	B_StealItems(80,Hlp_GetInstanceID(ItPo_Perm_Mana),1);
-	B_StealItem(80,Hlp_GetInstanceID(ItPo_Perm_Mana));
+	B_StealItem(80,ItPo_Perm_Mana,1);
 	Info_ClearChoices(DIA_MiltenOW_PICKPOCKET);
 };
 

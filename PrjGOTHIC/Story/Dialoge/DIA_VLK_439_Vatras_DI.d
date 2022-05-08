@@ -86,6 +86,9 @@ func void DIA_Vatras_DI_TRADE_Info()
 };
 
 
+var int Vatras_DI_HealObsession_Count;
+var int Vatras_DI_HealObsession_Day;
+
 instance DIA_Vatras_DI_OBSESSION(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
@@ -105,34 +108,25 @@ func int DIA_Vatras_DI_OBSESSION_Condition()
 	};
 };
 
-
-var int DIA_Vatras_DI_OBSESSION_Info_OneTime;
-
 func void DIA_Vatras_DI_OBSESSION_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_DI_OBSESSION_15_00");	//Помоги мне. Я одержим!
-	if(Got_HealObsession_Day <= (Wld_GetDay() - 2))
+	if(Vatras_DI_HealObsession_Count > 1)
 	{
-		if(DIA_Vatras_DI_OBSESSION_Info_OneTime <= 1)
-		{
-			CreateInvItems(self,ItPo_HealObsession_MIS,1);
-			DIA_Vatras_DI_OBSESSION_Info_OneTime += 1;
-		};
-		if(Npc_HasItems(self,ItPo_HealObsession_MIS))
-		{
-			AI_Output(self,other,"DIA_Vatras_DI_OBSESSION_05_01");	//Возьми это Зелье Освобождения. Пирокар дал мне несколько этих лечебных эликсиров по моей просьбе.
-			AI_Output(self,other,"DIA_Vatras_DI_OBSESSION_05_02");	//Однако помни: мои возможности по избавлению тебя от ночных кошмаров ограничены.
-			B_GiveInvItems(self,other,ItPo_HealObsession_MIS,1);
-			Got_HealObsession_Day = Wld_GetDay();
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Vatras_DI_OBSESSION_05_03");	//Запасы Пирокара истощены. Мне очень жаль, друг мой. Я больше ничем не могу помочь тебе.
-		};
+		AI_Output(self,other,"DIA_Vatras_DI_OBSESSION_05_03");	//Запасы Пирокара истощены. Мне очень жаль, друг мой. Я больше ничем не могу помочь тебе.
+	}
+	else if(Vatras_DI_HealObsession_Day > (Wld_GetDay() - 2))
+	{
+		AI_Output(self,other,"DIA_Vatras_DI_OBSESSION_05_04");	//Я не возьму на себя риск дать тебе еще одну бутылку в столь короткое время. Возвращайся позже, друг мой.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Vatras_DI_OBSESSION_05_04");	//Я не возьму на себя риск дать тебе еще одну бутылку в столь короткое время. Возвращайся позже, друг мой.
+		AI_Output(self,other,"DIA_Vatras_DI_OBSESSION_05_01");	//Возьми это Зелье Освобождения. Пирокар дал мне несколько этих лечебных эликсиров по моей просьбе.
+		AI_Output(self,other,"DIA_Vatras_DI_OBSESSION_05_02");	//Однако помни: мои возможности по избавлению тебя от ночных кошмаров ограничены.
+		CreateInvItems(self,ItPo_HealObsession_MIS,1);
+		B_GiveInvItems(self,other,ItPo_HealObsession_MIS,1);
+		Vatras_DI_HealObsession_Count += 1;
+		Vatras_DI_HealObsession_Day = Wld_GetDay();
 	};
 };
 

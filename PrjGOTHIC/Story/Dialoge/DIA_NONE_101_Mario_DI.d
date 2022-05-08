@@ -82,10 +82,22 @@ func void DIA_NONE_101_MARIO_DI_ambush_ambush()
 {
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_SuddenEnemyInferno,1);
-	Skeleton_Mario1.aivar[AIV_EnemyOverride] = FALSE;
-	Skeleton_Mario2.aivar[AIV_EnemyOverride] = FALSE;
-	Skeleton_Mario3.aivar[AIV_EnemyOverride] = FALSE;
-	Skeleton_Mario4.aivar[AIV_EnemyOverride] = FALSE;
+	if(!Npc_IsDead(Skeleton_Mario1))
+	{
+		Skeleton_Mario1.aivar[AIV_EnemyOverride] = FALSE;
+	};
+	if(!Npc_IsDead(Skeleton_Mario2))
+	{
+		Skeleton_Mario2.aivar[AIV_EnemyOverride] = FALSE;
+	};
+	if(!Npc_IsDead(Skeleton_Mario3))
+	{
+		Skeleton_Mario3.aivar[AIV_EnemyOverride] = FALSE;
+	};
+	if(!Npc_IsDead(Skeleton_Mario4))
+	{
+		Skeleton_Mario4.aivar[AIV_EnemyOverride] = FALSE;
+	};
 };
 
 

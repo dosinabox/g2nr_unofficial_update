@@ -142,6 +142,7 @@ func void STARTUP_DragonIsland_Part_Final_01()
 
 func void STARTUP_DragonIsland()
 {
+	Wld_SetTime(37,0);
 	if(JorgenIsCaptain == TRUE)
 	{
 		Wld_InsertNpc(VLK_4250_Jorgen_DI,"SHIP_DECK_01");

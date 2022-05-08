@@ -544,8 +544,8 @@ const string PRINT_Addon_KUMU_02 = "Вместе мы сильнее.";
 //const string PRINT_Addon_NadjaWait = "Подожди. Насчет травы...";
 const string NAME_Currency = "Золото: ";
 const string PRINT_Trade_Not_Enough_Gold = "У вас недостаточно золота для покупки этого предмета.";
-const string PRINT_CantGive = "Я не могу отдать это!";
-const string PRINT_CantTake = "Я не могу забрать это!";
+//const string PRINT_CantGive = "Я не могу отдать это!";
+//const string PRINT_CantTake = "Я не могу забрать это!";
 const string NAME_Value = "Цена:";
 const string NAME_Mag_Circle = "Круг:";
 const string NAME_Manakosten = "Расход маны:";
@@ -947,7 +947,7 @@ const string NAME_Letter = "Письмо";
 const string NAME_LetterSealed = "Запечатанное письмо";
 
 const string PRINT_PickPocketFailed = " - карманная кража не удалась!";
-const string PRINT_PickPocketSuccess = " - карманная кража удалась!";
+const string PRINT_PickPocketSuccess = " - украдено: ";
 
 const string PRINT_RequiresAlchemyTalent = "Для его создания нужно знание основ алхимии.";
 const string PRINT_KnowsBloodfly = "Теперь я знаю, что необходимо сделать, чтобы добыть целебный секрет из жала кровавой мухи.";
@@ -995,4 +995,5 @@ const string PRINT_OldSave1 = "Загруженное сохранение не поддерживается!";
 const string PRINT_OldSave2 = "Пожалуйста, начните новую игру.";
 
 const string PRINT_WrongParameter = "*** ОШИБКА: Неправильный параметр ***";
+const string PRINT_Error = "*** ОШИБКА ***";
 

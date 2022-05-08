@@ -87,6 +87,7 @@ func int DIA_Xardas_Hello_Condition()
 
 func void DIA_Xardas_Hello_Info()
 {
+	NewLogEnabled = TRUE;
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_00");	//Ќаконец-то! (улыбаетс€) я и не думал, что нам с тобой доведетс€ встретитьс€ снова.
 	AI_Output(other,self,"DIA_Addon_Xardas_Hello_15_01");	//я чувствую себ€ так, будто три недели пролежал под кучей камней.
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_02");	//“ак оно и было. “ы выжил только благодар€ магии твоих доспехов.

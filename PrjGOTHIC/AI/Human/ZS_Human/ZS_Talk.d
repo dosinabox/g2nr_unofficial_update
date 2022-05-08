@@ -41,6 +41,10 @@ func void ZS_Talk()
 	};
 	if(self.guild < GIL_SEPERATOR_HUM)
 	{
+		/*if(self.aivar[AIV_DexToSteal] > 0)
+		{
+			B_AssignPickpocket(self);
+		};*/
 		if((self.npcType == NPCTYPE_AMBIENT) || (self.npcType == NPCTYPE_OCAMBIENT) || (self.npcType == NPCTYPE_OWAMBIENT) || (self.npcType == NPCTYPE_BL_AMBIENT) || (self.npcType == NPCTYPE_TAL_AMBIENT))
 		{
 			B_AssignAmbientInfos(self);

@@ -92,10 +92,16 @@ func void DIA_NAME_BANDIT_SchafKlau_weiter()
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_SuddenEnemyInferno,1);
 	self.aivar[AIV_IgnoresArmor] = TRUE;
-	BDT_1026_Bandit_H.aivar[AIV_EnemyOverride] = FALSE;
-	BDT_1026_Bandit_H.aivar[AIV_IgnoresArmor] = TRUE;
-	BDT_1027_Bandit_H.aivar[AIV_EnemyOverride] = FALSE;
-	BDT_1027_Bandit_H.aivar[AIV_IgnoresArmor] = TRUE;
+	if(!Npc_IsDead(BDT_1026_Bandit_H))
+	{
+		BDT_1026_Bandit_H.aivar[AIV_EnemyOverride] = FALSE;
+		BDT_1026_Bandit_H.aivar[AIV_IgnoresArmor] = TRUE;
+	};
+	if(!Npc_IsDead(BDT_1027_Bandit_H))
+	{
+		BDT_1027_Bandit_H.aivar[AIV_EnemyOverride] = FALSE;
+		BDT_1027_Bandit_H.aivar[AIV_IgnoresArmor] = TRUE;
+	};
 };
 
 

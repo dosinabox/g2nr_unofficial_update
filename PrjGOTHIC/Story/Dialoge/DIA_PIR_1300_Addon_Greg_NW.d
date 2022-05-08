@@ -1,14 +1,4 @@
 
-func void B_InsertGregWolfs()
-{
-	if(GregWolfs == FALSE)
-	{
-		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
-		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
-		GregWolfs = TRUE;
-	};
-};
-
 instance DIA_Addon_Greg_NW_EXIT(C_Info)
 {
 	npc = PIR_1300_Addon_Greg_NW;

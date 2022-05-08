@@ -126,7 +126,7 @@ func void B_BuildLearnDialog_Ingmar()
 {
 	Info_ClearChoices(DIA_Ingmar_Teach);
 	Info_AddChoice(DIA_Ingmar_Teach,Dialog_Back,DIA_Ingmar_Teach_BACK);
-	if(other.aivar[REAL_STRENGTH] >= T_MAX)
+	if(RealAttributeValue(ATR_STRENGTH) >= T_MAX)
 	{
 		AI_Output(self,other,"DIA_Ingmar_Teach_06_00");	//Ты и так силен как тролль. Мне нечему учить тебя.
 	}
@@ -297,10 +297,9 @@ instance DIA_Ingmar_PICKPOCKET(C_Info)
 
 func int DIA_Ingmar_PICKPOCKET_Condition()
 {
-//	return C_StealItems(105,Hlp_GetInstanceID(ItWr_Manowar),1);
 	if(Npc_HasItems(self,ItWr_Manowar))
 	{
-		return C_StealItem(105);
+		return C_CanStealFromNpc(105);
 	};
 	return FALSE;
 };
@@ -314,8 +313,7 @@ func void DIA_Ingmar_PICKPOCKET_Info()
 
 func void DIA_Ingmar_PICKPOCKET_DoIt()
 {
-//	B_StealItems(105,Hlp_GetInstanceID(ItWr_Manowar),1);
-	B_StealItem(105,Hlp_GetInstanceID(ItWr_Manowar));
+	B_StealItem(105,ItWr_Manowar,1);
 	Info_ClearChoices(DIA_Ingmar_PICKPOCKET);
 };
 

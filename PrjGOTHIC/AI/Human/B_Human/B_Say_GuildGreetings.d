@@ -36,21 +36,17 @@ func void B_Say_GuildGreetings(var C_Npc slf,var C_Npc oth)
 		B_Say_Overlay(slf,oth,"Hackebeil_01_00");
 		return;
 	};
-	zufall = Hlp_Random(100);
-	if((zufall <= 80) && Wld_IsRaining())
+	if(Wld_IsRaining())
 	{
-		if(slf.guild == GIL_KDW)
+		zufall = Hlp_Random(100);
+		if(zufall <= 80)
 		{
-			if(CurrentLevel != NEWWORLD_ZEN)
+			if((slf.guild == GIL_KDW) && (CurrentLevel == NEWWORLD_ZEN))
 			{
-				B_Say_Overlay(slf,oth,"$WEATHER");
+				return;
 			};
-		}
-		else
-		{
 			B_Say_Overlay(slf,oth,"$WEATHER");
 		};
-		return;
 	};
 };
 

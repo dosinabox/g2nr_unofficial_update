@@ -436,10 +436,9 @@ instance DIA_Sentenza_PICKPOCKET(C_Info)
 
 func int DIA_Sentenza_PICKPOCKET_Condition()
 {
-//	return C_Beklauen(56,65);
 	if(Npc_HasItems(self,ItMi_SilverRing))
 	{
-		return C_StealItem(56);
+		return C_CanStealFromNpc(56);
 	};
 	return FALSE;
 };
@@ -453,8 +452,7 @@ func void DIA_Sentenza_PICKPOCKET_Info()
 
 func void DIA_Sentenza_PICKPOCKET_DoIt()
 {
-//	B_Beklauen();
-	B_StealItem(56,Hlp_GetInstanceID(ItMi_SilverRing));
+	B_StealItem(56,ItMi_SilverRing,1);
 	Info_ClearChoices(DIA_Sentenza_PICKPOCKET);
 };
 

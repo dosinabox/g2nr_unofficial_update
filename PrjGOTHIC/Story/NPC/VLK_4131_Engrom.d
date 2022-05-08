@@ -12,6 +12,7 @@ instance VLK_4131_Engrom(Npc_Default)
 	EquipItem(self,ItMw_1h_Vlk_Axe);
 	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,10,ItMi_Gold,5);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart20,BodyTex_N,ITAR_Leather_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

@@ -26,7 +26,10 @@ func void DIA_1051_Wegelagerer_EXIT_Info()
 	if(BDT_1051_Wegelagerer_Angriff == TRUE)
 	{
 		self.aivar[AIV_EnemyOverride] = FALSE;
-		BDT_1052.aivar[AIV_EnemyOverride] = FALSE;
+		if(!Npc_IsDead(BDT_1052))
+		{
+			BDT_1052.aivar[AIV_EnemyOverride] = FALSE;
+		};
 	};
 };
 
@@ -195,6 +198,9 @@ func void DIA_Wegelagerer_ANGRIFF_Info()
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,40);
 	self.aivar[AIV_EnemyOverride] = FALSE;
-	BDT_1052.aivar[AIV_EnemyOverride] = FALSE;
+	if(!Npc_IsDead(BDT_1052))
+	{
+		BDT_1052.aivar[AIV_EnemyOverride] = FALSE;
+	};
 };
 

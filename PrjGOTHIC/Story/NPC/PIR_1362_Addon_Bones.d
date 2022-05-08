@@ -11,6 +11,7 @@ instance PIR_1362_Addon_Bones(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Addon_PIR2hAxe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,75,ItMi_Gold,104);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_NormalBart10,BodyTex_N,ITAR_PIR_M_Addon);
 	Mdl_SetModelFatness(self,1.3);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

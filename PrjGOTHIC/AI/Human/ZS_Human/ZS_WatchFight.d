@@ -19,12 +19,12 @@ func void B_CheerFight()
 			if(zufall == 0)
 			{
 				B_Say_Overlay(self,self,"$OOH01");
-			};
-			if(zufall == 1)
+			}
+			else if(zufall == 1)
 			{
 				B_Say_Overlay(self,self,"$OOH02");
-			};
-			if(zufall == 2)
+			}
+			else
 			{
 				B_Say_Overlay(self,self,"$OOH03");
 			};
@@ -35,12 +35,12 @@ func void B_CheerFight()
 			if(zufall == 0)
 			{
 				B_Say_Overlay(self,self,"$CHEERFRIEND01");
-			};
-			if(zufall == 1)
+			}
+			else if(zufall == 1)
 			{
 				B_Say_Overlay(self,self,"$CHEERFRIEND02");
-			};
-			if(zufall == 2)
+			}
+			else
 			{
 				B_Say_Overlay(self,self,"$CHEERFRIEND03");
 			};
@@ -59,11 +59,11 @@ func void B_CheerFight()
 		}
 		else if(C_NpcBelongsToMonastery(self))
 		{
-			B_Say_Overlay(self,self,"$MONA_CRIME");
+			B_Say_Overlay(self,self,"$WILLYOUSTOPFIGHTING");
 		}
 		else if(C_NpcBelongsToOldCamp(self))
 		{
-			B_Say_Overlay(self,self,"$OC_CRIME");
+			B_Say_Overlay(self,self,"$WILLYOUSTOPFIGHTING");
 		};
 		AI_PlayAni(self,"T_WATCHFIGHT_OHNO");
 	};

@@ -12,6 +12,7 @@ instance BDT_1080_Addon_Tom(Npc_Default)
 //	EquipItem(self,ItMw_ElBastardo);
 	EquipItem(self,ItMw_ElChapo);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,40,ItMi_Gold,52);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_OldMan_Gravo,BodyTex_P,ITAR_BDT_M);
 	Mdl_SetModelFatness(self,0.75);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

@@ -47,25 +47,7 @@ func void B_PrintPlayerMiddle(var C_Npc npc,var string text)
 
 func void B_RaiseAttributeByStonePlate(var int talent,var int value)
 {
-	var string text;
-	if(talent == ATR_STRENGTH)
-	{
-		text = PRINT_LearnSTR;
-	}
-	else if(talent == ATR_DEXTERITY)
-	{
-		text = PRINT_LearnDEX;
-	}
-	else if(talent == ATR_HITPOINTS_MAX)
-	{
-		text = PRINT_LearnHP_MAX;
-	}
-	else if(talent == ATR_MANA_MAX)
-	{
-		text = PRINT_LearnMANA_MAX;
-	};
-	B_RaiseAttribute(self,talent,value);
-	PrintScreen(ConcatStrings(text,IntToString(value)),-1,-1,FONT_Screen,2);
+	B_RaiseAttributeByPermBonus(self,talent,value);
 	Wld_PlayEffect("spellFX_LIGHTSTAR_ORANGE",self,self,0,0,0,FALSE);
 	Snd_Play("SFX_HealObsession");
 };

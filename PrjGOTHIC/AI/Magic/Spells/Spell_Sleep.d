@@ -11,6 +11,75 @@ instance Spell_Sleep(C_Spell_Proto)
 };
 
 
+func int C_NpcCanSleep(var C_Npc npc)
+{
+	if(npc.guild >= GIL_SEPERATOR_HUM)
+	{
+		return FALSE;
+	};
+	if(C_NpcIsDown(npc))
+	{
+		return FALSE;
+	};
+	if(C_BodyStateContains(npc,BS_SWIM))
+	{
+		return FALSE;
+	};
+	if(C_BodyStateContains(npc,BS_DIVE))
+	{
+		return FALSE;
+	};
+	if(Npc_GetDistToNpc(self,npc) > 1000)
+	{
+		return FALSE;
+	};
+	if(Npc_IsPlayer(npc))
+	{
+		return TRUE;
+	};
+	if(npc.flags == NPC_FLAG_IMMORTAL)
+	{
+		if(Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(Cornelius))
+		{
+			return TRUE;
+		};
+		if(Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(Richter))
+		{
+			return TRUE;
+		};
+		if(C_IsNpc(npc,VLK_400_Larius))
+		{
+			return TRUE;
+		};
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(Daron))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(Vatras))
+	{
+		return FALSE;
+	};
+	if(npc.guild == GIL_KDF)
+	{
+		return FALSE;
+	};
+	if(npc.guild == GIL_PAL)
+	{
+		return FALSE;
+	};
+	if(npc.guild == GIL_DMT)
+	{
+		return FALSE;
+	};
+	if(npc.guild == GIL_KDW)
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 func int Spell_Logic_Sleep(var int manaInvested)
 {
 	if((Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll)) || (self.attribute[ATR_MANA] >= SPL_Cost_Sleep))
@@ -23,19 +92,7 @@ func int Spell_Logic_Sleep(var int manaInvested)
 		{
 			self.attribute[ATR_MANA] -= SPL_Cost_Sleep;
 		};
-		if(!C_BodyStateContains(other,BS_SWIM) && !C_BodyStateContains(other,BS_DIVE) && !C_NpcIsDown(other) && (other.guild < GIL_SEPERATOR_HUM) && (other.flags != NPC_FLAG_IMMORTAL) && (Npc_GetDistToNpc(self,other) <= 1000) && (other.guild != GIL_KDF) && (other.guild != GIL_DMT) && (other.guild != GIL_PAL) && (other.guild != GIL_KDW) && (Hlp_GetInstanceID(other) != Hlp_GetInstanceID(Vatras)) && (Hlp_GetInstanceID(other) != Hlp_GetInstanceID(Myxir_CITY)) && (Hlp_GetInstanceID(other) != Hlp_GetInstanceID(Daron)))
-		{
-			Npc_ClearAIQueue(other);
-			B_ClearPerceptions(other);
-			AI_StartState(other,ZS_MagicSleep,0,"");
-		}
-		else if(C_IsNpc(other,VLK_400_Larius) || (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius)))
-		{
-			Npc_ClearAIQueue(other);
-			B_ClearPerceptions(other);
-			AI_StartState(other,ZS_MagicSleep,0,"");
-		}
-		else if(((other.guild == GIL_KDF) || (other.guild == GIL_PAL)) && Npc_IsPlayer(other))
+		if(C_NpcCanSleep(other))
 		{
 			Npc_ClearAIQueue(other);
 			B_ClearPerceptions(other);

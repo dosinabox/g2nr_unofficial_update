@@ -11,6 +11,7 @@ instance BAU_932_Balthasar(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,10,ItMi_Gold,10);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_P_NormalBart01,BodyTex_P,ITAR_Bau_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

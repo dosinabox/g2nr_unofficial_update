@@ -11,8 +11,11 @@ func void B_Greg_ComesToDexter()
 		};
 		if(B_Greg_ComesToDexter_OneTime == FALSE)
 		{
+			if(!Npc_IsDead(BanditGuard))
+			{
+				BanditGuard.aivar[AIV_EnemyOverride] = FALSE;
+			};
 			self.aivar[AIV_EnemyOverride] = FALSE;
-			BanditGuard.aivar[AIV_EnemyOverride] = FALSE;
 			Npc_SendPassivePerc(self,PERC_ASSESSFIGHTSOUND,self,hero);
 			GregLocation = Greg_Dexter;
 			B_StartOtherRoutine(Greg_NW,"Dexter");

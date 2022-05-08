@@ -220,9 +220,12 @@ instance DIA_Jack_BANDITENWEG(C_Info)
 
 func int DIA_Jack_BANDITENWEG_Condition()
 {
-	if(Npc_IsDead(LeuchtturmBandit_1021) && Npc_IsDead(LeuchtturmBandit_1022) && Npc_IsDead(LeuchtturmBandit_1023) && (MIS_Jack_KillLighthouseBandits == LOG_Running))
+	if(MIS_Jack_KillLighthouseBandits == LOG_Running)
 	{
-		return TRUE;
+		if(C_LighthouseBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 

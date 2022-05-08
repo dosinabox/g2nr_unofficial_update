@@ -11,6 +11,7 @@ instance VLK_469_Halvor(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
+	B_CreateItemToSteal(self,78,ItMi_Gold,150);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1H_Mace_L_03);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart11,BodyTex_N,ITAR_Vlk_M);

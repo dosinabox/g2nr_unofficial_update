@@ -13,6 +13,7 @@ instance VLK_440_Bartok(Npc_Default)
 //	EquipItem(self,ItMW_Addon_Hacker_1h_01);
 	EquipItem(self,ItMW_Addon_Hacker_1h_02);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,30,ItMi_ArrowPack,1);
 	CreateInvItems(self,ItPo_Health_03,5);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Important_Arto,BodyTex_N,ITAR_Vlk_L);
 //	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Important_Arto,BodyTex_N,ITAR_Leather_L);

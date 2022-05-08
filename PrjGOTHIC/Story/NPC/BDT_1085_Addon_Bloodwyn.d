@@ -18,6 +18,7 @@ instance BDT_1085_Addon_Bloodwyn(Npc_Default)
 	CreateInvItems(self,ItMi_Gold,30);
 	CreateInvItems(self,ITKE_Addon_Bloodwyn_01,1);
 	CreateInvItems(self,ItMi_Addon_Bloodwyn_Kopf,1);
+	B_CreateItemToSteal(self,90,ItMi_Gold,250);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Bloodwyn,BodyTex_N,ITAR_Thorus_Addon);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

@@ -58,7 +58,7 @@ func int DIA_Salandril_PICKPOCKET_Condition()
 {
 	if(Npc_HasItems(self,ItKe_Salandril) || (SalandrilKeyRemoved == TRUE))
 	{
-		return C_StealItem(30);
+		return C_CanStealFromNpc(30);
 	};
 	return FALSE;
 };
@@ -73,7 +73,7 @@ func void DIA_Salandril_PICKPOCKET_Info()
 func void DIA_Salandril_PICKPOCKET_DoIt()
 {
 	B_GiveSalandrilKey();
-	B_StealItem(30,Hlp_GetInstanceID(ItKe_Salandril));
+	B_StealItem(30,ItKe_Salandril,1);
 	Info_ClearChoices(DIA_Salandril_PICKPOCKET);
 };
 

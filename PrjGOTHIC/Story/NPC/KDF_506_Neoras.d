@@ -10,6 +10,7 @@ instance KDF_506_Neoras(Npc_Default)
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,72,ItMi_Gold,140);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_NormalBart_Cronos,BodyTex_P,ITAR_KDF_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

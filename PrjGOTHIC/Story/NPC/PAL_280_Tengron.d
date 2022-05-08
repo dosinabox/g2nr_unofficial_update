@@ -13,6 +13,7 @@ instance PAL_280_Tengron(Npc_Default)
 	EquipItem(self,ItMw_2h_Pal_Sword);
 	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,32,ItMi_Gold,50);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_ToughBald01,BodyTex_L,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

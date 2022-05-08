@@ -34,10 +34,9 @@ instance DIA_Pablo_PICKPOCKET(C_Info)
 
 func int DIA_Pablo_PICKPOCKET_Condition()
 {
-//	return C_StealItems(20,Hlp_GetInstanceID(ItKe_City_Tower_01),1);
 	if(Npc_HasItems(self,ItKe_City_Tower_01))
 	{
-		return C_StealItem(20);
+		return C_CanStealFromNpc(20);
 	};
 	return FALSE;
 };
@@ -51,8 +50,7 @@ func void DIA_Pablo_PICKPOCKET_Info()
 
 func void DIA_Pablo_PICKPOCKET_DoIt()
 {
-//	B_StealItems(20,Hlp_GetInstanceID(ItKe_City_Tower_01),1);
-	B_StealItem(20,Hlp_GetInstanceID(ItKe_City_Tower_01));
+	B_StealItem(20,ItKe_City_Tower_01,1);
 	Info_ClearChoices(DIA_Pablo_PICKPOCKET);
 };
 

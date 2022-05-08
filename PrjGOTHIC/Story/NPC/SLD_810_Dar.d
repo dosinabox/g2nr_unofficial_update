@@ -13,6 +13,7 @@ instance SLD_810_Dar(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Sld_Bow);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,67,ItMi_Gold,35);
 	CreateInvItems(self,ItMi_Joint,10);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal_Spassvogel,BodyTex_N,ITAR_SLD_L);
 	Mdl_SetModelFatness(self,0);

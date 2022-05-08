@@ -12,6 +12,7 @@ instance VLK_436_Sonja(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,58,ItMi_Gold,70);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe1",FaceBabe_L_Charlotte2,BodyTexBabe_L,ITAR_VlkBabe_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");

@@ -5,6 +5,7 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 	if(neues_Kapitel == 1)
 	{
 		B_InitTalentSystem();
+		B_InitAttributeSystem();
 		Hero_HackChance = 10;
 		Cronos_NW_ItMi_Flask_Count = 5;
 		Cronos_NW_ItMi_Sulfur_Count = 2;
@@ -20,8 +21,6 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		Cronos_NW_ItSc_Whirlwind_Count = 1;
 		Bennet_NW_ItMi_Swordraw_Count = 3;
 		IceDragonSpell = SPL_InstantFireball;
-		FullNPCRemoval = TRUE;
-		NewLogEnabled = TRUE;
 		if(C_WorldIsFixed(NEWWORLD_ZEN))
 		{
 			Wld_InsertItem(ItRu_LightHeal,"FP_ITEM_PASS_02");

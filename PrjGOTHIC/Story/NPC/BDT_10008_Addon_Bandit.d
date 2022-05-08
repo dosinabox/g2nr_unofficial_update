@@ -12,6 +12,7 @@ instance BDT_10008_Addon_Bandit(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2H_OrcAxe_01);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,55,ItMi_Gold,99);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Tough_Silas,BodyTex_B,ITAR_Prisoner);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

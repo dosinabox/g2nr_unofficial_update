@@ -11,7 +11,7 @@ instance VLK_402_Richter(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_ShortSword5);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItKe_Richter,1);
+	B_CreateItemToSteal(self,30,ItKe_Richter,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Richter,BodyTex_N,ITAR_Judge);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

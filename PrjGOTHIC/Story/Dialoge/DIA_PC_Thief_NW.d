@@ -486,18 +486,18 @@ func void DIA_DiegoNW_Teach_Info()
 {
 	AI_Output(other,self,"DIA_DiegoNW_Teach_15_00");	//Обучи меня.
 	AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_01");	//Конечно. Что ты хочешь знать?
-	DiegoNW_Merke_DEX = other.aivar[REAL_DEXTERITY];
-	DiegoNW_Merke_STR = other.aivar[REAL_STRENGTH];
+	DiegoNW_Merke_DEX = ATR_Training[ATR_DEXTERITY];
+	DiegoNW_Merke_STR = ATR_Training[ATR_STRENGTH];
 	B_BuildLearnDialog_Diego_NW();
 };
 
 func void DIA_DiegoNW_Teach_BACK()
 {
-	if(DiegoNW_Merke_DEX < other.aivar[REAL_DEXTERITY])
+	if(DiegoNW_Merke_DEX < ATR_Training[ATR_DEXTERITY])
 	{
 		AI_Output(self,other,"DIA_DiegoNW_Teach_BACK_11_00");	//Ты уже стал более ловким. Так держать!
 	};
-	if(DiegoNW_Merke_STR < other.aivar[REAL_STRENGTH])
+	if(DiegoNW_Merke_STR < ATR_Training[ATR_STRENGTH])
 	{
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_03");	//(оценивающе) Очень хорошо. Твоя сила увеличилась.
 	};

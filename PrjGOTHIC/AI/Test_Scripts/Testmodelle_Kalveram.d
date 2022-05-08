@@ -180,7 +180,8 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_OHT);
 //	CreateInvItem(self,ITAR_DJG_Babe);
 	CreateInvItem(self,ITAR_Xardas);
-	CreateInvItem(self,ITAR_Lester);
+	CreateInvItem(self,ITAR_PSI_M);
+	CreateInvItem(self,ITAR_PSI_H);
 	CreateInvItem(self,ITAR_Diego);
 	CreateInvItem(self,ITAR_CorAngar);
 	CreateInvItem(self,ITAR_KDW_H);
@@ -540,6 +541,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_Addon_Shell_01,10);
 	CreateInvItems(self,ItMi_Addon_Shell_02,10);
 	CreateInvItems(self,ItMi_Grog_Crate,5);
+	CreateInvItems(self,ItMi_ArrowPack,10);
 	CreateInvItems(self,ItRw_Bow_L_01,1);
 	CreateInvItems(self,ItRw_Bow_L_02,1);
 	CreateInvItems(self,ItRw_Bow_L_03,1);
@@ -821,7 +823,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_UseLampIdiot_Mis,1);
 	CreateInvItems(self,ItWr_Seamap_Irdorath,1);
 	CreateInvItems(self,ITWr_ForgedShipLetter_MIS,1);
-	CreateInvItems(self,ITKE_OC_MAINGATE_MIS,1);
+	CreateInvItems(self,ItKe_OC_MainGate_MIS,1);
 	CreateInvItems(self,ItKe_Ship_Levelchange_MIS,1);
 	CreateInvItems(self,ItPo_PotionOfDeath_01_Mis,1);
 	CreateInvItems(self,ItPo_PotionOfDeath_02_Mis,1);
@@ -1246,7 +1248,8 @@ func void UseArmor()
 	CreateInvItem(self,ITAR_DJG_H);
 	CreateInvItem(self,ITAR_DJG_Crawler);
 	CreateInvItem(self,ITAR_Xardas);
-	CreateInvItem(self,ITAR_Lester);
+	CreateInvItem(self,ITAR_PSI_M);
+	CreateInvItem(self,ITAR_PSI_H);
 	CreateInvItem(self,ITAR_Diego);
 	CreateInvItem(self,ITAR_CorAngar);
 	CreateInvItem(self,ITAR_KDW_H);
@@ -1494,6 +1497,42 @@ func void UseTimeDemo()
 		TimeDemoStarted = FALSE;
 	};
 };*/
+
+instance AttributesSyncer(C_Item)
+{
+	name = "Руна синхронизации";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItRu_TeleportOWDemonTower.3DS";
+	material = MAT_STONE;
+	scemeName = "MAP";
+	description = name;
+	text[0] = "Синхронизировать характеристики ГГ.";
+	text[1] = "Перед использованием снимите все предметы с бонусами!";
+	on_state[0] = UseAttributesSyncer;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
+};
+
+
+func void UseAttributesSyncer()
+{
+	ATR_Training[ATR_STRENGTH] = hero.attribute[ATR_STRENGTH];
+	ATR_Training[ATR_DEXTERITY] = hero.attribute[ATR_DEXTERITY];
+	ATR_Training[ATR_MANA_MAX] = hero.attribute[ATR_MANA_MAX];
+	ATR_Training[ATR_HITPOINTS_MAX] = hero.attribute[ATR_HITPOINTS_MAX];
+	ATR_PermBonus[ATR_STRENGTH] = 0;
+	ATR_PermBonus[ATR_DEXTERITY] = 0;
+	ATR_PermBonus[ATR_MANA_MAX] = 0;
+	ATR_PermBonus[ATR_HITPOINTS_MAX] = 0;
+	ATR_TempBonus[ATR_STRENGTH] = 0;
+	ATR_TempBonus[ATR_DEXTERITY] = 0;
+	ATR_TempBonus[ATR_MANA_MAX] = 0;
+	ATR_TempBonus[ATR_HITPOINTS_MAX] = 0;
+	PrintScreen("Характеристики синхронизированы",-1,55,FONT_Screen,4);
+};
 
 instance MobsiBrief(C_Item)
 {

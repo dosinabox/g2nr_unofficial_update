@@ -11,9 +11,10 @@ instance NONE_101_Mario(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_Sturmbringer);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,71,ItMi_Gold,220);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Normal_Kirgo,BodyTex_B,ITAR_MIL_M);
 	Mdl_SetModelFatness(self,1.2);
-	Mdl_ApplyOverlayMds(self,"Humans_MILITIA.mds");
+	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,85);
 	daily_routine = Rtn_Start_101;

@@ -13,8 +13,8 @@ instance BDT_1093_Addon_Franco(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,60,ItAm_Addon_Franco,1);
 	CreateInvItems(self,ItMi_GoldNugget_Addon,7);
-	CreateInvItems(self,ItAm_Addon_Franco,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Tough01,BodyTex_L,ITAR_BDT_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

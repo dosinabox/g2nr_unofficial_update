@@ -12,6 +12,7 @@ instance VLK_411_Gaertner(Npc_Default)
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);
+	B_CreateItemToSteal(self,40,ItMi_Gold,50);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_NormalBart_Graham,BodyTex_N,ITAR_Bau_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

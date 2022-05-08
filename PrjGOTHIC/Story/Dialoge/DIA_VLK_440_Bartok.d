@@ -28,14 +28,17 @@ instance DIA_Bartok_PICKPOCKET(C_Info)
 	condition = DIA_Bartok_PICKPOCKET_Condition;
 	information = DIA_Bartok_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(украсть его колчан будет просто)";
+	description = "(украсть его колчан будет довольно просто)";
 };
 
 
 func int DIA_Bartok_PICKPOCKET_Condition()
 {
-//	return C_StealItems(30,Hlp_GetInstanceID(ItRw_Arrow),0);
-	return C_StealItem(30);
+	if(Npc_HasItems(self,ItMi_ArrowPack))
+	{
+		return C_CanStealFromNpc(30);
+	};
+	return FALSE;
 };
 
 func void DIA_Bartok_PICKPOCKET_Info()
@@ -47,22 +50,7 @@ func void DIA_Bartok_PICKPOCKET_Info()
 
 func void DIA_Bartok_PICKPOCKET_DoIt()
 {
-//	B_StealItems(30,Hlp_GetInstanceID(ItRw_Arrow),40);
-	if(other.attribute[ATR_DEXTERITY] >= 30)
-	{
-		CreateInvItems(self,ItRw_Arrow,40);
-		B_GiveInvItems(self,other,ItRw_Arrow,40);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Барток",PRINT_PickPocketSuccess));
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Барток",PRINT_PickPocketFailed));
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItem(30,ItMi_ArrowPack,1);
 	Info_ClearChoices(DIA_Bartok_PICKPOCKET);
 };
 

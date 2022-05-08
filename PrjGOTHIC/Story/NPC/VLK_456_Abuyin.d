@@ -11,6 +11,7 @@ instance VLK_456_Abuyin(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,75,ItMi_Gold,200);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Normal_Sharky,BodyTex_B,ITAR_Vlk_M);
 	Mdl_SetModelFatness(self,0);
 	B_GiveNpcTalents(self);

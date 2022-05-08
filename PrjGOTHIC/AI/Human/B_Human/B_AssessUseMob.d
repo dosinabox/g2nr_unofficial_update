@@ -34,6 +34,32 @@ func void B_AssessUseMob()
 	detMob = Npc_GetDetectedMob(other);
 	if(!Hlp_StrCmp(detMob,"CHESTBIG") && !Hlp_StrCmp(detMob,"CHESTSMALL"))
 	{
+		if(Hlp_StrCmp(detMob,"TOUCHPLATE"))
+		{
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Salandril))
+			{
+				B_Attack(self,other,AR_UseMob,0);
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Richter))
+			{
+				B_Attack(self,other,AR_UseMob,0);
+			}
+			else if(C_IsNpc(self,VLK_4002_Buergerin))
+			{
+				B_Attack(self,other,AR_UseMob,0);
+			};
+		}
+		else if(Hlp_StrCmp(detMob,"LEVER"))
+		{
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Valentino))
+			{
+				B_Attack(self,other,AR_UseMob,0);
+			}
+			else if(C_IsNpc(self,VLK_4001_Buergerin))
+			{
+				B_Attack(self,other,AR_UseMob,0);
+			};
+		};
 		return;
 	};
 	if(!C_WantToAttackThief(self,other))

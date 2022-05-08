@@ -62,8 +62,8 @@ func int C_Andre_InfoFromCanthar()
 		if(MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2))
 		{
 			return TRUE;
-		}
-		else if(Canthars_KomproBrief_Failed == TRUE)
+		};
+		if(Canthars_KomproBrief_Failed == TRUE)
 		{
 			return TRUE;
 		};

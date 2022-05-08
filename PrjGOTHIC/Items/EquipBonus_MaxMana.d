@@ -2,6 +2,10 @@
 func void Equip_MaxMana(var int value)
 {
 	self.attribute[ATR_MANA_MAX] += value;
+	if(C_NpcIsHero(self))
+	{
+		ATR_TempBonus[ATR_MANA_MAX] += value;
+	};
 };
 
 func void Reduce_MaxMana(var int value)
@@ -10,6 +14,10 @@ func void Reduce_MaxMana(var int value)
 	if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
 	{
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
+	};
+	if(C_NpcIsHero(self))
+	{
+		ATR_TempBonus[ATR_MANA_MAX] -= value;
 	};
 };
 

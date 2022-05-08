@@ -10,7 +10,7 @@ instance MIL_321_Rangar(Npc_Default)
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Mil_Sword);
-	CreateInvItems(self,ItKe_City_Tower_02,1);
+	B_CreateItemToSteal(self,30,ItKe_City_Tower_02,1);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Tough_Skip,BodyTex_N,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,0);

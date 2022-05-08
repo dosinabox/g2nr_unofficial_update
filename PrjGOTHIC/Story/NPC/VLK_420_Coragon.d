@@ -11,6 +11,7 @@ instance VLK_420_Coragon(Npc_Default)
 	B_SetFightSkills(self,40);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Mace);
+	B_CreateItemToSteal(self,40,ItMi_Gold,45);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal_Blade,BodyTex_N,ITAR_Smith);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

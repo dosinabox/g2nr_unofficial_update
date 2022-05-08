@@ -542,10 +542,9 @@ instance DIA_Oric_PICKPOCKET(C_Info)
 
 func int DIA_Oric_PICKPOCKET_Condition()
 {
-//	return C_StealItems(85,Hlp_GetInstanceID(ItSc_PalRepelEvil),1);
 	if(Npc_HasItems(self,ItSc_PalRepelEvil))
 	{
-		return C_StealItem(85);
+		return C_CanStealFromNpc(85);
 	};
 	return FALSE;
 };
@@ -559,8 +558,7 @@ func void DIA_Oric_PICKPOCKET_Info()
 
 func void DIA_Oric_PICKPOCKET_DoIt()
 {
-//	B_StealItems(85,Hlp_GetInstanceID(ItSc_PalRepelEvil),1);
-	B_StealItem(85,Hlp_GetInstanceID(ItSc_PalRepelEvil));
+	B_StealItem(85,ItSc_PalRepelEvil,1);
 	Info_ClearChoices(DIA_Oric_PICKPOCKET);
 };
 

@@ -13,6 +13,7 @@ instance VLK_462_Thorben(Npc_Default)
 	EquipItem(self,ItMw_1h_Bau_Mace);
 //	B_CreateAmbientInv(self);
 //	CreateInvItems(self,ItKe_Lockpick,12);
+	B_CreateItemToSteal(self,30,ItMi_Gold,28);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal04,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

@@ -11,6 +11,7 @@ instance PIR_1367_Addon_Owen(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Addon_PIR1hAxe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,20,ItMi_Gold,30);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal16,BodyTex_N,ITAR_PIR_L_Addon);
 	Mdl_SetModelFatness(self,1.1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

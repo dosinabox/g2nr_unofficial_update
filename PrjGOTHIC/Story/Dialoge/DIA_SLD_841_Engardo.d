@@ -68,20 +68,14 @@ func void DIA_Engardo_HALLO_Info()
 			Akils_SLDStillthere = TRUE;
 		};
 		Chance = 1;
-		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 24) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-		{
-			AI_StopProcessInfos(self);
-		};
+		AI_StopProcessInfos_Pickpocket(34);
 	}
 	else if(Chance == 1)
 	{
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_01");	//Ты оказался не в том месте не в то время...
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_02");	//... так что, если хочешь жить, лучше топай отсюда. Понял?
 		Chance = 2;
-		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 24) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-		{
-			AI_StopProcessInfos(self);
-		};
+		AI_StopProcessInfos_Pickpocket(34);
 	}
 	else if(Chance == 2)
 	{

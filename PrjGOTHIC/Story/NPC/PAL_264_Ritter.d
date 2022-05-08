@@ -12,7 +12,7 @@ instance PAL_264_Ritter(Npc_Default)
 	EquipItem(self,ItMw_2h_Pal_Sword);
 //	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItKe_OC_Store,1);
+	B_CreateItemToSteal(self,70,ItKe_OC_Store,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Ratford,BodyTex_L,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

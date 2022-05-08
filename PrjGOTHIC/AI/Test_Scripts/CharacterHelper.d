@@ -82,10 +82,11 @@ func void Rtn_Start_0()
 func void B_SetHeroExp(var int levels)
 {
 	hero.level = 0;
+	hero.lp = 0;
 	hero.exp_next = XP_PER_LEVEL;
 	hero.attribute[ATR_HITPOINTS_MAX] = 40;
 	hero.attribute[ATR_HITPOINTS] = 40;
-	hero.lp = 0;
+	ATR_Training[ATR_HITPOINTS_MAX] = 40;
 	if(levels > 0)
 	{
 		B_LevelUp(levels);
@@ -414,6 +415,8 @@ func void CH_RESET_Ok()
 	B_UnEquipHeroItem(ItRi_HP_01_Tengron);
 	B_UnEquipHeroItem(ItRi_OrcEliteRing);
 	B_UnEquipHeroItem(ItAm_Mana_Angar_MIS);
+	B_UnEquipHeroItem(ItAm_Hp_Regen);
+	B_UnEquipHeroItem(ItAm_Mana_Regen);
 	AI_UnequipArmor(hero);
 	B_SetGuild(hero,GIL_NONE);
 	hero.lp = 0;
@@ -421,12 +424,9 @@ func void CH_RESET_Ok()
 	hero.exp = 0;
 	hero.exp_next = XP_PER_LEVEL;
 	hero.attribute[ATR_STRENGTH] = 10;
-	hero.aivar[REAL_STRENGTH] = 10;
 	hero.attribute[ATR_DEXTERITY] = 10;
-	hero.aivar[REAL_DEXTERITY] = 10;
 	hero.attribute[ATR_MANA_MAX] = 10;
 	hero.attribute[ATR_MANA] = 10;
-	hero.aivar[REAL_MANA_MAX] = 10;
 	hero.attribute[ATR_HITPOINTS_MAX] = 40;
 	hero.attribute[ATR_HITPOINTS] = 40;
 	hero.HitChance[NPC_TALENT_1H] = 10;
@@ -453,6 +453,7 @@ func void CH_RESET_Ok()
 	B_SetHeroSkin();
 	B_ClearHeroOverlays();
 	B_ResetTalentSystem();
+	B_ResetAttributeSystem();
 	PLAYER_TALENT_SMITH[WEAPON_Common] = FALSE;
 	PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] = FALSE;
 	PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] = FALSE;
@@ -556,17 +557,6 @@ func void CH_RESET_Ok()
 	PLAYER_TALENT_WISPDETECTOR[WISPSKILL_POTIONS] = FALSE;
 	PrintScreen("Восстановлен исходный PC_Hero",-1,-1,FONT_Screen,2);
 	Info_ClearChoices(CH_RESET);
-//	Npc_SetTalentSkill(hero,NPC_TALENT_1H,0);
-//	hero.aivar[REAL_TALENT_1H] = 10;
-//	Npc_SetTalentSkill(hero,NPC_TALENT_2H,0);
-//	hero.aivar[REAL_TALENT_2H] = 10;
-//	Npc_SetTalentSkill(hero,NPC_TALENT_BOW,0);
-//	hero.aivar[REAL_TALENT_BOW] = 10;
-//	Npc_SetTalentSkill(hero,NPC_TALENT_CROSSBOW,0);
-//	hero.aivar[REAL_TALENT_CROSSBOW] = 10;
-//	Npc_SetTalentSkill(hero,NPC_TALENT_FIREMASTER,0);
-//	Npc_SetTalentSkill(hero,NPC_TALENT_D,0);
-//	Npc_SetTalentSkill(hero,NPC_TALENT_E,0);
 };
 
 var int GuildStart;
@@ -3872,12 +3862,12 @@ func string B_BuildCurrentRegenerateValue(var int stats)
 	cost = B_GetLearnCostAttribute(other,stats,1);
 	if(stats == ATR_REGENERATEMANA)
 	{
-		next = other.attribute[ATR_REGENERATEMANA] - 1;
+		next = ATR_Training[ATR_REGENERATEMANA] - 1;
 		concatText = "Регенерация маны (1 ед. в ";
 	}
 	else if(stats == ATR_REGENERATEHP)
 	{
-		next = other.attribute[ATR_REGENERATEHP] - 1;
+		next = ATR_Training[ATR_REGENERATEHP] - 1;
 		concatText = "Регенерация здоровья (1 ед. в ";
 	};
 	if(next < 0)
@@ -3918,11 +3908,11 @@ func int DIA_CH_Misc_Regenerate_Condition()
 {
 	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE))
 	{
-		if(other.attribute[ATR_REGENERATEMANA] != 1)
+		if(ATR_Training[ATR_REGENERATEMANA] != 1)
 		{
 			return TRUE;
 		};
-		if(other.attribute[ATR_REGENERATEHP] != 1)
+		if(ATR_Training[ATR_REGENERATEHP] != 1)
 		{
 			return TRUE;
 		};
@@ -3933,11 +3923,11 @@ func void DIA_CH_Misc_Regenerate_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Regenerate);
 	Info_AddChoice(DIA_CH_Misc_Regenerate,Dialog_Back,DIA_CH_Misc_Regenerate_BACK);
-	if(other.attribute[ATR_REGENERATEMANA] != 1)
+	if(ATR_Training[ATR_REGENERATEMANA] != 1)
 	{
 		Info_AddChoice(DIA_CH_Misc_Regenerate,B_BuildCurrentRegenerateValue(ATR_REGENERATEMANA),DIA_CH_Misc_Regenerate_Mana);
 	};
-	if(other.attribute[ATR_REGENERATEHP] != 1)
+	if(ATR_Training[ATR_REGENERATEHP] != 1)
 	{
 		Info_AddChoice(DIA_CH_Misc_Regenerate,B_BuildCurrentRegenerateValue(ATR_REGENERATEHP),DIA_CH_Misc_Regenerate_HP);
 	};
@@ -3955,7 +3945,7 @@ func void DIA_CH_Misc_Regenerate_Mana()
 	if(other.lp >= cost)
 	{
 		other.lp -= cost;
-		B_RaiseAttribute(other,ATR_REGENERATEMANA,1);
+		B_RaiseAttributeByTraining(other,ATR_REGENERATEMANA,1);
 	}
 	else
 	{
@@ -3971,7 +3961,7 @@ func void DIA_CH_Misc_Regenerate_HP()
 	if(other.lp >= cost)
 	{
 		other.lp -= cost;
-		B_RaiseAttribute(other,ATR_REGENERATEHP,1);
+		B_RaiseAttributeByTraining(other,ATR_REGENERATEHP,1);
 	}
 	else
 	{

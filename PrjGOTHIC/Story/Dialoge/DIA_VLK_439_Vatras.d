@@ -1177,7 +1177,7 @@ func void DIA_Addon_Vatras_Free_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_Free_05_01");	//Хорошая работа, сын мой.
 	AI_Output(self,other,"DIA_Addon_Vatras_Free_05_02");	//Но ты должен продолжать свой путь. Да благословит тебя Аданос.
 	AI_Output(self,other,"DIA_Addon_Vatras_Free_05_03");	//(молится) Аданос, благослови этого воина. Освети его путь и даруй ему силу противостоять любым опасностям.
-	B_RaiseAttribute(other,ATR_MANA_MAX,3);
+	B_RaiseAttributeByPermBonus(other,ATR_MANA_MAX,3);
 	other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
 	other.attribute[ATR_HITPOINTS] = other.attribute[ATR_HITPOINTS_MAX];
 	Snd_Play("LEVELUP");
@@ -1427,7 +1427,7 @@ func void DIA_Addon_Vatras_SellStonplate_Info()
 	if(anzahl >= 10)
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_02");	//За это я повышу твои магические способности!
-		B_RaiseAttribute(other,ATR_MANA_MAX,anzahl);
+		B_RaiseAttributeByPermBonus(other,ATR_MANA_MAX,anzahl);
 	}
 	else if(anzahl >= 5)
 	{
@@ -1833,7 +1833,7 @@ var int Vatras_TeachMANA_NoPerm;
 
 func void B_BuildLearnDialog_Vatras()
 {
-	if(other.aivar[REAL_MANA_MAX] >= T_HIGH)
+	if(RealAttributeValue(ATR_MANA_MAX) >= T_HIGH)
 	{
 		AI_Output(self,other,"DIA_Vatras_Teach_05_00");	//Твоя магическая энергия стала слишком велика, чтобы я мог еще повысить ее.
 		Vatras_TeachMANA_NoPerm = TRUE;

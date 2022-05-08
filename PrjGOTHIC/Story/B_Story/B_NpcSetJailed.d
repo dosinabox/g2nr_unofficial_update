@@ -27,19 +27,7 @@ func void B_NpcSetReleased(var C_Npc slf)
 {
 	if(!Npc_IsDead(slf))
 	{
-		if(slf.attribute[ATR_STRENGTH] != slf.aivar[REAL_STRENGTH])
-		{
-			slf.attribute[ATR_STRENGTH] = slf.aivar[REAL_STRENGTH];		//восстановление силы у бойца
-		};
-		if(slf.attribute[ATR_DEXTERITY] != slf.aivar[REAL_DEXTERITY])
-		{
-			slf.attribute[ATR_DEXTERITY] = slf.aivar[REAL_DEXTERITY];	//восстановление ловкости у стрелка
-		};
-		if(((slf.guild == GIL_KDF) || (slf.guild == GIL_KDW) || (slf.guild == GIL_PAL) || (slf.aivar[AIV_MagicUser] == MAGIC_ALWAYS)) && (slf.attribute[ATR_MANA_MAX] != slf.aivar[REAL_MANA_MAX]))
-		{
-			slf.attribute[ATR_MANA_MAX] = slf.aivar[REAL_MANA_MAX];		//восстановление маны у мага
-			slf.attribute[ATR_MANA] = slf.attribute[ATR_MANA_MAX];
-		};
+		B_SetAttributesToChapter(slf,3);	//только Ѕеннет и  антар
 		slf.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		AI_EquipBestMeleeWeapon(slf);
 		AI_EquipBestRangedWeapon(slf);

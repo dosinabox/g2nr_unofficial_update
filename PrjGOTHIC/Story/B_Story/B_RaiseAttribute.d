@@ -1,20 +1,4 @@
 
-func void B_RaiseRealAttributeLearnCounter(var C_Npc oth,var int attrib,var int points)
-{
-	if(attrib == ATR_STRENGTH)
-	{
-		oth.aivar[REAL_STRENGTH] += points;
-	}
-	else if(attrib == ATR_DEXTERITY)
-	{
-		oth.aivar[REAL_DEXTERITY] += points;
-	}
-	else if(attrib == ATR_MANA_MAX)
-	{
-		oth.aivar[REAL_MANA_MAX] += points;
-	};
-};
-
 func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 {
 	var string concatText;
@@ -52,15 +36,21 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 	}
 	else if(attrib == ATR_REGENERATEHP)
 	{
-		if(oth.attribute[ATR_REGENERATEHP] == 0)
+		if(ATR_Training[ATR_REGENERATEHP] == 0)
 		{
-			oth.attribute[ATR_REGENERATEHP] = 30;
+			if(HpRegenAmuletEquipped == FALSE)
+			{
+				oth.attribute[ATR_REGENERATEHP] = 30;
+			};
 			Npc_SetTalentSkill(oth,NPC_TALENT_REGENERATE,1);
 			PrintScreen(PRINT_LearnRegenerateHP,-1,-1,FONT_Screen,2);
 		}
-		else if(oth.attribute[ATR_REGENERATEHP] > 1)
+		else if(ATR_Training[ATR_REGENERATEHP] > 1)
 		{
-			oth.attribute[ATR_REGENERATEHP] -= points;
+			if(HpRegenAmuletEquipped == FALSE)
+			{
+				oth.attribute[ATR_REGENERATEHP] -= points;
+			};
 			PrintScreen(PRINT_UpgradeRegenerateHP,-1,-1,FONT_Screen,2);
 		}
 		else
@@ -70,25 +60,27 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 	}
 	else if(attrib == ATR_REGENERATEMANA)
 	{
-		if(oth.attribute[ATR_REGENERATEMANA] == 0)
+		if(ATR_Training[ATR_REGENERATEMANA] == 0)
 		{
-			oth.attribute[ATR_REGENERATEMANA] = 30;
+			if(ManaRegenAmuletEquipped == FALSE)
+			{
+				oth.attribute[ATR_REGENERATEMANA] = 30;
+			};
 			Npc_SetTalentSkill(oth,NPC_TALENT_REGENERATE,1);
 			PrintScreen(PRINT_LearnRegenerateMana,-1,-1,FONT_Screen,2);
 		}
-		else if(oth.attribute[ATR_REGENERATEMANA] > 1)
+		else if(ATR_Training[ATR_REGENERATEMANA] > 1)
 		{
-			oth.attribute[ATR_REGENERATEMANA] -= points;
+			if(ManaRegenAmuletEquipped == FALSE)
+			{
+				oth.attribute[ATR_REGENERATEMANA] -= points;
+			};
 			PrintScreen(PRINT_UpgradeRegenerateMana,-1,-1,FONT_Screen,2);
 		}
 		else
 		{
 			PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
 		};
-	};
-	if(IgnoreBonuses == FALSE)
-	{
-		B_RaiseRealAttributeLearnCounter(oth,attrib,points);
 	};
 };
 

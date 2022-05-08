@@ -193,7 +193,7 @@ func int DIA_Dragomir_Learn_Condition()
 func void DIA_Dragomir_Learn_Info()
 {
 	AI_Output(other,self,"DIA_Dragomir_Learn_15_00");	//Ты можешь научить меня чему-нибудь?
-	if(other.attribute[ATR_DEXTERITY] < 30)
+	if(CurrentAttributeValue(ATR_DEXTERITY) < 30)
 	{
 		AI_Output(self,other,"DIA_Dragomir_Learn_12_01");	//Прежде, чем я смогу научить тебя чему-нибудь, ты должен повысить свою ловкость.
 	}

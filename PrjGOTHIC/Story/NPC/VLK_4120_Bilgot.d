@@ -11,6 +11,7 @@ instance VLK_4120_Bilgot(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,20,ItMi_Gold,30);
 	CreateInvItems(self,ItPo_Health_02,4);
 	CreateInvItems(self,ItMi_OldCoin,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Weak_Ulf_Wohlers,BodyTex_P,ITAR_MIL_L);

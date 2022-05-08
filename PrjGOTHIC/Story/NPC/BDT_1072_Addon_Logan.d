@@ -13,6 +13,7 @@ instance BDT_1072_Addon_Logan(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Bow_M_02);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,59,ItMi_Gold,50);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_Cipher_neu,BodyTex_N,ITAR_BDT_M);
 	Mdl_SetModelFatness(self,-0.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

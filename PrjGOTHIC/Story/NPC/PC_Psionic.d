@@ -13,8 +13,9 @@ instance PC_Psionic(Npc_Default)
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,76,ItMi_Gold,20);
 	EquipItem(self,ItMw_Kriegshammer2);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Lester,BodyTex_Tattoo_P,ITAR_Lester);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Lester,BodyTex_Tattoo_P,ITAR_PSI_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

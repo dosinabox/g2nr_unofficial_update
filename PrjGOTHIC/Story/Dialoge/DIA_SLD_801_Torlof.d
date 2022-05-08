@@ -849,8 +849,8 @@ func void DIA_Torlof_Teach_Info()
 			B_LogEntry(TOPIC_SoldierTeacher,"Торлоф может повысить мою ловкость и силу.");
 			Log_TorlofTeach = TRUE;
 		};
-		Torlof_Merke_STR = other.aivar[REAL_STRENGTH];
-		Torlof_Merke_DEX = other.aivar[REAL_DEXTERITY];
+		Torlof_Merke_STR = ATR_Training[ATR_STRENGTH];
+		Torlof_Merke_DEX = ATR_Training[ATR_DEXTERITY];
 		B_BuildLearnDialog_Torlof_NW();
 	}
 	else
@@ -871,7 +871,7 @@ func void DIA_Torlof_Teach_Info()
 
 func void DIA_Torlof_Teach_Back()
 {
-	if((Torlof_Merke_STR < other.aivar[REAL_STRENGTH]) || (Torlof_Merke_DEX < other.aivar[REAL_DEXTERITY]))
+	if((Torlof_Merke_STR < ATR_Training[ATR_STRENGTH]) || (Torlof_Merke_DEX < ATR_Training[ATR_DEXTERITY]))
 	{
 		AI_Output(self,other,"DIA_Torlof_Teach_Back_01_00");	//Хорошо! Теперь ты можешь более эффективно использовать свои способности!
 	};

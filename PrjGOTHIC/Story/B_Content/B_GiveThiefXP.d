@@ -1,6 +1,4 @@
 
-var int TotalThefts;
-var int TotalTheftXP;
 var int VictimCount;
 var int VictimLevel;
 var int ThiefLevel;

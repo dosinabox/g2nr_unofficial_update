@@ -13,6 +13,7 @@ instance VLK_413_Bosper(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
 	EquipItem(self,ItRw_Bow_M_02);
+	B_CreateItemToSteal(self,67,ItMi_Gold,120);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_L_Tough_Santino,BodyTex_L,ITAR_Leather_L);
 	Mdl_SetModelFatness(self,0.8);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

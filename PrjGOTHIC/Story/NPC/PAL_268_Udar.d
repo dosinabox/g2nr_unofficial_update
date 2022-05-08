@@ -13,6 +13,7 @@ instance PAL_268_Udar(Npc_Default)
 	EquipItem(self,ItRw_Crossbow_H_01);
 	CreateInvItems(self,ItRw_Bolt,10);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,20,ItMi_Gold,15);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal_Stone,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

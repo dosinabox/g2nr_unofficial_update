@@ -15,6 +15,7 @@ instance VLK_418_Gritta(Npc_Default)
 	attribute[ATR_HITPOINTS] = 5;
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,20,ItMi_Gold,20);
 	CreateInvItems(self,ItMi_Gold,100);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe1",FaceBabe_N_YoungBlonde,BodyTex_N,ITAR_VlkBabe_M);
 	Mdl_SetModelFatness(self,0);

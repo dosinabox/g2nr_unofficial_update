@@ -53,15 +53,15 @@ instance ItAm_Addon_Franco(C_Item)
 
 func void Equip_ItAm_Addon_Franco()
 {
-	self.attribute[ATR_STRENGTH] += STR_Franco;
-	self.attribute[ATR_DEXTERITY] += DEX_Franco;
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,STR_Franco);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,DEX_Franco);
 	Equip_MaxHP(HP_ItAm_Addon_Franco);
 };
 
 func void UnEquip_ItAm_Addon_Franco()
 {
-	self.attribute[ATR_STRENGTH] -= STR_Franco;
-	self.attribute[ATR_DEXTERITY] -= DEX_Franco;
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,-STR_Franco);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,-DEX_Franco);
 	UnEquip_MaxHP(HP_ItAm_Addon_Franco);
 };
 

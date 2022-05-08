@@ -9,10 +9,11 @@ instance KDF_509_Isgaroth(Npc_Default)
 	npcType = npctype_main;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,6);
-	self.attribute[ATR_STRENGTH] = 1;
-	self.attribute[ATR_DEXTERITY] = 1;
+	attribute[ATR_STRENGTH] = 1;
+	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_STRONG;
 //	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,48,ItMi_Gold,50);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Tough_Okyl,BodyTex_N,ITAR_KDF_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

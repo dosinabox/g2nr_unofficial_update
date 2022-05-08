@@ -241,15 +241,16 @@ func int ZS_Attack_Loop()
 
 func void ZS_Attack_End()
 {
-	other = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
-	if(C_WantToFlee(self,other))
+	var C_Npc target;
+	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
+	if(C_WantToFlee(self,target))
 	{
 		B_Flee();
 		return;
 	};
 	if(self.aivar[AIV_PursuitEnd] == TRUE)
 	{
-		if(Hlp_IsValidNpc(other) && C_NpcIsHero(other) && (self.npcType != NPCTYPE_FRIEND))
+		if(Hlp_IsValidNpc(target) && C_NpcIsHero(target) && (self.npcType != NPCTYPE_FRIEND))
 		{
 			Npc_SetTempAttitude(self,ATT_HOSTILE);
 		};
@@ -257,36 +258,36 @@ func void ZS_Attack_End()
 		{
 			self.aivar[AIV_ArenaFight] = AF_AFTER;
 		};
-	};
-	if(self.aivar[AIV_PursuitEnd] == FALSE)
+	}
+	else
 	{
 		if(B_GetCurrentAbsolutionLevel(self) > self.aivar[AIV_LastAbsolutionLevel])
 		{
-			B_Say(self,other,"$WISEMOVE");
+			B_Say(self,target,"$WISEMOVE");
 		}
 		else
 		{
 			B_Say_AttackEnd();
 		};
 	};
-	if((other.aivar[AIV_KilledByPlayer] == TRUE) && (Wld_GetGuildAttitude(self.guild,hero.guild) != ATT_HOSTILE))
+	if((target.aivar[AIV_KilledByPlayer] == TRUE) && (Wld_GetGuildAttitude(self.guild,hero.guild) != ATT_HOSTILE))
 	{
 		B_SetAttitude(self,ATT_FRIENDLY);
 	};
-	if(Npc_IsInState(other,ZS_Unconscious) && C_NpcHasAttackReasonToKill(self))
+	if(Npc_IsInState(target,ZS_Unconscious) && C_NpcHasAttackReasonToKill(self))
 	{
-		B_FinishingMove(self,other);
+		B_FinishingMove(self,target);
 	};
 	AI_RemoveWeapon(self);
-	if(C_NpcIsDown(other) && C_WantToRansack(self) && ((other.aivar[AIV_RANSACKED] == FALSE) || C_NpcRansacksAlways(self)) && (Npc_GetDistToNpc(self,other) < PERC_DIST_INTERMEDIAT))
+	if(C_WantToRansack(self,target))
 	{
-		other.aivar[AIV_RANSACKED] = TRUE;
-		if(other.guild < GIL_SEPERATOR_HUM)
+		target.aivar[AIV_RANSACKED] = TRUE;
+		if(target.guild < GIL_SEPERATOR_HUM)
 		{
 			AI_StartState(self,ZS_RansackBody,0,"");
 			return;
 		}
-		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(AlligatorJack)) && Npc_HasItems(other,ItFoMuttonRaw))
+		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(AlligatorJack)) && (target.aivar[AIV_MM_REAL_ID] == ID_Swamprat))
 		{
 			AI_StartState(self,ZS_GetMeat,0,"");
 			return;

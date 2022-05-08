@@ -46,9 +46,12 @@ func int C_WantToFlee(var C_Npc slf,var C_Npc oth)
 					return TRUE;	// ...убегает крысокрот!
 				};
 			};
-			if((slf.fight_tactic == FAI_MONSTER_COWARD) && ((slf.attribute[ATR_HITPOINTS] < (slf.attribute[ATR_HITPOINTS_MAX] / 2)) || C_AmIWeaker(slf,oth)))
+			if(slf.attribute[ATR_HITPOINTS] < slf.attribute[ATR_HITPOINTS_MAX])
 			{
-				return TRUE;	// ...убегает трусливый зверь!
+				if(slf.fight_tactic == FAI_MONSTER_COWARD)
+				{
+					return TRUE;	// ...убегает трусливый раненый зверь!
+				};
 			};
 		};
 	}

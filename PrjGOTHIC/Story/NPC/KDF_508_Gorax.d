@@ -7,10 +7,11 @@ instance KDF_508_Gorax(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 80;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,4);
-	self.attribute[ATR_STRENGTH] = Condition_Stab04;
-	self.attribute[ATR_DEXTERITY] = 1;
+	attribute[ATR_STRENGTH] = Condition_Stab04;
+	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMW_Addon_Stab04);
 	CreateInvItems(self,ItKe_Innos_MIS,1);

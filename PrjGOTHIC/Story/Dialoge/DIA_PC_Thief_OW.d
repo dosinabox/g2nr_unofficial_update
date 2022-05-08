@@ -264,18 +264,18 @@ func void DIA_DiegoOw_Teach_Info()
 		B_LogEntry(TOPIC_OutTeacher,"Диего может помочь мне повысить мою ловкость и силу.");
 		DiegoOW_Teach = TRUE;
 	};
-	Diego_MerkeDEX = other.aivar[REAL_DEXTERITY];
-	Diego_MerkeSTR = other.aivar[REAL_STRENGTH];
+	Diego_MerkeDEX = ATR_Training[ATR_DEXTERITY];
+	Diego_MerkeSTR = ATR_Training[ATR_STRENGTH];
 	B_BuildLearnDialog_Diego_OW();
 };
 
 func void DIA_DiegoOw_TEACH_BACK()
 {
-	if(other.aivar[REAL_DEXTERITY] > Diego_MerkeDEX)
+	if(ATR_Training[ATR_DEXTERITY] > Diego_MerkeDEX)
 	{
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_02");	//Ты уже стал более ловким.
 	};
-	if(other.aivar[REAL_STRENGTH] > Diego_MerkeSTR)
+	if(ATR_Training[ATR_STRENGTH] > Diego_MerkeSTR)
 	{
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_03");	//(оценивающе) Очень хорошо. Твоя сила увеличилась.
 	};

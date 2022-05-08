@@ -14,6 +14,7 @@ instance VLK_494_Attila(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Axe);
 	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,55,ItMi_Gold,100);
 	CreateInvItem(self,ItKe_ThiefGuildKey_MIS);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Tough_Santino,BodyTex_L,ITAR_Leather_L);
 	Mdl_SetModelFatness(self,0);

@@ -18,6 +18,7 @@ instance DJG_705_Angar_DI(Npc_Default)
 	CreateInvItems(self,ItPo_Health_02,6);
 	CreateInvItems(self,ItMi_OldCoin,1);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,47,ItMi_Gold,45);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_CorAngar,BodyTex_Tattoo_B,ITAR_CorAngar);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

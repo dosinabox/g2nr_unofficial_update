@@ -101,6 +101,17 @@ func string B_BuildBlessString(var int gold)
 	return concatText;
 };
 
+func void B_SetAllShrinesAsObsessed()
+{
+	ShrineIsObsessed_NW_TROLLAREA_PATH_37 = FALSE;
+	ShrineIsObsessed_NW_FARM1_CONNECT_XARDAS = FALSE;
+	ShrineIsObsessed_NW_TROLLAREA_PATH_66 = FALSE;
+	ShrineIsObsessed_NW_TROLLAREA_PATH_04 = FALSE;
+	ShrineIsObsessed_SAGITTA = FALSE;
+	ShrineIsObsessed_NW_BIGMILL_MALAKSVERSTECK_02 = FALSE;
+	ShrineIsObsessed_NW_FARM3_BIGWOOD_02 = FALSE;
+};
+
 func void C_IsShrineObsessed(var C_Npc slf)
 {
 	if(Npc_IsPlayer(slf))

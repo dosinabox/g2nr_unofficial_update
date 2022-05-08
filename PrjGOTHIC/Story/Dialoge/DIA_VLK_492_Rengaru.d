@@ -36,7 +36,7 @@ func int DIA_Rengaru_PICKPOCKET_Condition()
 {
 	if(Npc_HasItems(self,ItMi_SilverRing))
 	{
-		return C_StealItem(20);
+		return C_CanStealFromNpc(20);
 	};
 	return FALSE;
 };
@@ -50,7 +50,7 @@ func void DIA_Rengaru_PICKPOCKET_Info()
 
 func void DIA_Rengaru_PICKPOCKET_DoIt()
 {
-	B_StealItem(20,Hlp_GetInstanceID(ItMi_SilverRing));
+	B_StealItem(20,ItMi_SilverRing,1);
 	Info_ClearChoices(DIA_Rengaru_PICKPOCKET);
 };
 
@@ -374,7 +374,7 @@ func void DIA_Rengaru_Zeichen_Info()
 	AI_Output(self,other,"DIA_Rengaru_Zeichen_07_01");	//Я скажу тебе кое-что. Если ты намереваешься залезть в чей-нибудь карман в городе, будь особенно осторожен с торговцами!
 	AI_Output(self,other,"DIA_Rengaru_Zeichen_07_02");	//Они очень бдительны и глаз не спускают со своих вещей. Но я могу дать тебе совет.
 	AI_Output(self,other,"DIA_Rengaru_Zeichen_07_03");	//Попробуй взять нужный тебе предмет одной рукой, размахивая при этом другой. Это отвлечет их.
-	B_RaiseAttribute(other,ATR_DEXTERITY,1);
+	B_RaiseAttributeByPermBonus(other,ATR_DEXTERITY,1);
 	Snd_Play("LEVELUP");
 };
 

@@ -1,5 +1,5 @@
 
-func void B_RaiseRealFightTalentPercent(var C_Npc oth,var int talent,var int percent)
+/*func void B_RaiseRealFightTalentPercent(var C_Npc oth,var int talent,var int percent)
 {
 	if(talent == NPC_TALENT_1H)
 	{
@@ -42,7 +42,7 @@ func void B_RaiseFightTalent(var C_Npc oth,var int talent,var int percent)
 		B_RaiseRealFightTalentPercent(oth,talent,percent);
 	};
 	B_AddFightSkill(oth,talent,percent);
-};
+};*/
 
 func void B_RaiseTalentByPermBonus(var C_Npc npc,var int talent,var int value)
 {

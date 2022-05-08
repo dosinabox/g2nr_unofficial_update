@@ -13,6 +13,7 @@ instance BAU_935_Bronko(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Bau_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,54,ItMi_Gold,80);
 	CreateInvItems(self,ItMi_Gold,35);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Normal_Kirgo,BodyTex_B,ITAR_Bau_M);
 	Mdl_SetModelFatness(self,1);

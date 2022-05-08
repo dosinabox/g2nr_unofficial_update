@@ -132,6 +132,61 @@ func int C_TowerBanditsDead()
 	return TRUE;
 };
 
+func int C_HakonBanditsDead()
+{
+	if(!Npc_IsDead(BDT_1009_Bandit_L))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_1010_Bandit_L))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_1011_Bandit_M))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_LighthouseBanditsDead()
+{
+	if(!Npc_IsDead(BDT_1021_LeuchtturmBandit))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_1022_LeuchtturmBandit))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_1023_LeuchtturmBandit))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_ElvrichBanditsDead()
+{
+	if(!Npc_IsDead(BDT_10307_Addon_RangerBandit_M))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_10308_Addon_RangerBandit_L))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_10309_Addon_RangerBandit_L))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_10310_Addon_RangerBandit_M))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 func int C_BragoBanditsDead()
 {
 	if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_Away == FALSE))

@@ -173,7 +173,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Salandril.aivar[AIV_ToughGuy] = TRUE;
 		};
 		Cornelius.flags = 0;
-		CreateInvItems(Cornelius,ItWr_CorneliusTagebuch_Mis,1);
+		B_CreateItemToSteal(Cornelius,60,ItWr_CorneliusTagebuch_Mis,1);
 		if(!Npc_IsDead(Hodges))
 		{
 			Hodges_isAlive_Kap3 = TRUE;
@@ -499,6 +499,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		};
 		if(hero.guild == GIL_PAL)
 		{
+			B_InsertLobartOrcs();
 			Wld_InsertNpc(OrcElite_AntiPaladin1,"NW_FARM3_PATH_BRIDGE");
 //			Wld_InsertNpc(OrcElite_AntiPaladin2,"XARDAS");
 			Wld_InsertNpc(OrcElite_AntiPaladin2,"NW_XARDAS_TOWER_PATH_01_B");
@@ -561,31 +562,11 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(OrcElite_AntiPaladin,"FP_STAND_DEMENTOR_KDF_30");
 			Wld_InsertNpc(OrcElite_AntiPaladin,"NW_FARM1_BANDITS_CAVE_03");
 			Wld_InsertNpc(OrcElite_AntiPaladin,"NW_FARM1_BANDITS_CAVE_07");
-		};
-		if((hero.guild == GIL_DJG) || (hero.guild == GIL_PAL))
+		}
+		else if(hero.guild == GIL_DJG)
 		{
-			Wld_InsertNpc(OrcWarrior_Lobart1,"NW_FARM1_PATH_CITY_SHEEP_04");
-			Wld_InsertNpc(OrcWarrior_Lobart2,"NW_FARM1_PATH_CITY_SHEEP_04");
-			Wld_InsertNpc(OrcWarrior_Lobart3,"NW_FARM1_PATH_CITY_SHEEP_04");
-			Wld_InsertNpc(OrcWarrior_Lobart4,"NW_FARM1_PATH_CITY_SHEEP_01");
-			Wld_InsertNpc(OrcWarrior_Lobart5,"NW_FARM1_PATH_CITY_SHEEP_01");
-			Wld_InsertNpc(OrcWarrior_Lobart6,"NW_FARM1_PATH_CITY_SHEEP_01");
-			B_StartOtherRoutine(Vino,"BugsThere");
-			B_StartOtherRoutine(LobartsBauer1,"BugsThere");
-			B_StartOtherRoutine(LobartsBauer2,"BugsThere");
-		};
-		if((hero.guild == GIL_KDF) || (hero.guild == GIL_DJG))
-		{
-			ShrineIsObsessed_NW_TROLLAREA_PATH_37 = FALSE;
-			ShrineIsObsessed_NW_FARM1_CONNECT_XARDAS = FALSE;
-			ShrineIsObsessed_NW_TROLLAREA_PATH_66 = FALSE;
-			ShrineIsObsessed_NW_TROLLAREA_PATH_04 = FALSE;
-			ShrineIsObsessed_SAGITTA = FALSE;
-			ShrineIsObsessed_NW_BIGMILL_MALAKSVERSTECK_02 = FALSE;
-			ShrineIsObsessed_NW_FARM3_BIGWOOD_02 = FALSE;
-		};
-		if(hero.guild == GIL_DJG)
-		{
+			B_SetAllShrinesAsObsessed();
+			B_InsertLobartOrcs();
 			Wld_InsertItem(ItAt_DragonEgg_MIS,"FP_NW_ITEM_RIVERSIDE_EGG");
 			Wld_InsertNpc(Draconian,"FP_ROAM_TROLLAREA_06");
 			Wld_InsertNpc(Draconian,"NW_TROLLAREA_RIVERSIDE_05");
@@ -678,9 +659,10 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(Draconian,"FP_ROAM_TROLLAREA_09");
 			Wld_InsertNpc(Draconian,"FP_ROAM_TROLLAREA_10");
 			Wld_InsertNpc(Draconian,"FP_ROAM_TROLLAREA_08");
-		};
-		if(hero.guild == GIL_KDF)
+		}
+		else if(hero.guild == GIL_KDF)
 		{
+			B_SetAllShrinesAsObsessed();
 			Wld_InsertNpc(DMT_DementorAmbientSpeaker,"NW_TROLLAREA_PATH_80");
 			Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_ROAM_TROLLAREA_19");
 			Wld_InsertNpc(DMT_DementorAmbientSpeaker,"NW_FARM2_TO_TAVERN_08");

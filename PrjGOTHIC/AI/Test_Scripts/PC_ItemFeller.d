@@ -217,7 +217,8 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ITAR_BDT_M,1);
 	CreateInvItems(self,ITAR_BDT_H,1);
 	CreateInvItems(self,ITAR_Xardas,1);
-	CreateInvItems(self,ITAR_Lester,1);
+	CreateInvItems(self,ITAR_PSI_M,1);
+	CreateInvItems(self,ITAR_PSI_H,1);
 	CreateInvItems(self,ITAR_Diego,1);
 	CreateInvItems(self,ITAR_CorAngar,1);
 	CreateInvItems(self,ITAR_KDW_H,1);
@@ -664,7 +665,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItWr_XardasSeamapBook_Mis,1);
 	CreateInvItems(self,ItWr_Seamap_Irdorath,1);
 	CreateInvItems(self,ITWr_ForgedShipLetter_MIS,1);
-	CreateInvItems(self,ITKE_OC_MAINGATE_MIS,1);
+	CreateInvItems(self,ItKe_OC_MainGate_MIS,1);
 	CreateInvItems(self,ItKe_Ship_Levelchange_MIS,1);
 	CreateInvItems(self,ItPo_PotionOfDeath_01_Mis,1);
 	CreateInvItems(self,ItPo_PotionOfDeath_02_Mis,1);

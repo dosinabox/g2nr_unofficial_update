@@ -11,6 +11,7 @@ instance BDT_1096_Addon_Lennar(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Nagelknueppel);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,65,ItMi_Gold,100);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal20,BodyTex_N,ITAR_Prisoner);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

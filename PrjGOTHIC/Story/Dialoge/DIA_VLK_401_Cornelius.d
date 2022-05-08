@@ -355,10 +355,9 @@ instance DIA_Cornelius_PICKPOCKET(C_Info)
 
 func int DIA_Cornelius_PICKPOCKET_Condition()
 {
-//	if(C_StealItems(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis),1) && (RescueBennet_KnowsCornelius == TRUE))
 	if(Npc_HasItems(self,ItWr_CorneliusTagebuch_Mis) && (RescueBennet_KnowsCornelius == TRUE))
 	{
-		return C_StealItem(60);
+		return C_CanStealFromNpc(60);
 	};
 	return FALSE;
 };
@@ -372,8 +371,7 @@ func void DIA_Cornelius_PICKPOCKET_Info()
 
 func void DIA_Cornelius_PICKPOCKET_DoIt()
 {
-//	B_StealItems(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis),1);
-	B_StealItem(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis));
+	B_StealItem(60,ItWr_CorneliusTagebuch_Mis,1);
 	Info_ClearChoices(DIA_Cornelius_PICKPOCKET);
 };
 

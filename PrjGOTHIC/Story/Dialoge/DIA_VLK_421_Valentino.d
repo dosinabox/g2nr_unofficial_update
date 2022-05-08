@@ -173,10 +173,9 @@ instance DIA_Valentino_PICKPOCKET(C_Info)
 
 func int DIA_Valentino_PICKPOCKET_Condition()
 {
-//	return C_StealItems(30,Hlp_GetInstanceID(ItKe_Valentino),1);
 	if(Npc_HasItems(self,ItKe_Valentino))
 	{
-		return C_StealItem(30);
+		return C_CanStealFromNpc(30);
 	};
 	return FALSE;
 };
@@ -190,8 +189,7 @@ func void DIA_Valentino_PICKPOCKET_Info()
 
 func void DIA_Valentino_PICKPOCKET_DoIt()
 {
-//	B_StealItems(30,Hlp_GetInstanceID(ItKe_Valentino),1);
-	B_StealItem(30,Hlp_GetInstanceID(ItKe_Valentino));
+	B_StealItem(30,ItKe_Valentino,1);
 	Info_ClearChoices(DIA_Valentino_PICKPOCKET);
 };
 

@@ -79,7 +79,7 @@ func int DIA_Addon_Elvrich_BanditsThere_Condition()
 
 func void DIA_Addon_Elvrich_BanditsThere_Info()
 {
-	if(Npc_IsDead(BDT_10307_Addon_RangerBandit_M) && Npc_IsDead(BDT_10308_Addon_RangerBandit_L) && Npc_IsDead(BDT_10309_Addon_RangerBandit_L) && Npc_IsDead(BDT_10310_Addon_RangerBandit_M))
+	if(C_ElvrichBanditsDead())
 	{
 		AI_Output(self,other,"DIA_Addon_Elvrich_BanditsThere_04_00");	//Слава богам! С бандитами покончено. Ты спас мне жизнь.
 		DIA_Addon_Elvrich_BanditsThere_NoPerm = TRUE;

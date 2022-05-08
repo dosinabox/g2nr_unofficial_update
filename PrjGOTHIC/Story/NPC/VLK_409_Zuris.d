@@ -7,9 +7,10 @@ instance VLK_409_Zuris(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_DexToSteal] = 40;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
-	self.attribute[ATR_DEXTERITY] = 1;
+	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_ImportantGrey,BodyTex_N,ITAR_Vlk_M);

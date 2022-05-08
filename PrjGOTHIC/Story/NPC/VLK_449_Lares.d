@@ -16,6 +16,7 @@ instance VLK_449_Lares(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Schwert3);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,95,ItMi_Gold,350);
 	CreateInvItems(self,ItMi_Gold,100);
 	CreateInvItems(self,ItMi_OldCoin,1);
 	CreateInvItems(self,ItPo_Health_02,5);

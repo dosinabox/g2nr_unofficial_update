@@ -98,7 +98,6 @@ func int B_AssessEnemy()
 			return FALSE;
 		};
 	};
-//	if((self.fight_tactic == FAI_HUMAN_COWARD) && C_AmIWeaker(self,other))
 	if(C_WantToFlee(self,other))
 	{
 		B_CallGuards();
