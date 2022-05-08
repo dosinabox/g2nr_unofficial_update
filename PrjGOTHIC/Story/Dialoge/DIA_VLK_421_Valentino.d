@@ -189,7 +189,7 @@ func void DIA_Valentino_PICKPOCKET_Info()
 
 func void DIA_Valentino_PICKPOCKET_DoIt()
 {
-	B_StealItem(30,ItKe_Valentino);
+	B_StealItem(30,ItKe_Valentino,1);
 	Info_ClearChoices(DIA_Valentino_PICKPOCKET);
 };
 

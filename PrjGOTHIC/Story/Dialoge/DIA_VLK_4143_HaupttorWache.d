@@ -122,7 +122,7 @@ func void DIA_Haupttorwache_PICKPOCKET_Info()
 
 func void DIA_Haupttorwache_PICKPOCKET_DoIt()
 {
-	B_StealItem(20,ItKe_OC_MainGate_MIS);
+	B_StealItem(20,ItKe_OC_MainGate_MIS,1);
 	Info_ClearChoices(DIA_Haupttorwache_PICKPOCKET);
 };
 

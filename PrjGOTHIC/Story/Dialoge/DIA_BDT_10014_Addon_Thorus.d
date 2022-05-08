@@ -512,7 +512,7 @@ func void DIA_Addon_Thorus_PICKPOCKET_Info()
 
 func void DIA_Addon_Thorus_PICKPOCKET_DoIt()
 {
-	B_StealItem(60,ItKe_Addon_Thorus);
+	B_StealItem(60,ItKe_Addon_Thorus,1);
 	Info_ClearChoices(DIA_Addon_Thorus_PICKPOCKET);
 };
 

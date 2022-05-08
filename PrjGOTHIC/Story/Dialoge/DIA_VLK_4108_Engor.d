@@ -456,7 +456,7 @@ func void DIA_Engor_PICKPOCKET_Info()
 
 func void DIA_Engor_PICKPOCKET_DoIt()
 {
-	B_StealItem(40,ItWr_Map_OldWorld);
+	B_StealItem(40,ItWr_Map_OldWorld,1);
 	Info_ClearChoices(DIA_Engor_PICKPOCKET);
 };
 

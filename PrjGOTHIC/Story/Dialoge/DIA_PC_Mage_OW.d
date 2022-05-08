@@ -702,7 +702,7 @@ func void DIA_MiltenOW_PICKPOCKET_Info()
 
 func void DIA_MiltenOW_PICKPOCKET_DoIt()
 {
-	B_StealItem(80,ItPo_Perm_Mana);
+	B_StealItem(80,ItPo_Perm_Mana,1);
 	Info_ClearChoices(DIA_MiltenOW_PICKPOCKET);
 };
 

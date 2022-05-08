@@ -313,7 +313,7 @@ func void DIA_Ingmar_PICKPOCKET_Info()
 
 func void DIA_Ingmar_PICKPOCKET_DoIt()
 {
-	B_StealItem(105,ItWr_Manowar);
+	B_StealItem(105,ItWr_Manowar,1);
 	Info_ClearChoices(DIA_Ingmar_PICKPOCKET);
 };
 

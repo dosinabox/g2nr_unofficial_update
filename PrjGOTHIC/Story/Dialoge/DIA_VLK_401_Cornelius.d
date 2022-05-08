@@ -371,7 +371,7 @@ func void DIA_Cornelius_PICKPOCKET_Info()
 
 func void DIA_Cornelius_PICKPOCKET_DoIt()
 {
-	B_StealItem(60,ItWr_CorneliusTagebuch_Mis);
+	B_StealItem(60,ItWr_CorneliusTagebuch_Mis,1);
 	Info_ClearChoices(DIA_Cornelius_PICKPOCKET);
 };
 

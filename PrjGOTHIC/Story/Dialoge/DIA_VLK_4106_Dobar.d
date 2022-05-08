@@ -259,7 +259,7 @@ func void DIA_Dobar_PICKPOCKET_Info()
 
 func void DIA_Dobar_PICKPOCKET_DoIt()
 {
-	B_StealItem(79,ItMi_Nugget);
+	B_StealItem(79,ItMi_Nugget,1);
 	Info_ClearChoices(DIA_Dobar_PICKPOCKET);
 };
 

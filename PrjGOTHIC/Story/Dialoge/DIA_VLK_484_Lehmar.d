@@ -333,7 +333,7 @@ func void DIA_Lehmar_PICKPOCKET_Info()
 
 func void DIA_Lehmar_PICKPOCKET_DoIt()
 {
-	B_StealItem(20,ItWr_Schuldenbuch);
+	B_StealItem(20,ItWr_Schuldenbuch,1);
 	Info_ClearChoices(DIA_Lehmar_PICKPOCKET);
 };
 

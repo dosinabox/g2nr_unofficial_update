@@ -11,7 +11,7 @@ instance BDT_10022_Addon_Miguel(Npc_Default)
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Nagelknueppel);
-	B_CreateAmbientInv(self);
+//	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,40,ItMi_Gold,48);
 	CreateInvItems(self,ItPo_Health_01,20);
 	CreateInvItems(self,ItPo_Health_02,8);

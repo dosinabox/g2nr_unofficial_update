@@ -50,7 +50,7 @@ func void DIA_Bartok_PICKPOCKET_Info()
 
 func void DIA_Bartok_PICKPOCKET_DoIt()
 {
-	B_StealItem(30,ItMi_ArrowPack);
+	B_StealItem(30,ItMi_ArrowPack,1);
 	Info_ClearChoices(DIA_Bartok_PICKPOCKET);
 };
 

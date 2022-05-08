@@ -50,7 +50,7 @@ func void DIA_Wambo_PICKPOCKET_Info()
 
 func void DIA_Wambo_PICKPOCKET_DoIt()
 {
-	B_StealItem(50,ItKe_City_Tower_04);
+	B_StealItem(50,ItKe_City_Tower_04,1);
 	Info_ClearChoices(DIA_Wambo_PICKPOCKET);
 };
 

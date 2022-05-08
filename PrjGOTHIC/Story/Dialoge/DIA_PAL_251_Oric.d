@@ -558,7 +558,7 @@ func void DIA_Oric_PICKPOCKET_Info()
 
 func void DIA_Oric_PICKPOCKET_DoIt()
 {
-	B_StealItem(85,ItSc_PalRepelEvil);
+	B_StealItem(85,ItSc_PalRepelEvil,1);
 	Info_ClearChoices(DIA_Oric_PICKPOCKET);
 };
 

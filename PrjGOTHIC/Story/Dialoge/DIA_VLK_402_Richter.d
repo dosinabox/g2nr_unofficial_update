@@ -352,7 +352,7 @@ func void DIA_Richter_PICKPOCKET_Info()
 
 func void DIA_Richter_PICKPOCKET_DoIt()
 {
-	B_StealItem(30,ItKe_Richter);
+	B_StealItem(30,ItKe_Richter,1);
 	Info_ClearChoices(DIA_Richter_PICKPOCKET);
 };
 

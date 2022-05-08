@@ -664,7 +664,7 @@ func void B_CreateItemToSteal(var C_Npc slf,var int dex,var int itemInstance,var
 {
 	slf.aivar[AIV_DexToSteal] = dex;
 	slf.aivar[AIV_ItemToSteal] = itemInstance;
-	slf.aivar[AIV_GoldToSteal] = amount;
+	slf.aivar[AIV_AmountToSteal] = amount;
 	if(!Hlp_IsItem(ItMi_Gold,itemInstance))
 	{
 		CreateInvItems(slf,itemInstance,amount);

@@ -50,7 +50,7 @@ func void DIA_Rangar_PICKPOCKET_Info()
 
 func void DIA_Rangar_PICKPOCKET_DoIt()
 {
-	B_StealItem(30,ItKe_City_Tower_02);
+	B_StealItem(30,ItKe_City_Tower_02,1);
 	Info_ClearChoices(DIA_Rangar_PICKPOCKET);
 };
 

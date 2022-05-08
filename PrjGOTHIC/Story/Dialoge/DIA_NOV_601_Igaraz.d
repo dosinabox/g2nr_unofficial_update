@@ -586,7 +586,7 @@ func void DIA_Igaraz_PICKPOCKET_Info()
 
 func void DIA_Igaraz_PICKPOCKET_DoIt()
 {
-	B_StealItem(40,ItKe_IgarazChest_Mis);
+	B_StealItem(40,ItKe_IgarazChest_Mis,1);
 	Info_ClearChoices(DIA_Igaraz_PICKPOCKET);
 };
 

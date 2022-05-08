@@ -452,7 +452,7 @@ func void DIA_Sentenza_PICKPOCKET_Info()
 
 func void DIA_Sentenza_PICKPOCKET_DoIt()
 {
-	B_StealItem(56,ItMi_SilverRing);
+	B_StealItem(56,ItMi_SilverRing,1);
 	Info_ClearChoices(DIA_Sentenza_PICKPOCKET);
 };
 

@@ -53,7 +53,7 @@ func void DIA_Addon_Cavalorn_PICKPOCKET_Info()
 
 func void DIA_Addon_Cavalorn_PICKPOCKET_DoIt()
 {
-	B_StealItem(25,ItMi_ArrowPack);
+	B_StealItem(25,ItMi_ArrowPack,1);
 	Info_ClearChoices(DIA_Addon_Cavalorn_PICKPOCKET);
 };
 

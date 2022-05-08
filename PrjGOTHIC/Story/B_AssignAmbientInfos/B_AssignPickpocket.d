@@ -18,61 +18,50 @@ func string B_BuildPickpocketString()
 	{
 		text = ConcatStrings(text,"eго ");
 	};
-	if(self.aivar[AIV_GoldToSteal] > 0)
+	Npc_GetInvItem(self,self.aivar[AIV_ItemToSteal]);
+	if(Hlp_StrCmp(item.name,NAME_Amulett))
 	{
-		text = ConcatStrings(text,"кошелек");
+		text = ConcatStrings(text,"амулет");
+	}
+	else if(Hlp_StrCmp(item.name,NAME_Key))
+	{
+		text = ConcatStrings(text,"ключ");
+	}
+	else if(Hlp_StrCmp(item.name,NAME_Trank))
+	{
+		text = ConcatStrings(text,"зелье");
+	}
+	else if(Hlp_StrCmp(item.name,NAME_Spruchrolle))
+	{
+		text = ConcatStrings(text,"свиток");
+	}
+	else if(Hlp_IsItem(item,ItMi_Nugget))
+	{
+		text = ConcatStrings(text,"кусок руды");
+	}
+	else if(Hlp_IsItem(item,ItWr_Map_OldWorld))
+	{
+		text = ConcatStrings(text,"карту");
+	}
+	else if(Hlp_IsItem(item,ItWr_Schuldenbuch) || Hlp_IsItem(item,ItWr_CorneliusTagebuch_Mis))
+	{
+		text = ConcatStrings(text,"книгу");
+	}
+	else if(Hlp_IsItem(item,ItWr_Manowar))
+	{
+		text = ConcatStrings(text,"документ");
+	}
+	else if(Hlp_IsItem(item,ItMi_ArrowPack))
+	{
+		text = ConcatStrings(text,"колчан");
+	}
+	else if(Hlp_IsItem(item,ItMi_SilverRing))
+	{
+		text = ConcatStrings(text,"кольцо");
 	}
 	else
 	{
-		Npc_GetInvItem(self,self.aivar[AIV_ItemToSteal]);
-		if(Hlp_StrCmp(item.name,NAME_Amulett))
-		{
-			text = ConcatStrings(text,"амулет");
-		}
-		else if(Hlp_StrCmp(item.name,NAME_Key))
-		{
-			text = ConcatStrings(text,"ключ");
-		}
-		else if(Hlp_StrCmp(item.name,NAME_Trank))
-		{
-			text = ConcatStrings(text,"зелье");
-		}
-		else if(Hlp_StrCmp(item.name,NAME_Beutel))
-		{
-			text = ConcatStrings(text,"кошелек");
-		}
-		else if(Hlp_StrCmp(item.name,NAME_Spruchrolle))
-		{
-			text = ConcatStrings(text,"свиток");
-		}
-		else if(Hlp_IsItem(item,ItMi_Nugget))
-		{
-			text = ConcatStrings(text,"кусок руды");
-		}
-		else if(Hlp_IsItem(item,ItWr_Map_OldWorld))
-		{
-			text = ConcatStrings(text,"карту");
-		}
-		else if(Hlp_IsItem(item,ItWr_Schuldenbuch) || Hlp_IsItem(item,ItWr_CorneliusTagebuch_Mis))
-		{
-			text = ConcatStrings(text,"книгу");
-		}
-		else if(Hlp_IsItem(item,ItWr_Manowar))
-		{
-			text = ConcatStrings(text,"документ");
-		}
-		else if(Hlp_IsItem(item,ItMi_ArrowPack))
-		{
-			text = ConcatStrings(text,"колчан");
-		}
-		else if(Hlp_IsItem(item,ItMi_SilverRing))
-		{
-			text = ConcatStrings(text,"кольцо");
-		}
-		else
-		{
-			text = ConcatStrings(text,"предмет");
-		};
+		text = ConcatStrings(text,"кошелек");
 	};
 	if(self.aivar[AIV_DexToSteal] <= 20)
 	{
@@ -98,6 +87,7 @@ func string B_BuildPickpocketString()
 	{
 		text = ConcatStrings(text," практически невозможно)");
 	};
+	text = ConcatStrings(text," - новый вариант");
 	return text;
 };
 
@@ -129,14 +119,7 @@ func void DIA_Pickpocket_Info()
 
 func void DIA_Pickpocket_DoIt()
 {
-	if(self.aivar[AIV_GoldToSteal])
-	{
-		B_StealGold();
-	}
-	else
-	{
-		B_StealItem(self.aivar[AIV_DexToSteal],self.aivar[AIV_ItemToSteal]);
-	};
+	B_StealItem(self.aivar[AIV_DexToSteal],self.aivar[AIV_ItemToSteal],self.aivar[AIV_AmountToSteal]);
 	Info_ClearChoices(DIA_Pickpocket);
 };
 

@@ -76,7 +76,7 @@ func void DIA_Gerbrandt_PICKPOCKET_Info()
 func void DIA_Gerbrandt_PICKPOCKET_DoIt()
 {
 	B_StartNewLife();
-	B_StealItem(30,ItSe_GoldPocket100);
+	B_StealItem(30,ItSe_GoldPocket100,1);
 	Info_ClearChoices(DIA_Gerbrandt_PICKPOCKET);
 };
 

@@ -28,7 +28,7 @@ func void DIA_264_Ritter_PICKPOCKET_Info()
 
 func void DIA_264_Ritter_PICKPOCKET_DoIt()
 {
-	B_StealItem(70,ItKe_OC_Store);
+	B_StealItem(70,ItKe_OC_Store,1);
 	Info_ClearChoices(DIA_264_Ritter_PICKPOCKET);
 };
 

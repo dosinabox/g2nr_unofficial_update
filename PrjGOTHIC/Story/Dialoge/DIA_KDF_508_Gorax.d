@@ -51,7 +51,7 @@ func void DIA_Gorax_PICKPOCKET_DoIt()
 	{
 		CreateInvItem(self,ItKe_KlosterSchatz);
 	};
-	B_StealItem(80,ItKe_KlosterSchatz);
+	B_StealItem(80,ItKe_KlosterSchatz,1);
 	Info_ClearChoices(DIA_Gorax_PICKPOCKET);
 };
 

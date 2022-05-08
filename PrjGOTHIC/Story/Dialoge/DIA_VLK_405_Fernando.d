@@ -50,7 +50,7 @@ func void DIA_Fernando_PICKPOCKET_Info()
 
 func void DIA_Fernando_PICKPOCKET_DoIt()
 {
-	B_StealItem(50,ItSe_GoldPocket100);
+	B_StealItem(50,ItSe_GoldPocket100,1);
 	Info_ClearChoices(DIA_Fernando_PICKPOCKET);
 };
 

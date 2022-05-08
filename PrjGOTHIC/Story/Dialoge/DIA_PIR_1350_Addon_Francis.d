@@ -300,7 +300,7 @@ func void DIA_Francis_PICKPOCKET_Info()
 
 func void DIA_Francis_PICKPOCKET_DoIt()
 {
-	B_StealItem(40,ItKe_Greg_Addon_MIS);
+	B_StealItem(40,ItKe_Greg_Addon_MIS,1);
 	Info_ClearChoices(DIA_Francis_PICKPOCKET);
 };
 

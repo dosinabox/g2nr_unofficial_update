@@ -73,7 +73,7 @@ func void DIA_Salandril_PICKPOCKET_Info()
 func void DIA_Salandril_PICKPOCKET_DoIt()
 {
 	B_GiveSalandrilKey();
-	B_StealItem(30,ItKe_Salandril);
+	B_StealItem(30,ItKe_Salandril,1);
 	Info_ClearChoices(DIA_Salandril_PICKPOCKET);
 };
 

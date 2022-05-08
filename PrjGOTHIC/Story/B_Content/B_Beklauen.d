@@ -22,10 +22,10 @@ func int C_CanStealFromNpc(var int TheftDex) //TODO убрать TheftDex и использова
 
 func int C_Beklauen(var int TheftDex,var int TheftGold) //TODO поддержка старых сохранений - удалить вместе с диалогами
 {
-	if(self.aivar[AIV_DexToSteal] > 0)
+	/*if(self.aivar[AIV_DexToSteal] > 0)
 	{
 		return FALSE;
-	};
+	};*/
 	if(!C_CanStealFromNpc(TheftDex))
 	{
 		return FALSE;
@@ -70,7 +70,7 @@ func void B_Beklauen() //TODO поддержка старых сохранений - удалить вместе с диа
 	};
 };
 
-func void B_StealGold()
+/*func void B_StealGold()
 {
 	var int dex;
 	dex = self.aivar[AIV_DexToSteal];
@@ -101,24 +101,35 @@ func void B_StealGold()
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};
-};
+};*/
 
-func void B_StealItem(var int TheftDex,var int itemInstance) //TODO убрать TheftDex и использовать AIV_DexToSteal
+func void B_StealItem(var int dex,var int itm,var int amount) //TODO убрать TheftDex и использовать AIV_DexToSteal
 {
-	if(other.attribute[ATR_DEXTERITY] >= TheftDex)
+	var string text;
+	/*if((dex <= 20) && (EasyLowDexPickpocketDisabled == FALSE))
 	{
-		var string text;
-		B_GiveInvItems(self,other,itemInstance,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Npc_GetInvItem(other,itemInstance);
+		dex = 10;
+	};*/
+	if(other.attribute[ATR_DEXTERITY] >= dex)
+	{
+		B_GiveInvItems(self,other,itm,amount);
+		Npc_GetInvItem(other,itm);
 		text = ConcatStrings(self.name[0],PRINT_PickPocketSuccess);
-		text = ConcatStrings(text,item.description);
-		text = ConcatStrings(text,".");
-		B_LogEntry(Topic_PickPocket,text);
-		if(Hlp_StrCmp(item.name,NAME_Beutel))
+		if(Hlp_IsItem(item,ItMi_Gold))
 		{
-			TotalTheftGold += item.value;
+			text = ConcatStrings(text,IntToString(amount));
+			text = ConcatStrings(text,PRINT_Gold);
+			Snd_Play("Geldbeutel");
+			TotalTheftGold += amount;
+		}
+		else
+		{
+			text = ConcatStrings(text,item.description);
+			//Snd_Play("Map_Unfold");
+			if(Hlp_StrCmp(item.name,NAME_Beutel))
+			{
+				TotalTheftGold += item.value;
+			};
 		};
 		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lehmar))
 		{
@@ -132,6 +143,9 @@ func void B_StealItem(var int TheftDex,var int itemInstance) //TODO убрать Theft
 		{
 			self.flags = 0;
 		};
+		B_LogEntry(Topic_PickPocket,ConcatStrings(text,"."));
+		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
+		B_GiveThiefXP();
 	}
 	else
 	{

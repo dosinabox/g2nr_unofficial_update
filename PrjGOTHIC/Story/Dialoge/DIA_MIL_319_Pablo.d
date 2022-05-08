@@ -50,7 +50,7 @@ func void DIA_Pablo_PICKPOCKET_Info()
 
 func void DIA_Pablo_PICKPOCKET_DoIt()
 {
-	B_StealItem(20,ItKe_City_Tower_01);
+	B_StealItem(20,ItKe_City_Tower_01,1);
 	Info_ClearChoices(DIA_Pablo_PICKPOCKET);
 };
 

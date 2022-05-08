@@ -128,7 +128,7 @@ func void DIA_328_Miliz_PICKPOCKET_Info()
 
 func void DIA_328_Miliz_PICKPOCKET_DoIt()
 {
-	B_StealItem(35,ItKe_Storage);
+	B_StealItem(35,ItKe_Storage,1);
 	Info_ClearChoices(DIA_328_Miliz_PICKPOCKET);
 };
 

@@ -416,7 +416,7 @@ func void DIA_Bromor_PICKPOCKET_Info()
 
 func void DIA_Bromor_PICKPOCKET_DoIt()
 {
-	B_StealItem(50,ItKe_Bromor);
+	B_StealItem(50,ItKe_Bromor,1);
 	Info_ClearChoices(DIA_Bromor_PICKPOCKET);
 };
 

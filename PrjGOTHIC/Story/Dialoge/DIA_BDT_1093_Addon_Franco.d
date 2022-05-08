@@ -55,7 +55,7 @@ func void DIA_Franco_PICKPOCKET_Info()
 
 func void DIA_Franco_PICKPOCKET_DoIt()
 {
-	B_StealItem(60,ItAm_Addon_Franco);
+	B_StealItem(60,ItAm_Addon_Franco,1);
 	Info_ClearChoices(DIA_Franco_PICKPOCKET);
 };
 

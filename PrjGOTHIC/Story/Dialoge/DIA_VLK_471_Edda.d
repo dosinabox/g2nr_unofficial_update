@@ -256,15 +256,15 @@ func void DIA_Edda_PICKPOCKET_DoIt()
 {
 	if(Npc_HasItems(self,ItMi_EddasStatue))
 	{
-		B_StealItem(20,ItMi_EddasStatue);
+		B_StealItem(20,ItMi_EddasStatue,1);
 	}
 	else if(Npc_HasItems(self,ItMi_InnosStatue))
 	{
-		B_StealItem(20,ItMi_InnosStatue);
+		B_StealItem(20,ItMi_InnosStatue,1);
 	}
 	else if(Npc_HasItems(self,ItMi_LostInnosStatue_Daron))
 	{
-		B_StealItem(20,ItMi_LostInnosStatue_Daron);
+		B_StealItem(20,ItMi_LostInnosStatue_Daron,1);
 	};
 	Info_ClearChoices(DIA_Edda_PICKPOCKET);
 };

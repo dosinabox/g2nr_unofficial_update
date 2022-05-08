@@ -50,7 +50,7 @@ func void DIA_Rengaru_PICKPOCKET_Info()
 
 func void DIA_Rengaru_PICKPOCKET_DoIt()
 {
-	B_StealItem(20,ItMi_SilverRing);
+	B_StealItem(20,ItMi_SilverRing,1);
 	Info_ClearChoices(DIA_Rengaru_PICKPOCKET);
 };
 
