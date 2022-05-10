@@ -205,6 +205,7 @@ func void DIA_Edda_Statue_Info()
 	if(Npc_HasItems(other,ItMi_EddasStatue))
 	{
 		B_GiveInvItems(other,self,ItMi_EddasStatue,1);
+		B_SetItemToSteal(self,20,ItMi_EddasStatue,1);
 		B_GivePlayerXP(XP_Edda_Statue * 2);
 		AI_Output(self,other,"DIA_Maria_BringPlate_17_01");	//Да! Это она! Огромное тебе спасибо!
 	}
@@ -213,10 +214,12 @@ func void DIA_Edda_Statue_Info()
 		if(Npc_HasItems(other,ItMi_InnosStatue))
 		{
 			B_GiveInvItems(other,self,ItMi_InnosStatue,1);
+			B_SetItemToSteal(self,20,ItMi_InnosStatue,1);
 		}
 		else if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron))
 		{
 			B_GiveInvItems(other,self,ItMi_LostInnosStatue_Daron,1);
+			B_SetItemToSteal(self,20,ItMi_LostInnosStatue_Daron,1);
 		};
 		B_GivePlayerXP(XP_Edda_Statue);
 		AI_Output(self,other,"DIA_Edda_Statue_17_01");	//Ах - огромное тебе спасибо. Да не оставит тебя свет Инноса...

@@ -660,14 +660,19 @@ func void B_CreateAmbientInv(var C_Npc slf)
 	};
 };
 
-func void B_CreateItemToSteal(var C_Npc slf,var int dex,var int itemInstance,var int amount)
+func void B_SetItemToSteal(var C_Npc slf,var int dex,var int itemInstance,var int amount)
 {
 	slf.aivar[AIV_DexToSteal] = dex;
 	slf.aivar[AIV_ItemToSteal] = itemInstance;
 	slf.aivar[AIV_AmountToSteal] = amount;
+};
+
+func void B_CreateItemToSteal(var C_Npc slf,var int dex,var int itemInstance,var int amount)
+{
 	if(!Hlp_IsItem(ItMi_Gold,itemInstance))
 	{
 		CreateInvItems(slf,itemInstance,amount);
 	};
+	B_SetItemToSteal(slf,dex,itemInstance,amount);
 };
 

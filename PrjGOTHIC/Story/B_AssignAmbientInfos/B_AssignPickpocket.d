@@ -23,7 +23,7 @@ func string B_BuildPickpocketString()
 	{
 		text = ConcatStrings(text,"амулет");
 	}
-	else if(Hlp_StrCmp(item.name,NAME_Key))
+	else if(Hlp_StrCmp(item.name,NAME_Key) || (self.aivar[AIV_HiddenTradeItem] != 0))
 	{
 		text = ConcatStrings(text,"ключ");
 	}
