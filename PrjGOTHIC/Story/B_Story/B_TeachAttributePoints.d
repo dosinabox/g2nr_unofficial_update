@@ -31,7 +31,7 @@ func int B_TeachAttributePoints(var C_Npc slf,var C_Npc oth,var int attrib,var i
 		B_Say(slf,oth,"$NOLEARNOVERPERSONALMAX");
 		return FALSE;
 	};
-	kosten = B_GetLearnCostAttribute(oth,attrib,points);
+	kosten = B_GetLearnCostAttribute(attrib,points);
 	if(oth.lp < kosten)
 	{
 		PrintScreen(PRINT_NotEnoughLP,-1,-1,FONT_Screen,2);

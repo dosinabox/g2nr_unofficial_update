@@ -813,10 +813,10 @@ func void B_BuildLearnDialog_Torlof_NW()
 {
 	Info_ClearChoices(DIA_Torlof_Teach);
 	Info_AddChoice(DIA_Torlof_Teach,Dialog_Back,DIA_Torlof_Teach_Back);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_Torlof_Teach_DEX_1);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_Torlof_Teach_DEX_5);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Torlof_Teach_STR_1);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Torlof_Teach_STR_5);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Torlof_Teach_DEX_1);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Torlof_Teach_DEX_5);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Torlof_Teach_STR_1);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Torlof_Teach_STR_5);
 };
 
 instance DIA_Torlof_Teach(C_Info)

@@ -457,10 +457,10 @@ func void B_BuildLearnDialog_Diego_NW()
 {
 	Info_ClearChoices(DIA_DiegoNW_Teach);
 	Info_AddChoice(DIA_DiegoNW_Teach,Dialog_Back,DIA_DiegoNW_Teach_BACK);
-	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_DiegoNW_TeachDEX_1);
-	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_DiegoNW_TeachDEX_5);
-	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_DiegoNW_TeachSTR_1);
-	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_DiegoNW_TeachSTR_5);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_DiegoNW_TeachDEX_1);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_DiegoNW_TeachDEX_5);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_DiegoNW_TeachSTR_1);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_DiegoNW_TeachSTR_5);
 };
 
 instance DIA_DiegoNW_Teach(C_Info)

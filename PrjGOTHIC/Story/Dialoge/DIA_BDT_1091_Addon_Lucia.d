@@ -401,8 +401,8 @@ func void B_BuildLearnDialog_Lucia()
 {
 	Info_ClearChoices(DIA_Addon_Lucia_TEACH);
 	Info_AddChoice(DIA_Addon_Lucia_TEACH,Dialog_Back,DIA_Addon_Lucia_TEACH_BACK);
-	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_Addon_Lucia_TEACH_1);
-	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_Addon_Lucia_TEACH_5);
+	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Addon_Lucia_TEACH_1);
+	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Addon_Lucia_TEACH_5);
 };
 
 instance DIA_Addon_Lucia_TEACH(C_Info)

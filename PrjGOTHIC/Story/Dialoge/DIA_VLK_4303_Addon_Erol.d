@@ -534,8 +534,8 @@ func void B_BuildLearnDialog_Erol()
 {
 	Info_ClearChoices(DIA_Addon_Erol_Teach);
 	Info_AddChoice(DIA_Addon_Erol_Teach,Dialog_Back,DIA_Addon_Erol_Teach_Back);
-	Info_AddChoice(DIA_Addon_Erol_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Addon_Erol_Teach_STR_1);
-	Info_AddChoice(DIA_Addon_Erol_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Addon_Erol_Teach_STR_5);
+	Info_AddChoice(DIA_Addon_Erol_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Addon_Erol_Teach_STR_1);
+	Info_AddChoice(DIA_Addon_Erol_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Addon_Erol_Teach_STR_5);
 };
 
 instance DIA_Addon_Erol_Teach(C_Info)

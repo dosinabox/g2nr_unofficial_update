@@ -103,7 +103,7 @@ func void B_StealItem(var int dex,var int itm,var int amount) //TODO убрать Thef
 		else
 		{
 			text = ConcatStrings(text,item.description);
-			//Snd_Play("Map_Unfold");
+			Snd_Play("Scroll_Unfold");
 			if(Hlp_StrCmp(item.name,NAME_Beutel))
 			{
 				TotalTheftGold += item.value;

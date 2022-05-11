@@ -236,6 +236,8 @@ func int DIA_Mil_333_Stadtwache_PERM_Condition()
 
 func void DIA_Mil_333_Stadtwache_PERM_Info()
 {
+	B_StopLookAt(self);
+	AI_PlayAni(self,"T_HGUARD_COMEIN");
 	AI_Output(self,other,"DIA_Mil_333_Stadtwache_PERM_06_00");	//Проходи!
 	AI_StopProcessInfos(self);
 };
