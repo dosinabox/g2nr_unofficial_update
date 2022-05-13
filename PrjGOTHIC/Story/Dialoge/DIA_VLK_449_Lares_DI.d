@@ -65,7 +65,7 @@ func void B_BuildLearnDialog_Lares_DI()
 	{
 		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(NAME_Skill_Sneak,B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Lares_DI_Training_SNEAK);
 	};
-	if(CurrentAttributeValue(ATR_DEXTERITY) < T_MED)
+	if(VisibleAttributeValue(ATR_DEXTERITY) < T_MED)
 	{
 		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Lares_DI_Training_DEX_1);
 		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Lares_DI_Training_DEX_5);
@@ -75,7 +75,7 @@ func void B_BuildLearnDialog_Lares_DI()
 		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lares_DI_Training_1H_1);
 		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lares_DI_Training_1H_5);
 	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (CurrentAttributeValue(ATR_DEXTERITY) >= T_MED) && (VisibleTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Lares))
+	if(Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (VisibleAttributeValue(ATR_DEXTERITY) >= T_MED) && (VisibleTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Lares))
 	{
 		if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Lares) && (RealAttributeValue(ATR_DEXTERITY) >= T_MED))
 		{
@@ -137,7 +137,7 @@ func void DIA_Lares_DI_Training_Info()
 	{
 		AI_Output(self,other,"DIA_Lares_DI_Training_09_01");	//Нет проблем.
 	}
-	else if(CurrentAttributeValue(ATR_DEXTERITY) < T_MED)
+	else if(VisibleAttributeValue(ATR_DEXTERITY) < T_MED)
 	{
 		AI_Output(self,other,"DIA_Lares_Dex_09_01");	//Конечно. Если хочешь, я помогу тебе стать более ловким.
 	};

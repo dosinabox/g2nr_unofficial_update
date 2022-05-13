@@ -382,41 +382,7 @@ func void CH_RESET_Back()
 
 func void CH_RESET_Ok()
 {
-	B_UnEquipHeroItem(ItBe_Addon_STR_5);
-	B_UnEquipHeroItem(ItBe_Addon_STR_10);
-	B_UnEquipHeroItem(ItBe_Addon_DEX_5);
-	B_UnEquipHeroItem(ItBe_Addon_DEX_10);
-	B_UnEquipHeroItem(ItAm_Dex_01);
-	B_UnEquipHeroItem(ItAm_Strg_01);
-	B_UnEquipHeroItem(ItAm_Hp_01);
-	B_UnEquipHeroItem(ItAm_Mana_01);
-	B_UnEquipHeroItem(ItAm_Dex_Strg_01);
-	B_UnEquipHeroItem(ItAm_Hp_Mana_01);
-	B_UnEquipHeroItem(ItAm_Addon_Franco);
-	B_UnEquipHeroItem(ItAm_Addon_Health);
-	B_UnEquipHeroItem(ItAm_Addon_MANA);
-	B_UnEquipHeroItem(ItAm_Addon_STR);
-	B_UnEquipHeroItem(ItRi_Dex_01);
-	B_UnEquipHeroItem(ItRi_Dex_02);
-	B_UnEquipHeroItem(ItRi_HP_01);
-	B_UnEquipHeroItem(ItRi_HP_02);
-	B_UnEquipHeroItem(ItRi_Str_01);
-	B_UnEquipHeroItem(ItRi_Str_02);
-	B_UnEquipHeroItem(ItRi_Mana_01);
-	B_UnEquipHeroItem(ItRi_Mana_02);
-	B_UnEquipHeroItem(ItRi_Dex_Strg_01);
-	B_UnEquipHeroItem(ItRi_Hp_Mana_01);
-	B_UnEquipHeroItem(ItRi_Addon_Health_01);
-	B_UnEquipHeroItem(ItRi_Addon_Health_02);
-	B_UnEquipHeroItem(ItRi_Addon_MANA_01);
-	B_UnEquipHeroItem(ItRi_Addon_MANA_02);
-	B_UnEquipHeroItem(ItRi_Addon_STR_01);
-	B_UnEquipHeroItem(ItRi_Addon_STR_02);
-	B_UnEquipHeroItem(ItRi_HP_01_Tengron);
-	B_UnEquipHeroItem(ItRi_OrcEliteRing);
-	B_UnEquipHeroItem(ItAm_Mana_Angar_MIS);
-	B_UnEquipHeroItem(ItAm_Hp_Regen);
-	B_UnEquipHeroItem(ItAm_Mana_Regen);
+	B_UnEquipAllTempBonusItems();
 	AI_UnequipArmor(hero);
 	B_SetGuild(hero,GIL_NONE);
 	hero.lp = 0;
@@ -454,6 +420,7 @@ func void CH_RESET_Ok()
 	B_ClearHeroOverlays();
 	B_ResetTalentSystem();
 	B_ResetAttributeSystem();
+	B_UnEquipHeroItem(ItSc_Windfist);
 	PLAYER_TALENT_SMITH[WEAPON_Common] = FALSE;
 	PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] = FALSE;
 	PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] = FALSE;

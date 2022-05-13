@@ -1498,7 +1498,78 @@ func void UseTimeDemo()
 	};
 };*/
 
-instance AttributesSyncer(C_Item)
+instance AttBook(C_Item) //TODO перенести в StatsBook
+{
+	name = "Книга атрибутов";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItWr_GregsLogbuch_Mis.3ds";
+	material = MAT_LEATHER;
+	scemeName = "MAP";
+	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
+	on_state[0] = UseAttributesBook;
+};
+
+
+func void UseAttributesBook()
+{
+	var int nDocID;
+	nDocID = Doc_Create();
+	Doc_SetPages(nDocID,2);
+	Doc_SetPage(nDocID,0,"Book_Brown_L.tga",0);
+	Doc_SetPage(nDocID,1,"Book_Brown_R.tga",0);
+	Doc_SetMargins(nDocID,0,275,20,30,20,1);
+	Doc_SetFont(nDocID,0,FONT_Book);
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,ConcatStrings("Сила: ",IntToString(hero.attribute[ATR_STRENGTH])));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_Training[ATR_STRENGTH])," - учителя"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_PermBonus[ATR_STRENGTH])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_TempBonus[ATR_STRENGTH])," - временные бонусы"));
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,ConcatStrings("Ловкость: ",IntToString(hero.attribute[ATR_DEXTERITY])));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_Training[ATR_DEXTERITY])," - учителя"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_PermBonus[ATR_DEXTERITY])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_TempBonus[ATR_DEXTERITY])," - временные бонусы"));
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,ConcatStrings("Макс. мана: ",IntToString(hero.attribute[ATR_MANA_MAX])));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_Training[ATR_MANA_MAX])," - учителя"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_PermBonus[ATR_MANA_MAX])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_TempBonus[ATR_MANA_MAX])," - временные бонусы"));
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,ConcatStrings("Макс. здоровье: ",IntToString(hero.attribute[ATR_HITPOINTS_MAX])));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_Training[ATR_HITPOINTS_MAX])," - учителя"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_PermBonus[ATR_HITPOINTS_MAX])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_TempBonus[ATR_HITPOINTS_MAX])," - временные бонусы"));
+	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
+	Doc_SetFont(nDocID,1,FONT_Book);
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,ConcatStrings("Одноручное оружие: ",IntToString(hero.HitChance[NPC_TALENT_1H])));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_Training[NPC_TALENT_1H])," - учителя"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_PermBonus[NPC_TALENT_1H])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_TempBonus[NPC_TALENT_1H])," - временные бонусы"));
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,ConcatStrings("Двуручное оружие: ",IntToString(hero.HitChance[NPC_TALENT_2H])));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_Training[NPC_TALENT_2H])," - учителя"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_PermBonus[NPC_TALENT_2H])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_TempBonus[NPC_TALENT_2H])," - временные бонусы"));
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,ConcatStrings("Луки: ",IntToString(hero.HitChance[NPC_TALENT_BOW])));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_Training[NPC_TALENT_BOW])," - учителя"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_PermBonus[NPC_TALENT_BOW])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_TempBonus[NPC_TALENT_BOW])," - временные бонусы"));
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,ConcatStrings("Арбалеты: ",IntToString(hero.HitChance[NPC_TALENT_CROSSBOW])));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_Training[NPC_TALENT_CROSSBOW])," - учителя"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_PermBonus[NPC_TALENT_CROSSBOW])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_TempBonus[NPC_TALENT_CROSSBOW])," - временные бонусы"));
+	Doc_Show(nDocID);
+};
+
+instance AttSyncer(C_Item) //TODO удалить
 {
 	name = "Руна синхронизации";
 	mainflag = ITEM_KAT_DOCS;
@@ -1509,7 +1580,6 @@ instance AttributesSyncer(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Синхронизировать характеристики ГГ.";
-	text[1] = "Перед использованием снимите все предметы с бонусами!";
 	on_state[0] = UseAttributesSyncer;
 	inv_rotz = 180;
 	inv_rotx = 90;
@@ -1519,6 +1589,7 @@ instance AttributesSyncer(C_Item)
 
 func void UseAttributesSyncer()
 {
+	B_UnEquipAllTempBonusItems();
 	ATR_Training[ATR_STRENGTH] = hero.attribute[ATR_STRENGTH];
 	ATR_Training[ATR_DEXTERITY] = hero.attribute[ATR_DEXTERITY];
 	ATR_Training[ATR_MANA_MAX] = hero.attribute[ATR_MANA_MAX];

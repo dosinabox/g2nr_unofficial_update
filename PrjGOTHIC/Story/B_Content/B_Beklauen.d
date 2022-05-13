@@ -1,6 +1,7 @@
 
 func int C_CanStealFromNpc(var int TheftDex) //TODO убрать TheftDex и использовать AIV_DexToSteal
 {
+	var int itm;
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 	{
 		return FALSE;
@@ -17,17 +18,22 @@ func int C_CanStealFromNpc(var int TheftDex) //TODO убрать TheftDex и использова
 	{
 		return FALSE;
 	};
-	if(self.aivar[AIV_ItemToSteal] != 0)
+	/*itm = self.aivar[AIV_ItemToSteal];
+	if(itm != 0)
 	{
-		if(self.aivar[AIV_ItemToSteal] == self.aivar[AIV_HiddenTradeItem])
+		if(Hlp_IsItem(ItMi_Gold,itm))
 		{
 			return TRUE;
 		};
-		if(!Npc_HasItems(self,self.aivar[AIV_ItemToSteal]))
+		if(itm == self.aivar[AIV_HiddenTradeItem])
+		{
+			return TRUE;
+		};
+		if(!Npc_HasItems(self,itm))
 		{
 			return FALSE;
 		};
-	};
+	};*/
 	return TRUE;
 };
 

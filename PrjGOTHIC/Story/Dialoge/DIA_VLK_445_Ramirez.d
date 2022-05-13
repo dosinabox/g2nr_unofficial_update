@@ -257,7 +257,7 @@ func void DIA_Ramirez_Bezahlen_Info()
 	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
 		AI_Output(self,other,"DIA_Ramirez_Bezahlen_14_01");	//Мне нечему тебя учить. Ты уже знаешь об отмычках все.
-		if(CurrentAttributeValue(ATR_DEXTERITY) < T_MAX)
+		if(VisibleAttributeValue(ATR_DEXTERITY) < T_MAX)
 		{
 			AI_Output(self,other,"DIA_Ramirez_Add_14_00");	//Теперь тебе остается только повышать свою ловкость...
 		};

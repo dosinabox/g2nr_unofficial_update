@@ -1398,3 +1398,4 @@ var int Lee_LastPetzCrime;
 var int SC_KnowsAngarsAmulett;
 var int DementorsDialogeAutoEndDisabled;
 var int PremiumTeachersEnabled;
+var int NewAttributeSystemSynced;

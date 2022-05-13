@@ -9,7 +9,7 @@ func int B_TeachAttributePoints(var C_Npc slf,var C_Npc oth,var int attrib,var i
 		Print(PRINT_WrongParameter);
 		return FALSE;
 	};
-	currentAttribute = CurrentAttributeValue(attrib);
+	currentAttribute = VisibleAttributeValue(attrib);
 	if(currentAttribute == teacherMAX)
 	{
 		concatText = ConcatStrings(PRINT_NoLearnOverPersonalMAX,IntToString(teacherMAX));

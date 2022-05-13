@@ -407,7 +407,7 @@ func int DIA_Addon_Bill_LearnTalent_Condition()
 func void DIA_Addon_Bill_LearnTalent_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Bill_LearnTalent_15_00");	//Обучи меня карманным кражам.
-	if(CurrentAttributeValue(ATR_DEXTERITY) >= 40)
+	if(VisibleAttributeValue(ATR_DEXTERITY) >= 40)
 	{
 		if(B_TeachThiefTalent(self,other,NPC_TALENT_PICKPOCKET))
 		{
