@@ -725,9 +725,12 @@ instance DIA_Lobart_BUGDEAD(C_Info)
 
 func int DIA_Lobart_BUGDEAD_Condition()
 {
-	if((MIS_LobartKillBugs == LOG_Running) && C_LobartBugsDead())
+	if(MIS_LobartKillBugs == LOG_Running)
 	{
-		return TRUE;
+		if(C_LobartBugsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -759,9 +762,12 @@ instance DIA_Lobart_BUGALIVE(C_Info)
 
 func int DIA_Lobart_BUGALIVE_Condition()
 {
-	if((MIS_LobartKillBugs == LOG_Running) && !C_LobartBugsDead())
+	if(MIS_LobartKillBugs == LOG_Running)
 	{
-		return TRUE;
+		if(!C_LobartBugsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 

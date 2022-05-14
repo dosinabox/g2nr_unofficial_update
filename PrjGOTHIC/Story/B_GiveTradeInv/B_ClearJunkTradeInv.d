@@ -9,131 +9,131 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 			EquipWeap = Npc_GetEquippedMeleeWeapon(slf);
 			if(!Hlp_IsItem(EquipWeap,ItMw_1h_Bau_Mace))
 			{
-				Npc_RemoveInvItems(slf,ItMw_1h_Bau_Mace,Npc_HasItems(slf,ItMw_1h_Bau_Mace));
+				B_RemoveEveryInvItem(slf,ItMw_1h_Bau_Mace);
 			};
 		}
 		else
 		{
-			Npc_RemoveInvItems(slf,ItMw_1h_Bau_Mace,Npc_HasItems(slf,ItMw_1h_Bau_Mace));
+			B_RemoveEveryInvItem(slf,ItMw_1h_Bau_Mace);
 		};
 		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Cipher))
 		{
-			Npc_RemoveInvItems(slf,ItMi_Joint,Npc_HasItems(slf,ItMi_Joint));
-			Npc_RemoveInvItems(slf,ItMw_2H_OrcAxe_01,Npc_HasItems(slf,ItMw_2H_OrcAxe_01));
+			B_RemoveEveryInvItem(slf,ItMi_Joint);
+			B_RemoveEveryInvItem(slf,ItMw_2H_OrcAxe_01);
 		};
-		Npc_RemoveInvItems(slf,ItMw_2H_OrcAxe_02,Npc_HasItems(slf,ItMw_2H_OrcAxe_02));
-		Npc_RemoveInvItems(slf,ItMw_2H_OrcAxe_03,Npc_HasItems(slf,ItMw_2H_OrcAxe_03));
-		Npc_RemoveInvItems(slf,ItMw_2H_OrcAxe_04,Npc_HasItems(slf,ItMw_2H_OrcAxe_04));
-		Npc_RemoveInvItems(slf,ItMw_2H_OrcMace_01,Npc_HasItems(slf,ItMw_2H_OrcMace_01));
-		Npc_RemoveInvItems(slf,ItMw_2H_OrcSword_01,Npc_HasItems(slf,ItMw_2H_OrcSword_01));
-		Npc_RemoveInvItems(slf,ItMw_2H_OrcSword_02,Npc_HasItems(slf,ItMw_2H_OrcSword_02));
-		Npc_RemoveInvItems(slf,ItMw_TrainSword,Npc_HasItems(slf,ItMw_TrainSword));
+		B_RemoveEveryInvItem(slf,ItMw_2H_OrcAxe_02);
+		B_RemoveEveryInvItem(slf,ItMw_2H_OrcAxe_03);
+		B_RemoveEveryInvItem(slf,ItMw_2H_OrcAxe_04);
+		B_RemoveEveryInvItem(slf,ItMw_2H_OrcMace_01);
+		B_RemoveEveryInvItem(slf,ItMw_2H_OrcSword_01);
+		B_RemoveEveryInvItem(slf,ItMw_2H_OrcSword_02);
+		B_RemoveEveryInvItem(slf,ItMw_TrainSword);
 		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Lutero))
 		{
-			Npc_RemoveInvItems(slf,ItAt_CrawlerMandibles,Npc_HasItems(slf,ItAt_CrawlerMandibles));
+			B_RemoveEveryInvItem(slf,ItAt_CrawlerMandibles);
 		};
 		if((Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Lutero)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Fisk)))
 		{
-			Npc_RemoveInvItems(slf,ItAt_Sting,Npc_HasItems(slf,ItAt_Sting));
+			B_RemoveEveryInvItem(slf,ItAt_Sting);
 		};
 		if((Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Gorax)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Cronos_ADW)))
 		{
-			Npc_RemoveInvItems(slf,ItAt_WaranFiretongue,Npc_HasItems(slf,ItAt_WaranFiretongue));
+			B_RemoveEveryInvItem(slf,ItAt_WaranFiretongue);
 		};
-		Npc_RemoveInvItems(slf,ItAt_Meatbugflesh,Npc_HasItems(slf,ItAt_Meatbugflesh));
-		Npc_RemoveInvItems(slf,ItAt_SheepFur,Npc_HasItems(slf,ItAt_SheepFur));
-		Npc_RemoveInvItems(slf,ItAt_WolfFur,Npc_HasItems(slf,ItAt_WolfFur));
-		Npc_RemoveInvItems(slf,ItAt_BugMandibles,Npc_HasItems(slf,ItAt_BugMandibles));
-		Npc_RemoveInvItems(slf,ItAt_Claw,Npc_HasItems(slf,ItAt_Claw));
-		Npc_RemoveInvItems(slf,ItAt_LurkerClaw,Npc_HasItems(slf,ItAt_LurkerClaw));
-		Npc_RemoveInvItems(slf,ItAt_Teeth,Npc_HasItems(slf,ItAt_Teeth));
-		Npc_RemoveInvItems(slf,ItAt_LurkerSkin,Npc_HasItems(slf,ItAt_LurkerSkin));
-		Npc_RemoveInvItems(slf,ItAt_WargFur,Npc_HasItems(slf,ItAt_WargFur));
-		Npc_RemoveInvItems(slf,ItAt_DrgSnapperHorn,Npc_HasItems(slf,ItAt_DrgSnapperHorn));
-		Npc_RemoveInvItems(slf,ItAt_CrawlerPlate,Npc_HasItems(slf,ItAt_CrawlerPlate));
-		Npc_RemoveInvItems(slf,ItAt_ShadowFur,Npc_HasItems(slf,ItAt_ShadowFur));
-		Npc_RemoveInvItems(slf,ItAt_SharkSkin,Npc_HasItems(slf,ItAt_SharkSkin));
-		Npc_RemoveInvItems(slf,ItAt_TrollFur,Npc_HasItems(slf,ItAt_TrollFur));
-		Npc_RemoveInvItems(slf,ItAt_Addon_KeilerFur,Npc_HasItems(slf,ItAt_Addon_KeilerFur));
-		Npc_RemoveInvItems(slf,ItAt_IceWolfFur,Npc_HasItems(slf,ItAt_IceWolfFur));
-		Npc_RemoveInvItems(slf,ItAt_Addon_BCKopf,Npc_HasItems(slf,ItAt_Addon_BCKopf));
-		Npc_RemoveInvItems(slf,ItAt_SnapperSkin,Npc_HasItems(slf,ItAt_SnapperSkin));
-		Npc_RemoveInvItems(slf,ItAt_RazorSkin,Npc_HasItems(slf,ItAt_RazorSkin));
-		Npc_RemoveInvItems(slf,ItAt_DragonSnapperSkin,Npc_HasItems(slf,ItAt_DragonSnapperSkin));
-		Npc_RemoveInvItems(slf,ItAt_WaranSkin,Npc_HasItems(slf,ItAt_WaranSkin));
-		Npc_RemoveInvItems(slf,ItAt_FireWaranSkin,Npc_HasItems(slf,ItAt_FireWaranSkin));
-		Npc_RemoveInvItems(slf,ItAt_AlligatorSkin,Npc_HasItems(slf,ItAt_AlligatorSkin));
+		B_RemoveEveryInvItem(slf,ItAt_Meatbugflesh);
+		B_RemoveEveryInvItem(slf,ItAt_SheepFur);
+		B_RemoveEveryInvItem(slf,ItAt_WolfFur);
+		B_RemoveEveryInvItem(slf,ItAt_BugMandibles);
+		B_RemoveEveryInvItem(slf,ItAt_Claw);
+		B_RemoveEveryInvItem(slf,ItAt_LurkerClaw);
+		B_RemoveEveryInvItem(slf,ItAt_Teeth);
+		B_RemoveEveryInvItem(slf,ItAt_LurkerSkin);
+		B_RemoveEveryInvItem(slf,ItAt_WargFur);
+		B_RemoveEveryInvItem(slf,ItAt_DrgSnapperHorn);
+		B_RemoveEveryInvItem(slf,ItAt_CrawlerPlate);
+		B_RemoveEveryInvItem(slf,ItAt_ShadowFur);
+		B_RemoveEveryInvItem(slf,ItAt_SharkSkin);
+		B_RemoveEveryInvItem(slf,ItAt_TrollFur);
+		B_RemoveEveryInvItem(slf,ItAt_Addon_KeilerFur);
+		B_RemoveEveryInvItem(slf,ItAt_IceWolfFur);
+		B_RemoveEveryInvItem(slf,ItAt_Addon_BCKopf);
+		B_RemoveEveryInvItem(slf,ItAt_SnapperSkin);
+		B_RemoveEveryInvItem(slf,ItAt_RazorSkin);
+		B_RemoveEveryInvItem(slf,ItAt_DragonSnapperSkin);
+		B_RemoveEveryInvItem(slf,ItAt_WaranSkin);
+		B_RemoveEveryInvItem(slf,ItAt_FireWaranSkin);
+		B_RemoveEveryInvItem(slf,ItAt_AlligatorSkin);
 		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Constantino))
 		{
-			Npc_RemoveInvItems(slf,ItAt_GoblinBone,Npc_HasItems(slf,ItAt_GoblinBone));
-			Npc_RemoveInvItems(slf,ItAt_SkeletonBone,Npc_HasItems(slf,ItAt_SkeletonBone));
-			Npc_RemoveInvItems(slf,ItAt_Wing,Npc_HasItems(slf,ItAt_Wing));
+			B_RemoveEveryInvItem(slf,ItAt_GoblinBone);
+			B_RemoveEveryInvItem(slf,ItAt_SkeletonBone);
+			B_RemoveEveryInvItem(slf,ItAt_Wing);
 		};
 		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Sagitta))
 		{
-			Npc_RemoveInvItems(slf,ItAt_KeilerHorn,Npc_HasItems(slf,ItAt_KeilerHorn));
+			B_RemoveEveryInvItem(slf,ItAt_KeilerHorn);
 		};
-//		Npc_RemoveInvItems(slf,ItFo_Apple,Npc_HasItems(slf,ItFo_Apple));
-		Npc_RemoveInvItems(slf,ItFo_Cheese,Npc_HasItems(slf,ItFo_Cheese));
-		Npc_RemoveInvItems(slf,ItFo_Bacon,Npc_HasItems(slf,ItFo_Bacon));
-		Npc_RemoveInvItems(slf,ItFo_Bread,Npc_HasItems(slf,ItFo_Bread));
-		Npc_RemoveInvItems(slf,ItFo_Fish,Npc_HasItems(slf,ItFo_Fish));
-		Npc_RemoveInvItems(slf,ItFo_SmellyFish,Npc_HasItems(slf,ItFo_SmellyFish));
-		Npc_RemoveInvItems(slf,ItFoMuttonRaw,Npc_HasItems(slf,ItFoMuttonRaw));
-		Npc_RemoveInvItems(slf,ItFoMutton,Npc_HasItems(slf,ItFoMutton));
-		Npc_RemoveInvItems(slf,ItFo_Stew,Npc_HasItems(slf,ItFo_Stew));
-		Npc_RemoveInvItems(slf,ItFo_FishSoup,Npc_HasItems(slf,ItFo_FishSoup));
-		Npc_RemoveInvItems(slf,ItFo_EddasFishSoup,Npc_HasItems(slf,ItFo_EddasFishSoup));
-		Npc_RemoveInvItems(slf,ItFo_Sausage,Npc_HasItems(slf,ItFo_Sausage));
-		Npc_RemoveInvItems(slf,ItFo_Schafswurst,Npc_HasItems(slf,ItFo_Schafswurst));
-		Npc_RemoveInvItems(slf,ItFo_Honey,Npc_HasItems(slf,ItFo_Honey));
-		Npc_RemoveInvItems(slf,ItFo_Water,Npc_HasItems(slf,ItFo_Water));
-		Npc_RemoveInvItems(slf,ItFo_Beer,Npc_HasItems(slf,ItFo_Beer));
-		Npc_RemoveInvItems(slf,ItFo_Booze,Npc_HasItems(slf,ItFo_Booze));
+//		B_RemoveEveryInvItem(slf,ItFo_Apple);
+		B_RemoveEveryInvItem(slf,ItFo_Cheese);
+		B_RemoveEveryInvItem(slf,ItFo_Bacon);
+		B_RemoveEveryInvItem(slf,ItFo_Bread);
+		B_RemoveEveryInvItem(slf,ItFo_Fish);
+		B_RemoveEveryInvItem(slf,ItFo_SmellyFish);
+		B_RemoveEveryInvItem(slf,ItFoMuttonRaw);
+		B_RemoveEveryInvItem(slf,ItFoMutton);
+		B_RemoveEveryInvItem(slf,ItFo_Stew);
+		B_RemoveEveryInvItem(slf,ItFo_FishSoup);
+		B_RemoveEveryInvItem(slf,ItFo_EddasFishSoup);
+		B_RemoveEveryInvItem(slf,ItFo_Sausage);
+		B_RemoveEveryInvItem(slf,ItFo_Schafswurst);
+		B_RemoveEveryInvItem(slf,ItFo_Honey);
+		B_RemoveEveryInvItem(slf,ItFo_Water);
+		B_RemoveEveryInvItem(slf,ItFo_Beer);
+		B_RemoveEveryInvItem(slf,ItFo_Booze);
 		if((Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Lutero)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Sagitta)))
 		{
-			Npc_RemoveInvItems(slf,ItMi_Skull,Npc_HasItems(slf,ItMi_Skull));
+			B_RemoveEveryInvItem(slf,ItMi_Skull);
 		};
 		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Gorax))
 		{
-			Npc_RemoveInvItems(slf,ItFo_Wine,Npc_HasItems(slf,ItFo_Wine));
+			B_RemoveEveryInvItem(slf,ItFo_Wine);
 		};
 		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Lucia))
 		{
-			Npc_RemoveInvItems(slf,ItFo_Addon_Liquor,Npc_HasItems(slf,ItFo_Addon_Liquor));
+			B_RemoveEveryInvItem(slf,ItFo_Addon_Liquor);
 		};
 		if((Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Canthar)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Matteo)))
 		{
-			Npc_RemoveInvItems(slf,ItMi_Pan,Npc_HasItems(slf,ItMi_Pan));
+			B_RemoveEveryInvItem(slf,ItMi_Pan);
 		};
-		Npc_RemoveInvItems(slf,ItFo_DarkWine,Npc_HasItems(slf,ItFo_DarkWine));
-		Npc_RemoveInvItems(slf,ItFo_Milk,Npc_HasItems(slf,ItFo_Milk));
-		Npc_RemoveInvItems(slf,ItFo_Addon_Shellflesh,Npc_HasItems(slf,ItFo_Addon_Shellflesh));
-		Npc_RemoveInvItems(slf,ItMi_OldCoin,Npc_HasItems(slf,ItMi_OldCoin));
-		Npc_RemoveInvItems(slf,ItMi_GoldCandleHolder,Npc_HasItems(slf,ItMi_GoldCandleHolder));
-		Npc_RemoveInvItems(slf,ItMi_GoldNecklace,Npc_HasItems(slf,ItMi_GoldNecklace));
-		Npc_RemoveInvItems(slf,ItMi_SilverRing,Npc_HasItems(slf,ItMi_SilverRing));
-		Npc_RemoveInvItems(slf,ItMi_SilverNecklace,Npc_HasItems(slf,ItMi_SilverNecklace));
-		Npc_RemoveInvItems(slf,ItMi_SilverCandleHolder,Npc_HasItems(slf,ItMi_SilverCandleHolder));
-		Npc_RemoveInvItems(slf,ItMi_SilverPlate,Npc_HasItems(slf,ItMi_SilverPlate));
-		Npc_RemoveInvItems(slf,ItMi_SilverCup,Npc_HasItems(slf,ItMi_SilverCup));
-		Npc_RemoveInvItems(slf,ItMi_SilverChalice,Npc_HasItems(slf,ItMi_SilverChalice));
-		Npc_RemoveInvItems(slf,ItMi_ErolsKelch,Npc_HasItems(slf,ItMi_ErolsKelch));
-		Npc_RemoveInvItems(slf,ItMi_GoldRing,Npc_HasItems(slf,ItMi_GoldRing));
-		Npc_RemoveInvItems(slf,ItMi_GoldCandleHolder,Npc_HasItems(slf,ItMi_GoldCandleHolder));
-		Npc_RemoveInvItems(slf,ItMi_GoldCup,Npc_HasItems(slf,ItMi_GoldCup));
-		Npc_RemoveInvItems(slf,ItMi_GoldChest,Npc_HasItems(slf,ItMi_GoldChest));
-		Npc_RemoveInvItems(slf,ItMi_JeweleryChest,Npc_HasItems(slf,ItMi_JeweleryChest));
-		Npc_RemoveInvItems(slf,ItMi_InnosStatue,Npc_HasItems(slf,ItMi_InnosStatue));
-		Npc_RemoveInvItems(slf,ItPl_Beet,Npc_HasItems(slf,ItPl_Beet));
-		Npc_RemoveInvItems(slf,ItPl_SwampHerb,Npc_HasItems(slf,ItPl_SwampHerb));
-//		Npc_RemoveInvItems(slf,ItPl_Mushroom_01,Npc_HasItems(slf,ItPl_Mushroom_01));
-		Npc_RemoveInvItems(slf,ItPl_Mushroom_02,Npc_HasItems(slf,ItPl_Mushroom_02));
-		Npc_RemoveInvItems(slf,ItPl_Blueplant,Npc_HasItems(slf,ItPl_Blueplant));
-		Npc_RemoveInvItems(slf,ItPl_Forestberry,Npc_HasItems(slf,ItPl_Forestberry));
-		Npc_RemoveInvItems(slf,ItPl_Planeberry,Npc_HasItems(slf,ItPl_Planeberry));
-		Npc_RemoveInvItems(slf,ItLsTorchburned,Npc_HasItems(slf,ItLsTorchburned));
-		Npc_RemoveInvItems(slf,ItWr_Poster_MIS,Npc_HasItems(slf,ItWr_Poster_MIS));
+		B_RemoveEveryInvItem(slf,ItFo_DarkWine);
+		B_RemoveEveryInvItem(slf,ItFo_Milk);
+		B_RemoveEveryInvItem(slf,ItFo_Addon_Shellflesh);
+		B_RemoveEveryInvItem(slf,ItMi_OldCoin);
+		B_RemoveEveryInvItem(slf,ItMi_GoldCandleHolder);
+		B_RemoveEveryInvItem(slf,ItMi_GoldNecklace);
+		B_RemoveEveryInvItem(slf,ItMi_SilverRing);
+		B_RemoveEveryInvItem(slf,ItMi_SilverNecklace);
+		B_RemoveEveryInvItem(slf,ItMi_SilverCandleHolder);
+		B_RemoveEveryInvItem(slf,ItMi_SilverPlate);
+		B_RemoveEveryInvItem(slf,ItMi_SilverCup);
+		B_RemoveEveryInvItem(slf,ItMi_SilverChalice);
+		B_RemoveEveryInvItem(slf,ItMi_ErolsKelch);
+		B_RemoveEveryInvItem(slf,ItMi_GoldRing);
+		B_RemoveEveryInvItem(slf,ItMi_GoldCandleHolder);
+		B_RemoveEveryInvItem(slf,ItMi_GoldCup);
+		B_RemoveEveryInvItem(slf,ItMi_GoldChest);
+		B_RemoveEveryInvItem(slf,ItMi_JeweleryChest);
+		B_RemoveEveryInvItem(slf,ItMi_InnosStatue);
+		B_RemoveEveryInvItem(slf,ItPl_Beet);
+		B_RemoveEveryInvItem(slf,ItPl_SwampHerb);
+//		B_RemoveEveryInvItem(slf,ItPl_Mushroom_01);
+		B_RemoveEveryInvItem(slf,ItPl_Mushroom_02);
+		B_RemoveEveryInvItem(slf,ItPl_Blueplant);
+		B_RemoveEveryInvItem(slf,ItPl_Forestberry);
+		B_RemoveEveryInvItem(slf,ItPl_Planeberry);
+		B_RemoveEveryInvItem(slf,ItLsTorchburned);
+		B_RemoveEveryInvItem(slf,ItWr_Poster_MIS);
 		Npc_RemoveInvItem(slf,ItSE_Addon_EmptyFrancisChest);
 		Npc_RemoveInvItem(slf,ItMi_Addon_Bloodwyn_Kopf);
 		Npc_RemoveInvItem(slf,ITWr_Addon_Hinweis_01);
@@ -167,11 +167,11 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		};
 		if(MIS_RamirezSextant == LOG_SUCCESS)
 		{
-			Npc_RemoveInvItems(slf,ItMi_Sextant,Npc_HasItems(slf,ItMi_Sextant));
+			B_RemoveEveryInvItem(slf,ItMi_Sextant);
 		};
 		if((MIS_CassiaKelche == LOG_SUCCESS) || (MIS_CassiaKelche == LOG_FAILED))
 		{
-			Npc_RemoveInvItems(slf,ItMi_BloodCup_MIS,Npc_HasItems(slf,ItMi_BloodCup_MIS));
+			B_RemoveEveryInvItem(slf,ItMi_BloodCup_MIS);
 		};
 		if(MIS_Bromor_LuciaStoleGold == LOG_SUCCESS)
 		{
@@ -193,19 +193,19 @@ func void B_ClearTools(var C_Npc slf)
 {
 	if(Hlp_IsValidNpc(slf))
 	{
-		Npc_RemoveInvItems(slf,ItMi_Stomper,Npc_HasItems(slf,ItMi_Stomper));
-		Npc_RemoveInvItems(slf,ItMi_Hammer,Npc_HasItems(slf,ItMi_Hammer));
-		Npc_RemoveInvItems(slf,ItMi_Scoop,Npc_HasItems(slf,ItMi_Scoop));
-		Npc_RemoveInvItems(slf,ItMi_Brush,Npc_HasItems(slf,ItMi_Brush));
-		Npc_RemoveInvItems(slf,ItMi_Rake,Npc_HasItems(slf,ItMi_Rake));
+		B_RemoveEveryInvItem(slf,ItMi_Stomper);
+		B_RemoveEveryInvItem(slf,ItMi_Hammer);
+		B_RemoveEveryInvItem(slf,ItMi_Scoop);
+		B_RemoveEveryInvItem(slf,ItMi_Brush);
+		B_RemoveEveryInvItem(slf,ItMi_Rake);
 		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Canthar))
 		{
-			Npc_RemoveInvItems(slf,ItMi_Saw,Npc_HasItems(slf,ItMi_Saw));
+			B_RemoveEveryInvItem(slf,ItMi_Saw);
 		};
 		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Matteo))
 		{
-			Npc_RemoveInvItems(slf,ItMi_Broom,Npc_HasItems(slf,ItMi_Broom));
-			Npc_RemoveInvItems(slf,ItMi_Lute,Npc_HasItems(slf,ItMi_Lute));
+			B_RemoveEveryInvItem(slf,ItMi_Broom);
+			B_RemoveEveryInvItem(slf,ItMi_Lute);
 		};
 	};
 };
@@ -216,9 +216,9 @@ func void B_ClearSpecialAmmo(var C_Npc slf)
 	{
 		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Bennet_DI))
 		{
-			Npc_RemoveInvItems(slf,ItRw_Addon_MagicBolt,Npc_HasItems(slf,ItRw_Addon_MagicBolt));
-			Npc_RemoveInvItems(slf,ItRw_Addon_MagicArrow,Npc_HasItems(slf,ItRw_Addon_MagicArrow));
-			Npc_RemoveInvItems(slf,ItRw_Addon_FireArrow,Npc_HasItems(slf,ItRw_Addon_FireArrow));
+			B_RemoveEveryInvItem(slf,ItRw_Addon_MagicBolt);
+			B_RemoveEveryInvItem(slf,ItRw_Addon_MagicArrow);
+			B_RemoveEveryInvItem(slf,ItRw_Addon_FireArrow);
 		};
 	};
 };

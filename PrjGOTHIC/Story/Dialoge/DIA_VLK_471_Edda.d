@@ -154,12 +154,12 @@ func void DIA_Edda_Suppe_Info()
 			if(Npc_HasItems(other,ItFo_Fish))
 			{
 				B_GiveInvItems(other,self,ItFo_Fish,1);
-				Npc_RemoveInvItems(self,ItFo_Fish,Npc_HasItems(self,ItFo_Fish));
+				B_RemoveEveryInvItem(self,ItFo_Fish);
 			}
 			else
 			{
 				B_GiveInvItems(other,self,ItFo_SmellyFish,1);
-				Npc_RemoveInvItems(self,ItFo_SmellyFish,Npc_HasItems(self,ItFo_SmellyFish));
+				B_RemoveEveryInvItem(self,ItFo_SmellyFish);
 			};
 			AI_Output(self,other,"DIA_Edda_Suppe_17_01");	//Нет ничего проще. Вот, держи тарелку.
 			B_GiveInvItems(self,other,ItFo_EddasFishSoup,1);

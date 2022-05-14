@@ -19,6 +19,7 @@ Story\Story_Globals.d
 Story\Npc_Globals.d
 Story\SVM.d
 Story\Text.d
+Story\NPC_Scripts\B_RemoveEveryInvItem.d
 AI\Human\C_Human\C_IsNpc.d
 AI\Human\C_Human\C_NpcIsHero.d
 Story\B_Story\C_NpcIsInQuarter.d

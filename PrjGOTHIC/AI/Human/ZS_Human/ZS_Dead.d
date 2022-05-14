@@ -67,13 +67,13 @@ func void ZS_Dead()
 	B_CheckDeadMissionNPCs(self);
 	if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON))
 	{
-		Npc_RemoveInvItems(self,ItMw_1h_Bau_Mace,Npc_HasItems(self,ItMw_1h_Bau_Mace));
-		Npc_RemoveInvItems(self,ItMw_1h_MISC_Sword,Npc_HasItems(self,ItMw_1h_MISC_Sword));
-		Npc_RemoveInvItems(self,ItMw_1h_Misc_Axe,Npc_HasItems(self,ItMw_1h_Misc_Axe));
+		B_RemoveEveryInvItem(self,ItMw_1h_Bau_Mace);
+		B_RemoveEveryInvItem(self,ItMw_1h_MISC_Sword);
+		B_RemoveEveryInvItem(self,ItMw_1h_Misc_Axe);
 	}
 	else if(self.guild == GIL_SUMMONED_SKELETON)
 	{
-		Npc_RemoveInvItems(self,ItMw_2H_Sword_M_01,Npc_HasItems(self,ItMw_2H_Sword_M_01));
+		B_RemoveEveryInvItem(self,ItMw_2H_Sword_M_01);
 	};
 	if(Hlp_IsValidNpc(other))
 	{

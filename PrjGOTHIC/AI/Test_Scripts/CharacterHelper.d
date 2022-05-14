@@ -4151,37 +4151,37 @@ func void B_SetHeroEquipment()
 {
 	if(Npc_HasItems(hero,ItRw_Arrow) < 100)
 	{
-		Npc_RemoveInvItems(hero,ItRw_Arrow,Npc_HasItems(hero,ItRw_Arrow));
+		B_RemoveEveryInvItem(hero,ItRw_Arrow);
 		CreateInvItems(hero,ItRw_Arrow,100);
 	};
 	if(Npc_HasItems(hero,ItRw_Bolt) < 100)
 	{
-		Npc_RemoveInvItems(hero,ItRw_Bolt,Npc_HasItems(hero,ItRw_Bolt));
+		B_RemoveEveryInvItem(hero,ItRw_Bolt);
 		CreateInvItems(hero,ItRw_Bolt,100);
 	};
 	if(Npc_HasItems(hero,ItLsTorch) < 20)
 	{
-		Npc_RemoveInvItems(hero,ItLsTorch,Npc_HasItems(hero,ItLsTorch));
+		B_RemoveEveryInvItem(hero,ItLsTorch);
 		CreateInvItems(hero,ItLsTorch,20);
 	};
 	if(Npc_HasItems(hero,ItMi_Gold) < 500)
 	{
-		Npc_RemoveInvItems(hero,ItMi_Gold,Npc_HasItems(hero,ItMi_Gold));
+		B_RemoveEveryInvItem(hero,ItMi_Gold);
 		CreateInvItems(hero,ItMi_Gold,500);
 	};
 	if(Npc_HasItems(hero,ItPo_Health_03) < 10)
 	{
-		Npc_RemoveInvItems(hero,ItPo_Health_03,Npc_HasItems(hero,ItPo_Health_03));
+		B_RemoveEveryInvItem(hero,ItPo_Health_03);
 		CreateInvItems(hero,ItPo_Health_03,10);
 	};
 	if(Npc_HasItems(hero,ItPo_Mana_03) < 10)
 	{
-		Npc_RemoveInvItems(hero,ItPo_Mana_03,Npc_HasItems(hero,ItPo_Mana_03));
+		B_RemoveEveryInvItem(hero,ItPo_Mana_03);
 		CreateInvItems(hero,ItPo_Mana_03,10);
 	};
 	if(Npc_HasItems(hero,ItKe_Lockpick) < 30)
 	{
-		Npc_RemoveInvItems(hero,ItKe_Lockpick,Npc_HasItems(hero,ItKe_Lockpick));
+		B_RemoveEveryInvItem(hero,ItKe_Lockpick);
 		CreateInvItems(hero,ItKe_Lockpick,30);
 	};
 };
@@ -4215,7 +4215,7 @@ func void CH_Equipment_Info()
 instance CH_StatsBook(C_Info)
 {
 	npc = ch;
-	nr = 38;
+	nr = 39;
 	condition = CH_StatsBook_Condition;
 	information = CH_StatsBook_Info;
 	permanent = TRUE;

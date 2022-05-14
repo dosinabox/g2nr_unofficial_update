@@ -14,14 +14,14 @@ func void B_KillNpc(var int npcInstance)
 		{
 			if(RandomGoblinBerries == FALSE)
 			{
-				Npc_RemoveInvItems(npc,ItPl_Dex_Herb_01,Npc_HasItems(npc,ItPl_Dex_Herb_01));
+				B_RemoveEveryInvItem(npc,ItPl_Dex_Herb_01);
 			};
 		}
 		else if(npc.guild == GIL_PIR)
 		{
 			if(RandomPepper == FALSE)
 			{
-				Npc_RemoveInvItems(npc,ItFo_Addon_Pfeffer_01,Npc_HasItems(npc,ItFo_Addon_Pfeffer_01));
+				B_RemoveEveryInvItem(npc,ItFo_Addon_Pfeffer_01);
 			};
 		};
 		CreateInvItem(npc,ItMi_OldCoin);

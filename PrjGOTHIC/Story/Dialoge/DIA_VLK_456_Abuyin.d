@@ -431,7 +431,7 @@ func void DIA_Abuyin_Zukunft_Trance()
 	Abuyin_Zukunft = 1;
 	Info_ClearChoices(DIA_Abuyin_Zukunft);
 	B_GivePlayerXP(XP_AmbientKap1 * 4);
-	Npc_RemoveInvItems(self,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
+	B_RemoveEveryInvItem(self,ItMi_Gold);
 };
 
 
@@ -550,7 +550,7 @@ func void DIA_Abuyin_Zukunft2_Trance()
 	Abuyin_Zukunft = 2;
 	Info_ClearChoices(DIA_Abuyin_Zukunft2);
 	B_GivePlayerXP(XP_AmbientKap2 * 4);
-	Npc_RemoveInvItems(self,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
+	B_RemoveEveryInvItem(self,ItMi_Gold);
 };
 
 
@@ -629,7 +629,7 @@ func void DIA_Abuyin_Zukunft3_Trance()
 	Abuyin_Zukunft = 3;
 	Info_ClearChoices(DIA_Abuyin_Zukunft3);
 	B_GivePlayerXP(XP_AmbientKap3 * 4);
-	Npc_RemoveInvItems(self,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
+	B_RemoveEveryInvItem(self,ItMi_Gold);
 };
 
 
@@ -708,7 +708,7 @@ func void DIA_Abuyin_Zukunft4_Trance()
 	Abuyin_Zukunft = 4;
 	Info_ClearChoices(DIA_Abuyin_Zukunft4);
 	B_GivePlayerXP(XP_AmbientKap4 * 4);
-	Npc_RemoveInvItems(self,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
+	B_RemoveEveryInvItem(self,ItMi_Gold);
 };
 
 
@@ -787,6 +787,6 @@ func void DIA_Abuyin_Zukunft5_Trance()
 	Abuyin_Zukunft = 5;
 	Info_ClearChoices(DIA_Abuyin_Zukunft5);
 	B_GivePlayerXP(XP_AmbientKap5 * 4);
-	Npc_RemoveInvItems(self,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
+	B_RemoveEveryInvItem(self,ItMi_Gold);
 };
 

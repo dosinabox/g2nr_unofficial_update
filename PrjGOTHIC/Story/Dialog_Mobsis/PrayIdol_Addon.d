@@ -96,7 +96,7 @@ func void B_PrayIdol(var int attribute,var int amount)
 		B_HitpointAngleich(amount);
 		gold = amount * BeliarsGoldMultiplier;
 	}
-	else if(attribute = ATR_MANA_MAX)
+	else if(attribute == ATR_MANA_MAX)
 	{
 		B_ManaAngleich(amount);
 		gold = amount * BeliarsGoldMultiplier * 10;

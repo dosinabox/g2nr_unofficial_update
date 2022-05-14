@@ -6,7 +6,7 @@ func void B_UnEquipAllWeapons(var C_Npc slf,var int createCopy)
 	if(Npc_HasEquippedMeleeWeapon(slf))
 	{
 		EquippedMeleeWeapon = Npc_GetEquippedMeleeWeapon(slf);
-		Npc_RemoveInvItems(slf,Hlp_GetInstanceID(EquippedMeleeWeapon),Npc_HasItems(slf,Hlp_GetInstanceID(EquippedMeleeWeapon)));
+		B_RemoveEveryInvItem(slf,Hlp_GetInstanceID(EquippedMeleeWeapon));
 		if(createCopy == TRUE)
 		{
 			CreateInvItem(slf,Hlp_GetInstanceID(EquippedMeleeWeapon));
@@ -15,7 +15,7 @@ func void B_UnEquipAllWeapons(var C_Npc slf,var int createCopy)
 	if(Npc_HasEquippedRangedWeapon(slf))
 	{
 		EquippedRangedWeapon = Npc_GetEquippedRangedWeapon(slf);
-		Npc_RemoveInvItems(slf,Hlp_GetInstanceID(EquippedRangedWeapon),Npc_HasItems(slf,Hlp_GetInstanceID(EquippedRangedWeapon)));
+		B_RemoveEveryInvItem(slf,Hlp_GetInstanceID(EquippedRangedWeapon));
 		if(createCopy == TRUE)
 		{
 			CreateInvItem(slf,Hlp_GetInstanceID(EquippedRangedWeapon));
