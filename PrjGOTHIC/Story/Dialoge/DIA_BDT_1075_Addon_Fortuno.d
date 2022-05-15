@@ -282,7 +282,7 @@ func void DIA_Addon_Fortuno_Trade_all()
 	var int amount;
 	amount = Npc_HasItems(other,ItPl_SwampHerb);
 	B_GiveInvItems(other,self,ItPl_SwampHerb,amount);
-	Npc_RemoveInvItems(self,ItPl_SwampHerb,Npc_HasItems(self,ItPl_SwampHerb));
+	B_RemoveEveryInvItem(self,ItPl_SwampHerb);
 	B_GiveInvItems(self,other,ItMi_Gold,amount * Value_SwampHerb);
 	B_GivePlayerXP(amount * 10);
 	TotalSwampHerbsForFortuno += amount;
@@ -292,7 +292,7 @@ func void DIA_Addon_Fortuno_Trade_all()
 func void DIA_Addon_Fortuno_Trade_1()
 {
 	B_GiveInvItems(other,self,ItPl_SwampHerb,1);
-	Npc_RemoveInvItems(self,ItPl_SwampHerb,Npc_HasItems(self,ItPl_SwampHerb));
+	B_RemoveEveryInvItem(self,ItPl_SwampHerb);
 	B_GiveInvItems(self,other,ItMi_Gold,Value_SwampHerb);
 	B_GivePlayerXP(10);
 	TotalSwampHerbsForFortuno += 1;

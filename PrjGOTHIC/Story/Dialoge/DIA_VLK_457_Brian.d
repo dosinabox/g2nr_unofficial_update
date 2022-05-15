@@ -257,7 +257,7 @@ func int DIA_Brian_WASKAUFEN_Condition()
 func void DIA_Brian_WASKAUFEN_Info()
 {
 	AI_Output(other,self,"DIA_Brian_WASKAUFEN_15_00");	//Что я могу купить у тебя?
-	Npc_RemoveInvItems(self,ItMiSwordblade,Npc_HasItems(self,ItMiSwordblade));
+	B_RemoveEveryInvItem(self,ItMiSwordblade);
 	B_GiveTradeInv(self);
 	if(Npc_IsDead(Harad))
 	{

@@ -26,40 +26,29 @@ func void B_ClearInfiniteTools(var C_Npc slf)
 	};
 };
 
-func void B_MoveSarahItemToCanthar(var int itm)
-{
-	var int count;
-	count = Npc_HasItems(Sarah,itm);
-	if(count > 0)
-	{
-		Npc_RemoveInvItems(Sarah,itm,count);
-		CreateInvItems(Canthar,itm,count);
-	};
-};
-
 func void B_RemoveSarahWeapons()
 {
 	if(!Npc_IsDead(Sarah) && !Npc_IsDead(Canthar))
 	{
-		B_MoveSarahItemToCanthar(ItRw_Arrow);
-		B_MoveSarahItemToCanthar(ItMw_ShortSword3);
-		B_MoveSarahItemToCanthar(ItMw_ShortSword4);
-		B_MoveSarahItemToCanthar(ItMw_ShortSword5);
-		B_MoveSarahItemToCanthar(ItMw_Kriegshammer1);
-		B_MoveSarahItemToCanthar(ItMw_1h_Vlk_Sword);
-		B_MoveSarahItemToCanthar(ItMw_1h_Nov_Mace);
-		B_MoveSarahItemToCanthar(ItMw_1H_Sword_L_03);
-		B_MoveSarahItemToCanthar(ItRi_HP_01);
-		B_MoveSarahItemToCanthar(ItMw_Stabkeule);
-		B_MoveSarahItemToCanthar(ItMw_Steinbrecher);
-		B_MoveSarahItemToCanthar(ItMw_Schwert2);
-		B_MoveSarahItemToCanthar(ItMw_Bartaxt);
-		B_MoveSarahItemToCanthar(ItMw_Zweihaender2);
-		B_MoveSarahItemToCanthar(ItMw_Schwert5);
-		B_MoveSarahItemToCanthar(ItMw_Inquisitor);
-		B_MoveSarahItemToCanthar(ItMw_Kriegshammer2);
-		B_MoveSarahItemToCanthar(ItMw_Zweihaender4);
-		B_MoveSarahItemToCanthar(ItMw_Krummschwert);
+		B_TransferAllInvItems(Sarah,Canthar,ItRw_Arrow);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_ShortSword3);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_ShortSword4);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_ShortSword5);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_Kriegshammer1);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_1h_Vlk_Sword);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_1h_Nov_Mace);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_1H_Sword_L_03);
+		B_TransferAllInvItems(Sarah,Canthar,ItRi_HP_01);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_Stabkeule);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_Steinbrecher);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_Schwert2);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_Bartaxt);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_Zweihaender2);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_Schwert5);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_Inquisitor);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_Kriegshammer2);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_Zweihaender4);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_Krummschwert);
 		SarahWeaponsRemoved = TRUE;
 	};
 };

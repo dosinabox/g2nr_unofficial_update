@@ -329,7 +329,7 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 		StoneplatesGeld = Addon_ErolsStoneplatesOffer * Npc_HasItems(self,ItWr_StonePlateCommon_Addon);
 		CreateInvItems(self,ItMi_Gold,StoneplatesGeld);
 		B_GiveInvItems(self,other,ItMi_Gold,StoneplatesGeld);
-		Npc_RemoveInvItems(self,ItWr_StonePlateCommon_Addon,Npc_HasItems(self,ItWr_StonePlateCommon_Addon));
+		B_RemoveEveryInvItem(self,ItWr_StonePlateCommon_Addon);
 		if(MIS_Addon_Erol_BanditStuff == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_08");	//я иду домой. ≈сли хочешь, можешь пойти со мной.

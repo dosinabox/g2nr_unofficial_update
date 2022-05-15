@@ -325,7 +325,7 @@ func void DIA_Alrik_WannaFight_Gold()
 	B_GiveInvItems(other,self,ItMi_Gold,50);
 	AI_Output(self,other,"DIA_Alrik_WannaFight_Gold_09_01");	//(громко) У нас новый боец!
 	AI_Output(self,other,"DIA_Alrik_WannaFight_Gold_09_02");	//Ставки сделаны...
-	Npc_RemoveInvItems(self,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
+	B_RemoveEveryInvItem(self,ItMi_Gold);
 	CreateInvItems(self,ItMi_Gold,100);
 	AI_Output(self,other,"DIA_Alrik_WannaFight_Gold_09_03");	//Ты готов?
 	self.aivar[AIV_ArenaFight] = AF_RUNNING;

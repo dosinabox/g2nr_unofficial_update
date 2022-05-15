@@ -13,34 +13,28 @@ func int ZS_RansackBody_Loop()
 
 func void ZS_RansackBody_End()
 {
-	var int x;
 	if(C_NpcIsDown(other))
 	{
 		AI_TurnToNpc(self,other);
 		AI_PlayAni(self,"T_PLUNDER");
 		if(Npc_HasItems(other,Holy_Hammer_MIS) && (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Garwig)))
 		{
-			CreateInvItems(self,Holy_Hammer_MIS,1);
-			Npc_RemoveInvItems(other,Holy_Hammer_MIS,1);
+			B_TransferAllInvItems(other,self,Holy_Hammer_MIS);
 			B_Say(self,self,"$GETUPANDBEGONE");
 			GarwigThiefOneTime = FALSE;
 		};
 		if(Npc_HasItems(other,ItMw_2h_Rod) && (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rod)))
 		{
-			CreateInvItems(self,ItMw_2h_Rod,1);
-			Npc_RemoveInvItems(other,ItMw_2h_Rod,1);
+			B_TransferAllInvItems(other,self,ItMw_2h_Rod);
 			AI_EquipBestMeleeWeapon(self);
 		};
 		if(Npc_HasItems(other,ItKe_Greg_Addon_MIS) && (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Francis)))
 		{
-			CreateInvItems(self,ItKe_Greg_Addon_MIS,1);
-			Npc_RemoveInvItems(other,ItKe_Greg_Addon_MIS,1);
+			B_TransferAllInvItems(other,self,ItKe_Greg_Addon_MIS);
 		};
 		if(Npc_HasItems(other,ItMi_Gold))
 		{
-			x = Npc_HasItems(other,ItMi_Gold);
-			CreateInvItems(self,ItMi_Gold,x);
-			Npc_RemoveInvItems(other,ItMi_Gold,x);
+			B_TransferAllInvItems(other,self,ItMi_Gold);
 			if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Garwig))
 			{
 				B_Say(self,other,"$ITOOKYOURGOLD");

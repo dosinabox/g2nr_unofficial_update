@@ -275,12 +275,8 @@ func void DIA_Addon_Fernando_BanditTrader_preis()
 func void DIA_Addon_Fernando_BanditTrader_ja()
 {
 	AI_Output(other,self,"DIA_Addon_Fernando_BanditTrader_ja_15_00");	//Ну хорошо, я согласен.
-	B_GivePlayerXP(XP_Ambient);
+	B_RemoveEveryInvItem(other,ItMw_Addon_BanditTrader);
 	FernandoMajorEvidenceCount = 0;
-	if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
-	{
-		Npc_RemoveInvItems(other,ItMw_Addon_BanditTrader,Npc_HasItems(other,ItMw_Addon_BanditTrader));
-	};
 	if(Npc_HasItems(other,ItRi_Addon_BanditTrader))
 	{
 		Npc_RemoveInvItem(other,ItRi_Addon_BanditTrader);
@@ -308,8 +304,8 @@ func void DIA_Addon_Fernando_BanditTrader_ja()
 		MIS_Martin_FindTheBanditTrader = LOG_FAILED;
 		MIS_Vatras_FindTheBanditTrader = LOG_FAILED;
 		B_LogEntry(TOPIC_Addon_Bandittrader,"Я решил не отправлять Фернандо в тюрьму и отдал ему все улики.");
-		B_CheckLog();
 	};
+	B_GivePlayerXP(XP_Ambient);
 	Info_ClearChoices(DIA_Addon_Fernando_BanditTrader);
 };
 

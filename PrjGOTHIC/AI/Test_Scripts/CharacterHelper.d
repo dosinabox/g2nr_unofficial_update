@@ -4149,41 +4149,13 @@ func void CH_Skin_Naked()
 
 func void B_SetHeroEquipment()
 {
-	if(Npc_HasItems(hero,ItRw_Arrow) < 100)
-	{
-		B_RemoveEveryInvItem(hero,ItRw_Arrow);
-		CreateInvItems(hero,ItRw_Arrow,100);
-	};
-	if(Npc_HasItems(hero,ItRw_Bolt) < 100)
-	{
-		B_RemoveEveryInvItem(hero,ItRw_Bolt);
-		CreateInvItems(hero,ItRw_Bolt,100);
-	};
-	if(Npc_HasItems(hero,ItLsTorch) < 20)
-	{
-		B_RemoveEveryInvItem(hero,ItLsTorch);
-		CreateInvItems(hero,ItLsTorch,20);
-	};
-	if(Npc_HasItems(hero,ItMi_Gold) < 500)
-	{
-		B_RemoveEveryInvItem(hero,ItMi_Gold);
-		CreateInvItems(hero,ItMi_Gold,500);
-	};
-	if(Npc_HasItems(hero,ItPo_Health_03) < 10)
-	{
-		B_RemoveEveryInvItem(hero,ItPo_Health_03);
-		CreateInvItems(hero,ItPo_Health_03,10);
-	};
-	if(Npc_HasItems(hero,ItPo_Mana_03) < 10)
-	{
-		B_RemoveEveryInvItem(hero,ItPo_Mana_03);
-		CreateInvItems(hero,ItPo_Mana_03,10);
-	};
-	if(Npc_HasItems(hero,ItKe_Lockpick) < 30)
-	{
-		B_RemoveEveryInvItem(hero,ItKe_Lockpick);
-		CreateInvItems(hero,ItKe_Lockpick,30);
-	};
+	B_RefreshInvItemToAmount(hero,ItRw_Arrow,100);
+	B_RefreshInvItemToAmount(hero,ItRw_Bolt,100);
+	B_RefreshInvItemToAmount(hero,ItLsTorch,20);
+	B_RefreshInvItemToAmount(hero,ItMi_Gold,500);
+	B_RefreshInvItemToAmount(hero,ItPo_Health_03,10);
+	B_RefreshInvItemToAmount(hero,ItPo_Mana_03,10);
+	B_RefreshInvItemToAmount(hero,ItKe_Lockpick,30);
 };
 
 instance CH_Equipment(C_Info)

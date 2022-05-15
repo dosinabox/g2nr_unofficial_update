@@ -73,16 +73,9 @@ func int DIA_Engor_HANDELN_Condition()
 
 func void DIA_Engor_HANDELN_Info()
 {
-	var int McBolzenAmount;
-	var int McArrowAmount;
 	AI_Output(other,self,"DIA_Engor_HANDELN_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
-	Npc_RemoveInvItems(self,ItRw_Bolt,Npc_HasItems(self,ItRw_Bolt));
-	McBolzenAmount = Kapitel * 50;
-	CreateInvItems(self,ItRw_Bolt,McBolzenAmount);
-	Npc_RemoveInvItems(self,ItRw_Arrow,Npc_HasItems(self,ItRw_Arrow));
-	McArrowAmount = Kapitel * 50;
-	CreateInvItems(self,ItRw_Arrow,McArrowAmount);
+	B_RefreshTraderAmmo(self,50);
 	Trade_IsActive = TRUE;
 };
 

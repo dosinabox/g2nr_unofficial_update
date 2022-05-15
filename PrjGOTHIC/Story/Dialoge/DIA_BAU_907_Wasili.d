@@ -249,7 +249,7 @@ func void DIA_Wasili_BringOldCoin_Info()
 		AI_Output(other,self,"DIA_Wasili_BringOldCoin_15_03");	//Несколько.
 	};
 	B_GiveInvItems(other,self,ItMi_OldCoin,OldCoinCount);
-	Npc_RemoveInvItems(self,ItMi_OldCoin,Npc_HasItems(self,ItMi_OldCoin));
+	B_RemoveEveryInvItem(self,ItMi_OldCoin);
 	AI_Output(self,other,"DIA_Wasili_BringOldCoin_01_04");	//Спасибо. Вот твои деньги. Приноси мне все, что найдешь.
 	OldCoinGold = OldCoinCount * WasilisOldCoinOffer;
 	CreateInvItems(self,ItMi_Gold,OldCoinGold);

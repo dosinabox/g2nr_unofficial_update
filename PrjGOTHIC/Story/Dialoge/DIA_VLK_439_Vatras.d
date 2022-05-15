@@ -1454,7 +1454,7 @@ func void DIA_Addon_Vatras_SellStonplate_Info()
 		CreateInvItems(self,ItPo_Health_03,anzahl + 1);
 		B_GiveInvItems(self,other,ItPo_Health_03,anzahl + 1);
 	};
-	Npc_RemoveInvItems(self,ItWr_StonePlateCommon_Addon,Npc_HasItems(self,ItWr_StonePlateCommon_Addon));
+	B_RemoveEveryInvItem(self,ItWr_StonePlateCommon_Addon);
 	B_GivePlayerXP(XP_Addon_VatrasStonplate * anzahl);
 };
 

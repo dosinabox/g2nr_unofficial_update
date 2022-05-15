@@ -404,10 +404,7 @@ func void DIA_Coragon_News_Info()
 	AI_Output(other,self,"DIA_Coragon_Add_15_37");	//И? Что ты сделал?
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_38");	//Я? Задал ему хорошую трепку, что же еще?
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_34");	//Он болтал что-то о том, что его обокрали и что он заплатит мне потом. Ха, как же!
-	if(Npc_HasItems(Valentino,ItMi_Gold) > 0)
-	{
-		Npc_RemoveInvItems(Valentino,ItMi_Gold,Npc_HasItems(Valentino,ItMi_Gold));
-	};
+	B_RemoveEveryInvItem(Valentino,ItMi_Gold);
 };
 
 

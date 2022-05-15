@@ -402,8 +402,8 @@ func void DIA_Halvor_Hehlerei_Annehmen()
 	amount = Npc_HasItems(other,ItMi_SilverPlate) + Npc_HasItems(other,ItMi_SilverCup);
 	concatText = ConcatStrings(IntToString(amount),PRINT_ItemsGiven);
 	AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-	Npc_RemoveInvItems(other,ItMi_SilverCup,Npc_HasItems(other,ItMi_SilverCup));
-	Npc_RemoveInvItems(other,ItMi_SilverPlate,Npc_HasItems(other,ItMi_SilverPlate));
+	B_RemoveEveryInvItem(other,ItMi_SilverCup);
+	B_RemoveEveryInvItem(other,ItMi_SilverPlate);
 	B_GiveInvItems(self,other,ItMi_Gold,Halvor_Score);
 	AI_Output(other,self,"DIA_Halvor_Zeichen_Annehmen_15_00");	//Хорошо. Продано!
 	AI_Output(self,other,"DIA_Halvor_Zeichen_Annehmen_06_01");	//Мы заключили несколько хороших сделок сегодня. Лучше не приходи ко мне до завтра, это может вызвать подозрения, понимаешь?
