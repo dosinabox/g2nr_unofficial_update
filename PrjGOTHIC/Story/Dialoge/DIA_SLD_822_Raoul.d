@@ -486,14 +486,14 @@ func void DIA_Raoul_TROLLFELL_Info()
 	AI_Output(other,self,"DIA_Raoul_TROLLFELL_15_00");	//Я принес шкуру черного тролля.
 	AI_Output(self,other,"DIA_Raoul_TROLLFELL_01_01");	//Невероятно. Покажи.
 	B_GiveInvItems(other,self,ItAt_TrollBlackFur,1);
+	MIS_Raoul_KillTrollBlack = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Raoul_KillTrollBlack);
 	AI_Output(self,other,"DIA_Raoul_TROLLFELL_01_02");	//Невероятно. Что ты хочешь за нее?
 	AI_Output(other,self,"DIA_Raoul_TROLLFELL_15_03");	//Отдай мне все, что у тебя есть.
 	AI_Output(self,other,"DIA_Raoul_TROLLFELL_01_04");	//Хорошо. Я дам тебе 500 золотых монет и три сильных лечебных зелья. Что скажешь?
 	Info_ClearChoices(DIA_Raoul_TROLLFELL);
 	Info_AddChoice(DIA_Raoul_TROLLFELL,"Этого недостаточно.",DIA_Raoul_TROLLFELL_nein);
 	Info_AddChoice(DIA_Raoul_TROLLFELL,"Продано.",DIA_Raoul_TROLLFELL_ja);
-	MIS_Raoul_KillTrollBlack = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Raoul_KillTrollBlack);
 };
 
 func void DIA_Raoul_TROLLFELL_ja()

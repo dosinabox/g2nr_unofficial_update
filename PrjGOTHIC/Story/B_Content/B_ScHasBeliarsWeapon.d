@@ -208,7 +208,11 @@ func int C_ScHas2HBeliarsWeapon()
 
 func int C_ScHasBeliarsWeapon()
 {
-	if(C_ScHas1HBeliarsWeapon() || C_ScHas2HBeliarsWeapon())
+	if(C_ScHas1HBeliarsWeapon())
+	{
+		return TRUE;
+	};
+	if(C_ScHas2HBeliarsWeapon())
 	{
 		return TRUE;
 	};
@@ -440,6 +444,17 @@ func int C_ScHasEquippedBeliarsWeapon()
 	return FALSE;
 };
 
+func void B_ClearBeliarsRune()
+{
+	B_RemoveEveryInvItem(hero,ItRu_BeliarsRage);
+	B_RemoveEveryInvItem(hero,ItRu_SuckEnergy);
+	B_RemoveEveryInvItem(hero,ItRu_GreenTentacle);
+	B_RemoveEveryInvItem(hero,ItRu_Swarm);
+	B_RemoveEveryInvItem(hero,ItRu_Skull);
+	B_RemoveEveryInvItem(hero,ItRu_SummonZombie);
+	B_RemoveEveryInvItem(hero,ItRu_SummonGuardian);
+};
+
 func void B_ClearBeliarsWeapon()
 {
 	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_Raven);
@@ -483,15 +498,13 @@ func void B_ClearBeliarsWeapon()
 	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_18);
 	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_19);
 	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_20);
-	B_RemoveEveryInvItem(hero,ItRu_BeliarsRage);
-	B_RemoveEveryInvItem(hero,ItRu_SuckEnergy);
-	B_RemoveEveryInvItem(hero,ItRu_GreenTentacle);
-	B_RemoveEveryInvItem(hero,ItRu_Swarm);
-	B_RemoveEveryInvItem(hero,ItRu_Skull);
-	B_RemoveEveryInvItem(hero,ItRu_SummonZombie);
-	B_RemoveEveryInvItem(hero,ItRu_SummonGuardian);
 };
 
+func void B_ClearBeliarsItems()
+{
+	B_ClearBeliarsRune();
+	B_ClearBeliarsWeapon();
+};
 
 var int BeliarWeapCurrentLvL;
 var int BeliarWeapNextLvL;
@@ -709,7 +722,7 @@ func void B_UpgrateBeliarsWeapon()
 			{
 				CreateInvItem(hero,ItMw_BeliarWeapon_1H_06);
 			}
-				else if(BeliarWeapCurrentLvL == 7)
+			else if(BeliarWeapCurrentLvL == 7)
 			{
 				CreateInvItem(hero,ItMw_BeliarWeapon_1H_07);
 			}
@@ -908,7 +921,19 @@ func void PC_PrayShrine_UPGRATEBELIARSWEAPON_SPL_Skull()
 
 func int C_SCHasBlessedSword()
 {
-	if(Npc_HasItems(hero,ItMw_1H_Blessed_02) || Npc_HasItems(hero,ItMw_1H_Blessed_03) || Npc_HasItems(hero,ItMw_2H_Blessed_02) || Npc_HasItems(hero,ItMw_2H_Blessed_03))
+	if(Npc_HasItems(hero,ItMw_1H_Blessed_02))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ItMw_1H_Blessed_03))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ItMw_2H_Blessed_02))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ItMw_2H_Blessed_03))
 	{
 		return TRUE;
 	};

@@ -22,7 +22,7 @@ func void Use_StatsBook()
 	Doc_SetPage(nDocID,1,"Book_Blue_R.tga",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,0,270,20,30,20,1);
-	Doc_PrintLine(nDocID,0,ConcatStrings("Убито:                  ГЛАВА ",IntToString(Kapitel)));
+	Doc_PrintLine(nDocID,0,ConcatStrings("Убито:              ГЛАВА ",IntToString(Kapitel)));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Draconian)," людей-ящеров"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Dementor)," ищущих"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_OrcElite)," элитных орков"));

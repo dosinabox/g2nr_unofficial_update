@@ -369,6 +369,11 @@ func int CH_RESET_Condition()
 
 func void CH_RESET_Info()
 {
+	B_UnEquipHeroItem(ItSc_ThunderBall);
+	B_UnEquipHeroItem(ItSc_Windfist);
+	B_UnEquipHeroItem(ItSc_ChargeFireBall);
+	B_UnEquipHeroItem(ItSc_Pyrokinesis);
+	B_UnEquipAllCircleRunes();
 	AI_UnequipWeapons(hero);
 	Info_ClearChoices(CH_RESET);
 	Info_AddChoice(CH_RESET,Dialog_Back,CH_RESET_Back);
@@ -382,6 +387,11 @@ func void CH_RESET_Back()
 
 func void CH_RESET_Ok()
 {
+	if(C_ScHasBeliarsWeapon() || C_SCHasBeliarsRune())
+	{
+		B_ClearBeliarsItems();
+		CreateInvItem(hero,ItMw_BeliarWeapon_Raven);
+	};
 	B_UnEquipAllTempBonusItems();
 	AI_UnequipArmor(hero);
 	B_SetGuild(hero,GIL_NONE);
@@ -420,7 +430,6 @@ func void CH_RESET_Ok()
 	B_ClearHeroOverlays();
 	B_ResetTalentSystem();
 	B_ResetAttributeSystem();
-	B_UnEquipHeroItem(ItSc_Windfist);
 	PLAYER_TALENT_SMITH[WEAPON_Common] = FALSE;
 	PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] = FALSE;
 	PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] = FALSE;
