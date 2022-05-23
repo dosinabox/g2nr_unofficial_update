@@ -4,15 +4,30 @@ func int C_PredictedMana(var int value)
 	return self.attribute[ATR_MANA_MAX] - value;
 };
 
-func void B_UnEquipIllegalMagicItems(var int value)
+func void B_UnEquipIllegalMagicWeapons(var int value)
 {
-	if(UnionActivated == TRUE)
+	if(UnionActivated == FALSE)
+	{
+		return;
+	};
+	if(!Npc_HasEquippedMeleeWeapon(hero))
+	{
+		return;
+	};
+	var C_Item EquippedMeleeWeapon;
+	EquippedMeleeWeapon = Npc_GetEquippedMeleeWeapon(hero);
+	if(Hlp_IsItem(EquippedMeleeWeapon,ItMW_Addon_Stab02))
 	{
 		if(C_PredictedMana(value) < (Condition_Stab02 + Zauberstab_ManaBonus))
 		{
-			B_UnEquipHeroItem(ItMW_Addon_Stab02);
+			B_RemoveEveryInvItem(hero,ItMW_Addon_Stab02);
+			CreateInvItem(hero,ItMW_Addon_Stab02);
 		};
 	};
+};
+
+func void B_UnEquipIllegalScrolls(var int value)
+{
 	if(C_PredictedMana(value) < STEP_Firestorm)
 	{
 		B_UnEquipHeroItem(ItSc_Pyrokinesis);
@@ -29,6 +44,12 @@ func void B_UnEquipIllegalMagicItems(var int value)
 	{
 		B_UnEquipHeroItem(ItSc_ThunderBall);
 	};
+};
+
+func void B_UnEquipIllegalMagicItems(var int value)
+{
+	B_UnEquipIllegalMagicWeapons(value);
+	B_UnEquipIllegalScrolls(value);
 };
 
 func void B_UnEquipAllCircleRunes()

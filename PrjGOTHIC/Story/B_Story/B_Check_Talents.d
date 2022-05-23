@@ -30,7 +30,6 @@ func void B_UnEquipAllTempBonusItems() //TODO перенести в CharacterHelper.d
 	B_UnEquipHeroItem(ItAm_Hp_Mana_01);
 	B_UnEquipHeroItem(ItAm_Addon_Franco);
 	B_UnEquipHeroItem(ItAm_Addon_Health);
-	B_UnEquipHeroItem(ItAm_Addon_MANA);
 	B_UnEquipHeroItem(ItAm_Addon_STR);
 	B_UnEquipHeroItem(ItRi_Dex_01);
 	B_UnEquipHeroItem(ItRi_Dex_02);
@@ -44,8 +43,6 @@ func void B_UnEquipAllTempBonusItems() //TODO перенести в CharacterHelper.d
 	B_UnEquipHeroItem(ItRi_Hp_Mana_01);
 	B_UnEquipHeroItem(ItRi_Addon_Health_01);
 	B_UnEquipHeroItem(ItRi_Addon_Health_02);
-	B_UnEquipHeroItem(ItRi_Addon_MANA_01);
-	B_UnEquipHeroItem(ItRi_Addon_MANA_02);
 	B_UnEquipHeroItem(ItRi_Addon_STR_01);
 	B_UnEquipHeroItem(ItRi_Addon_STR_02);
 	B_UnEquipHeroItem(ItRi_HP_01_Tengron);
@@ -54,6 +51,22 @@ func void B_UnEquipAllTempBonusItems() //TODO перенести в CharacterHelper.d
 	B_UnEquipHeroItem(ItAm_Mana_Angar_MIS);
 	B_UnEquipHeroItem(ItAm_Hp_Regen);
 	B_UnEquipHeroItem(ItAm_Mana_Regen);
+	//костыли для исправления удаления экипированных колец и амелута жрецов
+	if(MA_Amulett_Equipped == TRUE)
+	{
+		B_RemoveEveryInvItem(hero,ItAm_Addon_MANA);
+		CreateInvItem(hero,ItAm_Addon_MANA);
+	};
+	if(MA_Ring_1_Equipped == TRUE)
+	{
+		B_RemoveEveryInvItem(hero,ItRi_Addon_MANA_01);
+		CreateInvItem(hero,ItRi_Addon_MANA_01);
+	};
+	if(MA_Ring_2_Equipped == TRUE)
+	{
+		B_RemoveEveryInvItem(hero,ItRi_Addon_MANA_02);
+		CreateInvItem(hero,ItRi_Addon_MANA_02);
+	};
 };
 
 func void B_Check_Attributes() //TODO удалить к релизу 29 версии
