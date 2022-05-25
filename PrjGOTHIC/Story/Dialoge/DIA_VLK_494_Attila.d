@@ -21,41 +21,6 @@ func void DIA_Attila_EXIT_Info()
 };
 
 
-instance DIA_Attila_PICKPOCKET(C_Info)
-{
-	npc = VLK_494_Attila;
-	nr = 900;
-	condition = DIA_Attila_PICKPOCKET_Condition;
-	information = DIA_Attila_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Attila_PICKPOCKET_Condition()
-{
-	return C_Beklauen(55,100);
-};
-
-func void DIA_Attila_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Attila_PICKPOCKET);
-	Info_AddChoice(DIA_Attila_PICKPOCKET,Dialog_Back,DIA_Attila_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Attila_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Attila_PICKPOCKET_DoIt);
-};
-
-func void DIA_Attila_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Attila_PICKPOCKET);
-};
-
-func void DIA_Attila_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Attila_PICKPOCKET);
-};
-
-
 instance DIA_Attila_Hallo(C_Info)
 {
 	npc = VLK_494_Attila;

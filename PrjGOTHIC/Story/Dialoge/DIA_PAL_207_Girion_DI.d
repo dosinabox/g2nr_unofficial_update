@@ -330,39 +330,3 @@ func void DIA_Girion_DI_UndeadDragonDead_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Girion_DI_PICKPOCKET(C_Info)
-{
-	npc = PAL_207_Girion_DI;
-	nr = 900;
-	condition = DIA_Girion_DI_PICKPOCKET_Condition;
-	information = DIA_Girion_DI_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Girion_DI_PICKPOCKET_Condition()
-{
-	return C_Beklauen(71,260);
-};
-
-func void DIA_Girion_DI_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Girion_DI_PICKPOCKET);
-	Info_AddChoice(DIA_Girion_DI_PICKPOCKET,Dialog_Back,DIA_Girion_DI_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Girion_DI_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Girion_DI_PICKPOCKET_DoIt);
-};
-
-func void DIA_Girion_DI_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Girion_DI_PICKPOCKET);
-};
-
-func void DIA_Girion_DI_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Girion_DI_PICKPOCKET);
-};
-
-

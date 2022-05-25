@@ -321,38 +321,3 @@ func void DIA_Bilgot_Olav_Info()
 	B_GivePlayerXP(XP_Ambient);
 };
 
-
-instance DIA_Bilgot_PICKPOCKET(C_Info)
-{
-	npc = VLK_4120_Bilgot;
-	nr = 900;
-	condition = DIA_Bilgot_PICKPOCKET_Condition;
-	information = DIA_Bilgot_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Bilgot_PICKPOCKET_Condition()
-{
-	return C_Beklauen(20,30);
-};
-
-func void DIA_Bilgot_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Bilgot_PICKPOCKET);
-	Info_AddChoice(DIA_Bilgot_PICKPOCKET,Dialog_Back,DIA_Bilgot_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Bilgot_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Bilgot_PICKPOCKET_DoIt);
-};
-
-func void DIA_Bilgot_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Bilgot_PICKPOCKET);
-};
-
-func void DIA_Bilgot_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Bilgot_PICKPOCKET);
-};
-

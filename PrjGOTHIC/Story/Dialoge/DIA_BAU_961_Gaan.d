@@ -641,39 +641,3 @@ func void DIA_Gaan_JAGD_Info()
 	};
 };
 
-
-instance DIA_Gaan_PICKPOCKET(C_Info)
-{
-	npc = BAU_961_Gaan;
-	nr = 900;
-	condition = DIA_Gaan_PICKPOCKET_Condition;
-	information = DIA_Gaan_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Gaan_PICKPOCKET_Condition()
-{
-	return C_Beklauen(23,35);
-};
-
-func void DIA_Gaan_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Gaan_PICKPOCKET);
-	Info_AddChoice(DIA_Gaan_PICKPOCKET,Dialog_Back,DIA_Gaan_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Gaan_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Gaan_PICKPOCKET_DoIt);
-};
-
-func void DIA_Gaan_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Gaan_PICKPOCKET);
-};
-
-func void DIA_Gaan_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Gaan_PICKPOCKET);
-};
-
-

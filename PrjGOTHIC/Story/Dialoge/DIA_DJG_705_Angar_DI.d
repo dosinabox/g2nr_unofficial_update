@@ -269,41 +269,6 @@ func void DIA_Angar_DI_UNDEADDRGDEAD_Info()
 };
 
 
-instance DIA_Angar_DI_PICKPOCKET(C_Info)
-{
-	npc = DJG_705_Angar_DI;
-	nr = 900;
-	condition = DIA_Angar_DI_PICKPOCKET_Condition;
-	information = DIA_Angar_DI_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Angar_DI_PICKPOCKET_Condition()
-{
-	return C_Beklauen(47,45);
-};
-
-func void DIA_Angar_DI_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Angar_DI_PICKPOCKET);
-	Info_AddChoice(DIA_Angar_DI_PICKPOCKET,Dialog_Back,DIA_Angar_DI_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Angar_DI_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Angar_DI_PICKPOCKET_DoIt);
-};
-
-func void DIA_Angar_DI_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Angar_DI_PICKPOCKET);
-};
-
-func void DIA_Angar_DI_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Angar_DI_PICKPOCKET);
-};
-
-
 instance DIA_Angar_DI_FOUNDAMULETT(C_Info)
 {
 	npc = DJG_705_Angar_DI;

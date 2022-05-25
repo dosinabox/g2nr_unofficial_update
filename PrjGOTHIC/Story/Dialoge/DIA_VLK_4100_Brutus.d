@@ -476,38 +476,3 @@ func void DIA_Brutus_BESSEN_Info()
 	};
 };
 
-
-instance DIA_Brutus_PICKPOCKET(C_Info)
-{
-	npc = VLK_4100_Brutus;
-	nr = 900;
-	condition = DIA_Brutus_PICKPOCKET_Condition;
-	information = DIA_Brutus_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Brutus_PICKPOCKET_Condition()
-{
-	return C_Beklauen(14,35);
-};
-
-func void DIA_Brutus_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Brutus_PICKPOCKET);
-	Info_AddChoice(DIA_Brutus_PICKPOCKET,Dialog_Back,DIA_Brutus_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Brutus_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Brutus_PICKPOCKET_DoIt);
-};
-
-func void DIA_Brutus_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Brutus_PICKPOCKET);
-};
-
-func void DIA_Brutus_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Brutus_PICKPOCKET);
-};
-

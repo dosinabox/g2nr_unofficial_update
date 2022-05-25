@@ -457,38 +457,3 @@ func void DIA_SylvioDJG_BUTNOW_Info()
 	};
 };
 
-
-instance DIA_Sylvio_PICKPOCKET(C_Info)
-{
-	npc = DJG_700_Sylvio;
-	nr = 900;
-	condition = DIA_Sylvio_PICKPOCKET_Condition;
-	information = DIA_Sylvio_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Sylvio_PICKPOCKET_Condition()
-{
-	return C_Beklauen(78,560);
-};
-
-func void DIA_Sylvio_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Sylvio_PICKPOCKET);
-	Info_AddChoice(DIA_Sylvio_PICKPOCKET,Dialog_Back,DIA_Sylvio_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Sylvio_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Sylvio_PICKPOCKET_DoIt);
-};
-
-func void DIA_Sylvio_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Sylvio_PICKPOCKET);
-};
-
-func void DIA_Sylvio_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Sylvio_PICKPOCKET);
-};
-

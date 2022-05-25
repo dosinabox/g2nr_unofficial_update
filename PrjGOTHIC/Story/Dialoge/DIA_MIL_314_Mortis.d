@@ -249,40 +249,6 @@ func void DIA_Mortis_Teach_5()
 	};
 };
 
-instance DIA_Mortis_PICKPOCKET(C_Info)
-{
-	npc = MIL_314_Mortis;
-	nr = 900;
-	condition = DIA_Mortis_PICKPOCKET_Condition;
-	information = DIA_Mortis_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Mortis_PICKPOCKET_Condition()
-{
-	return C_Beklauen(38,60);
-};
-
-func void DIA_Mortis_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Mortis_PICKPOCKET);
-	Info_AddChoice(DIA_Mortis_PICKPOCKET,Dialog_Back,DIA_Mortis_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Mortis_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Mortis_PICKPOCKET_DoIt);
-};
-
-func void DIA_Mortis_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Mortis_PICKPOCKET);
-};
-
-func void DIA_Mortis_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Mortis_PICKPOCKET);
-};
-
 instance DIA_Mortis_RepairNecklace(C_Info)
 {
 	npc = MIL_314_Mortis;

@@ -630,38 +630,3 @@ func void DIA_Akil_AkilsSchaf_Info()
 	B_GivePlayerXP(XP_AkilsSchaf);
 };
 
-
-instance DIA_Akil_PICKPOCKET(C_Info)
-{
-	npc = BAU_940_Akil;
-	nr = 900;
-	condition = DIA_Akil_PICKPOCKET_Condition;
-	information = DIA_Akil_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Akil_PICKPOCKET_Condition()
-{
-	return C_Beklauen(37,30);
-};
-
-func void DIA_Akil_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Akil_PICKPOCKET);
-	Info_AddChoice(DIA_Akil_PICKPOCKET,Dialog_Back,DIA_Akil_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Akil_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Akil_PICKPOCKET_DoIt);
-};
-
-func void DIA_Akil_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Akil_PICKPOCKET);
-};
-
-func void DIA_Akil_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Akil_PICKPOCKET);
-};
-

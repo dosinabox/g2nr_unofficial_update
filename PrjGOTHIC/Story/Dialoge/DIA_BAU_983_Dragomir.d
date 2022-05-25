@@ -298,37 +298,3 @@ func void DIA_Dragomir_Teach_CROSSBOW_5()
 	};
 };
 
-instance DIA_Dragomir_PICKPOCKET(C_Info)
-{
-	npc = BAU_983_Dragomir;
-	nr = 900;
-	condition = DIA_Dragomir_PICKPOCKET_Condition;
-	information = DIA_Dragomir_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Dragomir_PICKPOCKET_Condition()
-{
-	return C_Beklauen(47,70);
-};
-
-func void DIA_Dragomir_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Dragomir_PICKPOCKET);
-	Info_AddChoice(DIA_Dragomir_PICKPOCKET,Dialog_Back,DIA_Dragomir_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Dragomir_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Dragomir_PICKPOCKET_DoIt);
-};
-
-func void DIA_Dragomir_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Dragomir_PICKPOCKET);
-};
-
-func void DIA_Dragomir_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Dragomir_PICKPOCKET);
-};
-

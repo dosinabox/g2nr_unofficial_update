@@ -699,38 +699,3 @@ func void DIA_Neoras_USEDDRAGONEGGDRINK_Info()
 	AI_Output(self,other,"DIA_Neoras_USEDDRAGONEGGDRINK_01_03");	//Будет лучше, если мы повторим это через несколько недель. Иначе, боюсь, у тебя могут вырасти рога.
 };
 
-
-instance DIA_Neoras_PICKPOCKET(C_Info)
-{
-	npc = KDF_506_Neoras;
-	nr = 900;
-	condition = DIA_Neoras_PICKPOCKET_Condition;
-	information = DIA_Neoras_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Neoras_PICKPOCKET_Condition()
-{
-	return C_Beklauen(72,140);
-};
-
-func void DIA_Neoras_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Neoras_PICKPOCKET);
-	Info_AddChoice(DIA_Neoras_PICKPOCKET,Dialog_Back,DIA_Neoras_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Neoras_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Neoras_PICKPOCKET_DoIt);
-};
-
-func void DIA_Neoras_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Neoras_PICKPOCKET);
-};
-
-func void DIA_Neoras_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Neoras_PICKPOCKET);
-};
-

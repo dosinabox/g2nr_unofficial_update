@@ -25,45 +25,6 @@ func void DIA_Kardif_EXIT_Info()
 };
 
 
-instance DIA_Kardif_PICKPOCKET(C_Info)
-{
-	npc = VLK_431_Kardif;
-	nr = 900;
-	condition = DIA_Kardif_PICKPOCKET_Condition;
-	information = DIA_Kardif_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Kardif_PICKPOCKET_Condition()
-{
-	if(Kardif_OneQuestion == FALSE)
-	{
-		return C_Beklauen(55,85);
-	};
-	return FALSE;
-};
-
-func void DIA_Kardif_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Kardif_PICKPOCKET);
-	Info_AddChoice(DIA_Kardif_PICKPOCKET,Dialog_Back,DIA_Kardif_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Kardif_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Kardif_PICKPOCKET_DoIt);
-};
-
-func void DIA_Kardif_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Kardif_PICKPOCKET);
-};
-
-func void DIA_Kardif_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Kardif_PICKPOCKET);
-};
-
-
 instance DIA_Kardif_Hi(C_Info)
 {
 	npc = VLK_431_Kardif;

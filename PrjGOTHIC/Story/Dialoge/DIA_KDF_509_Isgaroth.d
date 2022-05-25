@@ -302,38 +302,3 @@ func void DIA_Isgaroth_Vatras_Info()
 	Vatras_Return = TRUE;
 };
 
-
-instance DIA_Isgaroth_PICKPOCKET(C_Info)
-{
-	npc = KDF_509_Isgaroth;
-	nr = 900;
-	condition = DIA_Isgaroth_PICKPOCKET_Condition;
-	information = DIA_Isgaroth_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Isgaroth_PICKPOCKET_Condition()
-{
-	return C_Beklauen(48,50);
-};
-
-func void DIA_Isgaroth_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Isgaroth_PICKPOCKET);
-	Info_AddChoice(DIA_Isgaroth_PICKPOCKET,Dialog_Back,DIA_Isgaroth_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Isgaroth_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Isgaroth_PICKPOCKET_DoIt);
-};
-
-func void DIA_Isgaroth_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Isgaroth_PICKPOCKET);
-};
-
-func void DIA_Isgaroth_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Isgaroth_PICKPOCKET);
-};
-

@@ -314,41 +314,6 @@ func void DIA_DiegoOw_TEACHSTR_5()
 	};
 };
 
-instance DIA_ThiefOW_PICKPOCKET(C_Info)
-{
-	npc = PC_ThiefOW;
-	nr = 900;
-	condition = DIA_ThiefOW_PICKPOCKET_Condition;
-	information = DIA_ThiefOW_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_120;
-};
-
-
-func int DIA_ThiefOW_PICKPOCKET_Condition()
-{
-	return C_Beklauen(120,600);
-};
-
-func void DIA_ThiefOW_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_ThiefOW_PICKPOCKET);
-	Info_AddChoice(DIA_ThiefOW_PICKPOCKET,Dialog_Back,DIA_ThiefOW_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_ThiefOW_PICKPOCKET,DIALOG_PICKPOCKET,DIA_ThiefOW_PICKPOCKET_DoIt);
-};
-
-func void DIA_ThiefOW_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_ThiefOW_PICKPOCKET);
-};
-
-func void DIA_ThiefOW_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_ThiefOW_PICKPOCKET);
-};
-
-
 instance DIA_Addon_ThiefOW_Together(C_Info)
 {
 	npc = PC_ThiefOW;

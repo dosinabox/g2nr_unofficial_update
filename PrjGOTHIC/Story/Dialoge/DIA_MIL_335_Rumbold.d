@@ -275,38 +275,3 @@ func void DIA_Rumbold_StillThere_ENDAttack()
 	};
 };
 
-
-instance DIA_Rumbold_PICKPOCKET(C_Info)
-{
-	npc = MIL_335_Rumbold;
-	nr = 900;
-	condition = DIA_Rumbold_PICKPOCKET_Condition;
-	information = DIA_Rumbold_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Rumbold_PICKPOCKET_Condition()
-{
-	return C_Beklauen(24,45);
-};
-
-func void DIA_Rumbold_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Rumbold_PICKPOCKET);
-	Info_AddChoice(DIA_Rumbold_PICKPOCKET,Dialog_Back,DIA_Rumbold_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Rumbold_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Rumbold_PICKPOCKET_DoIt);
-};
-
-func void DIA_Rumbold_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Rumbold_PICKPOCKET);
-};
-
-func void DIA_Rumbold_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Rumbold_PICKPOCKET);
-};
-

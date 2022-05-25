@@ -284,38 +284,3 @@ func void DIA_Grom_TEACHHUNTING_ShadowHorn()
 	Info_ClearChoices(DIA_Grom_TEACHHUNTING);
 };
 
-
-instance DIA_Grom_PICKPOCKET(C_Info)
-{
-	npc = BAU_981_Grom;
-	nr = 900;
-	condition = DIA_Grom_PICKPOCKET_Condition;
-	information = DIA_Grom_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Grom_PICKPOCKET_Condition()
-{
-	return C_Beklauen(75,40);
-};
-
-func void DIA_Grom_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Grom_PICKPOCKET);
-	Info_AddChoice(DIA_Grom_PICKPOCKET,Dialog_Back,DIA_Grom_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Grom_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Grom_PICKPOCKET_DoIt);
-};
-
-func void DIA_Grom_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Grom_PICKPOCKET);
-};
-
-func void DIA_Grom_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Grom_PICKPOCKET);
-};
-

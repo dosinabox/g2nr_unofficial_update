@@ -604,38 +604,3 @@ func void DIA_Raoul_Ship_Info()
 	};
 };
 
-
-instance DIA_Raoul_PICKPOCKET(C_Info)
-{
-	npc = SLD_822_Raoul;
-	nr = 900;
-	condition = DIA_Raoul_PICKPOCKET_Condition;
-	information = DIA_Raoul_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Raoul_PICKPOCKET_Condition()
-{
-	return C_Beklauen(45,85);
-};
-
-func void DIA_Raoul_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Raoul_PICKPOCKET);
-	Info_AddChoice(DIA_Raoul_PICKPOCKET,Dialog_Back,DIA_Raoul_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Raoul_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Raoul_PICKPOCKET_DoIt);
-};
-
-func void DIA_Raoul_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Raoul_PICKPOCKET);
-};
-
-func void DIA_Raoul_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Raoul_PICKPOCKET);
-};
-

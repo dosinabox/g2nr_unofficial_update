@@ -486,38 +486,3 @@ func void DIA_Maleth_PERM3_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Maleth_PICKPOCKET(C_Info)
-{
-	npc = BAU_954_Maleth;
-	nr = 900;
-	condition = DIA_Maleth_PICKPOCKET_Condition;
-	information = DIA_Maleth_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Maleth_PICKPOCKET_Condition()
-{
-	return C_Beklauen(10,10);
-};
-
-func void DIA_Maleth_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Maleth_PICKPOCKET);
-	Info_AddChoice(DIA_Maleth_PICKPOCKET,Dialog_Back,DIA_Maleth_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Maleth_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Maleth_PICKPOCKET_DoIt);
-};
-
-func void DIA_Maleth_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Maleth_PICKPOCKET);
-};
-
-func void DIA_Maleth_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Maleth_PICKPOCKET);
-};
-

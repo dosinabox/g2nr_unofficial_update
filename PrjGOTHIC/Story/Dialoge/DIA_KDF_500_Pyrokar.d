@@ -2302,38 +2302,3 @@ func void DIA_Pyrokar_PotionofDeath_Weapon()
 	CreateInvItems(hero,ItPo_PotionOfDeath_02_Mis,1);
 };
 
-
-instance DIA_Pyrokar_PICKPOCKET(C_Info)
-{
-	npc = KDF_500_Pyrokar;
-	nr = 900;
-	condition = DIA_Pyrokar_PICKPOCKET_Condition;
-	information = DIA_Pyrokar_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_120;
-};
-
-
-func int DIA_Pyrokar_PICKPOCKET_Condition()
-{
-	return C_Beklauen(108,550);
-};
-
-func void DIA_Pyrokar_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Pyrokar_PICKPOCKET);
-	Info_AddChoice(DIA_Pyrokar_PICKPOCKET,Dialog_Back,DIA_Pyrokar_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Pyrokar_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Pyrokar_PICKPOCKET_DoIt);
-};
-
-func void DIA_Pyrokar_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Pyrokar_PICKPOCKET);
-};
-
-func void DIA_Pyrokar_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Pyrokar_PICKPOCKET);
-};
-

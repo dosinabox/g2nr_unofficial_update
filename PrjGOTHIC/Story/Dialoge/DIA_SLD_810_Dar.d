@@ -531,37 +531,3 @@ func void DIA_Dar_BRINGORCELITERING_was_am()
 	Info_ClearChoices(DIA_Dar_BRINGORCELITERING);
 };
 
-instance DIA_Dar_PICKPOCKET(C_Info)
-{
-	npc = SLD_810_Dar;
-	nr = 900;
-	condition = DIA_Dar_PICKPOCKET_Condition;
-	information = DIA_Dar_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Dar_PICKPOCKET_Condition()
-{
-	return C_Beklauen(67,35);
-};
-
-func void DIA_Dar_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Dar_PICKPOCKET);
-	Info_AddChoice(DIA_Dar_PICKPOCKET,Dialog_Back,DIA_Dar_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Dar_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Dar_PICKPOCKET_DoIt);
-};
-
-func void DIA_Dar_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Dar_PICKPOCKET);
-};
-
-func void DIA_Dar_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Dar_PICKPOCKET);
-};
-

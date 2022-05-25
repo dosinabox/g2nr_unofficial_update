@@ -26,41 +26,6 @@ func void DIA_Fenia_EXIT_Info()
 };
 
 
-instance DIA_Fenia_PICKPOCKET(C_Info)
-{
-	npc = VLK_476_Fenia;
-	nr = 900;
-	condition = DIA_Fenia_PICKPOCKET_Condition;
-	information = DIA_Fenia_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60_Female;
-};
-
-
-func int DIA_Fenia_PICKPOCKET_Condition()
-{
-	return C_Beklauen(50,75);
-};
-
-func void DIA_Fenia_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Fenia_PICKPOCKET);
-	Info_AddChoice(DIA_Fenia_PICKPOCKET,Dialog_Back,DIA_Fenia_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Fenia_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Fenia_PICKPOCKET_DoIt);
-};
-
-func void DIA_Fenia_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Fenia_PICKPOCKET);
-};
-
-func void DIA_Fenia_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Fenia_PICKPOCKET);
-};
-
-
 instance DIA_Fenia_Hallo(C_Info)
 {
 	npc = VLK_476_Fenia;

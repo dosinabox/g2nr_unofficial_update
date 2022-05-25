@@ -18,7 +18,7 @@ func int C_CanStealFromNpc(var int TheftDex) //TODO убрать TheftDex и использова
 	{
 		return FALSE;
 	};
-	/*itm = self.aivar[AIV_ItemToSteal];
+	itm = self.aivar[AIV_ItemToSteal];
 	if(itm != 0)
 	{
 		if(Hlp_IsItem(ItMi_Gold,itm))
@@ -33,58 +33,8 @@ func int C_CanStealFromNpc(var int TheftDex) //TODO убрать TheftDex и использова
 		{
 			return FALSE;
 		};
-	};*/
-	return TRUE;
-};
-
-func int C_Beklauen(var int TheftDex,var int TheftGold) //TODO поддержка старых сохранений - удалить вместе с диалогами
-{
-	/*if(self.aivar[AIV_DexToSteal] > 0)
-	{
-		return FALSE;
-	};*/
-	if(!C_CanStealFromNpc(TheftDex))
-	{
-		return FALSE;
-	};
-	if(Npc_IsInState(self,ZS_Talk))
-	{
-		if((TheftDex <= 20) && (EasyLowDexPickpocketDisabled == FALSE))
-		{
-			TheftDexGlob = 10;
-		}
-		else
-		{
-			TheftDexGlob = TheftDex;
-		};
-		TheftGoldGlob = TheftGold;
 	};
 	return TRUE;
-};
-
-func void B_Beklauen() //TODO поддержка старых сохранений - удалить вместе с диалогами
-{
-	if(other.attribute[ATR_DEXTERITY] >= TheftDexGlob)
-	{
-		var string text;
-		B_GiveInvItems(self,other,ItMi_Gold,TheftGoldGlob);
-		TotalTheftGold += TheftGoldGlob;
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Snd_Play("Geldbeutel");
-		text = ConcatStrings(self.name[0],PRINT_PickPocketSuccess);
-		text = ConcatStrings(text,IntToString(TheftGoldGlob));
-		text = ConcatStrings(text,PRINT_Gold);
-		text = ConcatStrings(text,".");
-		B_LogEntry(Topic_PickPocket,text);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
 };
 
 func void B_StealItem(var int dex,var int itm,var int amount) //TODO убрать TheftDex и использовать AIV_DexToSteal
@@ -126,6 +76,10 @@ func void B_StealItem(var int dex,var int itm,var int amount) //TODO убрать Thef
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Richter))
 		{
 			self.flags = 0;
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Edgor))
+		{
+			B_Say(self,self,"$AWAKE");
 		};
 		B_LogEntry(Topic_PickPocket,ConcatStrings(text,"."));
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;

@@ -21,41 +21,6 @@ func void DIA_Moe_EXIT_Info()
 };
 
 
-instance DIA_Moe_PICKPOCKET(C_Info)
-{
-	npc = VLK_432_Moe;
-	nr = 900;
-	condition = DIA_Moe_PICKPOCKET_Condition;
-	information = DIA_Moe_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Moe_PICKPOCKET_Condition()
-{
-	return C_Beklauen(25,30);
-};
-
-func void DIA_Moe_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Moe_PICKPOCKET);
-	Info_AddChoice(DIA_Moe_PICKPOCKET,Dialog_Back,DIA_Moe_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Moe_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Moe_PICKPOCKET_DoIt);
-};
-
-func void DIA_Moe_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Moe_PICKPOCKET);
-};
-
-func void DIA_Moe_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Moe_PICKPOCKET);
-};
-
-
 instance DIA_Moe_Hallo(C_Info)
 {
 	npc = VLK_432_Moe;

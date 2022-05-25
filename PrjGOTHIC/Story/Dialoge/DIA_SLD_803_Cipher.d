@@ -448,38 +448,3 @@ func void DIA_Cipher_KrautPaket_Info()
 	B_GivePlayerXP(XP_CipherPaket);
 };
 
-
-instance DIA_CipherSLD_PICKPOCKET(C_Info)
-{
-	npc = SLD_803_Cipher;
-	nr = 900;
-	condition = DIA_CipherSLD_PICKPOCKET_Condition;
-	information = DIA_CipherSLD_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_CipherSLD_PICKPOCKET_Condition()
-{
-	return C_Beklauen(65,65);
-};
-
-func void DIA_CipherSLD_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_CipherSLD_PICKPOCKET);
-	Info_AddChoice(DIA_CipherSLD_PICKPOCKET,Dialog_Back,DIA_CipherSLD_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_CipherSLD_PICKPOCKET,DIALOG_PICKPOCKET,DIA_CipherSLD_PICKPOCKET_DoIt);
-};
-
-func void DIA_CipherSLD_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_CipherSLD_PICKPOCKET);
-};
-
-func void DIA_CipherSLD_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_CipherSLD_PICKPOCKET);
-};
-

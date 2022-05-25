@@ -306,38 +306,3 @@ func void DIA_Wasili_PERM_Info()
 	};
 };
 
-
-instance DIA_Wasili_PICKPOCKET(C_Info)
-{
-	npc = BAU_907_Wasili;
-	nr = 900;
-	condition = DIA_Wasili_PICKPOCKET_Condition;
-	information = DIA_Wasili_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Wasili_PICKPOCKET_Condition()
-{
-	return C_Beklauen(55,90);
-};
-
-func void DIA_Wasili_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Wasili_PICKPOCKET);
-	Info_AddChoice(DIA_Wasili_PICKPOCKET,Dialog_Back,DIA_Wasili_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Wasili_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Wasili_PICKPOCKET_DoIt);
-};
-
-func void DIA_Wasili_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Wasili_PICKPOCKET);
-};
-
-func void DIA_Wasili_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Wasili_PICKPOCKET);
-};
-

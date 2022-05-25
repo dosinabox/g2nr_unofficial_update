@@ -553,38 +553,3 @@ func void DIA_Opolos_Kap3_PERM_PEDRO()
 	Opolos_Pedro = TRUE;
 };
 
-
-instance DIA_Opolos_PICKPOCKET(C_Info)
-{
-	npc = NOV_605_Opolos;
-	nr = 900;
-	condition = DIA_Opolos_PICKPOCKET_Condition;
-	information = DIA_Opolos_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Opolos_PICKPOCKET_Condition()
-{
-	return C_Beklauen(54,70);
-};
-
-func void DIA_Opolos_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Opolos_PICKPOCKET);
-	Info_AddChoice(DIA_Opolos_PICKPOCKET,Dialog_Back,DIA_Opolos_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Opolos_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Opolos_PICKPOCKET_DoIt);
-};
-
-func void DIA_Opolos_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Opolos_PICKPOCKET);
-};
-
-func void DIA_Opolos_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Opolos_PICKPOCKET);
-};
-

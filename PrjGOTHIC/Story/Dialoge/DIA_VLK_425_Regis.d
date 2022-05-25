@@ -21,41 +21,6 @@ func void DIA_Regis_EXIT_Info()
 };
 
 
-instance DIA_Regis_PICKPOCKET(C_Info)
-{
-	npc = VLK_425_Regis;
-	nr = 900;
-	condition = DIA_Regis_PICKPOCKET_Condition;
-	information = DIA_Regis_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Regis_PICKPOCKET_Condition()
-{
-	return C_Beklauen(40,35);
-};
-
-func void DIA_Regis_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Regis_PICKPOCKET);
-	Info_AddChoice(DIA_Regis_PICKPOCKET,Dialog_Back,DIA_Regis_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Regis_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Regis_PICKPOCKET_DoIt);
-};
-
-func void DIA_Regis_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Regis_PICKPOCKET);
-};
-
-func void DIA_Regis_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Regis_PICKPOCKET);
-};
-
-
 instance DIA_Regis_Hallo(C_Info)
 {
 	npc = VLK_425_Regis;

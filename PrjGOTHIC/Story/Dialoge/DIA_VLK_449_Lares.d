@@ -146,41 +146,6 @@ func void DIA_Addon_Lares_HaltsMaul_Info()
 };
 
 
-instance DIA_Lares_PICKPOCKET(C_Info)
-{
-	npc = VLK_449_Lares;
-	nr = 900;
-	condition = DIA_Lares_PICKPOCKET_Condition;
-	information = DIA_Lares_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Lares_PICKPOCKET_Condition()
-{
-	return C_Beklauen(95,350);
-};
-
-func void DIA_Lares_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Lares_PICKPOCKET);
-	Info_AddChoice(DIA_Lares_PICKPOCKET,Dialog_Back,DIA_Lares_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Lares_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Lares_PICKPOCKET_DoIt);
-};
-
-func void DIA_Lares_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Lares_PICKPOCKET);
-};
-
-func void DIA_Lares_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Lares_PICKPOCKET);
-};
-
-
 func void B_Lares_Comment_MIL()
 {
 	AI_Output(self,other,"DIA_Lares_OtherGuild_09_01");	//(смеется) Со смеху помереть можно - бывший каторжник в ополчении...

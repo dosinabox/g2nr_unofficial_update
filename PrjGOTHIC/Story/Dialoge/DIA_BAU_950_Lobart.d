@@ -999,38 +999,3 @@ func void DIA_Lobart_ORKSWEG_Info()
 	B_GiveInvItems(self,other,ItMi_Gold,150);
 };
 
-
-instance DIA_Lobart_PICKPOCKET(C_Info)
-{
-	npc = BAU_950_Lobart;
-	nr = 900;
-	condition = DIA_Lobart_PICKPOCKET_Condition;
-	information = DIA_Lobart_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Lobart_PICKPOCKET_Condition()
-{
-	return C_Beklauen(65,80);
-};
-
-func void DIA_Lobart_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Lobart_PICKPOCKET);
-	Info_AddChoice(DIA_Lobart_PICKPOCKET,Dialog_Back,DIA_Lobart_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Lobart_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Lobart_PICKPOCKET_DoIt);
-};
-
-func void DIA_Lobart_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Lobart_PICKPOCKET);
-};
-
-func void DIA_Lobart_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Lobart_PICKPOCKET);
-};
-

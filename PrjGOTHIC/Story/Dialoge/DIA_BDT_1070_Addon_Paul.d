@@ -21,41 +21,6 @@ func void DIA_Addon_Paul_EXIT_Info()
 };
 
 
-instance DIA_Addon_Paul_PICKPOCKET(C_Info)
-{
-	npc = BDT_1070_Addon_Paul;
-	nr = 900;
-	condition = DIA_Addon_Paul_PICKPOCKET_Condition;
-	information = DIA_Addon_Paul_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Addon_Paul_PICKPOCKET_Condition()
-{
-	return C_Beklauen(22,19);
-};
-
-func void DIA_Addon_Paul_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Paul_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Paul_PICKPOCKET,Dialog_Back,DIA_Addon_Paul_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Paul_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Paul_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Paul_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Paul_PICKPOCKET);
-};
-
-func void DIA_Addon_Paul_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Paul_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Paul_Hi(C_Info)
 {
 	npc = BDT_1070_Addon_Paul;

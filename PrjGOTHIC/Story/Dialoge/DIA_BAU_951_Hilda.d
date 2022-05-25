@@ -432,38 +432,3 @@ func void DIA_Hilda_DISTURB_Info()
 	};
 };
 
-
-instance DIA_Hilda_PICKPOCKET(C_Info)
-{
-	npc = BAU_951_Hilda;
-	nr = 900;
-	condition = DIA_Hilda_PICKPOCKET_Condition;
-	information = DIA_Hilda_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40_Female;
-};
-
-
-func int DIA_Hilda_PICKPOCKET_Condition()
-{
-	return C_Beklauen(26,35);
-};
-
-func void DIA_Hilda_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Hilda_PICKPOCKET);
-	Info_AddChoice(DIA_Hilda_PICKPOCKET,Dialog_Back,DIA_Hilda_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Hilda_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Hilda_PICKPOCKET_DoIt);
-};
-
-func void DIA_Hilda_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Hilda_PICKPOCKET);
-};
-
-func void DIA_Hilda_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Hilda_PICKPOCKET);
-};
-

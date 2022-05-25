@@ -21,41 +21,6 @@ func void DIA_Ramirez_EXIT_Info()
 };
 
 
-instance DIA_Ramirez_PICKPOCKET(C_Info)
-{
-	npc = VLK_445_Ramirez;
-	nr = 900;
-	condition = DIA_Ramirez_PICKPOCKET_Condition;
-	information = DIA_Ramirez_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Ramirez_PICKPOCKET_Condition()
-{
-	return C_Beklauen(90,300);
-};
-
-func void DIA_Ramirez_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Ramirez_PICKPOCKET);
-	Info_AddChoice(DIA_Ramirez_PICKPOCKET,Dialog_Back,DIA_Ramirez_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Ramirez_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Ramirez_PICKPOCKET_DoIt);
-};
-
-func void DIA_Ramirez_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Ramirez_PICKPOCKET);
-};
-
-func void DIA_Ramirez_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Ramirez_PICKPOCKET);
-};
-
-
 instance DIA_Ramirez_Zeichen(C_Info)
 {
 	npc = VLK_445_Ramirez;

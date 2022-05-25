@@ -22,41 +22,6 @@ func void DIA_Addon_Erol_EXIT_Info()
 };
 
 
-instance DIA_Addon_Erol_PICKPOCKET(C_Info)
-{
-	npc = VLK_4303_Addon_Erol;
-	nr = 900;
-	condition = DIA_Addon_Erol_PICKPOCKET_Condition;
-	information = DIA_Addon_Erol_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Addon_Erol_PICKPOCKET_Condition()
-{
-	return C_Beklauen(43,42);
-};
-
-func void DIA_Addon_Erol_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Erol_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Erol_PICKPOCKET,Dialog_Back,DIA_Addon_Erol_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Erol_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Erol_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Erol_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Erol_PICKPOCKET);
-};
-
-func void DIA_Addon_Erol_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Erol_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Erol_Hallo(C_Info)
 {
 	npc = VLK_4303_Addon_Erol;

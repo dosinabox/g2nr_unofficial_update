@@ -218,38 +218,3 @@ func void DIA_Lutero_Trade_Info()
 	Trade_IsActive = TRUE;
 };
 
-
-instance DIA_Lutero_PICKPOCKET(C_Info)
-{
-	npc = VLK_404_Lutero;
-	nr = 900;
-	condition = DIA_Lutero_PICKPOCKET_Condition;
-	information = DIA_Lutero_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Lutero_PICKPOCKET_Condition()
-{
-	return C_Beklauen(58,65);
-};
-
-func void DIA_Lutero_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Lutero_PICKPOCKET);
-	Info_AddChoice(DIA_Lutero_PICKPOCKET,Dialog_Back,DIA_Lutero_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Lutero_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Lutero_PICKPOCKET_DoIt);
-};
-
-func void DIA_Lutero_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Lutero_PICKPOCKET);
-};
-
-func void DIA_Lutero_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Lutero_PICKPOCKET);
-};
-

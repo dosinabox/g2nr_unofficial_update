@@ -22,41 +22,6 @@ func void DIA_Addon_Martin_EXIT_Info()
 };
 
 
-instance DIA_Addon_Martin_PICKPOCKET(C_Info)
-{
-	npc = MIL_350_Addon_Martin;
-	nr = 900;
-	condition = DIA_Addon_Martin_PICKPOCKET_Condition;
-	information = DIA_Addon_Martin_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Addon_Martin_PICKPOCKET_Condition()
-{
-	return C_Beklauen(65,77);
-};
-
-func void DIA_Addon_Martin_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Martin_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Martin_PICKPOCKET,Dialog_Back,DIA_Addon_Martin_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Martin_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Martin_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Martin_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Martin_PICKPOCKET);
-};
-
-func void DIA_Addon_Martin_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Martin_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Martin_MeetingIsRunning(C_Info)
 {
 	npc = MIL_350_Addon_Martin;

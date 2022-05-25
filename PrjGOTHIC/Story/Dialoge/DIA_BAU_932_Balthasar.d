@@ -333,38 +333,3 @@ func void DIA_Balthasar_PERMKAP1_Info()
 	};
 };
 
-
-instance DIA_Balthasar_PICKPOCKET(C_Info)
-{
-	npc = BAU_932_Balthasar;
-	nr = 900;
-	condition = DIA_Balthasar_PICKPOCKET_Condition;
-	information = DIA_Balthasar_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Balthasar_PICKPOCKET_Condition()
-{
-	return C_Beklauen(10,10);
-};
-
-func void DIA_Balthasar_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Balthasar_PICKPOCKET);
-	Info_AddChoice(DIA_Balthasar_PICKPOCKET,Dialog_Back,DIA_Balthasar_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Balthasar_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Balthasar_PICKPOCKET_DoIt);
-};
-
-func void DIA_Balthasar_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Balthasar_PICKPOCKET);
-};
-
-func void DIA_Balthasar_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Balthasar_PICKPOCKET);
-};
-

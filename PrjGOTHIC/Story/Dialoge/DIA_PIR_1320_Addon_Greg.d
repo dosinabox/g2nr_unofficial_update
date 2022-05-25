@@ -21,40 +21,6 @@ func void DIA_Addon_Greg_EXIT_Info()
 };
 
 
-instance DIA_Addon_Greg_PICKPOCKET(C_Info)
-{
-	npc = PIR_1320_Addon_Greg;
-	nr = 900;
-	condition = DIA_Addon_Greg_PICKPOCKET_Condition;
-	information = DIA_Addon_Greg_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_120;
-};
-
-
-func int DIA_Addon_Greg_PICKPOCKET_Condition()
-{
-	return C_Beklauen(111,666);
-};
-
-func void DIA_Addon_Greg_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Greg_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Greg_PICKPOCKET,Dialog_Back,DIA_Addon_Greg_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Greg_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Greg_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Greg_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Greg_PICKPOCKET);
-};
-
-func void DIA_Addon_Greg_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Greg_PICKPOCKET);
-};
-
 instance DIA_Addon_Greg_ImNew(C_Info)
 {
 	npc = PIR_1320_Addon_Greg;

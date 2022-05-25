@@ -1,39 +1,4 @@
 
-instance DIA_Canthar_PICKPOCKET(C_Info)
-{
-	npc = VLK_468_Canthar;
-	nr = 900;
-	condition = DIA_Canthar_PICKPOCKET_Condition;
-	information = DIA_Canthar_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Canthar_PICKPOCKET_Condition()
-{
-	return C_Beklauen(20,25);
-};
-
-func void DIA_Canthar_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Canthar_PICKPOCKET);
-	Info_AddChoice(DIA_Canthar_PICKPOCKET,Dialog_Back,DIA_Canthar_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Canthar_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Canthar_PICKPOCKET_DoIt);
-};
-
-func void DIA_Canthar_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Canthar_PICKPOCKET);
-};
-
-func void DIA_Canthar_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Canthar_PICKPOCKET);
-};
-
-
 instance DIA_Canthar_EXIT(C_Info)
 {
 	npc = VLK_468_Canthar;

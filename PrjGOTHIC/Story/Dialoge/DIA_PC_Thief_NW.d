@@ -712,38 +712,3 @@ func void DIA_DiegoNW_StillNeedYou_Info()
 	B_JoinShip(self);
 };
 
-
-instance DIA_Thief_NW_PICKPOCKET(C_Info)
-{
-	npc = PC_Thief_NW;
-	nr = 900;
-	condition = DIA_Thief_NW_PICKPOCKET_Condition;
-	information = DIA_Thief_NW_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_120;
-};
-
-
-func int DIA_Thief_NW_PICKPOCKET_Condition()
-{
-	return C_Beklauen(120,600);
-};
-
-func void DIA_Thief_NW_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Thief_NW_PICKPOCKET);
-	Info_AddChoice(DIA_Thief_NW_PICKPOCKET,Dialog_Back,DIA_Thief_NW_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Thief_NW_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Thief_NW_PICKPOCKET_DoIt);
-};
-
-func void DIA_Thief_NW_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Thief_NW_PICKPOCKET);
-};
-
-func void DIA_Thief_NW_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Thief_NW_PICKPOCKET);
-};
-

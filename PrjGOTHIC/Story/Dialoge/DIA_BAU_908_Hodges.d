@@ -281,38 +281,3 @@ func void DIA_Hodges_BennetAndSLD_Info()
 	AI_Output(self,other,"DIA_Hodges_BennetAndSLD_03_04");	//Поговори с Ли, может быть, ты чем-нибудь сможешь помочь.
 };
 
-
-instance DIA_Hodges_PICKPOCKET(C_Info)
-{
-	npc = BAU_908_Hodges;
-	nr = 900;
-	condition = DIA_Hodges_PICKPOCKET_Condition;
-	information = DIA_Hodges_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Hodges_PICKPOCKET_Condition()
-{
-	return C_Beklauen(15,10);
-};
-
-func void DIA_Hodges_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Hodges_PICKPOCKET);
-	Info_AddChoice(DIA_Hodges_PICKPOCKET,Dialog_Back,DIA_Hodges_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Hodges_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Hodges_PICKPOCKET_DoIt);
-};
-
-func void DIA_Hodges_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Hodges_PICKPOCKET);
-};
-
-func void DIA_Hodges_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Hodges_PICKPOCKET);
-};
-

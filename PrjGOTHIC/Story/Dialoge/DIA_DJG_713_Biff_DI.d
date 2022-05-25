@@ -164,39 +164,3 @@ func void DIA_Biff_DI_plunder_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Biff_DI_PICKPOCKET(C_Info)
-{
-	npc = DJG_713_Biff_DI;
-	nr = 900;
-	condition = DIA_Biff_DI_PICKPOCKET_Condition;
-	information = DIA_Biff_DI_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Biff_DI_PICKPOCKET_Condition()
-{
-	return C_Beklauen(92,450);
-};
-
-func void DIA_Biff_DI_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Biff_DI_PICKPOCKET);
-	Info_AddChoice(DIA_Biff_DI_PICKPOCKET,Dialog_Back,DIA_Biff_DI_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Biff_DI_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Biff_DI_PICKPOCKET_DoIt);
-};
-
-func void DIA_Biff_DI_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Biff_DI_PICKPOCKET);
-};
-
-func void DIA_Biff_DI_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Biff_DI_PICKPOCKET);
-};
-
-

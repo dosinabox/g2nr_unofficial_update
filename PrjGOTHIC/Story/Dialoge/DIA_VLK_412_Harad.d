@@ -1180,38 +1180,3 @@ func void DIA_Harad_Goldsmith_Info()
 	AI_Output(self,other,"DIA_Harad_Goldsmith_12_02");	//Может, тебе стоит поспрашивать там.
 };
 
-
-instance DIA_Harad_PICKPOCKET(C_Info)
-{
-	npc = VLK_412_Harad;
-	nr = 900;
-	condition = DIA_Harad_PICKPOCKET_Condition;
-	information = DIA_Harad_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Harad_PICKPOCKET_Condition()
-{
-	return C_Beklauen(14,35);
-};
-
-func void DIA_Harad_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Harad_PICKPOCKET);
-	Info_AddChoice(DIA_Harad_PICKPOCKET,Dialog_Back,DIA_Harad_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Harad_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Harad_PICKPOCKET_DoIt);
-};
-
-func void DIA_Harad_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Harad_PICKPOCKET);
-};
-
-func void DIA_Harad_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Harad_PICKPOCKET);
-};
-

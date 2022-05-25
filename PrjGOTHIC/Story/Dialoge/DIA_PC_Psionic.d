@@ -614,38 +614,3 @@ func void DIA_Lester_StillNeedYou_Info()
 	};
 };
 
-
-instance DIA_PC_Psionic_PICKPOCKET(C_Info)
-{
-	npc = PC_Psionic;
-	nr = 900;
-	condition = DIA_PC_Psionic_PICKPOCKET_Condition;
-	information = DIA_PC_Psionic_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_PC_Psionic_PICKPOCKET_Condition()
-{
-	return C_Beklauen(76,20);
-};
-
-func void DIA_PC_Psionic_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_PC_Psionic_PICKPOCKET);
-	Info_AddChoice(DIA_PC_Psionic_PICKPOCKET,Dialog_Back,DIA_PC_Psionic_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_PC_Psionic_PICKPOCKET,DIALOG_PICKPOCKET,DIA_PC_Psionic_PICKPOCKET_DoIt);
-};
-
-func void DIA_PC_Psionic_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_PC_Psionic_PICKPOCKET);
-};
-
-func void DIA_PC_Psionic_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_PC_Psionic_PICKPOCKET);
-};
-

@@ -21,41 +21,6 @@ func void DIA_Abuyin_EXIT_Info()
 };
 
 
-instance DIA_Abuyin_PICKPOCKET(C_Info)
-{
-	npc = VLK_456_Abuyin;
-	nr = 900;
-	condition = DIA_Abuyin_PICKPOCKET_Condition;
-	information = DIA_Abuyin_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Abuyin_PICKPOCKET_Condition()
-{
-	return C_Beklauen(75,200);
-};
-
-func void DIA_Abuyin_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Abuyin_PICKPOCKET);
-	Info_AddChoice(DIA_Abuyin_PICKPOCKET,Dialog_Back,DIA_Abuyin_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Abuyin_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Abuyin_PICKPOCKET_DoIt);
-};
-
-func void DIA_Abuyin_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Abuyin_PICKPOCKET);
-};
-
-func void DIA_Abuyin_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Abuyin_PICKPOCKET);
-};
-
-
 instance DIA_Abuyin_Hallo(C_Info)
 {
 	npc = VLK_456_Abuyin;

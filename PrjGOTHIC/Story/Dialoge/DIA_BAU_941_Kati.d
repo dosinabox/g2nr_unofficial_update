@@ -333,38 +333,3 @@ func void DIA_Kati_PERM_Info()
 	AI_Output(self,other,"DIA_Kati_PERM_16_02");	//Я так долго не вынесу. Они шныряют вокруг дома и везде суют свой нос.
 };
 
-
-instance DIA_Kati_PICKPOCKET(C_Info)
-{
-	npc = BAU_941_Kati;
-	nr = 900;
-	condition = DIA_Kati_PICKPOCKET_Condition;
-	information = DIA_Kati_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20_Female;
-};
-
-
-func int DIA_Kati_PICKPOCKET_Condition()
-{
-	return C_Beklauen(13,15);
-};
-
-func void DIA_Kati_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Kati_PICKPOCKET);
-	Info_AddChoice(DIA_Kati_PICKPOCKET,Dialog_Back,DIA_Kati_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Kati_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Kati_PICKPOCKET_DoIt);
-};
-
-func void DIA_Kati_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Kati_PICKPOCKET);
-};
-
-func void DIA_Kati_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Kati_PICKPOCKET);
-};
-

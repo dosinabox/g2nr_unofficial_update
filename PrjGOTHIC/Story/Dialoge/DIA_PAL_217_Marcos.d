@@ -177,38 +177,3 @@ func void DIA_Marcos_Perm_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Marcos_PICKPOCKET(C_Info)
-{
-	npc = PAL_217_Marcos;
-	nr = 900;
-	condition = DIA_Marcos_PICKPOCKET_Condition;
-	information = DIA_Marcos_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Marcos_PICKPOCKET_Condition()
-{
-	return C_Beklauen(65,380);
-};
-
-func void DIA_Marcos_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Marcos_PICKPOCKET);
-	Info_AddChoice(DIA_Marcos_PICKPOCKET,Dialog_Back,DIA_Marcos_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Marcos_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Marcos_PICKPOCKET_DoIt);
-};
-
-func void DIA_Marcos_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Marcos_PICKPOCKET);
-};
-
-func void DIA_Marcos_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Marcos_PICKPOCKET);
-};
-

@@ -166,38 +166,3 @@ func void DIA_Grimes_PERM_Info()
 	AI_Output(self,other,"DIA_Grimes_PERM_05_01");	//Эта скала ужасно твердая - она как будто не хочет отдавать нам руду.
 };
 
-
-instance DIA_Grimes_PICKPOCKET(C_Info)
-{
-	npc = VLK_4111_Grimes;
-	nr = 900;
-	condition = DIA_Grimes_PICKPOCKET_Condition;
-	information = DIA_Grimes_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Grimes_PICKPOCKET_Condition()
-{
-	return C_Beklauen(43,21);
-};
-
-func void DIA_Grimes_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Grimes_PICKPOCKET);
-	Info_AddChoice(DIA_Grimes_PICKPOCKET,Dialog_Back,DIA_Grimes_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Grimes_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Grimes_PICKPOCKET_DoIt);
-};
-
-func void DIA_Grimes_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Grimes_PICKPOCKET);
-};
-
-func void DIA_Grimes_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Grimes_PICKPOCKET);
-};
-

@@ -550,38 +550,3 @@ func void DIA_Rod_PERM_Info()
 	};
 };
 
-
-instance DIA_RodSLD_PICKPOCKET(C_Info)
-{
-	npc = SLD_804_Rod;
-	nr = 900;
-	condition = DIA_RodSLD_PICKPOCKET_Condition;
-	information = DIA_RodSLD_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_RodSLD_PICKPOCKET_Condition()
-{
-	return C_Beklauen(15,35);
-};
-
-func void DIA_RodSLD_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_RodSLD_PICKPOCKET);
-	Info_AddChoice(DIA_RodSLD_PICKPOCKET,Dialog_Back,DIA_RodSLD_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_RodSLD_PICKPOCKET,DIALOG_PICKPOCKET,DIA_RodSLD_PICKPOCKET_DoIt);
-};
-
-func void DIA_RodSLD_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_RodSLD_PICKPOCKET);
-};
-
-func void DIA_RodSLD_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_RodSLD_PICKPOCKET);
-};
-

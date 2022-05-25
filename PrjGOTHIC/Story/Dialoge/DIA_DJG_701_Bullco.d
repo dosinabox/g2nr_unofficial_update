@@ -219,38 +219,3 @@ func void DIA_Bullco_WASNUN_kopfab_angriff()
 	B_Attack(self,other,AR_NONE,1);
 };
 
-
-instance DIA_Bullco_PICKPOCKET(C_Info)
-{
-	npc = DJG_701_Bullco;
-	nr = 900;
-	condition = DIA_Bullco_PICKPOCKET_Condition;
-	information = DIA_Bullco_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Bullco_PICKPOCKET_Condition()
-{
-	return C_Beklauen(34,65);
-};
-
-func void DIA_Bullco_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Bullco_PICKPOCKET);
-	Info_AddChoice(DIA_Bullco_PICKPOCKET,Dialog_Back,DIA_Bullco_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Bullco_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Bullco_PICKPOCKET_DoIt);
-};
-
-func void DIA_Bullco_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Bullco_PICKPOCKET);
-};
-
-func void DIA_Bullco_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Bullco_PICKPOCKET);
-};
-

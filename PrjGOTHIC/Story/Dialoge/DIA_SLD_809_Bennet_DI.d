@@ -341,41 +341,6 @@ func void DIA_Bennet_DI_UndeadDragonDead_Info()
 };
 
 
-instance DIA_Bennet_DI_PICKPOCKET(C_Info)
-{
-	npc = SLD_809_Bennet_DI;
-	nr = 900;
-	condition = DIA_Bennet_DI_PICKPOCKET_Condition;
-	information = DIA_Bennet_DI_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Bennet_DI_PICKPOCKET_Condition()
-{
-	return C_Beklauen(35,65);
-};
-
-func void DIA_Bennet_DI_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Bennet_DI_PICKPOCKET);
-	Info_AddChoice(DIA_Bennet_DI_PICKPOCKET,Dialog_Back,DIA_Bennet_DI_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Bennet_DI_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Bennet_DI_PICKPOCKET_DoIt);
-};
-
-func void DIA_Bennet_DI_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Bennet_DI_PICKPOCKET);
-};
-
-func void DIA_Bennet_DI_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Bennet_DI_PICKPOCKET);
-};
-
-
 instance DIA_Bennet_DI_BetterArmor(C_Info)
 {
 	npc = SLD_809_Bennet_DI;

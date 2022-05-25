@@ -27,41 +27,6 @@ func void B_CarlSayHallo()
 };
 
 
-instance DIA_Carl_PICKPOCKET(C_Info)
-{
-	npc = VLK_461_Carl;
-	nr = 900;
-	condition = DIA_Carl_PICKPOCKET_Condition;
-	information = DIA_Carl_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Carl_PICKPOCKET_Condition()
-{
-	return C_Beklauen(34,40);
-};
-
-func void DIA_Carl_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Carl_PICKPOCKET);
-	Info_AddChoice(DIA_Carl_PICKPOCKET,Dialog_Back,DIA_Carl_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Carl_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Carl_PICKPOCKET_DoIt);
-};
-
-func void DIA_Carl_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Carl_PICKPOCKET);
-};
-
-func void DIA_Carl_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Carl_PICKPOCKET);
-};
-
-
 instance DIA_Carl_Hallo(C_Info)
 {
 	npc = VLK_461_Carl;

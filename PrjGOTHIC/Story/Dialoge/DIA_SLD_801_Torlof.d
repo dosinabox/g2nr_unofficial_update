@@ -1251,38 +1251,3 @@ func void DIA_Torlof_PERM5_NOTCAPTAIN_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Torlof_PICKPOCKET(C_Info)
-{
-	npc = SLD_801_Torlof;
-	nr = 900;
-	condition = DIA_Torlof_PICKPOCKET_Condition;
-	information = DIA_Torlof_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Torlof_PICKPOCKET_Condition()
-{
-	return C_Beklauen(76,120);
-};
-
-func void DIA_Torlof_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Torlof_PICKPOCKET);
-	Info_AddChoice(DIA_Torlof_PICKPOCKET,Dialog_Back,DIA_Torlof_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Torlof_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Torlof_PICKPOCKET_DoIt);
-};
-
-func void DIA_Torlof_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Torlof_PICKPOCKET);
-};
-
-func void DIA_Torlof_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Torlof_PICKPOCKET);
-};
-

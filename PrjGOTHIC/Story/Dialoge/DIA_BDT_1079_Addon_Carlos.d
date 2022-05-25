@@ -23,41 +23,6 @@ func void DIA_Addon_Carlos_EXIT_Info()
 };
 
 
-instance DIA_Addon_Carlos_PICKPOCKET(C_Info)
-{
-	npc = BDT_1079_Addon_Carlos;
-	nr = 900;
-	condition = DIA_Addon_Carlos_PICKPOCKET_Condition;
-	information = DIA_Addon_Carlos_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Addon_Carlos_PICKPOCKET_Condition()
-{
-	return C_Beklauen(71,85);
-};
-
-func void DIA_Addon_Carlos_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Carlos_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Carlos_PICKPOCKET,Dialog_Back,DIA_Addon_Carlos_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Carlos_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Carlos_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Carlos_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Carlos_PICKPOCKET);
-};
-
-func void DIA_Addon_Carlos_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Carlos_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Carlos_HI(C_Info)
 {
 	npc = BDT_1079_Addon_Carlos;

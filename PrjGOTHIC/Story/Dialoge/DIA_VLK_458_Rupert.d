@@ -22,41 +22,6 @@ func void DIA_Rupert_EXIT_Info()
 };
 
 
-instance DIA_Rupert_PICKPOCKET(C_Info)
-{
-	npc = VLK_458_Rupert;
-	nr = 998;
-	condition = DIA_Rupert_PICKPOCKET_Condition;
-	information = DIA_Rupert_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Rupert_PICKPOCKET_Condition()
-{
-	return C_Beklauen(18,10);
-};
-
-func void DIA_Rupert_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Rupert_PICKPOCKET);
-	Info_AddChoice(DIA_Rupert_PICKPOCKET,Dialog_Back,DIA_Rupert_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Rupert_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Rupert_PICKPOCKET_DoIt);
-};
-
-func void DIA_Rupert_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Rupert_PICKPOCKET);
-};
-
-func void DIA_Rupert_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Rupert_PICKPOCKET);
-};
-
-
 instance DIA_Rupert_Hello(C_Info)
 {
 	npc = VLK_458_Rupert;

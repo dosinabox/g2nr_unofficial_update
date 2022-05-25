@@ -392,38 +392,3 @@ func void DIA_Ehnim_PERMKAP3_Info()
 	AI_StopProcessInfos_Pickpocket(76);
 };
 
-
-instance DIA_Ehnim_PICKPOCKET(C_Info)
-{
-	npc = BAU_944_Ehnim;
-	nr = 900;
-	condition = DIA_Ehnim_PICKPOCKET_Condition;
-	information = DIA_Ehnim_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Ehnim_PICKPOCKET_Condition()
-{
-	return C_Beklauen(76,35);
-};
-
-func void DIA_Ehnim_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Ehnim_PICKPOCKET);
-	Info_AddChoice(DIA_Ehnim_PICKPOCKET,Dialog_Back,DIA_Ehnim_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Ehnim_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Ehnim_PICKPOCKET_DoIt);
-};
-
-func void DIA_Ehnim_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Ehnim_PICKPOCKET);
-};
-
-func void DIA_Ehnim_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Ehnim_PICKPOCKET);
-};
-

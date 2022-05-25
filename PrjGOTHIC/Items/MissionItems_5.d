@@ -267,7 +267,7 @@ func void Use_Seamap_Irdorath()
 	var int nDocID;
 	nDocID = Doc_CreateMap();
 	Doc_SetPages(nDocID,1);
-	Doc_SetPage(nDocID,0,"Map_NewWorld_Seamap.tga",1);
+	Doc_SetPage(nDocID,0,"Map_NewWorld_Seamap.tga",TRUE);
 	Doc_Show(nDocID);
 	if(MIS_SCKnowsWayToIrdorath == FALSE)
 	{

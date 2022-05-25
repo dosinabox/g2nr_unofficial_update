@@ -230,38 +230,3 @@ func void DIA_Larius_Dragons_Proof_Info()
 	B_GivePlayerXP(100);
 };
 
-
-instance DIA_Larius_PICKPOCKET(C_Info)
-{
-	npc = VLK_400_Larius;
-	nr = 900;
-	condition = DIA_Larius_PICKPOCKET_Condition;
-	information = DIA_Larius_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Larius_PICKPOCKET_Condition()
-{
-	return C_Beklauen(35,120);
-};
-
-func void DIA_Larius_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Larius_PICKPOCKET);
-	Info_AddChoice(DIA_Larius_PICKPOCKET,Dialog_Back,DIA_Larius_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Larius_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Larius_PICKPOCKET_DoIt);
-};
-
-func void DIA_Larius_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Larius_PICKPOCKET);
-};
-
-func void DIA_Larius_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Larius_PICKPOCKET);
-};
-

@@ -211,38 +211,3 @@ func void DIA_Rega_PERMKAP1_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Rega_PICKPOCKET(C_Info)
-{
-	npc = BAU_933_Rega;
-	nr = 900;
-	condition = DIA_Rega_PICKPOCKET_Condition;
-	information = DIA_Rega_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40_Female;
-};
-
-
-func int DIA_Rega_PICKPOCKET_Condition()
-{
-	return C_Beklauen(25,40);
-};
-
-func void DIA_Rega_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Rega_PICKPOCKET);
-	Info_AddChoice(DIA_Rega_PICKPOCKET,Dialog_Back,DIA_Rega_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Rega_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Rega_PICKPOCKET_DoIt);
-};
-
-func void DIA_Rega_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Rega_PICKPOCKET);
-};
-
-func void DIA_Rega_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Rega_PICKPOCKET);
-};
-

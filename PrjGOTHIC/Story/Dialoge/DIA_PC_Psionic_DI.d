@@ -160,39 +160,3 @@ func void DIA_PC_Lester_DI_UndeadDragonDead_Info()
 	DIA_PC_Lester_DI_UndeadDragonDead_OneTime = TRUE;
 };
 
-
-instance DIA_Psionic_DI_PICKPOCKET(C_Info)
-{
-	npc = PC_Psionic_DI;
-	nr = 900;
-	condition = DIA_Psionic_DI_PICKPOCKET_Condition;
-	information = DIA_Psionic_DI_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Psionic_DI_PICKPOCKET_Condition()
-{
-	return C_Beklauen(56,25);
-};
-
-func void DIA_Psionic_DI_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Psionic_DI_PICKPOCKET);
-	Info_AddChoice(DIA_Psionic_DI_PICKPOCKET,Dialog_Back,DIA_Psionic_DI_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Psionic_DI_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Psionic_DI_PICKPOCKET_DoIt);
-};
-
-func void DIA_Psionic_DI_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Psionic_DI_PICKPOCKET);
-};
-
-func void DIA_Psionic_DI_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Psionic_DI_PICKPOCKET);
-};
-
-

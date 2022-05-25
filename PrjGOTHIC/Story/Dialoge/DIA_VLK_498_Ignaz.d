@@ -22,41 +22,6 @@ func void DIA_Ignaz_EXIT_Info()
 };
 
 
-instance DIA_Ignaz_PICKPOCKET(C_Info)
-{
-	npc = VLK_498_Ignaz;
-	nr = 900;
-	condition = DIA_Ignaz_PICKPOCKET_Condition;
-	information = DIA_Ignaz_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Ignaz_PICKPOCKET_Condition()
-{
-	return C_Beklauen(38,50);
-};
-
-func void DIA_Ignaz_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Ignaz_PICKPOCKET);
-	Info_AddChoice(DIA_Ignaz_PICKPOCKET,Dialog_Back,DIA_Ignaz_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Ignaz_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Ignaz_PICKPOCKET_DoIt);
-};
-
-func void DIA_Ignaz_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Ignaz_PICKPOCKET);
-};
-
-func void DIA_Ignaz_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Ignaz_PICKPOCKET);
-};
-
-
 instance DIA_Ignaz_Hallo(C_Info)
 {
 	npc = VLK_498_Ignaz;

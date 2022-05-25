@@ -165,38 +165,3 @@ func void DIA_Parlaf_SATT_Info()
 	};
 };
 
-
-instance DIA_Parlaf_PICKPOCKET(C_Info)
-{
-	npc = VLK_4107_Parlaf;
-	nr = 900;
-	condition = DIA_Parlaf_PICKPOCKET_Condition;
-	information = DIA_Parlaf_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Parlaf_PICKPOCKET_Condition()
-{
-	return C_Beklauen(34,12);
-};
-
-func void DIA_Parlaf_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Parlaf_PICKPOCKET);
-	Info_AddChoice(DIA_Parlaf_PICKPOCKET,Dialog_Back,DIA_Parlaf_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Parlaf_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Parlaf_PICKPOCKET_DoIt);
-};
-
-func void DIA_Parlaf_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Parlaf_PICKPOCKET);
-};
-
-func void DIA_Parlaf_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Parlaf_PICKPOCKET);
-};
-

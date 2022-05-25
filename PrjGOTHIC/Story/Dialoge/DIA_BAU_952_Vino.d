@@ -463,38 +463,3 @@ func void DIA_Vino_PERM45UND6_Info()
 	};
 };
 
-
-instance DIA_Vino_PICKPOCKET(C_Info)
-{
-	npc = BAU_952_Vino;
-	nr = 900;
-	condition = DIA_Vino_PICKPOCKET_Condition;
-	information = DIA_Vino_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Vino_PICKPOCKET_Condition()
-{
-	return C_Beklauen(34,60);
-};
-
-func void DIA_Vino_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Vino_PICKPOCKET);
-	Info_AddChoice(DIA_Vino_PICKPOCKET,Dialog_Back,DIA_Vino_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Vino_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Vino_PICKPOCKET_DoIt);
-};
-
-func void DIA_Vino_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Vino_PICKPOCKET);
-};
-
-func void DIA_Vino_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Vino_PICKPOCKET);
-};
-

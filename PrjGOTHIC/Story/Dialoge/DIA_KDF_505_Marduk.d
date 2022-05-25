@@ -634,38 +634,3 @@ func void DIA_Marduk_BennetIsNotGuilty_Info()
 	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_BennetisNotGuilty_05_03");	//Иногда мне кажется, что предательство и жадность - наши самые величайшие враги.
 };
 
-
-instance DIA_Marduk_PICKPOCKET(C_Info)
-{
-	npc = KDF_505_Marduk;
-	nr = 900;
-	condition = DIA_Marduk_PICKPOCKET_Condition;
-	information = DIA_Marduk_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Marduk_PICKPOCKET_Condition()
-{
-	return C_Beklauen(36,40);
-};
-
-func void DIA_Marduk_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Marduk_PICKPOCKET);
-	Info_AddChoice(DIA_Marduk_PICKPOCKET,Dialog_Back,DIA_Marduk_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Marduk_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Marduk_PICKPOCKET_DoIt);
-};
-
-func void DIA_Marduk_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Marduk_PICKPOCKET);
-};
-
-func void DIA_Marduk_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Marduk_PICKPOCKET);
-};
-

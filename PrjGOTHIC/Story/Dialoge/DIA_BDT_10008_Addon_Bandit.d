@@ -21,41 +21,6 @@ func void Addon_10008_Bandit_EXIT_Info()
 };
 
 
-instance DIA_Addon_10008_Bandit_PICKPOCKET(C_Info)
-{
-	npc = BDT_10008_Addon_Bandit;
-	nr = 900;
-	condition = DIA_Addon_10008_Bandit_PICKPOCKET_Condition;
-	information = DIA_Addon_10008_Bandit_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Addon_10008_Bandit_PICKPOCKET_Condition()
-{
-	return C_Beklauen(55,99);
-};
-
-func void DIA_Addon_10008_Bandit_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_10008_Bandit_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_10008_Bandit_PICKPOCKET,Dialog_Back,DIA_Addon_10008_Bandit_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_10008_Bandit_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_10008_Bandit_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_10008_Bandit_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_10008_Bandit_PICKPOCKET);
-};
-
-func void DIA_Addon_10008_Bandit_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_10008_Bandit_PICKPOCKET);
-};
-
-
 instance DIA_Addon_10008_Bandit_Hi(C_Info)
 {
 	npc = BDT_10008_Addon_Bandit;

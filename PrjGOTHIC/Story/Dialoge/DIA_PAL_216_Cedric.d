@@ -157,37 +157,3 @@ func void DIA_Cedric_Teach_1H_5()
 	};
 };
 
-instance DIA_Cedric_PICKPOCKET(C_Info)
-{
-	npc = PAL_216_Cedric;
-	nr = 900;
-	condition = DIA_Cedric_PICKPOCKET_Condition;
-	information = DIA_Cedric_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Cedric_PICKPOCKET_Condition()
-{
-	return C_Beklauen(37,55);
-};
-
-func void DIA_Cedric_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Cedric_PICKPOCKET);
-	Info_AddChoice(DIA_Cedric_PICKPOCKET,Dialog_Back,DIA_Cedric_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Cedric_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Cedric_PICKPOCKET_DoIt);
-};
-
-func void DIA_Cedric_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Cedric_PICKPOCKET);
-};
-
-func void DIA_Cedric_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Cedric_PICKPOCKET);
-};
-

@@ -283,38 +283,3 @@ func void DIA_Kjorn_AllDragonsDead_Info()
 	AI_Output(self,other,"DIA_Kjorn_AllDragonsDead_06_02");	//Возможно, ты убил ОДНОГО, но чтобы ВСЕХ? Иди, поищи дурака, который поверит тебе.
 };
 
-
-instance DIA_Kjorn_PICKPOCKET(C_Info)
-{
-	npc = DJG_710_Kjorn;
-	nr = 900;
-	condition = DIA_Kjorn_PICKPOCKET_Condition;
-	information = DIA_Kjorn_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Kjorn_PICKPOCKET_Condition()
-{
-	return C_Beklauen(47,75);
-};
-
-func void DIA_Kjorn_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Kjorn_PICKPOCKET);
-	Info_AddChoice(DIA_Kjorn_PICKPOCKET,Dialog_Back,DIA_Kjorn_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Kjorn_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Kjorn_PICKPOCKET_DoIt);
-};
-
-func void DIA_Kjorn_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Kjorn_PICKPOCKET);
-};
-
-func void DIA_Kjorn_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Kjorn_PICKPOCKET);
-};
-

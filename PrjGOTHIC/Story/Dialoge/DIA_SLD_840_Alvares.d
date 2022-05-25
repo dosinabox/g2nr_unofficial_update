@@ -166,38 +166,3 @@ func void DIA_Alvares_Schluss_Info()
 	Info_AddChoice(DIA_Alvares_Schluss,Dialog_Ende,DIA_Alvares_ATTACK_End);
 };
 
-
-instance DIA_Alvares_PICKPOCKET(C_Info)
-{
-	npc = SLD_840_Alvares;
-	nr = 900;
-	condition = DIA_Alvares_PICKPOCKET_Condition;
-	information = DIA_Alvares_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Alvares_PICKPOCKET_Condition()
-{
-	return C_Beklauen(20,15);
-};
-
-func void DIA_Alvares_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Alvares_PICKPOCKET);
-	Info_AddChoice(DIA_Alvares_PICKPOCKET,Dialog_Back,DIA_Alvares_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Alvares_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Alvares_PICKPOCKET_DoIt);
-};
-
-func void DIA_Alvares_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Alvares_PICKPOCKET);
-};
-
-func void DIA_Alvares_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Alvares_PICKPOCKET);
-};
-

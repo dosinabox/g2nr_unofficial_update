@@ -189,41 +189,6 @@ func void DIA_Vatras_EXIT_Info()
 };
 
 
-instance DIA_Vatras_PICKPOCKET(C_Info)
-{
-	npc = VLK_439_Vatras;
-	nr = 900;
-	condition = DIA_Vatras_PICKPOCKET_Condition;
-	information = DIA_Vatras_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Vatras_PICKPOCKET_Condition()
-{
-	return C_Beklauen(91,250);
-};
-
-func void DIA_Vatras_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Vatras_PICKPOCKET);
-	Info_AddChoice(DIA_Vatras_PICKPOCKET,Dialog_Back,DIA_Vatras_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Vatras_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Vatras_PICKPOCKET_DoIt);
-};
-
-func void DIA_Vatras_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Vatras_PICKPOCKET);
-};
-
-func void DIA_Vatras_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Vatras_PICKPOCKET);
-};
-
-
 instance DIA_Vatras_GREET(C_Info)
 {
 	npc = VLK_439_Vatras;

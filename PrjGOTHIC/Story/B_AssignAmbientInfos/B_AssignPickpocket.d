@@ -87,7 +87,6 @@ func string B_BuildPickpocketString()
 	{
 		text = ConcatStrings(text," практически невозможно)");
 	};
-	text = ConcatStrings(text," - новый вариант");
 	return text;
 };
 

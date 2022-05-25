@@ -21,41 +21,6 @@ func void DIA_Addon_Owen_EXIT_Info()
 };
 
 
-instance DIA_Addon_Owen_PICKPOCKET(C_Info)
-{
-	npc = PIR_1367_Addon_Owen;
-	nr = 900;
-	condition = DIA_Addon_Owen_PICKPOCKET_Condition;
-	information = DIA_Addon_Owen_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Addon_Owen_PICKPOCKET_Condition()
-{
-	return C_Beklauen(20,30);
-};
-
-func void DIA_Addon_Owen_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Owen_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Owen_PICKPOCKET,Dialog_Back,DIA_Addon_Owen_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Owen_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Owen_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Owen_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Owen_PICKPOCKET);
-};
-
-func void DIA_Addon_Owen_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Owen_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Owen_Hello(C_Info)
 {
 	npc = PIR_1367_Addon_Owen;

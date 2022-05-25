@@ -498,38 +498,3 @@ func void DIA_Jarvis_PERM_Info()
 	};
 };
 
-
-instance DIA_Jarvis_PICKPOCKET(C_Info)
-{
-	npc = SLD_808_Jarvis;
-	nr = 900;
-	condition = DIA_Jarvis_PICKPOCKET_Condition;
-	information = DIA_Jarvis_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Jarvis_PICKPOCKET_Condition()
-{
-	return C_Beklauen(41,55);
-};
-
-func void DIA_Jarvis_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Jarvis_PICKPOCKET);
-	Info_AddChoice(DIA_Jarvis_PICKPOCKET,Dialog_Back,DIA_Jarvis_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Jarvis_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Jarvis_PICKPOCKET_DoIt);
-};
-
-func void DIA_Jarvis_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Jarvis_PICKPOCKET);
-};
-
-func void DIA_Jarvis_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Jarvis_PICKPOCKET);
-};
-

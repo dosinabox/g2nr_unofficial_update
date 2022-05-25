@@ -182,38 +182,3 @@ func void DIA_Tengron_HELP_Info()
 	AI_Output(self,other,"DIA_Tengron_HELP_07_02");	//ћожет, кто-нибудь еще сможет помочь тебе.
 };
 
-
-instance DIA_Tengron_PICKPOCKET(C_Info)
-{
-	npc = PAL_280_Tengron;
-	nr = 900;
-	condition = DIA_Tengron_PICKPOCKET_Condition;
-	information = DIA_Tengron_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Tengron_PICKPOCKET_Condition()
-{
-	return C_Beklauen(32,50);
-};
-
-func void DIA_Tengron_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Tengron_PICKPOCKET);
-	Info_AddChoice(DIA_Tengron_PICKPOCKET,Dialog_Back,DIA_Tengron_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Tengron_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Tengron_PICKPOCKET_DoIt);
-};
-
-func void DIA_Tengron_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Tengron_PICKPOCKET);
-};
-
-func void DIA_Tengron_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Tengron_PICKPOCKET);
-};
-

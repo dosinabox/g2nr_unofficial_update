@@ -787,38 +787,3 @@ func void DIA_Orlan_Minenanteil_Info()
 	B_GivePlayerXP(XP_Ambient);
 };
 
-
-instance DIA_Orlan_PICKPOCKET(C_Info)
-{
-	npc = BAU_970_Orlan;
-	nr = 900;
-	condition = DIA_Orlan_PICKPOCKET_Condition;
-	information = DIA_Orlan_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Orlan_PICKPOCKET_Condition()
-{
-	return C_Beklauen(89,260);
-};
-
-func void DIA_Orlan_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Orlan_PICKPOCKET);
-	Info_AddChoice(DIA_Orlan_PICKPOCKET,Dialog_Back,DIA_Orlan_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Orlan_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Orlan_PICKPOCKET_DoIt);
-};
-
-func void DIA_Orlan_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Orlan_PICKPOCKET);
-};
-
-func void DIA_Orlan_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Orlan_PICKPOCKET);
-};
-

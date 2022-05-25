@@ -815,37 +815,3 @@ func void DIA_MiltenNW_Mana_5()
 	};
 };
 
-instance DIA_Mage_NW_PICKPOCKET(C_Info)
-{
-	npc = PC_Mage_NW;
-	nr = 900;
-	condition = DIA_Mage_NW_PICKPOCKET_Condition;
-	information = DIA_Mage_NW_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Mage_NW_PICKPOCKET_Condition()
-{
-	return C_Beklauen(56,75);
-};
-
-func void DIA_Mage_NW_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Mage_NW_PICKPOCKET);
-	Info_AddChoice(DIA_Mage_NW_PICKPOCKET,Dialog_Back,DIA_Mage_NW_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Mage_NW_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Mage_NW_PICKPOCKET_DoIt);
-};
-
-func void DIA_Mage_NW_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Mage_NW_PICKPOCKET);
-};
-
-func void DIA_Mage_NW_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Mage_NW_PICKPOCKET);
-};
-

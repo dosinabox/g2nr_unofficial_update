@@ -329,40 +329,6 @@ func void DIA_Garwig_Abgeben_Info()
 };
 
 
-instance DIA_Garwig_PICKPOCKET(C_Info)
-{
-	npc = NOV_608_Garwig;
-	nr = 900;
-	condition = DIA_Garwig_PICKPOCKET_Condition;
-	information = DIA_Garwig_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Garwig_PICKPOCKET_Condition()
-{
-	return C_Beklauen(52,80);
-};
-
-func void DIA_Garwig_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Garwig_PICKPOCKET);
-	Info_AddChoice(DIA_Garwig_PICKPOCKET,Dialog_Back,DIA_Garwig_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Garwig_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Garwig_PICKPOCKET_DoIt);
-};
-
-func void DIA_Garwig_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Garwig_PICKPOCKET);
-};
-
-func void DIA_Garwig_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Garwig_PICKPOCKET);
-};
-
 instance DIA_Garwig_EXIE(C_Info)
 {
 	npc = NOV_608_Garwig;
