@@ -56,7 +56,7 @@ func void DIA_Sonja_STANDARD_Info()
 	};
 	if((MIS_Andre_REDLIGHT != LOG_Running) || (Knows_Borka_Dealer == TRUE))
 	{
-		AI_StopProcessInfos_Pickpocket(58);
+		AI_StopProcessInfos_Pickpocket();
 	};
 };
 

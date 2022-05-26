@@ -50,7 +50,7 @@ func void DIA_Alvares_HAUAB_Info()
 		B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
 		Akils_SLDStillthere = TRUE;
 	};
-	AI_StopProcessInfos_Pickpocket(20);
+	AI_StopProcessInfos_Pickpocket();
 };
 
 

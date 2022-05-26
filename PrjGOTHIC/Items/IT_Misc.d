@@ -556,7 +556,7 @@ instance ItMi_GoldChest(C_Item)
 
 instance ItMi_InnosStatue(C_Item)
 {
-	name = "Статуэтка Инноса";
+	name = NAME_InnosStatue;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_InnosStatue;

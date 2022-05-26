@@ -391,7 +391,7 @@ func int DIA_Nagur_Knast_Condition()
 func void DIA_Nagur_Knast_Info()
 {
 	AI_Output(self,other,"DIA_Nagur_Knast_08_00");	//Ты предал меня! Это была большая ошибка - а теперь проваливай!
-	AI_StopProcessInfos_Pickpocket(75);
+	AI_StopProcessInfos_Pickpocket();
 };
 
 
@@ -460,6 +460,6 @@ func void DIA_Nagur_Perm_Info()
 	{
 		AI_Output(self,other,"DIA_Nagur_Fazit_08_00");	//Дело прошло удачно, но я не говорю о своих хозяевах. Так что можешь расслабиться.
 	};
-	AI_StopProcessInfos_Pickpocket(75);
+	AI_StopProcessInfos_Pickpocket();
 };
 

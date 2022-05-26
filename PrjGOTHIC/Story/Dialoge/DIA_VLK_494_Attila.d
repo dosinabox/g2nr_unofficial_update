@@ -49,11 +49,16 @@ func void DIA_Attila_Hallo_Info()
 	B_GivePlayerXP(XP_Attila_MetHim);
 };
 
-func void DIA_Attila_Hallo_Wer()
+func void B_Attila_WhoAreYou()
 {
 	AI_Output(other,self,"DIA_Attila_Hallo_Wer_15_00");	//Кто ты?
 	AI_Output(self,other,"DIA_Attila_Hallo_Wer_09_01");	//Меня зовут Аттила... но разве мое имя важно? Наши имена ничего не значат.
 	AI_Output(self,other,"DIA_Attila_Hallo_Wer_09_02");	//Ты это должен знать, чужеземец. (тихо смеется)
+};
+
+func void DIA_Attila_Hallo_Wer()
+{
+	B_Attila_WhoAreYou();
 	Knows_Attila_Wer = TRUE;
 	Info_ClearChoices(DIA_Attila_Hallo);
 	if(Knows_Attila_Was == FALSE)
@@ -224,7 +229,7 @@ func void DIA_Attila_NachSchluessel_Info()
 {
 	AI_Output(self,other,"DIA_Attila_NachSchluessel_09_00");	//Моя задача выполнена - пока.
 	AI_Output(self,other,"DIA_Attila_NachSchluessel_09_01");	//Но кто знает, может, наши пути опять пересекутся...
-	AI_StopProcessInfos_Pickpocket(55);
+	AI_StopProcessInfos_Pickpocket();
 };
 
 
@@ -249,9 +254,7 @@ func int DIA_Attila_Wer_Condition()
 
 func void DIA_Attila_Wer_Info()
 {
-	AI_Output(other,self,"DIA_Attila_Hallo_Wer_15_00");	//Кто ты?
-	AI_Output(self,other,"DIA_Attila_Hallo_Wer_09_01");	//Меня зовут Аттила... но разве мое имя важно? Наши имена ничего не значат.
-	AI_Output(self,other,"DIA_Attila_Hallo_Wer_09_02");	//Ты это должен знать, чужеземец. (тихо смеется)
+	B_Attila_WhoAreYou();
 	AI_StopProcessInfos(self);
 };
 

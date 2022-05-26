@@ -229,7 +229,7 @@ func void DIA_Gritta_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Gritta_PERM_16_03");	//Что еще тебе нужно? Ты получил мое золото! Убирайся!
 	};
-	AI_StopProcessInfos_Pickpocket(20);
+	AI_StopProcessInfos_Pickpocket();
 };
 
 

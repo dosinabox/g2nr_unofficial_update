@@ -21,45 +21,6 @@ func void DIA_Rengaru_EXIT_Info()
 };
 
 
-instance DIA_Rengaru_PICKPOCKET(C_Info)
-{
-	npc = VLK_492_Rengaru;
-	nr = 900;
-	condition = DIA_Rengaru_PICKPOCKET_Condition;
-	information = DIA_Rengaru_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = "(нет ничего проще, чем украсть его кольцо)";
-};
-
-
-func int DIA_Rengaru_PICKPOCKET_Condition()
-{
-	if(Npc_HasItems(self,ItMi_SilverRing))
-	{
-		return C_CanStealFromNpc(20);
-	};
-	return FALSE;
-};
-
-func void DIA_Rengaru_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Rengaru_PICKPOCKET);
-	Info_AddChoice(DIA_Rengaru_PICKPOCKET,Dialog_Back,DIA_Rengaru_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Rengaru_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Rengaru_PICKPOCKET_DoIt);
-};
-
-func void DIA_Rengaru_PICKPOCKET_DoIt()
-{
-	B_StealItem(20,ItMi_SilverRing,1);
-	Info_ClearChoices(DIA_Rengaru_PICKPOCKET);
-};
-
-func void DIA_Rengaru_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Rengaru_PICKPOCKET);
-};
-
-
 instance DIA_Rengaru_Hauab(C_Info)
 {
 	npc = VLK_492_Rengaru;

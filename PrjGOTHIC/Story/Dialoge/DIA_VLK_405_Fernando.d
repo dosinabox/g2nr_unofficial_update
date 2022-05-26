@@ -21,45 +21,6 @@ func void DIA_Fernando_EXIT_Info()
 };
 
 
-instance DIA_Fernando_PICKPOCKET(C_Info)
-{
-	npc = VLK_405_Fernando;
-	nr = 900;
-	condition = DIA_Fernando_PICKPOCKET_Condition;
-	information = DIA_Fernando_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Fernando_PICKPOCKET_Condition()
-{
-	if(Npc_HasItems(self,ItSe_GoldPocket100) && (NpcObsessedByDMT_Fernando == FALSE))
-	{
-		return C_CanStealFromNpc(50);
-	};
-	return FALSE;
-};
-
-func void DIA_Fernando_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Fernando_PICKPOCKET);
-	Info_AddChoice(DIA_Fernando_PICKPOCKET,Dialog_Back,DIA_Fernando_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Fernando_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Fernando_PICKPOCKET_DoIt);
-};
-
-func void DIA_Fernando_PICKPOCKET_DoIt()
-{
-	B_StealItem(50,ItSe_GoldPocket100,1);
-	Info_ClearChoices(DIA_Fernando_PICKPOCKET);
-};
-
-func void DIA_Fernando_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Fernando_PICKPOCKET);
-};
-
-
 instance DIA_Fernando_Hello(C_Info)
 {
 	npc = VLK_405_Fernando;

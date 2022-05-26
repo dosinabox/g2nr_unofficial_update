@@ -1,5 +1,5 @@
 
-func int C_CanStealFromNpc(var int TheftDex) //TODO убрать TheftDex и использовать AIV_DexToSteal
+func int C_CanStealFromNpc()
 {
 	var int itm;
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
@@ -10,7 +10,7 @@ func int C_CanStealFromNpc(var int TheftDex) //TODO убрать TheftDex и использова
 	{
 		return FALSE;
 	};
-	if(other.attribute[ATR_DEXTERITY] < (TheftDex - Theftdiff))
+	if(other.attribute[ATR_DEXTERITY] < (self.aivar[AIV_DexToSteal] - Theftdiff))
 	{
 		return FALSE;
 	};
@@ -37,9 +37,15 @@ func int C_CanStealFromNpc(var int TheftDex) //TODO убрать TheftDex и использова
 	return TRUE;
 };
 
-func void B_StealItem(var int dex,var int itm,var int amount) //TODO убрать TheftDex и использовать AIV_DexToSteal
+func void B_StealItem()
 {
+	var int dex;
+	var int itm;
+	var int amount;
 	var string text;
+	dex = self.aivar[AIV_DexToSteal];
+	itm = self.aivar[AIV_ItemToSteal];
+	amount = self.aivar[AIV_AmountToSteal];
 	/*if((dex <= 20) && (EasyLowDexPickpocketDisabled == FALSE))
 	{
 		dex = 10;
@@ -101,9 +107,9 @@ func void B_StealItem(var int dex,var int itm,var int amount) //TODO убрать Thef
 	};
 };
 
-func void AI_StopProcessInfos_Pickpocket(var int TheftDex) //TODO убрать TheftDex и использовать AIV_DexToSteal
+func void AI_StopProcessInfos_Pickpocket()
 {
-	if(!C_CanStealFromNpc(TheftDex))
+	if(!C_CanStealFromNpc())
 	{
 		AI_StopProcessInfos(self);
 	};

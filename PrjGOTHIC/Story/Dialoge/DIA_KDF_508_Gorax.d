@@ -22,41 +22,6 @@ func void DIA_Gorax_Kap1_EXIT_Info()
 };
 
 
-instance DIA_Gorax_PICKPOCKET(C_Info)
-{
-	npc = KDF_508_Gorax;
-	nr = 888;
-	condition = DIA_Gorax_PICKPOCKET_Condition;
-	information = DIA_Gorax_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80_Key;
-};
-
-
-func int DIA_Gorax_PICKPOCKET_Condition()
-{
-	return C_CanStealFromNpc(80);
-};
-
-func void DIA_Gorax_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Gorax_PICKPOCKET);
-	Info_AddChoice(DIA_Gorax_PICKPOCKET,Dialog_Back,DIA_Gorax_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Gorax_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Gorax_PICKPOCKET_DoIt);
-};
-
-func void DIA_Gorax_PICKPOCKET_DoIt()
-{
-	B_StealItem(80,ItKe_KlosterSchatz,1);
-	Info_ClearChoices(DIA_Gorax_PICKPOCKET);
-};
-
-func void DIA_Gorax_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Gorax_PICKPOCKET);
-};
-
-
 instance DIA_Gorax_HELP(C_Info)
 {
 	npc = KDF_508_Gorax;

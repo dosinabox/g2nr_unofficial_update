@@ -959,7 +959,7 @@ instance ItRi_Prot_Point_01_MIS(C_Item)
 
 instance ItMi_EddasStatue(C_Item)
 {
-	name = "Статуэтка Инноса";
+	name = NAME_InnosStatue;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_InnosStatue;

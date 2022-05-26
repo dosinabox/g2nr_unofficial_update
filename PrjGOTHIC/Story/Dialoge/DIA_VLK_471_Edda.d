@@ -225,55 +225,6 @@ func void DIA_Edda_Statue_Info()
 		AI_Output(self,other,"DIA_Edda_Statue_17_01");	//Ах - огромное тебе спасибо. Да не оставит тебя свет Инноса...
 	};
 	AI_Output(other,self,"DIA_Edda_Statue_15_02");	//Не стоит благодарностей.
-	
-};
-
-instance DIA_Edda_PICKPOCKET(C_Info)
-{
-	npc = VLK_471_Edda;
-	nr = 900;
-	condition = DIA_Edda_PICKPOCKET_Condition;
-	information = DIA_Edda_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = "(нет ничего проще, чем украсть ее статуэтку)";
-};
-
-
-func int DIA_Edda_PICKPOCKET_Condition()
-{
-	if(Npc_HasItems(self,ItMi_EddasStatue) || Npc_HasItems(self,ItMi_InnosStatue) || Npc_HasItems(self,ItMi_LostInnosStatue_Daron))
-	{
-		return C_CanStealFromNpc(20);
-	};
-	return FALSE;
-};
-
-func void DIA_Edda_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Edda_PICKPOCKET);
-	Info_AddChoice(DIA_Edda_PICKPOCKET,Dialog_Back,DIA_Edda_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Edda_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Edda_PICKPOCKET_DoIt);
-};
-
-func void DIA_Edda_PICKPOCKET_DoIt()
-{
-	if(Npc_HasItems(self,ItMi_EddasStatue))
-	{
-		B_StealItem(20,ItMi_EddasStatue,1);
-	}
-	else if(Npc_HasItems(self,ItMi_InnosStatue))
-	{
-		B_StealItem(20,ItMi_InnosStatue,1);
-	}
-	else if(Npc_HasItems(self,ItMi_LostInnosStatue_Daron))
-	{
-		B_StealItem(20,ItMi_LostInnosStatue_Daron,1);
-	};
-	Info_ClearChoices(DIA_Edda_PICKPOCKET);
-};
-
-func void DIA_Edda_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Edda_PICKPOCKET);
+	B_AssignPickpocket(self);
 };
 

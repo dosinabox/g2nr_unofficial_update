@@ -722,9 +722,18 @@ func void B_GiveBaboDocs()
 	};
 	B_UseFakeScroll();
 	MIS_BabosDocs = LOG_SUCCESS;
-	Igaraz.aivar[AIV_IGNORE_Theft] = FALSE;
-	Feger2.aivar[AIV_IGNORE_Theft] = FALSE;
-	Feger3.aivar[AIV_IGNORE_Theft] = FALSE;
+	if(!Npc_IsDead(Igaraz))
+	{
+		Igaraz.aivar[AIV_IGNORE_Theft] = FALSE;
+	};
+	if(!Npc_IsDead(Feger2))
+	{
+		Feger2.aivar[AIV_IGNORE_Theft] = FALSE;
+	};
+	if(!Npc_IsDead(Feger3))
+	{
+		Feger3.aivar[AIV_IGNORE_Theft] = FALSE;
+	};
 	if(BabosDocsRejected == TRUE)
 	{
 		B_GivePlayerXP(XP_BabosDocs / 2);

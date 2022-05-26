@@ -31,6 +31,10 @@ func string B_BuildPickpocketString()
 	{
 		text = ConcatStrings(text,"зелье");
 	}
+	else if(Hlp_StrCmp(item.name,NAME_InnosStatue))
+	{
+		text = ConcatStrings(text,"статуэтку");
+	}
 	else if(Hlp_StrCmp(item.name,NAME_Spruchrolle))
 	{
 		text = ConcatStrings(text,"свиток");
@@ -102,7 +106,7 @@ instance DIA_Pickpocket(C_Info)
 
 func int DIA_Pickpocket_Condition()
 {
-	if(C_CanStealFromNpc(self.aivar[AIV_DexToSteal]))
+	if(C_CanStealFromNpc())
 	{
 		DIA_Pickpocket.description = B_BuildPickpocketString();
 		return TRUE;
@@ -118,7 +122,7 @@ func void DIA_Pickpocket_Info()
 
 func void DIA_Pickpocket_DoIt()
 {
-	B_StealItem(self.aivar[AIV_DexToSteal],self.aivar[AIV_ItemToSteal],self.aivar[AIV_AmountToSteal]);
+	B_StealItem();
 	Info_ClearChoices(DIA_Pickpocket);
 };
 

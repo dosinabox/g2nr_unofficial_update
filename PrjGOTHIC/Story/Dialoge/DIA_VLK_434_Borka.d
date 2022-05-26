@@ -51,7 +51,7 @@ func void DIA_Borka_PISSOFF_Info()
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_04");	//Заходи же, и ты познаешь наслаждение, о котором другие не могут даже и мечтать!
 	if(MIS_Andre_REDLIGHT != LOG_Running)
 	{
-		AI_StopProcessInfos_Pickpocket(80);
+		AI_StopProcessInfos_Pickpocket();
 	};
 };
 
@@ -81,7 +81,7 @@ func void DIA_Borka_TROUBLE_Info()
 	AI_Output(self,other,"DIA_Borka_TROUBLE_11_01");	//Это страстное создание ночи придаст твоей жизни новый смысл!
 	if(MIS_Andre_REDLIGHT != LOG_Running)
 	{
-		AI_StopProcessInfos_Pickpocket(80);
+		AI_StopProcessInfos_Pickpocket();
 	};
 };
 

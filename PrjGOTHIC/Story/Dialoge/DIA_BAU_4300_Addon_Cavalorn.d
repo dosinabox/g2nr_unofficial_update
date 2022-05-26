@@ -24,45 +24,6 @@ func void DIA_Addon_Cavalorn_EXIT_Info()
 };
 
 
-instance DIA_Addon_Cavalorn_PICKPOCKET(C_Info)
-{
-	npc = BAU_4300_Addon_Cavalorn;
-	nr = 900;
-	condition = DIA_Addon_Cavalorn_PICKPOCKET_Condition;
-	information = DIA_Addon_Cavalorn_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = "(украсть его колчан будет довольно просто)";
-};
-
-
-func int DIA_Addon_Cavalorn_PICKPOCKET_Condition()
-{
-	if(Npc_HasItems(self,ItMi_ArrowPack))
-	{
-		return C_CanStealFromNpc(25);
-	};
-	return FALSE;
-};
-
-func void DIA_Addon_Cavalorn_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Cavalorn_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Cavalorn_PICKPOCKET,Dialog_Back,DIA_Addon_Cavalorn_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Cavalorn_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Cavalorn_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Cavalorn_PICKPOCKET_DoIt()
-{
-	B_StealItem(25,ItMi_ArrowPack,1);
-	Info_ClearChoices(DIA_Addon_Cavalorn_PICKPOCKET);
-};
-
-func void DIA_Addon_Cavalorn_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Cavalorn_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Cavalorn_MeetingIsRunning(C_Info)
 {
 	npc = BAU_4300_Addon_Cavalorn;

@@ -68,14 +68,14 @@ func void DIA_Engardo_HALLO_Info()
 			Akils_SLDStillthere = TRUE;
 		};
 		Chance = 1;
-		AI_StopProcessInfos_Pickpocket(34);
+		AI_StopProcessInfos_Pickpocket();
 	}
 	else if(Chance == 1)
 	{
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_01");	//Ты оказался не в том месте не в то время...
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_02");	//... так что, если хочешь жить, лучше топай отсюда. Понял?
 		Chance = 2;
-		AI_StopProcessInfos_Pickpocket(34);
+		AI_StopProcessInfos_Pickpocket();
 	}
 	else if(Chance == 2)
 	{

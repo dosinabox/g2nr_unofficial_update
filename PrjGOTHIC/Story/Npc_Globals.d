@@ -211,7 +211,7 @@ var C_Npc Engor;
 //var C_Npc Bandit_1;
 //var C_Npc Bandit_2;
 //var C_Npc Bandit_3;
-var C_Npc Koch;
+//var C_Npc Koch;
 var C_Npc Bruder;
 var C_Npc Den;
 var C_Npc Silvestro;
@@ -549,7 +549,7 @@ func void B_InitNpcGlobals()
 //	Bandit_1 = Hlp_GetNpc(BDT_1009_Bandit_L);
 //	Bandit_2 = Hlp_GetNpc(BDT_1010_Bandit_L);
 //	Bandit_3 = Hlp_GetNpc(BDT_1011_Bandit_M);
-	Koch = Hlp_GetNpc(STRF_1107_Straefling);
+//	Koch = Hlp_GetNpc(STRF_1107_Straefling);
 	Bruder = Hlp_GetNpc(PAL_2004_Bruder);
 	Den = Hlp_GetNpc(VLK_4112_Den);
 	Silvestro = Hlp_GetNpc(PAL_2002_Leiche);

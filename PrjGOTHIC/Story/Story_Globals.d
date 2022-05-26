@@ -862,7 +862,7 @@ var int Maleth_ersterWolf;
 //var int HannaGaveSword;
 //var int DayMeetAlwin;
 //var int MoeOfferedTrain;
-var int Kardif_OneQuestion;
+//var int Kardif_OneQuestion;
 //var int Bartok_Deal;
 //var int Bartok_Day;
 var int Bartok_OrkGesagt;

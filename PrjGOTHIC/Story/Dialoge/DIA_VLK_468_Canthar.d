@@ -39,7 +39,7 @@ func void B_Canthar_Fail()
 {
 	AI_Output(self,other,"DIA_Canthar_CANTHARANGEPISST_09_00");	//Я предупреждал тебя, но ты не слушал. Мы обсудим этот вопрос позже.
 	AI_Output(self,other,"DIA_Canthar_CANTHARANGEPISST_09_01");	//А теперь проваливай, я хочу отдохнуть.
-	AI_StopProcessInfos_Pickpocket(20);
+	AI_StopProcessInfos_Pickpocket();
 };
 
 instance DIA_Canthar_PersonalCRIMES(C_Info)

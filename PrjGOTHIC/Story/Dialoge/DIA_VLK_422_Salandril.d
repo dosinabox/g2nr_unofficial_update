@@ -22,41 +22,6 @@ func void DIA_Salandril_EXIT_Info()
 };
 
 
-instance DIA_Salandril_PICKPOCKET(C_Info)
-{
-	npc = VLK_422_Salandril;
-	nr = 900;
-	condition = DIA_Salandril_PICKPOCKET_Condition;
-	information = DIA_Salandril_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40_Key;
-};
-
-
-func int DIA_Salandril_PICKPOCKET_Condition()
-{
-	return C_CanStealFromNpc(30);
-};
-
-func void DIA_Salandril_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Salandril_PICKPOCKET);
-	Info_AddChoice(DIA_Salandril_PICKPOCKET,Dialog_Back,DIA_Salandril_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Salandril_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Salandril_PICKPOCKET_DoIt);
-};
-
-func void DIA_Salandril_PICKPOCKET_DoIt()
-{
-	B_StealItem(30,ItKe_Salandril,1);
-	Info_ClearChoices(DIA_Salandril_PICKPOCKET);
-};
-
-func void DIA_Salandril_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Salandril_PICKPOCKET);
-};
-
-
 func void B_SalandrilTradeInfo()
 {
 	AI_Output(self,other,"DIA_Salandril_PERM_13_01");	//У меня большой выбор и умеренные цены. Мои зелья лучше, чем та отрава, что продает Зурис.

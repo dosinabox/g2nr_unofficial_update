@@ -477,10 +477,7 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 	if(EnterOW_Kapitel5 == FALSE)
 	{
 		HaupttorWache_4143.flags = 0;
-/*		if(!Npc_HasItems(HaupttorWache_4143,ItKe_OC_MainGate_MIS))
-		{
-			CreateInvItems(HaupttorWache_4143,ItKe_OC_MainGate_MIS,1);
-		}; */
+		B_CreateItemToSteal(HaupttorWache_4143,20,ItKe_OC_MainGate_MIS,1);
 		if(!Npc_IsDead(Brutus))
 		{
 			CreateInvItems(Brutus,ITWR_DementorObsessionBook_MIS,1);

@@ -224,7 +224,7 @@ func int DIA_Ehnim_PERMKAP1_Condition()
 func void DIA_Ehnim_PERMKAP1_Info()
 {
 	AI_Output(self,other,"DIA_Ehnim_PERMKAP1_12_00");	//Тебе мало того, что ты натворил? Я думаю, тебе лучше уйти.
-	AI_StopProcessInfos_Pickpocket(76);
+	AI_StopProcessInfos_Pickpocket();
 };
 
 
@@ -389,6 +389,6 @@ func int DIA_Ehnim_PERMKAP3_Condition()
 func void DIA_Ehnim_PERMKAP3_Info()
 {
 	AI_Output(self,other,"DIA_Ehnim_PERMKAP3_12_00");	//У меня нет времени на тебя.
-	AI_StopProcessInfos_Pickpocket(76);
+	AI_StopProcessInfos_Pickpocket();
 };
 

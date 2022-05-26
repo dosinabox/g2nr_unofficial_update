@@ -77,6 +77,6 @@ func void DIA_Wirt_Hallo_Info()
 	{
 		AI_Output(self,other,"DIA_Wirt_Hallo_14_03");	//Паладины со всем разберутся сами. А ты можешь потягивать здесь пиво и наслаждаться жизнью.
 	};
-	AI_StopProcessInfos_Pickpocket(60);
+	AI_StopProcessInfos_Pickpocket();
 };
 
