@@ -450,7 +450,6 @@ const int SPL_Reserved_98 = 98;
 const int SPL_Reserved_99 = 99;
 const int MAX_SPELL = 100;
 
-
 const string spellFxInstanceNames[100] =
 {
 	"PalLight",
@@ -787,7 +786,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "26/05/2022";
+const string FIX_VERSION_DATE = "27/05/2022";
 const int FIX_VERSION_START = 28;
 const int LEAST_SUPPORTED = 26;
 var int FIX_VERSION_SAVE;

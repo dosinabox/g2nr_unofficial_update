@@ -121,7 +121,7 @@ func void DIA_Akil_NachKampf_Info()
 	AI_Output(self,other,"DIA_Akil_NachKampf_13_00");	//Слава Инносу. Я уж думал, мне конец.
 	AI_Output(self,other,"DIA_Akil_NachKampf_13_01");	//Меня зовут Акил. Я фермер на этом маленьком клочке земли.
 	AI_Output(other,self,"DIA_Akil_NachKampf_15_02");	//Кто эти люди?
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if((VisibleGuild(other) == GIL_SLD) || (VisibleGuild(other) == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Akil_NachKampf_13_03");	//Ты должен знать их. Это наемники с фермы Онара. Как и ты.
 	}
@@ -135,15 +135,13 @@ func void DIA_Akil_NachKampf_Info()
 	Info_AddChoice(DIA_Akil_NachKampf,"Ничего. Я просто рад, что у тебя теперь все в порядке.",DIA_Akil_NachKampf_Ehre);
 	Info_AddChoice(DIA_Akil_NachKampf,"Как насчет нескольких золотых?",DIA_Akil_NachKampf_Gold);
 	Npc_ExchangeRoutine(self,"Start");
-//	self.flags = 0;
-	if(Hlp_IsValidNpc(Kati) && !Npc_IsDead(Kati))
-	{
-//		Kati.flags = 0;
-		B_StartOtherRoutine(Kati,"Start");
-	};
+	B_StartOtherRoutine(Kati,"Start");
 	if(Hlp_IsValidNpc(Randolph) && !Npc_IsDead(Randolph))
 	{
-		B_StartOtherRoutine(Randolph,"Start");
+		if(DIA_Randolph_ICHGEBEDIRGELD_noPerm == FALSE)
+		{
+			B_StartOtherRoutine(Randolph,"Start");
+		};
 		Randolph.flags = 0;
 	};
 	TOPIC_END_AkilsSLDStillthere = TRUE;

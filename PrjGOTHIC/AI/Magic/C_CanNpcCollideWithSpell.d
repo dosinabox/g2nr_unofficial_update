@@ -11,7 +11,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 {
 	if(spellType == SPL_Whirlwind)
 	{
-		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || C_NpcIsGolem(self) || (self.guild == GIL_WISP) || (C_NpcIsDemon(self)) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON) || (self.flags == NPC_FLAG_IMMORTAL) || (self.guild == GIL_SHADOWBEAST) || (self.guild == GIL_Gargoyle))
+		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || C_NpcIsGolem(self) || (self.guild == GIL_WISP) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON) || (self.flags == NPC_FLAG_IMMORTAL) || (self.guild == GIL_SHADOWBEAST) || (self.guild == GIL_Gargoyle))
 		{
 			return COLL_DONOTHING;
 		};
@@ -308,34 +308,28 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 			return COLL_DOEVERYTHING;
 		};
 		return COLL_DONOTHING;
-	}
-	else if(spellType == SPL_PalRepelEvil)
+	};
+	if(spellType == SPL_PalRepelEvil)
 	{
 		if(C_NpcIsEvil(self))
 		{
 			if(self.attribute[ATR_HITPOINTS_MAX] <= SPL_Damage_PalRepelEvil)
 			{
 				return COLL_DOEVERYTHING;
-			}
-			else
-			{
-				return COLL_APPLYHALVEDAMAGE;
 			};
+			return COLL_APPLYHALVEDAMAGE;
 		};
 		return COLL_DONOTHING;
-	}
-	else if(spellType == SPL_PalDestroyEvil)
+	};
+	if(spellType == SPL_PalDestroyEvil)
 	{
 		if(C_NpcIsEvil(self))
 		{
 			if(self.attribute[ATR_HITPOINTS_MAX] <= SPL_Damage_PalDestroyEvil)
 			{
 				return COLL_DOEVERYTHING;
-			}
-			else
-			{
-				return COLL_APPLYHALVEDAMAGE;
 			};
+			return COLL_APPLYHALVEDAMAGE;
 		};
 		return COLL_DONOTHING;
 	};

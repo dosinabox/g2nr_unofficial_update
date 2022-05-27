@@ -46,10 +46,11 @@ func void B_StealItem()
 	dex = self.aivar[AIV_DexToSteal];
 	itm = self.aivar[AIV_ItemToSteal];
 	amount = self.aivar[AIV_AmountToSteal];
-	/*if((dex <= 20) && (EasyLowDexPickpocketDisabled == FALSE))
+	//TODO точно определять предмет и использовать только для золота
+	if((dex <= 20) && (amount > 1) && (EasyLowDexPickpocketDisabled == FALSE))
 	{
 		dex = 10;
-	};*/
+	};
 	if(other.attribute[ATR_DEXTERITY] >= dex)
 	{
 		B_GiveInvItems(self,other,itm,amount);

@@ -734,7 +734,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 				B_StartOtherRoutine(Rukhar,"WettkampfRukharWon");
 				Rukhar_Won_Wettkampf = TRUE;
 			}
-			else if(Mob_HasItems("CHEST_RUKHAR",ItFo_Water) > 0)
+			else if(Mob_HasItems("CHEST_RUKHAR",ItFo_Water))
 			{
 				B_StartOtherRoutine(Rukhar,"WettkampfRukharLost");
 			};
