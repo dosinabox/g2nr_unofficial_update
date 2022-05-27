@@ -57,7 +57,7 @@ func int GetRegenerationAttributeCost(var int current)
 	return 1;
 };
 
-func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut,var int amount)
+func int B_GetLearnCostAttribute(var int attribut,var int amount)
 {
 	if(attribut == ATR_REGENERATEHP)
 	{

@@ -524,38 +524,3 @@ func void DIA_Malak_BACK_Info()
 	B_NpcClearObsessionByDMT(self);
 };
 
-
-instance DIA_Malak_PICKPOCKET(C_Info)
-{
-	npc = BAU_963_Malak;
-	nr = 900;
-	condition = DIA_Malak_PICKPOCKET_Condition;
-	information = DIA_Malak_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Malak_PICKPOCKET_Condition()
-{
-	return C_Beklauen(43,40);
-};
-
-func void DIA_Malak_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Malak_PICKPOCKET);
-	Info_AddChoice(DIA_Malak_PICKPOCKET,Dialog_Back,DIA_Malak_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Malak_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Malak_PICKPOCKET_DoIt);
-};
-
-func void DIA_Malak_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Malak_PICKPOCKET);
-};
-
-func void DIA_Malak_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Malak_PICKPOCKET);
-};
-

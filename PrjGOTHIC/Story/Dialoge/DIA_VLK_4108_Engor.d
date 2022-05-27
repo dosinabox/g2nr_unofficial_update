@@ -73,16 +73,9 @@ func int DIA_Engor_HANDELN_Condition()
 
 func void DIA_Engor_HANDELN_Info()
 {
-	var int McBolzenAmount;
-	var int McArrowAmount;
 	AI_Output(other,self,"DIA_Engor_HANDELN_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
-	Npc_RemoveInvItems(self,ItRw_Bolt,Npc_HasItems(self,ItRw_Bolt));
-	McBolzenAmount = Kapitel * 50;
-	CreateInvItems(self,ItRw_Bolt,McBolzenAmount);
-	Npc_RemoveInvItems(self,ItRw_Arrow,Npc_HasItems(self,ItRw_Arrow));
-	McArrowAmount = Kapitel * 50;
-	CreateInvItems(self,ItRw_Arrow,McArrowAmount);
+	B_RefreshTraderAmmo(self,50);
 	Trade_IsActive = TRUE;
 };
 
@@ -424,44 +417,5 @@ func void DIA_Engor_Business_Info()
 		AI_Output(self,other,"DIA_Engor_Business_13_02");	//Паршиво! Паладины ничего не покупают.
 	};
 	AI_Output(self,other,"DIA_Engor_Business_13_03");	//А как насчет тебя? Ты хочешь что-нибудь купить?
-};
-
-
-instance DIA_Engor_PICKPOCKET(C_Info)
-{
-	npc = VLK_4108_Engor;
-	nr = 900;
-	condition = DIA_Engor_PICKPOCKET_Condition;
-	information = DIA_Engor_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = "(украсть его карту будет довольно просто)";
-};
-
-
-func int DIA_Engor_PICKPOCKET_Condition()
-{
-	if(Npc_HasItems(self,ItWr_Map_OldWorld))
-	{
-		return C_CanStealFromNpc(40);
-	};
-	return FALSE;
-};
-
-func void DIA_Engor_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Engor_PICKPOCKET);
-	Info_AddChoice(DIA_Engor_PICKPOCKET,Dialog_Back,DIA_Engor_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Engor_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Engor_PICKPOCKET_DoIt);
-};
-
-func void DIA_Engor_PICKPOCKET_DoIt()
-{
-	B_StealItem(40,ItWr_Map_OldWorld,1);
-	Info_ClearChoices(DIA_Engor_PICKPOCKET);
-};
-
-func void DIA_Engor_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Engor_PICKPOCKET);
 };
 

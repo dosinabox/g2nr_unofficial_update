@@ -235,8 +235,8 @@ func void B_BuildLearnDialog_Brutus()
 {
 	Info_ClearChoices(DIA_Brutus_Teach);
 	Info_AddChoice(DIA_Brutus_Teach,Dialog_Back,DIA_Brutus_Teach_Back);
-	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Brutus_Teach_STR_1);
-	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Brutus_Teach_STR_5);
+	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Brutus_Teach_STR_1);
+	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Brutus_Teach_STR_5);
 };
 
 instance DIA_Brutus_Teach(C_Info)
@@ -474,40 +474,5 @@ func void DIA_Brutus_BESSEN_Info()
 			Npc_ExchangeRoutine(self,"RunToStart");
 		};
 	};
-};
-
-
-instance DIA_Brutus_PICKPOCKET(C_Info)
-{
-	npc = VLK_4100_Brutus;
-	nr = 900;
-	condition = DIA_Brutus_PICKPOCKET_Condition;
-	information = DIA_Brutus_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Brutus_PICKPOCKET_Condition()
-{
-	return C_Beklauen(14,35);
-};
-
-func void DIA_Brutus_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Brutus_PICKPOCKET);
-	Info_AddChoice(DIA_Brutus_PICKPOCKET,Dialog_Back,DIA_Brutus_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Brutus_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Brutus_PICKPOCKET_DoIt);
-};
-
-func void DIA_Brutus_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Brutus_PICKPOCKET);
-};
-
-func void DIA_Brutus_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Brutus_PICKPOCKET);
 };
 

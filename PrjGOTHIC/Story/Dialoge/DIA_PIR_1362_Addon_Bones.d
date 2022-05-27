@@ -21,40 +21,6 @@ func void DIA_Addon_Bones_EXIT_Info()
 };
 
 
-instance DIA_Addon_Bones_PICKPOCKET(C_Info)
-{
-	npc = PIR_1362_Addon_Bones;
-	nr = 900;
-	condition = DIA_Addon_Bones_PICKPOCKET_Condition;
-	information = DIA_Addon_Bones_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Addon_Bones_PICKPOCKET_Condition()
-{
-	return C_Beklauen(75,104);
-};
-
-func void DIA_Addon_Bones_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Bones_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Bones_PICKPOCKET,Dialog_Back,DIA_Addon_Bones_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Bones_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Bones_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Bones_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Bones_PICKPOCKET);
-};
-
-func void DIA_Addon_Bones_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Bones_PICKPOCKET);
-};
-
 func void B_Addon_Bones_KeineZeit()
 {
 	AI_Output(self,other,"DIA_Addon_Bones_Train_01_01");	//Извини, у меня сейчас совсем нет времени.

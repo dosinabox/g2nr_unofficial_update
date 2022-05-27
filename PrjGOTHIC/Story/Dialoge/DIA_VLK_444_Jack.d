@@ -21,41 +21,6 @@ func void DIA_Jack_EXIT_Info()
 };
 
 
-instance DIA_Jack_PICKPOCKET(C_Info)
-{
-	npc = VLK_444_Jack;
-	nr = 900;
-	condition = DIA_Jack_PICKPOCKET_Condition;
-	information = DIA_Jack_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Jack_PICKPOCKET_Condition()
-{
-	return C_Beklauen(50,100);
-};
-
-func void DIA_Jack_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Jack_PICKPOCKET);
-	Info_AddChoice(DIA_Jack_PICKPOCKET,Dialog_Back,DIA_Jack_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Jack_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Jack_PICKPOCKET_DoIt);
-};
-
-func void DIA_Jack_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Jack_PICKPOCKET);
-};
-
-func void DIA_Jack_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Jack_PICKPOCKET);
-};
-
-
 instance DIA_Jack_GREET(C_Info)
 {
 	npc = VLK_444_Jack;

@@ -21,45 +21,6 @@ func void DIA_Bartok_EXIT_Info()
 };
 
 
-instance DIA_Bartok_PICKPOCKET(C_Info)
-{
-	npc = VLK_440_Bartok;
-	nr = 900;
-	condition = DIA_Bartok_PICKPOCKET_Condition;
-	information = DIA_Bartok_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = "(украсть его колчан будет довольно просто)";
-};
-
-
-func int DIA_Bartok_PICKPOCKET_Condition()
-{
-	if(Npc_HasItems(self,ItMi_ArrowPack))
-	{
-		return C_CanStealFromNpc(30);
-	};
-	return FALSE;
-};
-
-func void DIA_Bartok_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Bartok_PICKPOCKET);
-	Info_AddChoice(DIA_Bartok_PICKPOCKET,Dialog_Back,DIA_Bartok_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Bartok_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Bartok_PICKPOCKET_DoIt);
-};
-
-func void DIA_Bartok_PICKPOCKET_DoIt()
-{
-	B_StealItem(30,ItMi_ArrowPack,1);
-	Info_ClearChoices(DIA_Bartok_PICKPOCKET);
-};
-
-func void DIA_Bartok_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Bartok_PICKPOCKET);
-};
-
-
 instance DIA_Bartok_Hallo(C_Info)
 {
 	npc = VLK_440_Bartok;
@@ -557,7 +518,7 @@ func void DIA_Bartok_Angekommen_Info()
 	AI_Output(self,other,"DIA_Bartok_Angekommen_04_01");	//Здесь для меня слишком опасно - и даже для нас двоих.
 	if(Bartok_OrkStillThere == TRUE)
 	{
-		B_Bartok_ShitAnOrc();
+		AI_Output(self,other,"DIA_Bartok_Angekommen_04_02");	//(себе под нос) Орк прямо у ворот города - черт побери...
 		Bartok_OrkGesagt = TRUE;
 		Knows_Ork = TRUE;
 	};

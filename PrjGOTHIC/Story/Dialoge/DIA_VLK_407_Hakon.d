@@ -507,41 +507,6 @@ func void DIA_Hakon_Minenanteil_Info()
 };
 
 
-instance DIA_Hakon_PICKPOCKET(C_Info)
-{
-	npc = VLK_407_Hakon;
-	nr = 900;
-	condition = DIA_Hakon_PICKPOCKET_Condition;
-	information = DIA_Hakon_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Hakon_PICKPOCKET_Condition()
-{
-	return C_Beklauen(45,65);
-};
-
-func void DIA_Hakon_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Hakon_PICKPOCKET);
-	Info_AddChoice(DIA_Hakon_PICKPOCKET,Dialog_Back,DIA_Hakon_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Hakon_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Hakon_PICKPOCKET_DoIt);
-};
-
-func void DIA_Hakon_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Hakon_PICKPOCKET);
-};
-
-func void DIA_Hakon_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Hakon_PICKPOCKET);
-};
-
-
 instance DIA_Hakon_Kapitel2(C_Info)
 {
 	npc = VLK_407_Hakon;

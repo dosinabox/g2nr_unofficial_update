@@ -202,38 +202,3 @@ func void DIA_Kurgan_AllDragonsDead_Info()
 	AI_Output(self,other,"DIA_Kurgan_AllDragonsDead_01_03");	//(смеется) Ха. Ты даже сам в это не веришь. Хватит нести чушь.
 };
 
-
-instance DIA_Kurgan_PICKPOCKET(C_Info)
-{
-	npc = DJG_708_Kurgan;
-	nr = 900;
-	condition = DIA_Kurgan_PICKPOCKET_Condition;
-	information = DIA_Kurgan_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Kurgan_PICKPOCKET_Condition()
-{
-	return C_Beklauen(34,120);
-};
-
-func void DIA_Kurgan_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Kurgan_PICKPOCKET);
-	Info_AddChoice(DIA_Kurgan_PICKPOCKET,Dialog_Back,DIA_Kurgan_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Kurgan_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Kurgan_PICKPOCKET_DoIt);
-};
-
-func void DIA_Kurgan_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Kurgan_PICKPOCKET);
-};
-
-func void DIA_Kurgan_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Kurgan_PICKPOCKET);
-};
-

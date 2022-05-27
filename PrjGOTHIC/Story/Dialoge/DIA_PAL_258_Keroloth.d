@@ -573,38 +573,3 @@ func void DIA_Keroloth_KAP4_ENTSPANNDICH_Info()
 	};
 };
 
-
-instance DIA_Keroloth_PICKPOCKET(C_Info)
-{
-	npc = PAL_258_Keroloth;
-	nr = 900;
-	condition = DIA_Keroloth_PICKPOCKET_Condition;
-	information = DIA_Keroloth_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Keroloth_PICKPOCKET_Condition()
-{
-	return C_Beklauen(25,45);
-};
-
-func void DIA_Keroloth_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Keroloth_PICKPOCKET);
-	Info_AddChoice(DIA_Keroloth_PICKPOCKET,Dialog_Back,DIA_Keroloth_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Keroloth_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Keroloth_PICKPOCKET_DoIt);
-};
-
-func void DIA_Keroloth_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Keroloth_PICKPOCKET);
-};
-
-func void DIA_Keroloth_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Keroloth_PICKPOCKET);
-};
-

@@ -65,10 +65,10 @@ func void B_BuildLearnDialog_Torlof_DI()
 {
 	Info_ClearChoices(DIA_Torlof_DI_Teach);
 	Info_AddChoice(DIA_Torlof_DI_Teach,Dialog_Back,DIA_Torlof_DI_Teach_Back);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_Torlof_DI_Teach_DEX_1);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_Torlof_DI_Teach_DEX_5);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Torlof_DI_Teach_STR_1);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Torlof_DI_Teach_STR_5);
+	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Torlof_DI_Teach_DEX_1);
+	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Torlof_DI_Teach_DEX_5);
+	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Torlof_DI_Teach_STR_1);
+	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Torlof_DI_Teach_STR_5);
 };
 
 instance DIA_Torlof_DI_Teach(C_Info)
@@ -172,39 +172,5 @@ func void DIA_Torlof_DI_UndeadDragonDead_over()
 {
 	AI_StopProcessInfos(self);
 	B_Extro_Avi();
-};
-
-instance DIA_Torlof_DI_PICKPOCKET(C_Info)
-{
-	npc = SLD_801_Torlof_DI;
-	nr = 900;
-	condition = DIA_Torlof_DI_PICKPOCKET_Condition;
-	information = DIA_Torlof_DI_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Torlof_DI_PICKPOCKET_Condition()
-{
-	return C_Beklauen(76,120);
-};
-
-func void DIA_Torlof_DI_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Torlof_DI_PICKPOCKET);
-	Info_AddChoice(DIA_Torlof_DI_PICKPOCKET,Dialog_Back,DIA_Torlof_DI_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Torlof_DI_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Torlof_DI_PICKPOCKET_DoIt);
-};
-
-func void DIA_Torlof_DI_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Torlof_DI_PICKPOCKET);
-};
-
-func void DIA_Torlof_DI_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Torlof_DI_PICKPOCKET);
 };
 

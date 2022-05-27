@@ -325,10 +325,10 @@ func void B_BuildLearnDialog_Ferros()
 {
 	Info_ClearChoices(DIA_Ferros_Teach);
 	Info_AddChoice(DIA_Ferros_Teach,Dialog_Back,DIA_Ferros_Teach_Back);
-	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Ferros_Teach_STR_1);
-	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Ferros_Teach_STR_5);
-	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_Ferros_Teach_DEX_1);
-	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_Ferros_Teach_DEX_5);
+	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Ferros_Teach_STR_1);
+	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Ferros_Teach_STR_5);
+	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Ferros_Teach_DEX_1);
+	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Ferros_Teach_DEX_5);
 };
 
 instance DIA_Ferros_Teach(C_Info)
@@ -424,40 +424,5 @@ func void DIA_Ferros_AllDragonsDead_Info()
 {
 	AI_Output(other,self,"DIA_Ferros_AllDragonsDead_15_00");	//Все драконы мертвы.
 	AI_Output(self,other,"DIA_Ferros_AllDragonsDead_01_01");	//Отлично! Если бы у нас было побольше людей вроде тебя, все, возможно, не зашло бы так далеко.
-};
-
-
-instance DIA_Ferros_PICKPOCKET(C_Info)
-{
-	npc = DJG_715_Ferros;
-	nr = 900;
-	condition = DIA_Ferros_PICKPOCKET_Condition;
-	information = DIA_Ferros_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Ferros_PICKPOCKET_Condition()
-{
-	return C_Beklauen(56,75);
-};
-
-func void DIA_Ferros_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Ferros_PICKPOCKET);
-	Info_AddChoice(DIA_Ferros_PICKPOCKET,Dialog_Back,DIA_Ferros_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Ferros_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Ferros_PICKPOCKET_DoIt);
-};
-
-func void DIA_Ferros_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Ferros_PICKPOCKET);
-};
-
-func void DIA_Ferros_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Ferros_PICKPOCKET);
 };
 

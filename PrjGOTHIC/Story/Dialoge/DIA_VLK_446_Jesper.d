@@ -21,41 +21,6 @@ func void DIA_Jesper_EXIT_Info()
 };
 
 
-instance DIA_Jesper_PICKPOCKET(C_Info)
-{
-	npc = VLK_446_Jesper;
-	nr = 900;
-	condition = DIA_Jesper_PICKPOCKET_Condition;
-	information = DIA_Jesper_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Jesper_PICKPOCKET_Condition()
-{
-	return C_Beklauen(80,180);
-};
-
-func void DIA_Jesper_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Jesper_PICKPOCKET);
-	Info_AddChoice(DIA_Jesper_PICKPOCKET,Dialog_Back,DIA_Jesper_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Jesper_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Jesper_PICKPOCKET_DoIt);
-};
-
-func void DIA_Jesper_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Jesper_PICKPOCKET);
-};
-
-func void DIA_Jesper_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Jesper_PICKPOCKET);
-};
-
-
 instance DIA_Jesper_Hallo(C_Info)
 {
 	npc = VLK_446_Jesper;

@@ -602,38 +602,3 @@ func void DIA_Gerold_PERM4_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Gerold_PICKPOCKET(C_Info)
-{
-	npc = PAL_261_Gerold;
-	nr = 900;
-	condition = DIA_Gerold_PICKPOCKET_Condition;
-	information = DIA_Gerold_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Gerold_PICKPOCKET_Condition()
-{
-	return C_Beklauen(71,170);
-};
-
-func void DIA_Gerold_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Gerold_PICKPOCKET);
-	Info_AddChoice(DIA_Gerold_PICKPOCKET,Dialog_Back,DIA_Gerold_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Gerold_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Gerold_PICKPOCKET_DoIt);
-};
-
-func void DIA_Gerold_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Gerold_PICKPOCKET);
-};
-
-func void DIA_Gerold_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Gerold_PICKPOCKET);
-};
-

@@ -530,6 +530,7 @@ const string NAME_Trank = "Зелье";
 const string NAME_Rune = "Руна";
 const string NAME_Spruchrolle = "Свиток";
 const string NAME_Key = "Ключ";
+const string NAME_InnosStatue = "Статуэтка Инноса";
 const string NAME_Addon_Belt = "Пояс";
 const string NAME_Addon_BeltMage = "Кушак";
 const string NAME_Addon_BeArSLD = "Вместе с доспехами наемника +";

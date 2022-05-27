@@ -863,38 +863,3 @@ func void DIA_Karras_ItAm_Prot_BlackEye_Mis_Info()
 	};
 };
 
-
-instance DIA_Karras_PICKPOCKET(C_Info)
-{
-	npc = KDF_503_Karras;
-	nr = 900;
-	condition = DIA_Karras_PICKPOCKET_Condition;
-	information = DIA_Karras_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Karras_PICKPOCKET_Condition()
-{
-	return C_Beklauen(49,35);
-};
-
-func void DIA_Karras_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Karras_PICKPOCKET);
-	Info_AddChoice(DIA_Karras_PICKPOCKET,Dialog_Back,DIA_Karras_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Karras_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Karras_PICKPOCKET_DoIt);
-};
-
-func void DIA_Karras_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Karras_PICKPOCKET);
-};
-
-func void DIA_Karras_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Karras_PICKPOCKET);
-};
-

@@ -660,38 +660,3 @@ func void DIA_Daron_Spende_200()
 	Info_ClearChoices(DIA_Daron_Spende);
 };
 
-
-instance DIA_Daron_PICKPOCKET(C_Info)
-{
-	npc = KDF_511_Daron;
-	nr = 900;
-	condition = DIA_Daron_PICKPOCKET_Condition;
-	information = DIA_Daron_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Daron_PICKPOCKET_Condition()
-{
-	return C_Beklauen(47,80);
-};
-
-func void DIA_Daron_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Daron_PICKPOCKET);
-	Info_AddChoice(DIA_Daron_PICKPOCKET,Dialog_Back,DIA_Daron_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Daron_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Daron_PICKPOCKET_DoIt);
-};
-
-func void DIA_Daron_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Daron_PICKPOCKET);
-};
-
-func void DIA_Daron_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Daron_PICKPOCKET);
-};
-

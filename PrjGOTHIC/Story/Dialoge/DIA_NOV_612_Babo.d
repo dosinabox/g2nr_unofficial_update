@@ -722,9 +722,18 @@ func void B_GiveBaboDocs()
 	};
 	B_UseFakeScroll();
 	MIS_BabosDocs = LOG_SUCCESS;
-	Igaraz.aivar[AIV_IGNORE_Theft] = FALSE;
-	Feger2.aivar[AIV_IGNORE_Theft] = FALSE;
-	Feger3.aivar[AIV_IGNORE_Theft] = FALSE;
+	if(!Npc_IsDead(Igaraz))
+	{
+		Igaraz.aivar[AIV_IGNORE_Theft] = FALSE;
+	};
+	if(!Npc_IsDead(Feger2))
+	{
+		Feger2.aivar[AIV_IGNORE_Theft] = FALSE;
+	};
+	if(!Npc_IsDead(Feger3))
+	{
+		Feger3.aivar[AIV_IGNORE_Theft] = FALSE;
+	};
 	if(BabosDocsRejected == TRUE)
 	{
 		B_GivePlayerXP(XP_BabosDocs / 2);
@@ -947,40 +956,5 @@ func void DIA_Babo_Kap3_Perm_Info()
 		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_06");	//Я не хочу опять трудиться до полуночи, чтобы выполнить свою работу и не быть наказанным.
 	};
 	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Babo_PICKPOCKET(C_Info)
-{
-	npc = NOV_612_Babo;
-	nr = 900;
-	condition = DIA_Babo_PICKPOCKET_Condition;
-	information = DIA_Babo_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Babo_PICKPOCKET_Condition()
-{
-	return C_Beklauen(17,25);
-};
-
-func void DIA_Babo_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Babo_PICKPOCKET);
-	Info_AddChoice(DIA_Babo_PICKPOCKET,Dialog_Back,DIA_Babo_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Babo_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Babo_PICKPOCKET_DoIt);
-};
-
-func void DIA_Babo_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Babo_PICKPOCKET);
-};
-
-func void DIA_Babo_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Babo_PICKPOCKET);
 };
 

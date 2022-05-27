@@ -199,38 +199,3 @@ func void DIA_Bodo_WeedPERM_Info()
 	AI_Output(self,other,"DIA_Bodo_WeedPERM_12_01");	//У меня ее нет. Честно.
 };
 
-
-instance DIA_Bodo_PICKPOCKET(C_Info)
-{
-	npc = BAU_903_Bodo;
-	nr = 900;
-	condition = DIA_Bodo_PICKPOCKET_Condition;
-	information = DIA_Bodo_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Bodo_PICKPOCKET_Condition()
-{
-	return C_Beklauen(30,60);
-};
-
-func void DIA_Bodo_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Bodo_PICKPOCKET);
-	Info_AddChoice(DIA_Bodo_PICKPOCKET,Dialog_Back,DIA_Bodo_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Bodo_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Bodo_PICKPOCKET_DoIt);
-};
-
-func void DIA_Bodo_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Bodo_PICKPOCKET);
-};
-
-func void DIA_Bodo_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Bodo_PICKPOCKET);
-};
-

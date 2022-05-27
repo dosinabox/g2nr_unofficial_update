@@ -7,7 +7,6 @@ instance KDF_508_Gorax(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_DexToSteal] = 80;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	attribute[ATR_STRENGTH] = Condition_Stab04;
@@ -15,6 +14,7 @@ instance KDF_508_Gorax(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMW_Addon_Stab04);
 	CreateInvItems(self,ItKe_Innos_MIS,1);
+	B_CreateItemToSteal(self,80,ItKe_KlosterSchatz,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_OldBald_Jeremiah,BodyTex_N,ITAR_KDF_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

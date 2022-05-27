@@ -127,38 +127,3 @@ func void DIA_Geppert_BRATEN_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Geppert_PICKPOCKET(C_Info)
-{
-	npc = STRF_1115_Geppert;
-	nr = 900;
-	condition = DIA_Geppert_PICKPOCKET_Condition;
-	information = DIA_Geppert_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Geppert_PICKPOCKET_Condition()
-{
-	return C_Beklauen(56,5);
-};
-
-func void DIA_Geppert_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Geppert_PICKPOCKET);
-	Info_AddChoice(DIA_Geppert_PICKPOCKET,Dialog_Back,DIA_Geppert_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Geppert_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Geppert_PICKPOCKET_DoIt);
-};
-
-func void DIA_Geppert_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Geppert_PICKPOCKET);
-};
-
-func void DIA_Geppert_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Geppert_PICKPOCKET);
-};
-

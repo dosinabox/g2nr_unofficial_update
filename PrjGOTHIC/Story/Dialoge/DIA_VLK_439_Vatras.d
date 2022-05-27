@@ -189,41 +189,6 @@ func void DIA_Vatras_EXIT_Info()
 };
 
 
-instance DIA_Vatras_PICKPOCKET(C_Info)
-{
-	npc = VLK_439_Vatras;
-	nr = 900;
-	condition = DIA_Vatras_PICKPOCKET_Condition;
-	information = DIA_Vatras_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Vatras_PICKPOCKET_Condition()
-{
-	return C_Beklauen(91,250);
-};
-
-func void DIA_Vatras_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Vatras_PICKPOCKET);
-	Info_AddChoice(DIA_Vatras_PICKPOCKET,Dialog_Back,DIA_Vatras_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Vatras_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Vatras_PICKPOCKET_DoIt);
-};
-
-func void DIA_Vatras_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Vatras_PICKPOCKET);
-};
-
-func void DIA_Vatras_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Vatras_PICKPOCKET);
-};
-
-
 instance DIA_Vatras_GREET(C_Info)
 {
 	npc = VLK_439_Vatras;
@@ -1454,7 +1419,7 @@ func void DIA_Addon_Vatras_SellStonplate_Info()
 		CreateInvItems(self,ItPo_Health_03,anzahl + 1);
 		B_GiveInvItems(self,other,ItPo_Health_03,anzahl + 1);
 	};
-	Npc_RemoveInvItems(self,ItWr_StonePlateCommon_Addon,Npc_HasItems(self,ItWr_StonePlateCommon_Addon));
+	B_RemoveEveryInvItem(self,ItWr_StonePlateCommon_Addon);
 	B_GivePlayerXP(XP_Addon_VatrasStonplate * anzahl);
 };
 
@@ -1842,8 +1807,8 @@ func void B_BuildLearnDialog_Vatras()
 	{
 		Info_ClearChoices(DIA_Vatras_Teach);
 		Info_AddChoice(DIA_Vatras_Teach,Dialog_Back,DIA_Vatras_Teach_BACK);
-		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),DIA_Vatras_Teach_1);
-		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),DIA_Vatras_Teach_5);
+		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_Vatras_Teach_1);
+		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_Vatras_Teach_5);
 	};
 };
 

@@ -312,12 +312,43 @@ instance DIA_Serpentes_MinenAnteile(C_Info)
 
 func int DIA_Serpentes_MinenAnteile_Condition()
 {
-//	if((Pedro_Traitor == TRUE) && ((hero.guild == GIL_KDF) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (Kapitel >= 3))
 	if((Pedro_Traitor == TRUE) && (Kapitel >= 3))
 	{
 		if(hero.guild == GIL_KDF)
 		{
-			if(!Npc_IsDead(Salandril) || !Npc_IsDead(Matteo) || !Npc_IsDead(Bosper) || !Npc_IsDead(Zuris) || !Npc_IsDead(Elena) || !Npc_IsDead(Orlan) || !Npc_IsDead(Hakon) || !Npc_IsDead(Rosi) || !Npc_IsDead(Canthar))
+			if(!Npc_IsDead(Salandril))
+			{
+				return TRUE;
+			};
+			if(!Npc_IsDead(Matteo))
+			{
+				return TRUE;
+			};
+			if(!Npc_IsDead(Bosper))
+			{
+				return TRUE;
+			};
+			if(!Npc_IsDead(Zuris))
+			{
+				return TRUE;
+			};
+			if(!Npc_IsDead(Elena))
+			{
+				return TRUE;
+			};
+			if(!Npc_IsDead(Orlan))
+			{
+				return TRUE;
+			};
+			if(!Npc_IsDead(Hakon))
+			{
+				return TRUE;
+			};
+			if(!Npc_IsDead(Rosi))
+			{
+				return TRUE;
+			};
+			if(!Npc_IsDead(Canthar))
 			{
 				return TRUE;
 			};
@@ -644,40 +675,5 @@ func void DIA_Serpentes_SalandrilDEAD_Info()
 	AI_Output(self,other,"DIA_Serpentes_SalandrilDEAD_10_01");	//Что ж, значит, его дела не остались безнаказанными. Да сжалится Иннос над его бедной душой.
 	TOPIC_END_MinenAnteile = TRUE;
 	B_GivePlayerXP(XP_Ambient);
-};
-
-
-instance DIA_Serpentes_PICKPOCKET(C_Info)
-{
-	npc = KDF_501_Serpentes;
-	nr = 900;
-	condition = DIA_Serpentes_PICKPOCKET_Condition;
-	information = DIA_Serpentes_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Serpentes_PICKPOCKET_Condition()
-{
-	return C_Beklauen(86,380);
-};
-
-func void DIA_Serpentes_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Serpentes_PICKPOCKET);
-	Info_AddChoice(DIA_Serpentes_PICKPOCKET,Dialog_Back,DIA_Serpentes_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Serpentes_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Serpentes_PICKPOCKET_DoIt);
-};
-
-func void DIA_Serpentes_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Serpentes_PICKPOCKET);
-};
-
-func void DIA_Serpentes_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Serpentes_PICKPOCKET);
 };
 

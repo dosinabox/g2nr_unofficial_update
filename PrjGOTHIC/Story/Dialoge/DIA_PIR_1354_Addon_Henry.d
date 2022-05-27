@@ -49,41 +49,6 @@ func void B_Henry_Gold(var int gold)
 };
 
 
-instance DIA_Addon_Henry_PICKPOCKET(C_Info)
-{
-	npc = PIR_1354_Addon_Henry;
-	nr = 900;
-	condition = DIA_Addon_Henry_PICKPOCKET_Condition;
-	information = DIA_Addon_Henry_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Addon_Henry_PICKPOCKET_Condition()
-{
-	return C_Beklauen(40,60);
-};
-
-func void DIA_Addon_Henry_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Henry_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Henry_PICKPOCKET,Dialog_Back,DIA_Addon_Henry_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Henry_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Henry_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Henry_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Henry_PICKPOCKET);
-};
-
-func void DIA_Addon_Henry_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Henry_PICKPOCKET);
-};
-
-
 const string PIR_1354_Checkpoint = "ADW_PIRATECAMP_WAY_02";
 var int Henry_FriendOrFoe;
 

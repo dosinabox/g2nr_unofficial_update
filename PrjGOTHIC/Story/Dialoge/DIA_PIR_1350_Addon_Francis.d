@@ -271,45 +271,6 @@ func void DIA_Addon_Francis_Buch_Info()
 };
 
 
-instance DIA_Francis_PICKPOCKET(C_Info)
-{
-	npc = PIR_1350_Addon_Francis;
-	nr = 900;
-	condition = DIA_Francis_PICKPOCKET_Condition;
-	information = DIA_Francis_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40_Key;
-};
-
-
-func int DIA_Francis_PICKPOCKET_Condition()
-{
-	if(Npc_HasItems(self,ItKe_Greg_Addon_MIS))
-	{
-		return C_CanStealFromNpc(40);
-	};
-	return FALSE;
-};
-
-func void DIA_Francis_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Francis_PICKPOCKET);
-	Info_AddChoice(DIA_Francis_PICKPOCKET,Dialog_Back,DIA_Francis_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Francis_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Francis_PICKPOCKET_DoIt);
-};
-
-func void DIA_Francis_PICKPOCKET_DoIt()
-{
-	B_StealItem(40,ItKe_Greg_Addon_MIS,1);
-	Info_ClearChoices(DIA_Francis_PICKPOCKET);
-};
-
-func void DIA_Francis_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Francis_PICKPOCKET);
-};
-
-
 instance DIA_Francis_Ausgeschissen(C_Info)
 {
 	npc = PIR_1350_Addon_Francis;

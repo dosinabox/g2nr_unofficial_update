@@ -21,41 +21,6 @@ func void DIA_Addon_Finn_EXIT_Info()
 };
 
 
-instance DIA_Addon_Finn_PICKPOCKET(C_Info)
-{
-	npc = BDT_10004_Addon_Finn;
-	nr = 900;
-	condition = DIA_Addon_Finn_PICKPOCKET_Condition;
-	information = DIA_Addon_Finn_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Addon_Finn_PICKPOCKET_Condition()
-{
-	return C_Beklauen(35,50);
-};
-
-func void DIA_Addon_Finn_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Finn_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Finn_PICKPOCKET,Dialog_Back,DIA_Addon_Finn_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Finn_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Finn_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Finn_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Finn_PICKPOCKET);
-};
-
-func void DIA_Addon_Finn_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Finn_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Finn_Hacker(C_Info)
 {
 	npc = BDT_10004_Addon_Finn;

@@ -460,6 +460,9 @@ func void DIA_Vatras_DI_Talente_BACK()
 };
 
 
+var int DIA_Vatras_DI_DementorObsessionBook_OneTime;
+var int VatrasBookCount;
+
 instance DIA_Vatras_DI_DementorObsessionBook(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
@@ -479,10 +482,6 @@ func int DIA_Vatras_DI_DementorObsessionBook_Condition()
 	};
 };
 
-
-var int DIA_Vatras_DI_DementorObsessionBook_OneTime;
-var int VatrasBookCount;
-
 func void DIA_Vatras_DI_DementorObsessionBook_Info()
 {
 	VatrasBookCount = Npc_HasItems(other,ITWR_DementorObsessionBook_MIS);
@@ -495,10 +494,6 @@ func void DIA_Vatras_DI_DementorObsessionBook_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Vatras_DI_DementorObsessionBook_05_02");	//У тебя есть еще? Принеси мне все, что найдешь.
-	};
-	if(VatrasBookCount > 1)
-	{
-		AI_Output(other,self,"DIA_Pyrokar_AlmanachBringen_15_03");	//Я нашел еще несколько книг Ищущих.
 	};
 	B_GiveInvItems(other,self,ITWR_DementorObsessionBook_MIS,VatrasBookCount);
 	Npc_RemoveInvItems(self,ITWR_DementorObsessionBook_MIS,VatrasBookCount);

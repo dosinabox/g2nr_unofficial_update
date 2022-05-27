@@ -341,38 +341,3 @@ func void DIA_Agon_Perm_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Agon_PICKPOCKET(C_Info)
-{
-	npc = NOV_603_Agon;
-	nr = 900;
-	condition = DIA_Agon_PICKPOCKET_Condition;
-	information = DIA_Agon_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Agon_PICKPOCKET_Condition()
-{
-	return C_Beklauen(23,12);
-};
-
-func void DIA_Agon_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Agon_PICKPOCKET);
-	Info_AddChoice(DIA_Agon_PICKPOCKET,Dialog_Back,DIA_Agon_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Agon_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Agon_PICKPOCKET_DoIt);
-};
-
-func void DIA_Agon_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Agon_PICKPOCKET);
-};
-
-func void DIA_Agon_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Agon_PICKPOCKET);
-};
-

@@ -340,38 +340,3 @@ func void DIA_Mario_StillNeedYou_Info()
 	};
 };
 
-
-instance DIA_MARIO_PICKPOCKET(C_Info)
-{
-	npc = NONE_101_Mario;
-	nr = 900;
-	condition = DIA_MARIO_PICKPOCKET_Condition;
-	information = DIA_MARIO_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_MARIO_PICKPOCKET_Condition()
-{
-	return C_Beklauen(71,220);
-};
-
-func void DIA_MARIO_PICKPOCKET_Info()
-{
-	Info_ClearChoices(dia_mario_pickpocket);
-	Info_AddChoice(dia_mario_pickpocket,Dialog_Back,dia_mario_pickpocket_back);
-	Info_AddChoice(dia_mario_pickpocket,DIALOG_PICKPOCKET,DIA_MARIO_PICKPOCKET_DoIt);
-};
-
-func void DIA_MARIO_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(dia_mario_pickpocket);
-};
-
-func void dia_mario_pickpocket_back()
-{
-	Info_ClearChoices(dia_mario_pickpocket);
-};
-

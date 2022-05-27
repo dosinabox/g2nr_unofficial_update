@@ -437,7 +437,7 @@ func void Use_VatrasKDFEmpfehlung_Addon()
 
 instance ItMi_LostInnosStatue_Daron(C_Item)
 {
-	name = "Статуэтка Инноса";
+	name = NAME_InnosStatue;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_InnosStatue;

@@ -23,41 +23,6 @@ func void DIA_Addon_Lucia_EXIT_Info()
 };
 
 
-instance DIA_Addon_Lucia_PICKPOCKET(C_Info)
-{
-	npc = BDT_1091_Addon_Lucia;
-	nr = 900;
-	condition = DIA_Addon_Lucia_PICKPOCKET_Condition;
-	information = DIA_Addon_Lucia_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80_Female;
-};
-
-
-func int DIA_Addon_Lucia_PICKPOCKET_Condition()
-{
-	return C_Beklauen(80,100);
-};
-
-func void DIA_Addon_Lucia_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Lucia_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Lucia_PICKPOCKET,Dialog_Back,DIA_Addon_Lucia_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Lucia_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Lucia_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Lucia_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Lucia_PICKPOCKET);
-};
-
-func void DIA_Addon_Lucia_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Lucia_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Lucia_Hi(C_Info)
 {
 	npc = BDT_1091_Addon_Lucia;
@@ -401,8 +366,8 @@ func void B_BuildLearnDialog_Lucia()
 {
 	Info_ClearChoices(DIA_Addon_Lucia_TEACH);
 	Info_AddChoice(DIA_Addon_Lucia_TEACH,Dialog_Back,DIA_Addon_Lucia_TEACH_BACK);
-	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_Addon_Lucia_TEACH_1);
-	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_Addon_Lucia_TEACH_5);
+	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Addon_Lucia_TEACH_1);
+	Info_AddChoice(DIA_Addon_Lucia_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Addon_Lucia_TEACH_5);
 };
 
 instance DIA_Addon_Lucia_TEACH(C_Info)

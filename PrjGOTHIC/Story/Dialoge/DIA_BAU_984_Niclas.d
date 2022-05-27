@@ -249,37 +249,3 @@ func void DIA_Niclas_Teach_BOW_5()
 	};
 };
 
-instance DIA_Niclas_PICKPOCKET(C_Info)
-{
-	npc = BAU_984_Niclas;
-	nr = 900;
-	condition = DIA_Niclas_PICKPOCKET_Condition;
-	information = DIA_Niclas_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Niclas_PICKPOCKET_Condition()
-{
-	return C_Beklauen(27,20);
-};
-
-func void DIA_Niclas_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Niclas_PICKPOCKET);
-	Info_AddChoice(DIA_Niclas_PICKPOCKET,Dialog_Back,DIA_Niclas_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Niclas_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Niclas_PICKPOCKET_DoIt);
-};
-
-func void DIA_Niclas_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Niclas_PICKPOCKET);
-};
-
-func void DIA_Niclas_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Niclas_PICKPOCKET);
-};
-

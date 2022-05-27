@@ -416,38 +416,3 @@ func void DIA_Pedro_Monastery_Info()
 	AI_Output(self,other,"DIA_Pedro_Monastery_09_02");	//Маги присматривают за нами, а также изучают искусство магии.
 };
 
-
-instance DIA_Pedro_PICKPOCKET(C_Info)
-{
-	npc = NOV_600_Pedro;
-	nr = 900;
-	condition = DIA_Pedro_PICKPOCKET_Condition;
-	information = DIA_Pedro_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Pedro_PICKPOCKET_Condition()
-{
-	return C_Beklauen(45,60);
-};
-
-func void DIA_Pedro_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Pedro_PICKPOCKET);
-	Info_AddChoice(DIA_Pedro_PICKPOCKET,Dialog_Back,DIA_Pedro_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Pedro_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Pedro_PICKPOCKET_DoIt);
-};
-
-func void DIA_Pedro_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Pedro_PICKPOCKET);
-};
-
-func void DIA_Pedro_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Pedro_PICKPOCKET);
-};
-

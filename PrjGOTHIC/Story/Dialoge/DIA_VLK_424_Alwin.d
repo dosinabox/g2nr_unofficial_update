@@ -21,41 +21,6 @@ func void DIA_Alwin_EXIT_Info()
 };
 
 
-instance DIA_Alwin_PICKPOCKET(C_Info)
-{
-	npc = VLK_424_Alwin;
-	nr = 900;
-	condition = DIA_Alwin_PICKPOCKET_Condition;
-	information = DIA_Alwin_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Alwin_PICKPOCKET_Condition()
-{
-	return C_Beklauen(20,10);
-};
-
-func void DIA_Alwin_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Alwin_PICKPOCKET);
-	Info_AddChoice(DIA_Alwin_PICKPOCKET,Dialog_Back,DIA_Alwin_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Alwin_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Alwin_PICKPOCKET_DoIt);
-};
-
-func void DIA_Alwin_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Alwin_PICKPOCKET);
-};
-
-func void DIA_Alwin_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Alwin_PICKPOCKET);
-};
-
-
 instance DIA_Alwin_Sheep(C_Info)
 {
 	npc = VLK_424_Alwin;

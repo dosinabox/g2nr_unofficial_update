@@ -373,38 +373,3 @@ func void DIA_Sergio_Perm_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Sergio_PICKPOCKET(C_Info)
-{
-	npc = PAL_299_Sergio;
-	nr = 900;
-	condition = DIA_Sergio_PICKPOCKET_Condition;
-	information = DIA_Sergio_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Sergio_PICKPOCKET_Condition()
-{
-	return C_Beklauen(78,85);
-};
-
-func void DIA_Sergio_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Sergio_PICKPOCKET);
-	Info_AddChoice(DIA_Sergio_PICKPOCKET,Dialog_Back,DIA_Sergio_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Sergio_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Sergio_PICKPOCKET_DoIt);
-};
-
-func void DIA_Sergio_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Sergio_PICKPOCKET);
-};
-
-func void DIA_Sergio_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Sergio_PICKPOCKET);
-};
-

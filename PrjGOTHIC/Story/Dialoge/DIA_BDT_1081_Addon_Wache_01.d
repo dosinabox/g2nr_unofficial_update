@@ -21,41 +21,6 @@ func void DIA_Addon_Wache_01_EXIT_Info()
 };
 
 
-instance DIA_Addon_Wache_01_PICKPOCKET(C_Info)
-{
-	npc = BDT_1081_Addon_Wache_01;
-	nr = 900;
-	condition = DIA_Addon_Wache_01_PICKPOCKET_Condition;
-	information = DIA_Addon_Wache_01_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Addon_Wache_01_PICKPOCKET_Condition()
-{
-	return C_Beklauen(38,99);
-};
-
-func void DIA_Addon_Wache_01_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Wache_01_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Wache_01_PICKPOCKET,Dialog_Back,DIA_Addon_Wache_01_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Wache_01_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Wache_01_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Wache_01_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Wache_01_PICKPOCKET);
-};
-
-func void DIA_Addon_Wache_01_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Wache_01_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Wache_01_Hi(C_Info)
 {
 	npc = BDT_1081_Addon_Wache_01;

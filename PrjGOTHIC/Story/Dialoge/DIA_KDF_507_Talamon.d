@@ -209,38 +209,3 @@ func void DIA_Talamon_ScoutSecretLibrary_Info()
 	};
 };
 
-
-instance DIA_Talamon_PICKPOCKET(C_Info)
-{
-	npc = KDF_507_Talamon;
-	nr = 900;
-	condition = DIA_Talamon_PICKPOCKET_Condition;
-	information = DIA_Talamon_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Talamon_PICKPOCKET_Condition()
-{
-	return C_Beklauen(87,140);
-};
-
-func void DIA_Talamon_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Talamon_PICKPOCKET);
-	Info_AddChoice(DIA_Talamon_PICKPOCKET,Dialog_Back,DIA_Talamon_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Talamon_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Talamon_PICKPOCKET_DoIt);
-};
-
-func void DIA_Talamon_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Talamon_PICKPOCKET);
-};
-
-func void DIA_Talamon_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Talamon_PICKPOCKET);
-};
-

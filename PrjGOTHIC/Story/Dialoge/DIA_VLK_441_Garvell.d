@@ -21,45 +21,6 @@ func void DIA_Garvell_EXIT_Info()
 };
 
 
-instance DIA_Garvell_PICKPOCKET(C_Info)
-{
-	npc = VLK_441_Garvell;
-	nr = 900;
-	condition = DIA_Garvell_PICKPOCKET_Condition;
-	information = DIA_Garvell_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Garvell_PICKPOCKET_Condition()
-{
-	if(Npc_HasItems(self,ItSe_GoldPocket25))
-	{
-		return C_CanStealFromNpc(10);
-	};
-	return FALSE;
-};
-
-func void DIA_Garvell_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Garvell_PICKPOCKET);
-	Info_AddChoice(DIA_Garvell_PICKPOCKET,Dialog_Back,DIA_Garvell_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Garvell_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Garvell_PICKPOCKET_DoIt);
-};
-
-func void DIA_Garvell_PICKPOCKET_DoIt()
-{
-	B_StealItem(10,ItSe_GoldPocket25,1);
-	Info_ClearChoices(DIA_Garvell_PICKPOCKET);
-};
-
-func void DIA_Garvell_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Garvell_PICKPOCKET);
-};
-
-
 instance DIA_Garvell_GREET(C_Info)
 {
 	npc = VLK_441_Garvell;

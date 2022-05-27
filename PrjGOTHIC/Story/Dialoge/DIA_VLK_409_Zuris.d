@@ -35,7 +35,10 @@ instance DIA_Zuris_PICKPOCKET(C_Info)
 
 func int DIA_Zuris_PICKPOCKET_Condition()
 {
-	return C_CanStealFromNpc(40);
+	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (other.attribute[ATR_DEXTERITY] >= 30))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Zuris_PICKPOCKET_Info()

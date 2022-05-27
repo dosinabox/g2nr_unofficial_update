@@ -21,41 +21,6 @@ func void DIA_Addon_Bloodwyn_EXIT_Info()
 };
 
 
-instance DIA_Addon_Bloodwyn_PICKPOCKET(C_Info)
-{
-	npc = BDT_1085_Addon_Bloodwyn;
-	nr = 900;
-	condition = DIA_Addon_Bloodwyn_PICKPOCKET_Condition;
-	information = DIA_Addon_Bloodwyn_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Addon_Bloodwyn_PICKPOCKET_Condition()
-{
-	return C_Beklauen(90,250);
-};
-
-func void DIA_Addon_Bloodwyn_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Bloodwyn_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Bloodwyn_PICKPOCKET,Dialog_Back,DIA_Addon_Bloodwyn_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Bloodwyn_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Bloodwyn_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Bloodwyn_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Bloodwyn_PICKPOCKET);
-};
-
-func void DIA_Addon_Bloodwyn_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Bloodwyn_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Bloodwyn_Dead(C_Info)
 {
 	npc = BDT_1085_Addon_Bloodwyn;

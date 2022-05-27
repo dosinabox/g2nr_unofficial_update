@@ -22,41 +22,6 @@ func void DIA_Brian_EXIT_Info()
 };
 
 
-instance DIA_Brian_PICKPOCKET(C_Info)
-{
-	npc = VLK_457_Brian;
-	nr = 900;
-	condition = DIA_Brian_PICKPOCKET_Condition;
-	information = DIA_Brian_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Brian_PICKPOCKET_Condition()
-{
-	return C_Beklauen(55,100);
-};
-
-func void DIA_Brian_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Brian_PICKPOCKET);
-	Info_AddChoice(DIA_Brian_PICKPOCKET,Dialog_Back,DIA_Brian_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Brian_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Brian_PICKPOCKET_DoIt);
-};
-
-func void DIA_Brian_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Brian_PICKPOCKET);
-};
-
-func void DIA_Brian_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Brian_PICKPOCKET);
-};
-
-
 instance DIA_Brian_HALLO(C_Info)
 {
 	npc = VLK_457_Brian;
@@ -257,7 +222,7 @@ func int DIA_Brian_WASKAUFEN_Condition()
 func void DIA_Brian_WASKAUFEN_Info()
 {
 	AI_Output(other,self,"DIA_Brian_WASKAUFEN_15_00");	//Что я могу купить у тебя?
-	Npc_RemoveInvItems(self,ItMiSwordblade,Npc_HasItems(self,ItMiSwordblade));
+	B_RemoveEveryInvItem(self,ItMiSwordblade);
 	B_GiveTradeInv(self);
 	if(Npc_IsDead(Harad))
 	{

@@ -13,20 +13,24 @@ const int ATR_DEXTERITY = 5;
 const int ATR_REGENERATEHP = 6;
 const int ATR_REGENERATEMANA = 7;
 const int ATR_INDEX_MAX = 8;
+
 const int NPC_FLAG_FRIEND = 1;
 const int NPC_FLAG_IMMORTAL = 2;
 const int NPC_FLAG_GHOST = 4;
+
 const int FMODE_NONE = 0;
 const int FMODE_FIST = 1;
 const int FMODE_MELEE = 2;
 const int FMODE_FAR = 5;
 const int FMODE_MAGIC = 7;
+
 const int NPC_RUN = 0;
 const int NPC_WALK = 1;
 const int NPC_SNEAK = 2;
 const int NPC_RUN_WEAPON = 128;
 const int NPC_WALK_WEAPON = 129;
 const int NPC_SNEAK_WEAPON = 130;
+
 const int WEAR_TORSO = 1;
 const int WEAR_HEAD = 2;
 const int WEAR_EFFECT = 16;
@@ -48,7 +52,9 @@ const int INV_MAX_DOCS = 1000;
 const int INV_MAX_POTIONS = 1000;
 const int INV_MAX_MAGIC = 1000;
 const int INV_MAX_MISC = 1000;
+
 const int ITM_TEXT_MAX = 6;
+
 const int ITEM_KAT_NONE = 1;
 const int ITEM_KAT_NF = 2;
 const int ITEM_KAT_FF = 4;
@@ -444,7 +450,6 @@ const int SPL_Reserved_98 = 98;
 const int SPL_Reserved_99 = 99;
 const int MAX_SPELL = 100;
 
-
 const string spellFxInstanceNames[100] =
 {
 	"PalLight",
@@ -781,7 +786,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "08/05/2022";
+const string FIX_VERSION_DATE = "27/05/2022";
 const int FIX_VERSION_START = 28;
 const int LEAST_SUPPORTED = 26;
 var int FIX_VERSION_SAVE;

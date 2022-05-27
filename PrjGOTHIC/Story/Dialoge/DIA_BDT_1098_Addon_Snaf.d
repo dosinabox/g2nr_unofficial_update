@@ -21,41 +21,6 @@ func void DIA_Addon_Snaf_EXIT_Info()
 };
 
 
-instance DIA_Addon_Snaf_PICKPOCKET(C_Info)
-{
-	npc = BDT_1098_Addon_Snaf;
-	nr = 900;
-	condition = DIA_Addon_Snaf_PICKPOCKET_Condition;
-	information = DIA_Addon_Snaf_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Addon_Snaf_PICKPOCKET_Condition()
-{
-	return C_Beklauen(49,56);
-};
-
-func void DIA_Addon_Snaf_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Snaf_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Snaf_PICKPOCKET,Dialog_Back,DIA_Addon_Snaf_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Snaf_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Snaf_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Snaf_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Snaf_PICKPOCKET);
-};
-
-func void DIA_Addon_Snaf_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Snaf_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Snaf_Hi(C_Info)
 {
 	npc = BDT_1098_Addon_Snaf;

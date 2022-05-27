@@ -414,38 +414,3 @@ func void DIA_Fester_PERMPruegel_Info()
 	B_Attack(self,other,AR_NONE,1);
 };
 
-
-instance DIA_Fester_PICKPOCKET(C_Info)
-{
-	npc = SLD_816_Fester;
-	nr = 900;
-	condition = DIA_Fester_PICKPOCKET_Condition;
-	information = DIA_Fester_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Fester_PICKPOCKET_Condition()
-{
-	return C_Beklauen(27,45);
-};
-
-func void DIA_Fester_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Fester_PICKPOCKET);
-	Info_AddChoice(DIA_Fester_PICKPOCKET,Dialog_Back,DIA_Fester_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Fester_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Fester_PICKPOCKET_DoIt);
-};
-
-func void DIA_Fester_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Fester_PICKPOCKET);
-};
-
-func void DIA_Fester_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Fester_PICKPOCKET);
-};
-

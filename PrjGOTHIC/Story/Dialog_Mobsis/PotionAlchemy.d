@@ -21,7 +21,7 @@ func void potionalchemy_s1()
 	if(C_NpcIsHero(self))
 	{
 		FlasksCount = Npc_HasItems(self,ItMi_Flask) + 1;
-		Npc_RemoveInvItems(self,ItMi_Flask,Npc_HasItems(self,ItMi_Flask));
+		B_RemoveEveryInvItem(self,ItMi_Flask);
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_PotionAlchemy;
 		AI_ProcessInfos(self);

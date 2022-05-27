@@ -430,38 +430,3 @@ func void DIA_Rukhar_Perm_Info()
 	AI_Output(self,other,"DIA_Rukhar_Perm_12_01");	//Ничего такого, о чем бы я знал. Никто ничего мне не рассказывает.
 };
 
-
-instance DIA_Rukhar_PICKPOCKET(C_Info)
-{
-	npc = BAU_973_Rukhar;
-	nr = 900;
-	condition = DIA_Rukhar_PICKPOCKET_Condition;
-	information = DIA_Rukhar_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Rukhar_PICKPOCKET_Condition()
-{
-	return C_Beklauen(26,30);
-};
-
-func void DIA_Rukhar_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Rukhar_PICKPOCKET);
-	Info_AddChoice(DIA_Rukhar_PICKPOCKET,Dialog_Back,DIA_Rukhar_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Rukhar_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Rukhar_PICKPOCKET_DoIt);
-};
-
-func void DIA_Rukhar_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Rukhar_PICKPOCKET);
-};
-
-func void DIA_Rukhar_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Rukhar_PICKPOCKET);
-};
-

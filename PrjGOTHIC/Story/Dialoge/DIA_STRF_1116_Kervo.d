@@ -188,38 +188,3 @@ func void DIA_Kervo_VERGISSES_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Kervo_PICKPOCKET(C_Info)
-{
-	npc = STRF_1116_Kervo;
-	nr = 900;
-	condition = DIA_Kervo_PICKPOCKET_Condition;
-	information = DIA_Kervo_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Kervo_PICKPOCKET_Condition()
-{
-	return C_Beklauen(34,10);
-};
-
-func void DIA_Kervo_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Kervo_PICKPOCKET);
-	Info_AddChoice(DIA_Kervo_PICKPOCKET,Dialog_Back,DIA_Kervo_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Kervo_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Kervo_PICKPOCKET_DoIt);
-};
-
-func void DIA_Kervo_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Kervo_PICKPOCKET);
-};
-
-func void DIA_Kervo_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Kervo_PICKPOCKET);
-};
-

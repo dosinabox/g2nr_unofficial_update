@@ -24,10 +24,34 @@ func int ZS_Guard_Passage_Loop()
 	{
 		if(Npc_GetDistToNpc(self,hero) > PERC_DIST_DIALOG)
 		{
-			random = Hlp_Random(10);
+			random = Hlp_Random(16);
 			if(random == 0)
 			{
 				AI_PlayAni(self,"T_HGUARD_LOOKAROUND");
+			}
+			else if(random == 1)
+			{
+				AI_PlayAni(self,"T_BORINGKICK");
+			}
+			else if(random == 2)
+			{
+				AI_PlayAni(self,"R_SCRATCHLSHOULDER");
+			}
+			else if(random == 3)
+			{
+				AI_PlayAni(self,"R_SCRATCHRSHOULDER");
+			}
+			else if(random == 4)
+			{
+				AI_PlayAni(self,"R_SCRATCHEGG");
+			}
+			else if(random == 5)
+			{
+				AI_PlayAni(self,"R_SCRATCHHEAD");
+			}
+			else if(random == 6)
+			{
+				AI_PlayAni(self,"R_LEGSHAKE");
 			}
 			else
 			{

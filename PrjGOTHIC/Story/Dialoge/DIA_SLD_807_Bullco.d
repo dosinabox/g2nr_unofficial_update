@@ -264,38 +264,3 @@ func void DIA_Bullco_PepesSchafe_Info()
 	B_AboutPepe();
 };
 
-
-instance DIA_BullcoSLD_PICKPOCKET(C_Info)
-{
-	npc = SLD_807_Bullco;
-	nr = 900;
-	condition = DIA_BullcoSLD_PICKPOCKET_Condition;
-	information = DIA_BullcoSLD_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_BullcoSLD_PICKPOCKET_Condition()
-{
-	return C_Beklauen(56,35);
-};
-
-func void DIA_BullcoSLD_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_BullcoSLD_PICKPOCKET);
-	Info_AddChoice(DIA_BullcoSLD_PICKPOCKET,Dialog_Back,DIA_BullcoSLD_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_BullcoSLD_PICKPOCKET,DIALOG_PICKPOCKET,DIA_BullcoSLD_PICKPOCKET_DoIt);
-};
-
-func void DIA_BullcoSLD_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_BullcoSLD_PICKPOCKET);
-};
-
-func void DIA_BullcoSLD_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_BullcoSLD_PICKPOCKET);
-};
-

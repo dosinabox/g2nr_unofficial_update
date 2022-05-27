@@ -1,4 +1,28 @@
 
+var int DIA_Kardif_Buerger_permanent;
+var int DIA_Kardif_Lehmar_permanent;
+var int DIA_Kardif_Arbeit_permanent;
+var int DIA_Addon_Kardif_MissingPeople_permanent;
+var int DIA_Kardif_Lernen_permanent;
+var int DIA_Kardif_Diebeswerk_permanent;
+var int DIA_Kardif_Diebeswerk2_permanent;
+var int DIA_Kardif_DOPE_perm;
+var int DIA_Kardif_Paket_perm;
+var int DIA_Kardif_Kerl_permanent;
+
+func int C_MartinIsNear()
+{
+	if(Npc_IsDead(Martin))
+	{
+		return FALSE;
+	};
+	if(Npc_GetDistToNpc(self,Martin) >= PERC_DIST_DIALOG)
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 instance DIA_Kardif_EXIT(C_Info)
 {
 	npc = VLK_431_Kardif;
@@ -12,55 +36,13 @@ instance DIA_Kardif_EXIT(C_Info)
 
 func int DIA_Kardif_EXIT_Condition()
 {
-	if(Kardif_OneQuestion == FALSE)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Kardif_EXIT_Info()
 {
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Kardif_PICKPOCKET(C_Info)
-{
-	npc = VLK_431_Kardif;
-	nr = 900;
-	condition = DIA_Kardif_PICKPOCKET_Condition;
-	information = DIA_Kardif_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Kardif_PICKPOCKET_Condition()
-{
-	if(Kardif_OneQuestion == FALSE)
-	{
-		return C_Beklauen(55,85);
-	};
-	return FALSE;
-};
-
-func void DIA_Kardif_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Kardif_PICKPOCKET);
-	Info_AddChoice(DIA_Kardif_PICKPOCKET,Dialog_Back,DIA_Kardif_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Kardif_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Kardif_PICKPOCKET_DoIt);
-};
-
-func void DIA_Kardif_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Kardif_PICKPOCKET);
-};
-
-func void DIA_Kardif_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Kardif_PICKPOCKET);
 };
 
 
@@ -77,10 +59,7 @@ instance DIA_Kardif_Hi(C_Info)
 
 func int DIA_Kardif_Hi_Condition()
 {
-	if(Kardif_OneQuestion == FALSE)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Kardif_Hi_Info()
@@ -209,7 +188,7 @@ instance DIA_Kardif_TRADE(C_Info)
 
 func int DIA_Kardif_TRADE_Condition()
 {
-	if((Kardif_OneQuestion == FALSE) && Npc_KnowsInfo(other,DIA_Kardif_Hi))
+	if(Npc_KnowsInfo(other,DIA_Kardif_Hi))
 	{
 		return TRUE;
 	};
@@ -222,6 +201,61 @@ func void DIA_Kardif_TRADE_Info()
 	Trade_IsActive = TRUE;
 };
 
+
+func void B_BuildInfoDialog_Kardif()
+{
+	Info_ClearChoices(DIA_Kardif_TradeInfo);
+	Info_AddChoice(DIA_Kardif_TradeInfo,Dialog_Back,DIA_Kardif_TradeInfo_Back);
+	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE) && (DIA_Kardif_DOPE_perm == FALSE))
+	{
+		Info_AddChoice(DIA_Kardif_TradeInfo,"Где мне здесь купить травки?",DIA_Kardif_DOPE_Info);
+	};
+	if((MIS_Andre_WAREHOUSE == LOG_Running) && (DIA_Kardif_Paket_perm == FALSE))
+	{
+		Info_AddChoice(DIA_Kardif_TradeInfo,"Ты что-нибудь слышал о тюке болотной травы?",DIA_Kardif_Paket_Info);
+	};
+	if(DIA_Kardif_Lernen_permanent == FALSE)
+	{
+		Info_AddChoice(DIA_Kardif_TradeInfo,"А у кого здесь можно поучиться чему-нибудь?",DIA_Kardif_Lernen_Info);
+	};
+	if(DIA_Kardif_Arbeit_permanent == FALSE)
+	{
+		Info_AddChoice(DIA_Kardif_TradeInfo,"Где я могу найти работу?",DIA_Kardif_Arbeit_Info);
+	}
+	else if(DIA_Kardif_Diebeswerk_permanent == FALSE)
+	{
+		Info_AddChoice(DIA_Kardif_TradeInfo,"А нет ли здесь какой-нибудь 'особой' работы?",DIA_Kardif_Diebeswerk_Info);
+	}
+	else if(DIA_Kardif_Diebeswerk2_permanent == FALSE)
+	{
+		Info_AddChoice(DIA_Kardif_TradeInfo,"Есть что-нибудь 'особенное' для меня?",DIA_Kardif_Diebeswerk2_Info);
+	};
+	if(DIA_Kardif_Buerger_permanent == FALSE)
+	{
+		Info_AddChoice(DIA_Kardif_TradeInfo,"Кого считают влиятельными людьми в этом городе?",DIA_Kardif_Buerger_Info);
+	}
+	else if((DIA_Kardif_Lehmar_permanent == FALSE) && (SchuldBuchNamesKnown == FALSE))
+	{
+		Info_AddChoice(DIA_Kardif_TradeInfo,"Кто должен Лемару?",DIA_Kardif_Lehmar_Info);
+	};
+	if((DIA_Addon_Kardif_MissingPeople_permanent == FALSE) && (SC_HearedAboutMissingPeople == TRUE))
+	{
+		Info_AddChoice(DIA_Kardif_TradeInfo,"Что ты знаешь о пропавших горожанах?",DIA_Addon_Kardif_MissingPeople_Info);
+	};
+	if(Npc_KnowsInfo(other,DIA_Kardif_SENDATTILA) && !Npc_IsDead(Attila) && (DIA_Kardif_Kerl_permanent == FALSE))
+	{
+		if(Attila.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			Info_AddChoice(DIA_Kardif_TradeInfo,"Как выглядел этот парень?",DIA_Kardif_Kerl_Info);
+		};
+	};
+};
+
+func void B_SayKardifZuwenigGold()
+{
+	AI_Output(self,other,"B_SayKardifZuwenigGold_14_00");	//Возвращайся, когда у тебя будет достаточно золота.
+	Info_ClearChoices(DIA_Kardif_TradeInfo);
+};
 
 instance DIA_Kardif_TradeInfo(C_Info)
 {
@@ -236,7 +270,7 @@ instance DIA_Kardif_TradeInfo(C_Info)
 
 func int DIA_Kardif_TradeInfo_Condition()
 {
-	if((Kardif_OneQuestion == FALSE) && (Kardif_Deal > 0))
+	if(Kardif_Deal > 0)
 	{
 		return TRUE;
 	};
@@ -245,34 +279,7 @@ func int DIA_Kardif_TradeInfo_Condition()
 func void DIA_Kardif_TradeInfo_Info()
 {
 	AI_Output(other,self,"DIA_Kardif_TradeInfo_15_00");	//Мне нужна информация.
-	Kardif_OneQuestion = TRUE;
-};
-
-func void B_SayKardifZuwenigGold()
-{
-	AI_Output(self,other,"B_SayKardifZuwenigGold_14_00");	//Возвращайся, когда у тебя будет достаточно золота.
-};
-
-
-instance DIA_Kardif_Buerger(C_Info)
-{
-	npc = VLK_431_Kardif;
-	nr = 5;
-	condition = DIA_Kardif_Buerger_Condition;
-	information = DIA_Kardif_Buerger_Info;
-	permanent = TRUE;
-	description = "Кого считают влиятельными людьми в этом городе?";
-};
-
-
-var int DIA_Kardif_Buerger_permanent;
-
-func int DIA_Kardif_Buerger_Condition()
-{
-	if((DIA_Kardif_Buerger_permanent == FALSE) && (Kardif_OneQuestion == TRUE))
-	{
-		return TRUE;
-	};
+	B_BuildInfoDialog_Kardif();
 };
 
 func void DIA_Kardif_Buerger_Info()
@@ -284,32 +291,11 @@ func void DIA_Kardif_Buerger_Info()
 		AI_Output(self,other,"DIA_Kardif_Buerger_14_02");	//Этот ростовщик не очень популярен, но у него есть золото, и другие влиятельные горожане должны ему деньги.
 		AI_Output(self,other,"DIA_Kardif_Buerger_14_03");	//Торговцы и мастера тоже очень влиятельные люди - и даже слишком, если тебе интересно мое мнение.
 		DIA_Kardif_Buerger_permanent = TRUE;
+		B_BuildInfoDialog_Kardif();
 	}
 	else
 	{
 		B_SayKardifZuwenigGold();
-	};
-};
-
-
-instance DIA_Kardif_Lehmar(C_Info)
-{
-	npc = VLK_431_Kardif;
-	nr = 5;
-	condition = DIA_Kardif_Lehmar_Condition;
-	information = DIA_Kardif_Lehmar_Info;
-	permanent = TRUE;
-	description = "Кто должен Лемару?";
-};
-
-
-var int DIA_Kardif_Lehmar_permanent;
-
-func int DIA_Kardif_Lehmar_Condition()
-{
-	if((DIA_Kardif_Lehmar_permanent == FALSE) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_Buerger_permanent == TRUE) && (SchuldBuchNamesKnown == FALSE))
-	{
-		return TRUE;
 	};
 };
 
@@ -322,32 +308,11 @@ func void DIA_Kardif_Lehmar_Info()
 		AI_Output(self,other,"DIA_Kardif_Add_14_02");	//Только это будет очень непросто сделать незаметно.
 		AI_Output(self,other,"DIA_Kardif_Add_14_03");	//Насколько мне известно, он всегда носит его с собой...
 		DIA_Kardif_Lehmar_permanent = TRUE;
+		B_BuildInfoDialog_Kardif();
 	}
 	else
 	{
 		B_SayKardifZuwenigGold();
-	};
-};
-
-
-instance DIA_Kardif_Arbeit(C_Info)
-{
-	npc = VLK_431_Kardif;
-	nr = 5;
-	condition = DIA_Kardif_Arbeit_Condition;
-	information = DIA_Kardif_Arbeit_Info;
-	permanent = TRUE;
-	description = "Где я могу найти работу?";
-};
-
-
-var int DIA_Kardif_Arbeit_permanent;
-
-func int DIA_Kardif_Arbeit_Condition()
-{
-	if((DIA_Kardif_Arbeit_permanent == FALSE) && (Kardif_OneQuestion == TRUE))
-	{
-		return TRUE;
 	};
 };
 
@@ -362,32 +327,11 @@ func void DIA_Kardif_Arbeit_Info()
 			AI_Output(self,other,"DIA_Kardif_Arbeit_14_02");	//Но если у тебя есть приличный меч, ты можешь вызвать Альрика на поединок. Ты найдешь его за складом, он сражается за золото.
 		};
 		DIA_Kardif_Arbeit_permanent = TRUE;
+		B_BuildInfoDialog_Kardif();
 	}
 	else
 	{
 		B_SayKardifZuwenigGold();
-	};
-};
-
-
-instance DIA_Addon_Kardif_MissingPeople(C_Info)
-{
-	npc = VLK_431_Kardif;
-	nr = 5;
-	condition = DIA_Addon_Kardif_MissingPeople_Condition;
-	information = DIA_Addon_Kardif_MissingPeople_Info;
-	permanent = TRUE;
-	description = "Что ты знаешь о пропавших горожанах?";
-};
-
-
-var int DIA_Addon_Kardif_MissingPeople_permanent;
-
-func int DIA_Addon_Kardif_MissingPeople_Condition()
-{
-	if((DIA_Addon_Kardif_MissingPeople_permanent == FALSE) && (Kardif_OneQuestion == TRUE) && (SC_HearedAboutMissingPeople == TRUE))
-	{
-		return TRUE;
 	};
 };
 
@@ -413,32 +357,11 @@ func void DIA_Addon_Kardif_MissingPeople_Info()
 			B_LogEntry(TOPIC_Addon_WhoStolePeople,"Кардиф говорит, что мне стоит поговорить о пропавших людях с Корагоном, владельцем трактира в нижней части города.");
 		};
 		DIA_Addon_Kardif_MissingPeople_permanent = TRUE;
+		B_BuildInfoDialog_Kardif();
 	}
 	else
 	{
 		B_SayKardifZuwenigGold();
-	};
-};
-
-
-instance DIA_Kardif_Lernen(C_Info)
-{
-	npc = VLK_431_Kardif;
-	nr = 5;
-	condition = DIA_Kardif_Lernen_Condition;
-	information = DIA_Kardif_Lernen_Info;
-	permanent = TRUE;
-	description = "А у кого здесь можно поучиться чему-нибудь?";
-};
-
-
-var int DIA_Kardif_Lernen_permanent;
-
-func int DIA_Kardif_Lernen_Condition()
-{
-	if((DIA_Kardif_Lernen_permanent == FALSE) && (Kardif_OneQuestion == TRUE))
-	{
-		return TRUE;
 	};
 };
 
@@ -533,32 +456,11 @@ func void DIA_Kardif_Lernen_Info()
 			Brahim_Trade = TRUE;
 		};
 		DIA_Kardif_Lernen_permanent = TRUE;
+		B_BuildInfoDialog_Kardif();
 	}
 	else
 	{
 		B_SayKardifZuwenigGold();
-	};
-};
-
-
-instance DIA_Kardif_Diebeswerk(C_Info)
-{
-	npc = VLK_431_Kardif;
-	nr = 5;
-	condition = DIA_Kardif_Diebeswerk_Condition;
-	information = DIA_Kardif_Diebeswerk_Info;
-	permanent = TRUE;
-	description = "А нет ли здесь какой-нибудь 'особой' работы?";
-};
-
-
-var int DIA_Kardif_Diebeswerk_permanent;
-
-func int DIA_Kardif_Diebeswerk_Condition()
-{
-	if((DIA_Kardif_Diebeswerk_permanent == FALSE) && (DIA_Kardif_Arbeit_permanent == TRUE) && (Kardif_OneQuestion == TRUE))
-	{
-		return TRUE;
 	};
 };
 
@@ -571,15 +473,13 @@ func void DIA_Kardif_Diebeswerk_Info()
 		AI_PlayAni(self,"T_SEARCH");
 		AI_Output(self,other,"DIA_Kardif_Diebeswerk_14_02");	//... попробуй поговорить с Нагуром. Возможно, он сможет помочь тебе.
 		DIA_Kardif_Diebeswerk_permanent = TRUE;
+		B_BuildInfoDialog_Kardif();
 	}
 	else
 	{
 		B_SayKardifZuwenigGold();
 	};
 };
-
-
-var int DIA_Kardif_Diebeswerk2_permanent;
 
 func void B_Kardif_AboutDaronChest()
 {
@@ -588,39 +488,6 @@ func void B_Kardif_AboutDaronChest()
 	AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_05");	//При нем есть новый сундучок, сделанный специально для него Торбеном, плотником.
 	AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_06");	//Говорят, что этот Дарон носит с собой несметные сокровища. Но ты ничего не слышал от меня, понятно?
 	DIA_Kardif_Diebeswerk2_permanent = TRUE;
-};
-
-func int C_MartinIsNear()
-{
-	if(Npc_IsDead(Martin))
-	{
-		return FALSE;
-	};
-	if(Npc_GetDistToNpc(self,Martin) >= PERC_DIST_DIALOG)
-	{
-		return FALSE;
-	};
-	return TRUE;
-};
-
-instance DIA_Kardif_Diebeswerk2(C_Info)
-{
-	npc = VLK_431_Kardif;
-	nr = 5;
-	condition = DIA_Kardif_Diebeswerk2_Condition;
-	information = DIA_Kardif_Diebeswerk2_Info;
-	permanent = TRUE;
-	description = "Есть что-нибудь 'особенное' для меня?";
-};
-
-
-func int DIA_Kardif_Diebeswerk2_Condition()
-{
-//	if((DIA_Kardif_Diebeswerk2_permanent == FALSE) && (DIA_Kardif_Diebeswerk_permanent == TRUE) && (DIA_Kardif_Arbeit_permanent == TRUE) && (Kardif_OneQuestion == TRUE) && (other.guild != GIL_KDF) && (other.guild != GIL_NOV) && (other.guild != GIL_MIL) && (other.guild != GIL_PAL))
-	if((DIA_Kardif_Diebeswerk2_permanent == FALSE) && (DIA_Kardif_Diebeswerk_permanent == TRUE) && (DIA_Kardif_Arbeit_permanent == TRUE) && (Kardif_OneQuestion == TRUE))
-	{
-		return TRUE;
-	};
 };
 
 func void DIA_Kardif_Diebeswerk2_Info()
@@ -644,6 +511,7 @@ func void DIA_Kardif_Diebeswerk2_Info()
 			AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_02");	//Выкладывай, что там у тебя?
 		};
 		B_Kardif_AboutDaronChest();
+		B_BuildInfoDialog_Kardif();
 	}
 	else
 	{
@@ -651,51 +519,22 @@ func void DIA_Kardif_Diebeswerk2_Info()
 	};
 };
 
-
-instance DIA_Kardif_Zurueck(C_Info)
+func void DIA_Kardif_Kerl_Info()
 {
-	npc = VLK_431_Kardif;
-	nr = 10;
-	condition = DIA_Kardif_Zurueck_Condition;
-	information = DIA_Kardif_Zurueck_Info;
-	permanent = TRUE;
-	description = Dialog_Back;
-};
-
-
-func int DIA_Kardif_Zurueck_Condition()
-{
-	if(Kardif_OneQuestion == TRUE)
+	AI_Output(other,self,"DIA_Kardif_Kerl_15_00");	//Как выглядел этот парень?
+	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
-		return TRUE;
-	};
-};
-
-func void DIA_Kardif_Zurueck_Info()
-{
-	Kardif_OneQuestion = FALSE;
-	Info_ClearChoices(DIA_Kardif_Zurueck);
-};
-
-
-instance DIA_Kardif_DOPE(C_Info)
-{
-	npc = VLK_431_Kardif;
-	nr = 5;
-	condition = DIA_Kardif_DOPE_Condition;
-	information = DIA_Kardif_DOPE_Info;
-	permanent = TRUE;
-	description = "Где мне здесь купить травки?";
-};
-
-
-var int DIA_Kardif_DOPE_perm;
-
-func int DIA_Kardif_DOPE_Condition()
-{
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_DOPE_perm == FALSE))
+		AI_Output(self,other,"DIA_Kardif_Kerl_14_01");	//Ну, он довольно высокий, темнокожий и сильный. Он не носит униформы. Какой-то он... зловещий.
+		AI_Output(other,self,"DIA_Kardif_Kerl_15_02");	//А его лицо?
+		AI_Output(self,other,"DIA_Kardif_Kerl_14_03");	//Его лицо? Когда он глядел на меня, я был рад, что он пришел не за мной.
+		AI_Output(self,other,"DIA_Kardif_Kerl_14_04");	//В его глазах было что-то пугающее. Ну, как бы то ни было, я думаю... ты должен пойти, повидаться с ним. Это должно быть интересно.
+		AI_Output(other,self,"DIA_Kardif_Kerl_15_05");	//Да... весь вопрос в том, для кого...
+		DIA_Kardif_Kerl_permanent = TRUE;
+		B_BuildInfoDialog_Kardif();
+	}
+	else
 	{
-		return TRUE;
+		B_SayKardifZuwenigGold();
 	};
 };
 
@@ -714,32 +553,11 @@ func void DIA_Kardif_DOPE_Info()
 		AI_Output(other,self,"DIA_Kardif_DOPE_15_03");	//Ладно, тогда где?
 		AI_Output(self,other,"DIA_Kardif_DOPE_14_04");	//Я бы на твоем месте поговорил с Мелдором - он дымит тут днями напролет.
 		DIA_Kardif_DOPE_perm = TRUE;
+		B_BuildInfoDialog_Kardif();
 	}
 	else
 	{
 		B_SayKardifZuwenigGold();
-	};
-};
-
-
-instance DIA_Kardif_Paket(C_Info)
-{
-	npc = VLK_431_Kardif;
-	nr = 3;
-	condition = DIA_Kardif_Paket_Condition;
-	information = DIA_Kardif_Paket_Info;
-	permanent = TRUE;
-	description = "Ты что-нибудь слышал о тюке болотной травы?";
-};
-
-
-var int DIA_Kardif_Paket_perm;
-
-func int DIA_Kardif_Paket_Condition()
-{
-	if((MIS_Andre_WAREHOUSE == LOG_Running) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_Paket_perm == FALSE))
-	{
-		return TRUE;
 	};
 };
 
@@ -754,6 +572,7 @@ func void DIA_Kardif_Paket_Info()
 		AI_Output(self,other,"DIA_Kardif_Paket_14_04");	//Он сказал, что продал тюк болотной травы в гавани, но, конечно же, он был обкуренный в хлам. Это все, что я знаю.
 		DIA_Kardif_Paket_perm = TRUE;
 		B_LogEntry(TOPIC_Warehouse,"Кардиф говорил с наемником. У этого парня был тюк болотной травы, который он хотел продать.");
+		B_BuildInfoDialog_Kardif();
 	}
 	else
 	{
@@ -761,6 +580,10 @@ func void DIA_Kardif_Paket_Info()
 	};
 };
 
+func void DIA_Kardif_TradeInfo_Back()
+{
+	Info_ClearChoices(DIA_Kardif_TradeInfo);
+};
 
 instance DIA_Kardif_SENDATTILA(C_Info)
 {
@@ -807,49 +630,6 @@ func void DIA_Kardif_SENDATTILA_Info()
 };
 
 
-var int DIA_Kardif_Kerl_permanent;
-
-instance DIA_Kardif_Kerl(C_Info)
-{
-	npc = VLK_431_Kardif;
-	nr = 2;
-	condition = DIA_Kardif_Kerl_Condition;
-	information = DIA_Kardif_Kerl_Info;
-	permanent = TRUE;
-	description = "Как выглядел этот парень?";
-};
-
-
-func int DIA_Kardif_Kerl_Condition()
-{
-	if(Npc_KnowsInfo(other,DIA_Kardif_SENDATTILA) && !Npc_IsDead(Attila) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_Kerl_permanent == FALSE))
-	{
-		if(Attila.aivar[AIV_TalkedToPlayer] == FALSE)
-		{
-			return TRUE;
-		};
-	};
-};
-
-func void DIA_Kardif_Kerl_Info()
-{
-	AI_Output(other,self,"DIA_Kardif_Kerl_15_00");	//Как выглядел этот парень?
-	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
-	{
-		AI_Output(self,other,"DIA_Kardif_Kerl_14_01");	//Ну, он довольно высокий, темнокожий и сильный. Он не носит униформы. Какой-то он... зловещий.
-		AI_Output(other,self,"DIA_Kardif_Kerl_15_02");	//А его лицо?
-		AI_Output(self,other,"DIA_Kardif_Kerl_14_03");	//Его лицо? Когда он глядел на меня, я был рад, что он пришел не за мной.
-		AI_Output(self,other,"DIA_Kardif_Kerl_14_04");	//В его глазах было что-то пугающее. Ну, как бы то ни было, я думаю... ты должен пойти, повидаться с ним. Это должно быть интересно.
-		AI_Output(other,self,"DIA_Kardif_Kerl_15_05");	//Да... весь вопрос в том, для кого...
-		DIA_Kardif_Kerl_permanent = TRUE;
-	}
-	else
-	{
-		B_SayKardifZuwenigGold();
-	};
-};
-
-
 instance DIA_Kardif_DEFEATEDATTILA(C_Info)
 {
 	npc = VLK_431_Kardif;
@@ -863,7 +643,7 @@ instance DIA_Kardif_DEFEATEDATTILA(C_Info)
 
 func int DIA_Kardif_DEFEATEDATTILA_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Attila_Hallo) && (Kardif_OneQuestion == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Attila_Hallo))
 	{
 		if(Npc_IsDead(Attila))
 		{
@@ -898,7 +678,7 @@ instance DIA_Kardif_Zeichen(C_Info)
 
 func int DIA_Kardif_Zeichen_Condition()
 {
-	if((Kardif_OneQuestion == FALSE) && (Knows_SecretSign == TRUE))
+	if(Knows_SecretSign == TRUE)
 	{
 		return TRUE;
 	};
@@ -911,7 +691,7 @@ func void DIA_Kardif_Zeichen_Info()
 	AI_Output(self,other,"DIA_Kardif_Zeichen_14_01");	//(вкрадчиво) Если тебе понадобятся отмычки, намекни. Я припас несколько на всякий случай. Просто попроси меня налить тебе выпивки.
 	if(DIA_Kardif_Diebeswerk2_permanent == FALSE)
 	{
-		if((Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") >= 700) && !Npc_IsDead(Martin))
+		if(!C_MartinIsNear())
 		{
 			AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_00");	//Есть что-нибудь 'особенное' для меня?
 			B_Kardif_AboutDaronChest();
@@ -935,7 +715,7 @@ instance DIA_Kardif_Crew(C_Info)
 
 func int DIA_Kardif_Crew_Condition()
 {
-	if((Kardif_OneQuestion == FALSE) && (MIS_SCKnowsWayToIrdorath == TRUE))
+	if(MIS_SCKnowsWayToIrdorath == TRUE)
 	{
 		return TRUE;
 	};
@@ -960,5 +740,4 @@ func void DIA_Kardif_Crew_Info()
 		};
 	};
 };
-
 

@@ -50,7 +50,7 @@ func void DIA_Alvares_HAUAB_Info()
 		B_LogEntry(TOPIC_AkilsSLDStillthere,"‘ермеру јкилу угрожают наемники.");
 		Akils_SLDStillthere = TRUE;
 	};
-	AI_StopProcessInfos_Pickpocket(20);
+	AI_StopProcessInfos_Pickpocket();
 };
 
 
@@ -164,40 +164,5 @@ func void DIA_Alvares_Schluss_Info()
 	AI_Output(self,other,"DIA_Alvares_Schluss_11_01");	//’орошо - значит, мне придетс€ убить теб€. (зовет) Ёнгардо, давай, прикончим их!
 	Info_ClearChoices(DIA_Alvares_Schluss);
 	Info_AddChoice(DIA_Alvares_Schluss,Dialog_Ende,DIA_Alvares_ATTACK_End);
-};
-
-
-instance DIA_Alvares_PICKPOCKET(C_Info)
-{
-	npc = SLD_840_Alvares;
-	nr = 900;
-	condition = DIA_Alvares_PICKPOCKET_Condition;
-	information = DIA_Alvares_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Alvares_PICKPOCKET_Condition()
-{
-	return C_Beklauen(20,15);
-};
-
-func void DIA_Alvares_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Alvares_PICKPOCKET);
-	Info_AddChoice(DIA_Alvares_PICKPOCKET,Dialog_Back,DIA_Alvares_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Alvares_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Alvares_PICKPOCKET_DoIt);
-};
-
-func void DIA_Alvares_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Alvares_PICKPOCKET);
-};
-
-func void DIA_Alvares_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Alvares_PICKPOCKET);
 };
 

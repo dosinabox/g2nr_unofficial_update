@@ -26,45 +26,6 @@ func void DIA_Addon_Franco_EXIT_Info()
 };
 
 
-instance DIA_Franco_PICKPOCKET(C_Info)
-{
-	npc = BDT_1093_Addon_Franco;
-	nr = 900;
-	condition = DIA_Franco_PICKPOCKET_Condition;
-	information = DIA_Franco_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = "(украсть его амулет будет довольно рискованно)";
-};
-
-
-func int DIA_Franco_PICKPOCKET_Condition()
-{
-	if(Npc_HasItems(self,ItAm_Addon_Franco))
-	{
-		return C_CanStealFromNpc(60);
-	};
-	return FALSE;
-};
-
-func void DIA_Franco_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Franco_PICKPOCKET);
-	Info_AddChoice(DIA_Franco_PICKPOCKET,Dialog_Back,DIA_Franco_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Franco_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Franco_PICKPOCKET_DoIt);
-};
-
-func void DIA_Franco_PICKPOCKET_DoIt()
-{
-	B_StealItem(60,ItAm_Addon_Franco,1);
-	Info_ClearChoices(DIA_Franco_PICKPOCKET);
-};
-
-func void DIA_Franco_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Franco_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Franco_HI(C_Info)
 {
 	npc = BDT_1093_Addon_Franco;

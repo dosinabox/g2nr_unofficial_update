@@ -486,14 +486,14 @@ func void DIA_Raoul_TROLLFELL_Info()
 	AI_Output(other,self,"DIA_Raoul_TROLLFELL_15_00");	//Я принес шкуру черного тролля.
 	AI_Output(self,other,"DIA_Raoul_TROLLFELL_01_01");	//Невероятно. Покажи.
 	B_GiveInvItems(other,self,ItAt_TrollBlackFur,1);
+	MIS_Raoul_KillTrollBlack = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Raoul_KillTrollBlack);
 	AI_Output(self,other,"DIA_Raoul_TROLLFELL_01_02");	//Невероятно. Что ты хочешь за нее?
 	AI_Output(other,self,"DIA_Raoul_TROLLFELL_15_03");	//Отдай мне все, что у тебя есть.
 	AI_Output(self,other,"DIA_Raoul_TROLLFELL_01_04");	//Хорошо. Я дам тебе 500 золотых монет и три сильных лечебных зелья. Что скажешь?
 	Info_ClearChoices(DIA_Raoul_TROLLFELL);
 	Info_AddChoice(DIA_Raoul_TROLLFELL,"Этого недостаточно.",DIA_Raoul_TROLLFELL_nein);
 	Info_AddChoice(DIA_Raoul_TROLLFELL,"Продано.",DIA_Raoul_TROLLFELL_ja);
-	MIS_Raoul_KillTrollBlack = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Raoul_KillTrollBlack);
 };
 
 func void DIA_Raoul_TROLLFELL_ja()
@@ -602,40 +602,5 @@ func void DIA_Raoul_Ship_Info()
 		AI_Output(self,other,"DIA_Raoul_Ship_01_06");	//Спроси Торлофа. Он ходил по морям, насколько я знаю.
 		TorlofIsSailor = TRUE;
 	};
-};
-
-
-instance DIA_Raoul_PICKPOCKET(C_Info)
-{
-	npc = SLD_822_Raoul;
-	nr = 900;
-	condition = DIA_Raoul_PICKPOCKET_Condition;
-	information = DIA_Raoul_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Raoul_PICKPOCKET_Condition()
-{
-	return C_Beklauen(45,85);
-};
-
-func void DIA_Raoul_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Raoul_PICKPOCKET);
-	Info_AddChoice(DIA_Raoul_PICKPOCKET,Dialog_Back,DIA_Raoul_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Raoul_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Raoul_PICKPOCKET_DoIt);
-};
-
-func void DIA_Raoul_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Raoul_PICKPOCKET);
-};
-
-func void DIA_Raoul_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Raoul_PICKPOCKET);
 };
 

@@ -22,41 +22,6 @@ func void DIA_Coragon_EXIT_Info()
 };
 
 
-instance DIA_Coragon_PICKPOCKET(C_Info)
-{
-	npc = VLK_420_Coragon;
-	nr = 900;
-	condition = DIA_Coragon_PICKPOCKET_Condition;
-	information = DIA_Coragon_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Coragon_PICKPOCKET_Condition()
-{
-	return C_Beklauen(40,45);
-};
-
-func void DIA_Coragon_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Coragon_PICKPOCKET);
-	Info_AddChoice(DIA_Coragon_PICKPOCKET,Dialog_Back,DIA_Coragon_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Coragon_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Coragon_PICKPOCKET_DoIt);
-};
-
-func void DIA_Coragon_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Coragon_PICKPOCKET);
-};
-
-func void DIA_Coragon_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Coragon_PICKPOCKET);
-};
-
-
 instance DIA_Coragon_HALLO(C_Info)
 {
 	npc = VLK_420_Coragon;
@@ -404,10 +369,7 @@ func void DIA_Coragon_News_Info()
 	AI_Output(other,self,"DIA_Coragon_Add_15_37");	//И? Что ты сделал?
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_38");	//Я? Задал ему хорошую трепку, что же еще?
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_34");	//Он болтал что-то о том, что его обокрали и что он заплатит мне потом. Ха, как же!
-	if(Npc_HasItems(Valentino,ItMi_Gold) > 0)
-	{
-		Npc_RemoveInvItems(Valentino,ItMi_Gold,Npc_HasItems(Valentino,ItMi_Gold));
-	};
+	B_RemoveEveryInvItem(Valentino,ItMi_Gold);
 };
 
 

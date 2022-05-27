@@ -411,38 +411,3 @@ func void DIA_Dyrian_nachher_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Dyrian_PICKPOCKET(C_Info)
-{
-	npc = NOV_604_Dyrian;
-	nr = 900;
-	condition = DIA_Dyrian_PICKPOCKET_Condition;
-	information = DIA_Dyrian_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Dyrian_PICKPOCKET_Condition()
-{
-	return C_Beklauen(10,15);
-};
-
-func void DIA_Dyrian_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Dyrian_PICKPOCKET);
-	Info_AddChoice(DIA_Dyrian_PICKPOCKET,Dialog_Back,DIA_Dyrian_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Dyrian_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Dyrian_PICKPOCKET_DoIt);
-};
-
-func void DIA_Dyrian_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Dyrian_PICKPOCKET);
-};
-
-func void DIA_Dyrian_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Dyrian_PICKPOCKET);
-};
-

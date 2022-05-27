@@ -345,38 +345,3 @@ func void DIA_Dexter_Kopf_Info()
 	DIA_Dexter_Kill_ENDE();
 };
 
-
-instance DIA_Dexter_PICKPOCKET(C_Info)
-{
-	npc = BDT_1060_Dexter;
-	nr = 900;
-	condition = DIA_Dexter_PICKPOCKET_Condition;
-	information = DIA_Dexter_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Dexter_PICKPOCKET_Condition()
-{
-	return C_Beklauen(96,370);
-};
-
-func void DIA_Dexter_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Dexter_PICKPOCKET);
-	Info_AddChoice(DIA_Dexter_PICKPOCKET,Dialog_Back,DIA_Dexter_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Dexter_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Dexter_PICKPOCKET_DoIt);
-};
-
-func void DIA_Dexter_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Dexter_PICKPOCKET);
-};
-
-func void DIA_Dexter_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Dexter_PICKPOCKET);
-};
-

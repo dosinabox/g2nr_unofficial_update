@@ -675,38 +675,3 @@ func void DIA_Sekob_ROSINEVERBACK_Info()
 	B_GivePlayerXP(XP_AmbientKap5);
 };
 
-
-instance DIA_Sekob_PICKPOCKET(C_Info)
-{
-	npc = BAU_930_Sekob;
-	nr = 900;
-	condition = DIA_Sekob_PICKPOCKET_Condition;
-	information = DIA_Sekob_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Sekob_PICKPOCKET_Condition()
-{
-	return C_Beklauen(75,230);
-};
-
-func void DIA_Sekob_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Sekob_PICKPOCKET);
-	Info_AddChoice(DIA_Sekob_PICKPOCKET,Dialog_Back,DIA_Sekob_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Sekob_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Sekob_PICKPOCKET_DoIt);
-};
-
-func void DIA_Sekob_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Sekob_PICKPOCKET);
-};
-
-func void DIA_Sekob_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Sekob_PICKPOCKET);
-};
-

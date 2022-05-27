@@ -18,7 +18,6 @@ func int ZS_Study_WP_Loop()
 	var float waittime;
 	randystatetime = randy + 25;
 	randy = Hlp_Random(10);
-	Eventrandy = Hlp_Random(100);
 	wait = randy + 5;
 	waittime = IntToFloat(wait);
 	if(Npc_GetDistToWP(self,self.wp) > TA_DIST_SELFWP_MAX)
@@ -64,6 +63,7 @@ func int ZS_Study_WP_Loop()
 			Npc_SetStateTime(self,0);
 			if((self.guild == GIL_KDW) && (RavenIsDead == FALSE))
 			{
+				Eventrandy = Hlp_Random(100);
 				if(((Eventrandy < 5) && (CurrentLevel == NEWWORLD_ZEN)) || ((Eventrandy == 1) && (CurrentLevel == ADDONWORLD_ZEN)))
 				{
 					b_event_portal_earthquake();
@@ -81,6 +81,6 @@ func int ZS_Study_WP_Loop()
 
 func void ZS_Study_WP_End()
 {
-	Npc_RemoveInvItems(self,Fakescroll_Addon,Npc_HasItems(self,Fakescroll_Addon));
+	B_RemoveEveryInvItem(self,Fakescroll_Addon);
 };
 

@@ -21,45 +21,6 @@ func void DIA_Ruga_EXIT_Info()
 };
 
 
-instance DIA_Ruga_PICKPOCKET(C_Info)
-{
-	npc = MIL_317_Ruga;
-	nr = 900;
-	condition = DIA_Ruga_PICKPOCKET_Condition;
-	information = DIA_Ruga_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40_Key;
-};
-
-
-func int DIA_Ruga_PICKPOCKET_Condition()
-{
-	if(Npc_HasItems(self,ItKe_City_Tower_03))
-	{
-		return C_CanStealFromNpc(40);
-	};
-	return FALSE;
-};
-
-func void DIA_Ruga_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Ruga_PICKPOCKET);
-	Info_AddChoice(DIA_Ruga_PICKPOCKET,Dialog_Back,DIA_Ruga_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Ruga_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Ruga_PICKPOCKET_DoIt);
-};
-
-func void DIA_Ruga_PICKPOCKET_DoIt()
-{
-	B_StealItem(40,ItKe_City_Tower_03,1);
-	Info_ClearChoices(DIA_Ruga_PICKPOCKET);
-};
-
-func void DIA_Ruga_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Ruga_PICKPOCKET);
-};
-
-
 instance DIA_Ruga_Hallo(C_Info)
 {
 	npc = MIL_317_Ruga;
@@ -216,8 +177,8 @@ func void B_BuildLearnDialog_Ruga_DEX()
 	{
 		Info_ClearChoices(DIA_Ruga_TEACHDEX);
 		Info_AddChoice(DIA_Ruga_TEACHDEX,Dialog_Back,DIA_Ruga_TEACHDEX_BACK);
-		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_Ruga_TEACHDEX_1);
-		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_Ruga_TEACHDEX_5);
+		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Ruga_TEACHDEX_1);
+		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Ruga_TEACHDEX_5);
 	};
 };
 

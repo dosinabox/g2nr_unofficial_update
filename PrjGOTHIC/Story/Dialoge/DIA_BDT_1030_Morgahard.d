@@ -110,7 +110,7 @@ func int DIA_Morgahard_Perm_Condition()
 func void DIA_Morgahard_Perm_Info()
 {
 	AI_Output(self,other,"DIA_Morgahard_Perm_07_00");	//А этот подлец судья... Я еще увижу его болтающимся на виселице.
-	AI_StopProcessInfos_Pickpocket(73);
+	AI_StopProcessInfos_Pickpocket();
 };
 
 
@@ -136,41 +136,6 @@ func int DIA_Morgahard_Perm2_Condition()
 func void DIA_Morgahard_Perm2_Info()
 {
 	AI_Output(self,other,"DIA_Morgahard_Perm2_07_00");	//Почему бы тебе просто не исчезнуть?
-	AI_StopProcessInfos_Pickpocket(73);
-};
-
-
-instance DIA_Morgahard_PICKPOCKET(C_Info)
-{
-	npc = BDT_1030_Morgahard;
-	nr = 900;
-	condition = DIA_Morgahard_PICKPOCKET_Condition;
-	information = DIA_Morgahard_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Morgahard_PICKPOCKET_Condition()
-{
-	return C_Beklauen(73,45);
-};
-
-func void DIA_Morgahard_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Morgahard_PICKPOCKET);
-	Info_AddChoice(DIA_Morgahard_PICKPOCKET,Dialog_Back,DIA_Morgahard_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Morgahard_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Morgahard_PICKPOCKET_DoIt);
-};
-
-func void DIA_Morgahard_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Morgahard_PICKPOCKET);
-};
-
-func void DIA_Morgahard_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Morgahard_PICKPOCKET);
+	AI_StopProcessInfos_Pickpocket();
 };
 

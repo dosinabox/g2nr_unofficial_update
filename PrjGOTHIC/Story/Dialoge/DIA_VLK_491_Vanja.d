@@ -21,41 +21,6 @@ func void DIA_Vanja_EXIT_Info()
 };
 
 
-instance DIA_Vanja_PICKPOCKET(C_Info)
-{
-	npc = VLK_491_Vanja;
-	nr = 900;
-	condition = DIA_Vanja_PICKPOCKET_Condition;
-	information = DIA_Vanja_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20_Female;
-};
-
-
-func int DIA_Vanja_PICKPOCKET_Condition()
-{
-	return C_Beklauen(20,10);
-};
-
-func void DIA_Vanja_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Vanja_PICKPOCKET);
-	Info_AddChoice(DIA_Vanja_PICKPOCKET,Dialog_Back,DIA_Vanja_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Vanja_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Vanja_PICKPOCKET_DoIt);
-};
-
-func void DIA_Vanja_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Vanja_PICKPOCKET);
-};
-
-func void DIA_Vanja_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Vanja_PICKPOCKET);
-};
-
-
 instance DIA_Vanja_STANDARD(C_Info)
 {
 	npc = VLK_491_Vanja;
@@ -79,7 +44,7 @@ func void DIA_Vanja_STANDARD_Info()
 	AI_Output(self,other,"DIA_Vanja_STANDARD_17_00");	//Я занята.
 	if((MIS_Andre_REDLIGHT != LOG_Running) || (Knows_Borka_Dealer == TRUE))
 	{
-		AI_StopProcessInfos_Pickpocket(20);
+		AI_StopProcessInfos_Pickpocket();
 	};
 };
 

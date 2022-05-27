@@ -21,41 +21,6 @@ func void DIA_Alrik_EXIT_Info()
 };
 
 
-instance DIA_Alrik_PICKPOCKET(C_Info)
-{
-	npc = VLK_438_Alrik;
-	nr = 900;
-	condition = DIA_Alrik_PICKPOCKET_Condition;
-	information = DIA_Alrik_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Alrik_PICKPOCKET_Condition()
-{
-	return C_Beklauen(55,50);
-};
-
-func void DIA_Alrik_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Alrik_PICKPOCKET);
-	Info_AddChoice(DIA_Alrik_PICKPOCKET,Dialog_Back,DIA_Alrik_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Alrik_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Alrik_PICKPOCKET_DoIt);
-};
-
-func void DIA_Alrik_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Alrik_PICKPOCKET);
-};
-
-func void DIA_Alrik_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Alrik_PICKPOCKET);
-};
-
-
 instance DIA_Alrik_Hallo(C_Info)
 {
 	npc = VLK_438_Alrik;
@@ -325,7 +290,7 @@ func void DIA_Alrik_WannaFight_Gold()
 	B_GiveInvItems(other,self,ItMi_Gold,50);
 	AI_Output(self,other,"DIA_Alrik_WannaFight_Gold_09_01");	//(громко) У нас новый боец!
 	AI_Output(self,other,"DIA_Alrik_WannaFight_Gold_09_02");	//Ставки сделаны...
-	Npc_RemoveInvItems(self,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
+	B_RemoveEveryInvItem(self,ItMi_Gold);
 	CreateInvItems(self,ItMi_Gold,100);
 	AI_Output(self,other,"DIA_Alrik_WannaFight_Gold_09_03");	//Ты готов?
 	self.aivar[AIV_ArenaFight] = AF_RUNNING;

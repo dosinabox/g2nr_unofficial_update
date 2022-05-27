@@ -21,41 +21,6 @@ func void DIA_Addon_Patrick_NW_EXIT_Info()
 };
 
 
-instance DIA_Addon_Patrick_NW_PICKPOCKET(C_Info)
-{
-	npc = STRF_1123_Addon_Patrick_NW;
-	nr = 900;
-	condition = DIA_Addon_Patrick_NW_PICKPOCKET_Condition;
-	information = DIA_Addon_Patrick_NW_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Addon_Patrick_NW_PICKPOCKET_Condition()
-{
-	return C_Beklauen(35,50);
-};
-
-func void DIA_Addon_Patrick_NW_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Patrick_NW_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Patrick_NW_PICKPOCKET,Dialog_Back,DIA_Addon_Patrick_NW_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Patrick_NW_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Patrick_NW_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Patrick_NW_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Patrick_NW_PICKPOCKET);
-};
-
-func void DIA_Addon_Patrick_NW_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Patrick_NW_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Patrick_NW_Hi(C_Info)
 {
 	npc = STRF_1123_Addon_Patrick_NW;

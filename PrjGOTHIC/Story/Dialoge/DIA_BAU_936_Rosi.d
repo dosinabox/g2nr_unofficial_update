@@ -600,38 +600,3 @@ func void DIA_Rosi_MinenAnteil_Info()
 	B_GivePlayerXP(XP_Ambient);
 };
 
-
-instance DIA_Rosi_PICKPOCKET(C_Info)
-{
-	npc = BAU_936_Rosi;
-	nr = 900;
-	condition = DIA_Rosi_PICKPOCKET_Condition;
-	information = DIA_Rosi_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40_Female;
-};
-
-
-func int DIA_Rosi_PICKPOCKET_Condition()
-{
-	return C_Beklauen(30,75);
-};
-
-func void DIA_Rosi_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Rosi_PICKPOCKET);
-	Info_AddChoice(DIA_Rosi_PICKPOCKET,Dialog_Back,DIA_Rosi_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Rosi_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Rosi_PICKPOCKET_DoIt);
-};
-
-func void DIA_Rosi_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Rosi_PICKPOCKET);
-};
-
-func void DIA_Rosi_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Rosi_PICKPOCKET);
-};
-

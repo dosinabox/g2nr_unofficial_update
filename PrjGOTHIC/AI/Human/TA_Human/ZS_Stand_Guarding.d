@@ -44,10 +44,18 @@ func int ZS_Stand_Guarding_Loop()
 	};
 	if((Npc_GetStateTime(self) > 5) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
 	{
-		random = Hlp_Random(10);
+		random = Hlp_Random(12);
 		if(random == 0)
 		{
 			AI_PlayAni(self,"T_HGUARD_LOOKAROUND");
+		}
+		else if(random == 1)
+		{
+			AI_PlayAni(self,"R_SCRATCHLSHOULDER");
+		}
+		else if(random == 2)
+		{
+			AI_PlayAni(self,"R_SCRATCHRSHOULDER");
 		};
 		Npc_SetStateTime(self,0);
 	};

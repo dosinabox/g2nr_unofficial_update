@@ -565,8 +565,8 @@ func void B_BuildLearnDialog_Milten_OW()
 	{
 		Info_ClearChoices(DIA_MiltenOW_Mana);
 		Info_AddChoice(DIA_MiltenOW_Mana,Dialog_Back,DIA_MiltenOW_Mana_BACK);
-		Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),DIA_MiltenOW_Mana_1);
-		Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),DIA_MiltenOW_Mana_5);
+		Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_MiltenOW_Mana_1);
+		Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_MiltenOW_Mana_5);
 	};
 };
 
@@ -670,44 +670,5 @@ func void DIA_MiltenOW_Plan_Info()
 	AI_Output(other,self,"DIA_MiltenOW_Plan_15_03");	//Ну, если ты так считаешь.
 	AI_Output(self,other,"DIA_MiltenOW_Plan_03_04");	//Я надеюсь, что лорд Хаген поймет, какая угроза исходит от этой долины. Не хочется думать, что произойдет, если орки пройдут через Проход.
 	AI_Output(other,self,"DIA_MiltenOW_Plan_15_05");	//Ну, тогда удачного путешествия.
-};
-
-
-instance DIA_MiltenOW_PICKPOCKET(C_Info)
-{
-	npc = PC_Mage_OW;
-	nr = 888;
-	condition = DIA_MiltenOW_PICKPOCKET_Condition;
-	information = DIA_MiltenOW_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = "(украсть его зелье будет довольно трудно)";
-};
-
-
-func int DIA_MiltenOW_PICKPOCKET_Condition()
-{
-	if(Npc_HasItems(self,ItPo_Perm_Mana))
-	{
-		return C_CanStealFromNpc(80);
-	};
-	return FALSE;
-};
-
-func void DIA_MiltenOW_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_MiltenOW_PICKPOCKET);
-	Info_AddChoice(DIA_MiltenOW_PICKPOCKET,Dialog_Back,DIA_MiltenOW_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_MiltenOW_PICKPOCKET,DIALOG_PICKPOCKET,DIA_MiltenOW_PICKPOCKET_DoIt);
-};
-
-func void DIA_MiltenOW_PICKPOCKET_DoIt()
-{
-	B_StealItem(80,ItPo_Perm_Mana,1);
-	Info_ClearChoices(DIA_MiltenOW_PICKPOCKET);
-};
-
-func void DIA_MiltenOW_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_MiltenOW_PICKPOCKET);
 };
 

@@ -610,38 +610,3 @@ func void DIA_Talbin_VERSCHWINDE_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Talbin_PICKPOCKET(C_Info)
-{
-	npc = VLK_4130_Talbin;
-	nr = 900;
-	condition = DIA_Talbin_PICKPOCKET_Condition;
-	information = DIA_Talbin_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Talbin_PICKPOCKET_Condition()
-{
-	return C_Beklauen(40,25);
-};
-
-func void DIA_Talbin_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Talbin_PICKPOCKET);
-	Info_AddChoice(DIA_Talbin_PICKPOCKET,Dialog_Back,DIA_Talbin_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Talbin_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Talbin_PICKPOCKET_DoIt);
-};
-
-func void DIA_Talbin_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Talbin_PICKPOCKET);
-};
-
-func void DIA_Talbin_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Talbin_PICKPOCKET);
-};
-

@@ -249,7 +249,7 @@ func void DIA_Wasili_BringOldCoin_Info()
 		AI_Output(other,self,"DIA_Wasili_BringOldCoin_15_03");	//Несколько.
 	};
 	B_GiveInvItems(other,self,ItMi_OldCoin,OldCoinCount);
-	Npc_RemoveInvItems(self,ItMi_OldCoin,Npc_HasItems(self,ItMi_OldCoin));
+	B_RemoveEveryInvItem(self,ItMi_OldCoin);
 	AI_Output(self,other,"DIA_Wasili_BringOldCoin_01_04");	//Спасибо. Вот твои деньги. Приноси мне все, что найдешь.
 	OldCoinGold = OldCoinCount * WasilisOldCoinOffer;
 	CreateInvItems(self,ItMi_Gold,OldCoinGold);
@@ -304,40 +304,5 @@ func void DIA_Wasili_PERM_Info()
 		AI_Output(self,other,"DIA_Wasili_perm_01_07");	//Наемники, похоже, готовятся покинуть лагерь.
 		AI_Output(self,other,"DIA_Wasili_perm_01_08");	//Я не удивлюсь, если Ли и его парни покинут остров уже сегодня ночью.
 	};
-};
-
-
-instance DIA_Wasili_PICKPOCKET(C_Info)
-{
-	npc = BAU_907_Wasili;
-	nr = 900;
-	condition = DIA_Wasili_PICKPOCKET_Condition;
-	information = DIA_Wasili_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Wasili_PICKPOCKET_Condition()
-{
-	return C_Beklauen(55,90);
-};
-
-func void DIA_Wasili_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Wasili_PICKPOCKET);
-	Info_AddChoice(DIA_Wasili_PICKPOCKET,Dialog_Back,DIA_Wasili_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Wasili_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Wasili_PICKPOCKET_DoIt);
-};
-
-func void DIA_Wasili_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Wasili_PICKPOCKET);
-};
-
-func void DIA_Wasili_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Wasili_PICKPOCKET);
 };
 

@@ -66,24 +66,26 @@ func int pc_pan_1_condition()
 
 func void pc_pan_1_info()
 {
-	if(Npc_HasItems(self,ItFoMuttonRaw) <= 10)
+	var int amount;
+	amount = Npc_HasItems(self,ItFoMuttonRaw);
+	if(amount <= 10)
 	{
-		AI_Wait(hero,1);
+		AI_Wait(self,1);
 	}
-	else if(Npc_HasItems(self,ItFoMuttonRaw) <= 30)
+	else if(amount <= 30)
 	{
-		AI_Wait(hero,3);
+		AI_Wait(self,3);
 	}
-	else if(Npc_HasItems(self,ItFoMuttonRaw) <= 50)
+	else if(amount <= 50)
 	{
-		AI_Wait(hero,5);
+		AI_Wait(self,5);
 	}
-	else if(Npc_HasItems(self,ItFoMuttonRaw) > 50)
+	else if(amount > 50)
 	{
-		AI_Wait(hero,7);
+		AI_Wait(self,7);
 	};
-	CreateInvItems(hero,ItFoMutton,Npc_HasItems(hero,ItFoMuttonRaw));
-	Npc_RemoveInvItems(hero,ItFoMuttonRaw,Npc_HasItems(hero,ItFoMuttonRaw));
+	Npc_RemoveInvItems(self,ItFoMuttonRaw,amount);
+	CreateInvItems(self,ItFoMutton,amount);
 	AI_PrintScreen("ћ€со пожарено",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	b_endproductiondialog();
 };

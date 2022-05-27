@@ -4,7 +4,7 @@ func void B_NpcSetJailed(var C_Npc slf)
 	if(!Npc_IsDead(slf))
 	{
 		B_UnEquipAllWeapons(slf,FALSE);
-		Npc_RemoveInvItems(slf,ItMi_Joint,Npc_HasItems(slf,ItMi_Joint));
+		B_RemoveEveryInvItem(slf,ItMi_Joint);
 		slf.attribute[ATR_STRENGTH] = Condition_VLKDolch - 1;		//боец не может использовать даже кинжал
 		slf.attribute[ATR_DEXTERITY] = Condition_Kurzbogen - 1;		//стрелок не может использовать даже короткий лук
 		if((slf.guild == GIL_KDF) || (slf.guild == GIL_KDW) || (slf.guild == GIL_PAL) || (slf.aivar[AIV_MagicUser] == MAGIC_ALWAYS))

@@ -46,7 +46,7 @@ func int ZS_Stand_ArmsCrossed_Loop()
 	};
 	if((Npc_GetStateTime(self) > 5) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
 	{
-		random = Hlp_Random(7);
+		random = Hlp_Random(9);
 		if(random == 0)
 		{
 			AI_PlayAni(self,"T_LGUARD_SCRATCH");
@@ -58,11 +58,22 @@ func int ZS_Stand_ArmsCrossed_Loop()
 		else if(random == 2)
 		{
 			AI_PlayAni(self,"T_LGUARD_CHANGELEG");
-		};
-		Eventrandy = Hlp_Random(200);
-		if((Eventrandy == 1) && (CurrentLevel == ADDONWORLD_ZEN) && (RavenIsDead == FALSE) && (self.guild != GIL_PIR))
+		}
+		else if(random == 3)
 		{
-			b_event_portal_earthquake();
+			AI_PlayAni(self,"R_SCRATCHLSHOULDER");
+		}
+		else if(random == 4)
+		{
+			AI_PlayAni(self,"R_SCRATCHRSHOULDER");
+		};
+		if((CurrentLevel == ADDONWORLD_ZEN) && (RavenIsDead == FALSE) && (self.guild != GIL_PIR))
+		{
+			Eventrandy = Hlp_Random(200);
+			if(Eventrandy == 1)
+			{
+				b_event_portal_earthquake();
+			};
 		};
 		Npc_SetStateTime(self,0);
 	};

@@ -37,41 +37,6 @@ func void DIA_Addon_AlligatorJack_Exit_Info()
 };
 
 
-instance DIA_Addon_AlligatorJack_PICKPOCKET(C_Info)
-{
-	npc = PIR_1352_Addon_AlligatorJack;
-	nr = 900;
-	condition = DIA_Addon_AlligatorJack_PICKPOCKET_Condition;
-	information = DIA_Addon_AlligatorJack_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Addon_AlligatorJack_PICKPOCKET_Condition()
-{
-	return C_Beklauen(100,333);
-};
-
-func void DIA_Addon_AlligatorJack_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_AlligatorJack_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_AlligatorJack_PICKPOCKET,Dialog_Back,DIA_Addon_AlligatorJack_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_AlligatorJack_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_AlligatorJack_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_AlligatorJack_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_AlligatorJack_PICKPOCKET);
-};
-
-func void DIA_Addon_AlligatorJack_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_AlligatorJack_PICKPOCKET);
-};
-
-
 instance DIA_Addon_AlligatorJack_Hello(C_Info)
 {
 	npc = PIR_1352_Addon_AlligatorJack;

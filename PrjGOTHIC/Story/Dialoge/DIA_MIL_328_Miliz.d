@@ -55,7 +55,7 @@ func void DIA_328_Miliz_Hi_Info()
 		AI_Output(other,self,"DIA_328_Miliz_Hi_15_03");	//Главный? Над чем? Над этими сундуками?
 		AI_Output(self,other,"DIA_328_Miliz_Hi_08_04");	//Эй, этот склад находится в моем ведении, понял? Так что проваливай, или я раскрою твой череп.
 		other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,Mil_328_Checkpoint);
-		AI_StopProcessInfos_Pickpocket(35);
+		AI_StopProcessInfos_Pickpocket();
 		Npc_SetRefuseTalk(self,20);
 	};
 };
@@ -97,43 +97,5 @@ func void DIA_328_Miliz_Kill_Info()
 	AI_Output(self,other,"DIA_328_Miliz_Kill_08_01");	//Ну, держись! Сейчас я покажу тебе, кто здесь главный!
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_KILL,1);
-};
-
-instance DIA_328_Miliz_PICKPOCKET(C_Info)
-{
-	npc = MIL_328_Miliz;
-	nr = 888;
-	condition = DIA_328_Miliz_PICKPOCKET_Condition;
-	information = DIA_328_Miliz_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40_Key;
-};
-
-
-func int DIA_328_Miliz_PICKPOCKET_Condition()
-{
-	if(Npc_HasItems(self,ItKe_Storage))
-	{
-		return C_CanStealFromNpc(35);
-	};
-	return FALSE;
-};
-
-func void DIA_328_Miliz_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_328_Miliz_PICKPOCKET);
-	Info_AddChoice(DIA_328_Miliz_PICKPOCKET,Dialog_Back,DIA_328_Miliz_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_328_Miliz_PICKPOCKET,DIALOG_PICKPOCKET,DIA_328_Miliz_PICKPOCKET_DoIt);
-};
-
-func void DIA_328_Miliz_PICKPOCKET_DoIt()
-{
-	B_StealItem(35,ItKe_Storage,1);
-	Info_ClearChoices(DIA_328_Miliz_PICKPOCKET);
-};
-
-func void DIA_328_Miliz_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_328_Miliz_PICKPOCKET);
 };
 

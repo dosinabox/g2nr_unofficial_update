@@ -457,38 +457,3 @@ func void DIA_Parcival_VERRAETER_Info()
 	B_Attack(self,other,AR_KILL,1);
 };
 
-
-instance DIA_Parcival_PICKPOCKET(C_Info)
-{
-	npc = PAL_252_Parcival;
-	nr = 900;
-	condition = DIA_Parcival_PICKPOCKET_Condition;
-	information = DIA_Parcival_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Parcival_PICKPOCKET_Condition()
-{
-	return C_Beklauen(84,460);
-};
-
-func void DIA_Parcival_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Parcival_PICKPOCKET);
-	Info_AddChoice(DIA_Parcival_PICKPOCKET,Dialog_Back,DIA_Parcival_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Parcival_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Parcival_PICKPOCKET_DoIt);
-};
-
-func void DIA_Parcival_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Parcival_PICKPOCKET);
-};
-
-func void DIA_Parcival_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Parcival_PICKPOCKET);
-};
-

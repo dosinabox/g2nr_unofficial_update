@@ -179,38 +179,3 @@ func void DIA_GornNW_nach_DJG_StillNeedYou_Info()
 	B_JoinShip(self);
 };
 
-
-instance DIA_Fighter_nach_DJG_PICKPOCKET(C_Info)
-{
-	npc = PC_Fighter_NW_nach_DJG;
-	nr = 900;
-	condition = DIA_Fighter_nach_DJG_PICKPOCKET_Condition;
-	information = DIA_Fighter_nach_DJG_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Fighter_nach_DJG_PICKPOCKET_Condition()
-{
-	return C_Beklauen(10,25);
-};
-
-func void DIA_Fighter_nach_DJG_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Fighter_nach_DJG_PICKPOCKET);
-	Info_AddChoice(DIA_Fighter_nach_DJG_PICKPOCKET,Dialog_Back,DIA_Fighter_nach_DJG_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Fighter_nach_DJG_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Fighter_nach_DJG_PICKPOCKET_DoIt);
-};
-
-func void DIA_Fighter_nach_DJG_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Fighter_nach_DJG_PICKPOCKET);
-};
-
-func void DIA_Fighter_nach_DJG_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Fighter_nach_DJG_PICKPOCKET);
-};
-

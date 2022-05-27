@@ -240,8 +240,8 @@ func void B_BuildLearnDialog_Opolos()
 	}
 	else
 	{
-		Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Opolos_TEACH_STR_1);
-		Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Opolos_TEACH_STR_5);
+		Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Opolos_TEACH_STR_1);
+		Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Opolos_TEACH_STR_5);
 	};
 };
 
@@ -551,40 +551,5 @@ func void DIA_Opolos_Kap3_PERM_PEDRO()
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_PEDRO_15_03");	//Мы еще не мертвы.
 	B_GivePlayerXP(XP_Ambient);
 	Opolos_Pedro = TRUE;
-};
-
-
-instance DIA_Opolos_PICKPOCKET(C_Info)
-{
-	npc = NOV_605_Opolos;
-	nr = 900;
-	condition = DIA_Opolos_PICKPOCKET_Condition;
-	information = DIA_Opolos_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Opolos_PICKPOCKET_Condition()
-{
-	return C_Beklauen(54,70);
-};
-
-func void DIA_Opolos_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Opolos_PICKPOCKET);
-	Info_AddChoice(DIA_Opolos_PICKPOCKET,Dialog_Back,DIA_Opolos_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Opolos_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Opolos_PICKPOCKET_DoIt);
-};
-
-func void DIA_Opolos_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Opolos_PICKPOCKET);
-};
-
-func void DIA_Opolos_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Opolos_PICKPOCKET);
 };
 

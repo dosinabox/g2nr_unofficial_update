@@ -7,7 +7,7 @@ func void B_ClearBonusFoodInv(var C_Npc slf)
 		{
 			if(slf.aivar[AIV_GetBonusFood] == TRUE)
 			{
-				Npc_RemoveInvItems(slf,ItFo_Apple,Npc_HasItems(slf,ItFo_Apple));
+				B_RemoveEveryInvItem(slf,ItFo_Apple);
 			}
 			else
 			{
@@ -18,14 +18,14 @@ func void B_ClearBonusFoodInv(var C_Npc slf)
 		{
 			if(RandomGoblinBerries == FALSE)
 			{
-				Npc_RemoveInvItems(slf,ItPl_Dex_Herb_01,Npc_HasItems(slf,ItPl_Dex_Herb_01));
+				B_RemoveEveryInvItem(slf,ItPl_Dex_Herb_01);
 			};
 		}
 		else if(slf.guild == GIL_PIR)
 		{
 			if(RandomPepper == FALSE)
 			{
-				Npc_RemoveInvItems(slf,ItFo_Addon_Pfeffer_01,Npc_HasItems(slf,ItFo_Addon_Pfeffer_01));
+				B_RemoveEveryInvItem(slf,ItFo_Addon_Pfeffer_01);
 			};
 		};
 	};

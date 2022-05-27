@@ -212,38 +212,3 @@ func void DIA_Khaled_AboutLee_Info()
 	AI_Output(self,other,"DIA_Khaled_AboutLee_11_04");	// роме того, он хороший лидер. Ѕольшую часть времени мы можем делать здесь что хотим.
 };
 
-
-instance DIA_Khaled_PICKPOCKET(C_Info)
-{
-	npc = SLD_823_Khaled;
-	nr = 900;
-	condition = DIA_Khaled_PICKPOCKET_Condition;
-	information = DIA_Khaled_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Khaled_PICKPOCKET_Condition()
-{
-	return C_Beklauen(78,85);
-};
-
-func void DIA_Khaled_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Khaled_PICKPOCKET);
-	Info_AddChoice(DIA_Khaled_PICKPOCKET,Dialog_Back,DIA_Khaled_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Khaled_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Khaled_PICKPOCKET_DoIt);
-};
-
-func void DIA_Khaled_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Khaled_PICKPOCKET);
-};
-
-func void DIA_Khaled_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Khaled_PICKPOCKET);
-};
-

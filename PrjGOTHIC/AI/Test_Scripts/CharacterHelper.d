@@ -369,6 +369,11 @@ func int CH_RESET_Condition()
 
 func void CH_RESET_Info()
 {
+	B_UnEquipHeroItem(ItSc_ThunderBall);
+	B_UnEquipHeroItem(ItSc_Windfist);
+	B_UnEquipHeroItem(ItSc_ChargeFireBall);
+	B_UnEquipHeroItem(ItSc_Pyrokinesis);
+	B_UnEquipAllCircleRunes();
 	AI_UnequipWeapons(hero);
 	Info_ClearChoices(CH_RESET);
 	Info_AddChoice(CH_RESET,Dialog_Back,CH_RESET_Back);
@@ -382,41 +387,12 @@ func void CH_RESET_Back()
 
 func void CH_RESET_Ok()
 {
-	B_UnEquipHeroItem(ItBe_Addon_STR_5);
-	B_UnEquipHeroItem(ItBe_Addon_STR_10);
-	B_UnEquipHeroItem(ItBe_Addon_DEX_5);
-	B_UnEquipHeroItem(ItBe_Addon_DEX_10);
-	B_UnEquipHeroItem(ItAm_Dex_01);
-	B_UnEquipHeroItem(ItAm_Strg_01);
-	B_UnEquipHeroItem(ItAm_Hp_01);
-	B_UnEquipHeroItem(ItAm_Mana_01);
-	B_UnEquipHeroItem(ItAm_Dex_Strg_01);
-	B_UnEquipHeroItem(ItAm_Hp_Mana_01);
-	B_UnEquipHeroItem(ItAm_Addon_Franco);
-	B_UnEquipHeroItem(ItAm_Addon_Health);
-	B_UnEquipHeroItem(ItAm_Addon_MANA);
-	B_UnEquipHeroItem(ItAm_Addon_STR);
-	B_UnEquipHeroItem(ItRi_Dex_01);
-	B_UnEquipHeroItem(ItRi_Dex_02);
-	B_UnEquipHeroItem(ItRi_HP_01);
-	B_UnEquipHeroItem(ItRi_HP_02);
-	B_UnEquipHeroItem(ItRi_Str_01);
-	B_UnEquipHeroItem(ItRi_Str_02);
-	B_UnEquipHeroItem(ItRi_Mana_01);
-	B_UnEquipHeroItem(ItRi_Mana_02);
-	B_UnEquipHeroItem(ItRi_Dex_Strg_01);
-	B_UnEquipHeroItem(ItRi_Hp_Mana_01);
-	B_UnEquipHeroItem(ItRi_Addon_Health_01);
-	B_UnEquipHeroItem(ItRi_Addon_Health_02);
-	B_UnEquipHeroItem(ItRi_Addon_MANA_01);
-	B_UnEquipHeroItem(ItRi_Addon_MANA_02);
-	B_UnEquipHeroItem(ItRi_Addon_STR_01);
-	B_UnEquipHeroItem(ItRi_Addon_STR_02);
-	B_UnEquipHeroItem(ItRi_HP_01_Tengron);
-	B_UnEquipHeroItem(ItRi_OrcEliteRing);
-	B_UnEquipHeroItem(ItAm_Mana_Angar_MIS);
-	B_UnEquipHeroItem(ItAm_Hp_Regen);
-	B_UnEquipHeroItem(ItAm_Mana_Regen);
+	if(C_ScHasBeliarsWeapon() || C_SCHasBeliarsRune())
+	{
+		B_ClearBeliarsItems();
+		CreateInvItem(hero,ItMw_BeliarWeapon_Raven);
+	};
+	B_UnEquipAllTempBonusItems();
 	AI_UnequipArmor(hero);
 	B_SetGuild(hero,GIL_NONE);
 	hero.lp = 0;
@@ -1593,10 +1569,10 @@ func void DIA_CH_Strength_Info()
 {
 	Info_ClearChoices(DIA_CH_Strength);
 	Info_AddChoice(DIA_CH_Strength,Dialog_Back,DIA_CH_Strength_BACK);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 20",B_GetLearnCostAttribute(other,ATR_STRENGTH,20)),DIA_CH_Strength_20);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 10",B_GetLearnCostAttribute(other,ATR_STRENGTH,10)),DIA_CH_Strength_10);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 5",B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_CH_Strength_5);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 1",B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_CH_Strength_1);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 20",B_GetLearnCostAttribute(ATR_STRENGTH,20)),DIA_CH_Strength_20);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 10",B_GetLearnCostAttribute(ATR_STRENGTH,10)),DIA_CH_Strength_10);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 5",B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_CH_Strength_5);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 1",B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_CH_Strength_1);
 };
 
 func void DIA_CH_Strength_BACK()
@@ -1652,10 +1628,10 @@ func void DIA_CH_Dex_Info()
 {
 	Info_ClearChoices(DIA_CH_Dex);
 	Info_AddChoice(DIA_CH_Dex,Dialog_Back,DIA_CH_Dex_BACK);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 20",B_GetLearnCostAttribute(other,ATR_DEXTERITY,20)),dia_ch_dex_20);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 10",B_GetLearnCostAttribute(other,ATR_DEXTERITY,10)),dia_ch_dex_10);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 5",B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),dia_ch_dex_5);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 1",B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),dia_ch_dex_1);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 20",B_GetLearnCostAttribute(ATR_DEXTERITY,20)),dia_ch_dex_20);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 10",B_GetLearnCostAttribute(ATR_DEXTERITY,10)),dia_ch_dex_10);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 5",B_GetLearnCostAttribute(ATR_DEXTERITY,5)),dia_ch_dex_5);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 1",B_GetLearnCostAttribute(ATR_DEXTERITY,1)),dia_ch_dex_1);
 };
 
 func void DIA_CH_Dex_BACK()
@@ -1763,10 +1739,10 @@ func void DIA_CH_Mana_Info()
 {
 	Info_ClearChoices(DIA_CH_Mana);
 	Info_AddChoice(DIA_CH_Mana,Dialog_Back,DIA_CH_Mana_BACK);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 20",B_GetLearnCostAttribute(other,ATR_MANA_MAX,20)),dia_ch_mana_20);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 10",B_GetLearnCostAttribute(other,ATR_MANA_MAX,10)),dia_ch_mana_10);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 5",B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),dia_ch_mana_5);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 1",B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),dia_ch_mana_1);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 20",B_GetLearnCostAttribute(ATR_MANA_MAX,20)),dia_ch_mana_20);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 10",B_GetLearnCostAttribute(ATR_MANA_MAX,10)),dia_ch_mana_10);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 5",B_GetLearnCostAttribute(ATR_MANA_MAX,5)),dia_ch_mana_5);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 1",B_GetLearnCostAttribute(ATR_MANA_MAX,1)),dia_ch_mana_1);
 };
 
 func void DIA_CH_Mana_BACK()
@@ -3859,7 +3835,7 @@ func string B_BuildCurrentRegenerateValue(var int stats)
 	var string concatText;
 	var int cost;
 	var int next;
-	cost = B_GetLearnCostAttribute(other,stats,1);
+	cost = B_GetLearnCostAttribute(stats,1);
 	if(stats == ATR_REGENERATEMANA)
 	{
 		next = ATR_Training[ATR_REGENERATEMANA] - 1;
@@ -3941,7 +3917,7 @@ func void DIA_CH_Misc_Regenerate_BACK()
 func void DIA_CH_Misc_Regenerate_Mana()
 {
 	var int cost;
-	cost = B_GetLearnCostAttribute(other,ATR_REGENERATEMANA,1);
+	cost = B_GetLearnCostAttribute(ATR_REGENERATEMANA,1);
 	if(other.lp >= cost)
 	{
 		other.lp -= cost;
@@ -3957,7 +3933,7 @@ func void DIA_CH_Misc_Regenerate_Mana()
 func void DIA_CH_Misc_Regenerate_HP()
 {
 	var int cost;
-	cost = B_GetLearnCostAttribute(other,ATR_REGENERATEHP,1);
+	cost = B_GetLearnCostAttribute(ATR_REGENERATEHP,1);
 	if(other.lp >= cost)
 	{
 		other.lp -= cost;
@@ -4182,41 +4158,13 @@ func void CH_Skin_Naked()
 
 func void B_SetHeroEquipment()
 {
-	if(Npc_HasItems(hero,ItRw_Arrow) < 100)
-	{
-		Npc_RemoveInvItems(hero,ItRw_Arrow,Npc_HasItems(hero,ItRw_Arrow));
-		CreateInvItems(hero,ItRw_Arrow,100);
-	};
-	if(Npc_HasItems(hero,ItRw_Bolt) < 100)
-	{
-		Npc_RemoveInvItems(hero,ItRw_Bolt,Npc_HasItems(hero,ItRw_Bolt));
-		CreateInvItems(hero,ItRw_Bolt,100);
-	};
-	if(Npc_HasItems(hero,ItLsTorch) < 20)
-	{
-		Npc_RemoveInvItems(hero,ItLsTorch,Npc_HasItems(hero,ItLsTorch));
-		CreateInvItems(hero,ItLsTorch,20);
-	};
-	if(Npc_HasItems(hero,ItMi_Gold) < 500)
-	{
-		Npc_RemoveInvItems(hero,ItMi_Gold,Npc_HasItems(hero,ItMi_Gold));
-		CreateInvItems(hero,ItMi_Gold,500);
-	};
-	if(Npc_HasItems(hero,ItPo_Health_03) < 10)
-	{
-		Npc_RemoveInvItems(hero,ItPo_Health_03,Npc_HasItems(hero,ItPo_Health_03));
-		CreateInvItems(hero,ItPo_Health_03,10);
-	};
-	if(Npc_HasItems(hero,ItPo_Mana_03) < 10)
-	{
-		Npc_RemoveInvItems(hero,ItPo_Mana_03,Npc_HasItems(hero,ItPo_Mana_03));
-		CreateInvItems(hero,ItPo_Mana_03,10);
-	};
-	if(Npc_HasItems(hero,ItKe_Lockpick) < 30)
-	{
-		Npc_RemoveInvItems(hero,ItKe_Lockpick,Npc_HasItems(hero,ItKe_Lockpick));
-		CreateInvItems(hero,ItKe_Lockpick,30);
-	};
+	B_RefreshInvItemToAmount(hero,ItRw_Arrow,100);
+	B_RefreshInvItemToAmount(hero,ItRw_Bolt,100);
+	B_RefreshInvItemToAmount(hero,ItLsTorch,20);
+	B_RefreshInvItemToAmount(hero,ItMi_Gold,500);
+	B_RefreshInvItemToAmount(hero,ItPo_Health_03,10);
+	B_RefreshInvItemToAmount(hero,ItPo_Mana_03,10);
+	B_RefreshInvItemToAmount(hero,ItKe_Lockpick,30);
 };
 
 instance CH_Equipment(C_Info)
@@ -4248,7 +4196,7 @@ func void CH_Equipment_Info()
 instance CH_StatsBook(C_Info)
 {
 	npc = ch;
-	nr = 38;
+	nr = 39;
 	condition = CH_StatsBook_Condition;
 	information = CH_StatsBook_Info;
 	permanent = TRUE;

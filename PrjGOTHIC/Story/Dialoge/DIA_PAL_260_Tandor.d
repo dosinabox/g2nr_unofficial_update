@@ -260,38 +260,3 @@ func void DIA_Tandor_WASISTLOS_Info()
 	};
 };
 
-
-instance DIA_Tandor_PICKPOCKET(C_Info)
-{
-	npc = PAL_260_Tandor;
-	nr = 900;
-	condition = DIA_Tandor_PICKPOCKET_Condition;
-	information = DIA_Tandor_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Tandor_PICKPOCKET_Condition()
-{
-	return C_Beklauen(47,90);
-};
-
-func void DIA_Tandor_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Tandor_PICKPOCKET);
-	Info_AddChoice(DIA_Tandor_PICKPOCKET,Dialog_Back,DIA_Tandor_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Tandor_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Tandor_PICKPOCKET_DoIt);
-};
-
-func void DIA_Tandor_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Tandor_PICKPOCKET);
-};
-
-func void DIA_Tandor_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Tandor_PICKPOCKET);
-};
-

@@ -21,41 +21,6 @@ func void DIA_Attila_EXIT_Info()
 };
 
 
-instance DIA_Attila_PICKPOCKET(C_Info)
-{
-	npc = VLK_494_Attila;
-	nr = 900;
-	condition = DIA_Attila_PICKPOCKET_Condition;
-	information = DIA_Attila_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Attila_PICKPOCKET_Condition()
-{
-	return C_Beklauen(55,100);
-};
-
-func void DIA_Attila_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Attila_PICKPOCKET);
-	Info_AddChoice(DIA_Attila_PICKPOCKET,Dialog_Back,DIA_Attila_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Attila_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Attila_PICKPOCKET_DoIt);
-};
-
-func void DIA_Attila_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Attila_PICKPOCKET);
-};
-
-func void DIA_Attila_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Attila_PICKPOCKET);
-};
-
-
 instance DIA_Attila_Hallo(C_Info)
 {
 	npc = VLK_494_Attila;
@@ -84,11 +49,16 @@ func void DIA_Attila_Hallo_Info()
 	B_GivePlayerXP(XP_Attila_MetHim);
 };
 
-func void DIA_Attila_Hallo_Wer()
+func void B_Attila_WhoAreYou()
 {
 	AI_Output(other,self,"DIA_Attila_Hallo_Wer_15_00");	//Кто ты?
 	AI_Output(self,other,"DIA_Attila_Hallo_Wer_09_01");	//Меня зовут Аттила... но разве мое имя важно? Наши имена ничего не значат.
 	AI_Output(self,other,"DIA_Attila_Hallo_Wer_09_02");	//Ты это должен знать, чужеземец. (тихо смеется)
+};
+
+func void DIA_Attila_Hallo_Wer()
+{
+	B_Attila_WhoAreYou();
 	Knows_Attila_Wer = TRUE;
 	Info_ClearChoices(DIA_Attila_Hallo);
 	if(Knows_Attila_Was == FALSE)
@@ -259,7 +229,7 @@ func void DIA_Attila_NachSchluessel_Info()
 {
 	AI_Output(self,other,"DIA_Attila_NachSchluessel_09_00");	//Моя задача выполнена - пока.
 	AI_Output(self,other,"DIA_Attila_NachSchluessel_09_01");	//Но кто знает, может, наши пути опять пересекутся...
-	AI_StopProcessInfos_Pickpocket(55);
+	AI_StopProcessInfos_Pickpocket();
 };
 
 
@@ -284,9 +254,7 @@ func int DIA_Attila_Wer_Condition()
 
 func void DIA_Attila_Wer_Info()
 {
-	AI_Output(other,self,"DIA_Attila_Hallo_Wer_15_00");	//Кто ты?
-	AI_Output(self,other,"DIA_Attila_Hallo_Wer_09_01");	//Меня зовут Аттила... но разве мое имя важно? Наши имена ничего не значат.
-	AI_Output(self,other,"DIA_Attila_Hallo_Wer_09_02");	//Ты это должен знать, чужеземец. (тихо смеется)
+	B_Attila_WhoAreYou();
 	AI_StopProcessInfos(self);
 };
 

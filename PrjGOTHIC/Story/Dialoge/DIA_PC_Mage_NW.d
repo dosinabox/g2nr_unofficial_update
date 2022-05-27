@@ -764,8 +764,8 @@ func void B_BuildLearnDialog_Milten_NW()
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_04");	//Я посмотрю, что можно сделать.
 		Info_ClearChoices(DIA_MiltenNW_Mana);
 		Info_AddChoice(DIA_MiltenNW_Mana,Dialog_Back,DIA_MiltenNW_Mana_BACK);
-		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),DIA_MiltenNW_Mana_1);
-		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),DIA_MiltenNW_Mana_5);
+		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_MiltenNW_Mana_1);
+		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_MiltenNW_Mana_5);
 	};
 };
 
@@ -813,39 +813,5 @@ func void DIA_MiltenNW_Mana_5()
 	{
 		B_BuildLearnDialog_Milten_NW();
 	};
-};
-
-instance DIA_Mage_NW_PICKPOCKET(C_Info)
-{
-	npc = PC_Mage_NW;
-	nr = 900;
-	condition = DIA_Mage_NW_PICKPOCKET_Condition;
-	information = DIA_Mage_NW_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Mage_NW_PICKPOCKET_Condition()
-{
-	return C_Beklauen(56,75);
-};
-
-func void DIA_Mage_NW_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Mage_NW_PICKPOCKET);
-	Info_AddChoice(DIA_Mage_NW_PICKPOCKET,Dialog_Back,DIA_Mage_NW_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Mage_NW_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Mage_NW_PICKPOCKET_DoIt);
-};
-
-func void DIA_Mage_NW_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Mage_NW_PICKPOCKET);
-};
-
-func void DIA_Mage_NW_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Mage_NW_PICKPOCKET);
 };
 

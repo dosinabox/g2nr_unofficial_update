@@ -21,40 +21,6 @@ func void DIA_Nadja_EXIT_Info()
 };
 
 
-instance DIA_Nadja_PICKPOCKET(C_Info)
-{
-	npc = VLK_435_Nadja;
-	nr = 900;
-	condition = DIA_Nadja_PICKPOCKET_Condition;
-	information = DIA_Nadja_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40_Female;
-};
-
-
-func int DIA_Nadja_PICKPOCKET_Condition()
-{
-	return C_Beklauen(40,40);
-};
-
-func void DIA_Nadja_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Nadja_PICKPOCKET);
-	Info_AddChoice(DIA_Nadja_PICKPOCKET,Dialog_Back,DIA_Nadja_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Nadja_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Nadja_PICKPOCKET_DoIt);
-};
-
-func void DIA_Nadja_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Nadja_PICKPOCKET);
-};
-
-func void DIA_Nadja_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Nadja_PICKPOCKET);
-};
-
 func void B_Nadja_NotHere()
 {
 	AI_Output(self,other,"DIA_ADDON_Nadja_STANDARD_16_02");	//Я могла бы тебе кое-что рассказать, милый, но не здесь.

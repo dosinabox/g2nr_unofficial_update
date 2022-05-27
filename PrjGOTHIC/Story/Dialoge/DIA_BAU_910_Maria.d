@@ -342,38 +342,3 @@ func void DIA_Maria_PERM_Info()
 	};
 };
 
-
-instance DIA_Maria_PICKPOCKET(C_Info)
-{
-	npc = BAU_910_Maria;
-	nr = 900;
-	condition = DIA_Maria_PICKPOCKET_Condition;
-	information = DIA_Maria_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60_Female;
-};
-
-
-func int DIA_Maria_PICKPOCKET_Condition()
-{
-	return C_Beklauen(60,110);
-};
-
-func void DIA_Maria_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Maria_PICKPOCKET);
-	Info_AddChoice(DIA_Maria_PICKPOCKET,Dialog_Back,DIA_Maria_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Maria_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Maria_PICKPOCKET_DoIt);
-};
-
-func void DIA_Maria_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Maria_PICKPOCKET);
-};
-
-func void DIA_Maria_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Maria_PICKPOCKET);
-};
-

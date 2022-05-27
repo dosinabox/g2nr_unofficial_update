@@ -286,38 +286,3 @@ func void DIA_Elena_MINENANTEIL_Info()
 	B_GivePlayerXP(XP_Ambient);
 };
 
-
-instance DIA_Elena_PICKPOCKET(C_Info)
-{
-	npc = BAU_911_Elena;
-	nr = 900;
-	condition = DIA_Elena_PICKPOCKET_Condition;
-	information = DIA_Elena_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40_Female;
-};
-
-
-func int DIA_Elena_PICKPOCKET_Condition()
-{
-	return C_Beklauen(30,35);
-};
-
-func void DIA_Elena_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Elena_PICKPOCKET);
-	Info_AddChoice(DIA_Elena_PICKPOCKET,Dialog_Back,DIA_Elena_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Elena_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Elena_PICKPOCKET_DoIt);
-};
-
-func void DIA_Elena_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Elena_PICKPOCKET);
-};
-
-func void DIA_Elena_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Elena_PICKPOCKET);
-};
-

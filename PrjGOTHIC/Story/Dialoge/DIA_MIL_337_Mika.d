@@ -461,38 +461,3 @@ func void DIA_Mika_Kap3u4u5_PERM_Info()
 	};
 };
 
-
-instance DIA_Mika_PICKPOCKET(C_Info)
-{
-	npc = MIL_337_Mika;
-	nr = 900;
-	condition = DIA_Mika_PICKPOCKET_Condition;
-	information = DIA_Mika_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Mika_PICKPOCKET_Condition()
-{
-	return C_Beklauen(65,75);
-};
-
-func void DIA_Mika_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Mika_PICKPOCKET);
-	Info_AddChoice(DIA_Mika_PICKPOCKET,Dialog_Back,DIA_Mika_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Mika_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Mika_PICKPOCKET_DoIt);
-};
-
-func void DIA_Mika_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Mika_PICKPOCKET);
-};
-
-func void DIA_Mika_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Mika_PICKPOCKET);
-};
-

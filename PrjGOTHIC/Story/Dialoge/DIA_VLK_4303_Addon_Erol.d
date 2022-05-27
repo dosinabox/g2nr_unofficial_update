@@ -22,41 +22,6 @@ func void DIA_Addon_Erol_EXIT_Info()
 };
 
 
-instance DIA_Addon_Erol_PICKPOCKET(C_Info)
-{
-	npc = VLK_4303_Addon_Erol;
-	nr = 900;
-	condition = DIA_Addon_Erol_PICKPOCKET_Condition;
-	information = DIA_Addon_Erol_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Addon_Erol_PICKPOCKET_Condition()
-{
-	return C_Beklauen(43,42);
-};
-
-func void DIA_Addon_Erol_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Erol_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Erol_PICKPOCKET,Dialog_Back,DIA_Addon_Erol_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Erol_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Erol_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Erol_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Erol_PICKPOCKET);
-};
-
-func void DIA_Addon_Erol_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Erol_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Erol_Hallo(C_Info)
 {
 	npc = VLK_4303_Addon_Erol;
@@ -329,7 +294,7 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 		StoneplatesGeld = Addon_ErolsStoneplatesOffer * Npc_HasItems(self,ItWr_StonePlateCommon_Addon);
 		CreateInvItems(self,ItMi_Gold,StoneplatesGeld);
 		B_GiveInvItems(self,other,ItMi_Gold,StoneplatesGeld);
-		Npc_RemoveInvItems(self,ItWr_StonePlateCommon_Addon,Npc_HasItems(self,ItWr_StonePlateCommon_Addon));
+		B_RemoveEveryInvItem(self,ItWr_StonePlateCommon_Addon);
 		if(MIS_Addon_Erol_BanditStuff == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_08");	//я иду домой. ≈сли хочешь, можешь пойти со мной.
@@ -534,8 +499,8 @@ func void B_BuildLearnDialog_Erol()
 {
 	Info_ClearChoices(DIA_Addon_Erol_Teach);
 	Info_AddChoice(DIA_Addon_Erol_Teach,Dialog_Back,DIA_Addon_Erol_Teach_Back);
-	Info_AddChoice(DIA_Addon_Erol_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Addon_Erol_Teach_STR_1);
-	Info_AddChoice(DIA_Addon_Erol_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Addon_Erol_Teach_STR_5);
+	Info_AddChoice(DIA_Addon_Erol_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Addon_Erol_Teach_STR_1);
+	Info_AddChoice(DIA_Addon_Erol_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Addon_Erol_Teach_STR_5);
 };
 
 instance DIA_Addon_Erol_Teach(C_Info)

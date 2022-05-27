@@ -294,38 +294,3 @@ func void DIA_Rethon_TRADE_Info()
 	Trade_IsActive = TRUE;
 };
 
-
-instance DIA_Rethon_PICKPOCKET(C_Info)
-{
-	npc = DJG_709_Rethon;
-	nr = 900;
-	condition = DIA_Rethon_PICKPOCKET_Condition;
-	information = DIA_Rethon_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Rethon_PICKPOCKET_Condition()
-{
-	return C_Beklauen(78,230);
-};
-
-func void DIA_Rethon_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Rethon_PICKPOCKET);
-	Info_AddChoice(DIA_Rethon_PICKPOCKET,Dialog_Back,DIA_Rethon_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Rethon_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Rethon_PICKPOCKET_DoIt);
-};
-
-func void DIA_Rethon_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Rethon_PICKPOCKET);
-};
-
-func void DIA_Rethon_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Rethon_PICKPOCKET);
-};
-

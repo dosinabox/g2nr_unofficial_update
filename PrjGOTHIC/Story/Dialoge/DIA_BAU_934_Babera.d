@@ -183,38 +183,3 @@ func void DIA_Babera_DUSTOERST_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Babera_PICKPOCKET(C_Info)
-{
-	npc = BAU_934_Babera;
-	nr = 900;
-	condition = DIA_Babera_PICKPOCKET_Condition;
-	information = DIA_Babera_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20_Female;
-};
-
-
-func int DIA_Babera_PICKPOCKET_Condition()
-{
-	return C_Beklauen(20,30);
-};
-
-func void DIA_Babera_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Babera_PICKPOCKET);
-	Info_AddChoice(DIA_Babera_PICKPOCKET,Dialog_Back,DIA_Babera_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Babera_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Babera_PICKPOCKET_DoIt);
-};
-
-func void DIA_Babera_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Babera_PICKPOCKET);
-};
-
-func void DIA_Babera_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Babera_PICKPOCKET);
-};
-

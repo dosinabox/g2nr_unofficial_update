@@ -232,10 +232,10 @@ func void B_BuildLearnDialog_Diego_OW()
 {
 	Info_ClearChoices(DIA_DiegoOw_Teach);
 	Info_AddChoice(DIA_DiegoOw_Teach,Dialog_Back,DIA_DiegoOw_TEACH_BACK);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_DiegoOw_TEACHDEX_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_DiegoOw_TEACHDEX_5);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_DiegoOw_TEACHSTR_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_DiegoOw_TEACHSTR_5);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_DiegoOw_TEACHDEX_1);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_DiegoOw_TEACHDEX_5);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_DiegoOw_TEACHSTR_1);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_DiegoOw_TEACHSTR_5);
 };
 
 instance DIA_DiegoOw_Teach(C_Info)
@@ -313,41 +313,6 @@ func void DIA_DiegoOw_TEACHSTR_5()
 		B_BuildLearnDialog_Diego_OW();
 	};
 };
-
-instance DIA_ThiefOW_PICKPOCKET(C_Info)
-{
-	npc = PC_ThiefOW;
-	nr = 900;
-	condition = DIA_ThiefOW_PICKPOCKET_Condition;
-	information = DIA_ThiefOW_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_120;
-};
-
-
-func int DIA_ThiefOW_PICKPOCKET_Condition()
-{
-	return C_Beklauen(120,600);
-};
-
-func void DIA_ThiefOW_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_ThiefOW_PICKPOCKET);
-	Info_AddChoice(DIA_ThiefOW_PICKPOCKET,Dialog_Back,DIA_ThiefOW_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_ThiefOW_PICKPOCKET,DIALOG_PICKPOCKET,DIA_ThiefOW_PICKPOCKET_DoIt);
-};
-
-func void DIA_ThiefOW_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_ThiefOW_PICKPOCKET);
-};
-
-func void DIA_ThiefOW_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_ThiefOW_PICKPOCKET);
-};
-
 
 instance DIA_Addon_ThiefOW_Together(C_Info)
 {

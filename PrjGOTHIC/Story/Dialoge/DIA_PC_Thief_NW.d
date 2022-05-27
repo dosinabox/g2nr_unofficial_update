@@ -457,10 +457,10 @@ func void B_BuildLearnDialog_Diego_NW()
 {
 	Info_ClearChoices(DIA_DiegoNW_Teach);
 	Info_AddChoice(DIA_DiegoNW_Teach,Dialog_Back,DIA_DiegoNW_Teach_BACK);
-	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_DiegoNW_TeachDEX_1);
-	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_DiegoNW_TeachDEX_5);
-	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_DiegoNW_TeachSTR_1);
-	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_DiegoNW_TeachSTR_5);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_DiegoNW_TeachDEX_1);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_DiegoNW_TeachDEX_5);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_DiegoNW_TeachSTR_1);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_DiegoNW_TeachSTR_5);
 };
 
 instance DIA_DiegoNW_Teach(C_Info)
@@ -710,40 +710,5 @@ func void DIA_DiegoNW_StillNeedYou_Info()
 	};
 	AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_03");	//Отлично, мы можем идти.
 	B_JoinShip(self);
-};
-
-
-instance DIA_Thief_NW_PICKPOCKET(C_Info)
-{
-	npc = PC_Thief_NW;
-	nr = 900;
-	condition = DIA_Thief_NW_PICKPOCKET_Condition;
-	information = DIA_Thief_NW_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_120;
-};
-
-
-func int DIA_Thief_NW_PICKPOCKET_Condition()
-{
-	return C_Beklauen(120,600);
-};
-
-func void DIA_Thief_NW_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Thief_NW_PICKPOCKET);
-	Info_AddChoice(DIA_Thief_NW_PICKPOCKET,Dialog_Back,DIA_Thief_NW_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Thief_NW_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Thief_NW_PICKPOCKET_DoIt);
-};
-
-func void DIA_Thief_NW_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Thief_NW_PICKPOCKET);
-};
-
-func void DIA_Thief_NW_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Thief_NW_PICKPOCKET);
 };
 

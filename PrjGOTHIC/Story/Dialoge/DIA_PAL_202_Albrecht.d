@@ -237,8 +237,8 @@ func void B_BuildLearnDialog_Albrecht()
 	{
 		Info_ClearChoices(DIA_Albrecht_Teach);
 		Info_AddChoice(DIA_Albrecht_Teach,Dialog_Back,DIA_Albrecht_Teach_BACK);
-		Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),DIA_Albrecht_Teach_1);
-		Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),DIA_Albrecht_Teach_5);
+		Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_Albrecht_Teach_1);
+		Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_Albrecht_Teach_5);
 	};
 };
 
@@ -286,39 +286,5 @@ func void DIA_Albrecht_Teach_5()
 	{
 		B_BuildLearnDialog_Albrecht();
 	};
-};
-
-instance DIA_Albrecht_PICKPOCKET(C_Info)
-{
-	npc = PAL_202_Albrecht;
-	nr = 900;
-	condition = DIA_Albrecht_PICKPOCKET_Condition;
-	information = DIA_Albrecht_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Albrecht_PICKPOCKET_Condition()
-{
-	return C_Beklauen(41,160);
-};
-
-func void DIA_Albrecht_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Albrecht_PICKPOCKET);
-	Info_AddChoice(DIA_Albrecht_PICKPOCKET,Dialog_Back,DIA_Albrecht_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Albrecht_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Albrecht_PICKPOCKET_DoIt);
-};
-
-func void DIA_Albrecht_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Albrecht_PICKPOCKET);
-};
-
-func void DIA_Albrecht_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Albrecht_PICKPOCKET);
 };
 

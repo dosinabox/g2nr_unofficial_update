@@ -22,42 +22,6 @@ func void DIA_Halvor_EXIT_Info()
 };
 
 
-instance DIA_Halvor_PICKPOCKET(C_Info)
-{
-	npc = VLK_469_Halvor;
-	nr = 900;
-	condition = DIA_Halvor_PICKPOCKET_Condition;
-	information = DIA_Halvor_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Halvor_PICKPOCKET_Condition()
-{
-	return C_Beklauen(78,150);
-};
-
-func void DIA_Halvor_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Halvor_PICKPOCKET);
-	Info_AddChoice(DIA_Halvor_PICKPOCKET,Dialog_Back,DIA_Halvor_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Halvor_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Halvor_PICKPOCKET_DoIt);
-};
-
-func void DIA_Halvor_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Halvor_PICKPOCKET);
-};
-
-func void DIA_Halvor_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Halvor_PICKPOCKET);
-};
-
-////////////////////////////////////////
-
 instance DIA_Halvor_InPrison(C_Info)
 {
 	npc = VLK_469_Halvor;
@@ -83,7 +47,6 @@ func void DIA_Halvor_InPrison_Info()
 	AI_StopProcessInfos(self);
 };
 
-////////////////////////////////////////
 
 instance DIA_Halvor_Hallo(C_Info)
 {
@@ -402,8 +365,8 @@ func void DIA_Halvor_Hehlerei_Annehmen()
 	amount = Npc_HasItems(other,ItMi_SilverPlate) + Npc_HasItems(other,ItMi_SilverCup);
 	concatText = ConcatStrings(IntToString(amount),PRINT_ItemsGiven);
 	AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-	Npc_RemoveInvItems(other,ItMi_SilverCup,Npc_HasItems(other,ItMi_SilverCup));
-	Npc_RemoveInvItems(other,ItMi_SilverPlate,Npc_HasItems(other,ItMi_SilverPlate));
+	B_RemoveEveryInvItem(other,ItMi_SilverCup);
+	B_RemoveEveryInvItem(other,ItMi_SilverPlate);
 	B_GiveInvItems(self,other,ItMi_Gold,Halvor_Score);
 	AI_Output(other,self,"DIA_Halvor_Zeichen_Annehmen_15_00");	//Хорошо. Продано!
 	AI_Output(self,other,"DIA_Halvor_Zeichen_Annehmen_06_01");	//Мы заключили несколько хороших сделок сегодня. Лучше не приходи ко мне до завтра, это может вызвать подозрения, понимаешь?

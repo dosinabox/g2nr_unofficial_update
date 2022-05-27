@@ -41,41 +41,6 @@ func void DIA_Constantino_EXIT_Info()
 };
 
 
-instance DIA_Constantino_PICKPOCKET(C_Info)
-{
-	npc = VLK_417_Constantino;
-	nr = 900;
-	condition = DIA_Constantino_PICKPOCKET_Condition;
-	information = DIA_Constantino_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Constantino_PICKPOCKET_Condition()
-{
-	return C_Beklauen(59,90);
-};
-
-func void DIA_Constantino_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Constantino_PICKPOCKET);
-	Info_AddChoice(DIA_Constantino_PICKPOCKET,Dialog_Back,DIA_Constantino_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Constantino_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Constantino_PICKPOCKET_DoIt);
-};
-
-func void DIA_Constantino_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Constantino_PICKPOCKET);
-};
-
-func void DIA_Constantino_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Constantino_PICKPOCKET);
-};
-
-
 instance DIA_Constantino_Hallo(C_Info)
 {
 	npc = VLK_417_Constantino;

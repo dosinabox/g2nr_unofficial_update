@@ -99,7 +99,7 @@ func void DIA_NOV_3_Fegen_Info()
 			AI_Output(self,other,"DIA_NOV_3_Fegen_03_06");	//Я же уже согласился. Ты помог мне, я помогу тебе.
 		};
 	};
-	if((Hlp_GetInstanceID(Feger1) != Hlp_GetInstanceID(self)) && (Hlp_GetInstanceID(Feger2) != Hlp_GetInstanceID(self)))
+	if((Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Feger1)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Feger2)))
 	{
 		AI_Output(self,other,"DIA_NOV_3_Fegen_03_07");	//Забудь об этом - у меня нет свободного времени. Поищи кого-нибудь еще.
 	};

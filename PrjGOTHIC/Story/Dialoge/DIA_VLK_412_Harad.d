@@ -909,8 +909,8 @@ func void B_BuildLearnDialog_Harad()
 {
 	Info_ClearChoices(DIA_Harad_TeachSTR);
 	Info_AddChoice(DIA_Harad_TeachSTR,Dialog_Back,DIA_Harad_TeachSTR_BACK);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Harad_TeachSTR_1);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Harad_TeachSTR_5);
+	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Harad_TeachSTR_1);
+	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Harad_TeachSTR_5);
 };
 
 instance DIA_Harad_TeachSTR(C_Info)
@@ -1178,40 +1178,5 @@ func void DIA_Harad_Goldsmith_Info()
 	AI_Output(other,self,"DIA_Harad_Goldsmith_15_00");	//Где мне найти ювелира?
 	AI_Output(self,other,"DIA_Harad_Goldsmith_12_01");	//Я слышал, что у наемников на ферме Онара есть хороший кузнец.
 	AI_Output(self,other,"DIA_Harad_Goldsmith_12_02");	//Может, тебе стоит поспрашивать там.
-};
-
-
-instance DIA_Harad_PICKPOCKET(C_Info)
-{
-	npc = VLK_412_Harad;
-	nr = 900;
-	condition = DIA_Harad_PICKPOCKET_Condition;
-	information = DIA_Harad_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Harad_PICKPOCKET_Condition()
-{
-	return C_Beklauen(14,35);
-};
-
-func void DIA_Harad_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Harad_PICKPOCKET);
-	Info_AddChoice(DIA_Harad_PICKPOCKET,Dialog_Back,DIA_Harad_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Harad_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Harad_PICKPOCKET_DoIt);
-};
-
-func void DIA_Harad_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Harad_PICKPOCKET);
-};
-
-func void DIA_Harad_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Harad_PICKPOCKET);
 };
 

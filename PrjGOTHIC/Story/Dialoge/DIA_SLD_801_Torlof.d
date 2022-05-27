@@ -813,10 +813,10 @@ func void B_BuildLearnDialog_Torlof_NW()
 {
 	Info_ClearChoices(DIA_Torlof_Teach);
 	Info_AddChoice(DIA_Torlof_Teach,Dialog_Back,DIA_Torlof_Teach_Back);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_Torlof_Teach_DEX_1);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_Torlof_Teach_DEX_5);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Torlof_Teach_STR_1);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Torlof_Teach_STR_5);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Torlof_Teach_DEX_1);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Torlof_Teach_DEX_5);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Torlof_Teach_STR_1);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Torlof_Teach_STR_5);
 };
 
 instance DIA_Torlof_Teach(C_Info)
@@ -1249,40 +1249,5 @@ func void DIA_Torlof_PERM5_NOTCAPTAIN_Info()
 	AI_Output(other,self,"DIA_Torlof_PERM5_NOTCAPTAIN_15_00");	//Я решил взять другого капитана. Верни мне мои деньги.
 	AI_Output(self,other,"DIA_Torlof_PERM5_NOTCAPTAIN_01_01");	//Черта с два! Если ты заплатил мне вперед, а затем отказался от моих услуг, это твои проблемы.
 	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Torlof_PICKPOCKET(C_Info)
-{
-	npc = SLD_801_Torlof;
-	nr = 900;
-	condition = DIA_Torlof_PICKPOCKET_Condition;
-	information = DIA_Torlof_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Torlof_PICKPOCKET_Condition()
-{
-	return C_Beklauen(76,120);
-};
-
-func void DIA_Torlof_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Torlof_PICKPOCKET);
-	Info_AddChoice(DIA_Torlof_PICKPOCKET,Dialog_Back,DIA_Torlof_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Torlof_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Torlof_PICKPOCKET_DoIt);
-};
-
-func void DIA_Torlof_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Torlof_PICKPOCKET);
-};
-
-func void DIA_Torlof_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Torlof_PICKPOCKET);
 };
 

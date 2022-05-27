@@ -21,41 +21,6 @@ func void DIA_Addon_Bill_EXIT_Info()
 };
 
 
-instance DIA_Addon_Bill_PICKPOCKET(C_Info)
-{
-	npc = PIR_1356_Addon_Bill;
-	nr = 900;
-	condition = DIA_Addon_Bill_PICKPOCKET_Condition;
-	information = DIA_Addon_Bill_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Addon_Bill_PICKPOCKET_Condition()
-{
-	return C_Beklauen(80,205);
-};
-
-func void DIA_Addon_Bill_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Bill_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Bill_PICKPOCKET,Dialog_Back,DIA_Addon_Bill_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Bill_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Bill_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Bill_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Bill_PICKPOCKET);
-};
-
-func void DIA_Addon_Bill_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Bill_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Bill_Hello(C_Info)
 {
 	npc = PIR_1356_Addon_Bill;
@@ -407,7 +372,7 @@ func int DIA_Addon_Bill_LearnTalent_Condition()
 func void DIA_Addon_Bill_LearnTalent_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Bill_LearnTalent_15_00");	//Обучи меня карманным кражам.
-	if(CurrentAttributeValue(ATR_DEXTERITY) >= 40)
+	if(VisibleAttributeValue(ATR_DEXTERITY) >= 40)
 	{
 		if(B_TeachThiefTalent(self,other,NPC_TALENT_PICKPOCKET))
 		{

@@ -24,41 +24,6 @@ func void DIA_Addon_Esteban_EXIT_Info()
 };
 
 
-instance DIA_Addon_Esteban_PICKPOCKET(C_Info)
-{
-	npc = BDT_1083_Addon_Esteban;
-	nr = 900;
-	condition = DIA_Addon_Esteban_PICKPOCKET_Condition;
-	information = DIA_Addon_Esteban_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_120;
-};
-
-
-func int DIA_Addon_Esteban_PICKPOCKET_Condition()
-{
-	return C_Beklauen(105,500);
-};
-
-func void DIA_Addon_Esteban_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Esteban_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Esteban_PICKPOCKET,Dialog_Back,DIA_Addon_Esteban_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Esteban_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Esteban_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Esteban_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Esteban_PICKPOCKET);
-};
-
-func void DIA_Addon_Esteban_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Esteban_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Esteban_Hi(C_Info)
 {
 	npc = BDT_1083_Addon_Esteban;

@@ -31,42 +31,6 @@ func void DIA_Addon_Edgor_EXIT_Info()
 };
 
 
-instance DIA_Addon_Edgor_PICKPOCKET(C_Info)
-{
-	npc = BDT_1074_Addon_Edgor;
-	nr = 900;
-	condition = DIA_Addon_Edgor_PICKPOCKET_Condition;
-	information = DIA_Addon_Edgor_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Addon_Edgor_PICKPOCKET_Condition()
-{
-	return C_Beklauen(10,7);
-};
-
-func void DIA_Addon_Edgor_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Edgor_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Edgor_PICKPOCKET,Dialog_Back,DIA_Addon_Edgor_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Edgor_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Edgor_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Edgor_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	B_Say(self,self,"$AWAKE");
-	Info_ClearChoices(DIA_Addon_Edgor_PICKPOCKET);
-};
-
-func void DIA_Addon_Edgor_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Edgor_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Edgor_Hi(C_Info)
 {
 	npc = BDT_1074_Addon_Edgor;

@@ -61,6 +61,14 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
+	if(Hlp_StrCmp(slf.name[0],NAME_Addon_Sklave))
+	{
+		return FALSE;
+	};
+	if(Hlp_StrCmp(slf.name[0],NAME_Straefling))
+	{
+		return FALSE;
+	};
 	return TRUE;
 };
 

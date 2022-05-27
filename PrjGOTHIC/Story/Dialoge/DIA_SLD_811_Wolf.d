@@ -765,38 +765,3 @@ func void DIA_Wolf_SHIPOFF_Info()
 	B_Attack(self,other,AR_NONE,1);
 };
 
-
-instance DIA_Wolf_PICKPOCKET(C_Info)
-{
-	npc = SLD_811_Wolf;
-	nr = 900;
-	condition = DIA_Wolf_PICKPOCKET_Condition;
-	information = DIA_Wolf_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Wolf_PICKPOCKET_Condition()
-{
-	return C_Beklauen(32,35);
-};
-
-func void DIA_Wolf_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Wolf_PICKPOCKET);
-	Info_AddChoice(DIA_Wolf_PICKPOCKET,Dialog_Back,DIA_Wolf_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Wolf_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Wolf_PICKPOCKET_DoIt);
-};
-
-func void DIA_Wolf_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Wolf_PICKPOCKET);
-};
-
-func void DIA_Wolf_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Wolf_PICKPOCKET);
-};
-

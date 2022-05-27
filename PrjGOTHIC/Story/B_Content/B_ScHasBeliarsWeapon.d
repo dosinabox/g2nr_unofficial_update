@@ -208,7 +208,11 @@ func int C_ScHas2HBeliarsWeapon()
 
 func int C_ScHasBeliarsWeapon()
 {
-	if(C_ScHas1HBeliarsWeapon() || C_ScHas2HBeliarsWeapon())
+	if(C_ScHas1HBeliarsWeapon())
+	{
+		return TRUE;
+	};
+	if(C_ScHas2HBeliarsWeapon())
 	{
 		return TRUE;
 	};
@@ -440,58 +444,67 @@ func int C_ScHasEquippedBeliarsWeapon()
 	return FALSE;
 };
 
-func void B_ClearBeliarsWeapon()
+func void B_ClearBeliarsRune()
 {
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_Raven,Npc_HasItems(hero,ItMw_BeliarWeapon_Raven));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_01,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_01));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_02,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_02));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_03,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_03));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_04,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_04));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_05,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_05));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_06,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_06));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_07,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_07));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_08,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_08));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_09,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_09));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_10,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_10));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_11,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_11));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_12,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_12));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_13,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_13));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_14,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_14));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_15,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_15));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_16,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_16));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_17,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_17));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_18,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_18));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_19,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_19));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_1H_20,Npc_HasItems(hero,ItMw_BeliarWeapon_1H_20));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_01,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_01));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_02,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_02));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_03,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_03));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_04,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_04));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_05,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_05));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_06,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_06));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_07,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_07));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_08,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_08));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_09,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_09));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_10,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_10));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_11,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_11));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_12,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_12));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_13,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_13));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_14,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_14));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_15,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_15));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_16,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_16));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_17,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_17));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_18,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_18));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_19,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_19));
-	Npc_RemoveInvItems(hero,ItMw_BeliarWeapon_2H_20,Npc_HasItems(hero,ItMw_BeliarWeapon_2H_20));
-	Npc_RemoveInvItems(hero,ItRu_BeliarsRage,Npc_HasItems(hero,ItRu_BeliarsRage));
-	Npc_RemoveInvItems(hero,ItRu_SuckEnergy,Npc_HasItems(hero,ItRu_SuckEnergy));
-	Npc_RemoveInvItems(hero,ItRu_GreenTentacle,Npc_HasItems(hero,ItRu_GreenTentacle));
-	Npc_RemoveInvItems(hero,ItRu_Swarm,Npc_HasItems(hero,ItRu_Swarm));
-	Npc_RemoveInvItems(hero,ItRu_Skull,Npc_HasItems(hero,ItRu_Skull));
-	Npc_RemoveInvItems(hero,ItRu_SummonZombie,Npc_HasItems(hero,ItRu_SummonZombie));
-	Npc_RemoveInvItems(hero,ItRu_SummonGuardian,Npc_HasItems(hero,ItRu_SummonGuardian));
+	B_RemoveEveryInvItem(hero,ItRu_BeliarsRage);
+	B_RemoveEveryInvItem(hero,ItRu_SuckEnergy);
+	B_RemoveEveryInvItem(hero,ItRu_GreenTentacle);
+	B_RemoveEveryInvItem(hero,ItRu_Swarm);
+	B_RemoveEveryInvItem(hero,ItRu_Skull);
+	B_RemoveEveryInvItem(hero,ItRu_SummonZombie);
+	B_RemoveEveryInvItem(hero,ItRu_SummonGuardian);
 };
 
+func void B_ClearBeliarsWeapon()
+{
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_Raven);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_01);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_02);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_03);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_04);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_05);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_06);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_07);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_08);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_09);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_10);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_11);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_12);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_13);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_14);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_15);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_16);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_17);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_18);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_19);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_1H_20);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_01);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_02);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_03);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_04);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_05);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_06);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_07);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_08);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_09);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_10);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_11);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_12);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_13);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_14);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_15);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_16);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_17);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_18);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_19);
+	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_2H_20);
+};
+
+func void B_ClearBeliarsItems()
+{
+	B_ClearBeliarsRune();
+	B_ClearBeliarsWeapon();
+};
 
 var int BeliarWeapCurrentLvL;
 var int BeliarWeapNextLvL;
@@ -709,7 +722,7 @@ func void B_UpgrateBeliarsWeapon()
 			{
 				CreateInvItem(hero,ItMw_BeliarWeapon_1H_06);
 			}
-				else if(BeliarWeapCurrentLvL == 7)
+			else if(BeliarWeapCurrentLvL == 7)
 			{
 				CreateInvItem(hero,ItMw_BeliarWeapon_1H_07);
 			}
@@ -908,7 +921,19 @@ func void PC_PrayShrine_UPGRATEBELIARSWEAPON_SPL_Skull()
 
 func int C_SCHasBlessedSword()
 {
-	if(Npc_HasItems(hero,ItMw_1H_Blessed_02) || Npc_HasItems(hero,ItMw_1H_Blessed_03) || Npc_HasItems(hero,ItMw_2H_Blessed_02) || Npc_HasItems(hero,ItMw_2H_Blessed_03))
+	if(Npc_HasItems(hero,ItMw_1H_Blessed_02))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ItMw_1H_Blessed_03))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ItMw_2H_Blessed_02))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ItMw_2H_Blessed_03))
 	{
 		return TRUE;
 	};

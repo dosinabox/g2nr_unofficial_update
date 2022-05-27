@@ -22,41 +22,6 @@ func void DIA_Thorben_EXIT_Info()
 };
 
 
-instance DIA_Thorben_PICKPOCKET(C_Info)
-{
-	npc = VLK_462_Thorben;
-	nr = 900;
-	condition = DIA_Thorben_PICKPOCKET_Condition;
-	information = DIA_Thorben_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Thorben_PICKPOCKET_Condition()
-{
-	return C_Beklauen(30,28);
-};
-
-func void DIA_Thorben_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Thorben_PICKPOCKET);
-	Info_AddChoice(DIA_Thorben_PICKPOCKET,Dialog_Back,DIA_Thorben_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Thorben_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Thorben_PICKPOCKET_DoIt);
-};
-
-func void DIA_Thorben_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Thorben_PICKPOCKET);
-};
-
-func void DIA_Thorben_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Thorben_PICKPOCKET);
-};
-
-
 instance DIA_Thorben_angepisst(C_Info)
 {
 	npc = VLK_462_Thorben;

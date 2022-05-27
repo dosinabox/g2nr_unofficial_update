@@ -96,7 +96,7 @@ func void B_PrayIdol(var int attribute,var int amount)
 		B_HitpointAngleich(amount);
 		gold = amount * BeliarsGoldMultiplier;
 	}
-	else if(attribute = ATR_MANA_MAX)
+	else if(attribute == ATR_MANA_MAX)
 	{
 		B_ManaAngleich(amount);
 		gold = amount * BeliarsGoldMultiplier * 10;
@@ -250,7 +250,11 @@ func int PC_PrayShrine_UPGRATEBELIARSWEAPON_Condition()
 {
 	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PRAYIDOL) && C_ScCanUpgrateBeliarsWeapon())
 	{
-		if(C_ScHasBeliarsWeapon() || C_SCHasBeliarsRune())
+		if(C_ScHasBeliarsWeapon())
+		{
+			return TRUE;
+		};
+		if(C_SCHasBeliarsRune())
 		{
 			return TRUE;
 		};
@@ -259,7 +263,7 @@ func int PC_PrayShrine_UPGRATEBELIARSWEAPON_Condition()
 
 func void PC_PrayShrine_UPGRATEBELIARSWEAPON_Info()
 {
-	B_ClearBeliarsWeapon();
+	B_ClearBeliarsItems();
 	B_UpgrateBeliarsWeapon();
 };
 

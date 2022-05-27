@@ -1,6 +1,7 @@
 
-func int C_CanStealFromNpc(var int TheftDex) //TODO убрать TheftDex и использовать AIV_DexToSteal
+func int C_CanStealFromNpc()
 {
+	var int itm;
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 	{
 		return FALSE;
@@ -9,7 +10,7 @@ func int C_CanStealFromNpc(var int TheftDex) //TODO убрать TheftDex и использова
 	{
 		return FALSE;
 	};
-	if(other.attribute[ATR_DEXTERITY] < (TheftDex - Theftdiff))
+	if(other.attribute[ATR_DEXTERITY] < (self.aivar[AIV_DexToSteal] - Theftdiff))
 	{
 		return FALSE;
 	};
@@ -17,99 +18,39 @@ func int C_CanStealFromNpc(var int TheftDex) //TODO убрать TheftDex и использова
 	{
 		return FALSE;
 	};
-	return TRUE;
-};
-
-func int C_Beklauen(var int TheftDex,var int TheftGold) //TODO поддержка старых сохранений - удалить вместе с диалогами
-{
-	/*if(self.aivar[AIV_DexToSteal] > 0)
+	itm = self.aivar[AIV_ItemToSteal];
+	if(itm != 0)
 	{
-		return FALSE;
-	};*/
-	if(!C_CanStealFromNpc(TheftDex))
-	{
-		return FALSE;
-	};
-	if(Npc_IsInState(self,ZS_Talk))
-	{
-		if((TheftDex <= 20) && (EasyLowDexPickpocketDisabled == FALSE))
+		if(Hlp_IsItem(ItMi_Gold,itm))
 		{
-			TheftDexGlob = 10;
-		}
-		else
-		{
-			TheftDexGlob = TheftDex;
+			return TRUE;
 		};
-		TheftGoldGlob = TheftGold;
+		if(itm == self.aivar[AIV_HiddenTradeItem])
+		{
+			return TRUE;
+		};
+		if(!Npc_HasItems(self,itm))
+		{
+			return FALSE;
+		};
 	};
 	return TRUE;
 };
 
-func void B_Beklauen() //TODO поддержка старых сохранений - удалить вместе с диалогами
-{
-	if(other.attribute[ATR_DEXTERITY] >= TheftDexGlob)
-	{
-		var string text;
-		B_GiveInvItems(self,other,ItMi_Gold,TheftGoldGlob);
-		TotalTheftGold += TheftGoldGlob;
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Snd_Play("Geldbeutel");
-		text = ConcatStrings(self.name[0],PRINT_PickPocketSuccess);
-		text = ConcatStrings(text,IntToString(TheftGoldGlob));
-		text = ConcatStrings(text,PRINT_Gold);
-		text = ConcatStrings(text,".");
-		B_LogEntry(Topic_PickPocket,text);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
-};
-
-/*func void B_StealGold()
+func void B_StealItem()
 {
 	var int dex;
-	dex = self.aivar[AIV_DexToSteal];
-	if((dex <= 20) && (EasyLowDexPickpocketDisabled == FALSE))
-	{
-		dex = 10;
-	};
-	if(other.attribute[ATR_DEXTERITY] >= dex)
-	{
-		var int gold;
-		var string text;
-		gold = self.aivar[AIV_GoldToSteal];
-		B_GiveInvItems(self,other,ItMi_Gold,gold);
-		TotalTheftGold += gold;
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Snd_Play("Geldbeutel");
-		text = ConcatStrings(self.name[0],PRINT_PickPocketSuccess);
-		text = ConcatStrings(text,IntToString(gold));
-		text = ConcatStrings(text,PRINT_Gold);
-		text = ConcatStrings(text,".");
-		B_LogEntry(Topic_PickPocket,text);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
-};*/
-
-func void B_StealItem(var int dex,var int itm,var int amount) //TODO убрать TheftDex и использовать AIV_DexToSteal
-{
+	var int itm;
+	var int amount;
 	var string text;
-	/*if((dex <= 20) && (EasyLowDexPickpocketDisabled == FALSE))
+	dex = self.aivar[AIV_DexToSteal];
+	itm = self.aivar[AIV_ItemToSteal];
+	amount = self.aivar[AIV_AmountToSteal];
+	//TODO точно определять предмет и использовать только для золота
+	if((dex <= 20) && (amount > 1) && (EasyLowDexPickpocketDisabled == FALSE))
 	{
 		dex = 10;
-	};*/
+	};
 	if(other.attribute[ATR_DEXTERITY] >= dex)
 	{
 		B_GiveInvItems(self,other,itm,amount);
@@ -125,7 +66,7 @@ func void B_StealItem(var int dex,var int itm,var int amount) //TODO убрать Thef
 		else
 		{
 			text = ConcatStrings(text,item.description);
-			//Snd_Play("Map_Unfold");
+			Snd_Play("Scroll_Unfold");
 			if(Hlp_StrCmp(item.name,NAME_Beutel))
 			{
 				TotalTheftGold += item.value;
@@ -142,6 +83,10 @@ func void B_StealItem(var int dex,var int itm,var int amount) //TODO убрать Thef
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Richter))
 		{
 			self.flags = 0;
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Edgor))
+		{
+			B_Say(self,self,"$AWAKE");
 		};
 		B_LogEntry(Topic_PickPocket,ConcatStrings(text,"."));
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
@@ -163,9 +108,9 @@ func void B_StealItem(var int dex,var int itm,var int amount) //TODO убрать Thef
 	};
 };
 
-func void AI_StopProcessInfos_Pickpocket(var int TheftDex) //TODO убрать TheftDex и использовать AIV_DexToSteal
+func void AI_StopProcessInfos_Pickpocket()
 {
-	if(!C_CanStealFromNpc(TheftDex))
+	if(!C_CanStealFromNpc())
 	{
 		AI_StopProcessInfos(self);
 	};
