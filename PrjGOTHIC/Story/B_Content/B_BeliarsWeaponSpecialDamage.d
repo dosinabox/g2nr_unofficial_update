@@ -28,27 +28,28 @@ func void B_BeliarsWeaponSpecialDamage(var C_Npc oth,var C_Npc slf)
 			RavenBlitz += 1;
 		};
 	}
-//	else if(Hlp_GetInstanceID(oth) == Hlp_GetInstanceID(hero))
 	else if(Npc_IsPlayer(oth))
 	{
-		DamageRandy = Hlp_Random(100);
-		if(C_ScHasReadiedBeliarsWeapon() && (DamageRandy <= BeliarDamageChance))
+		if(C_ScHasReadiedBeliarsWeapon())
 		{
-			if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)
+			DamageRandy = Hlp_Random(100);
+			if(DamageRandy <= BeliarDamageChance_20)
 			{
-				Wld_PlayEffect("spellFX_BELIARSRAGE",oth,oth,0,0,0,FALSE);
-				B_MagicHurtNpc(slf,oth,BeliarSpecialDamage);
-			}
-			else if(slf.flags != NPC_FLAG_IMMORTAL)
-			{
-				Wld_PlayEffect("spellFX_BELIARSRAGE",slf,slf,0,0,0,FALSE);
-				B_MagicHurtNpc(oth,slf,BeliarSpecialDamage);
+				Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",oth,oth,0,0,0,FALSE);
+				if(DamageRandy <= BeliarDamageChance)
+				{
+					if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)
+					{
+						Wld_PlayEffect("spellFX_BELIARSRAGE",oth,oth,0,0,0,FALSE);
+						B_MagicHurtNpc(slf,oth,BeliarSpecialDamage);
+					}
+					else if(slf.flags != NPC_FLAG_IMMORTAL)
+					{
+						Wld_PlayEffect("spellFX_BELIARSRAGE",slf,slf,0,0,0,FALSE);
+						B_MagicHurtNpc(oth,slf,BeliarSpecialDamage);
+					};
+				};
 			};
-			Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",hero,hero,0,0,0,FALSE);
-		};
-		if(C_ScHasReadiedBeliarsWeapon() && (DamageRandy <= 50))
-		{
-			Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",hero,hero,0,0,0,FALSE);
 		};
 	};
 	if(Npc_HasReadiedWeapon(oth))

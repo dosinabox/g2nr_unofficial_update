@@ -622,8 +622,8 @@ func void DIA_Akil_AkilsSchaf_Info()
 	B_GiveInvItems(self,other,ItMi_Gold,150);
 	Follow_Sheep_AKIL.aivar[AIV_PARTYMEMBER] = FALSE;
 	Follow_Sheep_AKIL.aivar[AIV_TAPOSITION] = NOTINPOS;
-	Follow_Sheep_AKIL.wp = "NW_FARM2_OUT_02";
-	Follow_Sheep_AKIL.start_aistate = ZS_MM_AllScheduler;
+//	Follow_Sheep_AKIL.wp = "NW_FARM2_OUT_02";
+//	Follow_Sheep_AKIL.start_aistate = ZS_MM_AllScheduler;
 	B_StartOtherRoutine(Follow_Sheep_AKIL,"Farm");
 	B_GivePlayerXP(XP_AkilsSchaf);
 };

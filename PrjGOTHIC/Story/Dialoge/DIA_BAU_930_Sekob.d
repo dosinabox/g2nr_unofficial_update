@@ -372,9 +372,12 @@ instance DIA_Sekob_DMTWEG(C_Info)
 
 func int DIA_Sekob_DMTWEG_Condition()
 {
-	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Sekob_DMT) && Npc_IsDead(DMT_DementorAmbientSekob1) && Npc_IsDead(DMT_DementorAmbientSekob2) && Npc_IsDead(DMT_DementorAmbientSekob3) && Npc_IsDead(DMT_DementorAmbientSekob4))
+	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Sekob_DMT))
 	{
-		return TRUE;
+		if(C_SekobDementorsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 

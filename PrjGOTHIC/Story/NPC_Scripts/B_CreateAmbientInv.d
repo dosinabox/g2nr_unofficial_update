@@ -669,9 +669,13 @@ func void B_SetItemToSteal(var C_Npc slf,var int dex,var int itemInstance,var in
 
 func void B_CreateItemToSteal(var C_Npc slf,var int dex,var int itemInstance,var int amount)
 {
-	if(!Hlp_IsItem(ItMi_Gold,itemInstance))
+	//TODO убрать лишние проверки к релизу 28 версии вместе с Autorun\Refresh_Pickpocket.d
+	if((slf.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (slf.aivar[AIV_DefeatedByPlayer] == FALSE))
 	{
-		CreateInvItems(slf,itemInstance,amount);
+		if(!Hlp_IsItem(ItMi_Gold,itemInstance) && !Npc_HasItems(slf,itemInstance))
+		{
+			CreateInvItems(slf,itemInstance,amount);
+		};
 	};
 	B_SetItemToSteal(slf,dex,itemInstance,amount);
 };
