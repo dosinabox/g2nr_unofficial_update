@@ -6,41 +6,7 @@ func void B_AssessMurder()
 	{
 		return;
 	};
-	//********** огненная стрела
-	if(Npc_HasReadiedRangedWeapon(other))
-	{
-		readyweap = Npc_GetReadiedWeapon(other);
-		if(readyweap.munition == ItRw_Addon_FireArrow)
-		{
-			if(Npc_GetDistToNpc(self,victim) <= 600)
-			{
-				Wld_PlayEffect("VOB_MAGICBURN",self,self,0,0,0,FALSE);
-				if(self.flags == 0)
-				{
-					if(self.protection[PROT_FIRE] < SpecialDamage_FireBow)
-					{
-						if((self.attribute[ATR_HITPOINTS] + self.protection[PROT_FIRE] - SpecialDamage_FireBow) >= 0)
-						{
-							self.attribute[ATR_HITPOINTS] -= (SpecialDamage_FireBow - self.protection[PROT_FIRE]);
-						}
-						else
-						{
-							self.attribute[ATR_HITPOINTS] = 0;
-						};
-					};
-				};
-				if(self.attribute[ATR_HITPOINTS] <= 0)
-				{
-					AI_PlayAni(self,"T_DEAD");
-				};
-			};
-			if(Npc_IsDead(self))
-			{
-				B_GiveDeathXP(other,self);
-			};
-		};
-	};
-	//**********
+	B_SpecialRangedWeaponDamage(other,self,FALSE);
 	if((Npc_GetDistToNpc(self,other) > PERC_DIST_INTERMEDIAT) && (Npc_GetDistToNpc(self,victim) > PERC_DIST_INTERMEDIAT))
 	{
 		return;

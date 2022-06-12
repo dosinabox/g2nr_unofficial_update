@@ -130,8 +130,9 @@ Items\MissionItems_5.d
 Items\MissionItems_6.d
 Items\MissionItems_Addon.d
 AI\Magic\B_MagicHurtNPC.d
+AI\Human\C_Human\C_BodyStateContains.d
 Story\B_Content\B_ScHasBeliarsWeapon.d
-Story\B_Content\B_BeliarsWeaponSpecialDamage.d
+Story\B_Content\B_SpecialWeaponDamage.d
 AI\Monster\B_Monster\B_MM_WispDetect.d
 AI\Monster\B_Monster\B_MM_DeSynchronize.d
 AI\Human\C_Human\C_NpcIsGateGuard.d
@@ -142,7 +143,6 @@ Story\B_Content\B_GhostSpecialDamage.d
 AI\AI_Intern\B_RefreshAtInsert.d
 AI\Human\Guilds.d
 AI\Human\B_RefreshArmor.d
-AI\Human\C_Human\C_BodyStateContains.d
 AI\Human\C_Human\C_NpcIsBotheredByPlayerRoomGuild.d
 AI\Human\C_Human\C_IsUsedMobMyPossession.d
 AI\Human\C_Human\C_IsTakenItemMyPossession.d

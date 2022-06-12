@@ -3,27 +3,9 @@ func void B_MM_AssessDamage()
 {
 	var C_Item OthWeap;
 	self.aivar[AIV_MM_PRIORITY] = PRIO_ATTACK;
-	B_BeliarsWeaponSpecialDamage(other,self);
-	B_ArrowBonusDamage(other,self);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Magic_Golem))
-	{
-		if(Npc_HasReadiedWeapon(other))
-		{
-			OthWeap = Npc_GetReadiedWeapon(other);
-			if(Hlp_IsItem(OthWeap,Holy_Hammer_MIS))
-			{
-				Npc_ChangeAttribute(self,ATR_HITPOINTS,-self.attribute[ATR_HITPOINTS_MAX]);
-				if(!C_BodyStateContains(self,BS_PARADE))
-				{
-					Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",self,self,0,0,0,FALSE);
-					Snd_Play("MFX_Transform_Cast");
-				};
-				B_GiveDeathXP(other,self);
-				return;
-			};
-		};
-	}
-	else if(self.guild == GIL_WISP)
+	B_SpecialMeleeWeaponDamage(other,self);
+	B_SpecialRangedWeaponDamage(other,self,TRUE);
+	if(self.guild == GIL_WISP)
 	{
 		Wld_PlayEffect("spellFX_ICEBOLT_COLLIDE",self,self,0,0,0,FALSE);
 		Snd_Play("WSP_WHOSH4");

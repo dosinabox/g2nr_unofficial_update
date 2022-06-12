@@ -4,28 +4,28 @@ func int C_SCHasBeliarsRune()
 	if(Npc_HasItems(hero,ItRu_BeliarsRage))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItRu_SuckEnergy))
+	};
+	if(Npc_HasItems(hero,ItRu_SuckEnergy))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItRu_GreenTentacle))
+	};
+	if(Npc_HasItems(hero,ItRu_GreenTentacle))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItRu_Swarm))
+	};
+	if(Npc_HasItems(hero,ItRu_Swarm))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItRu_Skull))
+	};
+	if(Npc_HasItems(hero,ItRu_Skull))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItRu_SummonZombie))
+	};
+	if(Npc_HasItems(hero,ItRu_SummonZombie))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItRu_SummonGuardian))
+	};
+	if(Npc_HasItems(hero,ItRu_SummonGuardian))
 	{
 		return TRUE;
 	};
@@ -37,80 +37,80 @@ func int C_ScHas1HBeliarsWeapon()
 	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_01))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_02))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_02))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_03))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_03))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_04))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_04))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_05))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_05))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_06))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_06))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_07))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_07))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_08))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_08))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_09))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_09))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_10))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_10))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_11))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_11))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_12))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_12))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_13))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_13))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_14))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_14))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_15))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_15))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_16))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_16))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_17))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_17))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_18))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_18))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_19))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_19))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_20))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_1H_20))
 	{
 		return TRUE;
 	};
@@ -122,84 +122,84 @@ func int C_ScHas2HBeliarsWeapon()
 	if(Npc_HasItems(hero,ItMw_BeliarWeapon_Raven))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_01))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_01))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_02))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_02))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_03))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_03))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_04))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_04))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_05))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_05))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_06))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_06))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_07))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_07))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_08))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_08))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_09))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_09))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_10))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_10))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_11))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_11))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_12))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_12))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_13))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_13))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_14))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_14))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_15))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_15))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_16))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_16))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_17))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_17))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_18))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_18))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_19))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_19))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_20))
+	};
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_2H_20))
 	{
 		return TRUE;
 	};
@@ -219,197 +219,237 @@ func int C_ScHasBeliarsWeapon()
 	return FALSE;
 };
 
+func int C_IsItem1HBeliarsWeapon(var C_Item Weap)
+{
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_01))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_02))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_03))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_04))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_05))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_06))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_07))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_08))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_09))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_10))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_11))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_12))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_13))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_14))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_15))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_16))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_17))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_18))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_19))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_20))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+func int C_IsItem2HBeliarsWeapon(var C_Item Weap)
+{
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_01))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_02))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_03))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_04))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_05))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_06))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_07))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_08))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_09))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_10))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_11))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_12))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_13))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_14))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_15))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_16))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_17))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_18))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_19))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_20))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+func int C_IsItemBeliarsRune(var C_Item Weap)
+{
+	if(Hlp_IsItem(Weap,ItRu_BeliarsRage))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItRu_SuckEnergy))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItRu_GreenTentacle))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItRu_Swarm))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItRu_Skull))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItRu_SummonZombie))
+	{
+		return TRUE;
+	};
+	if(Hlp_IsItem(Weap,ItRu_SummonGuardian))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+func int C_IsItemMeleeBeliarsWeapon(var C_Item Weap)
+{
+	if(C_IsItem1HBeliarsWeapon(Weap))
+	{
+		return TRUE;
+	};
+	if(C_IsItem2HBeliarsWeapon(Weap))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 func int C_IsItemBeliarsWeapon(var C_Item Weap)
 {
+	if(C_IsItemMeleeBeliarsWeapon(Weap))
+	{
+		return TRUE;
+	};
+	if(C_IsItemBeliarsRune(Weap))
+	{
+		return TRUE;
+	};
 	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_Raven))
 	{
 		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_01))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_02))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_03))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_04))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_05))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_06))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_07))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_08))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_09))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_10))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_11))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_12))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_13))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_14))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_15))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_16))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_17))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_18))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_19))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_1H_20))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_01))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_02))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_03))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_04))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_05))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_06))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_07))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_08))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_09))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_10))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_11))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_12))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_13))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_14))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_15))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_16))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_17))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_18))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_19))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_2H_20))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItRu_BeliarsRage))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItRu_SuckEnergy))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItRu_GreenTentacle))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItRu_Swarm))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItRu_Skull))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItRu_SummonZombie))
-	{
-		return TRUE;
-	}
-	else if(Hlp_IsItem(Weap,ItRu_SummonGuardian))
+	};
+	if(Hlp_IsItem(Weap,ItMw_BeliarWeapon_Fire))
 	{
 		return TRUE;
 	};

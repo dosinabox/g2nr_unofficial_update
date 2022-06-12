@@ -8,7 +8,7 @@ func void B_AssessDamage()
 			return;
 		};
 	};
-	B_ArrowBonusDamage(other,self);
+	B_SpecialRangedWeaponDamage(other,self,TRUE);
 	if(Npc_IsInState(self,ZS_ReactToDamage))
 	{
 		B_Attack(self,other,AR_ReactToDamage,0);
@@ -22,7 +22,7 @@ func void B_AssessDamage()
 	{
 		B_SetAttitude(self,ATT_HOSTILE);
 	};
-	B_BeliarsWeaponSpecialDamage(other,self);
+	B_SpecialMeleeWeaponDamage(other,self);
 	if(self.aivar[AIV_ArenaFight] == AF_AFTER)
 	{
 		self.aivar[AIV_ArenaFight] = AF_AFTER_PLUS_DAMAGE;
@@ -87,75 +87,6 @@ func void B_AssessDamage()
 
 func void B_AssessOthersDamage()
 {
-	var C_Item readyweap;
-	if(Hlp_IsValidNpc(other))
-	{
-		if(Npc_HasReadiedRangedWeapon(other))
-		{
-			readyweap = Npc_GetReadiedWeapon(other);
-			if(readyweap.munition == ItRw_Addon_FireArrow)
-			{
-				if((Npc_GetDistToNpc(self,victim) <= 600) && (readyweap.munition == ItRw_Addon_FireArrow))
-				{
-					Wld_PlayEffect("VOB_MAGICBURN",self,self,0,0,0,FALSE);
-					if(self.flags == 0)
-					{
-						if(self.protection[PROT_FIRE] < SpecialDamage_FireBow)
-						{
-							if((self.attribute[ATR_HITPOINTS] + self.protection[PROT_FIRE] - SpecialDamage_FireBow) >= 0)
-							{
-								self.attribute[ATR_HITPOINTS] -= (SpecialDamage_FireBow - self.protection[PROT_FIRE]);
-							}
-							else
-							{
-								self.attribute[ATR_HITPOINTS] = 0;
-							};
-						};
-					};
-					if(Npc_IsDead(self))
-					{
-						B_GiveDeathXP(other,self);
-					};
-					if(self.aivar[AIV_PARTYMEMBER] == TRUE)
-					{
-						if(Npc_IsPlayer(victim))
-						{
-							Npc_ClearAIQueue(self);
-							B_ClearPerceptions(self);
-							Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_AssessDamage);
-							Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_AssessOthersDamage);
-							Npc_SetTarget(self,other);
-							AI_StartState(self,ZS_Attack,0,"");
-							return;
-						};
-						if(Npc_IsPlayer(other) && !Npc_IsDead(victim))
-						{
-							Npc_ClearAIQueue(self);
-							B_ClearPerceptions(self);
-							Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_AssessDamage);
-							Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_AssessOthersDamage);
-							Npc_SetTarget(self,victim);
-							AI_StartState(self,ZS_Attack,0,"");
-							return;
-						};
-					};
-					if(Wld_GetGuildAttitude(self.guild,other.guild) != ATT_FRIENDLY)
-					{
-						Npc_ClearAIQueue(self);
-						B_ClearPerceptions(self);
-						Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_AssessDamage);
-						Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_AssessOthersDamage);
-						B_Attack(self,other,AR_ReactToDamage,0);
-						return;
-					};
-				};
-				if(Npc_IsInState(self,ZS_Attack))
-				{
-					return;
-				};
-			};
-		};
-	};
-	return;
+	B_SpecialRangedWeaponDamage(other,self,FALSE);
 };
 

@@ -10,38 +10,11 @@ func void B_MM_AssessOthersDamage()
 	{
 		return;
 	};
-	//**************************************
 	if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(self))
 	{
 		return;
 	};
-	if(Npc_HasReadiedRangedWeapon(other))
-	{
-		readyweap = Npc_GetReadiedWeapon(other);
-		if((Npc_GetDistToNpc(self,victim) <= 600) && (readyweap.munition == ItRw_Addon_FireArrow))
-		{
-			Wld_PlayEffect("VOB_MAGICBURN",self,self,0,0,0,FALSE);
-			if(self.flags == 0)
-			{
-				if(self.protection[PROT_FIRE] < SpecialDamage_FireBow)
-				{
-					if((self.attribute[ATR_HITPOINTS] + self.protection[PROT_FIRE] - SpecialDamage_FireBow) >= 0)
-					{
-						self.attribute[ATR_HITPOINTS] -= (SpecialDamage_FireBow - self.protection[PROT_FIRE]);
-					}
-					else
-					{
-						self.attribute[ATR_HITPOINTS] = 0;
-					};
-				};
-			};
-			if(Npc_IsDead(self))
-			{
-				B_GiveDeathXP(other,self);
-			};
-		};
-	};
-	//**************************************
+	B_SpecialRangedWeaponDamage(other,self,FALSE);
 	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
 		if(Npc_IsPlayer(victim))
