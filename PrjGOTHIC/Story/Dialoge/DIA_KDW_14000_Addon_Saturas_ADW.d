@@ -1043,7 +1043,7 @@ func int DIA_Addon_Saturas_BeliarsWeapon_Condition()
 {
 	if(RavenIsDead == TRUE)
 	{
-		if(C_ScHasBeliarsWeapon() || C_SCHasBeliarsRune())
+		if(C_ScHasMeleeBeliarsWeapon() || C_SCHasBeliarsRune())
 		{
 			return TRUE;
 		};
@@ -1155,7 +1155,7 @@ func int DIA_Addon_Saturas_BeliarWeapGeben_Condition()
 {
 	if((RavenIsDead == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Saturas_BeliarsWeapon))
 	{
-		if(C_ScHasBeliarsWeapon() || C_SCHasBeliarsRune())
+		if(C_ScHasMeleeBeliarsWeapon() || C_SCHasBeliarsRune())
 		{
 			return TRUE;
 		};

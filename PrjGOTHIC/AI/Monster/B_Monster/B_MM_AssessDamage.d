@@ -1,7 +1,6 @@
 
 func void B_MM_AssessDamage()
 {
-	var C_Item OthWeap;
 	self.aivar[AIV_MM_PRIORITY] = PRIO_ATTACK;
 	B_SpecialMeleeWeaponDamage(other,self);
 	B_SpecialRangedWeaponDamage(other,self,TRUE);

@@ -26,7 +26,7 @@ func void B_AssessUseMob()
 	};
 	if(!Npc_CanSeeNpc(self,other))
 	{
-		if(!(Npc_IsInPlayersRoom(self) && (Npc_IsInState(self,ZS_ObservePlayer) || Npc_IsInState(self,ZS_ClearRoom))))
+		if(!C_IsPlayerObservedByNpc(self))
 		{
 			return;
 		};

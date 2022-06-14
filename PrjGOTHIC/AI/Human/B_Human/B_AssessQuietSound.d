@@ -21,13 +21,26 @@ func void B_AssessQuietSound()
 	{
 		return;
 	};
-	if((Npc_GetAttitude(self,other) != ATT_HOSTILE) && !Npc_CheckInfo(self,1))
+	if(Npc_GetAttitude(self,other) != ATT_HOSTILE)
 	{
-		return;
-	};
-	if((Npc_GetAttitude(self,other) == ATT_HOSTILE) && ((self.aivar[AIV_EnemyOverride] == TRUE) || (C_PlayerIsFakeBandit(self,other) && (self.guild == GIL_BDT))))
+		if(!Npc_CheckInfo(self,1))
+		{
+			return;
+		};
+	}
+	else
 	{
-		return;
+		if(self.aivar[AIV_EnemyOverride] == TRUE)
+		{
+			return;
+		};
+		if(self.guild == GIL_BDT)
+		{
+			if(C_PlayerIsFakeBandit(self,other))
+			{
+				return;
+			};
+		};
 	};
 	if(Npc_CanSeeSource(self))
 	{

@@ -387,7 +387,7 @@ func void CH_RESET_Back()
 
 func void CH_RESET_Ok()
 {
-	if(C_ScHasBeliarsWeapon() || C_SCHasBeliarsRune())
+	if(C_ScHasMeleeBeliarsWeapon() || C_SCHasBeliarsRune())
 	{
 		B_ClearBeliarsItems();
 		CreateInvItem(hero,ItMw_BeliarWeapon_Raven);

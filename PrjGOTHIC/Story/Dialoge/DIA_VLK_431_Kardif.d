@@ -12,6 +12,10 @@ var int DIA_Kardif_Kerl_permanent;
 
 func int C_MartinIsNear()
 {
+	if(!Hlp_IsValidNpc(Martin))
+	{
+		return FALSE;
+	};
 	if(Npc_IsDead(Martin))
 	{
 		return FALSE;
