@@ -139,7 +139,7 @@ func void B_SpecialRangedWeaponDamage(var C_Npc shooter,var C_Npc target,var int
 	{
 		if(directHit == TRUE)
 		{
-			Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",target,target,0,0,0,FALSE);
+			Wld_PlayEffect("spellFX_ICEBOLT_COLLIDE",target,target,0,0,0,FALSE);
 			B_ApplySpecialRangedWeaponDamage(target);
 		};
 	};

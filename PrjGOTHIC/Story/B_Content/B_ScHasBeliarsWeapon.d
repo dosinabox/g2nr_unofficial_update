@@ -704,8 +704,8 @@ func void B_UpgrateBeliarsWeapon()
 
 func void B_UpgradeBeliarsWeapon()
 {
-	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
 	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
+	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
 	Snd_Play("CS_Prayer_WaveOfInsanity");
 	BeliarsWeaponUpgrated = TRUE;
 	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
