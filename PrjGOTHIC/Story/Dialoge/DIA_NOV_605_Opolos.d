@@ -348,8 +348,8 @@ func void DIA_Opolos_LIESEL_Info()
 	{
 		other.aivar[AIV_PARTYMEMBER] = FALSE;
 		other.aivar[AIV_TAPOSITION] = NOTINPOS;
-		other.wp = "NW_MONASTERY_SHEEP_02";
-		other.start_aistate = ZS_MM_AllScheduler;
+//		other.wp = "NW_MONASTERY_SHEEP_02";
+//		other.start_aistate = ZS_MM_AllScheduler;
 		B_StartOtherRoutine(other,"Monastery");
 		Liesel_Giveaway = TRUE;
 		AI_Output(self,hero,"DIA_Opolos_LIESEL_12_01");	//Да, конечно. Какая красивая овечка. Я позабочусь о ней.

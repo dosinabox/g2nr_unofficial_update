@@ -32,7 +32,7 @@ func void B_AssessPlayer()
 		}
 		else if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_HOSTILE)
 		{
-			if(((self.aivar[AIV_PARTYMEMBER] == FALSE) && (self.npcType != NPCTYPE_FRIEND)) || ((Npc_IsPlayer(other) && (self.npcType == NPCTYPE_FRIEND) && (PlayerIsTransformed == TRUE))))
+			if(((self.aivar[AIV_PARTYMEMBER] == FALSE) && (self.npcType != NPCTYPE_FRIEND)) || (Npc_IsPlayer(other) && (self.npcType == NPCTYPE_FRIEND) && (PlayerIsTransformed == TRUE)))
 			{
 				B_Attack(self,other,AR_GuildEnemy,0);
 				return;

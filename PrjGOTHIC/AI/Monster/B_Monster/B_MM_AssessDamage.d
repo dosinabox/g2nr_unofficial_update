@@ -1,35 +1,20 @@
 
 func void B_MM_AssessDamage()
 {
-	var C_Item OthWeap;
 	self.aivar[AIV_MM_PRIORITY] = PRIO_ATTACK;
-	B_BeliarsWeaponSpecialDamage(other,self);
-	B_ArrowBonusDamage(other,self);
-	if(Npc_HasItems(other,Holy_Hammer_MIS))
-	{
-		Npc_GetInvItem(other,Holy_Hammer_MIS);
-		OthWeap = Npc_GetReadiedWeapon(other);
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Magic_Golem)) && (Hlp_GetInstanceID(OthWeap) == Hlp_GetInstanceID(item)))
-		{
-//			Npc_ChangeAttribute(self,ATR_HITPOINTS,-1000);
-			Npc_ChangeAttribute(self,ATR_HITPOINTS,-self.attribute[ATR_HITPOINTS_MAX]);
-			if(!C_BodyStateContains(self,BS_PARADE))
-			{
-				Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",self,self,0,0,0,FALSE);
-				Snd_Play("MFX_Transform_Cast");
-			};
-			B_GiveDeathXP(other,self);
-			return;
-		};
-	};
+	B_SpecialMeleeWeaponDamage(other,self);
+	B_SpecialRangedWeaponDamage(other,self,TRUE);
 	if(self.guild == GIL_WISP)
 	{
 		Wld_PlayEffect("spellFX_ICEBOLT_COLLIDE",self,self,0,0,0,FALSE);
 		Snd_Play("WSP_WHOSH4");
-	};
-	if((self.guild == GIL_Stoneguardian) && (self.aivar[AIV_EnemyOverride] == TRUE))
+	}
+	else if(self.guild == GIL_Stoneguardian)
 	{
-		b_awake_stoneguardian(self);
+		if(self.aivar[AIV_EnemyOverride] == TRUE)
+		{
+			b_awake_stoneguardian(self);
+		};
 	};
 	if(C_PredatorFoundPrey(other,self))
 	{

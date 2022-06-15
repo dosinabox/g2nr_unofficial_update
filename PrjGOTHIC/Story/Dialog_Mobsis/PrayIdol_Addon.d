@@ -250,7 +250,7 @@ func int PC_PrayShrine_UPGRATEBELIARSWEAPON_Condition()
 {
 	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PRAYIDOL) && C_ScCanUpgrateBeliarsWeapon())
 	{
-		if(C_ScHasBeliarsWeapon())
+		if(C_ScHasMeleeBeliarsWeapon())
 		{
 			return TRUE;
 		};

@@ -1590,14 +1590,14 @@ instance AttSyncer(C_Item) //TODO удалить
 func void UseAttributesSyncer()
 {
 	B_UnEquipAllTempBonusItems();
-	ATR_Training[ATR_STRENGTH] = hero.attribute[ATR_STRENGTH];
-	ATR_Training[ATR_DEXTERITY] = hero.attribute[ATR_DEXTERITY];
-	ATR_Training[ATR_MANA_MAX] = hero.attribute[ATR_MANA_MAX];
-	ATR_Training[ATR_HITPOINTS_MAX] = hero.attribute[ATR_HITPOINTS_MAX];
-	ATR_PermBonus[ATR_STRENGTH] = 0;
-	ATR_PermBonus[ATR_DEXTERITY] = 0;
-	ATR_PermBonus[ATR_MANA_MAX] = 0;
-	ATR_PermBonus[ATR_HITPOINTS_MAX] = 0;
+	ATR_Training[ATR_STRENGTH] = hero.attribute[ATR_STRENGTH] - Stats_Blessings_Str;
+	ATR_Training[ATR_DEXTERITY] = hero.attribute[ATR_DEXTERITY] - Stats_Blessings_Dex;
+	ATR_Training[ATR_MANA_MAX] = hero.attribute[ATR_MANA_MAX] - Stats_Blessings_MaxMana;
+	ATR_Training[ATR_HITPOINTS_MAX] = hero.attribute[ATR_HITPOINTS_MAX] - Stats_Blessings_MaxHp;
+	ATR_PermBonus[ATR_STRENGTH] = Stats_Blessings_Str;
+	ATR_PermBonus[ATR_DEXTERITY] = Stats_Blessings_Dex;
+	ATR_PermBonus[ATR_MANA_MAX] = Stats_Blessings_MaxMana;
+	ATR_PermBonus[ATR_HITPOINTS_MAX] = Stats_Blessings_MaxHp;
 	ATR_TempBonus[ATR_STRENGTH] = 0;
 	ATR_TempBonus[ATR_DEXTERITY] = 0;
 	ATR_TempBonus[ATR_MANA_MAX] = 0;

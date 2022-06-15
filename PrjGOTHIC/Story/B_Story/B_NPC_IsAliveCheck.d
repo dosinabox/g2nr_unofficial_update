@@ -299,6 +299,27 @@ func int C_VinoDementorsDead()
 	return TRUE;
 };
 
+func int C_SekobDementorsDead()
+{
+	if(!Npc_IsDead(DMT_DementorAmbientSekob1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(DMT_DementorAmbientSekob2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(DMT_DementorAmbientSekob3))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(DMT_DementorAmbientSekob4))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 func int C_LobartOrksDead()
 {
 	if(!Npc_IsDead(OrcWarrior_Lobart1))

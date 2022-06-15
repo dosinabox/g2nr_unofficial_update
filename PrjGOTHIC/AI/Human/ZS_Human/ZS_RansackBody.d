@@ -48,7 +48,7 @@ func void ZS_RansackBody_End()
 	Npc_PerceiveAll(self);
 	if(Wld_DetectItem(self,ITEM_KAT_NF))
 	{
-		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) < 500))
+		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) <= 500))
 		{
 			AI_TakeItem(self,item);
 			if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Garwig))
@@ -60,7 +60,7 @@ func void ZS_RansackBody_End()
 	};
 	if(Wld_DetectItem(self,ITEM_KAT_FF))
 	{
-		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) < 500))
+		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) <= 500))
 		{
 			AI_TakeItem(self,item);
 			B_Say(self,self,"$ITAKEYOURWEAPON");

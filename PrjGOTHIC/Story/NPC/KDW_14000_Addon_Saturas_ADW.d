@@ -13,6 +13,7 @@ instance KDW_14000_Addon_Saturas_ADW(Npc_Default)
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,666,ItMi_Gold,13); //TODO убрать к релизу 28 версии вместе с Autorun\Refresh_Pickpocket.d - поддержка старых сохранений
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Saturas,BodyTex_B,ITAR_KDW_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

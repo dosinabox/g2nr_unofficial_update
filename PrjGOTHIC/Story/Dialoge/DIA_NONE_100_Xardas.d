@@ -241,7 +241,7 @@ instance DIA_Addon_Xardas_Portal(C_Info)
 
 func int DIA_Addon_Xardas_Portal_Condition()
 {
-	if((SC_KnowsPortal == TRUE) && !C_ScHasBeliarsWeapon() && !C_SCHasBeliarsRune() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
+	if((SC_KnowsPortal == TRUE) && !C_ScHasMeleeBeliarsWeapon() && !C_SCHasBeliarsRune() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -269,7 +269,7 @@ instance DIA_Addon_Xardas_PortalAgain(C_Info)
 
 func int DIA_Addon_Xardas_PortalAgain_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Xardas_Portal) && !C_ScHasBeliarsWeapon() && !C_SCHasBeliarsRune() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Xardas_Portal) && !C_ScHasMeleeBeliarsWeapon() && !C_SCHasBeliarsRune() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -324,7 +324,7 @@ func void DIA_Addon_Xardas_AddonSuccess_Info()
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_04");	//И что ты нашел?
 	AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_05");	//Все кончилось тем, что в мои руки попал Коготь Белиара.
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_06");	//Коготь Белиара?! Где он сейчас? Он у тебя с собой?
-	if(C_ScHasBeliarsWeapon())
+	if(C_ScHasMeleeBeliarsWeapon())
 	{
 		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_07");	//Да, вот он.
 		CreateInvItem(other,ItMw_BeliarWeapon_Fake);
