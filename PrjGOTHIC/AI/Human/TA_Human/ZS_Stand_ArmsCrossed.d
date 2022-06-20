@@ -46,7 +46,7 @@ func int ZS_Stand_ArmsCrossed_Loop()
 	};
 	if((Npc_GetStateTime(self) > 5) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
 	{
-		random = Hlp_Random(9);
+		random = Hlp_Random(12);
 		if(random == 0)
 		{
 			AI_PlayAni(self,"T_LGUARD_SCRATCH");

@@ -485,15 +485,6 @@ func int DIA_Sagitta_TRADE_Condition()
 
 func void DIA_Sagitta_TRADE_Info()
 {
-	if(Sagitta_flag == TRUE)
-	{
-		B_ClearAlchemyInv(self);
-		if(Sagitta_flasks > 0)
-		{
-			CreateInvItems(self,ItMi_Flask,Sagitta_flasks);
-		};
-		Sagitta_flag = FALSE;
-	};
 	AI_Output(other,self,"DIA_Sagitta_TRADE_15_00");	//Какие товары ты можешь предложить мне?
 	AI_Output(self,other,"DIA_Sagitta_TRADE_17_01");	//Выбирай.
 	B_GiveTradeInv(self);

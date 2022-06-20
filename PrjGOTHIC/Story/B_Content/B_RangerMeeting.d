@@ -12,17 +12,14 @@ var int LaresRangerArmorEquipped;
 
 func void B_MakeRangerReadyForMeeting(var C_Npc Ranger)
 {
-	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Lares))
-	{
-		if(LaresRangerArmorEquipped == FALSE)
-		{
-			B_EquipFakeRangerArmor(Ranger);
-			LaresRangerArmorEquipped = TRUE;
-		};
-	}
-	else
+	if(Hlp_GetInstanceID(Ranger) != Hlp_GetInstanceID(Lares))
 	{
 		B_EquipFakeRangerArmor(Ranger);
+	}
+	else if(LaresRangerArmorEquipped == FALSE)
+	{
+		B_EquipFakeRangerArmor(Ranger);
+		LaresRangerArmorEquipped = TRUE;
 	};
 	Ranger.npcType = NPCTYPE_FRIEND;
 };

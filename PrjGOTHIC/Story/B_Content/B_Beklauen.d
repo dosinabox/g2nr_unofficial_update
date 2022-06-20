@@ -21,7 +21,7 @@ func int C_CanStealFromNpc()
 	itm = self.aivar[AIV_ItemToSteal];
 	if(itm != 0)
 	{
-		if(Hlp_IsItem(ItMi_Gold,itm))
+		if(Hlp_IsItem(ItMi_Gold,itm)) //BUG! возвращает FALSE, если что-то продать или купить!
 		{
 			return TRUE;
 		};
@@ -31,6 +31,7 @@ func int C_CanStealFromNpc()
 		};
 		if(!Npc_HasItems(self,itm))
 		{
+			//BUG! срабатывает, если что-то продать или купить!
 			return FALSE;
 		};
 	};

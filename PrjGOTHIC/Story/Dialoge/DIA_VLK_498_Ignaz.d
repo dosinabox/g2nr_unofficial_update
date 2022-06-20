@@ -244,15 +244,6 @@ func int DIA_Ignaz_Trade_Condition()
 
 func void DIA_Ignaz_Trade_Info()
 {
-	if(Ignaz_flag == TRUE)
-	{
-		B_ClearAlchemyInv(self);
-		if(Ignaz_flasks > 0)
-		{
-			CreateInvItems(self,ItMi_Flask,Ignaz_flasks);
-		};
-		Ignaz_flag = FALSE;
-	};
 	AI_Output(other,self,"DIA_Ignaz_Trade_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;

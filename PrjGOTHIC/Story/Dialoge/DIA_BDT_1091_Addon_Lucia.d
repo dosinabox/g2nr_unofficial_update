@@ -319,15 +319,6 @@ func int DIA_Addon_Lucia_Trade_Condition()
 
 func void DIA_Addon_Lucia_Trade_Info()
 {
-	if(Lucia_flag == TRUE)
-	{
-		B_ClearAlchemyInv(self);
-		if(Lucia_flasks > 0)
-		{
-			CreateInvItems(self,ItMi_Flask,Lucia_flasks);
-		};
-		Lucia_flag = FALSE;
-	};
 	AI_Output(other,self,"DIA_Addon_Lucia_Trade_15_00");	//Дай мне что-нибудь выпить.
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;

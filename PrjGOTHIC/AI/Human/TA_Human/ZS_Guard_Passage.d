@@ -24,7 +24,7 @@ func int ZS_Guard_Passage_Loop()
 	{
 		if(Npc_GetDistToNpc(self,hero) > PERC_DIST_DIALOG)
 		{
-			random = Hlp_Random(16);
+			random = Hlp_Random(70);
 			if(random == 0)
 			{
 				AI_PlayAni(self,"T_HGUARD_LOOKAROUND");

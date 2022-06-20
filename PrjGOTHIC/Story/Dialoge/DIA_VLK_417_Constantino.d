@@ -197,15 +197,6 @@ func int DIA_Constantino_Trade_Condition()
 func void DIA_Constantino_Trade_Info()
 {
 	DIA_Common_ShowMeYourGoods();
-	if(Constantino_flag == TRUE)
-	{
-		B_ClearAlchemyInv(self);
-		if(Constantino_flasks > 0)
-		{
-			CreateInvItems(self,ItMi_Flask,Constantino_flasks);
-		};
-		Constantino_flag = FALSE;
-	};
 	if(Constantino_Logpatch1 == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
