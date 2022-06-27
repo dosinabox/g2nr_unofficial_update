@@ -2853,7 +2853,7 @@ instance DIA_CH_Misc_Health(C_Info)
 	condition = DIA_CH_Misc_Health_Condition;
 	information = DIA_CH_Misc_Health_Info;
 	permanent = TRUE;
-	description = "Различные лечебные зелья";
+	description = "Лечебные зелья";
 };
 
 
@@ -2920,7 +2920,7 @@ instance DIA_CH_Misc_Mana(C_Info)
 	condition = DIA_CH_Misc_Mana_Condition;
 	information = DIA_CH_Misc_Mana_Info;
 	permanent = TRUE;
-	description = "Различные зелья маны";
+	description = "Зелья маны";
 };
 
 

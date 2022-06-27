@@ -323,7 +323,7 @@ instance PC_Mana_Start(C_Info)
 	condition = PC_Mana_Start_Condition;
 	information = PC_Mana_Start_Info;
 	permanent = TRUE;
-	description = "Изготовить зелье маны";
+	description = "Сварить зелье маны";
 };
 
 
@@ -540,7 +540,7 @@ instance PC_Health_Start(C_Info)
 	condition = PC_Health_Start_Condition;
 	information = PC_Health_Start_Info;
 	permanent = TRUE;
-	description = "Изготовить лечебное зелье";
+	description = "Сварить лечебное зелье";
 };
 
 
@@ -757,7 +757,7 @@ instance PC_Special_Start(C_Info)
 	condition = PC_Special_Start_Condition;
 	information = PC_Special_Start_Info;
 	permanent = TRUE;
-	description = "Изготовить особое зелье";
+	description = "Сварить особое зелье";
 };
 
 
