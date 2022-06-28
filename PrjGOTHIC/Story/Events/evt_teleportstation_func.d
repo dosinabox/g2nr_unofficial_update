@@ -125,10 +125,6 @@ func void evt_teleportstation_func()
 		else if(C_NpcIsNearWP(hero,"ADW_ADANOSTEMPEL_RAVENTELEPORT_OUT"))
 		{
 			AI_Teleport(hero,"ADW_ADANOSTEMPEL_TELEPORTSTATION");
-			/*if(SCUsed_ADW_TELEPORTSTATION_RAVENTELEPORT_OUT == FALSE)
-			{
-				SCUsed_ADW_TELEPORTSTATION_RAVENTELEPORT_OUT = TRUE;
-			};*/
 		}
 		else
 		{
@@ -143,22 +139,22 @@ var int ADW_PORTALTEMPEL_FOCUS_FUNC_OneTime;
 
 func void adw_portaltempel_focus_func()
 {
+	Snd_Play("MFX_TELEKINESIS_STARTINVEST");
 	Npc_RemoveInvItems(hero,ItMi_Focus,1);
 	TriggeredTeleporterADW += 1;
-	Snd_Play("MFX_TELEKINESIS_STARTINVEST");
 	if(TriggeredTeleporterADW >= 5)
 	{
 		SC_ADW_ActivatedAllTelePortStones = TRUE;
+		B_CheckLog();
 	};
 	if((ADW_PORTALTEMPEL_FOCUS_FUNC_OneTime == FALSE) && (Npc_GetDistToWP(hero,"ADW_PORTALTEMPEL_TELEPORTSTATION") < 3000))
 	{
-//		if(!Npc_IsDead(Stoneguardian_NailedPortalADW1) && (Stoneguardian_NailedPortalADW1.aivar[AIV_EnemyOverride] == TRUE))
 		if(!Npc_IsDead(Stoneguardian_NailedPortalADW1) || !Npc_IsDead(Stoneguardian_NailedPortalADW2))
 		{
 			Snd_Play("THRILLJINGLE_02");
 		};
-		b_awake_stoneguardian(Stoneguardian_NailedPortalADW1);
-		b_awake_stoneguardian(Stoneguardian_NailedPortalADW2);
+		B_Awake_StoneGuardian(Stoneguardian_NailedPortalADW1);
+		B_Awake_StoneGuardian(Stoneguardian_NailedPortalADW2);
 		ADW_PORTALTEMPEL_FOCUS_FUNC_OneTime = TRUE;
 	};
 };

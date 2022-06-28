@@ -162,6 +162,7 @@ func void B_GiveTradeInv(var C_Npc slf)
 	{
 		B_UnEquipAllWeapons(slf,TRUE);
 	};
+	B_CreateMobsiItems(slf);
 	B_ClearRuneInv(slf);
 	B_ClearTools(slf);
 	B_ClearSpecialAmmo(slf);

@@ -254,15 +254,6 @@ func int DIA_Bennet_TRADE_Condition()
 
 func void DIA_Bennet_TRADE_Info()
 {
-	if(Bennet_flag == TRUE)
-	{
-		B_ClearSmithInv(self);
-		if(Bennet_swordraws > 0)
-		{
-			CreateInvItems(self,ItMiSwordraw,Bennet_swordraws);
-		};
-		Bennet_flag = FALSE;
-	};
 	AI_Output(other,self,"DIA_Bennet_TRADE_15_00");	//ј как насчет кузнечного инструмента?
 	B_GiveTradeInv(self);
 	B_RefreshTraderAmmo(self,50);

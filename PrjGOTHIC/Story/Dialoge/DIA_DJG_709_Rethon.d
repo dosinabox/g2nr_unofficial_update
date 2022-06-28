@@ -277,7 +277,6 @@ func int DIA_Rethon_TRADE_Condition()
 func void DIA_Rethon_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Rethon_TRADE_15_00");	//Что ты можешь продать мне?
-	B_ClearSmithInv(self);
 	if(hero.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Rethon_TRADE_12_01");	//Ох, как низко я опустился! Теперь я даже продаю мое оружие паладину!

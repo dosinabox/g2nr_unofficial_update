@@ -323,9 +323,9 @@ func void DIA_Garond_NeedProof_Info()
 	AI_Output(self,other,"DIA_Garond_NeedProof_10_08");	//После этого, я дам тебе письмо, которое ты отнесешь лорду Хагену.
 	AI_Output(other,self,"DIA_Garond_NeedProof_15_09");	//Ну, хорошо - похоже, у меня нет выбора.
 	MIS_ScoutMine = LOG_Running;
-	B_StartOtherRoutine(Jergan,"FAJETH");
 	if(!Npc_IsDead(Jergan))
 	{
+		B_StartOtherRoutine(Jergan,"FAJETH");
 		Jergan.aivar[AIV_IgnoresFakeGuild] = FALSE;
 		Jergan.aivar[AIV_IgnoresArmor] = FALSE;
 	};

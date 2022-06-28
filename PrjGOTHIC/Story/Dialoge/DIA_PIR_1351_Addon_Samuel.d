@@ -435,15 +435,6 @@ func int DIA_Addon_Samuel_Trade_Condition()
 
 func void DIA_Addon_Samuel_Trade_Info()
 {
-	if(Samuel_flag == TRUE)
-	{
-		B_ClearAlchemyInv(self);
-		if(Samuel_flasks > 0)
-		{
-			CreateInvItems(self,ItMi_Flask,Samuel_flasks);
-		};
-		Samuel_flag = FALSE;
-	};
 	AI_Output(other,self,"DIA_Addon_Samuel_Trade_15_00");	//Что у тебя еще есть?
 	AI_Output(self,other,"DIA_Addon_Samuel_Trade_14_01");	//Я могу продать тебе все, что нужно пирату для жизни.
 	B_GiveTradeInv(self);

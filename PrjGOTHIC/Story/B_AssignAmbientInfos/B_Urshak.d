@@ -214,9 +214,12 @@ instance DIA_Urshak_HOSHPAKDEAD(C_Info)
 
 func int DIA_Urshak_HOSHPAKDEAD_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_WASHASTDUVOR) && Npc_IsDead(Hosh_Pak) && (Urshak_Sucked == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_WASHASTDUVOR) && (Urshak_Sucked == FALSE))
 	{
-		return TRUE;
+		if(Npc_IsDead(Hosh_Pak))
+		{
+			return TRUE;
+		};
 	};
 };
 

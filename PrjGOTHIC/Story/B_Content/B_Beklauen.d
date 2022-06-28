@@ -21,7 +21,7 @@ func int C_CanStealFromNpc()
 	itm = self.aivar[AIV_ItemToSteal];
 	if(itm != 0)
 	{
-		if(Hlp_IsItem(ItMi_Gold,itm))
+		if(self.aivar[AIV_AmountToSteal] > 1) //проверка Hlp_IsItem(ItMi_Gold,itm) перестает работать после торговли!
 		{
 			return TRUE;
 		};

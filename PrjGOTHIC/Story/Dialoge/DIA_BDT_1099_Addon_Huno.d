@@ -448,15 +448,6 @@ func int DIA_Addon_Huno_Trade_Condition()
 
 func void DIA_Addon_Huno_Trade_Info()
 {
-	if(Huno_flag == TRUE)
-	{
-		B_ClearSmithInv(self);
-		if(Huno_swordraws > 0)
-		{
-			CreateInvItems(self,ItMiSwordraw,Huno_swordraws);
-		};
-		Huno_flag = FALSE;
-	};
 	B_Say(other,self,"$TRADE_3");
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;

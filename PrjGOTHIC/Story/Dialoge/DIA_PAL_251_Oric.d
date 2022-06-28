@@ -197,7 +197,7 @@ instance DIA_Oric_CanHelp(C_Info)
 
 func int DIA_Oric_CanHelp_Condition()
 {
-	if((Kapitel >= 4) && Npc_KnowsInfo(other,DIA_Oric_IAmBack) && (MIS_KillHoshPak == FALSE))
+	if((Kapitel >= 4) && Npc_KnowsInfo(other,DIA_Oric_IAmBack))
 	{
 		return TRUE;
 	};
@@ -245,8 +245,8 @@ func void DIA_Oric_CanHelp_WhatYouMean()
 	};
 	AI_Output(self,other,"DIA_Oric_CanHelp_WhatYouMean_11_09");	//Палатка Хош-Пака находится за осадным кругом, на утесе к югу отсюда.
 	AI_Output(self,other,"DIA_Oric_CanHelp_WhatYouMean_11_10");	//Ее даже видно из этих окон.
-	Info_ClearChoices(DIA_Oric_CanHelp);
 	OrikToldMissionChapter4 = TRUE;
+	Info_ClearChoices(DIA_Oric_CanHelp);
 };
 
 
@@ -329,9 +329,12 @@ instance DIA_Oric_NoMurder(C_Info)
 
 func int DIA_Oric_NoMurder_Condition()
 {
-	if((OrikToldMissionChapter4 == TRUE) && (MIS_KillHoshPak == FALSE) && !Npc_IsDead(Hosh_Pak))
+	if((OrikToldMissionChapter4 == TRUE) && (MIS_KillHoshPak == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Hosh_Pak))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -358,9 +361,12 @@ instance DIA_Oric_WillHelp(C_Info)
 
 func int DIA_Oric_WillHelp_Condition()
 {
-	if((OrikToldMissionChapter4 == TRUE) && (MIS_KillHoshPak == FALSE) && !Npc_IsDead(Hosh_Pak))
+	if(OrikToldMissionChapter4 == TRUE)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Hosh_Pak))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -390,13 +396,9 @@ instance DIA_Oric_HoshDead(C_Info)
 
 func int DIA_Oric_HoshDead_Condition()
 {
-	if(Npc_IsDead(Hosh_Pak))
+	if(OrikToldMissionChapter4 == TRUE)
 	{
-		if(MIS_KillHoshPak == LOG_Running)
-		{
-			return TRUE;
-		};
-		if(OrikToldMissionChapter4 == TRUE)
+		if(Npc_IsDead(Hosh_Pak))
 		{
 			return TRUE;
 		};

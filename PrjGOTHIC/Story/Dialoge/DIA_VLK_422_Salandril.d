@@ -108,15 +108,6 @@ func int DIA_Salandril_Trade_Condition()
 
 func void DIA_Salandril_Trade_Info()
 {
-	if(Salandril_flag == TRUE)
-	{
-		B_ClearAlchemyInv(self);
-		if(Salandril_flasks > 0)
-		{
-			CreateInvItems(self,ItMi_Flask,Salandril_flasks);
-		};
-		Salandril_flag = FALSE;
-	};
 	AI_Output(other,self,"DIA_Salandril_Trade_15_00");	//Покажи мне свои товары.
 	if(other.guild == GIL_KDF)
 	{

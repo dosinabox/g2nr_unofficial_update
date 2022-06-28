@@ -20,6 +20,8 @@ func void DIA_NOV_8_EXIT_Info()
 };
 
 
+var int Feger3_Permanent;
+
 instance DIA_NOV_8_Fegen(C_Info)
 {
 	nr = 2;
@@ -45,13 +47,10 @@ func int DIA_NOV_8_Fegen_Condition()
 	};
 };
 
-
-var int Feger3_Permanent;
-
 func void DIA_NOV_8_Fegen_Info()
 {
 	AI_Output(other,self,"DIA_NOV_8_Fegen_15_00");	//Мне нужна помощь, чтобы подмести кельи послушников.
-	if(Hlp_GetInstanceID(Feger3) == Hlp_GetInstanceID(self))
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger3))
 	{
 		if(Feger3_Permanent == FALSE)
 		{
@@ -68,8 +67,8 @@ func void DIA_NOV_8_Fegen_Info()
 		{
 			AI_Output(self,other,"DIA_NOV_8_Fegen_08_03");	//Брат, я понимаю твое состояние. И я уже сказал тебе, что помогу тебе. Именно этим я и занимаюсь.
 		};
-	};
-	if(Hlp_GetInstanceID(Feger3) != Hlp_GetInstanceID(self))
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_NOV_8_Fegen_08_04");	//Эй, я был бы не против, но я очень занят.
 	};
@@ -203,8 +202,8 @@ func void DIA_NOV_8_STANDARD_Info()
 		{
 			AI_Output(self,other,"DIA_NOV_8_STANDARD_08_03");	//Паладины прибыли на Хоринис совсем недавно. Один из них находится здесь, в монастыре, и проводит время в молитвах.
 		};
-	};
-	if((Kapitel == 2) || (Kapitel == 3))
+	}
+	else if(Kapitel < 4)
 	{
 		if((Pedro_Traitor == TRUE) && (MIS_NovizenChase != LOG_SUCCESS))
 		{
@@ -224,12 +223,12 @@ func void DIA_NOV_8_STANDARD_Info()
 		{
 			AI_Output(self,other,"DIA_NOV_8_STANDARD_08_09");	//Высший Совет очень обеспокоен ситуацией, в которую попали наши паладины. Вот уже долгое время нет никаких известий из Долины Рудников.
 		};
-	};
-	if(Kapitel == 4)
+	}
+	else if(Kapitel == 4)
 	{
 		AI_Output(self,other,"DIA_NOV_8_STANDARD_08_10");	//Нет. И я благодарю нашего Владыку за это. С Глазом Инноса мы сможем уничтожить драконов!
-	};
-	if(Kapitel >= 5)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_NOV_8_STANDARD_08_11");	//Да. Мы добились победы над драконами! Иннос показал нам, что никогда не стоит опускать руки. Надежда есть всегда.
 		AI_Output(self,other,"DIA_NOV_8_STANDARD_08_12");	//Осталось еще немало теней, и нам придется зажечь много огней, чтобы изгнать их.

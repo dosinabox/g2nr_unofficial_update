@@ -350,6 +350,7 @@ AI\Magic\ZS_Magic\ZS_SuckEnergy.d
 AI\Magic\ZS_Magic\ZS_Swarm.d
 AI\Magic\ZS_Magic\ZS_Whirlwind.d
 AI\Magic\ZS_Magic\ZS_Zapped.d
+Story\B_Story\B_SetLastUsedMobsi.d
 Story\B_Story\B_GiveDeathInv.d
 Story\B_Content\B_DragonKillCounter.d
 Story\Events\B_Event_Portal_EarthQuake.d

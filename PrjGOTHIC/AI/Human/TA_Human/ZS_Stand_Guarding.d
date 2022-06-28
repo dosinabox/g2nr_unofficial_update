@@ -44,7 +44,7 @@ func int ZS_Stand_Guarding_Loop()
 	};
 	if((Npc_GetStateTime(self) > 5) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
 	{
-		random = Hlp_Random(12);
+		random = Hlp_Random(30);
 		if(random == 0)
 		{
 			AI_PlayAni(self,"T_HGUARD_LOOKAROUND");

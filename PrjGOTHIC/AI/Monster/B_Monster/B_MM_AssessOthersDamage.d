@@ -45,9 +45,9 @@ func void B_MM_AssessOthersDamage()
 			return;
 		};
 	};
-	if((self.guild == GIL_Stoneguardian) && (victim.guild == GIL_Stoneguardian) && (self.aivar[AIV_EnemyOverride] == TRUE))
+	if((self.guild == GIL_Stoneguardian) && (victim.guild == GIL_Stoneguardian))
 	{
-		b_awake_stoneguardian(self);
+		B_Awake_StoneGuardian(self);
 	};
 	if((Wld_GetGuildAttitude(self.guild,victim.guild) == ATT_FRIENDLY) && (Wld_GetGuildAttitude(self.guild,other.guild) != ATT_FRIENDLY))
 	{

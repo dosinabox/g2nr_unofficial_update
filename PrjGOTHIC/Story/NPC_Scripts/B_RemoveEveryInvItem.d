@@ -15,8 +15,7 @@ func void B_RefreshInvItemToAmount(var C_Npc npc,var int itm,var int neededAmoun
 	currentAmount = Npc_HasItems(npc,itm);
 	if(currentAmount < neededAmount)
 	{
-		B_RemoveEveryInvItem(npc,itm);
-		CreateInvItems(npc,itm,neededAmount);
+		CreateInvItems(npc,itm,neededAmount - currentAmount);
 	};
 };
 

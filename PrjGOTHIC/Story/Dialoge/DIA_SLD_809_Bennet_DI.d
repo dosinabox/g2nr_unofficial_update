@@ -77,15 +77,6 @@ func int DIA_Bennet_DI_TRADE_Condition()
 
 func void DIA_Bennet_DI_TRADE_Info()
 {
-	if(Bennet_DI_flag == TRUE)
-	{
-		B_ClearSmithInv(self);
-		if(Bennet_DI_swordraws > 0)
-		{
-			CreateInvItems(self,ItMiSwordraw,Bennet_DI_swordraws);
-		};
-		Bennet_DI_flag = FALSE;
-	};
 	AI_Output(other,self,"DIA_Bennet_DI_TRADE_15_00");	//Какое оружие ты можешь продать мне?
 	AI_Output(self,other,"DIA_Bennet_DI_TRADE_06_01");	//Только лучшее. Ты же знаешь.
 	B_GiveTradeInv(self);

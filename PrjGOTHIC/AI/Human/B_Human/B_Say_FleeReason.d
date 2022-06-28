@@ -3,7 +3,7 @@ func void B_Say_FleeReason()
 {
 	var int rnd;
 	rnd = Hlp_Random(3);
-	if(rnd < 1)
+	if(rnd == 0)
 	{
 		B_Say_Overlay(self,self,"$RUNAWAY");
 	}
