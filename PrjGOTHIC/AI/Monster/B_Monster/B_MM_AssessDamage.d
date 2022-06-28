@@ -11,10 +11,7 @@ func void B_MM_AssessDamage()
 	}
 	else if(self.guild == GIL_Stoneguardian)
 	{
-		if(self.aivar[AIV_EnemyOverride] == TRUE)
-		{
-			b_awake_stoneguardian(self);
-		};
+		B_Awake_StoneGuardian(self);
 	};
 	if(C_PredatorFoundPrey(other,self))
 	{

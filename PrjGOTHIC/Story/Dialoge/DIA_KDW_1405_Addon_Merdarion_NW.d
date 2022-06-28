@@ -323,10 +323,10 @@ func int DIA_Addon_Merdarion_TeleportsteinSuccess_Condition()
 
 func void DIA_Addon_Merdarion_TeleportsteinSuccess_Info()
 {
-	B_GivePlayerXP(XP_Ambient);
 	AI_Output(other,self,"DIA_Addon_Merdarion_TeleportsteinSuccess_15_00");	//Телепортационные камни, похоже, работают нормально.
 	AI_Output(self,other,"DIA_Addon_Merdarion_TeleportsteinSuccess_06_01");	//Ты сделал это? Ты действительно вошел туда?
 	AI_Output(other,self,"DIA_Addon_Merdarion_TeleportsteinSuccess_15_02");	//Да. Очевидно, они все еще работают.
 	AI_Output(self,other,"DIA_Addon_Merdarion_TeleportsteinSuccess_06_03");	//(восхищенно) Невероятно. Мне нужно будет поближе взглянуть на них.
+	B_GivePlayerXP(XP_Ambient);
 };
 

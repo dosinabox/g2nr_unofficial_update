@@ -1,10 +1,19 @@
 
-func void b_awake_stoneguardian(var C_Npc slf)
+func void B_Awake_StoneGuardian(var C_Npc slf)
 {
-	if((RavenIsDead == FALSE) && (slf.aivar[AIV_EnemyOverride] == TRUE) && (slf.attribute[ATR_HITPOINTS] > 0))
+	if(RavenIsDead == TRUE)
 	{
-		Wld_PlayEffect("spellFX_INCOVATION_WHITE",slf,slf,0,0,0,FALSE);
-		Wld_PlayEffect("spellFX_LIGHTSTAR_RingRitual",slf,slf,0,0,0,FALSE);
-		slf.aivar[AIV_EnemyOverride] = FALSE;
+		return;
 	};
+	if(Npc_IsDead(slf))
+	{
+		return;
+	};
+	if(slf.aivar[AIV_EnemyOverride] == FALSE)
+	{
+		return;
+	};
+	Wld_PlayEffect("spellFX_INCOVATION_WHITE",slf,slf,0,0,0,FALSE);
+	Wld_PlayEffect("spellFX_LIGHTSTAR_RingRitual",slf,slf,0,0,0,FALSE);
+	slf.aivar[AIV_EnemyOverride] = FALSE;
 };
