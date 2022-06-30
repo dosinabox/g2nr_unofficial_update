@@ -189,41 +189,6 @@ func void DIA_Vatras_EXIT_Info()
 };
 
 
-instance DIA_Vatras_PICKPOCKET(C_Info)
-{
-	npc = VLK_439_Vatras;
-	nr = 900;
-	condition = DIA_Vatras_PICKPOCKET_Condition;
-	information = DIA_Vatras_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Vatras_PICKPOCKET_Condition()
-{
-	return C_Beklauen(91,250);
-};
-
-func void DIA_Vatras_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Vatras_PICKPOCKET);
-	Info_AddChoice(DIA_Vatras_PICKPOCKET,Dialog_Back,DIA_Vatras_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Vatras_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Vatras_PICKPOCKET_DoIt);
-};
-
-func void DIA_Vatras_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Vatras_PICKPOCKET);
-};
-
-func void DIA_Vatras_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Vatras_PICKPOCKET);
-};
-
-
 instance DIA_Vatras_GREET(C_Info)
 {
 	npc = VLK_439_Vatras;
@@ -769,23 +734,26 @@ func void DIA_Addon_Vatras_HowToJoin_WhatsGreat()
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_03");	//Если сумеешь объяснить мне причину их исчезновения, то займешь достойное место среди нас.
 	Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
-	B_LogEntry(TOPIC_Addon_RingOfWater,LogText_Addon_KDWRight);
+	if(!Npc_KnowsInfo(other,DIA_Addon_Lares_WannaBeRanger))
+	{
+		Log_AddEntry(TOPIC_Addon_RingOfWater,LogText_Addon_KDWRight);
+	};
 	B_LogEntry(TOPIC_Addon_RingOfWater,"Ватрас примет меня в Кольцо Воды только в том случае, если я найду пропавших людей.");
 	if(SC_HearedAboutMissingPeople == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
 		B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
+		SC_HearedAboutMissingPeople = TRUE;
 	};
 	MIS_Addon_Vatras_WhereAreMissingPeople = LOG_Running;
-	SC_HearedAboutMissingPeople = TRUE;
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_04");	//Однако...
 	AI_Output(other,self,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_15_05");	//Что еще?
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_06");	//... сначала ты должен доставить сообщение паладинам.
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_07");	//Это дело первостепенной важности!
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_08");	//Поговори с лордом Хагеном.
 	Player_KnowsLordHagen = TRUE;
-	B_LogEntry(TOPIC_Addon_RingOfWater,"Ватрас хочет, чтобы я передал лорду Хагену важное сообщение.");
+	Log_AddEntry(TOPIC_Addon_RingOfWater,"Ватрас хочет, чтобы я передал лорду Хагену важное сообщение.");
 	Info_ClearChoices(DIA_Addon_Vatras_HowToJoin);
 };
 
@@ -1174,7 +1142,7 @@ func void DIA_Addon_Vatras_Free_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_Free_05_01");	//Хорошая работа, сын мой.
 	AI_Output(self,other,"DIA_Addon_Vatras_Free_05_02");	//Но ты должен продолжать свой путь. Да благословит тебя Аданос.
 	AI_Output(self,other,"DIA_Addon_Vatras_Free_05_03");	//(молится) Аданос, благослови этого воина. Освети его путь и даруй ему силу противостоять любым опасностям.
-	B_RaiseAttribute(other,ATR_MANA_MAX,3);
+	B_RaiseAttributeByPermBonus(other,ATR_MANA_MAX,3);
 	other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
 	other.attribute[ATR_HITPOINTS] = other.attribute[ATR_HITPOINTS_MAX];
 	Snd_Play("LEVELUP");
@@ -1424,7 +1392,7 @@ func void DIA_Addon_Vatras_SellStonplate_Info()
 	if(anzahl >= 10)
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_02");	//За это я повышу твои магические способности!
-		B_RaiseAttribute(other,ATR_MANA_MAX,anzahl);
+		B_RaiseAttributeByPermBonus(other,ATR_MANA_MAX,anzahl);
 	}
 	else if(anzahl >= 5)
 	{
@@ -1451,7 +1419,7 @@ func void DIA_Addon_Vatras_SellStonplate_Info()
 		CreateInvItems(self,ItPo_Health_03,anzahl + 1);
 		B_GiveInvItems(self,other,ItPo_Health_03,anzahl + 1);
 	};
-	Npc_RemoveInvItems(self,ItWr_StonePlateCommon_Addon,Npc_HasItems(self,ItWr_StonePlateCommon_Addon));
+	B_RemoveEveryInvItem(self,ItWr_StonePlateCommon_Addon);
 	B_GivePlayerXP(XP_Addon_VatrasStonplate * anzahl);
 };
 
@@ -1830,7 +1798,7 @@ var int Vatras_TeachMANA_NoPerm;
 
 func void B_BuildLearnDialog_Vatras()
 {
-	if(other.aivar[REAL_MANA_MAX] >= T_HIGH)
+	if(RealAttributeValue(ATR_MANA_MAX) >= T_HIGH)
 	{
 		AI_Output(self,other,"DIA_Vatras_Teach_05_00");	//Твоя магическая энергия стала слишком велика, чтобы я мог еще повысить ее.
 		Vatras_TeachMANA_NoPerm = TRUE;
@@ -1839,8 +1807,8 @@ func void B_BuildLearnDialog_Vatras()
 	{
 		Info_ClearChoices(DIA_Vatras_Teach);
 		Info_AddChoice(DIA_Vatras_Teach,Dialog_Back,DIA_Vatras_Teach_BACK);
-		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),DIA_Vatras_Teach_1);
-		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),DIA_Vatras_Teach_5);
+		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_Vatras_Teach_1);
+		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_Vatras_Teach_5);
 	};
 };
 

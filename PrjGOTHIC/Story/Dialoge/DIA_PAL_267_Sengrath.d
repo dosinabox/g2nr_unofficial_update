@@ -142,38 +142,3 @@ func void DIA_Sengrath_Scrolls_Info()
 	Trade_IsActive = TRUE;
 };
 
-
-instance DIA_Sengrath_PICKPOCKET(C_Info)
-{
-	npc = PAL_267_Sengrath;
-	nr = 900;
-	condition = DIA_Sengrath_PICKPOCKET_Condition;
-	information = DIA_Sengrath_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Sengrath_PICKPOCKET_Condition()
-{
-	return C_Beklauen(32,35);
-};
-
-func void DIA_Sengrath_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Sengrath_PICKPOCKET);
-	Info_AddChoice(DIA_Sengrath_PICKPOCKET,Dialog_Back,DIA_Sengrath_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Sengrath_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Sengrath_PICKPOCKET_DoIt);
-};
-
-func void DIA_Sengrath_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Sengrath_PICKPOCKET);
-};
-
-func void DIA_Sengrath_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Sengrath_PICKPOCKET);
-};
-

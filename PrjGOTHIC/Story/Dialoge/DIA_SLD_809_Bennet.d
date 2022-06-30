@@ -254,15 +254,6 @@ func int DIA_Bennet_TRADE_Condition()
 
 func void DIA_Bennet_TRADE_Info()
 {
-	if(Bennet_flag == TRUE)
-	{
-		B_ClearSmithInv(self);
-		if(Bennet_swordraws > 0)
-		{
-			CreateInvItems(self,ItMiSwordraw,Bennet_swordraws);
-		};
-		Bennet_flag = FALSE;
-	};
 	AI_Output(other,self,"DIA_Bennet_TRADE_15_00");	//А как насчет кузнечного инструмента?
 	B_GiveTradeInv(self);
 	B_RefreshTraderAmmo(self,50);
@@ -1476,6 +1467,7 @@ func void DIA_Bennet_DRACHENEIER_nein()
 	Info_ClearChoices(DIA_Bennet_DRACHENEIER);
 };
 
+var int DragonEggCounter;
 
 instance DIA_Bennet_EierBringen(C_Info)
 {
@@ -1496,36 +1488,23 @@ func int DIA_Bennet_EierBringen_Condition()
 	};
 };
 
-
-var int DragonEggCounter;
-
 func void DIA_Bennet_EierBringen_Info()
 {
 	var int DragonEggCount;
-	var int XP_DJG_BringDragonEggs;
-	var int DragonEggGeld;
-	var string concatText;
 	AI_Output(other,self,"DIA_Bennet_EierBringen_15_00");	//Нужны еще драконьи яйца?
 	AI_Output(self,other,"DIA_Bennet_EierBringen_06_01");	//Конечно!
 	DragonEggCount = Npc_HasItems(other,ItAt_DragonEgg_MIS);
 	if(DragonEggCount == 1)
 	{
 		AI_Output(other,self,"DIA_Bennet_EierBringen_15_02");	//Вот. Я принес еще одно.
-		Npc_RemoveInvItems(other,ItAt_DragonEgg_MIS,1);
-		AI_PrintScreen("Драконье яйцо отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-		DragonEggCounter += 1;
-		B_GivePlayerXP(XP_DJG_BringDragonEgg);
 	}
 	else
 	{
 		AI_Output(other,self,"DIA_Bennet_EierBringen_15_03");	//Я принес еще несколько.
-		Npc_RemoveInvItems(other,ItAt_DragonEgg_MIS,DragonEggCount);
-		concatText = ConcatStrings(IntToString(DragonEggCount),PRINT_ItemsGiven);
-		AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-		XP_DJG_BringDragonEggs = DragonEggCount * XP_DJG_BringDragonEgg;
-		DragonEggCounter += DragonEggCount;
-		B_GivePlayerXP(XP_DJG_BringDragonEggs);
 	};
+	B_GiveInvItems(other,self,ItAt_DragonEgg_MIS,DragonEggCount);
+	Npc_RemoveInvItems(self,ItAt_DragonEgg_MIS,DragonEggCount);
+	DragonEggCounter += DragonEggCount;
 	if(DragonEggCounter <= 7)
 	{
 		AI_Output(self,other,"DIA_Bennet_EierBringen_06_04");	//Отлично. Давай сюда. Ты везде посмотрел, а? Наверняка где-то должны быть еще.
@@ -1538,12 +1517,11 @@ func void DIA_Bennet_EierBringen_Info()
 	{
 		AI_Output(self,other,"DIA_Bennet_EierBringen_06_06");	//Я не думаю, что ты найдешь еще яйца. К тому же, мне и этих достаточно. Я даже не знаю, что я буду делать со всеми ними.
 		TOPIC_END_DRACHENEIER = TRUE;
-		B_CheckLog();
 	};
 	AI_Output(self,other,"DIA_Bennet_EierBringen_06_07");	//Ох, хорошо. Вот твои деньги.
-	DragonEggGeld = DragonEggCount * BennetsDragonEggOffer;
-	CreateInvItems(self,ItMi_Gold,DragonEggGeld);
-	B_GiveInvItems(self,other,ItMi_Gold,DragonEggGeld);
+	CreateInvItems(self,ItMi_Gold,BennetsDragonEggOffer * DragonEggCount);
+	B_GiveInvItems(self,other,ItMi_Gold,BennetsDragonEggOffer * DragonEggCount);
+	B_GivePlayerXP(XP_DJG_BringDragonEgg * DragonEggCount);
 };
 
 
@@ -1681,40 +1659,5 @@ func void DIA_Bennet_StillNeedYou_Info()
 	};
 	B_UpdateBennetItemsCount();
 	B_JoinShip(self);
-};
-
-
-instance DIA_Bennet_PICKPOCKET(C_Info)
-{
-	npc = SLD_809_Bennet;
-	nr = 900;
-	condition = DIA_Bennet_PICKPOCKET_Condition;
-	information = DIA_Bennet_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Bennet_PICKPOCKET_Condition()
-{
-	return C_Beklauen(35,45);
-};
-
-func void DIA_Bennet_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Bennet_PICKPOCKET);
-	Info_AddChoice(DIA_Bennet_PICKPOCKET,Dialog_Back,DIA_Bennet_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Bennet_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Bennet_PICKPOCKET_DoIt);
-};
-
-func void DIA_Bennet_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Bennet_PICKPOCKET);
-};
-
-func void DIA_Bennet_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Bennet_PICKPOCKET);
 };
 

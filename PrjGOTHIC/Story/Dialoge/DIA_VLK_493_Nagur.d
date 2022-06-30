@@ -21,40 +21,6 @@ func void DIA_Nagur_EXIT_Info()
 };
 
 
-instance DIA_Nagur_PICKPOCKET(C_Info)
-{
-	npc = VLK_493_Nagur;
-	nr = 900;
-	condition = DIA_Nagur_PICKPOCKET_Condition;
-	information = DIA_Nagur_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Nagur_PICKPOCKET_Condition()
-{
-	return C_Beklauen(75,150);
-};
-
-func void DIA_Nagur_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Nagur_PICKPOCKET);
-	Info_AddChoice(DIA_Nagur_PICKPOCKET,Dialog_Back,DIA_Nagur_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Nagur_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Nagur_PICKPOCKET_DoIt);
-};
-
-func void DIA_Nagur_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Nagur_PICKPOCKET);
-};
-
-func void DIA_Nagur_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Nagur_PICKPOCKET);
-};
-
 func void B_Nagur_LeaveMeAlone()
 {
 	AI_Output(self,other,"DIA_Nagur_Hallo_08_01");	//Послушай, оставь меня в покое, хорошо?
@@ -425,10 +391,7 @@ func int DIA_Nagur_Knast_Condition()
 func void DIA_Nagur_Knast_Info()
 {
 	AI_Output(self,other,"DIA_Nagur_Knast_08_00");	//Ты предал меня! Это была большая ошибка - а теперь проваливай!
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 65) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-	{
-		AI_StopProcessInfos(self);
-	};
+	AI_StopProcessInfos_Pickpocket();
 };
 
 
@@ -497,9 +460,6 @@ func void DIA_Nagur_Perm_Info()
 	{
 		AI_Output(self,other,"DIA_Nagur_Fazit_08_00");	//Дело прошло удачно, но я не говорю о своих хозяевах. Так что можешь расслабиться.
 	};
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 65) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-	{
-		AI_StopProcessInfos(self);
-	};
+	AI_StopProcessInfos_Pickpocket();
 };
 

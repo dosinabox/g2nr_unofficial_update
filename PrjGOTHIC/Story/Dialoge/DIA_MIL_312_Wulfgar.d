@@ -466,38 +466,3 @@ func void DIA_Wulfgar_Bonus_Info()
 	B_RaiseTalentByPermBonus(other,NPC_TALENT_1H,2);
 };
 
-
-instance DIA_Wulfgar_PICKPOCKET(C_Info)
-{
-	npc = MIL_312_Wulfgar;
-	nr = 900;
-	condition = DIA_Wulfgar_PICKPOCKET_Condition;
-	information = DIA_Wulfgar_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Wulfgar_PICKPOCKET_Condition()
-{
-	return C_Beklauen(58,80);
-};
-
-func void DIA_Wulfgar_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Wulfgar_PICKPOCKET);
-	Info_AddChoice(DIA_Wulfgar_PICKPOCKET,Dialog_Back,DIA_Wulfgar_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Wulfgar_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Wulfgar_PICKPOCKET_DoIt);
-};
-
-func void DIA_Wulfgar_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Wulfgar_PICKPOCKET);
-};
-
-func void DIA_Wulfgar_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Wulfgar_PICKPOCKET);
-};
-

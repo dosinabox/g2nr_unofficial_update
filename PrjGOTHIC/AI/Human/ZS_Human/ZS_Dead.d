@@ -8,12 +8,15 @@ func void ZS_Dead()
 	AI_StopPointAt(self);
 	if(CurrentLevel == ADDONWORLD_ZEN)
 	{
-		if(C_IAmCanyonRazor(self))
+		if(self.aivar[AIV_MM_REAL_ID] == ID_Razor)
 		{
-			CanyonRazorBodyCount += 1;
-			if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+			if(C_IAmCanyonRazor(self))
 			{
-				B_CountCanyonRazor();
+				CanyonRazorBodyCount += 1;
+				if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+				{
+					B_CountCanyonRazor();
+				};
 			};
 		}
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stoneguardian_NailedValleyShowcase_01))
@@ -64,13 +67,13 @@ func void ZS_Dead()
 	B_CheckDeadMissionNPCs(self);
 	if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON))
 	{
-		Npc_RemoveInvItems(self,ItMw_1h_Bau_Mace,Npc_HasItems(self,ItMw_1h_Bau_Mace));
-		Npc_RemoveInvItems(self,ItMw_1h_MISC_Sword,Npc_HasItems(self,ItMw_1h_MISC_Sword));
-		Npc_RemoveInvItems(self,ItMw_1h_Misc_Axe,Npc_HasItems(self,ItMw_1h_Misc_Axe));
+		B_RemoveEveryInvItem(self,ItMw_1h_Bau_Mace);
+		B_RemoveEveryInvItem(self,ItMw_1h_MISC_Sword);
+		B_RemoveEveryInvItem(self,ItMw_1h_Misc_Axe);
 	}
 	else if(self.guild == GIL_SUMMONED_SKELETON)
 	{
-		Npc_RemoveInvItems(self,ItMw_2H_Sword_M_01,Npc_HasItems(self,ItMw_2H_Sword_M_01));
+		B_RemoveEveryInvItem(self,ItMw_2H_Sword_M_01);
 	};
 	if(Hlp_IsValidNpc(other))
 	{
@@ -93,25 +96,15 @@ func void ZS_Dead()
 			{
 				Player_HasTalkedToBanditCamp = TRUE;
 			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru))
+			else if(MIS_ThiefGuild_sucked == FALSE)
 			{
-				if(Npc_IsDead(Halvor) && Npc_IsDead(Nagur))
+				if(C_IAmThiefFromCity(self))
 				{
-					MIS_ThiefGuild_sucked = TRUE;
-				};
-			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Halvor))
-			{
-				if(Npc_IsDead(Rengaru) && Npc_IsDead(Nagur))
-				{
-					MIS_ThiefGuild_sucked = TRUE;
-				};
-			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nagur))
-			{
-				if(Npc_IsDead(Rengaru) && Npc_IsDead(Halvor))
-				{
-					MIS_ThiefGuild_sucked = TRUE;
+					CityThieves_KilledByPlayer_Count += 1;
+					if(CityThieves_KilledByPlayer_Count >= 3)
+					{
+						MIS_ThiefGuild_sucked = TRUE;
+					};
 				};
 			};
 		};
@@ -122,77 +115,71 @@ func void ZS_Dead()
 			{
 				MadKillerCount += 1;
 			};
-			if((self.guild == GIL_GIANT_BUG) && (MIS_Fester_KillBugs == LOG_Running))
+			if(CurrentLevel == ADDONWORLD_ZEN)
 			{
-				if(Npc_GetDistToNpc(self,Fester) <= 1500)
+				if(self.aivar[AIV_MM_REAL_ID] == ID_Swamprat)
 				{
-					Festers_Giant_Bug_Killed += 1;
-				};
-			}
-			else if((self.aivar[AIV_MM_REAL_ID] == ID_Swamprat) && (MIS_KrokoJagd == LOG_Running))
-			{
-				if(Npc_GetDistToNpc(self,AlligatorJack) <= 1500)
-				{
-					AlligatorJack_KrokosKilled += 1;
-				};
-			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rod))
-			{
-				Rod_KilledByPlayer = TRUE;
-			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Sentenza))
-			{
-				Sentenza_KilledByPlayer = TRUE;
-			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Fester))
-			{
-				Fester_KilledByPlayer = TRUE;
-			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Raoul))
-			{
-				Raoul_KilledByPlayer = TRUE;
-			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bullco))
-			{
-				Bullco_KilledByPlayer = TRUE;
-			}
-			else if(C_IsNpc(self,OrcShaman_Sit_CanyonLibraryKey))
-			{
-				OrcShaman_CanyonLibrary_KilledByPlayer = TRUE;
-			}
-			else if(C_IsNpc(self,Grimbald_Snapper1) || C_IsNpc(self,Grimbald_Snapper2) || C_IsNpc(self,Grimbald_Snapper3))
-			{
-				Grimbald_Snappers_KilledByPlayer = TRUE;
-			};
-		};
-		if(Npc_HasReadiedRangedWeapon(other))
-		{
-			readyweap = Npc_GetReadiedWeapon(other);
-			if(readyweap.munition == ItRw_Addon_FireArrow)
-			{
-				Wld_PlayEffect("VOB_MAGICBURN",self,self,0,0,0,FALSE);
-				Wld_PlayEffect("spellFX_Firestorm_SPREAD",self,self,0,0,0,FALSE);
-				if(Npc_GetDistToNpc(self,other) <= 600)
-				{
-					Wld_PlayEffect("VOB_MAGICBURN",other,other,0,0,0,FALSE);
-					if(other.protection[PROT_FIRE] < SpecialDamage_FireBow)
+					if(MIS_KrokoJagd == LOG_Running)
 					{
-						if((other.attribute[ATR_HITPOINTS] + other.protection[PROT_FIRE] - SpecialDamage_FireBow) >= 0)
+						if(!Npc_IsDead(AlligatorJack))
 						{
-							other.attribute[ATR_HITPOINTS] -= (SpecialDamage_FireBow - other.protection[PROT_FIRE]);
-						}
-						else
-						{
-							other.attribute[ATR_HITPOINTS] = 0;
+							if(Npc_GetDistToNpc(self,AlligatorJack) <= 1500)
+							{
+								AlligatorJack_KrokosKilled += 1;
+							};
 						};
 					};
-					if(other.attribute[ATR_HITPOINTS] <= 0)
+				}
+				else if(C_IsNpc(self,OrcShaman_Sit_CanyonLibraryKey))
+				{
+					OrcShaman_CanyonLibrary_KilledByPlayer = TRUE;
+				};
+			}
+			else if(CurrentLevel == NEWWORLD_ZEN)
+			{
+				if(self.guild == GIL_GIANT_BUG)
+				{
+					if(MIS_Fester_KillBugs == LOG_Running)
 					{
-						AI_PlayAni(other,"T_DEAD");
+						if(!Npc_IsDead(Fester))
+						{
+							if(Npc_GetDistToNpc(self,Fester) <= 1500)
+							{
+								Festers_Giant_Bug_Killed += 1;
+							};
+						};
 					};
+				}
+				else if(self.aivar[AIV_MM_REAL_ID] == ID_SNAPPER)
+				{
+					if(C_IsNpc(self,Grimbald_Snapper1) || C_IsNpc(self,Grimbald_Snapper2) || C_IsNpc(self,Grimbald_Snapper3))
+					{
+						Grimbald_Snappers_KilledByPlayer = TRUE;
+					};
+				}
+				else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rod))
+				{
+					Rod_KilledByPlayer = TRUE;
+				}
+				else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Sentenza))
+				{
+					Sentenza_KilledByPlayer = TRUE;
+				}
+				else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Fester))
+				{
+					Fester_KilledByPlayer = TRUE;
+				}
+				else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Raoul))
+				{
+					Raoul_KilledByPlayer = TRUE;
+				}
+				else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bullco))
+				{
+					Bullco_KilledByPlayer = TRUE;
 				};
 			};
 		};
+		B_SpecialRangedWeaponDamage(other,self,TRUE);
 	};
 	B_GiveTradeInv(self);
 	B_GiveDeathInv(self);

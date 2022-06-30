@@ -86,7 +86,7 @@ instance DIA_Dyrian_Job(C_Info)
 
 func int DIA_Dyrian_Job_Condition()
 {
-	if((Kapitel == 1) && Npc_KnowsInfo(hero,DIA_Dyrian_Hello) && (MIS_Rune == FALSE) && (MIS_Schnitzeljagd == FALSE) && (MIS_Golem == FALSE))
+	if((Kapitel == 1) && Npc_KnowsInfo(other,DIA_Dyrian_Hello) && (MIS_Rune == FALSE) && (MIS_Schnitzeljagd == FALSE) && (MIS_Golem == FALSE))
 	{
 		return TRUE;
 	};
@@ -142,7 +142,7 @@ instance DIA_Dyrian_CanHelp(C_Info)
 
 func int DIA_Dyrian_CanHelp_Condition()
 {
-	if((Kapitel == 1) && Npc_KnowsInfo(hero,DIA_Dyrian_Job) && (MIS_Rune == FALSE) && (MIS_Schnitzeljagd == FALSE) && (MIS_Golem == FALSE))
+	if((Kapitel == 1) && Npc_KnowsInfo(other,DIA_Dyrian_Job) && (MIS_Rune == FALSE) && (MIS_Schnitzeljagd == FALSE) && (MIS_Golem == FALSE))
 	{
 		return TRUE;
 	};
@@ -154,6 +154,16 @@ func void DIA_Dyrian_CanHelp_Info()
 	AI_Output(self,other,"DIA_Dyrian_CanHelp_13_01");	//Нет, моя судьба зависит теперь только от милости Инноса и магов.
 };
 
+
+func void B_Dyrian_GiveSleepScroll()
+{
+	CreateInvItems(self,ItSc_Sleep,1);
+	B_GiveInvItems(self,other,ItSc_Sleep,1);
+	MIS_HelpDyrian = LOG_Running;
+	Log_CreateTopic(Topic_DyrianDrin,LOG_MISSION);
+	Log_SetTopicStatus(Topic_DyrianDrin,LOG_Running);
+	B_LogEntry(Topic_DyrianDrin,"Дуриан дал мне свиток с заклинанием 'Сон'. Взамен он хочет, чтобы я замолвил за него словечко, если я стану магом. Тогда он сможет остаться в монастыре.");
+};
 
 instance DIA_Dyrian_Scroll(C_Info)
 {
@@ -206,8 +216,10 @@ func void DIA_Dyrian_Scroll_How()
 	AI_Output(other,self,"DIA_Dyrian_Scroll_How_15_00");	//Что ты хочешь за него?
 	AI_Output(self,other,"DIA_Dyrian_Scroll_How_13_01");	//У каждого вновь посвященного мага есть право на одно желание.
 	AI_Output(self,other,"DIA_Dyrian_Scroll_How_13_02");	//И если ты действительно пройдешь Испытание Огнем, ты можешь пожелать, чтобы я остался в монастыре.
-	Info_ClearChoices(DIA_Dyrian_Scroll);
-	Info_AddChoice(DIA_Dyrian_Scroll,"Нет, мне не нужна твоя помощь.",DIA_Dyrian_Scroll_No);
+	if(!Npc_KnowsInfo(other,DIA_Dyrian_WhatDone))
+	{
+		Info_AddChoice(DIA_Dyrian_Scroll,"Расскажи мне, что произошло.",DIA_Dyrian_WhatDone_Info);
+	};
 	Info_AddChoice(DIA_Dyrian_Scroll,"Хорошо, давай мне этот свиток.",DIA_Dyrian_Scroll_Yes);
 };
 
@@ -215,12 +227,7 @@ func void DIA_Dyrian_Scroll_Yes()
 {
 	AI_Output(other,self,"DIA_Dyrian_Scroll_Yes_15_00");	//Хорошо, давай мне этот свиток.
 	AI_Output(self,other,"DIA_Dyrian_Scroll_Yes_13_01");	//Удачи тебе в этом испытании. Да поможет тебе Иннос.
-	CreateInvItems(self,ItSc_Sleep,1);
-	B_GiveInvItems(self,other,ItSc_Sleep,1);
-	MIS_HelpDyrian = LOG_Running;
-	Log_CreateTopic(Topic_DyrianDrin,LOG_MISSION);
-	Log_SetTopicStatus(Topic_DyrianDrin,LOG_Running);
-	B_LogEntry(Topic_DyrianDrin,"Дуриан дал мне свиток с заклинанием 'Сон'. Взамен он хочет, чтобы если я стану магом, я замолвил за него словечко и он остался в монастыре.");
+	B_Dyrian_GiveSleepScroll();
 	Info_ClearChoices(DIA_Dyrian_Scroll);
 };
 
@@ -238,7 +245,7 @@ instance DIA_Dyrian_Doch(C_Info)
 
 func int DIA_Dyrian_Doch_Condition()
 {
-	if((Kapitel == 1) && Npc_KnowsInfo(hero,DIA_Dyrian_Scroll) && (MIS_HelpDyrian != LOG_Running) && (other.guild == GIL_NOV))
+	if((Kapitel == 1) && Npc_KnowsInfo(other,DIA_Dyrian_Scroll) && (MIS_HelpDyrian != LOG_Running) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -248,12 +255,7 @@ func void DIA_Dyrian_Doch_Info()
 {
 	AI_Output(other,self,"DIA_Dyrian_Doch_15_00");	//Я передумал. Давай мне это заклинание сна.
 	AI_Output(self,other,"DIA_Dyrian_Doch_13_01");	//Хорошо, если ты пройдешь испытание, то замолвишь за меня словечко, и меня оставят в монастыре.
-	CreateInvItems(self,ItSc_Sleep,1);
-	B_GiveInvItems(self,other,ItSc_Sleep,1);
-	MIS_HelpDyrian = LOG_Running;
-	Log_CreateTopic(Topic_DyrianDrin,LOG_MISSION);
-	Log_SetTopicStatus(Topic_DyrianDrin,LOG_Running);
-	B_LogEntry(Topic_DyrianDrin,"Дуриан дал мне свиток с заклинанием 'Сон'. Взамен, он хочет, чтобы если я стану магом, я замолвил за него словечко и он остался в монастыре.");
+	B_Dyrian_GiveSleepScroll();
 };
 
 
@@ -285,10 +287,6 @@ func void DIA_Dyrian_HelloAgain_Info()
 	AI_StopProcessInfos(self);
 };
 
-func void B_Dyrian_PlayerHowIsIt()
-{
-	AI_Output(other,self,"DIA_Dyrian_HowIsIt_15_00");	//Как дела?
-};
 
 
 instance DIA_Dyrian_HowIsIt(C_Info)
@@ -308,43 +306,25 @@ func int DIA_Dyrian_HowIsIt_Condition()
 	{
 		return TRUE;
 	};
-};
-
-func void DIA_Dyrian_HowIsIt_Info()
-{
-	B_Dyrian_PlayerHowIsIt();
-	AI_Output(self,other,"DIA_Dyrian_HowIsIt_13_01");	//Хорошо. Мне очень нравится моя работа, Мастер.
-	AI_Output(self,other,"DIA_Dyrian_HowIsIt_13_02");	//Я благодарен Инносу за то, что могу жить в монастыре.
-//	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Dyrian_other(C_Info)
-{
-	npc = NOV_604_Dyrian;
-	nr = 3;
-	condition = DIA_Dyrian_other_Condition;
-	information = DIA_Dyrian_other_Info;
-	permanent = TRUE;
-	description = "Как дела?";
-};
-
-
-func int DIA_Dyrian_other_Condition()
-{
 	if((other.guild != GIL_KDF) && (other.guild != GIL_NOV) && (other.guild != GIL_NONE))
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_Dyrian_other_Info()
+func void DIA_Dyrian_HowIsIt_Info()
 {
-	B_Dyrian_PlayerHowIsIt();
-	B_Say(self,other,"$NOTNOW");
-	AI_StopProcessInfos(self);
-//	AI_Output(self,other,"DIA_Dyrian_HowIsIt_13_02");	//Я благодарен Инносу за то, что могу жить в монастыре.
-//	AI_StopProcessInfos(self);
+	AI_Output(other,self,"DIA_Dyrian_HowIsIt_15_00");	//Как дела?
+	if(Npc_KnowsInfo(other,DIA_Dyrian_HelloAgain))
+	{
+		AI_Output(self,other,"DIA_Dyrian_HowIsIt_13_01");	//Хорошо. Мне очень нравится моя работа, Мастер.
+		AI_Output(self,other,"DIA_Dyrian_HowIsIt_13_02");	//Я благодарен Инносу за то, что могу жить в монастыре.
+	}
+	else
+	{
+		B_Say(self,other,"$NOTNOW");
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -354,7 +334,6 @@ instance DIA_Dyrian_Kneipe(C_Info)
 	nr = 3;
 	condition = DIA_Dyrian_Kneipe_Condition;
 	information = DIA_Dyrian_Kneipe_Info;
-//	permanent = TRUE;
 	permanent = FALSE;
 	description = "Как дела?";
 };
@@ -430,40 +409,5 @@ func void DIA_Dyrian_nachher_Info()
 	AI_Output(other,self,"DIA_Dyrian_nachher_15_00");	//Что с тобой?
 	AI_Output(self,other,"DIA_Dyrian_nachher_13_01");	//Ах, оставь меня в покое! Я даже знать тебя не хочу!
 	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Dyrian_PICKPOCKET(C_Info)
-{
-	npc = NOV_604_Dyrian;
-	nr = 900;
-	condition = DIA_Dyrian_PICKPOCKET_Condition;
-	information = DIA_Dyrian_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Dyrian_PICKPOCKET_Condition()
-{
-	return C_Beklauen(10,15);
-};
-
-func void DIA_Dyrian_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Dyrian_PICKPOCKET);
-	Info_AddChoice(DIA_Dyrian_PICKPOCKET,Dialog_Back,DIA_Dyrian_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Dyrian_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Dyrian_PICKPOCKET_DoIt);
-};
-
-func void DIA_Dyrian_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Dyrian_PICKPOCKET);
-};
-
-func void DIA_Dyrian_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Dyrian_PICKPOCKET);
 };
 

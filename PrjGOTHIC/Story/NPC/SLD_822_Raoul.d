@@ -11,6 +11,7 @@ instance SLD_822_Raoul(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,45,ItMi_Gold,85);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Ian,BodyTex_L,ITAR_SLD_L);
 	Mdl_SetModelFatness(self,1.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

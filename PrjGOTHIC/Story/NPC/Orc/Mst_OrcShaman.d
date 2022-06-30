@@ -42,6 +42,12 @@ func void B_SetVisuals_Hosh_Pak()
 	Mdl_SetVisualBody(self,"Hosh_Body",DEFAULT,DEFAULT,"",DEFAULT,DEFAULT,NO_ARMOR);
 };
 
+func void B_SetVisuals_CanyonOrcShaman()
+{
+	Mdl_SetVisual(self,"Orc.mds");
+	Mdl_SetVisualBody(self,"Cos_Body",DEFAULT,DEFAULT,"",DEFAULT,DEFAULT,NO_ARMOR);
+};
+
 instance OrcShaman_Sit(Mst_Default_OrcShaman)
 {
 	B_SetVisuals_OrcShaman();
@@ -73,7 +79,7 @@ instance OrcShaman_Sit_CanyonLibraryKey(Mst_Default_OrcShaman)
 	attribute[ATR_HITPOINTS_MAX] = 400;
 	attribute[ATR_HITPOINTS] = 400;
 //	EquipItem(self,ItMw_2H_OrcAxe_01);
-	B_SetVisuals_Hosh_Pak();
+	B_SetVisuals_CanyonOrcShaman();
 	EquipItem(self,ItMw_2H_OrcAxe_03);
 	CreateInvItems(self,ItKe_CanyonLibrary_Hierarchy_Books_Addon,1);
 	start_aistate = ZS_MM_AllScheduler;

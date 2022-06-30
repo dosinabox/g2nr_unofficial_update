@@ -107,7 +107,10 @@ instance StoryHelper_INFO1(C_Info)
 
 func int StoryHelper_INFO1_Condition()
 {
-	return TRUE;
+	if(Kapitel == 1)
+	{
+		return TRUE;
+	};
 };
 
 func void StoryHelper_INFO1_Info()
@@ -173,7 +176,10 @@ instance StoryHelper_INFO2(C_Info)
 
 func int StoryHelper_INFO2_Condition()
 {
-	return TRUE;
+	if(Kapitel < 2)
+	{
+		return TRUE;
+	};
 };
 
 func void StoryHelper_INFO2_Info()
@@ -214,7 +220,10 @@ instance StoryHelper_INFO3(C_Info)
 
 func int StoryHelper_INFO3_Condition()
 {
-	return TRUE;
+	if(Kapitel < 3)
+	{
+		return TRUE;
+	};
 };
 
 func void StoryHelper_INFO3_Info()
@@ -256,7 +265,10 @@ instance StoryHelper_INFO4(C_Info)
 
 func int StoryHelper_INFO4_Condition()
 {
-	return TRUE;
+	if(Kapitel < 4)
+	{
+		return TRUE;
+	};
 };
 
 func void StoryHelper_INFO4_Info()
@@ -304,7 +316,10 @@ instance StoryHelper_INFO5(C_Info)
 
 func int StoryHelper_INFO5_Condition()
 {
-	return TRUE;
+	if(Kapitel < 5)
+	{
+		return TRUE;
+	};
 };
 
 func void StoryHelper_INFO5_Info()
@@ -355,7 +370,10 @@ instance StoryHelper_INFO6(C_Info)
 
 func int StoryHelper_INFO6_Condition()
 {
-	return TRUE;
+	if(Kapitel < 6)
+	{
+		return TRUE;
+	};
 };
 
 func void StoryHelper_INFO6_Info()
@@ -372,8 +390,9 @@ func void StoryHelper_BACK6()
 
 func void StoryHelper_KAPITEL6ANFANG()
 {
-	B_Kapitelwechsel(6,NEWWORLD_ZEN);
+	JackIsCaptain = TRUE;
 	Info_ClearChoices(StoryHelper_INFO6);
 	AI_StopProcessInfos(self);
+	AI_Teleport(other,"SHIP_IN_14");
 };
 

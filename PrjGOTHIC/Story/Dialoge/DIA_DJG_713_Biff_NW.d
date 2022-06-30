@@ -113,38 +113,3 @@ func void DIA_Biff_NW_ATTACK_Info()
 	B_Attack(self,other,AR_NONE,1);
 };
 
-
-instance DIA_Biff_NW_PICKPOCKET(C_Info)
-{
-	npc = DJG_713_Biff_NW;
-	nr = 900;
-	condition = DIA_Biff_NW_PICKPOCKET_Condition;
-	information = DIA_Biff_NW_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Biff_NW_PICKPOCKET_Condition()
-{
-	return C_Beklauen(92,250);
-};
-
-func void DIA_Biff_NW_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Biff_NW_PICKPOCKET);
-	Info_AddChoice(DIA_Biff_NW_PICKPOCKET,Dialog_Back,DIA_Biff_NW_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Biff_NW_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Biff_NW_PICKPOCKET_DoIt);
-};
-
-func void DIA_Biff_NW_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Biff_NW_PICKPOCKET);
-};
-
-func void DIA_Biff_NW_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Biff_NW_PICKPOCKET);
-};
-

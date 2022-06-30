@@ -3,7 +3,7 @@ prototype BeliarWeaponPrototype_1H(C_Item)
 {
 	name = NAME_ADDON_BELIARSWEAPON;
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_SWD;
+	flags = ITEM_SWD | ITEM_BELIAR_1H;
 	material = MAT_METAL;
 	damagetype = DAM_EDGE;
 	range = Range_Orkschlaechter;
@@ -206,7 +206,7 @@ prototype BeliarWeaponPrototype_2H(C_Item)
 {
 	name = NAME_ADDON_BELIARSWEAPON;
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_2HD_SWD;
+	flags = ITEM_2HD_SWD | ITEM_BELIAR_2H;
 	material = MAT_METAL;
 	damagetype = DAM_EDGE;
 //	range = Range_Drachenschneide;
@@ -227,7 +227,7 @@ prototype BeliarWeaponPrototype_2H(C_Item)
 
 instance ItMw_BeliarWeapon_Raven(BeliarWeaponPrototype_2H)
 {
-	flags = ITEM_2HD_SWD | ITEM_MISSION;
+	flags = ITEM_2HD_SWD | ITEM_BELIAR_2H | ITEM_MISSION;
 	value = Value_BeliarW_Raven;
 	damageTotal = Damage_BeliarW_Raven;
 	cond_atr[2] = ATR_MANA_MAX;
@@ -422,6 +422,7 @@ instance ItMw_BeliarWeapon_2H_20(BeliarWeaponPrototype_2H)
 
 instance ItMw_BeliarWeapon_Fire(BeliarWeaponPrototype_2H)
 {
+	flags = ITEM_2HD_SWD;
 	value = Value_BeliarW_2H_20;
 	damageTotal = Damage_BeliarW_2H_20;
 	damagetype = DAM_FIRE;

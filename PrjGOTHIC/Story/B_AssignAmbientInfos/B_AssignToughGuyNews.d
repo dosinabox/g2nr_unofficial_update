@@ -14,22 +14,34 @@ func int DIA_ToughGuy_NEWS_Condition()
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BridgeBandit))
 	{
 		return FALSE;
-	}
-	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Sylvio)) && Npc_KnowsInfo(other,DIA_SylvioDJG_WHATNEXT))
+	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Sylvio))
 	{
-		return FALSE;
-	}
-	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco)) && Npc_IsDead(DJG_Sylvio) && !Npc_KnowsInfo(other,DIA_Bullco_SYLVIODEAD))
+		if(Npc_KnowsInfo(other,DIA_SylvioDJG_WHATNEXT))
+		{
+			return FALSE;
+		};
+	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco))
 	{
-		return FALSE;
-	}
-	else if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE) && (self.aivar[AIV_LastFightComment] == FALSE) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Sentenza)))
+		if(!Npc_KnowsInfo(other,DIA_Bullco_SYLVIODEAD) && Npc_IsDead(DJG_Sylvio))
+		{
+			return FALSE;
+		};
+	};
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE) && (self.aivar[AIV_LastFightComment] == FALSE))
 	{
-		return TRUE;
-	}
-	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Sentenza)) && Npc_KnowsInfo(other,DIA_Sentenza_Hello) && (self.aivar[AIV_LastFightComment] == FALSE))
-	{
-		return TRUE;
+		if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Sentenza))
+		{
+			return TRUE;
+		}
+		else
+		{
+			if(Npc_KnowsInfo(other,DIA_Sentenza_Hello))
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 

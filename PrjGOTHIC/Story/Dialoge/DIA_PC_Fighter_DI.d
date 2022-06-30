@@ -215,39 +215,3 @@ func void DIA_Gorn_DI_UndeadDragonDead_Info()
 	Npc_ExchangeRoutine(self,"Start");
 };
 
-
-instance DIA_Fighter_DI_PICKPOCKET(C_Info)
-{
-	npc = PC_Fighter_DI;
-	nr = 900;
-	condition = DIA_Fighter_DI_PICKPOCKET_Condition;
-	information = DIA_Fighter_DI_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Fighter_DI_PICKPOCKET_Condition()
-{
-	return C_Beklauen(10,45);
-};
-
-func void DIA_Fighter_DI_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Fighter_DI_PICKPOCKET);
-	Info_AddChoice(DIA_Fighter_DI_PICKPOCKET,Dialog_Back,DIA_Fighter_DI_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Fighter_DI_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Fighter_DI_PICKPOCKET_DoIt);
-};
-
-func void DIA_Fighter_DI_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Fighter_DI_PICKPOCKET);
-};
-
-func void DIA_Fighter_DI_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Fighter_DI_PICKPOCKET);
-};
-
-

@@ -109,38 +109,3 @@ func void DIA_Fed_Perm_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Fed_PICKPOCKET(C_Info)
-{
-	npc = STRF_1106_Fed;
-	nr = 900;
-	condition = DIA_Fed_PICKPOCKET_Condition;
-	information = DIA_Fed_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Fed_PICKPOCKET_Condition()
-{
-	return C_Beklauen(32,8);
-};
-
-func void DIA_Fed_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Fed_PICKPOCKET);
-	Info_AddChoice(DIA_Fed_PICKPOCKET,Dialog_Back,DIA_Fed_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Fed_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Fed_PICKPOCKET_DoIt);
-};
-
-func void DIA_Fed_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Fed_PICKPOCKET);
-};
-
-func void DIA_Fed_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Fed_PICKPOCKET);
-};
-

@@ -232,7 +232,8 @@ func int ZS_MM_Attack_Loop()
 
 func void ZS_MM_Attack_End()
 {
-	other = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
+	var C_Npc target;
+	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
 	if(self.guild > GIL_SEPERATOR_ORC)
 	{
 		AI_RemoveWeapon(self);
@@ -257,12 +258,12 @@ func void ZS_MM_Attack_End()
 		AI_Wait(self,0.5);
 		self.aivar[AIV_INVINCIBLE] = FALSE;
 	};
-	if(C_WantToFlee(self,other))
+	if(C_WantToFlee(self,target))
 	{
 		B_MM_Flee();
 		return;
 	};
-	if(Npc_IsDead(other) && C_WantToEat(self,other))
+	if(Npc_IsDead(target) && C_WantToEat(self,target))
 	{
 		Npc_ClearAIQueue(self);
 		AI_StartState(self,ZS_MM_EatBody,0,"");

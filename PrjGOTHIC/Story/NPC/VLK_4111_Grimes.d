@@ -12,6 +12,7 @@ instance VLK_4111_Grimes(Npc_Default)
 	EquipItem(self,ItMw_2H_Axe_L_01);
 	CreateInvItems(self,ItLsTorchburned,1);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,43,ItMi_Gold,21);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_ImportantGrey,BodyTex_N,ITAR_Prisoner);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

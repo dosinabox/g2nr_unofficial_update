@@ -121,7 +121,7 @@ func void DIA_Akil_NachKampf_Info()
 	AI_Output(self,other,"DIA_Akil_NachKampf_13_00");	//Слава Инносу. Я уж думал, мне конец.
 	AI_Output(self,other,"DIA_Akil_NachKampf_13_01");	//Меня зовут Акил. Я фермер на этом маленьком клочке земли.
 	AI_Output(other,self,"DIA_Akil_NachKampf_15_02");	//Кто эти люди?
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if((VisibleGuild(other) == GIL_SLD) || (VisibleGuild(other) == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Akil_NachKampf_13_03");	//Ты должен знать их. Это наемники с фермы Онара. Как и ты.
 	}
@@ -135,15 +135,13 @@ func void DIA_Akil_NachKampf_Info()
 	Info_AddChoice(DIA_Akil_NachKampf,"Ничего. Я просто рад, что у тебя теперь все в порядке.",DIA_Akil_NachKampf_Ehre);
 	Info_AddChoice(DIA_Akil_NachKampf,"Как насчет нескольких золотых?",DIA_Akil_NachKampf_Gold);
 	Npc_ExchangeRoutine(self,"Start");
-//	self.flags = 0;
-	if(Hlp_IsValidNpc(Kati) && !Npc_IsDead(Kati))
-	{
-//		Kati.flags = 0;
-		B_StartOtherRoutine(Kati,"Start");
-	};
+	B_StartOtherRoutine(Kati,"Start");
 	if(Hlp_IsValidNpc(Randolph) && !Npc_IsDead(Randolph))
 	{
-		B_StartOtherRoutine(Randolph,"Start");
+		if(DIA_Randolph_ICHGEBEDIRGELD_noPerm == FALSE)
+		{
+			B_StartOtherRoutine(Randolph,"Start");
+		};
 		Randolph.flags = 0;
 	};
 	TOPIC_END_AkilsSLDStillthere = TRUE;
@@ -253,9 +251,16 @@ instance DIA_Addon_Akil_ReturnPeople(C_Info)
 
 func int DIA_Addon_Akil_ReturnPeople_Condition()
 {
-	if((MIS_Akil_BringMissPeopleBack == LOG_Running) && (MissingPeopleReturnedHome == TRUE) && (!Npc_IsDead(Tonak_NW) || !Npc_IsDead(Telbor_NW)))
+	if((MIS_Akil_BringMissPeopleBack == LOG_Running) && (MissingPeopleReturnedHome == TRUE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Tonak_NW))
+		{
+			return TRUE;
+		};
+		if(!Npc_IsDead(Telbor_NW))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -552,9 +557,12 @@ instance DIA_Akil_SCHAFDIEBEPLATT(C_Info)
 
 func int DIA_Akil_SCHAFDIEBEPLATT_Condition()
 {
-	if((Kapitel >= 3) && (MIS_Akil_SchafDiebe == LOG_Running) && Npc_IsDead(BDT_1025_Bandit_H) && Npc_IsDead(BDT_1026_Bandit_H) && Npc_IsDead(BDT_1027_Bandit_H))
+	if((Kapitel >= 3) && (MIS_Akil_SchafDiebe == LOG_Running))
 	{
-		return TRUE;
+		if(Npc_IsDead(BDT_1025_Bandit_H) && Npc_IsDead(BDT_1026_Bandit_H) && Npc_IsDead(BDT_1027_Bandit_H))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -595,11 +603,14 @@ instance DIA_Akil_AkilsSchaf(C_Info)
 
 func int DIA_Akil_AkilsSchaf_Condition()
 {
-	if((Kapitel >= 3) && !Npc_IsDead(Follow_Sheep_AKIL) && (MIS_Akil_SchafDiebe != FALSE))
+	if((Kapitel >= 3) && (MIS_Akil_SchafDiebe != FALSE))
 	{
-		if(Npc_GetDistToNpc(self,Follow_Sheep_AKIL) < 1000)
+		if(!Npc_IsDead(Follow_Sheep_AKIL))
 		{
-			return TRUE;
+			if(Npc_GetDistToNpc(self,Follow_Sheep_AKIL) < 1000)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -611,44 +622,9 @@ func void DIA_Akil_AkilsSchaf_Info()
 	B_GiveInvItems(self,other,ItMi_Gold,150);
 	Follow_Sheep_AKIL.aivar[AIV_PARTYMEMBER] = FALSE;
 	Follow_Sheep_AKIL.aivar[AIV_TAPOSITION] = NOTINPOS;
-	Follow_Sheep_AKIL.wp = "NW_FARM2_OUT_02";
-	Follow_Sheep_AKIL.start_aistate = ZS_MM_AllScheduler;
+//	Follow_Sheep_AKIL.wp = "NW_FARM2_OUT_02";
+//	Follow_Sheep_AKIL.start_aistate = ZS_MM_AllScheduler;
 	B_StartOtherRoutine(Follow_Sheep_AKIL,"Farm");
 	B_GivePlayerXP(XP_AkilsSchaf);
-};
-
-
-instance DIA_Akil_PICKPOCKET(C_Info)
-{
-	npc = BAU_940_Akil;
-	nr = 900;
-	condition = DIA_Akil_PICKPOCKET_Condition;
-	information = DIA_Akil_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Akil_PICKPOCKET_Condition()
-{
-	return C_Beklauen(37,30);
-};
-
-func void DIA_Akil_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Akil_PICKPOCKET);
-	Info_AddChoice(DIA_Akil_PICKPOCKET,Dialog_Back,DIA_Akil_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Akil_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Akil_PICKPOCKET_DoIt);
-};
-
-func void DIA_Akil_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Akil_PICKPOCKET);
-};
-
-func void DIA_Akil_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Akil_PICKPOCKET);
 };
 

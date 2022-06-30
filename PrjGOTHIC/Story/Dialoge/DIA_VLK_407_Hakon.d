@@ -300,7 +300,7 @@ instance DIA_Hakon_Banditen(C_Info)
 
 func int DIA_Hakon_Banditen_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Hakon_HaradBandits) || Npc_KnowsInfo(hero,DIA_Hakon_OutOfTown))
+	if(Npc_KnowsInfo(other,DIA_Hakon_HaradBandits) || Npc_KnowsInfo(other,DIA_Hakon_OutOfTown))
 	{
 		return TRUE;
 	};
@@ -328,7 +328,7 @@ instance DIA_Hakon_Wieviel(C_Info)
 
 func int DIA_Hakon_Wieviel_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Hakon_Banditen))
+	if(Npc_KnowsInfo(other,DIA_Hakon_Banditen))
 	{
 		return TRUE;
 	};
@@ -450,9 +450,12 @@ instance DIA_Hakon_Success(C_Info)
 
 func int DIA_Hakon_Success_Condition()
 {
-	if((MIS_HakonBandits == LOG_Running) && Npc_IsDead(Bandit_1) && Npc_IsDead(Bandit_2) && Npc_IsDead(Bandit_3) && Npc_KnowsInfo(hero,DIA_Hakon_Wo))
+	if((MIS_HakonBandits == LOG_Running) && Npc_KnowsInfo(other,DIA_Hakon_Wo))
 	{
-		return TRUE;
+		if(C_HakonBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -504,41 +507,6 @@ func void DIA_Hakon_Minenanteil_Info()
 };
 
 
-instance DIA_Hakon_PICKPOCKET(C_Info)
-{
-	npc = VLK_407_Hakon;
-	nr = 900;
-	condition = DIA_Hakon_PICKPOCKET_Condition;
-	information = DIA_Hakon_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Hakon_PICKPOCKET_Condition()
-{
-	return C_Beklauen(45,65);
-};
-
-func void DIA_Hakon_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Hakon_PICKPOCKET);
-	Info_AddChoice(DIA_Hakon_PICKPOCKET,Dialog_Back,DIA_Hakon_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Hakon_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Hakon_PICKPOCKET_DoIt);
-};
-
-func void DIA_Hakon_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Hakon_PICKPOCKET);
-};
-
-func void DIA_Hakon_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Hakon_PICKPOCKET);
-};
-
-
 instance DIA_Hakon_Kapitel2(C_Info)
 {
 	npc = VLK_407_Hakon;
@@ -552,7 +520,7 @@ instance DIA_Hakon_Kapitel2(C_Info)
 
 func int DIA_Hakon_Kapitel2_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Hakon_Hallo) && (Kapitel > HakonTalkedToPlayerChapter) && (Canthar_Sperre == FALSE) && (Kapitel < 5))
+	if(Npc_KnowsInfo(other,DIA_Hakon_Hallo) && (Kapitel > HakonTalkedToPlayerChapter) && (Canthar_Sperre == FALSE) && (Kapitel < 5))
 	{
 		return TRUE;
 	};

@@ -544,12 +544,12 @@ instance ItRi_Dex_01(C_Item)
 
 func void Equip_ItRi_Dex_01()
 {
-	Npc_ChangeAttribute(self,ATR_DEXTERITY,Ri_Dex);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,Ri_Dex);
 };
 
 func void UnEquip_ItRi_Dex_01()
 {
-	Npc_ChangeAttribute(self,ATR_DEXTERITY,-Ri_Dex);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,-Ri_Dex);
 };
 
 
@@ -579,12 +579,12 @@ instance ItRi_Dex_02(C_Item)
 
 func void Equip_ItRi_Dex_02()
 {
-	Npc_ChangeAttribute(self,ATR_DEXTERITY,Ri_Dex02);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,Ri_Dex02);
 };
 
 func void UnEquip_ItRi_Dex_02()
 {
-	Npc_ChangeAttribute(self,ATR_DEXTERITY,-Ri_Dex02);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,-Ri_Dex02);
 };
 
 
@@ -684,12 +684,12 @@ instance ItRi_Str_01(C_Item)
 
 func void Equip_ItRi_Str_01()
 {
-	Npc_ChangeAttribute(self,ATR_STRENGTH,Ri_Strg);
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,Ri_Strg);
 };
 
 func void UnEquip_ItRi_Str_01()
 {
-	Npc_ChangeAttribute(self,ATR_STRENGTH,-Ri_Strg);
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,-Ri_Strg);
 };
 
 
@@ -719,12 +719,12 @@ instance ItRi_Str_02(C_Item)
 
 func void Equip_ItRi_Str_02()
 {
-	Npc_ChangeAttribute(self,ATR_STRENGTH,Ri_Strg02);
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,Ri_Strg02);
 };
 
 func void UnEquip_ItRi_Str_02()
 {
-	Npc_ChangeAttribute(self,ATR_STRENGTH,-Ri_Strg02);
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,-Ri_Strg02);
 };
 
 
@@ -865,13 +865,13 @@ instance ItRi_Dex_Strg_01(C_Item)
 
 func void Equip_ItRi_Dex_Strg_01()
 {
-	Npc_ChangeAttribute(self,ATR_STRENGTH,Ri_DexStrg_Strg);
-	Npc_ChangeAttribute(self,ATR_DEXTERITY,Ri_DexStrg_Dex);
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,Ri_DexStrg_Strg);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,Ri_DexStrg_Dex);
 };
 
 func void UnEquip_ItRi_Dex_Strg_01()
 {
-	Npc_ChangeAttribute(self,ATR_STRENGTH,-Ri_DexStrg_Strg);
-	Npc_ChangeAttribute(self,ATR_DEXTERITY,-Ri_DexStrg_Dex);
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,-Ri_DexStrg_Strg);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,-Ri_DexStrg_Dex);
 };
 

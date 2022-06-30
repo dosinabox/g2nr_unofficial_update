@@ -224,10 +224,7 @@ func int DIA_Ehnim_PERMKAP1_Condition()
 func void DIA_Ehnim_PERMKAP1_Info()
 {
 	AI_Output(self,other,"DIA_Ehnim_PERMKAP1_12_00");	//“ебе мало того, что ты натворил? я думаю, тебе лучше уйти.
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 66) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-	{
-		AI_StopProcessInfos(self);
-	};
+	AI_StopProcessInfos_Pickpocket();
 };
 
 
@@ -277,10 +274,17 @@ func void DIA_Ehnim_MoleRatFett_was()
 	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_12_02");	//Ќу ладно, все равно уже € проболталс€. ¬ лесу, неподалеку от фермы, ¬ино устроил секретную винокурню.
 	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_12_03");	//Ќесколько дней назад он попросил мен€ дать ему что-нибудь, чтобы смазать механизм решетки, установленной там.
 	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_12_04");	//ѕоследнее врем€ шли дожди, и она заржавела. Ћебедку заклинило, и он не может подн€ть решетку.
-	Log_CreateTopic(TOPIC_FoundVinosKellerei,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_FoundVinosKellerei,LOG_Running);
-	B_LogEntry(TOPIC_FoundVinosKellerei,"Ёним рассказал мне, что ¬ино содержит секретный винокуренный завод в лесу около фермы јкила. Ќо механизм, открывающий решетку, заклинило, и починить его можно только смазав шестеренки жиром крысокрота.");
-	Info_AddChoice(DIA_Ehnim_MoleRatFett,"»? “ы достал смазку?",DIA_Ehnim_MoleRatFett_was_Fett);
+	if(FoundVinosKellerei == FALSE)
+	{
+		Log_CreateTopic(TOPIC_FoundVinosKellerei,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_FoundVinosKellerei,LOG_Running);
+		B_LogEntry(TOPIC_FoundVinosKellerei,"Ёним рассказал мне, что ¬ино содержит секретный винокуренный завод в лесу около фермы јкила. Ќо механизм, открывающий решетку, заклинило, и починить его можно только смазав шестеренки жиром крысокрота.");
+		Info_AddChoice(DIA_Ehnim_MoleRatFett,"»? “ы достал смазку?",DIA_Ehnim_MoleRatFett_was_Fett);
+	}
+	else
+	{
+		DIA_Common_Yeah();
+	};
 };
 
 func void DIA_Ehnim_MoleRatFett_was_Fett()
@@ -385,44 +389,6 @@ func int DIA_Ehnim_PERMKAP3_Condition()
 func void DIA_Ehnim_PERMKAP3_Info()
 {
 	AI_Output(self,other,"DIA_Ehnim_PERMKAP3_12_00");	//” мен€ нет времени на теб€.
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 66) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-	{
-		AI_StopProcessInfos(self);
-	};
-};
-
-
-instance DIA_Ehnim_PICKPOCKET(C_Info)
-{
-	npc = BAU_944_Ehnim;
-	nr = 900;
-	condition = DIA_Ehnim_PICKPOCKET_Condition;
-	information = DIA_Ehnim_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Ehnim_PICKPOCKET_Condition()
-{
-	return C_Beklauen(76,35);
-};
-
-func void DIA_Ehnim_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Ehnim_PICKPOCKET);
-	Info_AddChoice(DIA_Ehnim_PICKPOCKET,Dialog_Back,DIA_Ehnim_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Ehnim_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Ehnim_PICKPOCKET_DoIt);
-};
-
-func void DIA_Ehnim_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Ehnim_PICKPOCKET);
-};
-
-func void DIA_Ehnim_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Ehnim_PICKPOCKET);
+	AI_StopProcessInfos_Pickpocket();
 };
 

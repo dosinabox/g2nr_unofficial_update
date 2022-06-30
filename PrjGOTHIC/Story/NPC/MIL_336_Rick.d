@@ -12,6 +12,7 @@ instance MIL_336_Rick(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,10,ItMi_Gold,45);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_N_Ricelord,BodyTex_N,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

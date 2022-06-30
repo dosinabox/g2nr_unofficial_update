@@ -213,7 +213,6 @@ func void DIA_Sekob_Defeated_weich()
 
 func void B_Sekob_Kassieren()
 {
-	AI_Output(other,self,"DIA_Sekob_Kassieren_15_00");	//Хватит нести чушь. Дожди шли почти не переставая, и твои закрома ломятся от зерна. Заплати ренту, или я убью тебя.
 	AI_Output(self,other,"DIA_Sekob_Kassieren_01_01");	//(подобострастно) Нет, пожалуйста, вот, возьми золото. Я даже прибавлю сверху, если ты оставишь меня в живых.
 	CreateInvItems(self,ItMi_Gold,60);
 	B_GiveInvItems(self,other,ItMi_Gold,60);
@@ -225,6 +224,7 @@ func void B_Sekob_Kassieren()
 
 func void DIA_Sekob_Defeated_hart()
 {
+	AI_Output(other,self,"DIA_Sekob_Kassieren_15_00_add");	//Заплати ренту, или я убью тебя.
 	B_Sekob_Kassieren();
 };
 
@@ -267,7 +267,7 @@ func void DIA_Sekob_Again_Info()
 func void DIA_Sekob_Again_Nein()
 {
 	AI_Output(other,self,"DIA_Sekob_Again_Nein_15_00");	//Я передумал.
-	B_Sekob_Kassieren();
+	DIA_Sekob_Defeated_hart();
 };
 
 func void DIA_Sekob_Again_Ja()
@@ -286,6 +286,7 @@ func void DIA_Sekob_Again_verarscht()
 	AI_Output(self,other,"DIA_Sekob_Again_verarscht_01_03");	//За что? Что такого я сделал?
 	AI_Output(other,self,"DIA_Sekob_Again_verarscht_15_04");	//Ты пытался провести меня.
 	AI_Output(self,other,"DIA_Sekob_Again_verarscht_01_05");	//Я сказал правду - честно!
+	AI_Output(other,self,"DIA_Sekob_Kassieren_15_00");	//Хватит нести чушь. Дожди шли почти не переставая, и твои закрома ломятся от зерна. Заплати ренту, или я убью тебя.
 	B_Sekob_Kassieren();
 };
 
@@ -371,9 +372,12 @@ instance DIA_Sekob_DMTWEG(C_Info)
 
 func int DIA_Sekob_DMTWEG_Condition()
 {
-	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Sekob_DMT) && Npc_IsDead(DMT_DementorAmbientSekob1) && Npc_IsDead(DMT_DementorAmbientSekob2) && Npc_IsDead(DMT_DementorAmbientSekob3) && Npc_IsDead(DMT_DementorAmbientSekob4))
+	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Sekob_DMT))
 	{
-		return TRUE;
+		if(C_SekobDementorsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -672,40 +676,5 @@ func void DIA_Sekob_ROSINEVERBACK_Info()
 	B_Attack(self,other,AR_NONE,1);
 	MIS_bringRosiBackToSekob = LOG_FAILED;
 	B_GivePlayerXP(XP_AmbientKap5);
-};
-
-
-instance DIA_Sekob_PICKPOCKET(C_Info)
-{
-	npc = BAU_930_Sekob;
-	nr = 900;
-	condition = DIA_Sekob_PICKPOCKET_Condition;
-	information = DIA_Sekob_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Sekob_PICKPOCKET_Condition()
-{
-	return C_Beklauen(75,230);
-};
-
-func void DIA_Sekob_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Sekob_PICKPOCKET);
-	Info_AddChoice(DIA_Sekob_PICKPOCKET,Dialog_Back,DIA_Sekob_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Sekob_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Sekob_PICKPOCKET_DoIt);
-};
-
-func void DIA_Sekob_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Sekob_PICKPOCKET);
-};
-
-func void DIA_Sekob_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Sekob_PICKPOCKET);
 };
 

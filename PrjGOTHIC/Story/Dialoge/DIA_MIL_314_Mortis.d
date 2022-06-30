@@ -190,7 +190,7 @@ func void DIA_Mortis_CanTeach_Info()
 
 func void B_BuildLearnDialog_Mortis()
 {
-	if(other.aivar[REAL_STRENGTH] >= 150)
+	if(RealAttributeValue(ATR_STRENGTH) >= 150)
 	{
 		AI_Output(self,other,"DIA_Mortis_Teach_13_00");	//“ы и так достаточно силен. ≈сли же ты стремишьс€ к большему, найди себе другого учител€.
 	}
@@ -198,8 +198,8 @@ func void B_BuildLearnDialog_Mortis()
 	{
 		Info_ClearChoices(DIA_Mortis_Teach);
 		Info_AddChoice(DIA_Mortis_Teach,Dialog_Back,DIA_Mortis_Teach_BACK);
-		Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Mortis_Teach_1);
-		Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Mortis_Teach_5);
+		Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Mortis_Teach_1);
+		Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Mortis_Teach_5);
 	};
 };
 
@@ -247,40 +247,6 @@ func void DIA_Mortis_Teach_5()
 	{
 		B_BuildLearnDialog_Mortis();
 	};
-};
-
-instance DIA_Mortis_PICKPOCKET(C_Info)
-{
-	npc = MIL_314_Mortis;
-	nr = 900;
-	condition = DIA_Mortis_PICKPOCKET_Condition;
-	information = DIA_Mortis_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Mortis_PICKPOCKET_Condition()
-{
-	return C_Beklauen(38,60);
-};
-
-func void DIA_Mortis_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Mortis_PICKPOCKET);
-	Info_AddChoice(DIA_Mortis_PICKPOCKET,Dialog_Back,DIA_Mortis_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Mortis_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Mortis_PICKPOCKET_DoIt);
-};
-
-func void DIA_Mortis_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Mortis_PICKPOCKET);
-};
-
-func void DIA_Mortis_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Mortis_PICKPOCKET);
 };
 
 instance DIA_Mortis_RepairNecklace(C_Info)

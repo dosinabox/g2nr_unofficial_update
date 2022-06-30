@@ -11,6 +11,7 @@ instance NOV_605_Opolos(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Nov_Mace);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,54,ItMi_Gold,70);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Tough_Silas,BodyTex_B,ITAR_NOV_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

@@ -22,10 +22,13 @@ func void DIA_Addon_Merdarion_ADW_EXIT_Info()
 		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_11");	//Да, и кстати, пока я не забыл - Сатурас хотел поговорить с тобой.
 		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_12");	//Ты должен найти его как можно скорее.
 	};
-	if((Npc_KnowsInfo(other,DIA_Addon_Merdarion_FokusGeben) || (Merdarion_GotFocusCount > 0)) && !SC_ADW_ActivatedAllTelePortStones && (TriggeredTeleporterADW <= Merdarion_GotFocusCount) && !Npc_HasItems(other,ItMi_Focus))
+	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_FokusGeben) || (Merdarion_GotFocusCount > 0))
 	{
-		CreateInvItems(self,ItMi_Focus,1);
-		B_GiveInvItems(self,other,ItMi_Focus,1);
+		if((SC_ADW_ActivatedAllTelePortStones == FALSE) && (TriggeredTeleporterADW <= Merdarion_GotFocusCount) && !Npc_HasItems(other,ItMi_Focus))
+		{
+			CreateInvItems(self,ItMi_Focus,1);
+			B_GiveInvItems(self,other,ItMi_Focus,1);
+		};
 	};
 	AI_StopProcessInfos(self);
 };
@@ -216,6 +219,11 @@ func void DIA_Addon_Merdarion_ActivateTeleports_Info()
 		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_02");	//Конечно, пожалуйста.
 		CreateInvItems(self,ItMi_Focus,1);
 		B_GiveInvItems(self,other,ItMi_Focus,1);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_08");	//Ты проделал отличную работу. Мне остается только поздравить тебя.
+		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_09");	//Теперь они все работают. Впечатляющее зрелище, правда?
 	};
 	if(DIA_Addon_Merdarion_ActivateTeleports_OneTime == FALSE)
 	{
@@ -225,11 +233,6 @@ func void DIA_Addon_Merdarion_ActivateTeleports_Info()
 		AI_Output(other,self,"DIA_Addon_Merdarion_ActivateTeleports_15_06");	//Явно не помешает.
 		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_07");	//Посмотрим...
 		DIA_Addon_Merdarion_ActivateTeleports_OneTime = TRUE;
-	};
-	if(SC_ADW_ActivatedAllTelePortStones == TRUE)
-	{
-		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_08");	//Ты проделал отличную работу. Мне остается только поздравить тебя.
-		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_09");	//Теперь они все работают. Впечатляющее зрелище, правда?
 	};
 	AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_10");	//Вот несколько золотых монет.
 	B_GivePlayerXP(XP_Addon_ActivatedTeleportStone);
@@ -271,7 +274,7 @@ var int Merdarion_ADW_Empty;
 
 func void B_BuildLearnDialog_Merdarion()
 {
-	if(other.aivar[REAL_MANA_MAX] >= T_HIGH)
+	if(RealAttributeValue(ATR_MANA_MAX) >= T_HIGH)
 	{
 		AI_Output(self,other,"DIA_Addon_Merdarion_ADW_TEACH_MANA_06_00");	//То, что ты просишь, выходит за рамки моих способностей.
 		AI_Output(self,other,"DIA_Addon_Merdarion_ADW_TEACH_MANA_06_01");	//Ты уже знаешь все, чему бы я тебя мог научить.
@@ -281,8 +284,8 @@ func void B_BuildLearnDialog_Merdarion()
 	{
 		Info_ClearChoices(DIA_Addon_Merdarion_ADW_TEACH_MANA);
 		Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,Dialog_Back,DIA_Addon_Merdarion_ADW_TEACH_MANA_BACK);
-		Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),DIA_Addon_Merdarion_ADW_TEACH_MANA_1);
-		Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),DIA_Addon_Merdarion_ADW_TEACH_MANA_5);
+		Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_Addon_Merdarion_ADW_TEACH_MANA_1);
+		Info_AddChoice(DIA_Addon_Merdarion_ADW_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_Addon_Merdarion_ADW_TEACH_MANA_5);
 	};
 };
 

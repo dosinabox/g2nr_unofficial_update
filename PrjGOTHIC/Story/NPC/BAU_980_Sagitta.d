@@ -9,10 +9,11 @@ instance BAU_980_Sagitta(Npc_Default)
 	npcType = npctype_main;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
-	self.attribute[ATR_DEXTERITY] = 1;
+	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Axe);
 //	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,103,ItMi_Gold,360);
 //	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabe_N_PinkHair,BodyTexBabe_N,ITAR_BauBabe_L);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabeExtra01,BodyTexBabe_P,ITAR_BauBabe_L);
 	Mdl_SetModelFatness(self,0);

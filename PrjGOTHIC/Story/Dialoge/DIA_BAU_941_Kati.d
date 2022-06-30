@@ -97,14 +97,13 @@ func void DIA_Kati_HALLO_Info()
 		AI_Output(self,other,"DIA_Kati_HALLO_16_02");	//Да, я в порядке, спасибо.
 	};
 	Npc_ExchangeRoutine(self,"Start");
-//	self.flags = 0;
-	if(Hlp_IsValidNpc(Akil) && !Npc_IsDead(Akil))
-	{
-		B_StartOtherRoutine(Akil,"Start");
-	};
+	B_StartOtherRoutine(Akil,"Start");
 	if(Hlp_IsValidNpc(Randolph) && !Npc_IsDead(Randolph))
 	{
-		B_StartOtherRoutine(Randolph,"Start");
+		if(DIA_Randolph_ICHGEBEDIRGELD_noPerm == FALSE)
+		{
+			B_StartOtherRoutine(Randolph,"Start");
+		};
 		Randolph.flags = 0;
 	};
 };
@@ -331,40 +330,5 @@ func void DIA_Kati_PERM_Info()
 	AI_Output(other,self,"DIA_Kati_PERM_15_00");	//С тобой все в порядке?
 	AI_Output(self,other,"DIA_Kati_PERM_16_01");	//Мы справимся. Вот только не знаю, сколько еще нам придется терпеть этих дьяволов в черном.
 	AI_Output(self,other,"DIA_Kati_PERM_16_02");	//Я так долго не вынесу. Они шныряют вокруг дома и везде суют свой нос.
-};
-
-
-instance DIA_Kati_PICKPOCKET(C_Info)
-{
-	npc = BAU_941_Kati;
-	nr = 900;
-	condition = DIA_Kati_PICKPOCKET_Condition;
-	information = DIA_Kati_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20_Female;
-};
-
-
-func int DIA_Kati_PICKPOCKET_Condition()
-{
-	return C_Beklauen(13,15);
-};
-
-func void DIA_Kati_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Kati_PICKPOCKET);
-	Info_AddChoice(DIA_Kati_PICKPOCKET,Dialog_Back,DIA_Kati_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Kati_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Kati_PICKPOCKET_DoIt);
-};
-
-func void DIA_Kati_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Kati_PICKPOCKET);
-};
-
-func void DIA_Kati_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Kati_PICKPOCKET);
 };
 

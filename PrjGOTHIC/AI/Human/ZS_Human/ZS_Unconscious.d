@@ -2,6 +2,10 @@
 func void ZS_Unconscious()
 {
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
+//	Mdl_ApplyRandomAni(self,"S_WOUNDED","T_WOUNDED_TRY");
+//	Mdl_ApplyRandomAniFreq(self,"S_WOUNDED",8);
+//	Mdl_ApplyRandomAni(self,"S_WOUNDEDB","T_WOUNDEDB_TRY");
+//	Mdl_ApplyRandomAniFreq(self,"S_WOUNDEDB",4);
 	if(C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE))
 	{
 		Npc_ClearAIQueue(self);
@@ -65,7 +69,7 @@ func void ZS_Unconscious()
 	B_ClearSpecialAmmo(self);
 	if(self.guild == GIL_STRF)
 	{
-		Npc_RemoveInvItems(self,ItMw_2H_Axe_L_01,Npc_HasItems(self,ItMw_2H_Axe_L_01));
+		B_RemoveEveryInvItem(self,ItMw_2H_Axe_L_01);
 	};
 	B_GiveDeathXP(other,self);
 	AI_UnequipWeapons(self);

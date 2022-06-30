@@ -4,40 +4,40 @@ func int C_IAmCanyonRazor(var C_Npc slf)
 	if(C_IsNpc(slf,CanyonRazor01))
 	{
 		return TRUE;
-	}
-	else if(C_IsNpc(slf,CanyonRazor02))
+	};
+	if(C_IsNpc(slf,CanyonRazor02))
 	{
 		return TRUE;
-	}
-	else if(C_IsNpc(slf,CanyonRazor03))
+	};
+	if(C_IsNpc(slf,CanyonRazor03))
 	{
 		return TRUE;
-	}
-	else if(C_IsNpc(slf,CanyonRazor04))
+	};
+	if(C_IsNpc(slf,CanyonRazor04))
 	{
 		return TRUE;
-	}
-	else if(C_IsNpc(slf,CanyonRazor05))
+	};
+	if(C_IsNpc(slf,CanyonRazor05))
 	{
 		return TRUE;
-	}
-	else if(C_IsNpc(slf,CanyonRazor06))
+	};
+	if(C_IsNpc(slf,CanyonRazor06))
 	{
 		return TRUE;
-	}
-	else if(C_IsNpc(slf,CanyonRazor07))
+	};
+	if(C_IsNpc(slf,CanyonRazor07))
 	{
 		return TRUE;
-	}
-	else if(C_IsNpc(slf,CanyonRazor08))
+	};
+	if(C_IsNpc(slf,CanyonRazor08))
 	{
 		return TRUE;
-	}
-	else if(C_IsNpc(slf,CanyonRazor09))
+	};
+	if(C_IsNpc(slf,CanyonRazor09))
 	{
 		return TRUE;
-	}
-	else if(C_IsNpc(slf,CanyonRazor10))
+	};
+	if(C_IsNpc(slf,CanyonRazor10))
 	{
 		return TRUE;
 	};

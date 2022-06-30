@@ -12,6 +12,7 @@ instance DJG_710_Kjorn(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 //	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,47,ItMi_Gold,75);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal02,BodyTex_N,ITAR_DJG_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

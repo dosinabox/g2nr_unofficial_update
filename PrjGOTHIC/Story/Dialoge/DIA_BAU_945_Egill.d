@@ -176,44 +176,6 @@ func int DIA_Egill_PERMKAP1_Condition()
 func void DIA_Egill_PERMKAP1_Info()
 {
 	AI_Output(self,other,"DIA_Egill_PERMKAP1_08_00");	//Тебе мало того, что ты натворил? Я думаю, тебе лучше уйти.
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 35) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-	{
-		AI_StopProcessInfos(self);
-	};
-};
-
-
-instance DIA_Egill_PICKPOCKET(C_Info)
-{
-	npc = BAU_945_Egill;
-	nr = 900;
-	condition = DIA_Egill_PICKPOCKET_Condition;
-	information = DIA_Egill_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Egill_PICKPOCKET_Condition()
-{
-	return C_Beklauen(45,24);
-};
-
-func void DIA_Egill_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Egill_PICKPOCKET);
-	Info_AddChoice(DIA_Egill_PICKPOCKET,Dialog_Back,DIA_Egill_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Egill_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Egill_PICKPOCKET_DoIt);
-};
-
-func void DIA_Egill_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Egill_PICKPOCKET);
-};
-
-func void DIA_Egill_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Egill_PICKPOCKET);
+	AI_StopProcessInfos_Pickpocket();
 };
 

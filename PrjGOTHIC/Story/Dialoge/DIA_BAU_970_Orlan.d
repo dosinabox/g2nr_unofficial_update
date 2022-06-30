@@ -645,8 +645,7 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 	AI_Output(other,self,"DIA_Orlan_WETTKAMPFLAEUFT_15_01");	//Что случилось?
 	AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_02");	//Состязание 'кто кого перепьет' наконец-то закончилось.
 	AI_Output(other,self,"DIA_Orlan_WETTKAMPFLAEUFT_15_03");	//Кто победил?
-//	if(!Mob_HasItems("CHEST_RUKHAR",ItFo_Booze) && Mob_HasItems("CHEST_RUKHAR",ItFo_Water))
-	if(!Mob_HasItems("CHEST_RUKHAR",ItFo_Booze) && (Mob_HasItems("CHEST_RUKHAR",ItFo_Water) > 0) && (Rukhar_Won_Wettkampf == FALSE))
+	if(!Mob_HasItems("CHEST_RUKHAR",ItFo_Booze) && Mob_HasItems("CHEST_RUKHAR",ItFo_Water) && (Rukhar_Won_Wettkampf == FALSE))
 	{
 		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_04");	//На этот раз Рэндольф. Рухару нынче не повезло.
 	}
@@ -785,40 +784,5 @@ func void DIA_Orlan_Minenanteil_Info()
 	AI_Output(other,self,"DIA_Orlan_Minenanteil_15_00");	//Ты продаешь акции?
 	AI_Output(self,other,"DIA_Orlan_Minenanteil_05_01");	//Конечно. Ты тоже можешь купить, если цена тебя устраивает.
 	B_GivePlayerXP(XP_Ambient);
-};
-
-
-instance DIA_Orlan_PICKPOCKET(C_Info)
-{
-	npc = BAU_970_Orlan;
-	nr = 900;
-	condition = DIA_Orlan_PICKPOCKET_Condition;
-	information = DIA_Orlan_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Orlan_PICKPOCKET_Condition()
-{
-	return C_Beklauen(89,260);
-};
-
-func void DIA_Orlan_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Orlan_PICKPOCKET);
-	Info_AddChoice(DIA_Orlan_PICKPOCKET,Dialog_Back,DIA_Orlan_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Orlan_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Orlan_PICKPOCKET_DoIt);
-};
-
-func void DIA_Orlan_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Orlan_PICKPOCKET);
-};
-
-func void DIA_Orlan_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Orlan_PICKPOCKET);
 };
 

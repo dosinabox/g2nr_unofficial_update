@@ -326,38 +326,3 @@ instance DIA_Cipher_KrautPaket_OW(C_Info)
 	description = "Это случайно не твой тюк болотной травы?";
 };
 
-
-instance DIA_Cipher_PICKPOCKET(C_Info)
-{
-	npc = DJG_703_Cipher;
-	nr = 900;
-	condition = DIA_Cipher_PICKPOCKET_Condition;
-	information = DIA_Cipher_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Cipher_PICKPOCKET_Condition()
-{
-	return C_Beklauen(79,220);
-};
-
-func void DIA_Cipher_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Cipher_PICKPOCKET);
-	Info_AddChoice(DIA_Cipher_PICKPOCKET,Dialog_Back,DIA_Cipher_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Cipher_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Cipher_PICKPOCKET_DoIt);
-};
-
-func void DIA_Cipher_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Cipher_PICKPOCKET);
-};
-
-func void DIA_Cipher_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Cipher_PICKPOCKET);
-};
-

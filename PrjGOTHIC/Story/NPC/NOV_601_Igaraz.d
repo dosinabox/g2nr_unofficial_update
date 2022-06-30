@@ -11,7 +11,7 @@ instance NOV_601_Igaraz(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Nov_Mace);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItKe_IgarazChest_Mis,1);
+	B_CreateItemToSteal(self,40,ItKe_IgarazChest_Mis,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Normal_Stone,BodyTex_N,ITAR_NOV_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

@@ -77,15 +77,6 @@ func int DIA_Bennet_DI_TRADE_Condition()
 
 func void DIA_Bennet_DI_TRADE_Info()
 {
-	if(Bennet_DI_flag == TRUE)
-	{
-		B_ClearSmithInv(self);
-		if(Bennet_DI_swordraws > 0)
-		{
-			CreateInvItems(self,ItMiSwordraw,Bennet_DI_swordraws);
-		};
-		Bennet_DI_flag = FALSE;
-	};
 	AI_Output(other,self,"DIA_Bennet_DI_TRADE_15_00");	//Какое оружие ты можешь продать мне?
 	AI_Output(self,other,"DIA_Bennet_DI_TRADE_06_01");	//Только лучшее. Ты же знаешь.
 	B_GiveTradeInv(self);
@@ -235,8 +226,8 @@ func void B_BuildLearnDialog_Bennet_DI()
 {
 	Info_ClearChoices(DIA_Bennet_TeachSTR);
 	Info_AddChoice(DIA_Bennet_TeachSTR,Dialog_Back,DIA_Bennet_TeachSTR_Back);
-	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Bennet_TeachSTR_STR_1);
-	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Bennet_TeachSTR_STR_5);
+	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Bennet_TeachSTR_STR_1);
+	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Bennet_TeachSTR_STR_5);
 };
 
 instance DIA_Bennet_TeachSTR(C_Info)
@@ -338,41 +329,6 @@ func void DIA_Bennet_DI_UndeadDragonDead_Info()
 	AI_Output(other,self,"DIA_Bennet_DI_UndeadDragonDead_15_00");	//Мы сделали все, что было нужно сделать.
 	AI_Output(self,other,"DIA_Bennet_DI_UndeadDragonDead_06_01");	//Рад слышать это. Мне уже успела надоесть эта старая кузница. Я хочу опять стоять на твердой земле.
 	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Bennet_DI_PICKPOCKET(C_Info)
-{
-	npc = SLD_809_Bennet_DI;
-	nr = 900;
-	condition = DIA_Bennet_DI_PICKPOCKET_Condition;
-	information = DIA_Bennet_DI_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Bennet_DI_PICKPOCKET_Condition()
-{
-	return C_Beklauen(35,65);
-};
-
-func void DIA_Bennet_DI_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Bennet_DI_PICKPOCKET);
-	Info_AddChoice(DIA_Bennet_DI_PICKPOCKET,Dialog_Back,DIA_Bennet_DI_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Bennet_DI_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Bennet_DI_PICKPOCKET_DoIt);
-};
-
-func void DIA_Bennet_DI_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Bennet_DI_PICKPOCKET);
-};
-
-func void DIA_Bennet_DI_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Bennet_DI_PICKPOCKET);
 };
 
 

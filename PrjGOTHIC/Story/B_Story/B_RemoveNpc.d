@@ -25,7 +25,7 @@ func void B_RemoveNpc(var int npcInstance)
 	}
 	else
 	{
-		Wld_RemoveNpc(npcInstance);
+		Wld_RemoveNpc(npcInstance); //TODO проверить: не удаляет Диего у заброшенной шахты в третьей главе?
 	};
 };
 

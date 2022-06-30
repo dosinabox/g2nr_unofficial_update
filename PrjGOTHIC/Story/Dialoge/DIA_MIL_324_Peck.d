@@ -21,47 +21,6 @@ func void DIA_Peck_EXIT_Info()
 };
 
 
-instance DIA_Peck_PICKPOCKET(C_Info)
-{
-	npc = MIL_324_Peck;
-	nr = 900;
-	condition = DIA_Peck_PICKPOCKET_Condition;
-	information = DIA_Peck_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60_Key;
-};
-
-
-func int DIA_Peck_PICKPOCKET_Condition()
-{
-//	return C_StealItems(60,Hlp_GetInstanceID(ItKe_City_Tower_05),1);
-	if(Npc_HasItems(self,ItKe_City_Tower_05))
-	{
-		return C_StealItem(60);
-	};
-	return FALSE;
-};
-
-func void DIA_Peck_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Peck_PICKPOCKET);
-	Info_AddChoice(DIA_Peck_PICKPOCKET,Dialog_Back,DIA_Peck_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Peck_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Peck_PICKPOCKET_DoIt);
-};
-
-func void DIA_Peck_PICKPOCKET_DoIt()
-{
-//	B_StealItems(60,Hlp_GetInstanceID(ItKe_City_Tower_05),1);
-	B_StealItem(60,Hlp_GetInstanceID(ItKe_City_Tower_05));
-	Info_ClearChoices(DIA_Peck_PICKPOCKET);
-};
-
-func void DIA_Peck_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Peck_PICKPOCKET);
-};
-
-
 instance DIA_Peck_HEY(C_Info)
 {
 	npc = MIL_324_Peck;

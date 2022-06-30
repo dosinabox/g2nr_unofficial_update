@@ -68,20 +68,14 @@ func void DIA_Engardo_HALLO_Info()
 			Akils_SLDStillthere = TRUE;
 		};
 		Chance = 1;
-		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 24) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-		{
-			AI_StopProcessInfos(self);
-		};
+		AI_StopProcessInfos_Pickpocket();
 	}
 	else if(Chance == 1)
 	{
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_01");	//Ты оказался не в том месте не в то время...
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_02");	//... так что, если хочешь жить, лучше топай отсюда. Понял?
 		Chance = 2;
-		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 24) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-		{
-			AI_StopProcessInfos(self);
-		};
+		AI_StopProcessInfos_Pickpocket();
 	}
 	else if(Chance == 2)
 	{
@@ -89,40 +83,5 @@ func void DIA_Engardo_HALLO_Info()
 		Info_ClearChoices(DIA_Engardo_HALLO);
 		Info_AddChoice(DIA_Engardo_HALLO,Dialog_Ende,DIA_Engardo_HALLO_End);
 	};
-};
-
-
-instance DIA_Engardo_PICKPOCKET(C_Info)
-{
-	npc = SLD_841_Engardo;
-	nr = 900;
-	condition = DIA_Engardo_PICKPOCKET_Condition;
-	information = DIA_Engardo_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Engardo_PICKPOCKET_Condition()
-{
-	return C_Beklauen(34,45);
-};
-
-func void DIA_Engardo_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Engardo_PICKPOCKET);
-	Info_AddChoice(DIA_Engardo_PICKPOCKET,Dialog_Back,DIA_Engardo_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Engardo_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Engardo_PICKPOCKET_DoIt);
-};
-
-func void DIA_Engardo_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Engardo_PICKPOCKET);
-};
-
-func void DIA_Engardo_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Engardo_PICKPOCKET);
 };
 

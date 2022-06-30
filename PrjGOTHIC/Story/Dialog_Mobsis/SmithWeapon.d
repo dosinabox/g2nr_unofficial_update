@@ -23,7 +23,7 @@ func void smithweapon_s1()
 	if(C_NpcIsHero(self))
 	{
 		HotRawSwordsCount = Npc_HasItems(self,ItMiSwordrawhot) + 1;
-		Npc_RemoveInvItems(self,ItMiSwordrawhot,Npc_HasItems(self,ItMiSwordrawhot));
+		B_RemoveEveryInvItem(self,ItMiSwordrawhot);
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_SmithWeapon;
 		//перенести снятие оружия в smithweapon_cond(), если будут готовы зены

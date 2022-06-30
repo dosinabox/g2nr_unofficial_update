@@ -201,10 +201,12 @@ instance DIA_Addon_Bengar_ReturnPardos(C_Info)
 
 func int DIA_Addon_Bengar_ReturnPardos_Condition()
 {
-//	if((MIS_Bengar_BringMissPeopleBack == LOG_Running) && (Npc_GetDistToWP(Pardos_NW,"NW_FARM3_HOUSE_IN_NAVI_2") <= 1000) && (MissingPeopleReturnedHome == TRUE))
-	if((MIS_Bengar_BringMissPeopleBack == LOG_Running) && !Npc_IsDead(Pardos_NW) && (MissingPeopleReturnedHome == TRUE))
+	if((MIS_Bengar_BringMissPeopleBack == LOG_Running) && (MissingPeopleReturnedHome == TRUE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Pardos_NW))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -446,9 +448,9 @@ instance DIA_Bengar_MILIZKLATSCHEN(C_Info)
 
 func int DIA_Bengar_MILIZKLATSCHEN_Condition()
 {
-	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && Npc_KnowsInfo(other,DIA_Bengar_MILIZ) && !Npc_IsDead(Rick) && !Npc_IsDead(Rumbold))
+	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && Npc_KnowsInfo(other,DIA_Bengar_MILIZ) && (Miliz_Flucht == FALSE))
 	{
-		if(Miliz_Flucht == FALSE)
+		if(!Npc_IsDead(Rick) && !Npc_IsDead(Rumbold))
 		{
 			return TRUE;
 		};
@@ -734,9 +736,12 @@ instance DIA_Bengar_SLDDA(C_Info)
 
 func int DIA_Bengar_SLDDA_Condition()
 {
-	if((Npc_GetDistToWP(SLD_Wolf,"FARM3") < 3000) && (MIS_BengarsHelpingSLD == LOG_SUCCESS) && !Npc_IsDead(SLD_Wolf))
+	if((MIS_BengarsHelpingSLD == LOG_SUCCESS) && !Npc_IsDead(SLD_Wolf))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(SLD_Wolf,"FARM3") < 3000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -763,9 +768,12 @@ instance DIA_Bengar_MALAKWIEDERDA(C_Info)
 
 func int DIA_Bengar_MALAKWIEDERDA_Condition()
 {
-	if((Npc_GetDistToWP(Malak,"FARM3") < 3000) && (MalakIsBackToBengar == TRUE) && !Npc_IsDead(Malak) && Npc_KnowsInfo(other,DIA_Bengar_ALLEIN))
+	if((MalakIsBackToBengar == TRUE) && !Npc_IsDead(Malak) && Npc_KnowsInfo(other,DIA_Bengar_ALLEIN))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(Malak,"FARM3") < 3000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -823,40 +831,5 @@ func void DIA_Bengar_PERM_Info()
 		B_StartOtherRoutine(SLD_815_Soeldner,"Start");
 		B_StartOtherRoutine(SLD_817_Soeldner,"Start");
 	};
-};
-
-
-instance DIA_Bengar_PICKPOCKET(C_Info)
-{
-	npc = BAU_960_Bengar;
-	nr = 900;
-	condition = DIA_Bengar_PICKPOCKET_Condition;
-	information = DIA_Bengar_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Bengar_PICKPOCKET_Condition()
-{
-	return C_Beklauen(28,50);
-};
-
-func void DIA_Bengar_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Bengar_PICKPOCKET);
-	Info_AddChoice(DIA_Bengar_PICKPOCKET,Dialog_Back,DIA_Bengar_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Bengar_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Bengar_PICKPOCKET_DoIt);
-};
-
-func void DIA_Bengar_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Bengar_PICKPOCKET);
-};
-
-func void DIA_Bengar_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Bengar_PICKPOCKET);
 };
 

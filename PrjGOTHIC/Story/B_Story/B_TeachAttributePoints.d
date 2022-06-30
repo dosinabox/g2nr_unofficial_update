@@ -3,54 +3,52 @@ func int B_TeachAttributePoints(var C_Npc slf,var C_Npc oth,var int attrib,var i
 {
 	var string concatText;
 	var int kosten;
-	var int realAttribute;
-	kosten = B_GetLearnCostAttribute(oth,attrib,points);
+	var int currentAttribute;
 	if((attrib != ATR_STRENGTH) && (attrib != ATR_DEXTERITY) && (attrib != ATR_MANA_MAX))
 	{
 		Print(PRINT_WrongParameter);
 		return FALSE;
 	};
-	if(attrib == ATR_STRENGTH)
-	{
-		realAttribute = oth.attribute[ATR_STRENGTH];
-//		realAttribute = oth.aivar[REAL_STRENGTH] - OrcRingCurrentPenalty;
-	}
-	else if(attrib == ATR_DEXTERITY)
-	{
-		realAttribute = oth.attribute[ATR_DEXTERITY];
-//		realAttribute = oth.aivar[REAL_DEXTERITY];
-	}
-	else if(attrib == ATR_MANA_MAX)
-	{
-		realAttribute = oth.attribute[ATR_MANA_MAX];
-//		realAttribute = oth.aivar[REAL_MANA_MAX];
-	};
-	if(realAttribute >= teacherMAX)
+	currentAttribute = VisibleAttributeValue(attrib);
+	if(currentAttribute == teacherMAX)
 	{
 		concatText = ConcatStrings(PRINT_NoLearnOverPersonalMAX,IntToString(teacherMAX));
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);
 		B_Say(slf,oth,"$NOLEARNYOUREBETTER");
 		return FALSE;
 	};
-	if((realAttribute + points) > teacherMAX)
+	if(currentAttribute > teacherMAX)
+	{
+		concatText = ConcatStrings(PRINT_NoLearnOverPersonalMAX,IntToString(teacherMAX));
+		PrintScreen(concatText,-1,-1,FONT_Screen,2);
+		B_Say(slf,oth,"$YOULEARNEDSOMETHING");
+		return FALSE;
+	};
+	if((currentAttribute + points) > teacherMAX)
 	{
 		concatText = ConcatStrings(PRINT_NoLearnOverPersonalMAX,IntToString(teacherMAX));
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);
 		B_Say(slf,oth,"$NOLEARNOVERPERSONALMAX");
 		return FALSE;
 	};
+	kosten = B_GetLearnCostAttribute(attrib,points);
 	if(oth.lp < kosten)
 	{
 		PrintScreen(PRINT_NotEnoughLP,-1,-1,FONT_Screen,2);
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	oth.lp -= kosten;
-	B_RaiseAttribute(oth,attrib,points);
-	if(IgnoreBonuses == TRUE)
+	if(PremiumTeachersEnabled == TRUE)
 	{
-		B_RaiseRealAttributeLearnCounter(oth,attrib,points);
+		if(!B_GiveInvItems(oth,slf,ItMi_Gold,kosten * PremiumTeachersPrice))
+		{
+			PrintScreen(Print_NotEnoughGold,-1,-1,FONT_Screen,2);
+			DIA_Common_WeWillGetToThatLater();
+			return FALSE;
+		};
 	};
+	oth.lp -= kosten;
+	B_RaiseAttributeByTraining(oth,attrib,points);
 	return TRUE;
 };
 

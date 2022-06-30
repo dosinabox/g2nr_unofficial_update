@@ -21,41 +21,6 @@ func void DIA_Gritta_EXIT_Info()
 };
 
 
-instance DIA_Gritta_PICKPOCKET(C_Info)
-{
-	npc = VLK_418_Gritta;
-	nr = 900;
-	condition = DIA_Gritta_PICKPOCKET_Condition;
-	information = DIA_Gritta_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20_Female;
-};
-
-
-func int DIA_Gritta_PICKPOCKET_Condition()
-{
-	return C_Beklauen(20,20);
-};
-
-func void DIA_Gritta_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Gritta_PICKPOCKET);
-	Info_AddChoice(DIA_Gritta_PICKPOCKET,Dialog_Back,DIA_Gritta_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Gritta_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Gritta_PICKPOCKET_DoIt);
-};
-
-func void DIA_Gritta_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Gritta_PICKPOCKET);
-};
-
-func void DIA_Gritta_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Gritta_PICKPOCKET);
-};
-
-
 instance DIA_Gritta_Hello(C_Info)
 {
 	npc = VLK_418_Gritta;
@@ -264,10 +229,7 @@ func void DIA_Gritta_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Gritta_PERM_16_03");	//Что еще тебе нужно? Ты получил мое золото! Убирайся!
 	};
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-	{
-		AI_StopProcessInfos(self);
-	};
+	AI_StopProcessInfos_Pickpocket();
 };
 
 

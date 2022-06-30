@@ -34,9 +34,9 @@ func void RakeTreasureSuccess(var C_Item itm)
 	B_GivePlayerXP(XP_Ambient);
 };
 
-func void B_SCUsesRake(var C_Npc slf)
+/*func void B_SCUsesRake(var C_Npc slf)
 {
-};
+};*/
 
 func void B_SCGetTreasure_S1()
 {
@@ -46,6 +46,7 @@ func void B_SCGetTreasure_S1()
 		{
 			Wld_InsertItem(ItSe_GoldPocket25,RAKEPLACE_WP_01);
 			RakeTreasureSuccess(ItSe_GoldPocket25);
+			//TODO проверять местонахождение Грега
 			if(!ArmorEquipped(Greg_NW,ITAR_PIR_H_Addon))
 			{
 				AI_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);

@@ -146,41 +146,6 @@ func void DIA_Addon_Lares_HaltsMaul_Info()
 };
 
 
-instance DIA_Lares_PICKPOCKET(C_Info)
-{
-	npc = VLK_449_Lares;
-	nr = 900;
-	condition = DIA_Lares_PICKPOCKET_Condition;
-	information = DIA_Lares_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Lares_PICKPOCKET_Condition()
-{
-	return C_Beklauen(95,350);
-};
-
-func void DIA_Lares_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Lares_PICKPOCKET);
-	Info_AddChoice(DIA_Lares_PICKPOCKET,Dialog_Back,DIA_Lares_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Lares_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Lares_PICKPOCKET_DoIt);
-};
-
-func void DIA_Lares_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Lares_PICKPOCKET);
-};
-
-func void DIA_Lares_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Lares_PICKPOCKET);
-};
-
-
 func void B_Lares_Comment_MIL()
 {
 	AI_Output(self,other,"DIA_Lares_OtherGuild_09_01");	//(смеется) Со смеху помереть можно - бывший каторжник в ополчении...
@@ -448,7 +413,10 @@ func void DIA_Addon_Lares_WannaBeRanger_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_WannaBeRanger_15_00");	//Я хочу присоединиться к Кольцу Воды...
 	AI_Output(self,other,"DIA_Addon_Lares_WannaBeRanger_09_01");	//Я не против. Но решение о том, можешь ли ты вступить в наши ряды, должны принять маги.
-	B_LogEntry(TOPIC_Addon_RingOfWater,LogText_Addon_KDWRight);
+	if(!Npc_KnowsInfo(other,DIA_Addon_Vatras_HowToJoin))
+	{
+		B_LogEntry(TOPIC_Addon_RingOfWater,LogText_Addon_KDWRight);
+	};
 	Info_ClearChoices(DIA_Addon_Lares_WannaBeRanger);
 	Info_AddChoice(DIA_Addon_Lares_WannaBeRanger,"Понимаю.",DIA_Addon_Lares_WannaBeRanger_BACK);
 	Info_AddChoice(DIA_Addon_Lares_WannaBeRanger,"А что это значит - быть членом вашего общества?",DIA_Addon_Lares_WannaBeRanger_HowIsIt);
@@ -497,9 +465,16 @@ instance DIA_Addon_Lares_RingBack(C_Info)
 
 func int DIA_Addon_Lares_RingBack_Condition()
 {
-	if((SC_IsRanger == TRUE) && (MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS) && ((Npc_GetDistToWP(self,"NW_CITY_HABOUR_02_B") < 1000) || (Npc_GetDistToWP(self,"NW_CITY_HABOUR_TAVERN01_08") < 1000)))
+	if((SC_IsRanger == TRUE) && (MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_02_B") < 1000)
+		{
+			return TRUE;
+		};
+		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_TAVERN01_08") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1062,9 +1037,16 @@ instance DIA_Addon_Lares_RangerHelp(C_Info)
 
 func int DIA_Addon_Lares_RangerHelp_Condition()
 {
-	if(((Lares_RangerHelp == TRUE) && (DIA_Addon_Lares_RangerHelp_gilde_OneTime_Waffe == FALSE) && (DIA_Addon_Lares_RangerHelp_gilde_OneTime_geld == FALSE) && (DIA_Addon_Lares_RangerHelp_gilde_OneTime_ruestung == FALSE)) || Npc_IsInState(Moe,ZS_Attack))
+	if((Lares_RangerHelp == TRUE) && (DIA_Addon_Lares_RangerHelp_gilde_OneTime_Waffe == FALSE) && (DIA_Addon_Lares_RangerHelp_gilde_OneTime_geld == FALSE) && (DIA_Addon_Lares_RangerHelp_gilde_OneTime_ruestung == FALSE))
 	{
 		return TRUE;
+	};
+	if(!Npc_IsDead(Moe))
+	{
+		if(Npc_IsInState(Moe,ZS_Attack))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1074,9 +1056,12 @@ func void DIA_Addon_Lares_RangerHelp_Info()
 	AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_09_01");	//Что именно тебе нужно?
 	Info_ClearChoices(DIA_Addon_Lares_RangerHelp);
 	Info_AddChoice(DIA_Addon_Lares_RangerHelp,Dialog_Back,DIA_Addon_Lares_RangerHelp_nix);
-	if(Npc_IsInState(Moe,ZS_Attack))
+	if(!Npc_IsDead(Moe))
 	{
-		Info_AddChoice(DIA_Addon_Lares_RangerHelp,"Этот парень мне надоедает...",DIA_Addon_Lares_RangerHelp_Moe);
+		if(Npc_IsInState(Moe,ZS_Attack))
+		{
+			Info_AddChoice(DIA_Addon_Lares_RangerHelp,"Этот парень мне надоедает...",DIA_Addon_Lares_RangerHelp_Moe);
+		};
 	};
 	if((DIA_Addon_Lares_RangerHelp_gilde_OneTime_Waffe == FALSE) && (Lares_RangerHelp == TRUE))
 	{
@@ -1849,9 +1834,12 @@ instance DIA_Lares_GUIDE(C_Info)
 
 func int DIA_Lares_GUIDE_Condition()
 {
-	if((LaresGuide_ZuOnar == 1) && C_NpcIsNearWP(self,"NW_TAVERNE_BIGFARM_05"))
+	if(LaresGuide_ZuOnar == 1)
 	{
-		return TRUE;
+		if(C_NpcIsNearWP(self,"NW_TAVERNE_BIGFARM_05"))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1886,9 +1874,12 @@ instance DIA_Addon_Lares_ArrivedPortalInter1(C_Info)
 
 func int DIA_Addon_Lares_ArrivedPortalInter1_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && C_NpcIsNearWP(self,"NW_CITY_TO_FOREST_11") && (LaresGuide_ZumPortal == 1))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && (LaresGuide_ZumPortal == 1))
 	{
-		return TRUE;
+		if(C_NpcIsNearWP(self,"NW_CITY_TO_FOREST_11"))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1958,9 +1949,12 @@ instance DIA_Addon_Lares_ArrivedPortalInterWeiter(C_Info)
 
 func int DIA_Addon_Lares_ArrivedPortalInterWeiter_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && C_NpcIsNearWP(self,"NW_TAVERN_TO_FOREST_02") && (LaresGuide_ZumPortal == 2))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && (LaresGuide_ZumPortal == 2))
 	{
-		return TRUE;
+		if(C_NpcIsNearWP(self,"NW_TAVERN_TO_FOREST_02"))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1988,9 +1982,12 @@ instance DIA_Addon_Lares_ArrivedPortalInterWeiter2(C_Info)
 
 func int DIA_Addon_Lares_ArrivedPortalInterWeiter2_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && C_NpcIsNearWP(self,"NW_TAVERNE_TROLLAREA_14") && (LaresGuide_ZumPortal == 3))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && (LaresGuide_ZumPortal == 3))
 	{
-		return TRUE;
+		if(C_NpcIsNearWP(self,"NW_TAVERNE_TROLLAREA_14"))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -2014,9 +2011,12 @@ instance DIA_Addon_Lares_ArrivedPortalInter2(C_Info)
 
 func int DIA_Addon_Lares_ArrivedPortalInter2_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && C_NpcIsNearWP(self,"NW_TROLLAREA_PATH_58") && (LaresGuide_ZumPortal == 4))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && (LaresGuide_ZumPortal == 4))
 	{
-		return TRUE;
+		if(C_NpcIsNearWP(self,"NW_TROLLAREA_PATH_58"))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -2047,9 +2047,12 @@ instance DIA_Addon_Lares_ArrivedPortalInterWeiter3(C_Info)
 
 func int DIA_Addon_Lares_ArrivedPortalInterWeiter3_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 200) && (LaresGuide_ZumPortal == 5))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && (LaresGuide_ZumPortal == 5))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 200)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -2073,9 +2076,12 @@ instance DIA_Addon_Lares_ArrivedPortalInterWeiter4(C_Info)
 
 func int DIA_Addon_Lares_ArrivedPortalInterWeiter4_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && C_NpcIsNearWP(self,"NW_TROLLAREA_RUINS_02") && (LaresGuide_ZumPortal == 6))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && (LaresGuide_ZumPortal == 6))
 	{
-		return TRUE;
+		if(C_NpcIsNearWP(self,"NW_TROLLAREA_RUINS_02"))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -2099,9 +2105,12 @@ instance DIA_Addon_Lares_ArrivedPortal(C_Info)
 
 func int DIA_Addon_Lares_ArrivedPortal_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && C_NpcIsNearWP(self,"NW_TROLLAREA_RUINS_41") && (LaresGuide_ZumPortal == 7))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Running) && (LaresGuide_ZumPortal == 7))
 	{
-		return TRUE;
+		if(C_NpcIsNearWP(self,"NW_TROLLAREA_RUINS_41"))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -2142,8 +2151,8 @@ func int DIA_Addon_Lares_Albern_Condition()
 		if(Npc_GetDistToWP(self,"NW_TROLLAREA_RUINS_41") > 1000)
 		{
 			return TRUE;
-		}
-		else if(Npc_IsInState(self,ZS_Talk))
+		};
+		if(Npc_IsInState(self,ZS_Talk))
 		{
 			return TRUE;
 		};
@@ -2175,9 +2184,12 @@ instance DIA_Addon_Lares_GOFORESTPRE(C_Info)
 
 func int DIA_Addon_Lares_GOFORESTPRE_Condition()
 {
-	if(C_NpcIsNearWP(self,"NW_CITY_TO_FARM2_04") && (LaresGuide_OrnamentForest == 1))
+	if(LaresGuide_OrnamentForest == 1)
 	{
-		return TRUE;
+		if(C_NpcIsNearWP(self,"NW_CITY_TO_FARM2_04"))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -2230,19 +2242,25 @@ instance DIA_Addon_Lares_GOFOREST(C_Info)
 
 func int DIA_Addon_Lares_GOFOREST_Condition()
 {
-	if(C_NpcIsNearWP(self,"NW_FOREST_PATH_62") && (LaresGuide_OrnamentForest == 2) && Npc_IsDead(Stoneguardian_Ornament))
+	if(LaresGuide_OrnamentForest == 2)
 	{
-		if(Lares_ArrivedToForest == FALSE)
+		if(C_NpcIsNearWP(self,"NW_FOREST_PATH_62"))
 		{
-			return TRUE;
-		};
-		if((Ornament_Switched_Forest == FALSE) && Npc_IsInState(self,ZS_Talk))
-		{
-			return TRUE;
-		};
-		if(Ornament_Switched_Forest == TRUE)
-		{
-			return TRUE;
+			if(Npc_IsDead(Stoneguardian_Ornament))
+			{
+				if(Lares_ArrivedToForest == FALSE)
+				{
+					return TRUE;
+				};
+				if((Ornament_Switched_Forest == FALSE) && Npc_IsInState(self,ZS_Talk))
+				{
+					return TRUE;
+				};
+				if(Ornament_Switched_Forest == TRUE)
+				{
+					return TRUE;
+				};
+			};
 		};
 	};
 };
@@ -2412,10 +2430,10 @@ func void B_BuildLearnDialog_Lares()
 {
 	Info_ClearChoices(DIA_Lares_TEACH);
 	Info_AddChoice(DIA_Lares_TEACH,Dialog_Back,DIA_Lares_TEACH_BACK);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_Lares_TEACH_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_Lares_TEACH_5);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Lares_TEACHSTR_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Lares_TEACHSTR_5);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Lares_TEACH_1);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Lares_TEACH_5);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Lares_TEACHSTR_1);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Lares_TEACHSTR_5);
 };
 
 instance DIA_Lares_TEACH(C_Info)
@@ -2440,18 +2458,18 @@ func int DIA_Lares_TEACH_Condition()
 func void DIA_Lares_TEACH_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_Teach_15_00");	//Тренируй меня.
-	Lares_MerkeDEX = other.aivar[REAL_DEXTERITY];
-	Lares_MerkeSTR = other.aivar[REAL_STRENGTH];
+	Lares_MerkeDEX = ATR_Training[ATR_DEXTERITY];
+	Lares_MerkeSTR = ATR_Training[ATR_STRENGTH];
 	B_BuildLearnDialog_Lares();
 };
 
 func void DIA_Lares_TEACH_BACK()
 {
-	if(other.aivar[REAL_DEXTERITY] > Lares_MerkeDEX)
+	if(ATR_Training[ATR_DEXTERITY] > Lares_MerkeDEX)
 	{
 		AI_Output(self,other,"DIA_Lares_TEACH_BACK_09_00");	//Ты уже стал более ловким.
 	};
-	if(other.aivar[REAL_STRENGTH] > Lares_MerkeSTR)
+	if(ATR_Training[ATR_STRENGTH] > Lares_MerkeSTR)
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_TEACH_BACK_Add_09_00");	//(оценивающе) Очень хорошо. Ты стал сильнее.
 	};

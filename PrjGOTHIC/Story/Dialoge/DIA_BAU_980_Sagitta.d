@@ -485,15 +485,6 @@ func int DIA_Sagitta_TRADE_Condition()
 
 func void DIA_Sagitta_TRADE_Info()
 {
-	if(Sagitta_flag == TRUE)
-	{
-		B_ClearAlchemyInv(self);
-		if(Sagitta_flasks > 0)
-		{
-			CreateInvItems(self,ItMi_Flask,Sagitta_flasks);
-		};
-		Sagitta_flag = FALSE;
-	};
 	AI_Output(other,self,"DIA_Sagitta_TRADE_15_00");	//Какие товары ты можешь предложить мне?
 	AI_Output(self,other,"DIA_Sagitta_TRADE_17_01");	//Выбирай.
 	B_GiveTradeInv(self);
@@ -628,40 +619,5 @@ func void DIA_Sagitta_HEALRANDOLPH_no()
 	AI_Output(other,self,"DIA_Sagitta_HEALRANDOLPH_no_15_00");	//Нет. Столько золота за такую ерунду?!
 	AI_Output(self,other,"DIA_Sagitta_HEALRANDOLPH_no_17_01");	//(смеется) Он не дал тебе денег? Это на него похоже!
 	Info_ClearChoices(DIA_Sagitta_HEALRANDOLPH);
-};
-
-
-instance DIA_Sagitta_PICKPOCKET(C_Info)
-{
-	npc = BAU_980_Sagitta;
-	nr = 900;
-	condition = DIA_Sagitta_PICKPOCKET_Condition;
-	information = DIA_Sagitta_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_120_Female;
-};
-
-
-func int DIA_Sagitta_PICKPOCKET_Condition()
-{
-	return C_Beklauen(103,360);
-};
-
-func void DIA_Sagitta_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Sagitta_PICKPOCKET);
-	Info_AddChoice(DIA_Sagitta_PICKPOCKET,Dialog_Back,DIA_Sagitta_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Sagitta_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Sagitta_PICKPOCKET_DoIt);
-};
-
-func void DIA_Sagitta_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Sagitta_PICKPOCKET);
-};
-
-func void DIA_Sagitta_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Sagitta_PICKPOCKET);
 };
 

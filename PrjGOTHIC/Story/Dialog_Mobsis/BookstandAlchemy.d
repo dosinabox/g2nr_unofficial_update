@@ -123,9 +123,9 @@ func void Use_BookstandALCHEMY3_S1()
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,NAME_Speed_Elixier);
-		Doc_PrintLines(nDocID,1,"1 снеппер-трава - для этого зелья необходим не царский щавель, а луговой горец.");
+		Doc_PrintLines(nDocID,1,"1 снеппер-трава");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"Варить это зелье значительно легче, частично потому, что для него не нужен царский щавель.");
+		Doc_PrintLines(nDocID,1,"Варить это зелье значительно легче, частично потому, что для него нужен не царский щавель, а луговой горец.");
 		Doc_Show(nDocID);
 		if(ALchemy_3_permanent == FALSE)
 		{

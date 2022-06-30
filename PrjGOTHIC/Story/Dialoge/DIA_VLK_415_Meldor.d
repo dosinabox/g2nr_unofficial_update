@@ -299,38 +299,3 @@ func void DIA_Meldor_VonLehmar_Info()
 	B_Attack(self,other,AR_NONE,1);
 };
 
-
-instance DIA_Meldor_PICKPOCKET(C_Info)
-{
-	npc = VLK_415_Meldor;
-	nr = 900;
-	condition = DIA_Meldor_PICKPOCKET_Condition;
-	information = DIA_Meldor_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Meldor_PICKPOCKET_Condition()
-{
-	return C_Beklauen(34,55);
-};
-
-func void DIA_Meldor_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Meldor_PICKPOCKET);
-	Info_AddChoice(DIA_Meldor_PICKPOCKET,Dialog_Back,DIA_Meldor_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Meldor_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Meldor_PICKPOCKET_DoIt);
-};
-
-func void DIA_Meldor_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Meldor_PICKPOCKET);
-};
-
-func void DIA_Meldor_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Meldor_PICKPOCKET);
-};
-

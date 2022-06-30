@@ -17,6 +17,7 @@ instance VLK_438_Alrik(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Mace);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,55,ItMi_Gold,50);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Bloodwyn,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

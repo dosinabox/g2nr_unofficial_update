@@ -359,12 +359,12 @@ instance ItBe_Addon_STR_5(C_Item)
 
 func void Equip_ItBe_Addon_STR_5()
 {
-	Npc_ChangeAttribute(self,ATR_STRENGTH,BeltBonus_STR01);
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,BeltBonus_STR01);
 };
 
 func void UnEquip_ItBe_Addon_STR_5()
 {
-	Npc_ChangeAttribute(self,ATR_STRENGTH,-BeltBonus_STR01);
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,-BeltBonus_STR01);
 };
 
 
@@ -391,12 +391,12 @@ instance ItBe_Addon_STR_10(C_Item)
 
 func void Equip_ItBe_Addon_STR_10()
 {
-	Npc_ChangeAttribute(self,ATR_STRENGTH,BeltBonus_STR02);
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,BeltBonus_STR02);
 };
 
 func void UnEquip_ItBe_Addon_STR_10()
 {
-	Npc_ChangeAttribute(self,ATR_STRENGTH,-BeltBonus_STR02);
+	B_RaiseAttributeByTempBonus(self,ATR_STRENGTH,-BeltBonus_STR02);
 };
 
 
@@ -423,12 +423,12 @@ instance ItBe_Addon_DEX_5(C_Item)
 
 func void Equip_ItBe_Addon_DEX_5()
 {
-	Npc_ChangeAttribute(self,ATR_DEXTERITY,BeltBonus_DEX01);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,BeltBonus_DEX01);
 };
 
 func void UnEquip_ItBe_Addon_DEX_5()
 {
-	Npc_ChangeAttribute(self,ATR_DEXTERITY,-BeltBonus_DEX01);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,-BeltBonus_DEX01);
 };
 
 
@@ -455,12 +455,12 @@ instance ItBe_Addon_DEX_10(C_Item)
 
 func void Equip_ItBe_Addon_DEX_10()
 {
-	Npc_ChangeAttribute(self,ATR_DEXTERITY,BeltBonus_DEX02);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,BeltBonus_DEX02);
 };
 
 func void UnEquip_ItBe_Addon_DEX_10()
 {
-	Npc_ChangeAttribute(self,ATR_DEXTERITY,-BeltBonus_DEX02);
+	B_RaiseAttributeByTempBonus(self,ATR_DEXTERITY,-BeltBonus_DEX02);
 };
 
 
@@ -504,7 +504,6 @@ instance ItBe_Addon_Prot_Point(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_Prot_Point;
-//	visual = "ItMi_Belt_11.3ds";
 	visual = "ItMi_Belt_18.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;

@@ -1,28 +1,4 @@
 
-var int DIEGO_COMING;
-
-func void B_StartNewLife()
-{
-	if(DIEGO_COMING == 1)
-	{
-		if(Diego_IsOnBoard == FALSE)
-		{
-			B_StartOtherRoutine(DiegoNW,"GERBRANDT");
-		};
-		self.aivar[AIV_CommentedPlayerCrime] = FALSE;
-		self.aivar[AIV_ToughGuy] = TRUE;
-		Npc_ExchangeRoutine(self,"FLEE");
-		if(!Npc_IsDead(GerbrandtsFrau))
-		{
-			GerbrandtsFrau.aivar[AIV_CommentedPlayerCrime] = FALSE;
-			GerbrandtsFrau.aivar[AIV_ToughGuy] = TRUE;
-			B_StartOtherRoutine(GerbrandtsFrau,"NEWLIFE");
-		};
-		B_StartOtherRoutine(VLK_419_Buerger,"NEWPLACE");
-		DIEGO_COMING = 2;
-	};
-};
-
 instance DIA_Gerbrandt_EXIT(C_Info)
 {
 	npc = VLK_403_Gerbrandt;
@@ -41,50 +17,7 @@ func int DIA_Gerbrandt_EXIT_Condition()
 
 func void DIA_Gerbrandt_EXIT_Info()
 {
-	B_StartNewLife();
 	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Gerbrandt_PICKPOCKET(C_Info)
-{
-	npc = VLK_403_Gerbrandt;
-	nr = 900;
-	condition = DIA_Gerbrandt_PICKPOCKET_Condition;
-	information = DIA_Gerbrandt_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Gerbrandt_PICKPOCKET_Condition()
-{
-//	if(C_StealItems(30,Hlp_GetInstanceID(ItSe_GoldPocket100),1) && (DIEGO_COMING != TRUE))
-	if(Npc_HasItems(self,ItSe_GoldPocket100) && (DIEGO_COMING == FALSE))
-	{
-		return C_StealItem(30);
-	};
-	return FALSE;
-};
-
-func void DIA_Gerbrandt_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Gerbrandt_PICKPOCKET);
-	Info_AddChoice(DIA_Gerbrandt_PICKPOCKET,Dialog_Back,DIA_Gerbrandt_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Gerbrandt_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Gerbrandt_PICKPOCKET_DoIt);
-};
-
-func void DIA_Gerbrandt_PICKPOCKET_DoIt()
-{
-//	B_StealItems(30,Hlp_GetInstanceID(ItSe_GoldPocket100),1);
-	B_StartNewLife();
-	B_StealItem(30,Hlp_GetInstanceID(ItSe_GoldPocket100));
-	Info_ClearChoices(DIA_Gerbrandt_PICKPOCKET);
-};
-
-func void DIA_Gerbrandt_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Gerbrandt_PICKPOCKET);
 };
 
 
@@ -101,9 +34,12 @@ instance DIA_Gerbrandt_PreHello(C_Info)
 
 func int DIA_Gerbrandt_PreHello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (VisibleGuild(hero) != GIL_KDF) && (VisibleGuild(hero) != GIL_PAL) && (VisibleGuild(hero) != GIL_KDW))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_DiegosResidence != LOG_SUCCESS))
 	{
-		return TRUE;
+		if((VisibleGuild(hero) != GIL_KDF) && (VisibleGuild(hero) != GIL_PAL) && (VisibleGuild(hero) != GIL_KDW))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -125,7 +61,7 @@ instance DIA_Gerbrandt_Hello(C_Info)
 
 func int DIA_Gerbrandt_Hello_Condition()
 {
-	if(DIEGO_COMING == FALSE)
+	if(MIS_DiegosResidence != LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -198,16 +134,6 @@ func void DIA_Gerbrandt_Hello_Yes_Yes()
 	Info_ClearChoices(DIA_Gerbrandt_Hello);
 };
 
-func void B_Gerbrandt_PissOff()
-{
-	AI_Output(self,other,"B_Gerbrandt_PissOff_10_00");	//Что это все значит - ты издеваешься надо мной?
-	AI_Output(self,other,"B_Gerbrandt_PissOff_10_01");	//Ты и твой приятель Диего уже и так дел натворили.
-	AI_Output(self,other,"B_Gerbrandt_PissOff_10_02");	//Оставь меня в покое!
-	B_StartNewLife();
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Gerbrandt_Perm(C_Info)
 {
 	npc = VLK_403_Gerbrandt;
@@ -221,7 +147,7 @@ instance DIA_Gerbrandt_Perm(C_Info)
 
 func int DIA_Gerbrandt_Perm_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gerbrandt_Hello) || (DIEGO_COMING == 2))
+	if(Npc_KnowsInfo(other,DIA_Gerbrandt_Hello) || (MIS_DiegosResidence == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -253,7 +179,10 @@ func void DIA_Gerbrandt_Perm_Info()
 	}
 	else
 	{
-		B_Gerbrandt_PissOff();
+		AI_Output(self,other,"B_Gerbrandt_PissOff_10_00");	//Что это все значит - ты издеваешься надо мной?
+		AI_Output(self,other,"B_Gerbrandt_PissOff_10_01");	//Ты и твой приятель Диего уже и так дел натворили.
+		AI_Output(self,other,"B_Gerbrandt_PissOff_10_02");	//Оставь меня в покое!
+		AI_StopProcessInfos(self);
 	};
 };
 
@@ -293,6 +222,26 @@ func void DIA_Gerbrandt_GreetingsFromDiego_Info()
 	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_09");	//У меня нет времени, мне нужно уходить отсюда! Быстро! Если он найдет меня здесь, мне конец!
 	MIS_DiegosResidence = LOG_SUCCESS;
 	B_GivePlayerXP(XP_DiegosResidence);
-	DIEGO_COMING = 1;
+	Info_ClearChoices(DIA_Gerbrandt_GreetingsFromDiego);
+	Info_AddChoice(DIA_Gerbrandt_GreetingsFromDiego,Dialog_Ende,DIA_Gerbrandt_Flee);
+};
+
+func void DIA_Gerbrandt_Flee()
+{
+	AI_StopProcessInfos(self);
+	self.aivar[AIV_CommentedPlayerCrime] = FALSE;
+	self.aivar[AIV_ToughGuy] = TRUE;
+	Npc_ExchangeRoutine(self,"FLEE");
+	if(!Npc_IsDead(GerbrandtsFrau))
+	{
+		GerbrandtsFrau.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		GerbrandtsFrau.aivar[AIV_ToughGuy] = TRUE;
+		B_StartOtherRoutine(GerbrandtsFrau,"NEWLIFE");
+	};
+	if(Diego_IsOnBoard == FALSE)
+	{
+		B_StartOtherRoutine(DiegoNW,"GERBRANDT");
+	};
+	B_StartOtherRoutine(VLK_419_Buerger,"NEWPLACE");
 };
 

@@ -10,8 +10,8 @@ instance PC_Mage_OW(Npc_Default)
 	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;
-	CreateInvItems(self,ItPo_Perm_Mana,1);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,80,ItPo_Perm_Mana,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Milten,BodyTex_N,ITAR_KDF_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

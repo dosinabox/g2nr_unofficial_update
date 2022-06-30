@@ -11,6 +11,7 @@ instance BDT_10024_Addon_Garaz(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Sld_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,80,ItMi_Gold,80);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal16,BodyTex_N,ITAR_Bloodwyn_Addon);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

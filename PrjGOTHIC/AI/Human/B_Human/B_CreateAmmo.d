@@ -32,10 +32,8 @@ func void B_CreateAmmo(var C_Npc slf)
 
 func void B_RefreshAmmo(var C_Npc slf,var int amount)
 {
-	Npc_RemoveInvItems(slf,ItRw_Bolt,Npc_HasItems(slf,ItRw_Bolt));
-	CreateInvItems(slf,ItRw_Bolt,Kapitel * amount);
-	Npc_RemoveInvItems(slf,ItRw_Arrow,Npc_HasItems(slf,ItRw_Arrow));
-	CreateInvItems(slf,ItRw_Arrow,Kapitel * amount);
+	B_RefreshInvItemToAmount(slf,ItRw_Bolt,Kapitel * amount);
+	B_RefreshInvItemToAmount(slf,ItRw_Arrow,Kapitel * amount);
 };
 
 func void B_RefreshTraderAmmo(var C_Npc slf,var int amount)

@@ -75,6 +75,9 @@ func void DIA_Wegelagerer_ANGRIFF2_Info()
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,40);
 	self.aivar[AIV_EnemyOverride] = FALSE;
-	BDT_1051.aivar[AIV_EnemyOverride] = FALSE;
+	if(!Npc_IsDead(BDT_1051))
+	{
+		BDT_1051.aivar[AIV_EnemyOverride] = FALSE;
+	};
 };
 

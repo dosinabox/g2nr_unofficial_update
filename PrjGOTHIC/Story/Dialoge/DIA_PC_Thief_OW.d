@@ -232,10 +232,10 @@ func void B_BuildLearnDialog_Diego_OW()
 {
 	Info_ClearChoices(DIA_DiegoOw_Teach);
 	Info_AddChoice(DIA_DiegoOw_Teach,Dialog_Back,DIA_DiegoOw_TEACH_BACK);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_DiegoOw_TEACHDEX_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_DiegoOw_TEACHDEX_5);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_DiegoOw_TEACHSTR_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_DiegoOw_TEACHSTR_5);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_DiegoOw_TEACHDEX_1);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_DiegoOw_TEACHDEX_5);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_DiegoOw_TEACHSTR_1);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_DiegoOw_TEACHSTR_5);
 };
 
 instance DIA_DiegoOw_Teach(C_Info)
@@ -264,18 +264,18 @@ func void DIA_DiegoOw_Teach_Info()
 		B_LogEntry(TOPIC_OutTeacher,"Диего может помочь мне повысить мою ловкость и силу.");
 		DiegoOW_Teach = TRUE;
 	};
-	Diego_MerkeDEX = other.aivar[REAL_DEXTERITY];
-	Diego_MerkeSTR = other.aivar[REAL_STRENGTH];
+	Diego_MerkeDEX = ATR_Training[ATR_DEXTERITY];
+	Diego_MerkeSTR = ATR_Training[ATR_STRENGTH];
 	B_BuildLearnDialog_Diego_OW();
 };
 
 func void DIA_DiegoOw_TEACH_BACK()
 {
-	if(other.aivar[REAL_DEXTERITY] > Diego_MerkeDEX)
+	if(ATR_Training[ATR_DEXTERITY] > Diego_MerkeDEX)
 	{
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_02");	//Ты уже стал более ловким.
 	};
-	if(other.aivar[REAL_STRENGTH] > Diego_MerkeSTR)
+	if(ATR_Training[ATR_STRENGTH] > Diego_MerkeSTR)
 	{
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_03");	//(оценивающе) Очень хорошо. Твоя сила увеличилась.
 	};
@@ -313,41 +313,6 @@ func void DIA_DiegoOw_TEACHSTR_5()
 		B_BuildLearnDialog_Diego_OW();
 	};
 };
-
-instance DIA_ThiefOW_PICKPOCKET(C_Info)
-{
-	npc = PC_ThiefOW;
-	nr = 900;
-	condition = DIA_ThiefOW_PICKPOCKET_Condition;
-	information = DIA_ThiefOW_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_120;
-};
-
-
-func int DIA_ThiefOW_PICKPOCKET_Condition()
-{
-	return C_Beklauen(120,600);
-};
-
-func void DIA_ThiefOW_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_ThiefOW_PICKPOCKET);
-	Info_AddChoice(DIA_ThiefOW_PICKPOCKET,Dialog_Back,DIA_ThiefOW_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_ThiefOW_PICKPOCKET,DIALOG_PICKPOCKET,DIA_ThiefOW_PICKPOCKET_DoIt);
-};
-
-func void DIA_ThiefOW_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_ThiefOW_PICKPOCKET);
-};
-
-func void DIA_ThiefOW_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_ThiefOW_PICKPOCKET);
-};
-
 
 instance DIA_Addon_ThiefOW_Together(C_Info)
 {
@@ -435,36 +400,31 @@ func int DIA_Addon_ThiefOW_GoHome_Condition()
 
 func void DIA_Addon_ThiefOW_GoHome_Info()
 {
+	var int location;
+	location = C_DiegoTooFar(1000);
 	AI_Output(other,self,"DIA_Addon_Diego_WarteHier_15_00");	//Подожди здесь!
-	if(Npc_GetDistToWP(self,"LOCATION_02_05") < 2000)
-	{
-		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_01");	//Ладно.
-		AI_StopProcessInfos(self);
-		self.aivar[AIV_PARTYMEMBER] = FALSE;
-		Npc_ExchangeRoutine(self,"START");
-	}
-	else if(Npc_GetDistToWP(self,"DT_E1_04") < (1500 + 1000))
+	if(location == LOC_XARDAS)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_02");	//Я подожду снаружи у башни.
 		AI_StopProcessInfos(self);
 		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		Npc_ExchangeRoutine(self,"XARDAS");
 	}
-	else if(Npc_GetDistToWP(self,"OW_NEWMINE_11") < (4000 + 1000))
+	else if(location == LOC_FAJETHMINE)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_03");	//Я подожду у шахты.
 		AI_StopProcessInfos(self);
 		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		Npc_ExchangeRoutine(self,"FAJETH");
 	}
-	else if(Npc_GetDistToWP(self,"OW_MINE3_OUT") < (1200 + 1000))
+	else if(location == LOC_SILVESTROMINE)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_04");	//Я подожду перед шахтой.
 		AI_StopProcessInfos(self);
 		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		Npc_ExchangeRoutine(self,"SILVESTRO");
 	}
-	else if(Npc_GetDistToWP(self,"OW_PATH_266") < (3000 + 1000))
+	else if(location == LOC_GRIMESMINE)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_05");	//Я подожду поблизости.
 		AI_StopProcessInfos(self);
@@ -473,9 +433,16 @@ func void DIA_Addon_ThiefOW_GoHome_Info()
 	}
 	else if(Npc_GetDistToWP(self,"LOCATION_02_05") < 15000)
 	{
-		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_06");	//Нет. Я возвращаюсь в пещеру.
-		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_07");	//Когда закончишь, приходи ко мне.
-		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_08");	//Но не слишком задерживайся, иначе я вернусь один.
+		if(Npc_GetDistToWP(self,"LOCATION_02_05") < 2000)
+		{
+			AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_01");	//Ладно.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_06");	//Нет. Я возвращаюсь в пещеру.
+			AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_07");	//Когда закончишь, приходи ко мне.
+			AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_08");	//Но не слишком задерживайся, иначе я вернусь один.
+		};
 		AI_StopProcessInfos(self);
 		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		Npc_ExchangeRoutine(self,"START");
@@ -492,12 +459,6 @@ func void B_Addon_Diego_WillWaitOutside()
 {
 	AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_00");	//Иди первым и осмотрись. Я подожду снаружи.
 };
-
-func void B_Addon_Diego_PassOtherDirection()
-{
-	AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_01");	//Чтобы попасть к Проходу, мы должны идти в другом направлении.
-};
-
 
 var int Diego_TooFarComment;
 var int Diego_BurgVariation;
@@ -539,60 +500,54 @@ func int DIA_Addon_ThiefOW_TooFar_Condition()
 
 func void DIA_Addon_ThiefOW_TooFar_Info()
 {
-	if(C_DiegoTooFar(1000) == LOC_ANGAR)
+	var int location;
+	location = C_DiegoTooFar(1000);
+	if(location == LOC_ANGAR)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_02");	//От этой старой гробницы веет ужасом.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_03");	//Лучше нам ее обойти.
 	}
-	else if(C_DiegoTooFar(1000) == LOC_ICE)
+	else if(location == LOC_ICE)
 	{
 		if(Diego_IceVariation == 0)
 		{
 			AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_04");	//Это вход в бывший Новый Лагерь.
 			AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_05");	//Я уверен, что там поселился дракон.
-			B_Addon_Diego_PassOtherDirection();
 			Diego_IceVariation = 1;
-		}
-		else
-		{
-			B_Addon_Diego_PassOtherDirection();
 		};
+		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_01");	//Чтобы попасть к Проходу, мы должны идти в другом направлении.
 	}
-	else if(C_DiegoTooFar(1000) == LOC_SWAMP)
+	else if(location == LOC_SWAMP)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_06");	//Это болото кончается тупиком.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_07");	//Не удивлюсь, если там нас может поджидать дракон.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_08");	//Не стоит туда идти.
 	}
-	else if(C_DiegoTooFar(1000) == LOC_FIRE)
+	else if(location == LOC_FIRE)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_09");	//Если мы продолжим лезть на эту гору, мы наверняка встретим дракона.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_10");	//А я хотел бы все же живым добраться до Хориниса.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_11");	//Давай пойдем по другому пути.
 	}
-	else if(C_DiegoTooFar(1000) == LOC_LAKE)
+	else if(location == LOC_LAKE)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_12");	//Эта дорога нас никуда не приведет.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_13");	//Чтобы попасть к Проходу, мы должны идти в другом направлении!
 	}
-	else if(C_DiegoTooFar(1000) == LOC_XARDAS)
+	else if(location == LOC_XARDAS)
 	{
 		if(Diego_XardasVariation == 0)
 		{
 			AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_14");	//Это старая башня Ксардаса. Сам он, конечно, в ней давно не появляется.
 			AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_15");	//Уверен, что внутри нас ждут неприятные сюрпризы.
-			B_Addon_Diego_WillWaitOutside();
 			Diego_XardasVariation = 1;
-		}
-		else
-		{
-			B_Addon_Diego_WillWaitOutside();
-			AI_StopProcessInfos(self);
-			self.aivar[AIV_PARTYMEMBER] = FALSE;
-			Npc_ExchangeRoutine(self,"XARDAS");
 		};
+		B_Addon_Diego_WillWaitOutside();
+		AI_StopProcessInfos(self);
+		self.aivar[AIV_PARTYMEMBER] = FALSE;
+		Npc_ExchangeRoutine(self,"XARDAS");
 	}
-	else if(C_DiegoTooFar(1000) == LOC_FAJETHMINE)
+	else if(location == LOC_FAJETHMINE)
 	{
 		if(Diego_FajethVariation == 0)
 		{
@@ -605,7 +560,7 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 			AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_18");	//Я намерен держаться от этой шахты подальше!
 		};
 	}
-	else if(C_DiegoTooFar(1000) == LOC_SILVESTROMINE)
+	else if(location == LOC_SILVESTROMINE)
 	{
 		if(Diego_SilvestroVariation == 0)
 		{
@@ -619,12 +574,12 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 		else
 		{
 			B_Addon_Diego_WillWaitOutside();
-			AI_StopProcessInfos(self);
-			self.aivar[AIV_PARTYMEMBER] = FALSE;
-			Npc_ExchangeRoutine(self,"SILVESTRO");
 		};
+		AI_StopProcessInfos(self);
+		self.aivar[AIV_PARTYMEMBER] = FALSE;
+		Npc_ExchangeRoutine(self,"SILVESTRO");
 	}
-	else if(C_DiegoTooFar(1000) == LOC_GRIMESMINE)
+	else if(location == LOC_GRIMESMINE)
 	{
 		if(Diego_GrimesVariation == 0)
 		{
@@ -637,7 +592,7 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 			AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_23");	//Давай обойдем ее подальше.
 		};
 	}
-	else if(C_DiegoTooFar(1000) == LOC_BURG)
+	else if(location == LOC_BURG)
 	{
 		if(Diego_BurgVariation == 0)
 		{
@@ -655,22 +610,25 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 			Diego_BurgVariation = 1;
 		};
 	}
-	else if(C_DiegoTooFar(1000) == LOC_ORCBARRIER)
+	else if(location == LOC_ORCBARRIER)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_27");	//Нам нельзя туда идти. У Стены орков слишком опасно.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_28");	//Я думаю, нам будет лучше пойти на запад и двигаться по другой стороне.
 	}
-	else if(C_DiegoTooFar(1000) == LOC_ORCBARRIER_FAR)
+	else if(location == LOC_ORCBARRIER_FAR)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_29");	//Если мы продолжим двигаться в этом направлении, мы снова упремся в Стену орков.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_30");	//Пойдем к Проходу!
 	}
-	else if(C_DiegoTooFar(1000) == LOC_ROCK)
+	else if(location == LOC_ROCK)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_09");	//Если мы продолжим лезть на эту гору, мы наверняка встретим дракона.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_08");	//Не стоит туда идти.
 	};
 	Diego_TooFarComment = TRUE;
+	Info_ClearChoices(DIA_Addon_ThiefOW_TooFar);
+	Info_AddChoice(DIA_Addon_ThiefOW_TooFar,"Подожди здесь!",DIA_Addon_ThiefOW_GoHome_Info);
+	Info_AddChoice(DIA_Addon_ThiefOW_TooFar,"Пойдем со мной.",DIA_Addon_ThiefOW_ComeOn_Info);
 };
 
 func void B_Diego_WirSindDa()
@@ -738,7 +696,6 @@ func void DIA_Addon_ThiefOW_Nostalgie_Info()
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_05");	//Ну ладно...
 	Diego_Nostalgie = TRUE;
 	B_GivePlayerXP(1000);
-//	hero.exp += 500;
 	PrintScreen(NAME_Addon_NostalgieBonus,-1,57,FONT_Screen,2);
 	B_Diego_WirSindDa();
 };

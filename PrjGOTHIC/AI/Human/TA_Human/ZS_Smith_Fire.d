@@ -1,30 +1,7 @@
 
 func void ZS_Smith_Fire()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bennet))
-	{
-		if(Bennet_flag == FALSE)
-		{
-			Bennet_swordraws = Npc_HasItems(self,ItMiSwordraw);
-			Bennet_flag = TRUE;
-		};
-	}
-	else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Huno))
-	{
-		if(Huno_flag == FALSE)
-		{
-			Huno_swordraws = Npc_HasItems(self,ItMiSwordraw);
-			Huno_flag = TRUE;
-		};
-	}
-	else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bennet_DI))
-	{
-		if(Bennet_DI_flag == FALSE)
-		{
-			Bennet_DI_swordraws = Npc_HasItems(self,ItMiSwordraw);
-			Bennet_DI_flag = TRUE;
-		};
-	};
+	B_SetLastUsedMobsi(self,MOBSI_SmithWeapon);
 	Perception_Set_Normal();
 	B_ResetAll(self);
 	AI_SetWalkMode(self,NPC_WALK);

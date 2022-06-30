@@ -1,14 +1,4 @@
 
-func int C_SnapperDeath()
-{
-	if(Npc_IsDead(NewMine_Snapper1) && Npc_IsDead(NewMine_Snapper2) && Npc_IsDead(NewMine_Snapper3) && Npc_IsDead(NewMine_Snapper4) && Npc_IsDead(NewMine_Snapper5) && Npc_IsDead(NewMine_Snapper6) && Npc_IsDead(NewMine_Snapper7) && Npc_IsDead(NewMine_Snapper8))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
-
 instance DIA_Fajeth_EXIT(C_Info)
 {
 	npc = PAL_281_Fajeth;
@@ -121,6 +111,10 @@ func void DIA_Fajeth_Hallo_Tun()
 	if(!Npc_IsDead(Bilgot))
 	{
 		AI_Output(self,other,"DIA_Fajeth_Hallo_Tun_12_04");	//И кого мне послать? Билгота? Ха - он тоже слабак.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Fajeth_Hallo_Tun_12_04_add");	//И кого мне послать?
 	};
 	if(!Npc_IsDead(Tengron))
 	{
@@ -187,9 +181,12 @@ instance DIA_Fajeth_Leader(C_Info)
 
 func int DIA_Fajeth_Leader_Condition()
 {
-	if((NewMine_LeadSnapper_Spawned == TRUE) && Npc_IsDead(NewMine_LeadSnapper) && (MIS_Fajeth_Kill_Snapper == LOG_Running))
+	if((MIS_Fajeth_Kill_Snapper == LOG_Running) && (NewMine_LeadSnapper_Spawned == TRUE))
 	{
-		return TRUE;
+		if(Npc_IsDead(NewMine_LeadSnapper))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -221,9 +218,12 @@ instance DIA_Fajeth_SNAPPER_KILLED(C_Info)
 
 func int DIA_Fajeth_SNAPPER_KILLED_Condition()
 {
-	if((MIS_Fajeth_Kill_Snapper == LOG_Running) && C_SnapperDeath())
+	if(MIS_Fajeth_Kill_Snapper == LOG_Running)
 	{
-		return TRUE;
+		if(C_FajethSnappersDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -362,40 +362,5 @@ func void DIA_Fajeth_ERZABBAU_Info()
 	{
 		AI_Output(self,other,"DIA_Fajeth_ERZABBAU_12_04");	//Да ты сам это видишь...
 	};
-};
-
-
-instance DIA_Fajeth_PICKPOCKET(C_Info)
-{
-	npc = PAL_281_Fajeth;
-	nr = 900;
-	condition = DIA_Fajeth_PICKPOCKET_Condition;
-	information = DIA_Fajeth_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Fajeth_PICKPOCKET_Condition()
-{
-	return C_Beklauen(56,95);
-};
-
-func void DIA_Fajeth_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Fajeth_PICKPOCKET);
-	Info_AddChoice(DIA_Fajeth_PICKPOCKET,Dialog_Back,DIA_Fajeth_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Fajeth_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Fajeth_PICKPOCKET_DoIt);
-};
-
-func void DIA_Fajeth_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Fajeth_PICKPOCKET);
-};
-
-func void DIA_Fajeth_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Fajeth_PICKPOCKET);
 };
 

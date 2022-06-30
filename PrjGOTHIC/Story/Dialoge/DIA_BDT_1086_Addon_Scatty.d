@@ -29,41 +29,6 @@ func void DIA_Addon_Scatty_EXIT_Info()
 };
 
 
-instance DIA_Addon_Scatty_PICKPOCKET(C_Info)
-{
-	npc = BDT_1086_Addon_Scatty;
-	nr = 900;
-	condition = DIA_Addon_Scatty_PICKPOCKET_Condition;
-	information = DIA_Addon_Scatty_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Addon_Scatty_PICKPOCKET_Condition()
-{
-	return C_Beklauen(60,90);
-};
-
-func void DIA_Addon_Scatty_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Scatty_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Scatty_PICKPOCKET,Dialog_Back,DIA_Addon_Scatty_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Scatty_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Scatty_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Scatty_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Scatty_PICKPOCKET);
-};
-
-func void DIA_Addon_Scatty_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Scatty_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Scatty_Hi(C_Info)
 {
 	npc = BDT_1086_Addon_Scatty;

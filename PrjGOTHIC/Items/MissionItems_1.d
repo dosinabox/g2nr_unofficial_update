@@ -271,7 +271,6 @@ func void Use_ManaRezept()
 	Doc_PrintLine(nDocID,0,"Магические зелья");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Чтобы сварить магическое зелье, опытному алхимику необходимы:");
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Огненная крапива");
 	Doc_PrintLine(nDocID,0,"Огненная трава");
 	Doc_PrintLine(nDocID,0,"Огненный корень");
@@ -723,7 +722,7 @@ instance ItPo_Perm_LittleMana(C_Item)
 
 func void UseItPo_LittleMana()
 {
-	B_RaiseAttribute(self,ATR_MANA_MAX,3);
+	B_RaiseAttributeByPermBonus(self,ATR_MANA_MAX,3);
 };
 
 
@@ -960,7 +959,7 @@ instance ItRi_Prot_Point_01_MIS(C_Item)
 
 instance ItMi_EddasStatue(C_Item)
 {
-	name = "Статуэтка Инноса";
+	name = NAME_InnosStatue;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_InnosStatue;

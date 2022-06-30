@@ -132,6 +132,61 @@ func int C_TowerBanditsDead()
 	return TRUE;
 };
 
+func int C_HakonBanditsDead()
+{
+	if(!Npc_IsDead(BDT_1009_Bandit_L))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_1010_Bandit_L))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_1011_Bandit_M))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_LighthouseBanditsDead()
+{
+	if(!Npc_IsDead(BDT_1021_LeuchtturmBandit))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_1022_LeuchtturmBandit))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_1023_LeuchtturmBandit))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_ElvrichBanditsDead()
+{
+	if(!Npc_IsDead(BDT_10307_Addon_RangerBandit_M))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_10308_Addon_RangerBandit_L))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_10309_Addon_RangerBandit_L))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_10310_Addon_RangerBandit_M))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 func int C_BragoBanditsDead()
 {
 	if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_Away == FALSE))
@@ -238,6 +293,27 @@ func int C_VinoDementorsDead()
 		return FALSE;
 	};
 	if(!Npc_IsDead(DMT_Vino4))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_SekobDementorsDead()
+{
+	if(!Npc_IsDead(DMT_DementorAmbientSekob1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(DMT_DementorAmbientSekob2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(DMT_DementorAmbientSekob3))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(DMT_DementorAmbientSekob4))
 	{
 		return FALSE;
 	};
@@ -351,6 +427,43 @@ func int C_GrimbaldSnappersDead()
 		return FALSE;
 	};
 	if(!Npc_IsDead(Grimbald_Snapper3))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_FajethSnappersDead()
+{
+	if(!Npc_IsDead(NewMine_Snapper1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(NewMine_Snapper2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(NewMine_Snapper3))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(NewMine_Snapper4))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(NewMine_Snapper5))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(NewMine_Snapper6))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(NewMine_Snapper7))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(NewMine_Snapper8))
 	{
 		return FALSE;
 	};

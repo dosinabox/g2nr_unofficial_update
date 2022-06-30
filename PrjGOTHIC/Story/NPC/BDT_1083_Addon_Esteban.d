@@ -14,6 +14,7 @@ instance BDT_1083_Addon_Esteban(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,105,ItMi_Gold,500);
 	CreateInvItem(self,ItKe_Addon_Esteban);
 	CreateInvItems(self,ItMi_Addon_Stone_01,5);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_L_ToughBart_Quentin,BodyTex_L,ITAR_BDT_H);

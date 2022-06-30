@@ -560,9 +560,20 @@ instance DIA_Addon_Cord_TalkedToDexter(C_Info)
 
 func int DIA_Addon_Cord_TalkedToDexter_Condition()
 {
-	if(((Dexter.aivar[AIV_TalkedToPlayer] == TRUE) || Npc_IsDead(Dexter)) && (MIS_Addon_Cord_Look4Patrick == LOG_Running))
+	if(MIS_Addon_Cord_Look4Patrick == LOG_Running)
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Dexter_Hallo))
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Dexter_Kill))
+		{
+			return TRUE;
+		};
+		if(Npc_IsDead(Dexter))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -632,9 +643,15 @@ instance DIA_Cord_ReturnPatrick(C_Info)
 
 func int DIA_Cord_ReturnPatrick_Condition()
 {
-	if((Npc_GetDistToWP(Patrick_NW,"NW_BIGFARM_PATRICK") <= 1000) && (MissingPeopleReturnedHome == TRUE) && !Npc_IsDead(Patrick_NW))
+	if(MissingPeopleReturnedHome == TRUE)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Patrick_NW))
+		{
+			if(Npc_GetDistToWP(Patrick_NW,"NW_BIGFARM_PATRICK") <= 1000)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -901,39 +918,5 @@ func void DIA_Cord_Teach_1H_5()
 	{
 		B_Cord_Teach();
 	};
-};
-
-instance DIA_Cord_PICKPOCKET(C_Info)
-{
-	npc = SLD_805_Cord;
-	nr = 900;
-	condition = DIA_Cord_PICKPOCKET_Condition;
-	information = DIA_Cord_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Cord_PICKPOCKET_Condition()
-{
-	return C_Beklauen(65,75);
-};
-
-func void DIA_Cord_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Cord_PICKPOCKET);
-	Info_AddChoice(DIA_Cord_PICKPOCKET,Dialog_Back,DIA_Cord_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Cord_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Cord_PICKPOCKET_DoIt);
-};
-
-func void DIA_Cord_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Cord_PICKPOCKET);
-};
-
-func void DIA_Cord_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Cord_PICKPOCKET);
 };
 

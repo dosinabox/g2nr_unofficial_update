@@ -13,6 +13,7 @@ instance PIR_1352_Addon_AlligatorJack(Npc_Default)
 	EquipItem(self,ItMw_Piratensaebel);
 	CreateInvItems(self,ItPo_Health_02,4);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,100,ItMi_Gold,333);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_CorAngar,BodyTex_B,ITAR_PIR_M_Addon);
 	Mdl_SetModelFatness(self,1.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

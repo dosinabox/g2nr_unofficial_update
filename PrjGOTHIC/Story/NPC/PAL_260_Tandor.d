@@ -15,6 +15,7 @@ instance PAL_260_Tandor(Npc_Default)
 	EquipItem(self,ItRw_Crossbow_M_02);
 //	EquipItem(self,ItRw_Mil_Crossbow);
 //	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,47,ItMi_Gold,90);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_P_Tough_Rodriguez,BodyTex_P,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

@@ -288,39 +288,3 @@ func void DIA_Gestath_TEACHHUNTING_DragonBlood()
 	Info_ClearChoices(DIA_Gestath_TEACHHUNTING);
 };
 
-instance DIA_Gestath_PICKPOCKET(C_Info)
-{
-	npc = VLK_4148_Gestath;
-	nr = 900;
-	condition = DIA_Gestath_PICKPOCKET_Condition;
-	information = DIA_Gestath_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Gestath_PICKPOCKET_Condition()
-{
-	return C_Beklauen(81,350);
-};
-
-func void DIA_Gestath_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Gestath_PICKPOCKET);
-	Info_AddChoice(DIA_Gestath_PICKPOCKET,Dialog_Back,DIA_Gestath_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Gestath_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Gestath_PICKPOCKET_DoIt);
-};
-
-func void DIA_Gestath_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Gestath_PICKPOCKET);
-};
-
-func void DIA_Gestath_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Gestath_PICKPOCKET);
-};
-
-
-

@@ -304,47 +304,6 @@ func void DIA_Lehmar_NOCHMALGELD_Info()
 };
 
 
-instance DIA_Lehmar_PICKPOCKET(C_Info)
-{
-	npc = VLK_484_Lehmar;
-	nr = 900;
-	condition = DIA_Lehmar_PICKPOCKET_Condition;
-	information = DIA_Lehmar_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = "(нет ничего проще, чем украсть его книгу)";
-};
-
-
-func int DIA_Lehmar_PICKPOCKET_Condition()
-{
-//	return C_StealItems(20,Hlp_GetInstanceID(ItWr_Schuldenbuch),1);
-	if(Npc_HasItems(self,ItWr_Schuldenbuch))
-	{
-		return C_StealItem(20);
-	};
-	return FALSE;
-};
-
-func void DIA_Lehmar_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Lehmar_PICKPOCKET);
-	Info_AddChoice(DIA_Lehmar_PICKPOCKET,Dialog_Back,DIA_Lehmar_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Lehmar_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Lehmar_PICKPOCKET_DoIt);
-};
-
-func void DIA_Lehmar_PICKPOCKET_DoIt()
-{
-//	B_StealItems(20,Hlp_GetInstanceID(ItWr_Schuldenbuch),1);
-	B_StealItem(20,Hlp_GetInstanceID(ItWr_Schuldenbuch));
-	Info_ClearChoices(DIA_Lehmar_PICKPOCKET);
-};
-
-func void DIA_Lehmar_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Lehmar_PICKPOCKET);
-};
-
-
 var int LehmarToldAboutBook;
 
 instance DIA_Lehmar_BuchWeg(C_Info)

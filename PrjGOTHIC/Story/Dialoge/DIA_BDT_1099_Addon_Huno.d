@@ -23,41 +23,6 @@ func void DIA_Addon_Huno_EXIT_Info()
 };
 
 
-instance DIA_Addon_Huno_PICKPOCKET(C_Info)
-{
-	npc = BDT_1099_Addon_Huno;
-	nr = 900;
-	condition = DIA_Addon_Huno_PICKPOCKET_Condition;
-	information = DIA_Addon_Huno_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Addon_Huno_PICKPOCKET_Condition()
-{
-	return C_Beklauen(85,102);
-};
-
-func void DIA_Addon_Huno_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Huno_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Huno_PICKPOCKET,Dialog_Back,DIA_Addon_Huno_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Huno_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Huno_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Huno_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Huno_PICKPOCKET);
-};
-
-func void DIA_Addon_Huno_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Huno_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Huno_Abwimmeln(C_Info)
 {
 	npc = BDT_1099_Addon_Huno;
@@ -123,11 +88,11 @@ func void DIA_Addon_Huno_Hi_Info()
 	AI_Output(self,other,"DIA_Addon_Huno_Hi_06_01");	//И не одну. Сталь принес?
 	AI_Output(other,self,"DIA_Addon_Huno_Hi_15_02");	//Сталь? Кажется, ты меня с кем-то спутал...
 	AI_Output(self,other,"DIA_Addon_Huno_Hi_06_03");	//Хм... Мы нигде раньше не пересекались?
+	Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
+	B_LogEntry(Topic_Addon_BDT_Trader,"Хуно продает изделия из металла.");
 	Info_ClearChoices(DIA_Addon_Huno_Hi);
 	Info_AddChoice(DIA_Addon_Huno_Hi,"Ну да. В Старом Лагере.",DIA_Addon_Huno_Hi_JA);
 	Info_AddChoice(DIA_Addon_Huno_Hi,"Я думаю, нет. Нет, не пересекались.",DIA_Addon_Huno_Hi_NO);
-	Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Trader,"Хуно продает изделия из металла.");
 };
 
 func void DIA_Addon_Huno_Hi_JA()
@@ -241,10 +206,6 @@ func void DIA_Addon_Huno_Armor_BUY()
 	{
 		AI_Output(self,other,"DIA_Addon_Huno_Armor_Buy_06_02");	//Без золота даже не рассчитывай.
 	};
-	/*if(BDT_Armor_H_Value < 2100)
-	{
-		Huno_ArmorPerm = TRUE;
-	};*/
 	Info_ClearChoices(DIA_Addon_Huno_Armor);
 };
 
@@ -345,10 +306,10 @@ func void DIA_Addon_Huno_SomeThings_Info()
 			AI_PlayAni(self,"T_SEARCH");
 			AI_Output(self,other,"DIA_Addon_Huno_SomeThings_06_10");	//А это что еще значит?
 			Huno_SomeThings_PERM = TRUE;
+			B_LogEntry(Topic_Addon_Esteban,"Похоже, я взял Хуно за задницу.");
 			Info_ClearChoices(DIA_Addon_Huno_SomeThings);
 			Info_AddChoice(DIA_Addon_Huno_SomeThings,"Я хочу встать на твою сторону, Хуно!",DIA_Addon_Huno_SomeThings_Contra);
 			Info_AddChoice(DIA_Addon_Huno_SomeThings,"Если ты организовал нападение, ты за это поплатишься!",DIA_Addon_Huno_SomeThings_Pro);
-			B_LogEntry(Topic_Addon_Esteban,"Похоже, я взял Хуно за задницу.");
 		}
 		else
 		{
@@ -413,10 +374,10 @@ func void DIA_Addon_Huno_SomeThings_TellMeNow()
 	AI_Output(other,self,"DIA_Addon_Huno_SomeThings_TellMeNow_15_03");	//Выбирай.
 	AI_Output(self,other,"DIA_Addon_Huno_SomeThings_TellMeNow_06_04");	//(вздыхает) Ладно. Я организую встречу. Но только так, как я этого хочу, понял?
 	AI_Output(self,other,"DIA_Addon_Huno_SomeThings_TellMeNow_06_05");	//Иди в таверну и поговори с хозяином. Он скажет, что делать дальше.
+	B_LogEntry(Topic_Addon_Esteban,"Хуно сказал, что я должен поговорить со Снафом.");
 	Huno_zuSnaf = TRUE;
 	Info_ClearChoices(DIA_Addon_Huno_SomeThings);
 	AI_StopProcessInfos(self);
-	B_LogEntry(Topic_Addon_Esteban,"Хуно сказал, что я должен поговорить со Снафом.");
 };
 
 
@@ -457,9 +418,9 @@ func void DIA_Addon_Huno_Paket_Info()
 	{
 		AI_Output(other,self,"DIA_Addon_Huno_Paket_15_06");	//А теперь давай поговорим о нашем договоре.
 		AI_Output(self,other,"DIA_Addon_Huno_Paket_06_07");	//Нужный тебе человек ждет тебя в таверне. Поговори с хозяином.
+		B_LogEntry(Topic_Addon_Esteban,"Хуно сказал, что я должен поговорить со Снафом.");
 		Huno_zuSnaf = TRUE;
 	};
-	B_LogEntry(Topic_Addon_Esteban,"Хуно сказал, что я должен поговорить со Снафом.");
 	MIS_Huno_Stahl = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_HunoStahl);
 };
@@ -487,15 +448,6 @@ func int DIA_Addon_Huno_Trade_Condition()
 
 func void DIA_Addon_Huno_Trade_Info()
 {
-	if(Huno_flag == TRUE)
-	{
-		B_ClearSmithInv(self);
-		if(Huno_swordraws > 0)
-		{
-			CreateInvItems(self,ItMiSwordraw,Huno_swordraws);
-		};
-		Huno_flag = FALSE;
-	};
 	B_Say(other,self,"$TRADE_3");
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;

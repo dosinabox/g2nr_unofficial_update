@@ -15,6 +15,7 @@ instance PIR_1355_Addon_Skip(Npc_Default)
 	CreateInvItems(self,ItPo_Health_03,2);
 	CreateInvItem(self,ItWr_Poster_MIS);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,20,ItMi_Gold,43);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Pirat01,BodyTex_N,ITAR_PIR_L_Addon);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

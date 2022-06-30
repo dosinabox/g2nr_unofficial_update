@@ -206,41 +206,6 @@ func void DIA_Angar_NW_StillNeedYou_Info()
 };
 
 
-instance DIA_Angar_NW_PICKPOCKET(C_Info)
-{
-	npc = DJG_705_Angar_NW;
-	nr = 900;
-	condition = DIA_Angar_NW_PICKPOCKET_Condition;
-	information = DIA_Angar_NW_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Angar_NW_PICKPOCKET_Condition()
-{
-	return C_Beklauen(47,34);
-};
-
-func void DIA_Angar_NW_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Angar_NW_PICKPOCKET);
-	Info_AddChoice(DIA_Angar_NW_PICKPOCKET,Dialog_Back,DIA_Angar_NW_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Angar_NW_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Angar_NW_PICKPOCKET_DoIt);
-};
-
-func void DIA_Angar_NW_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Angar_NW_PICKPOCKET);
-};
-
-func void DIA_Angar_NW_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Angar_NW_PICKPOCKET);
-};
-
-
 instance DIA_Angar_NW_WHEREAMULETT(C_Info)
 {
 	npc = DJG_705_Angar_NW;

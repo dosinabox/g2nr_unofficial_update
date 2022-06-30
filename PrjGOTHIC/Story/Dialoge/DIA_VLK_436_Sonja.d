@@ -21,41 +21,6 @@ func void DIA_Sonja_EXIT_Info()
 };
 
 
-instance DIA_Sonja_PICKPOCKET(C_Info)
-{
-	npc = VLK_436_Sonja;
-	nr = 900;
-	condition = DIA_Sonja_PICKPOCKET_Condition;
-	information = DIA_Sonja_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60_Female;
-};
-
-
-func int DIA_Sonja_PICKPOCKET_Condition()
-{
-	return C_Beklauen(58,70);
-};
-
-func void DIA_Sonja_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Sonja_PICKPOCKET);
-	Info_AddChoice(DIA_Sonja_PICKPOCKET,Dialog_Back,DIA_Sonja_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Sonja_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Sonja_PICKPOCKET_DoIt);
-};
-
-func void DIA_Sonja_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Sonja_PICKPOCKET);
-};
-
-func void DIA_Sonja_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Sonja_PICKPOCKET);
-};
-
-
 instance DIA_Sonja_STANDARD(C_Info)
 {
 	npc = VLK_436_Sonja;
@@ -89,12 +54,9 @@ func void DIA_Sonja_STANDARD_Info()
 	{
 		AI_Output(self,other,"DIA_Sonja_STANDARD_16_02");	//Если ты хочешь поговорить, иди, найди себе женщину, и женись на ней.
 	};
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 48) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
+	if((MIS_Andre_REDLIGHT != LOG_Running) || (Knows_Borka_Dealer == TRUE))
 	{
-		if((MIS_Andre_REDLIGHT != LOG_Running) || (Knows_Borka_Dealer == TRUE))
-		{
-			AI_StopProcessInfos(self);
-		};
+		AI_StopProcessInfos_Pickpocket();
 	};
 };
 

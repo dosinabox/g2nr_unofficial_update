@@ -11,7 +11,7 @@ func void ZS_Guard_Passage()
 	{
 		AI_AlignToWP(self);
 	}
-	else if(!C_BodyStateContains(other,BS_SNEAK))
+	else if(!C_BodyStateContains(hero,BS_SNEAK))
 	{
 		AI_TurnToNPC(self,hero);
 	};
@@ -24,17 +24,41 @@ func int ZS_Guard_Passage_Loop()
 	{
 		if(Npc_GetDistToNpc(self,hero) > PERC_DIST_DIALOG)
 		{
-			random = Hlp_Random(10);
+			random = Hlp_Random(70);
 			if(random == 0)
 			{
 				AI_PlayAni(self,"T_HGUARD_LOOKAROUND");
+			}
+			else if(random == 1)
+			{
+				AI_PlayAni(self,"T_BORINGKICK");
+			}
+			else if(random == 2)
+			{
+				AI_PlayAni(self,"R_SCRATCHLSHOULDER");
+			}
+			else if(random == 3)
+			{
+				AI_PlayAni(self,"R_SCRATCHRSHOULDER");
+			}
+			else if(random == 4)
+			{
+				AI_PlayAni(self,"R_SCRATCHEGG");
+			}
+			else if(random == 5)
+			{
+				AI_PlayAni(self,"R_SCRATCHHEAD");
+			}
+			else if(random == 6)
+			{
+				AI_PlayAni(self,"R_LEGSHAKE");
 			}
 			else
 			{
 				AI_AlignToWP(self);
 			};
 		}
-		else if(!C_BodyStateContains(other,BS_SNEAK))
+		else if(!C_BodyStateContains(hero,BS_SNEAK))
 		{
 			AI_TurnToNPC(self,hero);
 		};

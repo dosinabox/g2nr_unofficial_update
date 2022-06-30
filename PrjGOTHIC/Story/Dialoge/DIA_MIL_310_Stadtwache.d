@@ -258,6 +258,9 @@ func int DIA_Mil_310_Stadtwache_Passierschein_Condition()
 func void DIA_Mil_310_Stadtwache_Passierschein_Info()
 {
 	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Passierschein_15_00");	//У меня есть пропуск!
+	AI_WaitTillEnd(self,other);
+	B_GiveInvItems(other,self,ItWr_Passierschein,1);
+	B_UseFakeScroll();
 	if(!Npc_HasEquippedArmor(other))
 	{
 		AI_Output(self,other,"DIA_Mil_310_Stadtwache_Passierschein_07_01");	//Да ну? И кого ты убил ради этой бумажки?
@@ -268,6 +271,7 @@ func void DIA_Mil_310_Stadtwache_Passierschein_Info()
 	{
 		AI_Output(self,other,"DIA_Mil_310_Stadtwache_Passierschein_07_04");	//Все в порядке. Проходи.
 	};
+	B_GiveInvItems(self,other,ItWr_Passierschein,1);
 	B_CityMainGatesPass();
 	AI_StopProcessInfos(self);
 };
@@ -490,7 +494,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_EyeInnos()
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_EyeInnos_07_01");	//Что? Никогда не слышал о нем. А что это такое?
 	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_EyeInnos_15_02");	//Это очень важный артефакт.
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_EyeInnos_07_03");	//Ты не похож на важного посланника. У тебя есть какие-нибудь документы?
-	if(!Npc_HasItems(other,ItWr_Passierschein) > 0)
+	if(!Npc_HasItems(other,ItWr_Passierschein))
 	{
 		AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_EyeInnos_15_04");	//Нет!
 		AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_EyeInnos_07_05");	//Тогда не трать мое время попусту!
@@ -626,6 +630,8 @@ func int DIA_Mil_310_Stadtwache_PERM_Condition()
 
 func void DIA_Mil_310_Stadtwache_PERM_Info()
 {
+	B_StopLookAt(self);
+	AI_PlayAni(self,"T_LGUARD_COMEIN");
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_PERM_07_00");	//Проходи!
 	AI_StopProcessInfos(self);
 };

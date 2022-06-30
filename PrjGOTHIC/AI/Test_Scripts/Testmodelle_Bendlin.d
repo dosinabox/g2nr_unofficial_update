@@ -114,7 +114,7 @@ func int DIA_Aya_WarteHier_Condition()
 
 func void DIA_Aya_WarteHier_Info()
 {
-	AI_Output(other,self,"DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen_15_00");	//Боюсь, дальше наши пути расходятся.
+	DIA_Common_ImAfraidThatsTheEndForUs();
 	B_Say(self,other,"$YESGOOUTOFHERE");
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");

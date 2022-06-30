@@ -21,41 +21,6 @@ func void DIA_Addon_Elvrich_EXIT_Info()
 };
 
 
-instance DIA_Addon_Elvrich_PICKPOCKET(C_Info)
-{
-	npc = VLK_4302_Addon_Elvrich;
-	nr = 900;
-	condition = DIA_Addon_Elvrich_PICKPOCKET_Condition;
-	information = DIA_Addon_Elvrich_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Addon_Elvrich_PICKPOCKET_Condition()
-{
-	return C_Beklauen(62,110);
-};
-
-func void DIA_Addon_Elvrich_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Elvrich_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Elvrich_PICKPOCKET,Dialog_Back,DIA_Addon_Elvrich_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Elvrich_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Elvrich_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Elvrich_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Elvrich_PICKPOCKET);
-};
-
-func void DIA_Addon_Elvrich_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Elvrich_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Elvrich_BanditsThere(C_Info)
 {
 	npc = VLK_4302_Addon_Elvrich;
@@ -79,7 +44,7 @@ func int DIA_Addon_Elvrich_BanditsThere_Condition()
 
 func void DIA_Addon_Elvrich_BanditsThere_Info()
 {
-	if(Npc_IsDead(BDT_10307_Addon_RangerBandit_M) && Npc_IsDead(BDT_10308_Addon_RangerBandit_L) && Npc_IsDead(BDT_10309_Addon_RangerBandit_L) && Npc_IsDead(BDT_10310_Addon_RangerBandit_M))
+	if(C_ElvrichBanditsDead())
 	{
 		AI_Output(self,other,"DIA_Addon_Elvrich_BanditsThere_04_00");	//Слава богам! С бандитами покончено. Ты спас мне жизнь.
 		DIA_Addon_Elvrich_BanditsThere_NoPerm = TRUE;
@@ -369,7 +334,7 @@ func void DIA_Addon_Elvrich_LuciaLetter_Info()
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_02");	//(в отчаянии) Нет! Я не верю! Я просто не могу поверить.
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_03");	//(в отчаянии) Она не может меня вот так вот бросить.
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_04");	//Забери это письмо! Я не хочу его видеть. Я верю, что когда-нибудь она ко мне вернется.
-	AI_PrintScreen("Прощальное письмо Люсии получено",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	AI_PrintScreen("Прощальное письмо Люсии получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	MIS_LuciasLetter = LOG_SUCCESS;
 	if(MIS_LookingForLucia == FALSE)
 	{

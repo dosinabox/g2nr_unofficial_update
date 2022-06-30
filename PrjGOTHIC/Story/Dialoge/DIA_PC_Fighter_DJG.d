@@ -306,38 +306,3 @@ func void DIA_GornDJG_DRAGONDEAD_Info()
 	B_GivePlayerXP(XP_AmbientKap4);
 };
 
-
-instance DIA_Fighter_DJG_PICKPOCKET(C_Info)
-{
-	npc = PC_Fighter_DJG;
-	nr = 900;
-	condition = DIA_Fighter_DJG_PICKPOCKET_Condition;
-	information = DIA_Fighter_DJG_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Fighter_DJG_PICKPOCKET_Condition()
-{
-	return C_Beklauen(10,35);
-};
-
-func void DIA_Fighter_DJG_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Fighter_DJG_PICKPOCKET);
-	Info_AddChoice(DIA_Fighter_DJG_PICKPOCKET,Dialog_Back,DIA_Fighter_DJG_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Fighter_DJG_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Fighter_DJG_PICKPOCKET_DoIt);
-};
-
-func void DIA_Fighter_DJG_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Fighter_DJG_PICKPOCKET);
-};
-
-func void DIA_Fighter_DJG_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Fighter_DJG_PICKPOCKET);
-};
-

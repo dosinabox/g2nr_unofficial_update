@@ -88,7 +88,7 @@ func void Use_Apple()
 		if(Apple_Bonus == ApplesNeededForBonus)
 		{
 			Print(PRINT_Eat3);
-			B_RaiseAttribute(self,ATR_STRENGTH,AppleSTRBonus);
+			B_RaiseAttributeByPermBonus(self,ATR_STRENGTH,AppleSTRBonus);
 			Snd_Play("LEVELUP");
 			Apple_Bonus = 0;
 		};
@@ -335,7 +335,7 @@ instance ItFo_XPStew(C_Item)
 func void Use_XPStew()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Stew);
-	B_RaiseAttribute(self,ATR_STRENGTH,STR_Stew);
+	B_RaiseAttributeByPermBonus(self,ATR_STRENGTH,STR_Stew);
 };
 
 
@@ -347,7 +347,7 @@ instance ItFo_CoragonsBeer(C_Item)
 	value = Value_CoragonsBeer;
 	visual = "ItFo_CoragonsBeer.3DS";
 	material = MAT_WOOD;
-	scemeName = "POTION";
+	scemeName = "BEER";
 	on_state[0] = Use_CoragonsBeer;
 	description = name;
 	text[0] = "Особое пиво Корагона.";
@@ -362,13 +362,18 @@ instance ItFo_CoragonsBeer(C_Item)
 
 func void Use_CoragonsBeer()
 {
+	if(C_NpcIsHero(self))
+	{
+		ATR_PermBonus[ATR_HITPOINTS_MAX] += HP_CoragonsBeer;
+		ATR_PermBonus[ATR_MANA_MAX] += Mana_CoragonsBeer;
+	};
+	self.attribute[ATR_HITPOINTS_MAX] += HP_CoragonsBeer;
+	self.attribute[ATR_HITPOINTS] += HP_CoragonsBeer;
+	PrintScreen(ConcatStrings(PRINT_LearnHP_MAX,IntToString(HP_CoragonsBeer)),-1,43,FONT_Screen,2);
+	self.attribute[ATR_MANA_MAX] += Mana_CoragonsBeer;
+	self.attribute[ATR_MANA] += Mana_CoragonsBeer;
+	PrintScreen(ConcatStrings(PRINT_LearnMANA_MAX,IntToString(Mana_CoragonsBeer)),-1,-1,FONT_Screen,2);
 	B_NpcSetDrunk(10);
-	var string concatText;
-	B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HP_CoragonsBeer);
-	Npc_ChangeAttribute(self,ATR_MANA_MAX,Mana_CoragonsBeer);
-	Npc_ChangeAttribute(self,ATR_MANA,Mana_CoragonsBeer);
-	concatText = ConcatStrings(PRINT_LearnMANA_MAX,IntToString(Mana_CoragonsBeer));
-	PrintScreen(concatText,-1,53,FONT_Screen,2);
 };
 
 
@@ -500,7 +505,7 @@ instance ItFo_Beer(C_Item)
 	value = Value_Beer;
 	visual = "ItFo_Beer.3DS";
 	material = MAT_WOOD;
-	scemeName = "POTION";
+	scemeName = "BEER";
 	on_state[0] = Use_Beer;
 	description = name;
 	text[0] = "Темное паладинское.";

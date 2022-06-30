@@ -73,10 +73,8 @@ func void DIA_Milten_DI_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Milten_DI_TRADE_15_00");	//Есть несколько лишних зелий?
 	B_GiveTradeInv(self);
-	Npc_RemoveInvItems(self,ItPo_Health_02,Npc_HasItems(self,ItPo_Health_02));
-	CreateInvItems(self,ItPo_Health_02,15);
-	Npc_RemoveInvItems(self,ItPo_Mana_02,Npc_HasItems(self,ItPo_Mana_02));
-	CreateInvItems(self,ItPo_Mana_02,15);
+	B_RefreshInvItemToAmount(self,ItPo_Health_02,15);
+	B_RefreshInvItemToAmount(self,ItPo_Mana_02,15);
 	AI_Output(self,other,"DIA_Milten_DI_TRADE_03_01");	//Пока есть запас.
 	Trade_IsActive = TRUE;
 };
@@ -165,8 +163,8 @@ func void B_BuildLearnDialog_Milten_DI()
 {
 	Info_ClearChoices(DIA_Milten_DI_TeachMagic);
 	Info_AddChoice(DIA_Milten_DI_TeachMagic,Dialog_Back,DIA_Milten_DI_TeachMagic_BACK);
-	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),DIA_Milten_DI_TeachMagic_MANA_1);
-	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),DIA_Milten_DI_TeachMagic_MANA_5);
+	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_Milten_DI_TeachMagic_MANA_1);
+	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_Milten_DI_TeachMagic_MANA_5);
 	if(hero.guild == GIL_KDF)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,"Создание рун",DIA_Milten_DI_TeachMagic_RUNES);
@@ -597,40 +595,4 @@ func void DIA_Milten_DI_UndeadDragonDead_Info()
 	};
 	DIA_Milten_DI_UndeadDragonDead_OneTime = TRUE;
 };
-
-
-instance DIA_Mage_DI_PICKPOCKET(C_Info)
-{
-	npc = PC_Mage_DI;
-	nr = 900;
-	condition = DIA_Mage_DI_PICKPOCKET_Condition;
-	information = DIA_Mage_DI_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Mage_DI_PICKPOCKET_Condition()
-{
-	return C_Beklauen(45,120);
-};
-
-func void DIA_Mage_DI_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Mage_DI_PICKPOCKET);
-	Info_AddChoice(DIA_Mage_DI_PICKPOCKET,Dialog_Back,DIA_Mage_DI_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Mage_DI_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Mage_DI_PICKPOCKET_DoIt);
-};
-
-func void DIA_Mage_DI_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Mage_DI_PICKPOCKET);
-};
-
-func void DIA_Mage_DI_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Mage_DI_PICKPOCKET);
-};
-
 

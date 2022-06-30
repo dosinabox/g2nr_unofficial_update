@@ -180,7 +180,8 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_OHT);
 //	CreateInvItem(self,ITAR_DJG_Babe);
 	CreateInvItem(self,ITAR_Xardas);
-	CreateInvItem(self,ITAR_Lester);
+	CreateInvItem(self,ITAR_PSI_M);
+	CreateInvItem(self,ITAR_PSI_H);
 	CreateInvItem(self,ITAR_Diego);
 	CreateInvItem(self,ITAR_CorAngar);
 	CreateInvItem(self,ITAR_KDW_H);
@@ -205,11 +206,11 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_FireArmor_Addon);
 	CreateInvItem(self,ITAR_PAL_Skel);
 	CreateInvItems(self,ItRu_PalLight,1);
-	CreateInvItems(self,ItRu_PalLightHeal,1);
+	CreateInvItems(self,ItRu_PalHeal_01,1);
 	CreateInvItems(self,ItRu_PalHolyBolt,1);
-	CreateInvItems(self,ItRu_PalMediumHeal,1);
+	CreateInvItems(self,ItRu_PalHeal_02,1);
 	CreateInvItems(self,ItRu_PalRepelEvil,1);
-	CreateInvItems(self,ItRu_PalFullHeal,1);
+	CreateInvItems(self,ItRu_PalHeal_03,1);
 	CreateInvItems(self,ItRu_PalDestroyEvil,1);
 	CreateInvItems(self,ItRu_PalTeleportSecret,1);
 	CreateInvItems(self,ItRu_TeleportSeaport,1);
@@ -269,11 +270,11 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItRu_SummonZombie,1);
 	CreateInvItems(self,ItRu_SummonGuardian,1);
 	CreateInvItems(self,ItSc_PalLight,10);
-	CreateInvItems(self,ItSc_PalLightHeal,10);
+	CreateInvItems(self,ItSc_PalHeal_01,10);
 	CreateInvItems(self,ItSc_PalHolyBolt,10);
-	CreateInvItems(self,ItSc_PalMediumHeal,10);
+	CreateInvItems(self,ItSc_PalHeal_02,10);
 	CreateInvItems(self,ItSc_PalRepelEvil,10);
-	CreateInvItems(self,ItSc_PalFullHeal,10);
+	CreateInvItems(self,ItSc_PalHeal_03,10);
 	CreateInvItems(self,ItSc_PalDestroyEvil,10);
 	CreateInvItems(self,ItSc_Charm,10);
 	CreateInvItems(self,ItSc_Light,10);
@@ -540,6 +541,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_Addon_Shell_01,10);
 	CreateInvItems(self,ItMi_Addon_Shell_02,10);
 	CreateInvItems(self,ItMi_Grog_Crate,5);
+	CreateInvItems(self,ItMi_ArrowPack,10);
 	CreateInvItems(self,ItRw_Bow_L_01,1);
 	CreateInvItems(self,ItRw_Bow_L_02,1);
 	CreateInvItems(self,ItRw_Bow_L_03,1);
@@ -821,7 +823,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_UseLampIdiot_Mis,1);
 	CreateInvItems(self,ItWr_Seamap_Irdorath,1);
 	CreateInvItems(self,ITWr_ForgedShipLetter_MIS,1);
-	CreateInvItems(self,ITKE_OC_MAINGATE_MIS,1);
+	CreateInvItems(self,ItKe_OC_MainGate_MIS,1);
 	CreateInvItems(self,ItKe_Ship_Levelchange_MIS,1);
 	CreateInvItems(self,ItPo_PotionOfDeath_01_Mis,1);
 	CreateInvItems(self,ItPo_PotionOfDeath_02_Mis,1);
@@ -869,7 +871,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItRi_Addon_MorgansRing_Mission,1);
 	CreateInvItems(self,ItMi_Focus,1);
 	CreateInvItems(self,ItMi_Addon_Steel_Paket,1);
-	CreateInvItems(self,ItMi_Addon_Lennar_Paket,1);
+	CreateInvItems(self,ItMi_Addon_Fisk_Paket,1);
 	CreateInvItems(self,ItMi_Zeitspalt_Addon,1);
 	CreateInvItems(self,ItWr_StonePlateCommon_Addon,1);
 	CreateInvItems(self,ItMi_Addon_Stone_01,1);
@@ -1246,7 +1248,8 @@ func void UseArmor()
 	CreateInvItem(self,ITAR_DJG_H);
 	CreateInvItem(self,ITAR_DJG_Crawler);
 	CreateInvItem(self,ITAR_Xardas);
-	CreateInvItem(self,ITAR_Lester);
+	CreateInvItem(self,ITAR_PSI_M);
+	CreateInvItem(self,ITAR_PSI_H);
 	CreateInvItem(self,ITAR_Diego);
 	CreateInvItem(self,ITAR_CorAngar);
 	CreateInvItem(self,ITAR_KDW_H);
@@ -1494,6 +1497,113 @@ func void UseTimeDemo()
 		TimeDemoStarted = FALSE;
 	};
 };*/
+
+instance AttBook(C_Item) //TODO перенести в StatsBook
+{
+	name = "Книга атрибутов";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItWr_GregsLogbuch_Mis.3ds";
+	material = MAT_LEATHER;
+	scemeName = "MAP";
+	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
+	on_state[0] = UseAttributesBook;
+};
+
+
+func void UseAttributesBook()
+{
+	var int nDocID;
+	nDocID = Doc_Create();
+	Doc_SetPages(nDocID,2);
+	Doc_SetPage(nDocID,0,"Book_Brown_L.tga",0);
+	Doc_SetPage(nDocID,1,"Book_Brown_R.tga",0);
+	Doc_SetMargins(nDocID,0,275,20,30,20,1);
+	Doc_SetFont(nDocID,0,FONT_Book);
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,ConcatStrings("Сила: ",IntToString(hero.attribute[ATR_STRENGTH])));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_Training[ATR_STRENGTH])," - учителя"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_PermBonus[ATR_STRENGTH])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_TempBonus[ATR_STRENGTH])," - временные бонусы"));
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,ConcatStrings("Ловкость: ",IntToString(hero.attribute[ATR_DEXTERITY])));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_Training[ATR_DEXTERITY])," - учителя"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_PermBonus[ATR_DEXTERITY])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_TempBonus[ATR_DEXTERITY])," - временные бонусы"));
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,ConcatStrings("Макс. мана: ",IntToString(hero.attribute[ATR_MANA_MAX])));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_Training[ATR_MANA_MAX])," - учителя"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_PermBonus[ATR_MANA_MAX])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_TempBonus[ATR_MANA_MAX])," - временные бонусы"));
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,ConcatStrings("Макс. здоровье: ",IntToString(hero.attribute[ATR_HITPOINTS_MAX])));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_Training[ATR_HITPOINTS_MAX])," - учителя"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_PermBonus[ATR_HITPOINTS_MAX])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ATR_TempBonus[ATR_HITPOINTS_MAX])," - временные бонусы"));
+	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
+	Doc_SetFont(nDocID,1,FONT_Book);
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,ConcatStrings("Одноручное оружие: ",IntToString(hero.HitChance[NPC_TALENT_1H])));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_Training[NPC_TALENT_1H])," - учителя"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_PermBonus[NPC_TALENT_1H])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_TempBonus[NPC_TALENT_1H])," - временные бонусы"));
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,ConcatStrings("Двуручное оружие: ",IntToString(hero.HitChance[NPC_TALENT_2H])));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_Training[NPC_TALENT_2H])," - учителя"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_PermBonus[NPC_TALENT_2H])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_TempBonus[NPC_TALENT_2H])," - временные бонусы"));
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,ConcatStrings("Луки: ",IntToString(hero.HitChance[NPC_TALENT_BOW])));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_Training[NPC_TALENT_BOW])," - учителя"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_PermBonus[NPC_TALENT_BOW])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_TempBonus[NPC_TALENT_BOW])," - временные бонусы"));
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,ConcatStrings("Арбалеты: ",IntToString(hero.HitChance[NPC_TALENT_CROSSBOW])));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_Training[NPC_TALENT_CROSSBOW])," - учителя"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_PermBonus[NPC_TALENT_CROSSBOW])," - постоянные бонусы"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TAL_TempBonus[NPC_TALENT_CROSSBOW])," - временные бонусы"));
+	Doc_Show(nDocID);
+};
+
+instance AttSyncer(C_Item) //TODO удалить
+{
+	name = "Руна синхронизации";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItRu_TeleportOWDemonTower.3DS";
+	material = MAT_STONE;
+	scemeName = "MAP";
+	description = name;
+	text[0] = "Синхронизировать характеристики ГГ.";
+	on_state[0] = UseAttributesSyncer;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
+};
+
+
+func void UseAttributesSyncer()
+{
+	B_UnEquipAllTempBonusItems();
+	ATR_Training[ATR_STRENGTH] = hero.attribute[ATR_STRENGTH] - Stats_Blessings_Str;
+	ATR_Training[ATR_DEXTERITY] = hero.attribute[ATR_DEXTERITY] - Stats_Blessings_Dex;
+	ATR_Training[ATR_MANA_MAX] = hero.attribute[ATR_MANA_MAX] - Stats_Blessings_MaxMana;
+	ATR_Training[ATR_HITPOINTS_MAX] = hero.attribute[ATR_HITPOINTS_MAX] - Stats_Blessings_MaxHp;
+	ATR_PermBonus[ATR_STRENGTH] = Stats_Blessings_Str;
+	ATR_PermBonus[ATR_DEXTERITY] = Stats_Blessings_Dex;
+	ATR_PermBonus[ATR_MANA_MAX] = Stats_Blessings_MaxMana;
+	ATR_PermBonus[ATR_HITPOINTS_MAX] = Stats_Blessings_MaxHp;
+	ATR_TempBonus[ATR_STRENGTH] = 0;
+	ATR_TempBonus[ATR_DEXTERITY] = 0;
+	ATR_TempBonus[ATR_MANA_MAX] = 0;
+	ATR_TempBonus[ATR_HITPOINTS_MAX] = 0;
+	PrintScreen("Характеристики синхронизированы",-1,55,FONT_Screen,4);
+};
 
 instance MobsiBrief(C_Item)
 {

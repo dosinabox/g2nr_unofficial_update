@@ -1,14 +1,4 @@
 
-func void B_InsertGregWolfs()
-{
-	if(GregWolfs == FALSE)
-	{
-		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
-		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
-		GregWolfs = TRUE;
-	};
-};
-
 instance DIA_Addon_Greg_NW_EXIT(C_Info)
 {
 	npc = PIR_1300_Addon_Greg_NW;
@@ -1031,7 +1021,7 @@ func void DIA_Addon_Greg_NW_RavensLetter_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_02");	//Черт возьми! Это мне совсем не поможет.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_03");	//Нельзя было его просто так убивать.
 	B_GregTalksAboutPortal();
-	AI_PrintScreen("Приказы получено",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	AI_PrintScreen("Приказы получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 };
 
 

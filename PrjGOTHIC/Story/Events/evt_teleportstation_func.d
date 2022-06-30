@@ -52,7 +52,7 @@ func void evt_teleportstation_func()
 	}
 	else if(CurrentLevel == ADDONWORLD_ZEN)
 	{
-		if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ENTRANCE_TELEPORT_NORTH_WP"))
+		if(C_NpcIsNearWP(hero,"ADW_ENTRANCE_TELEPORT_NORTH_WP"))
 		{
 			AI_Teleport(hero,"ADW_PORTALTEMPEL_TELEPORTSTATION");
 			if(SCUsed_ADW_TELEPORTSTATION_PORTALTEMPEL == FALSE)
@@ -64,7 +64,7 @@ func void evt_teleportstation_func()
 				SCUsed_ADW_TELEPORTSTATION_PORTALTEMPEL = TRUE;
 			};
 		}
-		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ENTRANCE_TELEPORT_EAST_WP"))
+		else if(C_NpcIsNearWP(hero,"ADW_ENTRANCE_TELEPORT_EAST_WP"))
 		{
 			AI_Teleport(hero,"ADW_ADANOSTEMPEL_TELEPORTSTATION");
 			if(SCUsed_ADW_TELEPORTSTATION_ADANOSTEMPEL == FALSE)
@@ -76,7 +76,7 @@ func void evt_teleportstation_func()
 				SCUsed_ADW_TELEPORTSTATION_ADANOSTEMPEL = TRUE;
 			};
 		}
-		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ENTRANCE_TELEPORT_SOUTHEAST_WP"))
+		else if(C_NpcIsNearWP(hero,"ADW_ENTRANCE_TELEPORT_SOUTHEAST_WP"))
 		{
 			AI_Teleport(hero,"ADW_SOUTHEAST_TELEPORTSTATION");
 			if(SCUsed_ADW_TELEPORTSTATION_SOUTHEAST == FALSE)
@@ -88,7 +88,7 @@ func void evt_teleportstation_func()
 				SCUsed_ADW_TELEPORTSTATION_SOUTHEAST = TRUE;
 			};
 		}
-		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ENTRANCE_TELEPORT_SOUTHWEST_WP"))
+		else if(C_NpcIsNearWP(hero,"ADW_ENTRANCE_TELEPORT_SOUTHWEST_WP"))
 		{
 			AI_Teleport(hero,"ADW_SOUTHWEST_TELEPORTSTATION");
 			if(SCUsed_ADW_TELEPORTSTATION_SOUTHWEST == FALSE)
@@ -100,7 +100,7 @@ func void evt_teleportstation_func()
 				SCUsed_ADW_TELEPORTSTATION_SOUTHWEST = TRUE;
 			};
 		}
-		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ENTRANCE_TELEPORT_WEST_WP"))
+		else if(C_NpcIsNearWP(hero,"ADW_ENTRANCE_TELEPORT_WEST_WP"))
 		{
 			AI_Teleport(hero,"ADW_PIRATES_TELEPORTSTATION");
 			if(SCUsed_ADW_TELEPORTSTATION_PIRATES == FALSE)
@@ -122,13 +122,9 @@ func void evt_teleportstation_func()
 				SCUsed_ADW_TELEPORTSTATION_PIRATES_JACKSMONSTER = TRUE;
 			};
 		}
-		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ADANOSTEMPEL_RAVENTELEPORT_OUT"))
+		else if(C_NpcIsNearWP(hero,"ADW_ADANOSTEMPEL_RAVENTELEPORT_OUT"))
 		{
 			AI_Teleport(hero,"ADW_ADANOSTEMPEL_TELEPORTSTATION");
-			/*if(SCUsed_ADW_TELEPORTSTATION_RAVENTELEPORT_OUT == FALSE)
-			{
-				SCUsed_ADW_TELEPORTSTATION_RAVENTELEPORT_OUT = TRUE;
-			};*/
 		}
 		else
 		{
@@ -143,22 +139,22 @@ var int ADW_PORTALTEMPEL_FOCUS_FUNC_OneTime;
 
 func void adw_portaltempel_focus_func()
 {
+	Snd_Play("MFX_TELEKINESIS_STARTINVEST");
 	Npc_RemoveInvItems(hero,ItMi_Focus,1);
 	TriggeredTeleporterADW += 1;
-	Snd_Play("MFX_TELEKINESIS_STARTINVEST");
 	if(TriggeredTeleporterADW >= 5)
 	{
 		SC_ADW_ActivatedAllTelePortStones = TRUE;
+		B_CheckLog();
 	};
 	if((ADW_PORTALTEMPEL_FOCUS_FUNC_OneTime == FALSE) && (Npc_GetDistToWP(hero,"ADW_PORTALTEMPEL_TELEPORTSTATION") < 3000))
 	{
-//		if(!Npc_IsDead(Stoneguardian_NailedPortalADW1) && (Stoneguardian_NailedPortalADW1.aivar[AIV_EnemyOverride] == TRUE))
 		if(!Npc_IsDead(Stoneguardian_NailedPortalADW1) || !Npc_IsDead(Stoneguardian_NailedPortalADW2))
 		{
 			Snd_Play("THRILLJINGLE_02");
 		};
-		b_awake_stoneguardian(Stoneguardian_NailedPortalADW1);
-		b_awake_stoneguardian(Stoneguardian_NailedPortalADW2);
+		B_Awake_StoneGuardian(Stoneguardian_NailedPortalADW1);
+		B_Awake_StoneGuardian(Stoneguardian_NailedPortalADW2);
 		ADW_PORTALTEMPEL_FOCUS_FUNC_OneTime = TRUE;
 	};
 };

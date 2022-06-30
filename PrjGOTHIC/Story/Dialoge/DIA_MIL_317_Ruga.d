@@ -21,47 +21,6 @@ func void DIA_Ruga_EXIT_Info()
 };
 
 
-instance DIA_Ruga_PICKPOCKET(C_Info)
-{
-	npc = MIL_317_Ruga;
-	nr = 900;
-	condition = DIA_Ruga_PICKPOCKET_Condition;
-	information = DIA_Ruga_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40_Key;
-};
-
-
-func int DIA_Ruga_PICKPOCKET_Condition()
-{
-//	return C_StealItems(40,Hlp_GetInstanceID(ItKe_City_Tower_03),1);
-	if(Npc_HasItems(self,ItKe_City_Tower_03))
-	{
-		return C_StealItem(40);
-	};
-	return FALSE;
-};
-
-func void DIA_Ruga_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Ruga_PICKPOCKET);
-	Info_AddChoice(DIA_Ruga_PICKPOCKET,Dialog_Back,DIA_Ruga_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Ruga_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Ruga_PICKPOCKET_DoIt);
-};
-
-func void DIA_Ruga_PICKPOCKET_DoIt()
-{
-//	B_StealItems(40,Hlp_GetInstanceID(ItKe_City_Tower_03),1);
-	B_StealItem(40,Hlp_GetInstanceID(ItKe_City_Tower_03));
-	Info_ClearChoices(DIA_Ruga_PICKPOCKET);
-};
-
-func void DIA_Ruga_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Ruga_PICKPOCKET);
-};
-
-
 instance DIA_Ruga_Hallo(C_Info)
 {
 	npc = MIL_317_Ruga;
@@ -209,7 +168,7 @@ var int DIA_Ruga_TEACHDEX_permanent;
 
 func void B_BuildLearnDialog_Ruga_DEX()
 {
-	if(other.aivar[REAL_DEXTERITY] >= T_HIGH)
+	if(RealAttributeValue(ATR_DEXTERITY) >= T_HIGH)
 	{
 		AI_Output(self,other,"DIA_Ruga_TEACHDEX_11_00");	//Ёто все, чему € мог обучить теб€. ≈сли ты хочешь стать еще более ловким, тебе лучше поискать другого учител€.
 		DIA_Ruga_TEACHDEX_permanent = TRUE;
@@ -218,8 +177,8 @@ func void B_BuildLearnDialog_Ruga_DEX()
 	{
 		Info_ClearChoices(DIA_Ruga_TEACHDEX);
 		Info_AddChoice(DIA_Ruga_TEACHDEX,Dialog_Back,DIA_Ruga_TEACHDEX_BACK);
-		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_Ruga_TEACHDEX_1);
-		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_Ruga_TEACHDEX_5);
+		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Ruga_TEACHDEX_1);
+		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Ruga_TEACHDEX_5);
 	};
 };
 

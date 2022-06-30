@@ -22,41 +22,6 @@ func void DIA_Gaertner_EXIT_Info()
 };
 
 
-instance DIA_Gaertner_PICKPOCKET(C_Info)
-{
-	npc = VLK_411_Gaertner;
-	nr = 900;
-	condition = DIA_Gaertner_PICKPOCKET_Condition;
-	information = DIA_Gaertner_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Gaertner_PICKPOCKET_Condition()
-{
-	return C_Beklauen(40,50);
-};
-
-func void DIA_Gaertner_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Gaertner_PICKPOCKET);
-	Info_AddChoice(DIA_Gaertner_PICKPOCKET,Dialog_Back,DIA_Gaertner_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Gaertner_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Gaertner_PICKPOCKET_DoIt);
-};
-
-func void DIA_Gaertner_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Gaertner_PICKPOCKET);
-};
-
-func void DIA_Gaertner_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Gaertner_PICKPOCKET);
-};
-
-
 instance DIA_Gaertner_Job(C_Info)
 {
 	npc = VLK_411_Gaertner;

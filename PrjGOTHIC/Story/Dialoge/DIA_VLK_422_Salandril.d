@@ -1,24 +1,4 @@
 
-var int SalandrilKeyRemoved;
-
-func void B_RemoveSalandrilKey()
-{
-	if(Npc_HasItems(self,ItKe_Salandril) && (SalandrilKeyRemoved == FALSE))
-	{
-		Npc_RemoveInvItems(self,ItKe_Salandril,Npc_HasItems(self,ItKe_Salandril));
-		SalandrilKeyRemoved = TRUE;
-	};
-};
-
-func void B_GiveSalandrilKey()
-{
-	if(!Npc_HasItems(self,ItKe_Salandril) && (SalandrilKeyRemoved == TRUE) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE))
-	{
-		CreateInvItem(self,ItKe_Salandril);
-		SalandrilKeyRemoved = FALSE;
-	};
-};
-
 instance DIA_Salandril_EXIT(C_Info)
 {
 	npc = VLK_422_Salandril;
@@ -38,48 +18,7 @@ func int DIA_Salandril_EXIT_Condition()
 func void DIA_Salandril_EXIT_Info()
 {
 	B_EquipTrader(self);
-	B_GiveSalandrilKey();
 	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Salandril_PICKPOCKET(C_Info)
-{
-	npc = VLK_422_Salandril;
-	nr = 900;
-	condition = DIA_Salandril_PICKPOCKET_Condition;
-	information = DIA_Salandril_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40_Key;
-};
-
-
-func int DIA_Salandril_PICKPOCKET_Condition()
-{
-	if(Npc_HasItems(self,ItKe_Salandril) || (SalandrilKeyRemoved == TRUE))
-	{
-		return C_StealItem(30);
-	};
-	return FALSE;
-};
-
-func void DIA_Salandril_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Salandril_PICKPOCKET);
-	Info_AddChoice(DIA_Salandril_PICKPOCKET,Dialog_Back,DIA_Salandril_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Salandril_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Salandril_PICKPOCKET_DoIt);
-};
-
-func void DIA_Salandril_PICKPOCKET_DoIt()
-{
-	B_GiveSalandrilKey();
-	B_StealItem(30,Hlp_GetInstanceID(ItKe_Salandril));
-	Info_ClearChoices(DIA_Salandril_PICKPOCKET);
-};
-
-func void DIA_Salandril_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Salandril_PICKPOCKET);
 };
 
 
@@ -169,16 +108,6 @@ func int DIA_Salandril_Trade_Condition()
 
 func void DIA_Salandril_Trade_Info()
 {
-	B_RemoveSalandrilKey();
-	if(Salandril_flag == TRUE)
-	{
-		B_ClearAlchemyInv(self);
-		if(Salandril_flasks > 0)
-		{
-			CreateInvItems(self,ItMi_Flask,Salandril_flasks);
-		};
-		Salandril_flag = FALSE;
-	};
 	AI_Output(other,self,"DIA_Salandril_Trade_15_00");	//Покажи мне свои товары.
 	if(other.guild == GIL_KDF)
 	{
@@ -219,9 +148,8 @@ func void DIA_Salandril_Minenanteil_Info()
 {
 	AI_Output(other,self,"DIA_Canthar_Minenanteil_15_00");	//Ты продаешь поддельные акции!
 	B_Say(self,other,"$NOTNOW");
-	B_GiveSalandrilKey();
-	AI_StopProcessInfos(self);
 	B_GivePlayerXP(XP_Ambient);
+	AI_StopProcessInfos(self);
 };
 
 instance DIA_Salandril_KLOSTER(C_Info)
@@ -255,7 +183,6 @@ func void DIA_Salandril_KLOSTER_Info()
 		AI_Output(other,self,"DIA_Salandril_KLOSTER_15_03");	//У меня есть приказ, и я выполню его. Так что, либо ты пойдешь сам, либо мне придется заставить тебя.
 	};
 	AI_Output(self,other,"DIA_Salandril_KLOSTER_13_04");	//Что? Да я протащу тебя через весь город за шиворот, как паршивого щенка, и вышвырну за ворота.
-	B_GiveSalandrilKey();
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };

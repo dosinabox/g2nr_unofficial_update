@@ -33,41 +33,6 @@ func void DIA_Addon_Malcom_EXIT_Info()
 };
 
 
-instance DIA_Addon_Malcom_PICKPOCKET(C_Info)
-{
-	npc = PIR_1368_Addon_Malcom;
-	nr = 900;
-	condition = DIA_Addon_Malcom_PICKPOCKET_Condition;
-	information = DIA_Addon_Malcom_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Addon_Malcom_PICKPOCKET_Condition()
-{
-	return C_Beklauen(20,30);
-};
-
-func void DIA_Addon_Malcom_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Malcom_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Malcom_PICKPOCKET,Dialog_Back,DIA_Addon_Malcom_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Malcom_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Malcom_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Malcom_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Malcom_PICKPOCKET);
-};
-
-func void DIA_Addon_Malcom_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Malcom_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Malcom_Hello(C_Info)
 {
 	npc = PIR_1368_Addon_Malcom;

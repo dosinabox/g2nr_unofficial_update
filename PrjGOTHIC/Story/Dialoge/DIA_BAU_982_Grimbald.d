@@ -384,38 +384,3 @@ func void DIA_Grimbald_Success_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Grimbald_PICKPOCKET(C_Info)
-{
-	npc = BAU_982_Grimbald;
-	nr = 900;
-	condition = DIA_Grimbald_PICKPOCKET_Condition;
-	information = DIA_Grimbald_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_100;
-};
-
-
-func int DIA_Grimbald_PICKPOCKET_Condition()
-{
-	return C_Beklauen(85,250);
-};
-
-func void DIA_Grimbald_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Grimbald_PICKPOCKET);
-	Info_AddChoice(DIA_Grimbald_PICKPOCKET,Dialog_Back,DIA_Grimbald_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Grimbald_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Grimbald_PICKPOCKET_DoIt);
-};
-
-func void DIA_Grimbald_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Grimbald_PICKPOCKET);
-};
-
-func void DIA_Grimbald_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Grimbald_PICKPOCKET);
-};
-

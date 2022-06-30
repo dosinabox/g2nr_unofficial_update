@@ -26,8 +26,8 @@ instance MENUITEM_MAIN_NEWGAME(C_MENU_ITEM_DEF)
 	posy = MENU_MAIN_START_Y;
 	dimx = MENU_MAIN_DX;
 	dimy = MENU_MAIN_DY;
-	onselaction[0] = SEL_ACTION_CLOSE;
-	onselaction_s[0] = "NEW_GAME";
+	onselaction[0] = SEL_ACTION_STARTMENU;
+	onselaction_s[0] = "MENU_NEW_GAME";
 	flags = flags | IT_TXT_CENTER;
 };
 

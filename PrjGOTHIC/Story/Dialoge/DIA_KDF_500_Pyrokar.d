@@ -214,7 +214,7 @@ func void DIA_Pyrokar_FIRE_Info()
 	AI_Output(other,self,"DIA_Pyrokar_FIRE_15_06");	//Я настаиваю на прохождении Испытания Огнем.
 	AI_Output(self,other,"DIA_Pyrokar_FIRE_11_07");	//В таком случае - так тому и быть. Когда ты будешь готов, каждый из магов Высшего Совета даст тебе задание, которое ты должен будешь выполнить.
 	AI_Output(self,other,"DIA_Pyrokar_FIRE_11_08");	//Да сжалится Иннос над твоей душой.
-	KDF_Aufnahme = LOG_Running;
+//	KDF_Aufnahme = LOG_Running;
 	B_LogEntry(TOPIC_FireContest,"Я потребовал у Пирокара пройти Испытание Огнем. Теперь я должен выполнить три задания Высшего Совета.");
 };
 
@@ -520,12 +520,14 @@ func void DIA_Pyrokar_OATH_Info()
 		Npc_ExchangeRoutine(Lothar,"START");
 	};
 	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
-	KDF_Aufnahme = LOG_SUCCESS;
+//	KDF_Aufnahme = LOG_SUCCESS;
 	B_CancelBengarMilitiaProblem();
 	B_GivePlayerXP(XP_BecomeMage);
 	if(!Npc_IsDead(Gorax))
 	{
 		CreateInvItems(Gorax,ItMi_RuneBlank,2);
+		CreateInvItems(Gorax,ItBE_Addon_KDF_01,1);
+		CreateInvItems(Gorax,ItWr_Map_Shrine_MIS,1);
 	};
 	if(!Npc_IsDead(Karras))
 	{
@@ -651,11 +653,11 @@ func int DIA_Pyrokar_Wunsch_Condition()
 {
 	if(other.guild == GIL_KDF)
 	{
-		if(Kapitel < 2)
+		if(Kapitel == 1)
 		{
 			return TRUE;
-		}
-		else if(GuildlessMode == TRUE)
+		};
+		if(GuildlessMode == TRUE)
 		{
 			return TRUE;
 		};
@@ -800,8 +802,8 @@ func int DIA_Pyrokar_Nachricht_Condition()
 		if(other.guild == GIL_KDF)
 		{
 			return TRUE;
-		}
-		else if((other.guild == GIL_NOV) && (GuildlessMode == TRUE))
+		};
+		if((other.guild == GIL_NOV) && (GuildlessMode == TRUE))
 		{
 			return TRUE;
 		};
@@ -985,7 +987,7 @@ var int Pyrokar_TeachMANA_NoPerm;
 
 func void B_BuildLearnDialog_Pyrokar()
 {
-	if(other.aivar[REAL_MANA_MAX] >= T_MEGA)
+	if(RealAttributeValue(ATR_MANA_MAX) >= T_MEGA)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_TEACH_MANA_11_00");	//Я чувствую, как магическая энергия течет через тебя, не зная преград. Даже я не могу показать тебе, как повысить ее еще больше.
 		Pyrokar_TeachMANA_NoPerm = TRUE;
@@ -994,8 +996,8 @@ func void B_BuildLearnDialog_Pyrokar()
 	{
 		Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
 		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
-		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),DIA_Pyrokar_TEACH_MANA_1);
-		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),DIA_Pyrokar_TEACH_MANA_5);
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_Pyrokar_TEACH_MANA_1);
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_Pyrokar_TEACH_MANA_5);
 	};
 };
 
@@ -2298,40 +2300,5 @@ func void DIA_Pyrokar_PotionofDeath_Weapon()
 	AI_Output(self,other,"DIA_Pyrokar_PotionofDeath_Weapon_11_06");	//Любого другого - даже паладина нашего Владыки - ожидает мучительная смерть.
 	Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_01_Mis,1);
 	CreateInvItems(hero,ItPo_PotionOfDeath_02_Mis,1);
-};
-
-
-instance DIA_Pyrokar_PICKPOCKET(C_Info)
-{
-	npc = KDF_500_Pyrokar;
-	nr = 900;
-	condition = DIA_Pyrokar_PICKPOCKET_Condition;
-	information = DIA_Pyrokar_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_120;
-};
-
-
-func int DIA_Pyrokar_PICKPOCKET_Condition()
-{
-	return C_Beklauen(108,550);
-};
-
-func void DIA_Pyrokar_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Pyrokar_PICKPOCKET);
-	Info_AddChoice(DIA_Pyrokar_PICKPOCKET,Dialog_Back,DIA_Pyrokar_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Pyrokar_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Pyrokar_PICKPOCKET_DoIt);
-};
-
-func void DIA_Pyrokar_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Pyrokar_PICKPOCKET);
-};
-
-func void DIA_Pyrokar_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Pyrokar_PICKPOCKET);
 };
 

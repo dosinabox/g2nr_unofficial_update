@@ -126,14 +126,14 @@ func void B_BuildLearnDialog_Ingmar()
 {
 	Info_ClearChoices(DIA_Ingmar_Teach);
 	Info_AddChoice(DIA_Ingmar_Teach,Dialog_Back,DIA_Ingmar_Teach_BACK);
-	if(other.aivar[REAL_STRENGTH] >= T_MAX)
+	if(RealAttributeValue(ATR_STRENGTH) >= T_MAX)
 	{
 		AI_Output(self,other,"DIA_Ingmar_Teach_06_00");	//“ы и так силен как тролль. ћне нечему учить теб€.
 	}
 	else
 	{
-		Info_AddChoice(DIA_Ingmar_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH,1)),DIA_Ingmar_Teach_1);
-		Info_AddChoice(DIA_Ingmar_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH,5)),DIA_Ingmar_Teach_5);
+		Info_AddChoice(DIA_Ingmar_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Ingmar_Teach_1);
+		Info_AddChoice(DIA_Ingmar_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Ingmar_Teach_5);
 	};
 };
 
@@ -281,46 +281,5 @@ func void DIA_Ingmar_HAUPTQUARTIER_Info()
 	B_GiveInvItems(self,other,ItMi_Gold,300);
 	MIS_KillOrkOberst = LOG_SUCCESS;
 	B_GivePlayerXP(XP_KilledOrkOberst);
-};
-
-
-instance DIA_Ingmar_PICKPOCKET(C_Info)
-{
-	npc = PAL_201_Ingmar;
-	nr = 900;
-	condition = DIA_Ingmar_PICKPOCKET_Condition;
-	information = DIA_Ingmar_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = "(украсть его документ практически невозможно)";
-};
-
-
-func int DIA_Ingmar_PICKPOCKET_Condition()
-{
-//	return C_StealItems(105,Hlp_GetInstanceID(ItWr_Manowar),1);
-	if(Npc_HasItems(self,ItWr_Manowar))
-	{
-		return C_StealItem(105);
-	};
-	return FALSE;
-};
-
-func void DIA_Ingmar_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Ingmar_PICKPOCKET);
-	Info_AddChoice(DIA_Ingmar_PICKPOCKET,Dialog_Back,DIA_Ingmar_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Ingmar_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Ingmar_PICKPOCKET_DoIt);
-};
-
-func void DIA_Ingmar_PICKPOCKET_DoIt()
-{
-//	B_StealItems(105,Hlp_GetInstanceID(ItWr_Manowar),1);
-	B_StealItem(105,Hlp_GetInstanceID(ItWr_Manowar));
-	Info_ClearChoices(DIA_Ingmar_PICKPOCKET);
-};
-
-func void DIA_Ingmar_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Ingmar_PICKPOCKET);
 };
 

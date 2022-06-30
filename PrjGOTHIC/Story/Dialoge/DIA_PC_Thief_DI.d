@@ -143,8 +143,8 @@ func void B_BuildLearnDialog_Diego_DI()
 	{
 		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(NAME_Skill_PickLock,B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
 	};
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY,1)),DIA_PC_Thief_DI_Training_DEX_1);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY,5)),DIA_PC_Thief_DI_Training_DEX_5);
+	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_PC_Thief_DI_Training_DEX_1);
+	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_PC_Thief_DI_Training_DEX_5);
 	if(VisibleTalentValue(NPC_TALENT_BOW) < 100)
 	{
 		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_PC_Thief_DI_Training_Combat_BOW_1);
@@ -306,40 +306,5 @@ func void DIA_PC_Thief_DI_UndeadDragonDead_Info()
 		};
 	};
 	DIA_PC_Thief_DI_UndeadDragonDead_OneTime = TRUE;
-};
-
-
-instance DIA_Thief_DI_PICKPOCKET(C_Info)
-{
-	npc = PC_Thief_DI;
-	nr = 900;
-	condition = DIA_Thief_DI_PICKPOCKET_Condition;
-	information = DIA_Thief_DI_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_120;
-};
-
-
-func int DIA_Thief_DI_PICKPOCKET_Condition()
-{
-	return C_Beklauen(120,600);
-};
-
-func void DIA_Thief_DI_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Thief_DI_PICKPOCKET);
-	Info_AddChoice(DIA_Thief_DI_PICKPOCKET,Dialog_Back,DIA_Thief_DI_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Thief_DI_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Thief_DI_PICKPOCKET_DoIt);
-};
-
-func void DIA_Thief_DI_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Thief_DI_PICKPOCKET);
-};
-
-func void DIA_Thief_DI_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Thief_DI_PICKPOCKET);
 };
 

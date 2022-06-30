@@ -11,6 +11,7 @@ instance STRF_1106_Fed(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_2H_Axe_L_01);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,32,ItMi_Gold,8);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Gilbert,BodyTex_P,ITAR_Prisoner);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

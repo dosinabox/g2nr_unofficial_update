@@ -24,55 +24,6 @@ func void DIA_Addon_Cavalorn_EXIT_Info()
 };
 
 
-instance DIA_Addon_Cavalorn_PICKPOCKET(C_Info)
-{
-	npc = BAU_4300_Addon_Cavalorn;
-	nr = 900;
-	condition = DIA_Addon_Cavalorn_PICKPOCKET_Condition;
-	information = DIA_Addon_Cavalorn_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = "(украсть его колчан будет довольно просто)";
-};
-
-
-func int DIA_Addon_Cavalorn_PICKPOCKET_Condition()
-{
-	return C_StealItem(25);
-};
-
-func void DIA_Addon_Cavalorn_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Cavalorn_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Cavalorn_PICKPOCKET,Dialog_Back,DIA_Addon_Cavalorn_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Cavalorn_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Cavalorn_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Cavalorn_PICKPOCKET_DoIt()
-{
-	if(other.attribute[ATR_DEXTERITY] >= 25)
-	{
-		CreateInvItems(self,ItRw_Arrow,44);
-		B_GiveInvItems(self,other,ItRw_Arrow,44);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Кавалорн",PRINT_PickPocketSuccess));
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Кавалорн",PRINT_PickPocketFailed));
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
-	Info_ClearChoices(DIA_Addon_Cavalorn_PICKPOCKET);
-};
-
-func void DIA_Addon_Cavalorn_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Cavalorn_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Cavalorn_MeetingIsRunning(C_Info)
 {
 	npc = BAU_4300_Addon_Cavalorn;
@@ -552,10 +503,19 @@ func void DIA_Addon_Cavalorn_LETSKILLBANDITS_Info()
 	Npc_ExchangeRoutine(self,"KillBandits");
 	if(Bdt_1013_Away == FALSE)
 	{
-		Ambusher_1013.aivar[AIV_EnemyOverride] = FALSE;
+		if(!Npc_IsDead(Ambusher_1013))
+		{
+			Ambusher_1013.aivar[AIV_EnemyOverride] = FALSE;
+		};
 	};
-	Ambusher_1014.aivar[AIV_EnemyOverride] = FALSE;
-	Ambusher_1015.aivar[AIV_EnemyOverride] = FALSE;
+	if(!Npc_IsDead(Ambusher_1014))
+	{
+		Ambusher_1014.aivar[AIV_EnemyOverride] = FALSE;
+	};
+	if(!Npc_IsDead(Ambusher_1015))
+	{
+		Ambusher_1015.aivar[AIV_EnemyOverride] = FALSE;
+	};
 };
 
 func void B_Addon_Cavalorn_VatrasBrief()
@@ -613,9 +573,12 @@ instance DIA_Addon_Cavalorn_BragoKilled(C_Info)
 
 func int DIA_Addon_Cavalorn_BragoKilled_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") < 500) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running) && C_BragoBanditsDead())
+	if((Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") < 500) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running))
 	{
-		return TRUE;
+		if(C_BragoBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -638,9 +601,12 @@ instance DIA_Addon_Cavalorn_PCKilledBrago(C_Info)
 
 func int DIA_Addon_Cavalorn_PCKilledBrago_Condition()
 {
-	if(((MIS_Addon_Cavalorn_KillBrago == FALSE) || ((Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 500) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running))) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen) && C_BragoBanditsDead())
+	if(((MIS_Addon_Cavalorn_KillBrago == FALSE) || ((Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 500) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running))) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen))
 	{
-		return TRUE;
+		if(C_BragoBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -942,9 +908,12 @@ instance DIA_Addon_Cavalorn_WannaLearn(C_Info)
 
 func int DIA_Addon_Cavalorn_WannaLearn_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO) && C_BragoBanditsDead())
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO))
 	{
-		return TRUE;
+		if(C_BragoBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 

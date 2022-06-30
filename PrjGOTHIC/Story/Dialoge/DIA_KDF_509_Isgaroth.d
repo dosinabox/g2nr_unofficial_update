@@ -207,6 +207,17 @@ func void DIA_Isgaroth_Trade_Info()
 };
 
 
+func void B_KlosterTributInfo()
+{
+	if(SC_KnowsKlosterTribut == FALSE)
+	{
+		Log_CreateTopic(Topic_Kloster,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Kloster,LOG_Running);
+		B_LogEntry(Topic_Kloster,"Чтобы стать послушником монастыря Инноса, мне нужна овца и 1000 золотых монет.");
+		SC_KnowsKlosterTribut = TRUE;
+	};
+};
+
 instance DIA_Isgaroth_Kloster(C_Info)
 {
 	npc = KDF_509_Isgaroth;
@@ -234,13 +245,7 @@ func void DIA_Isgaroth_Kloster_Info()
 	{
 		AI_Output(self,other,"DIA_Isgaroth_Kloster_01_02");	//Если ты хочешь стать послушником монастыря, ты должен принести овцу и...
 		B_Say_Gold(self,other,Summe_Kloster);
-		if(SC_KnowsKlosterTribut == FALSE)
-		{
-			Log_CreateTopic(Topic_Kloster,LOG_MISSION);
-			Log_SetTopicStatus(Topic_Kloster,LOG_Running);
-			B_LogEntry(Topic_Kloster,"Чтобы стать послушником монастыря Инноса, мне нужна овца и 1000 золотых монет.");
-			SC_KnowsKlosterTribut = TRUE;
-		};
+		B_KlosterTributInfo();
 	}
 	else
 	{
@@ -295,40 +300,5 @@ func void DIA_Isgaroth_Vatras_Info()
 		AI_StopProcessInfos(self);
 	};
 	Vatras_Return = TRUE;
-};
-
-
-instance DIA_Isgaroth_PICKPOCKET(C_Info)
-{
-	npc = KDF_509_Isgaroth;
-	nr = 900;
-	condition = DIA_Isgaroth_PICKPOCKET_Condition;
-	information = DIA_Isgaroth_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Isgaroth_PICKPOCKET_Condition()
-{
-	return C_Beklauen(48,50);
-};
-
-func void DIA_Isgaroth_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Isgaroth_PICKPOCKET);
-	Info_AddChoice(DIA_Isgaroth_PICKPOCKET,Dialog_Back,DIA_Isgaroth_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Isgaroth_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Isgaroth_PICKPOCKET_DoIt);
-};
-
-func void DIA_Isgaroth_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Isgaroth_PICKPOCKET);
-};
-
-func void DIA_Isgaroth_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Isgaroth_PICKPOCKET);
 };
 

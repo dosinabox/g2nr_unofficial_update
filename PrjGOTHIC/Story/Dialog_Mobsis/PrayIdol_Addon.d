@@ -30,6 +30,7 @@ func void B_HitpointAngleich(var int BeliarsCost)
 	var int CurrentHitpoints;
 	Stats_Beliar_HpGiven += BeliarsCost;
 	hero.attribute[ATR_HITPOINTS_MAX] -= BeliarsCost;
+	ATR_PermBonus[ATR_HITPOINTS_MAX] -= BeliarsCost;
 	CurrentHitpoints = hero.attribute[ATR_HITPOINTS] - BeliarsCost;
 	if(CurrentHitpoints < 2)
 	{
@@ -45,7 +46,7 @@ func void B_ManaAngleich(var int BeliarsCost)
 	Stats_Beliar_ManaGiven += BeliarsCost;
 	B_UnEquipIllegalMagicItems(BeliarsCost);
 	hero.attribute[ATR_MANA_MAX] -= BeliarsCost;
-	hero.aivar[REAL_MANA_MAX] -= BeliarsCost;
+	ATR_PermBonus[ATR_MANA_MAX] -= BeliarsCost;
 	CurrentMana = hero.attribute[ATR_MANA] - BeliarsCost;
 	if(CurrentMana < 0)
 	{
@@ -95,7 +96,7 @@ func void B_PrayIdol(var int attribute,var int amount)
 		B_HitpointAngleich(amount);
 		gold = amount * BeliarsGoldMultiplier;
 	}
-	else if(attribute = ATR_MANA_MAX)
+	else if(attribute == ATR_MANA_MAX)
 	{
 		B_ManaAngleich(amount);
 		gold = amount * BeliarsGoldMultiplier * 10;
@@ -182,15 +183,14 @@ func void PC_PrayIdol_PrayIdol_Info()
 	Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVENOTHING,PC_PrayIdol_PrayIdol_NoPay);
 	if(Stats_Beliar_ManaGiven <= 10)
 	{
-		//if(hero.attribute[ATR_MANA_MAX] > 10)
-		if(hero.aivar[REAL_MANA_MAX] > 10)
+		if(RealAttributeValue(ATR_MANA_MAX) > 10)
 		{
 			Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVEMANA,PC_PrayIdol_PrayIdol_ManaPay);
 		};
 	};
 	if(Stats_Beliar_HpGiven <= 50)
 	{
-		if(hero.attribute[ATR_HITPOINTS_MAX] >= 40)
+		if(RealAttributeValue(ATR_HITPOINTS_MAX) >= 40)
 		{
 			Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVEHITPOINT1,PC_PrayIdol_PrayIdol_SmallPay);
 			Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVEHITPOINT2,PC_PrayIdol_PrayIdol_MediumPay);
@@ -250,7 +250,11 @@ func int PC_PrayShrine_UPGRATEBELIARSWEAPON_Condition()
 {
 	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PRAYIDOL) && C_ScCanUpgrateBeliarsWeapon())
 	{
-		if(C_ScHasBeliarsWeapon() || C_SCHasBeliarsRune())
+		if(C_ScHasMeleeBeliarsWeapon())
+		{
+			return TRUE;
+		};
+		if(C_SCHasBeliarsRune())
 		{
 			return TRUE;
 		};
@@ -259,7 +263,7 @@ func int PC_PrayShrine_UPGRATEBELIARSWEAPON_Condition()
 
 func void PC_PrayShrine_UPGRATEBELIARSWEAPON_Info()
 {
-	B_ClearBeliarsWeapon();
+	B_ClearBeliarsItems();
 	B_UpgrateBeliarsWeapon();
 };
 

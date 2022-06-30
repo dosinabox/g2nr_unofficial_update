@@ -74,16 +74,25 @@ func void evt_crypt_final()
 
 func void evt_crypt_room_01_triggerentrance()
 {
-	Crypt_Skeleton_Room_01.aivar[AIV_EnemyOverride] = FALSE;
+	if(!Npc_IsDead(Crypt_Skeleton_Room_01))
+	{
+		Crypt_Skeleton_Room_01.aivar[AIV_EnemyOverride] = FALSE;
+	};
 };
 
 func void evt_crypt_room_02_triggerentrance()
 {
-	Crypt_Skeleton_Room_02.aivar[AIV_EnemyOverride] = FALSE;
+	if(!Npc_IsDead(Crypt_Skeleton_Room_02))
+	{
+		Crypt_Skeleton_Room_02.aivar[AIV_EnemyOverride] = FALSE;
+	};
 };
 
 func void evt_crypt_room_03_triggerentrance()
 {
-	Crypt_Skeleton_Room_03.aivar[AIV_EnemyOverride] = FALSE;
+	if(!Npc_IsDead(Crypt_Skeleton_Room_03))
+	{
+		Crypt_Skeleton_Room_03.aivar[AIV_EnemyOverride] = FALSE;
+	};
 };
 

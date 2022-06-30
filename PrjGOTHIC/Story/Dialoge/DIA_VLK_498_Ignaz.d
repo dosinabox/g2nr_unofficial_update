@@ -22,41 +22,6 @@ func void DIA_Ignaz_EXIT_Info()
 };
 
 
-instance DIA_Ignaz_PICKPOCKET(C_Info)
-{
-	npc = VLK_498_Ignaz;
-	nr = 900;
-	condition = DIA_Ignaz_PICKPOCKET_Condition;
-	information = DIA_Ignaz_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Ignaz_PICKPOCKET_Condition()
-{
-	return C_Beklauen(38,50);
-};
-
-func void DIA_Ignaz_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Ignaz_PICKPOCKET);
-	Info_AddChoice(DIA_Ignaz_PICKPOCKET,Dialog_Back,DIA_Ignaz_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Ignaz_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Ignaz_PICKPOCKET_DoIt);
-};
-
-func void DIA_Ignaz_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Ignaz_PICKPOCKET);
-};
-
-func void DIA_Ignaz_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Ignaz_PICKPOCKET);
-};
-
-
 instance DIA_Ignaz_Hallo(C_Info)
 {
 	npc = VLK_498_Ignaz;
@@ -279,15 +244,6 @@ func int DIA_Ignaz_Trade_Condition()
 
 func void DIA_Ignaz_Trade_Info()
 {
-	if(Ignaz_flag == TRUE)
-	{
-		B_ClearAlchemyInv(self);
-		if(Ignaz_flasks > 0)
-		{
-			CreateInvItems(self,ItMi_Flask,Ignaz_flasks);
-		};
-		Ignaz_flag = FALSE;
-	};
 	AI_Output(other,self,"DIA_Ignaz_Trade_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;

@@ -125,17 +125,47 @@ func int C_TraderCanEquipRangedWeapon(var C_Npc slf)
 	return FALSE;
 };
 
+func void B_HideTradeItem(var C_Npc slf,var int itm)
+{
+	if(Npc_HasItems(slf,itm))
+	{
+		slf.aivar[AIV_HiddenTradeItem] = itm;
+		Npc_RemoveInvItem(slf,itm);
+	};
+};
+
+func void B_RestoreHiddenTradeItem(var C_Npc slf)
+{
+	var int itm;
+	itm = slf.aivar[AIV_HiddenTradeItem];
+	if(itm == 0)
+	{
+		return;
+	};
+	if(itm == slf.aivar[AIV_ItemToSteal])
+	{
+		if(slf.aivar[AIV_PlayerHasPickedMyPocket] == TRUE)
+		{
+			return;
+		};
+	};
+	if(!Npc_HasItems(slf,itm))
+	{
+		CreateInvItem(slf,itm);
+	};
+	slf.aivar[AIV_HiddenTradeItem] = 0;
+};
+
 func void B_GiveTradeInv(var C_Npc slf)
 {
 	if(C_AmIWeaponTrader(slf))
 	{
 		B_UnEquipAllWeapons(slf,TRUE);
 	};
+	B_CreateMobsiItems(slf);
 	B_ClearRuneInv(slf);
 	B_ClearTools(slf);
 	B_ClearSpecialAmmo(slf);
-	B_CoolHotDraw(hero);
-	B_ClearFakeItems(hero);
 	if(slf.aivar[AIV_ChapterInv] <= Kapitel)
 	{
 		if(slf.aivar[AIV_NPCIsTrader] == TRUE)
@@ -358,10 +388,24 @@ func void B_GiveTradeInv(var C_Npc slf)
 	};
 	if(Npc_IsInState(slf,ZS_Dead) || Npc_IsInState(slf,ZS_Unconscious))
 	{
+		B_RestoreHiddenTradeItem(slf);
 		if(slf.aivar[AIV_NPCIsTrader] == TRUE)
 		{
 			B_ClearDeadTrader(slf);
 		};
+	}
+	else
+	{
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Gorax))
+		{
+			B_HideTradeItem(slf,ItKe_KlosterSchatz);
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Salandril))
+		{
+			B_HideTradeItem(slf,ItKe_Salandril);
+		};
+		B_CoolHotDraw(hero);
+		B_ClearFakeItems(hero);
 	};
 };
 
@@ -374,6 +418,7 @@ func void B_EquipTrader(var C_Npc slf)
 		{
 			AI_EquipBestRangedWeapon(slf);
 		};
+		B_RestoreHiddenTradeItem(slf);
 		Trade_IsActive = FALSE;
 	};
 };

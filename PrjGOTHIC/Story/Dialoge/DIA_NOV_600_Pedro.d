@@ -161,13 +161,7 @@ func void DIA_Pedro_TEMPEL_Info()
 			AI_Output(self,other,"DIA_ADDON_Pedro_TEMPEL_09_04");	//ќвцу и 1000 золотых.
 			AI_Output(other,self,"DIA_Pedro_TEMPEL_15_04");	//Ёто цела€ куча золота.
 			AI_Output(self,other,"DIA_Pedro_TEMPEL_09_05");	//Ёто знак того, что ты начинаешь новую жизнь в качестве слуги »нноса.  огда ты будешь прин€т, все твои предыдущие прегрешени€ будут прощены.
-			if(SC_KnowsKlosterTribut == FALSE)
-			{
-				SC_KnowsKlosterTribut = TRUE;
-				Log_CreateTopic(Topic_Kloster,LOG_MISSION);
-				Log_SetTopicStatus(Topic_Kloster,LOG_Running);
-				B_LogEntry(Topic_Kloster,"„тобы стать послушником монастыр€ »нноса, мне нужна овца и 1000 золотых монет.");
-			};
+			B_KlosterTributInfo();
 		};
 		AI_Output(self,other,"DIA_Pedro_TEMPEL_09_06");	//» хорошенько подумай - потом ты не сможешь отказатьс€ от своего решени€ стать слугой »нноса.
 	};
@@ -353,10 +347,6 @@ func void DIA_Pedro_AUFNAHME_YES()
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_01");	//“огда добро пожаловать, брат. я даю тебе этот ключ от монастырских ворот.
 	CreateInvItems(self,ItKe_Innos_MIS,1);
 	B_GiveInvItems(self,other,ItKe_Innos_MIS,1);
-	if(Npc_HasItems(Gorax,ItKe_Innos_MIS))
-	{
-		Npc_RemoveInvItem(Gorax,ItKe_Innos_MIS);
-	};
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_02");	//¬ знак твоего добровольного прин€ти€ этого решени€, ты должен сам открыть эти ворота и войти внутрь.
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_03");	//“еперь ты послушник. Ќоси эту робу в знак того, что теперь ты член нашего братства.
 	B_SetGuild(hero,GIL_NOV);
@@ -369,6 +359,14 @@ func void DIA_Pedro_AUFNAHME_YES()
 	SLD_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_OBSOLETE;
 	B_GivePlayerXP(XP_AufnahmeNovize);
+	if(!Npc_IsDead(Gorax))
+	{
+		if(Npc_HasItems(Gorax,ItKe_Innos_MIS))
+		{
+			Npc_RemoveInvItem(Gorax,ItKe_Innos_MIS);
+		};
+		CreateInvItems(Gorax,ItBE_Addon_NOV_01,1);
+	};
 	if(Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette))
 	{
 		Pedro_NOV_Aufnahme_LostInnosStatue_Daron = TRUE;
@@ -416,40 +414,5 @@ func void DIA_Pedro_Monastery_Info()
 	AI_Output(other,self,"DIA_Pedro_Monastery_15_00");	//–асскажи мне о жизни в монастыре.
 	AI_Output(self,other,"DIA_Pedro_Monastery_09_01");	//ћы живем в монастыре, чтобы служить »нносу. ћы, послушники, выполн€ем различные работы и изучаем писани€, когда у нас по€вл€етс€ така€ возможность.
 	AI_Output(self,other,"DIA_Pedro_Monastery_09_02");	//ћаги присматривают за нами, а также изучают искусство магии.
-};
-
-
-instance DIA_Pedro_PICKPOCKET(C_Info)
-{
-	npc = NOV_600_Pedro;
-	nr = 900;
-	condition = DIA_Pedro_PICKPOCKET_Condition;
-	information = DIA_Pedro_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Pedro_PICKPOCKET_Condition()
-{
-	return C_Beklauen(45,60);
-};
-
-func void DIA_Pedro_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Pedro_PICKPOCKET);
-	Info_AddChoice(DIA_Pedro_PICKPOCKET,Dialog_Back,DIA_Pedro_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Pedro_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Pedro_PICKPOCKET_DoIt);
-};
-
-func void DIA_Pedro_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Pedro_PICKPOCKET);
-};
-
-func void DIA_Pedro_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Pedro_PICKPOCKET);
 };
 

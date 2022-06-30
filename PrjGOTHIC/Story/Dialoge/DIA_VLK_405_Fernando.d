@@ -21,47 +21,6 @@ func void DIA_Fernando_EXIT_Info()
 };
 
 
-instance DIA_Fernando_PICKPOCKET(C_Info)
-{
-	npc = VLK_405_Fernando;
-	nr = 900;
-	condition = DIA_Fernando_PICKPOCKET_Condition;
-	information = DIA_Fernando_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Fernando_PICKPOCKET_Condition()
-{
-//	if(C_StealItems(50,Hlp_GetInstanceID(ItSe_GoldPocket100),1) && (NpcObsessedByDMT_Fernando == FALSE))
-	if(Npc_HasItems(self,ItSe_GoldPocket100) && (NpcObsessedByDMT_Fernando == FALSE))
-	{
-		return C_StealItem(50);
-	};
-	return FALSE;
-};
-
-func void DIA_Fernando_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Fernando_PICKPOCKET);
-	Info_AddChoice(DIA_Fernando_PICKPOCKET,Dialog_Back,DIA_Fernando_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Fernando_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Fernando_PICKPOCKET_DoIt);
-};
-
-func void DIA_Fernando_PICKPOCKET_DoIt()
-{
-//	B_StealItems(50,Hlp_GetInstanceID(ItSe_GoldPocket100),1);
-	B_StealItem(50,Hlp_GetInstanceID(ItSe_GoldPocket100));
-	Info_ClearChoices(DIA_Fernando_PICKPOCKET);
-};
-
-func void DIA_Fernando_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Fernando_PICKPOCKET);
-};
-
-
 instance DIA_Fernando_Hello(C_Info)
 {
 	npc = VLK_405_Fernando;
@@ -277,12 +236,8 @@ func void DIA_Addon_Fernando_BanditTrader_preis()
 func void DIA_Addon_Fernando_BanditTrader_ja()
 {
 	AI_Output(other,self,"DIA_Addon_Fernando_BanditTrader_ja_15_00");	//Ну хорошо, я согласен.
-	B_GivePlayerXP(XP_Ambient);
+	B_RemoveEveryInvItem(other,ItMw_Addon_BanditTrader);
 	FernandoMajorEvidenceCount = 0;
-	if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
-	{
-		Npc_RemoveInvItems(other,ItMw_Addon_BanditTrader,Npc_HasItems(other,ItMw_Addon_BanditTrader));
-	};
 	if(Npc_HasItems(other,ItRi_Addon_BanditTrader))
 	{
 		Npc_RemoveInvItem(other,ItRi_Addon_BanditTrader);
@@ -310,8 +265,8 @@ func void DIA_Addon_Fernando_BanditTrader_ja()
 		MIS_Martin_FindTheBanditTrader = LOG_FAILED;
 		MIS_Vatras_FindTheBanditTrader = LOG_FAILED;
 		B_LogEntry(TOPIC_Addon_Bandittrader,"Я решил не отправлять Фернандо в тюрьму и отдал ему все улики.");
-		B_CheckLog();
 	};
+	B_GivePlayerXP(XP_Ambient);
 	Info_ClearChoices(DIA_Addon_Fernando_BanditTrader);
 };
 
@@ -401,6 +356,10 @@ func int DIA_Fernando_Prison_Condition()
 {
 	if((Fernando_ImKnast == TRUE) && Npc_IsInState(self,ZS_Talk) && (NpcObsessedByDMT_Fernando == FALSE))
 	{
+		if((Kapitel >= 3) && (hero.guild == GIL_KDF))
+		{
+			return FALSE;
+		};
 		return TRUE;
 	};
 };

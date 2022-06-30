@@ -10,8 +10,8 @@ instance PAL_201_Ingmar(Npc_Default)
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Pal_Sword);
-	CreateInvItems(self,ItWr_Manowar,1);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,105,ItWr_Manowar,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_ToughBart01,BodyTex_N,ITAR_PAL_H);
 	Mdl_SetModelFatness(self,1.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

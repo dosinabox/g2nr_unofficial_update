@@ -11,6 +11,7 @@ instance BDT_1079_Addon_Carlos(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,71,ItMi_Gold,85);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_L_Ian,BodyTex_L,ITAR_Bloodwyn_Addon);
 	Mdl_SetModelFatness(self,0.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

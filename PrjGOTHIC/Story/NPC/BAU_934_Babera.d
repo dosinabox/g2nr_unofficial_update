@@ -11,6 +11,7 @@ instance BAU_934_Babera(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Mace);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,20,ItMi_Gold,30);
 //	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabe_N_BauBlonde,BodyTexBabe_N,ITAR_BauBabe_L);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe1",FaceBabe_N_BauBlonde,BodyTexBabe_N,ITAR_BauBabe_L);
 	Mdl_SetModelFatness(self,0);

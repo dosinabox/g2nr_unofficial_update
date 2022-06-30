@@ -363,38 +363,3 @@ func void DIA_Pepe_BuyLiesel_Info()
 	};
 };
 
-
-instance DIA_Pepe_PICKPOCKET(C_Info)
-{
-	npc = BAU_912_Pepe;
-	nr = 900;
-	condition = DIA_Pepe_PICKPOCKET_Condition;
-	information = DIA_Pepe_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Pepe_PICKPOCKET_Condition()
-{
-	return C_Beklauen(15,25);
-};
-
-func void DIA_Pepe_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Pepe_PICKPOCKET);
-	Info_AddChoice(DIA_Pepe_PICKPOCKET,Dialog_Back,DIA_Pepe_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Pepe_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Pepe_PICKPOCKET_DoIt);
-};
-
-func void DIA_Pepe_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Pepe_PICKPOCKET);
-};
-
-func void DIA_Pepe_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Pepe_PICKPOCKET);
-};
-

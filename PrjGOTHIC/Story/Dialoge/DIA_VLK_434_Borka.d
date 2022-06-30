@@ -21,41 +21,6 @@ func void DIA_Borka_EXIT_Info()
 };
 
 
-instance DIA_Borka_PICKPOCKET(C_Info)
-{
-	npc = VLK_434_Borka;
-	nr = 900;
-	condition = DIA_Borka_PICKPOCKET_Condition;
-	information = DIA_Borka_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Borka_PICKPOCKET_Condition()
-{
-	return C_Beklauen(80,120);
-};
-
-func void DIA_Borka_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Borka_PICKPOCKET);
-	Info_AddChoice(DIA_Borka_PICKPOCKET,Dialog_Back,DIA_Borka_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Borka_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Borka_PICKPOCKET_DoIt);
-};
-
-func void DIA_Borka_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Borka_PICKPOCKET);
-};
-
-func void DIA_Borka_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Borka_PICKPOCKET);
-};
-
-
 instance DIA_Borka_PISSOFF(C_Info)
 {
 	npc = VLK_434_Borka;
@@ -84,12 +49,9 @@ func void DIA_Borka_PISSOFF_Info()
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_02");	//ћор€ки из самых дальних уголков света приплывают сюда, чтобы провести несколько незабываемых ночей в ' расном ‘онаре'.
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_03");	//ј теперь и у теб€ по€вилс€ такой шанс - нет, честь - провести ночь с Ќадей, самым страстным цветком богов!
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_04");	//«аходи же, и ты познаешь наслаждение, о котором другие не могут даже и мечтать!
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 70) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
+	if(MIS_Andre_REDLIGHT != LOG_Running)
 	{
-		if(MIS_Andre_REDLIGHT != LOG_Running)
-		{
-			AI_StopProcessInfos(self);
-		};
+		AI_StopProcessInfos_Pickpocket();
 	};
 };
 
@@ -117,12 +79,9 @@ func void DIA_Borka_TROUBLE_Info()
 {
 	AI_Output(self,other,"DIA_Borka_TROUBLE_11_00");	//„то ты стоишь здесь и колеблешьс€? «аходи внутрь, познакомьс€ с нашей любвеобильной Ќадей.
 	AI_Output(self,other,"DIA_Borka_TROUBLE_11_01");	//Ёто страстное создание ночи придаст твоей жизни новый смысл!
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 70) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
+	if(MIS_Andre_REDLIGHT != LOG_Running)
 	{
-		if(MIS_Andre_REDLIGHT != LOG_Running)
-		{
-			AI_StopProcessInfos(self);
-		};
+		AI_StopProcessInfos_Pickpocket();
 	};
 };
 

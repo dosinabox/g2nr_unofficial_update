@@ -556,7 +556,7 @@ instance ItMi_GoldChest(C_Item)
 
 instance ItMi_InnosStatue(C_Item)
 {
-	name = "Статуэтка Инноса";
+	name = NAME_InnosStatue;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_InnosStatue;
@@ -733,7 +733,7 @@ instance ItMi_ApfelTabak(C_Item)
 
 instance ItMi_PilzTabak(C_Item)
 {
-	name = "Грибной табак";
+	name = PRINT_PILZ;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = VALUE_ItMi_PilzTabak;
@@ -748,7 +748,7 @@ instance ItMi_PilzTabak(C_Item)
 
 instance ItMi_DoppelTabak(C_Item)
 {
-	name = "Двойное яблоко";
+	name = PRINT_DOPPEL;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = VALUE_ItMi_DoppelTabak;
@@ -763,7 +763,7 @@ instance ItMi_DoppelTabak(C_Item)
 
 instance ItMi_Honigtabak(C_Item)
 {
-	name = "Медовый табак";
+	name = PRINT_HONIG;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = VALUE_ItMi_HonigTabak;
@@ -778,7 +778,7 @@ instance ItMi_Honigtabak(C_Item)
 
 instance ItMi_SumpfTabak(C_Item)
 {
-	name = "Травяной табак";
+	name = PRINT_KRAUT;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = VALUE_ItMi_SumpfTabak;

@@ -14,6 +14,7 @@ instance STRF_1124_Addon_Monty_NW(Npc_Default)
 //	EquipItem(self,ItMw_2H_Axe_L_01);
 	EquipItem(self,ItMw_1H_Mace_L_01);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,60,ItMi_Gold,60);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_NormalBart04,BodyTex_N,ITAR_Bau_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

@@ -230,46 +230,6 @@ func void DIA_Dobar_NEWS_Info()
 };
 
 
-instance DIA_Dobar_PICKPOCKET(C_Info)
-{
-	npc = VLK_4106_Dobar;
-	nr = 900;
-	condition = DIA_Dobar_PICKPOCKET_Condition;
-	information = DIA_Dobar_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = "(украсть его кусок руды будет довольно трудно)";
-};
-
-
-func int DIA_Dobar_PICKPOCKET_Condition()
-{
-//	return C_StealItems(79,Hlp_GetInstanceID(ItMi_Nugget),1);
-	if(Npc_HasItems(self,ItMi_Nugget))
-	{
-		return C_StealItem(79);
-	};
-	return FALSE;
-};
-
-func void DIA_Dobar_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Dobar_PICKPOCKET);
-	Info_AddChoice(DIA_Dobar_PICKPOCKET,Dialog_Back,DIA_Dobar_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Dobar_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Dobar_PICKPOCKET_DoIt);
-};
-
-func void DIA_Dobar_PICKPOCKET_DoIt()
-{
-//	B_StealItems(79,Hlp_GetInstanceID(ItMi_Nugget),1);
-	B_StealItem(79,Hlp_GetInstanceID(ItMi_Nugget));
-	Info_ClearChoices(DIA_Dobar_PICKPOCKET);
-};
-
-func void DIA_Dobar_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Dobar_PICKPOCKET);
-};
-
 instance DIA_Dobar_RepairNecklace(C_Info)
 {
 	npc = VLK_4106_Dobar;

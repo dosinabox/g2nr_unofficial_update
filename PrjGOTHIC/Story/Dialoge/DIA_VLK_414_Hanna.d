@@ -385,41 +385,6 @@ func void DIA_Hanna_ThisLetter_Info()
 };
 
 
-instance DIA_Hanna_PICKPOCKET(C_Info)
-{
-	npc = VLK_414_Hanna;
-	nr = 900;
-	condition = DIA_Hanna_PICKPOCKET_Condition;
-	information = DIA_Hanna_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60_Female;
-};
-
-
-func int DIA_Hanna_PICKPOCKET_Condition()
-{
-	return C_Beklauen(45,25);
-};
-
-func void DIA_Hanna_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Hanna_PICKPOCKET);
-	Info_AddChoice(DIA_Hanna_PICKPOCKET,Dialog_Back,DIA_Hanna_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Hanna_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Hanna_PICKPOCKET_DoIt);
-};
-
-func void DIA_Hanna_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Hanna_PICKPOCKET);
-};
-
-func void DIA_Hanna_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Hanna_PICKPOCKET);
-};
-
-
 instance DIA_Hanna_AusKeller(C_Info)
 {
 	npc = VLK_414_Hanna;
@@ -684,7 +649,7 @@ func void DIA_Hanna_PICKPOCKET_Book_DoIt()
 		CreateInvItem(other,ItWr_Schuldenbuch);
 		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Ханна",PRINT_PickPocketSuccess));
+		B_LogEntry(Topic_PickPocket,ConcatStrings("Ханна",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
 	}
 	else
 	{

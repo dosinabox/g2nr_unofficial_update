@@ -21,47 +21,6 @@ func void DIA_Rangar_EXIT_Info()
 };
 
 
-instance DIA_Rangar_PICKPOCKET(C_Info)
-{
-	npc = MIL_321_Rangar;
-	nr = 900;
-	condition = DIA_Rangar_PICKPOCKET_Condition;
-	information = DIA_Rangar_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40_Key;
-};
-
-
-func int DIA_Rangar_PICKPOCKET_Condition()
-{
-//	return C_StealItems(30,Hlp_GetInstanceID(ItKe_City_Tower_02),1);
-	if(Npc_HasItems(self,ItKe_City_Tower_02))
-	{
-		return C_StealItem(30);
-	};
-	return FALSE;
-};
-
-func void DIA_Rangar_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Rangar_PICKPOCKET);
-	Info_AddChoice(DIA_Rangar_PICKPOCKET,Dialog_Back,DIA_Rangar_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Rangar_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Rangar_PICKPOCKET_DoIt);
-};
-
-func void DIA_Rangar_PICKPOCKET_DoIt()
-{
-//	B_StealItems(30,Hlp_GetInstanceID(ItKe_City_Tower_02),1);
-	B_StealItem(30,Hlp_GetInstanceID(ItKe_City_Tower_02));
-	Info_ClearChoices(DIA_Rangar_PICKPOCKET);
-};
-
-func void DIA_Rangar_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Rangar_PICKPOCKET);
-};
-
-
 instance DIA_Rangar_Hallo(C_Info)
 {
 	npc = MIL_321_Rangar;

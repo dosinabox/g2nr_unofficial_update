@@ -137,13 +137,13 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		};
 		if(!Npc_IsDead(Sengrath))
 		{
+			B_RemoveNpc(PAL_267_Sengrath);
 			Wld_InsertNpc(PAL_275_DeadSengrath,"OC1");
 			B_KillNpc(PAL_275_DeadSengrath);
 			Sengrath_Missing = TRUE;
 		};
 		B_RemoveNpc(VLK_4106_Dobar);
 		B_RemoveNpc(VLK_4107_Parlaf);
-		B_RemoveNpc(PAL_267_Sengrath);
 		if(TschuessBilgot == TRUE)
 		{
 			B_RemoveNpc(VLK_4120_Bilgot);
@@ -477,10 +477,7 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 	if(EnterOW_Kapitel5 == FALSE)
 	{
 		HaupttorWache_4143.flags = 0;
-/*		if(!Npc_HasItems(HaupttorWache_4143,ItKe_OC_MainGate_MIS))
-		{
-			CreateInvItems(HaupttorWache_4143,ItKe_OC_MainGate_MIS,1);
-		}; */
+		B_CreateItemToSteal(HaupttorWache_4143,20,ItKe_OC_MainGate_MIS,1);
 		if(!Npc_IsDead(Brutus))
 		{
 			CreateInvItems(Brutus,ITWR_DementorObsessionBook_MIS,1);

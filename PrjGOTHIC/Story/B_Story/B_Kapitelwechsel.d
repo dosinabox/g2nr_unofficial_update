@@ -5,6 +5,7 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 	if(neues_Kapitel == 1)
 	{
 		B_InitTalentSystem();
+		B_InitAttributeSystem();
 		Hero_HackChance = 10;
 		Cronos_NW_ItMi_Flask_Count = 5;
 		Cronos_NW_ItMi_Sulfur_Count = 2;
@@ -20,6 +21,19 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		Cronos_NW_ItSc_Whirlwind_Count = 1;
 		Bennet_NW_ItMi_Swordraw_Count = 3;
 		IceDragonSpell = SPL_InstantFireball;
+		if(C_WorldIsFixed(NEWWORLD_ZEN))
+		{
+			Wld_InsertItem(ItRu_LightHeal,"FP_ITEM_PASS_02");
+			Wld_InsertItem(ItWr_OneHStonePlate1_Addon,"FP_ITEM_NW_BIGMILL_01");
+			Wld_InsertItem(ItWr_StrStonePlate1_Addon,"FP_ITEM_NW_BIGMILL_02");
+			Wld_InsertItem(ItWr_HitPointStonePlate3_Addon,"FP_ITEM_CASTLEMINE_01");
+		}
+		else
+		{
+			Wld_InsertItem(ItWr_OneHStonePlate1_Addon,"FP_ROAM_NW_BIGMILL_FIELD_MONSTER_04_03");
+			Wld_InsertItem(ItWr_StrStonePlate1_Addon,"FP_STAND_DEMENTOR_09");
+			Wld_InsertItem(ItWr_HitPointStonePlate3_Addon,"FP_STAND_DEMENTOR_KDF_12");
+		};
 		IntroduceChapter(KapWechsel_1,KapWechsel_1_Text,"chapter1.tga","chapter_01.wav",6000);
 	}
 	else if(neues_Kapitel == 2)
@@ -61,30 +75,7 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 	B_CheckLog();
 	if(XP_Static == FALSE)
 	{
-		if(Kapitel == 1)
-		{
-			XP_Ambient = XP_AmbientKap1;
-		}
-		else if(Kapitel == 2)
-		{
-			XP_Ambient = XP_AmbientKap2;
-		}
-		else if(Kapitel == 3)
-		{
-			XP_Ambient = XP_AmbientKap3;
-		}
-		else if(Kapitel == 4)
-		{
-			XP_Ambient = XP_AmbientKap4;
-		}
-		else if(Kapitel == 5)
-		{
-			XP_Ambient = XP_AmbientKap5;
-		}
-		else if(Kapitel == 6)
-		{
-			XP_Ambient = XP_AmbientKap6;
-		};
+		B_SetAmbientXP();
 	};
 };
 

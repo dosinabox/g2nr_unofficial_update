@@ -209,9 +209,19 @@ instance DIA_Angar_DI_FOLLOWSTOP(C_Info)
 
 func int DIA_Angar_DI_FOLLOWSTOP_Condition()
 {
-	if((Angar_DI_Party == LOG_Running) && (((Npc_GetDistToWP(self,"DI_DRACONIANAREA_FIREDRAGON") < 3000) && !Npc_IsDead(FireDragonIsland)) || (Npc_GetDistToWP(self,"SKELETTE") < 3000)))
+	if(Angar_DI_Party == LOG_Running)
 	{
-		return TRUE;
+		if(!Npc_IsDead(FireDragonIsland))
+		{
+			if(Npc_GetDistToWP(self,"DI_DRACONIANAREA_16") < 3000)
+			{
+				return TRUE;
+			};
+		};
+		if(Npc_GetDistToWP(self,"SKELETTE") < 3000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -256,41 +266,6 @@ func void DIA_Angar_DI_UNDEADDRGDEAD_Info()
 	AI_Output(self,other,"DIA_Angar_DI_UNDEADDRGDEAD_04_07");	//Может быть, я осяду где-нибудь и стану фермером. Я устал от сражений.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
-};
-
-
-instance DIA_Angar_DI_PICKPOCKET(C_Info)
-{
-	npc = DJG_705_Angar_DI;
-	nr = 900;
-	condition = DIA_Angar_DI_PICKPOCKET_Condition;
-	information = DIA_Angar_DI_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Angar_DI_PICKPOCKET_Condition()
-{
-	return C_Beklauen(47,45);
-};
-
-func void DIA_Angar_DI_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Angar_DI_PICKPOCKET);
-	Info_AddChoice(DIA_Angar_DI_PICKPOCKET,Dialog_Back,DIA_Angar_DI_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Angar_DI_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Angar_DI_PICKPOCKET_DoIt);
-};
-
-func void DIA_Angar_DI_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Angar_DI_PICKPOCKET);
-};
-
-func void DIA_Angar_DI_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Angar_DI_PICKPOCKET);
 };
 
 

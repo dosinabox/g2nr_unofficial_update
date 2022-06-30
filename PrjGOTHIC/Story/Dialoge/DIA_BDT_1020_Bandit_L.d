@@ -201,10 +201,9 @@ func void B_BDT_1020_Wegelagerer_PassGranted()
 	AI_StopProcessInfos(self);
 };
 
-var C_Item PlayerWeapon;
-
 func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon()
 {
+	var C_Item PlayerWeapon;
 	PlayerWeapon = Npc_GetEquippedMeleeWeapon(other);
 	B_GiveInvItems(other,self,Hlp_GetInstanceID(PlayerWeapon),1);
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon_15_00");	//Вот, возьми мое оружие.

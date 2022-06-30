@@ -278,9 +278,12 @@ instance DIA_Igaraz_ADD(C_Info)
 
 func int DIA_Igaraz_ADD_Condition()
 {
-	if(((Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) || (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_66") <= 3500)) && (MIS_Golem == LOG_Running) && !Npc_IsDead(Magic_Golem) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
+	if(((Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) || (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_66") <= 3500)) && (MIS_Golem == LOG_Running) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Magic_Golem))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -541,8 +544,14 @@ func void DIA_Igaraz_BuyIt_Info()
 	{
 		AI_Output(self,other,"DIA_Igaranz_BuyIt_13_01");	//Послушай, я сейчас не могу отлучиться. Я дам тебе ключ от моего сундука. В нем все равно больше ничего нет.
 		self.aivar[AIV_IGNORE_Theft] = TRUE;
-		Feger2.aivar[AIV_IGNORE_Theft] = TRUE;
-		Feger3.aivar[AIV_IGNORE_Theft] = TRUE;
+		if(!Npc_IsDead(Feger2))
+		{
+			Feger2.aivar[AIV_IGNORE_Theft] = TRUE;
+		};
+		if(!Npc_IsDead(Feger3))
+		{
+			Feger3.aivar[AIV_IGNORE_Theft] = TRUE;
+		};
 		B_GiveInvItems(self,other,ItKe_IgarazChest_Mis,1);
 		GotIgarazChestKey = TRUE;
 	}
@@ -551,47 +560,6 @@ func void DIA_Igaraz_BuyIt_Info()
 		AI_Output(self,other,"DIA_Igaranz_Price_13_03");	//300 монет, и ты можешь делать с этими бумагами все, что захочешь.
 		AI_StopProcessInfos(self);
 	};
-};
-
-
-instance DIA_Igaraz_PICKPOCKET(C_Info)
-{
-	npc = NOV_601_Igaraz;
-	nr = 900;
-	condition = DIA_Igaraz_PICKPOCKET_Condition;
-	information = DIA_Igaraz_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40_Key;
-};
-
-
-func int DIA_Igaraz_PICKPOCKET_Condition()
-{
-//	if(C_StealItems(40,Hlp_GetInstanceID(ItKe_IgarazChest_Mis),1) && (MIS_BabosDocs == LOG_Running))
-	if(Npc_HasItems(self,ItKe_IgarazChest_Mis) && (MIS_BabosDocs == LOG_Running))
-	{
-		return C_StealItem(40);
-	};
-	return FALSE;
-};
-
-func void DIA_Igaraz_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Igaraz_PICKPOCKET);
-	Info_AddChoice(DIA_Igaraz_PICKPOCKET,Dialog_Back,DIA_Igaraz_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Igaraz_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Igaraz_PICKPOCKET_DoIt);
-};
-
-func void DIA_Igaraz_PICKPOCKET_DoIt()
-{
-//	B_StealItems(40,Hlp_GetInstanceID(ItKe_IgarazChest_Mis),1);
-	B_StealItem(40,Hlp_GetInstanceID(ItKe_IgarazChest_Mis));
-	Info_ClearChoices(DIA_Igaraz_PICKPOCKET);
-};
-
-func void DIA_Igaraz_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Igaraz_PICKPOCKET);
 };
 
 

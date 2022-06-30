@@ -552,7 +552,7 @@ func int DIA_Buster_Teach_Condition()
 
 func void DIA_Buster_Teach_Info()
 {
-	AI_Output(other,self,"DIA_Pyrokar_SPELLS_15_00");	//Обучи меня.
+	DIA_Common_TeachMe();
 	B_BuildLearnDialog_Buster();
 };
 
@@ -827,40 +827,5 @@ func void DIA_Buster_Perm4_Info()
 	AI_Output(other,self,"DIA_Buster_Perm4_15_00");	//Что ты думаешь об охотниках на драконов?
 	AI_Output(self,other,"DIA_Buster_Perm4_13_01");	//Эти парни могут заработать целую кучу золота - если не сыграют в ящик.
 	AI_Output(self,other,"DIA_Buster_Perm4_13_02");	//А я предпочитаю остаться с Ли.
-};
-
-
-instance DIA_Buster_PICKPOCKET(C_Info)
-{
-	npc = SLD_802_Buster;
-	nr = 900;
-	condition = DIA_Buster_PICKPOCKET_Condition;
-	information = DIA_Buster_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Buster_PICKPOCKET_Condition()
-{
-	return C_Beklauen(34,60);
-};
-
-func void DIA_Buster_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Buster_PICKPOCKET);
-	Info_AddChoice(DIA_Buster_PICKPOCKET,Dialog_Back,DIA_Buster_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Buster_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Buster_PICKPOCKET_DoIt);
-};
-
-func void DIA_Buster_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Buster_PICKPOCKET);
-};
-
-func void DIA_Buster_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Buster_PICKPOCKET);
 };
 

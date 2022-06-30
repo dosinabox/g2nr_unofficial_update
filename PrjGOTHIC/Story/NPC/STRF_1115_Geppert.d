@@ -11,6 +11,7 @@ instance STRF_1115_Geppert(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_2H_Axe_L_01);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,56,ItMi_Gold,5);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Herek,BodyTex_N,ITAR_Prisoner);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

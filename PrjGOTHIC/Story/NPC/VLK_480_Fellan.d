@@ -13,6 +13,7 @@ instance VLK_480_Fellan(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_ShortSword2);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,40,ItMi_Gold,40);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal19,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

@@ -11,8 +11,8 @@ instance PAL_251_Oric(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2h_Pal_Sword);
 //	EquipItem(self,ItRw_Mil_Crossbow);
-	CreateInvItems(self,ItSc_PalRepelEvil,1);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,85,ItSc_PalRepelEvil,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Tough_Lee,BodyTex_N,ITAR_PAL_H);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

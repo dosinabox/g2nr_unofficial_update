@@ -12,6 +12,7 @@ instance BDT_1074_Addon_Edgor(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Sld_Bow);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,10,ItMi_Gold,7);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_NormalBart20,BodyTex_N,ITAR_BDT_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

@@ -30,41 +30,6 @@ func void DIA_Addon_Logan_EXIT_Info()
 };
 
 
-instance DIA_Addon_Logan_PICKPOCKET(C_Info)
-{
-	npc = BDT_1072_Addon_Logan;
-	nr = 900;
-	condition = DIA_Addon_Logan_PICKPOCKET_Condition;
-	information = DIA_Addon_Logan_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Addon_Logan_PICKPOCKET_Condition()
-{
-	return C_Beklauen(59,50);
-};
-
-func void DIA_Addon_Logan_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Logan_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Logan_PICKPOCKET,Dialog_Back,DIA_Addon_Logan_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Logan_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Logan_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Logan_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Logan_PICKPOCKET);
-};
-
-func void DIA_Addon_Logan_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Logan_PICKPOCKET);
-};
-
-
 instance DIA_Addon_BDT_1072_Logan_Mine(C_Info)
 {
 	npc = BDT_1072_Addon_Logan;
@@ -386,7 +351,7 @@ func int DIA_Addon_Logan_Allg_Condition()
 
 func void DIA_Addon_Logan_Allg_Info()
 {
-	AI_Output(other,self,"DIA_Karras_TEACH_15_00");	//Обучи меня.
+	DIA_Common_TeachMe();
 	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE))
 	{
 		Info_ClearChoices(DIA_Addon_Logan_Allg);

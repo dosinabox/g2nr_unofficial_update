@@ -140,7 +140,7 @@ instance Lobarts_Giant_Bug7(Mst_Default_Giant_Bug)
 
 instance GIANT_BUGTRANSFORM(Mst_Default_Giant_Bug)
 {
-	Npc_PercEnable(self,PERC_ASSESSSURPRISE,b_stopmagictransform);
+	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_Giant_Bug();
 	Npc_SetToFistMode(self);
 };

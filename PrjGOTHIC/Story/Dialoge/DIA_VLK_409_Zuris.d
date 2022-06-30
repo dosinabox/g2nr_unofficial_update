@@ -35,8 +35,10 @@ instance DIA_Zuris_PICKPOCKET(C_Info)
 
 func int DIA_Zuris_PICKPOCKET_Condition()
 {
-//	return C_StealItems(40,Hlp_GetInstanceID(ItPo_Health_03),0);
-	return C_StealItem(40);
+	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (other.attribute[ATR_DEXTERITY] >= 30))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Zuris_PICKPOCKET_Info()
@@ -48,16 +50,13 @@ func void DIA_Zuris_PICKPOCKET_Info()
 
 func void DIA_Zuris_PICKPOCKET_DoIt()
 {
-//	CreateInvItem(self,ItPo_Health_03);
-//	B_StealItems(40,Hlp_GetInstanceID(ItPo_Health_03),1);
-//	B_StealItem(40,Hlp_GetInstanceID(ItPo_Health_03));
 	if(other.attribute[ATR_DEXTERITY] >= 40)
 	{
 		CreateInvItem(other,ItPo_Health_03);
 		AI_PrintScreen(ConcatStrings(NAME_HP_Elixier,PRINT_ItemTaken),-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Зурис",PRINT_PickPocketSuccess));
+		B_LogEntry(Topic_PickPocket,ConcatStrings("Зурис",ConcatStrings(PRINT_PickPocketSuccess,"Лечебный эликсир.")));
 	}
 	else
 	{
@@ -88,7 +87,7 @@ instance DIA_Zuris_Sperre(C_Info)
 
 func int DIA_Zuris_Sperre_Condition()
 {
-	if((Canthar_Sperre == TRUE) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (Canthar_Sperre == TRUE))
 	{
 		return TRUE;
 	};
@@ -151,7 +150,7 @@ func int DIA_Zuris_WAREZ_Condition()
 func void DIA_Zuris_WAREZ_Info()
 {
 	AI_Output(other,self,"DIA_Zuris_WAREZ_15_00");	//Покажи мне свои товары.
-	if((Zuris_einmal == FALSE) && !Npc_KnowsInfo(other,DIA_Zuris_Potions))
+	if(Zuris_einmal == FALSE)
 	{
 		AI_Output(self,other,"DIA_Zuris_GREET_14_02");	//Я только что получил несколько новых зелий. Мой гость, мастер Дарон, маг Огня, принес мне их из монастыря.
 		Zuris_einmal = TRUE;
@@ -185,7 +184,7 @@ func void DIA_Zuris_POTIONS_Info()
 {
 	AI_Output(other,self,"DIA_Zuris_POTIONS_15_00");	//Ты сам готовишь свои зелья?
 	AI_Output(self,other,"DIA_Zuris_POTIONS_14_01");	//Нет, я получаю их из монастыря или покупаю у Константино, алхимика.
-	if(hero.guild == GIL_NONE)
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
 		AI_Output(self,other,"DIA_Zuris_POTIONS_14_02");	//Если тебя интересуют рецепты приготовления зелий, тебе нужно поговорить с ним. Ему как раз нужен помощник.
 		AI_Output(self,other,"DIA_Zuris_POTIONS_14_03");	//Но он слишком туп, чтобы нанять кого-нибудь самому. И к тому же, упрям как мул.
@@ -272,7 +271,7 @@ instance DIA_Zuris_WHERE(C_Info)
 
 func int DIA_Zuris_WHERE_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Zuris_Potions))
+	if(Npc_KnowsInfo(other,DIA_Zuris_Potions))
 	{
 		return TRUE;
 	};
@@ -325,8 +324,7 @@ instance DIA_Zuris_Minenanteil(C_Info)
 
 func int DIA_Zuris_Minenanteil_Condition()
 {
-	//if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running))
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (ZurisMinenAnteil == TRUE))
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (ZurisMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

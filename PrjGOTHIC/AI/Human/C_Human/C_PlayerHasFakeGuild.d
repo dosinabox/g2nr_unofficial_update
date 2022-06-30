@@ -7,33 +7,65 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 	{
 		if(Hlp_IsItem(itm,ITAR_RANGER_Addon) && (CurrentLevel == NEWWORLD_ZEN))
 		{
-			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Baltram)) && (Npc_GetDistToWP(slf,"NW_CITY_HOTEL_BED_02") < 5000) && (Baltram_Exchange4Lares == TRUE))
+			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Baltram))
 			{
-				return TRUE;
+				if(Baltram_Exchange4Lares == TRUE)
+				{
+					if(Npc_GetDistToWP(slf,"NW_CITY_HOTEL_BED_02") < 5000)
+					{
+						return TRUE;
+					};
+				};
 			};
-			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cavalorn)) && ((Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_PATH_15") < 5000) || (Npc_GetDistToWP(slf,"NW_CITY_TAVERN_IN_07") < 5000)))
+			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cavalorn))
 			{
-				return TRUE;
+				if(Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_PATH_15") < 5000)
+				{
+					return TRUE;
+				};
+				if(Npc_GetDistToWP(slf,"NW_CITY_TAVERN_IN_07") < 5000)
+				{
+					return TRUE;
+				};
 			};
-			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lares)) && (Npc_GetDistToWP(slf,"NW_CITY_HABOUR_02_B") < 5000))
+			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lares))
 			{
-				return TRUE;
+				if(Npc_GetDistToWP(slf,"NW_CITY_HABOUR_02_B") < 5000)
+				{
+					return TRUE;
+				};
 			};
-			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras)) && (Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_TEMPLE_FRONT") < 5000))
+			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
 			{
-				return TRUE;
+				if(Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_TEMPLE_FRONT") < 5000)
+				{
+					return TRUE;
+				};
 			};
-			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY)) && (Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_TEMPLE_FRONT") < 5000))
+			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY))
 			{
-				return TRUE;
+				if(Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_TEMPLE_FRONT") < 5000)
+				{
+					return TRUE;
+				};
 			};
-			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Martin)) && ((Npc_GetDistToWP(slf,"NW_CITY_PALCAMP_15") < 5000) || (Npc_GetDistToWP(slf,"NW_CITY_HABOUR_TAVERN01_04") < 5000)))
+			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Martin))
 			{
-				return TRUE;
+				if(Npc_GetDistToWP(slf,"NW_CITY_PALCAMP_15") < 5000)
+				{
+					return TRUE;
+				};
+				if(Npc_GetDistToWP(slf,"NW_CITY_HABOUR_TAVERN01_04") < 5000)
+				{
+					return TRUE;
+				};
 			};
-			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cord)) && (Npc_GetDistToWP(slf,"NW_BIGFARM_HOUSE_15") < 1000))
+			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cord))
 			{
-				return TRUE;
+				if(Npc_GetDistToWP(slf,"NW_BIGFARM_HOUSE_15") < 1000)
+				{
+					return TRUE;
+				};
 			};
 		};
 	};

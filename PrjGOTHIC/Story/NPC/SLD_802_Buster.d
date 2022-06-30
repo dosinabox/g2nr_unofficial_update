@@ -13,6 +13,7 @@ instance SLD_802_Buster(Npc_Default)
 	EquipItem(self,ItRw_Sld_Bow);
 	CreateInvItems(self,ItRw_Arrow,10);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,34,ItMi_Gold,60);
 	CreateInvItems(self,ItFo_Apple,2);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Drax,BodyTex_N,ITAR_SLD_L);
 	Mdl_SetModelFatness(self,0);

@@ -251,26 +251,11 @@ func void DIA_Balthasar_BENGARUEBERREDET_Info()
 		B_GiveInvItems(self,other,ItAt_SheepFur,10);
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"BengarsWeide");
-		B_GivePlayerXP(XP_Balthasar_BengarsWeide);
-		if(Hlp_IsValidNpc(BalthasarSheep1) && !Npc_IsDead(BalthasarSheep1))
-		{
-			BalthasarSheep1.wp = "NW_BIGMILL_FARM3_BALTHASAR";
-			BalthasarSheep1.start_aistate = ZS_MM_AllScheduler;
-			B_StartOtherRoutine(BalthasarSheep1,"NewFarm");
-		};
-		if(Hlp_IsValidNpc(BalthasarSheep2) && !Npc_IsDead(BalthasarSheep2))
-		{
-			BalthasarSheep2.wp = "NW_BIGMILL_FARM3_BALTHASAR";
-			BalthasarSheep2.start_aistate = ZS_MM_AllScheduler;
-			B_StartOtherRoutine(BalthasarSheep2,"NewFarm");
-		};
-		if(Hlp_IsValidNpc(BalthasarSheep3) && !Npc_IsDead(BalthasarSheep3))
-		{
-			BalthasarSheep3.wp = "NW_BIGMILL_FARM3_BALTHASAR";
-			BalthasarSheep3.start_aistate = ZS_MM_AllScheduler;
-			B_StartOtherRoutine(BalthasarSheep3,"NewFarm");
-		};
+		B_StartOtherRoutine(BalthasarSheep1,"NewFarm");
+		B_StartOtherRoutine(BalthasarSheep2,"NewFarm");
+		B_StartOtherRoutine(BalthasarSheep3,"NewFarm");
 		BalthasarMovedToBengar = TRUE;
+		B_GivePlayerXP(XP_Balthasar_BengarsWeide);
 	}
 	else
 	{
@@ -320,7 +305,7 @@ func void DIA_Balthasar_PERMKAP1_Info()
 			{
 				Npc_ExchangeRoutine(self,"Start");
 			}
-			else if(Npc_IsDead(DMT_DementorAmbientSekob1) && Npc_IsDead(DMT_DementorAmbientSekob2) && Npc_IsDead(DMT_DementorAmbientSekob3) && Npc_IsDead(DMT_DementorAmbientSekob4))
+			else if(C_SekobDementorsDead())
 			{
 				Npc_ExchangeRoutine(self,"Start");
 			}
@@ -331,40 +316,5 @@ func void DIA_Balthasar_PERMKAP1_Info()
 			BalthasarMovedToBengar = FALSE;
 		};
 	};
-};
-
-
-instance DIA_Balthasar_PICKPOCKET(C_Info)
-{
-	npc = BAU_932_Balthasar;
-	nr = 900;
-	condition = DIA_Balthasar_PICKPOCKET_Condition;
-	information = DIA_Balthasar_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Balthasar_PICKPOCKET_Condition()
-{
-	return C_Beklauen(10,10);
-};
-
-func void DIA_Balthasar_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Balthasar_PICKPOCKET);
-	Info_AddChoice(DIA_Balthasar_PICKPOCKET,Dialog_Back,DIA_Balthasar_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Balthasar_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Balthasar_PICKPOCKET_DoIt);
-};
-
-func void DIA_Balthasar_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Balthasar_PICKPOCKET);
-};
-
-func void DIA_Balthasar_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Balthasar_PICKPOCKET);
 };
 

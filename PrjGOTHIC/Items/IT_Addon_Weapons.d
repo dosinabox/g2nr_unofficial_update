@@ -88,6 +88,10 @@ func void Equip_Zauberstab()
 
 func void UnEquip_Zauberstab()
 {
+	if(Npc_IsPlayer(self))
+	{
+		B_UnEquipIllegalScrolls(Zauberstab_ManaBonus);
+	};
 	Reduce_MaxMana(Zauberstab_ManaBonus);
 };
 

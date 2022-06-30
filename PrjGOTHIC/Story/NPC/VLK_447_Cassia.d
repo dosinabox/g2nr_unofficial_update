@@ -13,6 +13,7 @@ instance VLK_447_Cassia(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Meisterdegen);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,100,ItMi_Gold,400);
 	CreateInvItems(self,ItKe_ThiefGuildKey_Hotel_MIS,1);
 	CreateInvItems(self,ItKe_ThiefTreasure,1);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabe_N_BlackHair,BodyTexBabe_N,ITAR_VlkBabe_H);

@@ -1,39 +1,4 @@
 
-instance DIA_Canthar_PICKPOCKET(C_Info)
-{
-	npc = VLK_468_Canthar;
-	nr = 900;
-	condition = DIA_Canthar_PICKPOCKET_Condition;
-	information = DIA_Canthar_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Canthar_PICKPOCKET_Condition()
-{
-	return C_Beklauen(20,25);
-};
-
-func void DIA_Canthar_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Canthar_PICKPOCKET);
-	Info_AddChoice(DIA_Canthar_PICKPOCKET,Dialog_Back,DIA_Canthar_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Canthar_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Canthar_PICKPOCKET_DoIt);
-};
-
-func void DIA_Canthar_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Canthar_PICKPOCKET);
-};
-
-func void DIA_Canthar_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Canthar_PICKPOCKET);
-};
-
-
 instance DIA_Canthar_EXIT(C_Info)
 {
 	npc = VLK_468_Canthar;
@@ -74,10 +39,7 @@ func void B_Canthar_Fail()
 {
 	AI_Output(self,other,"DIA_Canthar_CANTHARANGEPISST_09_00");	//Я предупреждал тебя, но ты не слушал. Мы обсудим этот вопрос позже.
 	AI_Output(self,other,"DIA_Canthar_CANTHARANGEPISST_09_01");	//А теперь проваливай, я хочу отдохнуть.
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-	{
-		AI_StopProcessInfos(self);
-	};
+	AI_StopProcessInfos_Pickpocket();
 };
 
 instance DIA_Canthar_PersonalCRIMES(C_Info)

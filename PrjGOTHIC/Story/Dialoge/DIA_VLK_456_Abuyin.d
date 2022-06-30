@@ -21,41 +21,6 @@ func void DIA_Abuyin_EXIT_Info()
 };
 
 
-instance DIA_Abuyin_PICKPOCKET(C_Info)
-{
-	npc = VLK_456_Abuyin;
-	nr = 900;
-	condition = DIA_Abuyin_PICKPOCKET_Condition;
-	information = DIA_Abuyin_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Abuyin_PICKPOCKET_Condition()
-{
-	return C_Beklauen(75,200);
-};
-
-func void DIA_Abuyin_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Abuyin_PICKPOCKET);
-	Info_AddChoice(DIA_Abuyin_PICKPOCKET,Dialog_Back,DIA_Abuyin_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Abuyin_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Abuyin_PICKPOCKET_DoIt);
-};
-
-func void DIA_Abuyin_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Abuyin_PICKPOCKET);
-};
-
-func void DIA_Abuyin_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Abuyin_PICKPOCKET);
-};
-
-
 instance DIA_Abuyin_Hallo(C_Info)
 {
 	npc = VLK_456_Abuyin;
@@ -431,7 +396,7 @@ func void DIA_Abuyin_Zukunft_Trance()
 	Abuyin_Zukunft = 1;
 	Info_ClearChoices(DIA_Abuyin_Zukunft);
 	B_GivePlayerXP(XP_AmbientKap1 * 4);
-	Npc_RemoveInvItems(self,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
+	B_RemoveEveryInvItem(self,ItMi_Gold);
 };
 
 
@@ -550,7 +515,7 @@ func void DIA_Abuyin_Zukunft2_Trance()
 	Abuyin_Zukunft = 2;
 	Info_ClearChoices(DIA_Abuyin_Zukunft2);
 	B_GivePlayerXP(XP_AmbientKap2 * 4);
-	Npc_RemoveInvItems(self,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
+	B_RemoveEveryInvItem(self,ItMi_Gold);
 };
 
 
@@ -629,7 +594,7 @@ func void DIA_Abuyin_Zukunft3_Trance()
 	Abuyin_Zukunft = 3;
 	Info_ClearChoices(DIA_Abuyin_Zukunft3);
 	B_GivePlayerXP(XP_AmbientKap3 * 4);
-	Npc_RemoveInvItems(self,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
+	B_RemoveEveryInvItem(self,ItMi_Gold);
 };
 
 
@@ -708,7 +673,7 @@ func void DIA_Abuyin_Zukunft4_Trance()
 	Abuyin_Zukunft = 4;
 	Info_ClearChoices(DIA_Abuyin_Zukunft4);
 	B_GivePlayerXP(XP_AmbientKap4 * 4);
-	Npc_RemoveInvItems(self,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
+	B_RemoveEveryInvItem(self,ItMi_Gold);
 };
 
 
@@ -787,6 +752,6 @@ func void DIA_Abuyin_Zukunft5_Trance()
 	Abuyin_Zukunft = 5;
 	Info_ClearChoices(DIA_Abuyin_Zukunft5);
 	B_GivePlayerXP(XP_AmbientKap5 * 4);
-	Npc_RemoveInvItems(self,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
+	B_RemoveEveryInvItem(self,ItMi_Gold);
 };
 

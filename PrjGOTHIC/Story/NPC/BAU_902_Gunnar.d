@@ -11,6 +11,7 @@ instance BAU_902_Gunnar(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Bau_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,45,ItMi_Gold,70);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart03,BodyTex_N,ITAR_Bau_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

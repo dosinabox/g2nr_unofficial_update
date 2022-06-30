@@ -197,7 +197,7 @@ instance DIA_Oric_CanHelp(C_Info)
 
 func int DIA_Oric_CanHelp_Condition()
 {
-	if((Kapitel >= 4) && Npc_KnowsInfo(other,DIA_Oric_IAmBack) && (MIS_KillHoshPak == FALSE))
+	if((Kapitel >= 4) && Npc_KnowsInfo(other,DIA_Oric_IAmBack))
 	{
 		return TRUE;
 	};
@@ -245,8 +245,8 @@ func void DIA_Oric_CanHelp_WhatYouMean()
 	};
 	AI_Output(self,other,"DIA_Oric_CanHelp_WhatYouMean_11_09");	//Палатка Хош-Пака находится за осадным кругом, на утесе к югу отсюда.
 	AI_Output(self,other,"DIA_Oric_CanHelp_WhatYouMean_11_10");	//Ее даже видно из этих окон.
-	Info_ClearChoices(DIA_Oric_CanHelp);
 	OrikToldMissionChapter4 = TRUE;
+	Info_ClearChoices(DIA_Oric_CanHelp);
 };
 
 
@@ -329,9 +329,12 @@ instance DIA_Oric_NoMurder(C_Info)
 
 func int DIA_Oric_NoMurder_Condition()
 {
-	if((OrikToldMissionChapter4 == TRUE) && (MIS_KillHoshPak == FALSE) && !Npc_IsDead(Hosh_Pak))
+	if((OrikToldMissionChapter4 == TRUE) && (MIS_KillHoshPak == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Hosh_Pak))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -358,9 +361,12 @@ instance DIA_Oric_WillHelp(C_Info)
 
 func int DIA_Oric_WillHelp_Condition()
 {
-	if((OrikToldMissionChapter4 == TRUE) && (MIS_KillHoshPak == FALSE) && !Npc_IsDead(Hosh_Pak))
+	if(OrikToldMissionChapter4 == TRUE)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Hosh_Pak))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -390,13 +396,9 @@ instance DIA_Oric_HoshDead(C_Info)
 
 func int DIA_Oric_HoshDead_Condition()
 {
-	if(Npc_IsDead(Hosh_Pak))
+	if(OrikToldMissionChapter4 == TRUE)
 	{
-		if(MIS_KillHoshPak == LOG_Running)
-		{
-			return TRUE;
-		};
-		if(OrikToldMissionChapter4 == TRUE)
+		if(Npc_IsDead(Hosh_Pak))
 		{
 			return TRUE;
 		};
@@ -526,46 +528,5 @@ func void DIA_Oric_DragonPlettBericht_Info()
 	{
 		AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_08");	//В настоящий момент мне нечего сказать тебе.
 	};
-};
-
-
-instance DIA_Oric_PICKPOCKET(C_Info)
-{
-	npc = PAL_251_Oric;
-	nr = 900;
-	condition = DIA_Oric_PICKPOCKET_Condition;
-	information = DIA_Oric_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = "(украсть его свиток будет чертовски трудно)";
-};
-
-
-func int DIA_Oric_PICKPOCKET_Condition()
-{
-//	return C_StealItems(85,Hlp_GetInstanceID(ItSc_PalRepelEvil),1);
-	if(Npc_HasItems(self,ItSc_PalRepelEvil))
-	{
-		return C_StealItem(85);
-	};
-	return FALSE;
-};
-
-func void DIA_Oric_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Oric_PICKPOCKET);
-	Info_AddChoice(DIA_Oric_PICKPOCKET,Dialog_Back,DIA_Oric_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Oric_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Oric_PICKPOCKET_DoIt);
-};
-
-func void DIA_Oric_PICKPOCKET_DoIt()
-{
-//	B_StealItems(85,Hlp_GetInstanceID(ItSc_PalRepelEvil),1);
-	B_StealItem(85,Hlp_GetInstanceID(ItSc_PalRepelEvil));
-	Info_ClearChoices(DIA_Oric_PICKPOCKET);
-};
-
-func void DIA_Oric_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Oric_PICKPOCKET);
 };
 

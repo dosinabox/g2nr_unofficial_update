@@ -21,74 +21,8 @@ func void DIA_Wirt_EXIT_Info()
 };
 
 
-instance DIA_Wirt_PICKPOCKET(C_Info)
-{
-	npc = VLK_4201_Wirt;
-	nr = 900;
-	condition = DIA_Wirt_PICKPOCKET_Condition;
-	information = DIA_Wirt_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Wirt_PICKPOCKET_Condition()
-{
-	return C_Beklauen(60,65);
-};
-
-func void DIA_Wirt_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Wirt_PICKPOCKET);
-	Info_AddChoice(DIA_Wirt_PICKPOCKET,Dialog_Back,DIA_Wirt_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Wirt_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Wirt_PICKPOCKET_DoIt);
-};
-
-func void DIA_Wirt_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Wirt_PICKPOCKET);
-};
-
-func void DIA_Wirt_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Wirt_PICKPOCKET);
-};
-
-/*func void B_GiveBeer(var int DailyQuantity)
-{
-	var int Wirt_GiveBeer_Day;
-	var int Beer_Count;
-	if(Wld_GetDay() != 0)
-	{
-		if((Beer_Count < DailyQuantity) && (Wirt_GiveBeer_Day != Wld_GetDay()))
-		{
-			B_GiveInvItems(self,other,ItFo_Beer,1);
-			Beer_Count += 1;
-		};
-		if(Beer_Count >= DailyQuantity)
-		{
-			Wirt_GiveBeer_Day = Wld_GetDay();
-			Beer_Count = 0;
-		};
-	}
-	else
-	{
-		if((Beer_Count < DailyQuantity) && (Wirt_GiveBeer_Day != 999))
-		{
-			B_GiveInvItems(self,other,ItFo_Beer,1);
-			Beer_Count += 1;
-		};
-		if(Beer_Count >= DailyQuantity)
-		{
-			Wirt_GiveBeer_Day = 999;
-			Beer_Count = 0;
-		};
-	};
-};*/
-
+var int Wirt_GiveBeer;
 var int Wirt_GiveBeer_Day;
-var int Wirt_GiveBeer_Day_Zero_OneTime;
 
 instance DIA_Wirt_Hallo(C_Info)
 {
@@ -120,12 +54,12 @@ func void DIA_Wirt_Hallo_Info()
 	{
 		randy = Hlp_Random(4);
 	};
-	if(((Wld_GetDay() == 0) && (Wirt_GiveBeer_Day_Zero_OneTime == FALSE)) || (Wirt_GiveBeer_Day < Wld_GetDay()))
+	if((Wirt_GiveBeer == FALSE) || (Wirt_GiveBeer_Day < Wld_GetDay()))
 	{
 		AI_Output(self,other,"DIA_Wirt_Hallo_14_00");	//Ёй, не стесн€йс€, подходи. ќтведай холодного пива.
 		B_GiveInvItems(self,other,ItFo_Beer,1);
 		Wirt_GiveBeer_Day = B_GetDayPlus();
-		Wirt_GiveBeer_Day_Zero_OneTime = TRUE;
+		Wirt_GiveBeer = TRUE;
 	};
 	if(randy == 0)
 	{
@@ -143,13 +77,6 @@ func void DIA_Wirt_Hallo_Info()
 	{
 		AI_Output(self,other,"DIA_Wirt_Hallo_14_03");	//ѕаладины со всем разберутс€ сами. ј ты можешь пот€гивать здесь пиво и наслаждатьс€ жизнью.
 	};
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
-	{
-		AI_StopProcessInfos(self);
-	}
-	else if(Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] < 50))
-	{
-		AI_StopProcessInfos(self);
-	};
+	AI_StopProcessInfos_Pickpocket();
 };
 

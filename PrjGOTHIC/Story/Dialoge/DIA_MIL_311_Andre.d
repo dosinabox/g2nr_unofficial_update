@@ -62,8 +62,8 @@ func int C_Andre_InfoFromCanthar()
 		if(MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2))
 		{
 			return TRUE;
-		}
-		else if(Canthars_KomproBrief_Failed == TRUE)
+		};
+		if(Canthars_KomproBrief_Failed == TRUE)
 		{
 			return TRUE;
 		};
@@ -1324,7 +1324,7 @@ func void DIA_Andre_JOIN_Yes()
 		Npc_ExchangeRoutine(Babo,"FAVOUR");
 	};
 	SLD_Aufnahme = LOG_OBSOLETE;
-	KDF_Aufnahme = LOG_OBSOLETE;
+	NOV_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;
 	B_CancelBengarMilitiaProblem();
 	B_GivePlayerXP(XP_BecomeMiliz);

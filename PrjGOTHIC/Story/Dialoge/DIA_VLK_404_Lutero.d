@@ -27,6 +27,23 @@ func void DIA_Lutero_EXIT_Info()
 };
 
 
+func int C_LuteroIsReadyToTalk()
+{
+	if((GuildlessMode == TRUE) && (Kapitel >= 2))
+	{
+		return TRUE;
+	};
+	if(hero.guild == GIL_NONE)
+	{
+		return FALSE;
+	};
+	if(hero.guild == GIL_NOV)
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 instance DIA_Lutero_Hallo(C_Info)
 {
 	npc = VLK_404_Lutero;
@@ -40,16 +57,9 @@ instance DIA_Lutero_Hallo(C_Info)
 
 func int DIA_Lutero_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && C_LuteroIsReadyToTalk())
 	{
-		if((other.guild != GIL_NONE) && (other.guild != GIL_NOV))
-		{
-			return TRUE;
-		}
-		else if((Kapitel >= 2) && (GuildlessMode == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -76,16 +86,9 @@ instance DIA_Lutero_GetLost(C_Info)
 
 func int DIA_Lutero_GetLost_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && !C_LuteroIsReadyToTalk())
 	{
-		if((Kapitel >= 2) && (GuildlessMode == TRUE))
-		{
-			return FALSE;
-		}
-		else if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -116,11 +119,7 @@ instance DIA_Lutero_Snapper(C_Info)
 
 func int DIA_Lutero_Snapper_Condition()
 {
-	if((other.guild != GIL_NONE) && (other.guild != GIL_NOV))
-	{
-		return TRUE;
-	}
-	else if((Kapitel >= 2) && (GuildlessMode == TRUE))
+	if(C_LuteroIsReadyToTalk())
 	{
 		return TRUE;
 	};
@@ -217,40 +216,5 @@ func void DIA_Lutero_Trade_Info()
 	AI_Output(other,self,"DIA_Lutero_Trade_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
-};
-
-
-instance DIA_Lutero_PICKPOCKET(C_Info)
-{
-	npc = VLK_404_Lutero;
-	nr = 900;
-	condition = DIA_Lutero_PICKPOCKET_Condition;
-	information = DIA_Lutero_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Lutero_PICKPOCKET_Condition()
-{
-	return C_Beklauen(58,65);
-};
-
-func void DIA_Lutero_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Lutero_PICKPOCKET);
-	Info_AddChoice(DIA_Lutero_PICKPOCKET,Dialog_Back,DIA_Lutero_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Lutero_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Lutero_PICKPOCKET_DoIt);
-};
-
-func void DIA_Lutero_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Lutero_PICKPOCKET);
-};
-
-func void DIA_Lutero_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Lutero_PICKPOCKET);
 };
 

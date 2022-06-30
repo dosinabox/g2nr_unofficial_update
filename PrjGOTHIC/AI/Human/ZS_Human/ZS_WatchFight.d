@@ -19,12 +19,12 @@ func void B_CheerFight()
 			if(zufall == 0)
 			{
 				B_Say_Overlay(self,self,"$OOH01");
-			};
-			if(zufall == 1)
+			}
+			else if(zufall == 1)
 			{
 				B_Say_Overlay(self,self,"$OOH02");
-			};
-			if(zufall == 2)
+			}
+			else
 			{
 				B_Say_Overlay(self,self,"$OOH03");
 			};
@@ -35,12 +35,12 @@ func void B_CheerFight()
 			if(zufall == 0)
 			{
 				B_Say_Overlay(self,self,"$CHEERFRIEND01");
-			};
-			if(zufall == 1)
+			}
+			else if(zufall == 1)
 			{
 				B_Say_Overlay(self,self,"$CHEERFRIEND02");
-			};
-			if(zufall == 2)
+			}
+			else
 			{
 				B_Say_Overlay(self,self,"$CHEERFRIEND03");
 			};
@@ -52,14 +52,18 @@ func void B_CheerFight()
 		if(C_NpcBelongsToCity(self))
 		{
 			B_Say_Overlay(self,self,"$GETOUTOFHERE");
-		};
-		if(C_NpcBelongsToMonastery(self))
+		}
+		else if(C_NpcBelongsToFarm(self))
 		{
-			B_Say_Overlay(self,self,"$MONA_CRIME");
-		};
-		if(C_NpcBelongsToOldCamp(self))
+			B_Say_Overlay(self,self,"$YOUDAREHITME");
+		}
+		else if(C_NpcBelongsToMonastery(self))
 		{
-			B_Say_Overlay(self,self,"$OC_CRIME");
+			B_Say_Overlay(self,self,"$WILLYOUSTOPFIGHTING");
+		}
+		else if(C_NpcBelongsToOldCamp(self))
+		{
+			B_Say_Overlay(self,self,"$WILLYOUSTOPFIGHTING");
 		};
 		AI_PlayAni(self,"T_WATCHFIGHT_OHNO");
 	};
@@ -82,7 +86,10 @@ func void B_AssessDefeat()
 	else if(victim.aivar[AIV_ATTACKREASON] != AR_NONE)
 	{
 		B_Say(self,other,"$OHMYGODHESDOWN");
-		B_MemorizePlayerCrime(self,other,CRIME_ATTACK);
+		if(victim.guild != GIL_SLD)
+		{
+			B_MemorizePlayerCrime(self,other,CRIME_ATTACK);
+		};
 	}
 	else
 	{

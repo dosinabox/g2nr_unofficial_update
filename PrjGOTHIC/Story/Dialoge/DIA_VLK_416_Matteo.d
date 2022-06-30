@@ -22,41 +22,6 @@ func void DIA_Matteo_EXIT_Info()
 };
 
 
-instance DIA_Matteo_PICKPOCKET(C_Info)
-{
-	npc = VLK_416_Matteo;
-	nr = 900;
-	condition = DIA_Matteo_PICKPOCKET_Condition;
-	information = DIA_Matteo_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_80;
-};
-
-
-func int DIA_Matteo_PICKPOCKET_Condition()
-{
-	return C_Beklauen(80,150);
-};
-
-func void DIA_Matteo_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Matteo_PICKPOCKET);
-	Info_AddChoice(DIA_Matteo_PICKPOCKET,Dialog_Back,DIA_Matteo_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Matteo_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Matteo_PICKPOCKET_DoIt);
-};
-
-func void DIA_Matteo_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Matteo_PICKPOCKET);
-};
-
-func void DIA_Matteo_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Matteo_PICKPOCKET);
-};
-
-
 instance DIA_Matteo_Hallo(C_Info)
 {
 	npc = VLK_416_Matteo;

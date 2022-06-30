@@ -21,47 +21,6 @@ func void DIA_Wambo_EXIT_Info()
 };
 
 
-instance DIA_Wambo_PICKPOCKET(C_Info)
-{
-	npc = MIL_316_Wambo;
-	nr = 900;
-	condition = DIA_Wambo_PICKPOCKET_Condition;
-	information = DIA_Wambo_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60_Key;
-};
-
-
-func int DIA_Wambo_PICKPOCKET_Condition()
-{
-//	return C_StealItems(50,Hlp_GetInstanceID(ItKe_City_Tower_04),1);
-	if(Npc_HasItems(self,ItKe_City_Tower_04))
-	{
-		return C_StealItem(50);
-	};
-	return FALSE;
-};
-
-func void DIA_Wambo_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Wambo_PICKPOCKET);
-	Info_AddChoice(DIA_Wambo_PICKPOCKET,Dialog_Back,DIA_Wambo_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Wambo_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Wambo_PICKPOCKET_DoIt);
-};
-
-func void DIA_Wambo_PICKPOCKET_DoIt()
-{
-//	B_StealItems(50,Hlp_GetInstanceID(ItKe_City_Tower_04),1);
-	B_StealItem(50,Hlp_GetInstanceID(ItKe_City_Tower_04));
-	Info_ClearChoices(DIA_Wambo_PICKPOCKET);
-};
-
-func void DIA_Wambo_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Wambo_PICKPOCKET);
-};
-
-
 var int DIA_Wambo_Deal_permanent;
 
 instance DIA_Wambo_Job(C_Info)

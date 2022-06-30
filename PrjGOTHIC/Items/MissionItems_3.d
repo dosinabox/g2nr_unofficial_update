@@ -564,7 +564,7 @@ func void Use_BabosPinUp()
 	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
-	Doc_SetPage(nDocID,0,"Map_Pinup.TGA",0);
+	Doc_SetPage(nDocID,0,"Map_Pinup.TGA",TRUE);
 	Doc_Show(nDocID);
 };
 
@@ -588,10 +588,11 @@ instance ItWr_BabosDocs_MIS(C_Item)
 func void Use_BabosDocs()
 {
 	Snd_Play("MOB_BOOK_TURNPAGE_A1");
-	BabosDocsOpen = TRUE;
-	AI_PrintScreen("Получено письмо и рисунок",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	CreateInvItems(self,ItWr_BabosLetter_MIS,1);
 	CreateInvItems(self,ItWr_BabosPinUp_MIS,1);
+	AI_PrintScreen("Письмо Бабо получено",-1,40,FONT_ScreenSmall,2);
+	AI_PrintScreen("Рисунок получено",-1,43,FONT_ScreenSmall,2);
+	BabosDocsOpen = TRUE;
 };
 
 
@@ -650,7 +651,7 @@ func void Use_Astronomy()
 	Doc_Show(nDocID);
 	if(Astronomy_Once == FALSE)
 	{
-		B_RaiseAttribute(self,ATR_MANA_MAX,2);
+		B_RaiseAttributeByPermBonus(self,ATR_MANA_MAX,2);
 		Print(Print_ReadAstronomy);
 		Snd_Play("LEVELUP");
 		Astronomy_Once = TRUE;

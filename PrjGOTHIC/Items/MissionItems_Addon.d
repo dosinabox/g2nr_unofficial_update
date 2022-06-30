@@ -437,7 +437,7 @@ func void Use_VatrasKDFEmpfehlung_Addon()
 
 instance ItMi_LostInnosStatue_Daron(C_Item)
 {
-	name = "Статуэтка Инноса";
+	name = NAME_InnosStatue;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_InnosStatue;
@@ -1194,10 +1194,13 @@ instance ITWR_Addon_GregsLogbuch_Mis(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Book_01.3ds";
+	visual = "ItWr_GregsLogbuch_Mis.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 	on_state[0] = UseGregsLogbuch;
 };
 

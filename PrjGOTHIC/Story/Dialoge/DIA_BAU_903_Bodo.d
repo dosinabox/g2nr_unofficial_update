@@ -40,23 +40,23 @@ func int DIA_Bodo_Hallo_Condition()
 func void DIA_Bodo_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Bodo_Hallo_15_00");	//Как дела?
-	if(other.guild == GIL_NONE)
-	{
-		AI_Output(self,other,"DIA_Bodo_Hallo_12_01");	//Ополчение достаточно попило нашей крови. Теперь, когда на нашей стороне наемники, они не осмелятся даже показаться здесь.
-		AI_Output(self,other,"DIA_Bodo_Hallo_12_02");	//Король, вероятно, думает, что может позволить себе все. Но мы больше не будем терпеть это!
-	};
 	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Bodo_Hallo_12_03");	//Хорошо. Если увидишь ополчение, задай им хорошую трепку.
-	};
-	if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
+	}
+	else if((VisibleGuild(other) == GIL_NOV) || (VisibleGuild(other) == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Bodo_Hallo_12_04");	//Хорошо. Да пребудет с тобой Иннос.
-	};
-	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
+	}
+	else if((VisibleGuild(other) == GIL_MIL) || (VisibleGuild(other) == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Bodo_Hallo_12_05");	//Королевских солдат не любят на этой ферме.
-		AI_Output(self,other,"DIA_Bodo_Hallo_12_06");	//Многие здесь, возможно не откажутся поговорить с тобой, но популярность себе ты вряд ли завоюешь.
+		AI_Output(self,other,"DIA_Bodo_Hallo_12_06");	//Многие здесь, возможно, не откажутся поговорить с тобой, но популярность себе ты вряд ли завоюешь.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Bodo_Hallo_12_01");	//Ополчение достаточно попило нашей крови. Теперь, когда на нашей стороне наемники, они не осмелятся даже показаться здесь.
+		AI_Output(self,other,"DIA_Bodo_Hallo_12_02");	//Король, вероятно, думает, что может позволить себе все. Но мы больше не будем терпеть это!
 	};
 };
 
@@ -166,7 +166,7 @@ func void DIA_Bodo_WeedOrElse_Info()
 	AI_Output(other,self,"DIA_Bodo_WeedOrElse_15_00");	//Отдай мне эту траву или...
 	AI_Output(self,other,"DIA_Bodo_WeedOrElse_12_01");	//Послушай, все, что у меня есть - это один косяк из болотной травы. Возьми его и оставь меня в покое.
 	B_GiveInvItems(self,other,ItMi_Joint,1);
-	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV) || (other.guild == GIL_MIL))
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Bodo_WeedOrElse_12_02");	//Ты знаешь, как наемники Онара защищают нас, а?
 		AI_Output(self,other,"DIA_Bodo_WeedOrElse_12_03");	//Так что даже не пытайся сделать какую-нибудь глупость!
@@ -197,40 +197,5 @@ func void DIA_Bodo_WeedPERM_Info()
 {
 	AI_Output(other,self,"DIA_Bodo_WeedPERM_15_00");	//Я не верю ни одному твоему слову. Отдай мне эту траву!
 	AI_Output(self,other,"DIA_Bodo_WeedPERM_12_01");	//У меня ее нет. Честно.
-};
-
-
-instance DIA_Bodo_PICKPOCKET(C_Info)
-{
-	npc = BAU_903_Bodo;
-	nr = 900;
-	condition = DIA_Bodo_PICKPOCKET_Condition;
-	information = DIA_Bodo_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Bodo_PICKPOCKET_Condition()
-{
-	return C_Beklauen(30,60);
-};
-
-func void DIA_Bodo_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Bodo_PICKPOCKET);
-	Info_AddChoice(DIA_Bodo_PICKPOCKET,Dialog_Back,DIA_Bodo_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Bodo_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Bodo_PICKPOCKET_DoIt);
-};
-
-func void DIA_Bodo_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Bodo_PICKPOCKET);
-};
-
-func void DIA_Bodo_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Bodo_PICKPOCKET);
 };
 

@@ -165,13 +165,7 @@ func void DIA_Ulf_Aufnahme_Info()
 	AI_Output(other,self,"DIA_Ulf_Aufnahme_15_02");	//Эй! Просто скажи мне, каковы условия.
 	AI_Output(self,other,"DIA_Ulf_Aufnahme_03_03");	//Ты должен принести дары. Овцу и...
 	B_Say_Gold(self,other,Summe_Kloster);
-	if(SC_KnowsKlosterTribut == FALSE)
-	{
-		SC_KnowsKlosterTribut = TRUE;
-		Log_CreateTopic(Topic_Kloster,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Kloster,LOG_Running);
-		B_LogEntry(Topic_Kloster,"Чтобы стать послушником монастыря Инноса, мне нужна овца и 1000 золотых монет.");
-	};
+	B_KlosterTributInfo();
 };
 
 
@@ -434,40 +428,5 @@ func void DIA_Ulf_Troll_Info()
 	AI_Output(self,other,"DIA_Ulf_Troll_03_01");	//Я думаю, нам нужно идти в другую сторону.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"WAIT");
-};
-
-
-instance DIA_Ulf_PICKPOCKET(C_Info)
-{
-	npc = NOV_602_Ulf;
-	nr = 900;
-	condition = DIA_Ulf_PICKPOCKET_Condition;
-	information = DIA_Ulf_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Ulf_PICKPOCKET_Condition()
-{
-	return C_Beklauen(34,50);
-};
-
-func void DIA_Ulf_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Ulf_PICKPOCKET);
-	Info_AddChoice(DIA_Ulf_PICKPOCKET,Dialog_Back,DIA_Ulf_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Ulf_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Ulf_PICKPOCKET_DoIt);
-};
-
-func void DIA_Ulf_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Ulf_PICKPOCKET);
-};
-
-func void DIA_Ulf_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Ulf_PICKPOCKET);
 };
 

@@ -467,38 +467,3 @@ func void DIA_Thekla_PERM_Info()
 	};
 };
 
-
-instance DIA_Thekla_PICKPOCKET(C_Info)
-{
-	npc = BAU_913_Thekla;
-	nr = 900;
-	condition = DIA_Thekla_PICKPOCKET_Condition;
-	information = DIA_Thekla_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60_Female;
-};
-
-
-func int DIA_Thekla_PICKPOCKET_Condition()
-{
-	return C_Beklauen(53,60);
-};
-
-func void DIA_Thekla_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Thekla_PICKPOCKET);
-	Info_AddChoice(DIA_Thekla_PICKPOCKET,Dialog_Back,DIA_Thekla_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Thekla_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Thekla_PICKPOCKET_DoIt);
-};
-
-func void DIA_Thekla_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Thekla_PICKPOCKET);
-};
-
-func void DIA_Thekla_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Thekla_PICKPOCKET);
-};
-

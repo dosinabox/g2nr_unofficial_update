@@ -63,6 +63,9 @@ func int ZS_Stand_WP_Loop()
 
 func void ZS_Stand_WP_End()
 {
-	AI_PlayAni(self,"T_LGUARD_2_STAND");
+	if(self.guild != GIL_FRIENDLY_ORC)
+	{
+		AI_PlayAni(self,"T_LGUARD_2_STAND");
+	};
 };
 

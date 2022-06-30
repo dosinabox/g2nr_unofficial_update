@@ -11,6 +11,7 @@ instance BDT_1070_Addon_Paul(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Sld_Axe);
 	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,22,ItMi_Gold,19);
 	CreateInvItems(self,ItMi_Nugget,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Drax,BodyTex_N,ITAR_BDT_M);
 	Mdl_SetModelFatness(self,0);

@@ -21,7 +21,7 @@ func void potionalchemy_s1()
 	if(C_NpcIsHero(self))
 	{
 		FlasksCount = Npc_HasItems(self,ItMi_Flask) + 1;
-		Npc_RemoveInvItems(self,ItMi_Flask,Npc_HasItems(self,ItMi_Flask));
+		B_RemoveEveryInvItem(self,ItMi_Flask);
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_PotionAlchemy;
 		AI_ProcessInfos(self);
@@ -323,7 +323,7 @@ instance PC_Mana_Start(C_Info)
 	condition = PC_Mana_Start_Condition;
 	information = PC_Mana_Start_Info;
 	permanent = TRUE;
-	description = "Изготовить зелье маны";
+	description = "Сварить зелье маны";
 };
 
 
@@ -540,7 +540,7 @@ instance PC_Health_Start(C_Info)
 	condition = PC_Health_Start_Condition;
 	information = PC_Health_Start_Info;
 	permanent = TRUE;
-	description = "Изготовить лечебное зелье";
+	description = "Сварить лечебное зелье";
 };
 
 
@@ -757,7 +757,7 @@ instance PC_Special_Start(C_Info)
 	condition = PC_Special_Start_Condition;
 	information = PC_Special_Start_Info;
 	permanent = TRUE;
-	description = "Изготовить особое зелье";
+	description = "Сварить особое зелье";
 };
 
 

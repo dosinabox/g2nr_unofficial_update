@@ -21,41 +21,6 @@ func void DIA_Addon_Fortuno_EXIT_Info()
 };
 
 
-instance DIA_Addon_Fortuno_PICKPOCKET(C_Info)
-{
-	npc = BDT_1075_Addon_Fortuno;
-	nr = 900;
-	condition = DIA_Addon_Fortuno_PICKPOCKET_Condition;
-	information = DIA_Addon_Fortuno_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Addon_Fortuno_PICKPOCKET_Condition()
-{
-	return C_Beklauen(10,25);
-};
-
-func void DIA_Addon_Fortuno_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Addon_Fortuno_PICKPOCKET);
-	Info_AddChoice(DIA_Addon_Fortuno_PICKPOCKET,Dialog_Back,DIA_Addon_Fortuno_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Addon_Fortuno_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Fortuno_PICKPOCKET_DoIt);
-};
-
-func void DIA_Addon_Fortuno_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Fortuno_PICKPOCKET);
-};
-
-func void DIA_Addon_Fortuno_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Addon_Fortuno_PICKPOCKET);
-};
-
-
 instance DIA_Addon_Fortuno_Hi(C_Info)
 {
 	npc = BDT_1075_Addon_Fortuno;
@@ -282,7 +247,7 @@ func void DIA_Addon_Fortuno_Trade_all()
 	var int amount;
 	amount = Npc_HasItems(other,ItPl_SwampHerb);
 	B_GiveInvItems(other,self,ItPl_SwampHerb,amount);
-	Npc_RemoveInvItems(self,ItPl_SwampHerb,Npc_HasItems(self,ItPl_SwampHerb));
+	B_RemoveEveryInvItem(self,ItPl_SwampHerb);
 	B_GiveInvItems(self,other,ItMi_Gold,amount * Value_SwampHerb);
 	B_GivePlayerXP(amount * 10);
 	TotalSwampHerbsForFortuno += amount;
@@ -292,7 +257,7 @@ func void DIA_Addon_Fortuno_Trade_all()
 func void DIA_Addon_Fortuno_Trade_1()
 {
 	B_GiveInvItems(other,self,ItPl_SwampHerb,1);
-	Npc_RemoveInvItems(self,ItPl_SwampHerb,Npc_HasItems(self,ItPl_SwampHerb));
+	B_RemoveEveryInvItem(self,ItPl_SwampHerb);
 	B_GiveInvItems(self,other,ItMi_Gold,Value_SwampHerb);
 	B_GivePlayerXP(10);
 	TotalSwampHerbsForFortuno += 1;

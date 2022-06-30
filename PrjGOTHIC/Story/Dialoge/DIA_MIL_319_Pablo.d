@@ -21,47 +21,6 @@ func void DIA_Pablo_EXIT_Info()
 };
 
 
-instance DIA_Pablo_PICKPOCKET(C_Info)
-{
-	npc = MIL_319_Pablo;
-	nr = 900;
-	condition = DIA_Pablo_PICKPOCKET_Condition;
-	information = DIA_Pablo_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20_Key;
-};
-
-
-func int DIA_Pablo_PICKPOCKET_Condition()
-{
-//	return C_StealItems(20,Hlp_GetInstanceID(ItKe_City_Tower_01),1);
-	if(Npc_HasItems(self,ItKe_City_Tower_01))
-	{
-		return C_StealItem(20);
-	};
-	return FALSE;
-};
-
-func void DIA_Pablo_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Pablo_PICKPOCKET);
-	Info_AddChoice(DIA_Pablo_PICKPOCKET,Dialog_Back,DIA_Pablo_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Pablo_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Pablo_PICKPOCKET_DoIt);
-};
-
-func void DIA_Pablo_PICKPOCKET_DoIt()
-{
-//	B_StealItems(20,Hlp_GetInstanceID(ItKe_City_Tower_01),1);
-	B_StealItem(20,Hlp_GetInstanceID(ItKe_City_Tower_01));
-	Info_ClearChoices(DIA_Pablo_PICKPOCKET);
-};
-
-func void DIA_Pablo_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Pablo_PICKPOCKET);
-};
-
-
 var int Pablo_belogen;
 
 instance DIA_Pablo_WANTED(C_Info)

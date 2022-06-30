@@ -160,38 +160,3 @@ instance DIA_RodDJG_GiveItBack(C_Info)
 	description = "Вот, держи свой меч!";
 };
 
-
-instance DIA_Rod_PICKPOCKET(C_Info)
-{
-	npc = DJG_702_Rod;
-	nr = 900;
-	condition = DIA_Rod_PICKPOCKET_Condition;
-	information = DIA_Rod_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_20;
-};
-
-
-func int DIA_Rod_PICKPOCKET_Condition()
-{
-	return C_Beklauen(16,320);
-};
-
-func void DIA_Rod_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Rod_PICKPOCKET);
-	Info_AddChoice(DIA_Rod_PICKPOCKET,Dialog_Back,DIA_Rod_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Rod_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Rod_PICKPOCKET_DoIt);
-};
-
-func void DIA_Rod_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Rod_PICKPOCKET);
-};
-
-func void DIA_Rod_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Rod_PICKPOCKET);
-};
-

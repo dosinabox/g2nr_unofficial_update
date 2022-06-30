@@ -193,7 +193,7 @@ func int DIA_Dragomir_Learn_Condition()
 func void DIA_Dragomir_Learn_Info()
 {
 	AI_Output(other,self,"DIA_Dragomir_Learn_15_00");	//Ты можешь научить меня чему-нибудь?
-	if(other.attribute[ATR_DEXTERITY] < 30)
+	if(VisibleAttributeValue(ATR_DEXTERITY) < 30)
 	{
 		AI_Output(self,other,"DIA_Dragomir_Learn_12_01");	//Прежде, чем я смогу научить тебя чему-нибудь, ты должен повысить свою ловкость.
 	}
@@ -296,39 +296,5 @@ func void DIA_Dragomir_Teach_CROSSBOW_5()
 	{
 		B_BuildLearnDialog_Dragomir();
 	};
-};
-
-instance DIA_Dragomir_PICKPOCKET(C_Info)
-{
-	npc = BAU_983_Dragomir;
-	nr = 900;
-	condition = DIA_Dragomir_PICKPOCKET_Condition;
-	information = DIA_Dragomir_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Dragomir_PICKPOCKET_Condition()
-{
-	return C_Beklauen(47,70);
-};
-
-func void DIA_Dragomir_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Dragomir_PICKPOCKET);
-	Info_AddChoice(DIA_Dragomir_PICKPOCKET,Dialog_Back,DIA_Dragomir_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Dragomir_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Dragomir_PICKPOCKET_DoIt);
-};
-
-func void DIA_Dragomir_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Dragomir_PICKPOCKET);
-};
-
-func void DIA_Dragomir_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Dragomir_PICKPOCKET);
 };
 

@@ -78,9 +78,16 @@ func void DIA_MiltenNW_KAP3_Hello_FirstMeet_Info()
 
 func void DIA_MiltenNW_KAP3_Hello_FirstMeet_YES()
 {
-	if(hero.guild == GIL_PAL)
+	if((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG))
 	{
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_04");	//Проблема не только в орках.
+	}
+	else
+	{
+		DIA_Common_EverythingWillBeAlright();
+	};
+	if(hero.guild == GIL_PAL)
+	{
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_05");	//Я знаю, но все равно хорошо, что ты на нашей стороне.
 		DIA_Common_Yeah();
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_07");	//Что ты делаешь здесь, в монастыре? Дай я угадаю. Ты хочешь быть посвященным в искусство магии.
@@ -89,13 +96,10 @@ func void DIA_MiltenNW_KAP3_Hello_FirstMeet_YES()
 	}
 	else if(hero.guild == GIL_DJG)
 	{
-		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_04");	//Проблема не только в орках.
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_17");	//Я знаю, но, тем не менее, они доставляют проблемы. А ты важная птица.
-		
 	}
 	else
 	{
-		DIA_Common_EverythingWillBeAlright();
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_18");	//Ты победил Спящего. Нам всем может понадобиться твоя помощь однажды.
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_19");	//Ох, ладно.
 		Knows_Milten = TRUE;
@@ -750,7 +754,7 @@ var int Milten_NW_TeachMANA_NoPerm;
 
 func void B_BuildLearnDialog_Milten_NW()
 {
-	if(other.aivar[REAL_MANA_MAX] >= T_MED)
+	if(RealAttributeValue(ATR_MANA_MAX) >= T_MED)
 	{
 		AI_Output(self,other,"DIA_MiltenNW_Mana_03_00");	//Твоя магическая энергия велика. Слишком велика, чтобы я мог увеличить ее.
 		Milten_NW_TeachMANA_NoPerm = TRUE;
@@ -760,8 +764,8 @@ func void B_BuildLearnDialog_Milten_NW()
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_04");	//Я посмотрю, что можно сделать.
 		Info_ClearChoices(DIA_MiltenNW_Mana);
 		Info_AddChoice(DIA_MiltenNW_Mana,Dialog_Back,DIA_MiltenNW_Mana_BACK);
-		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX,1)),DIA_MiltenNW_Mana_1);
-		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX,5)),DIA_MiltenNW_Mana_5);
+		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_MiltenNW_Mana_1);
+		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_MiltenNW_Mana_5);
 	};
 };
 
@@ -809,39 +813,5 @@ func void DIA_MiltenNW_Mana_5()
 	{
 		B_BuildLearnDialog_Milten_NW();
 	};
-};
-
-instance DIA_Mage_NW_PICKPOCKET(C_Info)
-{
-	npc = PC_Mage_NW;
-	nr = 900;
-	condition = DIA_Mage_NW_PICKPOCKET_Condition;
-	information = DIA_Mage_NW_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_60;
-};
-
-
-func int DIA_Mage_NW_PICKPOCKET_Condition()
-{
-	return C_Beklauen(56,75);
-};
-
-func void DIA_Mage_NW_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Mage_NW_PICKPOCKET);
-	Info_AddChoice(DIA_Mage_NW_PICKPOCKET,Dialog_Back,DIA_Mage_NW_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Mage_NW_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Mage_NW_PICKPOCKET_DoIt);
-};
-
-func void DIA_Mage_NW_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Mage_NW_PICKPOCKET);
-};
-
-func void DIA_Mage_NW_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Mage_NW_PICKPOCKET);
 };
 

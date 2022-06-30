@@ -22,7 +22,7 @@ func void Use_StatsBook()
 	Doc_SetPage(nDocID,1,"Book_Blue_R.tga",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,0,270,20,30,20,1);
-	Doc_PrintLine(nDocID,0,ConcatStrings("Убито:                  ГЛАВА ",IntToString(Kapitel)));
+	Doc_PrintLine(nDocID,0,ConcatStrings("Убито:              ГЛАВА ",IntToString(Kapitel)));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Draconian)," людей-ящеров"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Dementor)," ищущих"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_OrcElite)," элитных орков"));
@@ -99,11 +99,14 @@ func void Use_StatsBook()
 		Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(BeliarWeapCurrentLvL)," уровень (уничтожен)"));
 	};
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLine(nDocID,1,"Преступления:");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalOldCampCrimes + TotalCityCrimes + TotalMonasteryCrimes + TotalFarmCrimes)," штрафов назначено"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalThefts)," успешных краж"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalTheftXP)," опыта с краж получено"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalTheftGold)," золотых украдено"));
+	if(UnionActivated == TRUE)
+	{
+		Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalLocksPicked)," замков взломано"));
+	};
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalOldCampCrimes + TotalCityCrimes + TotalMonasteryCrimes + TotalFarmCrimes)," штрафов назначено"));
 	Doc_PrintLine(nDocID,1,"");
 	if(UnionActivated == TRUE)
 	{
@@ -238,6 +241,14 @@ func void B_Build_Settings_Diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить альтернативное обучение у Беннета",StoryHelper_AlternativeSmithing);
 	};
+	if(EasyLowDexPickpocketDisabled == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить пониженную сложность краж при низкой ловкости",StoryHelper_EasyLowDexPickpocket);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить пониженную сложность краж при низкой ловкости",StoryHelper_EasyLowDexPickpocket);
+	};
 	if(HardModeEnabled == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить повышенный уровень сложности",StoryHelper_HardMode);
@@ -245,6 +256,14 @@ func void B_Build_Settings_Diag()
 	else
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить повышенный уровень сложности",StoryHelper_HardMode);
+	};
+	if(PremiumTeachersEnabled == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить платное обучение",StoryHelper_PremiumTeachers);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить платное обучение",StoryHelper_PremiumTeachers);
 	};
 	if(ClassicAlchemy == FALSE)
 	{
@@ -280,11 +299,11 @@ func void B_Build_Settings_Diag()
 	};*/
 	if(IgnoreBonuses == FALSE)
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование постоянных бонусов при расчете стоимости обучения",StoryHelper_Bonuses);
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование постоянных бонусов при обучении",StoryHelper_Bonuses);
 	}
 	else
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование постоянных бонусов при расчете стоимости обучения",StoryHelper_Bonuses);
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование постоянных бонусов при обучении",StoryHelper_Bonuses);
 	};
 	if(AddonDisabled == FALSE)
 	{
@@ -345,6 +364,14 @@ func void B_Build_Settings_Diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить рандомные гоблинские ягоды у паладинов",StoryHelper_GoblinBerries);
 	};
+	if(RandomPepper == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить рандомные перцы у пиратов",StoryHelper_Pepper);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить рандомные перцы у пиратов",StoryHelper_Pepper);
+	};
 	if(InfiniteApples == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить выбивание бесконечных яблок",StoryHelper_Apples);
@@ -360,6 +387,14 @@ func void B_Build_Settings_Diag()
 	else
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить фиксированный опыт по главам",StoryHelper_XP);
+	};
+	if(LP_Static == 0)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить фиксированную стоимость обучения",StoryHelper_LP);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить фиксированную стоимость обучения",StoryHelper_LP);
 	};
 	if(NoXPFromSummonedSkeletons == FALSE)
 	{
@@ -429,12 +464,14 @@ func void StoryHelper_Bonuses()
 	if(IgnoreBonuses == TRUE)
 	{
 		IgnoreBonuses = FALSE;
+		TAL_TeachLimitFlags_TS_PermBonus = 1;
 		TAL_CostFlags_TS_PermBonus = 1;
 		PrintScreen("Оригинал: бонусы нужно копить",-1,-1,FONT_Screen,2);
 	}
 	else
 	{
 		IgnoreBonuses = TRUE;
+		TAL_TeachLimitFlags_TS_PermBonus = 0;
 		TAL_CostFlags_TS_PermBonus = 0;
 		PrintScreen("Теперь бонусы можно не копить",-1,-1,FONT_Screen,2);
 	};
@@ -452,6 +489,21 @@ func void StoryHelper_GoblinBerries()
 	{
 		RandomGoblinBerries = TRUE;
 		PrintScreen("Рандомное количество ягод у паладинов",-1,-1,FONT_Screen,3);
+	};
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_Pepper()
+{
+	if(RandomPepper == TRUE)
+	{
+		RandomPepper = FALSE;
+		PrintScreen("Фиксированное количество перцев у продавцов",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		RandomPepper = TRUE;
+		PrintScreen("Рандомное количество перцев у пиратов",-1,-1,FONT_Screen,3);
 	};
 	B_Build_Settings_Diag();
 };
@@ -594,6 +646,36 @@ func void StoryHelper_Skeletons()
 	B_Build_Settings_Diag();
 };
 
+func void StoryHelper_PremiumTeachers()
+{
+	if(PremiumTeachersEnabled == TRUE)
+	{
+		PremiumTeachersEnabled = FALSE;
+		PrintScreen("Платное обучение выключено",-1,-1,FONT_Screen,2);
+	}
+	else
+	{
+		PremiumTeachersEnabled = TRUE;
+		PrintScreen("Платное обучение включено",-1,-1,FONT_Screen,2);
+	};
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_EasyLowDexPickpocket()
+{
+	if(EasyLowDexPickpocketDisabled == TRUE)
+	{
+		EasyLowDexPickpocketDisabled = FALSE;
+		PrintScreen("Пониженная сложность краж включена",-1,-1,FONT_Screen,2);
+	}
+	else
+	{
+		EasyLowDexPickpocketDisabled = TRUE;
+		PrintScreen("Пониженная сложность краж выключена",-1,-1,FONT_Screen,2);
+	};
+	B_Build_Settings_Diag();
+};
+
 func void StoryHelper_HardMode()
 {
 	if(HardModeEnabled == TRUE)
@@ -651,11 +733,10 @@ func void StoryHelper_HardMode_50()
 
 func void StoryHelper_HardMode_Back()
 {
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 
-func void StoryHelper_Penalties()
+/*func void StoryHelper_Penalties()
 {
 	if(PenaltiesAffectLearnCost == TRUE)
 	{
@@ -668,7 +749,7 @@ func void StoryHelper_Penalties()
 		PrintScreen("Влияние штрафов на стоимость обучения включено",-1,-1,FONT_Screen,3);
 	};
 	B_Build_Settings_Diag();
-};
+};*/
 
 func void StoryHelper_LehmarBook()
 {
@@ -719,31 +800,8 @@ func void StoryHelper_XP()
 {
 	if(XP_Static == TRUE)
 	{
+		B_SetAmbientXP();
 		XP_Static = FALSE;
-		if(Kapitel == 1)
-		{
-			XP_Ambient = XP_AmbientKap1;
-		};
-		if(Kapitel == 2)
-		{
-			XP_Ambient = XP_AmbientKap2;
-		};
-		if(Kapitel == 3)
-		{
-			XP_Ambient = XP_AmbientKap3;
-		};
-		if(Kapitel == 4)
-		{
-			XP_Ambient = XP_AmbientKap4;
-		};
-		if(Kapitel == 5)
-		{
-			XP_Ambient = XP_AmbientKap5;
-		};
-		if(Kapitel == 6)
-		{
-			XP_Ambient = XP_AmbientKap6;
-		};
 		PrintScreen("Оригинал: динамический опыт по главам",-1,-1,FONT_Screen,3);
 		B_Build_Settings_Diag();
 	}
@@ -766,7 +824,6 @@ func void StoryHelper_XP_6()
 	XP_Ambient = XP_AmbientKap6;
 	PrintScreen("Теперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 300 (глава 6)",-1,45,FONT_Screen,3);
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 
@@ -776,7 +833,6 @@ func void StoryHelper_XP_5()
 	XP_Ambient = XP_AmbientKap5;
 	PrintScreen("Теперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 250 (глава 5)",-1,45,FONT_Screen,3);
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 
@@ -786,7 +842,6 @@ func void StoryHelper_XP_4()
 	XP_Ambient = XP_AmbientKap4;
 	PrintScreen("Теперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 200 (глава 4)",-1,45,FONT_Screen,3);
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 
@@ -796,7 +851,6 @@ func void StoryHelper_XP_3()
 	XP_Ambient = XP_AmbientKap3;
 	PrintScreen("Теперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 150 (глава 3)",-1,45,FONT_Screen,3);
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 
@@ -806,7 +860,6 @@ func void StoryHelper_XP_2()
 	XP_Ambient = XP_AmbientKap2;
 	PrintScreen("Теперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 100 (глава 2)",-1,45,FONT_Screen,3);
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 
@@ -816,13 +869,71 @@ func void StoryHelper_XP_1()
 	XP_Ambient = XP_AmbientKap1;
 	PrintScreen("Теперь квесты можно не откладывать",-1,40,FONT_Screen,3);
 	PrintScreen("XP_Ambient = 50 (глава 1)",-1,45,FONT_Screen,3);
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 
 func void StoryHelper_XP_Back()
 {
-	Info_ClearChoices(StoryHelper_PatchSettings);
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_LP()
+{
+	if(LP_Static > 0)
+	{
+		LP_Static = 0;
+		PrintScreen("Оригинал: динамическая стоимость обучения",-1,-1,FONT_Screen,3);
+		B_Build_Settings_Diag();
+	}
+	else
+	{
+		Info_ClearChoices(StoryHelper_PatchSettings);
+		Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_LP_Back);
+		Info_AddChoice(StoryHelper_PatchSettings,"5 очков обучения за единицу навыка",StoryHelper_LP_5);
+		Info_AddChoice(StoryHelper_PatchSettings,"4 очка обучения за единицу навыка",StoryHelper_LP_4);
+		Info_AddChoice(StoryHelper_PatchSettings,"3 очка обучения за единицу навыка",StoryHelper_LP_3);
+		Info_AddChoice(StoryHelper_PatchSettings,"2 очка обучения за единицу навыка",StoryHelper_LP_2);
+		Info_AddChoice(StoryHelper_PatchSettings,"1 очко обучения за единицу навыка",StoryHelper_LP_1);
+	};
+};
+
+func void StoryHelper_LP_1()
+{
+	LP_Static = 1;
+	PrintScreen("1 очко обучения за единицу навыка",-1,45,FONT_Screen,3);
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_LP_2()
+{
+	LP_Static = 2;
+	PrintScreen("2 очка обучения за единицу навыка",-1,45,FONT_Screen,3);
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_LP_3()
+{
+	LP_Static = 3;
+	PrintScreen("3 очка обучения за единицу навыка",-1,45,FONT_Screen,3);
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_LP_4()
+{
+	LP_Static = 4;
+	PrintScreen("4 очка обучения за единицу навыка",-1,45,FONT_Screen,3);
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_LP_5()
+{
+	LP_Static = 5;
+	PrintScreen("5 очков обучения за единицу навыка",-1,45,FONT_Screen,3);
+	B_Build_Settings_Diag();
+};
+
+func void StoryHelper_LP_Back()
+{
 	B_Build_Settings_Diag();
 };
 
@@ -939,7 +1050,6 @@ func void StoryHelper_IceDragonSpell_Icebolt()
 
 func void StoryHelper_IceDragonSpell_BACK()
 {
-	Info_ClearChoices(StoryHelper_PatchSettings);
 	B_Build_Settings_Diag();
 };
 

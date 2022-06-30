@@ -12,6 +12,7 @@ instance VLK_404_Lutero(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Vlk_Mace);
 //	B_CreateAmbientInv(self);
+	B_CreateItemToSteal(self,58,ItMi_Gold,65);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_P_Normal02,BodyTex_P,ITAR_Governor);
 	Mdl_SetModelFatness(self,3);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

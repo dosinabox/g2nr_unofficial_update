@@ -20,6 +20,11 @@ func void DIA_NOV_3_EXIT_Info()
 };
 
 
+var int Feger1_Permanent;
+var int Feger2_Permanent;
+var int Feger1_Once;
+var int Feger2_Once;
+
 instance DIA_NOV_3_Fegen(C_Info)
 {
 	nr = 2;
@@ -29,11 +34,6 @@ instance DIA_NOV_3_Fegen(C_Info)
 	description = "Мне нужна помощь, чтобы подмести кельи послушников.";
 };
 
-
-var int Feger1_Permanent;
-var int Feger2_Permanent;
-var int Feger2_Once;
-
 func int DIA_NOV_3_Fegen_Condition()
 {
 	if((MIS_ParlanFegen == LOG_Running) && (NOV_Helfer < 4))
@@ -41,8 +41,8 @@ func int DIA_NOV_3_Fegen_Condition()
 		if(Kapitel == 1)
 		{
 			return TRUE;
-		}
-		else if(GuildlessMode == TRUE)
+		};
+		if(GuildlessMode == TRUE)
 		{
 			return TRUE;
 		};
@@ -52,31 +52,38 @@ func int DIA_NOV_3_Fegen_Condition()
 func void DIA_NOV_3_Fegen_Info()
 {
 	AI_Output(other,self,"DIA_NOV_3_Fegen_15_00");	//Мне нужна помощь, чтобы подмести кельи послушников.
-	if(Hlp_GetInstanceID(Feger1) == Hlp_GetInstanceID(self))
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger1))
 	{
-		if((NOV_Helfer < 1) && (Feger1_Permanent == FALSE))
+		if(Feger1_Permanent == FALSE)
 		{
-			AI_Output(self,other,"DIA_NOV_3_Fegen_03_01");	//Никто не хочет помогать тебе, да? Хорошо, я помогу тебе, но только ты должен найти еще кого-нибудь мне в пару.
-			B_LogEntry(Topic_ParlanFegen,"Послушник, подметающий погреб, поможет мне, если я смогу найти еще одного послушника, готового помочь подмести комнаты.");
+			if(NOV_Helfer == 0)
+			{
+				AI_Output(self,other,"DIA_NOV_3_Fegen_03_01");	//Никто не хочет помогать тебе, да? Хорошо, я помогу тебе, но только ты должен найти еще кого-нибудь мне в пару.
+				if(Feger1_Once == FALSE)
+				{
+					B_LogEntry(Topic_ParlanFegen,"Послушник, подметающий погреб, поможет мне, если я смогу найти еще одного послушника, готового помочь подмести комнаты.");
+					Feger1_Once = TRUE;
+				};
+			}
+			else
+			{
+				AI_Output(self,other,"DIA_NOV_3_Fegen_03_02");	//Я единственный, кто готов помочь тебе?
+				AI_Output(other,self,"DIA_NOV_3_Fegen_15_03");	//Нет, я уже нашел помощника.
+				AI_Output(self,other,"DIA_NOV_3_Fegen_03_04");	//Тогда - за дело!
+				NOV_Helfer += 1;
+				Feger1_Permanent = TRUE;
+				B_GivePlayerXP(XP_Feger);
+				AI_StopProcessInfos(self);
+				Npc_ExchangeRoutine(self,"FEGEN");
+				B_LogEntry(Topic_ParlanFegen,"Послушник из погреба поможет мне подметать комнаты.");
+			};
 		}
-		else if((NOV_Helfer >= 1) && (Feger1_Permanent == FALSE))
-		{
-			AI_Output(self,other,"DIA_NOV_3_Fegen_03_02");	//Я единственный, кто готов помочь тебе?
-			AI_Output(other,self,"DIA_NOV_3_Fegen_15_03");	//Нет, я уже нашел помощника.
-			AI_Output(self,other,"DIA_NOV_3_Fegen_03_04");	//Тогда - за дело!
-			NOV_Helfer += 1;
-			Feger1_Permanent = TRUE;
-			B_GivePlayerXP(XP_Feger);
-			AI_StopProcessInfos(self);
-			Npc_ExchangeRoutine(self,"FEGEN");
-			B_LogEntry(Topic_ParlanFegen,"Послушник из погреба поможет мне подметать комнаты.");
-		}
-		else if(Feger1_Permanent == TRUE)
+		else
 		{
 			AI_Output(self,other,"DIA_NOV_3_Fegen_03_05");	//Послушай, брат, я уже помогаю тебе. Хватит болтать попусту.
 		};
-	};
-	if(Hlp_GetInstanceID(Feger2) == Hlp_GetInstanceID(self))
+	}
+	else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger2))
 	{
 		if(Feger2_Permanent == FALSE)
 		{
@@ -98,8 +105,8 @@ func void DIA_NOV_3_Fegen_Info()
 		{
 			AI_Output(self,other,"DIA_NOV_3_Fegen_03_06");	//Я же уже согласился. Ты помог мне, я помогу тебе.
 		};
-	};
-	if((Hlp_GetInstanceID(Feger1) != Hlp_GetInstanceID(self)) && (Hlp_GetInstanceID(Feger2) != Hlp_GetInstanceID(self)))
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_NOV_3_Fegen_03_07");	//Забудь об этом - у меня нет свободного времени. Поищи кого-нибудь еще.
 	};
@@ -256,8 +263,8 @@ func void DIA_NOV_3_STANDARD_Info()
 			AI_Output(self,other,"DIA_NOV_3_STANDARD_03_03");	//Скоро опять состоятся выборы. Один из послушников скоро будет принят в Круг Огня.
 			AI_Output(self,other,"DIA_NOV_3_STANDARD_03_04");	//Скоро он приступит к выполнению испытаний.
 		};
-	};
-	if((Kapitel == 2) || (Kapitel == 3))
+	}
+	else if(Kapitel < 4)
 	{
 		if((Pedro_Traitor == TRUE) && (MIS_NovizenChase != LOG_SUCCESS))
 		{
@@ -277,12 +284,12 @@ func void DIA_NOV_3_STANDARD_Info()
 		{
 			AI_Output(self,other,"DIA_NOV_3_STANDARD_03_10");	//Говорят, что от паладинов, отправившихся в Долину Рудников, нет никаких вестей. Высший Совет лучше знает, что нужно делать.
 		};
-	};
-	if(Kapitel == 4)
+	}
+	else if(Kapitel == 4)
 	{
 		AI_Output(self,other,"DIA_NOV_3_STANDARD_03_11");	//Говорят, что мы должны уничтожить драконов с помощью нашего Владыки. Гнев Инноса испепелит создания Белиара.
-	};
-	if(Kapitel >= 5)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_NOV_3_STANDARD_03_12");	//Слава Инносу, сейчас вроде все успокоилось. Мы должны вернуться на путь нашего Бога - только с его помощью мы можем противостоять Злу.
 	};

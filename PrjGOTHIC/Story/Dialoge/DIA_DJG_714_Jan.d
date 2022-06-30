@@ -757,38 +757,3 @@ func void DIA_Jan_NACHOCGATEOPEN_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Jan_PICKPOCKET(C_Info)
-{
-	npc = DJG_714_Jan;
-	nr = 900;
-	condition = DIA_Jan_PICKPOCKET_Condition;
-	information = DIA_Jan_PICKPOCKET_Info;
-	permanent = TRUE;
-	description = Pickpocket_40;
-};
-
-
-func int DIA_Jan_PICKPOCKET_Condition()
-{
-	return C_Beklauen(37,95);
-};
-
-func void DIA_Jan_PICKPOCKET_Info()
-{
-	Info_ClearChoices(DIA_Jan_PICKPOCKET);
-	Info_AddChoice(DIA_Jan_PICKPOCKET,Dialog_Back,DIA_Jan_PICKPOCKET_BACK);
-	Info_AddChoice(DIA_Jan_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Jan_PICKPOCKET_DoIt);
-};
-
-func void DIA_Jan_PICKPOCKET_DoIt()
-{
-	B_Beklauen();
-	Info_ClearChoices(DIA_Jan_PICKPOCKET);
-};
-
-func void DIA_Jan_PICKPOCKET_BACK()
-{
-	Info_ClearChoices(DIA_Jan_PICKPOCKET);
-};
-

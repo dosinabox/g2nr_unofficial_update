@@ -5,10 +5,22 @@ func void evt_orkoberst()
 {
 	if(EVT_ORKOBERST_OneTime == FALSE)
 	{
-		AntiPaladin_DI.aivar[AIV_EnemyOverride] = FALSE;
-		OrcElite_DIOberst1_Rest.aivar[AIV_EnemyOverride] = FALSE;
-		OrcElite_DIOberst2_Rest.aivar[AIV_EnemyOverride] = FALSE;
-		OrcElite_DIOberst3_Rest.aivar[AIV_EnemyOverride] = FALSE;
+		if(!Npc_IsDead(AntiPaladin_DI))
+		{
+			AntiPaladin_DI.aivar[AIV_EnemyOverride] = FALSE;
+		};
+		if(!Npc_IsDead(OrcElite_DIOberst1_Rest))
+		{
+			OrcElite_DIOberst1_Rest.aivar[AIV_EnemyOverride] = FALSE;
+		};
+		if(!Npc_IsDead(OrcElite_DIOberst2_Rest))
+		{
+			OrcElite_DIOberst2_Rest.aivar[AIV_EnemyOverride] = FALSE;
+		};
+		if(!Npc_IsDead(OrcElite_DIOberst3_Rest))
+		{
+			OrcElite_DIOberst3_Rest.aivar[AIV_EnemyOverride] = FALSE;
+		};
 		Wld_InsertNpc(OrcWarrior_Roam,"SHIP_DECK_05");
 		Wld_InsertNpc(OrcWarrior_Roam,"SHIP_DECK_17");
 		Wld_InsertNpc(OrcWarrior_Roam,"SHIP_IN_22");
