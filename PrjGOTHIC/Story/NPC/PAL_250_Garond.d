@@ -17,7 +17,6 @@ instance PAL_250_Garond(Npc_Default)
 //	EquipItem(self,ItMw_2h_Pal_Sword);
 	EquipItem(self,ItMw_2H_Commander_01);
 	B_CreateAmbientInv(self);
-	B_CreateItemToSteal(self,666,ItMi_Gold,13); //TODO убрать к релизу 28 версии вместе с Autorun\Refresh_Pickpocket.d - поддержка старых сохранений
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Raven,BodyTex_N,ITAR_PAL_H);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

@@ -17,7 +17,6 @@ instance NONE_100_Xardas(Npc_Default)
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
-	B_CreateItemToSteal(self,666,ItMi_Gold,13); //TODO убрать к релизу 28 версии вместе с Autorun\Refresh_Pickpocket.d - поддержка старых сохранений
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Xardas,BodyTex_N,ITAR_Xardas);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

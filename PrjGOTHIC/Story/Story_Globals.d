@@ -1336,6 +1336,7 @@ var int TotalFarmCrimes;
 var int TotalThefts;
 var int TotalTheftXP;
 var int TotalTheftGold;
+var int TotalLocksPicked;
 var int BosperFurCounter;
 var int HaradSwordsCounter;
 var int ApprenticeGoldCounter;

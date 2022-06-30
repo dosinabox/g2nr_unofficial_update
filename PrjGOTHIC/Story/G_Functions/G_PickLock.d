@@ -6,8 +6,9 @@ func void G_PickLock(var int bSuccess,var int bBrokenOpen)
 	{
 		if(bBrokenOpen)
 		{
-			Snd_Play3d(self,"PICKLOCK_UNLOCK");
-			Print(PRINT_PICKLOCK_UNLOCK);
+			TotalLocksPicked += 1;
+			//Snd_Play3d(self,"PICKLOCK_UNLOCK");
+			//Print(PRINT_PICKLOCK_UNLOCK);
 		}
 		else
 		{

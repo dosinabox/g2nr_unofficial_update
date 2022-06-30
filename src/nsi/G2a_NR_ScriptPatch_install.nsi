@@ -9,8 +9,8 @@
 ##            Основное           ##
 ###################################
 
-!define MOD_VERSION "27"
-!define MOD_DATE "10.29"
+!define MOD_VERSION "28"
+!define MOD_DATE "6.30"
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"
@@ -108,8 +108,8 @@ Section "Основные файлы" SecMain
 	CreateDirectory "$INSTDIR\saves_${MOD_NAME}\current"
 
 	SetOutPath "$INSTDIR\Data\ModVDF"
-	File "g2a_nr_scriptpatch_v${MOD_VERSION}.mod"
-	File "g2a_nr_scriptpatch_v${MOD_VERSION}_plugins.mod"
+	File "scriptpatch_v${MOD_VERSION}.mod"
+	File "scriptpatch_v${MOD_VERSION}_ru.mod"
 
 	SetOutPath "$INSTDIR\system"
 	File "${MOD_NAME}.ico"
@@ -131,29 +131,29 @@ Section "Основные файлы" SecMain
 	WriteRegStr HKLM "${REGISTRY_PATH}" "HelpLink" "https://worldofplayers.ru/threads/36817"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "Publisher" "${MOD_AUTHOR}"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "DisplayIcon" "$INSTDIR\system\${MOD_NAME}.ico"
-	WriteRegDWORD HKLM "${REGISTRY_PATH}" "EstimatedSize" "265700"
+	WriteRegDWORD HKLM "${REGISTRY_PATH}" "EstimatedSize" "267000"
 SectionEnd
 
 Section "Дополнительная русская озвучка" SecAdditional_1
 	SetOutPath "$INSTDIR\Data\ModVDF"
-	File "g2a_nr_scriptpatch_v${MOD_VERSION}_speech_add.mod"
+	File "scriptpatch_v${MOD_VERSION}_speech_add_ru.mod"
 SectionEnd
 
 Section "Исправление русской озвучки" SecAdditional_2
 	SetOutPath "$INSTDIR\Data\ModVDF"
-	File "g2a_nr_scriptpatch_v${MOD_VERSION}_speech_fix.mod"
+	File "scriptpatch_v${MOD_VERSION}_speech_fix_ru.mod"
 	SetOutPath $INSTDIR
 	File "Changelog_Speech_v${MOD_VERSION}.txt"
 SectionEnd
 
 Section "Широкоформатный монитор" SecAdditional_3
 	SetOutPath "$INSTDIR\Data\ModVDF"
-	File "g2a_nr_scriptpatch_v${MOD_VERSION}_widescreen.mod"
+	File "scriptpatch_v${MOD_VERSION}_widescreen.mod"
 SectionEnd
 
 Section /o "Расширенная Рудниковая долина" SecAdditional_4
 	SetOutPath "$INSTDIR\Data\ModVDF"
-	File "g2a_nr_scriptpatch_v${MOD_VERSION}_wasteland.mod"
+	File "scriptpatch_v${MOD_VERSION}_wasteland.mod"
 SectionEnd
 
 ###################################
@@ -166,13 +166,13 @@ Section "Un.Удалить обновление" SecUninstall_Main
 	Delete "$INSTDIR\system\${MOD_NAME}.ini"
 	Delete "$INSTDIR\system\${MOD_NAME}.rtf"
 	Delete "$INSTDIR\_work\Data\Music\newworld\KAS_Loop_DayStd.sgt"
-	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}.mod"
-	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_plugins.mod"
-	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_speech_add.mod"
-	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_speech_fix.mod"
-	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_wasteland.mod"
-	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_widescreen.mod"
-	Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_hotfix.mod"
+	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}.mod"
+	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_ru.mod"
+	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_speech_add_ru.mod"
+	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_speech_fix_ru.mod"
+	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_wasteland.mod"
+	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_widescreen.mod"
+	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_hotfix.mod"
 	Delete "$INSTDIR\Changelog_${MOD_NAME}.txt"
 	Delete "$INSTDIR\Changelog_Speech_v${MOD_VERSION}.txt"
 	Delete "$INSTDIR\${UNINSTALLER_NAME}.exe"
