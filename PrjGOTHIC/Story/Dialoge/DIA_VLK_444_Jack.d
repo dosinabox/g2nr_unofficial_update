@@ -125,9 +125,12 @@ instance DIA_Jack_Harbor(C_Info)
 
 func int DIA_Jack_Harbor_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jack_City) && (Npc_GetDistToWP(self,"LIGHTHOUSE") >= 3000) && (JackIsCaptain == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Jack_City) && (JackIsCaptain == FALSE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"LIGHTHOUSE") >= 3000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -224,9 +227,12 @@ instance DIA_Jack_LIGHTHOUSEFREE(C_Info)
 
 func int DIA_Jack_LIGHTHOUSEFREE_Condition()
 {
-	if((MIS_Jack_KillLighthouseBandits == LOG_SUCCESS) && (Npc_GetDistToWP(self,"LIGHTHOUSE") < 3000))
+	if(MIS_Jack_KillLighthouseBandits == LOG_SUCCESS)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"LIGHTHOUSE") < 3000)
+		{
+			return TRUE;
+		};
 	};
 };
 

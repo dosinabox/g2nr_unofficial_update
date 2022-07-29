@@ -38,17 +38,19 @@ func void B_AssessDamage()
 	};
 	if(Npc_IsInState(self,ZS_Attack))
 	{
-		if(Npc_IsPlayer(other) && (self.npcType == NPCTYPE_FRIEND))
+		if(Npc_IsPlayer(other))
 		{
-			return;
-		};
-		if(Npc_IsPlayer(other) && (self.aivar[AIV_PARTYMEMBER] == TRUE))
-		{
-			return;
+			if(self.npcType == NPCTYPE_FRIEND)
+			{
+				return;
+			};
+			if(self.aivar[AIV_PARTYMEMBER] == TRUE)
+			{
+				return;
+			};
 		};
 		if(Hlp_GetInstanceID(other) != self.aivar[AIV_LASTTARGET])
 		{
-//			if((self.aivar[AIV_HitByOtherNpc] == Hlp_GetInstanceID(other)) || (Hlp_GetInstanceID(other) != Hlp_GetInstanceID(hero)))
 			if((self.aivar[AIV_HitByOtherNpc] == Hlp_GetInstanceID(other)) || !Npc_IsPlayer(other))
 			{
 				Npc_SetTarget(self,other);

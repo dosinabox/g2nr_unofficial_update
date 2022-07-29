@@ -406,10 +406,10 @@ func void UseLouRezept()
 	Doc_PrintLines(nDocID,0,"Добавьте перемолотый зуб болотной акулы.");
 	Doc_PrintLines(nDocID,0,"Поместите все в бутылку, добавьте рома и вскипятите.");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Удачи.");
+	Doc_PrintLine(nDocID,0,"Ваше здоровье.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Старик, рассказавший мне этот рецепт, предупреждал, что лучше не дышать испарениями этого пойла!");
+	Doc_PrintLines(nDocID,0,"Слепой старик, рассказавший мне этот рецепт, предупреждал, что лучше не дышать испарениями этого пойла!");
 	Doc_Show(nDocID);
 	if(Npc_IsPlayer(self))
 	{

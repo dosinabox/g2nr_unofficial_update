@@ -108,7 +108,6 @@ instance DIA_Gaan_WASMACHSTDU(C_Info)
 
 func int DIA_Gaan_WASMACHSTDU_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Gaan_HALLO) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (RangerMeetingRunning != LOG_SUCCESS))
 	if(Npc_KnowsInfo(other,DIA_Gaan_HALLO) && (RangerMeetingRunning != LOG_SUCCESS))
 	{
 		return TRUE;
@@ -320,7 +319,6 @@ func void DIA_Gaan_WASZAHLSTDU_Info()
 		Gaan_Deal = 50;
 	};
 	B_Say_Gold(self,other,Gaan_Deal);
-	MIS_Gaan_Deal = LOG_Running;
 };
 
 
@@ -350,6 +348,21 @@ func void DIA_Gaan_WOHERMONSTER_Info()
 };
 
 
+func void B_Gaan_GiveReward()
+{
+	AI_Output(self,other,"DIA_Gaan_MONSTERTOT_03_01");	//Теперь я опять могу охотиться спокойно.
+	if(Gaan_Deal > 0)
+	{
+		CreateInvItems(self,ItMi_Gold,50);
+		AI_Output(self,other,"DIA_Gaan_MONSTERTOT_03_02");	//Вот деньги, что я обещал тебе.
+		AI_WaitTillEnd(other,self);
+		B_GiveInvItems(self,other,ItMi_Gold,Gaan_Deal);
+	};
+	MIS_Gaan_Snapper = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Gaan_WaldSnapper);
+	AI_StopProcessInfos(self);
+};
+
 instance DIA_Gaan_MONSTERTOT(C_Info)
 {
 	npc = BAU_961_Gaan;
@@ -362,26 +375,19 @@ instance DIA_Gaan_MONSTERTOT(C_Info)
 
 func int DIA_Gaan_MONSTERTOT_Condition()
 {
-	if(Npc_IsDead(Gaans_Snapper) && (RangerMeetingRunning != LOG_Running) && (MIS_Gaan_Snapper != LOG_SUCCESS) && (Npc_GetDistToWP(self,"NW_FARM3_GAAN") < 2000))
+	if(Npc_IsDead(Gaans_Snapper) && (RangerMeetingRunning != LOG_Running) && (MIS_Gaan_Snapper != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_FARM3_GAAN") < 2000)
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Gaan_MONSTERTOT_Info()
 {
 	AI_Output(self,other,"DIA_Gaan_MONSTERTOT_03_00");	//Этот ужасный зверь мертв, я полагаю.
-	AI_Output(self,other,"DIA_Gaan_MONSTERTOT_03_01");	//Теперь я опять могу охотиться спокойно.
-	if(MIS_Gaan_Deal == LOG_Running)
-	{
-		CreateInvItems(self,ItMi_Gold,50);
-		AI_Output(self,other,"DIA_Gaan_MONSTERTOT_03_02");	//Вот деньги, что я обещал тебе.
-		AI_WaitTillEnd(other,self);
-		B_GiveInvItems(self,other,ItMi_Gold,Gaan_Deal);
-	};
-	MIS_Gaan_Snapper = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Gaan_WaldSnapper);
-	AI_StopProcessInfos(self);
+	B_Gaan_GiveReward();
 };
 
 
@@ -580,6 +586,11 @@ func void DIA_Gaan_TEACHHUNTING_DrgSnapperHorn()
 };
 
 
+func void B_WasMachtJagd()
+{
+	AI_Output(other,self,"DIA_Gaan_JAGD_15_00");	//Как охота?
+};
+
 instance DIA_Gaan_JAGD(C_Info)
 {
 	npc = BAU_961_Gaan;
@@ -599,15 +610,9 @@ func int DIA_Gaan_JAGD_Condition()
 	};
 };
 
-func void B_WasMachtJagd()
-{
-	AI_Output(other,self,"DIA_Gaan_JAGD_15_00");	//Как охота?
-};
-
 func void DIA_Gaan_JAGD_Info()
 {
 	B_WasMachtJagd();
-//	if(!Npc_IsDead(Gaans_Snapper) && (Kapitel < 3))
 	if((MIS_Gaan_Snapper != LOG_SUCCESS) && (Kapitel < 3))
 	{
 		AI_Output(self,other,"DIA_Gaan_JAGD_03_01");	//Последнее животное, которое мне удалось убить, была большая крыса. Дела идут совсем плохо.
@@ -616,13 +621,10 @@ func void DIA_Gaan_JAGD_Info()
 		if(Npc_IsDead(Gaans_Snapper))
 		{
 			DIA_Common_HeIsDead();
-			AI_Output(self,other,"DIA_Gaan_MONSTERTOT_03_01");	//Теперь я опять могу охотиться спокойно.
-			MIS_Gaan_Snapper = LOG_SUCCESS;
-			B_GivePlayerXP(XP_Gaan_WaldSnapper);
-			AI_StopProcessInfos(self);
+			B_Gaan_GiveReward();
 			Npc_ExchangeRoutine(self,"Start");
 		}
-		else if((MIS_Gaan_Snapper != LOG_Running) && (MIS_Gaan_Snapper != LOG_SUCCESS))
+		else if(MIS_Gaan_Snapper == FALSE)
 		{
 			Log_CreateTopic(TOPIC_GaanSchnaubi,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_GaanSchnaubi,LOG_Running);

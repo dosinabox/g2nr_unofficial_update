@@ -20,7 +20,7 @@ func int C_MartinIsNear()
 	{
 		return FALSE;
 	};
-	if(Npc_GetDistToNpc(self,Martin) >= PERC_DIST_DIALOG)
+	if(Npc_GetDistToNpc(self,Martin) >= PERC_DIST_DIALOG) //TODO определять расстояние до точки в таверне
 	{
 		return FALSE;
 	};

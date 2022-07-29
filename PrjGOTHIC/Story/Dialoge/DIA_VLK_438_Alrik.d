@@ -119,7 +119,22 @@ func void DIA_Alrik_Regeln_Info()
 
 func void B_Alrik_Again()
 {
-	AI_Output(self,other,"DIA_Alrik_Add_09_03");	//Как дела? Ты хочешь сразиться со мной еще раз? Я думаю, за это время я стал лучше...
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,other);
+	};
+	if(Alrik_ArenaKampfVerloren_Day <= (Wld_GetDay() - 2))
+	{
+		AI_Output(self,other,"DIA_Alrik_Add_09_03");	//Как дела? Ты хочешь сразиться со мной еще раз? Я думаю, за это время я стал лучше...
+	}
+	else
+	{
+		//TODO озвучить
+		AI_Output(self,other,"DIA_Alrik_Add_09_03_add");	//Ты хочешь сразиться со мной еще раз? Я думаю, я стал лучше...
+	};
+	B_AddFightSkill(self,NPC_TALENT_1H,20);
+	self.aivar[AIV_VictoryXPGiven] = FALSE;
 };
 
 
@@ -136,15 +151,21 @@ instance DIA_Alrik_NewFights3(C_Info)
 
 func int DIA_Alrik_NewFights3_Condition()
 {
-	if((Kapitel >= 3) && (Kapitel <= 4) && (Alrik_ArenaKampfVerloren > 0) && (Alrik_ArenaKampfVerloren <= 6))
+	if((Alrik_ArenaKampfVerloren > 0) && (Alrik_ArenaKampfVerloren <= 6))
 	{
-		return TRUE;
+		if(Kapitel == 3)
+		{
+			return TRUE;
+		};
+		if(Kapitel == 4)
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Alrik_NewFights3_Info()
 {
-	B_AddFightSkill(self,NPC_TALENT_1H,20);
 	B_SetAttributesToChapter(self,4);
 	B_Alrik_Again();
 };
@@ -163,15 +184,17 @@ instance DIA_Alrik_NewFights5(C_Info)
 
 func int DIA_Alrik_NewFights5_Condition()
 {
-	if((Kapitel >= 5) && (Alrik_ArenaKampfVerloren > 0) && (Alrik_ArenaKampfVerloren <= 9))
+	if((Alrik_ArenaKampfVerloren > 0) && (Alrik_ArenaKampfVerloren <= 9))
 	{
-		return TRUE;
+		if(Kapitel >= 5)
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Alrik_NewFights5_Info()
 {
-	B_AddFightSkill(self,NPC_TALENT_1H,20);
 	B_SetAttributesToChapter(self,6);
 	B_Alrik_Again();
 };
@@ -352,8 +375,8 @@ func int DIA_Alrik_AfterFight_Condition()
 		if(self.aivar[AIV_ArenaFight] != AF_NONE)
 		{
 			return TRUE;
-		}
-		else if(Npc_IsInState(self,ZS_Talk))
+		};
+		if(Npc_IsInState(self,ZS_Talk))
 		{
 			return TRUE;
 		};
@@ -384,6 +407,7 @@ func void DIA_Alrik_AfterFight_Info()
 				B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
 			};
 			Alrik_ArenaKampfVerloren += 1;
+			Alrik_ArenaKampfVerloren_Day = Wld_GetDay();
 		}
 		else if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_WON)
 		{
@@ -605,7 +629,6 @@ func void DIA_Alrik_Ausbilden_Info()
 		Alrik_Teach1H = TRUE;
 		DIA_Alrik_Teach_permanent = TRUE;
 	}
-//	else if((Alrik_Kaempfe == 0) && (hero.guild == GIL_NONE))
 	else if(Alrik_Kaempfe == 0)
 	{
 		AI_Output(self,other,"DIA_Alrik_Ausbilden_09_01");	//Если ты действительно хочешь научиться сражаться, то выходи против меня. (ухмыляется) За этот урок я не возьму дополнительной платы.
