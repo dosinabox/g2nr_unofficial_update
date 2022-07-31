@@ -8,7 +8,7 @@ func void ZS_Dead()
 	AI_StopPointAt(self);
 	if(CurrentLevel == ADDONWORLD_ZEN)
 	{
-		if(self.aivar[AIV_MM_REAL_ID] == ID_Razor)
+		if(self.aivar[AIV_MM_REAL_ID] == ID_RAZOR)
 		{
 			if(C_IAmCanyonRazor(self))
 			{

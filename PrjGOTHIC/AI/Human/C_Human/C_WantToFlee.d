@@ -33,7 +33,7 @@ func int C_WantToFlee(var C_Npc slf,var C_Npc oth)
 			};
 			if(slf.attribute[ATR_HITPOINTS] < (slf.attribute[ATR_HITPOINTS_MAX] / 2))
 			{
-				if((slf.fight_tactic == FAI_SCAVENGER) && (slf.aivar[AIV_MM_REAL_ID] != ID_OrcBiter))
+				if((slf.fight_tactic == FAI_SCAVENGER) && (slf.aivar[AIV_MM_REAL_ID] != ID_ORCBITER))
 				{
 					return TRUE;	// ...убегает падальщик!
 				};

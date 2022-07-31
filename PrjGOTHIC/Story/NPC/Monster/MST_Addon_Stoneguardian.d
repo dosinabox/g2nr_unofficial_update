@@ -3,7 +3,7 @@ prototype Mst_Addon_Stoneguardian(C_Npc)
 {
 	name[0] = "Каменный страж";
 	guild = GIL_Stoneguardian;
-	aivar[AIV_MM_REAL_ID] = ID_Stoneguardian;
+	aivar[AIV_MM_REAL_ID] = ID_STONEGUARDIAN;
 	level = 18;
 	bodyStateInterruptableOverride = TRUE;
 	attribute[ATR_STRENGTH] = 90;

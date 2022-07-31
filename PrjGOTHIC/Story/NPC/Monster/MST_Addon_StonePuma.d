@@ -3,7 +3,7 @@ prototype Mst_Default_StonePuma(C_Npc)
 {
 	name[0] = "Пантера";
 	guild = GIL_Gargoyle;
-	aivar[AIV_MM_REAL_ID] = ID_Gargoyle;
+	aivar[AIV_MM_REAL_ID] = ID_STONEPUMA;
 	level = 20;
 	attribute[ATR_STRENGTH] = 100;
 	attribute[ATR_DEXTERITY] = 100;

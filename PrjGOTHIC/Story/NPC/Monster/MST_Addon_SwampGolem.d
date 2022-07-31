@@ -3,7 +3,7 @@ prototype Mst_Default_Addon_SwampGolem(C_Npc)
 {
 	name[0] = "Болотный голем";
 	guild = GIL_SWAMPGOLEM;
-	aivar[AIV_MM_REAL_ID] = ID_Swampgolem;
+	aivar[AIV_MM_REAL_ID] = ID_SWAMPGOLEM;
 	level = 25;
 	attribute[ATR_STRENGTH] = 125;
 	attribute[ATR_DEXTERITY] = 125;

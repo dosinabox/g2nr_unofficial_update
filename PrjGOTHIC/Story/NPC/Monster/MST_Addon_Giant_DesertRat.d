@@ -3,7 +3,7 @@ prototype Mst_Default_Giant_DesertRat(C_Npc)
 {
 	name[0] = "Пустынная крыса";
 	guild = GIL_Giant_Rat;
-	aivar[AIV_MM_REAL_ID] = ID_Giant_Rat;
+	aivar[AIV_MM_REAL_ID] = ID_GIANT_RAT;
 	level = 10;
 	attribute[ATR_STRENGTH] = 75;
 	attribute[ATR_DEXTERITY] = 75;

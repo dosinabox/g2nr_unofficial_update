@@ -15,7 +15,7 @@ func int C_PredatorFoundPrey(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-		if((oth.guild == GIL_SCAVENGER) && (oth.aivar[AIV_MM_REAL_ID] != ID_OrcBiter))
+		if((oth.guild == GIL_SCAVENGER) && (oth.aivar[AIV_MM_REAL_ID] != ID_ORCBITER))
 		{
 			return TRUE;
 		};
@@ -49,7 +49,7 @@ func int C_PredatorFoundPrey(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-		if((oth.guild == GIL_SCAVENGER) && (oth.aivar[AIV_MM_REAL_ID] != ID_OrcBiter))
+		if((oth.guild == GIL_SCAVENGER) && (oth.aivar[AIV_MM_REAL_ID] != ID_ORCBITER))
 		{
 			return TRUE;
 		};
@@ -76,7 +76,7 @@ func int C_PredatorFoundPrey(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-		if((oth.guild == GIL_SCAVENGER) && (oth.aivar[AIV_MM_REAL_ID] != ID_OrcBiter))
+		if((oth.guild == GIL_SCAVENGER) && (oth.aivar[AIV_MM_REAL_ID] != ID_ORCBITER))
 		{
 			return TRUE;
 		};

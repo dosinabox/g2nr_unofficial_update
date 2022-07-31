@@ -133,6 +133,8 @@ AI\Magic\B_MagicHurtNPC.d
 AI\Human\C_Human\C_BodyStateContains.d
 Story\B_Content\B_ScHasBeliarsWeapon.d
 Story\B_Content\B_SpecialWeaponDamage.d
+AI\Monster\C_Monster\C_NpcIsFireCreature.d
+AI\Monster\C_Monster\C_NpcIsIceCreature.d
 AI\Monster\B_Monster\B_MM_WispDetect.d
 AI\Monster\B_Monster\B_MM_DeSynchronize.d
 AI\Human\C_Human\C_NpcIsGateGuard.d

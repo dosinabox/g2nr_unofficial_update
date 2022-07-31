@@ -11,7 +11,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
 		}
-		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Icewolf)
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_ICEWOLF)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
 		}
@@ -27,7 +27,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
 		}
-		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Razor)
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_RAZOR)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
 		}
@@ -35,7 +35,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
 		}
-		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Bloodhound)
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_BLOODHOUND)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
 		}
@@ -77,7 +77,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 				CreateInvItems(slf,ItAt_Claw,2);
 			};
 		}
-		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Razor)
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_RAZOR)
 		{
 			CreateInvItems(slf,ItAt_Claw,2);
 		}
@@ -89,7 +89,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItAt_Claw,4);
 		}
-		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Bloodhound)
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_BLOODHOUND)
 		{
 			CreateInvItems(slf,ItAt_Claw,4);
 		}
@@ -108,7 +108,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItAt_WolfFur,1);
 		}
-		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Icewolf)
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_ICEWOLF)
 		{
 			CreateInvItems(slf,ItAt_IceWolfFur,1);
 		}
@@ -143,7 +143,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItAt_SnapperSkin,1);
 		}
-		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Razor)
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_RAZOR)
 		{
 			CreateInvItems(slf,ItAt_RazorSkin,1);
 		}
