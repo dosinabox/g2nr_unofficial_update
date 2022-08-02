@@ -1,7 +1,7 @@
 
 func int C_PredatorFoundPrey(var C_Npc slf,var C_Npc oth)
 {
-	if((slf.guild == GIL_WOLF) && (slf.aivar[AIV_MM_REAL_ID] != ID_Keiler))
+	if((slf.guild == GIL_WOLF) && (slf.aivar[AIV_MM_REAL_ID] != ID_KEILER))
 	{
 		if(oth.guild == GIL_SHEEP)
 		{

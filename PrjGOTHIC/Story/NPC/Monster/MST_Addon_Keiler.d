@@ -3,7 +3,7 @@ prototype Mst_Default_Keiler(C_Npc)
 {
 	name[0] = "Кабан";
 	guild = GIL_WOLF;
-	aivar[AIV_MM_REAL_ID] = ID_Keiler;
+	aivar[AIV_MM_REAL_ID] = ID_KEILER;
 	level = 6;
 	attribute[ATR_STRENGTH] = 50;
 	attribute[ATR_DEXTERITY] = 50;

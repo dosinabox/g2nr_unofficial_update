@@ -3,7 +3,7 @@ prototype Mst_Default_Swamprat(C_Npc)
 {
 	name[0] = "Болотная крыса";
 	guild = GIL_MOLERAT;
-	aivar[AIV_MM_REAL_ID] = ID_Swamprat;
+	aivar[AIV_MM_REAL_ID] = ID_SWAMPRAT;
 	level = 12;
 	attribute[ATR_STRENGTH] = 60;
 	attribute[ATR_DEXTERITY] = 60;

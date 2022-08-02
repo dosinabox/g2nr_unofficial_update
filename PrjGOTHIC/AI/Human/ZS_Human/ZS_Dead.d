@@ -117,7 +117,7 @@ func void ZS_Dead()
 			};
 			if(CurrentLevel == ADDONWORLD_ZEN)
 			{
-				if(self.aivar[AIV_MM_REAL_ID] == ID_Swamprat)
+				if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPRAT)
 				{
 					if(MIS_KrokoJagd == LOG_Running)
 					{

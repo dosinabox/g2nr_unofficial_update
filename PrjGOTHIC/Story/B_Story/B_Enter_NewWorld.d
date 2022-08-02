@@ -922,7 +922,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 };
 
 
-var int EnterNW_Kapitel6;
+/*var int EnterNW_Kapitel6;
 
 func void B_ENTER_NEWWORLD_Kapitel_6()
 {
@@ -930,7 +930,7 @@ func void B_ENTER_NEWWORLD_Kapitel_6()
 	{
 		EnterNW_Kapitel6 = TRUE;
 	};
-};
+};*/
 
 func void B_Enter_NewWorld()
 {
@@ -955,10 +955,10 @@ func void B_Enter_NewWorld()
 	{
 		B_ENTER_NEWWORLD_Kapitel_5();
 	};
-	if(Kapitel >= 6)
+	/*if(Kapitel >= 6)
 	{
 		B_ENTER_NEWWORLD_Kapitel_6();
-	};
+	};*/
 	B_InitNpcGlobals();
 };
 

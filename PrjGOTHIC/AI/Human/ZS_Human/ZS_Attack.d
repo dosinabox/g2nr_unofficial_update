@@ -287,7 +287,7 @@ func void ZS_Attack_End()
 			AI_StartState(self,ZS_RansackBody,0,"");
 			return;
 		}
-		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(AlligatorJack)) && (target.aivar[AIV_MM_REAL_ID] == ID_Swamprat))
+		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(AlligatorJack)) && (target.aivar[AIV_MM_REAL_ID] == ID_SWAMPRAT))
 		{
 			AI_StartState(self,ZS_GetMeat,0,"");
 			return;

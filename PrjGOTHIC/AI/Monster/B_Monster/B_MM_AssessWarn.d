@@ -40,9 +40,16 @@ func void B_MM_AssessWarn()
 	};
 	if((self.guild == other.guild) && (self.aivar[AIV_MM_Packhunter] == TRUE))
 	{
-		if(((self.guild == GIL_WOLF) && (self.aivar[AIV_MM_REAL_ID] != ID_Keiler) && (victim.guild == GIL_WOLF) && (victim.aivar[AIV_MM_REAL_ID] != ID_Keiler) && Npc_IsPlayer(victim)) || ((self.guild == GIL_WOLF) && (self.aivar[AIV_MM_REAL_ID] != ID_Keiler) && (victim.guild == GIL_WOLF) && (victim.aivar[AIV_MM_REAL_ID] != ID_Keiler) && (other.guild == GIL_WOLF) && (other.aivar[AIV_MM_REAL_ID] != ID_Keiler)))
+		if((self.guild == GIL_WOLF) && (self.aivar[AIV_MM_REAL_ID] != ID_KEILER) && (victim.guild == GIL_WOLF) && (victim.aivar[AIV_MM_REAL_ID] != ID_KEILER))
 		{
-			return;
+			if(Npc_IsPlayer(victim))
+			{
+				return;
+			};
+			if((other.guild == GIL_WOLF) && (other.aivar[AIV_MM_REAL_ID] != ID_KEILER))
+			{
+				return;
+			};
 		};
 		if(Npc_IsInState(other,ZS_MM_Attack))
 		{

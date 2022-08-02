@@ -92,7 +92,7 @@ instance Zombie_Addon_Knecht(Mst_Default_Zombie)
 	Npc_SetToFistMode(self);
 };
 
-instance Zombie_Addon_Bloodwyn(Mst_Default_Zombie)
+/*instance Zombie_Addon_Bloodwyn(Mst_Default_Zombie)
 {
 	name[0] = "Пробудившийся Бладвин";
 	level = 25;
@@ -104,7 +104,7 @@ instance Zombie_Addon_Bloodwyn(Mst_Default_Zombie)
 	Npc_SetToFistMode(self);
 };
 
-/*instance Zombie_Addon_Bloodwyn_Headless(Mst_Default_Zombie)
+instance Zombie_Addon_Bloodwyn_Headless(Mst_Default_Zombie)
 {
 	name[0] = "Пробудившийся Бладвин";
 	level = 25;
@@ -294,7 +294,7 @@ instance Summoned_Zombie(Mst_Default_Zombie)
 {
 	name[0] = NAME_Addon_Summoned_Zombie;
 	guild = GIL_SummonedZombie;
-	aivar[AIV_MM_REAL_ID] = ID_SummonedZombie;
+	aivar[AIV_MM_REAL_ID] = ID_SUMMONED_ZOMBIE;
 	level = 0;
 	attribute[ATR_STRENGTH] = 200;
 	attribute[ATR_DEXTERITY] = 200;

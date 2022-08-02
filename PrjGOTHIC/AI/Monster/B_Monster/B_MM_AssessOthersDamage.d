@@ -34,9 +34,9 @@ func void B_MM_AssessOthersDamage()
 			return;
 		};
 	};
-	if((self.guild == GIL_WOLF) && (self.aivar[AIV_MM_REAL_ID] != ID_Keiler))
+	if((self.guild == GIL_WOLF) && (self.aivar[AIV_MM_REAL_ID] != ID_KEILER))
 	{
-		if((victim.guild == GIL_WOLF) && (victim.aivar[AIV_MM_REAL_ID] != ID_Keiler) && (other.guild == GIL_WOLF) && Npc_IsPlayer(other) && Npc_IsDead(victim))
+		if((victim.guild == GIL_WOLF) && (victim.aivar[AIV_MM_REAL_ID] != ID_KEILER) && (other.guild == GIL_WOLF) && Npc_IsPlayer(other) && Npc_IsDead(victim))
 		{
 			Npc_ClearAIQueue(self);
 			B_ClearPerceptions(self);

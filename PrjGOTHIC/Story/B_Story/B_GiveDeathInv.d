@@ -55,7 +55,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
 		}
-		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Keiler)
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_KEILER)
 		{
 			CreateInvItems(slf,ItAt_KeilerHorn,2);
 		};
@@ -128,7 +128,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItAt_TrollBlackFur,1);
 		}
-		else if(slf.aivar[AIV_MM_REAL_ID] == ID_Keiler)
+		else if(slf.aivar[AIV_MM_REAL_ID] == ID_KEILER)
 		{
 			CreateInvItems(slf,ItAt_Addon_KeilerFur,1);
 		};
