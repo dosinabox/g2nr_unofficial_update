@@ -29,3 +29,16 @@ func void B_KillNpc(var int npcInstance)
 	};
 };
 
+func void B_KillAnimal(var int npcInstance)
+{
+	var C_Npc npc;
+	npc = Hlp_GetNpc(npcInstance);
+	if(Hlp_IsValidNpc(npc))
+	{
+		if(!Npc_IsDead(npc))
+		{
+			Npc_ChangeAttribute(npc,ATR_HITPOINTS,-npc.attribute[ATR_HITPOINTS_MAX]);
+		};
+	};
+};
+

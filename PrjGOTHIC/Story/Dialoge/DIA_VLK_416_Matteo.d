@@ -158,7 +158,7 @@ instance DIA_Matteo_LEATHER(C_Info)
 	condition = DIA_Matteo_LEATHER_Condition;
 	information = DIA_Matteo_LEATHER_Info;
 	permanent = TRUE;
-	description = "Купить кожаные доспехи. Защита: 25/20/5/0. (250 золотых)";
+	description = B_BuildPriceString("Купить кожаные доспехи. Защита: 25/20/5/0.",VALUE_ITAR_Leather_L);
 };
 
 
@@ -173,7 +173,7 @@ func int DIA_Matteo_LEATHER_Condition()
 func void DIA_Matteo_LEATHER_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_LEATHER_15_00");	//Хорошо, давай мне эти доспехи.
-	if(B_GiveInvItems(other,self,ItMi_Gold,250))
+	if(B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_Leather_L))
 	{
 		AI_Output(self,other,"DIA_Matteo_LEATHER_09_01");	//Они тебе понравятся. (ухмыляется)
 		B_GiveArmor(ITAR_Leather_L);

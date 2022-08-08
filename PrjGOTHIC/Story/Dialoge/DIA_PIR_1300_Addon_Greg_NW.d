@@ -61,9 +61,10 @@ func void DIA_Addon_Greg_NW_Hallo_weg()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_Hallo_weg_15_00");	//Мне надо идти.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_weg_01_01");	//Итак, ты отказываешься мне помогать, верно? Хорошо, я это запомню. Мы еще встретимся!
-	AI_StopProcessInfos(self);
+	Greg_NoHelpInNW += 1;
 	MIS_Addon_Greg_BringMeToTheCity = LOG_FAILED;
 	B_CheckLog();
+	AI_StopProcessInfos(self);
 };
 
 func void DIA_Addon_Greg_NW_Hallo_ja()
@@ -281,6 +282,7 @@ func void DIA_Addon_Greg_NW_MeetGregSecondTime_Info()
 		AI_Output(self,other,"DIA_Addon_Greg_NW_MeetGregSecondTime_01_03");	//(зло) Я думал, что ты хочешь мне помочь! А ты просто сбежал.
 		AI_Output(self,other,"DIA_Addon_Greg_NW_MeetGregSecondTime_01_04");	//Ты думал, я так там и застряну, верно?
 		AI_Output(self,other,"DIA_Addon_Greg_NW_MeetGregSecondTime_01_05");	//Что ж, это очередной раз доказывает, что никто не поможет тебе, кроме тебя самого. Но на этот раз ты от меня просто так не уйдешь.
+		Greg_NoHelpInNW += 1;
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_NW_MeetGregSecondTime_01_06");	//Ты как раз вовремя.
 	Knows_Taverne = TRUE;
@@ -392,17 +394,16 @@ func void DIA_Addon_Greg_NW_was_NoHelp()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_was_NoHelp_15_00");	//Я не могу тебе помочь.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_was_NoHelp_01_01");	//(зло) Нет, ты не ХОЧЕШЬ мне помочь.
-	if((MIS_Addon_Greg_BringMeToTheCity == LOG_Running) || (MIS_Addon_Greg_BringMeToTheCity == LOG_FAILED))
+	if(Greg_NoHelpInNW == 1)
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_was_NoHelp_01_02");	//Второй раз ты отказываешься выполнить мою просьбу.
 		AI_Output(self,other,"DIA_Addon_Greg_NW_was_NoHelp_01_03");	//Мой тебе совет: постарайся сделать так, чтобы я тебя больше не видел.
-		Greg_NoHelpInNW = TRUE;
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_was_NoHelp_01_04");	//Я запомню это, будь уверен.
-		Greg_NoHelpInNW_Cave = TRUE;
 	};
+	Greg_NoHelpInNW += 1;
 	MIS_Addon_Greg_RakeCave = LOG_OBSOLETE;
 	GregLocation = Greg_Bigcross;
 	AI_StopProcessInfos(self);
@@ -765,7 +766,7 @@ func int DIA_Addon_Greg_NW_Bigcross_Condition()
 func void DIA_Addon_Greg_NW_Bigcross_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_Bigcross_15_01");	//Как дела?
-	if((MIS_Addon_Greg_BringMeToTheCity == LOG_FAILED) || (MIS_Addon_Greg_RakeCave == LOG_FAILED))
+	if(Greg_NoHelpInNW > 0)
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_Bigcross_01_00");	//Это же наш господин Ненадежность!
 	};

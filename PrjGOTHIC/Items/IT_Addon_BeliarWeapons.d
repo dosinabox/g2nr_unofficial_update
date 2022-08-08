@@ -427,7 +427,7 @@ instance ItMw_BeliarWeapon_Fire(BeliarWeaponPrototype_2H)
 	damageTotal = Damage_BeliarW_2H_20;
 	damagetype = DAM_FIRE;
 	effect = "SPELLFX_FIRESWORD";
-	text[2] = NAME_Dam_FireWeapons;
+	text[2] = NAME_Dam_Fire;
 	count[2] = damageTotal;
 	text[3] = NAME_Unknown_needed;
 	count[3] = 0;

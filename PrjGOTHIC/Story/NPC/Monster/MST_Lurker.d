@@ -89,6 +89,12 @@ instance Kervo_Lurker6(Mst_Default_Lurker)
 	aivar[AIV_OriginalFightTactic] = FAI_LURKER;
 };
 
+instance Kervo_Lurker7(Mst_Default_Lurker)
+{
+	B_SetVisuals_Lurker();
+	Npc_SetToFistMode(self);
+};
+
 instance BeachLurker1(Mst_Default_Lurker)
 {
 	B_SetVisuals_Lurker();

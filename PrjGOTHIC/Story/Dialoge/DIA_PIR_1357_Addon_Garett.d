@@ -396,7 +396,7 @@ instance DIA_Addon_Garett_ArmorM(C_Info)
 
 func int DIA_Addon_Garett_ArmorM_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && Npc_KnowsInfo(other,DIA_Addon_Greg_JoinPirates) && (Greg_NoHelpInNW == TRUE) && (Garett_Armor_Given == FALSE))
+	if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && Npc_KnowsInfo(other,DIA_Addon_Greg_JoinPirates) && (Greg_NoHelpInNW >= 2) && (Garett_Armor_Given == FALSE))
 	{
 		return TRUE;
 	};
@@ -408,7 +408,7 @@ func void DIA_Addon_Garett_ArmorM_Info()
 	AI_Output(self,other,"DIA_Matteo_LEATHER_09_01");	//Они тебе понравятся. (ухмыляется)
 	Info_ClearChoices(DIA_Addon_Garett_ArmorM);
 	Info_AddChoice(DIA_Addon_Garett_ArmorM,Dialog_Back,DIA_Addon_Garett_ArmorM_Back);
-	Info_AddChoice(DIA_Addon_Garett_ArmorM,"Купить доспехи пирата. Защита: 55/55/0/0. (1300 золотых)",DIA_Addon_Garett_ArmorM_Buy);
+	Info_AddChoice(DIA_Addon_Garett_ArmorM,B_BuildPriceString("Купить доспехи пирата. Защита: 55/55/0/0.",VALUE_ITAR_PIR_M_Addon),DIA_Addon_Garett_ArmorM_Buy);
 };
 
 func void DIA_Addon_Garett_ArmorM_Buy()

@@ -1064,7 +1064,7 @@ instance DIA_Lee_BuyArmorM(C_Info)
 	condition = DIA_Lee_BuyArmorM_Condition;
 	information = DIA_Lee_BuyArmorM_Info;
 	permanent = TRUE;
-	description = "Купить средние доспехи наемника. Защита: 50/50/0/5. (1000 золотых)";
+	description = B_BuildPriceString("Купить средние доспехи наемника. Защита: 50/50/0/5.",VALUE_ITAR_SLD_M);
 };
 
 
@@ -1125,7 +1125,7 @@ instance DIA_Lee_BuyArmorH(C_Info)
 	condition = DIA_Lee_BuyArmorH_Condition;
 	information = DIA_Lee_BuyArmorH_Info;
 	permanent = TRUE;
-	description = "Купить тяжелые доспехи наемника. Защита: 80/80/5/10. (2500 золотых)";
+	description = B_BuildPriceString("Купить тяжелые доспехи наемника. Защита: 80/80/5/10.",VALUE_ITAR_SLD_H);
 };
 
 
