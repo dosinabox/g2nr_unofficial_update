@@ -180,6 +180,10 @@ func void ZS_Dead()
 			};
 		};
 		B_SpecialRangedWeaponDamage(other,self,TRUE);
+	}
+	else if(self.aivar[AIV_LastHitByWindFist] == TRUE)
+	{
+		B_GiveDeathXP(hero,self);
 	};
 	B_GiveTradeInv(self);
 	B_GiveDeathInv(self);

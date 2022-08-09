@@ -357,7 +357,8 @@ func void DIA_Cipher_DarDieb_Info()
 		AI_Output(self,other,"DIA_Cipher_DarDieb_07_07");	//Я ПРИКОНЧУ ЕГО!
 		AI_StopProcessInfos(self);
 		other.aivar[AIV_INVINCIBLE] = FALSE;
-		B_Attack(self,Dar,AR_NONE,0); //TODO ночью Сифер не побежит атаковать Дара, а ляжет спать
+		self.aivar[AIV_FightDistCancel] = 7000;
+		B_Attack(self,Dar,AR_NONE,0);
 	}
 	else
 	{

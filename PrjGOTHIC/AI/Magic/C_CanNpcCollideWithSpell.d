@@ -131,20 +131,17 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_WindFist)
 	{
-		if((Npc_GetDistToNpc(other,self) >= 1000) || (self.guild == GIL_WISP))
-		{
-			return COLL_DONOTHING;
-		};
-		return COLL_DOEVERYTHING;
-	};
-	/*if((spellType == SPL_Zap) || (spellType == SPL_ChargeZap) || (spellType == SPL_ConcussionBolt))
-	{
 		if(C_NpcIsDown(self))
 		{
 			return COLL_DONOTHING;
 		};
-		return COLL_APPLYDAMAGE | COLL_DONTKILL;
-	};*/
+		if((Npc_GetDistToNpc(other,self) >= 1000) || (self.guild == GIL_WISP))
+		{
+			return COLL_DONOTHING;
+		};
+		self.aivar[AIV_LastHitByWindFist] = TRUE;
+		return COLL_DOEVERYTHING;
+	};
 	if(spellType == SPL_ConcussionBolt)
 	{
 		if(C_NpcIsDown(self))
@@ -184,9 +181,8 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 			if(self.guild == GIL_DMT)
 			{
 				return COLL_DONOTHING;
-			}
-//			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
-			else if(Npc_IsPlayer(self))
+			};
+			if(Npc_IsPlayer(self))
 			{
 				return COLL_APPLYHALVEDAMAGE;
 			};
@@ -260,7 +256,6 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	{
 		if((Npc_GetDistToNpc(other,self) < 1000) && !C_NpcIsUndead(self))
 		{
-//			if((self.guild == GIL_DRAGON) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero)))
 			if((self.guild == GIL_DRAGON) || Npc_IsPlayer(self))
 			{
 				return COLL_APPLYHALVEDAMAGE;

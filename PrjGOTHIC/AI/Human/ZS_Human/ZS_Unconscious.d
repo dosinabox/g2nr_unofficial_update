@@ -75,6 +75,7 @@ func void ZS_Unconscious()
 	AI_UnequipWeapons(self);
 	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Dar)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cipher)))
 	{
+		other.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
 		Dar_LostAgainstCipher = TRUE;
 	};
 };

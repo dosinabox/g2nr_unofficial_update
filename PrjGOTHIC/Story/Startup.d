@@ -2,6 +2,7 @@
 func void STARTUP_Global()
 {
 	FIX_VERSION_SAVE = FIX_VERSION_START;
+	FIX_DATE_SAVE = FIX_VERSION_DATE;
 };
 
 func void INIT_Global()
