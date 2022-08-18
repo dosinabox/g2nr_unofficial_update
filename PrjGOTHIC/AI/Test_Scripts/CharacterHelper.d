@@ -2869,9 +2869,9 @@ func void DIA_CH_Misc_Health_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Health);
 	Info_AddChoice(DIA_CH_Misc_Health,Dialog_Back,DIA_CH_Misc_Health_BACK);
-	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Health_04] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString(NAME_HPMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),CH_Training_Alchemy_POTION_Perm_Health);
+		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString(NAME_HP_Full,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_04)),CH_Training_Alchemy_POTION_Health_04);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE)
 	{
@@ -2907,9 +2907,9 @@ func void CH_Training_Alchemy_POTION_Health_03()
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_03);
 };
 
-func void CH_Training_Alchemy_POTION_Perm_Health()
+func void CH_Training_Alchemy_POTION_Health_04()
 {
-	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Health);
+	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_04);
 };
 
 
@@ -2936,9 +2936,9 @@ func void DIA_CH_Misc_Mana_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Mana);
 	Info_AddChoice(DIA_CH_Misc_Mana,Dialog_Back,DIA_CH_Misc_Mana_BACK);
-	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_04] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString(NAME_ManaMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),CH_Training_Alchemy_POTION_Perm_Mana);
+		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString(NAME_Mana_Full,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_04)),CH_Training_Alchemy_POTION_Mana_04);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == FALSE)
 	{
@@ -2974,9 +2974,9 @@ func void CH_Training_Alchemy_POTION_Mana_03()
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_03);
 };
 
-func void CH_Training_Alchemy_POTION_Perm_Mana()
+func void CH_Training_Alchemy_POTION_Mana_04()
 {
-	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Mana);
+	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_04);
 };
 
 
@@ -3003,6 +3003,10 @@ func void DIA_CH_Misc_Special_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Special);
 	Info_AddChoice(DIA_CH_Misc_Special,Dialog_Back,DIA_CH_Misc_Special_BACK);
+	if(PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString(NAME_MegaDrink,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_MegaDrink)),CH_Training_Alchemy_POTION_MegaDrink);
+	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Speed] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString(NAME_Speed_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Speed)),CH_Training_Alchemy_POTION_Speed);
@@ -3015,6 +3019,14 @@ func void DIA_CH_Misc_Special_Info()
 	{
 		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString(NAME_DEX_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_DEX)),CH_Training_Alchemy_POTION_Perm_DEX);
 	};
+	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString(NAME_ManaMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),CH_Training_Alchemy_POTION_Perm_Mana);
+	};
+	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString(NAME_HPMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),CH_Training_Alchemy_POTION_Perm_Health);
+	};
 };
 
 func void DIA_CH_Misc_Special_BACK()
@@ -3022,9 +3034,24 @@ func void DIA_CH_Misc_Special_BACK()
 	Info_ClearChoices(DIA_CH_Misc_Special);
 };
 
+func void CH_Training_Alchemy_POTION_MegaDrink()
+{
+	B_TeachPlayerTalentAlchemy(self,other,POTION_MegaDrink);
+};
+
 func void CH_Training_Alchemy_POTION_Speed()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Speed);
+};
+
+func void CH_Training_Alchemy_POTION_Perm_Mana()
+{
+	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Mana);
+};
+
+func void CH_Training_Alchemy_POTION_Perm_Health()
+{
+	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Health);
 };
 
 func void CH_Training_Alchemy_POTION_Perm_STR()
@@ -3853,17 +3880,17 @@ func string B_BuildCurrentRegenerateValue(var int stats)
 	concatText = ConcatStrings(concatText,IntToString(next));
 	concatText = ConcatStrings(concatText," секунд, ");
 	concatText = ConcatStrings(concatText,IntToString(cost));
-	if(cost == 1)
+	if(cost >= 5)
 	{
-		concatText = ConcatStrings(concatText,PRINT_1LP);
+		concatText = ConcatStrings(concatText,PRINT_LP);
 	}
-	else if((cost > 1) && (cost < 5))
+	else if(cost > 1)
 	{
 		concatText = ConcatStrings(concatText,PRINT_2LP);
 	}
 	else
 	{
-		concatText = ConcatStrings(concatText,PRINT_LP);
+		concatText = ConcatStrings(concatText,PRINT_1LP);
 	};
 	concatText = ConcatStrings(concatText,")");
 	return concatText;

@@ -31,6 +31,11 @@ func int B_TeachPlayerTalentAlchemy(var C_Npc slf,var C_Npc oth,var int potion)
 		PLAYER_TALENT_ALCHEMY[POTION_Health_03] = TRUE;
 		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЛЕЧЕБНОГО ЭЛИКСИРА': 2 лечебных корня и 1 луговой горец.");
 	}
+	else if(potion == POTION_Health_04)
+	{
+		PLAYER_TALENT_ALCHEMY[POTION_Health_04] = TRUE;
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЧИСТОГО ЗДОРОВЬЯ': 1 луговой горец и 3 лечебные эссенции.");
+	}
 	else if(potion == POTION_Mana_01)
 	{
 		PLAYER_TALENT_ALCHEMY[POTION_Mana_01] = TRUE;
@@ -44,12 +49,22 @@ func int B_TeachPlayerTalentAlchemy(var C_Npc slf,var C_Npc oth,var int potion)
 	else if(potion == POTION_Mana_03)
 	{
 		PLAYER_TALENT_ALCHEMY[POTION_Mana_03] = TRUE;
-		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭЛИКСИРА МАНЫ': 2 огненных корня и 1 луговой горец");
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭЛИКСИРА МАНЫ': 2 огненных корня и 1 луговой горец.");
+	}
+	else if(potion == POTION_Mana_04)
+	{
+		PLAYER_TALENT_ALCHEMY[POTION_Mana_04] = TRUE;
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЧИСТОЙ МАНЫ': 1 луговой горец и 3 эссенции маны.");
+	}
+	else if(potion == POTION_MegaDrink)
+	{
+		PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] = TRUE;
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭМБАРЛА ФИРГАСТО': 10 драконьих яиц, 1 черная жемчужина и 1 сера.");
 	}
 	else if(potion == POTION_Speed)
 	{
 		PLAYER_TALENT_ALCHEMY[POTION_Speed] = TRUE;
-		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЗЕЛЬЯ УСКОРЕНИЯ': 1 снеппер-трава и 1 луговой горец");
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЗЕЛЬЯ УСКОРЕНИЯ': 1 снеппер-трава и 1 луговой горец.");
 	}
 	else if(potion == POTION_Perm_STR)
 	{

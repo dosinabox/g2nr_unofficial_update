@@ -125,7 +125,7 @@ func int DIA_Kervo_LurkerPlatt_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Kervo_HILFE))
 	{
-		if(Npc_IsDead(Kervo_Lurker1) && Npc_IsDead(Kervo_Lurker2) && Npc_IsDead(Kervo_Lurker3) && Npc_IsDead(Kervo_Lurker4) && Npc_IsDead(Kervo_Lurker5) && Npc_IsDead(Kervo_Lurker6))
+		if(C_KervoLurkersDead())
 		{
 			return TRUE;
 		};

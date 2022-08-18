@@ -291,8 +291,8 @@ func void DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer()
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_14_02");	//У Гарада, кузнеца, есть подмастерье по имени Брайан. Я много раз беседовал с ним.
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_14_03");	//Я бы хотел доверить свой маяк ему. Я думаю, он лучше всего подходит для этого.
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_14_04");	//Иди, поговори с ним. Возможно, нам повезет, и этот парень согласится помочь нам.
-	Info_ClearChoices(DIA_Jack_BEMYCAPTAIN);
 	MIS_Jack_NewLighthouseOfficer = LOG_Running;
+	Info_ClearChoices(DIA_Jack_BEMYCAPTAIN);
 };
 
 func void DIA_Jack_BEMYCAPTAIN_no()
@@ -349,9 +349,12 @@ instance DIA_Jack_BrianIsDead(C_Info)
 
 func int DIA_Jack_BrianIsDead_Condition()
 {
-	if((MIS_Jack_NewLighthouseOfficer == LOG_Running) && Npc_IsDead(Brian))
+	if(MIS_Jack_NewLighthouseOfficer == LOG_Running)
 	{
-		return TRUE;
+		if(Npc_IsDead(Brian))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -5,10 +5,7 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 	kosten = 0;
 	if(talent == NPC_TALENT_MAGE)
 	{
-		if((skill >= 1) && (skill <= 6))
-		{
-			kosten = 5;
-		};
+		kosten = 5;
 	};
 	if((talent >= NPC_TALENT_1H) && (talent <= NPC_TALENT_CROSSBOW))
 	{
@@ -243,39 +240,7 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 	};
 	if(talent == NPC_TALENT_WISPDETECTOR)
 	{
-		if(skill == WISPSKILL_NF)
-		{
-			kosten = 0;
-		}
-		else if(skill == WISPSKILL_FF)
-		{
-			kosten = 1;
-		}
-		else if(skill == WISPSKILL_NONE)
-		{
-//			kosten = 2;
-			kosten = 1;
-		}
-		else if(skill == WISPSKILL_RUNE)
-		{
-//			kosten = 3;
-			kosten = 1;
-		}
-		else if(skill == WISPSKILL_MAGIC)
-		{
-//			kosten = 4;
-			kosten = 1;
-		}
-		else if(skill == WISPSKILL_FOOD)
-		{
-//			kosten = 5;
-			kosten = 1;
-		}
-		else if(skill == WISPSKILL_POTIONS)
-		{
-//			kosten = 5;
-			kosten = 1;
-		};
+		kosten = 1;
 	};
 	if(talent == NPC_TALENT_RUNES)
 	{

@@ -69,7 +69,10 @@ func void DIA_1061_Wache_Hallo_Dexter()
 	AI_Output(self,other,"DIA_1061_Wache_Hallo_Dexter_01_02");	//Если ты подойдешь к кому-нибудь слишком близко, ты не выйдешь оттуда живьем!
 	AI_Output(self,other,"DIA_1061_Wache_Hallo_Dexter_01_03");	//Так что вдохни поглубже и держи свой меч в ножнах. Ты найдешь Декстера в доме.
 	Knows_Dexter = TRUE;
-	BanditGuard.aivar[AIV_PASSGATE] = TRUE;
+	if(!Npc_IsDead(BanditGuard))
+	{
+		BanditGuard.aivar[AIV_PASSGATE] = TRUE;
+	};
 	Info_ClearChoices(DIA_1061_Wache_Hallo);
 	AI_StopProcessInfos(self);
 };
