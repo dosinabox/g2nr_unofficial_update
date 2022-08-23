@@ -45,9 +45,9 @@ func void B_PrintPlayerMiddle(var C_Npc npc,var string text)
 	};
 };
 
-func void B_RaiseAttributeByStonePlate(var int talent,var int value)
+func void B_RaiseAttributeByStonePlate(var int attribute,var int value)
 {
-	B_RaiseAttributeByPermBonus(self,talent,value);
+	B_RaiseAttributeByPermBonus(self,attribute,value);
 	Wld_PlayEffect("spellFX_LIGHTSTAR_ORANGE",self,self,0,0,0,FALSE);
 	Snd_Play("SFX_HealObsession");
 };
@@ -55,8 +55,9 @@ func void B_RaiseAttributeByStonePlate(var int talent,var int value)
 func void B_RaiseTalentByStonePlate(var C_Npc npc,var int talent,var int value)
 {
 	var string text;
-	value = B_ChangeTalent(npc,talent,value,TS_PermBonus);
-	if(value == 0)
+	var int change;
+	change = B_ChangeTalent(npc,talent,value,TS_PermBonus);
+	if(change == 0)
 	{
 		B_PrintPlayerMiddle(npc,PRINT_NoLearnOverMAX);
 		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
@@ -81,7 +82,7 @@ func void B_RaiseTalentByStonePlate(var C_Npc npc,var int talent,var int value)
 		text = PRINT_LearnCrossbow;
 	};
 	text = ConcatStrings(text," + ");
-	text = ConcatStrings(text,IntToString(value));
+	text = ConcatStrings(text,IntToString(change));
 	B_PrintPlayerMiddle(npc,text);
 	Wld_PlayEffect("spellFX_LIGHTSTAR_ORANGE",self,self,0,0,0,FALSE);
 	Snd_Play("SFX_HealObsession");
@@ -133,9 +134,9 @@ func int C_SCHasStPlSkill()
 
 func void Use_StonePlate()
 {
-	var string concatText;
 	if(!C_SCHasStPlSkill())
 	{
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 		B_CannotUse_Addon();
 		B_Say(self,self,"$CANTREADTHIS");
 		AI_Waitms(self,500);
@@ -300,11 +301,6 @@ func void Use_StrStonePlate1()
 {
 	StoneplateItem = StrStonePlate;
 	StoneplateLevel = 1;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_StrStonePlate1_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -321,11 +317,6 @@ func void Use_StrStonePlate2()
 {
 	StoneplateItem = StrStonePlate;
 	StoneplateLevel = 2;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_StrStonePlate2_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -342,11 +333,6 @@ func void Use_StrStonePlate3()
 {
 	StoneplateItem = StrStonePlate;
 	StoneplateLevel = 3;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_StrStonePlate3_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -363,11 +349,6 @@ func void Use_DexStonePlate1()
 {
 	StoneplateItem = DexStonePlate;
 	StoneplateLevel = 1;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_DexStonePlate1_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -384,11 +365,6 @@ func void Use_DexStonePlate2()
 {
 	StoneplateItem = DexStonePlate;
 	StoneplateLevel = 2;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_DexStonePlate2_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -405,11 +381,6 @@ func void Use_DexStonePlate3()
 {
 	StoneplateItem = DexStonePlate;
 	StoneplateLevel = 3;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_DexStonePlate3_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -418,7 +389,6 @@ instance ItWr_HitPointStonePlate1_Addon(Prototype_StonePlate)
 {
 	description = "Каменная табличка жизненной силы I";
 	on_state[0] = Use_HitPointStonePlate1;
-//	visual = "ItMi_StonePlate_PowerUp_03.3DS";
 	visual = "ItMi_StonePlate_PowerUp_06.3DS";
 };
 
@@ -427,11 +397,6 @@ func void Use_HitPointStonePlate1()
 {
 	StoneplateItem = HitPointStonePlate;
 	StoneplateLevel = 1;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_HitPointStonePlate1_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -440,7 +405,6 @@ instance ItWr_HitPointStonePlate2_Addon(Prototype_StonePlate)
 {
 	description = "Каменная табличка жизненной силы II";
 	on_state[0] = Use_HitPointStonePlate2;
-//	visual = "ItMi_StonePlate_PowerUp_03.3DS";
 	visual = "ItMi_StonePlate_PowerUp_06.3DS";
 };
 
@@ -449,11 +413,6 @@ func void Use_HitPointStonePlate2()
 {
 	StoneplateItem = HitPointStonePlate;
 	StoneplateLevel = 2;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_HitPointStonePlate2_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -462,7 +421,6 @@ instance ItWr_HitPointStonePlate3_Addon(Prototype_StonePlate)
 {
 	description = "Каменная табличка жизненной силы III";
 	on_state[0] = Use_HitPointStonePlate3;
-//	visual = "ItMi_StonePlate_PowerUp_03.3DS";
 	visual = "ItMi_StonePlate_PowerUp_06.3DS";
 };
 
@@ -471,11 +429,6 @@ func void Use_HitPointStonePlate3()
 {
 	StoneplateItem = HitPointStonePlate;
 	StoneplateLevel = 3;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_HitPointStonePlate3_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -492,11 +445,6 @@ func void Use_ManaStonePlate1()
 {
 	StoneplateItem = ManaStonePlate;
 	StoneplateLevel = 1;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_ManaStonePlate1_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -513,11 +461,6 @@ func void Use_ManaStonePlate2()
 {
 	StoneplateItem = ManaStonePlate;
 	StoneplateLevel = 2;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_ManaStonePlate2_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -534,11 +477,6 @@ func void Use_ManaStonePlate3()
 {
 	StoneplateItem = ManaStonePlate;
 	StoneplateLevel = 3;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_ManaStonePlate3_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -555,11 +493,6 @@ func void Use_OneHStonePlate1()
 {
 	StoneplateItem = OneHStonePlate;
 	StoneplateLevel = 1;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_OneHStonePlate1_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -576,11 +509,6 @@ func void Use_OneHStonePlate2()
 {
 	StoneplateItem = OneHStonePlate;
 	StoneplateLevel = 2;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_OneHStonePlate2_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -597,11 +525,6 @@ func void Use_OneHStonePlate3()
 {
 	StoneplateItem = OneHStonePlate;
 	StoneplateLevel = 3;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_OneHStonePlate3_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -618,11 +541,6 @@ func void Use_TwoHStonePlate1()
 {
 	StoneplateItem = TwoHStonePlate;
 	StoneplateLevel = 1;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_TwoHStonePlate1_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -639,11 +557,6 @@ func void Use_TwoHStonePlate2()
 {
 	StoneplateItem = TwoHStonePlate;
 	StoneplateLevel = 2;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_TwoHStonePlate2_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -660,11 +573,6 @@ func void Use_TwoHStonePlate3()
 {
 	StoneplateItem = TwoHStonePlate;
 	StoneplateLevel = 3;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_TwoHStonePlate3_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -681,11 +589,6 @@ func void Use_BowStonePlate1()
 {
 	StoneplateItem = BowStonePlate;
 	StoneplateLevel = 1;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_BowStonePlate1_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -702,11 +605,6 @@ func void Use_BowStonePlate2()
 {
 	StoneplateItem = BowStonePlate;
 	StoneplateLevel = 2;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_BowStonePlate2_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -723,11 +621,6 @@ func void Use_BowStonePlate3()
 {
 	StoneplateItem = BowStonePlate;
 	StoneplateLevel = 3;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_BowStonePlate3_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -744,11 +637,6 @@ func void Use_CrsBowStonePlate1()
 {
 	StoneplateItem = CrsBowStonePlate;
 	StoneplateLevel = 1;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_CrsBowStonePlate1_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -765,11 +653,6 @@ func void Use_CrsBowStonePlate2()
 {
 	StoneplateItem = CrsBowStonePlate;
 	StoneplateLevel = 2;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_CrsBowStonePlate2_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -786,11 +669,6 @@ func void Use_CrsBowStonePlate3()
 {
 	StoneplateItem = CrsBowStonePlate;
 	StoneplateLevel = 3;
-	if(!C_SCHasStPlSkill())
-	{
-//		CreateInvItem(hero,ItWr_CrsBowStonePlate3_Addon);
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
-	};
 	Use_StonePlate();
 };
 
@@ -799,20 +677,20 @@ func int C_ScHasColoredStonePlate()
 	if(Npc_HasItems(hero,ItMi_Addon_Stone_01))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMi_Addon_Stone_02))
+	};
+	if(Npc_HasItems(hero,ItMi_Addon_Stone_02))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMi_Addon_Stone_03))
+	};
+	if(Npc_HasItems(hero,ItMi_Addon_Stone_03))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMi_Addon_Stone_04))
+	};
+	if(Npc_HasItems(hero,ItMi_Addon_Stone_04))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMi_Addon_Stone_05))
+	};
+	if(Npc_HasItems(hero,ItMi_Addon_Stone_05))
 	{
 		return TRUE;
 	};
@@ -824,96 +702,96 @@ func int C_ScHasMagicStonePlate()
 	if(Npc_HasItems(hero,ItWr_StrStonePlate1_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_StrStonePlate2_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_StrStonePlate2_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_StrStonePlate3_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_StrStonePlate3_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_DexStonePlate1_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_DexStonePlate1_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_DexStonePlate2_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_DexStonePlate2_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_DexStonePlate3_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_DexStonePlate3_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_HitPointStonePlate1_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_HitPointStonePlate1_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_HitPointStonePlate2_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_HitPointStonePlate2_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_HitPointStonePlate3_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_HitPointStonePlate3_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_ManaStonePlate1_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_ManaStonePlate1_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_ManaStonePlate2_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_ManaStonePlate2_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_ManaStonePlate3_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_ManaStonePlate3_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_OneHStonePlate1_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_OneHStonePlate1_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_OneHStonePlate2_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_OneHStonePlate2_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_OneHStonePlate3_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_OneHStonePlate3_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_TwoHStonePlate1_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_TwoHStonePlate1_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_TwoHStonePlate2_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_TwoHStonePlate2_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_TwoHStonePlate3_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_TwoHStonePlate3_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_BowStonePlate1_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_BowStonePlate1_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_BowStonePlate2_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_BowStonePlate2_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_BowStonePlate3_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_BowStonePlate3_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_CrsBowStonePlate1_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_CrsBowStonePlate1_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_CrsBowStonePlate2_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_CrsBowStonePlate2_Addon))
 	{
 		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItWr_CrsBowStonePlate3_Addon))
+	};
+	if(Npc_HasItems(hero,ItWr_CrsBowStonePlate3_Addon))
 	{
 		return TRUE;
 	};

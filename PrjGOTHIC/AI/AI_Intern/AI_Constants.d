@@ -333,8 +333,8 @@ const int FAI_MOLERAT = 40;
 const int FAI_ORC = 12;
 const int FAI_DRACONIAN = 41;
 const int FAI_Alligator = 43;
-const int FAI_Gargoyle = 44;
-const int FAI_Bear = 45;
+const int FAI_GARGOYLE = 44;
+const int FAI_BEAR = 45;
 const int FAI_Stoneguardian = 46;
 
 const int TRUE = 1;

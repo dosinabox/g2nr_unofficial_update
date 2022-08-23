@@ -602,11 +602,9 @@ func void DIA_Addon_Skip_Grog_ring()
 
 func void DIA_Addon_Skip_Grog_gold()
 {
-	var int GrogKohle;
 	AI_Output(other,self,"DIA_Addon_Skip_Grog_gold_15_00");	//Я возьму деньги.
 	AI_Output(self,other,"DIA_Addon_Skip_Grog_gold_08_01");	//Хорошо.
-	GrogKohle = Value_Grog * 20;
-	B_GiveInvItems(self,other,ItMi_Gold,GrogKohle);
+	B_GiveInvItems(self,other,ItMi_Gold,Value_Grog * 20);
 	Info_ClearChoices(DIA_Addon_Skip_Grog);
 };
 

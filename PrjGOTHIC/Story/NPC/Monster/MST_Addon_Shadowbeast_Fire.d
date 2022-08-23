@@ -18,7 +18,7 @@ prototype Mst_Default_Shadowbeast_Addon_Fire(C_Npc)
 	protection[PROT_FLY] = 150;
 	protection[PROT_MAGIC] = 75;
 	damagetype = DAM_EDGE;	//DAM_FIRE;
-	fight_tactic = FAI_Gargoyle;
+	fight_tactic = FAI_GARGOYLE;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;
 	aivar[AIV_MM_ThreatenBeforeAttack] = TRUE;
@@ -53,7 +53,7 @@ instance Shadowbeast_Addon_Fire_CanyonLib(Mst_Default_Shadowbeast_Addon_Fire)
 	flags = NPC_FLAG_GHOST;
 	aivar[AIV_EnemyOverride] = TRUE;
 	aivar[AIV_MaxDistToWp] = 900;
-	aivar[AIV_OriginalFightTactic] = FAI_Gargoyle;
+	aivar[AIV_OriginalFightTactic] = FAI_GARGOYLE;
 	effect = "SPELLFX_FIREARMOR";
 };
 
