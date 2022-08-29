@@ -315,10 +315,10 @@ func void DIA_Addon_Garett_Francis_Info()
 	AI_Output(self,other,"DIA_Addon_Garett_Francis_09_01");	//Когда Грега нет, он остается за старшего.
 	AI_Output(self,other,"DIA_Addon_Garett_Francis_09_02");	//Но честно говоря, лидер из него никакой.
 	AI_Output(self,other,"DIA_Addon_Garett_Francis_09_03");	//Он даже Моргана не может заставить оторвать свою ленивую задницу от кровати.
-	AI_Output(self,other,"DIA_Addon_Garett_Francis_09_04");	//Чем-то полезным сейчас занимается только Генри со своими ребятами.
-	AI_Output(self,other,"DIA_Addon_Garett_Francis_09_05");	//Остальные же просто бездельничают.
 	if(GregIsBack == FALSE)
 	{
+		AI_Output(self,other,"DIA_Addon_Garett_Francis_09_04");	//Чем-то полезным сейчас занимается только Генри со своими ребятами.
+		AI_Output(self,other,"DIA_Addon_Garett_Francis_09_05");	//Остальные же просто бездельничают.
 		AI_Output(self,other,"DIA_Addon_Garett_Francis_09_06");	//Надеюсь, что Грег скоро вернется.
 		AI_Output(self,other,"DIA_Addon_Garett_Francis_09_07");	//Он-то покажет этим лентяям, что к чему.
 	};

@@ -25,17 +25,7 @@ const int CrsBow_StPlLevel1 = 2;
 const int CrsBow_StPlLevel2 = 4;
 const int CrsBow_StPlLevel3 = 6;
 const int Value_StonePlateMagic = 100;
-const int value_StonePlateCommon = 5;
-var int StoneplateItem;
-var int StoneplateLevel;
-const int StrStonePlate = 2;
-const int DexStonePlate = 3;
-const int HitPointStonePlate = 4;
-const int ManaStonePlate = 5;
-const int OneHStonePlate = 6;
-const int TwoHStonePlate = 7;
-const int BowStonePlate = 8;
-const int CrsBowStonePlate = 9;
+const int Value_StonePlateCommon = 5;
 
 func void B_PrintPlayerMiddle(var C_Npc npc,var string text)
 {
@@ -102,27 +92,23 @@ func void B_CannotUse_Addon()
 	};
 };
 
-func int C_SCHasStPlSkill()
+func int C_SCHasStPlSkill(var int level)
 {
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == FALSE)
-	{
-		return FALSE;
-	};
-	if(StoneplateLevel == 1)
+	if(level == LANGUAGE_1)
 	{
 		if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
 		{
 			return TRUE;
 		};
 	}
-	else if(StoneplateLevel == 2)
+	else if(level == LANGUAGE_2)
 	{
 		if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == TRUE)
 		{
 			return TRUE;
 		};
 	}
-	else if(StoneplateLevel == 3)
+	else if(level == LANGUAGE_3)
 	{
 		if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == TRUE)
 		{
@@ -132,9 +118,9 @@ func int C_SCHasStPlSkill()
 	return FALSE;
 };
 
-func void Use_StonePlate()
+func void Use_StonePlate(var int level,var int attribute,var int talent,var int value)
 {
-	if(!C_SCHasStPlSkill())
+	if(!C_SCHasStPlSkill(level))
 	{
 		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 		B_CannotUse_Addon();
@@ -143,129 +129,15 @@ func void Use_StonePlate()
 	}
 	else
 	{
-		if(StoneplateItem == StrStonePlate)
+		if(attribute > 0)
 		{
-			if(StoneplateLevel == 1)
-			{
-				B_RaiseAttributeByStonePlate(ATR_STRENGTH,STR_StPlLevel1);
-			}
-			else if(StoneplateLevel == 2)
-			{
-				B_RaiseAttributeByStonePlate(ATR_STRENGTH,STR_StPlLevel2);
-			}
-			else if(StoneplateLevel == 3)
-			{
-				B_RaiseAttributeByStonePlate(ATR_STRENGTH,STR_StPlLevel3);
-			};
+			B_RaiseAttributeByStonePlate(attribute,value);
 		}
-		else if(StoneplateItem == DexStonePlate)
+		else if(talent > 0)
 		{
-			if(StoneplateLevel == 1)
-			{
-				B_RaiseAttributeByStonePlate(ATR_DEXTERITY,DEX_StPlLevel1);
-			}
-			else if(StoneplateLevel == 2)
-			{
-				B_RaiseAttributeByStonePlate(ATR_DEXTERITY,DEX_StPlLevel2);
-			}
-			else if(StoneplateLevel == 3)
-			{
-				B_RaiseAttributeByStonePlate(ATR_DEXTERITY,DEX_StPlLevel3);
-			};
-		}
-		else if(StoneplateItem == HitPointStonePlate)
-		{
-			if(StoneplateLevel == 1)
-			{
-				B_RaiseAttributeByStonePlate(ATR_HITPOINTS_MAX,HPMax_StPlLevel1);
-			}
-			else if(StoneplateLevel == 2)
-			{
-				B_RaiseAttributeByStonePlate(ATR_HITPOINTS_MAX,HPMax_StPlLevel2);
-			}
-			else if(StoneplateLevel == 3)
-			{
-				B_RaiseAttributeByStonePlate(ATR_HITPOINTS_MAX,HPMax_StPlLevel3);
-			};
-		}
-		else if(StoneplateItem == ManaStonePlate)
-		{
-			if(StoneplateLevel == 1)
-			{
-				B_RaiseAttributeByStonePlate(ATR_MANA_MAX,ManaMax_StPlLevel1);
-			}
-			else if(StoneplateLevel == 2)
-			{
-				B_RaiseAttributeByStonePlate(ATR_MANA_MAX,ManaMax_StPlLevel2);
-			}
-			else if(StoneplateLevel == 3)
-			{
-				B_RaiseAttributeByStonePlate(ATR_MANA_MAX,ManaMax_StPlLevel3);
-			};
-		}
-		else if(StoneplateItem == OneHStonePlate)
-		{
-			if(StoneplateLevel == 1)
-			{
-				B_RaiseTalentByStonePlate(self,NPC_TALENT_1H,OneH_StPlLevel1);
-			}
-			else if(StoneplateLevel == 2)
-			{
-				B_RaiseTalentByStonePlate(self,NPC_TALENT_1H,OneH_StPlLevel2);
-			}
-			else if(StoneplateLevel == 3)
-			{
-				B_RaiseTalentByStonePlate(self,NPC_TALENT_1H,OneH_StPlLevel3);
-			};
-		}
-		else if(StoneplateItem == TwoHStonePlate)
-		{
-			if(StoneplateLevel == 1)
-			{
-				B_RaiseTalentByStonePlate(self,NPC_TALENT_2H,TwoH_StPlLevel1);
-			}
-			else if(StoneplateLevel == 2)
-			{
-				B_RaiseTalentByStonePlate(self,NPC_TALENT_2H,TwoH_StPlLevel2);
-			}
-			else if(StoneplateLevel == 3)
-			{
-				B_RaiseTalentByStonePlate(self,NPC_TALENT_2H,TwoH_StPlLevel3);
-			};
-		}
-		else if(StoneplateItem == BowStonePlate)
-		{
-			if(StoneplateLevel == 1)
-			{
-				B_RaiseTalentByStonePlate(self,NPC_TALENT_BOW,Bow_StPlLevel1);
-			}
-			else if(StoneplateLevel == 2)
-			{
-				B_RaiseTalentByStonePlate(self,NPC_TALENT_BOW,Bow_StPlLevel2);
-			}
-			else if(StoneplateLevel == 3)
-			{
-				B_RaiseTalentByStonePlate(self,NPC_TALENT_BOW,Bow_StPlLevel3);
-			};
-		}
-		else if(StoneplateItem == CrsBowStonePlate)
-		{
-			if(StoneplateLevel == 1)
-			{
-				B_RaiseTalentByStonePlate(self,NPC_TALENT_CROSSBOW,CrsBow_StPlLevel1);
-			}
-			else if(StoneplateLevel == 2)
-			{
-				B_RaiseTalentByStonePlate(self,NPC_TALENT_CROSSBOW,CrsBow_StPlLevel2);
-			}
-			else if(StoneplateLevel == 3)
-			{
-				B_RaiseTalentByStonePlate(self,NPC_TALENT_CROSSBOW,CrsBow_StPlLevel3);
-			};
+			B_RaiseTalentByStonePlate(self,talent,value);
 		};
 	};
-	StoneplateItem = 0;
-	StoneplateLevel = 0;
 };
 
 
@@ -299,9 +171,7 @@ instance ItWr_StrStonePlate1_Addon(Prototype_StonePlate)
 
 func void Use_StrStonePlate1()
 {
-	StoneplateItem = StrStonePlate;
-	StoneplateLevel = 1;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_1,ATR_STRENGTH,0,STR_StPlLevel1);
 };
 
 
@@ -315,9 +185,7 @@ instance ItWr_StrStonePlate2_Addon(Prototype_StonePlate)
 
 func void Use_StrStonePlate2()
 {
-	StoneplateItem = StrStonePlate;
-	StoneplateLevel = 2;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_2,ATR_STRENGTH,0,STR_StPlLevel2);
 };
 
 
@@ -331,9 +199,7 @@ instance ItWr_StrStonePlate3_Addon(Prototype_StonePlate)
 
 func void Use_StrStonePlate3()
 {
-	StoneplateItem = StrStonePlate;
-	StoneplateLevel = 3;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_3,ATR_STRENGTH,0,STR_StPlLevel3);
 };
 
 
@@ -347,9 +213,7 @@ instance ItWr_DexStonePlate1_Addon(Prototype_StonePlate)
 
 func void Use_DexStonePlate1()
 {
-	StoneplateItem = DexStonePlate;
-	StoneplateLevel = 1;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_1,ATR_DEXTERITY,0,DEX_StPlLevel1);
 };
 
 
@@ -363,9 +227,7 @@ instance ItWr_DexStonePlate2_Addon(Prototype_StonePlate)
 
 func void Use_DexStonePlate2()
 {
-	StoneplateItem = DexStonePlate;
-	StoneplateLevel = 2;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_2,ATR_DEXTERITY,0,DEX_StPlLevel2);
 };
 
 
@@ -379,9 +241,7 @@ instance ItWr_DexStonePlate3_Addon(Prototype_StonePlate)
 
 func void Use_DexStonePlate3()
 {
-	StoneplateItem = DexStonePlate;
-	StoneplateLevel = 3;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_3,ATR_DEXTERITY,0,DEX_StPlLevel3);
 };
 
 
@@ -395,9 +255,7 @@ instance ItWr_HitPointStonePlate1_Addon(Prototype_StonePlate)
 
 func void Use_HitPointStonePlate1()
 {
-	StoneplateItem = HitPointStonePlate;
-	StoneplateLevel = 1;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_1,ATR_HITPOINTS_MAX,0,HPMax_StPlLevel1);
 };
 
 
@@ -411,9 +269,7 @@ instance ItWr_HitPointStonePlate2_Addon(Prototype_StonePlate)
 
 func void Use_HitPointStonePlate2()
 {
-	StoneplateItem = HitPointStonePlate;
-	StoneplateLevel = 2;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_2,ATR_HITPOINTS_MAX,0,HPMax_StPlLevel2);
 };
 
 
@@ -427,9 +283,7 @@ instance ItWr_HitPointStonePlate3_Addon(Prototype_StonePlate)
 
 func void Use_HitPointStonePlate3()
 {
-	StoneplateItem = HitPointStonePlate;
-	StoneplateLevel = 3;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_3,ATR_HITPOINTS_MAX,0,HPMax_StPlLevel3);
 };
 
 
@@ -443,9 +297,7 @@ instance ItWr_ManaStonePlate1_Addon(Prototype_StonePlate)
 
 func void Use_ManaStonePlate1()
 {
-	StoneplateItem = ManaStonePlate;
-	StoneplateLevel = 1;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_1,ATR_MANA_MAX,0,ManaMax_StPlLevel1);
 };
 
 
@@ -459,9 +311,7 @@ instance ItWr_ManaStonePlate2_Addon(Prototype_StonePlate)
 
 func void Use_ManaStonePlate2()
 {
-	StoneplateItem = ManaStonePlate;
-	StoneplateLevel = 2;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_2,ATR_MANA_MAX,0,ManaMax_StPlLevel2);
 };
 
 
@@ -475,9 +325,7 @@ instance ItWr_ManaStonePlate3_Addon(Prototype_StonePlate)
 
 func void Use_ManaStonePlate3()
 {
-	StoneplateItem = ManaStonePlate;
-	StoneplateLevel = 3;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_3,ATR_MANA_MAX,0,ManaMax_StPlLevel3);
 };
 
 
@@ -491,9 +339,7 @@ instance ItWr_OneHStonePlate1_Addon(Prototype_StonePlate)
 
 func void Use_OneHStonePlate1()
 {
-	StoneplateItem = OneHStonePlate;
-	StoneplateLevel = 1;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_1,0,NPC_TALENT_1H,OneH_StPlLevel1);
 };
 
 
@@ -507,9 +353,7 @@ instance ItWr_OneHStonePlate2_Addon(Prototype_StonePlate)
 
 func void Use_OneHStonePlate2()
 {
-	StoneplateItem = OneHStonePlate;
-	StoneplateLevel = 2;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_2,0,NPC_TALENT_1H,OneH_StPlLevel2);
 };
 
 
@@ -523,9 +367,7 @@ instance ItWr_OneHStonePlate3_Addon(Prototype_StonePlate)
 
 func void Use_OneHStonePlate3()
 {
-	StoneplateItem = OneHStonePlate;
-	StoneplateLevel = 3;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_3,0,NPC_TALENT_1H,OneH_StPlLevel3);
 };
 
 
@@ -539,9 +381,7 @@ instance ItWr_TwoHStonePlate1_Addon(Prototype_StonePlate)
 
 func void Use_TwoHStonePlate1()
 {
-	StoneplateItem = TwoHStonePlate;
-	StoneplateLevel = 1;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_1,0,NPC_TALENT_2H,TwoH_StPlLevel1);
 };
 
 
@@ -555,9 +395,7 @@ instance ItWr_TwoHStonePlate2_Addon(Prototype_StonePlate)
 
 func void Use_TwoHStonePlate2()
 {
-	StoneplateItem = TwoHStonePlate;
-	StoneplateLevel = 2;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_2,0,NPC_TALENT_2H,TwoH_StPlLevel2);
 };
 
 
@@ -571,9 +409,7 @@ instance ItWr_TwoHStonePlate3_Addon(Prototype_StonePlate)
 
 func void Use_TwoHStonePlate3()
 {
-	StoneplateItem = TwoHStonePlate;
-	StoneplateLevel = 3;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_3,0,NPC_TALENT_2H,TwoH_StPlLevel3);
 };
 
 
@@ -587,9 +423,7 @@ instance ItWr_BowStonePlate1_Addon(Prototype_StonePlate)
 
 func void Use_BowStonePlate1()
 {
-	StoneplateItem = BowStonePlate;
-	StoneplateLevel = 1;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_1,0,NPC_TALENT_BOW,Bow_StPlLevel1);
 };
 
 
@@ -603,9 +437,7 @@ instance ItWr_BowStonePlate2_Addon(Prototype_StonePlate)
 
 func void Use_BowStonePlate2()
 {
-	StoneplateItem = BowStonePlate;
-	StoneplateLevel = 2;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_2,0,NPC_TALENT_BOW,Bow_StPlLevel2);
 };
 
 
@@ -619,9 +451,7 @@ instance ItWr_BowStonePlate3_Addon(Prototype_StonePlate)
 
 func void Use_BowStonePlate3()
 {
-	StoneplateItem = BowStonePlate;
-	StoneplateLevel = 3;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_3,0,NPC_TALENT_BOW,Bow_StPlLevel3);
 };
 
 
@@ -635,9 +465,7 @@ instance ItWr_CrsBowStonePlate1_Addon(Prototype_StonePlate)
 
 func void Use_CrsBowStonePlate1()
 {
-	StoneplateItem = CrsBowStonePlate;
-	StoneplateLevel = 1;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_1,0,NPC_TALENT_CROSSBOW,CrsBow_StPlLevel1);
 };
 
 
@@ -651,9 +479,7 @@ instance ItWr_CrsBowStonePlate2_Addon(Prototype_StonePlate)
 
 func void Use_CrsBowStonePlate2()
 {
-	StoneplateItem = CrsBowStonePlate;
-	StoneplateLevel = 2;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_2,0,NPC_TALENT_CROSSBOW,CrsBow_StPlLevel2);
 };
 
 
@@ -667,9 +493,7 @@ instance ItWr_CrsBowStonePlate3_Addon(Prototype_StonePlate)
 
 func void Use_CrsBowStonePlate3()
 {
-	StoneplateItem = CrsBowStonePlate;
-	StoneplateLevel = 3;
-	Use_StonePlate();
+	Use_StonePlate(LANGUAGE_3,0,NPC_TALENT_CROSSBOW,CrsBow_StPlLevel3);
 };
 
 func int C_ScHasColoredStonePlate()

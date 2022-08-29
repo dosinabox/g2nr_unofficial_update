@@ -126,7 +126,7 @@ func void B_Addon_PiratesFollowAgain()
 	{
 		return;
 	};
-	if(C_HowManyPiratesInParty() != 0)
+	if(C_HowManyPiratesInParty() > 0)
 	{
 		return;
 	};

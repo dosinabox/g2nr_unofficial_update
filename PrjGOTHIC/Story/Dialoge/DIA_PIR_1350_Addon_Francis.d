@@ -245,8 +245,6 @@ func void DIA_Addon_Francis_Buch_Info()
 		AI_Output(self,other,"DIA_Addon_Francis_Buch_13_06");	//Я ДАМ ТЕБЕ этот ключ!
 		AI_Output(self,other,"DIA_Addon_Francis_Buch_13_07");	//Там внутри много ценного...
 		AI_Output(self,other,"DIA_Addon_Francis_Buch_13_08");	//(нервно) Но ты должен отдать мне книгу и держать свой рот на замке, идет?
-		B_GiveInvItems(other,self,ITWR_Addon_FrancisAbrechnung_Mis,1);
-		Npc_RemoveInvItem(self,ITWR_Addon_FrancisAbrechnung_Mis);
 		B_GiveInvItems(self,other,ItKe_Greg_Addon_MIS,1);
 	}
 	else
@@ -264,9 +262,9 @@ func void DIA_Addon_Francis_Buch_Info()
 			B_GiveInvItems(self,other,ItMi_Gold,500);
 		};
 		AI_Output(self,other,"DIA_Addon_Francis_Buch_13_13");	//(торопливо) А теперь давай мне сюда эту штуку...
-		B_GiveInvItems(other,self,ITWR_Addon_FrancisAbrechnung_Mis,1);
-		Npc_RemoveInvItem(self,ITWR_Addon_FrancisAbrechnung_Mis);
 	};
+	B_GiveInvItems(other,self,ITWR_Addon_FrancisAbrechnung_Mis,1);
+	Npc_RemoveInvItem(self,ITWR_Addon_FrancisAbrechnung_Mis);
 	AI_StopProcessInfos(self);
 };
 

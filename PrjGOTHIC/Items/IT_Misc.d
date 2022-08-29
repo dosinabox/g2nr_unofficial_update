@@ -800,9 +800,16 @@ instance ItMi_AlarmHorn(C_Item)
 	visual = "ItMi_AlarmHorn.3ds";
 	scemeName = "HORN";
 	material = MAT_STONE;
+	on_state[0] = Use_AlarmHorn;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+};
+
+
+func void Use_AlarmHorn()
+{
+	Npc_SendPassivePerc(self,PERC_ASSESSFIGHTSOUND,self,self);
 };
 
 instance ItMi_ArrowPack(C_Item)

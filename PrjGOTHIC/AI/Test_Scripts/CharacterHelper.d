@@ -3602,7 +3602,7 @@ instance CH_Language(C_Info)
 
 func int CH_Language_Condition()
 {
-	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE))
+	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE) && (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE))
 	{
 		return TRUE;
 	};
@@ -3612,17 +3612,17 @@ func void CH_Language_Info()
 {
 	Info_ClearChoices(CH_Language);
 	Info_AddChoice(CH_Language,Dialog_Back,CH_Language_BACK);
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE)
-	{
-		Info_AddChoice(CH_Language,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_3,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_3)),CH_Language_Priest);
-	};
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == FALSE)
-	{
-		Info_AddChoice(CH_Language,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_2,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_2)),CH_Language_Warrior);
-	};
 	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == FALSE)
 	{
 		Info_AddChoice(CH_Language,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_1,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_1)),CH_Language_Peasant);
+	}
+	else if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == FALSE)
+	{
+		Info_AddChoice(CH_Language,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_2,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_2)),CH_Language_Warrior);
+	}
+	else if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE)
+	{
+		Info_AddChoice(CH_Language,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_3,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_3)),CH_Language_Priest);
 	};
 };
 
@@ -3634,16 +3634,19 @@ func void CH_Language_BACK()
 func void CH_Language_Peasant()
 {
 	B_TeachPlayerTalentForeignLanguage(self,other,LANGUAGE_1);
+	CH_Language_Info();
 };
 
 func void CH_Language_Warrior()
 {
 	B_TeachPlayerTalentForeignLanguage(self,other,LANGUAGE_2);
+	CH_Language_Info();
 };
 
 func void CH_Language_Priest()
 {
 	B_TeachPlayerTalentForeignLanguage(self,other,LANGUAGE_3);
+	CH_Language_Info();
 };
 
 instance DIA_CH_Misc_InnosEye(C_Info)
