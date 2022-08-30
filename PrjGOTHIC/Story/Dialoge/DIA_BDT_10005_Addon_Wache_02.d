@@ -41,7 +41,7 @@ func void DIA_Addon_Wache_02_Hi_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Wache_02_Hi_15_00");	//Как дела?
 	AI_Output(self,other,"DIA_Addon_Wache_02_Hi_13_01");	//Подожди-ка, а мы с тобой не знакомы?
-	B_UseFakeHeroFace(self,other);
+	B_ReadFakeItem(self,other,Fakeheroface,1);
 	AI_Output(self,other,"DIA_Addon_Wache_02_Hi_13_02");	//Хм-м... нет, ты не похож. Проходи, не задерживайся.
 };
 

@@ -1018,7 +1018,7 @@ func void DIA_Addon_Greg_NW_RavensLetter_Info()
 	AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_00");	//Я нашел только это письмо.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_01");	//Покажи.
 	AI_PrintScreen("Приказы отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-	B_UseFakeScroll();
+	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_02");	//Черт возьми! Это мне совсем не поможет.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_03");	//Нельзя было его просто так убивать.
 	B_GregTalksAboutPortal();

@@ -449,7 +449,7 @@ func void DIA_Addon_Martin_Fernando_Info()
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_04");	//Этот список оружия и прочих доставленных бандитам вещей подписан неким Фернандо.
 				Npc_RemoveInvItem(other,ItWr_Addon_BanditTrader);
-				B_UseFakeScroll();
+				B_ReadFakeItem(self,other,Fakescroll,1);
 				FernandoHintsCount += 1;
 				FernandoHints_ItWr = TRUE;
 			};

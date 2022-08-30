@@ -251,7 +251,7 @@ func void DIA_Addon_Vatras_Cavalorn_Info()
 		B_GiveInvItems(other,self,ItWr_SaturasFirstMessage_Addon,1);
 		AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_02");	//Да, но... оно вскрыто. Я надеюсь, оно не попало в чужие руки?
 	};
-	B_UseFakeScroll();
+	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_03");	//Да. Это очень важное известие.
 	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_04");	//Интересно, как к тебе попало это письмо?
 	Info_ClearChoices(DIA_Addon_Vatras_Cavalorn);
@@ -1065,7 +1065,7 @@ func void DIA_Addon_Vatras_MissingPeople_Success()
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Success_15_05");	//Вот.
 		B_GiveInvItems(other,self,ItWr_RavensKidnapperMission_Addon,1);
-		B_UseFakeScroll();
+		B_ReadFakeItem(self,other,Fakescroll,1);
 	};
 	AI_Output(self,other,"DIA_Addon_Vatras_MissingPeople_Success_05_06");	//Отличная работа. Я боялся, что мы никогда не узнаем ответа на эту загадку.
 	MIS_Addon_Vatras_WhereAreMissingPeople = LOG_SUCCESS;

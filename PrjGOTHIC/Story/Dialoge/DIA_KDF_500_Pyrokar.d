@@ -1224,7 +1224,7 @@ func void DIA_Pyrokar_GIVEINNOSEYE_Info()
 		AI_UseMob(self,"THRONE",-1);
 		B_TurnToNpc(self,hero);
 	};
-	B_UseFakeScroll();
+	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_11_01");	//Я вижу, ты получил позволение лично от лорда Хагена носить Глаз Инноса.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_11_02");	//Но боюсь, мне придется разочаровать тебя. Мы стали жертвами вероломного плана врага.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_11_03");	//Глаз Инноса был нагло украден из этих священных стен.

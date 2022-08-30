@@ -282,7 +282,7 @@ func void DIA_Isgaroth_Vatras_Info()
 	{
 		B_GiveInvItems(other,self,ItWr_VatrasMessage,1);
 		Npc_RemoveInvItem(self,ItWr_VatrasMessage);
-		B_UseFakeScroll();
+		B_ReadFakeItem(self,other,Fakescroll,1);
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_03");	//Хорошо, ты можешь сказать Ватрасу, что я получил его сообщение.
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_04");	//Возьми эти зелья в качестве награды за свое служение, они наверняка пригодятся тебе.
 		CreateInvItems(self,ItPo_Health_02,2);
@@ -293,7 +293,7 @@ func void DIA_Isgaroth_Vatras_Info()
 	{
 		B_GiveInvItems(other,self,ItWr_VatrasMessage_Open,1);
 		Npc_RemoveInvItem(self,ItWr_VatrasMessage_Open);
-		B_UseFakeScroll();
+		B_ReadFakeItem(self,other,Fakescroll,1);
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_05");	//Печать сломана. О чем ты думал, идиот!
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_06");	//Иди и скажи Ватрасу, что я получил его сообщение.
 		B_EquipTrader(self);

@@ -55,7 +55,7 @@ func void DIA_Addon_Skip_Hello_Info()
 		AI_Output(self,other,"DIA_Addon_Skip_Hello_08_05");	//Но мне кажется, что я где-то еще видел твою рожу...
 		AI_Output(self,other,"DIA_Addon_Skip_Hello_08_06");	//Ну конечно!
 	};
-	B_UseFakeHeroFace(self,other);
+	B_ReadFakeItem(self,other,Fakeheroface,1);
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_07");	//Не полное сходство, конечно, но это точно ты.
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_08");	//Но не расстраивайся, приятель. Мое лицо на объявлении о розыске выглядит не лучше.
 	Npc_ExchangeRoutine(self,"Start");
@@ -309,7 +309,7 @@ instance DIA_Addon_Skip_Francis(C_Info)
 
 func int DIA_Addon_Skip_Francis_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut))
+	if(C_CanAskPiratesAboutFrancis())
 	{
 		return TRUE;
 	};

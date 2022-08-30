@@ -478,7 +478,7 @@ func void DIA_Pal_213_Schiffswache_IAmDJG3_Info()
 	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmDJG3_15_00");	//У меня письменное разрешение. Я уполномочен взойти на этот корабль.
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmDJG3_01_01");	//Дай я взгляну.
 	B_GiveInvItems(other,self,ITWr_ForgedShipLetter_MIS,1);
-	B_UseFakeScroll();
+	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmDJG3_01_02");	//Все правильно, ты можешь пройти.
 	MIS_ShipIsFree = TRUE;
 	B_CheckLog();

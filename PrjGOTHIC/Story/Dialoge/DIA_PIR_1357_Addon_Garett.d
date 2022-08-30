@@ -303,7 +303,11 @@ instance DIA_Addon_Garett_Francis(C_Info)
 
 func int DIA_Addon_Garett_Francis_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Garett_Greg))
+	if(Npc_KnowsInfo(other,DIA_Addon_Garett_Greg) && !Npc_IsDead(Francis))
+	{
+		return TRUE;
+	};
+	if(C_CanAskPiratesAboutFrancis())
 	{
 		return TRUE;
 	};

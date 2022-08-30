@@ -359,7 +359,7 @@ func void DIA_Addon_Skip_NW_Name_Info()
 				B_GiveInvItems(other,self,ItWr_Map_Caves_MIS,1);
 			};
 			AI_WaitTillEnd(self,other);
-			B_UseFakeMap(1);
+			B_ReadFakeItem(self,other,Fakemap,1);
 			AI_Output(self,other,"DIA_Addon_Skip_NW_Name_08_06");	//Но кто-то уже исписал ее. Зачем портить ее еще больше?
 			if(Npc_HasItems(self,ItWr_Map_NewWorld_Ornaments_Addon))
 			{
@@ -410,7 +410,7 @@ func void DIA_Addon_Skip_NW_Landkarte_Info()
 	AI_Output(other,self,"DIA_Addon_Skip_NW_Landkarte_15_00");	//Вот. У меня есть карта Хориниса.
 	B_GiveInvItems(other,self,ItWr_Map_NewWorld,1);
 	AI_Output(self,other,"DIA_Addon_Skip_NW_Landkarte_08_01");	//Хорошо. Дай я нарисую тебе его местоположение.
-	B_UseFakeMap(3);
+	B_ReadFakeItem(self,other,Fakemap,3);
 	AI_Output(self,other,"DIA_Addon_Skip_NW_Landkarte_08_02");	//Держи карту.
 	Npc_RemoveInvItems(self,ItWr_Map_NewWorld,1);
 	CreateInvItems(self,ItWr_Map_NewWorld_Dexter,1);

@@ -1295,7 +1295,7 @@ Story\B_Story\B_TeachPlayerTalentRunes.d
 Story\B_Story\B_TeachPlayerTalentSmith.d
 Story\B_Story\B_TeachPlayerTalentTakeAnimalTrophy.d
 Story\B_Story\B_TeachThiefTalent.d
-Story\B_Story\B_UseFakeScroll.d
+Story\B_Story\B_ReadFakeItem.d
 Story\B_Story\B_NPC_IsAliveCheck.d
 Story\B_Story\B_NpcSetJailed.d
 Story\B_AssignAmbientInfos\B_AssignDragonTalk_Main.d

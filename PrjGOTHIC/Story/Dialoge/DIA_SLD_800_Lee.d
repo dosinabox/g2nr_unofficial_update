@@ -1274,7 +1274,7 @@ func void DIA_Lee_RichterBeweise_Info()
 	AI_Output(other,self,"DIA_Lee_RichterBeweise_15_04");	//Я принес тебе в качестве доказательства письменный приказ судьи этим головорезам.
 	AI_Output(self,other,"DIA_Lee_RichterBeweise_04_05");	//Покажи.
 	B_GiveInvItems(other,self,ItWr_RichterKomproBrief_MIS,1);
-	B_UseFakeScroll();
+	B_ReadFakeItem(self,other,Fakescroll,1);
 	if(!Npc_IsDead(Richter))
 	{
 		AI_Output(self,other,"DIA_Lee_RichterBeweise_04_06");	//Наконец-то. Этого должно быть достаточно, чтобы заставить его страдать. Я восхищен.

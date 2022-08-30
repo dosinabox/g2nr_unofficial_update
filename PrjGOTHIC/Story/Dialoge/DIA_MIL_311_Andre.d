@@ -711,7 +711,7 @@ func void DIA_Addon_Andre_MartinEmpfehlung_Info()
 	AI_Output(other,self,"DIA_Addon_Andre_MartinEmpfehlung_15_00");	//я принес рекомендательное письмо от вашего интенданта.
 	AI_Output(self,other,"DIA_Addon_Andre_MartinEmpfehlung_08_01");	//(недоверчиво) „то? ј ну-ка, покажи.
 	B_GiveInvItems(other,self,ItWr_Martin_MilizEmpfehlung_Addon,1);
-	B_UseFakeScroll();
+	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Addon_Andre_MartinEmpfehlung_08_02");	//(удивленно) Ќу надо же! “ебе, должно быть, пришлось потрудитьс€! Ќе так-то просто получить нечто подобное от ћартина.
 	if(hero.guild == GIL_NONE)
 	{
@@ -982,7 +982,7 @@ func void DIA_Andre_Auslieferung_Halvor()
 	{
 		AI_WaitTillEnd(self,other);
 		B_GiveInvItems(other,self,ItWr_HalvorMessage,1);
-		B_UseFakeScroll();
+		B_ReadFakeItem(self,other,Fakescroll,1);
 		AI_Teleport(Halvor,"NW_CITY_HABOUR_KASERN_HALVOR");
 		AI_Output(self,other,"DIA_Andre_Auslieferung_Halvor_08_01");	//“ак вот, кто этим занимаетс€. ћои люди немедленно схват€т его.
 		AI_Output(self,other,"DIA_Andre_Auslieferung_Halvor_08_02");	//я не думаю, что это будет сложно. я готов вручить тебе твою награду пр€мо сейчас.
@@ -1031,7 +1031,7 @@ func void DIA_Andre_Auslieferung_Canthar()
 		AI_Teleport(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU");
 		AI_Output(other,self,"DIA_Andre_Auslieferung_Canthar_15_02");	//я должен был подсунуть —аре письмо, которое подтвердило бы, что она поставл€ет оружие ќнару.
 		B_GiveInvItems(other,self,ItWr_Canthars_KomproBrief_MIS,1);
-		B_UseFakeScroll();
+		B_ReadFakeItem(self,other,Fakescroll,1);
 		AI_Output(self,other,"DIA_Andre_Auslieferung_Canthar_08_03");	//ѕонимаю. я с радостью заплачу награду за этого ублюдка. ћожешь считать, что он уже за решеткой.
 		B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
 		B_NpcSetJailed(Canthar);
