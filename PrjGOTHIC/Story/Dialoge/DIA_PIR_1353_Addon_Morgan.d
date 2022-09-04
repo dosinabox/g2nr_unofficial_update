@@ -441,7 +441,7 @@ instance DIA_Addon_Morgan_Francis(C_Info)
 
 func int DIA_Addon_Morgan_Francis_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
+	if(C_CanAskPiratesAboutFrancis())
 	{
 		return TRUE;
 	};

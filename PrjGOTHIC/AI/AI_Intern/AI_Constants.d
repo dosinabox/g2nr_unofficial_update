@@ -368,7 +368,7 @@ const int MOBSI_PrayShrine = 5;
 const int MOBSI_GOLDHACKEN = 6;
 const int MOBSI_PRAYIDOL = 7;
 const int MOBSI_PAN = 8;
-const int MOBSI_ORE = 9;
+//const int MOBSI_ORE = 9;
 
 var int PLAYER_MOBSI_PRODUCTION;
 

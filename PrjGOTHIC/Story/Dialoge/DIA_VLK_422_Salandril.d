@@ -183,6 +183,7 @@ func void DIA_Salandril_KLOSTER_Info()
 		AI_Output(other,self,"DIA_Salandril_KLOSTER_15_03");	//У меня есть приказ, и я выполню его. Так что, либо ты пойдешь сам, либо мне придется заставить тебя.
 	};
 	AI_Output(self,other,"DIA_Salandril_KLOSTER_13_04");	//Что? Да я протащу тебя через весь город за шиворот, как паршивого щенка, и вышвырну за ворота.
+	self.aivar[AIV_ToughGuy] = TRUE;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
@@ -200,26 +201,33 @@ instance DIA_Salandril_GehinsKloster(C_Info)
 
 func int DIA_Salandril_GehinsKloster_Condition()
 {
-	if(((SC_KnowsProspektorSalandril == TRUE) || (MIS_Serpentes_BringSalandril_SLD == LOG_Running)) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST) && Npc_KnowsInfo(other,DIA_Salandril_KLOSTER))
+	if((SC_KnowsProspektorSalandril == TRUE) || (MIS_Serpentes_BringSalandril_SLD == LOG_Running))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Salandril_KLOSTER))
+		{
+			if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
 func void DIA_Salandril_GehinsKloster_Info()
 {
 	AI_Output(other,self,"DIA_Salandril_GehinsKloster_15_00");	//Так ты пойдешь в монастырь, или тебя еще раз проучить?
+	AI_Output(self,other,"DIA_Salandril_GehinsKloster_13_01");	//Ты еще пожалеешь об этом. Да, черт тебя побери, я пойду в этот монастырь, но тебе это просто так с рук не сойдет.
 	if(Npc_HasItems(self,ItWr_MinenAnteil_Mis) && (hero.guild == GIL_KDF))
 	{
 		B_GiveInvItems(self,other,ItWr_MinenAnteil_Mis,Npc_HasItems(self,ItWr_MinenAnteil_Mis));
 	};
-	AI_Output(self,other,"DIA_Salandril_GehinsKloster_13_01");	//Ты еще пожалеешь об этом. Да, черт тебя побери, я пойду в этот монастырь, но тебе это просто так с рук не сойдет.
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"KlosterUrteil");
 	if(MIS_Serpentes_BringSalandril_SLD == LOG_Running)
 	{
 		MIS_Serpentes_BringSalandril_SLD = LOG_SUCCESS;
 	};
+	SalandrilLocation = LOC_MONASTERY;
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"KlosterUrteil");
 };
 
 
@@ -236,7 +244,6 @@ instance DIA_Salandril_Verschwinde(C_Info)
 
 func int DIA_Salandril_Verschwinde_Condition()
 {
-//	if((MIS_Serpentes_BringSalandril_SLD == LOG_SUCCESS) && Npc_IsInState(self,ZS_Talk))
 	if(Npc_KnowsInfo(other,DIA_Salandril_GehinsKloster) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;

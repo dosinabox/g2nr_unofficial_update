@@ -71,7 +71,6 @@ func void B_UseRakeBilanz()
 {
 	if(Greg_NoHelpInNW >= 2)
 	{
-		//TODO озвучить
 		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_00_add");	//И не думай, что я забыл!
 	}
 	else if((MIS_Addon_Greg_RakeCave == LOG_Running) || (MIS_Addon_Greg_RakeCave == LOG_FAILED))
@@ -230,6 +229,7 @@ func void DIA_Addon_Greg_JoinPirates_Leave()
 	else
 	{
 		B_GiveArmor(ITAR_PIR_L_Addon);
+		Greg_LightArmorGiven = TRUE;
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_04");	//И не мешкай, скорее принимайся за дело!
 	Info_ClearChoices(DIA_Addon_Greg_JoinPirates);
@@ -722,6 +722,7 @@ func void DIA_Addon_Greg_RavenDead_Info()
 	};
 };
 
+
 instance DIA_Addon_Greg_ItemsInADW(C_Info)
 {
 	npc = PIR_1320_Addon_Greg;
@@ -745,6 +746,7 @@ func void DIA_Addon_Greg_ItemsInADW_Info()
 	B_GiveGregsItems();
 	B_GivePlayerXP(XP_Addon_Greg_RakeCave / 3);
 };
+
 
 instance DIA_Addon_Greg_BeMyCap(C_Info)
 {
@@ -777,5 +779,44 @@ func void DIA_Addon_Greg_BeMyCap_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_was_SLD_01_02");	//Неплохо для сухопутной крысы.
 	B_LogEntry(Topic_Captain,"Грега не заинтересовало мое предложение.");
 	AI_StopProcessInfos(self);
+};
+
+
+instance DIA_Addon_Greg_GiveFrancisBook(C_Info)
+{
+	npc = PIR_1320_Addon_Greg;
+	nr = 700;
+	condition = DIA_Addon_Greg_GiveFrancisBook_Condition;
+	information = DIA_Addon_Greg_GiveFrancisBook_Info;
+	permanent = FALSE;
+	description = "Похоже, этот парень прикарманил много золота...";
+};
+
+
+func int DIA_Addon_Greg_GiveFrancisBook_Condition()
+{
+	if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis) && (Francis_HasProof == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Greg_GiveFrancisBook_Info()
+{
+	AI_Output(other,self,"DIA_Addon_Greg_GiveFrancisBook_15_00_add");	//Похоже, этот парень прикарманил много золота...
+	AI_WaitTillEnd(self,other);
+	B_GiveInvItems(other,self,ITWR_Addon_FrancisAbrechnung_Mis,1);
+	B_ReadFakeItem(self,other,Openbook2,2);
+	AI_Output(self,other,"DIA_Addon_Greg_GiveFrancisBook_01_01_add");	//Не ожидал я этого...
+	B_GivePlayerXP(200);
+	Greg_NoHelpInNW = 0;
+	if(!Npc_IsDead(Francis))
+	{
+		AI_StopProcessInfos(self);
+		other.aivar[AIV_INVINCIBLE] = FALSE;
+		Francis.aivar[AIV_DropDeadAndKill] = TRUE;
+		Francis.guild = GIL_NONE;
+		B_Attack(self,Francis,AR_NONE,0);
+	};
 };
 
