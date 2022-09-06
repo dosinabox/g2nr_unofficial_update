@@ -435,6 +435,11 @@ instance SVM_1(C_SVM)
 
 instance SVM_2(C_SVM)
 {
+	//звуки есть в файлах, но нет персонажей с голосом 2
+	//Dead = "SVM_2_Dead";	//јааааа!
+	//Aargh_1 = "SVM_2_Aargh_1";	//јааааа!
+	//Aargh_2 = "SVM_2_Aargh_2";	//јааааа!
+	//Aargh_3 = "SVM_2_Aargh_3";	//јааааа!
 };
 
 instance SVM_3(C_SVM)

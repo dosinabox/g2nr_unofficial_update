@@ -421,7 +421,7 @@ func void B_ThievesKiller()
 	B_CheckLog();
 	SewerThieves_KilledByPlayer = TRUE;
 	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_KILL,1);
+	B_Attack(self,other,AR_KILL,0);
 };
 
 instance DIA_Ramirez_Killer(C_Info)

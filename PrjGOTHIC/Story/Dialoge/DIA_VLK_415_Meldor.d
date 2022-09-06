@@ -51,7 +51,7 @@ instance DIA_Meldor_Hallo(C_Info)
 
 func int DIA_Meldor_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && !C_LehmarDebtIsOverdue())
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && !C_LehmarDebtIsOverdue() && !Npc_IsDead(Lehmar))
 	{
 		return TRUE;
 	};
@@ -285,6 +285,10 @@ instance DIA_Meldor_VonLehmar(C_Info)
 
 func int DIA_Meldor_VonLehmar_Condition()
 {
+	if(Npc_IsDead(Lehmar))
+	{
+		return TRUE;
+	};
 	if(C_LehmarDebtIsOverdue())
 	{
 		return TRUE;
@@ -294,8 +298,16 @@ func int DIA_Meldor_VonLehmar_Condition()
 func void DIA_Meldor_VonLehmar_Info()
 {
 	AI_Output(self,other,"DIA_Meldor_VonLehmar_07_00");	//Эй, подожди...
-	AI_Output(self,other,"DIA_Meldor_VonLehmar_07_01");	//У меня есть для тебя сообщение от Лемара...
-	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_NONE,1);
+	if(!Npc_IsDead(Lehmar))
+	{
+		AI_Output(self,other,"DIA_Meldor_VonLehmar_07_01");	//У меня есть для тебя сообщение от Лемара...
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_NONE,1);
+	}
+	else
+	{
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_KILL,1);
+	};
 };
 
