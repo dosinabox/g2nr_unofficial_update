@@ -251,6 +251,7 @@ func void DIA_Addon_Bones_GiveArmor_Info()
 	AI_Output(other,self,"DIA_Addon_Bones_GiveArmor_15_04");	//(раздраженно) Доспехи.
 	AI_Output(self,other,"DIA_Addon_Bones_GiveArmor_01_05");	//Да, конечно, вот они.
 	B_GiveArmor(ITAR_BDT_M);
+	Bones_ArmorGiven = TRUE;
 	AI_Output(self,other,"DIA_Addon_Bones_GiveArmor_01_06");	//Будь осторожнее. С этими бандитами шутки плохи.
 	self.flags = 0;
 	Greg.flags = 0;

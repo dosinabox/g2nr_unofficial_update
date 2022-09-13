@@ -153,7 +153,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Addon_Lance,0,TOPIC_End_Lance,6);
 	B_CloseTopic(TOPIC_Addon_HousesOfRulers,MIS_Riordian_HousesOfRulers,0,6);
 	B_CloseTopic(TOPIC_Addon_CanyonOrcs,0,TOPIC_END_CanyonOrcs,6);
-	B_CloseTopic(TOPIC_Addon_BDTRuestung,0,MIS_Greg_ScoutBandits,6);
+	B_CloseTopic(TOPIC_Addon_BDTRuestung,0,Bones_ArmorGiven,6);
 	B_CloseTopic(TOPIC_Addon_Quarhodron,0,Saturas_KnowsHow2GetInTempel,4);
 	B_CloseTopic(TOPIC_Addon_Kammern,0,RavenIsDead,4);
 	B_CloseTopic(TOPIC_Addon_Klaue,0,BeliarsWeaponUpgrated,4);

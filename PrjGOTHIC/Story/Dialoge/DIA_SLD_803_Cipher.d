@@ -357,7 +357,10 @@ func void DIA_Cipher_DarDieb_Info()
 		AI_Output(self,other,"DIA_Cipher_DarDieb_07_07");	//ß ÏÐÈÊÎÍ×Ó ÅÃÎ!
 		AI_StopProcessInfos(self);
 		other.aivar[AIV_INVINCIBLE] = FALSE;
-		self.aivar[AIV_FightDistCancel] = 7000;
+		if(Npc_GetDistToNpc(self,Dar) > FIGHT_DIST_CANCEL)
+		{
+			self.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL * 2;
+		};
 		B_Attack(self,Dar,AR_NONE,0);
 	}
 	else

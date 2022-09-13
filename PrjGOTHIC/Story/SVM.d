@@ -2712,8 +2712,7 @@ instance SVM_15(C_SVM)
 	SC_HeyTurnAround04 = "SVM_15_SC_HeyTurnAround04";	//Эй!
 	SC_HeyWaitASecond = "SVM_15_SC_HeyWaitASecond";	//Подожди минутку!
 	DoesntWork = "SVM_15_DoesntWork";	//Не получается.
-//	PickBroke = "SVM_15_PickBroke";	//Хм, сломано.
-	PickBroke = "SVM_15_PickBroke";	//Хм... Нет...
+	PickBroke = "SVM_15_PickBroke";	//Сломано.
 	NeedKey = "SVM_15_NeedKey";	//Здесь мне нужен ключ...
 	NoMorePicks = "SVM_15_NoMorePicks";	//У меня больше нет отмычек...
 	NoPickLockTalent = "SVM_15_NoPickLockTalent";	//Я не умею открывать замки отмычкой.

@@ -1404,3 +1404,4 @@ var int NewAttributeSystemSynced;
 var int Rosi_FleeFromSekob_Kap5;
 var int SalandrilLocation;
 var int Greg_LightArmorGiven;
+var int Bones_ArmorGiven;

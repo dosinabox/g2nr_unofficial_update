@@ -90,6 +90,11 @@ func void B_UseRakeBilanz()
 	};
 	if(!Npc_IsDead(Francis))
 	{
+		if(Npc_HasItems(Francis,ItKe_Greg_Addon_MIS))
+		{
+			Npc_RemoveInvItem(Francis,ItKe_Greg_Addon_MIS);
+			CreateInvItem(self,ItKe_Greg_Addon_MIS);
+		};
 		Npc_ExchangeRoutine(Francis,"GREGISBACK");
 		AI_StartState(Francis,ZS_Saw,1,"ADW_PIRATECAMP_BEACH_19");
 		Francis_ausgeschissen = TRUE;
@@ -555,8 +560,15 @@ func void DIA_Addon_Greg_BanditGoldmine_Info()
 	AI_Output(other,self,"DIA_Addon_Greg_BanditGoldmine_15_00");	//Бандиты нашли шахту с золотом.
 	AI_Output(self,other,"DIA_Addon_Greg_BanditGoldmine_01_01");	//Я так и знал! Вот почему они приперлись сюда.
 	AI_Output(self,other,"DIA_Addon_Greg_BanditGoldmine_01_02");	//Никто не захочет жить в этой дыре.
-	AI_Output(self,other,"DIA_Addon_Greg_BanditGoldmine_01_03");	//Хорошая работа. Вот, держи, у меня для тебя награда.
-	B_GiveInvItems(self,other,ItRi_Addon_STR_01,1);
+	if(Greg_NoHelpInNW < 2)
+	{
+		AI_Output(self,other,"DIA_Addon_Greg_BanditGoldmine_01_03");	//Хорошая работа. Вот, держи, у меня для тебя награда.
+		B_GiveInvItems(self,other,ItRi_Addon_STR_01,1);
+	}
+	else
+	{
+		CreateInvItem(self,ItRi_Addon_STR_01);
+	};
 	B_LogEntry(TOPIC_Addon_ScoutBandits,"Я рассказал Грегу о золотой шахте.");
 	MIS_Greg_ScoutBandits = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Greg_ScoutBandits);
@@ -576,7 +588,6 @@ instance DIA_Addon_Greg_WhoAreYou(C_Info)
 
 func int DIA_Addon_Greg_WhoAreYou_Condition()
 {
-//	if((PlayerTalkedToGregNW == FALSE) && (SC_MeetsGregTime == FALSE))
 	if(PlayerTalkedToGregNW == FALSE)
 	{
 		return TRUE;
@@ -806,17 +817,29 @@ func void DIA_Addon_Greg_GiveFrancisBook_Info()
 	AI_Output(other,self,"DIA_Addon_Greg_GiveFrancisBook_15_00_add");	//Похоже, этот парень прикарманил много золота...
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ITWR_Addon_FrancisAbrechnung_Mis,1);
+	Npc_RemoveInvItem(self,ITWR_Addon_FrancisAbrechnung_Mis);
 	B_ReadFakeItem(self,other,Openbook2,2);
 	AI_Output(self,other,"DIA_Addon_Greg_GiveFrancisBook_01_01_add");	//Не ожидал я этого...
 	B_GivePlayerXP(200);
 	Greg_NoHelpInNW = 0;
 	if(!Npc_IsDead(Francis))
 	{
+		if(Npc_GetDistToNpc(self,Francis) > FIGHT_DIST_CANCEL)
+		{
+			self.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL * 2;
+		};
 		AI_StopProcessInfos(self);
 		other.aivar[AIV_INVINCIBLE] = FALSE;
+		Npc_ExchangeRoutine(Francis,"EXILE");
+		AI_StartState(Francis,ZS_Saw,1,"ADW_PIRATECAMP_BEACH_19");
 		Francis.aivar[AIV_DropDeadAndKill] = TRUE;
 		Francis.guild = GIL_NONE;
 		B_Attack(self,Francis,AR_NONE,0);
+	}
+	else
+	{
+		DIA_Common_HeIsDead();
+		B_Say(self,other,"$ABS_GOOD");
 	};
 };
 
