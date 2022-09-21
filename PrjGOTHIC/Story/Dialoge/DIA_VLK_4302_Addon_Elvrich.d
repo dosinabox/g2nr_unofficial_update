@@ -330,7 +330,7 @@ func void DIA_Addon_Elvrich_LuciaLetter_Info()
 	AI_Output(other,self,"DIA_Addon_Elvrich_LuciaLetter_15_00");	//Я нашел письмо от Люсии.
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_01");	//(возбужденно) Что? Дай его сюда!
 	AI_PrintScreen("Прощальное письмо Люсии отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-	B_UseFakeScroll();
+	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_02");	//(в отчаянии) Нет! Я не верю! Я просто не могу поверить.
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_03");	//(в отчаянии) Она не может меня вот так вот бросить.
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_04");	//Забери это письмо! Я не хочу его видеть. Я верю, что когда-нибудь она ко мне вернется.

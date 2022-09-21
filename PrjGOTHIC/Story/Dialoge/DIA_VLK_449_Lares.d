@@ -2347,14 +2347,8 @@ func void DIA_Addon_Lares_PortalInterWEITER_Info()
 		Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL5");
 		if(!Npc_IsDead(BridgeBandit))
 		{
-			if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_01) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_01))
-			{
-				Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_01,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_01.attribute[ATR_HITPOINTS_MAX]);
-			};
-			if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_02) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_02))
-			{
-				Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_02,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_02.attribute[ATR_HITPOINTS_MAX]);
-			};
+			B_KillAnimal(Gobbo_Black_Crossbow_Guard_01);
+			B_KillAnimal(Gobbo_Black_Crossbow_Guard_02);
 			B_StartOtherRoutine(BridgeBandit,"Hide");
 		};
 	}

@@ -68,7 +68,7 @@ func void DIA_Addon_Saturas_Nefarius_Info()
 		AI_Output(other,self,"DIA_ADDON_Saturas_Nefarius_15_04");	//Ну, Нефариус дал мне эту карту...
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_05");	//Покажи ее мне!
 		AI_PrintScreen("Карта Нефариуса отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-		B_UseFakeMap(2);
+		B_ReadFakeItem(self,other,Fakemap,2);
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_06");	//Хм. В большом лесу чрезвычайно опасно. Не следует направляться туда одному.
 		if(Kapitel < 3)
 		{
@@ -515,7 +515,7 @@ func void B_GiveVatrasLetterToSaturas()
 		if(Vatras2Saturas_FindRaven_Open == TRUE)
 		{
 			B_GiveInvItems(other,self,ItWr_Vatras2Saturas_FindRaven_opened,1);
-			B_UseFakeScroll();
+			B_ReadFakeItem(self,other,Fakescroll,1);
 			AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_04");	//(раздраженно) Вижу. И, конечно же, ты не удержался и наверняка вскрыл его?
 			AI_Output(other,self,"DIA_Addon_Saturas_OpenPortal_15_05");	//Ну, э-э...
 			AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_06");	//(грозно) Надеюсь, мое и так хрупкое доверие к тебе не пошатнется окончательно. Ради твоего же блага.
@@ -523,7 +523,7 @@ func void B_GiveVatrasLetterToSaturas()
 		else
 		{
 			B_GiveInvItems(other,self,ItWr_Vatras2Saturas_FindRaven,1);
-			B_UseFakeScroll();
+			B_ReadFakeItem(self,other,Fakescroll,1);
 			AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_07");	//(удивленно) Интересно. Хорошо.
 			B_GivePlayerXP(XP_Ambient);
 		};

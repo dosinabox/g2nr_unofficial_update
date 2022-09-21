@@ -90,6 +90,7 @@ const int ITEM_TORCH = 1 << 28;
 const int ITEM_THROW = 1 << 29;
 const int ITEM_ACTIVE = 1 << 30;
 
+//TODO использовать такие флаги небезопасно, лучше придумать что-то другое
 const int ITEM_BELIAR_1H = 4;
 const int ITEM_BELIAR_2H = 13;
 
@@ -789,7 +790,8 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "30/06/2022";
-const int FIX_VERSION_START = 28;
+const string FIX_VERSION_DATE = "21/09/2022";
+const int FIX_VERSION_START = 29;
 const int LEAST_SUPPORTED = 26;
 var int FIX_VERSION_SAVE;
+var string FIX_DATE_SAVE;

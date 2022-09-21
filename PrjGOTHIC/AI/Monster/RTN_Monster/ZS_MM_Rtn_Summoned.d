@@ -49,7 +49,7 @@ func int ZS_MM_Rtn_Summoned_Loop()
 		};
 		Npc_SetStateTime(self,0);
 	};
-	if((hero.guild != GIL_WOLF) && Npc_IsPlayer(hero) && (self.guild == GIL_WOLF) && (self.aivar[AIV_MM_REAL_ID] != ID_Keiler))
+	if((hero.guild != GIL_WOLF) && Npc_IsPlayer(hero) && (self.guild == GIL_WOLF) && (self.aivar[AIV_MM_REAL_ID] != ID_KEILER))
 	{
 		return LOOP_END;
 	};

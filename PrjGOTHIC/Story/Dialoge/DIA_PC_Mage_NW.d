@@ -331,7 +331,7 @@ func void DIA_MiltenNW_KAP3_Entry_Permit()
 	AI_Output(other,self,"DIA_MiltenNW_KAP3_Entry_Permit_15_00");	//У меня есть письмо от лорда Хагена.
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_Permit_03_01");	//Покажи.
 	B_GiveInvItems(other,self,ItWr_PermissionToWearInnosEye_MIS,1);
-	B_UseFakeScroll();
+	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_MiltenOW_Hello_NO_03_01");	//Ты через многое прошел, да?
 	B_GiveInvItems(self,other,ItWr_PermissionToWearInnosEye_MIS,1);
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_Permit_03_02");	//(колеблясь) Хорошо. Вот ключ от монастыря. Ты найдешь Пирокара в церкви.

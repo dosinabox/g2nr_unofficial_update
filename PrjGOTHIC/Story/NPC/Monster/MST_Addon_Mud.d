@@ -46,7 +46,7 @@ instance Summoned_Mud(Mst_Default_Mud)
 {
 	name[0] = NAME_Addon_Summoned_Mud;
 	guild = GIL_SummonedZombie;
-	aivar[AIV_MM_REAL_ID] = ID_SummonedZombie;
+	aivar[AIV_MM_REAL_ID] = ID_SUMMONED_ZOMBIE;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	B_SetAttitude(self,ATT_FRIENDLY);
 	start_aistate = ZS_MM_Rtn_Summoned;

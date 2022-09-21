@@ -788,7 +788,7 @@ instance ItWr_StonePlateCommon_Addon(C_Item)
 	name = "Старая каменная табличка";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION | ITEM_MULTI;
-	value = value_StonePlateCommon;
+	value = Value_StonePlateCommon;
 	visual = "ItMi_StonePlate_Read_06.3ds";
 	material = MAT_STONE;
 	on_state[0] = Use_StonePlateCommon;
@@ -1155,7 +1155,6 @@ func void UseFrancisAbrechnung_Mis()
 	Doc_SetFont(nDocID,1,FONT_Book);
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Торг. корабль 'Нико'");
-	Doc_SetFont(nDocID,1,FONT_Book);
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Общая добыча: 9970 зол.");
 	Doc_PrintLine(nDocID,1,"----------------------");
@@ -1183,8 +1182,8 @@ func void UseFrancisAbrechnung_Mis()
 	if(Francis_HasProof == FALSE)
 	{
 		B_Say(self,self,"$ADDON_THISLITTLEBASTARD");
+		Francis_HasProof = TRUE;
 	};
-	Francis_HasProof = TRUE;
 };
 
 

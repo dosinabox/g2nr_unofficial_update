@@ -14,11 +14,23 @@ func void B_ResetSergio()
 
 func void B_ResetFernando()
 {
-	if(!Npc_IsDead(Fernando))
+	if((Fernando_ImKnast == FALSE) && (Kapitel >= 2) && (MIS_Fernando_Erz == FALSE))
 	{
-		if((Fernando_ImKnast == FALSE) && (Kapitel >= 2) && (MIS_Fernando_Erz == FALSE))
+		if(!Npc_IsDead(Fernando))
 		{
 			Npc_ExchangeRoutine(Fernando,"START");
+		};
+	};
+};
+
+func void B_ResetSalandril()
+{
+	if(SalandrilLocation == LOC_MONASTERY)
+	{
+		if(!Npc_IsDead(Salandril))
+		{
+			Npc_ExchangeRoutine(Salandril,"START");
+			SalandrilLocation = LOC_CITY;
 		};
 	};
 };

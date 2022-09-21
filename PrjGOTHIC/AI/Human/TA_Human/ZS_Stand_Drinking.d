@@ -139,30 +139,38 @@ func int ZS_Stand_Drinking_Loop()
 	};
 	if((Npc_GetStateTime(self) > 7) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
 	{
-		if(self.aivar[AIV_Food] == DRINK_Beer)
+		random = Hlp_Random(10);
+		if(random == 0)
 		{
-			random = Hlp_Random(5);
-			if(random == 0)
+			if(self.aivar[AIV_Food] == DRINK_Beer)
 			{
-				AI_PlayAniBS(self,"T_POTION_RANDOM_2",BS_ITEMINTERACT);
+				AI_PlayAniBS(self,"T_BEER_RANDOM_3",BS_ITEMINTERACT);
+				AI_PlayAniBS(self,"T_BEER_RANDOM_2",BS_ITEMINTERACT);
+			}
+			else
+			{
+				AI_PlayAniBS(self,"T_POTION_RANDOM_3",BS_ITEMINTERACT);
+				AI_PlayAniBS(self,"T_POTION_RANDOM_1",BS_ITEMINTERACT);
+			};
+		}
+		else if(random == 1)
+		{
+			if(self.aivar[AIV_Food] == DRINK_Beer)
+			{
+				AI_PlayAniBS(self,"T_BEER_RANDOM_1",BS_ITEMINTERACT);
+				AI_PlayAniBS(self,"T_BEER_RANDOM_2",BS_ITEMINTERACT);
 			}
 			else
 			{
 				AI_PlayAniBS(self,"T_POTION_RANDOM_1",BS_ITEMINTERACT);
+				AI_PlayAniBS(self,"T_POTION_RANDOM_2",BS_ITEMINTERACT);
 			};
 		}
 		else
 		{
-			random = Hlp_Random(10);
-			if(random == 0)
+			if(self.aivar[AIV_Food] == DRINK_Beer)
 			{
-				AI_PlayAniBS(self,"T_POTION_RANDOM_3",BS_ITEMINTERACT);
-				AI_PlayAniBS(self,"T_POTION_RANDOM_1",BS_ITEMINTERACT);
-			}
-			else if(random == 1)
-			{
-				AI_PlayAniBS(self,"T_POTION_RANDOM_1",BS_ITEMINTERACT);
-				AI_PlayAniBS(self,"T_POTION_RANDOM_2",BS_ITEMINTERACT);
+				AI_PlayAniBS(self,"T_BEER_RANDOM_3",BS_ITEMINTERACT);
 			}
 			else
 			{

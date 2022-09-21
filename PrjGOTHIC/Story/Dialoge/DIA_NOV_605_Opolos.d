@@ -200,9 +200,9 @@ func void DIA_Opolos_rezept_Info()
 		AI_Output(other,self,"DIA_Opolos_rezept_15_00");	//Я принес рецепт, как ты и хотел.
 		AI_Output(self,other,"DIA_Opolos_rezept_12_01");	//Хорошо, дай я прочту его.
 		AI_PrintScreen("Рецепт магических зелий отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-		B_UseFakeScroll();
+		B_ReadFakeItem(self,other,Fakescroll,1);
 		AI_Output(self,other,"DIA_Opolos_rezept_12_02");	//Ага... хм... да... понятно... так, так...
-		B_UseFakeScroll();
+		B_ReadFakeItem(self,other,Fakescroll,1);
 		AI_Output(self,other,"DIA_Opolos_rezept_12_03");	//Хорошо. Огромное спасибо. Если хочешь, ты можешь потренироваться со мной.
 		AI_PrintScreen("Рецепт магических зелий получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		Opolos_Rezept = LOG_SUCCESS;

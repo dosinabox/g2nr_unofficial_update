@@ -8,7 +8,7 @@ func void ZS_Dead()
 	AI_StopPointAt(self);
 	if(CurrentLevel == ADDONWORLD_ZEN)
 	{
-		if(self.aivar[AIV_MM_REAL_ID] == ID_Razor)
+		if(self.aivar[AIV_MM_REAL_ID] == ID_RAZOR)
 		{
 			if(C_IAmCanyonRazor(self))
 			{
@@ -117,7 +117,7 @@ func void ZS_Dead()
 			};
 			if(CurrentLevel == ADDONWORLD_ZEN)
 			{
-				if(self.aivar[AIV_MM_REAL_ID] == ID_Swamprat)
+				if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPRAT)
 				{
 					if(MIS_KrokoJagd == LOG_Running)
 					{
@@ -180,6 +180,10 @@ func void ZS_Dead()
 			};
 		};
 		B_SpecialRangedWeaponDamage(other,self,TRUE);
+	}
+	else if(self.aivar[AIV_LastHitByWindFist] == TRUE)
+	{
+		B_GiveDeathXP(hero,self);
 	};
 	B_GiveTradeInv(self);
 	B_GiveDeathInv(self);

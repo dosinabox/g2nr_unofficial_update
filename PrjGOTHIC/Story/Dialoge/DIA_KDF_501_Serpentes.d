@@ -620,15 +620,11 @@ instance DIA_Serpentes_SalandrilHERE(C_Info)
 
 func int DIA_Serpentes_SalandrilHERE_Condition()
 {
-	if(!Npc_IsDead(Salandril))
+	if(Npc_KnowsInfo(other,DIA_Serpentes_GOTSalandril) || (MIS_Serpentes_BringSalandril_SLD != FALSE))
 	{
-		if(Npc_GetDistToWP(Salandril,"ALTAR") < 10000)
+		if(!Npc_IsDead(Salandril) && Npc_KnowsInfo(other,DIA_Salandril_GehinsKloster))
 		{
-			if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
-			{
-				return TRUE;
-			};
-			if(Npc_KnowsInfo(other,DIA_Serpentes_GOTSalandril) && (hero.guild == GIL_KDF))
+			if(Npc_GetDistToWP(Salandril,"ALTAR") < 5000)
 			{
 				return TRUE;
 			};
@@ -663,9 +659,12 @@ instance DIA_Serpentes_SalandrilDEAD(C_Info)
 
 func int DIA_Serpentes_SalandrilDEAD_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Serpentes_GOTSalandril) || (((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (MIS_Serpentes_BringSalandril_SLD == LOG_Running))) && Npc_IsDead(Salandril))
+	if(Npc_KnowsInfo(other,DIA_Serpentes_GOTSalandril) || (MIS_Serpentes_BringSalandril_SLD != FALSE))
 	{
-		return TRUE;
+		if(Npc_IsDead(Salandril) && !Npc_KnowsInfo(other,DIA_Serpentes_SalandrilHERE))
+		{
+			return TRUE;
+		};
 	};
 };
 

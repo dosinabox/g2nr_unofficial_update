@@ -6,6 +6,7 @@ func void B_UseItem(var C_Npc slf,var int itmInstance)
 	{
 		return;
 	};
+	AI_RemoveWeapon(slf);
 	target = Npc_GetLookAtTarget(slf);
 	if(Hlp_IsValidNpc(target))
 	{

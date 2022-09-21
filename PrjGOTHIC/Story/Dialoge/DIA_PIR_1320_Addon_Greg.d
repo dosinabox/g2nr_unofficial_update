@@ -44,13 +44,16 @@ func void DIA_Addon_Greg_ImNew_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_Hello_01_02");	//(в ярости) Стоит уехать на несколько дней, и вот уже каждый проходимец норовит похозяйничать в моем жилище!
 	AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_03");	//Какого черта, что здесь происходит?!
 	AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_04");	//Частокол еще не закончен! Каньон просто кишит зверьем, а все только и делают, что слоняются вокруг!
-	if(!Npc_IsDead(Francis) && (Npc_GetDistToWP(Francis,"ADW_PIRATECAMP_HUT4_01") <= 1000))
+	if(!Npc_IsDead(Francis))
 	{
-		AI_TurnToNPC(self,Francis);
-		AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_05");	//(кричит) И это все, что ты сделал, Фрэнсис?
-		if(C_BodyStateContains(Francis,BS_SIT))
+		if(Npc_GetDistToWP(Francis,"ADW_PIRATECAMP_HUT4_01") <= 1000)
 		{
-			AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_06");	//(кричит) Немедленно слезь с моей скамейки!
+			AI_TurnToNPC(self,Francis);
+			AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_05");	//(кричит) И это все, что ты сделал, Фрэнсис?
+			if(C_BodyStateContains(Francis,BS_SIT))
+			{
+				AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_06");	//(кричит) Немедленно слезь с моей скамейки!
+			};
 		};
 	};
 	Npc_ExchangeRoutine(self,"HOME");
@@ -66,20 +69,20 @@ func void DIA_Addon_Greg_ImNew_Info()
 
 func void B_UseRakeBilanz()
 {
-	if((MIS_Addon_Greg_RakeCave == LOG_Running) || (MIS_Addon_Greg_RakeCave == LOG_FAILED) || (Greg_NoHelpInNW_Cave == TRUE))
+	if(Greg_NoHelpInNW >= 2)
+	{
+		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_00_add");	//И не думай, что я забыл!
+	}
+	else if((MIS_Addon_Greg_RakeCave == LOG_Running) || (MIS_Addon_Greg_RakeCave == LOG_FAILED))
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_00");	//И не думай, что я забыл, что ты мой должник.
-		if((MIS_Addon_Greg_BringMeToTheCity == LOG_Running) || (MIS_Addon_Greg_BringMeToTheCity == LOG_FAILED))
-		{
-			AI_Output(self,other,"DIA_Addon_Greg_NW_was_NoHelp_01_02");	//Второй раз ты отказываешься выполнить мою просьбу.
-			Greg_NoHelpInNW = TRUE;
-		};
 		if(Greg_SuchWeiter == TRUE)
 		{
 			AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_01");	//В различных местах Хориниса я зарыл несколько сотен золотых монет.
 			AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_02");	//Ты их прикарманил, не так ли?
 			AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_03");	//Я заставлю тебя отработать все до последнего медяка.
 		};
+		Greg_NoHelpInNW += 1;
 	}
 	else
 	{
@@ -87,6 +90,11 @@ func void B_UseRakeBilanz()
 	};
 	if(!Npc_IsDead(Francis))
 	{
+		if(Npc_HasItems(Francis,ItKe_Greg_Addon_MIS))
+		{
+			Npc_RemoveInvItem(Francis,ItKe_Greg_Addon_MIS);
+			CreateInvItem(self,ItKe_Greg_Addon_MIS);
+		};
 		Npc_ExchangeRoutine(Francis,"GREGISBACK");
 		AI_StartState(Francis,ZS_Saw,1,"ADW_PIRATECAMP_BEACH_19");
 		Francis_ausgeschissen = TRUE;
@@ -120,7 +128,27 @@ func void DIA_Addon_Greg_ImNew_turm()
 
 func int C_PiratesAvailableToFollow()
 {
-	if(!Npc_IsDead(Brandon) || !Npc_IsDead(Matt) || !Npc_IsDead(AlligatorJack) || !Npc_IsDead(Skip) || !Npc_IsDead(RoastPirate) || !Npc_IsDead(BenchPirate))
+	if(!Npc_IsDead(Brandon))
+	{
+		return TRUE;
+	};
+	if(!Npc_IsDead(Matt))
+	{
+		return TRUE;
+	};
+	if(!Npc_IsDead(AlligatorJack))
+	{
+		return TRUE;
+	};
+	if(!Npc_IsDead(Skip))
+	{
+		return TRUE;
+	};
+	if(!Npc_IsDead(RoastPirate))
+	{
+		return TRUE;
+	};
+	if(!Npc_IsDead(BenchPirate))
 	{
 		return TRUE;
 	};
@@ -179,7 +207,7 @@ func void DIA_Addon_Greg_JoinPirates_Info()
 	MIS_Addon_Greg_ClearCanyon = LOG_Running;
 	Log_CreateTopic(TOPIC_Addon_ClearCanyon,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_ClearCanyon,LOG_Running);
-	if(Greg_NoHelpInNW == FALSE)
+	if(Greg_NoHelpInNW < 2)
 	{
 		B_LogEntry(TOPIC_Addon_ClearCanyon,"Грег хочет, чтобы я взял на себя работу Моргана и очистил каньон от зверей.");
 	}
@@ -199,13 +227,14 @@ func void DIA_Addon_Greg_JoinPirates_Leave()
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_01");	//И еще кое-что. Теперь ты один из нас.
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_02");	//Поэтому сначала найди себе нормальную одежду охотника.
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_03");	//Вот, надень это. Надеюсь, тебе это снаряжение придется впору.
-	if(Greg_NoHelpInNW == FALSE)
+	if(Greg_NoHelpInNW < 2)
 	{
 		B_GiveArmor(ITAR_PIR_M_Addon);
 	}
 	else
 	{
 		B_GiveArmor(ITAR_PIR_L_Addon);
+		Greg_LightArmorGiven = TRUE;
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_04");	//И не мешкай, скорее принимайся за дело!
 	Info_ClearChoices(DIA_Addon_Greg_JoinPirates);
@@ -380,9 +409,16 @@ instance DIA_Addon_Greg_Auftraege2(C_Info)
 
 func int DIA_Addon_Greg_Auftraege2_Condition()
 {
-	if((MIS_Greg_ScoutBandits != FALSE) && (!C_TowerBanditsDead() || !C_NorthBeachMonstersDead()))
+	if(MIS_Greg_ScoutBandits != FALSE)
 	{
-		return TRUE;
+		if(!C_TowerBanditsDead())
+		{
+			return TRUE;
+		};
+		if(!C_NorthBeachMonstersDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -423,9 +459,12 @@ instance DIA_Addon_Greg_Sauber2(C_Info)
 
 func int DIA_Addon_Greg_Sauber2_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Greg_Auftraege2) && C_NorthBeachMonstersDead())
+	if(Npc_KnowsInfo(other,DIA_Addon_Greg_Auftraege2))
 	{
-		return TRUE;
+		if(C_NorthBeachMonstersDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -433,7 +472,7 @@ func void DIA_Addon_Greg_Sauber2_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_Sauber2_15_00");	//На северном побережье теперь безопасно.
 	AI_Output(self,other,"DIA_Addon_Greg_Sauber2_01_01");	//Отлично. Держи свою награду.
-	if(Greg_NoHelpInNW == FALSE)
+	if(Greg_NoHelpInNW < 2)
 	{
 		CreateInvItems(self,ItMi_Gold,200);
 		B_GiveInvItems(self,other,ItMi_Gold,200);
@@ -464,9 +503,12 @@ instance DIA_Addon_Greg_BanditPlatt2(C_Info)
 
 func int DIA_Addon_Greg_BanditPlatt2_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Greg_Auftraege2) && C_TowerBanditsDead())
+	if(Npc_KnowsInfo(other,DIA_Addon_Greg_Auftraege2))
 	{
-		return TRUE;
+		if(C_TowerBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -474,7 +516,7 @@ func void DIA_Addon_Greg_BanditPlatt2_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_BanditPlatt2_15_00");	//Бандиты в башне уничтожены.
 	AI_Output(self,other,"DIA_Addon_Greg_BanditPlatt2_01_01");	//Прекрасно. Хорошая работа. Вот твоя награда.
-	if(Greg_NoHelpInNW == FALSE)
+	if(Greg_NoHelpInNW < 2)
 	{
 		CreateInvItems(self,ItMi_Gold,200);
 		B_GiveInvItems(self,other,ItMi_Gold,200);
@@ -518,8 +560,15 @@ func void DIA_Addon_Greg_BanditGoldmine_Info()
 	AI_Output(other,self,"DIA_Addon_Greg_BanditGoldmine_15_00");	//Бандиты нашли шахту с золотом.
 	AI_Output(self,other,"DIA_Addon_Greg_BanditGoldmine_01_01");	//Я так и знал! Вот почему они приперлись сюда.
 	AI_Output(self,other,"DIA_Addon_Greg_BanditGoldmine_01_02");	//Никто не захочет жить в этой дыре.
-	AI_Output(self,other,"DIA_Addon_Greg_BanditGoldmine_01_03");	//Хорошая работа. Вот, держи, у меня для тебя награда.
-	B_GiveInvItems(self,other,ItRi_Addon_STR_01,1);
+	if(Greg_NoHelpInNW < 2)
+	{
+		AI_Output(self,other,"DIA_Addon_Greg_BanditGoldmine_01_03");	//Хорошая работа. Вот, держи, у меня для тебя награда.
+		B_GiveInvItems(self,other,ItRi_Addon_STR_01,1);
+	}
+	else
+	{
+		CreateInvItem(self,ItRi_Addon_STR_01);
+	};
 	B_LogEntry(TOPIC_Addon_ScoutBandits,"Я рассказал Грегу о золотой шахте.");
 	MIS_Greg_ScoutBandits = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Greg_ScoutBandits);
@@ -539,7 +588,6 @@ instance DIA_Addon_Greg_WhoAreYou(C_Info)
 
 func int DIA_Addon_Greg_WhoAreYou_Condition()
 {
-//	if((PlayerTalkedToGregNW == FALSE) && (SC_MeetsGregTime == FALSE))
 	if(PlayerTalkedToGregNW == FALSE)
 	{
 		return TRUE;
@@ -671,7 +719,7 @@ func void DIA_Addon_Greg_RavenDead_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_RavenDead_15_00");	//С Вороном покончено...
 	AI_Output(self,other,"DIA_Addon_Greg_RavenDead_01_01");	//Чтоб меня... Не ожидал я этого... Застал его врасплох, да?
-	if((Greg_NoHelpInNW == FALSE) && (Greg_NoHelpInNW_Cave == FALSE))
+	if(Greg_NoHelpInNW < 2)
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_RavenDead_01_02");	//Ну, на мой взгляд, это стоит пятиста золотых монет.
 		CreateInvItems(self,ItMi_Gold,500);
@@ -684,6 +732,7 @@ func void DIA_Addon_Greg_RavenDead_Info()
 		B_StartOtherRoutine(Owen,"PostStart");
 	};
 };
+
 
 instance DIA_Addon_Greg_ItemsInADW(C_Info)
 {
@@ -708,6 +757,7 @@ func void DIA_Addon_Greg_ItemsInADW_Info()
 	B_GiveGregsItems();
 	B_GivePlayerXP(XP_Addon_Greg_RakeCave / 3);
 };
+
 
 instance DIA_Addon_Greg_BeMyCap(C_Info)
 {
@@ -740,5 +790,56 @@ func void DIA_Addon_Greg_BeMyCap_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_was_SLD_01_02");	//Неплохо для сухопутной крысы.
 	B_LogEntry(Topic_Captain,"Грега не заинтересовало мое предложение.");
 	AI_StopProcessInfos(self);
+};
+
+
+instance DIA_Addon_Greg_GiveFrancisBook(C_Info)
+{
+	npc = PIR_1320_Addon_Greg;
+	nr = 700;
+	condition = DIA_Addon_Greg_GiveFrancisBook_Condition;
+	information = DIA_Addon_Greg_GiveFrancisBook_Info;
+	permanent = FALSE;
+	description = "Похоже, этот парень прикарманил много золота...";
+};
+
+
+func int DIA_Addon_Greg_GiveFrancisBook_Condition()
+{
+	if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis) && (Francis_HasProof == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Greg_GiveFrancisBook_Info()
+{
+	AI_Output(other,self,"DIA_Addon_Greg_GiveFrancisBook_15_00_add");	//Похоже, этот парень прикарманил много золота...
+	AI_WaitTillEnd(self,other);
+	B_GiveInvItems(other,self,ITWR_Addon_FrancisAbrechnung_Mis,1);
+	Npc_RemoveInvItem(self,ITWR_Addon_FrancisAbrechnung_Mis);
+	B_ReadFakeItem(self,other,Openbook2,2);
+	AI_Output(self,other,"DIA_Addon_Greg_GiveFrancisBook_01_01_add");	//Не ожидал я этого...
+	B_GivePlayerXP(200);
+	Greg_NoHelpInNW = 0;
+	if(!Npc_IsDead(Francis))
+	{
+		if(Npc_GetDistToNpc(self,Francis) > FIGHT_DIST_CANCEL)
+		{
+			self.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL * 2;
+		};
+		AI_StopProcessInfos(self);
+		other.aivar[AIV_INVINCIBLE] = FALSE;
+		Npc_ExchangeRoutine(Francis,"EXILE");
+		AI_StartState(Francis,ZS_Saw,1,"ADW_PIRATECAMP_BEACH_19");
+		Francis.aivar[AIV_DropDeadAndKill] = TRUE;
+		Francis.guild = GIL_NONE;
+		B_Attack(self,Francis,AR_NONE,0);
+	}
+	else
+	{
+		DIA_Common_HeIsDead();
+		B_Say(self,other,"$ABS_GOOD");
+	};
 };
 

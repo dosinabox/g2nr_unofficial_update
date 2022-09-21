@@ -36,7 +36,7 @@ func int DIA_Moe_Hallo_Condition()
 {
 	if((Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist) || Npc_IsInState(self,ZS_Talk))
 	{
-		if((other.guild != GIL_PAL) && (other.guild != GIL_KDF) && (other.guild != GIL_MIL) && !C_LehmarDebtIsOverdue())
+		if((other.guild != GIL_PAL) && (other.guild != GIL_KDF) && (other.guild != GIL_MIL) && !C_LehmarDebtIsOverdue() && !Npc_IsDead(Lehmar))
 		{
 			return TRUE;
 		};
@@ -293,6 +293,10 @@ instance DIA_Moe_LEHMARGELDEINTREIBEN(C_Info)
 
 func int DIA_Moe_LEHMARGELDEINTREIBEN_Condition()
 {
+	if(Npc_IsDead(Lehmar))
+	{
+		return TRUE;
+	};
 	if(C_LehmarDebtIsOverdue())
 	{
 		return TRUE;
@@ -301,8 +305,17 @@ func int DIA_Moe_LEHMARGELDEINTREIBEN_Condition()
 
 func void DIA_Moe_LEHMARGELDEINTREIBEN_Info()
 {
-	AI_Output(self,other,"DIA_Moe_LEHMARGELDEINTREIBEN_01_00");	//Эй, ты! Лемар передает тебе привет.
-	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_NONE,1);
+	if(!Npc_IsDead(Lehmar))
+	{
+		AI_Output(self,other,"DIA_Moe_LEHMARGELDEINTREIBEN_01_00");	//Эй, ты! Лемар передает тебе привет.
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_NONE,1);
+	}
+	else
+	{
+		B_Say(self,other,"$YOUMURDERER");
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_KILL,1);
+	};
 };
 

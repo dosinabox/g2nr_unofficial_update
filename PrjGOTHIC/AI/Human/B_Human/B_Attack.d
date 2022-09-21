@@ -40,19 +40,19 @@ func void B_Attack(var C_Npc slf,var C_Npc oth,var int attack_reason,var int wai
 	if(slf.aivar[AIV_ATTACKREASON] == AR_SheepKiller)
 	{
 		B_MemorizePlayerCrime(slf,oth,CRIME_SHEEPKILLER);
-	};
-	if((slf.aivar[AIV_ATTACKREASON] == AR_ReactToDamage) || (slf.aivar[AIV_ATTACKREASON] == AR_ReactToWeapon))
+	}
+	else if((slf.aivar[AIV_ATTACKREASON] == AR_ReactToDamage) || (slf.aivar[AIV_ATTACKREASON] == AR_ReactToWeapon))
 	{
 		if(!C_NpcIsToughGuy(slf) && !(Npc_IsPlayer(oth) && (slf.npcType == NPCTYPE_FRIEND)))
 		{
 			B_MemorizePlayerCrime(slf,oth,CRIME_ATTACK);
 		};
-	};
-	if((slf.aivar[AIV_ATTACKREASON] == AR_Theft) || (slf.aivar[AIV_ATTACKREASON] == AR_UseMob))
+	}
+	else if((slf.aivar[AIV_ATTACKREASON] == AR_Theft) || (slf.aivar[AIV_ATTACKREASON] == AR_UseMob))
 	{
 		B_MemorizePlayerCrime(slf,oth,CRIME_THEFT);
-	};
-	if(slf.aivar[AIV_ATTACKREASON] == AR_HumanMurderedHuman)
+	}
+	else if(slf.aivar[AIV_ATTACKREASON] == AR_HumanMurderedHuman)
 	{
 		B_MemorizePlayerCrime(slf,oth,CRIME_MURDER);
 	};

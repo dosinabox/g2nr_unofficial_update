@@ -578,7 +578,11 @@ func int DIA_Torlof_SekobSuccess_Condition()
 {
 	if(MIS_Torlof_HolPachtVonSekob == LOG_Running)
 	{
-		if((Sekob.aivar[AIV_DefeatedByPlayer] == TRUE) || Npc_IsDead(Sekob))
+		if(Npc_IsDead(Sekob))
+		{
+			return TRUE;
+		};
+		if(Sekob.aivar[AIV_DefeatedByPlayer] == TRUE)
 		{
 			return TRUE;
 		};

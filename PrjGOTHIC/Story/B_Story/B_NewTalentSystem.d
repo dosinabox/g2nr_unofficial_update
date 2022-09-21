@@ -185,11 +185,11 @@ func void UpdateOverlay(var C_Npc npc,var int oldSkill,var int newSkill,var stri
 	};
 	if(oldSkill == 1)
 	{
-		Mdl_RemoveOverlayMds(npc,mds1);
+		Mdl_RemoveOverlayMDS(npc,mds1);
 	}
 	else if(oldSkill == 2)
 	{
-		Mdl_RemoveOverlayMds(npc,mds2);
+		Mdl_RemoveOverlayMDS(npc,mds2);
 	};
 	if(newSkill == 1)
 	{

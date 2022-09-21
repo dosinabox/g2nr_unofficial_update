@@ -433,6 +433,35 @@ func int C_GrimbaldSnappersDead()
 	return TRUE;
 };
 
+func int C_KervoLurkersDead()
+{
+	if(!Npc_IsDead(Kervo_Lurker1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Kervo_Lurker2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Kervo_Lurker3))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Kervo_Lurker4))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Kervo_Lurker5))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Kervo_Lurker6))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 func int C_FajethSnappersDead()
 {
 	if(!Npc_IsDead(NewMine_Snapper1))

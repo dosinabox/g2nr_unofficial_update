@@ -147,7 +147,7 @@ instance DIA_Engor_RSkaufen(C_Info)
 	condition = DIA_Engor_RSkaufen_Condition;
 	information = DIA_Engor_RSkaufen_Info;
 	permanent = TRUE;
-	description = "Купить тяжелые доспехи ополчения. Защита: 70/70/10/10. (2500 золотых)";
+	description = B_BuildPriceString("Купить тяжелые доспехи ополчения. Защита: 70/70/10/10.",VALUE_ITAR_MIL_M);
 };
 
 

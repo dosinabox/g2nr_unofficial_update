@@ -875,11 +875,19 @@ func void DIA_Garond_BACKINKAP4_Info()
 			DJG_Angar_SentToStones = TRUE;
 		};
 	};
+	//TODO если MIS_Kervo_KillLurker != LOG_SUCCESS, то в пещере останутся трупы Керво и Гепперта под ногами охотников
 	B_StartOtherRoutine(Kjorn,"START");
 	B_StartOtherRoutine(Godar,"START");
 	B_StartOtherRoutine(Hokurn,"START");
 	B_StartOtherRoutine(GornDJG,"START");
 	B_StartOtherRoutine(Kurgan,"START");
+	B_KillAnimal(Kervo_Lurker1);
+	B_KillAnimal(Kervo_Lurker2);
+	B_KillAnimal(Kervo_Lurker3);
+	B_KillAnimal(Kervo_Lurker4);
+	B_KillAnimal(Kervo_Lurker5);
+	B_KillAnimal(Kervo_Lurker6);
+	B_KillAnimal(Kervo_Lurker7);
 	if(DJG_BiffParty == FALSE)
 	{
 		B_StartOtherRoutine(Biff,"START");

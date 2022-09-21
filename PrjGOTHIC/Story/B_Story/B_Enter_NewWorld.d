@@ -168,10 +168,6 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 {
 	if(EnterNW_Kapitel3 == FALSE)
 	{
-		if(!Npc_IsDead(Salandril))
-		{
-			Salandril.aivar[AIV_ToughGuy] = TRUE;
-		};
 		Cornelius.flags = 0;
 		B_CreateItemToSteal(Cornelius,60,ItWr_CorneliusTagebuch_Mis,1);
 		if(!Npc_IsDead(Hodges))
@@ -362,8 +358,8 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				Wld_InsertNpc(DMT_DementorSpeakerVino2,"FP_STAND_DEMENTOR_KDF_32");
 				Wld_InsertNpc(DMT_DementorSpeakerVino3,"FP_STAND_DEMENTOR_KDF_33");
 				Wld_InsertNpc(DMT_DementorSpeakerVino4,"NW_LITTLESTONEHENDGE_02");
-				B_KillNpc(YGiant_Bug_VinoRitual1);
-				B_KillNpc(YGiant_Bug_VinoRitual2);
+				B_KillAnimal(YGiant_Bug_VinoRitual1);
+				B_KillAnimal(YGiant_Bug_VinoRitual2);
 				if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_Running) && (MIS_Addon_Cavalorn_GetOrnamentFromPAL == FALSE))
 				{
 					B_StartOtherRoutine(Cavalorn,"OrnamentSteinringCh3KDF");
@@ -468,10 +464,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 {
 	if(EnterNW_Kapitel4 == FALSE)
 	{
-		if(!Npc_IsDead(Salandril) && (MIS_Serpentes_BringSalandril_SLD == LOG_SUCCESS))
-		{
-			B_StartOtherRoutine(Salandril,"Start");
-		};
+		B_ResetSalandril();
 		B_StartOtherRoutine(Jorgen,"Kloster");
 		B_StartOtherRoutine(Nov610,"Rest");
 		if(!Npc_IsDead(BDT_1050_Landstreicher))
@@ -756,7 +749,6 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 
 
 var int EnterNW_Kapitel5;
-var int Rosi_FleeFromSekob_Kap5;
 
 func void B_ENTER_NEWWORLD_Kapitel_5()
 {
@@ -764,10 +756,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 	{
 		B_RemoveNpc(NONE_100_Xardas);
 		B_StartOtherRoutine(Lester,"XardasWeg");
-		if(!Npc_IsDead(Salandril) && (MIS_Serpentes_BringSalandril_SLD == LOG_SUCCESS))
-		{
-			B_StartOtherRoutine(Salandril,"Start");
-		};
+		B_ResetSalandril();
 		if(!Npc_IsDead(Sekob))
 		{
 			if(!Npc_IsDead(Rosi))
@@ -922,16 +911,6 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 };
 
 
-var int EnterNW_Kapitel6;
-
-func void B_ENTER_NEWWORLD_Kapitel_6()
-{
-	if(EnterNW_Kapitel6 == FALSE)
-	{
-		EnterNW_Kapitel6 = TRUE;
-	};
-};
-
 func void B_Enter_NewWorld()
 {
 	B_InitNpcGlobals();
@@ -954,10 +933,6 @@ func void B_Enter_NewWorld()
 	if(Kapitel >= 5)
 	{
 		B_ENTER_NEWWORLD_Kapitel_5();
-	};
-	if(Kapitel >= 6)
-	{
-		B_ENTER_NEWWORLD_Kapitel_6();
 	};
 	B_InitNpcGlobals();
 };

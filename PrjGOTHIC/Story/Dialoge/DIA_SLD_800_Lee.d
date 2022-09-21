@@ -1064,7 +1064,7 @@ instance DIA_Lee_BuyArmorM(C_Info)
 	condition = DIA_Lee_BuyArmorM_Condition;
 	information = DIA_Lee_BuyArmorM_Info;
 	permanent = TRUE;
-	description = "Купить средние доспехи наемника. Защита: 50/50/0/5. (1000 золотых)";
+	description = B_BuildPriceString("Купить средние доспехи наемника. Защита: 50/50/0/5.",VALUE_ITAR_SLD_M);
 };
 
 
@@ -1125,7 +1125,7 @@ instance DIA_Lee_BuyArmorH(C_Info)
 	condition = DIA_Lee_BuyArmorH_Condition;
 	information = DIA_Lee_BuyArmorH_Info;
 	permanent = TRUE;
-	description = "Купить тяжелые доспехи наемника. Защита: 80/80/5/10. (2500 золотых)";
+	description = B_BuildPriceString("Купить тяжелые доспехи наемника. Защита: 80/80/5/10.",VALUE_ITAR_SLD_H);
 };
 
 
@@ -1274,7 +1274,7 @@ func void DIA_Lee_RichterBeweise_Info()
 	AI_Output(other,self,"DIA_Lee_RichterBeweise_15_04");	//Я принес тебе в качестве доказательства письменный приказ судьи этим головорезам.
 	AI_Output(self,other,"DIA_Lee_RichterBeweise_04_05");	//Покажи.
 	B_GiveInvItems(other,self,ItWr_RichterKomproBrief_MIS,1);
-	B_UseFakeScroll();
+	B_ReadFakeItem(self,other,Fakescroll,1);
 	if(!Npc_IsDead(Richter))
 	{
 		AI_Output(self,other,"DIA_Lee_RichterBeweise_04_06");	//Наконец-то. Этого должно быть достаточно, чтобы заставить его страдать. Я восхищен.

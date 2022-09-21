@@ -265,7 +265,7 @@ instance ItSc_Firebolt(C_Item)
 	text[0] = NAME_MageScroll;
 	text[1] = NAME_Mana_needed;
 	count[1] = SPL_Cost_Scroll;
-	text[2] = NAME_Dam_Fire;
+	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_Damage_Firebolt;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -355,7 +355,7 @@ instance ItSc_InstantFireball(C_Item)
 	text[0] = NAME_MageScroll;
 	text[1] = NAME_Mana_needed;
 	count[1] = SPL_Cost_Scroll;
-	text[2] = NAME_Dam_Fire;
+	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_DAMAGE_InstantFireball;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -425,9 +425,9 @@ instance ItSc_Windfist(C_Item)
 	count[1] = STEP_WindFist;
 	text[2] = NAME_ManakostenMax;
 	count[2] = SPL_Cost_WindFist;
-	text[3] = "Урон ветром (мин.):";
+	text[3] = NAME_Dam_FlyMin;
 	count[3] = SPL_Damage_Windfist;
-	text[4] = "Урон ветром (макс.):";
+	text[4] = NAME_Dam_FlyMax;
 	count[4] = SPL_Damage_Windfist * 4;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -547,9 +547,9 @@ instance ItSc_ChargeFireBall(C_Item)
 	count[1] = STEP_ChargeFireball;
 	text[2] = NAME_ManakostenMax;
 	count[2] = SPL_COST_ChargeFireball;
-	text[3] = NAME_Dam_FireMin;
+	text[3] = NAME_Dam_MagicMin;
 	count[3] = SPL_Damage_ChargeFireball;
-	text[4] = NAME_Dam_FireMax;
+	text[4] = NAME_Dam_MagicMax;
 	count[4] = SPL_Damage_ChargeFireball * 4;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -716,9 +716,9 @@ instance ItSc_Pyrokinesis(C_Item)
 	count[1] = STEP_Firestorm;
 	text[2] = NAME_ManakostenMax;
 	count[2] = SPL_COST_Firestorm;
-	text[3] = NAME_Dam_FireMin;
+	text[3] = NAME_Dam_MagicMin;
 	count[3] = SPL_Damage_Firestorm;
-	text[4] = NAME_Dam_FireMax;
+	text[4] = NAME_Dam_MagicMax;
 	count[4] = SPL_Damage_Firestorm * 4;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -741,7 +741,7 @@ instance ItSc_Firestorm(C_Item)
 	text[0] = NAME_MageScroll;
 	text[1] = NAME_Mana_needed;
 	count[1] = SPL_Cost_Scroll;
-	text[2] = NAME_Dam_Fire;
+	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_Damage_InstantFireStorm;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -835,7 +835,7 @@ instance ItSc_Firerain(C_Item)
 	text[0] = NAME_MageScroll;
 	text[1] = NAME_Mana_needed;
 	count[1] = SPL_Cost_Scroll;
-	text[2] = NAME_Dam_Fire;
+	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_Damage_FireRain;
 	text[5] = NAME_Value;
 	count[5] = value;

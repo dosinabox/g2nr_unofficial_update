@@ -1605,6 +1605,30 @@ func void UseAttributesSyncer()
 	PrintScreen("Характеристики синхронизированы",-1,55,FONT_Screen,4);
 };
 
+instance PickPocketSyncer(C_Item)
+{
+	name = "Руна обновления";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItRu_TeleportOWDemonTower.3DS";
+	material = MAT_STONE;
+	scemeName = "MAP";
+	description = name;
+	text[0] = "Обновить предметы для кражи.";
+	on_state[0] = UsePickPocketSyncer;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
+};
+
+
+func void UsePickPocketSyncer()
+{
+	B_SyncItemsToSteal();
+	PrintScreen("Предметы для кражи обновлены",-1,55,FONT_Screen,4);
+};
+
 instance MobsiBrief(C_Item)
 {
 	name = "Руна MobsiBrief";

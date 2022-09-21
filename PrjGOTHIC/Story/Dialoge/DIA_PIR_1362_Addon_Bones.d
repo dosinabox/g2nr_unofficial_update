@@ -163,21 +163,25 @@ instance DIA_Addon_Bones_Francis(C_Info)
 
 func int DIA_Addon_Bones_Francis_Condition()
 {
-	if(GregIsBack == FALSE)
+	if(C_CanAskPiratesAboutFrancis())
 	{
-		if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
 func void DIA_Addon_Bones_Francis_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Bones_Francis_15_00");	//Что ты скажешь о Фрэнсисе?
-	AI_Output(self,other,"DIA_Addon_Bones_Francis_01_03");	//Посмотри вокруг. Работает только Генри и его люди.
-	AI_Output(self,other,"DIA_Addon_Bones_Francis_01_04");	//Морган целыми днями либо спит, либо пьет самогон.
-	AI_Output(self,other,"DIA_Addon_Bones_Francis_01_05");	//При Греге такого не бывает. Если ты бездельничаешь, ты получаешь по шее. Вот и все.
+	if(GregIsBack == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Bones_Francis_01_03");	//Посмотри вокруг. Работает только Генри и его люди.
+		AI_Output(self,other,"DIA_Addon_Bones_Francis_01_04");	//Морган целыми днями либо спит, либо пьет самогон.
+		AI_Output(self,other,"DIA_Addon_Bones_Francis_01_05");	//При Греге такого не бывает. Если ты бездельничаешь, ты получаешь по шее. Вот и все.
+	}
+	else
+	{
+		B_Addon_Bones_KeineZeit();
+	};
 };
 
 
@@ -247,6 +251,7 @@ func void DIA_Addon_Bones_GiveArmor_Info()
 	AI_Output(other,self,"DIA_Addon_Bones_GiveArmor_15_04");	//(раздраженно) Доспехи.
 	AI_Output(self,other,"DIA_Addon_Bones_GiveArmor_01_05");	//Да, конечно, вот они.
 	B_GiveArmor(ITAR_BDT_M);
+	Bones_ArmorGiven = TRUE;
 	AI_Output(self,other,"DIA_Addon_Bones_GiveArmor_01_06");	//Будь осторожнее. С этими бандитами шутки плохи.
 	self.flags = 0;
 	Greg.flags = 0;

@@ -3,7 +3,7 @@ prototype Mst_Default_OrcBiter(C_Npc)
 {
 	name[0] = "Кусач";
 	guild = GIL_SCAVENGER;
-	aivar[AIV_MM_REAL_ID] = ID_OrcBiter;
+	aivar[AIV_MM_REAL_ID] = ID_ORCBITER;
 	level = 12;
 	attribute[ATR_STRENGTH] = 60;
 	attribute[ATR_DEXTERITY] = 60;

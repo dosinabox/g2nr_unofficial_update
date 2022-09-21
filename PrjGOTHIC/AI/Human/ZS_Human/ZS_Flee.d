@@ -34,7 +34,7 @@ func int ZS_Flee_Loop()
 func void ZS_Flee_End()
 {
 	B_ResetFaceExpression(self);
-	Mdl_RemoveOverlayMds(self,"HUMANS_FLEE.MDS");
+	Mdl_RemoveOverlayMDS(self,"HUMANS_FLEE.MDS");
 	AI_Standup(self);
 	AI_StartState(self,ZS_HealSelf,1,"");
 };

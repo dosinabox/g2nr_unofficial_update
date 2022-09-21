@@ -3,7 +3,7 @@ prototype Mst_Default_StonePuma(C_Npc)
 {
 	name[0] = "Пантера";
 	guild = GIL_Gargoyle;
-	aivar[AIV_MM_REAL_ID] = ID_Gargoyle;
+	aivar[AIV_MM_REAL_ID] = ID_STONEPUMA;
 	level = 20;
 	attribute[ATR_STRENGTH] = 100;
 	attribute[ATR_DEXTERITY] = 100;
@@ -18,7 +18,7 @@ prototype Mst_Default_StonePuma(C_Npc)
 	protection[PROT_FLY] = 0;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
-	fight_tactic = FAI_Gargoyle;
+	fight_tactic = FAI_GARGOYLE;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;
 	aivar[AIV_MM_ThreatenBeforeAttack] = TRUE;

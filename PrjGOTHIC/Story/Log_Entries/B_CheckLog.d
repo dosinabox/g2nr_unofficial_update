@@ -112,7 +112,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Addon_BringMeat,MIS_AlligatorJack_BringMeat,GregIsBack,6);
 	B_CloseTopic(TOPIC_Addon_BanditsTower,MIS_Henry_FreeBDTTower,0,6);
 	B_CloseTopic(TOPIC_Addon_HolOwen,MIS_Henry_HolOwen,0,6);
-	B_CloseTopic(TOPIC_Addon_Kompass,MIS_ADDON_GARett_BringKompass,0,6);
+	B_CloseTopic(TOPIC_Addon_Kompass,MIS_Addon_Garett_BringKompass,0,6);
 	B_CloseTopic(TOPIC_Addon_RoastGrog,0,PIR_1364_Grog,6);
 	B_CloseTopic(TOPIC_Addon_BrandonBooze,MIS_Brandon_BringHering,0,6);
 	B_CloseTopic(TOPIC_Addon_MorganBeach,MIS_Addon_MorganLurker,0,6);
@@ -153,7 +153,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Addon_Lance,0,TOPIC_End_Lance,6);
 	B_CloseTopic(TOPIC_Addon_HousesOfRulers,MIS_Riordian_HousesOfRulers,0,6);
 	B_CloseTopic(TOPIC_Addon_CanyonOrcs,0,TOPIC_END_CanyonOrcs,6);
-	B_CloseTopic(TOPIC_Addon_BDTRuestung,0,MIS_Greg_ScoutBandits,6);
+	B_CloseTopic(TOPIC_Addon_BDTRuestung,0,Bones_ArmorGiven,6);
 	B_CloseTopic(TOPIC_Addon_Quarhodron,0,Saturas_KnowsHow2GetInTempel,4);
 	B_CloseTopic(TOPIC_Addon_Kammern,0,RavenIsDead,4);
 	B_CloseTopic(TOPIC_Addon_Klaue,0,BeliarsWeaponUpgrated,4);

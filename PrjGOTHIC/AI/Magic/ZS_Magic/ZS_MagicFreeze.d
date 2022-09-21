@@ -102,12 +102,12 @@ func int ZS_MagicFreeze_Loop()
 		self.aivar[AIV_FreezeStateTime] = Npc_GetStateTime(self);
 		if(self.attribute[ATR_HITPOINTS] > (self.attribute[ATR_HITPOINTS] - SPL_FREEZE_DAMAGE))
 		{
-			if((self.guild == GIL_FIREGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN) || (self.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE))
+			if(C_NpcIsFireCreature(self))
 			{
 				B_MagicHurtNpc(other,self,SPL_FREEZE_DAMAGE * 2);
 				return LOOP_CONTINUE;
 			};
-			if((self.guild == GIL_ICEGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE))
+			if(C_NpcIsIceCreature(self))
 			{
 				B_MagicHurtNpc(other,self,SPL_FREEZE_DAMAGE / 2);
 				return LOOP_CONTINUE;

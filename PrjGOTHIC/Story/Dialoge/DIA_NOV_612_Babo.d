@@ -720,7 +720,7 @@ func void B_GiveBaboDocs()
 		CreateInvItem(self,ItWr_BabosLetter_MIS);
 		AI_PrintScreen("Письмо Бабо отдано",-1,43,FONT_ScreenSmall,2);
 	};
-	B_UseFakeScroll();
+	B_ReadFakeItem(self,other,Fakescroll,1);
 	MIS_BabosDocs = LOG_SUCCESS;
 	if(!Npc_IsDead(Igaraz))
 	{

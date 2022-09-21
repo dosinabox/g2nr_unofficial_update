@@ -394,7 +394,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 			B_GiveInvItems(other,self,ItMi_Addon_Stone_01,1);
 			B_Saturas_SCFound_SayWhereOnce();
 			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_06");	//Бандиты используют эти таблички в качестве денег.
-			B_UseStoneTablet(1);
+			B_ReadFakeItem(self,other,ItMi_Addon_Stone_01,2);
 			Saturas_SCFound_ItMi_Addon_Stone_01 = TRUE;
 			BroughtToken += 1;
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_07");	//На табличках знак Куарходрона, великого воина.
@@ -407,7 +407,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 			B_GiveInvItems(other,self,ItMi_Addon_Stone_02,1);
 			B_Saturas_SCFound_SayWhereOnce();
 			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_10");	//Я нашел эту табличку в здании к югу отсюда.
-			B_UseStoneTablet(2);
+			B_ReadFakeItem(self,other,ItMi_Addon_Stone_02,2);
 			Saturas_SCFound_ItMi_Addon_Stone_02 = TRUE;
 			BroughtToken += 1;
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_11");	//A! Табличка стражей мертвых. Вот кто вызвал духов их мертвецов.
@@ -419,7 +419,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 			B_GiveInvItems(other,self,ItMi_Addon_Stone_03,1);
 			B_Saturas_SCFound_SayWhereOnce();
 			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_13");	//Я нашел эту табличку в здании к юго-западу отсюда.
-			B_UseStoneTablet(3);
+			B_ReadFakeItem(self,other,ItMi_Addon_Stone_03,2);
 			Saturas_SCFound_ItMi_Addon_Stone_03 = TRUE;
 			BroughtToken += 1;
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_14");	//Судя по табличке, она как-то связана с дворцом городских жрецов.
@@ -431,7 +431,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 			B_GiveInvItems(other,self,ItMi_Addon_Stone_04,1);
 			B_Saturas_SCFound_SayWhereOnce();
 			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_15");	//Это лежало у здания рядом с огромным болотом.
-			B_UseStoneTablet(4);
+			B_ReadFakeItem(self,other,ItMi_Addon_Stone_04,2);
 			Saturas_SCFound_ItMi_Addon_Stone_04 = TRUE;
 			BroughtToken += 1;
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_16");	//Скорее всего, это был дворец целителей.
@@ -443,7 +443,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 			B_GiveInvItems(other,self,ItMi_Addon_Stone_05,1);
 			B_Saturas_SCFound_SayWhereOnce();
 			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_18");	//Эта вещь лежала в большом здании в глубоком ущелье.
-			B_UseStoneTablet(5);
+			B_ReadFakeItem(self,other,ItMi_Addon_Stone_05,2);
 			Saturas_SCFound_ItMi_Addon_Stone_05 = TRUE;
 			BroughtToken += 1;
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_19");	//Это библиотека древнего народа.

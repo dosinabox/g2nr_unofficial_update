@@ -25,8 +25,7 @@ instance ItKe_Greg_Addon_MIS(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "Ключ от хижины";
-	text[1] = "капитана Грега.";
+	text[0] = "Ключ от хижины капитана Грега.";
 	inv_rotz = -45;
 	inv_rotx = -25;
 	inv_roty = 0;
@@ -42,8 +41,7 @@ instance ItKe_Addon_Tavern_01(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = "Ключ Лу";
-	text[0] = "Открывает таверну";
-	text[1] = "в бандитском лагере.";
+	text[0] = "Открывает таверну в бандитском лагере.";
 	inv_rotz = -45;
 	inv_rotx = -25;
 	inv_roty = 0;
@@ -59,8 +57,7 @@ instance ItKe_Addon_Esteban(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = "Ключ Эстебана";
-	text[0] = "Открывает сундук в";
-	text[1] = "его убежище.";
+	text[0] = "Открывает сундук в его убежище.";
 	inv_rotz = -45;
 	inv_rotx = -25;
 	inv_roty = 0;
@@ -110,8 +107,7 @@ instance ItKe_Addon_Buddler_01(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "Ключ от сундука";
-	text[1] = "из лагеря бандитов.";
+	text[0] = "Ключ от сундука из лагеря бандитов.";
 	inv_rotz = -45;
 	inv_rotx = -25;
 	inv_roty = 0;

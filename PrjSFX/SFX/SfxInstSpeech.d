@@ -1,5 +1,5 @@
 
-instance SVM_11_CATCHUP(C_SFX_DEF)
+/*instance SVM_11_CATCHUP(C_SFX_DEF)
 {
 	file = "SVM_11_CatchUp.WAV";
 };
@@ -557,5 +557,5 @@ instance SVM_11_YOUPISSEDMEOFF(C_SFX_DEF)
 instance SVM_11_YOUMEDDLEDWITHDUEL(C_SFX_DEF)
 {
 	file = "SVM_11_YouMeddledWithDuel.WAV";
-};
+};*/
 

@@ -103,9 +103,12 @@ instance DIA_Addon_HammerPirate_ComeOn(C_Info)
 
 func int DIA_Addon_HammerPirate_ComeOn_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Henry_FreeBDTTower == LOG_Running) && !C_TowerBanditsDead() && Npc_KnowsInfo(other,DIA_Addon_HammerPirate_Anheuern))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Henry_FreeBDTTower == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_HammerPirate_Anheuern))
 	{
-		return TRUE;
+		if(!C_TowerBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -203,9 +206,12 @@ instance DIA_Addon_HammerPirate_Success(C_Info)
 
 func int DIA_Addon_HammerPirate_Success_Condition()
 {
-	if(C_TowerBanditsDead() && (self.aivar[AIV_PARTYMEMBER] == TRUE))
+	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		return TRUE;
+		if(C_TowerBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 

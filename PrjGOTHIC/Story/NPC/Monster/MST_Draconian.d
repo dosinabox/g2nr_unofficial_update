@@ -22,7 +22,7 @@ prototype Mst_Default_Draconian(C_Npc)
 	HitChance[NPC_TALENT_BOW] = 80;
 	HitChance[NPC_TALENT_CROSSBOW] = 80;
 	damagetype = DAM_EDGE;
-	fight_tactic = FAI_ORC;
+	fight_tactic = FAI_ORC; //есть FAI_DRACONIAN, но не используется
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;
 	aivar[AIV_MM_FollowTime] = FOLLOWTIME_MEDIUM;

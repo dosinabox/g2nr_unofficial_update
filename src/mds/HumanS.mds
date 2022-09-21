@@ -855,48 +855,48 @@ Model ("HuS")
 
 
 	// CROSSBOW
-			ani			("t_Run_2_CBow"			1	"s_CBow"		0.0 0.0 M.	"Hum_CBowDraw.asc"		F	1	4)
-			ani			("s_CBow"				1	"s_CBow"		0.0 0.0 M.	"Hum_CBowDraw.asc"		F	5	5)
-			ani			("t_CBow_2_CBowRun"		1	"s_CBowRun"		0.0 0.0 M.	"Hum_CBowDraw.asc"		F  	6	39)
-			{
-				*eventTag		(7	"DEF_FIGHTMODE"	"CBOW")
-				*eventSFX		(7	"Crossbow_DrawSound")
-				*eventSFX		(25	"Crossbow_Charge")
-				*eventMMStartAni	(27	"S_CHARGE"		"ZS_RIGHTHAND")
-				*eventMMStartAni	(30	"S_SHOOT"		"ZS_RIGHTHAND")
-		        	*eventTag		(33	"DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
-			}
+	//		ani			("t_Run_2_CBow"			1	"s_CBow"		0.0 0.0 M.	"Hum_CBowDraw.asc"		F	1	4)
+	//		ani			("s_CBow"				1	"s_CBow"		0.0 0.0 M.	"Hum_CBowDraw.asc"		F	5	5)
+	//		ani			("t_CBow_2_CBowRun"		1	"s_CBowRun"		0.0 0.0 M.	"Hum_CBowDraw.asc"		F  	6	39)
+	//		{
+	//			*eventTag		(7	"DEF_FIGHTMODE"	"CBOW")
+	//			*eventSFX		(7	"Crossbow_DrawSound")
+	//			*eventSFX		(25	"Crossbow_Charge")
+	//			*eventMMStartAni	(27	"S_CHARGE"		"ZS_RIGHTHAND")
+	//			*eventMMStartAni	(30	"S_SHOOT"		"ZS_RIGHTHAND")
+	//        	*eventTag		(33	"DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
+	//		}
 
-			ani			("t_CBowRun_2_CBow"		1	"s_CBow"		0.0 0.0 M.	"Hum_CBowDraw.asc"		R  	6	39)
-			{
-				*eventTag		(7 	"DEF_FIGHTMODE"	"")
-				*eventSFX		(17	"Crossbow_UndrawSound")
-				*eventMMStartAni	(27	"S_NORMAL"		"ZS_RIGHTHAND")
-				*eventMMStartAni	(30	"S_REFUSE"		"ZS_RIGHTHAND")
-				*eventSFX		(32	"Crossbow_Refuse")
-		   	     	*eventTag		(33	"DEF_REMOVE_MUNITION")
-			}
-			aniAlias	("t_CBow_2_Run"			1	""				0.0 0.1 M.	"t_Run_2_CBow"			R)
+	//		ani			("t_CBowRun_2_CBow"		1	"s_CBow"		0.0 0.0 M.	"Hum_CBowDraw.asc"		R  	6	39)
+	//		{
+	//			*eventTag		(7 	"DEF_FIGHTMODE"	"")
+	//			*eventSFX		(17	"Crossbow_UndrawSound")
+	//			*eventMMStartAni	(27	"S_NORMAL"		"ZS_RIGHTHAND")
+	//			*eventMMStartAni	(30	"S_REFUSE"		"ZS_RIGHTHAND")
+	//			*eventSFX		(32	"Crossbow_Refuse")
+	// 	     	*eventTag		(33	"DEF_REMOVE_MUNITION")
+	//		}
+	//		aniAlias	("t_CBow_2_Run"			1	""				0.0 0.1 M.	"t_Run_2_CBow"			R)
 
 		// Armbrust beim Rennen ziehen
-			ani			("t_Move_2_CBowMove"	2	""				0.2	0.2	M.	"Hum_CBowDrawMove.asc"	F	1	39)
-			{
-				*eventTag		(7	"DEF_FIGHTMODE"	"CBOW")
-				*eventSFX		(7	"Crossbow_DrawSound")
-				*eventSFX		(25	"Crossbow_Charge")
-				*eventMMStartAni	(27	"S_CHARGE"		"ZS_RIGHTHAND")
-				*eventMMStartAni	(30	"S_SHOOT"		"ZS_RIGHTHAND")
-		        	*eventTag		(33	"DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
-			}
-			ani			("t_CBowMove_2_Move"	2	""				0.2	0.2	M.	"Hum_CBowDrawMove.asc"	R	1	39)
-			{
-				*eventTag		(7 	"DEF_FIGHTMODE"	"")
-				*eventSFX		(17	"Crossbow_UndrawSound")
-				*eventMMStartAni	(27	"S_NORMAL"		"ZS_RIGHTHAND")
-				*eventMMStartAni	(30	"S_REFUSE"		"ZS_RIGHTHAND")
-				*eventSFX		(32	"Crossbow_Refuse")
-		   	     	*eventTag		(33	"DEF_REMOVE_MUNITION")
-			}
+	//		ani			("t_Move_2_CBowMove"	2	""				0.2	0.2	M.	"Hum_CBowDrawMove.asc"	F	1	39)
+	//		{
+	//			*eventTag		(7	"DEF_FIGHTMODE"	"CBOW")
+	//			*eventSFX		(7	"Crossbow_DrawSound")
+	//			*eventSFX		(25	"Crossbow_Charge")
+	//			*eventMMStartAni	(27	"S_CHARGE"		"ZS_RIGHTHAND")
+	//			*eventMMStartAni	(30	"S_SHOOT"		"ZS_RIGHTHAND")
+	//        	*eventTag		(33	"DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
+	//		}
+	//		ani			("t_CBowMove_2_Move"	2	""				0.2	0.2	M.	"Hum_CBowDrawMove.asc"	R	1	39)
+	//		{
+	//			*eventTag		(7 	"DEF_FIGHTMODE"	"")
+	//			*eventSFX		(17	"Crossbow_UndrawSound")
+	//			*eventMMStartAni	(27	"S_NORMAL"		"ZS_RIGHTHAND")
+	//			*eventMMStartAni	(30	"S_REFUSE"		"ZS_RIGHTHAND")
+	//			*eventSFX		(32	"Crossbow_Refuse")
+	// 	     	*eventTag		(33	"DEF_REMOVE_MUNITION")
+	//		}
 
 
 	// TRANSITIONS FIST
@@ -2128,174 +2128,174 @@ Model ("HuS")
 //////////////////////////
 
 //	CBow-RUN
-			ani			("s_CBowRun"				1	"s_CBowRun"		0.1 0.1 MI	"Hum_Amb_CBowRun_M01.asc"	F	1	50	FPS:10)
-			{
-				*eventMMStartAni 	(2	"S_SHOOT"	"ZS_RIGHTHAND")
-			}
-			ani			("t_CBowRun_2_CBowRunL"		1	"s_CBowRunL"	0.1	0.0	M.	"Hum_CBowRun.asc"		F	1	11)
-			ani			("s_CBowRunL"				1	"s_CBowRunL"	0.0	0.0	M.	"Hum_CBowRun.asc"		F	12	31)
-			{
-				*eventSFXGrnd	(12	"Run")
-				*eventSFXGrnd	(22	"Run")
-			}
-			ani			("t_CBowRunL_2_CBowRun"		1	"s_CBowRun"		0.0	0.0	M.	"Hum_CBowRun.asc"		F	32	38)
-			{
-				*eventSFXGrnd	(32	"Run")
-				*eventSFXGrnd	(37	"Run")
-			}
-			aniBlend	("t_CBowRunR_2_CBowRun"			"s_CBowRun"		0.2	0.2)
+	//		ani			("s_CBowRun"				1	"s_CBowRun"		0.1 0.1 MI	"Hum_Amb_CBowRun_M01.asc"	F	1	50	FPS:10)
+	//		{
+	//			*eventMMStartAni 	(2	"S_SHOOT"	"ZS_RIGHTHAND")
+	//		}
+	//		ani			("t_CBowRun_2_CBowRunL"		1	"s_CBowRunL"	0.1	0.0	M.	"Hum_CBowRun.asc"		F	1	11)
+	//		ani			("s_CBowRunL"				1	"s_CBowRunL"	0.0	0.0	M.	"Hum_CBowRun.asc"		F	12	31)
+	//		{
+	//			*eventSFXGrnd	(12	"Run")
+	//			*eventSFXGrnd	(22	"Run")
+	//		}
+	//		ani			("t_CBowRunL_2_CBowRun"		1	"s_CBowRun"		0.0	0.0	M.	"Hum_CBowRun.asc"		F	32	38)
+	//		{
+	//			*eventSFXGrnd	(32	"Run")
+	//			*eventSFXGrnd	(37	"Run")
+	//		}
+	//		aniBlend	("t_CBowRunR_2_CBowRun"			"s_CBowRun"		0.2	0.2)
 
-			ani			("t_CBowJumpB"				1	"s_CBowRun"		0.2	0.2	M.	"Hum_CBowJumpB.asc"		F	1	14)
-			{
-				*eventSFXGrnd	(9	"Run")
-				*eventSFXGrnd	(12	"Run")
-			}
+	//		ani			("t_CBowJumpB"				1	"s_CBowRun"		0.2	0.2	M.	"Hum_CBowJumpB.asc"		F	1	14)
+	//		{
+	//			*eventSFXGrnd	(9	"Run")
+	//			*eventSFXGrnd	(12	"Run")
+	//		}
 //	CBow-WALK
-			aniAlias	("s_CBowWalk"				1	"s_CBowWalk"	0.1	0.1	MI	"s_CBowRun"				F)
-			ani			("t_CBowWalk_2_CBowWalkL"	1	"s_CBowWalkL"	0.2	0.0	M.	"Hum_CBowWalk.asc"		F	1	18)
-			{
-				*eventSFXGrnd	(15	"Run")
-			}
-			ani			("s_CBowWalkL"				1	"s_CBowWalkL"	0.0	0.0	M.	"Hum_CBowWalk.asc"		F	19	38)
-			{
-				*eventSFXGrnd	(27	"Run")
-				*eventSFXGrnd	(36	"Run")
-			}
-			ani			("t_CBowWalkL_2_CBowWalk"	1	"s_CBowWalk"	0.0	0.2	M.	"Hum_CBowWalk.asc"		F	39	49)
-			{
-				*eventSFXGrnd	(47	"Run")
-				*eventSFXGrnd	(49	"Run")
-			}
-			aniBlend	("t_CBowWalkR_2_CBowWalk"		"s_CBowWalk"	0.2	0.2)
+	//		aniAlias	("s_CBowWalk"				1	"s_CBowWalk"	0.1	0.1	MI	"s_CBowRun"				F)
+	//		ani			("t_CBowWalk_2_CBowWalkL"	1	"s_CBowWalkL"	0.2	0.0	M.	"Hum_CBowWalk.asc"		F	1	18)
+	//		{
+	//			*eventSFXGrnd	(15	"Run")
+	//		}
+	//		ani			("s_CBowWalkL"				1	"s_CBowWalkL"	0.0	0.0	M.	"Hum_CBowWalk.asc"		F	19	38)
+	//		{
+	//			*eventSFXGrnd	(27	"Run")
+	//			*eventSFXGrnd	(36	"Run")
+	//		}
+	//		ani			("t_CBowWalkL_2_CBowWalk"	1	"s_CBowWalk"	0.0	0.2	M.	"Hum_CBowWalk.asc"		F	39	49)
+	//		{
+	//			*eventSFXGrnd	(47	"Run")
+	//			*eventSFXGrnd	(49	"Run")
+	//		}
+	//		aniBlend	("t_CBowWalkR_2_CBowWalk"		"s_CBowWalk"	0.2	0.2)
 
 //	CBow-Walk Backwards Movement
-			aniAlias	("t_CBowWalk_2_CBowWalkBL"	1	"s_CBowWalkBL"	0.2	0.0	M.	"t_CBowWalkL_2_CBowWalk"	R)
-			aniAlias	("s_CBowWalkBL"				1	"s_CBowWalkBL"	0.0	0.0	M.	"s_CBowWalkL"				R)
-			aniAlias	("t_CBowWalkBL_2_CBowWalk"	1	"s_CBowWalk"	0.0	0.2	M.	"t_CBowWalk_2_CBowWalkL"	R)
-			aniBlend	("t_CBowWalkBR_2_CBowWalk"		"s_CBowWalk"	0.2	0.2)
+	//		aniAlias	("t_CBowWalk_2_CBowWalkBL"	1	"s_CBowWalkBL"	0.2	0.0	M.	"t_CBowWalkL_2_CBowWalk"	R)
+	//		aniAlias	("s_CBowWalkBL"				1	"s_CBowWalkBL"	0.0	0.0	M.	"s_CBowWalkL"				R)
+	//		aniAlias	("t_CBowWalkBL_2_CBowWalk"	1	"s_CBowWalk"	0.0	0.2	M.	"t_CBowWalk_2_CBowWalkL"	R)
+	//		aniBlend	("t_CBowWalkBR_2_CBowWalk"		"s_CBowWalk"	0.2	0.2)
 
 
 //	CBow-SNEAK
-			ani			("s_CBowSneak"				1	"s_CBowSneak"	0.1	0.1	MI	"Hum_Amb_CBowSneak_M01.asc"	F	1	50	FPS:10)
-			ani			("t_CBowSneak_2_CBowSneakL"	1	"s_CBowSneakL"	0.1	0.0	M.	"Hum_CBowSneak.asc"			F	1	11)
-			ani			("s_CBowSneakL"				1	"s_CBowSneakL"	0.0	0.0	M.	"Hum_CBowSneak.asc"			F	12	51)
-			ani			("t_CBowSneakL_2_CBowSneak"	1	"s_CBowSneak"	0.0	0.1	M.	"Hum_CBowSneak.asc"			F	52	88 FPS:10)
-			aniBlend	("t_CBowSneakR_2_CBowSneak"		"s_CBowSneak"	0.2	0.2)
+	//		ani			("s_CBowSneak"				1	"s_CBowSneak"	0.1	0.1	MI	"Hum_Amb_CBowSneak_M01.asc"	F	1	50	FPS:10)
+	//		ani			("t_CBowSneak_2_CBowSneakL"	1	"s_CBowSneakL"	0.1	0.0	M.	"Hum_CBowSneak.asc"			F	1	11)
+	//		ani			("s_CBowSneakL"				1	"s_CBowSneakL"	0.0	0.0	M.	"Hum_CBowSneak.asc"			F	12	51)
+	//		ani			("t_CBowSneakL_2_CBowSneak"	1	"s_CBowSneak"	0.0	0.1	M.	"Hum_CBowSneak.asc"			F	52	88 FPS:10)
+	//		aniBlend	("t_CBowSneakR_2_CBowSneak"		"s_CBowSneak"	0.2	0.2)
 
 //	CBow-SNEAK Backwards Movement
-			aniBlend	("t_CBowSneak_2_CBowSneakBL"	"s_CBowSneakBL"	0.2	0.2)
-			aniAlias	("s_CBowSneakBL"			1	"s_CBowSneakBL"	0.0	0.0	M.	"s_CBowSneakL"				R)
-			aniBlend	("t_CBowSneakBL_2_CBowSneak"	"s_CBowSneak"	0.2	0.2)
-			aniBlend	("t_CBowSneakBR_2_CBowSneak"	"s_CBowSneak"	0.2	0.2)
+	//		aniBlend	("t_CBowSneak_2_CBowSneakBL"	"s_CBowSneakBL"	0.2	0.2)
+	//		aniAlias	("s_CBowSneakBL"			1	"s_CBowSneakBL"	0.0	0.0	M.	"s_CBowSneakL"				R)
+	//		aniBlend	("t_CBowSneakBL_2_CBowSneak"	"s_CBowSneak"	0.2	0.2)
+	//		aniBlend	("t_CBowSneakBR_2_CBowSneak"	"s_CBowSneak"	0.2	0.2)
 
 
 //////////////////////////
 // CROSSBOW TURNING
 //////////////////////////
-			ani			("t_CBowRunTurnL"			20	"t_CBowRunTurnL"	0.1	0.1	M.	"Hum_CBowTurn.asc"		F	0	24)
-			{
-				*eventSFXGrnd	(8	"Run")
-				*eventSFXGrnd	(19	"Run")
-			}
-			ani			("t_CBowRunTurnR"			20	"t_CBowRunTurnR"	0.1	0.1	M.	"Hum_CBowTurn.asc"		F	25	49)
-			{
-				*eventSFXGrnd	(30	"Run")
-				*eventSFXGrnd	(41	"Run")
-			}
+	//		ani			("t_CBowRunTurnL"			20	"t_CBowRunTurnL"	0.1	0.1	M.	"Hum_CBowTurn.asc"		F	0	24)
+	//		{
+	//			*eventSFXGrnd	(8	"Run")
+	//			*eventSFXGrnd	(19	"Run")
+	//		}
+	//		ani			("t_CBowRunTurnR"			20	"t_CBowRunTurnR"	0.1	0.1	M.	"Hum_CBowTurn.asc"		F	25	49)
+	//		{
+	//			*eventSFXGrnd	(30	"Run")
+	//			*eventSFXGrnd	(41	"Run")
+	//		}
 
-			aniAlias	("t_CBowWalkTurnL"			20	"t_CBowWalkTurnL"	0.1	0.1	M.	"t_CBowRunTurnL"		F)
-			aniAlias	("t_CBowWalkTurnR"			20	"t_CBowWalkTurnR"	0.1	0.1	M.	"t_CBowRunTurnR"		F)
+	//		aniAlias	("t_CBowWalkTurnL"			20	"t_CBowWalkTurnL"	0.1	0.1	M.	"t_CBowRunTurnL"		F)
+	//		aniAlias	("t_CBowWalkTurnR"			20	"t_CBowWalkTurnR"	0.1	0.1	M.	"t_CBowRunTurnR"		F)
 
-			ani			("t_CBowSneakTurnL"			20	"t_CBowSneakTurnL"	0.3	0.3	M.	"Hum_CBowSneakTurn.asc"	F	0	24)
-			ani			("t_CBowSneakTurnR"			20	"t_CBowSneakTurnR"	0.3	0.3	M.	"Hum_CBowSneakTurn.asc"	F	25	49)
+	//		ani			("t_CBowSneakTurnL"			20	"t_CBowSneakTurnL"	0.3	0.3	M.	"Hum_CBowSneakTurn.asc"	F	0	24)
+	//		ani			("t_CBowSneakTurnR"			20	"t_CBowSneakTurnR"	0.3	0.3	M.	"Hum_CBowSneakTurn.asc"	F	25	49)
 
 
 //////////////////////////
 // CROSSBOW STRAFING
 //////////////////////////
-			ani			("t_CBowRunStrafeL"			1	"t_CBowRunStrafeL"	0.1	0.1	M.	"Hum_CBowStrafeL_M01.asc"	F	0	18)
-			{
-				*eventSFXGrnd	(0	"Run")
-				*eventSFXGrnd	(9	"Run")
-			}
-			ani			("t_CBowRunStrafeR"			1	"t_CBowRunStrafeR"	0.1	0.1	M.	"Hum_CBowStrafeR_M01.asc"	F	0	18)
-			{
-				*eventSFXGrnd	(0	"Run")
-				*eventSFXGrnd	(9	"Run")
-			}
+	//		ani			("t_CBowRunStrafeL"			1	"t_CBowRunStrafeL"	0.1	0.1	M.	"Hum_CBowStrafeL_M01.asc"	F	0	18)
+	//		{
+	//			*eventSFXGrnd	(0	"Run")
+	//			*eventSFXGrnd	(9	"Run")
+	//		}
+	//		ani			("t_CBowRunStrafeR"			1	"t_CBowRunStrafeR"	0.1	0.1	M.	"Hum_CBowStrafeR_M01.asc"	F	0	18)
+	//		{
+	//			*eventSFXGrnd	(0	"Run")
+	//			*eventSFXGrnd	(9	"Run")
+	//		}
 
-			aniAlias	("t_CBowWalkStrafeL"		1	"t_CBowWalkStrafeL"	0.1	0.1	M.	"t_CBowRunStrafeL"		F)
-			aniAlias	("t_CBowWalkStrafeR"		1	"t_CBowWalkStrafeR"	0.1	0.1	M.	"t_CBowRunStrafeR"		F)
+	//		aniAlias	("t_CBowWalkStrafeL"		1	"t_CBowWalkStrafeL"	0.1	0.1	M.	"t_CBowRunStrafeL"		F)
+	//		aniAlias	("t_CBowWalkStrafeR"		1	"t_CBowWalkStrafeR"	0.1	0.1	M.	"t_CBowRunStrafeR"		F)
 
-			ani			("t_CBowSneakStrafeL"		1	"s_CBowSneak"		0.1	0.1	M.	"Hum_CBowSneakStrafe.asc"	F	1	24)
-			ani			("t_CBowSneakStrafeR"		1	"s_CBowSneak"		0.1	0.1	M.	"Hum_CBowSneakStrafe.asc"	R	1	24)
+	//		ani			("t_CBowSneakStrafeL"		1	"s_CBowSneak"		0.1	0.1	M.	"Hum_CBowSneakStrafe.asc"	F	1	24)
+	//		ani			("t_CBowSneakStrafeR"		1	"s_CBowSneak"		0.1	0.1	M.	"Hum_CBowSneakStrafe.asc"	R	1	24)
 
 
 //////////////////////////
 // CROSSBOW TRANSITIONS
 //////////////////////////
 //	Movement-Modes
-			aniBlend	("t_CBowRun_2_CBowWalk"			"s_CBowWalk")
-			aniBlend	("t_CBowWalk_2_CBowRun"			"s_CBowRun")
+	//		aniBlend	("t_CBowRun_2_CBowWalk"			"s_CBowWalk")
+	//		aniBlend	("t_CBowWalk_2_CBowRun"			"s_CBowRun")
 
-			ani			("t_CBowRun_2_CBowSneak"	1	"s_CBowSneak"	0.1	0.1	M.	"Hum_CBowSneak.asc"			R	90	98)
-			aniAlias	("t_CBowSneak_2_CBowRun"	1	"s_CBowRun"		0.1	0.1	M.	"t_CBowRun_2_CBowSneak"		F)
+	//		ani			("t_CBowRun_2_CBowSneak"	1	"s_CBowSneak"	0.1	0.1	M.	"Hum_CBowSneak.asc"			R	90	98)
+	//		aniAlias	("t_CBowSneak_2_CBowRun"	1	"s_CBowRun"		0.1	0.1	M.	"t_CBowRun_2_CBowSneak"		F)
 
-			aniBlend	("t_CBowRunL_2_CBowWalkL"		"s_CBowWalkL"	0.2	0.2)
-			aniBlend	("t_CBowWalkL_2_CBowRunL"		"s_CBowRunL"	0.2	0.2)
+	//		aniBlend	("t_CBowRunL_2_CBowWalkL"		"s_CBowWalkL"	0.2	0.2)
+	//		aniBlend	("t_CBowWalkL_2_CBowRunL"		"s_CBowRunL"	0.2	0.2)
 
-			aniBlend	("t_CBowSneakL_2_CBowRunL"		"s_CBowRunL"	0.2	0.2)
-			aniBlend	("t_CBowRunL_2_CBowSneakL"		"s_CBowSneakL"	0.2	0.2)
+	//		aniBlend	("t_CBowSneakL_2_CBowRunL"		"s_CBowRunL"	0.2	0.2)
+	//		aniBlend	("t_CBowRunL_2_CBowSneakL"		"s_CBowSneakL"	0.2	0.2)
 
-			aniBlend	("t_CBowSneak_2_CBowWalk"		"s_CBowWalk"	0.2	0.2)
-			aniBlend	("t_CBowWalk_2_CBowSneak"		"s_CBowSneak"	0.2	0.2)
+	//		aniBlend	("t_CBowSneak_2_CBowWalk"		"s_CBowWalk"	0.2	0.2)
+	//		aniBlend	("t_CBowWalk_2_CBowSneak"		"s_CBowSneak"	0.2	0.2)
 
 //	aus dem Rennen direkt Springen
-			aniAlias	("t_CBowRunL_2_Jump"		1	"s_Jump"		0.1	0.1	MF	"t_RunL_2_Jump"				F)
-			aniAlias	("t_CBowRunR_2_Jump"		1	"s_Jump"		0.1	0.1	MF	"t_RunL_2_Jump"				F)
+	//		aniAlias	("t_CBowRunL_2_Jump"		1	"s_Jump"		0.1	0.1	MF	"t_RunL_2_Jump"				F)
+	//		aniAlias	("t_CBowRunR_2_Jump"		1	"s_Jump"		0.1	0.1	MF	"t_RunL_2_Jump"				F)
 // 	nach dem Sprung direkt weiterrennen, wenn CursorUp weiterhin gedrückt
-			aniBlend	("t_Jump_2_CBowRunL"			"s_CBowRunL"	0.2	0.1)
+	//		aniBlend	("t_Jump_2_CBowRunL"			"s_CBowRunL"	0.2	0.1)
 
 
 //////////////////////////
 // CROSSBOW FIGHTING
 //////////////////////////
 // CROSSBOW Kampfanims
-			ani			("t_CBowRun_2_CBowAim"		1	"s_CBowAim"		0.0 0.0 M.	"Hum_CBowAim.asc"			F	1	5)
-			aniAlias	("t_CBowAim_2_CBowRun"		1	""				0.0 0.0 M.	"t_CBowRun_2_CBowAim"		R)
+	//		ani			("t_CBowRun_2_CBowAim"		1	"s_CBowAim"		0.0 0.0 M.	"Hum_CBowAim.asc"			F	1	5)
+	//		aniAlias	("t_CBowAim_2_CBowRun"		1	""				0.0 0.0 M.	"t_CBowRun_2_CBowAim"		R)
 
-			aniAlias	("t_CBowWalk_2_CBowAim"		1	"s_CBowAim"		0.0 0.0 M.	"t_CBowRun_2_CBowAim"		F)
-			aniAlias	("t_CBowAim_2_CBowWalk"		1	""				0.0	0.0	M.	"t_CBowRun_2_CBowAim"		R)
-			aniAlias	("t_CBowAim_2_Stand"		1	""				0.0	0.0	M.	"t_CBowRun_2_CBowAim"		R)
+	//		aniAlias	("t_CBowWalk_2_CBowAim"		1	"s_CBowAim"		0.0 0.0 M.	"t_CBowRun_2_CBowAim"		F)
+	//		aniAlias	("t_CBowAim_2_CBowWalk"		1	""				0.0	0.0	M.	"t_CBowRun_2_CBowAim"		R)
+	//		aniAlias	("t_CBowAim_2_Stand"		1	""				0.0	0.0	M.	"t_CBowRun_2_CBowAim"		R)
 
 
 // Shoot + Reload
-			aniBlend	("t_CBowAim_2_CBowShoot"		"s_CbowShoot")
-			ani			("s_CBowShoot"				1	"s_CBowShoot"	0.0 0.0 M.	"Hum_CBowAim.asc"		F	6	6)
-			{
-				*eventMMStartAni	(6	"S_SHOOT"	"ZS_RIGHTHAND")
-				*eventSFX			(6	"CrossbowShoot"  )
-			}
-			ani			("t_CBowReload"				1	"s_CBowAim"		0.0 0.0 M.	"Hum_CBowAim.asc"		F	7	39)
-			{
-				*eventMMStartAni	(7	"S_RELAX"	"ZS_RIGHTHAND")
-				*eventSFX		(14	"Crossbow_Charge")
-		     		*eventTag		(14 "DEF_PLACE_MUNITION" "ZS_LEFTHAND")
-				*eventMMStartAni	(31	"S_READY"	"ZS_RIGHTHAND")
-			}
+	//		aniBlend	("t_CBowAim_2_CBowShoot"		"s_CbowShoot")
+	//		ani			("s_CBowShoot"				1	"s_CBowShoot"	0.0 0.0 M.	"Hum_CBowAim.asc"		F	6	6)
+	//		{
+	//			*eventMMStartAni	(6	"S_SHOOT"	"ZS_RIGHTHAND")
+	//			*eventSFX			(6	"CrossbowShoot"  )
+	//		}
+	//		ani			("t_CBowReload"				1	"s_CBowAim"		0.0 0.0 M.	"Hum_CBowAim.asc"		F	7	39)
+	//		{
+	//			*eventMMStartAni	(7	"S_RELAX"	"ZS_RIGHTHAND")
+	//			*eventSFX		(14	"Crossbow_Charge")
+	//     		*eventTag		(14 "DEF_PLACE_MUNITION" "ZS_LEFTHAND")
+	//			*eventMMStartAni	(31	"S_READY"	"ZS_RIGHTHAND")
+	//		}
 
 // Autoaiming 9 Posen
-			ani			("c_Cbow_1"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	0	0)
-			ani			("c_Cbow_2"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	1	1)
-			ani			("c_Cbow_3"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	2	2)
-			ani			("c_Cbow_4"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	3	3)
-			ani			("c_Cbow_5"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	4	4)
-			ani			("c_Cbow_6"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	5	5)
-			ani			("c_Cbow_7"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	6	6)
-			ani			("c_Cbow_8"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	7	7)
-			ani			("c_Cbow_9"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	8	8)
+	//		ani			("c_Cbow_1"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	0	0)
+	//		ani			("c_Cbow_2"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	1	1)
+	//		ani			("c_Cbow_3"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	2	2)
+	//		ani			("c_Cbow_4"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	3	3)
+	//		ani			("c_Cbow_5"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	4	4)
+	//		ani			("c_Cbow_6"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	5	5)
+	//		ani			("c_Cbow_7"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	6	6)
+	//		ani			("c_Cbow_8"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	7	7)
+	//		ani			("c_Cbow_9"					4	""				0.0	0.0	..	"Hum_CBowAutoAim.asc"	F	8	8)
 
-			aniComb		("s_CBowAim"				1	"s_CBowAim"		0.3	0.3	M.	"c_Cbow_"	9)
+	//		aniComb		("s_CBowAim"				1	"s_CBowAim"		0.3	0.3	M.	"c_Cbow_"	9)
 
 
 
@@ -4256,6 +4256,263 @@ Model ("HuS")
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CROSSBOW: GMF Version ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////
+// CROSSBOW DRAW
+//////////////////////////
+			ani			("t_Run_2_CBow"			1	"s_CBow"		0.1 0.0 M.	"Hum_CBowDraw_GMF.asc"		F	1	6)
+			ani			("s_CBow"				1	"s_CBow"		0.0 0.0 M.	"Hum_CBowDraw_GMF.asc"		F	7	7)
+			ani			("t_CBow_2_CBowRun"		1	"s_CBowRun"		0.0 0.2 M.	"Hum_CBowDraw_GMF.asc"		F  	7	40)
+			{
+				*eventTag			(7	"DEF_FIGHTMODE"			"CBOW")
+				*eventTag			(7	"DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
+				*eventSFX			(7	"Crossbow_DrawSound"	R:800)
+				*eventSFX			(23	"Crossbow_Charge"		R:800)
+				*eventMMStartAni	(23	"S_CHARGE"				"ZS_RIGHTHAND")
+				*eventMMStartAni	(30	"S_SHOOT"				"ZS_RIGHTHAND")
+			}
+
+			ani			("t_CBowRun_2_CBow"		1	"s_CBow"		0.0 0.0 M.	"Hum_CBowDraw_GMF.asc"		R  	7	40)
+			{
+				*eventTag			(7 	"DEF_FIGHTMODE"			"")
+				*eventTag			(7	"DEF_REMOVE_MUNITION")
+				*eventSFX			(17	"Crossbow_UndrawSound"	R:800)
+				*eventMMStartAni	(23	"S_NORMAL"				"ZS_RIGHTHAND")
+				*eventMMStartAni	(30	"S_REFUSE"				"ZS_RIGHTHAND")
+				*eventSFX			(32	"Crossbow_Refuse"		R:800)
+			}
+			aniAlias	("t_CBow_2_Run"			1	""				0.0 0.2 M.	"t_Run_2_CBow"				R)
+			
+			ani			("t_Move_2_CBowMove"	2	""				0.2	0.2	M.	"Hum_CBowDrawMove_GMF.asc"	F	1	39)
+			{
+				*eventTag			(7	"DEF_FIGHTMODE"			"CBOW")
+				*eventTag			(7	"DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
+				*eventSFX			(7	"Crossbow_DrawSound"	R:800)
+				*eventSFX			(23	"Crossbow_Charge"		R:800)
+				*eventMMStartAni	(23	"S_CHARGE"				"ZS_RIGHTHAND")
+				*eventMMStartAni	(30	"S_SHOOT"				"ZS_RIGHTHAND")
+			}
+			ani			("t_CBowMove_2_Move"	2	""				0.2	0.2	M.	"Hum_CBowDrawMove_GMF.asc"	R	1	39)
+			{
+				*eventTag			(7 	"DEF_FIGHTMODE"			"")
+				*eventTag			(7	"DEF_REMOVE_MUNITION")
+				*eventSFX			(17	"Crossbow_UndrawSound"	R:800)
+				*eventMMStartAni	(23	"S_NORMAL"				"ZS_RIGHTHAND")
+				*eventMMStartAni	(30	"S_REFUSE"				"ZS_RIGHTHAND")
+				*eventSFX			(32	"Crossbow_Refuse"		R:800)
+			}
+			
+//////////////////////////
+// CROSSBOW RUN
+//////////////////////////
+			ani			("s_CBowRun"				1	"s_CBowRun"		0.1 0.1 M.	"Hum_Amb_CBowRun_GMF.asc"	F	1	50)
+			{
+				*eventMMStartAni 	(2	"S_SHOOT"	"ZS_RIGHTHAND")
+			}
+			ani			("t_CBowRun_2_CBowRunL"		1	"s_CBowRunL"	0.1	0.0	M.	"Hum_CBowRun_GMF.asc"		F	1	11)
+			ani			("s_CBowRunL"				1	"s_CBowRunL"	0.0	0.0	M.	"Hum_CBowRun_GMF.asc"		F	12	31)
+			{
+				*eventSFXGrnd	(12	"Run")
+				*eventSFXGrnd	(22	"Run")
+			}
+			ani			("t_CBowRunL_2_CBowRun"		1	"s_CBowRun"		0.0	0.0	M.	"Hum_CBowRun_GMF.asc"		F	32	38)
+			{
+				*eventSFXGrnd	(32	"Run")
+				*eventSFXGrnd	(37	"Run")
+			}
+			aniBlend	("t_CBowRunR_2_CBowRun"			"s_CBowRun"		0.2	0.2)
+
+			
+			ani			("t_CBowJumpB"				1	"s_CBowRun"		0.2	0.2	M.	"Hum_CBowJumpB_GMF.asc"		F	1	14)
+			{
+				*eventSFXGrnd	(9	"Run")
+				*eventSFXGrnd	(12	"Run")
+			}
+
+//////////////////////////
+// CROSSBOW WALK
+//////////////////////////
+			aniAlias	("s_CBowWalk"				1	"s_CBowWalk"	0.1	0.1	M.	"s_CBowRun"				F)
+			ani			("t_CBowWalk_2_CBowWalkL"	1	"s_CBowWalkL"	0.2	0.0	M.	"Hum_CBowWalk_GMF.asc"		F	0	9)
+			ani			("s_CBowWalkL"				1	"s_CBowWalkL"	0.0	0.0	M.	"Hum_CBowWalk_GMF.asc"		F	10	33)
+			{
+				*eventSFXGrnd	(10	"Run")
+				*eventSFXGrnd	(22	"Run")
+			}
+			ani			("t_CBowWalkL_2_CBowWalk"	1	"s_CBowWalk"	0.0	0.2	M.	"Hum_CBowWalk_GMF.asc"		F	34	39)
+			{
+				*eventSFXGrnd	(34	"Run")
+				*eventSFXGrnd	(39	"Run")
+			}
+			aniBlend	("t_CBowWalkR_2_CBowWalk"		"s_CBowWalk"	0.2	0.2)
+			
+			aniAlias	("t_CBowWalk_2_CBowWalkBL"	1	"s_CBowWalkBL"	0.2	0.0	M.	"t_CBowWalkL_2_CBowWalk"	R)
+			aniAlias	("s_CBowWalkBL"				1	"s_CBowWalkBL"	0.0	0.0	M.	"s_CBowWalkL"				R)
+			aniAlias	("t_CBowWalkBL_2_CBowWalk"	1	"s_CBowWalk"	0.0	0.2	M.	"t_CBowWalk_2_CBowWalkL"	R)
+			aniBlend	("t_CBowWalkBR_2_CBowWalk"		"s_CBowWalk"	0.2	0.2)
+
+//////////////////////////
+// CROSSBOW SNEAK
+//////////////////////////
+			ani			("s_CBowSneak"				1	"s_CBowSneak"	0.1	0.1	MI	"Hum_Amb_CBowSneak_GMF.asc"	F	1	50)
+			ani			("t_CBowSneak_2_CBowSneakL"	1	"s_CBowSneakL"	0.1	0.0	M.	"Hum_CBowSneak_GMF.asc"		F	1	11)
+			ani			("s_CBowSneakL"				1	"s_CBowSneakL"	0.0	0.0	M.	"Hum_CBowSneak_GMF.asc"		F	12	51)
+			{
+				*eventSFXGrnd	(25	"Sneak")
+				*eventSFXGrnd	(42	"Sneak")
+			}
+			ani			("t_CBowSneakL_2_CBowSneak"	1	"s_CBowSneak"	0.0	0.1	M.	"Hum_CBowSneak_GMF.asc"		F	52	77)
+			{
+				*eventSFXGrnd	(57	"Sneak")
+				*eventSFXGrnd	(71	"Sneak")
+				*eventSFXGrnd	(75	"Sneak")
+			}
+			aniBlend	("t_CBowSneakR_2_CBowSneak"		"s_CBowSneak"	0.2	0.2)
+
+			aniBlend	("t_CBowSneak_2_CBowSneakBL"	"s_CBowSneakBL"	0.2	0.2)
+			aniAlias	("s_CBowSneakBL"			1	"s_CBowSneakBL"	0.0	0.0	M.	"s_CBowSneakL"				R)
+			aniBlend	("t_CBowSneakBL_2_CBowSneak"	"s_CBowSneak"	0.2	0.2)
+			aniBlend	("t_CBowSneakBR_2_CBowSneak"	"s_CBowSneak"	0.2	0.2)
+
+//////////////////////////
+// CROSSBOW TURNING
+//////////////////////////
+			ani			("t_CBowRunTurnL"			20	"t_CBowRunTurnL"	0.1	0.1	M.	"Hum_CBowTurn_GMF.asc"		F	0	24)
+			{
+				*eventSFXGrnd	(8	"Run")
+				*eventSFXGrnd	(19	"Run")
+			}
+			ani			("t_CBowRunTurnR"			20	"t_CBowRunTurnR"	0.1	0.1	M.	"Hum_CBowTurn_GMF.asc"		F	25	49)
+			{
+				*eventSFXGrnd	(30	"Run")
+				*eventSFXGrnd	(41	"Run")
+			}
+			
+			aniAlias	("t_CBowWalkTurnL"			20	"t_CBowWalkTurnL"	0.1	0.1	M.	"t_CBowRunTurnL"			F)
+			aniAlias	("t_CBowWalkTurnR"			20	"t_CBowWalkTurnR"	0.1	0.1	M.	"t_CBowRunTurnR"			F)
+			
+			ani			("t_CBowSneakTurnL"			20	"t_CBowSneakTurnL"	0.3	0.3	M.	"Hum_CBowSneakTurn_GMF.asc"	F	0	24)
+			{
+				*eventSFXGrnd	(7	"Sneak")
+				*eventSFXGrnd	(14	"Sneak")
+				*eventSFXGrnd	(21	"Sneak")
+			}
+			ani			("t_CBowSneakTurnR"			20	"t_CBowSneakTurnR"	0.3	0.3	M.	"Hum_CBowSneakTurn_GMF.asc"	F	25	49)
+			{
+				*eventSFXGrnd	(32	"Sneak")
+				*eventSFXGrnd	(39	"Sneak")
+				*eventSFXGrnd	(46	"Sneak")
+			}
+
+//////////////////////////
+// CROSSBOW STRAFING
+//////////////////////////
+			ani			("t_CBowRunStrafeL"			1	"t_CBowRunStrafeL"	0.2	0.2	M.	"Hum_CBowStrafeL_GMF.asc"	F	0	18)
+			{
+				*eventSFXGrnd	(0	"Run")
+				*eventSFXGrnd	(9	"Run")
+			}
+			ani			("t_CBowRunStrafeR"			1	"t_CBowRunStrafeR"	0.2	0.2	M.	"Hum_CBowStrafeR_GMF.asc"	F	0	18)
+			{
+				*eventSFXGrnd	(0	"Run")
+				*eventSFXGrnd	(9	"Run")
+			}
+			
+			aniAlias	("t_CBowWalkStrafeL"		1	"t_CBowWalkStrafeL"	0.2	0.2	M.	"t_CBowRunStrafeL"			F)
+			aniAlias	("t_CBowWalkStrafeR"		1	"t_CBowWalkStrafeR"	0.2	0.2	M.	"t_CBowRunStrafeR"			F)
+			
+			ani			("t_CBowSneakStrafeL"		1	"s_CBowSneak"		0.1	0.1	M.	"Hum_CBowSneakStrafe_GMF.asc"	F	0	25)
+			{
+				*eventSFXGrnd	(6	"Sneak")
+				*eventSFXGrnd	(22	"Sneak")
+			}
+			ani			("t_CBowSneakStrafeR"		1	"s_CBowSneak"		0.1	0.1	M.	"Hum_CBowSneakStrafe_GMF.asc"	R	0	25)
+			{
+				*eventSFXGrnd	(0	"Sneak")
+				*eventSFXGrnd	(13	"Sneak")
+			}
+
+//////////////////////////
+// CROSSBOW TRANSITIONS
+//////////////////////////
+			aniBlend	("t_CBowRun_2_CBowWalk"			"s_CBowWalk")
+			aniBlend	("t_CBowWalk_2_CBowRun"			"s_CBowRun")
+
+			ani			("t_CBowRun_2_CBowSneak"	1	"s_CBowSneak"	0.1	0.1	M.	"Hum_CBowSneak_GMF.asc"		R	89	100)
+			{
+				*eventSFXGrnd	(92	"Sneak")
+			}
+			ani			("t_CBowSneak_2_CBowRun"	1	"s_CBowRun"		0.1	0.1	M.	"Hum_CBowSneak_GMF.asc"		F	89	100)
+			{
+				*eventSFXGrnd	(97	"Sneak")
+			}
+
+			aniBlend	("t_CBowRunL_2_CBowWalkL"		"s_CBowWalkL"	0.2	0.2)
+			aniBlend	("t_CBowWalkL_2_CBowRunL"		"s_CBowRunL"	0.2	0.2)
+
+			aniBlend	("t_CBowSneakL_2_CBowRunL"		"s_CBowRunL"	0.2	0.2)
+			aniBlend	("t_CBowRunL_2_CBowSneakL"		"s_CBowSneakL"	0.2	0.2)
+
+			aniBlend	("t_CBowSneak_2_CBowWalk"		"s_CBowWalk"	0.2	0.2)
+			aniBlend	("t_CBowWalk_2_CBowSneak"		"s_CBowSneak"	0.2	0.2)
+
+			aniAlias	("t_CBowRunL_2_Jump"		1	"s_Jump"		0.1	0.1	MF	"t_RunL_2_Jump"				F)
+			aniAlias	("t_CBowRunR_2_Jump"		1	"s_Jump"		0.1	0.1	MF	"t_RunL_2_Jump"				F)
+			aniBlend	("t_Jump_2_CBowRunL"			"s_CBowRunL"	0.2	0.1)
+
+//////////////////////////
+// CROSSBOW FIGHTING
+//////////////////////////
+// CROSSBOW Kampfanims
+			ani			("t_CBowRun_2_CBowAim"		1	"s_CBowAim"		0.0 0.0 M.	"Hum_CBowAim_GMF.asc"	F	0	6)
+			aniAlias	("t_CBowAim_2_CBowRun"		1	""				0.0 0.0 M.	"t_CBowRun_2_CBowAim"	R)
+
+			aniAlias	("t_CBowWalk_2_CBowAim"		1	"s_CBowAim"		0.0 0.0 M.	"t_CBowRun_2_CBowAim"	F)
+			aniAlias	("t_CBowAim_2_CBowWalk"		1	""				0.0	0.0	M.	"t_CBowRun_2_CBowAim"	R)
+			aniAlias	("t_CBowAim_2_Stand"		1	""				0.0	0.0	M.	"t_CBowRun_2_CBowAim"	R)
+
+// Shoot + Reload
+			aniBlend	("t_CBowAim_2_CBowShoot"		"s_CbowShoot")
+			ani			("s_CBowShoot"				1	"s_CBowShoot"	0.0 0.0 M.	"Hum_CBowAim_GMF.asc"	F	6	6)
+			{
+				*eventMMStartAni	(6	"S_SHOOT"				"ZS_RIGHTHAND")
+				*eventSFX			(6	"CrossbowShoot"			R:1000)
+			}
+			ani			("t_CBowReload"				1	"s_CBowAim"		0.0 0.0 M.	"Hum_CBowAim_GMF.asc"	F	6	40)
+			{
+				*eventMMStartAni	(6	"S_RELAX"				"ZS_RIGHTHAND")
+				*eventTag			(14 "DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
+				*eventSFX			(24	"Crossbow_Charge"		R:800)
+		     	*eventMMStartAni	(27	"S_READY"				"ZS_RIGHTHAND")
+			}
+			
+			ani			("t_CBowFakeShoot"			1	"s_CBowAim"		0.0 0.0 M.	"Hum_CBowAim_GMF.asc"	F	6	40)
+			{
+				*eventMMStartAni	(6	"S_RELAX"				"ZS_RIGHTHAND")
+				*eventSFX			(6	"CrossbowShoot"			R:1000)
+				*eventTag			(14 "DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
+				*eventSFX			(24	"Crossbow_Charge"		R:800)
+		     	*eventMMStartAni	(27	"S_READY"				"ZS_RIGHTHAND")
+			}
+			
+// Autoaiming 9 Posen
+			ani			("c_Cbow_1"					4	""				0.0	0.0	..	"Hum_CBowAutoAim_GMF.asc"	F	0	0)
+			ani			("c_Cbow_2"					4	""				0.0	0.0	..	"Hum_CBowAutoAim_GMF.asc"	F	1	1)
+			ani			("c_Cbow_3"					4	""				0.0	0.0	..	"Hum_CBowAutoAim_GMF.asc"	F	2	2)
+			ani			("c_Cbow_4"					4	""				0.0	0.0	..	"Hum_CBowAutoAim_GMF.asc"	F	3	3)
+			ani			("c_Cbow_5"					4	""				0.0	0.0	..	"Hum_CBowAutoAim_GMF.asc"	F	4	4)
+			ani			("c_Cbow_6"					4	""				0.0	0.0	..	"Hum_CBowAutoAim_GMF.asc"	F	5	5)
+			ani			("c_Cbow_7"					4	""				0.0	0.0	..	"Hum_CBowAutoAim_GMF.asc"	F	6	6)
+			ani			("c_Cbow_8"					4	""				0.0	0.0	..	"Hum_CBowAutoAim_GMF.asc"	F	7	7)
+			ani			("c_Cbow_9"					4	""				0.0	0.0	..	"Hum_CBowAutoAim_GMF.asc"	F	8	8)
+
+			aniComb		("s_CBowAim"				1	"s_CBowAim"		0.3	0.3	M.	"c_Cbow_"	9)
+
+// CROSSBOW: GMF Version ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // POTION: GMF Version //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			ani			("t_PotionFast_Stand_2_S0"	1	"s_PotionFast_S0"	0.1	0.0	M.	"Hum_DrinkPotion_Fast_GMF.ASC"	F	1	5)
 			{
@@ -4292,18 +4549,36 @@ Model ("HuS")
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BEER /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			ani			("t_Beer_Stand_2_S0"	1	"s_Beer_S0"	0.1	0.0	M.	"Hum_Beer.ASC"	F	1	5)
-			{
-				*eventTag			(5	"DEF_INSERT_ITEM"		"ZS_LEFTHAND")
-			}
-			ani			("s_Beer_S0"			1	"s_Beer_S0"	0.0	0.0	M.	"Hum_Beer.asc"	F	6	6)
-			ani			("t_Beer_S0_2_Stand"	1	""			0.0	0.3	M.	"Hum_Beer.asc"	F	7	39)
-			{
-				*eventSFX			(19	"DrinkBottle"			R:800)
-				*eventTag			(35	"DEF_DESTROY_ITEM")
-			}
+		//	ani			("t_Beer_Stand_2_S0"	1	"s_Beer_S0"	0.1	0.0	M.	"Hum_Beer.ASC"	F	1	5)
+		//	{
+		//		*eventTag			(5	"DEF_INSERT_ITEM"		"ZS_LEFTHAND")
+		//	}
+		//	ani			("s_Beer_S0"			1	"s_Beer_S0"	0.0	0.0	M.	"Hum_Beer.asc"	F	6	6)
+		//	ani			("t_Beer_S0_2_Stand"	1	""			0.0	0.3	M.	"Hum_Beer.asc"	F	7	39)
+		//	{
+		//		*eventSFX			(19	"DrinkBottle"			R:800)
+		//		*eventTag			(35	"DEF_DESTROY_ITEM")
+		//	}
 
-			aniAlias	("t_Beer_Random_1"		1	""			0.0	0.0	M.	"t_Beer_S0_2_Stand"		R)
+			ani			("t_Beer_Stand_2_S0"		1	"s_Beer_S0"		0.1	0.0	M.	"Hum_DrinkBeer_GMF.asc"				F	0	29)
+			{
+				*eventTag			(15		"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+			}
+			ani			("s_Beer_S0"				1	"s_Beer_S0"		0.0	0.0	MI	"Hum_DrinkBeer_GMF_Ambient.asc"		F	1	50)
+			ani			("t_Beer_S0_2_Stand"		1	""				0.0	0.2	M.	"Hum_DrinkBeer_GMF.asc"				F	31	160)
+			{
+				*eventSFX			(70		"DrinkBottle"		R:800)
+				*eventTag			(130	"DEF_DESTROY_ITEM")
+			}
+			ani			("t_Beer_Random_1"			2	""				0.2	0.2	M.	"Hum_DrinkBeer_GMF_Random_1.asc"	F	0	100)
+			{
+				*eventSFX			(40		"DrinkBottle"		R:800)
+			}
+			ani			("t_Beer_Random_2"			2	""				0.2	0.2	M.	"Hum_DrinkBeer_GMF_Random_2.asc"	F	0	35)
+			ani			("t_Beer_Random_3"			2	""				0.2	0.2	M.	"Hum_DrinkBeer_GMF_Random_3.asc"	F	0	80)
+			{
+				*eventSFX			(40		"DrinkBottle"		R:800)
+			}
 			
 // BEER /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

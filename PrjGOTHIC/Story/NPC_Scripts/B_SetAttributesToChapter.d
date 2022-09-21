@@ -1,7 +1,7 @@
 
 func void B_SetAttributesToChapter(var C_Npc slf,var int kap)
 {
-	Npc_SetTalentSkill(slf,NPC_TALENT_MAGE,6);
+//	Npc_SetTalentSkill(slf,NPC_TALENT_MAGE,6);
 	if(kap == 0)
 	{
 		slf.level = 3;

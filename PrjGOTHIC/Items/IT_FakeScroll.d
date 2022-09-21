@@ -65,3 +65,18 @@ instance Openbook1(C_Item)
 	inv_roty = 180;
 };
 
+instance Openbook2(C_Item)
+{
+	name = "Открытая книга 2";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItWr_Book_02_Open.3DS";
+	material = MAT_LEATHER;
+	scemeName = "MAPSEALED";
+	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
+};
+

@@ -81,9 +81,8 @@ instance ItMi_BaltramPaket(C_Item)
 	visual = "ItMi_Packet.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "“€желый пакет с";
-	text[1] = "различными товарами";
-	text[2] = "с фермы јкила.";
+	text[0] = "“€желый пакет с различными";
+	text[1] = "товарами с фермы јкила.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -97,9 +96,8 @@ instance ItMi_Packet_Baltram4Skip_Addon(C_Item)
 	visual = "ItMi_Packet.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "“€желый пакет с";
-	text[1] = "различными товарами";
-	text[2] = "дл€ пирата —кипа.";
+	text[0] = "“€желый пакет с различными";
+	text[1] = "товарами дл€ пирата —кипа.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

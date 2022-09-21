@@ -3,7 +3,7 @@ prototype Mst_Default_Icewolf(C_Npc)
 {
 	name[0] = "Ледяной волк";
 	guild = GIL_WOLF;
-	aivar[AIV_MM_REAL_ID] = ID_Icewolf;
+	aivar[AIV_MM_REAL_ID] = ID_ICEWOLF;
 	level = 15;
 	attribute[ATR_STRENGTH] = 150;
 	attribute[ATR_DEXTERITY] = 150;

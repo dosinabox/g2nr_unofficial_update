@@ -28,31 +28,19 @@ func int Spell_Logic_Pyrokinesis(var int manaInvested)
 	}
 	else if((manaInvested > (STEP_Firestorm * 1)) && (self.aivar[AIV_SpellLevel] <= 1))
 	{
-		self.attribute[ATR_MANA] -= STEP_Firestorm;
-		if(self.attribute[ATR_MANA] < 0)
-		{
-			self.attribute[ATR_MANA] = 0;
-		};
+		Npc_ChangeAttribute(self,ATR_MANA,-STEP_Firestorm);
 		self.aivar[AIV_SpellLevel] = 2;
 		return SPL_NEXTLEVEL;
 	}
 	else if((manaInvested > (STEP_Firestorm * 2)) && (self.aivar[AIV_SpellLevel] <= 2))
 	{
-		self.attribute[ATR_MANA] -= STEP_Firestorm;
-		if(self.attribute[ATR_MANA] < 0)
-		{
-			self.attribute[ATR_MANA] = 0;
-		};
+		Npc_ChangeAttribute(self,ATR_MANA,-STEP_Firestorm);
 		self.aivar[AIV_SpellLevel] = 3;
 		return SPL_NEXTLEVEL;
 	}
 	else if((manaInvested > (STEP_Firestorm * 3)) && (self.aivar[AIV_SpellLevel] <= 3))
 	{
-		self.attribute[ATR_MANA] -= STEP_Firestorm;
-		if(self.attribute[ATR_MANA] < 0)
-		{
-			self.attribute[ATR_MANA] = 0;
-		};
+		Npc_ChangeAttribute(self,ATR_MANA,-STEP_Firestorm);
 		self.aivar[AIV_SpellLevel] = 4;
 		return SPL_NEXTLEVEL;
 	}
@@ -65,11 +53,7 @@ func int Spell_Logic_Pyrokinesis(var int manaInvested)
 
 func void Spell_Cast_Pyrokinesis(var int spellLevel)
 {
-	self.attribute[ATR_MANA] -= STEP_Firestorm;
-	if(self.attribute[ATR_MANA] < 0)
-	{
-		self.attribute[ATR_MANA] = 0;
-	};
+	Npc_ChangeAttribute(self,ATR_MANA,-STEP_Firestorm);
 	self.aivar[AIV_SelectSpell] += 1;
 };
 

@@ -1,82 +1,71 @@
 
 func void B_AssessMagic()
 {
+	var int lastHitSpellID;
+	lastHitSpellID = Npc_GetLastHitSpellID(self);
 	if(Npc_GetLastHitSpellCat(self) == SPELL_BAD)
 	{
 		Npc_SendPassivePerc(self,PERC_ASSESSFIGHTSOUND,self,other);
 	};
-	if((Npc_GetLastHitSpellID(self) == SPL_Whirlwind) && (self.guild != GIL_DRAGON))
-	{
-		Npc_ClearAIQueue(self);
-		B_ClearPerceptions(self);
-		AI_StartState(self,ZS_Whirlwind,0,"");
-		return;
-	};
-	if((Npc_GetLastHitSpellID(self) == SPL_SuckEnergy) && (self.guild != GIL_DRAGON))
-	{
-		Npc_ClearAIQueue(self);
-		B_ClearPerceptions(self);
-		AI_StartState(self,ZS_SuckEnergy,0,"");
-		return;
-	};
-	if((Npc_GetLastHitSpellID(self) == SPL_GreenTentacle) && (self.guild != GIL_DRAGON))
-	{
-		Npc_ClearAIQueue(self);
-		B_ClearPerceptions(self);
-		AI_StartState(self,ZS_Greententacle,0,"");
-		return;
-	};
-	if((Npc_GetLastHitSpellID(self) == SPL_Swarm) && (self.guild != GIL_DRAGON))
-	{
-		Npc_ClearAIQueue(self);
-		B_ClearPerceptions(self);
-		AI_StartState(self,ZS_Swarm,0,"");
-		return;
-	};
-	if((Npc_GetLastHitSpellID(self) == SPL_IceCube) || (Npc_GetLastHitSpellID(self) == SPL_IceWave))
+	if((lastHitSpellID == SPL_IceCube) || (lastHitSpellID == SPL_IceWave))
 	{
 		Npc_ClearAIQueue(self);
 		B_ClearPerceptions(self);
 		AI_StartState(self,ZS_MagicFreeze,0,"");
 		return;
 	};
-	if((Npc_GetLastHitSpellID(self) == SPL_ChargeZap) && (self.guild != GIL_DRAGON) && (other.guild != GIL_DRAGON))
+	if(self.guild != GIL_DRAGON)
 	{
-		/*Npc_ClearAIQueue(self);
-		B_ClearPerceptions(self);
-		AI_StartState(self,ZS_ShortZapped,0,"");
-		return;*/
-		var int zap;
-		zap = Hlp_Random(2);
-		if(zap == 0)
+		if(lastHitSpellID == SPL_Whirlwind)
 		{
 			Npc_ClearAIQueue(self);
 			B_ClearPerceptions(self);
-			AI_StartState(self,ZS_ShortZapped,0,"");
+			AI_StartState(self,ZS_Whirlwind,0,"");
 			return;
 		};
-	};
-	/*if(Npc_GetLastHitSpellID(self) == SPL_Fear)
-	{
-		Npc_ClearAIQueue(self);
-		B_ClearPerceptions(self);
-		Npc_SetTarget(self,other);
-		if((self.guild < GIL_SEPERATOR_HUM) && (self.guild != GIL_KDF) && (self.guild != GIL_PAL) && (self.guild != GIL_KDW) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Vatras)))
+		if(lastHitSpellID == SPL_SuckEnergy)
 		{
-			AI_StartState(self,ZS_MagicFlee,0,"");
-			return;
-		}
-		else if((self.guild > GIL_SEPERATOR_HUM) && (self.guild != GIL_DRAGON) && (self.guild != GIL_TROLL) && (self.guild != GIL_STONEGOLEM) && (self.guild != GIL_ICEGOLEM) && (self.guild != GIL_FIREGOLEM))
-		{
-			AI_StartState(self,ZS_MM_Flee,0,"");
+			Npc_ClearAIQueue(self);
+			B_ClearPerceptions(self);
+			AI_StartState(self,ZS_SuckEnergy,0,"");
 			return;
 		};
-	};*/
-	if((Npc_GetLastHitSpellID(self) == SPL_Firerain) && (self.guild != GIL_DRAGON))
-	{
-		Npc_ClearAIQueue(self);
-		AI_StartState(self,ZS_MagicBurnShort,0,"");
-		return;
+		if(lastHitSpellID == SPL_GreenTentacle)
+		{
+			Npc_ClearAIQueue(self);
+			B_ClearPerceptions(self);
+			AI_StartState(self,ZS_Greententacle,0,"");
+			return;
+		};
+		if(lastHitSpellID == SPL_Swarm)
+		{
+			Npc_ClearAIQueue(self);
+			B_ClearPerceptions(self);
+			AI_StartState(self,ZS_Swarm,0,"");
+			return;
+		};
+		if(lastHitSpellID == SPL_Firerain)
+		{
+			Npc_ClearAIQueue(self);
+			//TODO почему здесь нет B_ClearPerceptions(self)?
+			AI_StartState(self,ZS_MagicBurnShort,0,"");
+			return;
+		};
+		if(lastHitSpellID == SPL_ChargeZap)
+		{
+			if(other.guild != GIL_DRAGON)
+			{
+				var int zap;
+				zap = Hlp_Random(2);
+				if(zap == 0)
+				{
+					Npc_ClearAIQueue(self);
+					B_ClearPerceptions(self);
+					AI_StartState(self,ZS_ShortZapped,0,"");
+					return;
+				};
+			};
+		};
 	};
 };
 

@@ -133,7 +133,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		{
 			B_KillNpc(STRF_1115_Geppert);
 			B_KillNpc(STRF_1116_Kervo);
-			Wld_InsertNpc(Lurker,"OW_DJG_VORPOSTEN_01");
+			Wld_InsertNpc(Kervo_Lurker7,"OW_DJG_VORPOSTEN_01");
 		};
 		if(!Npc_IsDead(Sengrath))
 		{
@@ -499,7 +499,7 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 };
 
 
-var int EnterOW_Kapitel6;
+/*var int EnterOW_Kapitel6;
 
 func void B_ENTER_OLDWORLD_Kapitel_6()
 {
@@ -507,7 +507,7 @@ func void B_ENTER_OLDWORLD_Kapitel_6()
 	{
 		EnterOW_Kapitel6 = TRUE;
 	};
-};
+};*/
 
 func void B_Enter_OldWorld()
 {
@@ -532,10 +532,10 @@ func void B_Enter_OldWorld()
 	{
 		B_ENTER_OLDWORLD_Kapitel_5();
 	};
-	if(Kapitel >= 6)
+	/*if(Kapitel >= 6)
 	{
 		B_ENTER_OLDWORLD_Kapitel_6();
-	};
+	};*/
 	B_InitNpcGlobals();
 	if(DJG_BiffParty == TRUE)
 	{

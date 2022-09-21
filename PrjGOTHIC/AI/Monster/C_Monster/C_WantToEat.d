@@ -203,7 +203,7 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 	}
 	else if(slf.guild == GIL_WOLF)
 	{
-		if(slf.aivar[AIV_MM_REAL_ID] != ID_Keiler)
+		if(slf.aivar[AIV_MM_REAL_ID] != ID_KEILER)
 		{
 			if(oth.guild < GIL_SEPERATOR_HUM)
 			{

@@ -147,10 +147,6 @@ func int Spell_ProcessMana(var int manaInvested)
 	{
 		return Spell_Logic_IceCube(manaInvested);
 	};
-	if(activeSpell == SPL_ChargeZap)
-	{
-		return Spell_Logic_ChargeZap(manaInvested);
-	};
 	if(activeSpell == SPL_SummonGolem)
 	{
 		return Spell_Logic_SummonGolem(manaInvested);

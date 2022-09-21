@@ -276,9 +276,12 @@ instance DIA_Addon_Morgan_LurkerPlatt(C_Info)
 
 func int DIA_Addon_Morgan_LurkerPlatt_Condition()
 {
-	if(Npc_IsDead(BeachLurker1) && Npc_IsDead(BeachLurker2) && Npc_IsDead(BeachLurker3) && Npc_IsDead(BeachWaran1) && Npc_IsDead(BeachWaran2) && (MIS_Addon_MorganLurker == LOG_Running))
+	if(MIS_Addon_MorganLurker == LOG_Running)
 	{
-		return TRUE;
+		if(Npc_IsDead(BeachLurker1) && Npc_IsDead(BeachLurker2) && Npc_IsDead(BeachLurker3) && Npc_IsDead(BeachWaran1) && Npc_IsDead(BeachWaran2))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -438,7 +441,7 @@ instance DIA_Addon_Morgan_Francis(C_Info)
 
 func int DIA_Addon_Morgan_Francis_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
+	if(C_CanAskPiratesAboutFrancis())
 	{
 		return TRUE;
 	};
