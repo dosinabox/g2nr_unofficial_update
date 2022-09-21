@@ -345,7 +345,7 @@ func int DIA_Addon_Samuel_Stronger_Condition()
 func void DIA_Addon_Samuel_Stronger_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_Stronger_15_00");	//Я хочу чего-нибудь покрепче!
-	if(Samuel_Stronger_Varianz == 0)
+	if(Samuel_Stronger_Varianz == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_14_01");	//А, вижу родственную душу! Я и сам люблю экспериментировать.
 		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_14_02");	//Хорошая выпивка должна быть чистой, крепкой, а глотку продирать, как жидкий огонь.
@@ -357,7 +357,7 @@ func void DIA_Addon_Samuel_Stronger_Info()
 		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_14_06");	//(смеется) Это точно!
 		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_14_07");	//А тебе не встречались рецепты напитков? Если встретятся, обязательно расскажи мне.
 		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_14_08");	//Хочешь еще?
-		Samuel_Stronger_Varianz = 1;
+		Samuel_Stronger_Varianz = TRUE;
 	}
 	else
 	{
@@ -411,10 +411,10 @@ func void DIA_Addon_Samuel_Stronger_LousDoubleHammer()
 	AI_Output(other,self,"DIA_Addon_Samuel_Stronger_LousDoubleHammer_15_00");	//(спокойно) Сделай мне двойной 'Молот'.
 	if(B_GiveInvItems(other,self,ItMi_Gold,Value_SchlafHammer))
 	{
-		if(Samuel_DoppelHammer_Varianz == 0)
+		if(Samuel_DoppelHammer_Varianz == FALSE)
 		{
 			AI_Output(self,other,"DIA_Addon_Samuel_Stronger_LousDoubleHammer_14_01");	//Не делай глупостей, сынок. Очень надеюсь, что ты берешь это не для себя.
-			Samuel_DoppelHammer_Varianz = 1;
+			Samuel_DoppelHammer_Varianz = TRUE;
 		}
 		else
 		{
@@ -464,6 +464,8 @@ func void DIA_Addon_Samuel_Trade_Info()
 };
 
 
+var int News_Francis_GotSome;
+
 instance DIA_Addon_Samuel_News(C_Info)
 {
 	npc = PIR_1351_Addon_Samuel;
@@ -480,8 +482,6 @@ func int DIA_Addon_Samuel_News_Condition()
 	return TRUE;
 };
 
-var int News_Francis_GotSome;
-
 func void DIA_Addon_Samuel_News_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_News_15_00");	//Что нового в лагере?
@@ -492,7 +492,6 @@ func void DIA_Addon_Samuel_News_Info()
 		{
 			AI_Output(self,other,"DIA_Addon_Samuel_News_14_02");	//А ты нормальный парень. Давай выпьем - я угощаю!
 			B_GiveInvItems(self,other,ItFo_Addon_Rum,1);
-			B_UseItem(other,ItFo_Addon_Rum);
 			News_Francis_GotSome = TRUE;
 		};
 		if((GregIsBack == TRUE) && !Npc_IsDead(Greg))

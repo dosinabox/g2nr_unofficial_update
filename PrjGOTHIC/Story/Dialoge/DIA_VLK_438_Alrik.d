@@ -130,7 +130,6 @@ func void B_Alrik_Again()
 	}
 	else
 	{
-		//TODO озвучить
 		AI_Output(self,other,"DIA_Alrik_Add_09_03_add");	//Ты хочешь сразиться со мной еще раз? Я думаю, я стал лучше...
 	};
 	B_AddFightSkill(self,NPC_TALENT_1H,20);
