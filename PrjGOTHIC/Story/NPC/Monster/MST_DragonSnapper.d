@@ -14,7 +14,7 @@ prototype Mst_Default_DragonSnapper(C_Npc)
 	protection[PROT_BLUNT] = 150;
 	protection[PROT_EDGE] = 150;
 	protection[PROT_POINT] = 150;
-	protection[PROT_FIRE] = 150;	//16;
+	protection[PROT_FIRE] = 150;
 	protection[PROT_FLY] = 150;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -49,7 +49,7 @@ instance Gaans_Snapper(Mst_Default_DragonSnapper)
 	Npc_SetToFistMode(self);
 };
 
-instance DRAGONSNAPPERTRANSFORM(Mst_Default_DragonSnapper)
+instance DragonSnapperTransform(Mst_Default_DragonSnapper)
 {
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_DragonSnapper();

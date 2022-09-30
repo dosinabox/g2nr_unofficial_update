@@ -30,7 +30,7 @@ func int Spell_Logic_TrfSheep(var int manaInvested)
 	{
 		B_StartMagicTransform();
 		self.attribute[ATR_MANA] -= SPL_Cost_TrfSheep;
-		Npc_SetActiveSpellInfo(self,sheeptransform);
+		Npc_SetActiveSpellInfo(self,SheepTransform);
 		return SPL_SENDCAST;
 	};
 	return SPL_SENDSTOP;
@@ -42,7 +42,7 @@ func int Spell_Logic_TrfScavenger(var int manaInvested)
 	{
 		B_StartMagicTransform();
 		self.attribute[ATR_MANA] -= SPL_Cost_TrfScavenger;
-		Npc_SetActiveSpellInfo(self,scavengertransform);
+		Npc_SetActiveSpellInfo(self,ScavengerTransform);
 		return SPL_SENDCAST;
 	};
 	return SPL_SENDSTOP;
@@ -54,7 +54,7 @@ func int Spell_Logic_TrfGiantRat(var int manaInvested)
 	{
 		B_StartMagicTransform();
 		self.attribute[ATR_MANA] -= SPL_Cost_TrfGiantRat;
-		Npc_SetActiveSpellInfo(self,giant_rattransform);
+		Npc_SetActiveSpellInfo(self,Giant_RatTransform);
 		return SPL_SENDCAST;
 	};
 	return SPL_SENDSTOP;
@@ -66,7 +66,7 @@ func int Spell_Logic_TrfGiantBug(var int manaInvested)
 	{
 		B_StartMagicTransform();
 		self.attribute[ATR_MANA] -= SPL_Cost_TrfGiantBug;
-		Npc_SetActiveSpellInfo(self,giant_bugtransform);
+		Npc_SetActiveSpellInfo(self,Giant_BugTransform);
 		return SPL_SENDCAST;
 	};
 	return SPL_SENDSTOP;
@@ -78,7 +78,7 @@ func int Spell_Logic_TrfWolf(var int manaInvested)
 	{
 		B_StartMagicTransform();
 		self.attribute[ATR_MANA] -= SPL_Cost_TrfWolf;
-		Npc_SetActiveSpellInfo(self,wolftransform);
+		Npc_SetActiveSpellInfo(self,WolfTransform);
 		return SPL_SENDCAST;
 	};
 	return SPL_SENDSTOP;
@@ -90,7 +90,7 @@ func int Spell_Logic_TrfWaran(var int manaInvested)
 	{
 		B_StartMagicTransform();
 		self.attribute[ATR_MANA] -= SPL_Cost_TrfWaran;
-		Npc_SetActiveSpellInfo(self,warantransform);
+		Npc_SetActiveSpellInfo(self,WaranTransform);
 		return SPL_SENDCAST;
 	};
 	return SPL_SENDSTOP;
@@ -102,7 +102,7 @@ func int Spell_Logic_TrfSnapper(var int manaInvested)
 	{
 		B_StartMagicTransform();
 		self.attribute[ATR_MANA] -= SPL_Cost_TrfSnapper;
-		Npc_SetActiveSpellInfo(self,snappertransform);
+		Npc_SetActiveSpellInfo(self,SnapperTransform);
 		return SPL_SENDCAST;
 	};
 	return SPL_SENDSTOP;
@@ -114,7 +114,7 @@ func int Spell_Logic_TrfWarg(var int manaInvested)
 	{
 		B_StartMagicTransform();
 		self.attribute[ATR_MANA] -= SPL_Cost_TrfWarg;
-		Npc_SetActiveSpellInfo(self,wargtransform);
+		Npc_SetActiveSpellInfo(self,WargTransform);
 		return SPL_SENDCAST;
 	};
 	return SPL_SENDSTOP;
@@ -126,7 +126,7 @@ func int Spell_Logic_TrfFireWaran(var int manaInvested)
 	{
 		B_StartMagicTransform();
 		self.attribute[ATR_MANA] -= SPL_Cost_TrfFireWaran;
-		Npc_SetActiveSpellInfo(self,firewarantransform);
+		Npc_SetActiveSpellInfo(self,FireWaranTransform);
 		return SPL_SENDCAST;
 	};
 	return SPL_SENDSTOP;
@@ -138,7 +138,7 @@ func int Spell_Logic_TrfLurker(var int manaInvested)
 	{
 		B_StartMagicTransform();
 		self.attribute[ATR_MANA] -= SPL_Cost_TrfLurker;
-		Npc_SetActiveSpellInfo(self,lurkertransform);
+		Npc_SetActiveSpellInfo(self,LurkerTransform);
 		return SPL_SENDCAST;
 	};
 	return SPL_SENDSTOP;
@@ -150,7 +150,7 @@ func int Spell_Logic_TrfShadowbeast(var int manaInvested)
 	{
 		B_StartMagicTransform();
 		self.attribute[ATR_MANA] -= SPL_Cost_TrfShadowbeast;
-		Npc_SetActiveSpellInfo(self,shadowbeasttransform);
+		Npc_SetActiveSpellInfo(self,ShadowbeastTransform);
 		return SPL_SENDCAST;
 	};
 	return SPL_SENDSTOP;
@@ -162,7 +162,7 @@ func int Spell_Logic_TrfDragonSnapper(var int manaInvested)
 	{
 		B_StartMagicTransform();
 		self.attribute[ATR_MANA] -= SPL_Cost_TrfDragonSnapper;
-		Npc_SetActiveSpellInfo(self,dragonsnappertransform);
+		Npc_SetActiveSpellInfo(self,DragonSnapperTransform);
 		return SPL_SENDCAST;
 	};
 	return SPL_SENDSTOP;

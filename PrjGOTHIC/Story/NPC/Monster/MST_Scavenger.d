@@ -14,7 +14,7 @@ prototype Mst_Default_Scavenger(C_Npc)
 	protection[PROT_BLUNT] = 35;
 	protection[PROT_EDGE] = 35;
 	protection[PROT_POINT] = 0;
-	protection[PROT_FIRE] = 35;	//16;
+	protection[PROT_FIRE] = 35;
 	protection[PROT_FLY] = 35;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -45,7 +45,7 @@ instance Scavenger(Mst_Default_Scavenger)
 	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
-instance SCAVENGERTRANSFORM(Mst_Default_Scavenger)
+instance ScavengerTransform(Mst_Default_Scavenger)
 {
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_Scavenger();

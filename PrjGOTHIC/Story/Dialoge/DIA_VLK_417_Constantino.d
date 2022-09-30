@@ -567,10 +567,7 @@ func void DIA_Constantino_LEHRLING_Yes()
 	AI_Output(self,other,"DIA_Constantino_LEHRLING_Yes_10_02");	//С этого момента, ты можешь считать себя моим учеником.
 	Player_IsApprentice = APP_Constantino;
 	ApprenticeGoldCounter = 0;
-	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
-	{
-		Npc_ExchangeRoutine(Lothar,"START");
-	};
+	B_StartOtherRoutine(Lothar,"START");
 	Constantino_StartGuild = other.guild;
 	Constantino_Lehrling_Day = Wld_GetDay();
 	Wld_AssignRoomToGuild("alchemist",GIL_NONE);

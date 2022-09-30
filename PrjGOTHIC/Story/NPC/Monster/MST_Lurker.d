@@ -14,7 +14,7 @@ prototype Mst_Default_Lurker(C_Npc)
 	protection[PROT_BLUNT] = 60;
 	protection[PROT_EDGE] = 60;
 	protection[PROT_POINT] = 60;
-	protection[PROT_FIRE] = 60;	//16;
+	protection[PROT_FIRE] = 60;
 	protection[PROT_FLY] = 60;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -113,7 +113,7 @@ instance BeachLurker3(Mst_Default_Lurker)
 	Npc_SetToFistMode(self);
 };
 
-instance LURKERTRANSFORM(Mst_Default_Lurker)
+instance LurkerTransform(Mst_Default_Lurker)
 {
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_Lurker();

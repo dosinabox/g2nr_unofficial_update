@@ -515,10 +515,7 @@ func void DIA_Pyrokar_OATH_Info()
 	B_GiveArmor(ITAR_KDF_L);
 	Fire_Contest = TRUE;
 	Snd_Play("LEVELUP");
-	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
-	{
-		Npc_ExchangeRoutine(Lothar,"START");
-	};
+	B_StartOtherRoutine(Lothar,"START");
 	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
 //	KDF_Aufnahme = LOG_SUCCESS;
 	B_CancelBengarMilitiaProblem();
