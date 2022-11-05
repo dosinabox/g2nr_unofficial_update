@@ -35,16 +35,18 @@ func void B_CheerFight()
 			if(zufall == 0)
 			{
 				B_Say_Overlay(self,self,"$CHEERFRIEND01");
+				AI_PlayAni(self,"T_WATCHFIGHT_YEAH");
 			}
 			else if(zufall == 1)
 			{
 				B_Say_Overlay(self,self,"$CHEERFRIEND02");
+				AI_PlayAni(self,"T_WATCHFIGHT_YEAH");
 			}
 			else
 			{
 				B_Say_Overlay(self,self,"$CHEERFRIEND03");
+				AI_PlayAni(self,"T_GETLOST2");
 			};
-			AI_PlayAni(self,"T_WATCHFIGHT_YEAH");
 		};
 	}
 	else

@@ -1,6 +1,22 @@
 
 func int C_NpcCanEquipWeapons(var C_Npc slf)
 {
+	if(slf.guild == GIL_DMT)
+	{
+		return FALSE;
+	};
+	if(slf.guild == GIL_KDF)
+	{
+		return FALSE;
+	};
+	if(slf.guild == GIL_KDW)
+	{
+		return FALSE;
+	};
+	if(slf.guild == GIL_STRF)
+	{
+		return FALSE;
+	};
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
 	{
 		return FALSE;
@@ -128,7 +144,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 			CreateInvItem(slf,ItMw_1H_Mace_L_01);
 		};
 	}
-	else if((slf.guild != GIL_DMT) && (slf.guild != GIL_KDF) && (slf.guild != GIL_KDW) && (slf.guild != GIL_STRF))
+	else
 	{
 		CreateInvItem(slf,ItMw_1h_Bau_Mace);
 	};
@@ -159,7 +175,7 @@ func void B_RefreshAtInsert()
 		};
 	};
 	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
-	if(!Npc_HasEquippedWeapon(self))
+	if(!Npc_HasEquippedMeleeWeapon(self))
 	{
 		B_RefreshMeleeWeapon(self);
 	};

@@ -1212,7 +1212,7 @@ instance ItSc_Teleport_Maya(C_Item)
 	material = MAT_LEATHER;
 	spell = SPL_Teleport_Maya;
 	cond_atr[2] = ATR_MANA_MAX;
-	cond_value[2] = SPL_Cost_Scroll;
+	cond_value[2] = SPL_Cost_Teleport;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = NAME_SPL_Teleport_Maya;

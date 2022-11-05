@@ -586,6 +586,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_DepecheDragons()
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_01");	//Что? Это не может быть правдой. А я чуть не впустил тебя!
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_02");	//Если бы ты рассказал ЭТУ историю лорду Хагену, он бы повесил меня за халатность.
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_03");	//Проваливай!
+	AI_PlayAni(self,"T_GETLOST");
 	Player_KnowsLordHagen = TRUE;
 	AI_StopProcessInfos(self);
 };

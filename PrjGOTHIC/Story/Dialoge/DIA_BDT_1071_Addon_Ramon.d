@@ -232,6 +232,7 @@ func void DIA_Addon_Ramon_Lie_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Ramon_Lie_15_00");	//Франко послал меня...
 	AI_Output(self,other,"DIA_Addon_Ramon_Lie_07_01");	//Не-а. Проваливай, а не то я переломаю тебе кости...
+	AI_PlayAni(self,"T_GETLOST");
 	AI_StopProcessInfos(self);
 };
 
