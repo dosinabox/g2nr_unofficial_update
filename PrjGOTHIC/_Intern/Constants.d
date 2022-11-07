@@ -336,6 +336,7 @@ const int SPL_NEXTLEVEL = 4;
 const int SPL_STATUS_CANINVEST_NO_MANADEC = 8;
 const int SPL_FORCEINVEST = 1 << 16;
 const int SPL_Cost_Scroll = 5;
+const int SPL_Charge_Frames = 32;
 
 const int TARGET_COLLECT_NONE = 0;
 const int TARGET_COLLECT_CASTER = 1;
@@ -790,7 +791,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "05/11/2022";
+const string FIX_VERSION_DATE = "07/11/2022";
 const int FIX_VERSION_START = 29;
 const int LEAST_SUPPORTED = 26;
 var int FIX_VERSION_SAVE;

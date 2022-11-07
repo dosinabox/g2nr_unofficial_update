@@ -12,6 +12,22 @@ const int SPL_Cost_TrfLurker = 5;
 const int SPL_Cost_TrfShadowbeast = 5;
 const int SPL_Cost_TrfDragonSnapper = 5;
 
+func int Transform_Spell_Logic_Common(var int manaInvested,var int cost,var int creature)
+{
+	if(self.attribute[ATR_MANA] >= cost)
+	{
+		if(manaInvested < SPL_Charge_Frames)
+		{
+			return SPL_NEXTLEVEL;
+		};
+		B_StartMagicTransform();
+		self.attribute[ATR_MANA] -= cost;
+		Npc_SetActiveSpellInfo(self,creature);
+		return SPL_SENDCAST;
+	};
+	return SPL_SENDSTOP;
+};
+
 instance Spell_Transform(C_Spell_Proto)
 {
 	time_per_mana = 0;
@@ -26,145 +42,61 @@ instance Spell_Transform(C_Spell_Proto)
 
 func int Spell_Logic_TrfSheep(var int manaInvested)
 {
-	if(self.attribute[ATR_MANA] >= SPL_Cost_TrfSheep)
-	{
-		B_StartMagicTransform();
-		self.attribute[ATR_MANA] -= SPL_Cost_TrfSheep;
-		Npc_SetActiveSpellInfo(self,SheepTransform);
-		return SPL_SENDCAST;
-	};
-	return SPL_SENDSTOP;
+	return Transform_Spell_Logic_Common(manaInvested,SPL_Cost_TrfSheep,SheepTransform);
 };
 
 func int Spell_Logic_TrfScavenger(var int manaInvested)
 {
-	if(self.attribute[ATR_MANA] >= SPL_Cost_TrfScavenger)
-	{
-		B_StartMagicTransform();
-		self.attribute[ATR_MANA] -= SPL_Cost_TrfScavenger;
-		Npc_SetActiveSpellInfo(self,ScavengerTransform);
-		return SPL_SENDCAST;
-	};
-	return SPL_SENDSTOP;
+	return Transform_Spell_Logic_Common(manaInvested,SPL_Cost_TrfScavenger,ScavengerTransform);
 };
 
 func int Spell_Logic_TrfGiantRat(var int manaInvested)
 {
-	if(self.attribute[ATR_MANA] >= SPL_Cost_TrfGiantRat)
-	{
-		B_StartMagicTransform();
-		self.attribute[ATR_MANA] -= SPL_Cost_TrfGiantRat;
-		Npc_SetActiveSpellInfo(self,Giant_RatTransform);
-		return SPL_SENDCAST;
-	};
-	return SPL_SENDSTOP;
+	return Transform_Spell_Logic_Common(manaInvested,SPL_Cost_TrfGiantRat,Giant_RatTransform);
 };
 
 func int Spell_Logic_TrfGiantBug(var int manaInvested)
 {
-	if(self.attribute[ATR_MANA] >= SPL_Cost_TrfGiantBug)
-	{
-		B_StartMagicTransform();
-		self.attribute[ATR_MANA] -= SPL_Cost_TrfGiantBug;
-		Npc_SetActiveSpellInfo(self,Giant_BugTransform);
-		return SPL_SENDCAST;
-	};
-	return SPL_SENDSTOP;
+	return Transform_Spell_Logic_Common(manaInvested,SPL_Cost_TrfGiantBug,Giant_BugTransform);
 };
 
 func int Spell_Logic_TrfWolf(var int manaInvested)
 {
-	if(self.attribute[ATR_MANA] >= SPL_Cost_TrfWolf)
-	{
-		B_StartMagicTransform();
-		self.attribute[ATR_MANA] -= SPL_Cost_TrfWolf;
-		Npc_SetActiveSpellInfo(self,WolfTransform);
-		return SPL_SENDCAST;
-	};
-	return SPL_SENDSTOP;
+	return Transform_Spell_Logic_Common(manaInvested,SPL_Cost_TrfWolf,WolfTransform);
 };
 
 func int Spell_Logic_TrfWaran(var int manaInvested)
 {
-	if(self.attribute[ATR_MANA] >= SPL_Cost_TrfWaran)
-	{
-		B_StartMagicTransform();
-		self.attribute[ATR_MANA] -= SPL_Cost_TrfWaran;
-		Npc_SetActiveSpellInfo(self,WaranTransform);
-		return SPL_SENDCAST;
-	};
-	return SPL_SENDSTOP;
+	return Transform_Spell_Logic_Common(manaInvested,SPL_Cost_TrfWaran,WaranTransform);
 };
 
 func int Spell_Logic_TrfSnapper(var int manaInvested)
 {
-	if(self.attribute[ATR_MANA] >= SPL_Cost_TrfSnapper)
-	{
-		B_StartMagicTransform();
-		self.attribute[ATR_MANA] -= SPL_Cost_TrfSnapper;
-		Npc_SetActiveSpellInfo(self,SnapperTransform);
-		return SPL_SENDCAST;
-	};
-	return SPL_SENDSTOP;
+	return Transform_Spell_Logic_Common(manaInvested,SPL_Cost_TrfSnapper,SnapperTransform);
 };
 
 func int Spell_Logic_TrfWarg(var int manaInvested)
 {
-	if(self.attribute[ATR_MANA] >= SPL_Cost_TrfWarg)
-	{
-		B_StartMagicTransform();
-		self.attribute[ATR_MANA] -= SPL_Cost_TrfWarg;
-		Npc_SetActiveSpellInfo(self,WargTransform);
-		return SPL_SENDCAST;
-	};
-	return SPL_SENDSTOP;
+	return Transform_Spell_Logic_Common(manaInvested,SPL_Cost_TrfWarg,WargTransform);
 };
 
 func int Spell_Logic_TrfFireWaran(var int manaInvested)
 {
-	if(self.attribute[ATR_MANA] >= SPL_Cost_TrfFireWaran)
-	{
-		B_StartMagicTransform();
-		self.attribute[ATR_MANA] -= SPL_Cost_TrfFireWaran;
-		Npc_SetActiveSpellInfo(self,FireWaranTransform);
-		return SPL_SENDCAST;
-	};
-	return SPL_SENDSTOP;
+	return Transform_Spell_Logic_Common(manaInvested,SPL_Cost_TrfFireWaran,FireWaranTransform);
 };
 
 func int Spell_Logic_TrfLurker(var int manaInvested)
 {
-	if(self.attribute[ATR_MANA] >= SPL_Cost_TrfLurker)
-	{
-		B_StartMagicTransform();
-		self.attribute[ATR_MANA] -= SPL_Cost_TrfLurker;
-		Npc_SetActiveSpellInfo(self,LurkerTransform);
-		return SPL_SENDCAST;
-	};
-	return SPL_SENDSTOP;
+	return Transform_Spell_Logic_Common(manaInvested,SPL_Cost_TrfLurker,LurkerTransform);
 };
 
 func int Spell_Logic_TrfShadowbeast(var int manaInvested)
 {
-	if(self.attribute[ATR_MANA] >= SPL_Cost_TrfShadowbeast)
-	{
-		B_StartMagicTransform();
-		self.attribute[ATR_MANA] -= SPL_Cost_TrfShadowbeast;
-		Npc_SetActiveSpellInfo(self,ShadowbeastTransform);
-		return SPL_SENDCAST;
-	};
-	return SPL_SENDSTOP;
+	return Transform_Spell_Logic_Common(manaInvested,SPL_Cost_TrfShadowbeast,ShadowbeastTransform);
 };
 
 func int Spell_Logic_TrfDragonSnapper(var int manaInvested)
 {
-	if(self.attribute[ATR_MANA] >= SPL_Cost_TrfDragonSnapper)
-	{
-		B_StartMagicTransform();
-		self.attribute[ATR_MANA] -= SPL_Cost_TrfDragonSnapper;
-		Npc_SetActiveSpellInfo(self,DragonSnapperTransform);
-		return SPL_SENDCAST;
-	};
-	return SPL_SENDSTOP;
+	return Transform_Spell_Logic_Common(manaInvested,SPL_Cost_TrfDragonSnapper,DragonSnapperTransform);
 };
 
