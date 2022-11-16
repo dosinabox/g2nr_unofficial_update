@@ -1,5 +1,5 @@
 
-const string TOPIC_Addon_PickForConstantino = "Травы для Константино";
+const string TOPIC_Addon_PickForConstantino = "Сборщик трав";
 const string TOPIC_Addon_Greg_NW = "Человек с повязкой на глазу";
 const string TOPIC_Addon_Ornament = "Портал";
 const string TOPIC_Addon_HolRiordian = "Риордиан";

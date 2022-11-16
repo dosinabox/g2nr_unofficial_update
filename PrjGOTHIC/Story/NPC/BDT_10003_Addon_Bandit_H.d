@@ -1,5 +1,5 @@
 
-instance BDT_10003_Addon_Bandit_H(Npc_Default)
+instance BDT_10003_Addon_Bandit_H(Npc_Default) //TODO закомментировать, не используется
 {
 	name[0] = NAME_Bandit;
 	guild = GIL_BDT;

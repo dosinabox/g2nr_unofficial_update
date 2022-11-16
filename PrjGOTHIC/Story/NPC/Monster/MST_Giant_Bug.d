@@ -14,7 +14,7 @@ prototype Mst_Default_Giant_Bug(C_Npc)
 	protection[PROT_BLUNT] = 40;
 	protection[PROT_EDGE] = 40;
 	protection[PROT_POINT] = 40;
-	protection[PROT_FIRE] = 40;	//17;
+	protection[PROT_FIRE] = 40;
 	protection[PROT_FLY] = 40;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -44,7 +44,6 @@ instance Giant_Bug(Mst_Default_Giant_Bug)
 instance YGiant_Bug(Mst_Default_Giant_Bug)
 {
 	name[0] = NAME_YGiant_Bug;
-//	level = 2;
 	level = 4;
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 10;
@@ -53,7 +52,7 @@ instance YGiant_Bug(Mst_Default_Giant_Bug)
 	protection[PROT_BLUNT] = 10;
 	protection[PROT_EDGE] = 10;
 	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 10;	//16;
+	protection[PROT_FIRE] = 10;
 	protection[PROT_FLY] = 10;
 	B_SetVisuals_Giant_Bug();
 	Mdl_SetModelScale(self,0.9,0.9,0.9);
@@ -71,7 +70,7 @@ instance YGiant_Bug_VinoRitual1(Mst_Default_Giant_Bug)
 	protection[PROT_BLUNT] = 10;
 	protection[PROT_EDGE] = 10;
 	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 10;	//16;
+	protection[PROT_FIRE] = 10;
 	protection[PROT_FLY] = 10;
 	B_SetVisuals_Giant_Bug();
 	Mdl_SetModelScale(self,0.9,0.9,0.9);
@@ -84,13 +83,13 @@ instance YGiant_Bug_VinoRitual2(Mst_Default_Giant_Bug)
 	level = 4;
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 10;
-	attribute[ATR_HITPOINTS_MAX] = 20;	//40;
-	attribute[ATR_HITPOINTS] = 20;	//40;
-	protection[PROT_BLUNT] = 10;	//0;
-	protection[PROT_EDGE] = 10;	//0;
-	protection[PROT_POINT] = 10;	//0;
-	protection[PROT_FIRE] = 10;	//0;
-	protection[PROT_FLY] = 10;	//0;
+	attribute[ATR_HITPOINTS_MAX] = 20;
+	attribute[ATR_HITPOINTS] = 20;
+	protection[PROT_BLUNT] = 10;
+	protection[PROT_EDGE] = 10;
+	protection[PROT_POINT] = 10;
+	protection[PROT_FIRE] = 10;
+	protection[PROT_FLY] = 10;
 	B_SetVisuals_Giant_Bug();
 	Mdl_SetModelScale(self,0.9,0.9,0.9);
 	Npc_SetToFistMode(self);
@@ -138,7 +137,7 @@ instance Lobarts_Giant_Bug7(Mst_Default_Giant_Bug)
 	Npc_SetToFistMode(self);
 };
 
-instance GIANT_BUGTRANSFORM(Mst_Default_Giant_Bug)
+instance Giant_BugTransform(Mst_Default_Giant_Bug)
 {
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_Giant_Bug();

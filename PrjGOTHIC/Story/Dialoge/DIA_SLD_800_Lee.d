@@ -645,14 +645,8 @@ func void DIA_Lee_JoinNOW_Info()
 			B_SetGuild(hero,GIL_SLD);
 			B_GiveArmor(ITAR_SLD_L);
 			Snd_Play("LEVELUP");
-			if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
-			{
-				Npc_ExchangeRoutine(Lothar,"START");
-			};
-			if(Hlp_IsValidNpc(Babo) && !Npc_IsDead(Babo))
-			{
-				Npc_ExchangeRoutine(Babo,"FAVOUR");
-			};
+			B_StartOtherRoutine(Lothar,"START");
+			B_StartOtherRoutine(Babo,"FAVOUR");
 			NOV_Aufnahme = LOG_OBSOLETE;
 			SLD_Aufnahme = LOG_SUCCESS;
 			MIL_Aufnahme = LOG_OBSOLETE;

@@ -244,7 +244,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(Wolf,"NW_PATH_TO_MONASTER_AREA_10");
 		Wld_InsertNpc(Warg,"NW_XARDAS_GOBBO_01");
 		Wld_InsertNpc(Warg,"NW_XARDAS_GOBBO_01");
-		if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_ToCavalorn == TRUE))
+		if(Bdt_1013_ToCavalorn == TRUE)
 		{
 			B_KillNpc(BDT_1013_Bandit_L);
 		};
@@ -328,7 +328,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				CreateInvItems(Malak,ITWR_DementorObsessionBook_MIS,1);
 			};
 		};
-		if(!Npc_IsDead(Hilda) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)))
+		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
 		{
 			B_StartOtherRoutine(Hilda,"KRANK");
 		};
@@ -467,10 +467,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		B_ResetSalandril();
 		B_StartOtherRoutine(Jorgen,"Kloster");
 		B_StartOtherRoutine(Nov610,"Rest");
-		if(!Npc_IsDead(BDT_1050_Landstreicher))
-		{
-			B_KillNpc(BDT_1050_Landstreicher);
-		};
+		B_KillNpc(BDT_1050_Landstreicher);
 		Wld_InsertItem(ItAt_DragonEgg_MIS,"FP_ITEM_XARDAS_01");
 		Wld_InsertNpc(Draconian,"FP_ROAM_XARDASCAVE_DJG_01");
 		Wld_InsertNpc(Draconian,"FP_ROAM_XARDASCAVE_DJG_02");
@@ -486,7 +483,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		Wld_InsertNpc(DragonSnapper,"NW_FARM3_BIGWOOD_04");
 		Wld_InsertNpc(DragonSnapper,"NW_FARM3_BIGWOOD_04");
 		Wld_InsertNpc(Maya_Troll,"NW_TROLLAREA_RUINS_41");
-		if(!Npc_IsDead(Hilda) && (MIS_HealHilda == LOG_SUCCESS))
+		if(MIS_HealHilda == LOG_SUCCESS)
 		{
 			B_StartOtherRoutine(Hilda,"START");
 		};
@@ -697,14 +694,8 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 				B_SetGuild(Engardo,GIL_SLD);
 				B_StartOtherRoutine(Engardo,"Bigfarm");
 			};
-			if(!Npc_IsDead(Kati))
-			{
-				B_StartOtherRoutine(Kati,"Start");
-			};
-			if(!Npc_IsDead(Akil))
-			{
-				B_StartOtherRoutine(Akil,"Start");
-			};
+			B_StartOtherRoutine(Kati,"Start");
+			B_StartOtherRoutine(Akil,"Start");
 			if(!Npc_IsDead(Randolph))
 			{
 				if((hero.guild != GIL_KDF) && (Randolph_ExchangeRoutine_Once == FALSE))
@@ -796,7 +787,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		Wld_InsertItem(ItWr_Seamap_Irdorath,"FP_NW_ITEM_LIBRARY_SEAMAP");
 		Wld_InsertItem(ItWr_XardasSeamapBook_Mis,"FP_NW_ITEM_LIBRARY_SEAMAP");
 		Wld_InsertItem(ItPo_PotionOfDeath_01_Mis,"FP_NW_ITEM_LIBRARY_SEAMAP2");
-		if(!Npc_IsDead(Hilda) && (MIS_HealHilda == LOG_SUCCESS))
+		if(MIS_HealHilda == LOG_SUCCESS)
 		{
 			B_StartOtherRoutine(Hilda,"START");
 		};

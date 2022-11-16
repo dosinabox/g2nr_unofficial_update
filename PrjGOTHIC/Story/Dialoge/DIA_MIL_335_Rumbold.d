@@ -163,10 +163,7 @@ func void DIA_Rumbold_HALLO_geld_ok()
 		};
 		Miliz_Flucht = TRUE;
 	};
-	if(Hlp_IsValidNpc(Bengar) && !Npc_IsDead(Bengar))
-	{
-		B_StartOtherRoutine(Bengar,"Start");
-	};
+	B_StartOtherRoutine(Bengar,"Start");
 };
 
 func void DIA_Rumbold_HALLO_Geld_TooMuch()

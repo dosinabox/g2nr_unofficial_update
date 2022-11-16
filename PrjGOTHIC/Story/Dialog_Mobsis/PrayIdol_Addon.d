@@ -176,7 +176,7 @@ func int PC_PrayIdol_PrayIdol_Condition()
 	};
 };
 
-func void PC_PrayIdol_PrayIdol_Info()
+func void PC_PrayIdol_PrayIdol_Info() //TODO при IgnoreBonuses == TRUE можно жертвовать бесконечно!
 {
 	Info_ClearChoices(PC_PrayIdol_PrayIdol);
 	Info_AddChoice(PC_PrayIdol_PrayIdol,Dialog_Back,PC_PrayIdol_PrayIdol_Back);

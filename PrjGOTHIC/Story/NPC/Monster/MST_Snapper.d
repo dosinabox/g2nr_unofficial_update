@@ -14,7 +14,7 @@ prototype Mst_Default_Snapper(C_Npc)
 	protection[PROT_BLUNT] = 60;
 	protection[PROT_EDGE] = 60;
 	protection[PROT_POINT] = 60;
-	protection[PROT_FIRE] = 60;	//16;
+	protection[PROT_FIRE] = 60;
 	protection[PROT_FLY] = 60;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -120,7 +120,7 @@ instance Grimbald_Snapper3(Mst_Default_Snapper)
 	Npc_SetToFistMode(self);
 };
 
-instance SNAPPERTRANSFORM(Mst_Default_Snapper)
+instance SnapperTransform(Mst_Default_Snapper)
 {
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_Snapper();

@@ -313,8 +313,8 @@ func void STARTUP_Addon_Part_BanditsCamp_01()
 	Wld_InsertNpc(STRF_1142_Addon_Sklave,"BANDIT");
 	Wld_InsertNpc(STRF_1143_Addon_Sklave,"BANDIT");
 	Wld_InsertNpc(BDT_10001_Addon_Bandit_L,"BANDIT");
-	Wld_InsertNpc(BDT_10002_Addon_Bandit_M,"BANDIT");
-	Wld_InsertNpc(BDT_10003_Addon_Bandit_H,"BANDIT");
+//	Wld_InsertNpc(BDT_10002_Addon_Bandit_M,"BANDIT");
+//	Wld_InsertNpc(BDT_10003_Addon_Bandit_H,"BANDIT");
 	Wld_InsertNpc(BDT_10006_Addon_Bandit,"BANDIT");
 	Wld_InsertNpc(BDT_10007_Addon_Bandit,"BANDIT");
 	Wld_InsertNpc(BDT_10008_Addon_Bandit,"BANDIT");

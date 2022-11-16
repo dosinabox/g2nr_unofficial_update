@@ -1,6 +1,22 @@
 
 func int C_NpcCanEquipWeapons(var C_Npc slf)
 {
+	if(slf.guild == GIL_DMT)
+	{
+		return FALSE;
+	};
+	if(slf.guild == GIL_KDF)
+	{
+		return FALSE;
+	};
+	if(slf.guild == GIL_KDW)
+	{
+		return FALSE;
+	};
+	if(slf.guild == GIL_STRF)
+	{
+		return FALSE;
+	};
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
 	{
 		return FALSE;
@@ -128,7 +144,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 			CreateInvItem(slf,ItMw_1H_Mace_L_01);
 		};
 	}
-	else if((slf.guild != GIL_DMT) && (slf.guild != GIL_KDF) && (slf.guild != GIL_KDW) && (slf.guild != GIL_STRF))
+	else
 	{
 		CreateInvItem(slf,ItMw_1h_Bau_Mace);
 	};
@@ -136,24 +152,32 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 
 func void B_RefreshAtInsert()
 {
+	if(self.guild >= GIL_SEPERATOR_HUM)
+	{
+		return;
+	};
 	if(self.attribute[ATR_HITPOINTS] <= 0)
 	{
 		return;
 	};
-	if((CurrentLevel == ADDONWORLD_ZEN) && (Sklaven_Flucht == FALSE))
+	if(C_NpcIsHero(self))
 	{
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Pardos)) && (Pardos_Geheilt == FALSE))
+		return;
+	};
+	if(CurrentLevel == ADDONWORLD_ZEN)
+	{
+		if((Pardos_Geheilt == FALSE) && (Sklaven_Flucht == FALSE))
 		{
-			return;
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Pardos))
+			{
+				return;
+			};
 		};
 	};
-	if((self.guild < GIL_SEPERATOR_HUM) && !C_NpcIsHero(self))
+	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
+	if(!Npc_HasEquippedMeleeWeapon(self))
 	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
-		if(!Npc_HasEquippedWeapon(self))
-		{
-			B_RefreshMeleeWeapon(self);
-		};
+		B_RefreshMeleeWeapon(self);
 	};
 };
 

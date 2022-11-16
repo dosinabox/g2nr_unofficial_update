@@ -210,6 +210,7 @@ func void DIA_Mil_333_Stadtwache_Bribe_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Mil_333_Stadtwache_Bribe_06_03");	//Что?! Где?! Я не вижу золота. Проваливай!
+		AI_PlayAni(self,"T_GETLOST");
 	};
 	AI_StopProcessInfos(self);
 };
