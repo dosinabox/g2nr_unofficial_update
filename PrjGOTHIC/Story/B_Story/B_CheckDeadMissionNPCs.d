@@ -10,6 +10,13 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 				MIS_Ignaz_Charm = LOG_FAILED;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Dexter))
+		{
+			if(MIS_Steckbriefe != LOG_SUCCESS)
+			{
+				MIS_Steckbriefe = LOG_OBSOLETE;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Canthar))
 		{
 			if(MIS_Canthars_KomproBrief == LOG_Running)

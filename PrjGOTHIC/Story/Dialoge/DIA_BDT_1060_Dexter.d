@@ -56,8 +56,13 @@ func void DIA_Dexter_Hallo_Info()
 		AI_Output(other,self,"DIA_Dexter_Hallo_15_02");	//КТО-ТО распространяет листки бумаги с моим изображением. КОЕ-КТО сказал мне, что это ты.
 		AI_Output(self,other,"DIA_Dexter_Hallo_09_03");	//Кто-то слишком много болтает.
 		AI_Output(self,other,"DIA_Addon_Dexter_Hallo_09_04");	//Впрочем, ты прав. Я распространял объявления о розыске. Я искал тебя - и ты явился.
-		MIS_Steckbriefe = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Ambient);
+	};
+	if(MIS_Steckbriefe == LOG_Running)
+	{
+		B_LogEntry(Topic_Bandits,"Декстер признался, что распространял объявления о розыске.");
+		MIS_Steckbriefe = LOG_SUCCESS;
+		B_CheckLog();
 	};
 	AI_Output(other,self,"DIA_Addon_Dexter_Hallo_15_05");	//Итак, что тебе от меня надо?
 	AI_Output(self,other,"DIA_Addon_Dexter_Hallo_09_06");	//Мне? Абсолютно ничего. Но мой хозяин просто дьявольски жаждет твоей смерти.
@@ -305,8 +310,11 @@ func void DIA_Dexter_Kill_Info()
 	{
 		AI_Output(self,other,"DIA_Dexter_Kill_09_01");	//Ох, тебе не стоило показываться здесь. Ты оказался не в то время и не в том месте.
 	};
-	MIS_Steckbriefe = LOG_OBSOLETE;
-	B_CheckLog();
+	if(MIS_Steckbriefe == LOG_Running)
+	{
+		MIS_Steckbriefe = LOG_OBSOLETE;
+		B_CheckLog();
+	};
 	B_Greg_ComesToDexter();
 	Info_ClearChoices(DIA_Dexter_Kill);
 	Info_AddChoice(DIA_Dexter_Kill,Dialog_Ende,DIA_Dexter_Kill_ENDE);

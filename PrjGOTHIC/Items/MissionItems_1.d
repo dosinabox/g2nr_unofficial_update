@@ -860,9 +860,15 @@ func void UseBanditLetter()
 	Doc_PrintLines(nDocID,0,"    около поместья землевладельца.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Д.");
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
+	if(MIS_Steckbriefe == FALSE)
+	{
+		Log_CreateTopic(Topic_Bandits,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Bandits,LOG_Running);
+		B_LogEntry(Topic_Bandits,"За мной охотятся бандиты. Интересно, что все это значит.");
+		MIS_Steckbriefe = LOG_Running;
+	};
 };
 
 

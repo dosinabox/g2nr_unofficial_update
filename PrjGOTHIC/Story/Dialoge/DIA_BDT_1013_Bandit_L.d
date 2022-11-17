@@ -246,7 +246,7 @@ func void DIA_1013_BANDIT_NAME_Info()
 	AI_Output(self,other,"DIA_1013_BANDIT_NAME_01_01");	//Я этого не знаю, только один из нас видел его.
 	AI_Output(other,self,"DIA_1013_BANDIT_NAME_15_02");	//И кто это?
 	AI_Output(self,other,"DIA_1013_BANDIT_NAME_01_03");	//Эй, послушай - я действительно не могу сказать тебе это. Кто знает, как все выйдет...
-	if(MIS_Steckbriefe != LOG_SUCCESS)
+	if(MIS_Steckbriefe == FALSE)
 	{
 		Log_CreateTopic(Topic_Bandits,LOG_MISSION);
 		Log_SetTopicStatus(Topic_Bandits,LOG_Running);

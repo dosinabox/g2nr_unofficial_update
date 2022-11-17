@@ -1069,7 +1069,6 @@ func void DIA_Addon_Vatras_MissingPeople_Success()
 	};
 	AI_Output(self,other,"DIA_Addon_Vatras_MissingPeople_Success_05_06");	//Отличная работа. Я боялся, что мы никогда не узнаем ответа на эту загадку.
 	MIS_Addon_Vatras_WhereAreMissingPeople = LOG_SUCCESS;
-	MIS_Steckbriefe = LOG_SUCCESS;
 	Vatras_MissingPeopleReports = 0;
 	if(((MIS_Akil_BringMissPeopleBack != FALSE) || (MIS_Bengar_BringMissPeopleBack != FALSE)) && (MISSINGPEOPLEINFO[1] == FALSE))
 	{
