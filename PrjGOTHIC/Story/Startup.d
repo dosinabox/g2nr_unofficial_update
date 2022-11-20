@@ -12,7 +12,6 @@ func void INIT_Global()
 	B_SetHeroSkin();
 	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
-	B_InitNpcGlobals();
 };
 
 func void STARTUP_Addon_Part_AdanosTemple_01()

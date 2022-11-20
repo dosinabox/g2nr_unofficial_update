@@ -33,7 +33,6 @@ var C_Npc Monty_NW;
 var C_Npc Pardos_NW;
 var C_Npc Cavalorn;
 var C_Npc Greg_NW;
-//var C_Npc Skip_NW;
 var C_Npc Erol;
 var C_Npc Martin;
 var C_Npc Gaan;
@@ -68,9 +67,6 @@ var C_Npc Myxir_CITY;
 var C_Npc Quarhodron;
 var C_Npc Rhademes;
 var C_Npc Dexter;
-//var C_Npc Sumpfi_01;
-//var C_Npc Sumpfi_02;
-//var C_Npc Sumpfi_03;
 var C_Npc GornOW;
 var C_Npc GornDJG;
 var C_Npc GornNW_vor_DJG;
@@ -99,9 +95,7 @@ var C_Npc Stadtwache_310;
 var C_Npc Stadtwache_333;
 var C_Npc Schiffswache_212;
 var C_Npc Schiffswache_213;
-//var C_Npc Torwache_304;
 var C_Npc Torwache_305;
-//var C_Npc Lagerwache;
 var C_Npc Halvor;
 var C_Npc Attila;
 var C_Npc Brahim;
@@ -110,7 +104,6 @@ var C_Npc Vanja;
 var C_Npc Moe;
 var C_Npc Valentino;
 var C_Npc Sagitta;
-//var C_Npc BDTWache;
 var C_Npc Karras;
 var C_Npc Gorax;
 var C_Npc Rengaru;
@@ -125,7 +118,6 @@ var C_Npc Bartok;
 var C_Npc CityOrc;
 var C_Npc Gritta;
 var C_Npc Richter;
-//var C_Npc Larius;
 var C_Npc LordHagen;
 var C_Npc Albrecht;
 var C_Npc Ingmar;
@@ -198,9 +190,6 @@ var C_Npc Kervo;
 var C_Npc Geppert;
 var C_Npc Bote;
 var C_Npc Jorgen;
-//var C_Npc LeuchtturmBandit_1021;
-//var C_Npc LeuchtturmBandit_1022;
-//var C_Npc LeuchtturmBandit_1023;
 var C_Npc Brian;
 var C_Npc Harad;
 var C_Npc Gerbrandt;
@@ -208,10 +197,6 @@ var C_Npc GerbrandtsFrau;
 var C_Npc Morgahard;
 var C_Npc Tengron;
 var C_Npc Engor;
-//var C_Npc Bandit_1;
-//var C_Npc Bandit_2;
-//var C_Npc Bandit_3;
-//var C_Npc Koch;
 var C_Npc Bruder;
 var C_Npc Den;
 var C_Npc Silvestro;
@@ -310,7 +295,6 @@ var C_Npc BDT_1051;
 var C_Npc BDT_1052;
 var C_Npc Talbin;
 var C_Npc TalbinNW;
-//var C_Npc Joe;
 var C_Npc Hanna;
 var C_Npc Kardif;
 var C_Npc AntiPaladin_NW;
@@ -319,39 +303,9 @@ var C_Npc TowerBandit1;
 var C_Npc TowerBandit2;
 var C_Npc TowerBandit3;
 
-func void B_InitNpcGlobals()
+func void B_InitNpc_NW()
 {
-	if(Kapitel == 0)
-	{
-		Kapitel = 1;
-	};
-	Raven = Hlp_GetNpc(BDT_1090_Addon_Raven);
-	Logan = Hlp_GetNpc(BDT_1072_Addon_Logan);
-	Ramon = Hlp_GetNpc(BDT_1071_Addon_Ramon);
 	BanditGuard = Hlp_GetNpc(BDT_1064_Bandit_L);
-	Lehmar = Hlp_GetNpc(VLK_484_Lehmar);
-	Franco = Hlp_GetNpc(BDT_1093_Addon_Franco);
-	Edgor = Hlp_GetNpc(BDT_1074_Addon_Edgor);
-	Esteban = Hlp_GetNpc(BDT_1083_Addon_Esteban);
-	Carlos = Hlp_GetNpc(BDT_1079_Addon_Carlos);
-	Fisk = Hlp_GetNpc(BDT_1097_Addon_Fisk);
-	Thorus = Hlp_GetNpc(BDT_10014_Addon_Thorus);
-	Bloodwyn = Hlp_GetNpc(BDT_1085_Addon_Bloodwyn);
-	Freund = Hlp_GetNpc(BDT_10016_Addon_Bandit);
-	Skinner = Hlp_GetNpc(BDT_1082_Addon_Skinner);
-	Juan = Hlp_GetNpc(BDT_10017_Addon_Juan);
-	Senyan = Hlp_GetNpc(BDT_1084_Addon_Senyan);
-	Fortuno = Hlp_GetNpc(BDT_1075_Addon_Fortuno);
-	Finn = Hlp_GetNpc(BDT_10004_Addon_Finn);
-	Wache_02 = Hlp_GetNpc(BDT_10005_Addon_Wache_02);
-	Wache_01 = Hlp_GetNpc(BDT_1081_Addon_Wache_01);
-	Torwache2 = Hlp_GetNpc(BDT_1088_Addon_Torwache);
-	PrisonGuard = Hlp_GetNpc(BDT_10023_Addon_Wache);
-	Patrick = Hlp_GetNpc(STRF_1118_Addon_Patrick);
-	Tonak = Hlp_GetNpc(STRF_1120_Addon_Tonak);
-	Telbor = Hlp_GetNpc(STRF_1121_Addon_Telbor);
-	Monty = Hlp_GetNpc(STRF_1119_Addon_Monty);
-	Pardos = Hlp_GetNpc(STRF_1122_Addon_Pardos);
 	Patrick_NW = Hlp_GetNpc(STRF_1123_Addon_Patrick_NW);
 	Monty_NW = Hlp_GetNpc(STRF_1124_Addon_Monty_NW);
 	Tonak_NW = Hlp_GetNpc(STRF_1125_Addon_Tonak_NW);
@@ -359,69 +313,26 @@ func void B_InitNpcGlobals()
 	Pardos_NW = Hlp_GetNpc(STRF_1127_Addon_Pardos_NW);
 	Cavalorn = Hlp_GetNpc(BAU_4300_Addon_Cavalorn);
 	Greg_NW = Hlp_GetNpc(PIR_1300_Addon_Greg_NW);
-//	Skip_NW = Hlp_GetNpc(PIR_1301_Addon_Skip_NW);
 	Erol = Hlp_GetNpc(VLK_4303_Addon_Erol);
 	Martin = Hlp_GetNpc(MIL_350_Addon_Martin);
 	Gaan = Hlp_GetNpc(BAU_961_Gaan);
 	Elvrich = Hlp_GetNpc(VLK_4302_Addon_Elvrich);
-	Morgan = Hlp_GetNpc(PIR_1353_Addon_Morgan);
-	Samuel = Hlp_GetNpc(PIR_1351_Addon_Samuel);
-	Henry = Hlp_GetNpc(PIR_1354_Addon_Henry);
-	AlligatorJack = Hlp_GetNpc(PIR_1352_Addon_AlligatorJack);
-	Bill = Hlp_GetNpc(PIR_1356_Addon_Bill);
-	Garett = Hlp_GetNpc(PIR_1357_Addon_Garett);
-	Francis = Hlp_GetNpc(PIR_1350_Addon_Francis);
-	Angus = Hlp_GetNpc(PIR_1370_Addon_Angus);
-	Greg = Hlp_GetNpc(PIR_1320_Addon_Greg);
-	Malcom = Hlp_GetNpc(PIR_1368_Addon_Malcom);
-	Owen = Hlp_GetNpc(PIR_1367_Addon_Owen);
-	Skip = Hlp_GetNpc(PIR_1355_Addon_Skip);
-	Matt = Hlp_GetNpc(PIR_1365_Addon_Matt);
-	Brandon = Hlp_GetNpc(PIR_1366_Addon_Brandon);
-	RoastPirate = Hlp_GetNpc(PIR_1364_Addon_Pirat);
-	BenchPirate = Hlp_GetNpc(PIR_1363_Addon_Pirat);
-	SawPirate = Hlp_GetNpc(PIR_1361_Addon_Pirat);
-	HammerPirate = Hlp_GetNpc(PIR_1360_Addon_Pirat);
 	Saturas_NW = Hlp_GetNpc(KDW_1400_Addon_Saturas_NW);
 	Nefarius_NW = Hlp_GetNpc(KDW_1402_Addon_Nefarius_NW);
-	Cronos_ADW = Hlp_GetNpc(KDW_14010_Addon_Cronos_ADW);
 	Cronos_NW = Hlp_GetNpc(KDW_1401_Addon_Cronos_NW);
-	Myxir_ADW = Hlp_GetNpc(KDW_14030_Addon_Myxir_ADW);
 	Myxir_CITY = Hlp_GetNpc(KDW_140300_Addon_Myxir_CITY);
 	Myxir_NW = Hlp_GetNpc(KDW_1403_Addon_Myxir_NW);
 	Riordian_NW = Hlp_GetNpc(KDW_1404_Addon_Riordian_NW);
 	Merdarion_NW = Hlp_GetNpc(KDW_1405_Addon_Merdarion_NW);
-	Quarhodron = Hlp_GetNpc(NONE_ADDON_111_Quarhodron);
-	Rhademes = Hlp_GetNpc(NONE_ADDON_112_Rhademes);
 	Dexter = Hlp_GetNpc(BDT_1060_Dexter);
-//	Sumpfi_01 = Hlp_GetNpc(MIS_Addon_Swampshark_01);
-//	Sumpfi_02 = Hlp_GetNpc(MIS_Addon_Swampshark_02);
-//	Sumpfi_03 = Hlp_GetNpc(MIS_Addon_Swampshark_03);
 	Garwig = Hlp_GetNpc(NOV_608_Garwig);
-	GornOW = Hlp_GetNpc(PC_Fighter_OW);
-	GornNW_vor_DJG = Hlp_GetNpc(PC_Fighter_NW_vor_DJG);
-	GornDJG = Hlp_GetNpc(PC_Fighter_DJG);
-	GornNW_nach_DJG = Hlp_GetNpc(PC_Fighter_NW_nach_DJG);
-	Gorn_DI = Hlp_GetNpc(PC_Fighter_DI);
 	Lester = Hlp_GetNpc(PC_Psionic);
-	Lester_DI = Hlp_GetNpc(PC_Psionic_DI);
-	MiltenOW = Hlp_GetNpc(PC_Mage_OW);
-	MiltenNW = Hlp_GetNpc(PC_Mage_NW);
-	Milten_DI = Hlp_GetNpc(PC_Mage_DI);
-	DiegoOW = Hlp_GetNpc(PC_ThiefOW);
-	DiegoNW = Hlp_GetNpc(PC_Thief_NW);
-	Diego_DI = Hlp_GetNpc(PC_Thief_DI);
-	Ambusher_1013 = Hlp_GetNpc(BDT_1013_Bandit_L);
-	Ambusher_1014 = Hlp_GetNpc(BDT_1014_Bandit_L);
-	Ambusher_1015 = Hlp_GetNpc(BDT_1015_Bandit_L);
+	Bennet = Hlp_GetNpc(SLD_809_Bennet);
 	Xardas = Hlp_GetNpc(NONE_100_Xardas);
 	Pyrokar = Hlp_GetNpc(KDF_500_Pyrokar);
 	Lee = Hlp_GetNpc(SLD_800_Lee);
-	Lee_DI = Hlp_GetNpc(SLD_800_Lee_DI);
 	Vatras = Hlp_GetNpc(VLK_439_Vatras);
-	Vatras_DI = Hlp_GetNpc(VLK_439_Vatras_DI);
 	Pablo = Hlp_GetNpc(MIL_319_Pablo);
-	Nov607 = Hlp_GetNpc(NOV_607_Novize);
 	Lares = Hlp_GetNpc(VLK_449_Lares);
 	Vino = Hlp_GetNpc(BAU_952_Vino);
 	Lobart = Hlp_GetNpc(BAU_950_Lobart);
@@ -433,9 +344,6 @@ func void B_InitNpcGlobals()
 	Stadtwache_333 = Hlp_GetNpc(MIL_333_Stadtwache);
 	Schiffswache_212 = Hlp_GetNpc(PAL_212_Schiffswache);
 	Schiffswache_213 = Hlp_GetNpc(PAL_213_Schiffswache);
-//	Torwache_304 = Hlp_GetNpc(MIL_304_Torwache);
-	Torwache_305 = Hlp_GetNpc(MIL_305_Torwache);
-//	Lagerwache = Hlp_GetNpc(MIL_328_Miliz);
 	Halvor = Hlp_GetNpc(VLK_469_Halvor);
 	Attila = Hlp_GetNpc(VLK_494_Attila);
 	Brahim = Hlp_GetNpc(VLK_437_Brahim);
@@ -444,7 +352,9 @@ func void B_InitNpcGlobals()
 	Moe = Hlp_GetNpc(VLK_432_Moe);
 	Valentino = Hlp_GetNpc(VLK_421_Valentino);
 	Sagitta = Hlp_GetNpc(BAU_980_Sagitta);
-//	BDTWache = Hlp_GetNpc(BDT_1061_Wache);
+	AntiPaladin_NW = Hlp_GetNpc(OrkElite_AntiPaladinOrkOberst);
+	MiltenNW = Hlp_GetNpc(PC_Mage_NW);
+	DiegoNW = Hlp_GetNpc(PC_Thief_NW);
 	Karras = Hlp_GetNpc(KDF_503_Karras);
 	Gorax = Hlp_GetNpc(KDF_508_Gorax);
 	Rengaru = Hlp_GetNpc(VLK_492_Rengaru);
@@ -456,34 +366,23 @@ func void B_InitNpcGlobals()
 	Salandril = Hlp_GetNpc(VLK_422_Salandril);
 	Cornelius = Hlp_GetNpc(VLK_401_Cornelius);
 	Hodges = Hlp_GetNpc(BAU_908_Hodges);
-	Bennet = Hlp_GetNpc(SLD_809_Bennet);
-	Bennet_DI = Hlp_GetNpc(SLD_809_Bennet_DI);
 	SLD_Wolf = Hlp_GetNpc(SLD_811_Wolf);
 	Buster = Hlp_GetNpc(SLD_802_Buster);
 	Bartok = Hlp_GetNpc(VLK_440_Bartok);
 	CityOrc = Hlp_GetNpc(OrcWarrior_Harad);
 	Gritta = Hlp_GetNpc(VLK_418_Gritta);
 	Richter = Hlp_GetNpc(VLK_402_Richter);
-//	Larius = Hlp_GetNpc(VLK_400_Larius);
 	Constantino = Hlp_GetNpc(VLK_417_Constantino);
 	Thorben = Hlp_GetNpc(VLK_462_Thorben);
 	Bosper = Hlp_GetNpc(VLK_413_Bosper);
 	Matteo = Hlp_GetNpc(VLK_416_Matteo);
 	LordHagen = Hlp_GetNpc(PAL_200_Hagen);
-	Albrecht = Hlp_GetNpc(PAL_202_Albrecht);
-	Ingmar = Hlp_GetNpc(PAL_201_Ingmar);
-	Fellan = Hlp_GetNpc(VLK_480_Fellan);
-	Bromor = Hlp_GetNpc(VLK_433_Bromor);
-	Fernando = Hlp_GetNpc(VLK_405_Fernando);
-	Wulfgar = Hlp_GetNpc(MIL_312_Wulfgar);
-	Mario = Hlp_GetNpc(NONE_101_Mario);
-	Mario_DI = Hlp_GetNpc(NONE_101_Mario_DI);
+	GornNW_vor_DJG = Hlp_GetNpc(PC_Fighter_NW_vor_DJG);
+	GornNW_nach_DJG = Hlp_GetNpc(PC_Fighter_NW_nach_DJG);
 	Ignaz = Hlp_GetNpc(VLK_498_Ignaz);
+	Lehmar = Hlp_GetNpc(VLK_484_Lehmar);
 	Jack = Hlp_GetNpc(VLK_444_Jack);
-	Jack_DI = Hlp_GetNpc(VLK_444_Jack_DI);
-	Jorgen_DI = Hlp_GetNpc(VLK_4250_Jorgen_DI);
 	Torlof = Hlp_GetNpc(SLD_801_Torlof);
-	Torlof_DI = Hlp_GetNpc(SLD_801_Torlof_DI);
 	Peck = Hlp_GetNpc(MIL_324_Peck);
 	Cassia = Hlp_GetNpc(VLK_447_Cassia);
 	Jesper = Hlp_GetNpc(VLK_446_Jesper);
@@ -500,6 +399,23 @@ func void B_InitNpcGlobals()
 	BalthasarSheep1 = Hlp_GetNpc(Balthasar_Sheep1);
 	BalthasarSheep2 = Hlp_GetNpc(Balthasar_Sheep2);
 	BalthasarSheep3 = Hlp_GetNpc(Balthasar_Sheep3);
+	Ambusher_1013 = Hlp_GetNpc(BDT_1013_Bandit_L);
+	Ambusher_1014 = Hlp_GetNpc(BDT_1014_Bandit_L);
+	Ambusher_1015 = Hlp_GetNpc(BDT_1015_Bandit_L);
+	Angar_NW = Hlp_GetNpc(DJG_705_Angar_NW);
+	Biff_NW = Hlp_GetNpc(DJG_713_Biff_NW);
+	TalbinNW = Hlp_GetNpc(VLK_4132_Talbin_NW);
+	Nov607 = Hlp_GetNpc(NOV_607_Novize);
+	Torwache_305 = Hlp_GetNpc(MIL_305_Torwache);
+	Albrecht = Hlp_GetNpc(PAL_202_Albrecht);
+	Ingmar = Hlp_GetNpc(PAL_201_Ingmar);
+	Fellan = Hlp_GetNpc(VLK_480_Fellan);
+	Bromor = Hlp_GetNpc(VLK_433_Bromor);
+	Fernando = Hlp_GetNpc(VLK_405_Fernando);
+	Wulfgar = Hlp_GetNpc(MIL_312_Wulfgar);
+	Mario = Hlp_GetNpc(NONE_101_Mario);
+	Hanna = Hlp_GetNpc(VLK_414_Hanna);
+	Kardif = Hlp_GetNpc(VLK_431_Kardif);
 	Rega = Hlp_GetNpc(BAU_933_Rega);
 	Babera = Hlp_GetNpc(BAU_934_Babera);
 	SekobsBauer1 = Hlp_GetNpc(BAU_937_Bauer);
@@ -531,60 +447,13 @@ func void B_InitNpcGlobals()
 	Sergio = Hlp_GetNpc(PAL_299_Sergio);
 	Wolfi = Hlp_GetNpc(BlackWolf);
 	Ulf = Hlp_GetNpc(NOV_602_Ulf);
-	Fed = Hlp_GetNpc(STRF_1106_Fed);
-	Kervo = Hlp_GetNpc(STRF_1116_Kervo);
-	Geppert = Hlp_GetNpc(STRF_1115_Geppert);
 	Bote = Hlp_GetNpc(VLK_4006_Bote);
 	Jorgen = Hlp_GetNpc(VLK_4250_Jorgen);
-//	LeuchtturmBandit_1021 = Hlp_GetNpc(BDT_1021_LeuchtturmBandit);
-//	LeuchtturmBandit_1022 = Hlp_GetNpc(BDT_1022_LeuchtturmBandit);
-//	LeuchtturmBandit_1023 = Hlp_GetNpc(BDT_1023_LeuchtturmBandit);
 	Brian = Hlp_GetNpc(VLK_457_Brian);
 	Harad = Hlp_GetNpc(VLK_412_Harad);
 	Gerbrandt = Hlp_GetNpc(VLK_403_Gerbrandt);
 	GerbrandtsFrau = Hlp_GetNpc(VLK_497_Buergerin);
 	Morgahard = Hlp_GetNpc(BDT_1030_Morgahard);
-	Tengron = Hlp_GetNpc(PAL_280_Tengron);
-	Engor = Hlp_GetNpc(VLK_4108_Engor);
-//	Bandit_1 = Hlp_GetNpc(BDT_1009_Bandit_L);
-//	Bandit_2 = Hlp_GetNpc(BDT_1010_Bandit_L);
-//	Bandit_3 = Hlp_GetNpc(BDT_1011_Bandit_M);
-//	Koch = Hlp_GetNpc(STRF_1107_Straefling);
-	Bruder = Hlp_GetNpc(PAL_2004_Bruder);
-	Den = Hlp_GetNpc(VLK_4112_Den);
-	Silvestro = Hlp_GetNpc(PAL_2002_Leiche);
-	Olav = Hlp_GetNpc(VLK_4152_Olav);
-	Marcos_Guard1 = Hlp_GetNpc(PAL_253_Wache);
-	Marcos_Guard2 = Hlp_GetNpc(PAL_257_Ritter);
-	Jergan = Hlp_GetNpc(VLK_4110_Jergan);
-	Parlaf = Hlp_GetNpc(VLK_4107_Parlaf);
-	Garond = Hlp_GetNpc(PAL_250_Garond);
-	Oric = Hlp_GetNpc(PAL_251_Oric);
-	DJG_Sylvio = Hlp_GetNpc(DJG_700_Sylvio);
-	DJG_Bullco = Hlp_GetNpc(DJG_701_Bullco);
-	DJG_Rod = Hlp_GetNpc(DJG_702_Rod);
-	DJG_Cipher = Hlp_GetNpc(DJG_703_Cipher);
-	DJG_Angar = Hlp_GetNpc(DJG_705_Angar);
-	Angar_NW = Hlp_GetNpc(DJG_705_Angar_NW);
-	Angar_DI = Hlp_GetNpc(DJG_705_Angar_DI);
-	Kurgan = Hlp_GetNpc(DJG_708_Kurgan);
-	Kjorn = Hlp_GetNpc(DJG_710_Kjorn);
-	Godar = Hlp_GetNpc(DJG_711_Godar);
-	Hokurn = Hlp_GetNpc(DJG_712_Hokurn);
-	Biff = Hlp_GetNpc(DJG_713_Biff);
-	Biff_NW = Hlp_GetNpc(DJG_713_Biff_NW);
-	Biff_DI = Hlp_GetNpc(DJG_713_Biff_DI);
-	Fajeth = Hlp_GetNpc(PAL_281_Fajeth);
-	Bilgot = Hlp_GetNpc(VLK_4120_Bilgot);
-	Brutus = Hlp_GetNpc(VLK_4100_Brutus);
-	Rethon = Hlp_GetNpc(DJG_709_Rethon);
-	Ferros = Hlp_GetNpc(DJG_715_Ferros);
-	Jan = Hlp_GetNpc(DJG_714_Jan);
-	Hosh_Pak = Hlp_GetNpc(OrcShaman_Hosh_Pak);
-	Sengrath = Hlp_GetNpc(PAL_267_Sengrath);
-	DeadSengrath = Hlp_GetNpc(PAL_275_DeadSengrath);
-	HaupttorWache_4143 = Hlp_GetNpc(VLK_4143_HaupttorWache);
-	Engrom = Hlp_GetNpc(VLK_4131_Engrom);
 	DMT_1202 = Hlp_GetNpc(DMT_1202_Dementor);
 	DMT_1204 = Hlp_GetNpc(DMT_1204_Dementor);
 	DMT_1206 = Hlp_GetNpc(DMT_1206_Dementor);
@@ -596,14 +465,6 @@ func void B_InitNpcGlobals()
 	DMT_Vino2 = Hlp_GetNpc(DMT_DementorSpeakerVino2);
 	DMT_Vino3 = Hlp_GetNpc(DMT_DementorSpeakerVino3);
 	DMT_Vino4 = Hlp_GetNpc(DMT_DementorSpeakerVino4);
-	SwampDragon = Hlp_GetNpc(Dragon_Swamp);
-	RockDragon = Hlp_GetNpc(Dragon_Rock);
-	FireDragon = Hlp_GetNpc(Dragon_Fire);
-	IceDragon = Hlp_GetNpc(Dragon_Ice);
-	FireDragonIsland = Hlp_GetNpc(Dragon_Fire_Island);
-	UndeadDragon = Hlp_GetNpc(Dragon_Undead);
-	Pedro_DI = Hlp_GetNpc(NOV_600_Pedro_DI);
-	Archol = Hlp_GetNpc(Skeleton_Lord_Archol);
 	Cipher = Hlp_GetNpc(SLD_803_Cipher);
 	Hakon = Hlp_GetNpc(VLK_407_Hakon);
 	Elena = Hlp_GetNpc(BAU_911_Elena);
@@ -618,31 +479,182 @@ func void B_InitNpcGlobals()
 	Dar = Hlp_GetNpc(SLD_810_Dar);
 	Bodo = Hlp_GetNpc(BAU_903_Bodo);
 	Pepe = Hlp_GetNpc(BAU_912_Pepe);
-	Lucia = Hlp_GetNpc(BDT_1091_Addon_Lucia);
-	Huno = Hlp_GetNpc(BDT_1099_Addon_Huno);
 	Baltram = Hlp_GetNpc(VLK_410_Baltram);
 	Zuris = Hlp_GetNpc(VLK_409_Zuris);
 	Jora = Hlp_GetNpc(VLK_408_Jora);
-	Tandor = Hlp_GetNpc(PAL_260_Tandor);
 	Khaled = Hlp_GetNpc(SLD_823_Khaled);
 	Meldor = Hlp_GetNpc(VLK_415_Meldor);
 	Daron = Hlp_GetNpc(KDF_511_Daron);
-	Lance = Hlp_GetNpc(NONE_Addon_114_Lance_ADW);
-	William = Hlp_GetNpc(VLK_4304_Addon_William);
 	Serpentes = Hlp_GetNpc(KDF_501_Serpentes);
 	Nov610 = Hlp_GetNpc(NOV_610_Novize);
 	BridgeBandit = Hlp_GetNpc(BDT_1020_Bandit_L);
 	BDT_1051 = Hlp_GetNpc(BDT_1051_Wegelagerer);
 	BDT_1052 = Hlp_GetNpc(BDT_1052_Wegelagerer);
-	Talbin = Hlp_GetNpc(VLK_4130_Talbin);
-	TalbinNW = Hlp_GetNpc(VLK_4132_Talbin_NW);
-//	Joe = Hlp_GetNpc(VLK_448_Joe);
-	Hanna = Hlp_GetNpc(VLK_414_Hanna);
-	Kardif = Hlp_GetNpc(VLK_431_Kardif);
-	AntiPaladin_NW = Hlp_GetNpc(OrkElite_AntiPaladinOrkOberst);
-	AntiPaladin_DI = Hlp_GetNpc(OrkElite_AntiPaladinOrkOberst_DI);
+};
+
+func void B_InitNpc_ADW()
+{
+	//Яркендар
+	Quarhodron = Hlp_GetNpc(NONE_ADDON_111_Quarhodron);
+	Rhademes = Hlp_GetNpc(NONE_ADDON_112_Rhademes);
 	TowerBandit1 = Hlp_GetNpc(BDT_10100_Addon_TowerBandit);
 	TowerBandit2 = Hlp_GetNpc(BDT_10101_Addon_TowerBandit);
 	TowerBandit3 = Hlp_GetNpc(BDT_10102_Addon_TowerBandit);
+	//бандиты
+	Raven = Hlp_GetNpc(BDT_1090_Addon_Raven);
+	Logan = Hlp_GetNpc(BDT_1072_Addon_Logan);
+	Ramon = Hlp_GetNpc(BDT_1071_Addon_Ramon);
+	Franco = Hlp_GetNpc(BDT_1093_Addon_Franco);
+	Edgor = Hlp_GetNpc(BDT_1074_Addon_Edgor);
+	Esteban = Hlp_GetNpc(BDT_1083_Addon_Esteban);
+	Carlos = Hlp_GetNpc(BDT_1079_Addon_Carlos);
+	Fisk = Hlp_GetNpc(BDT_1097_Addon_Fisk);
+	Thorus = Hlp_GetNpc(BDT_10014_Addon_Thorus);
+	Lucia = Hlp_GetNpc(BDT_1091_Addon_Lucia);
+	Huno = Hlp_GetNpc(BDT_1099_Addon_Huno);
+	Bloodwyn = Hlp_GetNpc(BDT_1085_Addon_Bloodwyn);
+	Freund = Hlp_GetNpc(BDT_10016_Addon_Bandit);
+	Skinner = Hlp_GetNpc(BDT_1082_Addon_Skinner);
+	Juan = Hlp_GetNpc(BDT_10017_Addon_Juan);
+	Senyan = Hlp_GetNpc(BDT_1084_Addon_Senyan);
+	Fortuno = Hlp_GetNpc(BDT_1075_Addon_Fortuno);
+	Finn = Hlp_GetNpc(BDT_10004_Addon_Finn);
+	Wache_02 = Hlp_GetNpc(BDT_10005_Addon_Wache_02);
+	Wache_01 = Hlp_GetNpc(BDT_1081_Addon_Wache_01);
+	Torwache2 = Hlp_GetNpc(BDT_1088_Addon_Torwache);
+	PrisonGuard = Hlp_GetNpc(BDT_10023_Addon_Wache);
+	//рабы
+	Patrick = Hlp_GetNpc(STRF_1118_Addon_Patrick);
+	Tonak = Hlp_GetNpc(STRF_1120_Addon_Tonak);
+	Telbor = Hlp_GetNpc(STRF_1121_Addon_Telbor);
+	Monty = Hlp_GetNpc(STRF_1119_Addon_Monty);
+	Pardos = Hlp_GetNpc(STRF_1122_Addon_Pardos);
+	//пираты
+	Morgan = Hlp_GetNpc(PIR_1353_Addon_Morgan);
+	Samuel = Hlp_GetNpc(PIR_1351_Addon_Samuel);
+	Henry = Hlp_GetNpc(PIR_1354_Addon_Henry);
+	AlligatorJack = Hlp_GetNpc(PIR_1352_Addon_AlligatorJack);
+	Bill = Hlp_GetNpc(PIR_1356_Addon_Bill);
+	Garett = Hlp_GetNpc(PIR_1357_Addon_Garett);
+	Francis = Hlp_GetNpc(PIR_1350_Addon_Francis);
+	Greg = Hlp_GetNpc(PIR_1320_Addon_Greg);
+	Malcom = Hlp_GetNpc(PIR_1368_Addon_Malcom);
+	Owen = Hlp_GetNpc(PIR_1367_Addon_Owen);
+	Skip = Hlp_GetNpc(PIR_1355_Addon_Skip);
+	Matt = Hlp_GetNpc(PIR_1365_Addon_Matt);
+	Brandon = Hlp_GetNpc(PIR_1366_Addon_Brandon);
+	RoastPirate = Hlp_GetNpc(PIR_1364_Addon_Pirat);
+	BenchPirate = Hlp_GetNpc(PIR_1363_Addon_Pirat);
+	SawPirate = Hlp_GetNpc(PIR_1361_Addon_Pirat);
+	HammerPirate = Hlp_GetNpc(PIR_1360_Addon_Pirat);
+	//маги Воды
+	Cronos_ADW = Hlp_GetNpc(KDW_14010_Addon_Cronos_ADW);
+	Myxir_ADW = Hlp_GetNpc(KDW_14030_Addon_Myxir_ADW);
+	//трупы
+	Angus = Hlp_GetNpc(PIR_1370_Addon_Angus);
+	Lance = Hlp_GetNpc(NONE_Addon_114_Lance_ADW);
+	William = Hlp_GetNpc(VLK_4304_Addon_William);
+};
+
+func void B_InitNpc_OW()
+{
+	//Долина Рудников
+	Hosh_Pak = Hlp_GetNpc(OrcShaman_Hosh_Pak);
+	Kervo = Hlp_GetNpc(STRF_1116_Kervo);
+	Geppert = Hlp_GetNpc(STRF_1115_Geppert);
+	Jergan = Hlp_GetNpc(VLK_4110_Jergan);
+	Talbin = Hlp_GetNpc(VLK_4130_Talbin);
+	DiegoOW = Hlp_GetNpc(PC_ThiefOW);
+	DJG_Angar = Hlp_GetNpc(DJG_705_Angar);
+	//драконы
+	SwampDragon = Hlp_GetNpc(Dragon_Swamp);
+	RockDragon = Hlp_GetNpc(Dragon_Rock);
+	FireDragon = Hlp_GetNpc(Dragon_Fire);
+	IceDragon = Hlp_GetNpc(Dragon_Ice);
+	//охотники на драконов
+	DJG_Sylvio = Hlp_GetNpc(DJG_700_Sylvio);
+	DJG_Bullco = Hlp_GetNpc(DJG_701_Bullco);
+	DJG_Rod = Hlp_GetNpc(DJG_702_Rod);
+	DJG_Cipher = Hlp_GetNpc(DJG_703_Cipher);
+	Biff = Hlp_GetNpc(DJG_713_Biff);
+	GornDJG = Hlp_GetNpc(PC_Fighter_DJG);
+	Hokurn = Hlp_GetNpc(DJG_712_Hokurn);
+	Kurgan = Hlp_GetNpc(DJG_708_Kurgan);
+	Kjorn = Hlp_GetNpc(DJG_710_Kjorn);
+	Godar = Hlp_GetNpc(DJG_711_Godar);
+	//шахта Фаджета
+	Fajeth = Hlp_GetNpc(PAL_281_Fajeth);
+	Bilgot = Hlp_GetNpc(VLK_4120_Bilgot);
+	Fed = Hlp_GetNpc(STRF_1106_Fed);
+	Tengron = Hlp_GetNpc(PAL_280_Tengron);
+	//замок
+	Parlaf = Hlp_GetNpc(VLK_4107_Parlaf);
+	Garond = Hlp_GetNpc(PAL_250_Garond);
+	Oric = Hlp_GetNpc(PAL_251_Oric);
+	GornOW = Hlp_GetNpc(PC_Fighter_OW);
+	MiltenOW = Hlp_GetNpc(PC_Mage_OW);
+	Brutus = Hlp_GetNpc(VLK_4100_Brutus);
+	Rethon = Hlp_GetNpc(DJG_709_Rethon);
+	Ferros = Hlp_GetNpc(DJG_715_Ferros);
+	Jan = Hlp_GetNpc(DJG_714_Jan);
+	Sengrath = Hlp_GetNpc(PAL_267_Sengrath);
+	HaupttorWache_4143 = Hlp_GetNpc(VLK_4143_HaupttorWache);
+	Engrom = Hlp_GetNpc(VLK_4131_Engrom);
+	Engor = Hlp_GetNpc(VLK_4108_Engor);
+	Tandor = Hlp_GetNpc(PAL_260_Tandor);
+	Marcos_Guard1 = Hlp_GetNpc(PAL_253_Wache);
+	Marcos_Guard2 = Hlp_GetNpc(PAL_257_Ritter);
+	//трупы
+	DeadSengrath = Hlp_GetNpc(PAL_275_DeadSengrath);
+	Bruder = Hlp_GetNpc(PAL_2004_Bruder);
+	Den = Hlp_GetNpc(VLK_4112_Den);
+	Olav = Hlp_GetNpc(VLK_4152_Olav);
+	Silvestro = Hlp_GetNpc(PAL_2002_Leiche);
+};
+
+func void B_InitNpc_DI()
+{
+	//Ирдорат
+	Pedro_DI = Hlp_GetNpc(NOV_600_Pedro_DI);
+	Archol = Hlp_GetNpc(Skeleton_Lord_Archol);
+	AntiPaladin_DI = Hlp_GetNpc(OrkElite_AntiPaladinOrkOberst_DI);
+	//команда корабля
+	Gorn_DI = Hlp_GetNpc(PC_Fighter_DI);
+	Lester_DI = Hlp_GetNpc(PC_Psionic_DI);
+	Milten_DI = Hlp_GetNpc(PC_Mage_DI);
+	Diego_DI = Hlp_GetNpc(PC_Thief_DI);
+	Bennet_DI = Hlp_GetNpc(SLD_809_Bennet_DI);
+	Lee_DI = Hlp_GetNpc(SLD_800_Lee_DI);
+	Vatras_DI = Hlp_GetNpc(VLK_439_Vatras_DI);
+	Mario_DI = Hlp_GetNpc(NONE_101_Mario_DI);
+	Angar_DI = Hlp_GetNpc(DJG_705_Angar_DI);
+	Biff_DI = Hlp_GetNpc(DJG_713_Biff_DI);
+	//капитаны
+	Jack_DI = Hlp_GetNpc(VLK_444_Jack_DI);
+	Jorgen_DI = Hlp_GetNpc(VLK_4250_Jorgen_DI);
+	Torlof_DI = Hlp_GetNpc(SLD_801_Torlof_DI);
+	//драконы
+	FireDragonIsland = Hlp_GetNpc(Dragon_Fire_Island);
+	UndeadDragon = Hlp_GetNpc(Dragon_Undead);
+};
+
+func void B_InitNpcGlobals()
+{
+	if(CurrentLevel == NEWWORLD_ZEN)
+	{
+		B_InitNpc_NW();
+	}
+	else if(CurrentLevel == ADDONWORLD_ZEN)
+	{
+		B_InitNpc_ADW();
+	}
+	else if(CurrentLevel == OLDWORLD_ZEN)
+	{
+		B_InitNpc_OW();
+	}
+	else if(CurrentLevel == DRAGONISLAND_ZEN)
+	{
+		B_InitNpc_DI();
+	};
 };
 

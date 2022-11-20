@@ -203,7 +203,7 @@ func void DIA_Pablo_MyBandits_Info()
 	AI_Output(other,self,"DIA_Pablo_Add_15_19");	//Я запомню это.
 	if(MIS_Steckbriefe == LOG_Running)
 	{
-		B_LogEntry(Topic_Bandits,"Ополчение нашло бандитов с объявлением о моем розыке неподалеку от поместья лендлорда.");
+		B_LogEntry(Topic_Bandits,"Ополчение нашло бандитов с объявлением о моем розыке неподалеку от поместья Онара. Похоже, что они из банды, которая засела там в горах.");
 	};
 };
 

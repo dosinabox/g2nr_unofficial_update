@@ -429,7 +429,6 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Wld_InsertNpc(MIL_336_Rick,"CITY2");
 			RumboldReturnedToCity = TRUE;
 			RickReturnedToCity = TRUE;
-			B_InitNpcGlobals();
 		};
 		if(!Npc_IsDead(Rick))
 		{
@@ -733,7 +732,6 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 	if(Talbin_FollowsThroughPass == LOG_Running)
 	{
 		Wld_InsertNpc(VLK_4132_Talbin_NW,"NW_PASS_SECRET_17");
-		B_InitNpcGlobals();
 		Talbin_FollowsThroughPass = LOG_SUCCESS;
 	};
 };

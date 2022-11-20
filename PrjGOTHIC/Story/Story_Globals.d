@@ -673,7 +673,7 @@ var int MIS_NeorasRezept;
 var int MIS_ParlanFegen;
 var int NOV_Helfer;
 var int MIS_GoraxEssen;
-var int Gorax_Gold;
+//var int Gorax_Gold;
 var int Wurst_Gegeben;
 var int MIS_MardukBeten;
 var int MIS_IsgarothWolf;
