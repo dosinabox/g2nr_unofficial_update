@@ -138,7 +138,7 @@ func void B_AssignAmbientInfos(var C_Npc slf)
 			};
 		};
 	}
-	else if(slf.guild == GIL_PIR)
+	/*else if(slf.guild == GIL_PIR)
 	{
 		if(slf.npcType == NPCTYPE_AMBIENT)
 		{
@@ -151,7 +151,7 @@ func void B_AssignAmbientInfos(var C_Npc slf)
 				B_AssignAmbientInfos_Addon_PIR_7(slf);
 			};
 		};
-	}
+	}*/
 	else if(slf.guild == GIL_OUT)
 	{
 		if(slf.npcType == NPCTYPE_AMBIENT)

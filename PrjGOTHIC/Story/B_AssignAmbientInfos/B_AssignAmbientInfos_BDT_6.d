@@ -50,7 +50,7 @@ func void dia_bdt_6_standard_info()
 	{
 		B_Say(self,other,"$GETOUTOFHERE");
 	}
-	else if(randy == 2)
+	else
 	{
 		B_Say(self,other,"$NOTNOW");
 	};

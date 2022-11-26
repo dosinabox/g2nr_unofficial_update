@@ -396,7 +396,7 @@ func void Use_RavensKidnapperMission_Addon()
 };
 
 
-instance ItWr_Vatras_KDFEmpfehlung_Addon(C_Item) //TODO не используется, задействовать
+instance ItWr_Vatras_KDFEmpfehlung_Addon(C_Item)
 {
 	name = "Рекомендательное письмо Ватраса";
 	mainflag = ITEM_KAT_DOCS;

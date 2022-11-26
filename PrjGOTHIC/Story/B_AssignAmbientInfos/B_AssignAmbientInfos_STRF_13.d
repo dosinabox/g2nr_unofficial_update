@@ -45,12 +45,12 @@ func void DIA_STRF_13_STANDARD_Info()
 	if(randy == 0)
 	{
 		AI_Output(self,other,"DIA_STRF_13_STANDARD_13_00");	//Оставь меня в покое!
-	};
-	if(randy == 1)
+	}
+	else if(randy == 1)
 	{
 		AI_Output(self,other,"DIA_STRF_13_STANDARD_13_01");	//Что тебе нужно от меня? Оставь меня в покое!
-	};
-	if(randy == 2)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_STRF_13_STANDARD_13_02");	//Мы все умрем здесь!
 	};

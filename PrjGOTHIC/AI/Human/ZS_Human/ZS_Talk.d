@@ -57,6 +57,10 @@ func void ZS_Talk()
 		{
 			B_Addon_GivePotion(self);
 		};
+		if(Hlp_StrCmp(self.name[0],"Миксир"))
+		{
+			B_AssignMyxirTeach(self);
+		};
 		if(C_NpcIsToughGuy(self) && (self.aivar[AIV_ToughGuyNewsOverride] == FALSE))
 		{
 			B_AssignToughGuyNEWS(self);

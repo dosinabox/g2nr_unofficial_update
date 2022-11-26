@@ -45,12 +45,12 @@ func void DIA_BDT_1_STANDARD_Info()
 	if(randy == 0)
 	{
 		AI_Output(self,other,"DIA_BDT_1_STANDARD_01_00");	//Убирайся с глаз моих!
-	};
-	if(randy == 1)
+	}
+	else if(randy == 1)
 	{
 		AI_Output(self,other,"DIA_BDT_1_STANDARD_01_01");	//Ты ищешь проблем?
-	};
-	if(randy == 2)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_BDT_1_STANDARD_01_02");	//Уходи, пока еще можешь!
 	};

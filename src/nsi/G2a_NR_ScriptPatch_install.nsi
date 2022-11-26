@@ -14,7 +14,7 @@
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"
-!define MOD_AUTHOR "Fizzban, Efectivo, Dimus, D36, Kvincius, N1kX"
+!define MOD_AUTHOR "Fizzban, Efectivo, Dimus, D36, Kvincius, N1kX, Kor Angar"
 !define INSTALLER_NAME "${MOD_NAME}_install"
 !define UNINSTALLER_NAME "${MOD_NAME}_uninstall"
 !define REGISTRY_PATH "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}"

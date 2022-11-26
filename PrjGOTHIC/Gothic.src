@@ -159,7 +159,6 @@ AI\Human\B_Human\B_ResetAll.d
 Story\B_Story\B_UseItem.d
 Story\B_AssignAmbientInfos\B_Common.d
 Story\B_AssignAmbientInfos\B_LastWarningVatras.d
-Story\B_AssignAmbientInfos\B_Addon_Myxir_TeachRequest.d
 Story\B_AssignAmbientInfos\B_Addon_Riordian_TeachWisp.d
 Story\B_AssignAmbientInfos\B_Bartok_ShitAnOrc.d
 Story\B_AssignAmbientInfos\B_Koch_Hackebeil.d
@@ -1274,7 +1273,6 @@ AI\Human\ZS_Human\ZS_ObservePlayer.d
 AI\Human\ZS_Human\ZS_RansackBody.d
 AI\Human\ZS_Human\ZS_ReactToDamage.d
 AI\Human\ZS_Human\ZS_ReactToWeapon.d
-AI\Human\ZS_Human\ZS_Talk.d
 AI\Human\ZS_Human\ZS_Unconscious.d
 AI\Human\ZS_Human\ZS_WatchFight.d
 AI\Human\ZS_Human\ZS_Attack.d
@@ -1298,6 +1296,7 @@ Story\B_Story\B_TeachThiefTalent.d
 Story\B_Story\B_ReadFakeItem.d
 Story\B_Story\B_NPC_IsAliveCheck.d
 Story\B_Story\B_NpcSetJailed.d
+Story\B_AssignAmbientInfos\B_Addon_Myxir_TeachRequest.d
 Story\B_AssignAmbientInfos\B_AssignDragonTalk_Main.d
 Story\B_AssignAmbientInfos\B_AssignDragonTalk_Fire.d
 Story\B_AssignAmbientInfos\B_AssignDragonTalk_Ice.d
@@ -1307,6 +1306,7 @@ Story\B_AssignAmbientInfos\B_AssignDragonTalk.d
 Story\B_AssignAmbientInfos\B_AssignDementorTalk_Ritual.d
 Story\B_AssignAmbientInfos\B_AssignORC_AntiPaladinTalk.d
 Story\B_AssignAmbientInfos\B_NpcObsessedByDMT.d
+AI\Human\ZS_Human\ZS_Talk.d
 Story\B_Story\B_GregIsBack.d
 Story\B_Story\B_Enter_AddonWorld.d
 Story\B_Story\C_AkilFarmIsFree.d
