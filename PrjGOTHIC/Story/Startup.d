@@ -650,7 +650,7 @@ func void STARTUP_Addon_Part_Valley_01()
 	Wld_InsertItem(ItRi_Addon_STR_02,"FP_ITEM_VALLEY_12");
 };
 
-func void INIT_SUB_Psicamp()
+func void INIT_SUB_OldWorld_Part_Psicamp()
 {
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_01",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_01",1);
@@ -753,7 +753,7 @@ func void INIT_SUB_Psicamp()
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_54",0);
 };
 
-func void Startup_Oldcamp()
+func void STARTUP_OldWorld_Part_Oldcamp()
 {
 	Wld_InsertItem(ItMi_GornsTreasure_MIS,"FP_ITEM_GORN");
 	Wld_InsertItem(ITKE_ErzBaronFlur,"FP_ITEM_OC_01");
@@ -893,7 +893,7 @@ func void Startup_Oldcamp()
 	Wld_InsertNpc(Warg,"FP_ROAM_WARG_OC_13");
 };
 
-func void INIT_SUB_Oldcamp()
+func void INIT_SUB_OldWorld_Part_Oldcamp()
 {
 //	Wld_SetMobRoutine(0,0,"FIREPLACE",1);
 //	Wld_SetMobRoutine(20,0,"FIREPLACE",1);
@@ -957,7 +957,7 @@ func void INIT_SUB_Oldcamp()
 	Wld_AssignRoomToGuild("tu2",GIL_MIL);
 };
 
-func void Startup_Demontower()
+func void STARTUP_OldWorld_Part_Demontower()
 {
 	Wld_InsertNpc(Gobbo_SkeletonOWDemonTower,"DT_E1_06");
 	Wld_InsertNpc(Gobbo_Skeleton,"DT_E2_07");
@@ -971,7 +971,7 @@ func void Startup_Demontower()
 	Wld_InsertNpc(Skeleton,"DT_E3_04");
 };
 
-func void Startup_Surface()
+func void STARTUP_OldWorld_Part_Surface()
 {
 	Wld_InsertItem(ItSe_ADDON_CavalornsBeutel,"FP_OW_ITEM_02");
 	Wld_InsertItem(ItWr_KDWLetter,"FP_ITEM_OW_01");
@@ -1577,45 +1577,10 @@ func void Startup_Surface()
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
 };
 
-func void INIT_SUB_Surface()
+func void INIT_SUB_OldWorld_Part_Surface()
 {
 	Wld_AssignRoomToGuild("DT1",GIL_DMT);
 	Wld_AssignRoomToGuild("DT2",GIL_DMT);
-};
-
-func void INIT_OldWorld()
-{
-	CurrentLevel = OLDWORLD_ZEN;
-	B_Enter_OldWorld();
-	INIT_SUB_Oldcamp();
-	INIT_SUB_Surface();
-	if(C_OldWorldIsWasteland())
-	{
-		INIT_SUB_Psicamp();
-	};
-	if((MIS_ReadyforChapter4 == TRUE) && (B_Chapter4_OneTime == FALSE))
-	{
-		B_Kapitelwechsel(4,OLDWORLD_ZEN);
-		B_Chapter4_OneTime = TRUE;
-	};
-};
-
-func void STARTUP_OldWorld()
-{
-	Startup_Oldcamp();
-	Startup_Demontower();
-	Startup_Surface();
-	if(Wld_IsTime(4,0,21,0))
-	{
-		Wld_SetTime(23,59);
-	};
-	if(C_OldWorldIsWasteland())
-	{
-		B_Seed_Wasteland_World_Main();
-		B_Seed_Wasteland_World_Psicamp();
-		B_Seed_Wasteland_World_Freeminecamp();
-		Wasteland_Seeded = TRUE;
-	};
 };
 
 func void STARTUP_NewWorld_Part_City_01()
@@ -1826,8 +1791,6 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertNpc(MIL_321_Rangar,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(MIL_326_Miliz,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(VLK_4006_Bote,"NW_CITY_ENTRANCE_01");
-	Wld_InsertItem(ItWr_OneHStonePlate2_Addon,"FP_ROAM_INSEL_07");
-	Wld_InsertItem(ItWr_BowStonePlate2_Addon,"FP_ROAM_INSEL_10");
 	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_03");
 	if(C_WorldIsFixed(NEWWORLD_ZEN))
 	{
@@ -1847,8 +1810,10 @@ func void STARTUP_NewWorld_Part_City_01()
 		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_09");
 		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_10");
 	};
-	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_01");
+	Wld_InsertItem(ItWr_OneHStonePlate2_Addon,"FP_ROAM_INSEL_07");
+	Wld_InsertItem(ItWr_BowStonePlate2_Addon,"FP_ROAM_INSEL_10");
 	Wld_InsertItem(ItWr_ManaStonePlate2_Addon,"FP_SHELLSPAWN_CITY_02");
+	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_01");
 	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_SHELLSPAWN_CITY_02");
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_03");
 	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_SHELLSPAWN_CITY_04");
@@ -3050,6 +3015,8 @@ func void STARTUP_NewWorld_Part_TrollArea_01()
 	Wld_InsertNpc(BDT_1020_Bandit_L,"NW_TROLLAREA_PATH_47");
 };
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+
 func void STARTUP_NewWorld()
 {
 	STARTUP_NewWorld_Part_City_01();
@@ -3063,7 +3030,6 @@ func void STARTUP_NewWorld()
 	Kapitel = 1;
 	PlayVideo("INTRO.BIK");
 //	PlayVideo("Addon_Title.BIK");
-//	InitHeroHitchance();
 };
 
 func void INIT_NewWorld()
@@ -3085,6 +3051,41 @@ func void INIT_NewWorld()
 		B_Chapter5_OneTime = TRUE;
 	};
 	B_Cycle_Function();
+};
+
+func void STARTUP_OldWorld()
+{
+	STARTUP_OldWorld_Part_Oldcamp();
+	STARTUP_OldWorld_Part_Demontower();
+	STARTUP_OldWorld_Part_Surface();
+	if(Wld_IsTime(4,0,21,0))
+	{
+		Wld_SetTime(23,59);
+	};
+	if(C_OldWorldIsWasteland())
+	{
+		B_Seed_Wasteland_World_Main();
+		B_Seed_Wasteland_World_Psicamp();
+		B_Seed_Wasteland_World_Freeminecamp();
+		Wasteland_Seeded = TRUE;
+	};
+};
+
+func void INIT_OldWorld()
+{
+	CurrentLevel = OLDWORLD_ZEN;
+	B_Enter_OldWorld();
+	INIT_SUB_OldWorld_Part_Oldcamp();
+	INIT_SUB_OldWorld_Part_Surface();
+	if(C_OldWorldIsWasteland())
+	{
+		INIT_SUB_OldWorld_Part_Psicamp();
+	};
+	if((MIS_ReadyforChapter4 == TRUE) && (B_Chapter4_OneTime == FALSE))
+	{
+		B_Kapitelwechsel(4,OLDWORLD_ZEN);
+		B_Chapter4_OneTime = TRUE;
+	};
 };
 
 func void STARTUP_AddonWorld()

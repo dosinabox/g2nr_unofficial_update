@@ -185,7 +185,7 @@ func void DIA_SLD_6_STANDARD_Info()
 			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_11");	//Ты должен идти в Долину Рудников. Я слышал, что этим беднягам там необходима помощь.
 		};
 	}
-	else if(Kapitel >= 5)
+	else
 	{
 		if(hero.guild == GIL_DJG)
 		{

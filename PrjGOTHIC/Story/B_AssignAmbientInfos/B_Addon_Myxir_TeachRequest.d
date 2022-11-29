@@ -16,7 +16,7 @@ func void B_Myxir_WillYouTeachMe()
 func void B_BuildLearnDialog_Myxir()
 {
 	Info_ClearChoices(DIA_Myxir_Teach);
-	if((PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == FALSE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == FALSE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE))
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE)
 	{
 		Info_AddChoice(DIA_Myxir_Teach,Dialog_Back,DIA_Myxir_Teach_BACK);
 		if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == FALSE)
@@ -29,7 +29,7 @@ func void B_BuildLearnDialog_Myxir()
 			AI_Output(self,other,"DIA_Addon_Myxir_TeachL2_12_00");	//Ты уже знаком с языком крестьян. Язык воинов немного более сложен.
 			Info_AddChoice(DIA_Myxir_Teach,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_2,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_2)),DIA_Myxir_Teach_LANGUAGE_2);
 		}
-		else if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE)
+		else
 		{
 			AI_Output(self,other,"DIA_Addon_Myxir_TeachL3_12_00");	//Высокий штиль жрецов трудно понять. Но я с радостью обучу тебя ему.
 			Info_AddChoice(DIA_Myxir_Teach,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_3,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_3)),DIA_Myxir_Teach_LANGUAGE_3);

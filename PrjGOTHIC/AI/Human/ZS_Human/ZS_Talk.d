@@ -53,13 +53,12 @@ func void ZS_Talk()
 				B_AssignCityGuide(self);
 			};
 		};
-		if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff_NW)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff_DI)))
+		if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 		{
-			B_Addon_GivePotion(self);
-		};
-		if(Hlp_StrCmp(self.name[0],"Миксир"))
-		{
-			B_AssignMyxirTeach(self);
+			if((Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff_NW)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff_DI)))
+			{
+				B_Addon_GivePotion(self);
+			};
 		};
 		if(C_NpcIsToughGuy(self) && (self.aivar[AIV_ToughGuyNewsOverride] == FALSE))
 		{
@@ -69,17 +68,29 @@ func void ZS_Talk()
 		{
 			B_AssignAmbientNEWS(self);
 		};
-	};
-	if(self.guild == GIL_DRAGON)
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lucia))
+		{
+			if(MIS_LookingForLucia == FALSE)
+			{
+				MIS_LookingForLucia = LOG_SUCCESS;
+			};
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Myxir_NW))
+		{
+			B_AssignMyxirTeach(self);
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Myxir_ADW))
+		{
+			B_AssignMyxirTeach(self);
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Myxir_CITY))
+		{
+			B_AssignMyxirTeach(self);
+		};
+	}
+	else if(self.guild == GIL_DRAGON)
 	{
 		AI_PlayAni(self,"T_STAND_2_TALK");
-	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lucia))
-	{
-		if(MIS_LookingForLucia == FALSE)
-		{
-			MIS_LookingForLucia = LOG_SUCCESS;
-		};
 	};
 	AI_ProcessInfos(self);
 	zsTalkBugfix = FALSE;
@@ -97,8 +108,8 @@ func int ZS_Talk_Loop()
 		{
 			B_StopLookAt(self);
 			B_ResetFaceExpression(self);
-		};
-		if(self.guild == GIL_DRAGON)
+		}
+		else if(self.guild == GIL_DRAGON)
 		{
 			AI_PlayAni(self,"T_TALK_2_STAND");
 		};

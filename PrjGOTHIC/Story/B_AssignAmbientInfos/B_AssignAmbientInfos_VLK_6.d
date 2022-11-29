@@ -141,7 +141,7 @@ func void DIA_VLK_6_STANDARD_Info()
 	{
 		AI_Output(self,other,"DIA_VLK_6_STANDARD_06_05");	//Интересно, есть хоть доля правды в этих рассказах о драконах...
 	}
-	else if(Kapitel >= 5)
+	else
 	{
 		AI_Output(self,other,"DIA_VLK_6_STANDARD_06_06");	//Говорят, что лорд Хаген собирает своих людей, чтобы освободить Долину Рудников. Наконец-то паладины зашевелились!
 	};

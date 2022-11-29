@@ -44,10 +44,6 @@ func void DIA_Addon_Myxir_CITY_HelloCITY_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Myxir_CITY_HelloCITY_15_00");	//Ты останешься в городе?
 	AI_Output(self,other,"DIA_Addon_Myxir_CITY_HelloCITY_12_01");	//Кто-то из нас должен оставаться здесь, когда Ватраса в городе нет.
-	if(Myxir_Addon_TeachPlayer == FALSE)
-	{
-		B_Myxir_WillYouTeachMe();
-	};
 	if((RavenIsDead == TRUE) && (DIA_Addon_Myxir_CITY_HelloCITY_OneTime == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Myxir_CITY_HelloCITY_12_02");	//Я хотел тебе сказать еще одну вещь.

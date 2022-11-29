@@ -124,23 +124,23 @@ func void DIA_VLK_8_STANDARD_Info()
 			B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
 			SC_HearedAboutMissingPeople = TRUE;
 		};
-	};
-	if(Kapitel == 2)
+	}
+	else if(Kapitel == 2)
 	{
 		AI_Output(self,other,"DIA_VLK_8_STANDARD_08_01");	//¬се ждут, когда паладины объ€в€т, зачем они сюда прибыли. я полагаю, что из-за орков. ќни, наверн€ка, скоро нападут на нас!
 		AI_Output(self,other,"DIA_VLK_8_STANDARD_08_02");	//ѕаладины, может быть, и благословлены »нносом, но когда орды орков по€в€тс€ здесь, € думаю, нам всем несдобровать.
-	};
-	if(Kapitel == 3)
+	}
+	else if(Kapitel == 3)
 	{
 		AI_Output(self,other,"DIA_VLK_8_STANDARD_08_03");	//√овор€т, что паладины здесь только затем, чтобы выковыр€ть из острова всю руду. ƒл€ войны на материке, как они говор€т.
 		AI_Output(self,other,"DIA_VLK_8_STANDARD_08_04");	//“ы понимаешь, что это означает?  ороль даже пальцем не пошевелит, если мы все тут погибнем во врем€ атаки орков.
 		AI_Output(self,other,"DIA_VLK_8_STANDARD_08_05");	//я попробую попасть на корабль, когда паладины будут поднимать €корь.
-	};
-	if(Kapitel == 4)
+	}
+	else if(Kapitel == 4)
 	{
 		AI_Output(self,other,"DIA_VLK_8_STANDARD_08_06");	//√овор€т, что орки прилет€т сюда на огромных драконах, размером с половину города! ” нас нет ни единого шанса!
-	};
-	if(Kapitel >= 5)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_VLK_8_STANDARD_08_07");	//√овор€т, что все драконы уничтожены. Ќеужели это правда?
 	};

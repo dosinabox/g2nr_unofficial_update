@@ -112,20 +112,20 @@ func void DIA_BAU_7_STANDARD_Info()
 	if(Kapitel == 1)
 	{
 		AI_Output(self,other,"DIA_BAU_7_STANDARD_07_01");	//Мы объявили независимость - мы больше не платим налоги городу. Король все равно ничего не делает для нас. С нас хватит!
-	};
-	if(Kapitel == 2)
+	}
+	else if(Kapitel == 2)
 	{
 		AI_Output(self,other,"DIA_BAU_7_STANDARD_07_02");	//Сейчас мне нечего рассказать тебе.
-	};
-	if(Kapitel == 3)
+	}
+	else if(Kapitel == 3)
 	{
 		AI_Output(self,other,"DIA_BAU_7_STANDARD_07_03");	//Все только и говорят о драконах! Король всегда найдет способ выжать побольше денег из простых людей.
-	};
-	if(Kapitel == 4)
+	}
+	else if(Kapitel == 4)
 	{
 		AI_Output(self,other,"DIA_BAU_7_STANDARD_07_04");	//Будь осторожен: последнее время через проход толпами валят темные личности и различные дикие животные.
-	};
-	if(Kapitel >= 5)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_BAU_7_STANDARD_07_05");	//Теперь, когда драконы уничтожены, паладины снизошли до того, чтобы выползти из города. Опять они начнут тут командовать.
 	};
