@@ -83,6 +83,20 @@ func void DIA_Addon_Eremit_SeekTafeln_Info()
 
 var int Eremit_Teach_Once;
 
+func void B_Eremit_NoMoreTeach()
+{
+	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_29");	//Не думаю, что могу еще чему-то тебя научить.
+	Eremit_Teach_Once = TRUE;
+};
+
+func void B_Eremit_TeachLanguage()
+{
+	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_27");	//Вообще это все довольно просто. 'G' читается как 'O', 'T' - как 'Х', а 'I' - как 'Ц'.
+	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_28");	//Если ты это понял, то и все остальное поймешь довольно быстро...
+	B_Eremit_NoMoreTeach();
+	Info_ClearChoices(DIA_Addon_Eremit_Teach);
+};
+
 instance DIA_Addon_Eremit_Teach(C_Info)
 {
 	npc = NONE_ADDON_115_Eremit;
@@ -96,7 +110,7 @@ instance DIA_Addon_Eremit_Teach(C_Info)
 
 func int DIA_Addon_Eremit_Teach_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Eremit_SeekTafeln) && (Eremit_Teach_Once == FALSE) && (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Eremit_SeekTafeln) && (Eremit_Teach_Once == FALSE))
 	{
 		return TRUE;
 	};
@@ -106,65 +120,61 @@ func void DIA_Addon_Eremit_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Eremit_Add_15_03");	//Насчет каменных табличек...
 	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_25");	//Ты хочешь, чтобы я научил тебя их читать?
-	if(MIS_Eremit_Klamotten != LOG_SUCCESS)
-	{
-		AI_Output(self,other,"DIA_Addon_Eremit_Add_04_26");	//(быстро) Но свои я тебе не отдам! Сам ищи себе таблички!
-	};
-	Info_ClearChoices(DIA_Addon_Eremit_Teach);
-	Info_AddChoice(DIA_Addon_Eremit_Teach,Dialog_Back,DIA_Addon_Eremit_Teach_No);
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == FALSE)
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Teach,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_1,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_1)),DIA_Addon_Eremit_Teach_Yes);
-	}
-	else if((PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == FALSE) && (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Teach,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_2,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_2)),DIA_Addon_Eremit_Teach_Yes);
-	}
-	else if((PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE) && (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE) && (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == TRUE))
-	{
-		Info_AddChoice(DIA_Addon_Eremit_Teach,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_3,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_3)),DIA_Addon_Eremit_Teach_Yes);
-	};
-};
-
-func void B_Addon_Eremit_TeachLanguage()
-{
-	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_27");	//Вообще это все довольно просто. 'G' читается как 'O', 'T' - как 'Х', а 'I' - как 'Ц'.
-	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_28");	//Если ты это понял, то и все остальное поймешь довольно быстро...
-	Eremit_Teach_Once = TRUE;
-};
-
-func void DIA_Addon_Eremit_Teach_No()
-{
-	Info_ClearChoices(DIA_Addon_Eremit_Teach);
-};
-
-func void DIA_Addon_Eremit_Teach_Yes()
-{
 	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == TRUE)
 	{
-		AI_Output(self,other,"DIA_Addon_Eremit_Add_04_29");	//Не думаю, что могу еще чему-то тебя научить.
-		Eremit_Teach_Once = TRUE;
+		B_Eremit_NoMoreTeach();
 	}
-	else if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == TRUE)
+	else
 	{
-		if(B_TeachPlayerTalentForeignLanguage(self,other,LANGUAGE_3))
+		if(MIS_Eremit_Klamotten != LOG_SUCCESS)
 		{
-			B_Addon_Eremit_TeachLanguage();
+			AI_Output(self,other,"DIA_Addon_Eremit_Add_04_26");	//(быстро) Но свои я тебе не отдам! Сам ищи себе таблички!
 		};
-	}
-	else if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
-	{
-		if(B_TeachPlayerTalentForeignLanguage(self,other,LANGUAGE_2))
+		Info_ClearChoices(DIA_Addon_Eremit_Teach);
+		Info_AddChoice(DIA_Addon_Eremit_Teach,Dialog_Back,DIA_Eremit_Teach_BACK);
+		if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == FALSE)
 		{
-			B_Addon_Eremit_TeachLanguage();
+			Info_AddChoice(DIA_Addon_Eremit_Teach,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_1,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_1)),DIA_Eremit_Teach_LANGUAGE_1);
+		}
+		else if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == FALSE)
+		{
+			Info_AddChoice(DIA_Addon_Eremit_Teach,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_2,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_2)),DIA_Eremit_Teach_LANGUAGE_2);
+		}
+		else
+		{
+			Info_AddChoice(DIA_Addon_Eremit_Teach,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_3,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_3)),DIA_Eremit_Teach_LANGUAGE_3);
 		};
-	}
-	else if(B_TeachPlayerTalentForeignLanguage(self,other,LANGUAGE_1))
-	{
-		B_Addon_Eremit_TeachLanguage();
 	};
 };
 
+func void DIA_Eremit_Teach_BACK()
+{
+	Info_ClearChoices(DIA_Addon_Eremit_Teach);
+};
+
+func void DIA_Eremit_Teach_LANGUAGE_1()
+{
+	if(B_TeachPlayerTalentForeignLanguage(self,other,LANGUAGE_1))
+	{
+		B_Eremit_TeachLanguage();
+	};
+};
+
+func void DIA_Eremit_Teach_LANGUAGE_2()
+{
+	if(B_TeachPlayerTalentForeignLanguage(self,other,LANGUAGE_2))
+	{
+		B_Eremit_TeachLanguage();
+	};
+};
+
+func void DIA_Eremit_Teach_LANGUAGE_3()
+{
+	if(B_TeachPlayerTalentForeignLanguage(self,other,LANGUAGE_3))
+	{
+		B_Eremit_TeachLanguage();
+	};
+};
 
 instance DIA_Addon_Eremit_Klamotten(C_Info)
 {

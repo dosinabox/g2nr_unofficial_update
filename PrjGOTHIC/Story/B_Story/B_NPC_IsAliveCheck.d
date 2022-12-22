@@ -75,10 +75,7 @@ func void B_NPC_IsAliveCheck(var int Zen)
 				SLD_Rod_is_alive = TRUE;
 				B_RemoveNpc(SLD_804_Rod);
 			};
-			if(!Npc_IsDead(SLD_821_Soeldner))
-			{
-				Npc_ExchangeRoutine(SLD_821_Soeldner,"RODWEG");
-			};
+			B_StartOtherRoutine(SLD_821_Soeldner,"RODWEG");
 		};
 	}
 	else if(Zen == OLDWORLD_ZEN)

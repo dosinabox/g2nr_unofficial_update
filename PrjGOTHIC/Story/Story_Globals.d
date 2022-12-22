@@ -258,7 +258,7 @@ var int GhostAttackWarn;
 //var int SC_TookRhademesTrap;
 var int SC_TalkedToRhademAfter;
 var int RavenIsDead;
-var int BeliarsWeaponSpecialDamage;
+//var int BeliarsWeaponSpecialDamage;
 var int BeliarDamageChance;
 var int SC_FailedToEquipBeliarsWeapon;
 var int BeliarsWeaponUpgrated;
