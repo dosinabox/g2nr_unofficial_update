@@ -8,8 +8,16 @@ func void B_Myxir_WillYouTeachMe()
 	Log_CreateTopic(TOPIC_Addon_Stoneplates,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Stoneplates,LOG_Running);
 	B_LogEntries(TOPIC_Addon_Stoneplates,LogText_Addon_MyxirTeach);
-	Log_CreateTopic(TOPIC_Addon_KDWTeacher,LOG_NOTE);
-	B_LogNextEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_MyxirTeach);
+	if(CurrentLevel == NEWWORLD_ZEN)
+	{
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogNextEntry(TOPIC_CityTeacher,LogText_Addon_MyxirTeach);
+	}
+	else
+	{
+		Log_CreateTopic(TOPIC_Addon_KDWTeacher,LOG_NOTE);
+		B_LogNextEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_MyxirTeach);
+	};
 	Myxir_Addon_TeachPlayer = TRUE;
 };
 

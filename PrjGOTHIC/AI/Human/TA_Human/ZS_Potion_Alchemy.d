@@ -5,7 +5,7 @@ func void ZS_Potion_Alchemy()
 	Perception_Set_Normal();
 	B_ResetAll(self);
 	AI_SetWalkMode(self,NPC_WALK);
-	if(!Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
+	if(!C_NpcIsOnRoutineWP(self))
 	{
 		AI_GotoWP(self,self.wp);
 	};

@@ -55,7 +55,7 @@ func void ZS_GhostWusel()
 	B_ResetAll(self);
 	AI_Standup(self);
 	AI_SetWalkMode(self,NPC_WALK);
-	if(!Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
+	if(!C_NpcIsOnRoutineWP(self))
 	{
 		AI_GotoWP(self,self.wp);
 	};

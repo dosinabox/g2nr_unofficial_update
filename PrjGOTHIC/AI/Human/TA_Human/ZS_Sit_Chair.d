@@ -6,7 +6,7 @@ func void ZS_Sit_Chair()
 	if(!C_BodyStateContains(self,BS_SIT))
 	{
 		AI_SetWalkMode(self,NPC_WALK);
-		if(!Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
+		if(!C_NpcIsOnRoutineWP(self))
 		{
 			AI_GotoWP(self,self.wp);
 		};

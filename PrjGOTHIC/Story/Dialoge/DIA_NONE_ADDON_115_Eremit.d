@@ -130,6 +130,12 @@ func void DIA_Addon_Eremit_Teach_Info()
 		{
 			AI_Output(self,other,"DIA_Addon_Eremit_Add_04_26");	//(быстро) Но свои я тебе не отдам! Сам ищи себе таблички!
 		};
+		if(Eremit_TeachPlayer == FALSE)
+		{
+			Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_OutTeacher,"Отшельник в Яркендаре может помочь мне с изучением языка зодчих.");
+			Eremit_TeachPlayer = TRUE;
+		};
 		Info_ClearChoices(DIA_Addon_Eremit_Teach);
 		Info_AddChoice(DIA_Addon_Eremit_Teach,Dialog_Back,DIA_Eremit_Teach_BACK);
 		if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == FALSE)

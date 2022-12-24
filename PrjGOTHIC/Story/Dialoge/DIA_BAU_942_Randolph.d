@@ -34,12 +34,9 @@ instance DIA_Randolph_SchwereLuft(C_Info)
 
 func int DIA_Randolph_SchwereLuft_Condition()
 {
-	if(Kapitel < 4)
+	if(!C_AkilFarmIsFree())
 	{
-		if(!C_AkilFarmIsFree())
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 

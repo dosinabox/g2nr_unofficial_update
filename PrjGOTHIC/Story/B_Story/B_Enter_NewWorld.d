@@ -704,6 +704,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 				};
 				Randolph.flags = 0;
 			};
+			AkilFarmIsFreeKap4 = TRUE;
 		};
 		if((TaverneTopicStarted == TRUE) && (MIS_Rukhar_Wettkampf == FALSE))
 		{
