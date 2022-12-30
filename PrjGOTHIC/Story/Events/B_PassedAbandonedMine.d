@@ -1,5 +1,5 @@
 
-func void b_passedabandonedmine()
+func void B_PassedAbandonedMine()
 {
 	PlayerPassedAbandonedMine = TRUE;
 };

@@ -1,5 +1,5 @@
 
-func void b_function_touch_and_get_killed()
+func void B_Function_Touch_And_Get_Killed()
 {
 	if(Npc_IsPlayer(self))
 	{

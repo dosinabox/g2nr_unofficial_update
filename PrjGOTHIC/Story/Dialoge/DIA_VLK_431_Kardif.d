@@ -488,7 +488,7 @@ func void DIA_Kardif_Diebeswerk_Info()
 func void B_Kardif_AboutDaronChest()
 {
 	AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_03");	//Ну, у Зуриса, торговца зельями на рынке, сейчас гостит Дарон, маг Огня.
-	AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_04");	//И?
+	DIA_Common_So();
 	AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_05");	//При нем есть новый сундучок, сделанный специально для него Торбеном, плотником.
 	AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_06");	//Говорят, что этот Дарон носит с собой несметные сокровища. Но ты ничего не слышал от меня, понятно?
 	DIA_Kardif_Diebeswerk2_permanent = TRUE;

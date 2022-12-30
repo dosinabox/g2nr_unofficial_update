@@ -72,7 +72,7 @@ func int ZS_Stand_ArmsCrossed_Loop()
 			Eventrandy = Hlp_Random(200);
 			if(Eventrandy == 1)
 			{
-				b_event_portal_earthquake();
+				B_Event_Portal_EarthQuake();
 			};
 		};
 		Npc_SetStateTime(self,0);

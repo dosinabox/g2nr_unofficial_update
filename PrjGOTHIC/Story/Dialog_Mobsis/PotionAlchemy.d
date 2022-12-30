@@ -33,6 +33,7 @@ func void B_BrewPotion(var int potion)
 	AI_Wait(self,0.5);
 	FlasksCount -= 1;
 	CreateInvItem(self,potion);
+	TotalPotionsBrewed += 1;
 	AI_PrintScreen(PRINT_AlchemySuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 };
 

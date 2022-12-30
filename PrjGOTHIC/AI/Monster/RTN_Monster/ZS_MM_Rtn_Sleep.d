@@ -17,7 +17,7 @@ func void ZS_MM_Rtn_Sleep()
 	Npc_PercEnable(self,PERC_ASSESSQUIETSOUND,B_MM_AssessQuietSound_Sleep);
 	AI_SetWalkMode(self,NPC_WALK);
 	B_MM_DeSynchronize();
-	if(!Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
+	if(!C_NpcIsOnRoutineWP(self))
 	{
 		AI_GotoWP(self,self.wp);
 	};

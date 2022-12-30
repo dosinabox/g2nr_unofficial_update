@@ -406,7 +406,7 @@ func void DIA_Thekla_SagittaPaket_Info()
 	AI_Output(other,self,"DIA_Thekla_SagittaPaket_15_00");	//Вот пакет от Сагитты.
 	B_GiveInvItems(other,self,ItMi_TheklasPaket,1);
 	AI_Output(self,other,"DIA_Thekla_SagittaPaket_17_01");	//Огромное спасибо. От тебя есть хоть какая-то польза в отличие от других.
-	//AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_04");	//И?
+	DIA_Common_So();
 	AI_Output(self,other,"DIA_Thekla_PERM_17_10");	//Хорошо. Я сжалюсь над тобой. Вот, держи. Не могу смотреть, как ты умираешь от голода у меня на глазах.
 	B_GiveInvItems(self,other,ItFo_XPStew,1);
 	Thekla_GaveStew_Sagitta = TRUE;
