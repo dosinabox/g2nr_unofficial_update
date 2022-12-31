@@ -416,7 +416,7 @@ AI\Human\TA_Human\ZS_Stomp_Herb.d
 AI\Human\TA_Human\ZS_Study_WP.d
 AI\Human\TA_Human\ZS_Sweep_FP.d
 AI\Human\TA_Human\ZS_Wash_FP.d
-Story\B_Story\B_EndProductionDialog1.d
+Story\B_Story\B_EndProductionDialog.d
 Story\B_Story\B_BuildPriceString.d
 Story\Dialog_Mobsis\Bookstand.d
 Story\Dialog_Mobsis\BookstandAlchemy.d
@@ -1713,7 +1713,7 @@ AI\Monster\ZS_Monster\ZS_MM_EatBody.d
 AI\Monster\ZS_Monster\ZS_MM_Flee.d
 AI\Monster\ZS_Monster\ZS_MM_Hunt.d
 AI\Monster\ZS_Monster\ZS_MM_ThreatenEnemy.d
-Story\B_Story\B_MageCaveTrigger1.d
+Story\B_Story\B_MageCaveTrigger.d
 Story\Events\B_Addon_Portal_Activated.d
 Story\Events\B_Function_Touch_And_Get_Killed.d
 Story\Events\NewWorld_FishFood_Trigger.d
