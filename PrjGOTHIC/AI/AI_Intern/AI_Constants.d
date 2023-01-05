@@ -171,7 +171,6 @@ const int ID_GOBBO_BLACK = 4;
 const int ID_GOBBO_SKELETON = 5;
 const int ID_SUMMONED_GOBBO_SKELETON = 6;
 const int ID_SCAVENGER = 7;
-const int ID_SCAVENGER_DEMON = 8;
 const int ID_GIANT_RAT = 8;
 const int ID_GIANT_BUG = 9;
 const int ID_BLOODFLY = 10;
@@ -231,6 +230,7 @@ const int ID_KEILER = 63;
 const int ID_SWAMPDRONE = 64;
 const int ID_ORCCOMMANDER = 65;
 const int ID_SWAMPZOMBIE = 66;
+const int ID_SCAVENGER_DEMON = 67;
 
 const int MAGIC_NEVER = 0;
 const int MAGIC_ALWAYS = 1;

@@ -97,7 +97,7 @@ func string B_BuildBlessString(var int gold)
 	var string concatText;
 	concatText = ConcatStrings(NAME_ADDON_PRAYIDOL_GIVE,IntToString(gold));
 	concatText = ConcatStrings(concatText,PRINT_Gold);
-	concatText = ConcatStrings(concatText," монет.");
+	concatText = ConcatStrings(concatText,".");
 	return concatText;
 };
 

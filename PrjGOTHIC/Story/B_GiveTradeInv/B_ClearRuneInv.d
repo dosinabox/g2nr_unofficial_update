@@ -70,7 +70,6 @@ func void B_ClearRuneInv(var C_Npc slf)
 		B_RemoveEveryInvItem(slf,Fakescroll);
 		B_RemoveEveryInvItem(slf,Fakescroll_Addon);
 		B_RemoveEveryInvItem(slf,Fakeheroface);
-		B_RemoveEveryInvItem(slf,Fakemap);
 	};
 };
 

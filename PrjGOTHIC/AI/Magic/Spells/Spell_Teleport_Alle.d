@@ -88,7 +88,7 @@ func void Spell_Cast_Teleport()
 	}
 	else if(activeSpell == SPL_Teleport_Maya)
 	{
-		B_TeleportBySpell(ADDONWORLD_ZEN,"ADW_VALLEY_PATH_054_G");
+		B_TeleportBySpell(ADDONWORLD_ZEN,"ADW_ENTRANCE");
 	};
 };
 

@@ -427,8 +427,8 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			Wld_InsertNpc(MIL_335_Rumbold,"CITY2");
 			Wld_InsertNpc(MIL_336_Rick,"CITY2");
-			RumboldReturnedToCity = TRUE;
-			RickReturnedToCity = TRUE;
+			Rumbold = Hlp_GetNpc(MIL_335_Rumbold);
+			Rick = Hlp_GetNpc(MIL_336_Rick);
 		};
 		if(!Npc_IsDead(Rick))
 		{

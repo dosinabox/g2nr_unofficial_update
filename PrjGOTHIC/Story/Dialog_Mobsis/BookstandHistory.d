@@ -115,14 +115,8 @@ func void Use_BookstandKaserne_S1()
 			Doc_PrintLine(nDocID,0,"");
 			Doc_PrintLines(nDocID,0,"Рик:");
 			Doc_PrintLines(nDocID,0,"казармы (ночь)");
-			if(RumboldReturnedToCity == TRUE)
-			{
-				Doc_PrintLine(nDocID,0,"");
-				Doc_PrintLines(nDocID,0,"Румболд:");
-				Doc_PrintLines(nDocID,0,"южные ворота (ночь)");
-			};
-		}
-		else if(RumboldReturnedToCity == TRUE)
+		};
+		if(RumboldReturnedToCity == TRUE)
 		{
 			Doc_PrintLine(nDocID,0,"");
 			Doc_PrintLines(nDocID,0,"Румболд:");
