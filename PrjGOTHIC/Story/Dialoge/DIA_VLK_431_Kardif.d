@@ -16,11 +16,11 @@ func int C_MartinIsNear()
 	{
 		return FALSE;
 	};
-	if(Npc_IsDead(Martin))
+	if(C_NpcIsDown(Martin))
 	{
 		return FALSE;
 	};
-	if(Npc_GetDistToNpc(self,Martin) >= PERC_DIST_DIALOG) //TODO определять расстояние до точки в таверне
+	if(Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") >= PERC_DIST_DIALOG)
 	{
 		return FALSE;
 	};

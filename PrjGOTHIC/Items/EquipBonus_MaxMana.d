@@ -10,7 +10,7 @@ func void Equip_MaxMana(var int value)
 
 func void Reduce_MaxMana(var int value)
 {
-	self.attribute[ATR_MANA_MAX] -= value;
+	Npc_ChangeAttribute(self,ATR_MANA_MAX,-value);
 	if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
 	{
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];

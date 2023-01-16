@@ -1,7 +1,6 @@
 
 func void ZS_Dead()
 {
-	var C_Item readyweap;
 	self.aivar[AIV_RANSACKED] = FALSE;
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	B_StopLookAt(self);
@@ -82,7 +81,7 @@ func void ZS_Dead()
 		{
 			if(Npc_GetDistToNpc(self,other) < 300)
 			{
-				other.attribute[ATR_HITPOINTS] -= 50;
+				Npc_ChangeAttribute(other,ATR_HITPOINTS,-50);
 				if(Npc_IsPlayer(other))
 				{
 					Wld_PlayEffect("CONTROL_LEAVERANGEFX",other,other,0,0,0,FALSE);

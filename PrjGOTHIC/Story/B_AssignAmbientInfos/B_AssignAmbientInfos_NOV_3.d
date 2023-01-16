@@ -297,11 +297,11 @@ func void DIA_NOV_3_STANDARD_Info()
 
 func void B_AssignAmbientInfos_NOV_3(var C_Npc slf)
 {
-	dia_nov_3_exit.npc = Hlp_GetInstanceID(slf);
-	dia_nov_3_join.npc = Hlp_GetInstanceID(slf);
-	dia_nov_3_people.npc = Hlp_GetInstanceID(slf);
-	dia_nov_3_location.npc = Hlp_GetInstanceID(slf);
-	dia_nov_3_standard.npc = Hlp_GetInstanceID(slf);
+	DIA_NOV_3_EXIT.npc = Hlp_GetInstanceID(slf);
+	DIA_NOV_3_JOIN.npc = Hlp_GetInstanceID(slf);
+	DIA_NOV_3_PEOPLE.npc = Hlp_GetInstanceID(slf);
+	DIA_NOV_3_LOCATION.npc = Hlp_GetInstanceID(slf);
+	DIA_NOV_3_STANDARD.npc = Hlp_GetInstanceID(slf);
 	DIA_NOV_3_Fegen.npc = Hlp_GetInstanceID(slf);
 	DIA_NOV_3_Wurst.npc = Hlp_GetInstanceID(slf);
 };

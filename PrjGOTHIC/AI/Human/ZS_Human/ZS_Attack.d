@@ -128,12 +128,15 @@ func int ZS_Attack_Loop()
 		AI_Standup(self);
 		return LOOP_END;
 	};
-	if((C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE)) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
+	if(self.aivar[AIV_MM_FollowInWater] == FALSE)
 	{
-		Npc_ClearAIQueue(self);
-		AI_Standup(self);
-		self.aivar[AIV_PursuitEnd] = TRUE;
-		return LOOP_END;
+		if(C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE))
+		{
+			Npc_ClearAIQueue(self);
+			AI_Standup(self);
+			self.aivar[AIV_PursuitEnd] = TRUE;
+			return LOOP_END;
+		};
 	};
 	if(self.aivar[AIV_WaitBeforeAttack] >= 1)
 	{

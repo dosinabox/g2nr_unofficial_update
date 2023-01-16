@@ -31,9 +31,6 @@ func int ZS_MM_Rtn_OrcSit_Loop()
 			self.aivar[AIV_TAPOSITION] = ISINPOS;
 		};
 	};
-/*	else
-	{
-	}; */
 	return LOOP_CONTINUE;
 };
 
