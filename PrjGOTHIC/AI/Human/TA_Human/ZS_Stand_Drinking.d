@@ -140,6 +140,7 @@ func int ZS_Stand_Drinking_Loop()
 	if((Npc_GetStateTime(self) > 7) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
 	{
 		random = Hlp_Random(10);
+		AI_StopLookAt(self);
 		if(random == 0)
 		{
 			if(self.aivar[AIV_Food] == DRINK_Beer)

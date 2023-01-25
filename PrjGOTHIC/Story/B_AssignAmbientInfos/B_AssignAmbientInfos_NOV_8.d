@@ -139,7 +139,10 @@ instance DIA_NOV_8_PEOPLE(C_Info)
 
 func int DIA_NOV_8_PEOPLE_Condition()
 {
-	return TRUE;
+	if(hero.guild != GIL_KDF)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_NOV_8_PEOPLE_Info()

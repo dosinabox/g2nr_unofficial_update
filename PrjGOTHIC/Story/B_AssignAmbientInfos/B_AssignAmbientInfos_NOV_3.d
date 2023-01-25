@@ -198,7 +198,10 @@ instance DIA_NOV_3_PEOPLE(C_Info)
 
 func int DIA_NOV_3_PEOPLE_Condition()
 {
-	return TRUE;
+	if(hero.guild != GIL_KDF)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_NOV_3_PEOPLE_Info()
@@ -228,8 +231,11 @@ func void DIA_NOV_3_LOCATION_Info()
 {
 	AI_Output(other,self,"DIA_NOV_3_LOCATION_15_00");	//Что ты можешь сказать мне об этом монастыре?
 	AI_Output(self,other,"DIA_NOV_3_LOCATION_03_01");	//Мы своим трудом добываем хлеб насущный. Мы выращиваем овец и делаем вино.
-	AI_Output(self,other,"DIA_NOV_3_LOCATION_03_02");	//Здесь есть библиотека, но вход в нее разрешен только магам и избранным послушникам.
-	AI_Output(self,other,"DIA_NOV_3_LOCATION_03_03");	//Мы же, остальные послушники, следим за тем, чтобы маги Круга Огня ни в чем не нуждались.
+	if(hero.guild != GIL_KDF)
+	{
+		AI_Output(self,other,"DIA_NOV_3_LOCATION_03_02");	//Здесь есть библиотека, но вход в нее разрешен только магам и избранным послушникам.
+		AI_Output(self,other,"DIA_NOV_3_LOCATION_03_03");	//Мы же, остальные послушники, следим за тем, чтобы маги Круга Огня ни в чем не нуждались.
+	};
 };
 
 
