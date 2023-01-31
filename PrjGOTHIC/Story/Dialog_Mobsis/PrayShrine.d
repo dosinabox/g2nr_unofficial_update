@@ -103,6 +103,17 @@ func string B_BuildBlessString(var int gold)
 
 func void B_SetAllShrinesAsObsessed()
 {
+	ShrineIsObsessed_NW_TROLLAREA_PATH_37 = TRUE;
+	ShrineIsObsessed_NW_FARM1_CONNECT_XARDAS = TRUE;
+	ShrineIsObsessed_NW_TROLLAREA_PATH_66 = TRUE;
+	ShrineIsObsessed_NW_TROLLAREA_PATH_04 = TRUE;
+	ShrineIsObsessed_SAGITTA = TRUE;
+	ShrineIsObsessed_NW_BIGMILL_MALAKSVERSTECK_02 = TRUE;
+	ShrineIsObsessed_NW_FARM3_BIGWOOD_02 = TRUE;
+};
+
+func void B_HealAllShrines()
+{
 	ShrineIsObsessed_NW_TROLLAREA_PATH_37 = FALSE;
 	ShrineIsObsessed_NW_FARM1_CONNECT_XARDAS = FALSE;
 	ShrineIsObsessed_NW_TROLLAREA_PATH_66 = FALSE;
@@ -224,7 +235,7 @@ func void PC_PrayShrine_HEALSHRINE_Info()
 		AI_PrintScreen(PRINT_AllShrines,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	};
 	B_GivePlayerXP(XP_Ambient);
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PrayShrine_S1()
@@ -264,7 +275,7 @@ func int PC_PrayShrine_End_Condition()
 
 func void PC_PrayShrine_End_Info()
 {
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 
