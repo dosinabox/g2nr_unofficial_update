@@ -751,11 +751,11 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 				};
 			};
 		};
-		if(GornDJG_is_alive == TRUE)
+		if(DJG_Gorn_isAlive == TRUE)
 		{
 			Wld_InsertNpc(PC_Fighter_NW_nach_DJG,"BIGFARM");
 		};
-		if(DJG_Angar_is_alive == TRUE)
+		if(DJG_Angar_isAlive == TRUE)
 		{
 			Wld_InsertNpc(DJG_705_Angar_NW,"BIGFARM");
 		};

@@ -47,6 +47,16 @@ func void DIA_Jan_Hello_Info()
 };
 
 
+func void B_Jan_TeachPlayer()
+{
+	if(Jan_TeachPlayer == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
+		B_LogEntry(TOPIC_Teacher_OC,"Ян может обучить меня кузнечному делу.");
+		Jan_TeachPlayer = TRUE;
+	};
+};
+
 instance DIA_JAN_Dragons(C_Info)
 {
 	npc = DJG_714_Jan;
@@ -104,8 +114,13 @@ func void DIA_JAN_Dragons_Reward()
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_JAN_Dragons_Reward_10_02");	//Я знаю способ, как сделать клинок, выкованный из магической руды, еще прочнее.
+	}
+	else
+	{
+		//TODO озвучить
+		AI_Output(self,other,"DIA_Jan_SellWeapons_10_03_add");	//Я могу показать тебе, как ковать хорошее оружие.
 	};
-	Jan_TeachPlayer = TRUE;
+	B_Jan_TeachPlayer();
 };
 
 func void DIA_JAN_Dragons_ShitHappen()
@@ -250,7 +265,7 @@ instance DIA_JAN_SellWeapons(C_Info)
 
 func int DIA_Jan_SellWeapons_Condition()
 {
-	if((MIS_JanBecomesSmith == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_JAN_JanIsSmith) && (Jan_TeachPlayer == FALSE) && (MIS_OCGateOpen == FALSE))
+	if(Npc_KnowsInfo(other,DIA_JAN_JanIsSmith) && (MIS_OCGateOpen == FALSE))
 	{
 		return TRUE;
 	};
@@ -268,7 +283,7 @@ func void DIA_Jan_SellWeapons_Info()
 		AI_Output(self,other,"DIA_Jan_SellWeapons_10_02");	//Мог бы, если бы оно у меня было. Но сначала я должен обеспечить оружием паладинов в замке.
 	};
 	AI_Output(self,other,"DIA_Jan_SellWeapons_10_03");	//Но я могу показать тебе, как ковать хорошее оружие.
-	Jan_TeachPlayer = TRUE;
+	B_Jan_TeachPlayer();
 };
 
 
@@ -697,8 +712,6 @@ func void DIA_Jan_DragonBlood_all()
 	var int DragonBloodCount;
 	var int DragonBloodGeld;
 	var int XP_DJG_BringDragonBloods;
-//	var string BloodText;
-//	var string BloodLeft;
 	DragonBloodCount = Npc_HasItems(other,ItAt_DragonBlood);
 	B_GiveInvItems(other,self,ItAt_DragonBlood,DragonBloodCount);
 	XP_DJG_BringDragonBloods = DragonBloodCount * 200;
@@ -708,18 +721,6 @@ func void DIA_Jan_DragonBlood_all()
 	B_GiveInvItems(self,other,ItMi_Gold,DragonBloodGeld);
 	Npc_RemoveInvItems(self,ItAt_DragonBlood,DragonBloodCount);
 	Info_ClearChoices(DIA_Jan_DragonBlood);
-	/*Info_AddChoice(DIA_Jan_DragonBlood,Dialog_Back,DIA_Jan_DragonBlood_BACK);
-	if(Npc_HasItems(other,ItAt_DragonBlood))
-	{
-		if(Npc_HasItems(other,ItAt_DragonBlood) > 1)
-		{
-			Info_AddChoice(DIA_Jan_DragonBlood,DIALOG_GiveAllDragonBlood,DIA_Jan_DragonBlood_all);
-		};
-		Info_AddChoice(DIA_Jan_DragonBlood,DIALOG_GiveDragonBlood,DIA_Jan_DragonBlood_1);
-	};
-	BloodLeft = IntToString(Npc_HasItems(other,ItAt_DragonBlood));
-	BloodText = ConcatStrings(BloodLeft,PRINT_NumberLeft);
-	AI_PrintScreen(BloodText,-1,-1,FONT_ScreenSmall,2);*/
 };
 
 
