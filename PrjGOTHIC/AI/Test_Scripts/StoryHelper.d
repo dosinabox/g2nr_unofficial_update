@@ -17,7 +17,7 @@
 
 func void UseItPo_Story()
 {
-	b_ravensescapeintotempelavi();
+	B_RavensEscapeIntoTempelAVI();
 };*/
 
 
@@ -245,7 +245,6 @@ func void StoryHelper_KAPITEL3ANFANG()
 	KnowsPaladins_Ore = TRUE;
 	MIS_ScoutMine = LOG_SUCCESS;
 	MIS_ReadyForChapter3 = TRUE;
-	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
 	B_Kapitelwechsel(3,NEWWORLD_ZEN);
 	Info_ClearChoices(StoryHelper_INFO3);
 	AI_StopProcessInfos(self);
@@ -290,7 +289,6 @@ func void StoryHelper_KAPITEL4ANFANG()
 	KnowsPaladins_Ore = TRUE;
 	MIS_ScoutMine = LOG_SUCCESS;
 	MIS_ReadyForChapter3 = TRUE;
-	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
 	B_Kapitelwechsel(3,NEWWORLD_ZEN);
 	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
@@ -341,14 +339,14 @@ func void StoryHelper_KAPITEL5ANFANG()
 	KnowsPaladins_Ore = TRUE;
 	MIS_ScoutMine = LOG_SUCCESS;
 	MIS_ReadyForChapter3 = TRUE;
-	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
 	B_Kapitelwechsel(3,NEWWORLD_ZEN);
 	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
 	CreateInvItems(hero,ItMi_InnosEye_MIS,1);
 	MIS_ReadyforChapter4 = TRUE;
-	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
 	B_Kapitelwechsel(4,NEWWORLD_ZEN);
+	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
+	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
 	CreateInvItems(hero,ItAt_IcedragonHeart,1);
 	MIS_AllDragonsDead = TRUE;
 	B_Kapitelwechsel(5,NEWWORLD_ZEN);

@@ -403,33 +403,15 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			CreateInvItems(Ehnim,ItMi_Moleratlubric_MIS,1);
 		};
-		ShrineIsObsessed_NW_TROLLAREA_PATH_37 = TRUE;
-		ShrineIsObsessed_NW_FARM1_CONNECT_XARDAS = TRUE;
-		ShrineIsObsessed_NW_TROLLAREA_PATH_66 = TRUE;
-		ShrineIsObsessed_NW_TROLLAREA_PATH_04 = TRUE;
-		ShrineIsObsessed_SAGITTA = TRUE;
-		ShrineIsObsessed_NW_BIGMILL_MALAKSVERSTECK_02 = TRUE;
-		ShrineIsObsessed_NW_FARM3_BIGWOOD_02 = TRUE;
+		B_SetAllShrinesAsObsessed();
 		Wld_InsertNpc(PC_Mage_NW,"NW_MONASTERY_ARMCHAIR_05");
-		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
-		{
-			IntroduceChapter(KapWechsel_3,KapWechsel_3_Text,"chapter3_MIL.tga","chapter_01.wav",6000);
-		}
-		else if(hero.guild == GIL_KDF)
-		{
-			IntroduceChapter(KapWechsel_3,KapWechsel_3_Text,"chapter3_KDF.tga","chapter_01.wav",6000);
-		}
-		else
-		{
-			IntroduceChapter(KapWechsel_3,KapWechsel_3_Text,"chapter3_SLD.tga","chapter_01.wav",6000);
-		};
+		B_StartOtherRoutine(Bengar,"Start");
 		if(MIS_Torlof_BengarMilizKlatschen == FALSE)
 		{
 			Wld_InsertNpc(MIL_335_Rumbold,"CITY2");
 			Wld_InsertNpc(MIL_336_Rick,"CITY2");
-			RumboldReturnedToCity = TRUE;
-			RickReturnedToCity = TRUE;
-			B_InitNpcGlobals();
+			Rumbold = Hlp_GetNpc(MIL_335_Rumbold);
+			Rick = Hlp_GetNpc(MIL_336_Rick);
 		};
 		if(!Npc_IsDead(Rick))
 		{
@@ -445,13 +427,21 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Npc_ExchangeRoutine(Rumbold,"Ch3");
 			RumboldReturnedToCity = TRUE;
 		};
-		if(!Npc_IsDead(Bengar))
-		{
-			Npc_ExchangeRoutine(Bengar,"Start");
-		};
 		if(!Npc_IsDead(Richter))
 		{
 			Richter.flags = 0;
+		};
+		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+		{
+			IntroduceChapter(KapWechsel_3,KapWechsel_3_Text,"chapter3_MIL.tga","chapter_01.wav",6000);
+		}
+		else if(hero.guild == GIL_KDF)
+		{
+			IntroduceChapter(KapWechsel_3,KapWechsel_3_Text,"chapter3_KDF.tga","chapter_01.wav",6000);
+		}
+		else
+		{
+			IntroduceChapter(KapWechsel_3,KapWechsel_3_Text,"chapter3_SLD.tga","chapter_01.wav",6000);
 		};
 		EnterNW_Kapitel3 = TRUE;
 	};
@@ -482,7 +472,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		Wld_InsertNpc(OrcWarrior_Roam,"NW_TROLLAREA_PLANE_06");
 		Wld_InsertNpc(DragonSnapper,"NW_FARM3_BIGWOOD_04");
 		Wld_InsertNpc(DragonSnapper,"NW_FARM3_BIGWOOD_04");
-		Wld_InsertNpc(Maya_Troll,"NW_TROLLAREA_RUINS_41");
+		Wld_InsertNpc(Maya_Troll,"NW_KRONKELLARES_03");
 		if(MIS_HealHilda == LOG_SUCCESS)
 		{
 			B_StartOtherRoutine(Hilda,"START");
@@ -491,7 +481,6 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		{
 			B_InsertLobartOrcs();
 			Wld_InsertNpc(OrcElite_AntiPaladin1,"NW_FARM3_PATH_BRIDGE");
-//			Wld_InsertNpc(OrcElite_AntiPaladin2,"XARDAS");
 			Wld_InsertNpc(OrcElite_AntiPaladin2,"NW_XARDAS_TOWER_PATH_01_B");
 			Wld_InsertNpc(OrcElite_AntiPaladin3,"NW_CITY_TO_FOREST_11");
 			Wld_InsertNpc(OrcElite_AntiPaladin,"NW_FARM3_PATH_12_MONSTER_03");
@@ -555,7 +544,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		}
 		else if(hero.guild == GIL_DJG)
 		{
-			B_SetAllShrinesAsObsessed();
+			B_HealAllShrines();
 			B_InsertLobartOrcs();
 			Wld_InsertItem(ItAt_DragonEgg_MIS,"FP_NW_ITEM_RIVERSIDE_EGG");
 			Wld_InsertNpc(Draconian,"FP_ROAM_TROLLAREA_06");
@@ -652,7 +641,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		}
 		else if(hero.guild == GIL_KDF)
 		{
-			B_SetAllShrinesAsObsessed();
+			B_HealAllShrines();
 			Wld_InsertNpc(DMT_DementorAmbientSpeaker,"NW_TROLLAREA_PATH_80");
 			Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_ROAM_TROLLAREA_19");
 			Wld_InsertNpc(DMT_DementorAmbientSpeaker,"NW_FARM2_TO_TAVERN_08");
@@ -705,6 +694,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 				};
 				Randolph.flags = 0;
 			};
+			AkilFarmIsFreeKap4 = TRUE;
 		};
 		if((TaverneTopicStarted == TRUE) && (MIS_Rukhar_Wettkampf == FALSE))
 		{
@@ -733,7 +723,6 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 	if(Talbin_FollowsThroughPass == LOG_Running)
 	{
 		Wld_InsertNpc(VLK_4132_Talbin_NW,"NW_PASS_SECRET_17");
-		B_InitNpcGlobals();
 		Talbin_FollowsThroughPass = LOG_SUCCESS;
 	};
 };
@@ -762,11 +751,11 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 				};
 			};
 		};
-		if(GornDJG_is_alive == TRUE)
+		if(DJG_Gorn_isAlive == TRUE)
 		{
 			Wld_InsertNpc(PC_Fighter_NW_nach_DJG,"BIGFARM");
 		};
-		if(DJG_Angar_is_alive == TRUE)
+		if(DJG_Angar_isAlive == TRUE)
 		{
 			Wld_InsertNpc(DJG_705_Angar_NW,"BIGFARM");
 		};
@@ -872,6 +861,10 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		B_StartOtherRoutine(PAL_231_Ritter,"ShipFree");
 		B_StartOtherRoutine(PAL_240_Ritter,"ShipFree");
 		B_StartOtherRoutine(PAL_241_Ritter,"ShipFree");
+		if(MIS_ShipIsFree == TRUE)
+		{
+			B_StartOtherRoutine(Girion,"WaitForShip");
+		};
 		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 		{
 			IntroduceChapter(KapWechsel_5,KapWechsel_5_Text,"chapter5_PAL.tga","chapter_01.wav",6000);
@@ -884,16 +877,8 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		{
 			IntroduceChapter(KapWechsel_5,KapWechsel_5_Text,"chapter5_DJG.tga","chapter_01.wav",6000);
 		};
-		if(MIS_ShipIsFree == TRUE)
-		{
-			B_StartOtherRoutine(Girion,"WaitForShip");
-		};
 		EnterNW_Kapitel5 = TRUE;
 	};
-//	if(MIS_OCGateOpen == TRUE)
-//	{
-//		MIS_ShipIsFree = TRUE;
-//	};
 	if(Biff_FollowsThroughPass == LOG_Running)
 	{
 		Wld_InsertNpc(DJG_713_Biff_NW,"LEVELCHANGE");

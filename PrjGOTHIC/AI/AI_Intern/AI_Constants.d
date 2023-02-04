@@ -171,7 +171,6 @@ const int ID_GOBBO_BLACK = 4;
 const int ID_GOBBO_SKELETON = 5;
 const int ID_SUMMONED_GOBBO_SKELETON = 6;
 const int ID_SCAVENGER = 7;
-const int ID_SCAVENGER_DEMON = 8;
 const int ID_GIANT_RAT = 8;
 const int ID_GIANT_BUG = 9;
 const int ID_BLOODFLY = 10;
@@ -231,6 +230,7 @@ const int ID_KEILER = 63;
 const int ID_SWAMPDRONE = 64;
 const int ID_ORCCOMMANDER = 65;
 const int ID_SWAMPZOMBIE = 66;
+const int ID_SCAVENGER_DEMON = 67;
 
 const int MAGIC_NEVER = 0;
 const int MAGIC_ALWAYS = 1;
@@ -276,25 +276,29 @@ const int PERC_DIST_SUMMONED_ACTIVE_MAX = 2000;
 const int PERC_DIST_MONSTER_ACTIVE_MAX = 1500;
 const int PERC_DIST_ORC_ACTIVE_MAX = 2500;
 const int PERC_DIST_DRAGON_ACTIVE_MAX = 3500;
-const int FIGHT_DIST_MONSTER_ATTACKRANGE = 700;
-const int FIGHT_DIST_MONSTER_FLEE = 300;
-const int FIGHT_DIST_DRAGON_MAGIC = 700;
-const int MONSTER_THREATEN_TIME = 4;
-const int MONSTER_SUMMON_TIME = 60;
-//const int TA_DIST_SELFWP_MAX = 500;
-const int TA_DIST_SELFWP_MAX = 300;
 const int PERC_DIST_ACTIVE_MAX = 2000;
 const int PERC_DIST_INTERMEDIAT = 1000;
 const int PERC_DIST_DIALOG = 500;
 const int PERC_DIST_HEIGHT = 1000;
 const int PERC_DIST_INDOOR_HEIGHT = 250;
+
+const int FIGHT_DIST_MONSTER_ATTACKRANGE = 700;
+const int FIGHT_DIST_MONSTER_FLEE = 300;
+const int FIGHT_DIST_DRAGON_MAGIC = 700;
 const int FIGHT_DIST_MELEE = 600;
 const int FIGHT_DIST_RANGED_INNER = 900;
 const int FIGHT_DIST_RANGED_OUTER = 1000;
 const int FIGHT_DIST_CANCEL = 3500;
+
 const int WATCHFIGHT_DIST_MIN = 300;
 const int WATCHFIGHT_DIST_MAX = 2000;
+
+//const int TA_DIST_SELFWP_MAX = 500;
+const int TA_DIST_SELFWP_MAX = 300;
 const int ZivilAnquatschDist = 400;
+
+const int MONSTER_THREATEN_TIME = 4;
+const int MONSTER_SUMMON_TIME = 60;
 
 const float RANGED_CHANCE_MINDIST = 1500;
 const float RANGED_CHANCE_MAXDIST = 4500;

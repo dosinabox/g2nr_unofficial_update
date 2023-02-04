@@ -1218,7 +1218,7 @@ instance ItSc_Teleport_Maya(C_Item)
 	description = NAME_SPL_Teleport_Maya;
 	text[0] = NAME_MageScroll;
 	text[1] = NAME_Mana_needed;
-	count[1] = SPL_Cost_Scroll;
+	count[1] = SPL_Cost_Teleport;
 	text[5] = NAME_Value;
 	count[5] = value;
 };

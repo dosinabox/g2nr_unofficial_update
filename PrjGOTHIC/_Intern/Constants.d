@@ -112,17 +112,20 @@ const int DAM_INDEX_MAGIC = 5;
 const int DAM_INDEX_POINT = 6;
 const int DAM_INDEX_FALL = 7;
 const int DAM_INDEX_MAX = 8;
+const int DAM_CRITICAL_MULTIPLIER = 2;
 
 const int NPC_ATTACK_FINISH_DISTANCE = 180;
 const int NPC_BURN_TICKS_PER_DAMAGE_POINT = 1000;
 const int NPC_BURN_DAMAGE_POINTS_PER_INTERVALL = 50;	//20;
-const int DAM_CRITICAL_MULTIPLIER = 2;
+const int NPC_DAM_DIVE_TIME = 100;
+
 const int BLOOD_SIZE_DIVISOR = 1000;
 const int BLOOD_DAMAGE_MAX = 200;
+
 const int DAMAGE_FLY_CM_MAX = 2000;
 const int DAMAGE_FLY_CM_MIN = 300;
 const int DAMAGE_FLY_CM_PER_POINT = 5;
-const int NPC_DAM_DIVE_TIME = 100;
+
 const int IMMUNE = -1;
 
 const int CONDITION_WEAPON_RAVEN = 666666;
@@ -176,12 +179,15 @@ const int PERC_ASSESSCASTER = 29;
 const int PERC_ASSESSSURPRISE = 30;
 const int PERC_ASSESSENTERROOM = 31;
 const int PERC_ASSESSUSEMOB = 32;
+
 const int NEWS_DONT_SPREAD = 0;
 const int NEWS_SPREAD_NPC_FRIENDLY_TOWARDS_VICTIM = 1;
 const int NEWS_SPREAD_NPC_FRIENDLY_TOWARDS_WITNESS = 2;
 const int NEWS_SPREAD_NPC_FRIENDLY_TOWARDS_OFFENDER = 3;
 const int NEWS_SPREAD_NPC_SAME_GUILD_VICTIM = 4;
+
 const int IMPORTANT = 1;
+
 const int INF_TELL = 0;
 const int INF_UNKNOWN = 2;
 
@@ -791,7 +797,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "16/11/2022";
+const string FIX_VERSION_DATE = "04/02/2023";
 const int FIX_VERSION_START = 29;
 const int LEAST_SUPPORTED = 26;
 var int FIX_VERSION_SAVE;

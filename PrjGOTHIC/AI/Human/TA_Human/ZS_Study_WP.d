@@ -66,7 +66,7 @@ func int ZS_Study_WP_Loop()
 				Eventrandy = Hlp_Random(100);
 				if(((Eventrandy < 5) && (CurrentLevel == NEWWORLD_ZEN)) || ((Eventrandy == 1) && (CurrentLevel == ADDONWORLD_ZEN)))
 				{
-					b_event_portal_earthquake();
+					B_Event_Portal_EarthQuake();
 				};
 			};
 		};

@@ -9,19 +9,19 @@ func void B_KillNpc(var int npcInstance)
 		if(npc.guild < GIL_SEPERATOR_HUM)
 		{
 			B_ClearRuneInv(npc);
-		};
-		if(npc.guild == GIL_PAL)
-		{
-			if(RandomGoblinBerries == FALSE)
+			if(npc.guild == GIL_PAL)
 			{
-				B_RemoveEveryInvItem(npc,ItPl_Dex_Herb_01);
-			};
-		}
-		else if(npc.guild == GIL_PIR)
-		{
-			if(RandomPepper == FALSE)
+				if(RandomGoblinBerries == FALSE)
+				{
+					B_RemoveEveryInvItem(npc,ItPl_Dex_Herb_01);
+				};
+			}
+			else if(npc.guild == GIL_PIR)
 			{
-				B_RemoveEveryInvItem(npc,ItFo_Addon_Pfeffer_01);
+				if(RandomPepper == FALSE)
+				{
+					B_RemoveEveryInvItem(npc,ItFo_Addon_Pfeffer_01);
+				};
 			};
 		};
 		CreateInvItem(npc,ItMi_OldCoin);

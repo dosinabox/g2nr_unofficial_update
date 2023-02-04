@@ -1,5 +1,5 @@
 
-instance BDT_1092_Addon_Isabel(Npc_Default)
+/*instance BDT_1092_Addon_Isabel(Npc_Default)
 {
 	name[0] = "Изабель";
 	guild = GIL_BDT;
@@ -27,5 +27,5 @@ func void Rtn_Start_1092()
 	TA_Smalltalk(7,1,12,0,"BL_INN_UP_07");
 	TA_Stand_Drinking(12,0,1,5,"BL_INN_UP_05");
 	TA_Sleep(1,5,7,1,"BL_INN_UPSIDE_SLEEP_02");
-};
+};*/
 

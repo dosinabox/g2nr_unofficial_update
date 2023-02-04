@@ -194,7 +194,7 @@ func void DIA_SLD_7_STANDARD_Info()
 			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_14");	//Но меня это не волнует, если только ты не начнешь собирать здесь налоги.
 		};
 	}
-	else if(Kapitel >= 5)
+	else
 	{
 		AI_Output(self,other,"DIA_SLD_7_STANDARD_07_15");	//Ох, я больше не могу выносить все это. Овцы, пастбища, деревья... Я хочу свалить отсюда.
 	};

@@ -7,16 +7,16 @@ func void B_AssessDamage()
 		{
 			return;
 		};
+	}
+	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Quarhodron)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rhademes)))
+	{
+		B_GhostSpecialDamage(other);
+		return;
 	};
 	B_SpecialRangedWeaponDamage(other,self,TRUE);
 	if(Npc_IsInState(self,ZS_ReactToDamage))
 	{
 		B_Attack(self,other,AR_ReactToDamage,0);
-	};
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Quarhodron)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rhademes)))
-	{
-		B_GhostSpecialDamage(other,self);
-		return;
 	};
 	if(Npc_IsPlayer(other) && (self.guild == GIL_FRIENDLY_ORC))
 	{

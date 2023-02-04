@@ -8,3 +8,8 @@ func int C_NpcIsNearWP(var C_Npc slf,var string wp)
 	return FALSE;
 };
 
+func int C_NpcIsOnRoutineWP(var C_Npc slf)
+{
+	return C_NpcIsNearWP(slf,slf.wp);
+};
+

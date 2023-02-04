@@ -294,6 +294,11 @@ func void DIA_Common_EverythingWillBeAlright()
 	AI_Output(other,self,"DIA_Bengar_PERM_15_00");	//Все будет в порядке.
 };
 
+func void DIA_Common_So()
+{
+	AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_04");	//И?
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?

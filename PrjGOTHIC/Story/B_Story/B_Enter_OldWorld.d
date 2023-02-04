@@ -167,23 +167,20 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(Meatbug_Brutus2,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus3,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus4,"OC_FOLTER_SHARP");
-		if(SLD_Sylvio_is_alive == TRUE)
-		{
-			Wld_InsertNpc(DJG_700_Sylvio,"OC1");
-		};
-		if(SLD_Bullco_is_alive == TRUE)
+		Wld_InsertNpc(DJG_700_Sylvio,"OC1");
+		if(SLD_Bullco_isAlive == TRUE)
 		{
 			Wld_InsertNpc(DJG_701_Bullco,"OC1");
 		};
-		if(SLD_Rod_is_alive == TRUE)
+		if(SLD_Rod_isAlive == TRUE)
 		{
 			Wld_InsertNpc(DJG_702_Rod,"OC1");
 		};
-		if(SLD_Cipher_is_alive == TRUE)
+		if(SLD_Cipher_isAlive == TRUE)
 		{
 			Wld_InsertNpc(DJG_703_Cipher,"OC1");
 		};
-		if(SLD_Gorn_is_alive == TRUE)
+		if(SLD_Gorn_isAlive == TRUE)
 		{
 			Wld_InsertNpc(PC_Fighter_DJG,"OC1");
 		};
@@ -436,7 +433,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 			B_StartOtherRoutine(DJG_733_ToterDrachenjaeger,"IceRegion");
 			B_StartOtherRoutine(DJG_734_ToterDrachenjaeger,"IceRegion");
 			B_StartOtherRoutine(DJG_700_Sylvio,"IceWait1");
-			if(SLD_Bullco_is_alive == TRUE)
+			if(SLD_Bullco_isAlive == TRUE)
 			{
 				B_StartOtherRoutine(DJG_701_Bullco,"IceWait1");
 			};

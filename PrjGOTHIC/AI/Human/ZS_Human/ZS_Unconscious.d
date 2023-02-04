@@ -20,6 +20,21 @@ func void ZS_Unconscious()
 	AI_StopPointAt(self);
 	if((self.guild < GIL_SEPERATOR_HUM) && C_NpcIsHero(other))
 	{
+		if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
+		{
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bullco))
+			{
+				SLD_Bullco_Defeated = TRUE;
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco))
+			{
+				DJG_Bullco_Defeated = TRUE;
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Valentino))
+			{
+				Valentino_Day = B_GetDayPlus();
+			};
+		};
 		self.aivar[AIV_DefeatedByPlayer] = TRUE;
 		self.aivar[AIV_LastFightAgainstPlayer] = FIGHT_LOST;
 		if((self.aivar[AIV_LastPlayerAR] == AR_NONE) && (self.aivar[AIV_DuelLost] == FALSE) && (self.guild == GIL_SLD))
@@ -30,18 +45,6 @@ func void ZS_Unconscious()
 		if(self.aivar[AIV_ArenaFight] == AF_RUNNING)
 		{
 			self.aivar[AIV_ArenaFight] = AF_AFTER;
-		};
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bullco))
-		{
-			SLD_Bullco_Defeated = TRUE;
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco))
-		{
-			DJG_Bullco_Defeated = TRUE;
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Valentino))
-		{
-			Valentino_Day = B_GetDayPlus();
 		};
 	};
 	if(C_NpcIsHero(self))

@@ -4,16 +4,7 @@ func void ZS_MM_Rtn_Roam()
 	Perception_Set_Monster_Rtn();
 	AI_SetWalkMode(self,NPC_WALK);
 	B_MM_DeSynchronize();
-	/*if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Follow_Sheep))
-	{
-		AI_GotoWP(self,"NW_MONASTERY_SHEEP_02");
-	}
-	else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Follow_Sheep_AKIL))
-	{
-		AI_GotoWP(self,"NW_FARM2_OUT_02");
-	}
-	else */
-	if(!Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
+	if(!C_NpcIsOnRoutineWP(self))
 	{
 		AI_GotoWP(self,self.wp);
 	};
@@ -52,12 +43,12 @@ func int ZS_MM_Rtn_Roam_Loop()
 			if(randomMove == 0)
 			{
 				AI_PlayAni(self,"R_ROAM1");
-			};
-			if(randomMove == 1)
+			}
+			else if(randomMove == 1)
 			{
 				AI_PlayAni(self,"R_ROAM2");
-			};
-			if(randomMove == 2)
+			}
+			else
 			{
 				AI_PlayAni(self,"R_ROAM3");
 			};

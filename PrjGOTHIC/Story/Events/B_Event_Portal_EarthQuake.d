@@ -1,5 +1,5 @@
 
-func void b_event_portal_earthquake()
+func void B_Event_Portal_EarthQuake()
 {
 	var int randy;
 	Wld_PlayEffect("FX_EarthQuake",hero,hero,0,0,0,FALSE);
@@ -27,7 +27,7 @@ func void b_event_portal_earthquake()
 
 var int B_EVENT_PORTAL_FIRST_EARTHQUAKE_OneTime;
 
-func void b_event_portal_first_earthquake()
+func void B_Event_Portal_First_EarthQuake()
 {
 	if(B_EVENT_PORTAL_FIRST_EARTHQUAKE_OneTime == FALSE)
 	{

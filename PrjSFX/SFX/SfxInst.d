@@ -9912,36 +9912,36 @@ instance SVM_14_AARGH_4(C_SFX_DEF)
 
 instance SVM_15_AARGH(C_SFX_DEF)
 {
-	//file = "svm_2_aargh_1.wav";
-	file = "svm_15_aargh_1.wav";
+	file = "svm_2_aargh_1.wav";
+	//file = "svm_15_aargh_1.wav";
 	vol = 107;
 };
 
 instance SVM_15_AARGH_1(C_SFX_DEF)
 {
-	//file = "svm_2_aargh_2.wav";
-	file = "svm_15_aargh_2.wav";
+	file = "svm_2_aargh_2.wav";
+	//file = "svm_15_aargh_2.wav";
 	vol = 107;
 };
 
 instance SVM_15_AARGH_2(C_SFX_DEF)
 {
-	//file = "svm_2_aargh_3.wav";
-	file = "svm_15_aargh_3.wav";
+	file = "svm_2_aargh_3.wav";
+	//file = "svm_15_aargh_3.wav";
 	vol = 107;
 };
 
 instance SVM_15_AARGH_3(C_SFX_DEF)
 {
-	//file = "svm_2_aargh_3.wav";
-	file = "svm_15_aargh_1.wav";
+	file = "svm_2_aargh_3.wav";
+	//file = "svm_15_aargh_1.wav";
 	vol = 107;
 };
 
 instance SVM_15_AARGH_4(C_SFX_DEF)
 {
-	//file = "svm_2_aargh_3.wav";
-	file = "svm_15_aargh_2.wav";
+	file = "svm_2_aargh_3.wav";
+	//file = "svm_15_aargh_2.wav";
 	vol = 107;
 };
 
@@ -10031,12 +10031,12 @@ instance SVM_14_DEAD(C_SFX_DEF)
 
 instance SVM_15_DEAD(C_SFX_DEF)
 {
-	//file = "svm_2_dead.wav";
-	file = "svm_15_dead.wav";
+	file = "svm_2_dead.wav";
+	//file = "svm_15_dead.wav";
 	vol = 120;
 };
 
-instance SVM_1_BERZERK(C_SFX_DEF)
+/*instance SVM_1_BERZERK(C_SFX_DEF)
 {
 	file = "svm_1_berzerk.wav";
 	vol = 110;
@@ -10124,7 +10124,7 @@ instance SVM_15_BERZERK(C_SFX_DEF)
 {
 	file = "svm_3_berzerk.wav";
 	vol = 110;
-};
+};*/
 
 instance DEMENTHOR_TALK(C_SFX_DEF)
 {

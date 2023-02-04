@@ -29,7 +29,7 @@ func void B_HitpointAngleich(var int BeliarsCost)
 {
 	var int CurrentHitpoints;
 	Stats_Beliar_HpGiven += BeliarsCost;
-	hero.attribute[ATR_HITPOINTS_MAX] -= BeliarsCost;
+	Npc_ChangeAttribute(hero,ATR_HITPOINTS_MAX,-BeliarsCost);
 	ATR_PermBonus[ATR_HITPOINTS_MAX] -= BeliarsCost;
 	CurrentHitpoints = hero.attribute[ATR_HITPOINTS] - BeliarsCost;
 	if(CurrentHitpoints < 2)
@@ -45,7 +45,7 @@ func void B_ManaAngleich(var int BeliarsCost)
 	var int CurrentMana;
 	Stats_Beliar_ManaGiven += BeliarsCost;
 	B_UnEquipIllegalMagicItems(BeliarsCost);
-	hero.attribute[ATR_MANA_MAX] -= BeliarsCost;
+	Npc_ChangeAttribute(hero,ATR_MANA_MAX,-BeliarsCost);
 	ATR_PermBonus[ATR_MANA_MAX] -= BeliarsCost;
 	CurrentMana = hero.attribute[ATR_MANA] - BeliarsCost;
 	if(CurrentMana < 0)
@@ -153,7 +153,7 @@ func int PC_PrayIdol_End_Condition()
 
 func void PC_PrayIdol_End_Info()
 {
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 

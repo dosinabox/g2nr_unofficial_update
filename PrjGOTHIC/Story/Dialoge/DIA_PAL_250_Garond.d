@@ -631,7 +631,6 @@ func void DIA_Garond_Success_Info()
 	MIS_ScoutMine = LOG_SUCCESS;
 	B_GivePlayerXP(XP_ScoutMine);
 	MIS_ReadyForChapter3 = TRUE;
-	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
 };
 
 
@@ -860,7 +859,6 @@ func void DIA_Garond_BACKINKAP4_Info()
 		AI_Output(self,other,"DIA_Garond_BACKINKAP4_10_07");	//Ты имеешь в виду охотников на драконов? Они, конечно, могут помочь нам, но их слишком мало.
 	};
 	AI_Output(self,other,"DIA_Garond_BACKINKAP4_10_08");	//Если Хаген не пришлет в ближайшее время своих людей, я ничего не могу гарантировать.
-	B_InitNpcGlobals();
 	if(!Npc_IsDead(DJG_Angar))
 	{
 		if(DJG_AngarGotAmulett == TRUE)

@@ -667,9 +667,11 @@ func void B_SetItemToSteal(var C_Npc slf,var int dex,var int itemInstance,var in
 	slf.aivar[AIV_AmountToSteal] = amount;
 };
 
-func void B_CreateItemToSteal(var C_Npc slf,var int dex,var int itemInstance,var int amount)
+func void B_CreateItemToSteal(var C_Npc slf,var int dex,var C_Item itm,var int amount)
 {
 	//TODO убрать лишние проверки к релизу 29 версии
+	var int itemInstance;
+	itemInstance = Hlp_GetInstanceID(itm);
 	if((slf.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (slf.aivar[AIV_DefeatedByPlayer] == FALSE))
 	{
 		if(!Hlp_IsItem(ItMi_Gold,itemInstance))

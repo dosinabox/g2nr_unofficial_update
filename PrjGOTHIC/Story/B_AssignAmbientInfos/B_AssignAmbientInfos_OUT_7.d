@@ -45,12 +45,12 @@ func void DIA_OUT_7_STANDARD_Info()
 	if(randy == 0)
 	{
 		AI_Output(self,other,"DIA_OUT_7_STANDARD_07_00");	//Последнее время жить здесь стало значительно опаснее. А полевые хищники так вообще житья не дают.
-	};
-	if(randy == 1)
+	}
+	else if(randy == 1)
 	{
 		AI_Output(self,other,"DIA_OUT_7_STANDARD_07_01");	//Мы должны отдавать долю городу. Если мы не будем делать этого, у нас будут проблемы с паладинами.
-	};
-	if(randy == 2)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_OUT_7_STANDARD_07_02");	//Бунт Онара будет иметь серьезные последствия. Я лучше не буду принимать в нем участия.
 	};

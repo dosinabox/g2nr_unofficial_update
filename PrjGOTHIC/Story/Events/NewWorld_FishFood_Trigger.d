@@ -1,5 +1,5 @@
 
-func void newworld_fishfood_trigger()
+func void NewWorld_Fishfood_Trigger()
 {
 	PlayVideoEx("FISHFOOD.BIK",FALSE,TRUE);
 };

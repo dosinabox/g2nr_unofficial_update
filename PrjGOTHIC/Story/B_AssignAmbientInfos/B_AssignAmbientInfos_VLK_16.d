@@ -119,13 +119,13 @@ func void DIA_VLK_16_STANDARD_Info()
 			B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
 			SC_HearedAboutMissingPeople = TRUE;
 		};
-	};
-	if(Kapitel == 2)
+	}
+	else if(Kapitel == 2)
 	{
 		AI_Output(self,other,"DIA_VLK_16_STANDARD_16_01");	//Ты разве не слышал? Орки уже около города! Остается надеяться, что у паладинов достаточно людей.
 		AI_Output(self,other,"DIA_VLK_16_STANDARD_16_02");	//Интересно, почему фермеры больше не приходят на рынок?
-	};
-	if(Kapitel == 3)
+	}
+	else if(Kapitel == 3)
 	{
 		if(MIS_RescueBennet == LOG_SUCCESS)
 		{
@@ -136,12 +136,12 @@ func void DIA_VLK_16_STANDARD_Info()
 			AI_Output(self,other,"DIA_VLK_16_STANDARD_16_04");	//Это возмутительно. Наемники Онара убили уважаемого паладина Лотара прямо у всех на глазах.
 			AI_Output(self,other,"DIA_VLK_16_STANDARD_16_05");	//Но Иннос обязательно накажет их за их грехи. Никому не позволено поднимать руку на солдата нашего Владыки.
 		};
-	};
-	if(Kapitel == 4)
+	}
+	else if(Kapitel == 4)
 	{
 		AI_Output(self,other,"DIA_VLK_16_STANDARD_16_06");	//Я слышала, что эти преступники бегут с фермы Онара. Говорят, они боятся возмездия паладинов лорда Хагена, и бегут от них назад, в Долину Рудников.
-	};
-	if(Kapitel == 5)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_VLK_16_STANDARD_16_07");	//Я слышала, что паладинам удалось уничтожить всех этих ужасных драконов из Долины Рудников.
 	};

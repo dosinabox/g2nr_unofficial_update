@@ -4,7 +4,7 @@ func void ZS_MM_Rtn_OrcSit()
 	Perception_Set_Monster_Rtn();
 	AI_SetWalkMode(self,NPC_WALK);
 	B_MM_DeSynchronize();
-	if(!Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
+	if(!C_NpcIsOnRoutineWP(self))
 	{
 		AI_GotoWP(self,self.wp);
 	};
@@ -31,9 +31,6 @@ func int ZS_MM_Rtn_OrcSit_Loop()
 			self.aivar[AIV_TAPOSITION] = ISINPOS;
 		};
 	};
-/*	else
-	{
-	}; */
 	return LOOP_CONTINUE;
 };
 

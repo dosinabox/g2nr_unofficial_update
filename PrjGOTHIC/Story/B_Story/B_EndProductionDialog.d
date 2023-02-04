@@ -1,5 +1,5 @@
 
-func void b_endproductiondialog()
+func void B_EndProductionDialog()
 {
 	AI_StopProcessInfos(self);
 	Wld_StopEffect("DEMENTOR_FX");

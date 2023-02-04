@@ -1,9 +1,11 @@
 
 func void ZS_RansackBody()
 {
+	var C_Npc target;
 	Perception_Set_Normal();
 	AI_Standup(self);
-	AI_GotoNpc(self,other);
+	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
+	AI_GotoNpc(self,target);
 };
 
 func int ZS_RansackBody_Loop()

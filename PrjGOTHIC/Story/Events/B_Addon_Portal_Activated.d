@@ -1,5 +1,5 @@
 
-func void b_addon_portal_activated()
+func void B_Addon_Portal_Activated()
 {
 	MOBNAME_RECESS = "";
 	Portal_Activated = TRUE;

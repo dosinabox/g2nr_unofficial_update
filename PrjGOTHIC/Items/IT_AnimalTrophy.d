@@ -178,12 +178,12 @@ func void Use_Mandibles()
 {
 	if(Mandibles_Bonus <= 9)
 	{
-		Npc_ChangeAttribute(self,ATR_MANA,self.attribute[ATR_MANA_MAX]);
+		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
 		Mandibles_Bonus += 1;
 	}
 	else
 	{
-		PrintScreen(PRINT_Mandibles,-1,YPOS_LevelUp,FONT_ScreenSmall,2);
+		Print(PRINT_Mandibles);
 	};
 };
 
@@ -235,15 +235,8 @@ func void Use_Sting()
 	}
 	else
 	{
+		Npc_ChangeAttribute(self,ATR_HITPOINTS,-5);
 		Print(PRINT_Bloodfly);
-		if(self.attribute[ATR_HITPOINTS] > 5)
-		{
-			self.attribute[ATR_HITPOINTS] -= 5;
-		}
-		else
-		{
-			self.attribute[ATR_HITPOINTS_MAX] -= 1;
-		};
 	};
 };
 

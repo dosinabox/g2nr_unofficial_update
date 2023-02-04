@@ -304,7 +304,15 @@ instance DIA_Biff_GELDEINTREIBEN(C_Info)
 
 func int DIA_Biff_GELDEINTREIBEN_Condition()
 {
-	if((DJG_Biff_SCGold < (Npc_HasItems(hero,ItMi_Gold) - 1)) && (Npc_GetBodyState(hero) != BS_INVENTORY) && (Npc_GetBodyState(hero) != BS_MOBINTERACT_INTERRUPT) && ((Npc_GetBodyState(hero) != BS_STAND) || (BIFF_LABERT_GELDEINTREIBEN == TRUE)) && ((Npc_GetBodyState(hero) != BS_ITEMINTERACT) || (BIFF_LABERT_GELDEINTREIBEN == TRUE)) && (DJG_Biff_HalbeHalbe == TRUE) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE))
+	if(Npc_GetBodyState(hero) == BS_INVENTORY)
+	{
+		return FALSE;
+	};
+	if(Npc_GetBodyState(hero) == BS_MOBINTERACT_INTERRUPT)
+	{
+		return FALSE;
+	};
+	if((DJG_Biff_SCGold < (Npc_HasItems(hero,ItMi_Gold) - 1)) && ((Npc_GetBodyState(hero) != BS_STAND) || (BIFF_LABERT_GELDEINTREIBEN == TRUE)) && ((Npc_GetBodyState(hero) != BS_ITEMINTERACT) || (BIFF_LABERT_GELDEINTREIBEN == TRUE)) && (DJG_Biff_HalbeHalbe == TRUE) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE))
 	{
 		BIFF_LABERT_GELDEINTREIBEN = TRUE;
 		return TRUE;
@@ -421,7 +429,15 @@ instance DIA_Biff_ICHBLEIBHIER(C_Info)
 
 func int DIA_Biff_ICHBLEIBHIER_Condition()
 {
-	if((Npc_GetBodyState(hero) != BS_INVENTORY) && (Npc_GetBodyState(hero) != BS_MOBINTERACT_INTERRUPT) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE))
+	if(Npc_GetBodyState(hero) == BS_INVENTORY)
+	{
+		return FALSE;
+	};
+	if(Npc_GetBodyState(hero) == BS_MOBINTERACT_INTERRUPT)
+	{
+		return FALSE;
+	};
+	if((DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE))
 	{
 		var int location;
 		location = B_GetBiffLocation(0);
@@ -542,6 +558,14 @@ instance DIA_Biff_KOHLEWEGGEBEN(C_Info)
 
 func int DIA_Biff_KOHLEWEGGEBEN_Condition()
 {
+	if(Npc_GetBodyState(hero) == BS_INVENTORY)
+	{
+		return FALSE;
+	};
+	if(Npc_GetBodyState(hero) == BS_MOBINTERACT_INTERRUPT)
+	{
+		return FALSE;
+	};
 	if((DJG_Biff_SCGold > Npc_HasItems(hero,ItMi_Gold)) && (DJG_Biff_HalbeHalbe == TRUE) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE))
 	{
 		return TRUE;

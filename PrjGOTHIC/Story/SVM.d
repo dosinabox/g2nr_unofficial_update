@@ -224,9 +224,9 @@ class C_SVM
 	var string foundtreasure;
 	var string cantunderstandthis;
 	var string cantreadthis;
-	var string stoneplate_1;
-	var string stoneplate_2;
-	var string stoneplate_3;
+//	var string stoneplate_1;
+//	var string stoneplate_2;
+//	var string stoneplate_3;
 	var string cough;
 	var string hui;
 	var string Addon_ThisLittleBastard;
@@ -2745,9 +2745,9 @@ instance SVM_15(C_SVM)
 	foundtreasure = "SVM_15_Addon_FOUNDTREASURE";	//Ага. Кажется, я кое-что нашел.
 	cantunderstandthis = "SVM_15_Addon_CANTUNDERSTANDTHIS";	//Я не понимаю...
 	cantreadthis = "SVM_15_Addon_CANTREADTHIS";	//Я не могу этого прочесть!
-	stoneplate_1 = "SVM_15_Addon_STONEPLATE_1";	//АХАНТАР!
-	stoneplate_2 = "SVM_15_Addon_STONEPLATE_2";	//ДЖЕР-ЭДРА!
-	stoneplate_3 = "SVM_15_Addon_STONEPLATE_3";	//УРИЗЕЛЬ РАТИС!
+//	stoneplate_1 = "SVM_15_Addon_STONEPLATE_1";	//АХАНТАР!
+//	stoneplate_2 = "SVM_15_Addon_STONEPLATE_2";	//ДЖЕР-ЭДРА!
+//	stoneplate_3 = "SVM_15_Addon_STONEPLATE_3";	//УРИЗЕЛЬ РАТИС!
 	cough = "SVM_15_Addon_COUGH";	//(кашляет) О, черт. Брр...
 	hui = "SVM_15_Addon_HUI";	//Ой-ой-ой!
 	attentat_addon_description = "SVM_15_ATTENTAT_ADDON_DESCRIPTION";	//Что ты знаешь о покушении на Эстебана?

@@ -1,23 +1,25 @@
 
 func int C_AkilFarmIsFree()
 {
+	if(AkilFarmIsFreeKap4 == TRUE)
+	{
+		return TRUE;
+	};
+	if(Npc_IsDead(Alvares) && Npc_IsDead(Engardo))
+	{
+		return TRUE;
+	};
 	if((ScaredAlvares == TRUE) && (ScaredEngardo == TRUE))
 	{
 		return TRUE;
 	};
-	if(Npc_IsDead(Alvares))
+	if(Npc_IsDead(Alvares) && (ScaredEngardo == TRUE))
 	{
-		if(Npc_IsDead(Engardo) || (ScaredEngardo == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
-	if(Npc_IsDead(Engardo))
+	if(Npc_IsDead(Engardo) && (ScaredAlvares == TRUE))
 	{
-		if(Npc_IsDead(Alvares) || (ScaredAlvares == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 	return FALSE;
 };

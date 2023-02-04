@@ -375,7 +375,7 @@ func void DIA_Addon_Franco_JemandAnderen_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Franco_JemandAnderen_08_01");	//Нет, я уже отправил туда Логана. Он был перед тобой в списке.
 		Logan_Inside = TRUE;
-		AI_Teleport(Logan,"BL_INN_CORNER_02");
+		AI_Teleport(Logan,"BL_INN_03_B");
 		B_StartOtherRoutine(Logan,"LAGER");
 	}
 	else

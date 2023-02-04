@@ -15,16 +15,19 @@ func void ZS_Sit_Campfire()
 
 func int ZS_Sit_Campfire_Loop()
 {
-	if(Npc_IsOnFP(self,"CAMPFIRE") && !C_BodyStateContains(self,BS_SIT))
+	if(!C_BodyStateContains(self,BS_SIT))
 	{
-		AI_AlignToFP(self);
-		AI_PlayAniBS(self,"T_STAND_2_SIT",BS_SIT);
-	}
-	else if(Wld_IsFPAvailable(self,"CAMPFIRE") && !C_BodyStateContains(self,BS_SIT))
-	{
-		AI_GotoFP(self,"CAMPFIRE");
-		AI_Standup(self);
-		AI_AlignToFP(self);
+		if(Npc_IsOnFP(self,"CAMPFIRE"))
+		{
+			AI_AlignToFP(self);
+			AI_PlayAniBS(self,"T_STAND_2_SIT",BS_SIT);
+		}
+		else if(Wld_IsFPAvailable(self,"CAMPFIRE"))
+		{
+			AI_GotoFP(self,"CAMPFIRE");
+			AI_Standup(self);
+			AI_AlignToFP(self);
+		};
 	};
 	return LOOP_CONTINUE;
 };
