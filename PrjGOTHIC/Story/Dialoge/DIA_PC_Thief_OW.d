@@ -696,7 +696,14 @@ func void DIA_Addon_ThiefOW_Nostalgie_Info()
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_05");	//Ну ладно...
 	Diego_Nostalgie = TRUE;
 	B_GivePlayerXP(1000);
-	PrintScreen(NAME_Addon_NostalgieBonus,-1,57,FONT_Screen,2);
+	if(DelayedPrintScreenMessagesDisabled == FALSE)
+	{
+		AI_PrintScreen(NAME_Addon_NostalgieBonus,-1,57,FONT_Screen,2);
+	}
+	else
+	{
+		PrintScreen(NAME_Addon_NostalgieBonus,-1,57,FONT_Screen,2);
+	};
 	B_Diego_WirSindDa();
 };
 

@@ -88,7 +88,7 @@ func void B_ENTER_OLDWORLD_Kapitel_3()
 		{
 			Wld_InsertItem(ItMi_Nugget,"FP_ITEM_XARDASALTERTURM_02");
 		};
-		if(TschuessBilgot == TRUE)
+		if(MIS_RescueBilgot == LOG_SUCCESS)
 		{
 			B_RemoveNpc(VLK_4120_Bilgot);
 		};
@@ -144,7 +144,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		};
 		B_RemoveNpc(VLK_4106_Dobar);
 		B_RemoveNpc(VLK_4107_Parlaf);
-		if(TschuessBilgot == TRUE)
+		if(MIS_RescueBilgot == LOG_SUCCESS)
 		{
 			B_RemoveNpc(VLK_4120_Bilgot);
 		};
@@ -479,7 +479,7 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 		{
 			CreateInvItems(Brutus,ITWR_DementorObsessionBook_MIS,1);
 		};
-		if(TschuessBilgot == TRUE)
+		if(MIS_RescueBilgot == LOG_SUCCESS)
 		{
 			B_RemoveNpc(VLK_4120_Bilgot);
 		};
@@ -547,10 +547,6 @@ func void B_Enter_OldWorld()
 				Npc_SetRefuseTalk(Biff,300);
 			};
 		};
-	};
-	if(Npc_IsDead(Bilgot) && (MIS_RescueBilgot == LOG_Running))
-	{
-		MIS_RescueBilgot = LOG_FAILED;
 	};
 };
 

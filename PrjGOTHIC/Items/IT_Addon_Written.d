@@ -594,7 +594,9 @@ func void UseAppleSTRRecipe()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"—оздание €блочного экстракта:");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLines(nDocID,0," онечно, €блоки сами по себе полезны дл€ здоровь€, но алхимик или опытный повар могут усилить их свойства и создать на их основе особый экстракт.");
+	Doc_PrintLines(nDocID,0,"Ќеобходимо 25 €блок и одна лесна€ €года.");
+	Doc_PrintLines(nDocID,0,"яблоки очищаютс€ от кожуры и семечек, разрезаютс€ на мелкие дольки и вар€тс€ около получаса. «атем в отвар надо добавить сок свежесорванной лесной €годы.");
 	Doc_Show(nDocID);
 	if(Npc_IsPlayer(self))
 	{

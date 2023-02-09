@@ -87,7 +87,7 @@ func void DIA_Orlan_Wein_Okay()
 	B_GiveInvItems(other,self,ItFo_Wine,12);
 	AI_Output(self,other,"DIA_Orlan_Wein_Okay_05_01");	//Вот твои свитки и золото.
 	B_GiveInvItems(self,other,ItMi_Gold,100);
-	PrintScreen("4 свитка получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+	AI_PrintScreen("4 свитка получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	CreateInvItems(hero,ItSc_Light,2);
 	CreateInvItems(hero,ItSc_LightHeal,1);
 	CreateInvItems(hero,ItSc_SumGobSkel,1);

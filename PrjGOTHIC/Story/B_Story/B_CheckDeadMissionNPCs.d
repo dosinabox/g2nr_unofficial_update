@@ -172,6 +172,13 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 				MIS_TalbinCheese = LOG_OBSOLETE;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bilgot))
+		{
+			if(MIS_RescueBilgot == LOG_Running)
+			{
+				MIS_RescueBilgot = LOG_FAILED;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(DJG_Cipher))
 		{
 			if(MIS_Cipher_Paket == LOG_Running)
