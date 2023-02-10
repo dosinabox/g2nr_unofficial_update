@@ -267,6 +267,20 @@ func void DIA_MiltenNW_FourFriends_Info()
 };
 
 
+func void B_MiltenNW_GiveMonasteryKey()
+{
+	CreateInvItems(self,ItKe_Innos_MIS,1);
+	B_GiveInvItems(self,other,ItKe_Innos_MIS,1);
+	if(!Npc_IsDead(Gorax))
+	{
+		if(Npc_HasItems(Gorax,ItKe_Innos_MIS))
+		{
+			Npc_RemoveInvItem(Gorax,ItKe_Innos_MIS);
+		};
+	};
+	MiltenNW_GivesMonasteryKey = TRUE;
+};
+
 instance DIA_MiltenNW_KAP3_Entry(C_Info)
 {
 	npc = PC_Mage_NW;
@@ -292,13 +306,7 @@ func void DIA_MiltenNW_KAP3_Entry_Info()
 	if(hero.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_03_01");	//Да, конечно. Вот ключ.
-		CreateInvItems(self,ItKe_Innos_MIS,1);
-		B_GiveInvItems(self,other,ItKe_Innos_MIS,1);
-		if(Npc_HasItems(Gorax,ItKe_Innos_MIS))
-		{
-			Npc_RemoveInvItem(Gorax,ItKe_Innos_MIS);
-		};
-		MiltenNW_GivesMonasteryKey = TRUE;
+		B_MiltenNW_GiveMonasteryKey();
 	}
 	else
 	{
@@ -335,13 +343,7 @@ func void DIA_MiltenNW_KAP3_Entry_Permit()
 	AI_Output(self,other,"DIA_MiltenOW_Hello_NO_03_01");	//Ты через многое прошел, да?
 	B_GiveInvItems(self,other,ItWr_PermissionToWearInnosEye_MIS,1);
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_Permit_03_02");	//(колеблясь) Хорошо. Вот ключ от монастыря. Ты найдешь Пирокара в церкви.
-	CreateInvItems(self,ItKe_Innos_MIS,1);
-	B_GiveInvItems(self,other,ItKe_Innos_MIS,1);
-	if(Npc_HasItems(Gorax,ItKe_Innos_MIS))
-	{
-		Npc_RemoveInvItem(Gorax,ItKe_Innos_MIS);
-	};
-	MiltenNW_GivesMonasteryKey = TRUE;
+	B_MiltenNW_GiveMonasteryKey();
 	Info_ClearChoices(DIA_MiltenNW_KAP3_Entry);
 };
 

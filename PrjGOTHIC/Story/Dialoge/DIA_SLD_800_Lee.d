@@ -1662,7 +1662,15 @@ func void DIA_Lee_DRACHENEI_Info()
 		AI_Output(self,other,"DIA_Lee_DRACHENEI_04_03");	//Разбей их. Что еще?
 		AI_Output(self,other,"DIA_Lee_DRACHENEI_04_04");	//Может быть, из скорлупы можно будет сделать доспехи или еще что-нибудь.
 		AI_Output(self,other,"DIA_Lee_DRACHENEI_04_05");	//Похоже, они очень крепкие. Поговори об этом с Беннетом.
-		B_LogEntry(TOPIC_DRACHENEIER,"Ли не знает, что делать с драконьим яйцом. Он отправил меня к кузнецу Беннету.");
+		if(DRACHENEIER_angebotenXP_OneTime == FALSE)
+		{
+			if(TOPIC_END_DRACHENEIER == FALSE)
+			{
+				Log_CreateTopic(TOPIC_DRACHENEIER,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_DRACHENEIER,LOG_Running);
+			};
+			B_LogEntry(TOPIC_DRACHENEIER,"Ли не знает, что делать с драконьим яйцом. Он отправил меня к кузнецу Беннету.");
+		};
 	};
 	B_GivePlayerXP(XP_AmbientKap5);
 };

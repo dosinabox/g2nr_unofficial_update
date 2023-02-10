@@ -1,12 +1,12 @@
 
-func void B_ClearDeadTrader(var C_Npc Trader)
+func void B_ClearDeadTrader(var C_Npc trader)
 {
-	Npc_ClearInventory(Trader);
-	if(Trader.aivar[AIV_VictoryXPGiven] == FALSE)
+	Npc_ClearInventory(trader);
+	if(trader.aivar[AIV_VictoryXPGiven] == FALSE)
 	{
-		B_CreateAmbientInv(Trader);
+		B_CreateAmbientInv(trader);
 	};
-	Trader.aivar[AIV_ChapterInv] = Kapitel - 1;
+	trader.aivar[AIV_ChapterInv] = Kapitel - 1;
 };
 
 func void B_ClearInfiniteTools(var C_Npc slf)

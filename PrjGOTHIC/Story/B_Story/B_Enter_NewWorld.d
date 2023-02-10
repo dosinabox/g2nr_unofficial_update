@@ -69,6 +69,19 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 			MyxirMovedToNW = TRUE;
 		};
 	};
+	if(Talbin_FollowsThroughPass == LOG_Running)
+	{
+		if(Npc_GetDistToWP(hero,"NW_PASS_SECRET_17") < 1000)
+		{
+			Wld_InsertNpc(VLK_4132_Talbin_NW,"NW_PASS_SECRET_17");
+			Talbin_FollowsThroughPass = LOG_SUCCESS;
+		};
+	};
+	if(Biff_FollowsThroughPass == LOG_Running)
+	{
+		Wld_InsertNpc(DJG_713_Biff_NW,"LEVELCHANGE");
+		Biff_FollowsThroughPass = LOG_SUCCESS;
+	};
 	if(Npc_IsDead(Hanna))
 	{
 		B_SendMilitiaToHotel();
@@ -720,11 +733,6 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		};
 		EnterNW_Kapitel4 = TRUE;
 	};
-	if(Talbin_FollowsThroughPass == LOG_Running)
-	{
-		Wld_InsertNpc(VLK_4132_Talbin_NW,"NW_PASS_SECRET_17");
-		Talbin_FollowsThroughPass = LOG_SUCCESS;
-	};
 };
 
 
@@ -878,11 +886,6 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 			IntroduceChapter(KapWechsel_5,KapWechsel_5_Text,"chapter5_DJG.tga","chapter_01.wav",6000);
 		};
 		EnterNW_Kapitel5 = TRUE;
-	};
-	if(Biff_FollowsThroughPass == LOG_Running)
-	{
-		Wld_InsertNpc(DJG_713_Biff_NW,"LEVELCHANGE");
-		Biff_FollowsThroughPass = LOG_SUCCESS;
 	};
 };
 

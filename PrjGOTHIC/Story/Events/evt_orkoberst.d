@@ -1,9 +1,7 @@
 
-var int EVT_ORKOBERST_OneTime;
-
 func void evt_orkoberst()
 {
-	if(EVT_ORKOBERST_OneTime == FALSE)
+	if(OrkSturmDI == FALSE)
 	{
 		if(!Npc_IsDead(AntiPaladin_DI))
 		{
@@ -49,6 +47,7 @@ func void evt_orkoberst()
 			CreateInvItem(Mario_DI,ITWR_DementorObsessionBook_MIS);
 			B_StartOtherRoutine(Mario_DI,"OrkSturmDI");
 			B_SetGuild(Mario_DI,GIL_DMT);
+			Mario.aivar[AIV_PARTYMEMBER] = FALSE;
 			Wld_InsertNpc(Skeleton_Mario1,"FP_ROAM_DI_MARIOSSKELETONS_01");
 			Wld_InsertNpc(Skeleton_Mario2,"FP_ROAM_DI_MARIOSSKELETONS_02");
 			Wld_InsertNpc(Skeleton_Mario3,"FP_ROAM_DI_MARIOSSKELETONS_03");
@@ -62,9 +61,8 @@ func void evt_orkoberst()
 			Wld_InsertNpc(UndeadOrcWarrior,"FP_ROAM_DI_MARIOSSKELETONS_03");
 			Wld_InsertNpc(UndeadOrcWarrior,"FP_ROAM_DI_MARIOSSKELETONS_04");
 		};
-		OrkSturmDI = TRUE;
 		B_LogEntry(TOPIC_HallenVonIrdorath,"Полковник орков - крепкий орешек. Где-то в его тронном зале должен быть какой-то секрет.");
-		EVT_ORKOBERST_OneTime = TRUE;
+		OrkSturmDI = TRUE;
 	};
 };
 

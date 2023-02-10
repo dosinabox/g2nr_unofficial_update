@@ -25,7 +25,7 @@ func void B_ResetFernando()
 
 func void B_ResetSalandril()
 {
-	if(SalandrilLocation == LOC_MONASTERY)
+	if((SalandrilLocation == LOC_MONASTERY) && (TOPIC_END_MinenAnteile == TRUE))
 	{
 		if(!Npc_IsDead(Salandril))
 		{

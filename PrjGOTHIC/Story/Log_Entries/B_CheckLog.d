@@ -93,7 +93,7 @@ func void B_CheckLog()
 	B_CloseTopic(TopicBrutusKasse,0,Brutus_TeachSTR,6);
 	B_CloseTopic(Topic_TengronRing,0,TengronRing,6);
 	B_CloseTopic(TOPIC_BringMeat,MIS_Engor_BringMeat,0,6);
-	B_CloseTopic(TOPIC_BilgotEscort,MIS_RescueBilgot,TschuessBilgot,6);
+	B_CloseTopic(TOPIC_BilgotEscort,MIS_RescueBilgot,0,6);
 	B_CloseTopic(Topic_MarcosJungs,MIS_Marcos_Jungs,0,3);
 	B_CloseTopic(TOPIC_Botschaft,MIS_Vatras_Message,0,6);
 	B_CloseTopic(TOPIC_Lutero,Lutero_Krallen,0,6);
