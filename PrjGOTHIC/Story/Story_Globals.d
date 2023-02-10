@@ -1410,4 +1410,3 @@ var int Bones_ArmorGiven;
 var int Myxir_Merke_Language;
 var int AkilFarmIsFreeKap4;
 var int DRACHENEIER_angebotenXP_OneTime;
-var int DelayedPrintScreenMessagesDisabled;

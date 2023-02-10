@@ -453,7 +453,7 @@ func void DIA_Sagitta_HEAL_Info()
 	{
 		AI_Output(self,other,"DIA_Sagitta_HEAL_17_01");	//Давай посмотрим, что там у тебя. Ммм. Моя мазь в момент заживит все твои раны.
 		hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
-		PrintScreen(PRINT_FullyHealed,-1,-1,FONT_Screen,2);
+		AI_PrintScreen(PRINT_FullyHealed,-1,-1,FONT_Screen,2);
 	}
 	else
 	{

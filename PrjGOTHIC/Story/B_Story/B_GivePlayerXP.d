@@ -31,14 +31,7 @@ func void B_LevelUp(var int levels)
 	hero.exp_next = B_GetNextLevelExp(hero);
 	hero.lp += levels * LP_PER_LEVEL;
 	B_IncreaseHeroMaxHP(levels);
-	if(DelayedPrintScreenMessagesDisabled == FALSE)
-	{
-		AI_PrintScreen(PRINT_LevelUp,-1,YPOS_LevelUp,FONT_Screen,2);
-	}
-	else
-	{
-		PrintScreen(PRINT_LevelUp,-1,YPOS_LevelUp,FONT_Screen,2);
-	};
+	PrintScreen(PRINT_LevelUp,-1,YPOS_LevelUp,FONT_Screen,2);
 	Snd_Play("LEVELUP");
 };
 
@@ -74,14 +67,7 @@ func void B_GivePlayerXP(var int add_xp)
 			concatText = PRINT_XPLost;
 		};
 		concatText = ConcatStrings(concatText,IntToString(add_xp));
-		if(DelayedPrintScreenMessagesDisabled == FALSE)
-		{
-			AI_PrintScreen(concatText,-1,YPOS_XPGained,FONT_ScreenSmall,2);
-		}
-		else
-		{
-			PrintScreen(concatText,-1,YPOS_XPGained,FONT_ScreenSmall,2);
-		};
+		PrintScreen(concatText,-1,YPOS_XPGained,FONT_ScreenSmall,2);
 		if(hero.exp >= hero.exp_next)
 		{
 			B_LevelUp(1);

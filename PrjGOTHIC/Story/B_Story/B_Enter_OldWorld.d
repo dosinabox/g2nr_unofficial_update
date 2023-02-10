@@ -496,16 +496,6 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 };
 
 
-/*var int EnterOW_Kapitel6;
-
-func void B_ENTER_OLDWORLD_Kapitel_6()
-{
-	if(EnterOW_Kapitel6 == FALSE)
-	{
-		EnterOW_Kapitel6 = TRUE;
-	};
-};*/
-
 func void B_Enter_OldWorld()
 {
 	B_InitNpcGlobals();
@@ -529,10 +519,6 @@ func void B_Enter_OldWorld()
 	{
 		B_ENTER_OLDWORLD_Kapitel_5();
 	};
-	/*if(Kapitel >= 6)
-	{
-		B_ENTER_OLDWORLD_Kapitel_6();
-	};*/
 	B_InitNpcGlobals();
 	if(DJG_BiffParty == TRUE)
 	{

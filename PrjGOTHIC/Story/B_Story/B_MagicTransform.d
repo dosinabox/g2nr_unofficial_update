@@ -15,14 +15,19 @@ func void B_StopMagicTransform()
 {
 	if(PlayerIsTransformed == TRUE)
 	{
-		AI_UnequipWeapons(hero);
+		if(UnionActivated == TRUE)
+		{
+			Npc_StopAni(hero,"S_RUN");
+			AI_PlayAni(hero,"T_TRFSHOOT_2_STAND");
+		}
+		else
+		{
+			AI_UnequipWeapons(hero);
+		};
 		if(LevelUpsDuringTransform > 0)
 		{
 			B_IncreaseHeroMaxHP(LevelUpsDuringTransform);
 		};
-		//TODO задействует неиспользуемую анимацию, но выполняется до снятия оружия
-		//Npc_StopAni(hero,"S_RUN");
-		//AI_PlayAni(hero,"T_TRFSHOOT_2_STAND");
 		self.attribute[ATR_HITPOINTS] = 0;
 		PlayerIsTransformed = FALSE;
 	};

@@ -48,7 +48,7 @@ func void DIA_Vatras_DI_HEAL_Info()
 	{
 		AI_Output(self,other,"DIA_Vatras_DI_HEAL_05_01");	//(благоговейно) Аданос, благослови это тело. Ему предназначено восстановить баланс мира.
 		hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
-		PrintScreen(PRINT_FullyHealed,-1,-1,FONT_Screen,2);
+		AI_PrintScreen(PRINT_FullyHealed,-1,-1,FONT_Screen,2);
 	}
 	else
 	{
