@@ -109,6 +109,7 @@ func void DIA_Grimes_Weg_Info()
 	AI_Output(other,self,"DIA_Grimes_Weg_15_00");	//Ты знаешь, в каком направлении пошел Маркос?
 	AI_Output(self,other,"DIA_Grimes_Weg_05_01");	//Он не пошел прямой дорогой. Вместо этого он хотел пересечь реку там, где она замерзла.
 	AI_Output(self,other,"DIA_Grimes_Weg_05_02");	//Он хотел пойти в обход и подойти к замку с запада.
+	B_LogEntry(TOPIC_ScoutMine,"Маркос со своей группой ушли через замерзшую реку, чтобы подойти к замку в обход.");
 };
 
 
