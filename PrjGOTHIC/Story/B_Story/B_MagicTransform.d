@@ -28,7 +28,7 @@ func void B_StopMagicTransform()
 		{
 			B_IncreaseHeroMaxHP(LevelUpsDuringTransform);
 		};
-		self.attribute[ATR_HITPOINTS] = 0;
+		//self.attribute[ATR_HITPOINTS] = 0;
 		PlayerIsTransformed = FALSE;
 	};
 };
