@@ -6,7 +6,7 @@ instance Itemhoshi(Npc_Default)
 	id = 1500;
 	voice = 3;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;
 	CreateInvItems(self,ItMw_1h_Vlk_Dagger,1);
@@ -941,7 +941,7 @@ instance TA_Testmodell(Npc_Default)
 	id = 1500;
 	voice = 3;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Mace);
@@ -1152,7 +1152,7 @@ instance TA_Smalltalkpartner(Npc_Default)
 	id = 1501;
 	voice = 1;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Mace);

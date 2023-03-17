@@ -238,10 +238,13 @@ func void DIA_Lee_DI_UndeadDragonDead_Info()
 		AI_Output(self,other,"DIA_Lee_DI_UndeadDragonDead_04_05");	//Как ты думаешь? Разве терпение не должно быть вознаграждено?
 		AI_Output(other,self,"DIA_Lee_DI_UndeadDragonDead_15_06");	//Терпение и убийственные доводы.
 		AI_Output(self,other,"DIA_Lee_DI_UndeadDragonDead_04_07");	//(смеется) Да. Без хорошего отряда ничего не получится. Для меня было большой честью биться с тобой бок о бок.
-		DIA_Lee_DI_UndeadDragonDead_OneTime = TRUE;
 	};
 	AI_Output(self,other,"DIA_Lee_DI_UndeadDragonDead_04_08");	//Может быть, когда-нибудь наши пути пересекутся вновь...
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	if(DIA_Lee_DI_UndeadDragonDead_OneTime == FALSE)
+	{
+		Npc_ExchangeRoutine(self,"Start");
+	};
+	DIA_Lee_DI_UndeadDragonDead_OneTime = TRUE;
 };
 

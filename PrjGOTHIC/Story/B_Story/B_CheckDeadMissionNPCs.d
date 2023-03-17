@@ -270,6 +270,13 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 		{
 			Senyan_Erpressung = LOG_OBSOLETE;
 		};
+	}
+	else if(CurrentLevel == DRAGONISLAND_ZEN)
+	{
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Pedro_DI))
+		{
+			SCFoundPedro = TRUE;
+		};
 	};
 	B_CheckLog();
 };

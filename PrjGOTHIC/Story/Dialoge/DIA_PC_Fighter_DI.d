@@ -200,7 +200,6 @@ func void DIA_Gorn_DI_UndeadDragonDead_Info()
 		AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_05");	//Хочешь предложение? Мы ворвемся в первую же попавшуюся таверну и напьемся до бессознательного состояния.
 		AI_Output(other,self,"DIA_Gorn_DI_UndeadDragonDead_15_06");	//Ммм. Может быть.
 		AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_07");	//Эй, расслабься, дружище. Все кончено.
-		DIA_Gorn_DI_UndeadDragonDead_OneTime = TRUE;
 	};
 	AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_10");	//Здесь нам больше нечего делать. Скажи капитану, чтобы поднимал якорь.
 	if(Npc_KnowsInfo(other,DIA_Biff_DI_UNDEADDRGDEAD))
@@ -212,6 +211,10 @@ func void DIA_Gorn_DI_UndeadDragonDead_Info()
 		};
 	};
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	if(DIA_Gorn_DI_UndeadDragonDead_OneTime == FALSE)
+	{
+		Npc_ExchangeRoutine(self,"Start");
+	};
+	DIA_Gorn_DI_UndeadDragonDead_OneTime = TRUE;
 };
 

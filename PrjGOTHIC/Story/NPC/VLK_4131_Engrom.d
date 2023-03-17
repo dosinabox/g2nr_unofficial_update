@@ -6,7 +6,7 @@ instance VLK_4131_Engrom(Npc_Default)
 	id = 4131;
 	voice = 12;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Vlk_Axe);
@@ -39,3 +39,4 @@ func void Rtn_FleePass_4131()
 	TA_FleeToWP(8,0,23,0,"START");
 	TA_FleeToWP(23,0,8,0,"START");
 };
+

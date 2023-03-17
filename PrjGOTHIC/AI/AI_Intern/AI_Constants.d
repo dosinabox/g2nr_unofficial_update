@@ -354,7 +354,7 @@ const int XP_PER_VICTORY = 10;
 const int XP_PER_LEVEL = 500;
 
 const int NPCTYPE_AMBIENT = 0;
-const int npctype_main = 1;
+const int NPCTYPE_MAIN = 1;
 const int NPCTYPE_FRIEND = 2;
 const int NPCTYPE_OCAMBIENT = 3;
 const int NPCTYPE_OCMAIN = 4;
