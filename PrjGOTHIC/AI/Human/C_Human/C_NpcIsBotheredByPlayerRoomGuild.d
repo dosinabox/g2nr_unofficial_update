@@ -2,7 +2,6 @@
 func int C_NpcIsBotheredByPlayerRoomGuild(var C_Npc slf)
 {
 	var int portalguild;
-	portalguild = Wld_GetPlayerPortalGuild();
 	if(C_IsNpc(slf,KDF_507_Talamon))
 	{
 		return FALSE;
@@ -23,9 +22,17 @@ func int C_NpcIsBotheredByPlayerRoomGuild(var C_Npc slf)
 	{
 		return FALSE;
 	};
-	if((portalguild > GIL_NONE) && ((slf.guild == portalguild) || (Wld_GetGuildAttitude(slf.guild,portalguild) == ATT_FRIENDLY)))
+	portalguild = Wld_GetPlayerPortalGuild();
+	if(portalguild > GIL_NONE)
 	{
-		return TRUE;
+		if(slf.guild == portalguild)
+		{
+			return TRUE;
+		};
+		if(Wld_GetGuildAttitude(slf.guild,portalguild) == ATT_FRIENDLY)
+		{
+			return TRUE;
+		};
 	};
 	return FALSE;
 };

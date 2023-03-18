@@ -7,6 +7,7 @@ func void B_AssessPlayer()
 	};
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rhademes))
 	{
+		//TODO зачем это отдельное условие?
 		if((Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG) && Npc_CheckInfo(self,1))
 		{
 			self.aivar[AIV_NpcStartedTalk] = TRUE;

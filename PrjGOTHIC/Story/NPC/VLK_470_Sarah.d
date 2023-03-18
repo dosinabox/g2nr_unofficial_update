@@ -6,7 +6,7 @@ instance VLK_470_Sarah(Npc_Default)
 	id = 470;
 	voice = 16;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	attribute[ATR_DEXTERITY] = 1;

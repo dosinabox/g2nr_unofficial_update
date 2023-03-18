@@ -6,7 +6,7 @@ instance BAU_900_Onar(Npc_Default)
 	id = 900;
 	voice = 14;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_ShortSword5);

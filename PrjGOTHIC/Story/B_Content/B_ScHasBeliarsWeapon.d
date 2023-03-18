@@ -221,8 +221,13 @@ func int C_ScHasMeleeBeliarsWeapon()
 
 func int C_IsItem1HBeliarsWeapon(var C_Item Weap)
 {
+	if(Weap.id == ITEM_BELIAR_1H)
+	{
+		return TRUE;
+	};
 	if(Weap.flags & ITEM_BELIAR_1H)
 	{
+		//TODO убрать, проверять только id
 		return TRUE;
 	};
 	return FALSE;
@@ -230,8 +235,13 @@ func int C_IsItem1HBeliarsWeapon(var C_Item Weap)
 
 func int C_IsItem2HBeliarsWeapon(var C_Item Weap)
 {
+	if(Weap.id == ITEM_BELIAR_2H)
+	{
+		return TRUE;
+	};
 	if(Weap.flags & ITEM_BELIAR_2H)
 	{
+		//TODO убрать, проверять только id
 		return TRUE;
 	};
 	return FALSE;
