@@ -6,7 +6,7 @@ instance VLK_433_Bromor(Npc_Default)
 	id = 433;
 	voice = 7;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;

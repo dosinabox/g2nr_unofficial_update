@@ -13,7 +13,6 @@ func void B_MM_AssessWarn()
 			Npc_SetTarget(self,victim);
 			B_ClearPerceptions(self);
 			AI_StartState(self,ZS_MM_Attack,0,"");
-			return;
 		};
 		return;
 	};

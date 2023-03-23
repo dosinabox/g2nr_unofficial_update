@@ -84,11 +84,8 @@ func int B_AssessEnterRoom()
 				AI_StartState(self,ZS_ObservePlayer,1,"");
 			};
 			return TRUE;
-		}
-		else
-		{
-			return FALSE;
 		};
+		return FALSE;
 	};
 	if(C_NpcIsBotheredByPlayerRoomGuild(self))
 	{

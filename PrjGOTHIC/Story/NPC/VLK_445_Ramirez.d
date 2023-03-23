@@ -6,7 +6,7 @@ instance VLK_445_Ramirez(Npc_Default)
 	id = 445;
 	voice = 14;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,4);

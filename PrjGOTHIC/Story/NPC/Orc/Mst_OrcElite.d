@@ -93,7 +93,7 @@ instance OrcElite_AntiPaladin1(Mst_Default_OrcElite)
 	aivar[AIV_MM_REAL_ID] = ID_ORCCOMMANDER;
 	level = 45;
 	id = 111;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_OrcCommander();
 	EquipItem(self,ItMw_2H_OrcAxe_04);
@@ -108,6 +108,7 @@ instance OrcElite_AntiPaladin2(Mst_Default_OrcElite)
 	aivar[AIV_MM_REAL_ID] = ID_ORCCOMMANDER;
 	level = 45;
 	id = 112;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_OrcCommander();
 	EquipItem(self,ItMw_2H_OrcAxe_04);
@@ -122,6 +123,7 @@ instance OrcElite_AntiPaladin3(Mst_Default_OrcElite)
 	aivar[AIV_MM_REAL_ID] = ID_ORCCOMMANDER;
 	level = 45;
 	id = 113;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_OrcCommander();
 	EquipItem(self,ItMw_2H_OrcAxe_04);
