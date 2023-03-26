@@ -1,5 +1,5 @@
 
-func int pan_cond()
+/*func int stove_cond()
 {
 	if(Npc_IsPlayer(self))
 	{
@@ -22,9 +22,9 @@ func int pan_cond()
 		};
 	};
 	return TRUE;
-};
+};*/
 
-func void pan_s1()
+func void stove_s1()
 {
 	if(C_NpcIsHero(self))
 	{
@@ -34,7 +34,7 @@ func void pan_s1()
 	};
 };
 
-func void stove_s1()
+func void pan_s1()
 {
 	if(C_NpcIsHero(self))
 	{
@@ -87,7 +87,7 @@ func void pc_pan_1_info()
 	Npc_RemoveInvItems(self,ItFoMuttonRaw,amount);
 	CreateInvItems(self,ItFoMutton,amount);
 	AI_PrintScreen("ћ€со пожарено",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 instance PC_PAN_CANCEL(C_Info)
@@ -112,6 +112,6 @@ func int pc_pan_cancel_condition()
 
 func void pc_pan_cancel_info()
 {
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 

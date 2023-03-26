@@ -239,9 +239,35 @@ instance DIA_Engor_BRINGMEAT(C_Info)
 
 func int DIA_Engor_BRINGMEAT_Condition()
 {
-	if((MIS_Engor_BringMeat == LOG_Running) && (Meat_Counter < Meat_Amount) && (Npc_HasItems(hero,ItFo_Bacon) || Npc_HasItems(hero,ItFoMuttonRaw) || Npc_HasItems(hero,ItFoMutton) || Npc_HasItems(hero,ItFo_Sausage) || (Npc_HasItems(hero,ItFo_Schafswurst) && ((Kapitel > 1) || (MIS_GoraxEssen == LOG_SUCCESS)))))
+	if((MIS_Engor_BringMeat == LOG_Running) && (Meat_Counter < Meat_Amount))
 	{
-		return TRUE;
+		if(Npc_HasItems(hero,ItFo_Bacon))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(hero,ItFoMuttonRaw))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(hero,ItFoMutton))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(hero,ItFo_Sausage))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(hero,ItFo_Schafswurst))
+		{
+			if(Kapitel > 1)
+			{
+				return TRUE;
+			};
+			if(MIS_GoraxEssen == LOG_SUCCESS)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 

@@ -58,7 +58,6 @@ func void Use_Canthars_KomproBrief()
 	Doc_PrintLines(nDocID,0,"        мы понимаем друг друга!!!!!!!!!!!!");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"            Онар");
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
@@ -328,9 +327,6 @@ func void UsePassierschein()
 	Doc_PrintLine(nDocID,0,"            Лариус");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"            королевский губернатор");
-//	Doc_PrintLine(nDocID,0,"");
-//	Doc_PrintLine(nDocID,0,"");
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 	Player_KnowsLariusAsGovernor = TRUE;
@@ -461,30 +457,6 @@ instance ItMw_AlriksSword_Mis(C_Item)
 	count[5] = value;
 };
 
-/*
-func void Equip_AlriksSword()
-{
-	B_AddFightSkill(self,NPC_TALENT_1H,10);
-	if(Npc_IsPlayer(self))
-	{
-		b_meleeweaponchange(10,0,0);
-	};
-};
-
-func void UnEquip_AlriksSword()
-{
-	if(!Npc_IsPlayer(self))
-	{
-		B_AddFightSkill(self,NPC_TALENT_1H,-10);
-	};
-	if(Npc_IsPlayer(self) && ((MELEEWEAPONCHANGEDHERO == TRUE) || (SCRIPTPATCHWEAPONCHANGE == FALSE)))
-	{
-		B_AddFightSkill(self,NPC_TALENT_1H,-10);
-		b_meleeweaponundochange();
-	};
-};
-*/
-
 instance ItWr_VatrasMessage(C_Item)
 {
 	name = NAME_LetterSealed;
@@ -546,23 +518,6 @@ instance ItWr_VatrasMessage_Open(C_Item)
 	inv_rotx = 90;
 	inv_roty = 180;
 };
-
-
-/*instance ItKe_Hotel(C_Item)
-{
-	name = NAME_Key;
-	mainflag = ITEM_KAT_KEYS;
-	flags = ITEM_MISSION;
-	value = 0;
-	visual = "ItKe_Key_02.3ds";
-	material = MAT_METAL;
-	description = name;
-	text[0] = "Это ключ от комнаты отеля.";
-	inv_rotz = -45;
-	inv_rotx = -25;
-	inv_roty = 0;
-	inv_zbias = 145;
-};*/
 
 instance ItKe_ThiefGuildKey_MIS(C_Item)
 {
@@ -741,14 +696,6 @@ instance Holy_Hammer_MIS(C_Item)
 	cond_value[2] = Condition_HolyHammer;
 	visual = "ItMw_030_2h_kdf_hammer_01.3DS";
 	description = name;
-//	text[2] = "Урон:                     ??";
-//	text[3] = "Необходима сила:          ??";
-//	text[4] = "Двуручное оружие";
-//	text[5] = "Цена:  невозможно определить";
-//	text[2] = NAME_Damage;
-//	count[2] = damageTotal;
-//	text[3] = NAME_Str_needed;
-//	count[3] = cond_value[2];
 	text[2] = NAME_DamageUnknown;
 	text[3] = NAME_Unknown_needed;
 	text[4] = NAME_TwoHanded;
@@ -1028,9 +975,6 @@ instance ItKe_EVT_CRYPT_03(C_Item)
 	inv_zbias = 145;
 };
 
-
-const int Value_ITAR_PAL_Skel = 500;
-
 instance ITAR_PAL_Skel(C_Item)
 {
 	name = "Старые доспехи паладина";
@@ -1041,7 +985,7 @@ instance ITAR_PAL_Skel(C_Item)
 	protection[PROT_POINT] = 100;
 	protection[PROT_FIRE] = 50;
 	protection[PROT_MAGIC] = 50;
-	value = Value_ITAR_PAL_Skel;
+	value = 500;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Pal_Skel.3ds";
 	visual_change = "Armor_Pal_Skeleton.asc";
@@ -1233,7 +1177,6 @@ instance ItPl_Sagitta_Herb_MIS(C_Item)
 {
 	name = "Солнечное алоэ";
 	mainflag = ITEM_KAT_FOOD;
-//	flags = ITEM_MULTI;
 	flags = ITEM_MISSION;
 	value = Value_Strength_Herb_01;
 	visual = "ItPl_Sagitta_Herb.3DS";

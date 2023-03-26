@@ -1,5 +1,5 @@
 
-var int RAKEPLACE[50];
+var int RAKEPLACE[31];
 const int RAKE_BUDDEL_DIST_MIN = 200;
 
 const string RAKEPLACE_WP_01 = "NW_BIGFARM_LAKE_CAVE_07";
@@ -33,10 +33,6 @@ func void RakeTreasureSuccess(var C_Item itm)
 	B_Say_Overlay(self,self,"$FOUNDTREASURE");
 	B_GivePlayerXP(XP_Ambient);
 };
-
-/*func void B_SCUsesRake(var C_Npc slf)
-{
-};*/
 
 func void B_SCGetTreasure_S1()
 {

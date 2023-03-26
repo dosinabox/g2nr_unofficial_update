@@ -46,7 +46,7 @@ instance Swarm(Mst_Default_Swarm)
 instance Swarm_Detector(Mst_Default_Swarm)
 {
 	level = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetVisuals_Swarm();
 	senses_range = 3000;
 	aivar[AIV_PARTYMEMBER] = TRUE;

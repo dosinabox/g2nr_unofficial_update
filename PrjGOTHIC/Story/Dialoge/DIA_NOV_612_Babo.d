@@ -905,9 +905,16 @@ instance DIA_Babo_Kap3_HaveYourDocs2(C_Info)
 
 func int DIA_Babo_Kap3_HaveYourDocs2_Condition()
 {
-	if((BabosDocsRejected == TRUE) && (Npc_HasItems(other,ItWr_BabosDocs_MIS) || (Npc_HasItems(other,ItWr_BabosPinUp_MIS) && Npc_HasItems(other,ItWr_BabosLetter_MIS))))
+	if(BabosDocsRejected == TRUE)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_BabosDocs_MIS))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItWr_BabosPinUp_MIS) && Npc_HasItems(other,ItWr_BabosLetter_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -733,6 +733,7 @@ func void B_SyncItemsToSteal()
 		B_CreateItemToSteal(KDF_505_Marduk,36,ItMi_Gold,40);
 		B_CreateItemToSteal(KDF_506_Neoras,72,ItMi_Gold,140);
 		B_CreateItemToSteal(KDF_507_Talamon,87,ItMi_Gold,140);
+		B_CreateItemToSteal(KDF_508_Gorax,80,ItKe_KlosterSchatz,1);
 		B_CreateItemToSteal(KDF_509_Isgaroth,48,ItMi_Gold,50);
 		B_CreateItemToSteal(KDF_510_Hyglas,73,ItMi_Gold,200);
 		B_CreateItemToSteal(KDF_511_Daron,47,ItMi_Gold,80);

@@ -1,5 +1,5 @@
 
-func int makerune_cond()
+/*func int makerune_cond()
 {
 	if(Npc_IsPlayer(self))
 	{
@@ -11,7 +11,7 @@ func int makerune_cond()
 		};
 	};
 	return TRUE;
-};
+};*/
 
 func void makerune_s1()
 {
@@ -45,7 +45,7 @@ func int PC_MakeRune_End_Condition()
 func void PC_MakeRune_End_Info()
 {
 	CreateInvItems(self,ItMi_RuneBlank,1);
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 
@@ -415,7 +415,7 @@ func void PC_SPL_MasterOfDisaster_Create()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 
@@ -465,7 +465,7 @@ func void PC_SPL_PalTeleportSecret_Create()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_Light_Info()
@@ -482,7 +482,7 @@ func void PC_ItRu_Light_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_Firebolt_Info()
@@ -499,7 +499,7 @@ func void PC_ItRu_Firebolt_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_LightHeal_Info()
@@ -516,7 +516,7 @@ func void PC_ItRu_LightHeal_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_SumGobSkel_Info()
@@ -533,7 +533,7 @@ func void PC_ItRu_SumGobSkel_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_Zap_Info()
@@ -550,7 +550,7 @@ func void PC_ItRu_Zap_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_InstFireball_Info()
@@ -567,7 +567,7 @@ func void PC_ItRu_InstFireball_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_Icebolt_Info()
@@ -584,7 +584,7 @@ func void PC_ItRu_Icebolt_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_SumWolf_Info()
@@ -601,7 +601,7 @@ func void PC_ItRu_SumWolf_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_Windfist_Info()
@@ -618,7 +618,7 @@ func void PC_ItRu_Windfist_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_Sleep_Info()
@@ -635,7 +635,7 @@ func void PC_ItRu_Sleep_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_MediumHeal_Info()
@@ -652,7 +652,7 @@ func void PC_ItRu_MediumHeal_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_LightningFlash_Info()
@@ -670,7 +670,7 @@ func void PC_ItRu_LightningFlash_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_ChargeFireball_Info()
@@ -688,7 +688,7 @@ func void PC_ItRu_ChargeFireball_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_SumSkel_Info()
@@ -705,7 +705,7 @@ func void PC_ItRu_SumSkel_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_Fear_Info()
@@ -722,7 +722,7 @@ func void PC_ItRu_Fear_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_IceCube_Info()
@@ -740,7 +740,7 @@ func void PC_ItRu_IceCube_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_ThunderBall_Info()
@@ -758,7 +758,7 @@ func void PC_ItRu_ThunderBall_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_SumGol_Info()
@@ -775,7 +775,7 @@ func void PC_ItRu_SumGol_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_HarmUndead_Info()
@@ -792,7 +792,7 @@ func void PC_ItRu_HarmUndead_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_Pyrokinesis_Info()
@@ -810,7 +810,7 @@ func void PC_ItRu_Pyrokinesis_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_Firestorm_Info()
@@ -828,7 +828,7 @@ func void PC_ItRu_Firestorm_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_IceWave_Info()
@@ -846,7 +846,7 @@ func void PC_ItRu_IceWave_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_SumDemon_Info()
@@ -863,7 +863,7 @@ func void PC_ItRu_SumDemon_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_FullHeal_Info()
@@ -880,7 +880,7 @@ func void PC_ItRu_FullHeal_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_Firerain_Info()
@@ -899,7 +899,7 @@ func void PC_ItRu_Firerain_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_BreathOfDeath_Info()
@@ -917,7 +917,7 @@ func void PC_ItRu_BreathOfDeath_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_MassDeath_Info()
@@ -935,7 +935,7 @@ func void PC_ItRu_MassDeath_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_ArmyOfDarkness_Info()
@@ -955,7 +955,7 @@ func void PC_ItRu_ArmyOfDarkness_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_Shrink_Info()
@@ -973,7 +973,7 @@ func void PC_ItRu_Shrink_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_Whirlwind_Info()
@@ -990,7 +990,7 @@ func void PC_ItRu_Whirlwind_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_Icelance_Info()
@@ -1007,7 +1007,7 @@ func void PC_ItRu_Icelance_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_thunderstorm_Info()
@@ -1025,7 +1025,7 @@ func void PC_ItRu_thunderstorm_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_Geyser_Info()
@@ -1042,7 +1042,7 @@ func void PC_ItRu_Geyser_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 func void PC_ItRu_Waterfist_Info()
@@ -1060,6 +1060,6 @@ func void PC_ItRu_Waterfist_Info()
 		Print(PRINT_ProdItemsMissing);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 

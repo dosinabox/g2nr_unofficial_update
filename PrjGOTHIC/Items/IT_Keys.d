@@ -178,3 +178,20 @@ instance ItKe_Orlan_BackDoor(C_Item)
 	inv_zbias = 145;
 };
 
+instance ItKe_LibraryKloster(C_Item)
+{
+	name = NAME_Key;
+	mainflag = ITEM_KAT_KEYS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItKe_Key_04.3ds";
+	material = MAT_METAL;
+	description = name;
+	text[0] = "Маленький ключик";
+	text[1] = "из подвала монастыря.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 190;
+};
+

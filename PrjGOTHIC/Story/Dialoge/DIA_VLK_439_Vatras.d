@@ -1,6 +1,5 @@
 
 var int Vatras_LaresExit;
-//var int Vatras_MORE;
 
 func int C_Vatras_Away()
 {
@@ -185,7 +184,6 @@ func void DIA_Vatras_EXIT_Info()
 	};
 	AI_StopProcessInfos(self);
 	B_Vatras_ListenersControl();
-//	Vatras_MORE = FALSE;
 };
 
 
@@ -1472,30 +1470,6 @@ func void DIA_Addon_Vatras_GuildHelp_Info()
 };
 
 
-/*instance DIA_Vatras_MORE(C_Info)
-{
-	npc = VLK_439_Vatras;
-	nr = 998;
-	condition = DIA_Vatras_MORE_Condition;
-	information = DIA_Vatras_MORE_Info;
-	permanent = TRUE;
-	description = "(еще)";
-};
-
-
-func int DIA_Vatras_MORE_Condition()
-{
-	if(Vatras_MORE == FALSE)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Vatras_MORE_Info()
-{
-	Vatras_MORE = TRUE;
-};*/
-
 func void B_Vatras_Segen()
 {
 	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Blessing == FALSE))
@@ -1539,7 +1513,6 @@ instance DIA_Vatras_INFLUENCE(C_Info)
 
 func int DIA_Vatras_INFLUENCE_Condition()
 {
-//	if((MIS_Thorben_GetBlessings == LOG_Running) && (Player_IsApprentice == APP_NONE) && (Vatras_MORE == TRUE))
 	if((MIS_Thorben_GetBlessings == LOG_Running) && (Player_IsApprentice == APP_NONE) && (Vatras_Blessing == FALSE))
 	{
 		return TRUE;
@@ -1652,7 +1625,6 @@ instance DIA_Vatras_WoKdF(C_Info)
 
 func int DIA_Vatras_WoKdF_Condition()
 {
-//	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Segen > 0) && (Vatras_SentToDaron == FALSE) && !Npc_KnowsInfo(other,DIA_Daron_Hallo) && (Vatras_MORE == TRUE))
 	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Blessing == TRUE) && (Vatras_SentToDaron == FALSE) && !C_GotAnyInnosBlessing() && (other.guild != GIL_KDF))
 	{
 		return TRUE;
@@ -1683,8 +1655,6 @@ instance DIA_Vatras_Spende(C_Info)
 
 func int DIA_Vatras_Spende_Condition()
 {
-//	if(Vatras_MORE == TRUE)
-//	if((Vatras_MORE == TRUE) && (Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
 	if(((Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE)) || (Vatras_Chance == TRUE))
 	{
 		return TRUE;
@@ -1774,10 +1744,6 @@ instance DIA_Vatras_CanTeach(C_Info)
 
 func int DIA_Vatras_CanTeach_Condition()
 {
-	/*if(Vatras_MORE == TRUE)
-	{
-		return TRUE;
-	};*/
 	return TRUE;
 };
 
@@ -1824,7 +1790,6 @@ instance DIA_Vatras_Teach(C_Info)
 
 func int DIA_Vatras_Teach_Condition()
 {
-//	if((Vatras_TeachMANA == TRUE) && (Vatras_MORE == TRUE))
 	if((Vatras_TeachMANA == TRUE) && (Vatras_TeachMANA_NoPerm == FALSE))
 	{
 		return TRUE;
@@ -1871,10 +1836,6 @@ instance DIA_Vatras_GODS(C_Info)
 
 func int DIA_Vatras_GODS_Condition()
 {
-	/*if(Vatras_MORE == TRUE)
-	{
-		return TRUE;
-	};*/
 	return TRUE;
 };
 
@@ -1947,10 +1908,6 @@ instance DIA_Vatras_HEAL(C_Info)
 
 func int DIA_Vatras_HEAL_Condition()
 {
-	/*if(Vatras_MORE == TRUE)
-	{
-		return TRUE;
-	};*/
 	return TRUE;
 };
 
@@ -2489,7 +2446,6 @@ func void DIA_Vatras_BEGINN_Info()
 func void DIA_Vatras_BEGINN_los()
 {
 	AI_StopProcessInfos(self);
-//	Vatras_MORE = FALSE;
 	Npc_ExchangeRoutine(self,"RITUALINNOSEYE");
 	B_StartOtherRoutine(Xardas,"RITUALINNOSEYE");
 	B_StartOtherRoutine(Pyrokar,"RITUALINNOSEYE");
@@ -2523,7 +2479,6 @@ func void DIA_Vatras_AUGEGEHEILT_Info()
 	AI_Output(self,other,"DIA_Vatras_AUGEGEHEILT_05_02");	//Надеюсь, я еще увижу тебя, когда ты выполнишь свою миссию. Прощай.
 	B_LogEntry(TOPIC_INNOSEYE,"Глаз был восстановлен. Пирокар отдает его мне, и начинается охота на драконов.");
 	AI_StopProcessInfos(self);
-//	Vatras_MORE = FALSE;
 	Vatras_Listeners_ReadyToGo = TRUE;
 	RitualInnosEyeRuns = LOG_SUCCESS;
 	MIS_RitualInnosEyeRepair = LOG_SUCCESS;
@@ -2789,18 +2744,18 @@ func void DIA_Vatras_StillNeedYou_Info()
 };
 
 
-instance DIA_Addon_Vatras_PISSOFFFOREVVER(C_Info)
+instance DIA_Addon_Vatras_PissOffForever(C_Info)
 {
 	npc = VLK_439_Vatras;
 	nr = 1;
-	condition = DIA_Addon_Vatras_PISSOFFFOREVVER_Condition;
-	information = DIA_Addon_Vatras_PISSOFFFOREVVER_Info;
+	condition = DIA_Addon_Vatras_PissOffForever_Condition;
+	information = DIA_Addon_Vatras_PissOffForever_Info;
 	important = TRUE;
 	permanent = TRUE;
 };
 
 
-func int DIA_Addon_Vatras_PISSOFFFOREVVER_Condition()
+func int DIA_Addon_Vatras_PissOffForever_Condition()
 {
 	if((VatrasPissedOffForever == TRUE) && (Kapitel >= 5))
 	{
@@ -2808,10 +2763,8 @@ func int DIA_Addon_Vatras_PISSOFFFOREVVER_Condition()
 	};
 };
 
-func void DIA_Addon_Vatras_PISSOFFFOREVVER_Info()
+func void DIA_Addon_Vatras_PissOffForever_Info()
 {
 	B_VatrasPissedOff();
-//	AI_StopProcessInfos(self);
-//	Vatras_MORE = FALSE;
 };
 

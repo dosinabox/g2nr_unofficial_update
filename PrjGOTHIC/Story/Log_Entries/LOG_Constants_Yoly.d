@@ -52,9 +52,6 @@ var int TOPIC_END_CanyonOrcs;
 const string TOPIC_Addon_BDTRuestung = "Доспехи бандитов";
 const string TOPIC_Addon_Quarhodron = "Сила стражей мертвых";
 const string TOPIC_Addon_Klaue = "Коготь Белиара";
-
-var int TOPIC_END_Klaue;
-
 const string TOPIC_Addon_Kammern = "Залы храма";
 const string TOPIC_Addon_Flut = "Затонувший город";
 

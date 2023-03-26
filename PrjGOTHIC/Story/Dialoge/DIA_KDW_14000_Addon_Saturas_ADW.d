@@ -1170,9 +1170,8 @@ func void DIA_Addon_Saturas_BeliarWeapGeben_Info()
 	AI_PrintScreen("Коготь Белиара отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarWeapGeben_14_02");	//Теперь Коготь лишен своей силы. Я утоплю его в глубинах моря.
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarWeapGeben_14_03");	//Мудрость Аданоса укроет его от Зла.
-	TOPIC_END_Klaue = TRUE;
-	B_GivePlayerXP(XP_Addon_BeliarsWeaponAbgegeben);
 	Saturas_KlaueInsMeer = TRUE;
+	B_GivePlayerXP(XP_Addon_BeliarsWeaponAbgegeben);
 };
 
 

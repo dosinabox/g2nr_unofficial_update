@@ -3,7 +3,7 @@ var int HotRawSwordsCount;
 var int Erzwaffen;
 var int Normalwaffen;
 
-func int smithweapon_cond()
+/*func int smithweapon_cond()
 {
 	if(Npc_IsPlayer(self))
 	{
@@ -15,7 +15,7 @@ func int smithweapon_cond()
 		};
 	};
 	return TRUE;
-};
+};*/
 
 func void smithweapon_s1()
 {
@@ -65,7 +65,7 @@ func void B_CraftSword(var int sword,var int ore,var int blood)
 	if(HotRawSwordsCount <= 0)
 	{
 		AI_PrintScreen("Закончилась раскаленная сталь!",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-		b_endproductiondialog();
+		B_EndProductionDialog();
 		return;
 	};
 	time = 1;
@@ -122,7 +122,7 @@ func void PC_SmithWeapon_End_Info()
 	{
 		CreateInvItems(self,ItMiSwordraw,HotRawSwordsCount);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 
@@ -575,7 +575,7 @@ func void PC_ItMw_Streitaxt1_Info()
 	if(HotRawSwordsCount <= 0)
 	{
 		AI_PrintScreen("Закончилась раскаленная сталь!",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else
 	{

@@ -90,7 +90,6 @@ const int ITEM_TORCH = 1 << 28;
 const int ITEM_THROW = 1 << 29;
 const int ITEM_ACTIVE = 1 << 30;
 
-//TODO использовать такие флаги небезопасно, лучше придумать что-то другое
 const int ITEM_BELIAR_1H = 4;
 const int ITEM_BELIAR_2H = 13;
 
@@ -784,6 +783,7 @@ const int DRAGONISLAND_ZEN = 3;
 const int ADDONWORLD_ZEN = 4;
 const int FREEMINE_ZEN = 5;
 const int ORCGRAVEYARD_ZEN = 6;
+const int ABANDONEDMINE_ZEN = 7;
 
 const int INVCAM_ENTF_RING_STANDARD = 400;
 const int INVCAM_ENTF_AMULETTE_STANDARD = 150;
@@ -797,7 +797,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "10/02/2023";
+const string FIX_VERSION_DATE = "26/03/2023";
 const int FIX_VERSION_START = 29;
 const int LEAST_SUPPORTED = 26;
 var int FIX_VERSION_SAVE;
