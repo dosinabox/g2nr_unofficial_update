@@ -3,11 +3,6 @@ func void ZS_MM_Rtn_DragonRest()
 {
 	Npc_SetPercTime(self,1);
 	self.aivar[AIV_MM_PRIORITY] = PRIO_EAT;
-	/*if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Dragon_Testmodell))
-	{
-		Perception_Set_Monster_Rtn();
-		Npc_PercEnable(self,PERC_ASSESSPLAYER,B_MM_AssessPlayer);
-	};*/
 	Perception_Set_Monster_Rtn();
 	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_MM_AssessPlayer);
 	Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessTalk);
@@ -40,25 +35,22 @@ func int ZS_MM_Rtn_DragonRest_Loop()
 	if(self.guild == GIL_DRAGON)
 	{
 		B_DragonHeal(self);
-	};
-	if(Hlp_Random(1000) <= 5)
+	}
+	else if(Hlp_Random(1000) <= 5)
 	{
-		if(self.guild != GIL_DRAGON)
+		AI_Standup(self);
+		randomMove = Hlp_Random(3);
+		if(randomMove == 0)
 		{
-			AI_Standup(self);
-			randomMove = Hlp_Random(3);
-			if(randomMove == 0)
-			{
-				AI_PlayAni(self,"R_ROAM1");
-			}
-			else if(randomMove == 1)
-			{
-				AI_PlayAni(self,"R_ROAM2");
-			}
-			else
-			{
-				AI_PlayAni(self,"R_ROAM3");
-			};
+			AI_PlayAni(self,"R_ROAM1");
+		}
+		else if(randomMove == 1)
+		{
+			AI_PlayAni(self,"R_ROAM2");
+		}
+		else
+		{
+			AI_PlayAni(self,"R_ROAM3");
 		};
 	};
 	return LOOP_CONTINUE;
@@ -66,6 +58,6 @@ func int ZS_MM_Rtn_DragonRest_Loop()
 
 func void ZS_MM_Rtn_DragonRest_End()
 {
-	AI_PlayAni(self,"T_REST_2_STAND");
+	//AI_PlayAni(self,"T_REST_2_STAND");
 };
 

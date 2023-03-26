@@ -1,4 +1,65 @@
 
+func int C_NpcIsReadyToObservePlayer(var C_Npc slf)
+{
+	if(Npc_IsInState(slf,ZS_Potion_Alchemy))
+	{
+		return TRUE;
+	};
+	if(Npc_IsInState(slf,ZS_Read_Bookstand))
+	{
+		return TRUE;
+	};
+	if(Npc_IsInState(slf,ZS_Sit_Bench))
+	{
+		return TRUE;
+	};
+	if(Npc_IsInState(slf,ZS_Sit_Campfire))
+	{
+		return TRUE;
+	};
+	if(Npc_IsInState(slf,ZS_Sit_Chair))
+	{
+		return TRUE;
+	};
+	if(Npc_IsInState(slf,ZS_Sit_Throne))
+	{
+		return TRUE;
+	};
+	if(Npc_IsInState(slf,ZS_Sleep))
+	{
+		return TRUE;
+	};
+	if(Npc_IsInState(slf,ZS_Smalltalk))
+	{
+		return TRUE;
+	};
+	if(Npc_IsInState(slf,ZS_Smoke_Joint))
+	{
+		return TRUE;
+	};
+	if(Npc_IsInState(slf,ZS_Stand_ArmsCrossed))
+	{
+		return TRUE;
+	};
+	if(Npc_IsInState(slf,ZS_Stand_Drinking))
+	{
+		return TRUE;
+	};
+	if(Npc_IsInState(slf,ZS_Stand_Eating))
+	{
+		return TRUE;
+	};
+	if(Npc_IsInState(slf,ZS_Stand_Guarding))
+	{
+		return TRUE;
+	};
+	if(Npc_IsInState(slf,ZS_Stand_WP))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 func int B_AssessEnterRoom()
 {
 	var int portalguild;
@@ -19,10 +80,6 @@ func int B_AssessEnterRoom()
 	{
 		return FALSE;
 	};
-	if(C_NpcIsGateGuard(self))
-	{
-		return FALSE;
-	};
 	if(!Npc_IsPlayer(other))
 	{
 		return FALSE;
@@ -34,13 +91,6 @@ func int B_AssessEnterRoom()
 	if(Npc_GetAttitude(self,other) == ATT_FRIENDLY)
 	{
 		return FALSE;
-	};
-	if(C_BodyStateContains(other,BS_SNEAK) || C_BodyStateContains(other,BS_STAND))
-	{
-		if(!Npc_CanSeeNpc(self,other) && !Npc_IsInState(self,ZS_ObservePlayer))
-		{
-			return FALSE;
-		};
 	};
 	if(self.guild == GIL_NONE)
 	{
@@ -61,6 +111,21 @@ func int B_AssessEnterRoom()
 	{
 		return FALSE;
 	};
+	if(C_NpcIsGateGuard(self))
+	{
+		return FALSE;
+	};
+	if(!Npc_CanSeeNpc(self,other) && !Npc_IsInState(self,ZS_ObservePlayer))
+	{
+		if(C_BodyStateContains(other,BS_SNEAK))
+		{
+			return FALSE;
+		};
+		if(C_BodyStateContains(other,BS_STAND))
+		{
+			return FALSE;
+		};
+	};
 	if((portalguild == GIL_PUBLIC) && Npc_IsInPlayersRoom(self))
 	{
 		if(Npc_IsInState(self,ZS_ObservePlayer))
@@ -71,7 +136,7 @@ func int B_AssessEnterRoom()
 		{
 			B_MM_DeSynchronize();
 		};
-		if(Npc_IsInState(self,ZS_Potion_Alchemy) || Npc_IsInState(self,ZS_Read_Bookstand) || Npc_IsInState(self,ZS_Sit_Bench) || Npc_IsInState(self,ZS_Sit_Campfire) || Npc_IsInState(self,ZS_Sit_Chair) || Npc_IsInState(self,ZS_Sit_Throne) || Npc_IsInState(self,ZS_Sleep) || Npc_IsInState(self,ZS_Smalltalk) || Npc_IsInState(self,ZS_Smoke_Joint) || Npc_IsInState(self,ZS_Stand_ArmsCrossed) || Npc_IsInState(self,ZS_Stand_Drinking) || Npc_IsInState(self,ZS_Stand_Eating) || Npc_IsInState(self,ZS_Stand_Guarding) || Npc_IsInState(self,ZS_Stand_WP))
+		if(C_NpcIsReadyToObservePlayer(self))
 		{
 			Npc_ClearAIQueue(self);
 			B_ClearPerceptions(self);
