@@ -6,7 +6,7 @@ instance VLK_456_Abuyin(Npc_Default)
 	id = 456;
 	voice = 13;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
