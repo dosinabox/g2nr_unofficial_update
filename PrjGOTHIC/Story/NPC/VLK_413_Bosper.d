@@ -5,9 +5,8 @@ instance VLK_413_Bosper(Npc_Default)
 	guild = GIL_VLK;
 	id = 413;
 	voice = 11;
-//	flags = NPC_FLAG_IMMORTAL;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;

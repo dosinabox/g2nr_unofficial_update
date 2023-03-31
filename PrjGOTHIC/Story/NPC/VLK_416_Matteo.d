@@ -6,7 +6,7 @@ instance VLK_416_Matteo(Npc_Default)
 	id = 416;
 	voice = 9;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;

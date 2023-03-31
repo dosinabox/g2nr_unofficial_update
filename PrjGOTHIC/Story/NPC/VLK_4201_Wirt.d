@@ -6,7 +6,7 @@ instance VLK_4201_Wirt(Npc_Default)
 	id = 4201;
 	voice = 14;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_ShortSword2);

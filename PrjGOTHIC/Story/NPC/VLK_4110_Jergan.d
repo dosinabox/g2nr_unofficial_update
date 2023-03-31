@@ -6,7 +6,7 @@ instance VLK_4110_Jergan(Npc_Default)
 	id = 4110;
 	voice = 13;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;

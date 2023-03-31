@@ -6,7 +6,7 @@ instance VLK_4148_Gestath(Npc_Default)
 	id = 4148;
 	voice = 9;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,6);

@@ -6,7 +6,7 @@ instance VLK_418_Gritta(Npc_Default)
 	id = 418;
 	voice = 16;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;

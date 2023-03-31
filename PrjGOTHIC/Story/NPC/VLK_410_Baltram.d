@@ -6,7 +6,7 @@ instance VLK_410_Baltram(Npc_Default)
 	id = 410;
 	voice = 1;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsRanger] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);

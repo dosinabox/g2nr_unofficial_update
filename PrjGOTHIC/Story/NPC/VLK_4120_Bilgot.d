@@ -6,7 +6,7 @@ instance VLK_4120_Bilgot(Npc_Default)
 	id = 4120;
 	voice = 5;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Mil_Sword);
