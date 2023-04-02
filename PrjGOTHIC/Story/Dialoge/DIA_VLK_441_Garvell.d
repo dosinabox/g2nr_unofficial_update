@@ -219,17 +219,10 @@ func void DIA_Garvell_ReturnMonty_Info()
 		AI_Output(self,other,"DIA_Addon_Garvell_ReturnMonty_04_02");	//Может быть, теперь нам и удастся построить корабль...
 		B_GivePlayerXP(XP_Ambient);
 	}
-	else if(MIS_Garvell_Infos == LOG_Running)
-	{
-		AI_Output(self,other,"DIA_Garvell_Add_04_00");	//Я должен знать, сколько у меня осталось времени на постройку судна.	
-	}
-	else if(MIS_Garvell_Infos == LOG_SUCCESS)
-	{
-		AI_Output(self,other,"DIA_Garvell_Success_04_00");	//Спасибо за информацию. Судя по всему, у нас сколько угодно времени на постройку судна.
-	}
 	else
 	{
-		AI_Output(self,other,"DIA_Garvell_Schiff_04_01");	//Ох, у нас тысячи проблем. Остов пока еще не очень стабилен и не хватает досок на обшивку.
+		//TODO озвучить
+		AI_Output(self,other,"DIA_Garvell_Schiff_04_03_add");	//Мои парни работают не очень эффективно.
 	};
 };
 

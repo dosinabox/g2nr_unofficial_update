@@ -7,7 +7,7 @@ instance VLK_401_Cornelius(Npc_Default)
 	id = 401;
 	voice = 13;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_ShortSword5);

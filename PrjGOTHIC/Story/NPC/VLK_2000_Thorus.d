@@ -6,7 +6,7 @@
 	id = 2000;
 	voice = 9;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IGNORE_Murder] = TRUE;

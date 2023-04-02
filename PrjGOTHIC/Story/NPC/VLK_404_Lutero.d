@@ -6,7 +6,7 @@ instance VLK_404_Lutero(Npc_Default)
 	id = 404;
 	voice = 13;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;

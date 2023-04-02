@@ -6,7 +6,7 @@ instance STRF_1119_Addon_Monty(Npc_Default)
 	id = 1119;
 	voice = 8;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NoFightParker] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
