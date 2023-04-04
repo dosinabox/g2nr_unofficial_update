@@ -6,7 +6,7 @@ instance BAU_961_Gaan(Npc_Default)
 	id = 961;
 	voice = 3;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsRanger] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;

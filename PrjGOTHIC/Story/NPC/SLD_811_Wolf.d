@@ -6,7 +6,7 @@ instance SLD_811_Wolf(Npc_Default)
 	id = 811;
 	voice = 8;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;

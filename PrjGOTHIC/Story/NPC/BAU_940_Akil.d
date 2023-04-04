@@ -5,8 +5,8 @@ instance BAU_940_Akil(Npc_Default)
 	guild = GIL_OUT;
 	id = 940;
 	voice = 13;
-//	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	flags = 0;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,2);
 	attribute[ATR_HITPOINTS] = 300;
 	attribute[ATR_HITPOINTS_MAX] = 300;

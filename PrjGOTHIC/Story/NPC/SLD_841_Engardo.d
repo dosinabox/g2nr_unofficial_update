@@ -6,7 +6,7 @@ instance SLD_841_Engardo(Npc_Default)
 	id = 841;
 	voice = 13;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	aivar[AIV_EnemyOverride] = TRUE;
