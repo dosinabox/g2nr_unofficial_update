@@ -6,7 +6,7 @@ instance SLD_801_Torlof(Npc_Default)
 	id = 801;
 	voice = 1;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;

@@ -6,7 +6,7 @@ instance PIR_1370_Addon_Angus(Npc_Default)
 	id = 1370;
 	voice = 6;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	CreateInvItem(self,ItMw_Addon_PIR2hAxe);

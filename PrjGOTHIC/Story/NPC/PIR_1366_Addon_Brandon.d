@@ -6,7 +6,7 @@ instance PIR_1366_Addon_Brandon(Npc_Default)
 	id = 1366;
 	voice = 4;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_FollowDist] = 400;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;

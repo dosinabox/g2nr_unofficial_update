@@ -6,7 +6,7 @@ instance PIR_1363_Addon_Pirat(Npc_Default)
 	id = 1363;
 	voice = 7;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_FollowDist] = 600;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_MASTER;
