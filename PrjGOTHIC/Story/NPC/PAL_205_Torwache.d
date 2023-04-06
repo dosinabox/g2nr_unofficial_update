@@ -6,7 +6,7 @@ instance PAL_205_Torwache(Npc_Default)
 	id = 205;
 	voice = 12;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,5);
 	aivar[AIV_NewsOverride] = TRUE;
 	fight_tactic = FAI_HUMAN_MASTER;

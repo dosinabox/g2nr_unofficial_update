@@ -6,7 +6,7 @@ instance PIR_1320_Addon_Greg(Npc_Default)
 	id = 1320;
 	voice = 1;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_IGNORE_Murder] = TRUE;
 	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_IGNORE_Sheepkiller] = TRUE;

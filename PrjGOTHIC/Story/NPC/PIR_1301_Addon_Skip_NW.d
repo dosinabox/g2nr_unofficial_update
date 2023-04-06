@@ -6,7 +6,7 @@ instance PIR_1301_Addon_Skip_NW(Npc_Default)
 	id = 1301;
 	voice = 8;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_ShortSword2);

@@ -6,7 +6,7 @@ instance PAL_297_Ritter(Npc_Default)
 	id = 297;
 	voice = 4;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IGNORE_Murder] = TRUE;

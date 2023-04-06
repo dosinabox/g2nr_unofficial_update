@@ -193,19 +193,22 @@ func void B_ClearTools(var C_Npc slf)
 {
 	if(Hlp_IsValidNpc(slf))
 	{
-		B_RemoveEveryInvItem(slf,ItMi_Stomper);
-		B_RemoveEveryInvItem(slf,ItMi_Hammer);
-		B_RemoveEveryInvItem(slf,ItMi_Scoop);
-		B_RemoveEveryInvItem(slf,ItMi_Brush);
-		B_RemoveEveryInvItem(slf,ItMi_Rake);
-		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Canthar))
+		if(!C_NpcIsHero(slf))
 		{
-			B_RemoveEveryInvItem(slf,ItMi_Saw);
-		};
-		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Matteo))
-		{
-			B_RemoveEveryInvItem(slf,ItMi_Broom);
-			B_RemoveEveryInvItem(slf,ItMi_Lute);
+			B_RemoveEveryInvItem(slf,ItMi_Stomper);
+			B_RemoveEveryInvItem(slf,ItMi_Hammer);
+			B_RemoveEveryInvItem(slf,ItMi_Scoop);
+			B_RemoveEveryInvItem(slf,ItMi_Brush);
+			B_RemoveEveryInvItem(slf,ItMi_Rake);
+			if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Canthar))
+			{
+				B_RemoveEveryInvItem(slf,ItMi_Saw);
+			};
+			if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Matteo))
+			{
+				B_RemoveEveryInvItem(slf,ItMi_Broom);
+				B_RemoveEveryInvItem(slf,ItMi_Lute);
+			};
 		};
 	};
 };
@@ -214,11 +217,14 @@ func void B_ClearSpecialAmmo(var C_Npc slf)
 {
 	if(Hlp_IsValidNpc(slf))
 	{
-		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Bennet_DI))
+		if(!C_NpcIsHero(slf))
 		{
-			B_RemoveEveryInvItem(slf,ItRw_Addon_MagicBolt);
-			B_RemoveEveryInvItem(slf,ItRw_Addon_MagicArrow);
-			B_RemoveEveryInvItem(slf,ItRw_Addon_FireArrow);
+			if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Bennet_DI))
+			{
+				B_RemoveEveryInvItem(slf,ItRw_Addon_MagicBolt);
+				B_RemoveEveryInvItem(slf,ItRw_Addon_MagicArrow);
+				B_RemoveEveryInvItem(slf,ItRw_Addon_FireArrow);
+			};
 		};
 	};
 };

@@ -28,6 +28,15 @@ func int B_TeachPlayerTalentTakeAnimalTrophy(var C_Npc slf,var C_Npc oth,var int
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
+	if(PremiumTeachersEnabled == TRUE)
+	{
+		if(!B_GiveInvItems(oth,slf,ItMi_Gold,kosten * PremiumTeachersPrice))
+		{
+			PrintScreen(Print_NotEnoughGold,-1,-1,FONT_Screen,2);
+			DIA_Common_WeWillGetToThatLater();
+			return FALSE;
+		};
+	};
 	oth.lp -= kosten;
 	Log_CreateTopic(TOPIC_TalentAnimalTrophy,LOG_NOTE);
 	Log_AddEntry(TOPIC_TalentAnimalTrophy,"Теперь я могу:");

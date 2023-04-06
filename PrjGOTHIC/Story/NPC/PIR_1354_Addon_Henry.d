@@ -6,7 +6,7 @@ instance PIR_1354_Addon_Henry(Npc_Default)
 	id = 1354;
 	voice = 4;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
