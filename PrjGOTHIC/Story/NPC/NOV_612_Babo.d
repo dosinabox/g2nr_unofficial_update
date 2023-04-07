@@ -6,7 +6,7 @@ instance NOV_612_Babo(Npc_Default)
 	id = 612;
 	voice = 3;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Nov_Mace);

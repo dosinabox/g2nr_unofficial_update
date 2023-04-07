@@ -184,18 +184,21 @@ func void ZS_Dead()
 	{
 		B_GiveDeathXP(hero,self);
 	};
-	B_GiveTradeInv(self);
-	B_GiveDeathInv(self);
-	B_ClearRuneInv(self);
-	B_ClearSmithInv(self);
-	B_ClearAlchemyInv(self);
-	B_ClearBonusFoodInv(self);
-	B_ClearInfiniteTools(self);
-	B_ClearSpecialAmmo(self);
-	B_DeletePetzCrime(self);
-	self.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
+	if(!Npc_IsPlayer(self))
+	{
+		B_GiveTradeInv(self);
+		B_GiveDeathInv(self);
+		B_ClearRuneInv(self);
+		B_ClearSmithInv(self);
+		B_ClearAlchemyInv(self);
+		B_ClearBonusFoodInv(self);
+		B_ClearInfiniteTools(self);
+		B_ClearSpecialAmmo(self);
+		B_DeletePetzCrime(self);
+		self.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
+		self.aivar[AIV_TAPOSITION] = ISINPOS;
+	};
 	AI_UnequipWeapons(self);
-	self.aivar[AIV_TAPOSITION] = ISINPOS;
 };
 
 func int ZS_Dead_Loop()

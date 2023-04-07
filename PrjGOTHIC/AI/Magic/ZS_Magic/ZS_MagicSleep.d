@@ -1,7 +1,8 @@
 
 func void B_StopMagicSleep()
 {
-	Npc_PercDisable(self,PERC_ASSESSDAMAGE);
+	B_ResetFaceExpression(self);
+	AI_Standup(self);
 	if(!Npc_IsPlayer(self))
 	{
 		B_Say_Overlay(self,other,"$WHATWASTHAT");
@@ -10,19 +11,18 @@ func void B_StopMagicSleep()
 	{
 		B_Say_Overlay(self,self,"$AWAKE");
 	};
-	AI_PlayAni(self,"T_VICTIM_SLE_2_STAND");
+	AI_ContinueRoutine(self);
 };
 
 func void B_AssessMagicSleepTalk()
 {
-	B_Say(self,other,"$YOUDISTURBEDMYSLUMBER");
+	B_ResetFaceExpression(self);
 	AI_StartState(self,ZS_ObservePlayer,1,"");
 };
 
 func void ZS_MagicSleep()
 {
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_StopMagicSleep);
-	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessMagicSleepTalk);
 	self.aivar[AIV_Guardpassage_Status] = GP_NONE;
 	Npc_SetRefuseTalk(self,0);
@@ -46,6 +46,7 @@ func void ZS_MagicSleep()
 
 func int ZS_MagicSleep_Loop()
 {
+	Mdl_StartFaceAni(self,"S_EYESCLOSED",1,-1);
 	if(Npc_GetStateTime(self) > SPL_TIME_Sleep)
 	{
 		Npc_ClearAIQueue(self);

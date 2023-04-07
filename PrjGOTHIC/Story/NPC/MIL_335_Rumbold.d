@@ -6,7 +6,7 @@ instance MIL_335_Rumbold(Npc_Default)
 	id = 335;
 	voice = 10;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
@@ -33,12 +33,6 @@ func void Rtn_MilComing_335()
 	TA_Smalltalk(8,0,22,0,"NW_FARM3_BENGAR");
 	TA_Smalltalk(22,0,8,0,"NW_FARM3_BENGAR");
 };
-
-/* func void Rtn_Flucht2_335()
-{
-	TA_Smalltalk(8,0,22,0,"NW_RUMBOLD_FLUCHT2");
-	TA_Smalltalk(22,0,8,0,"NW_RUMBOLD_FLUCHT2");
-}; */
 
 func void Rtn_Flucht3_335()
 {

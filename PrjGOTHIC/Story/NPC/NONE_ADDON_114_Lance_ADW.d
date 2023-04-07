@@ -6,7 +6,7 @@ instance NONE_ADDON_114_Lance_ADW(Npc_Default)
 	id = 114;
 	voice = 3;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsRanger] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;

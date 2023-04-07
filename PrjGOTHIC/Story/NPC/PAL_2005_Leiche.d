@@ -2,12 +2,11 @@
 instance PAL_2005_Leiche(Npc_Default)
 {
 	name[0] = NAME_Ritter;
-//	guild = GIL_NONE;
 	guild = GIL_PAL;
 	id = 2005;
 	voice = 4;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;

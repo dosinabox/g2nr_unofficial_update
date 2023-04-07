@@ -58,7 +58,7 @@ func void Perception_Set_Normal()
 	Npc_PercEnable(self,PERC_ASSESSWARN,B_AssessWarn);
 	Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessTalk);
 	Npc_PercEnable(self,PERC_MOVEMOB,B_MoveMob);
-	if(!Npc_IsInState(self,ZS_Sleep) && !Npc_IsInState(self,ZS_Sleep_Deep))
+	if(!Npc_IsInState(self,ZS_Sleep) && !Npc_IsInState(self,ZS_Sleep_Deep) && !Npc_IsInState(self,ZS_MagicSleep))
 	{
 		B_ResetFaceExpression(self);
 	};
@@ -77,7 +77,7 @@ func void Perception_Set_Minimal()
 	Npc_PercEnable(self,PERC_ASSESSTHEFT,B_AssessTheft);
 	Npc_PercEnable(self,PERC_ASSESSUSEMOB,B_AssessUseMob);
 	Npc_PercEnable(self,PERC_ASSESSENTERROOM,B_AssessPortalCollision);
-	if(!Npc_IsInState(self,ZS_Sleep) && !Npc_IsInState(self,ZS_Sleep_Deep))
+	if(!Npc_IsInState(self,ZS_Sleep) && !Npc_IsInState(self,ZS_Sleep_Deep) && !Npc_IsInState(self,ZS_MagicSleep))
 	{
 		B_ResetFaceExpression(self);
 	};

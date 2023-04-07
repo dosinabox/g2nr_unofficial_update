@@ -6,7 +6,7 @@ instance NOV_608_Garwig(Npc_Default)
 	id = 608;
 	voice = 6;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	attribute[ATR_HITPOINTS_MAX] = 600;
