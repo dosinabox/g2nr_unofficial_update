@@ -62,9 +62,9 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 		}
 		else if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sergio)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Babo)))
 		{
-			if(Babo_Training == FALSE)
+			if(MIS_Babo_Training == LOG_Running)
 			{
-				Log_SetTopicStatus(Topic_BaboTrain,LOG_FAILED);
+				MIS_Babo_Training = LOG_FAILED;
 			};
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Dyrian))

@@ -173,7 +173,7 @@ instance DIA_Sergio_Babo(C_Info)
 
 func int DIA_Sergio_Babo_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && Npc_KnowsInfo(other,DIA_Babo_Anliegen))
+	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && Npc_KnowsInfo(other,DIA_Babo_Anliegen) && !Npc_IsDead(Babo))
 	{
 		return TRUE;
 	};
@@ -185,10 +185,10 @@ func void DIA_Sergio_Babo_Info()
 	AI_Output(self,other,"DIA_Sergio_Babo_04_01");	//А почему он не попросит сам?
 	AI_Output(other,self,"DIA_Sergio_Babo_15_02");	//Я думаю, он робеет.
 	AI_Output(self,other,"DIA_Sergio_Babo_04_03");	//Понимаю. Хорошо, если это так много значит для него, я буду тренировать его каждое утро в течение 2 часов. Мы будем начинать в 5 утра. Можешь передать ему это.
-	Babo_Training = TRUE;
 	Npc_ExchangeRoutine(self,"TRAIN");
 	B_StartOtherRoutine(Babo,"TRAIN");
 	B_LogEntry(Topic_BaboTrain,"Сержио согласился тренировать Бабо по два часа каждое утро.");
+	MIS_Babo_Training = LOG_SUCCESS;
 	B_CheckLog();
 };
 
@@ -354,9 +354,20 @@ instance DIA_Sergio_Perm(C_Info)
 
 func int DIA_Sergio_Perm_Condition()
 {
-	if((Kapitel >= 3) && (other.guild != GIL_KDF) && (other.guild != GIL_MIL) && (other.guild != GIL_NOV))
+	if(Kapitel >= 3)
 	{
-		return TRUE;
+		if(other.guild == GIL_PAL)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_SLD)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_DJG)
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -99,7 +99,7 @@ func void DIA_Marduk_Gebetet_Info()
 	AI_Output(self,other,"DIA_Marduk_Gebetet_05_01");	//Ёто хорошо. ј теперь возвращайс€ к своей работе.
 	MIS_MardukBeten = LOG_SUCCESS;
 	B_GivePlayerXP(XP_MardukBeten);
-	if((Babo_Training == TRUE) && (DIA_Babo_Windfaust_permanent == FALSE))
+	if((MIS_Babo_Training == LOG_SUCCESS) && (DIA_Babo_Windfaust_permanent == FALSE))
 	{
 		B_StartOtherRoutine(Sergio,"TRAIN");
 	}

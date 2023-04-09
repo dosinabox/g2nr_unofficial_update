@@ -685,7 +685,7 @@ var int MIS_GoraxWein;
 var int MIS_KarrasVergessen;
 var int Fire_Contest;
 var int Opolos_Rezept;
-var int Babo_Training;
+var int MIS_Babo_Training;
 //var int MIS_GuardSheep;
 //var int MIS_PickHerb;
 //var int MIS_SweepLibrary;

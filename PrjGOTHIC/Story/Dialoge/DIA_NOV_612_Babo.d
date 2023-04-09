@@ -78,10 +78,21 @@ func void DIA_Babo_Anliegen_Info()
 	AI_Output(other,self,"DIA_Babo_Anliegen_15_00");	//Что за просьба?
 	AI_Output(self,other,"DIA_Babo_Anliegen_03_01");	//Ну, один из паладинов, Сержио, сейчас живет в монастыре.
 	AI_Output(self,other,"DIA_Babo_Anliegen_03_02");	//Если ты сможешь убедить его дать мне несколько уроков, тогда я потренирую тебя.
-	AI_Output(other,self,"DIA_Babo_Anliegen_15_03");	//Я посмотрю, что можно сделать.
-	Log_CreateTopic(Topic_BaboTrain,LOG_MISSION);
-	Log_SetTopicStatus(Topic_BaboTrain,LOG_Running);
-	B_LogEntry(Topic_BaboTrain,"Если я смогу убедить паладина Сержио немного потренироваться с Бабо, он научит меня искусству обращения с двуручным оружием.");
+	if(!Npc_IsDead(Sergio))
+	{
+		AI_Output(other,self,"DIA_Babo_Anliegen_15_03");	//Я посмотрю, что можно сделать.
+		MIS_Babo_Training = LOG_Running;
+		Log_CreateTopic(Topic_BaboTrain,LOG_MISSION);
+		Log_SetTopicStatus(Topic_BaboTrain,LOG_Running);
+		B_LogEntry(Topic_BaboTrain,"Если я смогу убедить паладина Сержио немного потренироваться с Бабо, он научит меня искусству обращения с двуручным оружием.");
+	}
+	else
+	{
+		DIA_Common_HeIsDead();
+		//TODO озвучить
+		AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_03_01_add");	//(ошеломленно) Что?! Что это все значит?
+		DIA_Common_EverythingWillBeAlright();
+	};
 };
 
 
@@ -109,7 +120,7 @@ instance DIA_Babo_Sergio(C_Info)
 
 func int DIA_Babo_Sergio_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sergio_Babo))
+	if(Npc_KnowsInfo(other,DIA_Sergio_Babo) && !Npc_IsDead(Sergio))
 	{
 		return TRUE;
 	};
@@ -439,7 +450,7 @@ func void DIA_Babo_Windfaust_Info()
 		B_GivePlayerXP(XP_Feger);
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"FEGEN");
-		if(Babo_Training == TRUE)
+		if(MIS_Babo_Training == LOG_SUCCESS)
 		{
 			B_StartOtherRoutine(Sergio,"START");
 		};

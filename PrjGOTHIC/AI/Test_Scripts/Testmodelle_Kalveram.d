@@ -749,7 +749,6 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItPl_Sagitta_Herb_MIS,1);
 	CreateInvItems(self,ItKe_Orlan_HotelZimmer,1);
 	CreateInvItems(self,ItKe_Orlan_BackDoor,1);
-	CreateInvItems(self,ItKe_LibraryKloster,1);
 	CreateInvItems(self,ItRw_DragomirsArmbrust_MIS,1);
 	CreateInvItems(self,ItMi_StoneOfKnowlegde_MIS,1);
 	CreateInvItems(self,ItWr_PaladinLetter_MIS,1);

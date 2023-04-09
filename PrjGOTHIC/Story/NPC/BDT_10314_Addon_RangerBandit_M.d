@@ -6,7 +6,7 @@ instance BDT_10314_Addon_RangerBandit_M(Npc_Default)
 	id = 10314;
 	voice = 6;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Addon_BanditTrader);
@@ -18,7 +18,6 @@ instance BDT_10314_Addon_RangerBandit_M(Npc_Default)
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,40);
-//	start_aistate = ZS_Bandit;
 	daily_routine = Rtn_Start_10314;
 };
 

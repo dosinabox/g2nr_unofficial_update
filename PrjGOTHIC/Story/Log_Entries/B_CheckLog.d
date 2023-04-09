@@ -61,7 +61,7 @@ func void B_CheckLog()
 	B_CloseTopic(Topic_GoraxWein,MIS_GoraxWein,0,2);
 	B_CloseTopic(Topic_OpolosRezept,Opolos_Rezept,0,2);
 	B_CloseTopic(Topic_MardukBeten,MIS_MardukBeten,0,2);
-	B_CloseTopic(Topic_BaboTrain,0,Babo_Training,6);
+	B_CloseTopic(Topic_BaboTrain,MIS_Babo_Training,0,6);
 	B_CloseTopic(Topic_KarrasCharm,MIS_KarrasVergessen,0,2);
 	B_CloseTopic(TOPIC_FireContest,0,Fire_Contest,2);
 	B_CloseTopic(TOPIC_Golem,MIS_Golem,0,2);
