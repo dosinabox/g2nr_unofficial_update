@@ -6,7 +6,7 @@ instance MIL_324_Peck(Npc_Default)
 	id = 324;
 	voice = 12;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;

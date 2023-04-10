@@ -449,10 +449,13 @@ func void DIA_Babo_Windfaust_Info()
 		DIA_Babo_Windfaust_permanent = TRUE;
 		B_GivePlayerXP(XP_Feger);
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"FEGEN");
-		if(MIS_Babo_Training == LOG_SUCCESS)
+		if((MIS_Babo_Training == LOG_SUCCESS) && !Npc_IsDead(Sergio))
 		{
-			B_StartOtherRoutine(Sergio,"START");
+			Npc_ExchangeRoutine(self,"FegenAndTrain");
+		}
+		else
+		{
+			Npc_ExchangeRoutine(self,"FEGEN");
 		};
 		B_LogEntry(Topic_ParlanFegen,"Бабо поможет мне подмести кельи послушников.");
 	}

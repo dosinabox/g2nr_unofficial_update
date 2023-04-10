@@ -677,7 +677,7 @@ var int MIS_GoraxEssen;
 var int Wurst_Gegeben;
 var int MIS_MardukBeten;
 var int MIS_IsgarothWolf;
-var int Sergio_Sends;
+//var int Sergio_Sends;
 var int Sergio_Follow;
 var int Parlan_Erlaubnis;
 var int Parlan_Sends;

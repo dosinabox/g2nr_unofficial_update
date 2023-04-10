@@ -748,7 +748,14 @@ func void DIA_Pyrokar_Wunsch_Babo()
 	{
 		MIS_HelpOpolos = LOG_FAILED;
 	};
-	B_StartOtherRoutine(Babo,"FAVOUR");
+	if((MIS_Babo_Training == LOG_SUCCESS) && !Npc_IsDead(Sergio))
+	{
+		B_StartOtherRoutine(Babo,"FavourAndTrain");
+	}
+	else
+	{
+		B_StartOtherRoutine(Babo,"FAVOUR");
+	};
 	MIS_HelpBabo = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HelpBabo);
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
@@ -812,13 +819,16 @@ func void DIA_Pyrokar_Nachricht_Info()
 	AI_Output(other,self,"DIA_Pyrokar_Nachricht_15_00");	//Я принес новости от лорда Хагена. Он хочет получить доказательства присутствия драконов в армии Зла.
 	if(EnterOW_Kapitel2 == FALSE)
 	{
-		AI_Teleport(Sergio,"NW_MONASTERY_PLACE_09");
+		if(!Npc_IsDead(Sergio))
+		{
+			AI_Teleport(Sergio,"NW_MONASTERY_PLACE_09");
+			Npc_ExchangeRoutine(Sergio,"WAITFORPLAYER");
+			Sergio_Follow = TRUE;
+		};
 		AI_Output(other,self,"DIA_Pyrokar_Nachricht_15_01");	//Поэтому я должен отправиться в Долину Рудников и доставить ему эти доказательства.
 		AI_Output(self,other,"DIA_Pyrokar_Nachricht_11_02");	//Хорошо. Ты выполнишь этот приказ. Паладин Сержио сопроводит тебя к Проходу.
 		AI_Output(self,other,"DIA_Pyrokar_Nachricht_11_03");	//Да хранит тебя Иннос.
-		Sergio_Follow = TRUE;
 		AI_StopProcessInfos(self);
-		B_StartOtherRoutine(Sergio,"WAITFORPLAYER");
 	}
 	else
 	{

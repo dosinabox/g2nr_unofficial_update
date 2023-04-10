@@ -230,8 +230,15 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		B_StartOtherRoutine(Lester,"WAITFORPLAYER");
 		B_NpcSetJailed(Bennet);
 		B_StartOtherRoutine(Bennet,"PRISON");
-		B_StartOtherRoutine(Sergio,"WAIT");
 		B_StartOtherRoutine(Vanja,"ALONE");
+		if((MIS_Babo_Training == LOG_SUCCESS) && !Npc_IsDead(Babo))
+		{
+			B_StartOtherRoutine(Sergio,"RestAndTrain");
+		}
+		else
+		{
+			B_StartOtherRoutine(Sergio,"Rest");
+		};
 		if(!Npc_IsDead(Peck))
 		{
 			B_StartOtherRoutine(Peck,"STORAGE");

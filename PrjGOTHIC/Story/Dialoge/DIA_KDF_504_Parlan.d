@@ -652,7 +652,14 @@ func void DIA_Parlan_Fegen_Info()
 		B_StartOtherRoutine(Feger1,"START");
 		B_StartOtherRoutine(Feger2,"START");
 		B_StartOtherRoutine(Feger3,"START");
-		B_StartOtherRoutine(Babo,"START");
+		if((MIS_Babo_Training == LOG_SUCCESS) && !Npc_IsDead(Sergio))
+		{
+			B_StartOtherRoutine(Babo,"TRAIN");
+		}
+		else
+		{
+			B_StartOtherRoutine(Babo,"START");
+		};
 	}
 	else
 	{

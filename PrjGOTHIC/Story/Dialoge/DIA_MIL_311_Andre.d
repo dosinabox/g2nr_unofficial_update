@@ -1316,7 +1316,14 @@ func void DIA_Andre_JOIN_Yes()
 	B_GiveArmor(ITAR_MIL_L);
 	Snd_Play("LEVELUP");
 	B_StartOtherRoutine(Lothar,"START");
-	B_StartOtherRoutine(Babo,"FAVOUR");
+	if((MIS_Babo_Training == LOG_SUCCESS) && !Npc_IsDead(Sergio))
+	{
+		B_StartOtherRoutine(Babo,"FavourAndTrain");
+	}
+	else
+	{
+		B_StartOtherRoutine(Babo,"FAVOUR");
+	};
 	SLD_Aufnahme = LOG_OBSOLETE;
 	NOV_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;
