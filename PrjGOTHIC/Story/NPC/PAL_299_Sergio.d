@@ -20,42 +20,25 @@ instance PAL_299_Sergio(Npc_Default)
 	B_GiveNpcTalents(self);
 //	B_SetFightSkills(self,65);
 	B_SetTeacherFightSkills(self,65,90,65,65);
-	daily_routine = Rtn_Pray_299;
+	daily_routine = Rtn_Start_299;
 };
 
 
-func void Rtn_Pray_299()
+func void Rtn_Start_299()
 {
-	TA_Pray_Innos(8,0,23,0,"NW_MONASTERY_CHAPELL_02");
-	TA_Stand_Guarding(23,0,0,0,"NW_MONASTERY_PLACE_09");
-	TA_Pray_Innos(0,0,8,0,"NW_MONASTERY_CHAPELL_02");
+	TA_Stand_Guarding(7,0,9,0,"NW_MONASTERY_PLACE_09");
+	TA_Pray_Innos(9,0,0,0,"NW_MONASTERY_CHAPELL_02");
+	TA_Stand_Guarding(0,0,1,0,"NW_MONASTERY_CHAPELL_03");
+	TA_Pray_Innos(1,0,7,0,"NW_MONASTERY_CHAPELL_02");
 };
 
-func void Rtn_PrayAndTrain_299()
+func void Rtn_Train_299()
 {
-	TA_Pray_Innos(7,0,23,0,"NW_MONASTERY_CHAPELL_02");
-	TA_Stand_Guarding(23,0,0,0,"NW_MONASTERY_PLACE_09");
-	TA_Pray_Innos(0,0,5,0,"NW_MONASTERY_CHAPELL_02");
+	TA_Stand_Guarding(7,0,9,0,"NW_MONASTERY_PLACE_09");
+	TA_Pray_Innos(9,0,0,0,"NW_MONASTERY_CHAPELL_02");
+	TA_Stand_Guarding(0,0,1,0,"NW_MONASTERY_CHAPELL_03");
+	TA_Pray_Innos(1,0,5,0,"NW_MONASTERY_CHAPELL_02");
 	TA_Practice_Sword(5,0,7,0,"NW_MONASTERY_TRAIN_01");
-};
-
-func void Rtn_Rest_299()
-{
-	TA_Stand_Guarding(8,0,23,0,"NW_MONASTERY_CHAPELL_03");
-	TA_Stand_Guarding(23,0,8,0,"NW_MONASTERY_CHAPELL_03");
-};
-
-func void Rtn_RestAndTrain_299()
-{
-	TA_Stand_Guarding(7,0,23,0,"NW_MONASTERY_CHAPELL_03");
-	TA_Stand_Guarding(23,0,5,0,"NW_MONASTERY_CHAPELL_03");
-	TA_Practice_Sword(5,0,7,0,"NW_MONASTERY_TRAIN_01");
-};
-
-func void Rtn_WaitForPlayer_299()
-{
-	TA_Stand_Guarding(8,0,23,0,"NW_MONASTERY_PLACE_09");
-	TA_Stand_Guarding(23,0,8,0,"NW_MONASTERY_PLACE_09");
 };
 
 func void Rtn_Guide_299()

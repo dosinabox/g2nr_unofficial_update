@@ -6,7 +6,7 @@ instance MIL_305_Torwache(Npc_Default)
 	id = 305;
 	voice = 3;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;

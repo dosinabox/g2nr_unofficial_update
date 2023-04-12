@@ -37,16 +37,8 @@ instance DIA_Sergio_WELCOME(C_Info)
 
 func int DIA_Sergio_WELCOME_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && !Npc_KnowsInfo(other,PC_PrayShrine_Paladine))
 	{
-		if(Npc_KnowsInfo(other,PC_PrayShrine_Paladine))
-		{
-			return FALSE;
-		};
-		if(Npc_KnowsInfo(other,DIA_Sergio_Isgaroth))
-		{
-			return FALSE;
-		};
 		return TRUE;
 	};
 };
@@ -70,7 +62,7 @@ instance DIA_Sergio_Isgaroth(C_Info)
 
 func int DIA_Sergio_Isgaroth_Condition()
 {
-	if(Npc_KnowsInfo(hero,PC_PrayShrine_Paladine) && (Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500))
+	if(Npc_KnowsInfo(hero,PC_PrayShrine_Paladine))
 	{
 		if(Kapitel == 1)
 		{
@@ -152,7 +144,7 @@ instance DIA_Sergio_WHAT(C_Info)
 
 func int DIA_Sergio_WHAT_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (other.guild == GIL_NOV))
+	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (self.aivar[AIV_PARTYMEMBER] == FALSE))
 	{
 		return TRUE;
 	};
@@ -191,19 +183,9 @@ func void DIA_Sergio_Babo_Info()
 	AI_Output(other,self,"DIA_Sergio_Babo_15_00");	//Не мог бы ты немного потренировать Бабо?
 	AI_Output(self,other,"DIA_Sergio_Babo_04_01");	//А почему он не попросит сам?
 	AI_Output(other,self,"DIA_Sergio_Babo_15_02");	//Я думаю, он робеет.
-	AI_Output(self,other,"DIA_Sergio_Babo_04_03");	//Понимаю. Хорошо, если это так много значит для него, я буду тренировать его каждое утро в течение 2 часов. Мы будем начинать в 5 утра. Можешь передать ему это.
-	Npc_ExchangeRoutine(self,"PrayAndTrain");
-	if((MIS_HelpBabo == LOG_SUCCESS) || (SLD_Aufnahme == LOG_SUCCESS) || (MIL_Aufnahme == LOG_SUCCESS))
-	{
-		B_StartOtherRoutine(Babo,"FavourAndTrain");
-	}
-	else
-	{
-		B_StartOtherRoutine(Babo,"TRAIN");
-	};
+	AI_Output(self,other,"DIA_Sergio_Babo_04_03");	//Понимаю. Хорошо, если это так много значит для него, я буду тренировать его каждое утро в течение двух часов. Мы будем начинать в пять утра. Можешь передать ему это.
+	Npc_ExchangeRoutine(self,"TRAIN");
 	B_LogEntry(Topic_BaboTrain,"Сержио согласился тренировать Бабо по два часа каждое утро.");
-	MIS_Babo_Training = LOG_SUCCESS;
-	B_CheckLog();
 };
 
 
@@ -219,7 +201,7 @@ instance DIA_Sergio_WHY(C_Info)
 
 func int DIA_Sergio_WHY_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Sergio_WELCOME) && (Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500))
+	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (self.aivar[AIV_PARTYMEMBER] == FALSE))
 	{
 		return TRUE;
 	};
@@ -251,8 +233,8 @@ func int DIA_Sergio_ORDERS_Condition()
 		if(Sergio_Follow == FALSE)
 		{
 			return TRUE;
-		}
-		else if(Sergio_Follow_End == TRUE)
+		};
+		if(Sergio_Follow_End == TRUE)
 		{
 			return TRUE;
 		};
@@ -279,7 +261,7 @@ instance DIA_Sergio_Start(C_Info)
 
 func int DIA_Sergio_Start_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (Sergio_Follow == TRUE) && (Sergio_Follow_End == FALSE) && (other.guild == GIL_KDF))
+	if(Sergio_Follow == TRUE)
 	{
 		return TRUE;
 	};

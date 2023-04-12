@@ -8,11 +8,11 @@ func void B_ResetSergio()
 			Sergio.aivar[AIV_PARTYMEMBER] = FALSE;
 			if((MIS_Babo_Training == LOG_SUCCESS) && !Npc_IsDead(Babo))
 			{
-				Npc_ExchangeRoutine(Sergio,"PrayAndTrain");
+				Npc_ExchangeRoutine(Sergio,"TRAIN");
 			}
 			else
 			{
-				Npc_ExchangeRoutine(Sergio,"Pray");
+				Npc_ExchangeRoutine(Sergio,"START");
 			};
 			Sergio_Follow_End = TRUE;
 		};

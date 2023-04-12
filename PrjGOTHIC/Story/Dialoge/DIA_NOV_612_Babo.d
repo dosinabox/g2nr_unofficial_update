@@ -114,7 +114,7 @@ instance DIA_Babo_Sergio(C_Info)
 	condition = DIA_Babo_Sergio_Condition;
 	information = DIA_Babo_Sergio_Info;
 	permanent = FALSE;
-	description = "Я поговорил с Сержио. Он будет тренировать тебя по 2 часа каждое утро, с 5 часов.";
+	description = "Я поговорил с Сержио. Он будет тренировать тебя по два часа каждое утро, с пяти часов.";
 };
 
 
@@ -128,9 +128,18 @@ func int DIA_Babo_Sergio_Condition()
 
 func void DIA_Babo_Sergio_Info()
 {
-	AI_Output(other,self,"DIA_Babo_Sergio_15_00");	//Я поговорил с Сержио. Он будет тренировать тебя по 2 часа каждое утро, с 5 часов.
+	AI_Output(other,self,"DIA_Babo_Sergio_15_00");	//Я поговорил с Сержио. Он будет тренировать тебя по два часа каждое утро, с пяти часов.
 	AI_Output(self,other,"DIA_Babo_Sergio_03_01");	//Спасибо! Какая честь для меня!
 	B_BaboIsTeacher();
+	if(MIS_HelpBabo == LOG_SUCCESS)
+	{
+		Npc_ExchangeRoutine(self,"GardenAndTrain");
+	}
+	else
+	{
+		Npc_ExchangeRoutine(self,"TRAIN");
+	};
+	MIS_Babo_Training = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient * 2);
 };
 
@@ -151,7 +160,7 @@ func void B_BuildLearnDialog_Babo()
 	{
 		if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Babo)
 		{
-			DIA_Morgan_Teacher_permanent = TRUE;
+			DIA_Babo_Teach_permanent = TRUE;
 		};
 		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Babo)),-1,53,FONT_Screen,2);
 		AI_Output(self,other,"DIA_DIA_Babo_Teach_Back_03_00");	//Ты знаешь больше о двуручном оружии, чем я мог бы научить тебя.
@@ -449,14 +458,7 @@ func void DIA_Babo_Windfaust_Info()
 		DIA_Babo_Windfaust_permanent = TRUE;
 		B_GivePlayerXP(XP_Feger);
 		AI_StopProcessInfos(self);
-		if((MIS_Babo_Training == LOG_SUCCESS) && !Npc_IsDead(Sergio))
-		{
-			Npc_ExchangeRoutine(self,"FegenAndTrain");
-		}
-		else
-		{
-			Npc_ExchangeRoutine(self,"FEGEN");
-		};
+		Npc_ExchangeRoutine(self,"SWEEP");
 		B_LogEntry(Topic_ParlanFegen,"Бабо поможет мне подмести кельи послушников.");
 	}
 	else

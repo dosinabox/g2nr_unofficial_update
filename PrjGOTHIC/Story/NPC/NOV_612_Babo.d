@@ -40,26 +40,19 @@ func void Rtn_Train_612()
 	TA_Stand_Sweeping(15,0,23,30,"NW_MONASTERY_CORRIDOR_10");
 };
 
-func void Rtn_Fegen_612()
+func void Rtn_Sweep_612()
 {
 	TA_Stand_Sweeping(8,0,23,30,"NW_MONASTERY_NOVICE04_02");
 	TA_Stand_Sweeping(23,30,8,0,"NW_MONASTERY_NOVICE04_02");
 };
 
-func void Rtn_FegenAndTrain_612()
-{
-	TA_Practice_Sword(5,0,7,0,"NW_MONASTERY_TRAIN_02");
-	TA_Stand_Sweeping(7,0,23,30,"NW_MONASTERY_NOVICE04_02");
-	TA_Stand_Sweeping(23,30,5,0,"NW_MONASTERY_NOVICE04_02");
-};
-
-func void Rtn_Favour_612()
+func void Rtn_Garden_612()
 {
 	TA_Rake_FP(8,0,23,30,"NW_MONASTERY_HERB_05");
 	TA_Sleep(23,30,8,0,"NW_MONASTERY_NOVICE04_05");
 };
 
-func void Rtn_FavourAndTrain_612()
+func void Rtn_GardenAndTrain_612()
 {
 	TA_Practice_Sword(5,0,7,0,"NW_MONASTERY_TRAIN_02");
 	TA_Sleep(7,0,8,0,"NW_MONASTERY_NOVICE04_05");
