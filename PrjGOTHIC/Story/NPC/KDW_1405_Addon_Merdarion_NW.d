@@ -6,7 +6,7 @@ instance KDW_1405_Addon_Merdarion_NW(Npc_Default)
 	id = 1405;
 	voice = 6;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_MagicUser] = MAGIC_ALWAYS;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;

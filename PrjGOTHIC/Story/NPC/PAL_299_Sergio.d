@@ -26,18 +26,14 @@ instance PAL_299_Sergio(Npc_Default)
 
 func void Rtn_Start_299()
 {
-	TA_Stand_Guarding(7,0,9,0,"NW_MONASTERY_PLACE_09");
-	TA_Pray_Innos(9,0,0,0,"NW_MONASTERY_CHAPELL_02");
-	TA_Stand_Guarding(0,0,1,0,"NW_MONASTERY_CHAPELL_03");
-	TA_Pray_Innos(1,0,7,0,"NW_MONASTERY_CHAPELL_02");
+	TA_Pray_Innos_FP(8,0,23,0,"NW_MONASTERY_CHAPELL_02");
+	TA_Pray_Innos_FP(23,0,8,0,"NW_MONASTERY_CHAPELL_02");
 };
 
 func void Rtn_Train_299()
 {
-	TA_Stand_Guarding(7,0,9,0,"NW_MONASTERY_PLACE_09");
-	TA_Pray_Innos(9,0,0,0,"NW_MONASTERY_CHAPELL_02");
-	TA_Stand_Guarding(0,0,1,0,"NW_MONASTERY_CHAPELL_03");
-	TA_Pray_Innos(1,0,5,0,"NW_MONASTERY_CHAPELL_02");
+	TA_Pray_Innos_FP(7,0,23,0,"NW_MONASTERY_CHAPELL_02");
+	TA_Pray_Innos_FP(23,0,5,0,"NW_MONASTERY_CHAPELL_02");
 	TA_Practice_Sword(5,0,7,0,"NW_MONASTERY_TRAIN_01");
 };
 

@@ -32,7 +32,7 @@ func void Rtn_Start_608()
 
 func void Rtn_Exile_608()
 {
-	TA_Pray_Innos(5,0,23,0,"NW_SHRINE_01");
+	TA_Pray_Innos_FP(5,0,23,0,"NW_SHRINE_01");
 	TA_Sit_Chair(23,0,5,0,"NW_TAVERNE_IN_07");
 };
 

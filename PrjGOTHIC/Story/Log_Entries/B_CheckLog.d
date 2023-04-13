@@ -89,7 +89,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_ScoutMine,MIS_ScoutMine,0,3);
 	B_CloseTopic(TOPIC_RescueGorn,MIS_RescueGorn,0,3);
 	B_CloseTopic(TOPIC_FajethKillSnapper,MIS_Fajeth_Kill_Snapper,0,3);
-	B_CloseTopic(Topic_OricBruder,0,OricBruder,3);
+	B_CloseTopic(Topic_OricBruder,MIS_OricBruder,0,3);
 	B_CloseTopic(TopicBrutusKasse,0,Brutus_TeachSTR,6);
 	B_CloseTopic(Topic_TengronRing,0,TengronRing,6);
 	B_CloseTopic(TOPIC_BringMeat,MIS_Engor_BringMeat,0,6);

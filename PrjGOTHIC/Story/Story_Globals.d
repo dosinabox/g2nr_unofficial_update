@@ -758,7 +758,7 @@ var int Dobar_einmalig;
 var int Brutus_einmalig;
 var int Garond_Kerkerauf;
 var int TengronRing;
-var int OricBruder;
+var int MIS_OricBruder;
 var int MIS_Kervo_KillLurker;
 var int MIS_NovizenChase;
 var int MIS_Pyrokar_GoToVatrasInnoseye;

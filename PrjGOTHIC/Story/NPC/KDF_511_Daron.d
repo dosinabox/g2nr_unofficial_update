@@ -6,7 +6,7 @@ instance KDF_511_Daron(Npc_Default)
 	id = 511;
 	voice = 10;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_MagicUser] = MAGIC_ALWAYS;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
