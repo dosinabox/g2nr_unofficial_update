@@ -6,7 +6,7 @@ instance VLK_400_Larius(Npc_Default)
 	id = 400;
 	voice = 1;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 //	fight_tactic = FAI_HUMAN_COWARD;
 	fight_tactic = FAI_HUMAN_NORMAL;

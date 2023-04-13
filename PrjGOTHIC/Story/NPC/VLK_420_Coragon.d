@@ -6,7 +6,7 @@ instance VLK_420_Coragon(Npc_Default)
 	id = 420;
 	voice = 9;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetFightSkills(self,40);
 	fight_tactic = FAI_HUMAN_STRONG;

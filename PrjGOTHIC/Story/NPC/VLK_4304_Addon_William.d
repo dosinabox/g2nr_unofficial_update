@@ -6,7 +6,7 @@ instance VLK_4304_Addon_William(Npc_Default)
 	id = 4304;
 	voice = 6;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	B_CreateAmbientInv(self);

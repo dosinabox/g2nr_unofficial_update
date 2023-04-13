@@ -97,7 +97,7 @@ instance DIA_Isgaroth_Wolf(C_Info)
 
 func int DIA_Isgaroth_Wolf_Condition()
 {
-	if((MIS_IsgarothWolf == LOG_Running) && (Sergio_Sends == TRUE) && (Kapitel == 1))
+	if((MIS_IsgarothWolf == LOG_Running) && (Kapitel == 1))
 	{
 		return TRUE;
 	};
@@ -133,13 +133,13 @@ func int DIA_Isgaroth_tot_Condition()
 func void DIA_Isgaroth_tot_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_tot_15_00");	//я убил волка.
-	if(other.guild == GIL_KDF)
+	if(other.guild == GIL_NOV)
 	{
-		B_Isgaroth_BlessYou();
+		AI_Output(self,other,"DIA_Isgaroth_tot_01_01");	//’ороша€ работа, послушник. “ы мужественный человек. ј теперь возвращайс€ в монастырь и принимайс€ за свои об€занности.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Isgaroth_tot_01_01");	//’ороша€ работа, послушник. “ы мужественный человек. ј теперь возвращайс€ в монастырь и принимайс€ за свои об€занности.
+		B_Isgaroth_BlessYou();
 	};
 	MIS_IsgarothWolf = LOG_SUCCESS;
 	B_GivePlayerXP(XP_IsgarothWolf);

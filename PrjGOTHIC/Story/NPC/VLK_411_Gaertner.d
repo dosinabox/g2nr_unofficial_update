@@ -6,7 +6,7 @@ instance VLK_411_Gaertner(Npc_Default)
 	id = 411;
 	voice = 9;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,1);

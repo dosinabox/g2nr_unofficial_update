@@ -6,7 +6,7 @@ instance STRF_1135_Addon_Sklave(Npc_Default)
 	id = 1135;
 	voice = 3;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NoFightParker] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,2);

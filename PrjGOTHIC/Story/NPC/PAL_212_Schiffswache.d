@@ -6,7 +6,7 @@ instance PAL_212_Schiffswache(Npc_Default)
 	id = 212;
 	voice = 8;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_NAILED;
 	EquipItem(self,ItMw_2h_Pal_Sword);

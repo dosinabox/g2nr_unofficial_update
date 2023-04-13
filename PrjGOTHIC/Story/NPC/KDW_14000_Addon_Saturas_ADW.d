@@ -6,7 +6,7 @@ instance KDW_14000_Addon_Saturas_ADW(Npc_Default)
 	id = 14000;
 	voice = 14;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_MagicUser] = MAGIC_ALWAYS;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;

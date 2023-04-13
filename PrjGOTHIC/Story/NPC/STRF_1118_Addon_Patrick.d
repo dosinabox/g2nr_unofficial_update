@@ -6,7 +6,7 @@ instance STRF_1118_Addon_Patrick(Npc_Default)
 	id = 1118;
 	voice = 7;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NoFightParker] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;

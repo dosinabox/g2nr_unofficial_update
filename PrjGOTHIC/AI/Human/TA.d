@@ -94,10 +94,10 @@ func void TA_Pray_Innos_FP(var int start_h,var int start_m,var int stop_h,var in
 	TA_Min(self,start_h,start_m,stop_h,stop_m,ZS_Pray_Innos_FP,waypoint);
 };
 
-func void TA_Pray_Innos(var int start_h,var int start_m,var int stop_h,var int stop_m,var string waypoint)
+/*func void TA_Pray_Innos(var int start_h,var int start_m,var int stop_h,var int stop_m,var string waypoint)
 {
 	TA_Min(self,start_h,start_m,stop_h,stop_m,ZS_Pray_Innos,waypoint);
-};
+};*/
 
 func void TA_Preach_Vatras(var int start_h,var int start_m,var int stop_h,var int stop_m,var string waypoint)
 {

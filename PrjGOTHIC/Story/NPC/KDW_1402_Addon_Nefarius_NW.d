@@ -6,7 +6,7 @@ instance KDW_1402_Addon_Nefarius_NW(Npc_Default)
 	id = 1402;
 	voice = 5;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_MagicUser] = MAGIC_ALWAYS;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;

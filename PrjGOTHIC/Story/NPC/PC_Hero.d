@@ -6,7 +6,7 @@ instance PC_Hero(Npc_Default)
 	id = 0;
 	voice = 15;
 	level = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	bodyStateInterruptableOverride = TRUE;
 	exp = 0;
 	exp_next = XP_PER_LEVEL;
@@ -29,7 +29,7 @@ instance PC_L10(Npc_Default)
 	id = 0;
 	voice = 15;
 	level = 10;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	bodyStateInterruptableOverride = TRUE;
 	exp = B_GetCurrentLevelExp(self);
 	exp_next = B_GetNextLevelExp(self);
@@ -58,7 +58,7 @@ instance PC_L20(Npc_Default)
 	id = 0;
 	voice = 15;
 	level = 20;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	bodyStateInterruptableOverride = TRUE;
 	exp = B_GetCurrentLevelExp(self);
 	exp_next = B_GetNextLevelExp(self);
@@ -91,7 +91,7 @@ instance PC_L40(Npc_Default)
 	id = 0;
 	voice = 15;
 	level = 40;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	bodyStateInterruptableOverride = TRUE;
 	exp = B_GetCurrentLevelExp(self);
 	exp_next = B_GetNextLevelExp(self);
@@ -131,7 +131,7 @@ instance PC_L60(Npc_Default)
 	id = 0;
 	voice = 15;
 	level = 60;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	bodyStateInterruptableOverride = TRUE;
 	exp = B_GetCurrentLevelExp(self);
 	exp_next = B_GetNextLevelExp(self);
@@ -167,7 +167,7 @@ instance PC_E3Mage(Npc_Default)
 	id = 0;
 	voice = 15;
 	level = 31;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	bodyStateInterruptableOverride = TRUE;
 	exp = B_GetCurrentLevelExp(self);
 	exp_next = B_GetNextLevelExp(self);
@@ -301,7 +301,7 @@ instance PC_E3Paladin(Npc_Default)
 	id = 0;
 	voice = 15;
 	level = 31;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	bodyStateInterruptableOverride = TRUE;
 	exp = B_GetCurrentLevelExp(self);
 	exp_next = B_GetNextLevelExp(self);
@@ -378,7 +378,7 @@ instance PC_Bandit(Npc_Default)
 	id = 0;
 	voice = 15;
 	level = 10;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	bodyStateInterruptableOverride = TRUE;
 	exp = B_GetCurrentLevelExp(self);
 	exp_next = B_GetNextLevelExp(self);

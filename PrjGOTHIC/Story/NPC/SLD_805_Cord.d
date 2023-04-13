@@ -6,7 +6,7 @@ instance SLD_805_Cord(Npc_Default)
 	id = 805;
 	voice = 14;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsRanger] = TRUE;
 	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,5);

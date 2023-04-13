@@ -60,11 +60,22 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 			};
 			DG_gefunden = TRUE;
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Isgaroth))
+		{
+			if(MIS_Vatras_Message == LOG_Running)
+			{
+				MIS_Vatras_Message = LOG_FAILED;
+			};
+			if(MIS_IsgarothWolf == LOG_Running)
+			{
+				MIS_IsgarothWolf = LOG_FAILED;
+			};
+		}
 		else if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sergio)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Babo)))
 		{
-			if(Babo_Training == FALSE)
+			if(MIS_Babo_Training == LOG_Running)
 			{
-				Log_SetTopicStatus(Topic_BaboTrain,LOG_FAILED);
+				MIS_Babo_Training = LOG_FAILED;
 			};
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Dyrian))

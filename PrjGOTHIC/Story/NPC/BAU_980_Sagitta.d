@@ -6,7 +6,7 @@ instance BAU_980_Sagitta(Npc_Default)
 	id = 980;
 	voice = 17;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	attribute[ATR_DEXTERITY] = 1;

@@ -6,7 +6,7 @@ instance VLK_422_Salandril(Npc_Default)
 	id = 422;
 	voice = 13;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	attribute[ATR_DEXTERITY] = 1;

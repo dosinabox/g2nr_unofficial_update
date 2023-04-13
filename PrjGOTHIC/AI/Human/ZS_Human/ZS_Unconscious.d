@@ -63,25 +63,31 @@ func void ZS_Unconscious()
 		{
 			SLD_Sylvio_Defeated_SC = TRUE;
 		};
-	};
-	B_GiveTradeInv(self);
-	B_ClearRuneInv(self);
-	B_ClearSmithInv(self);
-	B_ClearAlchemyInv(self);
-	B_ClearBonusFoodInv(self);
-	B_ClearInfiniteTools(self);
-	B_ClearSpecialAmmo(self);
-	if(self.guild == GIL_STRF)
+	}
+	else
 	{
-		B_RemoveEveryInvItem(self,ItMw_2H_Axe_L_01);
+		B_GiveTradeInv(self);
+		B_ClearRuneInv(self);
+		B_ClearSmithInv(self);
+		B_ClearAlchemyInv(self);
+		B_ClearBonusFoodInv(self);
+		B_ClearInfiniteTools(self);
+		B_ClearSpecialAmmo(self);
+		if(self.guild == GIL_STRF)
+		{
+			B_RemoveEveryInvItem(self,ItMw_2H_Axe_L_01);
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Dar))
+		{
+			if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cipher))
+			{
+				other.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
+				Dar_LostAgainstCipher = TRUE;
+			};
+		};
 	};
 	B_GiveDeathXP(other,self);
 	AI_UnequipWeapons(self);
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Dar)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cipher)))
-	{
-		other.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
-		Dar_LostAgainstCipher = TRUE;
-	};
 };
 
 func int ZS_Unconscious_Loop()

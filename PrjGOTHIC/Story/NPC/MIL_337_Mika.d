@@ -7,7 +7,7 @@ instance MIL_337_Mika(Npc_Default)
 //	voice = 12;
 	voice = 14;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Mil_Sword);
@@ -26,7 +26,6 @@ instance MIL_337_Mika(Npc_Default)
 func void Rtn_Start_337()
 {
 	TA_Stand_Guarding(8,0,22,0,"NW_CITY_TO_FOREST_01");
-//	TA_Stand_Guarding(22,0,8,0,"NW_CITY_TO_FOREST_01");
 	TA_Sit_Campfire(22,0,0,10,"NW_CITY_BARRACK02_SMALLTALK_01");
 	TA_Sit_Chair(0,10,8,0,"NW_CITY_KASERN_BARRACK02_03");
 };

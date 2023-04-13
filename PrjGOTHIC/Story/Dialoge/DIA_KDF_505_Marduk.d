@@ -67,7 +67,6 @@ func void DIA_Marduk_Arbeit_Info()
 	AI_Output(other,self,"DIA_Marduk_Arbeit_15_00");	//Могу я сделать что-нибудь для тебя, Мастер?
 	AI_Output(self,other,"DIA_Marduk_Arbeit_05_01");	//Для меня? Нет, мне не нужна твоя помощь. Лучше помолись за воинов Инноса, отправившихся в Долину Рудников.
 	MIS_MardukBeten = LOG_Running;
-	B_StartOtherRoutine(Sergio,"WAIT");
 	Log_CreateTopic(Topic_MardukBeten,LOG_MISSION);
 	Log_SetTopicStatus(Topic_MardukBeten,LOG_Running);
 	B_LogEntry(Topic_MardukBeten,"У мастера Мардука нет заданий для меня. Он сказал, что мне лучше пойти помолиться за паладинов.");
@@ -99,14 +98,6 @@ func void DIA_Marduk_Gebetet_Info()
 	AI_Output(self,other,"DIA_Marduk_Gebetet_05_01");	//Это хорошо. А теперь возвращайся к своей работе.
 	MIS_MardukBeten = LOG_SUCCESS;
 	B_GivePlayerXP(XP_MardukBeten);
-	if((Babo_Training == TRUE) && (DIA_Babo_Windfaust_permanent == FALSE))
-	{
-		B_StartOtherRoutine(Sergio,"TRAIN");
-	}
-	else
-	{
-		B_StartOtherRoutine(Sergio,"START");
-	};
 };
 
 

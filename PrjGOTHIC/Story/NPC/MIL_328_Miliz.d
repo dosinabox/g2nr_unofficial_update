@@ -6,7 +6,7 @@ instance MIL_328_Miliz(Npc_Default)
 	id = 328;
 	voice = 8;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;

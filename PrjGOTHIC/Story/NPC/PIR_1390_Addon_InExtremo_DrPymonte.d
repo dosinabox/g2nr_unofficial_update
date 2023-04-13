@@ -2,37 +2,31 @@
 instance PIR_1390_Addon_InExtremo_DrPymonte(Npc_Default)
 {
 	name[0] = "Доктор Пимонте";
-	npcType = npctype_main;
 	guild = GIL_NONE;
-	level = 4;
-	voice = 12;
 	id = 1390;
+	voice = 12;
 	flags = NPC_FLAG_IMMORTAL;
-	attribute[ATR_STRENGTH] = 20;
-	attribute[ATR_DEXTERITY] = 10;
-	attribute[ATR_MANA_MAX] = 0;
-	attribute[ATR_MANA] = 0;
-	attribute[ATR_HITPOINTS_MAX] = 88;
-	attribute[ATR_HITPOINTS] = 88;
+	npcType = NPCTYPE_MAIN;
+	B_SetAttributesToChapter(self,1);
+	fight_tactic = FAI_HUMAN_STRONG;
 	CreateInvItem(self,ItMi_IEHarfe);
 	B_CreateAmbientInv(self);
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_SetVisualBody(self,"HUM_IE_PYMONTE_INSTRUMENT",DEFAULT,DEFAULT,"HUM_HEAD_PYMONTE",DEFAULT,DEFAULT,NO_ARMOR);
-	fight_tactic = FAI_HUMAN_STRONG;
-	Npc_SetTalentSkill(self,NPC_TALENT_1H,1);
+	B_SetFightSkills(self,30);
 	daily_routine = Rtn_Start_1390;
 };
 
 
 func void Rtn_Start_1390()
 {
-	TA_Stand_Eating(5,0,20,0,"WP_COOK_CAULDRON");
-	TA_Stand_Eating(20,0,5,0,"WP_COOK_CAULDRON");
+	TA_Stand_Eating(5,0,20,0,"NW_CITY_HABOUR_KASERN_18");
+	TA_Stand_Eating(20,0,5,0,"NW_CITY_HABOUR_KASERN_18");
 };
 
 func void Rtn_Concert_1390()
 {
-	TA_Concert(5,0,20,0,"WP_COOK_CAULDRON");
-	TA_Concert(20,0,5,0,"WP_COOK_CAULDRON");
+	TA_Concert(5,0,20,0,"NW_CITY_HABOUR_KASERN_18");
+	TA_Concert(20,0,5,0,"NW_CITY_HABOUR_KASERN_18");
 };
 

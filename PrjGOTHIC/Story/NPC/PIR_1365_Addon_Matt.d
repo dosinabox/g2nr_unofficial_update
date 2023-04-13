@@ -6,7 +6,7 @@ instance PIR_1365_Addon_Matt(Npc_Default)
 	id = 1365;
 	voice = 10;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_FollowDist] = 500;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_MASTER;

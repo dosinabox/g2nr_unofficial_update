@@ -1,7 +1,7 @@
 
-func void B_WISPDETECTOR_LearnEffect(var C_Npc Teacher)
+func void B_WISPDETECTOR_LearnEffect(var C_Npc teacher)
 {
-	AI_PlayAni(Teacher,"T_PRACTICEMAGIC5");
+	AI_PlayAni(teacher,"T_PRACTICEMAGIC5");
 	Wld_PlayEffect("spellFX_HealShrine",hero,hero,0,0,0,FALSE);
 	Wld_PlayEffect("spellFX_INCOVATION_BLUE",hero,hero,0,0,0,FALSE);
 	Snd_Play("WSP_Dead_A1");
@@ -16,6 +16,15 @@ func int B_TeachPlayerTalentWispDetector(var C_Npc slf,var C_Npc oth,var int Wis
 		PrintScreen(PRINT_NotEnoughLP,-1,-1,FONT_ScreenSmall,2);
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
+	};
+	if(PremiumTeachersEnabled == TRUE)
+	{
+		if(!B_GiveInvItems(oth,slf,ItMi_Gold,kosten * PremiumTeachersPrice))
+		{
+			PrintScreen(Print_NotEnoughGold,-1,-1,FONT_Screen,2);
+			DIA_Common_WeWillGetToThatLater();
+			return FALSE;
+		};
 	};
 	oth.lp -= kosten;
 	Log_CreateTopic(TOPIC_WispDetector,LOG_NOTE);

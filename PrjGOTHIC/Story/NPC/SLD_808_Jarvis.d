@@ -6,7 +6,7 @@ instance SLD_808_Jarvis(Npc_Default)
 	id = 808;
 	voice = 4;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_MASTER;
@@ -27,6 +27,5 @@ func void Rtn_Start_808()
 {
 	TA_Sit_Chair(7,5,0,5,"NW_BIGFARM_KITCHEN_07");
 	TA_Sit_Chair(0,5,7,5,"NW_BIGFARM_HOUSE_08");
-//	TA_Sleep(0,5,7,5,"NW_BIGFARM_HOUSE_15");
 };
 

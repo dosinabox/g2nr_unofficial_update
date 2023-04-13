@@ -6,7 +6,7 @@ instance SLD_810_Dar(Npc_Default)
 	id = 810;
 	voice = 3;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_STRONG;
@@ -34,6 +34,5 @@ func void Rtn_Start_810()
 {
 	TA_Smoke_Joint(8,0,22,0,"NW_BIGFARM_KITCHEN_DAR");
 	TA_Sit_Chair(22,0,8,0,"NW_BIGFARM_HOUSE_19");
-//	TA_Sit_Chair(22,0,8,0,"NW_BIGFARM_HOUSE_12");
 };
 

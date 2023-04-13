@@ -78,10 +78,21 @@ func void DIA_Babo_Anliegen_Info()
 	AI_Output(other,self,"DIA_Babo_Anliegen_15_00");	//Что за просьба?
 	AI_Output(self,other,"DIA_Babo_Anliegen_03_01");	//Ну, один из паладинов, Сержио, сейчас живет в монастыре.
 	AI_Output(self,other,"DIA_Babo_Anliegen_03_02");	//Если ты сможешь убедить его дать мне несколько уроков, тогда я потренирую тебя.
-	AI_Output(other,self,"DIA_Babo_Anliegen_15_03");	//Я посмотрю, что можно сделать.
-	Log_CreateTopic(Topic_BaboTrain,LOG_MISSION);
-	Log_SetTopicStatus(Topic_BaboTrain,LOG_Running);
-	B_LogEntry(Topic_BaboTrain,"Если я смогу убедить паладина Сержио немного потренироваться с Бабо, он научит меня искусству обращения с двуручным оружием.");
+	if(!Npc_IsDead(Sergio))
+	{
+		AI_Output(other,self,"DIA_Babo_Anliegen_15_03");	//Я посмотрю, что можно сделать.
+		MIS_Babo_Training = LOG_Running;
+		Log_CreateTopic(Topic_BaboTrain,LOG_MISSION);
+		Log_SetTopicStatus(Topic_BaboTrain,LOG_Running);
+		B_LogEntry(Topic_BaboTrain,"Если я смогу убедить паладина Сержио немного потренироваться с Бабо, он научит меня искусству обращения с двуручным оружием.");
+	}
+	else
+	{
+		DIA_Common_HeIsDead();
+		//TODO озвучить
+		AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_03_01_add");	//(ошеломленно) Что?! Что это все значит?
+		DIA_Common_EverythingWillBeAlright();
+	};
 };
 
 
@@ -103,13 +114,13 @@ instance DIA_Babo_Sergio(C_Info)
 	condition = DIA_Babo_Sergio_Condition;
 	information = DIA_Babo_Sergio_Info;
 	permanent = FALSE;
-	description = "Я поговорил с Сержио. Он будет тренировать тебя по 2 часа каждое утро, с 5 часов.";
+	description = "Я поговорил с Сержио. Он будет тренировать тебя по два часа каждое утро, с пяти часов.";
 };
 
 
 func int DIA_Babo_Sergio_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sergio_Babo))
+	if(Npc_KnowsInfo(other,DIA_Sergio_Babo) && !Npc_IsDead(Sergio))
 	{
 		return TRUE;
 	};
@@ -117,9 +128,18 @@ func int DIA_Babo_Sergio_Condition()
 
 func void DIA_Babo_Sergio_Info()
 {
-	AI_Output(other,self,"DIA_Babo_Sergio_15_00");	//Я поговорил с Сержио. Он будет тренировать тебя по 2 часа каждое утро, с 5 часов.
+	AI_Output(other,self,"DIA_Babo_Sergio_15_00");	//Я поговорил с Сержио. Он будет тренировать тебя по два часа каждое утро, с пяти часов.
 	AI_Output(self,other,"DIA_Babo_Sergio_03_01");	//Спасибо! Какая честь для меня!
 	B_BaboIsTeacher();
+	if(MIS_HelpBabo == LOG_SUCCESS)
+	{
+		Npc_ExchangeRoutine(self,"GardenAndTrain");
+	}
+	else
+	{
+		Npc_ExchangeRoutine(self,"TRAIN");
+	};
+	MIS_Babo_Training = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient * 2);
 };
 
@@ -140,7 +160,7 @@ func void B_BuildLearnDialog_Babo()
 	{
 		if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Babo)
 		{
-			DIA_Morgan_Teacher_permanent = TRUE;
+			DIA_Babo_Teach_permanent = TRUE;
 		};
 		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Babo)),-1,53,FONT_Screen,2);
 		AI_Output(self,other,"DIA_DIA_Babo_Teach_Back_03_00");	//Ты знаешь больше о двуручном оружии, чем я мог бы научить тебя.
@@ -438,11 +458,7 @@ func void DIA_Babo_Windfaust_Info()
 		DIA_Babo_Windfaust_permanent = TRUE;
 		B_GivePlayerXP(XP_Feger);
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"FEGEN");
-		if(Babo_Training == TRUE)
-		{
-			B_StartOtherRoutine(Sergio,"START");
-		};
+		Npc_ExchangeRoutine(self,"SWEEP");
 		B_LogEntry(Topic_ParlanFegen,"Бабо поможет мне подмести кельи послушников.");
 	}
 	else

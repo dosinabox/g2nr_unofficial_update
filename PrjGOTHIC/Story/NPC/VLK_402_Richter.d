@@ -6,7 +6,7 @@ instance VLK_402_Richter(Npc_Default)
 	id = 402;
 	voice = 10;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_ShortSword5);

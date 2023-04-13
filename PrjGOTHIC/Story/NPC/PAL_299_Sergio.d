@@ -6,7 +6,7 @@ instance PAL_299_Sergio(Npc_Default)
 	id = 299;
 	voice = 4;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Pal_Sword);
@@ -26,28 +26,15 @@ instance PAL_299_Sergio(Npc_Default)
 
 func void Rtn_Start_299()
 {
-	TA_Pray_Innos(8,0,23,0,"NW_MONASTERY_CHAPELL_02");
-	TA_Stand_Guarding(23,0,0,0,"NW_MONASTERY_PLACE_09");
-	TA_Pray_Innos(0,0,8,0,"NW_MONASTERY_CHAPELL_02");
-};
-
-func void Rtn_WaitForPlayer_299()
-{
-	TA_Stand_Guarding(8,0,23,0,"NW_MONASTERY_PLACE_09");
-	TA_Stand_Guarding(23,0,8,0,"NW_MONASTERY_PLACE_09");
+	TA_Pray_Innos_FP(8,0,23,0,"NW_MONASTERY_CHAPELL_02");
+	TA_Pray_Innos_FP(23,0,8,0,"NW_MONASTERY_CHAPELL_02");
 };
 
 func void Rtn_Train_299()
 {
-	TA_Pray_Innos(7,0,23,0,"NW_MONASTERY_CHAPELL_02");
-	TA_Pray_Innos(23,0,5,0,"NW_MONASTERY_CHAPELL_02");
+	TA_Pray_Innos_FP(7,0,23,0,"NW_MONASTERY_CHAPELL_02");
+	TA_Pray_Innos_FP(23,0,5,0,"NW_MONASTERY_CHAPELL_02");
 	TA_Practice_Sword(5,0,7,0,"NW_MONASTERY_TRAIN_01");
-};
-
-func void Rtn_Wait_299()
-{
-	TA_Stand_Guarding(8,0,23,0,"NW_MONASTERY_CHAPELL_03");
-	TA_Stand_Guarding(23,0,8,0,"NW_MONASTERY_CHAPELL_03");
 };
 
 func void Rtn_Guide_299()

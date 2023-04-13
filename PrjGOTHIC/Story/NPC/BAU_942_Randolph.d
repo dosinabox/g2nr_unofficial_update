@@ -6,7 +6,7 @@ instance BAU_942_Randolph(Npc_Default)
 	id = 942;
 	voice = 6;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	protection[PROT_POINT] = 30;
 	fight_tactic = FAI_HUMAN_NORMAL;

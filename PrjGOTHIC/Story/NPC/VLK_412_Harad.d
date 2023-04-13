@@ -6,10 +6,9 @@ instance VLK_412_Harad(Npc_Default)
 	id = 412;
 	voice = 12;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-//	EquipItem(self,ItMw_1H_Mace_L_04);
 	EquipItem(self,ItMw_ShortSword1);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,14,ItMi_Gold,35);

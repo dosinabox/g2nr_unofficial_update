@@ -6,13 +6,12 @@ instance MIL_350_Addon_Martin(Npc_Default)
 	id = 350;
 	voice = 7;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsRanger] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_Meisterdegen);
-//	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,65,ItMi_Gold,77);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_P_OldMan_Gravo,BodyTex_P,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,0);

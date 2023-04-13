@@ -2,12 +2,11 @@
 instance PAL_2002_Leiche(Npc_Default)
 {
 	name[0] = "Сильвестро";
-//	guild = GIL_NONE;
 	guild = GIL_PAL;
 	id = 2002;
 	voice = 4;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;

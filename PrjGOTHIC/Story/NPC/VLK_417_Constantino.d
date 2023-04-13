@@ -6,7 +6,7 @@ instance VLK_417_Constantino(Npc_Default)
 	id = 417;
 	voice = 10;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	attribute[ATR_DEXTERITY] = 1;

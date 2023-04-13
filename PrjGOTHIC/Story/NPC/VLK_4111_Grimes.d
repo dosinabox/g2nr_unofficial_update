@@ -6,7 +6,7 @@ instance VLK_4111_Grimes(Npc_Default)
 	id = 4111;
 	voice = 5;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2H_Axe_L_01);

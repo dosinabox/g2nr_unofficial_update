@@ -6,7 +6,7 @@ instance NOV_600_Pedro_DI(Npc_Default)
 	id = 6000;
 	voice = 9;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;

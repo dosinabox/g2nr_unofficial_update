@@ -92,7 +92,11 @@ func int Spell_Logic_Sleep(var int manaInvested)
 		{
 			self.attribute[ATR_MANA] -= SPL_Cost_Sleep;
 		};
-		if(C_NpcCanSleep(other))
+		if(Npc_IsInState(other,ZS_MagicSleep))
+		{
+			Npc_SetStateTime(other,0);
+		}
+		else if(C_NpcCanSleep(other))
 		{
 			Npc_ClearAIQueue(other);
 			B_ClearPerceptions(other);

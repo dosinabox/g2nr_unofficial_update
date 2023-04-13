@@ -6,7 +6,7 @@ instance BAU_936_Rosi(Npc_Default)
 	id = 936;
 	voice = 17;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	attribute[ATR_DEXTERITY] = 1;

@@ -6,7 +6,7 @@ instance BDT_10004_Addon_Finn(Npc_Default)
 	id = 10004;
 	voice = 7;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_2H_Axe_L_01);
