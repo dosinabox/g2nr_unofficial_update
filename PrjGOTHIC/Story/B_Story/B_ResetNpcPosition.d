@@ -5,16 +5,19 @@ func void B_ResetSergio()
 	{
 		if(!Npc_IsDead(Sergio))
 		{
-			Sergio.aivar[AIV_PARTYMEMBER] = FALSE;
-			if((MIS_Babo_Training == LOG_SUCCESS) && !Npc_IsDead(Babo))
+			if(Sergio.aivar[AIV_PARTYMEMBER] == TRUE)
 			{
-				Npc_ExchangeRoutine(Sergio,"TRAIN");
-			}
-			else
-			{
-				Npc_ExchangeRoutine(Sergio,"START");
+				if((MIS_Babo_Training == LOG_SUCCESS) && !Npc_IsDead(Babo))
+				{
+					Npc_ExchangeRoutine(Sergio,"TRAIN");
+				}
+				else
+				{
+					Npc_ExchangeRoutine(Sergio,"START");
+				};
+				Sergio.aivar[AIV_PARTYMEMBER] = FALSE;
+				Sergio_Follow_End = TRUE;
 			};
-			Sergio_Follow_End = TRUE;
 		};
 	};
 };
