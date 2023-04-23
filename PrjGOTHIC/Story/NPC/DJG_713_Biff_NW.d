@@ -6,7 +6,7 @@ instance DJG_713_Biff_NW(Npc_Default)
 	id = 7130;
 	voice = 7;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;

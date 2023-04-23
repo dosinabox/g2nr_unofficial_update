@@ -1,7 +1,7 @@
 
 func void B_ResetSergio()
 {
-	if((Sergio_Follow == TRUE) && (Sergio_Follow_End == FALSE))
+	if((EnterOW_Kapitel2 == TRUE) && (Sergio_Follow == TRUE) && (Sergio_Follow_End == FALSE))
 	{
 		if(!Npc_IsDead(Sergio))
 		{
