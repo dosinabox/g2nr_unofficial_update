@@ -6,7 +6,7 @@ instance DJG_711_Godar(Npc_Default)
 	id = 711;
 	voice = 13;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);
@@ -30,8 +30,6 @@ func void Rtn_PreStart_711()
 func void Rtn_Start_711()
 {
 	TA_Roast_Scavenger(8,0,23,0,"OW_DJG_VORPOSTEN_01");
-//	TA_Roast_Scavenger(23,0,8,0,"OW_DJG_VORPOSTEN_01");
 	TA_Smalltalk(23,0,8,0,"SPAWN_OW_BLACKGOBBO_A1");
 };
-
 
