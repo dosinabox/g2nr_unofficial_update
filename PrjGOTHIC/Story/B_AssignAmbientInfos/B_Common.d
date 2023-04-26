@@ -299,6 +299,11 @@ func void DIA_Common_So()
 	AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_04");	//И?
 };
 
+func void DIA_Common_Hello()
+{
+	AI_Output(other,self,"DIA_Addon_BDT_10004_Finn_Hi_15_00");	//Привет!
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?

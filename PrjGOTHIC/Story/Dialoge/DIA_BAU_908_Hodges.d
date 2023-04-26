@@ -49,7 +49,7 @@ func void DIA_Hodges_HALLO_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Addon_BDT_10004_Finn_Hi_15_00");	//Привет!
+		DIA_Common_Hello();
 	};
 	AI_Output(self,other,"DIA_Hodges_HALLO_03_01");	//Не пойми меня неправильно, но сейчас у меня нет настроения разговаривать - я абсолютно измотан.
 	AI_Output(other,self,"DIA_Hodges_HALLO_15_02");	//Ты ужасно занят, да?

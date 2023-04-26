@@ -68,7 +68,7 @@ func int DIA_Addon_Finn_Hi_Condition()
 
 func void DIA_Addon_Finn_Hi_Info()
 {
-	AI_Output(other,self,"DIA_Addon_BDT_10004_Finn_Hi_15_00");	//Привет!
+	DIA_Common_Hello();
 	AI_Output(self,other,"DIA_Addon_BDT_10004_Finn_Hi_07_01");	//(сердито) Что тебе нужно?
 };
 

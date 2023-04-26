@@ -23,6 +23,13 @@ func void makerune_s1()
 	};
 };
 
+func void B_CreateRune(var int rune)
+{
+	CreateInvItem(self,rune);
+	TotalRunesCreated += 1;
+	AI_PrintScreen(PRINT_RuneSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
+};
+
 instance PC_MakeRune_End(C_Info)
 {
 	npc = PC_Hero;
@@ -404,15 +411,14 @@ func void PC_SPL_MasterOfDisaster_BACK()
 
 func void PC_SPL_MasterOfDisaster_Create()
 {
-	if(Npc_HasItems(hero,ItMi_HolyWater))
+	if(Npc_HasItems(self,ItMi_HolyWater))
 	{
-		Npc_RemoveInvItems(hero,ItMi_HolyWater,1);
-		CreateInvItems(hero,ItRu_MasterOfDisaster,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItMi_HolyWater,1);
+		B_CreateRune(ItRu_MasterOfDisaster);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -454,15 +460,14 @@ func void PC_SPL_PalTeleportSecret_BACK()
 
 func void PC_SPL_PalTeleportSecret_Create()
 {
-	if(Npc_HasItems(hero,ItMi_HolyWater))
+	if(Npc_HasItems(self,ItMi_HolyWater))
 	{
-		Npc_RemoveInvItems(hero,ItMi_HolyWater,1);
-		CreateInvItems(hero,ItRu_PalTeleportSecret,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItMi_HolyWater,1);
+		B_CreateRune(ItRu_PalTeleportSecret);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -470,16 +475,15 @@ func void PC_SPL_PalTeleportSecret_Create()
 
 func void PC_ItRu_Light_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Light) && Npc_HasItems(hero,ItMi_Gold))
+	if(Npc_HasItems(self,ItSc_Light) && Npc_HasItems(self,ItMi_Gold))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Light,1);
-		Npc_RemoveInvItems(hero,ItMi_Gold,1);
-		CreateInvItems(hero,ItRu_Light,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Light,1);
+		Npc_RemoveInvItems(self,ItMi_Gold,1);
+		B_CreateRune(ItRu_Light);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -487,16 +491,15 @@ func void PC_ItRu_Light_Info()
 
 func void PC_ItRu_Firebolt_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Firebolt) && Npc_HasItems(hero,ItMi_Sulfur))
+	if(Npc_HasItems(self,ItSc_Firebolt) && Npc_HasItems(self,ItMi_Sulfur))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Firebolt,1);
-		Npc_RemoveInvItems(hero,ItMi_Sulfur,1);
-		CreateInvItems(hero,ItRu_FireBolt,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Firebolt,1);
+		Npc_RemoveInvItems(self,ItMi_Sulfur,1);
+		B_CreateRune(ItRu_FireBolt);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -504,16 +507,15 @@ func void PC_ItRu_Firebolt_Info()
 
 func void PC_ItRu_LightHeal_Info()
 {
-	if(Npc_HasItems(hero,ItSc_LightHeal) && Npc_HasItems(hero,ItPl_Health_Herb_01))
+	if(Npc_HasItems(self,ItSc_LightHeal) && Npc_HasItems(self,ItPl_Health_Herb_01))
 	{
-		Npc_RemoveInvItems(hero,ItSc_LightHeal,1);
-		Npc_RemoveInvItems(hero,ItPl_Health_Herb_01,1);
-		CreateInvItems(hero,ItRu_LightHeal,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_LightHeal,1);
+		Npc_RemoveInvItems(self,ItPl_Health_Herb_01,1);
+		B_CreateRune(ItRu_LightHeal);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -521,16 +523,15 @@ func void PC_ItRu_LightHeal_Info()
 
 func void PC_ItRu_SumGobSkel_Info()
 {
-	if(Npc_HasItems(hero,ItSc_SumGobSkel) && Npc_HasItems(hero,ItAt_GoblinBone))
+	if(Npc_HasItems(self,ItSc_SumGobSkel) && Npc_HasItems(self,ItAt_GoblinBone))
 	{
-		Npc_RemoveInvItems(hero,ItSc_SumGobSkel,1);
-		Npc_RemoveInvItems(hero,ItAt_GoblinBone,1);
-		CreateInvItems(hero,ItRu_SumGobSkel,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_SumGobSkel,1);
+		Npc_RemoveInvItems(self,ItAt_GoblinBone,1);
+		B_CreateRune(ItRu_SumGobSkel);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -538,16 +539,15 @@ func void PC_ItRu_SumGobSkel_Info()
 
 func void PC_ItRu_Zap_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Zap) && Npc_HasItems(hero,ItMi_Rockcrystal))
+	if(Npc_HasItems(self,ItSc_Zap) && Npc_HasItems(self,ItMi_Rockcrystal))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Zap,1);
-		Npc_RemoveInvItems(hero,ItMi_Rockcrystal,1);
-		CreateInvItems(hero,ItRu_Zap,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Zap,1);
+		Npc_RemoveInvItems(self,ItMi_Rockcrystal,1);
+		B_CreateRune(ItRu_Zap);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -555,16 +555,15 @@ func void PC_ItRu_Zap_Info()
 
 func void PC_ItRu_InstFireball_Info()
 {
-	if(Npc_HasItems(hero,ItSc_InstantFireball) && Npc_HasItems(hero,ItMi_Pitch))
+	if(Npc_HasItems(self,ItSc_InstantFireball) && Npc_HasItems(self,ItMi_Pitch))
 	{
-		Npc_RemoveInvItems(hero,ItSc_InstantFireball,1);
-		Npc_RemoveInvItems(hero,ItMi_Pitch,1);
-		CreateInvItems(hero,ItRu_InstantFireball,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_InstantFireball,1);
+		Npc_RemoveInvItems(self,ItMi_Pitch,1);
+		B_CreateRune(ItRu_InstantFireball);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -572,16 +571,15 @@ func void PC_ItRu_InstFireball_Info()
 
 func void PC_ItRu_Icebolt_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Icebolt) && Npc_HasItems(hero,ItMi_Quartz))
+	if(Npc_HasItems(self,ItSc_Icebolt) && Npc_HasItems(self,ItMi_Quartz))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Icebolt,1);
-		Npc_RemoveInvItems(hero,ItMi_Quartz,1);
-		CreateInvItems(hero,ItRu_Icebolt,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Icebolt,1);
+		Npc_RemoveInvItems(self,ItMi_Quartz,1);
+		B_CreateRune(ItRu_Icebolt);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -589,16 +587,15 @@ func void PC_ItRu_Icebolt_Info()
 
 func void PC_ItRu_SumWolf_Info()
 {
-	if(Npc_HasItems(hero,ItSc_SumWolf) && Npc_HasItems(hero,ItAt_WolfFur))
+	if(Npc_HasItems(self,ItSc_SumWolf) && Npc_HasItems(self,ItAt_WolfFur))
 	{
-		Npc_RemoveInvItems(hero,ItSc_SumWolf,1);
-		Npc_RemoveInvItems(hero,ItAt_WolfFur,1);
-		CreateInvItems(hero,ItRu_SumWolf,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_SumWolf,1);
+		Npc_RemoveInvItems(self,ItAt_WolfFur,1);
+		B_CreateRune(ItRu_SumWolf);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -606,16 +603,15 @@ func void PC_ItRu_SumWolf_Info()
 
 func void PC_ItRu_Windfist_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Windfist) && Npc_HasItems(hero,ItMi_Coal))
+	if(Npc_HasItems(self,ItSc_Windfist) && Npc_HasItems(self,ItMi_Coal))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Windfist,1);
-		Npc_RemoveInvItems(hero,ItMi_Coal,1);
-		CreateInvItems(hero,ItRu_Windfist,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Windfist,1);
+		Npc_RemoveInvItems(self,ItMi_Coal,1);
+		B_CreateRune(ItRu_Windfist);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -623,16 +619,15 @@ func void PC_ItRu_Windfist_Info()
 
 func void PC_ItRu_Sleep_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Sleep) && Npc_HasItems(hero,ItPl_SwampHerb))
+	if(Npc_HasItems(self,ItSc_Sleep) && Npc_HasItems(self,ItPl_SwampHerb))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Sleep,1);
-		Npc_RemoveInvItems(hero,ItPl_SwampHerb,1);
-		CreateInvItems(hero,ItRu_Sleep,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Sleep,1);
+		Npc_RemoveInvItems(self,ItPl_SwampHerb,1);
+		B_CreateRune(ItRu_Sleep);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -640,16 +635,15 @@ func void PC_ItRu_Sleep_Info()
 
 func void PC_ItRu_MediumHeal_Info()
 {
-	if(Npc_HasItems(hero,ItSc_MediumHeal) && Npc_HasItems(hero,ItPl_Health_Herb_02))
+	if(Npc_HasItems(self,ItSc_MediumHeal) && Npc_HasItems(self,ItPl_Health_Herb_02))
 	{
-		Npc_RemoveInvItems(hero,ItSc_MediumHeal,1);
-		Npc_RemoveInvItems(hero,ItPl_Health_Herb_02,1);
-		CreateInvItems(hero,ItRu_MediumHeal,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_MediumHeal,1);
+		Npc_RemoveInvItems(self,ItPl_Health_Herb_02,1);
+		B_CreateRune(ItRu_MediumHeal);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -657,17 +651,16 @@ func void PC_ItRu_MediumHeal_Info()
 
 func void PC_ItRu_LightningFlash_Info()
 {
-	if(Npc_HasItems(hero,ItSc_LightningFlash) && Npc_HasItems(hero,ItMi_Rockcrystal) && Npc_HasItems(hero,ItMi_Quartz))
+	if(Npc_HasItems(self,ItSc_LightningFlash) && Npc_HasItems(self,ItMi_Rockcrystal) && Npc_HasItems(self,ItMi_Quartz))
 	{
-		Npc_RemoveInvItems(hero,ItSc_LightningFlash,1);
-		Npc_RemoveInvItems(hero,ItMi_Rockcrystal,1);
-		Npc_RemoveInvItems(hero,ItMi_Quartz,1);
-		CreateInvItems(hero,ItRu_LightningFlash,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_LightningFlash,1);
+		Npc_RemoveInvItems(self,ItMi_Rockcrystal,1);
+		Npc_RemoveInvItems(self,ItMi_Quartz,1);
+		B_CreateRune(ItRu_LightningFlash);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -675,17 +668,16 @@ func void PC_ItRu_LightningFlash_Info()
 
 func void PC_ItRu_ChargeFireball_Info()
 {
-	if(Npc_HasItems(hero,ItSc_ChargeFireBall) && Npc_HasItems(hero,ItMi_Sulfur) && Npc_HasItems(hero,ItMi_Pitch))
+	if(Npc_HasItems(self,ItSc_ChargeFireBall) && Npc_HasItems(self,ItMi_Sulfur) && Npc_HasItems(self,ItMi_Pitch))
 	{
-		Npc_RemoveInvItems(hero,ItSc_ChargeFireBall,1);
-		Npc_RemoveInvItems(hero,ItMi_Sulfur,1);
-		Npc_RemoveInvItems(hero,ItMi_Pitch,1);
-		CreateInvItem(hero,ItRu_ChargeFireball);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_ChargeFireBall,1);
+		Npc_RemoveInvItems(self,ItMi_Sulfur,1);
+		Npc_RemoveInvItems(self,ItMi_Pitch,1);
+		B_CreateRune(ItRu_ChargeFireball);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -693,16 +685,15 @@ func void PC_ItRu_ChargeFireball_Info()
 
 func void PC_ItRu_SumSkel_Info()
 {
-	if(Npc_HasItems(hero,ItSc_SumSkel) && Npc_HasItems(hero,ItAt_SkeletonBone))
+	if(Npc_HasItems(self,ItSc_SumSkel) && Npc_HasItems(self,ItAt_SkeletonBone))
 	{
-		Npc_RemoveInvItems(hero,ItSc_SumSkel,1);
-		Npc_RemoveInvItems(hero,ItAt_SkeletonBone,1);
-		CreateInvItems(hero,ItRu_SumSkel,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_SumSkel,1);
+		Npc_RemoveInvItems(self,ItAt_SkeletonBone,1);
+		B_CreateRune(ItRu_SumSkel);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -710,16 +701,15 @@ func void PC_ItRu_SumSkel_Info()
 
 func void PC_ItRu_Fear_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Fear) && Npc_HasItems(hero,ItMi_DarkPearl))
+	if(Npc_HasItems(self,ItSc_Fear) && Npc_HasItems(self,ItMi_DarkPearl))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Fear,1);
-		Npc_RemoveInvItems(hero,ItMi_DarkPearl,1);
-		CreateInvItems(hero,ItRu_Fear,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Fear,1);
+		Npc_RemoveInvItems(self,ItMi_DarkPearl,1);
+		B_CreateRune(ItRu_Fear);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -727,17 +717,16 @@ func void PC_ItRu_Fear_Info()
 
 func void PC_ItRu_IceCube_Info()
 {
-	if(Npc_HasItems(hero,ItSc_IceCube) && Npc_HasItems(hero,ItMi_Quartz) && Npc_HasItems(hero,ItMi_Aquamarine))
+	if(Npc_HasItems(self,ItSc_IceCube) && Npc_HasItems(self,ItMi_Quartz) && Npc_HasItems(self,ItMi_Aquamarine))
 	{
-		Npc_RemoveInvItems(hero,ItSc_IceCube,1);
-		Npc_RemoveInvItems(hero,ItMi_Quartz,1);
-		Npc_RemoveInvItems(hero,ItMi_Aquamarine,1);
-		CreateInvItems(hero,ItRu_IceCube,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_IceCube,1);
+		Npc_RemoveInvItems(self,ItMi_Quartz,1);
+		Npc_RemoveInvItems(self,ItMi_Aquamarine,1);
+		B_CreateRune(ItRu_IceCube);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -745,17 +734,16 @@ func void PC_ItRu_IceCube_Info()
 
 func void PC_ItRu_ThunderBall_Info()
 {
-	if(Npc_HasItems(hero,ItSc_ThunderBall) && Npc_HasItems(hero,ItMi_Rockcrystal) && Npc_HasItems(hero,ItMi_Sulfur))
+	if(Npc_HasItems(self,ItSc_ThunderBall) && Npc_HasItems(self,ItMi_Rockcrystal) && Npc_HasItems(self,ItMi_Sulfur))
 	{
-		Npc_RemoveInvItems(hero,ItSc_ThunderBall,1);
-		Npc_RemoveInvItems(hero,ItMi_Rockcrystal,1);
-		Npc_RemoveInvItems(hero,ItMi_Sulfur,1);
-		CreateInvItems(hero,ItRu_ThunderBall,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_ThunderBall,1);
+		Npc_RemoveInvItems(self,ItMi_Rockcrystal,1);
+		Npc_RemoveInvItems(self,ItMi_Sulfur,1);
+		B_CreateRune(ItRu_ThunderBall);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -763,16 +751,15 @@ func void PC_ItRu_ThunderBall_Info()
 
 func void PC_ItRu_SumGol_Info()
 {
-	if(Npc_HasItems(hero,ItSc_SumGol) && Npc_HasItems(hero,ItAt_StoneGolemHeart))
+	if(Npc_HasItems(self,ItSc_SumGol) && Npc_HasItems(self,ItAt_StoneGolemHeart))
 	{
-		Npc_RemoveInvItems(hero,ItSc_SumGol,1);
-		Npc_RemoveInvItems(hero,ItAt_StoneGolemHeart,1);
-		CreateInvItems(hero,ItRu_SumGol,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_SumGol,1);
+		Npc_RemoveInvItems(self,ItAt_StoneGolemHeart,1);
+		B_CreateRune(ItRu_SumGol);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -780,16 +767,15 @@ func void PC_ItRu_SumGol_Info()
 
 func void PC_ItRu_HarmUndead_Info()
 {
-	if(Npc_HasItems(hero,ItSc_HarmUndead) && Npc_HasItems(hero,ItMi_HolyWater))
+	if(Npc_HasItems(self,ItSc_HarmUndead) && Npc_HasItems(self,ItMi_HolyWater))
 	{
-		Npc_RemoveInvItems(hero,ItSc_HarmUndead,1);
-		Npc_RemoveInvItems(hero,ItMi_HolyWater,1);
-		CreateInvItems(hero,ItRu_HarmUndead,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_HarmUndead,1);
+		Npc_RemoveInvItems(self,ItMi_HolyWater,1);
+		B_CreateRune(ItRu_HarmUndead);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -797,17 +783,16 @@ func void PC_ItRu_HarmUndead_Info()
 
 func void PC_ItRu_Pyrokinesis_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Pyrokinesis) && Npc_HasItems(hero,ItMi_Sulfur) && Npc_HasItems(hero,ItAt_WaranFiretongue))
+	if(Npc_HasItems(self,ItSc_Pyrokinesis) && Npc_HasItems(self,ItMi_Sulfur) && Npc_HasItems(self,ItAt_WaranFiretongue))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Pyrokinesis,1);
-		Npc_RemoveInvItems(hero,ItMi_Sulfur,1);
-		Npc_RemoveInvItems(hero,ItAt_WaranFiretongue,1);
-		CreateInvItems(hero,ItRu_Pyrokinesis,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Pyrokinesis,1);
+		Npc_RemoveInvItems(self,ItMi_Sulfur,1);
+		Npc_RemoveInvItems(self,ItAt_WaranFiretongue,1);
+		B_CreateRune(ItRu_Pyrokinesis);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -815,17 +800,16 @@ func void PC_ItRu_Pyrokinesis_Info()
 
 func void PC_ItRu_Firestorm_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Firestorm) && Npc_HasItems(hero,ItMi_Pitch) && Npc_HasItems(hero,ItMi_Sulfur))
+	if(Npc_HasItems(self,ItSc_Firestorm) && Npc_HasItems(self,ItMi_Pitch) && Npc_HasItems(self,ItMi_Sulfur))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Firestorm,1);
-		Npc_RemoveInvItems(hero,ItMi_Pitch,1);
-		Npc_RemoveInvItems(hero,ItMi_Sulfur,1);
-		CreateInvItems(hero,ItRu_Firestorm,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Firestorm,1);
+		Npc_RemoveInvItems(self,ItMi_Pitch,1);
+		Npc_RemoveInvItems(self,ItMi_Sulfur,1);
+		B_CreateRune(ItRu_Firestorm);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -833,17 +817,16 @@ func void PC_ItRu_Firestorm_Info()
 
 func void PC_ItRu_IceWave_Info()
 {
-	if(Npc_HasItems(hero,ItSc_IceWave) && Npc_HasItems(hero,ItMi_Quartz) && Npc_HasItems(hero,ItMi_Aquamarine))
+	if(Npc_HasItems(self,ItSc_IceWave) && Npc_HasItems(self,ItMi_Quartz) && Npc_HasItems(self,ItMi_Aquamarine))
 	{
-		Npc_RemoveInvItems(hero,ItSc_IceWave,1);
-		Npc_RemoveInvItems(hero,ItMi_Quartz,1);
-		Npc_RemoveInvItems(hero,ItMi_Aquamarine,1);
-		CreateInvItems(hero,ItRu_IceWave,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_IceWave,1);
+		Npc_RemoveInvItems(self,ItMi_Quartz,1);
+		Npc_RemoveInvItems(self,ItMi_Aquamarine,1);
+		B_CreateRune(ItRu_IceWave);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -851,16 +834,15 @@ func void PC_ItRu_IceWave_Info()
 
 func void PC_ItRu_SumDemon_Info()
 {
-	if(Npc_HasItems(hero,ItSc_SumDemon) && Npc_HasItems(hero,ItAt_DemonHeart))
+	if(Npc_HasItems(self,ItSc_SumDemon) && Npc_HasItems(self,ItAt_DemonHeart))
 	{
-		Npc_RemoveInvItems(hero,ItSc_SumDemon,1);
-		Npc_RemoveInvItems(hero,ItAt_DemonHeart,1);
-		CreateInvItems(hero,ItRu_SumDemon,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_SumDemon,1);
+		Npc_RemoveInvItems(self,ItAt_DemonHeart,1);
+		B_CreateRune(ItRu_SumDemon);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -868,16 +850,15 @@ func void PC_ItRu_SumDemon_Info()
 
 func void PC_ItRu_FullHeal_Info()
 {
-	if(Npc_HasItems(hero,ItSc_FullHeal) && Npc_HasItems(hero,ItPl_Health_Herb_03))
+	if(Npc_HasItems(self,ItSc_FullHeal) && Npc_HasItems(self,ItPl_Health_Herb_03))
 	{
-		Npc_RemoveInvItems(hero,ItSc_FullHeal,1);
-		Npc_RemoveInvItems(hero,ItPl_Health_Herb_03,1);
-		CreateInvItems(hero,ItRu_FullHeal,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_FullHeal,1);
+		Npc_RemoveInvItems(self,ItPl_Health_Herb_03,1);
+		B_CreateRune(ItRu_FullHeal);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -885,18 +866,17 @@ func void PC_ItRu_FullHeal_Info()
 
 func void PC_ItRu_Firerain_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Firerain) && Npc_HasItems(hero,ItMi_Pitch) && Npc_HasItems(hero,ItMi_Sulfur) && Npc_HasItems(hero,ItAt_WaranFiretongue))
+	if(Npc_HasItems(self,ItSc_Firerain) && Npc_HasItems(self,ItMi_Pitch) && Npc_HasItems(self,ItMi_Sulfur) && Npc_HasItems(self,ItAt_WaranFiretongue))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Firerain,1);
-		Npc_RemoveInvItems(hero,ItMi_Pitch,1);
-		Npc_RemoveInvItems(hero,ItMi_Sulfur,1);
-		Npc_RemoveInvItems(hero,ItAt_WaranFiretongue,1);
-		CreateInvItems(hero,ItRu_Firerain,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Firerain,1);
+		Npc_RemoveInvItems(self,ItMi_Pitch,1);
+		Npc_RemoveInvItems(self,ItMi_Sulfur,1);
+		Npc_RemoveInvItems(self,ItAt_WaranFiretongue,1);
+		B_CreateRune(ItRu_Firerain);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -904,17 +884,16 @@ func void PC_ItRu_Firerain_Info()
 
 func void PC_ItRu_BreathOfDeath_Info()
 {
-	if(Npc_HasItems(hero,ItSc_BreathOfDeath) && Npc_HasItems(hero,ItMi_Coal) && Npc_HasItems(hero,ItMi_DarkPearl))
+	if(Npc_HasItems(self,ItSc_BreathOfDeath) && Npc_HasItems(self,ItMi_Coal) && Npc_HasItems(self,ItMi_DarkPearl))
 	{
-		Npc_RemoveInvItems(hero,ItSc_BreathOfDeath,1);
-		Npc_RemoveInvItems(hero,ItMi_Coal,1);
-		Npc_RemoveInvItems(hero,ItMi_DarkPearl,1);
-		CreateInvItems(hero,ItRu_BreathOfDeath,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_BreathOfDeath,1);
+		Npc_RemoveInvItems(self,ItMi_Coal,1);
+		Npc_RemoveInvItems(self,ItMi_DarkPearl,1);
+		B_CreateRune(ItRu_BreathOfDeath);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -922,17 +901,16 @@ func void PC_ItRu_BreathOfDeath_Info()
 
 func void PC_ItRu_MassDeath_Info()
 {
-	if(Npc_HasItems(hero,ItSc_MassDeath) && Npc_HasItems(hero,ItAt_SkeletonBone) && Npc_HasItems(hero,ItMi_DarkPearl))
+	if(Npc_HasItems(self,ItSc_MassDeath) && Npc_HasItems(self,ItAt_SkeletonBone) && Npc_HasItems(self,ItMi_DarkPearl))
 	{
-		Npc_RemoveInvItems(hero,ItSc_MassDeath,1);
-		Npc_RemoveInvItems(hero,ItAt_SkeletonBone,1);
-		Npc_RemoveInvItems(hero,ItMi_DarkPearl,1);
-		CreateInvItems(hero,ItRu_MassDeath,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_MassDeath,1);
+		Npc_RemoveInvItems(self,ItAt_SkeletonBone,1);
+		Npc_RemoveInvItems(self,ItMi_DarkPearl,1);
+		B_CreateRune(ItRu_MassDeath);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -940,19 +918,18 @@ func void PC_ItRu_MassDeath_Info()
 
 func void PC_ItRu_ArmyOfDarkness_Info()
 {
-	if(Npc_HasItems(hero,ItSc_ArmyOfDarkness) && Npc_HasItems(hero,ItAt_SkeletonBone) && Npc_HasItems(hero,ItMi_DarkPearl) && Npc_HasItems(hero,ItAt_StoneGolemHeart) && Npc_HasItems(hero,ItAt_DemonHeart))
+	if(Npc_HasItems(self,ItSc_ArmyOfDarkness) && Npc_HasItems(self,ItAt_SkeletonBone) && Npc_HasItems(self,ItMi_DarkPearl) && Npc_HasItems(self,ItAt_StoneGolemHeart) && Npc_HasItems(self,ItAt_DemonHeart))
 	{
-		Npc_RemoveInvItems(hero,ItSc_ArmyOfDarkness,1);
-		Npc_RemoveInvItems(hero,ItAt_SkeletonBone,1);
-		Npc_RemoveInvItems(hero,ItMi_DarkPearl,1);
-		Npc_RemoveInvItems(hero,ItAt_StoneGolemHeart,1);
-		Npc_RemoveInvItems(hero,ItAt_DemonHeart,1);
-		CreateInvItems(hero,ItRu_ArmyOfDarkness,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_ArmyOfDarkness,1);
+		Npc_RemoveInvItems(self,ItAt_SkeletonBone,1);
+		Npc_RemoveInvItems(self,ItMi_DarkPearl,1);
+		Npc_RemoveInvItems(self,ItAt_StoneGolemHeart,1);
+		Npc_RemoveInvItems(self,ItAt_DemonHeart,1);
+		B_CreateRune(ItRu_ArmyOfDarkness);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -960,17 +937,16 @@ func void PC_ItRu_ArmyOfDarkness_Info()
 
 func void PC_ItRu_Shrink_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Shrink) && Npc_HasItems(hero,ItAt_GoblinBone) && Npc_HasItems(hero,ItAt_TrollTooth))
+	if(Npc_HasItems(self,ItSc_Shrink) && Npc_HasItems(self,ItAt_GoblinBone) && Npc_HasItems(self,ItAt_TrollTooth))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Shrink,1);
-		Npc_RemoveInvItems(hero,ItAt_GoblinBone,1);
-		Npc_RemoveInvItems(hero,ItAt_TrollTooth,1);
-		CreateInvItems(hero,ItRu_Shrink,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Shrink,1);
+		Npc_RemoveInvItems(self,ItAt_GoblinBone,1);
+		Npc_RemoveInvItems(self,ItAt_TrollTooth,1);
+		B_CreateRune(ItRu_Shrink);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -978,16 +954,15 @@ func void PC_ItRu_Shrink_Info()
 
 func void PC_ItRu_Whirlwind_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Whirlwind) && Npc_HasItems(hero,ItAt_Wing))
+	if(Npc_HasItems(self,ItSc_Whirlwind) && Npc_HasItems(self,ItAt_Wing))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Whirlwind,1);
-		Npc_RemoveInvItems(hero,ItAt_Wing,1);
-		CreateInvItems(hero,ItRu_Whirlwind,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Whirlwind,1);
+		Npc_RemoveInvItems(self,ItAt_Wing,1);
+		B_CreateRune(ItRu_Whirlwind);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -995,16 +970,15 @@ func void PC_ItRu_Whirlwind_Info()
 
 func void PC_ItRu_Icelance_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Icelance) && Npc_HasItems(hero,ItMi_Quartz))
+	if(Npc_HasItems(self,ItSc_Icelance) && Npc_HasItems(self,ItMi_Quartz))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Icelance,1);
-		Npc_RemoveInvItems(hero,ItMi_Quartz,1);
-		CreateInvItems(hero,ItRu_Icelance,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Icelance,1);
+		Npc_RemoveInvItems(self,ItMi_Quartz,1);
+		B_CreateRune(ItRu_Icelance);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -1012,17 +986,16 @@ func void PC_ItRu_Icelance_Info()
 
 func void PC_ItRu_thunderstorm_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Thunderstorm) && Npc_HasItems(hero,ItMi_Quartz) && Npc_HasItems(hero,ItAt_Wing))
+	if(Npc_HasItems(self,ItSc_Thunderstorm) && Npc_HasItems(self,ItMi_Quartz) && Npc_HasItems(self,ItAt_Wing))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Thunderstorm,1);
-		Npc_RemoveInvItems(hero,ItMi_Quartz,1);
-		Npc_RemoveInvItems(hero,ItAt_Wing,1);
-		CreateInvItems(hero,ItRu_Thunderstorm,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Thunderstorm,1);
+		Npc_RemoveInvItems(self,ItMi_Quartz,1);
+		Npc_RemoveInvItems(self,ItAt_Wing,1);
+		B_CreateRune(ItRu_Thunderstorm);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -1030,16 +1003,15 @@ func void PC_ItRu_thunderstorm_Info()
 
 func void PC_ItRu_Geyser_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Geyser) && Npc_HasItems(hero,ItMi_Aquamarine))
+	if(Npc_HasItems(self,ItSc_Geyser) && Npc_HasItems(self,ItMi_Aquamarine))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Geyser,1);
-		Npc_RemoveInvItems(hero,ItMi_Aquamarine,1);
-		CreateInvItems(hero,ItRu_Geyser,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Geyser,1);
+		Npc_RemoveInvItems(self,ItMi_Aquamarine,1);
+		B_CreateRune(ItRu_Geyser);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();
@@ -1047,17 +1019,16 @@ func void PC_ItRu_Geyser_Info()
 
 func void PC_ItRu_Waterfist_Info()
 {
-	if(Npc_HasItems(hero,ItSc_Waterfist) && Npc_HasItems(hero,ItMi_Aquamarine) && Npc_HasItems(hero,ItMi_Rockcrystal))
+	if(Npc_HasItems(self,ItSc_Waterfist) && Npc_HasItems(self,ItMi_Aquamarine) && Npc_HasItems(self,ItMi_Rockcrystal))
 	{
-		Npc_RemoveInvItems(hero,ItSc_Waterfist,1);
-		Npc_RemoveInvItems(hero,ItMi_Aquamarine,1);
-		Npc_RemoveInvItems(hero,ItMi_Rockcrystal,1);
-		CreateInvItems(hero,ItRu_Waterfist,1);
-		Print(PRINT_RuneSuccess);
+		Npc_RemoveInvItems(self,ItSc_Waterfist,1);
+		Npc_RemoveInvItems(self,ItMi_Aquamarine,1);
+		Npc_RemoveInvItems(self,ItMi_Rockcrystal,1);
+		B_CreateRune(ItRu_Waterfist);
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
+		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
 		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	B_EndProductionDialog();

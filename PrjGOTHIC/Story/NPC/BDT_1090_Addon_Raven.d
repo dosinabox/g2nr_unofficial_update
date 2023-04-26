@@ -6,7 +6,7 @@ instance BDT_1090_Addon_Raven(Npc_Default)
 	id = 1090;
 	voice = 10;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	level = 50;
 	attribute[ATR_STRENGTH] = 50;
 	attribute[ATR_DEXTERITY] = 50;
@@ -20,7 +20,6 @@ instance BDT_1090_Addon_Raven(Npc_Default)
 	attribute[ATR_MANA_MAX] = CONDITION_WEAPON_RAVEN;
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_BeliarWeapon_Raven);
-//	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItMi_GoldNugget_Addon,8);
 	CreateInvItems(self,ItPo_Health_03,2);
 	CreateInvItems(self,ItMi_Addon_Stone_01,1);

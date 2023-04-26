@@ -11,13 +11,6 @@ instance BAU_908_Hodges(Npc_Default)
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_2h_Sld_Sword);
-/*	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItMw_1h_Bau_Axe,1);
-	CreateInvItems(self,ItMw_1h_Vlk_Axe,1);
-	CreateInvItems(self,ItMw_1H_Mace_L_04,1);
-	CreateInvItems(self,ItMw_1h_Sld_Axe,1);
-	CreateInvItems(self,ItMw_1h_Sld_Sword,1);
-	CreateInvItems(self,ItMw_Schwert,1); */
 	B_CreateItemToSteal(self,15,ItMi_Gold,10);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_L_NormalBart01,BodyTex_L,ITAR_Bau_L);
 	Mdl_SetModelFatness(self,1);
