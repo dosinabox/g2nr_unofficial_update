@@ -30,6 +30,12 @@ func void B_CreateRune(var int rune)
 	AI_PrintScreen(PRINT_RuneSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 };
 
+func void B_RuneProdItemsMissing()
+{
+	CreateInvItem(self,ItMi_RuneBlank);
+	AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
+};
+
 instance PC_MakeRune_End(C_Info)
 {
 	npc = PC_Hero;
@@ -51,7 +57,7 @@ func int PC_MakeRune_End_Condition()
 
 func void PC_MakeRune_End_Info()
 {
-	CreateInvItems(self,ItMi_RuneBlank,1);
+	CreateInvItem(self,ItMi_RuneBlank);
 	B_EndProductionDialog();
 };
 
@@ -418,8 +424,7 @@ func void PC_SPL_MasterOfDisaster_Create()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -467,8 +472,7 @@ func void PC_SPL_PalTeleportSecret_Create()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -483,8 +487,7 @@ func void PC_ItRu_Light_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -499,8 +502,7 @@ func void PC_ItRu_Firebolt_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -515,8 +517,7 @@ func void PC_ItRu_LightHeal_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -531,8 +532,7 @@ func void PC_ItRu_SumGobSkel_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -547,8 +547,7 @@ func void PC_ItRu_Zap_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -563,8 +562,7 @@ func void PC_ItRu_InstFireball_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -579,8 +577,7 @@ func void PC_ItRu_Icebolt_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -595,8 +592,7 @@ func void PC_ItRu_SumWolf_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -611,8 +607,7 @@ func void PC_ItRu_Windfist_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -627,8 +622,7 @@ func void PC_ItRu_Sleep_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -643,8 +637,7 @@ func void PC_ItRu_MediumHeal_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -660,8 +653,7 @@ func void PC_ItRu_LightningFlash_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -677,8 +669,7 @@ func void PC_ItRu_ChargeFireball_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -693,8 +684,7 @@ func void PC_ItRu_SumSkel_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -709,8 +699,7 @@ func void PC_ItRu_Fear_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -726,8 +715,7 @@ func void PC_ItRu_IceCube_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -743,8 +731,7 @@ func void PC_ItRu_ThunderBall_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -759,8 +746,7 @@ func void PC_ItRu_SumGol_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -775,8 +761,7 @@ func void PC_ItRu_HarmUndead_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -792,8 +777,7 @@ func void PC_ItRu_Pyrokinesis_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -809,8 +793,7 @@ func void PC_ItRu_Firestorm_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -826,8 +809,7 @@ func void PC_ItRu_IceWave_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -842,8 +824,7 @@ func void PC_ItRu_SumDemon_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -858,8 +839,7 @@ func void PC_ItRu_FullHeal_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -876,8 +856,7 @@ func void PC_ItRu_Firerain_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -893,8 +872,7 @@ func void PC_ItRu_BreathOfDeath_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -910,8 +888,7 @@ func void PC_ItRu_MassDeath_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -929,8 +906,7 @@ func void PC_ItRu_ArmyOfDarkness_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -946,8 +922,7 @@ func void PC_ItRu_Shrink_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -962,8 +937,7 @@ func void PC_ItRu_Whirlwind_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -978,8 +952,7 @@ func void PC_ItRu_Icelance_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -995,8 +968,7 @@ func void PC_ItRu_thunderstorm_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -1011,8 +983,7 @@ func void PC_ItRu_Geyser_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };
@@ -1028,8 +999,7 @@ func void PC_ItRu_Waterfist_Info()
 	}
 	else
 	{
-		AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		B_RuneProdItemsMissing();
 	};
 	B_EndProductionDialog();
 };

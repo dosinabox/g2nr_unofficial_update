@@ -6,7 +6,7 @@ instance BDT_10017_Addon_Juan(Npc_Default)
 	id = 10017;
 	voice = 13;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
@@ -14,7 +14,6 @@ instance BDT_10017_Addon_Juan(Npc_Default)
 	CreateInvItems(self,ItMi_Addon_Steel_Paket,1);
 	CreateInvItems(self,ItMi_Addon_Fisk_Paket,1);
 	CreateInvItems(self,ItMi_Grog_Crate,5);
-//	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,65,ItMi_Gold,73);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_L_NormalBart01,BodyTex_L,ITAR_BDT_H);
 	Mdl_SetModelFatness(self,-1);

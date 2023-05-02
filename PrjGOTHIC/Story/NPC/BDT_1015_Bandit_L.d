@@ -6,7 +6,7 @@ instance BDT_1015_Bandit_L(Npc_Default)
 	id = 1015;
 	voice = 6;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,0);
 	fight_tactic = FAI_HUMAN_NORMAL;

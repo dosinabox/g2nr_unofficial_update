@@ -6,7 +6,7 @@ instance BDT_10014_Addon_Thorus(Npc_Default)
 	id = 10014;
 	voice = 12;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2h_Sld_Sword);

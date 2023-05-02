@@ -149,7 +149,7 @@ func void PC_Goldhacken_End_Info()
 func void B_GetGoldNugget(var int count)
 {
 	var string text;
-	CreateInvItems(hero,ItMi_GoldNugget_Addon,count);
+	CreateInvItems(self,ItMi_GoldNugget_Addon,count);
 	Snd_Play("Geldbeutel");
 	if(count == 1)
 	{
