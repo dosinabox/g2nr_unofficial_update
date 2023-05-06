@@ -6723,3 +6723,118 @@ instance PICKTREASURE_DUST(C_PARTICLEFX)
 	visalphastart = 255;
 };
 
+instance BROOM_DUST(C_PARTICLEFX)
+{
+	ppsvalue = 60;
+	ppsscalekeys_s = "1";
+	shptype_s = "CIRCLE";
+	shpfor_s = "object";
+	shpoffsetvec_s = "2 0 0";
+	shpisvolume = 1;
+	shpdim_s = "10";
+	shpscalefps = 10;
+	dirmode_s = "DIR";
+	dirfor_s = "object";
+	diranglehead = 0;
+	dirangleheadvar = 40;
+	dirangleelev = 90;
+	dirangleelevvar = 40;
+	velavg = 0.007;
+	velvar = 0.0003;
+	lsppartavg = 2000;
+	lsppartvar = 200;
+	flygravity_s = "0 -0.0000003 0";
+	visname_s = "FIRESMOKE_01.TGA";
+	visorientation_s = "NONE";
+	vistexcolorstart_s = "160 160 160";
+	vistexcolorend_s = "160 160 160";
+	vissizestart_s = "13 13";
+	vissizeendscale = 3;
+	visalphafunc_s = "BLEND";
+	visalphastart = 150;
+	visalphaend = 50;
+};
+
+instance LIGHTSMOKE_IN(C_PARTICLEFX)
+{
+	ppsvalue = 20;
+	ppsscalekeys_s = "2	1 1";
+	ppsissmooth = 1;
+	ppsfps = 0.1;
+	shptype_s = "POINT";
+	shpfor_s = "object";
+	shpoffsetvec_s = "0 0 0";
+	shpdistribtype_s = "UNIFORM";
+	shpisvolume = 1;
+	shpdim_s = "6";
+	shpscalekeys_s = "1";
+	shpscaleislooping = 1;
+	shpscaleissmooth = 1;
+	shpscalefps = 2;
+	dirmode_s = "DIR";
+	dirfor_s = "object";
+	diranglehead = 30;
+	dirangleheadvar = 10;
+	dirangleelev = 120;
+	dirangleelevvar = 10;
+	velavg = 0.02;
+	velvar = 0.002;
+	lsppartavg = 3000;
+	lsppartvar = 300;
+	flygravity_s = "0 0.000003 0";
+	visname_s = "JOINT_SMOKE_IN.TGA";
+	visorientation_s = "NONE";
+	vistexisquadpoly = 1;
+	vistexanifps = 5;
+	vistexaniislooping = 1;
+	vistexcolorstart_s = "150 150 150";
+	vistexcolorend_s = "150 150 150";
+	vissizestart_s = "3 3";
+	vissizeendscale = 5;
+	visalphafunc_s = "BLEND";
+	visalphastart = 180;
+	flockmode = "WIND";
+	flockstrength = 0.005;
+};
+
+instance LIGHTSMOKE_OUT(C_PARTICLEFX)
+{
+	ppsvalue = 20;
+	ppsscalekeys_s = "2 1 1";
+	ppsissmooth = 1;
+	ppsfps = 0.3;
+	shptype_s = "POINT";
+	shpfor_s = "object";
+	shpoffsetvec_s = "0 0 0";
+	shpdistribtype_s = "UNIFORM";
+	shpisvolume = 1;
+	shpdim_s = "8";//shpdim_s = "10";
+	shpscalekeys_s = "1";
+	shpscaleislooping = 1;
+	shpscaleissmooth = 1;
+	shpscalefps = 2;
+	dirmode_s = "DIR";
+	dirfor_s = "object";
+	dirangleheadvar = 50;
+	dirangleelev = 90;
+	dirangleelevvar = 20;
+	velavg = 0.04;
+	velvar = 0.004;
+	lsppartavg = 3000;
+	lsppartvar = 300;
+	flygravity_s = "0 0.00001 0";
+	visname_s = "JOINT_SMOKE_OUT.TGA";
+	visorientation_s = "NONE";
+	vistexisquadpoly = 1;
+	vistexanifps = 5;
+	vistexaniislooping = 1;
+	vistexcolorstart_s = "150 150 150";
+	vistexcolorend_s = "150 150 150";
+	vissizestart_s = "4 4";
+	vissizeendscale = 15;
+	visalphafunc_s = "BLEND";
+	visalphastart = 160;
+	flockmode = "WIND";
+	flockstrength = 0.005;
+};
+

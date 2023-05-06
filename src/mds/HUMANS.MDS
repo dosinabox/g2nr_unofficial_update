@@ -90,39 +90,39 @@ Model ("HuS")
 
 // ---------------------------------------------------------------------------------------------------------------
 //	RUN-Mode
-			ani			("s_Run"				1	"s_Run"			0.1	0.1	MI	"Hum_RunAmbient_M01.asc"	F	1	50)
-			ani			("t_Run_2_RunL"			1	"s_RunL"		0.0	0.0	M.	"Hum_RunLoop_M01.asc"		F	0	11)
-			ani			("s_RunL"				1	"s_RunL"		0.0	0.1	M.	"Hum_RunLoop_M01.asc"		F	12	31)
-			{
-				*eventSFXGrnd	(12	"Run")
-				*eventSFXGrnd	(21	"Run")
-			}
+		//	ani			("s_Run"				1	"s_Run"			0.1	0.1	MI	"Hum_RunAmbient_M01.asc"	F	1	50)
+		//	ani			("t_Run_2_RunL"			1	"s_RunL"		0.0	0.0	M.	"Hum_RunLoop_M01.asc"		F	0	11)
+		//	ani			("s_RunL"				1	"s_RunL"		0.0	0.1	M.	"Hum_RunLoop_M01.asc"		F	12	31)
+		//	{
+		//		*eventSFXGrnd	(12	"Run")
+		//		*eventSFXGrnd	(21	"Run")
+		//	}
 
-			ani			("t_RunL_2_Run"			1	"s_Run"			0.0	0.0	M.	"Hum_RunLoop_M01.asc"		F	32	38)
-			aniBlend	("t_RunR_2_Run"				"s_Run"			0.2	0.2)
+		//	ani			("t_RunL_2_Run"			1	"s_Run"			0.0	0.0	M.	"Hum_RunLoop_M01.asc"		F	32	38)
+		//	aniBlend	("t_RunR_2_Run"				"s_Run"			0.2	0.2)
 
-			ani			("t_JumpB"				1	"s_Run"			0.0	0.2	M.	"Hum_JumpB_M01.asc"			F	1	14)
-			{
-				*eventSFXGrnd  (6 "Run")
-				*eventSFXGrnd  (9 "Run")
-			}
+		//	ani			("t_JumpB"				1	"s_Run"			0.0	0.2	M.	"Hum_JumpB_M01.asc"			F	1	14)
+		//	{
+		//		*eventSFXGrnd  (6 "Run")
+		//		*eventSFXGrnd  (9 "Run")
+		//	}
 
 // ---------------------------------------------------------------------------------------------------------------
 //	WALK-Mode
 	//		ani			("s_Walk"				1	"s_Walk"		0.1	0.1	M	"Hum_WalkAmbient_A01.asc"	F	1	49 FPS:10)
-			aniAlias	("s_Walk"				1	"s_Walk"		0.1	0.1	MI	"s_Run"		F)
+		//	aniAlias	("s_Walk"				1	"s_Walk"		0.1	0.1	MI	"s_Run"		F)
 			
-			ani			("t_Walk_2_WalkL"		1	"s_WalkL"		0.0	0.0	M.	"Hum_WalkLoop_A02.asc"		F	1	9)
-			ani			("s_WalkL"				1	"s_WalkL"		0.0	0.1	M.	"Hum_WalkLoop_A02.asc"		F	10	33)
-			{
-				*eventSFXGrnd	(10	"Run")
-				*eventSFXGrnd	(22	"Run")
-			}
+		//	ani			("t_Walk_2_WalkL"		1	"s_WalkL"		0.0	0.0	M.	"Hum_WalkLoop_A02.asc"		F	1	9)
+		//	ani			("s_WalkL"				1	"s_WalkL"		0.0	0.1	M.	"Hum_WalkLoop_A02.asc"		F	10	33)
+		//	{
+		//		*eventSFXGrnd	(10	"Run")
+		//		*eventSFXGrnd	(22	"Run")
+		//	}
 
-			ani			("t_WalkL_2_Walk"		1	"s_Walk"		0.0	0.0	M.	"Hum_WalkLoop_A02.asc"		F	34	39)
-			ani			("t_WalkR_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkLoopEnd_A01.asc"	F	33	39)
+		//	ani			("t_WalkL_2_Walk"		1	"s_Walk"		0.0	0.0	M.	"Hum_WalkLoop_A02.asc"		F	34	39)
+		//	ani			("t_WalkR_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkLoopEnd_A01.asc"	F	33	39)
 
-			aniAlias	("t_Walk_2_WalkBL"		1	"s_WalkBL"		0.1	0.1	M.	"t_walkL_2_Walk"			R)
+		//	aniAlias	("t_Walk_2_WalkBL"		1	"s_WalkBL"		0.1	0.1	M.	"t_walkL_2_Walk"			R)
 
 			aniAlias	("s_WalkBL"				1	"s_WalkBL"		0.0	0.0	M.	"s_WalkL"					R)
 			ani			("t_WalkBL_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkLoopBEnd_A01.ASC"	R	15	22)
@@ -599,17 +599,17 @@ Model ("HuS")
 
 // LOOK Autoaiming
 // Seitenwinkel: +/- 60°	Höhenwinkel: +/- 45°
-			ani			("c_look_1"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	0	0)
-			ani			("c_look_2"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	1	1)
-			ani			("c_look_3"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	2	2)
-			ani			("c_look_4"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	3	3)
-			ani			("c_look_5"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	4	4)
-			ani			("c_look_6"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	5	5)
-			ani			("c_look_7"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	6	6)
-			ani			("c_look_8"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	7	7)
-			ani			("c_look_9"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	8	8)
+		//	ani			("c_look_1"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	0	0)
+		//	ani			("c_look_2"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	1	1)
+		//	ani			("c_look_3"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	2	2)
+		//	ani			("c_look_4"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	3	3)
+		//	ani			("c_look_5"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	4	4)
+		//	ani			("c_look_6"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	5	5)
+		//	ani			("c_look_7"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	6	6)
+		//	ani			("c_look_8"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	7	7)
+		//	ani			("c_look_9"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_M01.asc"	F	8	8)
 
-			aniComb		("t_look"				9	"t_look"		0.3	0.3	M.	"c_look_"	9)
+		//	aniComb		("t_look"				9	"t_look"		0.3	0.3	M.	"c_look_"	9)
 
 // POINT AT Autoaiming
 // Seitenwinkel: +/- 90°	Höhenwinkel: +/- 45°
@@ -666,20 +666,20 @@ Model ("HuS")
 
 // ---------------------------------------------------------------------------------------------------------------
 // Item AUFHEBEN
-			ani			("c_Stand_2_IGet_1"		1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	1	9)
-			ani			("c_Stand_2_IGet_2"		1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	21	29)
-			ani			("c_Stand_2_IGet_3"		1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	41	49)
-			aniComb		("t_Stand_2_IGet"		1	"s_IGet"		0.1	0.0	M.	"c_Stand_2_IGet_"			3)
+		//	ani			("c_Stand_2_IGet_1"		1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	1	9)
+		//	ani			("c_Stand_2_IGet_2"		1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	21	29)
+		//	ani			("c_Stand_2_IGet_3"		1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	41	49)
+		//	aniComb		("t_Stand_2_IGet"		1	"s_IGet"		0.1	0.1	M.	"c_Stand_2_IGet_"			3)
 
-			ani			("c_IGet_1"				1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	10	10)
-			ani			("c_IGet_2"				1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	30	30)
-			ani			("c_IGet_3"				1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	50	50)
-			aniComb		("s_IGet"				1	"s_IGet"		0.0	0.0	M.	"c_IGet_"					3)
+		//	ani			("c_IGet_1"				1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	10	10)
+		//	ani			("c_IGet_2"				1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	30	30)
+		//	ani			("c_IGet_3"				1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	50	50)
+		//	aniComb		("s_IGet"				1	"s_IGet"		0.0	0.0	M.	"c_IGet_"					3)
 
-			ani			("c_IGet_2_Stand_1"		1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	11	19)
-			ani			("c_IGet_2_Stand_2"		1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	31	39)
-			ani			("c_IGet_2_Stand_3"		1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	51	59)
-			aniComb		("t_IGet_2_Stand"		1	""				0.0	0.1	M.	"c_IGet_2_Stand_"			3)
+		//	ani			("c_IGet_2_Stand_1"		1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	11	19)
+		//	ani			("c_IGet_2_Stand_2"		1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	31	39)
+		//	ani			("c_IGet_2_Stand_3"		1	""				0.0	0.0	.	"Hum_ItemGet_A03.asc"		F	51	59)
+		//	aniComb		("t_IGet_2_Stand"		1	""				0.0	0.1	M.	"c_IGet_2_Stand_"			3)
 
 	// kann nicht mehr aufsammeln, Inventory voll
 			ani			("t_CanNotTake"			1	""				0.1	0.1	M.	"Hum_CantTake_M01.ASC"		F	0	30)
@@ -839,7 +839,7 @@ Model ("HuS")
 	//		}
 	//		aniAlias	("t_Bow_2_Run"			1	""				0.0 0.1 M.	"t_Run_2_Bow"			R)
 
-		// Bogen beim Rennen ziehen
+	//	// Bogen beim Rennen ziehen
 	//		ani			("t_Move_2_BowMove"		2	""				0.2	0.2	M.	"Hum_BowDrawMove.asc"	F	1	19)
 	//		{
 	//			*eventTag		(7	"DEF_FIGHTMODE"  "BOW")
@@ -849,6 +849,7 @@ Model ("HuS")
 	//		ani			("t_BowMove_2_Move"		2	""				0.2	0.2	M.	"Hum_BowDrawMove.asc"	R	1	19)
 	//		{
 	//			*eventTag		(7	"DEF_FIGHTMODE"  "")
+	//			*eventMMStartAni  (9	"S_NORMAL"	"ZS_LEFTHAND")
 	//			*eventSFX		(12	"Bow_UndrawSound")
 	//	        	*eventTag		(19	"DEF_REMOVE_MUNITION")
 	//		}
@@ -864,7 +865,7 @@ Model ("HuS")
 	//			*eventSFX		(25	"Crossbow_Charge")
 	//			*eventMMStartAni	(27	"S_CHARGE"		"ZS_RIGHTHAND")
 	//			*eventMMStartAni	(30	"S_SHOOT"		"ZS_RIGHTHAND")
-	//        	*eventTag		(33	"DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
+	//			*eventTag		(33	"DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
 	//		}
 
 	//		ani			("t_CBowRun_2_CBow"		1	"s_CBow"		0.0 0.0 M.	"Hum_CBowDraw.asc"		R  	6	39)
@@ -874,7 +875,7 @@ Model ("HuS")
 	//			*eventMMStartAni	(27	"S_NORMAL"		"ZS_RIGHTHAND")
 	//			*eventMMStartAni	(30	"S_REFUSE"		"ZS_RIGHTHAND")
 	//			*eventSFX		(32	"Crossbow_Refuse")
-	// 	     	*eventTag		(33	"DEF_REMOVE_MUNITION")
+	//			*eventTag		(33	"DEF_REMOVE_MUNITION")
 	//		}
 	//		aniAlias	("t_CBow_2_Run"			1	""				0.0 0.1 M.	"t_Run_2_CBow"			R)
 
@@ -886,7 +887,7 @@ Model ("HuS")
 	//			*eventSFX		(25	"Crossbow_Charge")
 	//			*eventMMStartAni	(27	"S_CHARGE"		"ZS_RIGHTHAND")
 	//			*eventMMStartAni	(30	"S_SHOOT"		"ZS_RIGHTHAND")
-	//        	*eventTag		(33	"DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
+	//			*eventTag		(33	"DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
 	//		}
 	//		ani			("t_CBowMove_2_Move"	2	""				0.2	0.2	M.	"Hum_CBowDrawMove.asc"	R	1	39)
 	//		{
@@ -895,7 +896,7 @@ Model ("HuS")
 	//			*eventMMStartAni	(27	"S_NORMAL"		"ZS_RIGHTHAND")
 	//			*eventMMStartAni	(30	"S_REFUSE"		"ZS_RIGHTHAND")
 	//			*eventSFX		(32	"Crossbow_Refuse")
-	// 	     	*eventTag		(33	"DEF_REMOVE_MUNITION")
+	//			*eventTag		(33	"DEF_REMOVE_MUNITION")
 	//		}
 
 
@@ -1105,9 +1106,9 @@ Model ("HuS")
 				*eventSFXGrnd	(12	"Run")
 				*eventSFXGrnd	(22	"Run")
 			}
-			ani			("t_MagRunL_2_MagRun"		1	"s_MagRun"		0.0	0.1	M.	"Hum_MagRun_A01.asc"		F	32	38)
+			ani			("t_MagRunL_2_MagRun"		1	"s_MagRun"		0.0	0.1	M.	"Hum_MagRun_A01.asc"		F	33	38)
 			{
-				*eventSFXGrnd	(32	"Run")
+			//	*eventSFXGrnd	(33	"Run")
 				*eventSFXGrnd	(37	"Run")
 			}
 			aniBlend	("t_MagRunR_2_MagRun"			"s_MagRun"		0.3	0.3)
@@ -2280,7 +2281,7 @@ Model ("HuS")
 	//		{
 	//			*eventMMStartAni	(7	"S_RELAX"	"ZS_RIGHTHAND")
 	//			*eventSFX		(14	"Crossbow_Charge")
-	//     		*eventTag		(14 "DEF_PLACE_MUNITION" "ZS_LEFTHAND")
+	//			*eventTag		(14 "DEF_PLACE_MUNITION" "ZS_LEFTHAND")
 	//			*eventMMStartAni	(31	"S_READY"	"ZS_RIGHTHAND")
 	//		}
 
@@ -2450,32 +2451,29 @@ Model ("HuS")
 
 // ---------------------------------------------------------------------------------------------------------------
 // Sumpfkraut rauchen
-			ani			("t_JOINT_Stand_2_S0"		1	"s_JOINT_S0"	0.1	0.0	M.	"Hum_SmokeHerb_Layer_M01.asc"		F	0	39)
-			{
-				*eventTag	(6	"DEF_INV_TORCH")
-				*eventTag	(24	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
-			}
-			ani			("s_JOINT_S0"				1	"s_JOINT_S0"	0.0	0.0	M.	"Hum_SmokeHerb_Layer_M01.asc"		F	40	40)
-			ani			("t_JOINT_Random_1"			2	""				0.1	0.3	M.	"Hum_SmokeHerb_Layer_M01.asc"		F	41	139	FPS:10)
-			{
-				*eventPFX		(60	1	"LIGHTSMOKE"	"ZS_RIGHTHAND"	ATTACH)
-				*eventPFXStop	(85	1)
-
-				*eventSFX	(100	"SMOKE_JOINT"	R:1000	EMPTY_SLOT	)
-				*eventPFX		(100	2	"LIGHTSMOKE"	"ZS_RIGHTHAND"	ATTACH)
-				*eventPFXStop	(125	2)
-			}
-			ani			("t_JOINT_S0_2_Stand"		1	""				0.0	0.2	M.	"Hum_SmokeHerb_Layer_M01.asc"		F	41	200	FPS:10)
-			{
-				*eventPFX		(60	1	"LIGHTSMOKE"	"ZS_RIGHTHAND"	ATTACH)
-				*eventPFXStop	(85	1)
-
-				*eventSFX	(100	"SMOKE_JOINT"	R:1000	EMPTY_SLOT	)
-				*eventPFX		(100	2	"LIGHTSMOKE"	"ZS_RIGHTHAND"	ATTACH)
-				*eventPFXStop	(125	2)
-
-				*eventTag	(192	"DEF_DESTROY_ITEM")
-			}
+		//	ani			("t_JOINT_Stand_2_S0"		1	"s_JOINT_S0"	0.1	0.0	M.	"Hum_SmokeHerb_Layer_M01.asc"		F	0	39)
+		//	{
+		//		*eventTag	(6	"DEF_INV_TORCH")
+		//		*eventTag	(24	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
+		//	}
+		//	ani			("s_JOINT_S0"				1	"s_JOINT_S0"	0.0	0.0	M.	"Hum_SmokeHerb_Layer_M01.asc"		F	40	40)
+		//	ani			("t_JOINT_Random_1"			2	""				0.1	0.3	M.	"Hum_SmokeHerb_Layer_M01.asc"		F	41	139	FPS:10)
+		//	{
+		//		*eventPFX		(60	1	"LIGHTSMOKE"	"ZS_RIGHTHAND"	ATTACH)
+		//		*eventPFXStop	(85	1)
+		//		*eventSFX		(100	"SMOKE_JOINT"	R:1000	EMPTY_SLOT	)
+		//		*eventPFX		(100	2	"LIGHTSMOKE"	"ZS_RIGHTHAND"	ATTACH)
+		//		*eventPFXStop	(125	2)
+		//	}
+		//	ani			("t_JOINT_S0_2_Stand"		1	""				0.0	0.2	M.	"Hum_SmokeHerb_Layer_M01.asc"		F	41	200	FPS:10)
+		//	{
+		//		*eventPFX		(60	1	"LIGHTSMOKE"	"ZS_RIGHTHAND"	ATTACH)
+		//		*eventPFXStop	(85	1)
+		//		*eventSFX		(100	"SMOKE_JOINT"	R:1000	EMPTY_SLOT	)
+		//		*eventPFX		(100	2	"LIGHTSMOKE"	"ZS_RIGHTHAND"	ATTACH)
+		//		*eventPFXStop	(125	2)
+		//		*eventTag		(192	"DEF_DESTROY_ITEM")
+		//	}
 
 // ---------------------------------------------------------------------------------------------------------------
 // Alarmhorn
@@ -2607,58 +2605,58 @@ Model ("HuS")
 // ---------------------------------------------------------------------------------------------------------------
 // CHESTSMALL
 	// geschlossene Truhe, Anivisieren
-			ani			("t_CHESTSMALL_Stand_2_S0"		1	"s_CHESTSMALL_S0"	0.1	0.0	M.	"Hum_OpenSmall_M01.asc"		F	1	14)
-			{
-				*eventTag   (4   "DEF_INV_TORCH")
-			}
-			ani			("s_CHESTSMALL_S0"				1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"Hum_OpenSmall_M01.asc"		F	15	15)
-			aniAlias	("t_CHESTSMALL_S0_2_Stand"		1	""					0.0	0.1	M.	"t_CHESTSMALL_Stand_2_S0"	R)
+		//	ani			("t_CHESTSMALL_Stand_2_S0"		1	"s_CHESTSMALL_S0"	0.1	0.0	M.	"Hum_OpenSmall_M01.asc"		F	1	14)
+		//	{
+		//		*eventTag   (4   "DEF_INV_TORCH")
+		//	}
+		//	ani			("s_CHESTSMALL_S0"				1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"Hum_OpenSmall_M01.asc"		F	15	15)
+		//	aniAlias	("t_CHESTSMALL_S0_2_Stand"		1	""					0.0	0.1	M.	"t_CHESTSMALL_Stand_2_S0"	R)
 	// Truhe öffnen
-			ani			("t_CHESTSMALL_S0_2_S1"			1	"s_CHESTSMALL_S1"	0.0	0.0	M.	"Hum_OpenSmall_M01.asc"		F	45	74)
+		//	ani			("t_CHESTSMALL_S0_2_S1"			1	"s_CHESTSMALL_S1"	0.0	0.0	M.	"Hum_OpenSmall_M01.asc"		F	45	74)
 	// offene Truhe
-			ani			("s_CHESTSMALL_S1"				1	"s_CHESTSMALL_S1"	0.0	0.0	M.	"Hum_OpenSmall_M01.asc"		F	75	75)
+		//	ani			("s_CHESTSMALL_S1"				1	"s_CHESTSMALL_S1"	0.0	0.0	M.	"Hum_OpenSmall_M01.asc"		F	75	75)
 	// Truhe schließen
-			ani			("t_CHESTSMALL_S1_2_S0"			1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"Hum_OpenSmall_M01.asc"		F	76	89)
+		//	ani			("t_CHESTSMALL_S1_2_S0"			1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"Hum_OpenSmall_M01.asc"		F	76	89)
 
 	// Truhenschloß aufschließen/knacken
-			ani			("t_CHESTSMALL_S0_Unlock"		1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"Hum_OpenSmall_M01.asc"		F	15	44)
+		//	ani			("t_CHESTSMALL_S0_Unlock"		1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"Hum_OpenSmall_M01.asc"		F	15	44)
 	// Truhenschloß abschließen
-			aniAlias	("t_CHESTSMALL_S0_Lock"			1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"t_CHESTSMALL_S0_Unlock"	R)
+		//	aniAlias	("t_CHESTSMALL_S0_Lock"			1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"t_CHESTSMALL_S0_Unlock"	R)
 	// Scheitern des Versuchs
 	// FIXME: funzt das noch?
-			ani			("t_CHESTSMALL_S0_Try"			1	""					0.0	0.0	M.	"Hum_OpenSmall_M01.asc"		F	91	119)
+		//	ani			("t_CHESTSMALL_S0_Try"			1	""					0.0	0.0	M.	"Hum_OpenSmall_M01.asc"		F	91	119)
 
 	// PickLock
-			ani			("t_CHESTSMALL_S0_PickLeft"		1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"Hum_OpenSmall_M01.asc"		F	122	130)
-			aniAlias	("t_CHESTSMALL_S0_PickRight"	1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"t_CHESTSMALL_S0_PickLeft"	R)
+		//	ani			("t_CHESTSMALL_S0_PickLeft"		1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"Hum_OpenSmall_M01.asc"		F	122	130)
+		//	aniAlias	("t_CHESTSMALL_S0_PickRight"	1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"t_CHESTSMALL_S0_PickLeft"	R)
 
 // ---------------------------------------------------------------------------------------------------------------
 // CHESTBIG
 	// geschlossene Truhe, Anivisieren
-			ani			("t_CHESTBIG_Stand_2_S0"		1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	1	14) 
-			{
-				*eventTag   (4   "DEF_INV_TORCH")
-			}
-			ani			("s_CHESTBIG_S0"				1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	15	15) 
-			aniAlias	("t_CHESTBIG_S0_2_Stand"		1	""					0.0	0.0	M.	"t_CHESTBIG_Stand_2_S0"		R)          
+		//	ani			("t_CHESTBIG_Stand_2_S0"		1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	1	14) 
+		//	{
+		//		*eventTag   (4   "DEF_INV_TORCH")
+		//	}
+		//	ani			("s_CHESTBIG_S0"				1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	15	15) 
+		//	aniAlias	("t_CHESTBIG_S0_2_Stand"		1	""					0.0	0.0	M.	"t_CHESTBIG_Stand_2_S0"		R)          
 	// Truhe öffnen                                                                                                                 
-			ani			("t_CHESTBIG_S0_2_S1"			1	"s_CHESTBIG_S1"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	45	74) 
+		//	ani			("t_CHESTBIG_S0_2_S1"			1	"s_CHESTBIG_S1"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	45	74) 
 	// offene Truhe                                                                                                                 
-			ani			("s_CHESTBIG_S1"				1	"s_CHESTBIG_S1"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	75	75) 
+		//	ani			("s_CHESTBIG_S1"				1	"s_CHESTBIG_S1"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	75	75) 
 	// Truhe schließen                                                                                                              
-			ani			("t_CHESTBIG_S1_2_S0"			1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	76	89) 
+		//	ani			("t_CHESTBIG_S1_2_S0"			1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	76	89) 
                                                                                                                                     
 	// Truhenschloß aufschließen/knacken                                                                                            
-			ani			("t_CHESTBIG_S0_Unlock"			1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	15	44) 
+		//	ani			("t_CHESTBIG_S0_Unlock"			1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	15	44) 
 	// Truhenschloß abschließen                                                                                                     
-			aniAlias	("t_CHESTBIG_S0_Lock"			1	"s_CHESTBIG_S0"		0.0	0.0	M.	"t_CHESTBIG_S0_Unlock"		R)          
+		//	aniAlias	("t_CHESTBIG_S0_Lock"			1	"s_CHESTBIG_S0"		0.0	0.0	M.	"t_CHESTBIG_S0_Unlock"		R)          
 	// Scheitern des Versuchs                                                                                                       
                                                                                                                                     
-			ani			("t_CHESTBIG_S0_Try"			1	""					0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	91	119)
+		//	ani			("t_CHESTBIG_S0_Try"			1	""					0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	91	119)
                                                                                                                                     
 	// PickLock                                                                                                                     
-			ani			("t_CHESTBIG_S0_PickLeft"		1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	122	130)
-			aniAlias	("t_CHESTBIG_S0_PickRight"		1	"s_CHESTBIG_S0"		0.0	0.0	M.	"t_CHESTBIG_S0_PickLeft"	R)          
+		//	ani			("t_CHESTBIG_S0_PickLeft"		1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_OpenBig_M01.asc"		F	122	130)
+		//	aniAlias	("t_CHESTBIG_S0_PickRight"		1	"s_CHESTBIG_S0"		0.0	0.0	M.	"t_CHESTBIG_S0_PickLeft"	R)          
 
 // ---------------------------------------------------------------------------------------------------------------
 // *** ??? *** was geht bei Türen? Dietrich? Schlüssel? 
@@ -2793,85 +2791,86 @@ Model ("HuS")
 
 // ---------------------------------------------------------------------------------------------------------------
 // Fireplace
-			ani			("c_FP_Stand_2_S0_1"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	0	8)
-			ani			("c_FP_Stand_2_S0_2"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	20	28)
-			ani			("c_FP_Stand_2_S0_3"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	40	48)
-			aniComb		("t_FIREPLACE_Stand_2_S0"	1	"s_FIREPLACE_S0"	0.0	0.0	M.	"c_FP_STAND_2_S0_"			3)
-			{
-				*eventTag	(0	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
-			}
+		//	ani			("c_FP_Stand_2_S0_1"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	0	8)
+		//	ani			("c_FP_Stand_2_S0_2"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	20	28)
+		//	ani			("c_FP_Stand_2_S0_3"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	40	48)
+		//	aniComb		("t_FIREPLACE_Stand_2_S0"	1	"s_FIREPLACE_S0"	0.0	0.0	M.	"c_FP_STAND_2_S0_"			3)
+		//	{
+		//		*eventTag	(0	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+		//	}
 
-			ani			("c_FP_S0_1"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	9	9)
-			ani			("c_FP_S0_2"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	29	29)
-			ani			("c_FP_S0_3"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	49	49)
-			aniComb		("s_FIREPLACE_S0"			1	"s_FIREPLACE_S0"	0.0	0.0	M.	"c_FP_S0_"					3)
+		//	ani			("c_FP_S0_1"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	9	9)
+		//	ani			("c_FP_S0_2"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	29	29)
+		//	ani			("c_FP_S0_3"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	49	49)
+		//	aniComb		("s_FIREPLACE_S0"			1	"s_FIREPLACE_S0"	0.0	0.0	M.	"c_FP_S0_"					3)
 
-			ani			("c_FP_S0_2_Stand_1"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	0	8)
-			ani			("c_FP_S0_2_Stand_2"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	20	28)
-			ani			("c_FP_S0_2_Stand_3"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	40	48)
-			aniComb		("t_FIREPLACE_S0_2_Stand"	1	""					0.0	0.0	M.	"c_FP_STAND_2_S0_"			3)
-			{
-				*eventTag	(0	"DEF_REMOVE_ITEM")
-			}
+		//	ani			("c_FP_S0_2_Stand_1"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	0	8)
+		//	ani			("c_FP_S0_2_Stand_2"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	20	28)
+		//	ani			("c_FP_S0_2_Stand_3"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	40	48)
+		//	aniComb		("t_FIREPLACE_S0_2_Stand"	1	""					0.0	0.0	M.	"c_FP_STAND_2_S0_"			3)
+		//	{
+		//		*eventTag	(0	"DEF_REMOVE_ITEM")
+		//	}
 
-			ani			("c_FP_S0_2_S1_1"			1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	10	18)
-			ani			("c_FP_S0_2_S1_2"			1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	30	38)
-			ani			("c_FP_S0_2_S1_3"			1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	50	58)
-			aniComb		("t_FIREPLACE_S0_2_S1"		1	"s_FIREPLACE_S1"	0.0	0.0	M.	"c_FP_S0_2_S1_"				3)
+		//	ani			("c_FP_S0_2_S1_1"			1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	10	18)
+		//	ani			("c_FP_S0_2_S1_2"			1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	30	38)
+		//	ani			("c_FP_S0_2_S1_3"			1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	50	58)
+		//	aniComb		("t_FIREPLACE_S0_2_S1"		1	"s_FIREPLACE_S1"	0.0	0.0	M.	"c_FP_S0_2_S1_"				3)
 
-			ani			("c_FP_S1_1"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	19	19)
-			ani			("c_FP_S1_2"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	39	39)
-			ani			("c_FP_S1_3"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	59	59)
-			aniComb		("s_FIREPLACE_S1"			1	"s_FIREPLACE_S1"	0.0	0.0	M.	"c_FP_S1_"					3)
+		//	ani			("c_FP_S1_1"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	19	19)
+		//	ani			("c_FP_S1_2"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	39	39)
+		//	ani			("c_FP_S1_3"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	59	59)
+		//	aniComb		("s_FIREPLACE_S1"			1	"s_FIREPLACE_S1"	0.0	0.0	M.	"c_FP_S1_"					3)
 
-			ani			("c_FP_S1_2_Stand_1"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	0	18)
-			ani			("c_FP_S1_2_Stand_2"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	20	38)
-			ani			("c_FP_S1_2_Stand_3"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	40	58)
-			aniComb		("t_FIREPLACE_S1_2_Stand"	1	""					0.0	0.1	M.	"c_FP_S1_2_Stand_"			3)
-			{
-				*eventTag	(0	"DEF_REMOVE_ITEM")
-			}
+		//	ani			("c_FP_S1_2_Stand_1"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	0	18)
+		//	ani			("c_FP_S1_2_Stand_2"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	20	38)
+		//	ani			("c_FP_S1_2_Stand_3"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	40	58)
+		//	aniComb		("t_FIREPLACE_S1_2_Stand"	1	""					0.0	0.1	M.	"c_FP_S1_2_Stand_"			3)
+		//	{
+		//		*eventTag	(0	"DEF_REMOVE_ITEM")
+		//	}
+
 // --------------------------------------------------------------------------------------------------------------
 // Auf Stuhl setzen
-			ani			("t_Chair_Stand_2_S0"		1	"s_Chair_S0"	0.2	0.0	M.	"Hum_SitChair_M01.asc"		F	0	4)
-			ani			("s_Chair_S0"				1	"s_Chair_S0"	0.0	0.0	M.	"Hum_SitChair_M01.asc"		F	5	5)
-			aniAlias	("t_Chair_S0_2_Stand"		1	""				0.0	0.2	M.	"t_Chair_Stand_2_S0"		R)
+		//	ani			("t_Chair_Stand_2_S0"		1	"s_Chair_S0"	0.2	0.0	M.	"Hum_SitChair_M01.asc"		F	0	4)
+		//	ani			("s_Chair_S0"				1	"s_Chair_S0"	0.0	0.0	M.	"Hum_SitChair_M01.asc"		F	5	5)
+		//	aniAlias	("t_Chair_S0_2_Stand"		1	""				0.0	0.2	M.	"t_Chair_Stand_2_S0"		R)
 
-			ani			("t_Chair_S0_2_S1"			1	"s_Chair_S1"	0.0	0.0	M.	"Hum_SitChair_M01.asc"		F	5	39)
-			{
-				*eventTag	(7	"DEF_INV_TORCH")
-				*eventSFX	(38	"CHAIR_USE"		R:1000	EMPTY_SLOT	)
-			}
+		//	ani			("t_Chair_S0_2_S1"			1	"s_Chair_S1"	0.0	0.0	M.	"Hum_SitChair_M01.asc"		F	5	39)
+		//	{
+		//		*eventTag	(7	"DEF_INV_TORCH")
+		//		*eventSFX	(38	"CHAIR_USE"		R:1000	EMPTY_SLOT	)
+		//	}
 
-			ani			("s_Chair_S1"				1	"s_Chair_S1"	0.0	0.0	MI	"Hum_SitChair_M01.asc"		F	40	79	FPS:10)
-			aniAlias	("t_Chair_S1_2_S0"			1	"s_Chair_S0"	0.0	0.1	M.	"t_Chair_S0_2_S1"			R)
+		//	ani			("s_Chair_S1"				1	"s_Chair_S1"	0.0	0.0	MI	"Hum_SitChair_M01.asc"		F	40	79	FPS:10)
+		//	aniAlias	("t_Chair_S1_2_S0"			1	"s_Chair_S0"	0.0	0.1	M.	"t_Chair_S0_2_S1"			R)
 
 // CHAIR RANDOMS
-			ani			("R_Chair_Random_1"			2	""				0.3	0.3	M.	"Hum_SitBench_Random_M01.asc"	F	1	45	FPS:10)
-			ani			("R_Chair_Random_2"			2	""				0.3	0.3	M.	"Hum_SitBench_Random_M01.asc"	F	47	99	FPS:10)
-			ani			("R_Chair_Random_3"			2	""				0.3	0.3	M.	"Hum_SitBench_Random_M01.asc"	F	101	174	FPS:10)
-			ani			("R_Chair_Random_4"			2	""				0.3	0.3	M.	"Hum_SitBench_Random_M01.asc"	F	176	224	FPS:10)
+		//	ani			("R_Chair_Random_1"			2	""				0.3	0.3	M.	"Hum_SitBench_Random_M01.asc"	F	1	45	FPS:10)
+		//	ani			("R_Chair_Random_2"			2	""				0.3	0.3	M.	"Hum_SitBench_Random_M01.asc"	F	47	99	FPS:10)
+		//	ani			("R_Chair_Random_3"			2	""				0.3	0.3	M.	"Hum_SitBench_Random_M01.asc"	F	101	174	FPS:10)
+		//	ani			("R_Chair_Random_4"			2	""				0.3	0.3	M.	"Hum_SitBench_Random_M01.asc"	F	176	224	FPS:10)
 
 // ---------------------------------------------------------------------------------------------------------------
 // Auf Bank setzen
-			ani			("t_Bench_Stand_2_S0"		1	"s_Bench_S0"	0.2	0.0	M.	"Hum_SitBench_M01.asc"		F	0	4)
-			ani			("s_Bench_S0"				1	"s_Bench_S0"	0.0	0.0	M.	"Hum_SitBench_M01.asc"		F	5	5)
-			aniAlias	("t_Bench_S0_2_Stand"		1	""				0.0	0.2	M.	"t_Bench_Stand_2_S0"		R)
+		//	ani			("t_Bench_Stand_2_S0"		1	"s_Bench_S0"	0.2	0.0	M.	"Hum_SitBench_M01.asc"		F	0	4)
+		//	ani			("s_Bench_S0"				1	"s_Bench_S0"	0.0	0.0	M.	"Hum_SitBench_M01.asc"		F	5	5)
+		//	aniAlias	("t_Bench_S0_2_Stand"		1	""				0.0	0.2	M.	"t_Bench_Stand_2_S0"		R)
 
-			ani			("t_Bench_S0_2_S1"			1	"s_Bench_S1"	0.0	0.0	M.	"Hum_SitBench_M01.asc"		F	6	39)
-			{
-				*eventTag	(7	"DEF_INV_TORCH")
-				*eventSFX	(36	"CHAIR_USE"		R:1000	EMPTY_SLOT	)
-			}
+		//	ani			("t_Bench_S0_2_S1"			1	"s_Bench_S1"	0.0	0.0	M.	"Hum_SitBench_M01.asc"		F	6	39)
+		//	{
+		//		*eventTag	(7	"DEF_INV_TORCH")
+		//		*eventSFX	(36	"CHAIR_USE"		R:1000	EMPTY_SLOT	)
+		//	}
 
-			ani			("s_Bench_S1"				1	"s_Bench_S1"	0.0	0.0	MI	"Hum_SitBench_M01.asc"	F	40	90	FPS:10)
-			aniAlias	("t_Bench_S1_2_S0"			1	"s_Bench_S0"	0.0	0.0	M.	"t_Bench_S0_2_S1"			R)
+		//	ani			("s_Bench_S1"				1	"s_Bench_S1"	0.0	0.0	MI	"Hum_SitBench_M01.asc"		F	40	90	FPS:10)
+		//	aniAlias	("t_Bench_S1_2_S0"			1	"s_Bench_S0"	0.0	0.0	M.	"t_Bench_S0_2_S1"			R)
 
 // BENCH RANDOMS (aniAlias von Chair)
-			aniAlias	("R_Bench_Random_1"			2	""				0.3	0.3	M.	"R_Chair_Random_1"			F)
-			aniAlias	("R_Bench_Random_2"			2	""				0.3	0.3	M.	"R_Chair_Random_2"			F)
-			aniAlias	("R_Bench_Random_3"			2	""				0.3	0.3	M.	"R_Chair_Random_3"			F)
-			aniAlias	("R_Bench_Random_4"			2	""				0.3	0.3	M.	"R_Chair_Random_4"			F)
+		//	aniAlias	("R_Bench_Random_1"			2	""				0.3	0.3	M.	"R_Chair_Random_1"			F)
+		//	aniAlias	("R_Bench_Random_2"			2	""				0.3	0.3	M.	"R_Chair_Random_2"			F)
+		//	aniAlias	("R_Bench_Random_3"			2	""				0.3	0.3	M.	"R_Chair_Random_3"			F)
+		//	aniAlias	("R_Bench_Random_4"			2	""				0.3	0.3	M.	"R_Chair_Random_4"			F)
 
 // ---------------------------------------------------------------------------------------------------------------
 // Auf Thron setzen
@@ -3084,23 +3083,23 @@ Model ("HuS")
 
 // ---------------------------------------------------------------------------------------------------------------
 // TA_CookForMe (Pfanne über Lagerfeuer)
-			ani			("t_Pan_Stand_2_S0"			1	"s_Pan_S0"		0.1	0.0	M.	"Hum_CookForMe_M01.asc"		F	0	24)
-			ani			("s_Pan_S0"					1	"s_Pan_S0"		0.0	0.0	M.	"Hum_CookForMe_M01.asc"		F	25	25)
-			aniAlias	("t_Pan_S0_2_Stand"			1	""				0.0	0.2	M.	"t_Pan_Stand_2_S0"			R)
+		//	ani			("t_Pan_Stand_2_S0"			1	"s_Pan_S0"		0.1	0.0	M.	"Hum_CookForMe_M01.asc"		F	0	24)
+		//	ani			("s_Pan_S0"					1	"s_Pan_S0"		0.0	0.0	M.	"Hum_CookForMe_M01.asc"		F	25	25)
+		//	aniAlias	("t_Pan_S0_2_Stand"			1	""				0.0	0.2	M.	"t_Pan_Stand_2_S0"			R)
 
-			ani			("t_Pan_S0_2_S1"			1	"s_Pan_S1"		0.0	0.0	M.	"Hum_CookForMe_M01.asc"		F	26	34)
-			{
-				*eventTag	(26	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
-			}
-			ani			("s_Pan_S1"					1	"s_Pan_S1"		0.0	0.0	M.	"Hum_CookForMe_M01.asc"		F	35	84)
-			{
-				*eventSFX	(36	"PAN_FRYING"	R:1000	EMPTY_SLOT	)
-			}
-			ani			("t_Pan_S1_2_S0"			1	"s_Pan_S0"		0.0	0.0	M.	"Hum_CookForMe_M01.asc"		R	26	34)
-			{
-				*eventTag	(33	"DEF_EXCHANGE_ITEM"	"ZS_LEFTHAND"	"ItFoMutton")
-				*eventTag	(26	"DEF_REMOVE_ITEM")
-			}
+		//	ani			("t_Pan_S0_2_S1"			1	"s_Pan_S1"		0.0	0.0	M.	"Hum_CookForMe_M01.asc"		F	26	34)
+		//	{
+		//		*eventTag	(26	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+		//	}
+		//	ani			("s_Pan_S1"					1	"s_Pan_S1"		0.0	0.0	M.	"Hum_CookForMe_M01.asc"		F	35	84)
+		//	{
+		//		*eventSFX	(36	"PAN_FRYING"	R:1000	EMPTY_SLOT	)
+		//	}
+		//	ani			("t_Pan_S1_2_S0"			1	"s_Pan_S0"		0.0	0.0	M.	"Hum_CookForMe_M01.asc"		R	26	34)
+		//	{
+		//		*eventTag	(33	"DEF_EXCHANGE_ITEM"	"ZS_LEFTHAND"	"ItFoMutton")
+		//		*eventTag	(26	"DEF_REMOVE_ITEM")
+		//	}
 
 // ---------------------------------------------------------------------------------------------------------------
 // TA_PotionAlchemy (Labortisch)
@@ -3290,7 +3289,6 @@ Model ("HuS")
 
 			ani			("t_RMAKER_Stand_2_S0"		1	"s_RMAKER_S0"		0.0	0.0	M.	"Hum_RuneMaker2_M01.asc"	F	0	25)
 			{
-	//			*eventTag	(2	"DEF_CREATE_ITEM"	"ZS_RIGHTHAND"	"ItMi_Pliers")
 				*eventTag   (4   "DEF_INV_TORCH")
 			}
 			ani			("s_RMAKER_S0"				1	"s_RMAKER_S0"		0.0	0.0	M.	"Hum_RuneMaker2_M01.asc"	F	25	25)
@@ -3388,25 +3386,25 @@ Model ("HuS")
 // ---------------------------------------------------------------------------------------------------------------
 // Boden kehren
 
-			ani			("t_BROOM_Stand_2_S0"		1	"s_BROOM_S0"		0.2	0.0	M.	"Hum_Fegen_A01.ASC"		F	0	5)
-			{
-				*eventTag	(3	"DEF_INV_TORCH")
-				*eventTag	(5	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
-			}
+		//	ani			("t_BROOM_Stand_2_S0"		1	"s_BROOM_S0"		0.2	0.0	M.	"Hum_Fegen_A01.ASC"		F	0	5)
+		//	{
+		//		*eventTag	(3	"DEF_INV_TORCH")
+		//		*eventTag	(5	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+		//	}
 			
-			ani			("s_BROOM_S0"				1	"s_BROOM_S0"		0.0	0.0	M.	"Hum_Fegen_A01.asc"		F	6	6)
-			ani			("t_BROOM_S0_2_Stand"		1	""					0.0	0.2	M.	"Hum_Fegen_A01.asc"		R	0	5)
-			{
-				*eventTag	(5	"DEF_REMOVE_ITEM")
-			}
+		//	ani			("s_BROOM_S0"				1	"s_BROOM_S0"		0.0	0.0	M.	"Hum_Fegen_A01.asc"		F	6	6)
+		//	ani			("t_BROOM_S0_2_Stand"		1	""					0.0	0.2	M.	"Hum_Fegen_A01.asc"		R	0	5)
+		//	{
+		//		*eventTag	(5	"DEF_REMOVE_ITEM")
+		//	}
 			
-			ani			("t_BROOM_S0_2_S1"			1	"s_BROOM_S1"		0.0	0.0	M.	"Hum_Fegen_A01.asc"		F	7	35)
+		//	ani			("t_BROOM_S0_2_S1"			1	"s_BROOM_S1"		0.0	0.0	M.	"Hum_Fegen_A01.asc"		F	7	35)
 			
-			ani			("s_BROOM_S1"				1	"s_BROOM_S1"		0.0	0.0	M.	"Hum_Fegen_A01.asc"		F	35	85)
-			{
-				*eventSFX	(40	"mob_sweep"	EMPTY_SLOT	)
-			}
-			ani			("t_BROOM_S1_2_S0"			1	"s_BROOM_S0"		0.0	0.2	M.	"Hum_Fegen_A01.asc"		R	5	35)
+		//	ani			("s_BROOM_S1"				1	"s_BROOM_S1"		0.0	0.0	M.	"Hum_Fegen_A01.asc"		F	35	85)
+		//	{
+		//		*eventSFX	(40	"mob_sweep"	EMPTY_SLOT	)
+		//	}
+		//	ani			("t_BROOM_S1_2_S0"			1	"s_BROOM_S0"		0.0	0.2	M.	"Hum_Fegen_A01.asc"		R	5	35)
 			
 // ---------------------------------------------------------------------------------------------------------------
 // Feld pflügen
@@ -3516,9 +3514,9 @@ Model ("HuS")
 
 // ---------------------------------------------------------------------------------------------------------------
 //	Auf Boden setzen
-			ani			("t_Stand_2_Sit"			1	"s_Sit"			0.1	0.0	M.	"Hum_SitGround_M01.asc"			F	1	39	FPS:10	CVS:0.1)
-			ani			("s_Sit"					1	"s_Sit"			0.0	0.0	MI	"Hum_SitGround_M01.asc"			F	40	80	FPS:10	CVS:0.1)
-			aniAlias	("t_Sit_2_Stand"			1	""				0.0	0.2	M.	"t_Stand_2_Sit"					R)
+		//	ani			("t_Stand_2_Sit"			1	"s_Sit"			0.1	0.0	M.	"Hum_SitGround_M01.asc"			F	1	39	FPS:10	CVS:0.1)
+		//	ani			("s_Sit"					1	"s_Sit"			0.0	0.0	MI	"Hum_SitGround_M01.asc"			F	40	80	FPS:10	CVS:0.1)
+		//	aniAlias	("t_Sit_2_Stand"			1	""				0.0	0.2	M.	"t_Stand_2_Sit"					R)
 
 // ---------------------------------------------------------------------------------------------------------------
 //	Heavy Guard ( Wache stehen mit dicker Rüstung )
@@ -3628,37 +3626,37 @@ Model ("HuS")
 // Dialoggesten-Pool für zufällig zu OUs zugewiesene Gesten
 
 // *** ??? ** Carsten: wieviele werden benutzt? was, wenn zu wenig angegeben?
-			ani			("T_DIALOGGESTURE_01"		20	""		0.2	0.4	MI	"Hum_Dialoggesture01_A01.asc"			F	1	59	FPS:10)
-			ani			("t_DIALOGGESTURE_02"		20	""		0.2	0.4	MI	"Hum_Dialoggesture02_A01.asc"			F	1	49	FPS:10)
-			ani			("t_DIALOGGESTURE_03"		20	""		0.2	0.4	MI	"Hum_Dialoggesture03_A01.asc"			F	1	54	FPS:10)
-			ani			("t_DIALOGGESTURE_04"		20	""		0.2	0.4	MI	"Hum_Dialoggesture04_A01.asc"			F	1	54	FPS:10)
-			ani			("t_DIALOGGESTURE_05"		20	""		0.2	0.4	MI	"Hum_Dialoggesture06_A01.asc"			F	1	49	FPS:10)
-			ani			("t_DIALOGGESTURE_06"		20	""		0.2	0.4	MI	"Hum_Dialoggesture07_A01.asc"			F	1	238	FPS:10)
-			ani			("t_DIALOGGESTURE_07"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	1	149	FPS:10)
-			ani			("t_DIALOGGESTURE_08"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	151	229	FPS:10)
-			ani			("t_DIALOGGESTURE_09"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	231	379	FPS:10)
-			ani			("t_DIALOGGESTURE_10"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
-			ani			("t_DIALOGGESTURE_11"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
-			ani			("t_DIALOGGESTURE_12"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
-			ani			("t_DIALOGGESTURE_13"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
-			ani			("t_DIALOGGESTURE_14"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
-			ani			("t_DIALOGGESTURE_15"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
-			ani			("t_DIALOGGESTURE_16"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
-			ani			("t_DIALOGGESTURE_17"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
-			ani			("t_DIALOGGESTURE_18"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
-			ani			("t_DIALOGGESTURE_19"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
-			ani			("t_DIALOGGESTURE_20"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
+		//	ani			("T_DIALOGGESTURE_01"		20	""		0.2	0.4	MI	"Hum_Dialoggesture01_A01.asc"			F	1	59	FPS:10)
+		//	ani			("t_DIALOGGESTURE_02"		20	""		0.2	0.4	MI	"Hum_Dialoggesture02_A01.asc"			F	1	49	FPS:10)
+		//	ani			("t_DIALOGGESTURE_03"		20	""		0.2	0.4	MI	"Hum_Dialoggesture03_A01.asc"			F	1	54	FPS:10)
+		//	ani			("t_DIALOGGESTURE_04"		20	""		0.2	0.4	MI	"Hum_Dialoggesture04_A01.asc"			F	1	54	FPS:10)
+		//	ani			("t_DIALOGGESTURE_05"		20	""		0.2	0.4	MI	"Hum_Dialoggesture06_A01.asc"			F	1	49	FPS:10)
+		//	ani			("t_DIALOGGESTURE_06"		20	""		0.2	0.4	MI	"Hum_Dialoggesture07_A01.asc"			F	1	238	FPS:10)
+		//	ani			("t_DIALOGGESTURE_07"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	1	149	FPS:10)
+		//	ani			("t_DIALOGGESTURE_08"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	151	229	FPS:10)
+		//	ani			("t_DIALOGGESTURE_09"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	231	379	FPS:10)
+		//	ani			("t_DIALOGGESTURE_10"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
+		//	ani			("t_DIALOGGESTURE_11"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
+		//	ani			("t_DIALOGGESTURE_12"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
+		//	ani			("t_DIALOGGESTURE_13"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
+		//	ani			("t_DIALOGGESTURE_14"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
+		//	ani			("t_DIALOGGESTURE_15"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
+		//	ani			("t_DIALOGGESTURE_16"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
+		//	ani			("t_DIALOGGESTURE_17"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
+		//	ani			("t_DIALOGGESTURE_18"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
+		//	ani			("t_DIALOGGESTURE_19"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
+		//	ani			("t_DIALOGGESTURE_20"		20	""		0.2	0.4	MI	"Hum_Dialoggesture08_A01.ASC"			F	381	444	FPS:10)
 
-//			aniAlias	("t_DIALOGGESTURE_11"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_01"	R)
-//			aniAlias	("t_DIALOGGESTURE_12"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_02"	R)
-//			aniAlias	("t_DIALOGGESTURE_13"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_03"	R)
-//			aniAlias	("t_DIALOGGESTURE_14"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_04"	R)			
-//			aniAlias	("t_DIALOGGESTURE_15"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_05"	R)
-//			aniAlias	("t_DIALOGGESTURE_16"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_06"	R)
-//			aniAlias	("t_DIALOGGESTURE_17"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_07"	R)
-//			aniAlias	("t_DIALOGGESTURE_18"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_08"	R)
-//			aniAlias	("t_DIALOGGESTURE_19"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_09"	R)
-//			aniAlias	("t_DIALOGGESTURE_20"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_10"	R)
+		//	aniAlias	("t_DIALOGGESTURE_11"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_01"	R)
+		//	aniAlias	("t_DIALOGGESTURE_12"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_02"	R)
+		//	aniAlias	("t_DIALOGGESTURE_13"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_03"	R)
+		//	aniAlias	("t_DIALOGGESTURE_14"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_04"	R)			
+		//	aniAlias	("t_DIALOGGESTURE_15"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_05"	R)
+		//	aniAlias	("t_DIALOGGESTURE_16"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_06"	R)
+		//	aniAlias	("t_DIALOGGESTURE_17"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_07"	R)
+		//	aniAlias	("t_DIALOGGESTURE_18"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_08"	R)
+		//	aniAlias	("t_DIALOGGESTURE_19"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_09"	R)
+		//	aniAlias	("t_DIALOGGESTURE_20"		20	""		0.2	0.4	MI	"T_DIALOGGESTURE_10"	R)
 
 
 // Fixme: noch nicht überarbeitet. Slots raus, Übergänge checken,...
@@ -3712,7 +3710,7 @@ Model ("HuS")
 // Nein
 			ani			("t_No"						2	""				0.1	0.1	M.	"Hum_No_M01.asc"			F	1	46)
 // Keine Ahnung
-			ani			("t_DontKnow"				2	""				0.1	0.1	M.	"Hum_DontKnow_M01.asc"		F	1	10)
+		//	ani			("t_DontKnow"				2	""				0.1	0.1	M.	"Hum_DontKnow_M01.asc"		F	1	10)
 
 // Vergiß es
 			ani			("t_ForgetIt"				2	""				0.1	0.1	M.	"Hum_ForgetIt_M01.asc"		F	1	27)
@@ -3723,7 +3721,7 @@ Model ("HuS")
 
 
 // Hey, komm mal rüber
-			ani			("t_ComeOverHere"			2	""				0.1	0.1	M.	"Hum_Hey!_o_Beine_Jue02.ASC"	F	1	80	FPS:10)
+		//	ani			("t_ComeOverHere"			2	""				0.1	0.1	M.	"Hum_Hey!_o_Beine_Jue02.ASC"	F	1	80	FPS:10)
 
 // Grüßen
 	// Gardisten
@@ -3741,12 +3739,12 @@ Model ("HuS")
 			ani			("t_iGetYou"				2	""				0.1	0.1	M.	"Hum_iGetYou_M01.asc"		F	1	59 FPS:10)
 
 // Langeweile Kick
-			ani			("t_BoringKick"				2	""				0.1	0.1	M.	"Hum_BoringKick_M01.asc"	F	1	66 FPS:10)
+		//	ani			("t_BoringKick"				2	""				0.1	0.1	M.	"Hum_BoringKick_M01.asc"	F	1	66 FPS:10)
 
 
 // Da war doch was, oder auch nicht
 		// Umherschauen / Suchen
-			ani			("t_Search"					2	""				0.1	0.1	M.	"Hum_Search_M02.asc"		F	1	74	FPS:10)
+		//	ani			("t_Search"					2	""				0.1	0.1	M.	"Hum_Search_M02.asc"		F	1	74	FPS:10)
 
 
 //-------------------------------
@@ -3755,19 +3753,19 @@ Model ("HuS")
 
 // Stehend
 	// Beine ausschütteln
-			ani			("r_LegShake"				2	""				0.1	0.2	M.	"Hum_Randoms1_M01.asc"		F	1	75 FPS:10)
+		//	ani			("r_LegShake"				2	""				0.1	0.2	M.	"Hum_Randoms1_M01.asc"		F	1	75 FPS:10)
 
 	// linke Schulter kratzen
-			ani			("r_ScratchLShoulder"		2	""				0.1	0.2	M.	"Hum_Randoms2_M01.asc"		F	76	125 FPS:10)
+		//	ani			("r_ScratchLShoulder"		2	""				0.1	0.2	M.	"Hum_Randoms2_M01.asc"		F	76	125 FPS:10)
 
 	// am Sack kratzen
-			ani			("r_ScratchEgg"				2	""				0.1	0.2	M.	"Hum_Randoms2_M01.asc"		F	126	175 FPS:10)
+		//	ani			("r_ScratchEgg"				2	""				0.1	0.2	M.	"Hum_Randoms2_M01.asc"		F	126	175 FPS:10)
 
 	// Kopf kratzen
-			ani			("r_ScratchHead"			2	""				0.1	0.2	M.	"Hum_Randoms2_M01.asc"		F	176	225 FPS:10)
+		//	ani			("r_ScratchHead"			2	""				0.1	0.2	M.	"Hum_Randoms2_M01.asc"		F	176	225 FPS:10)
 
 	// rechte Schulter kratzen
-			ani			("r_ScratchRShoulder"		2	""				0.1	0.2	M.	"Hum_Randoms2_M01.asc"		F	226	275 FPS:10)
+		//	ani			("r_ScratchRShoulder"		2	""				0.1	0.2	M.	"Hum_Randoms2_M01.asc"		F	226	275 FPS:10)
 
 
 // ------------------------------
@@ -3815,7 +3813,7 @@ Model ("HuS")
 
 //---------------------------
 // Pluendern
-			ani			("t_Plunder"				1	""				0.0	0.0	M.	"Hum_Pluender_A01.asc"		F	0	75)
+		//	ani			("t_Plunder"				1	""				0.0	0.0	M.	"Hum_Pluender_A01.asc"		F	0	75)
 
 
 //-----------------------
@@ -4030,7 +4028,7 @@ Model ("HuS")
 				*eventTag	(7		"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
 				*eventTag	(107	"DEF_DESTROY_ITEM")
 			}
-			
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BOW: GMF Version /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -4549,17 +4547,6 @@ Model ("HuS")
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BEER /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//	ani			("t_Beer_Stand_2_S0"	1	"s_Beer_S0"	0.1	0.0	M.	"Hum_Beer.ASC"	F	1	5)
-		//	{
-		//		*eventTag			(5	"DEF_INSERT_ITEM"		"ZS_LEFTHAND")
-		//	}
-		//	ani			("s_Beer_S0"			1	"s_Beer_S0"	0.0	0.0	M.	"Hum_Beer.asc"	F	6	6)
-		//	ani			("t_Beer_S0_2_Stand"	1	""			0.0	0.3	M.	"Hum_Beer.asc"	F	7	39)
-		//	{
-		//		*eventSFX			(19	"DrinkBottle"			R:800)
-		//		*eventTag			(35	"DEF_DESTROY_ITEM")
-		//	}
-
 			ani			("t_Beer_Stand_2_S0"		1	"s_Beer_S0"		0.1	0.0	M.	"Hum_DrinkBeer_GMF.asc"				F	0	29)
 			{
 				*eventTag			(15		"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
@@ -4582,6 +4569,530 @@ Model ("HuS")
 			
 // BEER /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GET ITEM /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("c_Stand_2_IGet_1"		1	""				0.0	0.0	.	"Hum_ItemGet_GMF.asc"		F	0	9)
+			ani			("c_Stand_2_IGet_2"		1	""				0.0	0.0	.	"Hum_ItemGet_GMF.asc"		F	20	29)
+			ani			("c_Stand_2_IGet_3"		1	""				0.0	0.0	.	"Hum_ItemGet_GMF.asc"		F	40	49)
+			aniComb		("t_Stand_2_IGet"		1	"s_IGet"		0.1	0.0	M.	"c_Stand_2_IGet_"			3)
+
+			ani			("c_IGet_1"				1	""				0.0	0.0	.	"Hum_ItemGet_GMF.asc"		F	10	10)
+			ani			("c_IGet_2"				1	""				0.0	0.0	.	"Hum_ItemGet_GMF.asc"		F	30	30)
+			ani			("c_IGet_3"				1	""				0.0	0.0	.	"Hum_ItemGet_GMF.asc"		F	50	50)
+			aniComb		("s_IGet"				1	"s_IGet"		0.1	0.1	M.	"c_IGet_"					3)
+
+			ani			("c_IGet_2_Stand_1"		1	""				0.0	0.0	.	"Hum_ItemGet_GMF.asc"		F	11	20)
+			ani			("c_IGet_2_Stand_2"		1	""				0.0	0.0	.	"Hum_ItemGet_GMF.asc"		F	31	40)
+			ani			("c_IGet_2_Stand_3"		1	""				0.0	0.0	.	"Hum_ItemGet_GMF.asc"		F	51	60)
+			aniComb		("t_IGet_2_Stand"		1	""				0.0	0.1	M.	"c_IGet_2_Stand_"			3)
+			
+// GET ITEM /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SNEAK GET ITEM ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Item AUFHEBEN (Sneak mode) Äàííûå àíèìàöèè èñïîëüçóþòñÿ òîëüêî ïðè ðàáîòå ïëàãèíà zExtendedAniUsage.dll äëÿ Union îò Slavemaster.
+			ani			("c_Sneak_2_SneakIGet_1"	1	""				0.0	0.0	.	"Hum_Sneak_ItemGet_GMF.asc"	F	0	9)
+			ani			("c_Sneak_2_SneakIGet_2"	1	""				0.0	0.0	.	"Hum_Sneak_ItemGet_GMF.asc"	F	20	29)
+			ani			("c_Sneak_2_SneakIGet_3"	1	""				0.0	0.0	.	"Hum_Sneak_ItemGet_GMF.asc"	F	40	49)
+			aniComb		("t_Sneak_2_SneakIGet"		1	"s_SneakIGet"	0.1	0.0	M.	"c_Sneak_2_SneakIGet_"		3)
+
+			ani			("c_SneakIGet_1"			1	""				0.0	0.0	.	"Hum_Sneak_ItemGet_GMF.asc"	F	10	10)
+			ani			("c_SneakIGet_2"			1	""				0.0	0.0	.	"Hum_Sneak_ItemGet_GMF.asc"	F	30	30)
+			ani			("c_SneakIGet_3"			1	""				0.0	0.0	.	"Hum_Sneak_ItemGet_GMF.asc"	F	50	50)
+			aniComb		("s_SneakIGet"				1	"s_SneakIGet"	0.1	0.1	M.	"c_SneakIGet_"				3)
+
+			ani			("c_SneakIGet_2_Sneak_1"	1	""				0.0	0.0	.	"Hum_Sneak_ItemGet_GMF.asc"	F	11	20)
+			ani			("c_SneakIGet_2_Sneak_2"	1	""				0.0	0.0	.	"Hum_Sneak_ItemGet_GMF.asc"	F	31	40)
+			ani			("c_SneakIGet_2_Sneak_3"	1	""				0.0	0.0	.	"Hum_Sneak_ItemGet_GMF.asc"	F	51	60)
+			aniComb		("t_SneakIGet_2_Sneak"		1	"s_Sneak"		0.0	0.1	M.	"c_SneakIGet_2_Sneak_"		3)
+			
+// SNEAK GET ITEM ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// PAN /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_Pan_Stand_2_S0"			1	"s_Pan_S0"		0.2	0.0	M.	"Hum_CookForMe_GMF.asc"		F	0	24)
+			{
+				*eventTag	(24	"DEF_INV_TORCH")
+			}
+			ani			("s_Pan_S0"					1	"s_Pan_S0"		0.0	0.0	M.	"Hum_CookForMe_GMF.asc"		F	25	25)
+			ani			("t_Pan_S0_2_Stand"			1	""				0.0	0.2	M.	"Hum_CookForMe_GMF.asc"		R	0	24)
+
+			ani			("t_Pan_S0_2_S1"			1	"s_Pan_S1"		0.0	0.0	M.	"Hum_CookForMe_GMF.asc"		F	26	34)
+			{
+				*eventTag	(26	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+			}
+			ani			("s_Pan_S1"					1	"s_Pan_S1"		0.0	0.0	M.	"Hum_CookForMe_GMF.asc"		F	35	84)
+			{
+				*eventSFX	(36	"PAN_FRYING"		EMPTY_SLOT		R:800)
+				*eventTag	(84	"DEF_EXCHANGE_ITEM"	"ZS_RIGHTHAND"	"ItFoMutton")
+			}
+			ani			("t_Pan_S1_2_S0"			1	"s_Pan_S0"		0.0	0.0	M.	"Hum_CookForMe_GMF.asc"		R	26	34)
+			{
+				*eventTag	(33	"DEF_EXCHANGE_ITEM"	"ZS_RIGHTHAND"	"ItFoMutton")
+				*eventTag	(26	"DEF_REMOVE_ITEM")
+			}
+			
+// PAN //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CHESTSMALL ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_CHESTSMALL_Stand_2_S0"		1	"s_CHESTSMALL_S0"	0.2	0.0	M.	"Hum_ChestSmall_GMF.asc"		F	0	14)
+			{
+				*eventTag	(7	"DEF_INV_TORCH")
+			}
+			ani			("s_CHESTSMALL_S0"				1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"Hum_ChestSmall_GMF.asc"		F	15	15)
+			aniAlias	("t_CHESTSMALL_S0_2_Stand"		1	""					0.0	0.2	M.	"t_CHESTSMALL_Stand_2_S0"		R)
+			ani			("t_CHESTSMALL_S0_2_S1"			1	"s_CHESTSMALL_S1"	0.0	0.0	M.	"Hum_ChestSmall_GMF.asc"		F	45	74)
+			ani			("s_CHESTSMALL_S1"				1	"s_CHESTSMALL_S1"	0.0	0.0	M.	"Hum_ChestSmallAmb_GMF.asc"		F	0	49)
+			ani			("t_CHESTSMALL_S1_2_S0"			1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"Hum_ChestSmall_GMF.asc"		F	76	89)
+			
+			ani			("t_CHESTSMALL_S0_PickLeft"		1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"Hum_ChestSmall_GMF.asc"		F	122	130)
+			aniAlias	("t_CHESTSMALL_S0_PickRight"	1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"t_CHESTSMALL_S0_PickLeft"		R)
+			ani			("t_CHESTSMALL_S0_Unlock"		1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"Hum_ChestSmall_GMF.asc"		F	15	44)
+			aniAlias	("t_CHESTSMALL_S0_Lock"			1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"t_CHESTSMALL_S0_Unlock"		R)
+			ani			("t_CHESTSMALL_S0_Try"			1	""					0.0	0.0	M.	"Hum_ChestSmall_GMF.asc"		F	91	119)
+			
+		//	ani	("t_CHESTSMALL_S0_NeedKey"				1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"Hum_ChestSmall_GMF.asc"		F	15	44)
+		//	{
+		//		*eventSFX	(16	"PICKLOCK_FAILURE"	EMPTY_SLOT	R:800)
+		//	}
+		//	ani	("t_CHESTSMALL_S0_KeyUnlock"			1	"s_CHESTSMALL_S0"	0.0	0.0	M.	"Hum_ChestSmall_GMF.asc"		F	15	44)
+		//	{
+		//		*eventSFX	(16	"KEY_UNLOCK"		EMPTY_SLOT	R:800)
+		//	}
+			
+// CHESTSMALL ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CHESTMEDIUM //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_CHESTMEDIUM_Stand_2_S0"		1	"s_CHESTMEDIUM_S0"	0.2	0.0	M.	"Hum_ChestMedium_GMF.asc"		F	0	14) 
+			{
+				*eventTag	(7	"DEF_INV_TORCH")
+			}
+			ani			("s_CHESTMEDIUM_S0"				1	"s_CHESTMEDIUM_S0"	0.0	0.0	M.	"Hum_ChestMedium_GMF.asc"		F	15	15) 
+			aniAlias	("t_CHESTMEDIUM_S0_2_Stand"		1	""					0.0	0.2	M.	"t_CHESTMEDIUM_Stand_2_S0"		R)          
+			ani			("t_CHESTMEDIUM_S0_2_S1"		1	"s_CHESTMEDIUM_S1"	0.0	0.0	M.	"Hum_ChestMedium_GMF.asc"		F	45	74) 
+			ani			("s_CHESTMEDIUM_S1"				1	"s_CHESTMEDIUM_S1"	0.0	0.0	M.	"Hum_ChestBigAmb_GMF.asc"		F	0	49)
+			ani			("t_CHESTMEDIUM_S1_2_S0"		1	"s_CHESTMEDIUM_S0"	0.0	0.0	M.	"Hum_ChestMedium_GMF.asc"		F	76	89) 
+
+			ani			("t_CHESTMEDIUM_S0_PickLeft"	1	"s_CHESTMEDIUM_S0"	0.0	0.0	M.	"Hum_ChestMedium_GMF.asc"		F	122	130)
+			aniAlias	("t_CHESTMEDIUM_S0_PickRight"	1	"s_CHESTMEDIUM_S0"	0.0	0.0	M.	"t_CHESTMEDIUM_S0_PickLeft"		R)
+			ani			("t_CHESTMEDIUM_S0_Unlock"		1	"s_CHESTMEDIUM_S0"	0.0	0.0	M.	"Hum_ChestMedium_GMF.asc"		F	15	44) 
+			aniAlias	("t_CHESTMEDIUM_S0_Lock"		1	"s_CHESTMEDIUM_S0"	0.0	0.0	M.	"t_CHESTMEDIUM_S0_Unlock"		R)          
+			ani			("t_CHESTMEDIUM_S0_Try"			1	""					0.0	0.0	M.	"Hum_ChestMedium_GMF.asc"		F	91	119)
+
+		//	ani	("t_CHESTMEDIUM_S0_NeedKey"				1	"s_CHESTMEDIUM_S0"	0.0	0.0	M.	"Hum_ChestMedium_GMF.asc"		F	15	44)
+		//	{
+		//		*eventSFX	(16	"PICKLOCK_FAILURE"	EMPTY_SLOT	R:800)
+		//	}
+		//	ani	("t_CHESTMEDIUM_S0_KeyUnlock"			1	"s_CHESTMEDIUM_S0"	0.0	0.0	M.	"Hum_ChestMedium_GMF.asc"		F	15	44)
+		//	{
+		//		*eventSFX	(16	"KEY_UNLOCK"		EMPTY_SLOT	R:800)
+		//	}
+			
+// CHESTMEDIUM //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CHESTBIG /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_CHESTBIG_Stand_2_S0"		1	"s_CHESTBIG_S0"		0.2	0.0	M.	"Hum_ChestBig_GMF.asc"		F	0	14) 
+			{
+				*eventTag	(7	"DEF_INV_TORCH")
+			}
+			ani			("s_CHESTBIG_S0"				1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_ChestBig_GMF.asc"		F	15	15) 
+			aniAlias	("t_CHESTBIG_S0_2_Stand"		1	""					0.0	0.2	M.	"t_CHESTBIG_Stand_2_S0"		R)          
+			ani			("t_CHESTBIG_S0_2_S1"			1	"s_CHESTBIG_S1"		0.0	0.0	M.	"Hum_ChestBig_GMF.asc"		F	45	74)
+			ani			("s_CHESTBIG_S1"				1	"s_CHESTBIG_S1"		0.0	0.0	M.	"Hum_ChestBigAmb_GMF.asc"	F	0	49)
+			ani			("t_CHESTBIG_S1_2_S0"			1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_ChestBig_GMF.asc"		F	76	89) 
+
+			ani			("t_CHESTBIG_S0_PickLeft"		1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_ChestBig_GMF.asc"		F	122	130)
+			aniAlias	("t_CHESTBIG_S0_PickRight"		1	"s_CHESTBIG_S0"		0.0	0.0	M.	"t_CHESTBIG_S0_PickLeft"	R)
+			ani			("t_CHESTBIG_S0_Unlock"			1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_ChestBig_GMF.asc"		F	15	44) 
+			aniAlias	("t_CHESTBIG_S0_Lock"			1	"s_CHESTBIG_S0"		0.0	0.0	M.	"t_CHESTBIG_S0_Unlock"		R)          
+			ani			("t_CHESTBIG_S0_Try"			1	""					0.0	0.0	M.	"Hum_ChestBig_GMF.asc"		F	91	119)
+
+		//	ani	("t_CHESTBIG_S0_NeedKey"				1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_ChestBig_GMF.asc"		F	15	44)
+		//	{
+		//		*eventSFX	(16	"PICKLOCK_FAILURE"	EMPTY_SLOT	R:800)
+		//	}
+		//	ani	("t_CHESTBIG_S0_KeyUnlock"				1	"s_CHESTBIG_S0"		0.0	0.0	M.	"Hum_ChestBig_GMF.asc"		F	15	44)
+		//	{
+		//		*eventSFX	(16	"KEY_UNLOCK"		EMPTY_SLOT	R:800)
+		//	}
+			
+// CHESTBIG /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// JOINT ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_JOINT_Stand_2_S0"		1	"s_JOINT_S0"	0.3	0.0	M.	"Hum_SmokeHerb_RH_GMF.asc"			F	0	40)
+			{
+				*eventTag		(10		"DEF_INV_TORCH")
+				*eventTag		(24		"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+			}
+			ani			("s_JOINT_S0"				1	"s_JOINT_S0"	0.0	0.0	M.	"Hum_SmokeHerb_RH_GMF.asc"			F	40	40)
+			ani			("t_JOINT_Random_1"			2	""				0.2	0.2	M.	"Hum_SmokeHerb_RH_GMF.asc"			F	40	140)
+			{
+				*eventPFX		(60		1	"LIGHTSMOKE_IN"		"ZS_LEFTHAND"	ATTACH)
+			//	*eventPFX		(60		1	"LIGHTSMOKE"		"ZS_LEFTHAND"	ATTACH)
+				*eventPFXStop	(85		1)
+				*eventSFX		(100		"SMOKE_JOINT"		EMPTY_SLOT		R:600)
+				*eventPFX		(100	2	"LIGHTSMOKE_OUT"	"ZS_LEFTHAND"	ATTACH)
+			//	*eventPFX		(100	2	"LIGHTSMOKE"		"ZS_LEFTHAND"	ATTACH)
+				*eventPFXStop	(125	2)
+			}
+			ani			("t_JOINT_S0_2_Stand"		1	""				0.1	0.3	M.	"Hum_SmokeHerb_RH_GMF.asc"			F	40	200)
+			{
+				*eventPFX		(60		1	"LIGHTSMOKE_IN"		"ZS_LEFTHAND"	ATTACH)
+			//	*eventPFX		(60		1	"LIGHTSMOKE"		"ZS_LEFTHAND"	ATTACH)
+				*eventPFXStop	(85		1)
+				*eventSFX		(100		"SMOKE_JOINT"		EMPTY_SLOT		R:600)
+				*eventPFX		(100	2	"LIGHTSMOKE_OUT"	"ZS_LEFTHAND"	ATTACH)
+			//	*eventPFX		(100	2	"LIGHTSMOKE"		"ZS_LEFTHAND"	ATTACH)
+				*eventPFXStop	(125	2)
+				*eventPFX		(152	3	"LIGHTSMOKE_IN"		"ZS_LEFTHAND"	ATTACH)
+			//	*eventPFX		(152	3	"LIGHTSMOKE"		"ZS_LEFTHAND"	ATTACH)
+				*eventPFXStop	(160	3)
+				*eventPFX		(170	4	"LIGHTSMOKE_OUT"	"ZS_LEFTHAND"	ATTACH)
+			//	*eventPFX		(170	4	"LIGHTSMOKE"		"ZS_LEFTHAND"	ATTACH)
+				*eventPFXStop	(190	4)
+				*eventTag		(197		"DEF_DESTROY_ITEM")
+			}
+			
+// JOINT ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// USEDJOINT ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			// USEDJOINT: àíèìàöèè âçàèìîäåéñòâèÿ ñ âûêóðåííûì êîñÿêîì äëÿ èñïîëüçîâàíèÿ â ðàñïîðÿäêàõ ÈÈ.
+			ani			("t_USEDJOINT_Stand_2_S0"	1	"s_USEDJOINT_S0"	0.2	0.0	M.	"Hum_SmokeHerb_RH_GMF.asc"			F	0	40)
+			{
+				*eventTag		(24		"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+			}
+			ani			("s_USEDJOINT_S0"			1	"s_USEDJOINT_S0"	0.0	0.0	MI	"Hum_SmokeHerb_RH_S0_GMF.asc"		F	0	49)
+			ani			("t_USEDJOINT_Random_1"		2	""					0.2	0.2	M.	"Hum_SmokeHerb_RH_GMF.asc"			F	40	140)
+			{
+				*eventPFX		(60		1	"LIGHTSMOKE_IN"		"ZS_LEFTHAND"	ATTACH)
+			//	*eventPFX		(60		1	"LIGHTSMOKE"		"ZS_LEFTHAND"	ATTACH)
+				*eventPFXStop	(85		1)
+				*eventSFX		(100		"SMOKE_JOINT"		EMPTY_SLOT		R:600)
+				*eventPFX		(100	2	"LIGHTSMOKE_OUT"	"ZS_LEFTHAND"	ATTACH)
+			//	*eventPFX		(100	2	"LIGHTSMOKE"		"ZS_LEFTHAND"	ATTACH)
+				*eventPFXStop	(125	2)
+			}
+			ani			("t_USEDJOINT_S0_2_Stand"	1	""					0.1	0.2	M.	"Hum_SmokeHerb_RH_GMF.asc"			F	140	200)
+			{
+				*eventPFX		(152	1	"LIGHTSMOKE_IN"		"ZS_LEFTHAND"	ATTACH)
+			//	*eventPFX		(152	1	"LIGHTSMOKE"		"ZS_LEFTHAND"	ATTACH)
+				*eventPFXStop	(160	1)
+				*eventPFX		(170	2	"LIGHTSMOKE_OUT"	"ZS_LEFTHAND"	ATTACH)
+			//	*eventPFX		(170	2	"LIGHTSMOKE"		"ZS_LEFTHAND"	ATTACH)
+				*eventPFXStop	(190	2)
+				*eventTag		(197		"DEF_DESTROY_ITEM")
+			}
+			
+			ani			("R_USEDJOINT_Random_1"		2	""					0.1	0.1	M.	"Hum_SmokeHerb_RH_R1_GMF.asc"		F	0	50)
+			ani			("R_USEDJOINT_Random_2"		2	""					0.1	0.1	M.	"Hum_SmokeHerb_RH_R2_GMF.asc"		F	0	55)
+			ani			("R_USEDJOINT_Random_3"		2	""					0.1	0.1	M.	"Hum_SmokeHerb_RH_R3_GMF.asc"		F	0	60)
+			
+			ani			("t_USEDJOINT_StopRandom"	2	""					0.2	0.0	M.	"Hum_SmokeHerb_RH_GMF.asc"			F	40	40)
+			
+// USEDJOINT ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// BROOM ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_BROOM_Stand_2_S0"		1	"s_BROOM_S0"		0.3	0.0	M.	"Hum_Fegen_GMF.ASC"					F	0	5)
+			{
+				*eventTag	(4	"DEF_INV_TORCH")
+				*eventTag	(5	"DEF_INSERT_ITEM"		"ZS_RIGHTHAND")
+			}
+			ani			("s_BROOM_S0"				1	"s_BROOM_S0"		0.0	0.0	M.	"Hum_Fegen_GMF.asc"					F	6	6)
+			ani			("t_BROOM_S0_2_Stand"		1	""					0.0	0.3	M.	"Hum_Fegen_GMF.asc"					R	0	5)
+			{
+				*eventTag		(5	"DEF_REMOVE_ITEM")
+			}
+			ani			("t_BROOM_S0_2_S1"			1	"s_BROOM_S1"		0.0	0.0	M.	"Hum_Fegen_GMF.asc"					F	7	35)
+			{
+				*eventSFX	(20	"Sneak")
+				*eventSFX	(34	"Walk")
+			}
+			ani			("s_BROOM_S1"				1	"s_BROOM_S1"		0.0	0.0	M.	"Hum_Fegen_GMF.asc"					F	35	85)
+			{
+				*eventSFX 		(40 	"MOB_SWEEP" 	R:1000			EMPTY_SLOT)
+				*eventPFX   	(42 1	"BROOM_DUST"	"ZS_LEFTHAND"	ATTACH)
+				*eventPFXStop	(54	1)
+			}
+			ani			("t_BROOM_S1_2_S0"			1	"s_BROOM_S0"		0.3	0.0	ME	"Hum_Fegen_GMF.asc"					R	7	35)
+			{
+				*eventSFX	(20	"Sneak")
+				*eventSFX	(26	"Walk")
+			}
+
+// BROOM ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// DIALOGGESTURES ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("T_DIALOGGESTURE_01"		2	""		0.3	0.3	M.	"Hum_Dialoggesture01_GMF.asc"			F	0	60)
+			ani			("T_DIALOGGESTURE_02"		2	""		0.3	0.3	M.	"Hum_Dialoggesture02_GMF.asc"			F	0	50)
+			ani			("T_DIALOGGESTURE_03"		2	""		0.3	0.3	M.	"Hum_Dialoggesture03_GMF.asc"			F	0	55)
+			ani			("T_DIALOGGESTURE_04"		2	""		0.3	0.3	M.	"Hum_Dialoggesture04_GMF.asc"			F	0	55)
+			ani			("T_DIALOGGESTURE_05"		2	""		0.3	0.3	M.	"Hum_Dialoggesture05_GMF.asc"			F	0	50)
+			ani			("T_DIALOGGESTURE_06"		2	""		0.3	0.3	M.	"Hum_Dialoggesture06_GMF.asc"			F	0	50)
+			ani			("T_DIALOGGESTURE_07"		2	""		0.3	0.3	M.	"Hum_Dialoggesture07_GMF.asc"			F	0	240)
+			ani			("T_DIALOGGESTURE_08"		2	""		0.3	0.3	M.	"Hum_Dialoggesture08_GMF.asc"			F	0	150)
+			ani			("T_DIALOGGESTURE_09"		2	""		0.3	0.3	M.	"Hum_Dialoggesture09_GMF.asc"			F	0	80)
+			ani			("T_DIALOGGESTURE_10"		2	""		0.3	0.3	M.	"Hum_Dialoggesture10_GMF.asc"			F	0	150)
+			ani			("T_DIALOGGESTURE_11"		2	""		0.3	0.3	M.	"Hum_Dialoggesture11_GMF.asc"			F	0	65)
+			ani			("T_DIALOGGESTURE_12"		2	""		0.3	0.3	M.	"Hum_Dialoggesture12_GMF.asc"			F	0	45)
+			ani			("T_DIALOGGESTURE_13"		2	""		0.3	0.3	M.	"Hum_Dialoggesture13_GMF.asc"			F	0	35)
+			ani			("T_DIALOGGESTURE_14"		2	""		0.3	0.3	M.	"Hum_Dialoggesture14_GMF.asc"			F	0	40)
+			ani			("T_DIALOGGESTURE_15"		2	""		0.3	0.3	M.	"Hum_Dialoggesture15_GMF.asc"			F	0	50)
+			ani			("T_DIALOGGESTURE_16"		2	""		0.3	0.3	M.	"Hum_Dialoggesture16_GMF.asc"			F	0	72)
+			ani			("T_DIALOGGESTURE_17"		2	""		0.3	0.3	M.	"Hum_Dialoggesture17_GMF.asc"			F	0	45)
+			ani			("T_DIALOGGESTURE_18"		2	""		0.3	0.3	M.	"Hum_Dialoggesture18_GMF.asc"			F	0	50)
+			ani			("T_DIALOGGESTURE_19"		2	""		0.3	0.3	M.	"Hum_Dialoggesture19_GMF.asc"			F	0	80)
+			ani			("T_DIALOGGESTURE_20"		2	""		0.3	0.3	M.	"Hum_Dialoggesture20_GMF.asc"			F	0	50)
+		//	AniDisable	("t_DIALOGGESTURE_21")
+			
+// DIALOGGESTURES ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SCRYPT ANIMATIONS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_DontKnow"				2	""				0.1	0.1	M.	"Hum_DontKnow_GMF.asc"			F	0	14)
+			ani			("t_ComeOverHere"			2	""				0.2	0.2	M.	"Hum_ComeOverHere_GMF.asc"		F	0	80)
+			ani			("t_BoringKick"				2	""				0.2	0.2	M.	"Hum_BoringKick_GMF.asc"		F	0	70)
+			ani			("t_Search"					2	""				0.2	0.2	M.	"Hum_Search_GMF.asc"			F	0	75)
+			ani			("r_LegShake"				2	""				0.2	0.2	M.	"Hum_LegShake_GMF.asc"			F	0	76)
+			ani			("r_ScratchLShoulder"		2	""				0.2	0.2	M.	"Hum_ScratchLShoulder_GMF.asc"	F	0	50)
+			ani			("r_ScratchEgg"				2	""				0.2	0.2	M.	"Hum_ScratchEgg_GMF.asc"		F	0	50)
+			ani			("r_ScratchHead"			2	""				0.2	0.2	M.	"Hum_ScratchHead_GMF.asc"		F	0	50)
+			ani			("r_ScratchRShoulder"		2	""				0.2	0.2	M.	"Hum_ScratchRShoulder_GMF.asc"	F	0	50)
+			ani			("t_Plunder"				1	""				0.2	0.2	M.	"Hum_Pluender_GMF.asc"			F	0	75)
+			
+// SCRYPT ANIMATIONS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// LOOK AT NPC //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("c_look_1"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_GMF.asc"	F	0	0)
+			ani			("c_look_2"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_GMF.asc"	F	1	1)
+			ani			("c_look_3"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_GMF.asc"	F	2	2)
+			ani			("c_look_4"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_GMF.asc"	F	3	3)
+			ani			("c_look_5"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_GMF.asc"	F	4	4)
+			ani			("c_look_6"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_GMF.asc"	F	5	5)
+			ani			("c_look_7"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_GMF.asc"	F	6	6)
+			ani			("c_look_8"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_GMF.asc"	F	7	7)
+			ani			("c_look_9"				9	""				0.0	0.0	.	"Hum_Look_Autoaim_GMF.asc"	F	8	8)
+
+			aniComb		("t_look"				9	"t_look"		0.3	0.3	M.	"c_look_"	9)
+			
+// LOOK AT NPC //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CHAIR ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_Chair_Stand_2_S0"		1	"s_Chair_S0"	0.3	0.0	M.	"Hum_SitChair_G2_GMF.asc"			F	0	4	CVS:0.1)
+			ani			("s_Chair_S0"				1	"s_Chair_S0"	0.0	0.0	M.	"Hum_SitChair_G2_GMF.asc"			F	5	5	CVS:0.1)
+			aniAlias	("t_Chair_S0_2_Stand"		1	""				0.0	0.3	M.	"t_Chair_Stand_2_S0"				R)
+
+			ani			("t_Chair_S0_2_S1"			1	"s_Chair_S1"	0.0	0.0	M.	"Hum_SitChair_G2_GMF.asc"			F	6	40	CVS:0.1)
+			{
+				*eventTag		(7	"DEF_INV_TORCH")
+				*eventSFXGrnd	(12	"Walk")
+				*eventSFXGrnd	(22	"Walk")
+				*eventSFXGrnd	(28	"Walk")
+				*eventSFX		(38	"CHAIR_USE"	EMPTY_SLOT	R:600)
+			}
+			ani			("s_Chair_S1"				1	"s_Chair_S1"	0.0	0.0	M.	"Hum_SitChair_G2_Ambient_GMF.asc"	F	0	59	CVS:0.1)
+			ani			("t_Chair_S1_2_S0"			1	"s_Chair_S0"	0.1	0.0	M.	"Hum_SitChair_G2_GMF.asc"			R	6	40	CVS:0.1)
+			{
+				*eventSFXGrnd	(7	"Walk")
+				*eventSFXGrnd	(10	"Walk")
+				*eventSFXGrnd	(22	"Walk")
+			}
+			
+			ani			("R_Chair_Random_1"			2	""				0.3	0.3	M.	"Hum_SitBench_G2_Random1_GMF.asc"	F	0	50	CVS:0.1)
+			ani			("R_Chair_Random_2"			2	""				0.3	0.3	M.	"Hum_SitBench_G2_Random2_GMF.asc"	F	0	57	CVS:0.1)
+			ani			("R_Chair_Random_3"			2	""				0.3	0.3	M.	"Hum_SitBench_G2_Random3_GMF.asc"	F	0	80	CVS:0.1)
+			ani			("R_Chair_Random_4"			2	""				0.3	0.3	M.	"Hum_SitBench_G2_Random4_GMF.asc"	F	0	52	CVS:0.1)
+			
+			ani			("t_Chair_StopRandom"		2	""				0.2	0.0	M.	"Hum_SitBench_G2_StopRnd_GMF.asc"	F	0	0	CVS:0.1)
+			
+// CHAIR ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// BENCH ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_Bench_Stand_2_S0"		1	"s_Bench_S0"	0.3	0.0	M.	"Hum_SitBench_G2_GMF.asc"			F	0	4	CVS:0.1)
+			ani			("s_Bench_S0"				1	"s_Bench_S0"	0.0	0.0	M.	"Hum_SitBench_G2_GMF.asc"			F	5	5	CVS:0.1)
+			aniAlias	("t_Bench_S0_2_Stand"		1	""				0.0	0.3	M.	"t_Bench_Stand_2_S0"				R)
+
+			ani			("t_Bench_S0_2_S1"			1	"s_Bench_S1"	0.0	0.0	M.	"Hum_SitBench_G2_GMF.asc"			F	6	40	CVS:0.1)
+			{
+				*eventTag		(7	"DEF_INV_TORCH")
+				*eventSFXGrnd	(11	"Walk")
+				*eventSFXGrnd	(19	"Walk")
+				*eventSFXGrnd	(28	"Walk")
+				*eventSFXGrnd	(32	"Walk")
+				*eventSFX		(36	"CHAIR_USE"	EMPTY_SLOT	R:600)
+			}
+			ani			("s_Bench_S1"				1	"s_Bench_S1"	0.0	0.0	M.	"Hum_SitBench_G2_Ambient_GMF.asc"	F	0	59	CVS:0.1)
+			ani			("t_Bench_S1_2_S0"			1	"s_Bench_S0"	0.1	0.0	M.	"Hum_SitBench_G2_GMF.asc"			R	6	40	CVS:0.1)
+			{
+				*eventSFXGrnd	(6	"Walk")
+				*eventSFXGrnd	(12	"Walk")
+				*eventSFXGrnd	(21	"Walk")
+				*eventSFXGrnd	(30	"Walk")
+			}
+			
+			ani			("R_Bench_Random_1"			2	""				0.3	0.3	M.	"Hum_SitBench_G2_Random1_GMF.asc"	F	0	50	CVS:0.1)
+			ani			("R_Bench_Random_2"			2	""				0.3	0.3	M.	"Hum_SitBench_G2_Random2_GMF.asc"	F	0	57	CVS:0.1)
+			ani			("R_Bench_Random_3"			2	""				0.3	0.3	M.	"Hum_SitBench_G2_Random3_GMF.asc"	F	0	80	CVS:0.1)
+			ani			("R_Bench_Random_4"			2	""				0.3	0.3	M.	"Hum_SitBench_G2_Random4_GMF.asc"	F	0	52	CVS:0.1)
+			
+			ani			("t_Bench_StopRandom"		2	""				0.2	0.0	M.	"Hum_SitBench_G2_StopRnd_GMF.asc"	F	0	0	CVS:0.1)
+			
+// BENCH ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SITGROUND ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_Stand_2_Sit"			1	"s_Sit"			0.1	0.0	M.	"Hum_SitGround_GMF.asc"			F	0	40	CVS:0.1)
+			{
+				*eventSFXGrnd	(7	"Walk")
+				*eventSFXGrnd	(36	"Sneak")
+			}
+			ani			("s_Sit"					1	"s_Sit"			0.0	0.0	MI	"Hum_SitGround_GMF.asc"			F	41	100	CVS:0.1)
+			ani			("t_Sit_2_Stand"			1	""				0.1	0.2	M.	"Hum_SitGround_GMF.asc"			R	0	40	CVS:0.1)
+			{
+				*eventSFXGrnd	(1	"Walk")
+				*eventSFXGrnd	(36	"Sneak")
+			}
+			
+		//	ani			("t_StandUpQuick_Ground"	1	""				0.1	0.1	M.	"Hum_SitGround_GMF.asc"			R	0	40	SPD:40)
+			
+// SITGROUND ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// FIREPLACE ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("c_FP_Stand_2_S0_1"		1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		F	0	0)
+			ani			("c_FP_Stand_2_S0_2"		1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		F	0	0)
+			ani			("c_FP_Stand_2_S0_3"		1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		F	0	0)
+			aniComb		("t_FIREPLACE_Stand_2_S0"	1	"s_FIREPLACE_S0"	0.0	0.0	M.	"c_FP_STAND_2_S0_"			3)
+
+			ani			("c_FP_S0_1"				1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		F	0	0)
+			ani			("c_FP_S0_2"				1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		F	0	0)
+			ani			("c_FP_S0_3"				1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		F	0	0)
+			aniComb		("s_FIREPLACE_S0"			1	"s_FIREPLACE_S0"	0.0	0.0	M.	"c_FP_S0_"					3)
+
+			ani			("c_FP_S0_2_Stand_1"		1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		R	0	0)
+			ani			("c_FP_S0_2_Stand_2"		1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		R	0	0)
+			ani			("c_FP_S0_2_Stand_3"		1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		R	0	0)
+			aniComb		("t_FIREPLACE_S0_2_Stand"	1	""					0.0	0.0	M.	"c_FP_STAND_2_S0_"			3)
+
+			ani			("c_FP_S0_2_S1_1"			1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		F	0	25)
+			ani			("c_FP_S0_2_S1_2"			1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		F	40	65)
+			ani			("c_FP_S0_2_S1_3"			1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		F	80	105)
+			aniComb		("t_FIREPLACE_S0_2_S1"		1	"s_FIREPLACE_S1"	0.0	0.0	M.	"c_FP_S0_2_S1_"				3)
+
+			ani			("c_FP_S1_1"				1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		F	25	25)
+			ani			("c_FP_S1_2"				1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		F	65	65)
+			ani			("c_FP_S1_3"				1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		F	105	105)
+			aniComb		("s_FIREPLACE_S1"			1	"s_FIREPLACE_S1"	0.1	0.1	M.	"c_FP_S1_"					3)
+
+			ani			("c_FP_S1_2_Stand_1"		1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		F	25	40)
+			ani			("c_FP_S1_2_Stand_2"		1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		F	65	80)
+			ani			("c_FP_S1_2_Stand_3"		1	""					0.0	0.0	..	"Hum_FirePlace_GMF.asc"		F	105	120)
+			aniComb		("t_FIREPLACE_S1_2_Stand"	1	""					0.0	0.0	M.	"c_FP_S1_2_Stand_"			3)
+			
+// FIREPLACE ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// RUN-Mode /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("s_Run"				1	"s_Run"			0.1	0.1	MI	"Hum_RunAmbient_GMF.asc"	F	0	59)
+			ani			("t_Run_2_RunL"			1	"s_RunL"		0.1	0.0	M.	"Hum_RunLoop_GMF.asc"		F	0	11)
+			ani			("s_RunL"				1	"s_RunL"		0.0	0.1	M.	"Hum_RunLoop_GMF.asc"		F	12	31)
+			{
+				*eventSFXGrnd	(12	"Run")
+				*eventSFXGrnd	(22	"Run")
+			}
+
+			ani			("t_RunL_2_Run"			1	"s_Run"			0.1	0.1	M.	"Hum_RunLoop_GMF.asc"		F	32	40)
+			{
+				*eventSFXGrnd	(38	"Run")
+			}
+			ani			("t_RunR_2_Run"			1	"s_Run"			0.1	0.1	M.	"Hum_RunLoop_GMF.asc"		F	42	50)
+			{
+				*eventSFXGrnd	(48	"Run")
+			}
+
+			ani			("t_JumpB"				1	"s_Run"			0.0	0.2	M.	"Hum_JumpB_GMF.asc"			F	0	16)
+			{
+				*eventSFXGrnd  (7 "Run")
+				*eventSFXGrnd  (9 "Run")
+			}
+			
+// RUN-Mode /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// WALK-Mode ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			aniAlias	("s_Walk"				1	"s_Walk"		0.1	0.1	MI	"s_Run"						F)
+			ani			("t_Walk_2_WalkL"		1	"s_WalkL"		0.0	0.0	M.	"Hum_WalkLoop_GMF.asc"		F	0	9)
+			ani			("s_WalkL"				1	"s_WalkL"		0.0	0.1	M.	"Hum_WalkLoop_GMF.asc"		F	10	33)
+			{
+				*eventSFXGrnd	(10	"Walk")
+				*eventSFXGrnd	(22	"Walk")
+			}
+
+			ani			("t_WalkL_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkLoop_GMF.asc"		F	34	45)
+			{
+				*eventSFXGrnd	(41	"Walk")
+			}
+			ani			("t_WalkR_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkLoop_GMF.asc"		F	46	57)
+			{
+				*eventSFXGrnd	(53	"Walk")
+			}
+
+			// Çàöèêëåííîå äâèæåíèå íàçàä â ðåæèìå ïåðåäâèæåíèÿ øàãîì çàìåíåíî îòïðûãèâàíèåì.
+			aniAlias	("t_Walk_2_WalkBL"		1	"s_Walk"		0.1	0.1	M.	"t_JumpB"						F)
+			
+// WALK-Mode ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			
+//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			
+//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			
+//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 	}
 }
