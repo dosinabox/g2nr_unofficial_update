@@ -49,6 +49,13 @@ func int ZS_Sit_Bench_Loop()
 
 func void ZS_Sit_Bench_End()
 {
-	AI_UseMob(self,"BENCH",-1);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		if(Wld_GetMobState(self,"BENCH") == 1)
+		{
+			AI_PlayAniBS(self,"T_BENCH_STOPRANDOM",BS_SIT);
+		};
+		AI_UseMob(self,"BENCH",-1);
+	};
 };
 

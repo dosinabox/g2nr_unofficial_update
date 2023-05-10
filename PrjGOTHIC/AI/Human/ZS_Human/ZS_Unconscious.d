@@ -2,7 +2,6 @@
 func void ZS_Unconscious()
 {
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
-	//TODO скомпилировать в HUMANS
 	Mdl_ApplyRandomAni(self,"S_WOUNDED","T_WOUNDED_TRY");
 	Mdl_ApplyRandomAniFreq(self,"S_WOUNDED",8);
 	Mdl_ApplyRandomAni(self,"S_WOUNDEDB","T_WOUNDEDB_TRY");

@@ -91,27 +91,30 @@ func void B_GetBeliarsGold(var int Kohle)
 func void B_PrayIdol(var int attribute,var int amount)
 {
 	var int gold;
-	if(attribute == ATR_HITPOINTS_MAX)
-	{
-		B_HitpointAngleich(amount);
-		gold = amount * BeliarsGoldMultiplier;
-	}
-	else if(attribute == ATR_MANA_MAX)
-	{
-		B_ManaAngleich(amount);
-		gold = amount * BeliarsGoldMultiplier * 10;
-	};
 	if(C_PrayedIdolToday() || (Stats_Beliar_GoldTaken >= BeliarsDispo))
 	{
 		B_BlitzInArsch();
 	}
-	else if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
-	{
-		B_GetBeliarsGold(gold / 2);
-	}
 	else
 	{
-		B_GetBeliarsGold(gold);
+		if(attribute == ATR_HITPOINTS_MAX)
+		{
+			B_HitpointAngleich(amount);
+			gold = amount * BeliarsGoldMultiplier;
+		}
+		else if(attribute == ATR_MANA_MAX)
+		{
+			B_ManaAngleich(amount);
+			gold = amount * BeliarsGoldMultiplier * 10;
+		};
+		if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+		{
+			B_GetBeliarsGold(gold / 2);
+		}
+		else
+		{
+			B_GetBeliarsGold(gold);
+		};
 	};
 	PrayIdolDay = Wld_GetDay();
 	if(PrayIdolDay == 0)

@@ -49,6 +49,13 @@ func int ZS_Sit_Chair_Loop()
 
 func void ZS_Sit_Chair_End()
 {
-	AI_UseMob(self,"CHAIR",-1);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		if(Wld_GetMobState(self,"CHAIR") == 1)
+		{
+			AI_PlayAniBS(self,"T_CHAIR_STOPRANDOM",BS_SIT);
+		};
+		AI_UseMob(self,"CHAIR",-1);
+	};
 };
 

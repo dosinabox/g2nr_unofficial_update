@@ -1736,23 +1736,23 @@ Model ("HuS")
 			ani			("t_WoundedB_2_DeadB"		1	"s_DeadB"		0.1	0.1	M.	"Hum_WoundB2DeadB_A01.asc"	F	1	89	CVS:0.1)
 	
 	// K.O gegangen (1 Lebenspьppel ьbrig)
-			ani			("t_Stand_2_Wounded"		1	"s_Wounded"		0.2	0.1	M.	"Hum_KnockedOut_M01.asc"	F	1	49	FPS:10	CVS:0.1)
-			{
-				*eventSFXGrnd	(30	"Run"	)
-				*eventSFX	(47	"M_FALL_SMALL"	EMPTY_SLOT	)
-			}
+		//	ani			("t_Stand_2_Wounded"		1	"s_Wounded"		0.2	0.1	M.	"Hum_KnockedOut_M01.asc"	F	1	49	FPS:10	CVS:0.1)
+		//	{
+		//		*eventSFXGrnd	(30	"Run"	)
+		//		*eventSFX	(47	"M_FALL_SMALL"	EMPTY_SLOT	)
+		//	}
 			
-			ani			("s_Wounded"				1	"s_Wounded"		0.1	0.1	M.	"Hum_Wounded_Try_A01.asc"	F	1	45	CVS:0.1)
+		//	ani			("s_Wounded"				1	"s_Wounded"		0.1	0.1	M.	"Hum_Wounded_Try_A01.asc"	F	1	45	CVS:0.1)
 			
-			ani			("t_Wounded_2_Stand"		1	""				0.1	0.1	M.	"Hum_KnockedOut_M01.asc"	F	100	184	FPS:10	CVS:0.1)
+		//	ani			("t_Wounded_2_Stand"		1	""				0.1	0.1	M.	"Hum_KnockedOut_M01.asc"	F	100	184	FPS:10	CVS:0.1)
 
 		// Nach Vorne fallen
-			ani			("t_Stand_2_WoundedB"		1	"s_WoundedB"	0.2	0.1	M.	"Hum_WoundedB_M01.asc"		F	1	34	FPS:10	CVS:0.1)
-			{
-				*eventSFX	(23	"M_FALL_SMALL"	EMPTY_SLOT	)
-			}
-			ani			("s_WoundedB"				1	"s_WoundedB"	0.1	0.1	M.	"HUM_WOUNDEDBAMBIENT_A01.ASC"	F	1	40	CVS:0.1)
-			ani			("t_WoundedB_2_Stand"		1	""				0.1	0.1	M.	"Hum_WoundedB_M01.asc"			F	35	134	FPS:10	CVS:0.1)
+		//	ani			("t_Stand_2_WoundedB"		1	"s_WoundedB"	0.2	0.1	M.	"Hum_WoundedB_M01.asc"		F	1	34	FPS:10	CVS:0.1)
+		//	{
+		//		*eventSFX	(23	"M_FALL_SMALL"	EMPTY_SLOT	)
+		//	}
+		//	ani			("s_WoundedB"				1	"s_WoundedB"	0.1	0.1	M.	"HUM_WOUNDEDBAMBIENT_A01.ASC"	F	1	40	CVS:0.1)
+		//	ani			("t_WoundedB_2_Stand"		1	""				0.1	0.1	M.	"Hum_WoundedB_M01.asc"			F	35	134	FPS:10	CVS:0.1)
 
 
 //////////////////////////
@@ -4932,9 +4932,9 @@ Model ("HuS")
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BENCH ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			ani			("t_Bench_Stand_2_S0"		1	"s_Bench_S0"	0.3	0.0	M.	"Hum_SitBench_G2_GMF.asc"			F	0	4	CVS:0.1)
+			ani			("t_Bench_Stand_2_S0"		1	"s_Bench_S0"	0.2	0.0	M.	"Hum_SitBench_G2_GMF.asc"			F	0	4	CVS:0.1)
 			ani			("s_Bench_S0"				1	"s_Bench_S0"	0.0	0.0	M.	"Hum_SitBench_G2_GMF.asc"			F	5	5	CVS:0.1)
-			aniAlias	("t_Bench_S0_2_Stand"		1	""				0.0	0.3	M.	"t_Bench_Stand_2_S0"				R)
+			aniAlias	("t_Bench_S0_2_Stand"		1	""				0.0	0.2	M.	"t_Bench_Stand_2_S0"				R)
 
 			ani			("t_Bench_S0_2_S1"			1	"s_Bench_S1"	0.0	0.0	M.	"Hum_SitBench_G2_GMF.asc"			F	6	40	CVS:0.1)
 			{
@@ -5066,16 +5066,34 @@ Model ("HuS")
 			}
 
 			// Зацикленное движение назад в режиме передвижения шагом заменено отпрыгиванием.
-			aniAlias	("t_Walk_2_WalkBL"		1	"s_Walk"		0.1	0.1	M.	"t_JumpB"						F)
+			aniAlias	("t_Walk_2_WalkBL"		1	"s_Walk"		0.1	0.1	M.	"t_JumpB"					F)
 			
 // WALK-Mode ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// WOUNDED //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_Stand_2_Wounded"	1	"s_Wounded"		0.2	0.1	M.	"Hum_KnockedOut_M01.asc"		F	1	49	CVS:0.1)
+			{
+				*eventSFXGrnd	(30	"Run"	)
+				*eventSFX	(47	"M_FALL_SMALL"	EMPTY_SLOT	)
+			}
 			
+			ani			("s_Wounded"			1	"s_Wounded"		0.1	0.1	M.	"Hum_KnockedOut_M01.asc"		F	50	99	CVS:0.1)
+			ani			("t_Wounded_2_Stand"	1	""				0.1	0.1	M.	"Hum_KnockedOut_M01.asc"		F	100	184	CVS:0.1)
 			
-//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_Wounded_Try"			2	""				0.1	0.2	M.	"Hum_Wounded_Try_A01.asc"	F	1	50	CVS:0.1)
+
+			ani			("t_Stand_2_WoundedB"	1	"s_WoundedB"	0.2	0.1	M.	"Hum_WoundedB_M01.asc"			F	1	34	CVS:0.1)
+			{
+				*eventSFX	(23	"M_FALL_SMALL"	EMPTY_SLOT	)
+			}
+			ani			("s_WoundedB"			1	"s_WoundedB"	0.1	0.1	M.	"Hum_WoundedBAmbient_A01.ASC"	F	1	40	CVS:0.1)
+			ani			("t_WoundedB_2_Stand"	1	""				0.1	0.1	M.	"Hum_WoundedB_M01.asc"			F	35	134	CVS:0.1)
+			
+			ani			("t_WoundedB_Try"			2	""				0.1	0.2	M.	"Hum_WoundedB_Try_A01.asc"	F	1	45	CVS:0.1)
+			
+// WOUNDED //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
