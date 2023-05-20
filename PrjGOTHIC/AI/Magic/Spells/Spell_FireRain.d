@@ -1,14 +1,12 @@
 
 const int SPL_Cost_Firerain = 150;
-const int SPL_Damage_FireRain = 500;
+const int SPL_Damage_FireRain = 500; //TODO фактически наносит 1000 урона в текущей сборке!
 
 instance Spell_FireRain(C_Spell_Proto)
 {
 	time_per_mana = 0;
 	damage_per_level = SPL_Damage_FireRain;
-//	изменить тип если нужно		
 	damagetype = DAM_MAGIC;
-//	damagetype = DAM_FIRE;
 	targetCollectAlgo = TARGET_COLLECT_NONE;
 	targetCollectRange = 1500;
 };

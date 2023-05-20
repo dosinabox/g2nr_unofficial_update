@@ -170,7 +170,6 @@ func int DIA_Gaertner_Sign_Condition()
 func void DIA_Gaertner_Sign_Info()
 {
 	AI_PlayAni(other,"T_YES");
-	CreateInvItems(self,ItKe_Lockpick,3);
 	AI_Output(self,other,"DIA_Gaertner_Sign_09_00");	//Теперь ты один из нас. И я могу подкинуть тебе кое-какую информацию.
 	AI_Output(self,other,"DIA_Gaertner_Sign_09_01");	//В некоторых домах здесь есть секретные панели, которые открываются скрытыми выключателями.
 	AI_Output(self,other,"DIA_Gaertner_Sign_09_02");	//Люди хранят там самые ценные свои вещи.
@@ -189,7 +188,7 @@ instance DIA_Gaertner_FreeLockpicks(C_Info)
 
 func int DIA_Gaertner_FreeLockpicks_Condition()
 {
-	if(!Npc_HasItems(other,ItKe_Lockpick) && !Npc_HasItems(self,ItKe_Lockpick) && Npc_KnowsInfo(other,DIA_Gaertner_Sign))
+	if(!Npc_HasItems(other,ItKe_Lockpick) && Npc_HasItems(self,ItKe_Lockpick) && Npc_KnowsInfo(other,DIA_Gaertner_Sign))
 	{
 		return TRUE;
 	};
