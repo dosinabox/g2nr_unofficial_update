@@ -12,7 +12,6 @@ instance VLK_476_Fenia(Npc_Default)
 	B_SetAttributesToChapter(self,1);
 	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_NORMAL;
-//	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,50,ItMi_Gold,75);
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe1",FaceBabe_N_GreyCloth,BodyTex_N,ITAR_VlkBabe_L);

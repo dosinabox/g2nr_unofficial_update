@@ -1,7 +1,6 @@
 
 func void B_Cycle_Function()
 {
-//	B_CheckAttributeSystem();
 	if(CurrentLevel == NEWWORLD_ZEN)
 	{
 		if(MIS_PickedUpUndeadSword == FALSE)

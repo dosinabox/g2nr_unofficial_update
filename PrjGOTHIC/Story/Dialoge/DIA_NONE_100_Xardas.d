@@ -576,13 +576,10 @@ func void DIA_Xardas_ABOUTLESTER_Info()
 	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_02");	//Это почти чудо, что ему удалось выжить. Я отправил его в постель.
 	AI_Output(other,self,"DIA_Xardas_ABOUTLESTER_15_03");	//Что он рассказал тебе?
 	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_04");	//Боюсь, что ничего хорошего. Он видел не только дракона, но еще и людей в черных плащах с капюшонами.
-	if(Kapitel < 3)
-	{
-		AI_Output(other,self,"DIA_Xardas_ABOUTLESTER_15_05");	//И?
-		AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_06");	//Если эти люди существуют, то их присутствие несет определенную угрозу.
-		AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_07");	//И мне это не нравится. Вот, возьми кольцо. Оно защитит тебя от магии.
-		B_GiveInvItems(self,other,ItRi_Prot_Mage_03,1);
-	};
+	AI_Output(other,self,"DIA_Xardas_ABOUTLESTER_15_05");	//И?
+	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_06");	//Если эти люди существуют, то их присутствие несет определенную угрозу.
+	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_07");	//И мне это не нравится. Вот, возьми кольцо. Оно защитит тебя от магии.
+	B_GiveInvItems(self,other,ItRi_Prot_Mage_03,1);
 	B_GivePlayerXP(XP_AmbientKap2);
 };
 
@@ -593,7 +590,6 @@ instance DIA_Xardas_FirstPal(C_Info)
 	nr = 10;
 	condition = DIA_Xardas_FirstPal_Condition;
 	information = DIA_Xardas_FirstPal_Info;
-//	permanent = FALSE;
 	permanent = TRUE;
 	description = "Я был в городе...";
 };
@@ -649,6 +645,8 @@ func void DIA_Xardas_FirstPal_Info()
 	{
 		B_StartOtherRoutine(Lester,"XARDAS");
 		LesterMovedToXardas = TRUE;
+		//сброс диалога, иначе DIA_Xardas_ABOUTLESTER становится доступным и ломает остальные опции
+		AI_StopProcessInfos(self);
 	};
 };
 

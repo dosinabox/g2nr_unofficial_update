@@ -69,17 +69,3 @@ func void B_UnEquipAllTempBonusItems() //TODO перенести в CharacterHelper.d
 	};
 };
 
-func void B_Check_Attributes() //TODO удалить к релизу 29 версии
-{
-	if(NewAttributeSystemSynced == TRUE)
-	{
-		return;
-	};
-	if(!Npc_KnowsInfo(hero,DIA_Xardas_FirstEXIT))
-	{
-		return;
-	};
-	B_UnEquipAllTempBonusItems();
-	B_InitAttributeSystem();
-};
-

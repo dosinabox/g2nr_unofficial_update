@@ -198,7 +198,6 @@ func void DIA_Gaertner_FreeLockpicks_Info()
 {
 	B_Say(other,self,"$NOMOREPICKS");
 	B_Say(self,other,"$ABS_GOOD");
-	CreateInvItems(self,ItKe_Lockpick,3);
 	B_GiveInvItems(self,other,ItKe_Lockpick,3);
 };
 
