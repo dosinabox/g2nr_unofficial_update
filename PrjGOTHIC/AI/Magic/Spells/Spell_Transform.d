@@ -14,18 +14,18 @@ const int SPL_Cost_TrfDragonSnapper = 5;
 
 func int Transform_Spell_Logic_Common(var int manaInvested,var int cost,var int creature)
 {
-	if(self.attribute[ATR_MANA] >= cost)
+	if(self.attribute[ATR_MANA] < cost)
 	{
-		if(manaInvested < SPL_Charge_Frames)
-		{
-			return SPL_NEXTLEVEL;
-		};
-		B_StartMagicTransform();
-		self.attribute[ATR_MANA] -= cost;
-		Npc_SetActiveSpellInfo(self,creature);
-		return SPL_SENDCAST;
+		return SPL_SENDSTOP;
 	};
-	return SPL_SENDSTOP;
+	if(manaInvested < SPL_Charge_Frames)
+	{
+		return SPL_NEXTLEVEL;
+	};
+	B_StartMagicTransform();
+	self.attribute[ATR_MANA] -= cost;
+	Npc_SetActiveSpellInfo(self,creature);
+	return SPL_SENDCAST;
 };
 
 instance Spell_Transform(C_Spell_Proto)

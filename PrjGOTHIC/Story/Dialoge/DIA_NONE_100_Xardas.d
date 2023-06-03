@@ -393,7 +393,7 @@ instance DIA_Xardas_WEAPON(C_Info)
 
 func int DIA_Xardas_WEAPON_Condition()
 {
-	if(!Npc_KnowsInfo(other,DIA_Xardas_TODO) && !Npc_KnowsInfo(other,DIA_Xardas_FirstEXIT) && (Kapitel < 3))
+	if(Kapitel < 3)
 	{
 		return TRUE;
 	};
@@ -535,7 +535,7 @@ instance DIA_Xardas_EQUIPMENT(C_Info)
 
 func int DIA_Xardas_EQUIPMENT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_FirstEXIT) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Xardas_WEAPON) && Npc_KnowsInfo(other,DIA_Xardas_FirstEXIT) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
