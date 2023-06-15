@@ -305,9 +305,12 @@ instance DIA_Bilgot_Olav(C_Info)
 
 func int DIA_Bilgot_Olav_Condition()
 {
-	if(!Npc_HasItems(Olav,ItSe_Olav) && Npc_KnowsInfo(other,DIA_Bilgot_Job))
+	if(Npc_KnowsInfo(other,DIA_Bilgot_Job))
 	{
-		return TRUE;
+		if(!Npc_HasItems(Olav,ItSe_Olav))
+		{
+			return TRUE;
+		};
 	};
 };
 

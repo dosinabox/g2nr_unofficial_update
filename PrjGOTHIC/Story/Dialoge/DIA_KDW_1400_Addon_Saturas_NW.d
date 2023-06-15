@@ -21,10 +21,7 @@ func void DIA_Addon_Saturas_EXIT_Info()
 	{
 		if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_SUCCESS) || Npc_KnowsInfo(other,DIA_Addon_Saturas_Nefarius) || (VatrasLetterGivenToSaturas == TRUE) || Npc_KnowsInfo(other,DIA_Addon_Saturas_geheimbund) || (SaturasKnows_SC_IsRanger == TRUE))
 		{
-			if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_SUCCESS) || Npc_KnowsInfo(other,DIA_Addon_Saturas_Nefarius) || (VatrasLetterGivenToSaturas == TRUE))
-			{
-				AI_Output(self,other,"DIA_Addon_Saturas_auftrag_14_01");	//Ну, раз никаким другим образом тебя нельзя уговорить оставить в покое других магов, придется дать тебе задание.
-			};
+			AI_Output(self,other,"DIA_Addon_Saturas_auftrag_14_01");	//Ну, раз никаким другим образом тебя нельзя уговорить оставить в покое других магов, придется дать тебе задание.
 			AI_Output(self,other,"DIA_Addon_Saturas_auftrag_14_02");	//Доложи Риордиану, что я его жду.
 			AI_Output(self,other,"DIA_Addon_Saturas_auftrag_14_03");	//Ты найдешь его в задней части хранилища.
 			MIS_Addon_Saturas_BringRiordian2Me = LOG_Running;

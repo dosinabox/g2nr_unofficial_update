@@ -115,9 +115,12 @@ instance DIA_Maleth_BanditsDEAD(C_Info)
 
 func int DIA_Maleth_BanditsDEAD_Condition()
 {
-	if(C_BragoBanditsDead() && Npc_KnowsInfo(other,DIA_Maleth_BANDITS))
+	if(Npc_KnowsInfo(other,DIA_Maleth_BANDITS))
 	{
-		return TRUE;
+		if(C_BragoBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -147,9 +150,12 @@ instance DIA_Maleth_BanditsALIVE(C_Info)
 
 func int DIA_Maleth_BanditsALIVE_Condition()
 {
-	if(!C_BragoBanditsDead() && Npc_KnowsInfo(other,DIA_Maleth_BANDITS) && (MIS_Maleth_Bandits != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Maleth_BANDITS) && (MIS_Maleth_Bandits != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(!C_BragoBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -166,7 +166,7 @@ instance DIA_Mika_WASGEFAEHRLICH(C_Info)
 
 func int DIA_Mika_WASGEFAEHRLICH_Condition()
 {
-	if(!C_Mika_FreeHelp())
+	if(Npc_KnowsInfo(other,DIA_Mika_WOHIN) && !C_Mika_FreeHelp())
 	{
 		return TRUE;
 	};
@@ -293,9 +293,16 @@ instance DIA_Mika_HILFE(C_Info)
 
 func int DIA_Mika_HILFE_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (C_Mika_FreeHelp() || (Mika_Helps == TRUE)))
+	if(self.aivar[AIV_PARTYMEMBER] == FALSE)
 	{
-		return TRUE;
+		if(Mika_Helps == TRUE)
+		{
+			return TRUE;
+		};
+		if(C_Mika_FreeHelp())
+		{
+			return TRUE;
+		};
 	};
 };
 

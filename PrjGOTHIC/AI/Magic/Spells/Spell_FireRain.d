@@ -1,6 +1,6 @@
 
 const int SPL_Cost_Firerain = 150;
-const int SPL_Damage_FireRain = 500; //TODO фактически наносит 1000 урона в текущей сборке!
+const int SPL_Damage_FireRain = 500;
 
 instance Spell_FireRain(C_Spell_Proto)
 {

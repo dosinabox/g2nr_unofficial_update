@@ -503,12 +503,12 @@ instance ItAm_Run(C_Item)
 
 func void Equip_ItAm_Run()
 {
-	Mdl_ApplyOverlayMds(hero,"Humans_Sprint.mds");
+	Mdl_ApplyOverlayMds(self,"Humans_Sprint.mds");
 };
 
 func void UnEquip_ItAm_Run()
 {
-	Mdl_RemoveOverlayMDS(hero,"Humans_Sprint.mds");
+	Mdl_RemoveOverlayMDS(self,"Humans_Sprint.mds");
 };
 
 

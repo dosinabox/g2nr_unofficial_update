@@ -375,11 +375,14 @@ instance DIA_Gaan_MONSTERTOT(C_Info)
 
 func int DIA_Gaan_MONSTERTOT_Condition()
 {
-	if(Npc_IsDead(Gaans_Snapper) && (RangerMeetingRunning != LOG_Running) && (MIS_Gaan_Snapper != LOG_SUCCESS))
+	if((RangerMeetingRunning != LOG_Running) && (MIS_Gaan_Snapper != LOG_SUCCESS))
 	{
 		if(Npc_GetDistToWP(self,"NW_FARM3_GAAN") < 2000)
 		{
-			return TRUE;
+			if(Npc_IsDead(Gaans_Snapper))
+			{
+				return TRUE;
+			};
 		};
 	};
 };

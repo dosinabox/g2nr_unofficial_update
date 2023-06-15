@@ -313,6 +313,7 @@ func void B_ClearHeroOverlays()
 	Mdl_RemoveOverlayMDS(hero,"Humans_Tired.mds");
 	Mdl_RemoveOverlayMDS(hero,"Humans_Drunken.mds");
 	Mdl_RemoveOverlayMDS(hero,"Humans_Sprint.mds");
+	Mdl_RemoveOverlayMDS(hero,"Humans_Flee.mds");
 };
 
 func void B_ResetHeroSkin()
@@ -4002,6 +4003,7 @@ func void CH_Overlay_Info()
 	Info_AddChoice(CH_Overlay,"Женщина",CH_Overlay_Babe);
 	Info_AddChoice(CH_Overlay,"Маг",CH_Overlay_Mage);
 	Info_AddChoice(CH_Overlay,"Солдат",CH_Overlay_Militia);
+	Info_AddChoice(CH_Overlay,"Испуганный",CH_Overlay_Flee);
 	Info_AddChoice(CH_Overlay,"Крутой",CH_Overlay_Arrogance);
 	Info_AddChoice(CH_Overlay,"Спокойный",CH_Overlay_Relaxed);
 	Info_AddChoice(CH_Overlay,"Уставший",CH_Overlay_Tired);
@@ -4033,6 +4035,13 @@ func void CH_Overlay_Militia()
 {
 	B_ClearHeroOverlays();
 	Mdl_ApplyOverlayMds(other,"Humans_Militia.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Flee()
+{
+	B_ClearHeroOverlays();
+	Mdl_ApplyOverlayMds(other,"Humans_Flee.mds");
 	Info_ClearChoices(CH_Overlay);
 };
 
