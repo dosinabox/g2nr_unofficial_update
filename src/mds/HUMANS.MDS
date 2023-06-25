@@ -147,23 +147,23 @@ Model ("HuS")
 // ---------------------------------------------------------------------------------------------------------------
 //	TURNING
 
-			ani			("t_RunTurnL"			20	"t_RunTurnL"	0.2	0.2	M.	"Hum_TurnL_A05.asc"			F	1	20)
-			{
-				*eventSFXGrnd	(10	"Turn")
-				*eventSFXGrnd	(20	"Turn")
-			}
+		//	ani			("t_RunTurnL"			20	"t_RunTurnL"	0.2	0.2	M.	"Hum_TurnL_A05.asc"			F	1	20)
+		//	{
+		//		*eventSFXGrnd	(10	"Turn")
+		//		*eventSFXGrnd	(20	"Turn")
+		//	}
 
 
-			ani			("t_RunTurnR"			20	"t_RunTurnR"	0.2	0.2	M.	"Hum_TurnR_A05.asc"			F	1	20)
+		//	ani			("t_RunTurnR"			20	"t_RunTurnR"	0.2	0.2	M.	"Hum_TurnR_A05.asc"			F	1	20)
 //			ani			("t_RunTurnR"			20	"t_RunTurnR"	0.2	0.2	M.	"Hum_TurnR_A01.asc"			R	0	24)
-			{
-				*eventSFXGrnd	(10	"Turn")
-				*eventSFXGrnd	(20	"Turn")
+		//	{
+		//		*eventSFXGrnd	(10	"Turn")
+		//		*eventSFXGrnd	(20	"Turn")
 //				*eventSFXGrnd	(18	"Turn")
-			}
+		//	}
 
-			aniAlias	("t_WalkTurnL"			20	"t_WalkTurnL"	0.2	0.2	M.	"t_RunTurnL"				F)
-			aniAlias	("t_WalkTurnR"			20	"t_WalkTurnR"	0.2	0.2	M.	"t_RunTurnR"				F)
+		//	aniAlias	("t_WalkTurnL"			20	"t_WalkTurnL"	0.2	0.2	M.	"t_RunTurnL"				F)
+		//	aniAlias	("t_WalkTurnR"			20	"t_WalkTurnR"	0.2	0.2	M.	"t_RunTurnR"				F)
 
 			ani			("t_SneakTurnL"			20	"t_SneakTurnL"	0.2	0.2	M.	"Hum_SneakTurnL_M02.asc"	F	1	25)
 			ani			("t_SneakTurnR"			20	"t_SneakTurnR"	0.2	0.2	M.	"Hum_SneakTurnR_M02.asc"	F	1	25)
@@ -172,16 +172,16 @@ Model ("HuS")
 // ---------------------------------------------------------------------------------------------------------------
 //	STRAFING
 
-			ani			("t_RunStrafeL"			1	"t_RunStrafeL"		0.1	0.1	M.	"Hum_FistStrafeL_M01.asc"	F	0	18)
-			{
-				*eventSFXGrnd	(0	"Run")
-				*eventSFXGrnd	(9	"Run")
-			}
-			ani			("t_RunStrafeR"			1	"t_RunStrafeR"		0.1	0.1	M.	"Hum_FistStrafeR_M01.asc"	F	0	18)
-			{
-				*eventSFXGrnd	(0	"Run")
-				*eventSFXGrnd	(9	"Run")
-			}
+		//	ani			("t_RunStrafeL"			1	"t_RunStrafeL"		0.1	0.1	M.	"Hum_FistStrafeL_M01.asc"	F	0	18)
+		//	{
+		//		*eventSFXGrnd	(0	"Run")
+		//		*eventSFXGrnd	(9	"Run")
+		//	}
+		//	ani			("t_RunStrafeR"			1	"t_RunStrafeR"		0.1	0.1	M.	"Hum_FistStrafeR_M01.asc"	F	0	18)
+		//	{
+		//		*eventSFXGrnd	(0	"Run")
+		//		*eventSFXGrnd	(9	"Run")
+		//	}
 
 //			aniAlias	("t_WalkStrafeL"		1	"t_WalkStrafeL"		0.1	0.1	M.	"t_FistRunStrafeL"		F)
 //			aniAlias	("t_WalkStrafeR"		1	"t_WalkStrafeR"		0.1	0.1	M.	"t_FistRunStrafeR"		F)
@@ -200,19 +200,19 @@ Model ("HuS")
 //				*eventSFXGrnd	(43	"Run")
 //			}
 
-			ani			("t_WalkStrafeL"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkStrafeL_M02.asc"	F	1	18)
-			{
-				*eventSFXGrnd   (4	"Sneak")
-				*eventSFXGrnd   (11	"Sneak")
-				*eventSFXGrnd   (16	"Sneak")
-			}
+		//	ani			("t_WalkStrafeL"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkStrafeL_M02.asc"	F	1	18)
+		//	{
+		//		*eventSFXGrnd   (4	"Sneak")
+		//		*eventSFXGrnd   (11	"Sneak")
+		//		*eventSFXGrnd   (16	"Sneak")
+		//	}
 
-			ani			("t_WalkStrafeR"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkStrafeR_M02.asc"	F	1	18)
-			{
-				*eventSFXGrnd   (4	"Sneak")
-				*eventSFXGrnd   (11	"Sneak")
-				*eventSFXGrnd   (16	"Sneak")
-			}
+		//	ani			("t_WalkStrafeR"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkStrafeR_M02.asc"	F	1	18)
+		//	{
+		//		*eventSFXGrnd   (4	"Sneak")
+		//		*eventSFXGrnd   (11	"Sneak")
+		//		*eventSFXGrnd   (16	"Sneak")
+		//	}
 
 			ani			("t_SneakStrafeL"		1	"s_Sneak"		0.1	0.1	M.	"Hum_SneakStrafeLR_M01.ASC"	F	1	25)
 			aniAlias	("t_SneakStrafeR"		1	"s_Sneak"		0.1	0.1	M.	"t_SneakStrafeL"			R)
@@ -271,68 +271,68 @@ Model ("HuS")
 
 //	JumpUpLow       (Ohne Benutzung der Hдnde, rechter FuЯ setzt zuerst auf. Hцhe: 50-100cm)
 //  ani1: Schwung holen, ani2: Flugphase, ani3: Kontakt mit Kante
-			ani		("t_Stand_2_JumpUpLow"		1   "s_JumpUpLow"				0.0 0.0 M.  "Hum_JumpUpLow_A11.asc" F   1	4)
- 			ani		("s_JumpUpLow"              1   "t_JumpUpLow_2_Stand"		0.0 0.0 MF	"Hum_JumpUpLow_A11.asc" F   5	10)
-			{
+		//	ani		("t_Stand_2_JumpUpLow"		1   "s_JumpUpLow"				0.0 0.0 M.  "Hum_JumpUpLow_A11.asc" F   1	4)
+ 		//	ani		("s_JumpUpLow"              1   "t_JumpUpLow_2_Stand"		0.0 0.0 MF	"Hum_JumpUpLow_A11.asc" F   5	10)
+		//	{
 			//	*eventPFX		(10 "ZMODELLANDDUST" "BIP01 L Foot")
-				*eventSFXGrnd	(10	"Run")
-			}
+		//		*eventSFXGrnd	(10	"Run")
+		//	}
 
-            ani     ("t_JumpUpLow_2_Stand"  	1   ""							0.0 0.1 MF	"Hum_JumpUpLow_A11.asc" F   11	19)
-			{
-				*eventSFXGrnd	(16	"Run")
-			}
+        //    ani     ("t_JumpUpLow_2_Stand"  	1   ""							0.0 0.1 MF	"Hum_JumpUpLow_A11.asc" F   11	19)
+		//	{
+		//		*eventSFXGrnd	(16	"Run")
+		//	}
 
 //	aus dem Rennen direkt Springen
-			aniAlias	("t_RunL_2_JumpUpLow"	1	"t_JumpUpLow_2_Stand"		0.2	0.1	MF	"s_JumpUpLow"			F)
-			aniAlias	("t_RunR_2_JumpUpLow"	1	"t_JumpUpLow_2_Stand"		0.2	0.1	MF	"s_JumpUpLow"			F)
+		//	aniAlias	("t_RunL_2_JumpUpLow"	1	"t_JumpUpLow_2_Stand"		0.2	0.1	MF	"s_JumpUpLow"			F)
+		//	aniAlias	("t_RunR_2_JumpUpLow"	1	"t_JumpUpLow_2_Stand"		0.2	0.1	MF	"s_JumpUpLow"			F)
 
 //	JumpUpMid       (Auf den Hдnden abgestьtzt in einem Satz nach oben. Hцhe: 100-200cm)
 //  ani1: Schwung holen, ani2: Flugphase, ani3: Kontakt mit Kante
-            ani		("t_Stand_2_JumpUpMid"		1   "s_JumpUpMid"				0.1 0.0 M.	"Hum_JumpUpMid_A11.asc" F   1	9)
-			ani		("s_JumpUpMid"              1   "t_JumpUpMid_2_Stand"		0.0 0.0 MF	"Hum_JumpUpMid_A11.asc" F   10	13)
-			{
-				*eventSFXGrnd	(13	"Run")
-			}
+        //	ani		("t_Stand_2_JumpUpMid"		1   "s_JumpUpMid"				0.1 0.0 M.	"Hum_JumpUpMid_A11.asc" F   1	9)
+		//	ani		("s_JumpUpMid"              1   "t_JumpUpMid_2_Stand"		0.0 0.0 MF	"Hum_JumpUpMid_A11.asc" F   10	13)
+		//	{
+		//		*eventSFXGrnd	(13	"Run")
+		//	}
 
-            ani		("t_JumpUpMid_2_Stand"  	1   ""							0.0 0.1 MF	"Hum_JumpUpMid_A11.asc" F   14	34)
-			{
-				*eventSFXGrnd	(21	"Run")
-				*eventSFXGrnd	(26	"Run")
-			}
+        //	ani		("t_JumpUpMid_2_Stand"  	1   ""							0.0 0.1 MF	"Hum_JumpUpMid_A11.asc" F   14	34)
+		//	{
+		//		*eventSFXGrnd	(21	"Run")
+		//		*eventSFXGrnd	(26	"Run")
+		//	}
 
 //	aus dem Rennen direkt Springen
-			aniAlias	("t_RunL_2_JumpUpMid"	1	"t_JumpUpMid_2_Stand"		0.2	0.1	MF	"s_JumpUpMid"			F)
-			aniAlias	("t_RunR_2_JumpUpMid"	1	"t_JumpUpMid_2_Stand"		0.2	0.1	MF	"s_JumpUpMid"			F)
+		//	aniAlias	("t_RunL_2_JumpUpMid"	1	"t_JumpUpMid_2_Stand"		0.2	0.1	MF	"s_JumpUpMid"			F)
+		//	aniAlias	("t_RunR_2_JumpUpMid"	1	"t_JumpUpMid_2_Stand"		0.2	0.1	MF	"s_JumpUpMid"			F)
 
 
 //	Wдhrend Sprung nach vorn Festhalten an Kante
-			ani			("t_Jump_2_Hang"		1	"s_Hang"		0.1	0.0	MF	"Hum_HangClimb_M01.asc" 	F	0	17)
+		//	ani			("t_Jump_2_Hang"		1	"s_Hang"		0.1	0.0	MF	"Hum_HangClimb_M01.asc" 	F	0	17)
 
 //	Wдhrend Runterfallen Festhalten an Kante
-			aniAlias	("t_FallDn_2_Hang"		1	"s_Hang"		0.3	0.0	MF	"t_Jump_2_Hang" 			F)
+		//	aniAlias	("t_FallDn_2_Hang"		1	"s_Hang"		0.3	0.0	MF	"t_Jump_2_Hang" 			F)
 
 //	JumpUp, Hang	(An Kante springen, und dann hochziehen. Hцhe: 200-350cm)
 //	aus dem Rennen direkt Springen
 //			aniAlias	("t_RunL_2_JumpUp"		1	"s_JumpUp"		0.2	0.1	MF	"t_Stand_2_JumpUp"			F)
 //			aniAlias	("t_RunR_2_JumpUp"		1	"s_JumpUp"		0.2	0.1	MF	"t_Stand_2_JumpUp"			F)
 
-			ani			("t_Stand_2_JumpUp"		1	"s_JumpUp"			0.0	0.0	M.	"Hum_JumpUp_M03.asc"	F	1	10)
+		//	ani			("t_Stand_2_JumpUp"		1	"s_JumpUp"			0.0	0.0	M.	"Hum_JumpUp_M03.asc"	F	1	10)
 
-			ani			("s_JumpUp"				1	"s_JumpUp"		0.0	0.0	MF	"Hum_JumpUp_M03.asc"		F	10	10)
+		//	ani			("s_JumpUp"				1	"s_JumpUp"		0.0	0.0	MF	"Hum_JumpUp_M03.asc"		F	10	10)
 
-			aniBlend	("t_JumpUp_2_Hang"			"s_Hang"		0.0	0.1)
-			ani			("s_Hang"				1	"s_Hang"		0.1	0.0	MF	"Hum_HangClimb_M01.asc" 	F	18	18)
+		//	aniBlend	("t_JumpUp_2_Hang"			"s_Hang"		0.0	0.1)
+		//	ani			("s_Hang"				1	"s_Hang"		0.1	0.0	MF	"Hum_HangClimb_M01.asc" 	F	18	18)
 
 //	Climb up
-			ani			("t_Hang_2_Stand"		1	""				0.0	0.3	MF	"Hum_HangClimb_M01.asc" 	F	19	44)
-			{
-				*eventSFXGrnd	(32	"Run")
-				*eventSFXGrnd	(44	"Run")
-			}
+		//	ani			("t_Hang_2_Stand"		1	""				0.0	0.3	MF	"Hum_HangClimb_M01.asc" 	F	19	44)
+		//	{
+		//		*eventSFXGrnd	(32	"Run")
+		//		*eventSFXGrnd	(44	"Run")
+		//	}
 
 //	Climb Down
-			aniAlias	("t_Stand_2_Hang"		1	"s_Hang"		0.0	0.0	MF	"t_Hang_2_Stand"			R)
+		//	aniAlias	("t_Stand_2_Hang"		1	"s_Hang"		0.0	0.0	MF	"t_Hang_2_Stand"			R)
 
 
 
@@ -4030,6 +4030,153 @@ Model ("HuS")
 			}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// RUN-Mode /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("s_Run"				1	"s_Run"			0.1	0.1	MI	"Hum_RunAmbient_GMF.asc"	F	0	59)
+			ani			("t_Run_2_RunL"			1	"s_RunL"		0.1	0.0	M.	"Hum_RunLoop_GMF.asc"		F	0	11)
+			ani			("s_RunL"				1	"s_RunL"		0.0	0.1	M.	"Hum_RunLoop_GMF.asc"		F	12	31)
+			{
+				*eventSFXGrnd	(12	"Run")
+				*eventSFXGrnd	(22	"Run")
+			}
+
+			ani			("t_RunL_2_Run"			1	"s_Run"			0.1	0.1	M.	"Hum_RunLoop_GMF.asc"		F	32	40)
+			{
+				*eventSFXGrnd	(38	"Run")
+			}
+			ani			("t_RunR_2_Run"			1	"s_Run"			0.1	0.1	M.	"Hum_RunLoop_GMF.asc"		F	42	50)
+			{
+				*eventSFXGrnd	(48	"Run")
+			}
+
+			ani			("t_JumpB"				1	"s_Run"			0.0	0.2	M.	"Hum_JumpB_GMF.asc"			F	0	16)
+			{
+				*eventSFXGrnd  (7 "Run")
+				*eventSFXGrnd  (9 "Run")
+			}
+			
+// RUN-Mode /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// WALK-Mode ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			aniAlias	("s_Walk"				1	"s_Walk"		0.1	0.1	MI	"s_Run"						F)
+			ani			("t_Walk_2_WalkL"		1	"s_WalkL"		0.0	0.0	M.	"Hum_WalkLoop_GMF.asc"		F	0	9)
+			ani			("s_WalkL"				1	"s_WalkL"		0.0	0.1	M.	"Hum_WalkLoop_GMF.asc"		F	10	33)
+			{
+				*eventSFXGrnd	(10	"Walk")
+				*eventSFXGrnd	(22	"Walk")
+			}
+
+			ani			("t_WalkL_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkLoop_GMF.asc"		F	34	45)
+			{
+				*eventSFXGrnd	(41	"Walk")
+			}
+			ani			("t_WalkR_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkLoop_GMF.asc"		F	46	57)
+			{
+				*eventSFXGrnd	(53	"Walk")
+			}
+
+			// Зацикленное движение назад в режиме передвижения шагом заменено отпрыгиванием.
+			aniAlias	("t_Walk_2_WalkBL"		1	"s_Walk"		0.1	0.1	M.	"t_JumpB"					F)
+			
+// WALK-Mode ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// TURNING //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_RunTurnL"			20	"t_RunTurnL"	0.2	0.2	M.	"Hum_TurnL_GMF.asc"			F	1	20)
+			{
+				*eventSFXGrnd	(10	"Turn")
+				*eventSFXGrnd	(20	"Turn")
+			}
+			ani			("t_RunTurnR"			20	"t_RunTurnR"	0.2	0.2	M.	"Hum_TurnR_GMF.asc"			F	1	20)
+			{
+				*eventSFXGrnd	(10	"Turn")
+				*eventSFXGrnd	(20	"Turn")
+			}
+			
+			aniAlias	("t_WalkTurnL"			20	"t_WalkTurnL"	0.2	0.2	M.	"t_RunTurnL"				F)
+			aniAlias	("t_WalkTurnR"			20	"t_WalkTurnR"	0.2	0.2	M.	"t_RunTurnR"				F)
+			
+// TURNING //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// STRAFING /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_RunStrafeL"			1	"t_RunStrafeL"	0.1	0.1	M.	"Hum_FistStrafeL_GMF.asc"	F	0	17)
+			{
+				*eventSFXGrnd	(8	"Run")
+				*eventSFXGrnd	(17	"Run")
+			}
+			ani			("t_RunStrafeR"			1	"t_RunStrafeR"	0.1	0.1	M.	"Hum_FistStrafeR_GMF.asc"	F	0	17)
+			{
+				*eventSFXGrnd	(8	"Run")
+				*eventSFXGrnd	(17	"Run")
+			}
+			
+			ani			("t_WalkStrafeL"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkStrafeLR_GMF.asc"	F	0	18)
+			{
+				*eventSFXGrnd   (9	"Walk")
+				*eventSFXGrnd   (17	"Walk")
+			}
+			ani			("t_WalkStrafeR"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkStrafeLR_GMF.asc"	F	20	38)
+			{
+				*eventSFXGrnd   (29	"Walk")
+				*eventSFXGrnd   (37	"Walk")
+			}
+			
+// STRAFING /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// JUMP UP //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//	JumpUpLow	(50-100cm)
+			ani		("t_Stand_2_JumpUpLow"		1   "s_JumpUpLow"				0.0 0.0 M.  "Hum_JumpUpLow_GMF.asc" F   0	4)
+ 			ani		("s_JumpUpLow"              1   "t_JumpUpLow_2_Stand"		0.0 0.0 MF	"Hum_JumpUpLow_GMF.asc" F   5	10)
+			{
+				*eventSFXGrnd	(10	"Run")
+			}
+			ani     ("t_JumpUpLow_2_Stand"  	1   ""							0.0 0.0 MF	"Hum_JumpUpLow_GMF.asc" F   11	21)
+			{
+				*eventSFXGrnd	(16	"Run")
+			}
+			
+//	JumpUpMid	(100-200cm)
+			ani		("t_Stand_2_JumpUpMid"		1   "s_JumpUpMid"				0.0 0.0 M.	"Hum_JumpUpMid_GMF.asc" F   0	9)
+			ani		("s_JumpUpMid"              1   "t_JumpUpMid_2_Stand"		0.0 0.0 MF	"Hum_JumpUpMid_GMF.asc" F   10	13)
+			ani		("t_JumpUpMid_2_Stand"  	1   ""							0.0 0.0 MF	"Hum_JumpUpMid_GMF.asc" F   14	36)
+			{
+				*eventSFXGrnd	(21	"Run")
+				*eventSFXGrnd	(27	"Run")
+			}
+			
+//	JumpUp, Hang	(200-350cm)
+			ani			("t_Stand_2_JumpUp"		1	"s_JumpUp"					0.0	0.0	M.	"Hum_JumpUp_GMF.asc"	F	0	10)
+			ani			("s_JumpUp"				1	"s_JumpUp"					0.0	0.0	MF	"Hum_JumpUp_GMF.asc"	F	10	10)
+			aniBlend	("t_JumpUp_2_Hang"			"s_Hang"					0.0	0.1)
+			ani			("s_Hang"				1	"t_Hang_2_Stand"			0.1	0.0	MF	"Hum_JumpUp_GMF.asc" 	F	18	18)
+			ani			("t_Hang_2_Stand"		1	""							0.0	0.0	MF	"Hum_JumpUp_GMF.asc" 	F	19	46)
+			{
+				*eventSFXGrnd	(32	"Run")
+				*eventSFXGrnd	(43	"Run")
+			}
+			
+// JUMP UP //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BOW: GMF Version /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////
@@ -4840,26 +4987,26 @@ Model ("HuS")
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DIALOGGESTURES ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			ani			("T_DIALOGGESTURE_01"		2	""		0.3	0.3	M.	"Hum_Dialoggesture01_GMF.asc"			F	0	60)
-			ani			("T_DIALOGGESTURE_02"		2	""		0.3	0.3	M.	"Hum_Dialoggesture02_GMF.asc"			F	0	50)
-			ani			("T_DIALOGGESTURE_03"		2	""		0.3	0.3	M.	"Hum_Dialoggesture03_GMF.asc"			F	0	55)
-			ani			("T_DIALOGGESTURE_04"		2	""		0.3	0.3	M.	"Hum_Dialoggesture04_GMF.asc"			F	0	55)
-			ani			("T_DIALOGGESTURE_05"		2	""		0.3	0.3	M.	"Hum_Dialoggesture05_GMF.asc"			F	0	50)
-			ani			("T_DIALOGGESTURE_06"		2	""		0.3	0.3	M.	"Hum_Dialoggesture06_GMF.asc"			F	0	50)
-			ani			("T_DIALOGGESTURE_07"		2	""		0.3	0.3	M.	"Hum_Dialoggesture07_GMF.asc"			F	0	240)
-			ani			("T_DIALOGGESTURE_08"		2	""		0.3	0.3	M.	"Hum_Dialoggesture08_GMF.asc"			F	0	150)
-			ani			("T_DIALOGGESTURE_09"		2	""		0.3	0.3	M.	"Hum_Dialoggesture09_GMF.asc"			F	0	80)
-			ani			("T_DIALOGGESTURE_10"		2	""		0.3	0.3	M.	"Hum_Dialoggesture10_GMF.asc"			F	0	150)
-			ani			("T_DIALOGGESTURE_11"		2	""		0.3	0.3	M.	"Hum_Dialoggesture11_GMF.asc"			F	0	65)
-			ani			("T_DIALOGGESTURE_12"		2	""		0.3	0.3	M.	"Hum_Dialoggesture12_GMF.asc"			F	0	45)
-			ani			("T_DIALOGGESTURE_13"		2	""		0.3	0.3	M.	"Hum_Dialoggesture13_GMF.asc"			F	0	35)
-			ani			("T_DIALOGGESTURE_14"		2	""		0.3	0.3	M.	"Hum_Dialoggesture14_GMF.asc"			F	0	40)
-			ani			("T_DIALOGGESTURE_15"		2	""		0.3	0.3	M.	"Hum_Dialoggesture15_GMF.asc"			F	0	50)
-			ani			("T_DIALOGGESTURE_16"		2	""		0.3	0.3	M.	"Hum_Dialoggesture16_GMF.asc"			F	0	72)
-			ani			("T_DIALOGGESTURE_17"		2	""		0.3	0.3	M.	"Hum_Dialoggesture17_GMF.asc"			F	0	45)
-			ani			("T_DIALOGGESTURE_18"		2	""		0.3	0.3	M.	"Hum_Dialoggesture18_GMF.asc"			F	0	50)
-			ani			("T_DIALOGGESTURE_19"		2	""		0.3	0.3	M.	"Hum_Dialoggesture19_GMF.asc"			F	0	80)
-			ani			("T_DIALOGGESTURE_20"		2	""		0.3	0.3	M.	"Hum_Dialoggesture20_GMF.asc"			F	0	50)
+			ani			("T_DIALOGGESTURE_01"		20	""		0.2	0.4	M.	"Hum_Dialoggesture01_GMF.asc"			F	0	60)
+			ani			("T_DIALOGGESTURE_02"		20	""		0.2	0.4	M.	"Hum_Dialoggesture02_GMF.asc"			F	0	50)
+			ani			("T_DIALOGGESTURE_03"		20	""		0.2	0.4	M.	"Hum_Dialoggesture03_GMF.asc"			F	0	55)
+			ani			("T_DIALOGGESTURE_04"		20	""		0.2	0.4	M.	"Hum_Dialoggesture04_GMF.asc"			F	0	55)
+			ani			("T_DIALOGGESTURE_05"		20	""		0.2	0.4	M.	"Hum_Dialoggesture05_GMF.asc"			F	0	50)
+			ani			("T_DIALOGGESTURE_06"		20	""		0.2	0.4	M.	"Hum_Dialoggesture06_GMF.asc"			F	0	50)
+			ani			("T_DIALOGGESTURE_07"		20	""		0.2	0.4	M.	"Hum_Dialoggesture07_GMF.asc"			F	0	240)
+			ani			("T_DIALOGGESTURE_08"		20	""		0.2	0.4	M.	"Hum_Dialoggesture08_GMF.asc"			F	0	150)
+			ani			("T_DIALOGGESTURE_09"		20	""		0.2	0.4	M.	"Hum_Dialoggesture09_GMF.asc"			F	0	80)
+			ani			("T_DIALOGGESTURE_10"		20	""		0.2	0.4	M.	"Hum_Dialoggesture10_GMF.asc"			F	0	150)
+			ani			("T_DIALOGGESTURE_11"		20	""		0.2	0.4	M.	"Hum_Dialoggesture11_GMF.asc"			F	0	65)
+			ani			("T_DIALOGGESTURE_12"		20	""		0.2	0.4	M.	"Hum_Dialoggesture12_GMF.asc"			F	0	45)
+			ani			("T_DIALOGGESTURE_13"		20	""		0.2	0.4	M.	"Hum_Dialoggesture13_GMF.asc"			F	0	35)
+			ani			("T_DIALOGGESTURE_14"		20	""		0.2	0.4	M.	"Hum_Dialoggesture14_GMF.asc"			F	0	40)
+			ani			("T_DIALOGGESTURE_15"		20	""		0.2	0.4	M.	"Hum_Dialoggesture15_GMF.asc"			F	0	50)
+			ani			("T_DIALOGGESTURE_16"		20	""		0.2	0.4	M.	"Hum_Dialoggesture16_GMF.asc"			F	0	72)
+			ani			("T_DIALOGGESTURE_17"		20	""		0.2	0.4	M.	"Hum_Dialoggesture17_GMF.asc"			F	0	45)
+			ani			("T_DIALOGGESTURE_18"		20	""		0.2	0.4	M.	"Hum_Dialoggesture18_GMF.asc"			F	0	50)
+			ani			("T_DIALOGGESTURE_19"		20	""		0.2	0.4	M.	"Hum_Dialoggesture19_GMF.asc"			F	0	80)
+			ani			("T_DIALOGGESTURE_20"		20	""		0.2	0.4	M.	"Hum_Dialoggesture20_GMF.asc"			F	0	50)
 		//	AniDisable	("t_DIALOGGESTURE_21")
 			
 // DIALOGGESTURES ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5016,59 +5163,6 @@ Model ("HuS")
 			aniComb		("t_FIREPLACE_S1_2_Stand"	1	""					0.0	0.0	M.	"c_FP_S1_2_Stand_"			3)
 			
 // FIREPLACE ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// RUN-Mode /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			ani			("s_Run"				1	"s_Run"			0.1	0.1	MI	"Hum_RunAmbient_GMF.asc"	F	0	59)
-			ani			("t_Run_2_RunL"			1	"s_RunL"		0.1	0.0	M.	"Hum_RunLoop_GMF.asc"		F	0	11)
-			ani			("s_RunL"				1	"s_RunL"		0.0	0.1	M.	"Hum_RunLoop_GMF.asc"		F	12	31)
-			{
-				*eventSFXGrnd	(12	"Run")
-				*eventSFXGrnd	(22	"Run")
-			}
-
-			ani			("t_RunL_2_Run"			1	"s_Run"			0.1	0.1	M.	"Hum_RunLoop_GMF.asc"		F	32	40)
-			{
-				*eventSFXGrnd	(38	"Run")
-			}
-			ani			("t_RunR_2_Run"			1	"s_Run"			0.1	0.1	M.	"Hum_RunLoop_GMF.asc"		F	42	50)
-			{
-				*eventSFXGrnd	(48	"Run")
-			}
-
-			ani			("t_JumpB"				1	"s_Run"			0.0	0.2	M.	"Hum_JumpB_GMF.asc"			F	0	16)
-			{
-				*eventSFXGrnd  (7 "Run")
-				*eventSFXGrnd  (9 "Run")
-			}
-			
-// RUN-Mode /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// WALK-Mode ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			aniAlias	("s_Walk"				1	"s_Walk"		0.1	0.1	MI	"s_Run"						F)
-			ani			("t_Walk_2_WalkL"		1	"s_WalkL"		0.0	0.0	M.	"Hum_WalkLoop_GMF.asc"		F	0	9)
-			ani			("s_WalkL"				1	"s_WalkL"		0.0	0.1	M.	"Hum_WalkLoop_GMF.asc"		F	10	33)
-			{
-				*eventSFXGrnd	(10	"Walk")
-				*eventSFXGrnd	(22	"Walk")
-			}
-
-			ani			("t_WalkL_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkLoop_GMF.asc"		F	34	45)
-			{
-				*eventSFXGrnd	(41	"Walk")
-			}
-			ani			("t_WalkR_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkLoop_GMF.asc"		F	46	57)
-			{
-				*eventSFXGrnd	(53	"Walk")
-			}
-
-			// Зацикленное движение назад в режиме передвижения шагом заменено отпрыгиванием.
-			aniAlias	("t_Walk_2_WalkBL"		1	"s_Walk"		0.1	0.1	M.	"t_JumpB"					F)
-			
-// WALK-Mode ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

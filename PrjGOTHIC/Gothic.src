@@ -78,7 +78,6 @@ Story\B_Story\B_ClearFakeItems.d
 Story\B_Story\B_UnEquipAllWeapons.d
 Story\B_Story\B_UnEquipHeroItem.d
 Story\B_Story\B_UnEquipIllegalMagicItems.d
-Story\B_Story\B_Check_Talents.d
 Story\B_Story\B_EquipArmor.d
 Items\Tuning_Addon_BeliarsWeapons.d
 Items\Tuning_Melee_Weapons.d
