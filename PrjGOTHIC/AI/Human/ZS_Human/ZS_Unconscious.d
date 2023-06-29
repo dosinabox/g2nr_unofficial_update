@@ -71,12 +71,10 @@ func void ZS_Unconscious()
 	else
 	{
 		B_GiveTradeInv(self);
-		B_ClearRuneInv(self);
 		B_ClearSmithInv(self);
 		B_ClearAlchemyInv(self);
 		B_ClearBonusFoodInv(self);
 		B_ClearInfiniteTools(self);
-		B_ClearSpecialAmmo(self);
 		if(self.guild == GIL_STRF)
 		{
 			B_RemoveEveryInvItem(self,ItMw_2H_Axe_L_01);

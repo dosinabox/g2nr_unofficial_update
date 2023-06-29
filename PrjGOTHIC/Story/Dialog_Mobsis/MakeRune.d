@@ -222,7 +222,7 @@ func void PC_Circle_03_Info()
 	};
 	if(PLAYER_TALENT_RUNES[SPL_Thunderstorm] == TRUE)
 	{
-		Info_AddChoice(PC_Circle_03,NAME_SPL_Thunderstorm,PC_ItRu_thunderstorm_Info);
+		Info_AddChoice(PC_Circle_03,NAME_SPL_Thunderstorm,PC_ItRu_Thunderstorm_Info);
 	};
 };
 
@@ -957,7 +957,7 @@ func void PC_ItRu_Icelance_Info()
 	B_EndProductionDialog();
 };
 
-func void PC_ItRu_thunderstorm_Info()
+func void PC_ItRu_Thunderstorm_Info()
 {
 	if(Npc_HasItems(self,ItSc_Thunderstorm) && Npc_HasItems(self,ItMi_Quartz) && Npc_HasItems(self,ItAt_Wing))
 	{

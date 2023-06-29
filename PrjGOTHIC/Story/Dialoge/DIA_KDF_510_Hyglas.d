@@ -432,7 +432,6 @@ func void DIA_Hyglas_BringBook_GetForIt()
 	AI_Output(self,other,"DIA_Hyglas_BringBook_GetForIt_14_01");	//Что ты имеешь в виду?
 	AI_Output(other,self,"DIA_Hyglas_BringBook_GetForIt_15_02");	//Ну, я бы хотел знать, что ты дашь мне, если я принесу эту книгу.
 	AI_Output(self,other,"DIA_Hyglas_BringBook_GetForIt_14_03");	//Ничего. А что ты ожидал получить? Если у тебя есть время, чтобы выполнить для меня задание в городе, это твоя обязанность помочь мне.
-	Info_ClearChoices(DIA_Hyglas_BringBook);
 };
 
 func void DIA_Hyglas_BringBook_Yes()
@@ -479,9 +478,9 @@ func void DIA_Hyglas_HaveBook_Info()
 		AI_Output(self,other,"DIA_Hyglas_HaveBook_14_02");	//Ты все же передумал. Очень хорошо. Так где же эта книга?
 	};
 	B_GiveInvItems(other,self,ItWr_Astronomy_Mis,1);
+	AI_Output(self,other,"DIA_Hyglas_HaveBook_14_03");	//Теперь ты можешь удалиться. А я должен уединиться и заняться ее изучением.
 	MIS_HyglasBringBook = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HyglasBringBook);
-	AI_Output(self,other,"DIA_Hyglas_HaveBook_14_03");	//Теперь ты можешь удалиться. А я должен уединиться и заняться ее изучением.
 };
 
 

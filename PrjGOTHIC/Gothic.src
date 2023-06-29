@@ -60,6 +60,7 @@ Story\B_Story\B_GivePlayerLP.d
 Story\B_Story\B_GivePlayerXP.d
 Story\B_Content\B_ScUsesRake.d
 Story\B_GiveTradeInv\B_ClearRuneInv.d
+Story\B_Story\B_ClearFakeItems.d
 Story\B_Story\B_KillNpc.d
 Story\B_Story\C_CanRemoveKey.d
 Story\B_Story\C_WorldIsFixed.d
@@ -74,7 +75,6 @@ Story\B_Content\B_PlayerFindItem.d
 Story\B_Story\B_MagicTransform.d
 Story\B_Story\B_NpcSetDrunk.d
 Story\B_Story\B_CheckRedLightUndercover.d
-Story\B_Story\B_ClearFakeItems.d
 Story\B_Story\B_UnEquipAllWeapons.d
 Story\B_Story\B_UnEquipHeroItem.d
 Story\B_Story\B_UnEquipIllegalMagicItems.d
