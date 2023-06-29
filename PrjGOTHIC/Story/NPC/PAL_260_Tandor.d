@@ -10,11 +10,8 @@ instance PAL_260_Tandor(Npc_Default)
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-//	EquipItem(self,ItMw_1h_Pal_Sword);
 	EquipItem(self,ItMw_Doppelaxt);
 	EquipItem(self,ItRw_Crossbow_M_02);
-//	EquipItem(self,ItRw_Mil_Crossbow);
-//	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,47,ItMi_Gold,90);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_P_Tough_Rodriguez,BodyTex_P,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,0);

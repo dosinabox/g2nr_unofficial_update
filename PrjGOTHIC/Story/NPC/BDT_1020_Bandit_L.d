@@ -6,7 +6,7 @@ instance BDT_1020_Bandit_L(Npc_Default)
 	id = 1020;
 	voice = 6;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_EnemyOverride] = TRUE;
 //	aivar[AIV_DropDeadAndKill] = TRUE;
 	B_SetAttributesToChapter(self,1);

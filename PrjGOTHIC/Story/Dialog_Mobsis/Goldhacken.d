@@ -142,23 +142,23 @@ func int PC_Goldhacken_End_Condition()
 func void PC_Goldhacken_End_Info()
 {
 	Truemmer_Count = 0;
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 
 func void B_GetGoldNugget(var int count)
 {
 	var string text;
-	CreateInvItems(hero,ItMi_GoldNugget_Addon,count);
+	CreateInvItems(self,ItMi_GoldNugget_Addon,count);
 	Snd_Play("Geldbeutel");
 	if(count == 1)
 	{
-		PrintScreen("Добыт 1 золотой самородок!",-1,-1,FONT_ScreenSmall,1);
+		AI_PrintScreen("Добыт 1 золотой самородок!",-1,-1,FONT_ScreenSmall,1);
 	}
 	else
 	{
 		text = ConcatStrings("Добыто ",IntToString(count));
-		PrintScreen(ConcatStrings(text," золотых самородка!"),-1,-1,FONT_ScreenSmall,1);
+		AI_PrintScreen(ConcatStrings(text," золотых самородка!"),-1,-1,FONT_ScreenSmall,1);
 	};
 };
 
@@ -226,14 +226,14 @@ func void PC_Goldhacken_Addon_Hour_Info()
 		}
 		else
 		{
-			PrintScreen("Золотые осколки разлетаются во все стороны...",-1,53,FONT_ScreenSmall,1);
+			AI_PrintScreen("Золотые осколки разлетаются во все стороны...",-1,53,FONT_ScreenSmall,1);
 			Truemmer_Count += 1;
 		};
 	}
 	else
 	{
-		PrintScreen(PRINT_NothingToPick,-1,53,FONT_ScreenSmall,2);
-		b_endproductiondialog();
+		AI_PrintScreen(PRINT_NothingToPick,-1,53,FONT_ScreenSmall,2);
+		B_EndProductionDialog();
 	};
 };
 
@@ -263,7 +263,7 @@ func void PC_Goldhacken_Addon_TSchlag_Info()
 	TruemmerChance = Hlp_Random(100);
 	if(TruemmerChance < 5)
 	{
-		PrintScreen("Ничего...",-1,53,FONT_ScreenSmall,1);
+		AI_PrintScreen("Ничего...",-1,53,FONT_ScreenSmall,1);
 	}
 	else
 	{
@@ -337,6 +337,6 @@ func void PC_Goldhacken_Addon_Chance_Info()
 		concatText = ConcatStrings("Гуру среди рудокопов (",IntToString(Hero_HackChance));
 	};
 	concatText = ConcatStrings(concatText," процентов)");
-	PrintScreen(concatText,-1,34,FONT_ScreenSmall,2);
+	AI_PrintScreen(concatText,-1,34,FONT_ScreenSmall,2);
 };
 

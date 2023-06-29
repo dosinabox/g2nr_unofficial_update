@@ -6,7 +6,7 @@ instance BDT_1098_Addon_Snaf(Npc_Default)
 	id = 1098;
 	voice = 1;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Sld_Sword);

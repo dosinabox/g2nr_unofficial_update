@@ -6,7 +6,7 @@ instance KDF_505_Marduk(Npc_Default)
 	id = 505;
 	voice = 5;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);

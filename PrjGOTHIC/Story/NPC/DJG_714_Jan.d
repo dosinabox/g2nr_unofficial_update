@@ -6,7 +6,7 @@ instance DJG_714_Jan(Npc_Default)
 	id = 714;
 	voice = 10;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);

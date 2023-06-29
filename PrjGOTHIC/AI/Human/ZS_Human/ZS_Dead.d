@@ -122,7 +122,7 @@ func void ZS_Dead()
 					{
 						if(!Npc_IsDead(AlligatorJack))
 						{
-							if(Npc_GetDistToNpc(self,AlligatorJack) <= 1500)
+							if(Npc_GetDistToNpc(self,AlligatorJack) <= PERC_DIST_ACTIVE_MAX)
 							{
 								AlligatorJack_KrokosKilled += 1;
 							};
@@ -142,7 +142,7 @@ func void ZS_Dead()
 					{
 						if(!Npc_IsDead(Fester))
 						{
-							if(Npc_GetDistToNpc(self,Fester) <= 1500)
+							if(Npc_GetDistToNpc(self,Fester) <= PERC_DIST_ACTIVE_MAX)
 							{
 								Festers_Giant_Bug_Killed += 1;
 							};
@@ -153,7 +153,7 @@ func void ZS_Dead()
 				{
 					if(C_IsNpc(self,Grimbald_Snapper1) || C_IsNpc(self,Grimbald_Snapper2) || C_IsNpc(self,Grimbald_Snapper3))
 					{
-						Grimbald_Snappers_KilledByPlayer = TRUE;
+						Grimbald_Snappers_KilledByPlayer += 1;
 					};
 				}
 				else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rod))
@@ -188,12 +188,10 @@ func void ZS_Dead()
 	{
 		B_GiveTradeInv(self);
 		B_GiveDeathInv(self);
-		B_ClearRuneInv(self);
 		B_ClearSmithInv(self);
 		B_ClearAlchemyInv(self);
 		B_ClearBonusFoodInv(self);
 		B_ClearInfiniteTools(self);
-		B_ClearSpecialAmmo(self);
 		B_DeletePetzCrime(self);
 		self.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
 		self.aivar[AIV_TAPOSITION] = ISINPOS;

@@ -1569,42 +1569,6 @@ func void UseAttributesBook()
 	Doc_Show(nDocID);
 };
 
-instance AttSyncer(C_Item) //TODO удалить
-{
-	name = "Руна синхронизации";
-	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
-	value = 0;
-	visual = "ItRu_TeleportOWDemonTower.3DS";
-	material = MAT_STONE;
-	scemeName = "MAP";
-	description = name;
-	text[0] = "Синхронизировать характеристики ГГ.";
-	on_state[0] = UseAttributesSyncer;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
-};
-
-
-func void UseAttributesSyncer()
-{
-	B_UnEquipAllTempBonusItems();
-	ATR_Training[ATR_STRENGTH] = hero.attribute[ATR_STRENGTH] - Stats_Blessings_Str;
-	ATR_Training[ATR_DEXTERITY] = hero.attribute[ATR_DEXTERITY] - Stats_Blessings_Dex;
-	ATR_Training[ATR_MANA_MAX] = hero.attribute[ATR_MANA_MAX] - Stats_Blessings_MaxMana;
-	ATR_Training[ATR_HITPOINTS_MAX] = hero.attribute[ATR_HITPOINTS_MAX] - Stats_Blessings_MaxHp;
-	ATR_PermBonus[ATR_STRENGTH] = Stats_Blessings_Str;
-	ATR_PermBonus[ATR_DEXTERITY] = Stats_Blessings_Dex;
-	ATR_PermBonus[ATR_MANA_MAX] = Stats_Blessings_MaxMana;
-	ATR_PermBonus[ATR_HITPOINTS_MAX] = Stats_Blessings_MaxHp;
-	ATR_TempBonus[ATR_STRENGTH] = 0;
-	ATR_TempBonus[ATR_DEXTERITY] = 0;
-	ATR_TempBonus[ATR_MANA_MAX] = 0;
-	ATR_TempBonus[ATR_HITPOINTS_MAX] = 0;
-	PrintScreen("Характеристики синхронизированы",-1,55,FONT_Screen,4);
-};
-
 instance PickPocketSyncer(C_Item)
 {
 	name = "Руна обновления";

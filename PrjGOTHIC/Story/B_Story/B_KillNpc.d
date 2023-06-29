@@ -9,6 +9,7 @@ func void B_KillNpc(var int npcInstance)
 		if(npc.guild < GIL_SEPERATOR_HUM)
 		{
 			B_ClearRuneInv(npc);
+			B_ClearFakeItems(npc);
 			if(npc.guild == GIL_PAL)
 			{
 				if(RandomGoblinBerries == FALSE)

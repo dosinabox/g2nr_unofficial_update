@@ -6,7 +6,7 @@ instance KDF_502_Ulthar(Npc_Default)
 	id = 502;
 	voice = 5;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IGNORE_Murder] = TRUE;

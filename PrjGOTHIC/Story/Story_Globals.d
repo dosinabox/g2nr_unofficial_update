@@ -1340,6 +1340,7 @@ var int TotalTheftXP;
 var int TotalTheftGold;
 var int TotalLocksPicked;
 var int TotalPotionsBrewed;
+var int TotalRunesCreated;
 var int BosperFurCounter;
 var int HaradSwordsCounter;
 var int ApprenticeGoldCounter;

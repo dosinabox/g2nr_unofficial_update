@@ -6,7 +6,7 @@ instance BDT_1074_Addon_Edgor(Npc_Default)
 	id = 1074;
 	voice = 6;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Sld_Sword);

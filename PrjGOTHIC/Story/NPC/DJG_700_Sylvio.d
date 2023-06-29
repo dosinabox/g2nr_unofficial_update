@@ -6,7 +6,7 @@ instance DJG_700_Sylvio(Npc_Default)
 	id = 700;
 	voice = 9;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
@@ -46,5 +46,4 @@ func void Rtn_IceDragon_700()
 	TA_Stand_Guarding(8,0,23,0,"OW_DJG_ICEREGION_WAIT2_01");
 	TA_Stand_Guarding(23,0,8,0,"OW_DJG_ICEREGION_WAIT2_01");
 };
-
 

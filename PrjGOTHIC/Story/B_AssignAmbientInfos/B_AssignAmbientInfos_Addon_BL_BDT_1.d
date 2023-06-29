@@ -69,7 +69,7 @@ instance DIA_Addon_BL_BDT_1_Lager(C_Info)
 
 func int DIA_Addon_BL_BDT_1_Lager_Condition()
 {
-	if((Sklaven_Flucht == FALSE) || !Npc_IsDead(Raven))
+	if((Sklaven_Flucht == FALSE) || (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};

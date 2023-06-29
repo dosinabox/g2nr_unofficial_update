@@ -6,7 +6,7 @@ instance BDT_1032_Fluechtling(Npc_Default)
 	id = 1032;
 	voice = 6;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;

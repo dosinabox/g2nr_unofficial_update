@@ -67,9 +67,6 @@ func void B_ClearRuneInv(var C_Npc slf)
 		B_RemoveEveryInvItem(slf,ItRu_Skull);
 		B_RemoveEveryInvItem(slf,ItRu_SummonZombie);
 		B_RemoveEveryInvItem(slf,ItRu_SummonGuardian);
-		B_RemoveEveryInvItem(slf,Fakescroll);
-		B_RemoveEveryInvItem(slf,Fakescroll_Addon);
-		B_RemoveEveryInvItem(slf,Fakeheroface);
 	};
 };
 

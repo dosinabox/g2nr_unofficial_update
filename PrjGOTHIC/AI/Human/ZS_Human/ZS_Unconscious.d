@@ -1,12 +1,16 @@
 
 func void ZS_Unconscious()
 {
+	var int random;
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
-	//TODO скомпилировать в HUMANS
-	Mdl_ApplyRandomAni(self,"S_WOUNDED","T_WOUNDED_TRY");
-	Mdl_ApplyRandomAniFreq(self,"S_WOUNDED",8);
-	Mdl_ApplyRandomAni(self,"S_WOUNDEDB","T_WOUNDEDB_TRY");
-	Mdl_ApplyRandomAniFreq(self,"S_WOUNDEDB",4);
+	random = Hlp_Random(3);
+	if(random == 1)
+	{
+		Mdl_ApplyRandomAni(self,"S_WOUNDED","T_WOUNDED_TRY");
+		Mdl_ApplyRandomAniFreq(self,"S_WOUNDED",8);
+		Mdl_ApplyRandomAni(self,"S_WOUNDEDB","T_WOUNDEDB_TRY");
+		Mdl_ApplyRandomAniFreq(self,"S_WOUNDEDB",4);
+	};
 	if(C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE))
 	{
 		Npc_ClearAIQueue(self);
@@ -67,12 +71,10 @@ func void ZS_Unconscious()
 	else
 	{
 		B_GiveTradeInv(self);
-		B_ClearRuneInv(self);
 		B_ClearSmithInv(self);
 		B_ClearAlchemyInv(self);
 		B_ClearBonusFoodInv(self);
 		B_ClearInfiniteTools(self);
-		B_ClearSpecialAmmo(self);
 		if(self.guild == GIL_STRF)
 		{
 			B_RemoveEveryInvItem(self,ItMw_2H_Axe_L_01);

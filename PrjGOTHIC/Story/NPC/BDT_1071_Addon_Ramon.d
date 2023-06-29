@@ -6,7 +6,7 @@ instance BDT_1071_Addon_Ramon(Npc_Default)
 	id = 1071;
 	voice = 7;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NewsOverride] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,6);

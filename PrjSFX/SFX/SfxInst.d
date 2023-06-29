@@ -7503,18 +7503,6 @@ instance COULDRON_STIR_A1(C_SFX_DEF)
 	vol = 40;
 };
 
-instance WALK_WATER(C_SFX_DEF)
-{
-	file = "Step_Water_01.wav";
-	vol = 80;
-};
-
-instance WALK_WATER_A1(C_SFX_DEF)
-{
-	file = "Step_Water_02.wav";
-	vol = 80;
-};
-
 instance HUMAN_SPIT(C_SFX_DEF)
 {
 	file = "Spit_Long.wav";
@@ -10442,6 +10430,258 @@ instance GOODIE(C_SFX_DEF)
 instance DRAWSOUND_ME_02(C_SFX_DEF)
 {
 	file = "drawsound_me_02.wav";
+	vol = 30;
+};
+
+instance WALK_EARTH(C_SFX_DEF)
+{
+	file = "Step_Earth_01.wav";
+	vol = 15;
+};
+
+instance WALK_EARTH_A1(C_SFX_DEF)
+{
+	file = "Step_Earth_02.wav";
+	vol = 15;
+};
+
+instance WALK_EARTH_A2(C_SFX_DEF)
+{
+	file = "Step_Earth_03.wav";
+	vol = 15;
+};
+
+instance WALK_EARTH_A3(C_SFX_DEF)
+{
+	file = "Step_Earth_04.wav";
+	vol = 15;
+};
+
+instance WALK_EARTH_A4(C_SFX_DEF)
+{
+	file = "Step_Earth_05.wav";
+	vol = 15;
+};
+
+instance WALK_EARTH_A5(C_SFX_DEF)
+{
+	file = "Step_Earth_06.wav";
+	vol = 15;
+};
+
+instance WALK_EARTH_A6(C_SFX_DEF)
+{
+	file = "Step_Earth_07.wav";
+	vol = 15;
+};
+
+instance WALK_EARTH_A7(C_SFX_DEF)
+{
+	file = "Step_Earth_08.wav";
+	vol = 15;
+};
+
+instance WALK_SAND(C_SFX_DEF)
+{
+	file = "Step_Sand_01.wav";
+	vol = 30;
+};
+
+instance WALK_SAND_A1(C_SFX_DEF)
+{
+	file = "Step_Sand_02.wav";
+	vol = 30;
+};
+
+instance WALK_SAND_A2(C_SFX_DEF)
+{
+	file = "Step_Sand_03.wav";
+	vol = 30;
+};
+
+instance WALK_SAND_A3(C_SFX_DEF)
+{
+	file = "Step_Sand_04.wav";
+	vol = 30;
+};
+
+instance WALK_SAND_A4(C_SFX_DEF)
+{
+	file = "Step_Sand_05.wav";
+	vol = 30;
+};
+
+instance WALK_METAL(C_SFX_DEF)
+{
+	file = "Step_Metal_01.wav";
+	vol = 30;
+};
+
+instance WALK_METAL_A1(C_SFX_DEF)
+{
+	file = "Step_Metal_02.wav";
+	vol = 30;
+};
+
+instance WALK_METAL_A2(C_SFX_DEF)
+{
+	file = "Step_Metal_03.wav";
+	vol = 30;
+};
+
+instance WALK_METAL_A3(C_SFX_DEF)
+{
+	file = "Step_Metal_04.wav";
+	vol = 30;
+};
+
+instance WALK_METAL_A4(C_SFX_DEF)
+{
+	file = "Step_Metal_05.wav";
+	vol = 30;
+};
+
+instance WALK_STONE(C_SFX_DEF)
+{
+	file = "Step_Stone_01.wav";
+	vol = 25;
+};
+
+instance WALK_STONE_A1(C_SFX_DEF)
+{
+	file = "Step_Stone_02.wav";
+	vol = 25;
+};
+
+instance WALK_STONE_A2(C_SFX_DEF)
+{
+	file = "Step_Stone_03.wav";
+	vol = 25;
+};
+
+instance WALK_STONE_A3(C_SFX_DEF)
+{
+	file = "Step_Stone_04.wav";
+	vol = 25;
+};
+
+instance WALK_STONE_A4(C_SFX_DEF)
+{
+	file = "Step_Stone_05.wav";
+	vol = 25;
+};
+
+instance WALK_WATER(C_SFX_DEF)
+{
+	file = "Step_Water_01.wav";
+	vol = 40;
+};
+
+instance WALK_WATER_A1(C_SFX_DEF)
+{
+	file = "Step_Water_02.wav";
+	vol = 40;
+};
+
+instance WALK_WATER_A2(C_SFX_DEF)
+{
+	file = "Step_Water_03.wav";
+	vol = 40;
+};
+
+instance WALK_WATER_A3(C_SFX_DEF)
+{
+	file = "Step_Water_04.wav";
+	vol = 40;
+};
+
+instance WALK_WATER_A4(C_SFX_DEF)
+{
+	file = "Step_Water_05.wav";
+	vol = 40;
+};
+
+instance WALK_WOOD(C_SFX_DEF)
+{
+	file = "Step_Wood_01.wav";
+	vol = 30;
+};
+
+instance WALK_WOOD_A1(C_SFX_DEF)
+{
+	file = "Step_Wood_02.wav";
+	vol = 30;
+};
+
+instance WALK_WOOD_A2(C_SFX_DEF)
+{
+	file = "Step_Wood_03.wav";
+	vol = 30;
+};
+
+instance WALK_WOOD_A3(C_SFX_DEF)
+{
+	file = "Step_Wood_04.wav";
+	vol = 30;
+};
+
+instance WALK_WOOD_A4(C_SFX_DEF)
+{
+	file = "Step_Wood_05.wav";
+	vol = 30;
+};
+
+instance WALK_UNDEF(C_SFX_DEF)
+{
+	file = "Step_Stone_01.wav";
+	vol = 25;
+};
+
+instance WALK_UNDEF_A1(C_SFX_DEF)
+{
+	file = "Step_Stone_02.wav";
+	vol = 25;
+};
+
+instance WALK_UNDEF_A2(C_SFX_DEF)
+{
+	file = "Step_Stone_03.wav";
+	vol = 25;
+};
+
+instance WALK_UNDEF_A3(C_SFX_DEF)
+{
+	file = "Step_Stone_04.wav";
+	vol = 25;
+};
+
+instance WALK_UNDEF_A4(C_SFX_DEF)
+{
+	file = "Step_Stone_05.wav";
+	vol = 25;
+};
+
+instance WALK_SNOW(C_SFX_DEF)
+{
+	file = "Step_Snow_01.wav";
+	vol = 30;
+};
+
+instance WALK_SNOW_A1(C_SFX_DEF)
+{
+	file = "Step_Snow_02.wav";
+	vol = 30;
+};
+
+instance WALK_SNOW_A2(C_SFX_DEF)
+{
+	file = "Step_Snow_03.wav";
+	vol = 30;
+};
+
+instance WALK_SNOW_A3(C_SFX_DEF)
+{
+	file = "Step_Snow_04.wav";
 	vol = 30;
 };
 

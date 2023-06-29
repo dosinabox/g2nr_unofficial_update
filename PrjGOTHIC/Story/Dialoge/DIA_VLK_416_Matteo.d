@@ -469,9 +469,16 @@ instance DIA_Matteo_GoldRunning(C_Info)
 
 func int DIA_Matteo_GoldRunning_Condition()
 {
-	if((MIS_Matteo_Gold == LOG_Running) && (Npc_KnowsInfo(other,DIA_Gritta_WantsMoney) || Npc_IsDead(Gritta)))
+	if(MIS_Matteo_Gold == LOG_Running)
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Gritta_WantsMoney))
+		{
+			return TRUE;
+		};
+		if(Npc_IsDead(Gritta))
+		{
+			return TRUE;
+		};
 	};
 };
 

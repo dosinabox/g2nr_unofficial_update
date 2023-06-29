@@ -8,9 +8,6 @@ instance Spell_MassDeath(C_Spell_Proto)
 	damage_per_level = SPL_Damage_MassDeath;
 	targetCollectAlgo = TARGET_COLLECT_NONE;
 	targetCollectRange = 1500;
-//	targetCollectRange = 0;
-//	targetCollectAzi = 0;
-//	targetCollectElev = 0;
 };
 
 

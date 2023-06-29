@@ -1017,7 +1017,7 @@ instance ItRu_MassDeath(C_Item)
 {
 	name = NAME_Rune;
 	mainflag = ITEM_KAT_RUNE;
-	flags = ITEM_MISSION;
+	flags = 0;
 	value = Value_Ru_MassDeath;
 	visual = "ItRu_MassDeath.3ds";
 	material = MAT_STONE;

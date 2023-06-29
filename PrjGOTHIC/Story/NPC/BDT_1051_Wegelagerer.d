@@ -6,7 +6,7 @@ instance BDT_1051_Wegelagerer(Npc_Default)
 	id = 1051;
 	voice = 7;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;

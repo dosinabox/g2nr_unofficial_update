@@ -220,6 +220,16 @@ func void DIA_Talbin_AskTeacher_Info()
 };
 
 
+func void B_Talbin_TeachAnimalTrophy()
+{
+	if(Talbin_TeachAnimalTrophy == FALSE)
+	{
+		Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_OutTeacher,"Талбин может обучить меня добывать трофеи животных.");
+		Talbin_TeachAnimalTrophy = TRUE;
+	};
+};
+
 instance DIA_Talbin_PayTeacher(C_Info)
 {
 	npc = VLK_4130_Talbin;
@@ -244,9 +254,7 @@ func void DIA_Talbin_PayTeacher_Info()
 	AI_Output(other,self,"DIA_Talbin_PayTeacher_15_00");	//Вот твой сыр. Ты обучишь меня теперь?
 	B_GiveInvItems(other,self,ItFo_Cheese,1);
 	AI_Output(self,other,"DIA_Talbin_PayTeacher_07_01");	//У тебя действительно есть сыр? Ох, давненько я не ел ничего подобного. Спасибо. Ээ, а что насчет... Ах, да, конечно!
-	Talbin_TeachAnimalTrophy = TRUE;
-	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_OutTeacher,"Талбин может обучить меня добывать трофеи животных.");
+	B_Talbin_TeachAnimalTrophy();
 	MIS_TalbinCheese = LOG_SUCCESS;
 	B_CheckLog();
 };
