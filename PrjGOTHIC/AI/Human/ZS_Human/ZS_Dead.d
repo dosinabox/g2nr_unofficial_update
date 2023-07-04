@@ -35,10 +35,6 @@ func void ZS_Dead()
 				B_StartOtherRoutine(Bloodwyn,"MINE");
 				Bloodwyn_Spawn = TRUE;
 			};
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bloodwyn))
-		{
-			B_StartOtherRoutine(Thorus,"TALK");
 		};
 	}
 	else if(CurrentLevel == NEWWORLD_ZEN)
@@ -57,10 +53,6 @@ func void ZS_Dead()
 					B_Greg_ComesToDexterLater();
 				};
 			};
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Dexter))
-		{
-			B_Greg_ComesToDexter();
 		};
 	};
 	B_CheckDeadMissionNPCs(self);

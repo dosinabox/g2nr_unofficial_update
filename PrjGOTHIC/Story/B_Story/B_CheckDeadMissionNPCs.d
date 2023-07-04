@@ -16,6 +16,10 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 			{
 				MIS_Steckbriefe = LOG_OBSOLETE;
 			};
+			if(Greg_Rejected == FALSE)
+			{
+				B_Greg_ComesToDexter();
+			};
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Canthar))
 		{
@@ -280,6 +284,10 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Senyan))
 		{
 			Senyan_Erpressung = LOG_OBSOLETE;
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bloodwyn))
+		{
+			B_StartOtherRoutine(Thorus,"TALK");
 		};
 	}
 	else if(CurrentLevel == DRAGONISLAND_ZEN)

@@ -176,39 +176,6 @@ func void UseHelmets()
 	Print("Найдено много разных доспехов и шлемов!");
 };
 
-instance WastelandRune(C_Item)
-{
-	name = "Руна Wasteland";
-	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
-	value = 0;
-	visual = "ItRu_TeleportOWDemonTower.3DS";
-	material = MAT_STONE;
-	scemeName = "MAP";
-	description = name;
-	text[0] = "Заселить мир мода Wasteland.";
-	on_state[0] = UseWastelandRune;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
-};
-
-
-func void UseWastelandRune()
-{
-	if(CurrentLevel == OLDWORLD_ZEN)
-	{
-		PrintScreen("Заселяем...",-1,-1,FONT_Screen,1);
-		B_Seed_Wasteland_World_Main();
-		B_Seed_Wasteland_World_Psicamp();
-		B_Seed_Wasteland_World_Freeminecamp();
-	}
-	else
-	{
-		PrintScreen(PRINT_TeleportTooFarAway,-1,-1,FONT_Screen,1);
-	};
-};
-
 func void B_Build_Settings_Diag()
 {
 	Info_ClearChoices(StoryHelper_PatchSettings);

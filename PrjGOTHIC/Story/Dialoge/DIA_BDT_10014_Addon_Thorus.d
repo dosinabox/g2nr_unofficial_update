@@ -441,11 +441,11 @@ func void DIA_Addon_Thorus_Answer_Info()
 	B_LogEntry(TOPIC_Addon_Sklaven,"Бладвин мертв. Теперь Торус позаботится о том, чтобы рабы смогли покинуть лагерь.");
 	if(!Npc_IsDead(PrisonGuard))
 	{
-		B_LogEntry(TOPIC_Addon_Sklaven,"Нужно снова поговорить с охранником рабов. После этого Патрик и его люди смогут уйти.");
+		Log_AddEntry(TOPIC_Addon_Sklaven,"Нужно снова поговорить с охранником рабов. После этого Патрик и его люди смогут уйти.");
 	}
 	else
 	{
-		B_LogEntry(TOPIC_Addon_Sklaven,"С охранником покончено. Теперь Патрик с людьми может отправляться.");
+		Log_AddEntry(TOPIC_Addon_Sklaven,"С охранником покончено. Теперь Патрик с людьми может отправляться.");
 	};
 };
 

@@ -9,8 +9,8 @@
 ##            Основное           ##
 ###################################
 
-!define MOD_VERSION "28"
-!define MOD_DATE "6.30"
+!define MOD_VERSION "29"
+!define MOD_DATE "7.4"
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"
@@ -151,11 +151,6 @@ Section "Широкоформатный монитор" SecAdditional_3
 	File "scriptpatch_v${MOD_VERSION}_widescreen.mod"
 SectionEnd
 
-Section /o "Расширенная Рудниковая долина" SecAdditional_4
-	SetOutPath "$INSTDIR\Data\ModVDF"
-	File "scriptpatch_v${MOD_VERSION}_wasteland.mod"
-SectionEnd
-
 ###################################
 ##         Деинсталляция         ##
 ###################################
@@ -170,7 +165,6 @@ Section "Un.Удалить обновление" SecUninstall_Main
 	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_ru.mod"
 	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_speech_add_ru.mod"
 	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_speech_fix_ru.mod"
-	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_wasteland.mod"
 	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_widescreen.mod"
 	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_hotfix.mod"
 	Delete "$INSTDIR\Changelog_${MOD_NAME}.txt"
@@ -191,14 +185,12 @@ LangString DESC_SecMain ${LANG_RUSSIAN} "Основные компоненты обновления."
 LangString DESC_SecAdditional_1 ${LANG_RUSSIAN} "Снимите галочку, если установка производится на версию игры без русской озвучки."
 LangString DESC_SecAdditional_2 ${LANG_RUSSIAN} "Неофициальное исправление русской озвучки от Акеллы (версия 1.14)."
 LangString DESC_SecAdditional_3 ${LANG_RUSSIAN} "Установка фона главного меню и загрузочных экранов для широкоформатных мониторов."
-LangString DESC_SecAdditional_4 ${LANG_RUSSIAN} "Мод Wasteland, расширяющий и заполняющий мир Рудниковой долины до размеров Готики 1."
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
 !insertmacro MUI_DESCRIPTION_TEXT ${SecMain} $(DESC_SecMain)
 !insertmacro MUI_DESCRIPTION_TEXT ${SecAdditional_1} $(DESC_SecAdditional_1)
 !insertmacro MUI_DESCRIPTION_TEXT ${SecAdditional_2} $(DESC_SecAdditional_2)
 !insertmacro MUI_DESCRIPTION_TEXT ${SecAdditional_3} $(DESC_SecAdditional_3)
-!insertmacro MUI_DESCRIPTION_TEXT ${SecAdditional_4} $(DESC_SecAdditional_4)
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 ###################################
