@@ -1,0 +1,135 @@
+// MAGE
+
+// OVERLAYED ANIS: WALKLOOP, CHAIR, BENCH, SIT
+
+Model ("HuS")
+{
+	meshAndTree ("Hum_Body_Naked0.ASC" DONT_USE_MESH)
+
+	aniEnum
+	{
+
+//////////////////////////
+// NORMAL MOVEMENT
+//////////////////////////
+
+//			ani			("t_Run_2_Walk"			1	"s_Walk"		0.1	0.0	M.	"Hum_WalkMage_M01.asc"		F	1	19)
+//			aniAlias	("t_Walk_2_Run"			1	"s_Run"			0.0	0.1	M.	"t_Run_2_Walk"				R)
+
+//	WALK-Mode
+//			ani			("s_Walk"				1	"s_Walk"		0.0	0.0	M.	"Hum_Amb_WalkMage_M01.asc"	F	0	60	FPS:5)
+			ani			("t_Walk_2_WalkL"		1	"s_WalkL"		0.0	0.0	M.	"Hum_WalkMage_M01.asc"		F	21	29)
+
+//	Walk-Loop (linker Fuﬂ vorn)
+			ani			("s_WalkL"				1	"s_WalkL"		0.0	0.1	M.	"Hum_WalkMage_M01.asc"		F	30	64)
+			{
+				*eventSFXGrnd	(40	"Run")
+				*eventSFXGrnd	(60	"Run")
+			}
+
+			ani			("t_WalkL_2_Walk"		1	"s_Walk"		0.0	0.0	M.	"Hum_WalkMage_M01.asc"		F	65	79)
+			{
+				*eventSFXGrnd	(70	"Run")
+				*eventSFXGrnd	(77	"Run")
+			}
+			aniBlend	("t_WalkR_2_Walk"			"s_Walk"		0.2	0.2)
+
+// ---------------------------------------------------------------------------------------------------------------
+// Auf Stuhl setzen
+		//	ani			("t_Chair_Stand_2_S0"		1	"s_Chair_S0"	0.2	0.0	M.	"Hum_SitChairAMage_M01.asc"			F	0	4)
+		//	ani			("s_Chair_S0"				1	"s_Chair_S0"	0.0	0.0	M.	"Hum_SitChairAMage_M01.asc"			F	5	5)
+		//	aniAlias	("t_Chair_S0_2_Stand"		1	""				0.0	0.2	M.	"t_Chair_Stand_2_S0"				R)
+
+		//	ani			("t_Chair_S0_2_S1"			1	"s_Chair_S1"	0.0	0.0	M.	"Hum_SitChairAMage_M01.asc"			F	5	39)
+		//	ani			("s_Chair_S1"				1	"s_Chair_S1"	0.0	0.0	M.	"Hum_SitChairAMage_M01.asc"			F	40	79)
+		//	aniAlias	("t_Chair_S1_2_S0"			1	"s_Chair_S0"	0.0	0.1	M.	"t_Chair_S0_2_S1"					R)
+			
+			ani			("t_Chair_Stand_2_S0"		1	"s_Chair_S0"	0.3	0.0	M.	"Hum_SitChairMag_GMF.asc"			F	0	4	CVS:0.1)
+			ani			("s_Chair_S0"				1	"s_Chair_S0"	0.0	0.0	M.	"Hum_SitChairMag_GMF.asc"			F	5	5	CVS:0.1)
+			aniAlias	("t_Chair_S0_2_Stand"		1	""				0.0	0.3	M.	"t_Chair_Stand_2_S0"				R)
+
+			ani			("t_Chair_S0_2_S1"			1	"s_Chair_S1"	0.0	0.0	M.	"Hum_SitChairMag_GMF.asc"			F	6	40	CVS:0.1)
+			{
+				*eventTag		(7	"DEF_INV_TORCH")
+				*eventSFXGrnd	(11	"Walk")
+				*eventSFXGrnd	(21	"Walk")
+				*eventSFXGrnd	(27	"Walk")
+				*eventSFX		(29	"CHAIR_USE"	EMPTY_SLOT	R:600)
+			}
+			ani			("s_Chair_S1"				1	"s_Chair_S1"	0.0	0.0	M.	"Hum_SitChairMag_Ambient_GMF.asc"	F	0	59	CVS:0.1)
+			ani			("t_Chair_S1_2_S0"			1	"s_Chair_S0"	0.1	0.0	M.	"Hum_SitChairMag_GMF.asc"			R	6	40	CVS:0.1)
+			{
+				*eventSFXGrnd	(6	"Walk")
+				*eventSFXGrnd	(10	"Walk")
+				*eventSFXGrnd	(22	"Walk")
+			}
+			
+			ani			("R_Chair_Random_1"			2	""				0.3	0.3	M.	"Hum_SitBenchMag_Random1_GMF.asc"	F	0	50	CVS:0.1)
+			ani			("R_Chair_Random_2"			2	""				0.3	0.3	M.	"Hum_SitBenchMag_Random2_GMF.asc"	F	0	57	CVS:0.1)
+			ani			("R_Chair_Random_3"			2	""				0.3	0.3	M.	"Hum_SitBenchMag_Random3_GMF.asc"	F	0	80	CVS:0.1)
+			ani			("R_Chair_Random_4"			2	""				0.3	0.3	M.	"Hum_SitBenchMag_Random4_GMF.asc"	F	0	52	CVS:0.1)
+			
+			ani			("t_Chair_StopRandom"		2	""				0.2	0.0	M.	"Hum_SitBenchMag_StopRnd_GMF.asc"	F	0	0	CVS:0.1)
+
+// ---------------------------------------------------------------------------------------------------------------
+// Auf Boden setzen (FP)
+		//	ani			("t_Stand_2_Sit"			1	"s_Sit"			0.1	0.0	M.	"Hum_SitGround3_M01.asc"	F	1	24	FPS:15)
+		//	ani			("s_Sit"					1	"s_Sit"			0.0	0.0	M.	"Hum_SitGround3_M01.asc"	F	25	64)
+		//	aniAlias	("t_Sit_2_Stand"			1	""				0.0	0.2	M.	"t_Stand_2_Sit"				R)
+			
+			ani			("t_Stand_2_Sit"			1	"s_Sit"			0.3	0.0	M.	"Hum_SitGroundMag_GMF.asc"	F	0	30	CVS:0.1)
+			{
+				*eventSFXGrnd	(1	"Sneak")
+				*eventSFXGrnd	(18	"Sneak")
+				*eventSFXGrnd	(25	"Sneak")
+			}
+			ani			("s_Sit"					1	"s_Sit"			0.0	0.0	MI	"Hum_SitGroundMag_GMF.asc"	F	31	90	CVS:0.1)
+			ani			("t_Sit_2_Stand"			1	""				0.1	0.3	M.	"Hum_SitGroundMag_GMF.asc"	R	0	30	CVS:0.1)
+			{
+				*eventSFXGrnd	(1	"Sneak")
+				*eventSFXGrnd	(14	"Sneak")
+			}
+			
+		//	ani			("t_StandUpQuick_Ground"	1	""				0.1	0.1	M.	"Hum_SitGroundMag_GMF.asc"	R	0	30	SPD:40)
+
+// ---------------------------------------------------------------------------------------------------------------
+// Auf Bank setzen
+		//	ani			("t_Bench_Stand_2_S0"		1	"s_Bench_S0"	0.2	0.0	M.	"Hum_SitBenchMage_M01.asc"			F	0	4)
+		//	ani			("s_Bench_S0"				1	"s_Bench_S0"	0.0	0.0	M.	"Hum_SitBenchMage_M01.asc"			F	5	5)
+		//	aniAlias	("t_Bench_S0_2_Stand"		1	""				0.0	0.2	M.	"t_Bench_Stand_2_S0"				R)
+
+		//	ani			("t_Bench_S0_2_S1"			1	"s_Bench_S1"	0.0	0.0	M.	"Hum_SitBenchMage_M01.asc"			F	6	39)
+		//	ani			("s_Bench_S1"				1	"s_Bench_S1"	0.0	0.0	M.	"Hum_SitBenchMageAmbient_M01.asc"	F	1	39)
+		//	aniAlias	("t_Bench_S1_2_S0"			1	"s_Bench_S0"	0.0	0.0	M.	"t_Bench_S0_2_S1"					R)
+			
+			ani			("t_Bench_Stand_2_S0"		1	"s_Bench_S0"	0.3	0.0	M.	"Hum_SitBenchMag_GMF.asc"			F	0	4	CVS:0.1)
+			ani			("s_Bench_S0"				1	"s_Bench_S0"	0.0	0.0	M.	"Hum_SitBenchMag_GMF.asc"			F	5	5	CVS:0.1)
+			aniAlias	("t_Bench_S0_2_Stand"		1	""				0.0	0.3	M.	"t_Bench_Stand_2_S0"				R)
+
+			ani			("t_Bench_S0_2_S1"			1	"s_Bench_S1"	0.0	0.0	M.	"Hum_SitBenchMag_GMF.asc"			F	6	40	CVS:0.1)
+			{
+				*eventTag		(7	"DEF_INV_TORCH")
+				*eventSFXGrnd	(9	"Walk")
+				*eventSFXGrnd	(15	"Walk")
+				*eventSFXGrnd	(22	"Walk")
+				*eventSFXGrnd	(26	"Walk")
+				*eventSFX		(30	"CHAIR_USE"	EMPTY_SLOT	R:600)
+			}
+			ani			("s_Bench_S1"				1	"s_Bench_S1"	0.0	0.0	M.	"Hum_SitBenchMag_Ambient_GMF.asc"	F	0	59	CVS:0.1)
+			ani			("t_Bench_S1_2_S0"			1	"s_Bench_S0"	0.1	0.0	M.	"Hum_SitBenchMag_GMF.asc"			R	6	40	CVS:0.1)
+			{
+				*eventSFXGrnd	(6	"Walk")
+				*eventSFXGrnd	(10	"Walk")
+				*eventSFXGrnd	(17	"Walk")
+				*eventSFXGrnd	(24	"Walk")
+			}
+			
+			ani			("R_Bench_Random_1"			2	""				0.3	0.3	M.	"Hum_SitBenchMag_Random1_GMF.asc"	F	0	50	CVS:0.1)
+			ani			("R_Bench_Random_2"			2	""				0.3	0.3	M.	"Hum_SitBenchMag_Random2_GMF.asc"	F	0	57	CVS:0.1)
+			ani			("R_Bench_Random_3"			2	""				0.3	0.3	M.	"Hum_SitBenchMag_Random3_GMF.asc"	F	0	80	CVS:0.1)
+			ani			("R_Bench_Random_4"			2	""				0.3	0.3	M.	"Hum_SitBenchMag_Random4_GMF.asc"	F	0	52	CVS:0.1)
+			
+			ani			("t_Bench_StopRandom"		2	""				0.2	0.0	M.	"Hum_SitBenchMag_StopRnd_GMF.asc"	F	0	0	CVS:0.1)
+
+	}
+}

@@ -1,0 +1,132 @@
+// RELAXED
+
+// OVERLAYED ANIS: WALKLOOP, CHAIR, BENCH, SIT
+
+Model ("HuS")
+{
+	meshAndTree ("Hum_Body_Naked0.ASC" DONT_USE_MESH)
+
+	aniEnum
+	{
+
+//////////////////////////
+// NORMAL MOVEMENT
+//////////////////////////
+//	WALK-Mode
+			ani			("t_Walk_2_WalkL"		1	"s_WalkL"		0.0	0.0	M.	"Hum_WalkA2_Jue01.asc"		F	1	13)
+			{
+				*eventSFXGrnd	(12	"Run")
+			}
+
+//	Walk-Loop (linker Fuﬂ vorn)
+			ani			("s_WalkL"				1	"s_WalkL"		0.0	0.1	M.	"Hum_WalkA2_Jue01.asc"		F	14	47)
+			{
+				*eventSFXGrnd	(28	"Run")
+				*eventSFXGrnd	(46	"Run")
+			}
+
+			ani			("t_WalkL_2_Walk"		1	"s_Walk"		0.0	0.0	M.	"Hum_WalkA2_Jue01.asc"		F	48	61)
+			{
+				*eventSFXGrnd	(55	"Run")
+			}
+			ani			("t_WalkR_2_Walk"		1	"s_Walk"		0.0	0.0	M.	"Hum_WalkA2End_M01.asc"		F	0	14)
+
+// Auf Stuhl setzen
+		//	ani			("t_Chair_Stand_2_S0"		1	"s_Chair_S0"	0.2	0.0	M.	"Hum_SitChairA2_M01.asc"		F	0	4)
+		//	ani			("s_Chair_S0"				1	"s_Chair_S0"	0.0	0.0	M.	"Hum_SitChairA2_M01.asc"		F	5	5)
+		//	aniAlias	("t_Chair_S0_2_Stand"		1	""				0.0	0.2	M.	"t_Chair_Stand_2_S0"		R)
+
+		//	ani			("t_Chair_S0_2_S1"			1	"s_Chair_S1"	0.0	0.0	M.	"Hum_SitChairA2_M01.asc"		F	5	39)
+		//	ani			("s_Chair_S1"				1	"s_Chair_S1"	0.0	0.0	M.	"Hum_SitChairA2_M01.asc"		F	40	79)
+		//	aniAlias	("t_Chair_S1_2_S0"			1	"s_Chair_S0"	0.0	0.1	M.	"t_Chair_S0_2_S1"			R)
+			
+			ani			("t_Chair_Stand_2_S0"		1	"s_Chair_S0"	0.3	0.0	M.	"Hum_SitChairRel_GMF.asc"			F	0	4	CVS:0.1)
+			ani			("s_Chair_S0"				1	"s_Chair_S0"	0.0	0.0	M.	"Hum_SitChairRel_GMF.asc"			F	5	5	CVS:0.1)
+			aniAlias	("t_Chair_S0_2_Stand"		1	""				0.0	0.3	M.	"t_Chair_Stand_2_S0"				R)
+
+			ani			("t_Chair_S0_2_S1"			1	"s_Chair_S1"	0.0	0.0	M.	"Hum_SitChairRel_GMF.asc"			F	6	40	CVS:0.1)
+			{
+				*eventTag		(7	"DEF_INV_TORCH")
+				*eventSFXGrnd	(11	"Walk")
+				*eventSFXGrnd	(21	"Walk")
+				*eventSFXGrnd	(27	"Walk")
+				*eventSFX		(29	"CHAIR_USE"	EMPTY_SLOT	R:600)
+				*eventSFXGrnd	(38	"Sneak")
+			}
+			ani			("s_Chair_S1"				1	"s_Chair_S1"	0.0	0.0	M.	"Hum_SitChairRel_Ambient_GMF.asc"	F	0	59	CVS:0.1)
+			ani			("t_Chair_S1_2_S0"			1	"s_Chair_S0"	0.1	0.0	M.	"Hum_SitChairRel_GMF.asc"			R	6	40	CVS:0.1)
+			{
+				*eventSFXGrnd	(6	"Walk")
+				*eventSFXGrnd	(10	"Walk")
+				*eventSFXGrnd	(21	"Walk")
+				*eventSFXGrnd	(32	"Sneak")
+			}
+			
+			ani			("R_Chair_Random_1"			2	""				0.3	0.3	M.	"Hum_SitBenchRel_Random1_GMF.asc"	F	0	50	CVS:0.1)
+			ani			("R_Chair_Random_2"			2	""				0.3	0.3	M.	"Hum_SitBenchRel_Random2_GMF.asc"	F	0	57	CVS:0.1)
+			ani			("R_Chair_Random_3"			2	""				0.3	0.3	M.	"Hum_SitBenchRel_Random3_GMF.asc"	F	0	80	CVS:0.1)
+			ani			("R_Chair_Random_4"			2	""				0.3	0.3	M.	"Hum_SitBenchRel_Random4_GMF.asc"	F	0	52	CVS:0.1)
+			
+			ani			("t_Chair_StopRandom"		2	""				0.2	0.0	M.	"Hum_SitBenchRel_StopRnd_GMF.asc"	F	0	0	CVS:0.1)
+
+// Auf Boden setzen (FP)
+		//	ani			("t_Stand_2_Sit"			1	"s_Sit"			0.1	0.0	M.	"Hum_SitGround2_M01.asc"	F	1	39	FPS:15)
+		//	ani			("s_Sit"					1	"s_Sit"			0.0	0.0	M.	"Hum_SitGround2_M01.asc"	F	40	79)
+		//	aniAlias	("t_Sit_2_Stand"			1	""				0.0	0.2	M.	"t_Stand_2_Sit"				R)
+			
+			ani			("t_Stand_2_Sit"			1	"s_Sit"			0.1	0.0	M.	"Hum_SitGroundRel_GMF.asc"	F	0	45	CVS:0.1)
+			{
+				*eventSFXGrnd	(7	"Walk")
+				*eventSFXGrnd	(36	"Sneak")
+			}
+			ani			("s_Sit"					1	"s_Sit"			0.0	0.0	MI	"Hum_SitGroundRel_GMF.asc"	F	46	105	CVS:0.1)
+			ani			("t_Sit_2_Stand"			1	""				0.0	0.2	M.	"Hum_SitGroundRel_GMF.asc"	R	0	45	CVS:0.1)
+			{
+				*eventSFXGrnd	(1	"Walk")
+				*eventSFXGrnd	(36	"Sneak")
+			}
+			
+		//	ani			("t_StandUpQuick_Ground"	1	""				0.1	0.1	M.	"Hum_SitGroundRel_GMF.asc"	R	0	45	SPD:40)
+
+// Auf Bank setzen
+		//	ani			("t_Bench_Stand_2_S0"		1	"s_Bench_S0"	0.2	0.0	M.	"Hum_SitBenchA2_M01.asc"		F	0	4)
+		//	ani			("s_Bench_S0"				1	"s_Bench_S0"	0.0	0.0	M.	"Hum_SitBenchA2_M01.asc"		F	5	5)
+		//	aniAlias	("t_Bench_S0_2_Stand"		1	""				0.0	0.2	M.	"t_Bench_Stand_2_S0"		R)
+
+		//	ani			("t_Bench_S0_2_S1"			1	"s_Bench_S1"	0.0	0.0	M.	"Hum_SitBenchA2_M01.asc"		F	6	39)
+		//	ani			("s_Bench_S1"				1	"s_Bench_S1"	0.0	0.0	M.	"Hum_SitBenchAmbientA2_M01.asc"		F	1	39)
+		//	aniAlias	("t_Bench_S1_2_S0"			1	"s_Bench_S0"	0.0	0.0	M.	"t_Bench_S0_2_S1"			R)
+			
+			ani			("t_Bench_Stand_2_S0"		1	"s_Bench_S0"	0.3	0.0	M.	"Hum_SitBenchRel_GMF.asc"			F	0	4	CVS:0.1)
+			ani			("s_Bench_S0"				1	"s_Bench_S0"	0.0	0.0	M.	"Hum_SitBenchRel_GMF.asc"			F	5	5	CVS:0.1)
+			aniAlias	("t_Bench_S0_2_Stand"		1	""				0.0	0.3	M.	"t_Bench_Stand_2_S0"				R)
+
+			ani			("t_Bench_S0_2_S1"			1	"s_Bench_S1"	0.0	0.0	M.	"Hum_SitBenchRel_GMF.asc"			F	6	40	CVS:0.1)
+			{
+				*eventTag		(7	"DEF_INV_TORCH")
+				*eventSFXGrnd	(9	"Walk")
+				*eventSFXGrnd	(15	"Walk")
+				*eventSFXGrnd	(22	"Walk")
+				*eventSFXGrnd	(25	"Walk")
+				*eventSFX		(30	"CHAIR_USE"	EMPTY_SLOT	R:600)
+				*eventSFXGrnd	(39	"Sneak")
+			}
+			ani			("s_Bench_S1"				1	"s_Bench_S1"	0.0	0.0	M.	"Hum_SitBenchRel_Ambient_GMF.asc"	F	0	59	CVS:0.1)
+			ani			("t_Bench_S1_2_S0"			1	"s_Bench_S0"	0.1	0.0	M.	"Hum_SitBenchRel_GMF.asc"			R	6	40	CVS:0.1)
+			{
+				*eventSFXGrnd	(6	"Walk")
+				*eventSFXGrnd	(10	"Walk")
+				*eventSFXGrnd	(17	"Walk")
+				*eventSFXGrnd	(24	"Walk")
+				*eventSFXGrnd	(33	"Sneak")
+			}
+			
+			ani			("R_Bench_Random_1"			2	""				0.3	0.3	M.	"Hum_SitBenchRel_Random1_GMF.asc"	F	0	50	CVS:0.1)
+			ani			("R_Bench_Random_2"			2	""				0.3	0.3	M.	"Hum_SitBenchRel_Random2_GMF.asc"	F	0	57	CVS:0.1)
+			ani			("R_Bench_Random_3"			2	""				0.3	0.3	M.	"Hum_SitBenchRel_Random3_GMF.asc"	F	0	80	CVS:0.1)
+			ani			("R_Bench_Random_4"			2	""				0.3	0.3	M.	"Hum_SitBenchRel_Random4_GMF.asc"	F	0	52	CVS:0.1)
+			
+			ani			("t_Bench_StopRandom"		2	""				0.2	0.0	M.	"Hum_SitBenchRel_StopRnd_GMF.asc"	F	0	0	CVS:0.1)
+
+		}
+}

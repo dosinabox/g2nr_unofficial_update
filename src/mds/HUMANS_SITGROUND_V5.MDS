@@ -1,0 +1,23 @@
+
+Model ("HuS")
+{
+	meshAndTree ("Hum_Body_Naked0.ASC" DONT_USE_MESH)
+
+	aniEnum
+	{
+			ani			("t_Stand_2_Sit"			1	"s_Sit"			0.1	0.0	M.	"Hum_SitGroundMil_GMF.asc"	F	0	50	CVS:0.1)
+			{
+				*eventSFXGrnd	(9	"Walk")
+				*eventSFXGrnd	(30	"Sneak")
+			}
+			ani			("s_Sit"					1	"s_Sit"			0.0	0.0	MI	"Hum_SitGroundMil_GMF.asc"	F	51	110	CVS:0.1)
+			ani			("t_Sit_2_Stand"			1	""				0.0	0.2	M.	"Hum_SitGroundMil_GMF.asc"	R	0	50	CVS:0.1)
+			{
+				*eventSFXGrnd	(1	"Walk")
+				*eventSFXGrnd	(40	"Sneak")
+			}
+			
+		//	ani			("t_StandUpQuick_Ground"	1	""				0.1	0.1	M.	"Hum_SitGroundMil_GMF.asc"	R	0	50	SPD:40)
+
+	}
+}

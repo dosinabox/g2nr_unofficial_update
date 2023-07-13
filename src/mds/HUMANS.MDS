@@ -124,9 +124,9 @@ Model ("HuS")
 
 		//	aniAlias	("t_Walk_2_WalkBL"		1	"s_WalkBL"		0.1	0.1	M.	"t_walkL_2_Walk"			R)
 
-			aniAlias	("s_WalkBL"				1	"s_WalkBL"		0.0	0.0	M.	"s_WalkL"					R)
-			ani			("t_WalkBL_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkLoopBEnd_A01.ASC"	R	15	22)
-			aniAlias	("t_WalkBR_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"t_WalkL_2_Walk"			R)
+		//	aniAlias	("s_WalkBL"				1	"s_WalkBL"		0.0	0.0	M.	"s_WalkL"					R)
+		//	ani			("t_WalkBL_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkLoopBEnd_A01.ASC"	R	15	22)
+		//	aniAlias	("t_WalkBR_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"t_WalkL_2_Walk"			R)
 
 // ---------------------------------------------------------------------------------------------------------------
 //	SNEAK-Mode
@@ -4077,7 +4077,12 @@ Model ("HuS")
 			}
 
 			// Зацикленное движение назад в режиме передвижения шагом заменено отпрыгиванием.
-			aniAlias	("t_Walk_2_WalkBL"		1	"s_Walk"		0.1	0.1	M.	"t_JumpB"					F)
+		//	aniAlias	("t_Walk_2_WalkBL"		1	"s_Walk"		0.1	0.1	M.	"t_JumpB"					F)
+			
+			aniAlias	("t_Walk_2_WalkBL"		1	"s_WalkBL"		0.1	0.1	M.	"t_walkL_2_Walk"			R)
+			aniAlias	("s_WalkBL"				1	"s_WalkBL"		0.0	0.0	M.	"s_WalkL"					R)
+			ani			("t_WalkBL_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkLoopBEnd_A01.ASC"	R	15	22)
+			aniAlias	("t_WalkBR_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"t_WalkL_2_Walk"			R)
 			
 // WALK-Mode ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

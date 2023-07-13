@@ -88,7 +88,8 @@ Model ("HuS")
 				*eventSFX	(34	"Walk_Water")
 			}
 
-			ani			("t_WalkWL_2_Walk"		1	"s_Walk"		0.0	0.0	M.	"Hum_Torch_WaterWalk_GMF.asc"	F	50	65)
+		//	ani			("t_WalkWL_2_Walk"		1	"s_Walk"		0.0	0.0	M.	"Hum_Torch_WaterWalk_GMF.asc"	F	50	65)
+			ani			("t_WalkWL_2_Walk"		1	"s_Walk"		0.2	0.2	M.	"Hum_Torch_WaterWalk_GMF.asc"	F	54	65)
 			{
 				*eventSFX	(63	"Walk_Water")
 			}
@@ -401,7 +402,7 @@ Model ("HuS")
 			ani			("c_IGet_1"				1	""						0.0	0.0	.	"Hum_Torch_ItemGet_GMF.asc"		F	10	10)
 			ani			("c_IGet_2"				1	""						0.0	0.0	.	"Hum_Torch_ItemGet_GMF.asc"		F	30	30)
 			ani			("c_IGet_3"				1	""						0.0	0.0	.	"Hum_Torch_ItemGet_GMF.asc"		F	50	50)
-			aniComb		("s_IGet"				1	"s_IGet"				0.0	0.0	M.	"c_IGet_"					3)
+			aniComb		("s_IGet"				1	"s_IGet"				0.1	0.1	M.	"c_IGet_"					3)
 
 			ani			("c_IGet_2_Stand_1"		1	""						0.0	0.0	.	"Hum_Torch_ItemGet_GMF.asc"		F	11	20)
 			ani			("c_IGet_2_Stand_2"		1	""						0.0	0.0	.	"Hum_Torch_ItemGet_GMF.asc"		F	31	40)
@@ -410,6 +411,23 @@ Model ("HuS")
 
 		//	ani			("t_CanNotTake"			1	""						0.1	0.1	M.	"Hum_CantTake_M01.ASC"			F	0	30)
 
+// ---------------------------------------------------------------------------------------------------------------
+// Item AUFHEBEN (Sneak mode) Данные анимации используются только при работе плагина zExtendedAniUsage.dll для Union от Slavemaster.
+			ani			("c_Sneak_2_SneakIGet_1"	1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	0	9)
+			ani			("c_Sneak_2_SneakIGet_2"	1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	20	29)
+			ani			("c_Sneak_2_SneakIGet_3"	1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	40	49)
+			aniComb		("t_Sneak_2_SneakIGet"		1	"s_SneakIGet"	0.1	0.0	M.	"c_Sneak_2_SneakIGet_"		3)
+
+			ani			("c_SneakIGet_1"			1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	10	10)
+			ani			("c_SneakIGet_2"			1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	30	30)
+			ani			("c_SneakIGet_3"			1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	50	50)
+			aniComb		("s_SneakIGet"				1	"s_SneakIGet"	0.1	0.1	M.	"c_SneakIGet_"				3)
+
+			ani			("c_SneakIGet_2_Sneak_1"	1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	11	20)
+			ani			("c_SneakIGet_2_Sneak_2"	1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	31	40)
+			ani			("c_SneakIGet_2_Sneak_3"	1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	51	60)
+			aniComb		("t_SneakIGet_2_Sneak"		1	"s_Sneak"		0.0	0.1	M.	"c_SneakIGet_2_Sneak_"		3)
+			
 // ---------------------------------------------------------------------------------------------------------------
 //	Item ABLEGEN
 
