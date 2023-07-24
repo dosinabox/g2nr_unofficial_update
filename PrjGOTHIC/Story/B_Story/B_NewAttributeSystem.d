@@ -171,10 +171,10 @@ func void B_ResetAttributeSystem()
 {
 	if(C_NpcIsHero(hero))
 	{
-		ATR_Training[ATR_STRENGTH] = 10;
-		ATR_Training[ATR_DEXTERITY] = 10;
-		ATR_Training[ATR_MANA_MAX] = 10;
-		ATR_Training[ATR_HITPOINTS_MAX] = 40;
+		ATR_Training[ATR_STRENGTH] = START_ATR_STRENGTH;
+		ATR_Training[ATR_DEXTERITY] = START_ATR_DEXTERITY;
+		ATR_Training[ATR_MANA_MAX] = START_ATR_MANA_MAX;
+		ATR_Training[ATR_HITPOINTS_MAX] = START_ATR_HITPOINTS_MAX;
 		ATR_Training[ATR_REGENERATEHP] = 0;
 		ATR_Training[ATR_REGENERATEMANA] = 0;
 		ATR_PermBonus[ATR_STRENGTH] = 0;
@@ -196,8 +196,9 @@ func void B_InitAttributeSystem()
 	ATR_TeachLimitFlags_TS_Training = 1;
 	ATR_TeachLimitFlags_TS_TempBonus = 1;
 	ATR_TeachLimitFlags_TS_PermBonus = 1;
-	ValidateNpc(hero);
-	RealHero = Hlp_GetNpc(hero);
-	NewAttributeSystemSynced = TRUE;
+	ATR_Training[ATR_STRENGTH] = START_ATR_STRENGTH;
+	ATR_Training[ATR_DEXTERITY] = START_ATR_DEXTERITY;
+	ATR_Training[ATR_MANA_MAX] = START_ATR_MANA_MAX;
+	ATR_Training[ATR_HITPOINTS_MAX] = START_ATR_HITPOINTS_MAX;
 };
 

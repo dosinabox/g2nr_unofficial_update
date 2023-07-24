@@ -207,6 +207,7 @@ func void DIA_Jack_BANDITENWEG_Info()
 		AI_Standup(self);
 		B_TurnToNpc(self,other);
 	};
+	B_SetGuild(self,GIL_NONE);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Lighthouse");
 	MIS_Jack_KillLighthouseBandits = LOG_SUCCESS;

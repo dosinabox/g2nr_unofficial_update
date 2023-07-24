@@ -322,8 +322,10 @@ func void DIA_Brian_NEWLIGHTHOUSEOFFICER_Info()
 	AI_Output(self,other,"DIA_Brian_NEWLIGHTHOUSEOFFICER_04_04");	//(смеется) Не для меня. Мне все равно не заполучить кузницу Гарада. Я уже выбросил эту мысль из головы.
 	AI_Output(self,other,"DIA_Brian_NEWLIGHTHOUSEOFFICER_04_05");	//Согласен. Встретимся у Джека.
 	MIS_Jack_NewLighthouseOfficer = LOG_SUCCESS;
+	B_SetGuild(self,GIL_NONE);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Lighthouse");
+	B_StartOtherRoutine(VLK_425_Regis,"ALONE");
 };
 
 

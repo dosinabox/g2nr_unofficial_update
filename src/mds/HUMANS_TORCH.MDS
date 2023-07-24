@@ -51,30 +51,30 @@ Model ("HuS")
 			ani			("t_Walk_2_WalkL"		1	"s_WalkL"		0.0	0.0	M.	"Hum_Torch_WalkLoop_GMF.asc"	F	0	9)
 			ani			("s_WalkL"				1	"s_WalkL"		0.0	0.1	M.	"Hum_Torch_WalkLoop_GMF.asc"	F	10	33)
 			{
-				*eventSFXGrnd	(10	"Run")
-				*eventSFXGrnd	(22	"Run")
+				*eventSFXGrnd	(10	"Walk")
+				*eventSFXGrnd	(22	"Walk")
 			}
 
 			ani			("t_WalkL_2_Walk"		1	"s_Walk"		0.0	0.0	M.	"Hum_Torch_WalkLoop_GMF.asc"	F	34	41)
 			{
-				*eventSFXGrnd	(34	"Run")
-				*eventSFXGrnd	(40	"Run")
+				*eventSFXGrnd	(34	"Walk")
+				*eventSFXGrnd	(40	"Walk")
 			}
 			ani			("t_WalkR_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_Torch_WalkLoopEnd_GMF.asc"	F	34	41)
 			{
-				*eventSFXGrnd	(34	"Run")
-				*eventSFXGrnd	(40	"Run")
+				*eventSFXGrnd	(34	"Walk")
+				*eventSFXGrnd	(40	"Walk")
 			}
 			
 			// Зацикленное движение назад в режиме передвижения шагом заменено отпрыгиванием.
-			aniAlias	("t_Walk_2_WalkBL"		1	"s_Walk"		0.1	0.1	M.	"t_JumpB"						F)
-		//	aniAlias	("t_Walk_2_WalkBL"		1	"s_WalkBL"		0.1	0.1	M.	"t_walkL_2_Walk"				R)
+		//	aniAlias	("t_Walk_2_WalkBL"		1	"s_Walk"		0.1	0.1	M.	"t_JumpB"						F)
+			aniAlias	("t_Walk_2_WalkBL"		1	"s_WalkBL"		0.1	0.1	M.	"t_walkL_2_Walk"				R)
 
 			aniAlias	("s_WalkBL"				1	"s_WalkBL"		0.0	0.0	M.	"s_WalkL"						R)
 			ani			("t_WalkBL_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_Torch_WalkLoopBEnd_GMF.ASC"	R	15	22)
 			{
-				*eventSFXGrnd	(16	"Run")
-				*eventSFXGrnd	(22	"Run")
+				*eventSFXGrnd	(16	"Walk")
+				*eventSFXGrnd	(22	"Walk")
 			}
 			aniAlias	("t_WalkBR_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"t_WalkL_2_Walk"				R)	
 
@@ -273,27 +273,27 @@ Model ("HuS")
 // ---------------------------------------------------------------------------------------------------------------
 // DIALOGGESTURES
 
-			ani			("T_DIALOGGESTURE_01"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture01_GMF.asc"		F	0	60)
-			ani			("t_DIALOGGESTURE_02"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture02_GMF.asc"		F	0	50)
-			ani			("t_DIALOGGESTURE_03"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture03_GMF.asc"		F	0	55)
-			ani			("t_DIALOGGESTURE_04"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture04_GMF.asc"		F	0	55)
-			ani			("t_DIALOGGESTURE_05"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture05_GMF.asc"		F	0	50)
-			ani			("t_DIALOGGESTURE_06"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture06_GMF.asc"		F	0	50)
-			ani			("t_DIALOGGESTURE_07"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture07_GMF.asc"		F	0	240)
-			ani			("t_DIALOGGESTURE_08"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture08_GMF.asc"		F	0	150)
-			ani			("t_DIALOGGESTURE_09"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture09_GMF.asc"		F	0	80)
-			ani			("t_DIALOGGESTURE_10"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture10_GMF.asc"		F	0	150)
-			ani			("t_DIALOGGESTURE_11"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture11_GMF.asc"		F	0	65)
-			ani			("t_DIALOGGESTURE_12"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture12_GMF.asc"		F	0	45)
-			ani			("t_DIALOGGESTURE_13"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture13_GMF.asc"		F	0	35)
-			ani			("t_DIALOGGESTURE_14"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture14_GMF.asc"		F	0	40)
-			ani			("t_DIALOGGESTURE_15"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture15_GMF.asc"		F	0	50)
-			ani			("t_DIALOGGESTURE_16"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture16_GMF.asc"		F	0	72)
-			ani			("t_DIALOGGESTURE_17"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture17_GMF.asc"		F	0	45)
-			ani			("t_DIALOGGESTURE_18"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture18_GMF.asc"		F	0	51)
-			ani			("t_DIALOGGESTURE_19"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture19_GMF.asc"		F	0	81)
-			ani			("t_DIALOGGESTURE_20"		2	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture20_GMF.asc"		F	0	70)
-		//	ani			("t_DIALOGGESTURE_21"		2	""		0.4	0.4	M.	"Hum_Torch_Dialoggesture19_GMF.asc"		R	1	80)
+			ani			("T_DIALOGGESTURE_01"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture01_GMF.asc"		F	0	60)
+			ani			("t_DIALOGGESTURE_02"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture02_GMF.asc"		F	0	50)
+			ani			("t_DIALOGGESTURE_03"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture03_GMF.asc"		F	0	55)
+			ani			("t_DIALOGGESTURE_04"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture04_GMF.asc"		F	0	55)
+			ani			("t_DIALOGGESTURE_05"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture05_GMF.asc"		F	0	50)
+			ani			("t_DIALOGGESTURE_06"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture06_GMF.asc"		F	0	50)
+			ani			("t_DIALOGGESTURE_07"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture07_GMF.asc"		F	0	240)
+			ani			("t_DIALOGGESTURE_08"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture08_GMF.asc"		F	0	150)
+			ani			("t_DIALOGGESTURE_09"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture09_GMF.asc"		F	0	80)
+			ani			("t_DIALOGGESTURE_10"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture10_GMF.asc"		F	0	150)
+			ani			("t_DIALOGGESTURE_11"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture11_GMF.asc"		F	0	65)
+			ani			("t_DIALOGGESTURE_12"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture12_GMF.asc"		F	0	45)
+			ani			("t_DIALOGGESTURE_13"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture13_GMF.asc"		F	0	35)
+			ani			("t_DIALOGGESTURE_14"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture14_GMF.asc"		F	0	40)
+			ani			("t_DIALOGGESTURE_15"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture15_GMF.asc"		F	0	50)
+			ani			("t_DIALOGGESTURE_16"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture16_GMF.asc"		F	0	72)
+			ani			("t_DIALOGGESTURE_17"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture17_GMF.asc"		F	0	45)
+			ani			("t_DIALOGGESTURE_18"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture18_GMF.asc"		F	0	51)
+			ani			("t_DIALOGGESTURE_19"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture19_GMF.asc"		F	0	81)
+			ani			("t_DIALOGGESTURE_20"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture20_GMF.asc"		F	0	70)
+		//	ani			("t_DIALOGGESTURE_21"		20	""		0.4	0.4	M.	"Hum_Torch_Dialoggesture19_GMF.asc"		R	1	80)
 		//	AniDisable	("t_DIALOGGESTURE_21")
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -326,8 +326,8 @@ Model ("HuS")
 				*eventSFXGrnd	(17	"Run")
 			}
 
-			aniAlias	("t_RunL_2_JumpUpLow"	1	"t_JumpUpLow_2_Stand"	0.2	0.1	MF	"s_JumpUpLow"					F)
-			aniAlias	("t_RunR_2_JumpUpLow"	1	"t_JumpUpLow_2_Stand"	0.2	0.1	MF	"s_JumpUpLow"					F)
+		//	aniAlias	("t_RunL_2_JumpUpLow"	1	"t_JumpUpLow_2_Stand"	0.2	0.1	MF	"s_JumpUpLow"					F)
+		//	aniAlias	("t_RunR_2_JumpUpLow"	1	"t_JumpUpLow_2_Stand"	0.2	0.1	MF	"s_JumpUpLow"					F)
 			
 //	JumpUpMid       (100-200cm)
             ani		("t_Stand_2_JumpUpMid"		1   "s_JumpUpMid"			0.1 0.0 M.	"Hum_Torch_JumpUpMid_GMF.asc"	F   1	9)
@@ -342,8 +342,8 @@ Model ("HuS")
 				*eventSFXGrnd	(27	"Run")
 			}
 
-			aniAlias	("t_RunL_2_JumpUpMid"	1	"t_JumpUpMid_2_Stand"	0.2	0.1	MF	"s_JumpUpMid"					F)
-			aniAlias	("t_RunR_2_JumpUpMid"	1	"t_JumpUpMid_2_Stand"	0.2	0.1	MF	"s_JumpUpMid"					F)
+		//	aniAlias	("t_RunL_2_JumpUpMid"	1	"t_JumpUpMid_2_Stand"	0.2	0.1	MF	"s_JumpUpMid"					F)
+		//	aniAlias	("t_RunR_2_JumpUpMid"	1	"t_JumpUpMid_2_Stand"	0.2	0.1	MF	"s_JumpUpMid"					F)
 			
 //	JumpUp, Hang	(200-350cm)
 			ani			("t_Stand_2_JumpUp"		1	"s_JumpUp"				0.0	0.0	M.	"Hum_Torch_JumpUp_GMF.asc"		F	1	10)

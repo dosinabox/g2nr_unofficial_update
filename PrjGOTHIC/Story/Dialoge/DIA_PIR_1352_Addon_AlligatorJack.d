@@ -223,7 +223,7 @@ func void DIA_Addon_AlligatorJack_Greg_Info()
 {
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_Greg_15_00");	//Вашего капитана зовут Грег?
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_Greg_12_01");	//Да. И это самый величайший пират, когда-либо бороздивший море.
-	if((SC_SawGregInTaverne == TRUE) || (PlayerTalkedToGregNW == TRUE))
+	if(PlayerTalkedToGregNW == TRUE)
 	{
 		AI_Output(other,self,"DIA_Addon_AlligatorJack_Greg_15_02");	//Думаю, я знаю вашего капитана. Я встречал его в Хоринисе.
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_Greg_12_03");	//(смеется) Грега? В Хоринисе? Чепуха!
@@ -559,12 +559,15 @@ func void DIA_Addon_AlligatorJack_HuntEnd_Info()
 	B_GiveInvItems(self,other,ItFoMuttonRaw,10);
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_08");	//Ты найдешь его в нашем лагере.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_09");	//Он наверняка нежится на солнышке. Отдай ему мясо, он ждет.
-	if(Henry.aivar[AIV_PASSGATE] == FALSE)
+	if(!Npc_IsDead(Henry))
 	{
-		AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_10");	//Вход в лагерь обычно охраняет Генри. Его задача - не пропускать бандитов.
-		AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_11");	//Если он откажется тебя впустить, скажи, что послал тебя я.
-		AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_12");	//Возможно, это сделает его более сговорчивым.
-		AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_13");	//Генри иногда увлекается ролью начальника...
+		if(Henry.aivar[AIV_PASSGATE] == FALSE)
+		{
+			AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_10");	//Вход в лагерь обычно охраняет Генри. Его задача - не пропускать бандитов.
+			AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_11");	//Если он откажется тебя впустить, скажи, что послал тебя я.
+			AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_12");	//Возможно, это сделает его более сговорчивым.
+			AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_13");	//Генри иногда увлекается ролью начальника...
+		};
 	};
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	MIS_AlligatorJack_BringMeat = LOG_Running;

@@ -168,7 +168,7 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		{
 			B_SetGuild(Dyrian,GIL_NONE);
 			Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
-			B_StartOtherRoutine(Dyrian,"NOFAVOUR");
+			Npc_ExchangeRoutine(Dyrian,"NOFAVOUR");
 		};
 		EnterNW_Kapitel2 = TRUE;
 	};
@@ -186,7 +186,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		if(!Npc_IsDead(Hodges))
 		{
 			Hodges_isAlive_Kap3 = TRUE;
-			B_StartOtherRoutine(Hodges,"BENNETWEG");
+			Npc_ExchangeRoutine(Hodges,"BENNETWEG");
 		};
 		if(!Npc_IsDead(Lares) && (RangerMeetingRunning != LOG_Running))
 		{
@@ -202,7 +202,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(Giant_Bug,"FP_ROAM_MEDIUMFOREST_KAP2_05");
 		if(!Npc_IsDead(Sekob))
 		{
-			B_StartOtherRoutine(Sekob,"FleeDMT");
+			Npc_ExchangeRoutine(Sekob,"FleeDMT");
 			B_StartOtherRoutine(Rosi,"FleeDMT");
 			B_StartOtherRoutine(Till,"FleeDMT");
 			if(BalthasarMovedToBengar == FALSE)
@@ -233,7 +233,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		B_StartOtherRoutine(Vanja,"ALONE");
 		if(!Npc_IsDead(Peck))
 		{
-			B_StartOtherRoutine(Peck,"STORAGE");
+			Npc_ExchangeRoutine(Peck,"STORAGE");
 			Peck.aivar[AIV_IgnoresFakeGuild] = FALSE;
 			Peck.aivar[AIV_ToughGuy] = FALSE;
 			Peck.aivar[AIV_ToughGuyNewsOverride] = FALSE;
@@ -322,7 +322,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		if(!Npc_IsDead(Malak))
 		{
 			Malak_isAlive_Kap3 = TRUE;
-			B_StartOtherRoutine(Malak,"FleeFromPass");
+			Npc_ExchangeRoutine(Malak,"FleeFromPass");
 			B_StartOtherRoutine(BAU_962_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_964_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_965_Bauer,"FleeFromPass");
@@ -332,7 +332,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			B_StartOtherRoutine(BAU_969_Bauer,"FleeFromPass");
 			if(!Npc_IsDead(Pardos_NW))
 			{
-				B_StartOtherRoutine(Pardos_NW,"FleeFromPass");
+				Npc_ExchangeRoutine(Pardos_NW,"FleeFromPass");
 				PardosLeftFarmWithMalak = TRUE;
 			};
 			if(hero.guild == GIL_KDF)
@@ -362,7 +362,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			if(!Npc_IsDead(Vino))
 			{
 				Vino_isAlive_Kap3 = TRUE;
-				B_StartOtherRoutine(Vino,"OBESESSIONRITUAL");
+				Npc_ExchangeRoutine(Vino,"OBESESSIONRITUAL");
 				Vino.aivar[AIV_NoFightParker] = TRUE;
 				CreateInvItems(Vino,ITWR_DementorObsessionBook_MIS,1);
 				B_StartOtherRoutine(Lobart,"OBESESSIONRITUAL");
@@ -402,7 +402,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
 				Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
 				Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
-				B_StartOtherRoutine(Canthar,"MARKTSTAND");
+				Npc_ExchangeRoutine(Canthar,"MARKTSTAND");
 				AI_Teleport(Canthar,"NW_CITY_SARAH");
 				Canthar_Sperre = TRUE;
 			};
@@ -680,7 +680,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			if(!Npc_IsDead(Randolph))
 			{
 				CreateInvItems(Randolph,ITWR_DementorObsessionBook_MIS,1);
-				B_StartOtherRoutine(Randolph,"preStart");
+				Npc_ExchangeRoutine(Randolph,"preStart");
 			};
 		};
 		if((TOPIC_END_AkilsSLDStillthere == FALSE) && !C_AkilFarmIsFree())
@@ -688,12 +688,12 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			if(!Npc_IsDead(Alvares))
 			{
 				B_SetGuild(Alvares,GIL_SLD);
-				B_StartOtherRoutine(Alvares,"Bigfarm");
+				Npc_ExchangeRoutine(Alvares,"Bigfarm");
 			};
 			if(!Npc_IsDead(Engardo))
 			{
 				B_SetGuild(Engardo,GIL_SLD);
-				B_StartOtherRoutine(Engardo,"Bigfarm");
+				Npc_ExchangeRoutine(Engardo,"Bigfarm");
 			};
 			B_StartOtherRoutine(Kati,"Start");
 			B_StartOtherRoutine(Akil,"Start");
@@ -701,7 +701,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			{
 				if((hero.guild != GIL_KDF) && (Randolph_ExchangeRoutine_Once == FALSE))
 				{
-					B_StartOtherRoutine(Randolph,"Start");
+					Npc_ExchangeRoutine(Randolph,"Start");
 					Randolph_ExchangeRoutine_Once = TRUE;
 				};
 				Randolph.flags = 0;
@@ -748,12 +748,12 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		{
 			if(!Npc_IsDead(Rosi))
 			{
-				B_StartOtherRoutine(Rosi,"FleeFromSekob");
+				Npc_ExchangeRoutine(Rosi,"FleeFromSekob");
 				Rosi.aivar[AIV_CommentedPlayerCrime] = FALSE;
 				Rosi_FleeFromSekob_Kap5 = TRUE;
 				if(!Npc_IsDead(Till))
 				{
-					B_StartOtherRoutine(Till,"FleeFromSekob");
+					Npc_ExchangeRoutine(Till,"FleeFromSekob");
 					Till.aivar[AIV_CommentedPlayerCrime] = FALSE;
 				};
 			};
@@ -832,7 +832,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 			{
 				Sekob_isAlive_Kap5 = TRUE;
 				CreateInvItems(Sekob,ITWR_DementorObsessionBook_MIS,1);
-				B_StartOtherRoutine(Sekob,"Obsessed");
+				Npc_ExchangeRoutine(Sekob,"Obsessed");
 			};
 		};
 		Wld_InsertNpc(PAL_285_Ritter,"CITY1");

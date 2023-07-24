@@ -84,9 +84,9 @@ func void B_SetHeroExp(var int levels)
 	hero.level = 0;
 	hero.lp = 0;
 	hero.exp_next = XP_PER_LEVEL;
-	hero.attribute[ATR_HITPOINTS_MAX] = 40;
-	hero.attribute[ATR_HITPOINTS] = 40;
-	ATR_Training[ATR_HITPOINTS_MAX] = 40;
+	hero.attribute[ATR_HITPOINTS_MAX] = START_ATR_HITPOINTS_MAX;
+	hero.attribute[ATR_HITPOINTS] = START_ATR_HITPOINTS_MAX;
+	ATR_Training[ATR_HITPOINTS_MAX] = START_ATR_HITPOINTS_MAX;
 	if(levels > 0)
 	{
 		B_LevelUp(levels);
@@ -453,16 +453,16 @@ func void CH_RESET_Ok()
 	hero.level = 0;
 	hero.exp = 0;
 	hero.exp_next = XP_PER_LEVEL;
-	hero.attribute[ATR_STRENGTH] = 10;
-	hero.attribute[ATR_DEXTERITY] = 10;
-	hero.attribute[ATR_MANA_MAX] = 10;
-	hero.attribute[ATR_MANA] = 10;
-	hero.attribute[ATR_HITPOINTS_MAX] = 40;
-	hero.attribute[ATR_HITPOINTS] = 40;
-	hero.HitChance[NPC_TALENT_1H] = 10;
-	hero.HitChance[NPC_TALENT_2H] = 10;
-	hero.HitChance[NPC_TALENT_BOW] = 10;
-	hero.HitChance[NPC_TALENT_CROSSBOW] = 10;
+	hero.attribute[ATR_STRENGTH] = START_ATR_STRENGTH;
+	hero.attribute[ATR_DEXTERITY] = START_ATR_DEXTERITY;
+	hero.attribute[ATR_MANA_MAX] = START_ATR_MANA_MAX;
+	hero.attribute[ATR_MANA] = START_ATR_MANA_MAX;
+	hero.attribute[ATR_HITPOINTS_MAX] = START_ATR_HITPOINTS_MAX;
+	hero.attribute[ATR_HITPOINTS] = START_ATR_HITPOINTS_MAX;
+	hero.HitChance[NPC_TALENT_1H] = START_TALENT_1H;
+	hero.HitChance[NPC_TALENT_2H] = START_TALENT_2H;
+	hero.HitChance[NPC_TALENT_BOW] = START_TALENT_BOW;
+	hero.HitChance[NPC_TALENT_CROSSBOW] = START_TALENT_CROSSBOW;
 	Npc_SetTalentSkill(hero,NPC_TALENT_PICKLOCK,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_MAGE,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_SNEAK,0);

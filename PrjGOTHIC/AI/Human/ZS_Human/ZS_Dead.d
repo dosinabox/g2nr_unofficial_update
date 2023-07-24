@@ -36,24 +36,6 @@ func void ZS_Dead()
 				Bloodwyn_Spawn = TRUE;
 			};
 		};
-	}
-	else if(CurrentLevel == NEWWORLD_ZEN)
-	{
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(CityOrc))
-		{
-			CityOrc_Killed_Day = Wld_GetDay();
-		}
-		else if(Greg_Rejected == TRUE)
-		{
-			if(C_AmIDexterBandit(self))
-			{
-				DexterBanditsBodyCount += 1;
-				if(DexterBanditsBodyCount >= 19)
-				{
-					B_Greg_ComesToDexterLater();
-				};
-			};
-		};
 	};
 	B_CheckDeadMissionNPCs(self);
 	if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON))

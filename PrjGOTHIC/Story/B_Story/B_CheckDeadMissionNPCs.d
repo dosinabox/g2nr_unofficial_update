@@ -10,6 +10,10 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 				MIS_Ignaz_Charm = LOG_FAILED;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(CityOrc))
+		{
+			CityOrc_Killed_Day = Wld_GetDay();
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Dexter))
 		{
 			if(MIS_Steckbriefe != LOG_SUCCESS)
@@ -160,6 +164,17 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 			if(MIS_Cipher_BringWeed == LOG_Running)
 			{
 				MIS_Cipher_BringWeed = LOG_FAILED;
+			};
+		};
+		if(Greg_Rejected == TRUE)
+		{
+			if(C_AmIDexterBandit(slf))
+			{
+				DexterBanditsBodyCount += 1;
+				if(DexterBanditsBodyCount >= 19)
+				{
+					B_Greg_ComesToDexterLater();
+				};
 			};
 		};
 	}
