@@ -143,7 +143,7 @@ instance DIA_Addon_Orlan_Greg(C_Info)
 
 func int DIA_Addon_Orlan_Greg_Condition()
 {
-	if((SC_SawGregInTaverne == TRUE) && (Kapitel <= 3) && Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU))
+	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && Npc_KnowsInfo(other,DIA_Addon_Greg_NW_MeetGregSecondTime) && (Kapitel <= 3))
 	{
 		return TRUE;
 	};

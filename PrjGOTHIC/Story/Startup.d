@@ -3061,13 +3061,6 @@ func void STARTUP_OldWorld()
 	{
 		Wld_SetTime(23,59);
 	};
-	if(C_OldWorldIsWasteland())
-	{
-		B_Seed_Wasteland_World_Main();
-		B_Seed_Wasteland_World_Psicamp();
-		B_Seed_Wasteland_World_Freeminecamp();
-		Wasteland_Seeded = TRUE;
-	};
 };
 
 func void INIT_OldWorld()
@@ -3076,10 +3069,6 @@ func void INIT_OldWorld()
 	B_Enter_OldWorld();
 	INIT_SUB_OldWorld_Part_Oldcamp();
 	INIT_SUB_OldWorld_Part_Surface();
-	if(C_OldWorldIsWasteland())
-	{
-		INIT_SUB_OldWorld_Part_Psicamp();
-	};
 	if((MIS_ReadyforChapter4 == TRUE) && (B_Chapter4_OneTime == FALSE))
 	{
 		B_Kapitelwechsel(4,OLDWORLD_ZEN);

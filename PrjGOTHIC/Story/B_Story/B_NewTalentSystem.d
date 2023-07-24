@@ -413,6 +413,16 @@ func void UpdateTalent_Hero(var int talent)
 	UpdateTalent(RealHero,talent,GetTalentPart_Game_Hero(talent));
 };
 
+func void UpdateAllTalents_Hero()
+{
+	ValidateNpc(hero);
+	RealHero = Hlp_GetNpc(hero);
+	UpdateTalent_Hero(NPC_TALENT_1H);
+	UpdateTalent_Hero(NPC_TALENT_2H);
+	UpdateTalent_Hero(NPC_TALENT_BOW);
+	UpdateTalent_Hero(NPC_TALENT_CROSSBOW);
+};
+
 // cuts the value, when talent's teach limit part exceeds allowed range
 func int CutChange_Hero(var int talent,var int change,var int source)
 {
@@ -799,28 +809,11 @@ func void B_InitTalentSystem()
 	TAL_TeachLimitFlags_TS_Training = 1;
 	TAL_TeachLimitFlags_TS_TempBonus = 1;
 	TAL_TeachLimitFlags_TS_PermBonus = 1;
-	ValidateNpc(hero);
-	RealHero = Hlp_GetNpc(hero);
-//	TAL_Training[NPC_TALENT_1H] = 0;
-//	TAL_Training[NPC_TALENT_2H] = 0;
-//	TAL_Training[NPC_TALENT_BOW] = 0;
-//	TAL_Training[NPC_TALENT_CROSSBOW] = 0;
-//	TAL_TempBonus[NPC_TALENT_1H] = 0;
-//	TAL_TempBonus[NPC_TALENT_2H] = 0;
-//	TAL_TempBonus[NPC_TALENT_BOW] = 0;
-//	TAL_TempBonus[NPC_TALENT_CROSSBOW] = 0;
-//	TAL_PermBonus[NPC_TALENT_1H] = 0;
-//	TAL_PermBonus[NPC_TALENT_2H] = 0;
-//	TAL_PermBonus[NPC_TALENT_BOW] = 0;
-//	TAL_PermBonus[NPC_TALENT_CROSSBOW] = 0;
-	TAL_Training[NPC_TALENT_1H] = RealHero.HitChance[NPC_TALENT_1H];
-	TAL_Training[NPC_TALENT_2H] = RealHero.HitChance[NPC_TALENT_2H];
-	TAL_Training[NPC_TALENT_BOW] = RealHero.HitChance[NPC_TALENT_BOW];
-	TAL_Training[NPC_TALENT_CROSSBOW] = RealHero.HitChance[NPC_TALENT_CROSSBOW];
-	UpdateTalent_Hero(NPC_TALENT_1H);
-	UpdateTalent_Hero(NPC_TALENT_2H);
-	UpdateTalent_Hero(NPC_TALENT_BOW);
-	UpdateTalent_Hero(NPC_TALENT_CROSSBOW);
+	TAL_Training[NPC_TALENT_1H] = START_TALENT_1H;
+	TAL_Training[NPC_TALENT_2H] = START_TALENT_2H;
+	TAL_Training[NPC_TALENT_BOW] = START_TALENT_BOW;
+	TAL_Training[NPC_TALENT_CROSSBOW] = START_TALENT_CROSSBOW;
+	UpdateAllTalents_Hero();
 };
 
 // returns the reason the teacher can't teach talent
@@ -862,18 +855,15 @@ func void B_ResetTalentSystem()
 {
 	if(IsHero(hero))
 	{
-		TAL_Training[NPC_TALENT_1H] = 10;
-		TAL_Training[NPC_TALENT_2H] = 10;
-		TAL_Training[NPC_TALENT_BOW] = 10;
-		TAL_Training[NPC_TALENT_CROSSBOW] = 10;
+		TAL_Training[NPC_TALENT_1H] = START_TALENT_1H;
+		TAL_Training[NPC_TALENT_2H] = START_TALENT_2H;
+		TAL_Training[NPC_TALENT_BOW] = START_TALENT_BOW;
+		TAL_Training[NPC_TALENT_CROSSBOW] = START_TALENT_CROSSBOW;
 		TAL_PermBonus[NPC_TALENT_1H] = 0;
 		TAL_PermBonus[NPC_TALENT_2H] = 0;
 		TAL_PermBonus[NPC_TALENT_BOW] = 0;
 		TAL_PermBonus[NPC_TALENT_CROSSBOW] = 0;
-		UpdateTalent_Hero(NPC_TALENT_1H);
-		UpdateTalent_Hero(NPC_TALENT_2H);
-		UpdateTalent_Hero(NPC_TALENT_BOW);
-		UpdateTalent_Hero(NPC_TALENT_CROSSBOW);
+		UpdateAllTalents_Hero();
 	}
 	else
 	{

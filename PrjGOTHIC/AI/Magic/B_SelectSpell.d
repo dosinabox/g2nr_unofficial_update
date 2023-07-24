@@ -1,7 +1,6 @@
 
 func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 {
-	var int dK_rnd;
 	var int dK_Mega;
 	if((slf.npcType == NPCTYPE_FRIEND) && Npc_IsPlayer(oth) && (oth.guild < GIL_SEPERATOR_HUM))
 	{
@@ -15,7 +14,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			return TRUE;
 		};
 	}
-	else if((slf.guild == GIL_DMT) && (slf.aivar[AIV_MagicUser] == MAGIC_ALWAYS))
+	else if(slf.guild == GIL_DMT)
 	{
 		if(!Npc_HasItems(slf,ItRu_InstantFireball))
 		{
@@ -60,8 +59,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		};
 		if(slf.aivar[AIV_SelectSpell] <= 0)
 		{
-			dK_rnd = Hlp_Random(10);
-			slf.aivar[AIV_SelectSpell] += dK_rnd;
+			slf.aivar[AIV_SelectSpell] = Hlp_Random(9) + 1;
 		};
 		if(slf.aivar[AIV_SelectSpell] < 10)
 		{
@@ -82,14 +80,24 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			slf.aivar[AIV_SelectSpell] = 11;
 			dK_Mega = Hlp_Random(100);
-//			if(!Wld_DetectNpcEx(slf,-1,NOFUNC,GIL_DMT,TRUE)) - не работает?
-			if(dK_Mega <= 2)
+			if(dK_Mega <= 5)
 			{
-				B_ReadySpell(slf,SPL_Firerain,SPL_Cost_Firerain);
-			}
-			else if(dK_Mega <= 5)
-			{
-				B_ReadySpell(slf,SPL_Thunderstorm,SPL_Cost_Thunderstorm);
+				Npc_PerceiveAll(slf);
+				if(!Wld_DetectNpcEx(slf,-1,NOFUNC,GIL_DMT,TRUE))
+				{
+					if(dK_Mega <= 2)
+					{
+						B_ReadySpell(slf,SPL_Firerain,SPL_Cost_Firerain);
+					}
+					else if(dK_Mega <= 5)
+					{
+						B_ReadySpell(slf,SPL_Thunderstorm,SPL_Cost_Thunderstorm);
+					};
+				}
+				else
+				{
+					B_ReadySpell(slf,SPL_LightningFlash,SPL_Cost_LightningFlash);
+				};
 			}
 			else if(dK_Mega <= 10)
 			{
@@ -97,7 +105,15 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			}
 			else
 			{
-				B_ReadySpell(slf,SPL_Firestorm,SPL_COST_Firestorm);
+				if(Kapitel <= 3)
+				{
+					B_ReadySpell(slf,SPL_Firestorm,SPL_COST_Firestorm);
+				}
+				else
+				{
+					//TODO нужно что-то более мощное
+					B_ReadySpell(slf,SPL_Deathball,SPL_COST_Deathball);
+				};
 			};
 		}
 		else if(slf.aivar[AIV_SelectSpell] == 12)

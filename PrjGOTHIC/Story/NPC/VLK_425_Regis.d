@@ -28,3 +28,9 @@ func void Rtn_Start_425()
 	TA_Stand_Drinking(0,30,5,30,"NW_CITY_TAVERN_IN_02");
 };
 
+func void Rtn_Alone_425()
+{
+	TA_Sit_Bench(5,30,0,30,"NW_CITY_REGIS");
+	TA_Stand_Drinking(0,30,5,30,"NW_CITY_TAVERN_IN_02");
+};
+

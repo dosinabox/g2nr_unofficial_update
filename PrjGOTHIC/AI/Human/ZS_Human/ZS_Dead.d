@@ -35,32 +35,6 @@ func void ZS_Dead()
 				B_StartOtherRoutine(Bloodwyn,"MINE");
 				Bloodwyn_Spawn = TRUE;
 			};
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bloodwyn))
-		{
-			B_StartOtherRoutine(Thorus,"TALK");
-		};
-	}
-	else if(CurrentLevel == NEWWORLD_ZEN)
-	{
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(CityOrc))
-		{
-			CityOrc_Killed_Day = Wld_GetDay();
-		}
-		else if(Greg_Rejected == TRUE)
-		{
-			if(C_AmIDexterBandit(self))
-			{
-				DexterBanditsBodyCount += 1;
-				if(DexterBanditsBodyCount >= 19)
-				{
-					B_Greg_ComesToDexterLater();
-				};
-			};
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Dexter))
-		{
-			B_Greg_ComesToDexter();
 		};
 	};
 	B_CheckDeadMissionNPCs(self);

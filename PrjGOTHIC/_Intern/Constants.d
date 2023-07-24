@@ -668,6 +668,15 @@ const string spellFxAniLetters[100] =
 	"XXX"
 };
 
+const int START_ATR_STRENGTH = 10;
+const int START_ATR_DEXTERITY = 10;
+const int START_ATR_MANA_MAX = 10;
+const int START_ATR_HITPOINTS_MAX = 40;
+const int START_TALENT_1H = 10;
+const int START_TALENT_2H = 10;
+const int START_TALENT_BOW = 10;
+const int START_TALENT_CROSSBOW = 10;
+
 const int NPC_TALENT_UNKNOWN = 0;
 const int NPC_TALENT_1H = 1;
 const int NPC_TALENT_2H = 2;
@@ -797,7 +806,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "29/06/2023";
+const string FIX_VERSION_DATE = "24/07/2023";
 const int FIX_VERSION_START = 29;
 const int LEAST_SUPPORTED = 26;
 var int FIX_VERSION_SAVE;

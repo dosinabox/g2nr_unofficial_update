@@ -286,7 +286,6 @@ func void DIA_Addon_Greg_NW_MeetGregSecondTime_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_NW_MeetGregSecondTime_01_06");	//Ты как раз вовремя.
 	Knows_Taverne = TRUE;
-	SC_SawGregInTaverne = TRUE;
 };
 
 
