@@ -316,12 +316,9 @@ func int DIA_Thekla_Manieren_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Thekla_Problem) && (MIS_ReadyforChapter4 == FALSE))
 	{
-		if(!Npc_IsDead(Bullco))
+		if(!Npc_IsDead(Bullco) && (SLD_Bullco_Defeated == FALSE))
 		{
-			if(SLD_Bullco_Defeated == FALSE)
-			{
-				return TRUE;
-			};
+			return TRUE;
 		};
 	};
 };

@@ -82,6 +82,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			dK_Mega = Hlp_Random(100);
 			if(dK_Mega <= 5)
 			{
+				//TODO применять всегда, но проверять гильдии в C_CanNpcCollideWithSpell
 				Npc_PerceiveAll(slf);
 				if(!Wld_DetectNpcEx(slf,-1,NOFUNC,GIL_DMT,TRUE))
 				{
@@ -89,7 +90,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 					{
 						B_ReadySpell(slf,SPL_Firerain,SPL_Cost_Firerain);
 					}
-					else if(dK_Mega <= 5)
+					else
 					{
 						B_ReadySpell(slf,SPL_Thunderstorm,SPL_Cost_Thunderstorm);
 					};
