@@ -1037,7 +1037,7 @@ func void DIA_Andre_Auslieferung_Canthar()
 		B_NpcSetJailed(Canthar);
 		B_StartOtherRoutine(Canthar,"KNAST");
 		MIS_Canthars_KomproBrief = LOG_FAILED;
-		B_CheckLog();
+		CantharMovedToCity = TRUE;
 		Canthar_Ausgeliefert = TRUE;
 		B_GivePlayerXP(XP_Andre_Auslieferung);
 	}
