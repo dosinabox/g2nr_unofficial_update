@@ -5,38 +5,6 @@ func void ZS_Dead()
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	B_StopLookAt(self);
 	AI_StopPointAt(self);
-	if(CurrentLevel == ADDONWORLD_ZEN)
-	{
-		if(self.aivar[AIV_MM_REAL_ID] == ID_RAZOR)
-		{
-			if(C_IAmCanyonRazor(self))
-			{
-				CanyonRazorBodyCount += 1;
-				if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
-				{
-					B_CountCanyonRazor();
-				};
-			};
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stoneguardian_NailedValleyShowcase_01))
-		{
-			if((MayaScrollGiven == FALSE) && !Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT))
-			{
-				CreateInvItems(self,ItSc_Teleport_Maya,1);
-				MayaScrollGiven = TRUE;
-			};
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GoldMinecrawler))
-		{
-			Minecrawler_Killed += 1;
-			if((Minecrawler_Killed > 9) && (Bloodwyn_Spawn == FALSE) && !Npc_IsDead(Bloodwyn))
-			{
-				AI_Teleport(Bloodwyn,"ADW_MINE_TO_MC_03");
-				B_StartOtherRoutine(Bloodwyn,"MINE");
-				Bloodwyn_Spawn = TRUE;
-			};
-		};
-	};
 	B_CheckDeadMissionNPCs(self);
 	if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON))
 	{

@@ -3,14 +3,13 @@
 ###################################
 
 !include "MUI.nsh"
-!include "FileFunc.nsh"
 
 ###################################
 ##            Основное           ##
 ###################################
 
 !define MOD_VERSION "29"
-!define MOD_DATE "7.4"
+!define MOD_DATE "8.14"
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"
@@ -131,7 +130,7 @@ Section "Основные файлы" SecMain
 	WriteRegStr HKLM "${REGISTRY_PATH}" "HelpLink" "https://worldofplayers.ru/threads/36817"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "Publisher" "${MOD_AUTHOR}"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "DisplayIcon" "$INSTDIR\system\${MOD_NAME}.ico"
-	WriteRegDWORD HKLM "${REGISTRY_PATH}" "EstimatedSize" "267000"
+	WriteRegDWORD HKLM "${REGISTRY_PATH}" "EstimatedSize" "226000"
 SectionEnd
 
 Section "Дополнительная русская озвучка" SecAdditional_1

@@ -55,9 +55,16 @@ instance DIA_PAL_205_Torwache_FirstWarn(C_Info)
 
 func int DIA_PAL_205_Torwache_FirstWarn_Condition()
 {
-	if((VisibleGuild(other) == GIL_MIL) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if(B_GetGreatestPetzCrime(self) < CRIME_ATTACK)
 	{
-		return FALSE;
+		if(VisibleGuild(other) == GIL_MIL)
+		{
+			return FALSE;
+		};
+		if(VisibleGuild(other) == GIL_PAL)
+		{
+			return FALSE;
+		};
 	}
 	else if(Npc_GetDistToWP(other,PAL_205_Checkpoint) <= 550)
 	{
@@ -107,9 +114,16 @@ instance DIA_PAL_205_Torwache_SecondWarn(C_Info)
 
 func int DIA_PAL_205_Torwache_SecondWarn_Condition()
 {
-	if((VisibleGuild(other) == GIL_MIL) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if(B_GetGreatestPetzCrime(self) < CRIME_ATTACK)
 	{
-		return FALSE;
+		if(VisibleGuild(other) == GIL_MIL)
+		{
+			return FALSE;
+		};
+		if(VisibleGuild(other) == GIL_PAL)
+		{
+			return FALSE;
+		};
 	}
 	else if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,PAL_205_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
@@ -139,9 +153,16 @@ instance DIA_PAL_205_Torwache_Attack(C_Info)
 
 func int DIA_PAL_205_Torwache_Attack_Condition()
 {
-	if((VisibleGuild(other) == GIL_MIL) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if(B_GetGreatestPetzCrime(self) < CRIME_ATTACK)
 	{
-		return FALSE;
+		if(VisibleGuild(other) == GIL_MIL)
+		{
+			return FALSE;
+		};
+		if(VisibleGuild(other) == GIL_PAL)
+		{
+			return FALSE;
+		};
 	}
 	else if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,PAL_205_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{

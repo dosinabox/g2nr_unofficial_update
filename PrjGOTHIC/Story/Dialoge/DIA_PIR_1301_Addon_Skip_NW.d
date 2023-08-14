@@ -138,12 +138,24 @@ func void DIA_Addon_Skip_NW_Baltram_Info()
 	AI_Output(self,other,"DIA_Addon_Skip_NW_Baltram_08_02");	//Я же только что сам об этом сказал.
 	AI_Output(self,other,"DIA_Addon_Skip_NW_Baltram_08_03");	//Этот никчемный торговец всяким хламом, похоже, забыл про нашу встречу.
 	AI_Output(self,other,"DIA_Addon_Skip_NW_Baltram_08_04");	//Если бы я только мог до него добраться...
+	MIS_Addon_Baltram_Paket4Skip = LOG_Running;
 	Log_CreateTopic(TOPIC_Addon_BaltramSkipTrade,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_BaltramSkipTrade,LOG_Running);
 	B_LogEntry(TOPIC_Addon_BaltramSkipTrade,"Пират Скип сообщил мне, что городской торговец Бальтрам сотрудничает с пиратами.");
-	SCKnowsBaltramAsPirateTrader = TRUE;
 };
 
+
+func void B_Skip_GiveRumForBaltram()
+{
+	CreateInvItems(self,ItFo_Addon_Rum,2);
+	B_GiveInvItems(self,other,ItFo_Addon_Rum,2);
+	if(MIS_Addon_Baltram_Paket4Skip == LOG_Running)
+	{
+		B_LogEntry(TOPIC_Addon_BaltramSkipTrade,"Скип дал мне ром, который я должен отнести Бальтраму.");
+	};
+	Skip_Rum4Baltram = TRUE;
+	B_GivePlayerXP(XP_Addon_Skip_BaltramPaket);
+};
 
 instance DIA_Addon_Skip_BaltramPaket(C_Info)
 {
@@ -157,7 +169,7 @@ instance DIA_Addon_Skip_BaltramPaket(C_Info)
 
 func int DIA_Addon_Skip_BaltramPaket_Condition()
 {
-	if((MIS_Addon_Baltram_Paket4Skip == LOG_Running) && Npc_HasItems(other,ItMi_Packet_Baltram4Skip_Addon))
+	if(Npc_HasItems(other,ItMi_Packet_Baltram4Skip_Addon))
 	{
 		return TRUE;
 	};
@@ -172,11 +184,7 @@ func void DIA_Addon_Skip_BaltramPaket_Info()
 	AI_Output(other,self,"DIA_Addon_Skip_BaltramPaket_15_03");	//Он сказал, что ему нужны три бутылки рома.
 	AI_Output(self,other,"DIA_Addon_Skip_BaltramPaket_08_04");	//(смеется) Ну конечно! Сначала он заставляет меня ждать, потом не приходит на встречу, и у него еще хватает наглости чего-то требовать.
 	AI_Output(self,other,"DIA_Addon_Skip_BaltramPaket_08_05");	//Вот, передай ему две бутылки. Хватит с него.
-	CreateInvItems(self,ItFo_Addon_Rum,2);
-	B_GiveInvItems(self,other,ItFo_Addon_Rum,2);
-	B_GivePlayerXP(XP_Addon_Skip_BaltramPaket);
-	B_LogEntry(TOPIC_Addon_BaltramSkipTrade,LogText_Addon_SkipsRumToBaltram);
-	Skip_Rum4Baltram = TRUE;
+	B_Skip_GiveRumForBaltram();
 };
 
 

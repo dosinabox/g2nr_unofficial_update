@@ -173,7 +173,7 @@ instance Stoneguardian_NailedValleyShowcase_01(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2000;
 	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
-//	CreateInvItems(self,ItSc_Teleport_Maya,1);
+	CreateInvItems(self,ItSc_Teleport_Maya,1);
 	B_SetVisuals_Stoneguardian();
 };
 

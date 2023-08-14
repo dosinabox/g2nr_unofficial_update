@@ -145,7 +145,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Addon_Erol,MIS_Addon_Erol_BanditStuff,0,6);
 	B_CloseTopic(TOPIC_Addon_Joe,0,TOPIC_END_Joe,6);
 	B_CloseTopic(TOPIC_Addon_BromorsGold,MIS_Bromor_LuciaStoleGold,0,6);
-	B_CloseTopic(TOPIC_Addon_BaltramSkipTrade,0,TOPIC_END_BaltramSkipTrade,6);
+	B_CloseTopic(TOPIC_Addon_BaltramSkipTrade,MIS_Addon_Baltram_Paket4Skip,0,6);
 	B_CloseTopic(TOPIC_Addon_TeleportsADW,0,SC_ADW_ActivatedAllTelePortStones,6);
 	B_CloseTopic(TOPIC_Addon_Sklaven,0,Sklaven_Flucht,6);
 	B_CloseTopic(TOPIC_Addon_RavenKDW,0,RavenIsDead,4);
