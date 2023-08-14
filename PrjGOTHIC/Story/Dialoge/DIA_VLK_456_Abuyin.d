@@ -345,6 +345,15 @@ func void DIA_Abuyin_Weissagung_Info()
 };
 
 
+func void B_Abuyin_StartTrance()
+{
+	AI_PlayAni(self,"T_MAGRUN_2_HEASHOOT");
+	Wld_PlayEffect("SPELLFX_TELEPORT",self,self,0,0,0,FALSE);
+	Abuyin_Zukunft = Kapitel;
+	B_GivePlayerXP(XP_Ambient * 4);
+	B_RemoveEveryInvItem(self,ItMi_Gold);
+};
+
 instance DIA_Abuyin_Zukunft(C_Info)
 {
 	npc = VLK_456_Abuyin;
@@ -356,11 +365,9 @@ instance DIA_Abuyin_Zukunft(C_Info)
 };
 
 
-var int DIA_Abuyin_Zukunft_permanent;
-
 func int DIA_Abuyin_Zukunft_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Abuyin_Weissagung) && (DIA_Abuyin_Zukunft_permanent == FALSE) && (Kapitel == 1))
+	if(Npc_KnowsInfo(other,DIA_Abuyin_Weissagung) && (Abuyin_Zukunft < Kapitel) && (Kapitel == 1))
 	{
 		return TRUE;
 	};
@@ -383,8 +390,7 @@ func void DIA_Abuyin_Zukunft_Info()
 
 func void DIA_Abuyin_Zukunft_Trance()
 {
-	AI_PlayAni(self,"T_MAGRUN_2_HEASHOOT");
-	Wld_PlayEffect("SPELLFX_TELEPORT",self,self,0,0,0,FALSE);
+	B_Abuyin_StartTrance();
 	AI_Output(self,other,"DIA_Abuyin_Zukunft_Trance_13_00");	//(в трансе) Орки... они охраняют вход... старый туннель... Долина Рудников...
 	AI_Output(self,other,"DIA_Abuyin_Zukunft_Trance_13_01");	//(в трансе) Люди в сверкающих доспехах... маг... твой друг с ними... он ждет тебя...
 	AI_Output(self,other,"DIA_Abuyin_Zukunft_Trance_13_02");	//(в трансе) Огонь! Нападение... могучего существа... пламя... многие... погибнут...
@@ -392,11 +398,7 @@ func void DIA_Abuyin_Zukunft_Trance()
 	AI_Output(self,other,"DIA_Addon_Abuyin_Zukunft_Trance_13_01");	//(в трансе) ...Он был призван... Куарходрон из Яркендара!
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
 	AI_Output(self,other,"DIA_Abuyin_Zukunft_Trance_13_03");	//Извини - видение кончилось. Больше я ничего не смог увидеть.
-	DIA_Abuyin_Zukunft_permanent = TRUE;
-	Abuyin_Zukunft = 1;
 	Info_ClearChoices(DIA_Abuyin_Zukunft);
-	B_GivePlayerXP(XP_AmbientKap1 * 4);
-	B_RemoveEveryInvItem(self,ItMi_Gold);
 };
 
 
@@ -413,7 +415,7 @@ instance DIA_Abuyin_Nochmal(C_Info)
 
 func int DIA_Abuyin_Nochmal_Condition()
 {
-	if(Kapitel == Abuyin_Zukunft)
+	if(Abuyin_Zukunft == Kapitel)
 	{
 		return TRUE;
 	};
@@ -477,11 +479,9 @@ instance DIA_Abuyin_Zukunft2(C_Info)
 };
 
 
-var int DIA_Abuyin_Zukunft2_permanent;
-
 func int DIA_Abuyin_Zukunft2_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Abuyin_Weissagung2) && (DIA_Abuyin_Zukunft2_permanent == FALSE) && (Kapitel == 2))
+	if(Npc_KnowsInfo(other,DIA_Abuyin_Weissagung2) && (Abuyin_Zukunft < Kapitel) && (Kapitel == 2))
 	{
 		return TRUE;
 	};
@@ -504,18 +504,13 @@ func void DIA_Abuyin_Zukunft2_Info()
 
 func void DIA_Abuyin_Zukunft2_Trance()
 {
-	AI_PlayAni(self,"T_MAGRUN_2_HEASHOOT");
-	Wld_PlayEffect("SPELLFX_TELEPORT",self,self,0,0,0,FALSE);
+	B_Abuyin_StartTrance();
 	AI_Output(self,other,"DIA_Abuyin_Zukunft2_Trance_13_00");	//(в трансе) Наемник... ему нужен ты... ужасное убийство... Глаз...
 	AI_Output(self,other,"DIA_Abuyin_Zukunft2_Trance_13_01");	//(в трансе) Зловещие приспешники... они идут... ищут тебя... страж падет...
 	AI_Output(self,other,"DIA_Abuyin_Zukunft2_Trance_13_02");	//(в трансе) ...но трое должны объединиться... только тогда ты получишь то, что должно принадлежать тебе...
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
 	AI_Output(self,other,"DIA_Abuyin_Zukunft2_Trance_13_03");	//Это все. Больше я ничего не смог увидеть.
-	DIA_Abuyin_Zukunft2_permanent = TRUE;
-	Abuyin_Zukunft = 2;
 	Info_ClearChoices(DIA_Abuyin_Zukunft2);
-	B_GivePlayerXP(XP_AmbientKap2 * 4);
-	B_RemoveEveryInvItem(self,ItMi_Gold);
 };
 
 
@@ -556,11 +551,9 @@ instance DIA_Abuyin_Zukunft3(C_Info)
 };
 
 
-var int DIA_Abuyin_Zukunft3_permanent;
-
 func int DIA_Abuyin_Zukunft3_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Abuyin_Weissagung3) && (DIA_Abuyin_Zukunft3_permanent == FALSE) && (Kapitel == 3))
+	if(Npc_KnowsInfo(other,DIA_Abuyin_Weissagung3) && (Abuyin_Zukunft < Kapitel) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -583,18 +576,13 @@ func void DIA_Abuyin_Zukunft3_Info()
 
 func void DIA_Abuyin_Zukunft3_Trance()
 {
-	AI_PlayAni(self,"T_MAGRUN_2_HEASHOOT");
-	Wld_PlayEffect("SPELLFX_TELEPORT",self,self,0,0,0,FALSE);
+	B_Abuyin_StartTrance();
 	AI_Output(self,other,"DIA_Abuyin_Zukunft3_Trance_13_00");	//(в трансе) Ты должен пробиться... это суждено только тебе...
 	AI_Output(self,other,"DIA_Abuyin_Zukunft3_Trance_13_01");	//(в трансе) ...сквозь огонь и снег... сквозь лед и пламя...
 	AI_Output(self,other,"DIA_Abuyin_Zukunft3_Trance_13_02");	//(в трансе) Люди в странных доспехах... болото... ящеры... они ждут тебя...
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
 	AI_Output(self,other,"DIA_Abuyin_Zukunft3_Trance_13_03");	//Это все. Больше я ничего не смог увидеть.
-	DIA_Abuyin_Zukunft3_permanent = TRUE;
-	Abuyin_Zukunft = 3;
 	Info_ClearChoices(DIA_Abuyin_Zukunft3);
-	B_GivePlayerXP(XP_AmbientKap3 * 4);
-	B_RemoveEveryInvItem(self,ItMi_Gold);
 };
 
 
@@ -635,11 +623,9 @@ instance DIA_Abuyin_Zukunft4(C_Info)
 };
 
 
-var int DIA_Abuyin_Zukunft4_permanent;
-
 func int DIA_Abuyin_Zukunft4_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Abuyin_Weissagung4) && (DIA_Abuyin_Zukunft4_permanent == FALSE) && (Kapitel == 4))
+	if(Npc_KnowsInfo(other,DIA_Abuyin_Weissagung4) && (Abuyin_Zukunft < Kapitel) && (Kapitel == 4))
 	{
 		return TRUE;
 	};
@@ -662,18 +648,13 @@ func void DIA_Abuyin_Zukunft4_Info()
 
 func void DIA_Abuyin_Zukunft4_Trance()
 {
-	AI_PlayAni(self,"T_MAGRUN_2_HEASHOOT");
-	Wld_PlayEffect("SPELLFX_TELEPORT",self,self,0,0,0,FALSE);
+	B_Abuyin_StartTrance();
 	AI_Output(self,other,"DIA_Abuyin_Zukunft4_Trance_13_00");	//(в трансе) Место знаний... другая страна... темное место далеко-далеко...
 	AI_Output(self,other,"DIA_Abuyin_Zukunft4_Trance_13_01");	//(в трансе) Мужественные спутники... ты должен сделать выбор...
 	AI_Output(self,other,"DIA_Abuyin_Zukunft4_Trance_13_02");	//(в трансе) Храм... стоит одиноко в царстве Аданоса... покрытый туманом...
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
 	AI_Output(self,other,"DIA_Abuyin_Zukunft4_Trance_13_03");	//Это все. Больше я ничего не смог увидеть.
-	DIA_Abuyin_Zukunft4_permanent = TRUE;
-	Abuyin_Zukunft = 4;
 	Info_ClearChoices(DIA_Abuyin_Zukunft4);
-	B_GivePlayerXP(XP_AmbientKap4 * 4);
-	B_RemoveEveryInvItem(self,ItMi_Gold);
 };
 
 
@@ -714,11 +695,9 @@ instance DIA_Abuyin_Zukunft5(C_Info)
 };
 
 
-var int DIA_Abuyin_Zukunft5_permanent;
-
 func int DIA_Abuyin_Zukunft5_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Abuyin_Weissagung5) && (DIA_Abuyin_Zukunft5_permanent == FALSE) && (Kapitel == 5))
+	if(Npc_KnowsInfo(other,DIA_Abuyin_Weissagung5) && (Abuyin_Zukunft < Kapitel) && (Kapitel == 5))
 	{
 		return TRUE;
 	};
@@ -741,17 +720,12 @@ func void DIA_Abuyin_Zukunft5_Info()
 
 func void DIA_Abuyin_Zukunft5_Trance()
 {
-	AI_PlayAni(self,"T_MAGRUN_2_HEASHOOT");
-	Wld_PlayEffect("SPELLFX_TELEPORT",self,self,0,0,0,FALSE);
+	B_Abuyin_StartTrance();
 	AI_Output(self,other,"DIA_Abuyin_Zukunft5_Trance_13_00");	//(в трансе) Тьма опустилась на землю... Зло торжествует...
 	AI_Output(self,other,"DIA_Abuyin_Zukunft5_Trance_13_01");	//(в трансе) Король проиграет войну против орков...
 	AI_Output(self,other,"DIA_Abuyin_Zukunft5_Trance_13_02");	//(в трансе) Ты вернешься, но не найдешь покоя...
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
 	AI_Output(self,other,"DIA_Abuyin_Zukunft5_Trance_13_03");	//Это все. Больше я ничего не смог увидеть.
-	DIA_Abuyin_Zukunft5_permanent = TRUE;
-	Abuyin_Zukunft = 5;
 	Info_ClearChoices(DIA_Abuyin_Zukunft5);
-	B_GivePlayerXP(XP_AmbientKap5 * 4);
-	B_RemoveEveryInvItem(self,ItMi_Gold);
 };
 

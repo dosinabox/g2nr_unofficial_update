@@ -1,0 +1,43 @@
+ZenGin Archive
+ver 1
+zCArchiverGeneric
+ASCII
+saveGame 0
+date 17.2.2022 21:0:58
+user NikX
+END
+objects 2        
+END
+
+[% zCObjPreset 64513 0]
+	presetName=string:DefaultFogZone
+	[preset zCZoneZFogDefault:zCZoneZFog:zCVob 5505 1]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:12411.8975 -4174.83203 -7998.01318 12411.8975 -4174.83203 -7998.01318 
+		trafoOSToWSRot=raw:b93e273e0000008000907c3f000000000000803f0000000000907cbf00000080b93e273e
+		trafoOSToWSPos=vec3:12411.8975 -4174.83203 -7998.01318
+		vobName=string:
+		visual=string:
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:1
+		isAmbient=bool:0
+		[visual % 0 0]
+		[]
+		[ai % 0 0]
+		[]
+		fogRangeCenter=float:17000
+		innerRangePerc=float:0.699999988
+		fogColor=color:120 120 120 255
+		fadeOutSky=bool:0
+		overrideColor=bool:0
+	[]
+[]

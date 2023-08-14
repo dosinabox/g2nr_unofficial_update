@@ -86,10 +86,7 @@ func void DIA_Addon_SkipADW_BaltramPaket_Info()
 	AI_Output(self,other,"DIA_Addon_SkipADW_BaltramPaket_08_01");	//(усмехаетс€) ƒа, похоже этот парень действительно пристрастилс€ к нашему рому.
 	B_GiveInvItems(other,self,ItMi_Packet_Baltram4Skip_Addon,1);
 	AI_Output(self,other,"DIA_Addon_SkipADW_BaltramPaket_08_02");	//¬от, передай ему две бутылки. “ретью € выпил, пока его ждал.
-	B_GiveInvItems(self,other,ItFo_Addon_Rum,2);
-	B_GivePlayerXP(XP_Addon_Skip_BaltramPaket);
-	B_LogEntry(TOPIC_Addon_BaltramSkipTrade,LogText_Addon_SkipsRumToBaltram);
-	Skip_Rum4Baltram = TRUE;
+	B_Skip_GiveRumForBaltram();
 };
 
 

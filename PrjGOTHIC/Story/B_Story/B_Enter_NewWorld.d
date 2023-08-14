@@ -181,8 +181,11 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 {
 	if(EnterNW_Kapitel3 == FALSE)
 	{
-		Cornelius.flags = 0;
-		B_CreateItemToSteal(Cornelius,60,ItWr_CorneliusTagebuch_Mis,1);
+		if(!Npc_IsDead(Cornelius))
+		{
+			Cornelius.flags = 0;
+			B_CreateItemToSteal(Cornelius,60,ItWr_CorneliusTagebuch_Mis,1);
+		};
 		if(!Npc_IsDead(Hodges))
 		{
 			Hodges_isAlive_Kap3 = TRUE;
@@ -392,18 +395,20 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			if((MIS_Canthars_KomproBrief != LOG_SUCCESS) && (MIS_Canthars_KomproBrief != FALSE) && (Canthar_Pay == FALSE))
 			{
+				if(Canthar_Ausgeliefert == TRUE)
+				{
+					B_NpcSetReleased(Canthar);
+					Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
+					Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
+					Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
+				};
+				Npc_ExchangeRoutine(Canthar,"MARKTSTAND");
 				if(SarahWeaponsRemoved == FALSE)
 				{
 					B_GiveTradeInv_Sarah(Sarah);
 					B_RemoveSarahWeapons();
 				};
 				B_RemoveNpc(VLK_470_Sarah);
-				B_NpcSetReleased(Canthar);
-				Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
-				Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
-				Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
-				Npc_ExchangeRoutine(Canthar,"MARKTSTAND");
-				AI_Teleport(Canthar,"NW_CITY_SARAH");
 				Canthar_Sperre = TRUE;
 			};
 			if((Canthar.aivar[AIV_LastFightComment] == FALSE) && (Canthar.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE))
@@ -844,26 +849,59 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		Wld_InsertNpc(PAL_291_Ritter,"CITY1");
 		Wld_InsertNpc(PAL_292_Ritter,"CITY1");
 		Wld_InsertNpc(PAL_293_Ritter,"CITY1");
-		Schiffswache_212.flags = 0;
-		Schiffswache_213.flags = 0;
-		PAL_220_Schiffswache.flags = 0;
-		PAL_221_Schiffswache.flags = 0;
-		PAL_222_Schiffswache.flags = 0;
-		PAL_223_Schiffswache.flags = 0;
-		PAL_224_Schiffswache.flags = 0;
-		PAL_225_Schiffswache.flags = 0;
-		PAL_226_Schiffswache.flags = 0;
-		PAL_227_Schiffswache.flags = 0;
-		PAL_228_Schiffswache.flags = 0;
-		B_StartOtherRoutine(PAL_220_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_221_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_222_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_223_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_224_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_225_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_226_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_227_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_228_Schiffswache,"ShipFree");
+		if(!Npc_IsDead(Schiffswache_212))
+		{
+			Schiffswache_212.flags = 0;
+		};
+		if(!Npc_IsDead(Schiffswache_213))
+		{
+			Schiffswache_213.flags = 0;
+		};
+		if(!Npc_IsDead(PAL_220_Schiffswache))
+		{
+			PAL_220_Schiffswache.flags = 0;
+			Npc_ExchangeRoutine(PAL_220_Schiffswache,"ShipFree");
+		};
+		if(!Npc_IsDead(PAL_221_Schiffswache))
+		{
+			PAL_221_Schiffswache.flags = 0;
+			Npc_ExchangeRoutine(PAL_221_Schiffswache,"ShipFree");
+		};
+		if(!Npc_IsDead(PAL_222_Schiffswache))
+		{
+			PAL_222_Schiffswache.flags = 0;
+			Npc_ExchangeRoutine(PAL_222_Schiffswache,"ShipFree");
+		};
+		if(!Npc_IsDead(PAL_223_Schiffswache))
+		{
+			PAL_223_Schiffswache.flags = 0;
+			Npc_ExchangeRoutine(PAL_223_Schiffswache,"ShipFree");
+		};
+		if(!Npc_IsDead(PAL_224_Schiffswache))
+		{
+			PAL_224_Schiffswache.flags = 0;
+			Npc_ExchangeRoutine(PAL_224_Schiffswache,"ShipFree");
+		};
+		if(!Npc_IsDead(PAL_225_Schiffswache))
+		{
+			PAL_225_Schiffswache.flags = 0;
+			Npc_ExchangeRoutine(PAL_225_Schiffswache,"ShipFree");
+		};
+		if(!Npc_IsDead(PAL_226_Schiffswache))
+		{
+			PAL_226_Schiffswache.flags = 0;
+			Npc_ExchangeRoutine(PAL_226_Schiffswache,"ShipFree");
+		};
+		if(!Npc_IsDead(PAL_227_Schiffswache))
+		{
+			PAL_227_Schiffswache.flags = 0;
+			Npc_ExchangeRoutine(PAL_227_Schiffswache,"ShipFree");
+		};
+		if(!Npc_IsDead(PAL_228_Schiffswache))
+		{
+			PAL_228_Schiffswache.flags = 0;
+			Npc_ExchangeRoutine(PAL_228_Schiffswache,"ShipFree");
+		};
 		B_StartOtherRoutine(PAL_230_Ritter,"ShipFree");
 		B_StartOtherRoutine(PAL_231_Ritter,"ShipFree");
 		B_StartOtherRoutine(PAL_240_Ritter,"ShipFree");

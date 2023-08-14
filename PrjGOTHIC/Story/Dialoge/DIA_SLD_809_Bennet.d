@@ -1093,7 +1093,7 @@ instance DIA_Bennet_DJG_ARMOR_M(C_Info)
 	condition = DIA_Bennet_DJG_ARMOR_M_Condition;
 	information = DIA_Bennet_DJG_ARMOR_M_Info;
 	permanent = TRUE;
-	description = "Средние доспехи охотника на драконов (120/120/75/35, 12000 золотых)";
+	description = B_BuildPriceString("Купить средние доспехи охотника на драконов. Защита: 120/120/75/35.",VALUE_ITAR_DJG_M);
 };
 
 
@@ -1170,7 +1170,7 @@ instance DIA_Bennet_DJG_ARMOR_H(C_Info)
 	condition = DIA_Bennet_DJG_ARMOR_H_Condition;
 	information = DIA_Bennet_DJG_ARMOR_H_Info;
 	permanent = TRUE;
-	description = "Тяжелые доспехи охотника на драконов (150/150/100/50, 20000 золотых)";
+	description = B_BuildPriceString("Купить тяжелые доспехи охотника на драконов. Защита: 150/150/100/50.",VALUE_ITAR_DJG_H);
 };
 
 

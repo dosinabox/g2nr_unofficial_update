@@ -2499,24 +2499,6 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 	Wld_InsertItem(ItWr_DexStonePlate1_Addon,"FP_ROAM_NW_FARM3_PATH_11_SMALLRIVER_05");
 	Wld_InsertItem(ItWr_ManaStonePlate1_Addon,"FP_ITEM_GREATPEASANT_FERNANDOSWEAPONS_01");
 	Wld_InsertItem(ItWr_Addon_BanditTrader,"FP_ITEM_NW_FARM4_WOOD_FERNANDOLETTER");
-	//TODO шпаги занимают точки и висят в воздухе - переместить в зен и добавить проверку !C_WorldIsFixed(NEWWORLD_ZEN)
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_STAND_DEMENTOR_05");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ROAM_NW_FARM3_PATH_11_SMALLRIVER_09");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ROAM_NW_FARM3_BIGWOOD_02_04");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ROAM_NW_BIGMILL_FARM3_01");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_STAND_DEMENTOR_03");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ROAM_NW_BIGMILL_FARM3_03_02");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_STAND_DEMENTOR_07");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ROAM_NW_BIGFARM_ALLEE_08_N2");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_STAND_DEMENTOR_02");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ROAM_FARM4_SHEEP_02");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ROAM_NW_FARM4_WOOD_MONSTER_MORE_02");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ITEM_NW_FARM4_WOOD_LUCIASLETTER");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ROAM_NW_FARM4_WOOD_MONSTER_N_17");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ITEM_GREATPEASANT_FERNANDOSWEAPONS_01");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ITEM_GREATPEASANT_FERNANDOSWEAPONS_02");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ITEM_GREATPEASANT_FERNANDOSWEAPONS_03");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ITEM_GREATPEASANT_FERNANDOSWEAPONS_04");
 };
 
 func void INIT_SUB_NewWorld_Part_GreatPeasant_01()
@@ -2841,9 +2823,6 @@ func void STARTUP_NewWorld_Part_Forest_01()
 	Wld_InsertItem(ItWr_StrStonePlate1_Addon,"FP_ITEM_FOREST_STPLATE_02");
 	Wld_InsertItem(ItMi_Zeitspalt_Addon,"FP_ITEM_FOREST_STPLATE_04");
 	Wld_InsertItem(ItWr_HitPointStonePlate1_Addon,"FP_ITEM_FOREST_STPLATE_06");
-	//TODO шпаги занимают точки и висят в воздухе - переместить в зен и добавить проверку !C_WorldIsFixed(NEWWORLD_ZEN)
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_ITEM_FOREST_BANDITTRADER_01");
-	Wld_InsertItem(ItMw_Addon_BanditTrader,"FP_SMALLTALK_NW_FARM2_TO_TAVERN_08_02");
 };
 
 func void STARTUP_NewWorld_Part_TrollArea_01()

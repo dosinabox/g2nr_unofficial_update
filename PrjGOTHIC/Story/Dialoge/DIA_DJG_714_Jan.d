@@ -536,7 +536,7 @@ instance DIA_Jan_DJG_ARMOR_M(C_Info)
 	condition = DIA_Jan_DJG_ARMOR_M_Condition;
 	information = DIA_Jan_DJG_ARMOR_M_Info;
 	permanent = TRUE;
-	description = "Средние доспехи охотника на драконов (120/120/75/35, 12000 золотых)";
+	description = B_BuildPriceString("Купить средние доспехи охотника на драконов. Защита: 120/120/75/35.",VALUE_ITAR_DJG_M);
 };
 
 

@@ -292,7 +292,7 @@ func void DIA_Addon_Garett_GiveKompass_Info()
 	};
 	B_LogEntry(TOPIC_Addon_Kompass,"Гаретт был очень рад, когда я вернул ему компас.");
 	MIS_Addon_Garett_BringKompass = LOG_SUCCESS;
-	B_GivePlayerXP(XP_ADDON_Garett_Bring_Kompass);
+	B_GivePlayerXP(XP_Addon_Garett_Bring_Kompass);
 };
 
 

@@ -594,6 +594,7 @@ func void B_CreateAmbientInv_BDT(var int InventorySet)
 		CreateInvItems(self,ItPl_Forestberry,1);
 		if(!Npc_HasItems(self,ItMw_Addon_BanditTrader))
 		{
+			//TODO не создавать в Минентале
 			CreateInvItems(self,ItMw_Addon_BanditTrader,1);
 		};
 	}
