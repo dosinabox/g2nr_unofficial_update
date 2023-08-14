@@ -27,3 +27,9 @@ func void Rtn_Start_4143()
 	TA_Stand_Guarding(23,0,8,0,"OC_GUARD_PALISADE_09");
 };
 
+func void Rtn_OrcAttack_4143()
+{
+	TA_Stand_Guarding(8,0,23,0,"OC_WALL_05");
+	TA_Stand_Guarding(23,0,8,0,"OC_WALL_05");
+};
+

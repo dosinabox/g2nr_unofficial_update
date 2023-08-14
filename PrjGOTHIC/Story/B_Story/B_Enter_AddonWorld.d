@@ -222,16 +222,6 @@ func void B_ENTER_ADDONWORLD_Kapitel_5()
 };
 
 
-var int EnterADW_Kapitel6;
-
-func void B_ENTER_ADDONWORLD_Kapitel_6()
-{
-	if(EnterADW_Kapitel6 == FALSE)
-	{
-		EnterADW_Kapitel6 = TRUE;
-	};
-};
-
 func void B_Enter_AddonWorld()
 {
 	B_InitNpcGlobals();
@@ -254,10 +244,6 @@ func void B_Enter_AddonWorld()
 	if(Kapitel >= 5)
 	{
 		B_ENTER_ADDONWORLD_Kapitel_5();
-	};
-	if(Kapitel >= 6)
-	{
-		B_ENTER_ADDONWORLD_Kapitel_6();
 	};
 	B_InitNpcGlobals();
 };

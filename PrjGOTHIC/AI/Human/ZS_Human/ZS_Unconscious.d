@@ -1,11 +1,16 @@
 
 func void ZS_Unconscious()
 {
+	var int random;
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
-//	Mdl_ApplyRandomAni(self,"S_WOUNDED","T_WOUNDED_TRY");
-//	Mdl_ApplyRandomAniFreq(self,"S_WOUNDED",8);
-//	Mdl_ApplyRandomAni(self,"S_WOUNDEDB","T_WOUNDEDB_TRY");
-//	Mdl_ApplyRandomAniFreq(self,"S_WOUNDEDB",4);
+	random = Hlp_Random(3);
+	if(random == 1)
+	{
+		Mdl_ApplyRandomAni(self,"S_WOUNDED","T_WOUNDED_TRY");
+		Mdl_ApplyRandomAniFreq(self,"S_WOUNDED",8);
+		Mdl_ApplyRandomAni(self,"S_WOUNDEDB","T_WOUNDEDB_TRY");
+		Mdl_ApplyRandomAniFreq(self,"S_WOUNDEDB",4);
+	};
 	if(C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE))
 	{
 		Npc_ClearAIQueue(self);
@@ -20,6 +25,21 @@ func void ZS_Unconscious()
 	AI_StopPointAt(self);
 	if((self.guild < GIL_SEPERATOR_HUM) && C_NpcIsHero(other))
 	{
+		if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
+		{
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bullco))
+			{
+				SLD_Bullco_Defeated = TRUE;
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco))
+			{
+				DJG_Bullco_Defeated = TRUE;
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Valentino))
+			{
+				Valentino_Day = B_GetDayPlus();
+			};
+		};
 		self.aivar[AIV_DefeatedByPlayer] = TRUE;
 		self.aivar[AIV_LastFightAgainstPlayer] = FIGHT_LOST;
 		if((self.aivar[AIV_LastPlayerAR] == AR_NONE) && (self.aivar[AIV_DuelLost] == FALSE) && (self.guild == GIL_SLD))
@@ -30,18 +50,6 @@ func void ZS_Unconscious()
 		if(self.aivar[AIV_ArenaFight] == AF_RUNNING)
 		{
 			self.aivar[AIV_ArenaFight] = AF_AFTER;
-		};
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bullco))
-		{
-			SLD_Bullco_Defeated = TRUE;
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco))
-		{
-			DJG_Bullco_Defeated = TRUE;
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Valentino))
-		{
-			Valentino_Day = B_GetDayPlus();
 		};
 	};
 	if(C_NpcIsHero(self))
@@ -59,24 +67,29 @@ func void ZS_Unconscious()
 		{
 			SLD_Sylvio_Defeated_SC = TRUE;
 		};
-	};
-	B_GiveTradeInv(self);
-	B_ClearRuneInv(self);
-	B_ClearSmithInv(self);
-	B_ClearAlchemyInv(self);
-	B_ClearBonusFoodInv(self);
-	B_ClearInfiniteTools(self);
-	B_ClearSpecialAmmo(self);
-	if(self.guild == GIL_STRF)
+	}
+	else
 	{
-		B_RemoveEveryInvItem(self,ItMw_2H_Axe_L_01);
+		B_GiveTradeInv(self);
+		B_ClearSmithInv(self);
+		B_ClearAlchemyInv(self);
+		B_ClearBonusFoodInv(self);
+		B_ClearInfiniteTools(self);
+		if(self.guild == GIL_STRF)
+		{
+			B_RemoveEveryInvItem(self,ItMw_2H_Axe_L_01);
+		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Dar))
+		{
+			if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cipher))
+			{
+				other.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
+				Dar_LostAgainstCipher = TRUE;
+			};
+		};
 	};
 	B_GiveDeathXP(other,self);
 	AI_UnequipWeapons(self);
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Dar)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cipher)))
-	{
-		Dar_LostAgainstCipher = TRUE;
-	};
 };
 
 func int ZS_Unconscious_Loop()

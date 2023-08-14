@@ -6,13 +6,12 @@ instance VLK_422_Salandril(Npc_Default)
 	id = 422;
 	voice = 13;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
-//	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,30,ItKe_Salandril,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Asghan,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);

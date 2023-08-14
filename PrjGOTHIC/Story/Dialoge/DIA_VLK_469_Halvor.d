@@ -218,7 +218,7 @@ func void DIA_Halvor_MESSAGE_Info()
 	AI_Output(other,self,"DIA_Halvor_MESSAGE_15_00");	//я думаю, этот клочок бумаги имеет отношение к тебе...
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_01");	//„то?.. ƒай посмотрю.
 	DIA_Common_NotSoFastMyFriend();
-//	B_UseFakeScroll();
+//	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_02");	//(в испарине) Ё-э... ’орошо, давай поговорим спокойно об этом - э-э... послушай. я перепродал товары, полученные от бандитов.
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_03");	//(торопливо) Ќо нет необходимости сообщать об этом ополчению, правда? я уверен, мы можем прийти к взаимопониманию, разве нет?
 	Info_ClearChoices(DIA_Halvor_MESSAGE);

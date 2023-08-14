@@ -3,7 +3,7 @@ prototype Mst_Default_Bloodhound(C_Npc)
 {
 	name[0] = "Ищейка";
 	guild = GIL_SHADOWBEAST;
-	aivar[AIV_MM_REAL_ID] = ID_Bloodhound;
+	aivar[AIV_MM_REAL_ID] = ID_BLOODHOUND;
 	level = 22;
 	attribute[ATR_STRENGTH] = 90;
 	attribute[ATR_DEXTERITY] = 90;

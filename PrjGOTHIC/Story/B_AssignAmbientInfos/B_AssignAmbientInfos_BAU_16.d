@@ -112,20 +112,20 @@ func void DIA_BAU_16_STANDARD_Info()
 	if(Kapitel == 1)
 	{
 		AI_Output(self,other,"DIA_BAU_16_STANDARD_16_01");	//Солдаты из города больше не забирают наш скот и урожай! Мы больше не играем в эти игры. Теперь мы способны защитить себя!
-	};
-	if(Kapitel == 2)
+	}
+	else if(Kapitel == 2)
 	{
 		AI_Output(self,other,"DIA_BAU_16_STANDARD_16_02");	//Говорят, что в Долине Рудников собирается армия Зла. Скоро они будут здесь.
-	};
-	if(Kapitel == 3)
+	}
+	else if(Kapitel == 3)
 	{
 		AI_Output(self,other,"DIA_BAU_16_STANDARD_16_03");	//Я слышала, что в Долине Рудников появились драконы. Но мне не очень-то верится в это.
-	};
-	if(Kapitel == 4)
+	}
+	else if(Kapitel == 4)
 	{
 		AI_Output(self,other,"DIA_BAU_16_STANDARD_16_04");	//Кто-то из наемников ушел отсюда. Я даже не знаю, хорошо это или плохо.
-	};
-	if(Kapitel >= 5)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_BAU_16_STANDARD_16_05");	//Паладины отправились в Долину Рудников - интересно, зачем?
 	};

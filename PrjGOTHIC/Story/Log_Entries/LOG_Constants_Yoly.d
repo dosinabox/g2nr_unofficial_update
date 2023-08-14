@@ -1,5 +1,5 @@
 
-const string TOPIC_Addon_PickForConstantino = "Травы для Константино";
+const string TOPIC_Addon_PickForConstantino = "Сборщик трав";
 const string TOPIC_Addon_Greg_NW = "Человек с повязкой на глазу";
 const string TOPIC_Addon_Ornament = "Портал";
 const string TOPIC_Addon_HolRiordian = "Риордиан";
@@ -52,18 +52,12 @@ var int TOPIC_END_CanyonOrcs;
 const string TOPIC_Addon_BDTRuestung = "Доспехи бандитов";
 const string TOPIC_Addon_Quarhodron = "Сила стражей мертвых";
 const string TOPIC_Addon_Klaue = "Коготь Белиара";
-
-var int TOPIC_END_Klaue;
-
 const string TOPIC_Addon_Kammern = "Залы храма";
 const string TOPIC_Addon_Flut = "Затонувший город";
 
 var int TOPIC_END_Flut;
 
 const string TOPIC_Addon_BaltramSkipTrade = "Торговля пиратов";
-
-var int TOPIC_END_BaltramSkipTrade;
-
 const string TOPIC_Addon_FarimsFish = "Проблемы с ополчением";
 const string TOPIC_Addon_LuciasLetter = "Разбитое сердце";
 const string TOPIC_Addon_Lucia = "Люсия";
@@ -75,7 +69,6 @@ const string LogText_Addon_RavensGoldmine = "У Ворона есть шахта, и он заставляе
 const string LogText_Addon_KDWRight = "Только маги Воды имеют право принимать новых членов в 'Кольцо Воды'.";
 const string LogText_Addon_WilliamMissing = "Вильям, один из рыбаков из гавани Хориниса - один из пропавших людей.";
 const string LogText_Addon_Relicts = "В храме Аданоса правители Яркендара построили 3 зала, полных смертельных загадок, чтобы остановить непрошенных гостей. Разноцветные реликвии зодчих - ключи к ним.";
-const string LogText_Addon_SkipsRumToBaltram = "Скип дал мне ром, который я должен отнести Бальтраму.";
 const string LogText_Addon_Cavalorn_Teach = "Кавалорн может научить меня обращаться с одноручным оружием, красться и метко стрелять из лука.";
 const string LogText_Addon_SaturasTeach = "Сатурас может обучить меня Кругам магии.";
 const string LogText_Addon_MyxirTeach = "Миксир может обучить меня языку зодчих.";

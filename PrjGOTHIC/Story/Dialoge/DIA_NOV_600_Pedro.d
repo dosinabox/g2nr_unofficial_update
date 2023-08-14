@@ -33,7 +33,10 @@ instance DIA_Pedro_WELCOME(C_Info)
 
 func int DIA_Pedro_WELCOME_Condition()
 {
-	return TRUE;
+	if((other.guild != GIL_NOV) && (other.guild != GIL_KDF))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Pedro_WELCOME_Info()
@@ -112,7 +115,7 @@ instance DIA_Pedro_EINLASS(C_Info)
 
 func int DIA_Pedro_EINLASS_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pedro_WELCOME))
+	if(Npc_KnowsInfo(hero,DIA_Pedro_WELCOME) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -139,7 +142,7 @@ instance DIA_Pedro_TEMPEL(C_Info)
 
 func int DIA_Pedro_TEMPEL_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Pedro_EINLASS) && (other.guild != GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Pedro_EINLASS) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -302,7 +305,7 @@ var int DIA_Pedro_AUFNAHME_NOPERM;
 
 func int DIA_Pedro_AUFNAHME_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pedro_Rules) && (DIA_Pedro_AUFNAHME_NOPERM == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_Pedro_Rules) && (DIA_Pedro_AUFNAHME_NOPERM == FALSE) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};

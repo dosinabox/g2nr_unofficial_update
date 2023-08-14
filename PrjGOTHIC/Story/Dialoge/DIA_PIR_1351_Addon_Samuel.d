@@ -52,6 +52,23 @@ func void DIA_Addon_Samuel_Hello_Info()
 };
 
 
+func int C_CanAskPiratesAboutFrancis()
+{
+	if(Npc_IsDead(Francis))
+	{
+		return FALSE;
+	};
+	if(Francis.aivar[AIV_TalkedToPlayer] == TRUE)
+	{
+		return TRUE;
+	};
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 instance DIA_Addon_Samuel_Francis(C_Info)
 {
 	npc = PIR_1351_Addon_Samuel;
@@ -64,12 +81,9 @@ instance DIA_Addon_Samuel_Francis(C_Info)
 
 func int DIA_Addon_Samuel_Francis_Condition()
 {
-	if(GregIsBack == FALSE)
+	if(C_CanAskPiratesAboutFrancis())
 	{
-		if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -77,9 +91,12 @@ func void DIA_Addon_Samuel_Francis_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_00");	//Я хочу поговорить с тобой о Фрэнсисе.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_01");	//Не упоминай при мне эту жалкую пародию на капитана!
-	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_02");	//Он целыми днями сидит на своей жирной заднице с важным видом.
-	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_03");	//И никто из нас не может понять, о чем, черт возьми, думал капитан, когда оставлял ЕГО за главного!
-	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_04");	//Что тебе нужно от этого идиота?
+	if(GregIsBack == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_02");	//Он целыми днями сидит на своей жирной заднице с важным видом.
+		AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_03");	//И никто из нас не может понять, о чем, черт возьми, думал капитан, когда оставлял ЕГО за главного!
+		AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_04");	//Что тебе нужно от этого идиота?
+	};
 };
 
 
@@ -173,7 +190,7 @@ func void DIA_Addon_Samuel_Recipe_LousHammer()
 	AI_Output(other,self,"DIA_Addon_Samuel_Recipe_LousHammer_15_00");	//Это от Снафа.
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ITWr_Addon_Lou_Rezept,1);
-	B_UseFakeScroll();
+	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Addon_Samuel_Recipe_LousHammer_14_04");	//Но это же ужасно! Я должен немедленно попробовать...
 	B_GivePlayerXP(XP_Ambient);
 	Samuel_Knows_LousHammer = TRUE;
@@ -184,7 +201,7 @@ func void DIA_Addon_Samuel_Recipe_LousDoubleHammer()
 	AI_Output(other,self,"DIA_Addon_Samuel_Recipe_LousDoubleHammer_15_00");	//Будь осторожен. Это опасная штука!
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ITWr_Addon_Lou_Rezept2,1);
-	B_UseFakeScroll();
+	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Addon_Samuel_Recipe_LousDoubleHammer_14_04");	//Ты меня пугаешь. Но я все равно попробую.
 	B_GivePlayerXP(XP_Ambient);
 	Samuel_Knows_SchlafHammer = TRUE;
@@ -328,7 +345,7 @@ func int DIA_Addon_Samuel_Stronger_Condition()
 func void DIA_Addon_Samuel_Stronger_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_Stronger_15_00");	//Я хочу чего-нибудь покрепче!
-	if(Samuel_Stronger_Varianz == 0)
+	if(Samuel_Stronger_Varianz == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_14_01");	//А, вижу родственную душу! Я и сам люблю экспериментировать.
 		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_14_02");	//Хорошая выпивка должна быть чистой, крепкой, а глотку продирать, как жидкий огонь.
@@ -340,7 +357,7 @@ func void DIA_Addon_Samuel_Stronger_Info()
 		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_14_06");	//(смеется) Это точно!
 		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_14_07");	//А тебе не встречались рецепты напитков? Если встретятся, обязательно расскажи мне.
 		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_14_08");	//Хочешь еще?
-		Samuel_Stronger_Varianz = 1;
+		Samuel_Stronger_Varianz = TRUE;
 	}
 	else
 	{
@@ -394,10 +411,10 @@ func void DIA_Addon_Samuel_Stronger_LousDoubleHammer()
 	AI_Output(other,self,"DIA_Addon_Samuel_Stronger_LousDoubleHammer_15_00");	//(спокойно) Сделай мне двойной 'Молот'.
 	if(B_GiveInvItems(other,self,ItMi_Gold,Value_SchlafHammer))
 	{
-		if(Samuel_DoppelHammer_Varianz == 0)
+		if(Samuel_DoppelHammer_Varianz == FALSE)
 		{
 			AI_Output(self,other,"DIA_Addon_Samuel_Stronger_LousDoubleHammer_14_01");	//Не делай глупостей, сынок. Очень надеюсь, что ты берешь это не для себя.
-			Samuel_DoppelHammer_Varianz = 1;
+			Samuel_DoppelHammer_Varianz = TRUE;
 		}
 		else
 		{
@@ -447,6 +464,8 @@ func void DIA_Addon_Samuel_Trade_Info()
 };
 
 
+var int News_Francis_GotSome;
+
 instance DIA_Addon_Samuel_News(C_Info)
 {
 	npc = PIR_1351_Addon_Samuel;
@@ -463,8 +482,6 @@ func int DIA_Addon_Samuel_News_Condition()
 	return TRUE;
 };
 
-var int News_Francis_GotSome;
-
 func void DIA_Addon_Samuel_News_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_News_15_00");	//Что нового в лагере?
@@ -475,7 +492,6 @@ func void DIA_Addon_Samuel_News_Info()
 		{
 			AI_Output(self,other,"DIA_Addon_Samuel_News_14_02");	//А ты нормальный парень. Давай выпьем - я угощаю!
 			B_GiveInvItems(self,other,ItFo_Addon_Rum,1);
-			B_UseItem(other,ItFo_Addon_Rum);
 			News_Francis_GotSome = TRUE;
 		};
 		if((GregIsBack == TRUE) && !Npc_IsDead(Greg))

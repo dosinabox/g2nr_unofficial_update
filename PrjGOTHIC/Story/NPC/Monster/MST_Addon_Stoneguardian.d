@@ -3,7 +3,7 @@ prototype Mst_Addon_Stoneguardian(C_Npc)
 {
 	name[0] = "Каменный страж";
 	guild = GIL_Stoneguardian;
-	aivar[AIV_MM_REAL_ID] = ID_Stoneguardian;
+	aivar[AIV_MM_REAL_ID] = ID_STONEGUARDIAN;
 	level = 18;
 	bodyStateInterruptableOverride = TRUE;
 	attribute[ATR_STRENGTH] = 90;
@@ -41,7 +41,7 @@ instance Summoned_Guardian(Mst_Addon_Stoneguardian)
 {
 	name[0] = NAME_Addon_Summoned_Guardian;
 	guild = GIL_SummonedGuardian;
-	aivar[AIV_MM_REAL_ID] = ID_SummonedGuardian;
+	aivar[AIV_MM_REAL_ID] = ID_SUMMONED_STONEGUARDIAN;
 	level = 0;
 	attribute[ATR_STRENGTH] = 100;
 	attribute[ATR_DEXTERITY] = 150;
@@ -173,7 +173,7 @@ instance Stoneguardian_NailedValleyShowcase_01(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2000;
 	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
-//	CreateInvItems(self,ItSc_Teleport_Maya,1);
+	CreateInvItems(self,ItSc_Teleport_Maya,1);
 	B_SetVisuals_Stoneguardian();
 };
 

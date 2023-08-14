@@ -6,8 +6,7 @@ instance SLD_816_Fester(Npc_Default)
 	id = 816;
 	voice = 8;
 	flags = 0;
-//	npcType = NPCTYPE_FRIEND;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Sld_Axe);

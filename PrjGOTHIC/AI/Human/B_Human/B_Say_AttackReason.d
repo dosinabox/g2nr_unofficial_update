@@ -1,27 +1,21 @@
 
 func void B_Say_AttackReason()
 {
-	var int rnd;
 	var int random;
 	if((Wld_GetGuildAttitude(self.guild,other.guild) != ATT_HOSTILE) && (Npc_GetAttitude(self,other) == ATT_HOSTILE))
 	{
-		if(self.aivar[AIV_ATTACKREASON] == AR_KILL)
-		{
-			return;
-		};
-		/*if(other.guild != GIL_MEATBUG)
+		if(self.aivar[AIV_ATTACKREASON] != AR_KILL)
 		{
 			B_Say_Overlay(self,other,"$IGETYOUSTILL");
-		};*/
-		B_Say_Overlay(self,other,"$IGETYOUSTILL");
+		};
 		return;
 	};
 	if(self.aivar[AIV_ATTACKREASON] == AR_GuildEnemy)
 	{
 		if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 		{
-			rnd = Hlp_Random(100);
-			if(rnd > 15)
+			random = Hlp_Random(100);
+			if(random > 15)
 			{
 				return;
 			};

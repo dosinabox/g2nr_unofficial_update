@@ -358,7 +358,7 @@ instance DIA_Bennet_DI_DJG_ARMOR_H(C_Info)
 	condition = DIA_Bennet_DJG_ARMOR_H_Condition;
 	information = DIA_Bennet_DJG_ARMOR_H_Info;
 	permanent = TRUE;
-	description = "Тяжелые доспехи охотника на драконов (150/150/100/50, 20000 золотых)";
+	description = B_BuildPriceString("Купить тяжелые доспехи охотника на драконов. Защита: 150/150/100/50.",VALUE_ITAR_DJG_H);
 };
 
 

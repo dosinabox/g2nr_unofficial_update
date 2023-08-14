@@ -249,11 +249,6 @@ func void DIA_DJG_715_Ferros_FerrosAnySword_Silverblade_Yes()
 	B_Ferros_FerrosAnySword_Yes1();
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItMw_1H_Special_01,1);
-	if(C_BodyStateContains(self,BS_SIT))
-	{
-		AI_Standup(self);
-		B_TurnToNpc(self,other);
-	};
 	B_InspectMeleeWeapon(self);
 	B_Ferros_FerrosAnySword_Yes2();
 	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
@@ -270,11 +265,6 @@ func void DIA_DJG_715_Ferros_FerrosAnySword_Oreblade_Yes()
 	B_Ferros_FerrosAnySword_Yes1();
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItMw_1H_Special_02,1);
-	if(C_BodyStateContains(self,BS_SIT))
-	{
-		AI_Standup(self);
-		B_TurnToNpc(self,other);
-	};
 	B_InspectMeleeWeapon(self);
 	B_Ferros_FerrosAnySword_Yes2();
 	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
@@ -311,11 +301,6 @@ func void DIA_DJG_715_Ferros_FerrosHisSword_Info()
 	AI_Output(other,self,"DIA_DJG_715_Ferros_FerrosHisSword_15_00");	//Я нашел твой меч.
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItMW_1H_FerrosSword_Mis,1);
-	if(C_BodyStateContains(self,BS_SIT))
-	{
-		AI_Standup(self);
-		B_TurnToNpc(self,other);
-	};
 	B_InspectMeleeWeapon(self);
 	B_Ferros_FerrosAnySword_Yes2();
 };

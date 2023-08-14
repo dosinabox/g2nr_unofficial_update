@@ -14,6 +14,15 @@ func int B_TeachMagicCircle(var C_Npc slf,var C_Npc oth,var int circle)
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
+	if(PremiumTeachersEnabled == TRUE)
+	{
+		if(!B_GiveInvItems(oth,slf,ItMi_Gold,kosten * PremiumTeachersPrice))
+		{
+			PrintScreen(Print_NotEnoughGold,-1,-1,FONT_Screen,2);
+			DIA_Common_WeWillGetToThatLater();
+			return FALSE;
+		};
+	};
 	oth.lp -= kosten;
 	Npc_SetTalentSkill(oth,NPC_TALENT_MAGE,circle);
 	Log_CreateTopic(TOPIC_TalentMagicCircle,LOG_NOTE);

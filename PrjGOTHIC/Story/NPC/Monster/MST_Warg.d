@@ -14,7 +14,7 @@ prototype Mst_Default_Warg(C_Npc)
 	protection[PROT_BLUNT] = 125;
 	protection[PROT_EDGE] = 125;
 	protection[PROT_POINT] = 75;
-	protection[PROT_FIRE] = 125;	//16;
+	protection[PROT_FIRE] = 125;
 	protection[PROT_FLY] = 125;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -61,7 +61,7 @@ instance BlackWolf(Mst_Default_Warg)
 	protection[PROT_BLUNT] = 12;
 	protection[PROT_EDGE] = 12;
 	protection[PROT_POINT] = 12;
-	protection[PROT_FIRE] = 12;	//19;
+	protection[PROT_FIRE] = 12;
 	protection[PROT_FLY] = 12;
 	protection[PROT_MAGIC] = 12;
 	B_SetVisuals_BLACKWOLF();
@@ -69,7 +69,7 @@ instance BlackWolf(Mst_Default_Warg)
 	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
-instance WARGTRANSFORM(Mst_Default_Warg)
+instance WargTransform(Mst_Default_Warg)
 {
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_WARG();

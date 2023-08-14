@@ -1060,7 +1060,7 @@ func void DIA_Addon_Henry_Palisade_Train_Info()
 	AI_Output(other,self,"DIA_Addon_Henry_Palisade_Train_15_00");	//Грег - ваш командир?
 	AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_01");	//Да. Но для тебя он - КАПИТАН Грег. Это понятно?
 	AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_02");	//Он - великий человек. Когда ты с ним встретишься, тебе лучше не быть на стороне его врагов. Ты даже не успеешь об этом пожалеть.
-	if((SC_SawGregInTaverne == TRUE) || (PlayerTalkedToGregNW == TRUE) || (Greg.aivar[AIV_TalkedToPlayer] == TRUE))
+	if((PlayerTalkedToGregNW == TRUE) || (Greg.aivar[AIV_TalkedToPlayer] == TRUE))
 	{
 		AI_Output(other,self,"DIA_Addon_Henry_Palisade_Train_15_03");	//Я с ним уже встречался.
 		AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_04");	//Очень хорошо. Значит, ты понимаешь, о чем я говорю.
@@ -1087,9 +1087,12 @@ instance DIA_Addon_Henry_YourOwnTrupp(C_Info)
 
 func int DIA_Addon_Henry_YourOwnTrupp_Condition()
 {
-	if((MIS_Addon_Greg_ClearCanyon == LOG_Running) && ((AlligatorJack.aivar[AIV_PARTYMEMBER] == TRUE) || (Brandon.aivar[AIV_PARTYMEMBER] == TRUE) || (Matt.aivar[AIV_PARTYMEMBER] == TRUE) || (Skip.aivar[AIV_PARTYMEMBER] == TRUE) || (BenchPirate.aivar[AIV_PARTYMEMBER] == TRUE) || (RoastPirate.aivar[AIV_PARTYMEMBER] == TRUE)))
+	if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
 	{
-		return TRUE;
+		if(C_HowManyPiratesInParty() > 0)
+		{
+			return TRUE;
+		};
 	};
 };
 

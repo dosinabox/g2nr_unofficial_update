@@ -11,7 +11,7 @@ func void B_DaronSegen(var int gold)
 			if(other.attribute[ATR_HITPOINTS] < other.attribute[ATR_HITPOINTS_MAX])
 			{
 				other.attribute[ATR_HITPOINTS] = other.attribute[ATR_HITPOINTS_MAX];
-				PrintScreen(PRINT_FullyHealed,-1,-1,FONT_Screen,2);
+				AI_PrintScreen(PRINT_FullyHealed,-1,-1,FONT_Screen,2);
 			};
 		}
 		else if((Daron_Spende < 250) && (Daron_Bonus1 == FALSE))

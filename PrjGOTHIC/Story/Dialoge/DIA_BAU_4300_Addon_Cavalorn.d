@@ -413,9 +413,12 @@ instance DIA_Addon_Cavalorn_HELFEN(C_Info)
 
 func int DIA_Addon_Cavalorn_HELFEN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_ARTEFAKT) && (MIS_Addon_Nefarius_BringMissingOrnaments == FALSE) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS) && !C_BragoBanditsDead())
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_ARTEFAKT) && (MIS_Addon_Nefarius_BringMissingOrnaments == FALSE) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(!C_BragoBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -487,9 +490,12 @@ instance DIA_Addon_Cavalorn_LETSKILLBANDITS(C_Info)
 
 func int DIA_Addon_Cavalorn_LETSKILLBANDITS_Condition()
 {
-	if((MIS_Addon_Cavalorn_KillBrago == LOG_Running) && (MIS_Addon_Nefarius_BringMissingOrnaments == FALSE) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS) && !C_BragoBanditsDead())
+	if((MIS_Addon_Cavalorn_KillBrago == LOG_Running) && (MIS_Addon_Nefarius_BringMissingOrnaments == FALSE) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(!C_BragoBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -509,9 +509,12 @@ instance DIA_Addon_Fisk_Sieg(C_Info)
 
 func int DIA_Addon_Fisk_Sieg_Condition()
 {
-	if((Fisk_KillEsteban == TRUE) && Npc_IsDead(Esteban))
+	if(Fisk_KillEsteban == TRUE)
 	{
-		return TRUE;
+		if(Npc_IsDead(Esteban))
+		{
+			return TRUE;
+		};
 	};
 };
 

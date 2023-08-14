@@ -171,10 +171,10 @@ func void B_ResetAttributeSystem()
 {
 	if(C_NpcIsHero(hero))
 	{
-		ATR_Training[ATR_STRENGTH] = 10;
-		ATR_Training[ATR_DEXTERITY] = 10;
-		ATR_Training[ATR_MANA_MAX] = 10;
-		ATR_Training[ATR_HITPOINTS_MAX] = 40;
+		ATR_Training[ATR_STRENGTH] = START_ATR_STRENGTH;
+		ATR_Training[ATR_DEXTERITY] = START_ATR_DEXTERITY;
+		ATR_Training[ATR_MANA_MAX] = START_ATR_MANA_MAX;
+		ATR_Training[ATR_HITPOINTS_MAX] = START_ATR_HITPOINTS_MAX;
 		ATR_Training[ATR_REGENERATEHP] = 0;
 		ATR_Training[ATR_REGENERATEMANA] = 0;
 		ATR_PermBonus[ATR_STRENGTH] = 0;
@@ -188,34 +188,6 @@ func void B_ResetAttributeSystem()
 	};
 };
 
-func void B_CheckAttributeSystem() //TODO удалить здесь и в B_Cycle_Function()
-{
-	if(!C_NpcIsHero(hero))
-	{
-		return;
-	};
-	if(!Npc_KnowsInfo(hero,DIA_Xardas_FirstEXIT))
-	{
-		return;
-	};
-	if((ATR_Training[ATR_STRENGTH] + ATR_PermBonus[ATR_STRENGTH] + ATR_TempBonus[ATR_STRENGTH]) != hero.attribute[ATR_STRENGTH])
-	{
-		PrintScreen("Рассинхронизация ATR_STRENGTH!",-1,70,FONT_Screen,1);
-	};
-	if((ATR_Training[ATR_DEXTERITY] + ATR_PermBonus[ATR_DEXTERITY] + ATR_TempBonus[ATR_DEXTERITY]) != hero.attribute[ATR_DEXTERITY])
-	{
-		PrintScreen("Рассинхронизация ATR_DEXTERITY!",-1,75,FONT_Screen,1);
-	};
-	if((ATR_Training[ATR_MANA_MAX] + ATR_PermBonus[ATR_MANA_MAX] + ATR_TempBonus[ATR_MANA_MAX]) != hero.attribute[ATR_MANA_MAX])
-	{
-		PrintScreen("Рассинхронизация ATR_MANA_MAX!",-1,80,FONT_Screen,1);
-	};
-	if((ATR_Training[ATR_HITPOINTS_MAX] + ATR_PermBonus[ATR_HITPOINTS_MAX] + ATR_TempBonus[ATR_HITPOINTS_MAX]) != hero.attribute[ATR_HITPOINTS_MAX])
-	{
-		PrintScreen("Рассинхронизация ATR_HITPOINTS_MAX!",-1,85,FONT_Screen,1);
-	};
-};
-
 func void B_InitAttributeSystem()
 {
 	ATR_CostFlags_TS_Training = 1;
@@ -224,34 +196,9 @@ func void B_InitAttributeSystem()
 	ATR_TeachLimitFlags_TS_Training = 1;
 	ATR_TeachLimitFlags_TS_TempBonus = 1;
 	ATR_TeachLimitFlags_TS_PermBonus = 1;
-	ValidateNpc(hero);
-	RealHero = Hlp_GetNpc(hero);
-	//TODO убрать проверки к релизу 29 версии
-	if(ATR_Training[ATR_STRENGTH] == 0)
-	{
-		ATR_Training[ATR_STRENGTH] = RealHero.attribute[ATR_STRENGTH];
-	};
-	if(ATR_Training[ATR_DEXTERITY] == 0)
-	{
-		ATR_Training[ATR_DEXTERITY] = RealHero.attribute[ATR_DEXTERITY];
-	};
-	if(ATR_Training[ATR_MANA_MAX] == 0)
-	{
-		ATR_Training[ATR_MANA_MAX] = RealHero.attribute[ATR_MANA_MAX];
-	};
-	if(ATR_Training[ATR_HITPOINTS_MAX] == 0)
-	{
-		ATR_Training[ATR_HITPOINTS_MAX] = RealHero.attribute[ATR_HITPOINTS_MAX];
-	};
-	//TODO удалить к релизу 29 версии
-	ATR_PermBonus[ATR_STRENGTH] = 0;
-	ATR_PermBonus[ATR_DEXTERITY] = 0;
-	ATR_PermBonus[ATR_MANA_MAX] = 0;
-	ATR_PermBonus[ATR_HITPOINTS_MAX] = 0;
-	ATR_TempBonus[ATR_STRENGTH] = 0;
-	ATR_TempBonus[ATR_DEXTERITY] = 0;
-	ATR_TempBonus[ATR_MANA_MAX] = 0;
-	ATR_TempBonus[ATR_HITPOINTS_MAX] = 0;
-	NewAttributeSystemSynced = TRUE;
+	ATR_Training[ATR_STRENGTH] = START_ATR_STRENGTH;
+	ATR_Training[ATR_DEXTERITY] = START_ATR_DEXTERITY;
+	ATR_Training[ATR_MANA_MAX] = START_ATR_MANA_MAX;
+	ATR_Training[ATR_HITPOINTS_MAX] = START_ATR_HITPOINTS_MAX;
 };
 

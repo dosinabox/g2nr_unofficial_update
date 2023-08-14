@@ -6,7 +6,7 @@ instance BDT_1050_Landstreicher(Npc_Default)
 	id = 1050;
 	voice = 9;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Sld_Sword);

@@ -416,10 +416,12 @@ func void DIA_SylvioDJG_WHATNEXT_ATTACK()
 	B_LogEntry(TOPIC_Dragonhunter,"Эта грязная свинья Сильвио собирался присвоить себе мою победу над ледяным драконом. Мы немного повздорили.");
 	B_Attack(self,other,AR_KILL,1);
 	B_Attack(DJG_Bullco,other,AR_NONE,1);
-	if(Biff.aivar[AIV_PARTYMEMBER] == TRUE)
+	if(!Npc_IsDead(Biff))
 	{
-//		B_Attack(Biff,DJG_Sylvio,AR_KILL,1);
-		B_Attack(Biff,DJG_Bullco,AR_GuardStopsFight,1);
+		if(Biff.aivar[AIV_PARTYMEMBER] == TRUE)
+		{
+			B_Attack(Biff,DJG_Bullco,AR_GuardStopsFight,1);
+		};
 	};
 };
 
@@ -450,10 +452,12 @@ func void DIA_SylvioDJG_BUTNOW_Info()
 	Npc_SetRefuseTalk(self,60);
 	B_Attack(self,other,AR_KILL,1);
 	B_Attack(DJG_Bullco,other,AR_NONE,1);
-	if(Biff.aivar[AIV_PARTYMEMBER] == TRUE)
+	if(!Npc_IsDead(Biff))
 	{
-//		B_Attack(Biff,DJG_Sylvio,AR_KILL,1);
-		B_Attack(Biff,DJG_Bullco,AR_GuardStopsFight,1);
+		if(Biff.aivar[AIV_PARTYMEMBER] == TRUE)
+		{
+			B_Attack(Biff,DJG_Bullco,AR_GuardStopsFight,1);
+		};
 	};
 };
 

@@ -45,12 +45,12 @@ func void DIA_Skalven_3_STANDARD_Info()
 	if(randy == 0)
 	{
 		AI_Output(self,other,"DIA_Addon_Sklaven_3_STANDARD_03_00");	//(испуганно) Что ты хочешь от меня? Уйди прочь!
-	};
-	if(randy == 1)
+	}
+	else if(randy == 1)
 	{
 		AI_Output(self,other,"DIA_Addon_Sklaven_3_STANDARD_03_01");	//(нервно) Я ничего не делал! Оставь меня.
-	};
-	if(randy == 2)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_Addon_Sklaven_3_STANDARD_03_02");	//(испуганно) Пожалуйста, не трогай меня!
 	};

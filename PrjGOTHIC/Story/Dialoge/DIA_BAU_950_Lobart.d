@@ -186,6 +186,13 @@ func void DIA_Lobart_Hallo_What()
 };
 
 
+func void B_StartLobartClothesTopic()
+{
+	Log_CreateTopic(TOPIC_Kleidung,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Kleidung,LOG_Running);
+	B_LogEntry(TOPIC_Kleidung,"Фермер Лобарт готов продать мне рабочую одежду. Он может снизить цену за одежду, если я поработаю на его ферме. Чем больше я сделаю, тем дешевле обойдется мне одежда.");
+};
+
 instance DIA_Lobart_KLEIDUNG(C_Info)
 {
 	npc = BAU_950_Lobart;
@@ -210,13 +217,10 @@ func void DIA_Lobart_KLEIDUNG_Info()
 	AI_Output(other,self,"DIA_Lobart_KLEIDUNG_15_00");	//Мне нужна приличная одежда!
 	AI_Output(self,other,"DIA_Lobart_KLEIDUNG_05_01");	//Я могу дать тебе приличную крестьянскую рабочую одежду.
 	AI_Output(self,other,"DIA_Lobart_KLEIDUNG_05_02");	//Ты можешь заплатить за нее?
-	Log_CreateTopic(TOPIC_Kleidung,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Kleidung,LOG_Running);
-	B_LogEntry(TOPIC_Kleidung,"Фермер Лобарт готов продать мне рабочую одежду.");
 	if(!Npc_KnowsInfo(other,DIA_Lobart_WorkNOW))
 	{
 		AI_Output(self,other,"DIA_Lobart_KLEIDUNG_05_03");	//Ты мог бы отработать часть ее стоимости... если ты один из тех, кто ИЩЕТ работу.
-		B_LogEntry(TOPIC_Kleidung,"Лобарт может снизить цену за одежду, если я поработаю на его ферме. Чем больше я сделаю, тем дешевле обойдется мне одежда.");
+		B_StartLobartClothesTopic();
 	};
 };
 
@@ -497,9 +501,10 @@ func void DIA_Lobart_WorkNOW_Info()
 			{
 				AI_Output(self,other,"DIA_Lobart_WorkNOW_05_05");	//Судя по тому, как ты выглядишь, я бы сказал: бери одежду.
 			};
-			Log_CreateTopic(TOPIC_Kleidung,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Kleidung,LOG_Running);
-			B_LogEntry(TOPIC_Kleidung,"Фермер Лобарт готов продать мне рабочую одежду. Он может снизить цену за одежду, если я поработаю на его ферме. Чем больше я сделаю, тем дешевле обойдется мне одежда.");
+			if(!Npc_KnowsInfo(other,DIA_Lobart_KLEIDUNG))
+			{
+				B_StartLobartClothesTopic();
+			};
 		}
 		else
 		{

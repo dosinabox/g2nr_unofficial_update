@@ -6,7 +6,7 @@ instance VLK_4007_Agon(Npc_Default)
 	id = 4007;
 	voice = 7;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Pir_Dagger);

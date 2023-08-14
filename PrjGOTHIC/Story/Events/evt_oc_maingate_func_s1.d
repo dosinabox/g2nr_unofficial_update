@@ -34,7 +34,6 @@ func void evt_oc_maingate_func_s1()
 		Wld_InsertNpc(OrcWarrior_Roam,"OC_EBR_HALL_THRONE");
 		Wld_InsertNpc(OrcShaman_Sit,"OC_EBR_HALL_THRONE");
 		Wld_InsertNpc(Warg,"OC_EBR_HALL_THRONE");
-		B_KillNpc(VLK_4143_HaupttorWache);
 		B_KillNpc(VLK_4145_Waffenknecht);
 		B_KillNpc(VLK_4146_Waffenknecht);
 		B_KillNpc(VLK_4147_Waffenknecht);
@@ -43,12 +42,24 @@ func void evt_oc_maingate_func_s1()
 		B_KillNpc(VLK_4103_Waffenknecht);
 		B_KillNpc(VLK_4104_Waffenknecht);
 		B_KillNpc(VLK_4105_Waffenknecht);
-		B_StartOtherRoutine(Engor,"OrcAttack");
-		AI_Teleport(Engor,"OC_GUARD_IN_01");
-		B_ClearDeadTrader(Engor);
-		B_KillNpc(VLK_4108_Engor);
+		if(!Npc_IsDead(HaupttorWache_4143))
+		{
+			AI_Teleport(HaupttorWache_4143,"OC_WALL_05");
+			B_StartOtherRoutine(HaupttorWache_4143,"OrcAttack");
+			B_KillNpc(VLK_4143_HaupttorWache);
+		};
+		if(!Npc_IsDead(Engor))
+		{
+			AI_Teleport(Engor,"OC_GUARD_IN_01");
+			B_StartOtherRoutine(Engor,"OrcAttack");
+			B_KillNpc(VLK_4108_Engor);
+			B_ClearDeadTrader(Engor);
+		};
+		if(!Npc_IsDead(Brutus))
+		{
+			Brutus.flags = NPC_FLAG_IMMORTAL;
+		};
 		Garond.flags = 0;
-		Brutus.flags = NPC_FLAG_IMMORTAL;
 		PlayVideo("ORCATTACK.BIK");
 		MIS_OCGateOpen = TRUE;
 	};

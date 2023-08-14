@@ -3,7 +3,7 @@ func int C_WantToRansack(var C_Npc slf,var C_Npc oth)
 {
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(AlligatorJack))
 	{
-		if(oth.aivar[AIV_MM_REAL_ID] == ID_Swamprat)
+		if(oth.aivar[AIV_MM_REAL_ID] == ID_SWAMPRAT)
 		{
 			return TRUE;
 		};

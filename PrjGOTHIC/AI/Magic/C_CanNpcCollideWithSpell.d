@@ -27,11 +27,11 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		{
 			return COLL_DONOTHING;
 		};
-		if((self.guild == GIL_ICEGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_Icewolf) || (self.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE))
+		if(C_NpcIsIceCreature(self))
 		{
 			return COLL_APPLYHALVEDAMAGE;
 		};
-		if((self.guild == GIL_FIREGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN) || (self.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE) || (self.guild == GIL_Gargoyle))
+		if(C_NpcIsFireCreature(self))
 		{
 			return COLL_APPLYDOUBLEDAMAGE;
 		};
@@ -43,11 +43,11 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		{
 			return COLL_DONOTHING;
 		};
-		if((self.guild == GIL_ICEGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_Icewolf) || (self.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE))
+		if(C_NpcIsIceCreature(self))
 		{
 			return COLL_APPLYHALVEDAMAGE;
 		};
-		if((self.guild == GIL_FIREGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN) || (self.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE) || (self.guild == GIL_Gargoyle))
+		if(C_NpcIsFireCreature(self))
 		{
 			return COLL_APPLYDOUBLEDAMAGE;
 		};
@@ -55,11 +55,11 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_Geyser)
 	{
-		if((self.guild == GIL_FIREGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN) || (self.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE) || (self.guild == GIL_Gargoyle))
+		if(C_NpcIsFireCreature(self))
 		{
 			return COLL_APPLYDOUBLEDAMAGE;
 		};
-		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || C_NpcIsGolem(self) || (self.guild == GIL_WISP) || (C_NpcIsDemon(self)) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON))
+		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || C_NpcIsGolem(self) || (self.guild == GIL_WISP) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON))
 		{
 			return COLL_DONOTHING;
 		};
@@ -71,7 +71,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		{
 			return COLL_DONOTHING;
 		};
-		if((self.guild == GIL_FIREGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN) || (self.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE) || (self.guild == GIL_Gargoyle))
+		if(C_NpcIsFireCreature(self))
 		{
 			return COLL_APPLYDOUBLEDAMAGE;
 		};
@@ -111,7 +111,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_Swarm)
 	{
-		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || C_NpcIsGolem(self) || (C_NpcIsDemon(self)) || (self.guild == GIL_TROLL) || (self.guild == GIL_BLOODFLY) || (self.guild == GIL_WISP) || (self.guild == GIL_DRAGON) || (self.guild == GIL_Gargoyle) || (self.guild == GIL_DMT) || C_NpcIsUndead(self))
+		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || C_NpcIsGolem(self) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_BLOODFLY) || (self.guild == GIL_WISP) || (self.guild == GIL_DRAGON) || (self.guild == GIL_Gargoyle) || (self.guild == GIL_DMT) || C_NpcIsUndead(self))
 		{
 			return COLL_DONOTHING;
 		};
@@ -131,20 +131,17 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_WindFist)
 	{
-		if((Npc_GetDistToNpc(other,self) >= 1000) || (self.guild == GIL_WISP))
-		{
-			return COLL_DONOTHING;
-		};
-		return COLL_DOEVERYTHING;
-	};
-	/*if((spellType == SPL_Zap) || (spellType == SPL_ChargeZap) || (spellType == SPL_ConcussionBolt))
-	{
 		if(C_NpcIsDown(self))
 		{
 			return COLL_DONOTHING;
 		};
-		return COLL_APPLYDAMAGE | COLL_DONTKILL;
-	};*/
+		if((Npc_GetDistToNpc(other,self) >= 1000) || (self.guild == GIL_WISP))
+		{
+			return COLL_DONOTHING;
+		};
+		self.aivar[AIV_LastHitByWindFist] = TRUE;
+		return COLL_DOEVERYTHING;
+	};
 	if(spellType == SPL_ConcussionBolt)
 	{
 		if(C_NpcIsDown(self))
@@ -184,9 +181,8 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 			if(self.guild == GIL_DMT)
 			{
 				return COLL_DONOTHING;
-			}
-//			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
-			else if(Npc_IsPlayer(self))
+			};
+			if(Npc_IsPlayer(self))
 			{
 				return COLL_APPLYHALVEDAMAGE;
 			};
@@ -202,15 +198,15 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		{
 			return COLL_DONOTHING;
 		};
-		if((self.guild == GIL_FIREGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN) || (self.guild == GIL_Gargoyle) || (self.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE))
+		if(C_NpcIsFireCreature(self))
 		{
 			return COLL_APPLYHALVEDAMAGE;
 		};
-		if((self.guild == GIL_ICEGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE) || (self.aivar[AIV_MM_REAL_ID] == ID_Icewolf))
+		if(C_NpcIsIceCreature(self))
 		{
 			return COLL_APPLYDOUBLEDAMAGE;
 		};
-		if((self.guild == GIL_STONEGOLEM) || (self.guild == GIL_SUMMONED_GOLEM) || (C_NpcIsDemon(self)) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON))
+		if((self.guild == GIL_STONEGOLEM) || (self.guild == GIL_SUMMONED_GOLEM) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON))
 		{
 			return COLL_APPLYDAMAGE;
 		};
@@ -222,15 +218,15 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		{
 			return COLL_DONOTHING;
 		};
-		if((self.guild == GIL_FIREGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN) || (self.guild == GIL_Gargoyle) || (self.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE))
+		if(C_NpcIsFireCreature(self))
 		{
 			return COLL_APPLYDOUBLEDAMAGE;
 		};
-		if((self.guild == GIL_ICEGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE) || (self.aivar[AIV_MM_REAL_ID] == ID_Icewolf))
+		if(C_NpcIsIceCreature(self))
 		{
 			return COLL_APPLYHALVEDAMAGE;
 		};
-		if((self.guild == GIL_STONEGOLEM) || (self.guild == GIL_SUMMONED_GOLEM) || (C_NpcIsDemon(self)) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON))
+		if((self.guild == GIL_STONEGOLEM) || (self.guild == GIL_SUMMONED_GOLEM) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON))
 		{
 			return COLL_APPLYDAMAGE;
 		};
@@ -251,11 +247,8 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 			if(self.attribute[ATR_HITPOINTS_MAX] <= SPL_Damage_DESTROYUNDEAD)
 			{
 				return COLL_DOEVERYTHING;
-			}
-			else
-			{
-				return COLL_APPLYHALVEDAMAGE;
 			};
+			return COLL_APPLYHALVEDAMAGE;
 		};
 		return COLL_DONOTHING;
 	};
@@ -263,7 +256,6 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	{
 		if((Npc_GetDistToNpc(other,self) < 1000) && !C_NpcIsUndead(self))
 		{
-//			if((self.guild == GIL_DRAGON) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero)))
 			if((self.guild == GIL_DRAGON) || Npc_IsPlayer(self))
 			{
 				return COLL_APPLYHALVEDAMAGE;

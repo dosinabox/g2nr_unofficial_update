@@ -6,7 +6,7 @@ instance KDW_14030_Addon_Myxir_ADW(Npc_Default)
 	id = 14030;
 	voice = 12;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_MagicUser] = MAGIC_ALWAYS;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;

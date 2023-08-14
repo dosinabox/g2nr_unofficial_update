@@ -6,7 +6,8 @@ instance NONE_101_Mario_DI(Npc_Default)
 	id = 1010;
 	voice = 7;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
+	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_EnemyOverride] = TRUE;

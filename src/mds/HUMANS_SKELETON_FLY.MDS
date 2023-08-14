@@ -1,0 +1,227 @@
+Model ("HuS")
+{
+	meshAndTree ("Hum_Body_Naked0.ASC" DONT_USE_MESH)
+	aniEnum
+	{
+
+	// Movements Disable
+			AniDisable	("t_stand_2_jump")
+			AniDisable	("t_RunL_2_Jump")
+			AniDisable	("t_RunR_2_Jump")
+
+			AniDisable	("t_FistRunL_2_Jump")
+			AniDisable	("t_FistRunR_2_Jump")
+
+			AniDisable	("t_MagRunL_2_Jump")
+			AniDisable	("t_MagRunR_2_Jump")
+
+			AniDisable	("s_jump")
+
+
+	//	TRANSITIONS
+			AniDisable	("t_FistRun_2_FistWalk")
+			AniDisable	("t_FistRunL_2_FistWalkL")
+			AniDisable	("s_FistWalk")
+			
+			AniDisable	("t_MagRun_2_MagWalk")
+			AniDisable	("t_MagRunL_2_MagWalkL")
+			AniDisable	("s_MagWalk")
+	
+			AniDisable	("t_Run_2_Walk")
+			AniDisable	("t_RunL_2_WalkL")
+			AniDisable	("s_Walk")
+
+			AniDisable	("s_Sneak")
+
+
+// FIXME: Wenn das "fliegende" Skelett über dem Wasser fliegen soll muß es eine der Gilden bekommne, die in der SPECIES.D den FLY-Hack benutzen! (z.B. Demon)
+
+
+// ---------------------------------------------------------------------------------------------------------------
+//	TURNING
+			aniAlias	("t_RunTurnL"			20	"t_RunTurnL"	0.1	0.1	M.	"s_FistRun"				F)
+			aniAlias	("t_RunTurnR"			20	"t_RunTurnR"	0.1	0.1	M.	"s_FistRun"				F)
+
+			aniAlias	("t_FistRunTurnL"		20	"t_FistRunTurnL"	0.1	0.1	M.	"s_FistRun"			F)
+			aniAlias	("t_FistRunTurnR"		20	"t_FistRunTurnR"	0.1	0.1	M.	"s_FistRun"			F)
+
+			aniAlias	("t_MagRunTurnL"		20	"t_MagRunTurnL"	0.1	0.1	M.	"s_FistRun"				F)
+			aniAlias	("t_MagRunTurnR"		20	"t_MagRunTurnR"	0.1	0.1	M.	"s_FistRun"				F)
+
+
+// ---------------------------------------------------------------------------------------------------------------
+//	Run-Mode
+			//aniAlias	("s_Run"				1	"s_Run"			0.1	0.1	MI	"s_FistRun"				F)
+			ani			("s_Run"				1	"s_Run"			0.1	0.1	M.	"Ske_Fly_A02.asc"		F	30	59)
+			
+			aniBlend	("t_Run_2_RunL"			1	"s_RunL"		0.2	0.2)
+			//aniAlias	("s_RunL"				1	"s_RunL"		0.0	0.0	M.	"s_FistRunL"			F)
+			ani			("s_RunL"				1	"s_RunL"		0.0	0.0	M.	"Ske_Fly_A02.asc"		F	0	24)
+
+			aniBlend	("t_RunL_2_Run"				"s_Run"			0.2	0.2)
+			aniBlend	("t_RunR_2_Run"				"s_Run"			0.2	0.2)
+
+			aniAlias	("t_JumpB"				1	"s_Run"			0.1	0.2	M.	"t_FistJumpB"			F)
+
+
+// ---------------------------------------------------------------------------------------------------------------
+//	STRAFING
+
+			ani			("t_FistRunStrafeL"		1	""				0.1	0.1	M.	"Ske_Fly_A02.asc"			F	81	104)
+			ani			("t_FistRunStrafeR"		1	""				0.1	0.1	M.	"Ske_Fly_A02.asc"			F	106	129)
+
+			aniAlias	("t_MagRunStrafeL"		1	""				0.1	0.1	M.	"t_FistRunStrafeL"			F)
+			aniAlias	("t_MagRunStrafeR"		1	""				0.1	0.1	M.	"t_FistRunStrafeR"			F)
+
+			aniAlias	("t_RunStrafeL"			1	""				0.1	0.1	M.	"t_FistRunStrafeL"			F)
+			aniAlias	("t_RunStrafeR"			1	""				0.1	0.1	M.	"t_FistRunStrafeR"			F)
+
+
+// ---------------------------------------------------------------------------------------------------------------
+// FALL
+			aniAlias	("s_FallDn"				1	"s_FallDn"		0.1	0.1	MF	"s_FistRun"					F)
+			aniAlias	("t_FallDn_2_Stand"		1	""				0.0	0.1	M.	"s_FistRun"					F)
+
+			aniAlias	("s_Fall"				1	"s_Fall"		0.2 0.1 MF	"s_FistRun"					F)
+			aniBlend	("t_Fall_2_Fallen"			"s_Fallen"		0.0 0.0)
+			aniAlias	("s_Fallen"				1	"s_Fallen"		0.0 0.0 M.	"s_FistRun"					F)
+			aniBlend	("t_Fallen_2_Stand"			""				0.0 0.0)
+
+			aniAlias	("s_FallB"				1	"s_FallB"		0.1 0.0 MF	"s_FistRun"					F)
+			aniBlend	("t_FallB_2_FallenB"		"s_FallenB"		0.0 0.0)
+			aniAlias	("s_FallenB"			1	"s_FallenB"		0.0 0.0 M.	"s_FistRun"					F)
+			aniBlend	("t_FallenB_2_Stand"		""				0.0 0.0)
+
+// ---------------------------------------------------------------------------------------------------------------
+//	FISTRUN-Mode
+			ani			("s_FistRun"			1	"s_FistRun"		0.0	0.2	M.	"Ske_Fly_A02.asc"			F	30	59)
+
+			aniBlend	("t_FistRun_2_FistRunL"	1	"s_FistRunL"	0.2	0.2)
+			ani			("s_FistRunL"			1	"s_FistRunL"	0.1	0.0	M.	"Ske_Fly_A02.asc"			F	0	24)
+			
+			aniBlend	("t_FistRunL_2_FistRun"		"s_FistRun"		0.2	0.2)
+			aniBlend	("t_FistRunR_2_FistRun"		"s_FistRun"		0.2	0.2)
+
+			ani			("t_FistJumpB"			1	"s_FistRun"		0.1	0.2	M.	"Ske_Fly_JumpBack_A01.asc"	F	1	24)
+
+
+// ---------------------------------------------------------------------------------------------------------------
+//	MagRun-Mode
+			aniAlias	("s_MagRun"					1	"s_MagRun"			0.1	0.1	M.	"s_FistRun"			F)
+			aniBlend	("t_MagRun_2_MagRunL"		1	"s_MagRunL"			0.2	0.2)
+			//aniAlias	("s_MagRunL"				1	"s_MagRunL"			0.0	0.0	M.	"s_FistRunL"		F)
+			aniAlias	("s_MagRunL"				1	"s_MagRun"			0.0	0.0	M.	"s_FistRunL"		F)
+
+			aniBlend	("t_MagRunL_2_MagRun"			"s_MagRun"			0.2	0.2)
+			aniBlend	("t_MagRunR_2_MagRun"			"s_MagRun"			0.2	0.2)
+
+			aniAlias	("t_MagJumpB"				1	"s_MagRun"			0.1	0.2	M.	"t_FistJumpB"		F)
+
+
+// ---------------------------------------------------------------------------------------------------------------
+//	Fist-Fighting
+
+			ani			("s_FistAttack"				1	""	0.0	0.0	M.	"Ske_Fly_A02.asc"		F	61	79)
+			{
+				*eventTag	(0	"DEF_HIT_LIMB"		"BIP01 R HAND")
+				*eventTag	(0	"DEF_OPT_FRAME"		"70")
+
+				*eventTag	(0 	 "DEF_HIT_END"		"79")
+				*eventTag	(0 	 "DEF_WINDOW"		"70 79")
+//				*eventTag	(0 	 "DEF_DIR" 			"O")
+				
+				*eventSFX	(62	"WHOOSH"			EMPTY_SLOT	)
+			}
+
+	
+	// während des Laufens zuschlagen
+			aniAlias	("t_FistAttackMove"			2	""			0.2	0.2	M.	"s_FistAttack"				F)
+
+
+		// Parade
+			aniAlias	("t_FistParadeJumpB"		1	""			0.1	0.2	M.	"t_FistJumpB"				F)
+			aniAlias	("t_FistParade_0"			1	""			0.1	0.2	M.	"t_FistJumpB"				F)
+
+//			aniAlias	("t_FistParade_U"			1	""			0.0	0.0	M.	"s_FistRunL"				R)
+//			aniAlias	("t_FistParade_L"			1	""			0.0	0.0	M.	"s_FistRunL"				R)
+//			aniAlias	("t_FistParade_R"			1	""			0.0	0.0	M.	"s_FistRunL"				R)
+
+// ---------------------------------------------------------------------------------------------------------------
+// STUMBLE (für Treffer im Kampf)
+
+			ani		("t_Stumble"			1	""					0.1 0.1 MF	"Hum_Stumble_M01.asc"		F	1	9)
+			{
+				*eventSFX	(2	"SKE_HURT"	EMPTY_SLOT	)
+			}
+
+			ani		("t_StumbleB"			1	""					0.1 0.1 MF	"Hum_StumbleB_M01.asc"		F	1	9)
+			{
+				*eventSFX	(2	"SKE_HURT"	EMPTY_SLOT	)
+			}
+
+			ani		("t_GotHit"				2	""					0.1	0.2	MF	"Hum_StumbleN_M01.asc"		F	6	14)
+			{
+				*eventSFX	(7	"SKE_HURT"	EMPTY_SLOT	)
+			}
+// ---------------------------------------------------------------------------------------------------------------
+// DIE
+			ani			("t_Dead"				1	"s_Dead"		0.2 0.0 M.	"Ske_Fly_Dead_E01.asc"		F	 1	20)
+			{
+				*eventSFX	(3	"SKE_Die"	EMPTY_SLOT	)
+			}
+			ani			("s_Dead"				1	"s_Dead"		0.0 0.1 M.	"Ske_Fly_Dead_E01.asc"		F	21	21)
+
+			aniAlias	("t_DeadB"				1	"s_DeadB"		0.2 0.0 M.	"t_Dead"				F)
+			aniAlias	("s_DeadB"				1	"s_DeadB"		0.0 0.1 M.	"s_Dead"				F)
+
+// ---------------------------------------------------------------------------------------------------------------
+//	Magic
+			ani			("t_Run_2_Mag"			1	"s_Mag"			0.1 0.0	M.	"Ske_MagFireball_A03.asc"	F	56	63)
+			ani			("s_Mag"				1	"s_Mag"			0.0 0.0 M.	"Ske_MagFireball_A03.asc"	F	64	64)
+			ani			("t_Mag_2_MagRun"		1	"s_MagRun"		0.0 0.1 M.	"Ske_MagFireball_A03.asc"	F	65	80)
+			{
+				*eventTag		(70 "DEF_FIGHTMODE"	"MAG")
+			}
+
+			ani			("t_MagRun_2_Mag"		1	"s_Mag"			0.1 0.0 M.	"Ske_MagFireball_A03.asc"	R	65	80)
+			{
+				*eventTag		(70 "DEF_FIGHTMODE"	"")
+			}
+			aniAlias	("t_Mag_2_Run"			1	""				0.0 0.1 M.	"t_Run_2_Mag"				R)
+
+
+			ani			("t_MagRun_2_FBTShoot"	1	"s_FBTShoot"	0.2 0.0 M.	"Ske_MagFireball_A03.asc"	F	56	63)
+			ani			("s_FBTShoot"			1	"s_FBTShoot"	0.0 0.0 M.	"Ske_MagFireball_A03.asc"	F	64	64)
+			ani			("t_FBTShoot_2_Stand"	1	""				0.0 0.2 M.	"Ske_MagFireball_A03.asc"	F	65	80)
+
+// IceCube
+			ani			("t_MagRun_2_FrzShoot"	1	"s_FrzShoot"	0.1	0.0	MF	"Ske_MagPetrify_E01.asc"	F	1	26)
+			ani			("s_FrzShoot"			1	"s_FrzShoot"	0.0	0.0	MF	"Ske_MagPetrify_E01.asc"	F	27	101)
+			ani			("t_FrzShoot_2_Stand"	1	""				0.0	0.1	MF	"Ske_MagPetrify_E01.asc"	F	102	124)
+			
+// Summon Skeleton 
+			ani			("t_MagRun_2_SumShoot"	1	"s_SumShoot"	0.1	0.0	MF	"Ske_MagSummon_E01.asc"		F	1	29)
+			ani			("s_SumShoot"			1	"s_SumShoot"	0.0	0.0	MF	"Ske_MagSummon_E01.asc"		F	30	54)
+			ani			("t_SumShoot_2_Stand"	1	""				0.0	0.1	MF	"Ske_MagSummon_E01.asc"		F	55	84)
+			
+// -------------------------------------------------------------------------------------------------------------------------------------
+// WhirlAround
+	// WhirlAround CCW
+//			ani   		("t_surprise_CCW"      		1	"s_surprise"	0.2	0.2	M.	"Dem_SurpriseL_A02.asc"		F	1	22)
+//			aniAlias	("t_surprise_ccw"			1	"s_surprise"	0.1	0.1	M.	"s_FistRun"					F)
+
+	// WhirlAround CW
+//			ani			("t_surprise_CW"			1	"s_surprise"	0.2	0.2	M.	"Dem_SurpriseR_A02.asc"		F	1	22)
+//			aniAlias	("t_surprise_cw"			1	"s_surprise"	0.1	0.1	M.	"s_FistRun"					F)
+
+	// Surprise
+//			aniAlias	("s_surprise"				1	"s_surprise"	0.1	0.1	M.	"s_FistRun"					F)
+
+			ani			("t_Warn"					1	""				0.0	0.1 M.	"Ske_Fly_Warn_A01.asc"		F	1	29)
+
+//			ani			("t_Perception"				1	""				0.0	0.05 M.	"Ske_Perception_A01.asc"	F	0	50)
+
+
+
+	}
+}

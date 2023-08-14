@@ -33,6 +33,7 @@ func void B_BrewPotion(var int potion)
 	AI_Wait(self,0.5);
 	FlasksCount -= 1;
 	CreateInvItem(self,potion);
+	TotalPotionsBrewed += 1;
 	AI_PrintScreen(PRINT_AlchemySuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 };
 
@@ -69,7 +70,7 @@ func void PC_PotionAlchemy_End_Info()
 	{
 		CreateInvItems(self,ItMi_Flask,FlasksCount);
 	};
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 
@@ -157,7 +158,7 @@ func void PC_Booze_Lou_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if(Npc_HasItems(self,ItPl_SwampHerb) && (Npc_HasItems(self,ItPl_Beet) >= 2) && Npc_HasItems(self,ItAt_SharkTeeth) && Npc_HasItems(self,ItFo_Addon_Rum) && Npc_HasItems(self,ItFo_Water))
 	{
@@ -198,7 +199,7 @@ func void PC_Booze_Schlaf_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if(Npc_HasItems(self,ItFo_Addon_LousHammer) && Npc_HasItems(self,ItFo_Addon_Rum))
 	{
@@ -236,7 +237,7 @@ func void PC_Booze_SchnellerHering_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if(Npc_HasItems(self,ItPl_Speed_Herb_01) && (Npc_HasItems(self,ItFo_Fish) || Npc_HasItems(self,ItFo_SmellyFish)) && Npc_HasItems(self,ItFo_Addon_Rum) && Npc_HasItems(self,ItFo_Water))
 	{
@@ -283,7 +284,7 @@ func void PC_Charge_InnosEye_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if((Npc_HasItems(self,ItAt_IcedragonHeart) || Npc_HasItems(self,ItAt_RockdragonHeart) || Npc_HasItems(self,ItAt_FiredragonHeart) || Npc_HasItems(self,ItAt_SwampdragonHeart)) && (Npc_HasItems(self,ItMi_InnosEye_Discharged_Mis)))
 	{
@@ -404,7 +405,7 @@ func void PC_ItPo_Mana_01_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if((Npc_HasItems(self,ItPl_Mana_Herb_01) >= 2) && Npc_HasItems(self,ItPl_Temp_Herb))
 	{
@@ -442,7 +443,7 @@ func void PC_ItPo_Mana_02_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if((Npc_HasItems(self,ItPl_Mana_Herb_02) >= 2) && Npc_HasItems(self,ItPl_Temp_Herb))
 	{
@@ -480,7 +481,7 @@ func void PC_ItPo_Mana_03_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if((Npc_HasItems(self,ItPl_Mana_Herb_03) >= 2) && Npc_HasItems(self,ItPl_Temp_Herb))
 	{
@@ -518,7 +519,7 @@ func void PC_ItPo_Mana_04_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if((Npc_HasItems(self,ItPo_Mana_01) >= 3) && Npc_HasItems(self,ItPl_Temp_Herb))
 	{
@@ -621,7 +622,7 @@ func void PC_ItPo_Health_01_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if((Npc_HasItems(self,ItPl_Health_Herb_01) >= 2) && Npc_HasItems(self,ItPl_Temp_Herb))
 	{
@@ -659,7 +660,7 @@ func void PC_ItPo_Health_02_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if((Npc_HasItems(self,ItPl_Health_Herb_02) >= 2) && Npc_HasItems(self,ItPl_Temp_Herb))
 	{
@@ -697,7 +698,7 @@ func void PC_ItPo_Health_03_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if((Npc_HasItems(self,ItPl_Health_Herb_03) >= 2) && Npc_HasItems(self,ItPl_Temp_Herb))
 	{
@@ -735,7 +736,7 @@ func void PC_ItPo_Health_04_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if((Npc_HasItems(self,ItPo_Health_01) >= 3) && Npc_HasItems(self,ItPl_Temp_Herb))
 	{
@@ -858,7 +859,7 @@ func void PC_ItPo_Perm_Health_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if(Npc_HasItems(self,ItPl_Health_Herb_03) && Npc_HasItems(self,ItPl_Perm_Herb))
 	{
@@ -897,7 +898,7 @@ func void PC_ItPo_Perm_Mana_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if(Npc_HasItems(self,ItPl_Mana_Herb_03) && Npc_HasItems(self,ItPl_Perm_Herb))
 	{
@@ -936,7 +937,7 @@ func void PC_ItPo_Perm_MushroomMana_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if((Npc_HasItems(self,ItPl_Mushroom_01) >= MushroomsNeededForBonus) && Npc_HasItems(self,ItPl_Planeberry))
 	{
@@ -975,7 +976,7 @@ func void PC_ItPo_Perm_AppleSTR_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if((Npc_HasItems(self,ItFo_Apple) >= ApplesNeededForBonus) && Npc_HasItems(self,ItPl_Forestberry))
 	{
@@ -1014,7 +1015,7 @@ func void PC_ItPo_Dex_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if(Npc_HasItems(self,ItPl_Dex_Herb_01) && Npc_HasItems(self,ItPl_Perm_Herb))
 	{
@@ -1054,7 +1055,7 @@ func void PC_ItPo_Strg_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if(Npc_HasItems(self,ItPl_Strength_Herb_01) && Npc_HasItems(self,ItPl_Perm_Herb))
 	{
@@ -1094,7 +1095,7 @@ func void PC_ItPo_Speed_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if(Npc_HasItems(self,ItPl_Speed_Herb_01) && Npc_HasItems(self,ItPl_Temp_Herb))
 	{
@@ -1132,7 +1133,7 @@ func void PC_ItPo_Addon_Geist_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if((Npc_HasItems(self,ItAt_Sting) >= 2) && Npc_HasItems(self,ItPo_Mana_02) && Npc_HasItems(self,ItPo_Health_01) && Npc_HasItems(self,ItFo_Addon_Pfeffer_01))
 	{
@@ -1179,7 +1180,7 @@ func void PC_ItPo_MegaDrink_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if((Npc_HasItems(self,ItAt_DragonEgg_MIS) >= 10) && Npc_HasItems(self,ItMi_DarkPearl) && Npc_HasItems(self,ItMi_Sulfur))
 	{
@@ -1268,7 +1269,7 @@ func void PC_ItMi_Joint_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if(Npc_HasItems(self,ItPl_SwampHerb))
 	{
@@ -1308,7 +1309,7 @@ func void PC_ItMi_Addon_Joint_01_Info()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else if((Npc_HasItems(self,ItPl_SwampHerb) >= 2) && Npc_HasItems(self,ItPl_Temp_Herb))
 	{
@@ -1394,7 +1395,7 @@ func void PC_ItMi_Tabak_Honey()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else
 	{
@@ -1407,7 +1408,7 @@ func void PC_ItMi_Tabak_Swampherb()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else
 	{
@@ -1420,7 +1421,7 @@ func void PC_ItMi_Tabak_Mushroom_01()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else
 	{
@@ -1433,7 +1434,7 @@ func void PC_ItMi_Tabak_Double()
 {
 	if(!C_PlayerHasFlasks())
 	{
-		b_endproductiondialog();
+		B_EndProductionDialog();
 	}
 	else
 	{

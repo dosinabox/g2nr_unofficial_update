@@ -79,6 +79,7 @@ func void B_Jergan_NewsForOric()
 	AI_Output(self,other,"DIA_Jergan_Burg_13_02");	//Если тебе удастся добраться до замка, поговори с паладином Ориком. Скажи ему, что его брат погиб здесь, у Прохода.
 	if(!Npc_IsDead(Oric))
 	{
+		MIS_OricBruder = LOG_Running;
 		Log_CreateTopic(Topic_OricBruder,LOG_MISSION);
 		Log_SetTopicStatus(Topic_OricBruder,LOG_Running);
 		B_LogEntry(Topic_OricBruder,"Когда я окажусь в замке, то должен буду сказать Орику, что его брат погиб у Прохода.");

@@ -6,7 +6,7 @@ instance Itemhoshi(Npc_Default)
 	id = 1500;
 	voice = 3;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;
 	CreateInvItems(self,ItMw_1h_Vlk_Dagger,1);
@@ -940,7 +940,7 @@ instance TA_Testmodell(Npc_Default)
 	id = 1500;
 	voice = 3;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Mace);
@@ -1151,7 +1151,7 @@ instance TA_Smalltalkpartner(Npc_Default)
 	id = 1501;
 	voice = 1;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Mace);
@@ -1569,9 +1569,9 @@ func void UseAttributesBook()
 	Doc_Show(nDocID);
 };
 
-instance AttSyncer(C_Item) //TODO удалить
+instance PickPocketSyncer(C_Item)
 {
-	name = "Руна синхронизации";
+	name = "Руна обновления";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -1579,30 +1579,18 @@ instance AttSyncer(C_Item) //TODO удалить
 	material = MAT_STONE;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "Синхронизировать характеристики ГГ.";
-	on_state[0] = UseAttributesSyncer;
+	text[0] = "Обновить предметы для кражи.";
+	on_state[0] = UsePickPocketSyncer;
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
 };
 
 
-func void UseAttributesSyncer()
+func void UsePickPocketSyncer()
 {
-	B_UnEquipAllTempBonusItems();
-	ATR_Training[ATR_STRENGTH] = hero.attribute[ATR_STRENGTH] - Stats_Blessings_Str;
-	ATR_Training[ATR_DEXTERITY] = hero.attribute[ATR_DEXTERITY] - Stats_Blessings_Dex;
-	ATR_Training[ATR_MANA_MAX] = hero.attribute[ATR_MANA_MAX] - Stats_Blessings_MaxMana;
-	ATR_Training[ATR_HITPOINTS_MAX] = hero.attribute[ATR_HITPOINTS_MAX] - Stats_Blessings_MaxHp;
-	ATR_PermBonus[ATR_STRENGTH] = Stats_Blessings_Str;
-	ATR_PermBonus[ATR_DEXTERITY] = Stats_Blessings_Dex;
-	ATR_PermBonus[ATR_MANA_MAX] = Stats_Blessings_MaxMana;
-	ATR_PermBonus[ATR_HITPOINTS_MAX] = Stats_Blessings_MaxHp;
-	ATR_TempBonus[ATR_STRENGTH] = 0;
-	ATR_TempBonus[ATR_DEXTERITY] = 0;
-	ATR_TempBonus[ATR_MANA_MAX] = 0;
-	ATR_TempBonus[ATR_HITPOINTS_MAX] = 0;
-	PrintScreen("Характеристики синхронизированы",-1,55,FONT_Screen,4);
+	B_SyncItemsToSteal();
+	PrintScreen("Предметы для кражи обновлены",-1,55,FONT_Screen,4);
 };
 
 instance MobsiBrief(C_Item)

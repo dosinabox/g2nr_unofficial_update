@@ -221,7 +221,7 @@ func int C_ScHasMeleeBeliarsWeapon()
 
 func int C_IsItem1HBeliarsWeapon(var C_Item Weap)
 {
-	if(Weap.flags & ITEM_BELIAR_1H)
+	if(Weap.id == ITEM_BELIAR_1H)
 	{
 		return TRUE;
 	};
@@ -230,7 +230,7 @@ func int C_IsItem1HBeliarsWeapon(var C_Item Weap)
 
 func int C_IsItem2HBeliarsWeapon(var C_Item Weap)
 {
-	if(Weap.flags & ITEM_BELIAR_2H)
+	if(Weap.id == ITEM_BELIAR_2H)
 	{
 		return TRUE;
 	};
@@ -490,7 +490,7 @@ func void B_UpgrateBeliarsWeapon()
 		PrintScreen(concatText,-1,-1,FONT_Screen,4);
 		Stats_Beliar_ClawMaxHp += BeliarsTribute;
 		ATR_Training[ATR_HITPOINTS_MAX] -= BeliarsTribute;
-		hero.attribute[ATR_HITPOINTS_MAX] -= BeliarsTribute;
+		Npc_ChangeAttribute(hero,ATR_HITPOINTS_MAX,-BeliarsTribute);
 		if(hero.attribute[ATR_HITPOINTS] > (BeliarsTribute + 2))
 		{
 			hero.attribute[ATR_HITPOINTS] -= BeliarsTribute;

@@ -6,7 +6,7 @@ instance BDT_1072_Addon_Logan(Npc_Default)
 	id = 1072;
 	voice = 10;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;

@@ -5,7 +5,11 @@ func int C_IsUsedMobMyPossession(var C_Npc slf,var C_Npc oth)
 	{
 		return TRUE;
 	};
-	if(C_NpcIsBotheredByPlayerRoomGuild(slf) || (Wld_GetPlayerPortalGuild() == GIL_PUBLIC))
+	if(Wld_GetPlayerPortalGuild() == GIL_PUBLIC)
+	{
+		return TRUE;
+	};
+	if(C_NpcIsBotheredByPlayerRoomGuild(slf))
 	{
 		return TRUE;
 	};

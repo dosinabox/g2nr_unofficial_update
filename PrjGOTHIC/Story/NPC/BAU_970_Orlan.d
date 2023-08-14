@@ -6,13 +6,12 @@ instance BAU_970_Orlan(Npc_Default)
 	id = 970;
 	voice = 5;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsRanger] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1H_Sword_L_03);
-//	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,89,ItMi_Gold,260);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_B_Normal_Sharky,BodyTex_B,ITAR_Bau_M);
 	Mdl_SetModelFatness(self,0);

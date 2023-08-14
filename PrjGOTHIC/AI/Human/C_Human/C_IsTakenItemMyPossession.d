@@ -15,7 +15,11 @@ func int C_IsTakenItemMyPossession(var C_Npc slf,var C_Npc oth,var C_Item itm)
 	{
 		return FALSE;
 	};
-	if(C_NpcIsBotheredByPlayerRoomGuild(slf) || (Wld_GetPlayerPortalGuild() == GIL_PUBLIC))
+	if(Wld_GetPlayerPortalGuild() == GIL_PUBLIC)
+	{
+		return TRUE;
+	};
+	if(C_NpcIsBotheredByPlayerRoomGuild(slf))
 	{
 		return TRUE;
 	};

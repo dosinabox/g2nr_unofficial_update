@@ -6,7 +6,7 @@ instance VLK_457_Brian(Npc_Default)
 	id = 457;
 	voice = 4;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
@@ -30,7 +30,9 @@ func void Rtn_Start_457()
 
 func void Rtn_Lighthouse_457()
 {
-	TA_Stand_Guarding(8,0,20,0,"NW_LIGHTHOUSE_IN_01");
+	TA_Stand_Guarding(8,0,12,0,"NW_LIGHTHOUSE_IN_01");
+	TA_Stand_Sweeping(12,0,16,0,"NW_LIGHTHOUSE_IN_04");
+	TA_Stand_Sweeping(16,0,20,0,"NW_LIGHTHOUSE_IN_01A");
 	TA_Sit_Throne(20,0,8,0,"NW_LIGHTHOUSE_IN_03");
 };
 

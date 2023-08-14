@@ -6,7 +6,7 @@ instance BDT_1064_Bandit_L(Npc_Default)
 	id = 1064;
 	voice = 4;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,2);

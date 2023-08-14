@@ -61,7 +61,7 @@ func void B_CheckLog()
 	B_CloseTopic(Topic_GoraxWein,MIS_GoraxWein,0,2);
 	B_CloseTopic(Topic_OpolosRezept,Opolos_Rezept,0,2);
 	B_CloseTopic(Topic_MardukBeten,MIS_MardukBeten,0,2);
-	B_CloseTopic(Topic_BaboTrain,0,Babo_Training,6);
+	B_CloseTopic(Topic_BaboTrain,MIS_Babo_Training,0,6);
 	B_CloseTopic(Topic_KarrasCharm,MIS_KarrasVergessen,0,2);
 	B_CloseTopic(TOPIC_FireContest,0,Fire_Contest,2);
 	B_CloseTopic(TOPIC_Golem,MIS_Golem,0,2);
@@ -89,11 +89,11 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_ScoutMine,MIS_ScoutMine,0,3);
 	B_CloseTopic(TOPIC_RescueGorn,MIS_RescueGorn,0,3);
 	B_CloseTopic(TOPIC_FajethKillSnapper,MIS_Fajeth_Kill_Snapper,0,3);
-	B_CloseTopic(Topic_OricBruder,0,OricBruder,3);
+	B_CloseTopic(Topic_OricBruder,MIS_OricBruder,0,3);
 	B_CloseTopic(TopicBrutusKasse,0,Brutus_TeachSTR,6);
 	B_CloseTopic(Topic_TengronRing,0,TengronRing,6);
 	B_CloseTopic(TOPIC_BringMeat,MIS_Engor_BringMeat,0,6);
-	B_CloseTopic(TOPIC_BilgotEscort,MIS_RescueBilgot,TschuessBilgot,6);
+	B_CloseTopic(TOPIC_BilgotEscort,MIS_RescueBilgot,0,6);
 	B_CloseTopic(Topic_MarcosJungs,MIS_Marcos_Jungs,0,3);
 	B_CloseTopic(TOPIC_Botschaft,MIS_Vatras_Message,0,6);
 	B_CloseTopic(TOPIC_Lutero,Lutero_Krallen,0,6);
@@ -112,7 +112,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Addon_BringMeat,MIS_AlligatorJack_BringMeat,GregIsBack,6);
 	B_CloseTopic(TOPIC_Addon_BanditsTower,MIS_Henry_FreeBDTTower,0,6);
 	B_CloseTopic(TOPIC_Addon_HolOwen,MIS_Henry_HolOwen,0,6);
-	B_CloseTopic(TOPIC_Addon_Kompass,MIS_ADDON_GARett_BringKompass,0,6);
+	B_CloseTopic(TOPIC_Addon_Kompass,MIS_Addon_Garett_BringKompass,0,6);
 	B_CloseTopic(TOPIC_Addon_RoastGrog,0,PIR_1364_Grog,6);
 	B_CloseTopic(TOPIC_Addon_BrandonBooze,MIS_Brandon_BringHering,0,6);
 	B_CloseTopic(TOPIC_Addon_MorganBeach,MIS_Addon_MorganLurker,0,6);
@@ -145,7 +145,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Addon_Erol,MIS_Addon_Erol_BanditStuff,0,6);
 	B_CloseTopic(TOPIC_Addon_Joe,0,TOPIC_END_Joe,6);
 	B_CloseTopic(TOPIC_Addon_BromorsGold,MIS_Bromor_LuciaStoleGold,0,6);
-	B_CloseTopic(TOPIC_Addon_BaltramSkipTrade,0,TOPIC_END_BaltramSkipTrade,6);
+	B_CloseTopic(TOPIC_Addon_BaltramSkipTrade,MIS_Addon_Baltram_Paket4Skip,0,6);
 	B_CloseTopic(TOPIC_Addon_TeleportsADW,0,SC_ADW_ActivatedAllTelePortStones,6);
 	B_CloseTopic(TOPIC_Addon_Sklaven,0,Sklaven_Flucht,6);
 	B_CloseTopic(TOPIC_Addon_RavenKDW,0,RavenIsDead,4);
@@ -153,11 +153,11 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Addon_Lance,0,TOPIC_End_Lance,6);
 	B_CloseTopic(TOPIC_Addon_HousesOfRulers,MIS_Riordian_HousesOfRulers,0,6);
 	B_CloseTopic(TOPIC_Addon_CanyonOrcs,0,TOPIC_END_CanyonOrcs,6);
-	B_CloseTopic(TOPIC_Addon_BDTRuestung,0,MIS_Greg_ScoutBandits,6);
+	B_CloseTopic(TOPIC_Addon_BDTRuestung,0,Bones_ArmorGiven,6);
 	B_CloseTopic(TOPIC_Addon_Quarhodron,0,Saturas_KnowsHow2GetInTempel,4);
 	B_CloseTopic(TOPIC_Addon_Kammern,0,RavenIsDead,4);
 	B_CloseTopic(TOPIC_Addon_Klaue,0,BeliarsWeaponUpgrated,4);
-	B_CloseTopic(TOPIC_Addon_Klaue,0,TOPIC_END_Klaue,4);
+	B_CloseTopic(TOPIC_Addon_Klaue,0,Saturas_KlaueInsMeer,4);
 	B_CloseTopic(TOPIC_Addon_Flut,0,TOPIC_END_Flut,6);
 	B_CloseTopic(TOPIC_Addon_VatrasAbloesung,0,VatrasCanLeaveTown_Kap3,4);
 	B_CloseTopic(TOPIC_Bronkoeingeschuechtert,MIS_Sekob_Bronko_eingeschuechtert,0,6);

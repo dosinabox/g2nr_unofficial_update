@@ -59,6 +59,15 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
+	if(PremiumTeachersEnabled == TRUE)
+	{
+		if(!B_GiveInvItems(oth,slf,ItMi_Gold,kosten * PremiumTeachersPrice))
+		{
+			PrintScreen(Print_NotEnoughGold,-1,-1,FONT_Screen,2);
+			DIA_Common_WeWillGetToThatLater();
+			return FALSE;
+		};
+	};
 	oth.lp -= kosten;
 	if(Npc_GetTalentSkill(oth,NPC_TALENT_RUNES) == 0)
 	{
@@ -275,7 +284,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	{
 		PLAYER_TALENT_RUNES[SPL_Thunderstorm] = TRUE;
 		B_CreateScrollForTrading(ItSc_Thunderstorm);
-		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Thunderstorm,"1 горный хрусталь и 1 крыло кровавой мухи."));
+		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Thunderstorm,"1 ледяной кварц и 1 крыло кровавой мухи."));
 	};
 	PrintScreen(PRINT_LearnRunes,-1,-1,FONT_Screen,2);
 	return TRUE;
@@ -291,6 +300,15 @@ func int B_TeachPlayerPalRunes(var C_Npc slf,var C_Npc oth,var int spell)
 		PrintScreen(PRINT_NotEnoughLP,-1,-1,FONT_ScreenSmall,2);
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
+	};
+	if(PremiumTeachersEnabled == TRUE)
+	{
+		if(!B_GiveInvItems(oth,slf,ItMi_Gold,kosten * PremiumTeachersPrice))
+		{
+			PrintScreen(Print_NotEnoughGold,-1,-1,FONT_Screen,2);
+			DIA_Common_WeWillGetToThatLater();
+			return FALSE;
+		};
 	};
 	oth.lp -= kosten;
 	if(spell == SPL_PalLight)

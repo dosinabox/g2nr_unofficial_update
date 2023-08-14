@@ -61,8 +61,8 @@ func void DIA_Landstreicher_HALLO_wer()
 	if(hero.guild == GIL_NOV)
 	{
 		Info_AddChoice(DIA_Landstreicher_HALLO,"Придержи язык.",DIA_Landstreicher_HALLO_wer_vorsicht);
-	};
-	if(hero.guild == GIL_KDF)
+	}
+	else if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_09_03");	//Только посмотри на их дурацкое одеяние. Я бы не хотел быть пойманным на улице ночью в такой одежке. (смеется)
 		Info_AddChoice(DIA_Landstreicher_HALLO,"Попридержи язык. Я сам был послушником в монастыре.",DIA_Landstreicher_HALLO_wer_vorsicht);
@@ -78,8 +78,8 @@ func void DIA_Landstreicher_HALLO_wer_vorsicht()
 	else
 	{
 		AI_Output(other,self,"DIA_Landstreicher_HALLO_wer_vorsicht_15_00");	//Попридержи язык. Я сам был послушником в монастыре.
+		AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_vorsicht_09_01");	//(смеется) Ах ты, бедняга. Это объясняет кое-что.
 	};
-	AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_vorsicht_09_01");	//(смеется) Ах ты, бедняга. Это объясняет кое-что.
 	AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_vorsicht_09_02");	//Ничего личного. Ступай с богом. Ты занятой человек, не буду задерживать тебя.
 	Info_AddChoice(DIA_Landstreicher_HALLO,"Кто-нибудь должен поучить тебя хорошим манерам.",DIA_Landstreicher_HALLO_wer_vorsicht_Manieren);
 };
@@ -120,10 +120,7 @@ func int DIA_Landstreicher_WASMACHSTDU_Condition()
 func void DIA_Landstreicher_WASMACHSTDU_Info()
 {
 	AI_Output(other,self,"DIA_Landstreicher_WASMACHSTDU_15_00");	//Что ты делаешь здесь?
-	if(Npc_KnowsInfo(other,DIA_Landstreicher_HALLO))
-	{
-		AI_Output(self,other,"DIA_Landstreicher_WASMACHSTDU_09_01");	//Ты задаешь слишком много вопросов, молокосос.
-	};
+	AI_Output(self,other,"DIA_Landstreicher_WASMACHSTDU_09_01");	//Ты задаешь слишком много вопросов, молокосос.
 	AI_Output(self,other,"DIA_Landstreicher_WASMACHSTDU_09_02");	//Назови пещеру гоблинов, в которой мы ползали вместе, и я расскажу тебе все свои тайны.
 	AI_Output(self,other,"DIA_Landstreicher_WASMACHSTDU_09_03");	//А в противном случае, это не твое дело.
 	AI_StopProcessInfos(self);

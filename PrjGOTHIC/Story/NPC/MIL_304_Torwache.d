@@ -6,7 +6,7 @@ instance MIL_304_Torwache(Npc_Default)
 	id = 304;
 	voice = 8;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Pal_Sword);

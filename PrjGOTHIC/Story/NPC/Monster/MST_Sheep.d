@@ -188,7 +188,7 @@ func void Rtn_NewFarm_170()
 	TA_MM_AllScheduler(22,0,8,0,"NW_BIGMILL_FARM3_BALTHASAR");
 };
 
-instance SHEEPTRANSFORM(Mst_Default_Sheep)
+instance SheepTransform(Mst_Default_Sheep)
 {
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_Sheep();

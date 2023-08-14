@@ -74,11 +74,6 @@ func void DIA_Kervo_HILFE_Info()
 	Info_AddChoice(DIA_Kervo_HILFE,"Ладно. Я ухожу.",DIA_Kervo_HILFE_tschau);
 	Info_AddChoice(DIA_Kervo_HILFE,"Но ты же не можешь оставаться здесь вечно.",DIA_Kervo_HILFE_ewig);
 	Info_AddChoice(DIA_Kervo_HILFE,"Что ты мне дашь, если я убью этих тварей?",DIA_Kervo_HILFE_Problem);
-	/*if(Kervo_GotStuff == TRUE)
-	{
-		Info_AddChoice(DIA_Kervo_HILFE,"Что ты мне дашь, если я убью этих тварей?",DIA_Kervo_HILFE_Problem);
-	};
-	MIS_Kervo_KillLurker = LOG_Running;*/
 };
 
 func void DIA_Kervo_HILFE_ewig()
@@ -128,10 +123,12 @@ instance DIA_Kervo_LurkerPlatt(C_Info)
 
 func int DIA_Kervo_LurkerPlatt_Condition()
 {
-//	if((MIS_Kervo_KillLurker == LOG_Running) && Npc_IsDead(Kervo_Lurker1) && Npc_IsDead(Kervo_Lurker2) && Npc_IsDead(Kervo_Lurker3) && Npc_IsDead(Kervo_Lurker4) && Npc_IsDead(Kervo_Lurker5) && Npc_IsDead(Kervo_Lurker6))
-	if(Npc_KnowsInfo(other,DIA_Kervo_HILFE) && Npc_IsDead(Kervo_Lurker1) && Npc_IsDead(Kervo_Lurker2) && Npc_IsDead(Kervo_Lurker3) && Npc_IsDead(Kervo_Lurker4) && Npc_IsDead(Kervo_Lurker5) && Npc_IsDead(Kervo_Lurker6))
+	if(Npc_KnowsInfo(other,DIA_Kervo_HILFE))
 	{
-		return TRUE;
+		if(C_KervoLurkersDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -141,7 +138,6 @@ func void DIA_Kervo_LurkerPlatt_Info()
 	AI_Output(self,other,"DIA_Kervo_LurkerPlatt_13_01");	//Отлично. Теперь я опять смогу спать спокойно.
 	if(MIS_Kervo_KillLurker == LOG_Running)
 	{
-		MIS_Kervo_KillLurker = LOG_SUCCESS;
 		AI_Output(self,other,"DIA_Kervo_LurkerPlatt_13_02");	//Вот то, что я обещал тебе.
 		if(hero.guild == GIL_KDF)
 		{
@@ -153,11 +149,12 @@ func void DIA_Kervo_LurkerPlatt_Info()
 			CreateInvItems(self,ItMi_Nugget,1);
 			B_GiveInvItems(self,other,ItMi_Nugget,1);
 		};
-		B_GivePlayerXP(100);
+		MIS_Kervo_KillLurker = LOG_SUCCESS;
+		B_GivePlayerXP(XP_KervoKillLurker);
 	}
 	else
 	{
-		B_GivePlayerXP(XP_KervoKillLurker);
+		B_GivePlayerXP(XP_KervoKillLurker * 2);
 	};
 };
 
@@ -174,7 +171,6 @@ instance DIA_Kervo_VERGISSES(C_Info)
 
 func int DIA_Kervo_VERGISSES_Condition()
 {
-//	if(MIS_Kervo_KillLurker == LOG_SUCCESS)
 	if(Npc_KnowsInfo(other,DIA_Kervo_LurkerPlatt))
 	{
 		return TRUE;

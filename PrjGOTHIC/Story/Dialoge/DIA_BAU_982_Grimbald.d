@@ -138,7 +138,7 @@ func void DIA_Grimbald_Jagd_Info()
 	AI_Output(other,self,"DIA_Grimbald_Jagd_15_00");	//Ты можешь научить меня охотиться?
 	if(C_GrimbaldSnappersDead() && (Grimbald_PissOff == FALSE))
 	{
-		if(Grimbald_Snappers_KilledByPlayer == TRUE)
+		if(Grimbald_Snappers_KilledByPlayer > 0)
 		{
 			B_Say(self,other,"$ABS_GOOD");
 		}
@@ -370,7 +370,7 @@ func void DIA_Grimbald_Success_Info()
 		B_Say(self,other,"$NEVERHITMEAGAIN");
 		Grimbald_PissOff = TRUE;
 	}
-	else if(Grimbald_Snappers_KilledByPlayer == TRUE)
+	else if(Grimbald_Snappers_KilledByPlayer > 0)
 	{
 		B_Say(self,other,"$NOTBAD");
 	}

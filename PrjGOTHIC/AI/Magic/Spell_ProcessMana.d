@@ -33,51 +33,51 @@ func int Spell_ProcessMana(var int manaInvested)
 	};
 	if(activeSpell == SPL_PalTeleportSecret)
 	{
-		return Spell_Logic_PalTeleportSecret(manaInvested);
+		return Teleport_Spell_Logic_Common(manaInvested);
 	};
 	if(activeSpell == SPL_TeleportSeaport)
 	{
-		return Spell_Logic_TeleportSeaport(manaInvested);
+		return Teleport_Spell_Logic_Common(manaInvested);
 	};
 	if(activeSpell == SPL_TeleportMonastery)
 	{
-		return Spell_Logic_TeleportMonastery(manaInvested);
+		return Teleport_Spell_Logic_Common(manaInvested);
 	};
 	if(activeSpell == SPL_TeleportFarm)
 	{
-		return Spell_Logic_TeleportFarm(manaInvested);
+		return Teleport_Spell_Logic_Common(manaInvested);
 	};
 	if(activeSpell == SPL_TeleportXardas)
 	{
-		return Spell_Logic_TeleportXardas(manaInvested);
+		return Teleport_Spell_Logic_Common(manaInvested);
 	};
 	if(activeSpell == SPL_TeleportPassNW)
 	{
-		return Spell_Logic_TeleportPassNW(manaInvested);
+		return Teleport_Spell_Logic_Common(manaInvested);
 	};
 	if(activeSpell == SPL_TeleportPassOW)
 	{
-		return Spell_Logic_TeleportPassOW(manaInvested);
+		return Teleport_Spell_Logic_Common(manaInvested);
 	};
 	if(activeSpell == SPL_TeleportOC)
 	{
-		return Spell_Logic_TeleportOC(manaInvested);
+		return Teleport_Spell_Logic_Common(manaInvested);
 	};
 	if(activeSpell == SPL_TeleportOWDemonTower)
 	{
-		return Spell_Logic_TeleportOWDemonTower(manaInvested);
+		return Teleport_Spell_Logic_Common(manaInvested);
 	};
 	if(activeSpell == SPL_TeleportTaverne)
 	{
-		return Spell_Logic_TeleportTaverne(manaInvested);
+		return Teleport_Spell_Logic_Common(manaInvested);
 	};
 	if(activeSpell == SPL_TeleportRitual)
 	{
-		return Spell_Logic_TeleportRitual(manaInvested);
+		return Teleport_Spell_Logic_Common(manaInvested);
 	};
 	if(activeSpell == SPL_Teleport_Maya)
 	{
-		return Spell_Logic_Teleport_Maya(manaInvested);
+		return Teleport_Spell_Logic_Common(manaInvested);
 	};
 	if(activeSpell == SPL_Light)
 	{
@@ -146,10 +146,6 @@ func int Spell_ProcessMana(var int manaInvested)
 	if(activeSpell == SPL_IceCube)
 	{
 		return Spell_Logic_IceCube(manaInvested);
-	};
-	if(activeSpell == SPL_ChargeZap)
-	{
-		return Spell_Logic_ChargeZap(manaInvested);
 	};
 	if(activeSpell == SPL_SummonGolem)
 	{

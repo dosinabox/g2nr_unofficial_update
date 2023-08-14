@@ -139,7 +139,10 @@ instance DIA_NOV_8_PEOPLE(C_Info)
 
 func int DIA_NOV_8_PEOPLE_Condition()
 {
-	return TRUE;
+	if(hero.guild != GIL_KDF)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_NOV_8_PEOPLE_Info()
@@ -237,11 +240,11 @@ func void DIA_NOV_8_STANDARD_Info()
 
 func void B_AssignAmbientInfos_NOV_8(var C_Npc slf)
 {
-	dia_nov_8_exit.npc = Hlp_GetInstanceID(slf);
-	dia_nov_8_join.npc = Hlp_GetInstanceID(slf);
-	dia_nov_8_people.npc = Hlp_GetInstanceID(slf);
-	dia_nov_8_location.npc = Hlp_GetInstanceID(slf);
-	dia_nov_8_standard.npc = Hlp_GetInstanceID(slf);
+	DIA_NOV_8_EXIT.npc = Hlp_GetInstanceID(slf);
+	DIA_NOV_8_JOIN.npc = Hlp_GetInstanceID(slf);
+	DIA_NOV_8_PEOPLE.npc = Hlp_GetInstanceID(slf);
+	DIA_NOV_8_LOCATION.npc = Hlp_GetInstanceID(slf);
+	DIA_NOV_8_STANDARD.npc = Hlp_GetInstanceID(slf);
 	DIA_NOV_8_Fegen.npc = Hlp_GetInstanceID(slf);
 	DIA_NOV_8_Wurst.npc = Hlp_GetInstanceID(slf);
 };

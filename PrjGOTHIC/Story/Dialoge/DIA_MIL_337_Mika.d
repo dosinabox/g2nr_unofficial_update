@@ -166,7 +166,7 @@ instance DIA_Mika_WASGEFAEHRLICH(C_Info)
 
 func int DIA_Mika_WASGEFAEHRLICH_Condition()
 {
-	if(!C_Mika_FreeHelp())
+	if(Npc_KnowsInfo(other,DIA_Mika_WOHIN) && !C_Mika_FreeHelp())
 	{
 		return TRUE;
 	};
@@ -293,9 +293,16 @@ instance DIA_Mika_HILFE(C_Info)
 
 func int DIA_Mika_HILFE_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (C_Mika_FreeHelp() || (Mika_Helps == TRUE)))
+	if(self.aivar[AIV_PARTYMEMBER] == FALSE)
 	{
-		return TRUE;
+		if(Mika_Helps == TRUE)
+		{
+			return TRUE;
+		};
+		if(C_Mika_FreeHelp())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -315,7 +322,7 @@ func void DIA_Mika_HILFE_Info()
 	Info_AddChoice(DIA_Mika_HILFE,Dialog_Back,DIA_Mika_HILFE_BACK);
 	Info_AddChoice(DIA_Mika_HILFE,"Меня преследуют бандиты.",DIA_Mika_HILFE_schongut);
 	Info_AddChoice(DIA_Mika_HILFE,"На меня напали монстры.",DIA_Mika_HILFE_monster);
-	if(!C_AkilFarmIsFree() && (Akils_SLDStillthere == TRUE) && (Kapitel < 4))
+	if(!C_AkilFarmIsFree() && (Akils_SLDStillthere == TRUE))
 	{
 		Info_AddChoice(DIA_Mika_HILFE,"На фермера Акила напали наемники.",DIA_Mika_HILFE_Akil);
 	};
@@ -364,7 +371,7 @@ instance DIA_Mika_Zack(C_Info)
 
 func int DIA_Mika_Zack_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_FARM2_PATH_03") < 500) && (Kapitel < 4))
+	if(Npc_GetDistToWP(self,"NW_FARM2_PATH_03") < 500)
 	{
 		if(!C_AkilFarmIsFree())
 		{
@@ -409,10 +416,6 @@ func int DIA_Mika_WIEDERNACHHAUSE_Condition()
 	if(Npc_GetDistToWP(self,"NW_FARM2_PATH_03") < 1000)
 	{
 		if(C_AkilFarmIsFree())
-		{
-			return TRUE;
-		};
-		if(Kapitel >= 4)
 		{
 			return TRUE;
 		};

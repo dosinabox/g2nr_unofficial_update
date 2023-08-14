@@ -1796,9 +1796,15 @@ instance SPELLFX_PALHEAL(CFX_BASE_PROTO)
 	emtrjoriginnode = "ZS_RIGHTHAND";
 };
 
+instance SPELLFX_PALHEAL_KEY_INVEST_1(C_PARTICLEFXEMITKEY)
+{
+	visname_s = "MFX_HEAL_CAST";
+	emcreatefxid = "spellFX_Heal_LEFTHAND";
+};
+
 instance SPELLFX_PALHEAL_KEY_CAST(C_PARTICLEFXEMITKEY)
 {
-	pfx_ppsisloopingchg = 1;
+	pfx_ppsisloopingchg = 0;
 	emcreatefxid = "spellFX_Heal_ORIGIN";
 };
 
@@ -1846,7 +1852,7 @@ instance SPELLFX_HEAL_KEY_INVEST_1(C_PARTICLEFXEMITKEY)
 
 instance SPELLFX_HEAL_KEY_CAST(C_PARTICLEFXEMITKEY)
 {
-	pfx_ppsisloopingchg = 1;
+	pfx_ppsisloopingchg = 0;
 	emcreatefxid = "spellFX_Heal_ORIGIN";
 };
 

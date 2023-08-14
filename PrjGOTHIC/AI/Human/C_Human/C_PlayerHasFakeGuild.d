@@ -16,8 +16,8 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 						return TRUE;
 					};
 				};
-			};
-			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cavalorn))
+			}
+			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cavalorn))
 			{
 				if(Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_PATH_15") < 5000)
 				{
@@ -27,29 +27,29 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 				{
 					return TRUE;
 				};
-			};
-			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lares))
+			}
+			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lares))
 			{
 				if(Npc_GetDistToWP(slf,"NW_CITY_HABOUR_02_B") < 5000)
 				{
 					return TRUE;
 				};
-			};
-			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
+			}
+			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
 			{
 				if(Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_TEMPLE_FRONT") < 5000)
 				{
 					return TRUE;
 				};
-			};
-			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY))
+			}
+			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY))
 			{
 				if(Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_TEMPLE_FRONT") < 5000)
 				{
 					return TRUE;
 				};
-			};
-			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Martin))
+			}
+			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Martin))
 			{
 				if(Npc_GetDistToWP(slf,"NW_CITY_PALCAMP_15") < 5000)
 				{
@@ -59,8 +59,8 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 				{
 					return TRUE;
 				};
-			};
-			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cord))
+			}
+			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cord))
 			{
 				if(Npc_GetDistToWP(slf,"NW_BIGFARM_HOUSE_15") < 1000)
 				{

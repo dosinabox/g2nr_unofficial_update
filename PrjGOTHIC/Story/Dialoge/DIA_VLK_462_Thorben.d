@@ -35,9 +35,12 @@ instance DIA_Thorben_angepisst(C_Info)
 
 func int DIA_Thorben_angepisst_Condition()
 {
-	if(Npc_IsDead(Gritta) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(Npc_IsDead(Gritta))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -61,9 +64,12 @@ instance DIA_Thorben_Hallo(C_Info)
 
 func int DIA_Thorben_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild == GIL_NONE) && !Npc_IsDead(Gritta))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild == GIL_NONE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Gritta))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -682,9 +688,12 @@ instance DIA_Thorben_Gritta(C_Info)
 
 func int DIA_Thorben_Gritta_Condition()
 {
-	if((MIS_Matteo_Gold == LOG_Running) && !Npc_IsDead(Gritta))
+	if(MIS_Matteo_Gold == LOG_Running)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Gritta))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -724,9 +733,15 @@ instance DIA_Thorben_GrittaHatteGold(C_Info)
 
 func int DIA_Thorben_GrittaHatteGold_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Thorben_Gritta) && (Npc_HasItems(Gritta,ItMi_Gold) < 80) && !Npc_IsDead(Gritta))
+	if(Npc_KnowsInfo(other,DIA_Thorben_Gritta))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Gritta))
+		{
+			if(Npc_HasItems(Gritta,ItMi_Gold) < 80)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 

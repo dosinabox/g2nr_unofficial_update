@@ -2315,7 +2315,7 @@ instance ItMw_1H_Blessed_01(C_Item)
 {
 	name = "Грубый рудный клинок";
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_SWD | ITEM_MISSION;
+	flags = ITEM_SWD;
 	material = MAT_METAL;
 	value = Value_Blessed_1H_1;
 	damageTotal = Damage_Blessed_1H_1;
@@ -2338,7 +2338,7 @@ instance ItMw_1H_Blessed_02(C_Item)
 {
 	name = "Освященный рудный клинок";
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_SWD | ITEM_MISSION;
+	flags = ITEM_SWD;
 	material = MAT_METAL;
 	value = Value_Blessed_1H_2;
 	damageTotal = Damage_Blessed_1H_2;
@@ -2361,7 +2361,7 @@ instance ItMw_1H_Blessed_03(C_Item)
 {
 	name = "Гнев Инноса";
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_SWD | ITEM_MISSION;
+	flags = ITEM_SWD;
 	material = MAT_METAL;
 	value = Value_Blessed_1H_3;
 	damageTotal = Damage_Blessed_1H_3;

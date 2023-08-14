@@ -12,7 +12,7 @@ func void ZS_ObservePlayer()
 	{
 		B_LookAtNpc(self,other);
 	};
-	if(Npc_WasInState(self,ZS_Sleep))
+	if(Npc_WasInState(self,ZS_Sleep) || Npc_WasInState(self,ZS_MagicSleep))
 	{
 		B_Say(self,other,"$YOUDISTURBEDMYSLUMBER");
 	};

@@ -1,9 +1,7 @@
 
 func void B_Say_AttackEnd()
 {
-	var int rnd;
 	var int random;
-	var int randy;
 	if((self.aivar[AIV_ATTACKREASON] == AR_GuildEnemy) || (self.aivar[AIV_ATTACKREASON] == AR_MonsterMurderedHuman))
 	{
 		if(other.guild < GIL_SEPERATOR_HUM)
@@ -28,8 +26,8 @@ func void B_Say_AttackEnd()
 		{
 			if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 			{
-				rnd = Hlp_Random(100);
-				if((rnd > 15) && (other.guild != GIL_DRAGON))
+				random = Hlp_Random(100);
+				if((random > 15) && (other.guild != GIL_DRAGON))
 				{
 					return;
 				};
@@ -52,8 +50,8 @@ func void B_Say_AttackEnd()
 				{
 					if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GornOW)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GornDJG)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GornNW_vor_DJG)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GornNW_nach_DJG)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Gorn_DI)))
 					{
-						randy = Hlp_Random(2);
-						if(randy == 0)
+						random = Hlp_Random(2);
+						if(random == 0)
 						{
 							B_Say(self,other,"$ADDON_MONSTERKILLED");
 						}

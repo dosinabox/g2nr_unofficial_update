@@ -645,14 +645,8 @@ func void DIA_Lee_JoinNOW_Info()
 			B_SetGuild(hero,GIL_SLD);
 			B_GiveArmor(ITAR_SLD_L);
 			Snd_Play("LEVELUP");
-			if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
-			{
-				Npc_ExchangeRoutine(Lothar,"START");
-			};
-			if(Hlp_IsValidNpc(Babo) && !Npc_IsDead(Babo))
-			{
-				Npc_ExchangeRoutine(Babo,"FAVOUR");
-			};
+			B_StartOtherRoutine(Lothar,"START");
+			B_StartOtherRoutine(Babo,"Garden");
 			NOV_Aufnahme = LOG_OBSOLETE;
 			SLD_Aufnahme = LOG_SUCCESS;
 			MIL_Aufnahme = LOG_OBSOLETE;
@@ -1064,7 +1058,7 @@ instance DIA_Lee_BuyArmorM(C_Info)
 	condition = DIA_Lee_BuyArmorM_Condition;
 	information = DIA_Lee_BuyArmorM_Info;
 	permanent = TRUE;
-	description = "Купить средние доспехи наемника. Защита: 50/50/0/5. (1000 золотых)";
+	description = B_BuildPriceString("Купить средние доспехи наемника. Защита: 50/50/0/5.",VALUE_ITAR_SLD_M);
 };
 
 
@@ -1125,7 +1119,7 @@ instance DIA_Lee_BuyArmorH(C_Info)
 	condition = DIA_Lee_BuyArmorH_Condition;
 	information = DIA_Lee_BuyArmorH_Info;
 	permanent = TRUE;
-	description = "Купить тяжелые доспехи наемника. Защита: 80/80/5/10. (2500 золотых)";
+	description = B_BuildPriceString("Купить тяжелые доспехи наемника. Защита: 80/80/5/10.",VALUE_ITAR_SLD_H);
 };
 
 
@@ -1274,7 +1268,7 @@ func void DIA_Lee_RichterBeweise_Info()
 	AI_Output(other,self,"DIA_Lee_RichterBeweise_15_04");	//Я принес тебе в качестве доказательства письменный приказ судьи этим головорезам.
 	AI_Output(self,other,"DIA_Lee_RichterBeweise_04_05");	//Покажи.
 	B_GiveInvItems(other,self,ItWr_RichterKomproBrief_MIS,1);
-	B_UseFakeScroll();
+	B_ReadFakeItem(self,other,Fakescroll,1);
 	if(!Npc_IsDead(Richter))
 	{
 		AI_Output(self,other,"DIA_Lee_RichterBeweise_04_06");	//Наконец-то. Этого должно быть достаточно, чтобы заставить его страдать. Я восхищен.
@@ -1668,7 +1662,15 @@ func void DIA_Lee_DRACHENEI_Info()
 		AI_Output(self,other,"DIA_Lee_DRACHENEI_04_03");	//Разбей их. Что еще?
 		AI_Output(self,other,"DIA_Lee_DRACHENEI_04_04");	//Может быть, из скорлупы можно будет сделать доспехи или еще что-нибудь.
 		AI_Output(self,other,"DIA_Lee_DRACHENEI_04_05");	//Похоже, они очень крепкие. Поговори об этом с Беннетом.
-		B_LogEntry(TOPIC_DRACHENEIER,"Ли не знает, что делать с драконьим яйцом. Он отправил меня к кузнецу Беннету.");
+		if(DRACHENEIER_angebotenXP_OneTime == FALSE)
+		{
+			if(TOPIC_END_DRACHENEIER == FALSE)
+			{
+				Log_CreateTopic(TOPIC_DRACHENEIER,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_DRACHENEIER,LOG_Running);
+			};
+			B_LogEntry(TOPIC_DRACHENEIER,"Ли не знает, что делать с драконьим яйцом. Он отправил меня к кузнецу Беннету.");
+		};
 	};
 	B_GivePlayerXP(XP_AmbientKap5);
 };

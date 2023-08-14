@@ -408,27 +408,24 @@ var int DIA_Lester_PERM3_OneTime;
 func void DIA_Lester_PERM3_Info()
 {
 	AI_Output(other,self,"DIA_Lester_PERM3_15_00");	//Ты не очень-то хорошо выглядишь.
-	if(hero.guild == GIL_KDF)
+	if((hero.guild == GIL_KDF) && (DIA_Lester_PERM3_OneTime == FALSE))
 	{
-		if(DIA_Lester_PERM3_OneTime == FALSE)
+		AI_Output(self,other,"DIA_Lester_PERM3_13_01");	//Я и чувствую себя не очень хорошо. Я совершенно обессилен, и еще эти постоянные головные боли...
+		AI_Output(self,other,"DIA_Lester_PERM3_13_02");	//Каждый раз, когда один из этих парней в черных рясах появляется здесь, они только усиливаются.
+		if(SC_KnowsMadPsi == TRUE)
 		{
-			AI_Output(self,other,"DIA_Lester_PERM3_13_01");	//Я и чувствую себя не очень хорошо. Я совершенно обессилен, и еще эти постоянные головные боли...
-			AI_Output(self,other,"DIA_Lester_PERM3_13_02");	//Каждый раз, когда один из этих парней в черных рясах появляется здесь, они только усиливаются.
-			if(SC_KnowsMadPsi == TRUE)
-			{
-				AI_Output(other,self,"DIA_Lester_PERM3_15_03");	//И я могу сказать тебе почему.
-				AI_Output(self,other,"DIA_Lester_PERM3_13_04");	//Да? Боюсь, я не хочу этого знать.
-				AI_Output(other,self,"DIA_Lester_PERM3_15_05");	//Люди в черных рясах - или Ищущие, как мы, маги, называем их - были последователями сильного архидемона. Тебе это ни о чем не говорит?
-				AI_Output(self,other,"DIA_Lester_PERM3_13_06");	//Ммм. Нет. Если только ты не хочешь сказать мне, что...
-				AI_Output(other,self,"DIA_Lester_PERM3_15_07");	//Да, именно. Ищущие были последователями Спящего. Безумцы из секты отступников из Болотного Лагеря.
-				AI_Output(other,self,"DIA_Lester_PERM3_15_08");	//Это твои люди, Лестер. Бывшее Братство Спящего. Теперь они просто бездушные приспешники Зла.
-				AI_Output(self,other,"DIA_Lester_PERM3_13_09");	//У меня были подозрения, но я надеялся, что это не так. Ты хочешь сказать, он вернулся? Спящий опять здесь?
-				AI_Output(other,self,"DIA_Lester_PERM3_15_10");	//Хороший вопрос. Я знаю наверняка, только что я должен остановить Ищущих до того, как они станут слишком сильны.
-				AI_Output(self,other,"DIA_Lester_PERM3_13_11");	//Мне это не нравится, но я думаю, ты прав. Мне очень жаль, но с моей головой творится такое...
-				B_LogEntry(TOPIC_DEMENTOREN,"Мои подозрения подтвердились. Даже у Лестера нет сомнений, что Ищущие - это последователи Спящего из старого лагеря в болотах.");
-				B_GivePlayerXP(XP_Lester_KnowsMadPsi);
-				DIA_Lester_PERM3_OneTime = TRUE;
-			};
+			AI_Output(other,self,"DIA_Lester_PERM3_15_03");	//И я могу сказать тебе почему.
+			AI_Output(self,other,"DIA_Lester_PERM3_13_04");	//Да? Боюсь, я не хочу этого знать.
+			AI_Output(other,self,"DIA_Lester_PERM3_15_05");	//Люди в черных рясах - или Ищущие, как мы, маги, называем их - были последователями сильного архидемона. Тебе это ни о чем не говорит?
+			AI_Output(self,other,"DIA_Lester_PERM3_13_06");	//Ммм. Нет. Если только ты не хочешь сказать мне, что...
+			AI_Output(other,self,"DIA_Lester_PERM3_15_07");	//Да, именно. Ищущие были последователями Спящего. Безумцы из секты отступников из Болотного Лагеря.
+			AI_Output(other,self,"DIA_Lester_PERM3_15_08");	//Это твои люди, Лестер. Бывшее Братство Спящего. Теперь они просто бездушные приспешники Зла.
+			AI_Output(self,other,"DIA_Lester_PERM3_13_09");	//У меня были подозрения, но я надеялся, что это не так. Ты хочешь сказать, он вернулся? Спящий опять здесь?
+			AI_Output(other,self,"DIA_Lester_PERM3_15_10");	//Хороший вопрос. Я знаю наверняка, только что я должен остановить Ищущих до того, как они станут слишком сильны.
+			AI_Output(self,other,"DIA_Lester_PERM3_13_11");	//Мне это не нравится, но я думаю, ты прав. Мне очень жаль, но с моей головой творится такое...
+			B_LogEntry(TOPIC_DEMENTOREN,"Мои подозрения подтвердились. Даже у Лестера нет сомнений, что Ищущие - это последователи Спящего из старого лагеря в болотах.");
+			B_GivePlayerXP(XP_Lester_KnowsMadPsi);
+			DIA_Lester_PERM3_OneTime = TRUE;
 		};
 	}
 	else if(Lester_IsOnBoard == LOG_SUCCESS)
@@ -436,7 +433,7 @@ func void DIA_Lester_PERM3_Info()
 		AI_Output(self,other,"DIA_Lester_PERM3_13_12");	//Головные боли все еще мучают меня, но я надеюсь, эта проблема скоро будет решена.
 		AI_Output(self,other,"DIA_Lester_PERM3_13_13");	//Так или иначе.
 	}
-	else if(hero.guild == GIL_DJG)
+	else if((hero.guild == GIL_DJG) && (Kapitel >= 4))
 	{
 		AI_Output(self,other,"DIA_Lester_PERM3_13_14");	//Мои головные боли стали просто невыносимыми. А теперь еще эти люди-ящеры постоянно нападают на меня. Я задаю себе вопрос - откуда они все взялись?
 	}

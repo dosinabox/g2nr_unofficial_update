@@ -256,7 +256,6 @@ func void DIA_Bilgot_BEIBRUECKEANGEKOMMEN_Info()
 	AI_Output(other,self,"DIA_Bilgot_BEIBRUECKEANGEKOMMEN_15_02");	//Смотри, чтобы тебя не съели. Я очень огорчусь.
 	AI_Output(self,other,"DIA_Bilgot_BEIBRUECKEANGEKOMMEN_05_03");	//Прощай!
 	AI_StopProcessInfos(self);
-	TschuessBilgot = TRUE;
 	MIS_RescueBilgot = LOG_SUCCESS;
 	B_GivePlayerXP(XP_BilgotEscort);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
@@ -306,9 +305,12 @@ instance DIA_Bilgot_Olav(C_Info)
 
 func int DIA_Bilgot_Olav_Condition()
 {
-	if(!Npc_HasItems(Olav,ItSe_Olav) && Npc_KnowsInfo(other,DIA_Bilgot_Job))
+	if(Npc_KnowsInfo(other,DIA_Bilgot_Job))
 	{
-		return TRUE;
+		if(!Npc_HasItems(Olav,ItSe_Olav))
+		{
+			return TRUE;
+		};
 	};
 };
 

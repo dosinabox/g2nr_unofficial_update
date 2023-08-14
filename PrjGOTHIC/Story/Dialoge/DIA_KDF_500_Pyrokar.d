@@ -515,10 +515,7 @@ func void DIA_Pyrokar_OATH_Info()
 	B_GiveArmor(ITAR_KDF_L);
 	Fire_Contest = TRUE;
 	Snd_Play("LEVELUP");
-	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
-	{
-		Npc_ExchangeRoutine(Lothar,"START");
-	};
+	B_StartOtherRoutine(Lothar,"START");
 	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
 //	KDF_Aufnahme = LOG_SUCCESS;
 	B_CancelBengarMilitiaProblem();
@@ -751,7 +748,14 @@ func void DIA_Pyrokar_Wunsch_Babo()
 	{
 		MIS_HelpOpolos = LOG_FAILED;
 	};
-	B_StartOtherRoutine(Babo,"FAVOUR");
+	if((MIS_Babo_Training == LOG_SUCCESS) && !Npc_IsDead(Sergio))
+	{
+		B_StartOtherRoutine(Babo,"GardenAndTrain");
+	}
+	else
+	{
+		B_StartOtherRoutine(Babo,"Garden");
+	};
 	MIS_HelpBabo = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HelpBabo);
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
@@ -815,13 +819,13 @@ func void DIA_Pyrokar_Nachricht_Info()
 	AI_Output(other,self,"DIA_Pyrokar_Nachricht_15_00");	//Я принес новости от лорда Хагена. Он хочет получить доказательства присутствия драконов в армии Зла.
 	if(EnterOW_Kapitel2 == FALSE)
 	{
-		AI_Teleport(Sergio,"NW_MONASTERY_PLACE_09");
 		AI_Output(other,self,"DIA_Pyrokar_Nachricht_15_01");	//Поэтому я должен отправиться в Долину Рудников и доставить ему эти доказательства.
-		AI_Output(self,other,"DIA_Pyrokar_Nachricht_11_02");	//Хорошо. Ты выполнишь этот приказ. Паладин Сержио сопроводит тебя к Проходу.
+		if(!Npc_IsDead(Sergio))
+		{
+			AI_Output(self,other,"DIA_Pyrokar_Nachricht_11_02");	//Хорошо. Ты выполнишь этот приказ. Паладин Сержио сопроводит тебя к Проходу.
+			Sergio_Follow = TRUE;
+		};
 		AI_Output(self,other,"DIA_Pyrokar_Nachricht_11_03");	//Да хранит тебя Иннос.
-		Sergio_Follow = TRUE;
-		AI_StopProcessInfos(self);
-		B_StartOtherRoutine(Sergio,"WAITFORPLAYER");
 	}
 	else
 	{
@@ -920,11 +924,6 @@ func void DIA_Pyrokar_SPELLS_Info()
 		Info_AddChoice(DIA_Pyrokar_SPELLS,B_BuildLearnString(NAME_SPL_MassDeath,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_MassDeath)),DIA_Pyrokar_SPELLS_MassDeath);
 		abletolearn += 1;
 	};
-	/*if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
-	{
-		Info_AddChoice(DIA_Pyrokar_SPELLS,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),DIA_Pyrokar_SPELLS_Shrink);
-		abletolearn += 1;
-	};*/
 	if(abletolearn < 1)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_SPELLS_11_01");	//Мне больше нечему учить тебя.
@@ -950,12 +949,6 @@ func void DIA_Pyrokar_SPELLS_MassDeath()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_MassDeath);
 };
-
-/*func void DIA_Pyrokar_SPELLS_Shrink()
-{
-	B_TeachPlayerTalentRunes(self,other,SPL_Shrink);
-};*/
-
 
 instance DIA_Pyrokar_Parlan(C_Info)
 {
@@ -1224,7 +1217,7 @@ func void DIA_Pyrokar_GIVEINNOSEYE_Info()
 		AI_UseMob(self,"THRONE",-1);
 		B_TurnToNpc(self,hero);
 	};
-	B_UseFakeScroll();
+	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_11_01");	//Я вижу, ты получил позволение лично от лорда Хагена носить Глаз Инноса.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_11_02");	//Но боюсь, мне придется разочаровать тебя. Мы стали жертвами вероломного плана врага.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_11_03");	//Глаз Инноса был нагло украден из этих священных стен.

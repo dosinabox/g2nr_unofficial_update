@@ -260,7 +260,7 @@ func void DIA_Mil_310_Stadtwache_Passierschein_Info()
 	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Passierschein_15_00");	//У меня есть пропуск!
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItWr_Passierschein,1);
-	B_UseFakeScroll();
+	B_ReadFakeItem(self,other,Fakescroll,1);
 	if(!Npc_HasEquippedArmor(other))
 	{
 		AI_Output(self,other,"DIA_Mil_310_Stadtwache_Passierschein_07_01");	//Да ну? И кого ты убил ради этой бумажки?
@@ -586,6 +586,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_DepecheDragons()
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_01");	//Что? Это не может быть правдой. А я чуть не впустил тебя!
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_02");	//Если бы ты рассказал ЭТУ историю лорду Хагену, он бы повесил меня за халатность.
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_03");	//Проваливай!
+	AI_PlayAni(self,"T_GETLOST");
 	Player_KnowsLordHagen = TRUE;
 	AI_StopProcessInfos(self);
 };

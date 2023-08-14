@@ -1,5 +1,5 @@
 
-prototype Mst_Default_Swarm(C_Npc)
+/*prototype Mst_Default_Swarm(C_Npc)
 {
 	name[0] = "Рой саранчи";
 	guild = GIL_BLOODFLY;
@@ -39,7 +39,6 @@ func void B_SetVisuals_Swarm()
 
 instance Swarm(Mst_Default_Swarm)
 {
-	fight_tactic = FAI_BLOODFLY;
 	B_SetVisuals_Swarm();
 	Npc_SetToFistMode(self);
 };
@@ -47,7 +46,7 @@ instance Swarm(Mst_Default_Swarm)
 instance Swarm_Detector(Mst_Default_Swarm)
 {
 	level = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetVisuals_Swarm();
 	senses_range = 3000;
 	aivar[AIV_PARTYMEMBER] = TRUE;
@@ -55,5 +54,5 @@ instance Swarm_Detector(Mst_Default_Swarm)
 	Npc_SetToFistMode(self);
 	aivar[AIV_NoFightParker] = TRUE;
 	start_aistate = ZS_MM_Rtn_Summoned;
-};
+};*/
 

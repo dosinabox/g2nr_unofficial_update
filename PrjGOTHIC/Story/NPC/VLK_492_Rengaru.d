@@ -6,12 +6,11 @@ instance VLK_492_Rengaru(Npc_Default)
 	id = 492;
 	voice = 7;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_IGNORE_Theft] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Sword);
-//	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItMi_Gold,50);
 	CreateInvItems(self,ItFo_Bread,1);
 	CreateInvItems(self,ItFo_Water,1);

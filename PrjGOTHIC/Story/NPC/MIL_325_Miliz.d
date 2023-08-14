@@ -7,7 +7,7 @@ instance MIL_325_Miliz(Npc_Default)
 //	voice = 12;
 	voice = 14;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;

@@ -1,4 +1,112 @@
 
+var int Thekla_GaveStew_Guild;
+var int Thekla_GaveStew_Bullco;
+var int Thekla_GaveStew_Sagitta;
+var int Thekla_GaveStew_Bennet;
+var int Thekla_GaveStew_Dragons;
+var int Thekla_PromisedStew;
+
+func int C_TheklaCanGiveStew_Guild()
+{
+	if(Thekla_GaveStew_Guild == FALSE)
+	{
+		if((other.guild != GIL_NONE) && (other.guild != GIL_MIL))
+		{
+			return TRUE;
+		};
+	};
+	return FALSE;
+};
+
+func int C_TheklaCanGiveStew_Bullco()
+{
+	if(Thekla_GaveStew_Bullco == FALSE)
+	{
+		if(Kapitel <= 3)
+		{
+			if(!Npc_IsDead(Bullco))
+			{
+				if(SLD_Bullco_Defeated == TRUE)
+				{
+					return TRUE;
+				};
+				if(SLD_Bullco_Defeated_SC == TRUE)
+				{
+					return TRUE;
+				};
+			};
+			if(SLD_Sylvio_Defeated_SC == TRUE)
+			{
+				return TRUE;
+			};
+		};
+	};
+	return FALSE;
+};
+
+func int C_TheklaCanGiveStew_Dragons()
+{
+	if(Thekla_GaveStew_Dragons == FALSE)
+	{
+		if((MIS_Thekla_Paket == LOG_SUCCESS) && (Kapitel >= 5))
+		{
+			return TRUE;
+		};
+	};
+	return FALSE;
+};
+
+func int TheklaStewsGiven()
+{
+	return Thekla_GaveStew_Guild + Thekla_GaveStew_Bullco + Thekla_GaveStew_Sagitta + Thekla_GaveStew_Bennet + Thekla_GaveStew_Dragons;
+};
+
+func int C_Thekla_BennetNews()
+{
+	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (Thekla_PromisedStew == FALSE))
+	{
+		if(other.guild == GIL_SLD)
+		{
+			return TRUE;
+		};
+		if(TheklaStewsGiven() > 0)
+		{
+			return TRUE;
+		};
+	};
+	if((Kapitel <= 4) && (MIS_RescueBennet == LOG_SUCCESS) && (Thekla_GaveStew_Bennet == FALSE))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+func void B_Thekla_BennetNews()
+{
+	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (Thekla_PromisedStew == FALSE))
+	{
+		if((other.guild == GIL_SLD) || (TheklaStewsGiven() > 0))
+		{
+			AI_Output(self,other,"DIA_Thekla_PERM_17_14");	//Эти ублюдки из ополчения бросили Беннета за решетку.
+			AI_Output(self,other,"DIA_Thekla_PERM_17_15");	//Окажи мне услугу, вызволи его оттуда, хорошо? А тем временем я сварю для тебя очень вкусную похлебку.
+			Thekla_PromisedStew = TRUE;
+			if(MIS_RescueBennet != LOG_Running)
+			{
+				MIS_RescueBennet = LOG_Running;
+				Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
+				B_LogEntry(TOPIC_RescueBennet,"Кузнец Беннет арестован паладинами в городе.");
+			};
+		};
+	}
+	else if((Kapitel <= 4) && (MIS_RescueBennet == LOG_SUCCESS) && (Thekla_GaveStew_Bennet == FALSE))
+	{
+		AI_Output(self,other,"DIA_Thekla_PERM_17_13");	//Я слышала, ты помог Беннету выбраться из тюрьмы. Отличная работа, парень.
+		B_GiveInvItems(self,other,ItFo_XPStew,1);
+		Thekla_GaveStew_Bennet = TRUE;
+	};
+};
+
 instance DIA_Thekla_EXIT(C_Info)
 {
 	npc = BAU_913_Thekla;
@@ -17,6 +125,10 @@ func int DIA_Thekla_EXIT_Condition()
 
 func void DIA_Thekla_EXIT_Info()
 {
+	if(C_Thekla_BennetNews())
+	{
+		B_Thekla_BennetNews();
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -34,7 +146,13 @@ instance DIA_Thekla_HALLO(C_Info)
 
 func int DIA_Thekla_HALLO_Condition()
 {
-	return TRUE;
+	if(!C_TheklaCanGiveStew_Bullco() && !C_Thekla_BennetNews() && (self.aivar[AIV_TalkedToPlayer] == FALSE))
+	{
+		if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+		{
+			return TRUE;
+		};
+	};
 };
 
 func void DIA_Thekla_HALLO_Info()
@@ -67,54 +185,6 @@ func void DIA_Thekla_Lecker_Info()
 	AI_Output(other,self,"DIA_Thekla_Lecker_15_00");	//Как у тебя здесь вкусно пахнет!
 	AI_Output(self,other,"DIA_Thekla_Lecker_17_01");	//Не подлизывайся! Знаю я таких, как ты, как облупленных! Вон их сколько вокруг бродит!
 	AI_Output(self,other,"DIA_Thekla_Lecker_17_02");	//Сначала вы пытаетесь подхалимничать, а затем, когда от вас что-то нужно, то никого не найдешь!
-};
-
-
-var int Thekla_GaveStew;
-
-instance DIA_Thekla_Hunger(C_Info)
-{
-	npc = BAU_913_Thekla;
-	nr = 3;
-	condition = DIA_Thekla_Hunger_Condition;
-	information = DIA_Thekla_Hunger_Info;
-	permanent = TRUE;
-	description = "Я голоден!";
-};
-
-
-func int DIA_Thekla_Hunger_Condition()
-{
-	if(Thekla_GaveStew == FALSE)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Thekla_Hunger_Info()
-{
-	AI_Output(other,self,"DIA_Thekla_Hunger_15_00");	//Я голоден!
-	if(other.guild == GIL_NONE)
-	{
-		AI_Output(self,other,"DIA_Thekla_Hunger_17_01");	//Я не кормлю бродяг. Я кормлю только тех, кто работает.
-		AI_Output(self,other,"DIA_Thekla_Hunger_17_02");	//(презрительно) И этот сброд, наемников, конечно.
-	}
-	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
-	{
-		AI_Output(self,other,"DIA_Thekla_Hunger_17_03");	//Вот твоя еда.
-		B_GiveInvItems(self,other,ItFo_XPStew,1);
-		Thekla_GaveStew = TRUE;
-	}
-	else if(other.guild == GIL_MIL)
-	{
-		AI_Output(self,other,"DIA_Thekla_Hunger_17_04");	//Мы не обслуживаем здесь ополчение.
-	}
-	else	//GIL_NOV, GIL_KDF, GIL_PAL
-	{
-		AI_Output(self,other,"DIA_Thekla_Hunger_17_05");	//Как я могу отказать служителю Инноса?
-		B_GiveInvItems(self,other,ItFo_XPStew,1);
-		Thekla_GaveStew = TRUE;
-	};
 };
 
 
@@ -211,7 +281,7 @@ instance DIA_Thekla_Problem(C_Info)
 
 func int DIA_Thekla_Problem_Condition()
 {
-	if((Kapitel <= 3) && Npc_KnowsInfo(other,DIA_Thekla_WannaJoin))
+	if((MIS_ReadyforChapter4 == FALSE) && Npc_KnowsInfo(other,DIA_Thekla_WannaJoin))
 	{
 		return TRUE;
 	};
@@ -244,14 +314,11 @@ instance DIA_Thekla_Manieren(C_Info)
 
 func int DIA_Thekla_Manieren_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Thekla_Problem) && (Kapitel <= 3))
+	if(Npc_KnowsInfo(other,DIA_Thekla_Problem) && (MIS_ReadyforChapter4 == FALSE))
 	{
-		if(!Npc_IsDead(Bullco))
+		if(!Npc_IsDead(Bullco) && (SLD_Bullco_Defeated == FALSE))
 		{
-			if(SLD_Bullco_Defeated == FALSE)
-			{
-				return TRUE;
-			};
+			return TRUE;
 		};
 	};
 };
@@ -278,23 +345,9 @@ instance DIA_Thekla_AfterFight(C_Info)
 
 func int DIA_Thekla_AfterFight_Condition()
 {
-	if(Kapitel <= 3)
+	if(C_TheklaCanGiveStew_Bullco())
 	{
-		if(!Npc_IsDead(Bullco))
-		{
-			if(SLD_Bullco_Defeated == TRUE)
-			{
-				return TRUE;
-			};
-			if(SLD_Bullco_Defeated_SC == TRUE)
-			{
-				return TRUE;
-			};
-		};
-		if(SLD_Sylvio_Defeated_SC == TRUE)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -322,13 +375,9 @@ func void DIA_Thekla_AfterFight_Info()
 	AI_Output(self,other,"DIA_Thekla_AfterFight_17_06");	//Вот, поешь немного. Это восстановит твои силы.
 	AI_WaitTillEnd(other,self);
 	B_GiveInvItems(self,other,ItFo_XPStew,1);
-	Thekla_GaveStew = TRUE;
+	Thekla_GaveStew_Bullco = TRUE;
 };
 
-
-var int Thekla_MehrEintopfKap1;
-var int Thekla_MehrEintopfKap3;
-var int Thekla_MehrEintopfKap5;
 
 instance DIA_Thekla_SagittaPaket(C_Info)
 {
@@ -351,18 +400,39 @@ func int DIA_Thekla_SagittaPaket_Condition()
 
 func void DIA_Thekla_SagittaPaket_Info()
 {
-	B_GiveInvItems(other,self,ItMi_TheklasPaket,1);
 	AI_Output(other,self,"DIA_Thekla_SagittaPaket_15_00");	//Вот пакет от Сагитты.
+	B_GiveInvItems(other,self,ItMi_TheklasPaket,1);
 	AI_Output(self,other,"DIA_Thekla_SagittaPaket_17_01");	//Огромное спасибо. От тебя есть хоть какая-то польза в отличие от других.
+	DIA_Common_So();
+	AI_Output(self,other,"DIA_Thekla_PERM_17_10");	//Хорошо. Я сжалюсь над тобой. Вот, держи. Не могу смотреть, как ты умираешь от голода у меня на глазах.
+	B_GiveInvItems(self,other,ItFo_XPStew,1);
+	Thekla_GaveStew_Sagitta = TRUE;
 	MIS_Thekla_Paket = LOG_SUCCESS;
 	B_GivePlayerXP(XP_TheklasPaket);
-	if(Kapitel > 2)
+};
+
+
+instance DIA_Thekla_BennetNews(C_Info)
+{
+	npc = BAU_913_Thekla;
+	nr = 9;
+	condition = DIA_Thekla_BennetNews_Condition;
+	information = DIA_Thekla_BennetNews_Info;
+	permanent = TRUE;
+	important = TRUE;
+};
+
+func int DIA_Thekla_BennetNews_Condition()
+{
+	if(C_Thekla_BennetNews())
 	{
-		AI_Output(other,self,"DIA_Thekla_Hunger_15_00");	//Я голоден!
-		AI_Output(self,other,"DIA_Thekla_PERM_17_10");	//Хорошо. Я сжалюсь над тобой. Вот, держи. Не могу смотреть, как ты умираешь от голода у меня на глазах.
-		B_GiveInvItems(self,other,ItFo_XPStew,1);
-		Thekla_MehrEintopfKap1 = TRUE;
+		return TRUE;
 	};
+};
+
+func void DIA_Thekla_BennetNews_Info()
+{
+	B_Thekla_BennetNews();
 };
 
 
@@ -379,16 +449,65 @@ instance DIA_Thekla_PERM(C_Info)
 
 func int DIA_Thekla_PERM_Condition()
 {
-	if(Thekla_GaveStew == TRUE)
+	if(!TheklaStewsGiven())
 	{
-		return TRUE;
+		DIA_Thekla_PERM.description = "Я голоден!";
+	}
+	else
+	{
+		DIA_Thekla_PERM.description = "Ты мне не дашь еще своей похлебки?";
 	};
+	return TRUE;
 };
 
 func void DIA_Thekla_PERM_Info()
 {
-	AI_Output(other,self,"DIA_Thekla_PERM_15_00");	//Ты мне не дашь еще своей похлебки?
-	if(MIS_Thekla_Paket == FALSE)
+	if(!TheklaStewsGiven())
+	{
+		AI_Output(other,self,"DIA_Thekla_Hunger_15_00");	//Я голоден!
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Thekla_PERM_15_00");	//Ты мне не дашь еще своей похлебки?
+	};
+	if(C_TheklaCanGiveStew_Guild())
+	{
+		if((other.guild == GIL_NOV) || (other.guild == GIL_KDF) || (other.guild == GIL_PAL))
+		{
+			AI_Output(self,other,"DIA_Thekla_Hunger_17_05");	//Как я могу отказать служителю Инноса?
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Thekla_Hunger_17_03");	//Вот твоя еда.
+		};
+		B_GiveInvItems(self,other,ItFo_XPStew,1);
+		Thekla_GaveStew_Guild = TRUE;
+	}
+	else if(C_Thekla_BennetNews())
+	{
+		B_Thekla_BennetNews();
+	}
+	else if(C_TheklaCanGiveStew_Dragons())
+	{
+		AI_Output(self,other,"DIA_Thekla_PERM_17_17");	//Ты что, всегда такой голодный? А что ты делал все это время?
+		AI_Output(other,self,"DIA_Thekla_PERM_15_18");	//Я прикончил нескольких драконов.
+		AI_Output(self,other,"DIA_Thekla_PERM_17_19");	//Ох! Тогда тебе действительно не повредит миска хорошей похлебки.
+		B_GiveInvItems(self,other,ItFo_XPStew,1);
+		Thekla_GaveStew_Dragons = TRUE;
+	}
+	else if(!TheklaStewsGiven())
+	{
+		if(other.guild == GIL_NONE)
+		{
+			AI_Output(self,other,"DIA_Thekla_Hunger_17_01");	//Я не кормлю бродяг. Я кормлю только тех, кто работает.
+			AI_Output(self,other,"DIA_Thekla_Hunger_17_02");	//(презрительно) И этот сброд, наемников, конечно.
+		}
+		else if(other.guild == GIL_MIL)
+		{
+			AI_Output(self,other,"DIA_Thekla_Hunger_17_04");	//Мы не обслуживаем здесь ополчение.
+		};
+	}
+	else if(MIS_Thekla_Paket == FALSE)
 	{
 		AI_Output(self,other,"DIA_Thekla_PERM_17_01");	//Она закончилась.
 		AI_Output(other,self,"DIA_Thekla_PERM_15_02");	//Не осталось даже маленькой миски?
@@ -404,66 +523,22 @@ func void DIA_Thekla_PERM_Info()
 		Log_SetTopicStatus(TOPIC_TheklaEintopf,LOG_Running);
 		B_LogEntry(TOPIC_TheklaEintopf,"Если я принесу Текле травы от знахарки Сагитты, она сварит еще одну похлебку для меня. Сагитта живет за фермой Секоба.");
 	}
-	else if(MIS_Thekla_Paket == LOG_SUCCESS)
+	else if(MIS_Thekla_Paket == LOG_Running)
 	{
-		if(Kapitel <= 2)
-		{
-			if(Thekla_MehrEintopfKap1 == FALSE)
-			{
-				AI_Output(self,other,"DIA_Thekla_PERM_17_10");	//Хорошо. Я сжалюсь над тобой. Вот, держи. Не могу смотреть, как ты умираешь от голода у меня на глазах.
-				B_GiveInvItems(self,other,ItFo_XPStew,1);
-				Thekla_MehrEintopfKap1 = TRUE;
-			}
-			else
-			{
-				AI_Output(self,other,"DIA_Thekla_PERM_17_11");	//Эй, эй, эй! Не будь таким жадным! Я дам тебе знать, если у меня найдется еще работа для тебя.
-				AI_Output(self,other,"DIA_Thekla_PERM_17_12");	//И ТОГДА ты получишь еще этой похлебки, понятно?
-			};
-		};
-		if((Kapitel == 3) || (Kapitel == 4))
-		{
-			if((Thekla_MehrEintopfKap3 == FALSE) && (MIS_RescueBennet == LOG_SUCCESS))
-			{
-				AI_Output(self,other,"DIA_Thekla_PERM_17_13");	//Я слышала, ты помог Беннету выбраться из тюрьмы. Отличная работа, парень.
-				B_GiveInvItems(self,other,ItFo_XPStew,1);
-				Thekla_MehrEintopfKap3 = TRUE;
-			}
-			else if(MIS_RescueBennet != LOG_SUCCESS)
-			{
-				AI_Output(self,other,"DIA_Thekla_PERM_17_14");	//Эти ублюдки из ополчения бросили Беннета за решетку.
-				AI_Output(self,other,"DIA_Thekla_PERM_17_15");	//Окажи мне услугу, вызволи его оттуда, хорошо? А тем временем я сварю для тебя очень вкусную похлебку.
-				if(MIS_RescueBennet != LOG_Running)
-				{
-					MIS_RescueBennet = LOG_Running;
-					Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
-					Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
-					B_LogEntry(TOPIC_RescueBennet,"Кузнец Беннет арестован паладинами в городе.");
-				};
-			}
-			else
-			{
-				AI_Output(self,other,"DIA_Thekla_PERM_17_16");	//У меня ничего не осталось. Заходи позже.
-			};
-		};
-		if(Kapitel >= 5)
-		{
-			if(Thekla_MehrEintopfKap5 == FALSE)
-			{
-				AI_Output(self,other,"DIA_Thekla_PERM_17_17");	//Ты что, всегда такой голодный? А что ты делал все это время?
-				AI_Output(other,self,"DIA_Thekla_PERM_15_18");	//Я прикончил нескольких драконов.
-				AI_Output(self,other,"DIA_Thekla_PERM_17_19");	//Ох! Тогда тебе действительно не повредит миска хорошей похлебки.
-				B_GiveInvItems(self,other,ItFo_XPStew,1);
-				Thekla_MehrEintopfKap5 = TRUE;
-			}
-			else
-			{
-				AI_Output(self,other,"DIA_Thekla_PERM_17_20");	//Все! Похлебка закончилась.
-			};
-		};
+		AI_Output(self,other,"DIA_Thekla_PERM_17_21");	//Нет трав - нет похлебки, понятно?
+	}
+	else if(Kapitel <= 2)
+	{
+		AI_Output(self,other,"DIA_Thekla_PERM_17_11");	//Эй, эй, эй! Не будь таким жадным! Я дам тебе знать, если у меня найдется еще работа для тебя.
+		AI_Output(self,other,"DIA_Thekla_PERM_17_12");	//И ТОГДА ты получишь еще этой похлебки, понятно?
+	}
+	else if(Kapitel <= 4)
+	{
+		AI_Output(self,other,"DIA_Thekla_PERM_17_16");	//У меня ничего не осталось. Заходи позже.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Thekla_PERM_17_21");	//Нет трав - нет похлебки, понятно?
+		AI_Output(self,other,"DIA_Thekla_PERM_17_20");	//Все! Похлебка закончилась.
 	};
 };
 

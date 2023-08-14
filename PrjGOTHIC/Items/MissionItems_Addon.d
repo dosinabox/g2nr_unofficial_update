@@ -361,8 +361,6 @@ instance ItWr_RavensKidnapperMission_Addon(C_Item)
 };
 
 
-var int Use_RavensKidnapperMission_Addon_OneTime;
-
 func void Use_RavensKidnapperMission_Addon()
 {
 	var int nDocID;
@@ -383,13 +381,17 @@ func void Use_RavensKidnapperMission_Addon()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"     Ворон");
 	Doc_Show(nDocID);
-	SCKnowsMissingPeopleAreInAddonWorld = TRUE;
-	if((Use_RavensKidnapperMission_Addon_OneTime == FALSE) && (MIS_Addon_Vatras_WhereAreMissingPeople != FALSE))
+	if(SCKnowsMissingPeopleAreInAddonWorld == FALSE)
 	{
-		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
-		B_LogEntry(TOPIC_Addon_WhoStolePeople,"Теперь у меня есть письменные доказательства того, что Ворон, бывший рудный барон, стоит за похищениями граждан Хориниса. Убежище Ворона находится где-то за горами на северо-востоке. Я должен показать этот документ Ватрасу.");
-		Use_RavensKidnapperMission_Addon_OneTime = TRUE;
+		if(SC_HearedAboutMissingPeople == TRUE)
+		{
+			B_LogEntry(TOPIC_Addon_WhoStolePeople,"Теперь у меня есть письменные доказательства того, что Ворон, бывший рудный барон, стоит за похищениями граждан Хориниса. Убежище Ворона находится где-то за горами на северо-востоке.");
+		};
+		if(MIS_Addon_Vatras_WhereAreMissingPeople == LOG_Running)
+		{
+			Log_AddEntry(TOPIC_Addon_WhoStolePeople,"Я должен показать этот документ Ватрасу.");
+		};
+		SCKnowsMissingPeopleAreInAddonWorld = TRUE;
 	};
 };
 
@@ -788,7 +790,7 @@ instance ItWr_StonePlateCommon_Addon(C_Item)
 	name = "Старая каменная табличка";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION | ITEM_MULTI;
-	value = value_StonePlateCommon;
+	value = Value_StonePlateCommon;
 	visual = "ItMi_StonePlate_Read_06.3ds";
 	material = MAT_STONE;
 	on_state[0] = Use_StonePlateCommon;
@@ -1155,7 +1157,6 @@ func void UseFrancisAbrechnung_Mis()
 	Doc_SetFont(nDocID,1,FONT_Book);
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Торг. корабль 'Нико'");
-	Doc_SetFont(nDocID,1,FONT_Book);
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Общая добыча: 9970 зол.");
 	Doc_PrintLine(nDocID,1,"----------------------");
@@ -1183,8 +1184,8 @@ func void UseFrancisAbrechnung_Mis()
 	if(Francis_HasProof == FALSE)
 	{
 		B_Say(self,self,"$ADDON_THISLITTLEBASTARD");
+		Francis_HasProof = TRUE;
 	};
-	Francis_HasProof = TRUE;
 };
 
 

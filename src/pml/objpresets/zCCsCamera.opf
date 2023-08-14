@@ -1,0 +1,3128 @@
+ZenGin Archive
+ver 1
+zCArchiverGeneric
+ASCII
+saveGame 0
+date 10.8.2023 22:12:48
+user NikX
+END
+objects 103      
+END
+
+[% zCObjPreset 64513 0]
+	presetName=string:CAMERASTART
+	[preset zCCSCamera:zCVob 33793 1]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:0 0 0 0 0 0 
+		trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+		trafoOSToWSPos=vec3:0 0 0
+		vobName=string:CAMERASTART
+		visual=string:
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:4
+		isAmbient=bool:0
+		[visual % 0 0]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:0
+		targetTrjFOR=enum:0
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:10
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:0
+		numTargets=int:0
+	[]
+[]
+[% zCObjPreset 64513 2]
+	presetName=string:HALBNAH_R
+	[preset zCCSCamera:zCVob 33793 3]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:-206.49498 51.9257736 -164.88385 -109.685814 121.037193 -105.537163 
+		trafoOSToWSRot=raw:a23b493e0000000014027bbf000000000000803f0000000014027b3f00000000a23b493e
+		trafoOSToWSPos=vec3:-202.274796 81.4814835 -126.675995
+		vobName=string:HALBNAH_R
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual zCProgMeshProto 53505 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:10
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:1
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 5]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-301.237732 123.962982 -185.745636 -250.243347 143.962982 -156.70282 
+			trafoOSToWSRot=raw:a33b493e0000000012027bbf000000000000803f0000000014027b3f00000000a13b493e
+			trafoOSToWSPos=vec3:-299.271606 133.962982 -166.503754
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f0000000000008032507368c2000000000000803f000000000eed5142000080b200000000feff7f3fa48eae420000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 6]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:30.1102047 138.962982 -112.34137 81.1045609 158.962982 -83.2985611 
+			trafoOSToWSRot=raw:a33b493e0000000012027bbf000000000000803f0000000014027b3f00000000a13b493e
+			trafoOSToWSPos=vec3:32.0763092 148.962982 -93.0994949
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f000000000000803288f39d42000000000000803f0000000087f68642000080b200000000feff7f3fdc2e5fc30000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 7]
+	presetName=string:NAH_R
+	[preset zCCSCamera:zCVob 33793 8]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:-206.49498 51.9257736 -164.88385 -109.685814 121.037193 -105.537163 
+		trafoOSToWSRot=raw:a23b493e0000000014027bbf000000000000803f0000000014027b3f00000000a23b493e
+		trafoOSToWSPos=vec3:-202.274796 81.4814835 -126.675995
+		vobName=string:NAH_R
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:10
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:1
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 9]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-272.612549 132.962982 -169.725464 -221.618164 152.962982 -140.682648 
+			trafoOSToWSRot=raw:a53b493e0000000012027bbf000000000000803f0000000014027b3f00000000a53b493e
+			trafoOSToWSPos=vec3:-270.646423 142.962982 -150.483582
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f000000000000a033381e13c2000000000000803f000000000eed7542000040b300000000feff7f3f787079420000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 10]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:30.1102047 138.962982 -112.34137 81.1045609 158.962982 -83.2985611 
+			trafoOSToWSRot=raw:a33b493e0000000012027bbf000000000000803f0000000014027b3f00000000a13b493e
+			trafoOSToWSPos=vec3:32.0763092 148.962982 -93.0994949
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f000000000000803288f39d42000000000000803f0000000087f68642000080b200000000feff7f3fdc2e5fc30000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 11]
+	presetName=string:NAH_L
+	[preset zCCSCamera:zCVob 33793 12]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:-206.49498 51.9257736 -164.88385 -109.685814 121.037193 -105.537163 
+		trafoOSToWSRot=raw:a23b493e0000000014027bbf000000000000803f0000000014027b3f00000000a23b493e
+		trafoOSToWSPos=vec3:-202.274796 81.4814835 -126.675995
+		vobName=string:NAH_L
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:10
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:1
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 13]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-253.905136 132.962982 -112.716896 -202.910782 152.962982 -83.6740799 
+			trafoOSToWSRot=raw:a53b493e0000000012027bbf000000000000803f0000000014027b3f00000000a53b493e
+			trafoOSToWSPos=vec3:-251.939026 142.962982 -93.4750214
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f000000000000a0339059b641000000000000803f000000000eed7542000040b300000000feff7f3fa0e15c420000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 14]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-30.9993687 138.962982 -298.571472 19.9949875 158.962982 -269.528656 
+			trafoOSToWSRot=raw:a33b493e0000000012027bbf000000000000803f0000000014027b3f00000000a13b493e
+			trafoOSToWSPos=vec3:-29.0332642 148.962982 -279.329559
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f0000000000008032a043e7c2000000000000803f0000000087f68642000080b200000000feff7f3fc4dc47c30000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 15]
+	presetName=string:HALBNAH_L
+	[preset zCCSCamera:zCVob 33793 16]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:-206.49498 51.9257736 -164.88385 -109.685814 121.037193 -105.537163 
+		trafoOSToWSRot=raw:a23b493e0000000014027bbf000000000000803f0000000014027b3f00000000a23b493e
+		trafoOSToWSPos=vec3:-202.274796 81.4814835 -126.675995
+		vobName=string:HALBNAH_L
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:10
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:1
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 17]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-290.635376 128.962982 -83.380722 -239.640991 148.962982 -54.3379097 
+			trafoOSToWSRot=raw:a53b493e0000000012027bbf000000000000803f0000000014027b3f00000000a53b493e
+			trafoOSToWSPos=vec3:-288.66925 138.962982 -64.1388474
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f000000000000a033ec5b3142000000000000803f000000000eed6542000040b300000000feff7f3fb0ffc1420000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 18]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-40.1880112 121.962982 -329.312439 10.8063431 141.962982 -300.269623 
+			trafoOSToWSRot=raw:a33b493e0000000012027bbf000000000000803f0000000014027b3f00000000a13b493e
+			trafoOSToWSPos=vec3:-38.2219086 131.962982 -310.070557
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f0000000000008032509413c3000000000000803f000000000eed4942000080b200000000feff7f3fdee444c30000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 19]
+	presetName=string:HALBNAH_L_SEITE
+	[preset zCCSCamera:zCVob 33793 20]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:-206.49498 51.9257736 -164.88385 -109.685814 121.037193 -105.537163 
+		trafoOSToWSRot=raw:a23b493e0000000014027bbf000000000000803f0000000014027b3f00000000a23b493e
+		trafoOSToWSPos=vec3:-202.274796 81.4814835 -126.675995
+		vobName=string:HALBNAH_L_SEITE
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:5
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:1
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 21]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-205.276382 128.962982 -48.7399788 -154.282028 148.962982 -19.6971703 
+			trafoOSToWSRot=raw:a53b493e0000000012027bbf000000000000803f0000000014027b3f00000000a53b493e
+			trafoOSToWSPos=vec3:-203.310257 138.962982 -29.4981079
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f000000000000a033b228be42000000000000803f000000000eed6542000040b300000000feff7f3f10e6a0410000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 22]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-255.207321 111.962982 -233.151398 -204.212967 131.962982 -204.108582 
+			trafoOSToWSRot=raw:a33b493e0000000012027bbf000000000000803f0000000014027b3f00000000a13b493e
+			trafoOSToWSPos=vec3:-253.241211 121.962982 -213.909515
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f0000000000008032b418bfc2000000000000803f000000000eed2142000080b200000000feff7f3fac5103420000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 23]
+	presetName=string:NAH_L_SEITE
+	[preset zCCSCamera:zCVob 33793 24]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:-206.49498 51.9257736 -164.88385 -109.685814 121.037193 -105.537163 
+		trafoOSToWSRot=raw:a23b493e0000000014027bbf000000000000803f0000000014027b3f00000000a23b493e
+		trafoOSToWSPos=vec3:-202.274796 81.4814835 -126.675995
+		vobName=string:NAH_L_SEITE
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:5
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:1
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 25]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-208.724808 136.962982 -95.0410995 -157.730453 156.962982 -65.9982834 
+			trafoOSToWSRot=raw:a53b493e0000000012027bbf000000000000803f0000000014027b3f00000000a53b493e
+			trafoOSToWSPos=vec3:-206.758698 146.962982 -75.7992249
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f000000000000a033a0034442000000000000803f0000000087f68242000040b300000000feff7f3f405066410000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 26]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-228.529465 135.962982 -237.313354 -177.53511 155.962982 -208.270538 
+			trafoOSToWSRot=raw:a33b493e0000000012027bbf000000000000803f0000000014027b3f00000000a13b493e
+			trafoOSToWSPos=vec3:-226.563354 145.962982 -218.071472
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f0000000000008032d8c5bcc2000000000000803f0000000087f68042000080b200000000feff7f3fc055bb400000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 27]
+	presetName=string:HALBNAH_R_SEITE
+	[preset zCCSCamera:zCVob 33793 28]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:-206.49498 51.9257736 -164.88385 -109.685814 121.037193 -105.537163 
+		trafoOSToWSRot=raw:a23b493e0000000014027bbf000000000000803f0000000014027b3f00000000a23b493e
+		trafoOSToWSPos=vec3:-202.274796 81.4814835 -126.675995
+		vobName=string:HALBNAH_R_SEITE
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:5
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:1
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 29]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-241.609085 122.962982 -248.014435 -190.614731 142.962982 -218.971619 
+			trafoOSToWSRot=raw:a53b493e0000000012027bbf000000000000803f0000000014027b3f00000000a53b493e
+			trafoOSToWSPos=vec3:-239.642944 132.962982 -228.772552
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f000000000000a033fce5d6c2000000000000803f000000000eed4d42000040b300000000feff7f3f509b84410000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 30]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-162.956772 109.962982 -54.5033493 -111.962418 129.962982 -25.4605446 
+			trafoOSToWSRot=raw:a33b493e0000000012027bbf000000000000803f0000000014027b3f00000000a13b493e
+			trafoOSToWSPos=vec3:-160.990662 119.962982 -35.2614822
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f0000000000008032707dc342000000000000803f000000000eed1942000080b200000000feff7f3f001eb4c10000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 31]
+	presetName=string:NAH_R_SEITE
+	[preset zCCSCamera:zCVob 33793 32]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:-206.49498 51.9257736 -164.88385 -109.685814 121.037193 -105.537163 
+		trafoOSToWSRot=raw:a23b493e0000000014027bbf000000000000803f0000000014027b3f00000000a23b493e
+		trafoOSToWSPos=vec3:-202.274796 81.4814835 -126.675995
+		vobName=string:NAH_R_SEITE
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:5
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:1
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 33]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-225.791885 135.962982 -198.567825 -174.797531 155.962982 -169.525009 
+			trafoOSToWSRot=raw:a53b493e0000000012027bbf000000000000803f0000000014027b3f00000000a53b493e
+			trafoOSToWSPos=vec3:-223.82576 145.962982 -179.325943
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f000000000000a033086f5fc2000000000000803f0000000087f68042000040b300000000feff7f3fe08b2c410000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 34]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-162.956772 128.962982 -54.5036621 -111.962418 148.962982 -25.4608574 
+			trafoOSToWSRot=raw:a33b493e0000000012027bbf000000000000803f0000000014027b3f00000000a13b493e
+			trafoOSToWSPos=vec3:-160.990662 138.962982 -35.261795
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f0000000000008032487dc342000000000000803f000000000eed6542000080b200000000feff7f3f201eb4c10000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 35]
+	presetName=string:SCHULTER_R
+	[preset zCCSCamera:zCVob 33793 36]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:-206.49498 51.9257736 -164.88385 -109.685814 121.037193 -105.537163 
+		trafoOSToWSRot=raw:a23b493e0000000014027bbf000000000000803f0000000014027b3f00000000a23b493e
+		trafoOSToWSPos=vec3:-202.274796 81.4814835 -126.675995
+		vobName=string:SCHULTER_R
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:5
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:1
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 37]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-177.46402 135.962982 -118.311584 -127.303741 155.962982 -92.34832 
+			trafoOSToWSRot=raw:96b4023e0000000006e87dbf000000000000803f0000000006e87d3f00000000a8b4023e
+			trafoOSToWSPos=vec3:-176.186951 145.962982 -102.262398
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:73607f3f0000000044dc8ebd9083e841000000000000803f0000000087f6804268dc8e3d0000000074607f3f7840a6c10000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 38]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-370.63623 128.962982 -116.452408 -319.641846 148.962982 -87.4095993 
+			trafoOSToWSRot=raw:a33b493e0000000012027bbf000000000000803f0000000014027b3f00000000a13b493e
+			trafoOSToWSPos=vec3:-368.670044 138.962982 -97.2105408
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f000000000000803200bf73c0000000000000803f000000000eed6542000080b200000000feff7f3fecf028430000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 39]
+	presetName=string:SCHULTER_L
+	[preset zCCSCamera:zCVob 33793 40]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:-206.49498 51.9257736 -164.88385 -109.685814 121.037193 -105.537163 
+		trafoOSToWSRot=raw:a23b493e0000000014027bbf000000000000803f0000000014027b3f00000000a23b493e
+		trafoOSToWSPos=vec3:-202.274796 81.4814835 -126.675995
+		vobName=string:SCHULTER_L
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:5
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:1
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 41]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-178.062637 139.962982 -179.137024 -127.902359 159.962982 -153.173767 
+			trafoOSToWSRot=raw:96b4023e0000000006e87dbf000000000000803f0000000006e87d3f00000000a8b4023e
+			trafoOSToWSPos=vec3:-176.785568 149.962982 -163.087845
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:73607f3f0000000044dc8ebdd08af5c1000000000000803f0000000087f6884268dc8e3d0000000074607f3f489700c20000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 42]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-370.63623 128.962982 -116.452408 -319.641846 148.962982 -87.4095993 
+			trafoOSToWSRot=raw:a33b493e0000000012027bbf000000000000803f0000000014027b3f00000000a13b493e
+			trafoOSToWSPos=vec3:-368.670044 138.962982 -97.2105408
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f000000000000803200bf73c0000000000000803f000000000eed6542000080b200000000feff7f3fecf028430000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 43]
+	presetName=string:NAH_ZOOM_OUT_M
+	[preset zCCSCamera:zCVob 33793 44]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:87.479866 141.065384 -233.100296 184.289047 210.176804 -173.753601 
+		trafoOSToWSRot=raw:a43b493e0000000014027bbf000000000000803f0000000016027b3f00000000a23b493e
+		trafoOSToWSPos=vec3:91.700058 170.621094 -194.892441
+		vobName=string:NAH_ZOOM_OUT_M
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:10
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:2
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 45]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:32.5354462 222.1026 -204.764786 83.5298004 242.1026 -175.72197 
+			trafoOSToWSRot=raw:aa3b493e0000000012027bbf000000000000803f0000000018027b3f00000000a43b493e
+			trafoOSToWSPos=vec3:34.501564 232.1026 -185.522919
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0100803f0000000000008033c06e03c0000000000000803f0000000010ed7542000080b300000000feff7f3f9cb267420000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 46]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-59.184166 193.954422 -192.716766 -8.18981171 213.954422 -163.67395 
+			trafoOSToWSRot=raw:a63b493e0000000012027bbf000000000000803f0000000018027b3f00000000a03b493e
+			trafoOSToWSPos=vec3:-57.2180481 203.954422 -173.474884
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:10
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0100803f0000000000000000403d04c1000000000000803f00000000545505420000000000000000feff7f3f233916430000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 47]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:294.561951 228.1026 -276.041077 345.556335 248.1026 -246.99826 
+			trafoOSToWSRot=raw:a73b493e0000000012027bbf000000000000803f0000000018027b3f00000000a13b493e
+			trafoOSToWSPos=vec3:296.528076 238.1026 -256.799194
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0100803f00000000000080328094a3c1000000000000803f0000000088f68642000080b200000000feff7f3febff54c30000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 48]
+	presetName=string:NAH_ZOOM_IN_M
+	[preset zCCSCamera:zCVob 33793 49]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:87.479866 141.065384 -233.100296 184.289047 210.176804 -173.753601 
+		trafoOSToWSRot=raw:a43b493e0000000014027bbf000000000000803f0000000016027b3f00000000a23b493e
+		trafoOSToWSPos=vec3:91.700058 170.621094 -194.892441
+		vobName=string:NAH_ZOOM_IN_M
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:10
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:2
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 50]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-56.1054001 190.1026 -194.142456 -5.11104584 210.1026 -165.09964 
+			trafoOSToWSRot=raw:aa3b493e0000000012027bbf000000000000803f0000000018027b3f00000000a43b493e
+			trafoOSToWSPos=vec3:-54.1392822 200.1026 -174.900574
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0100803f0000000000008033d0ec10c1000000000000803f0000000020daeb41000080b300000000feff7f3f9eec12430000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 51]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:25.2804241 223.954422 -205.948776 76.2747803 243.954422 -176.90596 
+			trafoOSToWSRot=raw:a63b493e0000000012027bbf000000000000803f0000000018027b3f00000000a03b493e
+			trafoOSToWSPos=vec3:27.2465363 233.954422 -186.706909
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:10
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0100803f0000000000000000007d94c0000000000000803f0000000054557d420000000000000000feff7f3f519c81420000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 52]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:294.561951 228.1026 -276.041077 345.556335 248.1026 -246.99826 
+			trafoOSToWSRot=raw:a73b493e0000000012027bbf000000000000803f0000000018027b3f00000000a13b493e
+			trafoOSToWSPos=vec3:296.528076 238.1026 -256.799194
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0100803f00000000000080328094a3c1000000000000803f0000000088f68642000080b200000000feff7f3febff54c30000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 53]
+	presetName=string:FAHRT_HALBNAH_LR
+	[preset zCCSCamera:zCVob 33793 54]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:87.479866 141.065384 -233.100296 184.289047 210.176804 -173.753601 
+		trafoOSToWSRot=raw:a43b493e0000000014027bbf000000000000803f0000000016027b3f00000000a23b493e
+		trafoOSToWSPos=vec3:91.700058 170.621094 -194.892441
+		vobName=string:FAHRT_HALBNAH_LR
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:10
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:2
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 55]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-46.702858 190.1026 -140.967407 4.29149628 210.1026 -111.924599 
+			trafoOSToWSRot=raw:aa3b493e0000000012027bbf000000000000803f0000000018027b3f00000000a43b493e
+			trafoOSToWSPos=vec3:-44.7367401 200.1026 -121.725533
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0100803f000000000000803360b63342000000000000803f0000000020daeb41000080b300000000feff7f3fa52714430000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 56]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-57.5121689 188.954422 -266.517181 -6.51781464 208.954422 -237.474365 
+			trafoOSToWSRot=raw:a63b493e0000000012027bbf000000000000803f0000000018027b3f00000000a03b493e
+			trafoOSToWSPos=vec3:-55.5460358 198.954422 -247.27533
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:10
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0100803f00000000000000007098a0c2000000000000803f00000000a8aae2410000000000000000feff7f3fae1406430000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 57]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:294.561951 228.1026 -276.041077 345.556335 248.1026 -246.99826 
+			trafoOSToWSRot=raw:a73b493e0000000012027bbf000000000000803f0000000018027b3f00000000a13b493e
+			trafoOSToWSPos=vec3:296.528076 238.1026 -256.799194
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0100803f00000000000080328094a3c1000000000000803f0000000088f68642000080b200000000feff7f3febff54c30000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 58]
+	presetName=string:TRIANGEL_LR
+	[preset zCCSCamera:zCVob 33793 59]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:208.000473 -17.677887 -96.6667252 253.049866 51.4335327 -5.24250984 
+		trafoOSToWSRot=raw:51e47f3f000000008e43eebc000000000000803f00000000f743ee3c000000005be47f3f
+		trafoOSToWSPos=vec3:228.901611 11.8778229 -5.98275757
+		vobName=string:TRIANGEL_LR
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:10
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:3
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 60]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-324.718384 136.370392 438.670349 -276.602875 156.370392 458.949066 
+			trafoOSToWSRot=raw:57e47f3f000000000543eebc000000000000803f000000004044ee3c0000000077e47f3f
+			trafoOSToWSPos=vec3:269.501709 41.3593369 143.416428
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0300803f000000000040a33470b63342000000000000803f0000000024daeb4100800634000000000e00803faa2714430000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 61]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-311.374939 145.222198 313.36499 -263.25943 165.222198 333.643707 
+			trafoOSToWSRot=raw:57e47f3f000000002d43eebc000000000000803f000000006844ee3c0000000077e47f3f
+			trafoOSToWSPos=vec3:144.73822 50.2111435 125.708466
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:5
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0300803f00000000008076345498a0c2000000000000803f000000005255194200805634000000000e00803f501506430000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 62]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-287.89621 180.888855 331.835907 -239.780701 200.888855 352.114624 
+			trafoOSToWSRot=raw:55e47f3f000000003343eebc000000000000803f00000000fb43ee3c0000000075e47f3f
+			trafoOSToWSPos=vec3:164.017181 85.8778 102.888519
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:10
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0200803f000000000000663400c376c2000000000000803f00000000fdff9342000000b0000000000d00803fac6cdd420000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 63]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:36.0499573 174.370377 371.196259 84.165451 194.370377 391.474976 
+			trafoOSToWSRot=raw:57e47f3f000000002543eebc000000000000803f000000006044ee3c0000000077e47f3f
+			trafoOSToWSPos=vec3:214.657761 79.3593063 -219.487488
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0300803f0000000000408334a094a3c1000000000000803f0000000085f6864200804634000000000e00803ff6ff54c30000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 64]
+	presetName=string:FAHRT_HALBNAH_RL
+	[preset zCCSCamera:zCVob 33793 65]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:-343.854401 159.33316 490.55835 -301.411346 228.44458 580.786133 
+		trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+		trafoOSToWSPos=vec3:-322.947754 188.88887 580.672241
+		vobName=string:FAHRT_HALBNAH_RL
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:10
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:3
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 66]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-412.129639 203.88884 569.234924 -392.129639 223.88884 617.234924 
+			trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+			trafoOSToWSPos=vec3:-402.125458 213.88884 617.234802
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f0000000000000000fc5a9ec2000000000000803f00000000f0ffc74100000000000000000000803f104012420000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 67]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-312.85556 212.88884 598.380432 -292.85556 232.88884 646.380432 
+			trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+			trafoOSToWSPos=vec3:-302.851379 222.88884 646.38031
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:6.00562763
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f000000000000000060c5a041000000000000803f00000000f8ff074200000000000000000000803f886a83420000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 68]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-248.59111 236.888855 604.644836 -228.59111 256.888855 652.644836 
+			trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+			trafoOSToWSPos=vec3:-238.586929 246.888855 652.644714
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:10
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f0000000000000000beb8a842000000000000803f00000000fcff674200000000000000000000803fe8f18f420000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 69]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-337.766693 286.888855 485.843994 -317.766693 306.888855 533.843994 
+			trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+			trafoOSToWSPos=vec3:-327.762512 296.888855 533.843872
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f000000000000000080129ac0000000000000803f00000000feffd74200000000000000000000803f40503bc20000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 70]
+	presetName=string:TRIANGEL_RL
+	[preset zCCSCamera:zCVob 33793 71]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:-343.854401 159.33316 490.55835 -301.411346 228.44458 580.786133 
+		trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+		trafoOSToWSPos=vec3:-322.947754 188.88887 580.672241
+		vobName=string:TRIANGEL_RL
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:10
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:3
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 72]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-407.470886 214.88884 586.621887 -387.470886 234.88884 634.621887 
+			trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+			trafoOSToWSPos=vec3:-397.466705 224.88884 634.621765
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f0000000000000000b40995c2000000000000803f00000000f8ff0f4200000000000000000000803f50cc57420000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 73]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-344.151123 212.88884 741.682068 -324.151123 232.88884 789.682068 
+			trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+			trafoOSToWSPos=vec3:-334.146942 222.88884 789.681946
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:5.02173615
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f0000000000000000e02f33c1000000000000803f00000000f8ff074200000000000000000000803f7c0251430000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 74]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-252.581345 191.888855 604.923889 -232.581345 211.888855 652.923889 
+			trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+			trafoOSToWSPos=vec3:-242.577164 201.888855 652.923767
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:10
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f0000000000000000bebda042000000000000803f00000000f0ff4f4100000000000000000000803fc88090420000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 75]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-337.766693 286.888855 485.843994 -317.766693 306.888855 533.843994 
+			trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+			trafoOSToWSPos=vec3:-327.762512 296.888855 533.843872
+			vobName=string:
+			visual=string:
+			showVisual=bool:0
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:4
+			isAmbient=bool:0
+			[visual % 0 0]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f000000000000000080129ac0000000000000803f00000000feffd74200000000000000000000803f40503bc20000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 76]
+	presetName=string:HALBNAH_L_CURVE
+	[preset zCCSCamera:zCVob 33793 77]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:-224.539581 163.036942 36.3895187 -181.969849 232.148361 126.676857 
+		trafoOSToWSRot=raw:efff7f3f000000000a17b83a000000000000803f000000000a17b8ba00000000efff7f3f
+		trafoOSToWSPos=vec3:-203.506378 192.592651 126.533585
+		vobName=string:HALBNAH_L_CURVE
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:5
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:4
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 78]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-114.749031 245.99263 126.93972 -86.0762863 269.075165 158.450104 
+			trafoOSToWSRot=raw:6f69463e0000000000267b3f000000000000803f0000000000267bbf000000006d69463e
+			trafoOSToWSPos=vec3:-108.398773 250.074158 146.512375
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual zCProgMeshProto 53505 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:96d2473e000000001b147b3faf28be42000000000000803f0000000010ed65421b147bbf0000000094d2473e16e6a0410000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 80]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-100.760292 239.807449 289.092651 -76.3883286 262.889984 316.993866 
+			trafoOSToWSRot=raw:c7e2a83c0000000011f27fbf000000000000803f0000000011f27f3f00000000c5e2a83c
+			trafoOSToWSPos=vec3:-81.5898438 243.888977 297.605591
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:1.39430642
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:ec619d3c00000000e7f37fbf305af342000000000000803f00000000702f4d42e7f37f3f00000000ea619d3c393e2b430000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 81]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-218.122818 239.807449 441.626404 -183.355499 262.889984 474.583435 
+			trafoOSToWSRot=raw:018269bf00000000a4dbd1be000000000000803f00000000a4dbd13e00000000ff8169bf
+			trafoOSToWSPos=vec3:-193.00351 243.888977 462.407349
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:3.18684316
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:ada769bf00000000ac33d1be797f2041000000000000803f00000000702f4d42ac33d13e00000000aba769bfb0f1a7430000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 82]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-310.009155 284.796906 617.166138 -273.869568 307.879456 652.453186 
+			trafoOSToWSRot=raw:38bf50bf00000000033114bf000000000000803f000000000331143f0000000037bf50bf
+			trafoOSToWSPos=vec3:-283.516602 288.878448 637.531433
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:5
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:73f450bf00000000ece513bfa874a1c2000000000000803f000000005492c042ece5133f0000000072f450bf4871ff430000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 83]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-305.358734 228.99263 139.92485 -276.685974 252.07515 171.435242 
+			trafoOSToWSRot=raw:7069463e0000000000267b3f000000000000803f0000000000267bbf000000006e69463e
+			trafoOSToWSPos=vec3:-299.008453 233.074158 159.497513
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:97d2473e000000001b147b3fb818bfc2000000000000803f0000000010ed21421b147bbf0000000095d2473ead5103420000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 84]
+	presetName=string:GRAVEYARD_01
+	[preset zCCSCamera:zCVob 33793 85]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:-6417.92432 -1075.80676 1343.61206 -6321.11719 -1006.69537 1402.94983 
+		trafoOSToWSRot=raw:301f49be0000000082037bbf000000000000803f0000000082037b3f00000000301f49be
+		trafoOSToWSPos=vec3:-6413.58252 -1046.2511 1364.13379
+		vobName=string:GRAVEYARD_01
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:0
+		targetTrjFOR=enum:0
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:15
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:5
+		numTargets=int:6
+		[% zCCamTrj_KeyFrame:zCVob 31489 86]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-8598.63379 -1121.07544 4565.48438 -8563.44824 -1097.99292 4601.58057 
+			trafoOSToWSRot=raw:b7c6113f00000000d270523f000000000000803f00000000d37052bf00000000b8c6113f
+			trafoOSToWSPos=vec3:-8589.88672 -1116.9939 4583.84277
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:b7c6113f00000000d270523f8c3706c6000000000000803f00000000ce9f8bc4d37052bf00000000b8c6113fbe3e8f450000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 87]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-8561.96387 -1146.22791 3405.23511 -8526.04492 -1123.14539 3441.54736 
+			trafoOSToWSRot=raw:7a82263f000000000673423f000000000000803f00000000077342bf000000007a82263f
+			trafoOSToWSPos=vec3:-8552.83594 -1142.14636 3422.79639
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:2.22025299
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:7a82263f000000000673423f58a305c6000000000000803f00000000afc48ec4077342bf000000007a82263fbeec55450000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 88]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-8918.87793 -967.923218 1229.14429 -8887.79102 -944.840698 1257.29846 
+			trafoOSToWSRot=raw:4c387c3f0000000069522f3e000000000000803f000000006c522fbe000000004d387c3f
+			trafoOSToWSPos=vec3:-8909.76367 -963.841675 1237.13721
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:6.46509409
+			angleRollDeg=float:15
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:4c387c3f0000000069522f3e0e370bc6000000000000803f00000000def570c46c522fbe000000004d387c3f64a49a440000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 89]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-8367.99609 -847.980408 -555.687012 -8332.33789 -824.897888 -521.341431 
+			trafoOSToWSRot=raw:e4875d3f00000000014c00bf000000000000803f00000000014c003f00000000e6875d3f
+			trafoOSToWSPos=vec3:-8351.19141 -843.898865 -547.306396
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:10.0771589
+			angleRollDeg=float:15
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:e4875d3f00000000014c00bfc47c02c6000000000000803f0000000087f952c4014c003f00000000e6875d3f9cd308c40000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 90]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-6705.88477 -657.547058 -2516.72583 -6670.35547 -634.464539 -2480.49585 
+			trafoOSToWSRot=raw:0f681a3f0000000054314cbf000000000000803f0000000052314c3f0000000010681a3f
+			trafoOSToWSPos=vec3:-6685.65332 -653.465515 -2507.11182
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:15
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0f681a3f0000000054314cbf3aedd0c5000000000000803f00000000cb5d23c452314c3f0000000010681a3fcab11cc50000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 91]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-8472.28809 -1153.29932 4004.34131 -8437.77051 -1130.2168 4040.09766 
+			trafoOSToWSRot=raw:3c95033f000000004c985b3f000000000000803f000000004d985bbf000000003c95033f
+			trafoOSToWSPos=vec3:-8463.83594 -1149.21777 4023.11255
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:3c95033f000000004c985b3f583f04c6000000000000803f00000000f8a68fc44d985bbf000000003c95033fcd717b450000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 92]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-8366.81055 -1044.83679 1271.58496 -8333.54395 -1021.75427 1306.56323 
+			trafoOSToWSRot=raw:508bdb3e000000004645673f000000000000803f00000000474567bf00000000508bdb3e
+			trafoOSToWSPos=vec3:-8358.85645 -1040.75525 1290.81299
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:5.04037952
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:508bdb3e000000004645673f6d9b02c6000000000000803f000000002b1882c4474567bf00000000508bdb3e045aa1440000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 93]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-8229.15137 -1245.49731 403.154724 -8193.10742 -1222.41479 439.461609 
+			trafoOSToWSRot=raw:94702bbf00000000e81d3e3f000000000000803f00000000e81d3ebf0000000094702bbf
+			trafoOSToWSPos=vec3:-8212.85449 -1241.41577 429.990112
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:6.76258469
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:94702bbf00000000e81d3e3f6b5300c6000000000000803f000000004e2d9bc4e81d3ebf0000000094702bbfbcfed6430000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 94]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-8023.51611 -2186.20142 490.17688 -7997.72998 -2163.1189 519.289001 
+			trafoOSToWSRot=raw:3468983d00000000484a7f3f000000000000803f00000000494a7fbf000000003368983d
+			trafoOSToWSPos=vec3:-8018.09229 -2182.11987 509.482788
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:8.64197063
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:3468983d00000000484a7f3fbd90fac5000000000000803f00000000eb6108c5494a7fbf000000003368983dccbdfe430000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 95]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-7163.98926 -948.512573 284.076508 -7135.625 -925.430054 308.985901 
+			trafoOSToWSRot=raw:8dc97f3f0000000088ef263d000000000000803f000000008cef26bd000000008ec97f3f
+			trafoOSToWSPos=vec3:-7155.38428 -944.43103 289.657715
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:11.4858189
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:8dc97f3f0000000088ef263d139bdfc5000000000000803f00000000961b6cc48cef26bd000000008ec97f3f30d490430000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 96]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:-5362.50391 -540.643677 -153.839127 -5334.13965 -517.561157 -128.929749 
+			trafoOSToWSRot=raw:8dc97f3f00000000f0ee263d000000000000803f00000000f4ee26bd000000008ec97f3f
+			trafoOSToWSPos=vec3:-5353.89893 -536.562134 -148.257935
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:15
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:8dc97f3f00000000f0ee263d314fa7c5000000000000803f00000000fa2306c4f4ee26bd000000008ec97f3f084214c30000000000000000000000000000803f
+		[]
+	[]
+[]
+[% zCObjPreset 64513 97]
+	presetName=string:TEST1
+	[preset zCCSCamera:zCVob 33793 98]
+		pack=int:0
+		presetName=string:
+		bbox3DWS=rawFloat:530.655457 15.0753784 -17.2631226 573.098511 84.1867981 72.9646912 
+		trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+		trafoOSToWSPos=vec3:551.562134 44.6310883 72.8507843
+		vobName=string:TEST1
+		visual=string:INVISIBLE_ZCCSCAMERA.3DS
+		showVisual=bool:1
+		visualCamAlign=enum:0
+		visualAniMode=enum:0
+		visualAniModeStrength=float:0
+		vobFarClipZScale=float:1
+		cdStatic=bool:0
+		cdDyn=bool:0
+		staticVob=bool:0
+		dynShadow=enum:0
+		zbias=int:0
+		isAmbient=bool:0
+		[visual § 0 4]
+		[]
+		[ai % 0 0]
+		[]
+		camTrjFOR=enum:1
+		targetTrjFOR=enum:1
+		loopMode=enum:0
+		splLerpMode=enum:1
+		ignoreFORVobRotCam=bool:0
+		ignoreFORVobRotTarget=bool:0
+		adaptToSurroundings=bool:0
+		easeToFirstKey=bool:0
+		easeFromLastKey=bool:0
+		totalTime=float:10
+		autoCamFocusVobName=string:
+		autoCamPlayerMovable=bool:1
+		autoCamUntriggerOnLastKey=bool:0
+		autoCamUntriggerOnLastKeyDelay=float:0
+		numPos=int:3
+		numTargets=int:1
+		[% zCCamTrj_KeyFrame:zCVob 31489 99]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:1105.6897 40.5495567 152.188721 1133.10583 63.6320877 176.000534 
+			trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+			trafoOSToWSPos=vec3:1114.10522 44.6310883 156.999542
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f0000000000000000c2a20c44000000000000803f000000000000000000000000000000000000803f2a4ca8420000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 100]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:453.896973 40.5495567 113.849403 481.31311 63.6320877 137.661224 
+			trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+			trafoOSToWSPos=vec3:462.312531 44.6310883 118.660225
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:6.91359186
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f0000000000000000cc7fb2c2000000000000803f000000000000000000000000000000000000803fde3c37420000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 101]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:163.073059 40.5495567 94.3201447 190.489212 63.6320877 118.131958 
+			trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+			trafoOSToWSPos=vec3:171.488617 44.6310883 99.1309662
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:10
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f00000000000000006909bec3000000000000803f000000000000000000000000000000000000803fd03dd2410000000000000000000000000000803f
+		[]
+		[% zCCamTrj_KeyFrame:zCVob 31489 102]
+			pack=int:0
+			presetName=string:
+			bbox3DWS=rawFloat:575.486145 40.5495567 9.84959221 602.902283 63.6320877 33.6614113 
+			trafoOSToWSRot=raw:0000803f0000000000000000000000000000803f0000000000000000000000000000803f
+			trafoOSToWSPos=vec3:583.901672 44.6310883 14.6604156
+			vobName=string:
+			visual=string:INVISIBLE_ZCCAMTRJ_KEYFRAME.3DS
+			showVisual=bool:1
+			visualCamAlign=enum:0
+			visualAniMode=enum:0
+			visualAniModeStrength=float:0
+			vobFarClipZScale=float:1
+			cdStatic=bool:0
+			cdDyn=bool:0
+			staticVob=bool:0
+			dynShadow=enum:0
+			zbias=int:0
+			isAmbient=bool:0
+			[visual § 0 79]
+			[]
+			[ai % 0 0]
+			[]
+			time=float:0
+			angleRollDeg=float:0
+			camFOVScale=float:1
+			motionType=enum:1
+			motionTypeFOV=enum:1
+			motionTypeRoll=enum:1
+			motionTypeTimeScale=enum:1
+			tension=float:0
+			bias=float:0
+			continuity=float:0
+			timeScale=float:1
+			timeIsFixed=bool:0
+			originalPose=raw:0000803f0000000000000000b05b0142000000000000803f000000000000000000000000000000000000803ff0c268c20000000000000000000000000000803f
+		[]
+	[]
+[]

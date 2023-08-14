@@ -165,7 +165,7 @@ func void DIA_MIL_7_STANDARD_Info()
 	{
 		AI_Output(self,other,"DIA_MIL_7_STANDARD_07_05");	//Часть наемников уже покинула ферму Онара. Некоторые проблемы решаются сами собой.
 	}
-	else if(Kapitel >= 5)
+	else
 	{
 		AI_Output(self,other,"DIA_MIL_7_STANDARD_07_06");	//С драконами покончено, но это еще не все. Следующие на очереди орки. Их мы тоже скоро уничтожим!
 	};

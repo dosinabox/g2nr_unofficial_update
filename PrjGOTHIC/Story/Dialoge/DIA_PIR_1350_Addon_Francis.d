@@ -221,7 +221,6 @@ instance DIA_Addon_Francis_Buch(C_Info)
 
 func int DIA_Addon_Francis_Buch_Condition()
 {
-//	if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis))
 	if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis) && (Francis_HasProof == TRUE))
 	{
 		return TRUE;
@@ -245,8 +244,6 @@ func void DIA_Addon_Francis_Buch_Info()
 		AI_Output(self,other,"DIA_Addon_Francis_Buch_13_06");	//Я ДАМ ТЕБЕ этот ключ!
 		AI_Output(self,other,"DIA_Addon_Francis_Buch_13_07");	//Там внутри много ценного...
 		AI_Output(self,other,"DIA_Addon_Francis_Buch_13_08");	//(нервно) Но ты должен отдать мне книгу и держать свой рот на замке, идет?
-		B_GiveInvItems(other,self,ITWR_Addon_FrancisAbrechnung_Mis,1);
-		Npc_RemoveInvItem(self,ITWR_Addon_FrancisAbrechnung_Mis);
 		B_GiveInvItems(self,other,ItKe_Greg_Addon_MIS,1);
 	}
 	else
@@ -264,9 +261,9 @@ func void DIA_Addon_Francis_Buch_Info()
 			B_GiveInvItems(self,other,ItMi_Gold,500);
 		};
 		AI_Output(self,other,"DIA_Addon_Francis_Buch_13_13");	//(торопливо) А теперь давай мне сюда эту штуку...
-		B_GiveInvItems(other,self,ITWR_Addon_FrancisAbrechnung_Mis,1);
-		Npc_RemoveInvItem(self,ITWR_Addon_FrancisAbrechnung_Mis);
 	};
+	B_GiveInvItems(other,self,ITWR_Addon_FrancisAbrechnung_Mis,1);
+	Npc_RemoveInvItem(self,ITWR_Addon_FrancisAbrechnung_Mis);
 	AI_StopProcessInfos(self);
 };
 
@@ -292,18 +289,27 @@ func int DIA_Francis_Ausgeschissen_Condition()
 
 func void DIA_Francis_Ausgeschissen_Info()
 {
-	if(!Npc_IsDead(Greg))
+	if(Npc_KnowsInfo(other,DIA_Addon_Greg_GiveFrancisBook))
 	{
-		AI_Output(self,other,"DIA_Addon_Francis_Ausgeschissen_13_00");	//(гневно) Благодаря тебе Грег заставил меня пилить дрова до тех пор, пока на острове не останется ни одного дерева.
-	};
-	AI_Output(self,other,"DIA_Addon_Francis_Ausgeschissen_13_01");	//Оставь меня в покое!
-	if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis) && (Francis_HasProof == TRUE))
-	{
-		DIA_Common_NotSoFastMyFriend();
+		B_Say(self,other,"$IGETYOUSTILL");
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_KILL,1);
 	}
 	else
 	{
-		AI_StopProcessInfos(self);
+		if(!Npc_IsDead(Greg))
+		{
+			AI_Output(self,other,"DIA_Addon_Francis_Ausgeschissen_13_00");	//(гневно) Благодаря тебе Грег заставил меня пилить дрова до тех пор, пока на острове не останется ни одного дерева.
+		};
+		AI_Output(self,other,"DIA_Addon_Francis_Ausgeschissen_13_01");	//Оставь меня в покое!
+		if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis) && (Francis_HasProof == TRUE))
+		{
+			DIA_Common_NotSoFastMyFriend();
+		}
+		else
+		{
+			AI_StopProcessInfos(self);
+		};
 	};
 };
 

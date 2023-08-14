@@ -103,9 +103,15 @@ instance DIA_Addon_Garett_Samuel(C_Info)
 
 func int DIA_Addon_Garett_Samuel_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && (Samuel.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Samuel))
+		{
+			if(Samuel.aivar[AIV_TalkedToPlayer] == FALSE)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -229,7 +235,7 @@ func void DIA_Addon_Garett_Tips_Info()
 	AI_Output(self,other,"DIA_Addon_Garett_Tips_09_04");	//Грег нередко там бывает. Может быть, тебе удастся там что-нибудь найти.
 	AI_Output(self,other,"DIA_Addon_Garett_Tips_09_05");	//Однажды я сам попытался исследовать это место, но оказалось, что оно кишит монстрами.
 	AI_Output(self,other,"DIA_Addon_Garett_Tips_09_06");	//Если ты все же решишься туда отправиться, не забудь кирку.
-	MIS_ADDON_GARett_BringKompass = LOG_Running;
+	MIS_Addon_Garett_BringKompass = LOG_Running;
 	Log_CreateTopic(TOPIC_Addon_Kompass,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Kompass,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Kompass,"Грег отобрал у Гаретта драгоценный компас. Гаретт думает, что Грег закопал его где-то на южном пляже.");
@@ -255,7 +261,7 @@ instance DIA_Addon_Garett_GiveKompass(C_Info)
 
 func int DIA_Addon_Garett_GiveKompass_Condition()
 {
-	if((Npc_HasItems(other,ItMI_Addon_Kompass_Mis) >= 1) && (MIS_ADDON_GARett_BringKompass == LOG_Running))
+	if((Npc_HasItems(other,ItMI_Addon_Kompass_Mis) >= 1) && (MIS_Addon_Garett_BringKompass == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -285,8 +291,8 @@ func void DIA_Addon_Garett_GiveKompass_Info()
 		B_GarettGiveBelt();
 	};
 	B_LogEntry(TOPIC_Addon_Kompass,"Гаретт был очень рад, когда я вернул ему компас.");
-	MIS_ADDON_GARett_BringKompass = LOG_SUCCESS;
-	B_GivePlayerXP(XP_ADDON_Garett_Bring_Kompass);
+	MIS_Addon_Garett_BringKompass = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Addon_Garett_Bring_Kompass);
 };
 
 
@@ -303,7 +309,11 @@ instance DIA_Addon_Garett_Francis(C_Info)
 
 func int DIA_Addon_Garett_Francis_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Garett_Greg))
+	if(Npc_KnowsInfo(other,DIA_Addon_Garett_Greg) && !Npc_IsDead(Francis))
+	{
+		return TRUE;
+	};
+	if(C_CanAskPiratesAboutFrancis())
 	{
 		return TRUE;
 	};
@@ -315,10 +325,10 @@ func void DIA_Addon_Garett_Francis_Info()
 	AI_Output(self,other,"DIA_Addon_Garett_Francis_09_01");	//Когда Грега нет, он остается за старшего.
 	AI_Output(self,other,"DIA_Addon_Garett_Francis_09_02");	//Но честно говоря, лидер из него никакой.
 	AI_Output(self,other,"DIA_Addon_Garett_Francis_09_03");	//Он даже Моргана не может заставить оторвать свою ленивую задницу от кровати.
-	AI_Output(self,other,"DIA_Addon_Garett_Francis_09_04");	//Чем-то полезным сейчас занимается только Генри со своими ребятами.
-	AI_Output(self,other,"DIA_Addon_Garett_Francis_09_05");	//Остальные же просто бездельничают.
 	if(GregIsBack == FALSE)
 	{
+		AI_Output(self,other,"DIA_Addon_Garett_Francis_09_04");	//Чем-то полезным сейчас занимается только Генри со своими ребятами.
+		AI_Output(self,other,"DIA_Addon_Garett_Francis_09_05");	//Остальные же просто бездельничают.
 		AI_Output(self,other,"DIA_Addon_Garett_Francis_09_06");	//Надеюсь, что Грег скоро вернется.
 		AI_Output(self,other,"DIA_Addon_Garett_Francis_09_07");	//Он-то покажет этим лентяям, что к чему.
 	};
@@ -396,7 +406,7 @@ instance DIA_Addon_Garett_ArmorM(C_Info)
 
 func int DIA_Addon_Garett_ArmorM_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && Npc_KnowsInfo(other,DIA_Addon_Greg_JoinPirates) && (Greg_NoHelpInNW == TRUE) && (Garett_Armor_Given == FALSE))
+	if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && (Greg_LightArmorGiven == TRUE) && (Garett_Armor_Given == FALSE))
 	{
 		return TRUE;
 	};
@@ -406,9 +416,17 @@ func void DIA_Addon_Garett_ArmorM_Info()
 {
 	DIA_Common_WhatAboutBetterArmor();
 	AI_Output(self,other,"DIA_Matteo_LEATHER_09_01");	//Они тебе понравятся. (ухмыляется)
-	Info_ClearChoices(DIA_Addon_Garett_ArmorM);
-	Info_AddChoice(DIA_Addon_Garett_ArmorM,Dialog_Back,DIA_Addon_Garett_ArmorM_Back);
-	Info_AddChoice(DIA_Addon_Garett_ArmorM,"Купить доспехи пирата. Защита: 55/55/0/0. (1300 золотых)",DIA_Addon_Garett_ArmorM_Buy);
+	if(Greg_NoHelpInNW == 0)
+	{
+		B_GiveArmor(ITAR_PIR_M_Addon);
+		Garett_Armor_Given = TRUE;
+	}
+	else
+	{
+		Info_ClearChoices(DIA_Addon_Garett_ArmorM);
+		Info_AddChoice(DIA_Addon_Garett_ArmorM,Dialog_Back,DIA_Addon_Garett_ArmorM_Back);
+		Info_AddChoice(DIA_Addon_Garett_ArmorM,B_BuildPriceString("Купить доспехи пирата. Защита: 55/55/0/0.",VALUE_ITAR_PIR_M_Addon),DIA_Addon_Garett_ArmorM_Buy);
+	};
 };
 
 func void DIA_Addon_Garett_ArmorM_Buy()

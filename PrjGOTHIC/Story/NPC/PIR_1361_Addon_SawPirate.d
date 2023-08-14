@@ -6,7 +6,7 @@ instance PIR_1361_Addon_Pirat(Npc_Default)
 	id = 1361;
 	voice = 9;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Addon_PIR2hAxe);

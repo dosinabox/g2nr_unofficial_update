@@ -43,9 +43,12 @@ instance DIA_Addon_BDT_1072_Logan_Mine(C_Info)
 
 func int DIA_Addon_Logan_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01) && (Npc_GetDistToWP(self,"BL_INN_CORNER_02") <= 1000))
+	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01) && (Logan_Inside == TRUE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"BL_INN_05_D") <= 1200)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -74,9 +77,12 @@ instance DIA_Addon_Logan_How2(C_Info)
 
 func int DIA_Addon_Logan_How2_Condition()
 {
-	if((Logan_Inside == TRUE) && (Npc_GetDistToWP(self,"BL_INN_CORNER_02") <= 1000))
+	if(Logan_Inside == TRUE)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"BL_INN_05_D") <= 1200)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -108,7 +114,7 @@ instance DIA_Addon_Logan_Attentat(C_Info)
 
 func int DIA_Addon_Logan_Attentat_Condition()
 {
-	if((MIS_Judas == LOG_Running) && (Logan_Inside == TRUE) && (LoganToldAboutEsteban == TRUE))
+	if((MIS_Judas == LOG_Running) && (LoganToldAboutEsteban == TRUE))
 	{
 		return TRUE;
 	};
@@ -271,9 +277,12 @@ instance DIA_Addon_Logan_tot(C_Info)
 
 func int DIA_Addon_Logan_tot_Condition()
 {
-	if(Npc_IsDead(MIS_Addon_Swampshark_01) && Npc_IsDead(MIS_Addon_Swampshark_02) && Npc_IsDead(MIS_Addon_Swampshark_03) && Npc_KnowsInfo(other,DIA_Addon_Logan_MIS))
+	if(Npc_KnowsInfo(other,DIA_Addon_Logan_MIS))
 	{
-		return TRUE;
+		if(Npc_IsDead(MIS_Addon_Swampshark_01) && Npc_IsDead(MIS_Addon_Swampshark_02) && Npc_IsDead(MIS_Addon_Swampshark_03))
+		{
+			return TRUE;
+		};
 	};
 };
 

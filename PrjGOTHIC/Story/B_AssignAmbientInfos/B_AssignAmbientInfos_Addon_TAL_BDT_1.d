@@ -39,11 +39,8 @@ func void DIA_Addon_TAL_BDT_1_Hi_Info()
 {
 	AI_Output(other,self,"DIA_Addon_TAL_BDT_1_Hi_15_00");	//Как дела?
 	AI_Output(self,other,"DIA_Addon_TAL_BDT_1_Hi_01_01");	//Я жду, пока им не понадобится кто-нибудь новый и не придет моя очередь.
-	if(!Npc_IsDead(Franco))
-	{
-		AI_Output(self,other,"DIA_Addon_TAL_BDT_1_Hi_01_02");	//Из всех людей, кто снаружи, только Франко мог войти сюда.
-	}
-	else
+	AI_Output(self,other,"DIA_Addon_TAL_BDT_1_Hi_01_02");	//Из всех людей, кто снаружи, только Франко мог войти сюда.
+	if(Npc_IsDead(Franco))
 	{
 		AI_Output(self,other,"DIA_Addon_TAL_BDT_1_Hi_01_03");	//А теперь Франко мертв, и, может быть, у меня появится шанс.
 	};

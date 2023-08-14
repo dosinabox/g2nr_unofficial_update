@@ -6,7 +6,7 @@ instance PIR_1350_Addon_Francis(Npc_Default)
 	id = 1350;
 	voice = 13;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Schwert1);
@@ -29,7 +29,13 @@ func void Rtn_Start_1350()
 
 func void Rtn_GregIsBack_1350()
 {
-	TA_Saw(5,0,20,0,"ADW_PIRATECAMP_BEACH_19");
-	TA_Sit_Campfire(20,0,5,0,"WP_PIR_05");
+	TA_Saw(5,0,23,45,"ADW_PIRATECAMP_BEACH_19");
+	TA_Sit_Campfire(23,45,5,0,"WP_PIR_05");
+};
+
+func void Rtn_Exile_1350()
+{
+	TA_Stand_WP(5,0,20,0,"ADW_PIRATECAMP_2_CANYON_02");
+	TA_Stand_WP(20,0,5,0,"ADW_PIRATECAMP_2_CANYON_02");
 };
 

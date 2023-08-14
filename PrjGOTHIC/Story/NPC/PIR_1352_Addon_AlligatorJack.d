@@ -6,7 +6,7 @@ instance PIR_1352_Addon_AlligatorJack(Npc_Default)
 	id = 1352;
 	voice = 12;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_FollowDist] = 800;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;

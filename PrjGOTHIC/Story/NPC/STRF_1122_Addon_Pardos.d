@@ -6,7 +6,7 @@ instance STRF_1122_Addon_Pardos(Npc_Default)
 	id = 1122;
 	voice = 3;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NoFightParker] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;

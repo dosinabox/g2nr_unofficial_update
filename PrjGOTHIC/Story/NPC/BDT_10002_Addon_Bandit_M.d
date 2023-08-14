@@ -1,5 +1,5 @@
 
-instance BDT_10002_Addon_Bandit_M(Npc_Default)
+/*instance BDT_10002_Addon_Bandit_M(Npc_Default)
 {
 	name[0] = NAME_Bandit;
 	guild = GIL_BDT;
@@ -25,5 +25,5 @@ func void Rtn_Start_10002()
 {
 	TA_Stand_ArmsCrossed(9,0,21,0,"XXX");
 	TA_Stand_ArmsCrossed(21,0,9,0,"XXX");
-};
+};*/
 

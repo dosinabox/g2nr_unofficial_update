@@ -6,7 +6,7 @@ instance VLK_440_Bartok(Npc_Default)
 	id = 440;
 	voice = 4;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 //	EquipItem(self,ItRw_Bow_M_03);

@@ -79,15 +79,6 @@ func void DIA_BullcoDJG_WARTEMAL_Info()
 		AI_Output(self,other,"DIA_BullcoDJG_WARTEMAL_06_02");	//Только не сейчас! Я замерзаю! Я хочу выбраться отсюда как можно быстрее.
 	};
 	AI_StopProcessInfos(self);
-	if(Npc_GetDistToWP(self,"OW_MOVEMENT_BGOBBO1") <= 1000)
-	{
-		if(C_BodyStateContains(self,BS_SIT))
-		{
-			AI_Standup(self);
-			B_TurnToNpc(self,other);
-		};
-		Npc_ExchangeRoutine(self,"DJGVorposten");
-	};
 };
 
 
@@ -116,6 +107,16 @@ func void DIA_Bullco_SYLVIODEAD_Info()
 	Npc_ExchangeRoutine(self,"Start");
 };
 
+
+func void DIA_Bullco_DontGetLost()
+{
+	AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_zuihnen_alleine_06_01");	//Только не заблудись.
+};
+
+func void DIA_Bullco_LeaveMeAlone()
+{
+	AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_zuihnen_lebenlassen_06_01");	//Отстань от меня!
+};
 
 instance DIA_Bullco_WASNUN(C_Info)
 {
@@ -153,7 +154,7 @@ func void DIA_Bullco_WASNUN_woandere()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_zuihnen_lebenlassen_06_01");	//Отстань от меня!
+		DIA_Bullco_LeaveMeAlone();
 		AI_StopProcessInfos(self);
 	};
 };
@@ -171,7 +172,7 @@ func void DIA_Bullco_WASNUN_woandere_zuihnen()
 func void DIA_Bullco_WASNUN_woandere_zuihnen_lebenlassen()
 {
 	AI_Output(other,self,"DIA_Bullco_WASNUN_woandere_zuihnen_lebenlassen_15_00");	//Радуйся, если я оставлю тебя в живых.
-	AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_zuihnen_lebenlassen_06_01");	//Отстань от меня!
+	DIA_Bullco_LeaveMeAlone();
 	AI_StopProcessInfos(self);
 };
 
@@ -182,6 +183,7 @@ func void DIA_Bullco_WASNUN_woandere_zuihnen_Geld()
 	{
 		AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_zuihnen_Geld_06_01");	//Хорошо. Давай их сюда.
 		AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_zuihnen_Geld_06_02");	//Иди за мной. Я отведу тебя туда, где я последний раз видел других охотников на драконов.
+		Bullco_Guide = LOG_Running;
 		if(C_BodyStateContains(self,BS_SIT))
 		{
 			AI_Standup(self);
@@ -200,7 +202,7 @@ func void DIA_Bullco_WASNUN_woandere_zuihnen_Geld()
 func void DIA_Bullco_WASNUN_woandere_zuihnen_alleine()
 {
 	AI_Output(other,self,"DIA_Bullco_WASNUN_woandere_zuihnen_alleine_15_00");	//Как знаешь. Я сам их найду.
-	AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_zuihnen_alleine_06_01");	//Только не заблудись.
+	DIA_Bullco_DontGetLost();
 	AI_StopProcessInfos(self);
 };
 
@@ -217,5 +219,34 @@ func void DIA_Bullco_WASNUN_kopfab_angriff()
 	AI_Output(self,other,"DIA_Bullco_WASNUN_kopfab_angriff_06_01");	//Так тому и быть.
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
+};
+
+instance DIA_Bullco_GuideEnd(C_Info)
+{
+	npc = DJG_701_Bullco;
+	nr = 8;
+	condition = DIA_Bullco_GuideEnd_Condition;
+	information = DIA_Bullco_GuideEnd_Info;
+	important = TRUE;
+};
+
+
+func int DIA_Bullco_GuideEnd_Condition()
+{
+	if(Bullco_Guide == LOG_Running)
+	{
+		if(Npc_GetDistToWP(self,"OW_MOVEMENT_BGOBBO1") <= 300)
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void DIA_Bullco_GuideEnd_Info()
+{
+	DIA_Bullco_DontGetLost();
+	Bullco_Guide = LOG_SUCCESS;
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"DJGVorposten");
 };
 

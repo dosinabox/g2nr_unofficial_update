@@ -6,7 +6,7 @@ instance VLK_408_Jora(Npc_Default)
 	id = 408;
 	voice = 8;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;

@@ -45,12 +45,12 @@ func void DIA_OWPAL_4_STANDARD_Info()
 	if(randy == 0)
 	{
 		AI_Output(self,other,"DIA_OWPAL_4_STANDARD_04_00");	//Иннос - моя честь, а моя честь - моя жизнь.
-	};
-	if(randy == 1)
+	}
+	else if(randy == 1)
 	{
 		AI_Output(self,other,"DIA_OWPAL_4_STANDARD_04_01");	//Мы будем стоять здесь насмерть, пока Иннос дарует нам свой святой свет.
-	};
-	if(randy == 2)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_OWPAL_4_STANDARD_04_02");	//С помощью Инноса мы изгоним отсюда всех этих дьявольских созданий.
 	};

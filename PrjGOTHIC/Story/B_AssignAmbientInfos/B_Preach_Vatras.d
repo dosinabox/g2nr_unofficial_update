@@ -4,84 +4,84 @@ func void B_Preach_Vatras(var int satz)
 	if(satz == 0)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_00");	//Но свет был пыткой для Белиара. И все, что создал Иннос, было Белиаром уничтожено.
-	};
-	if(satz == 1)
+	}
+	else if(satz == 1)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_01");	//Но Аданос понял, что так не будет существовать ничего. Ни света и ни тьмы.
-	};
-	if(satz == 2)
+	}
+	else if(satz == 2)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_02");	//И он решил встать между двумя братьями, чтобы погасить этот конфликт. Но у него ничего не вышло.
-	};
-	if(satz == 3)
+	}
+	else if(satz == 3)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_03");	//Но там, где стоял Аданос, находилось место, где ни у Инноса, ни у Белиара не было силы.
-	};
-	if(satz == 4)
+	}
+	else if(satz == 4)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_04");	//В этом месте Порядок и Хаос были равны. И так было создано море.
-	};
-	if(satz == 5)
+	}
+	else if(satz == 5)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_05");	//И это море освободило землю. И появились различные создания. Деревья и животные. Волки и овцы. И, наконец, появился человек.
-	};
-	if(satz == 6)
+	}
+	else if(satz == 6)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_06");	//И Аданос был удовлетворен тем, что вышло. Он был доволен всеми существами в равной степени.
-	};
-	if(satz == 7)
+	}
+	else if(satz == 7)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_07");	//Но так велик был гнев Белиара, что он вышел на землю и выбрал зверя. И Белиар заговорил с ним. И этот зверь стал его подданным.
-	};
-	if(satz == 8)
+	}
+	else if(satz == 8)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_08");	//И Белиар дал ему часть своей божественной силы, чтобы зверь уничтожил землю.
-	};
-	if(satz == 9)
+	}
+	else if(satz == 9)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_09");	//Но Иннос видел, что сделал Белиар. И он тоже спустился на землю и выбрал человека. И Иннос заговорил с ним. И человек стал его подданным.
-	};
-	if(satz == 10)
+	}
+	else if(satz == 10)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_10");	//И Иннос дал ему часть своей божественной силы, чтобы тот мог противостоять деяниям Белиара.
-	};
-	if(satz == 11)
+	}
+	else if(satz == 11)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_11");	//И Белиар заговорил еще с одним существом. Но Аданос послал прилив, и это существо было смыто с лица земли.
-	};
-	if(satz == 12)
+	}
+	else if(satz == 12)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_12");	//Но вместе с ним были смыты и деревья, и животные. И глубокая печаль охватила Аданоса.
-	};
-	if(satz == 13)
+	}
+	else if(satz == 13)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_13");	//И заговорил Аданос со своими братьями: 'Никогда больше не должны вы ступать на мою землю. Она священна. Да будет так.'
-	};
-	if(satz == 14)
+	}
+	else if(satz == 14)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_14");	//Но человек и зверь начали войну на земле Аданоса. И гнев богов был с ними.
-	};
-	if(satz == 15)
+	}
+	else if(satz == 15)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_15");	//И человек убил зверя и вошел в царство Белиара.
-	};
-	if(satz == 16)
+	}
+	else if(satz == 16)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_16");	//Но Аданос увидел, что Порядок и Хаос теперь неравны, и предложил Инносу лишить человека божественной силы.
-	};
-	if(satz == 17)
+	}
+	else if(satz == 17)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_17");	//И Иннос, рассудив мудро, сделал это.
-	};
-	if(satz == 18)
+	}
+	else if(satz == 18)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_18");	//Но Аданос боялся, что настанет день, когда зверь вернется на землю.
-	};
-	if(satz == 19)
+	}
+	else if(satz == 19)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_19");	//И он попросил Инноса оставить часть своей силы в этом мире, чтобы он мог вернуть ее человеку, если зверь вернется.
-	};
-	if(satz == 20)
+	}
+	else if(satz == 20)
 	{
 		AI_Output(self,self,"DIA_Vatras_PREACH_05_20");	//И Иннос, рассудив мудро, сделал это.
 	};

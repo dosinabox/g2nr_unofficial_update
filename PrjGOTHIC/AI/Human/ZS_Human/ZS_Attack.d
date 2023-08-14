@@ -128,12 +128,15 @@ func int ZS_Attack_Loop()
 		AI_Standup(self);
 		return LOOP_END;
 	};
-	if((C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE)) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
+	if(self.aivar[AIV_MM_FollowInWater] == FALSE)
 	{
-		Npc_ClearAIQueue(self);
-		AI_Standup(self);
-		self.aivar[AIV_PursuitEnd] = TRUE;
-		return LOOP_END;
+		if(C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE))
+		{
+			Npc_ClearAIQueue(self);
+			AI_Standup(self);
+			self.aivar[AIV_PursuitEnd] = TRUE;
+			return LOOP_END;
+		};
 	};
 	if(self.aivar[AIV_WaitBeforeAttack] >= 1)
 	{
@@ -287,7 +290,7 @@ func void ZS_Attack_End()
 			AI_StartState(self,ZS_RansackBody,0,"");
 			return;
 		}
-		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(AlligatorJack)) && (target.aivar[AIV_MM_REAL_ID] == ID_Swamprat))
+		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(AlligatorJack)) && (target.aivar[AIV_MM_REAL_ID] == ID_SWAMPRAT))
 		{
 			AI_StartState(self,ZS_GetMeat,0,"");
 			return;

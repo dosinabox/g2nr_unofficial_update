@@ -275,7 +275,7 @@ instance DIA_Addon_Baltram_Skip(C_Info)
 
 func int DIA_Addon_Baltram_Skip_Condition()
 {
-	if(SCKnowsBaltramAsPirateTrader == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_NW_Baltram))
 	{
 		return TRUE;
 	};
@@ -334,8 +334,10 @@ func void DIA_Addon_Baltram_Skip_Ich()
 	B_GiveInvItems(self,other,ItMi_Packet_Baltram4Skip_Addon,1);
 	AI_Output(self,other,"DIA_Addon_Baltram_Skip_Ich_01_02");	//Вот, возьми этот пакет и передай Скипу, что на этот раз мне нужно больше рома.
 	AI_Output(self,other,"DIA_Addon_Baltram_Skip_Ich_01_03");	//Как минимум три бутылки.
-	B_LogEntry(TOPIC_Addon_BaltramSkipTrade,"Бальтрам дал мне пакет. Я должен отнести его Скипу.");
-	MIS_Addon_Baltram_Paket4Skip = LOG_Running;
+	if(MIS_Addon_Baltram_Paket4Skip == LOG_Running)
+	{
+		B_LogEntry(TOPIC_Addon_BaltramSkipTrade,"Бальтрам дал мне пакет. Я должен отнести его Скипу.");
+	};
 };
 
 func void DIA_Addon_Baltram_Skip_pirat()
@@ -348,10 +350,37 @@ func void DIA_Addon_Baltram_Skip_pirat()
 };
 
 
+/*instance DIA_Addon_Baltram_SkipsRum_All(C_Info)
+{
+	npc = VLK_410_Baltram;
+	nr = 8;
+	condition = DIA_Addon_Baltram_SkipsRum_All_Condition;
+	information = DIA_Addon_Baltram_SkipsRum_All_Info;
+	description = "Я принес ром.";
+};
+
+
+func int DIA_Addon_Baltram_SkipsRum_All_Condition()
+{
+	if((Skip_Rum4Baltram == TRUE) && (Npc_HasItems(other,ItFo_Addon_Rum) >= 3))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Baltram_SkipsRum_All_Info()
+{
+	AI_Output(other,self,"DIA_Addon_Baltram_SkipsRum_15_00_add");	//Я принес ром.
+	B_GiveInvItems(other,self,ItFo_Addon_Rum,3);
+	MIS_Addon_Baltram_Paket4Skip = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Ambient);
+};*/
+
+
 instance DIA_Addon_Baltram_SkipsRum(C_Info)
 {
 	npc = VLK_410_Baltram;
-	nr = 5;
+	nr = 9;
 	condition = DIA_Addon_Baltram_SkipsRum_Condition;
 	information = DIA_Addon_Baltram_SkipsRum_Info;
 	description = "Я принес ром. Но Скип дал мне всего две бутылки.";
@@ -360,7 +389,7 @@ instance DIA_Addon_Baltram_SkipsRum(C_Info)
 
 func int DIA_Addon_Baltram_SkipsRum_Condition()
 {
-	if((Skip_Rum4Baltram == TRUE) && (MIS_Addon_Baltram_Paket4Skip == LOG_Running) && (Npc_HasItems(other,ItFo_Addon_Rum) >= 2))
+	if((Skip_Rum4Baltram == TRUE) && (Npc_HasItems(other,ItFo_Addon_Rum) >= 2))
 	{
 		return TRUE;
 	};
@@ -374,7 +403,7 @@ func void DIA_Addon_Baltram_SkipsRum_Info()
 	AI_Output(self,other,"DIA_Addon_Baltram_SkipsRum_01_02");	//Что ж, много заплатить я тебе не могу. Думаю, этого хватит.
 	CreateInvItems(self,ItMi_Gold,10);
 	B_GiveInvItems(self,other,ItMi_Gold,10);
-	TOPIC_END_BaltramSkipTrade = TRUE;
+	MIS_Addon_Baltram_Paket4Skip = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };
 

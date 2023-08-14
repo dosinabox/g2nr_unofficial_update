@@ -6,7 +6,7 @@ instance PIR_1353_Addon_Morgan(Npc_Default)
 	id = 1353;
 	voice = 7;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Doppelaxt);

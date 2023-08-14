@@ -2,12 +2,11 @@
 instance NOV_602_Ulf(Npc_Default)
 {
 	name[0] = "Σλότ";
-//	guild = GIL_NOV;
 	guild = GIL_VLK;
 	id = 602;
 	voice = 3;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Nov_Mace);

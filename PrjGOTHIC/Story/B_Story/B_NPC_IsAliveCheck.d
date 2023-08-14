@@ -1,11 +1,10 @@
 
-var int SLD_Bullco_is_alive;
-var int SLD_Rod_is_alive;
-var int SLD_Cipher_is_alive;
-var int SLD_Gorn_is_alive;
-var int SLD_Sylvio_is_alive;
-var int GornDJG_is_alive;
-var int DJG_Angar_is_alive;
+var int SLD_Bullco_isAlive;
+var int SLD_Rod_isAlive;
+var int SLD_Cipher_isAlive;
+var int SLD_Gorn_isAlive;
+var int DJG_Gorn_isAlive;
+var int DJG_Angar_isAlive;
 var int Hodges_isAlive_Kap3;
 var int Vino_isAlive_Kap3;
 var int Malak_isAlive_Kap3;
@@ -22,93 +21,50 @@ func void B_NPC_IsAliveCheck(var int Zen)
 	{
 		if(MIS_ReadyforChapter4 == TRUE)
 		{
-			if(Npc_IsDead(Randolph))
-			{
-				Randolph_isAlive_preKap4 = FALSE;
-			}
-			else
+			if(!Npc_IsDead(Randolph))
 			{
 				Randolph_isAlive_preKap4 = TRUE;
 			};
-			if(Npc_IsDead(GornNW_vor_DJG))
+			if(!Npc_IsDead(GornNW_vor_DJG))
 			{
-				SLD_Gorn_is_alive = FALSE;
-			}
-			else
-			{
-				SLD_Gorn_is_alive = TRUE;
+				SLD_Gorn_isAlive = TRUE;
 				B_RemoveNpc(PC_Fighter_NW_vor_DJG);
 			};
-			if(Npc_IsDead(Sylvio))
+			if(!Npc_IsDead(Bullco))
 			{
-				SLD_Sylvio_is_alive = FALSE;
-			}
-			else
-			{
-				SLD_Sylvio_is_alive = TRUE;
-				B_RemoveNpc(SLD_806_Sylvio);
-			};
-			if(Npc_IsDead(Bullco))
-			{
-				SLD_Bullco_is_alive = FALSE;
-			}
-			else
-			{
-				SLD_Bullco_is_alive = TRUE;
+				SLD_Bullco_isAlive = TRUE;
 				B_RemoveNpc(SLD_807_Bullco);
 			};
-			if(Npc_IsDead(Cipher))
+			if(!Npc_IsDead(Cipher))
 			{
-				SLD_Cipher_is_alive = FALSE;
-			}
-			else
-			{
-				SLD_Cipher_is_alive = TRUE;
+				SLD_Cipher_isAlive = TRUE;
 				B_RemoveNpc(SLD_803_Cipher);
 			};
-			if(Npc_IsDead(Rod))
+			if(!Npc_IsDead(Rod))
 			{
-				SLD_Rod_is_alive = FALSE;
-			}
-			else
-			{
-				SLD_Rod_is_alive = TRUE;
+				SLD_Rod_isAlive = TRUE;
 				B_RemoveNpc(SLD_804_Rod);
 			};
-			if(!Npc_IsDead(SLD_821_Soeldner))
-			{
-				Npc_ExchangeRoutine(SLD_821_Soeldner,"RODWEG");
-			};
+			B_RemoveNpc(SLD_806_Sylvio);
+			B_StartOtherRoutine(SLD_821_Soeldner,"RODWEG");
 		};
 	}
 	else if(Zen == OLDWORLD_ZEN)
 	{
 		if(Kapitel >= 4)
 		{
-			if(Npc_IsDead(Brutus))
-			{
-				Brutus_isAlive_preKap5 = FALSE;
-			}
-			else
+			if(!Npc_IsDead(Brutus))
 			{
 				Brutus_isAlive_preKap5 = TRUE;
 			};
-			if(Npc_IsDead(GornDJG))
+			if(!Npc_IsDead(GornDJG))
 			{
-				GornDJG_is_alive = FALSE;
-			}
-			else
-			{
-				GornDJG_is_alive = TRUE;
+				DJG_Gorn_isAlive = TRUE;
 				B_RemoveNpc(PC_Fighter_DJG);
 			};
-			if(Npc_IsDead(DJG_Angar))
+			if(!Npc_IsDead(DJG_Angar))
 			{
-				DJG_Angar_is_alive = FALSE;
-			}
-			else
-			{
-				DJG_Angar_is_alive = TRUE;
+				DJG_Angar_isAlive = TRUE;
 				B_RemoveNpc(DJG_705_Angar);
 			};
 		};
@@ -427,6 +383,35 @@ func int C_GrimbaldSnappersDead()
 		return FALSE;
 	};
 	if(!Npc_IsDead(Grimbald_Snapper3))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_KervoLurkersDead()
+{
+	if(!Npc_IsDead(Kervo_Lurker1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Kervo_Lurker2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Kervo_Lurker3))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Kervo_Lurker4))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Kervo_Lurker5))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Kervo_Lurker6))
 	{
 		return FALSE;
 	};

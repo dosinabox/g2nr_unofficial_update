@@ -48,7 +48,7 @@ func void DIA_Vatras_DI_HEAL_Info()
 	{
 		AI_Output(self,other,"DIA_Vatras_DI_HEAL_05_01");	//(благоговейно) Аданос, благослови это тело. Ему предназначено восстановить баланс мира.
 		hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
-		PrintScreen(PRINT_FullyHealed,-1,-1,FONT_Screen,2);
+		AI_PrintScreen(PRINT_FullyHealed,-1,-1,FONT_Screen,2);
 	}
 	else
 	{
@@ -549,34 +549,41 @@ func void DIA_Vatras_DI_UndeadDragonDead_Info()
 };
 
 
-instance DIA_Addon_Vatras_PISSOFFFOREVVER_DI(C_Info)
+instance DIA_Addon_Vatras_PissOffForever_DI(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
 	nr = 1;
-	condition = DIA_Addon_Vatras_PISSOFFFOREVVER_DI_Condition;
-	information = DIA_Addon_Vatras_PISSOFFFOREVVER_DI_Info;
+	condition = DIA_Addon_Vatras_PissOffForever_DI_Condition;
+	information = DIA_Addon_Vatras_PissOffForever_DI_Info;
 	important = TRUE;
 	permanent = TRUE;
 };
 
 
-func int DIA_Addon_Vatras_PISSOFFFOREVVER_DI_Condition()
+func int DIA_Addon_Vatras_PissOffForever_DI_Condition()
 {
-	if(((VatrasPissedOffForever == TRUE) || ((MadKillerCount >= 7) && (VatrasMadKillerCount != MadKillerCount))) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (DIA_Vatras_DI_PEDROTOT_VatrasSucked == FALSE))
 	{
-		return TRUE;
+		if(VatrasPissedOffForever == TRUE)
+		{
+			return TRUE;
+		};
+		if((MadKillerCount >= 7) && (VatrasMadKillerCount != MadKillerCount))
+		{
+			return TRUE;
+		};
 	};
 };
 
 
-var int DIA_Addon_Vatras_PISSOFFFOREVVER_DI_OneTime;
+var int DIA_Addon_Vatras_PissOffForever_DI_OneTime;
 
-func void DIA_Addon_Vatras_PISSOFFFOREVVER_DI_Info()
+func void DIA_Addon_Vatras_PissOffForever_DI_Info()
 {
-	if(DIA_Addon_Vatras_PISSOFFFOREVVER_DI_OneTime == FALSE)
+	if(DIA_Addon_Vatras_PissOffForever_DI_OneTime == FALSE)
 	{
 		B_LastWarningVatras();
-		DIA_Addon_Vatras_PISSOFFFOREVVER_DI_OneTime = TRUE;
+		DIA_Addon_Vatras_PissOffForever_DI_OneTime = TRUE;
 	};
 	B_VatrasPissedOff();
 	AI_StopProcessInfos(self);

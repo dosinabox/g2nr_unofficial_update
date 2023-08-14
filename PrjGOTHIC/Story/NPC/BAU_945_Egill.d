@@ -6,7 +6,7 @@ instance BAU_945_Egill(Npc_Default)
 	id = 945;
 	voice = 8;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Axe);

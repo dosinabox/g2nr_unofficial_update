@@ -6,7 +6,7 @@ instance BDT_10015_Addon_Emilio(Npc_Default)
 	id = 10015;
 	voice = 10;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2H_Axe_L_01);

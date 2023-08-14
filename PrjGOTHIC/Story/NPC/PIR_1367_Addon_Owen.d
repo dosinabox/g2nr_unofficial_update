@@ -6,7 +6,7 @@ instance PIR_1367_Addon_Owen(Npc_Default)
 	id = 1367;
 	voice = 13;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Addon_PIR1hAxe);
@@ -17,7 +17,6 @@ instance PIR_1367_Addon_Owen(Npc_Default)
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,30);
-//	daily_routine = Rtn_PostStart_1367;
 	daily_routine = Rtn_PreStart_1367;
 };
 

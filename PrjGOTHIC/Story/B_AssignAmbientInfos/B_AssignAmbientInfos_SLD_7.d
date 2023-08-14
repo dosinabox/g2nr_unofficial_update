@@ -150,7 +150,7 @@ func void DIA_SLD_7_STANDARD_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_03");	//Драконы в Долине Рудников! Не хотел бы я сейчас оказаться на месте паладинов.
+			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_03");	//Драконы Долины Рудников! Не хотел бы я сейчас оказаться на месте паладинов.
 			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_04");	//Я думаю, король даст лорду Хагену хорошего пинка под зад, когда тот вернется с пустыми руками из-за драконов.
 		};
 	}
@@ -194,7 +194,7 @@ func void DIA_SLD_7_STANDARD_Info()
 			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_14");	//Но меня это не волнует, если только ты не начнешь собирать здесь налоги.
 		};
 	}
-	else if(Kapitel >= 5)
+	else
 	{
 		AI_Output(self,other,"DIA_SLD_7_STANDARD_07_15");	//Ох, я больше не могу выносить все это. Овцы, пастбища, деревья... Я хочу свалить отсюда.
 	};

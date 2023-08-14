@@ -17,7 +17,7 @@ func int DIA_Sergio_EXIT_Condition()
 
 func void DIA_Sergio_EXIT_Info()
 {
-	if(Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500)
+	if(self.aivar[AIV_PARTYMEMBER] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Sergio_EXIT_04_00");	//Да осветит Иннос твой путь.
 	};
@@ -37,7 +37,7 @@ instance DIA_Sergio_WELCOME(C_Info)
 
 func int DIA_Sergio_WELCOME_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (other.guild == GIL_NOV) && !Npc_KnowsInfo(other,DIA_Sergio_Isgaroth))
+	if(Npc_IsInState(self,ZS_Talk) && !Npc_KnowsInfo(other,PC_PrayShrine_Paladine))
 	{
 		return TRUE;
 	};
@@ -62,7 +62,7 @@ instance DIA_Sergio_Isgaroth(C_Info)
 
 func int DIA_Sergio_Isgaroth_Condition()
 {
-	if(Npc_KnowsInfo(hero,PC_PrayShrine_Paladine) && (Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500))
+	if(Npc_KnowsInfo(hero,PC_PrayShrine_Paladine))
 	{
 		if(Kapitel == 1)
 		{
@@ -112,7 +112,7 @@ instance DIA_Sergio_Aufgabe(C_Info)
 
 func int DIA_Sergio_Aufgabe_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Sergio_Isgaroth) && (Parlan_Erlaubnis == FALSE))
+	if((other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Sergio_Isgaroth) && (Parlan_Erlaubnis == FALSE))
 	{
 		return TRUE;
 	};
@@ -123,12 +123,11 @@ func void DIA_Sergio_Aufgabe_Info()
 	AI_Output(other,self,"DIA_Sergio_Aufgabe_15_00");	//Мне нужен доступ в библиотеку.
 	AI_Output(self,other,"DIA_Sergio_Aufgabe_04_01");	//Ну, я не могу обеспечить тебе доступ. Для этого ты должен сначала выполнить свои задания.
 	AI_Output(self,other,"DIA_Sergio_Aufgabe_04_02");	//Но я могу помочь тебе. Иди к мастеру Исгароту и поговори с ним. Я слышал, ему нужна помощь и собирался сам помочь ему, но я поручаю эту задачу тебе.
-	Sergio_Sends = TRUE;
 	Wld_InsertNpc(BlackWolf,"NW_PATH_TO_MONASTER_AREA_01");
 	B_InitNpcGlobals();
+	MIS_IsgarothWolf = LOG_Running;
 	Log_CreateTopic(Topic_IsgarothWolf,LOG_MISSION);
 	Log_SetTopicStatus(Topic_IsgarothWolf,LOG_Running);
-	MIS_IsgarothWolf = LOG_Running;
 	B_LogEntry(Topic_IsgarothWolf,"Мастеру Исгароту необходима помощь в часовне. Я должен найти его.");
 };
 
@@ -145,7 +144,7 @@ instance DIA_Sergio_WHAT(C_Info)
 
 func int DIA_Sergio_WHAT_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (other.guild == GIL_NOV))
+	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (self.aivar[AIV_PARTYMEMBER] == FALSE))
 	{
 		return TRUE;
 	};
@@ -173,7 +172,7 @@ instance DIA_Sergio_Babo(C_Info)
 
 func int DIA_Sergio_Babo_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && Npc_KnowsInfo(other,DIA_Babo_Anliegen))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Babo_Training == LOG_Running) && !Npc_IsDead(Babo))
 	{
 		return TRUE;
 	};
@@ -184,12 +183,9 @@ func void DIA_Sergio_Babo_Info()
 	AI_Output(other,self,"DIA_Sergio_Babo_15_00");	//Не мог бы ты немного потренировать Бабо?
 	AI_Output(self,other,"DIA_Sergio_Babo_04_01");	//А почему он не попросит сам?
 	AI_Output(other,self,"DIA_Sergio_Babo_15_02");	//Я думаю, он робеет.
-	AI_Output(self,other,"DIA_Sergio_Babo_04_03");	//Понимаю. Хорошо, если это так много значит для него, я буду тренировать его каждое утро в течение 2 часов. Мы будем начинать в 5 утра. Можешь передать ему это.
-	Babo_Training = TRUE;
+	AI_Output(self,other,"DIA_Sergio_Babo_04_03");	//Понимаю. Хорошо, если это так много значит для него, я буду тренировать его каждое утро в течение двух часов. Мы будем начинать в пять утра. Можешь передать ему это.
 	Npc_ExchangeRoutine(self,"TRAIN");
-	B_StartOtherRoutine(Babo,"TRAIN");
 	B_LogEntry(Topic_BaboTrain,"Сержио согласился тренировать Бабо по два часа каждое утро.");
-	B_CheckLog();
 };
 
 
@@ -205,7 +201,7 @@ instance DIA_Sergio_WHY(C_Info)
 
 func int DIA_Sergio_WHY_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Sergio_WELCOME) && (Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500))
+	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (self.aivar[AIV_PARTYMEMBER] == FALSE))
 	{
 		return TRUE;
 	};
@@ -237,8 +233,8 @@ func int DIA_Sergio_ORDERS_Condition()
 		if(Sergio_Follow == FALSE)
 		{
 			return TRUE;
-		}
-		else if(Sergio_Follow_End == TRUE)
+		};
+		if(Sergio_Follow_End == TRUE)
 		{
 			return TRUE;
 		};
@@ -265,7 +261,7 @@ instance DIA_Sergio_Start(C_Info)
 
 func int DIA_Sergio_Start_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (Sergio_Follow == TRUE) && (other.guild == GIL_KDF))
+	if(Sergio_Follow == TRUE)
 	{
 		return TRUE;
 	};
@@ -334,10 +330,8 @@ func void DIA_Sergio_Ende_Info()
 	AI_Output(self,other,"DIA_Sergio_Ende_04_00");	//Мы пришли. Что бы ни ждало тебя в Долине Рудников, я надеюсь, что ты найдешь дорогу назад.
 	AI_Output(other,self,"DIA_Sergio_Ende_15_01");	//Не бойся - я вернусь.
 	AI_Output(self,other,"DIA_Sergio_Ende_04_02");	//Иди с Инносом. Да не оставит он тебя без защиты.
-	Sergio_Follow_End = TRUE;
-	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"START");
+	B_ResetSergio();
 };
 
 
@@ -354,9 +348,20 @@ instance DIA_Sergio_Perm(C_Info)
 
 func int DIA_Sergio_Perm_Condition()
 {
-	if((Kapitel >= 3) && (other.guild != GIL_KDF) && (other.guild != GIL_MIL) && (other.guild != GIL_NOV))
+	if(Kapitel >= 3)
 	{
-		return TRUE;
+		if(other.guild == GIL_PAL)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_SLD)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_DJG)
+		{
+			return TRUE;
+		};
 	};
 };
 

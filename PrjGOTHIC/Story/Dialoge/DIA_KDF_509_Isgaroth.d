@@ -97,7 +97,7 @@ instance DIA_Isgaroth_Wolf(C_Info)
 
 func int DIA_Isgaroth_Wolf_Condition()
 {
-	if((MIS_IsgarothWolf == LOG_Running) && (Sergio_Sends == TRUE) && (Kapitel == 1))
+	if((MIS_IsgarothWolf == LOG_Running) && (Kapitel == 1))
 	{
 		return TRUE;
 	};
@@ -133,13 +133,13 @@ func int DIA_Isgaroth_tot_Condition()
 func void DIA_Isgaroth_tot_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_tot_15_00");	//Я убил волка.
-	if(other.guild == GIL_KDF)
+	if(other.guild == GIL_NOV)
 	{
-		B_Isgaroth_BlessYou();
+		AI_Output(self,other,"DIA_Isgaroth_tot_01_01");	//Хорошая работа, послушник. Ты мужественный человек. А теперь возвращайся в монастырь и принимайся за свои обязанности.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Isgaroth_tot_01_01");	//Хорошая работа, послушник. Ты мужественный человек. А теперь возвращайся в монастырь и принимайся за свои обязанности.
+		B_Isgaroth_BlessYou();
 	};
 	MIS_IsgarothWolf = LOG_SUCCESS;
 	B_GivePlayerXP(XP_IsgarothWolf);
@@ -282,7 +282,7 @@ func void DIA_Isgaroth_Vatras_Info()
 	{
 		B_GiveInvItems(other,self,ItWr_VatrasMessage,1);
 		Npc_RemoveInvItem(self,ItWr_VatrasMessage);
-		B_UseFakeScroll();
+		B_ReadFakeItem(self,other,Fakescroll,1);
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_03");	//Хорошо, ты можешь сказать Ватрасу, что я получил его сообщение.
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_04");	//Возьми эти зелья в качестве награды за свое служение, они наверняка пригодятся тебе.
 		CreateInvItems(self,ItPo_Health_02,2);
@@ -293,7 +293,7 @@ func void DIA_Isgaroth_Vatras_Info()
 	{
 		B_GiveInvItems(other,self,ItWr_VatrasMessage_Open,1);
 		Npc_RemoveInvItem(self,ItWr_VatrasMessage_Open);
-		B_UseFakeScroll();
+		B_ReadFakeItem(self,other,Fakescroll,1);
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_05");	//Печать сломана. О чем ты думал, идиот!
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_06");	//Иди и скажи Ватрасу, что я получил его сообщение.
 		B_EquipTrader(self);

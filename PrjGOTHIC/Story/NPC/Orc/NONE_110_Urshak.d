@@ -6,7 +6,7 @@ instance NONE_110_Urshak(Mst_Default_OrcShaman)
 	id = 110;
 	voice = 18;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
 	Mdl_SetVisual(self,"Orc.mds");
 	Mdl_SetVisualBody(self,"Orc_BodyShaman",DEFAULT,DEFAULT,"Orc_HeadShaman",DEFAULT,DEFAULT,NO_ARMOR);

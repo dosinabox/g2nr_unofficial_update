@@ -629,11 +629,9 @@ instance DIA_Parlan_Fegen(C_Info)
 };
 
 
-var int DIA_Parlan_Fegen_permanent;
-
 func int DIA_Parlan_Fegen_Condition()
 {
-	if((MIS_ParlanFegen == LOG_Running) && (DIA_Parlan_Fegen_permanent == FALSE))
+	if(MIS_ParlanFegen == LOG_Running)
 	{
 		return TRUE;
 	};
@@ -648,11 +646,17 @@ func void DIA_Parlan_Fegen_Info()
 		AI_Output(self,other,"DIA_Parlan_Fegen_05_02");	//Отлично, послушник. Ты выполнил мое поручение.
 		MIS_ParlanFegen = LOG_SUCCESS;
 		B_GivePlayerXP(XP_ParlanFegen);
-		DIA_Parlan_Fegen_permanent = TRUE;
 		B_StartOtherRoutine(Feger1,"START");
 		B_StartOtherRoutine(Feger2,"START");
 		B_StartOtherRoutine(Feger3,"START");
-		B_StartOtherRoutine(Babo,"START");
+		if((MIS_Babo_Training == LOG_SUCCESS) && !Npc_IsDead(Sergio))
+		{
+			B_StartOtherRoutine(Babo,"TRAIN");
+		}
+		else
+		{
+			B_StartOtherRoutine(Babo,"START");
+		};
 	}
 	else
 	{
@@ -674,7 +678,6 @@ instance DIA_Parlan_LEARN(C_Info)
 
 func int DIA_Parlan_LEARN_Condition()
 {
-//	if(Npc_KnowsInfo(hero,DIA_Parlan_Hagen) && (other.guild == GIL_NOV))
 	if(other.guild == GIL_NOV)
 	{
 		return TRUE;
@@ -1103,10 +1106,6 @@ func void DIA_Parlan_IAmParlan_Info()
 		Info_AddChoice(DIA_Parlan_IAmParlan,"Я буду делать то, что сочту нужным.",DIA_Parlan_IAmParlan_MyChoice);
 		Info_AddChoice(DIA_Parlan_IAmParlan,"Конечно.",DIA_Parlan_IAmParlan_OK);
 	};
-/*	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
-	{
-		Wld_InsertItem(ItKe_KlosterBibliothek,"NW_MONASTERY_CORRIDOR_02");
-	};*/
 };
 
 func void DIA_Parlan_IAmParlan_MyChoice()

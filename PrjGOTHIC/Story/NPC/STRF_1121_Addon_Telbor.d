@@ -6,7 +6,7 @@ instance STRF_1121_Addon_Telbor(Npc_Default)
 	id = 1121;
 	voice = 12;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NoFightParker] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;

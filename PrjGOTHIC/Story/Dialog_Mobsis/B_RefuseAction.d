@@ -16,7 +16,7 @@ func void player_mob_missing_key()
 		Print(PRINT_KeyMissing);
 		B_Say_Overlay(self,self,"$KEYMISSING");
 	}
-	else if(rnd == 1)
+	else
 	{
 		Print("Здесь мне нужен ключ...");
 		B_Say_Overlay(self,self,"$NEEDKEY");
@@ -41,7 +41,7 @@ func void player_mob_missing_lockpick()
 			Print(PRINT_PicklockMissing);
 			B_Say_Overlay(self,self,"$PICKLOCKMISSING");
 		}
-		else if(rnd == 1)
+		else
 		{
 			Print("У меня больше нет отмычек!");
 			B_Say_Overlay(self,self,"$NOMOREPICKS");

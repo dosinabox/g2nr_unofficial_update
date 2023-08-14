@@ -103,19 +103,16 @@ func void DIA_Sarah_Bauern_Info()
 	AI_Output(self,other,"DIA_Sarah_Bauern_16_03");	//А Онар, самый крупный фермер, нанял наемников, чтобы защищать свою ферму от городской стражи. До этого они забирали у него все подчистую.
 	AI_Output(self,other,"DIA_Sarah_Add_16_01");	//Но наемники не просто охраняют ферму Онара.
 	AI_Output(self,other,"DIA_Sarah_Add_16_02");	//Они добрались даже до маленьких ферм у города, и запугивают их владельцев.
-	if(Kapitel < 4)
+	if(!C_AkilFarmIsFree())
 	{
-		if(!C_AkilFarmIsFree())
+		AI_Output(self,other,"DIA_Sarah_Add_16_03");	//Я видела их, когда ходила на ферму Акила. Не хотела бы я сейчас оказаться на его месте.
+		SarahToldAboutAkilsProblem = TRUE;
+		if(Akils_SLDStillthere == FALSE)
 		{
-			AI_Output(self,other,"DIA_Sarah_Add_16_03");	//Я видела их, когда ходила на ферму Акила. Не хотела бы я сейчас оказаться на его месте.
-			SarahToldAboutAkilsProblem = TRUE;
-			if(Akils_SLDStillthere == FALSE)
-			{
-				Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
-				B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
-				Akils_SLDStillthere = TRUE;
-			};
+			Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
+			B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
+			Akils_SLDStillthere = TRUE;
 		};
 	};
 };

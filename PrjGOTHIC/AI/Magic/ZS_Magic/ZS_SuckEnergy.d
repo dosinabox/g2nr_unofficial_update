@@ -76,7 +76,7 @@ func int ZS_SuckEnergy_Loop()
 		}
 		else
 		{
-			B_MagicHurtNpc(other,self,self.attribute - 1);
+			B_MagicHurtNpc(other,self,self.attribute[ATR_HITPOINTS] - 1);
 		};
 	};
 	return LOOP_CONTINUE;

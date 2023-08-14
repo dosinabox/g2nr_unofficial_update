@@ -6,7 +6,7 @@ instance DJG_708_Kurgan(Npc_Default)
 	id = 708;
 	voice = 1;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Sword);
@@ -31,7 +31,6 @@ func void Rtn_PreStart_708()
 func void Rtn_Start_708()
 {
 	TA_Stand_Guarding(8,0,23,0,"OW_MOVEMENT_LURKER_NEARBGOBBO03");
-//	TA_Stand_Guarding(23,0,8,0,"OW_MOVEMENT_LURKER_NEARBGOBBO03");
 	TA_Stand_Eating(23,0,8,0,"VORPOSTEN");
 };
 

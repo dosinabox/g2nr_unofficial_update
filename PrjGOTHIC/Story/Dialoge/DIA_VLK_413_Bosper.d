@@ -269,10 +269,7 @@ func void DIA_Bosper_LEHRLING_OK()
 	AI_Output(other,self,"DIA_Bosper_LEHRLING_OK_15_00");	//Я готов стать твоим учеником!
 	AI_Output(self,other,"DIA_Bosper_LEHRLING_OK_11_01");	//Ты не пожалеешь об этом! Думаю, мы сработаемся.
 	Player_IsApprentice = APP_Bosper;
-	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
-	{
-		Npc_ExchangeRoutine(Lothar,"START");
-	};
+	B_StartOtherRoutine(Lothar,"START");
 	Bosper_StartGuild = other.guild;
 	Bosper_Lehrling_Day = Wld_GetDay();
 	Wld_AssignRoomToGuild("gritta",GIL_NONE);

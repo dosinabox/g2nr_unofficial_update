@@ -279,6 +279,13 @@ func void DIA_Addon_Fernando_BanditTrader_nein()
 };
 
 
+func void B_FailFernandoErz()
+{
+	B_LogEntry(TOPIC_Fernando,"Фернандо больше не нуждается в информации. И денег за нее он мне не заплатит.");
+	MIS_Fernando_Erz = LOG_FAILED;
+	B_CheckLog();
+};
+
 instance DIA_Fernando_Success(C_Info)
 {
 	npc = VLK_405_Fernando;
@@ -303,8 +310,6 @@ func void DIA_Fernando_Success_Info()
 	AI_Output(other,self,"DIA_Fernando_Success_15_00");	//Я был в Долине Рудников.
 	if((Fernando_ImKnast == FALSE) && (NpcObsessedByDMT_Fernando == FALSE))
 	{
-		MIS_Fernando_Erz = LOG_SUCCESS;
-		B_GivePlayerXP(XP_Ambient);
 		AI_Output(self,other,"DIA_Fernando_Success_14_01");	//И? Как там обстоят дела?
 		AI_Output(other,self,"DIA_Fernando_Success_15_02");	//Шахты истощены, там можно добыть всего каких-нибудь несколько ящиков руды. Вряд ли эта овчинка стоит выделки.
 		AI_Output(self,other,"DIA_Fernando_Success_14_03");	//Этого не может быть! Это означает, что я разорен...
@@ -328,13 +333,13 @@ func void DIA_Fernando_Success_Info()
 			B_Say(self,other,"$NOTNOW");
 			AI_StopProcessInfos(self);
 		};
+		MIS_Fernando_Erz = LOG_SUCCESS;
+		B_GivePlayerXP(XP_Ambient);
 	}
 	else
 	{
 		B_Say(self,other,"$NOTNOW");
-		B_LogEntry(TOPIC_Fernando,"Фернандо больше не нуждается в информации. И денег за нее он мне не заплатит.");
-		MIS_Fernando_Erz = LOG_FAILED;
-		B_CheckLog();
+		B_FailFernandoErz();
 	};
 };
 
@@ -373,6 +378,10 @@ func void DIA_Fernando_Prison_Info()
 		Fernando_ThreatFromPrison = TRUE;
 	};
 	AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_09");	//(зло) Ничего, мое время еще придет.
+	if(MIS_Fernando_Erz == LOG_Running)
+	{
+		B_FailFernandoErz();
+	};
 	B_NpcClearObsessionByDMT(self);
 };
 

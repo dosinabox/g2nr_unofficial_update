@@ -2,12 +2,11 @@
 instance PAL_2004_Bruder(Npc_Default)
 {
 	name[0] = NAME_Paladin;
-//	guild = GIL_NONE;
 	guild = GIL_PAL;
 	id = 2004;
 	voice = 4;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_MANA_MAX] = 0;

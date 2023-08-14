@@ -6,7 +6,7 @@ instance SLD_840_Alvares(Npc_Default)
 	id = 840;
 	voice = 11;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,2);
 	aivar[AIV_EnemyOverride] = TRUE;
 	fight_tactic = FAI_HUMAN_NORMAL;

@@ -1,5 +1,5 @@
 
-func void B_CheckDeadMissionNPCs(var C_Npc slf)
+func void B_CheckDeadMissionHumans(var C_Npc slf)
 {
 	if(CurrentLevel == NEWWORLD_ZEN)
 	{
@@ -10,11 +10,29 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 				MIS_Ignaz_Charm = LOG_FAILED;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Dexter))
+		{
+			if(MIS_Steckbriefe != LOG_SUCCESS)
+			{
+				MIS_Steckbriefe = LOG_OBSOLETE;
+			};
+			if(Greg_Rejected == FALSE)
+			{
+				B_Greg_ComesToDexter();
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Canthar))
 		{
 			if(MIS_Canthars_KomproBrief == LOG_Running)
 			{
 				MIS_Canthars_KomproBrief = LOG_FAILED;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Baltram))
+		{
+			if(MIS_Addon_Baltram_Paket4Skip == LOG_Running)
+			{
+				MIS_Addon_Baltram_Paket4Skip = LOG_FAILED;
 			};
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fester))
@@ -53,11 +71,22 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 			};
 			DG_gefunden = TRUE;
 		}
-		else if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sergio)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Babo)))
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Isgaroth))
 		{
-			if(Babo_Training == FALSE)
+			if(MIS_Vatras_Message == LOG_Running)
 			{
-				Log_SetTopicStatus(Topic_BaboTrain,LOG_FAILED);
+				MIS_Vatras_Message = LOG_FAILED;
+			};
+			if(MIS_IsgarothWolf == LOG_Running)
+			{
+				MIS_IsgarothWolf = LOG_FAILED;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sergio))
+		{
+			if(MIS_Babo_Training == LOG_Running)
+			{
+				MIS_Babo_Training = LOG_FAILED;
 			};
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Dyrian))
@@ -79,6 +108,10 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 			if(MIS_HelpBabo == LOG_Running)
 			{
 				MIS_HelpBabo = LOG_FAILED;
+			};
+			if(MIS_Babo_Training == LOG_Running)
+			{
+				MIS_Babo_Training = LOG_FAILED;
 			};
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rukhar))
@@ -140,6 +173,17 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 				MIS_Cipher_BringWeed = LOG_FAILED;
 			};
 		};
+		if(Greg_Rejected == TRUE)
+		{
+			if(C_AmIDexterBandit(slf))
+			{
+				DexterBanditsBodyCount += 1;
+				if(DexterBanditsBodyCount >= 19)
+				{
+					B_Greg_ComesToDexterLater();
+				};
+			};
+		};
 	}
 	else if(CurrentLevel == OLDWORLD_ZEN)
 	{
@@ -163,6 +207,13 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 			if(MIS_TalbinCheese == LOG_Running)
 			{
 				MIS_TalbinCheese = LOG_OBSOLETE;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bilgot))
+		{
+			if(MIS_RescueBilgot == LOG_Running)
+			{
+				MIS_RescueBilgot = LOG_FAILED;
 			};
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(DJG_Cipher))
@@ -218,6 +269,10 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Skip))
 		{
+			if((MIS_Addon_Baltram_Paket4Skip == LOG_Running) && (Skip_Rum4Baltram == FALSE))
+			{
+				MIS_Addon_Baltram_Paket4Skip = LOG_FAILED;
+			};
 			if(MIS_ADDON_SkipsGrog == LOG_Running)
 			{
 				MIS_ADDON_SkipsGrog = LOG_OBSOLETE;
@@ -255,8 +310,66 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Senyan))
 		{
 			Senyan_Erpressung = LOG_OBSOLETE;
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bloodwyn))
+		{
+			B_StartOtherRoutine(Thorus,"TALK");
+		};
+	}
+	else if(CurrentLevel == DRAGONISLAND_ZEN)
+	{
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Pedro_DI))
+		{
+			SCFoundPedro = TRUE;
 		};
 	};
 	B_CheckLog();
+};
+
+func void B_CheckDeadMissionAnimals(var C_Npc slf)
+{
+	if(CurrentLevel == NEWWORLD_ZEN)
+	{
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(CityOrc))
+		{
+			CityOrc_Killed_Day = Wld_GetDay();
+		};
+	}
+	else if(CurrentLevel == ADDONWORLD_ZEN)
+	{
+		if(slf.aivar[AIV_MM_REAL_ID] == ID_RAZOR)
+		{
+			if(C_IAmCanyonRazor(slf))
+			{
+				CanyonRazorBodyCount += 1;
+				if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+				{
+					B_CountCanyonRazor();
+				};
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(GoldMinecrawler))
+		{
+			Minecrawler_Killed += 1;
+			if((Minecrawler_Killed > 9) && (Bloodwyn_Spawn == FALSE) && !Npc_IsDead(Bloodwyn))
+			{
+				AI_Teleport(Bloodwyn,"ADW_MINE_TO_MC_03");
+				B_StartOtherRoutine(Bloodwyn,"MINE");
+				Bloodwyn_Spawn = TRUE;
+			};
+		};
+	};
+};
+
+func void B_CheckDeadMissionNPCs(var C_Npc npc)
+{
+	if(npc.guild < GIL_SEPERATOR_HUM)
+	{
+		B_CheckDeadMissionHumans(npc);
+	}
+	else
+	{
+		B_CheckDeadMissionAnimals(npc);
+	};
 };
 

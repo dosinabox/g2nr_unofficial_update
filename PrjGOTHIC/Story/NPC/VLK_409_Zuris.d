@@ -6,7 +6,7 @@ instance VLK_409_Zuris(Npc_Default)
 	id = 409;
 	voice = 14;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	attribute[ATR_DEXTERITY] = 1;

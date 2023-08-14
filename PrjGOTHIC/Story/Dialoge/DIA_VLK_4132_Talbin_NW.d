@@ -143,13 +143,7 @@ func void DIA_Talbin_TEACHHUNTING_NW_Info()
 	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] == FALSE))
 	{
 		AI_Output(self,other,"DIA_Talbin_TEACHHUNTING_07_01");	//А что ты хочешь знать?
-		if(Talbin_TeachAnimalTrophy == FALSE)
-		{
-			Talbin_TeachAnimalTrophy = TRUE;
-			Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
-			B_LogEntry(TOPIC_OutTeacher,"Талбин может обучить меня добывать трофеи животных.");
-			B_CheckLog();
-		};
+		B_Talbin_TeachAnimalTrophy();
 		Info_AddChoice(DIA_Talbin_TEACHHUNTING_NW,Dialog_Back,DIA_Talbin_TEACHHUNTING_NW_BACK);
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE)
 		{

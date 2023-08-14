@@ -17,13 +17,16 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(Npc_GetDistToNpc(slf,hero) <= 300)
+	if(!Npc_IsDead(hero))
 	{
-		return FALSE;
-	};
-	if(Npc_GetDistToNpc(hero,oth) <= 300)
-	{
-		return FALSE;
+		if(Npc_GetDistToNpc(slf,hero) <= 300)
+		{
+			return FALSE;
+		};
+		if(Npc_GetDistToNpc(hero,oth) <= 300)
+		{
+			return FALSE;
+		};
 	};
 	if(slf.guild == GIL_SCAVENGER)
 	{
@@ -203,7 +206,7 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 	}
 	else if(slf.guild == GIL_WOLF)
 	{
-		if(slf.aivar[AIV_MM_REAL_ID] != ID_Keiler)
+		if(slf.aivar[AIV_MM_REAL_ID] != ID_KEILER)
 		{
 			if(oth.guild < GIL_SEPERATOR_HUM)
 			{

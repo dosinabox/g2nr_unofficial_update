@@ -28,12 +28,3 @@ func int C_WorldIsFixed(var int world)
 	return FALSE;
 };
 
-func int C_OldWorldIsWasteland()
-{
-	if(Mob_HasItems("D36_SECRET_WASTELAND_CHEST",ItPl_Mushroom_02))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-

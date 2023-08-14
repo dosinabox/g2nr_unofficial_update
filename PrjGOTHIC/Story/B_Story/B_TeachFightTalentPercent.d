@@ -10,28 +10,28 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 		B_PrintPlayerMiddle(oth,PRINT_NoLearnOverMAX);
 		B_Say(slf,oth,"$NOLEARNYOUREBETTER");
 		return FALSE;
-	}
-	else if(limitReason == TLR_WillBeOverMax)
+	};
+	if(limitReason == TLR_WillBeOverMax)
 	{
 		B_PrintPlayerMiddle(oth,PRINT_NoLearnOverMAX);
 		B_Say(slf,oth,"$NOLEARNYOUREBETTER");
 		return FALSE;
-	}
-	else if(limitReason == TLR_AlreadySame)
+	};
+	if(limitReason == TLR_AlreadySame)
 	{
 		concatText = ConcatStrings(PRINT_NoLearnOverPersonalMAX,IntToString(teacherMAX));
 		B_PrintPlayerMiddle(oth,concatText);
 		B_Say(slf,oth,"$NOLEARNYOUREBETTER");
 		return FALSE;
-	}
-	else if(limitReason == TLR_AlreadyBetter)
+	};
+	if(limitReason == TLR_AlreadyBetter)
 	{
 		concatText = ConcatStrings(PRINT_NoLearnOverPersonalMAX,IntToString(teacherMAX));
 		B_PrintPlayerMiddle(oth,concatText);
 		B_Say(slf,oth,"$YOULEARNEDSOMETHING");
 		return FALSE;
-	}
-	else if(limitReason == TLR_WillBeBetter)
+	};
+	if(limitReason == TLR_WillBeBetter)
 	{
 		concatText = ConcatStrings(PRINT_NoLearnOverPersonalMAX,IntToString(teacherMAX));
 		B_PrintPlayerMiddle(oth,concatText);

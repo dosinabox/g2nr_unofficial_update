@@ -17,3 +17,8 @@ func void B_GolemChest_S1()
 	};
 };
 
+func void B_GolemsCave_Exit()
+{
+	
+};
+

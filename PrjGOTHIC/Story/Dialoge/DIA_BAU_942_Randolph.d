@@ -34,12 +34,9 @@ instance DIA_Randolph_SchwereLuft(C_Info)
 
 func int DIA_Randolph_SchwereLuft_Condition()
 {
-	if(Kapitel < 4)
+	if(!C_AkilFarmIsFree())
 	{
-		if(!C_AkilFarmIsFree())
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -102,14 +99,8 @@ func void DIA_Randolph_HALLO_Info()
 	};
 	Npc_ExchangeRoutine(self,"Start");
 	self.flags = 0;
-	if(Hlp_IsValidNpc(Akil) && !Npc_IsDead(Akil))
-	{
-		B_StartOtherRoutine(Akil,"Start");
-	};
-	if(Hlp_IsValidNpc(Kati) && !Npc_IsDead(Kati))
-	{
-		B_StartOtherRoutine(Kati,"Start");
-	};
+	B_StartOtherRoutine(Akil,"Start");
+	B_StartOtherRoutine(Kati,"Start");
 };
 
 

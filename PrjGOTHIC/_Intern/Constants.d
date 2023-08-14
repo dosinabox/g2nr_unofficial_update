@@ -111,17 +111,20 @@ const int DAM_INDEX_MAGIC = 5;
 const int DAM_INDEX_POINT = 6;
 const int DAM_INDEX_FALL = 7;
 const int DAM_INDEX_MAX = 8;
+const int DAM_CRITICAL_MULTIPLIER = 2;
 
 const int NPC_ATTACK_FINISH_DISTANCE = 180;
 const int NPC_BURN_TICKS_PER_DAMAGE_POINT = 1000;
 const int NPC_BURN_DAMAGE_POINTS_PER_INTERVALL = 50;	//20;
-const int DAM_CRITICAL_MULTIPLIER = 2;
+const int NPC_DAM_DIVE_TIME = 100;
+
 const int BLOOD_SIZE_DIVISOR = 1000;
 const int BLOOD_DAMAGE_MAX = 200;
+
 const int DAMAGE_FLY_CM_MAX = 2000;
 const int DAMAGE_FLY_CM_MIN = 300;
 const int DAMAGE_FLY_CM_PER_POINT = 5;
-const int NPC_DAM_DIVE_TIME = 100;
+
 const int IMMUNE = -1;
 
 const int CONDITION_WEAPON_RAVEN = 666666;
@@ -175,12 +178,15 @@ const int PERC_ASSESSCASTER = 29;
 const int PERC_ASSESSSURPRISE = 30;
 const int PERC_ASSESSENTERROOM = 31;
 const int PERC_ASSESSUSEMOB = 32;
+
 const int NEWS_DONT_SPREAD = 0;
 const int NEWS_SPREAD_NPC_FRIENDLY_TOWARDS_VICTIM = 1;
 const int NEWS_SPREAD_NPC_FRIENDLY_TOWARDS_WITNESS = 2;
 const int NEWS_SPREAD_NPC_FRIENDLY_TOWARDS_OFFENDER = 3;
 const int NEWS_SPREAD_NPC_SAME_GUILD_VICTIM = 4;
+
 const int IMPORTANT = 1;
+
 const int INF_TELL = 0;
 const int INF_UNKNOWN = 2;
 
@@ -335,6 +341,7 @@ const int SPL_NEXTLEVEL = 4;
 const int SPL_STATUS_CANINVEST_NO_MANADEC = 8;
 const int SPL_FORCEINVEST = 1 << 16;
 const int SPL_Cost_Scroll = 5;
+const int SPL_Charge_Frames = 32;
 
 const int TARGET_COLLECT_NONE = 0;
 const int TARGET_COLLECT_CASTER = 1;
@@ -661,6 +668,15 @@ const string spellFxAniLetters[100] =
 	"XXX"
 };
 
+const int START_ATR_STRENGTH = 10;
+const int START_ATR_DEXTERITY = 10;
+const int START_ATR_MANA_MAX = 10;
+const int START_ATR_HITPOINTS_MAX = 40;
+const int START_TALENT_1H = 10;
+const int START_TALENT_2H = 10;
+const int START_TALENT_BOW = 10;
+const int START_TALENT_CROSSBOW = 10;
+
 const int NPC_TALENT_UNKNOWN = 0;
 const int NPC_TALENT_1H = 1;
 const int NPC_TALENT_2H = 2;
@@ -776,6 +792,7 @@ const int DRAGONISLAND_ZEN = 3;
 const int ADDONWORLD_ZEN = 4;
 const int FREEMINE_ZEN = 5;
 const int ORCGRAVEYARD_ZEN = 6;
+const int ABANDONEDMINE_ZEN = 7;
 
 const int INVCAM_ENTF_RING_STANDARD = 400;
 const int INVCAM_ENTF_AMULETTE_STANDARD = 150;
@@ -789,7 +806,8 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "30/06/2022";
-const int FIX_VERSION_START = 28;
+const string FIX_VERSION_DATE = "14/08/2023";
+const int FIX_VERSION_START = 29;
 const int LEAST_SUPPORTED = 26;
 var int FIX_VERSION_SAVE;
+var string FIX_DATE_SAVE;

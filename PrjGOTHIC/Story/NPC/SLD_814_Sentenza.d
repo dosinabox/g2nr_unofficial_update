@@ -6,7 +6,7 @@ instance SLD_814_Sentenza(Npc_Default)
 	id = 814;
 	voice = 9;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_MM_FollowTime] = 60;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;

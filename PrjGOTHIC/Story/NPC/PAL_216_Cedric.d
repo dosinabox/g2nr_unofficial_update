@@ -6,7 +6,7 @@ instance PAL_216_Cedric(Npc_Default)
 	id = 216;
 	voice = 12;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Pal_Sword);
@@ -26,7 +26,6 @@ func void Rtn_Start_216()
 {
 	TA_Practice_Sword(7,0,19,0,"NW_CITY_TRAIN_01");
 	TA_Read_Bookstand(19,0,23,0,"NW_CITY_LEOMAR_READ");
-//	TA_Sleep(19,0,7,0,"NW_CITY_LEOMAR_BED_03");
 	TA_Sleep(23,0,7,0,"NW_CITY_LEOMAR_BED_03");
 };
 

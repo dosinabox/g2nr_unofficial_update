@@ -1,7 +1,7 @@
 
 var int B_RAVENSESCAPEINTOTEMPELAVI_OneTime;
 
-func void b_ravensescapeintotempelavi()
+func void B_RavensEscapeIntoTempelAVI()
 {
 	if(B_RAVENSESCAPEINTOTEMPELAVI_OneTime == FALSE)
 	{

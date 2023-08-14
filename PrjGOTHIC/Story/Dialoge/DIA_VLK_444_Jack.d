@@ -125,9 +125,12 @@ instance DIA_Jack_Harbor(C_Info)
 
 func int DIA_Jack_Harbor_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jack_City) && (Npc_GetDistToWP(self,"LIGHTHOUSE") >= 3000) && (JackIsCaptain == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Jack_City) && (JackIsCaptain == FALSE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"LIGHTHOUSE") >= 3000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -204,6 +207,7 @@ func void DIA_Jack_BANDITENWEG_Info()
 		AI_Standup(self);
 		B_TurnToNpc(self,other);
 	};
+	B_SetGuild(self,GIL_NONE);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Lighthouse");
 	MIS_Jack_KillLighthouseBandits = LOG_SUCCESS;
@@ -224,9 +228,12 @@ instance DIA_Jack_LIGHTHOUSEFREE(C_Info)
 
 func int DIA_Jack_LIGHTHOUSEFREE_Condition()
 {
-	if((MIS_Jack_KillLighthouseBandits == LOG_SUCCESS) && (Npc_GetDistToWP(self,"LIGHTHOUSE") < 3000))
+	if(MIS_Jack_KillLighthouseBandits == LOG_SUCCESS)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"LIGHTHOUSE") < 3000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -285,8 +292,8 @@ func void DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer()
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_14_02");	//У Гарада, кузнеца, есть подмастерье по имени Брайан. Я много раз беседовал с ним.
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_14_03");	//Я бы хотел доверить свой маяк ему. Я думаю, он лучше всего подходит для этого.
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_14_04");	//Иди, поговори с ним. Возможно, нам повезет, и этот парень согласится помочь нам.
-	Info_ClearChoices(DIA_Jack_BEMYCAPTAIN);
 	MIS_Jack_NewLighthouseOfficer = LOG_Running;
+	Info_ClearChoices(DIA_Jack_BEMYCAPTAIN);
 };
 
 func void DIA_Jack_BEMYCAPTAIN_no()
@@ -343,9 +350,12 @@ instance DIA_Jack_BrianIsDead(C_Info)
 
 func int DIA_Jack_BrianIsDead_Condition()
 {
-	if((MIS_Jack_NewLighthouseOfficer == LOG_Running) && Npc_IsDead(Brian))
+	if(MIS_Jack_NewLighthouseOfficer == LOG_Running)
 	{
-		return TRUE;
+		if(Npc_IsDead(Brian))
+		{
+			return TRUE;
+		};
 	};
 };
 

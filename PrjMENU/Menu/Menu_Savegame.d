@@ -5,6 +5,7 @@ const string WORLDNAME_OLDWORLD = "Долина Рудников";
 const string WORLDNAME_DRAGONISLAND = "Ирдорат";
 const string WORLDNAME_FREEMINE = "Свободная шахта";
 const string WORLDNAME_ORCGRAVEYARD = "Кладбище орков";
+const string WORLDNAME_ABANDONEDMINE = "Заброшенная шахта";
 
 instance MENU_SAVEGAME_LOAD(C_MENU_DEF)
 {

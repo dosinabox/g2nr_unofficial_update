@@ -18,18 +18,21 @@ func void B_PlayerEnteredCity()
 			LesterMovedToXardas = TRUE;
 		};
 	};
-	if((CantharMovedToCity == FALSE) && (C_NpcIsInQuarter(hero) != Q_MARKT))
+	if(CantharMovedToCity == FALSE)
 	{
-		if(!Npc_IsDead(Canthar))
+		if(C_NpcIsInQuarter(hero) != Q_MARKT)
 		{
-			if(C_WorldIsFixed(NEWWORLD_ZEN))
+			if(!Npc_IsDead(Canthar))
 			{
-				Wld_SendTrigger("CANTHAR_CART_01");
-				Wld_SendTrigger("CANTHAR_CART_02");
+				if(C_WorldIsFixed(NEWWORLD_ZEN))
+				{
+					Wld_SendTrigger("CANTHAR_CART_01");
+					Wld_SendTrigger("CANTHAR_CART_02");
+				};
+				Npc_ExchangeRoutine(Canthar,"START");
 			};
-			Npc_ExchangeRoutine(Canthar,"START");
+			CantharMovedToCity = TRUE;
 		};
-		CantharMovedToCity = TRUE;
 	};
 };
 

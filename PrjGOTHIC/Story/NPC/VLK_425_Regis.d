@@ -6,7 +6,7 @@ instance VLK_425_Regis(Npc_Default)
 	id = 425;
 	voice = 13;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Vlk_Sword);
@@ -25,6 +25,12 @@ func void Rtn_Start_425()
 {
 	TA_Sit_Bench(5,30,20,30,"NW_CITY_REGIS");
 	TA_Smalltalk(20,30,0,30,"NW_CITY_MERCHANT_PATH_14_A");
+	TA_Stand_Drinking(0,30,5,30,"NW_CITY_TAVERN_IN_02");
+};
+
+func void Rtn_Alone_425()
+{
+	TA_Sit_Bench(5,30,0,30,"NW_CITY_REGIS");
 	TA_Stand_Drinking(0,30,5,30,"NW_CITY_TAVERN_IN_02");
 };
 

@@ -6,7 +6,7 @@ instance NOV_603_Agon(Npc_Default)
 	id = 603;
 	voice = 7;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Nov_Mace);
@@ -46,10 +46,4 @@ func void Rtn_Tot_603()
 	TA_Sleep(8,0,23,0,"TOT");
 	TA_Sleep(23,0,8,0,"TOT");
 };
-
-/* func void Rtn_StillAlive_603()
-{
-	TA_Stand_Guarding(8,0,23,10,"TAVERNE");
-	TA_Stand_Guarding(23,10,8,0,"TAVERNE");
-}; */
 

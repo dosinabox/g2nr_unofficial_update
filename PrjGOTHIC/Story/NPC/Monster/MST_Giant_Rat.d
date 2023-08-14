@@ -3,7 +3,7 @@ prototype Mst_Default_Giant_Rat(C_Npc)
 {
 	name[0] = "Гигантская крыса";
 	guild = GIL_Giant_Rat;
-	aivar[AIV_MM_REAL_ID] = ID_Giant_Rat;
+	aivar[AIV_MM_REAL_ID] = ID_GIANT_RAT;
 	level = 3;
 	attribute[ATR_STRENGTH] = 15;
 	attribute[ATR_DEXTERITY] = 15;
@@ -14,7 +14,7 @@ prototype Mst_Default_Giant_Rat(C_Npc)
 	protection[PROT_BLUNT] = 15;
 	protection[PROT_EDGE] = 15;
 	protection[PROT_POINT] = 0;
-	protection[PROT_FIRE] = 15;	//17;
+	protection[PROT_FIRE] = 15;
 	protection[PROT_FLY] = 15;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -62,7 +62,7 @@ instance YGiant_Rat(Mst_Default_Giant_Rat)
 	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
-instance GIANT_RATTRANSFORM(Mst_Default_Giant_Rat)
+instance Giant_RatTransform(Mst_Default_Giant_Rat)
 {
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_Giant_Rat();

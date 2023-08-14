@@ -6,12 +6,11 @@ instance BDT_10022_Addon_Miguel(Npc_Default)
 	id = 10022;
 	voice = 11;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Nagelknueppel);
-//	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,40,ItMi_Gold,48);
 	CreateInvItems(self,ItPo_Health_01,20);
 	CreateInvItems(self,ItPo_Health_02,8);

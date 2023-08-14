@@ -14,7 +14,7 @@ prototype Mst_Default_Troll(C_Npc)
 	protection[PROT_BLUNT] = 125;
 	protection[PROT_EDGE] = 125;
 	protection[PROT_POINT] = IMMUNE;
-	protection[PROT_FIRE] = 125;	//250;
+	protection[PROT_FIRE] = 125;
 	protection[PROT_FLY] = IMMUNE;
 	protection[PROT_MAGIC] = 250;
 	damagetype = DAM_FLY;
@@ -44,10 +44,10 @@ instance Troll(Mst_Default_Troll)
 
 instance Valley_Troll(Mst_Default_Troll)
 {
-	B_SetVisuals_Troll();
-	Npc_SetToFistMode(self);
 	aivar[AIV_MaxDistToWp] = 2300;
 	aivar[AIV_OriginalFightTactic] = FAI_TROLL;
+	B_SetVisuals_Troll();
+	Npc_SetToFistMode(self);
 };
 
 instance Maya_Troll(Mst_Default_Troll)

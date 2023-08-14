@@ -15,7 +15,7 @@ func void ZS_FleeToWp()
 		};
 	};
 	AI_SetWalkMode(self,NPC_RUN);
-	Mdl_ApplyOverlayMds(self,"HUMANS_FLEE.MDS");
+	Mdl_ApplyOverlayMds(self,"Humans_Flee.mds");
 	if(Npc_GetDistToWP(self,self.wp) > TA_DIST_SELFWP_MAX)
 	{
 		AI_GotoWP(self,self.wp);

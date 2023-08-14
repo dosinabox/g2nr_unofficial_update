@@ -14,7 +14,7 @@ prototype Mst_Default_Waran(C_Npc)
 	protection[PROT_BLUNT] = 100;
 	protection[PROT_EDGE] = 100;
 	protection[PROT_POINT] = 100;
-	protection[PROT_FIRE] = 100;	//16;
+	protection[PROT_FIRE] = 100;
 	protection[PROT_FLY] = 100;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -60,7 +60,7 @@ instance BeachWaran2(Mst_Default_Waran)
 	Npc_SetToFistMode(self);
 };
 
-instance WARANTRANSFORM(Mst_Default_Waran)
+instance WaranTransform(Mst_Default_Waran)
 {
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_Waran();

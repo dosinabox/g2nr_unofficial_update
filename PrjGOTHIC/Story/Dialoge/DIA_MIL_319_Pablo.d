@@ -46,10 +46,10 @@ func void DIA_Pablo_WANTED_Info()
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_00");	//Эй, ты, подожди - мне кажется, я тебя знаю.
 	AI_Output(other,self,"DIA_Pablo_WANTED_15_01");	//Что тебе нужно?
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_02");	//Я где-то уже видел твое лицо... ах - точно!
-	B_UseFakeHeroFace(self,other);
+	B_ReadFakeItem(self,other,Fakeheroface,1);
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_03");	//Вот - мы нашли этот листок у одного из бандитов, на которых наткнулись несколько дней назад - рисунок очень похож на тебя.
 	B_GiveInvItems(self,other,ItWr_Poster_MIS,1);
-	B_UseFakeHeroFace(other,self);
+	B_ReadFakeItem(other,self,Fakeheroface,1);
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_04");	//По-видимому, эти парни искали тебя.
 	B_PlayerEnteredCity();
 	Info_ClearChoices(DIA_Pablo_WANTED);
@@ -201,6 +201,10 @@ func void DIA_Pablo_MyBandits_Info()
 	AI_Output(self,other,"DIA_Pablo_Add_12_17");	//Я думаю, они были частью банды, которая засела в горах около фермы Онара.
 	AI_Output(self,other,"DIA_Pablo_Add_12_18");	//Но если ты захочешь отправиться туда, позволь мне тебя предупредить. Эти головорезы могут сделать котлету из кого угодно!
 	AI_Output(other,self,"DIA_Pablo_Add_15_19");	//Я запомню это.
+	if(MIS_Steckbriefe == LOG_Running)
+	{
+		B_LogEntry(Topic_Bandits,"Ополчение нашло бандитов с объявлением о моем розыке неподалеку от поместья Онара. Похоже, что они из банды, которая засела там в горах.");
+	};
 };
 
 

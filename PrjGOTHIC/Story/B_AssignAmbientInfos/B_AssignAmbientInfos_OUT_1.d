@@ -45,12 +45,12 @@ func void DIA_OUT_1_STANDARD_Info()
 	if(randy == 0)
 	{
 		AI_Output(self,other,"DIA_OUT_1_STANDARD_01_00");	//— тех пор, как барьер вокруг исправительной колонии исчез, мы испытываем посто€нные проблемы с бандитами.
-	};
-	if(randy == 1)
+	}
+	else if(randy == 1)
 	{
 		AI_Output(self,other,"DIA_OUT_1_STANDARD_01_01");	//Ќа ополчение нельз€ положитьс€. ћы должны защищать себ€ сами.
-	};
-	if(randy == 2)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_OUT_1_STANDARD_01_02");	//я никому не позволю помыкать собой. Ќи королю, ни этому жирному ќнару. я сражаюсь только за себ€.
 	};

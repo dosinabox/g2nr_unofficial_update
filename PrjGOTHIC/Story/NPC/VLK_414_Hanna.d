@@ -6,7 +6,7 @@ instance VLK_414_Hanna(Npc_Default)
 	id = 414;
 	voice = 17;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);

@@ -1093,7 +1093,7 @@ instance DIA_Bennet_DJG_ARMOR_M(C_Info)
 	condition = DIA_Bennet_DJG_ARMOR_M_Condition;
 	information = DIA_Bennet_DJG_ARMOR_M_Info;
 	permanent = TRUE;
-	description = "Средние доспехи охотника на драконов (120/120/75/35, 12000 золотых)";
+	description = B_BuildPriceString("Купить средние доспехи охотника на драконов. Защита: 120/120/75/35.",VALUE_ITAR_DJG_M);
 };
 
 
@@ -1163,8 +1163,6 @@ func void DIA_Bennet_BetterArmor_Info()
 };
 
 
-//var int Bennet_DIA_Bennet_DJG_ARMOR_H_permanent;
-
 instance DIA_Bennet_DJG_ARMOR_H(C_Info)
 {
 	npc = SLD_809_Bennet;
@@ -1172,7 +1170,7 @@ instance DIA_Bennet_DJG_ARMOR_H(C_Info)
 	condition = DIA_Bennet_DJG_ARMOR_H_Condition;
 	information = DIA_Bennet_DJG_ARMOR_H_Info;
 	permanent = TRUE;
-	description = "Тяжелые доспехи охотника на драконов (150/150/100/50, 20000 золотых)";
+	description = B_BuildPriceString("Купить тяжелые доспехи охотника на драконов. Защита: 150/150/100/50.",VALUE_ITAR_DJG_H);
 };
 
 
@@ -1364,7 +1362,6 @@ func void DIA_Bennet_GetInnosEye_Info()
 
 
 var int BennetsDragonEggOffer;
-var int DRACHENEIER_angebotenXP_OneTime;
 
 instance DIA_Bennet_DRACHENEIER(C_Info)
 {
@@ -1393,20 +1390,24 @@ func void DIA_Bennet_DRACHENEIER_Info()
 		AI_Output(self,other,"DIA_Bennet_DRACHENEIER_06_01");	//Драконьи яйца? Где, черт возьми, тебе удалось добыть их?
 		AI_Output(other,self,"DIA_Bennet_DRACHENEIER_15_02");	//Я забрал их у людей-ящеров.
 		AI_Output(self,other,"DIA_Bennet_DRACHENEIER_06_03");	//Давай посмотрим.
-	};
-	Npc_RemoveInvItems(other,ItAt_DragonEgg_MIS,1);
-	AI_PrintScreen("Драконье яйцо отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-	if(DRACHENEIER_angebotenXP_OneTime == FALSE)
-	{
+		Npc_RemoveInvItems(other,ItAt_DragonEgg_MIS,1);
+		AI_PrintScreen("Драконье яйцо отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		AI_Output(self,other,"DIA_Bennet_DRACHENEIER_06_04");	//Ммм. Очень твердый материал. Идеально подходит для доспехов. Если только удастся открыть их.
 		AI_Output(other,self,"DIA_Bennet_DRACHENEIER_15_05");	//Ну и как? Они нужны тебе?
 		AI_Output(self,other,"DIA_Bennet_DRACHENEIER_06_06");	//Конечно! Давай сюда.
+		if(TOPIC_END_DRACHENEIER == FALSE)
+		{
+			Log_CreateTopic(TOPIC_DRACHENEIER,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_DRACHENEIER,LOG_Running);
+		};
 		B_LogEntry(TOPIC_DRACHENEIER,"Беннет готов дать хорошую цену за драконьи яйца, которые я найду.");
 		B_GivePlayerXP(XP_DJG_BringDragonEgg);
 		DRACHENEIER_angebotenXP_OneTime = TRUE;
 	}
 	else
 	{
+		Npc_RemoveInvItems(other,ItAt_DragonEgg_MIS,1);
+		AI_PrintScreen("Драконье яйцо отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		AI_Output(self,other,"DIA_Bennet_DRACHENEIER_06_07");	//Ну и сколько еще ты собираешься вертеть их у меня перед носом? Ты продашь их или нет?
 	};
 	AI_Output(self,other,"DIA_Bennet_DRACHENEIER_06_08");	//Я заплачу тебе, ммм, ну... скажем, 300 золотых за каждое яйцо, что ты принесешь мне.

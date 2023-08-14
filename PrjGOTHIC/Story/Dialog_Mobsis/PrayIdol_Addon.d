@@ -29,7 +29,7 @@ func void B_HitpointAngleich(var int BeliarsCost)
 {
 	var int CurrentHitpoints;
 	Stats_Beliar_HpGiven += BeliarsCost;
-	hero.attribute[ATR_HITPOINTS_MAX] -= BeliarsCost;
+	Npc_ChangeAttribute(hero,ATR_HITPOINTS_MAX,-BeliarsCost);
 	ATR_PermBonus[ATR_HITPOINTS_MAX] -= BeliarsCost;
 	CurrentHitpoints = hero.attribute[ATR_HITPOINTS] - BeliarsCost;
 	if(CurrentHitpoints < 2)
@@ -45,7 +45,7 @@ func void B_ManaAngleich(var int BeliarsCost)
 	var int CurrentMana;
 	Stats_Beliar_ManaGiven += BeliarsCost;
 	B_UnEquipIllegalMagicItems(BeliarsCost);
-	hero.attribute[ATR_MANA_MAX] -= BeliarsCost;
+	Npc_ChangeAttribute(hero,ATR_MANA_MAX,-BeliarsCost);
 	ATR_PermBonus[ATR_MANA_MAX] -= BeliarsCost;
 	CurrentMana = hero.attribute[ATR_MANA] - BeliarsCost;
 	if(CurrentMana < 0)
@@ -91,27 +91,30 @@ func void B_GetBeliarsGold(var int Kohle)
 func void B_PrayIdol(var int attribute,var int amount)
 {
 	var int gold;
-	if(attribute == ATR_HITPOINTS_MAX)
-	{
-		B_HitpointAngleich(amount);
-		gold = amount * BeliarsGoldMultiplier;
-	}
-	else if(attribute == ATR_MANA_MAX)
-	{
-		B_ManaAngleich(amount);
-		gold = amount * BeliarsGoldMultiplier * 10;
-	};
 	if(C_PrayedIdolToday() || (Stats_Beliar_GoldTaken >= BeliarsDispo))
 	{
 		B_BlitzInArsch();
 	}
-	else if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
-	{
-		B_GetBeliarsGold(gold / 2);
-	}
 	else
 	{
-		B_GetBeliarsGold(gold);
+		if(attribute == ATR_HITPOINTS_MAX)
+		{
+			B_HitpointAngleich(amount);
+			gold = amount * BeliarsGoldMultiplier;
+		}
+		else if(attribute == ATR_MANA_MAX)
+		{
+			B_ManaAngleich(amount);
+			gold = amount * BeliarsGoldMultiplier * 10;
+		};
+		if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+		{
+			B_GetBeliarsGold(gold / 2);
+		}
+		else
+		{
+			B_GetBeliarsGold(gold);
+		};
 	};
 	PrayIdolDay = Wld_GetDay();
 	if(PrayIdolDay == 0)
@@ -153,7 +156,7 @@ func int PC_PrayIdol_End_Condition()
 
 func void PC_PrayIdol_End_Info()
 {
-	b_endproductiondialog();
+	B_EndProductionDialog();
 };
 
 
@@ -176,7 +179,7 @@ func int PC_PrayIdol_PrayIdol_Condition()
 	};
 };
 
-func void PC_PrayIdol_PrayIdol_Info()
+func void PC_PrayIdol_PrayIdol_Info() //TODO при IgnoreBonuses == TRUE можно жертвовать бесконечно!
 {
 	Info_ClearChoices(PC_PrayIdol_PrayIdol);
 	Info_AddChoice(PC_PrayIdol_PrayIdol,Dialog_Back,PC_PrayIdol_PrayIdol_Back);

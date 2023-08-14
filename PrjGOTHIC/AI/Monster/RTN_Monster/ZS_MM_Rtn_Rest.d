@@ -4,7 +4,7 @@ func void ZS_MM_Rtn_Rest()
 	Perception_Set_Monster_Rtn();
 	AI_SetWalkMode(self,NPC_WALK);
 	B_MM_DeSynchronize();
-	if(!Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
+	if(!C_NpcIsOnRoutineWP(self))
 	{
 		AI_GotoWP(self,self.wp);
 	};
@@ -43,12 +43,12 @@ func int ZS_MM_Rtn_Rest_Loop()
 			if(randomMove == 0)
 			{
 				AI_PlayAni(self,"R_ROAM1");
-			};
-			if(randomMove == 1)
+			}
+			else if(randomMove == 1)
 			{
 				AI_PlayAni(self,"R_ROAM2");
-			};
-			if(randomMove == 2)
+			}
+			else
 			{
 				AI_PlayAni(self,"R_ROAM3");
 			};

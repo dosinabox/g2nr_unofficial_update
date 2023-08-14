@@ -6,13 +6,12 @@ instance SLD_823_Khaled(Npc_Default)
 	id = 823;
 	voice = 11;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Sld_Axe);
 	EquipItem(self,ItRw_Crossbow_H_01);
-//	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,78,ItMi_Gold,85);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_B_Thorus,BodyTex_B,ITAR_SLD_H);
 	Mdl_SetModelFatness(self,2);

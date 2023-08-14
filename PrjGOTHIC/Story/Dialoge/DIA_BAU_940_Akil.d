@@ -43,13 +43,9 @@ instance DIA_Akil_Hallo(C_Info)
 
 func int DIA_Akil_Hallo_Condition()
 {
-//	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_IsInState(self,ZS_Talk))
-	if(Kapitel < 4)
+	if(!C_AkilFarmIsFree())
 	{
-		if(!C_AkilFarmIsFree())
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -83,8 +79,7 @@ instance DIA_Akil_Nichtjetzt(C_Info)
 
 func int DIA_Akil_Nichtjetzt_Condition()
 {
-//	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_KnowsInfo(other,DIA_Akil_Hallo))
-	if(Npc_IsInState(self,ZS_Talk) && !C_AkilFarmIsFree() && Npc_KnowsInfo(other,DIA_Akil_Hallo) && (Kapitel < 4))
+	if(Npc_IsInState(self,ZS_Talk) && !C_AkilFarmIsFree() && Npc_KnowsInfo(other,DIA_Akil_Hallo))
 	{
 		return TRUE;
 	};

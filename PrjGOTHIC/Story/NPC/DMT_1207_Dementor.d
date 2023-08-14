@@ -6,7 +6,7 @@ instance DMT_1207_Dementor(Npc_Default)
 	id = 1207;
 	voice = 19;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	aivar[AIV_MagicUser] = MAGIC_ALWAYS;
 	bodyStateInterruptableOverride = TRUE;

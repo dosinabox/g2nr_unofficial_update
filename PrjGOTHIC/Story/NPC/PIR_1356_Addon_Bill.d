@@ -6,7 +6,7 @@ instance PIR_1356_Addon_Bill(Npc_Default)
 	id = 1356;
 	voice = 3;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Addon_PIR1hAxe);

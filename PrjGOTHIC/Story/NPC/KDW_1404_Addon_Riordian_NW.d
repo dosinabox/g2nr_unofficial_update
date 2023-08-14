@@ -6,7 +6,7 @@ instance KDW_1404_Addon_Riordian_NW(Npc_Default)
 	id = 1404;
 	voice = 10;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_MagicUser] = MAGIC_ALWAYS;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;

@@ -87,7 +87,7 @@ func void DIA_Orlan_Wein_Okay()
 	B_GiveInvItems(other,self,ItFo_Wine,12);
 	AI_Output(self,other,"DIA_Orlan_Wein_Okay_05_01");	//Вот твои свитки и золото.
 	B_GiveInvItems(self,other,ItMi_Gold,100);
-	PrintScreen("4 свитка получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+	AI_PrintScreen("4 свитка получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	CreateInvItems(hero,ItSc_Light,2);
 	CreateInvItems(hero,ItSc_LightHeal,1);
 	CreateInvItems(hero,ItSc_SumGobSkel,1);
@@ -143,7 +143,7 @@ instance DIA_Addon_Orlan_Greg(C_Info)
 
 func int DIA_Addon_Orlan_Greg_Condition()
 {
-	if((SC_SawGregInTaverne == TRUE) && (Kapitel <= 3) && Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU))
+	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && Npc_KnowsInfo(other,DIA_Addon_Greg_NW_MeetGregSecondTime) && (GregIsBack == FALSE))
 	{
 		return TRUE;
 	};
@@ -372,7 +372,7 @@ func void DIA_Orlan_RUESTUNG_Info()
 	AI_Output(self,other,"DIA_Orlan_RUESTUNG_05_01");	//У меня есть очень хороший экземпляр, я уверен, это заинтересует тебя.
 	Info_ClearChoices(DIA_Orlan_RUESTUNG);
 	Info_AddChoice(DIA_Orlan_RUESTUNG,Dialog_Back,DIA_Orlan_RUESTUNG_BACK);
-	Info_AddChoice(DIA_Orlan_RUESTUNG,"Купить кожаные доспехи. Защита: 25/20/5/0. (250 золотых)",DIA_Orlan_RUESTUNG_Buy);
+	Info_AddChoice(DIA_Orlan_RUESTUNG,B_BuildPriceString("Купить кожаные доспехи. Защита: 25/20/5/0.",VALUE_ITAR_Leather_L),DIA_Orlan_RUESTUNG_Buy);
 };
 
 func void DIA_Orlan_RUESTUNG_Buy()

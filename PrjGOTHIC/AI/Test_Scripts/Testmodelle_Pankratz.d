@@ -630,14 +630,14 @@ func void DIA_Dragon_Testmodell_Hello_Info()
 {
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
-	value = value_StonePlateCommon;
+	value = Value_StonePlateCommon;
 	material = MAT_LEATHER;
 	on_state[0] = usejoly_item1;
 	scemeName = "MAP";
 	description = name;
 	text[2] = "Компиляция визуала фиктивного предмета";
 	text[5] = NAME_Value;
-	count[5] = value_StonePlateCommon;
+	count[5] = value;
 	inv_zbias = INVCAM_ENTF_MISC5_STANDARD;
 };
 

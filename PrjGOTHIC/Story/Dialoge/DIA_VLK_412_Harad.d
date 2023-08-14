@@ -461,10 +461,7 @@ func void DIA_Harad_LEHRLING_OK()
 	};
 	Player_IsApprentice = APP_Harad;
 	ApprenticeGoldCounter = 0;
-	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
-	{
-		Npc_ExchangeRoutine(Lothar,"START");
-	};
+	B_StartOtherRoutine(Lothar,"START");
 	Harad_StartGuild = other.guild;
 	Harad_Lehrling_Day = Wld_GetDay();
 	Wld_AssignRoomToGuild("schmied",GIL_NONE);

@@ -47,7 +47,6 @@ func void PC_Sleep(var int t)
 	B_CheckLog();
 	B_CoolHotDraw(hero);
 	B_ClearFakeItems(hero);
-//	PrintGlobals(PD_ITEM_MOBSI);
 	Npc_SendPassivePerc(hero,PERC_ASSESSENTERROOM,NULL,hero);
 };
 

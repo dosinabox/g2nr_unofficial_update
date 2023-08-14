@@ -6,7 +6,7 @@ instance SLD_807_Bullco(Npc_Default)
 	id = 807;
 	voice = 6;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IGNORE_Sheepkiller] = TRUE;
 	aivar[AIV_IGNORE_Theft] = TRUE;

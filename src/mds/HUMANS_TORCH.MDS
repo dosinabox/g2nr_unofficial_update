@@ -1,0 +1,576 @@
+Model ("HuS")
+{
+
+	meshAndTree ("Hum_Body_Naked0.ASC" DONT_USE_MESH)
+
+	aniEnum
+	{
+		modelTag	("DEF_HIT_LIMB"		"zs_RightHand")
+
+
+	AniDisable	("t_Warn")
+	AniDisable	("t_perception")
+
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+// Bewegungs-Modi
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// ---------------------------------------------------------------------------------------------------------------
+//	RUN-Mode
+
+			ani			("s_Run"				1	"s_Run"			0.1	0.1	M.	"Hum_Torch_RunAmbient_GMF.asc"	F	0	50)
+			ani			("t_Run_2_RunL"			1	"s_RunL"		0.0	0.0	M.	"Hum_Torch_RunLoop_GMF.asc"		F	0	11)
+			ani			("s_RunL"				1	"s_RunL"		0.0	0.1	M.	"Hum_Torch_RunLoop_GMF.asc"		F	12	31)
+			{
+				*eventSFXGrnd	(12	"Run")
+				*eventSFXGrnd	(22	"Run")
+			}
+
+			ani			("t_RunL_2_Run"			1	"s_Run"			0.0	0.0	M.	"Hum_Torch_RunLoop_GMF.asc"		F	32	40)
+			{
+				*eventSFXGrnd	(32	"Run")
+				*eventSFXGrnd	(38	"Run")
+			}
+			aniBlend	("t_RunR_2_Run"				"s_Run"			0.2	0.2)
+			
+			ani			("t_JumpB"				1	"s_Run"			0.0	0.2	M.	"Hum_Torch_JumpB_GMF.asc"		F	0	16)
+			{
+				*eventSFXGrnd  (7 "Run")
+				*eventSFXGrnd  (11 "Run")
+			}
+			
+// ---------------------------------------------------------------------------------------------------------------
+//	WALK-Mode
+
+			ani			("s_Walk"				1	"s_Walk"		0.1	0.1	M.	"Hum_Torch_WalkAmbient_GMF.asc"	F	0	50)
+			ani			("t_Walk_2_WalkL"		1	"s_WalkL"		0.0	0.0	M.	"Hum_Torch_WalkLoop_GMF.asc"	F	0	9)
+			ani			("s_WalkL"				1	"s_WalkL"		0.0	0.1	M.	"Hum_Torch_WalkLoop_GMF.asc"	F	10	33)
+			{
+				*eventSFXGrnd	(10	"Walk")
+				*eventSFXGrnd	(22	"Walk")
+			}
+
+			ani			("t_WalkL_2_Walk"		1	"s_Walk"		0.0	0.0	M.	"Hum_Torch_WalkLoop_GMF.asc"	F	34	41)
+			{
+				*eventSFXGrnd	(34	"Walk")
+				*eventSFXGrnd	(40	"Walk")
+			}
+			ani			("t_WalkR_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_Torch_WalkLoopEnd_GMF.asc"	F	34	41)
+			{
+				*eventSFXGrnd	(34	"Walk")
+				*eventSFXGrnd	(40	"Walk")
+			}
+			
+			// Зацикленное движение назад в режиме передвижения шагом заменено отпрыгиванием.
+		//	aniAlias	("t_Walk_2_WalkBL"		1	"s_Walk"		0.1	0.1	M.	"t_JumpB"						F)
+			aniAlias	("t_Walk_2_WalkBL"		1	"s_WalkBL"		0.1	0.1	M.	"t_walkL_2_Walk"				R)
+
+			aniAlias	("s_WalkBL"				1	"s_WalkBL"		0.0	0.0	M.	"s_WalkL"						R)
+			ani			("t_WalkBL_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"Hum_Torch_WalkLoopBEnd_GMF.ASC"	R	15	22)
+			{
+				*eventSFXGrnd	(16	"Walk")
+				*eventSFXGrnd	(22	"Walk")
+			}
+			aniAlias	("t_WalkBR_2_Walk"		1	"s_Walk"		0.1	0.1	M.	"t_WalkL_2_Walk"				R)	
+
+// ---------------------------------------------------------------------------------------------------------------
+// WALK WATER
+
+			ani			("t_Walk_2_WalkWL"		1	"s_WalkWL"		0.0	0.0	M.	"Hum_Torch_WaterWalk_GMF.asc"	F	0	14)
+			ani			("s_WalkWL"				1	"s_WalkWL"		0.0	0.0	M.	"Hum_Torch_WaterWalk_GMF.asc"	F	14	49)
+			{
+				*eventSFX	(16	"Walk_Water")
+				*eventSFX	(34	"Walk_Water")
+			}
+
+		//	ani			("t_WalkWL_2_Walk"		1	"s_Walk"		0.0	0.0	M.	"Hum_Torch_WaterWalk_GMF.asc"	F	50	65)
+			ani			("t_WalkWL_2_Walk"		1	"s_Walk"		0.2	0.2	M.	"Hum_Torch_WaterWalk_GMF.asc"	F	54	65)
+			{
+				*eventSFX	(63	"Walk_Water")
+			}
+			aniBlend	("t_WalkWR_2_Walk"			"s_Walk"		0.2	0.2)
+
+			// Зацикленное движение назад в режиме передвижения в воде заменено отпрыгиванием.
+			ani			("t_Walk_2_WalkWBL"		1	"s_Walk"		0.2	0.2	M.	"Hum_Torch_JumpB_GMF.asc"		F	0	16 SPD:20)
+			{
+				*eventSFX	(10	"Swim")
+			}
+		//	aniBlend	("t_Walk_2_WalkWBL"			"s_WalkWBL"		0.2	0.2)
+		//	aniAlias	("s_WalkWBL"			1	"s_WalkWBL"		0.0	0.0	M.	"s_WalkWL"						R)
+		//	aniBlend	("t_WalkWBL_2_Walk"			"s_Walk"		0.2	0.2)
+
+//	Transitions won Walkloops zu Walkloop im Wasser // Здесь это не нужно.
+		//	aniBlend	("t_SneakBL_2_WalkWBL"		"s_WalkWBL"		0.2	0.2)
+		//	aniBlend	("t_WalkWBL_2_SneakBL"		"s_SneakBL"		0.2	0.2)
+
+		//	aniBlend	("t_WalkBL_2_WalkWBL"		"s_WalkWBL"		0.2	0.2)
+		//	aniBlend	("t_WalkWBL_2_WalkBL"		"s_WalkBL"		0.2	0.2)
+
+		//	aniBlend	("t_SneakL_2_WalkWL"		"s_WalkWL"		0.2	0.2)
+		//	aniBlend	("t_WalkWL_2_SneakL"		"s_SneakL"		0.2	0.2)
+
+		//	aniBlend	("t_WalkL_2_WalkWL"			"s_WalkWL"		0.2	0.2)
+		//	aniBlend	("t_WalkWL_2_WalkL"			"s_WalkL"		0.2	0.2)
+
+		//	aniBlend	("t_RunL_2_WalkWL"			"s_WalkWL"		0.2	0.2)
+		//	aniBlend	("t_WalkWL_2_RunL"			"s_RunL"		0.2	0.2)
+
+		//	aniBlend	("t_WalkWBL_2_SwimB"		"s_SwimB"		0.2	0.2)
+
+		//	aniBlend	("t_WalkWL_2_SwimF"			"s_SwimF"		0.2	0.2)
+
+
+// ---------------------------------------------------------------------------------------------------------------
+//	SNEAK-Mode
+
+			ani			("s_Sneak"				1	"s_Sneak"		0.1	0.0	MI	"Hum_Torch_SneakAmbient_GMF.asc"	F	10	59)
+			ani			("t_Sneak_2_SneakL"		1	"s_SneakL"		0.0	0.0	M.	"Hum_Torch_Sneak_GMF.asc"			F	0	7)
+			ani			("s_SneakL"				1	"s_SneakL"		0.0	0.0	M.	"Hum_Torch_Sneak_GMF.asc"			F	7	46)
+			{
+				*eventSFXGrnd	(20	"Sneak")
+				*eventSFXGrnd	(38	"Sneak")
+			}
+		//	ani			("t_SneakL_2_Sneak"		1	"s_Sneak"		0.0	0.0	M.	"Hum_Torch_Sneak_GMF.asc"			F	47	71)
+		//	{
+		//		*eventSFXGrnd	(55	"Sneak")
+		//		*eventSFXGrnd	(69	"Sneak")
+		//	}
+		//	ani			("t_SneakR_2_Sneak"		1	"s_Sneak"		0.0	0.0	M.	"Hum_Torch_Sneak_GMF.asc"			F	73	85)
+		//	{
+		//		*eventSFXGrnd	(84	"Sneak")
+		//	}
+			aniBlend	("t_SneakL_2_Sneak"			"s_Sneak"		0.2	0.2)
+			aniBlend	("t_SneakR_2_Sneak"			"s_Sneak"		0.2	0.2)
+
+			// Нужен новый исходник для движения назад.
+			aniBlend	("t_Sneak_2_SneakBL"		"s_SneakBL"		0.2	0.2)
+			aniAlias	("s_SneakBL"			1	"s_SneakBL"		0.0	0.0	M.	"s_SneakL"							R)
+
+			aniBlend	("t_SneakBL_2_Sneak"		"s_Sneak"		0.2	0.2)
+			aniBlend	("t_SneakBR_2_Sneak"		"s_Sneak"		0.2	0.2)	
+
+
+// ---------------------------------------------------------------------------------------------------------------
+//	TURNING
+
+			ani			("t_RunTurnL"			20	"t_RunTurnL"	0.1	0.2	M.	"Hum_Torch_TurnL_GMF.asc"		F	0	20)
+			{
+				*eventSFXGrnd	(10	"Turn")
+				*eventSFXGrnd	(20	"Turn")
+			}
+			ani			("t_RunTurnR"			20	"t_RunTurnR"	0.1	0.2	M.	"Hum_Torch_TurnR_GMF.asc"		F	0	20)
+			{
+				*eventSFXGrnd	(10	"Turn")
+				*eventSFXGrnd	(20	"Turn")
+			}
+
+			aniAlias	("t_WalkTurnL"			20	"t_WalkTurnL"	0.1	0.1	M.	"t_RunTurnL"					F)
+			aniAlias	("t_WalkTurnR"			20	"t_WalkTurnR"	0.1	0.1	M.	"t_RunTurnR"					F)
+			
+			ani			("t_WalkWTurnL"			20	"t_RunTurnL"	0.1	0.2	M.	"Hum_Torch_TurnL_GMF.asc"		F	0	20)
+			{
+				*eventSFX	(10	"Swim")
+			}
+			ani			("t_WalkWTurnR"			20	"t_RunTurnR"	0.1	0.2	M.	"Hum_Torch_TurnR_GMF.asc"		F	0	20)
+			{
+				*eventSFX	(10	"Swim")
+			}
+
+			ani			("t_SneakTurnL"			20	"t_SneakTurnL"	0.2	0.2	M.	"Hum_Torch_SneakTurnL_GMF.asc"	F	1	25)
+			{
+				*eventSFXGrnd	(10	"Sneak")
+				*eventSFXGrnd	(22	"Sneak")
+			}
+			ani			("t_SneakTurnR"			20	"t_SneakTurnR"	0.2	0.2	M.	"Hum_Torch_SneakTurnR_GMF.asc"	F	1	25)
+			{
+				*eventSFXGrnd	(10	"Sneak")
+				*eventSFXGrnd	(22	"Sneak")
+			}
+
+
+// ---------------------------------------------------------------------------------------------------------------
+//	STRAFING
+
+			ani			("t_RunStrafeL"			1	"t_RunStrafeL"	0.2	0.2	M.	"Hum_Torch_RunStrafeL_GMF.asc"		F	1	18)
+			{
+				*eventSFXGrnd	(9	"Run")
+				*eventSFXGrnd	(18	"Run")
+			}
+			ani			("t_RunStrafeR"			1	"t_RunStrafeR"	0.2	0.2	M.	"Hum_Torch_RunStrafeR_GMF.asc"		F	1	18)
+			{
+				*eventSFXGrnd	(9	"Run")
+				*eventSFXGrnd	(18	"Run")
+			}
+			
+			ani			("t_WalkStrafeL"		1	"s_walk"		0.1	0.1	M.	"Hum_Torch_WalkStrafeL_GMF.asc"		F	0	18)
+			{
+				*eventSFXGrnd	(9	"Run")
+				*eventSFXGrnd	(16	"Run")
+			}
+			ani			("t_WalkStrafeR"		1	"s_walk"		0.1	0.1	M.	"Hum_Torch_WalkStrafeR_GMF.asc"		F	0	18)
+			{
+				*eventSFXGrnd	(9	"Run")
+				*eventSFXGrnd	(16	"Run")
+			}
+			
+			ani			("t_WalkWStrafeL"		1	"s_walk"		0.1	0.1	M.	"Hum_Torch_WalkStrafeL_GMF.asc"		F	0	18)
+			{
+				*eventSFX	(9	"Swim")
+			}
+			ani			("t_WalkWStrafeR"		1	"s_walk"		0.1	0.1	M.	"Hum_Torch_WalkStrafeR_GMF.asc"		F	0	18)
+			{
+				*eventSFX	(9	"Swim")
+			}
+			
+			ani			("t_SneakStrafeL"		1	"s_sneak"		0.1	0.1	M.	"Hum_Torch_SneakStrafeLR_GMF.ASC"	F	0	26)
+			{
+				*eventSFXGrnd	(12	"Sneak")
+				*eventSFXGrnd	(25	"Sneak")
+			}
+			ani			("t_SneakStrafeR"		1	"s_sneak"		0.1	0.1	M.	"Hum_Torch_SneakStrafeLR_GMF.ASC"	R	0	26)
+			{
+				*eventSFXGrnd	(1	"Sneak")
+				*eventSFXGrnd	(13	"Sneak")
+			}
+
+
+// ---------------------------------------------------------------------------------------------------------------
+//	TRANSITIONS
+
+			aniBlend	("t_Run_2_Walk"				"s_Walk"		0.2	0.2)
+			aniBlend	("t_Walk_2_Run"				"s_Run"			0.2	0.2)
+
+			aniBlend	("t_RunL_2_WalkL"			"s_WalkL"		0.2	0.2)
+			aniBlend	("t_WalkL_2_RunL"			"s_RunL"		0.2	0.2)
+
+			aniBlend	("t_SneakL_2_RunL"			"s_RunL"		0.2	0.2)
+			aniBlend	("t_RunL_2_SneakL"			"s_SneakL"		0.2	0.2)
+
+			aniBlend	("t_WalkL_2_SneakL"			"s_SneakL"		0.2	0.2)
+			aniBlend	("t_SneakL_2_WalkL"			"s_WalkL"		0.2	0.2)
+			
+			
+			
+			ani			("t_Run_2_Sneak"		1	"s_Sneak"		0.1	0.0	M.	"Hum_Torch_SneakAmbient_GMF.asc"	F	0	10)
+			{
+				*eventSFXGrnd	(8	"Sneak")
+			}
+			ani			("t_Sneak_2_Run"		1	"s_Run"			0.0	0.1	M.	"Hum_Torch_SneakAmbient_GMF.asc"	R	0	10)
+			{
+				*eventSFXGrnd	(1	"Sneak")
+			}
+			
+			// Переход запрещён, поскольку сочетание недопустимо (при нажатой клавише Shift состояние подкрадывания прерывается).
+			AniDisable	("t_Walk_2_Sneak")
+		//	aniAlias	("t_Walk_2_Sneak"		1	"s_Sneak"		1.0	0.0	M.	"t_Run_2_Sneak"						F)
+			aniAlias	("t_Sneak_2_Walk"		1	"s_Walk"		0.0	0.1	M.	"t_Sneak_2_Run"						R)
+			
+// ---------------------------------------------------------------------------------------------------------------
+// DIALOGGESTURES
+
+			ani			("T_DIALOGGESTURE_01"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture01_GMF.asc"		F	0	60)
+			ani			("t_DIALOGGESTURE_02"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture02_GMF.asc"		F	0	50)
+			ani			("t_DIALOGGESTURE_03"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture03_GMF.asc"		F	0	55)
+			ani			("t_DIALOGGESTURE_04"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture04_GMF.asc"		F	0	55)
+			ani			("t_DIALOGGESTURE_05"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture05_GMF.asc"		F	0	50)
+			ani			("t_DIALOGGESTURE_06"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture06_GMF.asc"		F	0	50)
+			ani			("t_DIALOGGESTURE_07"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture07_GMF.asc"		F	0	240)
+			ani			("t_DIALOGGESTURE_08"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture08_GMF.asc"		F	0	150)
+			ani			("t_DIALOGGESTURE_09"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture09_GMF.asc"		F	0	80)
+			ani			("t_DIALOGGESTURE_10"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture10_GMF.asc"		F	0	150)
+			ani			("t_DIALOGGESTURE_11"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture11_GMF.asc"		F	0	65)
+			ani			("t_DIALOGGESTURE_12"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture12_GMF.asc"		F	0	45)
+			ani			("t_DIALOGGESTURE_13"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture13_GMF.asc"		F	0	35)
+			ani			("t_DIALOGGESTURE_14"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture14_GMF.asc"		F	0	40)
+			ani			("t_DIALOGGESTURE_15"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture15_GMF.asc"		F	0	50)
+			ani			("t_DIALOGGESTURE_16"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture16_GMF.asc"		F	0	72)
+			ani			("t_DIALOGGESTURE_17"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture17_GMF.asc"		F	0	45)
+			ani			("t_DIALOGGESTURE_18"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture18_GMF.asc"		F	0	51)
+			ani			("t_DIALOGGESTURE_19"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture19_GMF.asc"		F	0	81)
+			ani			("t_DIALOGGESTURE_20"		20	""		0.2	0.4	M.	"Hum_Torch_Dialoggesture20_GMF.asc"		F	0	70)
+		//	ani			("t_DIALOGGESTURE_21"		20	""		0.4	0.4	M.	"Hum_Torch_Dialoggesture19_GMF.asc"		R	1	80)
+		//	AniDisable	("t_DIALOGGESTURE_21")
+
+// ---------------------------------------------------------------------------------------------------------------
+// JUMP
+
+		//	ani			("t_Stand_2_Jump"		1	"s_Jump"		0.2	0.1	MF	"Hum_Torch_Jump_GMF.asc"			F	1	26)
+		//	ani			("s_Jump"				1	"s_Jump"		0.1	0.1 MF	"Hum_Torch_Jump_GMF.asc"			F	27	27)
+		//	ani			("t_Jump_2_Stand"		1	""				0.1 0.2	M.	"Hum_Torch_Jump_GMF.asc"			F	28	43)
+		//	{
+		//		*eventSFXGrnd	(28	"Run")
+		//		*eventSFXGrnd	(29	"Run")
+		//	}
+
+		//	ani			("t_RunL_2_Jump"		1	"s_Jump"		0.1	0.1	MF	"Hum_RunLJump_M01.asc"		F	1	19)
+		//	ani			("t_RunR_2_Jump"		1	"s_Jump"		0.1	0.1	MF	"Hum_RunLJump_M01.asc"		F	22	40)
+		//	aniBlend	("t_Jump_2_RunL"			"s_RunL"		0.2	0.2)
+
+// ---------------------------------------------------------------------------------------------------------------
+// JUMP UP, CLIMB
+
+//	JumpUpLow       (50-100cm)
+			ani		("t_Stand_2_JumpUpLow"		1   "s_JumpUpLow"			0.0 0.0 M.  "Hum_Torch_JumpUpLow_GMF.asc"	F	0	4)
+ 			ani		("s_JumpUpLow"              1   "t_JumpUpLow_2_Stand"	0.0 0.0 MF	"Hum_Torch_JumpUpLow_GMF.asc"	F	5	10)
+			{
+				*eventSFXGrnd	(12	"Run")
+			}
+
+            ani     ("t_JumpUpLow_2_Stand"  	1   ""						0.0 0.0 MF	"Hum_Torch_JumpUpLow_GMF.asc"	F	11	22)
+			{
+				*eventSFXGrnd	(17	"Run")
+			}
+
+		//	aniAlias	("t_RunL_2_JumpUpLow"	1	"t_JumpUpLow_2_Stand"	0.2	0.1	MF	"s_JumpUpLow"					F)
+		//	aniAlias	("t_RunR_2_JumpUpLow"	1	"t_JumpUpLow_2_Stand"	0.2	0.1	MF	"s_JumpUpLow"					F)
+			
+//	JumpUpMid       (100-200cm)
+            ani		("t_Stand_2_JumpUpMid"		1   "s_JumpUpMid"			0.1 0.0 M.	"Hum_Torch_JumpUpMid_GMF.asc"	F   1	9)
+			ani		("s_JumpUpMid"              1   "t_JumpUpMid_2_Stand"	0.0 0.0 MF	"Hum_Torch_JumpUpMid_GMF.asc"	F   10	13)
+			{
+				*eventSFXGrnd	(13	"Sneak")
+			}
+
+            ani		("t_JumpUpMid_2_Stand"  	1   ""						0.0 0.0 MF	"Hum_Torch_JumpUpMid_GMF.asc"	F   14	36)
+			{
+				*eventSFXGrnd	(21	"Run")
+				*eventSFXGrnd	(27	"Run")
+			}
+
+		//	aniAlias	("t_RunL_2_JumpUpMid"	1	"t_JumpUpMid_2_Stand"	0.2	0.1	MF	"s_JumpUpMid"					F)
+		//	aniAlias	("t_RunR_2_JumpUpMid"	1	"t_JumpUpMid_2_Stand"	0.2	0.1	MF	"s_JumpUpMid"					F)
+			
+//	JumpUp, Hang	(200-350cm)
+			ani			("t_Stand_2_JumpUp"		1	"s_JumpUp"				0.0	0.0	M.	"Hum_Torch_JumpUp_GMF.asc"		F	1	10)
+
+			ani			("s_JumpUp"				1	"s_JumpUp"				0.0	0.0	MF	"Hum_Torch_JumpUp_GMF.asc"		F	10	10)
+
+			aniBlend	("t_JumpUp_2_Hang"			"s_Hang"				0.0	0.1)
+			ani			("s_Hang"				1	"t_Hang_2_Stand"		0.1	0.0	MF	"Hum_Torch_JumpUp_GMF.asc" 		F	18	18)
+
+			ani			("t_Hang_2_Stand"		1	""						0.0	0.0	MF	"Hum_Torch_JumpUp_GMF.asc" 		F	19	46)
+			{
+				*eventSFXGrnd	(19	"Sneak")
+				*eventSFXGrnd	(32	"Run")
+				*eventSFXGrnd	(43	"Run")
+			}
+
+// ---------------------------------------------------------------------------------------------------------------
+// SLIDE
+
+			ani			("s_Slide"				1	"s_Slide"				0.2	0.2	M.	"Hum_Torch_Slide_GMF.asc"		F	0	16)
+			ani			("s_SlideB"				1	"s_SlideB"				0.2	0.2	M.	"Hum_Torch_SlideB_GMF.asc"		F	0	16)
+
+
+// ---------------------------------------------------------------------------------------------------------------
+// STUMBLE
+
+			ani			("t_Stumble"			1	""						0.2 0.2 M.	"Hum_Torch_Stumble_GMF.asc"		F	1	9)
+			{
+				*eventMMStartAni (1	"T_HURT")
+				*eventMMStartAni (7	"S_NEUTRAL")
+				*eventSFXGrnd	(3	"Run")
+				*eventSFXGrnd	(7	"Run")
+			}
+
+			ani			("t_StumbleB"			1	""						0.2 0.2 M.	"Hum_Torch_StumbleB_GMF.asc"	F	1	9)
+			{
+				*eventMMStartAni (1	"T_HURT")
+				*eventMMStartAni (7	"S_NEUTRAL")
+				*eventSFXGrnd	(3	"Run")
+				*eventSFXGrnd	(7	"Run")
+			}
+
+			ani			("t_GotHit"				2	""						0.2	0.2	M.	"Hum_Torch_StumbleN_GMF.asc"	F	1	9)
+
+// ---------------------------------------------------------------------------------------------------------------
+		//	ani			("t_surprise_CCW"		1	"s_surprise"			0.0	0.1	M.	"Hum_WhirlAround_M01.asc"		F	0	15)
+		//	ani			("t_surprise_CW"		1	"s_surprise"			0.0	0.1	M.	"Hum_WhirlAround_M01.asc"		F	16	31)
+// ---------------------------------------------------------------------------------------------------------------
+// Item AUFHEBEN
+
+			ani			("c_Stand_2_IGet_1"		1	""						0.0	0.0	.	"Hum_Torch_ItemGet_GMF.asc"		F	0	9)
+			ani			("c_Stand_2_IGet_2"		1	""						0.0	0.0	.	"Hum_Torch_ItemGet_GMF.asc"		F	20	29)
+			ani			("c_Stand_2_IGet_3"		1	""						0.0	0.0	.	"Hum_Torch_ItemGet_GMF.asc"		F	40	49)
+			aniComb		("t_Stand_2_IGet"		1	"s_IGet"				0.1	0.0	M.	"c_Stand_2_IGet_"			3)
+
+			ani			("c_IGet_1"				1	""						0.0	0.0	.	"Hum_Torch_ItemGet_GMF.asc"		F	10	10)
+			ani			("c_IGet_2"				1	""						0.0	0.0	.	"Hum_Torch_ItemGet_GMF.asc"		F	30	30)
+			ani			("c_IGet_3"				1	""						0.0	0.0	.	"Hum_Torch_ItemGet_GMF.asc"		F	50	50)
+			aniComb		("s_IGet"				1	"s_IGet"				0.1	0.1	M.	"c_IGet_"					3)
+
+			ani			("c_IGet_2_Stand_1"		1	""						0.0	0.0	.	"Hum_Torch_ItemGet_GMF.asc"		F	11	20)
+			ani			("c_IGet_2_Stand_2"		1	""						0.0	0.0	.	"Hum_Torch_ItemGet_GMF.asc"		F	31	40)
+			ani			("c_IGet_2_Stand_3"		1	""						0.0	0.0	.	"Hum_Torch_ItemGet_GMF.asc"		F	51	60)
+			aniComb		("t_IGet_2_Stand"		1	""						0.0	0.1	M.	"c_IGet_2_Stand_"			3)
+
+		//	ani			("t_CanNotTake"			1	""						0.1	0.1	M.	"Hum_CantTake_M01.ASC"			F	0	30)
+
+// ---------------------------------------------------------------------------------------------------------------
+// Item AUFHEBEN (Sneak mode) Данные анимации используются только при работе плагина zExtendedAniUsage.dll для Union от Slavemaster.
+			ani			("c_Sneak_2_SneakIGet_1"	1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	0	9)
+			ani			("c_Sneak_2_SneakIGet_2"	1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	20	29)
+			ani			("c_Sneak_2_SneakIGet_3"	1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	40	49)
+			aniComb		("t_Sneak_2_SneakIGet"		1	"s_SneakIGet"	0.1	0.0	M.	"c_Sneak_2_SneakIGet_"		3)
+
+			ani			("c_SneakIGet_1"			1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	10	10)
+			ani			("c_SneakIGet_2"			1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	30	30)
+			ani			("c_SneakIGet_3"			1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	50	50)
+			aniComb		("s_SneakIGet"				1	"s_SneakIGet"	0.1	0.1	M.	"c_SneakIGet_"				3)
+
+			ani			("c_SneakIGet_2_Sneak_1"	1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	11	20)
+			ani			("c_SneakIGet_2_Sneak_2"	1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	31	40)
+			ani			("c_SneakIGet_2_Sneak_3"	1	""				0.0	0.0	.	"Hum_Torch_Sneak_ItemGet_GMF.asc"	F	51	60)
+			aniComb		("t_SneakIGet_2_Sneak"		1	"s_Sneak"		0.0	0.1	M.	"c_SneakIGet_2_Sneak_"		3)
+			
+// ---------------------------------------------------------------------------------------------------------------
+//	Item ABLEGEN
+
+			ani			("t_Stand_2_IDrop"		1	"s_IDrop"				0.1 0.0 M.	"Hum_Torch_ItemDrop_GMF.asc"	F	0	6)
+			ani			("s_IDrop"				1	"s_IDrop"				0.0 0.0 M.	"Hum_Torch_ItemDrop_GMF.asc"	F	7	7)
+			ani			("t_IDrop_2_Stand"		1	""						0.0 0.1 M.	"Hum_Torch_ItemDrop_GMF.asc"	F	8	15)
+
+// ---------------------------------------------------------------------------------------------------------------
+// Trade
+			ani			("t_TradeItem"			1	""						0.1	0.1	M.	"Hum_Torch_TradeItem_GMF.asc"	F	0	18)
+
+// Steal	// Только для мод-фикса G1. //
+		//	ani			("t_StealItem"			1	""						0.1	0.1	M.	"Hum_Torch_StealItem_GMF.asc"	F	0	20 SPD:30)
+		
+// Can Not Do
+			ani			("t_DontKnow"			2	""						0.1	0.1	M.	"Hum_Torch_DontKnow_GMF.asc"	F	0	12)
+
+// ---------------------------------------------------------------------------------------------------------------
+// MAGIC VICTIMS
+// IceCube, IceWave
+			ani			("t_Stand_2_Freeze_Victim"	1	"s_Freeze_Victim"	0.0	0.0	M.	"Hum_Torch_Stumble_GMF.asc"		F	1	3)
+			ani			("s_Freeze_Victim"			1	"s_Freeze_Victim"	0.0	0.0	M.	"Hum_Torch_Stumble_GMF.asc"		F	4	4)
+		//	ani			("t_Freeze_Victim_2_Stand"	1	""					0.0	0.2	M.	"Hum_Torch_Stumble_GMF.asc"		F	5	9)
+
+// Sleep Victim
+			ani			("t_Stand_2_Victim_Sle"		1	"s_Victim_Sle"		0.1	0.0	M.	"Hum_Torch_MS_FallDown_GMF.asc"	F	0	175)
+			{
+				*eventPFX	(2	 1	"MFX_SLEEP_TARGET"	"Bip01"	)
+				*eventTag	(3	"DEF_DROP_TORCH")
+			}
+			ani			("s_Victim_Sle"				1	"s_Victim_Sle"		0.1	0.1	M.	"Hum_Torch_MS_Ambient_GMF.asc"	F	1	50)
+			ani			("t_Victim_Sle_2_Stand"		1	""					0.0	0.2	M.	"Hum_Torch_MS_StandUp_GMF.asc"	F	1	120)	
+
+// ---------------------------------------------------------------------------------------------------------------
+// ITEM-Interaktionen
+// ---------------------------------------------------------------------------------------------------------------
+// POTIONFAST (Potion)
+			ani			("t_PotionFast_Stand_2_S0"	1	"s_PotionFast_S0"	0.1	0.0	M.	"Hum_Torch_DrinkPotion_GMF.ASC"	F	0	5)
+			{
+				*eventTag	(5	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+			}
+			ani			("s_PotionFast_S0"			1	"s_PotionFast_S0"	0.0	0.0	M.	"Hum_Torch_DrinkPotion_GMF.asc"	F	6	6)
+			ani			("t_PotionFast_S0_2_Stand"	1	""					0.0	0.3	M.	"Hum_Torch_DrinkPotion_GMF.asc"	F	7	40)
+			{
+				*eventSFX	(19	"DrinkBottle"			EMPTY_SLOT	R:800)
+				*eventTag	(35	"DEF_DESTROY_ITEM")
+			}
+			
+// POTION (Water, Wine, Booze, Beer)
+			ani			("t_Potion_Stand_2_S0"		1	"s_Potion_S0"		0.1	0.0	M.	"Hum_Torch_DrinkWater_GMF.asc"	F	0	43)
+			{
+				*eventTag	(20		"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+				*eventSFX	(30		"RELEASECORK"		EMPTY_SLOT	R:800)
+			}
+			ani			("s_Potion_S0"				1	"s_Potion_S0"		0.0	0.0	M.	"Hum_Torch_DrinkWater_GMF.asc"	F	44	44)
+			ani			("t_Potion_S0_2_Stand"		1	""					0.0	0.3	M.	"Hum_Torch_DrinkWater_GMF.asc"	F	45	175)
+			{
+				*eventSFX	(75		"DrinkBottle"		EMPTY_SLOT	R:800)
+				*eventTag	(152	"DEF_DESTROY_ITEM")
+			}
+			
+// Generic Food (Apple, Mushroom, Plants...)
+			ani			("t_Food_Stand_2_S0"		1	"s_Food_S0"			0.1	0.0	M.	"Hum_Torch_EatFood_GMF.asc"		F	0	9)
+			{
+				*eventTag			(5	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+			}
+			ani			("s_Food_S0"				1	"s_Food_S0"			0.0	0.0	M.	"Hum_Torch_EatFood_GMF.asc"		F	10	10)
+			ani			("t_Food_S0_2_Stand"		1	""					0.0	0.2	M.	"Hum_Torch_EatFood_GMF.asc"		F	11	30)
+			{
+				*eventMMStartAni	(17	"T_EAT")
+				*eventSFX			(18	"Eat_Apple"		EMPTY_SLOT	R:800)
+				*eventTag			(25	"DEF_DESTROY_ITEM")
+			}
+			
+// FoodHuge	(Bread, Cheese, Bacon...)
+			ani			("t_FoodHuge_Stand_2_S0"	1	"s_FoodHuge_S0"		0.1	0.0	M.	"Hum_Torch_EatHuge_GMF.asc"		F	1	9)
+			{
+				*eventTag			(7	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+			}
+			ani			("s_FoodHuge_S0"			1	"s_FoodHuge_S0"		0.0	0.0	M.	"Hum_Torch_EatHuge_GMF.asc"		F	10	10)
+			ani			("t_FoodHuge_S0_2_Stand"	1	""					0.0	0.2	M.	"Hum_Torch_EatHuge_GMF.asc"		F	11	40)
+			{
+				*eventMMStartAni	(15	"T_EAT")
+				*eventSFX			(16	"EAT_BREAD"		EMPTY_SLOT	R:800)
+				*eventTag			(33	"DEF_DESTROY_ITEM")
+			}
+
+// RICE (Rice, Soup...)
+			ani			("t_RICE_Stand_2_S0"		1	"s_RICE_S0"			0.1	0.0	M.	"Hum_Torch_EatRice_GMF.asc"		F	0	9)
+			{
+				*eventTag			(7		"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+			}
+			ani			("s_RICE_S0"				1	"s_RICE_S0"			0.0	0.0	M.	"Hum_Torch_EatRice_GMF.asc"		F	10	10)
+			ani			("t_RICE_S0_2_Stand"		1	""					0.0	0.2	M.	"Hum_Torch_EatRice_GMF.asc"		F	11	60)
+			{
+				*eventSFX			(20	"EAT_SOUP"		EMPTY_SLOT	R:800)
+				*eventTag			(52	"DEF_DESTROY_ITEM")
+			}
+			
+// Bollen (Leg_of_Mutton)
+			ani			("t_Meat_Stand_2_S0"		1	"s_Meat_S0"			0.1	0.0	M.	"Hum_Torch_EatMeat_GMF.asc"		F	0	9)
+			{
+				*eventTag	(6	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+			}
+			ani			("s_Meat_S0"				1	"s_Meat_S0"			0.0	0.0	M.	"Hum_Torch_EatMeat_GMF.asc"		F	10	10)
+			ani			("t_Meat_S0_2_Stand"		1	""					0.0	0.2	M.	"Hum_Torch_EatMeat_GMF.asc"		F	11	40)
+			{
+				*eventMMStartAni	(18	"T_EAT")
+				*eventSFX			(19	"Eat_Meat"		EMPTY_SLOT	R:800)
+				*eventTag			(31	"DEF_DESTROY_ITEM")
+			}
+
+// Sumpfkraut rauchen (не нужно)
+
+// Alarmhorn	// Только для мод-фикса G1. //
+		//	ani			("t_HORN_Stand_2_S0"		1	"s_HORN_S0"			0.2	0.0	M.	"Hum_Torch_BlowHorn_GMF.asc"	F	0	5)
+		//	{
+		//		*eventTag			(0	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+		//	}
+		//	ani			("s_HORN_S0"				1	"s_HORN_S0"			0.0	0.0	M.	"Hum_Torch_BlowHorn_GMF.asc"	F	6	6)
+		//	ani			("t_HORN_S0_2_Stand"		1	""					0.0	0.2	M.	"Hum_Torch_BlowHorn_GMF.asc"	R	0	5)
+		//	{
+		//		*eventTag			(0	"DEF_REMOVE_ITEM")
+		//	}
+		//	ani			("t_HORN_S0_2_S1"			1	"s_HORN_S1"			0.0	0.0	M.	"Hum_Torch_BlowHorn_GMF.asc"	F	7	78	FPS:10)
+		//	{
+		//		*eventSFX			(18	"Inst_Alarm"		EMPTY_SLOT	)
+		//	}
+		//	ani			("s_HORN_S1"				1	"s_HORN_S1"			0.0	0.0	M.	"Hum_Torch_BlowHorn_GMF.asc"	F	79	79)
+		//	ani			("t_HORN_S1_2_Stand"		1	""					0.0	0.2	M.	"Hum_Torch_BlowHorn_GMF.asc"	F	80	90)
+		//	{
+		//		*eventTag			(89	"DEF_REMOVE_ITEM")
+		//	}
+
+// Schriftrolle lesen (не нужно)
+// LUTE (не нужно)
+
+// ---------------------------------------------------------------------------------------------------------------
+// OBJEKT-Interaktionen
+// ---------------------------------------------------------------------------------------------------------------
+		
+
+
+
+	}
+}

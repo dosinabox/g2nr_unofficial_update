@@ -84,9 +84,9 @@ func void B_SetHeroExp(var int levels)
 	hero.level = 0;
 	hero.lp = 0;
 	hero.exp_next = XP_PER_LEVEL;
-	hero.attribute[ATR_HITPOINTS_MAX] = 40;
-	hero.attribute[ATR_HITPOINTS] = 40;
-	ATR_Training[ATR_HITPOINTS_MAX] = 40;
+	hero.attribute[ATR_HITPOINTS_MAX] = START_ATR_HITPOINTS_MAX;
+	hero.attribute[ATR_HITPOINTS] = START_ATR_HITPOINTS_MAX;
+	ATR_Training[ATR_HITPOINTS_MAX] = START_ATR_HITPOINTS_MAX;
 	if(levels > 0)
 	{
 		B_LevelUp(levels);
@@ -303,6 +303,59 @@ func void B_SetPaladinEquipment()
 	};
 };
 
+func void B_UnEquipAllTempBonusItems()
+{
+	B_UnEquipHeroItem(ItBe_Addon_STR_5);
+	B_UnEquipHeroItem(ItBe_Addon_STR_10);
+	B_UnEquipHeroItem(ItBe_Addon_DEX_5);
+	B_UnEquipHeroItem(ItBe_Addon_DEX_10);
+	B_UnEquipHeroItem(ItAm_Dex_01);
+	B_UnEquipHeroItem(ItAm_Strg_01);
+	B_UnEquipHeroItem(ItAm_Hp_01);
+	B_UnEquipHeroItem(ItAm_Mana_01);
+	B_UnEquipHeroItem(ItAm_Dex_Strg_01);
+	B_UnEquipHeroItem(ItAm_Hp_Mana_01);
+	B_UnEquipHeroItem(ItAm_Addon_Franco);
+	B_UnEquipHeroItem(ItAm_Addon_Health);
+	B_UnEquipHeroItem(ItAm_Addon_STR);
+	B_UnEquipHeroItem(ItRi_Dex_01);
+	B_UnEquipHeroItem(ItRi_Dex_02);
+	B_UnEquipHeroItem(ItRi_HP_01);
+	B_UnEquipHeroItem(ItRi_HP_02);
+	B_UnEquipHeroItem(ItRi_Str_01);
+	B_UnEquipHeroItem(ItRi_Str_02);
+	B_UnEquipHeroItem(ItRi_Mana_01);
+	B_UnEquipHeroItem(ItRi_Mana_02);
+	B_UnEquipHeroItem(ItRi_Dex_Strg_01);
+	B_UnEquipHeroItem(ItRi_Hp_Mana_01);
+	B_UnEquipHeroItem(ItRi_Addon_Health_01);
+	B_UnEquipHeroItem(ItRi_Addon_Health_02);
+	B_UnEquipHeroItem(ItRi_Addon_STR_01);
+	B_UnEquipHeroItem(ItRi_Addon_STR_02);
+	B_UnEquipHeroItem(ItRi_HP_01_Tengron);
+	B_UnEquipHeroItem(ItRi_OrcEliteRing);
+	B_UnEquipHeroItem(ItRi_Addon_MorgansRing_Mission);
+	B_UnEquipHeroItem(ItAm_Mana_Angar_MIS);
+	B_UnEquipHeroItem(ItAm_Hp_Regen);
+	B_UnEquipHeroItem(ItAm_Mana_Regen);
+	//костыли для исправления удаления экипированных колец и амелута жрецов
+	if(MA_Amulett_Equipped == TRUE)
+	{
+		B_RemoveEveryInvItem(hero,ItAm_Addon_MANA);
+		CreateInvItem(hero,ItAm_Addon_MANA);
+	};
+	if(MA_Ring_1_Equipped == TRUE)
+	{
+		B_RemoveEveryInvItem(hero,ItRi_Addon_MANA_01);
+		CreateInvItem(hero,ItRi_Addon_MANA_01);
+	};
+	if(MA_Ring_2_Equipped == TRUE)
+	{
+		B_RemoveEveryInvItem(hero,ItRi_Addon_MANA_02);
+		CreateInvItem(hero,ItRi_Addon_MANA_02);
+	};
+};
+
 func void B_ClearHeroOverlays()
 {
 	Mdl_RemoveOverlayMDS(hero,"Humans_Arrogance.mds");
@@ -313,6 +366,7 @@ func void B_ClearHeroOverlays()
 	Mdl_RemoveOverlayMDS(hero,"Humans_Tired.mds");
 	Mdl_RemoveOverlayMDS(hero,"Humans_Drunken.mds");
 	Mdl_RemoveOverlayMDS(hero,"Humans_Sprint.mds");
+	Mdl_RemoveOverlayMDS(hero,"Humans_Flee.mds");
 };
 
 func void B_ResetHeroSkin()
@@ -399,16 +453,16 @@ func void CH_RESET_Ok()
 	hero.level = 0;
 	hero.exp = 0;
 	hero.exp_next = XP_PER_LEVEL;
-	hero.attribute[ATR_STRENGTH] = 10;
-	hero.attribute[ATR_DEXTERITY] = 10;
-	hero.attribute[ATR_MANA_MAX] = 10;
-	hero.attribute[ATR_MANA] = 10;
-	hero.attribute[ATR_HITPOINTS_MAX] = 40;
-	hero.attribute[ATR_HITPOINTS] = 40;
-	hero.HitChance[NPC_TALENT_1H] = 10;
-	hero.HitChance[NPC_TALENT_2H] = 10;
-	hero.HitChance[NPC_TALENT_BOW] = 10;
-	hero.HitChance[NPC_TALENT_CROSSBOW] = 10;
+	hero.attribute[ATR_STRENGTH] = START_ATR_STRENGTH;
+	hero.attribute[ATR_DEXTERITY] = START_ATR_DEXTERITY;
+	hero.attribute[ATR_MANA_MAX] = START_ATR_MANA_MAX;
+	hero.attribute[ATR_MANA] = START_ATR_MANA_MAX;
+	hero.attribute[ATR_HITPOINTS_MAX] = START_ATR_HITPOINTS_MAX;
+	hero.attribute[ATR_HITPOINTS] = START_ATR_HITPOINTS_MAX;
+	hero.HitChance[NPC_TALENT_1H] = START_TALENT_1H;
+	hero.HitChance[NPC_TALENT_2H] = START_TALENT_2H;
+	hero.HitChance[NPC_TALENT_BOW] = START_TALENT_BOW;
+	hero.HitChance[NPC_TALENT_CROSSBOW] = START_TALENT_CROSSBOW;
 	Npc_SetTalentSkill(hero,NPC_TALENT_PICKLOCK,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_MAGE,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_SNEAK,0);
@@ -2869,9 +2923,9 @@ func void DIA_CH_Misc_Health_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Health);
 	Info_AddChoice(DIA_CH_Misc_Health,Dialog_Back,DIA_CH_Misc_Health_BACK);
-	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Health_04] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString(NAME_HPMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),CH_Training_Alchemy_POTION_Perm_Health);
+		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString(NAME_HP_Full,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_04)),CH_Training_Alchemy_POTION_Health_04);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE)
 	{
@@ -2907,9 +2961,9 @@ func void CH_Training_Alchemy_POTION_Health_03()
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_03);
 };
 
-func void CH_Training_Alchemy_POTION_Perm_Health()
+func void CH_Training_Alchemy_POTION_Health_04()
 {
-	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Health);
+	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_04);
 };
 
 
@@ -2936,9 +2990,9 @@ func void DIA_CH_Misc_Mana_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Mana);
 	Info_AddChoice(DIA_CH_Misc_Mana,Dialog_Back,DIA_CH_Misc_Mana_BACK);
-	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_04] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString(NAME_ManaMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),CH_Training_Alchemy_POTION_Perm_Mana);
+		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString(NAME_Mana_Full,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_04)),CH_Training_Alchemy_POTION_Mana_04);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == FALSE)
 	{
@@ -2974,9 +3028,9 @@ func void CH_Training_Alchemy_POTION_Mana_03()
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_03);
 };
 
-func void CH_Training_Alchemy_POTION_Perm_Mana()
+func void CH_Training_Alchemy_POTION_Mana_04()
 {
-	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Mana);
+	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_04);
 };
 
 
@@ -3003,6 +3057,10 @@ func void DIA_CH_Misc_Special_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Special);
 	Info_AddChoice(DIA_CH_Misc_Special,Dialog_Back,DIA_CH_Misc_Special_BACK);
+	if(PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString(NAME_MegaDrink,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_MegaDrink)),CH_Training_Alchemy_POTION_MegaDrink);
+	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Speed] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString(NAME_Speed_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Speed)),CH_Training_Alchemy_POTION_Speed);
@@ -3015,6 +3073,14 @@ func void DIA_CH_Misc_Special_Info()
 	{
 		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString(NAME_DEX_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_DEX)),CH_Training_Alchemy_POTION_Perm_DEX);
 	};
+	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString(NAME_ManaMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),CH_Training_Alchemy_POTION_Perm_Mana);
+	};
+	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString(NAME_HPMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),CH_Training_Alchemy_POTION_Perm_Health);
+	};
 };
 
 func void DIA_CH_Misc_Special_BACK()
@@ -3022,9 +3088,24 @@ func void DIA_CH_Misc_Special_BACK()
 	Info_ClearChoices(DIA_CH_Misc_Special);
 };
 
+func void CH_Training_Alchemy_POTION_MegaDrink()
+{
+	B_TeachPlayerTalentAlchemy(self,other,POTION_MegaDrink);
+};
+
 func void CH_Training_Alchemy_POTION_Speed()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Speed);
+};
+
+func void CH_Training_Alchemy_POTION_Perm_Mana()
+{
+	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Mana);
+};
+
+func void CH_Training_Alchemy_POTION_Perm_Health()
+{
+	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Health);
 };
 
 func void CH_Training_Alchemy_POTION_Perm_STR()
@@ -3575,7 +3656,7 @@ instance CH_Language(C_Info)
 
 func int CH_Language_Condition()
 {
-	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE))
+	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE) && (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE))
 	{
 		return TRUE;
 	};
@@ -3585,17 +3666,17 @@ func void CH_Language_Info()
 {
 	Info_ClearChoices(CH_Language);
 	Info_AddChoice(CH_Language,Dialog_Back,CH_Language_BACK);
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE)
-	{
-		Info_AddChoice(CH_Language,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_3,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_3)),CH_Language_Priest);
-	};
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == FALSE)
-	{
-		Info_AddChoice(CH_Language,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_2,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_2)),CH_Language_Warrior);
-	};
 	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == FALSE)
 	{
 		Info_AddChoice(CH_Language,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_1,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_1)),CH_Language_Peasant);
+	}
+	else if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == FALSE)
+	{
+		Info_AddChoice(CH_Language,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_2,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_2)),CH_Language_Warrior);
+	}
+	else if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE)
+	{
+		Info_AddChoice(CH_Language,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_3,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_3)),CH_Language_Priest);
 	};
 };
 
@@ -3607,16 +3688,19 @@ func void CH_Language_BACK()
 func void CH_Language_Peasant()
 {
 	B_TeachPlayerTalentForeignLanguage(self,other,LANGUAGE_1);
+	CH_Language_Info();
 };
 
 func void CH_Language_Warrior()
 {
 	B_TeachPlayerTalentForeignLanguage(self,other,LANGUAGE_2);
+	CH_Language_Info();
 };
 
 func void CH_Language_Priest()
 {
 	B_TeachPlayerTalentForeignLanguage(self,other,LANGUAGE_3);
+	CH_Language_Info();
 };
 
 instance DIA_CH_Misc_InnosEye(C_Info)
@@ -3853,17 +3937,17 @@ func string B_BuildCurrentRegenerateValue(var int stats)
 	concatText = ConcatStrings(concatText,IntToString(next));
 	concatText = ConcatStrings(concatText," секунд, ");
 	concatText = ConcatStrings(concatText,IntToString(cost));
-	if(cost == 1)
+	if(cost >= 5)
 	{
-		concatText = ConcatStrings(concatText,PRINT_1LP);
+		concatText = ConcatStrings(concatText,PRINT_LP);
 	}
-	else if((cost > 1) && (cost < 5))
+	else if(cost > 1)
 	{
 		concatText = ConcatStrings(concatText,PRINT_2LP);
 	}
 	else
 	{
-		concatText = ConcatStrings(concatText,PRINT_LP);
+		concatText = ConcatStrings(concatText,PRINT_1LP);
 	};
 	concatText = ConcatStrings(concatText,")");
 	return concatText;
@@ -3972,6 +4056,7 @@ func void CH_Overlay_Info()
 	Info_AddChoice(CH_Overlay,"Женщина",CH_Overlay_Babe);
 	Info_AddChoice(CH_Overlay,"Маг",CH_Overlay_Mage);
 	Info_AddChoice(CH_Overlay,"Солдат",CH_Overlay_Militia);
+	Info_AddChoice(CH_Overlay,"Испуганный",CH_Overlay_Flee);
 	Info_AddChoice(CH_Overlay,"Крутой",CH_Overlay_Arrogance);
 	Info_AddChoice(CH_Overlay,"Спокойный",CH_Overlay_Relaxed);
 	Info_AddChoice(CH_Overlay,"Уставший",CH_Overlay_Tired);
@@ -4003,6 +4088,13 @@ func void CH_Overlay_Militia()
 {
 	B_ClearHeroOverlays();
 	Mdl_ApplyOverlayMds(other,"Humans_Militia.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Flee()
+{
+	B_ClearHeroOverlays();
+	Mdl_ApplyOverlayMds(other,"Humans_Flee.mds");
 	Info_ClearChoices(CH_Overlay);
 };
 

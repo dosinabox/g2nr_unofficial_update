@@ -59,16 +59,9 @@ instance DIA_Oric_Bruder(C_Info)
 
 func int DIA_Oric_Bruder_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Oric_HALLO))
+	if(Npc_KnowsInfo(other,DIA_Oric_HALLO) && (MIS_OricBruder == LOG_Running))
 	{
-		if(Npc_KnowsInfo(other,DIA_Jergan_Burg))
-		{
-			return TRUE;
-		};
-		if(Npc_KnowsInfo(other,DIA_Jergan_Mine))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -80,7 +73,7 @@ func void DIA_Oric_Bruder_Info()
 	AI_Output(self,other,"DIA_Oric_Bruder_11_03");	//(бормочет) ...мой брат...
 	AI_Output(self,other,"DIA_Oric_Bruder_11_04");	//Иннос подвергает меня суровым испытаниям. Но он погиб как его слуга...
 	AI_Output(self,other,"DIA_Oric_Bruder_11_05");	//Эта новость - стрела, пронзившая мое сердце. Я буду искать новые силы в молитвах.
-	OricBruder = TRUE;
+	MIS_OricBruder = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };
 

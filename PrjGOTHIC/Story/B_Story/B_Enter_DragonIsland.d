@@ -240,5 +240,6 @@ func void STARTUP_DragonIsland()
 func void INIT_DragonIsland()
 {
 	CurrentLevel = DRAGONISLAND_ZEN;
+	B_InitNpcGlobals();
 };
 

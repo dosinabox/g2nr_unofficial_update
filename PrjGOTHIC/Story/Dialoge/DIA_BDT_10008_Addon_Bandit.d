@@ -1,21 +1,21 @@
 
-instance Addon_10008_Bandit_EXIT(C_Info)
+instance DIA_Addon_10008_Bandit_EXIT(C_Info)
 {
 	npc = BDT_10008_Addon_Bandit;
 	nr = 999;
-	condition = Addon_10008_Bandit_EXIT_Condition;
-	information = Addon_10008_Bandit_EXIT_Info;
+	condition = DIA_Addon_10008_Bandit_EXIT_Condition;
+	information = DIA_Addon_10008_Bandit_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int Addon_10008_Bandit_EXIT_Condition()
+func int DIA_Addon_10008_Bandit_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void Addon_10008_Bandit_EXIT_Info()
+func void DIA_Addon_10008_Bandit_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

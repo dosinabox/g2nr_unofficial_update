@@ -81,15 +81,15 @@ func int ZS_MagicShrink_Loop()
 	}
 	else if(self.aivar[AIV_MM_ShrinkState] == 13)
 	{
-		Npc_ChangeAttribute(self,ATR_HITPOINTS,-((self.attribute * 9) / 10));
+		Npc_ChangeAttribute(self,ATR_HITPOINTS,-((self.attribute[ATR_HITPOINTS] * 9) / 10));
 		Npc_ChangeAttribute(self,ATR_HITPOINTS_MAX,-((self.attribute[ATR_HITPOINTS_MAX] * 9) / 10));
 		Npc_ChangeAttribute(self,ATR_STRENGTH,-((self.attribute[ATR_STRENGTH] * 9) / 10));
-		self.protection[PROT_BLUNT] = self.protection[PROT_BLUNT] / 10;
-		self.protection[PROT_EDGE] = self.protection[PROT_EDGE] / 10;
-		self.protection[PROT_FIRE] = self.protection[PROT_FIRE] / 10;
+		self.protection[PROT_BLUNT] /= 10;
+		self.protection[PROT_EDGE] /= 10;
+		self.protection[PROT_FIRE] /= 10;
 		self.protection[PROT_FLY] = 0;
-		self.protection[PROT_MAGIC] = self.protection[PROT_MAGIC] / 10;
-		self.protection[PROT_POINT] = self.protection[PROT_POINT] / 10;
+		self.protection[PROT_MAGIC] /= 10;
+		self.protection[PROT_POINT] /= 10;
 		self.aivar[AIV_MM_ShrinkState] = 14;
 	}
 	else if(self.aivar[AIV_MM_ShrinkState] == 14)

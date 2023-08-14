@@ -35,7 +35,6 @@ instance DIA_Urshak_HALLO(C_Info)
 
 func int DIA_Urshak_HALLO_Condition()
 {
-//	if(Npc_IsInState(self,ZS_Talk) && (Urshak_Sucked == FALSE))
 	if(Urshak_Sucked == FALSE)
 	{
 		return TRUE;
@@ -236,8 +235,6 @@ func void DIA_Urshak_HOSHPAKDEAD_Info()
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,20);
 	Npc_ExchangeRoutine(self,"Start");
-//	Wld_InsertNpc(OrcWarrior_Rest,"FP_CAMPFIRE_HOSHPAK_01");
-//	Wld_InsertNpc(OrcWarrior_Rest,"FP_CAMPFIRE_HOSHPAK_02");
 	Wld_InsertNpc(OrcWarrior_Scout,"OW_HOSHPAK_05");
 	Wld_InsertNpc(OrcWarrior_Scout,"FP_ROAM_HOSHPAK_05");
 };

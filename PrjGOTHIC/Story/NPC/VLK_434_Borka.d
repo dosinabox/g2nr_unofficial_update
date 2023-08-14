@@ -6,7 +6,7 @@ instance VLK_434_Borka(Npc_Default)
 	id = 434;
 	voice = 11;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;

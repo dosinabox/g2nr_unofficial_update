@@ -221,8 +221,11 @@ func void DIA_Rethon_ANGST_woSylvio()
 	AI_Output(other,self,"DIA_Rethon_ANGST_woSylvio_15_00");	//И где сейчас Сильвио?
 	AI_Output(self,other,"DIA_Rethon_ANGST_woSylvio_12_01");	//Паладины говорили, что-то о ледяном драконе на западе. Он, по слухам, самый опасный и сильный из всех драконов.
 	AI_Output(self,other,"DIA_Rethon_ANGST_woSylvio_12_02");	//Ты бы видел блеск в глазах Сильвио, когда он услышал об этом. Даже гадать не нужно, куда он пошел.
-	B_LogEntry(TOPIC_DRACHENJAGD,"Охотник на драконов Ретон бормотал что-то о ледяном драконе.");
-	B_LogEntry(TOPIC_Dragonhunter,"Сильвио был в замке, а затем отправился на поиски ледяного дракона.");
+	if(MIS_AllDragonsDead == FALSE)
+	{
+		B_LogEntries(TOPIC_DRACHENJAGD,"Охотник на драконов Ретон бормотал что-то о ледяном драконе.");
+		B_LogNextEntry(TOPIC_Dragonhunter,"Сильвио был в замке, а затем отправился на поиски ледяного дракона.");
+	};
 };
 
 

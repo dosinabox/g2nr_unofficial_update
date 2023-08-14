@@ -47,7 +47,7 @@ instance Wisp(Mst_Default_Wisp)
 instance Wisp_Detector(Mst_Default_Wisp)
 {
 	level = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_MAIN;
 	B_SetVisuals_Wisp();
 	damage[DAM_INDEX_MAGIC] = 20;
 	//было 50, но вроде это слишком

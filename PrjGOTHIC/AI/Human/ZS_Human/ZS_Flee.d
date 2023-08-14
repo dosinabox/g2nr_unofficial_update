@@ -11,7 +11,7 @@ func void ZS_Flee()
 	AI_RemoveWeapon(self);
 	AI_SetWalkMode(self,NPC_RUN);
 	Mdl_StartFaceAni(self,"S_FRIGHTENED",1,-1);
-	Mdl_ApplyOverlayMds(self,"HUMANS_FLEE.MDS");
+	Mdl_ApplyOverlayMds(self,"Humans_Flee.mds");
 };
 
 func int ZS_Flee_Loop()
@@ -34,7 +34,7 @@ func int ZS_Flee_Loop()
 func void ZS_Flee_End()
 {
 	B_ResetFaceExpression(self);
-	Mdl_RemoveOverlayMds(self,"HUMANS_FLEE.MDS");
+	Mdl_RemoveOverlayMDS(self,"Humans_Flee.mds");
 	AI_Standup(self);
 	AI_StartState(self,ZS_HealSelf,1,"");
 };
