@@ -261,6 +261,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Igaraz.aivar[AIV_IgnoresArmor] = TRUE;
 		Igaraz.aivar[AIV_IgnoresFakeGuild] = TRUE;
 		Igaraz.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		Igaraz.aivar[AIV_MM_FollowTime] = 120;
 		CreateInvItems(Igaraz,ItKe_MagicChest,1);
 		AI_Teleport(Igaraz,"NW_TAVERNE_BIGFARM_05");
 		B_StartOtherRoutine(Igaraz,"CONTEST");
@@ -273,6 +274,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Agon.aivar[AIV_IgnoresArmor] = TRUE;
 		Agon.aivar[AIV_IgnoresFakeGuild] = TRUE;
 		Agon.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		Agon.aivar[AIV_MM_FollowTime] = 120;
 		CreateInvItems(Agon,ItKe_MagicChest,1);
 		AI_Teleport(Agon,"NW_MAGECAVE_RUNE");
 		B_StartOtherRoutine(Agon,"GOLEMDEAD");
@@ -284,6 +286,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Ulf.aivar[AIV_IgnoresArmor] = TRUE;
 		Ulf.aivar[AIV_IgnoresFakeGuild] = TRUE;
 		Ulf.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		Ulf.aivar[AIV_MM_FollowTime] = 120;
 		B_SetGuild(Ulf,GIL_NOV);
 		CreateInvItems(Ulf,ItKe_MagicChest,1);
 		AI_Teleport(Ulf,"NW_TROLLAREA_PATH_42");
@@ -543,6 +546,7 @@ func void DIA_Pyrokar_OATH_Info()
 			Igaraz.aivar[AIV_NewsOverride] = FALSE;
 			Igaraz.aivar[AIV_IgnoresArmor] = FALSE;
 			Igaraz.aivar[AIV_IgnoresFakeGuild] = FALSE;
+			Igaraz.aivar[AIV_MM_FollowTime] = NPC_TIME_FOLLOW;
 		};
 	};
 	if(!Npc_IsDead(Ulf))
@@ -558,6 +562,7 @@ func void DIA_Pyrokar_OATH_Info()
 			Ulf.aivar[AIV_NewsOverride] = FALSE;
 			Ulf.aivar[AIV_IgnoresArmor] = FALSE;
 			Ulf.aivar[AIV_IgnoresFakeGuild] = FALSE;
+			Ulf.aivar[AIV_MM_FollowTime] = NPC_TIME_FOLLOW;
 		};
 	};
 	if(!Npc_IsDead(Agon))
@@ -575,6 +580,7 @@ func void DIA_Pyrokar_OATH_Info()
 			Agon.aivar[AIV_NewsOverride] = FALSE;
 			Agon.aivar[AIV_IgnoresArmor] = FALSE;
 			Agon.aivar[AIV_IgnoresFakeGuild] = FALSE;
+			Agon.aivar[AIV_MM_FollowTime] = NPC_TIME_FOLLOW;
 		};
 	};
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_08");	//Теперь, когда ты был принят в наши ряды, ты можешь поговорить с лордом Хагеном, главнокомандующим паладинов.

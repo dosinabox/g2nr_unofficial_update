@@ -806,8 +806,8 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "14/08/2023";
-const int FIX_VERSION_START = 29;
-const int LEAST_SUPPORTED = 26;
+const string FIX_VERSION_DATE = "20/08/2023";
+const int FIX_VERSION_START = 30;
+const int LEAST_SUPPORTED = 27;
 var int FIX_VERSION_SAVE;
 var string FIX_DATE_SAVE;

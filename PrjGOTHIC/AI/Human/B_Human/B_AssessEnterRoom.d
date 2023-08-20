@@ -165,20 +165,31 @@ func int B_AssessEnterRoom()
 func void B_AssessPortalCollision()
 {
 	var int formerportalguild;
-	formerportalguild = Wld_GetFormerPlayerPortalGuild();
 	if(B_AssessEnterRoom())
 	{
 		return;
 	};
-	if(!Npc_CanSeeNpc(self,other) && (C_BodyStateContains(other,BS_SNEAK) || C_BodyStateContains(other,BS_STAND)))
+	if(!Npc_CanSeeNpc(self,other))
 	{
-		return;
+		if(Npc_GetDistToNpc(self,other) > PERC_DIST_DIALOG)
+		{
+			return;
+		};
+		if(C_BodyStateContains(other,BS_SNEAK))
+		{
+			return;
+		};
+		if(C_BodyStateContains(other,BS_STAND))
+		{
+			return;
+		};
 	};
 	Npc_PerceiveAll(self);
 	if(Wld_DetectNpc(self,-1,ZS_ClearRoom,-1))
 	{
 		return;
 	};
+	formerportalguild = Wld_GetFormerPlayerPortalGuild();
 	if((self.guild == formerportalguild) || (Wld_GetGuildAttitude(self.guild,formerportalguild) == ATT_FRIENDLY))
 	{
 		if(C_IsNpc(self,KDF_507_Talamon))
@@ -213,15 +224,11 @@ func void B_AssessPortalCollision()
 		{
 			B_Attack(self,other,AR_LeftPortalRoom,0);
 			return;
-		}
-		else
-		{
-			self.aivar[AIV_SeenLeftRoom] = TRUE;
-			Npc_ClearAIQueue(self);
-			B_ClearPerceptions(self);
-			AI_StartState(self,ZS_ObservePlayer,0,"");
-			return;
 		};
+		self.aivar[AIV_SeenLeftRoom] = TRUE;
+		Npc_ClearAIQueue(self);
+		B_ClearPerceptions(self);
+		AI_StartState(self,ZS_ObservePlayer,0,"");
 	};
 };
 

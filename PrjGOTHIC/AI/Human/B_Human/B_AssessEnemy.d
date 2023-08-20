@@ -92,11 +92,8 @@ func int B_AssessEnemy()
 		{
 			B_Attack(self,other,self.aivar[AIV_LastPlayerAR],0);
 			return TRUE;
-		}
-		else
-		{
-			return FALSE;
 		};
+		return FALSE;
 	};
 	if(C_WantToFlee(self,other))
 	{

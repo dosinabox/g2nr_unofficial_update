@@ -230,7 +230,6 @@ func int DIA_Alrik_WannaFight_Condition()
 func void DIA_Alrik_WannaFight_Info()
 {
 	AI_Output(other,self,"DIA_Alrik_WannaFight_15_00");	//Я хочу сразиться с тобой!
-	Info_ClearChoices(DIA_Alrik_WannaFight);
 	if(((Alrik_ArenaKampfVerloren > 0) && !Npc_HasItems(self,ItMw_AlriksSword_Mis)) || !Npc_HasEquippedMeleeWeapon(self))
 	{
 		if((MIS_Alrik_Sword == LOG_SUCCESS) || (Alrik_Sword_Once == TRUE))

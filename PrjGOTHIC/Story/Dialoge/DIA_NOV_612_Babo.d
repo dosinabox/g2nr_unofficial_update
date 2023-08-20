@@ -89,7 +89,6 @@ func void DIA_Babo_Anliegen_Info()
 	else
 	{
 		DIA_Common_HeIsDead();
-		//TODO озвучить
 		AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_03_01_add");	//(ошеломленно) Что?! Что это все значит?
 		DIA_Common_EverythingWillBeAlright();
 	};

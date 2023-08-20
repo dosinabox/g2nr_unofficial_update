@@ -943,8 +943,7 @@ func void INIT_SUB_OldWorld_Part_Oldcamp()
 	Wld_AssignRoomToGuild("klo",GIL_MIL);
 	Wld_AssignRoomToGuild("eg3",GIL_MIL);
 	Wld_AssignRoomToGuild("eg5",GIL_MIL);
-//	Wld_AssignRoomToGuild("hh1",-1);
-	Wld_AssignRoomToGuild("hh1",GIL_PUBLIC);
+	Wld_AssignRoomToGuild("hh1",-1);
 	Wld_AssignRoomToGuild("hh2",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("hh3",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("hhmh1",GIL_PUBLIC);
@@ -3084,80 +3083,5 @@ func void INIT_AddonWorld()
 	{
 		B_Cycle_Function();
 	};
-};
-
-func void STARTUP_FreeMine()
-{
-	Wld_InsertNpc(OrcWarrior_Roam,"FM_09");
-	Wld_InsertNpc(OrcWarrior_Roam,"FM_09");
-	Wld_InsertNpc(OrcWarrior_Roam,"FM_08");
-	Wld_InsertNpc(OrcShaman_Sit,"FM_14");
-	Wld_InsertNpc(OrcWarrior_Roam,"FM_14");
-	Wld_InsertNpc(OrcWarrior_Roam,"FM_14");
-	Wld_InsertNpc(OrcWarrior_Roam,"FM_148");
-	Wld_InsertNpc(OrcWarrior_Roam,"FM_139");
-	Wld_InsertNpc(OrcWarrior_Roam,"FM_139");
-	Wld_InsertNpc(OrcWarrior_Roam,"FM_129");
-	Wld_InsertNpc(OrcWarrior_Roam,"FM_129");
-	Wld_InsertNpc(Minecrawler,"FM_116");
-	Wld_InsertNpc(Minecrawler,"FM_116");
-	Wld_InsertNpc(MinecrawlerWarrior,"FM_107");
-	Wld_InsertNpc(Minecrawler,"FM_165");
-	Wld_InsertNpc(OrcWarrior_Roam,"FM_163");
-	Wld_InsertNpc(OrcWarrior_Roam,"FM_163");
-	Wld_InsertNpc(OrcWarrior_Roam,"FM_163");
-	Wld_InsertNpc(OrcShaman_Sit,"FM_157");
-	Wld_InsertNpc(OrcShaman_Sit,"FM_157");
-	Wld_InsertNpc(Zombie04,"FM_81");
-	Wld_InsertNpc(Zombie01,"FM_81");
-	Wld_InsertNpc(Zombie01,"FM_73");
-	Wld_InsertNpc(Zombie02,"FM_73");
-	Wld_InsertNpc(Zombie03,"FM_73");
-	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_CRAWLER_01");
-	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_CRAWLER_04");
-	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_CRAWLER_05");
-	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_CRAWLER_06");
-	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_CRAWLER_09");
-	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_CRAWLER_14");
-	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_CRAWLER_17");
-	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_CRAWLER_29");
-	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_CRAWLER_28");
-	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_CRAWLER_32");
-	Wld_InsertNpc(MinecrawlerWarrior,"FP_ROAM_CRAWLER_34");
-};
-
-func void INIT_FreeMine()
-{
-	CurrentLevel = FREEMINE_ZEN;
-	Wld_SetMobRoutine(0,0,"FIREPLACE",1);
-};
-
-func void STARTUP_OrcGraveyard()
-{
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_006");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_015");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_019B");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_019D");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_020B");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_048");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_048");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_043");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_031");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_032");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_037");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_040");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_047");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_047");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_061");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_062");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_058");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_068");
-	Wld_InsertNpc(OrcWarrior_Roam,"GRYD_055");
-};
-
-func void INIT_OrcGraveyard()
-{
-	CurrentLevel = ORCGRAVEYARD_ZEN;
-	Wld_SetMobRoutine(0,0,"FIREPLACE",1);
 };
 

@@ -221,7 +221,6 @@ func void DIA_Garvell_ReturnMonty_Info()
 	}
 	else
 	{
-		//TODO озвучить
 		AI_Output(self,other,"DIA_Garvell_Schiff_04_03_add");	//Мои парни работают не очень эффективно.
 	};
 };
