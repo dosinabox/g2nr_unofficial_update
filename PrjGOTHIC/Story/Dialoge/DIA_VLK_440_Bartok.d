@@ -187,9 +187,17 @@ func void DIA_Bartok_WannaLearn_Info()
 	{
 		AI_Output(self,other,"DIA_Bartok_WannaLearn_04_02");	//Если ты хочешь научиться снимать шкуры с животных - иди к Босперу. Это он научил меня.
 	};
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
+	{
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Барток может обучить меня красться и стрельбе из лука.");
+	}
+	else
+	{
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Барток может обучить меня стрельбе из лука.");
+	};
 	Bartok_TeachPlayer = TRUE;
-	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTeacher,"Барток может обучить меня красться и стрельбе из лука.");
 };
 
 

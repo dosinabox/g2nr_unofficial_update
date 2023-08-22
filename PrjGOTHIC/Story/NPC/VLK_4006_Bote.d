@@ -36,9 +36,3 @@ func void Rtn_Baltram_4006()
 	TA_Sit_Throne(22,0,8,0,"NW_CITY_HOTEL_UPTSAIRS_05");
 };
 
-func void Rtn_Dead_4006()
-{
-	TA_Sleep(8,0,22,0,"NW_CITY_HABOUR_KASERN_05_01");
-	TA_Sleep(22,0,8,0,"NW_CITY_HABOUR_KASERN_05_01");
-};
-

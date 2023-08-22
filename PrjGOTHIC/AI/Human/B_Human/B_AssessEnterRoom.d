@@ -212,6 +212,10 @@ func void B_AssessPortalCollision()
 		{
 			return;
 		};
+		if(C_IsNpc(self,VLK_4104_Waffenknecht))
+		{
+			return;
+		};
 		if((Wld_GetGuildAttitude(self.guild,other.guild) == ATT_FRIENDLY) || (Npc_IsPlayer(other) && (self.npcType == NPCTYPE_FRIEND)))
 		{
 			return;

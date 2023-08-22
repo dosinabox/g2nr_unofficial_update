@@ -22,6 +22,10 @@ func int C_NpcIsBotheredByPlayerRoomGuild(var C_Npc slf)
 	{
 		return FALSE;
 	};
+	if(C_IsNpc(slf,VLK_4104_Waffenknecht))
+	{
+		return FALSE;
+	};
 	portalguild = Wld_GetPlayerPortalGuild();
 	if(portalguild > GIL_NONE)
 	{
