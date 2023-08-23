@@ -979,6 +979,8 @@ var int HokurnLastDrink;
 var int HokurnGetsDrink;
 var int HokurnTellsDragon;
 var int GodarLikesYou;
+var int Godar_Teach_Log;
+var int Godar_TeachDragonStuff;
 var int KjornToldDragon;
 var int KjorntoldOrks;
 var int KjornToldOldCamp;

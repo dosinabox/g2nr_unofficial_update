@@ -259,7 +259,7 @@ instance DIA_Godar_Prison(C_Info)
 
 func int DIA_Godar_Prison_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Godar_Destination) && ((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL)))
+	if(Npc_KnowsInfo(other,DIA_Godar_Destination) && (hero.guild != GIL_MIL) && (hero.guild != GIL_PAL))
 	{
 		return TRUE;
 	};
@@ -292,8 +292,8 @@ func void DIA_Godar_Prison_Court()
 	AI_Output(other,self,"DIA_Godar_Prison_Court_15_00");	//Знакомая история.
 	AI_Output(self,other,"DIA_Godar_Prison_Court_13_01");	//Ты понимаешь меня? Эти спесивые богачи понятия не имеют, как нам тяжело.
 	AI_Output(self,other,"DIA_Godar_Prison_Court_13_02");	//Ну, по крайней мере, их это не волнует.
-	Info_ClearChoices(DIA_Godar_Prison);
 	GodarLikesYou = TRUE;
+	Info_ClearChoices(DIA_Godar_Prison);
 };
 
 func void DIA_Godar_Prison_Pissoff()
@@ -319,7 +319,7 @@ instance DIA_Godar_Hunting(C_Info)
 
 func int DIA_Godar_Hunting_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Godar_Prison) && ((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF)))
+	if(Npc_KnowsInfo(other,DIA_Godar_Prison) && (hero.guild != GIL_MIL) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -337,6 +337,8 @@ func void DIA_Godar_Hunting_Info()
 	{
 		AI_Output(self,other,"DIA_Godar_Hunting_13_03");	//Животные - это не только мясо. Ты также можешь продавать их шкуры или когти. Это неплохие деньги.
 		AI_Output(self,other,"DIA_Godar_Hunting_13_04");	//Дождаться не могу, когда мы доберемся до этого дракона!
+		Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_OutTeacher,"Годар из Долины Рудников может обучить меня добывать трофеи животных.");
 		Godar_TeachAnimalTrophy = TRUE;
 	};
 };
@@ -353,13 +355,18 @@ instance DIA_Godar_Dragonstuff(C_Info)
 };
 
 
-var int Godar_TeachDragonStuff;
-
 func int DIA_Godar_Dragonstuff_Condition()
 {
-	if((Godar_TeachAnimalTrophy == TRUE) && ((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL)) && ((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == FALSE)) && (Godar_TeachDragonStuff == FALSE))
+	if((Godar_TeachAnimalTrophy == TRUE) && (Godar_TeachDragonStuff == FALSE))
 	{
-		return TRUE;
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == FALSE)
+		{
+			return TRUE;
+		};
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -368,6 +375,12 @@ func void DIA_Godar_Dragonstuff_Info()
 	AI_Output(other,self,"DIA_Godar_Dragonstuff_15_00");	//Расскажи мне, как потрошить дракона.
 	AI_Output(self,other,"DIA_Godar_Dragonstuff_13_01");	//Чтобы ты прибрал все золотишко себе, ха?
 	AI_Output(self,other,"DIA_Godar_Dragonstuff_13_02");	//Ладно, хорошо, но это обойдется тебе в 1000 золотых.
+	if(Godar_Teach_Log == FALSE)
+	{
+		Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_OutTeacher,"Годар из Долины Рудников может научить меня потрошить драконов.");
+		Godar_Teach_Log = TRUE;
+	};
 	Info_ClearChoices(DIA_Godar_Dragonstuff);
 	Info_AddChoice(DIA_Godar_Dragonstuff,"Мне это не очень интересно.",DIA_Godar_Dragonstuff_nein);
 	Info_AddChoice(DIA_Godar_Dragonstuff,"Это честно.",DIA_Godar_Dragonstuff_fair);
@@ -408,7 +421,7 @@ instance DIA_Godar_Teach(C_Info)
 
 func int DIA_Godar_Teach_Condition()
 {
-	if((Godar_TeachAnimalTrophy == TRUE) && ((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL)))
+	if(Godar_TeachAnimalTrophy == TRUE)
 	{
 		return TRUE;
 	};
@@ -527,7 +540,7 @@ instance DIA_Godar_AllDragonsDead(C_Info)
 
 func int DIA_Godar_AllDragonsDead_Condition()
 {
-	if(MIS_AllDragonsDead == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Godar_Plan) && (MIS_AllDragonsDead == TRUE))
 	{
 		return TRUE;
 	};

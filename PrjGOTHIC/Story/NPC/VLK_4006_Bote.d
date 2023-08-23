@@ -36,3 +36,9 @@ func void Rtn_Baltram_4006()
 	TA_Sit_Throne(22,0,8,0,"NW_CITY_HOTEL_UPTSAIRS_05");
 };
 
+func void Rtn_TOT_4006()
+{
+	TA_Sleep(8,0,20,0,"TOT");
+	TA_Sleep(20,0,8,0,"TOT");
+};
+

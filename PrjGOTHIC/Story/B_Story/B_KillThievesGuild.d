@@ -39,7 +39,7 @@ func void B_KillThievesGuild()
 	{
 		if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
 		{
-			if(!Npc_IsDead(Cassia)
+			if(!Npc_IsDead(Cassia))
 			{
 				B_KillNpc(VLK_447_Cassia);
 				if(Npc_HasItems(Cassia,ItMw_Meisterdegen))
