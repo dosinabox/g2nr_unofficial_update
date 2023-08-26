@@ -88,7 +88,7 @@ func void DIA_Pedro_Wurst_JA()
 	AI_Output(other,self,"DIA_Pedro_Wurst_JA_15_00");	//Ладно, держи еще одну колбасу.
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
 	AI_Output(self,other,"DIA_Pedro_Wurst_JA_09_01");	//Отлично. Огненная крапива растет слева и справа по другую сторону моста.
-	if(C_WorldIsFixed(NEWWORLD_ZEN))
+	if(C_WorldIsFixed())
 	{
 		Wld_InsertItem(ItPl_Mana_Herb_01,"FP_ITEM_KLOSTER_HERB_01");
 	};

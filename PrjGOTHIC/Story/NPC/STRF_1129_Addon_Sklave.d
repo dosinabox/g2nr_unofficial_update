@@ -12,7 +12,7 @@ instance STRF_1129_Addon_Sklave(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Weak_Asghan,BodyTex_N,ITAR_Slave);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_NormalBart_Swiney,BodyTex_N,ITAR_Slave);
 	Mdl_SetModelFatness(self,-1);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);
@@ -33,7 +33,7 @@ func void Rtn_Flucht_1129()
 	TA_RunToWP(23,0,8,0,"SOME_WAYPOINT_15");
 };
 
-func void rtn_tot_1129()
+func void Rtn_TOT_1129()
 {
 	TA_Sleep(8,0,23,0,"TOT");
 	TA_Sleep(23,0,8,0,"TOT");

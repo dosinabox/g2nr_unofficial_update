@@ -1,28 +1,25 @@
 
-func int C_WorldIsFixed(var int world)
+func int C_WorldIsFixed()
 {
-	if(CurrentLevel == world)
+	if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		if(world == NEWWORLD_ZEN)
+		if(Mob_HasItems("KVI_SECRET_DEV_CHEST",ItPl_Mushroom_01))
 		{
-			if(Mob_HasItems("KVI_SECRET_DEV_CHEST",ItPl_Mushroom_01))
-			{
-				return TRUE;
-			};
-		}
-		else if(world == OLDWORLD_ZEN)
+			return TRUE;
+		};
+	}
+	else if(CurrentLevel == OLDWORLD_ZEN)
+	{
+		if(Mob_HasItems("D36_SECRET_DEV_CHEST",ItPl_Mushroom_02))
 		{
-			if(Mob_HasItems("D36_SECRET_DEV_CHEST",ItPl_Mushroom_02))
-			{
-				return TRUE;
-			};
-		}
-		else if(world == ADDONWORLD_ZEN)
+			return TRUE;
+		};
+	}
+	else if(CurrentLevel == ADDONWORLD_ZEN)
+	{
+		if(Mob_HasItems("D36_SECRET_DEV_CHEST",ItPl_SwampHerb))
 		{
-			if(Mob_HasItems("D36_SECRET_DEV_CHEST",ItPl_SwampHerb))
-			{
-				return TRUE;
-			};
+			return TRUE;
 		};
 	};
 	return FALSE;

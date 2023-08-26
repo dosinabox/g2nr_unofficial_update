@@ -299,7 +299,7 @@ func void DIA_Pyrokar_TEST_Info()
 
 func int C_FireContestRuneFound()
 {
-	if(C_WorldIsFixed(NEWWORLD_ZEN))
+	if(C_WorldIsFixed())
 	{
 		if(!Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
 		{

@@ -59,6 +59,7 @@ func void B_ResetLares()
 	{
 		LaresGuide_OrnamentForest = 0;
 	};
+	Lares.aivar[AIV_PARTYMEMBER] = FALSE;
 	B_StartOtherRoutine(Lares,"START");
 	B_StartOtherRoutine(BridgeBandit,"Intercept");
 };

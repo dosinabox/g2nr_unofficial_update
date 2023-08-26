@@ -24,7 +24,7 @@ func void B_PlayerEnteredCity()
 		{
 			if(!Npc_IsDead(Canthar))
 			{
-				if(C_WorldIsFixed(NEWWORLD_ZEN))
+				if(C_WorldIsFixed())
 				{
 					Wld_SendTrigger("CANTHAR_CART_01");
 					Wld_SendTrigger("CANTHAR_CART_02");

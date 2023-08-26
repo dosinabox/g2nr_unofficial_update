@@ -49,7 +49,7 @@ instance ItFo_TestTrigger(C_Item)
 
 func void Use_TestTrigger()
 {
-	enter_addonworld_firsttime_trigger_func();
+	Enter_AddonWorld_FirstTime_Trigger_Func();
 };*/
 
 

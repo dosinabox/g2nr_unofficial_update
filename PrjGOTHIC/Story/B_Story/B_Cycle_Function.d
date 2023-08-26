@@ -7,7 +7,7 @@ func void B_Cycle_Function()
 		{
 			if(Npc_HasItems(hero,ItMw_Drachenschneide))
 			{
-				if(C_WorldIsFixed(NEWWORLD_ZEN))
+				if(C_WorldIsFixed())
 				{
 					Wld_SendTrigger("EVT_TROLL_GRAVE_TRIGGERLIST_01");
 				};

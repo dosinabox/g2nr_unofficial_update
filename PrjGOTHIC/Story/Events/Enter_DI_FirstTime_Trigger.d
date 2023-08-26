@@ -1,7 +1,7 @@
 
 var int EnterDI_Kapitel6;
 
-func void enter_di_firsttime_trigger()
+func void Enter_DI_FirstTime_Trigger()
 {
 	if(EnterDI_Kapitel6 == FALSE)
 	{

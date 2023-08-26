@@ -914,14 +914,15 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 	Log_SetTopicStatus(TOPIC_Addon_Sklaven,LOG_Running);
 	B_LogEntries(TOPIC_Addon_Sklaven,"Я должен узнать, с какой целью Ворон похищает жителей Хориниса.");
 	B_LogNextEntry(TOPIC_Addon_KDW,"Ватрас дал мне письмо для Сатураса. Я должен присоединиться к магам Воды и пройти через портал в неизвестную часть Хориниса, чтобы найти бывшего рудного барона Ворона.");
+	SC_KnowsPortal = TRUE;
 	RangerMeetingRunning = LOG_SUCCESS;
 	B_SchlussMitRangerMeeting();
 	B_GivePlayerXP(XP_AmbientKap3);
-	SC_KnowsPortal = TRUE;
 };
 
 
-var int MISSINGPEOPLEINFO[20];
+var int MISSINGPEOPLEINFO[9];
+var int DIA_Addon_Vatras_MissingPeople_Wo_NoPerm;
 
 instance DIA_Addon_Vatras_MissingPeople(C_Info)
 {
@@ -941,9 +942,6 @@ func int DIA_Addon_Vatras_MissingPeople_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Addon_Vatras_MissingPeople_Wo_NoPerm;
 
 func void DIA_Addon_Vatras_MissingPeople_Info()
 {

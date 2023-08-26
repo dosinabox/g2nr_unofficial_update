@@ -198,7 +198,7 @@ func void STARTUP_Addon_Part_Entrance_01()
 	Wld_InsertNpc(KDW_14030_Addon_Myxir_ADW,"ADW_ENTRANCE");
 	Wld_InsertNpc(KDW_14040_Addon_Riordian_ADW,"ADW_ENTRANCE");
 	Wld_InsertNpc(KDW_14050_Addon_Merdarion_ADW,"ADW_ENTRANCE");
-	Wld_InsertNpc(NONE_Addon_114_Lance_ADW,"ADW_ENTRANCE");
+	Wld_InsertNpc(NONE_ADDON_114_Lance_ADW,"ADW_ENTRANCE");
 	Wld_InsertNpc(VLK_4304_Addon_William,"ADW_ENTRANCE");
 	Wld_InsertNpc(PIR_1352_Addon_AlligatorJack,"ADW_ENTRANCE");
 //	Wld_InsertNpc(Blattcrawler,"ADW_ENTRANCE_PLATEAU_08");
@@ -1790,7 +1790,7 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertNpc(MIL_326_Miliz,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(VLK_4006_Bote,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_03");
-	if(C_WorldIsFixed(NEWWORLD_ZEN))
+	if(C_WorldIsFixed())
 	{
 		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_017");
 		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_018");
@@ -2040,7 +2040,7 @@ func void STARTUP_NewWorld_Part_Xardas_01()
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_GOBBO_01");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_GOBBO_02");
 	Wld_InsertNpc(YWolf,"NW_XARDAS_MONSTER_INSERT_01");
-	if(C_WorldIsFixed(NEWWORLD_ZEN))
+	if(C_WorldIsFixed())
 	{
 		Wld_InsertNpc(Keiler,"SOME_NW_WAYPOINT_029");
 		Wld_InsertNpc(Keiler,"SOME_NW_WAYPOINT_029");

@@ -44,7 +44,7 @@ func int C_GregsPiratesTooFar()
 	{
 		return TRUE;
 	};
-	if(C_WorldIsFixed(ADDONWORLD_ZEN))
+	if(C_WorldIsFixed())
 	{
 		if(Npc_GetDistToWP(hero,"ADW_PIRATECAMP_LONEBEACH_11") < 2000)
 		{

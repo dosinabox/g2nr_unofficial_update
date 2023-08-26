@@ -1,14 +1,14 @@
 
 var int Enter_AddonWorld_FirstTime_Trigger_OneTime;
 
-func void enter_addonworld_firsttime_trigger_func()
+func void Enter_AddonWorld_FirstTime_Trigger_Func()
 {
 	if(Enter_AddonWorld_FirstTime_Trigger_OneTime == FALSE)
 	{
 		B_KillNpc(PIR_1370_Addon_Angus);
 		B_KillNpc(PIR_1371_Addon_Hank);
 		B_KillNpc(VLK_4304_Addon_William);
-		B_KillNpc(NONE_Addon_114_Lance_ADW);
+		B_KillNpc(NONE_ADDON_114_Lance_ADW);
 		B_KillNpc(STRF_1131_Addon_Sklave);
 		B_KillNpc(STRF_1132_Addon_Sklave);
 		B_KillNpc(STRF_1133_Addon_Sklave);
@@ -16,7 +16,7 @@ func void enter_addonworld_firsttime_trigger_func()
 		B_KillNpc(STRF_1135_Addon_Sklave);
 		B_KillNpc(STRF_1142_Addon_Sklave);
 		B_KillNpc(STRF_1143_Addon_Sklave);
-		if(C_WorldIsFixed(ADDONWORLD_ZEN))
+		if(C_WorldIsFixed())
 		{
 			Wld_InsertNpc(STRF_1141_Addon_Sklave,"BANDIT");
 			B_KillNpc(STRF_1141_Addon_Sklave);
