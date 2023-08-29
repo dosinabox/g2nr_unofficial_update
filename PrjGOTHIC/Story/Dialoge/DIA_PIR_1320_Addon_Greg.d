@@ -288,7 +288,7 @@ func void DIA_Addon_Greg_AboutCanyon_Info()
 	AI_Output(other,self,"DIA_Addon_Greg_AboutCanyon_15_00");	//Насчет каньона...
 	AI_Output(self,other,"DIA_Addon_Greg_AboutCanyon_01_01");	//Да, что там?
 	Info_ClearChoices(DIA_Addon_Greg_AboutCanyon);
-	if(!C_AllCanyonRazorDead())
+	if(CanyonRazorBodyCount < 10)
 	{
 		Info_AddChoice(DIA_Addon_Greg_AboutCanyon,"Пока ничего важного.",DIA_Addon_Greg_AboutCanyon_Back);
 		Info_AddChoice(DIA_Addon_Greg_AboutCanyon,"Мне кто-нибудь может помочь?",DIA_Addon_Greg_AboutCanyon_Compadres);

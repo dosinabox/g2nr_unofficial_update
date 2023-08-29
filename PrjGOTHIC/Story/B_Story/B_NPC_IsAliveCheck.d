@@ -189,51 +189,6 @@ func int C_NorthBeachMonstersDead()
 	return TRUE;
 };
 
-func int C_AllCanyonRazorDead()
-{
-	if(!Npc_IsDead(CanyonRazor01))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(CanyonRazor02))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(CanyonRazor03))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(CanyonRazor04))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(CanyonRazor05))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(CanyonRazor06))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(CanyonRazor07))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(CanyonRazor08))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(CanyonRazor09))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsDead(CanyonRazor10))
-	{
-		return FALSE;
-	};
-	return TRUE;
-};
-
 func int C_VinoDementorsDead()
 {
 	if(!Npc_IsDead(DMT_Vino1))

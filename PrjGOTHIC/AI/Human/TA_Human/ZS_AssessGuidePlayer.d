@@ -7,13 +7,16 @@ func void B_AssessGuidePlayer()
 		{
 			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares))
 			{
-				Lares_Distracted = TRUE;
+				if(Npc_GetDistToNpc(self,hero) > 1100)
+				{
+					Lares_Distracted = TRUE;
+				};
 			};
 			Npc_ClearAIQueue(self);
 			AI_Standup(self);
 			B_TurnToNpc(self,hero);
 		};
-		if((Npc_GetDistToNpc(self,hero) > 1200) && (self.aivar[AIV_EnemyOverride] == TRUE) && (Npc_GetAttitude(self,hero) == ATT_HOSTILE))
+		if((Npc_GetDistToNpc(self,hero) > 1200) && (Npc_GetAttitude(self,hero) == ATT_HOSTILE))
 		{
 			self.aivar[AIV_EnemyOverride] = FALSE;
 		};
@@ -62,10 +65,6 @@ func int ZS_Guide_Player_Loop()
 	}
 	else
 	{
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares))
-		{
-			Lares_Distracted = TRUE;
-		};
 		B_TurnToNpc(self,hero);
 	};
 	return LOOP_CONTINUE;

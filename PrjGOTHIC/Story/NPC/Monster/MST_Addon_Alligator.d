@@ -14,7 +14,7 @@ prototype Mst_Default_Addon_Alligator(C_Npc)
 	protection[PROT_BLUNT] = 170;
 	protection[PROT_EDGE] = 170;
 	protection[PROT_POINT] = 170;
-	protection[PROT_FIRE] = 0;	//17
+	protection[PROT_FIRE] = 0;
 	protection[PROT_FLY] = 150;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;

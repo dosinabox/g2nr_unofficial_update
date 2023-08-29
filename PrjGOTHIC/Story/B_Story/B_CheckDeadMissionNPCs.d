@@ -337,21 +337,18 @@ func void B_CheckDeadMissionAnimals(var C_Npc slf)
 	}
 	else if(CurrentLevel == ADDONWORLD_ZEN)
 	{
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_RAZOR)
+		if(C_IsNpc(slf,CanyonRazor))
 		{
-			if(C_IAmCanyonRazor(slf))
+			CanyonRazorBodyCount += 1;
+			if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
 			{
-				CanyonRazorBodyCount += 1;
-				if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
-				{
-					B_CountCanyonRazor();
-				};
+				B_CountCanyonRazor();
 			};
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(GoldMinecrawler))
+		else if(C_IsNpc(slf,GoldMinecrawler))
 		{
 			Minecrawler_Killed += 1;
-			if((Minecrawler_Killed > 9) && (Bloodwyn_Spawn == FALSE) && !Npc_IsDead(Bloodwyn))
+			if((Minecrawler_Killed >= 10) && (Bloodwyn_Spawn == FALSE) && !Npc_IsDead(Bloodwyn))
 			{
 				AI_Teleport(Bloodwyn,"ADW_MINE_TO_MC_03");
 				B_StartOtherRoutine(Bloodwyn,"MINE");
