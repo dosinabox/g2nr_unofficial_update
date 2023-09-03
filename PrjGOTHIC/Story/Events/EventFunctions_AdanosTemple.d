@@ -5,19 +5,11 @@ func void adw_adanostempel_stonegrd_trigg_func_01()
 {
 	if(ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_01_OneTime == FALSE)
 	{
-		var C_Npc StoneGuardianAdanos_01;
-		var C_Npc StoneGuardianAdanos_02;
-		var C_Npc StoneGuardianAdanos_03;
-		var C_Npc StoneGuardianAdanos_04;
-		StoneGuardianAdanos_01 = Hlp_GetNpc(Stoneguardian_ADANOSTEMPELENTRANCE_01);
-		StoneGuardianAdanos_02 = Hlp_GetNpc(Stoneguardian_ADANOSTEMPELENTRANCE_02);
-		StoneGuardianAdanos_03 = Hlp_GetNpc(Stoneguardian_ADANOSTEMPELENTRANCE_03);
-		StoneGuardianAdanos_04 = Hlp_GetNpc(Stoneguardian_ADANOSTEMPELENTRANCE_04);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_01);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_02);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_03);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_04);
-		if(!Npc_IsDead(StoneGuardianAdanos_01) || !Npc_IsDead(StoneGuardianAdanos_02) || !Npc_IsDead(StoneGuardianAdanos_03) || !Npc_IsDead(StoneGuardianAdanos_04))
+		B_Awake_StoneGuardian(Stoneguardian_ADANOSTEMPELENTRANCE_01);
+		B_Awake_StoneGuardian(Stoneguardian_ADANOSTEMPELENTRANCE_02);
+		B_Awake_StoneGuardian(Stoneguardian_ADANOSTEMPELENTRANCE_03);
+		B_Awake_StoneGuardian(Stoneguardian_ADANOSTEMPELENTRANCE_04);
+		if(!Npc_IsDead(Stoneguardian_ADANOSTEMPELENTRANCE_01) || !Npc_IsDead(Stoneguardian_ADANOSTEMPELENTRANCE_02) || !Npc_IsDead(Stoneguardian_ADANOSTEMPELENTRANCE_03) || !Npc_IsDead(Stoneguardian_ADANOSTEMPELENTRANCE_04))
 		{
 			Snd_Play("THRILLJINGLE_02");
 		};
@@ -32,32 +24,20 @@ func void open_adanostempelchest_01_func_s1()
 {
 	if(OPEN_ADANOSTEMPELCHEST_01_FUNC_OneTime == FALSE)
 	{
-		var C_Npc StoneGuardianAdanos_05A;
-		var C_Npc StoneGuardianAdanos_05C;
-		var C_Npc StoneGuardianAdanos_05E;
-		StoneGuardianAdanos_05A = Hlp_GetNpc(Stoneguardian_TREASUREPITS_05A);
-		StoneGuardianAdanos_05C = Hlp_GetNpc(Stoneguardian_TREASUREPITS_05C);
-		StoneGuardianAdanos_05E = Hlp_GetNpc(Stoneguardian_TREASUREPITS_05E);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_05A);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_05C);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_05E);
+		B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_05A);
+		B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_05C);
+		B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_05E);
 		if(Kapitel > 2)
 		{
-			var C_Npc StoneGuardianAdanos_05B;
-			var C_Npc StoneGuardianAdanos_05D;
-			var C_Npc StoneGuardianAdanos_05F;
-			StoneGuardianAdanos_05B = Hlp_GetNpc(Stoneguardian_TREASUREPITS_05B);
-			StoneGuardianAdanos_05D = Hlp_GetNpc(Stoneguardian_TREASUREPITS_05D);
-			StoneGuardianAdanos_05F = Hlp_GetNpc(Stoneguardian_TREASUREPITS_05F);
-			B_Awake_StoneGuardian(StoneGuardianAdanos_05B);
-			B_Awake_StoneGuardian(StoneGuardianAdanos_05D);
-			B_Awake_StoneGuardian(StoneGuardianAdanos_05F);
+			B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_05B);
+			B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_05D);
+			B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_05F);
 		};
-		if(!Npc_IsDead(StoneGuardianAdanos_05A) || !Npc_IsDead(StoneGuardianAdanos_05C) || !Npc_IsDead(StoneGuardianAdanos_05E))
+		if(!Npc_IsDead(Stoneguardian_TREASUREPITS_05A) || !Npc_IsDead(Stoneguardian_TREASUREPITS_05C) || !Npc_IsDead(Stoneguardian_TREASUREPITS_05E))
 		{
 			Snd_Play("THRILLJINGLE_03");
 		}
-		else if(!Npc_IsDead(StoneGuardianAdanos_05B) || !Npc_IsDead(StoneGuardianAdanos_05D) || !Npc_IsDead(StoneGuardianAdanos_05F))
+		else if(!Npc_IsDead(Stoneguardian_TREASUREPITS_05B) || !Npc_IsDead(Stoneguardian_TREASUREPITS_05D) || !Npc_IsDead(Stoneguardian_TREASUREPITS_05F))
 		{
 			if(Kapitel > 2)
 			{
@@ -75,32 +55,20 @@ func void open_adanostempelchest_02_func_s1()
 {
 	if(OPEN_ADANOSTEMPELCHEST_02_FUNC_OneTime == FALSE)
 	{
-		var C_Npc StoneGuardianAdanos_09A;
-		var C_Npc StoneGuardianAdanos_09C;
-		var C_Npc StoneGuardianAdanos_09E;
-		StoneGuardianAdanos_09A = Hlp_GetNpc(Stoneguardian_TREASUREPITS_09A);
-		StoneGuardianAdanos_09C = Hlp_GetNpc(Stoneguardian_TREASUREPITS_09C);
-		StoneGuardianAdanos_09E = Hlp_GetNpc(Stoneguardian_TREASUREPITS_09E);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_09A);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_09C);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_09E);
+		B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_09A);
+		B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_09C);
+		B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_09E);
 		if(Kapitel > 2)
 		{
-			var C_Npc StoneGuardianAdanos_09B;
-			var C_Npc StoneGuardianAdanos_09D;
-			var C_Npc StoneGuardianAdanos_09F;
-			StoneGuardianAdanos_09B = Hlp_GetNpc(Stoneguardian_TREASUREPITS_09B);
-			StoneGuardianAdanos_09D = Hlp_GetNpc(Stoneguardian_TREASUREPITS_09D);
-			StoneGuardianAdanos_09F = Hlp_GetNpc(Stoneguardian_TREASUREPITS_09F);
-			B_Awake_StoneGuardian(StoneGuardianAdanos_09B);
-			B_Awake_StoneGuardian(StoneGuardianAdanos_09D);
-			B_Awake_StoneGuardian(StoneGuardianAdanos_09F);
+			B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_09B);
+			B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_09D);
+			B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_09F);
 		};
-		if(!Npc_IsDead(StoneGuardianAdanos_09A) || !Npc_IsDead(StoneGuardianAdanos_09C) || !Npc_IsDead(StoneGuardianAdanos_09E))
+		if(!Npc_IsDead(Stoneguardian_TREASUREPITS_09A) || !Npc_IsDead(Stoneguardian_TREASUREPITS_09C) || !Npc_IsDead(Stoneguardian_TREASUREPITS_09E))
 		{
 			Snd_Play("THRILLJINGLE_02");
 		}
-		else if(!Npc_IsDead(StoneGuardianAdanos_09B) || !Npc_IsDead(StoneGuardianAdanos_09D) || !Npc_IsDead(StoneGuardianAdanos_09F))
+		else if(!Npc_IsDead(Stoneguardian_TREASUREPITS_09B) || !Npc_IsDead(Stoneguardian_TREASUREPITS_09D) || !Npc_IsDead(Stoneguardian_TREASUREPITS_09F))
 		{
 			if(Kapitel > 2)
 			{
@@ -118,25 +86,13 @@ func void adw_adanostempel_stonegrd_trigg_func_02()
 {
 	if(ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_02_OneTime == FALSE)
 	{
-		var C_Npc StoneGuardianAdanos_14A;
-		var C_Npc StoneGuardianAdanos_14B;
-		var C_Npc StoneGuardianAdanos_14C;
-		var C_Npc StoneGuardianAdanos_14D;
-		var C_Npc StoneGuardianAdanos_14E;
-		var C_Npc StoneGuardianAdanos_14F;
-		StoneGuardianAdanos_14A = Hlp_GetNpc(Stoneguardian_RHADEMES_14A);
-		StoneGuardianAdanos_14B = Hlp_GetNpc(Stoneguardian_RHADEMES_14B);
-		StoneGuardianAdanos_14C = Hlp_GetNpc(Stoneguardian_RHADEMES_14C);
-		StoneGuardianAdanos_14D = Hlp_GetNpc(Stoneguardian_RHADEMES_14D);
-		StoneGuardianAdanos_14E = Hlp_GetNpc(Stoneguardian_RHADEMES_14E);
-		StoneGuardianAdanos_14F = Hlp_GetNpc(Stoneguardian_RHADEMES_14F);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_14A);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_14B);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_14C);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_14D);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_14E);
-		B_Awake_StoneGuardian(StoneGuardianAdanos_14F);
-		if(!Npc_IsDead(StoneGuardianAdanos_14A) || !Npc_IsDead(StoneGuardianAdanos_14B) || !Npc_IsDead(StoneGuardianAdanos_14C) || !Npc_IsDead(StoneGuardianAdanos_14D) || !Npc_IsDead(StoneGuardianAdanos_14E) || !Npc_IsDead(StoneGuardianAdanos_14F))
+		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14A);
+		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14B);
+		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14C);
+		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14D);
+		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14E);
+		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14F);
+		if(!Npc_IsDead(Stoneguardian_RHADEMES_14A) || !Npc_IsDead(Stoneguardian_RHADEMES_14B) || !Npc_IsDead(Stoneguardian_RHADEMES_14C) || !Npc_IsDead(Stoneguardian_RHADEMES_14D) || !Npc_IsDead(Stoneguardian_RHADEMES_14E) || !Npc_IsDead(Stoneguardian_RHADEMES_14F))
 		{
 			Snd_Play("THRILLJINGLE_02");
 		};

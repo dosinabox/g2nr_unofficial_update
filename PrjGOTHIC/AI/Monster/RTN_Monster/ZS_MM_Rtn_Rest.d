@@ -18,6 +18,7 @@ func int ZS_MM_Rtn_Rest_Loop()
 	if((self.guild == GIL_Stoneguardian) && (RavenIsDead == TRUE))
 	{
 		B_KillNpc(self);
+		return LOOP_END;
 	};
 	if(!Wld_IsTime(self.aivar[AIV_MM_RestStart],0,self.aivar[AIV_MM_RestEnd],self.aivar[AIV_StateTime]) && (self.aivar[AIV_MM_RestStart] != OnlyRoutine))
 	{

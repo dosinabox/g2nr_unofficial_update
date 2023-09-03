@@ -95,7 +95,7 @@ func int B_AssessEnemy()
 		};
 		return FALSE;
 	};
-	if(C_WantToFlee(self,other))
+	if(C_WantToFlee(self))
 	{
 		B_CallGuards();
 		B_Flee();

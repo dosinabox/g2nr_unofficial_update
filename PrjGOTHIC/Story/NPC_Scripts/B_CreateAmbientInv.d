@@ -679,14 +679,27 @@ func void B_CreateItemToSteal(var C_Npc slf,var int dex,var int itemInstance,var
 
 func void B_UpdateItemToSteal(var C_Npc slf,var int dex,var int itemInstance,var int amount)
 {
-	if((slf.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (slf.aivar[AIV_DefeatedByPlayer] == FALSE))
+	if(!Hlp_IsValidNpc(slf))
 	{
-		if(!Hlp_IsItem(ItMi_Gold,itemInstance))
+		return;
+	};
+	if(Npc_IsDead(slf))
+	{
+		return;
+	};
+	if(slf.aivar[AIV_PlayerHasPickedMyPocket] == TRUE)
+	{
+		return;
+	};
+	if(slf.aivar[AIV_DefeatedByPlayer] == TRUE)
+	{
+		return;
+	};
+	if(!Hlp_IsItem(ItMi_Gold,itemInstance))
+	{
+		if(!Npc_HasItems(slf,itemInstance))
 		{
-			if(!Npc_HasItems(slf,itemInstance))
-			{
-				CreateInvItems(slf,itemInstance,amount);
-			};
+			CreateInvItems(slf,itemInstance,amount);
 		};
 	};
 	B_SetItemToSteal(slf,dex,itemInstance,amount);

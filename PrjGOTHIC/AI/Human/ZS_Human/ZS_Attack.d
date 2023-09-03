@@ -44,7 +44,7 @@ func void ZS_Attack()
 			};
 		};
 	};
-	if(C_WantToFlee(self,other))
+	if(C_WantToFlee(self))
 	{
 		B_Flee();
 		return;
@@ -74,7 +74,7 @@ func void ZS_Attack()
 func int ZS_Attack_Loop()
 {
 	Npc_GetTarget(self);
-	if(C_WantToFlee(self,other))
+	if(C_WantToFlee(self))
 	{
 		return LOOP_END;
 	};
@@ -245,12 +245,12 @@ func int ZS_Attack_Loop()
 func void ZS_Attack_End()
 {
 	var C_Npc target;
-	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
-	if(C_WantToFlee(self,target))
+	if(C_WantToFlee(self))
 	{
 		B_Flee();
 		return;
 	};
+	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
 	if(self.aivar[AIV_PursuitEnd] == TRUE)
 	{
 		if(Hlp_IsValidNpc(target) && C_NpcIsHero(target) && (self.npcType != NPCTYPE_FRIEND))

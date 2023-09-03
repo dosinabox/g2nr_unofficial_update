@@ -30,7 +30,7 @@ func void ZS_MM_Attack()
 	Npc_PercEnable(self,PERC_ASSESSWARN,B_MM_AssessWarn);
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_MM_AssessSurprise);
 	B_ValidateOther();
-	if(C_WantToFlee(self,other))
+	if(C_WantToFlee(self))
 	{
 		B_MM_Flee();
 		return;
@@ -51,7 +51,7 @@ func void ZS_MM_Attack()
 func int ZS_MM_Attack_Loop()
 {
 	Npc_GetTarget(self);
-	if(C_WantToFlee(self,other))
+	if(C_WantToFlee(self))
 	{
 		return LOOP_END;
 	};
@@ -72,9 +72,10 @@ func int ZS_MM_Attack_Loop()
 		};
 	};
 	//костыли для перехода из режима ближнего боя к магии: конец
-	if((RavenIsDead == TRUE) && (self.guild == GIL_Stoneguardian))
+	if((self.guild == GIL_Stoneguardian) && (RavenIsDead == TRUE))
 	{
 		B_KillNpc(self);
+		return LOOP_END;
 	};
 	if(CurrentLevel == OLDWORLD_ZEN)
 	{
@@ -212,20 +213,20 @@ func int ZS_MM_Attack_Loop()
 		};
 		Npc_PerceiveAll(self);
 		Npc_GetNextTarget(self);
-		if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other) && ((Npc_GetDistToNpc(self,other) < PERC_DIST_INTERMEDIAT) || Npc_IsPlayer(other)) && (other.aivar[AIV_INVINCIBLE] == FALSE))
+		if(Hlp_IsValidNpc(other))
 		{
-			self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);
-			return LOOP_CONTINUE;
-		}
-		else
-		{
-			Npc_ClearAIQueue(self);
-			if(self.guild != GIL_DRAGON)
+			if(!C_NpcIsDown(other) && ((Npc_GetDistToNpc(self,other) < PERC_DIST_INTERMEDIAT) || Npc_IsPlayer(other)) && (other.aivar[AIV_INVINCIBLE] == FALSE))
 			{
-				AI_Standup(self);
+				self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);
+				return LOOP_CONTINUE;
 			};
-			B_MM_RemoveWeapon();
 		};
+		Npc_ClearAIQueue(self);
+		if(self.guild != GIL_DRAGON)
+		{
+			AI_Standup(self);
+		};
+		B_MM_RemoveWeapon();
 	};
 	return LOOP_END;
 };
@@ -233,7 +234,6 @@ func int ZS_MM_Attack_Loop()
 func void ZS_MM_Attack_End()
 {
 	var C_Npc target;
-	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
 	if(self.guild > GIL_SEPERATOR_ORC)
 	{
 		AI_RemoveWeapon(self);
@@ -258,11 +258,12 @@ func void ZS_MM_Attack_End()
 		AI_Wait(self,0.5);
 		self.aivar[AIV_INVINCIBLE] = FALSE;
 	};
-	if(C_WantToFlee(self,target))
+	if(C_WantToFlee(self))
 	{
 		B_MM_Flee();
 		return;
 	};
+	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
 	if(Npc_IsDead(target) && C_WantToEat(self,target))
 	{
 		Npc_ClearAIQueue(self);
