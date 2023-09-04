@@ -63,16 +63,16 @@ func int ZS_MM_Attack_Loop()
 		{
 			AI_RemoveWeapon(self);
 		};
-	};
-	if((self.aivar[AIV_MM_REAL_ID] == ID_FIREGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_ICEGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_SKELETON_MAGE) || (self.aivar[AIV_MM_REAL_ID] == ID_ORCSHAMAN))
+	}
+	else if(C_NpcIsMonsterMage(self))
 	{
 		if((Npc_IsInFightMode(self,FMODE_FIST) || Npc_IsInFightMode(self,FMODE_MELEE)) && (Npc_GetDistToNpc(self,other) > FIGHT_DIST_MELEE))
 		{
 			AI_RemoveWeapon(self);
 		};
-	};
+	}
 	//костыли для перехода из режима ближнего боя к магии: конец
-	if((self.guild == GIL_Stoneguardian) && (RavenIsDead == TRUE))
+	else if((self.guild == GIL_Stoneguardian) && (RavenIsDead == TRUE))
 	{
 		B_KillNpc(self);
 		return LOOP_END;
@@ -181,9 +181,12 @@ func int ZS_MM_Attack_Loop()
 			self.fight_tactic = self.aivar[AIV_OriginalFightTactic];
 		};
 	};
-	if(C_NpcIsMonsterMage(self) || (self.guild == GIL_SKELETON) || (self.guild == GIL_SUMMONED_SKELETON) || (self.guild > GIL_SEPERATOR_ORC))
+	/*if(self.guild > GIL_SEPERATOR_ORC)
 	{
 		B_CreateAmmo(self);
+	};*/
+	if(C_NpcIsMonsterMage(self))
+	{
 		Npc_ChangeAttribute(self,ATR_MANA,ATR_MANA_MAX);
 		B_SelectWeapon(self,other);
 	};

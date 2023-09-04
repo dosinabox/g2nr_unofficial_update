@@ -49,6 +49,27 @@ func void open_adanostempelchest_01_func_s1()
 };
 
 
+var int ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_02_OneTime;
+
+func void adw_adanostempel_stonegrd_trigg_func_02()
+{
+	if(ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_02_OneTime == FALSE)
+	{
+		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14A);
+		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14B);
+		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14C);
+		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14D);
+		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14E);
+		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14F);
+		if(!Npc_IsDead(Stoneguardian_RHADEMES_14A) || !Npc_IsDead(Stoneguardian_RHADEMES_14B) || !Npc_IsDead(Stoneguardian_RHADEMES_14C) || !Npc_IsDead(Stoneguardian_RHADEMES_14D) || !Npc_IsDead(Stoneguardian_RHADEMES_14E) || !Npc_IsDead(Stoneguardian_RHADEMES_14F))
+		{
+			Snd_Play("THRILLJINGLE_02");
+		};
+		ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_02_OneTime = TRUE;
+	};
+};
+
+
 var int OPEN_ADANOSTEMPELCHEST_02_FUNC_OneTime;
 
 func void open_adanostempelchest_02_func_s1()
@@ -76,27 +97,6 @@ func void open_adanostempelchest_02_func_s1()
 			};
 		};
 		OPEN_ADANOSTEMPELCHEST_02_FUNC_OneTime = TRUE;
-	};
-};
-
-
-var int ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_02_OneTime;
-
-func void adw_adanostempel_stonegrd_trigg_func_02()
-{
-	if(ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_02_OneTime == FALSE)
-	{
-		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14A);
-		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14B);
-		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14C);
-		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14D);
-		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14E);
-		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14F);
-		if(!Npc_IsDead(Stoneguardian_RHADEMES_14A) || !Npc_IsDead(Stoneguardian_RHADEMES_14B) || !Npc_IsDead(Stoneguardian_RHADEMES_14C) || !Npc_IsDead(Stoneguardian_RHADEMES_14D) || !Npc_IsDead(Stoneguardian_RHADEMES_14E) || !Npc_IsDead(Stoneguardian_RHADEMES_14F))
-		{
-			Snd_Play("THRILLJINGLE_02");
-		};
-		ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_02_OneTime = TRUE;
 	};
 };
 

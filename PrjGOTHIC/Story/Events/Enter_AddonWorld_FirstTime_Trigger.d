@@ -15,13 +15,13 @@ func void Enter_AddonWorld_FirstTime_Trigger_Func()
 		B_KillNpc(STRF_1134_Addon_Sklave);
 		B_KillNpc(STRF_1135_Addon_Sklave);
 		B_KillNpc(STRF_1142_Addon_Sklave);
-		B_KillNpc(STRF_1143_Addon_Sklave);
+		B_KillNpc(STRF_1144_Addon_Sklave);
 		if(C_WorldIsFixed())
 		{
 			Wld_InsertNpc(STRF_1141_Addon_Sklave,"BANDIT");
 			B_KillNpc(STRF_1141_Addon_Sklave);
-			Wld_InsertNpc(STRF_1144_Addon_Sklave,"BANDIT");
-			B_KillNpc(STRF_1144_Addon_Sklave);
+			Wld_InsertNpc(STRF_1143_Addon_Sklave,"BANDIT");
+			B_KillNpc(STRF_1143_Addon_Sklave);
 			Wld_InsertItem(ItRu_FireBolt,"FP_ITEM_SWAMP_RUNE_01");
 		};
 		Enter_AddonWorld_FirstTime_Trigger_OneTime = TRUE;

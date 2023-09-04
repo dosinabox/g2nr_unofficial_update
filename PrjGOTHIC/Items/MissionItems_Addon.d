@@ -699,7 +699,10 @@ func void Equip_WispDetector()
 		Equip_WispDetector_OneTime = TRUE;
 	};
 	DetWsp = Hlp_GetNpc(Wisp_Detector);
-	AI_Teleport(DetWsp,"TOT");
+	if(Hlp_IsValidNpc(DetWsp))
+	{
+		Wld_RemoveNpc(Wisp_Detector);
+	};
 	Wld_SpawnNpcRange(self,Wisp_Detector,1,500);
 	Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",Wisp_Detector,Wisp_Detector,0,0,0,FALSE);
 	Snd_Play("MFX_Transform_Cast");
@@ -709,13 +712,14 @@ func void UnEquip_WispDetector()
 {
 	var C_Npc DetWsp;
 	DetWsp = Hlp_GetNpc(Wisp_Detector);
-	if(!Npc_IsDead(DetWsp))
+	if(Hlp_IsValidNpc(DetWsp))
 	{
-		Snd_Play("WSP_Dead_A1");
+		if(!Npc_IsDead(DetWsp))
+		{
+			Snd_Play("WSP_Dead_A1");
+		};
+		Wld_RemoveNpc(Wisp_Detector);
 	};
-	AI_Teleport(DetWsp,"TOT");
-	B_MoveNpcToMorgue(DetWsp);
-	AI_Teleport(DetWsp,"TOT");
 };
 
 
