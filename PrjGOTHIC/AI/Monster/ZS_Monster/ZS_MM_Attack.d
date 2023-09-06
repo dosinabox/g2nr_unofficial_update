@@ -138,7 +138,7 @@ func int ZS_MM_Attack_Loop()
 		};
 		return LOOP_CONTINUE;
 	};
-	if((C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE)) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
+	if(C_NpcIsSwimming(other) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
 	{
 		Npc_ClearAIQueue(self);
 		if(self.guild != GIL_DRAGON)

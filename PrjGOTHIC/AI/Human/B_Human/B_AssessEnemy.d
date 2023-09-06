@@ -47,7 +47,7 @@ func int B_AssessEnemy()
 	{
 		return FALSE;
 	};
-	if((C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE)) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
+	if(C_NpcIsSwimming(other) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
 	{
 		return FALSE;
 	};

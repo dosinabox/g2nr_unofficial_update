@@ -173,6 +173,7 @@ AI\Human\B_Human\B_Say_FleeReason.d
 AI\Human\B_Human\B_SetAttitude.d
 AI\Human\C_Human\C_NpcIsBotheredByWeapon.d
 AI\Human\C_Human\C_NpcIsBestFriend.d
+AI\Human\C_Human\C_NpcIsSwimming.d
 AI\Human\C_Human\C_WantToFlee.d
 AI\Human\C_Human\C_WantToRansack.d
 AI\Human\C_Human\C_NpcHasAttackReasonToKill.d

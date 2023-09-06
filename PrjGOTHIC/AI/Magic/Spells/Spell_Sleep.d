@@ -21,11 +21,7 @@ func int C_NpcCanSleep(var C_Npc npc)
 	{
 		return FALSE;
 	};
-	if(C_BodyStateContains(npc,BS_SWIM))
-	{
-		return FALSE;
-	};
-	if(C_BodyStateContains(npc,BS_DIVE))
+	if(C_NpcIsSwimming(npc))
 	{
 		return FALSE;
 	};

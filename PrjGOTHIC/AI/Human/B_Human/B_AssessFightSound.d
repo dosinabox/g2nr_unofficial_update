@@ -45,7 +45,7 @@ func void B_AssessFightSound()
 	};
 	if(self.aivar[AIV_MM_FollowInWater] == FALSE)
 	{
-		if(C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE) || C_BodyStateContains(victim,BS_SWIM) || C_BodyStateContains(victim,BS_DIVE))
+		if(C_NpcIsSwimming(other) || C_NpcIsSwimming(victim))
 		{
 			return;
 		};

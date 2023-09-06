@@ -110,7 +110,7 @@ func void B_AssessPlayer()
 				B_AssessTalk();
 				return;
 			}
-			else if(!C_BodyStateContains(other,BS_FALL) && !C_BodyStateContains(other,BS_SWIM) && !C_BodyStateContains(other,BS_DIVE) && (B_GetPlayerCrime(self) == CRIME_NONE) && !C_RefuseTalk(self,other) && !C_PlayerHasFakeGuild(self,other))
+			else if(!C_BodyStateContains(other,BS_FALL) && !C_NpcIsSwimming(other) && (B_GetPlayerCrime(self) == CRIME_NONE) && !C_RefuseTalk(self,other) && !C_PlayerHasFakeGuild(self,other))
 			{
 				self.aivar[AIV_NpcStartedTalk] = TRUE;
 				B_AssessTalk();

@@ -130,7 +130,7 @@ func int ZS_Attack_Loop()
 	};
 	if(self.aivar[AIV_MM_FollowInWater] == FALSE)
 	{
-		if(C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE))
+		if(C_NpcIsSwimming(other))
 		{
 			Npc_ClearAIQueue(self);
 			AI_Standup(self);
@@ -253,9 +253,12 @@ func void ZS_Attack_End()
 	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
 	if(self.aivar[AIV_PursuitEnd] == TRUE)
 	{
-		if(Hlp_IsValidNpc(target) && C_NpcIsHero(target) && (self.npcType != NPCTYPE_FRIEND))
+		if(Hlp_IsValidNpc(target))
 		{
-			Npc_SetTempAttitude(self,ATT_HOSTILE);
+			if(C_NpcIsHero(target) && (self.npcType != NPCTYPE_FRIEND))
+			{
+				Npc_SetTempAttitude(self,ATT_HOSTILE);
+			};
 		};
 		if(self.aivar[AIV_ArenaFight] == AF_RUNNING)
 		{
