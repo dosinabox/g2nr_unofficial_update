@@ -3,6 +3,13 @@ func void ZS_Unconscious()
 {
 	var int random;
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
+	if(C_NpcIsSwimming(self))
+	{
+		Npc_ClearAIQueue(self);
+		B_ClearPerceptions(self);
+		AI_StartState(self,ZS_Dead,0,"");
+		return;
+	};
 	random = Hlp_Random(3);
 	if(random == 1)
 	{
@@ -10,13 +17,6 @@ func void ZS_Unconscious()
 		Mdl_ApplyRandomAniFreq(self,"S_WOUNDED",8);
 		Mdl_ApplyRandomAni(self,"S_WOUNDEDB","T_WOUNDEDB_TRY");
 		Mdl_ApplyRandomAniFreq(self,"S_WOUNDEDB",4);
-	};
-	if(C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE))
-	{
-		Npc_ClearAIQueue(self);
-		B_ClearPerceptions(self);
-		AI_StartState(self,ZS_Dead,0,"");
-		return;
 	};
 	self.aivar[AIV_Guardpassage_Status] = GP_NONE;
 	Npc_SetRefuseTalk(self,0);
@@ -83,7 +83,7 @@ func void ZS_Unconscious()
 		{
 			if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cipher))
 			{
-				other.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
+				Cipher.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
 				Dar_LostAgainstCipher = TRUE;
 			};
 		};

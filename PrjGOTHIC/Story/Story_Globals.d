@@ -1387,7 +1387,6 @@ var int ADW_Myxir_Removed_Forever;
 var int CaptainIsBackToStartPosition;
 var int IceDragonSpell;
 var int ClassicMeleeWeaponsTraders;
-var int PardosLeftFarmWithMalak;
 var int Lares_FirstMetAsGuildless;
 var int Lee_FirstMetAsGuildless;
 var int Brahim_Trade;

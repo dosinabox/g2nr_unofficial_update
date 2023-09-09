@@ -697,10 +697,7 @@ func void B_UpdateItemToSteal(var C_Npc slf,var int dex,var int itemInstance,var
 	};
 	if(!Hlp_IsItem(ItMi_Gold,itemInstance))
 	{
-		if(!Npc_HasItems(slf,itemInstance))
-		{
-			CreateInvItems(slf,itemInstance,amount);
-		};
+		B_RefreshInvItemToAmount(slf,itemInstance,amount);
 	};
 	B_SetItemToSteal(slf,dex,itemInstance,amount);
 };

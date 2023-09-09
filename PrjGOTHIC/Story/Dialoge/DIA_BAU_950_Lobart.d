@@ -951,9 +951,12 @@ instance DIA_Lobart_ORKPROBLEM(C_Info)
 
 func int DIA_Lobart_ORKPROBLEM_Condition()
 {
-	if((Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)) && Npc_KnowsInfo(other,DIA_Lobart_DMT) && !C_LobartOrksDead())
+	if((Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)) && Npc_KnowsInfo(other,DIA_Lobart_DMT))
 	{
-		return TRUE;
+		if(!C_LobartOrksDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -981,9 +984,12 @@ instance DIA_Lobart_ORKSWEG(C_Info)
 
 func int DIA_Lobart_ORKSWEG_Condition()
 {
-	if((Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)) && C_LobartOrksDead())
+	if((Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)))
 	{
-		return TRUE;
+		if(C_LobartOrksDead())
+		{
+			return TRUE;
+		};
 	};
 };
 

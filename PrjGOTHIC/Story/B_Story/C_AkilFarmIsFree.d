@@ -5,6 +5,10 @@ func int C_AkilFarmIsFree()
 	{
 		return TRUE;
 	};
+	if(!Hlp_IsValidNpc(Alvares) && !Hlp_IsValidNpc(Engardo))
+	{
+		return TRUE;
+	};
 	if(Npc_IsDead(Alvares) && Npc_IsDead(Engardo))
 	{
 		return TRUE;
