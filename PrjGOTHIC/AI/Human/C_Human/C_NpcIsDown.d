@@ -1,6 +1,10 @@
 
 func int C_NpcIsDown(var C_Npc slf)
 {
+	if(!Hlp_IsValidNpc(slf))
+	{
+		return TRUE;
+	};
 	if(Npc_IsDead(slf))
 	{
 		return TRUE;

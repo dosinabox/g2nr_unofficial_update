@@ -190,7 +190,7 @@ func int ZS_MM_Attack_Loop()
 		Npc_ChangeAttribute(self,ATR_MANA,ATR_MANA_MAX);
 		B_SelectWeapon(self,other);
 	};
-	if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other))
+	if(!C_NpcIsDown(other))
 	{
 		if(other.aivar[AIV_INVINCIBLE] == FALSE)
 		{

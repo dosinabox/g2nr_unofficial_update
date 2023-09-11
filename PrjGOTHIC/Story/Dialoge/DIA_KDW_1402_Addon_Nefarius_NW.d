@@ -165,7 +165,7 @@ func void DIA_Addon_Nefarius_SCbringOrnaments_Info()
 	};
 	if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_FromCavalorn == TRUE) && (Bdt_1013_ToCavalorn == FALSE))
 	{
-		B_StartOtherRoutine(Ambusher_1013,"AWAY");
+		Npc_ExchangeRoutine(Ambusher_1013,"AWAY");
 		Bdt_1013_ToCavalorn = TRUE;
 	};
 	AI_Output(self,other,"DIA_Addon_Nefarius_SCbringOrnaments_05_08");	//Ты должен искать части ключа именно там.

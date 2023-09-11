@@ -134,6 +134,10 @@ func int DIA_Jora_Bestohlen_Condition()
 	if(JoraToldAboutRobbery == FALSE)
 	{
 		DIA_Jora_Bestohlen.description = "Как дела?";
+	}
+	else
+	{
+		DIA_Jora_Bestohlen.description = "Кто-то обокрал тебя?";
 	};
 	return TRUE;
 };

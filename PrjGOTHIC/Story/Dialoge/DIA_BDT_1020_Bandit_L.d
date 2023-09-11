@@ -203,23 +203,14 @@ func void B_BDT_1020_Wegelagerer_PassGranted()
 
 func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon()
 {
-	var C_Item PlayerWeapon;
-	PlayerWeapon = Npc_GetEquippedMeleeWeapon(other);
-	B_GiveInvItems(other,self,Hlp_GetInstanceID(PlayerWeapon),1);
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon_15_00");	//Вот, возьми мое оружие.
 	if(!Npc_HasReadiedWeapon(other))
 	{
-		AI_EquipBestMeleeWeapon(self);
-		B_BDT_1020_Wegelagerer_PassGranted();
-	}
-	else
-	{
-		B_Say(self,other,"$WEAPONDOWN");
-		AI_DrawWeapon(self);
-		AI_Output(other,self,"DIA_Dar_ORCRING_necken_schlagen_15_00");	//Ладно. Попробуй.
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_GuardStopsIntruder,1);
+		AI_DrawWeapon(other);
 	};
+	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon_06_01");	//Отойди от этого оружия. Ну подожди!
+	AI_StopProcessInfos(self);
+	B_Attack(self,other,AR_GuardStopsIntruder,1);
 };
 
 

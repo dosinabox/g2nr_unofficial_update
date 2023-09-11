@@ -170,7 +170,7 @@ func int ZS_Attack_Loop()
 	};
 	B_CreateAmmo(self);
 	B_SelectWeapon(self,other);
-	if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other))
+	if(!C_NpcIsDown(other))
 	{
 		if(other.aivar[AIV_INVINCIBLE] == FALSE)
 		{

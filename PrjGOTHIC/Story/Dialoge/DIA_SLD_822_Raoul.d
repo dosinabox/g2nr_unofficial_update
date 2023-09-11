@@ -44,7 +44,7 @@ func void DIA_Raoul_NoSentenza_Info()
 {
 	AI_Output(self,other,"DIA_Raoul_NoSentenza_01_00");	//Минутку, приятель!
 	AI_Output(self,other,"DIA_Raoul_NoSentenza_01_01");	//Я не видел, чтобы Сентенза обыскивал тебя.
-	if(Hlp_IsValidNpc(Sentenza) && !C_NpcIsDown(Sentenza))
+	if(!C_NpcIsDown(Sentenza))
 	{
 		AI_TurnToNPC(self,Sentenza);
 		AI_Output(self,other,"DIA_Raoul_NoSentenza_01_02");	//СЕНТЕНЗА! Иди сюда!

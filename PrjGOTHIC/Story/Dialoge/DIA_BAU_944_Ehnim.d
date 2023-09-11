@@ -40,7 +40,7 @@ func void DIA_Ehnim_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Ehnim_HALLO_15_00");	//Кто ты?
 	AI_Output(self,other,"DIA_Ehnim_HALLO_12_01");	//Меня зовут Эним. Я работаю здесь.
-	if(Hlp_IsValidNpc(Egill) && !C_NpcIsDown(Egill))
+	if(!C_NpcIsDown(Egill))
 	{
 		AI_Output(self,other,"DIA_Ehnim_HALLO_12_02");	//А коротышка вон там - мой брат Эгилл.
 		AI_Output(self,other,"DIA_Ehnim_HALLO_12_03");	//Мы работаем здесь, на ферме Акила, уже несколько лет.
@@ -111,7 +111,7 @@ instance DIA_Ehnim_STREIT1(C_Info)
 
 func int DIA_Ehnim_STREIT1_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Egill_FELDRAEUBER) && Npc_KnowsInfo(other,DIA_Ehnim_FELDRAEUBER) && !Npc_KnowsInfo(other,DIA_Egill_STREIT2) && (Hlp_IsValidNpc(Egill) && !C_NpcIsDown(Egill)))
+	if(Npc_KnowsInfo(other,DIA_Egill_FELDRAEUBER) && Npc_KnowsInfo(other,DIA_Ehnim_FELDRAEUBER) && !Npc_KnowsInfo(other,DIA_Egill_STREIT2) && !C_NpcIsDown(Egill))
 	{
 		return TRUE;
 	};
@@ -137,7 +137,7 @@ instance DIA_Ehnim_STREIT3(C_Info)
 
 func int DIA_Ehnim_STREIT3_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Egill_STREIT2) && (Hlp_IsValidNpc(Egill) && !C_NpcIsDown(Egill)))
+	if(Npc_KnowsInfo(other,DIA_Egill_STREIT2) && !C_NpcIsDown(Egill))
 	{
 		return TRUE;
 	};
@@ -168,7 +168,7 @@ var int DIA_Ehnim_STREIT5_noPerm;
 
 func int DIA_Ehnim_STREIT5_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Egill_STREIT4) && (Hlp_IsValidNpc(Egill) && !C_NpcIsDown(Egill)) && (DIA_Ehnim_STREIT5_noPerm == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Egill_STREIT4) && !C_NpcIsDown(Egill) && (DIA_Ehnim_STREIT5_noPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -327,7 +327,7 @@ func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja()
 		{
 			AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_03");	//Черт, и куда же она подевалась? Что за досада. Извини. Похоже, у меня ее не осталось. Вот, возьми свои деньги назад.
 			B_GiveInvItems(self,other,ItMi_Gold,Ehnim_MoleRatFettOffer);
-			if((Hlp_IsValidNpc(Egill) && !C_NpcIsDown(Egill)))
+			if(!C_NpcIsDown(Egill))
 			{
 				AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_04");	//Готов поклясться, это проделки моего брата. Вот ублюдок.
 				AI_StopProcessInfos(self);
