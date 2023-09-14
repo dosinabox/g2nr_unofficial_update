@@ -58,8 +58,14 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 	}
 	else if(neues_Kapitel == 2)
 	{
-		Sekob.flags = 0;
-		Bengar.flags = 0;
+		if(!Npc_IsDead(Sekob))
+		{
+			Sekob.flags = 0;
+		};
+		if(!Npc_IsDead(Bengar))
+		{
+			Bengar.flags = 0;
+		};
 		Bennet_NW_ItMi_Swordraw_Count += 3;
 		IntroduceChapter(KapWechsel_2,KapWechsel_2_Text,"chapter2.tga","chapter_01.wav",6000);
 	}

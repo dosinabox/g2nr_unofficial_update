@@ -664,15 +664,15 @@ func void CH_Guild_Info()
 {
 	Info_ClearChoices(CH_Guild);
 	Info_AddChoice(CH_Guild,Dialog_Back,CH_Guild_BACK);
-	Info_AddChoice(CH_Guild,"Нет гильдии",ch_none);
-	Info_AddChoice(CH_Guild,"Псевдопират",ch_pir);
-	Info_AddChoice(CH_Guild,"Псевдобандит",ch_bdt);
-	Info_AddChoice(CH_Guild,"Охотник на драконов",ch_djg);
-	Info_AddChoice(CH_Guild,"Наемник",ch_sld);
-	Info_AddChoice(CH_Guild,"Паладин",ch_pal);
-	Info_AddChoice(CH_Guild,"Ополченец",ch_mil);
-	Info_AddChoice(CH_Guild,"Маг Огня",ch_kdf);
-	Info_AddChoice(CH_Guild,"Послушник",ch_nov);
+	Info_AddChoice(CH_Guild,"Нет гильдии",CH_Guild_NONE);
+	Info_AddChoice(CH_Guild,"Псевдопират",CH_Guild_PIR);
+	Info_AddChoice(CH_Guild,"Псевдобандит",CH_Guild_BDT);
+	Info_AddChoice(CH_Guild,"Охотник на драконов",CH_Guild_DJG);
+	Info_AddChoice(CH_Guild,"Наемник",CH_Guild_SLD);
+	Info_AddChoice(CH_Guild,"Паладин",CH_Guild_PAL);
+	Info_AddChoice(CH_Guild,"Ополченец",CH_Guild_MIL);
+	Info_AddChoice(CH_Guild,"Маг Огня",CH_Guild_KDF);
+	Info_AddChoice(CH_Guild,"Послушник",CH_Guild_NOV);
 };
 
 func void CH_Guild_BACK()
@@ -680,7 +680,7 @@ func void CH_Guild_BACK()
 	Info_ClearChoices(CH_Guild);
 };
 
-func void ch_pir()
+func void CH_Guild_PIR()
 {
 	Info_ClearChoices(CH_Guild);
 	if(!Npc_HasItems(hero,ITAR_PIR_L_Addon))
@@ -693,7 +693,7 @@ func void ch_pir()
 	};
 };
 
-func void ch_bdt()
+func void CH_Guild_BDT()
 {
 	Info_ClearChoices(CH_Guild);
 	if(!Npc_HasItems(hero,ITAR_BDT_M))
@@ -706,7 +706,7 @@ func void ch_bdt()
 	};
 };
 
-func void ch_nov()
+func void CH_Guild_NOV()
 {
 	Info_ClearChoices(CH_Guild);
 	B_SetGuild(hero,GIL_NOV);
@@ -720,7 +720,7 @@ func void ch_nov()
 	};
 };
 
-func void ch_kdf()
+func void CH_Guild_KDF()
 {
 	Info_ClearChoices(CH_Guild);
 	B_SetGuild(hero,GIL_KDF);
@@ -734,7 +734,7 @@ func void ch_kdf()
 	};
 };
 
-func void ch_sld()
+func void CH_Guild_SLD()
 {
 	Info_ClearChoices(CH_Guild);
 	B_SetGuild(hero,GIL_SLD);
@@ -748,7 +748,7 @@ func void ch_sld()
 	};
 };
 
-func void ch_djg()
+func void CH_Guild_DJG()
 {
 	Info_ClearChoices(CH_Guild);
 	B_SetGuild(hero,GIL_DJG);
@@ -784,7 +784,7 @@ func void ch_djg()
 	};
 };
 
-func void ch_mil()
+func void CH_Guild_MIL()
 {
 	Info_ClearChoices(CH_Guild);
 	B_SetGuild(hero,GIL_MIL);
@@ -798,7 +798,7 @@ func void ch_mil()
 	};
 };
 
-func void ch_pal()
+func void CH_Guild_PAL()
 {
 	Info_ClearChoices(CH_Guild);
 	B_SetGuild(hero,GIL_PAL);
@@ -835,7 +835,7 @@ func void ch_pal()
 	B_SetPaladinEquipment();
 };
 
-func void ch_none()
+func void CH_Guild_NONE()
 {
 	Info_ClearChoices(CH_Guild);
 	B_SetGuild(hero,GIL_NONE);
@@ -869,31 +869,31 @@ func void CH_Apprentice_Info()
 	Info_AddChoice(CH_Apprentice,Dialog_Back,CH_Apprentice_BACK);
 	if(Player_IsApprentice != APP_NONE)
 	{
-		Info_AddChoice(CH_Apprentice,"Сброс",ch_apprentice_none);
+		Info_AddChoice(CH_Apprentice,"Сброс",CH_Apprentice_None);
 	};
 	if(Player_IsApprentice == APP_Bosper)
 	{
-		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_TROPHY_Fur,": Боспер (используется)"),ch_apprentice_bosper);
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_TROPHY_Fur,": Боспер (используется)"),CH_Apprentice_Bosper);
 	}
 	else
 	{
-		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_TROPHY_Fur,": Боспер"),ch_apprentice_bosper);
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_TROPHY_Fur,": Боспер"),CH_Apprentice_Bosper);
 	};
 	if(Player_IsApprentice == APP_Harad)
 	{
-		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Smith,": Гарад (используется)"),ch_apprentice_harad);
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Smith,": Гарад (используется)"),CH_Apprentice_Harad);
 	}
 	else
 	{
-		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Smith,": Гарад"),ch_apprentice_harad);
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Smith,": Гарад"),CH_Apprentice_Harad);
 	};
 	if(Player_IsApprentice == APP_Constantino)
 	{
-		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Alchemy,": Константино (используется)"),ch_apprentice_constantino);
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Alchemy,": Константино (используется)"),CH_Apprentice_Constantino);
 	}
 	else
 	{
-		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Alchemy,": Константино"),ch_apprentice_constantino);
+		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Alchemy,": Константино"),CH_Apprentice_Constantino);
 	};
 };
 
@@ -902,7 +902,7 @@ func void CH_Apprentice_BACK()
 	Info_ClearChoices(CH_Apprentice);
 };
 
-func void ch_apprentice_bosper()
+func void CH_Apprentice_Bosper()
 {
 	Player_IsApprentice = APP_Bosper;
 	PrintScreen("Мастер: Боспер",-1,-1,FONT_Screen,3);
@@ -911,7 +911,7 @@ func void ch_apprentice_bosper()
 	CH_Apprentice_Info();
 };
 
-func void ch_apprentice_harad()
+func void CH_Apprentice_Harad()
 {
 	Player_IsApprentice = APP_Harad;
 	PrintScreen("Мастер: Гарад",-1,-1,FONT_Screen,3);
@@ -920,7 +920,7 @@ func void ch_apprentice_harad()
 	CH_Apprentice_Info();
 };
 
-func void ch_apprentice_constantino()
+func void CH_Apprentice_Constantino()
 {
 	Player_IsApprentice = APP_Constantino;
 	PrintScreen("Мастер: Константино",-1,-1,FONT_Screen,3);
@@ -929,7 +929,7 @@ func void ch_apprentice_constantino()
 	CH_Apprentice_Info();
 };
 
-func void ch_apprentice_none()
+func void CH_Apprentice_None()
 {
 	Player_IsApprentice = APP_NONE;
 	PrintScreen("Мастер сброшен",-1,-1,FONT_Screen,3);
@@ -1682,10 +1682,10 @@ func void DIA_CH_Dex_Info()
 {
 	Info_ClearChoices(DIA_CH_Dex);
 	Info_AddChoice(DIA_CH_Dex,Dialog_Back,DIA_CH_Dex_BACK);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 20",B_GetLearnCostAttribute(ATR_DEXTERITY,20)),dia_ch_dex_20);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 10",B_GetLearnCostAttribute(ATR_DEXTERITY,10)),dia_ch_dex_10);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 5",B_GetLearnCostAttribute(ATR_DEXTERITY,5)),dia_ch_dex_5);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 1",B_GetLearnCostAttribute(ATR_DEXTERITY,1)),dia_ch_dex_1);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 20",B_GetLearnCostAttribute(ATR_DEXTERITY,20)),DIA_CH_Dex_20);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 10",B_GetLearnCostAttribute(ATR_DEXTERITY,10)),DIA_CH_Dex_10);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 5",B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_CH_Dex_5);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 1",B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_CH_Dex_1);
 };
 
 func void DIA_CH_Dex_BACK()
@@ -1693,25 +1693,25 @@ func void DIA_CH_Dex_BACK()
 	Info_ClearChoices(DIA_CH_Dex);
 };
 
-func void dia_ch_dex_1()
+func void DIA_CH_Dex_1()
 {
 	B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MAX);
 	DIA_CH_Dex_Info();
 };
 
-func void dia_ch_dex_5()
+func void DIA_CH_Dex_5()
 {
 	B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MAX);
 	DIA_CH_Dex_Info();
 };
 
-func void dia_ch_dex_10()
+func void DIA_CH_Dex_10()
 {
 	B_TeachAttributePoints(self,other,ATR_DEXTERITY,10,T_MAX);
 	DIA_CH_Dex_Info();
 };
 
-func void dia_ch_dex_20()
+func void DIA_CH_Dex_20()
 {
 	B_TeachAttributePoints(self,other,ATR_DEXTERITY,20,T_MAX);
 	DIA_CH_Dex_Info();
@@ -1793,10 +1793,10 @@ func void DIA_CH_Mana_Info()
 {
 	Info_ClearChoices(DIA_CH_Mana);
 	Info_AddChoice(DIA_CH_Mana,Dialog_Back,DIA_CH_Mana_BACK);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 20",B_GetLearnCostAttribute(ATR_MANA_MAX,20)),dia_ch_mana_20);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 10",B_GetLearnCostAttribute(ATR_MANA_MAX,10)),dia_ch_mana_10);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 5",B_GetLearnCostAttribute(ATR_MANA_MAX,5)),dia_ch_mana_5);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 1",B_GetLearnCostAttribute(ATR_MANA_MAX,1)),dia_ch_mana_1);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 20",B_GetLearnCostAttribute(ATR_MANA_MAX,20)),DIA_CH_Mana_20);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 10",B_GetLearnCostAttribute(ATR_MANA_MAX,10)),DIA_CH_Mana_10);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 5",B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_CH_Mana_5);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 1",B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_CH_Mana_1);
 };
 
 func void DIA_CH_Mana_BACK()
@@ -1804,25 +1804,25 @@ func void DIA_CH_Mana_BACK()
 	Info_ClearChoices(DIA_CH_Mana);
 };
 
-func void dia_ch_mana_1()
+func void DIA_CH_Mana_1()
 {
 	B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MAX);
 	DIA_CH_Mana_Info();
 };
 
-func void dia_ch_mana_5()
+func void DIA_CH_Mana_5()
 {
 	B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MAX);
 	DIA_CH_Mana_Info();
 };
 
-func void dia_ch_mana_10()
+func void DIA_CH_Mana_10()
 {
 	B_TeachAttributePoints(self,other,ATR_MANA_MAX,10,T_MAX);
 	DIA_CH_Mana_Info();
 };
 
-func void dia_ch_mana_20()
+func void DIA_CH_Mana_20()
 {
 	B_TeachAttributePoints(self,other,ATR_MANA_MAX,20,T_MAX);
 	DIA_CH_Mana_Info();
@@ -1850,80 +1850,80 @@ func int DIA_CH_KREISE_Condition()
 
 func void DIA_CH_KREISE_Info()
 {
-	Info_ClearChoices(dia_ch_kreise);
-	Info_AddChoice(dia_ch_kreise,Dialog_Back,ch_kreise_back);
-	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) < 1)
+	Info_ClearChoices(DIA_CH_KREISE);
+	Info_AddChoice(DIA_CH_KREISE,Dialog_Back,DIA_CH_KREISE_BACK);
+	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
 	{
-		Info_AddChoice(dia_ch_kreise,B_BuildLearnString(NAME_Circle_1,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1)),ch_kreise_1);
-	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 1)
+		Info_AddChoice(DIA_CH_KREISE,B_BuildLearnString(NAME_Circle_1,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1)),DIA_CH_KREISE_1);
+	}
+	else if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 1)
 	{
-		Info_AddChoice(dia_ch_kreise,B_BuildLearnString(NAME_Circle_2,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2)),ch_kreise_2);
-	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 2)
+		Info_AddChoice(DIA_CH_KREISE,B_BuildLearnString(NAME_Circle_2,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2)),DIA_CH_KREISE_2);
+	}
+	else if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 2)
 	{
-		Info_AddChoice(dia_ch_kreise,B_BuildLearnString(NAME_Circle_3,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,3)),ch_kreise_3);
-	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 3)
+		Info_AddChoice(DIA_CH_KREISE,B_BuildLearnString(NAME_Circle_3,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,3)),DIA_CH_KREISE_3);
+	}
+	else if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 3)
 	{
-		Info_AddChoice(dia_ch_kreise,B_BuildLearnString(NAME_Circle_4,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,4)),ch_kreise_4);
-	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 4)
+		Info_AddChoice(DIA_CH_KREISE,B_BuildLearnString(NAME_Circle_4,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,4)),DIA_CH_KREISE_4);
+	}
+	else if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 4)
 	{
-		Info_AddChoice(dia_ch_kreise,B_BuildLearnString(NAME_Circle_5,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,5)),ch_kreise_5);
-	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 5)
+		Info_AddChoice(DIA_CH_KREISE,B_BuildLearnString(NAME_Circle_5,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,5)),DIA_CH_KREISE_5);
+	}
+	else if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 5)
 	{
-		Info_AddChoice(dia_ch_kreise,B_BuildLearnString(NAME_Circle_6,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,6)),ch_kreise_6);
+		Info_AddChoice(DIA_CH_KREISE,B_BuildLearnString(NAME_Circle_6,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,6)),DIA_CH_KREISE_6);
 	};
 };
 
-func void ch_kreise_back()
+func void DIA_CH_KREISE_BACK()
 {
-	Info_ClearChoices(dia_ch_kreise);
+	Info_ClearChoices(DIA_CH_KREISE);
 };
 
-func void ch_kreise_1()
+func void DIA_CH_KREISE_1()
 {
-	Info_ClearChoices(dia_ch_kreise);
+	Info_ClearChoices(DIA_CH_KREISE);
 	B_TeachMagicCircle(self,other,1);
 	B_SetKDFRunes();
 };
 
-func void ch_kreise_2()
+func void DIA_CH_KREISE_2()
 {
-	Info_ClearChoices(dia_ch_kreise);
+	Info_ClearChoices(DIA_CH_KREISE);
 	B_TeachMagicCircle(self,other,2);
 	B_SetKDFRunes();
 	B_SetKDWRunes();
 };
 
-func void ch_kreise_3()
+func void DIA_CH_KREISE_3()
 {
-	Info_ClearChoices(dia_ch_kreise);
+	Info_ClearChoices(DIA_CH_KREISE);
 	B_TeachMagicCircle(self,other,3);
 	B_SetKDFRunes();
 	B_SetKDWRunes();
 };
 
-func void ch_kreise_4()
+func void DIA_CH_KREISE_4()
 {
-	Info_ClearChoices(dia_ch_kreise);
+	Info_ClearChoices(DIA_CH_KREISE);
 	B_TeachMagicCircle(self,other,4);
 	B_SetKDFRunes();
 	B_SetKDWRunes();
 };
 
-func void ch_kreise_5()
+func void DIA_CH_KREISE_5()
 {
-	Info_ClearChoices(dia_ch_kreise);
+	Info_ClearChoices(DIA_CH_KREISE);
 	B_TeachMagicCircle(self,other,5);
 	B_SetKDFRunes();
 };
 
-func void ch_kreise_6()
+func void DIA_CH_KREISE_6()
 {
-	Info_ClearChoices(dia_ch_kreise);
+	Info_ClearChoices(DIA_CH_KREISE);
 	B_TeachMagicCircle(self,other,6);
 	B_SetKDFRunes();
 };

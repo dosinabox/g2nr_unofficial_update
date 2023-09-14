@@ -755,8 +755,8 @@ func void INIT_SUB_OldWorld_Part_Psicamp()
 func void STARTUP_OldWorld_Part_Oldcamp()
 {
 	Wld_InsertItem(ItMi_GornsTreasure_MIS,"FP_ITEM_GORN");
-	Wld_InsertItem(ITKE_ErzBaronFlur,"FP_ITEM_OC_01");
-	Wld_InsertItem(ITKE_ErzBaronRaum,"FP_ITEM_OC_02");
+	Wld_InsertItem(ItKe_ErzBaronFlur,"FP_ITEM_OC_01");
+	Wld_InsertItem(ItKe_ErzBaronRaum,"FP_ITEM_OC_02");
 	Wld_InsertItem(ItWr_HitPointStonePlate2_Addon,"FP_ROAM_ORK_OC_04_2");
 	Wld_InsertNpc(VLK_4100_Brutus,"OC1");
 	Wld_InsertNpc(STRF_1100_Straefling,"OC1");

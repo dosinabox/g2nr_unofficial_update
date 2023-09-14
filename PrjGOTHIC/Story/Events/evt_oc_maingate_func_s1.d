@@ -59,7 +59,10 @@ func void evt_oc_maingate_func_s1()
 		{
 			Brutus.flags = NPC_FLAG_IMMORTAL;
 		};
-		Garond.flags = 0;
+		if(!Npc_IsDead(Garond))
+		{
+			Garond.flags = 0;
+		};
 		PlayVideo("ORCATTACK.BIK");
 		MIS_OCGateOpen = TRUE;
 	};

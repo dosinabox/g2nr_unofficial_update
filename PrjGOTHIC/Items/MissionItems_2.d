@@ -118,7 +118,7 @@ instance ItKe_OC_Store(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_ErzBaronFlur(C_Item)
+instance ItKe_ErzBaronFlur(C_Item)
 {
 	name = "Ключ от первой двери";
 	mainflag = ITEM_KAT_KEYS;
@@ -135,7 +135,7 @@ instance ITKE_ErzBaronFlur(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_ErzBaronRaum(C_Item)
+instance ItKe_ErzBaronRaum(C_Item)
 {
 	name = "Ключ от второй двери";
 	mainflag = ITEM_KAT_KEYS;

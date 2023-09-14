@@ -147,7 +147,7 @@ instance ItKe_EVT_UNDEAD_02(C_Item)
 	inv_zbias = 145;
 };
 
-instance ItKe_LastDoorToUndeadDrgDI_MIS(C_Item)
+/*instance ItKe_LastDoorToUndeadDrgDI_MIS(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -160,7 +160,7 @@ instance ItKe_LastDoorToUndeadDrgDI_MIS(C_Item)
 	inv_rotx = -25;
 	inv_roty = 0;
 	inv_zbias = 145;
-};
+};*/
 
 instance ItWr_LastDoorToUndeadDrgDI_MIS(C_Item)
 {

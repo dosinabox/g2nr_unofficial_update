@@ -559,7 +559,6 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItMw_AlriksSword_Mis,1);
 	CreateInvItems(self,ItWr_VatrasMessage,1);
 	CreateInvItems(self,ItWr_VatrasMessage_Open,1);
-//	CreateInvItems(self,ItKe_Hotel,1);
 	CreateInvItems(self,ItKe_ThiefGuildKey_MIS,1);
 	CreateInvItems(self,ItKe_ThiefGuildKey_Hotel_MIS,1);
 	CreateInvItems(self,ItKe_Innos_MIS,1);
@@ -599,8 +598,8 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItWr_LetterForGorn_MIS,1);
 	CreateInvItems(self,ItKe_PrisonKey_MIS,1);
 	CreateInvItems(self,ItKe_OC_Store,1);
-	CreateInvItems(self,ITKE_ErzBaronFlur,1);
-	CreateInvItems(self,ITKE_ErzBaronRaum,1);
+	CreateInvItems(self,ItKe_ErzBaronFlur,1);
+	CreateInvItems(self,ItKe_ErzBaronRaum,1);
 	CreateInvItems(self,ItMi_GornsTreasure_MIS,1);
 	CreateInvItems(self,ItWr_Silvestro_MIS,1);
 	CreateInvItems(self,ItAt_ClawLeader,1);
@@ -677,7 +676,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItKe_OrkKnastDI_MIS,1);
 	CreateInvItems(self,ItKe_EVT_UNDEAD_01,1);
 	CreateInvItems(self,ItKe_EVT_UNDEAD_02,1);
-	CreateInvItems(self,ItKe_LastDoorToUndeadDrgDI_MIS,1);
+//	CreateInvItems(self,ItKe_LastDoorToUndeadDrgDI_MIS,1);
 	CreateInvItems(self,ItWr_LastDoorToUndeadDrgDI_MIS,1);
 	CreateInvItems(self,ItKe_ChestMasterDementor_MIS,1);
 	CreateInvItems(self,ItWr_Rezept_MegaDrink_MIS,1);
