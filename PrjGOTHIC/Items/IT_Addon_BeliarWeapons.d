@@ -1,7 +1,7 @@
 
 prototype BeliarWeaponPrototype_1H(C_Item)
 {
-	name = NAME_ADDON_BELIARSWEAPON;
+	name = NAME_Addon_BeliarsWeapon;
 	id = ITEM_BELIAR_1H;
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
@@ -205,7 +205,7 @@ instance ItMw_BeliarWeapon_1H_20(BeliarWeaponPrototype_1H)
 
 prototype BeliarWeaponPrototype_2H(C_Item)
 {
-	name = NAME_ADDON_BELIARSWEAPON;
+	name = NAME_Addon_BeliarsWeapon;
 	id = ITEM_BELIAR_2H;
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
@@ -440,7 +440,7 @@ instance ItMw_BeliarWeapon_Fire(BeliarWeaponPrototype_2H)
 
 instance ItMw_BeliarWeapon_Fake(C_Item)
 {
-	name = NAME_ADDON_BELIARSWEAPON;
+	name = NAME_Addon_BeliarsWeapon;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 0;

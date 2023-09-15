@@ -834,7 +834,7 @@ func void DIA_Cassia_Belohnung_Info()
 	Info_ClearChoices(DIA_Cassia_Belohnung);
 	Info_AddChoice(DIA_Cassia_Belohnung,"400 золотых",DIA_Cassia_Belohnung_Gold);
 	Info_AddChoice(DIA_Cassia_Belohnung,"6 лечебных эликсиров",DIA_Cassia_Belohnung_Trank);
-	Info_AddChoice(DIA_Cassia_Belohnung,NAME_ADDON_CASSIASBELOHNUNGSRING,DIA_Cassia_Belohnung_Ring);
+	Info_AddChoice(DIA_Cassia_Belohnung,NAME_Addon_CassiasBelohnungsRing,DIA_Cassia_Belohnung_Ring);
 };
 
 func void DIA_Cassia_Belohnung_Gold()

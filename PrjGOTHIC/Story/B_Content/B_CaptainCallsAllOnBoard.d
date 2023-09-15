@@ -1,10 +1,9 @@
 
-func void B_CaptainCallsAllOnBoard(var C_Npc Captain)
+func void B_CaptainCallsAllOnBoard(var C_Npc captain)
 {
-//	B_GiveInvItems(hero,Captain,ItWr_Seamap_Irdorath,1);
-	CreateInvItems(Captain,ItKe_Ship_Levelchange_MIS,1);
-	B_GiveInvItems(Captain,other,ItKe_Ship_Levelchange_MIS,1);
-	B_StartOtherRoutine(Captain,"AllOnBoard");
+	CreateInvItem(captain,ItKe_Ship_Levelchange_MIS);
+	B_GiveInvItems(captain,other,ItKe_Ship_Levelchange_MIS,1);
+	B_StartOtherRoutine(captain,"AllOnBoard");
 	if(Lee_IsOnBoard == LOG_SUCCESS)
 	{
 		B_StartOtherRoutine(Lee,"Ship");
