@@ -338,6 +338,13 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				CreateInvItems(Malak,ITWR_DementorObsessionBook_MIS,1);
 			};
 		};
+		if((hero.guild != GIL_NOV) && (hero.guild != GIL_KDF))
+		{
+			if(!Npc_IsDead(Igaraz))
+			{
+				B_CreateItemToSteal(Igaraz,40,ItKe_IgarazChest_MIS,1);
+			};
+		};
 		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
 		{
 			B_StartOtherRoutine(Hilda,"KRANK");

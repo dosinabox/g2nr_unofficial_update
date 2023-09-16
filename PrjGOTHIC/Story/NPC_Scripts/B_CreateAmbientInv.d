@@ -668,9 +668,11 @@ func void B_SetItemToSteal(var C_Npc slf,var int dex,var int itemInstance,var in
 	slf.aivar[AIV_AmountToSteal] = amount;
 };
 
+//amount == 1 - ןנוהלועû
+//amount > 1 - חמכמעמ
 func void B_CreateItemToSteal(var C_Npc slf,var int dex,var int itemInstance,var int amount)
 {
-	if(!Hlp_IsItem(ItMi_Gold,itemInstance))
+	if(amount == 1)
 	{
 		CreateInvItems(slf,itemInstance,amount);
 	};
@@ -695,7 +697,7 @@ func void B_UpdateItemToSteal(var C_Npc slf,var int dex,var int itemInstance,var
 	{
 		return;
 	};
-	if(!Hlp_IsItem(ItMi_Gold,itemInstance))
+	if(amount == 1)
 	{
 		B_RefreshInvItemToAmount(slf,itemInstance,amount);
 	};
@@ -770,7 +772,6 @@ func void B_SyncItemsToSteal()
 		B_UpdateItemToSteal(MIL_350_Addon_Martin,65,ItMi_Gold,77);
 		B_UpdateItemToSteal(NONE_101_Mario,71,ItMi_Gold,220);
 		B_UpdateItemToSteal(NOV_600_Pedro,45,ItMi_Gold,60);
-		B_UpdateItemToSteal(NOV_601_Igaraz,40,ItKe_IgarazChest_Mis,1);
 		B_UpdateItemToSteal(NOV_602_Ulf,34,ItMi_Gold,50);
 		B_UpdateItemToSteal(NOV_603_Agon,23,ItMi_Gold,12);
 		B_UpdateItemToSteal(NOV_604_Dyrian,10,ItMi_Gold,15);
@@ -869,6 +870,14 @@ func void B_SyncItemsToSteal()
 		B_UpdateItemToSteal(VLK_493_Nagur,75,ItMi_Gold,150);
 		B_UpdateItemToSteal(VLK_494_Attila,55,ItMi_Gold,100);
 		B_UpdateItemToSteal(VLK_498_Ignaz,38,ItMi_Gold,50);
+		if(EnterNW_Kapitel3 == TRUE)
+		{
+			B_UpdateItemToSteal(VLK_401_Cornelius,60,ItWr_CorneliusTagebuch_Mis,1);
+			if((hero.guild != GIL_NOV) && (hero.guild != GIL_KDF))
+			{
+				B_UpdateItemToSteal(NOV_601_Igaraz,40,ItKe_IgarazChest_MIS,1);
+			};
+		};
 	}
 	else if(CurrentLevel == OLDWORLD_ZEN)
 	{
@@ -911,6 +920,10 @@ func void B_SyncItemsToSteal()
 		B_UpdateItemToSteal(VLK_4130_Talbin,40,ItMi_Gold,25);
 		B_UpdateItemToSteal(VLK_4131_Engrom,10,ItMi_Gold,5);
 		B_UpdateItemToSteal(VLK_4148_Gestath,81,ItMi_Gold,350);
+		if(EnterOW_Kapitel5 == TRUE)
+		{
+			B_UpdateItemToSteal(VLK_4143_HaupttorWache,20,ItKe_OC_MainGate_MIS,1);
+		};
 	}
 	else if(CurrentLevel == DRAGONISLAND_ZEN)
 	{

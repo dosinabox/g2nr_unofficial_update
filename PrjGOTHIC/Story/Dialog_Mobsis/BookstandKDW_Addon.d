@@ -44,7 +44,7 @@ func void Use_Runemaking_KDW_CIRC1_S1()
 	};
 };
 
-func void Use_Runemaking_KDW_CIRC2_S1()
+/*func void Use_Runemaking_KDW_CIRC2_S1()
 {
 	Use_Runemaking_KDW_CIRC1_S1();
 };
@@ -67,5 +67,5 @@ func void Use_Runemaking_KDW_CIRC5_S1()
 func void Use_Runemaking_KDW_CIRC6_S1()
 {
 	Use_Runemaking_KDW_CIRC1_S1();
-};
+};*/
 

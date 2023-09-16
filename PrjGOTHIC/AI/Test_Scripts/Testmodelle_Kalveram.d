@@ -788,7 +788,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_BabosLetter_MIS,1);
 	CreateInvItems(self,ItWr_BabosPinUp_MIS,1);
 	CreateInvItems(self,ItWr_BabosDocs_MIS,1);
-	CreateInvItems(self,ItKe_IgarazChest_Mis,1);
+	CreateInvItems(self,ItKe_IgarazChest_MIS,1);
 	CreateInvItems(self,ItWr_Astronomy_Mis,1);
 	CreateInvItems(self,ItPo_HealObsession_MIS,1);
 	CreateInvItems(self,ItSe_Golemchest_Mis,1);
@@ -804,7 +804,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_Map_Shrine_MIS,1);
 	CreateInvItems(self,ItWr_VinosKellergeister_Mis,1);
 	CreateInvItems(self,ItAm_Mana_Angar_MIS,1);
-	CreateInvItems(self,ItMW_1H_FerrosSword_Mis,1);
+	CreateInvItems(self,ItMw_1H_FerrosSword_MIS,1);
 	CreateInvItems(self,ItMi_KerolothsGeldbeutel_MIS,1);
 	CreateInvItems(self,ItMi_KerolothsGeldbeutelLeer_MIS,1);
 	CreateInvItems(self,ItRw_SengrathsArmbrust_MIS,1);

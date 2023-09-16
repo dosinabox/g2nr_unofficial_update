@@ -35,6 +35,20 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Addon_Baltram_Paket4Skip = LOG_FAILED;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Schiffswache_212))
+		{
+			if(Npc_IsDead(Schiffswache_213))
+			{
+				MIS_ShipIsFree = TRUE;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Schiffswache_213))
+		{
+			if(Npc_IsDead(Schiffswache_212))
+			{
+				MIS_ShipIsFree = TRUE;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fester))
 		{
 			if(MIS_Fester_KillBugs == LOG_Running)

@@ -596,7 +596,7 @@ func void Use_BabosDocs()
 };
 
 
-instance ItKe_IgarazChest_Mis(C_Item)
+instance ItKe_IgarazChest_MIS(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;

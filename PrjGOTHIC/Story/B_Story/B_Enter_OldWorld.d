@@ -193,7 +193,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(DJG_713_Biff,"OC1");
 		Wld_InsertNpc(DJG_714_Jan,"OC1");
 		Wld_InsertNpc(DJG_715_Ferros,"OC1");
-		Wld_InsertItem(ItMW_1H_FerrosSword_Mis,"FP_OW_ITEM_08");
+		Wld_InsertItem(ItMw_1H_FerrosSword_MIS,"FP_OW_ITEM_08");
 		Wld_InsertNpc(NONE_110_Urshak,"WP_INTRO_FALL");
 		Wld_InsertNpc(Warg,"OC3");
 		Wld_InsertNpc(OrcWarrior_Roam,"OW_SCAVENGER_SPAWN_TREE");

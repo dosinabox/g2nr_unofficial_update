@@ -1446,6 +1446,16 @@ func void DIA_Lord_Hagen_NeedShip_Info()
 };
 
 
+func void B_ShipIsFree()
+{
+	if((Kapitel >= 5) && (Girion_IsOnBoard != LOG_SUCCESS))
+	{
+		B_StartOtherRoutine(Girion,"WaitForShip");
+	};
+	MIS_ShipIsFree = TRUE;
+	B_CheckLog();
+};
+
 instance DIA_Lord_Hagen_GateOpen(C_Info)
 {
 	npc = PAL_200_Hagen;
@@ -1473,9 +1483,7 @@ func void DIA_Lord_Hagen_GateOpen_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_32");	//Почему-то?! Но как это возможно... В замке наверняка есть предатель!
 	B_StartOtherRoutine(Schiffswache_212,"ShipFree");
 	B_StartOtherRoutine(Schiffswache_213,"ShipFree");
-	B_StartOtherRoutine(Girion,"WaitForShip");
-	MIS_ShipIsFree = TRUE;
-	B_CheckLog();
+	B_ShipIsFree();
 };
 
 

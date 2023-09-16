@@ -290,7 +290,7 @@ instance DIA_DJG_715_Ferros_FerrosHisSword(C_Info)
 
 func int DIA_DJG_715_Ferros_FerrosHisSword_Condition()
 {
-	if((MIS_FerrosSword == LOG_Running) && Npc_HasItems(other,ItMW_1H_FerrosSword_Mis))
+	if((MIS_FerrosSword == LOG_Running) && Npc_HasItems(other,ItMw_1H_FerrosSword_MIS))
 	{
 		return TRUE;
 	};
@@ -300,7 +300,7 @@ func void DIA_DJG_715_Ferros_FerrosHisSword_Info()
 {
 	AI_Output(other,self,"DIA_DJG_715_Ferros_FerrosHisSword_15_00");	//Я нашел твой меч.
 	AI_WaitTillEnd(self,other);
-	B_GiveInvItems(other,self,ItMW_1H_FerrosSword_Mis,1);
+	B_GiveInvItems(other,self,ItMw_1H_FerrosSword_MIS,1);
 	B_InspectMeleeWeapon(self);
 	B_Ferros_FerrosAnySword_Yes2();
 };
