@@ -806,7 +806,7 @@ instance DIA_Addon_Greg_GiveFrancisBook(C_Info)
 
 func int DIA_Addon_Greg_GiveFrancisBook_Condition()
 {
-	if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis) && (Francis_HasProof == TRUE))
+	if(Npc_HasItems(other,ItWr_Addon_FrancisAbrechnung_MIS) && (Francis_HasProof == TRUE))
 	{
 		return TRUE;
 	};
@@ -816,8 +816,8 @@ func void DIA_Addon_Greg_GiveFrancisBook_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_GiveFrancisBook_15_00_add");	//Похоже, этот парень прикарманил много золота...
 	AI_WaitTillEnd(self,other);
-	B_GiveInvItems(other,self,ITWR_Addon_FrancisAbrechnung_Mis,1);
-	Npc_RemoveInvItem(self,ITWR_Addon_FrancisAbrechnung_Mis);
+	B_GiveInvItems(other,self,ItWr_Addon_FrancisAbrechnung_MIS,1);
+	Npc_RemoveInvItem(self,ItWr_Addon_FrancisAbrechnung_MIS);
 	B_ReadFakeItem(self,other,Openbook2,2);
 	AI_Output(self,other,"DIA_Addon_Greg_GiveFrancisBook_01_01_add");	//Не ожидал я этого...
 	B_GivePlayerXP(200);

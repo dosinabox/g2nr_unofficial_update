@@ -2563,7 +2563,7 @@ func void STARTUP_NewWorld_Part_Forest_01()
 	Wld_InsertNpc(Warg,"FP_ROAM_CITYFOREST_KAP3_17");
 	Wld_InsertNpc(Giant_Rat,"NW_FOREST_VINOSKELLEREI_01");
 	Wld_InsertNpc(Giant_Rat,"NW_FOREST_VINOSKELLEREI_01");
-	Wld_InsertItem(ItWr_VinosKellergeister_Mis,"FP_ITEM_NW_VINOKELLEREI");
+	Wld_InsertItem(ItWr_VinosKellergeister_MIS,"FP_ITEM_NW_VINOKELLEREI");
 	Wld_InsertNpc(BDT_1021_LeuchtturmBandit,"LIGHTHOUSE");
 	Wld_InsertNpc(BDT_1022_LeuchtturmBandit,"NW_LIGHTHOUSE_IN_01");
 	Wld_InsertNpc(BDT_1023_LeuchtturmBandit,"NW_CITY_TO_LIGHTHOUSE_16");

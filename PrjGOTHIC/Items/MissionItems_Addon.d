@@ -1049,7 +1049,7 @@ func void Use_Addon_Stone_05()
 	Doc_Show(nDocID);
 };
 
-instance ItMI_Addon_Kompass_Mis(C_Item)
+instance ItMi_Addon_Kompass_MIS(C_Item)
 {
 	name = "Золотой компас";
 	mainflag = ITEM_KAT_NONE;
@@ -1062,13 +1062,13 @@ instance ItMI_Addon_Kompass_Mis(C_Item)
 	count[5] = value;
 };
 
-instance ItSE_Addon_FrancisChest(C_Item)
+instance ItSe_Addon_FrancisChest(C_Item)
 {
 	name = "Сундук с сокровищами";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 750;
-	visual = "ItSE_Addon_FrancisChest.3ds";
+	visual = "ItSe_Addon_FrancisChest.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
 	on_state[0] = FrancisChest;
@@ -1081,12 +1081,12 @@ instance ItSE_Addon_FrancisChest(C_Item)
 
 func void FrancisChest()
 {
-	CreateInvItems(hero,ITWR_Addon_FrancisAbrechnung_Mis,1);
+	CreateInvItems(hero,ItWr_Addon_FrancisAbrechnung_MIS,1);
 	CreateInvItems(hero,ItMw_1h_Pir_Dagger,1);
 	CreateInvItems(hero,ItMi_Gold,153);
 	CreateInvItems(hero,ItMi_GoldCup,1);
 	CreateInvItems(hero,ItMi_SilverNecklace,1);
-	CreateInvItems(hero,ItSE_Addon_EmptyFrancisChest,1);
+	CreateInvItems(hero,ItSe_Addon_EmptyFrancisChest,1);
 	AI_PrintScreen("Книга платежей получено",-1,49,FONT_ScreenSmall,4);
 	AI_PrintScreen("Хороший кинжал получено",-1,40,FONT_ScreenSmall,4);
 	AI_PrintScreen("153 золотых получено",-1,52,FONT_ScreenSmall,4);
@@ -1096,12 +1096,12 @@ func void FrancisChest()
 };
 
 
-instance ItSE_Addon_EmptyFrancisChest(C_Item)
+instance ItSe_Addon_EmptyFrancisChest(C_Item)
 {
 	name = "Пустой сундук";
 	mainflag = ITEM_KAT_NONE;
 	value = 200;
-	visual = "ItSE_Addon_FrancisChest.3ds";
+	visual = "ItSe_Addon_FrancisChest.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[5] = NAME_Value;
@@ -1109,7 +1109,7 @@ instance ItSE_Addon_EmptyFrancisChest(C_Item)
 };
 
 
-instance ITWR_Addon_FrancisAbrechnung_Mis(C_Item)
+instance ItWr_Addon_FrancisAbrechnung_MIS(C_Item)
 {
 	name = "Книга платежей";
 	mainflag = ITEM_KAT_DOCS;
@@ -1119,11 +1119,11 @@ instance ITWR_Addon_FrancisAbrechnung_Mis(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-	on_state[0] = UseFrancisAbrechnung_Mis;
+	on_state[0] = UseFrancisAbrechnung_MIS;
 };
 
 
-func void UseFrancisAbrechnung_Mis()
+func void UseFrancisAbrechnung_MIS()
 {
 	var int nDocID;
 	nDocID = Doc_Create();
@@ -1193,13 +1193,13 @@ func void UseFrancisAbrechnung_Mis()
 };
 
 
-instance ITWR_Addon_GregsLogbuch_Mis(C_Item)
+instance ItWr_Addon_GregsLogbuch_MIS(C_Item)
 {
 	name = "Дневник Грега";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_GregsLogbuch_Mis.3ds";
+	visual = "ItWr_GregsLogbuch_MIS.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
@@ -1234,7 +1234,7 @@ func void UseGregsLogbuch()
 };
 
 
-instance ITKE_Addon_Bloodwyn_01(C_Item)
+instance ItKe_Addon_Bloodwyn_01(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -1250,7 +1250,7 @@ instance ITKE_Addon_Bloodwyn_01(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_Addon_Heiler(C_Item)
+instance ItKe_Addon_Heiler(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;

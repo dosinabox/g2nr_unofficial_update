@@ -1464,7 +1464,7 @@ instance DIA_Pyrokar_BUCHZURUECK(C_Info)
 
 func int DIA_Pyrokar_BUCHZURUECK_Condition()
 {
-	if(Npc_HasItems(other,ItWr_XardasBookForPyrokar_Mis) && (Kapitel == 3))
+	if(Npc_HasItems(other,ItWr_XardasBookForPyrokar_MIS) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -1475,8 +1475,8 @@ func void DIA_Pyrokar_BUCHZURUECK_Info()
 	AI_Output(other,self,"DIA_Pyrokar_BUCHZURUECK_15_00");	//Я принес эту книгу от Ксардаса.
 	AI_Output(other,self,"DIA_Pyrokar_BUCHZURUECK_15_01");	//Это знак его доверия.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_02");	//Покажи.
-	B_GiveInvItems(other,self,ItWr_XardasBookForPyrokar_Mis,1);
-	Npc_RemoveInvItem(self,ItWr_XardasBookForPyrokar_Mis);
+	B_GiveInvItems(other,self,ItWr_XardasBookForPyrokar_MIS,1);
+	Npc_RemoveInvItem(self,ItWr_XardasBookForPyrokar_MIS);
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_03");	//(пораженно) Но это невероятно! Ты имеешь хоть малейшее представление о том, что ты только что дал мне?
 	AI_Output(other,self,"DIA_Pyrokar_BUCHZURUECK_15_04");	//Ээээ. Нет.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_05");	//(сердито) Это древний, давно потерянный том из давно прошедших дней.
@@ -2210,8 +2210,8 @@ func void DIA_Pyrokar_AmulettofDeath_CanHaveIt()
 	AI_Output(other,self,"DIA_Pyrokar_AmulettofDeath_CanHaveIt_15_04");	//Да, конечно.
 	AI_Output(self,other,"DIA_Pyrokar_AmulettofDeath_CanHaveIt_11_05");	//Я не хочу, чтобы мне потом пришлось выкупать его назад у какого-нибудь торговца.
 	AI_Output(self,other,"DIA_Pyrokar_AmulettofDeath_CanHaveIt_11_06");	//Используй его разумно, и да хранит тебя Иннос.
-	CreateInvItems(self,ItAm_AmulettOfDeath_Mis,1);
-	B_GiveInvItems(self,other,ItAm_AmulettOfDeath_Mis,1);
+	CreateInvItems(self,ItAm_AmulettOfDeath_MIS,1);
+	B_GiveInvItems(self,other,ItAm_AmulettOfDeath_MIS,1);
 	Pyro_Gives_Aura = TRUE;
 };
 
@@ -2236,7 +2236,7 @@ instance DIA_Pyrokar_PotionofDeath(C_Info)
 
 func int DIA_Pyrokar_PotionofDeath_Condition()
 {
-	if(Npc_HasItems(other,ItPo_PotionOfDeath_01_Mis))
+	if(Npc_HasItems(other,ItPo_PotionOfDeath_01_MIS))
 	{
 		return TRUE;
 	};
@@ -2297,7 +2297,7 @@ func void DIA_Pyrokar_PotionofDeath_Weapon()
 	AI_Output(other,self,"DIA_Pyrokar_PotionofDeath_Weapon_15_04");	//Понятно.
 	AI_Output(self,other,"DIA_Pyrokar_PotionofDeath_Weapon_11_05");	//Но эти слезы могут также приносить страдания и смерть. Только члены нашего ордена могут пить их.
 	AI_Output(self,other,"DIA_Pyrokar_PotionofDeath_Weapon_11_06");	//Любого другого - даже паладина нашего Владыки - ожидает мучительная смерть.
-	Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_01_Mis,1);
-	CreateInvItems(hero,ItPo_PotionOfDeath_02_Mis,1);
+	Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_01_MIS,1);
+	CreateInvItems(hero,ItPo_PotionOfDeath_02_MIS,1);
 };
 

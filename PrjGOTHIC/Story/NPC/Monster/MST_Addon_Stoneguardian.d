@@ -114,7 +114,7 @@ instance Stoneguardian_Ornament(Mst_Addon_Stoneguardian)
 instance Stoneguardian_Heiler(Mst_Addon_Stoneguardian)
 {
 	B_SetVisuals_Stoneguardian();
-	CreateInvItems(self,ITKE_Addon_Heiler,1);
+	CreateInvItems(self,ItKe_Addon_Heiler,1);
 };
 
 instance Stoneguardian_Sani01(Mst_Addon_Stoneguardian)
