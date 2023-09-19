@@ -254,7 +254,7 @@ func void DIA_Addon_Bones_GiveArmor_Info()
 	Bones_ArmorGiven = TRUE;
 	AI_Output(self,other,"DIA_Addon_Bones_GiveArmor_01_06");	//Будь осторожнее. С этими бандитами шутки плохи.
 	self.flags = 0;
-	Greg.flags = 0;
+	B_SetMortal(Greg);
 	B_LogEntry(TOPIC_Addon_BDTRuestung,"Приказ Грега возымел свое действие. Доспехи у меня!");
 	B_GivePlayerXP(XP_Bones_GetBDTArmor);
 };

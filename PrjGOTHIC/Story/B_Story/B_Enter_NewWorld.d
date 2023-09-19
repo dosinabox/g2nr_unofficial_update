@@ -228,7 +228,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Wld_InsertNpc(DMT_DementorAmbientSekob2,"NW_FARM4_IN_02");
 			Wld_InsertNpc(DMT_DementorAmbientSekob3,"NW_FARM4_IN_03");
 			Wld_InsertNpc(DMT_DementorAmbientSekob4,"NW_FARM4_IN_04");
-			Sekob.flags = NPC_FLAG_IMMORTAL;
+			B_SetImmortal(Sekob);
 		};
 		B_StartOtherRoutine(Lester,"WAITFORPLAYER");
 		B_NpcSetJailed(Bennet);
@@ -446,10 +446,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Npc_ExchangeRoutine(Rumbold,"Ch3");
 			RumboldReturnedToCity = TRUE;
 		};
-		if(!Npc_IsDead(Richter))
-		{
-			Richter.flags = 0;
-		};
+		B_SetMortal(Richter);
 		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 		{
 			IntroduceChapter(KapWechsel_3,KapWechsel_3_Text,"chapter3_MIL.tga","chapter_01.wav",6000);
@@ -851,14 +848,8 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		Wld_InsertNpc(PAL_291_Ritter,"CITY1");
 		Wld_InsertNpc(PAL_292_Ritter,"CITY1");
 		Wld_InsertNpc(PAL_293_Ritter,"CITY1");
-		if(!Npc_IsDead(Schiffswache_212))
-		{
-			Schiffswache_212.flags = 0;
-		};
-		if(!Npc_IsDead(Schiffswache_213))
-		{
-			Schiffswache_213.flags = 0;
-		};
+		B_SetMortal(Schiffswache_212);
+		B_SetMortal(Schiffswache_213);
 		if(!Npc_IsDead(PAL_220_Schiffswache))
 		{
 			PAL_220_Schiffswache.flags = 0;
