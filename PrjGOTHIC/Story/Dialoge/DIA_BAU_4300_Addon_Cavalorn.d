@@ -848,8 +848,6 @@ func void B_Cavalorn_Triggered_Wohin()
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_Wohin_08_00");	//Сейчас я снова иду в город. Встретимся у Ватраса.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Stadt");
-	Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Ornament,"Одна из частей орнамента находится у паладинов в верхнем квартале.");
 	MIS_Addon_Cavalorn_GetOrnamentFromPAL = LOG_Running;
 	self.flags = 0;

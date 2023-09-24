@@ -12,7 +12,7 @@ instance DIA_Xardas_FirstEXIT(C_Info)
 
 func int DIA_Xardas_FirstEXIT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_TODO) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Xardas_TODO))
 	{
 		return TRUE;
 	};
@@ -151,7 +151,7 @@ instance DIA_Xardas_AWAY(C_Info)
 
 func int DIA_Xardas_AWAY_Condition()
 {
-	if(!Npc_KnowsInfo(other,DIA_Xardas_TODO) && !Npc_KnowsInfo(other,DIA_Xardas_FirstEXIT) && (Kapitel < 3))
+	if(!Npc_KnowsInfo(other,DIA_Xardas_TODO))
 	{
 		return TRUE;
 	};
@@ -179,10 +179,7 @@ instance DIA_Xardas_TODO(C_Info)
 
 func int DIA_Xardas_TODO_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Xardas_TODO_Info()
@@ -478,7 +475,7 @@ instance DIA_Xardas_Khorinis(C_Info)
 
 func int DIA_Xardas_Khorinis_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_TODO) && (PlayerEnteredCity == FALSE) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Xardas_TODO) && (PlayerEnteredCity == FALSE))
 	{
 		return TRUE;
 	};
@@ -488,7 +485,10 @@ func void DIA_Xardas_Khorinis_Info()
 {
 	AI_Output(other,self,"DIA_Xardas_Khorinis_15_00");	//А как мне добраться до города?
 	AI_Output(self,other,"DIA_Xardas_Khorinis_14_01");	//Просто иди по тропинке, ведущей отсюда через горы. Город большой, ты его не пропустишь.
-	AI_Output(self,other,"DIA_Xardas_Khorinis_14_02");	//Но будь осторожен! Путь в город полон опасностей. А ты сейчас далеко не так силен, как был раньше.
+	if(Kapitel < 3)
+	{
+		AI_Output(self,other,"DIA_Xardas_Khorinis_14_02");	//Но будь осторожен! Путь в город полон опасностей. А ты сейчас далеко не так силен, как был раньше.
+	};
 };
 
 

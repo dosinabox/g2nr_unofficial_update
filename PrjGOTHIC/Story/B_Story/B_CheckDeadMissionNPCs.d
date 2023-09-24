@@ -171,6 +171,10 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(SLD_Wolf))
 		{
+			if(MIS_Wolf_BringCrawlerPlates == LOG_Running)
+			{
+				MIS_Wolf_BringCrawlerPlates = LOG_FAILED;
+			};
 			if(MIS_BengarsHelpingSLD == LOG_Running)
 			{
 				MIS_BengarsHelpingSLD = LOG_FAILED;

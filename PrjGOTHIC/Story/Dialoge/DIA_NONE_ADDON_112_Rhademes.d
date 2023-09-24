@@ -46,7 +46,7 @@ func int DIA_Addon_Rhademes_First_Condition()
 
 func void DIA_Addon_Rhademes_First_Info()
 {
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
+	if(C_SCHasStPlSkill(LANGUAGE_1))
 	{
 		AI_Output(self,other,"DIA_Addon_Rhademes_First_03_00");	//Мой дух был заперт здесь целую вечность.
 		AI_Output(self,other,"DIA_Addon_Rhademes_First_03_01");	//Теперь я наконец-то свободен. У меча новый хозяин!

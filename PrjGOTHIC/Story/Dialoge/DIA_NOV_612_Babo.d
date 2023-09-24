@@ -714,9 +714,9 @@ func void DIA_Babo_Kap3_Unhappy_Yes()
 	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_Yes_03_02");	//Тебе нужно только выяснить, где Игарац держит свои вещи. Затем ты выкрадешь их у него, и все будет в порядке.
 	AI_Output(other,self,"DIA_Babo_Kap3_Unhappy_Yes_15_03");	//Расслабься. Продолжай работать. А я позабочусь об остальном.
 	MIS_BabosDocs = LOG_Running;
-	Log_CreateTopic(Topic_BabosDocs,LOG_MISSION);
-	Log_SetTopicStatus(Topic_BabosDocs,LOG_Running);
-	B_LogEntry(Topic_BabosDocs,"Игарац шантажирует послушника Бабо какими-то документами.");
+	Log_CreateTopic(TOPIC_BabosDocs,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_BabosDocs,LOG_Running);
+	B_LogEntry(TOPIC_BabosDocs,"Игарац шантажирует послушника Бабо какими-то документами.");
 	Info_ClearChoices(DIA_Babo_Kap3_Unhappy);
 };
 

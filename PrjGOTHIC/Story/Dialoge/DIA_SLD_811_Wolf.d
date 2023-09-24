@@ -318,7 +318,6 @@ func void DIA_Wolf_Stadt_Info()
 };
 
 
-var int MIS_Wolf_BringCrawlerPlates;
 var int Wolf_MakeArmor;
 var int Player_GotCrawlerArmor;
 

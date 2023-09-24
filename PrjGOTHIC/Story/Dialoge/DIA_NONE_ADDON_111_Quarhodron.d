@@ -44,7 +44,7 @@ func int DIA_Addon_Quarhodron_Hello_Condition()
 
 func void DIA_Addon_Quarhodron_Hello_Info()
 {
-	if((PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == TRUE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == TRUE))
+	if(C_SCHasStPlSkill(LANGUAGE_1))
 	{
 		AI_Output(self,other,"DIA_Addon_Quarhodron_Hello_11_00");	//Почему ты нарушаешь мой покой, страж?
 		AI_Output(self,other,"DIA_Addon_Quarhodron_Hello_11_01");	//Говори, что тебе нужно?

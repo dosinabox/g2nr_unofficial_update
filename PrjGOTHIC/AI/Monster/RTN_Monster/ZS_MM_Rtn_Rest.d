@@ -38,7 +38,7 @@ func int ZS_MM_Rtn_Rest_Loop()
 	}
 	else if(Hlp_Random(1000) <= 5)
 	{
-		if((self.aivar[AIV_MM_REAL_ID] != ID_TROLL_BLACK) && (self.guild != GIL_Stoneguardian) && (self.guild != GIL_HARPY))
+		if((self.aivar[AIV_MM_REAL_ID] != ID_TROLL_BLACK) && (self.guild != GIL_Stoneguardian) && (self.guild != GIL_HARPY) && (self.guild != GIL_SKELETON))
 		{
 			randomMove = Hlp_Random(3);
 			if(randomMove == 0)

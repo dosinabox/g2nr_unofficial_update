@@ -45,15 +45,6 @@ var int BookstandMayaHierchary_4_permanent;
 var int BookstandMayaHierchary_5_permanent;
 var int BookstandMayaArt;
 
-func int C_CanReadBookStand()
-{
-	if((PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == TRUE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == TRUE))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
 func void Use_BookstandMaya()
 {
 	if(BookstandMayaArt == 1)
@@ -178,29 +169,24 @@ func void InitUse_BookstandMaya()
 {
 	if(C_NpcIsHero(self))
 	{
-		if(!C_CanReadBookStand())
+		StPl_nDocID = Doc_Create();
+		Doc_SetPages(StPl_nDocID,2);
+		if(C_SCHasStPlSkill(LANGUAGE_1))
 		{
-			StPl_nDocID = Doc_Create();
-			Doc_SetPages(StPl_nDocID,2);
-			Doc_SetPage(StPl_nDocID,0,"Book_MayaGlyph_L.tga",0);
-			Doc_SetPage(StPl_nDocID,1,"Book_MayaGlyph_R.tga",0);
-			Doc_SetFont(StPl_nDocID,-1,FONT_Book);
-			Doc_SetMargins(StPl_nDocID,0,275,20,30,20,1);
-			Doc_Show(StPl_nDocID);
-			B_CannotUse_Addon();
-			B_Say(self,self,"$CANTREADTHIS");
+			Doc_SetPage(StPl_nDocID,0,"Book_MayaRead_L.tga",0);
+			Doc_SetPage(StPl_nDocID,1,"Book_MayaRead_R.tga",0);
+			Use_BookstandMaya();
 		}
 		else
 		{
-			StPl_nDocID = Doc_Create();
-			Doc_SetPages(StPl_nDocID,2);
-			Doc_SetPage(StPl_nDocID,0,"Book_MayaRead_L.tga",0);
-			Doc_SetPage(StPl_nDocID,1,"Book_MayaRead_R.tga",0);
-			Doc_SetFont(StPl_nDocID,-1,FONT_Book);
-			Doc_SetMargins(StPl_nDocID,0,275,20,30,20,1);
-			Use_BookstandMaya();
-			Doc_Show(StPl_nDocID);
+			Doc_SetPage(StPl_nDocID,0,"Book_MayaGlyph_L.tga",0);
+			Doc_SetPage(StPl_nDocID,1,"Book_MayaGlyph_R.tga",0);
+			B_CannotUse_Addon();
+			B_Say(self,self,"$CANTREADTHIS");
 		};
+		Doc_SetFont(StPl_nDocID,-1,FONT_Book);
+		Doc_SetMargins(StPl_nDocID,0,275,20,30,20,1);
+		Doc_Show(StPl_nDocID);
 	};
 	BookstandMayaArt = 0;
 };
@@ -209,7 +195,7 @@ func void Use_BookstandMayaHierchary_01_S1()
 {
 	BookstandMayaArt = 1;
 	InitUse_BookstandMaya();
-	if((BookstandMayaHierchary_1_permanent == FALSE) && C_CanReadBookStand())
+	if((BookstandMayaHierchary_1_permanent == FALSE) && C_SCHasStPlSkill(LANGUAGE_1))
 	{
 		B_GivePlayerXP(XP_Ambient);
 		BookstandMayaHierchary_1_permanent = TRUE;
@@ -220,7 +206,7 @@ func void Use_BookstandMayaHierchary_02_S1()
 {
 	BookstandMayaArt = 2;
 	InitUse_BookstandMaya();
-	if((BookstandMayaHierchary_2_permanent == FALSE) && C_CanReadBookStand())
+	if((BookstandMayaHierchary_2_permanent == FALSE) && C_SCHasStPlSkill(LANGUAGE_1))
 	{
 		B_GivePlayerXP(XP_Ambient);
 		BookstandMayaHierchary_2_permanent = TRUE;
@@ -231,7 +217,7 @@ func void Use_BookstandMayaHierchary_03_S1()
 {
 	BookstandMayaArt = 3;
 	InitUse_BookstandMaya();
-	if((BookstandMayaHierchary_3_permanent == FALSE) && C_CanReadBookStand())
+	if((BookstandMayaHierchary_3_permanent == FALSE) && C_SCHasStPlSkill(LANGUAGE_1))
 	{
 		B_GivePlayerXP(XP_Ambient);
 		BookstandMayaHierchary_3_permanent = TRUE;
@@ -242,7 +228,7 @@ func void Use_BookstandMayaHierchary_04_S1()
 {
 	BookstandMayaArt = 4;
 	InitUse_BookstandMaya();
-	if((BookstandMayaHierchary_4_permanent == FALSE) && C_CanReadBookStand())
+	if((BookstandMayaHierchary_4_permanent == FALSE) && C_SCHasStPlSkill(LANGUAGE_1))
 	{
 		B_GivePlayerXP(XP_Ambient);
 		BookstandMayaHierchary_4_permanent = TRUE;
@@ -253,7 +239,7 @@ func void Use_BookstandMayaHierchary_05_S1()
 {
 	BookstandMayaArt = 5;
 	InitUse_BookstandMaya();
-	if((BookstandMayaHierchary_5_permanent == FALSE) && C_CanReadBookStand())
+	if((BookstandMayaHierchary_5_permanent == FALSE) && C_SCHasStPlSkill(LANGUAGE_1))
 	{
 		B_GivePlayerXP(XP_Ambient);
 		BookstandMayaHierchary_5_permanent = TRUE;
