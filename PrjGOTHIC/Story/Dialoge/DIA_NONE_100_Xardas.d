@@ -219,6 +219,8 @@ func int DIA_Addon_Xardas_StonePlate_Condition()
 func void DIA_Addon_Xardas_StonePlate_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Xardas_StonePlate_15_00");	//Что ты можешь сказать об этой каменной табличке?
+	//AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_01");	//Ich habe so eine unten in der Hцhlen vor meinem Turm gefunden.
+	//AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_02");	//Sie sind in einer seltsam alten Sprache geschrieben, die ich in dieser Form noch nirgendwo gesehen habe.
 	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_03");	//Сначала я подозревал, что это магический артефакт, но потом пришел к выводу, что никакой ценности она не имеет.
 	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_04");	//Я не смог полностью расшифровать надписи на табличке, но, похоже, они относятся к истории какой-то древней культуры.
 	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_05");	//Если хочешь, можешь забрать табличку себе. Мне она ни к чему.
@@ -485,10 +487,7 @@ func void DIA_Xardas_Khorinis_Info()
 {
 	AI_Output(other,self,"DIA_Xardas_Khorinis_15_00");	//А как мне добраться до города?
 	AI_Output(self,other,"DIA_Xardas_Khorinis_14_01");	//Просто иди по тропинке, ведущей отсюда через горы. Город большой, ты его не пропустишь.
-	if(Kapitel < 3)
-	{
-		AI_Output(self,other,"DIA_Xardas_Khorinis_14_02");	//Но будь осторожен! Путь в город полон опасностей. А ты сейчас далеко не так силен, как был раньше.
-	};
+	AI_Output(self,other,"DIA_Xardas_Khorinis_14_02");	//Но будь осторожен! Путь в город полон опасностей. А ты сейчас далеко не так силен, как был раньше.
 };
 
 

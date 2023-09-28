@@ -114,7 +114,7 @@ instance DIA_Brutus_PERM(C_Info)
 
 func int DIA_Brutus_PERM_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_PRISONER) && (Kapitel < 3) && (NpcObsessedByDMT_Brutus == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Brutus_PRISONER) && (Kapitel < 3) && (NpcObsessedByDMT_Brutus == FALSE))
 	{
 		return TRUE;
 	};
@@ -141,7 +141,7 @@ instance DIA_Brutus_Kasse(C_Info)
 
 func int DIA_Brutus_Kasse_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_PRISONER) && (NpcObsessedByDMT_Brutus == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Brutus_PRISONER) && (NpcObsessedByDMT_Brutus == FALSE))
 	{
 		return TRUE;
 	};
@@ -159,9 +159,9 @@ func void DIA_Brutus_Kasse_Info()
 	AI_Output(self,other,"DIA_Brutus_Kasse_06_07");	//Ну, у нас был сундучок, где мы держали вещи, которые мы... э-э... собрали за все это время.
 	AI_Output(self,other,"DIA_Brutus_Kasse_06_08");	//Это была приличная сумма. В сундуке было 200 золотых монет, а также ценные ювелирные изделия.
 	AI_Output(self,other,"DIA_Brutus_Kasse_06_09");	//Если ты вернешь мне это золото, драгоценности можешь оставить себе. И тогда я буду готов обучить тебя.
-	Log_CreateTopic(TopicBrutusKasse,LOG_MISSION);
-	Log_SetTopicStatus(TopicBrutusKasse,LOG_Running);
-	B_LogEntry(TopicBrutusKasse,"Партнер Брутуса Ден скрылся с 200 золотыми монетами и кое-какими драгоценностями. Если я верну ему 200 золотых монет, он поможет мне стать сильнее.");
+	Log_CreateTopic(TOPIC_BrutusKasse,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_BrutusKasse,LOG_Running);
+	B_LogEntry(TOPIC_BrutusKasse,"Партнер Брутуса Ден скрылся с 200 золотыми монетами и кое-какими драгоценностями. Если я верну ему 200 золотых монет, он поможет мне стать сильнее.");
 };
 
 
@@ -178,7 +178,7 @@ instance DIA_Brutus_Den(C_Info)
 
 func int DIA_Brutus_Den_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_Kasse) && (NpcObsessedByDMT_Brutus == FALSE) && Npc_HasItems(Den,ItMi_Gold))
+	if(Npc_KnowsInfo(other,DIA_Brutus_Kasse) && (NpcObsessedByDMT_Brutus == FALSE) && Npc_HasItems(Den,ItMi_Gold))
 	{
 		return TRUE;
 	};
@@ -190,7 +190,7 @@ func void DIA_Brutus_Den_Info()
 	AI_Output(self,other,"DIA_Brutus_Den_06_01");	//Как можно дальше отсюда, как я понимаю. Я думаю, он мог попытаться пробраться через Проход.
 	AI_Output(other,self,"DIA_Brutus_Den_15_02");	//Спасибо. Исчерпывающая информация.
 	AI_Output(self,other,"DIA_Brutus_Den_06_03");	//А что я еще могу сказать? Я понятия не имею, куда он направился.
-	B_LogEntry(TopicBrutusKasse,"Ден мог попытаться пробраться через Проход.");
+	B_LogEntry(TOPIC_BrutusKasse,"Ден мог попытаться пробраться через Проход.");
 };
 
 
@@ -207,7 +207,7 @@ instance DIA_Brutus_Gold(C_Info)
 
 func int DIA_Brutus_Gold_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_Kasse) && (NpcObsessedByDMT_Brutus == FALSE) && (Brutus_TeachSTR == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Brutus_Kasse) && (NpcObsessedByDMT_Brutus == FALSE) && (Brutus_TeachSTR == FALSE))
 	{
 		return TRUE;
 	};
@@ -298,7 +298,7 @@ instance DIA_Brutus_DUSCHONWIEDER(C_Info)
 
 func int DIA_Brutus_DUSCHONWIEDER_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_PRISONER) && (Kapitel == 3) && (NpcObsessedByDMT_Brutus == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Brutus_PRISONER) && (Kapitel == 3) && (NpcObsessedByDMT_Brutus == FALSE))
 	{
 		return TRUE;
 	};
@@ -324,7 +324,7 @@ instance DIA_Brutus_WARUMNICHTARBBEIT(C_Info)
 
 func int DIA_Brutus_WARUMNICHTARBBEIT_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_PRISONER) && (Kapitel >= 4) && (NpcObsessedByDMT_Brutus == FALSE) && (MIS_OCGateOpen == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Brutus_PRISONER) && (Kapitel >= 4) && (NpcObsessedByDMT_Brutus == FALSE) && (MIS_OCGateOpen == FALSE))
 	{
 		return TRUE;
 	};

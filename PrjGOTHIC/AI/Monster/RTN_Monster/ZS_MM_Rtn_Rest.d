@@ -1,4 +1,25 @@
 
+func void B_PlayRandomRoamAni()
+{
+	var int randomMove;
+	if((self.guild != GIL_Stoneguardian) && (self.guild != GIL_HARPY) && (self.guild != GIL_SKELETON) && (self.guild != GIL_SWAMPSHARK) && (self.guild != GIL_BLOODFLY) && (self.guild != GIL_MEATBUG))
+	{
+		randomMove = Hlp_Random(3);
+		if(randomMove == 0)
+		{
+			AI_PlayAni(self,"R_ROAM1");
+		}
+		else if(randomMove == 1)
+		{
+			AI_PlayAni(self,"R_ROAM2");
+		}
+		else
+		{
+			AI_PlayAni(self,"R_ROAM3");
+		};
+	};
+};
+
 func void ZS_MM_Rtn_Rest()
 {
 	Perception_Set_Monster_Rtn();
@@ -14,7 +35,6 @@ func void ZS_MM_Rtn_Rest()
 
 func int ZS_MM_Rtn_Rest_Loop()
 {
-	var int randomMove;
 	if((self.guild == GIL_Stoneguardian) && (RavenIsDead == TRUE))
 	{
 		B_KillNpc(self);
@@ -38,22 +58,7 @@ func int ZS_MM_Rtn_Rest_Loop()
 	}
 	else if(Hlp_Random(1000) <= 5)
 	{
-		if((self.aivar[AIV_MM_REAL_ID] != ID_TROLL_BLACK) && (self.guild != GIL_Stoneguardian) && (self.guild != GIL_HARPY) && (self.guild != GIL_SKELETON))
-		{
-			randomMove = Hlp_Random(3);
-			if(randomMove == 0)
-			{
-				AI_PlayAni(self,"R_ROAM1");
-			}
-			else if(randomMove == 1)
-			{
-				AI_PlayAni(self,"R_ROAM2");
-			}
-			else
-			{
-				AI_PlayAni(self,"R_ROAM3");
-			};
-		};
+		B_PlayRandomRoamAni();
 	};
 	return LOOP_CONTINUE;
 };

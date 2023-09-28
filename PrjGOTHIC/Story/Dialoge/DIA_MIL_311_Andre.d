@@ -1424,7 +1424,7 @@ func int DIA_Andre_FOUND_PECK_Condition()
 		{
 			return TRUE;
 		}
-		else if(Npc_KnowsInfo(hero,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
+		else if(Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
 		{
 			return TRUE;
 		}

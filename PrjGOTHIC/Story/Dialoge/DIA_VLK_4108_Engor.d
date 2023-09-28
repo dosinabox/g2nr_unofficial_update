@@ -65,7 +65,7 @@ instance DIA_Engor_HANDELN(C_Info)
 
 func int DIA_Engor_HANDELN_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Engor_HALLO))
+	if(Npc_KnowsInfo(other,DIA_Engor_HALLO))
 	{
 		return TRUE;
 	};
@@ -92,7 +92,7 @@ instance DIA_Engor_ABOUTPARLAF(C_Info)
 
 func int DIA_Engor_ABOUTPARLAF_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Parlaf_ENGOR))
+	if(Npc_KnowsInfo(other,DIA_Parlaf_ENGOR))
 	{
 		return TRUE;
 	};
@@ -187,7 +187,7 @@ instance DIA_Engor_HELP(C_Info)
 
 func int DIA_Engor_HELP_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Engor_ABOUTPARLAF))
+	if(Npc_KnowsInfo(other,DIA_Engor_ABOUTPARLAF))
 	{
 		return TRUE;
 	};

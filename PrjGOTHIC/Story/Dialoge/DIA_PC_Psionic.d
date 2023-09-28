@@ -209,7 +209,7 @@ instance DIA_Addon_Lester_STADT(C_Info)
 
 func int DIA_Addon_Lester_STADT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lester_Hello) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Lester_Hello) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
 	{
 		return TRUE;
 	};
@@ -237,7 +237,7 @@ instance DIA_Addon_Lester_Vorschlag(C_Info)
 
 func int DIA_Addon_Lester_Vorschlag_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Lester_STADT) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Lester_STADT) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
 	{
 		return TRUE;
 	};
@@ -299,7 +299,7 @@ instance DIA_Lester_Perm(C_Info)
 
 func int DIA_Lester_Perm_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lester_Hello) && (Kapitel < 3) && (Npc_GetDistToWP(self,"NW_XARDAS_TOWER_LESTER") <= 2000))
+	if(Npc_KnowsInfo(other,DIA_Lester_Hello) && (PlayerEnteredCity == FALSE) && (Npc_GetDistToWP(self,"NW_XARDAS_TOWER_LESTER") <= 2000))
 	{
 		return TRUE;
 	};

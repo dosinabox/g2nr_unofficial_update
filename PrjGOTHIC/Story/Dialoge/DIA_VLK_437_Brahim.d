@@ -112,7 +112,7 @@ instance DIA_Brahim_BUY(C_Info)
 
 func int DIA_Brahim_BUY_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brahim_GREET))
+	if(Npc_KnowsInfo(other,DIA_Brahim_GREET))
 	{
 		return TRUE;
 	};

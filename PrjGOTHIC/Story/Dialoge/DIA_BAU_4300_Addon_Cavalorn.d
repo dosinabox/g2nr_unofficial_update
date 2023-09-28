@@ -367,10 +367,7 @@ func void DIA_Addon_Cavalorn_Banditen_Info()
 //	AI_Output(other,self,"DIA_Addon_Cavalorn_Banditen_15_02");	//Ё-э...
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_03");	//я говорю обо всем этом сброде из исправительной колонии, которые чувствуют себ€ здесь как дома, граб€т и убивают всех, кого могут.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_04");	//(вздыхает) ƒумаю, мне повезло, что они мен€ не убили. я отвлекс€ буквально на секунду - и мен€ уже оглушили ударом сзади дубинкой по голове.
-	if(!C_BragoBanditsDead())
-	{
-		AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_05");	//ƒаже не знаю, как теперь получить свои вещи обратно.
-	};
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_05");	//ƒаже не знаю, как теперь получить свои вещи обратно.
 };
 
 
@@ -607,7 +604,7 @@ instance DIA_Addon_Cavalorn_PCKilledBrago(C_Info)
 
 func int DIA_Addon_Cavalorn_PCKilledBrago_Condition()
 {
-	if(((MIS_Addon_Cavalorn_KillBrago == FALSE) || ((Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 500) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running))) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen))
+	if((Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 500) && (MIS_Addon_Cavalorn_KillBrago != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen))
 	{
 		if(C_BragoBanditsDead())
 		{
@@ -754,7 +751,7 @@ instance DIA_Addon_Cavalorn_BroughtLetter(C_Info)
 
 func int DIA_Addon_Cavalorn_BroughtLetter_Condition()
 {
-	if((MIS_Addon_Cavalorn_Letter2Vatras == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_JUNGS))
+	if((MIS_Addon_Cavalorn_Letter2Vatras == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO))
 	{
 		return TRUE;
 	};
@@ -924,11 +921,11 @@ func int DIA_Addon_Cavalorn_WannaLearn_Condition()
 func void DIA_Addon_Cavalorn_WannaLearn_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_WannaLearn_15_00");	//“ы можешь научить мен€ кое-чему?
-	if((CavalornWeakComment == FALSE) && (SC_ForgotAboutCavalorn == FALSE))
+	if(CavalornWeakComment == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_01_add");	// онечно, ты это прекрасно знаешь.
-	};
-	if(CavalornWeakComment == TRUE)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_01");	// онечно, ты это прекрасно знаешь. ѕри€тель, ты действительно много потер€л.
 	};
