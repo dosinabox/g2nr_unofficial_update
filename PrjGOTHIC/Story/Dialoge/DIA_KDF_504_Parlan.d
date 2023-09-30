@@ -706,7 +706,7 @@ instance DIA_Parlan_KNOWSJUDGE(C_Info)
 
 func int DIA_Parlan_KNOWSJUDGE_Condition()
 {
-	if((other.guild == GIL_NOV) && (Knows_Fire_Contest == TRUE) && !Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE))
+	if((other.guild == GIL_NOV) && (Knows_Fire_Contest == TRUE) && !Npc_KnowsInfo(other,DIA_Pyrokar_FIRE))
 	{
 		return TRUE;
 	};
@@ -752,7 +752,7 @@ instance DIA_Parlan_TEACH_MANA(C_Info)
 
 func int DIA_Parlan_TEACH_MANA_Condition()
 {
-	if(((other.guild == GIL_KDF) || (other.guild == GIL_PAL) || ((other.guild == GIL_NOV) && Npc_KnowsInfo(hero,DIA_Parlan_LEARN))) && (Parlan_Sends == FALSE))
+	if(((other.guild == GIL_KDF) || (other.guild == GIL_PAL) || ((other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Parlan_LEARN))) && (Parlan_Sends == FALSE))
 	{
 		return TRUE;
 	};
@@ -840,7 +840,7 @@ instance DIA_Parlan_CIRCLE1(C_Info)
 
 func int DIA_Parlan_CIRCLE1_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Parlan_MAGE) && (other.guild == GIL_KDF) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0))
+	if(Npc_KnowsInfo(other,DIA_Parlan_MAGE) && (other.guild == GIL_KDF) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0))
 	{
 		return TRUE;
 	};
@@ -872,7 +872,7 @@ instance DIA_Parlan_CIRCLE2(C_Info)
 
 func int DIA_Parlan_CIRCLE2_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Parlan_MAGE) && (other.guild == GIL_KDF) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 1))
+	if(Npc_KnowsInfo(other,DIA_Parlan_MAGE) && (other.guild == GIL_KDF) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 1))
 	{
 		return TRUE;
 	};
@@ -911,7 +911,7 @@ instance DIA_Parlan_CIRCLE3(C_Info)
 
 func int DIA_Parlan_CIRCLE3_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Parlan_MAGE) && (other.guild == GIL_KDF) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 2))
+	if(Npc_KnowsInfo(other,DIA_Parlan_MAGE) && (other.guild == GIL_KDF) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 2))
 	{
 		return TRUE;
 	};

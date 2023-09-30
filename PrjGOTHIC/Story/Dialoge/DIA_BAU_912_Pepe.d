@@ -89,7 +89,7 @@ instance DIA_Pepe_WhyNotSLD(C_Info)
 
 func int DIA_Pepe_WhyNotSLD_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Pepe_Danger) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
+	if(Npc_KnowsInfo(other,DIA_Pepe_Danger) && (other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -295,7 +295,7 @@ instance DIA_Pepe_Liesel(C_Info)
 
 func int DIA_Pepe_Liesel_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pepe_Hallo) && (SC_KnowsKlosterTribut == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Pepe_Hallo) && (SC_KnowsKlosterTribut == TRUE))
 	{
 		return TRUE;
 	};

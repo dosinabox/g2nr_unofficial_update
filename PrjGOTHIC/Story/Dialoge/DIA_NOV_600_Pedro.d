@@ -115,7 +115,7 @@ instance DIA_Pedro_EINLASS(C_Info)
 
 func int DIA_Pedro_EINLASS_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pedro_WELCOME) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
+	if(Npc_KnowsInfo(other,DIA_Pedro_WELCOME) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -243,7 +243,7 @@ func int DIA_Addon_Pedro_Statuette_Abgeben_Condition()
 {
 	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron) && Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette) && (LostInnosStatueInMonastery == FALSE))
 	{
-		if((hero.guild != GIL_NONE) && (hero.guild != GIL_NOV) && (hero.guild != GIL_KDF))
+		if((other.guild != GIL_NONE) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
 		{
 			return TRUE;
 		};
@@ -305,7 +305,7 @@ var int DIA_Pedro_AUFNAHME_NOPERM;
 
 func int DIA_Pedro_AUFNAHME_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pedro_Rules) && (DIA_Pedro_AUFNAHME_NOPERM == FALSE) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
+	if(Npc_KnowsInfo(other,DIA_Pedro_Rules) && (DIA_Pedro_AUFNAHME_NOPERM == FALSE) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
