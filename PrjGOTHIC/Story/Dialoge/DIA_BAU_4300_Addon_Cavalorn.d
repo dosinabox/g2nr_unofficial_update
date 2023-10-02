@@ -91,13 +91,28 @@ instance DIA_Addon_Cavalorn_HALLO(C_Info)
 
 func int DIA_Addon_Cavalorn_HALLO_Condition()
 {
+	if(Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 1000)
+	{
+		DIA_Addon_Cavalorn_HALLO.description = "Проблемы?";
+	}
+	else
+	{
+		DIA_Addon_Cavalorn_HALLO.description = "Привет!";
+	};
 	return TRUE;
 };
 
 func void DIA_Addon_Cavalorn_HALLO_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Cavalorn_HALLO_15_00");	//Проблемы?
-	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_08_01");	//(раздраженно) Черт. Я не знаю, где они все прячутся. Убиваешь одного - и вскоре они все возвращаются.
+	if(Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 1000)
+	{
+		AI_Output(other,self,"DIA_Addon_Cavalorn_HALLO_15_00");	//Проблемы?
+		AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_08_01");	//(раздраженно) Черт. Я не знаю, где они все прячутся. Убиваешь одного - и вскоре они все возвращаются.
+	}
+	else
+	{
+		DIA_Common_Hello();
+	};
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_08_02");	//(хитро) Погоди минутку. Я тебя знаю. Ты тот парень, что постоянно клянчил у меня стрелы в Долине Рудников.
 	Info_ClearChoices(DIA_Addon_Cavalorn_HALLO);
 	Info_AddChoice(DIA_Addon_Cavalorn_HALLO,"Тебя зовут Кавалорн, верно?",DIA_Addon_Cavalorn_HALLO_Ja);

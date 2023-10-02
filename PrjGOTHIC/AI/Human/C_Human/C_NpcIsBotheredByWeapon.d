@@ -64,13 +64,19 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Salandril)) && Npc_KnowsInfo(hero,DIA_Salandril_GehinsKloster))
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Salandril))
 	{
-		return FALSE;
+		if(Salandril_SentToMonastery == TRUE)
+		{
+			return FALSE;
+		};
 	};
-	if(C_IsNpc(slf,BDT_1061_Wache) && !Npc_KnowsInfo(hero,DIA_1061_Wache_Hallo))
+	if(C_IsNpc(slf,BDT_1061_Wache))
 	{
-		return FALSE;
+		if(BDT_1061_FirstContact == FALSE)
+		{
+			return FALSE;
+		};
 	};
 	if(Hlp_StrCmp(slf.name[0],NAME_Addon_Sklave))
 	{

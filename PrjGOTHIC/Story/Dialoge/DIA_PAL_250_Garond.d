@@ -334,7 +334,7 @@ func void DIA_Garond_NeedProof_Info()
 	Log_SetTopicStatus(TOPIC_ScoutMine,LOG_Running);
 	B_LogNextEntry(TOPIC_ScoutMine,"Командующий Гаронд дал мне поручение. Он отправил три группы старателей добывать магическую руду. И до сих пор они не вернулись.");
 	Log_AddEntry(TOPIC_ScoutMine,"Я должен найти эти три группы старателей и выяснить, сколько руды удалось им добыть.");
-	if(Npc_KnowsInfo(other,DIA_DiegoOw_Beweise))
+	if(Diego_ToldAboutSilvestroOre == TRUE)
 	{
 		Log_AddEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
 	};

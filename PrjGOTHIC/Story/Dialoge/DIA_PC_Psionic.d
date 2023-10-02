@@ -188,6 +188,7 @@ func void DIA_Lester_SEND_XARDAS_Info()
 		AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_06");	//Сейчас я собираюсь отдохнуть. Я все еще измотан после этого бегства из колонии.
 	};
 	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_07");	//Мне кажется, у тебя большие планы. Увидимся позже у Ксардаса.
+	Lester_SentToXardas = TRUE;
 	AI_StopProcessInfos(self);
 	if(Kapitel == 2)
 	{
@@ -371,15 +372,6 @@ func void DIA_Lester_BACKINTOWN_Info()
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"XARDAS");
 	LesterMovedToXardas = TRUE;
-/*	if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
-	{
-		Npc_ExchangeRoutine(self,"XARDAS");
-		LesterMovedToXardas = TRUE;
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"START");
-	};*/
 };
 
 

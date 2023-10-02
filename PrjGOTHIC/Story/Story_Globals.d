@@ -1412,3 +1412,7 @@ var int Bones_ArmorGiven;
 var int Myxir_Merke_Language;
 var int AkilFarmIsFreeKap4;
 var int DRACHENEIER_angebotenXP_OneTime;
+var int Salandril_SentToMonastery;
+var int BDT_1061_FirstContact;
+var int Diego_ToldAboutSilvestroOre;
+var int Lester_SentToXardas;

@@ -112,6 +112,7 @@ func void DIA_DiegoOw_Beweise_Info()
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Silvestro_11_01");	//В пещере неподалеку от того места, где я спрятался, хранятся ЧЕТЫРЕ ящика руды. Их добыли люди Сильвестро.
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Silvestro_11_02");	//Гаронд может прийти и забрать их.
 	};
+	Diego_ToldAboutSilvestroOre = TRUE;
 	Silvestro_Ore = TRUE;
 };
 
@@ -129,7 +130,7 @@ instance DIA_DiegoOw_Mine(C_Info)
 
 func int DIA_DiegoOw_Mine_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_DiegoOw_Beweise))
+	if(Diego_ToldAboutSilvestroOre == TRUE)
 	{
 		return TRUE;
 	};

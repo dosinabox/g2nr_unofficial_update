@@ -562,9 +562,15 @@ instance DIA_Xardas_ABOUTLESTER(C_Info)
 
 func int DIA_Xardas_ABOUTLESTER_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS) && (Npc_GetDistToWP(Lester,"NW_XARDAS_TOWER_IN1_31") <= 500) && (Kapitel < 3))
+	if((Lester_SentToXardas == TRUE) && (Kapitel < 3))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Lester))
+		{
+			if(Npc_GetDistToWP(Lester,"NW_XARDAS_TOWER_IN1_31") <= 500)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -640,7 +646,7 @@ func void DIA_Xardas_FirstPal_Info()
 		DIA_Common_NoNotYet();
 		B_Xardas_SoLittleTime();
 	};
-	if((LesterMovedToXardas == FALSE) && Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
+	if((LesterMovedToXardas == FALSE) && (Lester_SentToXardas == TRUE))
 	{
 		B_StartOtherRoutine(Lester,"XARDAS");
 		LesterMovedToXardas = TRUE;
@@ -794,7 +800,7 @@ func void DIA_Xardas_DMTSINDDA_Info()
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_14_04");	//Игра в прятки окончена. Вчера еще никто не знал, какова будет атака врага. Но теперь это становится слишком очевидно.
 	B_LogEntry(TOPIC_INNOSEYE,"Врагу теперь известно, что я ищу Глаз Инноса. Мне нужно побыстрее найти его, пока еще не слишком поздно.");
 	Info_ClearChoices(DIA_Xardas_DMTSINDDA);
-	if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS) && !Npc_KnowsInfo(other,DIA_Xardas_ABOUTLESTER))
+	if((Lester_SentToXardas == TRUE) && !Npc_KnowsInfo(other,DIA_Xardas_ABOUTLESTER))
 	{
 		Info_AddChoice(DIA_Xardas_DMTSINDDA,"Ты уже поговорил с Лестером?",DIA_Xardas_ABOUTLESTER_Info);
 	};

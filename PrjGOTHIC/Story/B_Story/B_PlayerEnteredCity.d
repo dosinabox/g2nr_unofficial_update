@@ -12,7 +12,7 @@ func void B_PlayerEnteredCity()
 	};
 	if(LesterMovedToXardas == FALSE)
 	{
-		if(Npc_KnowsInfo(hero,DIA_Lester_SEND_XARDAS) && (Kapitel < 3))
+		if((Lester_SentToXardas == TRUE) && (Kapitel < 3))
 		{
 			B_StartOtherRoutine(Lester,"XARDAS");
 			LesterMovedToXardas = TRUE;

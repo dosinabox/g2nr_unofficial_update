@@ -137,7 +137,7 @@ func void ZS_Talk_End()
 		};
 		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Salandril))
 		{
-			if(Npc_KnowsInfo(hero,DIA_Salandril_GehinsKloster) && (Kapitel < 5))
+			if(Salandril_SentToMonastery == TRUE)
 			{
 				return;
 			};

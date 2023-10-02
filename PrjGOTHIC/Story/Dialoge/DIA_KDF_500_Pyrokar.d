@@ -34,7 +34,7 @@ instance DIA_Pyrokar_WELCOME(C_Info)
 
 func int DIA_Pyrokar_WELCOME_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Knows_Fire_Contest == FALSE) && (hero.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -167,11 +167,11 @@ instance DIA_Pyrokar_GOAWAY(C_Info)
 
 func int DIA_Pyrokar_GOAWAY_Condition()
 {
-	if(!Npc_KnowsInfo(hero,DIA_Addon_Pyrokar_MissingPeople) && (SC_HearedAboutMissingPeople == TRUE))
+	if(!Npc_KnowsInfo(other,DIA_Addon_Pyrokar_MissingPeople) && (SC_HearedAboutMissingPeople == TRUE))
 	{
 		return FALSE;
 	};
-	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(hero,DIA_Pyrokar_Hagen) && Npc_KnowsInfo(hero,DIA_Pyrokar_Auge) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Pyrokar_Hagen) && Npc_KnowsInfo(other,DIA_Pyrokar_Auge) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -232,7 +232,7 @@ instance DIA_Pyrokar_TEST(C_Info)
 
 func int DIA_Pyrokar_TEST_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Pyrokar_FIRE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -368,7 +368,7 @@ instance DIA_Pyrokar_SUCCESS(C_Info)
 
 func int DIA_Pyrokar_SUCCESS_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_Running) && (hero.guild == GIL_NOV))
+	if((MIS_Schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV))
 	{
 		if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
 		{
@@ -470,7 +470,7 @@ instance DIA_Pyrokar_OATH(C_Info)
 
 func int DIA_Pyrokar_OATH_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pyrokar_MAGICAN) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Pyrokar_MAGICAN) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -969,7 +969,7 @@ instance DIA_Pyrokar_Parlan(C_Info)
 
 func int DIA_Pyrokar_Parlan_Condition()
 {
-	if(((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV) || (hero.guild == GIL_PAL)) && (Parlan_Sends == TRUE))
+	if(((other.guild == GIL_KDF) || (other.guild == GIL_NOV) || (other.guild == GIL_PAL)) && (Parlan_Sends == TRUE))
 	{
 		return TRUE;
 	};
@@ -1013,7 +1013,7 @@ instance DIA_Pyrokar_TEACH_MANA(C_Info)
 
 func int DIA_Pyrokar_TEACH_MANA_Condition()
 {
-	if(((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV) || (hero.guild == GIL_PAL)) && Npc_KnowsInfo(hero,DIA_Pyrokar_Parlan) && (Pyrokar_TeachMANA_NoPerm == FALSE))
+	if(((other.guild == GIL_KDF) || (other.guild == GIL_NOV) || (other.guild == GIL_PAL)) && Npc_KnowsInfo(other,DIA_Pyrokar_Parlan) && (Pyrokar_TeachMANA_NoPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -1096,11 +1096,11 @@ func int DIA_Pyrokar_PERM_Condition()
 {
 	if(Kapitel >= 2)
 	{
-		if(hero.guild == GIL_KDF)
+		if(other.guild == GIL_KDF)
 		{
 			return TRUE;
 		};
-		if(hero.guild == GIL_NOV)
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -1127,7 +1127,7 @@ instance DIA_Pyrokar_PERM_nonKDF(C_Info)
 
 func int DIA_Pyrokar_PERM_nonKDF_Condition()
 {
-	if((Kapitel >= 2) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV))
+	if((Kapitel >= 2) && (other.guild != GIL_KDF) && (other.guild != GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -1680,11 +1680,11 @@ func int DIA_Pyrokar_SCOBSESSED_KDF_Condition()
 {
 	if(SC_IsObsessed == TRUE)
 	{
-		if(hero.guild == GIL_KDF)
+		if(other.guild == GIL_KDF)
 		{
 			return TRUE;
 		};
-		if(hero.guild == GIL_NOV)
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -1727,7 +1727,7 @@ instance DIA_Pyrokar_SCOBSESSED(C_Info)
 
 func int DIA_Pyrokar_SCOBSESSED_Condition()
 {
-	if((SC_IsObsessed == TRUE) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV))
+	if((SC_IsObsessed == TRUE) && (other.guild != GIL_KDF) && (other.guild != GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -1790,7 +1790,7 @@ instance DIA_Pyrokar_AlmanachBringen(C_Info)
 
 func int DIA_Pyrokar_AlmanachBringen_Condition()
 {
-	if((Kapitel >= 3) && Npc_HasItems(other,ITWR_DementorObsessionBook_MIS) && (hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pyrokar_BUCHDERBESSENEN))
+	if((Kapitel >= 3) && Npc_HasItems(other,ITWR_DementorObsessionBook_MIS) && (other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pyrokar_BUCHDERBESSENEN))
 	{
 		return TRUE;
 	};
