@@ -35,6 +35,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Addon_Baltram_Paket4Skip = LOG_FAILED;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Hanna))
+		{
+			if(MIS_HannaRetrieveLetter == LOG_Running)
+			{
+				MIS_HannaRetrieveLetter = LOG_FAILED;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Schiffswache_212))
 		{
 			if(Npc_IsDead(Schiffswache_213))

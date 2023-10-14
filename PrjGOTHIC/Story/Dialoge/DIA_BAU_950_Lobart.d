@@ -38,7 +38,7 @@ instance DIA_Lobart_STOLENCLOTHS(C_Info)
 
 func int DIA_Lobart_STOLENCLOTHS_Condition()
 {
-	if(!Mob_HasItems("CHEST_LOBART",ITAR_Bau_L) && (Lobart_Kleidung_Verkauft == FALSE) && (hero.guild == GIL_NONE))
+	if(!Mob_HasItems("CHEST_LOBART",ITAR_Bau_L) && (Lobart_Kleidung_Verkauft == FALSE) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -206,7 +206,7 @@ instance DIA_Lobart_KLEIDUNG(C_Info)
 
 func int DIA_Lobart_KLEIDUNG_Condition()
 {
-	if(!Npc_KnowsInfo(other,DIA_Lobart_STOLENCLOTHS) && (hero.guild == GIL_NONE))
+	if(!Npc_KnowsInfo(other,DIA_Lobart_STOLENCLOTHS) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -388,7 +388,7 @@ func int DIA_Lobart_OnarStory_Condition()
 func void DIA_Lobart_OnarStory_Info()
 {
 	AI_Output(other,self,"DIA_Lobart_OnarStory_15_00");	//–асскажи мне подробнее об этом ќнаре...
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if(other.guild == GIL_SLD)
 	{
 		AI_Output(self,other,"DIA_Lobart_OnarStory_05_01");	//“ы ведь наемник, разве нет? „то такого € могу рассказать тебе о твоем боссе, что ты не знаешь?
 	}
@@ -396,8 +396,11 @@ func void DIA_Lobart_OnarStory_Info()
 	{
 		AI_Output(self,other,"DIA_Lobart_OnarStory_05_02");	//ќнар - самый крупный фермер в этой местности. ќн порвал отношени€ с городом.
 		AI_Output(self,other,"DIA_Lobart_OnarStory_05_03");	//√овор€т, он нан€л наемников, чтобы те не пускали на его земли городскую стражу!
-		AI_Output(self,other,"DIA_Lobart_OnarStory_05_04");	//Ќе могу винить его за это.
-		AI_Output(self,other,"DIA_Lobart_OnarStory_05_05");	// ак бы то ни было, больше ни один королевский солдат не осмеливаетс€ ступить на его землю.
+		if(other.guild != GIL_MIL)
+		{
+			AI_Output(self,other,"DIA_Lobart_OnarStory_05_04");	//Ќе могу винить его за это.
+			AI_Output(self,other,"DIA_Lobart_OnarStory_05_05");	// ак бы то ни было, больше ни один королевский солдат не осмеливаетс€ ступить на его землю.
+		};
 	};
 };
 
@@ -425,7 +428,7 @@ func void DIA_Lobart_SldInfo_Info()
 {
 	AI_Output(other,self,"DIA_Lobart_SldInfo_15_00");	//ј кто эти наемники, которых нан€л ќнар?
 	AI_Output(self,other,"DIA_Lobart_SldInfo_05_01");	//я мало что знаю об этих парн€х. ѕредположительно, большинство из них - бывшие каторжники из колонии.
-	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+	if(other.guild != GIL_SLD)
 	{
 		AI_Output(self,other,"DIA_Lobart_SldInfo_05_02");	//(презрительно) » чего, спрашиваетс€, от них можно ожидать...
 	};
@@ -888,7 +891,7 @@ instance DIA_Lobart_VINOTOT(C_Info)
 
 func int DIA_Lobart_VINOTOT_Condition()
 {
-	if((Npc_IsDead(Vino) || (NpcObsessedByDMT_Vino == TRUE)) && Npc_KnowsInfo(other,DIA_Lobart_DMT) && (hero.guild == GIL_KDF))
+	if((Npc_IsDead(Vino) || (NpcObsessedByDMT_Vino == TRUE)) && Npc_KnowsInfo(other,DIA_Lobart_DMT) && (other.guild == GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -951,7 +954,7 @@ instance DIA_Lobart_ORKPROBLEM(C_Info)
 
 func int DIA_Lobart_ORKPROBLEM_Condition()
 {
-	if((Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)) && Npc_KnowsInfo(other,DIA_Lobart_DMT))
+	if((Kapitel >= 4) && ((other.guild == GIL_PAL) || (other.guild == GIL_DJG)) && Npc_KnowsInfo(other,DIA_Lobart_DMT))
 	{
 		if(!C_LobartOrksDead())
 		{
@@ -984,7 +987,7 @@ instance DIA_Lobart_ORKSWEG(C_Info)
 
 func int DIA_Lobart_ORKSWEG_Condition()
 {
-	if((Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)))
+	if((Kapitel >= 4) && ((other.guild == GIL_PAL) || (other.guild == GIL_DJG)))
 	{
 		if(C_LobartOrksDead())
 		{

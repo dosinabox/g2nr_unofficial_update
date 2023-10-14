@@ -316,7 +316,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(Follow_Sheep_AKIL,"NW_FOREST_CAVE1_IN_02");
 		if(!Npc_IsDead(Fester))
 		{
-			B_StartOtherRoutine(Fester,"CH3");
+			Npc_ExchangeRoutine(Fester,"CH3");
 			if(MIS_Fester_KillBugs == LOG_Running)
 			{
 				MIS_Fester_KillBugs = LOG_FAILED;

@@ -36,7 +36,7 @@ func int DIA_Gerbrandt_PreHello_Condition()
 {
 	if(Npc_IsInState(self,ZS_Talk) && (MIS_DiegosResidence != LOG_SUCCESS))
 	{
-		if((VisibleGuild(hero) != GIL_KDF) && (VisibleGuild(hero) != GIL_PAL) && (VisibleGuild(hero) != GIL_KDW))
+		if((VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_PAL) && (VisibleGuild(other) != GIL_KDW))
 		{
 			return TRUE;
 		};
@@ -70,7 +70,7 @@ func int DIA_Gerbrandt_Hello_Condition()
 func void DIA_Gerbrandt_Hello_Info()
 {
 	AI_Output(other,self,"DIA_Gerbrandt_Hello_15_00");	//Что ты делаешь здесь?
-	if((VisibleGuild(hero) != GIL_KDF) && (VisibleGuild(hero) != GIL_PAL) && (VisibleGuild(hero) != GIL_KDW))
+	if((VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_PAL) && (VisibleGuild(other) != GIL_KDW))
 	{
 		AI_Output(self,other,"DIA_Gerbrandt_Hello_10_01");	//А ты кто такой? Похоже, ты недавно здесь и понятия не имеешь, с кем имеешь дело.
 		AI_Output(self,other,"DIA_Gerbrandt_Hello_10_02");	//Меня зовут Гербрандт. А для тебя я мистер Гербрандт. Понял?

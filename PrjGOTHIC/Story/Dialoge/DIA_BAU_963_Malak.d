@@ -12,15 +12,12 @@ instance DIA_Malak_EXIT(C_Info)
 
 func int DIA_Malak_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Malak_EXIT_Info()
 {
-	AI_StopProcessInfos(self);
+	B_NpcClearObsessionByDMT(self);
 };
 
 
@@ -262,31 +259,6 @@ func void DIA_Malak_PERMKAP1_Info()
 	AI_Output(other,self,"DIA_Malak_PERMKAP1_15_00");	//Смотри, не перетрудись.
 	AI_Output(self,other,"DIA_Malak_PERMKAP1_08_01");	//Я попробую.
 	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Malak_KAP3_EXIT(C_Info)
-{
-	npc = BAU_963_Malak;
-	nr = 999;
-	condition = DIA_Malak_KAP3_EXIT_Condition;
-	information = DIA_Malak_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Malak_KAP3_EXIT_Condition()
-{
-	if(Kapitel >= 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Malak_KAP3_EXIT_Info()
-{
-	B_NpcClearObsessionByDMT(self);
 };
 
 

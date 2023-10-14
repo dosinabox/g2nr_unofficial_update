@@ -12,10 +12,7 @@ instance DIA_Engrom_EXIT(C_Info)
 
 func int DIA_Engrom_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Engrom_EXIT_Info()
@@ -106,31 +103,6 @@ func void DIA_Engrom_Jagd_Info()
 {
 	B_WasMachtJagd();
 	AI_Output(self,other,"DIA_Engrom_Jagd_12_01");	//Охота - моя единственная отрада. Но мне бы хотелось хоть иногда видеть нормальную цель, а не этих отвратительных луркеров.
-};
-
-
-instance DIA_Engrom_KAP3_EXIT(C_Info)
-{
-	npc = VLK_4131_Engrom;
-	nr = 999;
-	condition = DIA_Engrom_KAP3_EXIT_Condition;
-	information = DIA_Engrom_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Engrom_KAP3_EXIT_Condition()
-{
-	if(Kapitel >= 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Engrom_KAP3_EXIT_Info()
-{
-	B_NpcClearObsessionByDMT(self);
 };
 
 
