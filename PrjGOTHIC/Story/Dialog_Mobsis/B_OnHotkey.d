@@ -125,7 +125,7 @@ func int B_GetAnyPlayerMap()
 	return FALSE;
 };
 
-func int player_hotkey_screen_map()
+func int Player_Hotkey_Screen_Map()
 {
 	var int OldInstance;
 	var int NewInstance;
@@ -181,7 +181,7 @@ func void B_LameSchlork()
 	Snd_Play("DRINKBOTTLE");
 };
 
-func void player_hotkey_lame_potion()
+func void Player_Hotkey_Lame_Potion()
 {
 	if(!Npc_IsInState(hero,ZS_Dead))
 	{
@@ -255,7 +255,7 @@ func void player_hotkey_lame_potion()
 	};
 };
 
-func void player_hotkey_lame_heal()
+func void Player_Hotkey_Lame_Heal()
 {
 	if(!Npc_IsInState(hero,ZS_Dead))
 	{

@@ -1,5 +1,5 @@
 
-func void player_mob_missing_key_or_lockpick()
+func void Player_Mob_Missing_Key_Or_Lockpick()
 {
 	AI_PlayAni(self,"T_DONTKNOW");
 	if(Npc_IsPlayer(self))
@@ -9,7 +9,7 @@ func void player_mob_missing_key_or_lockpick()
 	};
 };
 
-func void player_mob_missing_key()
+func void Player_Mob_Missing_Key()
 {
 	var int rnd;
 	AI_PlayAni(self,"T_DONTKNOW");
@@ -29,7 +29,7 @@ func void player_mob_missing_key()
 	};
 };
 
-func void player_mob_missing_lockpick()
+func void Player_Mob_Missing_Lockpick()
 {
 	var int rnd;
 	AI_PlayAni(self,"T_DONTKNOW");
@@ -57,7 +57,7 @@ func void player_mob_missing_lockpick()
 	};
 };
 
-func void player_mob_never_open()
+func void Player_Mob_Never_Open()
 {
 	AI_PlayAni(self,"T_DONTKNOW");
 	if(Npc_IsPlayer(self))
@@ -67,32 +67,39 @@ func void player_mob_never_open()
 	};
 };
 
-func void player_mob_missing_item()
+func void Player_Mob_Missing_Item()
 {
 	AI_PlayAni(self,"T_DONTKNOW");
 	Print(PRINT_MissingItem);
 	B_Say_Overlay(self,self,"$MISSINGITEM");
 };
 
-func void player_mob_another_is_using()
+func void Player_Mob_Missing_Something()
+{
+	AI_PlayAni(self,"T_DONTKNOW");
+	Print(PRINT_MissingSomething);
+	B_Say_Overlay(self,self,"$DOESNTWORK");
+};
+
+func void Player_Mob_Another_Is_Using()
 {
 	AI_PlayAni(self,"T_DONTKNOW");
 	Print(PRINT_AnotherUser);
 };
 
-func void player_mob_too_far_away()
+func void Player_Mob_Too_Far_Away()
 {
 	AI_PlayAni(self,"T_DONTKNOW");
 	Print(PRINT_Toofar_Away);
 };
 
-func void player_mob_wrong_side()
+func void Player_Mob_Wrong_Side()
 {
 	AI_PlayAni(self,"T_DONTKNOW");
 	Print(PRINT_WrongSide);
 };
 
-func void player_trade_not_enough_gold()
+func void Player_Trade_Not_Enough_Gold()
 {
 	Print(PRINT_Trade_Not_Enough_Gold);
 };

@@ -1669,24 +1669,6 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertNpc(MIL_326_Miliz,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(VLK_4006_Bote,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_03");
-	if(C_WorldIsFixed())
-	{
-		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_017");
-		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_018");
-		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_019");
-		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_019");
-		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_021");
-		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_021");
-	}
-	else
-	{
-		Wld_InsertNpc(Waran,"FP_ROAM_INSEL_02");
-		Wld_InsertNpc(Waran,"FP_ROAM_INSEL_01");
-		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_07");
-		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_08");
-		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_09");
-		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_10");
-	};
 	Wld_InsertItem(ItWr_OneHStonePlate2_Addon,"FP_ROAM_INSEL_07");
 	Wld_InsertItem(ItWr_BowStonePlate2_Addon,"FP_ROAM_INSEL_10");
 	Wld_InsertItem(ItWr_ManaStonePlate2_Addon,"FP_SHELLSPAWN_CITY_02");
@@ -1722,6 +1704,59 @@ func void INIT_SUB_NewWorld_Part_City_01()
 	Wld_SetMobRoutine(0,0,"FIREPLACE",1);
 	Wld_SetMobRoutine(20,0,"FIREPLACE",1);
 	Wld_SetMobRoutine(5,0,"FIREPLACE",0);
+	//TODO активировать к полному релизу 30 версии
+	/*if(C_WorldIsFixed())
+	{
+		B_SetObjectRoutine("CITYLAMP_01");
+		B_SetObjectRoutine("CITYLAMP_02");
+		B_SetObjectRoutine("CITYLAMP_03");
+		B_SetObjectRoutine("CITYLAMP_04");
+		B_SetObjectRoutine("CITYLAMP_05");
+		B_SetObjectRoutine("CITYLAMP_06");
+		B_SetObjectRoutine("CITYLAMP_07");
+		B_SetObjectRoutine("CITYLAMP_08");
+		B_SetObjectRoutine("CITYLAMP_09");
+		B_SetObjectRoutine("CITYLAMP_10");
+		B_SetObjectRoutine("CITYLAMP_11");
+		B_SetObjectRoutine("CITYLAMP_12");
+		B_SetObjectRoutine("CITYLAMP_13");
+		B_SetObjectRoutine("CITYLAMP_14");
+		B_SetObjectRoutine("CITYLAMP_15");
+		B_SetObjectRoutine("CITYLAMP_16");
+		B_SetObjectRoutine("CITYLAMP_17");
+		B_SetObjectRoutine("CITYLAMP_18");
+		B_SetObjectRoutine("CITYLAMP_19");
+		B_SetObjectRoutine("CITYLAMP_20");
+		B_SetObjectRoutine("CITYLAMP_21");
+		B_SetObjectRoutine("CITYLAMP_22");
+		B_SetObjectRoutine("CITYLAMP_23");
+		B_SetObjectRoutine("CITYLAMP_24");
+		B_SetObjectRoutine("CITYLAMP_25");
+		B_SetObjectRoutine("CITYLAMP_26");
+		B_SetObjectRoutine("CITYLAMP_27");
+		B_SetObjectRoutine("CITYLAMP_28");
+		B_SetObjectRoutine("CITYLAMP_29");
+		B_SetObjectRoutine("CITYLAMP_30");
+		B_SetObjectRoutine("CITYLAMP_31");
+		B_SetObjectRoutine("CITYLAMP_32");
+		B_SetObjectRoutine("CITYLAMP_33");
+		B_SetObjectRoutine("CITYLAMP_34");
+		B_SetObjectRoutine("CITYLAMP_35");
+		B_SetObjectRoutine("CITYLAMP_36");
+		B_SetObjectRoutine("CITYLAMP_37");
+		B_SetObjectRoutine("CITYLAMP_38");
+		B_SetObjectRoutine("CITYLAMP_39");
+		B_SetObjectRoutine("CITYLAMP_40");
+		B_SetObjectRoutine("CITYLAMP_41");
+		B_SetObjectRoutine("CITYLAMP_42");
+		B_SetObjectRoutine("CITYLAMP_43");
+	}
+	else
+	{
+		Wld_SetMobRoutine(0,0,"FIREPLACE",1);
+		Wld_SetMobRoutine(20,0,"FIREPLACE",1);
+		Wld_SetMobRoutine(5,0,"FIREPLACE",0);
+	};*/
 	Wld_AssignRoomToGuild("hafen01",GIL_VLK);
 	Wld_AssignRoomToGuild("hafen02",GIL_VLK);
 	Wld_AssignRoomToGuild("hafen03",GIL_VLK);
@@ -1919,38 +1954,6 @@ func void STARTUP_NewWorld_Part_Xardas_01()
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_GOBBO_01");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_GOBBO_02");
 	Wld_InsertNpc(YWolf,"NW_XARDAS_MONSTER_INSERT_01");
-	if(C_WorldIsFixed())
-	{
-		Wld_InsertNpc(Keiler,"SOME_NW_WAYPOINT_029");
-		Wld_InsertNpc(Keiler,"SOME_NW_WAYPOINT_029");
-		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_054");
-		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_054");
-		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_061");
-		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_061");
-		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_041");
-		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_041");
-		Wld_InsertNpc(Giant_Rat,"SOME_NW_WAYPOINT_049");
-		Wld_InsertNpc(Giant_Rat,"SOME_NW_WAYPOINT_049");
-		Wld_InsertNpc(Meatbug,"SOME_NW_WAYPOINT_037");
-		Wld_InsertNpc(Meatbug,"SOME_NW_WAYPOINT_037");
-		Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_03");
-	}
-	else
-	{
-		Wld_InsertNpc(Keiler,"FP_ROAM_XARDAS_SECRET_23");
-		Wld_InsertNpc(Keiler,"FP_ROAM_XARDAS_SECRET_23");
-		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_08");
-		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_08");
-		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_15");
-		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_15");
-		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_04");
-		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_04");
-		Wld_InsertNpc(Giant_Rat,"FP_ROAM_XARDAS_SECRET_27");
-		Wld_InsertNpc(Giant_Rat,"FP_ROAM_XARDAS_SECRET_27");
-		Wld_InsertNpc(Meatbug,"FP_ROAM_XARDAS_SECRET_01");
-		Wld_InsertNpc(Meatbug,"FP_ROAM_XARDAS_SECRET_01");
-		Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_02");
-	};
 	Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_02");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_TOWER_WATERFALL_CAVE_03");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_TOWER_WATERFALL_CAVE_ENTRANCE_02");
@@ -2883,6 +2886,50 @@ func void STARTUP_NewWorld()
 	STARTUP_NewWorld_Part_TrollArea_01();
 	STARTUP_NewWorld_Part_Forest_01();
 	STARTUP_NewWorld_Part_Pass_To_OW_01();
+	if(C_WorldIsFixed())
+	{
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_017");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_018");
+		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_019");
+		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_019");
+		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_021");
+		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_021");
+		Wld_InsertNpc(Keiler,"SOME_NW_WAYPOINT_029");
+		Wld_InsertNpc(Keiler,"SOME_NW_WAYPOINT_029");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_054");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_054");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_061");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_061");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_041");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_041");
+		Wld_InsertNpc(Giant_Rat,"SOME_NW_WAYPOINT_049");
+		Wld_InsertNpc(Giant_Rat,"SOME_NW_WAYPOINT_049");
+		Wld_InsertNpc(Meatbug,"SOME_NW_WAYPOINT_037");
+		Wld_InsertNpc(Meatbug,"SOME_NW_WAYPOINT_037");
+		Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_03");
+	}
+	else
+	{
+		Wld_InsertNpc(Waran,"FP_ROAM_INSEL_02");
+		Wld_InsertNpc(Waran,"FP_ROAM_INSEL_01");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_07");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_08");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_09");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_10");
+		Wld_InsertNpc(Keiler,"FP_ROAM_XARDAS_SECRET_23");
+		Wld_InsertNpc(Keiler,"FP_ROAM_XARDAS_SECRET_23");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_08");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_08");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_15");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_15");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_04");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_04");
+		Wld_InsertNpc(Giant_Rat,"FP_ROAM_XARDAS_SECRET_27");
+		Wld_InsertNpc(Giant_Rat,"FP_ROAM_XARDAS_SECRET_27");
+		Wld_InsertNpc(Meatbug,"FP_ROAM_XARDAS_SECRET_01");
+		Wld_InsertNpc(Meatbug,"FP_ROAM_XARDAS_SECRET_01");
+		Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_02");
+	};
 	Kapitel = 1;
 	PlayVideo("INTRO.BIK");
 //	PlayVideo("Addon_Title.BIK");

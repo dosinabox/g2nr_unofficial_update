@@ -84,3 +84,20 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 	};
 };
 
+//для поддержки Bonus Independent Training
+func void B_RaiseRealAttributeLearnCounter(var C_Npc oth,var int attrib,var int points)
+{
+	if(attrib == ATR_STRENGTH)
+	{
+		oth.aivar[REAL_STRENGTH] += points;
+	}
+	else if(attrib == ATR_DEXTERITY)
+	{
+		oth.aivar[REAL_DEXTERITY] += points;
+	}
+	else if(attrib == ATR_MANA_MAX)
+	{
+		oth.aivar[REAL_MANA_MAX] += points;
+	};
+};
+

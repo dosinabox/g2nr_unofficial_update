@@ -196,7 +196,14 @@ func void Use_ItWr_LastDoorToUndeadDrgDI_MIS()
 	Doc_Show(nDocID);
 	if(Read_LastDoorToUndeadDrgDI_MIS == FALSE)
 	{
-		B_LogEntry(TOPIC_HallenVonIrdorath,"Свиток черного мага содержит слова КАДОШ ЭМЕМ КАДАР. Это похоже на какую-то магическую формулу, но для чего она используется - и что такое Глаз Силы?");
+		if(!Npc_HasItems(hero,ItMi_PowerEye))
+		{
+			B_LogEntry(TOPIC_HallenVonIrdorath,"Свиток черного мага содержит слова КАДОШ ЭМЕМ КАДАР. Это похоже на какую-то магическую формулу, но для чего она используется - и что такое Глаз Силы?");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_HallenVonIrdorath,"Свиток черного мага содержит слова КАДОШ ЭМЕМ КАДАР. Это похоже на какую-то магическую формулу, но для чего она используется?");
+		};
 		Read_LastDoorToUndeadDrgDI_MIS = TRUE;
 	};
 };

@@ -214,7 +214,7 @@ func void B_SCGetTreasure_S1()
 		}
 		else
 		{
-			player_plunder_is_empty();
+			Player_Plunder_Is_Empty();
 		};
 	};
 };
