@@ -884,10 +884,10 @@ func void DIA_Addon_Saturas_TalkedToGhost_kammern()
 	Log_CreateTopic(TOPIC_Addon_Kammern,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Kammern,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Kammern,LogText_Addon_Relicts);
-	B_LogEntry(TOPIC_Addon_Kammern,"—атурас послал мен€ в храм. я должен пройти через его залы и остановить ¬орона.");
+	Log_AddEntry(TOPIC_Addon_Kammern,"—атурас послал мен€ в храм. я должен пройти через его залы и остановить ¬орона.");
 	if(Saturas_SCBroughtAllToken == FALSE)
 	{
-		B_LogEntry(TOPIC_Addon_Relicts,LogText_Addon_Relicts);
+		Log_AddEntry(TOPIC_Addon_Relicts,LogText_Addon_Relicts);
 	};
 	Saturas_KnowsHow2GetInTempel = TRUE;
 	B_CheckLog();

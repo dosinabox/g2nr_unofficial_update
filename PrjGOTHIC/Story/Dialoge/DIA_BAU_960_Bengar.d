@@ -179,11 +179,6 @@ func void DIA_Addon_Bengar_MissingPeople_back()
 };
 
 
-func void B_BengarIThoughtNoOneWouldCome()
-{
-	AI_Output(self,other,"DIA_Bengar_MILIZ_10_04");	//Я уж думал, что никто не придет.
-};
-
 func void B_BengarToldOnarFewDaysAgo()
 {
 	AI_Output(self,other,"DIA_Bengar_MILIZ_10_05");	//Я сказал об этом Онару еще пару дней назад. И за что я плачу свою ренту?!
@@ -213,15 +208,8 @@ func int DIA_Addon_Bengar_ReturnPardos_Condition()
 func void DIA_Addon_Bengar_ReturnPardos_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Bengar_ReturnPardos_15_00");	//Пардос вернулся?
-	if(Npc_GetDistToWP(Pardos_NW,"NW_FARM3_HOUSE_IN_NAVI_2") <= 1000)
-	{
-		AI_Output(self,other,"DIA_Addon_Bengar_ReturnPardos_10_01");	//Да, он в доме, отдыхает. Спасибо за все...
-		AI_Output(other,self,"DIA_Addon_Bengar_ReturnPardos_15_02");	//Не стоит.
-	}
-	else
-	{
-		B_BengarIThoughtNoOneWouldCome();
-	};
+	AI_Output(self,other,"DIA_Addon_Bengar_ReturnPardos_10_01");	//Да, он в доме, отдыхает. Спасибо за все...
+	AI_Output(other,self,"DIA_Addon_Bengar_ReturnPardos_15_02");	//Не стоит.
 	AI_Output(self,other,"DIA_Addon_Bengar_ReturnPardos_10_03");	//Я хотел бы наградить тебя, но у меня ничего нет...
 	AI_Output(other,self,"DIA_Addon_Bengar_ReturnPardos_15_04");	//Забудь об этом.
 	B_GivePlayerXP(XP_Ambient);
@@ -392,7 +380,7 @@ func void DIA_Bengar_MILIZ_Info()
 		}
 		else if(other.guild == GIL_SLD)
 		{
-			B_BengarIThoughtNoOneWouldCome();
+			AI_Output(self,other,"DIA_Bengar_MILIZ_10_04");	//Я уж думал, что никто не придет.
 			B_BengarToldOnarFewDaysAgo();
 		};
 		AI_Output(self,other,"DIA_Bengar_MILIZ_10_06");	//Эти ублюдки заявляются сюда каждую неделю и собирают налоги в пользу города.
@@ -664,24 +652,23 @@ func int DIA_Bengar_ALLEIN_Condition()
 func void DIA_Bengar_ALLEIN_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_ALLEIN_15_00");	//Как дела?
-	MIS_BengarsHelpingSLD = LOG_Running;
-	Log_CreateTopic(TOPIC_BengarALLEIN,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BengarALLEIN,LOG_Running);
-	B_LogEntry(TOPIC_BengarALLEIN,"Ферма Бенгара абсолютно беззащитна. Ему нужна помощь. Он говорит что-то о наемнике, которого зовут Вольф. Может быть, я знаю этого парня?!");
 	if((Malak_isAlive_Kap3 == TRUE) && (Npc_GetDistToWP(Malak,"FARM3") >= 3000))
 	{
 		AI_Output(self,other,"DIA_Bengar_ALLEIN_10_01");	//Малак ушел от меня и забрал с собой всех, кто работал на меня. Он сказал, что направляется в горы.
 		AI_Output(self,other,"DIA_Bengar_ALLEIN_10_02");	//Он больше не мог находиться здесь.
-		MIS_GetMalakBack = LOG_Running;
-		if(!Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS))
+		if(MIS_GetMalakBack == FALSE)
 		{
+			MIS_GetMalakBack = LOG_Running;
 			Log_CreateTopic(TOPIC_BengarMALAK,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_BengarMALAK,LOG_Running);
-			B_LogNextEntry(TOPIC_BengarMALAK,"Бенгар остался один на своей ферме. Малак ушел и увел с собой всех остальных. Бенгар думает, что они направились в горы.");
+		};
+		if(!Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS))
+		{
+			B_LogEntry(TOPIC_BengarMALAK,"Бенгар остался один на своей ферме. Малак ушел и увел с собой всех остальных. Бенгар думает, что они направились в горы.");
 		}
 		else
 		{
-			B_LogNextEntry(TOPIC_BengarMALAK,"Бенгар остался совсем один на своей ферме. Малак ушел и увел с собой всех остальных.");
+			B_LogEntry(TOPIC_BengarMALAK,"Бенгар остался совсем один на своей ферме. Малак ушел и увел с собой всех остальных.");
 		};
 	}
 	else
@@ -691,10 +678,12 @@ func void DIA_Bengar_ALLEIN_Info()
 	AI_Output(self,other,"DIA_Bengar_ALLEIN_10_04");	//Новые орды монстров каждый день приходят через Проход. Скоро они всех нас сожрут.
 	AI_Output(self,other,"DIA_Bengar_ALLEIN_10_05");	//Если бы только меня защищали хотя бы несколько наемников...
 	AI_Output(self,other,"DIA_Bengar_ALLEIN_10_06");	//Один из них даже был готов работать на меня. Но он передумал, впрочем. Мне кажется, его звали Вольф.
-	if(Npc_IsDead(SLD_Wolf))
+	if(!Npc_IsDead(SLD_Wolf))
 	{
-		MIS_BengarsHelpingSLD = LOG_FAILED;
-		B_CheckLog();
+		MIS_BengarsHelpingSLD = LOG_Running;
+		Log_CreateTopic(TOPIC_BengarALLEIN,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_BengarALLEIN,LOG_Running);
+		B_LogEntry(TOPIC_BengarALLEIN,"Ферма Бенгара абсолютно беззащитна. Ему нужна помощь. Он говорит что-то о наемнике, которого зовут Вольф. Может быть, я знаю этого парня?!");
 	};
 };
 

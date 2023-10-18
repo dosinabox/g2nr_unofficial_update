@@ -118,6 +118,16 @@ func void DIA_Jora_GREET_Info()
 };
 
 
+func void B_Jora_GoldForClue()
+{
+	AI_Output(self,other,"DIA_Jora_Add_08_04");	//ѕослушай - если ты вернешь золото, украденное этим –енгару, € расскажу тебе кое-что.
+};
+
+func void B_Jora_GoldIsStolen()
+{
+	AI_Output(self,other,"DIA_Jora_Bestohlen_08_04");	//я отвернулс€ всего на мгновение, и мой кошелек пропал!
+};
+
 instance DIA_Jora_Bestohlen(C_Info)
 {
 	npc = VLK_408_Jora;
@@ -134,6 +144,10 @@ func int DIA_Jora_Bestohlen_Condition()
 	if(JoraToldAboutRobbery == FALSE)
 	{
 		DIA_Jora_Bestohlen.description = " ак дела?";
+	}
+	else
+	{
+		DIA_Jora_Bestohlen.description = " то-то обокрал теб€?";
 	};
 	return TRUE;
 };
@@ -143,7 +157,7 @@ func void DIA_Jora_Bestohlen_Info()
 	if(JoraToldAboutRobbery == FALSE)
 	{
 		AI_Output(other,self,"DIA_Addon_Nefarius_Hallo_15_00");	// ак дела?
-		AI_Output(self,other,"DIA_Jora_Bestohlen_08_04");	//я отвернулс€ всего на мгновение, и мой кошелек пропал!
+		B_Jora_GoldIsStolen();
 	};
 	AI_Output(other,self,"DIA_Jora_Bestohlen_15_00");	// то-то обокрал теб€?
 	AI_Output(self,other,"DIA_Jora_Bestohlen_08_01");	//я не могу доказать это. Ётот парень был чертовски хитер. ѕредставилс€ как –енгару - если это действительно его им€.
@@ -154,13 +168,8 @@ func void DIA_Jora_Bestohlen_Info()
 	};
 	if(JoraToldAboutRobbery == TRUE)
 	{
-		AI_Output(self,other,"DIA_Jora_Bestohlen_08_04");	//я отвернулс€ всего на мгновение, и мой кошелек пропал!
+		B_Jora_GoldIsStolen();
 	};
-};
-
-func void B_Jora_GoldForClue()
-{
-	AI_Output(self,other,"DIA_Jora_Add_08_04");	//ѕослушай - если ты вернешь золото, украденное этим –енгару, € расскажу тебе кое-что.
 };
 
 

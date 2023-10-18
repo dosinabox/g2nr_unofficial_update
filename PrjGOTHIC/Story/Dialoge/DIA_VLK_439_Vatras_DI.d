@@ -273,27 +273,27 @@ func void DIA_Vatras_DI_Talente_CIRCLES()
 {
 	Info_ClearChoices(DIA_Vatras_DI_Talente);
 	Info_AddChoice(DIA_Vatras_DI_Talente,Dialog_Back,DIA_Vatras_DI_Talente_BACK);
-	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) < 1)
+	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Circle_1,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1)),DIA_Vatras_DI_Talente_Circle_1);
-	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 1)
+	}
+	else if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 1)
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Circle_2,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2)),DIA_Vatras_DI_Talente_Circle_2);
-	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 2)
+	}
+	else if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 2)
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Circle_3,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,3)),DIA_Vatras_DI_Talente_Circle_3);
-	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 3)
+	}
+	else if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 3)
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Circle_4,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,4)),DIA_Vatras_DI_Talente_Circle_4);
-	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 4)
+	}
+	else if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 4)
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Circle_5,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,5)),DIA_Vatras_DI_Talente_Circle_5);
-	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 5)
+	}
+	else if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 5)
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Circle_6,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,6)),DIA_Vatras_DI_Talente_Circle_6);
 	};

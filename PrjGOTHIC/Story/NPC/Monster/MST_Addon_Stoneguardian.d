@@ -20,7 +20,7 @@ prototype Mst_Addon_Stoneguardian(C_Npc)
 	protection[PROT_MAGIC] = 90;
 //	damagetype = DAM_EDGE;
 	damagetype = DAM_BLUNT;
-	fight_tactic = FAI_Stoneguardian;
+	fight_tactic = FAI_STONEGUARDIAN;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;
 	aivar[AIV_MM_FollowTime] = FOLLOWTIME_MEDIUM;
@@ -114,7 +114,7 @@ instance Stoneguardian_Ornament(Mst_Addon_Stoneguardian)
 instance Stoneguardian_Heiler(Mst_Addon_Stoneguardian)
 {
 	B_SetVisuals_Stoneguardian();
-	CreateInvItems(self,ITKE_Addon_Heiler,1);
+	CreateInvItems(self,ItKe_Addon_Heiler,1);
 };
 
 instance Stoneguardian_Sani01(Mst_Addon_Stoneguardian)
@@ -156,7 +156,7 @@ instance Stoneguardian_Sani06(Mst_Addon_Stoneguardian)
 instance Stoneguardian_NailedPortalADW1(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2400;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -164,7 +164,7 @@ instance Stoneguardian_NailedPortalADW1(Mst_Addon_Stoneguardian)
 instance Stoneguardian_NailedPortalADW2(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 3100;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -172,7 +172,7 @@ instance Stoneguardian_NailedPortalADW2(Mst_Addon_Stoneguardian)
 instance Stoneguardian_NailedValleyShowcase_01(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2000;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	CreateInvItems(self,ItSc_Teleport_Maya,1);
 	B_SetVisuals_Stoneguardian();
 };
@@ -180,14 +180,14 @@ instance Stoneguardian_NailedValleyShowcase_01(Mst_Addon_Stoneguardian)
 instance Stoneguardian_NailedValleyShowcase_02(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 1000;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	B_SetVisuals_Stoneguardian();
 };
 
 instance Stoneguardian_ADANOSTEMPELENTRANCE_01(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2000;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -195,7 +195,7 @@ instance Stoneguardian_ADANOSTEMPELENTRANCE_01(Mst_Addon_Stoneguardian)
 instance Stoneguardian_ADANOSTEMPELENTRANCE_02(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2000;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -203,7 +203,7 @@ instance Stoneguardian_ADANOSTEMPELENTRANCE_02(Mst_Addon_Stoneguardian)
 instance Stoneguardian_ADANOSTEMPELENTRANCE_03(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2000;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -211,7 +211,7 @@ instance Stoneguardian_ADANOSTEMPELENTRANCE_03(Mst_Addon_Stoneguardian)
 instance Stoneguardian_ADANOSTEMPELENTRANCE_04(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 900;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -219,7 +219,7 @@ instance Stoneguardian_ADANOSTEMPELENTRANCE_04(Mst_Addon_Stoneguardian)
 instance Stoneguardian_TREASUREPITS_05A(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 3000;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -227,7 +227,7 @@ instance Stoneguardian_TREASUREPITS_05A(Mst_Addon_Stoneguardian)
 instance Stoneguardian_TREASUREPITS_05B(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2700;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -235,7 +235,7 @@ instance Stoneguardian_TREASUREPITS_05B(Mst_Addon_Stoneguardian)
 instance Stoneguardian_TREASUREPITS_05C(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2900;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -243,7 +243,7 @@ instance Stoneguardian_TREASUREPITS_05C(Mst_Addon_Stoneguardian)
 instance Stoneguardian_TREASUREPITS_05D(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2400;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -251,7 +251,7 @@ instance Stoneguardian_TREASUREPITS_05D(Mst_Addon_Stoneguardian)
 instance Stoneguardian_TREASUREPITS_05E(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2900;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -259,7 +259,7 @@ instance Stoneguardian_TREASUREPITS_05E(Mst_Addon_Stoneguardian)
 instance Stoneguardian_TREASUREPITS_05F(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2800;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -267,7 +267,7 @@ instance Stoneguardian_TREASUREPITS_05F(Mst_Addon_Stoneguardian)
 instance Stoneguardian_TREASUREPITS_09A(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2400;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -275,7 +275,7 @@ instance Stoneguardian_TREASUREPITS_09A(Mst_Addon_Stoneguardian)
 instance Stoneguardian_TREASUREPITS_09B(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2400;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -283,7 +283,7 @@ instance Stoneguardian_TREASUREPITS_09B(Mst_Addon_Stoneguardian)
 instance Stoneguardian_TREASUREPITS_09C(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2000;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -291,7 +291,7 @@ instance Stoneguardian_TREASUREPITS_09C(Mst_Addon_Stoneguardian)
 instance Stoneguardian_TREASUREPITS_09D(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2400;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -299,7 +299,7 @@ instance Stoneguardian_TREASUREPITS_09D(Mst_Addon_Stoneguardian)
 instance Stoneguardian_TREASUREPITS_09E(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2700;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -307,7 +307,7 @@ instance Stoneguardian_TREASUREPITS_09E(Mst_Addon_Stoneguardian)
 instance Stoneguardian_TREASUREPITS_09F(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 2900;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -315,7 +315,7 @@ instance Stoneguardian_TREASUREPITS_09F(Mst_Addon_Stoneguardian)
 instance Stoneguardian_RHADEMES_14A(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 700;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -323,7 +323,7 @@ instance Stoneguardian_RHADEMES_14A(Mst_Addon_Stoneguardian)
 instance Stoneguardian_RHADEMES_14B(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 1200;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -331,7 +331,7 @@ instance Stoneguardian_RHADEMES_14B(Mst_Addon_Stoneguardian)
 instance Stoneguardian_RHADEMES_14C(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 700;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -339,7 +339,7 @@ instance Stoneguardian_RHADEMES_14C(Mst_Addon_Stoneguardian)
 instance Stoneguardian_RHADEMES_14D(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 700;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -347,7 +347,7 @@ instance Stoneguardian_RHADEMES_14D(Mst_Addon_Stoneguardian)
 instance Stoneguardian_RHADEMES_14E(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 1200;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };
@@ -355,7 +355,7 @@ instance Stoneguardian_RHADEMES_14E(Mst_Addon_Stoneguardian)
 instance Stoneguardian_RHADEMES_14F(Mst_Addon_Stoneguardian)
 {
 	aivar[AIV_MaxDistToWp] = 700;
-	aivar[AIV_OriginalFightTactic] = FAI_Stoneguardian;
+	aivar[AIV_OriginalFightTactic] = FAI_STONEGUARDIAN;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Stoneguardian();
 };

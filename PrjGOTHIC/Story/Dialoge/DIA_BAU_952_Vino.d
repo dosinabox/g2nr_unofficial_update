@@ -12,15 +12,12 @@ instance DIA_Vino_EXIT(C_Info)
 
 func int DIA_Vino_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Vino_EXIT_Info()
 {
-	if(!Npc_HasEquippedArmor(other))
+	if((Kapitel < 3) && !Npc_HasEquippedArmor(other))
 	{
 		PlayerVisitedLobartFarmArmorless = TRUE;
 	};
@@ -51,7 +48,7 @@ func void DIA_Vino_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Vino_HALLO_15_00");	//Как идет работа?
 	AI_Output(self,other,"DIA_Vino_HALLO_05_01");	//Так же, как и всегда. Работы много, денег мало, а если нам совсем не повезет, то завтра придут орки и сожгут нашу ферму дотла.
-	if(hero.guild == GIL_NONE)
+	if((other.guild == GIL_NONE) || (other.guild == GIL_SLD))
 	{
 		AI_Output(self,other,"DIA_Vino_HALLO_05_02");	//Королевские паладины заняли весь город. Но я очень сомневаюсь в том, что они поднимут свои задницы и придут сюда, если орки нападут на нас.
 	};
@@ -85,20 +82,17 @@ func void DIA_Vino_SeekWork_Info()
 		AI_Output(self,other,"DIA_Vino_SeekWork_05_01");	//А ты вообще что-нибудь знаешь о полевых работах?
 		AI_Output(other,self,"DIA_Vino_SeekWork_15_02");	//А что там такого знать-то?
 		AI_Output(self,other,"DIA_Vino_SeekWork_05_03");	//Ах! В таком случае... я думаю, мы и сами справимся, спасибо.
-		if(!Npc_IsDead(Lobart))
+		AI_Output(self,other,"DIA_Vino_SeekWork_05_04");	//Но если ты хочешь работать на Лобарта в качестве поденного рабочего, я могу только предупредить тебя. Он платит людям вроде тебя сущие гроши!
+		AI_Output(self,other,"DIA_Vino_SeekWork_05_08");	//Но ты не слышал этого от меня, понятно?
+		if((Lobart_Kleidung_Verkauft == FALSE) && (Lobart_Kleidung_gestohlen == FALSE))
 		{
-			AI_Output(self,other,"DIA_Vino_SeekWork_05_04");	//Но если ты хочешь работать на Лобарта в качестве поденного рабочего, я могу только предупредить тебя. Он платит людям вроде тебя сущие гроши!
-			AI_Output(self,other,"DIA_Vino_SeekWork_05_08");	//Но ты не слышал этого от меня, понятно?
-			if((Lobart_Kleidung_Verkauft == FALSE) && (Npc_KnowsInfo(other,DIA_Lobart_KLEIDUNG) || Npc_KnowsInfo(other,DIA_Lobart_WorkNOW)))
-			{
-				AI_Output(other,self,"DIA_Vino_SeekWork_15_05");	//Он предложил купить у него чистую одежду дешевле, если я буду помогать на ферме.
-				AI_Output(self,other,"DIA_Vino_SeekWork_05_06");	//Хмм. У меня нет для тебя никакой работы, но ты можешь принести мне и парням что-нибудь выпить.
-				AI_Output(self,other,"DIA_Vino_SeekWork_05_07");	//Принеси мне бутылку вина, и я скажу Лобарту, что ты очень помог нам. (смеется издевательски)
-				MIS_Vino_Wein = LOG_Running;
-				Log_CreateTopic(TOPIC_Vino,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_Vino,LOG_Running);
-				B_LogEntry(TOPIC_Vino,"Если я принесу Вино бутылку вина, он скажет Лобарту, что я помог ему.");
-			};
+			AI_Output(other,self,"DIA_Vino_SeekWork_15_05");	//Он предложил купить у него чистую одежду дешевле, если я буду помогать на ферме.
+			AI_Output(self,other,"DIA_Vino_SeekWork_05_06");	//Хмм. У меня нет для тебя никакой работы, но ты можешь принести мне и парням что-нибудь выпить.
+			AI_Output(self,other,"DIA_Vino_SeekWork_05_07");	//Принеси мне бутылку вина, и я скажу Лобарту, что ты очень помог нам. (смеется издевательски)
+			MIS_Vino_Wein = LOG_Running;
+			Log_CreateTopic(TOPIC_Vino,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Vino,LOG_Running);
+			B_LogEntry(TOPIC_Vino,"Если я принесу Вино бутылку вина, он скажет Лобарту, что я помог ему.");
 		};
 	}
 	else
@@ -167,7 +161,7 @@ instance DIA_Vino_ToTheCity(C_Info)
 
 func int DIA_Vino_ToTheCity_Condition()
 {
-	if(hero.guild == GIL_NONE)
+	if(PlayerEnteredCity == FALSE)
 	{
 		return TRUE;
 	};
@@ -231,31 +225,6 @@ func void DIA_Vino_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Vino_PERM_05_06");	//Кроме того, что я уже сказал тебе? Нет.
 	};
-};
-
-
-instance DIA_Vino_KAP3_EXIT(C_Info)
-{
-	npc = BAU_952_Vino;
-	nr = 999;
-	condition = DIA_Vino_KAP3_EXIT_Condition;
-	information = DIA_Vino_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Vino_KAP3_EXIT_Condition()
-{
-	if(Kapitel >= 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Vino_KAP3_EXIT_Info()
-{
-	B_NpcClearObsessionByDMT(self);
 };
 
 

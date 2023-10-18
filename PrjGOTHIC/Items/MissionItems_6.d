@@ -147,7 +147,7 @@ instance ItKe_EVT_UNDEAD_02(C_Item)
 	inv_zbias = 145;
 };
 
-instance ItKe_LastDoorToUndeadDrgDI_MIS(C_Item)
+/*instance ItKe_LastDoorToUndeadDrgDI_MIS(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -160,7 +160,7 @@ instance ItKe_LastDoorToUndeadDrgDI_MIS(C_Item)
 	inv_rotx = -25;
 	inv_roty = 0;
 	inv_zbias = 145;
-};
+};*/
 
 instance ItWr_LastDoorToUndeadDrgDI_MIS(C_Item)
 {
@@ -196,7 +196,14 @@ func void Use_ItWr_LastDoorToUndeadDrgDI_MIS()
 	Doc_Show(nDocID);
 	if(Read_LastDoorToUndeadDrgDI_MIS == FALSE)
 	{
-		B_LogEntry(TOPIC_HallenVonIrdorath,"Свиток черного мага содержит слова КАДОШ ЭМЕМ КАДАР. Это похоже на какую-то магическую формулу, но для чего она используется - и что такое Глаз Силы?");
+		if(!Npc_HasItems(hero,ItMi_PowerEye))
+		{
+			B_LogEntry(TOPIC_HallenVonIrdorath,"Свиток черного мага содержит слова КАДОШ ЭМЕМ КАДАР. Это похоже на какую-то магическую формулу, но для чего она используется - и что такое Глаз Силы?");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_HallenVonIrdorath,"Свиток черного мага содержит слова КАДОШ ЭМЕМ КАДАР. Это похоже на какую-то магическую формулу, но для чего она используется?");
+		};
 		Read_LastDoorToUndeadDrgDI_MIS = TRUE;
 	};
 };

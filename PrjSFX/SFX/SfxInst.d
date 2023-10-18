@@ -7607,13 +7607,13 @@ instance SWIM_A3(C_SFX_DEF)
 
 instance SWIMBACK(C_SFX_DEF)
 {
-	file = "Swim_Littlewaves_01.wav";
+	file = "Swim_Backwards_02.wav";
 	vol = 20;
 };
 
 instance SWIMBACK_A1(C_SFX_DEF)
 {
-	file = "Swim_Littlewaves_02.wav";
+	file = "Swim_Backwards_03.wav";
 	vol = 20;
 };
 
@@ -8543,6 +8543,30 @@ instance CS_IAI_WO_WO(C_SFX_DEF)
 	vol = 60;
 };
 
+instance CS_IAI_ME_ST(C_SFX_DEF)
+{
+	file = "CS_IAI_ME_ME_01.wav";
+	vol = 60;
+};
+
+instance CS_IAI_ME_ST_A1(C_SFX_DEF)
+{
+	file = "CS_IAI_ME_ME_09.wav";
+	vol = 60;
+};
+
+instance CS_IAI_ME_ST_A2(C_SFX_DEF)
+{
+	file = "CS_IAI_ME_ME_03.wav";
+	vol = 60;
+};
+
+instance CS_IAI_ME_ST_A3(C_SFX_DEF)
+{
+	file = "CS_IAI_ME_ME_04.wav";
+	vol = 60;
+};
+
 instance CS_IAM(C_SFX_DEF)
 {
 	file = "CS_IAM_UD_FL_01.wav";
@@ -8991,30 +9015,6 @@ instance CS_IHI_ME_ME_A2(C_SFX_DEF)
 instance CS_IHI_ME_WO(C_SFX_DEF)
 {
 	file = "CS_IHL_ME_WO.wav";
-	vol = 60;
-};
-
-instance CS_IAI_ME_ST(C_SFX_DEF)
-{
-	file = "CS_IAI_ME_ME_01.wav";
-	vol = 60;
-};
-
-instance CS_IAI_ME_ST_A1(C_SFX_DEF)
-{
-	file = "CS_IAI_ME_ME_09.wav";
-	vol = 60;
-};
-
-instance CS_IAI_ME_ST_A2(C_SFX_DEF)
-{
-	file = "CS_IAI_ME_ME_03.wav";
-	vol = 60;
-};
-
-instance CS_IAI_ME_ST_A3(C_SFX_DEF)
-{
-	file = "CS_IAI_ME_ME_04.wav";
 	vol = 60;
 };
 
@@ -10415,10 +10415,22 @@ instance SWIM_BACKWARDS_A1(C_SFX_DEF)
 	vol = 60;
 };
 
-instance CS_IAL_ME_WO_01(C_SFX_DEF)
+instance CS_MHL_FL_WA(C_SFX_DEF)
+{
+	file = "CS_Intro_WaterSplash.wav";
+	vol = 40;
+};
+
+instance CS_IAL_ME_WO(C_SFX_DEF)
 {
 	file = "CS_IAL_ME_WO_01.wav";
-	vol = 80;
+	vol = 60;
+};
+
+instance CS_IAL_UD_WA(C_SFX_DEF)
+{
+	file = "CS_IAL_UD_WA_01.wav";
+	vol = 60;
 };
 
 instance GOODIE(C_SFX_DEF)

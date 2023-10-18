@@ -18,7 +18,6 @@ var int Use_SaturasFirstMessage_OneTime;
 
 func void Use_SaturasFirstMessage()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -144,18 +143,17 @@ instance ItWr_Map_NewWorld_Ornaments_Addon(C_Item)
 
 func void Use_Map_NewWorld_Ornaments()
 {
-	var int Document;
 	if(Npc_IsPlayer(self))
 	{
 		B_SetPlayerMap(ItWr_Map_NewWorld_Ornaments_Addon);
 	};
 //	SC_Saw_Ornament_Map = TRUE;
-	Document = Doc_CreateMap();
-	Doc_SetPages(Document,1);
-	Doc_SetPage(Document,0,"Map_NewWorld_Ornaments.tga",TRUE);
-	Doc_SetLevel(Document,"NewWorld\NewWorld.zen");
-	Doc_SetLevelCoords(Document,-28000,50500,95500,-42500);
-	Doc_Show(Document);
+	nDocID = Doc_CreateMap();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Map_NewWorld_Ornaments.tga",TRUE);
+	Doc_SetLevel(nDocID,"NewWorld\NewWorld.zen");
+	Doc_SetLevelCoords(nDocID,-28000,50500,95500,-42500);
+	Doc_Show(nDocID);
 };
 
 
@@ -183,17 +181,16 @@ instance ItWr_Map_NewWorld_Dexter(C_Item)
 
 func void Use_Map_NewWorld_Dexter()
 {
-	var int Document;
 	if(Npc_IsPlayer(self))
 	{
 		B_SetPlayerMap(ItWr_Map_NewWorld_Dexter);
 	};
-	Document = Doc_CreateMap();
-	Doc_SetPages(Document,1);
-	Doc_SetPage(Document,0,"Map_NewWorld_Dexter.tga",TRUE);
-	Doc_SetLevel(Document,"NewWorld\NewWorld.zen");
-	Doc_SetLevelCoords(Document,-28000,50500,95500,-42500);
-	Doc_Show(Document);
+	nDocID = Doc_CreateMap();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Map_NewWorld_Dexter.tga",TRUE);
+	Doc_SetLevel(nDocID,"NewWorld\NewWorld.zen");
+	Doc_SetLevelCoords(nDocID,-28000,50500,95500,-42500);
+	Doc_Show(nDocID);
 };
 
 
@@ -321,7 +318,6 @@ instance ItWr_Martin_MilizEmpfehlung_Addon(C_Item)
 
 func void Use_MartinMilizEmpfehlung_Addon()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -363,7 +359,6 @@ instance ItWr_RavensKidnapperMission_Addon(C_Item)
 
 func void Use_RavensKidnapperMission_Addon()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -418,7 +413,6 @@ instance ItWr_Vatras_KDFEmpfehlung_Addon(C_Item)
 
 func void Use_VatrasKDFEmpfehlung_Addon()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -471,7 +465,6 @@ instance ItWr_LuciasLoveLetter_Addon(C_Item)
 
 func void Use_LuciasLoveLetter_Addon()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -576,7 +569,6 @@ var int Use_ItWr_Addon_BanditTrader_OneTime;
 
 func void Use_ItWr_Addon_BanditTrader()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -620,7 +612,6 @@ instance ItWr_Vatras2Saturas_FindRaven(C_Item)
 
 func void Use_Vatras2Saturas_FindRaven()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -699,7 +690,10 @@ func void Equip_WispDetector()
 		Equip_WispDetector_OneTime = TRUE;
 	};
 	DetWsp = Hlp_GetNpc(Wisp_Detector);
-	AI_Teleport(DetWsp,"TOT");
+	if(Hlp_IsValidNpc(DetWsp))
+	{
+		Wld_RemoveNpc(Wisp_Detector);
+	};
 	Wld_SpawnNpcRange(self,Wisp_Detector,1,500);
 	Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",Wisp_Detector,Wisp_Detector,0,0,0,FALSE);
 	Snd_Play("MFX_Transform_Cast");
@@ -709,13 +703,14 @@ func void UnEquip_WispDetector()
 {
 	var C_Npc DetWsp;
 	DetWsp = Hlp_GetNpc(Wisp_Detector);
-	if(!Npc_IsDead(DetWsp))
+	if(Hlp_IsValidNpc(DetWsp))
 	{
-		Snd_Play("WSP_Dead_A1");
+		if(!Npc_IsDead(DetWsp))
+		{
+			Snd_Play("WSP_Dead_A1");
+		};
+		Wld_RemoveNpc(Wisp_Detector);
 	};
-	AI_Teleport(DetWsp,"TOT");
-	B_MoveNpcToMorgue(DetWsp);
-	AI_Teleport(DetWsp,"TOT");
 };
 
 
@@ -807,11 +802,10 @@ instance ItWr_StonePlateCommon_Addon(C_Item)
 
 func void Use_StonePlateCommon()
 {
-	var int nDocID;
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
+	nDocID = Doc_Create();
+	Doc_SetPages(nDocID,1);
+	if(C_SCHasStPlSkill(LANGUAGE_1))
 	{
-		nDocID = Doc_Create();
-		Doc_SetPages(nDocID,1);
 		Doc_SetPage(nDocID,0,"Maya_Stoneplate_03.TGA",0);
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,-1,70,50,90,50,1);
@@ -826,8 +820,6 @@ func void Use_StonePlateCommon()
 	}
 	else
 	{
-		nDocID = Doc_Create();
-		Doc_SetPages(nDocID,1);
 		Doc_SetPage(nDocID,0,"Maya_Stoneplate_02.TGA",0);
 		B_CannotUse_Addon();
 		B_Say(self,self,"$CANTREADTHIS");
@@ -855,14 +847,13 @@ instance ItMi_Addon_Stone_01(C_Item)
 
 func void Use_Addon_Stone_01()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_02.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
 	Doc_PrintLine(nDocID,0,"");
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
+	if(C_SCHasStPlSkill(LANGUAGE_1))
 	{
 //		Doc_PrintLines(nDocID,0,"Мы, последние трое из Совета Пяти, установили в храме ловушки и спрятали вход, чтобы меч больше никогда не покинул храм.");
 		Doc_PrintLines(nDocID,0,"Мы, последние трое из Совета Пяти, установили в храме ловушки и спрятали вход, чтобы меч больше никогда не увидел свет.");
@@ -896,14 +887,13 @@ instance ItMi_Addon_Stone_02(C_Item)
 
 func void Use_Addon_Stone_02()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_05.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
 	Doc_PrintLine(nDocID,0,"");
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
+	if(C_SCHasStPlSkill(LANGUAGE_1))
 	{
 		Doc_PrintLines(nDocID,0,"Внешние ворота с помощью КАРДИМОНА закрыл КУАРХОДРОН. Этот ритуал стал для них смертельным.");
 		Doc_PrintLine(nDocID,0,"");
@@ -944,14 +934,13 @@ instance ItMi_Addon_Stone_03(C_Item)
 
 func void Use_Addon_Stone_03()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_03.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
 	Doc_PrintLine(nDocID,0,"");
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
+	if(C_SCHasStPlSkill(LANGUAGE_1))
 	{
 		Doc_PrintLines(nDocID,0,"КАРДИМОН создал вторую ловушку. Лишь тот, кто следует по пути света до самого конца, достигнет третьего зала.");
 	}
@@ -984,14 +973,13 @@ instance ItMi_Addon_Stone_04(C_Item)
 
 func void Use_Addon_Stone_04()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_04.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
 	Doc_PrintLine(nDocID,0,"");
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
+	if(C_SCHasStPlSkill(LANGUAGE_1))
 	{
 		Doc_PrintLines(nDocID,0,"Третью ловушку создал КУАРХОДРОН. Лишь он знает, как открыть вход.");
 		SC_KnowsRhademesTrapDetails = TRUE;
@@ -1025,14 +1013,13 @@ instance ItMi_Addon_Stone_05(C_Item)
 
 func void Use_Addon_Stone_05()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_01.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
 	Doc_PrintLine(nDocID,0,"");
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
+	if(C_SCHasStPlSkill(LANGUAGE_1))
 	{
 		Doc_PrintLines(nDocID,0,"Я, тот, кто был против решения Совета Трех, создал первую ловушку. Лишь я знаю правильную дверь.");
 	}
@@ -1045,7 +1032,7 @@ func void Use_Addon_Stone_05()
 	Doc_Show(nDocID);
 };
 
-instance ItMI_Addon_Kompass_Mis(C_Item)
+instance ItMi_Addon_Kompass_MIS(C_Item)
 {
 	name = "Золотой компас";
 	mainflag = ITEM_KAT_NONE;
@@ -1058,13 +1045,13 @@ instance ItMI_Addon_Kompass_Mis(C_Item)
 	count[5] = value;
 };
 
-instance ItSE_Addon_FrancisChest(C_Item)
+instance ItSe_Addon_FrancisChest(C_Item)
 {
 	name = "Сундук с сокровищами";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 750;
-	visual = "ItSE_Addon_FrancisChest.3ds";
+	visual = "ItSe_Addon_FrancisChest.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
 	on_state[0] = FrancisChest;
@@ -1077,12 +1064,12 @@ instance ItSE_Addon_FrancisChest(C_Item)
 
 func void FrancisChest()
 {
-	CreateInvItems(hero,ITWR_Addon_FrancisAbrechnung_Mis,1);
+	CreateInvItems(hero,ItWr_Addon_FrancisAbrechnung_MIS,1);
 	CreateInvItems(hero,ItMw_1h_Pir_Dagger,1);
 	CreateInvItems(hero,ItMi_Gold,153);
 	CreateInvItems(hero,ItMi_GoldCup,1);
 	CreateInvItems(hero,ItMi_SilverNecklace,1);
-	CreateInvItems(hero,ItSE_Addon_EmptyFrancisChest,1);
+	CreateInvItems(hero,ItSe_Addon_EmptyFrancisChest,1);
 	AI_PrintScreen("Книга платежей получено",-1,49,FONT_ScreenSmall,4);
 	AI_PrintScreen("Хороший кинжал получено",-1,40,FONT_ScreenSmall,4);
 	AI_PrintScreen("153 золотых получено",-1,52,FONT_ScreenSmall,4);
@@ -1092,12 +1079,12 @@ func void FrancisChest()
 };
 
 
-instance ItSE_Addon_EmptyFrancisChest(C_Item)
+instance ItSe_Addon_EmptyFrancisChest(C_Item)
 {
 	name = "Пустой сундук";
 	mainflag = ITEM_KAT_NONE;
 	value = 200;
-	visual = "ItSE_Addon_FrancisChest.3ds";
+	visual = "ItSe_Addon_FrancisChest.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[5] = NAME_Value;
@@ -1105,7 +1092,7 @@ instance ItSE_Addon_EmptyFrancisChest(C_Item)
 };
 
 
-instance ITWR_Addon_FrancisAbrechnung_Mis(C_Item)
+instance ItWr_Addon_FrancisAbrechnung_MIS(C_Item)
 {
 	name = "Книга платежей";
 	mainflag = ITEM_KAT_DOCS;
@@ -1115,13 +1102,12 @@ instance ITWR_Addon_FrancisAbrechnung_Mis(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-	on_state[0] = UseFrancisAbrechnung_Mis;
+	on_state[0] = UseFrancisAbrechnung_MIS;
 };
 
 
-func void UseFrancisAbrechnung_Mis()
+func void UseFrancisAbrechnung_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Brown_L.tga",0);
@@ -1189,13 +1175,13 @@ func void UseFrancisAbrechnung_Mis()
 };
 
 
-instance ITWR_Addon_GregsLogbuch_Mis(C_Item)
+instance ItWr_Addon_GregsLogbuch_MIS(C_Item)
 {
 	name = "Дневник Грега";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_GregsLogbuch_Mis.3ds";
+	visual = "ItWr_GregsLogbuch_MIS.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
@@ -1208,7 +1194,6 @@ instance ITWR_Addon_GregsLogbuch_Mis(C_Item)
 
 func void UseGregsLogbuch()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Brown_L.tga",0);
@@ -1230,7 +1215,7 @@ func void UseGregsLogbuch()
 };
 
 
-instance ITKE_Addon_Bloodwyn_01(C_Item)
+instance ItKe_Addon_Bloodwyn_01(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -1246,7 +1231,7 @@ instance ITKE_Addon_Bloodwyn_01(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_Addon_Heiler(C_Item)
+instance ItKe_Addon_Heiler(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -1280,7 +1265,6 @@ instance ItMi_TempelTorKey(C_Item)
 
 func void Use_TempelTorKey()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"Maya_Stoneplate_03.TGA",0);
@@ -1338,17 +1322,16 @@ instance ItWR_Addon_TreasureMap(C_Item)
 
 func void Use_TreasureMap()
 {
-	var int Document;
 	if(Npc_IsPlayer(self))
 	{
 		B_SetPlayerMap(ItWR_Addon_TreasureMap);
 	};
-	Document = Doc_CreateMap();
-	Doc_SetPages(Document,1);
-	Doc_SetPage(Document,0,"Map_AddonWorld_Treasures.tga",TRUE);
-	Doc_SetLevel(Document,"Addon\AddonWorld.zen");
-	Doc_SetLevelCoords(Document,-47783,36300,43949,-32300);
-	Doc_Show(Document);
+	nDocID = Doc_CreateMap();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Map_AddonWorld_Treasures.tga",TRUE);
+	Doc_SetLevel(nDocID,"Addon\AddonWorld.zen");
+	Doc_SetLevelCoords(nDocID,-47783,36300,43949,-32300);
+	Doc_Show(nDocID);
 };
 
 

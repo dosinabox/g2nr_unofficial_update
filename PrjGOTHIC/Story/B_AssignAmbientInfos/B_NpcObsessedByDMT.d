@@ -71,11 +71,6 @@ func void B_NpcClearObsessionByDMT(var C_Npc medium)
 				Npc_SetTarget(BAU_969_Bauer,medium);
 				AI_StartState(BAU_969_Bauer,ZS_Flee,0,"");
 			};
-			if(!Npc_IsDead(Pardos_NW) && (PardosLeftFarmWithMalak == TRUE))
-			{
-				Npc_SetTarget(Pardos_NW,medium);
-				AI_StartState(Pardos_NW,ZS_Flee,0,"");
-			};
 		}
 		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Fernando))
 		{

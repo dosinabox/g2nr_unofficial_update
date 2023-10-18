@@ -43,7 +43,7 @@ func void B_OpenShell()
 	}
 	else
 	{
-		player_plunder_is_empty();
+		Player_Plunder_Is_Empty();
 	};
 };
 

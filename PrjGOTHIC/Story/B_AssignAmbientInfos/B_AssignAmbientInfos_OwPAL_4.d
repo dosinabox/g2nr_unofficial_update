@@ -59,7 +59,7 @@ func void DIA_OWPAL_4_STANDARD_Info()
 
 func void B_AssignAmbientInfos_OWPAL_4(var C_Npc slf)
 {
-	dia_owpal_4_exit.npc = Hlp_GetInstanceID(slf);
-	dia_owpal_4_standard.npc = Hlp_GetInstanceID(slf);
+	DIA_OWPAL_4_EXIT.npc = Hlp_GetInstanceID(slf);
+	DIA_OWPAL_4_STANDARD.npc = Hlp_GetInstanceID(slf);
 };
 

@@ -59,8 +59,6 @@ func void DIA_Addon_Saturas_Nefarius_Info()
 	AI_Output(other,self,"DIA_ADDON_Saturas_Nefarius_15_02");	//Не надо беспокоиться. Все доставлю как есть.
 	if((Ornament_Switched_Forest == FALSE) && Npc_HasItems(other,ItWr_Map_NewWorld_Ornaments_Addon))
 	{
-		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_03");	//(вздыхает) Ты хоть знаешь, что ты ищешь?
 		AI_Output(other,self,"DIA_ADDON_Saturas_Nefarius_15_04");	//Ну, Нефариус дал мне эту карту...
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_05");	//Покажи ее мне!

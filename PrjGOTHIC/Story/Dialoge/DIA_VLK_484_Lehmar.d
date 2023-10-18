@@ -193,7 +193,7 @@ func void DIA_Lehmar_GELDEINTREIBEN_kannstmich()
 	Lehmar_vorbei = TRUE;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
-	if(Hlp_IsValidNpc(Meldor) && !C_NpcIsDown(Meldor))
+	if(!C_NpcIsDown(Meldor))
 	{
 		B_Attack(Meldor,other,AR_NONE,1);
 	};
@@ -216,7 +216,7 @@ func void DIA_Lehmar_GELDEINTREIBEN_schuldenzahlen()
 		Lehmar_vorbei = TRUE;
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_NONE,1);
-		if(Hlp_IsValidNpc(Meldor) && !C_NpcIsDown(Meldor))
+		if(!C_NpcIsDown(Meldor))
 		{
 			B_Attack(Meldor,other,AR_NONE,1);
 		};

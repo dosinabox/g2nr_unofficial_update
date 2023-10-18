@@ -67,7 +67,7 @@ instance DIA_Parcival_Diego(C_Info)
 
 func int DIA_Parcival_Diego_Condition()
 {
-	if((SearchForDiego == LOG_Running) && (Kapitel < 3) && Npc_KnowsInfo(hero,DIA_Parcival_Schurfer))
+	if((SearchForDiego == LOG_Running) && (Kapitel < 3) && Npc_KnowsInfo(other,DIA_Parcival_Schurfer))
 	{
 		return TRUE;
 	};
@@ -145,7 +145,7 @@ instance DIA_Parcival_DRAGONS(C_Info)
 
 func int DIA_Parcival_DRAGONS_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Parcival_DRAGON) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Parcival_DRAGON) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -174,7 +174,7 @@ instance DIA_Parcival_BRAVE(C_Info)
 
 func int DIA_Parcival_BRAVE_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(hero,DIA_Parcival_DRAGONS) && (Kapitel < 3) && (Parcival_BRAVE_LaberCount <= 6))
+	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Parcival_DRAGONS) && (Kapitel < 3) && (Parcival_BRAVE_LaberCount <= 6))
 	{
 		return TRUE;
 	};

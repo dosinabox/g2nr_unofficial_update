@@ -476,10 +476,10 @@ func void PC_PrayShrine_BlessSword_Final_Info()
 		PrintScreen(PRINT_SCIsObsessed,-1,-1,FONT_Screen,2);
 		Snd_Play("DEM_Die");
 	}
-	else if(Npc_HasItems(hero,ItPo_PotionOfDeath_01_Mis) || Npc_HasItems(hero,ItPo_PotionOfDeath_02_Mis))
+	else if(Npc_HasItems(hero,ItPo_PotionOfDeath_01_MIS) || Npc_HasItems(hero,ItPo_PotionOfDeath_02_MIS))
 	{
-		Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_01_Mis,1);
-		Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_02_Mis,1);
+		Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_01_MIS,1);
+		Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_02_MIS,1);
 		if(Npc_HasItems(hero,ItMw_2H_Blessed_02))
 		{
 			Npc_RemoveInvItems(hero,ItMw_2H_Blessed_02,1);

@@ -27,7 +27,7 @@ func void Rtn_Start_1136()
 	TA_Pick_Ore(23,0,8,0,"ADW_MINE_PICK_05");
 };
 
-func void rtn_tot_1136()
+func void Rtn_TOT_1136()
 {
 	TA_Sleep(8,0,23,0,"TOT");
 	TA_Sleep(23,0,8,0,"TOT");

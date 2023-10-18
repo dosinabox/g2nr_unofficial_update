@@ -46,7 +46,6 @@ func void B_StealItem()
 	dex = self.aivar[AIV_DexToSteal];
 	itm = self.aivar[AIV_ItemToSteal];
 	amount = self.aivar[AIV_AmountToSteal];
-	//TODO точно определять предмет и использовать только для золота
 	if((dex <= 20) && (amount > 1) && (EasyLowDexPickpocketDisabled == FALSE))
 	{
 		dex = 10;

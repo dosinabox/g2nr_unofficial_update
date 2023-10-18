@@ -42,6 +42,8 @@ func void evt_oc_maingate_func_s1()
 		B_KillNpc(VLK_4103_Waffenknecht);
 		B_KillNpc(VLK_4104_Waffenknecht);
 		B_KillNpc(VLK_4105_Waffenknecht);
+		B_SetImmortal(Brutus);
+		B_SetMortal(Garond);
 		if(!Npc_IsDead(HaupttorWache_4143))
 		{
 			AI_Teleport(HaupttorWache_4143,"OC_WALL_05");
@@ -55,11 +57,6 @@ func void evt_oc_maingate_func_s1()
 			B_KillNpc(VLK_4108_Engor);
 			B_ClearDeadTrader(Engor);
 		};
-		if(!Npc_IsDead(Brutus))
-		{
-			Brutus.flags = NPC_FLAG_IMMORTAL;
-		};
-		Garond.flags = 0;
 		PlayVideo("ORCATTACK.BIK");
 		MIS_OCGateOpen = TRUE;
 	};

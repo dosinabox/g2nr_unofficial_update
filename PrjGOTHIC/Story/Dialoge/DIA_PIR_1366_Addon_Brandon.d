@@ -72,7 +72,7 @@ func void DIA_Addon_Brandon_AnyNews_Info()
 		{
 			AI_Output(self,other,"DIA_Addon_Brandon_Alright_04_01");	//Пожалуй. Например, я ранен. У тебя не найдется лечебного эликсира?
 		}
-		else if(!C_AllCanyonRazorDead())
+		else if(CanyonRazorBodyCount < 10)
 		{
 			AI_Output(self,other,"DIA_Addon_Brandon_Alright_04_02");	//Что еще? Мы будем, наконец, охотиться или нет?
 		}

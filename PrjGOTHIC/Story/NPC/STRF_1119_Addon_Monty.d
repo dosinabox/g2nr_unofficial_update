@@ -36,7 +36,7 @@ func void Rtn_Flucht_1119()
 	TA_RunToWP(23,0,8,0,"SOME_WAYPOINT_14");
 };
 
-func void rtn_tot_1119()
+func void Rtn_TOT_1119()
 {
 	TA_Sleep(8,0,23,0,"TOT");
 	TA_Sleep(23,0,8,0,"TOT");

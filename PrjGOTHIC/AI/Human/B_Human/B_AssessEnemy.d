@@ -47,7 +47,7 @@ func int B_AssessEnemy()
 	{
 		return FALSE;
 	};
-	if((C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE)) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
+	if(C_NpcIsSwimming(other) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
 	{
 		return FALSE;
 	};
@@ -92,13 +92,10 @@ func int B_AssessEnemy()
 		{
 			B_Attack(self,other,self.aivar[AIV_LastPlayerAR],0);
 			return TRUE;
-		}
-		else
-		{
-			return FALSE;
 		};
+		return FALSE;
 	};
-	if(C_WantToFlee(self,other))
+	if(C_WantToFlee(self))
 	{
 		B_CallGuards();
 		B_Flee();

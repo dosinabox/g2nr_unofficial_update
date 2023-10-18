@@ -15,7 +15,6 @@ func void ZS_MM_Rtn_Roam()
 func int ZS_MM_Rtn_Roam_Loop()
 {
 	var int wanderTime;
-	var int randomMove;
 	if(!Wld_IsTime(self.aivar[AIV_MM_RoamStart],0,self.aivar[AIV_MM_RoamEnd],self.aivar[AIV_StateTime]) && (self.aivar[AIV_MM_RoamStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
@@ -37,22 +36,7 @@ func int ZS_MM_Rtn_Roam_Loop()
 	}
 	else if(Hlp_Random(1000) <= 5)
 	{
-		if(self.guild != GIL_SWAMPSHARK)
-		{
-			randomMove = Hlp_Random(3);
-			if(randomMove == 0)
-			{
-				AI_PlayAni(self,"R_ROAM1");
-			}
-			else if(randomMove == 1)
-			{
-				AI_PlayAni(self,"R_ROAM2");
-			}
-			else
-			{
-				AI_PlayAni(self,"R_ROAM3");
-			};
-		};
+		B_PlayRandomRoamAni();
 	};
 	return LOOP_CONTINUE;
 };

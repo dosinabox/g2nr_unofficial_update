@@ -494,8 +494,7 @@ func void B_Torlof_HolPachtVonSekob()
 		DIA_Common_No();
 	};
 	MIS_Torlof_HolPachtVonSekob = LOG_Running;
-	Sekob.flags = 0;
-//	CreateInvItems(Sekob,ItMi_Gold,50);
+	B_SetMortal(Sekob);
 	Log_CreateTopic(TOPIC_TorlofPacht,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_TorlofPacht,LOG_Running);
 	B_LogEntry(TOPIC_TorlofPacht,"Торлоф попросил меня собрать ренту с фермера Секоба. Он должен заплатить 50 золотых монет.");
@@ -517,7 +516,7 @@ func void B_Torlof_BengarMilizKlatschen()
 		DIA_Common_No();
 	};
 	MIS_Torlof_BengarMilizKlatschen = LOG_Running;
-	Bengar.flags = 0;
+	B_SetMortal(Bengar);
 	Wld_InsertNpc(MIL_335_Rumbold,"FARM3");
 	Wld_InsertNpc(MIL_336_Rick,"FARM3");
 	B_InitNpcGlobals();
@@ -1163,14 +1162,10 @@ func void DIA_Torlof_BEMYCAPTAIN4_Info()
 		AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN4_01_02");	//У тебя есть морская карта? Без нее мы далеко не уплывем.
 		AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN4_15_03");	//Я позабочусь обо всем. Увидимся в порту.
 		AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN4_01_04");	//Мне не терпится увидеть, как это все у тебя получится.
-		if(self.attribute[ATR_HITPOINTS] == 1)
-		{
-			self.attribute[ATR_HITPOINTS] += 1;
-		};
 		AI_StopProcessInfos(self);
 		SCGotCaptain = TRUE;
 		TorlofIsCaptain = TRUE;
-		self.flags = NPC_FLAG_IMMORTAL;
+		B_SetImmortal(self);
 		Npc_ExchangeRoutine(self,"WaitForShipCaptain");
 		B_GivePlayerXP(XP_Captain_Success);
 	}

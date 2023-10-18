@@ -21,14 +21,7 @@ func void DIA_Sekob_EXIT_Info()
 	{
 		self.flags = 0;
 	};
-	if(Kapitel < 5)
-	{
-		AI_StopProcessInfos(self);
-	}
-	else
-	{
-		B_NpcClearObsessionByDMT(self);
-	};
+	B_NpcClearObsessionByDMT(self);
 };
 
 

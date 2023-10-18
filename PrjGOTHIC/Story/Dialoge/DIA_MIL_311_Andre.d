@@ -1085,10 +1085,15 @@ func void DIA_Andre_Auslieferung_Sarah()
 
 func void B_AndreAskAboutSewer()
 {
-	AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_01");	//Где?
-	AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_02");	//В канализации под городом.
-	AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_03");	//Что? Мы запечатали канализацию...
-	AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_04");	//Похоже, это не помешало им проникнуть туда.
+	if(Andre_FoundThieves_Reported == FALSE)
+	{
+		AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_01");	//Где?
+		AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_02");	//В канализации под городом.
+		AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_03");	//Что? Мы запечатали канализацию...
+		AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_04");	//Похоже, это не помешало им проникнуть туда.
+		Andre_FoundThieves_Reported_Day = Wld_GetDay();
+		Andre_FoundThieves_Reported = TRUE;
+	};
 };
 
 instance DIA_Andre_DGRunning(C_Info)
@@ -1145,20 +1150,13 @@ func void DIA_Andre_DGRunning_Verrat()
 	AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_00");	//Я нашел логово гильдии воров!
 	B_AndreAskAboutSewer();
 	AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_05");	//Ты ликвидировал этих преступников?
-	Andre_FoundThieves_Reported_Day = Wld_GetDay();
-	Andre_FoundThieves_Reported = TRUE;
 };
 
 func void DIA_Andre_DGRunning_Success()
 {
 	AI_Output(other,self,"DIA_Andre_DGRunning_Success_15_00");	//Я всех их ликвидировал!
-	if(Andre_FoundThieves_Reported == FALSE)
-	{
-		B_AndreAskAboutSewer();
-	};
+	B_AndreAskAboutSewer();
 	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_01");	//Ты оказал городу большую услугу.
-	MIS_Andre_GuildOfThieves = LOG_SUCCESS;
-	B_GivePlayerXP(XP_GuildOfThievesPlatt);
 	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_02");	//Если ты все еще хочешь вступить в ополчение, дай мне знать.
@@ -1175,6 +1173,8 @@ func void DIA_Andre_DGRunning_Success()
 	{
 		B_SendMilitiaToHotel();
 	};
+	MIS_Andre_GuildOfThieves = LOG_SUCCESS;
+	B_GivePlayerXP(XP_GuildOfThievesPlatt);
 	Info_ClearChoices(DIA_Andre_DGRunning);
 };
 
@@ -1424,7 +1424,7 @@ func int DIA_Andre_FOUND_PECK_Condition()
 		{
 			return TRUE;
 		}
-		else if(Npc_KnowsInfo(hero,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
+		else if(Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
 		{
 			return TRUE;
 		}

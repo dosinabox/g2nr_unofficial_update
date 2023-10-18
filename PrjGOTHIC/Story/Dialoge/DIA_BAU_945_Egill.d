@@ -42,7 +42,7 @@ func void DIA_Egill_HALLO_Info()
 	AI_Output(self,other,"DIA_Egill_HALLO_08_01");	//Давно уже я не видел чужака на нашей земле, который не хотел бы ободрать нас, как липку.
 	AI_Output(self,other,"DIA_Egill_HALLO_08_02");	//Надеюсь, я не ошибаюсь в тебе.
 	AI_Output(self,other,"DIA_Egill_HALLO_08_03");	//Я Эгилл.
-	if(Hlp_IsValidNpc(Ehnim) && !C_NpcIsDown(Ehnim))
+	if(!C_NpcIsDown(Ehnim))
 	{
 		AI_Output(self,other,"DIA_Egill_HALLO_08_04");	//А этот чудак вон там - мой брат Эним.
 	};
@@ -112,7 +112,7 @@ instance DIA_Egill_STREIT2(C_Info)
 
 func int DIA_Egill_STREIT2_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Egill_FELDRAEUBER) && Npc_KnowsInfo(other,DIA_Ehnim_FELDRAEUBER) && (Hlp_IsValidNpc(Ehnim) && !C_NpcIsDown(Ehnim)))
+	if(Npc_KnowsInfo(other,DIA_Egill_FELDRAEUBER) && Npc_KnowsInfo(other,DIA_Ehnim_FELDRAEUBER) && !C_NpcIsDown(Ehnim))
 	{
 		return TRUE;
 	};
@@ -141,7 +141,7 @@ instance DIA_Egill_STREIT4(C_Info)
 
 func int DIA_Egill_STREIT4_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Ehnim_STREIT3) && (Hlp_IsValidNpc(Ehnim) && !C_NpcIsDown(Ehnim)))
+	if(Npc_KnowsInfo(other,DIA_Ehnim_STREIT3) && !C_NpcIsDown(Ehnim))
 	{
 		return TRUE;
 	};

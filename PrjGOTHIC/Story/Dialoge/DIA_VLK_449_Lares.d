@@ -2205,6 +2205,7 @@ func void DIA_Addon_Lares_GOFORESTPRE_Info()
 		AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_09_01");	//Ты уже подумал о походе в лес? Ты действительно хочешь туда направиться?
 	};
 	Lares_Distracted = FALSE;
+	Lares_Guide = Wld_GetDay();
 	Info_ClearChoices(DIA_Addon_Lares_GOFORESTPRE);
 	Info_AddChoice(DIA_Addon_Lares_GOFORESTPRE,"Нет, можешь идти.",DIA_Addon_Lares_GOFORESTPRE_nein);
 	Info_AddChoice(DIA_Addon_Lares_GOFORESTPRE,"Да.",DIA_Addon_Lares_GOFORESTPRE_ja);

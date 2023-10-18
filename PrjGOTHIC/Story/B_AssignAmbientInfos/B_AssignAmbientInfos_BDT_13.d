@@ -59,7 +59,7 @@ func void DIA_BDT_13_STANDARD_Info()
 
 func void B_AssignAmbientInfos_BDT_13(var C_Npc slf)
 {
-	dia_bdt_13_exit.npc = Hlp_GetInstanceID(slf);
-	dia_bdt_13_standard.npc = Hlp_GetInstanceID(slf);
+	DIA_BDT_13_EXIT.npc = Hlp_GetInstanceID(slf);
+	DIA_BDT_13_STANDARD.npc = Hlp_GetInstanceID(slf);
 };
 

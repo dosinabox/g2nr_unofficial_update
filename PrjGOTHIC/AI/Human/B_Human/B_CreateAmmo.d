@@ -16,17 +16,11 @@ func void B_CreateAmmo(var C_Npc slf)
 	};
 	if(rangedWeapon.munition == ItRw_Arrow)
 	{
-		if(Npc_HasItems(slf,ItRw_Arrow) < 10)
-		{
-			CreateInvItems(slf,ItRw_Arrow,10);
-		};
+		B_RefreshInvItemToAmount(slf,ItRw_Arrow,10);
 	}
 	else if(rangedWeapon.munition == ItRw_Bolt)
 	{
-		if(Npc_HasItems(slf,ItRw_Bolt) < 10)
-		{
-			CreateInvItems(slf,ItRw_Bolt,10);
-		};
+		B_RefreshInvItemToAmount(slf,ItRw_Bolt,10);
 	};
 };
 

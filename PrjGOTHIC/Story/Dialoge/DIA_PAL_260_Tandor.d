@@ -207,7 +207,7 @@ instance DIA_Tandor_News(C_Info)
 
 func int DIA_Tandor_News_Condition()
 {
-	if((Kapitel == 4) && Npc_KnowsInfo(hero,DIA_Tandor_Hallo))
+	if((Kapitel == 4) && Npc_KnowsInfo(other,DIA_Tandor_Hallo))
 	{
 		return TRUE;
 	};
@@ -241,7 +241,7 @@ instance DIA_Tandor_WASISTLOS(C_Info)
 
 func int DIA_Tandor_WASISTLOS_Condition()
 {
-	if((Kapitel == 5) && Npc_KnowsInfo(hero,DIA_Tandor_Hallo))
+	if((Kapitel == 5) && Npc_KnowsInfo(other,DIA_Tandor_Hallo))
 	{
 		return TRUE;
 	};

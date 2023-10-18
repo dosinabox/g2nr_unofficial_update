@@ -97,6 +97,14 @@ const int AIV_NPCIsTrader = 94;
 const int AIV_Teeth = 95;
 const int AIV_RefreshAmmoDay = 96;
 
+const int REAL_STRENGTH = 81;
+const int REAL_DEXTERITY = 82;
+const int REAL_MANA_MAX = 83;
+const int REAL_TALENT_1H = 84;
+const int REAL_TALENT_2H = 85;
+const int REAL_TALENT_BOW = 86;
+const int REAL_TALENT_CROSSBOW = 87;
+
 const int AF_NONE = 0;
 const int AF_RUNNING = 1;
 const int AF_AFTER = 2;
@@ -336,10 +344,10 @@ const int FAI_DRAGON = 39;
 const int FAI_MOLERAT = 40;
 const int FAI_ORC = 12;
 const int FAI_DRACONIAN = 41;
-const int FAI_Alligator = 43;
+const int FAI_ALLIGATOR = 43;
 const int FAI_GARGOYLE = 44;
 const int FAI_BEAR = 45;
-const int FAI_Stoneguardian = 46;
+const int FAI_STONEGUARDIAN = 46;
 
 const int TRUE = 1;
 const int FALSE = 0;

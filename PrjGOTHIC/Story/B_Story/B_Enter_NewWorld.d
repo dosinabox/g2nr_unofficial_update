@@ -228,7 +228,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Wld_InsertNpc(DMT_DementorAmbientSekob2,"NW_FARM4_IN_02");
 			Wld_InsertNpc(DMT_DementorAmbientSekob3,"NW_FARM4_IN_03");
 			Wld_InsertNpc(DMT_DementorAmbientSekob4,"NW_FARM4_IN_04");
-			Sekob.flags = NPC_FLAG_IMMORTAL;
+			B_SetImmortal(Sekob);
 		};
 		B_StartOtherRoutine(Lester,"WAITFORPLAYER");
 		B_NpcSetJailed(Bennet);
@@ -316,7 +316,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(Follow_Sheep_AKIL,"NW_FOREST_CAVE1_IN_02");
 		if(!Npc_IsDead(Fester))
 		{
-			B_StartOtherRoutine(Fester,"CH3");
+			Npc_ExchangeRoutine(Fester,"CH3");
 			if(MIS_Fester_KillBugs == LOG_Running)
 			{
 				MIS_Fester_KillBugs = LOG_FAILED;
@@ -333,14 +333,16 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			B_StartOtherRoutine(BAU_967_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_968_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_969_Bauer,"FleeFromPass");
-			if(!Npc_IsDead(Pardos_NW))
-			{
-				Npc_ExchangeRoutine(Pardos_NW,"FleeFromPass");
-				PardosLeftFarmWithMalak = TRUE;
-			};
 			if(hero.guild == GIL_KDF)
 			{
 				CreateInvItems(Malak,ITWR_DementorObsessionBook_MIS,1);
+			};
+		};
+		if((hero.guild != GIL_NOV) && (hero.guild != GIL_KDF))
+		{
+			if(!Npc_IsDead(Igaraz))
+			{
+				B_CreateItemToSteal(Igaraz,40,ItKe_IgarazChest_MIS,1);
 			};
 		};
 		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
@@ -444,10 +446,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Npc_ExchangeRoutine(Rumbold,"Ch3");
 			RumboldReturnedToCity = TRUE;
 		};
-		if(!Npc_IsDead(Richter))
-		{
-			Richter.flags = 0;
-		};
+		B_SetMortal(Richter);
 		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 		{
 			IntroduceChapter(KapWechsel_3,KapWechsel_3_Text,"chapter3_MIL.tga","chapter_01.wav",6000);
@@ -784,10 +783,10 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		Wld_InsertNpc(Lurker,"NW_FARM3_MOUNTAINLAKE_05");
 		Wld_InsertNpc(Lurker,"NW_FARM3_MOUNTAINLAKE_05");
 		Wld_InsertNpc(NONE_101_Mario,"NW_CITY_ENTRANCE_01");
-		Wld_InsertItem(ItWr_HallsofIrdorath_Mis,"FP_NW_ITEM_LIBRARY_IRDORATHBOOK");
+		Wld_InsertItem(ItWr_HallsofIrdorath_MIS,"FP_NW_ITEM_LIBRARY_IRDORATHBOOK");
 		Wld_InsertItem(ItWr_Seamap_Irdorath,"FP_NW_ITEM_LIBRARY_SEAMAP");
-		Wld_InsertItem(ItWr_XardasSeamapBook_Mis,"FP_NW_ITEM_LIBRARY_SEAMAP");
-		Wld_InsertItem(ItPo_PotionOfDeath_01_Mis,"FP_NW_ITEM_LIBRARY_SEAMAP2");
+		Wld_InsertItem(ItWr_XardasSeamapBook_MIS,"FP_NW_ITEM_LIBRARY_SEAMAP");
+		Wld_InsertItem(ItPo_PotionOfDeath_01_MIS,"FP_NW_ITEM_LIBRARY_SEAMAP2");
 		if(MIS_HealHilda == LOG_SUCCESS)
 		{
 			B_StartOtherRoutine(Hilda,"START");
@@ -849,14 +848,8 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		Wld_InsertNpc(PAL_291_Ritter,"CITY1");
 		Wld_InsertNpc(PAL_292_Ritter,"CITY1");
 		Wld_InsertNpc(PAL_293_Ritter,"CITY1");
-		if(!Npc_IsDead(Schiffswache_212))
-		{
-			Schiffswache_212.flags = 0;
-		};
-		if(!Npc_IsDead(Schiffswache_213))
-		{
-			Schiffswache_213.flags = 0;
-		};
+		B_SetMortal(Schiffswache_212);
+		B_SetMortal(Schiffswache_213);
 		if(!Npc_IsDead(PAL_220_Schiffswache))
 		{
 			PAL_220_Schiffswache.flags = 0;

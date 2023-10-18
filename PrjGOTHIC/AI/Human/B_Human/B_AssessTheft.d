@@ -37,7 +37,7 @@ func void B_AssessTheft()
 			return;
 		};
 	};
-	if(!C_IsTakenItemMyPossession(self,other,item))
+	if(!C_IsTakenItemMyPossession(self,item))
 	{
 		return;
 	};

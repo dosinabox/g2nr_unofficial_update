@@ -1362,6 +1362,7 @@ func void DIA_Bennet_GetInnosEye_Info()
 
 
 var int BennetsDragonEggOffer;
+var int DragonEggCounter;
 
 instance DIA_Bennet_DRACHENEIER(C_Info)
 {
@@ -1422,6 +1423,7 @@ func void DIA_Bennet_DRACHENEIER_ok()
 	AI_Output(other,self,"DIA_Bennet_DRACHENEIER_ok_15_00");	//Договорились.
 	AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_01");	//Отлично.
 	AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_02");	//Если найдешь еще, неси их сюда.
+	DragonEggCounter += 1;
 	if(BennetsDragonEggOffer != 350)
 	{
 		BennetsDragonEggOffer = 300;
@@ -1468,8 +1470,6 @@ func void DIA_Bennet_DRACHENEIER_nein()
 	Info_ClearChoices(DIA_Bennet_DRACHENEIER);
 };
 
-var int DragonEggCounter;
-
 instance DIA_Bennet_EierBringen(C_Info)
 {
 	npc = SLD_809_Bennet;
@@ -1510,7 +1510,7 @@ func void DIA_Bennet_EierBringen_Info()
 	{
 		AI_Output(self,other,"DIA_Bennet_EierBringen_06_04");	//Отлично. Давай сюда. Ты везде посмотрел, а? Наверняка где-то должны быть еще.
 	}
-	else if(DragonEggCounter <= 11)
+	else if(DragonEggCounter <= 13)
 	{
 		AI_Output(self,other,"DIA_Bennet_EierBringen_06_05");	//Где ты раскопал их? Вряд ли где-нибудь еще остались эти яйца.
 	}

@@ -221,7 +221,7 @@ instance DIA_Addon_Francis_Buch(C_Info)
 
 func int DIA_Addon_Francis_Buch_Condition()
 {
-	if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis) && (Francis_HasProof == TRUE))
+	if(Npc_HasItems(other,ItWr_Addon_FrancisAbrechnung_MIS) && (Francis_HasProof == TRUE))
 	{
 		return TRUE;
 	};
@@ -262,8 +262,8 @@ func void DIA_Addon_Francis_Buch_Info()
 		};
 		AI_Output(self,other,"DIA_Addon_Francis_Buch_13_13");	//(торопливо) А теперь давай мне сюда эту штуку...
 	};
-	B_GiveInvItems(other,self,ITWR_Addon_FrancisAbrechnung_Mis,1);
-	Npc_RemoveInvItem(self,ITWR_Addon_FrancisAbrechnung_Mis);
+	B_GiveInvItems(other,self,ItWr_Addon_FrancisAbrechnung_MIS,1);
+	Npc_RemoveInvItem(self,ItWr_Addon_FrancisAbrechnung_MIS);
 	AI_StopProcessInfos(self);
 };
 
@@ -302,7 +302,7 @@ func void DIA_Francis_Ausgeschissen_Info()
 			AI_Output(self,other,"DIA_Addon_Francis_Ausgeschissen_13_00");	//(гневно) Благодаря тебе Грег заставил меня пилить дрова до тех пор, пока на острове не останется ни одного дерева.
 		};
 		AI_Output(self,other,"DIA_Addon_Francis_Ausgeschissen_13_01");	//Оставь меня в покое!
-		if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis) && (Francis_HasProof == TRUE))
+		if(Npc_HasItems(other,ItWr_Addon_FrancisAbrechnung_MIS) && (Francis_HasProof == TRUE))
 		{
 			DIA_Common_NotSoFastMyFriend();
 		}

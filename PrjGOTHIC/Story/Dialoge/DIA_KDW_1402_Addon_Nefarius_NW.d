@@ -165,7 +165,7 @@ func void DIA_Addon_Nefarius_SCbringOrnaments_Info()
 	};
 	if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_FromCavalorn == TRUE) && (Bdt_1013_ToCavalorn == FALSE))
 	{
-		B_StartOtherRoutine(Ambusher_1013,"AWAY");
+		Npc_ExchangeRoutine(Ambusher_1013,"AWAY");
 		Bdt_1013_ToCavalorn = TRUE;
 	};
 	AI_Output(self,other,"DIA_Addon_Nefarius_SCbringOrnaments_05_08");	//Ты должен искать части ключа именно там.
@@ -224,38 +224,31 @@ func int DIA_Addon_Nefarius_MissingOrnaments_Condition()
 
 
 var int MissingOrnamentsCounter;
-const int Addon_NefariussMissingOrnamentsOffer = 100;
+const int NefariusMissingOrnamentsOffer = 100;
 
 func void DIA_Addon_Nefarius_MissingOrnaments_Info()
 {
-	var int MissingOrnamentsCount;
-	var int XP_Addon_BringMissingOrnaments;
-	var int MissingOrnamentsGeld;
-	var string concatText;
+	var int amount;
+	amount = Npc_HasItems(other,ItMi_Ornament_Addon);
 	AI_Output(other,self,"DIA_Addon_Nefarius_MissingOrnaments_15_00");	//Насчет пропавших фрагментов...
 	AI_Output(self,other,"DIA_Addon_Nefarius_MissingOrnaments_05_01");	//Да?
-	if(Npc_HasItems(other,ItMi_Ornament_Addon))
+	if(amount > 0)
 	{
-		MissingOrnamentsCount = Npc_HasItems(other,ItMi_Ornament_Addon);
-		if(MissingOrnamentsCount == 1)
+		if(amount == 1)
 		{
 			AI_Output(other,self,"DIA_Addon_Nefarius_MissingOrnaments_15_02");	//Я нашел еще один.
-			B_GivePlayerXP(XP_Addon_BringMissingOrnament);
-			Npc_RemoveInvItems(other,ItMi_Ornament_Addon,1);
-			AI_PrintScreen("Орнамент отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-			MissingOrnamentsCounter += 1;
 		}
 		else
 		{
 			AI_Output(other,self,"DIA_Addon_Nefarius_MissingOrnaments_15_03");	//Я нашел их.
-			Npc_RemoveInvItems(other,ItMi_Ornament_Addon,MissingOrnamentsCount);
-			concatText = ConcatStrings(IntToString(MissingOrnamentsCount),PRINT_ItemsGiven);
-			AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-			XP_Addon_BringMissingOrnaments = MissingOrnamentsCount * XP_Addon_BringMissingOrnament;
-			MissingOrnamentsCounter += MissingOrnamentsCount;
-			B_GivePlayerXP(XP_Addon_BringMissingOrnaments);
 		};
+		B_GiveInvItems(other,self,ItMi_Ornament_Addon,amount);
+		B_RemoveEveryInvItem(self,ItMi_Ornament_Addon);
+		MissingOrnamentsCounter += amount;
 		AI_Output(self,other,"DIA_Addon_Nefarius_MissingOrnaments_05_04");	//Отлично!
+		AI_Output(self,other,"DIA_Addon_Nefarius_MissingOrnaments_05_09");	//Вот, возьми в награду это золото.
+		B_GiveInvItems(self,other,ItMi_Gold,NefariusMissingOrnamentsOffer * amount);
+		B_GivePlayerXP(XP_Addon_BringMissingOrnament * amount);
 		if(MissingOrnamentsCounter == 1)
 		{
 			AI_Output(self,other,"DIA_Addon_Nefarius_MissingOrnaments_05_05");	//Осталось найти еще два. Думаю, ты справишься.
@@ -268,15 +261,9 @@ func void DIA_Addon_Nefarius_MissingOrnaments_Info()
 		{
 			AI_Output(self,other,"DIA_Addon_Nefarius_MissingOrnaments_05_07");	//Теперь у нас есть все части. Осталось их собрать.
 			AI_Output(self,other,"DIA_Addon_Nefarius_MissingOrnaments_05_08");	//Мы используем наши объединенные силы, чтобы сделать из фрагментов кольцо.
-			MIS_Addon_Nefarius_BringMissingOrnaments = LOG_SUCCESS;
-		};
-		AI_Output(self,other,"DIA_Addon_Nefarius_MissingOrnaments_05_09");	//Вот, возьми в награду это золото.
-		MissingOrnamentsGeld = MissingOrnamentsCount * Addon_NefariussMissingOrnamentsOffer;
-		CreateInvItems(self,ItMi_Gold,MissingOrnamentsGeld);
-		B_GiveInvItems(self,other,ItMi_Gold,MissingOrnamentsGeld);
-		if(MIS_Addon_Nefarius_BringMissingOrnaments == LOG_SUCCESS)
-		{
 			AI_Output(self,other,"DIA_Addon_Nefarius_MissingOrnaments_05_10");	//Следуй за мной!
+			B_LogEntry(TOPIC_Addon_Ornament,"Я принес все части кольца Нефариусу. Теперь маги Воды смогут собрать кольцо.");
+			MIS_Addon_Nefarius_BringMissingOrnaments = LOG_SUCCESS;
 			AI_StopProcessInfos(self);
 			Npc_ExchangeRoutine(self,"PreRingritual");
 			B_StartOtherRoutine(Saturas_NW,"PreRingritual");
@@ -318,7 +305,6 @@ func void DIA_Addon_Nefarius_Ringritual_Info()
 	AI_Output(self,other,"DIA_Addon_Nefarius_Ringritual_05_00");	//А теперь отойди назад.
 	Npc_SetRefuseTalk(self,60);
 	RitualRingRuns = LOG_Running;
-	B_LogEntry(TOPIC_Addon_Ornament,"Я принес все части кольца Нефариусу. Теперь маги Воды смогут собрать кольцо.");
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Ringritual");
 	B_StartOtherRoutine(Saturas_NW,"Ringritual");

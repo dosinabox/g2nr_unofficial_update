@@ -225,6 +225,7 @@ func void DIA_Salandril_GehinsKloster_Info()
 	{
 		MIS_Serpentes_BringSalandril_SLD = LOG_SUCCESS;
 	};
+	Salandril_SentToMonastery = TRUE;
 	SalandrilLocation = LOC_MONASTERY;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"KlosterUrteil");
@@ -244,7 +245,7 @@ instance DIA_Salandril_Verschwinde(C_Info)
 
 func int DIA_Salandril_Verschwinde_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Salandril_GehinsKloster) && Npc_IsInState(self,ZS_Talk))
+	if((Salandril_SentToMonastery == TRUE) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};

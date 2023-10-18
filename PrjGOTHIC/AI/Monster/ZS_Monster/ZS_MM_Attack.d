@@ -30,7 +30,7 @@ func void ZS_MM_Attack()
 	Npc_PercEnable(self,PERC_ASSESSWARN,B_MM_AssessWarn);
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_MM_AssessSurprise);
 	B_ValidateOther();
-	if(C_WantToFlee(self,other))
+	if(C_WantToFlee(self))
 	{
 		B_MM_Flee();
 		return;
@@ -51,7 +51,7 @@ func void ZS_MM_Attack()
 func int ZS_MM_Attack_Loop()
 {
 	Npc_GetTarget(self);
-	if(C_WantToFlee(self,other))
+	if(C_WantToFlee(self))
 	{
 		return LOOP_END;
 	};
@@ -63,18 +63,19 @@ func int ZS_MM_Attack_Loop()
 		{
 			AI_RemoveWeapon(self);
 		};
-	};
-	if((self.aivar[AIV_MM_REAL_ID] == ID_FIREGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_ICEGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_SKELETON_MAGE) || (self.aivar[AIV_MM_REAL_ID] == ID_ORCSHAMAN))
+	}
+	else if(C_NpcIsMonsterMage(self))
 	{
 		if((Npc_IsInFightMode(self,FMODE_FIST) || Npc_IsInFightMode(self,FMODE_MELEE)) && (Npc_GetDistToNpc(self,other) > FIGHT_DIST_MELEE))
 		{
 			AI_RemoveWeapon(self);
 		};
-	};
+	}
 	//костыли для перехода из режима ближнего боя к магии: конец
-	if((RavenIsDead == TRUE) && (self.guild == GIL_Stoneguardian))
+	else if((self.guild == GIL_Stoneguardian) && (RavenIsDead == TRUE))
 	{
 		B_KillNpc(self);
+		return LOOP_END;
 	};
 	if(CurrentLevel == OLDWORLD_ZEN)
 	{
@@ -137,7 +138,7 @@ func int ZS_MM_Attack_Loop()
 		};
 		return LOOP_CONTINUE;
 	};
-	if((C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE)) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
+	if(C_NpcIsSwimming(other) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
 	{
 		Npc_ClearAIQueue(self);
 		if(self.guild != GIL_DRAGON)
@@ -180,13 +181,16 @@ func int ZS_MM_Attack_Loop()
 			self.fight_tactic = self.aivar[AIV_OriginalFightTactic];
 		};
 	};
-	if(C_NpcIsMonsterMage(self) || (self.guild == GIL_SKELETON) || (self.guild == GIL_SUMMONED_SKELETON) || (self.guild > GIL_SEPERATOR_ORC))
+	/*if(self.guild > GIL_SEPERATOR_ORC)
 	{
 		B_CreateAmmo(self);
+	};*/
+	if(C_NpcIsMonsterMage(self))
+	{
 		Npc_ChangeAttribute(self,ATR_MANA,ATR_MANA_MAX);
 		B_SelectWeapon(self,other);
 	};
-	if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other))
+	if(!C_NpcIsDown(other))
 	{
 		if(other.aivar[AIV_INVINCIBLE] == FALSE)
 		{
@@ -212,20 +216,20 @@ func int ZS_MM_Attack_Loop()
 		};
 		Npc_PerceiveAll(self);
 		Npc_GetNextTarget(self);
-		if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other) && ((Npc_GetDistToNpc(self,other) < PERC_DIST_INTERMEDIAT) || Npc_IsPlayer(other)) && (other.aivar[AIV_INVINCIBLE] == FALSE))
+		if(Hlp_IsValidNpc(other))
 		{
-			self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);
-			return LOOP_CONTINUE;
-		}
-		else
-		{
-			Npc_ClearAIQueue(self);
-			if(self.guild != GIL_DRAGON)
+			if(!C_NpcIsDown(other) && ((Npc_GetDistToNpc(self,other) < PERC_DIST_INTERMEDIAT) || Npc_IsPlayer(other)) && (other.aivar[AIV_INVINCIBLE] == FALSE))
 			{
-				AI_Standup(self);
+				self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);
+				return LOOP_CONTINUE;
 			};
-			B_MM_RemoveWeapon();
 		};
+		Npc_ClearAIQueue(self);
+		if(self.guild != GIL_DRAGON)
+		{
+			AI_Standup(self);
+		};
+		B_MM_RemoveWeapon();
 	};
 	return LOOP_END;
 };
@@ -233,7 +237,6 @@ func int ZS_MM_Attack_Loop()
 func void ZS_MM_Attack_End()
 {
 	var C_Npc target;
-	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
 	if(self.guild > GIL_SEPERATOR_ORC)
 	{
 		AI_RemoveWeapon(self);
@@ -258,11 +261,12 @@ func void ZS_MM_Attack_End()
 		AI_Wait(self,0.5);
 		self.aivar[AIV_INVINCIBLE] = FALSE;
 	};
-	if(C_WantToFlee(self,target))
+	if(C_WantToFlee(self))
 	{
 		B_MM_Flee();
 		return;
 	};
+	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
 	if(Npc_IsDead(target) && C_WantToEat(self,target))
 	{
 		Npc_ClearAIQueue(self);

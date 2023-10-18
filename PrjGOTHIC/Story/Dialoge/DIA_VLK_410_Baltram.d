@@ -350,7 +350,24 @@ func void DIA_Addon_Baltram_Skip_pirat()
 };
 
 
-/*instance DIA_Addon_Baltram_SkipsRum_All(C_Info)
+func void B_Baltram_GetRum(var int amount)
+{
+	B_GiveInvItems(other,self,ItFo_Addon_Rum,amount);
+	AI_Output(self,other,"DIA_Addon_Baltram_SkipsRum_01_02");	//Что ж, много заплатить я тебе не могу. Думаю, этого хватит.
+	CreateInvItems(self,ItMi_Gold,10);
+	B_GiveInvItems(self,other,ItMi_Gold,10);
+	MIS_Addon_Baltram_Paket4Skip = LOG_SUCCESS;
+	if(amount > 2)
+	{
+		B_GivePlayerXP(XP_Ambient + XP_AmbientKap1);
+	}
+	else
+	{
+		B_GivePlayerXP(XP_Ambient);
+	};
+};
+
+instance DIA_Addon_Baltram_SkipsRum_All(C_Info)
 {
 	npc = VLK_410_Baltram;
 	nr = 8;
@@ -371,10 +388,8 @@ func int DIA_Addon_Baltram_SkipsRum_All_Condition()
 func void DIA_Addon_Baltram_SkipsRum_All_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Baltram_SkipsRum_15_00_add");	//Я принес ром.
-	B_GiveInvItems(other,self,ItFo_Addon_Rum,3);
-	MIS_Addon_Baltram_Paket4Skip = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Ambient);
-};*/
+	B_Baltram_GetRum(3);
+};
 
 
 instance DIA_Addon_Baltram_SkipsRum(C_Info)
@@ -399,12 +414,7 @@ func void DIA_Addon_Baltram_SkipsRum_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Baltram_SkipsRum_15_00");	//Я принес ром. Но Скип дал мне всего две бутылки.
 	AI_Output(self,other,"DIA_Addon_Baltram_SkipsRum_01_01");	//(сердито) Дороговато получается... Что он о себе возомнил? Ладно, давай их сюда.
-	B_GiveInvItems(other,self,ItFo_Addon_Rum,2);
-	AI_Output(self,other,"DIA_Addon_Baltram_SkipsRum_01_02");	//Что ж, много заплатить я тебе не могу. Думаю, этого хватит.
-	CreateInvItems(self,ItMi_Gold,10);
-	B_GiveInvItems(self,other,ItMi_Gold,10);
-	MIS_Addon_Baltram_Paket4Skip = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Ambient);
+	B_Baltram_GetRum(2);
 };
 
 

@@ -1,5 +1,5 @@
 
-func void player_plunder_is_empty()
+func void Player_Plunder_Is_Empty()
 {
 	var int rnd;
 	rnd = Hlp_Random(100);

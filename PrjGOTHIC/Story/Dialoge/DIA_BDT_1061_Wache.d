@@ -43,6 +43,7 @@ func void DIA_1061_Wache_Hallo_Info()
 	AI_Output(other,self,"DIA_1061_Wache_Hallo_15_01");	//Я хочу поговорить с вашим главарем.
 	AI_Output(self,other,"DIA_1061_Wache_Hallo_01_02");	//(иронично) Ох, понимаю, ты хочешь поговорить с моим боссом. Что ж, тогда КОНЕЧНО ЖЕ, я позволю тебе пройти.
 	AI_Output(self,other,"DIA_1061_Wache_Hallo_01_03");	//(смертельно серьезно) Но только если ты назовешь его имя. А если нет, мне придется убить тебя! Хорошо?
+	BDT_1061_FirstContact = TRUE;
 	Info_ClearChoices(DIA_1061_Wache_Hallo);
 	Info_AddChoice(DIA_1061_Wache_Hallo,"Ли.",DIA_1061_Wache_Hallo_Lee);
 	if((Bdt13_Dexter_verraten == TRUE) || (Ranger_SCKnowsDexter == TRUE))

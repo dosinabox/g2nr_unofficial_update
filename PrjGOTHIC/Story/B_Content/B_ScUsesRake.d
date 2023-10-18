@@ -164,8 +164,8 @@ func void B_SCGetTreasure_S1()
 		}
 		else if((Npc_GetDistToWP(self,RAKEPLACE_WP_24) < RAKE_BUDDEL_DIST_MIN) && (RAKEPLACE[24] == FALSE))
 		{
-			Wld_InsertItem(ItSE_Addon_FrancisChest,RAKEPLACE_WP_24);
-			RakeTreasureSuccess(ItSE_Addon_FrancisChest);
+			Wld_InsertItem(ItSe_Addon_FrancisChest,RAKEPLACE_WP_24);
+			RakeTreasureSuccess(ItSe_Addon_FrancisChest);
 			RAKEPLACE[24] = TRUE;
 		}
 		else if((Npc_GetDistToWP(self,RAKEPLACE_WP_25) < RAKE_BUDDEL_DIST_MIN) && (RAKEPLACE[25] == FALSE))
@@ -208,13 +208,13 @@ func void B_SCGetTreasure_S1()
 		}
 		else if((Npc_GetDistToWP(self,RAKEPLACE_WP_30) < RAKE_BUDDEL_DIST_MIN) && (RAKEPLACE[30] == FALSE))
 		{
-			Wld_InsertItem(ItMI_Addon_Kompass_Mis,RAKEPLACE_WP_30);
-			RakeTreasureSuccess(ItMI_Addon_Kompass_Mis);
+			Wld_InsertItem(ItMi_Addon_Kompass_MIS,RAKEPLACE_WP_30);
+			RakeTreasureSuccess(ItMi_Addon_Kompass_MIS);
 			RAKEPLACE[30] = TRUE;
 		}
 		else
 		{
-			player_plunder_is_empty();
+			Player_Plunder_Is_Empty();
 		};
 	};
 };

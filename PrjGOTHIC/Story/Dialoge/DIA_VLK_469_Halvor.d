@@ -89,7 +89,7 @@ instance DIA_Halvor_TRADE(C_Info)
 
 func int DIA_Halvor_TRADE_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Halvor_Hallo) && Wld_IsTime(5,0,20,0) && (Halvor_Ausgeliefert == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Halvor_Hallo) && Wld_IsTime(5,0,20,0) && (Halvor_Ausgeliefert == FALSE))
 	{
 		return TRUE;
 	};
@@ -201,7 +201,6 @@ instance DIA_Halvor_MESSAGE(C_Info)
 	information = DIA_Halvor_MESSAGE_Info;
 	permanent = FALSE;
 	description = "Я думаю, этот клочок бумаги имеет отношение к тебе...";
-//	trade = FALSE;
 };
 
 

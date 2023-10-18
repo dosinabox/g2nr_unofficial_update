@@ -24,7 +24,7 @@ instance ItAm_Mana_Angar_MIS(C_Item)
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
 
-instance ItMW_1H_FerrosSword_Mis(C_Item)
+instance ItMw_1H_FerrosSword_MIS(C_Item)
 {
 	name = "Ìוק Ôוננמסא";
 	mainflag = ITEM_KAT_NF;

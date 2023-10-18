@@ -65,7 +65,7 @@ instance DIA_Engor_HANDELN(C_Info)
 
 func int DIA_Engor_HANDELN_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Engor_HALLO))
+	if(Npc_KnowsInfo(other,DIA_Engor_HALLO))
 	{
 		return TRUE;
 	};
@@ -92,7 +92,7 @@ instance DIA_Engor_ABOUTPARLAF(C_Info)
 
 func int DIA_Engor_ABOUTPARLAF_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Parlaf_ENGOR))
+	if(Npc_KnowsInfo(other,DIA_Parlaf_ENGOR))
 	{
 		return TRUE;
 	};
@@ -187,7 +187,7 @@ instance DIA_Engor_HELP(C_Info)
 
 func int DIA_Engor_HELP_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Engor_ABOUTPARLAF))
+	if(Npc_KnowsInfo(other,DIA_Engor_ABOUTPARLAF))
 	{
 		return TRUE;
 	};
@@ -257,6 +257,10 @@ func int DIA_Engor_BRINGMEAT_Condition()
 		{
 			return TRUE;
 		};
+		if(Npc_HasItems(hero,ItFo_NiclasBacon))
+		{
+			return TRUE;
+		};
 		if(Npc_HasItems(hero,ItFo_Schafswurst))
 		{
 			if(Kapitel > 1)
@@ -301,7 +305,7 @@ func void DIA_Engor_BRINGMEAT_Info()
 		{
 			ConcatRaw = IntToString(Npc_HasItems(other,ItFoMuttonRaw));
 			Meat_Counter += Npc_HasItems(other,ItFoMuttonRaw);
-			Npc_RemoveInvItems(other,ItFoMuttonRaw,Npc_HasItems(other,ItFoMuttonRaw));
+			B_RemoveEveryInvItem(other,ItFoMuttonRaw);
 		};
 		ConcatRaw = ConcatStrings(ConcatRaw," кусков сырого мяса отдано");
 		AI_PrintScreen(ConcatRaw,-1,info_ypos,FONT_ScreenSmall,3);
@@ -321,7 +325,7 @@ func void DIA_Engor_BRINGMEAT_Info()
 		{
 			ConcatMutton = IntToString(Npc_HasItems(other,ItFoMutton));
 			Meat_Counter += Npc_HasItems(other,ItFoMutton);
-			Npc_RemoveInvItems(other,ItFoMutton,Npc_HasItems(other,ItFoMutton));
+			B_RemoveEveryInvItem(other,ItFoMutton);
 		};
 		ConcatMutton = ConcatStrings(ConcatMutton," кусков жареного мяса отдано");
 		AI_PrintScreen(ConcatMutton,-1,info_ypos,FONT_ScreenSmall,3);
@@ -341,7 +345,7 @@ func void DIA_Engor_BRINGMEAT_Info()
 		{
 			ConcatBacon = IntToString(Npc_HasItems(other,ItFo_Bacon));
 			Meat_Counter += Npc_HasItems(other,ItFo_Bacon);
-			Npc_RemoveInvItems(other,ItFo_Bacon,Npc_HasItems(other,ItFo_Bacon));
+			B_RemoveEveryInvItem(other,ItFo_Bacon);
 		};
 		ConcatBacon = ConcatStrings(ConcatBacon," окороков отдано");
 		AI_PrintScreen(ConcatBacon,-1,info_ypos,FONT_ScreenSmall,3);
@@ -361,7 +365,7 @@ func void DIA_Engor_BRINGMEAT_Info()
 		{
 			ConcatSausage = IntToString(Npc_HasItems(other,ItFo_Sausage));
 			Meat_Counter += Npc_HasItems(other,ItFo_Sausage);
-			Npc_RemoveInvItems(other,ItFo_Sausage,Npc_HasItems(other,ItFo_Sausage));
+			B_RemoveEveryInvItem(other,ItFo_Sausage);
 		};
 		ConcatSausage = ConcatStrings(ConcatSausage," колбас отдано");
 		AI_PrintScreen(ConcatSausage,-1,info_ypos,FONT_ScreenSmall,3);
@@ -381,7 +385,7 @@ func void DIA_Engor_BRINGMEAT_Info()
 		{
 			ConcatSchafswurst = IntToString(Npc_HasItems(other,ItFo_Schafswurst));
 			Meat_Counter += Npc_HasItems(other,ItFo_Schafswurst);
-			Npc_RemoveInvItems(other,ItFo_Schafswurst,Npc_HasItems(other,ItFo_Schafswurst));
+			B_RemoveEveryInvItem(other,ItFo_Schafswurst);
 		};
 		ConcatSchafswurst = ConcatStrings(ConcatSchafswurst," бараньих колбас отдано");
 		AI_PrintScreen(ConcatSchafswurst,-1,info_ypos,FONT_ScreenSmall,3);
@@ -394,14 +398,14 @@ func void DIA_Engor_BRINGMEAT_Info()
 		AI_PrintScreen("1 нога крысокрота отдано",-1,info_ypos,FONT_ScreenSmall,3);
 		info_ypos += 3;
 	};
-	if(Meat_Amount > Meat_Counter)
+	if(Meat_Counter < Meat_Amount)
 	{
 		AI_Output(self,other,"DIA_Engor_BRINGMEAT_13_01");	//Для начала и это неплохо, но мне нужно больше.
 		GesamtFleisch = IntToString(Meat_Counter);
 		GesamtFleisch = ConcatStrings("Всего отдано мяса: ",GesamtFleisch);
 		AI_PrintScreen(GesamtFleisch,-1,info_ypos,FONT_ScreenSmall,3);
-	};
-	if(Meat_Counter >= Meat_Amount)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_Engor_BRINGMEAT_13_02");	//Отлично, ты принес достаточно мяса. Этого хватит на некоторое время.
 		AI_Output(self,other,"DIA_Engor_BRINGMEAT_13_03");	//Но даже не надейся, что я теперь буду давать тебе что-нибудь бесплатно!

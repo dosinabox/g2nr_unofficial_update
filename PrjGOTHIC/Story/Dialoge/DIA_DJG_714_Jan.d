@@ -117,7 +117,6 @@ func void DIA_JAN_Dragons_Reward()
 	}
 	else
 	{
-		//TODO озвучить
 		AI_Output(self,other,"DIA_Jan_SellWeapons_10_03_add");	//Я могу показать тебе, как ковать хорошее оружие.
 	};
 	B_Jan_TeachPlayer();

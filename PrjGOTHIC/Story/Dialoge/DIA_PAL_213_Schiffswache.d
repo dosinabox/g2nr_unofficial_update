@@ -36,7 +36,7 @@ instance DIA_Pal_213_Schiffswache_FirstWarn(C_Info)
 
 func int DIA_Pal_213_Schiffswache_FirstWarn_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
+	if((MIS_ShipIsFree == FALSE) && (self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self))
 	{
 		return TRUE;
 	};
@@ -72,7 +72,7 @@ instance DIA_Pal_213_Schiffswache_SecondWarn(C_Info)
 
 func int DIA_Pal_213_Schiffswache_SecondWarn_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Pal_213_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((MIS_ShipIsFree == FALSE) && (self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && (Npc_GetDistToWP(other,Pal_213_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -107,7 +107,7 @@ instance DIA_Pal_213_Schiffswache_Attack(C_Info)
 
 func int DIA_Pal_213_Schiffswache_Attack_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Pal_213_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((MIS_ShipIsFree == FALSE) && (self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && (Npc_GetDistToWP(other,Pal_213_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -309,12 +309,7 @@ func void DIA_Pal_213_Schiffswache_IAmKDF6_Info()
 {
 	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmKDF6_15_00");	//В последний раз: позволь мне взойти на корабль!
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmKDF6_01_01");	//(нервно) Понятно. Ты можешь взойти на корабль.
-	MIS_ShipIsFree = TRUE;
-	B_CheckLog();
-	if(Kapitel >= 5)
-	{
-		B_StartOtherRoutine(Girion,"WaitForShip");
-	};
+	B_ShipIsFree();
 };
 
 
@@ -393,12 +388,7 @@ func void DIA_Pal_213_Schiffswache_IAmPAL3_Info()
 {
 	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmPAL3_15_00");	//И я приказываю тебе пропустить меня на этот корабль.
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmPAL3_01_01");	//Есть, сэр, вы можете взойти на корабль.
-	MIS_ShipIsFree = TRUE;
-	B_CheckLog();
-	if(Kapitel >= 5)
-	{
-		B_StartOtherRoutine(Girion,"WaitForShip");
-	};
+	B_ShipIsFree();
 };
 
 
@@ -480,11 +470,6 @@ func void DIA_Pal_213_Schiffswache_IAmDJG3_Info()
 	B_GiveInvItems(other,self,ITWr_ForgedShipLetter_MIS,1);
 	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmDJG3_01_02");	//Все правильно, ты можешь пройти.
-	MIS_ShipIsFree = TRUE;
-	B_CheckLog();
-	if(Kapitel >= 5)
-	{
-		B_StartOtherRoutine(Girion,"WaitForShip");
-	};
+	B_ShipIsFree();
 };
 

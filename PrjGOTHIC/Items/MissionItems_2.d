@@ -118,7 +118,7 @@ instance ItKe_OC_Store(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_ErzBaronFlur(C_Item)
+instance ItKe_ErzBaronFlur(C_Item)
 {
 	name = "Ключ от первой двери";
 	mainflag = ITEM_KAT_KEYS;
@@ -135,7 +135,7 @@ instance ITKE_ErzBaronFlur(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_ErzBaronRaum(C_Item)
+instance ItKe_ErzBaronRaum(C_Item)
 {
 	name = "Ключ от второй двери";
 	mainflag = ITEM_KAT_KEYS;
@@ -215,7 +215,7 @@ func void UseItwr_Silvestro()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Сильвестро");
 	Doc_Show(nDocID);
-	if((MIS_ScoutMine == LOG_Running) && Npc_IsDead(DiegoOW) && !Npc_KnowsInfo(hero,DIA_DiegoOw_Beweise) && (Silvestro_Ore == FALSE))
+	if((MIS_ScoutMine == LOG_Running) && Npc_IsDead(DiegoOW) && (Diego_ToldAboutSilvestroOre == FALSE) && (Silvestro_Ore == FALSE))
 	{
 		B_LogEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место руду, добытую старателями Сильвестро. Через некоторое время на шахту напали краулеры. Никто не выжил.");
 	};
@@ -604,7 +604,7 @@ instance ItRi_HP_01_Tengron(C_Item)
 	on_unequip = UnEquip_ItRi_Hp_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = NAME_ADDON_CASSIASBELOHNUNGSRING;
+	description = NAME_Addon_CassiasBelohnungsRing;
 	text[0] = "Это кольцо принадлежит Тенгрону.";
 	text[2] = NAME_Bonus_HpMax;
 	count[2] = Ri_Hp;

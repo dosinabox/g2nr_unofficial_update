@@ -184,18 +184,17 @@ func void DIA_Nagur_Auftrag_Info()
 	{
 		Nagur_Job_Dia2_Passed = TRUE;
 		AI_Output(self,other,"DIA_Nagur_Auftrag_08_01");	//Ты знаешь торговца Бальтрама, нет? Если нет, пришло время поговорить с ним.
+		AI_Output(self,other,"DIA_Nagur_Auftrag_08_02");	//У этого Бальтрама есть посыльный, доставлявший ему товары с фермы Акила.
 		if(!Npc_IsDead(Bote))
 		{
-			AI_Output(self,other,"DIA_Nagur_Auftrag_08_02");	//У этого Бальтрама есть посыльный, доставлявший ему товары с фермы Акила.
 			AI_Output(self,other,"DIA_Nagur_Auftrag_08_03");	//Вернее, у него БЫЛ посыльный, пока я не перерезал ему глотку. И теперь Бальтраму придется искать нового мальчика на побегушках. И им будешь ты.
-			AI_Teleport(Bote,"NW_CITY_HABOUR_KASERN_05_01");
-			B_StartOtherRoutine(Bote,"Dead");
-			B_KillNpc(VLK_4006_Bote);
+			B_RemoveNpc(VLK_4006_Bote);
 			Bote_Killed = TRUE;
-			if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_INKNAST) && !Npc_KnowsInfo(other,DIA_Rengaru_SPARE) && (Rengaru_Ausgeliefert == FALSE))
-			{
-				B_StartOtherRoutine(Rengaru,"Hide");
-			};
+		}
+		else
+		{
+			//TODO озвучить
+			AI_Output(self,other,"DIA_Nagur_Auftrag_08_03_add");	//Вернее, у него БЫЛ посыльный. И им будешь ты.
 		};
 		AI_Output(self,other,"DIA_Nagur_Auftrag_08_04");	//Ты должен поступить на работу к Бальтраму и взять посылку у Акила.
 		AI_Output(self,other,"DIA_Nagur_Auftrag_08_05");	//Затем ты принесешь ее мне, а я продам ее заинтересованному покупателю. Он даст неплохую цену за нее.

@@ -140,7 +140,7 @@ func void Use_PermissionToWearInnosEye()
 };
 
 
-instance ItWr_XardasBookForPyrokar_Mis(C_Item)
+instance ItWr_XardasBookForPyrokar_MIS(C_Item)
 {
 	name = "Чертоги Ирдората";
 	mainflag = ITEM_KAT_DOCS;
@@ -596,7 +596,7 @@ func void Use_BabosDocs()
 };
 
 
-instance ItKe_IgarazChest_Mis(C_Item)
+instance ItKe_IgarazChest_MIS(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -1034,7 +1034,7 @@ func void Use_Map_NewWorld_Shrine_MIS()
 };
 
 
-instance ItWr_VinosKellergeister_Mis(C_Item)
+instance ItWr_VinosKellergeister_MIS(C_Item)
 {
 	name = "Дух вина";
 	mainflag = ITEM_KAT_DOCS;
@@ -1044,11 +1044,11 @@ instance ItWr_VinosKellergeister_Mis(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-	on_state[0] = Use_VinosKellergeister_Mis;
+	on_state[0] = Use_VinosKellergeister_MIS;
 };
 
 
-func void Use_VinosKellergeister_Mis()
+func void Use_VinosKellergeister_MIS()
 {
 	var int nDocID;
 	nDocID = Doc_Create();

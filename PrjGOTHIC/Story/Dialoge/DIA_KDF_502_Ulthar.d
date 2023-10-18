@@ -34,7 +34,7 @@ instance DIA_Ulthar_GREET(C_Info)
 
 func int DIA_Ulthar_GREET_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && !Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE) && (hero.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && !Npc_KnowsInfo(other,DIA_Pyrokar_FIRE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -65,7 +65,7 @@ instance DIA_Ulthar_MAGETEST(C_Info)
 
 func int DIA_Ulthar_MAGETEST_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Ulthar_GREET))
+	if(Npc_KnowsInfo(other,DIA_Ulthar_GREET))
 	{
 		return TRUE;
 	};
@@ -92,7 +92,7 @@ instance DIA_Ulthar_WHEN(C_Info)
 
 func int DIA_Ulthar_WHEN_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Ulthar_MAGETEST) && (Knows_Fire_Contest == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Ulthar_MAGETEST) && (Knows_Fire_Contest == FALSE))
 	{
 		return TRUE;
 	};
@@ -118,7 +118,7 @@ instance DIA_Ulthar_TEST(C_Info)
 
 func int DIA_Ulthar_TEST_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE))
+	if(Npc_KnowsInfo(other,DIA_Pyrokar_FIRE))
 	{
 		return TRUE;
 	};
@@ -248,7 +248,7 @@ instance DIA_Ulthar_SCHREINEVERGIFTET(C_Info)
 
 func int DIA_Ulthar_SCHREINEVERGIFTET_Condition()
 {
-	if((Pedro_Traitor == TRUE) && (hero.guild == GIL_PAL) && (Kapitel == 3))
+	if((Pedro_Traitor == TRUE) && (other.guild == GIL_PAL) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -311,7 +311,7 @@ instance DIA_Ulthar_WARN(C_Info)
 
 func int DIA_Ulthar_WARN_Condition()
 {
-	if((Pedro_Traitor == TRUE) && (hero.guild != GIL_PAL) && (Kapitel == 3))
+	if((Pedro_Traitor == TRUE) && (other.guild != GIL_PAL) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -371,7 +371,7 @@ instance DIA_Ulthar_SchreineGeheiltNoPAL(C_Info)
 
 func int DIA_Ulthar_SchreineGeheiltNoPAL_Condition()
 {
-	if(((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (hero.guild == GIL_KDF)) && (Kapitel >= 4))
+	if(((other.guild == GIL_SLD) || (other.guild == GIL_DJG) || (other.guild == GIL_KDF)) && (Kapitel >= 4))
 	{
 		return TRUE;
 	};

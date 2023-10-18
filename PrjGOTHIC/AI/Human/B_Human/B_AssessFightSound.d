@@ -45,7 +45,7 @@ func void B_AssessFightSound()
 	};
 	if(self.aivar[AIV_MM_FollowInWater] == FALSE)
 	{
-		if(C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE) || C_BodyStateContains(victim,BS_SWIM) || C_BodyStateContains(victim,BS_DIVE))
+		if(C_NpcIsSwimming(other) || C_NpcIsSwimming(victim))
 		{
 			return;
 		};
@@ -107,7 +107,7 @@ func void B_AssessFightSound()
 		self.aivar[AIV_EnemyOverride] = FALSE;
 		Npc_PerceiveAll(self);
 		Npc_GetNextTarget(self);
-		if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other))
+		if(!C_NpcIsDown(other))
 		{
 			B_Attack(self,other,AR_GuildEnemy,0);
 		};

@@ -17,6 +17,13 @@ instance PC_Hero(Npc_Default)
 	attribute[ATR_MANA] = START_ATR_MANA_MAX;
 	attribute[ATR_HITPOINTS_MAX] = START_ATR_HITPOINTS_MAX;
 	attribute[ATR_HITPOINTS] = START_ATR_HITPOINTS_MAX;
+	aivar[REAL_STRENGTH] = START_ATR_STRENGTH;
+	aivar[REAL_DEXTERITY] = START_ATR_DEXTERITY;
+	aivar[REAL_MANA_MAX] = START_ATR_MANA_MAX;
+	aivar[REAL_TALENT_1H] = 10;
+	aivar[REAL_TALENT_2H] = 10;
+	aivar[REAL_TALENT_BOW] = 10;
+	aivar[REAL_TALENT_CROSSBOW] = 10;
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_SetVisualBody(self,"hum_body_Naked0",BodyTex_Player_G2,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 	B_SetFightSkills(self,10);

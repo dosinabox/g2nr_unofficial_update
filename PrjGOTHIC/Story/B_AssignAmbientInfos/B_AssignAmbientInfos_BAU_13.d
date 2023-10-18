@@ -134,10 +134,10 @@ func void DIA_BAU_13_STANDARD_Info()
 
 func void B_AssignAmbientInfos_BAU_13(var C_Npc slf)
 {
-	dia_bau_13_exit.npc = Hlp_GetInstanceID(slf);
-	dia_bau_13_join.npc = Hlp_GetInstanceID(slf);
-	dia_bau_13_people.npc = Hlp_GetInstanceID(slf);
-	dia_bau_13_location.npc = Hlp_GetInstanceID(slf);
-	dia_bau_13_standard.npc = Hlp_GetInstanceID(slf);
+	DIA_BAU_13_EXIT.npc = Hlp_GetInstanceID(slf);
+	DIA_BAU_13_JOIN.npc = Hlp_GetInstanceID(slf);
+	DIA_BAU_13_PEOPLE.npc = Hlp_GetInstanceID(slf);
+	DIA_BAU_13_LOCATION.npc = Hlp_GetInstanceID(slf);
+	DIA_BAU_13_STANDARD.npc = Hlp_GetInstanceID(slf);
 };
 

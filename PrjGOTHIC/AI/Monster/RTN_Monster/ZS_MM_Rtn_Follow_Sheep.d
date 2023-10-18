@@ -49,7 +49,7 @@ func void ZS_MM_Rtn_Follow_Sheep_End()
 {
 };
 
-func void ZS_MM_Rtn_Follow_Sheep_Balthasar()
+/*func void ZS_MM_Rtn_Follow_Sheep_Balthasar()
 {
 	Npc_SetPercTime(self,1);
 	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_MM_AssessPlayer);
@@ -57,7 +57,11 @@ func void ZS_MM_Rtn_Follow_Sheep_Balthasar()
 
 func int ZS_MM_Rtn_Follow_Sheep_Balthasar_Loop()
 {
-	if(Npc_GetDistToWP(Balthasar,"NW_BIGMILL_FARM3_BALTHASAR") > 500)
+	if(Npc_IsDead(Balthasar))
+	{
+		AI_StartState(self,ZS_MM_Rtn_Roam,1,"NW_BIGMILL_FARM3_BALTHASAR");
+	}
+	else if(Npc_GetDistToWP(Balthasar,"NW_BIGMILL_FARM3_BALTHASAR") > 500)
 	{
 		if(Npc_GetDistToNpc(self,Balthasar) > 500)
 		{
@@ -82,5 +86,5 @@ func int ZS_MM_Rtn_Follow_Sheep_Balthasar_Loop()
 
 func void ZS_MM_Rtn_Follow_Sheep_Balthasar_End()
 {
-};
+};*/
 

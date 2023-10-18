@@ -2,19 +2,19 @@
 instance DIA_BDT_6_EXIT(C_Info)
 {
 	nr = 999;
-	condition = dia_bdt_6_exit_condition;
-	information = dia_bdt_6_exit_info;
+	condition = DIA_BDT_6_EXIT_Condition;
+	information = DIA_BDT_6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_bdt_6_exit_condition()
+func int DIA_BDT_6_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void dia_bdt_6_exit_info()
+func void DIA_BDT_6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -23,14 +23,14 @@ func void dia_bdt_6_exit_info()
 instance DIA_BDT_6_STANDARD(C_Info)
 {
 	nr = 2;
-	condition = dia_bdt_6_standard_condition;
-	information = dia_bdt_6_standard_info;
+	condition = DIA_BDT_6_STANDARD_Condition;
+	information = DIA_BDT_6_STANDARD_Info;
 	permanent = TRUE;
 	important = TRUE;
 };
 
 
-func int dia_bdt_6_standard_condition()
+func int DIA_BDT_6_STANDARD_Condition()
 {
 	if(Npc_IsInState(self,ZS_Talk))
 	{
@@ -38,7 +38,7 @@ func int dia_bdt_6_standard_condition()
 	};
 };
 
-func void dia_bdt_6_standard_info()
+func void DIA_BDT_6_STANDARD_Info()
 {
 	var int randy;
 	randy = Hlp_Random(3);
@@ -59,7 +59,7 @@ func void dia_bdt_6_standard_info()
 
 func void B_AssignAmbientInfos_BDT_6(var C_Npc slf)
 {
-	dia_bdt_6_exit.npc = Hlp_GetInstanceID(slf);
-	dia_bdt_6_standard.npc = Hlp_GetInstanceID(slf);
+	DIA_BDT_6_EXIT.npc = Hlp_GetInstanceID(slf);
+	DIA_BDT_6_STANDARD.npc = Hlp_GetInstanceID(slf);
 };
 

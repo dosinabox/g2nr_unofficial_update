@@ -5,6 +5,7 @@ func void ZS_MM_AllScheduler()
 	if((self.guild == GIL_Stoneguardian) && (RavenIsDead == TRUE))
 	{
 		B_KillNpc(self);
+		return;
 	};
 	if(Wld_IsTime(self.aivar[AIV_MM_SleepStart],0,self.aivar[AIV_MM_SleepEnd],0) || (self.aivar[AIV_MM_SleepStart] == OnlyRoutine))
 	{

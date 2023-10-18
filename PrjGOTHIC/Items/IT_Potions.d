@@ -390,7 +390,7 @@ instance ItPo_Perm_AppleSTR(C_Item)
 	on_state[0] = UseItPo_Perm_AppleSTR;
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
-	effect = "SPELLFX_MANAPOTION";
+	effect = "SPELLFX_ITEMGLIMMER";
 	description = NAME_AppleSTR;
 	text[1] = NAME_Bonus_Str;
 	count[1] = AppleSTRBonus;

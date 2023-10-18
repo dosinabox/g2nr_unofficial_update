@@ -155,8 +155,6 @@ func int DIA_Daron_AboutSegen_Condition()
 func void DIA_Daron_AboutSegen_Info()
 {
 	AI_Output(other,self,"DIA_Daron_AboutSegen_15_00");	//Я пришел, чтобы получить твое благословение!
-	AI_Output(self,other,"DIA_Daron_AboutSegen_10_01");	//Это хорошо - тогда ты, вероятно, захочешь пожертвовать золото святой церкви Инноса, правда?
-	AI_Output(other,self,"DIA_Daron_AboutSegen_15_02");	//Вообще-то я хотел получить твое благословение, чтобы поступить в ученики к одному из мастеров в нижней части города...
 	if(Daron_Blessing == TRUE)
 	{
 		AI_Output(self,other,"DIA_Daron_AboutSegen_10_03");	//Но я уже дал тебе мое благословение, сын мой.
@@ -164,6 +162,8 @@ func void DIA_Daron_AboutSegen_Info()
 	}
 	else
 	{
+		AI_Output(self,other,"DIA_Daron_AboutSegen_10_01");	//Это хорошо - тогда ты, вероятно, захочешь пожертвовать золото святой церкви Инноса, правда?
+		AI_Output(other,self,"DIA_Daron_AboutSegen_15_02");	//Вообще-то я хотел получить твое благословение, чтобы поступить в ученики к одному из мастеров в нижней части города...
 		AI_Output(self,other,"DIA_Daron_AboutSegen_10_05");	//Но, сын мой! Без скромного пожертвования церкви я не считаю для себя возможным благословить тебя.
 		AI_Output(self,other,"DIA_Daron_AboutSegen_10_06");	//Как еще могу я увериться в твоих добрых намерениях по отношению к святой церкви Инноса?
 	};

@@ -558,7 +558,7 @@ func void B_InitNpc_ADW()
 	Myxir_ADW = Hlp_GetNpc(KDW_14030_Addon_Myxir_ADW);
 	//трупы
 	Angus = Hlp_GetNpc(PIR_1370_Addon_Angus);
-	Lance = Hlp_GetNpc(NONE_Addon_114_Lance_ADW);
+	Lance = Hlp_GetNpc(NONE_ADDON_114_Lance_ADW);
 	William = Hlp_GetNpc(VLK_4304_Addon_William);
 };
 

@@ -40,61 +40,7 @@ instance Razor(Mst_Default_Razor)
 	Npc_SetToFistMode(self);
 };
 
-instance CanyonRazor01(Mst_Default_Razor)
-{
-	Set_Razor_Visuals();
-	Npc_SetToFistMode(self);
-};
-
-instance CanyonRazor02(Mst_Default_Razor)
-{
-	Set_Razor_Visuals();
-	Npc_SetToFistMode(self);
-};
-
-instance CanyonRazor03(Mst_Default_Razor)
-{
-	Set_Razor_Visuals();
-	Npc_SetToFistMode(self);
-};
-
-instance CanyonRazor04(Mst_Default_Razor)
-{
-	Set_Razor_Visuals();
-	Npc_SetToFistMode(self);
-};
-
-instance CanyonRazor05(Mst_Default_Razor)
-{
-	Set_Razor_Visuals();
-	Npc_SetToFistMode(self);
-};
-
-instance CanyonRazor06(Mst_Default_Razor)
-{
-	Set_Razor_Visuals();
-	Npc_SetToFistMode(self);
-};
-
-instance CanyonRazor07(Mst_Default_Razor)
-{
-	Set_Razor_Visuals();
-	Npc_SetToFistMode(self);
-};
-
-instance CanyonRazor08(Mst_Default_Razor)
-{
-	Set_Razor_Visuals();
-	Npc_SetToFistMode(self);
-};
-
-instance CanyonRazor09(Mst_Default_Razor)
-{
-	Set_Razor_Visuals();
-	Npc_SetToFistMode(self);
-};
-
-instance CanyonRazor10(Mst_Default_Razor)
+instance CanyonRazor(Mst_Default_Razor)
 {
 	Set_Razor_Visuals();
 	Npc_SetToFistMode(self);

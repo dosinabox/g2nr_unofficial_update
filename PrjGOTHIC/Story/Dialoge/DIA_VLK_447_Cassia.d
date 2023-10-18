@@ -240,9 +240,22 @@ func void DIA_Cassia_Lernen_Info()
 	if(Join_Thiefs == TRUE)
 	{
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher," асси€ может обучить мен€ карманному воровству и помочь мне стать более ловким.");
-		Log_AddEntry(TOPIC_CityTeacher,"–амирез может обучить мен€ пользоватьс€ отмычками.");
-		Log_AddEntry(TOPIC_CityTeacher,"ƒжеспер может обучить мен€ крастьс€.");
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
+		{
+			B_LogEntry(TOPIC_CityTeacher," асси€ может обучить мен€ карманному воровству и помочь мне стать более ловким.");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_CityTeacher," асси€ может помочь мне стать более ловким.");
+		};
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
+		{
+			Log_AddEntry(TOPIC_CityTeacher,"–амирез может обучить мен€ пользоватьс€ отмычками.");
+		};
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
+		{
+			Log_AddEntry(TOPIC_CityTeacher,"ƒжеспер может обучить мен€ крастьс€.");
+		};
 	};
 };
 
@@ -350,9 +363,22 @@ func void B_AgreedToJoinThiefs()
 	if(Npc_KnowsInfo(other,DIA_Cassia_Lernen))
 	{
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogNextEntry(TOPIC_CityTeacher," асси€ может обучить мен€ карманному воровству и помочь мне стать более ловким.");
-		Log_AddEntry(TOPIC_CityTeacher,"–амирез может обучить мен€ пользоватьс€ отмычками.");
-		Log_AddEntry(TOPIC_CityTeacher,"ƒжеспер может обучить мен€ крастьс€.");
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
+		{
+			B_LogNextEntry(TOPIC_CityTeacher," асси€ может обучить мен€ карманному воровству и помочь мне стать более ловким.");
+		}
+		else
+		{
+			B_LogNextEntry(TOPIC_CityTeacher," асси€ может помочь мне стать более ловким.");
+		};
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
+		{
+			Log_AddEntry(TOPIC_CityTeacher,"–амирез может обучить мен€ пользоватьс€ отмычками.");
+		};
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
+		{
+			Log_AddEntry(TOPIC_CityTeacher,"ƒжеспер может обучить мен€ крастьс€.");
+		};
 	};
 	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
@@ -808,7 +834,7 @@ func void DIA_Cassia_Belohnung_Info()
 	Info_ClearChoices(DIA_Cassia_Belohnung);
 	Info_AddChoice(DIA_Cassia_Belohnung,"400 золотых",DIA_Cassia_Belohnung_Gold);
 	Info_AddChoice(DIA_Cassia_Belohnung,"6 лечебных эликсиров",DIA_Cassia_Belohnung_Trank);
-	Info_AddChoice(DIA_Cassia_Belohnung,NAME_ADDON_CASSIASBELOHNUNGSRING,DIA_Cassia_Belohnung_Ring);
+	Info_AddChoice(DIA_Cassia_Belohnung,NAME_Addon_CassiasBelohnungsRing,DIA_Cassia_Belohnung_Ring);
 };
 
 func void DIA_Cassia_Belohnung_Gold()

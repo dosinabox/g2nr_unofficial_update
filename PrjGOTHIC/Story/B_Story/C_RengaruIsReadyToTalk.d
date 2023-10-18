@@ -13,10 +13,6 @@ func int C_RengaruIsReadyToTalk()
 	{
 		return TRUE;
 	};
-	if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_POOR_AREA_PATH_01_03") <= 700)
-	{
-		return TRUE;
-	};
 	return FALSE;
 };
 

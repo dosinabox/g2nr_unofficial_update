@@ -5,6 +5,7 @@ func int C_CanRemoveKey()
 	{
 		return FALSE;
 	};
+	Print(ConcatStrings(PRINT_Used,item.description));
 	return TRUE;
 };
 

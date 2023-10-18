@@ -26,7 +26,7 @@ func void Rtn_Start_1363()
 	TA_Sit_Bench(7,7,16,7,"ADW_PIRATECAMP_BENCH_01");
 	TA_Smalltalk(16,7,20,3,"ADW_PIRATECAMP_CENTER");
 	TA_Sit_Campfire(20,3,22,7,"WP_PIR_03");
-	TA_Stand_Drinking(20,7,23,7,"WP_PIR_03");
+	TA_Stand_Drinking(22,7,23,7,"WP_PIR_03");
 	TA_Pee(23,7,23,12,"WP_PIR_03");
 	TA_Sit_Campfire(23,12,2,7,"WP_PIR_03");
 	TA_Stand_Drinking(2,7,3,7,"WP_PIR_03");

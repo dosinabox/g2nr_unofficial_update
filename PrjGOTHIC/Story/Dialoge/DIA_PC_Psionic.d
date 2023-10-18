@@ -188,6 +188,7 @@ func void DIA_Lester_SEND_XARDAS_Info()
 		AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_06");	//Сейчас я собираюсь отдохнуть. Я все еще измотан после этого бегства из колонии.
 	};
 	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_07");	//Мне кажется, у тебя большие планы. Увидимся позже у Ксардаса.
+	Lester_SentToXardas = TRUE;
 	AI_StopProcessInfos(self);
 	if(Kapitel == 2)
 	{
@@ -209,7 +210,7 @@ instance DIA_Addon_Lester_STADT(C_Info)
 
 func int DIA_Addon_Lester_STADT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lester_Hello) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Lester_Hello) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
 	{
 		return TRUE;
 	};
@@ -237,7 +238,7 @@ instance DIA_Addon_Lester_Vorschlag(C_Info)
 
 func int DIA_Addon_Lester_Vorschlag_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Lester_STADT) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Lester_STADT) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
 	{
 		return TRUE;
 	};
@@ -299,7 +300,7 @@ instance DIA_Lester_Perm(C_Info)
 
 func int DIA_Lester_Perm_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lester_Hello) && (Kapitel < 3) && (Npc_GetDistToWP(self,"NW_XARDAS_TOWER_LESTER") <= 2000))
+	if(Npc_KnowsInfo(other,DIA_Lester_Hello) && (PlayerEnteredCity == FALSE) && (Npc_GetDistToWP(self,"NW_XARDAS_TOWER_LESTER") <= 2000))
 	{
 		return TRUE;
 	};
@@ -371,15 +372,6 @@ func void DIA_Lester_BACKINTOWN_Info()
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"XARDAS");
 	LesterMovedToXardas = TRUE;
-/*	if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
-	{
-		Npc_ExchangeRoutine(self,"XARDAS");
-		LesterMovedToXardas = TRUE;
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"START");
-	};*/
 };
 
 

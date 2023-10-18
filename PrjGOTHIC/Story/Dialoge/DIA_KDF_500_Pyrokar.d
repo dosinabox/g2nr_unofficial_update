@@ -34,7 +34,7 @@ instance DIA_Pyrokar_WELCOME(C_Info)
 
 func int DIA_Pyrokar_WELCOME_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Knows_Fire_Contest == FALSE) && (hero.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -167,11 +167,11 @@ instance DIA_Pyrokar_GOAWAY(C_Info)
 
 func int DIA_Pyrokar_GOAWAY_Condition()
 {
-	if(!Npc_KnowsInfo(hero,DIA_Addon_Pyrokar_MissingPeople) && (SC_HearedAboutMissingPeople == TRUE))
+	if(!Npc_KnowsInfo(other,DIA_Addon_Pyrokar_MissingPeople) && (SC_HearedAboutMissingPeople == TRUE))
 	{
 		return FALSE;
 	};
-	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(hero,DIA_Pyrokar_Hagen) && Npc_KnowsInfo(hero,DIA_Pyrokar_Auge) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Pyrokar_Hagen) && Npc_KnowsInfo(other,DIA_Pyrokar_Auge) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -232,7 +232,7 @@ instance DIA_Pyrokar_TEST(C_Info)
 
 func int DIA_Pyrokar_TEST_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Pyrokar_FIRE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -261,6 +261,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Igaraz.aivar[AIV_IgnoresArmor] = TRUE;
 		Igaraz.aivar[AIV_IgnoresFakeGuild] = TRUE;
 		Igaraz.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		Igaraz.aivar[AIV_MM_FollowTime] = 120;
 		CreateInvItems(Igaraz,ItKe_MagicChest,1);
 		AI_Teleport(Igaraz,"NW_TAVERNE_BIGFARM_05");
 		B_StartOtherRoutine(Igaraz,"CONTEST");
@@ -273,6 +274,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Agon.aivar[AIV_IgnoresArmor] = TRUE;
 		Agon.aivar[AIV_IgnoresFakeGuild] = TRUE;
 		Agon.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		Agon.aivar[AIV_MM_FollowTime] = 120;
 		CreateInvItems(Agon,ItKe_MagicChest,1);
 		AI_Teleport(Agon,"NW_MAGECAVE_RUNE");
 		B_StartOtherRoutine(Agon,"GOLEMDEAD");
@@ -284,6 +286,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Ulf.aivar[AIV_IgnoresArmor] = TRUE;
 		Ulf.aivar[AIV_IgnoresFakeGuild] = TRUE;
 		Ulf.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		Ulf.aivar[AIV_MM_FollowTime] = 120;
 		B_SetGuild(Ulf,GIL_NOV);
 		CreateInvItems(Ulf,ItKe_MagicChest,1);
 		AI_Teleport(Ulf,"NW_TROLLAREA_PATH_42");
@@ -296,7 +299,7 @@ func void DIA_Pyrokar_TEST_Info()
 
 func int C_FireContestRuneFound()
 {
-	if(C_WorldIsFixed(NEWWORLD_ZEN))
+	if(C_WorldIsFixed())
 	{
 		if(!Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
 		{
@@ -365,7 +368,7 @@ instance DIA_Pyrokar_SUCCESS(C_Info)
 
 func int DIA_Pyrokar_SUCCESS_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_Running) && (hero.guild == GIL_NOV))
+	if((MIS_Schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV))
 	{
 		if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
 		{
@@ -467,7 +470,7 @@ instance DIA_Pyrokar_OATH(C_Info)
 
 func int DIA_Pyrokar_OATH_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pyrokar_MAGICAN) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Pyrokar_MAGICAN) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -543,6 +546,7 @@ func void DIA_Pyrokar_OATH_Info()
 			Igaraz.aivar[AIV_NewsOverride] = FALSE;
 			Igaraz.aivar[AIV_IgnoresArmor] = FALSE;
 			Igaraz.aivar[AIV_IgnoresFakeGuild] = FALSE;
+			Igaraz.aivar[AIV_MM_FollowTime] = NPC_TIME_FOLLOW;
 		};
 	};
 	if(!Npc_IsDead(Ulf))
@@ -558,6 +562,7 @@ func void DIA_Pyrokar_OATH_Info()
 			Ulf.aivar[AIV_NewsOverride] = FALSE;
 			Ulf.aivar[AIV_IgnoresArmor] = FALSE;
 			Ulf.aivar[AIV_IgnoresFakeGuild] = FALSE;
+			Ulf.aivar[AIV_MM_FollowTime] = NPC_TIME_FOLLOW;
 		};
 	};
 	if(!Npc_IsDead(Agon))
@@ -575,6 +580,7 @@ func void DIA_Pyrokar_OATH_Info()
 			Agon.aivar[AIV_NewsOverride] = FALSE;
 			Agon.aivar[AIV_IgnoresArmor] = FALSE;
 			Agon.aivar[AIV_IgnoresFakeGuild] = FALSE;
+			Agon.aivar[AIV_MM_FollowTime] = NPC_TIME_FOLLOW;
 		};
 	};
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_08");	//Теперь, когда ты был принят в наши ряды, ты можешь поговорить с лордом Хагеном, главнокомандующим паладинов.
@@ -963,7 +969,7 @@ instance DIA_Pyrokar_Parlan(C_Info)
 
 func int DIA_Pyrokar_Parlan_Condition()
 {
-	if(((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV) || (hero.guild == GIL_PAL)) && (Parlan_Sends == TRUE))
+	if(((other.guild == GIL_KDF) || (other.guild == GIL_NOV) || (other.guild == GIL_PAL)) && (Parlan_Sends == TRUE))
 	{
 		return TRUE;
 	};
@@ -1007,7 +1013,7 @@ instance DIA_Pyrokar_TEACH_MANA(C_Info)
 
 func int DIA_Pyrokar_TEACH_MANA_Condition()
 {
-	if(((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV) || (hero.guild == GIL_PAL)) && Npc_KnowsInfo(hero,DIA_Pyrokar_Parlan) && (Pyrokar_TeachMANA_NoPerm == FALSE))
+	if(((other.guild == GIL_KDF) || (other.guild == GIL_NOV) || (other.guild == GIL_PAL)) && Npc_KnowsInfo(other,DIA_Pyrokar_Parlan) && (Pyrokar_TeachMANA_NoPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -1090,11 +1096,11 @@ func int DIA_Pyrokar_PERM_Condition()
 {
 	if(Kapitel >= 2)
 	{
-		if(hero.guild == GIL_KDF)
+		if(other.guild == GIL_KDF)
 		{
 			return TRUE;
 		};
-		if(hero.guild == GIL_NOV)
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -1121,7 +1127,7 @@ instance DIA_Pyrokar_PERM_nonKDF(C_Info)
 
 func int DIA_Pyrokar_PERM_nonKDF_Condition()
 {
-	if((Kapitel >= 2) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV))
+	if((Kapitel >= 2) && (other.guild != GIL_KDF) && (other.guild != GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -1458,7 +1464,7 @@ instance DIA_Pyrokar_BUCHZURUECK(C_Info)
 
 func int DIA_Pyrokar_BUCHZURUECK_Condition()
 {
-	if(Npc_HasItems(other,ItWr_XardasBookForPyrokar_Mis) && (Kapitel == 3))
+	if(Npc_HasItems(other,ItWr_XardasBookForPyrokar_MIS) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -1469,8 +1475,8 @@ func void DIA_Pyrokar_BUCHZURUECK_Info()
 	AI_Output(other,self,"DIA_Pyrokar_BUCHZURUECK_15_00");	//Я принес эту книгу от Ксардаса.
 	AI_Output(other,self,"DIA_Pyrokar_BUCHZURUECK_15_01");	//Это знак его доверия.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_02");	//Покажи.
-	B_GiveInvItems(other,self,ItWr_XardasBookForPyrokar_Mis,1);
-	Npc_RemoveInvItem(self,ItWr_XardasBookForPyrokar_Mis);
+	B_GiveInvItems(other,self,ItWr_XardasBookForPyrokar_MIS,1);
+	Npc_RemoveInvItem(self,ItWr_XardasBookForPyrokar_MIS);
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_03");	//(пораженно) Но это невероятно! Ты имеешь хоть малейшее представление о том, что ты только что дал мне?
 	AI_Output(other,self,"DIA_Pyrokar_BUCHZURUECK_15_04");	//Ээээ. Нет.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_05");	//(сердито) Это древний, давно потерянный том из давно прошедших дней.
@@ -1674,11 +1680,11 @@ func int DIA_Pyrokar_SCOBSESSED_KDF_Condition()
 {
 	if(SC_IsObsessed == TRUE)
 	{
-		if(hero.guild == GIL_KDF)
+		if(other.guild == GIL_KDF)
 		{
 			return TRUE;
 		};
-		if(hero.guild == GIL_NOV)
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -1721,7 +1727,7 @@ instance DIA_Pyrokar_SCOBSESSED(C_Info)
 
 func int DIA_Pyrokar_SCOBSESSED_Condition()
 {
-	if((SC_IsObsessed == TRUE) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV))
+	if((SC_IsObsessed == TRUE) && (other.guild != GIL_KDF) && (other.guild != GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -1784,7 +1790,7 @@ instance DIA_Pyrokar_AlmanachBringen(C_Info)
 
 func int DIA_Pyrokar_AlmanachBringen_Condition()
 {
-	if((Kapitel >= 3) && Npc_HasItems(other,ITWR_DementorObsessionBook_MIS) && (hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pyrokar_BUCHDERBESSENEN))
+	if((Kapitel >= 3) && Npc_HasItems(other,ITWR_DementorObsessionBook_MIS) && (other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pyrokar_BUCHDERBESSENEN))
 	{
 		return TRUE;
 	};
@@ -2204,8 +2210,8 @@ func void DIA_Pyrokar_AmulettofDeath_CanHaveIt()
 	AI_Output(other,self,"DIA_Pyrokar_AmulettofDeath_CanHaveIt_15_04");	//Да, конечно.
 	AI_Output(self,other,"DIA_Pyrokar_AmulettofDeath_CanHaveIt_11_05");	//Я не хочу, чтобы мне потом пришлось выкупать его назад у какого-нибудь торговца.
 	AI_Output(self,other,"DIA_Pyrokar_AmulettofDeath_CanHaveIt_11_06");	//Используй его разумно, и да хранит тебя Иннос.
-	CreateInvItems(self,ItAm_AmulettOfDeath_Mis,1);
-	B_GiveInvItems(self,other,ItAm_AmulettOfDeath_Mis,1);
+	CreateInvItems(self,ItAm_AmulettOfDeath_MIS,1);
+	B_GiveInvItems(self,other,ItAm_AmulettOfDeath_MIS,1);
 	Pyro_Gives_Aura = TRUE;
 };
 
@@ -2230,7 +2236,7 @@ instance DIA_Pyrokar_PotionofDeath(C_Info)
 
 func int DIA_Pyrokar_PotionofDeath_Condition()
 {
-	if(Npc_HasItems(other,ItPo_PotionOfDeath_01_Mis))
+	if(Npc_HasItems(other,ItPo_PotionOfDeath_01_MIS))
 	{
 		return TRUE;
 	};
@@ -2291,7 +2297,7 @@ func void DIA_Pyrokar_PotionofDeath_Weapon()
 	AI_Output(other,self,"DIA_Pyrokar_PotionofDeath_Weapon_15_04");	//Понятно.
 	AI_Output(self,other,"DIA_Pyrokar_PotionofDeath_Weapon_11_05");	//Но эти слезы могут также приносить страдания и смерть. Только члены нашего ордена могут пить их.
 	AI_Output(self,other,"DIA_Pyrokar_PotionofDeath_Weapon_11_06");	//Любого другого - даже паладина нашего Владыки - ожидает мучительная смерть.
-	Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_01_Mis,1);
-	CreateInvItems(hero,ItPo_PotionOfDeath_02_Mis,1);
+	Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_01_MIS,1);
+	CreateInvItems(hero,ItPo_PotionOfDeath_02_MIS,1);
 };
 

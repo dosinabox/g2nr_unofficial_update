@@ -12,7 +12,7 @@ instance DIA_Xardas_FirstEXIT(C_Info)
 
 func int DIA_Xardas_FirstEXIT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_TODO) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Xardas_TODO))
 	{
 		return TRUE;
 	};
@@ -151,7 +151,7 @@ instance DIA_Xardas_AWAY(C_Info)
 
 func int DIA_Xardas_AWAY_Condition()
 {
-	if(!Npc_KnowsInfo(other,DIA_Xardas_TODO) && !Npc_KnowsInfo(other,DIA_Xardas_FirstEXIT) && (Kapitel < 3))
+	if(!Npc_KnowsInfo(other,DIA_Xardas_TODO))
 	{
 		return TRUE;
 	};
@@ -179,10 +179,7 @@ instance DIA_Xardas_TODO(C_Info)
 
 func int DIA_Xardas_TODO_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Xardas_TODO_Info()
@@ -222,6 +219,8 @@ func int DIA_Addon_Xardas_StonePlate_Condition()
 func void DIA_Addon_Xardas_StonePlate_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Xardas_StonePlate_15_00");	//Что ты можешь сказать об этой каменной табличке?
+	//AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_01");	//Ich habe so eine unten in der Hцhlen vor meinem Turm gefunden.
+	//AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_02");	//Sie sind in einer seltsam alten Sprache geschrieben, die ich in dieser Form noch nirgendwo gesehen habe.
 	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_03");	//Сначала я подозревал, что это магический артефакт, но потом пришел к выводу, что никакой ценности она не имеет.
 	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_04");	//Я не смог полностью расшифровать надписи на табличке, но, похоже, они относятся к истории какой-то древней культуры.
 	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_05");	//Если хочешь, можешь забрать табличку себе. Мне она ни к чему.
@@ -478,7 +477,7 @@ instance DIA_Xardas_Khorinis(C_Info)
 
 func int DIA_Xardas_Khorinis_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_TODO) && (PlayerEnteredCity == FALSE) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Xardas_TODO) && (PlayerEnteredCity == FALSE))
 	{
 		return TRUE;
 	};
@@ -563,9 +562,15 @@ instance DIA_Xardas_ABOUTLESTER(C_Info)
 
 func int DIA_Xardas_ABOUTLESTER_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS) && (Npc_GetDistToWP(Lester,"NW_XARDAS_TOWER_IN1_31") <= 500) && (Kapitel < 3))
+	if((Lester_SentToXardas == TRUE) && (Kapitel < 3))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Lester))
+		{
+			if(Npc_GetDistToWP(Lester,"NW_XARDAS_TOWER_IN1_31") <= 500)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -641,7 +646,7 @@ func void DIA_Xardas_FirstPal_Info()
 		DIA_Common_NoNotYet();
 		B_Xardas_SoLittleTime();
 	};
-	if((LesterMovedToXardas == FALSE) && Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
+	if((LesterMovedToXardas == FALSE) && (Lester_SentToXardas == TRUE))
 	{
 		B_StartOtherRoutine(Lester,"XARDAS");
 		LesterMovedToXardas = TRUE;
@@ -795,7 +800,7 @@ func void DIA_Xardas_DMTSINDDA_Info()
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_14_04");	//Игра в прятки окончена. Вчера еще никто не знал, какова будет атака врага. Но теперь это становится слишком очевидно.
 	B_LogEntry(TOPIC_INNOSEYE,"Врагу теперь известно, что я ищу Глаз Инноса. Мне нужно побыстрее найти его, пока еще не слишком поздно.");
 	Info_ClearChoices(DIA_Xardas_DMTSINDDA);
-	if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS) && !Npc_KnowsInfo(other,DIA_Xardas_ABOUTLESTER))
+	if((Lester_SentToXardas == TRUE) && !Npc_KnowsInfo(other,DIA_Xardas_ABOUTLESTER))
 	{
 		Info_AddChoice(DIA_Xardas_DMTSINDDA,"Ты уже поговорил с Лестером?",DIA_Xardas_ABOUTLESTER_Info);
 	};

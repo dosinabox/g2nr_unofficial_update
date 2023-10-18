@@ -14,7 +14,7 @@ func void B_MM_AssessPlayer()
 	{
 		if((self.guild == GIL_DRAGON) || ((self.guild != GIL_DRAGON) && (Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG)))
 		{
-			if(!C_BodyStateContains(other,BS_FALL) && !C_BodyStateContains(other,BS_SWIM) && !C_BodyStateContains(other,BS_DIVE))
+			if(!C_BodyStateContains(other,BS_FALL) && !C_NpcIsSwimming(other))
 			{
 				self.aivar[AIV_NpcStartedTalk] = TRUE;
 				B_AssessTalk();

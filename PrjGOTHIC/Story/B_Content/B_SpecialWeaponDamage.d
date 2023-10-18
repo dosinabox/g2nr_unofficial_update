@@ -104,11 +104,15 @@ func void B_ApplyFireBowDamage(var C_Npc target)
 
 func void B_SpecialRangedWeaponDamage(var C_Npc shooter,var C_Npc target,var int directHit)
 {
+	var C_Item readyweap;
+	if(!Hlp_IsValidNpc(shooter))
+	{
+		return;
+	};
 	if(!Npc_HasReadiedRangedWeapon(shooter))
 	{
 		return;
 	};
-	var C_Item readyweap;
 	readyweap = Npc_GetReadiedWeapon(shooter);
 	if(Hlp_IsItem(readyweap,ItRw_Addon_FireBow))
 	{

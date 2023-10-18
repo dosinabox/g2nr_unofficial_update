@@ -144,14 +144,23 @@ func void ValidateNpc(var C_Npc npc)
 
 func void ValidateTalent(var int talent)
 {
-	var string text;
-	if((talent < NPC_TALENT_1H) || (talent > NPC_TALENT_CROSSBOW))
+	if(talent == NPC_TALENT_1H)
 	{
-		text = "Talent System Error: invalid talent (";
-		text = ConcatStrings(text,IntToString(talent));
-		text = ConcatStrings(text,")");
-		Print(text);
+		return;
 	};
+	if(talent == NPC_TALENT_2H)
+	{
+		return;
+	};
+	if(talent == NPC_TALENT_BOW)
+	{
+		return;
+	};
+	if(talent == NPC_TALENT_CROSSBOW)
+	{
+		return;
+	};
+	Print(ConcatStrings("Talent System Error: invalid talent ",IntToString(talent)));
 };
 
 func int GetTalent(var C_Npc npc,var int talent)

@@ -62,7 +62,7 @@ instance DIA_Sergio_Isgaroth(C_Info)
 
 func int DIA_Sergio_Isgaroth_Condition()
 {
-	if(Npc_KnowsInfo(hero,PC_PrayShrine_Paladine))
+	if(Npc_KnowsInfo(other,PC_PrayShrine_Paladine))
 	{
 		if(Kapitel == 1)
 		{
@@ -228,7 +228,7 @@ instance DIA_Sergio_ORDERS(C_Info)
 
 func int DIA_Sergio_ORDERS_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Sergio_WHY) && (Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500))
+	if(Npc_KnowsInfo(other,DIA_Sergio_WHY) && (Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500))
 	{
 		if(Sergio_Follow == FALSE)
 		{

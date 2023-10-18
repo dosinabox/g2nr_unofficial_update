@@ -230,7 +230,6 @@ func int DIA_Alrik_WannaFight_Condition()
 func void DIA_Alrik_WannaFight_Info()
 {
 	AI_Output(other,self,"DIA_Alrik_WannaFight_15_00");	//Я хочу сразиться с тобой!
-	Info_ClearChoices(DIA_Alrik_WannaFight);
 	if(((Alrik_ArenaKampfVerloren > 0) && !Npc_HasItems(self,ItMw_AlriksSword_Mis)) || !Npc_HasEquippedMeleeWeapon(self))
 	{
 		if((MIS_Alrik_Sword == LOG_SUCCESS) || (Alrik_Sword_Once == TRUE))
@@ -315,8 +314,6 @@ func void DIA_Alrik_WannaFight_Gold()
 	B_RemoveEveryInvItem(self,ItMi_Gold);
 	CreateInvItems(self,ItMi_Gold,100);
 	AI_Output(self,other,"DIA_Alrik_WannaFight_Gold_09_03");	//Ты готов?
-	self.aivar[AIV_ArenaFight] = AF_RUNNING;
-	Alrik_Kaempfe += 1;
 	Info_ClearChoices(DIA_Alrik_WannaFight);
 	Info_AddChoice(DIA_Alrik_WannaFight,"Подожди секундочку...",DIA_Alrik_WannaFight_Moment);
 	Info_AddChoice(DIA_Alrik_WannaFight,"Иди сюда!",DIA_Alrik_WannaFight_NOW);
@@ -329,30 +326,33 @@ func void DIA_Alrik_WannaFight_NoGold()
 	Info_ClearChoices(DIA_Alrik_WannaFight);
 };
 
-func void DIA_Alrik_WannaFight_NOW()
+func void B_Alrik_StartFight()
 {
-	AI_Output(other,self,"DIA_Alrik_WannaFight_NOW_15_00");	//Иди сюда!
-	AI_Output(self,other,"DIA_Alrik_WannaFight_NOW_09_01");	//Посмотрим, на что ты способен!
 	if(self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX])
 	{
 		CreateInvItems(self,ItPo_Health_Addon_04,1);
 		B_UseItem(self,ItPo_Health_Addon_04);
 	};
+	self.aivar[AIV_ArenaFight] = AF_RUNNING;
+	Alrik_Kaempfe += 1;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
+};
+
+func void DIA_Alrik_WannaFight_NOW()
+{
+	AI_Output(other,self,"DIA_Alrik_WannaFight_NOW_15_00");	//Иди сюда!
+	AI_Output(self,other,"DIA_Alrik_WannaFight_NOW_09_01");	//Посмотрим, на что ты способен!
+	Info_ClearChoices(DIA_Alrik_WannaFight);
+	B_Alrik_StartFight();
 };
 
 func void DIA_Alrik_WannaFight_Moment()
 {
 	AI_Output(other,self,"DIA_Alrik_WannaFight_Moment_15_00");	//Подожди секундочку...
 	AI_Output(self,other,"DIA_Alrik_WannaFight_Moment_09_01");	//Как хочешь... а я начинаю сейчас!
-	if(self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX])
-	{
-		CreateInvItems(self,ItPo_Health_Addon_04,1);
-		B_UseItem(self,ItPo_Health_Addon_04);
-	};
-	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_NONE,1);
+	Info_ClearChoices(DIA_Alrik_WannaFight);
+	B_Alrik_StartFight();
 };
 
 
