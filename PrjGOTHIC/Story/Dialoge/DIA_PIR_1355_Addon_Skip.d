@@ -655,7 +655,7 @@ func int DIA_Addon_Skip_Anheuern_Condition()
 
 func void DIA_Addon_Skip_Anheuern_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Skip_Anheuern_15_00");	//Ты должен мне помочь.
+	DIA_Common_YouGottaHelpMe();
 	AI_Output(self,other,"DIA_Addon_Skip_Anheuern_08_01");	//Каким образом?
 	AI_Output(other,self,"DIA_Addon_Skip_Anheuern_15_01");	//Нас ждет каньон.
 	if(C_HowManyPiratesInParty() >= 2)

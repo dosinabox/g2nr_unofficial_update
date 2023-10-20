@@ -42,7 +42,6 @@ instance ItWr_XardasErmahnungFuerIdioten_MIS(C_Item)
 
 func void Use_XardasErmahnungFuerIdioten()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -80,7 +79,6 @@ instance ItWr_Krypta_Garon(C_Item)
 
 func void Use_Krypta_Garon()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -178,7 +176,6 @@ instance ItWr_LastDoorToUndeadDrgDI_MIS(C_Item)
 
 func void Use_ItWr_LastDoorToUndeadDrgDI_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -241,7 +238,6 @@ instance ItWr_Rezept_MegaDrink_MIS(C_Item)
 
 func void Use_RezeptFuerMegaTrank()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -288,7 +284,6 @@ var int Use_Diary_BlackNovice_Once;
 
 func void Use_Diary_BlackNovice()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Wood_L.tga",0);
@@ -334,7 +329,6 @@ instance ItWr_ZugBruecke_MIS(C_Item)
 
 func void Use_ZugBruecke()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);

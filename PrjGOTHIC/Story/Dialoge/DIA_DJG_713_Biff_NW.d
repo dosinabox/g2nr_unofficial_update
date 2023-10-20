@@ -21,18 +21,18 @@ func void DIA_Biff_NW_EXIT_Info()
 };
 
 
-instance DIA_Biff_NW_HAfen(C_Info)
+instance DIA_Biff_NW_Hafen(C_Info)
 {
 	npc = DJG_713_Biff_NW;
 	nr = 5;
-	condition = DIA_Biff_NW_HAfen_Condition;
-	information = DIA_Biff_NW_HAfen_Info;
+	condition = DIA_Biff_NW_Hafen_Condition;
+	information = DIA_Biff_NW_Hafen_Info;
 	permanent = TRUE;
 	description = "Хорошо. Осталось недолго.";
 };
 
 
-func int DIA_Biff_NW_HAfen_Condition()
+func int DIA_Biff_NW_Hafen_Condition()
 {
 	if(Biff_IsOnBoard != LOG_FAILED)
 	{
@@ -40,10 +40,10 @@ func int DIA_Biff_NW_HAfen_Condition()
 	};
 };
 
-func void DIA_Biff_NW_HAfen_Info()
+func void DIA_Biff_NW_Hafen_Info()
 {
-	AI_Output(other,self,"DIA_Biff_NW_HAfen_15_00");	//Хорошо. Осталось недолго.
-	AI_Output(self,other,"DIA_Biff_NW_HAfen_07_01");	//Я не могу ждать.
+	AI_Output(other,self,"DIA_Biff_NW_Hafen_15_00");	//Хорошо. Осталось недолго.
+	AI_Output(self,other,"DIA_Biff_NW_Hafen_07_01");	//Я не могу ждать.
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
 		Npc_ExchangeRoutine(self,"SHIP");
