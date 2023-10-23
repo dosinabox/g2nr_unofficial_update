@@ -441,6 +441,7 @@ Story\NPC_Scripts\B_GiveNpcTalents.d
 Story\NPC_Scripts\B_SetAttributesToChapter.d
 Story\NPC_Scripts\B_SetImmortal.d
 Story\NPC_Scripts\B_SetNpcVisual.d
+Story\NPC_Scripts\B_GiveAllArmor.d
 Story\NPC_Scripts\B_GiveAllWeapons.d
 Story\NPC_Scripts\Npc_Default.d
 Story\NPC\BAU_4300_Addon_Cavalorn.d

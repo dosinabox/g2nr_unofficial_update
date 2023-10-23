@@ -85,6 +85,12 @@ func void B_TakeAllRengaruGold()
 	B_GiveInvItems(self,other,ItMi_Gold,RengaruGold);
 };
 
+func void B_TakeRengaruGold(var int amount)
+{
+	AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим!
+	B_GiveInvItems(self,other,ItMi_Gold,amount);
+};
+
 instance DIA_Rengaru_GOTYOU(C_Info)
 {
 	npc = VLK_492_Rengaru;
@@ -123,8 +129,7 @@ func void DIA_Rengaru_GOTYOU_YouThief()
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_YouThief_15_00");	//... тебе лучше вернуть золото Джоры. И немедленно.
 	if(RengaruGold >= 50)
 	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим!
-		B_GiveInvItems(self,other,ItMi_Gold,50);
+		B_TakeRengaruGold(50);
 	}
 	else if(RengaruGold > 0)
 	{
@@ -177,8 +182,7 @@ func void DIA_Rengaru_GOTYOU_Anteil_alles()
 func void DIA_Rengaru_GOTYOU_Anteil_GehtKlar()
 {
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_GehtKlar_15_00");	//Хорошо, давай мне половину тогда.
-	AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим!
-	B_GiveInvItems(self,other,ItMi_Gold,25);
+	B_TakeRengaruGold(25);
 	Info_ClearChoices(DIA_Rengaru_GOTYOU);
 };
 

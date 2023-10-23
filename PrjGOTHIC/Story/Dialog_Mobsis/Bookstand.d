@@ -1,7 +1,6 @@
 
 func void Use_Bookstand_01_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -40,7 +39,6 @@ var int FinalDragonEquipment_Once;
 
 func void Use_FINALDRAGONEQUIPMENT_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();

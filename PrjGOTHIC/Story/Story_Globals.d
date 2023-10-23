@@ -181,7 +181,7 @@ var int RangerRingIsMyRing;
 var int RangerRingIsLanceRing;
 //var int SC_KnowsCordAsRangerFromLares;
 var int SC_KnowsCordAsRangerFromLee;
-var int Cavalorn_RangerHint;
+//var int Cavalorn_RangerHint;
 var int Baltram_Exchange4Lares;
 var int SC_KnowsBaltramAsRanger;
 var int Lares_GotRingBack;

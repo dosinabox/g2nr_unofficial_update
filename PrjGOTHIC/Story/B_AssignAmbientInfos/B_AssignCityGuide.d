@@ -1,57 +1,57 @@
 
 func void B_AddCityGuideChoices()
 {
-	Info_ClearChoices(dia_cityguide);
+	Info_ClearChoices(DIA_CityGuide);
 	if(!C_IsQuarterNearest(self,Q_UNTERSTADT))
 	{
-		Info_AddChoice(dia_cityguide,"Как мне попасть в нижнюю часть города?",dia_cityguide_unterstadt);
+		Info_AddChoice(DIA_CityGuide,"Как мне попасть в нижнюю часть города?",DIA_CityGuide_Unterstadt);
 	};
 	if(!C_IsQuarterNearest(self,Q_OBERSTADT))
 	{
-		Info_AddChoice(dia_cityguide,"Как мне попасть в верхний квартал?",dia_cityguide_oberstadt);
+		Info_AddChoice(DIA_CityGuide,"Как мне попасть в верхний квартал?",DIA_CityGuide_Oberstadt);
 	};
 	if(!C_IsQuarterNearest(self,Q_TEMPEL))
 	{
-		Info_AddChoice(dia_cityguide,"Я ищу храм.",dia_cityguide_tempel);
+		Info_AddChoice(DIA_CityGuide,"Я ищу храм.",DIA_CityGuide_tempel);
 	};
 	if(!C_IsQuarterNearest(self,Q_MARKT))
 	{
-		Info_AddChoice(dia_cityguide,"Где находится рыночная площадь?",dia_cityguide_markt);
+		Info_AddChoice(DIA_CityGuide,"Где находится рыночная площадь?",DIA_CityGuide_Markt);
 	};
 	if(!C_IsQuarterNearest(self,Q_GALGEN))
 	{
-		Info_AddChoice(dia_cityguide,"Как мне попасть на площадь Правосудия?",dia_cityguide_galgen);
+		Info_AddChoice(DIA_CityGuide,"Как мне попасть на площадь Правосудия?",DIA_CityGuide_Galgen);
 	};
 	if(!C_IsQuarterNearest(self,Q_KASERNE))
 	{
-		Info_AddChoice(dia_cityguide,"Где находятся казармы?",dia_cityguide_kaserne);
+		Info_AddChoice(DIA_CityGuide,"Где находятся казармы?",DIA_CityGuide_Kaserne);
 	};
 	if(!C_IsQuarterNearest(self,Q_HAFEN))
 	{
-		Info_AddChoice(dia_cityguide,"Где находится портовый квартал?",dia_cityguide_hafen);
+		Info_AddChoice(DIA_CityGuide,"Где находится портовый квартал?",DIA_CityGuide_Hafen);
 	};
-	Info_AddChoice(dia_cityguide,"Спасибо. Именно это я и хотел узнать!",dia_cityguide_back);
+	Info_AddChoice(DIA_CityGuide,"Спасибо. Именно это я и хотел узнать!",DIA_CityGuide_Back);
 };
 
 
-instance DIA_CITYGUIDE(C_Info)
+instance DIA_CityGuide(C_Info)
 {
 	nr = 700;
-	condition = DIA_CITYGUIDE_Condition;
-	information = DIA_CITYGUIDE_Info;
+	condition = DIA_CityGuide_Condition;
+	information = DIA_CityGuide_Info;
 	permanent = TRUE;
 	description = "Что ты можешь рассказать мне об этом квартале?";
 };
 
 
-func int DIA_CITYGUIDE_Condition()
+func int DIA_CityGuide_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_CITYGUIDE_Info()
+func void DIA_CityGuide_Info()
 {
-	AI_Output(other,self,"DIA_CITYGUIDE_15_00");	//Что ты можешь рассказать мне об этом квартале?
+	AI_Output(other,self,"DIA_CityGuide_15_00");	//Что ты можешь рассказать мне об этом квартале?
 	if(C_NpcIsInQuarter(self) == Q_UNTERSTADT)
 	{
 		B_Say(self,other,"$UNTERSTADT");
@@ -84,15 +84,15 @@ func void DIA_CITYGUIDE_Info()
 	B_AddCityGuideChoices();
 };
 
-func void dia_cityguide_back()
+func void DIA_CityGuide_Back()
 {
-	AI_Output(other,self,"DIA_CITYGUIDE_BACK_15_00");	//Спасибо. Именно это я и хотел узнать!
-	Info_ClearChoices(dia_cityguide);
+	AI_Output(other,self,"DIA_CityGuide_BACK_15_00");	//Спасибо. Именно это я и хотел узнать!
+	Info_ClearChoices(DIA_CityGuide);
 };
 
-func void dia_cityguide_unterstadt()
+func void DIA_CityGuide_Unterstadt()
 {
-	AI_Output(other,self,"DIA_CITYGUIDE_UNTERSTADT_15_00");	//Как мне попасть в нижнюю часть города?
+	AI_Output(other,self,"DIA_CityGuide_UNTERSTADT_15_00");	//Как мне попасть в нижнюю часть города?
 	if(C_NpcIsInQuarter(self) == Q_OBERSTADT)
 	{
 		B_Say(self,other,"$OBERSTADT_2_UNTERSTADT");
@@ -124,9 +124,9 @@ func void dia_cityguide_unterstadt()
 	B_AddCityGuideChoices();
 };
 
-func void dia_cityguide_oberstadt()
+func void DIA_CityGuide_Oberstadt()
 {
-	AI_Output(other,self,"DIA_CITYGUIDE_OBERSTADT_15_00");	//Как мне попасть в верхний квартал?
+	AI_Output(other,self,"DIA_CityGuide_OBERSTADT_15_00");	//Как мне попасть в верхний квартал?
 	if(C_NpcIsInQuarter(self) == Q_UNTERSTADT)
 	{
 		B_Say(self,other,"$UNTERSTADT_2_OBERSTADT");
@@ -163,9 +163,9 @@ func void dia_cityguide_oberstadt()
 	B_AddCityGuideChoices();
 };
 
-func void dia_cityguide_tempel()
+func void DIA_CityGuide_Tempel()
 {
-	AI_Output(other,self,"DIA_CITYGUIDE_TEMPEL_15_00");	//Я ищу храм.
+	AI_Output(other,self,"DIA_CityGuide_TEMPEL_15_00");	//Я ищу храм.
 	if(C_NpcIsInQuarter(self) == Q_UNTERSTADT)
 	{
 		B_Say(self,other,"$UNTERSTADT_2_TEMPEL");
@@ -196,9 +196,9 @@ func void dia_cityguide_tempel()
 	B_AddCityGuideChoices();
 };
 
-func void dia_cityguide_markt()
+func void DIA_CityGuide_Markt()
 {
-	AI_Output(other,self,"DIA_CITYGUIDE_MARKT_15_00");	//Где находится рыночная площадь?
+	AI_Output(other,self,"DIA_CityGuide_MARKT_15_00");	//Где находится рыночная площадь?
 	if(C_NpcIsInQuarter(self) == Q_UNTERSTADT)
 	{
 		B_Say(self,other,"$UNTERSTADT_2_TEMPEL");
@@ -231,9 +231,9 @@ func void dia_cityguide_markt()
 	B_AddCityGuideChoices();
 };
 
-func void dia_cityguide_galgen()
+func void DIA_CityGuide_Galgen()
 {
-	AI_Output(other,self,"DIA_CITYGUIDE_GALGEN_15_00");	//Как мне попасть на площадь Правосудия?
+	AI_Output(other,self,"DIA_CityGuide_GALGEN_15_00");	//Как мне попасть на площадь Правосудия?
 	if(C_NpcIsInQuarter(self) == Q_UNTERSTADT)
 	{
 		B_Say(self,other,"$UNTERSTADT_2_TEMPEL");
@@ -266,9 +266,9 @@ func void dia_cityguide_galgen()
 	B_AddCityGuideChoices();
 };
 
-func void dia_cityguide_kaserne()
+func void DIA_CityGuide_Kaserne()
 {
-	AI_Output(other,self,"DIA_CITYGUIDE_KASERNE_15_00");	//Где находятся казармы?
+	AI_Output(other,self,"DIA_CityGuide_KASERNE_15_00");	//Где находятся казармы?
 	if(C_NpcIsInQuarter(self) == Q_UNTERSTADT)
 	{
 		B_Say(self,other,"$UNTERSTADT_2_TEMPEL");
@@ -305,9 +305,9 @@ func void dia_cityguide_kaserne()
 	B_AddCityGuideChoices();
 };
 
-func void dia_cityguide_hafen()
+func void DIA_CityGuide_Hafen()
 {
-	AI_Output(other,self,"DIA_CITYGUIDE_HAFEN_15_00");	//Где находится портовый квартал?
+	AI_Output(other,self,"DIA_CityGuide_HAFEN_15_00");	//Где находится портовый квартал?
 	if(C_NpcIsInQuarter(self) == Q_UNTERSTADT)
 	{
 		B_Say(self,other,"$UNTERSTADT_2_HAFEN");
@@ -346,6 +346,6 @@ func void dia_cityguide_hafen()
 
 func void B_AssignCityGuide(var C_Npc slf)
 {
-	dia_cityguide.npc = Hlp_GetInstanceID(slf);
+	DIA_CityGuide.npc = Hlp_GetInstanceID(slf);
 };
 

@@ -659,11 +659,13 @@ func void DIA_Addon_Cavalorn_JUNGS_Info()
 	AI_Output(self,other,"DIA_Addon_Cavalorn_JUNGS_08_01");	//Тени? Они не существуют с тех пор, как пал Барьер.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_JUNGS_08_02");	//Когда мы могли, наконец, уйти из Долины Рудников, незачем было оставаться с ними.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_JUNGS_08_03");	//Теперь я работаю на магов Воды. Я принадлежу к 'Кольцу Воды'.
-	SC_KnowsRanger = TRUE;
-	Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
-	B_LogEntry(TOPIC_Addon_RingOfWater,"Кавалорн рассказал мне, что он принадлежит к сообществу, которое называется 'Кольцо Воды'.");
-	Cavalorn_RangerHint = TRUE;
+	if(SC_KnowsRanger == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
+		B_LogEntry(TOPIC_Addon_RingOfWater,"Кавалорн рассказал мне, что он принадлежит к сообществу, которое называется 'Кольцо Воды'.");
+		SC_KnowsRanger = TRUE;
+	};
 };
 
 
@@ -926,7 +928,11 @@ func int DIA_Addon_Cavalorn_WannaLearn_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO))
 	{
-		if(C_BragoBanditsDead())
+		if(MIS_Addon_Cavalorn_KillBrago == LOG_SUCCESS)
+		{
+			return TRUE;
+		};
+		if(MIS_Addon_Nefarius_BringMissingOrnaments != FALSE)
 		{
 			return TRUE;
 		};

@@ -236,17 +236,18 @@ func void DIA_Addon_Vatras_Cavalorn_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Vatras_Cavalorn_15_00");	//У меня для тебя письмо.
 	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_01");	//Для меня?
+	MIS_Addon_Cavalorn_Letter2Vatras = LOG_SUCCESS;
 	if(SaturasFirstMessageOpened == FALSE)
 	{
-		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras);
 		B_GiveInvItems(other,self,ItWr_SaturasFirstMessage_Addon_Sealed,1);
 		Npc_RemoveInvItem(self,ItWr_SaturasFirstMessage_Addon_Sealed);
-		CreateInvItems(self,ItWr_SaturasFirstMessage_Addon,1);
+		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras);
 	}
 	else
 	{
-		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras / 4);
 		B_GiveInvItems(other,self,ItWr_SaturasFirstMessage_Addon,1);
+		Npc_RemoveInvItem(self,ItWr_SaturasFirstMessage_Addon);
+		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras / 4);
 		AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_02");	//Да, но... оно вскрыто. Я надеюсь, оно не попало в чужие руки?
 	};
 	B_ReadFakeItem(self,other,Fakescroll,1);
@@ -258,7 +259,6 @@ func void DIA_Addon_Vatras_Cavalorn_Info()
 	{
 		Info_AddChoice(DIA_Addon_Vatras_Cavalorn,"Я получил его у Кавалорна, охотника.",DIA_Addon_Vatras_Cavalorn_Cavalorn);
 	};
-	MIS_Addon_Cavalorn_Letter2Vatras = LOG_SUCCESS;
 };
 
 func void DIA_Addon_Vatras_Cavalorn_Bandit()
@@ -441,6 +441,46 @@ func void DIA_Addon_Vatras_Bandittrader_Info()
 };
 
 
+func void B_Vatras_REPEAT()
+{
+	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_01");	//Хорошо, давай подытожим:
+	if(Vatras_Third == TRUE)
+	{
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_02");	//Ты бывший заключенный...
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_03");	//Ты искатель приключений с юга...
+	};
+	if(Vatras_Second == TRUE)
+	{
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_04");	//... которому сказал некромант Ксардас...
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_05");	//... который слышал слухи...
+	};
+	if(Vatras_First == TRUE)
+	{
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_06");	//... о том, что пришли драконы, чтобы завоевать страну.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_07");	//... что скоро произойдут ужасные вещи.
+	};
+	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_08");	//И ты пришел, чтобы сообщить это паладинам...
+	if((Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
+	{
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_09");	//Это все звучит довольно фантастически, но я не думаю, что ты солгал мне.
+	};
+};
+
+func void B_Vatras_ReadyToJoin()
+{
+	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_10");	//Поэтому я вынужден предположить, что твои мотивы благородны.
+	AI_Output(self,other,"DIA_ADDON_Vatras_INFLUENCE_REPEAT_05_11");	//Я хочу дать тебе шанс присоединиться к Кольцу Воды.
+};
+
 instance DIA_Addon_Vatras_WannaBeRanger(C_Info)
 {
 	npc = VLK_439_Vatras;
@@ -470,14 +510,8 @@ func void DIA_Addon_Vatras_WannaBeRanger_Info()
 	};
 	if((Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
 	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_01");	//Хорошо, давай подытожим:
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_02");	//Ты бывший заключенный...
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_04");	//... которому сказал некромант Ксардас...
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_06");	//... о том, что пришли драконы, чтобы завоевать страну.
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_08");	//И ты пришел, чтобы сообщить это паладинам...
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_09");	//Это все звучит довольно фантастически, но я не думаю, что ты солгал мне.
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_10");	//Поэтому я вынужден предположить, что твои мотивы благородны.
-		AI_Output(self,other,"DIA_ADDON_Vatras_INFLUENCE_REPEAT_05_11");	//Я хочу дать тебе шанс присоединиться к Кольцу Воды.
+		B_Vatras_REPEAT();
+		B_Vatras_ReadyToJoin();
 	}
 	else
 	{
@@ -564,40 +598,6 @@ func void B_Vatras_Third_Lie()
 	Vatras_Third = FALSE;
 };
 
-func void B_Vatras_REPEAT()
-{
-	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_01");	//Хорошо, давай подытожим:
-	if(Vatras_Third == TRUE)
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_02");	//Ты бывший заключенный...
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_03");	//Ты искатель приключений с юга...
-	};
-	if(Vatras_Second == TRUE)
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_04");	//... которому сказал некромант Ксардас...
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_05");	//... который слышал слухи...
-	};
-	if(Vatras_First == TRUE)
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_06");	//... о том, что пришли драконы, чтобы завоевать страну.
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_07");	//... что скоро произойдут ужасные вещи.
-	};
-	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_08");	//И ты пришел, чтобы сообщить это паладинам...
-	if((Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_09");	//Это все звучит довольно фантастически, но я не думаю, что ты солгал мне.
-	};
-};
-
 func void B_Vatras_PLEASEDONTLIE()
 {
 	AI_Output(self,other,"DIA_Vatras_Add_05_00");	//Мне кажется, что ты не все говоришь мне.
@@ -616,8 +616,7 @@ func void B_Vatras_INFLUENCE_REPEAT()
 	B_Vatras_REPEAT();
 	if((Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
 	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_10");	//Поэтому я вынужден предположить, что твои мотивы благородны.
-		AI_Output(self,other,"DIA_ADDON_Vatras_INFLUENCE_REPEAT_05_11");	//Я хочу дать тебе шанс присоединиться к Кольцу Воды.
+		B_Vatras_ReadyToJoin();
 		Info_ClearChoices(DIA_Addon_Vatras_WannaBeRanger);
 	}
 	else

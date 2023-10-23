@@ -18,7 +18,6 @@
 
 func void UseStandardBrief()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -50,7 +49,6 @@ instance StandardBuch(C_Item)
 
 func void UseStandardBuch()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Brown_L.tga",0);
@@ -208,7 +206,6 @@ instance ItWr_EinhandBuch(C_Item)
 
 func void UseEinhandBuch()
 {
-	var int nDocID;
 	if(Lerne_Einhand == FALSE)
 	{
 		B_RaiseTalentByPermBonus(self,NPC_TALENT_1H,5);
@@ -256,7 +253,6 @@ instance ItWr_ZweihandBuch(C_Item)
 
 func void UseZweihandBuch()
 {
-	var int nDocID;
 	if(Lerne_Zweihand == FALSE)
 	{
 		B_RaiseTalentByPermBonus(self,NPC_TALENT_2H,5);
