@@ -221,7 +221,6 @@ func void DIA_Addon_Erol_FernandosWeapons_back()
 };
 
 var int StoneplatesCounter;
-const int Addon_ErolsStoneplatesOffer = 10;
 
 instance DIA_Addon_Erol_Stoneplates(C_Info)
 {

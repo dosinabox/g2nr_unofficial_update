@@ -1184,7 +1184,6 @@ instance DIA_Lord_Hagen_AugeAmStart(C_Info)
 
 func int DIA_Lord_Hagen_AugeAmStart_Condition()
 {
-//	if((Kapitel <= 4) && (MIS_ReadyforChapter4 == TRUE) && (SC_IsWearingInnosEye == TRUE))
 	if(SC_IsWearingInnosEye == TRUE)
 	{
 		return TRUE;
@@ -1322,29 +1321,20 @@ func int DIA_Lord_Hagen_RINGEBRINGEN_Condition()
 
 func void DIA_Lord_Hagen_RINGEBRINGEN_Info()
 {
-	var int Ringcount;
-	var int XP_PAL_OrcRings;
-	var int OrcRingGeld;
-	var int HagensRingOffer;
+	var int amount;
+	amount = Npc_HasItems(other,ItRi_OrcEliteRing);
 	AI_Output(other,self,"DIA_Lord_Hagen_RINGEBRINGEN_15_00");	//я могу еще кое-что сообщить о предводител€х орков.
 	AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_01");	//–ассказывай.
-	HagensRingOffer = 150;
-	Ringcount = Npc_HasItems(other,ItRi_OrcEliteRing);
-	if(Ringcount == 1)
+	if(amount == 1)
 	{
 		AI_Output(other,self,"DIA_Lord_Hagen_RINGEBRINGEN_15_02");	//я могу дать тебе еще одно кольцо орков.
-		B_GiveInvItems(other,self,ItRi_OrcEliteRing,1);
-		OrkRingCounter += 1;
-		B_GivePlayerXP(XP_PAL_OrcRing);
 	}
 	else
 	{
 		DIA_Hagen_MoreOrcRings();
-		B_GiveInvItems(other,self,ItRi_OrcEliteRing,Ringcount);
-		XP_PAL_OrcRings = Ringcount * XP_PAL_OrcRing;
-		OrkRingCounter += Ringcount;
-		B_GivePlayerXP(XP_PAL_OrcRings);
 	};
+	B_GiveInvItems(other,self,ItRi_OrcEliteRing,amount);
+	OrkRingCounter += amount;
 	AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_04");	//я горжусь тобой. “ак держать!
 	if(OrkRingCounter <= 10)
 	{
@@ -1359,12 +1349,10 @@ func void DIA_Lord_Hagen_RINGEBRINGEN_Info()
 		AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_07");	//я удивлюсь, если ты еще их повстречаешь.
 		AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_08");	//“ы можешь приносить мне их кольца, но € думаю, орки уже получили хороший урок.
 		TOPIC_END_OrcElite = TRUE;
-		B_CheckLog();
 	};
 	AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_09");	//¬от. ¬озьми это золото, купи себе на него хорошее снар€жение.
-	OrcRingGeld = Ringcount * HagensRingOffer;
-	CreateInvItems(self,ItMi_Gold,OrcRingGeld);
-	B_GiveInvItems(self,other,ItMi_Gold,OrcRingGeld);
+	B_GiveInvItems(self,other,ItMi_Gold,HagensRingOffer * amount);
+	B_GivePlayerXP(XP_PAL_OrcRing * amount);
 };
 
 

@@ -22,7 +22,6 @@ instance ITWr_Addon_Hinweis_02(C_Item)
 
 func void Use_Hinweis_02()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -64,7 +63,6 @@ instance ITWr_Addon_Health_04(C_Item)
 
 func void Use_Heilrezept_04()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -112,7 +110,6 @@ instance ITWr_Addon_Mana_04(C_Item)
 
 func void Use_Manarezept_04()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -162,7 +159,6 @@ instance ITWr_Addon_Hinweis_01(C_Item)
 
 func void Use_Hinweis_01()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -202,7 +198,6 @@ instance ITWr_Addon_William_01(C_Item)
 
 func void Use_William_01()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -252,7 +247,6 @@ instance ITWr_Addon_MCELIXIER_01(C_Item)
 
 func void Use_MCELIXIER_01()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -302,7 +296,6 @@ instance ITWr_Addon_Pirates_01(C_Item)
 
 func void Use_Pirates_01()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -343,7 +336,6 @@ instance ITWr_Addon_Joint_01(C_Item)
 
 func void Use_Joint_Rezept_01()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -391,7 +383,6 @@ instance ITWr_Addon_Lou_Rezept(C_Item)
 
 func void UseLouRezept()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -443,7 +434,6 @@ instance ITWr_Addon_Lou_Rezept2(C_Item)
 
 func void UseLouRezept2()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -490,7 +480,6 @@ instance ITWr_Addon_Piratentod(C_Item)
 
 func void UseRezeptPiratentod()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -537,7 +526,6 @@ instance ItWr_MushroomMana(C_Item)
 
 func void UseMushroomManaRecipe()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -584,7 +572,6 @@ instance ItWr_AppleSTR(C_Item)
 
 func void UseAppleSTRRecipe()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -646,7 +633,6 @@ instance ItWr_Addon_AxtAnleitung(C_Item)
 
 func void UseAxtAnleitung()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -742,16 +728,15 @@ instance ItWr_Map_AddonWorld(C_Item)
 
 func void Use_Map_AddonWorld()
 {
-	var int Document;
 	if(Npc_IsPlayer(self))
 	{
 		B_SetPlayerMap(ItWr_Map_AddonWorld);
 	};
-	Document = Doc_CreateMap();
-	Doc_SetPages(Document,1);
-	Doc_SetPage(Document,0,"Map_AddonWorld.tga",TRUE);
-	Doc_SetLevel(Document,"Addon\AddonWorld.zen");
-	Doc_SetLevelCoords(Document,-47783,36300,43949,-32300);
-	Doc_Show(Document);
+	nDocID = Doc_CreateMap();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Map_AddonWorld.tga",TRUE);
+	Doc_SetLevel(nDocID,"Addon\AddonWorld.zen");
+	Doc_SetLevelCoords(nDocID,-47783,36300,43949,-32300);
+	Doc_Show(nDocID);
 };
 

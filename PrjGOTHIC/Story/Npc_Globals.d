@@ -334,7 +334,6 @@ func void B_InitNpc_NW()
 	Nadja = Hlp_GetNpc(VLK_435_Nadja);
 	Vanja = Hlp_GetNpc(VLK_491_Vanja);
 	Moe = Hlp_GetNpc(VLK_432_Moe);
-	Valentino = Hlp_GetNpc(VLK_421_Valentino);
 	Sagitta = Hlp_GetNpc(BAU_980_Sagitta);
 	AntiPaladin_NW = Hlp_GetNpc(OrkElite_AntiPaladinOrkOberst);
 	MiltenNW = Hlp_GetNpc(PC_Mage_NW);
@@ -342,16 +341,12 @@ func void B_InitNpc_NW()
 	Sarah = Hlp_GetNpc(VLK_470_Sarah);
 	Canthar = Hlp_GetNpc(VLK_468_Canthar);
 	Andre = Hlp_GetNpc(MIL_311_Andre);
-	Lothar = Hlp_GetNpc(PAL_203_Lothar);
-	Girion = Hlp_GetNpc(PAL_207_Girion);
-	Salandril = Hlp_GetNpc(VLK_422_Salandril);
 	Hodges = Hlp_GetNpc(BAU_908_Hodges);
 	SLD_Wolf = Hlp_GetNpc(SLD_811_Wolf);
 	Buster = Hlp_GetNpc(SLD_802_Buster);
 	Bartok = Hlp_GetNpc(VLK_440_Bartok);
 	CityOrc = Hlp_GetNpc(OrcWarrior_Harad);
 	Gritta = Hlp_GetNpc(VLK_418_Gritta);
-	Richter = Hlp_GetNpc(VLK_402_Richter);
 	Constantino = Hlp_GetNpc(VLK_417_Constantino);
 	Thorben = Hlp_GetNpc(VLK_462_Thorben);
 	Bosper = Hlp_GetNpc(VLK_413_Bosper);
@@ -383,7 +378,6 @@ func void B_InitNpc_NW()
 	Torwache_305 = Hlp_GetNpc(MIL_305_Torwache);
 	Fellan = Hlp_GetNpc(VLK_480_Fellan);
 	Bromor = Hlp_GetNpc(VLK_433_Bromor);
-	Fernando = Hlp_GetNpc(VLK_405_Fernando);
 	Wulfgar = Hlp_GetNpc(MIL_312_Wulfgar);
 	Mario = Hlp_GetNpc(NONE_101_Mario);
 	Hanna = Hlp_GetNpc(VLK_414_Hanna);
@@ -410,13 +404,10 @@ func void B_InitNpc_NW()
 	Jorgen = Hlp_GetNpc(VLK_4250_Jorgen);
 	Brian = Hlp_GetNpc(VLK_457_Brian);
 	Harad = Hlp_GetNpc(VLK_412_Harad);
-	Gerbrandt = Hlp_GetNpc(VLK_403_Gerbrandt);
-	GerbrandtsFrau = Hlp_GetNpc(VLK_497_Buergerin);
 	Morgahard = Hlp_GetNpc(BDT_1030_Morgahard);
 	Cipher = Hlp_GetNpc(SLD_803_Cipher);
 	Hakon = Hlp_GetNpc(VLK_407_Hakon);
 	Elena = Hlp_GetNpc(BAU_911_Elena);
-	Lutero = Hlp_GetNpc(VLK_404_Lutero);
 	Scatty = Hlp_GetNpc(BDT_1086_Addon_Scatty);
 	Rod = Hlp_GetNpc(SLD_804_Rod);
 	Cord = Hlp_GetNpc(SLD_805_Cord);
@@ -437,6 +428,16 @@ func void B_InitNpc_NW()
 	BridgeBandit = Hlp_GetNpc(BDT_1020_Bandit_L);
 	BDT_1051 = Hlp_GetNpc(BDT_1051_Wegelagerer);
 	BDT_1052 = Hlp_GetNpc(BDT_1052_Wegelagerer);
+	//верхний квартал
+	Gerbrandt = Hlp_GetNpc(VLK_403_Gerbrandt);
+	GerbrandtsFrau = Hlp_GetNpc(VLK_497_Buergerin);
+	Richter = Hlp_GetNpc(VLK_402_Richter);
+	Fernando = Hlp_GetNpc(VLK_405_Fernando);
+	Lutero = Hlp_GetNpc(VLK_404_Lutero);
+	Salandril = Hlp_GetNpc(VLK_422_Salandril);
+	Valentino = Hlp_GetNpc(VLK_421_Valentino);
+	Lothar = Hlp_GetNpc(PAL_203_Lothar);
+	Girion = Hlp_GetNpc(PAL_207_Girion);
 	//ратуша
 	LordHagen = Hlp_GetNpc(PAL_200_Hagen);
 	Ingmar = Hlp_GetNpc(PAL_201_Ingmar);

@@ -224,7 +224,6 @@ func int DIA_Addon_Nefarius_MissingOrnaments_Condition()
 
 
 var int MissingOrnamentsCounter;
-const int NefariusMissingOrnamentsOffer = 100;
 
 func void DIA_Addon_Nefarius_MissingOrnaments_Info()
 {

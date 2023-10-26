@@ -235,17 +235,16 @@ var int Use_Map_NewWorld_Orcelite_MIS_OneTime;
 
 func void Use_Map_NewWorld_Orcelite_MIS()
 {
-	var int Document;
 	if(Npc_IsPlayer(self))
 	{
 		B_SetPlayerMap(ItWr_Map_Orcelite_MIS);
 	};
-	Document = Doc_CreateMap();
-	Doc_SetPages(Document,1);
-	Doc_SetPage(Document,0,"Map_NewWorld_Orcelite.tga",TRUE);
-	Doc_SetLevel(Document,"NewWorld\NewWorld.zen");
-	Doc_SetLevelCoords(Document,-28000,50500,95500,-42500);
-	Doc_Show(Document);
+	nDocID = Doc_CreateMap();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Map_NewWorld_Orcelite.tga",TRUE);
+	Doc_SetLevel(nDocID,"NewWorld\NewWorld.zen");
+	Doc_SetLevelCoords(nDocID,-28000,50500,95500,-42500);
+	Doc_Show(nDocID);
 	if((Use_Map_NewWorld_Orcelite_MIS_OneTime == FALSE) && (MIS_KillOrkOberst != FALSE))
 	{
 		B_LogEntry(TOPIC_OrcElite,"Я нашел необычную карту у полковника орков. Похоже на стратегические военные планы.");
@@ -275,16 +274,15 @@ instance ItWr_Map_Caves_MIS(C_Item)
 
 func void Use_Map_NewWorld_Caves_MIS()
 {
-	var int Document;
 	if(Npc_IsPlayer(self))
 	{
 		B_SetPlayerMap(ItWr_Map_Caves_MIS);
 	};
-	Document = Doc_CreateMap();
-	Doc_SetPages(Document,1);
-	Doc_SetPage(Document,0,"Map_NewWorld_Caves.tga",TRUE);
-	Doc_SetLevel(Document,"NewWorld\NewWorld.zen");
-	Doc_SetLevelCoords(Document,-28000,50500,95500,-42500);
-	Doc_Show(Document);
+	nDocID = Doc_CreateMap();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Map_NewWorld_Caves.tga",TRUE);
+	Doc_SetLevel(nDocID,"NewWorld\NewWorld.zen");
+	Doc_SetLevelCoords(nDocID,-28000,50500,95500,-42500);
+	Doc_Show(nDocID);
 };
 
