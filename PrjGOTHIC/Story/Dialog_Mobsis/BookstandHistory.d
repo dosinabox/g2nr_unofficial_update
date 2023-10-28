@@ -5,7 +5,6 @@ var int History_3_permanent;
 
 func void Use_BookstandHistory1_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -35,7 +34,6 @@ func void Use_BookstandHistory1_S1()
 
 func void Use_BookstandHistory2_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -63,7 +61,6 @@ func void Use_BookstandHistory2_S1()
 
 func void Use_BookstandHistory3_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -91,7 +88,6 @@ func void Use_BookstandHistory3_S1()
 
 func void Use_BookstandKaserne_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();

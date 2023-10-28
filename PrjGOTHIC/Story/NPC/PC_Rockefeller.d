@@ -90,43 +90,7 @@ instance PC_Rockefeller(Npc_Default)
 	B_SetFightSkills(self,100);
 	B_GiveAllClassicWeapons(self);
 	B_GiveAllClassicArmor(self);
-	CreateInvItem(self,ItRu_PalLight);
-	CreateInvItem(self,ItRu_PalHeal_01);
-	CreateInvItem(self,ItRu_PalHolyBolt);
-	CreateInvItem(self,ItRu_PalHeal_02);
-	CreateInvItem(self,ItRu_PalRepelEvil);
-	CreateInvItem(self,ItRu_PalHeal_03);
-	CreateInvItem(self,ItRu_PalDestroyEvil);
-	CreateInvItem(self,ItRu_Light);
-	CreateInvItem(self,ItRu_FireBolt);
-	CreateInvItem(self,ItRu_Icebolt);
-	CreateInvItem(self,ItRu_LightHeal);
-	CreateInvItem(self,ItRu_SumGobSkel);
-	CreateInvItem(self,ItRu_InstantFireball);
-	CreateInvItem(self,ItRu_Zap);
-	CreateInvItem(self,ItRu_SumWolf);
-	CreateInvItem(self,ItRu_Windfist);
-	CreateInvItem(self,ItRu_Sleep);
-	CreateInvItem(self,ItRu_MediumHeal);
-	CreateInvItem(self,ItRu_LightningFlash);
-	CreateInvItem(self,ItRu_ChargeFireball);
-	CreateInvItem(self,ItRu_SumSkel);
-	CreateInvItem(self,ItRu_Fear);
-	CreateInvItem(self,ItRu_IceCube);
-	CreateInvItem(self,ItRu_ThunderBall);
-	CreateInvItem(self,ItRu_SumGol);
-	CreateInvItem(self,ItRu_HarmUndead);
-	CreateInvItem(self,ItRu_Pyrokinesis);
-	CreateInvItem(self,ItRu_Firestorm);
-	CreateInvItem(self,ItRu_IceWave);
-	CreateInvItem(self,ItRu_SumDemon);
-	CreateInvItem(self,ItRu_FullHeal);
-	CreateInvItem(self,ItRu_Firerain);
-	CreateInvItem(self,ItRu_BreathOfDeath);
-	CreateInvItem(self,ItRu_MassDeath);
-	CreateInvItem(self,ItRu_MasterOfDisaster);
-	CreateInvItem(self,ItRu_ArmyOfDarkness);
-	CreateInvItem(self,ItRu_Shrink);
+	B_GiveAllClassicRunes(self);
 	CreateInvItem(self,ItSc_PalLight);
 	CreateInvItem(self,ItSc_PalHeal_01);
 	CreateInvItem(self,ItSc_PalHolyBolt);
@@ -340,11 +304,6 @@ instance PC_Rockefeller(Npc_Default)
 	CreateInvItem(self,ItAt_StoneGolemHeart);
 	CreateInvItem(self,ItAt_FireGolemHeart);
 	CreateInvItem(self,ItAt_IceGolemHeart);
-	//Недоступные в игре предметы
-	CreateInvItem(self,ItRu_ConcussionBolt);
-	CreateInvItem(self,ItRu_DeathBolt);
-	CreateInvItem(self,ItRu_DeathBall);
-	CreateInvItem(self,ItRu_Inflate);
 };
 
 

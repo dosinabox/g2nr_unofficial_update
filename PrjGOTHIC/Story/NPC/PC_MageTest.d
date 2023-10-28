@@ -97,18 +97,11 @@ instance PC_MageTest(Npc_Default)
 	PLAYER_TALENT_RUNES[SPL_Energyball] = TRUE;
 	PLAYER_TALENT_RUNES[SPL_SuckEnergy] = TRUE;
 	PLAYER_TALENT_RUNES[SPL_Skull] = TRUE;
+	PLAYER_TALENT_RUNES[SPL_SummonZombie] = TRUE;
+	PLAYER_TALENT_RUNES[SPL_SummonGuardian] = TRUE;
 	B_SetFightSkills(self,100);
 	EquipItem(self,ItMw_2h_Pal_Sword);
-	CreateInvItem(self,ItRu_Thunderstorm);
-	CreateInvItem(self,ItRu_Whirlwind);
-	CreateInvItem(self,ItRu_Geyser);
-	CreateInvItem(self,ItRu_GreenTentacle);
-	CreateInvItem(self,ItRu_Swarm);
-	CreateInvItem(self,ItRu_Waterfist);
-	CreateInvItem(self,ItRu_Icelance);
-	CreateInvItem(self,ItRu_BeliarsRage);
-	CreateInvItem(self,ItRu_SuckEnergy);
-	CreateInvItem(self,ItRu_Skull);
+	B_GiveAllAddonRunes(self);
 };
 
 

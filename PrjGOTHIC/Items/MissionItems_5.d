@@ -18,7 +18,6 @@ instance ItWr_XardasLetterToOpenBook_MIS(C_Item)
 
 func void Use_XardasLetterToOpenBook()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -119,7 +118,6 @@ instance ItWr_HallsofIrdorath_Open_MIS(C_Item)
 
 func void Use_HallsofIrdorath_Open()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
@@ -168,7 +166,6 @@ instance ItWr_XardasSeamapBook_MIS(C_Item)
 
 func void Use_XardasSeamapBook_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Wood_L.tga",0);
@@ -226,7 +223,6 @@ instance ItWr_UseLampIdiot_MIS(C_Item)
 
 func void UseItWr_UseLampIdiot_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -264,7 +260,6 @@ instance ItWr_Seamap_Irdorath(C_Item)
 
 func void Use_Seamap_Irdorath()
 {
-	var int nDocID;
 	nDocID = Doc_CreateMap();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"Map_NewWorld_Seamap.tga",TRUE);
@@ -311,7 +306,6 @@ instance ITWr_ForgedShipLetter_MIS(C_Item)
 
 func void UseITWr_ForgedShipLetter_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);

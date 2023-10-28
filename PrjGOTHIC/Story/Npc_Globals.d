@@ -320,11 +320,6 @@ func void B_InitNpc_NW()
 	Vatras = Hlp_GetNpc(VLK_439_Vatras);
 	Pablo = Hlp_GetNpc(MIL_319_Pablo);
 	Lares = Hlp_GetNpc(VLK_449_Lares);
-	Vino = Hlp_GetNpc(BAU_952_Vino);
-	Lobart = Hlp_GetNpc(BAU_950_Lobart);
-	LobartsBauer1 = Hlp_GetNpc(BAU_955_Bauer);
-	LobartsBauer2 = Hlp_GetNpc(BAU_953_Bauer);
-	Hilda = Hlp_GetNpc(BAU_951_Hilda);
 	Borka = Hlp_GetNpc(VLK_434_Borka);
 	Stadtwache_310 = Hlp_GetNpc(MIL_310_Stadtwache);
 	Stadtwache_333 = Hlp_GetNpc(MIL_333_Stadtwache);
@@ -428,6 +423,12 @@ func void B_InitNpc_NW()
 	BridgeBandit = Hlp_GetNpc(BDT_1020_Bandit_L);
 	BDT_1051 = Hlp_GetNpc(BDT_1051_Wegelagerer);
 	BDT_1052 = Hlp_GetNpc(BDT_1052_Wegelagerer);
+	//ферма Лобарта
+	Lobart = Hlp_GetNpc(BAU_950_Lobart);
+	Hilda = Hlp_GetNpc(BAU_951_Hilda);
+	Vino = Hlp_GetNpc(BAU_952_Vino);
+	LobartsBauer1 = Hlp_GetNpc(BAU_955_Bauer);
+	LobartsBauer2 = Hlp_GetNpc(BAU_953_Bauer);
 	//верхний квартал
 	Gerbrandt = Hlp_GetNpc(VLK_403_Gerbrandt);
 	GerbrandtsFrau = Hlp_GetNpc(VLK_497_Buergerin);

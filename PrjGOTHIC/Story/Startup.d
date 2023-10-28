@@ -1888,8 +1888,6 @@ func void STARTUP_NewWorld_Part_Farm_01()
 	Wld_InsertNpc(YGobbo_Green,"NW_FARM1_PATH_CITY_19_B");
 	Wld_InsertNpc(YBloodfly,"NW_FARM1_PATH_CITY_10_B");
 	Wld_InsertNpc(YBloodfly,"NW_FARM1_PATH_CITY_10_B");
-//	Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
-//	Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
 	Wld_InsertNpc(YGiant_Bug,"NW_FARM1_CITYWALL_RIGHT_02");
 	Wld_InsertNpc(YGiant_Bug,"NW_FARM1_OUT_13");
 	Wld_InsertNpc(YGiant_Bug_VinoRitual1,"NW_FARM1_OUT_15");
@@ -1929,14 +1927,7 @@ func void INIT_SUB_NewWorld_Part_Farm_01()
 {
 	Wld_AssignRoomToGuild("farm01",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("farm02",GIL_PUBLIC);
-	if(Lobart_Kleidung_Verkauft == TRUE)
-	{
-		Wld_AssignRoomToGuild("farm03",GIL_NONE);
-	}
-	else
-	{
-		Wld_AssignRoomToGuild("farm03",GIL_PUBLIC);
-	};
+	Wld_AssignRoomToGuild("farm03",GIL_PUBLIC);
 };
 
 func void STARTUP_NewWorld_Part_Xardas_01()

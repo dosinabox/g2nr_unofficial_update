@@ -164,6 +164,10 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		{
 			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
+		if(!Npc_IsDead(Hilda))
+		{
+			Hilda.aivar[AIV_IGNORE_Theft] = FALSE;
+		};
 		if((MIS_HelpDyrian != LOG_SUCCESS) && !Npc_IsDead(Dyrian))
 		{
 			B_SetGuild(Dyrian,GIL_NONE);
