@@ -1,7 +1,6 @@
 
 /*func void Use_Bookstand_Rune_01_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -24,7 +23,6 @@
 
 func void Use_Bookstand_Rune_02_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -47,7 +45,6 @@ func void Use_Bookstand_Rune_02_S1()
 
 func void Use_Bookstand_Innos_01_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -70,7 +67,6 @@ func void Use_Bookstand_Innos_01_S1()
 
 func void Use_Bookstand_Innos_02_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -93,7 +89,6 @@ func void Use_Bookstand_Innos_02_S1()
 
 func void Use_Bookstand_Rules_01_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -116,7 +111,6 @@ func void Use_Bookstand_Rules_01_S1()
 
 func void Use_Bookstand_Kreise_01_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -159,7 +153,6 @@ func void Use_Bookstand_Kreise_01_S1()
 
 func void Use_Bookstand_Kreise_02_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -202,7 +195,6 @@ func void Use_Bookstand_Kreise_02_S1()
 
 func void Use_Bookstand_Kreise_03_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -250,7 +242,6 @@ func void Use_Bookstand_Kreise_03_S1()
 
 func void Use_Bookstand_Kreise_04_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -292,7 +283,6 @@ func void Use_Bookstand_Kreise_04_S1()
 
 func void Use_Bookstand_Kreise_05_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -338,7 +328,6 @@ func void Use_Bookstand_Kreise_05_S1()
 
 func void Use_Bookstand_Kreise_06_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();

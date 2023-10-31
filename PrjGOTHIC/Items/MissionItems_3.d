@@ -119,7 +119,6 @@ instance ItWr_PermissionToWearInnosEye_MIS(C_Item)
 
 func void Use_PermissionToWearInnosEye()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -194,7 +193,6 @@ instance ItWr_CorneliusTagebuch_Mis(C_Item)
 
 func void UseCorneliusTagebuch()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Brown_L.tga",0);
@@ -236,7 +234,6 @@ instance ITWR_DementorObsessionBook_MIS(C_Item)
 
 func void Use_DementorObsessionBook()
 {
-	var int nDocID;
 	Wld_PlayEffect("spellFX_Fear",hero,hero,0,0,0,FALSE);
 	Snd_Play("MFX_FEAR_CAST");
 	SC_ObsessionCounter = 100;
@@ -347,7 +344,6 @@ instance ItWr_PyrokarsObsessionList(C_Item)
 
 func void Use_PyrokarsObsessionList()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -524,7 +520,6 @@ instance ItWr_BabosLetter_MIS(C_Item)
 
 func void Use_BabosLetter()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -561,7 +556,6 @@ instance ItWr_BabosPinUp_MIS(C_Item)
 
 func void Use_BabosPinUp()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"Map_Pinup.TGA",TRUE);
@@ -634,7 +628,6 @@ var int Astronomy_Once;
 
 func void Use_Astronomy()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
@@ -774,7 +767,6 @@ instance ItWr_DiegosLetter_MIS(C_Item)
 
 func void Use_DiegosLetter_Mis()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -851,7 +843,6 @@ instance ItWr_MinenAnteil_Mis(C_Item)
 
 func void Use_MinenAnteil_Mis()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -935,7 +926,6 @@ instance ItWr_RichterKomproBrief_MIS(C_Item)
 
 func void Use_RichterKomproBrief()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -979,7 +969,6 @@ instance ItWr_MorgahardTip(C_Item)
 
 func void Use_MorgahardTip()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -1050,7 +1039,6 @@ instance ItWr_VinosKellergeister_MIS(C_Item)
 
 func void Use_VinosKellergeister_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Red_L.tga",0);

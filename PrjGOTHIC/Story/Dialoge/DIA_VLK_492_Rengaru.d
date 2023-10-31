@@ -341,5 +341,6 @@ func void DIA_Rengaru_Zeichen_Info()
 	AI_Output(self,other,"DIA_Rengaru_Zeichen_07_03");	//Попробуй взять нужный тебе предмет одной рукой, размахивая при этом другой. Это отвлечет их.
 	B_RaiseAttributeByPermBonus(other,ATR_DEXTERITY,1);
 	Snd_Play("LEVELUP");
+	self.aivar[AIV_IGNORE_Theft] = TRUE;
 };
 

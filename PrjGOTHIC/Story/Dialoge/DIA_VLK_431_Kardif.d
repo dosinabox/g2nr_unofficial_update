@@ -703,6 +703,7 @@ func void DIA_Kardif_Zeichen_Info()
 	};
 	CreateInvItems(self,ItKe_Lockpick,20);
 	Kardif_Busted = FALSE;
+	self.aivar[AIV_IGNORE_Theft] = TRUE;
 };
 
 

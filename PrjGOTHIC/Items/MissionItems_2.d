@@ -27,7 +27,6 @@ instance ItWr_PaladinLetter_MIS(C_Item)
 
 func void UsePaladinLetter()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -65,7 +64,6 @@ instance ItWr_LetterForGorn_MIS(C_Item)
 
 func void UseLetterForGorn()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -197,7 +195,6 @@ instance ItWr_Silvestro_MIS(C_Item)
 
 func void UseItwr_Silvestro()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -343,7 +340,6 @@ instance ItWr_Bloody_MIS(C_Item)
 
 func void UseBloodMIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -387,7 +383,6 @@ instance ItWr_Pfandbrief_MIS(C_Item)
 
 func void UsePfandbrief()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -493,7 +488,6 @@ instance ItWr_Manowar(C_Item)
 
 func void UseManowar()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -537,7 +531,6 @@ instance ItWr_KDWLetter(C_Item)
 
 func void UseKDWLetter()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -572,7 +565,6 @@ instance ItWr_GilbertLetter(C_Item)
 
 func void UseGilbertLetter()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);

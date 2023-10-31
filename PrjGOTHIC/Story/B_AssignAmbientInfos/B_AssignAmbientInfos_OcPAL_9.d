@@ -113,9 +113,9 @@ func void DIA_OCPAL_9_STANDARD_Info()
 
 func void B_AssignAmbientInfos_OCPAL_9(var C_Npc slf)
 {
-	dia_ocpal_9_exit.npc = Hlp_GetInstanceID(slf);
-	dia_ocpal_9_people.npc = Hlp_GetInstanceID(slf);
-	dia_ocpal_9_location.npc = Hlp_GetInstanceID(slf);
-	dia_ocpal_9_standard.npc = Hlp_GetInstanceID(slf);
+	DIA_OCPAL_9_EXIT.npc = Hlp_GetInstanceID(slf);
+	DIA_OCPAL_9_PEOPLE.npc = Hlp_GetInstanceID(slf);
+	DIA_OCPAL_9_LOCATION.npc = Hlp_GetInstanceID(slf);
+	DIA_OCPAL_9_STANDARD.npc = Hlp_GetInstanceID(slf);
 };
 

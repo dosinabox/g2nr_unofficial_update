@@ -418,6 +418,7 @@ func void DIA_Nagur_Sign_Info()
 	AI_PlayAni(other,"T_YES");
 	AI_Output(self,other,"DIA_Nagur_Sign_08_00");	//Так тебе удалось это. Теперь ты знаешь, кто мои хозяева.
 	AI_Output(self,other,"DIA_Nagur_Sign_08_01");	//Не забывай о том, что Кассия говорит тебе - нам не интересно, кто ты такой. Ты один из нас, и только это имеет значение.
+	self.aivar[AIV_IGNORE_Theft] = TRUE;
 	B_GivePlayerXP(XP_NagurGotThief);
 	AI_StopProcessInfos(self);
 };
@@ -441,6 +442,10 @@ func int DIA_Nagur_Perm_Condition()
 		if(Npc_KnowsInfo(other,DIA_Nagur_Sign))
 		{
 			return TRUE;
+		};
+		if(Knows_SecretSign == TRUE)
+		{
+			return FALSE;
 		};
 		if(Npc_KnowsInfo(other,DIA_Nagur_Auftraggeber))
 		{
