@@ -87,6 +87,7 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 		B_SendMilitiaToHotel();
 	};
 	B_KillThievesGuild();
+	B_ResetWolfSLDs();
 	B_ResetSergio();
 	B_ResetFernando();
 };

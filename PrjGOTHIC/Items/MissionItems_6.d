@@ -145,21 +145,6 @@ instance ItKe_EVT_UNDEAD_02(C_Item)
 	inv_zbias = 145;
 };
 
-/*instance ItKe_LastDoorToUndeadDrgDI_MIS(C_Item)
-{
-	name = NAME_Key;
-	mainflag = ITEM_KAT_KEYS;
-	flags = ITEM_MISSION;
-	value = Value_Key_01;
-	visual = "ItKe_Key_03.3ds";
-	material = MAT_METAL;
-	description = "Ключ черного мага";
-	inv_rotz = -45;
-	inv_rotx = -25;
-	inv_roty = 0;
-	inv_zbias = 145;
-};*/
-
 instance ItWr_LastDoorToUndeadDrgDI_MIS(C_Item)
 {
 	name = "Свиток черного мага";

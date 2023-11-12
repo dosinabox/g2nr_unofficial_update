@@ -644,7 +644,6 @@ func void DIA_Wolf_SHIP_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Wolf_SHIP_08_02");	//Да, конечно. Нужно сваливать отсюда. Ты не пожалеешь об этом. Я помогу тебе защитить корабль. Куда мы направляемся?
-		MIS_BengarsHelpingSLD = LOG_OBSOLETE;
 		B_LogEntry(Topic_Crew,"Вольфу надоел этот остров, и он готов на все, чтобы убраться отсюда. Он хороший боец.");
 	};
 };
@@ -693,6 +692,7 @@ func void DIA_Wolf_KnowWhereEnemy_Yes()
 	AI_Output(other,self,"DIA_Wolf_KnowWhereEnemy_Yes_15_00");	//Добро пожаловать на борт!
 	AI_Output(other,self,"DIA_Wolf_KnowWhereEnemy_Yes_15_01");	//Приходи в гавань. Мы скоро отправляемся.
 	AI_Output(self,other,"DIA_Wolf_KnowWhereEnemy_Yes_08_02");	//Можешь считать, что я уже там.
+	MIS_BengarsHelpingSLD = LOG_OBSOLETE;
 	B_JoinShip(self);
 };
 
