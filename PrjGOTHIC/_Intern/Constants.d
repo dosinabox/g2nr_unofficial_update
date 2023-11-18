@@ -17,6 +17,7 @@ const int ATR_INDEX_MAX = 8;
 const int NPC_FLAG_FRIEND = 1;
 const int NPC_FLAG_IMMORTAL = 2;
 const int NPC_FLAG_GHOST = 4;
+const int NPC_FLAG_NFOCUS = 1 << 18;
 
 const int FMODE_NONE = 0;
 const int FMODE_FIST = 1;
@@ -806,7 +807,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "12/11/2023";
+const string FIX_VERSION_DATE = "18/11/2023";
 const int FIX_VERSION_START = 30;
 const int LEAST_SUPPORTED = 27;
 var int FIX_VERSION_SAVE;

@@ -538,7 +538,10 @@ func void DIA_Wolf_BENGAR_geld()
 		MIS_BengarsHelpingSLD = LOG_SUCCESS;
 		B_GivePlayerXP(XP_BengarsHelpingSLD);
 		AI_StopProcessInfos(self);
-		AI_UseMob(self,"BENCH",-1);
+		if(C_BodyStateContains(self,BS_SIT))
+		{
+			AI_UseMob(self,"BENCH",-1);
+		};
 		Npc_ExchangeRoutine(self,"BengarsFarm");
 		B_StartOtherRoutine(SLD_815_Soeldner,"BengarsFarm");
 		B_StartOtherRoutine(SLD_817_Soeldner,"BengarsFarm");
