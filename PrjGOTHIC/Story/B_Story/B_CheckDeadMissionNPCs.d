@@ -187,6 +187,24 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_BengarsHelpingSLD = LOG_FAILED;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Pepe))
+		{
+			if(MIS_Pepe_KillWolves == LOG_Running)
+			{
+				MIS_Pepe_KillWolves = LOG_FAILED;
+			};
+			if(MIS_Pepe_KickBullco == LOG_Running)
+			{
+				MIS_Pepe_KickBullco = LOG_FAILED;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Dar))
+		{
+			if(MIS_Dar_BringOrcEliteRing == LOG_Running)
+			{
+				MIS_Dar_BringOrcEliteRing = LOG_FAILED;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cipher))
 		{
 			if(MIS_Cipher_Paket == LOG_Running)

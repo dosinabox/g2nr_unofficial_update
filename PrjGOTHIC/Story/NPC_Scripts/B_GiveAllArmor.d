@@ -15,21 +15,17 @@ func void B_GiveAllClassicArmor(var C_Npc npc)
 	CreateInvItem(npc,ITAR_MIL_M);
 	CreateInvItem(npc,ITAR_PAL_M);
 	CreateInvItem(npc,ITAR_PAL_H);
-	CreateInvItem(npc,ITAR_PAL_S);
 	CreateInvItem(npc,ITAR_PAL_Skel);
 	CreateInvItem(npc,ITAR_Bau_L);
 	CreateInvItem(npc,ITAR_Bau_M);
 	CreateInvItem(npc,ITAR_BauBabe_L);
 	CreateInvItem(npc,ITAR_BauBabe_M);
-	CreateInvItem(npc,ITAR_SLD_S);
 	CreateInvItem(npc,ITAR_SLD_L);
 	CreateInvItem(npc,ITAR_SLD_M);
 	CreateInvItem(npc,ITAR_SLD_H);
 	CreateInvItem(npc,ITAR_NOV_L);
 	CreateInvItem(npc,ITAR_KDF_L);
-	CreateInvItem(npc,ITAR_KDF_M);
 	CreateInvItem(npc,ITAR_KDF_H);
-	CreateInvItem(npc,ITAR_KDF_S);
 	CreateInvItem(npc,ITAR_Leather_L);
 	CreateInvItem(npc,ITAR_BDT_M);
 	CreateInvItem(npc,ITAR_BDT_H);
@@ -63,6 +59,10 @@ func void B_GiveAllAddonArmor(var C_Npc npc)
 
 func void B_GiveAllPatchArmor(var C_Npc npc)
 {
+	CreateInvItem(npc,ITAR_KDF_M);
+	CreateInvItem(npc,ITAR_KDF_S);
+	CreateInvItem(npc,ITAR_SLD_S);
+	CreateInvItem(npc,ITAR_PAL_S);
 	CreateInvItem(npc,ITAR_DHT);
 	CreateInvItem(npc,ITAR_OHT);
 	CreateInvItem(npc,ITAR_BlackMage);
