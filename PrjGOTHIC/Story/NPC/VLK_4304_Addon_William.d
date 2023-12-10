@@ -28,4 +28,3 @@ func void Rtn_Start_4304()
 	TA_Smalltalk(20,0,5,0,"ADW_ENTRANCE_RUIN2_02");
 };
 
-

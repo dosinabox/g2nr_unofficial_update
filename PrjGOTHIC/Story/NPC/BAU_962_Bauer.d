@@ -20,17 +20,10 @@ instance BAU_962_Bauer(Npc_Default)
 };
 
 
-/*вернуть после правки зена
 func void Rtn_Start_962()
 {
 	TA_Smalltalk(8,0,22,0,"NW_FARM3_STABLE_OUT_03");
 	TA_Sit_Campfire(22,0,8,0,"NW_FARM3_STABLE_REST_02");
-};*/
-
-func void Rtn_Start_962()
-{
-	TA_Smalltalk(8,0,22,0,"NW_FARM3_STABLE_OUT_03");
-	TA_Sit_Campfire(22,0,8,0,"NW_FARM3_HOUSE_REST_01");
 };
 
 func void Rtn_FleeFromPass_962()

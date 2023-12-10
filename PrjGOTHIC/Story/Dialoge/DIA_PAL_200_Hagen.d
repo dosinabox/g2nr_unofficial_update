@@ -1248,7 +1248,7 @@ func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 			AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_05");	//Это не разведчики. Я взял это кольцо с трупа одного из них.
 			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_06");	//Покажи.
 			B_GiveInvItems(other,self,ItRi_OrcEliteRing,1);
-			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_07");	//Ммм. Это действительно неприятно.
+			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_07");	//Ох... Это действительно неприятно.
 			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_08");	//Это знак их силы. Значит, орки выбрались из-за своих частоколов и сражаются в открытом поле.
 			AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_09");	//Я не видел, чтобы их было много. В основном, это их предводители и всего несколько бойцов.
 			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_10");	//Да? Значит, они замышляют что-то еще. Это не похоже на орков, чтобы их лидеры в одиночку покидали свои защитные частоколы.

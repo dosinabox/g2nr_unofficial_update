@@ -27,7 +27,6 @@ func void Rtn_PreStart_822()
 	TA_Stand_Guarding(22,0,8,0,"NW_BIGFARM_PATH_01");
 };
 
-
 func void Rtn_Start_822()
 {
 	TA_Stand_Guarding(7,0,0,10,"NW_BIGFARM_PATH_01");
