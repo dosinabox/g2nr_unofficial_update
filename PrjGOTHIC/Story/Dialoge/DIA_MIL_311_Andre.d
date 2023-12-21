@@ -100,15 +100,7 @@ func void B_Andre_Informed()
 	{
 		AI_Output(self,other,"B_Andre_CantharFalle_08_00");	// о мне приходил торговец  антар. ќн сказал, что ты беглый каторжник из колонии.
 		AI_Output(self,other,"B_Andre_CantharFalle_08_01");	//я не знаю, правда ли это, и предпочитаю не спрашивать теб€ об этом, но ты должен уладить этот вопрос.
-		if(!Npc_IsDead(Sarah))
-		{
-			if(SarahWeaponsRemoved == FALSE)
-			{
-				B_GiveTradeInv_Sarah(Sarah);
-				B_RemoveSarahWeapons();
-			};
-			B_RemoveNpc(VLK_470_Sarah);
-		};
+		B_RemoveSarah();
 		if((Canthar_Ausgeliefert == TRUE) && (Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000))
 		{
 			B_NpcSetReleased(Canthar);
@@ -1066,7 +1058,7 @@ func void DIA_Andre_Auslieferung_Sarah()
 		if(SarahWeaponsRemoved == FALSE)
 		{
 			B_GiveTradeInv_Sarah(Sarah);
-			B_RemoveSarahWeapons();
+			B_TransferSarahItemsToCanthar();
 		};
 		B_NpcSetJailed(Sarah);
 		B_StartOtherRoutine(Sarah,"KNAST");

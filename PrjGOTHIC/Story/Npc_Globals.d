@@ -258,6 +258,7 @@ var C_Npc Torlof_DI;
 var C_Npc Buster;
 var C_Npc Cipher;
 var C_Npc Hakon;
+var C_Npc Edda;
 var C_Npc Elena;
 var C_Npc Lutero;
 var C_Npc Scatty;
@@ -411,6 +412,8 @@ func void B_InitNpc_NW()
 	Thorben = Hlp_GetNpc(VLK_462_Thorben);
 	Bosper = Hlp_GetNpc(VLK_413_Bosper);
 	Matteo = Hlp_GetNpc(VLK_416_Matteo);
+	Harad = Hlp_GetNpc(VLK_412_Harad);
+	Brian = Hlp_GetNpc(VLK_457_Brian);
 	Ignaz = Hlp_GetNpc(VLK_498_Ignaz);
 	Lehmar = Hlp_GetNpc(VLK_484_Lehmar);
 	Jack = Hlp_GetNpc(VLK_444_Jack);
@@ -425,6 +428,7 @@ func void B_InitNpc_NW()
 	Kardif = Hlp_GetNpc(VLK_431_Kardif);
 	Bote = Hlp_GetNpc(VLK_4006_Bote);
 	Hakon = Hlp_GetNpc(VLK_407_Hakon);
+	Edda = Hlp_GetNpc(VLK_471_Edda);
 	Baltram = Hlp_GetNpc(VLK_410_Baltram);
 	Zuris = Hlp_GetNpc(VLK_409_Zuris);
 	Jora = Hlp_GetNpc(VLK_408_Jora);

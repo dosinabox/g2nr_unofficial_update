@@ -83,7 +83,7 @@ func void Enter_DI_FirstTime_Trigger()
 		};
 		if(Bennet_IsOnBoard == LOG_SUCCESS)
 		{
-			Log_AddEntry(TOPIC_MyCrew,"Беннет обучит меня кузнечному делу, если я захочу.");
+			Log_AddEntry(TOPIC_MyCrew,"Беннет обучит меня кузнечному делу, если я захочу. Также он может помочь мне повысить мою силу.");
 		};
 		if(Diego_IsOnBoard == LOG_SUCCESS)
 		{

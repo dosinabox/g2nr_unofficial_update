@@ -410,12 +410,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 					Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
 				};
 				Npc_ExchangeRoutine(Canthar,"MARKTSTAND");
-				if(SarahWeaponsRemoved == FALSE)
-				{
-					B_GiveTradeInv_Sarah(Sarah);
-					B_RemoveSarahWeapons();
-				};
-				B_RemoveNpc(VLK_470_Sarah);
+				B_RemoveSarah();
 				Canthar_Sperre = TRUE;
 			};
 			if((Canthar.aivar[AIV_LastFightComment] == FALSE) && (Canthar.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE))

@@ -127,6 +127,23 @@ func void DIA_Carl_Lernen_Info()
 };
 
 
+func int C_CarlCanTeachForFree()
+{
+	if(Npc_IsDead(Edda))
+	{
+		return FALSE;
+	};
+	if(Edda.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE)
+	{
+		return FALSE;
+	};
+	if(!Npc_KnowsInfo(other,DIA_Edda_Statue))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 instance DIA_Carl_Wieviel(C_Info)
 {
 	npc = VLK_461_Carl;
@@ -149,7 +166,7 @@ func int DIA_Carl_Wieviel_Condition()
 func void DIA_Carl_Wieviel_Info()
 {
 	AI_Output(other,self,"DIA_Carl_Wieviel_15_00");	//Сколько ты берешь за обучение?
-	if(Npc_KnowsInfo(other,DIA_Edda_Statue))
+	if(C_CarlCanTeachForFree())
 	{
 		AI_Output(self,other,"DIA_Carl_Wieviel_05_01");	//Я слышал, что ты сделал для Эдды. Я буду тренировать тебя бесплатно.
 		Carl_TeachSTR = TRUE;
@@ -183,7 +200,7 @@ func int DIA_Carl_bezahlen_Condition()
 func void DIA_Carl_bezahlen_Info()
 {
 	AI_Output(other,self,"DIA_Carl_bezahlen_15_00");	//Я хочу потренироваться с тобой.
-	if(Npc_KnowsInfo(other,DIA_Edda_Statue))
+	if(C_CarlCanTeachForFree())
 	{
 		AI_Output(self,other,"DIA_Carl_bezahlen_05_01");	//Я слышал, что ты сделал для Эдды. Я буду тренировать тебя бесплатно.
 		Carl_TeachSTR = TRUE;
