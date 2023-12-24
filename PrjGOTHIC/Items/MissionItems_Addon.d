@@ -1292,7 +1292,7 @@ instance ItMi_FakeBloodwynHead(C_Item)
 	description = name;
 };
 
-instance ItWR_Addon_TreasureMap(C_Item)
+instance ItWr_Addon_TreasureMap(C_Item)
 {
 	name = "Карта сокровищ";
 	mainflag = ITEM_KAT_DOCS;
@@ -1316,7 +1316,7 @@ func void Use_TreasureMap()
 {
 	if(Npc_IsPlayer(self))
 	{
-		B_SetPlayerMap(ItWR_Addon_TreasureMap);
+		B_SetPlayerMap(ItWr_Addon_TreasureMap);
 	};
 	nDocID = Doc_CreateMap();
 	Doc_SetPages(nDocID,1);
@@ -1345,7 +1345,7 @@ instance ItMi_Addon_GregsTreasureBottle_MIS(C_Item)
 func void Use_GregsBottle()
 {
 	Snd_Play("RELEASECORK");
-	B_PlayerFindItem(ItWR_Addon_TreasureMap,1);
+	B_PlayerFindItem(ItWr_Addon_TreasureMap,1);
 };
 
 

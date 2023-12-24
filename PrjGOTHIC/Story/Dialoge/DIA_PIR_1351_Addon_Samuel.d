@@ -158,7 +158,7 @@ instance DIA_Addon_Samuel_Recipe(C_Info)
 
 func int DIA_Addon_Samuel_Recipe_Condition()
 {
-	if(((Samuel_Knows_LousHammer == FALSE) && Npc_HasItems(other,ITWr_Addon_Lou_Rezept)) || ((Samuel_Knows_SchlafHammer == FALSE) && Npc_HasItems(other,ITWr_Addon_Lou_Rezept2)))
+	if(((Samuel_Knows_LousHammer == FALSE) && Npc_HasItems(other,ItWr_Addon_Lou_Rezept)) || ((Samuel_Knows_SchlafHammer == FALSE) && Npc_HasItems(other,ItWr_Addon_Lou_Rezept2)))
 	{
 		return TRUE;
 	};
@@ -170,11 +170,11 @@ func void DIA_Addon_Samuel_Recipe_Info()
 	AI_Output(self,other,"DIA_Addon_Samuel_Recipe_14_01");	//Отлично, показывай. Что это за рецепт?
 	Info_ClearChoices(DIA_Addon_Samuel_Recipe);
 	Info_AddChoice(DIA_Addon_Samuel_Recipe,Dialog_Back,DIA_Addon_Samuel_Recipe_Back);
-	if((Samuel_Knows_LousHammer == FALSE) && Npc_HasItems(other,ITWr_Addon_Lou_Rezept))
+	if((Samuel_Knows_LousHammer == FALSE) && Npc_HasItems(other,ItWr_Addon_Lou_Rezept))
 	{
 		Info_AddChoice(DIA_Addon_Samuel_Recipe,"(отдать рецепт 'Молота Лу')",DIA_Addon_Samuel_Recipe_LousHammer);
 	};
-	if((Samuel_Knows_SchlafHammer == FALSE) && Npc_HasItems(other,ITWr_Addon_Lou_Rezept2))
+	if((Samuel_Knows_SchlafHammer == FALSE) && Npc_HasItems(other,ItWr_Addon_Lou_Rezept2))
 	{
 		Info_AddChoice(DIA_Addon_Samuel_Recipe,"(отдать рецепт двойного 'Молота Лу')",DIA_Addon_Samuel_Recipe_LousDoubleHammer);
 	};
@@ -189,7 +189,7 @@ func void DIA_Addon_Samuel_Recipe_LousHammer()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_Recipe_LousHammer_15_00");	//Это от Снафа.
 	AI_WaitTillEnd(self,other);
-	B_GiveInvItems(other,self,ITWr_Addon_Lou_Rezept,1);
+	B_GiveInvItems(other,self,ItWr_Addon_Lou_Rezept,1);
 	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Addon_Samuel_Recipe_LousHammer_14_04");	//Но это же ужасно! Я должен немедленно попробовать...
 	B_GivePlayerXP(XP_Ambient);
@@ -200,7 +200,7 @@ func void DIA_Addon_Samuel_Recipe_LousDoubleHammer()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_Recipe_LousDoubleHammer_15_00");	//Будь осторожен. Это опасная штука!
 	AI_WaitTillEnd(self,other);
-	B_GiveInvItems(other,self,ITWr_Addon_Lou_Rezept2,1);
+	B_GiveInvItems(other,self,ItWr_Addon_Lou_Rezept2,1);
 	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Addon_Samuel_Recipe_LousDoubleHammer_14_04");	//Ты меня пугаешь. Но я все равно попробую.
 	B_GivePlayerXP(XP_Ambient);
@@ -457,9 +457,9 @@ func void DIA_Addon_Samuel_Trade_Info()
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 	B_RefreshInvItemToAmount(self,ItFo_Addon_Grog,15);
-	if((Player_KnowsSchnellerHering == TRUE) && !Npc_HasItems(self,ITWr_Addon_Piratentod))
+	if((Player_KnowsSchnellerHering == TRUE) && !Npc_HasItems(self,ItWr_Addon_Piratentod))
 	{
-		CreateInvItem(self,ITWr_Addon_Piratentod);
+		CreateInvItem(self,ItWr_Addon_Piratentod);
 	};
 };
 

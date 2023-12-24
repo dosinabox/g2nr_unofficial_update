@@ -457,7 +457,7 @@ instance DIA_Pal_213_Schiffswache_IAmDJG3(C_Info)
 
 func int DIA_Pal_213_Schiffswache_IAmDJG3_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmDJG) && (Npc_HasItems(other,ITWr_ForgedShipLetter_MIS) >= 1))
+	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmDJG) && Npc_HasItems(other,ItWr_ForgedShipLetter_MIS))
 	{
 		return TRUE;
 	};
@@ -467,7 +467,7 @@ func void DIA_Pal_213_Schiffswache_IAmDJG3_Info()
 {
 	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmDJG3_15_00");	//У меня письменное разрешение. Я уполномочен взойти на этот корабль.
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmDJG3_01_01");	//Дай я взгляну.
-	B_GiveInvItems(other,self,ITWr_ForgedShipLetter_MIS,1);
+	B_GiveInvItems(other,self,ItWr_ForgedShipLetter_MIS,1);
 	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmDJG3_01_02");	//Все правильно, ты можешь пройти.
 	B_ShipIsFree();

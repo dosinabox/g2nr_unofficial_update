@@ -1,5 +1,5 @@
 
-instance ITWr_Addon_Hinweis_02(C_Item)
+instance ItWr_Addon_Hinweis_02(C_Item)
 {
 	name = "Важное сообщение";
 	mainflag = ITEM_KAT_DOCS;
@@ -38,7 +38,7 @@ func void Use_Hinweis_02()
 };
 
 
-instance ITWr_Addon_Health_04(C_Item)
+instance ItWr_Addon_Health_04(C_Item)
 {
 	name = "Рецепт зелья чистого здоровья";
 	mainflag = ITEM_KAT_DOCS;
@@ -84,7 +84,7 @@ func void Use_Heilrezept_04()
 };
 
 
-instance ITWr_Addon_Mana_04(C_Item)
+instance ItWr_Addon_Mana_04(C_Item)
 {
 	name = "Рецепт зелья чистой маны";
 	mainflag = ITEM_KAT_DOCS;
@@ -130,7 +130,7 @@ func void Use_Manarezept_04()
 };
 
 
-instance ITWr_Addon_Hinweis_01(C_Item)
+instance ItWr_Addon_Hinweis_01(C_Item)
 {
 	name = "Важное сообщение";
 	mainflag = ITEM_KAT_DOCS;
@@ -168,7 +168,7 @@ func void Use_Hinweis_01()
 };
 
 
-instance ITWr_Addon_William_01(C_Item)
+instance ItWr_Addon_William_01(C_Item)
 {
 	name = "Записка";
 	mainflag = ITEM_KAT_DOCS;
@@ -217,7 +217,7 @@ func void Use_William_01()
 };
 
 
-instance ITWr_Addon_MCELIXIER_01(C_Item)
+instance ItWr_Addon_MCELIXIER_01(C_Item)
 {
 	name = "Рецепт эликсира изменения сознания";
 	mainflag = ITEM_KAT_DOCS;
@@ -262,7 +262,7 @@ func void Use_MCELIXIER_01()
 };
 
 
-instance ITWr_Addon_Pirates_01(C_Item)
+instance ItWr_Addon_Pirates_01(C_Item)
 {
 	name = "Сальная записка";
 	mainflag = ITEM_KAT_DOCS;
@@ -300,7 +300,7 @@ func void Use_Pirates_01()
 };
 
 
-instance ITWr_Addon_Joint_01(C_Item)
+instance ItWr_Addon_Joint_01(C_Item)
 {
 	name = "Рецепт 'Зеленого послушника'";
 	mainflag = ITEM_KAT_DOCS;
@@ -346,7 +346,7 @@ func void Use_Joint_Rezept_01()
 };
 
 
-instance ITWr_Addon_Lou_Rezept(C_Item)
+instance ItWr_Addon_Lou_Rezept(C_Item)
 {
 	name = "Рецепт 'Молота Лу'";
 	mainflag = ITEM_KAT_DOCS;
@@ -396,7 +396,7 @@ func void UseLouRezept()
 };
 
 
-instance ITWr_Addon_Lou_Rezept2(C_Item)
+instance ItWr_Addon_Lou_Rezept2(C_Item)
 {
 	name = "Рецепт двойного 'Молота Лу'";
 	mainflag = ITEM_KAT_DOCS;
@@ -441,7 +441,7 @@ func void UseLouRezept2()
 };
 
 
-instance ITWr_Addon_Piratentod(C_Item)
+instance ItWr_Addon_Piratentod(C_Item)
 {
 	name = "Рецепт 'Быстрой селедки'";
 	mainflag = ITEM_KAT_DOCS;

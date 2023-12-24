@@ -1831,8 +1831,8 @@ func void DIA_Lee_StealShip_Info()
 	AI_Output(self,other,"DIA_Lee_StealShip_04_01");	//И как ты собираешься сделать это?
 	AI_Output(other,self,"DIA_Lee_StealShip_15_02");	//Легче легкого - я пойду туда, покажу им твои бумаги - и корабль мой!
 	AI_Output(self,other,"DIA_Lee_StealShip_04_03");	//Ну-ну. Держи. Надеюсь, ты знаешь, что делаешь.
-	CreateInvItems(self,ITWr_ForgedShipLetter_MIS,1);
-	B_GiveInvItems(self,other,ITWr_ForgedShipLetter_MIS,1);
+	CreateInvItems(self,ItWr_ForgedShipLetter_MIS,1);
+	B_GiveInvItems(self,other,ItWr_ForgedShipLetter_MIS,1);
 };
 
 

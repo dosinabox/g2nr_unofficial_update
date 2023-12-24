@@ -199,7 +199,7 @@ func void DIA_Addon_Saturas_MissingPeople_Info()
 	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_missingPeople_15_00");	//Есть какие-нибудь следы пропавших людей?
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_01");	//Только вчера мы нашли тело рыбака. Оно лежало под развалинами к востоку отсюда.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, это был рыбак из Хориниса. Взгляни там.
-	if(!Npc_HasItems(William,ITWr_Addon_William_01))
+	if(!Npc_HasItems(William,ItWr_Addon_William_01))
 	{
 		DIA_Common_IFoundHim();
 		AI_Output(self,other,"DIA_Addon_Saturas_LanceLeiche_14_01");	//Да пребудет его душа в царстве Аданоса.

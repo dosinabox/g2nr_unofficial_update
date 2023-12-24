@@ -288,7 +288,7 @@ func void Use_Seamap_Irdorath()
 };
 
 
-instance ITWr_ForgedShipLetter_MIS(C_Item)
+instance ItWr_ForgedShipLetter_MIS(C_Item)
 {
 	name = "Корабельное свидетельство";
 	mainflag = ITEM_KAT_DOCS;
@@ -296,7 +296,7 @@ instance ITWr_ForgedShipLetter_MIS(C_Item)
 	value = 0;
 	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
-	on_state[0] = UseITWr_ForgedShipLetter_MIS;
+	on_state[0] = UseItWr_ForgedShipLetter_MIS;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Письмо о подтверждении полномочий";
@@ -304,7 +304,7 @@ instance ITWr_ForgedShipLetter_MIS(C_Item)
 };
 
 
-func void UseITWr_ForgedShipLetter_MIS()
+func void UseItWr_ForgedShipLetter_MIS()
 {
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);

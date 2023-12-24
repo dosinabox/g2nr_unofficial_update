@@ -289,8 +289,8 @@ func void DIA_Richter_PermissionForShip_Info()
 	AI_Output(self,other,"DIA_Richter_PermissionForShip_10_05");	//(Рычит) Ах-х.
 	AI_Output(self,other,"DIA_Richter_PermissionForShip_10_06");	//Ты пожалеешь об этом. Этот шантаж не сойдет тебе с рук просто так.
 	AI_Output(self,other,"DIA_Richter_PermissionForShip_10_07");	//Вот твоя бумага. А теперь проваливай. Я разберусь с тобой позже.
-	CreateInvItems(self,ITWr_ForgedShipLetter_MIS,1);
-	B_GiveInvItems(self,other,ITWr_ForgedShipLetter_MIS,1);
+	CreateInvItems(self,ItWr_ForgedShipLetter_MIS,1);
+	B_GiveInvItems(self,other,ItWr_ForgedShipLetter_MIS,1);
 	B_LogEntry(Topic_Ship,"Письмо о подтверждении полномочий должно позволить без проблем завладеть кораблем. Интересно, что скажет на это Ли.");
 	MIS_RichtersPermissionForShip = LOG_SUCCESS;
 	B_GivePlayerXP(XP_RichtersPermissionForShip);

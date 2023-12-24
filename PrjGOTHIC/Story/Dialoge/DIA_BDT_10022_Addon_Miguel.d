@@ -194,7 +194,7 @@ func void DIA_Addon_Miguel_Fortuno_Info()
 	AI_Output(self,other,"DIA_Addon_Miguel_Fortuno_11_03");	//Ворона? Хм, до сих пор я думал о нем лучше. М-м, ну ладно. Но здесь, в болоте, я не могу сварить зелье.
 	AI_Output(other,self,"DIA_Addon_Miguel_Fortuno_15_04");	//Я могу сварить зелье. В лагере есть стол алхимика. Мне нужен только рецепт.
 	AI_Output(self,other,"DIA_Addon_Miguel_Fortuno_11_05");	//Будь осторожен с этим рецептом. Это зелье может быть опасно.
-	B_GiveInvItems(self,other,ITWr_Addon_MCELIXIER_01,1);
+	B_GiveInvItems(self,other,ItWr_Addon_MCELIXIER_01,1);
 	AI_Output(self,other,"DIA_Addon_Miguel_Fortuno_11_06");	//Если ты как-то не так его сваришь, или возьмешь не тот ингредиент, он может быть смертельным.
 	AI_Output(other,self,"DIA_Addon_Miguel_Fortuno_15_07");	//Я буду осторожен.
 	B_LogEntry(Topic_Addon_Fortuno,"Мигель дал мне рецепт зелья, которое вернет Фортуно память. Но я должен быть уверен во всех ингредиентах, иначе у меня получится смертельный яд.");

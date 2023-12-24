@@ -235,7 +235,7 @@ func void DIA_Addon_Farim_William_Info()
 	};
 	Info_ClearChoices(DIA_Addon_Farim_William);
 	Info_AddChoice(DIA_Addon_Farim_William,"Но что это были за люди?",DIA_Addon_Farim_William_typen);
-	if(!Npc_HasItems(other,ITWr_Addon_William_01) && (FoundDeadWilliam == FALSE))
+	if(!Npc_HasItems(other,ItWr_Addon_William_01) && (FoundDeadWilliam == FALSE))
 	{
 		Info_AddChoice(DIA_Addon_Farim_William,"Думаю, он еще появится.",DIA_Addon_Farim_William_auftauchen);
 	}
@@ -283,7 +283,7 @@ func void DIA_Addon_Farim_William_WannWeg()
 {
 	AI_Output(other,self,"DIA_Addon_Farim_William_WannWeg_15_00");	//Когда ты видел Вильяма в последний раз?
 	AI_Output(self,other,"DIA_Addon_Farim_William_WannWeg_11_01");	//Несколько дней назад.
-	if(!Npc_HasItems(other,ITWr_Addon_William_01) && (FoundDeadWilliam == FALSE))
+	if(!Npc_HasItems(other,ItWr_Addon_William_01) && (FoundDeadWilliam == FALSE))
 	{
 		Info_AddChoice(DIA_Addon_Farim_William,"Может быть, он просто ушел в море рыбачить?",DIA_Addon_Farim_William_Fischen);
 	};
@@ -368,7 +368,7 @@ func int DIA_Addon_Farim_WilliamReport_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Farim_William) && (ToldFarimAboutDeadWilliam == FALSE) && (Farim_Day < Wld_GetDay()))
 	{
-		if(Npc_HasItems(other,ITWr_Addon_William_01) || (FoundDeadWilliam == TRUE))
+		if(Npc_HasItems(other,ItWr_Addon_William_01) || (FoundDeadWilliam == TRUE))
 		{
 			return TRUE;
 		};
