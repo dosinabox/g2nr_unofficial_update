@@ -445,6 +445,7 @@ Story\NPC_Scripts\B_GiveAllArmor.d
 Story\NPC_Scripts\B_GiveAllDocuments.d
 Story\NPC_Scripts\B_GiveAllFood.d
 Story\NPC_Scripts\B_GiveAllKeys.d
+Story\NPC_Scripts\B_GiveAllPotions.d
 Story\NPC_Scripts\B_GiveAllRunes.d
 Story\NPC_Scripts\B_GiveAllScrolls.d
 Story\NPC_Scripts\B_GiveAllTrophies.d

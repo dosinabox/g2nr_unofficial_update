@@ -1016,7 +1016,7 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 
 func int C_SCReadyToRescueBennet()
 {
-	if((RescueBennet_KnowsCornelius == TRUE) && Npc_HasItems(hero,ItWr_CorneliusTagebuch_Mis) && (Cornelius_IsLiar == TRUE))
+	if((RescueBennet_KnowsCornelius == TRUE) && Npc_HasItems(hero,ItWr_CorneliusTagebuch_MIS) && (Cornelius_IsLiar == TRUE))
 	{
 		return TRUE;
 	};
@@ -1133,7 +1133,7 @@ func void DIA_Lord_Hagen_Cornelius_Info()
 	AI_Output(other,self,"DIA_Lord_Hagen_Cornelius_15_00");	//Корнелиус солгал.
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_01");	//Откуда тебе это известно?
 	AI_Output(other,self,"DIA_Lord_Hagen_Cornelius_15_02");	//Вот, у меня его дневник. Все в нем.
-	B_GiveInvItems(other,self,ItWr_CorneliusTagebuch_Mis,1);
+	B_GiveInvItems(other,self,ItWr_CorneliusTagebuch_MIS,1);
 	B_ReadFakeItem(self,other,Openbook1,3);
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_03");	//(в ярости) Ах, гнусная мразь!
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_04");	//Перед лицом новых доказательств мне не остается ничего другого.

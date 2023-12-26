@@ -32,6 +32,7 @@ instance PC_Rockefeller(Npc_Default)
 	B_GiveAllClassicScrolls(self);
 	B_GiveAllClassicTrophies(self);
 	B_GiveAllClassicFood(self);
+	B_GiveAllClassicPotions(self);
 	CreateInvItem(self,ItPl_SwampHerb);
 	CreateInvItem(self,ItPl_Mana_Herb_01);
 	CreateInvItem(self,ItPl_Mana_Herb_02);
@@ -139,19 +140,5 @@ instance PC_Rockefeller(Npc_Default)
 	CreateInvItem(self,ItRi_Prot_Point_02);
 	CreateInvItem(self,ItRi_Prot_Total_01);
 	CreateInvItem(self,ItRi_Prot_Total_02);
-	CreateInvItems(self,ItPo_Mana_01,10);
-	CreateInvItems(self,ItPo_Mana_02,10);
-	CreateInvItems(self,ItPo_Mana_03,10);
-	CreateInvItems(self,ItPo_Mana_Addon_04,10);
-	CreateInvItems(self,ItPo_Health_01,10);
-	CreateInvItems(self,ItPo_Health_02,10);
-	CreateInvItems(self,ItPo_Health_03,10);
-	CreateInvItems(self,ItPo_Health_Addon_04,10);
-	CreateInvItems(self,ItPo_Perm_STR,10);
-	CreateInvItems(self,ItPo_Perm_DEX,10);
-	CreateInvItems(self,ItPo_Perm_Health,10);
-	CreateInvItems(self,ItPo_Perm_Mana,10);
-	CreateInvItems(self,ItPo_Speed,10);
 };
-
 

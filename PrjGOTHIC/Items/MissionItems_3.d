@@ -2,7 +2,7 @@
 const int AM_EyeProtEdge = 10;
 const int AM_EyeProtPoint = 10;
 const int AM_EyeProtMage = 20;
-const int AM_EyeProtFire = 30; //20
+const int AM_EyeProtFire = 30;
 
 instance ItMi_InnosEye_MIS(C_Item)
 {
@@ -177,7 +177,7 @@ instance ItKe_CHEST_SEKOB_XARDASBOOK_MIS(C_Item)
 	inv_zbias = 145;
 };
 
-instance ItWr_CorneliusTagebuch_Mis(C_Item)
+instance ItWr_CorneliusTagebuch_MIS(C_Item)
 {
 	name = "Дневник Корнелиуса";
 	mainflag = ITEM_KAT_DOCS;
@@ -541,7 +541,6 @@ instance ItWr_BabosPinUp_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-//	visual = "ItWr_Scroll_01.3DS";
 	visual = "ItWr_BabosPinUp_MIS.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_BabosPinUp;
@@ -607,7 +606,7 @@ instance ItKe_IgarazChest_MIS(C_Item)
 	inv_zbias = 145;
 };
 
-instance ItWr_Astronomy_Mis(C_Item)
+instance ItWr_Astronomy_MIS(C_Item)
 {
 	name = "Божественная сила звезд";
 	mainflag = ITEM_KAT_DOCS;
@@ -824,14 +823,13 @@ instance ItMi_UltharsHolyWater_Mis(C_Item)
 };
 
 
-instance ItWr_MinenAnteil_Mis(C_Item)
+instance ItWr_MinenAnteil_MIS(C_Item)
 {
 	name = "Акция рудника Хориниса";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 50;
 	visual = "ItWr_Scroll_02.3DS";
-//	visual = "Fakescroll.3ds";
 	material = MAT_LEATHER;
 	on_state[0] = Use_MinenAnteil_Mis;
 	scemeName = "MAP";
@@ -883,7 +881,6 @@ instance ItAm_Prot_BlackEye_Mis(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = Value_Am_HpMana;
-//	visual = "ItAm_Hp_Mana_01.3ds";
 	visual = "ItAm_Prot_BlackEye_Mis.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -902,7 +899,6 @@ instance ItMi_KarrasBlessedStone_Mis(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 0;
-//	visual = "ItMi_Rockcrystal.3ds";
 	visual = "ItMi_KarrasBlessedStone.3ds";
 	visual_skin = 0;
 	material = MAT_STONE;
@@ -983,7 +979,6 @@ func void Use_MorgahardTip()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"                     М.");
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 

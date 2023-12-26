@@ -189,7 +189,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		if(!Npc_IsDead(Cornelius))
 		{
 			Cornelius.flags = 0;
-			B_CreateItemToSteal(Cornelius,60,ItWr_CorneliusTagebuch_Mis,1);
+			B_CreateItemToSteal(Cornelius,60,ItWr_CorneliusTagebuch_MIS,1);
 		};
 		if(!Npc_IsDead(Hodges))
 		{
