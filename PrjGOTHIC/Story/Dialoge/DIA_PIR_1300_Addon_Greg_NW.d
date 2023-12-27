@@ -406,7 +406,10 @@ func void DIA_Addon_Greg_NW_was_NoHelp()
 	MIS_Addon_Greg_RakeCave = LOG_OBSOLETE;
 	GregLocation = Greg_Bigcross;
 	AI_StopProcessInfos(self);
-	AI_UseMob(self,"BENCH",-1);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_UseMob(self,"BENCH",-1);
+	};
 	Npc_ExchangeRoutine(self,"Bigcross");
 	B_StartOtherRoutine(BAU_974_Bauer,"Start");
 };
@@ -505,7 +508,10 @@ func void DIA_Addon_Greg_NW_RakeCaveLos_Info()
 	AI_Output(other,self,"DIA_Addon_Greg_NW_RakeCaveLos_15_00");	//Пойдем в твою пещеру.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCaveLos_01_01");	//Следуй за мной.
 	AI_StopProcessInfos(self);
-	AI_UseMob(self,"BENCH",-1);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_UseMob(self,"BENCH",-1);
+	};
 	Npc_ExchangeRoutine(self,"RakeCave");
 };
 

@@ -1,7 +1,6 @@
 
 func void Use_Runemaking_KDW_CIRC1_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();

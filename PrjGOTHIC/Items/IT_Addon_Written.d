@@ -1,19 +1,15 @@
 
-instance ITWr_Addon_Hinweis_02(C_Item)
+instance ItWr_Addon_Hinweis_02(C_Item)
 {
 	name = "Важное сообщение";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-//	value = 250;
-	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_Hinweis_02;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "из таверны в бандитском лагере.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
@@ -22,7 +18,6 @@ instance ITWr_Addon_Hinweis_02(C_Item)
 
 func void Use_Hinweis_02()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -43,11 +38,10 @@ func void Use_Hinweis_02()
 };
 
 
-instance ITWr_Addon_Health_04(C_Item)
+instance ItWr_Addon_Health_04(C_Item)
 {
 	name = "Рецепт зелья чистого здоровья";
 	mainflag = ITEM_KAT_DOCS;
-//	flags = ITEM_MISSION;
 	flags = 0;
 	value = 1000;
 	visual = "ItWr_Recipe.3DS";
@@ -64,7 +58,6 @@ instance ITWr_Addon_Health_04(C_Item)
 
 func void Use_Heilrezept_04()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -91,11 +84,10 @@ func void Use_Heilrezept_04()
 };
 
 
-instance ITWr_Addon_Mana_04(C_Item)
+instance ItWr_Addon_Mana_04(C_Item)
 {
 	name = "Рецепт зелья чистой маны";
 	mainflag = ITEM_KAT_DOCS;
-//	flags = ITEM_MISSION;
 	flags = 0;
 	value = 1500;
 	visual = "ItWr_Recipe.3DS";
@@ -112,7 +104,6 @@ instance ITWr_Addon_Mana_04(C_Item)
 
 func void Use_Manarezept_04()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -139,21 +130,17 @@ func void Use_Manarezept_04()
 };
 
 
-instance ITWr_Addon_Hinweis_01(C_Item)
+instance ItWr_Addon_Hinweis_01(C_Item)
 {
 	name = "Важное сообщение";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-//	value = 250;
-	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_Hinweis_01;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "прикрепленное к хижине в болотах.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
@@ -162,7 +149,6 @@ instance ITWr_Addon_Hinweis_01(C_Item)
 
 func void Use_Hinweis_01()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -182,12 +168,11 @@ func void Use_Hinweis_01()
 };
 
 
-instance ITWr_Addon_William_01(C_Item)
+instance ItWr_Addon_William_01(C_Item)
 {
 	name = "Записка";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_William_01;
@@ -202,7 +187,6 @@ instance ITWr_Addon_William_01(C_Item)
 
 func void Use_William_01()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -233,7 +217,7 @@ func void Use_William_01()
 };
 
 
-instance ITWr_Addon_MCELIXIER_01(C_Item)
+instance ItWr_Addon_MCELIXIER_01(C_Item)
 {
 	name = "Рецепт эликсира изменения сознания";
 	mainflag = ITEM_KAT_DOCS;
@@ -252,7 +236,6 @@ instance ITWr_Addon_MCELIXIER_01(C_Item)
 
 func void Use_MCELIXIER_01()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -279,21 +262,17 @@ func void Use_MCELIXIER_01()
 };
 
 
-instance ITWr_Addon_Pirates_01(C_Item)
+instance ItWr_Addon_Pirates_01(C_Item)
 {
 	name = "Сальная записка";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-//	value = 250;
-	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_Pirates_01;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Найдена в кармане Ангуса.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
@@ -302,7 +281,6 @@ instance ITWr_Addon_Pirates_01(C_Item)
 
 func void Use_Pirates_01()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -319,11 +297,10 @@ func void Use_Pirates_01()
 	Doc_PrintLines(nDocID,0,"До встречи.");
 	Doc_PrintLine(nDocID,0,"Том");
 	Doc_Show(nDocID);
-//	Read_JuansText = TRUE;
 };
 
 
-instance ITWr_Addon_Joint_01(C_Item)
+instance ItWr_Addon_Joint_01(C_Item)
 {
 	name = "Рецепт 'Зеленого послушника'";
 	mainflag = ITEM_KAT_DOCS;
@@ -335,7 +312,6 @@ instance ITWr_Addon_Joint_01(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Записка из сундука Фортуно.";
-//	text[1] = PRINT_RequiresAlchemyTalent;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -343,7 +319,6 @@ instance ITWr_Addon_Joint_01(C_Item)
 
 func void Use_Joint_Rezept_01()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -371,11 +346,10 @@ func void Use_Joint_Rezept_01()
 };
 
 
-instance ITWr_Addon_Lou_Rezept(C_Item)
+instance ItWr_Addon_Lou_Rezept(C_Item)
 {
 	name = "Рецепт 'Молота Лу'";
 	mainflag = ITEM_KAT_DOCS;
-//	flags = ITEM_MISSION;
 	flags = 0;
 	value = 70;
 	visual = "ItWr_Recipe.3DS";
@@ -391,7 +365,6 @@ instance ITWr_Addon_Lou_Rezept(C_Item)
 
 func void UseLouRezept()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -423,11 +396,10 @@ func void UseLouRezept()
 };
 
 
-instance ITWr_Addon_Lou_Rezept2(C_Item)
+instance ItWr_Addon_Lou_Rezept2(C_Item)
 {
 	name = "Рецепт двойного 'Молота Лу'";
 	mainflag = ITEM_KAT_DOCS;
-//	flags = ITEM_MISSION;
 	flags = 0;
 	value = 140;
 	visual = "ItWr_Recipe.3DS";
@@ -443,7 +415,6 @@ instance ITWr_Addon_Lou_Rezept2(C_Item)
 
 func void UseLouRezept2()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -452,7 +423,7 @@ func void UseLouRezept2()
 	Doc_PrintLine(nDocID,0,"Двойной 'Молот Лу'");
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Возьмите 'Молот Лу' и перегоните его еще раз.");
+	Doc_PrintLines(nDocID,0,"Возьмите старый добрый 'Молот Лу' и перегоните его еще раз.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Этот напиток способен приготовить только очень опытный винокур.");
 	Doc_PrintLine(nDocID,0,"");
@@ -470,11 +441,10 @@ func void UseLouRezept2()
 };
 
 
-instance ITWr_Addon_Piratentod(C_Item)
+instance ItWr_Addon_Piratentod(C_Item)
 {
 	name = "Рецепт 'Быстрой селедки'";
 	mainflag = ITEM_KAT_DOCS;
-//	flags = ITEM_MISSION;
 	flags = 0;
 	value = 250;
 	visual = "ItWr_Recipe.3DS";
@@ -490,7 +460,6 @@ instance ITWr_Addon_Piratentod(C_Item)
 
 func void UseRezeptPiratentod()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -537,7 +506,6 @@ instance ItWr_MushroomMana(C_Item)
 
 func void UseMushroomManaRecipe()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -584,7 +552,6 @@ instance ItWr_AppleSTR(C_Item)
 
 func void UseAppleSTRRecipe()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -628,10 +595,8 @@ instance ItWr_Addon_AxtAnleitung(C_Item)
 {
 	name = "Схема бандитского топора";
 	mainflag = ITEM_KAT_DOCS;
-//	flags = ITEM_MISSION;
 	flags = 0;
 	value = 250;
-//	visual = "ItWr_Scroll_01.3DS";
 	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseAxtAnleitung;
@@ -646,7 +611,6 @@ instance ItWr_Addon_AxtAnleitung(C_Item)
 
 func void UseAxtAnleitung()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -682,17 +646,12 @@ instance ItWr_Addon_SUMMONANCIENTGHOST(C_Item)
 	name = "Вызов Куарходрона";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-//	value = 250;
-	value = 0;
-//	visual = "ItWr_Scroll_01.3DS";
 	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseSummonAncientGhost;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "С помощью этого свитка можно вызвать Куарходрона.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 
@@ -742,16 +701,15 @@ instance ItWr_Map_AddonWorld(C_Item)
 
 func void Use_Map_AddonWorld()
 {
-	var int Document;
 	if(Npc_IsPlayer(self))
 	{
 		B_SetPlayerMap(ItWr_Map_AddonWorld);
 	};
-	Document = Doc_CreateMap();
-	Doc_SetPages(Document,1);
-	Doc_SetPage(Document,0,"Map_AddonWorld.tga",TRUE);
-	Doc_SetLevel(Document,"Addon\AddonWorld.zen");
-	Doc_SetLevelCoords(Document,-47783,36300,43949,-32300);
-	Doc_Show(Document);
+	nDocID = Doc_CreateMap();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Map_AddonWorld.tga",TRUE);
+	Doc_SetLevel(nDocID,"Addon\AddonWorld.zen");
+	Doc_SetLevelCoords(nDocID,-47783,36300,43949,-32300);
+	Doc_Show(nDocID);
 };
 

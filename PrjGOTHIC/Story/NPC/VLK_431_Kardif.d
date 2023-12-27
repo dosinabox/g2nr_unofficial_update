@@ -7,7 +7,6 @@ instance VLK_431_Kardif(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = NPCTYPE_MAIN;
-	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);

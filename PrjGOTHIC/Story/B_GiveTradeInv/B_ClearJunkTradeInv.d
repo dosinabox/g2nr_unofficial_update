@@ -136,10 +136,10 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		B_RemoveEveryInvItem(slf,ItWr_Poster_MIS);
 		Npc_RemoveInvItem(slf,ItSe_Addon_EmptyFrancisChest);
 		Npc_RemoveInvItem(slf,ItMi_Addon_Bloodwyn_Kopf);
-		Npc_RemoveInvItem(slf,ITWr_Addon_Hinweis_01);
-		Npc_RemoveInvItem(slf,ITWr_Addon_Hinweis_02);
-		Npc_RemoveInvItem(slf,ITWr_Addon_William_01);
-		Npc_RemoveInvItem(slf,ITWr_Addon_Pirates_01);
+		Npc_RemoveInvItem(slf,ItWr_Addon_Hinweis_01);
+		Npc_RemoveInvItem(slf,ItWr_Addon_Hinweis_02);
+		Npc_RemoveInvItem(slf,ItWr_Addon_William_01);
+		Npc_RemoveInvItem(slf,ItWr_Addon_Pirates_01);
 		Npc_RemoveInvItem(slf,ItWr_Kraeuterliste);
 		Npc_RemoveInvItem(slf,ItWr_BanditLetter_MIS);
 		Npc_RemoveInvItem(slf,ItWr_KDWLetter);

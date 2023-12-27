@@ -797,12 +797,12 @@ func int DIA_Bengar_PERM_Condition()
 func void DIA_Bengar_PERM_Info()
 {
 	DIA_Common_EverythingWillBeAlright();
-	if((Npc_GetDistToWP(Malak,"FARM3") < 3000) && !Npc_IsDead(Malak))
+	if(Npc_KnowsInfo(other,DIA_Bengar_MALAKWIEDERDA) && !Npc_IsDead(Malak))
 	{
 		AI_Output(self,other,"DIA_Bengar_PERM_10_01");	//Малак опять здесь, но ситуация почти не изменилась.
 		AI_Output(self,other,"DIA_Bengar_PERM_10_02");	//Если только не произойдет чудо, всем нам скоро настанет конец.
 	}
-	else if(Npc_KnowsInfo(other,DIA_Bengar_SLDDA) && !Npc_IsDead(SLD_Wolf) && (Npc_GetDistToWP(SLD_Wolf,"FARM3") < 3000))
+	else if(Npc_KnowsInfo(other,DIA_Bengar_SLDDA) && !Npc_IsDead(SLD_Wolf))
 	{
 		AI_Output(self,other,"DIA_Bengar_PERM_10_03");	//Вольф странный парень, но я надеюсь, он все же сможет помочь нам.
 	}
@@ -815,10 +815,5 @@ func void DIA_Bengar_PERM_Info()
 		};
 	};
 	AI_StopProcessInfos(self);
-	if(Npc_IsDead(SLD_Wolf) && (MIS_BengarsHelpingSLD == LOG_SUCCESS))
-	{
-		B_StartOtherRoutine(SLD_815_Soeldner,"Start");
-		B_StartOtherRoutine(SLD_817_Soeldner,"Start");
-	};
 };
 

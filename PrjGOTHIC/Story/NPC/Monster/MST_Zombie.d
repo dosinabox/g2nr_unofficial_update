@@ -14,7 +14,7 @@ prototype Mst_Default_Zombie(C_Npc)
 	protection[PROT_BLUNT] = 50;
 	protection[PROT_EDGE] = 50;
 	protection[PROT_POINT] = 50;
-	protection[PROT_FIRE] = 50;	//16;
+	protection[PROT_FIRE] = 50;
 	protection[PROT_FLY] = 50;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -145,7 +145,6 @@ func void B_Pal_ZOMBIE_RISE()
 	{
 		AI_PlayAni(self,"T_RISE");
 		AI_StartState(self,ZS_MM_Attack,0,"");
-		self.bodyStateInterruptableOverride = FALSE;
 		self.start_aistate = ZS_MM_AllScheduler;
 		self.aivar[AIV_MM_RestStart] = OnlyRoutine;
 	};

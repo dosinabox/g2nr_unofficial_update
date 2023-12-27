@@ -872,7 +872,7 @@ func void B_SyncItemsToSteal()
 		B_UpdateItemToSteal(VLK_498_Ignaz,38,ItMi_Gold,50);
 		if(EnterNW_Kapitel3 == TRUE)
 		{
-			B_UpdateItemToSteal(VLK_401_Cornelius,60,ItWr_CorneliusTagebuch_Mis,1);
+			B_UpdateItemToSteal(VLK_401_Cornelius,60,ItWr_CorneliusTagebuch_MIS,1);
 			if((hero.guild != GIL_NOV) && (hero.guild != GIL_KDF))
 			{
 				B_UpdateItemToSteal(NOV_601_Igaraz,40,ItKe_IgarazChest_MIS,1);

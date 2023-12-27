@@ -368,7 +368,7 @@ func void DIA_Pedro_AUFNAHME_YES()
 		{
 			Npc_RemoveInvItem(Gorax,ItKe_Innos_MIS);
 		};
-		CreateInvItems(Gorax,ItBE_Addon_NOV_01,1);
+		CreateInvItems(Gorax,ItBe_Addon_NOV_01,1);
 	};
 	if(Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette))
 	{

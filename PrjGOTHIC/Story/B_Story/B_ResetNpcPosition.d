@@ -64,6 +64,19 @@ func void B_ResetLares()
 	B_StartOtherRoutine(BridgeBandit,"Intercept");
 };
 
+func void B_ResetWolfSLDs()
+{
+	if(MIS_BengarsHelpingSLD == LOG_SUCCESS)
+	{
+		if(Npc_IsDead(SLD_Wolf))
+		{
+			B_StartOtherRoutine(SLD_815_Soeldner,"Start");
+			B_StartOtherRoutine(SLD_817_Soeldner,"Start");
+			MIS_BengarsHelpingSLD = LOG_OBSOLETE;
+		};
+	};
+};
+
 func void B_ResetHenryPirates()
 {
 	if(!Npc_IsDead(SawPirate))

@@ -10,7 +10,7 @@ instance ItWr_SaturasFirstMessage_Addon_Sealed(C_Item)
 	on_state[0] = Use_SaturasFirstMessage_Sealed;
 	scemeName = "MAPSEALED";
 	description = name;
-	text[0] = "Письмо Сатураса Ватрасу.";
+	text[0] = "Это письмо тщательно запечатано.";
 };
 
 
@@ -37,13 +37,18 @@ func void Use_SaturasFirstMessage()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Сатурас");
 	Doc_Show(nDocID);
-	if((Use_SaturasFirstMessage_OneTime == FALSE) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS))
+	if(Use_SaturasFirstMessage_OneTime == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
 		if(SC_KnowsRanger == FALSE)
 		{
 			B_LogEntries(TOPIC_Addon_KDW,"Я забрал у бандита письмо, которое Кавалорн должен был доставить магу Воды Ватрасу. Теперь это моя задача.");
+			Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
+			B_LogNextEntry(TOPIC_Addon_RingOfWater,"Существует какое-то сообщество, которое называется 'Кольцо Воды'. Похоже, что управляют им маги Воды.");
+			Log_AddEntry(TOPIC_Addon_RingOfWater,"Кавалорн принадлежит к 'Кольцу Воды'.");
+			SC_KnowsRanger = TRUE;
 		}
 		else
 		{
@@ -51,25 +56,12 @@ func void Use_SaturasFirstMessage()
 		};
 		Use_SaturasFirstMessage_OneTime = TRUE;
 	};
-	if(SC_KnowsRanger == FALSE)
-	{
-		Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
-		B_LogNextEntry(TOPIC_Addon_RingOfWater,"Существует какое-то сообщество, которое называется 'Кольцо Воды'. Похоже, что управляют им маги Воды.");
-	};
-	if(SC_IsRanger == FALSE)
-	{
-		Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
-		Log_AddEntry(TOPIC_Addon_RingOfWater,"Кавалорн принадлежит к 'Кольцу Воды'.");
-	};
-	SC_KnowsRanger = TRUE;
 };
 
 func void Use_SaturasFirstMessage_Sealed()
 {
 	Snd_Play("PICKLOCK_BROKEN");
-	CreateInvItems(self,ItWr_SaturasFirstMessage_Addon,1);
+	CreateInvItem(self,ItWr_SaturasFirstMessage_Addon);
 	SaturasFirstMessageOpened = TRUE;
 	Use_SaturasFirstMessage();
 };
@@ -1300,7 +1292,7 @@ instance ItMi_FakeBloodwynHead(C_Item)
 	description = name;
 };
 
-instance ItWR_Addon_TreasureMap(C_Item)
+instance ItWr_Addon_TreasureMap(C_Item)
 {
 	name = "Карта сокровищ";
 	mainflag = ITEM_KAT_DOCS;
@@ -1324,7 +1316,7 @@ func void Use_TreasureMap()
 {
 	if(Npc_IsPlayer(self))
 	{
-		B_SetPlayerMap(ItWR_Addon_TreasureMap);
+		B_SetPlayerMap(ItWr_Addon_TreasureMap);
 	};
 	nDocID = Doc_CreateMap();
 	Doc_SetPages(nDocID,1);
@@ -1353,7 +1345,7 @@ instance ItMi_Addon_GregsTreasureBottle_MIS(C_Item)
 func void Use_GregsBottle()
 {
 	Snd_Play("RELEASECORK");
-	B_PlayerFindItem(ItWR_Addon_TreasureMap,1);
+	B_PlayerFindItem(ItWr_Addon_TreasureMap,1);
 };
 
 

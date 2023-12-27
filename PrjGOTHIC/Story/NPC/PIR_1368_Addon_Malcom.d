@@ -24,12 +24,10 @@ instance PIR_1368_Addon_Malcom(Npc_Default)
 
 func void Rtn_PreStart_1368()
 {
-	TA_Sit_Campfire(6,0,10,0,"ADW_PIRATECAMP_LUMBER_SIT");
 	TA_Saw(10,0,14,0,"ADW_PIRATECAMP_WAY_15");
 	TA_Sit_Campfire(14,0,18,0,"ADW_PIRATECAMP_LUMBER_SIT");
 	TA_Saw(18,0,22,0,"ADW_PIRATECAMP_WAY_15");
-	TA_Sit_Campfire(22,0,2,0,"ADW_PIRATECAMP_LUMBER_SIT");
-	TA_Sit_Campfire(2,0,6,0,"ADW_PIRATECAMP_LUMBER_SIT");
+	TA_Sit_Campfire(22,0,10,0,"ADW_PIRATECAMP_LUMBER_SIT");
 };
 
 func void Rtn_Start_1368()

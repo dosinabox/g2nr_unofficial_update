@@ -18,7 +18,6 @@ instance ItWr_XardasLetterToOpenBook_MIS(C_Item)
 
 func void Use_XardasLetterToOpenBook()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -119,7 +118,6 @@ instance ItWr_HallsofIrdorath_Open_MIS(C_Item)
 
 func void Use_HallsofIrdorath_Open()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
@@ -168,7 +166,6 @@ instance ItWr_XardasSeamapBook_MIS(C_Item)
 
 func void Use_XardasSeamapBook_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Wood_L.tga",0);
@@ -226,7 +223,6 @@ instance ItWr_UseLampIdiot_MIS(C_Item)
 
 func void UseItWr_UseLampIdiot_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -264,7 +260,6 @@ instance ItWr_Seamap_Irdorath(C_Item)
 
 func void Use_Seamap_Irdorath()
 {
-	var int nDocID;
 	nDocID = Doc_CreateMap();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"Map_NewWorld_Seamap.tga",TRUE);
@@ -293,7 +288,7 @@ func void Use_Seamap_Irdorath()
 };
 
 
-instance ITWr_ForgedShipLetter_MIS(C_Item)
+instance ItWr_ForgedShipLetter_MIS(C_Item)
 {
 	name = "Корабельное свидетельство";
 	mainflag = ITEM_KAT_DOCS;
@@ -301,7 +296,7 @@ instance ITWr_ForgedShipLetter_MIS(C_Item)
 	value = 0;
 	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
-	on_state[0] = UseITWr_ForgedShipLetter_MIS;
+	on_state[0] = UseItWr_ForgedShipLetter_MIS;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Письмо о подтверждении полномочий";
@@ -309,9 +304,8 @@ instance ITWr_ForgedShipLetter_MIS(C_Item)
 };
 
 
-func void UseITWr_ForgedShipLetter_MIS()
+func void UseItWr_ForgedShipLetter_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);

@@ -18,7 +18,6 @@
 
 func void UseStandardBrief()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -50,7 +49,6 @@ instance StandardBuch(C_Item)
 
 func void UseStandardBuch()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Brown_L.tga",0);
@@ -98,17 +96,16 @@ instance ItWr_Map_NewWorld(C_Item)
 
 func void Use_Map_NewWorld()
 {
-	var int Document;
 	if(Npc_IsPlayer(self))
 	{
 		B_SetPlayerMap(ItWr_Map_NewWorld);
 	};
-	Document = Doc_CreateMap();
-	Doc_SetPages(Document,1);
-	Doc_SetPage(Document,0,"Map_NewWorld.tga",TRUE);
-	Doc_SetLevel(Document,"NewWorld\NewWorld.zen");
-	Doc_SetLevelCoords(Document,-28000,50500,95500,-42500);
-	Doc_Show(Document);
+	nDocID = Doc_CreateMap();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Map_NewWorld.tga",TRUE);
+	Doc_SetLevel(nDocID,"NewWorld\NewWorld.zen");
+	Doc_SetLevelCoords(nDocID,-28000,50500,95500,-42500);
+	Doc_Show(nDocID);
 };
 
 
@@ -133,17 +130,16 @@ instance ItWr_Map_NewWorld_City(C_Item)
 
 func void Use_Map_NewWorld_City()
 {
-	var int Document;
 	if(Npc_IsPlayer(self))
 	{
 		B_SetPlayerMap(ItWr_Map_NewWorld_City);
 	};
-	Document = Doc_CreateMap();
-	Doc_SetPages(Document,1);
-	Doc_SetPage(Document,0,"Map_NewWorld_City.tga",TRUE);
-	Doc_SetLevel(Document,"NewWorld\NewWorld.zen");
-	Doc_SetLevelCoords(Document,-6900,11800,21600,-9400);
-	Doc_Show(Document);
+	nDocID = Doc_CreateMap();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Map_NewWorld_City.tga",TRUE);
+	Doc_SetLevel(nDocID,"NewWorld\NewWorld.zen");
+	Doc_SetLevelCoords(nDocID,-6900,11800,21600,-9400);
+	Doc_Show(nDocID);
 };
 
 
@@ -168,17 +164,16 @@ instance ItWr_Map_OldWorld(C_Item)
 
 func void Use_Map_OldWorld()
 {
-	var int Document;
 	if(Npc_IsPlayer(self))
 	{
 		B_SetPlayerMap(ItWr_Map_OldWorld);
 	};
-	Document = Doc_CreateMap();
-	Doc_SetPages(Document,1);
-	Doc_SetPage(Document,0,"Map_OldWorld.tga",TRUE);
-	Doc_SetLevel(Document,"OldWorld\OldWorld.zen");
-	Doc_SetLevelCoords(Document,-78500,47500,54000,-53000);
-	Doc_Show(Document);
+	nDocID = Doc_CreateMap();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Map_OldWorld.tga",TRUE);
+	Doc_SetLevel(nDocID,"OldWorld\OldWorld.zen");
+	Doc_SetLevelCoords(nDocID,-78500,47500,54000,-53000);
+	Doc_Show(nDocID);
 };
 
 
@@ -208,7 +203,6 @@ instance ItWr_EinhandBuch(C_Item)
 
 func void UseEinhandBuch()
 {
-	var int nDocID;
 	if(Lerne_Einhand == FALSE)
 	{
 		B_RaiseTalentByPermBonus(self,NPC_TALENT_1H,5);
@@ -256,7 +250,6 @@ instance ItWr_ZweihandBuch(C_Item)
 
 func void UseZweihandBuch()
 {
-	var int nDocID;
 	if(Lerne_Zweihand == FALSE)
 	{
 		B_RaiseTalentByPermBonus(self,NPC_TALENT_2H,5);

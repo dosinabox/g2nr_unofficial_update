@@ -37,9 +37,9 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Matteo,MIS_Matteo_Gold,0,6);
 	B_CloseTopic(TOPIC_Nagur,MIS_Nagur_Bote,0,6);
 	B_CloseTopic(TOPIC_Baltram,MIS_Baltram_ScoutAkil,0,6);
-	B_CloseTopic(Topic_CassiaRing,MIS_CassiaRing,0,6);
-	B_CloseTopic(Topic_CassiaKelche,MIS_CassiaKelche,0,6);
-	B_CloseTopic(Topic_RamirezSextant,MIS_RamirezSextant,0,6);
+	B_CloseTopic(TOPIC_CassiaRing,MIS_CassiaRing,0,6);
+	B_CloseTopic(TOPIC_CassiaKelche,MIS_CassiaKelche,0,6);
+	B_CloseTopic(TOPIC_RamirezSextant,MIS_RamirezSextant,0,6);
 	B_CloseTopic(TOPIC_Ignaz,MIS_Ignaz_Charm,0,6);
 	B_CloseTopic(TOPIC_AlrikSchwert,MIS_Alrik_Sword,0,6);
 	B_CloseTopic(TOPIC_Alwin,MIS_AttackFellan,0,6);
@@ -76,9 +76,9 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_TorlofMiliz,MIS_Torlof_BengarMilizKlatschen,0,3);
 	B_CloseTopic(TOPIC_JarvisSLDKo,MIS_Jarvis_SldKO,0,4);
 	B_CloseTopic(TOPIC_CordProve,0,Cord_Approved,2);
-	B_CloseTopic(Topic_CipherHerb,MIS_Cipher_BringWeed,0,2);
-	B_CloseTopic(Topic_CipherPaket,MIS_Cipher_Paket,0,6);
-	B_CloseTopic(Topic_RodWette,0,Rod_WetteGewonnen,2);
+	B_CloseTopic(TOPIC_CipherHerb,MIS_Cipher_BringWeed,0,2);
+	B_CloseTopic(TOPIC_CipherPaket,MIS_Cipher_Paket,0,6);
+	B_CloseTopic(TOPIC_RodWette,0,Rod_WetteGewonnen,2);
 	B_CloseTopic(TOPIC_FesterRauber,MIS_Fester_KillBugs,0,6);
 	B_CloseTopic(TOPIC_TheklaEintopf,MIS_Thekla_Paket,0,6);
 	B_CloseTopic(TOPIC_SagittaHerb,MIS_Sagitta_Herb,0,6);

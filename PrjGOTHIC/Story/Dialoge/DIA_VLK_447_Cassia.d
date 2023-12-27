@@ -349,9 +349,9 @@ func void DIA_Cassia_beweisen_Info()
 		AI_Output(self,other,"DIA_Cassia_beweisen_16_03");	//Но оно ему совсем ни к чему. Я хочу, чтобы оно украшало мою руку.
 		MIS_CassiaRing = LOG_Running;
 		DIA_Cassia_beweisen_permanent = TRUE;
-		Log_CreateTopic(Topic_CassiaRing,LOG_MISSION);
-		Log_SetTopicStatus(Topic_CassiaRing,LOG_Running);
-		B_LogEntry(Topic_CassiaRing,"Кассия хочет, чтобы я принес ей кольцо Константино.");
+		Log_CreateTopic(TOPIC_CassiaRing,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_CassiaRing,LOG_Running);
+		B_LogEntry(TOPIC_CassiaRing,"Кассия хочет, чтобы я принес ей кольцо Константино.");
 	};
 };
 
@@ -763,9 +763,9 @@ func void DIA_Cassia_Blutkelche_Info()
 		AI_Output(self,other,"DIA_Cassia_Blutkelche_16_10");	//Либо половина от дохода, либо ты сможешь выбрать что-нибудь из моей сокровищницы.
 		MIS_CassiaKelche = LOG_Running;
 		DIA_Cassia_Blutkelche_permanent = TRUE;
-		Log_CreateTopic(Topic_CassiaKelche,LOG_MISSION);
-		Log_SetTopicStatus(Topic_CassiaKelche,LOG_Running);
-		B_LogEntry(Topic_CassiaKelche,"Кассия хочет, чтобы я принес ей шесть кровавых кубков. По-видимому, они находятся в городе.");
+		Log_CreateTopic(TOPIC_CassiaKelche,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_CassiaKelche,LOG_Running);
+		B_LogEntry(TOPIC_CassiaKelche,"Кассия хочет, чтобы я принес ей шесть кровавых кубков. По-видимому, они находятся в городе.");
 	};
 };
 

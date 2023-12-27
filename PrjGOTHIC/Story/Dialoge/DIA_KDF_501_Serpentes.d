@@ -429,47 +429,47 @@ func void DIA_Serpentes_MinenAnteile_was_ja()
 	MIS_Serpentes_MinenAnteil_KDF = LOG_Running;
 	if(!Npc_IsDead(Salandril))
 	{
-		CreateInvItems(Salandril,ItWr_MinenAnteil_Mis,2);
+		CreateInvItems(Salandril,ItWr_MinenAnteil_MIS,2);
 		SalandrilMinenAnteil_MAINCounter += 2;
 	};
 	if(!Npc_IsDead(Matteo))
 	{
-		CreateInvItems(Matteo,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Matteo,ItWr_MinenAnteil_MIS,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
 	if(!Npc_IsDead(Bosper))
 	{
-		CreateInvItems(Bosper,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Bosper,ItWr_MinenAnteil_MIS,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
 	if(!Npc_IsDead(Zuris))
 	{
-		CreateInvItems(Zuris,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Zuris,ItWr_MinenAnteil_MIS,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
 	if(!Npc_IsDead(Elena))
 	{
-		CreateInvItems(Elena,ItWr_MinenAnteil_Mis,2);
+		CreateInvItems(Elena,ItWr_MinenAnteil_MIS,2);
 		SalandrilMinenAnteil_MAINCounter += 2;
 	};
 	if(!Npc_IsDead(Orlan))
 	{
-		CreateInvItems(Orlan,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Orlan,ItWr_MinenAnteil_MIS,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
 	if(!Npc_IsDead(Hakon))
 	{
-		CreateInvItems(Hakon,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Hakon,ItWr_MinenAnteil_MIS,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
 	if(!Npc_IsDead(Rosi))
 	{
-		CreateInvItems(Rosi,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Rosi,ItWr_MinenAnteil_MIS,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
 	if(!Npc_IsDead(Canthar))
 	{
-		CreateInvItems(Canthar,ItWr_MinenAnteil_Mis,3);
+		CreateInvItems(Canthar,ItWr_MinenAnteil_MIS,3);
 		SalandrilMinenAnteil_MAINCounter += 3;
 	};
 	Log_CreateTopic(TOPIC_MinenAnteileKDF,LOG_MISSION);
@@ -519,9 +519,9 @@ instance DIA_Serpentes_MinenAnteileBringen(C_Info)
 
 func int DIA_Serpentes_MinenAnteileBringen_Condition()
 {
-	if((MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_HasItems(other,ItWr_MinenAnteil_Mis) && (other.guild == GIL_KDF))
+	if((MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_HasItems(other,ItWr_MinenAnteil_MIS) && (other.guild == GIL_KDF))
 	{
-		if(Npc_HasItems(other,ItWr_MinenAnteil_Mis) > 1)
+		if(Npc_HasItems(other,ItWr_MinenAnteil_MIS) > 1)
 		{
 			DIA_Serpentes_MinenAnteileBringen.description = "Я смог найти несколько акций шахт.";
 		}
@@ -538,7 +538,7 @@ func void DIA_Serpentes_MinenAnteileBringen_Info()
 	var int SerpentesMinenAnteilCount;
 	var int SerpentesMinenAnteilGeld;
 	var int MinenAnteilLeft;
-	SerpentesMinenAnteilCount = Npc_HasItems(other,ItWr_MinenAnteil_Mis);
+	SerpentesMinenAnteilCount = Npc_HasItems(other,ItWr_MinenAnteil_MIS);
 	if(SerpentesMinenAnteilCount == 1)
 	{
 		AI_Output(other,self,"DIA_Serpentes_MinenAnteileBringen_15_00");	//Я смог найти акции шахт.
@@ -547,8 +547,8 @@ func void DIA_Serpentes_MinenAnteileBringen_Info()
 	{
 		AI_Output(other,self,"DIA_Serpentes_MinenAnteileBringen_15_01");	//Я смог найти несколько акций шахт.
 	};
-	B_GiveInvItems(other,self,ItWr_MinenAnteil_Mis,SerpentesMinenAnteilCount);
-	Npc_RemoveInvItems(self,ItWr_MinenAnteil_Mis,SerpentesMinenAnteilCount);
+	B_GiveInvItems(other,self,ItWr_MinenAnteil_MIS,SerpentesMinenAnteilCount);
+	Npc_RemoveInvItems(self,ItWr_MinenAnteil_MIS,SerpentesMinenAnteilCount);
 	B_GivePlayerXP(SerpentesMinenAnteilCount * XP_BringSerpentesMinenAnteil);
 	SerpentesMinenAnteilCounter += SerpentesMinenAnteilCount;
 	MinenAnteilLeft = SalandrilMinenAnteil_MAINCounter - SerpentesMinenAnteilCounter;

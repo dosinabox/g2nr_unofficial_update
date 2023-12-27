@@ -283,7 +283,7 @@ func void DIA_Addon_Garett_GiveKompass_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_05");	//Помнишь, ты купил у меня пояс.
 		AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_06");	//Ты заплатил за него порядочную сумму... Нет, конечно он стоит этих денег. В общем, можешь взять их обратно.
-		B_GiveInvItems(self,other,ItMi_Gold,Value_ItBE_Addon_Prot_EdgPoi);
+		B_GiveInvItems(self,other,ItMi_Gold,Value_ItBe_Addon_Prot_EdgPoi);
 	}
 	else
 	{

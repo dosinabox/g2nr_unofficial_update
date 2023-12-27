@@ -51,6 +51,9 @@ const int Garond_KilledDragonGeld = 300;
 const int OrcRingPenalty = 20;
 const int PyrokarsAlmanachOffer = 400;
 const int SerpentesMinenAnteilOffer = 200;
+const int NefariusMissingOrnamentsOffer = 100;
+const int Addon_ErolsStoneplatesOffer = 10;
+const int HagensRingOffer = 150;
 const int PremiumTeachersPrice = 20;
 
 var int Saturas_KlaueInsMeer;
@@ -181,7 +184,7 @@ var int RangerRingIsMyRing;
 var int RangerRingIsLanceRing;
 //var int SC_KnowsCordAsRangerFromLares;
 var int SC_KnowsCordAsRangerFromLee;
-var int Cavalorn_RangerHint;
+//var int Cavalorn_RangerHint;
 var int Baltram_Exchange4Lares;
 var int SC_KnowsBaltramAsRanger;
 var int Lares_GotRingBack;

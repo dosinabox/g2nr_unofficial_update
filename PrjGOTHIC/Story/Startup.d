@@ -251,7 +251,7 @@ func void STARTUP_Addon_Part_BanditsCamp_01()
 	Wld_InsertItem(ItPo_Mana_02,"FP_ITEM_BL_TRYSTAN");
 	Wld_InsertItem(ItAm_Addon_Health,"FP_ITEM_MINE_01");
 	Wld_InsertItem(ItKe_Addon_Buddler_01,"FP_ITEM_BL_CHEST");
-	Wld_InsertItem(ITWr_Addon_Hinweis_02,"FP_ITEM_BL_SNAF");
+	Wld_InsertItem(ItWr_Addon_Hinweis_02,"FP_ITEM_BL_SNAF");
 	Wld_InsertItem(ItPo_Health_Addon_04,"FP_RAVEN_01");
 	Wld_InsertItem(ItPo_Mana_Addon_04,"FP_RAVEN_02");
 	Wld_InsertItem(ItPl_Temp_Herb,"FP_ITEM_BANDITSCAMP_01");
@@ -1701,11 +1701,7 @@ func void STARTUP_NewWorld_Part_City_01()
 
 func void INIT_SUB_NewWorld_Part_City_01()
 {
-	Wld_SetMobRoutine(0,0,"FIREPLACE",1);
-	Wld_SetMobRoutine(20,0,"FIREPLACE",1);
-	Wld_SetMobRoutine(5,0,"FIREPLACE",0);
-	//TODO активировать к полному релизу 30 версии
-	/*if(C_WorldIsFixed())
+	if(C_WorldIsFixed())
 	{
 		B_SetObjectRoutine("CITYLAMP_01");
 		B_SetObjectRoutine("CITYLAMP_02");
@@ -1756,7 +1752,7 @@ func void INIT_SUB_NewWorld_Part_City_01()
 		Wld_SetMobRoutine(0,0,"FIREPLACE",1);
 		Wld_SetMobRoutine(20,0,"FIREPLACE",1);
 		Wld_SetMobRoutine(5,0,"FIREPLACE",0);
-	};*/
+	};
 	Wld_AssignRoomToGuild("hafen01",GIL_VLK);
 	Wld_AssignRoomToGuild("hafen02",GIL_VLK);
 	Wld_AssignRoomToGuild("hafen03",GIL_VLK);
@@ -1888,8 +1884,6 @@ func void STARTUP_NewWorld_Part_Farm_01()
 	Wld_InsertNpc(YGobbo_Green,"NW_FARM1_PATH_CITY_19_B");
 	Wld_InsertNpc(YBloodfly,"NW_FARM1_PATH_CITY_10_B");
 	Wld_InsertNpc(YBloodfly,"NW_FARM1_PATH_CITY_10_B");
-//	Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
-//	Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
 	Wld_InsertNpc(YGiant_Bug,"NW_FARM1_CITYWALL_RIGHT_02");
 	Wld_InsertNpc(YGiant_Bug,"NW_FARM1_OUT_13");
 	Wld_InsertNpc(YGiant_Bug_VinoRitual1,"NW_FARM1_OUT_15");
@@ -1929,14 +1923,7 @@ func void INIT_SUB_NewWorld_Part_Farm_01()
 {
 	Wld_AssignRoomToGuild("farm01",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("farm02",GIL_PUBLIC);
-	if(Lobart_Kleidung_Verkauft == TRUE)
-	{
-		Wld_AssignRoomToGuild("farm03",GIL_NONE);
-	}
-	else
-	{
-		Wld_AssignRoomToGuild("farm03",GIL_PUBLIC);
-	};
+	Wld_AssignRoomToGuild("farm03",GIL_PUBLIC);
 };
 
 func void STARTUP_NewWorld_Part_Xardas_01()

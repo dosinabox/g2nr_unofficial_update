@@ -87,6 +87,7 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 		B_SendMilitiaToHotel();
 	};
 	B_KillThievesGuild();
+	B_ResetWolfSLDs();
 	B_ResetSergio();
 	B_ResetFernando();
 };
@@ -164,6 +165,10 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		{
 			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
+		if(!Npc_IsDead(Hilda))
+		{
+			Hilda.aivar[AIV_IGNORE_Theft] = FALSE;
+		};
 		if((MIS_HelpDyrian != LOG_SUCCESS) && !Npc_IsDead(Dyrian))
 		{
 			B_SetGuild(Dyrian,GIL_NONE);
@@ -184,7 +189,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		if(!Npc_IsDead(Cornelius))
 		{
 			Cornelius.flags = 0;
-			B_CreateItemToSteal(Cornelius,60,ItWr_CorneliusTagebuch_Mis,1);
+			B_CreateItemToSteal(Cornelius,60,ItWr_CorneliusTagebuch_MIS,1);
 		};
 		if(!Npc_IsDead(Hodges))
 		{
@@ -405,12 +410,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 					Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
 				};
 				Npc_ExchangeRoutine(Canthar,"MARKTSTAND");
-				if(SarahWeaponsRemoved == FALSE)
-				{
-					B_GiveTradeInv_Sarah(Sarah);
-					B_RemoveSarahWeapons();
-				};
-				B_RemoveNpc(VLK_470_Sarah);
+				B_RemoveSarah();
 				Canthar_Sperre = TRUE;
 			};
 			if((Canthar.aivar[AIV_LastFightComment] == FALSE) && (Canthar.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE))

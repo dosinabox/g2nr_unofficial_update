@@ -148,15 +148,18 @@ func void DIA_Bennet_DI_Smith_Info()
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_2H_Special_03,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_03)),DIA_Bennet_DI_Smith_2hSpecial3);
 			abletolearn += 1;
 		};
-		if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] == FALSE)
+		if(other.guild == GIL_DJG)
 		{
-			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_1H_Special_04,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_04)),DIA_Bennet_DI_Smith_1hSpecial4);
-			abletolearn += 1;
-		};
-		if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] == FALSE)
-		{
-			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_2H_Special_04,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_04)),DIA_Bennet_DI_Smith_2hSpecial4);
-			abletolearn += 1;
+			if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] == FALSE)
+			{
+				Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_1H_Special_04,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_04)),DIA_Bennet_DI_Smith_1hSpecial4);
+				abletolearn += 1;
+			};
+			if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] == FALSE)
+			{
+				Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_2H_Special_04,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_04)),DIA_Bennet_DI_Smith_2hSpecial4);
+				abletolearn += 1;
+			};
 		};
 		if(abletolearn < 1)
 		{

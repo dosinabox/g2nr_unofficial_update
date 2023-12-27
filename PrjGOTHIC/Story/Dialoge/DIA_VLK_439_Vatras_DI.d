@@ -153,7 +153,7 @@ func void DIA_Vatras_DI_RAT_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_DI_RAT_15_00");	//Какой совет ты можешь дать мне?
 	AI_Output(self,other,"DIA_Vatras_DI_RAT_05_01");	//Держись подальше от Ищущих. Помни, что их черный взгляд может нанести тебе серьезный урон здесь, вдали от монастыря.
-	if(Npc_HasItems(other,ItAm_Prot_BlackEye_Mis))
+	if(Npc_HasItems(other,ItAm_Prot_BlackEye_MIS))
 	{
 		AI_Output(other,self,"DIA_Vatras_DI_RAT_15_02");	//Не волнуйся, у меня есть амулет вызова душ.
 	};

@@ -79,7 +79,7 @@ func int DIA_Addon_HammerPirate_Anheuern_Condition()
 
 func void DIA_Addon_HammerPirate_Anheuern_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Skip_Anheuern_15_00");	//“ы должен мне помочь.
+	DIA_Common_YouGottaHelpMe();
 	AI_Output(self,other,"DIA_Addon_HammerPirate_Anheuern_07_00");	//“олько не говори, что ты хочешь, чтобы € пошел с тобой и помог тебе разделатьс€ с бандитами!
 	AI_Output(other,self,"DIA_Addon_PIR_6_JoinHenry_15_08");	//“очно.
 	if(!Npc_IsDead(SawPirate))

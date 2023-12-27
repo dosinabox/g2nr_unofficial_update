@@ -14,7 +14,7 @@ func void B_GiveTradeInv_Zuris(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Health_Addon_04,2);
 		CreateInvItems(slf,ItPo_Mana_Addon_04,2);
 		CreateInvItems(slf,ItMi_ApfelTabak,2);
-		CreateInvItems(slf,ItWr_Astronomy_Mis,1);
+		CreateInvItems(slf,ItWr_Astronomy_MIS,1);
 		CreateInvItems(slf,ItFo_Addon_Pfeffer_01,1);
 		CreateInvItems(slf,ItSc_Light,6);
 		CreateInvItems(slf,ItSc_Sleep,1);

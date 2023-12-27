@@ -309,9 +309,9 @@ func void DIA_Rod_StarkGenug_Info()
 {
 	AI_Output(other,self,"DIA_Rod_StarkGenug_15_00");	//Я достаточно силен!
 	AI_Output(self,other,"DIA_Rod_StarkGenug_06_01");	//Чушь! Ты даже не смог ПОДНЯТЬ приличный меч вроде моего!
-	Log_CreateTopic(Topic_RodWette,LOG_MISSION);
-	Log_SetTopicStatus(Topic_RodWette,LOG_Running);
-	B_LogEntry(Topic_RodWette,"Наемник Род думает, что я не смогу удержать его меч.");
+	Log_CreateTopic(TOPIC_RodWette,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_RodWette,LOG_Running);
+	B_LogEntry(TOPIC_RodWette,"Наемник Род думает, что я не смогу удержать его меч.");
 };
 
 
@@ -374,7 +374,7 @@ func void DIA_Rod_Wette_Info()
 	Info_AddChoice(DIA_Rod_Wette,"Конечно.",DIA_Rod_Wette_Yes);
 	if(Rod_Gold == FALSE)
 	{
-		B_LogEntry(Topic_RodWette,"Род ставит 30 золотых монет на то, что я не смогу удержать его меч.");
+		B_LogEntry(TOPIC_RodWette,"Род ставит 30 золотых монет на то, что я не смогу удержать его меч.");
 		Rod_Gold = TRUE;
 	};
 };
@@ -411,7 +411,7 @@ func void DIA_Rod_Wette_Yes()
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_06");	//Я никак не ожидал от тебя такого. Ты не похож на человека, обладающего такой силой.
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_07");	//Ну, похоже, я только что потерял 30 золотых монет. Держи.
 			B_GiveInvItems(self,other,ItMi_Gold,60);
-			B_LogEntry(Topic_RodWette,"Я смог удержать меч Рода.");
+			B_LogEntry(TOPIC_RodWette,"Я смог удержать меч Рода.");
 			Rod_WetteGewonnen = TRUE;
 			B_GivePlayerXP(XP_Rod);
 		}
@@ -419,7 +419,7 @@ func void DIA_Rod_Wette_Yes()
 		{
 			AI_Output(other,self,"DIA_Rod_Wette_Yes_15_08");	//Я не могу поднять это оружие.
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_09");	//(смеется) Что я и говорил!
-			B_LogEntry(Topic_RodWette,"Я не смог удержать меч Рода.");
+			B_LogEntry(TOPIC_RodWette,"Я не смог удержать меч Рода.");
 		};
 		AI_Output(self,other,"DIA_Rod_Wette_Yes_06_10");	//А теперь отдай мне мое оружие назад.
 		Info_ClearChoices(DIA_Rod_Wette);

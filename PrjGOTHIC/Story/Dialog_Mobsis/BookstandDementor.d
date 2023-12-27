@@ -1,7 +1,6 @@
 
 func void Use_BookstandDementor_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();

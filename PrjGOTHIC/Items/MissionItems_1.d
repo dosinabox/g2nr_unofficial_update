@@ -37,7 +37,6 @@ instance ItWr_Canthars_KomproBrief_MIS(C_Item)
 
 func void Use_Canthars_KomproBrief()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -213,7 +212,6 @@ instance ItWr_Kraeuterliste(C_Item)
 
 func void Use_Kraeuterliste()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -260,7 +258,6 @@ instance ItWr_ManaRezept(C_Item)
 
 func void Use_ManaRezept()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -306,7 +303,6 @@ instance ItWr_Passierschein(C_Item)
 
 func void UsePassierschein()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -409,7 +405,6 @@ instance ItWr_HalvorMessage(C_Item)
 
 func void UseHalvorMessage()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -474,7 +469,6 @@ instance ItWr_VatrasMessage(C_Item)
 
 func void UseVatrasMessage()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -739,7 +733,6 @@ instance ItWr_Passage_MIS(C_Item)
 
 func void UsePassage()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -781,7 +774,6 @@ instance ItWr_BanditLetter_MIS(C_Item)
 
 func void UseBanditLetter()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -839,7 +831,6 @@ instance ItWr_Poster_MIS(C_Item)
 
 func void UsePoster()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"Gesucht.TGA",0);
@@ -1141,7 +1132,6 @@ instance ItWr_Schuldenbuch(C_Item)
 
 func void UseSchuldBuch()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Brown_L.tga",0);

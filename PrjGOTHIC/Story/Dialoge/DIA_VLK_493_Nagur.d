@@ -188,12 +188,12 @@ func void DIA_Nagur_Auftrag_Info()
 		if(!Npc_IsDead(Bote))
 		{
 			AI_Output(self,other,"DIA_Nagur_Auftrag_08_03");	//Вернее, у него БЫЛ посыльный, пока я не перерезал ему глотку. И теперь Бальтраму придется искать нового мальчика на побегушках. И им будешь ты.
+			B_DeletePetzCrime(Bote);
 			B_RemoveNpc(VLK_4006_Bote);
 			Bote_Killed = TRUE;
 		}
 		else
 		{
-			//TODO озвучить
 			AI_Output(self,other,"DIA_Nagur_Auftrag_08_03_add");	//Вернее, у него БЫЛ посыльный. И им будешь ты.
 		};
 		AI_Output(self,other,"DIA_Nagur_Auftrag_08_04");	//Ты должен поступить на работу к Бальтраму и взять посылку у Акила.
@@ -418,6 +418,7 @@ func void DIA_Nagur_Sign_Info()
 	AI_PlayAni(other,"T_YES");
 	AI_Output(self,other,"DIA_Nagur_Sign_08_00");	//Так тебе удалось это. Теперь ты знаешь, кто мои хозяева.
 	AI_Output(self,other,"DIA_Nagur_Sign_08_01");	//Не забывай о том, что Кассия говорит тебе - нам не интересно, кто ты такой. Ты один из нас, и только это имеет значение.
+	self.aivar[AIV_IGNORE_Theft] = TRUE;
 	B_GivePlayerXP(XP_NagurGotThief);
 	AI_StopProcessInfos(self);
 };
@@ -441,6 +442,10 @@ func int DIA_Nagur_Perm_Condition()
 		if(Npc_KnowsInfo(other,DIA_Nagur_Sign))
 		{
 			return TRUE;
+		};
+		if(Knows_SecretSign == TRUE)
+		{
+			return FALSE;
 		};
 		if(Npc_KnowsInfo(other,DIA_Nagur_Auftraggeber))
 		{

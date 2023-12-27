@@ -1,8 +1,6 @@
 
 func void ZS_Ghost()
 {
-//	var C_Npc Quarho;
-//	Quarho = Hlp_GetNpc(NONE_ADDON_111_Quarhodron);
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Quarhodron))
 	{
 		if(Ghost_SCKnowsHow2GetInAdanosTempel == FALSE)

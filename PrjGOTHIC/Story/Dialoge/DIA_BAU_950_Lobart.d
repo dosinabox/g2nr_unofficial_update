@@ -118,6 +118,7 @@ func void DIA_Lobart_STOLENCLOTHS_GiveGold()
 	AI_Output(self,other,"DIA_Lobart_DMT_05_01");	//Это все невыносимо.
 	Lobart_Kleidung_Verkauft = TRUE;
 	LobartGotGoldForStolenClothes = TRUE;
+	B_CheckLog();
 	AI_StopProcessInfos(self);
 };
 
@@ -313,9 +314,12 @@ func void DIA_Lobart_BuyClothes_BUY()
 			AI_Output(self,other,"DIA_Lobart_BuyClothes_BUY_05_02");	//В моем доме есть сундук, где ты найдешь постиранные вещи.
 			AI_Output(self,other,"DIA_Lobart_BuyClothes_BUY_05_03");	//Но даже не думай взять что-нибудь там без разрешения!
 			self.aivar[AIV_IGNORE_Theft] = TRUE;
+			if(!Npc_IsDead(Hilda))
+			{
+				Hilda.aivar[AIV_IGNORE_Theft] = TRUE;
+			};
 		};
 		Lobart_Kleidung_Verkauft = TRUE;
-		Wld_AssignRoomToGuild("farm03",GIL_NONE);
 		B_CheckLog();
 	}
 	else

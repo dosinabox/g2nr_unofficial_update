@@ -80,7 +80,7 @@ func void DIA_Schwarzmagier_HELLO_meister()
 	AI_PlayAni(self,"T_PRACTICEMAGIC5");
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_meister_09_00");	//(угрожающе) Хватит болтовни! Я уничтожу тебя.
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_meister_09_01");	//Твой взор потухнет, и твой дух растает во тьме.
-	if(Npc_HasItems(other,ItAm_Prot_BlackEye_Mis))
+	if(Npc_HasItems(other,ItAm_Prot_BlackEye_MIS))
 	{
 		AI_Output(other,self,"DIA_Schwarzmagier_HELLO_meister_15_02");	//(себе под нос) Без этого амулета вызова душ у меня бы были большие проблемы сейчас.
 	}

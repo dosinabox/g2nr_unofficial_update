@@ -18,18 +18,7 @@ func void Use_Sack()
 {
 	Snd_Play("Geldbeutel");
 	Print("Найдено много разного нового оружия!");
-	CreateInvItems(self,ItMW_Addon_Knife01,1);
-	CreateInvItems(self,ItMW_Addon_Stab01,1);
-	CreateInvItems(self,ItMW_Addon_Stab02,1);
-	CreateInvItems(self,ItMW_Addon_Stab03,1);
-	CreateInvItems(self,ItMW_Addon_Stab04,1);
-	CreateInvItems(self,ItMW_Addon_Stab05,1);
-	CreateInvItems(self,ItMW_Addon_Hacker_1h_01,1);
-	CreateInvItems(self,ItMW_Addon_Hacker_2h_01,1);
-	CreateInvItems(self,ItMW_Addon_Hacker_2h_02,1);
-	CreateInvItems(self,ItMW_Addon_Hacker_1h_02,1);
-	CreateInvItems(self,ItMW_Addon_Keule_1h_01,1);
-	CreateInvItems(self,ItMW_Addon_Keule_2h_01,1);
+	B_GiveAllAddonWeapons(self);
 };
 
 

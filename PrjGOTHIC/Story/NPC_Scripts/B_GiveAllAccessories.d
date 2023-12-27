@@ -1,0 +1,90 @@
+
+func void B_GiveAllClassicAccessories(var C_Npc npc)
+{
+	CreateInvItem(npc,ItAm_Dex_01);
+	CreateInvItem(npc,ItAm_Strg_01);
+	CreateInvItem(npc,ItAm_Hp_01);
+	CreateInvItem(npc,ItAm_Mana_01);
+	CreateInvItem(npc,ItAm_Dex_Strg_01);
+	CreateInvItem(npc,ItAm_Hp_Mana_01);
+	CreateInvItem(npc,ItAm_Prot_Fire_01);
+	CreateInvItem(npc,ItAm_Prot_Mage_01);
+	CreateInvItem(npc,ItAm_Prot_Edge_01);
+	CreateInvItem(npc,ItAm_Prot_Point_01);
+	CreateInvItem(npc,ItAm_Prot_Total_01);
+	CreateInvItem(npc,ItAm_AmulettOfDeath_MIS);
+	CreateInvItem(npc,ItAm_Prot_BlackEye_MIS);
+	CreateInvItem(npc,ItAm_Mana_Angar_MIS);
+	CreateInvItem(npc,ItRi_Dex_01);
+	CreateInvItem(npc,ItRi_Dex_02);
+	CreateInvItem(npc,ItRi_HP_01);
+	CreateInvItem(npc,ItRi_HP_02);
+	CreateInvItem(npc,ItRi_Str_01);
+	CreateInvItem(npc,ItRi_Str_02);
+	CreateInvItem(npc,ItRi_Mana_01);
+	CreateInvItem(npc,ItRi_Mana_02);
+	CreateInvItem(npc,ItRi_Dex_Strg_01);
+	CreateInvItem(npc,ItRi_Hp_Mana_01);
+	CreateInvItem(npc,ItRi_Prot_Fire_01);
+	CreateInvItem(npc,ItRi_Prot_Fire_02);
+	CreateInvItem(npc,ItRi_Prot_Edge_01);
+	CreateInvItem(npc,ItRi_Prot_Edge_02);
+	CreateInvItem(npc,ItRi_Prot_Mage_01);
+	CreateInvItem(npc,ItRi_Prot_Mage_02);
+	CreateInvItem(npc,ItRi_Prot_Point_01);
+	CreateInvItem(npc,ItRi_Prot_Point_02);
+	CreateInvItem(npc,ItRi_Prot_Total_01);
+	CreateInvItem(npc,ItRi_Prot_Total_02);
+	CreateInvItem(npc,ItRi_Prot_Total_03);
+	CreateInvItem(npc,ItRi_OrcEliteRing);
+	CreateInvItem(npc,ItRi_Prot_Edge_01_Valentino);
+	CreateInvItem(npc,ItRi_Prot_Point_01_MIS);
+	CreateInvItem(npc,ItRi_HP_01_Tengron);
+};
+
+func void B_GiveAllAddonAccessories(var C_Npc npc)
+{
+	CreateInvItem(npc,ItAm_Addon_Franco);
+	CreateInvItem(npc,ItAm_Addon_Greg);
+	CreateInvItem(npc,ItAm_Addon_Health);
+	CreateInvItem(npc,ItAm_Addon_MANA);
+	CreateInvItem(npc,ItAm_Addon_STR);
+	CreateInvItem(npc,ItAm_Addon_WispDetector);
+	CreateInvItem(npc,ItRi_Addon_Health_01);
+	CreateInvItem(npc,ItRi_Addon_Health_02);
+	CreateInvItem(npc,ItRi_Addon_MANA_01);
+	CreateInvItem(npc,ItRi_Addon_MANA_02);
+	CreateInvItem(npc,ItRi_Addon_STR_01);
+	CreateInvItem(npc,ItRi_Addon_STR_02);
+	CreateInvItem(npc,ItRi_Ranger_Lares_Addon);
+	CreateInvItem(npc,ItRi_Ranger_Addon);
+	CreateInvItem(npc,ItRi_Ranger_Lance_Addon);
+	CreateInvItem(npc,ItRi_Addon_BanditTrader);
+	CreateInvItem(npc,ItRi_Addon_MorgansRing_Mission);
+	CreateInvItem(npc,ItBe_Addon_Leather_01);
+	CreateInvItem(npc,ItBe_Addon_SLD_01);
+	CreateInvItem(npc,ItBe_Addon_NOV_01);
+	CreateInvItem(npc,ItBe_Addon_MIL_01);
+	CreateInvItem(npc,ItBe_Addon_KDF_01);
+	CreateInvItem(npc,ItBe_Addon_MC);
+	CreateInvItem(npc,ItBe_Addon_STR_5);
+	CreateInvItem(npc,ItBe_Addon_STR_10);
+	CreateInvItem(npc,ItBe_Addon_DEX_5);
+	CreateInvItem(npc,ItBe_Addon_DEX_10);
+	CreateInvItem(npc,ItBe_Addon_Prot_EDGE);
+	CreateInvItem(npc,ItBe_Addon_Prot_Point);
+	CreateInvItem(npc,ItBe_Addon_Prot_MAGIC);
+	CreateInvItem(npc,ItBe_Addon_Prot_FIRE);
+	CreateInvItem(npc,ItBe_Addon_Prot_EdgPoi);
+	CreateInvItem(npc,ItBe_Addon_Prot_TOTAL);
+};
+
+func void B_GiveAllPatchAccessories(var C_Npc npc)
+{
+	CreateInvItem(npc,ItAm_Hp_Regen);
+	CreateInvItem(npc,ItAm_Mana_Regen);
+	CreateInvItem(npc,ItAm_Fall);
+	CreateInvItem(npc,ItAm_Speed);
+	CreateInvItem(npc,ItRi_Prot_Mage_03);
+};
+

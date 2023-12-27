@@ -75,13 +75,13 @@ func void DIA_Cipher_TradeWhat_Info()
 	AI_Output(self,other,"DIA_Cipher_TradeWhat_07_04");	//Но какой-то ублюдок украл эту траву из моего сундука!
 	Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
 	B_LogEntries(TOPIC_SoldierTrader,"Сифер - торговец на ферме Онара.");
-	Log_CreateTopic(Topic_CipherPaket,LOG_MISSION);
-	Log_SetTopicStatus(Topic_CipherPaket,LOG_Running);
-	B_LogNextEntry(Topic_CipherPaket,"Наемник Сифер потерял тюк болотной травы.");
+	Log_CreateTopic(TOPIC_CipherPaket,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_CipherPaket,LOG_Running);
+	B_LogNextEntry(TOPIC_CipherPaket,"Наемник Сифер потерял тюк болотной травы.");
 	if(!Npc_IsDead(Bodo))
 	{
 		AI_Output(self,other,"DIA_Cipher_TradeWhat_07_05");	//Я почти уверен, что это Бодо. Он спит в той же комнате, что и я, и всегда ухмыляется при встрече, как идиот...
-		Log_AddEntry(Topic_CipherPaket,"Он подозревает, что его украл Бодо.");
+		Log_AddEntry(TOPIC_CipherPaket,"Он подозревает, что его украл Бодо.");
 	};
 	MIS_Cipher_Paket = LOG_Running;
 };
@@ -100,7 +100,7 @@ instance DIA_Cipher_DoWithThief(C_Info)
 
 func int DIA_Cipher_DoWithThief_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Cipher_TradeWhat))
+	if(Npc_KnowsInfo(other,DIA_Cipher_TradeWhat) && !Npc_KnowsInfo(other,DIA_Cipher_DarDieb))
 	{
 		return TRUE;
 	};
@@ -166,7 +166,11 @@ func void B_CipherHappyForWeedPaket()
 		SCKnowsSLDVotes = TRUE;
 		GotCipherVote = TRUE;
 	};
-	B_GivePlayerXP(XP_CipherWeed);
+	if(MIS_Cipher_BringWeed == LOG_Running)
+	{
+		MIS_Cipher_BringWeed = LOG_SUCCESS;
+		B_GivePlayerXP(XP_CipherWeed);
+	};
 };
 
 instance DIA_Cipher_YesJoin(C_Info)
@@ -194,7 +198,6 @@ func void DIA_Cipher_YesJoin_Info()
 	if(MIS_Cipher_Paket == LOG_SUCCESS)
 	{
 		B_CipherHappyForWeedPaket();
-		B_GivePlayerXP(XP_CipherWeed);
 	}
 	else
 	{
@@ -204,9 +207,9 @@ func void DIA_Cipher_YesJoin_Info()
 		AI_Output(self,other,"DIA_Cipher_YesJoin_07_04");	//Я уверен, тебе удастся что-нибудь найти.
 		SCKnowsSLDVotes = TRUE;
 		MIS_Cipher_BringWeed = LOG_Running;
-		Log_CreateTopic(Topic_CipherHerb,LOG_MISSION);
-		Log_SetTopicStatus(Topic_CipherHerb,LOG_Running);
-		B_LogEntry(Topic_CipherHerb,"Сифер проголосует за меня, если я принесу ему несколько косяков болотной травы.");
+		Log_CreateTopic(TOPIC_CipherHerb,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_CipherHerb,LOG_Running);
+		B_LogEntry(TOPIC_CipherHerb,"Сифер проголосует за меня, если я принесу ему несколько косяков болотной травы.");
 	};
 };
 
@@ -236,7 +239,6 @@ func void DIA_Cipher_Joints_Info()
 	if(MIS_Cipher_Paket == LOG_SUCCESS)
 	{
 		B_CipherHappyForWeedPaket();
-		MIS_Cipher_BringWeed = LOG_SUCCESS;
 	}
 	else
 	{
@@ -310,16 +312,21 @@ func void DIA_Cipher_TRADE_Info()
 	AI_Output(other,self,"DIA_Cipher_TRADE_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
-	if(Npc_HasItems(self,ItMi_Joint))
-	{
-		AI_Output(self,other,"DIA_Cipher_TRADE_07_01");	//Конечно. Выбирай.
-	}
-	else if(!Npc_HasItems(self,ItPl_SwampHerb))
+	if(!Npc_HasItems(self,ItPl_SwampHerb) && !Npc_HasItems(self,ItMi_Joint) && !Npc_HasItems(self,ItMi_Addon_Joint_01))
 	{
 		AI_Output(self,other,"DIA_Cipher_TRADE_07_02");	//У меня сейчас нет болотной травы. Ты хочешь что-нибудь еще?
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Cipher_TRADE_07_01");	//Конечно. Выбирай.
 	};
 };
 
+
+func void B_Cipher_DarLost()
+{
+	AI_Output(self,other,"DIA_Cipher_DarLOST_07_03");	//Этот мерзкий воришка не должен был лазить в мой сундук!
+};
 
 instance DIA_Cipher_DarDieb(C_Info)
 {
@@ -366,7 +373,7 @@ func void DIA_Cipher_DarDieb_Info()
 	else
 	{
 		DIA_Common_HeIsDead();
-		AI_Output(self,other,"DIA_Cipher_DarLOST_07_03");	//Этот мерзкий воришка не должен был лазить в мой сундук!
+		B_Cipher_DarLost();
 		AI_StopProcessInfos(self);
 	};
 };
@@ -396,7 +403,7 @@ func void DIA_Cipher_DarLOST_Info()
 	AI_Output(other,self,"DIA_Cipher_DarLOST_15_00");	//Ты сделал из Дара отбивную... Теперь тебе лучше?
 	AI_Output(self,other,"DIA_Cipher_DarLOST_07_01");	//(вздыхает) Да, немного лучше.
 	AI_Output(other,self,"DIA_Cipher_DarLOST_15_02");	//Но не для НЕГО, я полагаю...
-	AI_Output(self,other,"DIA_Cipher_DarLOST_07_03");	//Этот мерзкий воришка не должен был лазить в мой сундук!
+	B_Cipher_DarLost();
 	B_GivePlayerXP(XP_Ambient * 2);
 };
 
@@ -440,14 +447,13 @@ func void DIA_Cipher_KrautPaket_Info()
 		GotCipherVote = TRUE;
 	};
 	AI_Output(self,other,"DIA_Cipher_KrautPaket_07_04");	//Эй, возьми это в награду.
-	Npc_RemoveInvItems(self,ItMi_Joint,10);
 	CreateInvItems(other,ItMi_Joint,10);
 	CreateInvItems(other,ItMi_Gold,200);
 	AI_PrintScreen("10 косяков получено",-1,43,FONT_ScreenSmall,3);
 	AI_PrintScreen("200 золотых получено",-1,40,FONT_ScreenSmall,3);
 	AI_Output(self,other,"DIA_Cipher_KrautPaket_07_05");	//Сейчас я скручу пару косячков...
-	Npc_RemoveInvItems(self,ItMi_HerbPaket,1);
-	CreateInvItems(self,ItMi_Joint,40);
+	Npc_RemoveInvItem(self,ItMi_HerbPaket);
+	CreateInvItems(self,ItMi_Joint,30);
 	MIS_Cipher_Paket = LOG_SUCCESS;
 	B_GivePlayerXP(XP_CipherPaket);
 };

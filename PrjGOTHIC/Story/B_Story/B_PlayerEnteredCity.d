@@ -7,6 +7,10 @@ func void B_PlayerEnteredCity()
 		{
 			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
+		if(!Npc_IsDead(Hilda))
+		{
+			Hilda.aivar[AIV_IGNORE_Theft] = FALSE;
+		};
 		PlayerEnteredCity = TRUE;
 		B_CheckLog();
 	};

@@ -49,9 +49,9 @@ func void DIA_Till_HALLO_Info()
 	{
 		Info_AddChoice(DIA_Till_HALLO,"Ты командуешь здесь?",DIA_Till_HALLO_selber);
 	};
-	if((Kapitel < 3) || (TOPIC_END_SekobDMT == TRUE))
+	if(Kapitel < 3)
 	{
-		B_StartOtherRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"Start");
 	};
 };
 

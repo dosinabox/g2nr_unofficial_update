@@ -1016,7 +1016,7 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 
 func int C_SCReadyToRescueBennet()
 {
-	if((RescueBennet_KnowsCornelius == TRUE) && Npc_HasItems(hero,ItWr_CorneliusTagebuch_Mis) && (Cornelius_IsLiar == TRUE))
+	if((RescueBennet_KnowsCornelius == TRUE) && Npc_HasItems(hero,ItWr_CorneliusTagebuch_MIS) && (Cornelius_IsLiar == TRUE))
 	{
 		return TRUE;
 	};
@@ -1133,7 +1133,7 @@ func void DIA_Lord_Hagen_Cornelius_Info()
 	AI_Output(other,self,"DIA_Lord_Hagen_Cornelius_15_00");	//Корнелиус солгал.
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_01");	//Откуда тебе это известно?
 	AI_Output(other,self,"DIA_Lord_Hagen_Cornelius_15_02");	//Вот, у меня его дневник. Все в нем.
-	B_GiveInvItems(other,self,ItWr_CorneliusTagebuch_Mis,1);
+	B_GiveInvItems(other,self,ItWr_CorneliusTagebuch_MIS,1);
 	B_ReadFakeItem(self,other,Openbook1,3);
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_03");	//(в ярости) Ах, гнусная мразь!
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_04");	//Перед лицом новых доказательств мне не остается ничего другого.
@@ -1184,7 +1184,6 @@ instance DIA_Lord_Hagen_AugeAmStart(C_Info)
 
 func int DIA_Lord_Hagen_AugeAmStart_Condition()
 {
-//	if((Kapitel <= 4) && (MIS_ReadyforChapter4 == TRUE) && (SC_IsWearingInnosEye == TRUE))
 	if(SC_IsWearingInnosEye == TRUE)
 	{
 		return TRUE;
@@ -1249,7 +1248,7 @@ func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 			AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_05");	//Это не разведчики. Я взял это кольцо с трупа одного из них.
 			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_06");	//Покажи.
 			B_GiveInvItems(other,self,ItRi_OrcEliteRing,1);
-			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_07");	//Ммм. Это действительно неприятно.
+			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_07");	//Ох... Это действительно неприятно.
 			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_08");	//Это знак их силы. Значит, орки выбрались из-за своих частоколов и сражаются в открытом поле.
 			AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_09");	//Я не видел, чтобы их было много. В основном, это их предводители и всего несколько бойцов.
 			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_10");	//Да? Значит, они замышляют что-то еще. Это не похоже на орков, чтобы их лидеры в одиночку покидали свои защитные частоколы.
@@ -1322,29 +1321,20 @@ func int DIA_Lord_Hagen_RINGEBRINGEN_Condition()
 
 func void DIA_Lord_Hagen_RINGEBRINGEN_Info()
 {
-	var int Ringcount;
-	var int XP_PAL_OrcRings;
-	var int OrcRingGeld;
-	var int HagensRingOffer;
+	var int amount;
+	amount = Npc_HasItems(other,ItRi_OrcEliteRing);
 	AI_Output(other,self,"DIA_Lord_Hagen_RINGEBRINGEN_15_00");	//Я могу еще кое-что сообщить о предводителях орков.
 	AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_01");	//Рассказывай.
-	HagensRingOffer = 150;
-	Ringcount = Npc_HasItems(other,ItRi_OrcEliteRing);
-	if(Ringcount == 1)
+	if(amount == 1)
 	{
 		AI_Output(other,self,"DIA_Lord_Hagen_RINGEBRINGEN_15_02");	//Я могу дать тебе еще одно кольцо орков.
-		B_GiveInvItems(other,self,ItRi_OrcEliteRing,1);
-		OrkRingCounter += 1;
-		B_GivePlayerXP(XP_PAL_OrcRing);
 	}
 	else
 	{
 		DIA_Hagen_MoreOrcRings();
-		B_GiveInvItems(other,self,ItRi_OrcEliteRing,Ringcount);
-		XP_PAL_OrcRings = Ringcount * XP_PAL_OrcRing;
-		OrkRingCounter += Ringcount;
-		B_GivePlayerXP(XP_PAL_OrcRings);
 	};
+	B_GiveInvItems(other,self,ItRi_OrcEliteRing,amount);
+	OrkRingCounter += amount;
 	AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_04");	//Я горжусь тобой. Так держать!
 	if(OrkRingCounter <= 10)
 	{
@@ -1359,12 +1349,10 @@ func void DIA_Lord_Hagen_RINGEBRINGEN_Info()
 		AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_07");	//Я удивлюсь, если ты еще их повстречаешь.
 		AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_08");	//Ты можешь приносить мне их кольца, но я думаю, орки уже получили хороший урок.
 		TOPIC_END_OrcElite = TRUE;
-		B_CheckLog();
 	};
 	AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_09");	//Вот. Возьми это золото, купи себе на него хорошее снаряжение.
-	OrcRingGeld = Ringcount * HagensRingOffer;
-	CreateInvItems(self,ItMi_Gold,OrcRingGeld);
-	B_GiveInvItems(self,other,ItMi_Gold,OrcRingGeld);
+	B_GiveInvItems(self,other,ItMi_Gold,HagensRingOffer * amount);
+	B_GivePlayerXP(XP_PAL_OrcRing * amount);
 };
 
 

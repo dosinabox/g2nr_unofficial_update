@@ -1630,11 +1630,8 @@ func void DIA_Addon_Lares_InfoOutsideTheCity2()
 		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_03");	//А такие доспехи выдают маги Воды каждому из нас. Члены общества Кольца Воды носили такую броню еще до войны с орками.
 		Lares_ArmorComment = TRUE;
 	};
-	if(Cavalorn_RangerHint == TRUE)
-	{
-		AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_15_04");	//А как ко всему этому относится Кавалорн? Насколько я знаю, в Новом Лагере он ничем таким не занимался.
-		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_05");	//Ты прав. Но наше сообщество растет, и даже я не знаю, сколько членов оно сейчас насчитывает.
-	};
+	AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_15_04");	//А как ко всему этому относится Кавалорн? Насколько я знаю, в Новом Лагере он ничем таким не занимался.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_05");	//Ты прав. Но наше сообщество растет, и даже я не знаю, сколько членов оно сейчас насчитывает.
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_06");	//Но нам нужно идти. Когда мы отойдем подальше от города, мы сможем поговорить еще.
 };
 

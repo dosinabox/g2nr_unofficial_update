@@ -20,7 +20,7 @@ func void B_GiveTradeInv_Khaled(var C_Npc slf)
 		CreateInvItems(slf,ItRw_Bow_H_02,1);
 		CreateInvItems(slf,ItRw_Bow_H_03,1);
 		CreateInvItems(slf,ItRw_Bow_H_04,1);
-		CreateInvItems(slf,ItBE_Addon_Leather_01,1);
+		CreateInvItems(slf,ItBe_Addon_Leather_01,1);
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
 			CreateInvItems(slf,ItMw_Nagelkeule2,1);

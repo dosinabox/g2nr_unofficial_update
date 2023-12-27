@@ -86,8 +86,8 @@ func void DIA_OCPAL_4_STANDARD_Info()
 	if(Kapitel <= 3)
 	{
 		AI_Output(self,other,"DIA_OCPAL_4_STANDARD_04_01");	//Орки окружили нас! Но мы будем обороняться до последнего человека! И Иннос поможет нам против драконов!
-	};
-	if(Kapitel == 4)
+	}
+	else if(Kapitel == 4)
 	{
 		if(!Npc_KnowsInfo(other,DIA_Garond_AllDragonDead))
 		{
@@ -105,8 +105,8 @@ func void DIA_OCPAL_4_STANDARD_Info()
 		{
 			AI_Output(self,other,"DIA_OCPAL_4_STANDARD_04_05");	//Слава Инносу! Эти проклятые твари были уничтожены!
 		};
-	};
-	if(Kapitel >= 5)
+	}
+	else if(Kapitel >= 5)
 	{
 		if(MIS_OCGateOpen == FALSE)
 		{
@@ -122,9 +122,9 @@ func void DIA_OCPAL_4_STANDARD_Info()
 
 func void B_AssignAmbientInfos_OCPAL_4(var C_Npc slf)
 {
-	dia_ocpal_4_exit.npc = Hlp_GetInstanceID(slf);
-	dia_ocpal_4_people.npc = Hlp_GetInstanceID(slf);
-	dia_ocpal_4_location.npc = Hlp_GetInstanceID(slf);
-	dia_ocpal_4_standard.npc = Hlp_GetInstanceID(slf);
+	DIA_OCPAL_4_EXIT.npc = Hlp_GetInstanceID(slf);
+	DIA_OCPAL_4_PEOPLE.npc = Hlp_GetInstanceID(slf);
+	DIA_OCPAL_4_LOCATION.npc = Hlp_GetInstanceID(slf);
+	DIA_OCPAL_4_STANDARD.npc = Hlp_GetInstanceID(slf);
 };
 

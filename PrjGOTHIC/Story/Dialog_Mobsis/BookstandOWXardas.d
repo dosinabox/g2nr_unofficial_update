@@ -1,7 +1,6 @@
 
 func void Use_BookstandOWXardas1_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -22,7 +21,6 @@ func void Use_BookstandOWXardas1_S1()
 
 func void Use_BookstandOWXardas2_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();

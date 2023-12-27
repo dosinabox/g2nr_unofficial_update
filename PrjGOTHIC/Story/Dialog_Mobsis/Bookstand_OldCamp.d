@@ -1,7 +1,6 @@
 
 func void Bookstand_Milten_03_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -33,7 +32,6 @@ func void Bookstand_Milten_03_S1()
 
 func void Bookstand_Milten_02_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -65,21 +63,19 @@ func void Bookstand_Milten_02_S1()
 
 func void Bookstand_Milten_01_S1()
 {
-	var int Document;
 	if(C_NpcIsHero(self))
 	{
-		Document = Doc_CreateMap();
-		Doc_SetPages(Document,1);
-		Doc_SetPage(Document,0,"Map_OldWorld.tga",TRUE);
-		Doc_SetLevel(Document,"OldWorld\OldWorld.zen");
-		Doc_SetLevelCoords(Document,-78500,47500,54000,-53000);
-		Doc_Show(Document);
+		nDocID = Doc_CreateMap();
+		Doc_SetPages(nDocID,1);
+		Doc_SetPage(nDocID,0,"Map_OldWorld.tga",TRUE);
+		Doc_SetLevel(nDocID,"OldWorld\OldWorld.zen");
+		Doc_SetLevelCoords(nDocID,-78500,47500,54000,-53000);
+		Doc_Show(nDocID);
 	};
 };
 
 func void Bookstand_Engor_01_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();

@@ -441,6 +441,16 @@ Story\NPC_Scripts\B_GiveNpcTalents.d
 Story\NPC_Scripts\B_SetAttributesToChapter.d
 Story\NPC_Scripts\B_SetImmortal.d
 Story\NPC_Scripts\B_SetNpcVisual.d
+Story\NPC_Scripts\B_GiveAllAccessories.d
+Story\NPC_Scripts\B_GiveAllArmor.d
+Story\NPC_Scripts\B_GiveAllDocuments.d
+Story\NPC_Scripts\B_GiveAllFood.d
+Story\NPC_Scripts\B_GiveAllKeys.d
+Story\NPC_Scripts\B_GiveAllPotions.d
+Story\NPC_Scripts\B_GiveAllRunes.d
+Story\NPC_Scripts\B_GiveAllScrolls.d
+Story\NPC_Scripts\B_GiveAllTrophies.d
+Story\NPC_Scripts\B_GiveAllWeapons.d
 Story\NPC_Scripts\Npc_Default.d
 Story\NPC\BAU_4300_Addon_Cavalorn.d
 Story\NPC\BAU_900_Onar.d
@@ -1205,6 +1215,7 @@ Story\NPC\Orc\Mst_OrcWarrior.d
 Story\NPC\Orc\Mst_UndeadOrcWarrior.d
 Story\NPC\Orc\NONE_110_Urshak.d
 Story\B_Story\B_ClearDeadTrader.d
+Story\B_Story\B_ClearInfiniteTools.d
 Story\B_Story\B_Check_Version.d
 Story\B_GiveTradeInv\B_ClearJunkTradeInv.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Addon_Cronos_ADW.d
@@ -1294,6 +1305,7 @@ Story\B_Story\B_TeachThiefTalent.d
 Story\B_Story\B_ReadFakeItem.d
 Story\B_Story\B_NPC_IsAliveCheck.d
 Story\B_Story\B_NpcSetJailed.d
+Story\B_Story\B_RemoveSarah.d
 Story\B_AssignAmbientInfos\B_Addon_Myxir_TeachRequest.d
 Story\B_AssignAmbientInfos\B_AssignDragonTalk_Main.d
 Story\B_AssignAmbientInfos\B_AssignDragonTalk_Fire.d

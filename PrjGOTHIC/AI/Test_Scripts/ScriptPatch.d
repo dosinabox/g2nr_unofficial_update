@@ -15,7 +15,6 @@ instance StatsBook(C_Item)
 
 func void Use_StatsBook()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Blue_L.tga",0);
