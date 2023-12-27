@@ -465,7 +465,7 @@ func void DIA_Wolf_ArmorReady_Info()
 			AI_Output(other,self,"DIA_Wolf_ArmorReady_15_04");	//Спасибо!
 			AI_Output(self,other,"DIA_Wolf_ArmorReady_08_05");	//Да ладно.
 			Player_GotCrawlerArmor = TRUE;
-			CreateInvItems(Bennet,ItBE_Addon_MC,1);
+			CreateInvItems(Bennet,ItBe_Addon_MC,1);
 		};
 	}
 	else

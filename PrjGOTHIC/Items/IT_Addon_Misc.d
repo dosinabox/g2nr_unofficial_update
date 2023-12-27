@@ -123,7 +123,7 @@ instance ItSe_ADDON_CavalornsBeutel(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_Nugget;
-	visual = "ItMi_Pocket_Mis.3ds";
+	visual = "ItMi_Pocket_MIS.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	on_state[0] = Use_CavalornsBeutel;

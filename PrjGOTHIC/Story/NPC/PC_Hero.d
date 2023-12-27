@@ -331,12 +331,12 @@ instance PC_Bandit(Npc_Default)
 	CreateInvItems(self,ITAR_MIL_M,1);
 	CreateInvItems(self,ITAR_KDF_H,1);
 	CreateInvItems(self,ITAR_NOV_L,1);
-	CreateInvItems(self,ItBE_Addon_Leather_01,1);
-	CreateInvItems(self,ItBE_Addon_SLD_01,1);
-	CreateInvItems(self,ItBE_Addon_MIL_01,1);
-	CreateInvItems(self,ItBE_Addon_MC,1);
-	CreateInvItems(self,ItBE_Addon_KDF_01,1);
-	CreateInvItems(self,ItBE_Addon_NOV_01,1);
+	CreateInvItems(self,ItBe_Addon_Leather_01,1);
+	CreateInvItems(self,ItBe_Addon_SLD_01,1);
+	CreateInvItems(self,ItBe_Addon_MIL_01,1);
+	CreateInvItems(self,ItBe_Addon_MC,1);
+	CreateInvItems(self,ItBe_Addon_KDF_01,1);
+	CreateInvItems(self,ItBe_Addon_NOV_01,1);
 	CreateInvItems(self,ItMi_Addon_Joint_01,2);
 	CreateInvItems(self,ItPo_Addon_Geist_01,2);
 	CreateInvItems(self,ItPo_Addon_Geist_02,2);

@@ -21,7 +21,7 @@ func void B_GiveTradeInv_Orlan(var C_Npc slf)
 		CreateInvItems(slf,ItRw_Bow_L_01,1);
 		CreateInvItems(slf,ItRw_Bow_L_02,1);
 		CreateInvItems(slf,ItRw_Crossbow_L_01,1);
-		CreateInvItems(slf,ItBE_Addon_Leather_01,1);
+		CreateInvItems(slf,ItBe_Addon_Leather_01,1);
 		CreateInvItems(slf,ItRi_Prot_Mage_02,1);
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{

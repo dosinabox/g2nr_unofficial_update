@@ -789,7 +789,7 @@ instance ItSe_DiegosTreasure_Mis(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = DiegosTreasure;
-	visual = "ItMi_Pocket_Mis.3ds";
+	visual = "ItMi_Pocket_MIS.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	on_state[0] = Use_DiegosTreasure;
@@ -875,13 +875,13 @@ func void Use_MinenAnteil_Mis()
 };
 
 
-instance ItAm_Prot_BlackEye_Mis(C_Item)
+instance ItAm_Prot_BlackEye_MIS(C_Item)
 {
 	name = NAME_Amulett;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = Value_Am_HpMana;
-	visual = "ItAm_Prot_BlackEye_Mis.3ds";
+	visual = "ItAm_Prot_BlackEye_MIS.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	wear = WEAR_EFFECT;

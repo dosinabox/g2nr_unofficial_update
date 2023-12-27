@@ -43,6 +43,9 @@ func void B_GiveAllClassicTrophies(var C_Npc npc)
 	CreateInvItems(npc,ItAt_FiredragonHeart,10);
 	CreateInvItems(npc,ItAt_DragonBlood,10);
 	CreateInvItems(npc,ItAt_DragonScale,10);
+	CreateInvItems(npc,ItAt_ClawLeader,10);
+	CreateInvItems(npc,ItAt_TalbinsLurkerSkin,10);
+	CreateInvItems(npc,ItAt_DragonEgg_MIS,10);
 };
 
 func void B_GiveAllAddonTrophies(var C_Npc npc)

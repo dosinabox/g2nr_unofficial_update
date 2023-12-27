@@ -19,7 +19,7 @@ func void B_SCIsObsessed(var C_Npc dementor)
 	{
 		AI_StopProcessInfos(dementor);
 	};
-	if(!Npc_HasItems(hero,ItAm_Prot_BlackEye_Mis))
+	if(!Npc_HasItems(hero,ItAm_Prot_BlackEye_MIS))
 	{
 		if(SC_ObsessionCounter >= 2)
 		{
