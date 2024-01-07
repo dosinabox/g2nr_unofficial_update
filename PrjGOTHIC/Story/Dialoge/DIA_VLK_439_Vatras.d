@@ -111,7 +111,6 @@ func void DIA_Addon_Vatras_LastWarning_Reue()
 	AI_Output(self,other,"DIA_Addon_Vatras_LastWarning_Reue_ADD_05_00");	//Я буду молиться за тебя и просить богов, чтобы они вернули тебе рассудок.
 	AI_Output(self,other,"DIA_Addon_Vatras_LastWarning_Reue_ADD_05_01");	//Горе тебе, если я услышу хотя бы об одном убийстве, к которому ты приложил руку.
 	Info_ClearChoices(DIA_Addon_Vatras_LastWarning);
-	VatrasMadKillerCount = MadKillerCount;
 };
 
 
@@ -2754,7 +2753,7 @@ instance DIA_Addon_Vatras_PissOffForever(C_Info)
 
 func int DIA_Addon_Vatras_PissOffForever_Condition()
 {
-	if((VatrasPissedOffForever == TRUE) && (Kapitel >= 5))
+	if((VatrasPissedOffForever == TRUE) && (Kapitel >= 5) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};

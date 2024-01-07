@@ -237,6 +237,19 @@ func void DIA_Vatras_DI_VatrasSucked_Info()
 };
 
 
+func void B_BuildLearnDialog_Vatras_DI()
+{
+	Info_ClearChoices(DIA_Vatras_DI_Talente);
+	Info_AddChoice(DIA_Vatras_DI_Talente,Dialog_Back,DIA_Vatras_DI_Talente_BACK);
+	Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_Vatras_DI_Talente_MANA_1);
+	Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_Vatras_DI_Talente_MANA_5);
+	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) < 6))
+	{
+		Info_AddChoice(DIA_Vatras_DI_Talente,NAME_Skill_MagicCircles,DIA_Vatras_DI_Talente_CIRCLES);
+	};
+	Info_AddChoice(DIA_Vatras_DI_Talente,NAME_Skill_Alchemy,DIA_Vatras_DI_Talente_ALCHIMIE);
+};
+
 instance DIA_Vatras_DI_Talente(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
@@ -260,19 +273,29 @@ func void DIA_Vatras_DI_Talente_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_DI_Talente_15_00");	//Ќаучи мен€ магии.
 	AI_Output(self,other,"DIA_Vatras_DI_Talente_05_01");	//я сделаю все, что в моих силах.
-	Info_ClearChoices(DIA_Vatras_DI_Talente);
-	Info_AddChoice(DIA_Vatras_DI_Talente,Dialog_Back,DIA_Vatras_DI_Talente_BACK);
-	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) < 6))
+	B_BuildLearnDialog_Vatras_DI();
+};
+
+func void DIA_Vatras_DI_Talente_MANA_1()
+{
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MAX))
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente," руги магии",DIA_Vatras_DI_Talente_CIRCLES);
+		B_BuildLearnDialog_Vatras_DI();
 	};
-	Info_AddChoice(DIA_Vatras_DI_Talente,NAME_Skill_Alchemy,DIA_Vatras_DI_Talente_ALCHIMIE);
+};
+
+func void DIA_Vatras_DI_Talente_MANA_5()
+{
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MAX))
+	{
+		B_BuildLearnDialog_Vatras_DI();
+	};
 };
 
 func void DIA_Vatras_DI_Talente_CIRCLES()
 {
 	Info_ClearChoices(DIA_Vatras_DI_Talente);
-	Info_AddChoice(DIA_Vatras_DI_Talente,Dialog_Back,DIA_Vatras_DI_Talente_BACK);
+	Info_AddChoice(DIA_Vatras_DI_Talente,Dialog_Back,DIA_Vatras_DI_SubTalente_BACK);
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Circle_1,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1)),DIA_Vatras_DI_Talente_Circle_1);
@@ -302,7 +325,7 @@ func void DIA_Vatras_DI_Talente_CIRCLES()
 func void DIA_Vatras_DI_Talente_ALCHIMIE()
 {
 	Info_ClearChoices(DIA_Vatras_DI_Talente);
-	Info_AddChoice(DIA_Vatras_DI_Talente,Dialog_Back,DIA_Vatras_DI_Talente_BACK);
+	Info_AddChoice(DIA_Vatras_DI_Talente,Dialog_Back,DIA_Vatras_DI_SubTalente_BACK);
 	if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_HP_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Vatras_DI_Talente_POTION_Health_01);
@@ -385,7 +408,7 @@ func void DIA_Vatras_DI_Talente_Circle_6()
 	B_TeachMagicCircle(self,other,6);
 	AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_6_05_00");	//“ы достиг самых высоких вершин в магии.
 	AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_6_05_01");	//ѕусть руку твою направл€ет разум, а твои человеческие слабости будут под глубоким контролем. ќни не смогут затмить твой взор.
-	Info_ClearChoices(DIA_Vatras_DI_Talente);
+	B_BuildLearnDialog_Vatras_DI();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Health_01()
@@ -452,6 +475,11 @@ func void DIA_Vatras_DI_Talente_POTION_Perm_Health()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Health);
 	DIA_Vatras_DI_Talente_ALCHIMIE();
+};
+
+func void DIA_Vatras_DI_SubTalente_BACK()
+{
+	B_BuildLearnDialog_Vatras_DI();
 };
 
 func void DIA_Vatras_DI_Talente_BACK()
@@ -568,7 +596,7 @@ func int DIA_Addon_Vatras_PissOffForever_DI_Condition()
 		{
 			return TRUE;
 		};
-		if((MadKillerCount >= 7) && (VatrasMadKillerCount != MadKillerCount))
+		if((MadKillerCount >= 7) && (MadKillerCount > VatrasMadKillerCount))
 		{
 			return TRUE;
 		};
@@ -586,7 +614,6 @@ func void DIA_Addon_Vatras_PissOffForever_DI_Info()
 		DIA_Addon_Vatras_PissOffForever_DI_OneTime = TRUE;
 	};
 	B_VatrasPissedOff();
-	AI_StopProcessInfos(self);
 };
 
 

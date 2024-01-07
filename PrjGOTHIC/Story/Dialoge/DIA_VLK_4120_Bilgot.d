@@ -193,6 +193,8 @@ func int DIA_Bilgot_TAKEYOUWITHME_Condition()
 func void DIA_Bilgot_TAKEYOUWITHME_Info()
 {
 	AI_Output(other,self,"DIA_Bilgot_TAKEYOUWITHME_15_00");	//Время пришло, Билгот! Пакуй свои вещи, мы отправляемся в путь.
+	//AI_Output(self,other,"DIA_Bilgot_TAKEYOUWITHME_05_01"); //GroЯartig! Es reicht mir schon, wenn du mich ьber die groЯe Brьcke am Fluss vor der belagerten Burg bringst. Den Rest schaff ich dann schon.
+	//AI_Output(other,self,"DIA_Bilgot_TAKEYOUWITHME_15_02"); //Dann beeil dich!
 	AI_Output(self,other,"DIA_Bilgot_TAKEYOUWITHME_05_03");	//Я готов!
 	MIS_RescueBilgot = LOG_Running;
 	self.flags = 0;
@@ -236,13 +238,11 @@ instance DIA_Bilgot_BEIBRUECKEANGEKOMMEN(C_Info)
 	information = DIA_Bilgot_BEIBRUECKEANGEKOMMEN_Info;
 	important = TRUE;
 	permanent = FALSE;
-//	description = "Хорошо, пришли. Дальше иди один. Но будь осторожен!";
 };
 
 
 func int DIA_Bilgot_BEIBRUECKEANGEKOMMEN_Condition()
 {
-//	if(Npc_GetDistToWP(self,"START") < 8000)
 	if(Npc_GetDistToWP(self,"START") < 2000)
 	{
 		return TRUE;

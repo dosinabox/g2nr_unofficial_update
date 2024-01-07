@@ -286,6 +286,7 @@ var int MIS_Judas;
 //var int Judas_Counter;
 var int Bodyguard_Killer;
 var int Esteban_KnowsFiskAsTraitor;
+var int Esteban_KnowsFiskIsDead;
 //var int Snaf_Rechnung;
 var int Snaf_Einmal;
 var int MIS_SnafHammer;

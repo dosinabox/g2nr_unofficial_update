@@ -2508,7 +2508,7 @@ instance SVM_13(C_SVM)
 	Aargh_2 = "SVM_13_Aargh_2";	//Аааааа!
 	Aargh_3 = "SVM_13_Aargh_3";	//Аааааа!
 	addon_wrongarmor = "SVM_13_Addon_WrongArmor";	//Что на тебе надето? Это тебе совсем не подходит. Оставь меня в покое.
-	addon_wrongarmor_sld = "SVM_13_ADDON_WRONGARMOR_SLD";	//Ты не носишь свои доспехи... пойди и надень их.
+	addon_wrongarmor_sld = "SVM_13_ADDON_WRONGARMOR_SLD";	//Ты не носишь свои доспехи... Пойди и надень их.
 	addon_wrongarmor_mil = "SVM_13_ADDON_WRONGARMOR_MIL";	//Ты должен гордиться, что можешь носить доспехи королевской гвардии, а ты бегаешь в этих лохмотьях. Иди же!
 	addon_wrongarmor_kdf = "SVM_13_ADDON_WRONGARMOR_KDF";	//Почему ты не носишь одежду, соответствующую нашему ордену? Пойди и подумай об этом.
 	addon_noarmor_bdt = "SVM_13_ADDON_ADDON_NOARMOR_BDT";	//Да у тебя даже нет доспехов! Вали отсюда!
