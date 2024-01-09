@@ -399,9 +399,12 @@ func void DIA_Addon_Daron_GuildHelp_Info()
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_07");	//(сердито) И не надо на меня так смотреть. Маги, к твоему сведению, тоже люди.
 	MIS_Addon_Vatras_Go2Daron = LOG_SUCCESS;
 	Info_ClearChoices(DIA_Addon_Daron_GuildHelp);
-	if(Hlp_IsValidNpc(Gobbo_DaronsStatuenKlauer) && Npc_HasItems(Gobbo_DaronsStatuenKlauer,ItMi_LostInnosStatue_Daron))
+	if(Hlp_IsValidNpc(Gobbo_DaronsStatuenKlauer))
 	{
-		Info_AddChoice(DIA_Addon_Daron_GuildHelp,"Значит, сейчас она у гоблинов?",DIA_Addon_Daron_GuildHelp_gobbos);
+		if(Npc_HasItems(Gobbo_DaronsStatuenKlauer,ItMi_LostInnosStatue_Daron))
+		{
+			Info_AddChoice(DIA_Addon_Daron_GuildHelp,"Значит, сейчас она у гоблинов?",DIA_Addon_Daron_GuildHelp_gobbos);
+		};
 	};
 	Info_AddChoice(DIA_Addon_Daron_GuildHelp,"Где именно ты потерял статуэтку?",DIA_Addon_Daron_GuildHelp_wo);
 	Info_AddChoice(DIA_Addon_Daron_GuildHelp,"Ты не пытался вернуть статуэтку?",DIA_Addon_Daron_GuildHelp_wiederholen);

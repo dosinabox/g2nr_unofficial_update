@@ -131,14 +131,11 @@ func void DIA_Akil_NachKampf_Info()
 	Info_AddChoice(DIA_Akil_NachKampf,"Как насчет нескольких золотых?",DIA_Akil_NachKampf_Gold);
 	Npc_ExchangeRoutine(self,"Start");
 	B_StartOtherRoutine(Kati,"Start");
-	if(Hlp_IsValidNpc(Randolph) && !Npc_IsDead(Randolph))
+	if(DIA_Randolph_ICHGEBEDIRGELD_noPerm == FALSE)
 	{
-		if(DIA_Randolph_ICHGEBEDIRGELD_noPerm == FALSE)
-		{
-			B_StartOtherRoutine(Randolph,"Start");
-		};
-		Randolph.flags = 0;
+		B_StartOtherRoutine(Randolph,"Start");
 	};
+	B_SetMortal(Randolph);
 	TOPIC_END_AkilsSLDStillthere = TRUE;
 	B_GivePlayerXP(XP_Ambient);
 };

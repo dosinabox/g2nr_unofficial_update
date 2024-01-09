@@ -159,10 +159,7 @@ instance DIA_DiegoOw_Ritter(C_Info)
 
 func int DIA_DiegoOw_Ritter_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_DiegoOw_Hallo))
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_DiegoOw_Ritter_Info()

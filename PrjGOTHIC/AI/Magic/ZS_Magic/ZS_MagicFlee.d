@@ -86,18 +86,27 @@ func void ZS_MagicFlee()
 		};
 		if((ScaredAlvares == TRUE) && (ScaredEngardo == TRUE) && (ScaredFarmers == FALSE))
 		{
-			if(Hlp_IsValidNpc(Akil) && !Npc_IsDead(Akil))
+			if(Hlp_IsValidNpc(Akil))
 			{
-				Npc_ExchangeRoutine(Akil,"Start");
+				if(!Npc_IsDead(Akil))
+				{
+					Npc_ExchangeRoutine(Akil,"Start");
+				};
 			};
-			if(Hlp_IsValidNpc(Kati) && !Npc_IsDead(Kati))
+			if(Hlp_IsValidNpc(Kati))
 			{
-				Npc_ExchangeRoutine(Kati,"Start");
+				if(!Npc_IsDead(Kati))
+				{
+					Npc_ExchangeRoutine(Kati,"Start");
+				};
 			};
-			if(Hlp_IsValidNpc(Randolph) && !Npc_IsDead(Randolph))
+			if(Hlp_IsValidNpc(Randolph))
 			{
-				Npc_ExchangeRoutine(Randolph,"Start");
-				Randolph.flags = 0;
+				if(!Npc_IsDead(Randolph))
+				{
+					Npc_ExchangeRoutine(Randolph,"Start");
+					Randolph.flags = 0;
+				};
 			};
 			ScaredFarmers = TRUE;
 		};

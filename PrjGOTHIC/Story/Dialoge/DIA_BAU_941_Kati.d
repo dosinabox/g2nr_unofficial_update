@@ -98,14 +98,11 @@ func void DIA_Kati_HALLO_Info()
 	};
 	Npc_ExchangeRoutine(self,"Start");
 	B_StartOtherRoutine(Akil,"Start");
-	if(Hlp_IsValidNpc(Randolph) && !Npc_IsDead(Randolph))
+	if(DIA_Randolph_ICHGEBEDIRGELD_noPerm == FALSE)
 	{
-		if(DIA_Randolph_ICHGEBEDIRGELD_noPerm == FALSE)
-		{
-			B_StartOtherRoutine(Randolph,"Start");
-		};
-		Randolph.flags = 0;
+		B_StartOtherRoutine(Randolph,"Start");
 	};
+	B_SetMortal(Randolph);
 };
 
 
