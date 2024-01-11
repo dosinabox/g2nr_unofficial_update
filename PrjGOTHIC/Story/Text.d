@@ -576,6 +576,7 @@ const string NAME_Damage = "Урон:";
 //const string NAME_Damage_Max = "Урон (макс.):";
 //const string NAME_PerMana = " (на ед. маны)";
 //const string NAME_DamagePerSec = "Урон в секунду:";
+const string NAME_PureDamagePerSec = "Чистый урон в секунду:";
 const string NAME_DamageUnknown = "Урон неизвестен";
 const string NAME_Prot_Edge = "Защита от оружия:";
 const string NAME_Prot_Point = "Защита от стрел:";

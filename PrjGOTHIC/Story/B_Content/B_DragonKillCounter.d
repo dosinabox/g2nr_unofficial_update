@@ -11,10 +11,34 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 		if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(Raven))
 		{
 			PlayVideoEx("EXTRO_RAVEN.BIK",TRUE,FALSE);
-			RavenIsDead = TRUE;
-			Saturas_KnowsHow2GetInTempel = TRUE;
 			B_RemoveNpc(KDW_14030_Addon_Myxir_ADW);
 			B_StartOtherRoutine(KDW_14020_Addon_Nefarius_ADW,"MyxirLeft");
+			Saturas_KnowsHow2GetInTempel = TRUE;
+			RavenIsDead = TRUE;
+			B_CheckLog();
+		};
+	};
+	if(UndeadDragonIsDead == FALSE)
+	{
+		if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(UndeadDragon))
+		{
+			if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+			{
+				PlayVideoEx("EXTRO_PAL.BIK",TRUE,FALSE);
+			}
+			else if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
+			{
+				PlayVideoEx("EXTRO_KDF.BIK",TRUE,FALSE);
+			}
+			else
+			{
+				PlayVideoEx("EXTRO_DJG.BIK",TRUE,FALSE);
+			};
+			AI_Teleport(hero,"UNDEAD_ENDTELEPORT");
+			Log_CreateTopic(TOPIC_BackToShip,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_BackToShip,LOG_Running);
+			B_LogEntry(TOPIC_BackToShip,PRINT_DragKillCount);
+			UndeadDragonIsDead = TRUE;
 			B_CheckLog();
 		};
 	};
@@ -58,26 +82,7 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 				};
 			};
 			MIS_AllDragonsDead = TRUE;
-		};
-	};
-	if(current_dragon.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)
-	{
-		UndeadDragonIsDead = TRUE;
-		Log_CreateTopic(TOPIC_BackToShip,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_BackToShip,LOG_Running);
-		B_LogEntry(TOPIC_BackToShip,PRINT_DragKillCount);
-		AI_Teleport(hero,"UNDEAD_ENDTELEPORT");
-		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
-		{
-			PlayVideoEx("EXTRO_PAL.BIK",TRUE,FALSE);
-		}
-		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
-		{
-			PlayVideoEx("EXTRO_DJG.BIK",TRUE,FALSE);
-		}
-		else
-		{
-			PlayVideoEx("EXTRO_KDF.BIK",TRUE,FALSE);
+			B_CheckLog();
 		};
 	};
 };

@@ -115,12 +115,9 @@ func void DIA_Addon_Juan_AufsMaul_ENDAttack()
 		B_RefreshMeleeWeapon(self);
 	};
 	B_Attack(self,other,AR_NONE,1);
-	if(Hlp_IsValidNpc(Freund))
+	if(!C_NpcIsDown(Freund))
 	{
-		if(!Npc_IsDead(Freund))
-		{
-			B_Attack(Freund,other,AR_NONE,1);
-		};
+		B_Attack(Freund,other,AR_NONE,1);
 	};
 };
 

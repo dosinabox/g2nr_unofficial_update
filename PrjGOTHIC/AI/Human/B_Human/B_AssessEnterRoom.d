@@ -192,27 +192,7 @@ func void B_AssessPortalCollision()
 	formerportalguild = Wld_GetFormerPlayerPortalGuild();
 	if((self.guild == formerportalguild) || (Wld_GetGuildAttitude(self.guild,formerportalguild) == ATT_FRIENDLY))
 	{
-		if(C_IsNpc(self,KDF_507_Talamon))
-		{
-			return;
-		};
-		if(C_IsNpc(self,MIL_309_Stadtwache))
-		{
-			return;
-		};
-		if(C_IsNpc(self,MIL_310_Stadtwache))
-		{
-			return;
-		};
-		if(C_IsNpc(self,MIL_332_Stadtwache))
-		{
-			return;
-		};
-		if(C_IsNpc(self,MIL_333_Stadtwache))
-		{
-			return;
-		};
-		if(C_IsNpc(self,VLK_4104_Waffenknecht))
+		if(C_NpcIgnoresPlayerMovements(self))
 		{
 			return;
 		};

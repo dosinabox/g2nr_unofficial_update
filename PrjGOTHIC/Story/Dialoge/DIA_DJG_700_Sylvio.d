@@ -33,9 +33,12 @@ instance DIA_SylvioDJG_HelloAgain(C_Info)
 
 func int DIA_SylvioDJG_HelloAgain_Condition()
 {
-	if(!Npc_IsDead(IceDragon) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(!Npc_IsDead(IceDragon))
 	{
-		return TRUE;
+		if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -71,9 +74,12 @@ instance DIA_Sylvio_VERSAGER(C_Info)
 
 func int DIA_Sylvio_VERSAGER_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_SylvioDJG_HelloAgain) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_SylvioDJG_HelloAgain) && !Npc_IsDead(IceDragon))
 	{
-		return TRUE;
+		if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -105,9 +111,12 @@ instance DIA_Sylvio_DEINELEUTE(C_Info)
 
 func int DIA_Sylvio_DEINELEUTE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_DJG_Sylvio_KillIceGolem != LOG_SUCCESS) && (SylvioIceGolemsKilledBefore4Chapter == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && !Npc_IsDead(IceDragon) && (MIS_DJG_Sylvio_KillIceGolem != LOG_SUCCESS) && (SylvioIceGolemsKilledBefore4Chapter == FALSE))
 	{
-		return TRUE;
+		if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -130,9 +139,12 @@ instance DIA_Sylvio_WASISTPASSIERT(C_Info)
 
 func int DIA_Sylvio_WASISTPASSIERT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE) && (SylvioIceGolemsKilledBefore4Chapter == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && !Npc_IsDead(IceDragon) && (SylvioIceGolemsKilledBefore4Chapter == FALSE))
 	{
-		return TRUE;
+		if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -149,8 +161,6 @@ func void DIA_Sylvio_WASISTPASSIERT_Info()
 	Log_SetTopicStatus(TOPIC_SylvioKillIceGolem,LOG_Running);
 	B_LogEntry(TOPIC_SylvioKillIceGolem,"Сильвио испугался ледяных големов у входа в заснеженный район Долины Рудников.");
 	MIS_DJG_Sylvio_KillIceGolem = LOG_Running;
-//	IceGolem_Sylvio1.flags = 0;
-//	IceGolem_Sylvio2.flags = 0;
 };
 
 func void DIA_Sylvio_WASISTPASSIERT_selbst()
@@ -215,9 +225,12 @@ instance DIA_Sylvio_ICEGOLEMSKILLED(C_Info)
 
 func int DIA_Sylvio_ICEGOLEMSKILLED_Condition()
 {
-	if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2) && (MIS_DJG_Sylvio_KillIceGolem == LOG_Running) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2) && (MIS_DJG_Sylvio_KillIceGolem == LOG_Running) && !Npc_IsDead(IceDragon))
 	{
-		return TRUE;
+		if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -336,9 +349,12 @@ instance DIA_Sylvio_KOMMSTDU(C_Info)
 
 func int DIA_Sylvio_KOMMSTDU_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sylvio_WASJETZT) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Sylvio_WASJETZT) && !Npc_IsDead(IceDragon))
 	{
-		return TRUE;
+		if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -363,9 +379,12 @@ instance DIA_Sylvio_DUHIER(C_Info)
 
 func int DIA_Sylvio_DUHIER_Condition()
 {
-	if(!Npc_IsDead(IceDragon) && (IceDragon.aivar[AIV_TalkedToPlayer] == TRUE))
+	if(!Npc_IsDead(IceDragon))
 	{
-		return TRUE;
+		if(IceDragon.aivar[AIV_TalkedToPlayer] == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -376,6 +395,24 @@ func void DIA_Sylvio_DUHIER_Info()
 	AI_StopProcessInfos(self);
 };
 
+
+func void B_BiffAttacksBullcoOrSylvio()
+{
+	if(!C_NpcIsDown(Biff))
+	{
+		if(Biff.aivar[AIV_PARTYMEMBER] == TRUE)
+		{
+			if(!C_NpcIsDown(DJG_Bullco))
+			{
+				B_Attack(Biff,DJG_Bullco,AR_GuardStopsFight,1);
+			}
+			else if(!C_NpcIsDown(DJG_Sylvio))
+			{
+				B_Attack(Biff,DJG_Sylvio,AR_GuardStopsFight,1);
+			};
+		};
+	};
+};
 
 instance DIA_SylvioDJG_WHATNEXT(C_Info)
 {
@@ -415,14 +452,11 @@ func void DIA_SylvioDJG_WHATNEXT_ATTACK()
 	B_StartOtherRoutine(DJG_Bullco,"Start");
 	B_LogEntry(TOPIC_Dragonhunter,"Эта грязная свинья Сильвио собирался присвоить себе мою победу над ледяным драконом. Мы немного повздорили.");
 	B_Attack(self,other,AR_KILL,1);
-	B_Attack(DJG_Bullco,other,AR_NONE,1);
-	if(!Npc_IsDead(Biff))
+	if(!C_NpcIsDown(DJG_Bullco))
 	{
-		if(Biff.aivar[AIV_PARTYMEMBER] == TRUE)
-		{
-			B_Attack(Biff,DJG_Bullco,AR_GuardStopsFight,1);
-		};
+		B_Attack(DJG_Bullco,other,AR_NONE,1);
 	};
+	B_BiffAttacksBullcoOrSylvio();
 };
 
 
@@ -451,13 +485,10 @@ func void DIA_SylvioDJG_BUTNOW_Info()
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,60);
 	B_Attack(self,other,AR_KILL,1);
-	B_Attack(DJG_Bullco,other,AR_NONE,1);
-	if(!Npc_IsDead(Biff))
+	if(!C_NpcIsDown(DJG_Bullco))
 	{
-		if(Biff.aivar[AIV_PARTYMEMBER] == TRUE)
-		{
-			B_Attack(Biff,DJG_Bullco,AR_GuardStopsFight,1);
-		};
+		B_Attack(DJG_Bullco,other,AR_NONE,1);
 	};
+	B_BiffAttacksBullcoOrSylvio();
 };
 
