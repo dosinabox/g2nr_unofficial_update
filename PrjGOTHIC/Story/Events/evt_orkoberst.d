@@ -35,7 +35,10 @@ func void evt_orkoberst()
 			B_StartOtherRoutine(Jack_DI,"OrkSturmDI");
 		};
 		B_StartOtherRoutine(Biff_DI,"OrkSturmDI");
-		B_SetImmortal(Vatras_DI);
+		if(Vatras_PedroFound == FALSE)
+		{
+			B_SetImmortal(Vatras_DI);
+		};
 		if(!Npc_IsDead(Mario_DI))
 		{
 			CreateInvItem(Mario_DI,ITWR_DementorObsessionBook_MIS);
@@ -59,5 +62,4 @@ func void evt_orkoberst()
 		OrkSturmDI = TRUE;
 	};
 };
-
 

@@ -35,7 +35,7 @@ instance DIA_Vatras_DI_HEAL(C_Info)
 
 func int DIA_Vatras_DI_HEAL_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -71,7 +71,7 @@ instance DIA_Vatras_DI_TRADE(C_Info)
 
 func int DIA_Vatras_DI_TRADE_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -102,7 +102,7 @@ instance DIA_Vatras_DI_OBSESSION(C_Info)
 
 func int DIA_Vatras_DI_OBSESSION_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && (SC_IsObsessed == TRUE))
+	if((UndeadDragonIsDead == FALSE) && (SC_IsObsessed == TRUE))
 	{
 		return TRUE;
 	};
@@ -143,7 +143,7 @@ instance DIA_Vatras_DI_RAT(C_Info)
 
 func int DIA_Vatras_DI_RAT_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && (SC_IsObsessed == FALSE))
+	if((UndeadDragonIsDead == FALSE) && (SC_IsObsessed == FALSE))
 	{
 		return TRUE;
 	};
@@ -184,6 +184,7 @@ func int DIA_Vatras_DI_PEDROTOT_Condition()
 func void DIA_Vatras_DI_PEDROTOT_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_00");	//Я нашел предателя Педро.
+	Vatras_PedroFound = TRUE;
 	B_GivePlayerXP(XP_AmbientKap6);
 	self.flags = 0;
 	if((MIS_Gorax_KillPedro == LOG_SUCCESS) && Npc_IsDead(Pedro_DI))
@@ -263,7 +264,7 @@ instance DIA_Vatras_DI_Talente(C_Info)
 
 func int DIA_Vatras_DI_Talente_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -398,16 +399,20 @@ func void DIA_Vatras_DI_Talente_Circle_4()
 
 func void DIA_Vatras_DI_Talente_Circle_5()
 {
-	B_TeachMagicCircle(self,other,5);
-	AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_5_05_00");	//Теперь ты маг пятого Круга. Используй заклинания, изученные тобой, во благо.
+	if(B_TeachMagicCircle(self,other,5))
+	{
+		AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_5_05_00");	//Теперь ты маг пятого Круга. Используй заклинания, изученные тобой, во благо.
+	};
 	DIA_Vatras_DI_Talente_CIRCLES();
 };
 
 func void DIA_Vatras_DI_Talente_Circle_6()
 {
-	B_TeachMagicCircle(self,other,6);
-	AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_6_05_00");	//Ты достиг самых высоких вершин в магии.
-	AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_6_05_01");	//Пусть руку твою направляет разум, а твои человеческие слабости будут под глубоким контролем. Они не смогут затмить твой взор.
+	if(B_TeachMagicCircle(self,other,6))
+	{
+		AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_6_05_00");	//Ты достиг самых высоких вершин в магии.
+		AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_6_05_01");	//Пусть руку твою направляет разум, а твои человеческие слабости будут под глубоким контролем. Они не смогут затмить твой взор.
+	};
 	B_BuildLearnDialog_Vatras_DI();
 };
 
@@ -542,7 +547,7 @@ instance DIA_Vatras_DI_UndeadDragonDead(C_Info)
 
 func int DIA_Vatras_DI_UndeadDragonDead_Condition()
 {
-	if(Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == TRUE)
 	{
 		return TRUE;
 	};

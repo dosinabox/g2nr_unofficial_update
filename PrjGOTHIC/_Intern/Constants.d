@@ -116,7 +116,7 @@ const int DAM_CRITICAL_MULTIPLIER = 2;
 
 const int NPC_ATTACK_FINISH_DISTANCE = 180;
 const int NPC_BURN_TICKS_PER_DAMAGE_POINT = 1000;
-const int NPC_BURN_DAMAGE_POINTS_PER_INTERVALL = 50;	//20;
+const int NPC_BURN_DAMAGE_POINTS_PER_INTERVALL = 50;
 const int NPC_DAM_DIVE_TIME = 100;
 
 const int BLOOD_SIZE_DIVISOR = 1000;
@@ -807,7 +807,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "11/01/2024";
+const string FIX_VERSION_DATE = "15/01/2024";
 const int FIX_VERSION_START = 30;
 const int LEAST_SUPPORTED = 27;
 var int FIX_VERSION_SAVE;
