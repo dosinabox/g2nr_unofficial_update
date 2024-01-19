@@ -216,6 +216,6 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_RosisFlucht,MIS_RosisFlucht,0,6);
 	B_CloseTopic(TOPIC_HealRandolph,MIS_HealRandolph,0,6);
 	B_CloseTopic(TOPIC_HallenVonIrdorath,0,UndeadDragonIsDead,999);
-	B_CloseTopic(TOPIC_MyCrew,0,UndeadDragonIsDead,999);
+//	B_CloseTopic(TOPIC_MyCrew,0,UndeadDragonIsDead,999);
 };
 

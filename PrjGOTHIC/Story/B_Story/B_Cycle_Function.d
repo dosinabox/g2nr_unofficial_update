@@ -9,7 +9,10 @@ func void B_Cycle_Function()
 			{
 				if(C_WorldIsFixed())
 				{
-					Wld_SendTrigger("EVT_TROLL_GRAVE_TRIGGERLIST_01");
+					if(Npc_GetDistToWP(hero,"NW_TROLLAREA_TROLLROCKCAVE_06") <= 1000)
+					{
+						Wld_SendTrigger("EVT_TROLL_GRAVE_TRIGGERLIST_01");
+					};
 				};
 				MIS_PickedUpUndeadSword = TRUE;
 			};

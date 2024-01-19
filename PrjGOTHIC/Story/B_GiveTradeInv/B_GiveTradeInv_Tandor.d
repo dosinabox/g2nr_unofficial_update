@@ -32,7 +32,7 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 			CreateInvItems(slf,ItMw_Kriegshammer2,1);
 			CreateInvItems(slf,ItMw_Orkschlaechter,1);
 			CreateInvItems(slf,ItMw_Schlachtaxt,1);
-			CreateInvItems(slf,ItMw_Drachenschneide,1);
+			CreateInvItems(slf,ItMw_Bloodschneide,1);
 			CreateInvItems(slf,ItMw_1h_Pal_Sword,1);
 		};
 		Tandor_ItemsGiven_Chapter_1 = TRUE;

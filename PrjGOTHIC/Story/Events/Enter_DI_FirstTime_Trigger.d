@@ -29,8 +29,7 @@ func void Enter_DI_FirstTime_Trigger()
 		{
 			CreateInvItems(AntiPaladin_DI,ItMi_LostInnosStatue_Daron,1);
 		};
-		Log_CreateTopic(TOPIC_MyCrew,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_MyCrew,LOG_Running);
+		Log_CreateTopic(TOPIC_MyCrew,LOG_NOTE);
 		if(JorgenIsCaptain == TRUE)
 		{
 			Log_AddEntry(TOPIC_MyCrew,"Йорген, мой капитан, будет ждать на корабле моего возвращения.");
