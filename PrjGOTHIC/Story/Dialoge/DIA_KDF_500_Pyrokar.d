@@ -1171,8 +1171,12 @@ func void DIA_Pyrokar_BACKFROMOW_Info()
 	AI_Output(self,other,"DIA_Pyrokar_BACKFROMOW_11_08");	//Будучи одержимым, ты больше не будешь самим собой. Только здесь, в монастыре сможешь ты найти помощь. Так что будь осторожен.
 	if(hero.guild == GIL_KDF)
 	{
-		Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
+		if(MIS_DementorsOrigins == FALSE)
+		{
+			Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
+			MIS_DementorsOrigins = LOG_Running;
+		};
 		B_LogEntry(TOPIC_DEMENTOREN,"Пирокар рассказал мне об Ищущих, людях в черных рясах. Это приспешники Белиара. Он предупредил меня, что они могут сделать меня одержимым. Если это произойдет, я должен немедленно возвращаться в монастырь.");
 		if(!Npc_IsDead(Karras))
 		{

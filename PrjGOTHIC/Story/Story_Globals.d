@@ -1375,6 +1375,7 @@ var int MalakIsBackToBengar;
 var int MIS_PickedUpInnosEye;
 var int MIS_DementorToldInnosEyeIsBroken;
 var int MIS_TalbinCheese;
+var int MIS_DementorsOrigins;
 var int FullNPCRemoval;
 var int RickReturnedToCity;
 var int RumboldReturnedToCity;

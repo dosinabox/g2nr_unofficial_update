@@ -816,8 +816,12 @@ func void DIA_Xardas_DMTSINDDA_DMT()
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_DMT_14_03");	//Держись от них подальше. Они сильные маги, и они попытаются во что бы то ни стало остановить тебя.
 	if(hero.guild == GIL_KDF)
 	{
-		Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
+		if(MIS_DementorsOrigins == FALSE)
+		{
+			Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
+			MIS_DementorsOrigins = LOG_Running;
+		};
 		B_LogEntry(TOPIC_DEMENTOREN,"Ксардас знает, кто такие эти люди в черных рясах. Похоже, именно Ищущие заправляют всем во вражеских рядах, и они очень опасны.");
 	};
 };

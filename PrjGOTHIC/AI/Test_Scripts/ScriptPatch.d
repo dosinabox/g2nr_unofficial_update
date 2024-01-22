@@ -107,15 +107,7 @@ func void Use_StatsBook()
 	};
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalOldCampCrimes + TotalCityCrimes + TotalMonasteryCrimes + TotalFarmCrimes)," штрафов назначено"));
 	Doc_PrintLine(nDocID,1,"");
-	if(UnionActivated == TRUE)
-	{
-		Doc_PrintLine(nDocID,1,"Информация о сборке:");
-	}
-	else
-	{
-		Doc_PrintLine(nDocID,1,"Сборка (без Union):");
-	};
-	Doc_PrintLine(nDocID,1,ConcatStrings(ConcatStrings(IntToString(FIX_VERSION_START)," версия от "),FIX_VERSION_DATE));
+	Doc_PrintLine(nDocID,1,ConcatStrings("Сборка: ",B_BuildFullVersionString(FIX_VERSION,FIX_DATE_DAY,FIX_DATE_MONTH,FIX_DATE_YEAR)));
 	if(FIX_VERSION_SAVE == FALSE)
 	{
 		if(Addon_zuerst == TRUE)
@@ -129,7 +121,11 @@ func void Use_StatsBook()
 	}
 	else
 	{
-		Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_SAVE)," версия в сохранении"));
+		Doc_PrintLine(nDocID,1,ConcatStrings("Сохранение: ",B_BuildFullVersionString(FIX_VERSION_SAVE,FIX_DATE_DAY_SAVE,FIX_DATE_MONTH_SAVE,FIX_DATE_YEAR_SAVE)));
+	};
+	if(UnionActivated == FALSE)
+	{
+		Doc_PrintLine(nDocID,1,"Union не активен");
 	};
 	if(Wasteland_Seeded == TRUE)
 	{

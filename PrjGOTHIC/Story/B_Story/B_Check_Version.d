@@ -1,7 +1,24 @@
 
+func int C_SaveFileIsOutdated()
+{
+	if(FIX_DATE_DAY_SAVE != FIX_DATE_DAY)
+	{
+		return TRUE;
+	};
+	if(FIX_DATE_MONTH_SAVE != FIX_DATE_MONTH)
+	{
+		return TRUE;
+	};
+	if(FIX_DATE_YEAR_SAVE != FIX_DATE_YEAR)
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 func void B_Check_Version()
 {
-	if(!Hlp_StrCmp(FIX_DATE_SAVE,FIX_VERSION_DATE))
+	if(C_SaveFileIsOutdated())
 	{
 		B_SyncItemsToSteal();
 		if(FIX_VERSION_SAVE < LEAST_SUPPORTED)
