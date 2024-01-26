@@ -296,11 +296,11 @@ func void B_Build_Settings_Diag()
 	};
 	if(TradersHaveLimitedAmmo == FALSE)
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить лимит запаса стрел и болтов у торговцев",StoryHelper_LimitedAmmo);
 	}
 	else
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить лимит запаса стрел и болтов у торговцев",StoryHelper_LimitedAmmo);
 	};
 	if(Dont_Fix_Unlim == FALSE)
 	{
@@ -376,7 +376,7 @@ func void B_Build_Settings_Diag()
 	};
 };
 
-func void StoryHelper_Limit()
+func void StoryHelper_LimitedAmmo()
 {
 	if(TradersHaveLimitedAmmo == TRUE)
 	{

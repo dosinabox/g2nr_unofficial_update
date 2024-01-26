@@ -1,39 +1,31 @@
 
-func void B_MagicHurtNpc(var C_Npc slf,var C_Npc oth,var int damage)
+func void B_MagicHurtNpc(var C_Npc attacker,var C_Npc target,var int damage)
 {
-//	var int effectiveDamage;
-//	if((oth.flags != NPC_FLAG_IMMORTAL) || (oth.protection[PROT_MAGIC] != IMMUNE))
-	if((oth.flags != NPC_FLAG_IMMORTAL) && (oth.protection[PROT_MAGIC] != IMMUNE))
+	if((target.flags != NPC_FLAG_IMMORTAL) && (target.protection[PROT_MAGIC] != IMMUNE))
 	{
-		/*effectiveDamage = damage - oth.protection[PROT_MAGIC];
-		if(effectiveDamage < 0)
-		{
-			effectiveDamage = 0;
-		};
-		Npc_ChangeAttribute(oth,ATR_HITPOINTS,-effectiveDamage);*/
-		Npc_ChangeAttribute(oth,ATR_HITPOINTS,-damage);
+		Npc_ChangeAttribute(target,ATR_HITPOINTS,-damage);
 	};
-	if(Npc_IsDead(oth))
+	if(Npc_IsDead(target))
 	{
-		B_GiveDeathXP(slf,oth);
+		B_GiveDeathXP(attacker,target);
 	};
 };
 
-func void B_FireHurtNpc(var C_Npc slf,var C_Npc oth,var int damage)
+func void B_FireHurtNpc(var C_Npc attacker,var C_Npc target,var int damage)
 {
 	var int effectiveDamage;
-	if((oth.flags != NPC_FLAG_IMMORTAL) || (oth.protection[PROT_FIRE] != IMMUNE))
+	if((target.flags != NPC_FLAG_IMMORTAL) || (target.protection[PROT_FIRE] != IMMUNE))
 	{
-		effectiveDamage = damage - oth.protection[PROT_FIRE];
+		effectiveDamage = damage - target.protection[PROT_FIRE];
 		if(effectiveDamage < 0)
 		{
 			effectiveDamage = 0;
 		};
-		Npc_ChangeAttribute(oth,ATR_HITPOINTS,-effectiveDamage);
+		Npc_ChangeAttribute(target,ATR_HITPOINTS,-effectiveDamage);
 	};
-	if(Npc_IsDead(oth))
+	if(Npc_IsDead(target))
 	{
-		B_GiveDeathXP(slf,oth);
+		B_GiveDeathXP(attacker,target);
 	};
 };
 

@@ -10697,3 +10697,9 @@ instance WALK_SNOW_A3(C_SFX_DEF)
 	vol = 30;
 };
 
+instance MEATBUG_STOMP(C_SFX_DEF)
+{
+	file = "CS_IHL_FL_UD.wav";
+	vol = 50;
+};
+

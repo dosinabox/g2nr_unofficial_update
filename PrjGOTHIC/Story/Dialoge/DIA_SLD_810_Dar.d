@@ -150,7 +150,7 @@ instance DIA_Dar_DuDieb(C_Info)
 
 func int DIA_Dar_DuDieb_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Cipher_TradeWhat) && (MIS_Cipher_Paket == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Cipher_TradeWhat))
 	{
 		return TRUE;
 	};
@@ -162,7 +162,6 @@ func void DIA_Dar_DuDieb_Info()
 	AI_Output(self,other,"DIA_Dar_DuDieb_03_01");	//(смеется идиотским приглушенным смехом)
 	AI_Output(other,self,"DIA_Dar_DuDieb_15_02");	//Ты ничего не знаешь об этом?
 	AI_Output(self,other,"DIA_Dar_DuDieb_03_03");	//(очень коротко) Нет.
-	Dar_Verdacht = TRUE;
 };
 
 
@@ -179,7 +178,7 @@ instance DIA_Dar_WoPaket(C_Info)
 
 func int DIA_Dar_WoPaket_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Dar_DuDieb) && (Dar_Dieb == FALSE) && (MIS_Cipher_Paket == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Dar_DuDieb) && (Dar_Dieb == FALSE))
 	{
 		return TRUE;
 	};
@@ -195,8 +194,8 @@ func void DIA_Dar_WoPaket_Info()
 		AI_Output(other,self,"DIA_Dar_WoPaket_15_03");	//Может, тебе нужна еще одна хорошая встряска?
 		AI_Output(self,other,"DIA_Dar_WoPaket_03_04");	//Если честно, я был обкуренный в хлам. Я совершенно не представляю, как этот парень выглядел.
 		AI_Output(self,other,"DIA_Dar_WoPaket_03_05");	//Это было в гавани около кораблестроителей. Это все, что я помню.
-		Dar_Dieb = TRUE;
 		B_LogEntry(TOPIC_CipherPaket,"Дар признал, что украл тюк с травой. Он продал ее в портовом квартале Хориниса, около кораблестроителей.");
+		Dar_Dieb = TRUE;
 	}
 	else
 	{

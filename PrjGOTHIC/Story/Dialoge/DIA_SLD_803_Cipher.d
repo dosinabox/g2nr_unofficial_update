@@ -341,7 +341,7 @@ instance DIA_Cipher_DarDieb(C_Info)
 
 func int DIA_Cipher_DarDieb_Condition()
 {
-	if((Dar_Dieb == TRUE) || (Dar_Verdacht == TRUE))
+	if((Dar_Dieb == TRUE) && (Sipher_KnowsDarStoleHisWeed == FALSE))
 	{
 		return TRUE;
 	};
@@ -352,28 +352,35 @@ func void DIA_Cipher_DarDieb_Info()
 	AI_Output(other,self,"DIA_Cipher_DarDieb_15_00");	//Я знаю, кто взял твою траву.
 	AI_Output(self,other,"DIA_Cipher_DarDieb_07_01");	//Кто? Это был Бодо?
 	AI_Output(other,self,"DIA_Cipher_DarDieb_15_02");	//Нет, это сделал один из наемников - Дар.
-	AI_Output(self,other,"DIA_Cipher_DarDieb_07_03");	//Этот ублюдок! Где он?
-	if((Dar_Dieb == TRUE) || (DIA_Kardif_Paket_perm == TRUE))
+	Sipher_KnowsDarStoleHisWeed = TRUE;
+	if(CurrentLevel == NEWWORLD_ZEN)
 	{
+		AI_Output(self,other,"DIA_Cipher_DarDieb_07_03");	//Этот ублюдок! Где он?
 		AI_Output(other,self,"DIA_Cipher_DarDieb_15_04");	//Даже если ты найдешь его, это тебе не поможет, у него больше нет этого тюка. Он продал его в Хоринисе.
 		AI_Output(self,other,"DIA_Cipher_DarDieb_07_05");	//ГДЕ ОН?!
-	};
-	if(!Npc_IsDead(Dar))
-	{
-		AI_Output(other,self,"DIA_Cipher_DarDieb_15_06");	//За кухней, на углу...
-		AI_Output(self,other,"DIA_Cipher_DarDieb_07_07");	//Я ПРИКОНЧУ ЕГО!
-		AI_StopProcessInfos(self);
-		other.aivar[AIV_INVINCIBLE] = FALSE;
-		if(Npc_GetDistToNpc(self,Dar) > FIGHT_DIST_CANCEL)
+		if(!Npc_IsDead(Dar))
 		{
-			self.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL * 2;
+			AI_Output(other,self,"DIA_Cipher_DarDieb_15_06");	//За кухней, на углу...
+			AI_Output(self,other,"DIA_Cipher_DarDieb_07_07");	//Я ПРИКОНЧУ ЕГО!
+			AI_StopProcessInfos(self);
+			other.aivar[AIV_INVINCIBLE] = FALSE;
+			if(Npc_GetDistToNpc(self,Dar) > FIGHT_DIST_CANCEL)
+			{
+				self.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL * 2;
+			};
+			B_Attack(self,Dar,AR_NONE,0);
+		}
+		else
+		{
+			DIA_Common_HeIsDead();
+			B_Cipher_DarLost();
+			AI_StopProcessInfos(self);
 		};
-		B_Attack(self,Dar,AR_NONE,0);
 	}
 	else
 	{
-		DIA_Common_HeIsDead();
 		B_Cipher_DarLost();
+		B_GivePlayerXP(XP_AmbientKap1);
 		AI_StopProcessInfos(self);
 	};
 };
