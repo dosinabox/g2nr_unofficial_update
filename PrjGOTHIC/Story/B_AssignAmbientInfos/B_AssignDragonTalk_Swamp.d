@@ -21,13 +21,13 @@ func void DIA_Dragon_Swamp_Exit_Info()
 {
 	AI_Output(self,other,"DIA_Dragon_Swamp_Exit_20_00");	//Сила Глаза иссякла. Твоя жизнь закончится здесь, человек.
 	B_EndDragonTalk();
-	if(DJG_SwampParty_GoGoGo == TRUE)
+	if((DJG_SwampParty_GoGoGo == TRUE) && (DJG_SwampParty == TRUE))
 	{
-		if((DJG_SwampParty == TRUE) && !Npc_IsDead(DJG_Cipher))
+		if(!Npc_IsDead(DJG_Cipher))
 		{
 			B_StartOtherRoutine(DJG_Rod,"SwampDragon");
+			B_StartOtherRoutine(DJG_Cipher,"SwampDragon");
 		};
-		B_StartOtherRoutine(DJG_Cipher,"SwampDragon");
 	};
 };
 

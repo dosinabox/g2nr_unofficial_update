@@ -28,9 +28,9 @@ func int ZS_MM_Rtn_Roam_Loop()
 	};
 	if(Npc_GetStateTime(self) > wanderTime)
 	{
-		if(Wld_IsNextFPAvailable(self,"FP_ROAM"))
+		if(Wld_IsNextFPAvailable(self,"ROAM"))
 		{
-			AI_GotoNextFP(self,"FP_ROAM");
+			AI_GotoNextFP(self,"ROAM");
 		};
 		self.aivar[AIV_TAPOSITION] = NOTINPOS;
 	}

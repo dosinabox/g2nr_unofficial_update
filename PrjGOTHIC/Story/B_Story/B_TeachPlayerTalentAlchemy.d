@@ -19,7 +19,7 @@ func int B_TeachPlayerTalentAlchemy(var C_Npc slf,var C_Npc oth,var int potion)
 		};
 	};
 	oth.lp -= kosten;
-	if(Npc_GetTalentSkill(oth,NPC_TALENT_ALCHEMY) == 0)
+	if(!Npc_GetTalentSkill(oth,NPC_TALENT_ALCHEMY))
 	{
 		Npc_SetTalentSkill(oth,NPC_TALENT_ALCHEMY,1);
 		Log_CreateTopic(TOPIC_TalentAlchemy,LOG_NOTE);
