@@ -108,9 +108,6 @@ const string TOPIC_INNOSEYE = "Глаз Инноса";
 var int TOPIC_END_INNOSEYE;
 
 const string TOPIC_DEMENTOREN = "Ищущие";
-
-var int TOPIC_END_DEMENTOREN;
-
 const string TOPIC_Buster_KillShadowbeasts = "Рога мракорисов для Бастера";
 const string TOPIC_Ulthar_HeileSchreine_PAL = "Оскверненные алтари";
 const string TOPIC_TraitorPedro = "Предатель Педро";

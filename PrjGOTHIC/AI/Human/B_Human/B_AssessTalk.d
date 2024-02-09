@@ -78,7 +78,7 @@ func void B_AssessTalk()
 		{
 			PlayerTalkedToGregNW = TRUE;
 		}
-		else if(C_IsNpc(self,PIR_1301_Addon_Skip_NW))
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Skip_NW))
 		{
 			PlayerTalkedToSkipNW = TRUE;
 		}

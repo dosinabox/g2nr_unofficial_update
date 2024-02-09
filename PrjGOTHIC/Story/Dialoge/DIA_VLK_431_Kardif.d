@@ -214,9 +214,12 @@ func void B_BuildInfoDialog_Kardif()
 	{
 		Info_AddChoice(DIA_Kardif_TradeInfo,"Где мне здесь купить травки?",DIA_Kardif_DOPE_Info);
 	};
-	if((MIS_Andre_WAREHOUSE == LOG_Running) && (DIA_Kardif_Paket_perm == FALSE))
+	if(Mob_HasItems("CHEST_ANDRE_WAREHOUSE_PACKET",ItMi_HerbPaket) && (DIA_Kardif_Paket_perm == FALSE))
 	{
-		Info_AddChoice(DIA_Kardif_TradeInfo,"Ты что-нибудь слышал о тюке болотной травы?",DIA_Kardif_Paket_Info);
+		if((MIS_Andre_WAREHOUSE == LOG_Running) || (Dar_Dieb == TRUE))
+		{
+			Info_AddChoice(DIA_Kardif_TradeInfo,"Ты что-нибудь слышал о тюке болотной травы?",DIA_Kardif_Paket_Info);
+		};
 	};
 	if(DIA_Kardif_Lernen_permanent == FALSE)
 	{
@@ -574,8 +577,11 @@ func void DIA_Kardif_Paket_Info()
 		AI_Output(other,self,"DIA_Kardif_Paket_15_02");	//Не пытайся провести меня. Ты что-то знаешь. Давай, выкладывай!
 		AI_Output(self,other,"DIA_Kardif_Paket_14_03");	//Хорошо, хорошо - этот парень недавно заходил в мой трактир. Он из наемников.
 		AI_Output(self,other,"DIA_Kardif_Paket_14_04");	//Он сказал, что продал тюк болотной травы в гавани, но, конечно же, он был обкуренный в хлам. Это все, что я знаю.
+		if(MIS_Andre_WAREHOUSE == LOG_Running)
+		{
+			B_LogEntry(TOPIC_Warehouse,"Кардиф говорил с наемником. У этого парня был тюк болотной травы, который он хотел продать.");
+		};
 		DIA_Kardif_Paket_perm = TRUE;
-		B_LogEntry(TOPIC_Warehouse,"Кардиф говорил с наемником. У этого парня был тюк болотной травы, который он хотел продать.");
 		B_BuildInfoDialog_Kardif();
 	}
 	else

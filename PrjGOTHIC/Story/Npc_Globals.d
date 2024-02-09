@@ -49,6 +49,7 @@ var C_Npc Greg;
 var C_Npc Malcom;
 var C_Npc Owen;
 var C_Npc Skip;
+var C_Npc Skip_NW;
 var C_Npc Brandon;
 var C_Npc Matt;
 var C_Npc RoastPirate;
@@ -334,6 +335,7 @@ func void B_InitNpc_NW()
 	BridgeBandit = Hlp_GetNpc(BDT_1020_Bandit_L);
 	BDT_1051 = Hlp_GetNpc(BDT_1051_Wegelagerer);
 	BDT_1052 = Hlp_GetNpc(BDT_1052_Wegelagerer);
+	Skip_NW = Hlp_GetNpc(PIR_1301_Addon_Skip_NW);
 	//ферма Онара
 	Lee = Hlp_GetNpc(SLD_800_Lee);
 	Torlof = Hlp_GetNpc(SLD_801_Torlof);

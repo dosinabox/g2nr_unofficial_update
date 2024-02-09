@@ -47,11 +47,11 @@ func int ZS_MM_Rtn_Rest_Loop()
 	};
 	if(self.aivar[AIV_TAPOSITION] == NOTINPOS)
 	{
-		if(Wld_IsFPAvailable(self,"FP_ROAM"))
+		if(Wld_IsFPAvailable(self,"ROAM"))
 		{
-			AI_GotoFP(self,"FP_ROAM");
+			AI_GotoFP(self,"ROAM");
 		};
-		if(Npc_IsOnFP(self,"FP_ROAM"))
+		if(Npc_IsOnFP(self,"ROAM"))
 		{
 			self.aivar[AIV_TAPOSITION] = ISINPOS;
 		};

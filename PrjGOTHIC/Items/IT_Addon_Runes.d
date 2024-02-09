@@ -11,8 +11,8 @@ const int Value_Ru_SuckEnergy = 3500;
 const int Value_Ru_Skull = 2000;
 const int Value_Ru_SummonGuardian = 2000;
 const int Value_Ru_SummonZombie = 2000;
-const int Value_Ru_Beliar = 100;
-const int Value_Ru_Water = 200;
+//const int Value_Ru_Beliar = 100;
+//const int Value_Ru_Water = 200;
 
 instance ItRu_Thunderstorm(C_Item)
 {
@@ -56,7 +56,7 @@ instance ItRu_Whirlwind(C_Item)
 	count[1] = SPL_Cost_Whirlwind;
 	text[2] = NAME_Dam_Magic;
 	count[2] = 60;
-	//text[3] = "Чистый урон в секунду:";
+	//text[3] = NAME_PureDamagePerSec;
 	//count[3] = SPL_Whirlwind_DAMAGE;
 	text[3] = NAME_Sec_Duration;
 	count[3] = SPL_TIME_WHIRLWIND;
@@ -175,7 +175,7 @@ instance ItRu_SuckEnergy(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_SuckEnergy;
-	text[2] = "Чистый урон в секунду:";
+	text[2] = NAME_PureDamagePerSec;
 	count[2] = SPL_SuckEnergy_Damage;
 	text[3] = NAME_Sec_Duration;
 	count[3] = 8;
@@ -224,7 +224,7 @@ instance ItRu_Swarm(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_Swarm;
-	text[2] = "Чистый урон в секунду:";
+	text[2] = NAME_PureDamagePerSec;
 	count[2] = SPL_Swarm_Damage;
 	text[3] = NAME_Sec_Duration;
 	count[3] = SPL_TIME_Swarm;
@@ -298,7 +298,6 @@ instance ItRu_SummonGuardian(C_Item)
 	count[5] = value;
 };
 
-//Надувание людей (тест)
 instance ItRu_Inflate(C_Item)
 {
 	name = NAME_Rune;
@@ -316,7 +315,7 @@ instance ItRu_Inflate(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_Inflate;
-	text[2] = "Чистый урон в секунду:";
+	text[2] = NAME_PureDamagePerSec;
 	count[2] = SPL_Inflate_Damage;
 	text[3] = NAME_Sec_Duration;
 	count[3] = SPL_TIME_Inflate;

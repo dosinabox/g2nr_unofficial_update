@@ -12,9 +12,9 @@ func void ZS_MM_Rtn_DragonRest()
 	{
 		AI_GotoWP(self,self.wp);
 	};
-	if(Wld_IsFPAvailable(self,"FP_ROAM"))
+	if(Wld_IsFPAvailable(self,"ROAM"))
 	{
-		AI_GotoFP(self,"FP_ROAM");
+		AI_GotoFP(self,"ROAM");
 	}
 	else
 	{

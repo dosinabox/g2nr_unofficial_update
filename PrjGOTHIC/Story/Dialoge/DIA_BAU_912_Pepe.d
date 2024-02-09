@@ -263,19 +263,22 @@ func int DIA_Pepe_PERM_Condition()
 func void DIA_Pepe_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Pepe_PERM_15_00");	//Как дела, как твои овцы?
-	if(Kapitel <= 1)
+	if(Kapitel <= 2)
 	{
-		AI_Output(self,other,"DIA_Pepe_PERM_03_01");	//Прекрасно. И с овцами все в порядке. Ну, с теми, что еще остались у меня, все в порядке.
-	};
-	if(Kapitel == 2)
-	{
-		AI_Output(self,other,"DIA_Pepe_PERM_03_02");	//Хорошо. Но могут прийти другие волки. И, возможно, в большем количестве!
-	};
-	if(Kapitel == 3)
+		if(MIS_Pepe_KillWolves == LOG_SUCCESS)
+		{
+			AI_Output(self,other,"DIA_Pepe_PERM_03_02");	//Хорошо. Но могут прийти другие волки. И, возможно, в большем количестве!
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Pepe_PERM_03_01");	//Прекрасно. И с овцами все в порядке. Ну, с теми, что еще остались у меня, все в порядке.
+		};
+	}
+	else if(Kapitel == 3)
 	{
 		AI_Output(self,other,"DIA_Pepe_PERM_03_03");	//Я слышал странные вещи. Говорят, что на ферме Секоба появились страшные личности. Они заняли его дом.
-	};
-	if(Kapitel >= 4)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_Pepe_PERM_03_04");	//Я слышал, что какие-то бандиты поселились на ферме Лобарта. Кто-нибудь должен помочь ему.
 	};

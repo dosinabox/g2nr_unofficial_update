@@ -69,11 +69,8 @@ func void B_AssessPlayer()
 	if(B_AssessDrawWeapon())
 	{
 		return;
-	}
-	else
-	{
-		Player_DrawWeaponComment = FALSE;
 	};
+	Player_DrawWeaponComment = FALSE;
 	if(C_BodyStateContains(other,BS_SNEAK))
 	{
 		if(!Npc_IsInState(self,ZS_ObservePlayer) && C_WantToReactToSneaker(self,other))
@@ -118,14 +115,17 @@ func void B_AssessPlayer()
 			};
 		};
 	};
-	if(C_BodyStateContains(self,BS_WALK) && (Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG) && !Npc_RefuseTalk(other) && !C_NpcIsGateGuard(self) && !C_PlayerHasFakeGuild(self,other))
+	if(Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG)
 	{
-		B_LookAtNpc(self,other);
-		B_Say_GuildGreetings(self,other);
-		B_StopLookAt(self);
-		Npc_SetRefuseTalk(other,20);
-	};
-	if(C_NpcIsGateGuard(self) && (Npc_GetDistToNpc(self,other) > PERC_DIST_DIALOG))
+		if(C_BodyStateContains(self,BS_WALK) && (Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG) && !Npc_RefuseTalk(other) && !C_NpcIsGateGuard(self) && !C_PlayerHasFakeGuild(self,other))
+		{
+			B_LookAtNpc(self,other);
+			B_Say_GuildGreetings(self,other);
+			B_StopLookAt(self);
+			Npc_SetRefuseTalk(other,20);
+		};
+	}
+	else if(C_NpcIsGateGuard(self))
 	{
 		self.aivar[AIV_Guardpassage_Status] = GP_NONE;
 	};

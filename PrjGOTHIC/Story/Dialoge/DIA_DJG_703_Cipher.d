@@ -148,10 +148,6 @@ func void DIA_CipherDJG_GO_Info()
 		AI_Standup(self);
 		B_TurnToNpc(self,other);
 	};
-	if(!Npc_IsDead(DJG_Rod) && C_BodyStateContains(DJG_Rod,BS_SIT))
-	{
-		AI_Standup(DJG_Rod);
-	};
 	AI_StopProcessInfos(self);
 	DJG_SwampParty_GoGoGo = TRUE;
 	self.npcType = NPCTYPE_FRIEND;
@@ -159,6 +155,10 @@ func void DIA_CipherDJG_GO_Info()
 	Npc_ExchangeRoutine(self,"SwampWait1");
 	if(!Npc_IsDead(DJG_Rod))
 	{
+		if(C_BodyStateContains(DJG_Rod,BS_SIT))
+		{
+			AI_Standup(DJG_Rod);
+		};
 		DJG_Rod.npcType = NPCTYPE_FRIEND;
 		DJG_Rod.aivar[AIV_PARTYMEMBER] = TRUE;
 		B_StartOtherRoutine(DJG_Rod,"SwampWait1");
@@ -214,7 +214,6 @@ instance DIA_CipherDJG_GoForSwampDragon(C_Info)
 	condition = DIA_CipherDJG_GoForSwampDragon_Condition;
 	information = DIA_CipherDJG_GoForSwampDragon_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
@@ -241,8 +240,6 @@ func void DIA_CipherDJG_GoForSwampDragon_Info()
 		AI_Output(self,other,"DIA_CipherDJG_GoForSwampDragon_07_02");	//Иди вперед и посмотри, можем ли мы атаковать.
 		AI_StopProcessInfos(self);
 	};
-//	self.flags = 0;
-//	DJG_Rod.flags = 0;
 };
 
 
@@ -322,7 +319,15 @@ instance DIA_Cipher_KrautPaket_OW(C_Info)
 	nr = 800;
 	condition = DIA_Cipher_KrautPaket_Condition;
 	information = DIA_Cipher_KrautPaket_Info;
-	permanent = FALSE;
 	description = "Это случайно не твой тюк болотной травы?";
+};
+
+instance DIA_Cipher_DarDieb_OW(C_Info)
+{
+	npc = DJG_703_Cipher;
+	nr = 801;
+	condition = DIA_Cipher_DarDieb_Condition;
+	information = DIA_Cipher_DarDieb_Info;
+	description = "Я знаю, кто взял твою траву.";
 };
 

@@ -111,7 +111,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		if(!Npc_IsDead(Engrom))
 		{
 			Engrom_isAlive_Kap4 = TRUE;
-			B_StartOtherRoutine(Engrom,"Obsessed");
+			Npc_ExchangeRoutine(Engrom,"Obsessed");
 			AI_Teleport(Engrom,"OW_SAWHUT_MOLERAT_MOVEMENT");
 			CreateInvItems(Engrom,ItAt_TalbinsLurkerSkin,1);
 			if(hero.guild == GIL_KDF)

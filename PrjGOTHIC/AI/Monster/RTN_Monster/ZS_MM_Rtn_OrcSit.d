@@ -21,11 +21,11 @@ func int ZS_MM_Rtn_OrcSit_Loop()
 	};
 	if(self.aivar[AIV_TAPOSITION] == NOTINPOS)
 	{
-		if(Wld_IsFPAvailable(self,"FP_CAMPFIRE"))
+		if(Wld_IsFPAvailable(self,"CAMPFIRE"))
 		{
-			AI_GotoFP(self,"FP_CAMPFIRE");
+			AI_GotoFP(self,"CAMPFIRE");
 		};
-		if(Npc_IsOnFP(self,"FP_CAMPFIRE"))
+		if(Npc_IsOnFP(self,"CAMPFIRE"))
 		{
 			AI_PlayAniBS(self,"T_STAND_2_GUARDSLEEP",BS_SIT);
 			self.aivar[AIV_TAPOSITION] = ISINPOS;

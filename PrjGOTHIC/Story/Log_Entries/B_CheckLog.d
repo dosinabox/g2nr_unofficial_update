@@ -179,7 +179,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_HannaRetrieveLetter,MIS_HannaRetrieveLetter,0,6);
 	B_CloseTopic(TOPIC_Buster_KillShadowbeasts,MIS_Buster_KillShadowbeasts_DJG,0,6);
 	B_CloseTopic(TOPIC_Ulthar_HeileSchreine_PAL,MIS_Ulthar_HeileSchreine_PAL,0,6);
-	B_CloseTopic(TOPIC_DEMENTOREN,0,TOPIC_END_DEMENTOREN,999);
+	B_CloseTopic(TOPIC_DEMENTOREN,MIS_DementorsOrigins,0,999);
 	B_CloseTopic(TOPIC_INNOSEYE,0,TOPIC_END_INNOSEYE,4);
 	B_CloseTopic(TOPIC_TraitorPedro,0,SCFoundPedro,999);
 	B_CloseTopic(TOPIC_SekobDMT,0,TOPIC_END_SekobDMT,6);
@@ -216,6 +216,6 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_RosisFlucht,MIS_RosisFlucht,0,6);
 	B_CloseTopic(TOPIC_HealRandolph,MIS_HealRandolph,0,6);
 	B_CloseTopic(TOPIC_HallenVonIrdorath,0,UndeadDragonIsDead,999);
-	B_CloseTopic(TOPIC_MyCrew,0,UndeadDragonIsDead,999);
+//	B_CloseTopic(TOPIC_MyCrew,0,UndeadDragonIsDead,999);
 };
 

@@ -37,9 +37,12 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 			}
 			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
 			{
-				if(Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_TEMPLE_FRONT") < 5000)
+				if(VatrasPissedOffForever == FALSE)
 				{
-					return TRUE;
+					if(Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_TEMPLE_FRONT") < 5000)
+					{
+						return TRUE;
+					};
 				};
 			}
 			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY))

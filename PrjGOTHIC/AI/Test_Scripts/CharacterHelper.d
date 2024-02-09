@@ -1625,25 +1625,25 @@ func void DIA_CH_Strength_BACK()
 
 func void DIA_CH_Strength_1()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MAX);
+	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MEGA);
 	DIA_CH_Strength_Info();
 };
 
 func void DIA_CH_Strength_5()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MAX);
+	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MEGA);
 	DIA_CH_Strength_Info();
 };
 
 func void DIA_CH_Strength_10()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,10,T_MAX);
+	B_TeachAttributePoints(self,other,ATR_STRENGTH,10,T_MEGA);
 	DIA_CH_Strength_Info();
 };
 
 func void DIA_CH_Strength_20()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,20,T_MAX);
+	B_TeachAttributePoints(self,other,ATR_STRENGTH,20,T_MEGA);
 	DIA_CH_Strength_Info();
 };
 
@@ -1684,25 +1684,25 @@ func void DIA_CH_Dex_BACK()
 
 func void DIA_CH_Dex_1()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MAX);
+	B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MEGA);
 	DIA_CH_Dex_Info();
 };
 
 func void DIA_CH_Dex_5()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MAX);
+	B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MEGA);
 	DIA_CH_Dex_Info();
 };
 
 func void DIA_CH_Dex_10()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,10,T_MAX);
+	B_TeachAttributePoints(self,other,ATR_DEXTERITY,10,T_MEGA);
 	DIA_CH_Dex_Info();
 };
 
 func void DIA_CH_Dex_20()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,20,T_MAX);
+	B_TeachAttributePoints(self,other,ATR_DEXTERITY,20,T_MEGA);
 	DIA_CH_Dex_Info();
 };
 
@@ -1795,25 +1795,25 @@ func void DIA_CH_Mana_BACK()
 
 func void DIA_CH_Mana_1()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MAX);
+	B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MEGA);
 	DIA_CH_Mana_Info();
 };
 
 func void DIA_CH_Mana_5()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MAX);
+	B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MEGA);
 	DIA_CH_Mana_Info();
 };
 
 func void DIA_CH_Mana_10()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,10,T_MAX);
+	B_TeachAttributePoints(self,other,ATR_MANA_MAX,10,T_MEGA);
 	DIA_CH_Mana_Info();
 };
 
 func void DIA_CH_Mana_20()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,20,T_MAX);
+	B_TeachAttributePoints(self,other,ATR_MANA_MAX,20,T_MEGA);
 	DIA_CH_Mana_Info();
 };
 
@@ -1825,7 +1825,7 @@ instance DIA_CH_KREISE(C_Info)
 	condition = DIA_CH_KREISE_Condition;
 	information = DIA_CH_KREISE_Info;
 	permanent = TRUE;
-	description = "Круги магии";
+	description = NAME_Skill_MagicCircles;
 };
 
 
@@ -1874,47 +1874,47 @@ func void DIA_CH_KREISE_BACK()
 
 func void DIA_CH_KREISE_1()
 {
-	Info_ClearChoices(DIA_CH_KREISE);
 	B_TeachMagicCircle(self,other,1);
 	B_SetKDFRunes();
+	DIA_CH_KREISE_Info();
 };
 
 func void DIA_CH_KREISE_2()
 {
-	Info_ClearChoices(DIA_CH_KREISE);
 	B_TeachMagicCircle(self,other,2);
 	B_SetKDFRunes();
 	B_SetKDWRunes();
+	DIA_CH_KREISE_Info();
 };
 
 func void DIA_CH_KREISE_3()
 {
-	Info_ClearChoices(DIA_CH_KREISE);
 	B_TeachMagicCircle(self,other,3);
 	B_SetKDFRunes();
 	B_SetKDWRunes();
+	DIA_CH_KREISE_Info();
 };
 
 func void DIA_CH_KREISE_4()
 {
-	Info_ClearChoices(DIA_CH_KREISE);
 	B_TeachMagicCircle(self,other,4);
 	B_SetKDFRunes();
 	B_SetKDWRunes();
+	DIA_CH_KREISE_Info();
 };
 
 func void DIA_CH_KREISE_5()
 {
-	Info_ClearChoices(DIA_CH_KREISE);
 	B_TeachMagicCircle(self,other,5);
 	B_SetKDFRunes();
+	DIA_CH_KREISE_Info();
 };
 
 func void DIA_CH_KREISE_6()
 {
-	Info_ClearChoices(DIA_CH_KREISE);
 	B_TeachMagicCircle(self,other,6);
 	B_SetKDFRunes();
+	DIA_CH_KREISE_Info();
 };
 
 
@@ -1925,7 +1925,7 @@ instance DIA_CH_Runen(C_Info)
 	condition = DIA_CH_Runen_Condition;
 	information = DIA_CH_Runen_Info;
 	permanent = TRUE;
-	description = "Создание рун";
+	description = NAME_Skill_Runes;
 };
 
 
@@ -1975,7 +1975,7 @@ func void DIA_CH_Runen_BACK()
 func void DIA_CH_Runen_1()
 {
 	Info_ClearChoices(DIA_CH_Runen);
-	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_BACK);
+	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_Info);
 	if(PLAYER_TALENT_RUNES[SPL_SummonGoblinSkeleton] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_SummonGoblinSkeleton,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonGoblinSkeleton)),CH_Training_Runen_Circle_1_SPL_SummonGoblinSkeleton);
@@ -2026,7 +2026,7 @@ func void CH_Training_Runen_Circle_1_SPL_SummonGoblinSkeleton()
 func void DIA_CH_Runen_2()
 {
 	Info_ClearChoices(DIA_CH_Runen);
-	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_BACK);
+	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_Info);
 	if(PLAYER_TALENT_RUNES[SPL_InstantFireball] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_InstantFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_InstantFireball)),CH_Training_Runen_Circle_2_SPL_InstantFireball);
@@ -2095,7 +2095,7 @@ func void CH_Training_Runen_Circle_2_SPL_ICELANCE()
 func void DIA_CH_Runen_3()
 {
 	Info_ClearChoices(DIA_CH_Runen);
-	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_BACK);
+	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_Info);
 	if(PLAYER_TALENT_RUNES[SPL_MediumHeal] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_MediumHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_MediumHeal)),CH_Training_Runen_Circle_3_SPL_MediumHeal);
@@ -2173,7 +2173,7 @@ func void CH_Training_Runen_Circle_3_SPL_Geyser()
 func void DIA_CH_Runen_4()
 {
 	Info_ClearChoices(DIA_CH_Runen);
-	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_BACK);
+	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_Info);
 	if(PLAYER_TALENT_RUNES[SPL_SummonGolem] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_SummonGolem,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonGolem)),CH_Training_Runen_Circle_4_SPL_SummonGolem);
@@ -2224,7 +2224,7 @@ func void CH_Training_Runen_Circle_4_SPL_Waterfist()
 func void DIA_CH_Runen_5()
 {
 	Info_ClearChoices(DIA_CH_Runen);
-	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_BACK);
+	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_Info);
 	if(PLAYER_TALENT_RUNES[SPL_IceWave] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_IceWave,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_IceWave)),CH_Training_Runen_Circle_5_SPL_IceWave);
@@ -2270,7 +2270,7 @@ func void CH_Training_Runen_Circle_5_SPL_Pyrokinesis()
 func void DIA_CH_Runen_6()
 {
 	Info_ClearChoices(DIA_CH_Runen);
-	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_BACK);
+	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_Info);
 	if(PLAYER_TALENT_RUNES[SPL_Firerain] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Firerain,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firerain)),CH_Training_Runen_Circle_6_SPL_Firerain);
@@ -2326,7 +2326,7 @@ instance DIA_CH_Misc_PaladinStart(C_Info)
 	condition = DIA_CH_Misc_PaladinStart_Condition;
 	information = DIA_CH_Misc_PaladinStart_Info;
 	permanent = TRUE;
-	description = "Руны паладинов";
+	description = NAME_Skill_PalRunes;
 };
 
 
@@ -2487,7 +2487,7 @@ instance DIA_CH_Kampf_Einhand(C_Info)
 	condition = DIA_CH_Kampf_Einhand_Condition;
 	information = DIA_CH_Kampf_Einhand_Info;
 	permanent = TRUE;
-	description = "Одноручное оружие";
+	description = NAME_OneHanded;
 };
 
 
@@ -2546,7 +2546,7 @@ instance DIA_CH_Kampf_Zweihand(C_Info)
 	condition = DIA_CH_Kampf_Zweihand_Condition;
 	information = DIA_CH_Kampf_Zweihand_Info;
 	permanent = TRUE;
-	description = "Двуручное оружие";
+	description = NAME_TwoHanded;
 };
 
 

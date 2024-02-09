@@ -198,6 +198,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Pepe_KickBullco = LOG_FAILED;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Skip_NW))
+		{
+			if((MIS_Addon_Baltram_Paket4Skip == LOG_Running) && (Skip_Rum4Baltram == FALSE))
+			{
+				MIS_Addon_Baltram_Paket4Skip = LOG_FAILED;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Dar))
 		{
 			if(MIS_Dar_BringOrcEliteRing == LOG_Running)

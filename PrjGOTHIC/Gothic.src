@@ -415,6 +415,8 @@ AI\Human\TA_Human\ZS_Sweep_FP.d
 AI\Human\TA_Human\ZS_Wash_FP.d
 Story\B_Story\B_EndProductionDialog.d
 Story\B_Story\B_BuildPriceString.d
+Story\B_Story\B_BuildDateString.d
+Story\B_Story\B_BuildFullVersionString.d
 Story\Dialog_Mobsis\Bookstand.d
 Story\Dialog_Mobsis\BookstandAlchemy.d
 Story\Dialog_Mobsis\BookstandAnimals.d

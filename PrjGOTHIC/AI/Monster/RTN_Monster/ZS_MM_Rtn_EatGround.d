@@ -8,9 +8,9 @@ func void ZS_MM_Rtn_EatGround()
 	{
 		AI_GotoWP(self,self.wp);
 	};
-	if(Wld_IsFPAvailable(self,"FP_ROAM"))
+	if(Wld_IsFPAvailable(self,"ROAM"))
 	{
-		AI_GotoFP(self,"FP_ROAM");
+		AI_GotoFP(self,"ROAM");
 	};
 	AI_PlayAni(self,"T_STAND_2_EAT");
 	Mdl_ApplyRandomAni(self,"S_EAT","R_ROAM1");

@@ -21,6 +21,26 @@ func void B_GiveAllClassicFood(var C_Npc npc)
 	CreateInvItems(npc,ItFo_Milk,10);
 	CreateInvItems(npc,ItFo_Schafswurst,10);
 	CreateInvItems(npc,ItFo_SmellyFish,10);
+	CreateInvItems(npc,ItPl_Weed,10);
+	CreateInvItems(npc,ItPl_Beet,10);
+	CreateInvItems(npc,ItPl_SwampHerb,10);
+	CreateInvItems(npc,ItPl_Mana_Herb_01,10);
+	CreateInvItems(npc,ItPl_Mana_Herb_02,10);
+	CreateInvItems(npc,ItPl_Mana_Herb_03,10);
+	CreateInvItems(npc,ItPl_Health_Herb_01,10);
+	CreateInvItems(npc,ItPl_Health_Herb_02,10);
+	CreateInvItems(npc,ItPl_Health_Herb_03,10);
+	CreateInvItems(npc,ItPl_Dex_Herb_01,10);
+	CreateInvItems(npc,ItPl_Strength_Herb_01,10);
+	CreateInvItems(npc,ItPl_Speed_Herb_01,10);
+	CreateInvItems(npc,ItPl_Mushroom_01,10);
+	CreateInvItems(npc,ItPl_Mushroom_02,10);
+	CreateInvItems(npc,ItPl_Forestberry,10);
+	CreateInvItems(npc,ItPl_Blueplant,10);
+	CreateInvItems(npc,ItPl_Planeberry,10);
+	CreateInvItems(npc,ItPl_Temp_Herb,10);
+	CreateInvItems(npc,ItPl_Perm_Herb,10);
+	CreateInvItems(npc,ItPl_Sagitta_Herb_MIS,10);
 };
 
 func void B_GiveAllAddonFood(var C_Npc npc)

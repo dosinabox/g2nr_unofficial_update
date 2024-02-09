@@ -410,12 +410,16 @@ func void DIA_Jan_SellArmor_Info()
 	{
 		AI_Output(self,other,"DIA_Jan_SellArmor_10_02");	//Маг, который нуждается в доспехах? Забудь об этом - тебе лучше обратиться к портному. Я не могу сделать доспехи для тебя.
 	}
-	else
+	else if(hero.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_Jan_SellArmor_10_03");	//Если бы они у меня были, я бы продал их тебе. Но, к сожалению, у меня их нет.
 		Info_ClearChoices(DIA_JAN_SellArmor);
 		Info_AddChoice(DIA_JAN_SellArmor,"Думаю, ничего не получится.",DIA_JAN_SellArmor_Sorry);
 		Info_AddChoice(DIA_JAN_SellArmor,"Ты можешь изготовить что-нибудь для меня?",DIA_JAN_SellArmor_BuildOne);
+	}
+	else
+	{
+		B_Say(self,other,"$NOTNOW");
 	};
 };
 

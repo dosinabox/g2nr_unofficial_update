@@ -349,9 +349,15 @@ func void DIA_Vino_Heilung_Info()
 	{
 		AI_Output(other,self,"DIA_Vino_Heilung_15_02");	//Ты должен сходить в монастырь. Пирокар, высший маг Огня, сможет помочь тебе.
 		AI_Output(self,other,"DIA_Vino_Heilung_05_03");	//Ты думаешь? Хорошо. Я попытаюсь.
+		if(MIS_DementorsOrigins == FALSE)
+		{
+			Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
+			MIS_DementorsOrigins = LOG_Running;
+		};
+		B_LogEntry(TOPIC_DEMENTOREN,"Вино одержим. Я отправил его в монастырь на лечение. Надеюсь, он сможет добраться туда живым.");
 		B_NpcClearObsessionByDMT(self);
 		B_StartOtherRoutine(Vino,"Kloster");
-		B_LogEntry(TOPIC_DEMENTOREN,"Вино одержим. Я отправил его в монастырь на лечение. Надеюсь, он сможет добраться туда живым.");
 		B_GivePlayerXP(XP_VinoFreeFromDMT);
 		DIA_Vino_Heilung_oneTime = TRUE;
 	};

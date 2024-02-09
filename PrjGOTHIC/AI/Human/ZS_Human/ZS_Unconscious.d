@@ -83,8 +83,11 @@ func void ZS_Unconscious()
 		{
 			if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cipher))
 			{
-				Cipher.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
-				Dar_LostAgainstCipher = TRUE;
+				if(Sipher_KnowsDarStoleHisWeed == TRUE)
+				{
+					Cipher.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
+					Dar_LostAgainstCipher = TRUE;
+				};
 			};
 		};
 	};
@@ -144,11 +147,6 @@ func void ZS_Unconscious_End()
 	};
 	AI_EquipBestMeleeWeapon(self);
 	AI_EquipBestRangedWeapon(self);
-/*	if(!Npc_HasEquippedWeapon(self))
-	{
-		B_RefreshMeleeWeapon(self);
-		AI_EquipBestMeleeWeapon(self);
-	};	*/
 	AI_StartState(self,ZS_HealSelf,0,"");
 };
 
