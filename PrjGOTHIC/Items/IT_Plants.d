@@ -32,7 +32,6 @@ const int HP_Blueplant = 5;
 const int Mana_Blueplant = 5;
 const int Value_Planeberry = 5;
 const int HP_Planeberry = 5;
-//const int Value_Temp_Herb = 100;
 const int Value_Temp_Herb = 10;
 const int HP_Temp_Herb = 5;
 const int Value_Perm_Herb = 500;
@@ -446,7 +445,6 @@ instance ItPl_Planeberry(C_Item)
 	scemeName = "FOOD";
 	on_state[0] = Use_Planeberry;
 	description = name;
-//	text[1] = NAME_Bonus_HP;
 	text[1] = NAME_Bonus_Mana;
 	count[1] = HP_Planeberry;
 	text[5] = NAME_Value;
@@ -456,7 +454,6 @@ instance ItPl_Planeberry(C_Item)
 
 func void Use_Planeberry()
 {
-//	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Planeberry);
 	Npc_ChangeAttribute(self,ATR_MANA,HP_Planeberry);
 };
 
@@ -465,7 +462,6 @@ instance ItPl_Temp_Herb(C_Item)
 {
 	name = "Ћуговой горец";
 	mainflag = ITEM_KAT_FOOD;
-//	flags = ITEM_MULTI | ITEM_MISSION;
 	flags = ITEM_MULTI;
 	value = Value_Temp_Herb;
 	visual = "ItPl_Temp_Herb.3ds";
@@ -490,7 +486,6 @@ instance ItPl_Perm_Herb(C_Item)
 {
 	name = "÷арский щавель";
 	mainflag = ITEM_KAT_FOOD;
-//	flags = ITEM_MULTI | ITEM_MISSION;
 	flags = ITEM_MULTI;
 	value = Value_Perm_Herb;
 	visual = "ItPl_Perm_Herb.3ds";
