@@ -1,7 +1,4 @@
 
-/*
-На будущее: https://worldofplayers.ru/threads/36817/post-997859
-
 var int VALLEY_SHOWCASE_TRIGGERSCRIPT_FUNC_OneTime;
 var int CutDownTreeAttempts;
 
@@ -36,5 +33,5 @@ func int C_CanCutDownTree()
 		return TRUE;
 	};
 	return FALSE;
-};*/
+};
 

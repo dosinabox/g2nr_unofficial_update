@@ -23,6 +23,10 @@ func void Enter_AddonWorld_FirstTime_Trigger_Func()
 			Wld_InsertNpc(STRF_1143_Addon_Sklave,"BANDIT");
 			B_KillNpc(STRF_1143_Addon_Sklave);
 			Wld_InsertItem(ItRu_FireBolt,"FP_ITEM_SWAMP_RUNE_01");
+		}
+		else
+		{
+			CreateInvItems(Stoneguardian_NailedValleyShowcase_01,ItSc_Teleport_Maya,1);
 		};
 		Enter_AddonWorld_FirstTime_Trigger_OneTime = TRUE;
 	};

@@ -40,6 +40,7 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalStoneplatesForVatras)," табличек Ватрасу"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(OldCoinCounter)," монет Василию"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalSwampHerbsForFortuno)," болотных трав Фортуно"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalSilverForHalvor)," серебра Халвору"));
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(BusterTrophyCounter)," рогов Бастеру"));
@@ -99,7 +100,7 @@ func void Use_StatsBook()
 	};
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalThefts)," успешных краж"));
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalTheftXP)," опыта с краж получено"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalTheftXP)," опыта с краж"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalTheftGold)," золотых украдено"));
 	if(UnionActivated == TRUE)
 	{
