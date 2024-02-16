@@ -1319,11 +1319,12 @@ Story\B_AssignAmbientInfos\B_AssignDementorTalk_Ritual.d
 Story\B_AssignAmbientInfos\B_AssignORC_AntiPaladinTalk.d
 Story\B_AssignAmbientInfos\B_NpcObsessedByDMT.d
 AI\Human\ZS_Human\ZS_Talk.d
+Story\B_Story\C_AkilFarmIsFree.d
 Story\B_Story\B_GregIsBack.d
 Story\B_Story\B_Enter_AddonWorld.d
-Story\B_Story\C_AkilFarmIsFree.d
 Story\B_Story\B_Enter_OldWorld.d
 Story\B_Story\B_Enter_NewWorld.d
+Story\B_Story\B_EnteredBanditsCamp.d
 Story\B_Story\B_SetAmbientXP.d
 Story\B_Story\B_Kapitelwechsel.d
 Story\B_Content\B_CaptainConditions.d

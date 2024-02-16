@@ -87,8 +87,7 @@ func void DIA_Addon_Senyan_Hi_Info()
 	{
 		B_ReadFakeItem(self,other,Fakeheroface,1);
 		AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_12_01");	//Ну-ка, ну-ка. Вот ты где. У меня для тебя есть хорошие новости и плохие новости.
-		Npc_ExchangeRoutine(self,"Bar");
-		EnteredBanditsCamp = TRUE;
+		Npc_ExchangeRoutine(self,"BAR");
 		Senyan_Contact = TRUE;
 		Info_ClearChoices(DIA_Addon_BDT_1084_Senyan_Hi);
 		Info_AddChoice(DIA_Addon_BDT_1084_Senyan_Hi,"Сначала - хорошие.",DIA_Addon_BDT_1084_Senyan_Hi_good);

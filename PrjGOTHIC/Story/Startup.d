@@ -1,10 +1,7 @@
 
 func void STARTUP_Global()
 {
-	FIX_VERSION_SAVE = FIX_VERSION;
-	FIX_DATE_YEAR_SAVE = FIX_DATE_YEAR;
-	FIX_DATE_MONTH_SAVE = FIX_DATE_MONTH;
-	FIX_DATE_DAY_SAVE = FIX_DATE_DAY;
+	
 };
 
 func void INIT_Global()
@@ -2867,6 +2864,10 @@ func void STARTUP_NewWorld_Part_TrollArea_01()
 
 func void STARTUP_NewWorld()
 {
+	FIX_VERSION_SAVE = FIX_VERSION;
+	FIX_DATE_YEAR_SAVE = FIX_DATE_YEAR;
+	FIX_DATE_MONTH_SAVE = FIX_DATE_MONTH;
+	FIX_DATE_DAY_SAVE = FIX_DATE_DAY;
 	STARTUP_NewWorld_Part_City_01();
 	STARTUP_NewWorld_Part_Farm_01();
 	STARTUP_NewWorld_Part_Xardas_01();

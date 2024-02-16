@@ -34,7 +34,6 @@ func void Use_Hinweis_02()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Снаф");
 	Doc_Show(nDocID);
-	EnteredBanditsCamp = TRUE;
 };
 
 
@@ -339,7 +338,6 @@ func void Use_Joint_Rezept_01()
 		{
 			Log_CreateTopic(TOPIC_TalentAlchemy,LOG_NOTE);
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЗЕЛЕНОГО ПОСЛУШНИКА': 2 болотных травы и 1 луговой горец.");
-			EnteredBanditsCamp = TRUE;
 			Green_Extrem = TRUE;
 		};
 	};
@@ -618,8 +616,6 @@ func void UseAxtAnleitung()
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLine(nDocID,0,NAME_ItMw_Banditenaxt);
 	Doc_SetFont(nDocID,0,FONT_Book);
-//	Doc_PrintLine(nDocID,0,"Легкий боевой топор");
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Этот топор может выковать любой, знакомый с основами кузнечного дела.");
 	Doc_PrintLines(nDocID,0,"Необходимы два куска раскаленной сырой стали, один кусок руды и три зуба волка, снеппера или подобного им зверя.");
