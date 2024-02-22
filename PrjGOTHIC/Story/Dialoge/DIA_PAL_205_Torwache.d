@@ -79,7 +79,7 @@ func int DIA_PAL_205_Torwache_FirstWarn_Condition()
 	{
 		self.aivar[AIV_PASSGATE] = TRUE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && !Npc_RefuseTalk(self))
+	if(C_NpcHasGuardStatus(self,PAL_205_Checkpoint,GP_NONE) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -125,7 +125,7 @@ func int DIA_PAL_205_Torwache_SecondWarn_Condition()
 			return FALSE;
 		};
 	}
-	else if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && (Npc_GetDistToWP(other,PAL_205_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	else if(C_NpcHasGuardStatus(self,PAL_205_Checkpoint,GP_FirstWarnGiven))
 	{
 		return TRUE;
 	};
@@ -164,7 +164,7 @@ func int DIA_PAL_205_Torwache_Attack_Condition()
 			return FALSE;
 		};
 	}
-	else if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && (Npc_GetDistToWP(other,PAL_205_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	else if(C_NpcHasGuardStatus(self,PAL_205_Checkpoint,GP_SecondWarnGiven))
 	{
 		return TRUE;
 	};

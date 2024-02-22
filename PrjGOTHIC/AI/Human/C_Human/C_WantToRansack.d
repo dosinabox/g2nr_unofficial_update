@@ -51,15 +51,15 @@ func int C_WantToRansack(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
+	if(C_NpcIsMage(slf))
+	{
+		return FALSE;
+	};
+	if(C_NpcIsPaladin(slf))
+	{
+		return FALSE;
+	};
 	if(slf.guild == GIL_DMT)
-	{
-		return FALSE;
-	};
-	if(slf.guild == GIL_PAL)
-	{
-		return FALSE;
-	};
-	if(slf.guild == GIL_KDF)
 	{
 		return FALSE;
 	};
@@ -67,35 +67,7 @@ func int C_WantToRansack(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(slf.guild == GIL_KDW)
-	{
-		return FALSE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Andre))
-	{
-		return FALSE;
-	};
-	if(C_IsNpc(slf,MIL_304_Torwache))
-	{
-		return FALSE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Torwache_305))
-	{
-		return FALSE;
-	};
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Raven))
-	{
-		return FALSE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY))
-	{
-		return FALSE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Daron))
-	{
-		return FALSE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
 	{
 		return FALSE;
 	};
