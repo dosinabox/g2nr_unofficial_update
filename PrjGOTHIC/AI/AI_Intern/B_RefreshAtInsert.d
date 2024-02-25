@@ -5,27 +5,11 @@ func int C_NpcCanEquipWeapons(var C_Npc slf)
 	{
 		return FALSE;
 	};
-	if(slf.guild == GIL_KDF)
-	{
-		return FALSE;
-	};
-	if(slf.guild == GIL_KDW)
-	{
-		return FALSE;
-	};
 	if(slf.guild == GIL_STRF)
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
-	{
-		return FALSE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY))
-	{
-		return FALSE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Elvrich))
+	if(C_NpcIsMage(slf))
 	{
 		return FALSE;
 	};
@@ -37,7 +21,7 @@ func int C_NpcCanEquipWeapons(var C_Npc slf)
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Xardas))
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Elvrich)) && (Elvrich_GoesBack2Thorben == FALSE))
 	{
 		return FALSE;
 	};
@@ -89,18 +73,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 	{
 		return;
 	};
-	if((slf.guild == GIL_MIL) || (slf.guild == GIL_SLD) || (slf.guild == GIL_DJG) || (slf.guild == GIL_PIR))
-	{
-		if(rnd == 0)
-		{
-			CreateInvItem(slf,ItMw_1h_MISC_Sword);
-		}
-		else
-		{
-			CreateInvItem(slf,ItMw_1h_Misc_Axe);
-		};
-	}
-	else if(slf.guild == GIL_PAL)
+	if(C_NpcIsPaladin(slf))
 	{
 		if(rnd == 0)
 		{
@@ -109,6 +82,17 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 		else
 		{
 			CreateInvItem(slf,ItMw_2H_Sword_M_01);
+		};
+	}
+	else if((slf.guild == GIL_MIL) || (slf.guild == GIL_SLD) || (slf.guild == GIL_DJG) || (slf.guild == GIL_PIR))
+	{
+		if(rnd == 0)
+		{
+			CreateInvItem(slf,ItMw_1h_MISC_Sword);
+		}
+		else
+		{
+			CreateInvItem(slf,ItMw_1h_Misc_Axe);
 		};
 	}
 	else if(slf.guild == GIL_BAU)

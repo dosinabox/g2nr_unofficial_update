@@ -173,6 +173,10 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		{
 			B_RemoveEveryInvItem(slf,ItMi_BloodCup_MIS);
 		};
+		if(Fortuno_Geheilt_01 == TRUE)
+		{
+			B_RemoveEveryInvItem(slf,ItMi_Addon_Joint_01);
+		};
 		if(MIS_Bromor_LuciaStoleGold == LOG_SUCCESS)
 		{
 			Npc_RemoveInvItem(slf,ItMi_BromorsGeld_Addon);

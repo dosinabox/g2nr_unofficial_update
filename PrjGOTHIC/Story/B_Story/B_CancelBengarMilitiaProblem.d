@@ -5,17 +5,17 @@ func void B_CancelBengarMilitiaProblem()
 	{
 		if(!Npc_IsDead(Rick))
 		{
-			Npc_ExchangeRoutine(Rick,"Flucht3");
+			Npc_ExchangeRoutine(Rick,"FLUCHT3");
 			Rick.aivar[AIV_DropDeadAndKill] = FALSE;
 		};
 		if(!Npc_IsDead(Rumbold))
 		{
-			Npc_ExchangeRoutine(Rumbold,"Flucht3");
+			Npc_ExchangeRoutine(Rumbold,"FLUCHT3");
 			Rumbold.aivar[AIV_DropDeadAndKill] = FALSE;
 		};
 		if(!Npc_IsDead(Bengar))
 		{
-			Npc_ExchangeRoutine(Bengar,"Start");
+			Npc_ExchangeRoutine(Bengar,"START");
 		};
 		MIS_Torlof_BengarMilizKlatschen = LOG_FAILED;
 	};

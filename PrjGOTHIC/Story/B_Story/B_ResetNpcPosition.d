@@ -61,7 +61,7 @@ func void B_ResetLares()
 	};
 	Lares.aivar[AIV_PARTYMEMBER] = FALSE;
 	B_StartOtherRoutine(Lares,"START");
-	B_StartOtherRoutine(BridgeBandit,"Intercept");
+	B_StartOtherRoutine(BridgeBandit,"INTERCEPT");
 };
 
 func void B_ResetWolfSLDs()
@@ -70,8 +70,8 @@ func void B_ResetWolfSLDs()
 	{
 		if(Npc_IsDead(SLD_Wolf))
 		{
-			B_StartOtherRoutine(SLD_815_Soeldner,"Start");
-			B_StartOtherRoutine(SLD_817_Soeldner,"Start");
+			B_StartOtherRoutine(SLD_815_Soeldner,"START");
+			B_StartOtherRoutine(SLD_817_Soeldner,"START");
 			MIS_BengarsHelpingSLD = LOG_OBSOLETE;
 		};
 	};

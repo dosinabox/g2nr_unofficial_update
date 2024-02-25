@@ -104,9 +104,6 @@ func void B_Andre_Informed()
 		if((Canthar_Ausgeliefert == TRUE) && (Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000))
 		{
 			B_NpcSetReleased(Canthar);
-			Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
-			Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
-			Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
 		};
 		B_StartOtherRoutine(Canthar,"MARKTSTAND");
 		AI_Teleport(Canthar,"NW_CITY_SARAH");
@@ -1308,7 +1305,7 @@ func void DIA_Andre_JOIN_Yes()
 	B_GiveArmor(ITAR_MIL_L);
 	Snd_Play("LEVELUP");
 	B_StartOtherRoutine(Lothar,"START");
-	B_StartOtherRoutine(Babo,"Garden");
+	B_StartOtherRoutine(Babo,"GARDEN");
 	SLD_Aufnahme = LOG_OBSOLETE;
 	NOV_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;

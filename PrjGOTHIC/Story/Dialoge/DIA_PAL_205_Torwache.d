@@ -213,7 +213,7 @@ func void B_CityHallPass()
 {
 	self.aivar[AIV_PASSGATE] = TRUE;
 	PAL_205_schonmalreingelassen = TRUE;
-	B_PlayerEnteredUpperCity();
+	B_PlayerEnteredCity();
 };
 
 instance DIA_PAL_205_Torwache_PassAsArmoredMil(C_Info)
