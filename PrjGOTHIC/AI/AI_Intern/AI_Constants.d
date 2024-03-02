@@ -71,10 +71,10 @@ const int AIV_StateTime = 68;
 const int AIV_Dist = 69;
 const int AIV_IgnoresFakeGuild = 70;
 const int AIV_NoFightParker = 71;
-const int AIV_NPCIsRanger = 72;
+const int AIV_SubGuild = 72;
 const int AIV_IgnoresArmor = 73;
 const int AIV_StoryBandit = 74;
-const int AIV_StoryBandit_Esteban = 75;
+//const int AIV_StoryBandit_Esteban = 75;
 const int AIV_WhirlwindStateTime = 76;
 const int AIV_InflateStateTime = 77;
 const int AIV_SwarmStateTime = 78;
@@ -380,7 +380,8 @@ const int MOBSI_PrayShrine = 5;
 const int MOBSI_GOLDHACKEN = 6;
 const int MOBSI_PRAYIDOL = 7;
 const int MOBSI_PAN = 8;
-//const int MOBSI_ORE = 9;
+const int MOBSI_STOMP = 9;
+//const int MOBSI_ORE = 10;
 
 var int PLAYER_MOBSI_PRODUCTION;
 

@@ -337,7 +337,7 @@ func void Use_Joint_Rezept_01()
 		if(Green_Extrem == FALSE)
 		{
 			Log_CreateTopic(TOPIC_TalentAlchemy,LOG_NOTE);
-			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЗЕЛЕНОГО ПОСЛУШНИКА': 2 болотных травы и 1 луговой горец.");
+			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЗЕЛЕНОГО ПОСЛУШНИКА': 2 болотные травы и 1 луговой горец.");
 			Green_Extrem = TRUE;
 		};
 	};

@@ -28,6 +28,7 @@ const string MOBNAME_WATERPIPE = "Кальян";
 const string MOBNAME_SWITCH = "Переключатель";
 const string MOBNAME_ORE = "Рудная жила";
 const string MOBNAME_WINEMAKER = "";
+const string MOBNAME_HERBSTOMPER = "Ступа";
 const string MOBNAME_ORCDRUM = "";
 const string MOBNAME_STOVE = "Плита";
 const string MOBNAME_INNOS = "Алтарь Инноса";

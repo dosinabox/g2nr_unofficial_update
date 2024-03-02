@@ -389,7 +389,7 @@ instance PC_ItPo_Mana_01(C_Info)
 	condition = PC_ItPo_Mana_01_Condition;
 	information = PC_ItPo_Mana_01_Info;
 	permanent = TRUE;
-	description = ConcatStrings(NAME_Mana_Essenz," (2 огненных крапивы и 1 луговой горец)");
+	description = ConcatStrings(NAME_Mana_Essenz," (2 огненные крапивы и 1 луговой горец)");
 };
 
 
@@ -427,7 +427,7 @@ instance PC_ItPo_Mana_02(C_Info)
 	condition = PC_ItPo_Mana_02_Condition;
 	information = PC_ItPo_Mana_02_Info;
 	permanent = TRUE;
-	description = ConcatStrings(NAME_Mana_Extrakt," (2 огненных травы и 1 луговой горец)");
+	description = ConcatStrings(NAME_Mana_Extrakt," (2 огненные травы и 1 луговой горец)");
 };
 
 
@@ -1293,7 +1293,7 @@ instance PC_ItMi_Addon_Joint_01(C_Info)
 	condition = PC_ItMi_Addon_Joint_01_Condition;
 	information = PC_ItMi_Addon_Joint_01_Info;
 	permanent = TRUE;
-	description = "'Зеленый послушник' (2 болотных травы, 1 луговой горец)";
+	description = "'Зеленый послушник' (2 болотные травы, 1 луговой горец)";
 };
 
 

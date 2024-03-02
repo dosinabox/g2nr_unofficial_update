@@ -9,9 +9,9 @@ func void B_AssessFightSound()
 	{
 		return;
 	};
-	if(C_IAmThiefFromSewer(victim) || C_IAmThiefFromSewer(other))
+	if((victim.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer) || (other.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer))
 	{
-		if(!C_IAmThiefFromSewer(self))
+		if(self.aivar[AIV_SubGuild] != GIL_SUB_Thief_Sewer)
 		{
 			return;
 		};
@@ -117,15 +117,18 @@ func void B_AssessFightSound()
 	{
 		if(self.guild == GIL_BDT)
 		{
-			if((self.aivar[AIV_StoryBandit_Esteban] == TRUE) && (other.aivar[AIV_StoryBandit_Esteban] == TRUE))
+			if(self.aivar[AIV_SubGuild] == GIL_SUB_Esteban)
 			{
-				B_Attack(self,victim,AR_NONE,0);
-				return;
-			};
-			if((self.aivar[AIV_StoryBandit_Esteban] == TRUE) && (victim.aivar[AIV_StoryBandit_Esteban] == TRUE))
-			{
-				B_Attack(self,other,AR_NONE,0);
-				return;
+				if(other.aivar[AIV_SubGuild] == GIL_SUB_Esteban)
+				{
+					B_Attack(self,victim,AR_NONE,0);
+					return;
+				};
+				if(victim.aivar[AIV_SubGuild] == GIL_SUB_Esteban)
+				{
+					B_Attack(self,other,AR_NONE,0);
+					return;
+				};
 			};
 			if((other.aivar[AIV_ATTACKREASON] == AR_NONE) && (victim.aivar[AIV_ATTACKREASON] == AR_NONE))
 			{

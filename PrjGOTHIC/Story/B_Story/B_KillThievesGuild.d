@@ -1,38 +1,4 @@
 
-func int C_IAmThiefFromSewer(var C_Npc slf)
-{
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Ramirez))
-	{
-		return TRUE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Jesper))
-	{
-		return TRUE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cassia))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
-func int C_IAmThiefFromCity(var C_Npc slf)
-{
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rengaru))
-	{
-		return TRUE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Halvor))
-	{
-		return TRUE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Nagur))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
 func void B_KillThievesGuild()
 {
 	if((Andre_FoundThieves_KilledByMilitia == FALSE) && (Andre_FoundThieves_Reported == TRUE) && (Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2)))

@@ -7,7 +7,7 @@ instance BAU_961_Gaan(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = NPCTYPE_MAIN;
-	aivar[AIV_NPCIsRanger] = TRUE;
+	aivar[AIV_SubGuild] = GIL_SUB_Ranger;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);

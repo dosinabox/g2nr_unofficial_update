@@ -70,7 +70,7 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Talbin_Runs = LOG_FAILED;
 			};
 		}
-		else if(C_IAmThiefFromSewer(slf))
+		else if(slf.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer)
 		{
 			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cassia))
 			{

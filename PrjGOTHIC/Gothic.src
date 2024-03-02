@@ -441,6 +441,7 @@ Story\Dialog_Mobsis\PrayIdol_Addon.d
 Story\Dialog_Mobsis\PrayShrine.d
 Story\Dialog_Mobsis\SleepABit.d
 Story\Dialog_Mobsis\SmithWeapon.d
+Story\Dialog_Mobsis\Stomp.d
 Story\NPC_Scripts\B_CreateAmbientInv.d
 Story\NPC_Scripts\B_GiveNpcTalents.d
 Story\NPC_Scripts\B_SetAttributesToChapter.d

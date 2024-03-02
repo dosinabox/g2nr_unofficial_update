@@ -7,7 +7,7 @@ instance BDT_1081_Addon_Wache_01(Npc_Default)
 	voice = 4;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
-	aivar[AIV_StoryBandit_Esteban] = TRUE;
+	aivar[AIV_SubGuild] = GIL_SUB_Esteban;
 	aivar[AIV_StoryBandit] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;

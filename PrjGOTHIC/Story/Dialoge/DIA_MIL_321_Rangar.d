@@ -177,10 +177,10 @@ func void DIA_Addon_Rangar_Erwischt_Info()
 	AI_Output(self,other,"DIA_Addon_Rangar_Erwischt_07_01");	//(испуганно) Э-э-э... Я... Это не твое дело! Проваливай!
 	AI_Output(other,self,"DIA_Addon_Rangar_Erwischt_15_02");	//Мартин будет просто счастлив, когда я расскажу, кто копается в вещах, пока его нет.
 	AI_Output(self,other,"DIA_Addon_Rangar_Erwischt_07_03");	//(печально) Делай, что хочешь. Я ухожу отсюда.
+	SC_GotRangar = TRUE;
 	B_GivePlayerXP(XP_Addon_Martin_GotRangar);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
-	SC_GotRangar = TRUE;
 };
 
 
