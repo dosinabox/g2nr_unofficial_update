@@ -40,7 +40,7 @@ func void Rtn_RunAway_492()
 func void Rtn_Prison_492()
 {
 	TA_Stand_ArmsCrossed(8,0,23,0,"NW_CITY_HABOUR_KASERN_RENGARU");
-	TA_Stand_ArmsCrossed(23,0,8,0,"NW_CITY_HABOUR_KASERN_RENGARU");
+	TA_Sit_Campfire(23,0,8,0,"NW_CITY_HABOUR_KASERN_RENGARU");
 };
 
 func void Rtn_Hide_492()

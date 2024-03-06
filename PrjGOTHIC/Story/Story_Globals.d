@@ -1422,3 +1422,4 @@ var int BDT_1061_FirstContact;
 var int Diego_ToldAboutSilvestroOre;
 var int Lester_SentToXardas;
 var int Sipher_KnowsDarStoleHisWeed;
+var int GerbrandtMovedToHarbour;

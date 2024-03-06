@@ -924,7 +924,7 @@ func void STARTUP_OldWorld_Part_Surface()
 	Wld_InsertNpc(OrcWarrior_Roam,"WP_INTRO_FALL3");
 	Wld_InsertNpc(OrcWarrior_Rest,"WP_INTRO21");
 	Wld_InsertNpc(OrcWarrior_Rest,"WP_INTRO_WI07");
-	Wld_InsertItem(ItSe_DiegosTreasure_Mis,"WP_INTRO_WI15");
+	Wld_InsertItem(ItSe_DiegosTreasure_MIS,"WP_INTRO_WI15");
 	Wld_InsertNpc(Giant_Bug,"SPAWN_MOLERAT02_SPAWN01");
 	Wld_InsertNpc(Giant_Bug,"SPAWN_MOLERAT02_SPAWN01");
 	Wld_InsertNpc(DragonSnapper,"SPAWN_TOTURIAL_CHICKEN_2_2");

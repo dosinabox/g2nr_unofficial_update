@@ -2,7 +2,6 @@
 instance VLK_401_Cornelius(Npc_Default)
 {
 	name[0] = "Корнелиус";
-//	guild = GIL_NONE;
 	guild = GIL_VLK;
 	id = 401;
 	voice = 13;
@@ -36,6 +35,6 @@ func void Rtn_Flee_401()
 func void Rtn_Prison_401()
 {
 	TA_Stand_Guarding(8,0,23,0,"NW_CITY_HABOUR_KASERN_BORKA");
-	TA_Stand_Guarding(23,0,8,0,"NW_CITY_HABOUR_KASERN_BORKA");
+	TA_Sit_Campfire(23,0,8,0,"NW_CITY_HABOUR_KASERN_BORKA");
 };
 

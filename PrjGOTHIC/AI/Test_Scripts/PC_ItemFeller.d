@@ -112,7 +112,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItMi_MalethsBanditGold,1);
 	CreateInvItems(self,ItMi_Moleratlubric_MIS,1);
 	CreateInvItems(self,ItSe_Golemchest_Mis,1);
-	CreateInvItems(self,ItSe_DiegosTreasure_Mis,1);
+	CreateInvItems(self,ItSe_DiegosTreasure_MIS,1);
 	CreateInvItems(self,ItMi_UltharsHolyWater_Mis,1);
 	CreateInvItems(self,ItMi_KarrasBlessedStone_Mis,1);
 	CreateInvItems(self,ItMw_1H_FerrosSword_MIS,1);

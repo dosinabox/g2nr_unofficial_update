@@ -86,6 +86,14 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 	{
 		B_SendMilitiaToHotel();
 	};
+	if(MIS_DiegosResidence == LOG_SUCCESS)
+	{
+		if(GerbrandtMovedToHarbour == FALSE)
+		{
+			B_StartOtherRoutine(Gerbrandt,"NEWLIFE");
+			GerbrandtMovedToHarbour = TRUE;
+		};
+	};
 	B_KillThievesGuild();
 	B_ResetWolfSLDs();
 	B_ResetSergio();
@@ -99,9 +107,6 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 {
 	if(EnterNW_Kapitel2 == FALSE)
 	{
-//		Wld_InsertNpc(Gobbo_Skeleton,"NW_FOREST_PATH_04_9");
-//		Wld_InsertNpc(Skeleton,"NW_FOREST_PATH_04_8");
-//		Wld_InsertNpc(Lesser_Skeleton,"FP_ROAM_MEDIUMFOREST_KAP2_23");
 		Wld_InsertNpc(Wolf,"FP_ROAM_MEDIUMFOREST_KAP2_25");
 		Wld_InsertNpc(Wolf,"FP_ROAM_MEDIUMFOREST_KAP2_26");
 		Wld_InsertNpc(Bloodfly,"FP_ROAM_CITY_TO_FOREST_50");

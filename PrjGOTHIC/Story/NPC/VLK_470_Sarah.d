@@ -31,7 +31,7 @@ func void Rtn_Start_470()
 func void Rtn_Knast_470()
 {
 	TA_Stand_ArmsCrossed(8,0,20,0,"NW_CITY_HABOUR_KASERN_RENGARU");
-	TA_Stand_ArmsCrossed(20,0,8,0,"NW_CITY_HABOUR_KASERN_RENGARU");
+	TA_Sit_Chair(20,0,8,0,"NW_CITY_HABOUR_KASERN_RENGARU");
 };
 
 func void Rtn_Tot_470()

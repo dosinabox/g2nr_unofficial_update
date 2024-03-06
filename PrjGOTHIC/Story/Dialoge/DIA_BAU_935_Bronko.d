@@ -136,14 +136,7 @@ func void DIA_Bronko_KEINBAUER_Info()
 	Info_ClearChoices(DIA_Bronko_KEINBAUER);
 	if(Babera_BronkoKeinBauer == TRUE)
 	{
-		if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
-		{
-			Info_AddChoice(DIA_Bronko_KEINBAUER,"Я могу сказать наемникам, где ты живешь.",DIA_Bronko_KEINBAUER_SLD);
-		}
-		else
-		{
-			Info_AddChoice(DIA_Bronko_KEINBAUER,"(пригрозить Бронко наемниками)",DIA_Bronko_KEINBAUER_SLD);
-		};
+		Info_AddChoice(DIA_Bronko_KEINBAUER,"(пригрозить Бронко наемниками)",DIA_Bronko_KEINBAUER_SLD);
 	};
 	if(MIS_Sekob_Bronko_eingeschuechtert == LOG_Running)
 	{
@@ -178,11 +171,6 @@ func void DIA_Bronko_KEINBAUER_schongut()
 
 func void DIA_Bronko_KEINBAUER_SLD()
 {
-	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
-	{
-		AI_Output(other,self,"DIA_Cornelius_DontBelieveYou_KnowYourHome_15_00");	//Я могу сказать наемникам, где ты живешь.
-		AI_Output(self,other,"DIA_Bronko_KEINBAUER_schongut_06_01");	//Проваливай!
-	};
 	AI_Output(other,self,"DIA_Bronko_KEINBAUER_SLD_15_00");	//Хорошо, тогда, пожалуй, мне придется сказать Онару, что здесь есть наглый фермер, который отказывается платить ренту.
 	AI_Output(self,other,"DIA_Bronko_KEINBAUER_SLD_06_01");	//Черт. Подожди минутку. Онар пошлет сюда наемников.
 	AI_Output(other,self,"DIA_Bronko_KEINBAUER_SLD_15_02");	//И что?
@@ -199,18 +187,18 @@ func void DIA_Bronko_KEINBAUER_SLD()
 	{
 		AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_05");	//Я даже вернусь к работе, хорошо?
 	};
-	AI_StopProcessInfos(self);
 	DIA_Bronko_KEINBAUER_noPerm = TRUE;
+	MIS_Sekob_Bronko_eingeschuechtert = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Ambient);
+	AI_StopProcessInfos(self);
 	if((Kapitel == 3) && (TOPIC_END_SekobDMT == FALSE))
 	{
-		Npc_ExchangeRoutine(self,"FleeDMT_Field");
+		Npc_ExchangeRoutine(self,"FLEEDMT_FIELD");
 	}
 	else
 	{
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 	};
-	MIS_Sekob_Bronko_eingeschuechtert = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Ambient);
 };
 
 
@@ -242,11 +230,11 @@ func void DIA_Bronko_FLEISSIG_Info()
 	AI_StopProcessInfos(self);
 	if((Kapitel == 3) && (TOPIC_END_SekobDMT == FALSE))
 	{
-		Npc_ExchangeRoutine(self,"FleeDMT_Field");
+		Npc_ExchangeRoutine(self,"FLEEDMT_FIELD");
 	}
 	else
 	{
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 	};
 };
 

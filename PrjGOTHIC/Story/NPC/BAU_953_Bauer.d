@@ -7,6 +7,7 @@ instance BAU_953_Bauer(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = NPCTYPE_AMBIENT;
+	aivar[AIV_SubGuild] = GIL_SUB_Lobart;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Mace);

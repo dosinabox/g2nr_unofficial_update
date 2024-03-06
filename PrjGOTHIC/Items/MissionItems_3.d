@@ -783,7 +783,7 @@ func void Use_DiegosLetter_Mis()
 };
 
 
-instance ItSe_DiegosTreasure_Mis(C_Item)
+instance ItSe_DiegosTreasure_MIS(C_Item)
 {
 	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;

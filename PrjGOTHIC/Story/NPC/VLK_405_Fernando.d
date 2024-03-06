@@ -39,6 +39,6 @@ func void Rtn_Wait_405()
 func void Rtn_Prison_405()
 {
 	TA_Stand_ArmsCrossed(8,0,23,0,"NW_CITY_HABOUR_KASERN_RENGARU");
-	TA_Stand_ArmsCrossed(23,0,8,0,"NW_CITY_HABOUR_KASERN_RENGARU");
+	TA_Sit_Campfire(23,0,8,0,"NW_CITY_HABOUR_KASERN_RENGARU");
 };
 
