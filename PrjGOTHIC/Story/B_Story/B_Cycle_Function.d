@@ -21,7 +21,7 @@ func void B_Cycle_Function()
 		{
 			if(MIS_OLDWORLD == LOG_SUCCESS)
 			{
-				if(Npc_HasItems(hero,ItMi_InnosEye_Broken_Mis))
+				if(Npc_HasItems(hero,ItMi_InnosEye_Broken_MIS))
 				{
 					if(Pedro_Traitor == TRUE)
 					{

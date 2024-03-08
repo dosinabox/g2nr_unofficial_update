@@ -274,7 +274,7 @@ instance PC_Charge_InnosEye(C_Info)
 
 func int PC_Charge_InnosEye_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] == TRUE) && Npc_HasItems(self,ItMi_InnosEye_Discharged_Mis) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] == TRUE) && Npc_HasItems(self,ItMi_InnosEye_Discharged_MIS) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -286,7 +286,7 @@ func void PC_Charge_InnosEye_Info()
 	{
 		B_EndProductionDialog();
 	}
-	else if((Npc_HasItems(self,ItAt_IcedragonHeart) || Npc_HasItems(self,ItAt_RockdragonHeart) || Npc_HasItems(self,ItAt_FiredragonHeart) || Npc_HasItems(self,ItAt_SwampdragonHeart)) && (Npc_HasItems(self,ItMi_InnosEye_Discharged_Mis)))
+	else if((Npc_HasItems(self,ItAt_IcedragonHeart) || Npc_HasItems(self,ItAt_RockdragonHeart) || Npc_HasItems(self,ItAt_FiredragonHeart) || Npc_HasItems(self,ItAt_SwampdragonHeart)) && (Npc_HasItems(self,ItMi_InnosEye_Discharged_MIS)))
 	{
 		AI_Wait(self,0.5);
 		FlasksCount -= 1;
@@ -306,7 +306,7 @@ func void PC_Charge_InnosEye_Info()
 		{
 			Npc_RemoveInvItems(self,ItAt_IcedragonHeart,1);
 		};
-		Npc_RemoveInvItems(self,ItMi_InnosEye_Discharged_Mis,1);
+		Npc_RemoveInvItems(self,ItMi_InnosEye_Discharged_MIS,1);
 		CreateInvItems(self,ItMi_InnosEye_MIS,1);
 		AI_PrintScreen(PRINT_AlchemySuccessInnoseye,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 	}

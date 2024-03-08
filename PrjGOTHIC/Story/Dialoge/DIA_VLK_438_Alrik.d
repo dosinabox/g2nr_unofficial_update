@@ -230,7 +230,7 @@ func int DIA_Alrik_WannaFight_Condition()
 func void DIA_Alrik_WannaFight_Info()
 {
 	AI_Output(other,self,"DIA_Alrik_WannaFight_15_00");	//Я хочу сразиться с тобой!
-	if(((Alrik_ArenaKampfVerloren > 0) && !Npc_HasItems(self,ItMw_AlriksSword_Mis)) || !Npc_HasEquippedMeleeWeapon(self))
+	if(((Alrik_ArenaKampfVerloren > 0) && !Npc_HasItems(self,ItMw_AlriksSword_MIS)) || !Npc_HasEquippedMeleeWeapon(self))
 	{
 		if((MIS_Alrik_Sword == LOG_SUCCESS) || (Alrik_Sword_Once == TRUE))
 		{
@@ -496,7 +496,7 @@ instance DIA_Alrik_WerSchwert(C_Info)
 
 func int DIA_Alrik_WerSchwert_Condition()
 {
-	if((Alrik_VomSchwertErzaehlt == TRUE) && (MIS_Alrik_Sword != LOG_SUCCESS) && !Npc_HasItems(other,ItMw_AlriksSword_Mis))
+	if((Alrik_VomSchwertErzaehlt == TRUE) && (MIS_Alrik_Sword != LOG_SUCCESS) && !Npc_HasItems(other,ItMw_AlriksSword_MIS))
 	{
 		return TRUE;
 	};
@@ -532,7 +532,7 @@ instance DIA_Alrik_HaveSword(C_Info)
 
 func int DIA_Alrik_HaveSword_Condition()
 {
-	if((Alrik_VomSchwertErzaehlt == TRUE) && Npc_HasItems(other,ItMw_AlriksSword_Mis))
+	if((Alrik_VomSchwertErzaehlt == TRUE) && Npc_HasItems(other,ItMw_AlriksSword_MIS))
 	{
 		return TRUE;
 	};
@@ -541,7 +541,7 @@ func int DIA_Alrik_HaveSword_Condition()
 func void DIA_Alrik_HaveSword_Info()
 {
 	AI_Output(other,self,"DIA_Alrik_HaveSword_15_00");	//Я принес твой меч!
-	B_GiveInvItems(other,self,ItMw_AlriksSword_Mis,1);
+	B_GiveInvItems(other,self,ItMw_AlriksSword_MIS,1);
 	AI_WaitTillEnd(self,other);
 	AI_EquipBestMeleeWeapon(self);
 	if(Alrik_EinmalSchwertBonus == FALSE)

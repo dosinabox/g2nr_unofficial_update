@@ -897,9 +897,9 @@ instance DIA_Lord_Hagen_EyeBroken(C_Info)
 
 func int DIA_Lord_Hagen_EyeBroken_Condition()
 {
-	if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS))
+	if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS))
 	{
-		if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis))
+		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 		{
 			DIA_Lord_Hagen_EyeBroken.description = "Глаз у меня, но он поврежден.";
 		}
@@ -913,7 +913,7 @@ func int DIA_Lord_Hagen_EyeBroken_Condition()
 
 func void DIA_Lord_Hagen_EyeBroken_Info()
 {
-	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis))
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 	{
 		AI_Output(other,self,"DIA_Lord_Hagen_Add_15_07");	//Глаз у меня, но он поврежден.
 	}
@@ -1010,7 +1010,7 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	B_KillNpc(NOV_656_ToterNovize);
 	B_InitNpcGlobals();
 	TEXT_Innoseye_Setting = TEXT_Innoseye_Setting_Broken;
-	Wld_InsertItem(ItMi_InnosEye_Broken_Mis,"FP_TROLLAREA_RITUAL_ITEM");
+	Wld_InsertItem(ItMi_InnosEye_Broken_MIS,"FP_TROLLAREA_RITUAL_ITEM");
 };
 
 
@@ -1389,7 +1389,7 @@ func void DIA_Lord_Hagen_AllDragonsDead_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_25");	//Этого должно быть достаточно, чтобы, наконец, разделаться с этими орками!
 	MIS_SCvisitShip = LOG_Running;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"ShipFree");
+	Npc_ExchangeRoutine(self,"SHIPFREE");
 };
 
 
@@ -1438,7 +1438,7 @@ func void B_ShipIsFree()
 {
 	if((Kapitel >= 5) && (Girion_IsOnBoard != LOG_SUCCESS))
 	{
-		B_StartOtherRoutine(Girion,"WaitForShip");
+		B_StartOtherRoutine(Girion,"WAITFORSHIP");
 	};
 	MIS_ShipIsFree = TRUE;
 	B_CheckLog();
@@ -1469,8 +1469,8 @@ func void DIA_Lord_Hagen_GateOpen_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_30");	//О, Иннос! Что именно там произошло?
 	AI_Output(other,self,"DIA_Lord_Hagen_Add_15_31");	//Почему-то ворота оказались открытыми...
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_32");	//Почему-то?! Но как это возможно... В замке наверняка есть предатель!
-	B_StartOtherRoutine(Schiffswache_212,"ShipFree");
-	B_StartOtherRoutine(Schiffswache_213,"ShipFree");
+	B_StartOtherRoutine(Schiffswache_212,"SHIPFREE");
+	B_StartOtherRoutine(Schiffswache_213,"SHIPFREE");
 	B_ShipIsFree();
 };
 

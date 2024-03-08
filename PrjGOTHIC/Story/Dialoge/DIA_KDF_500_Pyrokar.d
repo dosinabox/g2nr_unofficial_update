@@ -541,7 +541,7 @@ func void DIA_Pyrokar_OATH_Info()
 		}
 		else
 		{
-			B_StartOtherRoutine(Igaraz,"Start");
+			B_StartOtherRoutine(Igaraz,"START");
 			Igaraz.aivar[AIV_DropDeadAndKill] = FALSE;
 			Igaraz.aivar[AIV_NewsOverride] = FALSE;
 			Igaraz.aivar[AIV_IgnoresArmor] = FALSE;
@@ -557,7 +557,7 @@ func void DIA_Pyrokar_OATH_Info()
 		}
 		else
 		{
-			B_StartOtherRoutine(Ulf,"BackToMonastery");
+			B_StartOtherRoutine(Ulf,"BACKTOMONASTERY");
 			Ulf.aivar[AIV_DropDeadAndKill] = FALSE;
 			Ulf.aivar[AIV_NewsOverride] = FALSE;
 			Ulf.aivar[AIV_IgnoresArmor] = FALSE;
@@ -574,8 +574,8 @@ func void DIA_Pyrokar_OATH_Info()
 		}
 		else
 		{
-			B_StartOtherRoutine(Nov607,"Start");
-			B_StartOtherRoutine(Agon,"Start");
+			B_StartOtherRoutine(Nov607,"START");
+			B_StartOtherRoutine(Agon,"START");
 			Agon.aivar[AIV_DropDeadAndKill] = FALSE;
 			Agon.aivar[AIV_NewsOverride] = FALSE;
 			Agon.aivar[AIV_IgnoresArmor] = FALSE;
@@ -756,11 +756,11 @@ func void DIA_Pyrokar_Wunsch_Babo()
 	};
 	if((MIS_Babo_Training == LOG_SUCCESS) && !Npc_IsDead(Sergio))
 	{
-		B_StartOtherRoutine(Babo,"GardenAndTrain");
+		B_StartOtherRoutine(Babo,"GARDENANDTRAIN");
 	}
 	else
 	{
-		B_StartOtherRoutine(Babo,"Garden");
+		B_StartOtherRoutine(Babo,"GARDEN");
 	};
 	MIS_HelpBabo = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HelpBabo);
@@ -1233,7 +1233,7 @@ func void DIA_Pyrokar_GIVEINNOSEYE_Info()
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_11_03");	//Глаз Инноса был нагло украден из этих священных стен.
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
-		B_StartOtherRoutine(Gorax,"Wait");
+		B_StartOtherRoutine(Gorax,"WAIT");
 	};
 	if((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV))
 	{
@@ -1311,9 +1311,9 @@ instance DIA_Pyrokar_FOUNDINNOSEYE(C_Info)
 
 func int DIA_Pyrokar_FOUNDINNOSEYE_Condition()
 {
-	if((Kapitel == 3) && (MIS_NovizenChase == LOG_Running) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((Kapitel == 3) && (MIS_NovizenChase == LOG_Running) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
-		if(Npc_HasItems(hero,ItMi_InnosEye_Broken_Mis))
+		if(Npc_HasItems(hero,ItMi_InnosEye_Broken_MIS))
 		{
 			DIA_Pyrokar_FOUNDINNOSEYE.description = "Я нашел Глаз Инноса. Он поврежден.";
 		}
@@ -1327,7 +1327,7 @@ func int DIA_Pyrokar_FOUNDINNOSEYE_Condition()
 
 func void DIA_Pyrokar_FOUNDINNOSEYE_Info()
 {
-	if(Npc_HasItems(hero,ItMi_InnosEye_Broken_Mis))
+	if(Npc_HasItems(hero,ItMi_InnosEye_Broken_MIS))
 	{
 		AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_15_00");	//Я нашел Глаз Инноса. Он поврежден.
 	}
@@ -1494,7 +1494,7 @@ func void DIA_Pyrokar_BUCHZURUECK_Info()
 	{
 		AI_UseMob(self,"THRONE",-1);
 	};
-	Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");
+	Npc_ExchangeRoutine(self,"RITUALINNOSEYEREPAIR");
 	B_LogEntry(TOPIC_INNOSEYE,"Пирокар наконец согласился отправиться к Кругу Солнца.");
 	Pyrokar_GoesToRitualInnosEye = TRUE;
 };
@@ -1606,7 +1606,7 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	MIS_ReadyforChapter4 = TRUE;
 	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 

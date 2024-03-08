@@ -426,7 +426,7 @@ func void UseHalvorMessage()
 };
 
 
-instance ItMw_AlriksSword_Mis(C_Item)
+instance ItMw_AlriksSword_MIS(C_Item)
 {
 	name = "Меч Альрика";
 	mainflag = ITEM_KAT_NF;

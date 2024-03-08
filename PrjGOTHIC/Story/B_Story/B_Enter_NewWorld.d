@@ -372,8 +372,8 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		}
 		else if(hero.guild == GIL_KDF)
 		{
-			Wld_InsertItem(ItMi_KarrasBlessedStone_Mis,"FP_ITEM_FARM1_03");
-			Wld_InsertItem(ItMi_KarrasBlessedStone_Mis,"FP_NW_ITEM_TROLL_10");
+			Wld_InsertItem(ItMi_KarrasBlessedStone_MIS,"FP_ITEM_FARM1_03");
+			Wld_InsertItem(ItMi_KarrasBlessedStone_MIS,"FP_NW_ITEM_TROLL_10");
 			if(!Npc_IsDead(Vino))
 			{
 				Vino_isAlive_Kap3 = TRUE;

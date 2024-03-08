@@ -271,7 +271,7 @@ instance DIA_Brian_RepairNecklace(C_Info)
 
 func int DIA_Brian_RepairNecklace_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
 		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 		{
@@ -324,7 +324,7 @@ func void DIA_Brian_NEWLIGHTHOUSEOFFICER_Info()
 	MIS_Jack_NewLighthouseOfficer = LOG_SUCCESS;
 	B_SetGuild(self,GIL_NONE);
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Lighthouse");
+	Npc_ExchangeRoutine(self,"LIGHTHOUSE");
 	B_StartOtherRoutine(VLK_425_Regis,"ALONE");
 };
 

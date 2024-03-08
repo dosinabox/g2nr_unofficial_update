@@ -796,7 +796,7 @@ instance DIA_Karras_KarrasBlessedStone(C_Info)
 
 func int DIA_Karras_KarrasBlessedStone_Condition()
 {
-	if((hero.guild == GIL_KDF) && Npc_HasItems(other,ItMi_KarrasBlessedStone_Mis) && (MIS_Karras_FindBlessedStone == LOG_Running))
+	if((hero.guild == GIL_KDF) && Npc_HasItems(other,ItMi_KarrasBlessedStone_MIS) && (MIS_Karras_FindBlessedStone == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -808,8 +808,8 @@ var int KarrasMakesBlessedStone_Day;
 func void DIA_Karras_KarrasBlessedStone_Info()
 {
 	AI_Output(other,self,"DIA_Karras_KarrasBlessedStone_15_00");	//Я принес несколько камней с благословенной земли.
-	B_GiveInvItems(other,self,ItMi_KarrasBlessedStone_Mis,1);
-	Npc_RemoveInvItem(self,ItMi_KarrasBlessedStone_Mis);
+	B_GiveInvItems(other,self,ItMi_KarrasBlessedStone_MIS,1);
+	Npc_RemoveInvItem(self,ItMi_KarrasBlessedStone_MIS);
 	AI_Output(self,other,"DIA_Karras_KarrasBlessedStone_10_01");	//Это хорошо. Надеюсь, все алтари по-прежнему стоят на своих местах?
 	AI_Output(self,other,"DIA_Karras_KarrasBlessedStone_10_02");	//Хорошо. Я сделаю для тебя амулет, защищающий от черного взгляда Ищущих.
 	AI_Output(self,other,"DIA_Karras_KarrasBlessedStone_10_03");	//Дай мне немного времени. Над этим нужно поработать.
