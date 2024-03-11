@@ -545,7 +545,7 @@ var int DIA_Orlan_MieteFaellig_NoMore;
 
 func int DIA_Orlan_MieteFaellig_Condition()
 {
-	if((SC_IsRanger == TRUE) || (Orlan_RangerHelpZimmer == TRUE))
+	if((SC_IsRanger == TRUE) || (Orlan_RangerHelpZimmer == TRUE) || (Orlan_KnowsSCAsRanger == TRUE) || AnyRangerRingEquipped())
 	{
 		return FALSE;
 	};
@@ -605,7 +605,7 @@ func void DIA_Orlan_MieteFaellig_ja()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Orlan_MieteFaellig_ja_05_05");	//Ты что, пытаешься надуть меня? У даже тебя нет денег, чтобы заплатить за еду. Я проучу тебя, ах ты...
+		AI_Output(self,other,"DIA_Orlan_MieteFaellig_ja_05_05");	//Ты что, пытаешься надуть меня? У тебя даже нет денег, чтобы заплатить за еду. Я проучу тебя, ах ты...
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_NONE,1);
 	};
@@ -665,7 +665,7 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 	AI_StopProcessInfos(self);
 	if(RangerMeetingRunning != LOG_Running)
 	{
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 	};
 	if(Hlp_IsValidNpc(Randolph))
 	{
@@ -673,11 +673,11 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 		{
 			if(Rukhar_Won_Wettkampf == TRUE)
 			{
-				B_StartOtherRoutine(Randolph,"WettkampfRandolphLost");
+				B_StartOtherRoutine(Randolph,"WETTKAMPFRANDOLPHLOST");
 			}
 			else
 			{
-				B_StartOtherRoutine(Randolph,"Start");
+				B_StartOtherRoutine(Randolph,"START");
 			};
 		};
 	};
@@ -687,11 +687,11 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 		{
 			if(Rukhar_Won_Wettkampf == TRUE)
 			{
-				B_StartOtherRoutine(Rukhar,"WettkampfRukharWon");
+				B_StartOtherRoutine(Rukhar,"WETTKAMPFRUKHARWON");
 			}
 			else
 			{
-				B_StartOtherRoutine(Rukhar,"WettkampfRukharLost");
+				B_StartOtherRoutine(Rukhar,"WETTKAMPFRUKHARLOST");
 			};
 		};
 	};

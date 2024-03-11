@@ -742,7 +742,6 @@ func void DIA_Lord_Hagen_Knight_Info()
 	if((MIS_OLDWORLD == LOG_Running) && (KAPITEL == 3))
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_WhatProof_04_01");	//Твои дела покажут, достоин ты или нет.
-		AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_01");	//Наша ситуация хуже, чем я опасался. Но доложи мне о ситуации в Долине Рудников!
 	}
 	else if(MIS_RescueBennet == LOG_SUCCESS)
 	{

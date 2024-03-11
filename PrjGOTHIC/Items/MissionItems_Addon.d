@@ -139,7 +139,6 @@ func void Use_Map_NewWorld_Ornaments()
 	{
 		B_SetPlayerMap(ItWr_Map_NewWorld_Ornaments_Addon);
 	};
-//	SC_Saw_Ornament_Map = TRUE;
 	nDocID = Doc_CreateMap();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"Map_NewWorld_Ornaments.tga",TRUE);
@@ -494,7 +493,6 @@ func void Use_LuciasLoveLetter_Addon()
 prototype EffectItemPrototype_Addon(C_Item)
 {
 	name = "Камень";
-//	mainflag = ITEM_KAT_NONE;
 	mainflag = ITEM_KAT_LIGHT;
 	flags = ITEM_MULTI;
 	value = 15;
@@ -763,7 +761,7 @@ instance ItMi_Addon_Steel_Paket(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 300;
-	visual = "ItMi_Packet.3ds";
+	visual = "ItMi_SteelPacket.3ds";
 	material = MAT_STONE;
 	description = name;
 	text[0] = "Пакет очень тяжелый.";

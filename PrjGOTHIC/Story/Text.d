@@ -822,6 +822,7 @@ const string NAME_MageScroll = "Свиток";
 //const string PRINT_FoundLockpick = "Найдена отмычка";
 const string PRINT_HannasBeutel = "Маленький ключик и несколько отмычек...";
 const string PRINT_GotPlants = "Найдены травы";
+const string PRINT_GivePlants = "Травы отданы";
 const string PRINT_NoSweeping = "На подметание этих келий у меня уйдет целая вечность!";
 const string PRINT_Mandibles = "Этот секрет не дает никакого эффекта.";
 const string PRINT_Bloodfly = "На вкус горькое и ядовитое.";

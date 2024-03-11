@@ -18,7 +18,6 @@ func int DIA_Rod_EXIT_Condition()
 func void DIA_Rod_EXIT_Info()
 {
 	B_ClearFakeItems(other);
-	AI_EquipBestMeleeWeapon(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -443,6 +442,7 @@ func void DIA_Rod_Wette_GiveBack()
 	{
 		AI_Output(self,other,"DIA_Rod_Wette_GiveBack_06_01_add");	//Да ты просто слабак!
 	};
+	AI_EquipBestMeleeWeapon(self);
 	Info_ClearChoices(DIA_Rod_Wette);
 };
 
@@ -481,9 +481,24 @@ func int DIA_Rod_GiveItBack_Condition()
 
 func void DIA_Rod_GiveItBack_Info()
 {
+	var C_Item ReadyWeap;
+	if(Npc_HasReadiedMeleeWeapon(other))
+	{
+		ReadyWeap = Npc_GetReadiedWeapon(other);
+		if(Hlp_IsItem(ReadyWeap,ItMw_2h_Rod))
+		{
+			AI_DropItem(other,ItMw_2h_Rod);
+			AI_RemoveWeapon(other);
+		};
+	};
 	B_GiveInvItems(other,self,ItMw_2h_Rod,1);
 	AI_Output(other,self,"DIA_Rod_GiveItBack_15_00");	//Вот, держи свой меч!
 	AI_Output(self,other,"DIA_Rod_GiveItBack_06_01");	//Вовремя!
+	if(Hlp_IsItem(ReadyWeap,ItMw_2h_Rod))
+	{
+		AI_TakeItem(self,ReadyWeap);
+	};
+	AI_EquipBestMeleeWeapon(self);
 	if(Rod_SchwertXPGiven == FALSE)
 	{
 		if(CurrentLevel == NEWWORLD_ZEN)

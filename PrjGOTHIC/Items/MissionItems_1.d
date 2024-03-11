@@ -134,6 +134,7 @@ func void Use_TheklasPacket()
 	CreateInvItems(hero,ItPl_Speed_Herb_01,1);
 	CreateInvItems(hero,ItPl_Blueplant,2);
 	Print(PRINT_GotPlants);
+	TheklasPaket_Open = TRUE;
 };
 
 
