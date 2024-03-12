@@ -648,6 +648,7 @@ func void DIA_Xardas_FirstPal_Info()
 	};
 	if((LesterMovedToXardas == FALSE) && (Lester_SentToXardas == TRUE))
 	{
+		AI_Teleport(Lester,"NW_XARDAS_TOWER_IN1_14");
 		B_StartOtherRoutine(Lester,"XARDAS");
 		LesterMovedToXardas = TRUE;
 		//сброс диалога, иначе DIA_Xardas_ABOUTLESTER становится доступным и ломает остальные опции

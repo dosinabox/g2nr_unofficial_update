@@ -34,8 +34,7 @@ instance DIA_PAL_263_PERM(C_Info)
 
 func int DIA_PAL_263_PERM_Condition()
 {
-//	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
-	if(hero.guild == GIL_PAL)
+	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 	{
 		return TRUE;
 	};
@@ -44,7 +43,10 @@ func int DIA_PAL_263_PERM_Condition()
 func void DIA_PAL_263_PERM_Info()
 {
 	AI_Output(other,self,"DIA_PAL_263_PERM_15_00");	//Докладывай, солдат!
-	AI_Output(self,other,"DIA_PAL_263_PERM_04_01");	//Есть, сэр! Удерживаю позицию, как приказано. Потери минимальны. Провизия кончается, орки спокойны.
+	if(hero.guild == GIL_PAL)
+	{
+		AI_Output(self,other,"DIA_PAL_263_PERM_04_01");	//Есть, сэр! Удерживаю позицию, как приказано. Потери минимальны. Провизия кончается, орки спокойны.
+	};
 	AI_Output(self,other,"DIA_PAL_263_PERM_04_02");	//Последняя атака дракона полностью уничтожила внешнюю стену. Но с тех пор не происходило ничего необычного.
 	AI_Output(other,self,"DIA_PAL_263_PERM_15_03");	//Хорошо, держись.
 };
@@ -75,6 +77,7 @@ func void DIA_PAL_263_PERM_CIV_Info()
 	AI_Output(self,other,"DIA_PAL_263_PERM_OTH_04_01");	//Мы держим ситуацию под контролем. Тебе не о чем беспокоиться, гражданский. Все будет хорошо.
 };
 
+
 instance DIA_PAL_263_PERM_OTH(C_Info)
 {
 	npc = PAL_263_Wache;
@@ -88,7 +91,7 @@ instance DIA_PAL_263_PERM_OTH(C_Info)
 
 func int DIA_PAL_263_PERM_OTH_Condition()
 {
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
+	if((hero.guild == GIL_MIL) || (hero.guild == GIL_NOV) || (hero.guild == GIL_KDF) || (hero.guild == GIL_NONE))
 	{
 		return TRUE;
 	};

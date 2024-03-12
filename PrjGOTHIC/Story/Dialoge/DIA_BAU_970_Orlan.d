@@ -458,12 +458,9 @@ instance DIA_Orlan_HotelZimmer(C_Info)
 };
 
 
-var int Orlan_SCGotHotelZimmer;
-var int Orlan_SCGotHotelZimmerDay;
-
 func int DIA_Orlan_HotelZimmer_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && (Orlan_SCGotHotelZimmer == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && (Orlan_RoomIsRented == FALSE) && (Orlan_RoomPaymentRefused == FALSE))
 	{
 		return TRUE;
 	};
@@ -477,7 +474,6 @@ func void DIA_Orlan_HotelZimmer_Info()
 		if((SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
 		{
 			AI_Output(self,other,"DIA_Addon_Orlan_HotelZimmer_05_00");	//Братья по Кольцу живут у меня бесплатно.
-			Orlan_RangerHelpZimmer = TRUE;
 		}
 		else if(hero.guild == GIL_PAL)
 		{
@@ -490,8 +486,8 @@ func void DIA_Orlan_HotelZimmer_Info()
 		AI_Output(self,other,"DIA_Orlan_HotelZimmer_05_03");	//Вот ключ от верхних комнат. Выбирай, которая больше понравится.
 		CreateInvItems(self,ItKe_Orlan_HotelZimmer,1);
 		B_GiveInvItems(self,other,ItKe_Orlan_HotelZimmer,1);
-		Orlan_SCGotHotelZimmer = TRUE;
-		Orlan_SCGotHotelZimmerDay = Wld_GetDay();
+		Orlan_RoomIsRented = TRUE;
+		Orlan_RoomIsFree = TRUE;
 	}
 	else
 	{
@@ -510,8 +506,8 @@ func void DIA_Orlan_HotelZimmer_ja()
 		AI_Output(self,other,"DIA_Orlan_HotelZimmer_ja_05_01");	//А вот ключ. Комнаты находятся вверх по лестнице. Но не загадь ее и не забывай платить ренту вовремя, понятно?
 		CreateInvItems(self,ItKe_Orlan_HotelZimmer,1);
 		B_GiveInvItems(self,other,ItKe_Orlan_HotelZimmer,1);
-		Orlan_SCGotHotelZimmer = TRUE;
-		Orlan_SCGotHotelZimmerDay = Wld_GetDay();
+		Orlan_RoomIsRented = TRUE;
+		Orlan_RoomPaymentDay = Wld_GetDay();
 	}
 	else
 	{
@@ -528,8 +524,6 @@ func void DIA_Orlan_HotelZimmer_nein()
 };
 
 
-var int Orlan_AngriffWegenMiete;
-
 instance DIA_Orlan_MieteFaellig(C_Info)
 {
 	npc = BAU_970_Orlan;
@@ -541,30 +535,14 @@ instance DIA_Orlan_MieteFaellig(C_Info)
 };
 
 
-var int DIA_Orlan_MieteFaellig_NoMore;
-
 func int DIA_Orlan_MieteFaellig_Condition()
 {
-	if((SC_IsRanger == TRUE) || (Orlan_RangerHelpZimmer == TRUE) || (Orlan_KnowsSCAsRanger == TRUE) || AnyRangerRingEquipped())
+	if((Orlan_RoomIsRented == TRUE) && (Orlan_RoomIsFree == FALSE) && (Orlan_RoomPaymentRefused == FALSE) && (SC_IsRanger == FALSE) && (Orlan_KnowsSCAsRanger == FALSE) && !AnyRangerRingEquipped())
 	{
-		return FALSE;
-	};
-	if((Orlan_AngriffWegenMiete == TRUE) && (DIA_Orlan_MieteFaellig_NoMore == FALSE))
-	{
-		if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
+		if(Orlan_RoomPaymentDay <= (Wld_GetDay() - 7))
 		{
-			return FALSE;
+			return TRUE;
 		};
-		if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_WON)
-		{
-			Orlan_SCGotHotelZimmerDay = Wld_GetDay();
-			Orlan_AngriffWegenMiete = FALSE;
-			return FALSE;
-		};
-	};
-	if((Orlan_SCGotHotelZimmer == TRUE) && (Orlan_SCGotHotelZimmerDay <= (Wld_GetDay() - 7)) && (DIA_Orlan_MieteFaellig_NoMore == FALSE))
-	{
-		return TRUE;
 	};
 };
 
@@ -573,7 +551,7 @@ func void DIA_Orlan_MieteFaellig_Info()
 	if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Orlan_MieteFaellig_05_00");	//(неискренне) Я очень рад визиту такого гостя. Оставайся здесь, сколько пожелаешь. Это честь для меня.
-		DIA_Orlan_MieteFaellig_NoMore = TRUE;
+		Orlan_RoomIsFree = TRUE;
 	}
 	else
 	{
@@ -600,7 +578,7 @@ func void DIA_Orlan_MieteFaellig_ja()
 			AI_Output(self,other,"DIA_Orlan_MieteFaellig_ja_05_04");	//Мммм. Ну, да. Это, в общем-то, не мое дело.
 			DIA_Orlan_MieteFaellig_OneTime = TRUE;
 		};
-		Orlan_SCGotHotelZimmerDay = Wld_GetDay();
+		Orlan_RoomPaymentDay = Wld_GetDay();
 		Info_ClearChoices(DIA_Orlan_MieteFaellig);
 	}
 	else
@@ -615,7 +593,8 @@ func void DIA_Orlan_MieteFaellig_nein()
 {
 	AI_Output(other,self,"DIA_Orlan_MieteFaellig_nein_15_00");	//Забудь об этом. Я больше не буду платить тебе.
 	AI_Output(self,other,"DIA_Orlan_MieteFaellig_nein_05_01");	//Тогда мне придется проучить тебя. Презренный жулик!
-	Orlan_AngriffWegenMiete = TRUE;
+	Orlan_RoomPaymentRefused = TRUE;
+	Orlan_RoomIsRented = FALSE;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
@@ -667,32 +646,26 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 	{
 		Npc_ExchangeRoutine(self,"START");
 	};
-	if(Hlp_IsValidNpc(Randolph))
+	if((Kapitel < 4) || ((Kapitel >= 4) && (other.guild != GIL_KDF)))
 	{
-		if((Kapitel < 4) || ((Kapitel >= 4) && (other.guild != GIL_KDF)))
+		if(Rukhar_Won_Wettkampf == TRUE)
 		{
-			if(Rukhar_Won_Wettkampf == TRUE)
-			{
-				B_StartOtherRoutine(Randolph,"WETTKAMPFRANDOLPHLOST");
-			}
-			else
-			{
-				B_StartOtherRoutine(Randolph,"START");
-			};
+			B_StartOtherRoutine(Randolph,"WETTKAMPFRANDOLPHLOST");
+		}
+		else
+		{
+			B_StartOtherRoutine(Randolph,"START");
 		};
 	};
-	if(Hlp_IsValidNpc(Rukhar))
+	if(Kapitel < 4)
 	{
-		if(Kapitel < 4)
+		if(Rukhar_Won_Wettkampf == TRUE)
 		{
-			if(Rukhar_Won_Wettkampf == TRUE)
-			{
-				B_StartOtherRoutine(Rukhar,"WETTKAMPFRUKHARWON");
-			}
-			else
-			{
-				B_StartOtherRoutine(Rukhar,"WETTKAMPFRUKHARLOST");
-			};
+			B_StartOtherRoutine(Rukhar,"WETTKAMPFRUKHARWON");
+		}
+		else
+		{
+			B_StartOtherRoutine(Rukhar,"WETTKAMPFRUKHARLOST");
 		};
 	};
 	MIS_Rukhar_Wettkampf = LOG_SUCCESS;

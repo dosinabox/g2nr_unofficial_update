@@ -1841,7 +1841,7 @@ instance SVM_10(C_SVM)
 	abs_good = "SVM_10_ABS_GOOD";	//Это честно.
 	sheepkiller_crime = "SVM_10_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
 	attack_crime = "SVM_10_ATTACK_CRIME";	//Ты бандит - убирайся!
-	theft_crime = "SVM_10_THEFT_CRIME";	//Проклятый вор! я не хочу видеть тебя!
+	theft_crime = "SVM_10_THEFT_CRIME";	//Проклятый вор! Я не хочу видеть тебя!
 	pal_city_crime = "SVM_10_PAL_CITY_CRIME";	//Я не ожидал такого от паладина! Лорд Хаген будет недоволен.
 	mil_city_crime = "SVM_10_MIL_CITY_CRIME";	//Как такой, как ты, вообще мог попасть в городскую стражу? Лорд Андрэ заставит тебя заплатить за это!
 	city_crime = "SVM_10_CITY_CRIME";	//Лорд Андрэ узнает о твоем поведении!
