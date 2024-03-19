@@ -124,8 +124,8 @@ func int DIA_PAL_205_Torwache_SecondWarn_Condition()
 		{
 			return FALSE;
 		};
-	}
-	else if(C_NpcHasGuardStatus(self,PAL_205_Checkpoint,GP_FirstWarnGiven))
+	};
+	if(C_NpcHasGuardStatus(self,PAL_205_Checkpoint,GP_FirstWarnGiven))
 	{
 		return TRUE;
 	};
@@ -163,8 +163,8 @@ func int DIA_PAL_205_Torwache_Attack_Condition()
 		{
 			return FALSE;
 		};
-	}
-	else if(C_NpcHasGuardStatus(self,PAL_205_Checkpoint,GP_SecondWarnGiven))
+	};
+	if(C_NpcHasGuardStatus(self,PAL_205_Checkpoint,GP_SecondWarnGiven))
 	{
 		return TRUE;
 	};

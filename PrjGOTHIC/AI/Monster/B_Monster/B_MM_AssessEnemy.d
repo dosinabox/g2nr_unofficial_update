@@ -93,7 +93,7 @@ func void B_MM_AssessEnemy()
 	};
 	if(Npc_IsInState(self,ZS_MM_EatBody))
 	{
-		if((self.guild != GIL_Giant_Rat) && (Npc_GetDistToNpc(self,other) <= FIGHT_DIST_MONSTER_ATTACKRANGE))
+		if((self.guild != GIL_GIANT_RAT) && (Npc_GetDistToNpc(self,other) <= FIGHT_DIST_MONSTER_ATTACKRANGE))
 		{
 			Npc_ClearAIQueue(self);
 			Npc_SetTarget(self,other);

@@ -42,7 +42,7 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-		if(oth.guild == GIL_Giant_Rat)
+		if(oth.guild == GIL_GIANT_RAT)
 		{
 			return TRUE;
 		};
@@ -99,7 +99,7 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 			return TRUE;
 		};
 	}
-	else if(slf.guild == GIL_Giant_Rat)
+	else if(slf.guild == GIL_GIANT_RAT)
 	{
 		if(oth.guild < GIL_SEPERATOR_HUM)
 		{
@@ -113,7 +113,7 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-		if(oth.guild == GIL_Giant_Rat)
+		if(oth.guild == GIL_GIANT_RAT)
 		{
 			return TRUE;
 		};
@@ -216,7 +216,7 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 			{
 				return TRUE;
 			};
-			if(oth.guild == GIL_Giant_Rat)
+			if(oth.guild == GIL_GIANT_RAT)
 			{
 				return TRUE;
 			};
@@ -278,7 +278,7 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-		if(oth.guild == GIL_Giant_Rat)
+		if(oth.guild == GIL_GIANT_RAT)
 		{
 			return TRUE;
 		};
@@ -333,7 +333,7 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-		if(oth.guild == GIL_Giant_Rat)
+		if(oth.guild == GIL_GIANT_RAT)
 		{
 			return TRUE;
 		};
