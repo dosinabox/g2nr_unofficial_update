@@ -254,7 +254,7 @@ const int GIL_MOLERAT = 48;
 const int GIL_ALLIGATOR = 49;
 const int GIL_SWAMPGOLEM = 50;
 const int GIL_Stoneguardian = 51;
-const int GIL_Gargoyle = 52;
+const int GIL_SHADOWBEAST_FIRE = 52;
 const int GIL_WISP = 53;
 const int GIL_SummonedGuardian = 54;
 const int GIL_SummonedZombie = 55;
@@ -814,7 +814,7 @@ const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2024;
 const int FIX_DATE_MONTH = 3;
-const int FIX_DATE_DAY = 19;
+const int FIX_DATE_DAY = 20;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;

@@ -48,7 +48,6 @@ func void DIA_Addon_Greg_NW_Hallo_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_01_04");	//Ты не дурак, я вижу это по твоим глазам.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_01_05");	//Наверняка ты хочешь заработать пригоршню золотых монет, не так ли?
 	B_InsertGregWolfs();
-//	SC_MeetsGregTime = 1;
 	Info_ClearChoices(DIA_Addon_Greg_NW_Hallo);
 	Info_AddChoice(DIA_Addon_Greg_NW_Hallo,"Мне надо идти.",DIA_Addon_Greg_NW_Hallo_weg);
 	Info_AddChoice(DIA_Addon_Greg_NW_Hallo,"Довольно болтать. Говори, чего ты хочешь.",DIA_Addon_Greg_NW_Hallo_schleim);
@@ -185,7 +184,7 @@ func void DIA_Addon_Greg_NW_Stadtwachen_klamotten()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_01_06");	//У меня есть предчувствие, что мы скоро встретимся снова.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_01_07");	//И кто знает, может быть, у меня будет возможность отплатить тебе услугой за услугу. Береги себя!
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Markt");
+	Npc_ExchangeRoutine(self,"MARKT");
 	B_LogEntry(TOPIC_Addon_Greg_NW,"Я дал ему одежду крестьянина. В ней он может пройти в город.");
 	MIS_Addon_Greg_BringMeToTheCity = LOG_SUCCESS;
 };
@@ -410,8 +409,8 @@ func void DIA_Addon_Greg_NW_was_NoHelp()
 	{
 		AI_UseMob(self,"BENCH",-1);
 	};
-	Npc_ExchangeRoutine(self,"Bigcross");
-	B_StartOtherRoutine(BAU_974_Bauer,"Start");
+	Npc_ExchangeRoutine(self,"BIGCROSS");
+	B_StartOtherRoutine(BAU_974_Bauer,"START");
 };
 
 func void DIA_Addon_Greg_NW_was_Gold()
@@ -512,7 +511,7 @@ func void DIA_Addon_Greg_NW_RakeCaveLos_Info()
 	{
 		AI_UseMob(self,"BENCH",-1);
 	};
-	Npc_ExchangeRoutine(self,"RakeCave");
+	Npc_ExchangeRoutine(self,"RAKECAVE");
 };
 
 func void B_Greg_GoNow()
@@ -533,9 +532,12 @@ instance DIA_Addon_Greg_NW_RakeCaveThere(C_Info)
 
 func int DIA_Addon_Greg_NW_RakeCaveThere_Condition()
 {
-	if((MIS_Addon_Greg_RakeCave == LOG_Running) && (GregLocation >= Greg_Taverne) && (GregLocation < Greg_Dexter) && (Npc_GetDistToWP(self,"NW_BIGFARM_LAKE_CAVE_01") < 1000))
+	if((MIS_Addon_Greg_RakeCave == LOG_Running) && (GregLocation >= Greg_Taverne) && (GregLocation < Greg_Dexter))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_BIGFARM_LAKE_CAVE_01") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -568,9 +570,12 @@ instance DIA_Addon_Greg_NW_RakeCavePlundered(C_Info)
 
 func int DIA_Addon_Greg_NW_RakeCavePlundered_Condition()
 {
-	if(((MIS_Addon_Greg_RakeCave_Day <= (Wld_GetDay() - 2)) || (RAKEPLACE[1] == TRUE)) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (GregLocation >= Greg_Taverne) && (GregLocation < Greg_Dexter) && (Npc_GetDistToWP(self,"NW_BIGFARM_LAKE_CAVE_01") < 1000))
+	if(((MIS_Addon_Greg_RakeCave_Day <= (Wld_GetDay() - 2)) || (RAKEPLACE[1] == TRUE)) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (GregLocation >= Greg_Taverne) && (GregLocation < Greg_Dexter))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_BIGFARM_LAKE_CAVE_01") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -597,8 +602,8 @@ func void DIA_Addon_Greg_NW_RakeCavePlundered_No()
 	AI_StopProcessInfos(self);
 	MIS_Addon_Greg_RakeCave = LOG_OBSOLETE;
 	GregLocation = Greg_Bigcross;
-	Npc_ExchangeRoutine(self,"Bigcross");
-	B_StartOtherRoutine(BAU_974_Bauer,"Start");
+	Npc_ExchangeRoutine(self,"BIGCROSS");
+	B_StartOtherRoutine(BAU_974_Bauer,"START");
 };
 
 
@@ -645,7 +650,7 @@ func void DIA_Addon_Greg_NW_RakeCavePlundered_gold()
 		AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_gold_01_07");	//Я буду ждать тебя у перекрестка на полях Онара. Не подведи меня - ты об этом пожалеешь.
 		AI_StopProcessInfos(self);
 		GregLocation = Greg_Bigcross;
-		Npc_ExchangeRoutine(self,"Bigcross");
+		Npc_ExchangeRoutine(self,"BIGCROSS");
 		B_GivePlayerXP(XP_Addon_RakeCavePlundered);
 	}
 	else
@@ -655,7 +660,7 @@ func void DIA_Addon_Greg_NW_RakeCavePlundered_gold()
 		AI_StopProcessInfos(self);
 		MIS_Addon_Greg_RakeCave = LOG_FAILED;
 		GregLocation = Greg_Bigcross;
-		Npc_ExchangeRoutine(self,"Bigcross");
+		Npc_ExchangeRoutine(self,"BIGCROSS");
 		B_Attack(self,other,AR_NONE,1);
 	};
 };
@@ -674,9 +679,12 @@ instance DIA_Addon_Greg_NW_LakeCave(C_Info)
 
 func int DIA_Addon_Greg_NW_LakeCave_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (GregLocation >= Greg_Taverne) && (GregLocation < Greg_Dexter) && (Npc_GetDistToWP(self,"NW_BIGFARM_LAKE_CAVE_01") < 1000) && (Greg_SuchWeiter == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (GregLocation >= Greg_Taverne) && (GregLocation < Greg_Dexter) && (Greg_SuchWeiter == FALSE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_BIGFARM_LAKE_CAVE_01") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -762,9 +770,12 @@ instance DIA_Addon_Greg_NW_Bigcross(C_Info)
 
 func int DIA_Addon_Greg_NW_Bigcross_Condition()
 {
-	if((GregLocation == Greg_Bigcross) && (Npc_GetDistToWP(self,"BIGCROSS") < 1000))
+	if(GregLocation == Greg_Bigcross)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"BIGCROSS") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -802,9 +813,12 @@ instance DIA_Addon_Greg_NW_WhatWantFromSLD(C_Info)
 
 func int DIA_Addon_Greg_NW_WhatWantFromSLD_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Greg_NW_Bigcross) && (GregLocation == Greg_Bigcross) && (Npc_GetDistToWP(self,"BIGCROSS") < 1000))
+	if(Npc_KnowsInfo(other,DIA_Addon_Greg_NW_Bigcross) && (GregLocation == Greg_Bigcross))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"BIGCROSS") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -835,7 +849,6 @@ instance DIA_Addon_Greg_NW_DexterFound(C_Info)
 
 func int DIA_Addon_Greg_NW_DexterFound_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Addon_Greg_NW_Bigcross) && (GregLocation == Greg_Bigcross) && ((Bdt13_Dexter_verraten == TRUE) || (Ranger_SCKnowsDexter == TRUE)))
 	if((SC_KnowsGregsSearchsDexter == TRUE) && ((Bdt13_Dexter_verraten == TRUE) || (Ranger_SCKnowsDexter == TRUE)) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_CaughtDexter2))
 	{
 		return TRUE;
@@ -855,7 +868,7 @@ func void DIA_Addon_Greg_NW_DexterFound_Info()
 		Info_ClearChoices(DIA_Addon_Greg_NW_DexterFound);
 		Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Ну, я просто предположил.",DIA_Addon_Greg_NW_DexterFound_weg);
 		Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Давай пойдем вместе.",DIA_Addon_Greg_NW_DexterFound_together);
-		Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Я могу помочь тебе его найти.",DIA_Addon_Greg_NW_DexterFound_wo);
+		Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Думаю, я могу помочь тебе его найти.",DIA_Addon_Greg_NW_DexterFound_wo);
 	};
 };
 
@@ -874,7 +887,7 @@ func void DIA_Addon_Greg_NW_DexterFound_together()
 
 func void DIA_Addon_Greg_NW_DexterFound_wo()
 {
-	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_together_15_00");	//Я могу помочь тебе его найти.
+	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_wo_15_00");	//Думаю, я могу помочь тебе его найти.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_01");	//Действительно? И где же он сейчас?
 	if(GregLocation == Greg_Bigcross)
 	{
@@ -910,9 +923,15 @@ instance DIA_Addon_Greg_NW_CaughtDexter(C_Info)
 
 func int DIA_Addon_Greg_NW_CaughtDexter_Condition()
 {
-	if((GregLocation == Greg_Dexter) && !Npc_IsDead(Dexter))
+	if((GregLocation == Greg_Dexter) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_WodennNu))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Dexter))
+		{
+			if(Npc_GetDistToWP(self,"NW_CASTLEMINE_HUT_10") >= 500)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -922,7 +941,7 @@ func void DIA_Addon_Greg_NW_CaughtDexter_Info()
 	AI_Output(other,self,"DIA_Addon_Greg_NW_CaughtDexter_15_01");	//Кто, главарь? Прямо здесь.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_CaughtDexter_01_02");	//Тогда прочь с моей дороги!
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"DexterHouseRun");
+	Npc_ExchangeRoutine(self,"DEXTERHOUSERUN");
 };
 
 
@@ -938,9 +957,15 @@ instance DIA_Addon_Greg_NW_WodennNu(C_Info)
 
 func int DIA_Addon_Greg_NW_WodennNu_Condition()
 {
-	if((GregLocation == Greg_Dexter) && !Npc_IsDead(Dexter) && (Npc_GetDistToWP(self,"NW_CASTLEMINE_HUT_10") < 500))
+	if(GregLocation == Greg_Dexter)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Dexter))
+		{
+			if(Npc_GetDistToWP(self,"NW_CASTLEMINE_HUT_10") < 500)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -950,6 +975,7 @@ func void DIA_Addon_Greg_NW_WodennNu_Info()
 	AI_Output(other,self,"DIA_Addon_Greg_NW_WodennNu_15_01");	//Был здесь.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WodennNu_01_02");	//Ну так пойди и отыщи его!
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"DEXTERHOUSEWALK");
 };
 
 
@@ -965,9 +991,12 @@ instance DIA_Addon_Greg_NW_CaughtDexter2(C_Info)
 
 func int DIA_Addon_Greg_NW_CaughtDexter2_Condition()
 {
-	if((GregLocation == Greg_Dexter) && Npc_IsDead(Dexter))
+	if(GregLocation == Greg_Dexter)
 	{
-		return TRUE;
+		if(Npc_IsDead(Dexter))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -976,7 +1005,10 @@ func void DIA_Addon_Greg_NW_CaughtDexter2_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_CaughtDexter2_01_00");	//Ага. Значит, Декстер свое получил?
 	AI_Output(other,self,"DIA_Addon_Greg_NW_CaughtDexter2_15_01");	//Похоже, он мертв.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_CaughtDexter2_01_02");	//Не могу сказать, что мне его жалко. Проверь, что у него было с собой.
-	Npc_ExchangeRoutine(self,"DexterHouseWalk");
+	if(!Npc_KnowsInfo(other,DIA_Addon_Greg_NW_WodennNu))
+	{
+		Npc_ExchangeRoutine(self,"DEXTERHOUSEWALK");
+	};
 	B_GivePlayerXP(XP_Ambient);
 };
 
@@ -1012,7 +1044,7 @@ instance DIA_Addon_Greg_NW_RavensLetter(C_Info)
 
 func int DIA_Addon_Greg_NW_RavensLetter_Condition()
 {
-	if((GregLocation == Greg_Dexter) && Npc_KnowsInfo(other,DIA_Addon_Greg_NW_CaughtDexter2) && Npc_HasItems(other,ItWr_RavensKidnapperMission_Addon) && Npc_IsDead(Dexter))
+	if(Npc_KnowsInfo(other,DIA_Addon_Greg_NW_CaughtDexter2) && Npc_HasItems(other,ItWr_RavensKidnapperMission_Addon))
 	{
 		return TRUE;
 	};
@@ -1055,7 +1087,7 @@ func void DIA_Addon_Greg_NW_WasWillstDu_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_01_01");	//Я приплыл сюда из-за северо-восточных гор. И я хочу туда вернуться.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_01_02");	//Я надеялся, что этот ублюдок расскажет мне, как добраться туда без корабля.
 	B_GregTalksAboutPortal();
-	Npc_ExchangeRoutine(self,"DexterThrone");
+	Npc_ExchangeRoutine(self,"DEXTERTHRONE");
 };
 
 instance DIA_Addon_Greg_NW_Loc(C_Info)

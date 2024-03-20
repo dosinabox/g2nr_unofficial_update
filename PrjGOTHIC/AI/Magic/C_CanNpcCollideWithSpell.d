@@ -11,7 +11,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 {
 	if(spellType == SPL_Whirlwind)
 	{
-		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || C_NpcIsGolem(self) || (self.guild == GIL_WISP) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON) || (self.flags == NPC_FLAG_IMMORTAL) || (self.guild == GIL_SHADOWBEAST) || (self.guild == GIL_Gargoyle))
+		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || C_NpcIsGolem(self) || (self.guild == GIL_WISP) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON) || (self.flags == NPC_FLAG_IMMORTAL) || (self.guild == GIL_SHADOWBEAST) || (self.guild == GIL_SHADOWBEAST_SKELETON) || (self.guild == GIL_SHADOWBEAST_FIRE))
 		{
 			return COLL_DONOTHING;
 		};
@@ -95,7 +95,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_SuckEnergy)
 	{
-		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || (self.guild > GIL_SEPERATOR_HUM) || (self.flags == NPC_FLAG_IMMORTAL) || (Npc_GetDistToNpc(self,other) > 1000) || (self.guild == GIL_DMT))
+		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || (self.guild > GIL_SEPERATOR_HUM) || (self.flags == NPC_FLAG_IMMORTAL) || (Npc_GetDistToNpc(self,other) > FIGHT_DIST_RANGED_OUTER) || (self.guild == GIL_DMT))
 		{
 			return COLL_DONOTHING;
 		};
@@ -103,7 +103,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_GreenTentacle)
 	{
-		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || C_NpcIsGateGuard(self) || (self.guild == GIL_BLOODFLY) || (self.guild == GIL_WISP) || (self.guild == GIL_DEMON) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON) || (self.guild == GIL_HARPY) || (self.aivar[AIV_MM_REAL_ID] == ID_SKELETON_MAGE) || (self.guild == GIL_Gargoyle))
+		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || C_NpcIsGateGuard(self) || C_NpcIsDemon(self) || (self.guild == GIL_BLOODFLY) || (self.guild == GIL_WISP) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON) || (self.guild == GIL_HARPY) || (self.aivar[AIV_MM_REAL_ID] == ID_SKELETON_MAGE) || (self.guild == GIL_SHADOWBEAST_FIRE))
 		{
 			return COLL_DONOTHING;
 		};
@@ -111,7 +111,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_Swarm)
 	{
-		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || C_NpcIsGolem(self) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_BLOODFLY) || (self.guild == GIL_WISP) || (self.guild == GIL_DRAGON) || (self.guild == GIL_Gargoyle) || (self.guild == GIL_DMT) || C_NpcIsUndead(self))
+		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || C_NpcIsGolem(self) || C_NpcIsDemon(self) || C_NpcIsUndead(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_BLOODFLY) || (self.guild == GIL_WISP) || (self.guild == GIL_DRAGON) || (self.guild == GIL_SHADOWBEAST_FIRE) || (self.guild == GIL_DMT))
 		{
 			return COLL_DONOTHING;
 		};
@@ -135,7 +135,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		{
 			return COLL_DONOTHING;
 		};
-		if((Npc_GetDistToNpc(other,self) >= 1000) || (self.guild == GIL_WISP))
+		if((Npc_GetDistToNpc(other,self) >= FIGHT_DIST_RANGED_OUTER) || (self.guild == GIL_WISP))
 		{
 			return COLL_DONOTHING;
 		};
@@ -232,14 +232,6 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		};
 		return COLL_DOEVERYTHING;
 	};
-	/*if(spellType == SPL_Fear)
-	{
-		if(!C_NpcIsGolem(self) && (self.guild != GIL_SWAMPSHARK) && (self.guild != GIL_TROLL) && !C_NpcIsEvil(self) && !C_NpcIsGateGuard(self) && (self.guild != GIL_KDF) && (self.guild != GIL_PAL) && (self.guild != GIL_KDW) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Vatras)))
-		{
-			return COLL_DOEVERYTHING;
-		};
-		return COLL_DONOTHING;
-	};*/
 	if(spellType == SPL_DestroyUndead)
 	{
 		if(C_NpcIsUndead(self))
@@ -254,7 +246,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_BreathOfDeath)
 	{
-		if((Npc_GetDistToNpc(other,self) < 1000) && !C_NpcIsUndead(self))
+		if((Npc_GetDistToNpc(other,self) < FIGHT_DIST_RANGED_OUTER) && !C_NpcIsUndead(self))
 		{
 			if((self.guild == GIL_DRAGON) || Npc_IsPlayer(self))
 			{
@@ -286,7 +278,6 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_Shrink)
 	{
-//		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || (self.guild == GIL_DRAGON) || (self.guild < GIL_SEPERATOR_HUM))
 		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || (self.guild < GIL_SEPERATOR_HUM))
 		{
 			return COLL_DONOTHING;

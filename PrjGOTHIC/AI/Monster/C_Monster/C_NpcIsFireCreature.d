@@ -5,11 +5,11 @@ func int C_NpcIsFireCreature(var C_Npc slf)
 	{
 		return TRUE;
 	};
-	if(slf.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN)
+	if(slf.guild == GIL_SHADOWBEAST_FIRE)
 	{
 		return TRUE;
 	};
-	if(slf.aivar[AIV_MM_REAL_ID] == ID_SHADOWBEAST_FIRE)
+	if(slf.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN)
 	{
 		return TRUE;
 	};

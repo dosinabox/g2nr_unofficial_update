@@ -1230,28 +1230,31 @@ func int DIA_Lord_Hagen_ANTIPALADINE_Condition()
 func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_00");	//Элитные воины орков нападают на наши земли.
-	if(hero.guild == GIL_PAL)
+	if((TalkedTo_AntiPaladin == TRUE) && (MIS_KillOrkOberst == FALSE))
+	{
+		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_01");	//Откуда у тебя такая информация?
+		AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_02");	//Я говорил с одним из них. Твое имя также упоминалось.
+	};
+	AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_03");	//Чушь. Мои люди не докладывали о массированном вторжении орков.
+	AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_04");	//Возможно, какие-то их разведчики заблудились в близлежащих лесах.
+	if((hero.guild == GIL_PAL) && (Hagen_KnowsOrcElite == FALSE))
 	{
 		Log_CreateTopic(TOPIC_OrcElite,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_OrcElite,LOG_Running);
 		B_LogEntry(TOPIC_OrcElite,"Я рассказал лорду Хагену о приближающихся ордах предводителей орков.");
-		if((TalkedTo_AntiPaladin == TRUE) && (MIS_KillOrkOberst == FALSE))
+	};
+	if(Npc_HasItems(other,ItRi_OrcEliteRing))
+	{
+		AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_05");	//Это не разведчики. Я взял это кольцо с трупа одного из них.
+		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_06");	//Покажи.
+		B_GiveInvItems(other,self,ItRi_OrcEliteRing,1);
+		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_07");	//Ох... Это действительно неприятно.
+		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_08");	//Это знак их силы. Значит, орки выбрались из-за своих частоколов и сражаются в открытом поле.
+		AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_09");	//Я не видел, чтобы их было много. В основном, это их предводители и всего несколько бойцов.
+		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_10");	//Да? Значит, они замышляют что-то еще. Это не похоже на орков, чтобы их лидеры в одиночку покидали свои защитные частоколы.
+		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_11");	//Но, впрочем, это может стать хорошей возможностью нанести им чувствительный удар.
+		if(hero.guild == GIL_PAL)
 		{
-			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_01");	//Откуда у тебя такая информация?
-			AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_02");	//Я говорил с одним из них. Твое имя также упоминалось.
-		};
-		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_03");	//Чушь. Мои люди не докладывали о массированном вторжении орков.
-		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_04");	//Возможно, какие-то их разведчики заблудились в близлежащих лесах.
-		if(Npc_HasItems(other,ItRi_OrcEliteRing))
-		{
-			AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_05");	//Это не разведчики. Я взял это кольцо с трупа одного из них.
-			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_06");	//Покажи.
-			B_GiveInvItems(other,self,ItRi_OrcEliteRing,1);
-			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_07");	//Ох... Это действительно неприятно.
-			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_08");	//Это знак их силы. Значит, орки выбрались из-за своих частоколов и сражаются в открытом поле.
-			AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_09");	//Я не видел, чтобы их было много. В основном, это их предводители и всего несколько бойцов.
-			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_10");	//Да? Значит, они замышляют что-то еще. Это не похоже на орков, чтобы их лидеры в одиночку покидали свои защитные частоколы.
-			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_11");	//Но, впрочем, это может стать хорошей возможностью нанести им чувствительный удар.
 			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_12");	//Если они потеряют своих лидеров, их боевой дух резко снизится.
 			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_13");	//У тебя новое задание, рыцарь. Иди и убей всех лидеров орков, каких найдешь в прилежащих землях.
 			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_14");	//Принеси мне их кольца. Это будет серьезный удар по оркам.
@@ -1262,33 +1265,23 @@ func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 				AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_16");	//Элитные воины орков - его специализация. Ему часто приходилось иметь с ними дело.
 				Log_AddEntry(TOPIC_OrcElite,"Ингмар очень много знает об элитных воинах орков.");
 			};
-			Hagen_SawOrcRing = TRUE;
-			B_GivePlayerXP(XP_PAL_OrcRing);
-		}
-		else
-		{
-			if(MIS_KillOrkOberst == LOG_SUCCESS)
-			{
-				AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_17");	//Одного твоего слова, что ты убил полководца орков, недостаточно для меня.
-			};
-			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_18");	//Мне нужны вещественные доказательства, чтобы я мог принять меры.
-			Log_AddEntry(TOPIC_OrcElite,"Хаген отказывается верить мне. Он требует доказательств того, что элитные воины орков нападают на цивилизованные земли. Ну, меня бы удивило, если бы он повел себя по-другому.");
 		};
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_03");	//Чушь. Мои люди не докладывали о массированном вторжении орков.
-		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_04");	//Возможно, какие-то их разведчики заблудились в близлежащих лесах.
-		AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_05");	//Это не разведчики. Я взял это кольцо с трупа одного из них.
-		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_06");	//Покажи.
-		AI_PrintScreen("Кольцо отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_07");	//Ох... Это действительно неприятно.
-		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_08");	//Это знак их силы. Значит, орки выбрались из-за своих частоколов и сражаются в открытом поле.
-		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_11");	//Но, впрочем, это может стать хорошей возможностью нанести им чувствительный удар.
-		AI_PrintScreen("Кольцо получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		Hagen_SawOrcRing = TRUE;
 		B_GivePlayerXP(XP_PAL_OrcRing);
+	}
+	else if(hero.guild == GIL_PAL)
+	{
+		if(MIS_KillOrkOberst == LOG_SUCCESS)
+		{
+			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_17");	//Одного твоего слова, что ты убил полководца орков, недостаточно для меня.
+		};
+		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_18");	//Мне нужны вещественные доказательства, чтобы я мог принять меры.
+		if(Hagen_KnowsOrcElite == FALSE)
+		{
+			Log_AddEntry(TOPIC_OrcElite,"Хаген отказывается верить мне. Он требует доказательств того, что элитные воины орков нападают на цивилизованные земли. Ну, меня бы удивило, если бы он повел себя по-другому.");
+		};
 	};
+	Hagen_KnowsOrcElite = TRUE;
 };
 
 

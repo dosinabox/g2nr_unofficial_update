@@ -1426,3 +1426,4 @@ var int Orlan_RoomIsFree;
 var int Orlan_RoomIsRented;
 var int Orlan_RoomPaymentDay;
 var int Orlan_RoomPaymentRefused;
+var int Hagen_KnowsOrcElite;

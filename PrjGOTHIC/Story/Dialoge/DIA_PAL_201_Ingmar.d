@@ -211,14 +211,17 @@ func void DIA_Ingmar_ORKELITE_Info()
 	};
 	AI_Output(other,self,"DIA_Ingmar_ORKELITE_15_03");	//»х лидеры по€вились в этой местности.
 	AI_Output(self,other,"DIA_Ingmar_ORKELITE_06_04");	//ћмм. Ёто не похоже на типичную стратегию орков.
+	if(TOPIC_END_OrcElite == FALSE)
+	{
+		Log_CreateTopic(TOPIC_OrcElite,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_OrcElite,LOG_Running);
+	};
+	B_LogEntry(TOPIC_OrcElite,"»нгмар был очень заинтересован историей о вторжении орков.");
+	MIS_KillOrkOberst = LOG_Running;
 	Info_ClearChoices(DIA_Ingmar_ORKELITE);
 	Info_AddChoice(DIA_Ingmar_ORKELITE,"“ебе нужно найти способ избавить нас от них.",DIA_Ingmar_ORKELITE_loswerden);
 	Info_AddChoice(DIA_Ingmar_ORKELITE,"„то нам делать теперь?",DIA_Ingmar_ORKELITE_wasTun);
 	Info_AddChoice(DIA_Ingmar_ORKELITE,"„то это значит?",DIA_Ingmar_ORKELITE_wieso);
-	Log_CreateTopic(TOPIC_OrcElite,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_OrcElite,LOG_Running);
-	B_LogEntry(TOPIC_OrcElite,"»нгмар был очень заинтересован историей о вторжении орков.");
-	MIS_KillOrkOberst = LOG_Running;
 };
 
 func void DIA_Ingmar_ORKELITE_loswerden()
@@ -244,7 +247,6 @@ func void DIA_Ingmar_ORKELITE_wasTun()
 	AI_Output(self,other,"DIA_Ingmar_ORKELITE_wasTun_06_01");	// огда они встречаютс€ в таком количестве, это обычно диверсионна€ группа, возглавл€ема€ старшим по званию.
 	AI_Output(self,other,"DIA_Ingmar_ORKELITE_wasTun_06_02");	//Ётот высокопоставленный предводитель устраивает себе штаб-квартиру в одной из пещер, откуда направл€ет свои войска в бой.
 	AI_Output(self,other,"DIA_Ingmar_ORKELITE_wasTun_06_03");	//≈сли бы мы смогли добратьс€ до этого военачальника орков, мы получили бы решающее преимущество.
-	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_wo_15_00");	//ƒумаю, € могу помочь тебе его найти.
 	AI_Output(self,other,"DIA_Ingmar_ORKELITE_wasTun_06_04");	//¬оеначальник орков обычно предпочитает находитьс€ в непосредственной близости от своих врагов. я бы посоветовал поискать его пещеру где-нибудь неподалеку от города.
 	AI_Output(self,other,"DIA_Ingmar_ORKELITE_wasTun_06_05");	//Ќесколько орков было замечено у фермы Ћобарта. ћожет быть, тебе попробовать начать поиски именно оттуда?
 	B_LogEntry(TOPIC_OrcElite,"—огласно »нгмару, € должен найти полковника орков в пещере где-то неподалеку от фермы Ћобарта. »нгмар хочет, чтобы € убил его.");
@@ -265,9 +267,12 @@ instance DIA_Ingmar_HAUPTQUARTIER(C_Info)
 
 func int DIA_Ingmar_HAUPTQUARTIER_Condition()
 {
-	if(Npc_IsDead(AntiPaladin_NW) && Npc_KnowsInfo(other,DIA_Ingmar_ORKELITE))
+	if(MIS_KillOrkOberst == LOG_Running)
 	{
-		return TRUE;
+		if(Npc_IsDead(AntiPaladin_NW))
+		{
+			return TRUE;
+		};
 	};
 };
 
