@@ -13,7 +13,7 @@ instance VLK_470_Sarah(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_ShortSword5);
 	B_CreateItemToSteal(self,57,ItMi_Gold,60);
-	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe8",FaceBabe_N_Blondie,BodyTexBabe_N,ITAR_VlkBabe_L);
+	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabe_N_Blondie,BodyTexBabe_N,ITAR_VlkBabe_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);

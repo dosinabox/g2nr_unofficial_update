@@ -636,7 +636,6 @@ const string NAME_Addon_Harad_01 = "Изысканный меч";
 const string NAME_Addon_Harad_02 = "Изысканный длинный меч";
 const string NAME_Addon_Harad_03 = "Рубиновый клинок";
 const string NAME_Addon_Harad_04 = "Эль-бастардо";
-const string NAME_Addon_CassiasBelohnungsRing = "Кольцо жизни";
 const string NAME_Skill_Sneak = "Подкрадывание";
 const string NAME_Skill_PickPocket = "Карманная кража";
 const string NAME_Skill_PickLock = "Взлом замков";
