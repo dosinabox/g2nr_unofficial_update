@@ -839,6 +839,7 @@ const string PRINT_BiffsAnteil = "Доля Биффа: ";
 const string PRINT_Gold = " золотых";
 const string PRINT_Addon_SCIsWearingRangerRing = "Теперь вы носите знак 'Кольца Воды'.";
 const string PRINT_Used = "Использовано: ";
+const string PRINT_Selected = " (используется)";
 var string TEXT_Innoseye_Setting;
 const string TEXT_Innoseye_Setting_Broken = "Оправа этого амулета повреждена.";
 const string TEXT_Innoseye_Setting_Repaired = "Оправа этого амулета в целости и сохранности.";

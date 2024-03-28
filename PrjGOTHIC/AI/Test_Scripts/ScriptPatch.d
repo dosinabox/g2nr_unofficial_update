@@ -949,38 +949,10 @@ func void StoryHelper_IceDragonSpell()
 {
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_IceDragonSpell_BACK);
-	if(IceDragonSpell == SPL_InstantFireball)
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,ConcatStrings(NAME_SPL_InstantFireball," (используется)"),StoryHelper_IceDragonSpell_InstantFireball);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,NAME_SPL_InstantFireball,StoryHelper_IceDragonSpell_InstantFireball);
-	};
-	if(IceDragonSpell == SPL_IceLance)
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,ConcatStrings(NAME_SPL_IceLance," (используется)"),StoryHelper_IceDragonSpell_IceLance);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,NAME_SPL_IceLance,StoryHelper_IceDragonSpell_IceLance);
-	};
-	if(IceDragonSpell == SPL_ChargeZap)
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,ConcatStrings(NAME_SPL_ChargeZap," (используется)"),StoryHelper_IceDragonSpell_ChargeZap);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,NAME_SPL_ChargeZap,StoryHelper_IceDragonSpell_ChargeZap);
-	};
-	if(IceDragonSpell == SPL_Icebolt)
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,ConcatStrings(NAME_SPL_Icebolt," (используется)"),StoryHelper_IceDragonSpell_Icebolt);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,NAME_SPL_Icebolt,StoryHelper_IceDragonSpell_Icebolt);
-	};
+	Info_AddChoice(StoryHelper_PatchSettings,B_BuildOptionString(NAME_SPL_InstantFireball,IceDragonSpell,SPL_InstantFireball),StoryHelper_IceDragonSpell_InstantFireball);
+	Info_AddChoice(StoryHelper_PatchSettings,B_BuildOptionString(NAME_SPL_IceLance,IceDragonSpell,SPL_IceLance),StoryHelper_IceDragonSpell_IceLance);
+	Info_AddChoice(StoryHelper_PatchSettings,B_BuildOptionString(NAME_SPL_ChargeZap,IceDragonSpell,SPL_ChargeZap),StoryHelper_IceDragonSpell_ChargeZap);
+	Info_AddChoice(StoryHelper_PatchSettings,B_BuildOptionString(NAME_SPL_Icebolt,IceDragonSpell,SPL_Icebolt),StoryHelper_IceDragonSpell_Icebolt);
 };
 
 func void StoryHelper_IceDragonSpell_InstantFireball()

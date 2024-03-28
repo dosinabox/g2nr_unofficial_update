@@ -13,7 +13,7 @@ instance BAU_936_Rosi(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Axe);
 	B_CreateItemToSteal(self,30,ItMi_Gold,75);
-	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe7",FaceBabe_N_Hure,BodyTexBabe_N,ITAR_BauBabe_M);
+	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe8",FaceBabe_N_Hure,BodyTexBabe_N,ITAR_BauBabe_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);

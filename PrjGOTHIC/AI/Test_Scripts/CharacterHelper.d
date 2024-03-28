@@ -361,6 +361,7 @@ func void B_ClearHeroOverlays()
 func void B_ResetHeroSkin()
 {
 	G1BodySkin = FALSE;
+	G2BodySkin = FALSE;
 	SequelBodySkin = FALSE;
 	TattoosBodySkin = FALSE;
 	NakedBodySkin = FALSE;
@@ -469,6 +470,7 @@ func void CH_RESET_Ok()
 	hero.attribute[ATR_REGENERATEMANA] = 0;
 	Hero_HackChance = 10;
 	B_ResetHeroSkin();
+	G2BodySkin = TRUE;
 	B_SetHeroSkin();
 	B_ClearHeroOverlays();
 	B_ResetTalentSystem();
@@ -860,30 +862,9 @@ func void CH_Apprentice_Info()
 	{
 		Info_AddChoice(CH_Apprentice,"Сброс",CH_Apprentice_None);
 	};
-	if(Player_IsApprentice == APP_Bosper)
-	{
-		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_TROPHY_Fur,": Боспер (используется)"),CH_Apprentice_Bosper);
-	}
-	else
-	{
-		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_TROPHY_Fur,": Боспер"),CH_Apprentice_Bosper);
-	};
-	if(Player_IsApprentice == APP_Harad)
-	{
-		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Smith,": Гарад (используется)"),CH_Apprentice_Harad);
-	}
-	else
-	{
-		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Smith,": Гарад"),CH_Apprentice_Harad);
-	};
-	if(Player_IsApprentice == APP_Constantino)
-	{
-		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Alchemy,": Константино (используется)"),CH_Apprentice_Constantino);
-	}
-	else
-	{
-		Info_AddChoice(CH_Apprentice,ConcatStrings(NAME_Skill_Alchemy,": Константино"),CH_Apprentice_Constantino);
-	};
+	Info_AddChoice(CH_Apprentice,B_BuildOptionString(ConcatStrings(NAME_TROPHY_Fur,": Боспер"),Player_IsApprentice,APP_Bosper),CH_Apprentice_Bosper);
+	Info_AddChoice(CH_Apprentice,B_BuildOptionString(ConcatStrings(NAME_Skill_Smith,": Гарад"),Player_IsApprentice,APP_Harad),CH_Apprentice_Harad);
+	Info_AddChoice(CH_Apprentice,B_BuildOptionString(ConcatStrings(NAME_Skill_Alchemy,": Константино"),Player_IsApprentice,APP_Constantino),CH_Apprentice_Constantino);
 };
 
 func void CH_Apprentice_BACK()
@@ -4151,46 +4132,11 @@ func void CH_Skin_Info()
 {
 	Info_ClearChoices(CH_Skin);
 	Info_AddChoice(CH_Skin,Dialog_Back,CH_Skin_BACK);
-	if(G1BodySkin == TRUE)
-	{
-		Info_AddChoice(CH_Skin,"Без одежды",CH_Skin_Naked);
-		Info_AddChoice(CH_Skin,"Татуировки",CH_Skin_Tattoos);
-		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
-		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
-		Info_AddChoice(CH_Skin,"Готика 1 (используется)",CH_Skin_G1);
-	}
-	else if(SequelBodySkin == TRUE)
-	{
-		Info_AddChoice(CH_Skin,"Без одежды",CH_Skin_Naked);
-		Info_AddChoice(CH_Skin,"Татуировки",CH_Skin_Tattoos);
-		Info_AddChoice(CH_Skin,"Сиквел (используется)",CH_Skin_Sequel);
-		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
-		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
-	}
-	else if(NakedBodySkin == TRUE)
-	{
-		Info_AddChoice(CH_Skin,"Без одежды (используется)",CH_Skin_Naked);
-		Info_AddChoice(CH_Skin,"Татуировки",CH_Skin_Tattoos);
-		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
-		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
-		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
-	}
-	else if(TattoosBodySkin == TRUE)
-	{
-		Info_AddChoice(CH_Skin,"Без одежды",CH_Skin_Naked);
-		Info_AddChoice(CH_Skin,"Татуировки (используется)",CH_Skin_Tattoos);
-		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
-		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
-		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
-	}
-	else
-	{
-		Info_AddChoice(CH_Skin,"Без одежды",CH_Skin_Naked);
-		Info_AddChoice(CH_Skin,"Татуировки",CH_Skin_Tattoos);
-		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
-		Info_AddChoice(CH_Skin,"Готика 2 (используется)",CH_Skin_G2);
-		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
-	};
+	Info_AddChoice(CH_Skin,B_BuildOptionString("Без одежды",NakedBodySkin,TRUE),CH_Skin_Naked);
+	Info_AddChoice(CH_Skin,B_BuildOptionString("Татуировки",TattoosBodySkin,TRUE),CH_Skin_Tattoos);
+	Info_AddChoice(CH_Skin,B_BuildOptionString("Сиквел",SequelBodySkin,TRUE),CH_Skin_Sequel);
+	Info_AddChoice(CH_Skin,B_BuildOptionString("Готика 2",G2BodySkin,TRUE),CH_Skin_G2);
+	Info_AddChoice(CH_Skin,B_BuildOptionString("Готика 1",G1BodySkin,TRUE),CH_Skin_G1);
 };
 
 func void CH_Skin_BACK()
@@ -4209,6 +4155,7 @@ func void CH_Skin_G1()
 func void CH_Skin_G2()
 {
 	B_ResetHeroSkin();
+	G2BodySkin = TRUE;
 	B_SetHeroSkin();
 	CH_Skin_Info();
 };

@@ -21,7 +21,7 @@ func void DIA_AmbientDementor_EXIT_Info()
 	B_SCIsObsessed(self);
 	Npc_SetRefuseTalk(self,5);
 	Snd_Play("MFX_FEAR_CAST");
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino1)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino2)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino3)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino4)))
+	if(self.aivar[AIV_SubGuild] == GIL_SUB_VinoRitual)
 	{
 		if(!Npc_IsDead(DMT_Vino1))
 		{
@@ -39,9 +39,11 @@ func void DIA_AmbientDementor_EXIT_Info()
 		{
 			DMT_Vino4.aivar[AIV_EnemyOverride] = FALSE;
 		};
-		//попытка бегства Вино
-		Npc_SetTarget(Vino,other);
-		AI_StartState(Vino,ZS_Flee,0,"");
+		if(!Npc_IsDead(Vino))
+		{
+			Npc_SetTarget(Vino,other);
+			AI_StartState(Vino,ZS_Flee,0,"");
+		};
 	}
 	else
 	{
@@ -71,18 +73,18 @@ func int DIA_AmbientDementor_Condition()
 func void DIA_AmbientDementor_Info()
 {
 	var int randy;
+	randy = Hlp_Random(4);
 	Wld_PlayEffect("DEMENTOR_FX",hero,hero,0,0,0,FALSE);
 	Wld_PlayEffect("spellFX_Fear",self,self,0,0,0,FALSE);
 	AI_PlayAni(self,"T_PRACTICEMAGIC5");
-	randy = Hlp_Random(4);
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino1)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino2)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino3)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino4)))
+	if((self.aivar[AIV_SubGuild] == GIL_SUB_VinoRitual) && !Npc_IsDead(Vino))
 	{
 		AI_Output(self,other,"DIA_VinoDementor_19_00");	//Ты пришел расстроить наш ритуал? Его душа принадлежит нам. Тебе не спасти его, маг.
 		if(!Npc_IsDead(DMT_Vino4))
 		{
 			DMT_Vino4.start_aistate = ZS_Stand_Dementor;
 		};
-		B_StartOtherRoutine(Vino,"RunFromRitual");
+		B_StartOtherRoutine(Vino,"RUNFROMRITUAL");
 		AI_EquipBestMeleeWeapon(Vino);
 	}
 	else if(CurrentLevel == DRAGONISLAND_ZEN)

@@ -1358,6 +1358,7 @@ var int Opened_MegaDrink;
 var int Opened_Banditenaxt;
 var int Portal_Activated;
 var int G1BodySkin;
+var int G2BodySkin;
 var int SequelBodySkin;
 var int TattoosBodySkin;
 var int NakedBodySkin;
