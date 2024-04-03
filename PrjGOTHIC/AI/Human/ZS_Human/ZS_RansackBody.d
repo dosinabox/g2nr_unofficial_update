@@ -44,7 +44,7 @@ func void ZS_RansackBody_End()
 			}
 			else if((Orlan_RoomIsRented == TRUE) && (Orlan_RoomIsFree == FALSE))
 			{
-				if(Orlan_RoomPaymentDay <= (Wld_GetDay() - 7))
+				if(C_DaysSinceEvent(Orlan_RoomPaymentDay,7))
 				{
 					Orlan_RoomPaymentDay = Wld_GetDay();
 				};

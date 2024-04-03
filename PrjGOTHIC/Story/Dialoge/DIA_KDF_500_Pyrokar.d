@@ -214,7 +214,6 @@ func void DIA_Pyrokar_FIRE_Info()
 	AI_Output(other,self,"DIA_Pyrokar_FIRE_15_06");	//Я настаиваю на прохождении Испытания Огнем.
 	AI_Output(self,other,"DIA_Pyrokar_FIRE_11_07");	//В таком случае - так тому и быть. Когда ты будешь готов, каждый из магов Высшего Совета даст тебе задание, которое ты должен будешь выполнить.
 	AI_Output(self,other,"DIA_Pyrokar_FIRE_11_08");	//Да сжалится Иннос над твоей душой.
-//	KDF_Aufnahme = LOG_Running;
 	B_LogEntry(TOPIC_FireContest,"Я потребовал у Пирокара пройти Испытание Огнем. Теперь я должен выполнить три задания Высшего Совета.");
 };
 
@@ -520,7 +519,6 @@ func void DIA_Pyrokar_OATH_Info()
 	Snd_Play("LEVELUP");
 	B_StartOtherRoutine(Lothar,"START");
 	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
-//	KDF_Aufnahme = LOG_SUCCESS;
 	B_CancelBengarMilitiaProblem();
 	B_GivePlayerXP(XP_BecomeMage);
 	if(!Npc_IsDead(Gorax))
@@ -1262,7 +1260,6 @@ func void DIA_Pyrokar_GIVEINNOSEYE_wer()
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_06");	//Враг овладел им, нанеся тем самым ужасное поражение всем нам.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_07");	//Педро пробил себе дорогу мечом в наши самые священные покои и украл Глаз.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_08");	//Я боюсь, что он просто слишком много времени проводил наедине, за воротами и защитными стенами монастыря, открытый для опасностей всякого рода.
-//	Pedro.flags = 0;
 	Pedro_Traitor = TRUE;
 	B_LogEntries(TOPIC_INNOSEYE,"Невероятно. Хотя я ожидал чего-то подобного. Я опоздал, эти тупицы из монастыря позволили какому-то послушнику украсть Глаз, и теперь мне придется гнаться за предателем Педро и надеяться, что он еще не продал Глаз кому-нибудь.");
 	Log_CreateTopic(TOPIC_TraitorPedro,LOG_MISSION);
@@ -1699,7 +1696,7 @@ func int DIA_Pyrokar_SCOBSESSED_KDF_Condition()
 func void DIA_Pyrokar_SCOBSESSED_KDF_Info()
 {
 	AI_Output(other,self,"DIA_Pyrokar_SCOBSESSED_15_00");	//Исцели меня, Мастер, ибо я одержим.
-	if(((Got_HealObsession_Day <= (Wld_GetDay() - 2)) || (Got_HealObsession_Day == 0)) && !Npc_HasItems(other,ItPo_HealObsession_MIS))
+	if((C_DaysSinceEvent(Got_HealObsession_Day,2) || (Got_HealObsession_Day == 0)) && !Npc_HasItems(other,ItPo_HealObsession_MIS))
 	{
 		AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_01");	//Да будет так! Возьми это зелье. Оно избавит тебя от ночных кошмаров.
 		AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_02");	//Да избавит тебя Иннос от этой напасти.
@@ -1741,7 +1738,7 @@ func int DIA_Pyrokar_SCOBSESSED_Condition()
 func void DIA_Pyrokar_SCOBSESSED_Info()
 {
 	AI_Output(other,self,"DIA_Pyrokar_SCOBSESSED_15_05");	//Я думаю, я одержим. Ты можешь исцелить меня?
-	if(((Got_HealObsession_Day <= (Wld_GetDay() - 2)) || (Got_HealObsession_Day == 0)) && !Npc_HasItems(other,ItPo_HealObsession_MIS))
+	if((C_DaysSinceEvent(Got_HealObsession_Day,2) || (Got_HealObsession_Day == 0)) && !Npc_HasItems(other,ItPo_HealObsession_MIS))
 	{
 		AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_06");	//При условии проявления твоего уважения к этому монастырю, сын мой. 300 золотых.
 		Info_ClearChoices(DIA_Pyrokar_SCOBSESSED);

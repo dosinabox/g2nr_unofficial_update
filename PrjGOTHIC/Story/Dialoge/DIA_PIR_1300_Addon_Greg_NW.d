@@ -570,7 +570,7 @@ instance DIA_Addon_Greg_NW_RakeCavePlundered(C_Info)
 
 func int DIA_Addon_Greg_NW_RakeCavePlundered_Condition()
 {
-	if(((MIS_Addon_Greg_RakeCave_Day <= (Wld_GetDay() - 2)) || (RAKEPLACE[1] == TRUE)) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (GregLocation >= Greg_Taverne) && (GregLocation < Greg_Dexter))
+	if((C_DaysSinceEvent(MIS_Addon_Greg_RakeCave_Day,2) || (RAKEPLACE[1] == TRUE)) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (GregLocation >= Greg_Taverne) && (GregLocation < Greg_Dexter))
 	{
 		if(Npc_GetDistToWP(self,"NW_BIGFARM_LAKE_CAVE_01") < 1000)
 		{

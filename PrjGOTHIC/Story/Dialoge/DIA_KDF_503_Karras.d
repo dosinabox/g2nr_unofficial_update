@@ -718,7 +718,7 @@ func int DIA_Karras_ResearchDMTEnd_Condition()
 func void DIA_Karras_ResearchDMTEnd_Info()
 {
 	AI_Output(other,self,"DIA_Karras_ResearchDMTEnd_15_00");	//Выяснил что-нибудь новое об Ищущих?
-	if(KarrasGotResearchDMTBook_Day <= (Wld_GetDay() - 2))
+	if(C_DaysSinceEvent(KarrasGotResearchDMTBook_Day,2))
 	{
 		AI_Output(self,other,"DIA_Karras_ResearchDMTEnd_10_01");	//Да. Теперь я знаю, кем или чем эти Ищущие являются в действительности.
 		AI_Output(other,self,"DIA_Karras_ResearchDMTEnd_15_02");	//Выкладывай!
@@ -845,7 +845,7 @@ func int DIA_Karras_ItAm_Prot_BlackEye_MIS_Condition()
 func void DIA_Karras_ItAm_Prot_BlackEye_MIS_Info()
 {
 	AI_Output(other,self,"DIA_Karras_ItAm_Prot_BlackEye_MIS_15_00");	//Так как насчет защитного амулета, что ты обещал мне?
-	if(KarrasMakesBlessedStone_Day <= (Wld_GetDay() - 2))
+	if(C_DaysSinceEvent(KarrasMakesBlessedStone_Day,2))
 	{
 		AI_Output(self,other,"DIA_Karras_ItAm_Prot_BlackEye_MIS_10_01");	//Я закончил. Вот, взгляни. Он получился очень изящным.
 		CreateInvItems(self,ItAm_Prot_BlackEye_MIS,1);

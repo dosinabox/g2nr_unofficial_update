@@ -867,6 +867,7 @@ func void STARTUP_OldWorld_Part_Surface()
 	Wld_InsertItem(ItWr_BowStonePlate1_Addon,"OW_ITEM_ROCKHORT_02");
 	Wld_InsertItem(ItPl_Dex_Herb_01,"OW_ITEM_ROCKHORT_02");
 	Wld_InsertItem(ItPl_Dex_Herb_01,"FP_ROAM_OW_LURKER_NC_LAKE_03");
+	Wld_InsertItem(ItRw_Bow_H_02,"FP_ROAM_ITEM_SPECIAL_01");
 	Wld_InsertNpc(VLK_4130_Talbin,"SPAWN_TALL_PATH_BANDITOS2_03");
 	Wld_InsertNpc(VLK_4131_Engrom,"SPAWN_TALL_PATH_BANDITOS2_03");
 	Wld_InsertNpc(VLK_4148_Gestath,"OW_DJG_ROCKCAMP_01");

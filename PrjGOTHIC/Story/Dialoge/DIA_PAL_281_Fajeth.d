@@ -143,7 +143,7 @@ func void DIA_Fajeth_Hallo_MILNein()
 {
 	AI_Output(other,self,"DIA_Fajeth_Hallo_MILNein_15_00");	//У меня уже есть приказ. От Гаронда.
 	AI_Output(self,other,"DIA_Fajeth_Hallo_MILNein_12_01");	//И ты выполнишь его. Но только после того, как я отпущу тебя.
-	AI_Output(self,other,"DIA_Fajeth_Hallo_MILNein_12_02");	//Единственное, что я хочу слышать от тебя - это 'Что я могу сделать?' Понятно?
+	AI_Output(self,other,"DIA_Fajeth_Hallo_MILNein_12_02");	//Единственное, что я хочу слышать от тебя - это 'Что я могу сделать?'. Понятно?
 };
 
 func void DIA_Fajeth_Hallo_SLDJa()
