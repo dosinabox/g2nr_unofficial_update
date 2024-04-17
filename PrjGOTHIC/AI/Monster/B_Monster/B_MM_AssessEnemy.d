@@ -17,15 +17,21 @@ func void B_MM_AssessEnemy()
 	{
 		return;
 	};
-	if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Lares)) && (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Magic_Golem)))
-	{
-		return;
-	};
 	if(CurrentLevel == OLDWORLD_ZEN)
 	{
 		if(Npc_GetDistToWP(self,"OC_RAMP_07") <= 500)
 		{
 			return;
+		};
+	}
+	else if(CurrentLevel == NEWWORLD_ZEN)
+	{
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Magic_Golem))
+		{
+			if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Lares))
+			{
+				return;
+			};
 		};
 	};
 	if(other.aivar[AIV_INVINCIBLE] == TRUE)

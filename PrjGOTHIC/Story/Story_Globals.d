@@ -1429,3 +1429,5 @@ var int Orlan_RoomPaymentDay;
 var int Orlan_RoomPaymentRefused;
 var int Hagen_KnowsOrcElite;
 var int RescueBilgot_Day;
+var int Cavalorn_ToldAboutHut;
+var int Cavalorn_GotOre;

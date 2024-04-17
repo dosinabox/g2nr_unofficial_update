@@ -212,6 +212,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Dar_BringOrcEliteRing = LOG_FAILED;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cavalorn))
+		{
+			if(MIS_Addon_Cavalorn_TheHut == LOG_Running)
+			{
+				MIS_Addon_Cavalorn_TheHut = LOG_FAILED;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cipher))
 		{
 			if(MIS_Cipher_Paket == LOG_Running)

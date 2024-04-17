@@ -18,7 +18,10 @@ func int DIA_Kurgan_EXIT_Condition()
 func void DIA_Kurgan_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-	Npc_SetRefuseTalk(Biff,400);
+	if(!Npc_IsDead(Biff))
+	{
+		Npc_SetRefuseTalk(Biff,400);
+	};
 };
 
 

@@ -816,7 +816,7 @@ const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2024;
 const int FIX_DATE_MONTH = 4;
-const int FIX_DATE_DAY = 3;
+const int FIX_DATE_DAY = 17;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;
