@@ -49,27 +49,15 @@ func int C_NpcCanSleep(var C_Npc npc)
 		};
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(Daron))
+	if(C_NpcIsMage(npc))
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(Vatras))
-	{
-		return FALSE;
-	};
-	if(npc.guild == GIL_KDF)
-	{
-		return FALSE;
-	};
-	if(npc.guild == GIL_PAL)
+	if(C_NpcIsPaladin(npc))
 	{
 		return FALSE;
 	};
 	if(npc.guild == GIL_DMT)
-	{
-		return FALSE;
-	};
-	if(npc.guild == GIL_KDW)
 	{
 		return FALSE;
 	};

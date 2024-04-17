@@ -28,6 +28,7 @@ const string MOBNAME_WATERPIPE = "Кальян";
 const string MOBNAME_SWITCH = "Переключатель";
 const string MOBNAME_ORE = "Рудная жила";
 const string MOBNAME_WINEMAKER = "";
+const string MOBNAME_HERBSTOMPER = "Ступа";
 const string MOBNAME_ORCDRUM = "";
 const string MOBNAME_STOVE = "Плита";
 const string MOBNAME_INNOS = "Алтарь Инноса";
@@ -123,7 +124,7 @@ const string MOBNAME_ADDON_GOLD = "Золотая жила";
 const string MOBNAME_ADDON_STONEBOOK = "Скрижали";
 const string MOBNAME_ADDON_ORNAMENT = "Устройство в форме кольца";
 const string MOBNAME_ADDON_ORNAMENTSWITCH = "Переключатель";
-//const string MOBNAME_ADDON_WACKELBAUM = "Шатающееся дерево";
+const string MOBNAME_ADDON_WACKELBAUM = "Шаткое дерево";
 const string MOBNAME_ADDON_TELEPORT_01 = "К порталу храма";
 const string MOBNAME_ADDON_TELEPORT_02 = "В лагерь бандитов";
 const string MOBNAME_ADDON_TELEPORT_03 = "В болота";
@@ -184,7 +185,7 @@ const string TXT_GUILDS[66] =
 	"Аллигатор",
 	"Болотный голем",
 	"Каменный страж",
-	"Пантера",
+	"Огненный дьявол",
 	"Блуждающий огонек",
 	"Вызванный страж",
 	"Вызванный зомби",
@@ -541,11 +542,10 @@ const string NAME_Addon_BeArLeather = "Вместе с кожаными доспехами +";
 const string PRINT_Addon_BDTArmor = "Тот, кто носит эти доспехи, принадлежит к бандитам.";
 const string PRINT_Addon_KUMU_01 = "Мы - три брата из одной касты.";
 const string PRINT_Addon_KUMU_02 = "Вместе мы сильнее.";
-//const string PRINT_Addon_NadjaWait = "Подожди. Насчет травы...";
-const string NAME_Currency = "Золото: ";
 const string PRINT_Trade_Not_Enough_Gold = "У вас недостаточно золота для покупки этого предмета.";
-//const string PRINT_CantGive = "Я не могу отдать это!";
-//const string PRINT_CantTake = "Я не могу забрать это!";
+const string PRINT_Ranged_No_Ammo_Bow = "Нет стрел!";
+const string PRINT_Ranged_No_Ammo_Crossbow = "Нет болтов!";
+const string NAME_Currency = "Золото: ";
 const string NAME_Value = "Цена:";
 const string NAME_Mag_Circle = "Круг:";
 const string NAME_Manakosten = "Расход маны:";
@@ -636,7 +636,6 @@ const string NAME_Addon_Harad_01 = "Изысканный меч";
 const string NAME_Addon_Harad_02 = "Изысканный длинный меч";
 const string NAME_Addon_Harad_03 = "Рубиновый клинок";
 const string NAME_Addon_Harad_04 = "Эль-бастардо";
-const string NAME_Addon_CassiasBelohnungsRing = "Кольцо жизни";
 const string NAME_Skill_Sneak = "Подкрадывание";
 const string NAME_Skill_PickPocket = "Карманная кража";
 const string NAME_Skill_PickLock = "Взлом замков";
@@ -822,6 +821,7 @@ const string NAME_MageScroll = "Свиток";
 //const string PRINT_FoundLockpick = "Найдена отмычка";
 const string PRINT_HannasBeutel = "Маленький ключик и несколько отмычек...";
 const string PRINT_GotPlants = "Найдены травы";
+const string PRINT_GivePlants = "Травы отданы";
 const string PRINT_NoSweeping = "На подметание этих келий у меня уйдет целая вечность!";
 const string PRINT_Mandibles = "Этот секрет не дает никакого эффекта.";
 const string PRINT_Bloodfly = "На вкус горькое и ядовитое.";
@@ -839,6 +839,7 @@ const string PRINT_BiffsAnteil = "Доля Биффа: ";
 const string PRINT_Gold = " золотых";
 const string PRINT_Addon_SCIsWearingRangerRing = "Теперь вы носите знак 'Кольца Воды'.";
 const string PRINT_Used = "Использовано: ";
+const string PRINT_Selected = " (используется)";
 var string TEXT_Innoseye_Setting;
 const string TEXT_Innoseye_Setting_Broken = "Оправа этого амулета повреждена.";
 const string TEXT_Innoseye_Setting_Repaired = "Оправа этого амулета в целости и сохранности.";

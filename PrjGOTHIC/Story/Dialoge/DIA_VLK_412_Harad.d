@@ -1132,7 +1132,7 @@ instance DIA_Harad_RepairNecklace(C_Info)
 
 func int DIA_Harad_RepairNecklace_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
 		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 		{

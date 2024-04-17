@@ -14,7 +14,7 @@ func void Enter_DI_FirstTime_Trigger()
 		if(!Npc_HasItems(player,ItMi_InnosEye_MIS))
 		{
 			Wld_InsertItem(ItMi_Flask,"FP_ITEM_SHIP_06");
-			if(!Npc_HasItems(player,ItMi_InnosEye_Discharged_Mis))
+			if(!Npc_HasItems(player,ItMi_InnosEye_Discharged_MIS))
 			{
 				Wld_InsertItem(ItSe_XardasNotfallBeutel_MIS,"FP_ITEM_SHIP_12");
 				SC_InnosEyeVergessen_DI = TRUE;

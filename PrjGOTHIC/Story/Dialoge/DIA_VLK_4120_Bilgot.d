@@ -193,8 +193,8 @@ func int DIA_Bilgot_TAKEYOUWITHME_Condition()
 func void DIA_Bilgot_TAKEYOUWITHME_Info()
 {
 	AI_Output(other,self,"DIA_Bilgot_TAKEYOUWITHME_15_00");	//Время пришло, Билгот! Пакуй свои вещи, мы отправляемся в путь.
-	//AI_Output(self,other,"DIA_Bilgot_TAKEYOUWITHME_05_01"); //GroЯartig! Es reicht mir schon, wenn du mich ьber die groЯe Brьcke am Fluss vor der belagerten Burg bringst. Den Rest schaff ich dann schon.
-	//AI_Output(other,self,"DIA_Bilgot_TAKEYOUWITHME_15_02"); //Dann beeil dich!
+//	AI_Output(self,other,"DIA_Bilgot_TAKEYOUWITHME_05_01");	//GroЯartig! Es reicht mir schon, wenn du mich ьber die groЯe Brьcke am Fluss vor der belagerten Burg bringst. Den Rest schaff ich dann schon.
+//	AI_Output(other,self,"DIA_Bilgot_TAKEYOUWITHME_15_02");	//Dann beeil dich!
 	AI_Output(self,other,"DIA_Bilgot_TAKEYOUWITHME_05_03");	//Я готов!
 	MIS_RescueBilgot = LOG_Running;
 	self.flags = 0;
@@ -217,7 +217,7 @@ instance DIA_Bilgot_LAUFSCHNELLER(C_Info)
 
 func int DIA_Bilgot_LAUFSCHNELLER_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bilgot_TAKEYOUWITHME) && !Npc_KnowsInfo(other,DIA_Bilgot_BEIBRUECKEANGEKOMMEN))
+	if(MIS_RescueBilgot == LOG_Running)
 	{
 		return TRUE;
 	};
@@ -243,9 +243,12 @@ instance DIA_Bilgot_BEIBRUECKEANGEKOMMEN(C_Info)
 
 func int DIA_Bilgot_BEIBRUECKEANGEKOMMEN_Condition()
 {
-	if(Npc_GetDistToWP(self,"START") < 2000)
+	if(MIS_RescueBilgot == LOG_Running)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"START") < 2000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -255,9 +258,10 @@ func void DIA_Bilgot_BEIBRUECKEANGEKOMMEN_Info()
 	AI_Output(self,other,"DIA_Bilgot_BEIBRUECKEANGEKOMMEN_05_01");	//Спасибо!
 	AI_Output(other,self,"DIA_Bilgot_BEIBRUECKEANGEKOMMEN_15_02");	//Смотри, чтобы тебя не съели. Я очень огорчусь.
 	AI_Output(self,other,"DIA_Bilgot_BEIBRUECKEANGEKOMMEN_05_03");	//Прощай!
-	AI_StopProcessInfos(self);
+	RescueBilgot_Day = Wld_GetDay();
 	MIS_RescueBilgot = LOG_SUCCESS;
 	B_GivePlayerXP(XP_BilgotEscort);
+	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"FLEEOUTOFOW");
 };
@@ -276,9 +280,12 @@ instance DIA_Bilgot_LetztePause(C_Info)
 
 func int DIA_Bilgot_LetztePause_Condition()
 {
-	if(Npc_GetDistToWP(self,"START") < 1000)
+	if(MIS_RescueBilgot == LOG_SUCCESS)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"OW_PATH_1_17") < 800)
+		{
+			return TRUE;
+		};
 	};
 };
 

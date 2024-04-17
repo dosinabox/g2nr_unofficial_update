@@ -214,7 +214,6 @@ func void DIA_Pyrokar_FIRE_Info()
 	AI_Output(other,self,"DIA_Pyrokar_FIRE_15_06");	//Я настаиваю на прохождении Испытания Огнем.
 	AI_Output(self,other,"DIA_Pyrokar_FIRE_11_07");	//В таком случае - так тому и быть. Когда ты будешь готов, каждый из магов Высшего Совета даст тебе задание, которое ты должен будешь выполнить.
 	AI_Output(self,other,"DIA_Pyrokar_FIRE_11_08");	//Да сжалится Иннос над твоей душой.
-//	KDF_Aufnahme = LOG_Running;
 	B_LogEntry(TOPIC_FireContest,"Я потребовал у Пирокара пройти Испытание Огнем. Теперь я должен выполнить три задания Высшего Совета.");
 };
 
@@ -520,7 +519,6 @@ func void DIA_Pyrokar_OATH_Info()
 	Snd_Play("LEVELUP");
 	B_StartOtherRoutine(Lothar,"START");
 	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
-//	KDF_Aufnahme = LOG_SUCCESS;
 	B_CancelBengarMilitiaProblem();
 	B_GivePlayerXP(XP_BecomeMage);
 	if(!Npc_IsDead(Gorax))
@@ -541,7 +539,7 @@ func void DIA_Pyrokar_OATH_Info()
 		}
 		else
 		{
-			B_StartOtherRoutine(Igaraz,"Start");
+			B_StartOtherRoutine(Igaraz,"START");
 			Igaraz.aivar[AIV_DropDeadAndKill] = FALSE;
 			Igaraz.aivar[AIV_NewsOverride] = FALSE;
 			Igaraz.aivar[AIV_IgnoresArmor] = FALSE;
@@ -557,7 +555,7 @@ func void DIA_Pyrokar_OATH_Info()
 		}
 		else
 		{
-			B_StartOtherRoutine(Ulf,"BackToMonastery");
+			B_StartOtherRoutine(Ulf,"BACKTOMONASTERY");
 			Ulf.aivar[AIV_DropDeadAndKill] = FALSE;
 			Ulf.aivar[AIV_NewsOverride] = FALSE;
 			Ulf.aivar[AIV_IgnoresArmor] = FALSE;
@@ -574,8 +572,8 @@ func void DIA_Pyrokar_OATH_Info()
 		}
 		else
 		{
-			B_StartOtherRoutine(Nov607,"Start");
-			B_StartOtherRoutine(Agon,"Start");
+			B_StartOtherRoutine(Nov607,"START");
+			B_StartOtherRoutine(Agon,"START");
 			Agon.aivar[AIV_DropDeadAndKill] = FALSE;
 			Agon.aivar[AIV_NewsOverride] = FALSE;
 			Agon.aivar[AIV_IgnoresArmor] = FALSE;
@@ -756,11 +754,11 @@ func void DIA_Pyrokar_Wunsch_Babo()
 	};
 	if((MIS_Babo_Training == LOG_SUCCESS) && !Npc_IsDead(Sergio))
 	{
-		B_StartOtherRoutine(Babo,"GardenAndTrain");
+		B_StartOtherRoutine(Babo,"GARDENANDTRAIN");
 	}
 	else
 	{
-		B_StartOtherRoutine(Babo,"Garden");
+		B_StartOtherRoutine(Babo,"GARDEN");
 	};
 	MIS_HelpBabo = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HelpBabo);
@@ -1233,7 +1231,7 @@ func void DIA_Pyrokar_GIVEINNOSEYE_Info()
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_11_03");	//Глаз Инноса был нагло украден из этих священных стен.
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
-		B_StartOtherRoutine(Gorax,"Wait");
+		B_StartOtherRoutine(Gorax,"WAIT");
 	};
 	if((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV))
 	{
@@ -1262,7 +1260,6 @@ func void DIA_Pyrokar_GIVEINNOSEYE_wer()
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_06");	//Враг овладел им, нанеся тем самым ужасное поражение всем нам.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_07");	//Педро пробил себе дорогу мечом в наши самые священные покои и украл Глаз.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_08");	//Я боюсь, что он просто слишком много времени проводил наедине, за воротами и защитными стенами монастыря, открытый для опасностей всякого рода.
-//	Pedro.flags = 0;
 	Pedro_Traitor = TRUE;
 	B_LogEntries(TOPIC_INNOSEYE,"Невероятно. Хотя я ожидал чего-то подобного. Я опоздал, эти тупицы из монастыря позволили какому-то послушнику украсть Глаз, и теперь мне придется гнаться за предателем Педро и надеяться, что он еще не продал Глаз кому-нибудь.");
 	Log_CreateTopic(TOPIC_TraitorPedro,LOG_MISSION);
@@ -1311,9 +1308,9 @@ instance DIA_Pyrokar_FOUNDINNOSEYE(C_Info)
 
 func int DIA_Pyrokar_FOUNDINNOSEYE_Condition()
 {
-	if((Kapitel == 3) && (MIS_NovizenChase == LOG_Running) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((Kapitel == 3) && (MIS_NovizenChase == LOG_Running) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
-		if(Npc_HasItems(hero,ItMi_InnosEye_Broken_Mis))
+		if(Npc_HasItems(hero,ItMi_InnosEye_Broken_MIS))
 		{
 			DIA_Pyrokar_FOUNDINNOSEYE.description = "Я нашел Глаз Инноса. Он поврежден.";
 		}
@@ -1327,7 +1324,7 @@ func int DIA_Pyrokar_FOUNDINNOSEYE_Condition()
 
 func void DIA_Pyrokar_FOUNDINNOSEYE_Info()
 {
-	if(Npc_HasItems(hero,ItMi_InnosEye_Broken_Mis))
+	if(Npc_HasItems(hero,ItMi_InnosEye_Broken_MIS))
 	{
 		AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_15_00");	//Я нашел Глаз Инноса. Он поврежден.
 	}
@@ -1494,7 +1491,7 @@ func void DIA_Pyrokar_BUCHZURUECK_Info()
 	{
 		AI_UseMob(self,"THRONE",-1);
 	};
-	Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");
+	Npc_ExchangeRoutine(self,"RITUALINNOSEYEREPAIR");
 	B_LogEntry(TOPIC_INNOSEYE,"Пирокар наконец согласился отправиться к Кругу Солнца.");
 	Pyrokar_GoesToRitualInnosEye = TRUE;
 };
@@ -1606,7 +1603,7 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	MIS_ReadyforChapter4 = TRUE;
 	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 
@@ -1699,7 +1696,7 @@ func int DIA_Pyrokar_SCOBSESSED_KDF_Condition()
 func void DIA_Pyrokar_SCOBSESSED_KDF_Info()
 {
 	AI_Output(other,self,"DIA_Pyrokar_SCOBSESSED_15_00");	//Исцели меня, Мастер, ибо я одержим.
-	if(((Got_HealObsession_Day <= (Wld_GetDay() - 2)) || (Got_HealObsession_Day == 0)) && !Npc_HasItems(other,ItPo_HealObsession_MIS))
+	if((C_DaysSinceEvent(Got_HealObsession_Day,2) || (Got_HealObsession_Day == 0)) && !Npc_HasItems(other,ItPo_HealObsession_MIS))
 	{
 		AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_01");	//Да будет так! Возьми это зелье. Оно избавит тебя от ночных кошмаров.
 		AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_02");	//Да избавит тебя Иннос от этой напасти.
@@ -1741,7 +1738,7 @@ func int DIA_Pyrokar_SCOBSESSED_Condition()
 func void DIA_Pyrokar_SCOBSESSED_Info()
 {
 	AI_Output(other,self,"DIA_Pyrokar_SCOBSESSED_15_05");	//Я думаю, я одержим. Ты можешь исцелить меня?
-	if(((Got_HealObsession_Day <= (Wld_GetDay() - 2)) || (Got_HealObsession_Day == 0)) && !Npc_HasItems(other,ItPo_HealObsession_MIS))
+	if((C_DaysSinceEvent(Got_HealObsession_Day,2) || (Got_HealObsession_Day == 0)) && !Npc_HasItems(other,ItPo_HealObsession_MIS))
 	{
 		AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_06");	//При условии проявления твоего уважения к этому монастырю, сын мой. 300 золотых.
 		Info_ClearChoices(DIA_Pyrokar_SCOBSESSED);

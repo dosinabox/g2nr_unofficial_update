@@ -115,7 +115,7 @@ func void DIA_Vatras_DI_OBSESSION_Info()
 	{
 		AI_Output(self,other,"DIA_Vatras_DI_OBSESSION_05_03");	//Запасы Пирокара истощены. Мне очень жаль, друг мой. Я больше ничем не могу помочь тебе.
 	}
-	else if(Vatras_DI_HealObsession_Day > (Wld_GetDay() - 2))
+	else if(!C_DaysSinceEvent(Vatras_DI_HealObsession_Day,2))
 	{
 		AI_Output(self,other,"DIA_Vatras_DI_OBSESSION_05_04");	//Я не возьму на себя риск дать тебе еще одну бутылку в столь короткое время. Возвращайся позже, друг мой.
 	}

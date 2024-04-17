@@ -1,19 +1,11 @@
 
 func int C_NpcIsAfraidOfOrcs(var C_Npc slf)
 {
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY))
+	if(C_NpcIsMage(slf))
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Daron))
-	{
-		return FALSE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
-	{
-		return FALSE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Xardas))
+	if(C_NpcIsPaladin(slf))
 	{
 		return FALSE;
 	};

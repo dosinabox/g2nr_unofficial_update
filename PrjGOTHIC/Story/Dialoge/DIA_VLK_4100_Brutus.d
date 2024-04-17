@@ -376,9 +376,22 @@ func void DIA_Brutus_MEATBUGSWEG_Info()
 	TOPIC_END_BrutusMeatbugs = TRUE;
 	B_GivePlayerXP(XP_BrutusMeatbugs);
 	B_NpcClearObsessionByDMT(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
+
+func void B_Brutus_Panic()
+{
+	B_NpcClearObsessionByDMT(self);
+	if((Npc_GetDistToWP(self,"OC_BRUTUS_MEATBUGS") < 2000) || (Npc_GetDistToWP(self,"OC_FOLTER_SHARP") < 2000))
+	{
+		Npc_ExchangeRoutine(self,"RUNFROMSTART");
+	}
+	else
+	{
+		Npc_ExchangeRoutine(self,"RUNTOSTART");
+	};
+};
 
 instance DIA_Brutus_PERM4(C_Info)
 {
@@ -411,19 +424,7 @@ func void DIA_Brutus_PERM4_Info()
 		AI_Output(self,other,"DIA_Brutus_PERM4_06_01");	//(нерешительно) Ты уверен, что со всеми мясными жуками покончено?
 		AI_Output(other,self,"DIA_Brutus_PERM4_15_02");	//Ах... смотри, вон один сзади тебя.
 		AI_Output(self,other,"DIA_Brutus_PERM4_06_03");	//(ревет) Чтооо?
-		B_NpcClearObsessionByDMT(self);
-		/*Npc_SetTarget(self,other);
-		self.aivar[AIV_INVINCIBLE] = FALSE;
-		other.aivar[AIV_INVINCIBLE] = FALSE;
-		AI_StartState(self,ZS_Flee,0,"");*/
-		if(Npc_GetDistToWP(self,"OC_FOLTER_SHARP") < 2000)
-		{
-			Npc_ExchangeRoutine(self,"RunFromStart");
-		}
-		else
-		{
-			Npc_ExchangeRoutine(self,"RunToStart");
-		};
+		B_Brutus_Panic();
 	};
 };
 
@@ -460,19 +461,7 @@ func void DIA_Brutus_BESSEN_Info()
 	{
 		AI_Output(other,self,"DIA_Brutus_BESSEN_15_03");	//Кто-нибудь должен выбить демонов из твоей головы.
 		AI_Output(self,other,"DIA_Brutus_BESSEN_06_04");	//(вопит) НЕЕТ!
-		B_NpcClearObsessionByDMT(self);
-		/*Npc_SetTarget(self,other);
-		self.aivar[AIV_INVINCIBLE] = FALSE;
-		other.aivar[AIV_INVINCIBLE] = FALSE;
-		AI_StartState(self,ZS_Flee,0,"");*/
-		if((Npc_GetDistToWP(self,"OC_BRUTUS_MEATBUGS") < 2000) || (Npc_GetDistToWP(self,"OC_FOLTER_SHARP") < 2000))
-		{
-			Npc_ExchangeRoutine(self,"RunFromStart");
-		}
-		else
-		{
-			Npc_ExchangeRoutine(self,"RunToStart");
-		};
+		B_Brutus_Panic();
 	};
 };
 

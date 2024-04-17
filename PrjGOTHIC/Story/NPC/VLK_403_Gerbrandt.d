@@ -44,7 +44,7 @@ func void Rtn_Flee_403()
 
 func void Rtn_NewLife_403()
 {
-	TA_Smalltalk(22,0,8,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
+	TA_Sit_Campfire(22,0,8,0,"NW_CITY_HABOUR_POOR_AREA_BACK_ALLEY_02");
 	TA_Smalltalk(8,0,22,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
 };
 

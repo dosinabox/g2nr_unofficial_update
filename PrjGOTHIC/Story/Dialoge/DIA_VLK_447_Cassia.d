@@ -832,9 +832,9 @@ func void DIA_Cassia_Belohnung_Info()
 	AI_Output(other,self,"DIA_Cassia_Belohnung_15_00");	//я пришел за своей наградой.
 	AI_Output(self,other,"DIA_Cassia_Belohnung_16_01");	//„то ты выбираешь?
 	Info_ClearChoices(DIA_Cassia_Belohnung);
-	Info_AddChoice(DIA_Cassia_Belohnung,"400 золотых",DIA_Cassia_Belohnung_Gold);
-	Info_AddChoice(DIA_Cassia_Belohnung,"6 лечебных эликсиров",DIA_Cassia_Belohnung_Trank);
-	Info_AddChoice(DIA_Cassia_Belohnung,NAME_Addon_CassiasBelohnungsRing,DIA_Cassia_Belohnung_Ring);
+	Info_AddChoice(DIA_Cassia_Belohnung,"(выбрать 400 золотых)",DIA_Cassia_Belohnung_Gold);
+	Info_AddChoice(DIA_Cassia_Belohnung,"(выбрать 6 лечебных эликсиров)",DIA_Cassia_Belohnung_Trank);
+	Info_AddChoice(DIA_Cassia_Belohnung,"(выбрать кольцо жизни)",DIA_Cassia_Belohnung_Ring);
 };
 
 func void DIA_Cassia_Belohnung_Gold()

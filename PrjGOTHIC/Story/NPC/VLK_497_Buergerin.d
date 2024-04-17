@@ -11,7 +11,7 @@ instance VLK_497_Buergerin(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
-	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe2",FaceBabe_P_MidBlonde,BodyTex_N,ITAR_VlkBabe_M);
+	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe2",FaceBabe_N_MidBlonde,BodyTexBabe_N,ITAR_VlkBabe_M);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,30);
@@ -38,7 +38,7 @@ func void Rtn_Start_497()
 
 func void Rtn_NewLife_497()
 {
-	TA_Smalltalk(22,0,8,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
+	TA_Sit_Campfire(22,0,8,0,"NW_CITY_HABOUR_POOR_AREA_BACK_ALLEY_02");
 	TA_Smalltalk(8,0,22,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
 };
 

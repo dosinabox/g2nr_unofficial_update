@@ -6,9 +6,6 @@ const string TOPIC_Addon_HolRiordian = "Риордиан";
 const string TOPIC_Addon_RingOfWater = "'Кольцо Воды'";
 const string TOPIC_Addon_KDW = "Маги Воды";
 const string TOPIC_Addon_CavalornTheHut = "Старая хижина Кавалорна";
-
-var int TOPIC_End_CavalornTheHut;
-
 const string TOPIC_Addon_KillBrago = "Бандиты Кавалорна";
 const string TOPIC_Addon_Bandittrader = "Поставщик оружия бандитам";
 const string TOPIC_Addon_MissingPeople = "Пропавшие люди";

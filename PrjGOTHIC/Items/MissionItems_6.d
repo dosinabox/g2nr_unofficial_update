@@ -21,7 +21,7 @@ instance ItSe_XardasNotfallBeutel_MIS(C_Item)
 func void Use_XardasNotfallBeutel()
 {
 	B_PlayerFindItem(ItWr_XardasErmahnungFuerIdioten_MIS,1);
-	B_PlayerFindItem(ItMi_InnosEye_Discharged_Mis,1);
+	B_PlayerFindItem(ItMi_InnosEye_Discharged_MIS,1);
 	XardasDIBagOpened = TRUE;
 };
 

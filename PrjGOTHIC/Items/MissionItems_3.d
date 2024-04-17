@@ -57,7 +57,7 @@ func void UnEquip_InnosEye()
 };
 
 
-instance ItMi_InnosEye_Discharged_Mis(C_Item)
+instance ItMi_InnosEye_Discharged_MIS(C_Item)
 {
 	name = NAME_InnosEye;
 	mainflag = ITEM_KAT_MAGIC;
@@ -66,20 +66,20 @@ instance ItMi_InnosEye_Discharged_Mis(C_Item)
 	visual = "ItMi_InnosEye_Discharged_MIS.3DS";
 	material = MAT_METAL;
 	description = name;
-	on_equip = Equip_ItMi_InnosEye_Discharged_Mis;
+	on_equip = Equip_ItMi_InnosEye_Discharged_MIS;
 	text[0] = "Глаз потух и не сияет.";
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
 
 
-func void Equip_ItMi_InnosEye_Discharged_Mis()
+func void Equip_ItMi_InnosEye_Discharged_MIS()
 {
 	Wld_PlayEffect("spellFX_Fear",self,self,0,0,0,FALSE);
 	Snd_Play("MFX_FEAR_CAST");
 };
 
 
-instance ItMi_InnosEye_Broken_Mis(C_Item)
+instance ItMi_InnosEye_Broken_MIS(C_Item)
 {
 	name = NAME_InnosEye;
 	mainflag = ITEM_KAT_MAGIC;
@@ -88,14 +88,14 @@ instance ItMi_InnosEye_Broken_Mis(C_Item)
 	visual = "ItMi_InnosEye_Broken_MIS.3DS";
 	material = MAT_METAL;
 	description = name;
-	on_equip = Equip_ItMi_InnosEye_Broken_Mis;
+	on_equip = Equip_ItMi_InnosEye_Broken_MIS;
 	text[0] = TEXT_Innoseye_Setting;
 	text[1] = TEXT_Innoseye_Gem;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
 
 
-func void Equip_ItMi_InnosEye_Broken_Mis()
+func void Equip_ItMi_InnosEye_Broken_MIS()
 {
 	Wld_PlayEffect("spellFX_Fear",self,self,0,0,0,FALSE);
 	Snd_Play("MFX_FEAR_CAST");
@@ -681,13 +681,12 @@ func void Use_HealObsession()
 		SC_ObsessionTimes += 1;
 		B_ClearSCObsession(self);
 		Wld_PlayEffect("spellFX_LIGHTSTAR_VIOLET",hero,hero,0,0,0,FALSE);
-//		Wld_PlayEffect("spellFX_LIGHTSTAR_GREEN",hero,hero,0,0,0,FALSE);
 		Snd_Play("SFX_HealObsession");
 	};
 };
 
 
-instance ItSe_Golemchest_Mis(C_Item)
+instance ItSe_Golemchest_MIS(C_Item)
 {
 	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
@@ -721,7 +720,7 @@ instance ItWr_ShatteredGolem_MIS(C_Item)
 	visual = "ItWr_Map_NW_02.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
-	on_state[0] = Use_ShatteredGolem_Mis;
+	on_state[0] = Use_ShatteredGolem_MIS;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -731,7 +730,7 @@ instance ItWr_ShatteredGolem_MIS(C_Item)
 };
 
 
-func void Use_ShatteredGolem_Mis()
+func void Use_ShatteredGolem_MIS()
 {
 	var int Document;
 	if(Npc_IsPlayer(self))
@@ -755,7 +754,7 @@ instance ItWr_DiegosLetter_MIS(C_Item)
 	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
-	on_state[0] = Use_DiegosLetter_Mis;
+	on_state[0] = Use_DiegosLetter_MIS;
 	scemeName = "MAP";
 	description = name;
 	inv_rotz = 180;
@@ -764,7 +763,7 @@ instance ItWr_DiegosLetter_MIS(C_Item)
 };
 
 
-func void Use_DiegosLetter_Mis()
+func void Use_DiegosLetter_MIS()
 {
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
@@ -783,7 +782,7 @@ func void Use_DiegosLetter_Mis()
 };
 
 
-instance ItSe_DiegosTreasure_Mis(C_Item)
+instance ItSe_DiegosTreasure_MIS(C_Item)
 {
 	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
@@ -809,7 +808,7 @@ func void Use_DiegosTreasure()
 };
 
 
-instance ItMi_UltharsHolyWater_Mis(C_Item)
+instance ItMi_UltharsHolyWater_MIS(C_Item)
 {
 	name = "Святая вода Ультара";
 	mainflag = ITEM_KAT_NONE;
@@ -831,7 +830,7 @@ instance ItWr_MinenAnteil_MIS(C_Item)
 	value = 50;
 	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
-	on_state[0] = Use_MinenAnteil_Mis;
+	on_state[0] = Use_MinenAnteil_MIS;
 	scemeName = "MAP";
 	description = name;
 	text[5] = NAME_Value;
@@ -839,7 +838,7 @@ instance ItWr_MinenAnteil_MIS(C_Item)
 };
 
 
-func void Use_MinenAnteil_Mis()
+func void Use_MinenAnteil_MIS()
 {
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
@@ -893,7 +892,7 @@ instance ItAm_Prot_BlackEye_MIS(C_Item)
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
 
-instance ItMi_KarrasBlessedStone_Mis(C_Item)
+instance ItMi_KarrasBlessedStone_MIS(C_Item)
 {
 	name = "Камень";
 	mainflag = ITEM_KAT_NONE;
@@ -1057,5 +1056,4 @@ func void Use_VinosKellergeister_MIS()
 	Doc_PrintLines(nDocID,1,"... Они стали подозрительными. Мне лучше оставить это занятие, пока все не успокоится немного, я вернусь к своей работе, когда буду уверен, что никто мной больше не интересуется ...");
 	Doc_Show(nDocID);
 };
-
 

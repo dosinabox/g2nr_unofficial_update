@@ -40,6 +40,7 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalStoneplatesForVatras)," табличек Ватрасу"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(OldCoinCounter)," монет Василию"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalSwampHerbsForFortuno)," болотных трав Фортуно"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalSilverForHalvor)," серебра Халвору"));
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(BusterTrophyCounter)," рогов Бастеру"));
@@ -99,7 +100,7 @@ func void Use_StatsBook()
 	};
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalThefts)," успешных краж"));
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalTheftXP)," опыта с краж получено"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalTheftXP)," опыта с краж"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalTheftGold)," золотых украдено"));
 	if(UnionActivated == TRUE)
 	{
@@ -948,38 +949,10 @@ func void StoryHelper_IceDragonSpell()
 {
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_IceDragonSpell_BACK);
-	if(IceDragonSpell == SPL_InstantFireball)
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,ConcatStrings(NAME_SPL_InstantFireball," (используется)"),StoryHelper_IceDragonSpell_InstantFireball);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,NAME_SPL_InstantFireball,StoryHelper_IceDragonSpell_InstantFireball);
-	};
-	if(IceDragonSpell == SPL_IceLance)
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,ConcatStrings(NAME_SPL_IceLance," (используется)"),StoryHelper_IceDragonSpell_IceLance);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,NAME_SPL_IceLance,StoryHelper_IceDragonSpell_IceLance);
-	};
-	if(IceDragonSpell == SPL_ChargeZap)
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,ConcatStrings(NAME_SPL_ChargeZap," (используется)"),StoryHelper_IceDragonSpell_ChargeZap);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,NAME_SPL_ChargeZap,StoryHelper_IceDragonSpell_ChargeZap);
-	};
-	if(IceDragonSpell == SPL_Icebolt)
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,ConcatStrings(NAME_SPL_Icebolt," (используется)"),StoryHelper_IceDragonSpell_Icebolt);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,NAME_SPL_Icebolt,StoryHelper_IceDragonSpell_Icebolt);
-	};
+	Info_AddChoice(StoryHelper_PatchSettings,B_BuildOptionString(NAME_SPL_InstantFireball,IceDragonSpell,SPL_InstantFireball),StoryHelper_IceDragonSpell_InstantFireball);
+	Info_AddChoice(StoryHelper_PatchSettings,B_BuildOptionString(NAME_SPL_IceLance,IceDragonSpell,SPL_IceLance),StoryHelper_IceDragonSpell_IceLance);
+	Info_AddChoice(StoryHelper_PatchSettings,B_BuildOptionString(NAME_SPL_ChargeZap,IceDragonSpell,SPL_ChargeZap),StoryHelper_IceDragonSpell_ChargeZap);
+	Info_AddChoice(StoryHelper_PatchSettings,B_BuildOptionString(NAME_SPL_Icebolt,IceDragonSpell,SPL_Icebolt),StoryHelper_IceDragonSpell_Icebolt);
 };
 
 func void StoryHelper_IceDragonSpell_InstantFireball()

@@ -21,22 +21,22 @@ func void DIA_BanditGuard_EXIT_Info()
 };
 
 
-const string Bdt_1064_Checkpoint = "NW_CASTLEMINE_TOWER_05";
+const string BDT_1064_Checkpoint = "NW_CASTLEMINE_TOWER_05";
 
-instance DIA_Bdt_1064_BanditGuard_FirstWarn(C_Info)
+instance DIA_BDT_1064_BanditGuard_FirstWarn(C_Info)
 {
 	npc = BDT_1064_Bandit_L;
 	nr = 1;
-	condition = DIA_Bdt_1064_BanditGuard_FirstWarn_Condition;
-	information = DIA_Bdt_1064_BanditGuard_FirstWarn_Info;
+	condition = DIA_BDT_1064_BanditGuard_FirstWarn_Condition;
+	information = DIA_BDT_1064_BanditGuard_FirstWarn_Info;
 	permanent = TRUE;
 	important = TRUE;
 };
 
 
-func int DIA_Bdt_1064_BanditGuard_FirstWarn_Condition()
+func int DIA_BDT_1064_BanditGuard_FirstWarn_Condition()
 {
-	if(Npc_GetDistToWP(other,Bdt_1064_Checkpoint) <= 800)
+	if(Npc_GetDistToWP(other,BDT_1064_Checkpoint) <= 800)
 	{
 		Npc_SetRefuseTalk(self,5);
 		return FALSE;
@@ -45,77 +45,77 @@ func int DIA_Bdt_1064_BanditGuard_FirstWarn_Condition()
 	{
 		return FALSE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && !Npc_RefuseTalk(self))
+	if(C_NpcHasGuardStatus(self,BDT_1064_Checkpoint,GP_NONE) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_Bdt_1064_BanditGuard_FirstWarn_Info()
+func void DIA_BDT_1064_BanditGuard_FirstWarn_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Dexwache_Add_04_00");	//Есть только один способ попасть в наш лагерь живым - через мост.
-	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,Bdt_1064_Checkpoint);
+	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,BDT_1064_Checkpoint);
 	self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_Bdt_1064_BanditGuard_SecondWarn(C_Info)
+instance DIA_BDT_1064_BanditGuard_SecondWarn(C_Info)
 {
 	npc = BDT_1064_Bandit_L;
 	nr = 2;
-	condition = DIA_Bdt_1064_BanditGuard_SecondWarn_Condition;
-	information = DIA_Bdt_1064_BanditGuard_SecondWarn_Info;
+	condition = DIA_BDT_1064_BanditGuard_SecondWarn_Condition;
+	information = DIA_BDT_1064_BanditGuard_SecondWarn_Info;
 	permanent = TRUE;
 	important = TRUE;
 };
 
 
-func int DIA_Bdt_1064_BanditGuard_SecondWarn_Condition()
+func int DIA_BDT_1064_BanditGuard_SecondWarn_Condition()
 {
 	if(B_Greg_ComesToDexter_OneTime == TRUE)
 	{
 		return FALSE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && (Npc_GetDistToWP(other,Bdt_1064_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 75)))
+	if(C_NpcHasGuardStatus(self,BDT_1064_Checkpoint,GP_FirstWarnGiven))
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_Bdt_1064_BanditGuard_SecondWarn_Info()
+func void DIA_BDT_1064_BanditGuard_SecondWarn_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Dexwache_Add_04_01");	//Ты хочешь, чтобы я тебя ткнул этой штукой? Еще ОДИН шаг - и я сброшу тебя в обрыв!
-	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,Bdt_1064_Checkpoint);
+	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,BDT_1064_Checkpoint);
 	self.aivar[AIV_Guardpassage_Status] = GP_SecondWarnGiven;
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_Bdt_1064_BanditGuard_Attack(C_Info)
+instance DIA_BDT_1064_BanditGuard_Attack(C_Info)
 {
 	npc = BDT_1064_Bandit_L;
 	nr = 3;
-	condition = DIA_Bdt_1064_BanditGuard_Attack_Condition;
-	information = DIA_Bdt_1064_BanditGuard_Attack_Info;
+	condition = DIA_BDT_1064_BanditGuard_Attack_Condition;
+	information = DIA_BDT_1064_BanditGuard_Attack_Info;
 	permanent = TRUE;
 	important = TRUE;
 };
 
 
-func int DIA_Bdt_1064_BanditGuard_Attack_Condition()
+func int DIA_BDT_1064_BanditGuard_Attack_Condition()
 {
 	if(B_Greg_ComesToDexter_OneTime == TRUE)
 	{
 		return FALSE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && (Npc_GetDistToWP(other,Bdt_1064_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 75)))
+	if(C_NpcHasGuardStatus(self,BDT_1064_Checkpoint,GP_SecondWarnGiven))
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_Bdt_1064_BanditGuard_Attack_Info()
+func void DIA_BDT_1064_BanditGuard_Attack_Info()
 {
 	other.aivar[AIV_LastDistToWP] = 0;
 	self.aivar[AIV_Guardpassage_Status] = GP_NONE;

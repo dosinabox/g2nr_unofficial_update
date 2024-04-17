@@ -1295,12 +1295,17 @@ Model ("HuS")
 // Transform
 			ani			("t_MagRun_2_TrfShoot"		1	"s_TrfShoot"	0.1	0.0	M.	"Hum_MagTransform_A01.asc"	F	1	39)
 			ani			("s_TrfShoot"				1	"s_TrfShoot"	0.0	0.0	M.	"Hum_MagTransform_A01.asc"	F	40	75)
-			ani			("t_TrfShoot_2_Stand"		1	""				0.0	0.1	M.	"Hum_MagTransform2Stand_M02.asc"	F	0	80	FPS:10)
+		//	ani			("t_TrfShoot_2_Stand"		1	""				0.0	0.1	M.	"Hum_MagTransform2Stand_M02.asc"	F	0	80	FPS:10)
+			ani			("t_TrfShoot_2_Stand"		1	""				0.0	0.1	M.	"Hum_StopTransform_GMF.asc"	F	0	75)
 
 // Summon Demon/Skeleton/... 
 			ani			("t_MagRun_2_SumShoot"		1	"s_SumShoot"	0.1	0.0	M.	"Hum_MagSummon_A01.asc"		F	1	29)
 			ani			("s_SumShoot"				1	"s_SumShoot"	0.0	0.0	M.	"Hum_MagSummon_A01.asc"		F	30	54)
 			ani			("t_SumShoot_2_Stand"		1	""				0.0	0.1	M.	"Hum_MagSummon_A01.asc"		F	55	99 FPS:10)
+			
+		//	ani			("t_MagRun_2_SumShoot"		1	"s_SumShoot"	0.1	0.0	M.	"Hum_CastSummon_GMF.asc"	F	0	84)
+		//	ani			("s_SumShoot"				1	"s_SumShoot"	0.0	0.0	M.	"Hum_CastSummon_GMF.asc"	F	85	85)
+		//	ani			("t_SumShoot_2_Stand"		1	""				0.0	0.1	M.	"Hum_CastSummon_GMF.asc"	F	86	100)
 
 // Massdeath by KaiRo
 		    ani			("t_MagRun_2_MsdShoot"  	1 "s_MsdShoot" 		0.1 0.0 M. 	"Hum_TrainSpell3_A01.asc"  	F 	1 	91)
@@ -5216,35 +5221,41 @@ Model ("HuS")
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // WOUNDED //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			ani			("t_Stand_2_Wounded"	1	"s_Wounded"		0.2	0.1	M.	"Hum_KnockedOut_M01.asc"		F	1	49	CVS:0.1)
+			ani			("t_Stand_2_Wounded"		1	"s_Wounded"			0.2	0.1	M.	"Hum_KnockedOut_M01.asc"	F	1	49	CVS:0.1)
 			{
 				*eventSFXGrnd	(30	"Run"	)
 				*eventSFX	(47	"M_FALL_SMALL"	EMPTY_SLOT	)
 			}
 			
-			ani			("s_Wounded"			1	"s_Wounded"		0.1	0.1	M.	"Hum_KnockedOut_M01.asc"		F	50	99	CVS:0.1)
-			ani			("t_Wounded_2_Stand"	1	""				0.1	0.1	M.	"Hum_KnockedOut_M01.asc"		F	100	184	CVS:0.1)
+			ani			("s_Wounded"				1	"s_Wounded"			0.1	0.1	M.	"Hum_KnockedOut_M01.asc"	F	50	99	CVS:0.1)
+			ani			("t_Wounded_2_Stand"		1	""					0.1	0.1	M.	"Hum_KnockedOut_M01.asc"	F	100	184	CVS:0.1)
 			
-			ani			("t_Wounded_Try"			2	""				0.1	0.2	M.	"Hum_Wounded_Try_A01.asc"	F	1	50	CVS:0.1)
+			ani			("t_Wounded_Try"			2	""					0.1	0.2	M.	"Hum_Wounded_Try_A01.asc"	F	1	50	CVS:0.1)
 
-			ani			("t_Stand_2_WoundedB"	1	"s_WoundedB"	0.2	0.1	M.	"Hum_WoundedB_M01.asc"			F	1	34	CVS:0.1)
+			ani			("t_Stand_2_WoundedB"		1	"s_WoundedB"		0.2	0.1	M.	"Hum_WoundedB_M01.asc"		F	1	34	CVS:0.1)
 			{
 				*eventSFX	(23	"M_FALL_SMALL"	EMPTY_SLOT	)
 			}
-			ani			("s_WoundedB"			1	"s_WoundedB"	0.1	0.1	M.	"Hum_WoundedBAmbient_A01.ASC"	F	1	40	CVS:0.1)
-			ani			("t_WoundedB_2_Stand"	1	""				0.1	0.1	M.	"Hum_WoundedB_M01.asc"			F	35	134	CVS:0.1)
+			ani			("s_WoundedB"				1	"s_WoundedB"		0.1	0.1	M.	"Hum_WoundedBAmbient_A01.ASC"	F	1	40	CVS:0.1)
+			ani			("t_WoundedB_2_Stand"		1	""					0.1	0.1	M.	"Hum_WoundedB_M01.asc"			F	35	134	CVS:0.1)
 			
-			ani			("t_WoundedB_Try"			2	""				0.1	0.2	M.	"Hum_WoundedB_Try_A01.asc"	F	1	45	CVS:0.1)
+			ani			("t_WoundedB_Try"			2	""					0.1	0.2	M.	"Hum_WoundedB_Try_A01.asc"	F	1	45	CVS:0.1)
 			
 // WOUNDED //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			
-			
-//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// WACKELBAUM ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani        ("T_WACKELBAUM_STAND_2_S0"	1	"S_WACKELBAUM_S0"	0.2	0.0	M. "HUM_PILLAR_M01.ASC"			F	0	25)                    
+			ani        ("S_WACKELBAUM_S0"			1	"S_WACKELBAUM_S0"	0.0	0.0	M. "HUM_PILLAR_M01.ASC" 		F	26	26)                    
+			aniAlias   ("T_WACKELBAUM_S0_2_STAND"	1	""					0.0	0.2	M. "T_WACKELBAUM_STAND_2_S0"	R)                            
+			ani        ("T_WACKELBAUM_S0_2_S1"		1	"S_WACKELBAUM_S1"	0.0	0.0	M. "HUM_PILLAR_M01.ASC"			F	75	119	FPS:10)           
+			ani        ("S_WACKELBAUM_S1"			1	"S_WACKELBAUM_S1"	0.0	0.0	M. "HUM_PILLAR_M01.ASC"			F	120	120)                   
+			ani        ("T_WACKELBAUM_S1_2_S0"		1	"S_WACKELBAUM_S0"	0.0	0.0	M. "HUM_PILLAR_M01.ASC"			R	6	25)                    
+			ani        ("T_WACKELBAUM_S1_2_STAND"	1	""					0.0	0.2	M. "HUM_PILLAR_M01.ASC"			F	120	175)
+		
+// WACKELBAUM ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

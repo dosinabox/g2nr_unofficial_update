@@ -40,7 +40,6 @@ func int DIA_Addon_10019_Wache_Hi_Condition()
 func void DIA_Addon_10019_Wache_Hi_Info()
 {
 	AI_Output(self,other,"DIA_Addon_BDT_10019_Wache_Hi_06_00");	//Направляешься в шахту?
-	EnteredBanditsCamp = TRUE;
 	Info_ClearChoices(DIA_Addon_BDT_10019_Wache_Hi);
 	if(RavenIsDead == FALSE)
 	{

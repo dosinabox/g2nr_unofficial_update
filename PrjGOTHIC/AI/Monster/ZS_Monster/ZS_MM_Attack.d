@@ -79,7 +79,7 @@ func int ZS_MM_Attack_Loop()
 	};
 	if(CurrentLevel == OLDWORLD_ZEN)
 	{
-		if(Npc_GetDistToWP(self,"OC_RAMP_06") <= 100)
+		if(Npc_GetDistToWP(self,"OC_RAMP_07") <= 500)
 		{
 			Npc_ClearAIQueue(self);
 			if(self.guild != GIL_DRAGON)
@@ -181,10 +181,6 @@ func int ZS_MM_Attack_Loop()
 			self.fight_tactic = self.aivar[AIV_OriginalFightTactic];
 		};
 	};
-	/*if(self.guild > GIL_SEPERATOR_ORC)
-	{
-		B_CreateAmmo(self);
-	};*/
 	if(C_NpcIsMonsterMage(self))
 	{
 		Npc_ChangeAttribute(self,ATR_MANA,ATR_MANA_MAX);

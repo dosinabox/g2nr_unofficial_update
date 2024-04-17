@@ -43,7 +43,6 @@ func int DIA_Addon_Snaf_Hi_Condition()
 func void DIA_Addon_Snaf_Hi_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Snaf_Hi_01_00");	//Хочешь жрать или болтать?
-	EnteredBanditsCamp = TRUE;
 };
 
 

@@ -139,9 +139,16 @@ instance ItSe_ADDON_CavalornsBeutel(C_Item)
 func void Use_CavalornsBeutel()
 {
 	B_PlayerFindItem(ItMi_Nugget,1);
-	Log_CreateTopic(TOPIC_Addon_CavalornTheHut,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_CavalornTheHut,LOG_Running);
-	B_LogEntry(TOPIC_Addon_CavalornTheHut,"Я нашел мешочек с куском руды около хижины Кавалорна в Долине Рудников. Его, должно быть, забыл там старый пройдоха Кавалорн.");
+	if(MIS_Addon_Cavalorn_TheHut == FALSE)
+	{
+		MIS_Addon_Cavalorn_TheHut = LOG_Running;
+		Log_CreateTopic(TOPIC_Addon_CavalornTheHut,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_CavalornTheHut,LOG_Running);
+	};
+	if(MIS_Addon_Cavalorn_TheHut == LOG_Running)
+	{
+		B_LogEntry(TOPIC_Addon_CavalornTheHut,"Я нашел мешочек с куском руды около хижины Кавалорна в Долине Рудников. Его, должно быть, забыл там старый пройдоха Кавалорн.");
+	};
 	SC_OpenedCavalornsBeutel = TRUE;
 };
 
@@ -350,7 +357,6 @@ instance ItMi_Zeitspalt_Addon(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = name;
-//	text[0] = PRINT_UnknownEffect;
 	text[1] = TEXT_Zeitspalt_Setting;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -369,5 +375,4 @@ func void Use_Zeitspalt_Addon()
 		Zeitspalt_Used = TRUE;
 	};
 };
-
 

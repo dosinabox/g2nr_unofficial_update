@@ -205,7 +205,7 @@ instance PC_PrayShrine_HEALSHRINE(C_Info)
 
 func int PC_PrayShrine_HEALSHRINE_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && Npc_HasItems(hero,ItMi_UltharsHolyWater_Mis) && (ShrineIsObsessed == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && Npc_HasItems(hero,ItMi_UltharsHolyWater_MIS) && (ShrineIsObsessed == TRUE))
 	{
 		return TRUE;
 	};

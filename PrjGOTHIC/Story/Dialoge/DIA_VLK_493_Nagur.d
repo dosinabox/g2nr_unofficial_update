@@ -237,7 +237,7 @@ func void DIA_Nagur_Auftrag_Wann()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Andre_Add_08_11");	//Тебе лучше отправиться прямо к нему.
+		AI_Output(self,other,"DIA_Nagur_Auftrag_Wann_08_01_add");	//Ты можешь сделать это прямо сейчас.
 	};
 };
 
@@ -250,7 +250,7 @@ func void DIA_Nagur_Auftrag_Okay()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Andre_PERM_08_02");	//Выполняй свои задания.
+		AI_Output(self,other,"DIA_Nagur_Auftrag_Okay_08_01_add");	//Отлично. Тогда за дело.
 	};
 	MIS_Nagur_Bote = LOG_Running;
 	Log_CreateTopic(TOPIC_Nagur,LOG_MISSION);
@@ -285,10 +285,10 @@ func void DIA_Nagur_Success_Info()
 	B_GiveInvItems(other,self,ItMi_BaltramPaket,1);
 	Npc_RemoveInvItem(self,ItMi_BaltramPaket);
 	AI_Output(self,other,"DIA_Nagur_Success_08_01");	//Отлично. Теперь мне нужно продать его. Заходи завтра.
+	NagurDay = B_GetDayPlus();
 	B_GivePlayerXP(XP_NagurOnlyGaveMoney);
 	B_LogEntry(TOPIC_Nagur,"Нагур получил посылку. Он заплатит мне золотом завтра.");
 	AI_StopProcessInfos(self);
-	NagurDay = B_GetDayPlus();
 };
 
 

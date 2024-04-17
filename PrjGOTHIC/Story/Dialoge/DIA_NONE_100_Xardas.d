@@ -648,6 +648,7 @@ func void DIA_Xardas_FirstPal_Info()
 	};
 	if((LesterMovedToXardas == FALSE) && (Lester_SentToXardas == TRUE))
 	{
+		AI_Teleport(Lester,"NW_XARDAS_TOWER_IN1_14");
 		B_StartOtherRoutine(Lester,"XARDAS");
 		LesterMovedToXardas = TRUE;
 		//сброс диалога, иначе DIA_Xardas_ABOUTLESTER становится доступным и ломает остальные опции
@@ -863,7 +864,7 @@ instance DIA_Xardas_INNOSEYEBROKEN(C_Info)
 
 func int DIA_Xardas_INNOSEYEBROKEN_Condition()
 {
-	if((Kapitel == 3) && Npc_KnowsInfo(other,DIA_Xardas_DMTSINDDA) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((Kapitel == 3) && Npc_KnowsInfo(other,DIA_Xardas_DMTSINDDA) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
 		return TRUE;
 	};
@@ -929,7 +930,7 @@ func void B_XardasGoesToRitual()
 		AI_UseMob(self,"THRONE",-1);
 	};
 	B_LogEntry(TOPIC_INNOSEYE,"Ксардас согласился участвовать в ритуале в Круге Солнца.");
-	Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");
+	Npc_ExchangeRoutine(self,"RITUALINNOSEYEREPAIR");
 	Xardas_GoesToRitualInnosEye = TRUE;
 };
 
@@ -1128,8 +1129,8 @@ func void DIA_Xardas_RitualInnosEyeRepairImportant_Info()
 func void DIA_Xardas_RitualInnosEyeRepairImportant_weiter()
 {
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
-	B_StartOtherRoutine(Vatras,"Start");
+	Npc_ExchangeRoutine(self,"START");
+	B_StartOtherRoutine(Vatras,"START");
 };
 
 

@@ -217,7 +217,6 @@ const int GIL_DMT = 11;
 const int GIL_OUT = 12;
 const int GIL_PIR = 13;
 const int GIL_KDW = 14;
-const int GIL_EMPTY_D = 15;
 const int GIL_PUBLIC = 15;
 const int GIL_SEPERATOR_HUM = 16;
 const int GIL_MEATBUG = 17;
@@ -226,7 +225,7 @@ const int GIL_GOBBO = 19;
 const int GIL_GOBBO_SKELETON = 20;
 const int GIL_SUMMONED_GOBBO_SKELETON = 21;
 const int GIL_SCAVENGER = 22;
-const int GIL_Giant_Rat = 23;
+const int GIL_GIANT_RAT = 23;
 const int GIL_GIANT_BUG = 24;
 const int GIL_BLOODFLY = 25;
 const int GIL_WARAN = 26;
@@ -252,10 +251,10 @@ const int GIL_TROLL = 45;
 const int GIL_SWAMPSHARK = 46;
 const int GIL_DRAGON = 47;
 const int GIL_MOLERAT = 48;
-const int GIL_Alligator = 49;
+const int GIL_ALLIGATOR = 49;
 const int GIL_SWAMPGOLEM = 50;
 const int GIL_Stoneguardian = 51;
-const int GIL_Gargoyle = 52;
+const int GIL_SHADOWBEAST_FIRE = 52;
 const int GIL_WISP = 53;
 const int GIL_SummonedGuardian = 54;
 const int GIL_SummonedZombie = 55;
@@ -305,6 +304,14 @@ class C_GILVALUES
 	var string blood_texture[GIL_MAX];
 	var int turn_speed[GIL_MAX];
 };
+
+const int GIL_SUB_Ranger = 1;
+const int GIL_SUB_Esteban = 2;
+const int GIL_SUB_Thief_City = 3;
+const int GIL_SUB_Thief_Sewer = 4;
+const int GIL_SUB_Lobart = 5;
+const int GIL_SUB_RedLight = 6;
+const int GIL_SUB_VinoRitual = 7;
 
 const int NPC_SOUND_DROPTAKE = 1;
 const int NPC_SOUND_SPEAK = 3;
@@ -808,8 +815,8 @@ const int INVCAM_Z_RING_STANDARD = 45;
 const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2024;
-const int FIX_DATE_MONTH = 2;
-const int FIX_DATE_DAY = 9;
+const int FIX_DATE_MONTH = 4;
+const int FIX_DATE_DAY = 17;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;

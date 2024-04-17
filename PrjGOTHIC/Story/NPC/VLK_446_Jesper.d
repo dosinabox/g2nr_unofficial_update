@@ -7,6 +7,7 @@ instance VLK_446_Jesper(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = NPCTYPE_MAIN;
+	aivar[AIV_SubGuild] = GIL_SUB_Thief_Sewer;
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);

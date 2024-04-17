@@ -2,7 +2,7 @@
 prototype Mst_Default_Giant_Rat(C_Npc)
 {
 	name[0] = "Гигантская крыса";
-	guild = GIL_Giant_Rat;
+	guild = GIL_GIANT_RAT;
 	aivar[AIV_MM_REAL_ID] = ID_GIANT_RAT;
 	level = 3;
 	attribute[ATR_STRENGTH] = 15;

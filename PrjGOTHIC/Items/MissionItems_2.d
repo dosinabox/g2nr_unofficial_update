@@ -596,7 +596,7 @@ instance ItRi_HP_01_Tengron(C_Item)
 	on_unequip = UnEquip_ItRi_Hp_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = NAME_Addon_CassiasBelohnungsRing;
+	description = "Кольцо жизни";
 	text[0] = "Это кольцо принадлежит Тенгрону.";
 	text[2] = NAME_Bonus_HpMax;
 	count[2] = Ri_Hp;

@@ -441,6 +441,7 @@ func void Rtn_Start_1231()
 instance DMT_DementorSpeakerVino1(Default_AmbientDementor)
 {
 	id = 1232;
+	aivar[AIV_SubGuild] = GIL_SUB_VinoRitual;
 	aivar[AIV_EnemyOverride] = TRUE;
 	start_aistate = ZS_Stand_Dementor;
 };
@@ -448,6 +449,7 @@ instance DMT_DementorSpeakerVino1(Default_AmbientDementor)
 instance DMT_DementorSpeakerVino2(Default_AmbientDementor)
 {
 	id = 1233;
+	aivar[AIV_SubGuild] = GIL_SUB_VinoRitual;
 	aivar[AIV_EnemyOverride] = TRUE;
 	start_aistate = ZS_Stand_Dementor;
 };
@@ -455,6 +457,7 @@ instance DMT_DementorSpeakerVino2(Default_AmbientDementor)
 instance DMT_DementorSpeakerVino3(Default_AmbientDementor)
 {
 	id = 1234;
+	aivar[AIV_SubGuild] = GIL_SUB_VinoRitual;
 	aivar[AIV_EnemyOverride] = TRUE;
 	start_aistate = ZS_Stand_Dementor;
 };
@@ -462,8 +465,8 @@ instance DMT_DementorSpeakerVino3(Default_AmbientDementor)
 instance DMT_DementorSpeakerVino4(Default_AmbientDementor)
 {
 	id = 1235;
+	aivar[AIV_SubGuild] = GIL_SUB_VinoRitual;
 	aivar[AIV_EnemyOverride] = TRUE;
-	//start_aistate = ZS_Stand_Dementor;
 	start_aistate = ZS_Obesession;
 };
 

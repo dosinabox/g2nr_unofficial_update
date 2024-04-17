@@ -183,6 +183,11 @@ func void DIA_Gerbrandt_Perm_Info()
 		AI_Output(self,other,"B_Gerbrandt_PissOff_10_01");	//Ты и твой приятель Диего уже и так дел натворили.
 		AI_Output(self,other,"B_Gerbrandt_PissOff_10_02");	//Оставь меня в покое!
 		AI_StopProcessInfos(self);
+		if(GerbrandtMovedToHarbour == FALSE)
+		{
+			Npc_ExchangeRoutine(self,"NEWLIFE");
+			GerbrandtMovedToHarbour = TRUE;
+		};
 	};
 };
 

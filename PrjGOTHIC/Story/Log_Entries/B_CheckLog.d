@@ -126,7 +126,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Addon_Ornament,0,ENTERED_ADDONWORLD,6);
 	B_CloseTopic(TOPIC_Addon_RingOfWater,RangerMeetingRunning,0,3);
 	B_CloseTopic(TOPIC_Addon_HolRiordian,MIS_Addon_Saturas_BringRiordian2Me,0,4);
-	B_CloseTopic(TOPIC_Addon_CavalornTheHut,0,TOPIC_End_CavalornTheHut,6);
+	B_CloseTopic(TOPIC_Addon_CavalornTheHut,MIS_Addon_Cavalorn_TheHut,0,6);
 	B_CloseTopic(TOPIC_Addon_KillBrago,MIS_Addon_Cavalorn_KillBrago,0,3);
 	B_CloseTopic(TOPIC_Addon_Bandittrader,MIS_Vatras_FindTheBanditTrader,0,6);
 	B_CloseTopic(TOPIC_Addon_MissingPeople,0,Sklaven_Flucht,6);

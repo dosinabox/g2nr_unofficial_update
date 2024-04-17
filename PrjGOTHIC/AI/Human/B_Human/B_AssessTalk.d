@@ -114,7 +114,7 @@ func void B_AssessTalk()
 			B_Attack(self,other,AR_HumanMurderedHuman,0);
 			return;
 		};
-		if(C_IAmThiefFromSewer(self))
+		if(self.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer)
 		{
 			DG_gefunden = TRUE;
 			if(SewerThieves_KilledByPlayer == TRUE)

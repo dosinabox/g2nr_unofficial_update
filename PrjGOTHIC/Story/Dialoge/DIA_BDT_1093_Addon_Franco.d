@@ -120,22 +120,22 @@ func void DIA_Addon_Franco_Wo_Info()
 
 func void B_LoganIsDead()
 {
-	AI_Output(self,other,"DIA_Addon_Franco_tot_08_01");	//Черт! Он был нашим лучшим охотником. Дьявол, опять эти проблемы.
-	AI_Output(self,other,"DIA_Addon_Franco_tot_08_02");	//Ну ладно. Но я уже послал в лагерь другого человека.
+	AI_Output(self,other,"DIA_Addon_Franco_Tot_08_01");	//Черт! Он был нашим лучшим охотником. Дьявол, опять эти проблемы.
+	AI_Output(self,other,"DIA_Addon_Franco_Tot_08_02");	//Ну ладно. Но я уже послал в лагерь другого человека.
 };
 
-instance DIA_Addon_Franco_tot(C_Info)
+instance DIA_Addon_Franco_Tot(C_Info)
 {
 	npc = BDT_1093_Addon_Franco;
 	nr = 5;
-	condition = DIA_Addon_Franco_tot_Condition;
-	information = DIA_Addon_Franco_tot_Info;
+	condition = DIA_Addon_Franco_Tot_Condition;
+	information = DIA_Addon_Franco_Tot_Info;
 	permanent = FALSE;
 	description = "Логан мертв.";
 };
 
 
-func int DIA_Addon_Franco_tot_Condition()
+func int DIA_Addon_Franco_Tot_Condition()
 {
 	if((MIS_HlpLogan != LOG_SUCCESS) && Npc_IsDead(Logan) && Npc_KnowsInfo(other,DIA_Addon_Franco_Hai))
 	{
@@ -143,9 +143,9 @@ func int DIA_Addon_Franco_tot_Condition()
 	};
 };
 
-func void DIA_Addon_Franco_tot_Info()
+func void DIA_Addon_Franco_Tot_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Franco_tot_15_00");	//Логан мертв.
+	AI_Output(other,self,"DIA_Addon_Franco_Tot_15_00");	//Логан мертв.
 	B_LoganIsDead();
 	if(MIS_HlpLogan == LOG_Running)
 	{
@@ -201,7 +201,7 @@ instance DIA_Addon_Franco_Mis2(C_Info)
 
 func int DIA_Addon_Franco_Mis2_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Franco_HaiSuccess) || Npc_KnowsInfo(other,DIA_Addon_Franco_tot))
+	if(Npc_KnowsInfo(other,DIA_Addon_Franco_HaiSuccess) || Npc_KnowsInfo(other,DIA_Addon_Franco_Tot))
 	{
 		return TRUE;
 	};
@@ -266,16 +266,9 @@ instance DIA_Addon_Franco_WOEDGOR(C_Info)
 
 func int DIA_Addon_Franco_WOEDGOR_Condition()
 {
-	if(MIS_HlpEdgor == LOG_Running)
+	if((MIS_HlpEdgor == LOG_Running) && !Npc_HasItems(other,ItMi_Addon_Stone_04))
 	{
-		if(!Npc_HasItems(other,ItMi_Addon_Stone_04))
-		{
-			return TRUE;
-		};
-		if(SC_KnowsEdgorStoneLocation == FALSE)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -312,37 +305,30 @@ func void DIA_Addon_Franco_WOEDGOR_Fast()
 };
 
 
-instance DIA_Addon_Franco_tafel(C_Info)
+instance DIA_Addon_Franco_Tafel(C_Info)
 {
 	npc = BDT_1093_Addon_Franco;
 	nr = 10;
-	condition = DIA_Addon_Franco_tafel_Condition;
-	information = DIA_Addon_Franco_tafel_Info;
+	condition = DIA_Addon_Franco_Tafel_Condition;
+	information = DIA_Addon_Franco_Tafel_Info;
 	permanent = FALSE;
 	description = "Вот твоя каменная табличка.";
 };
 
 
-func int DIA_Addon_Franco_tafel_Condition()
+func int DIA_Addon_Franco_Tafel_Condition()
 {
-	if(Npc_HasItems(other,ItMi_Addon_Stone_04) && (MIS_HlpEdgor == LOG_Running))
+	if((MIS_HlpEdgor == LOG_Running) && Npc_HasItems(other,ItMi_Addon_Stone_04))
 	{
-		if(SC_KnowsEdgorStoneLocation == TRUE)
-		{
-			return TRUE;
-		};
-		if(Npc_IsDead(Edgor))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
-func void DIA_Addon_Franco_tafel_Info()
+func void DIA_Addon_Franco_Tafel_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Franco_tafel_15_00");	//Вот твоя каменная табличка.
+	AI_Output(other,self,"DIA_Addon_Franco_Tafel_15_00");	//Вот твоя каменная табличка.
 	B_GiveInvItems(other,self,ItMi_Addon_Stone_04,1);
-	AI_Output(self,other,"DIA_Addon_Franco_tafel_08_01");	//Очень хорошо. Ворон будет доволен.
+	AI_Output(self,other,"DIA_Addon_Franco_Tafel_08_01");	//Очень хорошо. Ворон будет доволен.
 	MIS_HlpEdgor = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_HlpEdgor);
 	B_LogEntry(Topic_Addon_Franco,"Я принес Франко его каменную табличку.");
@@ -362,7 +348,7 @@ instance DIA_Addon_Franco_JemandAnderen(C_Info)
 
 func int DIA_Addon_Franco_JemandAnderen_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Franco_tafel))
+	if(Npc_KnowsInfo(other,DIA_Addon_Franco_Tafel))
 	{
 		return TRUE;
 	};

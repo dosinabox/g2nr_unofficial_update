@@ -2105,7 +2105,7 @@ instance DIA_Addon_Vatras_AbloesePre(C_Info)
 
 func int DIA_Addon_Vatras_AbloesePre_Condition()
 {
-	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == FALSE))
+	if((Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == FALSE))
 	{
 		if((RavenIsDead == FALSE) && (AddonDisabled == FALSE))
 		{
@@ -2189,7 +2189,7 @@ instance DIA_Vatras_INNOSEYEKAPUTT(C_Info)
 
 func int DIA_Vatras_INNOSEYEKAPUTT_Condition()
 {
-	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3))
+	if((Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3))
 	{
 		if((VatrasCanLeaveTown_Kap3 == TRUE) || (AddonDisabled == TRUE))
 		{
@@ -2227,7 +2227,7 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge()
 {
 	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_15_00");	//Что теперь будет с Глазом?
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_01");	//Мы должны восстановить его. Но это, боюсь, будет непростой задачей.
-	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis))
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 	{
 		if(MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS)
 		{
@@ -2249,7 +2249,7 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge()
 
 func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein()
 {
-	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis))
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 	{
 		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_15_00");	//Как можно восстановить силу камня?
 	}
@@ -2325,37 +2325,37 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_Xardas_weiter()
 	if(!Npc_IsDead(DMT_1202))
 	{
 		DMT_1202.aivar[AIV_EnemyOverride] = TRUE;
-		Npc_ExchangeRoutine(DMT_1202,"AfterRitual");
+		Npc_ExchangeRoutine(DMT_1202,"AFTERRITUAL");
 	};
 	if(!Npc_IsDead(DMT_1204))
 	{
 		DMT_1204.aivar[AIV_EnemyOverride] = TRUE;
-		Npc_ExchangeRoutine(DMT_1204,"AfterRitual");
+		Npc_ExchangeRoutine(DMT_1204,"AFTERRITUAL");
 	};
 	if(!Npc_IsDead(DMT_1206))
 	{
 		DMT_1206.aivar[AIV_EnemyOverride] = TRUE;
-		Npc_ExchangeRoutine(DMT_1206,"AfterRitual");
+		Npc_ExchangeRoutine(DMT_1206,"AFTERRITUAL");
 	};
 	if(!Npc_IsDead(DMT_1207))
 	{
 		DMT_1207.aivar[AIV_EnemyOverride] = TRUE;
-		Npc_ExchangeRoutine(DMT_1207,"AfterRitual");
+		Npc_ExchangeRoutine(DMT_1207,"AFTERRITUAL");
 	};
 	if(!Npc_IsDead(DMT_1209))
 	{
 		DMT_1209.aivar[AIV_EnemyOverride] = TRUE;
-		Npc_ExchangeRoutine(DMT_1209,"AfterRitual");
+		Npc_ExchangeRoutine(DMT_1209,"AFTERRITUAL");
 	};
 	if(!Npc_IsDead(DMT_1210))
 	{
 		DMT_1210.aivar[AIV_EnemyOverride] = TRUE;
-		Npc_ExchangeRoutine(DMT_1210,"AfterRitual");
+		Npc_ExchangeRoutine(DMT_1210,"AFTERRITUAL");
 	};
 	if(!Npc_IsDead(DMT_1211))
 	{
 		DMT_1211.aivar[AIV_EnemyOverride] = TRUE;
-		Npc_ExchangeRoutine(DMT_1211,"AfterRitual");
+		Npc_ExchangeRoutine(DMT_1211,"AFTERRITUAL");
 	};
 };
 
@@ -2402,17 +2402,20 @@ instance DIA_Vatras_BEGINN(C_Info)
 
 func int DIA_Vatras_BEGINN_Condition()
 {
-	if((Kapitel == 3) && (Npc_GetDistToWP(self,"NW_TROLLAREA_RITUAL_02") < 2000) && (Npc_GetDistToWP(Xardas,"NW_TROLLAREA_RITUAL_02") < 2000) && (Npc_GetDistToWP(Pyrokar,"NW_TROLLAREA_RITUAL_02") < 2000) && Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) && (MIS_Bennet_InnosEyeRepairedSetting == LOG_SUCCESS))
+	if((Kapitel == 3) && Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) && (MIS_Bennet_InnosEyeRepairedSetting == LOG_SUCCESS))
 	{
-		return TRUE;
+		if((Npc_GetDistToWP(self,"NW_TROLLAREA_RITUAL_02") < 2000) && (Npc_GetDistToWP(Xardas,"NW_TROLLAREA_RITUAL_02") < 2000) && (Npc_GetDistToWP(Pyrokar,"NW_TROLLAREA_RITUAL_02") < 2000))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Vatras_BEGINN_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_BEGINN_15_00");	//Я сделал все, как ты сказал мне. Вот починенный Глаз.
-	B_GiveInvItems(other,self,ItMi_InnosEye_Broken_Mis,1);
-	Npc_RemoveInvItem(self,ItMi_InnosEye_Broken_Mis);
+	B_GiveInvItems(other,self,ItMi_InnosEye_Broken_MIS,1);
+	Npc_RemoveInvItem(self,ItMi_InnosEye_Broken_MIS);
 	AI_Output(self,other,"DIA_Vatras_BEGINN_05_01");	//Да, теперь все готово для проведения ритуала.
 	if(Npc_HasItems(other,ItPl_SwampHerb) >= 3)
 	{
@@ -2478,8 +2481,8 @@ func void DIA_Vatras_AUGEGEHEILT_Info()
 	Vatras_Listeners_ReadyToGo = TRUE;
 	RitualInnosEyeRuns = LOG_SUCCESS;
 	MIS_RitualInnosEyeRepair = LOG_SUCCESS;
-	B_StartOtherRoutine(Pyrokar,"RitualInnosEyeRepair");
-	B_StartOtherRoutine(Xardas,"RitualInnosEyeRepair");
+	B_StartOtherRoutine(Pyrokar,"RITUALINNOSEYEREPAIR");
+	B_StartOtherRoutine(Xardas,"RITUALINNOSEYEREPAIR");
 	B_Vatras_ListenersControl();
 };
 

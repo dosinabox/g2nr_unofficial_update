@@ -259,8 +259,8 @@ func void DIA_Ulthar_SCHREINEVERGIFTET_Info()
 	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_00");	//Еще одно. Некоторые придорожные алтари, посвященные Инносу, были осквернены врагом. Они потеряли свои магические свойства.
 	AI_Output(other,self,"DIA_Ulthar_SCHREINEVERGIFTET_15_01");	//Понимаю, и что теперь?
 	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_02");	//Ты должен очистить эти алтари, чтобы ситуация не усугубилась.
-	CreateInvItems(self,ItMi_UltharsHolyWater_Mis,1);
-	B_GiveInvItems(self,other,ItMi_UltharsHolyWater_Mis,1);
+	CreateInvItems(self,ItMi_UltharsHolyWater_MIS,1);
+	B_GiveInvItems(self,other,ItMi_UltharsHolyWater_MIS,1);
 	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_03");	//Возьми эту святую воду и окропи ей основание алтаря.
 	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_04");	//Со святыми словами очищения к алтарю вернется его былая сила.
 	if(!Npc_HasItems(other,ItWr_Map_Shrine_MIS))

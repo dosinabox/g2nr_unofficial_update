@@ -134,6 +134,7 @@ func void Use_TheklasPacket()
 	CreateInvItems(hero,ItPl_Speed_Herb_01,1);
 	CreateInvItems(hero,ItPl_Blueplant,2);
 	Print(PRINT_GotPlants);
+	TheklasPaket_Open = TRUE;
 };
 
 
@@ -426,7 +427,7 @@ func void UseHalvorMessage()
 };
 
 
-instance ItMw_AlriksSword_Mis(C_Item)
+instance ItMw_AlriksSword_MIS(C_Item)
 {
 	name = "Меч Альрика";
 	mainflag = ITEM_KAT_NF;

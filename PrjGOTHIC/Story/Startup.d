@@ -1,10 +1,7 @@
 
 func void STARTUP_Global()
 {
-	FIX_VERSION_SAVE = FIX_VERSION;
-	FIX_DATE_YEAR_SAVE = FIX_DATE_YEAR;
-	FIX_DATE_MONTH_SAVE = FIX_DATE_MONTH;
-	FIX_DATE_DAY_SAVE = FIX_DATE_DAY;
+	
 };
 
 func void INIT_Global()
@@ -870,6 +867,7 @@ func void STARTUP_OldWorld_Part_Surface()
 	Wld_InsertItem(ItWr_BowStonePlate1_Addon,"OW_ITEM_ROCKHORT_02");
 	Wld_InsertItem(ItPl_Dex_Herb_01,"OW_ITEM_ROCKHORT_02");
 	Wld_InsertItem(ItPl_Dex_Herb_01,"FP_ROAM_OW_LURKER_NC_LAKE_03");
+	Wld_InsertItem(ItRw_Bow_H_02,"FP_ROAM_ITEM_SPECIAL_01");
 	Wld_InsertNpc(VLK_4130_Talbin,"SPAWN_TALL_PATH_BANDITOS2_03");
 	Wld_InsertNpc(VLK_4131_Engrom,"SPAWN_TALL_PATH_BANDITOS2_03");
 	Wld_InsertNpc(VLK_4148_Gestath,"OW_DJG_ROCKCAMP_01");
@@ -927,7 +925,7 @@ func void STARTUP_OldWorld_Part_Surface()
 	Wld_InsertNpc(OrcWarrior_Roam,"WP_INTRO_FALL3");
 	Wld_InsertNpc(OrcWarrior_Rest,"WP_INTRO21");
 	Wld_InsertNpc(OrcWarrior_Rest,"WP_INTRO_WI07");
-	Wld_InsertItem(ItSe_DiegosTreasure_Mis,"WP_INTRO_WI15");
+	Wld_InsertItem(ItSe_DiegosTreasure_MIS,"WP_INTRO_WI15");
 	Wld_InsertNpc(Giant_Bug,"SPAWN_MOLERAT02_SPAWN01");
 	Wld_InsertNpc(Giant_Bug,"SPAWN_MOLERAT02_SPAWN01");
 	Wld_InsertNpc(DragonSnapper,"SPAWN_TOTURIAL_CHICKEN_2_2");
@@ -2867,6 +2865,10 @@ func void STARTUP_NewWorld_Part_TrollArea_01()
 
 func void STARTUP_NewWorld()
 {
+	FIX_VERSION_SAVE = FIX_VERSION;
+	FIX_DATE_YEAR_SAVE = FIX_DATE_YEAR;
+	FIX_DATE_MONTH_SAVE = FIX_DATE_MONTH;
+	FIX_DATE_DAY_SAVE = FIX_DATE_DAY;
 	STARTUP_NewWorld_Part_City_01();
 	STARTUP_NewWorld_Part_Farm_01();
 	STARTUP_NewWorld_Part_Xardas_01();

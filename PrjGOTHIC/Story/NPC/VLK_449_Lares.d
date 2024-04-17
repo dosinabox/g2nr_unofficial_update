@@ -8,7 +8,7 @@ instance VLK_449_Lares(Npc_Default)
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_FRIEND;
 	aivar[AIV_ToughGuy] = TRUE;
-	aivar[AIV_NPCIsRanger] = TRUE;
+	aivar[AIV_SubGuild] = GIL_SUB_Ranger;
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_Teeth] = 4;

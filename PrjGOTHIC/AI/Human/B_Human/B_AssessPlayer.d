@@ -46,7 +46,7 @@ func void B_AssessPlayer()
 	};
 	if(SewerThieves_KilledByPlayer == TRUE)
 	{
-		if(C_IAmThiefFromSewer(self))
+		if(self.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer)
 		{
 			B_Attack(self,other,AR_KILL,0);
 			return;

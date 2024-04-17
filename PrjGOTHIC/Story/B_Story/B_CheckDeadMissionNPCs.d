@@ -70,7 +70,7 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Talbin_Runs = LOG_FAILED;
 			};
 		}
-		else if(C_IAmThiefFromSewer(slf))
+		else if(slf.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer)
 		{
 			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cassia))
 			{
@@ -210,6 +210,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 			if(MIS_Dar_BringOrcEliteRing == LOG_Running)
 			{
 				MIS_Dar_BringOrcEliteRing = LOG_FAILED;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cavalorn))
+		{
+			if(MIS_Addon_Cavalorn_TheHut == LOG_Running)
+			{
+				MIS_Addon_Cavalorn_TheHut = LOG_FAILED;
 			};
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cipher))

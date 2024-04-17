@@ -1,12 +1,52 @@
 
-var int EnterOW_Kapitel1;
-
 func void B_ENTER_OLDWORLD_Kapitel_1()
 {
-	if(EnterOW_Kapitel1 == FALSE)
+	if(!Npc_IsDead(Bilgot))
 	{
-		Wld_InsertItem(ItRw_Bow_H_02,"FP_ROAM_ITEM_SPECIAL_01");
-		EnterOW_Kapitel1 = TRUE;
+		if(MIS_RescueBilgot == LOG_SUCCESS)
+		{
+			if(C_DaysSinceEvent(RescueBilgot_Day,3))
+			{
+				B_RemoveNpc(VLK_4120_Bilgot);
+			};
+		};
+	}
+	else if(Lutero_Krallen == LOG_Running)
+	{
+		if(NewMine_LeadSnapper_Spawned == FALSE)
+		{
+			Wld_InsertNpc(NewMine_LeadSnapper,"OW_ORC_LOOKOUT_2_01");
+			NewMine_LeadSnapper_Spawned = TRUE;
+		};
+	};
+	if(!Npc_IsDead(Biff))
+	{
+		if(Biff_FollowsThroughPass == LOG_SUCCESS)
+		{
+			B_RemoveNpc(DJG_713_Biff);
+		}
+		else if(DJG_BiffParty == TRUE)
+		{
+			if(DJG_Biff_HalbeHalbe == TRUE)
+			{
+				Npc_SetRefuseTalk(Biff,500);
+			}
+			else
+			{
+				Npc_SetRefuseTalk(Biff,300);
+			};
+		};
+	};
+	if(Talbin_FollowsThroughPass == LOG_OBSOLETE)
+	{
+		B_KillNpc(VLK_4130_Talbin);
+		Wld_InsertNpc(DragonSnapper,"START");
+		Talbin_FollowsThroughPass = LOG_FAILED;
+	}
+	else if(Talbin_FollowsThroughPass == LOG_SUCCESS)
+	{
+		B_RemoveNpc(VLK_4130_Talbin);
+		Talbin_FollowsThroughPass = LOG_FAILED;
 	};
 };
 
@@ -75,11 +115,6 @@ func void B_ENTER_OLDWORLD_Kapitel_3()
 		Wld_InsertNpc(DMT_DementorAmbient,"OW_PATH_133");
 		Wld_InsertNpc(DMT_DementorAmbient,"OW_PATH_128");
 		Wld_InsertItem(ItRu_Fear,"FP_ITEM_XARDASALTERTURM_01");
-		if((NewMine_LeadSnapper_Spawned == FALSE) && Npc_IsDead(Bilgot) && (Lutero_Krallen == LOG_Running))
-		{
-			Wld_InsertNpc(NewMine_LeadSnapper,"OW_ORC_LOOKOUT_2_01");
-			NewMine_LeadSnapper_Spawned = TRUE;
-		};
 		if(hero.guild == GIL_KDF)
 		{
 			Wld_InsertItem(ItMi_RuneBlank,"FP_ITEM_XARDASALTERTURM_02");
@@ -87,10 +122,6 @@ func void B_ENTER_OLDWORLD_Kapitel_3()
 		else
 		{
 			Wld_InsertItem(ItMi_Nugget,"FP_ITEM_XARDASALTERTURM_02");
-		};
-		if(MIS_RescueBilgot == LOG_SUCCESS)
-		{
-			B_RemoveNpc(VLK_4120_Bilgot);
 		};
 		if(!Npc_IsDead(OC_Sheep1))
 		{
@@ -111,7 +142,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		if(!Npc_IsDead(Engrom))
 		{
 			Engrom_isAlive_Kap4 = TRUE;
-			Npc_ExchangeRoutine(Engrom,"Obsessed");
+			Npc_ExchangeRoutine(Engrom,"OBSESSED");
 			AI_Teleport(Engrom,"OW_SAWHUT_MOLERAT_MOVEMENT");
 			CreateInvItems(Engrom,ItAt_TalbinsLurkerSkin,1);
 			if(hero.guild == GIL_KDF)
@@ -144,10 +175,6 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		};
 		B_RemoveNpc(VLK_4106_Dobar);
 		B_RemoveNpc(VLK_4107_Parlaf);
-		if(MIS_RescueBilgot == LOG_SUCCESS)
-		{
-			B_RemoveNpc(VLK_4120_Bilgot);
-		};
 		Wld_InsertNpc(DJG_730_ToterDrachenjaeger,"OC1");
 		B_KillNpc(DJG_730_ToterDrachenjaeger);
 		Wld_InsertNpc(DJG_735_ToterDrachenjaeger,"OC1");
@@ -162,7 +189,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		B_KillNpc(DJG_739_ToterDrachenjaeger);
 		Wld_InsertNpc(DJG_740_ToterDrachenjaeger,"OC1");
 		B_KillNpc(DJG_740_ToterDrachenjaeger);
-		B_StartOtherRoutine(Brutus,"Meatbugs");
+		B_StartOtherRoutine(Brutus,"MEATBUGS");
 		Wld_InsertNpc(Meatbug_Brutus1,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus2,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus3,"OC_FOLTER_SHARP");
@@ -428,14 +455,14 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2))
 		{
 			SylvioIceGolemsKilledBefore4Chapter = TRUE;
-			B_StartOtherRoutine(DJG_731_ToterDrachenjaeger,"IceRegion");
-			B_StartOtherRoutine(DJG_732_ToterDrachenjaeger,"IceRegion");
-			B_StartOtherRoutine(DJG_733_ToterDrachenjaeger,"IceRegion");
-			B_StartOtherRoutine(DJG_734_ToterDrachenjaeger,"IceRegion");
-			B_StartOtherRoutine(DJG_700_Sylvio,"IceWait1");
+			Npc_ExchangeRoutine(DJG_731_ToterDrachenjaeger,"ICEREGION");
+			Npc_ExchangeRoutine(DJG_732_ToterDrachenjaeger,"ICEREGION");
+			Npc_ExchangeRoutine(DJG_733_ToterDrachenjaeger,"ICEREGION");
+			Npc_ExchangeRoutine(DJG_734_ToterDrachenjaeger,"ICEREGION");
+			Npc_ExchangeRoutine(DJG_700_Sylvio,"ICEWAIT1");
 			if(SLD_Bullco_isAlive == TRUE)
 			{
-				B_StartOtherRoutine(DJG_701_Bullco,"IceWait1");
+				Npc_ExchangeRoutine(DJG_701_Bullco,"ICEWAIT1");
 			};
 		};
 		B_KillNpc(DJG_731_ToterDrachenjaeger);
@@ -446,23 +473,11 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		{
 			Wld_RemoveNpc(OC_Sheep2);
 		};
-		B_StartOtherRoutine(Garond,"START");
 		Log_CreateTopic(TOPIC_Dragonhunter,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Dragonhunter,LOG_Running);
 		B_LogEntry(TOPIC_Dragonhunter,"Началась масштабная охота на драконов. Она привлекла многих искателей приключений в Долину Рудников. Мне остается только надеяться, что они не будут мешаться у меня под ногами.");
 		IntroduceChapter(KapWechsel_4,KapWechsel_4_Text,"chapter4.tga","chapter_01.wav",6000);
 		EnterOW_Kapitel4 = TRUE;
-	};
-	if(Talbin_FollowsThroughPass == LOG_OBSOLETE)
-	{
-		B_KillNpc(VLK_4130_Talbin);
-		Wld_InsertNpc(DragonSnapper,"START");
-		Talbin_FollowsThroughPass = LOG_FAILED;
-	}
-	else if(Talbin_FollowsThroughPass == LOG_SUCCESS)
-	{
-		B_RemoveNpc(VLK_4130_Talbin);
-		Talbin_FollowsThroughPass = LOG_FAILED;
 	};
 };
 
@@ -482,19 +497,11 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 		{
 			CreateInvItems(Brutus,ITWR_DementorObsessionBook_MIS,1);
 		};
-		if(MIS_RescueBilgot == LOG_SUCCESS)
-		{
-			B_RemoveNpc(VLK_4120_Bilgot);
-		};
 		if(!Npc_IsDead(OC_Sheep3))
 		{
 			Wld_RemoveNpc(OC_Sheep3);
 		};
 		EnterOW_Kapitel5 = TRUE;
-	};
-	if(Biff_FollowsThroughPass == LOG_SUCCESS)
-	{
-		B_RemoveNpc(DJG_713_Biff);
 	};
 };
 
@@ -523,19 +530,5 @@ func void B_Enter_OldWorld()
 		B_ENTER_OLDWORLD_Kapitel_5();
 	};
 	B_InitNpcGlobals();
-	if(DJG_BiffParty == TRUE)
-	{
-		if(!Npc_IsDead(Biff))
-		{
-			if(DJG_Biff_HalbeHalbe == TRUE)
-			{
-				Npc_SetRefuseTalk(Biff,500);
-			}
-			else
-			{
-				Npc_SetRefuseTalk(Biff,300);
-			};
-		};
-	};
 };
 

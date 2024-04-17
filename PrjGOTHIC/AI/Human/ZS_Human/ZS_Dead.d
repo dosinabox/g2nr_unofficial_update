@@ -39,7 +39,7 @@ func void ZS_Dead()
 			}
 			else if(MIS_ThiefGuild_sucked == FALSE)
 			{
-				if(C_IAmThiefFromCity(self))
+				if(self.aivar[AIV_SubGuild] == GIL_SUB_Thief_City)
 				{
 					CityThieves_KilledByPlayer_Count += 1;
 					if(CityThieves_KilledByPlayer_Count >= 3)

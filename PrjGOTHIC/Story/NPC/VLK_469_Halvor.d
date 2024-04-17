@@ -7,6 +7,7 @@ instance VLK_469_Halvor(Npc_Default)
 	voice = 6;
 	flags = 0;
 	npcType = NPCTYPE_MAIN;
+	aivar[AIV_SubGuild] = GIL_SUB_Thief_City;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);

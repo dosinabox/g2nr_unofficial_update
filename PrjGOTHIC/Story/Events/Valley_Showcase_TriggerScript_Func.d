@@ -1,40 +1,33 @@
 
-/*
-На будущее: https://worldofplayers.ru/threads/36817/post-997859
+var int Valley_Showcase_TreeUsed;
+var int Valley_Showcase_OtherSide_Entered;
 
-var int VALLEY_SHOWCASE_TRIGGERSCRIPT_FUNC_OneTime;
-var int CutDownTreeAttempts;
-
-func void valley_showcase_triggerscript_func_s1()
+func void Valley_Showcase_Triggerscript_Func()
 {
-	if((VALLEY_SHOWCASE_TRIGGERSCRIPT_FUNC_OneTime == FALSE) && (CutDownTreeAttempts >= 2))
+	Valley_Showcase_TreeUsed = TRUE;
+};
+
+func void Valley_Showcase_OtherSide_Trigger_Func()
+{
+	if(Valley_Showcase_OtherSide_Entered == FALSE)
 	{
-		Wld_PlayEffect("FX_EarthQuake",hero,hero,0,0,0,FALSE);
-		Wld_SendTrigger("VALLEY_SHOWCASE_MOVER_01");
-		B_GivePlayerXP(XP_Addon_WackelBaum);
-		VALLEY_SHOWCASE_TRIGGERSCRIPT_FUNC_OneTime = TRUE;
+		if(Valley_Showcase_TreeUsed == FALSE)
+		{
+			PrintScreen(PRINT_Addon_StuntBonus,-1,45,FONT_Screen,2);
+			B_GivePlayerXP(XP_Addon_WackelBaum);
+			Snd_Play("THRILLJINGLE_01");
+			Wld_InsertItem(ItSc_Teleport_Maya,"FP_ITEM_VALLEY_02");
+		};
+		Valley_Showcase_OtherSide_Entered = TRUE;
 	};
 };
 
-func int C_CanCutDownTree()
+func int Valley_Showcase_Condition()
 {
-	if(VALLEY_SHOWCASE_TRIGGERSCRIPT_FUNC_OneTime == FALSE)
+	if(Valley_Showcase_TreeUsed == FALSE)
 	{
-		CutDownTreeAttempts += 1;
-		if(CutDownTreeAttempts == 1)
-		{
-			Snd_Play("OW_SHIPWREKORBRIDGE_A1");
-		}
-		else if(CutDownTreeAttempts == 2)
-		{
-			Snd_Play("OW_SHIPWREKORBRIDGE_A2");
-		}
-		else
-		{
-			Snd_Play("OW_SHIPWREKORBRIDGE_A3");
-		};
 		return TRUE;
 	};
 	return FALSE;
-};*/
+};
 

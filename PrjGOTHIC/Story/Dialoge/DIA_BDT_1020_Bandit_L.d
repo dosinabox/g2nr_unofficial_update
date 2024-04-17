@@ -52,7 +52,7 @@ instance DIA_BDT_1020_Wegelagerer_FirstWarn(C_Info)
 
 func int DIA_BDT_1020_Wegelagerer_FirstWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 1000) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self))
+	if(C_NpcHasGuardStatus(self,BDT_1020_Wegelagerer_Checkpoint,GP_NONE) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 1000))
 	{
 		return TRUE;
 	};
@@ -227,7 +227,7 @@ instance DIA_BDT_1020_Wegelagerer_SecondWarn(C_Info)
 
 func int DIA_BDT_1020_Wegelagerer_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 1000) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && (Npc_GetDistToWP(other,BDT_1020_Wegelagerer_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if(C_NpcHasGuardStatus(self,BDT_1020_Wegelagerer_Checkpoint,GP_FirstWarnGiven) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 1000))
 	{
 		return TRUE;
 	};
@@ -275,7 +275,7 @@ instance DIA_BDT_1020_Wegelagerer_Attack(C_Info)
 
 func int DIA_BDT_1020_Wegelagerer_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 1000) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && (Npc_GetDistToWP(other,BDT_1020_Wegelagerer_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if(C_NpcHasGuardStatus(self,BDT_1020_Wegelagerer_Checkpoint,GP_SecondWarnGiven) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 1000))
 	{
 		return TRUE;
 	};
@@ -302,7 +302,6 @@ instance BDT_1020_Bandit_L_GetLost(C_Info)
 
 func int BDT_1020_Bandit_L_GetLost_Condition()
 {
-//	if(Npc_IsInState(self,ZS_Talk) && (Npc_GetDistToWP(Lares,"NW_TROLLAREA_PATH_47") <= 3000))
 	if(Npc_IsInState(self,ZS_Talk) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") >= 1000))
 	{
 		return TRUE;
