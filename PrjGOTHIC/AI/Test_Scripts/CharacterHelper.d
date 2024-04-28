@@ -380,7 +380,7 @@ instance CH_Exit(C_Info)
 
 func int CH_Exit_Condition()
 {
-	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -405,7 +405,7 @@ instance CH_RESET(C_Info)
 
 func int CH_RESET_Condition()
 {
-	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -594,7 +594,7 @@ instance CH_Guild_Start(C_Info)
 
 func int CH_Guild_Start_Condition()
 {
-	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -921,7 +921,7 @@ instance CH_Level_Start(C_Info)
 
 func int CH_Level_Start_Condition()
 {
-	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -1533,7 +1533,7 @@ instance DIA_CH_Attribute_Start(C_Info)
 
 func int DIA_CH_Attribute_Start_Condition()
 {
-	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -1703,7 +1703,7 @@ instance DIA_CH_MAGIE(C_Info)
 
 func int DIA_CH_MAGIE_Condition()
 {
-	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -2424,7 +2424,7 @@ instance DIA_CH_Kampf_Start(C_Info)
 
 func int DIA_CH_Kampf_Start_Condition()
 {
-	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -2697,8 +2697,6 @@ func void CH_Training_Combat_CROSSBOW_20()
 };
 
 
-var int DiebStart;
-
 instance DIA_CH_Dieb_Start(C_Info)
 {
 	npc = ch;
@@ -2712,7 +2710,7 @@ instance DIA_CH_Dieb_Start(C_Info)
 
 func int DIA_CH_Dieb_Start_Condition()
 {
-	if((GuildStart == FALSE) && (KampfStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (LevelStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (KampfStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (LevelStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -2781,7 +2779,7 @@ instance DIA_CH_Misc_Start(C_Info)
 
 func int DIA_CH_Misc_Start_Condition()
 {
-	if((GuildStart == FALSE) && (KampfStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (LevelStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (KampfStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (LevelStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -4013,7 +4011,7 @@ instance CH_Overlay(C_Info)
 
 func int CH_Overlay_Condition()
 {
-	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -4122,7 +4120,7 @@ instance CH_Skin(C_Info)
 
 func int CH_Skin_Condition()
 {
-	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -4208,7 +4206,7 @@ instance CH_Equipment(C_Info)
 
 func int CH_Equipment_Condition()
 {
-	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -4234,7 +4232,7 @@ instance CH_StatsBook(C_Info)
 
 func int CH_StatsBook_Condition()
 {
-	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (MiscStart == FALSE))
 	{
 		if(!Npc_HasItems(other,StatsBook))
 		{

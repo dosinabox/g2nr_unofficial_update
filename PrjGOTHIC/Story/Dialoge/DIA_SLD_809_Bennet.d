@@ -29,7 +29,6 @@ func void B_UpdateBennetItemsCount()
 var int Bennet_Kap1Smith_Alt;
 var int Bennet_Kap2Smith_Alt;
 var int Bennet_Kap3Smith_Alt;
-var int Bennet_Kap4Smith_Alt;
 var int Bennet_Kap5Smith_Alt;
 
 var int Bennet_Kap2Smith;

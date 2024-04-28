@@ -357,7 +357,7 @@ instance DIA_Rod_Wette(C_Info)
 
 func int DIA_Rod_Wette_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Rod_WetteGewonnen == FALSE) && Npc_KnowsInfo(other,DIA_Rod_BINStarkGenug) && Npc_HasItems(self,ItMw_2h_Rod) && (Rod_WetteAngenommen == FALSE))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && Npc_KnowsInfo(other,DIA_Rod_BINStarkGenug) && Npc_HasItems(self,ItMw_2h_Rod) && (Rod_WetteAngenommen == FALSE))
 	{
 		return TRUE;
 	};
@@ -558,8 +558,8 @@ func void DIA_Rod_PERM_Info()
 		{
 			AI_Output(self,other,"DIA_Rod_PERM_06_04");	//“ы не наш человек. ќшивалс€ бы ты лучше в другом месте!
 		};
-	};
-	if(Kapitel >= 3)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_Rod_PERM_06_05");	//≈сли все эти истории о драконах действительно правда, нам нужно собрать отр€д и прикончить этих тварей!
 	};

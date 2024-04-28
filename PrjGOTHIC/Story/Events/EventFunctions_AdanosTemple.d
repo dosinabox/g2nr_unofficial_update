@@ -103,11 +103,13 @@ func void open_adanostempelchest_02_func_s1()
 
 func void evt_raven_awake_func()
 {
-	if((Raven_Awaken == FALSE) && !Npc_IsDead(Raven))
+	if(Raven_Awaken == FALSE)
 	{
-		AI_Standup(Raven);
-		AI_TurnToNPC(Raven,hero);
-		B_StartOtherRoutine(Raven,"WaitForPlayer");
+		if(!Npc_IsDead(Raven))
+		{
+			B_StartOtherRoutine(Raven,"WAITFORPLAYER");
+			AI_TurnToNPC(Raven,hero);
+		};
 		Raven_Awaken = TRUE;
 	};
 };
