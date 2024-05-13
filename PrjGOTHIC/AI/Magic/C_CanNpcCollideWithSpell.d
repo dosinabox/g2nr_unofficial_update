@@ -131,11 +131,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_WindFist)
 	{
-		if(C_NpcIsDown(self))
-		{
-			return COLL_DONOTHING;
-		};
-		if((Npc_GetDistToNpc(other,self) >= FIGHT_DIST_RANGED_OUTER) || (self.guild == GIL_WISP))
+		if(C_NpcIsDown(self) || C_NpcIsGolem(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_WISP) || (Npc_GetDistToNpc(other,self) >= FIGHT_DIST_RANGED_OUTER))
 		{
 			return COLL_DONOTHING;
 		};
@@ -206,7 +202,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		{
 			return COLL_APPLYDOUBLEDAMAGE;
 		};
-		if((self.guild == GIL_STONEGOLEM) || (self.guild == GIL_SUMMONED_GOLEM) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON))
+		if(C_NpcIsGolem(self) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON))
 		{
 			return COLL_APPLYDAMAGE;
 		};
@@ -226,7 +222,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		{
 			return COLL_APPLYHALVEDAMAGE;
 		};
-		if((self.guild == GIL_STONEGOLEM) || (self.guild == GIL_SUMMONED_GOLEM) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON))
+		if(C_NpcIsGolem(self) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON))
 		{
 			return COLL_APPLYDAMAGE;
 		};

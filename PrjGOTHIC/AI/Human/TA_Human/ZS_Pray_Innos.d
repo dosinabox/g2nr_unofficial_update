@@ -12,10 +12,7 @@
 
 func int ZS_Pray_Innos_Loop()
 {
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"INNOS"))
-	{
-		AI_UseMob(self,"INNOS",1);
-	};
+	B_UseAvailableMob(self,"INNOS");
 	if((Npc_GetStateTime(self) > 5) && C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT))
 	{
 		Npc_SetStateTime(self,0);

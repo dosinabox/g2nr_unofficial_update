@@ -79,7 +79,7 @@ func void TA_Practice_Sword(var int start_h,var int start_m,var int stop_h,var i
 	TA_Min(self,start_h,start_m,stop_h,stop_m,ZS_Practice_Sword,waypoint);
 };
 
-func void TA_Pray_Sleeper_FP(var int start_h,var int start_m,var int stop_h,var int stop_m,var string waypoint)
+/*func void TA_Pray_Sleeper_FP(var int start_h,var int start_m,var int stop_h,var int stop_m,var string waypoint)
 {
 	TA_Min(self,start_h,start_m,stop_h,stop_m,ZS_Pray_Sleeper_FP,waypoint);
 };
@@ -87,7 +87,7 @@ func void TA_Pray_Sleeper_FP(var int start_h,var int start_m,var int stop_h,var 
 func void TA_Pray_Sleeper(var int start_h,var int start_m,var int stop_h,var int stop_m,var string waypoint)
 {
 	TA_Min(self,start_h,start_m,stop_h,stop_m,ZS_Pray_Sleeper,waypoint);
-};
+};*/
 
 func void TA_Pray_Innos_FP(var int start_h,var int start_m,var int stop_h,var int stop_m,var string waypoint)
 {

@@ -16,10 +16,7 @@ func void ZS_Cook_Pan()
 
 func int ZS_Cook_Pan_Loop()
 {
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"PAN"))
-	{
-		AI_UseMob(self,"PAN",1);
-	};
+	B_UseAvailableMob(self,"PAN");
 	return LOOP_CONTINUE;
 };
 

@@ -12,10 +12,7 @@ func void ZS_Stomp_Herb()
 
 func int ZS_Stomp_Herb_Loop()
 {
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"HERB"))
-	{
-		AI_UseMob(self,"HERB",1);
-	};
+	B_UseAvailableMob(self,"HERB");
 	return LOOP_CONTINUE;
 };
 

@@ -12,10 +12,7 @@ func void ZS_Roast_Scavenger()
 
 func int ZS_Roast_Scavenger_Loop()
 {
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"BARBQ"))
-	{
-		AI_UseMob(self,"BARBQ",1);
-	};
+	B_UseAvailableMob(self,"BARBQ");
 	return LOOP_CONTINUE;
 };
 

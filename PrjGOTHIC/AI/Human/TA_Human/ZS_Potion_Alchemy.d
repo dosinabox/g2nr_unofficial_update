@@ -13,10 +13,7 @@ func void ZS_Potion_Alchemy()
 
 func int ZS_Potion_Alchemy_Loop()
 {
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"LAB"))
-	{
-		AI_UseMob(self,"LAB",1);
-	};
+	B_UseAvailableMob(self,"LAB");
 	return LOOP_CONTINUE;
 };
 
