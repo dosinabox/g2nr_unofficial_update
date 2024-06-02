@@ -2,7 +2,7 @@
 prototype Mst_Addon_Stoneguardian(C_Npc)
 {
 	name[0] = "Каменный страж";
-	guild = GIL_Stoneguardian;
+	guild = GIL_STONEGUARDIAN;
 	aivar[AIV_MM_REAL_ID] = ID_STONEGUARDIAN;
 	level = 18;
 	bodyStateInterruptableOverride = TRUE;
@@ -18,7 +18,6 @@ prototype Mst_Addon_Stoneguardian(C_Npc)
 	protection[PROT_FIRE] = 90;
 	protection[PROT_FLY] = 90;
 	protection[PROT_MAGIC] = 90;
-//	damagetype = DAM_EDGE;
 	damagetype = DAM_BLUNT;
 	fight_tactic = FAI_STONEGUARDIAN;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
@@ -40,7 +39,7 @@ func void B_SetVisuals_Stoneguardian()
 instance Summoned_Guardian(Mst_Addon_Stoneguardian)
 {
 	name[0] = NAME_Addon_Summoned_Guardian;
-	guild = GIL_SummonedGuardian;
+	guild = GIL_SUMMONED_STONEGUARDIAN;
 	aivar[AIV_MM_REAL_ID] = ID_SUMMONED_STONEGUARDIAN;
 	level = 0;
 	attribute[ATR_STRENGTH] = 100;

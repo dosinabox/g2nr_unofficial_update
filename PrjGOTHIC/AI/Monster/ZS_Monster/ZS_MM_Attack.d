@@ -72,7 +72,7 @@ func int ZS_MM_Attack_Loop()
 		};
 	}
 	//костыли для перехода из режима ближнего боя к магии: конец
-	else if((self.guild == GIL_Stoneguardian) && (RavenIsDead == TRUE))
+	else if((self.guild == GIL_STONEGUARDIAN) && (RavenIsDead == TRUE))
 	{
 		B_KillNpc(self);
 		return LOOP_END;

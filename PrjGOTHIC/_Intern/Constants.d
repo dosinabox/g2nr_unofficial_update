@@ -253,11 +253,11 @@ const int GIL_DRAGON = 47;
 const int GIL_MOLERAT = 48;
 const int GIL_ALLIGATOR = 49;
 const int GIL_SWAMPGOLEM = 50;
-const int GIL_Stoneguardian = 51;
+const int GIL_STONEGUARDIAN = 51;
 const int GIL_SHADOWBEAST_FIRE = 52;
 const int GIL_WISP = 53;
-const int GIL_SummonedGuardian = 54;
-const int GIL_SummonedZombie = 55;
+const int GIL_SUMMONED_STONEGUARDIAN = 54;
+const int GIL_SUMMONED_ZOMBIE = 55;
 const int GIL_EMPTY_B = 56;
 const int GIL_EMPTY_C = 57;
 const int GIL_SEPERATOR_ORC = 58;
@@ -815,8 +815,8 @@ const int INVCAM_Z_RING_STANDARD = 45;
 const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2024;
-const int FIX_DATE_MONTH = 5;
-const int FIX_DATE_DAY = 13;
+const int FIX_DATE_MONTH = 6;
+const int FIX_DATE_DAY = 2;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;

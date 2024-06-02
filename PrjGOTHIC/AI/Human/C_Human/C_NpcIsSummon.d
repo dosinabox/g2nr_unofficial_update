@@ -21,11 +21,11 @@ func int C_NpcIsSummon(var C_Npc slf)
 	{
 		return TRUE;
 	};
-	if(slf.guild == GIL_SummonedGuardian)
+	if(slf.guild == GIL_SUMMONED_STONEGUARDIAN)
 	{
 		return TRUE;
 	};
-	if(slf.guild == GIL_SummonedZombie)
+	if(slf.guild == GIL_SUMMONED_ZOMBIE)
 	{
 		return TRUE;
 	};

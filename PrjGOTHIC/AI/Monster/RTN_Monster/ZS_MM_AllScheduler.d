@@ -2,7 +2,7 @@
 func void ZS_MM_AllScheduler()
 {
 	self.aivar[AIV_MM_PRIORITY] = PRIO_EAT;
-	if((self.guild == GIL_Stoneguardian) && (RavenIsDead == TRUE))
+	if((self.guild == GIL_STONEGUARDIAN) && (RavenIsDead == TRUE))
 	{
 		B_KillNpc(self);
 		return;

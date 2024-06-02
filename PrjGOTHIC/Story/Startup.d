@@ -310,8 +310,6 @@ func void STARTUP_Addon_Part_BanditsCamp_01()
 	Wld_InsertNpc(STRF_1142_Addon_Sklave,"BANDIT");
 	Wld_InsertNpc(STRF_1144_Addon_Sklave,"BANDIT");
 	Wld_InsertNpc(BDT_10001_Addon_Bandit_L,"BANDIT");
-//	Wld_InsertNpc(BDT_10002_Addon_Bandit_M,"BANDIT");
-//	Wld_InsertNpc(BDT_10003_Addon_Bandit_H,"BANDIT");
 	Wld_InsertNpc(BDT_10006_Addon_Bandit,"BANDIT");
 	Wld_InsertNpc(BDT_10007_Addon_Bandit,"BANDIT");
 	Wld_InsertNpc(BDT_10008_Addon_Bandit,"BANDIT");
@@ -790,9 +788,6 @@ func void STARTUP_OldWorld_Part_Oldcamp()
 
 func void INIT_SUB_OldWorld_Part_Oldcamp()
 {
-//	Wld_SetMobRoutine(0,0,"FIREPLACE",1);
-//	Wld_SetMobRoutine(20,0,"FIREPLACE",1);
-//	Wld_SetMobRoutine(5,0,"FIREPLACE",0);
 	B_SetObjectRoutine("FIREPLACE_HIGH_01");
 	B_SetObjectRoutine("FIREPLACE_HIGH_02");
 	B_SetObjectRoutine("FIREPLACE_HIGH_03");
@@ -802,6 +797,8 @@ func void INIT_SUB_OldWorld_Part_Oldcamp()
 	B_SetObjectRoutine("FIREPLACE_HIGH_07");
 	B_SetObjectRoutine("FIREPLACE_HIGH_08");
 	B_SetObjectRoutine("FIREPLACE_HIGH_09");
+	B_SetObjectRoutine("FIREPLACE_HIGH_10");
+	B_SetObjectRoutine("FIREPLACE_HIGH_11");
 	Wld_AssignRoomToGuild("ki1",GIL_NONE);
 	Wld_AssignRoomToGuild("ki2",GIL_NONE);
 	Wld_AssignRoomToGuild("ki3",GIL_NONE);
@@ -1660,8 +1657,6 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertNpc(VLK_4003_Buergerin,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(VLK_4004_Arbeiter,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(VLK_4005_Arbeiter,"NW_CITY_ENTRANCE_01");
-//	Wld_InsertNpc(MIL_302_Torwache,"NW_CITY_ENTRANCE_01");
-//	Wld_InsertNpc(MIL_303_Torwache,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(MIL_306_Tuerwache,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(MIL_307_Tuerwache,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(MIL_316_Wambo,"NW_CITY_ENTRANCE_01");
@@ -1761,21 +1756,12 @@ func void INIT_SUB_NewWorld_Part_City_01()
 	Wld_AssignRoomToGuild("hafen06",GIL_VLK);
 	Wld_AssignRoomToGuild("hafen07",GIL_VLK);
 	Wld_AssignRoomToGuild("hafen08",GIL_NONE);
-	/*if(Edda_Schlafplatz == TRUE)
-	{
-		Wld_AssignRoomToGuild("hafen08",GIL_NONE);
-	}
-	else
-	{
-		Wld_AssignRoomToGuild("hafen08",GIL_VLK);
-	};*/
 	Wld_AssignRoomToGuild("hafen09",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("hafen10",GIL_VLK);
 	Wld_AssignRoomToGuild("hafen11",GIL_VLK);
 	Wld_AssignRoomToGuild("fellan",GIL_VLK);
 	Wld_AssignRoomToGuild("fisch",GIL_VLK);
 	Wld_AssignRoomToGuild("lagerhaus",GIL_NONE);
-//	Wld_AssignRoomToGuild("karten",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("karten",GIL_VLK);
 	Wld_AssignRoomToGuild("hafenkneipe",GIL_NONE);
 	Wld_AssignRoomToGuild("puff",GIL_NONE);
@@ -2371,18 +2357,8 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 
 func void INIT_SUB_NewWorld_Part_GreatPeasant_01()
 {
-/*	if(MIS_Addon_Erol_BanditStuff == LOG_SUCCESS)
-	{
-		Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
-	}
-	else
-	{
-		Wld_AssignRoomToGuild("grpwaldhuette01",GIL_SLD);
-	};*/
 	Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("grphaupthaus01",GIL_PUBLIC);
-//	Wld_AssignRoomToGuild("grpschmiede01",GIL_PUBLIC);
-//	Wld_AssignRoomToGuild("grpscheune01",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("grpschmiede01",GIL_NONE);
 	Wld_AssignRoomToGuild("grpscheune01",GIL_NONE);
 	Wld_AssignRoomToGuild("grpkapelle01",GIL_NONE);
@@ -2399,7 +2375,6 @@ func void INIT_SUB_NewWorld_Part_GreatPeasant_01()
 	Wld_AssignRoomToGuild("grpbauer02",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("grpbauerscheune02",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("grpturm02",GIL_PUBLIC);
-//	Wld_AssignRoomToGuild("grpturm01",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("grpturm01",GIL_NONE);
 	Wld_AssignRoomToGuild("grpwaldhuette02",GIL_PUBLIC);
 };

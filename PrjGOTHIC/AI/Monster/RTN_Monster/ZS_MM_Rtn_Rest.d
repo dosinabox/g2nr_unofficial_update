@@ -2,7 +2,7 @@
 func void B_PlayRandomRoamAni()
 {
 	var int randomMove;
-	if((self.guild != GIL_Stoneguardian) && (self.guild != GIL_HARPY) && (self.guild != GIL_SKELETON) && (self.guild != GIL_SWAMPSHARK) && (self.guild != GIL_BLOODFLY) && (self.guild != GIL_MEATBUG))
+	if((self.guild != GIL_STONEGUARDIAN) && (self.guild != GIL_HARPY) && (self.guild != GIL_SKELETON) && (self.guild != GIL_SWAMPSHARK) && (self.guild != GIL_BLOODFLY) && (self.guild != GIL_MEATBUG))
 	{
 		randomMove = Hlp_Random(3);
 		if(randomMove == 0)
@@ -35,7 +35,7 @@ func void ZS_MM_Rtn_Rest()
 
 func int ZS_MM_Rtn_Rest_Loop()
 {
-	if((self.guild == GIL_Stoneguardian) && (RavenIsDead == TRUE))
+	if((self.guild == GIL_STONEGUARDIAN) && (RavenIsDead == TRUE))
 	{
 		B_KillNpc(self);
 		return LOOP_END;

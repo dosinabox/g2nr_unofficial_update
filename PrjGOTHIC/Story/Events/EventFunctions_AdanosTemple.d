@@ -9,7 +9,7 @@ func void adw_adanostempel_stonegrd_trigg_func_01()
 		B_Awake_StoneGuardian(Stoneguardian_ADANOSTEMPELENTRANCE_02);
 		B_Awake_StoneGuardian(Stoneguardian_ADANOSTEMPELENTRANCE_03);
 		B_Awake_StoneGuardian(Stoneguardian_ADANOSTEMPELENTRANCE_04);
-		if(!Npc_IsDead(Stoneguardian_ADANOSTEMPELENTRANCE_01) || !Npc_IsDead(Stoneguardian_ADANOSTEMPELENTRANCE_02) || !Npc_IsDead(Stoneguardian_ADANOSTEMPELENTRANCE_03) || !Npc_IsDead(Stoneguardian_ADANOSTEMPELENTRANCE_04))
+		if(C_StoneGuardianIsAwaken(Stoneguardian_ADANOSTEMPELENTRANCE_01) || C_StoneGuardianIsAwaken(Stoneguardian_ADANOSTEMPELENTRANCE_02) || C_StoneGuardianIsAwaken(Stoneguardian_ADANOSTEMPELENTRANCE_03) || C_StoneGuardianIsAwaken(Stoneguardian_ADANOSTEMPELENTRANCE_04))
 		{
 			Snd_Play("THRILLJINGLE_02");
 		};
@@ -33,16 +33,9 @@ func void open_adanostempelchest_01_func_s1()
 			B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_05D);
 			B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_05F);
 		};
-		if(!Npc_IsDead(Stoneguardian_TREASUREPITS_05A) || !Npc_IsDead(Stoneguardian_TREASUREPITS_05C) || !Npc_IsDead(Stoneguardian_TREASUREPITS_05E))
+		if(C_StoneGuardianIsAwaken(Stoneguardian_TREASUREPITS_05A) || C_StoneGuardianIsAwaken(Stoneguardian_TREASUREPITS_05B) || C_StoneGuardianIsAwaken(Stoneguardian_TREASUREPITS_05C) || C_StoneGuardianIsAwaken(Stoneguardian_TREASUREPITS_05D) || C_StoneGuardianIsAwaken(Stoneguardian_TREASUREPITS_05E) || C_StoneGuardianIsAwaken(Stoneguardian_TREASUREPITS_05F))
 		{
 			Snd_Play("THRILLJINGLE_03");
-		}
-		else if(!Npc_IsDead(Stoneguardian_TREASUREPITS_05B) || !Npc_IsDead(Stoneguardian_TREASUREPITS_05D) || !Npc_IsDead(Stoneguardian_TREASUREPITS_05F))
-		{
-			if(Kapitel > 2)
-			{
-				Snd_Play("THRILLJINGLE_03");
-			};
 		};
 		OPEN_ADANOSTEMPELCHEST_01_FUNC_OneTime = TRUE;
 	};
@@ -61,7 +54,7 @@ func void adw_adanostempel_stonegrd_trigg_func_02()
 		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14D);
 		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14E);
 		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14F);
-		if(!Npc_IsDead(Stoneguardian_RHADEMES_14A) || !Npc_IsDead(Stoneguardian_RHADEMES_14B) || !Npc_IsDead(Stoneguardian_RHADEMES_14C) || !Npc_IsDead(Stoneguardian_RHADEMES_14D) || !Npc_IsDead(Stoneguardian_RHADEMES_14E) || !Npc_IsDead(Stoneguardian_RHADEMES_14F))
+		if(C_StoneGuardianIsAwaken(Stoneguardian_RHADEMES_14A) || C_StoneGuardianIsAwaken(Stoneguardian_RHADEMES_14B) || C_StoneGuardianIsAwaken(Stoneguardian_RHADEMES_14C) || C_StoneGuardianIsAwaken(Stoneguardian_RHADEMES_14D) || C_StoneGuardianIsAwaken(Stoneguardian_RHADEMES_14E) || C_StoneGuardianIsAwaken(Stoneguardian_RHADEMES_14F))
 		{
 			Snd_Play("THRILLJINGLE_02");
 		};
@@ -85,16 +78,9 @@ func void open_adanostempelchest_02_func_s1()
 			B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_09D);
 			B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_09F);
 		};
-		if(!Npc_IsDead(Stoneguardian_TREASUREPITS_09A) || !Npc_IsDead(Stoneguardian_TREASUREPITS_09C) || !Npc_IsDead(Stoneguardian_TREASUREPITS_09E))
+		if(C_StoneGuardianIsAwaken(Stoneguardian_TREASUREPITS_09A) || C_StoneGuardianIsAwaken(Stoneguardian_TREASUREPITS_09B) || C_StoneGuardianIsAwaken(Stoneguardian_TREASUREPITS_09C) || C_StoneGuardianIsAwaken(Stoneguardian_TREASUREPITS_09D) || C_StoneGuardianIsAwaken(Stoneguardian_TREASUREPITS_09E) || C_StoneGuardianIsAwaken(Stoneguardian_TREASUREPITS_09F))
 		{
-			Snd_Play("THRILLJINGLE_02");
-		}
-		else if(!Npc_IsDead(Stoneguardian_TREASUREPITS_09B) || !Npc_IsDead(Stoneguardian_TREASUREPITS_09D) || !Npc_IsDead(Stoneguardian_TREASUREPITS_09F))
-		{
-			if(Kapitel > 2)
-			{
-				Snd_Play("THRILLJINGLE_03");
-			};
+			Snd_Play("THRILLJINGLE_03");
 		};
 		OPEN_ADANOSTEMPELCHEST_02_FUNC_OneTime = TRUE;
 	};
