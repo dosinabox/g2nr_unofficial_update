@@ -46,7 +46,6 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Garvell,MIS_Garvell_Infos,0,3);
 	B_CloseTopic(TOPIC_BecomeMIL,MIL_Aufnahme,0,2);
 	B_CloseTopic(TOPIC_BecomeSLD,SLD_Aufnahme,0,2);
-//	B_CloseTopic(TOPIC_BecomeKDF,KDF_Aufnahme,0,2);
 	B_CloseTopic(TOPIC_Peck,MIS_Andre_Peck,0,6);
 	B_CloseTopic(TOPIC_Warehouse,MIS_Andre_WAREHOUSE,0,6);
 	B_CloseTopic(TOPIC_Redlight,MIS_Andre_REDLIGHT,0,6);
@@ -70,7 +69,6 @@ func void B_CheckLog()
 	B_CloseTopic(Topic_BaboGaertner,MIS_HelpBabo,0,2);
 	B_CloseTopic(Topic_DyrianDrin,MIS_HelpDyrian,0,2);
 	B_CloseTopic(Topic_OpolosStudy,MIS_HelpOpolos,0,2);
-//	B_CloseTopic(TOPIC_BecomeSLD,SLD_Aufnahme,0,2);
 	B_CloseTopic(TOPIC_SLDRespekt,0,Torlof_GenugStimmen,2);
 	B_CloseTopic(TOPIC_TorlofPacht,MIS_Torlof_HolPachtVonSekob,0,3);
 	B_CloseTopic(TOPIC_TorlofMiliz,MIS_Torlof_BengarMilizKlatschen,0,3);
@@ -109,7 +107,7 @@ func void B_CheckLog()
 	B_CloseTopic(Topic_Captain,0,SCGotCaptain,6);
 	B_CloseTopic(Topic_Crew,0,MIS_ReadyforChapter6,6);
 	B_CloseTopic(TOPIC_Addon_RatHunt,MIS_KrokoJagd,0,6);
-	B_CloseTopic(TOPIC_Addon_BringMeat,MIS_AlligatorJack_BringMeat,GregIsBack,6);
+	B_CloseTopic(TOPIC_Addon_BringMeat,MIS_AlligatorJack_BringMeat,0,6);
 	B_CloseTopic(TOPIC_Addon_BanditsTower,MIS_Henry_FreeBDTTower,0,6);
 	B_CloseTopic(TOPIC_Addon_HolOwen,MIS_Henry_HolOwen,0,6);
 	B_CloseTopic(TOPIC_Addon_Kompass,MIS_Addon_Garett_BringKompass,0,6);
@@ -216,6 +214,5 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_RosisFlucht,MIS_RosisFlucht,0,6);
 	B_CloseTopic(TOPIC_HealRandolph,MIS_HealRandolph,0,6);
 	B_CloseTopic(TOPIC_HallenVonIrdorath,0,UndeadDragonIsDead,999);
-//	B_CloseTopic(TOPIC_MyCrew,0,UndeadDragonIsDead,999);
 };
 

@@ -73,7 +73,7 @@ instance PC_L20(Npc_Default)
 	attribute[ATR_STRENGTH] = 106;
 	attribute[ATR_DEXTERITY] = 54;
 	attribute[ATR_MANA_MAX] = 118;
-	attribute[ATR_MANA] = 35;
+	attribute[ATR_MANA] = 118;
 	attribute[ATR_HITPOINTS_MAX] = 280;
 	attribute[ATR_HITPOINTS] = 280;
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_N,ITAR_RANGER_Addon);
@@ -356,5 +356,4 @@ instance PC_Bandit(Npc_Default)
 	CreateInvItems(self,ItAt_SharkTeeth,10);
 	CreateInvItems(self,ItFo_Addon_Rum,20);
 };
-
 

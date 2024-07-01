@@ -1763,6 +1763,7 @@ Story\Events\evt_truhe_ow_01.d
 Story\Events\evt_undeaddragondead_endsituation.d
 Story\Events\evt_undeaddragon_trap_01_func.d
 Story\Events\evt_vinoskellerei_func_s1.d
+Story\Events\OldWorld_Torches.d
 Story\Events\SC_ComesInto_CanyonLibrary_Func.d
 Story\Events\Valley_Showcase_TriggerScript_Func.d
 AI\Test_Scripts\CharacterHelper.d

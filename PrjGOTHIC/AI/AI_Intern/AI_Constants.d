@@ -237,7 +237,7 @@ const int ID_SUMMONED_ZOMBIE = 62;
 const int ID_KEILER = 63;
 const int ID_SWAMPDRONE = 64;
 const int ID_ORCCOMMANDER = 65;
-const int ID_SWAMPZOMBIE = 66;
+//const int ID_SWAMPZOMBIE = 66;
 const int ID_SCAVENGER_DEMON = 67;
 
 const int MAGIC_NEVER = 0;

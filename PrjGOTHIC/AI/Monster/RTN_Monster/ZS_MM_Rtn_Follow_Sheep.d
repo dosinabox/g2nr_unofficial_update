@@ -9,7 +9,6 @@ func void ZS_MM_Rtn_Follow_Sheep()
 
 func int ZS_MM_Rtn_Follow_Sheep_Loop()
 {
-	var int randomMove;
 	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
 		if(Npc_GetDistToNpc(self,hero) > 500)
@@ -28,19 +27,7 @@ func int ZS_MM_Rtn_Follow_Sheep_Loop()
 	}
 	else
 	{
-		randomMove = Hlp_Random(3);
-		if(randomMove == 0)
-		{
-			AI_PlayAni(self,"R_ROAM1");
-		}
-		else if(randomMove == 1)
-		{
-			AI_PlayAni(self,"R_ROAM2");
-		}
-		else
-		{
-			AI_PlayAni(self,"R_ROAM3");
-		};
+		B_PlayRandomRoamAni();
 	};
 	return LOOP_CONTINUE;
 };

@@ -187,8 +187,6 @@ func void PC_Goldhacken_Addon_Hour_Info()
 {
 	var int CurrentChance;
 	var int MultiNugget;
-	CurrentChance = Hlp_Random(100);
-	MultiNugget = Hlp_Random(10);
 	if(B_GoldMob_Bestimmung())
 	{
 		Learn_by_doing += 1;
@@ -204,8 +202,10 @@ func void PC_Goldhacken_Addon_Hour_Info()
 		{
 			B_Upgrade_Hero_HackChance(5);
 		};
+		CurrentChance = Hlp_Random(100);
 		if(CurrentChance <= Hero_HackChance)
 		{
+			MultiNugget = Hlp_Random(10);
 			if((GoldCounter >= 20) && (MultiNugget >= 8))
 			{
 				B_GetGoldNugget(3);

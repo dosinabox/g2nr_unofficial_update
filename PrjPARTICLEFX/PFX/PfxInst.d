@@ -4466,7 +4466,7 @@ instance LIGHTSMOKE(C_PARTICLEFX)
 	visalphafunc_s = "BLEND";
 	visalphastart = 255;
 	flockmode = "WIND";
-	flockstrength = 0.05;
+	flockstrength = 0.005;
 };
 
 instance MAGICPOTIONSMOKE(C_PARTICLEFX)

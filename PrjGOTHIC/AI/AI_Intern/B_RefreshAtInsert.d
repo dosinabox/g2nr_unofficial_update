@@ -21,45 +21,75 @@ func int C_NpcCanEquipWeapons(var C_Npc slf)
 	{
 		return FALSE;
 	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Elvrich)) && (Elvrich_GoesBack2Thorben == FALSE))
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Elvrich))
 	{
-		return FALSE;
-	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(GornOW)) && (MIS_RescueGorn != LOG_SUCCESS))
+		if(Elvrich_GoesBack2Thorben == FALSE)
+		{
+			return FALSE;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(GornOW))
 	{
-		return FALSE;
-	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rengaru)) && (Rengaru_Ausgeliefert == TRUE))
+		if(MIS_RescueGorn != LOG_SUCCESS)
+		{
+			return FALSE;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rengaru))
 	{
-		return FALSE;
-	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Halvor)) && (Halvor_Ausgeliefert == TRUE))
+		if(Rengaru_Ausgeliefert == TRUE)
+		{
+			return FALSE;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Halvor))
 	{
-		return FALSE;
-	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Nagur)) && (Nagur_Ausgeliefert == TRUE))
+		if(Halvor_Ausgeliefert == TRUE)
+		{
+			return FALSE;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Nagur))
 	{
-		return FALSE;
-	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sarah)) && (Sarah_Ausgeliefert == TRUE))
+		if(Nagur_Ausgeliefert == TRUE)
+		{
+			return FALSE;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sarah))
 	{
-		return FALSE;
-	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Canthar)) && (Canthar_Ausgeliefert == TRUE) && (Andre_ToldInfoFromCanthar == FALSE))
+		if(Sarah_Ausgeliefert == TRUE)
+		{
+			return FALSE;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Canthar))
 	{
-		return FALSE;
-	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bennet)) && (Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS))
+		if((Canthar_Ausgeliefert == TRUE) && (Andre_ToldInfoFromCanthar == FALSE))
+		{
+			return FALSE;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bennet))
 	{
-		return FALSE;
-	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fernando)) && (Fernando_ImKnast == TRUE))
+		if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS))
+		{
+			return FALSE;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fernando))
 	{
-		return FALSE;
-	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Borka)) && (MIS_Andre_REDLIGHT == LOG_SUCCESS))
+		if(Fernando_ImKnast == TRUE)
+		{
+			return FALSE;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Borka))
 	{
-		return FALSE;
+		if(MIS_Andre_REDLIGHT == LOG_SUCCESS)
+		{
+			return FALSE;
+		};
 	};
 	return TRUE;
 };
@@ -69,10 +99,6 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 {
 	var int rnd;
 	rnd = Hlp_Random(2);
-	if(!C_NpcCanEquipWeapons(slf))
-	{
-		return;
-	};
 	if(C_NpcIsPaladin(slf))
 	{
 		if(rnd == 0)
@@ -161,7 +187,10 @@ func void B_RefreshAtInsert()
 	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 	if(!Npc_HasEquippedMeleeWeapon(self))
 	{
-		B_RefreshMeleeWeapon(self);
+		if(C_NpcCanEquipWeapons(self))
+		{
+			B_RefreshMeleeWeapon(self);
+		};
 	};
 };
 
