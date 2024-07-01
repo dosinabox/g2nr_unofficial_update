@@ -44,7 +44,7 @@ instance Undead_Mud(Mst_Default_Mud)
 instance Summoned_Mud(Mst_Default_Mud)
 {
 	name[0] = NAME_Addon_Summoned_Mud;
-	guild = GIL_SummonedZombie;
+	guild = GIL_SUMMONED_ZOMBIE;
 	aivar[AIV_MM_REAL_ID] = ID_SUMMONED_ZOMBIE;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	B_SetAttitude(self,ATT_FRIENDLY);

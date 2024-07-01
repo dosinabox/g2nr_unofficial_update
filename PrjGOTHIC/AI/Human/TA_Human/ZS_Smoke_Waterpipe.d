@@ -12,10 +12,7 @@ func void ZS_Smoke_Waterpipe()
 
 func int ZS_Smoke_Waterpipe_Loop()
 {
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"SMOKE"))
-	{
-		AI_UseMob(self,"SMOKE",1);
-	};
+	B_UseAvailableMob(self,"SMOKE");
 	return LOOP_CONTINUE;
 };
 

@@ -1,4 +1,25 @@
 
+func void B_PlayRandomRoamAni()
+{
+	var int randomMove;
+	if((self.guild != GIL_STONEGUARDIAN) && (self.guild != GIL_HARPY) && (self.guild != GIL_SKELETON) && (self.guild != GIL_SKELETON_MAGE) && (self.guild != GIL_SWAMPSHARK) && (self.guild != GIL_BLOODFLY) && (self.guild != GIL_MEATBUG))
+	{
+		randomMove = Hlp_Random(3);
+		if(randomMove == 0)
+		{
+			AI_PlayAni(self,"R_ROAM1");
+		}
+		else if(randomMove == 1)
+		{
+			AI_PlayAni(self,"R_ROAM2");
+		}
+		else
+		{
+			AI_PlayAni(self,"R_ROAM3");
+		};
+	};
+};
+
 func void ZS_MM_Rtn_DragonRest()
 {
 	Npc_SetPercTime(self,1);
@@ -26,7 +47,6 @@ func void ZS_MM_Rtn_DragonRest()
 
 func int ZS_MM_Rtn_DragonRest_Loop()
 {
-	var int randomMove;
 	if(!Wld_IsTime(self.aivar[AIV_MM_RestStart],0,self.aivar[AIV_MM_RestEnd],self.aivar[AIV_StateTime]) && (self.aivar[AIV_MM_RestStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
@@ -39,19 +59,7 @@ func int ZS_MM_Rtn_DragonRest_Loop()
 	else if(Hlp_Random(1000) <= 5)
 	{
 		AI_Standup(self);
-		randomMove = Hlp_Random(3);
-		if(randomMove == 0)
-		{
-			AI_PlayAni(self,"R_ROAM1");
-		}
-		else if(randomMove == 1)
-		{
-			AI_PlayAni(self,"R_ROAM2");
-		}
-		else
-		{
-			AI_PlayAni(self,"R_ROAM3");
-		};
+		B_PlayRandomRoamAni();
 	};
 	return LOOP_CONTINUE;
 };

@@ -1,5 +1,5 @@
 
-func void ZS_Pray_Sleeper_FP()
+/*func void ZS_Pray_Sleeper_FP()
 {
 	Perception_Set_Normal();
 	B_ResetAll(self);
@@ -35,5 +35,5 @@ func int ZS_Pray_Sleeper_FP_Loop()
 func void ZS_Pray_Sleeper_FP_End()
 {
 	AI_PlayAni(self,"T_PRAY_2_STAND");
-};
+};*/
 

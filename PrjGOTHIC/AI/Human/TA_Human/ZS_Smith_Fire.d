@@ -13,10 +13,7 @@ func void ZS_Smith_Fire()
 
 func int ZS_Smith_Fire_Loop()
 {
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"BSFIRE"))
-	{
-		AI_UseMob(self,"BSFIRE",1);
-	};
+	B_UseAvailableMob(self,"BSFIRE");
 	return LOOP_CONTINUE;
 };
 

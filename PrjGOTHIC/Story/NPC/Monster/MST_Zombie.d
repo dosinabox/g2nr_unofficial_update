@@ -292,7 +292,7 @@ instance MayaZombie04_Totenw(Mst_Default_Zombie)
 instance Summoned_Zombie(Mst_Default_Zombie)
 {
 	name[0] = NAME_Addon_Summoned_Zombie;
-	guild = GIL_SummonedZombie;
+	guild = GIL_SUMMONED_ZOMBIE;
 	aivar[AIV_MM_REAL_ID] = ID_SUMMONED_ZOMBIE;
 	level = 0;
 	attribute[ATR_STRENGTH] = 200;

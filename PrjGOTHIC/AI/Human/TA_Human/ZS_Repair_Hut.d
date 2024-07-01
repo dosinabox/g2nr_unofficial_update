@@ -13,10 +13,7 @@ func void ZS_Repair_Hut()
 func int ZS_Repair_Hut_Loop()
 {
 	var int zufall;
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"REPAIR"))
-	{
-		AI_UseMob(self,"REPAIR",1);
-	};
+	B_UseAvailableMob(self,"REPAIR");
 	if((Npc_GetStateTime(self) > 5) && C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT))
 	{
 		zufall = Hlp_Random(100);

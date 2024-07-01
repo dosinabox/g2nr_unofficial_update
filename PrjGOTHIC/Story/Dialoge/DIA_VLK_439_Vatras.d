@@ -1371,49 +1371,48 @@ func int DIA_Addon_Vatras_SellStonplate_Condition()
 
 func void DIA_Addon_Vatras_SellStonplate_Info()
 {
-	var int anzahl;
-	anzahl = Npc_HasItems(other,ItWr_StonePlateCommon_Addon);
-	TotalStoneplatesForVatras += anzahl;
+	var int amount;
+	amount = Npc_HasItems(other,ItWr_StonePlateCommon_Addon);
 	AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//Я принес тебе еще таблички...
-	if((TotalStoneplatesForVatras > 25) && (MIS_Addon_Erol_BanditStuff == LOG_Running) && (CurrentLevel != DRAGONISLAND_ZEN))
-	{
-		MIS_Addon_Erol_BanditStuff = LOG_FAILED;
-		B_CheckLog();
-	};
-	B_GiveInvItems(other,self,ItWr_StonePlateCommon_Addon,anzahl);
+	B_GiveInvItems(other,self,ItWr_StonePlateCommon_Addon,amount);
+	TotalStoneplatesForVatras += amount;
 	AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_01");	//Отлично!
-	if(anzahl >= 10)
+	if(amount >= 10)
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_02");	//За это я повышу твои магические способности!
-		B_RaiseAttributeByPermBonus(other,ATR_MANA_MAX,anzahl);
+		B_RaiseAttributeByPermBonus(other,ATR_MANA_MAX,amount);
 	}
-	else if(anzahl >= 5)
+	else if(amount >= 5)
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_04");	//Вот, возьми в награду несколько магических свитков...
 		if(!Npc_HasItems(other,ItRu_InstantFireball))
 		{
-			CreateInvItems(self,ItSc_InstantFireball,anzahl);
-			B_GiveInvItems(self,other,ItSc_InstantFireball,anzahl);
+			CreateInvItems(self,ItSc_InstantFireball,amount);
+			B_GiveInvItems(self,other,ItSc_InstantFireball,amount);
 		}
 		else if(!Npc_HasItems(other,ItRu_Icelance))
 		{
-			CreateInvItems(self,ItSc_Icelance,anzahl);
-			B_GiveInvItems(self,other,ItSc_Icelance,anzahl);
+			CreateInvItems(self,ItSc_Icelance,amount);
+			B_GiveInvItems(self,other,ItSc_Icelance,amount);
 		}
 		else
 		{
-			CreateInvItems(self,ItSc_SumSkel,anzahl);
-			B_GiveInvItems(self,other,ItSc_SumSkel,anzahl);
+			CreateInvItems(self,ItSc_SumSkel,amount);
+			B_GiveInvItems(self,other,ItSc_SumSkel,amount);
 		};
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_03");	//Вот, возьми в награду несколько зелий...
-		CreateInvItems(self,ItPo_Health_03,anzahl + 1);
-		B_GiveInvItems(self,other,ItPo_Health_03,anzahl + 1);
+		CreateInvItems(self,ItPo_Health_03,amount + 1);
+		B_GiveInvItems(self,other,ItPo_Health_03,amount + 1);
+	};
+	if((TotalStoneplatesForVatras > 25) && (MIS_Addon_Erol_BanditStuff == LOG_Running) && (CurrentLevel != DRAGONISLAND_ZEN))
+	{
+		MIS_Addon_Erol_BanditStuff = LOG_FAILED;
 	};
 	B_RemoveEveryInvItem(self,ItWr_StonePlateCommon_Addon);
-	B_GivePlayerXP(XP_Addon_VatrasStonplate * anzahl);
+	B_GivePlayerXP(XP_Addon_VatrasStonplate * amount);
 };
 
 

@@ -4466,7 +4466,7 @@ instance LIGHTSMOKE(C_PARTICLEFX)
 	visalphafunc_s = "BLEND";
 	visalphastart = 255;
 	flockmode = "WIND";
-	flockstrength = 0.05;
+	flockstrength = 0.005;
 };
 
 instance MAGICPOTIONSMOKE(C_PARTICLEFX)
@@ -6758,7 +6758,7 @@ instance BROOM_DUST(C_PARTICLEFX)
 instance LIGHTSMOKE_IN(C_PARTICLEFX)
 {
 	ppsvalue = 20;
-	ppsscalekeys_s = "2	1 1";
+	ppsscalekeys_s = "2 1 1";
 	ppsissmooth = 1;
 	ppsfps = 0.1;
 	shptype_s = "POINT";
@@ -6808,7 +6808,7 @@ instance LIGHTSMOKE_OUT(C_PARTICLEFX)
 	shpoffsetvec_s = "0 0 0";
 	shpdistribtype_s = "UNIFORM";
 	shpisvolume = 1;
-	shpdim_s = "8";//shpdim_s = "10";
+	shpdim_s = "8";
 	shpscalekeys_s = "1";
 	shpscaleislooping = 1;
 	shpscaleissmooth = 1;

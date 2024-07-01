@@ -19,7 +19,7 @@ func void ZS_Dead()
 	if(Hlp_IsValidNpc(other))
 	{
 		B_GiveDeathXP(other,self);
-		if((self.aivar[AIV_MM_REAL_ID] == ID_SWAMPDRONE) || (self.aivar[AIV_MM_REAL_ID] == ID_SWAMPZOMBIE))
+		if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPDRONE)
 		{
 			if(Npc_GetDistToNpc(self,other) < 300)
 			{

@@ -16,10 +16,7 @@ func void ZS_Cook_Cauldron()
 
 func int ZS_Cook_Cauldron_Loop()
 {
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"CAULDRON"))
-	{
-		AI_UseMob(self,"CAULDRON",1);
-	};
+	B_UseAvailableMob(self,"CAULDRON");
 	return LOOP_CONTINUE;
 };
 

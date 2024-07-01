@@ -45,7 +45,7 @@ func void B_MM_AssessOthersDamage()
 			return;
 		};
 	};
-	if((self.guild == GIL_Stoneguardian) && (victim.guild == GIL_Stoneguardian))
+	if((self.guild == GIL_STONEGUARDIAN) && (victim.guild == GIL_STONEGUARDIAN))
 	{
 		B_Awake_StoneGuardian(self);
 	};

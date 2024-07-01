@@ -172,7 +172,7 @@ func void DIA_Addon_Saturas_ADWStart_back()
 		};
 	};
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 
@@ -655,7 +655,6 @@ var int DIA_Addon_Saturas_RavenInfos_OneTime1;
 var int DIA_Addon_Saturas_RavenInfos_OneTime2;
 var int DIA_Addon_Saturas_RavenInfos_OneTime3;
 var int DIA_Addon_Saturas_RavenInfos_OneTime4;
-var int DIA_Addon_Saturas_RavenInfos_OneTime5;
 var int Addon_Saturas_Fortuno;
 
 func int DIA_Addon_Saturas_RavenInfos_Condition()

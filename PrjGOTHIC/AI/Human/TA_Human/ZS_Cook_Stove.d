@@ -16,10 +16,7 @@ func void ZS_Cook_Stove()
 
 func int ZS_Cook_Stove_Loop()
 {
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"STOVE"))
-	{
-		AI_UseMob(self,"STOVE",1);
-	};
+	B_UseAvailableMob(self,"STOVE");
 	return LOOP_CONTINUE;
 };
 

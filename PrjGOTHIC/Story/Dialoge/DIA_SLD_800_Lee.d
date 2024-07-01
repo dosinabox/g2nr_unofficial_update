@@ -646,7 +646,7 @@ func void DIA_Lee_JoinNOW_Info()
 			B_GiveArmor(ITAR_SLD_L);
 			Snd_Play("LEVELUP");
 			B_StartOtherRoutine(Lothar,"START");
-			B_StartOtherRoutine(Babo,"Garden");
+			B_StartOtherRoutine(Babo,"GARDEN");
 			NOV_Aufnahme = LOG_OBSOLETE;
 			SLD_Aufnahme = LOG_SUCCESS;
 			MIL_Aufnahme = LOG_OBSOLETE;
@@ -1457,7 +1457,6 @@ func void DIA_Lee_SYLVIO_Info()
 
 var int DIA_Lee_Teacher_permanent;
 var int Lee_Labercount;
-var int DIA_Lee_TeachState_2H;
 
 func void B_Lee_CommentFightSkill()
 {
@@ -1931,7 +1930,7 @@ func void DIA_Lee_LeaveMyShip_Info()
 	Lee_IsOnBoard = LOG_OBSOLETE;
 	Crewmember_Count -= 1;
 	Lee_Nerver += 1;
-	Npc_ExchangeRoutine(self,"ShipOff");
+	Npc_ExchangeRoutine(self,"SHIPOFF");
 };
 
 

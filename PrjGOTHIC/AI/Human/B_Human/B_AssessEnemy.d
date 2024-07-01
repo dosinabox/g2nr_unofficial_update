@@ -38,12 +38,25 @@ func int B_AssessEnemy()
 			};
 		};
 	};
-	if(C_NpcIsLevelinspektor(other))
+	if(other.guild < GIL_SEPERATOR_HUM)
 	{
-		return FALSE;
-	};
-//	if(((Hlp_GetInstanceID(other) != Hlp_GetInstanceID(hero)) && (other.guild < GIL_SEPERATOR_HUM) && ((self.aivar[AIV_NoFightParker] == TRUE) || (other.aivar[AIV_NoFightParker] == TRUE))) || ((other.guild > GIL_SEPERATOR_HUM) && (other.aivar[AIV_NoFightParker] == TRUE)))
-	if((!Npc_IsPlayer(other) && (other.guild < GIL_SEPERATOR_HUM) && ((self.aivar[AIV_NoFightParker] == TRUE) || (other.aivar[AIV_NoFightParker] == TRUE))) || ((other.guild > GIL_SEPERATOR_HUM) && (other.aivar[AIV_NoFightParker] == TRUE)))
+		if(!Npc_IsPlayer(other))
+		{
+			if(self.aivar[AIV_NoFightParker] == TRUE)
+			{
+				return FALSE;
+			};
+			if(other.aivar[AIV_NoFightParker] == TRUE)
+			{
+				return FALSE;
+			};
+		};
+		if(C_NpcIsLevelinspektor(other))
+		{
+			return FALSE;
+		};
+	}
+	else if(other.aivar[AIV_NoFightParker] == TRUE)
 	{
 		return FALSE;
 	};

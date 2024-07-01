@@ -21,11 +21,11 @@ func int C_NpcIsGolem(var C_Npc slf)
 	{
 		return TRUE;
 	};
-	if(slf.guild == GIL_Stoneguardian)
+	if(slf.guild == GIL_STONEGUARDIAN)
 	{
 		return TRUE;
 	};
-	if(slf.guild == GIL_SummonedGuardian)
+	if(slf.guild == GIL_SUMMONED_STONEGUARDIAN)
 	{
 		return TRUE;
 	};
