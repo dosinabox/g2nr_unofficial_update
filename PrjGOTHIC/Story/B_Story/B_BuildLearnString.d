@@ -16,7 +16,7 @@ func string B_BuildLearnString(var string text,var int kosten)
 	{
 		concatText = ConcatStrings(concatText,PRINT_1LP);
 	};
-	if(PremiumTeachersEnabled == TRUE)
+	if(C_PremiumTeachersEnabled())
 	{
 		concatText = ConcatStrings(concatText,", ");
 		concatText = ConcatStrings(concatText,IntToString(kosten * PremiumTeachersPrice));

@@ -12,7 +12,9 @@ instance MENU_OPT_UNION(C_MENU_DEF)
 	items[7] = "MENUITEM_UNION_JUMPBACKNOTURN_CHOICE";
 	items[8] = "MENUITEM_UNION_STRAFENOTURN";
 	items[9] = "MENUITEM_UNION_STRAFENOTURN_CHOICE";
-	items[10] = "MENUITEM_UNION_BACK";
+	items[10] = "MENUITEM_UNION_PREMIUMTEACHERS";
+	items[11] = "MENUITEM_UNION_PREMIUMTEACHERS_CHOICE";
+	items[12] = "MENUITEM_UNION_BACK";
 	flags = flags | MENU_SHOW_INFO;
 };
 
@@ -157,6 +159,35 @@ instance MENUITEM_UNION_STRAFENOTURN_CHOICE(C_MENU_ITEM_DEF)
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "StrafeNoTurn";
 	onchgsetoptionsection = "ZMISCUTILS";
+	flags = flags & ~IT_SELECTABLE;
+	flags = flags | IT_TXT_CENTER;
+};
+
+instance MENUITEM_UNION_PREMIUMTEACHERS(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_ITEM_BACK_PIC;
+	text[0] = "Платное обучение";
+	text[1] = "Требование золота у всех учителей";
+	posx = 700;
+	posy = MENU_START_Y + (MENU_STEP_Y * 5);
+	dimx = 4400;
+	dimy = MENU_MAIN_DY;
+	onselaction[0] = SEL_ACTION_UNDEF;
+	flags = flags | IT_EFFECTS_NEXT;
+};
+
+instance MENUITEM_UNION_PREMIUMTEACHERS_CHOICE(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_CHOICE_BACK_PIC;
+	type = MENU_ITEM_CHOICEBOX;
+	text[0] = MENU_TEXT_ONOFF;
+	fontname = MENU_FONT_SMALL;
+	posx = MENU_BUTTONS;
+	posy = MENU_START_Y + (MENU_STEP_Y * 5) + MENU_CHOICE_YPLUS;
+	dimx = MENU_SLIDER_DX;
+	dimy = MENU_CHOICE_DY;
+	onchgsetoption = "PremiumTeachersEnabled";
+	onchgsetoptionsection = "SCRIPTPATCH";
 	flags = flags & ~IT_SELECTABLE;
 	flags = flags | IT_TXT_CENTER;
 };

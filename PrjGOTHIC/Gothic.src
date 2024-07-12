@@ -22,6 +22,7 @@ Story\Text.d
 Story\NPC_Scripts\B_RemoveEveryInvItem.d
 AI\Human\C_Human\C_IsNpc.d
 AI\Human\C_Human\C_NpcIsHero.d
+Story\B_Story\B_CheckOption.d
 Story\B_Story\C_NpcIsInQuarter.d
 Story\B_Story\B_GetLaresLocation.d
 Story\B_Story\C_DiegoTooFar.d
@@ -461,6 +462,7 @@ Story\NPC_Scripts\B_GiveAllScrolls.d
 Story\NPC_Scripts\B_GiveAllTrophies.d
 Story\NPC_Scripts\B_GiveAllWeapons.d
 Story\NPC_Scripts\Npc_Default.d
+Items\IT_ScriptPatch.d
 Story\NPC\BAU_4300_Addon_Cavalorn.d
 Story\NPC\BAU_900_Onar.d
 Story\NPC\BAU_901_Bauer.d
