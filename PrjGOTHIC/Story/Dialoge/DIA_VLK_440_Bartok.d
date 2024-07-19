@@ -419,10 +419,7 @@ func void DIA_Bartok_HuntNOW_Info()
 	AI_Output(self,other,"DIA_Bartok_HuntNOW_GO_04_02");	//(себе под нос) ƒаже больше, чем хотелось бы...
 	CreateInvItem(self,ITAR_Leather_L);
 	CreateInvItem(self,ItRw_Bow_M_03);
-	if(!Npc_HasItems(self,ItRw_Arrow) < 30)
-	{
-		CreateInvItems(self,ItRw_Arrow,40);
-	};
+	B_RefreshInvItemToAmount(self,ItRw_Arrow,40);
 	AI_EquipArmor(self,ITAR_Leather_L);
 	AI_EquipBestRangedWeapon(self);
 	Bartok_Los = TRUE;

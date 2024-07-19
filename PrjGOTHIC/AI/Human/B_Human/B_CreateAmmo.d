@@ -32,7 +32,7 @@ func void B_RefreshAmmo(var C_Npc slf,var int amount)
 
 func void B_RefreshTraderAmmo(var C_Npc slf,var int amount)
 {
-	if(TradersHaveLimitedAmmo == FALSE)
+	if(!C_TradersHaveLimitedAmmo())
 	{
 		B_RefreshAmmo(slf,amount);
 	}

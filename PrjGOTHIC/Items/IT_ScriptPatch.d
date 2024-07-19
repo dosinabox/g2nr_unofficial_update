@@ -132,7 +132,7 @@ func void Use_StatsBook()
 	{
 		Doc_PrintLine(nDocID,1,"Мир Wasteland заселен");
 	};
-	if(HardModeEnabled == TRUE)
+	if(HardModeXPModifier > 0)
 	{
 		Doc_PrintLine(nDocID,1,ConcatStrings(ConcatStrings("Опыт снижен на ",IntToString(HardModeXPModifier)),"%"));
 	};

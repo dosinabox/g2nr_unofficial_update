@@ -47,7 +47,7 @@ func int CalculateLowerXP(var int add_xp)
 func void B_GivePlayerXP(var int add_xp)
 {
 	var string concatText;
-	if(HardModeEnabled == TRUE)
+	if(HardModeXPModifier > 0)
 	{
 		add_xp = CalculateLowerXP(add_xp);
 	};

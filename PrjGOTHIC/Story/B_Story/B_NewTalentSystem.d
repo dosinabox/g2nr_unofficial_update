@@ -704,7 +704,7 @@ func int GetTalentTrainCost_Impl(var int talent,var int value,var int change)
 		return change * LP_Static;
 	};
 	costBefore = GetTalentPointCost(talent,value);
-	if(HonestStatCalculation == FALSE)
+	if(!C_HonestLearnCostEnabled())
 	{
 		return change * costBefore;
 	};

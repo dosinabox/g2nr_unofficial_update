@@ -227,7 +227,10 @@ func void DIA_Addon_Cord_YouAreRanger_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_14_04");	//(вздыхает) Похоже, что теперь мне придется возиться с тобой, так?
 	AI_Output(self,other,"DIA_Addon_Cord_Add_14_01");	//Ну хорошо, что тебе нужно?
-	AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_14_06");	//И хорошо подумай над тем, что ты мне скажешь. Потому что, если мне не понравится то, что я услышу, я с тебя кожу сдеру.
+	if(MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_14_06");	//И хорошо подумай над тем, что ты мне скажешь. Потому что, если мне не понравится то, что я услышу, я с тебя кожу сдеру.
+	};
 	Info_ClearChoices(DIA_Addon_Cord_YouAreRanger);
 	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"На самом деле мне ничего не нужно. Я и сам справлюсь.",DIA_Addon_Cord_YouAreRanger_nix);
 	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Мне нужна твоя броня.",DIA_Addon_Cord_YouAreRanger_ruestung);
@@ -615,12 +618,12 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 		{
 			if(!Npc_IsDead(Rick))
 			{
-				Npc_ExchangeRoutine(Rick,"Flucht3");
+				Npc_ExchangeRoutine(Rick,"FLUCHT3");
 				Rick.aivar[AIV_DropDeadAndKill] = FALSE;
 			};
 			if(!Npc_IsDead(Rumbold))
 			{
-				Npc_ExchangeRoutine(Rumbold,"Flucht3");
+				Npc_ExchangeRoutine(Rumbold,"FLUCHT3");
 				Rumbold.aivar[AIV_DropDeadAndKill] = FALSE;
 			};
 		};

@@ -146,7 +146,6 @@ func void DIA_Milten_DI_PEDROTOT_Info()
 	AI_Output(other,self,"DIA_Milten_DI_PEDROTOT_15_00");	//Я нашел Педро.
 	AI_Output(self,other,"DIA_Milten_DI_PEDROTOT_03_01");	//(удивленно) Что? Где? Здесь, на острове? Черт, но это абсолютно невероятно.
 	AI_Output(self,other,"DIA_Milten_DI_PEDROTOT_03_02");	//Я понятия не имел, что он такой подонок.
-	B_GivePlayerXP(XP_AmbientKap6);
 	if(Npc_IsDead(Pedro_DI))
 	{
 		AI_Output(other,self,"DIA_Milten_DI_PEDROTOT_15_03");	//Он мертв.
@@ -156,6 +155,7 @@ func void DIA_Milten_DI_PEDROTOT_Info()
 	{
 		AI_Output(self,other,"DIA_Milten_DI_PEDROTOT_03_05");	//У меня с ним давние счеты.
 	};
+	B_GivePlayerXP(XP_AmbientKap6);
 };
 
 
@@ -463,10 +463,6 @@ func void DIA_Milten_DI_TeachMagic_Runen_Circle_6()
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_ArmyOfDarkness,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ArmyOfDarkness)),DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_ArmyOfDarkness);
 	};
-	/*if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
-	{
-		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_Shrink);
-	};*/
 };
 
 func void DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_Firerain()
@@ -601,11 +597,11 @@ func void DIA_Milten_DI_UndeadDragonDead_Info()
 	{
 		if(Lester_IsOnBoard != LOG_SUCCESS)
 		{
-			Npc_ExchangeRoutine(self,"SittingShipDI");
+			Npc_ExchangeRoutine(self,"SITTINGSHIPDI");
 		}
 		else
 		{
-			Npc_ExchangeRoutine(self,"Start");
+			Npc_ExchangeRoutine(self,"START");
 		};
 	};
 	DIA_Milten_DI_UndeadDragonDead_OneTime = TRUE;

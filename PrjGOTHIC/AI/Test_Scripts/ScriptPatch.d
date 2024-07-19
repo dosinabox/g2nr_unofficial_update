@@ -39,7 +39,7 @@ func void B_Build_Settings_Diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить пониженную сложность краж при низкой ловкости",StoryHelper_EasyLowDexPickpocket);
 	};
-	if(HardModeEnabled == FALSE)
+	if(HardModeXPModifier == 0)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить повышенный уровень сложности",StoryHelper_HardMode);
 	}
@@ -62,14 +62,6 @@ func void B_Build_Settings_Diag()
 	else
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Соединить шлемы и доспехи",StoryHelper_Helmets);
-	};
-	if(HonestStatCalculation == FALSE)
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
 	};
 	if(IgnoreBonuses == FALSE)
 	{
@@ -105,14 +97,6 @@ func void B_Build_Settings_Diag()
 		{
 			Info_AddChoice(StoryHelper_PatchSettings,"Выключить выкуп гроссбуха у Торбена и Корагона",StoryHelper_LehmarBook);
 		};
-	};
-	if(TradersHaveLimitedAmmo == FALSE)
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить лимит запаса стрел и болтов у торговцев",StoryHelper_LimitedAmmo);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить лимит запаса стрел и болтов у торговцев",StoryHelper_LimitedAmmo);
 	};
 	if(Dont_Fix_Unlim == FALSE)
 	{
@@ -178,16 +162,32 @@ func void B_Build_Settings_Diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить опыт с бесконечно призываемых скелетов",StoryHelper_Skeletons);
 	};
-	if(NewLogEnabled == FALSE)
+	if(NewLogDisabled == FALSE)
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить показ заголовков при обновлении дневника",StoryHelper_Log);
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить показ заголовков при обновлении дневника",StoryHelper_Log);
 	}
 	else
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить показ заголовков при обновлении дневника",StoryHelper_Log);
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить показ заголовков при обновлении дневника",StoryHelper_Log);
 	};
 	if(UnionActivated == FALSE)
 	{
+		if(HonestLearnCostEnabled == FALSE)
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Включить честный расчет стоимости обучения",StoryHelper_HonestLearnCost);
+		}
+		else
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Выключить честный расчет стоимости обучения",StoryHelper_HonestLearnCost);
+		};
+		if(TradersHaveLimitedAmmo == FALSE)
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Включить лимит запаса стрел и болтов у торговцев",StoryHelper_LimitedAmmo);
+		}
+		else
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Выключить лимит запаса стрел и болтов у торговцев",StoryHelper_LimitedAmmo);
+		};
 		if(PremiumTeachersEnabled == FALSE)
 		{
 			Info_AddChoice(StoryHelper_PatchSettings,"Включить платное обучение",StoryHelper_PremiumTeachers);
@@ -403,14 +403,14 @@ func void StoryHelper_AlternativeSmithing()
 
 func void StoryHelper_Log()
 {
-	if(NewLogEnabled == TRUE)
+	if(NewLogDisabled == FALSE)
 	{
-		NewLogEnabled = FALSE;
+		NewLogDisabled = TRUE;
 		PrintScreen("Показ заголовков выключен",-1,-1,FONT_Screen,3);
 	}
 	else
 	{
-		NewLogEnabled = TRUE;
+		NewLogDisabled = FALSE;
 		PrintScreen("Показ заголовков включен",-1,-1,FONT_Screen,3);
 	};
 	B_Build_Settings_Diag();
@@ -463,9 +463,8 @@ func void StoryHelper_EasyLowDexPickpocket()
 
 func void StoryHelper_HardMode()
 {
-	if(HardModeEnabled == TRUE)
+	if(HardModeXPModifier > 0)
 	{
-		HardModeEnabled = FALSE;
 		HardModeXPModifier = 0;
 		PrintScreen("Повышенный уровень сложности выключен",-1,-1,FONT_Screen,3);
 		B_Build_Settings_Diag();
@@ -484,7 +483,6 @@ func void StoryHelper_HardMode()
 
 func void B_SetHardMode(var int modifier)
 {
-	HardModeEnabled = TRUE;
 	HardModeXPModifier = modifier;
 	PrintScreen("Повышенный уровень сложности включен",-1,YPOS_LOGENTRY,FONT_Screen,3);
 	PrintScreen(ConcatStrings(ConcatStrings("Получаемый опыт снижен на ",IntToString(modifier)),"%"),-1,-1,FONT_ScreenSmall,3);
@@ -707,16 +705,16 @@ func void StoryHelper_LP_Back()
 	B_Build_Settings_Diag();
 };
 
-func void StoryHelper_HonestStatCalculation()
+func void StoryHelper_HonestLearnCost()
 {
-	if(HonestStatCalculation == TRUE)
+	if(HonestLearnCostEnabled == TRUE)
 	{
-		HonestStatCalculation = FALSE;
+		HonestLearnCostEnabled = FALSE;
 		PrintScreen("Расчет стоимости обучения как в оригинале",-1,-1,FONT_Screen,3);
 	}
 	else
 	{
-		HonestStatCalculation = TRUE;
+		HonestLearnCostEnabled = TRUE;
 		PrintScreen("Честный расчет стоимости обучения включен",-1,-1,FONT_Screen,3);
 	};
 	B_Build_Settings_Diag();
