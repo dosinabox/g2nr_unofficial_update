@@ -408,7 +408,6 @@ func void DIA_Addon_Mil_310_Stadtwache_Constantino_Info()
 			B_CityMainGatesPass();
 			MIS_Addon_Lester_PickForConstantino = LOG_SUCCESS;
 			B_GivePlayerXP(XP_Addon_PickForConstantino);
-			AI_StopProcessInfos(self);
 		}
 		else
 		{

@@ -1593,10 +1593,10 @@ func void DIA_CH_Strength_Info()
 {
 	Info_ClearChoices(DIA_CH_Strength);
 	Info_AddChoice(DIA_CH_Strength,Dialog_Back,DIA_CH_Strength_BACK);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 20",B_GetLearnCostAttribute(ATR_STRENGTH,20)),DIA_CH_Strength_20);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 10",B_GetLearnCostAttribute(ATR_STRENGTH,10)),DIA_CH_Strength_10);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 5",B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_CH_Strength_5);
-	Info_AddChoice(DIA_CH_Strength,B_BuildLearnString("Сила + 1",B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_CH_Strength_1);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnAttributeString(ATR_STRENGTH,20),DIA_CH_Strength_20);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnAttributeString(ATR_STRENGTH,10),DIA_CH_Strength_10);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_CH_Strength_5);
+	Info_AddChoice(DIA_CH_Strength,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_CH_Strength_1);
 };
 
 func void DIA_CH_Strength_BACK()
@@ -1652,10 +1652,10 @@ func void DIA_CH_Dex_Info()
 {
 	Info_ClearChoices(DIA_CH_Dex);
 	Info_AddChoice(DIA_CH_Dex,Dialog_Back,DIA_CH_Dex_BACK);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 20",B_GetLearnCostAttribute(ATR_DEXTERITY,20)),DIA_CH_Dex_20);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 10",B_GetLearnCostAttribute(ATR_DEXTERITY,10)),DIA_CH_Dex_10);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 5",B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_CH_Dex_5);
-	Info_AddChoice(DIA_CH_Dex,B_BuildLearnString("Ловкость + 1",B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_CH_Dex_1);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnAttributeString(ATR_DEXTERITY,20),DIA_CH_Dex_20);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnAttributeString(ATR_DEXTERITY,10),DIA_CH_Dex_10);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnAttributeString(ATR_DEXTERITY,5),DIA_CH_Dex_5);
+	Info_AddChoice(DIA_CH_Dex,B_BuildLearnAttributeString(ATR_DEXTERITY,1),DIA_CH_Dex_1);
 };
 
 func void DIA_CH_Dex_BACK()
@@ -1747,7 +1747,7 @@ instance DIA_CH_Mana(C_Info)
 	condition = DIA_CH_Mana_Condition;
 	information = DIA_CH_Mana_Info;
 	permanent = TRUE;
-	description = "Повысить ману";
+	description = "Повысить макс. ману";
 };
 
 
@@ -1763,10 +1763,10 @@ func void DIA_CH_Mana_Info()
 {
 	Info_ClearChoices(DIA_CH_Mana);
 	Info_AddChoice(DIA_CH_Mana,Dialog_Back,DIA_CH_Mana_BACK);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 20",B_GetLearnCostAttribute(ATR_MANA_MAX,20)),DIA_CH_Mana_20);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 10",B_GetLearnCostAttribute(ATR_MANA_MAX,10)),DIA_CH_Mana_10);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 5",B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_CH_Mana_5);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 1",B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_CH_Mana_1);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnAttributeString(ATR_MANA_MAX,20),DIA_CH_Mana_20);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnAttributeString(ATR_MANA_MAX,10),DIA_CH_Mana_10);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnAttributeString(ATR_MANA_MAX,5),DIA_CH_Mana_5);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnAttributeString(ATR_MANA_MAX,1),DIA_CH_Mana_1);
 };
 
 func void DIA_CH_Mana_BACK()
@@ -2484,10 +2484,10 @@ func void DIA_CH_Kampf_Einhand_Info()
 {
 	Info_ClearChoices(DIA_CH_Kampf_Einhand);
 	Info_AddChoice(DIA_CH_Kampf_Einhand,Dialog_Back,DIA_CH_Kampf_Einhand_BACK);
-	Info_AddChoice(DIA_CH_Kampf_Einhand,B_BuildLearnString("Одноручное оружие + 20",B_GetLearnCostTalent(other,NPC_TALENT_1H,1) * 20),CH_Training_Combat_1H_20);
-	Info_AddChoice(DIA_CH_Kampf_Einhand,B_BuildLearnString("Одноручное оружие + 10",B_GetLearnCostTalent(other,NPC_TALENT_1H,1) * 10),CH_Training_Combat_1H_10);
-	Info_AddChoice(DIA_CH_Kampf_Einhand,B_BuildLearnString("Одноручное оружие + 5",B_GetLearnCostTalent(other,NPC_TALENT_1H,1) * 5),CH_Training_Combat_1H_5);
-	Info_AddChoice(DIA_CH_Kampf_Einhand,B_BuildLearnString("Одноручное оружие + 1",B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),CH_Training_Combat_1H_1);
+	Info_AddChoice(DIA_CH_Kampf_Einhand,B_BuildLearnTalentString(other,NPC_TALENT_1H,20),CH_Training_Combat_1H_20);
+	Info_AddChoice(DIA_CH_Kampf_Einhand,B_BuildLearnTalentString(other,NPC_TALENT_1H,10),CH_Training_Combat_1H_10);
+	Info_AddChoice(DIA_CH_Kampf_Einhand,B_BuildLearnTalentString(other,NPC_TALENT_1H,5),CH_Training_Combat_1H_5);
+	Info_AddChoice(DIA_CH_Kampf_Einhand,B_BuildLearnTalentString(other,NPC_TALENT_1H,1),CH_Training_Combat_1H_1);
 };
 
 func void DIA_CH_Kampf_Einhand_BACK()
@@ -2543,10 +2543,10 @@ func void DIA_CH_Kampf_Zweihand_Info()
 {
 	Info_ClearChoices(DIA_CH_Kampf_Zweihand);
 	Info_AddChoice(DIA_CH_Kampf_Zweihand,Dialog_Back,DIA_CH_Kampf_Zweihand_BACK);
-	Info_AddChoice(DIA_CH_Kampf_Zweihand,B_BuildLearnString("Двуручное оружие + 20",B_GetLearnCostTalent(other,NPC_TALENT_2H,1) * 20),CH_Training_Combat_2H_20);
-	Info_AddChoice(DIA_CH_Kampf_Zweihand,B_BuildLearnString("Двуручное оружие + 10",B_GetLearnCostTalent(other,NPC_TALENT_2H,1) * 10),CH_Training_Combat_2H_10);
-	Info_AddChoice(DIA_CH_Kampf_Zweihand,B_BuildLearnString("Двуручное оружие + 5",B_GetLearnCostTalent(other,NPC_TALENT_2H,1) * 5),CH_Training_Combat_2H_5);
-	Info_AddChoice(DIA_CH_Kampf_Zweihand,B_BuildLearnString("Двуручное оружие + 1",B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),CH_Training_Combat_2H_1);
+	Info_AddChoice(DIA_CH_Kampf_Zweihand,B_BuildLearnTalentString(other,NPC_TALENT_2H,20),CH_Training_Combat_2H_20);
+	Info_AddChoice(DIA_CH_Kampf_Zweihand,B_BuildLearnTalentString(other,NPC_TALENT_2H,10),CH_Training_Combat_2H_10);
+	Info_AddChoice(DIA_CH_Kampf_Zweihand,B_BuildLearnTalentString(other,NPC_TALENT_2H,5),CH_Training_Combat_2H_5);
+	Info_AddChoice(DIA_CH_Kampf_Zweihand,B_BuildLearnTalentString(other,NPC_TALENT_2H,1),CH_Training_Combat_2H_1);
 };
 
 func void DIA_CH_Kampf_Zweihand_BACK()
@@ -2586,7 +2586,7 @@ instance DIA_CH_Kampf_Bogen(C_Info)
 	condition = DIA_CH_Kampf_Bogen_Condition;
 	information = DIA_CH_Kampf_Bogen_Info;
 	permanent = TRUE;
-	description = "Лук";
+	description = NAME_Bow;
 };
 
 
@@ -2602,10 +2602,10 @@ func void DIA_CH_Kampf_Bogen_Info()
 {
 	Info_ClearChoices(DIA_CH_Kampf_Bogen);
 	Info_AddChoice(DIA_CH_Kampf_Bogen,Dialog_Back,DIA_CH_Kampf_Bogen_BACK);
-	Info_AddChoice(DIA_CH_Kampf_Bogen,B_BuildLearnString("Лук + 20",B_GetLearnCostTalent(other,NPC_TALENT_BOW,1) * 20),CH_Training_Combat_BOW_20);
-	Info_AddChoice(DIA_CH_Kampf_Bogen,B_BuildLearnString("Лук + 10",B_GetLearnCostTalent(other,NPC_TALENT_BOW,1) * 10),CH_Training_Combat_BOW_10);
-	Info_AddChoice(DIA_CH_Kampf_Bogen,B_BuildLearnString("Лук + 5",B_GetLearnCostTalent(other,NPC_TALENT_BOW,1) * 5),CH_Training_Combat_BOW_5);
-	Info_AddChoice(DIA_CH_Kampf_Bogen,B_BuildLearnString("Лук + 1",B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),CH_Training_Combat_BOW_1);
+	Info_AddChoice(DIA_CH_Kampf_Bogen,B_BuildLearnTalentString(other,NPC_TALENT_BOW,20),CH_Training_Combat_BOW_20);
+	Info_AddChoice(DIA_CH_Kampf_Bogen,B_BuildLearnTalentString(other,NPC_TALENT_BOW,10),CH_Training_Combat_BOW_10);
+	Info_AddChoice(DIA_CH_Kampf_Bogen,B_BuildLearnTalentString(other,NPC_TALENT_BOW,5),CH_Training_Combat_BOW_5);
+	Info_AddChoice(DIA_CH_Kampf_Bogen,B_BuildLearnTalentString(other,NPC_TALENT_BOW,1),CH_Training_Combat_BOW_1);
 };
 
 func void DIA_CH_Kampf_Bogen_BACK()
@@ -2645,7 +2645,7 @@ instance DIA_CH_Kampf_Armbrust(C_Info)
 	condition = DIA_CH_Kampf_Armbrust_Condition;
 	information = DIA_CH_Kampf_Armbrust_Info;
 	permanent = TRUE;
-	description = "Арбалет";
+	description = NAME_CrossBow;
 };
 
 
@@ -2661,10 +2661,10 @@ func void DIA_CH_Kampf_Armbrust_Info()
 {
 	Info_ClearChoices(DIA_CH_Kampf_Armbrust);
 	Info_AddChoice(DIA_CH_Kampf_Armbrust,Dialog_Back,DIA_CH_Kampf_Armbrust_BACK);
-	Info_AddChoice(DIA_CH_Kampf_Armbrust,B_BuildLearnString("Арбалет + 20",B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1) * 20),CH_Training_Combat_CROSSBOW_20);
-	Info_AddChoice(DIA_CH_Kampf_Armbrust,B_BuildLearnString("Арбалет + 10",B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1) * 10),CH_Training_Combat_CROSSBOW_10);
-	Info_AddChoice(DIA_CH_Kampf_Armbrust,B_BuildLearnString("Арбалет + 5",B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1) * 5),CH_Training_Combat_CROSSBOW_5);
-	Info_AddChoice(DIA_CH_Kampf_Armbrust,B_BuildLearnString("Арбалет + 1",B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),CH_Training_Combat_CROSSBOW_1);
+	Info_AddChoice(DIA_CH_Kampf_Armbrust,B_BuildLearnTalentString(other,NPC_TALENT_CROSSBOW,20),CH_Training_Combat_CROSSBOW_20);
+	Info_AddChoice(DIA_CH_Kampf_Armbrust,B_BuildLearnTalentString(other,NPC_TALENT_CROSSBOW,10),CH_Training_Combat_CROSSBOW_10);
+	Info_AddChoice(DIA_CH_Kampf_Armbrust,B_BuildLearnTalentString(other,NPC_TALENT_CROSSBOW,5),CH_Training_Combat_CROSSBOW_5);
+	Info_AddChoice(DIA_CH_Kampf_Armbrust,B_BuildLearnTalentString(other,NPC_TALENT_CROSSBOW,1),CH_Training_Combat_CROSSBOW_1);
 };
 
 func void DIA_CH_Kampf_Armbrust_BACK()

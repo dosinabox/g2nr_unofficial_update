@@ -792,7 +792,7 @@ const string TEXT_FONT_10 = "FONT_OLD_10_WHITE.TGA";
 const string TEXT_FONT_DEFAULT = "FONT_OLD_10_WHITE.TGA";
 const string TEXT_FONT_Inventory = "FONT_OLD_10_WHITE.TGA";
 
-const float VIEW_TIME_PER_CHAR = 550;
+const float VIEW_TIME_PER_CHAR = 550.0;
 
 const int NEWWORLD_ZEN = 1;
 const int OLDWORLD_ZEN = 2;
@@ -816,7 +816,7 @@ const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2024;
 const int FIX_DATE_MONTH = 7;
-const int FIX_DATE_DAY = 19;
+const int FIX_DATE_DAY = 23;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;

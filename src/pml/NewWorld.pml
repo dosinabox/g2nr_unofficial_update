@@ -6,7 +6,7 @@ saveGame 0
 date 4.10.2018 16:59:14
 user User
 END
-objects 392      
+objects 393      
 END
 
 [% zCMaterial 39939 0]
@@ -10181,6 +10181,32 @@ END
 	color=color:106 93 69 255
 	smoothAngle=float:60
 	texture=string:NW_NATURE_STEIN_08.TGA
+	texScale=string:512 512
+	texAniFPS=float:0
+	texAniMapMode=enum:0
+	texAniMapDir=string:0 0
+	noCollDet=bool:0
+	noLightmap=bool:0
+	lodDontCollapse=bool:0
+	detailObject=string:
+	detailObjectScale=float:1
+	forceOccluder=bool:0
+	environmentalMapping=bool:0
+	environmentalMappingStrength=float:1
+	waveMode=enum:0
+	waveSpeed=enum:2
+	waveMaxAmplitude=float:30
+	waveGridSize=float:100
+	ignoreSunLight=bool:0
+	alphaFunc=enum:1
+	defaultMapping=rawFloat:2.34375 2.34375 
+[]
+[% zCMaterial 39939 392]
+	name=string:NW_MONASTERY_WALL_22
+	matGroup=enum:2
+	color=color:82 76 57 255
+	smoothAngle=float:60
+	texture=string:NW_MONASTERY_WALL_22.TGA
 	texScale=string:512 512
 	texAniFPS=float:0
 	texAniMapMode=enum:0

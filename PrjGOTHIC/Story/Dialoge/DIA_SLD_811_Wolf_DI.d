@@ -34,7 +34,7 @@ instance DIA_Wolf_DI_HALLO(C_Info)
 
 func int DIA_Wolf_DI_HALLO_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -58,7 +58,7 @@ func void DIA_Wolf_DI_HALLO_Info()
 		B_GivePlayerXP(XP_AmbientKap6);
 		DIA_Wolf_DI_HALLO_OneTime = TRUE;
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"SmithDI");
+		Npc_ExchangeRoutine(self,"SMITHDI");
 	}
 	else
 	{
@@ -76,13 +76,13 @@ func void B_BuildLearnDialog_Wolf_DI()
 	Info_AddChoice(DIA_Wolf_DI_Training,Dialog_Back,DIA_Wolf_DI_Training_BACK);
 	if(VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_Wolf)
 	{
-		Info_AddChoice(DIA_Wolf_DI_Training,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Wolf_DI_Training_BOW_1);
-		Info_AddChoice(DIA_Wolf_DI_Training,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Wolf_DI_Training_BOW_5);
+		Info_AddChoice(DIA_Wolf_DI_Training,B_BuildLearnTalentString(other,NPC_TALENT_BOW,1),DIA_Wolf_DI_Training_BOW_1);
+		Info_AddChoice(DIA_Wolf_DI_Training,B_BuildLearnTalentString(other,NPC_TALENT_BOW,5),DIA_Wolf_DI_Training_BOW_5);
 	};
 	if(VisibleTalentValue(NPC_TALENT_CROSSBOW) < TeachLimit_Crossbow_Wolf)
 	{
-		Info_AddChoice(DIA_Wolf_DI_Training,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Wolf_DI_Training_CROSSBOW_1);
-		Info_AddChoice(DIA_Wolf_DI_Training,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Wolf_DI_Training_CROSSBOW_5);
+		Info_AddChoice(DIA_Wolf_DI_Training,B_BuildLearnTalentString(other,NPC_TALENT_CROSSBOW,1),DIA_Wolf_DI_Training_CROSSBOW_1);
+		Info_AddChoice(DIA_Wolf_DI_Training,B_BuildLearnTalentString(other,NPC_TALENT_CROSSBOW,5),DIA_Wolf_DI_Training_CROSSBOW_5);
 	};
 	if((VisibleTalentValue(NPC_TALENT_BOW) >= TeachLimit_Bow_Wolf) && (VisibleTalentValue(NPC_TALENT_CROSSBOW) >= TeachLimit_Crossbow_Wolf))
 	{
@@ -109,7 +109,7 @@ instance DIA_Wolf_DI_Training(C_Info)
 
 func int DIA_Wolf_DI_Training_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && (DIA_Wolf_DI_Teacher_permanent == FALSE))
+	if((UndeadDragonIsDead == FALSE) && (DIA_Wolf_DI_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -179,7 +179,7 @@ instance DIA_Wolf_DI_UndeadDragonDead(C_Info)
 
 func int DIA_Wolf_DI_UndeadDragonDead_Condition()
 {
-	if(Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == TRUE)
 	{
 		return TRUE;
 	};
