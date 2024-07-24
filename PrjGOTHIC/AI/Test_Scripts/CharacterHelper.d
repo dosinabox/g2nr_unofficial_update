@@ -585,6 +585,7 @@ var int GuildStart;
 instance CH_Guild_Start(C_Info)
 {
 	npc = ch;
+	nr = 1;
 	condition = CH_Guild_Start_Condition;
 	information = CH_Guild_Start_Info;
 	description = "Гильдия и ремесло";
@@ -912,6 +913,7 @@ var int LevelStart;
 instance CH_Level_Start(C_Info)
 {
 	npc = ch;
+	nr = 2;
 	condition = CH_Level_Start_Condition;
 	information = CH_Level_Start_Info;
 	description = "Уровень и очки обучения";
@@ -1527,7 +1529,7 @@ instance DIA_CH_Attribute_Start(C_Info)
 	condition = DIA_CH_Attribute_Start_Condition;
 	information = DIA_CH_Attribute_Start_Info;
 	permanent = TRUE;
-	description = "Сила и ловкость";
+	description = "Характеристики (сила, ловкость, мана, здоровье)";
 };
 
 
@@ -1688,62 +1690,10 @@ func void DIA_CH_Dex_20()
 };
 
 
-var int MagieStart;
-
-instance DIA_CH_MAGIE(C_Info)
-{
-	npc = ch;
-	nr = 3;
-	condition = DIA_CH_MAGIE_Condition;
-	information = DIA_CH_MAGIE_Info;
-	permanent = TRUE;
-	description = "Магия: мана, руны, круги";
-};
-
-
-func int DIA_CH_MAGIE_Condition()
-{
-	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (MiscStart == FALSE))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_CH_MAGIE_Info()
-{
-	MagieStart = TRUE;
-};
-
-
-instance DIA_CH_MAGIE_Stopper(C_Info)
-{
-	npc = ch;
-	nr = 99;
-	condition = DIA_CH_MAGIE_Stopper_Condition;
-	information = DIA_CH_MAGIE_Stopper_Info;
-	permanent = TRUE;
-	description = Dialog_Back;
-};
-
-
-func int DIA_CH_MAGIE_Stopper_Condition()
-{
-	if(MagieStart == TRUE)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_CH_MAGIE_Stopper_Info()
-{
-	MagieStart = FALSE;
-};
-
-
 instance DIA_CH_Mana(C_Info)
 {
 	npc = ch;
-	nr = 3;
+	nr = 4;
 	condition = DIA_CH_Mana_Condition;
 	information = DIA_CH_Mana_Info;
 	permanent = TRUE;
@@ -1753,7 +1703,7 @@ instance DIA_CH_Mana(C_Info)
 
 func int DIA_CH_Mana_Condition()
 {
-	if(MagieStart == TRUE)
+	if(AttributeStart == TRUE)
 	{
 		return TRUE;
 	};
@@ -1796,6 +1746,58 @@ func void DIA_CH_Mana_20()
 {
 	B_TeachAttributePoints(self,other,ATR_MANA_MAX,20,T_MEGA);
 	DIA_CH_Mana_Info();
+};
+
+
+var int MagieStart;
+
+instance DIA_CH_MAGIE(C_Info)
+{
+	npc = ch;
+	nr = 4;
+	condition = DIA_CH_MAGIE_Condition;
+	information = DIA_CH_MAGIE_Info;
+	permanent = TRUE;
+	description = "Магия (круги, создание рун, магия паладинов)";
+};
+
+
+func int DIA_CH_MAGIE_Condition()
+{
+	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (MiscStart == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_CH_MAGIE_Info()
+{
+	MagieStart = TRUE;
+};
+
+
+instance DIA_CH_MAGIE_Stopper(C_Info)
+{
+	npc = ch;
+	nr = 99;
+	condition = DIA_CH_MAGIE_Stopper_Condition;
+	information = DIA_CH_MAGIE_Stopper_Info;
+	permanent = TRUE;
+	description = Dialog_Back;
+};
+
+
+func int DIA_CH_MAGIE_Stopper_Condition()
+{
+	if(MagieStart == TRUE)
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_CH_MAGIE_Stopper_Info()
+{
+	MagieStart = FALSE;
 };
 
 
@@ -2414,7 +2416,7 @@ var int KampfStart;
 instance DIA_CH_Kampf_Start(C_Info)
 {
 	npc = ch;
-	nr = 6;
+	nr = 5;
 	condition = DIA_CH_Kampf_Start_Condition;
 	information = DIA_CH_Kampf_Start_Info;
 	permanent = TRUE;

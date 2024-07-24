@@ -993,8 +993,8 @@ func void B_BuildLearnDialog_Pyrokar()
 	{
 		Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
 		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
-		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_Pyrokar_TEACH_MANA_1);
-		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_Pyrokar_TEACH_MANA_5);
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnAttributeString(ATR_MANA_MAX,1),DIA_Pyrokar_TEACH_MANA_1);
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnAttributeString(ATR_MANA_MAX,5),DIA_Pyrokar_TEACH_MANA_5);
 	};
 };
 

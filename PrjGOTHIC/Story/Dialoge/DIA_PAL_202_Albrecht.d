@@ -237,8 +237,8 @@ func void B_BuildLearnDialog_Albrecht()
 	{
 		Info_ClearChoices(DIA_Albrecht_Teach);
 		Info_AddChoice(DIA_Albrecht_Teach,Dialog_Back,DIA_Albrecht_Teach_BACK);
-		Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_Albrecht_Teach_1);
-		Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_Albrecht_Teach_5);
+		Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnAttributeString(ATR_MANA_MAX,1),DIA_Albrecht_Teach_1);
+		Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnAttributeString(ATR_MANA_MAX,5),DIA_Albrecht_Teach_5);
 	};
 };
 

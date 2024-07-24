@@ -95,8 +95,8 @@ func void B_BuildLearnDialog_Cedric()
 	{
 		Info_ClearChoices(DIA_Cedric_Teach);
 		Info_AddChoice(DIA_Cedric_Teach,Dialog_Back,DIA_Cedric_Teach_Back);
-		Info_AddChoice(DIA_Cedric_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cedric_Teach_1H_1);
-		Info_AddChoice(DIA_Cedric_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cedric_Teach_1H_5);
+		Info_AddChoice(DIA_Cedric_Teach,B_BuildLearnTalentString(other,NPC_TALENT_1H,1),DIA_Cedric_Teach_1H_1);
+		Info_AddChoice(DIA_Cedric_Teach,B_BuildLearnTalentString(other,NPC_TALENT_1H,5),DIA_Cedric_Teach_1H_5);
 	}
 	else
 	{

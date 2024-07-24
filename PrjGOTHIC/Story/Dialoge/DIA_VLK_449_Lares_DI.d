@@ -34,7 +34,7 @@ instance DIA_Lares_DI_Hallo(C_Info)
 
 func int DIA_Lares_DI_Hallo_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -67,13 +67,13 @@ func void B_BuildLearnDialog_Lares_DI()
 	};
 	if(VisibleAttributeValue(ATR_DEXTERITY) < T_MED)
 	{
-		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Lares_DI_Training_DEX_1);
-		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Lares_DI_Training_DEX_5);
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnAttributeString(ATR_DEXTERITY,1),DIA_Lares_DI_Training_DEX_1);
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnAttributeString(ATR_DEXTERITY,5),DIA_Lares_DI_Training_DEX_5);
 	};
 	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Lares)
 	{
-		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lares_DI_Training_1H_1);
-		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lares_DI_Training_1H_5);
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnTalentString(other,NPC_TALENT_1H,1),DIA_Lares_DI_Training_1H_1);
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnTalentString(other,NPC_TALENT_1H,5),DIA_Lares_DI_Training_1H_5);
 	};
 	if(Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (VisibleAttributeValue(ATR_DEXTERITY) >= T_MED) && (VisibleTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Lares))
 	{
@@ -124,7 +124,7 @@ instance DIA_Lares_DI_Training(C_Info)
 
 func int DIA_Lares_DI_Training_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && (DIA_Lares_DI_Teacher_permanent == FALSE))
+	if((UndeadDragonIsDead == FALSE) && (DIA_Lares_DI_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -209,7 +209,7 @@ instance DIA_Lares_DI_UndeadDragonDead(C_Info)
 
 func int DIA_Lares_DI_UndeadDragonDead_Condition()
 {
-	if(Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == TRUE)
 	{
 		return TRUE;
 	};

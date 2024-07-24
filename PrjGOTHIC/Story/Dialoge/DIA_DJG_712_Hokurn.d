@@ -425,8 +425,8 @@ func void B_BuildLearnDialog_Hokurn()
 	Info_AddChoice(DIA_Hokurn_Teach,Dialog_Back,DIA_Hokurn_Teach_Back);
 	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Hokurn)
 	{
-		Info_AddChoice(DIA_Hokurn_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Hokurn_Teach_2H_1);
-		Info_AddChoice(DIA_Hokurn_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Hokurn_Teach_2H_5);
+		Info_AddChoice(DIA_Hokurn_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,1),DIA_Hokurn_Teach_2H_1);
+		Info_AddChoice(DIA_Hokurn_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,5),DIA_Hokurn_Teach_2H_5);
 		DIA_Hokurn_TeachState_2H = 1;
 	}
 	else
@@ -446,8 +446,8 @@ func void B_BuildLearnDialog_Hokurn()
 	};
 	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Hokurn)
 	{
-		Info_AddChoice(DIA_Hokurn_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Hokurn_Teach_1H_1);
-		Info_AddChoice(DIA_Hokurn_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Hokurn_Teach_1H_5);
+		Info_AddChoice(DIA_Hokurn_Teach,B_BuildLearnTalentString(other,NPC_TALENT_1H,1),DIA_Hokurn_Teach_1H_1);
+		Info_AddChoice(DIA_Hokurn_Teach,B_BuildLearnTalentString(other,NPC_TALENT_1H,5),DIA_Hokurn_Teach_1H_5);
 		DIA_Hokurn_TeachState_1H = 1;
 	}
 	else

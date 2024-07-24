@@ -34,7 +34,7 @@ instance DIA_Milten_DI_Hello(C_Info)
 
 func int DIA_Milten_DI_Hello_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -63,7 +63,7 @@ instance DIA_Milten_DI_TRADE(C_Info)
 
 func int DIA_Milten_DI_TRADE_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && Npc_KnowsInfo(other,DIA_Milten_DI_Hello))
+	if((UndeadDragonIsDead == FALSE) && Npc_KnowsInfo(other,DIA_Milten_DI_Hello))
 	{
 		return TRUE;
 	};
@@ -92,7 +92,7 @@ instance DIA_Milten_DI_Rat(C_Info)
 
 func int DIA_Milten_DI_Rat_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && Npc_KnowsInfo(other,DIA_Milten_DI_Hello))
+	if((UndeadDragonIsDead == FALSE) && Npc_KnowsInfo(other,DIA_Milten_DI_Hello))
 	{
 		return TRUE;
 	};
@@ -163,8 +163,8 @@ func void B_BuildLearnDialog_Milten_DI()
 {
 	Info_ClearChoices(DIA_Milten_DI_TeachMagic);
 	Info_AddChoice(DIA_Milten_DI_TeachMagic,Dialog_Back,DIA_Milten_DI_TeachMagic_BACK);
-	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_Milten_DI_TeachMagic_MANA_1);
-	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_Milten_DI_TeachMagic_MANA_5);
+	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnAttributeString(ATR_MANA_MAX,1),DIA_Milten_DI_TeachMagic_MANA_1);
+	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnAttributeString(ATR_MANA_MAX,5),DIA_Milten_DI_TeachMagic_MANA_5);
 	if(hero.guild == GIL_KDF)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,NAME_Skill_Runes,DIA_Milten_DI_TeachMagic_RUNES);
@@ -254,7 +254,7 @@ instance DIA_Milten_DI_TeachMagic(C_Info)
 
 func int DIA_Milten_DI_TeachMagic_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && Npc_KnowsInfo(other,DIA_Milten_DI_Hello))
+	if((UndeadDragonIsDead == FALSE) && Npc_KnowsInfo(other,DIA_Milten_DI_Hello))
 	{
 		return TRUE;
 	};
@@ -563,7 +563,7 @@ instance DIA_Milten_DI_UndeadDragonDead(C_Info)
 
 func int DIA_Milten_DI_UndeadDragonDead_Condition()
 {
-	if(Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == TRUE)
 	{
 		return TRUE;
 	};

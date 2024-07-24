@@ -553,8 +553,8 @@ func void B_BuildLearnDialog_Milten_OW()
 	{
 		Info_ClearChoices(DIA_MiltenOW_Mana);
 		Info_AddChoice(DIA_MiltenOW_Mana,Dialog_Back,DIA_MiltenOW_Mana_BACK);
-		Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_MiltenOW_Mana_1);
-		Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_MiltenOW_Mana_5);
+		Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnAttributeString(ATR_MANA_MAX,1),DIA_MiltenOW_Mana_1);
+		Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnAttributeString(ATR_MANA_MAX,5),DIA_MiltenOW_Mana_5);
 	};
 };
 
