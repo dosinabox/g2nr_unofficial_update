@@ -1749,6 +1749,65 @@ func void DIA_CH_Mana_20()
 };
 
 
+instance DIA_CH_HP(C_Info)
+{
+	npc = ch;
+	nr = 5;
+	condition = DIA_CH_HP_Condition;
+	information = DIA_CH_HP_Info;
+	permanent = TRUE;
+	description = "Повысить макс. здоровье";
+};
+
+
+func int DIA_CH_HP_Condition()
+{
+	if(AttributeStart == TRUE)
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_CH_HP_Info()
+{
+	Info_ClearChoices(DIA_CH_HP);
+	Info_AddChoice(DIA_CH_HP,Dialog_Back,DIA_CH_HP_BACK);
+	Info_AddChoice(DIA_CH_HP,B_BuildLearnAttributeString(ATR_HITPOINTS_MAX,20),DIA_CH_HP_20);
+	Info_AddChoice(DIA_CH_HP,B_BuildLearnAttributeString(ATR_HITPOINTS_MAX,10),DIA_CH_HP_10);
+	Info_AddChoice(DIA_CH_HP,B_BuildLearnAttributeString(ATR_HITPOINTS_MAX,5),DIA_CH_HP_5);
+	Info_AddChoice(DIA_CH_HP,B_BuildLearnAttributeString(ATR_HITPOINTS_MAX,1),DIA_CH_HP_1);
+};
+
+func void DIA_CH_HP_BACK()
+{
+	Info_ClearChoices(DIA_CH_HP);
+};
+
+func void DIA_CH_HP_1()
+{
+	B_TeachAttributePoints(self,other,ATR_HITPOINTS_MAX,1,T_MEGA);
+	DIA_CH_HP_Info();
+};
+
+func void DIA_CH_HP_5()
+{
+	B_TeachAttributePoints(self,other,ATR_HITPOINTS_MAX,5,T_MEGA);
+	DIA_CH_HP_Info();
+};
+
+func void DIA_CH_HP_10()
+{
+	B_TeachAttributePoints(self,other,ATR_HITPOINTS_MAX,10,T_MEGA);
+	DIA_CH_HP_Info();
+};
+
+func void DIA_CH_HP_20()
+{
+	B_TeachAttributePoints(self,other,ATR_HITPOINTS_MAX,20,T_MEGA);
+	DIA_CH_HP_Info();
+};
+
+
 var int MagieStart;
 
 instance DIA_CH_MAGIE(C_Info)

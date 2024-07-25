@@ -711,12 +711,12 @@ const string PRINT_LearnDEX5 = "Ловкость + 5";
 //const string PRINT_LearnMANA5 = "Макс. мана + 5";
 //const string PRINT_Learn1h1 = "Одноручное оружие + 1";
 //const string PRINT_Learn1h5 = "Одноручное оружие + 5";
-const string PRINT_Learn2h1 = "Двуручное оружие + 1";
-const string PRINT_Learn2h5 = "Двуручное оружие + 5";
-const string PRINT_LearnBow1 = "Лук + 1";
-const string PRINT_LearnBow5 = "Лук + 5";
-const string PRINT_LearnCrossBow1 = "Арбалет + 1";
-const string PRINT_LearnCrossBow5 = "Арбалет + 5";
+//const string PRINT_Learn2h1 = "Двуручное оружие + 1";
+//const string PRINT_Learn2h5 = "Двуручное оружие + 5";
+//const string PRINT_LearnBow1 = "Лук + 1";
+//const string PRINT_LearnBow5 = "Лук + 5";
+//const string PRINT_LearnCrossBow1 = "Арбалет + 1";
+//const string PRINT_LearnCrossBow5 = "Арбалет + 5";
 const string PRINT_SleepOver = "Вы хорошо выспались и отдохнули!";
 const string PRINT_SleepOverObsessed = "Кошмары помешали вам отдохнуть!";
 const string PRINT_SmithSuccess = "Оружие готово!";
@@ -1001,6 +1001,6 @@ const string PRINT_BookstandRunes3 = "Только при выполнении этих условий он може
 const string PRINT_OldSave1 = "Загруженное сохранение не поддерживается!";
 const string PRINT_OldSave2 = "Пожалуйста, начните новую игру.";
 
-const string PRINT_WrongParameter = "*** ОШИБКА: Неправильный параметр ***";
-const string PRINT_Error = "*** ОШИБКА ***";
+const string PRINT_WrongParameter = "ОШИБКА: Неправильный параметр";
+const string PRINT_Error = "ОШИБКА";
 

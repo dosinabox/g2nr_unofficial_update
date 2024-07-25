@@ -773,11 +773,11 @@ func void DIA_Addon_Henry_Owen2_Info()
 		B_GiveInvItems(self,other,ItMi_Gold,200);
 		if(Npc_KnowsInfo(other,DIA_Addon_Greg_RavenDead))
 		{
-			B_StartOtherRoutine(Owen,"PostStart");
+			B_StartOtherRoutine(Owen,"POSTSTART");
 		}
 		else
 		{
-			B_StartOtherRoutine(Owen,"PreStart");
+			B_StartOtherRoutine(Owen,"PRESTART");
 		};
 		MIS_Henry_HolOwen = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Addon_Owen_ComesToHenry);
@@ -893,8 +893,8 @@ func void B_BuildLearnDialog_Henry()
 	Info_AddChoice(DIA_Addon_Henry_Teach,Dialog_Back,DIA_Addon_Henry_Teach_Back);
 	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Henry)
 	{
-		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Addon_Henry_Teach_2H_1);
-		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Addon_Henry_Teach_2H_5);
+		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,1),DIA_Addon_Henry_Teach_2H_1);
+		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,5),DIA_Addon_Henry_Teach_2H_5);
 		DIA_Henry_TeachState_2H = 1;
 	}
 	else
@@ -908,8 +908,8 @@ func void B_BuildLearnDialog_Henry()
 	};
 	if(VisibleTalentValue(NPC_TALENT_CROSSBOW) < TeachLimit_Crossbow_Henry)
 	{
-		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Addon_Henry_Teach_CB_1);
-		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Addon_Henry_Teach_CB_5);
+		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnTalentString(other,NPC_TALENT_CROSSBOW,1),DIA_Addon_Henry_Teach_CB_1);
+		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnTalentString(other,NPC_TALENT_CROSSBOW,5),DIA_Addon_Henry_Teach_CB_5);
 		DIA_Henry_TeachState_Crossbow = 1;
 	}
 	else
