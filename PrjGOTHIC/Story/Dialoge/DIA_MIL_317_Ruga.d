@@ -177,8 +177,8 @@ func void B_BuildLearnDialog_Ruga_DEX()
 	{
 		Info_ClearChoices(DIA_Ruga_TEACHDEX);
 		Info_AddChoice(DIA_Ruga_TEACHDEX,Dialog_Back,DIA_Ruga_TEACHDEX_BACK);
-		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Ruga_TEACHDEX_1);
-		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Ruga_TEACHDEX_5);
+		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnAttributeString(ATR_DEXTERITY,1),DIA_Ruga_TEACHDEX_1);
+		Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnAttributeString(ATR_DEXTERITY,5),DIA_Ruga_TEACHDEX_5);
 	};
 };
 

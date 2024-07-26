@@ -34,14 +34,11 @@ instance DIA_Jack_DI_GREET(C_Info)
 
 func int DIA_Jack_DI_GREET_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && Npc_IsInState(self,ZS_Talk))
+	if((UndeadDragonIsDead == FALSE) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
 };
-
-
-var int DIA_Jack_DI_GREET_OneTime;
 
 func void DIA_Jack_DI_GREET_Info()
 {
@@ -54,11 +51,10 @@ func void DIA_Jack_DI_GREET_Info()
 	}
 	else
 	{
-		if(DIA_Jack_DI_GREET_OneTime == FALSE)
+		if(CaptainIsBackToStartPosition == FALSE)
 		{
 			AI_Output(other,self,"DIA_Jack_DI_GREET_15_03");	//Что ты здесь делаешь?
 			B_GivePlayerXP(XP_AmbientKap6);
-			DIA_Jack_DI_GREET_OneTime = TRUE;
 		};
 		AI_Output(self,other,"DIA_Jack_DI_GREET_14_04");	//Если на нас опять обрушится этот ад, я уведу корабль отсюда. С тобой или без тебя! Ты слышал?
 		AI_Output(other,self,"DIA_Jack_DI_GREET_15_05");	//Не болтай ерунды. Я со всем справлюсь.
@@ -66,7 +62,7 @@ func void DIA_Jack_DI_GREET_Info()
 		AI_StopProcessInfos(self);
 		if(CaptainIsBackToStartPosition == FALSE)
 		{
-			Npc_ExchangeRoutine(self,"Start");
+			Npc_ExchangeRoutine(self,"START");
 			CaptainIsBackToStartPosition = TRUE;
 		};
 	};
@@ -86,7 +82,7 @@ instance DIA_Jack_DI_UndeadDragonDead(C_Info)
 
 func int DIA_Jack_DI_UndeadDragonDead_Condition()
 {
-	if(Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == TRUE)
 	{
 		return TRUE;
 	};

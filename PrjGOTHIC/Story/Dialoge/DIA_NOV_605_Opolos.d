@@ -240,8 +240,8 @@ func void B_BuildLearnDialog_Opolos()
 	}
 	else
 	{
-		Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Opolos_TEACH_STR_1);
-		Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Opolos_TEACH_STR_5);
+		Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_Opolos_TEACH_STR_1);
+		Info_AddChoice(DIA_Opolos_TEACH_STR,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_Opolos_TEACH_STR_5);
 	};
 };
 
@@ -348,9 +348,7 @@ func void DIA_Opolos_LIESEL_Info()
 	{
 		other.aivar[AIV_PARTYMEMBER] = FALSE;
 		other.aivar[AIV_TAPOSITION] = NOTINPOS;
-//		other.wp = "NW_MONASTERY_SHEEP_02";
-//		other.start_aistate = ZS_MM_AllScheduler;
-		B_StartOtherRoutine(other,"Monastery");
+		B_StartOtherRoutine(other,"MONASTERY");
 		Liesel_Giveaway = TRUE;
 		AI_Output(self,hero,"DIA_Opolos_LIESEL_12_01");	//Да, конечно. Какая красивая овечка. Я позабочусь о ней.
 		AI_StopProcessInfos(self);

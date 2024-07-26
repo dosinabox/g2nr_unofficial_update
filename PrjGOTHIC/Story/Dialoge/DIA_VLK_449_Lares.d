@@ -318,9 +318,9 @@ func void DIA_Addon_Lares_Vatras_Info()
 	Lares_RangerHelp = TRUE;
 	if(GregLocation == Greg_Farm1)
 	{
-		B_StartOtherRoutine(BAU_974_Bauer,"GregInTaverne");
+		B_StartOtherRoutine(BAU_974_Bauer,"GREGINTAVERNE");
 		GregLocation = Greg_Taverne;
-		B_StartOtherRoutine(Greg_NW,"Taverne");
+		B_StartOtherRoutine(Greg_NW,"TAVERNE");
 		B_InsertGregWolfs();
 	};
 };
@@ -2092,7 +2092,7 @@ func int DIA_Addon_Lares_ArrivedPortalInterWeiter4_Condition()
 func void DIA_Addon_Lares_ArrivedPortalInterWeiter4_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter4_09_00");	//Очень хорошо. Здесь может быть опасно.
-	B_StartOtherRoutine(BridgeBandit,"Intercept");
+	B_StartOtherRoutine(BridgeBandit,"INTERCEPT");
 	LaresGuide_ZumPortal = 7;
 };
 
@@ -2354,7 +2354,7 @@ func void DIA_Addon_Lares_PortalInterWEITER_Info()
 		{
 			B_KillAnimal(Gobbo_Black_Crossbow_Guard_01);
 			B_KillAnimal(Gobbo_Black_Crossbow_Guard_02);
-			B_StartOtherRoutine(BridgeBandit,"Hide");
+			B_StartOtherRoutine(BridgeBandit,"HIDE");
 		};
 	}
 	else if(LaresGuide_ZumPortal == 6)
@@ -2429,10 +2429,10 @@ func void B_BuildLearnDialog_Lares()
 {
 	Info_ClearChoices(DIA_Lares_TEACH);
 	Info_AddChoice(DIA_Lares_TEACH,Dialog_Back,DIA_Lares_TEACH_BACK);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Lares_TEACH_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Lares_TEACH_5);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Lares_TEACHSTR_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Lares_TEACHSTR_5);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnAttributeString(ATR_DEXTERITY,1),DIA_Lares_TEACH_1);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnAttributeString(ATR_DEXTERITY,5),DIA_Lares_TEACH_5);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_Lares_TEACHSTR_1);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_Lares_TEACHSTR_5);
 };
 
 instance DIA_Lares_TEACH(C_Info)
@@ -2733,7 +2733,7 @@ func void DIA_Lares_LeaveMyShip_Info()
 		Lares_IsOnBoard = LOG_FAILED;
 	};
 	Crewmember_Count -= 1;
-	Npc_ExchangeRoutine(self,"ShipOff");
+	Npc_ExchangeRoutine(self,"SHIPOFF");
 };
 
 

@@ -34,7 +34,7 @@ instance DIA_NONE_101_MARIO_DI_Job(C_Info)
 
 func int DIA_NONE_101_MARIO_DI_Job_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && (OrkSturmDI == FALSE))
+	if((UndeadDragonIsDead == FALSE) && (OrkSturmDI == FALSE))
 	{
 		return TRUE;
 	};
@@ -49,17 +49,17 @@ func void DIA_NONE_101_MARIO_DI_Job_Info()
 };
 
 
-instance DIA_NONE_101_MARIO_DI_ambush(C_Info)
+instance DIA_NONE_101_MARIO_DI_Ambush(C_Info)
 {
 	npc = NONE_101_Mario_DI;
 	nr = 4;
-	condition = DIA_NONE_101_MARIO_DI_ambush_Condition;
-	information = DIA_NONE_101_MARIO_DI_ambush_Info;
+	condition = DIA_NONE_101_MARIO_DI_Ambush_Condition;
+	information = DIA_NONE_101_MARIO_DI_Ambush_Info;
 	important = TRUE;
 };
 
 
-func int DIA_NONE_101_MARIO_DI_ambush_Condition()
+func int DIA_NONE_101_MARIO_DI_Ambush_Condition()
 {
 	if(OrkSturmDI == TRUE)
 	{
@@ -67,18 +67,21 @@ func int DIA_NONE_101_MARIO_DI_ambush_Condition()
 	};
 };
 
-func void DIA_NONE_101_MARIO_DI_ambush_Info()
+func void DIA_NONE_101_MARIO_DI_Ambush_Info()
 {
-	AI_Output(self,other,"DIA_NONE_101_MARIO_DI_ambush_07_00");	//Подойди поближе. Так, мой друг. А теперь покажи мне, на что ты способен.
-	AI_Output(other,self,"DIA_NONE_101_MARIO_DI_ambush_15_01");	//Что ты имеешь в виду?
-	AI_Output(self,other,"DIA_NONE_101_MARIO_DI_ambush_07_02");	//Это просто. Хозяин уже устал от тебя.
-	AI_Output(self,other,"DIA_NONE_101_MARIO_DI_ambush_07_03");	//Мне стоило убить тебя раньше. Но мои друзья и я сейчас исправим эту ошибку.
+	if(UndeadDragonIsDead == FALSE)
+	{
+		AI_Output(self,other,"DIA_NONE_101_MARIO_DI_Ambush_07_00");	//Подойди поближе. Так, мой друг. А теперь покажи мне, на что ты способен.
+		AI_Output(other,self,"DIA_NONE_101_MARIO_DI_Ambush_15_01");	//Что ты имеешь в виду?
+		AI_Output(self,other,"DIA_NONE_101_MARIO_DI_Ambush_07_02");	//Это просто. Хозяин уже устал от тебя.
+	};
+	AI_Output(self,other,"DIA_NONE_101_MARIO_DI_Ambush_07_03");	//Мне стоило убить тебя раньше. Но мои друзья и я сейчас исправим эту ошибку.
 	B_GivePlayerXP(XP_Mario_Ambush);
-	Info_ClearChoices(DIA_NONE_101_MARIO_DI_ambush);
-	Info_AddChoice(DIA_NONE_101_MARIO_DI_ambush,Dialog_Ende,DIA_NONE_101_MARIO_DI_ambush_ambush);
+	Info_ClearChoices(DIA_NONE_101_MARIO_DI_Ambush);
+	Info_AddChoice(DIA_NONE_101_MARIO_DI_Ambush,Dialog_Ende,DIA_NONE_101_MARIO_DI_Ambush_Attack);
 };
 
-func void DIA_NONE_101_MARIO_DI_ambush_ambush()
+func void DIA_NONE_101_MARIO_DI_Ambush_Attack()
 {
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_SuddenEnemyInferno,1);
