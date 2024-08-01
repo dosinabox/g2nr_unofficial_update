@@ -339,18 +339,6 @@ func int GetTalentPart_TeachLimit_Hero(var int talent)
 	return 0;
 };
 
-// check RealHero talent value to start training
-func int TeacherCanTrainTalent(var int talent,var int teacherMin)
-{
-	var int teachPart;
-	teachPart = GetTalentPart_TeachLimit_Hero(talent);
-	if(teachPart >= teacherMin)
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
 // get talent value without temp bonuses
 func int RealTalentValue(var int talent)
 {
@@ -395,6 +383,25 @@ func int VisibleTalentValue(var int talent)
 	};
 	Print(PRINT_WrongParameter);
 	return 0;
+};
+
+// check RealHero talent value to start training
+func int TeacherCanTrainTalent(var int talent,var int teacherMin)
+{
+	var int teachPart;
+	if(IgnoreBonuses == TRUE)
+	{
+		teachPart = RealTalentValue(talent);
+	}
+	else
+	{
+		teachPart = GetTalentPart_TeachLimit_Hero(talent);
+	};
+	if(teachPart >= teacherMin)
+	{
+		return TRUE;
+	};
+	return FALSE;
 };
 
 func void UpdateTalent(var C_Npc npc,var int talent,var int value)
