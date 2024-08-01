@@ -154,8 +154,8 @@ func void B_BuildLearnDialog_Wolf()
 	{
 		Info_ClearChoices(DIA_Wolf_TEACH);
 		Info_AddChoice(DIA_Wolf_TEACH,Dialog_Back,DIA_Wolf_Teach_Back);
-		Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Wolf_Teach_Bow_1);
-		Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Wolf_Teach_Bow_5);
+		Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnTalentString(other,NPC_TALENT_BOW,1),DIA_Wolf_Teach_Bow_1);
+		Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnTalentString(other,NPC_TALENT_BOW,5),DIA_Wolf_Teach_Bow_5);
 	}
 	else
 	{
@@ -542,9 +542,9 @@ func void DIA_Wolf_BENGAR_geld()
 		{
 			AI_UseMob(self,"BENCH",-1);
 		};
-		Npc_ExchangeRoutine(self,"BengarsFarm");
-		B_StartOtherRoutine(SLD_815_Soeldner,"BengarsFarm");
-		B_StartOtherRoutine(SLD_817_Soeldner,"BengarsFarm");
+		Npc_ExchangeRoutine(self,"BENGARSFARM");
+		B_StartOtherRoutine(SLD_815_Soeldner,"BENGARSFARM");
+		B_StartOtherRoutine(SLD_817_Soeldner,"BENGARSFARM");
 	}
 	else
 	{
@@ -613,7 +613,7 @@ func void DIA_Wolf_KAP5_EXIT_Info()
 {
 	AI_Output(self,other,"DIA_Wolf_PERMKAP3_08_01");	//Мой работодатель мертв. Пусть земля ему будет пухом. Кстати, я всегда хотел иметь свою собственную ферму.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"BengarDead");
+	Npc_ExchangeRoutine(self,"BENGARDEAD");
 	Wolf_SaidNo = FALSE;
 };
 
@@ -736,7 +736,7 @@ func void DIA_Wolf_LeaveMyShip_Info()
 	AI_StopProcessInfos(self);
 	self.flags = 0;
 	B_Attack(self,other,AR_NONE,1);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 

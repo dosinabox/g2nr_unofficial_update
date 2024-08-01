@@ -572,7 +572,7 @@ func void B_Addon_Cavalorn_VatrasBrief()
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_12");	//Иначе тебя могут принять за бандита. Вот пара монет.
 		CreateInvItems(self,ItMi_Gold,50);
 		B_GiveInvItems(self,other,ItMi_Gold,50);
-		if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
+		if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
 		{
 			Log_CreateTopic(TOPIC_City,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_City,LOG_Running);
@@ -990,13 +990,13 @@ func void B_BuildLearnDialog_Cavalorn()
 	};
 	if(VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_Cavalorn)
 	{
-		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Addon_Cavalorn_Teach_Bow_1);
-		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Addon_Cavalorn_Teach_Bow_5);
+		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnTalentString(other,NPC_TALENT_BOW,1),DIA_Addon_Cavalorn_Teach_Bow_1);
+		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnTalentString(other,NPC_TALENT_BOW,5),DIA_Addon_Cavalorn_Teach_Bow_5);
 	};
 	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Cavalorn)
 	{
-		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Addon_Cavalorn_Teach_1H_1);
-		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Addon_Cavalorn_Teach_1H_5);
+		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnTalentString(other,NPC_TALENT_1H,1),DIA_Addon_Cavalorn_Teach_1H_1);
+		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnTalentString(other,NPC_TALENT_1H,5),DIA_Addon_Cavalorn_Teach_1H_5);
 	};
 	if(Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (VisibleTalentValue(NPC_TALENT_BOW) >= TeachLimit_Bow_Cavalorn) && (VisibleTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Cavalorn))
 	{

@@ -21,7 +21,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		};
 		return COLL_DOEVERYTHING;
 	};
-	if(spellType == SPL_IceLance)
+	if((spellType == SPL_IceLance) || (spellType == SPL_Icebolt))
 	{
 		if(C_NpcIsDown(self) || C_NpcIsSwimming(self))
 		{
@@ -131,9 +131,13 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_WindFist)
 	{
-		if(C_NpcIsDown(self) || C_NpcIsGolem(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_WISP) || (Npc_GetDistToNpc(other,self) >= FIGHT_DIST_RANGED_OUTER))
+		if(C_NpcIsDown(self) || (self.guild == GIL_WISP) || (Npc_GetDistToNpc(other,self) >= FIGHT_DIST_RANGED_OUTER) || (self.protection[PROT_FLY] == IMMUNE))
 		{
 			return COLL_DONOTHING;
+		};
+		if(C_NpcIsGolem(self) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON))
+		{
+			return COLL_APPLYDAMAGE;
 		};
 		self.aivar[AIV_LastHitByWindFist] = TRUE;
 		return COLL_DOEVERYTHING;
@@ -208,7 +212,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		};
 		return COLL_DOEVERYTHING;
 	};
-	if((spellType == SPL_IceCube) || (spellType == SPL_IceWave) || (spellType == SPL_Icebolt))
+	if((spellType == SPL_IceCube) || (spellType == SPL_IceWave))
 	{
 		if(C_NpcIsDown(self) || C_NpcIsSwimming(self))
 		{
@@ -221,6 +225,10 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		if(C_NpcIsIceCreature(self))
 		{
 			return COLL_APPLYHALVEDAMAGE;
+		};
+		if((self.guild == GIL_STONEGUARDIAN) || (self.guild == GIL_SUMMONED_STONEGUARDIAN))
+		{
+			return COLL_DOEVERYTHING;
 		};
 		if(C_NpcIsGolem(self) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON))
 		{

@@ -130,6 +130,7 @@ const int IMMUNE = -1;
 
 const int CONDITION_WEAPON_RAVEN = 666666;
 const int CONDITION_ARMOR_FAKE_DEMENTOR = 777777;
+const int CONDITION_ACROBAT_DEXTERITY = 90;
 
 const float NPC_COLLISION_CORRECTION_SCALER = 0.75;
 
@@ -792,7 +793,7 @@ const string TEXT_FONT_10 = "FONT_OLD_10_WHITE.TGA";
 const string TEXT_FONT_DEFAULT = "FONT_OLD_10_WHITE.TGA";
 const string TEXT_FONT_Inventory = "FONT_OLD_10_WHITE.TGA";
 
-const float VIEW_TIME_PER_CHAR = 550;
+const float VIEW_TIME_PER_CHAR = 550.0;
 
 const int NEWWORLD_ZEN = 1;
 const int OLDWORLD_ZEN = 2;
@@ -815,7 +816,7 @@ const int INVCAM_Z_RING_STANDARD = 45;
 const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2024;
-const int FIX_DATE_MONTH = 7;
+const int FIX_DATE_MONTH = 8;
 const int FIX_DATE_DAY = 1;
 
 var int FIX_DATE_YEAR_SAVE;

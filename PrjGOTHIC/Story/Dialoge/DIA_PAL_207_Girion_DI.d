@@ -34,7 +34,7 @@ instance DIA_Girion_DI_Hallo(C_Info)
 
 func int DIA_Girion_DI_Hallo_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -69,18 +69,18 @@ func void B_BuildLearnDialog_Girion_DI()
 	Info_AddChoice(DIA_Girion_DI_Teach,Dialog_Back,DIA_Girion_DI_Teach_Back);
 	if(VisibleTalentValue(NPC_TALENT_CROSSBOW) < TeachLimit_Crossbow_Girion)
 	{
-		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Girion_DI_Teach_CROSSBOW_1);
-		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Girion_DI_Teach_CROSSBOW_5);
+		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnTalentString(other,NPC_TALENT_CROSSBOW,1),DIA_Girion_DI_Teach_CROSSBOW_1);
+		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnTalentString(other,NPC_TALENT_CROSSBOW,5),DIA_Girion_DI_Teach_CROSSBOW_5);
 	};
 	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Girion)
 	{
-		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Girion_DI_Teach_2H_1);
-		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Girion_DI_Teach_2H_5);
+		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,1),DIA_Girion_DI_Teach_2H_1);
+		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,5),DIA_Girion_DI_Teach_2H_5);
 	};
 	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Girion)
 	{
-		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Girion_DI_Teach_1H_1);
-		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Girion_DI_Teach_1H_5);
+		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnTalentString(other,NPC_TALENT_1H,1),DIA_Girion_DI_Teach_1H_1);
+		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnTalentString(other,NPC_TALENT_1H,5),DIA_Girion_DI_Teach_1H_5);
 	};
 	if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Girion) && (RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Girion) && (RealTalentValue(NPC_TALENT_CROSSBOW) >= TeachLimit_Crossbow_Girion))
 	{
@@ -150,7 +150,7 @@ instance DIA_Girion_DI_Teach(C_Info)
 
 func int DIA_Girion_DI_Teach_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && (DIA_Girion_DI_Teacher_permanent == FALSE))
+	if((UndeadDragonIsDead == FALSE) && (DIA_Girion_DI_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -299,7 +299,7 @@ instance DIA_Girion_DI_UndeadDragonDead(C_Info)
 
 func int DIA_Girion_DI_UndeadDragonDead_Condition()
 {
-	if(Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == TRUE)
 	{
 		return TRUE;
 	};

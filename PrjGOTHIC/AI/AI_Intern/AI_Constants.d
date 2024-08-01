@@ -308,8 +308,8 @@ const int ZivilAnquatschDist = 400;
 const int MONSTER_THREATEN_TIME = 4;
 const int MONSTER_SUMMON_TIME = 60;
 
-const float RANGED_CHANCE_MINDIST = 1500;
-const float RANGED_CHANCE_MAXDIST = 4500;
+const float RANGED_CHANCE_MINDIST = 1500.0;
+const float RANGED_CHANCE_MAXDIST = 4500.0;
 
 const int NPC_ANGRY_TIME = 120;
 const int NPC_TIME_UNCONSCIOUS = 20;

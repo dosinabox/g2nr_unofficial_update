@@ -304,7 +304,7 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 				AI_UseMob(self,"BENCH",-1);
 			};
 			AI_GotoWP(self,"NW_TAVERN_TO_FOREST_03");
-			Npc_ExchangeRoutine(self,"Start");
+			Npc_ExchangeRoutine(self,"START");
 		};
 	}
 	else if(C_ScHasMagicStonePlate() || C_ScHasColoredStonePlate() || Npc_HasItems(other,ItMi_TempelTorKey))
@@ -498,8 +498,8 @@ func void B_BuildLearnDialog_Erol()
 {
 	Info_ClearChoices(DIA_Addon_Erol_Teach);
 	Info_AddChoice(DIA_Addon_Erol_Teach,Dialog_Back,DIA_Addon_Erol_Teach_Back);
-	Info_AddChoice(DIA_Addon_Erol_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Addon_Erol_Teach_STR_1);
-	Info_AddChoice(DIA_Addon_Erol_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Addon_Erol_Teach_STR_5);
+	Info_AddChoice(DIA_Addon_Erol_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_Addon_Erol_Teach_STR_1);
+	Info_AddChoice(DIA_Addon_Erol_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_Addon_Erol_Teach_STR_5);
 };
 
 instance DIA_Addon_Erol_Teach(C_Info)

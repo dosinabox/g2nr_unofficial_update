@@ -132,7 +132,7 @@ func void DIA_Babo_Sergio_Info()
 	B_BaboIsTeacher();
 	if(MIS_HelpBabo == LOG_SUCCESS)
 	{
-		Npc_ExchangeRoutine(self,"GardenAndTrain");
+		Npc_ExchangeRoutine(self,"GARDENANDTRAIN");
 	}
 	else
 	{
@@ -152,8 +152,8 @@ func void B_BuildLearnDialog_Babo()
 	{
 		Info_ClearChoices(DIA_Babo_Teach);
 		Info_AddChoice(DIA_Babo_Teach,Dialog_Back,DIA_Babo_Teach_Back);
-		Info_AddChoice(DIA_Babo_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Babo_Teach_2H_1);
-		Info_AddChoice(DIA_Babo_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Babo_Teach_2H_5);
+		Info_AddChoice(DIA_Babo_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,1),DIA_Babo_Teach_2H_1);
+		Info_AddChoice(DIA_Babo_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,5),DIA_Babo_Teach_2H_5);
 	}
 	else
 	{

@@ -40,7 +40,7 @@ func int DIA_Angar_DI_HALLO_Condition()
 func void DIA_Angar_DI_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Angar_DI_HALLO_15_00");	//Как ты?
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		AI_Output(self,other,"DIA_Angar_DI_HALLO_04_01");	//Головные боли стали совсем невыносимыми.
 		AI_Output(self,other,"DIA_Angar_DI_HALLO_04_02");	//Черт. Это когда-нибудь должно кончиться.
@@ -64,7 +64,7 @@ instance DIA_Angar_DI_ORKS(C_Info)
 
 func int DIA_Angar_DI_ORKS_Condition()
 {
-	if((OrkSturmDI == TRUE) && !Npc_IsDead(UndeadDragon))
+	if((OrkSturmDI == TRUE) && (UndeadDragonIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -84,10 +84,10 @@ func void DIA_Angar_DI_ORKS_follow()
 {
 	AI_Output(other,self,"DIA_Angar_DI_ORKS_follow_15_00");	//Так помоги мне и прекрати скулить.
 	AI_Output(self,other,"DIA_Angar_DI_ORKS_follow_04_01");	//Хорошо. Но ты пойдешь первым. Вперед!
-	AI_StopProcessInfos(self);
-	B_GivePlayerXP(XP_AmbientKap6);
-	Npc_ExchangeRoutine(self,"FollowDI");
 	Angar_DI_Party = LOG_Running;
+	B_GivePlayerXP(XP_AmbientKap6);
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"FOLLOWDI");
 };
 
 func void DIA_Angar_DI_ORKS_no()
@@ -106,7 +106,7 @@ func void B_AngarStays()
 		AI_Output(other,self,"DIA_Angar_DI_FOLLOW_15_01");	//Об остальном я сам позабочусь.
 		AI_Output(self,other,"DIA_Angar_DI_FOLLOW_04_02");	//Удачи.
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"FireDragonIsland");
+		Npc_ExchangeRoutine(self,"FIREDRAGONISLAND");
 		if(Angar_DI_Party != LOG_SUCCESS)
 		{
 			B_GivePlayerXP(XP_AmbientKap6);
@@ -119,11 +119,11 @@ func void B_AngarStays()
 		AI_StopProcessInfos(self);
 		if(Npc_GetDistToWP(self,"SHIP") < 10000)
 		{
-			Npc_ExchangeRoutine(self,"Start");
+			Npc_ExchangeRoutine(self,"START");
 		}
 		else if(Npc_IsDead(FireDragonIsland))
 		{
-			Npc_ExchangeRoutine(self,"FireDragonIsland");
+			Npc_ExchangeRoutine(self,"FIREDRAGONISLAND");
 		}
 		else if(Npc_IsDead(AntiPaladin_DI))
 		{
@@ -131,11 +131,11 @@ func void B_AngarStays()
 		}
 		else if(Npc_IsDead(Troll_DI))
 		{
-			Npc_ExchangeRoutine(self,"Troll_DI");
+			Npc_ExchangeRoutine(self,"TROLL_DI");
 		}
 		else
 		{
-			Npc_ExchangeRoutine(self,"Start");
+			Npc_ExchangeRoutine(self,"START");
 		};
 		Angar_DI_Party = LOG_OBSOLETE;
 	};
@@ -192,7 +192,7 @@ func void DIA_Angar_DI_FOLLOWAGAIN_Info()
 	AI_Output(self,other,"DIA_Angar_DI_FOLLOWAGAIN_04_01");	//Ты идешь первым.
 	Angar_DI_Party = LOG_Running;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"FollowDI");
+	Npc_ExchangeRoutine(self,"FOLLOWDI");
 };
 
 
@@ -244,7 +244,7 @@ instance DIA_Angar_DI_UNDEADDRGDEAD(C_Info)
 
 func int DIA_Angar_DI_UNDEADDRGDEAD_Condition()
 {
-	if(Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == TRUE)
 	{
 		return TRUE;
 	};
@@ -256,7 +256,6 @@ func void DIA_Angar_DI_UNDEADDRGDEAD_Info()
 	AI_Output(self,other,"DIA_Angar_DI_UNDEADDRGDEAD_04_01");	//Можем мы, наконец, выбираться отсюда?
 	AI_Output(other,self,"DIA_Angar_DI_UNDEADDRGDEAD_15_02");	//Да. Враг повержен.
 	AI_Output(self,other,"DIA_Angar_DI_UNDEADDRGDEAD_04_03");	//Тогда не будем терять времени. Иди к капитану и скажи ему, чтобы он поднимал якорь.
-//	if(SC_KnowsMadPsi == TRUE)
 	if(Angar_KnowsMadPsi == TRUE)
 	{
 		AI_Output(other,self,"DIA_Angar_DI_UNDEADDRGDEAD_15_04");	//Надеюсь, больше никого из членов твоей секты не осталось в живых.
@@ -265,7 +264,7 @@ func void DIA_Angar_DI_UNDEADDRGDEAD_Info()
 	AI_Output(other,self,"DIA_Angar_DI_UNDEADDRGDEAD_15_06");	//Что ты будешь делать дальше?
 	AI_Output(self,other,"DIA_Angar_DI_UNDEADDRGDEAD_04_07");	//Может быть, я осяду где-нибудь и стану фермером. Я устал от сражений.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 

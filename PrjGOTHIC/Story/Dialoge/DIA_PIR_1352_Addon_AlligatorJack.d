@@ -741,8 +741,8 @@ func void B_BuildLearnDialog_AlligatorJack()
 	Info_AddChoice(DIA_Addon_AlligatorJack_Teach,Dialog_Back,DIA_Addon_AlligatorJack_Teach_Back);
 	if(VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_AlligatorJack)
 	{
-		Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Addon_AlligatorJack_Teach_Bow_1);
-		Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Addon_AlligatorJack_Teach_Bow_5);
+		Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnTalentString(other,NPC_TALENT_BOW,1),DIA_Addon_AlligatorJack_Teach_Bow_1);
+		Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnTalentString(other,NPC_TALENT_BOW,5),DIA_Addon_AlligatorJack_Teach_Bow_5);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE)
 	{

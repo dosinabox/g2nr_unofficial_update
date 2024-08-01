@@ -387,9 +387,9 @@ func void UseItPo_PotionOfDeath()
 			ATR_PermBonus[ATR_DEXTERITY] += 5;
 		};
 		self.attribute[ATR_STRENGTH] += 5;
-		PrintScreen(PRINT_LearnSTR5,-1,43,FONT_Screen,3);
+		PrintScreen(ConcatStrings(PRINT_LearnSTR,"5"),-1,43,FONT_Screen,3);
 		self.attribute[ATR_DEXTERITY] += 5;
-		PrintScreen(PRINT_LearnDEX5,-1,48,FONT_Screen,3);
+		PrintScreen(ConcatStrings(PRINT_LearnDEX,"5"),-1,48,FONT_Screen,3);
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
 		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 		PrintScreen(PRINT_FullyHealed,-1,53,FONT_Screen,3);

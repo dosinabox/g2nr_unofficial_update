@@ -661,7 +661,7 @@ func void DIA_MiltenNW_LeaveMyShip_Info()
 	AI_Output(self,other,"DIA_MiltenNW_LeaveMyShip_03_01");	//Ты лучше знаешь, кто тебе нужен. Если передумаешь, я буду ждать тебя в монастыре.
 	MiltenNW_IsOnBoard = LOG_OBSOLETE;
 	Crewmember_Count -= 1;
-	Npc_ExchangeRoutine(self,"ShipOff");
+	Npc_ExchangeRoutine(self,"SHIPOFF");
 };
 
 
@@ -771,8 +771,8 @@ func void B_BuildLearnDialog_Milten_NW()
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_04");	//Я посмотрю, что можно сделать.
 		Info_ClearChoices(DIA_MiltenNW_Mana);
 		Info_AddChoice(DIA_MiltenNW_Mana,Dialog_Back,DIA_MiltenNW_Mana_BACK);
-		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_MiltenNW_Mana_1);
-		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_MiltenNW_Mana_5);
+		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnAttributeString(ATR_MANA_MAX,1),DIA_MiltenNW_Mana_1);
+		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnAttributeString(ATR_MANA_MAX,5),DIA_MiltenNW_Mana_5);
 	};
 };
 

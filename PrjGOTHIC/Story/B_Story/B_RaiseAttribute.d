@@ -11,7 +11,7 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 	else if(attrib == ATR_DEXTERITY)
 	{
 		oth.attribute[ATR_DEXTERITY] += points;
-		if((oth.attribute[ATR_DEXTERITY] >= 90) && !Npc_GetTalentSkill(oth,NPC_TALENT_ACROBAT))
+		if((oth.attribute[ATR_DEXTERITY] >= CONDITION_ACROBAT_DEXTERITY) && !Npc_GetTalentSkill(oth,NPC_TALENT_ACROBAT))
 		{
 			Npc_SetTalentSkill(oth,NPC_TALENT_ACROBAT,1);
 			PrintScreen(PRINT_Addon_AcrobatBonus,-1,53,FONT_Screen,2);

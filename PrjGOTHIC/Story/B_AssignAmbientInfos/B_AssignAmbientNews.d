@@ -72,21 +72,30 @@ func void DIA_Ambient_NEWS_Info()
 				B_Say(self,other,"$CITY_CRIME");
 			};
 			self.aivar[AIV_CommentedPlayerCrime] = TRUE;
-		};
-		if(C_NpcBelongsToMonastery(self) && (Parlan_Schulden <= 0) && C_CommentMonasteryCrimes(self))
+		}
+		else if(C_NpcBelongsToMonastery(self))
 		{
-			B_Say(self,other,"$MONA_CRIME");
-			self.aivar[AIV_CommentedPlayerCrime] = TRUE;
-		};
-		if(C_NpcBelongsToFarm(self) && (Lee_Schulden <= 0))
+			if((Parlan_Schulden <= 0) && C_CommentMonasteryCrimes(self))
+			{
+				B_Say(self,other,"$MONA_CRIME");
+				self.aivar[AIV_CommentedPlayerCrime] = TRUE;
+			};
+		}
+		else if(C_NpcBelongsToFarm(self))
 		{
-			B_Say(self,other,"$FARM_CRIME");
-			self.aivar[AIV_CommentedPlayerCrime] = TRUE;
-		};
-		if(C_NpcBelongsToOldCamp(self) && (Garond_Schulden <= 0))
+			if(Lee_Schulden <= 0)
+			{
+				B_Say(self,other,"$FARM_CRIME");
+				self.aivar[AIV_CommentedPlayerCrime] = TRUE;
+			};
+		}
+		else if(C_NpcBelongsToOldCamp(self))
 		{
-			B_Say(self,other,"$OC_CRIME");
-			self.aivar[AIV_CommentedPlayerCrime] = TRUE;
+			if(Garond_Schulden <= 0)
+			{
+				B_Say(self,other,"$OC_CRIME");
+				self.aivar[AIV_CommentedPlayerCrime] = TRUE;
+			};
 		};
 		AI_StopProcessInfos(self);
 	}

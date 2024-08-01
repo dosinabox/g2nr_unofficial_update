@@ -242,8 +242,8 @@ func void B_BuildLearnDialog_Vatras_DI()
 {
 	Info_ClearChoices(DIA_Vatras_DI_Talente);
 	Info_AddChoice(DIA_Vatras_DI_Talente,Dialog_Back,DIA_Vatras_DI_Talente_BACK);
-	Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_Vatras_DI_Talente_MANA_1);
-	Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_Vatras_DI_Talente_MANA_5);
+	Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnAttributeString(ATR_MANA_MAX,1),DIA_Vatras_DI_Talente_MANA_1);
+	Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnAttributeString(ATR_MANA_MAX,5),DIA_Vatras_DI_Talente_MANA_5);
 	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) < 6))
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,NAME_Skill_MagicCircles,DIA_Vatras_DI_Talente_CIRCLES);

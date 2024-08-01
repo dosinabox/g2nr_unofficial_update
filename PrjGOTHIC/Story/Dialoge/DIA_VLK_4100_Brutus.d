@@ -235,8 +235,8 @@ func void B_BuildLearnDialog_Brutus()
 {
 	Info_ClearChoices(DIA_Brutus_Teach);
 	Info_AddChoice(DIA_Brutus_Teach,Dialog_Back,DIA_Brutus_Teach_Back);
-	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Brutus_Teach_STR_1);
-	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Brutus_Teach_STR_5);
+	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_Brutus_Teach_STR_1);
+	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_Brutus_Teach_STR_5);
 };
 
 instance DIA_Brutus_Teach(C_Info)

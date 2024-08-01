@@ -33,7 +33,7 @@ instance DIA_Lee_DI_Hallo(C_Info)
 
 func int DIA_Lee_DI_Hallo_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -59,7 +59,7 @@ instance DIA_Lee_DI_PERM6(C_Info)
 
 func int DIA_Lee_DI_PERM6_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && Npc_KnowsInfo(other,DIA_Lee_DI_Hallo))
+	if((UndeadDragonIsDead == FALSE) && Npc_KnowsInfo(other,DIA_Lee_DI_Hallo))
 	{
 		return TRUE;
 	};
@@ -90,8 +90,8 @@ func void B_BuildLearnDialog_Lee_DI()
 	Info_AddChoice(DIA_Lee_DI_Teach,Dialog_Back,DIA_Lee_DI_Teach_Back);
 	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Lee)
 	{
-		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Lee_DI_Teach_2H_1);
-		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Lee_DI_Teach_2H_5);
+		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,1),DIA_Lee_DI_Teach_2H_1);
+		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,5),DIA_Lee_DI_Teach_2H_5);
 		DIA_Lee_DI_TeachState_2H = 1;
 	}
 	else
@@ -105,8 +105,8 @@ func void B_BuildLearnDialog_Lee_DI()
 	};
 	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Lee)
 	{
-		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lee_DI_Teach_1H_1);
-		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lee_DI_Teach_1H_5);
+		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnTalentString(other,NPC_TALENT_1H,1),DIA_Lee_DI_Teach_1H_1);
+		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnTalentString(other,NPC_TALENT_1H,5),DIA_Lee_DI_Teach_1H_5);
 		DIA_Lee_DI_TeachState_1H = 1;
 	}
 	else
@@ -143,7 +143,7 @@ instance DIA_Lee_DI_Teach(C_Info)
 
 func int DIA_Lee_DI_Teach_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && (DIA_Lee_DI_Teacher_permanent == FALSE))
+	if((UndeadDragonIsDead == FALSE) && (DIA_Lee_DI_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -219,7 +219,7 @@ instance DIA_Lee_DI_UndeadDragonDead(C_Info)
 
 func int DIA_Lee_DI_UndeadDragonDead_Condition()
 {
-	if(Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == TRUE)
 	{
 		return TRUE;
 	};
@@ -243,7 +243,7 @@ func void DIA_Lee_DI_UndeadDragonDead_Info()
 	AI_StopProcessInfos(self);
 	if(DIA_Lee_DI_UndeadDragonDead_OneTime == FALSE)
 	{
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 	};
 	DIA_Lee_DI_UndeadDragonDead_OneTime = TRUE;
 };

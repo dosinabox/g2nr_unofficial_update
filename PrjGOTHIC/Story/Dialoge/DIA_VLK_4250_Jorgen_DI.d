@@ -1,21 +1,21 @@
 
-instance DIA_Jorgen_DI_KAP3_EXIT(C_Info)
+instance DIA_Jorgen_DI_EXIT(C_Info)
 {
 	npc = VLK_4250_Jorgen_DI;
 	nr = 999;
-	condition = DIA_Jorgen_DI_KAP3_EXIT_Condition;
-	information = DIA_Jorgen_DI_KAP3_EXIT_Info;
+	condition = DIA_Jorgen_DI_EXIT_Condition;
+	information = DIA_Jorgen_DI_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Jorgen_DI_KAP3_EXIT_Condition()
+func int DIA_Jorgen_DI_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Jorgen_DI_KAP3_EXIT_Info()
+func void DIA_Jorgen_DI_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -34,7 +34,7 @@ instance DIA_Jorgen_DI_Hallo(C_Info)
 
 func int DIA_Jorgen_DI_Hallo_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -68,7 +68,7 @@ instance DIA_Jorgen_DI_UndeadDragonDead(C_Info)
 
 func int DIA_Jorgen_DI_UndeadDragonDead_Condition()
 {
-	if(Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == TRUE)
 	{
 		return TRUE;
 	};

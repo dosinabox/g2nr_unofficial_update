@@ -33,7 +33,7 @@ instance DIA_Biff_DI_HALLO(C_Info)
 
 func int DIA_Biff_DI_HALLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(UndeadDragon))
+	if(Npc_IsInState(self,ZS_Talk) && (UndeadDragonIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -66,7 +66,7 @@ instance DIA_Biff_DI_perm(C_Info)
 
 func int DIA_Biff_DI_perm_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Biff_DI_HALLO) && !Npc_IsDead(UndeadDragon))
+	if(Npc_KnowsInfo(other,DIA_Biff_DI_HALLO) && (UndeadDragonIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -92,7 +92,7 @@ instance DIA_Biff_DI_ORKS(C_Info)
 
 func int DIA_Biff_DI_ORKS_Condition()
 {
-	if((Npc_GetDistToWP(self,"DI_SHIP_03") < 1000) && (OrkSturmDI == TRUE) && !Npc_IsDead(UndeadDragon))
+	if((Npc_GetDistToWP(self,"DI_SHIP_03") < 1000) && (OrkSturmDI == TRUE) && (UndeadDragonIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -105,7 +105,7 @@ func void DIA_Biff_DI_ORKS_Info()
 	AI_Output(self,other,"DIA_Biff_DI_ORKS_07_02");	//Да никуда он не денется.
 	B_GivePlayerXP(XP_AmbientKap6);
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 
@@ -121,7 +121,7 @@ instance DIA_Biff_DI_UNDEADDRGDEAD(C_Info)
 
 func int DIA_Biff_DI_UNDEADDRGDEAD_Condition()
 {
-	if(Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == TRUE)
 	{
 		return TRUE;
 	};
@@ -135,7 +135,7 @@ func void DIA_Biff_DI_UNDEADDRGDEAD_Info()
 	AI_Output(other,self,"DIA_Biff_DI_UNDEADDRGDEAD_15_03");	//Ты можешь перевернуть весь остров, если хочешь.
 	AI_Output(self,other,"DIA_Biff_DI_UNDEADDRGDEAD_07_04");	//Отлично.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"PlunderTempel");
+	Npc_ExchangeRoutine(self,"PLUNDERTEMPEL");
 };
 
 

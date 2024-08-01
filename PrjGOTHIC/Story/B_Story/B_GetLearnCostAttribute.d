@@ -11,7 +11,7 @@ func int GetMainAttributeCost(var int current,var int amount)
 	};
 	if(current >= 90)
 	{
-		if((HonestStatCalculation == TRUE) && (current + amount > 120))
+		if(C_HonestLearnCostEnabled() && (current + amount > 120))
 		{
 			return (5 * amount) + current - 120;
 		};
@@ -19,7 +19,7 @@ func int GetMainAttributeCost(var int current,var int amount)
 	};
 	if(current >= 60)
 	{
-		if((HonestStatCalculation == TRUE) && (current + amount > 90))
+		if(C_HonestLearnCostEnabled() && (current + amount > 90))
 		{
 			return (4 * amount) + current - 90;
 		};
@@ -27,13 +27,13 @@ func int GetMainAttributeCost(var int current,var int amount)
 	};
 	if(current >= 30)
 	{
-		if((HonestStatCalculation == TRUE) && (current + amount > 60))
+		if(C_HonestLearnCostEnabled() && (current + amount > 60))
 		{
 			return (3 * amount) + current - 60;
 		};
 		return 2 * amount;
 	};
-	if((HonestStatCalculation == TRUE) && (current + amount > 30))
+	if(C_HonestLearnCostEnabled() && (current + amount > 30))
 	{
 		return (2 * amount) + current - 30;
 	};

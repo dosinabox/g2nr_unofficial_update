@@ -1,21 +1,21 @@
 
-instance DIA_Torlof_DI_KAP3_EXIT(C_Info)
+instance DIA_Torlof_DI_EXIT(C_Info)
 {
 	npc = SLD_801_Torlof_DI;
 	nr = 999;
-	condition = DIA_Torlof_DI_KAP3_EXIT_Condition;
-	information = DIA_Torlof_DI_KAP3_EXIT_Info;
+	condition = DIA_Torlof_DI_EXIT_Condition;
+	information = DIA_Torlof_DI_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Torlof_DI_KAP3_EXIT_Condition()
+func int DIA_Torlof_DI_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Torlof_DI_KAP3_EXIT_Info()
+func void DIA_Torlof_DI_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -34,7 +34,7 @@ instance DIA_Torlof_DI_Hallo(C_Info)
 
 func int DIA_Torlof_DI_Hallo_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -54,7 +54,7 @@ func void DIA_Torlof_DI_Hallo_Info()
 		AI_StopProcessInfos(self);
 		if(CaptainIsBackToStartPosition == FALSE)
 		{
-			Npc_ExchangeRoutine(self,"Start");
+			Npc_ExchangeRoutine(self,"START");
 			CaptainIsBackToStartPosition = TRUE;
 		};
 	};
@@ -65,10 +65,10 @@ func void B_BuildLearnDialog_Torlof_DI()
 {
 	Info_ClearChoices(DIA_Torlof_DI_Teach);
 	Info_AddChoice(DIA_Torlof_DI_Teach,Dialog_Back,DIA_Torlof_DI_Teach_Back);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Torlof_DI_Teach_DEX_1);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Torlof_DI_Teach_DEX_5);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Torlof_DI_Teach_STR_1);
-	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Torlof_DI_Teach_STR_5);
+	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnAttributeString(ATR_DEXTERITY,1),DIA_Torlof_DI_Teach_DEX_1);
+	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnAttributeString(ATR_DEXTERITY,5),DIA_Torlof_DI_Teach_DEX_5);
+	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_Torlof_DI_Teach_STR_1);
+	Info_AddChoice(DIA_Torlof_DI_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_Torlof_DI_Teach_STR_5);
 };
 
 instance DIA_Torlof_DI_Teach(C_Info)
@@ -84,7 +84,7 @@ instance DIA_Torlof_DI_Teach(C_Info)
 
 func int DIA_Torlof_DI_Teach_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -146,7 +146,7 @@ instance DIA_Torlof_DI_UndeadDragonDead(C_Info)
 
 func int DIA_Torlof_DI_UndeadDragonDead_Condition()
 {
-	if(Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == TRUE)
 	{
 		return TRUE;
 	};

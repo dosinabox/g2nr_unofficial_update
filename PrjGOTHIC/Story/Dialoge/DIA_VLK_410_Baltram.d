@@ -128,7 +128,14 @@ func void DIA_Addon_Baltram_LaresAbloese_Info()
 	AI_Output(other,self,"DIA_Addon_Baltram_LaresAbloese_15_04");	//Я должен передать тебе, что дежурящий в порту Ларес хочет, чтобы его сменили.
 	AI_Output(self,other,"DIA_Addon_Baltram_LaresAbloese_01_05");	//Хорошо. Я прослежу, чтобы это сделали.
 	AI_Output(other,self,"DIA_Addon_Baltram_LaresAbloese_15_06");	//Понятно.
-	B_LogEntry(TOPIC_Addon_BringRangerToLares,"Бальтрам, торговец на рыночной площади, позаботится, чтобы Лареса сменили на его посту. Ларес может покинуть гавань ПРЯМО СЕЙЧАС.");
+	if(Kapitel < 3)
+	{
+		B_LogEntry(TOPIC_Addon_BringRangerToLares,"Бальтрам, торговец на рыночной площади, позаботится, чтобы Лареса сменили на его посту. Ларес может покинуть гавань ПРЯМО СЕЙЧАС.");
+	}
+	else
+	{
+		B_LogEntry(TOPIC_Addon_BringRangerToLares,"Бальтрам, торговец на рыночной площади, позаботится, чтобы Лареса сменили на его посту.");
+	};
 	Baltram_Exchange4Lares = TRUE;
 };
 

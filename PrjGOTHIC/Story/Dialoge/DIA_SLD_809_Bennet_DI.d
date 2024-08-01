@@ -35,7 +35,7 @@ instance DIA_Bennet_DI_Hello(C_Info)
 
 func int DIA_Bennet_DI_Hello_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -69,7 +69,7 @@ instance DIA_Bennet_DI_TRADE(C_Info)
 
 func int DIA_Bennet_DI_TRADE_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -97,8 +97,8 @@ instance DIA_Bennet_DI_Smith(C_Info)
 
 func int DIA_Bennet_DI_Smith_Condition()
 {
-//	if(!Npc_IsDead(UndeadDragon) && (Bennet_TeachSmith == TRUE))
-	if(!Npc_IsDead(UndeadDragon))
+//	if((UndeadDragonIsDead == FALSE) && (Bennet_TeachSmith == TRUE))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -229,8 +229,8 @@ func void B_BuildLearnDialog_Bennet_DI()
 {
 	Info_ClearChoices(DIA_Bennet_TeachSTR);
 	Info_AddChoice(DIA_Bennet_TeachSTR,Dialog_Back,DIA_Bennet_TeachSTR_Back);
-	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Bennet_TeachSTR_STR_1);
-	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Bennet_TeachSTR_STR_5);
+	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_Bennet_TeachSTR_STR_1);
+	Info_AddChoice(DIA_Bennet_TeachSTR,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_Bennet_TeachSTR_STR_5);
 };
 
 instance DIA_Bennet_TeachSTR(C_Info)
@@ -246,7 +246,7 @@ instance DIA_Bennet_TeachSTR(C_Info)
 
 func int DIA_Bennet_TeachSTR_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -321,7 +321,7 @@ instance DIA_Bennet_DI_UndeadDragonDead(C_Info)
 
 func int DIA_Bennet_DI_UndeadDragonDead_Condition()
 {
-	if(Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == TRUE)
 	{
 		return TRUE;
 	};
@@ -363,5 +363,4 @@ instance DIA_Bennet_DI_DJG_ARMOR_H(C_Info)
 	permanent = TRUE;
 	description = B_BuildPriceString("Купить тяжелые доспехи охотника на драконов. Защита: 150/150/100/50.",VALUE_ITAR_DJG_H);
 };
-
 
