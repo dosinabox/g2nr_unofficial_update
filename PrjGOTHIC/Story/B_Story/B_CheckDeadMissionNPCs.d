@@ -146,6 +146,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Gaan_Snapper = LOG_OBSOLETE;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rod))
+		{
+			if(MIS_RodSword == LOG_Running)
+			{
+				MIS_RodSword = LOG_FAILED;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Buster))
 		{
 			if(MIS_Buster_KillShadowbeasts_DJG == LOG_Running)

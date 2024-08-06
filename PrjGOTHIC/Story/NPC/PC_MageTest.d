@@ -22,4 +22,3 @@ instance PC_MageTest(Npc_Default)
 	B_GiveAllAddonRunes(self);
 };
 
-

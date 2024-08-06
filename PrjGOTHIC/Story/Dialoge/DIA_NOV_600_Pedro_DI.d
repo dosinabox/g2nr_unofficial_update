@@ -41,15 +41,15 @@ func void DIA_Pedro_DI_YOU_Info()
 	AI_Output(other,self,"DIA_Pedro_DI_YOU_15_00");	//Предатель! Наконец-то я нашел тебя.
 	SCFoundPedro = TRUE;
 	B_CheckLog();
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if(hero.guild == GIL_PAL)
 	{
 		AI_Output(other,self,"DIA_Pedro_DI_YOU_15_01");	//Ты можешь не надеяться, что я пощажу тебя, потому что я паладин.
-	};
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	}
+	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
 		AI_Output(other,self,"DIA_Pedro_DI_YOU_15_02");	//Многие из нас, наемников, продали свою душу Белиару, и зачастую я чувствую вину, когда убиваю их. Но для тебя, подлая свинья, я сделаю исключение!
-	};
-	if(hero.guild == GIL_KDF)
+	}
+	else if(hero.guild == GIL_KDF)
 	{
 		AI_Output(other,self,"DIA_Pedro_DI_YOU_15_03");	//Из всех бездушных ублюдков, что я встречал в своей жизни, ты худший. Ты позор для нашего ордена.
 	};
@@ -81,7 +81,7 @@ func void DIA_Pedro_DI_YOU_tot()
 	AI_Output(other,self,"DIA_Pedro_DI_YOU_tot_15_00");	//И слышать ничего не хочу. Я убью тебя.
 	AI_Output(self,other,"DIA_Pedro_DI_YOU_tot_09_01");	//Умоляю всеми богами...
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Ship");
+	Npc_ExchangeRoutine(self,"SHIP");
 	B_Attack(self,other,AR_NONE,1);
 	PedroDI_Flee = LOG_Running;
 };
@@ -111,7 +111,7 @@ func void DIA_Pedro_DI_YOU_FollowShip()
 	AI_Output(other,self,"DIA_Pedro_DI_YOU_FollowShip_15_00");	//Хорошо. Иди за мной, я отведу тебя на корабль.
 	AI_Output(self,other,"DIA_Pedro_DI_YOU_FollowShip_09_01");	//Спасибо. Ты не пожалеешь об этом.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"FollowShip");
+	Npc_ExchangeRoutine(self,"FOLLOWSHIP");
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	MIS_Pedro_DI_FollowShip = LOG_Running;
 };
@@ -193,7 +193,7 @@ func void DIA_Pedro_DI_ArrivedAtShip_Back()
 	AI_Output(other,self,"DIA_Pedro_DI_ArrivedAtShip_Back_15_00");	//Я услышал достаточно. Иди, найди себе место на моем корабле. А мне еще кое-что нужно сделать.
 	AI_Output(self,other,"DIA_Pedro_DI_ArrivedAtShip_Back_09_01");	//Да пребудет с тобой сила Инноса. Я буду молиться за тебя.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Ship");
+	Npc_ExchangeRoutine(self,"SHIP");
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 };
 
@@ -232,13 +232,13 @@ func void DIA_Pedro_DI_PERM_Info()
 			PedroDI_Flee = LOG_SUCCESS;
 			B_GivePlayerXP(XP_AmbientKap6);
 		}
-		else if(Npc_IsDead(Dragon_Undead))
+		else if(UndeadDragonIsDead == TRUE)
 		{
 			AI_Output(self,other,"DIA_Pedro_DI_PERM_09_04");	//Я полностью измотан.
 			AI_Output(other,self,"DIA_Pedro_DI_PERM_15_05");	//Поспи немного. Скоро мы опять выйдем в море.
 			AI_Output(self,other,"DIA_Pedro_DI_PERM_09_06");	//Спасибо. Я уже чуть не падаю. Спокойной ночи.
 			AI_StopProcessInfos(self);
-			Npc_ExchangeRoutine(self,"SleepShip");
+			Npc_ExchangeRoutine(self,"SLEEPSHIP");
 			self.aivar[AIV_PARTYMEMBER] = FALSE;
 			PedroDI_TalkNomore = TRUE;
 		}

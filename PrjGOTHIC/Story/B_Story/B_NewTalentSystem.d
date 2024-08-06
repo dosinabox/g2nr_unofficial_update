@@ -286,7 +286,7 @@ func int GetTalentPart_Cost_Hero(var int talent)
 		return 
 			TAL_Training[NPC_TALENT_2H] * TAL_CostFlags_TS_Training + 
 			TAL_TempBonus[NPC_TALENT_2H] * TAL_CostFlags_TS_TempBonus +
-			TAL_PermBonus[NPC_TALENT_2H] * TAL_CostFlags_TS_PermBonus;		
+			TAL_PermBonus[NPC_TALENT_2H] * TAL_CostFlags_TS_PermBonus;
 	};
 	if(talent == NPC_TALENT_BOW)
 	{
@@ -320,7 +320,7 @@ func int GetTalentPart_TeachLimit_Hero(var int talent)
 		return 
 			TAL_Training[NPC_TALENT_2H] * TAL_TeachLimitFlags_TS_Training + 
 			TAL_TempBonus[NPC_TALENT_2H] * TAL_TeachLimitFlags_TS_TempBonus +
-			TAL_PermBonus[NPC_TALENT_2H] * TAL_TeachLimitFlags_TS_PermBonus;		
+			TAL_PermBonus[NPC_TALENT_2H] * TAL_TeachLimitFlags_TS_PermBonus;
 	};
 	if(talent == NPC_TALENT_BOW)
 	{
@@ -595,7 +595,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 				return 0;
 			};
 		}
-		else 
+		else
 		{
 			Print(PRINT_Error);
 		};
@@ -627,7 +627,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 				return 0;
 			};
 		}
-		else 
+		else
 		{
 			Print(PRINT_Error);
 		};
@@ -659,7 +659,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 				return 0;
 			};
 		}
-		else 
+		else
 		{
 			Print(PRINT_Error);
 		};
@@ -691,7 +691,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 				return 0;
 			};
 		}
-		else 
+		else
 		{
 			Print(PRINT_Error);
 		};
@@ -724,7 +724,7 @@ func int GetNextTalentBarrier(var int talent,var int value)
 
 // calculates lp-cost of increasing talent by 'change'
 func int GetTalentTrainCost_Impl(var int talent,var int value,var int change)
-{	
+{
 	var int barrier;
 	var int costBefore;
 	var int costAfter;

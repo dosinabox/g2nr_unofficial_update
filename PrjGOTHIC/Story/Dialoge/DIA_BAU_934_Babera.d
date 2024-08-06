@@ -140,7 +140,7 @@ instance DIA_Babera_Rosi(C_Info)
 
 func int DIA_Babera_Rosi_Condition()
 {
-	if((MIS_bringRosiBackToSekob == LOG_Running) && (Kapitel >= 5) && (RosiFoundKap5 == FALSE))
+	if((MIS_BringRosiBackToSekob == LOG_Running) && (Kapitel >= 5) && (RosiFoundKap5 == FALSE))
 	{
 		return TRUE;
 	};
@@ -153,7 +153,7 @@ func void DIA_Babera_Rosi_Info()
 	Log_CreateTopic(TOPIC_RosisFlucht,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_RosisFlucht,LOG_Running);
 	B_LogEntries(TOPIC_RosisFlucht,"Рози сбежала с фермы Секоба. Бабера говорит, что она направилась на север, в лес.");
-	B_LogNextEntry(TOPIC_bringRosiBackToSekob,"Рози сбежала с фермы Секоба. Бабера говорит, что она направилась на север, в лес.");
+	B_LogNextEntry(TOPIC_BringRosiBackToSekob,"Рози сбежала с фермы Секоба. Бабера говорит, что она направилась на север, в лес.");
 };
 
 

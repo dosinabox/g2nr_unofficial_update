@@ -391,64 +391,38 @@ func void DIA_Sekob_DMTWEG_Info()
 		AI_Output(self,other,"DIA_Sekob_DMTWEG_01_03");	//Спасибо тебе, о великий маг. Что бы с нами сталось без защиты духовенства?!
 	};
 	TOPIC_END_SekobDMT = TRUE;
-	B_GivePlayerXP(XP_SekobDMTWEG);	
+	B_GivePlayerXP(XP_SekobDMTWEG);
 	AI_StopProcessInfos(self);
 	if(Kapitel < 5)
 	{
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 	}
 	else
 	{
-		Npc_ExchangeRoutine(self,"Obsessed");
+		Npc_ExchangeRoutine(self,"OBSESSED");
 	};
 	if(Rosi_FleeFromSekob_Kap5 == FALSE)
 	{
-		B_StartOtherRoutine(Rosi,"Start");
-		B_StartOtherRoutine(Till,"Start");
+		B_StartOtherRoutine(Rosi,"START");
+		B_StartOtherRoutine(Till,"START");
 	};
 	if(BalthasarMovedToBengar == FALSE)
 	{
-		B_StartOtherRoutine(Balthasar,"Start");
+		B_StartOtherRoutine(Balthasar,"START");
 	};
-	B_StartOtherRoutine(Rega,"Start");
-	B_StartOtherRoutine(Babera,"Start");
-	B_StartOtherRoutine(SekobsBauer1,"Start");
-	B_StartOtherRoutine(SekobsBauer2,"Start");
+	B_StartOtherRoutine(Rega,"START");
+	B_StartOtherRoutine(Babera,"START");
+	B_StartOtherRoutine(SekobsBauer1,"START");
+	B_StartOtherRoutine(SekobsBauer2,"START");
 	if(MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS)
 	{
-		B_StartOtherRoutine(Bronko,"Start");
+		B_StartOtherRoutine(Bronko,"START");
 	}
 	else
 	{
-		B_StartOtherRoutine(Bronko,"PreStart");
+		B_StartOtherRoutine(Bronko,"PRESTART");
 	};
-//	Info_ClearChoices(DIA_Sekob_DMTWEG);
-//	Info_AddChoice(DIA_Sekob_DMTWEG,Dialog_Ende,DIA_Sekob_DMTWEG_END);
 };
-
-/*func void DIA_Sekob_DMTWEG_END()
-{
-	AI_StopProcessInfos(self);
-	if(Kapitel < 5)
-	{
-		Npc_ExchangeRoutine(self,"Start");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"Obsessed");
-	};
-	if(Rosi_FleeFromSekob_Kap5 == FALSE)
-	{
-		B_StartOtherRoutine(Rosi,"Start");
-		B_StartOtherRoutine(Till,"Start");
-	};
-	B_StartOtherRoutine(Balthasar,"Start");
-	B_StartOtherRoutine(Rega,"Start");
-	B_StartOtherRoutine(Babera,"Start");
-	B_StartOtherRoutine(SekobsBauer1,"Start");
-	B_StartOtherRoutine(SekobsBauer2,"Start");
-	B_StartOtherRoutine(Bronko,"Start");
-};*/
 
 
 instance DIA_Sekob_BELOHNUNG(C_Info)
@@ -528,25 +502,25 @@ func void DIA_Sekob_PERM_Info()
 	}
 	else
 	{
-		if(MIS_bringRosiBackToSekob == LOG_FAILED)
+		if(MIS_BringRosiBackToSekob == LOG_FAILED)
 		{
 			AI_Output(self,other,"DIA_Sekob_PERM_01_01");	//Проваливай.
 		}
-		else if(MIS_bringRosiBackToSekob == LOG_SUCCESS)
+		else if(MIS_BringRosiBackToSekob == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Sekob_PERM_01_02");	//Нет. Ничего особенного.
 		}
-		else if((Rosi_FleeFromSekob_Kap5 == TRUE) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
+		else if((Rosi_FleeFromSekob_Kap5 == TRUE) && (MIS_BringRosiBackToSekob != LOG_SUCCESS))
 		{
 			AI_Output(self,other,"DIA_Sekob_PERM_01_03");	//Моя жена исчезла. Сначала я не придал этому внимания, но она так и не вернулась.
 			AI_Output(self,other,"DIA_Sekob_PERM_01_04");	//Я подозреваю, что она убежала в лес, спасаясь от полевых хищников.
-			if(MIS_bringRosiBackToSekob != LOG_Running)
+			if(MIS_BringRosiBackToSekob != LOG_Running)
 			{
 				AI_Output(self,other,"DIA_Sekob_PERM_01_05");	//Окажи мне услугу: если ты найдешь ее, приведи ее назад домой.
-				MIS_bringRosiBackToSekob = LOG_Running;
-				Log_CreateTopic(TOPIC_bringRosiBackToSekob,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_bringRosiBackToSekob,LOG_Running);
-				B_LogEntry(TOPIC_bringRosiBackToSekob,"Жена Секоба Рози пропала. Секоб хочет, чтобы она вернулась.");
+				MIS_BringRosiBackToSekob = LOG_Running;
+				Log_CreateTopic(TOPIC_BringRosiBackToSekob,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_BringRosiBackToSekob,LOG_Running);
+				B_LogEntry(TOPIC_BringRosiBackToSekob,"Жена Секоба Рози пропала. Секоб хочет, чтобы она вернулась.");
 			};
 		}
 		else
@@ -611,7 +585,7 @@ instance DIA_Sekob_ROSIBACKATSEKOB(C_Info)
 
 func int DIA_Sekob_ROSIBACKATSEKOB_Condition()
 {
-	if(!Npc_IsDead(Rosi) && (MIS_bringRosiBackToSekob == LOG_Running))
+	if(!Npc_IsDead(Rosi) && (MIS_BringRosiBackToSekob == LOG_Running))
 	{
 		if((Npc_GetDistToWP(Rosi,"NW_FARM4_IN_04") < 3000) || (Npc_GetDistToWP(Rosi,"NW_BIGFARM_FARM4_PATH_01") < 3000))
 		{
@@ -624,17 +598,17 @@ func void DIA_Sekob_ROSIBACKATSEKOB_Info()
 {
 	AI_Output(other,self,"DIA_Sekob_ROSIBACKATSEKOB_15_00");	//Я привел твою жену назад.
 	AI_Output(self,other,"DIA_Sekob_ROSIBACKATSEKOB_01_01");	//Превосходно. Вот, возьми это за свои труды.
-	MIS_bringRosiBackToSekob = LOG_SUCCESS;
+	MIS_BringRosiBackToSekob = LOG_SUCCESS;
 	CreateInvItems(self,ItMi_Gold,650);
 	B_GiveInvItems(self,other,ItMi_Gold,650);
 	B_GivePlayerXP(XP_AmbientKap5);
 	B_NpcClearObsessionByDMT(self);
 	Rosi.aivar[AIV_PARTYMEMBER] = FALSE;
-	B_StartOtherRoutine(Rosi,"Start");
+	B_StartOtherRoutine(Rosi,"START");
 	if(!Npc_IsDead(Till))
 	{
 		Till.aivar[AIV_PARTYMEMBER] = FALSE;
-		B_StartOtherRoutine(Till,"Start");
+		B_StartOtherRoutine(Till,"START");
 	};
 };
 
@@ -651,8 +625,7 @@ instance DIA_Sekob_ROSINEVERBACK(C_Info)
 
 func int DIA_Sekob_ROSINEVERBACK_Condition()
 {
-//	if((MIS_bringRosiBackToSekob == LOG_OBSOLETE) && (hero.guild != GIL_KDF))
-	if((MIS_RosisFlucht == LOG_SUCCESS) && (MIS_bringRosiBackToSekob == LOG_Running))
+	if((MIS_RosisFlucht == LOG_SUCCESS) && (MIS_BringRosiBackToSekob == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -667,7 +640,7 @@ func void DIA_Sekob_ROSINEVERBACK_Info()
 	self.flags = 0;
 	B_NpcClearObsessionByDMT(self);
 	B_Attack(self,other,AR_NONE,1);
-	MIS_bringRosiBackToSekob = LOG_FAILED;
+	MIS_BringRosiBackToSekob = LOG_FAILED;
 	B_GivePlayerXP(XP_AmbientKap5);
 };
 
