@@ -1,0 +1,47 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zFailedRunJumpFix]
+		// engine specific
+		INT text_oCAIHuman__WalkCycle_call_PC_SpecialMove = ZenDef(0x00614C1D, 0x00637A40, 0x0063E65C, 0x0069AEA9)
+		INT text_oCAIHuman__WalkCycle_call_PC_WeaponMove_prologue = ZenDef(0x00614C2A, 0x00637A4D, 0x0063E669, 0x0069AEB6)
+		INT text_oCAIHuman__WalkCycle_call_PC_JumpForward = ZenDef(0x00614DBC, 0x00637C42, 0x0063E868, 0x0069B040)
+		INT text_oCAniCtrl_Human_PC_JumpForward_mov_do_jump_0 = ZenDef(0x00628D6E, 0x0064DF95, 0x0065554E, 0x006B1EDE)
+		
+		INT field_oCAniCtrl_Human_do_jump = 0x170
+		// end of engine specific
+		
+		INT is_special_move = 0
+		
+		#assembler [text_oCAIHuman__WalkCycle_call_PC_SpecialMove]
+			orgcode
+			
+			test eax, eax
+			jz not_special_move
+			
+			mov dword ptr [$is_special_move], 1
+			jmp continue
+			
+		not_special_move:
+			mov dword ptr [$is_special_move], 0
+			
+		continue:
+		#/assembler
+		
+		#assembler [text_oCAIHuman__WalkCycle_call_PC_JumpForward]
+			orgcode
+			
+			cmp dword ptr [$is_special_move], 2
+			mov dword ptr [$is_special_move], 0
+			je $text_oCAIHuman__WalkCycle_call_PC_WeaponMove_prologue
+		#/assembler
+		
+		#assembler [text_oCAniCtrl_Human_PC_JumpForward_mov_do_jump_0]
+			orgcode
+			
+			push eax
+			mov eax, dword ptr [$is_special_move]
+			add eax, 1
+			mov dword ptr [$is_special_move], eax
+			pop eax
+		#/assembler
+	#/patch
+#/engine

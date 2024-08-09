@@ -1,0 +1,65 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zStopWorldOnSave]
+		// engine specific
+		INT engine_version = ZenDef(1, 2, 3, 4)
+		
+		INT text_CGameManager_Menu_mov_eax_saveGame = ZenDef(0x00427E01, 0x0042A962, 0x00429355, 0x0042967C)
+		INT text_CGameManager_Write_Savegame_call_gameSession_Render = ZenDef(0x004289FB, 0x0042B4B2, 0x0042A290, 0x0042A5B0)
+		
+		INT func_zCWorld_AdvanceClock = ZenDef(0x005F7A80, 0x00618C30, 0x0061E950, 0x006260E0)
+		
+		INT field_CGameManager_gameSession = 0xC
+		INT field_oCGame_world = 0x8
+		// end of engine specific
+		
+		#assembler [text_CGameManager_Menu_mov_eax_saveGame]
+			orgcode
+			push eax
+			test eax, eax
+			jz continue
+			
+			mov eax, dword ptr [$engine_version]
+			cmp eax, 2
+			mov ecx, esi
+			je skip_gameSession
+			
+			mov ecx, [esi+$field_CGameManager_gameSession]
+			test ecx, ecx
+			jz continue
+			
+		skip_gameSession:
+			
+			mov ecx, [ecx+$field_oCGame_world]
+			test ecx, ecx
+			jz continue
+			
+			xor eax, eax
+			push eax
+			call $func_zCWorld_AdvanceClock
+			
+		continue:
+			pop eax
+			test eax, eax
+		#/assembler
+		
+		#assembler [text_CGameManager_Write_Savegame_call_gameSession_Render]
+			push eax
+			push ecx
+			push edx
+			
+			mov ecx, [ecx+$field_oCGame_world]
+			test ecx, ecx
+			jz continue
+			
+			xor eax, eax
+			push eax
+			call $func_zCWorld_AdvanceClock
+			
+		continue:
+			pop edx
+			pop ecx
+			pop eax
+			orgcode
+		#/assembler
+	#/patch
+#/engine

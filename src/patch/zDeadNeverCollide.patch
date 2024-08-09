@@ -1,0 +1,19 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zDeadNeverCollide]
+		// engine specific
+		INT text_oCAniCtrl_Human_mov_ecx_npc = ZenDef(0x00624EB2, 0x00649B32, 0x00650D00, 0x006AD580)
+		
+		INT func_zCVob_SetCollDetDyn = ZenDef(0x005EF9C0, 0x006104E0, 0x00615800, 0x0061CF40)
+		// end of engine specific
+		
+		#assembler [text_oCAniCtrl_Human_mov_ecx_npc]
+			orgcode
+			
+			push ecx
+			xor edx, edx
+			call $func_zCVob_SetCollDetDyn
+			
+			pop ecx
+		#/assembler
+	#/patch
+#/engine

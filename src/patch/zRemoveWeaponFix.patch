@@ -1,0 +1,76 @@
+#engine [G1, G1A, G2, G2A]
+    #patch [zRemoveWeaponFix]
+        // engine specific
+        INT asm_start = ZenDef(0x006A94E3, 0x006DC2CE, 0x006EEEE1, 0x0074DC98)
+        INT asm_away = ZenDef(0x006A94F0, 0x006DC2DB, 0x006EF46F, 0x0074E23C)
+       
+        INT func_zCModel_GetAniFromAniID = ZenDef(0x0046D1E0, 0x00475680, 0x00471E30, 0x00472F50)
+        INT func_zCModel_IsAniActive = ZenDef(0x0046D220, 0x004756D0, 0x00471E70, 0x00472F90)
+       
+        INT field_oCAniCtrl_Human_s_walkwl = 0xFD8
+        // end of engine specific
+       
+        INT engine_version = ZenDef(1, 2, 3, 4)
+       
+        IF engine_version == 1
+            #assembler [asm_start]
+                orgcode
+                test eax, eax
+                jnz $asm_away
+               
+                mov eax, [ebp+$field_oCAniCtrl_Human_s_walkwl]
+                push eax
+                mov ecx, ebx
+                call $func_zCModel_GetAniFromAniID
+               
+                push eax
+                mov ecx, ebx
+                call $func_zCModel_IsAniActive
+            #/assembler
+        END
+       
+        IF engine_version == 2
+            INT field_oCNpc_anictrl = 0x9C0
+           
+            #assembler [asm_start]
+                orgcode
+                test eax, eax
+                jnz $asm_away
+               
+                mov eax, [esi+$field_oCNpc_anictrl]
+                mov eax, [eax+$field_oCAniCtrl_Human_s_walkwl]
+                push eax
+                mov ecx, ebp
+                call $func_zCModel_GetAniFromAniID
+               
+                push eax
+                mov ecx, ebp
+                call $func_zCModel_IsAniActive
+            #/assembler
+        END
+       
+        IF engine_version >= 3
+            INT asm_end = ZenDef(0x00000000, 0x00000000, 0x006EEEF8, 0x0074DCAF)
+           
+            INT walk_block_start = ZenDef(0x00000000, 0x00000000, 0x006EF017, 0x0074DDCE)
+            INT walk_block_end = ZenDef(0x00000000, 0x00000000, 0x006EF036, 0x0074DDED)
+           
+            INT sneak_block_start = ZenDef(0x00000000, 0x00000000, 0x006EF1C6, 0x0074DF9D)
+            INT sneak_block_end = ZenDef(0x00000000, 0x00000000, 0x006EF206, 0x0074DFD7)
+       
+            #assembler [asm_start]
+                mov eax, [edi+$field_oCAniCtrl_Human_s_walkwl]
+                push eax
+                mov ecx, esi
+                call $func_zCModel_GetAniFromAniID
+               
+                push eax
+                mov ecx, esi
+                call $func_zCModel_IsAniActive
+            #/assembler [asm_end]
+           
+            JMP(walk_block_start, walk_block_end)
+            JMP(sneak_block_start, sneak_block_end)
+        END
+    #/patch
+#/engine

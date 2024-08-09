@@ -1,0 +1,22 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zDontSetUninitializedBodyState]
+		// engine specific
+		INT text_oCNpc_EV_PlayAni_mov_register_number = ZenDef(0x006B1F90, 0x006E62CB, 0x006F8E05, 0x00757C35)
+		INT text_oCNpc_EV_PlayAni_after_SetBodyState = ZenDef(0x006B1FA1, 0x006E62E4, 0x006F8E16, 0x00757C46)
+		// end of engine specific
+		
+		IF ZenDef(1, 2, 3, 4) <= 2
+			#assembler [text_oCNpc_EV_PlayAni_mov_register_number]
+				orgcode
+				cmp ecx, -1
+				je $text_oCNpc_EV_PlayAni_after_SetBodyState
+			#/assembler
+		ELSE
+			#assembler [text_oCNpc_EV_PlayAni_mov_register_number]
+				orgcode
+				cmp eax, -1
+				je $text_oCNpc_EV_PlayAni_after_SetBodyState
+			#/assembler
+		END
+	#/patch
+#/engine

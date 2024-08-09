@@ -1,0 +1,322 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zFightNoTurnAnis]
+		// engine specific
+		INT engine_version = ZenDef(1, 2, 3, 4)
+		
+		INT text_oCNpc_EV_DrawWeapon_call_human_ai_PC_Turnings = ZenDef(0x006A8AC0, 0x006DB785, 0x006EE4B0, 0x0074D224)
+		INT text_oCNpc_EV_DrawWeapon2_call_DoDoAniEvents = ZenDef(0x006A8EF7, 0x006DBC1B, 0x006EE8E7, 0x0074D657)
+		INT text_oCNpc_EV_RemoveWeapon_call_human_ai_PC_Turnings = ZenDef(0x006A96D7, 0x006DC563, 0x006EF62B, 0x0074E3F5)
+		INT text_oCNpc_EV_RemoveWeapon1_call_anictrl_RemoveWeapon1 = ZenDef(0x006A97DC, 0x006DC69C, 0x006EF737, 0x0074E507)
+		INT text_oCNpc_EV_AttackRun_call_human_ai_PC_Turnings = ZenDef(0x00000000, 0x00000000, 0x006F2B77, 0x00751957)
+		INT text_G1A_oCNpc_EV_AttackRun_call_anictrl_HitCombo = 0x006DEECE
+		INT text_oCAIHuman_FightMelee_jnz_npc_GetFocusVob = ZenDef(0x00611110, 0x00633E74, 0x0063A6DF, 0x00696F6F)
+		INT text_oCAIHuman_BowMode_mov_eax_model = ZenDef(0x00610A62, 0x006337A1, 0x00639C0B, 0x00696377)
+		INT text_G1_patch_Turn_Attack_on_Run_call_oCAIHuman_PC_Turnings = 0x00737A87
+		INT text_oCNpc_EV_TakeVob_call_model_StartAni = ZenDef(0x006ADC21, 0x006E13CC, 0x006F48B1, 0x007536ED)
+		
+		INT stack_oCNpc_EV_DrawWeapon_model = 0x68 + 0x8 - 0x54
+		
+		IF engine_version == 2
+			stack_oCNpc_EV_DrawWeapon_model = 0x68 + 0x8 - 0x50
+		END
+		
+		INT field_oCMsgWeapon_duringRun = ZenDef(0x48, 0x50, 0x48, 0x48)
+		INT field_oCAniCtrl_Human__t_turnl = 0x1028
+		INT field_oCAniCtrl_Human__t_turnr = 0x102C
+		INT field_oCAniCtrl_Human__s_walk = 0x1008
+		INT field_oCNpc_human_ai = ZenDef(0x9B4, 0x9BC, 0x8E8, 0x97C)
+		
+		INT func_oCNpc_IsSelfPlayer = ZenDef(0x0069E9E0, 0x006D0D80, 0x006E3BA0, 0x007425B0)
+		INT func_oCAIHuman_PC_Turnings = ZenDef(0x00614800, 0x00637660, 0x0063E0F0, 0x0069A940)
+		INT func_oCAniCtrl_Human_StopTurnAnis = ZenDef(0x00625A20, 0x0064A7C0, 0x00651CB0, 0x006AE530)
+		INT func_zCModel_GetAniFromAniID = ZenDef(0x0046D1E0, 0x00475680, 0x00471E30, 0x00472F50)
+		INT func_zCModel_IsAniActive = ZenDef(0x0046D220, 0x004756D0, 0x00471E70, 0x00472F90)
+		// end of engine specific
+		
+		#assembler [text_oCNpc_EV_TakeVob_call_model_StartAni]
+			orgcode
+			
+			cmp dword ptr [$engine_version], 4
+			je g2a
+			
+			mov ecx, [esi+$field_oCNpc_human_ai]
+			jmp continue
+			
+		g2a:
+			mov ecx, [ebx+$field_oCNpc_human_ai]
+			
+		continue:
+			call $func_oCAniCtrl_Human_StopTurnAnis
+		#/assembler
+		
+		// void oCAIHuman::PC_Turnings_no_ani(int)
+		#assembler [func_oCAIHuman_PC_Turnings_no_ani]
+			xor edx, edx
+			
+			mov eax, [ecx+$field_oCAniCtrl_Human__t_turnl]
+			push eax
+			mov [ecx+$field_oCAniCtrl_Human__t_turnl], edx
+			
+			mov eax, [ecx+$field_oCAniCtrl_Human__t_turnr]
+			push eax
+			mov [ecx+$field_oCAniCtrl_Human__t_turnr], edx
+		
+			push ecx
+			
+			mov eax, [esp+16]
+			push eax
+			call $func_oCAIHuman_PC_Turnings
+		
+			pop ecx
+			
+			pop eax
+			mov [ecx+$field_oCAniCtrl_Human__t_turnr], eax
+			
+			pop eax
+			mov [ecx+$field_oCAniCtrl_Human__t_turnl], eax
+			
+			ret 4
+		#/assembler
+		
+		#assembler [text_oCNpc_EV_DrawWeapon_call_human_ai_PC_Turnings]
+			cmp dword ptr [$engine_version], 2
+			jne message_ebp
+			
+			test byte ptr [ebx+$field_oCMsgWeapon_duringRun], 1
+			jmp field_tested
+		
+		message_ebp:
+			test byte ptr [ebp+$field_oCMsgWeapon_duringRun], 1
+			
+		field_tested:
+			jz pop_arg
+			
+			push ecx
+			
+			mov eax, [ecx+$field_oCAniCtrl_Human__s_walk]
+			push eax
+			mov ecx, [esp+$stack_oCNpc_EV_DrawWeapon_model]
+			call $func_zCModel_GetAniFromAniID
+			
+			push eax
+			mov ecx, [esp+$stack_oCNpc_EV_DrawWeapon_model]
+			call $func_zCModel_IsAniActive
+			
+			pop ecx
+			
+			test eax, eax
+			jz continue
+			
+			call $func_oCAIHuman_PC_Turnings_no_ani
+			jmp return
+			
+		continue:
+			call $func_oCAIHuman_PC_Turnings
+			jmp return
+			
+		pop_arg:
+			add esp, 4
+			
+		return:
+		#/assembler
+		
+		#assembler [text_oCNpc_EV_DrawWeapon2_call_DoDoAniEvents]
+			orgcode
+			
+			mov ecx, esi
+			call $func_oCNpc_IsSelfPlayer
+			
+			test eax, eax
+			jz return
+			
+			push 0
+			mov ecx, [esi+$field_oCNpc_human_ai]
+			call $func_oCAIHuman_PC_Turnings_no_ani
+			
+		return:
+		#/assembler
+
+		IF engine_version == 1
+			#assembler [text_oCNpc_EV_RemoveWeapon_call_human_ai_PC_Turnings]
+				test byte ptr [edi+$field_oCMsgWeapon_duringRun], 1
+				jz continue
+				
+				push ecx
+				
+				mov eax, [ecx+$field_oCAniCtrl_Human__s_walk]
+				push eax
+				mov ecx, ebx
+				call $func_zCModel_GetAniFromAniID
+				
+				push eax
+				mov ecx, ebx
+				call $func_zCModel_IsAniActive
+				
+				pop ecx
+				
+				test eax, eax
+				jz continue
+				
+				call $func_oCAIHuman_PC_Turnings_no_ani
+				jmp return
+				
+			continue:
+				call $func_oCAIHuman_PC_Turnings
+				
+			return:
+			#/assembler
+		END
+		
+		IF engine_version == 2
+			#assembler [text_oCNpc_EV_RemoveWeapon_call_human_ai_PC_Turnings]
+				test byte ptr [edi+$field_oCMsgWeapon_duringRun], 1
+				jz continue
+				
+				push ecx
+				
+				mov eax, [ecx+$field_oCAniCtrl_Human__s_walk]
+				push eax
+				mov ecx, ebp
+				call $func_zCModel_GetAniFromAniID
+				
+				push eax
+				mov ecx, ebp
+				call $func_zCModel_IsAniActive
+				
+				pop ecx
+				
+				test eax, eax
+				jz continue
+				
+				call $func_oCAIHuman_PC_Turnings_no_ani
+				jmp return
+				
+			continue:
+				call $func_oCAIHuman_PC_Turnings
+				
+			return:
+			#/assembler
+		END
+		
+		IF engine_version >= 3
+			#assembler [text_oCNpc_EV_RemoveWeapon_call_human_ai_PC_Turnings]
+				test byte ptr [edi+$field_oCMsgWeapon_duringRun], 1
+				jz continue
+				
+				push ecx
+				
+				mov eax, [ecx+$field_oCAniCtrl_Human__s_walk]
+				push eax
+				mov ecx, esi
+				call $func_zCModel_GetAniFromAniID
+				
+				push eax
+				mov ecx, esi
+				call $func_zCModel_IsAniActive
+				
+				pop ecx
+				
+				test eax, eax
+				jz continue
+				
+				call $func_oCAIHuman_PC_Turnings_no_ani
+				jmp return
+				
+			continue:
+				call $func_oCAIHuman_PC_Turnings
+				
+			return:
+			#/assembler
+		END
+		
+		// allow turning in stand-remove-weapon
+		#assembler [text_oCNpc_EV_RemoveWeapon1_call_anictrl_RemoveWeapon1]
+			push ecx
+			
+			mov ecx, esi
+			call $func_oCNpc_IsSelfPlayer
+		
+			test eax, eax
+			jz continue
+			
+			mov ecx, [esp]
+			push 0
+			call $func_oCAIHuman_PC_Turnings_no_ani
+			
+		continue:
+			pop ecx
+			orgcode
+		#/assembler
+
+		IF engine_version == 1
+			CALL(text_G1_patch_Turn_Attack_on_Run_call_oCAIHuman_PC_Turnings, func_oCAIHuman_PC_Turnings_no_ani)
+		END
+		
+		IF engine_version == 2
+			#assembler [text_G1A_oCNpc_EV_AttackRun_call_anictrl_HitCombo]
+				orgcode
+				
+				mov ecx, esi
+				call $func_oCNpc_IsSelfPlayer
+				test eax, eax
+				jz return
+				
+				push 0
+				mov ecx, [esi+$field_oCNpc_human_ai]
+				call $func_oCAIHuman_PC_Turnings_no_ani
+				
+			return:
+			#/assembler
+		END
+		
+		IF engine_version >= 3
+			#assembler [text_oCNpc_EV_AttackRun_call_human_ai_PC_Turnings]
+				push ecx
+				
+				mov ecx, esi
+				call $func_oCNpc_IsSelfPlayer
+				
+				pop ecx
+				
+				test eax, eax
+				jz pop_zero
+				
+				push ecx
+				
+				mov eax, [ecx+$field_oCAniCtrl_Human__s_walk]
+				push eax
+				mov ecx, ebx
+				call $func_zCModel_GetAniFromAniID
+				
+				push eax
+				mov ecx, ebx
+				call $func_zCModel_IsAniActive
+				
+				pop ecx
+				
+				test eax, eax
+				jz continue
+				
+				call $func_oCAIHuman_PC_Turnings_no_ani
+				jmp return
+				
+			pop_zero:
+				add esp, 4
+				jmp return
+				
+			continue:
+				call $func_oCAIHuman_PC_Turnings
+				
+			return:
+			#/assembler
+		END
+		
+		HEX @text_oCAIHuman_FightMelee_jnz_npc_GetFocusVob = '90 90'
+		
+		#assembler [text_oCAIHuman_BowMode_mov_eax_model]
+			mov ecx, esi
+			call $func_oCAniCtrl_Human_StopTurnAnis
+			orgcode
+		#/assembler
+	#/patch
+#/engine

@@ -1,0 +1,12 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zDontDeleteMonsters]
+		// engine specific
+		INT text_oCGame_ChangeLevel_call_SetDailyRoutinePos = ZenDef(0x0063D304, 0x00663F62, 0x0066AC04, 0x006C7959)
+		// end of engine specific
+		
+		#assembler [text_oCGame_ChangeLevel_call_SetDailyRoutinePos]
+			mov dword ptr [esp], 1
+			orgcode
+		#/assembler
+	#/patch
+#/engine

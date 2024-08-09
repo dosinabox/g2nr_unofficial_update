@@ -1,0 +1,13 @@
+#engine [G1, G1A, G2, G2A]
+    #patch [zExchangeInteractItemFix]
+		// engine specific
+		INT asm_start = ZenDef(0x006AECD9, 0x006E2549, 0x006F5969, 0x0075479B)
+		INT field_oCNpc_TNpcSlot_tmplevel = 0x18
+		// end of engine specific
+		
+        #assembler [asm_start]
+            mov dword ptr [ebx+$field_oCNpc_TNpcSlot_tmplevel], 0
+            orgcode
+        #/assembler
+    #/patch
+#/engine

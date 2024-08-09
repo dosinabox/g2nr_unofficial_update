@@ -69,7 +69,7 @@ func void StoryHelper_Exit_Info()
 {
 	AI_StopProcessInfos(self);
 };
-	
+
 instance StoryHelper_PatchSettings(C_Info)
 {
 	npc = sh;

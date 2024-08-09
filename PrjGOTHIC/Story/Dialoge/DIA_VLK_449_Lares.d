@@ -1896,7 +1896,7 @@ func void DIA_Addon_Lares_ArrivedPortalInter1_Info()
 		Info_AddChoice(DIA_Addon_Lares_ArrivedPortalInter1,"Конечно.",DIA_Addon_Lares_ArrivedPortalInter1_ja);
 		Info_AddChoice(DIA_Addon_Lares_ArrivedPortalInter1,"Сатурас? Кто это такой?",DIA_Addon_Lares_ArrivedPortalInter1_wer);
 	}
-	else 
+	else
 	{
 		B_LaresDistractionCheck();
 		B_MakeRangerReadyForMeeting(self);

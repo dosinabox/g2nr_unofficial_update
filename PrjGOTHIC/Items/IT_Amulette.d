@@ -543,4 +543,3 @@ func void UnEquip_ItAm_Fall()
 	self.protection[PROT_FALL] = 0;
 };
 
-

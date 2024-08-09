@@ -1,0 +1,12 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zLocalizedHoursMinutes]
+		// engine specific
+		INT text_oCMenuSavegame_HandleSlotChange_hours_address = ZenDef(0x0042C4D5, 0x0042F5B7, 0x0042E768, 0x0042EA88) + 1
+		INT text_oCMenuSavegame_HandleSlotChange_minutes_address = ZenDef(0x0042C501, 0x0042F5E3, 0x0042E79F, 0x0042EABF) + 1
+		
+		INT str_hours = CreateMemString("ч ") + 8
+		INT str_minutes = CreateMemString("мин") + 8
+		INT @text_oCMenuSavegame_HandleSlotChange_hours_address = INT @str_hours
+		INT @text_oCMenuSavegame_HandleSlotChange_minutes_address = INT @str_minutes
+	#/patch
+#/engine

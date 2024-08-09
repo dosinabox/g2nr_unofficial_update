@@ -1,0 +1,161 @@
+#engine [G1, G1A, G2, G2A]
+    #patch [zCloseConversationFix]
+        // engine specific
+        INT init_begin = ZenDef(0x006338C8, 0x00659738, 0x006608BD, 0x006BD24D)
+        INT init_end = init_begin + 6
+ 
+        INT close_view_begin = ZenDef(0x00633947, 0x006597B5, 0x00660957, 0x006BD2E7)
+        INT close_view_end = close_view_begin + 5
+ 
+        INT offset_parser = ZenDef(0x008DCE08, 0x00925048, 0x00984C08, 0x00AB40C0)
+        INT offset_ptr_player = ZenDef(0x008DBBB0, 0x00923134, 0x009831DC, 0x00AB2684)
+
+        INT func_zCParser_GetIndex = ZenDef(0x006EA0C0, 0x00723120, 0x00733A30, 0x00793470)
+        INT func_oCNpc_States_IsInState = ZenDef(0x006C4C90, 0x006FA3C0, 0x0070CAE0, 0x0076C040)
+ 
+        INT field_oCNpc_state = ZenDef(0x470, 0x470, 0x4FC, 0x588)
+        // end of engine specific
+ 
+        INT gothic_version = ZenDef(1, 2, 3, 4)
+ 
+        INT zs_talk = CreateMemString("ZS_TALK")
+        INT zs_talk_index = -2
+ 
+        INT zs_tria = CreateMemString("ZS_TRIA")
+        INT zs_tria_index = -2
+ 
+        IF gothic_version <= 2
+            #assembler [init_begin]
+                orgcode
+       
+                mov eax, [$zs_talk_index]
+                mov edx, -2
+                cmp eax, edx
+                jne $init_end
+       
+                push $zs_talk
+                mov ecx, $offset_parser
+                call $func_zCParser_GetIndex
+                mov [$zs_talk_index], eax
+       
+                push $zs_tria
+                mov ecx, $offset_parser
+                call $func_zCParser_GetIndex
+                mov [$zs_tria_index], eax
+       
+                mov ecx, edi
+            #/assembler [init_end]
+ 
+            #assembler [close_view_begin]
+                mov eax, $offset_ptr_player
+                mov eax, [eax]
+                cmp eax, edi
+                je close_view
+       
+                mov eax, [$zs_talk_index]
+                test eax, eax
+                jl check_tria
+       
+                push ecx
+                lea ecx, [edi+$field_oCNpc_state]
+                push eax
+                call $func_oCNpc_States_IsInState
+                test eax, eax
+                pop ecx
+                jnz close_view
+       
+            check_tria:
+                mov eax, [$zs_tria_index]
+                test eax, eax
+                jl $close_view_end
+   
+                push ecx
+                lea ecx, [edi+$field_oCNpc_state]
+                push eax
+                call $func_oCNpc_States_IsInState
+                test eax, eax
+                pop ecx
+                jz $close_view_end
+       
+            close_view:
+                orgcode
+            #/assembler [close_view_end]
+        ELSE
+            INT archolos_sym_name = CreateMemString("KURT_ARCHOLOS_HISTORY")
+            INT is_archolos_mod = 0
+   
+            #assembler [init_begin]
+                orgcode
+       
+                mov eax, [$zs_talk_index]
+                mov edx, -2
+                cmp eax, edx
+                jne $init_end
+       
+                push $zs_talk
+                mov ecx, $offset_parser
+                call $func_zCParser_GetIndex
+                mov [$zs_talk_index], eax
+       
+                push $zs_tria
+                mov ecx, $offset_parser
+                call $func_zCParser_GetIndex
+                mov [$zs_tria_index], eax
+       
+                mov eax, $gothic_version
+                cmp eax, 4
+                jne restore_ecx
+       
+                push $archolos_sym_name
+                mov ecx, $offset_parser
+                call $func_zCParser_GetIndex
+                test eax, eax
+                jl restore_ecx
+       
+                mov dword ptr [$is_archolos_mod], 1
+       
+            restore_ecx:
+                mov ecx, ebx
+            #/assembler [init_end]
+   
+            #assembler [close_view_begin]
+                mov eax, [$is_archolos_mod]
+                test eax, eax
+                jnz close_view
+       
+                mov eax, $offset_ptr_player
+                mov eax, [eax]
+                cmp eax, ebx
+                je close_view
+       
+                mov eax, [$zs_talk_index]
+                test eax, eax
+                jl check_tria
+       
+                push ecx
+                lea ecx, [ebx+$field_oCNpc_state]
+                push eax
+                call $func_oCNpc_States_IsInState
+                test eax, eax
+                pop ecx
+                jnz close_view
+       
+            check_tria:
+                mov eax, [$zs_tria_index]
+                test eax, eax
+                jl $close_view_end
+   
+                push ecx
+                lea ecx, [ebx+$field_oCNpc_state]
+                push eax
+                call $func_oCNpc_States_IsInState
+                test eax, eax
+                pop ecx
+                jz $close_view_end
+       
+            close_view:
+                orgcode
+            #/assembler [close_view_end]   
+        END
+    #/patch
+#/engine

@@ -1,0 +1,36 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zSetWeaponModeFix]
+		// engine specific
+		INT asm_start = ZenDef(0x00696596, 0x006C80F1, 0x006DB246, 0x00739986)
+		INT field_oCNpc_human_ai = ZenDef(0x9B4, 0x9BC, 0x8E8, 0x97C)
+		INT offset_CamModNormal = ZenDef(0x0086A108, 0x008AFA48, 0x008C0390, 0x008CE9F0)
+		
+		INT func_oCAIHuman_SetCamMode = ZenDef(0x0060FE40, 0x00632AD0, 0x00639390, 0x00695A60)
+		INT func_oCNpc_SetFocusMode = ZenDef(0x00634E60, 0x0065AFF0, 0x00662290, 0x006BEC20)
+		// end of engine specific
+	
+		#assembler [asm_start]
+			orgcode
+			test eax, eax
+			jnz return
+			
+			mov ecx, [esi+$field_oCNpc_human_ai]
+			cmp ecx, edi
+			je focus
+			
+			push edi
+			push $offset_CamModNormal
+			call $func_oCAIHuman_SetCamMode
+			
+		focus:
+			push 0
+			call $func_oCNpc_SetFocusMode
+			add esp, 4
+			pop edi
+			pop esi
+			ret 4
+			
+		return:
+		#/assembler
+	#/patch
+#/engine
