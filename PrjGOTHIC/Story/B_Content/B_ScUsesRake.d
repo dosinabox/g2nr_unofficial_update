@@ -42,10 +42,15 @@ func void B_SCGetTreasure_S1()
 		{
 			Wld_InsertItem(ItSe_GoldPocket25,RAKEPLACE_WP_01);
 			RakeTreasureSuccess(ItSe_GoldPocket25);
-			//TODO проверять местонахождение Грега
-			if(!ArmorEquipped(Greg_NW,ITAR_PIR_H_Addon))
+			if(!Npc_IsDead(Greg_NW) && (MIS_Addon_Greg_RakeCave == LOG_Running))
 			{
-				AI_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
+				if(Npc_GetDistToWP(Greg_NW,"NW_BIGFARM_LAKE_CAVE_01") < 1000)
+				{
+					if(!ArmorEquipped(Greg_NW,ITAR_PIR_H_Addon))
+					{
+						AI_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
+					};
+				};
 			};
 			RAKEPLACE[1] = TRUE;
 		}
