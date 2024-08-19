@@ -29,13 +29,13 @@ jobs:
 
         for file in $d_files; do
           # Check for trailing spaces and tabs at the end of lines
-          if grep -Pan '[[:blank:]]$' "${file}_converted"; then
+          if grep -Pan '[[:blank:]]$' "${file}"; then
             echo "::error file=$file::File $file has trailing spaces or tabs at the end of lines"
             errors=$((errors+1))
           fi
 
           # Check for assignments in conditions
-          if grep -Pan 'if\(.*\s=\s' "${file}_converted"; then
+          if grep -Pan 'if\(.*\s=\s' "${file}"; then
             echo "::error file=$file::File $file has assignment in condition"
             errors=$((errors+1))
           fi
