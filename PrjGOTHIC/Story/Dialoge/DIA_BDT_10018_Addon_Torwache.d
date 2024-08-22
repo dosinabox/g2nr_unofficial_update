@@ -269,18 +269,18 @@ func void DIA_Addon_10018_Torwache_Drin_Info()
 };
 
 
-instance DIA_Addon_BDT_10018_Torwache_kopf(C_Info)
+instance DIA_Addon_BDT_10018_Torwache_Kopf(C_Info)
 {
 	npc = BDT_10018_Addon_Torwache;
 	nr = 90;
-	condition = DIA_Addon_10018_Torwache_kopf_Condition;
-	information = DIA_Addon_10018_Torwache_kopf_Info;
+	condition = DIA_Addon_10018_Torwache_Kopf_Condition;
+	information = DIA_Addon_10018_Torwache_Kopf_Info;
 	permanent = FALSE;
 	description = DIALOG_BloodwynHead;
 };
 
 
-func int DIA_Addon_10018_Torwache_kopf_Condition()
+func int DIA_Addon_10018_Torwache_Kopf_Condition()
 {
 	if(Npc_HasItems(other,ItMi_Addon_Bloodwyn_Kopf))
 	{
@@ -288,16 +288,15 @@ func int DIA_Addon_10018_Torwache_kopf_Condition()
 	};
 };
 
-func void DIA_Addon_10018_Torwache_kopf_Info()
+func void DIA_Addon_10018_Torwache_Kopf_Info()
 {
 	CreateInvItem(other,ItMi_FakeBloodwynHead);
 	AI_UseItemToState(other,ItMi_FakeBloodwynHead,1);
-	//эта функция нужна, чтобы ГГ не смотрел на голову Бладвина, но работает это неправильно
 	B_LookAtNpc(other,self);
-	AI_Output(other,self,"DIA_Addon_BDT_10018_Torwache_kopf_15_00");	//Вот! Ты все еще хочешь остановить меня?!
+	AI_Output(other,self,"DIA_Addon_BDT_10018_Torwache_Kopf_15_00");	//Вот! Ты все еще хочешь остановить меня?!
 	AI_UseItemToState(other,ItMi_FakeBloodwynHead,-1);
-	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_kopf_04_01");	//Это что... это... Бладвин?.. (тошнит) Это...
-	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_kopf_04_02");	//Н-нет... Я хочу сказать... Да, проходи...
+	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_Kopf_04_01");	//Это что... это... Бладвин?.. (тошнит) Это...
+	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_Kopf_04_02");	//Н-нет... Я хочу сказать... Да, проходи...
 	MIS_BloodwynRaus = LOG_SUCCESS;
 	self.aivar[AIV_PASSGATE] = TRUE;
 	AI_StopProcessInfos(self);

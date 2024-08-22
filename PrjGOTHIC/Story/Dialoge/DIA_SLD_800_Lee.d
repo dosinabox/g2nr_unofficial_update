@@ -1770,7 +1770,7 @@ func void DIA_Lee_GetShip_crew()
 	else
 	{
 		B_LogEntry(Topic_Crew,"Что касается моей команды, здесь Ли мало чем может помочь мне. Но все же он дал совет - набирать только людей, которым я могу доверять.");
-	};	
+	};
 };
 
 func void DIA_Lee_GetShip_back()
@@ -1929,7 +1929,7 @@ func void DIA_Lee_LeaveMyShip_Info()
 	AI_Output(self,other,"DIA_Lee_LeaveMyShip_04_01");	//Как скажешь. Ты знаешь, где меня найти, если что!
 	Lee_IsOnBoard = LOG_OBSOLETE;
 	Crewmember_Count -= 1;
-	Lee_Nerver += 1;
+	self.aivar[AIV_Nerver] += 1;
 	Npc_ExchangeRoutine(self,"SHIPOFF");
 };
 
@@ -1956,7 +1956,7 @@ func int DIA_Lee_StillNeedYou_Condition()
 func void DIA_Lee_StillNeedYou_Info()
 {
 	AI_Output(other,self,"DIA_Lee_StillNeedYou_15_00");	//Ты мне все-таки нужен!
-	if((Lee_IsOnBoard == LOG_OBSOLETE) && (Lee_Nerver <= 2))
+	if((Lee_IsOnBoard == LOG_OBSOLETE) && (self.aivar[AIV_Nerver] <= 2))
 	{
 		AI_Output(self,other,"DIA_Lee_StillNeedYou_04_01");	//Я знал, что понадоблюсь тебе! Увидимся на корабле.
 		B_JoinShip(self);

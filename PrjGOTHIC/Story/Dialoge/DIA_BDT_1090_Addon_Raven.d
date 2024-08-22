@@ -97,7 +97,7 @@ func void DIA_Addon_Raven_Hi_Attack()
 	AI_Output(other,self,"DIA_Addon_Raven_Add_15_06");	//Достаточно. Приступим к делу...
 	AI_Output(self,other,"DIA_Addon_Raven_Add_10_12");	//(усмехается) Ты так торопишься умереть? Ну, раз ты настаиваешь...
 	self.aivar[AIV_EnemyOverride] = FALSE;
-	Npc_ExchangeRoutine(self,"WaitForPlayer");
+	Npc_ExchangeRoutine(self,"WAITFORPLAYER");
 	Raven_Awaken = TRUE;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_SuddenEnemyInferno,1);

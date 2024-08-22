@@ -145,7 +145,7 @@ func void DIA_Addon_Riordian_SaturasWantYou_Info()
 			AI_Output(self,other,"DIA_Addon_Riordian_SaturasWantYou_10_03");	//Ты найдешь его в дальней части залов.
 		};
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"Saturas");
+		Npc_ExchangeRoutine(self,"SATURAS");
 	};
 	MIS_Addon_Saturas_BringRiordian2Me = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
@@ -276,7 +276,6 @@ func void DIA_Addon_Riordian_Teach_Info()
 		B_DIA_Addon_Riordian_Teach_10_08();
 		Riordian_Addon_TeachWisp_NoPerm = TRUE;
 	};
-	
 };
 
 func void DIA_Addon_Riordian_Teach_WISPSKILL_X()

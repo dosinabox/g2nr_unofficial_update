@@ -93,10 +93,10 @@ func void DIA_Addon_TAL_BDT_13_News_Info()
 	AI_Output(other,self,"DIA_Addon_TAL_BDT_13_News_15_00");	//Есть какие-нибудь новости?
 	AI_Output(self,other,"DIA_Addon_TAL_BDT_13_News_13_01");	//Мы действительно довели этих пиратов.
 	AI_Output(self,other,"DIA_Addon_TAL_BDT_13_News_13_02");	//Они привозили нам пленников, но ни разу не получили и монеты. Ничего удивительного, что они разозлились.
-	if(BDT_13_einmal == FALSE)
+	if(BDT_13_Einmal == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_TAL_BDT_13_News_13_03");	//Но что они могут сделать? Напасть на лагерь? (смеется)
-		BDT_13_einmal = TRUE;
+		BDT_13_Einmal = TRUE;
 	};
 };
 

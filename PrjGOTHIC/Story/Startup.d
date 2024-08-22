@@ -1,7 +1,6 @@
 
 func void STARTUP_Global()
 {
-	
 };
 
 func void INIT_Global()

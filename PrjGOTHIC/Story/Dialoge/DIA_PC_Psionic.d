@@ -562,8 +562,8 @@ func void DIA_Lester_LeaveMyShip_Info()
 	AI_Output(self,other,"DIA_Lester_LeaveMyShip_13_02");	//Но если я понадоблюсь тебе, я буду рад помочь. Ты знаешь, где найти меня.
 	Lester_IsOnBoard = LOG_OBSOLETE;
 	Crewmember_Count -= 1;
-	Lester_Nerver += 1;
-	Npc_ExchangeRoutine(self,"ShipOff");
+	self.aivar[AIV_Nerver] += 1;
+	Npc_ExchangeRoutine(self,"SHIPOFF");
 };
 
 
@@ -589,7 +589,7 @@ func int DIA_Lester_StillNeedYou_Condition()
 func void DIA_Lester_StillNeedYou_Info()
 {
 	AI_Output(other,self,"DIA_Lester_StillNeedYou_15_00");	//Мне нужен друг, всегда готовый помочь.
-	if((Lester_IsOnBoard == LOG_OBSOLETE) && (Lester_Nerver <= 2))
+	if((Lester_IsOnBoard == LOG_OBSOLETE) && (self.aivar[AIV_Nerver] <= 2))
 	{
 		AI_Output(self,other,"DIA_Lester_StillNeedYou_13_01");	//Я знал это! Мы будем сражаться рука об руку. Как в старые времена!
 		AI_Output(self,other,"DIA_Lester_StillNeedYou_13_02");	//Берегись, Зло! Мы свернем тебе шею!

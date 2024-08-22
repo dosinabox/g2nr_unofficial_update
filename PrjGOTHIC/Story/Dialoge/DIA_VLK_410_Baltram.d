@@ -1,4 +1,4 @@
-	
+
 func int C_BaltramCanTalkAboutLares()
 {
 	if((MIS_Lares_BringRangerToMe == LOG_Running) && (AnyRangerRingEquipped() || ArmorEquipped(other,ITAR_RANGER_Addon)))

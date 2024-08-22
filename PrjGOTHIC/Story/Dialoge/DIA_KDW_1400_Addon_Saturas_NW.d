@@ -417,7 +417,6 @@ instance DIA_Addon_Saturas_WhatsOrnament(C_Info)
 
 func int DIA_Addon_Saturas_WhatsOrnament_Condition()
 {
-//	if((MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS) && (SC_KnowsOrnament == FALSE) && (RitualRingRuns == 0))
 	if((MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS) && (RitualRingRuns == FALSE))
 	{
 		return TRUE;
@@ -535,12 +534,12 @@ func void B_GivePortalRingToSC()
 	DIA_Addon_Saturas_OpenPortal_NoPerm = TRUE;
 	B_LogEntry(TOPIC_Addon_Ornament,"Сатурас дал мне украшенное кольцо. Я должен открыть портал, вставив кольцо в механизм, а затем пройти через портал.");
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"OpenPortal");
-	B_StartOtherRoutine(Cronos_NW,"OpenPortal");
-	B_StartOtherRoutine(Nefarius_NW,"OpenPortal");
-	B_StartOtherRoutine(Myxir_NW,"OpenPortal");
-	B_StartOtherRoutine(Riordian_NW,"OpenPortal");
-	B_StartOtherRoutine(Merdarion_NW,"OpenPortal");
+	Npc_ExchangeRoutine(self,"OPENPORTAL");
+	B_StartOtherRoutine(Cronos_NW,"OPENPORTAL");
+	B_StartOtherRoutine(Nefarius_NW,"OPENPORTAL");
+	B_StartOtherRoutine(Myxir_NW,"OPENPORTAL");
+	B_StartOtherRoutine(Riordian_NW,"OPENPORTAL");
+	B_StartOtherRoutine(Merdarion_NW,"OPENPORTAL");
 };
 
 instance DIA_Addon_Saturas_GiveVatrasLetter(C_Info)

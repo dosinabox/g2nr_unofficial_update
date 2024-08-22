@@ -49,10 +49,8 @@ func void DIA_GornOW_Hello_Info()
 		AI_Output(self,other,"DIA_GornOW_Add_12_00");	//ѕодожди, у мен€ есть кое-что, что могло бы пригодитьс€ тебе.
 		AI_Output(self,other,"DIA_GornOW_Add_12_01");	//я нашел эти доспехи здесь, в камере. Ќаверное, их спр€тал какой-то заключенный.
 		AI_Output(self,other,"DIA_GornOW_Add_12_02");	//ƒл€ мен€ они слишком малы, но тебе могут подойти...
-//		if(!Npc_KnowsInfo(other,DIA_MiltenOW_Preis) && !Npc_KnowsInfo(other,DIA_DiegoOw_Gorn)) 
 		if(Npc_KnowsInfo(other,DIA_MiltenOW_Preis) && Npc_KnowsInfo(other,DIA_DiegoOw_Gorn) && (GornsTreasure == TRUE) && (Npc_HasItems(other,ItMi_GornsTreasure_MIS) || (Gorns_Beutel == TRUE)))
 		{
-//			B_GiveArmor(ITAR_SLD_H);
 			B_GiveArmor(ITAR_SLD_S);
 		}
 		else

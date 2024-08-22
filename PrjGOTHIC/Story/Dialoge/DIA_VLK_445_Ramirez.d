@@ -335,7 +335,7 @@ func void DIA_Ramirez_Viertel_Info()
 	else
 	{
 		AI_StopProcessInfos(self);
-	};	
+	};
 };
 
 
