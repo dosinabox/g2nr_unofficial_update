@@ -460,9 +460,9 @@ func void DIA_Bengar_MILIZKLATSCHEN_Info()
 			AI_Output(self,other,"DIA_Bengar_MILIZKLATSCHEN_10_03");	//Удачи тебе! Покажи им, где раки зимуют.
 		};
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"MilComing");
-		B_StartOtherRoutine(Rick,"MilComing");
-		B_StartOtherRoutine(Rumbold,"MilComing");
+		Npc_ExchangeRoutine(self,"MILCOMING");
+		B_StartOtherRoutine(Rick,"MILCOMING");
+		B_StartOtherRoutine(Rumbold,"MILCOMING");
 	}
 	else
 	{
@@ -525,7 +525,7 @@ func void DIA_Bengar_MILIZWEG_Info()
 			B_GivePlayerXP(XP_Bengar_MILIZKLATSCHEN);
 		};
 		Bengar_MilSuccess = TRUE;
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 	};
 };
 
@@ -570,14 +570,14 @@ instance DIA_Bengar_BALTHASARDARFAUFWEIDE(C_Info)
 
 func int DIA_Bengar_BALTHASARDARFAUFWEIDE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_BALTHASAR))
+	if((MIS_Balthasar_BengarsWeide == LOG_Running) && Npc_KnowsInfo(other,DIA_Bengar_BALTHASAR))
 	{
 		if(Bengar_MilSuccess == TRUE)
 		{
 			DIA_Bengar_BALTHASARDARFAUFWEIDE.description = "Ополчение ушло, и Бальтазар может опять использовать твои пастбища.";
 			return TRUE;
-		}
-		else if(Npc_KnowsInfo(other,DIA_Bengar_SLDDA) || Npc_KnowsInfo(other,DIA_Bengar_MALAKWIEDERDA) || Npc_KnowsInfo(other,DIA_Addon_Bengar_ReturnPardos))
+		};
+		if(Npc_KnowsInfo(other,DIA_Bengar_SLDDA) || Npc_KnowsInfo(other,DIA_Bengar_MALAKWIEDERDA) || Npc_KnowsInfo(other,DIA_Addon_Bengar_ReturnPardos))
 		{
 			DIA_Bengar_BALTHASARDARFAUFWEIDE.description = "Бальтазар может опять использовать твои пастбища.";
 			return TRUE;
@@ -599,7 +599,7 @@ func void DIA_Bengar_BALTHASARDARFAUFWEIDE_Info()
 	AI_Output(other,self,"DIA_Bengar_BALTHASARDARFAUFWEIDE_15_02");	//(угрожающе) Потому что я так сказал.
 	AI_Output(self,other,"DIA_Bengar_BALTHASARDARFAUFWEIDE_10_03");	//Ммм. Хорошо, как скажешь.
 	AI_Output(self,other,"DIA_Bengar_BALTHASARDARFAUFWEIDE_10_04");	//Только пусть он пасет своих овец где-нибудь за полем.
-	MIS_Balthasar_BengarsWeide = LOG_SUCCESS;
+	B_LogEntry(TOPIC_BalthasarsSchafe,"Я убедил Бенгара разрешить Бальтазару снова пасти овец на его пастбищах.");
 	B_GivePlayerXP(XP_Ambient);
 };
 

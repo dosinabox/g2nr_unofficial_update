@@ -1419,3 +1419,5 @@ var int OW_FIREPLACE_HIGH_10_Enabled;
 var int OW_FIREPLACE_HIGH_11_Enabled;
 var int OW_FIREPLACE_HIGH_12_Enabled;
 var int SC_KnowsMadPsi;
+var int PlayerIsTransformed;
+var int LevelUpsDuringTransform;

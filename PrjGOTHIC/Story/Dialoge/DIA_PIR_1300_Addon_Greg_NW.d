@@ -62,7 +62,6 @@ func void DIA_Addon_Greg_NW_Hallo_weg()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_weg_01_01");	//Итак, ты отказываешься мне помогать, верно? Хорошо, я это запомню. Мы еще встретимся!
 	Greg_NoHelpInNW += 1;
 	MIS_Addon_Greg_BringMeToTheCity = LOG_FAILED;
-	B_CheckLog();
 	AI_StopProcessInfos(self);
 };
 
@@ -403,6 +402,7 @@ func void DIA_Addon_Greg_NW_was_NoHelp()
 	};
 	Greg_NoHelpInNW += 1;
 	MIS_Addon_Greg_RakeCave = LOG_OBSOLETE;
+	B_CheckLog();
 	GregLocation = Greg_Bigcross;
 	AI_StopProcessInfos(self);
 	if(C_BodyStateContains(self,BS_SIT))
@@ -441,8 +441,6 @@ func void DIA_Addon_Greg_NW_was_HierGold()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_was_HierGold_01_01");	//(смеется) Можешь оставить себе свои жалкие сбережения. У меня есть мысль получше.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_was_HierGold_01_02");	//Неподалеку отсюда есть пещера. Это одно из тех мест, где я когда-то зарыл свои сокровища.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_was_HierGold_01_03");	//Пещера для меня слишком опасна. Я хочу, чтобы ты мне помог.
-	Log_CreateTopic(TOPIC_Addon_Greg_NW,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Greg_NW,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Greg_NW,"Я предложил человеку с повязкой на глазу золото, но он отказался. Я должен пойти с ним в его пещеру.");
 	MIS_Addon_Greg_RakeCave = LOG_Running;
 	Info_ClearChoices(DIA_Addon_Greg_NW_was);
@@ -551,8 +549,6 @@ func void DIA_Addon_Greg_NW_RakeCaveThere_Info()
 	B_Greg_GoNow();
 	AI_Output(other,self,"DIA_Addon_Greg_NW_RakeCaveThere_15_04");	//А как же ты?
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCaveThere_01_05");	//Кто-то же должен защищать тыл. А теперь иди внутрь.
-	Log_CreateTopic(TOPIC_Addon_Greg_NW,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Greg_NW,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Greg_NW,"Этот парень хочет, чтобы я достал из пещеры его вещи. Он закопал их, а место пометил крестом. Для работы он дал мне кирку.");
 	MIS_Addon_Greg_RakeCave_Day = Wld_GetDay();
 };
@@ -599,9 +595,10 @@ func void DIA_Addon_Greg_NW_RakeCavePlundered_No()
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_03");	//Тысяча чертей! Я так и знал! Меня опять опередили.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_04");	//Ну ладно. Мне нужно идти. Увидимся.
-	AI_StopProcessInfos(self);
 	MIS_Addon_Greg_RakeCave = LOG_OBSOLETE;
+	B_CheckLog();
 	GregLocation = Greg_Bigcross;
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"BIGCROSS");
 	B_StartOtherRoutine(BAU_974_Bauer,"START");
 };
@@ -657,9 +654,10 @@ func void DIA_Addon_Greg_NW_RakeCavePlundered_gold()
 	{
 		AI_Output(other,self,"DIA_Addon_Greg_NW_RakeCavePlundered_gold_15_08");	//У меня уже ничего нет.
 		AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_gold_01_09");	//Дерьмо собачье! Мне что, заставить тебя отдать мои вещи силой?
-		AI_StopProcessInfos(self);
 		MIS_Addon_Greg_RakeCave = LOG_FAILED;
+		B_CheckLog();
 		GregLocation = Greg_Bigcross;
+		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"BIGCROSS");
 		B_Attack(self,other,AR_NONE,1);
 	};
