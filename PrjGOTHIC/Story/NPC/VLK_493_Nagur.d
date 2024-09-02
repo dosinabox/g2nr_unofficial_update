@@ -7,7 +7,7 @@ instance VLK_493_Nagur(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = NPCTYPE_MAIN;
-	aivar[AIV_IGNORE_Theft] = TRUE;
+	aivar[AIV_SubGuild] = GIL_SUB_Thief_City;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
@@ -32,6 +32,6 @@ func void Rtn_Start_493()
 func void Rtn_Prison_493()
 {
 	TA_Stand_ArmsCrossed(8,0,23,0,"NW_CITY_HABOUR_KASERN_NAGUR");
-	TA_Stand_ArmsCrossed(23,0,8,0,"NW_CITY_HABOUR_KASERN_NAGUR");
+	TA_Sit_Campfire(23,0,8,0,"NW_CITY_HABOUR_KASERN_NAGUR");
 };
 

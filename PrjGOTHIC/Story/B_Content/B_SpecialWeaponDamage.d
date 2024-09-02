@@ -102,14 +102,18 @@ func void B_ApplyFireBowDamage(var C_Npc target)
 	};
 };
 
-func void B_SpecialRangedWeaponDamage(var C_Npc shooter,var C_Npc target,var int directHit)
+func void B_SpecialRangedWeaponDamage(var C_Npc attacker,var C_Npc target,var int directHit)
 {
-	if(!Npc_HasReadiedRangedWeapon(shooter))
+	var C_Item readyweap;
+	if(!Hlp_IsValidNpc(attacker))
 	{
 		return;
 	};
-	var C_Item readyweap;
-	readyweap = Npc_GetReadiedWeapon(shooter);
+	if(!Npc_HasReadiedRangedWeapon(attacker))
+	{
+		return;
+	};
+	readyweap = Npc_GetReadiedWeapon(attacker);
 	if(Hlp_IsItem(readyweap,ItRw_Addon_FireBow))
 	{
 		if(directHit == TRUE)
@@ -117,9 +121,9 @@ func void B_SpecialRangedWeaponDamage(var C_Npc shooter,var C_Npc target,var int
 			Wld_PlayEffect("spellFX_Firestorm_SPREAD",target,target,0,0,0,FALSE);
 			B_ApplySpecialRangedWeaponDamage(target);
 			B_ApplyFireBowDamage(target);
-			if(Npc_GetDistToNpc(target,shooter) <= SpecialDamage_FireBow_Range)
+			if(Npc_GetDistToNpc(target,attacker) <= SpecialDamage_FireBow_Range)
 			{
-				B_ApplyFireBowDamage(shooter);
+				B_ApplyFireBowDamage(attacker);
 			};
 		}
 		else if(Npc_GetDistToNpc(target,victim) <= SpecialDamage_FireBow_Range)
@@ -145,7 +149,7 @@ func void B_SpecialRangedWeaponDamage(var C_Npc shooter,var C_Npc target,var int
 	};
 	if(Npc_IsDead(target))
 	{
-		B_GiveDeathXP(shooter,target);
+		B_GiveDeathXP(attacker,target);
 	};
 };
 

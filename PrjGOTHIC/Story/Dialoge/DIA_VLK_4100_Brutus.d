@@ -114,7 +114,7 @@ instance DIA_Brutus_PERM(C_Info)
 
 func int DIA_Brutus_PERM_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_PRISONER) && (Kapitel < 3) && (NpcObsessedByDMT_Brutus == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Brutus_PRISONER) && (Kapitel < 3) && (NpcObsessedByDMT_Brutus == FALSE))
 	{
 		return TRUE;
 	};
@@ -141,7 +141,7 @@ instance DIA_Brutus_Kasse(C_Info)
 
 func int DIA_Brutus_Kasse_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_PRISONER) && (NpcObsessedByDMT_Brutus == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Brutus_PRISONER) && (NpcObsessedByDMT_Brutus == FALSE))
 	{
 		return TRUE;
 	};
@@ -159,9 +159,9 @@ func void DIA_Brutus_Kasse_Info()
 	AI_Output(self,other,"DIA_Brutus_Kasse_06_07");	//Ну, у нас был сундучок, где мы держали вещи, которые мы... э-э... собрали за все это время.
 	AI_Output(self,other,"DIA_Brutus_Kasse_06_08");	//Это была приличная сумма. В сундуке было 200 золотых монет, а также ценные ювелирные изделия.
 	AI_Output(self,other,"DIA_Brutus_Kasse_06_09");	//Если ты вернешь мне это золото, драгоценности можешь оставить себе. И тогда я буду готов обучить тебя.
-	Log_CreateTopic(TopicBrutusKasse,LOG_MISSION);
-	Log_SetTopicStatus(TopicBrutusKasse,LOG_Running);
-	B_LogEntry(TopicBrutusKasse,"Партнер Брутуса Ден скрылся с 200 золотыми монетами и кое-какими драгоценностями. Если я верну ему 200 золотых монет, он поможет мне стать сильнее.");
+	Log_CreateTopic(TOPIC_BrutusKasse,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_BrutusKasse,LOG_Running);
+	B_LogEntry(TOPIC_BrutusKasse,"Партнер Брутуса Ден скрылся с 200 золотыми монетами и кое-какими драгоценностями. Если я верну ему 200 золотых монет, он поможет мне стать сильнее.");
 };
 
 
@@ -178,7 +178,7 @@ instance DIA_Brutus_Den(C_Info)
 
 func int DIA_Brutus_Den_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_Kasse) && (NpcObsessedByDMT_Brutus == FALSE) && Npc_HasItems(Den,ItMi_Gold))
+	if(Npc_KnowsInfo(other,DIA_Brutus_Kasse) && (NpcObsessedByDMT_Brutus == FALSE) && Npc_HasItems(Den,ItMi_Gold))
 	{
 		return TRUE;
 	};
@@ -190,7 +190,7 @@ func void DIA_Brutus_Den_Info()
 	AI_Output(self,other,"DIA_Brutus_Den_06_01");	//Как можно дальше отсюда, как я понимаю. Я думаю, он мог попытаться пробраться через Проход.
 	AI_Output(other,self,"DIA_Brutus_Den_15_02");	//Спасибо. Исчерпывающая информация.
 	AI_Output(self,other,"DIA_Brutus_Den_06_03");	//А что я еще могу сказать? Я понятия не имею, куда он направился.
-	B_LogEntry(TopicBrutusKasse,"Ден мог попытаться пробраться через Проход.");
+	B_LogEntry(TOPIC_BrutusKasse,"Ден мог попытаться пробраться через Проход.");
 };
 
 
@@ -207,7 +207,7 @@ instance DIA_Brutus_Gold(C_Info)
 
 func int DIA_Brutus_Gold_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_Kasse) && (NpcObsessedByDMT_Brutus == FALSE) && (Brutus_TeachSTR == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Brutus_Kasse) && (NpcObsessedByDMT_Brutus == FALSE) && (Brutus_TeachSTR == FALSE))
 	{
 		return TRUE;
 	};
@@ -235,8 +235,8 @@ func void B_BuildLearnDialog_Brutus()
 {
 	Info_ClearChoices(DIA_Brutus_Teach);
 	Info_AddChoice(DIA_Brutus_Teach,Dialog_Back,DIA_Brutus_Teach_Back);
-	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Brutus_Teach_STR_1);
-	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Brutus_Teach_STR_5);
+	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_Brutus_Teach_STR_1);
+	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_Brutus_Teach_STR_5);
 };
 
 instance DIA_Brutus_Teach(C_Info)
@@ -298,7 +298,7 @@ instance DIA_Brutus_DUSCHONWIEDER(C_Info)
 
 func int DIA_Brutus_DUSCHONWIEDER_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_PRISONER) && (Kapitel == 3) && (NpcObsessedByDMT_Brutus == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Brutus_PRISONER) && (Kapitel == 3) && (NpcObsessedByDMT_Brutus == FALSE))
 	{
 		return TRUE;
 	};
@@ -324,7 +324,7 @@ instance DIA_Brutus_WARUMNICHTARBBEIT(C_Info)
 
 func int DIA_Brutus_WARUMNICHTARBBEIT_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_PRISONER) && (Kapitel >= 4) && (NpcObsessedByDMT_Brutus == FALSE) && (MIS_OCGateOpen == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Brutus_PRISONER) && (Kapitel >= 4) && (NpcObsessedByDMT_Brutus == FALSE) && (MIS_OCGateOpen == FALSE))
 	{
 		return TRUE;
 	};
@@ -376,9 +376,22 @@ func void DIA_Brutus_MEATBUGSWEG_Info()
 	TOPIC_END_BrutusMeatbugs = TRUE;
 	B_GivePlayerXP(XP_BrutusMeatbugs);
 	B_NpcClearObsessionByDMT(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
+
+func void B_Brutus_Panic()
+{
+	B_NpcClearObsessionByDMT(self);
+	if((Npc_GetDistToWP(self,"OC_BRUTUS_MEATBUGS") < 2000) || (Npc_GetDistToWP(self,"OC_FOLTER_SHARP") < 2000))
+	{
+		Npc_ExchangeRoutine(self,"RUNFROMSTART");
+	}
+	else
+	{
+		Npc_ExchangeRoutine(self,"RUNTOSTART");
+	};
+};
 
 instance DIA_Brutus_PERM4(C_Info)
 {
@@ -411,19 +424,7 @@ func void DIA_Brutus_PERM4_Info()
 		AI_Output(self,other,"DIA_Brutus_PERM4_06_01");	//(нерешительно) Ты уверен, что со всеми мясными жуками покончено?
 		AI_Output(other,self,"DIA_Brutus_PERM4_15_02");	//Ах... смотри, вон один сзади тебя.
 		AI_Output(self,other,"DIA_Brutus_PERM4_06_03");	//(ревет) Чтооо?
-		B_NpcClearObsessionByDMT(self);
-		/*Npc_SetTarget(self,other);
-		self.aivar[AIV_INVINCIBLE] = FALSE;
-		other.aivar[AIV_INVINCIBLE] = FALSE;
-		AI_StartState(self,ZS_Flee,0,"");*/
-		if(Npc_GetDistToWP(self,"OC_FOLTER_SHARP") < 2000)
-		{
-			Npc_ExchangeRoutine(self,"RunFromStart");
-		}
-		else
-		{
-			Npc_ExchangeRoutine(self,"RunToStart");
-		};
+		B_Brutus_Panic();
 	};
 };
 
@@ -460,19 +461,7 @@ func void DIA_Brutus_BESSEN_Info()
 	{
 		AI_Output(other,self,"DIA_Brutus_BESSEN_15_03");	//Кто-нибудь должен выбить демонов из твоей головы.
 		AI_Output(self,other,"DIA_Brutus_BESSEN_06_04");	//(вопит) НЕЕТ!
-		B_NpcClearObsessionByDMT(self);
-		/*Npc_SetTarget(self,other);
-		self.aivar[AIV_INVINCIBLE] = FALSE;
-		other.aivar[AIV_INVINCIBLE] = FALSE;
-		AI_StartState(self,ZS_Flee,0,"");*/
-		if((Npc_GetDistToWP(self,"OC_BRUTUS_MEATBUGS") < 2000) || (Npc_GetDistToWP(self,"OC_FOLTER_SHARP") < 2000))
-		{
-			Npc_ExchangeRoutine(self,"RunFromStart");
-		}
-		else
-		{
-			Npc_ExchangeRoutine(self,"RunToStart");
-		};
+		B_Brutus_Panic();
 	};
 };
 

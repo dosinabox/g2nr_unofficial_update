@@ -5,7 +5,6 @@ var int Animals_3_permanent;
 
 func void Use_BookstandAnimals1_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -43,7 +42,6 @@ func void Use_BookstandAnimals1_S1()
 
 func void Use_BookstandAnimals2_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -76,7 +74,6 @@ func void Use_BookstandAnimals2_S1()
 
 func void Use_BookstandAnimals3_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();

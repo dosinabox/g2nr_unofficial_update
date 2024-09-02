@@ -17,22 +17,28 @@ func void B_MM_AssessEnemy()
 	{
 		return;
 	};
-	if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Lares)) && (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Magic_Golem)))
-	{
-		return;
-	};
 	if(CurrentLevel == OLDWORLD_ZEN)
 	{
 		if(Npc_GetDistToWP(self,"OC_RAMP_07") <= 500)
 		{
 			return;
 		};
+	}
+	else if(CurrentLevel == NEWWORLD_ZEN)
+	{
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Magic_Golem))
+		{
+			if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Lares))
+			{
+				return;
+			};
+		};
 	};
 	if(other.aivar[AIV_INVINCIBLE] == TRUE)
 	{
 		return;
 	};
-	if((C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE)) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
+	if(C_NpcIsSwimming(other) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
 	{
 		return;
 	};
@@ -93,7 +99,7 @@ func void B_MM_AssessEnemy()
 	};
 	if(Npc_IsInState(self,ZS_MM_EatBody))
 	{
-		if((self.guild != GIL_Giant_Rat) && (Npc_GetDistToNpc(self,other) <= FIGHT_DIST_MONSTER_ATTACKRANGE))
+		if((self.guild != GIL_GIANT_RAT) && (Npc_GetDistToNpc(self,other) <= FIGHT_DIST_MONSTER_ATTACKRANGE))
 		{
 			Npc_ClearAIQueue(self);
 			Npc_SetTarget(self,other);

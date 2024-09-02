@@ -46,12 +46,7 @@ instance DIA_Addon_BDT_10018_Torwache_FirstWarn(C_Info)
 
 func int DIA_Addon_BDT_10018_Torwache_FirstWarn_Condition()
 {
-	/*if(Npc_GetDistToWP(other,BDT_10018_Checkpoint) <= 700)
-	{
-		Npc_SetRefuseTalk(self,5);
-		return FALSE;
-	};*/
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && !Npc_RefuseTalk(self))
+	if(C_NpcHasGuardStatus(self,BDT_10018_Checkpoint,GP_NONE) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -81,7 +76,6 @@ func void DIA_Addon_BDT_10018_Torwache_FirstWarn_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_FirstWarn_04_03");	//Снова ты? Ты начинаешь меня доставать!
 	};
-	EnteredBanditsCamp = TRUE;
 	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,BDT_10018_Checkpoint);
 	self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;
 };
@@ -100,7 +94,7 @@ instance DIA_Addon_BDT_10018_Torwache_SecondWarn(C_Info)
 
 func int DIA_Addon_BDT_10018_Torwache_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && (Npc_GetDistToWP(other,BDT_10018_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if(C_NpcHasGuardStatus(self,BDT_10018_Checkpoint,GP_FirstWarnGiven))
 	{
 		return TRUE;
 	};
@@ -139,7 +133,7 @@ instance DIA_Addon_BDT_10018_Torwache_Attack(C_Info)
 
 func int DIA_Addon_BDT_10018_Torwache_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && (Npc_GetDistToWP(other,BDT_10018_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if(C_NpcHasGuardStatus(self,BDT_10018_Checkpoint,GP_SecondWarnGiven))
 	{
 		return TRUE;
 	};
@@ -275,18 +269,18 @@ func void DIA_Addon_10018_Torwache_Drin_Info()
 };
 
 
-instance DIA_Addon_BDT_10018_Torwache_kopf(C_Info)
+instance DIA_Addon_BDT_10018_Torwache_Kopf(C_Info)
 {
 	npc = BDT_10018_Addon_Torwache;
 	nr = 90;
-	condition = DIA_Addon_10018_Torwache_kopf_Condition;
-	information = DIA_Addon_10018_Torwache_kopf_Info;
+	condition = DIA_Addon_10018_Torwache_Kopf_Condition;
+	information = DIA_Addon_10018_Torwache_Kopf_Info;
 	permanent = FALSE;
 	description = DIALOG_BloodwynHead;
 };
 
 
-func int DIA_Addon_10018_Torwache_kopf_Condition()
+func int DIA_Addon_10018_Torwache_Kopf_Condition()
 {
 	if(Npc_HasItems(other,ItMi_Addon_Bloodwyn_Kopf))
 	{
@@ -294,16 +288,15 @@ func int DIA_Addon_10018_Torwache_kopf_Condition()
 	};
 };
 
-func void DIA_Addon_10018_Torwache_kopf_Info()
+func void DIA_Addon_10018_Torwache_Kopf_Info()
 {
 	CreateInvItem(other,ItMi_FakeBloodwynHead);
 	AI_UseItemToState(other,ItMi_FakeBloodwynHead,1);
-	//эта функция нужна, чтобы ГГ не смотрел на голову Бладвина, но работает это неправильно
 	B_LookAtNpc(other,self);
-	AI_Output(other,self,"DIA_Addon_BDT_10018_Torwache_kopf_15_00");	//Вот! Ты все еще хочешь остановить меня?!
+	AI_Output(other,self,"DIA_Addon_BDT_10018_Torwache_Kopf_15_00");	//Вот! Ты все еще хочешь остановить меня?!
 	AI_UseItemToState(other,ItMi_FakeBloodwynHead,-1);
-	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_kopf_04_01");	//Это что... это... Бладвин?.. (тошнит) Это...
-	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_kopf_04_02");	//Н-нет... Я хочу сказать... Да, проходи...
+	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_Kopf_04_01");	//Это что... это... Бладвин?.. (тошнит) Это...
+	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_Kopf_04_02");	//Н-нет... Я хочу сказать... Да, проходи...
 	MIS_BloodwynRaus = LOG_SUCCESS;
 	self.aivar[AIV_PASSGATE] = TRUE;
 	AI_StopProcessInfos(self);

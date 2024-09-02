@@ -59,7 +59,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	if(PremiumTeachersEnabled == TRUE)
+	if(C_PremiumTeachersEnabled())
 	{
 		if(!B_GiveInvItems(oth,slf,ItMi_Gold,kosten * PremiumTeachersPrice))
 		{
@@ -69,7 +69,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 		};
 	};
 	oth.lp -= kosten;
-	if(Npc_GetTalentSkill(oth,NPC_TALENT_RUNES) == 0)
+	if(!Npc_GetTalentSkill(oth,NPC_TALENT_RUNES))
 	{
 		Npc_SetTalentSkill(oth,NPC_TALENT_RUNES,1);
 		Log_CreateTopic(TOPIC_TalentRunes,LOG_NOTE);
@@ -301,7 +301,7 @@ func int B_TeachPlayerPalRunes(var C_Npc slf,var C_Npc oth,var int spell)
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	if(PremiumTeachersEnabled == TRUE)
+	if(C_PremiumTeachersEnabled())
 	{
 		if(!B_GiveInvItems(oth,slf,ItMi_Gold,kosten * PremiumTeachersPrice))
 		{

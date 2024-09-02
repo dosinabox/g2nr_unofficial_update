@@ -50,7 +50,6 @@ func void DIA_Addon_10008_Bandit_Hi_Info()
 	AI_Output(self,other,"DIA_Addon_10008_Bandit_Hi_01_02");	//≈сли ты не хочешь создавать себе проблем, не св€зывайс€ со —киннером.
 	AI_Output(self,other,"DIA_Addon_10008_Bandit_Hi_01_03");	//Ёто парень непредсказуем. ѕрошлый раз, когда один парень разбудил —киннера, тот его убил.
 	AI_Output(self,other,"DIA_Addon_10008_Bandit_Hi_01_04");	//ѕусть он спит, дл€ общего блага.
-	EnteredBanditsCamp = TRUE;
 };
 
 
@@ -87,8 +86,8 @@ func void B_BuildLearnDialog_Marus()
 {
 	Info_ClearChoices(DIA_Addon_10008_Bandit_Teach);
 	Info_AddChoice(DIA_Addon_10008_Bandit_Teach,Dialog_Back,DIA_Addon_10008_Bandit_Teach_Back);
-	Info_AddChoice(DIA_Addon_10008_Bandit_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Addon_10008_Bandit_Teach_STR_1);
-	Info_AddChoice(DIA_Addon_10008_Bandit_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Addon_10008_Bandit_Teach_STR_5);
+	Info_AddChoice(DIA_Addon_10008_Bandit_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_Addon_10008_Bandit_Teach_STR_1);
+	Info_AddChoice(DIA_Addon_10008_Bandit_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_Addon_10008_Bandit_Teach_STR_5);
 };
 
 instance DIA_Addon_10008_Bandit_Teach(C_Info)

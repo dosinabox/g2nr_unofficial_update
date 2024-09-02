@@ -1,28 +1,44 @@
 
-func int C_WorldIsFixed(var int world)
+var int NewWorldIsFixed;
+var int OldWorldIsFixed;
+var int AddonWorldIsFixed;
+
+func int C_WorldIsFixed()
 {
-	if(CurrentLevel == world)
+	if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		if(world == NEWWORLD_ZEN)
+		if(NewWorldIsFixed == TRUE)
 		{
-			if(Mob_HasItems("KVI_SECRET_DEV_CHEST",ItPl_Mushroom_01))
-			{
-				return TRUE;
-			};
-		}
-		else if(world == OLDWORLD_ZEN)
+			return TRUE;
+		};
+		if(Mob_HasItems("KVI_SECRET_DEV_CHEST",ItPl_Mushroom_01))
 		{
-			if(Mob_HasItems("D36_SECRET_DEV_CHEST",ItPl_Mushroom_02))
-			{
-				return TRUE;
-			};
-		}
-		else if(world == ADDONWORLD_ZEN)
+			NewWorldIsFixed = TRUE;
+			return TRUE;
+		};
+	}
+	else if(CurrentLevel == OLDWORLD_ZEN)
+	{
+		if(OldWorldIsFixed == TRUE)
 		{
-			if(Mob_HasItems("D36_SECRET_DEV_CHEST",ItPl_SwampHerb))
-			{
-				return TRUE;
-			};
+			return TRUE;
+		};
+		if(Mob_HasItems("D36_SECRET_DEV_CHEST",ItPl_Mushroom_02))
+		{
+			OldWorldIsFixed = TRUE;
+			return TRUE;
+		};
+	}
+	else if(CurrentLevel == ADDONWORLD_ZEN)
+	{
+		if(AddonWorldIsFixed == TRUE)
+		{
+			return TRUE;
+		};
+		if(Mob_HasItems("D36_SECRET_DEV_CHEST",ItPl_SwampHerb))
+		{
+			AddonWorldIsFixed = TRUE;
+			return TRUE;
 		};
 	};
 	return FALSE;

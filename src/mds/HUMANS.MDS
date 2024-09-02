@@ -340,58 +340,58 @@ Model ("HuS")
 // FALL
 
 //	FallDn
-			aniBlend	("t_Hang_2_FallDn"			"s_FallDn"		0.0	0.2)
-			aniBlend	("t_JumpUp_2_FallDn"		"s_FallDn"		0.0	0.2)
-			aniBlend	("t_Jump_2_FallDn"			"s_FallDn"		0.0	0.2)
+		//	aniBlend	("t_Hang_2_FallDn"			"s_FallDn"		0.0	0.2)
+		//	aniBlend	("t_JumpUp_2_FallDn"		"s_FallDn"		0.0	0.2)
+		//	aniBlend	("t_Jump_2_FallDn"			"s_FallDn"		0.0	0.2)
 
-			ani			("s_FallDn"				1	"s_FallDn"		0.0	0.0	MF	"Hum_JumpUp_FallDn_M01.asc"	F	23	23)
+		//	ani			("s_FallDn"				1	"s_FallDn"		0.0	0.0	MF	"Hum_JumpUp_FallDn_M01.asc"	F	23	23)
 
 // Landen und stehenbleiben
-			ani			("t_FallDn_2_Stand"		1	""				0.0	0.2	M.	"Hum_JumpUp_FallDn_M01.asc"	F	24	34)
-			{
-				*eventSFX	(26	"M_FALL_SMALL"	EMPTY_SLOT	)
-			}
+		//	ani			("t_FallDn_2_Stand"		1	""				0.0	0.2	M.	"Hum_JumpUp_FallDn_M01.asc"	F	24	34)
+		//	{
+		//		*eventSFX	(26	"M_FALL_SMALL"	EMPTY_SLOT	)
+		//	}
 
 // Landen und direkt weiterrennen
-			aniBlend	("t_FallDn_2_RunL"			"s_RunL"		0.2	0.2)
+		//	aniBlend	("t_FallDn_2_RunL"			"s_RunL"		0.2	0.2)
 
 //	wenn Falltiefe zu tief um unbeschadet auf den Füßen zu landen
-			aniBlend	("t_FallDn_2_Fall"			"s_Fall"		0.5	0.5)
-			aniBlend	("t_FallDn_2_FallB"			"s_FallB"		0.5	0.5)
+		//	aniBlend	("t_FallDn_2_Fall"			"s_Fall"		0.5	0.5)
+		//	aniBlend	("t_FallDn_2_FallB"			"s_FallB"		0.5	0.5)
 
 //	Bei s-Fall und s_FallB "fliegt" die Figur durch die Luft.
 //	Bei s_Fallen + s_FallenB liegt der Spieler flach.
-			ani			("s_Fall"				1	"s_Fall"		0.2 0.1 MF	"Hum_FallAmb_M01.asc"		F	 0	29 FPS:10)
-			ani			("t_Fall_2_Fallen"		1	"s_Fallen"		0.0 0.0 MF	"Hum_Fall_M01.asc"			F	11	21)
-			{
+		//	ani			("s_Fall"				1	"s_Fall"		0.2 0.1 MF	"Hum_FallAmb_M01.asc"		F	 0	29 FPS:10)
+		//	ani			("t_Fall_2_Fallen"		1	"s_Fallen"		0.0 0.0 MF	"Hum_Fall_M01.asc"			F	11	21)
+		//	{
 //				*eventSFX	(11	"Fallen")
-				*eventSFX	(12	"M_FALL_SMALL"	EMPTY_SLOT	)
-				*eventPFX	(12	 "ZMODELLANDDUST"	"Bip01"	)
-				*eventMMStartAni (14	"T_HURT")
-				*eventMMStartAni (20	"S_NEUTRAL")
-			}
+		//		*eventSFX	(12	"M_FALL_SMALL"	EMPTY_SLOT	)
+		//		*eventPFX	(12	 "ZMODELLANDDUST"	"Bip01"	)
+		//		*eventMMStartAni (14	"T_HURT")
+		//		*eventMMStartAni (20	"S_NEUTRAL")
+		//	}
 
-			ani			("s_Fallen"				1	"s_Fallen"		0.0 0.0 M.	"Hum_Amb_Fallen_M01.asc"	F	 0	100	FPS:5)
-			ani			("t_Fallen_2_Stand"		1	""				0.0 0.2 M.	"Hum_Fall_M01.asc"			F	 23	46)
-			{
-				*eventSFXGrnd	(33	"Run")
-				*eventSFXGrnd	(38	"Run")
-			}
+		//	ani			("s_Fallen"				1	"s_Fallen"		0.0 0.0 M.	"Hum_Amb_Fallen_M01.asc"	F	 0	100	FPS:5)
+		//	ani			("t_Fallen_2_Stand"		1	""				0.0 0.2 M.	"Hum_Fall_M01.asc"			F	 23	46)
+		//	{
+		//		*eventSFXGrnd	(33	"Run")
+		//		*eventSFXGrnd	(38	"Run")
+		//	}
 
-			ani			("s_FallB"				1	"s_FallB"		0.1 0.0 MF	"Hum_Amb_FallB_M01.asc"		F	 0	30	FPS:10)
-			ani			("t_FallB_2_FallenB"	1	"s_FallenB"		0.0 0.0 MF	"Hum_FallB_M01.asc"			F	 6	21)
-			{
+		//	ani			("s_FallB"				1	"s_FallB"		0.1 0.0 MF	"Hum_Amb_FallB_M01.asc"		F	 0	30	FPS:10)
+		//	ani			("t_FallB_2_FallenB"	1	"s_FallenB"		0.0 0.0 MF	"Hum_FallB_M01.asc"			F	 6	21)
+		//	{
 //				*eventSFX	(8	"Fallen")
-				*eventMMStartAni (10	"T_HURT")
-				*eventMMStartAni (20	"S_NEUTRAL")
-			}
+		//		*eventMMStartAni (10	"T_HURT")
+		//		*eventMMStartAni (20	"S_NEUTRAL")
+		//	}
 
-			ani			("s_FallenB"			1	"s_FallenB"		0.0 0.0 M.	"Hum_Amb_FallenB_M01.asc"	F	0	100	FPS:5)
-			ani			("t_FallenB_2_Stand"	1	""				0.0 0.2 M.	"Hum_FallB_M01.asc"			F	 23	46)
-			{
-				*eventSFXGrnd	(30	"Run")
-				*eventSFXGrnd	(37	"Run")
-			}
+		//	ani			("s_FallenB"			1	"s_FallenB"		0.0 0.0 M.	"Hum_Amb_FallenB_M01.asc"	F	0	100	FPS:5)
+		//	ani			("t_FallenB_2_Stand"	1	""				0.0 0.2 M.	"Hum_FallB_M01.asc"			F	 23	46)
+		//	{
+		//		*eventSFXGrnd	(30	"Run")
+		//		*eventSFXGrnd	(37	"Run")
+		//	}
 
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -1295,12 +1295,17 @@ Model ("HuS")
 // Transform
 			ani			("t_MagRun_2_TrfShoot"		1	"s_TrfShoot"	0.1	0.0	M.	"Hum_MagTransform_A01.asc"	F	1	39)
 			ani			("s_TrfShoot"				1	"s_TrfShoot"	0.0	0.0	M.	"Hum_MagTransform_A01.asc"	F	40	75)
-			ani			("t_TrfShoot_2_Stand"		1	""				0.0	0.1	M.	"Hum_MagTransform2Stand_M02.asc"	F	0	80	FPS:10)
+		//	ani			("t_TrfShoot_2_Stand"		1	""				0.0	0.1	M.	"Hum_MagTransform2Stand_M02.asc"	F	0	80	FPS:10)
+			ani			("t_TrfShoot_2_Stand"		1	""				0.0	0.1	M.	"Hum_StopTransform_GMF.asc"	F	0	75)
 
 // Summon Demon/Skeleton/... 
 			ani			("t_MagRun_2_SumShoot"		1	"s_SumShoot"	0.1	0.0	M.	"Hum_MagSummon_A01.asc"		F	1	29)
 			ani			("s_SumShoot"				1	"s_SumShoot"	0.0	0.0	M.	"Hum_MagSummon_A01.asc"		F	30	54)
 			ani			("t_SumShoot_2_Stand"		1	""				0.0	0.1	M.	"Hum_MagSummon_A01.asc"		F	55	99 FPS:10)
+			
+		//	ani			("t_MagRun_2_SumShoot"		1	"s_SumShoot"	0.1	0.0	M.	"Hum_CastSummon_GMF.asc"	F	0	84)
+		//	ani			("s_SumShoot"				1	"s_SumShoot"	0.0	0.0	M.	"Hum_CastSummon_GMF.asc"	F	85	85)
+		//	ani			("t_SumShoot_2_Stand"		1	""				0.0	0.1	M.	"Hum_CastSummon_GMF.asc"	F	86	100)
 
 // Massdeath by KaiRo
 		    ani			("t_MagRun_2_MsdShoot"  	1 "s_MsdShoot" 		0.1 0.0 M. 	"Hum_TrainSpell3_A01.asc"  	F 	1 	91)
@@ -4141,7 +4146,7 @@ Model ("HuS")
 			{
 				*eventSFXGrnd	(10	"Run")
 			}
-			ani     ("t_JumpUpLow_2_Stand"  	1   ""							0.0 0.0 MF	"Hum_JumpUpLow_GMF.asc" F   11	21)
+			ani     ("t_JumpUpLow_2_Stand"  	1   ""							0.0 0.1 MF	"Hum_JumpUpLow_GMF.asc" F   11	21)
 			{
 				*eventSFXGrnd	(16	"Run")
 			}
@@ -4149,7 +4154,7 @@ Model ("HuS")
 //	JumpUpMid	(100-200cm)
 			ani		("t_Stand_2_JumpUpMid"		1   "s_JumpUpMid"				0.0 0.0 M.	"Hum_JumpUpMid_GMF.asc" F   0	9)
 			ani		("s_JumpUpMid"              1   "t_JumpUpMid_2_Stand"		0.0 0.0 MF	"Hum_JumpUpMid_GMF.asc" F   10	13)
-			ani		("t_JumpUpMid_2_Stand"  	1   ""							0.0 0.0 MF	"Hum_JumpUpMid_GMF.asc" F   14	36)
+			ani		("t_JumpUpMid_2_Stand"  	1   ""							0.0 0.1 MF	"Hum_JumpUpMid_GMF.asc" F   14	36)
 			{
 				*eventSFXGrnd	(21	"Run")
 				*eventSFXGrnd	(27	"Run")
@@ -4159,8 +4164,8 @@ Model ("HuS")
 			ani			("t_Stand_2_JumpUp"		1	"s_JumpUp"					0.0	0.0	M.	"Hum_JumpUp_GMF.asc"	F	0	10)
 			ani			("s_JumpUp"				1	"s_JumpUp"					0.0	0.0	MF	"Hum_JumpUp_GMF.asc"	F	10	10)
 			aniBlend	("t_JumpUp_2_Hang"			"s_Hang"					0.0	0.1)
-			ani			("s_Hang"				1	"t_Hang_2_Stand"			0.1	0.0	MF	"Hum_JumpUp_GMF.asc" 	F	18	18)
-			ani			("t_Hang_2_Stand"		1	""							0.0	0.0	MF	"Hum_JumpUp_GMF.asc" 	F	19	46)
+			ani			("s_Hang"				1	"t_Hang_2_Stand"			0.0	0.0	MF	"Hum_JumpUp_GMF.asc" 	F	18	18)
+			ani			("t_Hang_2_Stand"		1	""							0.0	0.1	MF	"Hum_JumpUp_GMF.asc" 	F	19	46)
 			{
 				*eventSFXGrnd	(32	"Run")
 				*eventSFXGrnd	(43	"Run")
@@ -4170,9 +4175,53 @@ Model ("HuS")
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// FALL /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			aniBlend	("t_Hang_2_FallDn"			"s_FallDn"		0.0	0.2)
+			aniBlend	("t_JumpUp_2_FallDn"		"s_FallDn"		0.0	0.2)
+			aniBlend	("t_Jump_2_FallDn"			"s_FallDn"		0.0	0.2)
+			
+			ani			("s_FallDn"				1	"s_FallDn"		0.0	0.0	MF	"Hum_JumpUp_FallDn_GMF.asc"	F	0	0)
 
-//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani			("t_FallDn_2_Stand"		1	""				0.0	0.2	M.	"Hum_JumpUp_FallDn_GMF.asc"	F	1	17)
+			{
+				*eventSFX	(2	"M_FALL_SMALL"	EMPTY_SLOT	)
+			}
+			
+			aniBlend	("t_FallDn_2_RunL"			"s_RunL"		0.2	0.2)
+			aniBlend	("t_FallDn_2_Fall"			"s_Fall"		0.5	0.5)
+			aniBlend	("t_FallDn_2_FallB"			"s_FallB"		0.5	0.5)
+			
+			ani			("s_Fall"				1	"s_Fall"		0.2 0.1 MF	"Hum_Fall_Amb_GMF.asc"		F	0	29)
+			ani			("t_Fall_2_Fallen"		1	"s_Fallen"		0.1 0.0 MF	"Hum_Fall_GMF.asc"			F	3	13)
+			{
+				*eventSFX			(4		"M_FALL_SMALL"		EMPTY_SLOT)
+				*eventPFX			(4		"ZMODELLANDDUST"	"Bip01")
+				*eventMMStartAni	(5		"T_HURT")
+				*eventMMStartAni	(12		"S_NEUTRAL")
+			}
+			ani			("s_Fallen"				1	"s_Fallen"		0.0 0.1 M.	"Hum_Fall_GMF.asc"			F	 14	113)
+			ani			("t_Fallen_2_Stand"		1	""				0.1 0.2 M.	"Hum_Fall_GMF.asc"			F	 114 140)
+			{
+				*eventSFXGrnd		(127	"Walk")
+				*eventSFXGrnd		(130	"Walk")
+			}
+			
+			ani			("s_FallB"				1	"s_FallB"		0.2 0.1 MF	"Hum_FallB_Amb_GMF.asc"		F	 0	29)
+			ani			("t_FallB_2_FallenB"	1	"s_FallenB"		0.1 0.0 MF	"Hum_FallB_GMF.asc"			F	 1	16)
+			{
+				*eventMMStartAni 	(6		"T_HURT")
+				*eventMMStartAni 	(16	"S_NEUTRAL")
+			}
+
+			ani			("s_FallenB"			1	"s_FallenB"		0.0 0.1 M.	"Hum_FallB_GMF.asc"			F	17	116)
+			ani			("t_FallenB_2_Stand"	1	""				0.1 0.2 M.	"Hum_FallB_GMF.asc"			F	117	145)
+			{
+				*eventSFXGrnd		(120	"Sneak")
+				*eventSFXGrnd		(135	"Walk")
+				*eventSFXGrnd		(136	"Sneak")
+			}
+			
+// FALL /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4972,8 +5021,8 @@ Model ("HuS")
 			}
 			ani			("t_BROOM_S0_2_S1"			1	"s_BROOM_S1"		0.0	0.0	M.	"Hum_Fegen_GMF.asc"					F	7	35)
 			{
-				*eventSFX	(20	"Sneak")
-				*eventSFX	(34	"Walk")
+				*eventSFXGrnd	(20	"Sneak")
+				*eventSFXGrnd	(34	"Walk")
 			}
 			ani			("s_BROOM_S1"				1	"s_BROOM_S1"		0.0	0.0	M.	"Hum_Fegen_GMF.asc"					F	35	85)
 			{
@@ -4983,8 +5032,8 @@ Model ("HuS")
 			}
 			ani			("t_BROOM_S1_2_S0"			1	"s_BROOM_S0"		0.3	0.0	ME	"Hum_Fegen_GMF.asc"					R	7	35)
 			{
-				*eventSFX	(20	"Sneak")
-				*eventSFX	(26	"Walk")
+				*eventSFXGrnd	(20	"Sneak")
+				*eventSFXGrnd	(26	"Walk")
 			}
 
 // BROOM ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5172,35 +5221,41 @@ Model ("HuS")
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // WOUNDED //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			ani			("t_Stand_2_Wounded"	1	"s_Wounded"		0.2	0.1	M.	"Hum_KnockedOut_M01.asc"		F	1	49	CVS:0.1)
+			ani			("t_Stand_2_Wounded"		1	"s_Wounded"			0.2	0.1	M.	"Hum_KnockedOut_M01.asc"	F	1	49	CVS:0.1)
 			{
 				*eventSFXGrnd	(30	"Run"	)
 				*eventSFX	(47	"M_FALL_SMALL"	EMPTY_SLOT	)
 			}
 			
-			ani			("s_Wounded"			1	"s_Wounded"		0.1	0.1	M.	"Hum_KnockedOut_M01.asc"		F	50	99	CVS:0.1)
-			ani			("t_Wounded_2_Stand"	1	""				0.1	0.1	M.	"Hum_KnockedOut_M01.asc"		F	100	184	CVS:0.1)
+			ani			("s_Wounded"				1	"s_Wounded"			0.1	0.1	M.	"Hum_KnockedOut_M01.asc"	F	50	99	CVS:0.1)
+			ani			("t_Wounded_2_Stand"		1	""					0.1	0.1	M.	"Hum_KnockedOut_M01.asc"	F	100	184	CVS:0.1)
 			
-			ani			("t_Wounded_Try"			2	""				0.1	0.2	M.	"Hum_Wounded_Try_A01.asc"	F	1	50	CVS:0.1)
+			ani			("t_Wounded_Try"			2	""					0.1	0.2	M.	"Hum_Wounded_Try_A01.asc"	F	1	50	CVS:0.1)
 
-			ani			("t_Stand_2_WoundedB"	1	"s_WoundedB"	0.2	0.1	M.	"Hum_WoundedB_M01.asc"			F	1	34	CVS:0.1)
+			ani			("t_Stand_2_WoundedB"		1	"s_WoundedB"		0.2	0.1	M.	"Hum_WoundedB_M01.asc"		F	1	34	CVS:0.1)
 			{
 				*eventSFX	(23	"M_FALL_SMALL"	EMPTY_SLOT	)
 			}
-			ani			("s_WoundedB"			1	"s_WoundedB"	0.1	0.1	M.	"Hum_WoundedBAmbient_A01.ASC"	F	1	40	CVS:0.1)
-			ani			("t_WoundedB_2_Stand"	1	""				0.1	0.1	M.	"Hum_WoundedB_M01.asc"			F	35	134	CVS:0.1)
+			ani			("s_WoundedB"				1	"s_WoundedB"		0.1	0.1	M.	"Hum_WoundedBAmbient_A01.ASC"	F	1	40	CVS:0.1)
+			ani			("t_WoundedB_2_Stand"		1	""					0.1	0.1	M.	"Hum_WoundedB_M01.asc"			F	35	134	CVS:0.1)
 			
-			ani			("t_WoundedB_Try"			2	""				0.1	0.2	M.	"Hum_WoundedB_Try_A01.asc"	F	1	45	CVS:0.1)
+			ani			("t_WoundedB_Try"			2	""					0.1	0.2	M.	"Hum_WoundedB_Try_A01.asc"	F	1	45	CVS:0.1)
 			
 // WOUNDED //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			
-			
-//  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// WACKELBAUM ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			ani        ("T_WACKELBAUM_STAND_2_S0"	1	"S_WACKELBAUM_S0"	0.2	0.0	M. "HUM_PILLAR_M01.ASC"			F	0	25)                    
+			ani        ("S_WACKELBAUM_S0"			1	"S_WACKELBAUM_S0"	0.0	0.0	M. "HUM_PILLAR_M01.ASC" 		F	26	26)                    
+			aniAlias   ("T_WACKELBAUM_S0_2_STAND"	1	""					0.0	0.2	M. "T_WACKELBAUM_STAND_2_S0"	R)                            
+			ani        ("T_WACKELBAUM_S0_2_S1"		1	"S_WACKELBAUM_S1"	0.0	0.0	M. "HUM_PILLAR_M01.ASC"			F	75	119	FPS:10)           
+			ani        ("S_WACKELBAUM_S1"			1	"S_WACKELBAUM_S1"	0.0	0.0	M. "HUM_PILLAR_M01.ASC"			F	120	120)                   
+			ani        ("T_WACKELBAUM_S1_2_S0"		1	"S_WACKELBAUM_S0"	0.0	0.0	M. "HUM_PILLAR_M01.ASC"			R	6	25)                    
+			ani        ("T_WACKELBAUM_S1_2_STAND"	1	""					0.0	0.2	M. "HUM_PILLAR_M01.ASC"			F	120	175)
+		
+// WACKELBAUM ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -105,7 +105,7 @@ func void DIA_Torlof_Probe_Info()
 		AI_Output(self,other,"DIA_Torlof_Probe_01_05");	//И второе: ты должен заслужить уважение других наемников.
 		SCKnowsSLDVotes = TRUE;
 		Torlof_Go = TRUE;
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 		Log_CreateTopic(TOPIC_BecomeSLD,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_BecomeSLD,LOG_Running);
 		B_LogEntry(TOPIC_BecomeSLD,"Чтобы быть принятым в ряды наемников, я должен пройти испытание Торлофа и заслужить уважение остальных наемников.");
@@ -302,13 +302,10 @@ func void DIA_Torlof_RUF_Info()
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_10");	//Род просто хочет получить свой меч назад.
 	}
-	else if((Rod.aivar[AIV_DefeatedByPlayer] == TRUE) || (Rod_WetteGewonnen == TRUE))
+	else if((Rod.aivar[AIV_DefeatedByPlayer] == TRUE) || (MIS_RodSword == LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_11");	//Похоже, тебе удалось убедить Рода, что ты достаточно силен.
-		if(Rod.aivar[AIV_DefeatedByPlayer] == FALSE)
-		{
-			Points_Sld += 1;
-		};
+		Points_Sld += 1;
 	}
 	else if(Rod.aivar[AIV_TalkedToPlayer] == TRUE)
 	{
@@ -494,8 +491,7 @@ func void B_Torlof_HolPachtVonSekob()
 		DIA_Common_No();
 	};
 	MIS_Torlof_HolPachtVonSekob = LOG_Running;
-	Sekob.flags = 0;
-//	CreateInvItems(Sekob,ItMi_Gold,50);
+	B_SetMortal(Sekob);
 	Log_CreateTopic(TOPIC_TorlofPacht,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_TorlofPacht,LOG_Running);
 	B_LogEntry(TOPIC_TorlofPacht,"Торлоф попросил меня собрать ренту с фермера Секоба. Он должен заплатить 50 золотых монет.");
@@ -517,7 +513,7 @@ func void B_Torlof_BengarMilizKlatschen()
 		DIA_Common_No();
 	};
 	MIS_Torlof_BengarMilizKlatschen = LOG_Running;
-	Bengar.flags = 0;
+	B_SetMortal(Bengar);
 	Wld_InsertNpc(MIL_335_Rumbold,"FARM3");
 	Wld_InsertNpc(MIL_336_Rick,"FARM3");
 	B_InitNpcGlobals();
@@ -817,10 +813,10 @@ func void B_BuildLearnDialog_Torlof_NW()
 {
 	Info_ClearChoices(DIA_Torlof_Teach);
 	Info_AddChoice(DIA_Torlof_Teach,Dialog_Back,DIA_Torlof_Teach_Back);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Torlof_Teach_DEX_1);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Torlof_Teach_DEX_5);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Torlof_Teach_STR_1);
-	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Torlof_Teach_STR_5);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnAttributeString(ATR_DEXTERITY,1),DIA_Torlof_Teach_DEX_1);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnAttributeString(ATR_DEXTERITY,5),DIA_Torlof_Teach_DEX_5);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_Torlof_Teach_STR_1);
+	Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_Torlof_Teach_STR_5);
 };
 
 instance DIA_Torlof_Teach(C_Info)
@@ -1163,15 +1159,11 @@ func void DIA_Torlof_BEMYCAPTAIN4_Info()
 		AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN4_01_02");	//У тебя есть морская карта? Без нее мы далеко не уплывем.
 		AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN4_15_03");	//Я позабочусь обо всем. Увидимся в порту.
 		AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN4_01_04");	//Мне не терпится увидеть, как это все у тебя получится.
-		if(self.attribute[ATR_HITPOINTS] == 1)
-		{
-			self.attribute[ATR_HITPOINTS] += 1;
-		};
 		AI_StopProcessInfos(self);
 		SCGotCaptain = TRUE;
 		TorlofIsCaptain = TRUE;
-		self.flags = NPC_FLAG_IMMORTAL;
-		Npc_ExchangeRoutine(self,"WaitForShipCaptain");
+		B_SetImmortal(self);
+		Npc_ExchangeRoutine(self,"WAITFORSHIPCAPTAIN");
 		B_GivePlayerXP(XP_Captain_Success);
 	}
 	else

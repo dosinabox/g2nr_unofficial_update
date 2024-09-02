@@ -906,8 +906,8 @@ func void B_BuildLearnDialog_Harad()
 {
 	Info_ClearChoices(DIA_Harad_TeachSTR);
 	Info_AddChoice(DIA_Harad_TeachSTR,Dialog_Back,DIA_Harad_TeachSTR_BACK);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Harad_TeachSTR_1);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Harad_TeachSTR_5);
+	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_Harad_TeachSTR_1);
+	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_Harad_TeachSTR_5);
 };
 
 instance DIA_Harad_TeachSTR(C_Info)
@@ -1132,7 +1132,7 @@ instance DIA_Harad_RepairNecklace(C_Info)
 
 func int DIA_Harad_RepairNecklace_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
 		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 		{

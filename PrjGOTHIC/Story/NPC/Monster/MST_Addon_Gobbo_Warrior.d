@@ -14,7 +14,7 @@ prototype Mst_Default_Gobbo_Warrior(C_Npc)
 	protection[PROT_BLUNT] = 75;
 	protection[PROT_EDGE] = 75;
 	protection[PROT_POINT] = 75;
-	protection[PROT_FIRE] = 75;	//16;
+	protection[PROT_FIRE] = 75;
 	protection[PROT_FLY] = 75;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -45,7 +45,7 @@ func void B_SetVisuals_Gobbo_Warrior_Visir()
 instance Gobbo_Warrior(Mst_Default_Gobbo_Warrior)
 {
 	B_SetVisuals_Gobbo_Warrior();
-	Npc_SetToFightMode(self,ItMw_1h_Misc_Sword);
+	Npc_SetToFightMode(self,ItMw_1h_MISC_Sword);
 	Mdl_SetModelScale(self,1.15,1.15,1.15);
 };
 

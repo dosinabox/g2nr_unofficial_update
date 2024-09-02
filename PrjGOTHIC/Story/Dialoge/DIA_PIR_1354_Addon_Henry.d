@@ -65,7 +65,6 @@ instance DIA_Addon_Henry_Hello(C_Info)
 
 func int DIA_Addon_Henry_Hello_Condition()
 {
-//	if((Npc_GetDistToWP(other,PIR_1354_Checkpoint) <= 700) && (self.aivar[AIV_PASSGATE] == FALSE))
 	if(Npc_GetDistToWP(other,PIR_1354_Checkpoint) <= 700)
 	{
 		if(self.aivar[AIV_PASSGATE] == FALSE)
@@ -74,7 +73,7 @@ func int DIA_Addon_Henry_Hello_Condition()
 		};
 		return FALSE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
+	if(C_NpcHasGuardStatus(self,PIR_1354_Checkpoint,GP_NONE) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -96,14 +95,11 @@ func void DIA_Addon_Henry_Hello_Info()
 };
 
 
-//var int Henry_SC_Frech;
-
 func void DIA_Addon_Henry_Hello_Feind()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_Hello_Feind_15_00");	//Враг!
 	AI_Output(self,other,"DIA_Addon_Henry_Hello_Feind_04_01");	//Ищешь приключений на свою задницу, клоун?
 	AI_Output(self,other,"DIA_Addon_Henry_Hello_Feind_04_02");	//Говори, что тебе надо, или убирайся, да поскорее.
-//	Henry_SC_Frech = TRUE;
 	Info_ClearChoices(DIA_Addon_Henry_Hello);
 };
 
@@ -128,7 +124,7 @@ instance DIA_Addon_Henry_SecondWarn(C_Info)
 
 func int DIA_Addon_Henry_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,PIR_1354_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if(C_NpcHasGuardStatus(self,PIR_1354_Checkpoint,GP_FirstWarnGiven))
 	{
 		return TRUE;
 	};
@@ -156,7 +152,7 @@ instance DIA_Addon_Henry_Attack(C_Info)
 
 func int DIA_Addon_Henry_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,PIR_1354_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if(C_NpcHasGuardStatus(self,PIR_1354_Checkpoint,GP_SecondWarnGiven))
 	{
 		return TRUE;
 	};
@@ -777,11 +773,11 @@ func void DIA_Addon_Henry_Owen2_Info()
 		B_GiveInvItems(self,other,ItMi_Gold,200);
 		if(Npc_KnowsInfo(other,DIA_Addon_Greg_RavenDead))
 		{
-			B_StartOtherRoutine(Owen,"PostStart");
+			B_StartOtherRoutine(Owen,"POSTSTART");
 		}
 		else
 		{
-			B_StartOtherRoutine(Owen,"PreStart");
+			B_StartOtherRoutine(Owen,"PRESTART");
 		};
 		MIS_Henry_HolOwen = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Addon_Owen_ComesToHenry);
@@ -897,8 +893,8 @@ func void B_BuildLearnDialog_Henry()
 	Info_AddChoice(DIA_Addon_Henry_Teach,Dialog_Back,DIA_Addon_Henry_Teach_Back);
 	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Henry)
 	{
-		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Addon_Henry_Teach_2H_1);
-		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Addon_Henry_Teach_2H_5);
+		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,1),DIA_Addon_Henry_Teach_2H_1);
+		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,5),DIA_Addon_Henry_Teach_2H_5);
 		DIA_Henry_TeachState_2H = 1;
 	}
 	else
@@ -912,8 +908,8 @@ func void B_BuildLearnDialog_Henry()
 	};
 	if(VisibleTalentValue(NPC_TALENT_CROSSBOW) < TeachLimit_Crossbow_Henry)
 	{
-		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Addon_Henry_Teach_CB_1);
-		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Addon_Henry_Teach_CB_5);
+		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnTalentString(other,NPC_TALENT_CROSSBOW,1),DIA_Addon_Henry_Teach_CB_1);
+		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnTalentString(other,NPC_TALENT_CROSSBOW,5),DIA_Addon_Henry_Teach_CB_5);
 		DIA_Henry_TeachState_Crossbow = 1;
 	}
 	else

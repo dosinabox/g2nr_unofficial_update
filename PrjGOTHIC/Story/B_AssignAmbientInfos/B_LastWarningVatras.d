@@ -7,23 +7,24 @@ func void B_LastWarningVatras()
 	AI_Output(self,other,"DIA_Addon_Vatras_LastWarning_ADD_05_03");	//Ты убивал и грабил всех и вся. Ты виновен во многих преступлениях.
 	AI_Output(self,other,"DIA_Addon_Vatras_LastWarning_ADD_05_04");	//Множество невинных людей погибли от ТВОЕЙ руки.
 	AI_Output(self,other,"DIA_Addon_Vatras_LastWarning_ADD_05_05");	//Теперь ты - союзник сил Тьмы.
+	VatrasMadKillerCount = MadKillerCount;
 };
 
 func void B_VatrasPissedOff()
 {
 	AI_Output(self,other,"DIA_Addon_Vatras_PissedOffPerm_Add_05_00");	//Отныне ты не можешь рассчитывать на нашу помощь.
 	AI_Output(self,other,"DIA_Addon_Vatras_PissedOffPerm_Add_05_01");	//Убирайся. Для меня ты теперь пария.
-	if(CurrentLevel == NEWWORLD_ZEN)
+	AI_StopProcessInfos(self);
+	if((CurrentLevel == NEWWORLD_ZEN) && (VatrasPissedOffForever == FALSE))
 	{
 		if(Vatras_IsOnBoard == LOG_SUCCESS)
 		{
+			Npc_ExchangeRoutine(self,"PRAY");
 			Crewmember_Count -= 1;
 		};
 		Vatras_IsOnBoard = LOG_FAILED;
 		self.flags = 0;
-		VatrasPissedOffForever = TRUE;
-		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"PRAY");
 	};
+	VatrasPissedOffForever = TRUE;
 };
 

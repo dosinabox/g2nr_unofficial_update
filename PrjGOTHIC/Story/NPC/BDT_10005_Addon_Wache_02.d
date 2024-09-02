@@ -7,7 +7,7 @@ instance BDT_10005_Addon_Wache_02(Npc_Default)
 	voice = 13;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
-	aivar[AIV_StoryBandit_Esteban] = TRUE;
+	aivar[AIV_SubGuild] = GIL_SUB_Esteban;
 	aivar[AIV_StoryBandit] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
@@ -33,15 +33,13 @@ func void Rtn_Start_10005()
 
 func void Rtn_Ambush_10005()
 {
-//	TA_Stand_Guarding(9,0,21,0,"BL_INN_OUTSIDE_02");
-//	TA_Stand_Guarding(21,0,9,0,"BL_INN_OUTSIDE_02");
-	TA_RunToWP(0,0,0,0,"BL_INN_OUTSIDE_02");
-	TA_RunToWP(0,0,0,0,"BL_INN_OUTSIDE_02");
+	TA_RunToWP(9,0,21,0,"BL_INN_OUTSIDE_02");
+	TA_RunToWP(21,0,9,0,"BL_INN_OUTSIDE_02");
 };
 
 func void Rtn_Tot_10005()
 {
-	TA_Sleep(0,0,0,0,"BL_INN_OUTSIDE_02");
-	TA_Sleep(0,0,0,0,"BL_INN_OUTSIDE_02");
+	TA_Sleep(9,0,21,0,"BL_INN_OUTSIDE_02");
+	TA_Sleep(21,0,9,0,"BL_INN_OUTSIDE_02");
 };
 

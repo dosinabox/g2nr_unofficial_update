@@ -9,7 +9,7 @@ func int B_TeachPlayerTalentAlchemy(var C_Npc slf,var C_Npc oth,var int potion)
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	if(PremiumTeachersEnabled == TRUE)
+	if(C_PremiumTeachersEnabled())
 	{
 		if(!B_GiveInvItems(oth,slf,ItMi_Gold,kosten * PremiumTeachersPrice))
 		{
@@ -19,7 +19,7 @@ func int B_TeachPlayerTalentAlchemy(var C_Npc slf,var C_Npc oth,var int potion)
 		};
 	};
 	oth.lp -= kosten;
-	if(Npc_GetTalentSkill(oth,NPC_TALENT_ALCHEMY) == 0)
+	if(!Npc_GetTalentSkill(oth,NPC_TALENT_ALCHEMY))
 	{
 		Npc_SetTalentSkill(oth,NPC_TALENT_ALCHEMY,1);
 		Log_CreateTopic(TOPIC_TalentAlchemy,LOG_NOTE);
@@ -48,12 +48,12 @@ func int B_TeachPlayerTalentAlchemy(var C_Npc slf,var C_Npc oth,var int potion)
 	else if(potion == POTION_Mana_01)
 	{
 		PLAYER_TALENT_ALCHEMY[POTION_Mana_01] = TRUE;
-		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭССЕНЦИИ МАНЫ': 2 огненных крапивы и 1 луговой горец.");
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭССЕНЦИИ МАНЫ': 2 огненные крапивы и 1 луговой горец.");
 	}
 	else if(potion == POTION_Mana_02)
 	{
 		PLAYER_TALENT_ALCHEMY[POTION_Mana_02] = TRUE;
-		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭКСТРАКТА МАНЫ': 2 огненных травы и 1 луговой горец.");
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭКСТРАКТА МАНЫ': 2 огненные травы и 1 луговой горец.");
 	}
 	else if(potion == POTION_Mana_03)
 	{

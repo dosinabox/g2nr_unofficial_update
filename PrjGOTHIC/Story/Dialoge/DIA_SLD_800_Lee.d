@@ -646,7 +646,7 @@ func void DIA_Lee_JoinNOW_Info()
 			B_GiveArmor(ITAR_SLD_L);
 			Snd_Play("LEVELUP");
 			B_StartOtherRoutine(Lothar,"START");
-			B_StartOtherRoutine(Babo,"Garden");
+			B_StartOtherRoutine(Babo,"GARDEN");
 			NOV_Aufnahme = LOG_OBSOLETE;
 			SLD_Aufnahme = LOG_SUCCESS;
 			MIL_Aufnahme = LOG_OBSOLETE;
@@ -1457,7 +1457,6 @@ func void DIA_Lee_SYLVIO_Info()
 
 var int DIA_Lee_Teacher_permanent;
 var int Lee_Labercount;
-var int DIA_Lee_TeachState_2H;
 
 func void B_Lee_CommentFightSkill()
 {
@@ -1570,8 +1569,8 @@ func void B_BuildLearnDialog_Lee()
 	{
 		Info_ClearChoices(DIA_Lee_Teach);
 		Info_AddChoice(DIA_Lee_Teach,Dialog_Back,DIA_Lee_Teach_Back);
-		Info_AddChoice(DIA_Lee_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Lee_Teach_2H_1);
-		Info_AddChoice(DIA_Lee_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Lee_Teach_2H_5);
+		Info_AddChoice(DIA_Lee_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,1),DIA_Lee_Teach_2H_1);
+		Info_AddChoice(DIA_Lee_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,5),DIA_Lee_Teach_2H_5);
 	}
 	else
 	{
@@ -1771,7 +1770,7 @@ func void DIA_Lee_GetShip_crew()
 	else
 	{
 		B_LogEntry(Topic_Crew,"Что касается моей команды, здесь Ли мало чем может помочь мне. Но все же он дал совет - набирать только людей, которым я могу доверять.");
-	};	
+	};
 };
 
 func void DIA_Lee_GetShip_back()
@@ -1831,8 +1830,8 @@ func void DIA_Lee_StealShip_Info()
 	AI_Output(self,other,"DIA_Lee_StealShip_04_01");	//И как ты собираешься сделать это?
 	AI_Output(other,self,"DIA_Lee_StealShip_15_02");	//Легче легкого - я пойду туда, покажу им твои бумаги - и корабль мой!
 	AI_Output(self,other,"DIA_Lee_StealShip_04_03");	//Ну-ну. Держи. Надеюсь, ты знаешь, что делаешь.
-	CreateInvItems(self,ITWr_ForgedShipLetter_MIS,1);
-	B_GiveInvItems(self,other,ITWr_ForgedShipLetter_MIS,1);
+	CreateInvItems(self,ItWr_ForgedShipLetter_MIS,1);
+	B_GiveInvItems(self,other,ItWr_ForgedShipLetter_MIS,1);
 };
 
 
@@ -1930,8 +1929,8 @@ func void DIA_Lee_LeaveMyShip_Info()
 	AI_Output(self,other,"DIA_Lee_LeaveMyShip_04_01");	//Как скажешь. Ты знаешь, где меня найти, если что!
 	Lee_IsOnBoard = LOG_OBSOLETE;
 	Crewmember_Count -= 1;
-	Lee_Nerver += 1;
-	Npc_ExchangeRoutine(self,"ShipOff");
+	self.aivar[AIV_Nerver] += 1;
+	Npc_ExchangeRoutine(self,"SHIPOFF");
 };
 
 
@@ -1957,7 +1956,7 @@ func int DIA_Lee_StillNeedYou_Condition()
 func void DIA_Lee_StillNeedYou_Info()
 {
 	AI_Output(other,self,"DIA_Lee_StillNeedYou_15_00");	//Ты мне все-таки нужен!
-	if((Lee_IsOnBoard == LOG_OBSOLETE) && (Lee_Nerver <= 2))
+	if((Lee_IsOnBoard == LOG_OBSOLETE) && (self.aivar[AIV_Nerver] <= 2))
 	{
 		AI_Output(self,other,"DIA_Lee_StillNeedYou_04_01");	//Я знал, что понадоблюсь тебе! Увидимся на корабле.
 		B_JoinShip(self);

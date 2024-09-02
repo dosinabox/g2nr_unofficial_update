@@ -59,7 +59,7 @@ func int DIA_Mil_310_Stadtwache_FirstWarn_Condition()
 	{
 		self.aivar[AIV_PASSGATE] = TRUE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
+	if(C_NpcHasGuardStatus(self,Mil_310_Checkpoint,GP_NONE) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -152,7 +152,7 @@ instance DIA_Mil_310_Stadtwache_SecondWarn(C_Info)
 
 func int DIA_Mil_310_Stadtwache_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Mil_310_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if(C_NpcHasGuardStatus(self,Mil_310_Checkpoint,GP_FirstWarnGiven))
 	{
 		return TRUE;
 	};
@@ -180,7 +180,7 @@ instance DIA_Mil_310_Stadtwache_Attack(C_Info)
 
 func int DIA_Mil_310_Stadtwache_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Mil_310_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if(C_NpcHasGuardStatus(self,Mil_310_Checkpoint,GP_SecondWarnGiven))
 	{
 		return TRUE;
 	};
@@ -408,7 +408,6 @@ func void DIA_Addon_Mil_310_Stadtwache_Constantino_Info()
 			B_CityMainGatesPass();
 			MIS_Addon_Lester_PickForConstantino = LOG_SUCCESS;
 			B_GivePlayerXP(XP_Addon_PickForConstantino);
-			AI_StopProcessInfos(self);
 		}
 		else
 		{

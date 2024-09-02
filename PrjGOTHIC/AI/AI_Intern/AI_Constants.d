@@ -71,10 +71,10 @@ const int AIV_StateTime = 68;
 const int AIV_Dist = 69;
 const int AIV_IgnoresFakeGuild = 70;
 const int AIV_NoFightParker = 71;
-const int AIV_NPCIsRanger = 72;
+const int AIV_SubGuild = 72;
 const int AIV_IgnoresArmor = 73;
 const int AIV_StoryBandit = 74;
-const int AIV_StoryBandit_Esteban = 75;
+const int AIV_Nerver = 75;
 const int AIV_WhirlwindStateTime = 76;
 const int AIV_InflateStateTime = 77;
 const int AIV_SwarmStateTime = 78;
@@ -96,6 +96,14 @@ const int AIV_SchafswurstGiven = 93;
 const int AIV_NPCIsTrader = 94;
 const int AIV_Teeth = 95;
 const int AIV_RefreshAmmoDay = 96;
+
+const int REAL_STRENGTH = 81;
+const int REAL_DEXTERITY = 82;
+const int REAL_MANA_MAX = 83;
+const int REAL_TALENT_1H = 84;
+const int REAL_TALENT_2H = 85;
+const int REAL_TALENT_BOW = 86;
+const int REAL_TALENT_CROSSBOW = 87;
 
 const int AF_NONE = 0;
 const int AF_RUNNING = 1;
@@ -229,7 +237,7 @@ const int ID_SUMMONED_ZOMBIE = 62;
 const int ID_KEILER = 63;
 const int ID_SWAMPDRONE = 64;
 const int ID_ORCCOMMANDER = 65;
-const int ID_SWAMPZOMBIE = 66;
+//const int ID_SWAMPZOMBIE = 66;
 const int ID_SCAVENGER_DEMON = 67;
 
 const int MAGIC_NEVER = 0;
@@ -300,8 +308,8 @@ const int ZivilAnquatschDist = 400;
 const int MONSTER_THREATEN_TIME = 4;
 const int MONSTER_SUMMON_TIME = 60;
 
-const float RANGED_CHANCE_MINDIST = 1500;
-const float RANGED_CHANCE_MAXDIST = 4500;
+const float RANGED_CHANCE_MINDIST = 1500.0;
+const float RANGED_CHANCE_MAXDIST = 4500.0;
 
 const int NPC_ANGRY_TIME = 120;
 const int NPC_TIME_UNCONSCIOUS = 20;
@@ -336,10 +344,10 @@ const int FAI_DRAGON = 39;
 const int FAI_MOLERAT = 40;
 const int FAI_ORC = 12;
 const int FAI_DRACONIAN = 41;
-const int FAI_Alligator = 43;
+const int FAI_ALLIGATOR = 43;
 const int FAI_GARGOYLE = 44;
 const int FAI_BEAR = 45;
-const int FAI_Stoneguardian = 46;
+const int FAI_STONEGUARDIAN = 46;
 
 const int TRUE = 1;
 const int FALSE = 0;
@@ -372,7 +380,8 @@ const int MOBSI_PrayShrine = 5;
 const int MOBSI_GOLDHACKEN = 6;
 const int MOBSI_PRAYIDOL = 7;
 const int MOBSI_PAN = 8;
-//const int MOBSI_ORE = 9;
+const int MOBSI_STOMP = 9;
+//const int MOBSI_ORE = 10;
 
 var int PLAYER_MOBSI_PRODUCTION;
 
@@ -546,7 +555,7 @@ const int FaceBabe_N_VlkBlonde = 147;
 const int FaceBabe_N_BauBlonde = 148;
 const int FaceBabe_N_YoungBlonde = 149;
 const int FaceBabe_N_OldBlonde = 150;
-const int FaceBabe_P_MidBlonde = 151;
+const int FaceBabe_N_MidBlonde = 151;
 const int FaceBabe_N_MidBauBlonde = 152;
 const int FaceBabe_N_OldBrown = 153;
 const int FaceBabe_N_Lilo = 154;

@@ -32,7 +32,7 @@ func void B_AssessDamage()
 		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Raven))
 		{
 			self.aivar[AIV_EnemyOverride] = FALSE;
-			Npc_ExchangeRoutine(self,"WaitForPlayer");
+			Npc_ExchangeRoutine(self,"WAITFORPLAYER");
 			Raven_Awaken = TRUE;
 		};
 	};

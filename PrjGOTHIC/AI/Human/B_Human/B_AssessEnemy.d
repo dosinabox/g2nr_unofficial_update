@@ -38,16 +38,29 @@ func int B_AssessEnemy()
 			};
 		};
 	};
-	if(C_NpcIsLevelinspektor(other))
+	if(other.guild < GIL_SEPERATOR_HUM)
+	{
+		if(!Npc_IsPlayer(other))
+		{
+			if(self.aivar[AIV_NoFightParker] == TRUE)
+			{
+				return FALSE;
+			};
+			if(other.aivar[AIV_NoFightParker] == TRUE)
+			{
+				return FALSE;
+			};
+		};
+		if(C_NpcIsLevelinspektor(other))
+		{
+			return FALSE;
+		};
+	}
+	else if(other.aivar[AIV_NoFightParker] == TRUE)
 	{
 		return FALSE;
 	};
-//	if(((Hlp_GetInstanceID(other) != Hlp_GetInstanceID(hero)) && (other.guild < GIL_SEPERATOR_HUM) && ((self.aivar[AIV_NoFightParker] == TRUE) || (other.aivar[AIV_NoFightParker] == TRUE))) || ((other.guild > GIL_SEPERATOR_HUM) && (other.aivar[AIV_NoFightParker] == TRUE)))
-	if((!Npc_IsPlayer(other) && (other.guild < GIL_SEPERATOR_HUM) && ((self.aivar[AIV_NoFightParker] == TRUE) || (other.aivar[AIV_NoFightParker] == TRUE))) || ((other.guild > GIL_SEPERATOR_HUM) && (other.aivar[AIV_NoFightParker] == TRUE)))
-	{
-		return FALSE;
-	};
-	if((C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE)) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
+	if(C_NpcIsSwimming(other) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
 	{
 		return FALSE;
 	};
@@ -92,13 +105,10 @@ func int B_AssessEnemy()
 		{
 			B_Attack(self,other,self.aivar[AIV_LastPlayerAR],0);
 			return TRUE;
-		}
-		else
-		{
-			return FALSE;
 		};
+		return FALSE;
 	};
-	if(C_WantToFlee(self,other))
+	if(C_WantToFlee(self))
 	{
 		B_CallGuards();
 		B_Flee();

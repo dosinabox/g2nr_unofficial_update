@@ -205,7 +205,7 @@ instance PC_PrayShrine_HEALSHRINE(C_Info)
 
 func int PC_PrayShrine_HEALSHRINE_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && Npc_HasItems(hero,ItMi_UltharsHolyWater_Mis) && (ShrineIsObsessed == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && Npc_HasItems(hero,ItMi_UltharsHolyWater_MIS) && (ShrineIsObsessed == TRUE))
 	{
 		return TRUE;
 	};
@@ -476,10 +476,10 @@ func void PC_PrayShrine_BlessSword_Final_Info()
 		PrintScreen(PRINT_SCIsObsessed,-1,-1,FONT_Screen,2);
 		Snd_Play("DEM_Die");
 	}
-	else if(Npc_HasItems(hero,ItPo_PotionOfDeath_01_Mis) || Npc_HasItems(hero,ItPo_PotionOfDeath_02_Mis))
+	else if(Npc_HasItems(hero,ItPo_PotionOfDeath_01_MIS) || Npc_HasItems(hero,ItPo_PotionOfDeath_02_MIS))
 	{
-		Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_01_Mis,1);
-		Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_02_Mis,1);
+		Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_01_MIS,1);
+		Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_02_MIS,1);
 		if(Npc_HasItems(hero,ItMw_2H_Blessed_02))
 		{
 			Npc_RemoveInvItems(hero,ItMw_2H_Blessed_02,1);

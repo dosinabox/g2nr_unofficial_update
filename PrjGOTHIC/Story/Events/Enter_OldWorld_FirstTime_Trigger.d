@@ -1,11 +1,11 @@
 
 var int Enter_OldWorld_FirstTime_Trigger_OneTime;
 
-func void enter_oldworld_firsttime_trigger()
+func void Enter_OldWorld_FirstTime_Trigger()
 {
 	if(Enter_OldWorld_FirstTime_Trigger_OneTime == FALSE)
 	{
-		if(C_WorldIsFixed(OLDWORLD_ZEN))
+		if(C_WorldIsFixed())
 		{
 			Wld_InsertItem(ItRu_TeleportPassOW,"OW_ITEM_ICEREGION_RUNE");
 		};

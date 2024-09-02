@@ -9,7 +9,7 @@ func int B_TeachPlayerTalentSmith(var C_Npc slf,var C_Npc oth,var int waffe)
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	if(PremiumTeachersEnabled == TRUE)
+	if(C_PremiumTeachersEnabled())
 	{
 		if(!B_GiveInvItems(oth,slf,ItMi_Gold,kosten * PremiumTeachersPrice))
 		{
@@ -19,7 +19,7 @@ func int B_TeachPlayerTalentSmith(var C_Npc slf,var C_Npc oth,var int waffe)
 		};
 	};
 	oth.lp -= kosten;
-	if(Npc_GetTalentSkill(oth,NPC_TALENT_SMITH) == 0)
+	if(!Npc_GetTalentSkill(oth,NPC_TALENT_SMITH))
 	{
 		Npc_SetTalentSkill(oth,NPC_TALENT_SMITH,1);
 		Log_CreateTopic(TOPIC_TalentSmith,LOG_NOTE);

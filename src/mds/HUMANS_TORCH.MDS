@@ -318,7 +318,7 @@ Model ("HuS")
 			ani		("t_Stand_2_JumpUpLow"		1   "s_JumpUpLow"			0.0 0.0 M.  "Hum_Torch_JumpUpLow_GMF.asc"	F	0	4)
  			ani		("s_JumpUpLow"              1   "t_JumpUpLow_2_Stand"	0.0 0.0 MF	"Hum_Torch_JumpUpLow_GMF.asc"	F	5	10)
 			{
-				*eventSFXGrnd	(12	"Run")
+				*eventSFXGrnd	(10	"Run")
 			}
 
             ani     ("t_JumpUpLow_2_Stand"  	1   ""						0.0 0.0 MF	"Hum_Torch_JumpUpLow_GMF.asc"	F	11	22)

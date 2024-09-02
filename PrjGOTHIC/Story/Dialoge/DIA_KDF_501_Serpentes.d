@@ -34,7 +34,7 @@ instance DIA_Serpentes_NOTALK(C_Info)
 
 func int DIA_Serpentes_NOTALK_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Knows_Fire_Contest == FALSE) && (hero.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -76,7 +76,7 @@ instance DIA_Serpentes_GOAWAY(C_Info)
 
 func int DIA_Serpentes_GOAWAY_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Serpentes_NOTALK) && Npc_IsInState(self,ZS_Talk) && !Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Serpentes_NOTALK) && Npc_IsInState(self,ZS_Talk) && !Npc_KnowsInfo(other,DIA_Pyrokar_FIRE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -102,7 +102,7 @@ instance DIA_Serpentes_YOURSTORY(C_Info)
 
 func int DIA_Serpentes_YOURSTORY_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Ulthar_TEST) && (other.guild == GIL_NOV) && !Npc_KnowsInfo(hero,DIA_Pyrokar_MAGICAN) && (MIS_Golem != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Ulthar_TEST) && (other.guild == GIL_NOV) && !Npc_KnowsInfo(other,DIA_Pyrokar_MAGICAN) && (MIS_Golem != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -131,7 +131,7 @@ instance DIA_Serpentes_TEST(C_Info)
 
 func int DIA_Serpentes_TEST_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Pyrokar_FIRE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -167,7 +167,7 @@ instance DIA_Serpentes_NOIDEA(C_Info)
 
 func int DIA_Serpentes_NOIDEA_Condition()
 {
-	if((MIS_Golem == LOG_Running) && (hero.guild == GIL_NOV))
+	if((MIS_Golem == LOG_Running) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -195,7 +195,7 @@ instance DIA_Serpentes_NOHELP(C_Info)
 
 func int DIA_Serpentes_NOHELP_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Serpentes_NOIDEA) && (MIS_Golem == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && (!Npc_KnowsInfo(other,DIA_Ulthar_TEST) || Npc_KnowsInfo(other,DIA_Serpentes_YOURSTORY)))
+	if(Npc_KnowsInfo(other,DIA_Serpentes_NOIDEA) && (MIS_Golem == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && (!Npc_KnowsInfo(other,DIA_Ulthar_TEST) || Npc_KnowsInfo(other,DIA_Serpentes_YOURSTORY)))
 	{
 		if(!Npc_IsDead(Magic_Golem))
 		{
@@ -233,7 +233,7 @@ instance DIA_Serpentes_SUCCESS(C_Info)
 
 func int DIA_Serpentes_SUCCESS_Condition()
 {
-	if((MIS_Golem == LOG_Running) && (hero.guild == GIL_NOV))
+	if((MIS_Golem == LOG_Running) && (other.guild == GIL_NOV))
 	{
 		if(Npc_IsDead(Magic_Golem))
 		{
@@ -314,7 +314,7 @@ func int DIA_Serpentes_MinenAnteile_Condition()
 {
 	if((Pedro_Traitor == TRUE) && (Kapitel >= 3))
 	{
-		if(hero.guild == GIL_KDF)
+		if(other.guild == GIL_KDF)
 		{
 			if(!Npc_IsDead(Salandril))
 			{
@@ -353,7 +353,7 @@ func int DIA_Serpentes_MinenAnteile_Condition()
 				return TRUE;
 			};
 		}
-		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+		else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 		{
 			if(!Npc_IsDead(Salandril))
 			{
@@ -429,47 +429,47 @@ func void DIA_Serpentes_MinenAnteile_was_ja()
 	MIS_Serpentes_MinenAnteil_KDF = LOG_Running;
 	if(!Npc_IsDead(Salandril))
 	{
-		CreateInvItems(Salandril,ItWr_MinenAnteil_Mis,2);
+		CreateInvItems(Salandril,ItWr_MinenAnteil_MIS,2);
 		SalandrilMinenAnteil_MAINCounter += 2;
 	};
 	if(!Npc_IsDead(Matteo))
 	{
-		CreateInvItems(Matteo,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Matteo,ItWr_MinenAnteil_MIS,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
 	if(!Npc_IsDead(Bosper))
 	{
-		CreateInvItems(Bosper,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Bosper,ItWr_MinenAnteil_MIS,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
 	if(!Npc_IsDead(Zuris))
 	{
-		CreateInvItems(Zuris,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Zuris,ItWr_MinenAnteil_MIS,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
 	if(!Npc_IsDead(Elena))
 	{
-		CreateInvItems(Elena,ItWr_MinenAnteil_Mis,2);
+		CreateInvItems(Elena,ItWr_MinenAnteil_MIS,2);
 		SalandrilMinenAnteil_MAINCounter += 2;
 	};
 	if(!Npc_IsDead(Orlan))
 	{
-		CreateInvItems(Orlan,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Orlan,ItWr_MinenAnteil_MIS,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
 	if(!Npc_IsDead(Hakon))
 	{
-		CreateInvItems(Hakon,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Hakon,ItWr_MinenAnteil_MIS,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
 	if(!Npc_IsDead(Rosi))
 	{
-		CreateInvItems(Rosi,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Rosi,ItWr_MinenAnteil_MIS,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
 	if(!Npc_IsDead(Canthar))
 	{
-		CreateInvItems(Canthar,ItWr_MinenAnteil_Mis,3);
+		CreateInvItems(Canthar,ItWr_MinenAnteil_MIS,3);
 		SalandrilMinenAnteil_MAINCounter += 3;
 	};
 	Log_CreateTopic(TOPIC_MinenAnteileKDF,LOG_MISSION);
@@ -519,9 +519,9 @@ instance DIA_Serpentes_MinenAnteileBringen(C_Info)
 
 func int DIA_Serpentes_MinenAnteileBringen_Condition()
 {
-	if((MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_HasItems(other,ItWr_MinenAnteil_Mis) && (hero.guild == GIL_KDF))
+	if((MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_HasItems(other,ItWr_MinenAnteil_MIS) && (other.guild == GIL_KDF))
 	{
-		if(Npc_HasItems(other,ItWr_MinenAnteil_Mis) > 1)
+		if(Npc_HasItems(other,ItWr_MinenAnteil_MIS) > 1)
 		{
 			DIA_Serpentes_MinenAnteileBringen.description = "Я смог найти несколько акций шахт.";
 		}
@@ -538,7 +538,7 @@ func void DIA_Serpentes_MinenAnteileBringen_Info()
 	var int SerpentesMinenAnteilCount;
 	var int SerpentesMinenAnteilGeld;
 	var int MinenAnteilLeft;
-	SerpentesMinenAnteilCount = Npc_HasItems(other,ItWr_MinenAnteil_Mis);
+	SerpentesMinenAnteilCount = Npc_HasItems(other,ItWr_MinenAnteil_MIS);
 	if(SerpentesMinenAnteilCount == 1)
 	{
 		AI_Output(other,self,"DIA_Serpentes_MinenAnteileBringen_15_00");	//Я смог найти акции шахт.
@@ -547,8 +547,8 @@ func void DIA_Serpentes_MinenAnteileBringen_Info()
 	{
 		AI_Output(other,self,"DIA_Serpentes_MinenAnteileBringen_15_01");	//Я смог найти несколько акций шахт.
 	};
-	B_GiveInvItems(other,self,ItWr_MinenAnteil_Mis,SerpentesMinenAnteilCount);
-	Npc_RemoveInvItems(self,ItWr_MinenAnteil_Mis,SerpentesMinenAnteilCount);
+	B_GiveInvItems(other,self,ItWr_MinenAnteil_MIS,SerpentesMinenAnteilCount);
+	Npc_RemoveInvItems(self,ItWr_MinenAnteil_MIS,SerpentesMinenAnteilCount);
 	B_GivePlayerXP(SerpentesMinenAnteilCount * XP_BringSerpentesMinenAnteil);
 	SerpentesMinenAnteilCounter += SerpentesMinenAnteilCount;
 	MinenAnteilLeft = SalandrilMinenAnteil_MAINCounter - SerpentesMinenAnteilCounter;
@@ -594,7 +594,7 @@ instance DIA_Serpentes_GOTSalandril(C_Info)
 
 func int DIA_Serpentes_GOTSalandril_Condition()
 {
-	if((SC_KnowsProspektorSalandril == TRUE) && (hero.guild == GIL_KDF))
+	if((SC_KnowsProspektorSalandril == TRUE) && (other.guild == GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -622,7 +622,7 @@ func int DIA_Serpentes_SalandrilHERE_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Serpentes_GOTSalandril) || (MIS_Serpentes_BringSalandril_SLD != FALSE))
 	{
-		if(!Npc_IsDead(Salandril) && Npc_KnowsInfo(other,DIA_Salandril_GehinsKloster))
+		if(!Npc_IsDead(Salandril) && (Salandril_SentToMonastery == TRUE))
 		{
 			if(Npc_GetDistToWP(Salandril,"ALTAR") < 5000)
 			{

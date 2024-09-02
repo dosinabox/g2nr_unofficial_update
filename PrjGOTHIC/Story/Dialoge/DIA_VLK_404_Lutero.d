@@ -19,11 +19,6 @@ func void DIA_Lutero_EXIT_Info()
 {
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
-	if((Lutero_Krallen == LOG_Running) && (MIS_Fajeth_Kill_Snapper == LOG_SUCCESS) && !Npc_KnowsInfo(other,DIA_Bilgot_KNOWSLEADSNAPPER))
-	{
-		Lutero_Krallen = LOG_OBSOLETE;
-		B_CheckLog();
-	};
 };
 
 
@@ -174,8 +169,6 @@ func void DIA_Lutero_Kralle_Info()
 	AI_Output(self,other,"DIA_Lutero_Kralle_13_01");	//Мой клиент будет счастлив услышать это.
 	B_GiveInvItems(other,self,ItAt_ClawLeader,1);
 	Npc_RemoveInvItem(self,ItAt_ClawLeader);
-	Lutero_Krallen = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Ambient);
 	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Lutero_Hello_13_02");	//У меня нет этого рунного камня с собой. Но я знаю, где его можно найти.
@@ -188,6 +181,8 @@ func void DIA_Lutero_Kralle_Info()
 		AI_Output(self,other,"DIA_Lutero_Hello_13_05");	//Вот кольцо, как я и обещал тебе.
 		B_GiveInvItems(self,other,ItRi_Prot_Total_01,1);
 	};
+	Lutero_Krallen = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Ambient);
 };
 
 

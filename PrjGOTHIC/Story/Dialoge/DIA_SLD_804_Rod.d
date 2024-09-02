@@ -18,7 +18,6 @@ func int DIA_Rod_EXIT_Condition()
 func void DIA_Rod_EXIT_Info()
 {
 	B_ClearFakeItems(other);
-	AI_EquipBestMeleeWeapon(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -87,7 +86,7 @@ func int DIA_Rod_WannaLearn_Condition()
 func void DIA_Rod_WannaLearn_Info()
 {
 	AI_Output(other,self,"DIA_Rod_WannaLearn_15_00");	//Ты можешь обучить меня владению двуручным оружием?
-	if((Rod_WetteGewonnen == TRUE) || (self.aivar[AIV_DefeatedByPlayer] == TRUE))
+	if((MIS_RodSword == LOG_SUCCESS) || (self.aivar[AIV_DefeatedByPlayer] == TRUE))
 	{
 		if(!Npc_HasItems(self,ItMw_2h_Rod))
 		{
@@ -123,8 +122,8 @@ func void B_BuildLearnDialog_Rod()
 	{
 		Info_ClearChoices(DIA_Rod_Teach);
 		Info_AddChoice(DIA_Rod_Teach,Dialog_Back,DIA_Rod_Teach_Back);
-		Info_AddChoice(DIA_Rod_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Rod_Teach_2H_1);
-		Info_AddChoice(DIA_Rod_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Rod_Teach_2H_5);
+		Info_AddChoice(DIA_Rod_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,1),DIA_Rod_Teach_2H_1);
+		Info_AddChoice(DIA_Rod_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,5),DIA_Rod_Teach_2H_5);
 	}
 	else
 	{
@@ -218,7 +217,7 @@ func void DIA_Rod_WannaJoin_Info()
 	{
 		AI_Output(self,other,"DIA_Rod_WannaJoin_06_01");	//А как насчет того, чтобы сначала вернуть мне мой меч, а?
 	}
-	else if((self.aivar[AIV_DefeatedByPlayer] == TRUE) || (Rod_WetteGewonnen == TRUE))
+	else if((self.aivar[AIV_DefeatedByPlayer] == TRUE) || (MIS_RodSword == LOG_SUCCESS))
 	{
 		if(self.aivar[AIV_DefeatedByPlayer] == TRUE)
 		{
@@ -263,7 +262,7 @@ func int DIA_Rod_Duell_Condition()
 {
 	if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
-		if(((Rod_WetteGewonnen == FALSE) && (Rod_SchwachGesagt == TRUE)) || (MIS_Jarvis_SldKO == LOG_Running))
+		if(((MIS_RodSword != LOG_SUCCESS) && (Rod_SchwachGesagt == TRUE)) || (MIS_Jarvis_SldKO == LOG_Running))
 		{
 			return TRUE;
 		};
@@ -299,7 +298,7 @@ instance DIA_Rod_StarkGenug(C_Info)
 
 func int DIA_Rod_StarkGenug_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Rod_WetteGewonnen == FALSE) && (Rod_SchwachGesagt == TRUE))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Rod_SchwachGesagt == TRUE) && Npc_HasItems(self,ItMw_2h_Rod))
 	{
 		return TRUE;
 	};
@@ -309,9 +308,10 @@ func void DIA_Rod_StarkGenug_Info()
 {
 	AI_Output(other,self,"DIA_Rod_StarkGenug_15_00");	//Я достаточно силен!
 	AI_Output(self,other,"DIA_Rod_StarkGenug_06_01");	//Чушь! Ты даже не смог ПОДНЯТЬ приличный меч вроде моего!
-	Log_CreateTopic(Topic_RodWette,LOG_MISSION);
-	Log_SetTopicStatus(Topic_RodWette,LOG_Running);
-	B_LogEntry(Topic_RodWette,"Наемник Род думает, что я не смогу удержать его меч.");
+	MIS_RodSword = LOG_Running;
+	Log_CreateTopic(TOPIC_RodWette,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_RodWette,LOG_Running);
+	B_LogEntry(TOPIC_RodWette,"Наемник Род думает, что я не смогу удержать его меч.");
 };
 
 
@@ -328,7 +328,7 @@ instance DIA_Rod_BINStarkGenug(C_Info)
 
 func int DIA_Rod_BINStarkGenug_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Rod_WetteGewonnen == FALSE) && Npc_KnowsInfo(other,DIA_Rod_StarkGenug))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && Npc_KnowsInfo(other,DIA_Rod_StarkGenug) && Npc_HasItems(self,ItMw_2h_Rod))
 	{
 		return TRUE;
 	};
@@ -341,8 +341,6 @@ func void DIA_Rod_BINStarkGenug_Info()
 };
 
 
-var int Rod_WetteGewonnen;
-var int Rod_WetteAngenommen;
 var int Rod_Gold;
 
 instance DIA_Rod_Wette(C_Info)
@@ -358,7 +356,7 @@ instance DIA_Rod_Wette(C_Info)
 
 func int DIA_Rod_Wette_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Rod_WetteGewonnen == FALSE) && Npc_KnowsInfo(other,DIA_Rod_BINStarkGenug) && Npc_HasItems(self,ItMw_2h_Rod) && (Rod_WetteAngenommen == FALSE))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && Npc_KnowsInfo(other,DIA_Rod_BINStarkGenug) && Npc_HasItems(self,ItMw_2h_Rod) && (MIS_RodSword == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -369,14 +367,14 @@ func void DIA_Rod_Wette_Info()
 	AI_Output(other,self,"DIA_Rod_Wette_15_00");	//Готов поспорить, что смогу удержать твой меч!
 	AI_Output(self,other,"DIA_Rod_Wette_06_01");	//Точно? Хмм... (думает) И сколько же мне с тебя взять?
 	AI_Output(self,other,"DIA_Rod_Wette_06_02");	//Ну... ты похож на нищего сосунка. Скажем, это будет 30 монет! У тебя есть хотя бы столько?
+	if(Rod_Gold == FALSE)
+	{
+		B_LogEntry(TOPIC_RodWette,"Род ставит 30 золотых монет на то, что я не смогу удержать его меч.");
+		Rod_Gold = TRUE;
+	};
 	Info_ClearChoices(DIA_Rod_Wette);
 	Info_AddChoice(DIA_Rod_Wette,"Нет.",DIA_Rod_Wette_No);
 	Info_AddChoice(DIA_Rod_Wette,"Конечно.",DIA_Rod_Wette_Yes);
-	if(Rod_Gold == FALSE)
-	{
-		B_LogEntry(Topic_RodWette,"Род ставит 30 золотых монет на то, что я не смогу удержать его меч.");
-		Rod_Gold = TRUE;
-	};
 };
 
 func void DIA_Rod_Wette_No()
@@ -392,7 +390,6 @@ func void DIA_Rod_Wette_Yes()
 	AI_Output(self,other,"DIA_Rod_Wette_Yes_06_01");	//Покажи...
 	if(B_GiveInvItems(other,self,ItMi_Gold,30))
 	{
-		Rod_WetteAngenommen = TRUE;
 		AI_Output(other,self,"DIA_Rod_Wette_Yes_15_02");	//Вот!
 		AI_Output(self,other,"DIA_Rod_Wette_Yes_06_03");	//(злорадно) Хорошо, давай посмотрим, насколько ты силен...
 		B_GiveInvItems(self,other,ItMw_2h_Rod,1);
@@ -411,15 +408,17 @@ func void DIA_Rod_Wette_Yes()
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_06");	//Я никак не ожидал от тебя такого. Ты не похож на человека, обладающего такой силой.
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_07");	//Ну, похоже, я только что потерял 30 золотых монет. Держи.
 			B_GiveInvItems(self,other,ItMi_Gold,60);
-			B_LogEntry(Topic_RodWette,"Я смог удержать меч Рода.");
-			Rod_WetteGewonnen = TRUE;
+			B_LogEntry(TOPIC_RodWette,"Я смог удержать меч Рода.");
+			MIS_RodSword = LOG_SUCCESS;
 			B_GivePlayerXP(XP_Rod);
 		}
 		else
 		{
 			AI_Output(other,self,"DIA_Rod_Wette_Yes_15_08");	//Я не могу поднять это оружие.
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_09");	//(смеется) Что я и говорил!
-			B_LogEntry(Topic_RodWette,"Я не смог удержать меч Рода.");
+			B_LogEntry(TOPIC_RodWette,"Я не смог удержать меч Рода.");
+			MIS_RodSword = LOG_FAILED;
+			B_CheckLog();
 		};
 		AI_Output(self,other,"DIA_Rod_Wette_Yes_06_10");	//А теперь отдай мне мое оружие назад.
 		Info_ClearChoices(DIA_Rod_Wette);
@@ -439,10 +438,11 @@ func void DIA_Rod_Wette_GiveBack()
 	B_ClearFakeItems(other);
 	AI_Output(other,self,"DIA_Rod_Wette_GiveBack_15_00");	//Вот, держи.
 	B_GiveInvItems(other,self,ItMw_2h_Rod,1);
-	if(Rod_WetteGewonnen == FALSE)
+	if(MIS_RodSword != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Rod_Wette_GiveBack_06_01_add");	//Да ты просто слабак!
 	};
+	AI_EquipBestMeleeWeapon(self);
 	Info_ClearChoices(DIA_Rod_Wette);
 };
 
@@ -481,9 +481,24 @@ func int DIA_Rod_GiveItBack_Condition()
 
 func void DIA_Rod_GiveItBack_Info()
 {
+	var C_Item ReadyWeap;
+	if(Npc_HasReadiedMeleeWeapon(other))
+	{
+		ReadyWeap = Npc_GetReadiedWeapon(other);
+		if(Hlp_IsItem(ReadyWeap,ItMw_2h_Rod))
+		{
+			AI_DropItem(other,ItMw_2h_Rod);
+			AI_RemoveWeapon(other);
+		};
+	};
 	B_GiveInvItems(other,self,ItMw_2h_Rod,1);
 	AI_Output(other,self,"DIA_Rod_GiveItBack_15_00");	//Вот, держи свой меч!
 	AI_Output(self,other,"DIA_Rod_GiveItBack_06_01");	//Вовремя!
+	if(Hlp_IsItem(ReadyWeap,ItMw_2h_Rod))
+	{
+		AI_TakeItem(self,ReadyWeap);
+	};
+	AI_EquipBestMeleeWeapon(self);
 	if(Rod_SchwertXPGiven == FALSE)
 	{
 		if(CurrentLevel == NEWWORLD_ZEN)
@@ -525,7 +540,7 @@ func void DIA_Rod_PERM_Info()
 	{
 		if(other.guild == GIL_NONE)
 		{
-			if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Rod_WetteGewonnen == FALSE))
+			if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (MIS_RodSword != LOG_SUCCESS))
 			{
 				AI_Output(self,other,"DIA_Rod_PERM_06_01");	//Это не твое дело, слабак.
 				Rod_SchwachGesagt = TRUE;
@@ -543,8 +558,8 @@ func void DIA_Rod_PERM_Info()
 		{
 			AI_Output(self,other,"DIA_Rod_PERM_06_04");	//Ты не наш человек. Ошивался бы ты лучше в другом месте!
 		};
-	};
-	if(Kapitel >= 3)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_Rod_PERM_06_05");	//Если все эти истории о драконах действительно правда, нам нужно собрать отряд и прикончить этих тварей!
 	};

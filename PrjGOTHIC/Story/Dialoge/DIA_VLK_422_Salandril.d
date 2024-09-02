@@ -217,14 +217,15 @@ func void DIA_Salandril_GehinsKloster_Info()
 {
 	AI_Output(other,self,"DIA_Salandril_GehinsKloster_15_00");	//“ак ты пойдешь в монастырь, или теб€ еще раз проучить?
 	AI_Output(self,other,"DIA_Salandril_GehinsKloster_13_01");	//“ы еще пожалеешь об этом. ƒа, черт теб€ побери, € пойду в этот монастырь, но тебе это просто так с рук не сойдет.
-	if(Npc_HasItems(self,ItWr_MinenAnteil_Mis) && (hero.guild == GIL_KDF))
+	if(Npc_HasItems(self,ItWr_MinenAnteil_MIS) && (hero.guild == GIL_KDF))
 	{
-		B_GiveInvItems(self,other,ItWr_MinenAnteil_Mis,Npc_HasItems(self,ItWr_MinenAnteil_Mis));
+		B_GiveInvItems(self,other,ItWr_MinenAnteil_MIS,Npc_HasItems(self,ItWr_MinenAnteil_MIS));
 	};
 	if(MIS_Serpentes_BringSalandril_SLD == LOG_Running)
 	{
 		MIS_Serpentes_BringSalandril_SLD = LOG_SUCCESS;
 	};
+	Salandril_SentToMonastery = TRUE;
 	SalandrilLocation = LOC_MONASTERY;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"KlosterUrteil");
@@ -244,7 +245,7 @@ instance DIA_Salandril_Verschwinde(C_Info)
 
 func int DIA_Salandril_Verschwinde_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Salandril_GehinsKloster) && Npc_IsInState(self,ZS_Talk))
+	if((Salandril_SentToMonastery == TRUE) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};

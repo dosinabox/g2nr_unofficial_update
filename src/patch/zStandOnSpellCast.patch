@@ -1,0 +1,28 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zStandOnSpellCast]
+		// engine specific
+		INT text_oCNpc_EV_CastSpell_call_SetFocusVob = ZenDef(0x0074A96C, 0x0078BE1C, 0x007966D5, 0x0067FBB5)
+		
+		INT func_oCAniCtrl_Human__Stand = ZenDef(0x0062DCF0, 0x006534C0, 0x0065AB00, 0x006B7490)
+		
+		INT field_oCNpc_human_ai = ZenDef(0x9B4, 0x9BC, 0x8E8, 0x97C)
+		
+		INT const_oCMsgMagic_EV_CASTSPELL = 8
+		// end of engine specific
+		
+		#assembler [text_oCNpc_EV_CastSpell_call_SetFocusVob]
+			pop eax
+			push ecx
+			push eax
+			orgcode
+			pop ecx
+			mov ecx, [ecx+$field_oCNpc_human_ai]
+			test ecx, ecx
+			jz continue
+			
+			call $func_oCAniCtrl_Human__Stand
+			
+		continue:
+		#/assembler
+	#/patch
+#/engine

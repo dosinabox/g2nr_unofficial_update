@@ -1,0 +1,27 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zDeadDoAIState]
+		// engine specific
+		INT text_oCAniCtrl_Human_IsDead_call_npc_SetBodyState = ZenDef(0x006252E2, 0x00649FE9, 0x006512FE, 0x006ADB7E)
+		INT text_oCAIHuman_DoAI_call_ogame_GetSpawnManager = ZenDef(0x00615B90, 0x00638A73, 0x0063F4D0, 0x0069BCA0)
+
+		INT func_oCNpc_States_DoAIState = ZenDef(0x006C5C60, 0x006FB5B0, 0x0070DC40, 0x0076D1A0)
+		INT func_oCNpc_DoDie = ZenDef(0x006934A0, 0x006C4BF0, 0x006D8000, 0x00736760)
+
+		INT field_oCNpc_state = ZenDef(0x470, 0x470, 0x4FC, 0x588)
+		// end of engine specific
+
+		#assembler [text_oCAniCtrl_Human_IsDead_call_npc_SetBodyState]
+			mov dword ptr [esp], 0
+			call $func_oCNpc_DoDie
+		#/assembler
+
+		#assembler [text_oCAIHuman_DoAI_call_ogame_GetSpawnManager]
+			push ecx
+			mov ecx, [esp+4]
+			lea ecx, [ecx+$field_oCNpc_state]
+			call $func_oCNpc_States_DoAIState
+			pop ecx
+			orgcode
+		#/assembler
+	#/patch
+#/engine

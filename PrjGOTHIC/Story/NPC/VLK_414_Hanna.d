@@ -12,8 +12,7 @@ instance VLK_414_Hanna(Npc_Default)
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,45,ItMi_Gold,25);
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
-	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe1",FaceBabe_N_WhiteCloth,BodyTex_N,ITAR_VlkBabe_L);
-//	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabe_L_Charlotte,BodyTex_L,ITAR_VlkBabe_L);
+	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe1",FaceBabe_N_WhiteCloth,BodyTexBabe_N,ITAR_VlkBabe_L);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,35);

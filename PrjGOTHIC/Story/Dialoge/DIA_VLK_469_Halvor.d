@@ -89,7 +89,7 @@ instance DIA_Halvor_TRADE(C_Info)
 
 func int DIA_Halvor_TRADE_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Halvor_Hallo) && Wld_IsTime(5,0,20,0) && (Halvor_Ausgeliefert == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Halvor_Hallo) && Wld_IsTime(5,0,20,0) && (Halvor_Ausgeliefert == FALSE))
 	{
 		return TRUE;
 	};
@@ -201,7 +201,6 @@ instance DIA_Halvor_MESSAGE(C_Info)
 	information = DIA_Halvor_MESSAGE_Info;
 	permanent = FALSE;
 	description = "Я думаю, этот клочок бумаги имеет отношение к тебе...";
-//	trade = FALSE;
 };
 
 
@@ -297,6 +296,7 @@ func void DIA_Halvor_Zeichen_Info()
 	AI_Output(self,other,"DIA_Halvor_Zeichen_06_01");	//(тихо) Я готов сделать тебе предложение. Если у тебя есть серебряные тарелки или кубки, я возьму их по хорошей цене.
 	CreateInvItems(self,ItKe_Lockpick,20);
 	B_LogEntry(Topic_Diebesgilde,"Халвор купит серебряные тарелки и кубки по очень хорошей цене.");
+	self.aivar[AIV_IGNORE_Theft] = TRUE;
 };
 
 
@@ -367,6 +367,7 @@ func void DIA_Halvor_Hehlerei_Annehmen()
 	AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	B_RemoveEveryInvItem(other,ItMi_SilverCup);
 	B_RemoveEveryInvItem(other,ItMi_SilverPlate);
+	TotalSilverForHalvor += amount;
 	B_GiveInvItems(self,other,ItMi_Gold,Halvor_Score);
 	AI_Output(other,self,"DIA_Halvor_Zeichen_Annehmen_15_00");	//Хорошо. Продано!
 	AI_Output(self,other,"DIA_Halvor_Zeichen_Annehmen_06_01");	//Мы заключили несколько хороших сделок сегодня. Лучше не приходи ко мне до завтра, это может вызвать подозрения, понимаешь?

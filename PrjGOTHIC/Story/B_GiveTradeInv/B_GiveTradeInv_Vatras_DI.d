@@ -17,7 +17,7 @@ func void B_GiveTradeInv_Vatras_DI(var C_Npc slf)
 		CreateInvItems(slf,ItSc_Waterfist,1);
 		if(hero.guild == GIL_KDF)
 		{
-			CreateInvItems(slf,ITWR_Addon_Runemaking_KDW_CIRC1,1);
+			CreateInvItems(slf,ItWr_Addon_Runemaking_KDW_CIRC1,1);
 			if(!Npc_HasItems(hero,ItSc_HarmUndead) && !Npc_HasItems(hero,ItRu_HarmUndead))
 			{
 				CreateInvItems(slf,ItSc_HarmUndead,1);

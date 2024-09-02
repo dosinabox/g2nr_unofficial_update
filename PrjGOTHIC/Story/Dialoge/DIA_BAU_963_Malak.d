@@ -12,15 +12,12 @@ instance DIA_Malak_EXIT(C_Info)
 
 func int DIA_Malak_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Malak_EXIT_Info()
 {
-	AI_StopProcessInfos(self);
+	B_NpcClearObsessionByDMT(self);
 };
 
 
@@ -265,31 +262,6 @@ func void DIA_Malak_PERMKAP1_Info()
 };
 
 
-instance DIA_Malak_KAP3_EXIT(C_Info)
-{
-	npc = BAU_963_Malak;
-	nr = 999;
-	condition = DIA_Malak_KAP3_EXIT_Condition;
-	information = DIA_Malak_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Malak_KAP3_EXIT_Condition()
-{
-	if(Kapitel >= 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Malak_KAP3_EXIT_Info()
-{
-	B_NpcClearObsessionByDMT(self);
-};
-
-
 instance DIA_Malak_FLEEFROMPASS(C_Info)
 {
 	npc = BAU_963_Malak;
@@ -320,9 +292,9 @@ func void DIA_Malak_FLEEFROMPASS_Info()
 		AI_Output(self,other,"DIA_Malak_FLEEFROMPASS_08_01");	//Я сбежал с фермы Бенгара. Я не хочу, чтобы меня сожрали все эти твари, что толпами валят из Прохода.
 		AI_Output(self,other,"DIA_Malak_FLEEFROMPASS_08_02");	//Ты представить себе не можешь, какие ужасы повылазили оттуда за последние несколько дней.
 		AI_Output(other,self,"DIA_Malak_FLEEFROMPASS_15_03");	//Могу.
-		MIS_GetMalakBack = LOG_Running;
-		if(!Npc_KnowsInfo(other,DIA_Bengar_ALLEIN))
+		if(MIS_GetMalakBack == FALSE)
 		{
+			MIS_GetMalakBack = LOG_Running;
 			Log_CreateTopic(TOPIC_BengarMALAK,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_BengarMALAK,LOG_Running);
 		};
@@ -339,7 +311,7 @@ func void B_Malak_DementorComment()
 	AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_01_add");	//Я ни на шаг отсюда не сойду!
 	if(Malak_DementorCommentLog == FALSE)
 	{
-		if(MIS_GetMalakBack != LOG_Running)
+		if(MIS_GetMalakBack == FALSE)
 		{
 			MIS_GetMalakBack = LOG_Running;
 			Log_CreateTopic(TOPIC_BengarMALAK,LOG_MISSION);
@@ -362,10 +334,6 @@ func void B_Malak_BackToBengar()
 	B_StartOtherRoutine(BAU_967_Bauer,"Start");
 	B_StartOtherRoutine(BAU_968_Bauer,"Start");
 	B_StartOtherRoutine(BAU_969_Bauer,"Start");
-	if(PardosLeftFarmWithMalak == TRUE)
-	{
-		B_StartOtherRoutine(Pardos_NW,"Start");
-	};
 };
 
 var int DIA_Malak_Heilung_oneTime;

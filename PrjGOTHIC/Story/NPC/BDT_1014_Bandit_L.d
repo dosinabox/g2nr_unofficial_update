@@ -19,11 +19,11 @@ instance BDT_1014_Bandit_L(Npc_Default)
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,10);
-	daily_routine = RTN_Start_1014;
+	daily_routine = Rtn_Start_1014;
 };
 
 
-func void RTN_Start_1014()
+func void Rtn_Start_1014()
 {
 	TA_Stand_ArmsCrossed(0,0,12,0,"NW_XARDAS_BANDITS_LEFT");
 	TA_Stand_ArmsCrossed(12,0,0,0,"NW_XARDAS_BANDITS_LEFT");

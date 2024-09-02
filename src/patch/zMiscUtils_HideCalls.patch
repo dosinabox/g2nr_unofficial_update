@@ -1,0 +1,11 @@
+#engine [G2]
+	#patch [zMiscUtils_HideCalls]
+		MemSet(0x0063FA69, '00', 5) // oCNpc::TurnToEnemy
+	#/patch
+#/engine
+
+#engine [G2A]
+	#patch [zMiscUtils_HideCalls]
+		MemSet(0x0069C239, '00', 5) // oCNpc::TurnToEnemy
+	#/patch
+#/engine

@@ -1,0 +1,27 @@
+#engine [G2, G2A]
+	#patch [zTrafoHpFix]
+		// engine specific
+		INT text_oCNpc_CopyTransformSpellInvariantValuesTo_set_hitpoints = ZenDef(0x00000000, 0x00000000, 0x006DEC24, 0x0073D444)
+		
+		INT field_oCNpc_attribute = ZenDef(0x184, 0x184, 0x1A4, 0x1B8)
+		// end of engine specific
+		
+		#assembler [text_oCNpc_CopyTransformSpellInvariantValuesTo_set_hitpoints]
+			test eax, eax
+			jg continue
+			
+			mov edx, [esi+$field_oCNpc_attribute]
+			test edx, edx
+			jle continue
+			
+			mov edx, [edi+$field_oCNpc_attribute+4]
+			cmp edx, 1
+			jl continue
+			
+			mov eax, 1
+		
+		continue:
+			orgcode
+		#/assembler
+	#/patch
+#/engine

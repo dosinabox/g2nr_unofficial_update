@@ -10,7 +10,7 @@ func int ZS_HealSelf_Loop()
 	{
 		return LOOP_END;
 	};
-	if((self.guild == GIL_KDF) || (self.guild == GIL_KDW) || (self.aivar[AIV_MagicUser] == MAGIC_ALWAYS))
+	if(C_NpcIsMage(self) || (self.aivar[AIV_MagicUser] == MAGIC_ALWAYS))
 	{
 		if(self.attribute[ATR_MANA] >= SPL_Cost_FullHeal)
 		{
@@ -21,7 +21,7 @@ func int ZS_HealSelf_Loop()
 			return LOOP_CONTINUE;
 		};
 	}
-	else if((self.guild == GIL_PAL) && (self.attribute[ATR_MANA] >= SPL_Cost_PalFullHeal))
+	else if(C_NpcIsPaladin(self) && (self.attribute[ATR_MANA] >= SPL_Cost_PalFullHeal))
 	{
 		AI_PlayAni(self,"T_MAGRUN_2_HEASHOOT");
 		Wld_PlayEffect("spellFX_PalHeal_ORIGIN",self,self,0,0,0,FALSE);

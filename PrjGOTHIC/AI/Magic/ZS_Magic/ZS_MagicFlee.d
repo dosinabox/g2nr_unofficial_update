@@ -2,7 +2,6 @@
 func void B_StopMagicFlee()
 {
 	Npc_PercDisable(self,PERC_ASSESSDAMAGE);
-//	Npc_SetTarget(self,other);
 	Npc_SetTarget(self,hero);
 	if(self.guild < GIL_SEPERATOR_HUM)
 	{
@@ -29,7 +28,7 @@ func void ZS_MagicFlee()
 			return;
 		};
 	};
-	if((self.guild == GIL_KDF) || (self.guild == GIL_PAL) || (self.guild == GIL_KDW) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Xardas)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Andre)) || C_IsNpc(self,MIL_304_Torwache) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Torwache_305)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Vatras)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Myxir_CITY)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Daron)))
+	if(C_NpcIsMage(self) || C_NpcIsPaladin(self))
 	{
 		if(!Npc_IsInState(self,ZS_ReactToWeapon))
 		{
@@ -44,7 +43,7 @@ func void ZS_MagicFlee()
 		{
 			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rick))
 			{
-				Npc_ExchangeRoutine(self,"Flucht3");
+				Npc_ExchangeRoutine(self,"FLUCHT3");
 				self.aivar[AIV_DropDeadAndKill] = FALSE;
 				ScaredRick = TRUE;
 			};
@@ -53,7 +52,7 @@ func void ZS_MagicFlee()
 		{
 			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rumbold))
 			{
-				Npc_ExchangeRoutine(self,"Flucht3");
+				Npc_ExchangeRoutine(self,"FLUCHT3");
 				self.aivar[AIV_DropDeadAndKill] = FALSE;
 				ScaredRumbold = TRUE;
 			};
@@ -71,7 +70,7 @@ func void ZS_MagicFlee()
 			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Alvares))
 			{
 				B_SetGuild(self,GIL_SLD);
-				Npc_ExchangeRoutine(self,"Bigfarm");
+				Npc_ExchangeRoutine(self,"BIGFARM");
 				ScaredAlvares = TRUE;
 			};
 		};
@@ -80,35 +79,42 @@ func void ZS_MagicFlee()
 			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Engardo))
 			{
 				B_SetGuild(self,GIL_SLD);
-				Npc_ExchangeRoutine(self,"Bigfarm");
+				Npc_ExchangeRoutine(self,"BIGFARM");
 				ScaredEngardo = TRUE;
 			};
 		};
 		if((ScaredAlvares == TRUE) && (ScaredEngardo == TRUE) && (ScaredFarmers == FALSE))
 		{
-			if(Hlp_IsValidNpc(Akil) && !Npc_IsDead(Akil))
+			if(Hlp_IsValidNpc(Akil))
 			{
-				Npc_ExchangeRoutine(Akil,"Start");
+				if(!Npc_IsDead(Akil))
+				{
+					Npc_ExchangeRoutine(Akil,"START");
+				};
 			};
-			if(Hlp_IsValidNpc(Kati) && !Npc_IsDead(Kati))
+			if(Hlp_IsValidNpc(Kati))
 			{
-				Npc_ExchangeRoutine(Kati,"Start");
+				if(!Npc_IsDead(Kati))
+				{
+					Npc_ExchangeRoutine(Kati,"START");
+				};
 			};
-			if(Hlp_IsValidNpc(Randolph) && !Npc_IsDead(Randolph))
+			if(Hlp_IsValidNpc(Randolph))
 			{
-				Npc_ExchangeRoutine(Randolph,"Start");
-				Randolph.flags = 0;
+				if(!Npc_IsDead(Randolph))
+				{
+					Npc_ExchangeRoutine(Randolph,"START");
+					Randolph.flags = 0;
+				};
 			};
 			ScaredFarmers = TRUE;
 		};
 	};
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_StopMagicFlee);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
-//	self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);
 	self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(hero);
 	self.aivar[AIV_Guardpassage_Status] = GP_NONE;
 	Npc_SetRefuseTalk(self,0);
-//	Npc_SetTempAttitude(self,Npc_GetPermAttitude(self,other));
 	Npc_SetTempAttitude(self,Npc_GetPermAttitude(self,hero));
 	B_StopLookAt(self);
 	AI_StopPointAt(self);

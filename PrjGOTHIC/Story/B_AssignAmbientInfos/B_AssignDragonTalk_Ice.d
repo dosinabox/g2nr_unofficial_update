@@ -60,10 +60,7 @@ func void DIA_Dragon_Ice_Hello_Info()
 	if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2) && !Npc_IsDead(DJG_Sylvio))
 	{
 		B_StartOtherRoutine(DJG_Sylvio,"IceWait2");
-		if(!Npc_IsDead(DJG_Bullco))
-		{
-			B_StartOtherRoutine(DJG_Bullco,"IceWait2");
-		};
+		B_StartOtherRoutine(DJG_Bullco,"IceWait2");
 	};
 };
 

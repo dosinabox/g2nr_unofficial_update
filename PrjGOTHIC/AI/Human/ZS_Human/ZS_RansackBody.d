@@ -36,6 +36,20 @@ func void ZS_RansackBody_End()
 				AI_EquipBestMeleeWeapon(self);
 			};
 		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Orlan))
+		{
+			if(Orlan_RoomPaymentRefused == TRUE)
+			{
+				B_RemoveEveryInvItem(other,ItKe_Orlan_HotelZimmer);
+			}
+			else if((Orlan_RoomIsRented == TRUE) && (Orlan_RoomIsFree == FALSE))
+			{
+				if(C_DaysSinceEvent(Orlan_RoomPaymentDay,7))
+				{
+					Orlan_RoomPaymentDay = Wld_GetDay();
+				};
+			};
+		}
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Francis))
 		{
 			if(GregIsBack == FALSE)

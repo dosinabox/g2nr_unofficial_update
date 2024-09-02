@@ -16,10 +16,7 @@ func void ZS_Pick_Ore()
 
 func int ZS_Pick_Ore_Loop()
 {
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"ORE"))
-	{
-		AI_UseMob(self,"ORE",1);
-	};
+	B_UseAvailableMob(self,"ORE");
 	return LOOP_CONTINUE;
 };
 

@@ -1,11 +1,7 @@
 
 func void B_JoinShip(var C_Npc slf)
 {
-	if(slf.attribute[ATR_HITPOINTS] == 1)
-	{
-		slf.attribute[ATR_HITPOINTS] += 1;
-	};
-	slf.flags = NPC_FLAG_IMMORTAL;
+	B_SetImmortal(slf);
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Angar_NW))
 	{
 		Angar_IsOnBoard = LOG_SUCCESS;

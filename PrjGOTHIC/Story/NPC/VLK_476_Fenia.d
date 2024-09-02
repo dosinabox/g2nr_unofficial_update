@@ -14,7 +14,7 @@ instance VLK_476_Fenia(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	B_CreateItemToSteal(self,50,ItMi_Gold,75);
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
-	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe1",FaceBabe_N_GreyCloth,BodyTex_N,ITAR_VlkBabe_L);
+	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe1",FaceBabe_N_GreyCloth,BodyTexBabe_N,ITAR_VlkBabe_L);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,15);

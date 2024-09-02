@@ -152,7 +152,7 @@ instance DIA_Rosi_WAREZ(C_Info)
 
 func int DIA_Rosi_WAREZ_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU) || Npc_KnowsInfo(other,DIA_Rosi_FLEEFROMSEKOB)) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
+	if((Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU) || Npc_KnowsInfo(other,DIA_Rosi_FLEEFROMSEKOB)) && (MIS_BringRosiBackToSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -184,7 +184,7 @@ instance DIA_Rosi_BARRIERE(C_Info)
 
 func int DIA_Rosi_BARRIERE_Condition()
 {
-	if((RosiToldAboutBarrier == TRUE) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
+	if((RosiToldAboutBarrier == TRUE) && (MIS_BringRosiBackToSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -210,7 +210,7 @@ instance DIA_Rosi_DuInBarriere(C_Info)
 
 func int DIA_Rosi_DuInBarriere_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rosi_BARRIERE) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Rosi_BARRIERE) && (MIS_BringRosiBackToSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -235,7 +235,7 @@ instance DIA_Rosi_BENGAR(C_Info)
 
 func int DIA_Rosi_BENGAR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rosi_DuInBarriere) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Rosi_DuInBarriere) && (MIS_BringRosiBackToSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -265,7 +265,7 @@ instance DIA_Rosi_Miliz(C_Info)
 
 func int DIA_Rosi_Miliz_Condition()
 {
-	if((RosiToldAboutMilitia == TRUE) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
+	if((RosiToldAboutMilitia == TRUE) && (MIS_BringRosiBackToSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -299,7 +299,7 @@ instance DIA_Rosi_ONAR(C_Info)
 
 func int DIA_Rosi_ONAR_Condition()
 {
-	if((RosiToldAboutOnar == TRUE) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
+	if((RosiToldAboutOnar == TRUE) && (MIS_BringRosiBackToSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -343,7 +343,7 @@ func int DIA_Rosi_PERMKAP1_Condition()
 func void DIA_Rosi_PERMKAP1_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_PERMKAP1_15_00");	//Выше нос.
-	if(MIS_bringRosiBackToSekob == LOG_SUCCESS)
+	if(MIS_BringRosiBackToSekob == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Rosi_PERMKAP1_17_01");	//Проваливай!
 	}
@@ -436,18 +436,18 @@ func void DIA_Rosi_HILFE_Info()
 	AI_StopProcessInfos(self);
 	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_NONE))
 	{
-		Npc_ExchangeRoutine(self,"FollowCity");
-		B_StartOtherRoutine(Till,"FollowCity");
+		Npc_ExchangeRoutine(self,"FOLLOWCITY");
+		B_StartOtherRoutine(Till,"FOLLOWCITY");
 	}
 	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
-		Npc_ExchangeRoutine(self,"FollowBigfarm");
-		B_StartOtherRoutine(Till,"FollowBigfarm");
+		Npc_ExchangeRoutine(self,"FOLLOWBIGFARM");
+		B_StartOtherRoutine(Till,"FOLLOWBIGFARM");
 	}
 	else if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
 	{
-		Npc_ExchangeRoutine(self,"FollowKloster");
-		B_StartOtherRoutine(Till,"FollowKloster");
+		Npc_ExchangeRoutine(self,"FOLLOWKLOSTER");
+		B_StartOtherRoutine(Till,"FOLLOWKLOSTER");
 	};
 	if(!Npc_KnowsInfo(other,DIA_Babera_Rosi))
 	{
@@ -471,7 +471,7 @@ instance DIA_Rosi_ANGEKOMMEN(C_Info)
 
 func int DIA_Rosi_ANGEKOMMEN_Condition()
 {
-	if((MIS_bringRosiBackToSekob != LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE))
+	if((MIS_BringRosiBackToSekob != LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE))
 	{
 		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_NONE))
 		{
@@ -502,7 +502,6 @@ func void DIA_Rosi_ANGEKOMMEN_Info()
 	AI_Output(self,other,"DIA_Rosi_ANGEKOMMEN_17_00");	//Дальше я сама найду дорогу.
 	AI_Output(self,other,"DIA_Rosi_ANGEKOMMEN_17_01");	//Спасибо. Я даже не знаю, что бы я делала без тебя.
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
-//	MIS_bringRosiBackToSekob = LOG_OBSOLETE;
 	MIS_RosisFlucht = LOG_SUCCESS;
 	AI_Output(self,other,"DIA_Rosi_ANGEKOMMEN_17_02");	//Пожалуйста, прими этот скромный дар. Ты заслужил его.
 	AI_WaitTillEnd(other,self);
@@ -551,7 +550,7 @@ instance DIA_Rosi_TRAIT(C_Info)
 
 func int DIA_Rosi_TRAIT_Condition()
 {
-	if(MIS_bringRosiBackToSekob == LOG_SUCCESS)
+	if(MIS_BringRosiBackToSekob == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -588,7 +587,7 @@ func int DIA_Rosi_MinenAnteil_Condition()
 func void DIA_Rosi_MinenAnteil_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_Minenanteil_15_00");	//А тебе не стыдно продавать поддельные акции?
-	if(MIS_bringRosiBackToSekob != LOG_SUCCESS)
+	if(MIS_BringRosiBackToSekob != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Rosi_Minenanteil_17_01");	//Нет. Мне нужно на что-то жить, и, к тому же, я сама их у кого-то купила.
 	}

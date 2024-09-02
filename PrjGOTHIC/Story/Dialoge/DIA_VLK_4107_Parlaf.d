@@ -60,7 +60,7 @@ instance DIA_Parlaf_ENGOR(C_Info)
 
 func int DIA_Parlaf_ENGOR_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Parlaf_HALLO) && !Npc_IsDead(Engor))
+	if(Npc_KnowsInfo(other,DIA_Parlaf_HALLO) && !Npc_IsDead(Engor))
 	{
 		return TRUE;
 	};
@@ -116,7 +116,7 @@ instance DIA_Parlaf_HUNGRIG(C_Info)
 
 func int DIA_Parlaf_HUNGRIG_Condition()
 {
-	if((MIS_Engor_BringMeat != LOG_SUCCESS) && Npc_KnowsInfo(hero,DIA_Parlaf_HALLO) && !Npc_IsDead(Engor))
+	if((MIS_Engor_BringMeat != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Parlaf_HALLO) && !Npc_IsDead(Engor))
 	{
 		return TRUE;
 	};
@@ -142,7 +142,7 @@ instance DIA_Parlaf_SATT(C_Info)
 
 func int DIA_Parlaf_SATT_Condition()
 {
-	if(((MIS_Engor_BringMeat == LOG_SUCCESS) || Npc_IsDead(Engor)) && Npc_KnowsInfo(hero,DIA_Parlaf_HALLO))
+	if(((MIS_Engor_BringMeat == LOG_SUCCESS) || Npc_IsDead(Engor)) && Npc_KnowsInfo(other,DIA_Parlaf_HALLO))
 	{
 		return TRUE;
 	};

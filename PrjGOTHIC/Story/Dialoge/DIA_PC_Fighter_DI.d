@@ -1,21 +1,21 @@
 
-instance DIA_Gorn_DI_KAP5_EXIT(C_Info)
+instance DIA_Gorn_DI_EXIT(C_Info)
 {
 	npc = PC_Fighter_DI;
 	nr = 999;
-	condition = DIA_Gorn_DI_KAP5_EXIT_Condition;
-	information = DIA_Gorn_DI_KAP5_EXIT_Info;
+	condition = DIA_Gorn_DI_EXIT_Condition;
+	information = DIA_Gorn_DI_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Gorn_DI_KAP5_EXIT_Condition()
+func int DIA_Gorn_DI_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Gorn_DI_KAP5_EXIT_Info()
+func void DIA_Gorn_DI_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -34,7 +34,7 @@ instance DIA_Gorn_DI_First(C_Info)
 
 func int DIA_Gorn_DI_First_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && (OrkSturmDI == FALSE) && Npc_IsInState(self,ZS_Talk))
+	if((UndeadDragonIsDead == FALSE) && (OrkSturmDI == FALSE) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -59,7 +59,7 @@ instance DIA_Gorn_DI_Hallo(C_Info)
 
 func int DIA_Gorn_DI_Hallo_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -88,8 +88,8 @@ func void B_BuildLearnDialog_Gorn_DI()
 	{
 		Info_ClearChoices(DIA_Gorn_DI_Teach);
 		Info_AddChoice(DIA_Gorn_DI_Teach,Dialog_Back,DIA_Gorn_DI_Teach_Back);
-		Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Gorn_DI_Teach_2H_1);
-		Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Gorn_DI_Teach_2H_5);
+		Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,1),DIA_Gorn_DI_Teach_2H_1);
+		Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,5),DIA_Gorn_DI_Teach_2H_5);
 	}
 	else
 	{
@@ -116,7 +116,7 @@ instance DIA_Gorn_DI_Teach(C_Info)
 
 func int DIA_Gorn_DI_Teach_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && (DIA_Gorn_DI_Teacher_permanent == FALSE))
+	if((UndeadDragonIsDead == FALSE) && (DIA_Gorn_DI_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -182,7 +182,7 @@ instance DIA_Gorn_DI_UndeadDragonDead(C_Info)
 
 func int DIA_Gorn_DI_UndeadDragonDead_Condition()
 {
-	if(Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == TRUE)
 	{
 		return TRUE;
 	};
@@ -213,7 +213,7 @@ func void DIA_Gorn_DI_UndeadDragonDead_Info()
 	AI_StopProcessInfos(self);
 	if(DIA_Gorn_DI_UndeadDragonDead_OneTime == FALSE)
 	{
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 	};
 	DIA_Gorn_DI_UndeadDragonDead_OneTime = TRUE;
 };

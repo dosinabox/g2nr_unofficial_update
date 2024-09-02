@@ -112,6 +112,7 @@ func void DIA_DiegoOw_Beweise_Info()
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Silvestro_11_01");	//В пещере неподалеку от того места, где я спрятался, хранятся ЧЕТЫРЕ ящика руды. Их добыли люди Сильвестро.
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Silvestro_11_02");	//Гаронд может прийти и забрать их.
 	};
+	Diego_ToldAboutSilvestroOre = TRUE;
 	Silvestro_Ore = TRUE;
 };
 
@@ -129,7 +130,7 @@ instance DIA_DiegoOw_Mine(C_Info)
 
 func int DIA_DiegoOw_Mine_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_DiegoOw_Beweise))
+	if(Diego_ToldAboutSilvestroOre == TRUE)
 	{
 		return TRUE;
 	};
@@ -158,10 +159,7 @@ instance DIA_DiegoOw_Ritter(C_Info)
 
 func int DIA_DiegoOw_Ritter_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_DiegoOw_Hallo))
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_DiegoOw_Ritter_Info()
@@ -232,10 +230,10 @@ func void B_BuildLearnDialog_Diego_OW()
 {
 	Info_ClearChoices(DIA_DiegoOw_Teach);
 	Info_AddChoice(DIA_DiegoOw_Teach,Dialog_Back,DIA_DiegoOw_TEACH_BACK);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_DiegoOw_TEACHDEX_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_DiegoOw_TEACHDEX_5);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_DiegoOw_TEACHSTR_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_DiegoOw_TEACHSTR_5);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnAttributeString(ATR_DEXTERITY,1),DIA_DiegoOw_TEACHDEX_1);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnAttributeString(ATR_DEXTERITY,5),DIA_DiegoOw_TEACHDEX_5);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_DiegoOw_TEACHSTR_1);
+	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_DiegoOw_TEACHSTR_5);
 };
 
 instance DIA_DiegoOw_Teach(C_Info)

@@ -108,8 +108,8 @@ func void evt_teleportstation_func()
 				Log_CreateTopic(TOPIC_Addon_TeleportsADW,LOG_MISSION);
 				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_Running);
 				B_LogEntry(TOPIC_Addon_TeleportsADW,"В небольшой пещере в каньоне есть телепорт. Я активировал его.");
-				SCUsed_ADW_TELEPORTSTATION_PIRATES = TRUE;
 				B_GivePlayerXP(XP_Ambient);
+				SCUsed_ADW_TELEPORTSTATION_PIRATES = TRUE;
 			};
 			if((MIS_KrokoJagd == LOG_SUCCESS) && (SCUsed_ADW_TELEPORTSTATION_PIRATES_JACKSMONSTER == FALSE))
 			{
@@ -149,12 +149,12 @@ func void adw_portaltempel_focus_func()
 	};
 	if((ADW_PORTALTEMPEL_FOCUS_FUNC_OneTime == FALSE) && (Npc_GetDistToWP(hero,"ADW_PORTALTEMPEL_TELEPORTSTATION") < 3000))
 	{
-		if(!Npc_IsDead(Stoneguardian_NailedPortalADW1) || !Npc_IsDead(Stoneguardian_NailedPortalADW2))
+		B_Awake_StoneGuardian(Stoneguardian_NailedPortalADW1);
+		B_Awake_StoneGuardian(Stoneguardian_NailedPortalADW2);
+		if(C_StoneGuardianIsAwaken(Stoneguardian_NailedPortalADW1) || C_StoneGuardianIsAwaken(Stoneguardian_NailedPortalADW2))
 		{
 			Snd_Play("THRILLJINGLE_02");
 		};
-		B_Awake_StoneGuardian(Stoneguardian_NailedPortalADW1);
-		B_Awake_StoneGuardian(Stoneguardian_NailedPortalADW2);
 		ADW_PORTALTEMPEL_FOCUS_FUNC_OneTime = TRUE;
 	};
 };

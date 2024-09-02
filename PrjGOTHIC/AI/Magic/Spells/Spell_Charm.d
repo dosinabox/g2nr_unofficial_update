@@ -68,6 +68,13 @@ func int Spell_Logic_Charm(var int manaInvested)
 			{
 				other.aivar[AIV_LastFightComment] = TRUE;
 			};
+		}
+		else if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Orlan))
+		{
+			if(Orlan_RoomIsRented == TRUE)
+			{
+				Orlan_RoomIsFree = TRUE;
+			};
 		};
 		return SPL_SENDCAST;
 	};

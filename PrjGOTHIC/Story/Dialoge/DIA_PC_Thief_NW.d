@@ -233,7 +233,7 @@ instance DIA_DiegoNW_HelpYou(C_Info)
 
 func int DIA_DiegoNW_HelpYou_Condition()
 {
-	if((Diego_IsOnBoard == FALSE) && (MIS_HelpDiegoNW == LOG_FAILED) && (Diego_IsOnBoard != LOG_SUCCESS))
+	if((Diego_IsOnBoard == FALSE) && (MIS_HelpDiegoNW == LOG_FAILED))
 	{
 		return TRUE;
 	};
@@ -283,7 +283,7 @@ instance DIA_DiegoNW_HaveYourGold(C_Info)
 
 func int DIA_DiegoNW_HaveYourGold_Condition()
 {
-	if(((OpenedDiegosBag == TRUE) || Npc_HasItems(other,ItSe_DiegosTreasure_Mis)) && (MIS_HelpDiegoNW == LOG_Running) && (Diego_IsOnBoard != LOG_SUCCESS))
+	if(((OpenedDiegosBag == TRUE) || Npc_HasItems(other,ItSe_DiegosTreasure_MIS)) && (MIS_HelpDiegoNW == LOG_Running) && (Diego_IsOnBoard != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -293,9 +293,9 @@ func void DIA_DiegoNW_HaveYourGold_Info()
 {
 	AI_Output(other,self,"DIA_DiegoNW_HaveYourGold_15_00");	//Я нашел твое золото!
 	AI_Output(self,other,"DIA_DiegoNW_HaveYourGold_11_01");	//Отлично. Покажи.
-	if(Npc_HasItems(other,ItSe_DiegosTreasure_Mis))
+	if(Npc_HasItems(other,ItSe_DiegosTreasure_MIS))
 	{
-		B_GiveInvItems(other,self,ItSe_DiegosTreasure_Mis,1);
+		B_GiveInvItems(other,self,ItSe_DiegosTreasure_MIS,1);
 		B_DiegoNW_DiegosRevenge();
 	}
 	else if(Npc_HasItems(other,ItMi_Gold) < DiegosTreasure)
@@ -316,7 +316,7 @@ func void DIA_DiegoNW_HaveYourGold_Info()
 		AI_Output(self,other,"DIA_DiegoNW_HaveYourGold_11_08");	//Передай ему привет от меня. А затем встретимся перед домом Гербрандта.
 		CreateInvItems(self,ItWr_DiegosLetter_MIS,1);
 		B_GiveInvItems(self,other,ItWr_DiegosLetter_MIS,1);
-		B_StartOtherRoutine(Gerbrandt,"WaitForDiego");
+		B_StartOtherRoutine(Gerbrandt,"WAITFORDIEGO");
 		MIS_DiegosResidence = LOG_Running;
 		Log_CreateTopic(TOPIC_DiegosResidence,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_DiegosResidence,LOG_Running);
@@ -339,7 +339,7 @@ instance DIA_DiegoNW_DeliveredLetter(C_Info)
 
 func int DIA_DiegoNW_DeliveredLetter_Condition()
 {
-	if((Diego_IsOnBoard == FALSE) && (MIS_DiegosResidence == LOG_SUCCESS))
+	if(MIS_DiegosResidence == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -351,16 +351,26 @@ func void DIA_DiegoNW_DeliveredLetter_Info()
 	AI_Output(self,other,"DIA_DiegoNW_DeliveredLetter_11_01");	//Очень хорошо. Как Гербрандт воспринял это?
 	AI_Output(other,self,"DIA_DiegoNW_DeliveredLetter_15_02");	//Он был в шоке и моментально исчез куда-то.
 	AI_Output(self,other,"DIA_DiegoNW_DeliveredLetter_11_03");	//(удовлетворенно) Я так и думал.
-	AI_Output(self,other,"DIA_DiegoNW_DeliveredLetter_11_04");	//Боюсь, правда, что в первую очередь мне придется заняться обстановкой моего нового дома. Если я правильно помню, вкус у Гербрандта просто ужасный.
+	if(Diego_IsOnBoard != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_DiegoNW_DeliveredLetter_11_04");	//Боюсь, правда, что в первую очередь мне придется заняться обстановкой моего нового дома. Если я правильно помню, вкус у Гербрандта просто ужасный.
+	};
 	B_GivePlayerXP(XP_DiegoHasANewHome);
 	Wld_AssignRoomToGuild("reich01",GIL_PUBLIC);
-	B_StartOtherRoutine(Gerbrandt,"NEWLIFE");
+	if(GerbrandtMovedToHarbour == FALSE)
+	{
+		B_StartOtherRoutine(Gerbrandt,"NEWLIFE");
+		GerbrandtMovedToHarbour = TRUE;
+	};
 	Info_ClearChoices(DIA_DiegoNW_DeliveredLetter);
 	Info_AddChoice(DIA_DiegoNW_DeliveredLetter,Dialog_Back,DIA_DiegoNW_DeliveredLetter_YourTrick_BACK);
 	Info_AddChoice(DIA_DiegoNW_DeliveredLetter,"Что насчет моей доли?",DIA_DiegoNW_DeliveredLetter_YourTrick_REWARD);
 	Info_AddChoice(DIA_DiegoNW_DeliveredLetter,"Что насчет Гербрандта?",DIA_DiegoNW_DeliveredLetter_Gerbrandt);
 	Info_AddChoice(DIA_DiegoNW_DeliveredLetter,"Как тебе удалось провернуть это?",DIA_DiegoNW_DeliveredLetter_YourTrick);
-	Info_AddChoice(DIA_DiegoNW_DeliveredLetter,"Значит, это теперь твой дом?",DIA_DiegoNW_DeliveredLetter_YourHouse);
+	if(Diego_IsOnBoard != LOG_SUCCESS)
+	{
+		Info_AddChoice(DIA_DiegoNW_DeliveredLetter,"Значит, это теперь твой дом?",DIA_DiegoNW_DeliveredLetter_YourHouse);
+	};
 };
 
 func void DIA_DiegoNW_DeliveredLetter_Gerbrandt()
@@ -422,7 +432,6 @@ instance DIA_DiegoNW_CanYouTeach(C_Info)
 
 func int DIA_DiegoNW_CanYouTeach_Condition()
 {
-//	if((Diego_IsOnBoard == FALSE) && (Diego_Teach == FALSE))
 	if(Diego_Teach == FALSE)
 	{
 		return TRUE;
@@ -432,7 +441,7 @@ func int DIA_DiegoNW_CanYouTeach_Condition()
 func void DIA_DiegoNW_CanYouTeach_Info()
 {
 	AI_Output(other,self,"DIA_DiegoNW_CanYouTeach_15_00");	//Ты можешь научить меня чему-нибудь?
-	if(Npc_KnowsInfo(other,DIA_DiegoNW_DeliveredLetter))
+	if(Npc_KnowsInfo(other,DIA_DiegoNW_DeliveredLetter) || (Diego_IsOnBoard == LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_DiegoNW_CanYouTeach_11_01");	//Да, конечно. Дай мне знать, когда будешь готов.
 		if(DiegoOW_Teach == FALSE)
@@ -457,10 +466,10 @@ func void B_BuildLearnDialog_Diego_NW()
 {
 	Info_ClearChoices(DIA_DiegoNW_Teach);
 	Info_AddChoice(DIA_DiegoNW_Teach,Dialog_Back,DIA_DiegoNW_Teach_BACK);
-	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_DiegoNW_TeachDEX_1);
-	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_DiegoNW_TeachDEX_5);
-	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_DiegoNW_TeachSTR_1);
-	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_DiegoNW_TeachSTR_5);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnAttributeString(ATR_DEXTERITY,1),DIA_DiegoNW_TeachDEX_1);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnAttributeString(ATR_DEXTERITY,5),DIA_DiegoNW_TeachDEX_5);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_DiegoNW_TeachSTR_1);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_DiegoNW_TeachSTR_5);
 };
 
 instance DIA_DiegoNW_Teach(C_Info)
@@ -536,6 +545,22 @@ func void DIA_DiegoNW_TeachSTR_5()
 	};
 };
 
+func void B_DiegoNW_GoHomeAndChangeArmor()
+{
+	if(C_NpcIsNearWP(self,"NW_CITY_UPTOWN_PATH_23") && !ArmorEquipped(self,ITAR_Diego))
+	{
+		AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_02");	//Подожди, я буду готов через минуту.
+		AI_SetWalkMode(self,NPC_RUN);
+		AI_GotoWP(self,"NW_CITY_UPTOWN_HUT_01_01");
+		if(!Npc_HasItems(self,ITAR_Diego))
+		{
+			CreateInvItems(self,ITAR_Diego,1);
+		};
+		AI_EquipArmor(self,ITAR_Diego);
+		AI_Wait(self,1);
+		AI_GotoWP(self,"NW_CITY_UPTOWN_PATH_23");
+	};
+};
 
 instance DIA_DiegoNW_KnowWhereEnemy(C_Info)
 {
@@ -584,19 +609,7 @@ func void DIA_DiegoNW_KnowWhereEnemy_Yes()
 {
 	AI_Output(other,self,"DIA_DiegoNW_KnowWhereEnemy_Yes_15_00");	//Почему бы тебе не отправиться в путь со мной? Встретимся у гавани.
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_01");	//Хм-м, ты прав, в Хоринисе все равно нечего делать. Я поплыву с тобой.
-	if(C_NpcIsNearWP(self,"NW_CITY_UPTOWN_PATH_23") && !ArmorEquipped(self,ITAR_Diego))
-	{
-		AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_02");	//Подожди, я буду готов через минуту.
-		AI_SetWalkMode(self,NPC_RUN);
-		AI_GotoWP(self,"NW_CITY_UPTOWN_HUT_01_01");
-		if(!Npc_HasItems(self,ITAR_Diego))
-		{
-			CreateInvItems(self,ITAR_Diego,1);
-		};
-		AI_EquipArmor(self,ITAR_Diego);
-		AI_Wait(self,1);
-		AI_GotoWP(self,"NW_CITY_UPTOWN_PATH_23");
-	};
+	B_DiegoNW_GoHomeAndChangeArmor();
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_03");	//Ну, я готов. Встретимся у корабля.
 	B_JoinShip(self);
 };
@@ -695,19 +708,7 @@ func void DIA_DiegoNW_StillNeedYou_Info()
 	{
 		DIA_Common_INeedYourHelp();
 	};
-	if(C_NpcIsNearWP(self,"NW_CITY_UPTOWN_PATH_23") && !ArmorEquipped(self,ITAR_Diego))
-	{
-		AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_02");	//Подожди, я буду готов через минуту.
-		AI_SetWalkMode(self,NPC_RUN);
-		AI_GotoWP(self,"NW_CITY_UPTOWN_HUT_01_01");
-		if(!Npc_HasItems(self,ITAR_Diego))
-		{
-			CreateInvItems(self,ITAR_Diego,1);
-		};
-		AI_EquipArmor(self,ITAR_Diego);
-		AI_Wait(self,1);
-		AI_GotoWP(self,"NW_CITY_UPTOWN_PATH_23");
-	};
+	B_DiegoNW_GoHomeAndChangeArmor();
 	AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_03");	//Отлично, мы можем идти.
 	B_JoinShip(self);
 };

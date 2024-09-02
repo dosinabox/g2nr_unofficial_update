@@ -9,9 +9,9 @@ func void B_AssessFightSound()
 	{
 		return;
 	};
-	if(C_IAmThiefFromSewer(victim) || C_IAmThiefFromSewer(other))
+	if((victim.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer) || (other.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer))
 	{
-		if(!C_IAmThiefFromSewer(self))
+		if(self.aivar[AIV_SubGuild] != GIL_SUB_Thief_Sewer)
 		{
 			return;
 		};
@@ -45,7 +45,7 @@ func void B_AssessFightSound()
 	};
 	if(self.aivar[AIV_MM_FollowInWater] == FALSE)
 	{
-		if(C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE) || C_BodyStateContains(victim,BS_SWIM) || C_BodyStateContains(victim,BS_DIVE))
+		if(C_NpcIsSwimming(other) || C_NpcIsSwimming(victim))
 		{
 			return;
 		};
@@ -107,7 +107,7 @@ func void B_AssessFightSound()
 		self.aivar[AIV_EnemyOverride] = FALSE;
 		Npc_PerceiveAll(self);
 		Npc_GetNextTarget(self);
-		if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other))
+		if(!C_NpcIsDown(other))
 		{
 			B_Attack(self,other,AR_GuildEnemy,0);
 		};
@@ -117,15 +117,18 @@ func void B_AssessFightSound()
 	{
 		if(self.guild == GIL_BDT)
 		{
-			if((self.aivar[AIV_StoryBandit_Esteban] == TRUE) && (other.aivar[AIV_StoryBandit_Esteban] == TRUE))
+			if(self.aivar[AIV_SubGuild] == GIL_SUB_Esteban)
 			{
-				B_Attack(self,victim,AR_NONE,0);
-				return;
-			};
-			if((self.aivar[AIV_StoryBandit_Esteban] == TRUE) && (victim.aivar[AIV_StoryBandit_Esteban] == TRUE))
-			{
-				B_Attack(self,other,AR_NONE,0);
-				return;
+				if(other.aivar[AIV_SubGuild] == GIL_SUB_Esteban)
+				{
+					B_Attack(self,victim,AR_NONE,0);
+					return;
+				};
+				if(victim.aivar[AIV_SubGuild] == GIL_SUB_Esteban)
+				{
+					B_Attack(self,other,AR_NONE,0);
+					return;
+				};
 			};
 			if((other.aivar[AIV_ATTACKREASON] == AR_NONE) && (victim.aivar[AIV_ATTACKREASON] == AR_NONE))
 			{

@@ -53,7 +53,7 @@ func void B_AssessMurder()
 		self.aivar[AIV_EnemyOverride] = FALSE;
 		Npc_PerceiveAll(self);
 		Npc_GetNextTarget(self);
-		if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other))
+		if(!C_NpcIsDown(other))
 		{
 			B_Attack(self,other,AR_GuildEnemy,0);
 			return;

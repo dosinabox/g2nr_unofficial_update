@@ -1,0 +1,38 @@
+#engine [G2, G2A]
+	#patch [zNightMusicFix]
+		// engine specific
+		INT text_zCMusicSys_DirectMusic_Stop_epilogue = ZenDef(0x00000000, 0x00000000, 0x004E7426, 0x004E9F36)
+		
+		INT func_oCZoneMusic_IsDayTime = ZenDef(0x0070CB70, 0x00747C80, 0x00756E60, 0x00642400)
+		INT func_oCZoneMusic_GetHerostatus = ZenDef(0x0070CB90, 0x00747CA0, 0x00756E80, 0x00642420)
+		
+		INT offset_ogame = ZenDef(0x008DA6BC, 0x00920D8C, 0x009813DC, 0x00AB0884)
+		INT offset_oCZoneMusic_s_herostatus = ZenDef(0x00000000, 0x00000000, 0x009862F8, 0x009A4A20)
+		INT offset_oCZoneMusic_s_musiczone = ZenDef(0x00000000, 0x00000000, 0x009862FC, 0x009A4A24)
+		INT offset_oCZoneMusic_s_daytime = ZenDef(0x00000000, 0x00000000, 0x008A8EE4, 0x008AB2E0)
+		// end of engine specific
+		
+		#assembler [text_zCMusicSys_DirectMusic_Stop_epilogue]
+			orgcode
+			
+			mov eax, $offset_ogame
+			mov eax, [eax]
+			test eax, eax
+			jz return
+			
+			xor eax, eax
+			mov ecx, $offset_oCZoneMusic_s_musiczone
+			mov [ecx], eax
+			
+			call $func_oCZoneMusic_IsDayTime
+			mov ecx, $offset_oCZoneMusic_s_daytime
+			mov [ecx], eax
+			
+			call $func_oCZoneMusic_GetHerostatus
+			mov ecx, $offset_oCZoneMusic_s_herostatus
+			mov [ecx], eax
+			
+		return:
+		#/assembler
+	#/patch
+#/engine

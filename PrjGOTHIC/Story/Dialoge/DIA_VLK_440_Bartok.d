@@ -187,9 +187,17 @@ func void DIA_Bartok_WannaLearn_Info()
 	{
 		AI_Output(self,other,"DIA_Bartok_WannaLearn_04_02");	//Если ты хочешь научиться снимать шкуры с животных - иди к Босперу. Это он научил меня.
 	};
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
+	{
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Барток может обучить меня красться и стрельбе из лука.");
+	}
+	else
+	{
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Барток может обучить меня стрельбе из лука.");
+	};
 	Bartok_TeachPlayer = TRUE;
-	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTeacher,"Барток может обучить меня красться и стрельбе из лука.");
 };
 
 
@@ -236,8 +244,8 @@ func void B_BuildLearnDialog_Bartok()
 	{
 		Info_ClearChoices(DIA_Bartok_Teach);
 		Info_AddChoice(DIA_Bartok_Teach,Dialog_Back,DIA_Bartok_Teach_Back);
-		Info_AddChoice(DIA_Bartok_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Bartok_Teach_BOW_1);
-		Info_AddChoice(DIA_Bartok_Teach,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Bartok_Teach_BOW_5);
+		Info_AddChoice(DIA_Bartok_Teach,B_BuildLearnTalentString(other,NPC_TALENT_BOW,1),DIA_Bartok_Teach_BOW_1);
+		Info_AddChoice(DIA_Bartok_Teach,B_BuildLearnTalentString(other,NPC_TALENT_BOW,5),DIA_Bartok_Teach_BOW_5);
 	}
 	else
 	{
@@ -411,10 +419,7 @@ func void DIA_Bartok_HuntNOW_Info()
 	AI_Output(self,other,"DIA_Bartok_HuntNOW_GO_04_02");	//(себе под нос) Даже больше, чем хотелось бы...
 	CreateInvItem(self,ITAR_Leather_L);
 	CreateInvItem(self,ItRw_Bow_M_03);
-	if(!Npc_HasItems(self,ItRw_Arrow) < 30)
-	{
-		CreateInvItems(self,ItRw_Arrow,40);
-	};
+	B_RefreshInvItemToAmount(self,ItRw_Arrow,40);
 	AI_EquipArmor(self,ITAR_Leather_L);
 	AI_EquipBestRangedWeapon(self);
 	Bartok_Los = TRUE;

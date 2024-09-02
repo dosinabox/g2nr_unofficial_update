@@ -1,0 +1,28 @@
+#engine [G1, G1A, G2, G2A]
+    #patch [zRoughTurnings]
+        // engine specific
+        INT text_oCNpc_TurnToVob_fld_angle = ZenDef(0x0075042F, 0x007924DF, 0x0079CE7F, 0x0068637F)
+        INT text_oCNpc_TurnToVob_stop_turnings = ZenDef(0x00750458, 0x00792508, 0x0079CEA8, 0x006863A8)
+        
+        FLOAT const_min_angle = -1
+        FLOAT const_max_angle = 1
+        // end of engine specific
+        
+        #assembler [text_oCNpc_TurnToVob_fld_angle]
+            fld dword ptr [edi]
+            fcomp dword ptr [$const_max_angle]
+            fnstsw ax
+            test ah, 1
+            jp continue
+            
+            fld dword ptr [$const_min_angle]
+            fcomp dword ptr [edi]
+            fnstsw ax
+            test ah, 1
+            jnp $text_oCNpc_TurnToVob_stop_turnings
+            
+        continue:
+            orgcode
+        #/assembler
+    #/patch
+#/engine

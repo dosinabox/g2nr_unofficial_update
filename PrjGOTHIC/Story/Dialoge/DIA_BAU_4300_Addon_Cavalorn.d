@@ -73,10 +73,14 @@ func void B_CavalornAboutHut()
 {
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Bauern_08_01");	//(пораженно) Правда? Хм-м. Я бы хотел пойти с тобой, но у меня здесь есть дела, которые я должен закончить.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Bauern_08_02");	//Будешь в Долине Рудников, посмотри, пожалуйста, стоит ли еще моя старая хижина. Я бы хотел туда вернуться когда-нибудь.
-	MIS_Addon_Cavalorn_TheHut = LOG_Running;
-	Log_CreateTopic(TOPIC_Addon_CavalornTheHut,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_CavalornTheHut,LOG_Running);
-	B_LogEntry(TOPIC_Addon_CavalornTheHut,"Кавалорн хочет, чтобы я проверил, цела ли еще его старая хижина в Долине Рудников. Насколько я помню, она находится среди холмов на западе, там, где был Старый Лагерь. Думаю, он там что-то оставил.");
+	Cavalorn_ToldAboutHut = TRUE;
+	if(MIS_Addon_Cavalorn_TheHut == FALSE)
+	{
+		MIS_Addon_Cavalorn_TheHut = LOG_Running;
+		Log_CreateTopic(TOPIC_Addon_CavalornTheHut,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_CavalornTheHut,LOG_Running);
+		B_LogEntry(TOPIC_Addon_CavalornTheHut,"Кавалорн хочет, чтобы я проверил, цела ли еще его старая хижина в Долине Рудников. Насколько я помню, она находится среди холмов на западе, там, где был Старый Лагерь. Думаю, он там что-то оставил.");
+	};
 };
 
 instance DIA_Addon_Cavalorn_HALLO(C_Info)
@@ -91,13 +95,28 @@ instance DIA_Addon_Cavalorn_HALLO(C_Info)
 
 func int DIA_Addon_Cavalorn_HALLO_Condition()
 {
+	if(Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 1000)
+	{
+		DIA_Addon_Cavalorn_HALLO.description = "Проблемы?";
+	}
+	else
+	{
+		DIA_Addon_Cavalorn_HALLO.description = "Привет!";
+	};
 	return TRUE;
 };
 
 func void DIA_Addon_Cavalorn_HALLO_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Cavalorn_HALLO_15_00");	//Проблемы?
-	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_08_01");	//(раздраженно) Черт. Я не знаю, где они все прячутся. Убиваешь одного - и вскоре они все возвращаются.
+	if(Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 1000)
+	{
+		AI_Output(other,self,"DIA_Addon_Cavalorn_HALLO_15_00");	//Проблемы?
+		AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_08_01");	//(раздраженно) Черт. Я не знаю, где они все прячутся. Убиваешь одного - и вскоре они все возвращаются.
+	}
+	else
+	{
+		DIA_Common_Hello();
+	};
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_08_02");	//(хитро) Погоди минутку. Я тебя знаю. Ты тот парень, что постоянно клянчил у меня стрелы в Долине Рудников.
 	Info_ClearChoices(DIA_Addon_Cavalorn_HALLO);
 	Info_AddChoice(DIA_Addon_Cavalorn_HALLO,"Тебя зовут Кавалорн, верно?",DIA_Addon_Cavalorn_HALLO_Ja);
@@ -151,8 +170,6 @@ func void DIA_Addon_Cavalorn_HALLO_keinZiel()
 };
 
 
-//////////////////////////////////////////////////////////////////////////////
-
 instance DIA_Addon_Cavalorn_ImGoingToMineValley(C_Info)
 {
 	npc = BAU_4300_Addon_Cavalorn;
@@ -178,8 +195,6 @@ func void DIA_Addon_Cavalorn_ImGoingToMineValley_Info()
 };
 
 
-////////////////////////////////////////////////////////////
-
 instance DIA_Addon_Cavalorn_Beutel(C_Info)
 {
 	npc = BAU_4300_Addon_Cavalorn;
@@ -202,19 +217,19 @@ func void DIA_Addon_Cavalorn_Beutel_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Beutel_15_00");	//Я был в твоей хижине в Долине Рудников.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Beutel_08_01");	//Так значит, она еще стоит.
-	if(MIS_Addon_Cavalorn_TheHut == LOG_Running)
+	if(Cavalorn_ToldAboutHut == TRUE)
 	{
 		AI_Output(other,self,"DIA_Addon_Cavalorn_Beutel_15_02");	//Да. И я знаю, зачем ты хотел туда вернуться.
 	};
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Beutel_08_03");	//Ты нашел его?
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Beutel_15_04");	//Если ты имеешь в виду мешочек с кусками руды... да, он у меня.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Beutel_08_05");	//Ну ты, хитрый лис, знаешь об этом?
-	if(MIS_Addon_Cavalorn_TheHut == LOG_Running)
+	if(Cavalorn_ToldAboutHut == TRUE)
 	{
 		AI_Output(other,self,"DIA_Addon_Cavalorn_Beutel_15_06");	//А что еще тебе могло бы понадобиться в этой старой лачуге? Там нет больше ничего.
 	};
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Beutel_08_07");	//Он у тебя с собой? Я дам тебе 100 золотых за него.
-	TOPIC_End_CavalornTheHut = TRUE;
+	MIS_Addon_Cavalorn_TheHut = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 	Info_ClearChoices(DIA_Addon_Cavalorn_Beutel);
 	if(Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel))
@@ -241,7 +256,7 @@ func void B_BuildCavalornOreDialog()
 
 func void DIA_Addon_Cavalorn_Beutel_back()
 {
-	if(!Npc_HasItems(self,ItSe_ADDON_CavalornsBeutel) && !Npc_HasItems(self,ItMi_Nugget))
+	if(Cavalorn_GotOre == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_back_08_00");	//Я надеюсь, что он вернется ко мне.
 	};
@@ -291,9 +306,16 @@ instance DIA_Addon_Cavalorn_ErzGeben(C_Info)
 
 func int DIA_Addon_Cavalorn_ErzGeben_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Beutel) && (Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel) || Npc_HasItems(other,ItMi_Nugget)) && (MIS_Addon_Cavalorn_TheHut != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Beutel) && (Cavalorn_GotOre == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel))
+		{
+			return TRUE;
+		};
+		if((SC_OpenedCavalornsBeutel == TRUE) && Npc_HasItems(other,ItMi_Nugget))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -312,7 +334,7 @@ func void DIA_Addon_Cavalorn_ErzGeben_Info()
 		B_GiveInvItems(other,self,ItMi_Nugget,1);
 	};
 	AI_Output(self,other,"DIA_Addon_Cavalorn_ErzGeben_08_02");	//Ты настоящий друг. Спасибо огромное.
-	MIS_Addon_Cavalorn_TheHut = LOG_SUCCESS;
+	Cavalorn_GotOre = TRUE;
 	B_GivePlayerXP(XP_Addon_CavalornsBeutel);
 };
 
@@ -367,10 +389,7 @@ func void DIA_Addon_Cavalorn_Banditen_Info()
 //	AI_Output(other,self,"DIA_Addon_Cavalorn_Banditen_15_02");	//Э-э...
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_03");	//Я говорю обо всем этом сброде из исправительной колонии, которые чувствуют себя здесь как дома, грабят и убивают всех, кого могут.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_04");	//(вздыхает) Думаю, мне повезло, что они меня не убили. Я отвлекся буквально на секунду - и меня уже оглушили ударом сзади дубинкой по голове.
-	if(!C_BragoBanditsDead())
-	{
-		AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_05");	//Даже не знаю, как теперь получить свои вещи обратно.
-	};
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_05");	//Даже не знаю, как теперь получить свои вещи обратно.
 };
 
 
@@ -506,7 +525,7 @@ func void DIA_Addon_Cavalorn_LETSKILLBANDITS_Info()
 	AI_Output(self,other,"DIA_Addon_Cavalorn_LETSKILLBANDITS_08_02");	//Теперь их ждет неприятный сюрприз.
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"KillBandits");
+	Npc_ExchangeRoutine(self,"KILLBANDITS");
 	if(Bdt_1013_Away == FALSE)
 	{
 		if(!Npc_IsDead(Ambusher_1013))
@@ -553,7 +572,7 @@ func void B_Addon_Cavalorn_VatrasBrief()
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_12");	//Иначе тебя могут принять за бандита. Вот пара монет.
 		CreateInvItems(self,ItMi_Gold,50);
 		B_GiveInvItems(self,other,ItMi_Gold,50);
-		if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
+		if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
 		{
 			Log_CreateTopic(TOPIC_City,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_City,LOG_Running);
@@ -561,7 +580,7 @@ func void B_Addon_Cavalorn_VatrasBrief()
 		};
 	};
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	MIS_Addon_Cavalorn_KillBrago = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Cavalorn_KillBrago);
 };
@@ -607,7 +626,7 @@ instance DIA_Addon_Cavalorn_PCKilledBrago(C_Info)
 
 func int DIA_Addon_Cavalorn_PCKilledBrago_Condition()
 {
-	if(((MIS_Addon_Cavalorn_KillBrago == FALSE) || ((Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 500) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running))) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen))
+	if((Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 500) && (MIS_Addon_Cavalorn_KillBrago != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen))
 	{
 		if(C_BragoBanditsDead())
 		{
@@ -647,11 +666,13 @@ func void DIA_Addon_Cavalorn_JUNGS_Info()
 	AI_Output(self,other,"DIA_Addon_Cavalorn_JUNGS_08_01");	//Тени? Они не существуют с тех пор, как пал Барьер.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_JUNGS_08_02");	//Когда мы могли, наконец, уйти из Долины Рудников, незачем было оставаться с ними.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_JUNGS_08_03");	//Теперь я работаю на магов Воды. Я принадлежу к 'Кольцу Воды'.
-	SC_KnowsRanger = TRUE;
-	Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
-	B_LogEntry(TOPIC_Addon_RingOfWater,"Кавалорн рассказал мне, что он принадлежит к сообществу, которое называется 'Кольцо Воды'.");
-	Cavalorn_RangerHint = TRUE;
+	if(SC_KnowsRanger == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
+		B_LogEntry(TOPIC_Addon_RingOfWater,"Кавалорн рассказал мне, что он принадлежит к сообществу, которое называется 'Кольцо Воды'.");
+		SC_KnowsRanger = TRUE;
+	};
 };
 
 
@@ -754,7 +775,7 @@ instance DIA_Addon_Cavalorn_BroughtLetter(C_Info)
 
 func int DIA_Addon_Cavalorn_BroughtLetter_Condition()
 {
-	if((MIS_Addon_Cavalorn_Letter2Vatras == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_JUNGS))
+	if((MIS_Addon_Cavalorn_Letter2Vatras == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO))
 	{
 		return TRUE;
 	};
@@ -847,9 +868,7 @@ func void B_Cavalorn_Triggered_Wohin()
 {
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_Wohin_08_00");	//Сейчас я снова иду в город. Встретимся у Ватраса.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Stadt");
-	Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
+	Npc_ExchangeRoutine(self,"STADT");
 	B_LogEntry(TOPIC_Addon_Ornament,"Одна из частей орнамента находится у паладинов в верхнем квартале.");
 	MIS_Addon_Cavalorn_GetOrnamentFromPAL = LOG_Running;
 	self.flags = 0;
@@ -916,7 +935,11 @@ func int DIA_Addon_Cavalorn_WannaLearn_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO))
 	{
-		if(C_BragoBanditsDead())
+		if(MIS_Addon_Cavalorn_KillBrago == LOG_SUCCESS)
+		{
+			return TRUE;
+		};
+		if(MIS_Addon_Nefarius_BringMissingOrnaments != FALSE)
 		{
 			return TRUE;
 		};
@@ -926,11 +949,11 @@ func int DIA_Addon_Cavalorn_WannaLearn_Condition()
 func void DIA_Addon_Cavalorn_WannaLearn_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_WannaLearn_15_00");	//Ты можешь научить меня кое-чему?
-	if((CavalornWeakComment == FALSE) && (SC_ForgotAboutCavalorn == FALSE))
+	if(CavalornWeakComment == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_01_add");	//Конечно, ты это прекрасно знаешь.
-	};
-	if(CavalornWeakComment == TRUE)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_01");	//Конечно, ты это прекрасно знаешь. Приятель, ты действительно много потерял.
 	};
@@ -938,9 +961,17 @@ func void DIA_Addon_Cavalorn_WannaLearn_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_02");	//Ты и правда ничего не помнишь, да?
 	};
+	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE)
+	{
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,LogText_Addon_Cavalorn_Teach);
+	}
+	else
+	{
+		Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_OutTeacher,LogText_Addon_Cavalorn_Teach);
+	};
 	Cavalorn_Addon_TeachPlayer = TRUE;
-	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_OutTeacher,LogText_Addon_Cavalorn_Teach);
 };
 
 
@@ -959,13 +990,13 @@ func void B_BuildLearnDialog_Cavalorn()
 	};
 	if(VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_Cavalorn)
 	{
-		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Addon_Cavalorn_Teach_Bow_1);
-		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Addon_Cavalorn_Teach_Bow_5);
+		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnTalentString(other,NPC_TALENT_BOW,1),DIA_Addon_Cavalorn_Teach_Bow_1);
+		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnTalentString(other,NPC_TALENT_BOW,5),DIA_Addon_Cavalorn_Teach_Bow_5);
 	};
 	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Cavalorn)
 	{
-		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Addon_Cavalorn_Teach_1H_1);
-		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Addon_Cavalorn_Teach_1H_5);
+		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnTalentString(other,NPC_TALENT_1H,1),DIA_Addon_Cavalorn_Teach_1H_1);
+		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnTalentString(other,NPC_TALENT_1H,5),DIA_Addon_Cavalorn_Teach_1H_5);
 	};
 	if(Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (VisibleTalentValue(NPC_TALENT_BOW) >= TeachLimit_Bow_Cavalorn) && (VisibleTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Cavalorn))
 	{

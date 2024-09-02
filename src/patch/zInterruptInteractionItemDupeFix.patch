@@ -1,0 +1,10 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zInterruptInteractionItemDupeFix]
+		// engine specific
+		INT text_oCMobInter_InterruptInteraction_PutInInv = ZenDef(0x0067F41D, 0x006AE551, 0x006C2CF5, 0x00720D85)
+		INT length__oCMobInter_InterruptInteraction_PutInInv = 8
+		// end of engine specific
+		
+		MemSet(text_oCMobInter_InterruptInteraction_PutInInv, '90', length__oCMobInter_InterruptInteraction_PutInInv)
+	#/patch
+#/engine

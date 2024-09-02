@@ -12,10 +12,7 @@ func void ZS_Read_Bookstand()
 
 func int ZS_Read_Bookstand_Loop()
 {
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"BOOK"))
-	{
-		AI_UseMob(self,"BOOK",1);
-	};
+	B_UseAvailableMob(self,"BOOK");
 	return LOOP_CONTINUE;
 };
 

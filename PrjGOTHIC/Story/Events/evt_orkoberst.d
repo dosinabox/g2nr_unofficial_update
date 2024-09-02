@@ -34,20 +34,17 @@ func void evt_orkoberst()
 		{
 			B_StartOtherRoutine(Jack_DI,"OrkSturmDI");
 		};
-		if(!Npc_IsDead(Biff_DI))
+		B_StartOtherRoutine(Biff_DI,"OrkSturmDI");
+		if(Vatras_PedroFound == FALSE)
 		{
-			B_StartOtherRoutine(Biff_DI,"OrkSturmDI");
-		};
-		if(!Npc_IsDead(Vatras_DI))
-		{
-			Vatras_DI.flags = NPC_FLAG_IMMORTAL;
+			B_SetImmortal(Vatras_DI);
 		};
 		if(!Npc_IsDead(Mario_DI))
 		{
 			CreateInvItem(Mario_DI,ITWR_DementorObsessionBook_MIS);
-			B_StartOtherRoutine(Mario_DI,"OrkSturmDI");
+			Npc_ExchangeRoutine(Mario_DI,"OrkSturmDI");
 			B_SetGuild(Mario_DI,GIL_DMT);
-			Mario.aivar[AIV_PARTYMEMBER] = FALSE;
+			Mario_DI.aivar[AIV_PARTYMEMBER] = FALSE;
 			Wld_InsertNpc(Skeleton_Mario1,"FP_ROAM_DI_MARIOSSKELETONS_01");
 			Wld_InsertNpc(Skeleton_Mario2,"FP_ROAM_DI_MARIOSSKELETONS_02");
 			Wld_InsertNpc(Skeleton_Mario3,"FP_ROAM_DI_MARIOSSKELETONS_03");
@@ -65,5 +62,4 @@ func void evt_orkoberst()
 		OrkSturmDI = TRUE;
 	};
 };
-
 

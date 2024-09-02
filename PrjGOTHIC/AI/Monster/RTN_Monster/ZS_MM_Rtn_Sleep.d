@@ -21,9 +21,9 @@ func void ZS_MM_Rtn_Sleep()
 	{
 		AI_GotoWP(self,self.wp);
 	};
-	if(Wld_IsFPAvailable(self,"FP_ROAM"))
+	if(Wld_IsFPAvailable(self,"ROAM"))
 	{
-		AI_GotoFP(self,"FP_ROAM");
+		AI_GotoFP(self,"ROAM");
 	};
 	if(self.aivar[AIV_MM_REAL_ID] != ID_BLOODFLY)
 	{

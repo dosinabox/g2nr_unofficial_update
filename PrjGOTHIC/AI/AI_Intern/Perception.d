@@ -112,13 +112,21 @@ func void B_ClearPerceptions(var C_Npc slf)
 
 func void Perception_Set_Monster_Rtn()
 {
-	Npc_SetPercTime(self,1);
-	Npc_PercEnable(self,PERC_ASSESSENEMY,B_MM_AssessEnemy);
-	Npc_PercEnable(self,PERC_ASSESSBODY,B_MM_AssessBody);
-	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
-	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_AssessDamage);
-	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_MM_AssessOthersDamage);
-	Npc_PercEnable(self,PERC_ASSESSMURDER,B_MM_AssessOthersDamage);
-	Npc_PercEnable(self,PERC_ASSESSWARN,B_MM_AssessWarn);
+	if(self.guild == GIL_MEATBUG)
+	{
+		Npc_SetPercTime(self,0.1);
+		Npc_PercEnable(self,PERC_ASSESSPLAYER,B_MM_AssessPlayer);
+	}
+	else
+	{
+		Npc_SetPercTime(self,1);
+		Npc_PercEnable(self,PERC_ASSESSENEMY,B_MM_AssessEnemy);
+		Npc_PercEnable(self,PERC_ASSESSBODY,B_MM_AssessBody);
+		Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
+		Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_MM_AssessDamage);
+		Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_MM_AssessOthersDamage);
+		Npc_PercEnable(self,PERC_ASSESSMURDER,B_MM_AssessOthersDamage);
+		Npc_PercEnable(self,PERC_ASSESSWARN,B_MM_AssessWarn);
+	};
 };
 

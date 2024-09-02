@@ -41,7 +41,7 @@ func int DIA_Addon_Ramon_FirstWarn_Condition()
 		Npc_SetRefuseTalk(self,5);
 		return FALSE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && !Npc_RefuseTalk(self))
+	if(C_NpcHasGuardStatus(self,BDT_1071_Checkpoint,GP_NONE) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -70,8 +70,11 @@ func void DIA_Addon_Ramon_FirstWarn_Info()
 		Player_HasTalkedToBanditCamp = TRUE;
 		B_GivePlayerXP(XP_Addon_Hinein);
 		AI_StopProcessInfos(self);
-		AI_Teleport(Carlos,"BL_WAIT_FINN");
-		B_StartOtherRoutine(Carlos,"START");
+		if(!Npc_IsDead(Carlos))
+		{
+			AI_Teleport(Carlos,"BL_WAIT_FINN");
+			B_StartOtherRoutine(Carlos,"START");
+		};
 		B_StartOtherRoutine(Finn,"START");
 	}
 	else if(Ramon_News == FALSE)
@@ -139,7 +142,7 @@ instance DIA_Addon_Ramon_SecondWarn(C_Info)
 
 func int DIA_Addon_Ramon_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && (Npc_GetDistToWP(other,BDT_1071_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if(C_NpcHasGuardStatus(self,BDT_1071_Checkpoint,GP_FirstWarnGiven))
 	{
 		return TRUE;
 	};
@@ -167,7 +170,7 @@ instance DIA_Addon_Ramon_Attack(C_Info)
 
 func int DIA_Addon_Ramon_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && C_NpcIsOnRoutineWP(self) && (Npc_GetDistToWP(other,BDT_1071_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if(C_NpcHasGuardStatus(self,BDT_1071_Checkpoint,GP_SecondWarnGiven))
 	{
 		return TRUE;
 	};

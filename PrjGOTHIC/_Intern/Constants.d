@@ -17,6 +17,7 @@ const int ATR_INDEX_MAX = 8;
 const int NPC_FLAG_FRIEND = 1;
 const int NPC_FLAG_IMMORTAL = 2;
 const int NPC_FLAG_GHOST = 4;
+const int NPC_FLAG_NFOCUS = 1 << 18;
 
 const int FMODE_NONE = 0;
 const int FMODE_FIST = 1;
@@ -115,7 +116,7 @@ const int DAM_CRITICAL_MULTIPLIER = 2;
 
 const int NPC_ATTACK_FINISH_DISTANCE = 180;
 const int NPC_BURN_TICKS_PER_DAMAGE_POINT = 1000;
-const int NPC_BURN_DAMAGE_POINTS_PER_INTERVALL = 50;	//20;
+const int NPC_BURN_DAMAGE_POINTS_PER_INTERVALL = 50;
 const int NPC_DAM_DIVE_TIME = 100;
 
 const int BLOOD_SIZE_DIVISOR = 1000;
@@ -129,6 +130,7 @@ const int IMMUNE = -1;
 
 const int CONDITION_WEAPON_RAVEN = 666666;
 const int CONDITION_ARMOR_FAKE_DEMENTOR = 777777;
+const int CONDITION_ACROBAT_DEXTERITY = 90;
 
 const float NPC_COLLISION_CORRECTION_SCALER = 0.75;
 
@@ -216,7 +218,6 @@ const int GIL_DMT = 11;
 const int GIL_OUT = 12;
 const int GIL_PIR = 13;
 const int GIL_KDW = 14;
-const int GIL_EMPTY_D = 15;
 const int GIL_PUBLIC = 15;
 const int GIL_SEPERATOR_HUM = 16;
 const int GIL_MEATBUG = 17;
@@ -225,7 +226,7 @@ const int GIL_GOBBO = 19;
 const int GIL_GOBBO_SKELETON = 20;
 const int GIL_SUMMONED_GOBBO_SKELETON = 21;
 const int GIL_SCAVENGER = 22;
-const int GIL_Giant_Rat = 23;
+const int GIL_GIANT_RAT = 23;
 const int GIL_GIANT_BUG = 24;
 const int GIL_BLOODFLY = 25;
 const int GIL_WARAN = 26;
@@ -251,13 +252,13 @@ const int GIL_TROLL = 45;
 const int GIL_SWAMPSHARK = 46;
 const int GIL_DRAGON = 47;
 const int GIL_MOLERAT = 48;
-const int GIL_Alligator = 49;
+const int GIL_ALLIGATOR = 49;
 const int GIL_SWAMPGOLEM = 50;
-const int GIL_Stoneguardian = 51;
-const int GIL_Gargoyle = 52;
+const int GIL_STONEGUARDIAN = 51;
+const int GIL_SHADOWBEAST_FIRE = 52;
 const int GIL_WISP = 53;
-const int GIL_SummonedGuardian = 54;
-const int GIL_SummonedZombie = 55;
+const int GIL_SUMMONED_STONEGUARDIAN = 54;
+const int GIL_SUMMONED_ZOMBIE = 55;
 const int GIL_EMPTY_B = 56;
 const int GIL_EMPTY_C = 57;
 const int GIL_SEPERATOR_ORC = 58;
@@ -304,6 +305,14 @@ class C_GILVALUES
 	var string blood_texture[GIL_MAX];
 	var int turn_speed[GIL_MAX];
 };
+
+const int GIL_SUB_Ranger = 1;
+const int GIL_SUB_Esteban = 2;
+const int GIL_SUB_Thief_City = 3;
+const int GIL_SUB_Thief_Sewer = 4;
+const int GIL_SUB_Lobart = 5;
+const int GIL_SUB_RedLight = 6;
+const int GIL_SUB_VinoRitual = 7;
 
 const int NPC_SOUND_DROPTAKE = 1;
 const int NPC_SOUND_SPEAK = 3;
@@ -784,7 +793,7 @@ const string TEXT_FONT_10 = "FONT_OLD_10_WHITE.TGA";
 const string TEXT_FONT_DEFAULT = "FONT_OLD_10_WHITE.TGA";
 const string TEXT_FONT_Inventory = "FONT_OLD_10_WHITE.TGA";
 
-const float VIEW_TIME_PER_CHAR = 550;
+const float VIEW_TIME_PER_CHAR = 550.0;
 
 const int NEWWORLD_ZEN = 1;
 const int OLDWORLD_ZEN = 2;
@@ -806,8 +815,15 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const string FIX_VERSION_DATE = "14/08/2023";
-const int FIX_VERSION_START = 29;
-const int LEAST_SUPPORTED = 26;
+const int FIX_DATE_YEAR = 2024;
+const int FIX_DATE_MONTH = 9;
+const int FIX_DATE_DAY = 2;
+
+var int FIX_DATE_YEAR_SAVE;
+var int FIX_DATE_MONTH_SAVE;
+var int FIX_DATE_DAY_SAVE;
+
+const int FIX_VERSION = 30;
 var int FIX_VERSION_SAVE;
-var string FIX_DATE_SAVE;
+
+const int LEAST_SUPPORTED = 27;

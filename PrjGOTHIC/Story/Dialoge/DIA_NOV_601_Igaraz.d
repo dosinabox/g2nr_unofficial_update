@@ -448,7 +448,14 @@ func int DIA_Igaraz_WhereDocs_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Igaranz_BabosBelongings) && (GotIgarazChestKey == FALSE))
 	{
-		return TRUE;
+		if(!C_WorldIsFixed())
+		{
+			return TRUE;
+		};
+		if(Mob_HasItems("CHEST_IGARAZ",ItWr_BabosDocs_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -531,7 +538,7 @@ instance DIA_Igaranz_BuyIt(C_Info)
 
 func int DIA_Igaraz_BuyIt_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaranz_Price) && (GotIgarazChestKey == FALSE) && Npc_HasItems(self,ItKe_IgarazChest_Mis))
+	if(Npc_KnowsInfo(other,DIA_Igaranz_Price) && (GotIgarazChestKey == FALSE) && Npc_HasItems(self,ItKe_IgarazChest_MIS))
 	{
 		return TRUE;
 	};
@@ -552,7 +559,7 @@ func void DIA_Igaraz_BuyIt_Info()
 		{
 			Feger3.aivar[AIV_IGNORE_Theft] = TRUE;
 		};
-		B_GiveInvItems(self,other,ItKe_IgarazChest_Mis,1);
+		B_GiveInvItems(self,other,ItKe_IgarazChest_MIS,1);
 		GotIgarazChestKey = TRUE;
 	}
 	else

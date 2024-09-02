@@ -34,7 +34,7 @@ instance DIA_Ulf_Hallo(C_Info)
 
 func int DIA_Ulf_Hallo_Condition()
 {
-	if((hero.guild != GIL_NOV) && (hero.guild != GIL_KDF) && (MIS_Schnitzeljagd == FALSE))
+	if((other.guild != GIL_NOV) && (other.guild != GIL_KDF) && (MIS_Schnitzeljagd == FALSE))
 	{
 		return TRUE;
 	};
@@ -68,7 +68,7 @@ instance DIA_Ulf_Wirte(C_Info)
 
 func int DIA_Ulf_Wirte_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Ulf_Hallo) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Ulf_Hallo) && (other.guild != GIL_KDF) && (other.guild != GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -95,7 +95,7 @@ instance DIA_Ulf_Kloster(C_Info)
 
 func int DIA_Ulf_Kloster_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Ulf_Hallo) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Ulf_Hallo) && (other.guild != GIL_KDF) && (other.guild != GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -122,7 +122,7 @@ instance DIA_Ulf_Bringen(C_Info)
 
 func int DIA_Ulf_Bringen_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Ulf_Hallo) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV) && (hero.guild != GIL_PAL))
+	if(Npc_KnowsInfo(other,DIA_Ulf_Hallo) && (other.guild != GIL_KDF) && (other.guild != GIL_NOV) && (other.guild != GIL_PAL))
 	{
 		return TRUE;
 	};
@@ -152,7 +152,7 @@ instance DIA_Ulf_Aufnahme(C_Info)
 
 func int DIA_Ulf_Aufnahme_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Ulf_Bringen) && (hero.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Ulf_Bringen) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -182,7 +182,7 @@ instance DIA_Ulf_Gold(C_Info)
 
 func int DIA_Ulf_Gold_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Ulf_Aufnahme) && (hero.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Ulf_Aufnahme) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -208,7 +208,7 @@ instance DIA_Ulf_Schaf(C_Info)
 
 func int DIA_Ulf_Schaf_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Ulf_Aufnahme) && (hero.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Ulf_Aufnahme) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -218,7 +218,7 @@ func void DIA_Ulf_Schaf_Info()
 {
 	AI_Output(other,self,"DIA_Ulf_Schaf_15_00");	//А где я могу найти овцу?
 	AI_Output(self,other,"DIA_Ulf_Schaf_03_01");	//У фермеров, конечно же. Но ты не получишь ее даром.
-	B_LogEntry(Topic_Kloster,"Я могу раздобыть овцу у фермеров.");
+	B_LogEntry(TOPIC_Kloster,"Я могу раздобыть овцу у фермеров.");
 };
 
 

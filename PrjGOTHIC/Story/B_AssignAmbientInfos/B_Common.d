@@ -304,6 +304,16 @@ func void DIA_Common_Hello()
 	AI_Output(other,self,"DIA_Addon_BDT_10004_Finn_Hi_15_00");	//Привет!
 };
 
+func void DIA_Common_YouGottaHelpMe()
+{
+	AI_Output(other,self,"DIA_Addon_Skip_Anheuern_15_00");	//Ты должен мне помочь.
+};
+
+func void DIA_Common_Maybe()
+{
+	AI_Output(other,self,"DIA_Brian_AboutLehrling_15_02");	//Может быть.
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?

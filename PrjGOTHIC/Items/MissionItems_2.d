@@ -27,7 +27,6 @@ instance ItWr_PaladinLetter_MIS(C_Item)
 
 func void UsePaladinLetter()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -65,7 +64,6 @@ instance ItWr_LetterForGorn_MIS(C_Item)
 
 func void UseLetterForGorn()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -118,7 +116,7 @@ instance ItKe_OC_Store(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_ErzBaronFlur(C_Item)
+instance ItKe_ErzBaronFlur(C_Item)
 {
 	name = "Ключ от первой двери";
 	mainflag = ITEM_KAT_KEYS;
@@ -135,7 +133,7 @@ instance ITKE_ErzBaronFlur(C_Item)
 	inv_zbias = 145;
 };
 
-instance ITKE_ErzBaronRaum(C_Item)
+instance ItKe_ErzBaronRaum(C_Item)
 {
 	name = "Ключ от второй двери";
 	mainflag = ITEM_KAT_KEYS;
@@ -158,7 +156,7 @@ instance ItMi_GornsTreasure_MIS(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 250;
-	visual = "ItMi_Pocket_Mis.3ds";
+	visual = "ItMi_Pocket_MIS.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	on_state[0] = UseGornsTreasure;
@@ -197,7 +195,6 @@ instance ItWr_Silvestro_MIS(C_Item)
 
 func void UseItwr_Silvestro()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -215,7 +212,7 @@ func void UseItwr_Silvestro()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Сильвестро");
 	Doc_Show(nDocID);
-	if((MIS_ScoutMine == LOG_Running) && Npc_IsDead(DiegoOW) && !Npc_KnowsInfo(hero,DIA_DiegoOw_Beweise) && (Silvestro_Ore == FALSE))
+	if((MIS_ScoutMine == LOG_Running) && Npc_IsDead(DiegoOW) && (Diego_ToldAboutSilvestroOre == FALSE) && (Silvestro_Ore == FALSE))
 	{
 		B_LogEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место руду, добытую старателями Сильвестро. Через некоторое время на шахту напали краулеры. Никто не выжил.");
 	};
@@ -243,7 +240,7 @@ instance ItSe_Olav(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 25;
-	visual = "ItMi_Pocket_Mis.3ds";
+	visual = "ItMi_Pocket_MIS.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	on_state[0] = UseOlav;
@@ -343,7 +340,6 @@ instance ItWr_Bloody_MIS(C_Item)
 
 func void UseBloodMIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -387,7 +383,6 @@ instance ItWr_Pfandbrief_MIS(C_Item)
 
 func void UsePfandbrief()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -493,7 +488,6 @@ instance ItWr_Manowar(C_Item)
 
 func void UseManowar()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -537,7 +531,6 @@ instance ItWr_KDWLetter(C_Item)
 
 func void UseKDWLetter()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -572,7 +565,6 @@ instance ItWr_GilbertLetter(C_Item)
 
 func void UseGilbertLetter()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -604,7 +596,7 @@ instance ItRi_HP_01_Tengron(C_Item)
 	on_unequip = UnEquip_ItRi_Hp_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = NAME_ADDON_CASSIASBELOHNUNGSRING;
+	description = "Кольцо жизни";
 	text[0] = "Это кольцо принадлежит Тенгрону.";
 	text[2] = NAME_Bonus_HpMax;
 	count[2] = Ri_Hp;

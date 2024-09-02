@@ -1,0 +1,14 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zEmitParticlesInstantly]
+		// engine specific
+		INT text_zCParticleFX_SetEmitter_call_TouchPfx = ZenDef(0x0058E203, 0x005A9887, 0x005A8A50, 0x005AE121)
+		
+		INT field_zCParticleFX_emitterVars_ppsNumParticlesFraction = 0x3C
+		// end of engine specific
+		
+		#assembler [text_zCParticleFX_SetEmitter_call_TouchPfx]
+			orgcode
+			mov dword ptr [esi+$field_zCParticleFX_emitterVars_ppsNumParticlesFraction], 0x3f800000 ; 1.0f
+		#/assembler
+	#/patch
+#/engine

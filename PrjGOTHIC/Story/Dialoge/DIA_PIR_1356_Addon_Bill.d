@@ -215,16 +215,16 @@ func void DIA_Addon_Bill_FoundFriends_Info()
 	{
 		if(SC_Knows_JuanMurderedAngus == TRUE)
 		{
-			B_LogEntry(TOPIC_Addon_KillJuan,"Фиск говорил, что парень по имени Хуан украл его посылку, сорвав сделку пиратов и бандитов. Он прячется где-то на болоте.");
+			Log_AddEntry(TOPIC_Addon_KillJuan,"Фиск говорил, что парень по имени Хуан украл его посылку, сорвав сделку пиратов и бандитов. Он прячется где-то на болоте.");
 		}
 		else
 		{
-			B_LogEntry(TOPIC_Addon_KillJuan,"Фиск говорил, что парень по имени Хуан украл его посылку, сорвав сделку пиратов и бандитов. Он прячется где-то на болоте. Возможно, он причастен к убийству Ангуса и Хэнка.");
+			Log_AddEntry(TOPIC_Addon_KillJuan,"Фиск говорил, что парень по имени Хуан украл его посылку, сорвав сделку пиратов и бандитов. Он прячется где-то на болоте. Возможно, он причастен к убийству Ангуса и Хэнка.");
 		};
 	};
 	if(SC_Knows_JuanMurderedAngus == TRUE)
 	{
-		B_LogEntry(TOPIC_Addon_KillJuan,"Бандит Том торговал с Ангусом и Хэнком, когда на них напал Хуан.");
+		Log_AddEntry(TOPIC_Addon_KillJuan,"Бандит Том торговал с Ангусом и Хэнком, когда на них напал Хуан.");
 	};
 };
 
@@ -343,9 +343,12 @@ func void DIA_Addon_Bill_TeachPlayer_Info()
 	AI_Output(other,self,"DIA_Addon_Bill_TeachPlayer_15_00");	//Ты можешь меня чему-нибудь научить?
 	AI_Output(self,other,"DIA_Addon_Bill_TeachPlayer_03_01");	//Ну, я бы мог показать тебе, как незамеченным воровать чужие кошельки.
 	AI_Output(self,other,"DIA_Addon_Bill_TeachPlayer_03_02");	//Но ты должен быть достаточно ловким, иначе ничего не получится.
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
+	{
+		Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
+		B_LogEntry(Topic_Addon_PIR_Teacher,"Билл может обучить меня карманным кражам.");
+	};
 	Bill_Addon_TeachPickPocket = TRUE;
-	Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-	B_LogEntry(Topic_Addon_PIR_Teacher,"Билл может обучить меня карманным кражам.");
 };
 
 

@@ -901,7 +901,6 @@ instance DIA_Bosper_Minenanteil(C_Info)
 
 func int DIA_Bosper_Minenanteil_Condition()
 {
-	//if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running))
 	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (BosperMinenAnteil == TRUE))
 	{
 		return TRUE;
@@ -911,10 +910,10 @@ func int DIA_Bosper_Minenanteil_Condition()
 func void DIA_Bosper_Minenanteil_Info()
 {
 	AI_Output(other,self,"DIA_Bosper_Minenanteil_15_00");	//Я вижу, ты продаешь акции шахт.
-	if(Npc_HasItems(self,ItWr_MinenAnteil_Mis) && (Player_IsApprentice == APP_Bosper))
+	if(Npc_HasItems(self,ItWr_MinenAnteil_MIS) && (Player_IsApprentice == APP_Bosper))
 	{
 		AI_Output(self,other,"DIA_Bosper_Minenanteil_11_01");	//Хм-м, я ничего не знаю об этом. Ты можешь забрать их, если хочешь.
-		B_GiveInvItems(self,other,ItWr_MinenAnteil_Mis,Npc_HasItems(self,ItWr_MinenAnteil_Mis));
+		B_GiveInvItems(self,other,ItWr_MinenAnteil_MIS,Npc_HasItems(self,ItWr_MinenAnteil_MIS));
 	}
 	else
 	{

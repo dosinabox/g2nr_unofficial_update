@@ -1841,7 +1841,7 @@ instance SVM_10(C_SVM)
 	abs_good = "SVM_10_ABS_GOOD";	//Это честно.
 	sheepkiller_crime = "SVM_10_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
 	attack_crime = "SVM_10_ATTACK_CRIME";	//Ты бандит - убирайся!
-	theft_crime = "SVM_10_THEFT_CRIME";	//Проклятый вор! я не хочу видеть тебя!
+	theft_crime = "SVM_10_THEFT_CRIME";	//Проклятый вор! Я не хочу видеть тебя!
 	pal_city_crime = "SVM_10_PAL_CITY_CRIME";	//Я не ожидал такого от паладина! Лорд Хаген будет недоволен.
 	mil_city_crime = "SVM_10_MIL_CITY_CRIME";	//Как такой, как ты, вообще мог попасть в городскую стражу? Лорд Андрэ заставит тебя заплатить за это!
 	city_crime = "SVM_10_CITY_CRIME";	//Лорд Андрэ узнает о твоем поведении!
@@ -2095,7 +2095,7 @@ instance SVM_11(C_SVM)
 	Smalltalk25 = "SVM_11_Smalltalk25";	//...он напился в стельку...
 	Smalltalk26 = "SVM_11_Smalltalk26";	//...я не позволю так обращаться с собой...
 	Smalltalk27 = "SVM_11_Smalltalk27";	//...они все разбежались как крысы, и я остался совсем один...
-	Smalltalk28 = "SVM_11_Smalltalk28";	//...так говорится в писании...
+	Smalltalk28 = "SVM_11_Smalltalk28";	//...так говорится в Писании...
 	Smalltalk29 = "SVM_11_Smalltalk29";	//...я всегда поступаю так, как завещал Иннос...
 	Smalltalk30 = "SVM_11_Smalltalk30";	//...никто не смеет нарушать божественный порядок...
 	NoLearnNoPoints = "SVM_11_NoLearnNoPoints";	//Возвращайся, когда у тебя будет больше опыта.
@@ -2508,7 +2508,7 @@ instance SVM_13(C_SVM)
 	Aargh_2 = "SVM_13_Aargh_2";	//Аааааа!
 	Aargh_3 = "SVM_13_Aargh_3";	//Аааааа!
 	addon_wrongarmor = "SVM_13_Addon_WrongArmor";	//Что на тебе надето? Это тебе совсем не подходит. Оставь меня в покое.
-	addon_wrongarmor_sld = "SVM_13_ADDON_WRONGARMOR_SLD";	//Ты не носишь свои доспехи... пойди и надень их.
+	addon_wrongarmor_sld = "SVM_13_ADDON_WRONGARMOR_SLD";	//Ты не носишь свои доспехи... Пойди и надень их.
 	addon_wrongarmor_mil = "SVM_13_ADDON_WRONGARMOR_MIL";	//Ты должен гордиться, что можешь носить доспехи королевской гвардии, а ты бегаешь в этих лохмотьях. Иди же!
 	addon_wrongarmor_kdf = "SVM_13_ADDON_WRONGARMOR_KDF";	//Почему ты не носишь одежду, соответствующую нашему ордену? Пойди и подумай об этом.
 	addon_noarmor_bdt = "SVM_13_ADDON_ADDON_NOARMOR_BDT";	//Да у тебя даже нет доспехов! Вали отсюда!

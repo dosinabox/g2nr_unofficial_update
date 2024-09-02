@@ -215,11 +215,14 @@ func void DIA_Dobar_NEWS_Info()
 	{
 		AI_Output(self,other,"DIA_Dobar_NEWS_08_01");	//Я кую оружие для рыцарей замка. С тех пор, как мы прибыли сюда, я не отхожу от кузницы.
 		AI_Output(self,other,"DIA_Dobar_NEWS_08_02");	//Это оружие нам очень пригодится. Мы еще покажем этим проклятым оркам!
-		if(!Npc_IsDead(Parlaf) && (Npc_GetDistToWP(Parlaf,"OC_SMITH_SHARP") < 500))
+		if(!Npc_IsDead(Parlaf))
 		{
-			B_TurnToNpc(self,Parlaf);
-			AI_Output(self,other,"DIA_Dobar_NEWS_08_03");	//(зовет) Эй, Парлаф - затачивай эти мечи получше - орки чертовски сильные противники!
-			B_TurnToNpc(self,other);
+			if(Npc_GetDistToWP(Parlaf,"OC_SMITH_SHARP") < 500)
+			{
+				B_TurnToNpc(self,Parlaf);
+				AI_Output(self,other,"DIA_Dobar_NEWS_08_03");	//(зовет) Эй, Парлаф - затачивай эти мечи получше - орки чертовски сильные противники!
+				B_TurnToNpc(self,other);
+			};
 		};
 		Dobar_einmalig = TRUE;
 	}
@@ -243,7 +246,7 @@ instance DIA_Dobar_RepairNecklace(C_Info)
 
 func int DIA_Dobar_RepairNecklace_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
 		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 		{

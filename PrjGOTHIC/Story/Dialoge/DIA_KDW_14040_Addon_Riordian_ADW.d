@@ -73,7 +73,7 @@ func void DIA_Addon_Riordian_WhatToFind_Info()
 	AI_Output(other,self,"DIA_Addon_Riordian_WhatToFind_15_00");	//Что вы здесь уже обнаружили?
 	AI_Output(self,other,"DIA_Addon_Riordian_Gegend_west_10_03");	//На востоке, недалеко отсюда, мы нашли тело рыбака.
 	AI_Output(self,other,"DIA_Addon_Riordian_Gegend_west_10_04");	//Тебе стоит на него взглянуть.
-	if(!Npc_HasItems(William,ITWr_Addon_William_01))
+	if(!Npc_HasItems(William,ItWr_Addon_William_01))
 	{
 		DIA_Common_IFoundHim();
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_04");	//Благодарю тебя.

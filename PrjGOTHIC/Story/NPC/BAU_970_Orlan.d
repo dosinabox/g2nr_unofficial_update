@@ -7,7 +7,7 @@ instance BAU_970_Orlan(Npc_Default)
 	voice = 5;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_MAIN;
-	aivar[AIV_NPCIsRanger] = TRUE;
+	aivar[AIV_SubGuild] = GIL_SUB_Ranger;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;

@@ -1,0 +1,16 @@
+#engine [G2, G2A]
+	#patch [zSpellCollisionFix]
+		// engine specific
+		INT text_oCVisualFX_ProcessCollision_mov_esi_origin_offset = ZenDef(0x00000000, 0x00000000, 0x00493FBA, 0x00495C74) + 2
+		INT text_oCVisualFX_ProcessCollision_mov_esi_target = ZenDef(0x00000000, 0x00000000, 0x00494094, 0x00495B9A)
+		
+		INT field_oCVisualFX_inflictor = ZenDef(0x45C, 0x45C, 0x4AC, 0x4AC)
+		// end of engine specific
+		
+		INT @text_oCVisualFX_ProcessCollision_mov_esi_origin_offset = field_oCVisualFX_inflictor
+		
+		#assembler [text_oCVisualFX_ProcessCollision_mov_esi_target]
+			mov esi, [esp+0x14]
+		#/assembler
+	#/patch
+#/engine

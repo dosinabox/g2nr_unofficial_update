@@ -11,9 +11,12 @@ func void ZS_Guard_Passage()
 	{
 		AI_AlignToWP(self);
 	}
-	else if(!C_BodyStateContains(hero,BS_SNEAK))
+	else if(self.aivar[AIV_PASSGATE] == FALSE)
 	{
-		AI_TurnToNPC(self,hero);
+		if(!C_BodyStateContains(hero,BS_SNEAK))
+		{
+			AI_TurnToNPC(self,hero);
+		};
 	};
 };
 
@@ -58,9 +61,12 @@ func int ZS_Guard_Passage_Loop()
 				AI_AlignToWP(self);
 			};
 		}
-		else if(!C_BodyStateContains(hero,BS_SNEAK))
+		else if(self.aivar[AIV_PASSGATE] == FALSE)
 		{
-			AI_TurnToNPC(self,hero);
+			if(!C_BodyStateContains(hero,BS_SNEAK))
+			{
+				AI_TurnToNPC(self,hero);
+			};
 		};
 		Npc_SetStateTime(self,0);
 	};

@@ -184,7 +184,7 @@ func void DIA_Rumbold_HALLO_ENDAttack()
 {
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_KILL,1);
-	if(Hlp_IsValidNpc(Rick) && !C_NpcIsDown(Rick))
+	if(!C_NpcIsDown(Rick))
 	{
 		B_Attack(Rick,other,AR_KILL,1);
 	};
@@ -225,7 +225,7 @@ func void DIA_Rumbold_FightNow_ENDAttack()
 {
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_KILL,1);
-	if(Hlp_IsValidNpc(Rick) && !C_NpcIsDown(Rick))
+	if(!C_NpcIsDown(Rick))
 	{
 		B_Attack(Rick,other,AR_KILL,1);
 	};
@@ -266,7 +266,7 @@ func void DIA_Rumbold_StillThere_ENDAttack()
 {
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_KILL,1);
-	if(Hlp_IsValidNpc(Rick) && !C_NpcIsDown(Rick))
+	if(!C_NpcIsDown(Rick))
 	{
 		B_Attack(Rick,other,AR_KILL,1);
 	};

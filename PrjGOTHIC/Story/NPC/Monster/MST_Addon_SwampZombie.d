@@ -1,5 +1,5 @@
 
-prototype Mst_Default_SwampZombie(C_Npc)
+/*prototype Mst_Default_SwampZombie(C_Npc)
 {
 	name[0] = "Болотный труп";
 	guild = GIL_ZOMBIE;
@@ -39,5 +39,5 @@ instance SwampZombie(Mst_Default_SwampZombie)
 {
 	B_SetVisuals_SwampZombie();
 	Npc_SetToFistMode(self);
-};
+};*/
 

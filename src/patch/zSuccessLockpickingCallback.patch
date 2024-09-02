@@ -1,0 +1,31 @@
+#engine [G2A]
+    #patch [zSuccessLockpickingCallback]
+        // engine specific
+        INT text_oCMobLockable_Interact_or_eax_1 = 0x00723F4F
+        
+        INT offset_parser = ZenDef(0x008DCE08, 0x00925048, 0x00984C08, 0x00AB40C0)
+        
+        INT str_SELF = CreateMemString("SELF")
+        
+        INT func_zCParser_CallFunc = 0x007929F0
+        INT func_zCParser_SetInstance = ZenDef(0x006EB3C0, 0x00724640, 0x00734E30, 0x00794870)
+        // end of engine specific
+    
+        #assembler [text_oCMobLockable_Interact_or_eax_1]
+            orgcode
+            
+            push esi
+            push $str_SELF
+            mov ecx, $offset_parser
+            call $func_zCParser_SetInstance
+            
+            push 1
+            push 1
+            push dword ptr [esp+0x18]
+            push $offset_parser
+            call $func_zCParser_CallFunc
+            add esp, 16
+            
+        #/assembler
+    #/patch
+#/engine

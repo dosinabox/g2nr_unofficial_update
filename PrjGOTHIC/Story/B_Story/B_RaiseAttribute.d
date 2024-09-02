@@ -11,7 +11,7 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 	else if(attrib == ATR_DEXTERITY)
 	{
 		oth.attribute[ATR_DEXTERITY] += points;
-		if((oth.attribute[ATR_DEXTERITY] >= 90) && !Npc_GetTalentSkill(oth,NPC_TALENT_ACROBAT))
+		if((oth.attribute[ATR_DEXTERITY] >= CONDITION_ACROBAT_DEXTERITY) && !Npc_GetTalentSkill(oth,NPC_TALENT_ACROBAT))
 		{
 			Npc_SetTalentSkill(oth,NPC_TALENT_ACROBAT,1);
 			PrintScreen(PRINT_Addon_AcrobatBonus,-1,53,FONT_Screen,2);
@@ -81,6 +81,23 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 		{
 			PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
 		};
+	};
+};
+
+//для поддержки Bonus Independent Training
+func void B_RaiseRealAttributeLearnCounter(var C_Npc oth,var int attrib,var int points)
+{
+	if(attrib == ATR_STRENGTH)
+	{
+		oth.aivar[REAL_STRENGTH] += points;
+	}
+	else if(attrib == ATR_DEXTERITY)
+	{
+		oth.aivar[REAL_DEXTERITY] += points;
+	}
+	else if(attrib == ATR_MANA_MAX)
+	{
+		oth.aivar[REAL_MANA_MAX] += points;
 	};
 };
 

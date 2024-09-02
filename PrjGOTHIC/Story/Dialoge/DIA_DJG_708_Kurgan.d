@@ -18,7 +18,10 @@ func int DIA_Kurgan_EXIT_Condition()
 func void DIA_Kurgan_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-	Npc_SetRefuseTalk(Biff,400);
+	if(!Npc_IsDead(Biff))
+	{
+		Npc_SetRefuseTalk(Biff,400);
+	};
 };
 
 
@@ -162,7 +165,7 @@ instance DIA_Kurgan_SEENDRAGON(C_Info)
 
 func int DIA_Kurgan_SEENDRAGON_Condition()
 {
-	if(Kurgan_KillDragon_Day <= (Wld_GetDay() - 2))
+	if(C_DaysSinceEvent(Kurgan_KillDragon_Day,2) && !Npc_KnowsInfo(other,DIA_Kurgan_AllDragonsDead))
 	{
 		return TRUE;
 	};

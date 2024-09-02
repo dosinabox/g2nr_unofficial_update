@@ -101,7 +101,7 @@ instance MENUITEM_AUDIO_SOUND_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = MENU_TEXT_ONOFF;
+	text[0] = MENU_TEXT_OFFON;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
 	posy = MENU_START_Y + (MENU_STEP_Y * 2) + MENU_CHOICE_YPLUS;
@@ -130,7 +130,7 @@ instance MENUITEM_AUDIO_MUSIC_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = MENU_TEXT_ONOFF;
+	text[0] = MENU_TEXT_OFFON;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
 	posy = MENU_START_Y + (MENU_STEP_Y * 3) + MENU_CHOICE_YPLUS;
@@ -159,7 +159,7 @@ instance MENUITEM_AUDIO_SUB_TITLES_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = MENU_TEXT_ONOFF;
+	text[0] = MENU_TEXT_OFFON;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
 	posy = MENU_START_Y + (MENU_STEP_Y * 4) + MENU_CHOICE_YPLUS;
@@ -188,7 +188,7 @@ instance MENUITEM_AUDIO_SUB_TITLES2_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = MENU_TEXT_ONOFF;
+	text[0] = MENU_TEXT_OFFON;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
 	posy = MENU_START_Y + (MENU_STEP_Y * 5) + MENU_CHOICE_YPLUS;
@@ -291,7 +291,7 @@ instance MENUITEM_AUDIO_SAMPLERATE_CHOICE(C_MENU_ITEM_DEF)
 instance MENUITEM_AUDIO_REVERB(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
-	text[0] = "Ревербация";
+	text[0] = "Реверберация";
 	text[1] = "Реверберация в пещерах и помещениях";
 	posx = 1000;
 	posy = MENU_START_Y + (MENU_STEP_Y * 9);
@@ -305,7 +305,7 @@ instance MENUITEM_AUDIO_REVERB_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = MENU_TEXT_ONOFF;
+	text[0] = MENU_TEXT_OFFON;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
 	posy = MENU_START_Y + (MENU_STEP_Y * 9) + MENU_CHOICE_YPLUS;
@@ -320,8 +320,8 @@ instance MENUITEM_AUDIO_REVERB_CHOICE(C_MENU_ITEM_DEF)
 instance MENUITEM_AUDIO_REVERB_SPEECH(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
-	text[0] = "Ревербация голоса";
-	text[1] = "Влияние ревербации на голоса";
+	text[0] = "Реверберация речи";
+	text[1] = "Влияние реверберации на диалоги";
 	posx = 1000;
 	posy = MENU_START_Y + (MENU_STEP_Y * 10);
 	dimx = 4000;

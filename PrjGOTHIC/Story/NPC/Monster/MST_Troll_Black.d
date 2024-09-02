@@ -14,7 +14,7 @@ prototype Mst_Default_Troll_Black(C_Npc)
 	protection[PROT_BLUNT] = 150;
 	protection[PROT_EDGE] = 150;
 	protection[PROT_POINT] = IMMUNE;
-	protection[PROT_FIRE] = 150;	//300;
+	protection[PROT_FIRE] = 150;
 	protection[PROT_FLY] = IMMUNE;
 	protection[PROT_MAGIC] = 300;
 	damagetype = DAM_FLY;
@@ -24,9 +24,9 @@ prototype Mst_Default_Troll_Black(C_Npc)
 	aivar[AIV_MM_ThreatenBeforeAttack] = TRUE;
 	aivar[AIV_MM_FollowTime] = FOLLOWTIME_MEDIUM;
 	aivar[AIV_MM_FollowInWater] = FALSE;
+	bodyStateInterruptableOverride = TRUE;
 	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_RestStart] = OnlyRoutine;
-	bodyStateInterruptableOverride = TRUE;
 };
 
 func void B_SetVisuals_Troll_Black()

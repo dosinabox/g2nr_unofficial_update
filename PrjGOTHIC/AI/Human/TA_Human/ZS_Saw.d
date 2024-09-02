@@ -12,10 +12,7 @@ func void ZS_Saw()
 
 func int ZS_Saw_Loop()
 {
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"BAUMSAEGE"))
-	{
-		AI_UseMob(self,"BAUMSAEGE",1);
-	};
+	B_UseAvailableMob(self,"BAUMSAEGE");
 	if((Npc_GetStateTime(self) > 15) && C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT))
 	{
 		Npc_SetStateTime(self,0);

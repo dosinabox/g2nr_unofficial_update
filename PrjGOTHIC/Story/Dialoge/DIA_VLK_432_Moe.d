@@ -34,6 +34,10 @@ instance DIA_Moe_Hallo(C_Info)
 
 func int DIA_Moe_Hallo_Condition()
 {
+	if(Npc_RefuseTalk(self))
+	{
+		return FALSE;
+	};
 	if((Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist) || Npc_IsInState(self,ZS_Talk))
 	{
 		if((other.guild != GIL_PAL) && (other.guild != GIL_KDF) && (other.guild != GIL_MIL) && !C_LehmarDebtIsOverdue() && !Npc_IsDead(Lehmar))
@@ -293,6 +297,10 @@ instance DIA_Moe_LEHMARGELDEINTREIBEN(C_Info)
 
 func int DIA_Moe_LEHMARGELDEINTREIBEN_Condition()
 {
+	if(Npc_RefuseTalk(self))
+	{
+		return FALSE;
+	};
 	if(Npc_IsDead(Lehmar))
 	{
 		return TRUE;

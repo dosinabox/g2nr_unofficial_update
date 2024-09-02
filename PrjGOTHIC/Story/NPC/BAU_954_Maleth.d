@@ -7,6 +7,7 @@ instance BAU_954_Maleth(Npc_Default)
 	voice = 8;
 	flags = 0;
 	npcType = NPCTYPE_MAIN;
+	aivar[AIV_SubGuild] = GIL_SUB_Lobart;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Axe);

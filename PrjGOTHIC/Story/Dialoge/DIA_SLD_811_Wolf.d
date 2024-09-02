@@ -154,8 +154,8 @@ func void B_BuildLearnDialog_Wolf()
 	{
 		Info_ClearChoices(DIA_Wolf_TEACH);
 		Info_AddChoice(DIA_Wolf_TEACH,Dialog_Back,DIA_Wolf_Teach_Back);
-		Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Wolf_Teach_Bow_1);
-		Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Wolf_Teach_Bow_5);
+		Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnTalentString(other,NPC_TALENT_BOW,1),DIA_Wolf_Teach_Bow_1);
+		Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnTalentString(other,NPC_TALENT_BOW,5),DIA_Wolf_Teach_Bow_5);
 	}
 	else
 	{
@@ -318,7 +318,6 @@ func void DIA_Wolf_Stadt_Info()
 };
 
 
-var int MIS_Wolf_BringCrawlerPlates;
 var int Wolf_MakeArmor;
 var int Player_GotCrawlerArmor;
 
@@ -466,7 +465,7 @@ func void DIA_Wolf_ArmorReady_Info()
 			AI_Output(other,self,"DIA_Wolf_ArmorReady_15_04");	//Спасибо!
 			AI_Output(self,other,"DIA_Wolf_ArmorReady_08_05");	//Да ладно.
 			Player_GotCrawlerArmor = TRUE;
-			CreateInvItems(Bennet,ItBE_Addon_MC,1);
+			CreateInvItems(Bennet,ItBe_Addon_MC,1);
 		};
 	}
 	else
@@ -539,10 +538,13 @@ func void DIA_Wolf_BENGAR_geld()
 		MIS_BengarsHelpingSLD = LOG_SUCCESS;
 		B_GivePlayerXP(XP_BengarsHelpingSLD);
 		AI_StopProcessInfos(self);
-		AI_UseMob(self,"BENCH",-1);
-		Npc_ExchangeRoutine(self,"BengarsFarm");
-		B_StartOtherRoutine(SLD_815_Soeldner,"BengarsFarm");
-		B_StartOtherRoutine(SLD_817_Soeldner,"BengarsFarm");
+		if(C_BodyStateContains(self,BS_SIT))
+		{
+			AI_UseMob(self,"BENCH",-1);
+		};
+		Npc_ExchangeRoutine(self,"BENGARSFARM");
+		B_StartOtherRoutine(SLD_815_Soeldner,"BENGARSFARM");
+		B_StartOtherRoutine(SLD_817_Soeldner,"BENGARSFARM");
 	}
 	else
 	{
@@ -611,7 +613,7 @@ func void DIA_Wolf_KAP5_EXIT_Info()
 {
 	AI_Output(self,other,"DIA_Wolf_PERMKAP3_08_01");	//Мой работодатель мертв. Пусть земля ему будет пухом. Кстати, я всегда хотел иметь свою собственную ферму.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"BengarDead");
+	Npc_ExchangeRoutine(self,"BENGARDEAD");
 	Wolf_SaidNo = FALSE;
 };
 
@@ -645,7 +647,6 @@ func void DIA_Wolf_SHIP_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Wolf_SHIP_08_02");	//Да, конечно. Нужно сваливать отсюда. Ты не пожалеешь об этом. Я помогу тебе защитить корабль. Куда мы направляемся?
-		MIS_BengarsHelpingSLD = LOG_OBSOLETE;
 		B_LogEntry(Topic_Crew,"Вольфу надоел этот остров, и он готов на все, чтобы убраться отсюда. Он хороший боец.");
 	};
 };
@@ -694,6 +695,7 @@ func void DIA_Wolf_KnowWhereEnemy_Yes()
 	AI_Output(other,self,"DIA_Wolf_KnowWhereEnemy_Yes_15_00");	//Добро пожаловать на борт!
 	AI_Output(other,self,"DIA_Wolf_KnowWhereEnemy_Yes_15_01");	//Приходи в гавань. Мы скоро отправляемся.
 	AI_Output(self,other,"DIA_Wolf_KnowWhereEnemy_Yes_08_02");	//Можешь считать, что я уже там.
+	MIS_BengarsHelpingSLD = LOG_OBSOLETE;
 	B_JoinShip(self);
 };
 
@@ -734,7 +736,7 @@ func void DIA_Wolf_LeaveMyShip_Info()
 	AI_StopProcessInfos(self);
 	self.flags = 0;
 	B_Attack(self,other,AR_NONE,1);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 

@@ -261,7 +261,7 @@ instance DIA_Addon_Garett_GiveKompass(C_Info)
 
 func int DIA_Addon_Garett_GiveKompass_Condition()
 {
-	if((Npc_HasItems(other,ItMI_Addon_Kompass_Mis) >= 1) && (MIS_Addon_Garett_BringKompass == LOG_Running))
+	if(Npc_HasItems(other,ItMi_Addon_Kompass_MIS) && (MIS_Addon_Garett_BringKompass == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -270,8 +270,8 @@ func int DIA_Addon_Garett_GiveKompass_Condition()
 func void DIA_Addon_Garett_GiveKompass_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Garett_GiveKompass_15_00");	//Вот твой компас.
-	B_GiveInvItems(other,self,ItMI_Addon_Kompass_Mis,1);
-	Npc_RemoveInvItem(self,ItMI_Addon_Kompass_Mis);
+	B_GiveInvItems(other,self,ItMi_Addon_Kompass_MIS,1);
+	Npc_RemoveInvItem(self,ItMi_Addon_Kompass_MIS);
 	AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_01");	//(радостно) Да, это он! Вот уж не думал, что снова его увижу.
 	AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_02");	//Спасибо, приятель!
 	AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_03");	//На этот раз Грег его не получит.
@@ -283,7 +283,7 @@ func void DIA_Addon_Garett_GiveKompass_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_05");	//Помнишь, ты купил у меня пояс.
 		AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_06");	//Ты заплатил за него порядочную сумму... Нет, конечно он стоит этих денег. В общем, можешь взять их обратно.
-		B_GiveInvItems(self,other,ItMi_Gold,Value_ItBE_Addon_Prot_EdgPoi);
+		B_GiveInvItems(self,other,ItMi_Gold,Value_ItBe_Addon_Prot_EdgPoi);
 	}
 	else
 	{

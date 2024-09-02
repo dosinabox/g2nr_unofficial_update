@@ -318,9 +318,9 @@ func void DIA_Addon_Lares_Vatras_Info()
 	Lares_RangerHelp = TRUE;
 	if(GregLocation == Greg_Farm1)
 	{
-		B_StartOtherRoutine(BAU_974_Bauer,"GregInTaverne");
+		B_StartOtherRoutine(BAU_974_Bauer,"GREGINTAVERNE");
 		GregLocation = Greg_Taverne;
-		B_StartOtherRoutine(Greg_NW,"Taverne");
+		B_StartOtherRoutine(Greg_NW,"TAVERNE");
 		B_InsertGregWolfs();
 	};
 };
@@ -855,21 +855,28 @@ func void DIA_Addon_Lares_YourMission_Info()
 		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_03");	//Я делаю то, что делаем мы все. Выполняю задание, которое дали мне маги Воды.
 		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_04");	//Некоторые из пропавших людей были рыбаками. Они пропали вместе со своими лодками.
 		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_05");	//Поэтому я нахожусь здесь и наблюдаю за гаванью. Если что-то еще произойдет, я это замечу.
-		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_06");	//Но ты можешь мне помочь.
-		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_07");	//Я дам тебе свое аквамариновое кольцо. Оно показывает, что его обладатель принадлежит к Кольцу Воды.
-		CreateInvItems(self,ItRi_Ranger_Lares_Addon,1);
-		B_GiveInvItems(self,other,ItRi_Ranger_Lares_Addon,1);
-		SC_GotLaresRing = TRUE;
-		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_08");	//Если ты будешь носить мое кольцо, то членам братства будет ясно, что ты действуешь от моего имени.
-		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_09");	//Найди кого-нибудь, кто сменит меня, чтобы я смог отнести орнамент.
-		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_10");	//На рынке постоянно дежурит кто-нибудь из наших. Но я не знаю, чья сейчас смена.
-		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_11");	//Тебе лучше поговорить со всеми, кто там стоит. Когда наш человек увидит аквамариновое кольцо, он сам тебе откроется.
-		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_12");	//Скажи ему, что мне нужен кто-то, кто сменит меня в порту.
-		Log_CreateTopic(TOPIC_Addon_BringRangerToLares,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_BringRangerToLares,LOG_Running);
-		B_LogEntries(TOPIC_Addon_BringRangerToLares,"Ларес хочет покинуть гавань. Я должен пройтись по рынку, надев аквамариновое кольцо, и попробовать найти кого-то, кто займет место Лареса.");
-		B_LogNextEntry(TOPIC_Addon_RingOfWater,"Ларес дал мне аквамариновое кольцо - тайный знак Кольца Воды. Если я буду его носить, другие члены Кольца Воды смогут мне открыться.");
-		MIS_Lares_BringRangerToMe = LOG_Running;
+		if((Lares_CanBringScToPlaces == FALSE) && (Kapitel < 3))
+		{
+			AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_06");	//Но ты можешь мне помочь.
+			AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_07");	//Я дам тебе свое аквамариновое кольцо. Оно показывает, что его обладатель принадлежит к Кольцу Воды.
+			CreateInvItems(self,ItRi_Ranger_Lares_Addon,1);
+			B_GiveInvItems(self,other,ItRi_Ranger_Lares_Addon,1);
+			SC_GotLaresRing = TRUE;
+			AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_08");	//Если ты будешь носить мое кольцо, то членам братства будет ясно, что ты действуешь от моего имени.
+			AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_09");	//Найди кого-нибудь, кто сменит меня, чтобы я смог отнести орнамент.
+			AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_10");	//На рынке постоянно дежурит кто-нибудь из наших. Но я не знаю, чья сейчас смена.
+			AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_11");	//Тебе лучше поговорить со всеми, кто там стоит. Когда наш человек увидит аквамариновое кольцо, он сам тебе откроется.
+			AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_12");	//Скажи ему, что мне нужен кто-то, кто сменит меня в порту.
+			Log_CreateTopic(TOPIC_Addon_BringRangerToLares,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_BringRangerToLares,LOG_Running);
+			B_LogEntries(TOPIC_Addon_BringRangerToLares,"Ларес хочет покинуть гавань. Я должен пройтись по рынку, надев аквамариновое кольцо, и попробовать найти кого-то, кто займет место Лареса.");
+			B_LogNextEntry(TOPIC_Addon_RingOfWater,"Ларес дал мне аквамариновое кольцо - тайный знак Кольца Воды. Если я буду его носить, другие члены Кольца Воды смогут мне открыться.");
+			MIS_Lares_BringRangerToMe = LOG_Running;
+		}
+		else
+		{
+			MIS_Lares_BringRangerToMe = LOG_OBSOLETE;
+		};
 	};
 };
 
@@ -915,9 +922,9 @@ func void DIA_Addon_Lares_BaltramAbloese_Info()
 			AI_Output(self,other,"DIA_Addon_Lares_BaltramAbloese_09_04");	//(улыбается) Кто знает, может, ты решишь стать одним из нас...
 		};
 	};
+	Lares_CanBringScToPlaces = TRUE;
 	MIS_Lares_BringRangerToMe = LOG_SUCCESS;
 	B_CheckLog();
-	Lares_CanBringScToPlaces = TRUE;
 };
 
 
@@ -1013,9 +1020,9 @@ func void DIA_Addon_Lares_PeopleMissing_SAVED()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_PeopleMissing_SAVED_15_00");	//Мне удалось спасти некоторых из похищенных людей.
 	AI_Output(self,other,"DIA_Addon_Lares_PeopleMissing_SAVED_09_01");	//Я знал, что ты справишься. Теперь я наконец-то смогу заняться своими делами.
-	B_GivePlayerXP(XP_Ambient);
 	Lares_PeopleMissing_PERM = TRUE;
 	Lares_CanBringScToPlaces = TRUE;
+	B_GivePlayerXP(XP_Ambient);
 	Info_ClearChoices(DIA_Addon_Lares_PeopleMissing);
 };
 
@@ -1630,11 +1637,8 @@ func void DIA_Addon_Lares_InfoOutsideTheCity2()
 		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_03");	//А такие доспехи выдают маги Воды каждому из нас. Члены общества Кольца Воды носили такую броню еще до войны с орками.
 		Lares_ArmorComment = TRUE;
 	};
-	if(Cavalorn_RangerHint == TRUE)
-	{
-		AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_15_04");	//А как ко всему этому относится Кавалорн? Насколько я знаю, в Новом Лагере он ничем таким не занимался.
-		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_05");	//Ты прав. Но наше сообщество растет, и даже я не знаю, сколько членов оно сейчас насчитывает.
-	};
+	AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_15_04");	//А как ко всему этому относится Кавалорн? Насколько я знаю, в Новом Лагере он ничем таким не занимался.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_05");	//Ты прав. Но наше сообщество растет, и даже я не знаю, сколько членов оно сейчас насчитывает.
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_06");	//Но нам нужно идти. Когда мы отойдем подальше от города, мы сможем поговорить еще.
 };
 
@@ -1892,7 +1896,7 @@ func void DIA_Addon_Lares_ArrivedPortalInter1_Info()
 		Info_AddChoice(DIA_Addon_Lares_ArrivedPortalInter1,"Конечно.",DIA_Addon_Lares_ArrivedPortalInter1_ja);
 		Info_AddChoice(DIA_Addon_Lares_ArrivedPortalInter1,"Сатурас? Кто это такой?",DIA_Addon_Lares_ArrivedPortalInter1_wer);
 	}
-	else 
+	else
 	{
 		B_LaresDistractionCheck();
 		B_MakeRangerReadyForMeeting(self);
@@ -2088,7 +2092,7 @@ func int DIA_Addon_Lares_ArrivedPortalInterWeiter4_Condition()
 func void DIA_Addon_Lares_ArrivedPortalInterWeiter4_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter4_09_00");	//Очень хорошо. Здесь может быть опасно.
-	B_StartOtherRoutine(BridgeBandit,"Intercept");
+	B_StartOtherRoutine(BridgeBandit,"INTERCEPT");
 	LaresGuide_ZumPortal = 7;
 };
 
@@ -2205,6 +2209,7 @@ func void DIA_Addon_Lares_GOFORESTPRE_Info()
 		AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_09_01");	//Ты уже подумал о походе в лес? Ты действительно хочешь туда направиться?
 	};
 	Lares_Distracted = FALSE;
+	Lares_Guide = Wld_GetDay();
 	Info_ClearChoices(DIA_Addon_Lares_GOFORESTPRE);
 	Info_AddChoice(DIA_Addon_Lares_GOFORESTPRE,"Нет, можешь идти.",DIA_Addon_Lares_GOFORESTPRE_nein);
 	Info_AddChoice(DIA_Addon_Lares_GOFORESTPRE,"Да.",DIA_Addon_Lares_GOFORESTPRE_ja);
@@ -2349,7 +2354,7 @@ func void DIA_Addon_Lares_PortalInterWEITER_Info()
 		{
 			B_KillAnimal(Gobbo_Black_Crossbow_Guard_01);
 			B_KillAnimal(Gobbo_Black_Crossbow_Guard_02);
-			B_StartOtherRoutine(BridgeBandit,"Hide");
+			B_StartOtherRoutine(BridgeBandit,"HIDE");
 		};
 	}
 	else if(LaresGuide_ZumPortal == 6)
@@ -2424,10 +2429,10 @@ func void B_BuildLearnDialog_Lares()
 {
 	Info_ClearChoices(DIA_Lares_TEACH);
 	Info_AddChoice(DIA_Lares_TEACH,Dialog_Back,DIA_Lares_TEACH_BACK);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Lares_TEACH_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Lares_TEACH_5);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Lares_TEACHSTR_1);
-	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Lares_TEACHSTR_5);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnAttributeString(ATR_DEXTERITY,1),DIA_Lares_TEACH_1);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnAttributeString(ATR_DEXTERITY,5),DIA_Lares_TEACH_5);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_Lares_TEACHSTR_1);
+	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_Lares_TEACHSTR_5);
 };
 
 instance DIA_Lares_TEACH(C_Info)
@@ -2728,7 +2733,7 @@ func void DIA_Lares_LeaveMyShip_Info()
 		Lares_IsOnBoard = LOG_FAILED;
 	};
 	Crewmember_Count -= 1;
-	Npc_ExchangeRoutine(self,"ShipOff");
+	Npc_ExchangeRoutine(self,"SHIPOFF");
 };
 
 

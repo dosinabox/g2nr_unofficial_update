@@ -237,8 +237,8 @@ func void B_BuildLearnDialog_Dragomir()
 	{
 		Info_ClearChoices(DIA_Dragomir_Teach);
 		Info_AddChoice(DIA_Dragomir_Teach,Dialog_Back,DIA_Dragomir_Teach_Back);
-		Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Dragomir_Teach_CROSSBOW_1);
-		Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Dragomir_Teach_CROSSBOW_5);
+		Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnTalentString(other,NPC_TALENT_CROSSBOW,1),DIA_Dragomir_Teach_CROSSBOW_1);
+		Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnTalentString(other,NPC_TALENT_CROSSBOW,5),DIA_Dragomir_Teach_CROSSBOW_5);
 	}
 	else
 	{

@@ -298,8 +298,8 @@ func void DIA_Mario_LeaveMyShip_Info()
 	Mario_IsOnBoard = LOG_OBSOLETE;
 	CrewmemberFree_Count -= 1;
 	AI_StopProcessInfos(self);
-	Mario_Nerver += 1;
-	Npc_ExchangeRoutine(self,"ShipOff");
+	self.aivar[AIV_Nerver] += 1;
+	Npc_ExchangeRoutine(self,"SHIPOFF");
 };
 
 
@@ -325,7 +325,7 @@ func int DIA_Mario_StillNeedYou_Condition()
 func void DIA_Mario_StillNeedYou_Info()
 {
 	AI_Output(other,self,"DIA_Mario_StillNeedYou_15_00");	//Ты мне все-таки нужен!
-	if((Mario_IsOnBoard == LOG_OBSOLETE) && (Mario_Nerver <= 2))
+	if((Mario_IsOnBoard == LOG_OBSOLETE) && (self.aivar[AIV_Nerver] <= 2))
 	{
 		AI_Output(self,other,"DIA_Mario_StillNeedYou_07_01");	//Я знал! Увидимся на корабле!
 		B_JoinShip(self);

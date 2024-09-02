@@ -3,15 +3,7 @@ func void ZS_Unconscious()
 {
 	var int random;
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
-	random = Hlp_Random(3);
-	if(random == 1)
-	{
-		Mdl_ApplyRandomAni(self,"S_WOUNDED","T_WOUNDED_TRY");
-		Mdl_ApplyRandomAniFreq(self,"S_WOUNDED",8);
-		Mdl_ApplyRandomAni(self,"S_WOUNDEDB","T_WOUNDEDB_TRY");
-		Mdl_ApplyRandomAniFreq(self,"S_WOUNDEDB",4);
-	};
-	if(C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE))
+	if(C_NpcIsSwimming(self))
 	{
 		Npc_ClearAIQueue(self);
 		B_ClearPerceptions(self);
@@ -34,6 +26,13 @@ func void ZS_Unconscious()
 			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco))
 			{
 				DJG_Bullco_Defeated = TRUE;
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rod))
+			{
+				if(MIS_RodSword == LOG_Running)
+				{
+					MIS_RodSword = LOG_OBSOLETE;
+				};
 			}
 			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Valentino))
 			{
@@ -75,6 +74,17 @@ func void ZS_Unconscious()
 		B_ClearAlchemyInv(self);
 		B_ClearBonusFoodInv(self);
 		B_ClearInfiniteTools(self);
+		if(C_NpcIsToughGuy(self))
+		{
+			random = Hlp_Random(3);
+			if(random == 1)
+			{
+				Mdl_ApplyRandomAni(self,"S_WOUNDED","T_WOUNDED_TRY");
+				Mdl_ApplyRandomAniFreq(self,"S_WOUNDED",8);
+				Mdl_ApplyRandomAni(self,"S_WOUNDEDB","T_WOUNDEDB_TRY");
+				Mdl_ApplyRandomAniFreq(self,"S_WOUNDEDB",4);
+			};
+		};
 		if(self.guild == GIL_STRF)
 		{
 			B_RemoveEveryInvItem(self,ItMw_2H_Axe_L_01);
@@ -83,8 +93,11 @@ func void ZS_Unconscious()
 		{
 			if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cipher))
 			{
-				other.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
-				Dar_LostAgainstCipher = TRUE;
+				if(Sipher_KnowsDarStoleHisWeed == TRUE)
+				{
+					Cipher.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
+					Dar_LostAgainstCipher = TRUE;
+				};
 			};
 		};
 	};
@@ -144,11 +157,6 @@ func void ZS_Unconscious_End()
 	};
 	AI_EquipBestMeleeWeapon(self);
 	AI_EquipBestRangedWeapon(self);
-/*	if(!Npc_HasEquippedWeapon(self))
-	{
-		B_RefreshMeleeWeapon(self);
-		AI_EquipBestMeleeWeapon(self);
-	};	*/
 	AI_StartState(self,ZS_HealSelf,0,"");
 };
 

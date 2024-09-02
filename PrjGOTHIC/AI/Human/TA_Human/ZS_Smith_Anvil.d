@@ -13,10 +13,7 @@ func void ZS_Smith_Anvil()
 
 func int ZS_Smith_Anvil_Loop()
 {
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"BSANVIL"))
-	{
-		AI_UseMob(self,"BSANVIL",1);
-	};
+	B_UseAvailableMob(self,"BSANVIL");
 	return LOOP_CONTINUE;
 };
 

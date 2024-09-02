@@ -7,12 +7,16 @@ func void B_PlayerEnteredCity()
 		{
 			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
+		if(!Npc_IsDead(Hilda))
+		{
+			Hilda.aivar[AIV_IGNORE_Theft] = FALSE;
+		};
 		PlayerEnteredCity = TRUE;
 		B_CheckLog();
 	};
 	if(LesterMovedToXardas == FALSE)
 	{
-		if(Npc_KnowsInfo(hero,DIA_Lester_SEND_XARDAS) && (Kapitel < 3))
+		if((Lester_SentToXardas == TRUE) && (Kapitel < 3))
 		{
 			B_StartOtherRoutine(Lester,"XARDAS");
 			LesterMovedToXardas = TRUE;
@@ -24,7 +28,7 @@ func void B_PlayerEnteredCity()
 		{
 			if(!Npc_IsDead(Canthar))
 			{
-				if(C_WorldIsFixed(NEWWORLD_ZEN))
+				if(C_WorldIsFixed())
 				{
 					Wld_SendTrigger("CANTHAR_CART_01");
 					Wld_SendTrigger("CANTHAR_CART_02");
@@ -34,11 +38,5 @@ func void B_PlayerEnteredCity()
 			CantharMovedToCity = TRUE;
 		};
 	};
-};
-
-func void B_PlayerEnteredUpperCity()
-{
-	B_PlayerEnteredCity();
-	PlayerEnteredUpperCity = TRUE;
 };
 

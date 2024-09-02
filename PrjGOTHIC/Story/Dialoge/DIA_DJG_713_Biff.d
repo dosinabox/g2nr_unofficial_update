@@ -196,7 +196,7 @@ func void B_StartBiffParty()
 	B_Biff_SetRefuseTalk();
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	Npc_ExchangeRoutine(self,"Follow");
+	Npc_ExchangeRoutine(self,"FOLLOW");
 };
 
 instance DIA_Biff_ARBEITEN(C_Info)
@@ -356,7 +356,7 @@ func void DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen()
 	AI_Output(self,other,"DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen_07_01");	//Как скажешь. Тогда я заберу свою долю.
 	BIFF_LABERT_GELDEINTREIBEN = FALSE;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	B_Attack(self,other,AR_NONE,1);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	DJG_BiffParty = FALSE;
@@ -367,7 +367,7 @@ func void DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen()
 func int B_GetBiffLocation(var int tolerance)
 {
 	if(Npc_GetDistToWP(self,"OC_CENTER_GUARD_02") < (4500 + tolerance))
-	{	
+	{
 		return LOC_BURG;
 	};
 	if(!Npc_IsDead(SwampDragon))
@@ -473,23 +473,23 @@ func void DIA_Biff_ICHBLEIBHIER_Info()
 	Npc_SetRefuseTalk(self,300);
 	if(location == LOC_BURG)
 	{
-		Npc_ExchangeRoutine(self,"Stay_AwayFromOC");
+		Npc_ExchangeRoutine(self,"STAY_AWAYFROMOC");
 	}
 	else if(location == LOC_SWAMP)
 	{
-		Npc_ExchangeRoutine(self,"Stay_Swamp");
+		Npc_ExchangeRoutine(self,"STAY_SWAMP");
 	}
 	else if(location == LOC_ROCK)
 	{
-		Npc_ExchangeRoutine(self,"Stay_Rock");
+		Npc_ExchangeRoutine(self,"STAY_ROCK");
 	}
 	else if(location == LOC_FIRE)
 	{
-		Npc_ExchangeRoutine(self,"Stay_Fire");
+		Npc_ExchangeRoutine(self,"STAY_FIRE");
 	}
 	else if(location == LOC_ICE)
 	{
-		Npc_ExchangeRoutine(self,"Stay_Ice");
+		Npc_ExchangeRoutine(self,"STAY_ICE");
 	};
 	DJG_Biff_Stay = TRUE;
 	DJG_Biff_SCGold = Npc_HasItems(hero,ItMi_Gold);
@@ -539,7 +539,7 @@ func void DIA_Biff_Stay_AwayFromOC_Info()
 	B_KommMit();
 	AI_WaitTillEnd(self,other);
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Follow");
+	Npc_ExchangeRoutine(self,"FOLLOW");
 	DJG_Biff_Stay = FALSE;
 	DJG_Biff_SCGold = Npc_HasItems(hero,ItMi_Gold);
 };
@@ -605,7 +605,7 @@ func void DIA_Biff_BIFFLOSWERDEN_Info()
 	AI_Output(other,self,"DIA_Biff_BIFFLOSWERDEN_15_00");	//Я думаю, на этом наше сотрудничество можно считать оконченным.
 	AI_Output(self,other,"DIA_Biff_BIFFLOSWERDEN_07_01");	//Как знаешь. Я найду себе работу и получше. Бывай.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	DJG_Biff_HalbeHalbe = FALSE;
 	DJG_BiffParty = FALSE;
@@ -681,7 +681,7 @@ func void DIA_Biff_MEHRGELD_ok()
 		AI_Output(self,other,"DIA_Biff_MEHRGELD_ok_07_02");	//Ах ты, ничтожество! Ты даже не можешь заплатить компаньону.
 		AI_Output(self,other,"DIA_Biff_MEHRGELD_ok_07_03");	//Я думаю, мне стоит поискать другого партнера.
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		DJG_Biff_HalbeHalbe = FALSE;
 		DJG_BiffParty = FALSE;
@@ -694,7 +694,7 @@ func void DIA_Biff_MEHRGELD_zuTeuer()
 	AI_Output(other,self,"DIA_Biff_MEHRGELD_zuTeuer_15_00");	//Я не могу платить тебе.
 	AI_Output(self,other,"DIA_Biff_MEHRGELD_zuTeuer_07_01");	//Тогда тебе придется дальше топать в одиночку.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	DJG_BiffParty = FALSE;
 	DJG_BiffParty_nomore += 2;

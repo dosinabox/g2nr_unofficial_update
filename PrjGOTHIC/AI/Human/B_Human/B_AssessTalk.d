@@ -14,7 +14,7 @@ func void B_AssessTalk()
 	}
 	else if(self.guild < GIL_SEPERATOR_HUM)
 	{
-		if(C_NpcIsLevelinspektor(other) || C_NpcIsRockefeller(other))
+		/*if(C_NpcIsLevelinspektor(other) || C_NpcIsRockefeller(other))
 		{
 			PrintScreen(ConcatStrings("Голос: ",IntToString(self.voice)),-1,70,FONT_Screen,2);
 			PrintScreen("Нет героя!",-1,-1,FONT_Screen,2);
@@ -48,61 +48,90 @@ func void B_AssessTalk()
 				PrintScreen("Q_UPPER CITY",-1,30,FONT_Screen,2);
 			};
 			return;
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Baltram))
+		};*/
+		if(CurrentLevel == NEWWORLD_ZEN)
 		{
-			B_BaltramRangerCheck(other);
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru))
-		{
-			if(!C_RengaruIsReadyToTalk())
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Baltram))
 			{
-				return;
-			};
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Meldor))
-		{
-			if(C_LawArmorEquipped(other))
+				B_BaltramRangerCheck(other);
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru))
 			{
-				Meldor_Busted = TRUE;
-			};
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Kardif))
-		{
-			if(C_LawArmorEquipped(other) && !Npc_KnowsInfo(other,DIA_Kardif_Zeichen))
-			{
-				Kardif_Busted = TRUE;
-			};
-		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Greg_NW))
-		{
-			PlayerTalkedToGregNW = TRUE;
-		}
-		else if(C_IsNpc(self,PIR_1301_Addon_Skip_NW))
-		{
-			PlayerTalkedToSkipNW = TRUE;
-		}
-		else if(MIS_Andre_REDLIGHT == LOG_Running)
-		{
-			if(C_LawArmorEquipped(other))
-			{
-				if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Borka))
+				if(!C_RengaruIsReadyToTalk())
 				{
-					Undercover_Failed_Borka = TRUE;
-					B_CheckRedLightUndercover();
-				}
-				else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nadja))
+					return;
+				};
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Meldor))
+			{
+				if(C_LawArmorEquipped(other))
 				{
-					Undercover_Failed_Nadja = TRUE;
-					B_CheckRedLightUndercover();
+					Meldor_Busted = TRUE;
+				};
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Kardif))
+			{
+				if(C_LawArmorEquipped(other) && !Npc_KnowsInfo(other,DIA_Kardif_Zeichen))
+				{
+					Kardif_Busted = TRUE;
+				};
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Greg_NW))
+			{
+				PlayerTalkedToGregNW = TRUE;
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Skip_NW))
+			{
+				PlayerTalkedToSkipNW = TRUE;
+			}
+			else if(MIS_Andre_REDLIGHT == LOG_Running)
+			{
+				if(C_LawArmorEquipped(other))
+				{
+					if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Borka))
+					{
+						Undercover_Failed_Borka = TRUE;
+						B_CheckRedLightUndercover();
+					}
+					else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nadja))
+					{
+						Undercover_Failed_Nadja = TRUE;
+						B_CheckRedLightUndercover();
+					};
 				};
 			};
-		};
-		if((self.guild == GIL_VLK) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Canthar)))
-		{
-			if(CurrentLevel == NEWWORLD_ZEN)
+			if(self.guild == GIL_VLK)
 			{
-				B_PlayerEnteredCity();
+				if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Canthar))
+				{
+					B_PlayerEnteredCity();
+				};
+			}
+			else if(self.guild == GIL_NOV)
+			{
+				if((Parlan_DontTalkToNovice == LOG_Running) && Wld_IsTime(8,0,0,0))
+				{
+					if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger1))
+					{
+						if(Npc_GetDistToWP(self,"NW_MONASTERY_CELLAR_08") > 900)
+						{
+							Parlan_DontTalkToNovice = LOG_FAILED;
+						};
+					}
+					else if((Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Garwig)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Pedro)))
+					{
+						Parlan_DontTalkToNovice = LOG_FAILED;
+					};
+				};
+			};
+			if(self.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer)
+			{
+				DG_gefunden = TRUE;
+				if(SewerThieves_KilledByPlayer == TRUE)
+				{
+					B_Attack(self,other,AR_KILL,0);
+					return;
+				};
 			};
 		};
 		if(B_AssessEnemy())
@@ -113,15 +142,6 @@ func void B_AssessTalk()
 		{
 			B_Attack(self,other,AR_HumanMurderedHuman,0);
 			return;
-		};
-		if(C_IAmThiefFromSewer(self))
-		{
-			DG_gefunden = TRUE;
-			if(SewerThieves_KilledByPlayer == TRUE)
-			{
-				B_Attack(self,other,AR_KILL,0);
-				return;
-			};
 		};
 		if(C_PlayerIsFakeBandit(self,other) && (self.guild != GIL_BDT))
 		{
@@ -140,23 +160,6 @@ func void B_AssessTalk()
 				B_Say(self,other,"$NOTNOW");
 			};
 			return;
-		};
-		if(self.guild == GIL_NOV)
-		{
-			if((Parlan_DontTalkToNovice == LOG_Running) && Wld_IsTime(8,0,0,0))
-			{
-				if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger1))
-				{
-					if(Npc_GetDistToWP(self,"NW_MONASTERY_CELLAR_08") > 900)
-					{
-						Parlan_DontTalkToNovice = LOG_FAILED;
-					};
-				}
-				else if((Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Garwig)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Pedro)))
-				{
-					Parlan_DontTalkToNovice = LOG_FAILED;
-				};
-			};
 		};
 	};
 	if(self.aivar[AIV_NpcStartedTalk] == FALSE)

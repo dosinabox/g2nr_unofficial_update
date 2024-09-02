@@ -7,9 +7,12 @@ func void B_Cycle_Function()
 		{
 			if(Npc_HasItems(hero,ItMw_Drachenschneide))
 			{
-				if(C_WorldIsFixed(NEWWORLD_ZEN))
+				if(C_WorldIsFixed())
 				{
-					Wld_SendTrigger("EVT_TROLL_GRAVE_TRIGGERLIST_01");
+					if(Npc_GetDistToWP(hero,"NW_TROLLAREA_TROLLROCKCAVE_06") <= 1000)
+					{
+						Wld_SendTrigger("EVT_TROLL_GRAVE_TRIGGERLIST_01");
+					};
 				};
 				MIS_PickedUpUndeadSword = TRUE;
 			};
@@ -18,7 +21,7 @@ func void B_Cycle_Function()
 		{
 			if(MIS_OLDWORLD == LOG_SUCCESS)
 			{
-				if(Npc_HasItems(hero,ItMi_InnosEye_Broken_Mis))
+				if(Npc_HasItems(hero,ItMi_InnosEye_Broken_MIS))
 				{
 					if(Pedro_Traitor == TRUE)
 					{

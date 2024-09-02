@@ -18,7 +18,6 @@ instance ItWr_XardasLetterToOpenBook_MIS(C_Item)
 
 func void Use_XardasLetterToOpenBook()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -48,7 +47,7 @@ func void Use_XardasLetterToOpenBook()
 };
 
 
-instance ItKe_MonastarySecretLibrary_Mis(C_Item)
+instance ItKe_MonastarySecretLibrary_MIS(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -64,7 +63,7 @@ instance ItKe_MonastarySecretLibrary_Mis(C_Item)
 	inv_zbias = 190;
 };
 
-instance ItWr_HallsofIrdorath_Mis(C_Item)
+instance ItWr_HallsofIrdorath_MIS(C_Item)
 {
 	name = "Чертоги Ирдората";
 	mainflag = ITEM_KAT_DOCS;
@@ -85,9 +84,9 @@ func void Use_HallsofIrdorath()
 		B_Say(self,self,"$SCOPENSIRDORATHBOOK");
 		Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",hero,hero,0,0,0,FALSE);
 		Snd_Play("SFX_HealObsession");
-		CreateInvItems(hero,ItWr_HallsofIrdorath_Open_Mis,1);
-		CreateInvItems(hero,ItKe_MonastarySecretLibrary_Mis,1);
-		CreateInvItems(hero,ItWr_UseLampIdiot_Mis,1);
+		CreateInvItems(hero,ItWr_HallsofIrdorath_Open_MIS,1);
+		CreateInvItems(hero,ItKe_MonastarySecretLibrary_MIS,1);
+		CreateInvItems(hero,ItWr_UseLampIdiot_MIS,1);
 		Print(PRINT_IrdorathBookHiddenKey);
 		B_GivePlayerXP(XP_HallsofIrdorathIsOpen);
 		ItWr_HallsofIrdorathIsOpen = TRUE;
@@ -95,7 +94,7 @@ func void Use_HallsofIrdorath()
 	}
 	else
 	{
-		CreateInvItems(hero,ItWr_HallsofIrdorath_Mis,1);
+		CreateInvItems(hero,ItWr_HallsofIrdorath_MIS,1);
 		Print(PRINT_IrdorathBookDoesntOpen);
 		Wld_PlayEffect("spellFX_Fear",self,self,0,0,0,FALSE);
 		Snd_Play("MFX_FEAR_CAST");
@@ -103,7 +102,7 @@ func void Use_HallsofIrdorath()
 };
 
 
-instance ItWr_HallsofIrdorath_Open_Mis(C_Item)
+instance ItWr_HallsofIrdorath_Open_MIS(C_Item)
 {
 	name = "Чертоги Ирдората";
 	mainflag = ITEM_KAT_DOCS;
@@ -119,7 +118,6 @@ instance ItWr_HallsofIrdorath_Open_Mis(C_Item)
 
 func void Use_HallsofIrdorath_Open()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
@@ -149,26 +147,25 @@ func void Use_HallsofIrdorath_Open()
 };
 
 
-instance ItWr_XardasSeamapBook_Mis(C_Item)
+instance ItWr_XardasSeamapBook_MIS(C_Item)
 {
 	name = "Пыльная книга";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_XardasSeamapBook_Mis.3ds";
+	visual = "ItWr_XardasSeamapBook_MIS.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
-	on_state[0] = Use_XardasSeamapBook_Mis;
+	on_state[0] = Use_XardasSeamapBook_MIS;
 };
 
 
-func void Use_XardasSeamapBook_Mis()
+func void Use_XardasSeamapBook_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Wood_L.tga",0);
@@ -206,7 +203,7 @@ func void Use_XardasSeamapBook_Mis()
 };
 
 
-instance ItWr_UseLampIdiot_Mis(C_Item)
+instance ItWr_UseLampIdiot_MIS(C_Item)
 {
 	name = "Помятая записка";
 	mainflag = ITEM_KAT_DOCS;
@@ -214,7 +211,7 @@ instance ItWr_UseLampIdiot_Mis(C_Item)
 	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
-	on_state[0] = UseItWr_UseLampIdiot_Mis;
+	on_state[0] = UseItWr_UseLampIdiot_MIS;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "из книги 'Чертоги Ирдората'.";
@@ -224,9 +221,8 @@ instance ItWr_UseLampIdiot_Mis(C_Item)
 };
 
 
-func void UseItWr_UseLampIdiot_Mis()
+func void UseItWr_UseLampIdiot_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -264,7 +260,6 @@ instance ItWr_Seamap_Irdorath(C_Item)
 
 func void Use_Seamap_Irdorath()
 {
-	var int nDocID;
 	nDocID = Doc_CreateMap();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"Map_NewWorld_Seamap.tga",TRUE);
@@ -293,7 +288,7 @@ func void Use_Seamap_Irdorath()
 };
 
 
-instance ITWr_ForgedShipLetter_MIS(C_Item)
+instance ItWr_ForgedShipLetter_MIS(C_Item)
 {
 	name = "Корабельное свидетельство";
 	mainflag = ITEM_KAT_DOCS;
@@ -301,7 +296,7 @@ instance ITWr_ForgedShipLetter_MIS(C_Item)
 	value = 0;
 	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
-	on_state[0] = UseITWr_ForgedShipLetter_MIS;
+	on_state[0] = UseItWr_ForgedShipLetter_MIS;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Письмо о подтверждении полномочий";
@@ -309,9 +304,8 @@ instance ITWr_ForgedShipLetter_MIS(C_Item)
 };
 
 
-func void UseITWr_ForgedShipLetter_MIS()
+func void UseItWr_ForgedShipLetter_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -366,7 +360,7 @@ instance ItKe_Ship_Levelchange_MIS(C_Item)
 	inv_zbias = 145;
 };
 
-instance ItPo_PotionOfDeath_01_Mis(C_Item)
+instance ItPo_PotionOfDeath_01_MIS(C_Item)
 {
 	name = NAME_Trank;
 	mainflag = ITEM_KAT_POTIONS;
@@ -393,9 +387,9 @@ func void UseItPo_PotionOfDeath()
 			ATR_PermBonus[ATR_DEXTERITY] += 5;
 		};
 		self.attribute[ATR_STRENGTH] += 5;
-		PrintScreen(PRINT_LearnSTR5,-1,43,FONT_Screen,3);
+		PrintScreen(ConcatStrings(PRINT_LearnSTR,"5"),-1,43,FONT_Screen,3);
 		self.attribute[ATR_DEXTERITY] += 5;
-		PrintScreen(PRINT_LearnDEX5,-1,48,FONT_Screen,3);
+		PrintScreen(ConcatStrings(PRINT_LearnDEX,"5"),-1,48,FONT_Screen,3);
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
 		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 		PrintScreen(PRINT_FullyHealed,-1,53,FONT_Screen,3);
@@ -411,7 +405,7 @@ func void UseItPo_PotionOfDeath()
 };
 
 
-instance ItPo_PotionOfDeath_02_Mis(C_Item)
+instance ItPo_PotionOfDeath_02_MIS(C_Item)
 {
 	name = NAME_Trank;
 	mainflag = ITEM_KAT_POTIONS;
@@ -428,17 +422,17 @@ instance ItPo_PotionOfDeath_02_Mis(C_Item)
 	text[1] = "Любой другой принявший его, найдет свою смерть.";
 };
 
-instance ItAm_AmulettOfDeath_Mis(C_Item)
+instance ItAm_AmulettOfDeath_MIS(C_Item)
 {
 	name = NAME_Amulett;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = 1000;
-	visual = "ItAm_AmulettOfDeath_Mis.3ds";
+	visual = "ItAm_AmulettOfDeath_MIS.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	on_equip = Equip_ItAm_AmulettOfDeath_Mis;
-	on_unequip = UnEquip_ItAm_AmulettOfDeath_Mis;
+	on_equip = Equip_ItAm_AmulettOfDeath_MIS;
+	on_unequip = UnEquip_ItAm_AmulettOfDeath_MIS;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Божественная аура Инноса";
@@ -457,7 +451,7 @@ instance ItAm_AmulettOfDeath_Mis(C_Item)
 };
 
 
-func void Equip_ItAm_AmulettOfDeath_Mis()
+func void Equip_ItAm_AmulettOfDeath_MIS()
 {
 	self.protection[PROT_EDGE] += 30;
 	self.protection[PROT_BLUNT] += 30;
@@ -472,7 +466,7 @@ func void Equip_ItAm_AmulettOfDeath_Mis()
 	Snd_Play("MFX_FIRERAIN_INVEST");
 };
 
-func void UnEquip_ItAm_AmulettOfDeath_Mis()
+func void UnEquip_ItAm_AmulettOfDeath_MIS()
 {
 	self.protection[PROT_EDGE] -= 30;
 	self.protection[PROT_BLUNT] -= 30;

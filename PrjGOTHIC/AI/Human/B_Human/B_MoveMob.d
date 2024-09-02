@@ -11,11 +11,7 @@ func void B_MoveMob()
 			AI_UseMob(self,door,1);
 			AI_UseMob(self,door,-1);
 		};
-	}
-	else
-	{
-		return;
+		AI_ContinueRoutine(self);
 	};
-	AI_ContinueRoutine(self);
 };
 

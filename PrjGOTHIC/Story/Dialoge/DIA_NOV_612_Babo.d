@@ -89,7 +89,6 @@ func void DIA_Babo_Anliegen_Info()
 	else
 	{
 		DIA_Common_HeIsDead();
-		//TODO озвучить
 		AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_03_01_add");	//(ошеломленно) Что?! Что это все значит?
 		DIA_Common_EverythingWillBeAlright();
 	};
@@ -133,7 +132,7 @@ func void DIA_Babo_Sergio_Info()
 	B_BaboIsTeacher();
 	if(MIS_HelpBabo == LOG_SUCCESS)
 	{
-		Npc_ExchangeRoutine(self,"GardenAndTrain");
+		Npc_ExchangeRoutine(self,"GARDENANDTRAIN");
 	}
 	else
 	{
@@ -153,8 +152,8 @@ func void B_BuildLearnDialog_Babo()
 	{
 		Info_ClearChoices(DIA_Babo_Teach);
 		Info_AddChoice(DIA_Babo_Teach,Dialog_Back,DIA_Babo_Teach_Back);
-		Info_AddChoice(DIA_Babo_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Babo_Teach_2H_1);
-		Info_AddChoice(DIA_Babo_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Babo_Teach_2H_5);
+		Info_AddChoice(DIA_Babo_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,1),DIA_Babo_Teach_2H_1);
+		Info_AddChoice(DIA_Babo_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,5),DIA_Babo_Teach_2H_5);
 	}
 	else
 	{
@@ -623,7 +622,7 @@ instance DIA_Babo_Kap3_Unhappy(C_Info)
 
 func int DIA_Babo_Kap3_Unhappy_Condition()
 {
-	if((Kapitel >= 3) && (hero.guild != GIL_KDF) && Npc_KnowsInfo(other,DIA_Babo_Kap3_Hello))
+	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Babo_Kap3_Hello) && (hero.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -657,10 +656,6 @@ func void DIA_Babo_Kap3_Unhappy_TellMe()
 	AI_Output(other,self,"DIA_Babo_Kap3_Unhappy_TellMe_15_04");	//Давай, выкладывай.
 	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_TellMe_03_05");	//Игарац, так зовут этого послушника, нашел мои личные записи.
 	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_TellMe_03_06");	//Он угрожает передать их магам, если я не буду делать то, что он говорит.
-	MIS_BabosDocs = LOG_Running;
-	Log_CreateTopic(Topic_BabosDocs,LOG_MISSION);
-	Log_SetTopicStatus(Topic_BabosDocs,LOG_Running);
-	B_LogEntry(Topic_BabosDocs,"Игарац шантажирует послушника Бабо какими-то документами.");
 	Info_ClearChoices(DIA_Babo_Kap3_Unhappy);
 	Info_AddChoice(DIA_Babo_Kap3_Unhappy,"Я думаю, что мне не стоит влезать в эти дрязги.",DIA_Babo_Kap3_Unhappy_Privat);
 	Info_AddChoice(DIA_Babo_Kap3_Unhappy,"Что ты должен делать для него?",DIA_Babo_Kap3_Unhappy_ShouldDo);
@@ -718,6 +713,10 @@ func void DIA_Babo_Kap3_Unhappy_Yes()
 	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_Yes_03_01");	//(счастливо) Правда?! Я знаю, у тебя получится! Я верю!
 	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_Yes_03_02");	//Тебе нужно только выяснить, где Игарац держит свои вещи. Затем ты выкрадешь их у него, и все будет в порядке.
 	AI_Output(other,self,"DIA_Babo_Kap3_Unhappy_Yes_15_03");	//Расслабься. Продолжай работать. А я позабочусь об остальном.
+	MIS_BabosDocs = LOG_Running;
+	Log_CreateTopic(TOPIC_BabosDocs,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_BabosDocs,LOG_Running);
+	B_LogEntry(TOPIC_BabosDocs,"Игарац шантажирует послушника Бабо какими-то документами.");
 	Info_ClearChoices(DIA_Babo_Kap3_Unhappy);
 };
 
@@ -760,6 +759,18 @@ func void B_GiveBaboDocs()
 	};
 };
 
+func int C_SCHasBabosDocs()
+{
+	if(Npc_HasItems(other,ItWr_BabosDocs_MIS))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItWr_BabosPinUp_MIS) && Npc_HasItems(other,ItWr_BabosLetter_MIS))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
 
 instance DIA_Babo_Kap3_HaveYourDocs(C_Info)
 {
@@ -774,9 +785,12 @@ instance DIA_Babo_Kap3_HaveYourDocs(C_Info)
 
 func int DIA_Babo_Kap3_HaveYourDocs_Condition()
 {
-	if(((MIS_BabosDocs == LOG_Running) && Npc_HasItems(other,ItWr_BabosDocs_MIS)) || (Npc_HasItems(other,ItWr_BabosPinUp_MIS) && Npc_HasItems(other,ItWr_BabosLetter_MIS)))
+	if(MIS_BabosDocs == LOG_Running)
 	{
-		return TRUE;
+		if(C_SCHasBabosDocs())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -788,7 +802,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_Info()
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_03_03");	//(нервно) Это действительно мои? Ты уверен? Покажи мне.
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Я подержу их пока у себя.",DIA_Babo_Kap3_HaveYourDocs_KeepThem);
-	if(BabosDocsOpen == TRUE)
+	if((BabosDocsOpen == TRUE) || Npc_KnowsInfo(other,DIA_Igaranz_BabosJob) || Npc_KnowsInfo(other,DIA_Igaranz_Price))
 	{
 		Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Теперь, учитывая все обстоятельства, цена выросла.",DIA_Babo_Kap3_HaveYourDocs_IWantMore);
 	};
@@ -802,7 +816,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_KeepThem()
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Просто шучу.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Это мое дело.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_MyConcern);
-	if(MIS_BabosDocs == LOG_Running)
+	if(Npc_KnowsInfo(other,DIA_Igaranz_BabosJob))
 	{
 		Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Игарац и я теперь партнеры.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner);
 	};
@@ -815,6 +829,8 @@ func void DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke()
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke_15_02");	//Здесь.
 	B_GiveBaboDocs();
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke_03_03");	//Я не хотел обидеть тебя, но я просто очень переживаю.
+	CreateInvItems(self,ItSc_MediumHeal,1);
+	B_GiveInvItems(self,other,ItSc_MediumHeal,1);
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke_15_04");	//Все хорошо. Наслаждайся своими записками.
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 };
@@ -923,11 +939,7 @@ func int DIA_Babo_Kap3_HaveYourDocs2_Condition()
 {
 	if(BabosDocsRejected == TRUE)
 	{
-		if(Npc_HasItems(other,ItWr_BabosDocs_MIS))
-		{
-			return TRUE;
-		};
-		if(Npc_HasItems(other,ItWr_BabosPinUp_MIS) && Npc_HasItems(other,ItWr_BabosLetter_MIS))
+		if(C_SCHasBabosDocs())
 		{
 			return TRUE;
 		};

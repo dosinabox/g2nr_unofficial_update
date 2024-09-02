@@ -29,7 +29,6 @@ func void B_UpdateBennetItemsCount()
 var int Bennet_Kap1Smith_Alt;
 var int Bennet_Kap2Smith_Alt;
 var int Bennet_Kap3Smith_Alt;
-var int Bennet_Kap4Smith_Alt;
 var int Bennet_Kap5Smith_Alt;
 
 var int Bennet_Kap2Smith;
@@ -1221,7 +1220,7 @@ instance DIA_Bennet_RepairNecklace(C_Info)
 
 func int DIA_Bennet_RepairNecklace_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
 		return TRUE;
 	};
@@ -1253,7 +1252,7 @@ instance DIA_Bennet_ShowInnosEye(C_Info)
 
 func int DIA_Bennet_ShowInnosEye_Condition()
 {
-	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Bennet_RepairNecklace))
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Bennet_RepairNecklace))
 	{
 		return TRUE;
 	};
@@ -1295,7 +1294,7 @@ instance DIA_Bennet_GiveInnosEye(C_Info)
 
 func int DIA_Bennet_GiveInnosEye_Condition()
 {
-	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) && (MIS_SCKnowsInnosEyeIsBroken == TRUE) && (MIS_RescueBennet == LOG_SUCCESS) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) && (MIS_SCKnowsInnosEyeIsBroken == TRUE) && (MIS_RescueBennet == LOG_SUCCESS) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 	{
 		return TRUE;
 	};
@@ -1304,7 +1303,7 @@ func int DIA_Bennet_GiveInnosEye_Condition()
 func void DIA_Bennet_GiveInnosEye_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_GiveInnosEye_15_00");	//Вот амулет, пожалуйста, почини его.
-	Npc_RemoveInvItems(other,ItMi_InnosEye_Broken_Mis,1);
+	Npc_RemoveInvItems(other,ItMi_InnosEye_Broken_MIS,1);
 	AI_PrintScreen(Print_InnoseyeGiven,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Bennet_GiveInnosEye_06_01");	//Хорошо. Я закончу работу к завтрашнему утру.
 	AI_Output(self,other,"DIA_Bennet_GiveInnosEye_06_02");	//Заходи завтра, и заберешь его.
@@ -1342,7 +1341,7 @@ func void DIA_Bennet_GetInnosEye_Info()
 	{
 		AI_Output(self,other,"DIA_Bennet_GetInnosEye_06_01");	//Да, держи.
 		TEXT_Innoseye_Setting = TEXT_Innoseye_Setting_Repaired;
-		CreateInvItems(other,ItMi_InnosEye_Broken_Mis,1);
+		CreateInvItems(other,ItMi_InnosEye_Broken_MIS,1);
 		AI_PrintScreen(Print_InnosEyeGet,-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		AI_Output(self,other,"DIA_Bennet_GetInnosEye_06_02");	//Мне пришлось сделать новую оправу для камня.
 		AI_Output(self,other,"DIA_Bennet_GetInnosEye_06_03");	//Я работал всю ночь, и теперь он как новенький.
@@ -1362,6 +1361,7 @@ func void DIA_Bennet_GetInnosEye_Info()
 
 
 var int BennetsDragonEggOffer;
+var int DragonEggCounter;
 
 instance DIA_Bennet_DRACHENEIER(C_Info)
 {
@@ -1422,6 +1422,7 @@ func void DIA_Bennet_DRACHENEIER_ok()
 	AI_Output(other,self,"DIA_Bennet_DRACHENEIER_ok_15_00");	//Договорились.
 	AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_01");	//Отлично.
 	AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_02");	//Если найдешь еще, неси их сюда.
+	DragonEggCounter += 1;
 	if(BennetsDragonEggOffer != 350)
 	{
 		BennetsDragonEggOffer = 300;
@@ -1468,8 +1469,6 @@ func void DIA_Bennet_DRACHENEIER_nein()
 	Info_ClearChoices(DIA_Bennet_DRACHENEIER);
 };
 
-var int DragonEggCounter;
-
 instance DIA_Bennet_EierBringen(C_Info)
 {
 	npc = SLD_809_Bennet;
@@ -1510,7 +1509,7 @@ func void DIA_Bennet_EierBringen_Info()
 	{
 		AI_Output(self,other,"DIA_Bennet_EierBringen_06_04");	//Отлично. Давай сюда. Ты везде посмотрел, а? Наверняка где-то должны быть еще.
 	}
-	else if(DragonEggCounter <= 11)
+	else if(DragonEggCounter <= 13)
 	{
 		AI_Output(self,other,"DIA_Bennet_EierBringen_06_05");	//Где ты раскопал их? Вряд ли где-нибудь еще остались эти яйца.
 	}
@@ -1616,7 +1615,7 @@ func void DIA_Bennet_LeaveMyShip_Info()
 	AI_Output(self,other,"DIA_Bennet_LeaveMyShip_06_01");	//Сейчас ты думаешь одно, через минуту - другое. Ты не мог бы определиться, а? Когда будешь твердо уверен в том, чего ты хочешь, дай мне знать.
 	Bennet_IsOnBoard = LOG_OBSOLETE;
 	Crewmember_Count -= 1;
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 

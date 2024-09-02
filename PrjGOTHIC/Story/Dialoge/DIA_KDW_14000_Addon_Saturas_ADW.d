@@ -172,7 +172,7 @@ func void DIA_Addon_Saturas_ADWStart_back()
 		};
 	};
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 
@@ -199,7 +199,7 @@ func void DIA_Addon_Saturas_MissingPeople_Info()
 	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_missingPeople_15_00");	//Есть какие-нибудь следы пропавших людей?
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_01");	//Только вчера мы нашли тело рыбака. Оно лежало под развалинами к востоку отсюда.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, это был рыбак из Хориниса. Взгляни там.
-	if(!Npc_HasItems(William,ITWr_Addon_William_01))
+	if(!Npc_HasItems(William,ItWr_Addon_William_01))
 	{
 		DIA_Common_IFoundHim();
 		AI_Output(self,other,"DIA_Addon_Saturas_LanceLeiche_14_01");	//Да пребудет его душа в царстве Аданоса.
@@ -655,7 +655,6 @@ var int DIA_Addon_Saturas_RavenInfos_OneTime1;
 var int DIA_Addon_Saturas_RavenInfos_OneTime2;
 var int DIA_Addon_Saturas_RavenInfos_OneTime3;
 var int DIA_Addon_Saturas_RavenInfos_OneTime4;
-var int DIA_Addon_Saturas_RavenInfos_OneTime5;
 var int Addon_Saturas_Fortuno;
 
 func int DIA_Addon_Saturas_RavenInfos_Condition()
@@ -884,10 +883,10 @@ func void DIA_Addon_Saturas_TalkedToGhost_kammern()
 	Log_CreateTopic(TOPIC_Addon_Kammern,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Kammern,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Kammern,LogText_Addon_Relicts);
-	B_LogEntry(TOPIC_Addon_Kammern,"Сатурас послал меня в храм. Я должен пройти через его залы и остановить Ворона.");
+	Log_AddEntry(TOPIC_Addon_Kammern,"Сатурас послал меня в храм. Я должен пройти через его залы и остановить Ворона.");
 	if(Saturas_SCBroughtAllToken == FALSE)
 	{
-		B_LogEntry(TOPIC_Addon_Relicts,LogText_Addon_Relicts);
+		Log_AddEntry(TOPIC_Addon_Relicts,LogText_Addon_Relicts);
 	};
 	Saturas_KnowsHow2GetInTempel = TRUE;
 	B_CheckLog();

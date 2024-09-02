@@ -240,9 +240,22 @@ func void DIA_Cassia_Lernen_Info()
 	if(Join_Thiefs == TRUE)
 	{
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher,"Кассия может обучить меня карманному воровству и помочь мне стать более ловким.");
-		Log_AddEntry(TOPIC_CityTeacher,"Рамирез может обучить меня пользоваться отмычками.");
-		Log_AddEntry(TOPIC_CityTeacher,"Джеспер может обучить меня красться.");
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
+		{
+			B_LogEntry(TOPIC_CityTeacher,"Кассия может обучить меня карманному воровству и помочь мне стать более ловким.");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_CityTeacher,"Кассия может помочь мне стать более ловким.");
+		};
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
+		{
+			Log_AddEntry(TOPIC_CityTeacher,"Рамирез может обучить меня пользоваться отмычками.");
+		};
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
+		{
+			Log_AddEntry(TOPIC_CityTeacher,"Джеспер может обучить меня красться.");
+		};
 	};
 };
 
@@ -336,9 +349,9 @@ func void DIA_Cassia_beweisen_Info()
 		AI_Output(self,other,"DIA_Cassia_beweisen_16_03");	//Но оно ему совсем ни к чему. Я хочу, чтобы оно украшало мою руку.
 		MIS_CassiaRing = LOG_Running;
 		DIA_Cassia_beweisen_permanent = TRUE;
-		Log_CreateTopic(Topic_CassiaRing,LOG_MISSION);
-		Log_SetTopicStatus(Topic_CassiaRing,LOG_Running);
-		B_LogEntry(Topic_CassiaRing,"Кассия хочет, чтобы я принес ей кольцо Константино.");
+		Log_CreateTopic(TOPIC_CassiaRing,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_CassiaRing,LOG_Running);
+		B_LogEntry(TOPIC_CassiaRing,"Кассия хочет, чтобы я принес ей кольцо Константино.");
 	};
 };
 
@@ -350,9 +363,22 @@ func void B_AgreedToJoinThiefs()
 	if(Npc_KnowsInfo(other,DIA_Cassia_Lernen))
 	{
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogNextEntry(TOPIC_CityTeacher,"Кассия может обучить меня карманному воровству и помочь мне стать более ловким.");
-		Log_AddEntry(TOPIC_CityTeacher,"Рамирез может обучить меня пользоваться отмычками.");
-		Log_AddEntry(TOPIC_CityTeacher,"Джеспер может обучить меня красться.");
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
+		{
+			B_LogNextEntry(TOPIC_CityTeacher,"Кассия может обучить меня карманному воровству и помочь мне стать более ловким.");
+		}
+		else
+		{
+			B_LogNextEntry(TOPIC_CityTeacher,"Кассия может помочь мне стать более ловким.");
+		};
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
+		{
+			Log_AddEntry(TOPIC_CityTeacher,"Рамирез может обучить меня пользоваться отмычками.");
+		};
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
+		{
+			Log_AddEntry(TOPIC_CityTeacher,"Джеспер может обучить меня красться.");
+		};
 	};
 	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
@@ -541,8 +567,8 @@ func void B_BuildLearnDialog_Cassia()
 {
 	Info_ClearChoices(DIA_Cassia_TEACH);
 	Info_AddChoice(DIA_Cassia_TEACH,Dialog_Back,DIA_Cassia_TEACH_BACK);
-	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Cassia_TEACH_1);
-	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Cassia_TEACH_5);
+	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnAttributeString(ATR_DEXTERITY,1),DIA_Cassia_TEACH_1);
+	Info_AddChoice(DIA_Cassia_TEACH,B_BuildLearnAttributeString(ATR_DEXTERITY,5),DIA_Cassia_TEACH_5);
 };
 
 instance DIA_Cassia_TEACH(C_Info)
@@ -737,9 +763,9 @@ func void DIA_Cassia_Blutkelche_Info()
 		AI_Output(self,other,"DIA_Cassia_Blutkelche_16_10");	//Либо половина от дохода, либо ты сможешь выбрать что-нибудь из моей сокровищницы.
 		MIS_CassiaKelche = LOG_Running;
 		DIA_Cassia_Blutkelche_permanent = TRUE;
-		Log_CreateTopic(Topic_CassiaKelche,LOG_MISSION);
-		Log_SetTopicStatus(Topic_CassiaKelche,LOG_Running);
-		B_LogEntry(Topic_CassiaKelche,"Кассия хочет, чтобы я принес ей шесть кровавых кубков. По-видимому, они находятся в городе.");
+		Log_CreateTopic(TOPIC_CassiaKelche,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_CassiaKelche,LOG_Running);
+		B_LogEntry(TOPIC_CassiaKelche,"Кассия хочет, чтобы я принес ей шесть кровавых кубков. По-видимому, они находятся в городе.");
 	};
 };
 
@@ -806,9 +832,9 @@ func void DIA_Cassia_Belohnung_Info()
 	AI_Output(other,self,"DIA_Cassia_Belohnung_15_00");	//Я пришел за своей наградой.
 	AI_Output(self,other,"DIA_Cassia_Belohnung_16_01");	//Что ты выбираешь?
 	Info_ClearChoices(DIA_Cassia_Belohnung);
-	Info_AddChoice(DIA_Cassia_Belohnung,"400 золотых",DIA_Cassia_Belohnung_Gold);
-	Info_AddChoice(DIA_Cassia_Belohnung,"6 лечебных эликсиров",DIA_Cassia_Belohnung_Trank);
-	Info_AddChoice(DIA_Cassia_Belohnung,NAME_ADDON_CASSIASBELOHNUNGSRING,DIA_Cassia_Belohnung_Ring);
+	Info_AddChoice(DIA_Cassia_Belohnung,"(выбрать 400 золотых)",DIA_Cassia_Belohnung_Gold);
+	Info_AddChoice(DIA_Cassia_Belohnung,"(выбрать 6 лечебных эликсиров)",DIA_Cassia_Belohnung_Trank);
+	Info_AddChoice(DIA_Cassia_Belohnung,"(выбрать кольцо жизни)",DIA_Cassia_Belohnung_Ring);
 };
 
 func void DIA_Cassia_Belohnung_Gold()

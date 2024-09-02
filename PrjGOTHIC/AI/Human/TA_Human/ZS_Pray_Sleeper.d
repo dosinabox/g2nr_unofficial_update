@@ -1,5 +1,5 @@
 
-func void ZS_Pray_Sleeper()
+/*func void ZS_Pray_Sleeper()
 {
 	Perception_Set_Normal();
 	B_ResetAll(self);
@@ -12,15 +12,12 @@ func void ZS_Pray_Sleeper()
 
 func int ZS_Pray_Sleeper_Loop()
 {
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"IDOL"))
-	{
-		AI_UseMob(self,"IDOL",1);
-	};
+	B_UseAvailableMob(self,"IDOL");
 	return LOOP_CONTINUE;
 };
 
 func void ZS_Pray_Sleeper_End()
 {
 	AI_UseMob(self,"IDOL",-1);
-};
+};*/
 

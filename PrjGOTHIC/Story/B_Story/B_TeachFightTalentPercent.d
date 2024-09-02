@@ -45,7 +45,7 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	if(PremiumTeachersEnabled == TRUE)
+	if(C_PremiumTeachersEnabled())
 	{
 		if(!B_GiveInvItems(oth,slf,ItMi_Gold,cost * PremiumTeachersPrice))
 		{

@@ -138,20 +138,6 @@ func void B_AssignAmbientInfos(var C_Npc slf)
 			};
 		};
 	}
-	/*else if(slf.guild == GIL_PIR)
-	{
-		if(slf.npcType == NPCTYPE_AMBIENT)
-		{
-			if(slf.voice == 6)
-			{
-				B_AssignAmbientInfos_Addon_PIR_6(slf);
-			}
-			else if(slf.voice == 7)
-			{
-				B_AssignAmbientInfos_Addon_PIR_7(slf);
-			};
-		};
-	}*/
 	else if(slf.guild == GIL_OUT)
 	{
 		if(slf.npcType == NPCTYPE_AMBIENT)

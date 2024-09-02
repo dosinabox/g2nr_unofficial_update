@@ -117,7 +117,6 @@ func void DIA_JAN_Dragons_Reward()
 	}
 	else
 	{
-		//TODO озвучить
 		AI_Output(self,other,"DIA_Jan_SellWeapons_10_03_add");	//я могу показать тебе, как ковать хорошее оружие.
 	};
 	B_Jan_TeachPlayer();
@@ -411,12 +410,16 @@ func void DIA_Jan_SellArmor_Info()
 	{
 		AI_Output(self,other,"DIA_Jan_SellArmor_10_02");	//ћаг, который нуждаетс€ в доспехах? «абудь об этом - тебе лучше обратитьс€ к портному. я не могу сделать доспехи дл€ теб€.
 	}
-	else
+	else if(hero.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_Jan_SellArmor_10_03");	//≈сли бы они у мен€ были, € бы продал их тебе. Ќо, к сожалению, у мен€ их нет.
 		Info_ClearChoices(DIA_JAN_SellArmor);
 		Info_AddChoice(DIA_JAN_SellArmor,"ƒумаю, ничего не получитс€.",DIA_JAN_SellArmor_Sorry);
 		Info_AddChoice(DIA_JAN_SellArmor,"“ы можешь изготовить что-нибудь дл€ мен€?",DIA_JAN_SellArmor_BuildOne);
+	}
+	else
+	{
+		B_Say(self,other,"$NOTNOW");
 	};
 };
 

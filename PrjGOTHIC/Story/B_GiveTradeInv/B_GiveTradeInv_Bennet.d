@@ -11,7 +11,7 @@ func void B_GiveTradeInv_Bennet(var C_Npc slf)
 	{
 		CreateInvItems(slf,ItMiSwordraw,3);
 		CreateInvItems(slf,ItMw_1H_Mace_L_04,2);
-		CreateInvItems(slf,ItBE_Addon_SLD_01,1);
+		CreateInvItems(slf,ItBe_Addon_SLD_01,1);
 		Bennet_ItemsGiven_Chapter_1 = TRUE;
 	};
 	if((Kapitel >= 2) && (Bennet_ItemsGiven_Chapter_2 == FALSE))

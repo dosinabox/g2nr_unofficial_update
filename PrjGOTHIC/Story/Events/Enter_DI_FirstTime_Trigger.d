@@ -1,7 +1,7 @@
 
 var int EnterDI_Kapitel6;
 
-func void enter_di_firsttime_trigger()
+func void Enter_DI_FirstTime_Trigger()
 {
 	if(EnterDI_Kapitel6 == FALSE)
 	{
@@ -14,7 +14,7 @@ func void enter_di_firsttime_trigger()
 		if(!Npc_HasItems(player,ItMi_InnosEye_MIS))
 		{
 			Wld_InsertItem(ItMi_Flask,"FP_ITEM_SHIP_06");
-			if(!Npc_HasItems(player,ItMi_InnosEye_Discharged_Mis))
+			if(!Npc_HasItems(player,ItMi_InnosEye_Discharged_MIS))
 			{
 				Wld_InsertItem(ItSe_XardasNotfallBeutel_MIS,"FP_ITEM_SHIP_12");
 				SC_InnosEyeVergessen_DI = TRUE;
@@ -29,8 +29,7 @@ func void enter_di_firsttime_trigger()
 		{
 			CreateInvItems(AntiPaladin_DI,ItMi_LostInnosStatue_Daron,1);
 		};
-		Log_CreateTopic(TOPIC_MyCrew,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_MyCrew,LOG_Running);
+		Log_CreateTopic(TOPIC_MyCrew,LOG_NOTE);
 		if(JorgenIsCaptain == TRUE)
 		{
 			Log_AddEntry(TOPIC_MyCrew,"…орген, мой капитан, будет ждать на корабле моего возвращени€.");
@@ -83,7 +82,7 @@ func void enter_di_firsttime_trigger()
 		};
 		if(Bennet_IsOnBoard == LOG_SUCCESS)
 		{
-			Log_AddEntry(TOPIC_MyCrew,"Ѕеннет обучит мен€ кузнечному делу, если € захочу.");
+			Log_AddEntry(TOPIC_MyCrew,"Ѕеннет обучит мен€ кузнечному делу, если € захочу. “акже он может помочь мне повысить мою силу.");
 		};
 		if(Diego_IsOnBoard == LOG_SUCCESS)
 		{

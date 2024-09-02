@@ -302,10 +302,10 @@ func void DIA_Cornelius_RealStory_Info()
 	AI_Output(self,other,"DIA_Cornelius_RealStory_13_04");	//Тебе достаточно того, что я сказал. Он убьет меня, если я проговорюсь.
 	AI_Output(other,self,"DIA_Cornelius_RealStory_15_05");	//Ты готов подтвердить сказанное тобой перед лордом Хагеном?
 	AI_Output(self,other,"DIA_Cornelius_RealStory_13_06");	//Я пока еще не выжил из ума. Я не собираюсь оставаться в городе.
-	if(Npc_HasItems(self,ItWr_CorneliusTagebuch_Mis))
+	if(Npc_HasItems(self,ItWr_CorneliusTagebuch_MIS))
 	{
 		AI_Output(self,other,"DIA_Cornelius_RealStory_13_07");	//Я дам тебе мой дневник, он послужит достаточным доказательством.
-		B_GiveInvItems(self,other,ItWr_CorneliusTagebuch_Mis,1);
+		B_GiveInvItems(self,other,ItWr_CorneliusTagebuch_MIS,1);
 	};
 	B_LogEntry(TOPIC_RescueBennet,"Корнелиус солгал. Ему заплатили, чтобы упечь Беннета в тюрьму. Но он не говорит мне, кто подкупил его. Он весь дрожит от страха.");
 	CorneliusFlee = TRUE;

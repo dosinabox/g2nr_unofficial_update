@@ -155,8 +155,6 @@ func int DIA_Daron_AboutSegen_Condition()
 func void DIA_Daron_AboutSegen_Info()
 {
 	AI_Output(other,self,"DIA_Daron_AboutSegen_15_00");	//я пришел, чтобы получить твое благословение!
-	AI_Output(self,other,"DIA_Daron_AboutSegen_10_01");	//Ёто хорошо - тогда ты, веро€тно, захочешь пожертвовать золото св€той церкви »нноса, правда?
-	AI_Output(other,self,"DIA_Daron_AboutSegen_15_02");	//¬ообще-то € хотел получить твое благословение, чтобы поступить в ученики к одному из мастеров в нижней части города...
 	if(Daron_Blessing == TRUE)
 	{
 		AI_Output(self,other,"DIA_Daron_AboutSegen_10_03");	//Ќо € уже дал тебе мое благословение, сын мой.
@@ -164,6 +162,8 @@ func void DIA_Daron_AboutSegen_Info()
 	}
 	else
 	{
+		AI_Output(self,other,"DIA_Daron_AboutSegen_10_01");	//Ёто хорошо - тогда ты, веро€тно, захочешь пожертвовать золото св€той церкви »нноса, правда?
+		AI_Output(other,self,"DIA_Daron_AboutSegen_15_02");	//¬ообще-то € хотел получить твое благословение, чтобы поступить в ученики к одному из мастеров в нижней части города...
 		AI_Output(self,other,"DIA_Daron_AboutSegen_10_05");	//Ќо, сын мой! Ѕез скромного пожертвовани€ церкви € не считаю дл€ себ€ возможным благословить теб€.
 		AI_Output(self,other,"DIA_Daron_AboutSegen_10_06");	// ак еще могу € уверитьс€ в твоих добрых намерени€х по отношению к св€той церкви »нноса?
 	};
@@ -399,9 +399,12 @@ func void DIA_Addon_Daron_GuildHelp_Info()
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_07");	//(сердито) » не надо на мен€ так смотреть. ћаги, к твоему сведению, тоже люди.
 	MIS_Addon_Vatras_Go2Daron = LOG_SUCCESS;
 	Info_ClearChoices(DIA_Addon_Daron_GuildHelp);
-	if(Hlp_IsValidNpc(Gobbo_DaronsStatuenKlauer) && Npc_HasItems(Gobbo_DaronsStatuenKlauer,ItMi_LostInnosStatue_Daron))
+	if(Hlp_IsValidNpc(Gobbo_DaronsStatuenKlauer))
 	{
-		Info_AddChoice(DIA_Addon_Daron_GuildHelp,"«начит, сейчас она у гоблинов?",DIA_Addon_Daron_GuildHelp_gobbos);
+		if(Npc_HasItems(Gobbo_DaronsStatuenKlauer,ItMi_LostInnosStatue_Daron))
+		{
+			Info_AddChoice(DIA_Addon_Daron_GuildHelp,"«начит, сейчас она у гоблинов?",DIA_Addon_Daron_GuildHelp_gobbos);
+		};
 	};
 	Info_AddChoice(DIA_Addon_Daron_GuildHelp,"√де именно ты потер€л статуэтку?",DIA_Addon_Daron_GuildHelp_wo);
 	Info_AddChoice(DIA_Addon_Daron_GuildHelp,"“ы не пыталс€ вернуть статуэтку?",DIA_Addon_Daron_GuildHelp_wiederholen);

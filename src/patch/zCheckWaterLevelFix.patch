@@ -1,0 +1,49 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zCheckWaterLevelFix]
+		// engine specific
+		INT text_oCAniCtrl_Huma_CheckWaterLevel_call_SetActionMode_1 = ZenDef(0x00623601, 0x00647EEB, 0x0064F506, 0x006ABD86)
+		INT text_oCAniCtrl_Huma_CheckWaterLevel_call_SetActionMode_2 = ZenDef(0x00622F74, 0x0064779C, 0x00000000, 0x00000000)
+		
+		INT func_oCAniCtrl_Human_SetWalkMode = ZenDef(0x006211E0, 0x00645750, 0x0064CFA0, 0x006A9820)
+		INT func_oCAniCtrl_Human_SetActionMode = ZenDef(0x0062DC70, 0x00653440, 0x0065AA80, 0x006B7410)
+		
+		INT const_ANI_ACTION_STAND = 0
+		INT const_ANI_ACTION_SWIM = 5
+		INT const_ANI_WALKMODE_RUN = 0
+		INT const_ANI_WALKMODE_SWIM = 4
+		// end of engine specific
+		
+		#assembler [func_oCAniCtrl_Human_SetActionAndWalkMode]
+			mov eax, [esp+4] ; actionMode
+			push ecx
+			push eax
+			call $func_oCAniCtrl_Human_SetActionMode
+			pop ecx
+			mov eax, [esp+4]
+			test eax, eax
+			jz run ; ANI_ACTION_STAND
+			
+			cmp eax, $const_ANI_ACTION_SWIM
+			jne return
+			
+			mov eax, $const_ANI_WALKMODE_SWIM
+			jmp push_call_return
+			
+		run:
+			xor eax, eax ; ANI_WALKMODE_RUN
+			
+		push_call_return:
+			push eax
+			call $func_oCAniCtrl_Human_SetWalkMode
+			
+		return:
+			ret 4
+		#/assembler
+		
+		CALL(text_oCAniCtrl_Huma_CheckWaterLevel_call_SetActionMode_1, func_oCAniCtrl_Human_SetActionAndWalkMode)
+		
+		IF ZenDef(1, 2, 3, 4) <= 2 
+			CALL(text_oCAniCtrl_Huma_CheckWaterLevel_call_SetActionMode_2, func_oCAniCtrl_Human_SetActionAndWalkMode)
+		END
+	#/patch
+#/engine

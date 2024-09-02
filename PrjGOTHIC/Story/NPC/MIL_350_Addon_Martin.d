@@ -7,7 +7,7 @@ instance MIL_350_Addon_Martin(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = NPCTYPE_MAIN;
-	aivar[AIV_NPCIsRanger] = TRUE;
+	aivar[AIV_SubGuild] = GIL_SUB_Ranger;
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_COWARD;

@@ -9,7 +9,6 @@ func void ZS_MM_Rtn_Follow_Sheep()
 
 func int ZS_MM_Rtn_Follow_Sheep_Loop()
 {
-	var int randomMove;
 	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
 		if(Npc_GetDistToNpc(self,hero) > 500)
@@ -28,19 +27,7 @@ func int ZS_MM_Rtn_Follow_Sheep_Loop()
 	}
 	else
 	{
-		randomMove = Hlp_Random(3);
-		if(randomMove == 0)
-		{
-			AI_PlayAni(self,"R_ROAM1");
-		}
-		else if(randomMove == 1)
-		{
-			AI_PlayAni(self,"R_ROAM2");
-		}
-		else
-		{
-			AI_PlayAni(self,"R_ROAM3");
-		};
+		B_PlayRandomRoamAni();
 	};
 	return LOOP_CONTINUE;
 };
@@ -49,7 +36,7 @@ func void ZS_MM_Rtn_Follow_Sheep_End()
 {
 };
 
-func void ZS_MM_Rtn_Follow_Sheep_Balthasar()
+/*func void ZS_MM_Rtn_Follow_Sheep_Balthasar()
 {
 	Npc_SetPercTime(self,1);
 	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_MM_AssessPlayer);
@@ -57,7 +44,11 @@ func void ZS_MM_Rtn_Follow_Sheep_Balthasar()
 
 func int ZS_MM_Rtn_Follow_Sheep_Balthasar_Loop()
 {
-	if(Npc_GetDistToWP(Balthasar,"NW_BIGMILL_FARM3_BALTHASAR") > 500)
+	if(Npc_IsDead(Balthasar))
+	{
+		AI_StartState(self,ZS_MM_Rtn_Roam,1,"NW_BIGMILL_FARM3_BALTHASAR");
+	}
+	else if(Npc_GetDistToWP(Balthasar,"NW_BIGMILL_FARM3_BALTHASAR") > 500)
 	{
 		if(Npc_GetDistToNpc(self,Balthasar) > 500)
 		{
@@ -82,5 +73,5 @@ func int ZS_MM_Rtn_Follow_Sheep_Balthasar_Loop()
 
 func void ZS_MM_Rtn_Follow_Sheep_Balthasar_End()
 {
-};
+};*/
 

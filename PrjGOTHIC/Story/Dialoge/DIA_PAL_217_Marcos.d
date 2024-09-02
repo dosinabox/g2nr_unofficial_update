@@ -121,9 +121,9 @@ func void DIA_Marcos_Garond_Info()
 	AI_Output(self,other,"DIA_Marcos_Garond_04_05");	//Скажи ему, чтобы прислал подкрепление.
 	AI_Output(other,self,"DIA_Marcos_Garond_15_06");	//Я дам ему знать.
 	B_LogEntries(TOPIC_ScoutMine,"Паладин Маркос охраняет ЧЕТЫРЕ ящика в небольшой долине.");
-	Log_CreateTopic(Topic_MarcosJungs,LOG_MISSION);
-	Log_SetTopicStatus(Topic_MarcosJungs,LOG_Running);
-	B_LogNextEntry(Topic_MarcosJungs,"Маркос хочет, чтобы Гаронд послал ему подмогу.");
+	Log_CreateTopic(TOPIC_MarcosJungs,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_MarcosJungs,LOG_Running);
+	B_LogNextEntry(TOPIC_MarcosJungs,"Маркос хочет, чтобы Гаронд послал ему подмогу.");
 	MIS_Marcos_Jungs = LOG_Running;
 	Marcos_Ore = TRUE;
 	self.flags = 0;

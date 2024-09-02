@@ -73,7 +73,7 @@ func void DIA_Brian_AboutLehrling_Info()
 {
 	AI_Output(other,self,"DIA_Brian_AboutLehrling_15_00");	//Каково это, быть учеником кузнеца?
 	AI_Output(self,other,"DIA_Brian_AboutLehrling_04_01");	//Почему ты спрашиваешь? Ты хочешь стать моим преемником?
-	AI_Output(other,self,"DIA_Brian_AboutLehrling_15_02");	//Может быть.
+	DIA_Common_Maybe();
 	AI_Output(self,other,"DIA_Brian_AboutLehrling_04_03");	//Почему бы и нет? Я почти закончил свое обучение и собираюсь вскоре покинуть город.
 	AI_Output(self,other,"DIA_Brian_AboutLehrling_04_04");	//Но не из-за Гарада. Он хороший мастер, я многому научился у него.
 };
@@ -271,7 +271,7 @@ instance DIA_Brian_RepairNecklace(C_Info)
 
 func int DIA_Brian_RepairNecklace_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
 		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 		{
@@ -324,7 +324,7 @@ func void DIA_Brian_NEWLIGHTHOUSEOFFICER_Info()
 	MIS_Jack_NewLighthouseOfficer = LOG_SUCCESS;
 	B_SetGuild(self,GIL_NONE);
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Lighthouse");
+	Npc_ExchangeRoutine(self,"LIGHTHOUSE");
 	B_StartOtherRoutine(VLK_425_Regis,"ALONE");
 };
 

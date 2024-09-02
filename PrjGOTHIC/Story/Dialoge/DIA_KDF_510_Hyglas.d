@@ -460,7 +460,7 @@ instance DIA_Hyglas_HaveBook(C_Info)
 
 func int DIA_Hyglas_HaveBook_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hyglas_BringBook) && Npc_HasItems(other,ItWr_Astronomy_Mis))
+	if(Npc_KnowsInfo(other,DIA_Hyglas_BringBook) && Npc_HasItems(other,ItWr_Astronomy_MIS))
 	{
 		return TRUE;
 	};
@@ -477,7 +477,7 @@ func void DIA_Hyglas_HaveBook_Info()
 	{
 		AI_Output(self,other,"DIA_Hyglas_HaveBook_14_02");	//Ты все же передумал. Очень хорошо. Так где же эта книга?
 	};
-	B_GiveInvItems(other,self,ItWr_Astronomy_Mis,1);
+	B_GiveInvItems(other,self,ItWr_Astronomy_MIS,1);
 	AI_Output(self,other,"DIA_Hyglas_HaveBook_14_03");	//Теперь ты можешь удалиться. А я должен уединиться и заняться ее изучением.
 	MIS_HyglasBringBook = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HyglasBringBook);

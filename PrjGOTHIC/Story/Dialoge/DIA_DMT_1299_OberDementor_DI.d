@@ -14,9 +14,6 @@ func int DIA_Schwarzmagier_HELLO_Condition()
 	return TRUE;
 };
 
-
-var int SC_KnowsMadPsi;
-
 func void DIA_Schwarzmagier_HELLO_Info()
 {
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_09_00");	//„то ж, ничтожный червь, ты действительно осмелилс€ дойти до ворот хоз€ина.
@@ -28,7 +25,6 @@ func void DIA_Schwarzmagier_HELLO_Info()
 	Info_ClearChoices(DIA_Schwarzmagier_HELLO);
 	Info_AddChoice(DIA_Schwarzmagier_HELLO,"ќтведи мен€ к своему хоз€ину.",DIA_Schwarzmagier_HELLO_meister);
 	Info_AddChoice(DIA_Schwarzmagier_HELLO,"» сколько еще тебе подобных мне придетс€ убить?",DIA_Schwarzmagier_HELLO_dmt);
-//	Info_AddChoice(DIA_Schwarzmagier_HELLO,"ј что скрываетс€ за тем огромным порталом, вон там?",DIA_Schwarzmagier_HELLO_hinterTor);
 	Info_AddChoice(DIA_Schwarzmagier_HELLO,"ј что скрываетс€ за этой закрытой дверью, вон там?",DIA_Schwarzmagier_HELLO_hinterTor);
 	Info_AddChoice(DIA_Schwarzmagier_HELLO," то твой хоз€ин?",DIA_Schwarzmagier_HELLO_wer);
 	if(SC_KnowsMadPsi == TRUE)
@@ -48,7 +44,6 @@ func void DIA_Schwarzmagier_HELLO_wer()
 
 func void DIA_Schwarzmagier_HELLO_hinterTor()
 {
-//	AI_Output(other,self,"DIA_Schwarzmagier_HELLO_hinterTor_15_00");	//ј что скрываетс€ за тем огромным порталом, вон там?
 	AI_Output(other,self,"DIA_Schwarzmagier_HELLO_hinterTor_15_00_add");	//ј что скрываетс€ за этой закрытой дверью, вон там?
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_hinterTor_09_01");	//(смеетс€) ѕокои моего повелител€ останутс€ недоступными дл€ теб€. я не дам тебе возможности открыть эти врата.
 };
@@ -58,7 +53,7 @@ func void DIA_Schwarzmagier_HELLO_schlaefer()
 	AI_Output(other,self,"DIA_Schwarzmagier_HELLO_schlaefer_15_00");	//“ы был последователем —п€щего.
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_schlaefer_09_01");	//Ёто было в далеком прошлом. ѕовелитель открыл нам глаза. “еперь никто не остановит нас.
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_schlaefer_09_02");	//ѕовелитель показал нам единственно возможный путь борьбы с вами, неверующими.
-	TOPIC_END_DEMENTOREN = TRUE;
+	MIS_DementorsOrigins = LOG_SUCCESS;
 	B_GivePlayerXP(XP_AmbientKap6);
 };
 
@@ -80,7 +75,7 @@ func void DIA_Schwarzmagier_HELLO_meister()
 	AI_PlayAni(self,"T_PRACTICEMAGIC5");
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_meister_09_00");	//(угрожающе) ’ватит болтовни! я уничтожу теб€.
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_meister_09_01");	//“вой взор потухнет, и твой дух растает во тьме.
-	if(Npc_HasItems(other,ItAm_Prot_BlackEye_Mis))
+	if(Npc_HasItems(other,ItAm_Prot_BlackEye_MIS))
 	{
 		AI_Output(other,self,"DIA_Schwarzmagier_HELLO_meister_15_02");	//(себе под нос) Ѕез этого амулета вызова душ у мен€ бы были большие проблемы сейчас.
 	}

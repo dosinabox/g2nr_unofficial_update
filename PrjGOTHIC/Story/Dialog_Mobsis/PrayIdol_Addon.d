@@ -179,21 +179,21 @@ func int PC_PrayIdol_PrayIdol_Condition()
 	};
 };
 
-func void PC_PrayIdol_PrayIdol_Info() //TODO при IgnoreBonuses == TRUE можно жертвовать бесконечно!
+func void PC_PrayIdol_PrayIdol_Info()
 {
 	Info_ClearChoices(PC_PrayIdol_PrayIdol);
 	Info_AddChoice(PC_PrayIdol_PrayIdol,Dialog_Back,PC_PrayIdol_PrayIdol_Back);
 	Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVENOTHING,PC_PrayIdol_PrayIdol_NoPay);
 	if(Stats_Beliar_ManaGiven <= 10)
 	{
-		if(RealAttributeValue(ATR_MANA_MAX) > 10)
+		if((ATR_Training[ATR_MANA_MAX] + ATR_PermBonus[ATR_MANA_MAX]) > START_ATR_MANA_MAX)
 		{
 			Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVEMANA,PC_PrayIdol_PrayIdol_ManaPay);
 		};
 	};
 	if(Stats_Beliar_HpGiven <= 50)
 	{
-		if(RealAttributeValue(ATR_HITPOINTS_MAX) >= 40)
+		if((ATR_Training[ATR_HITPOINTS_MAX] + ATR_PermBonus[ATR_HITPOINTS_MAX]) >= START_ATR_HITPOINTS_MAX)
 		{
 			Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVEHITPOINT1,PC_PrayIdol_PrayIdol_SmallPay);
 			Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVEHITPOINT2,PC_PrayIdol_PrayIdol_MediumPay);

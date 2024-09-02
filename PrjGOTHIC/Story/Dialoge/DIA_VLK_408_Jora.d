@@ -118,6 +118,16 @@ func void DIA_Jora_GREET_Info()
 };
 
 
+func void B_Jora_GoldForClue()
+{
+	AI_Output(self,other,"DIA_Jora_Add_08_04");	//Послушай - если ты вернешь золото, украденное этим Ренгару, я расскажу тебе кое-что.
+};
+
+func void B_Jora_GoldIsStolen()
+{
+	AI_Output(self,other,"DIA_Jora_Bestohlen_08_04");	//Я отвернулся всего на мгновение, и мой кошелек пропал!
+};
+
 instance DIA_Jora_Bestohlen(C_Info)
 {
 	npc = VLK_408_Jora;
@@ -134,6 +144,10 @@ func int DIA_Jora_Bestohlen_Condition()
 	if(JoraToldAboutRobbery == FALSE)
 	{
 		DIA_Jora_Bestohlen.description = "Как дела?";
+	}
+	else
+	{
+		DIA_Jora_Bestohlen.description = "Кто-то обокрал тебя?";
 	};
 	return TRUE;
 };
@@ -143,7 +157,7 @@ func void DIA_Jora_Bestohlen_Info()
 	if(JoraToldAboutRobbery == FALSE)
 	{
 		AI_Output(other,self,"DIA_Addon_Nefarius_Hallo_15_00");	//Как дела?
-		AI_Output(self,other,"DIA_Jora_Bestohlen_08_04");	//Я отвернулся всего на мгновение, и мой кошелек пропал!
+		B_Jora_GoldIsStolen();
 	};
 	AI_Output(other,self,"DIA_Jora_Bestohlen_15_00");	//Кто-то обокрал тебя?
 	AI_Output(self,other,"DIA_Jora_Bestohlen_08_01");	//Я не могу доказать это. Этот парень был чертовски хитер. Представился как Ренгару - если это действительно его имя.
@@ -154,13 +168,8 @@ func void DIA_Jora_Bestohlen_Info()
 	};
 	if(JoraToldAboutRobbery == TRUE)
 	{
-		AI_Output(self,other,"DIA_Jora_Bestohlen_08_04");	//Я отвернулся всего на мгновение, и мой кошелек пропал!
+		B_Jora_GoldIsStolen();
 	};
-};
-
-func void B_Jora_GoldForClue()
-{
-	AI_Output(self,other,"DIA_Jora_Add_08_04");	//Послушай - если ты вернешь золото, украденное этим Ренгару, я расскажу тебе кое-что.
 };
 
 
@@ -452,7 +461,7 @@ func void DIA_Jora_Belohnung_Info()
 func void B_Jora_GivesAlriksSchwert()
 {
 	AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_06");	//А, ладно! Забирай его так. Ведь ты помог мне вернуть мое золото...
-	B_GiveInvItems(self,other,ItMw_AlriksSword_Mis,1);
+	B_GiveInvItems(self,other,ItMw_AlriksSword_MIS,1);
 };
 
 instance DIA_Jora_AlriksSchwert(C_Info)
@@ -488,7 +497,7 @@ func void DIA_Jora_AlriksSchwert_Info()
 	AI_Output(other,self,"DIA_Jora_BUYAlriksSchwert_15_02");	//Минутку! Я хотел купить меч.
 	AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_01");	//Ты имеешь в виду этого оборванца, что продал мне свое оружие за несколько факелов и кусок мяса?
 	AI_Output(other,self,"DIA_Jora_AlriksSchwert_15_02");	//Да, это он.
-	if(Npc_HasItems(self,ItMw_AlriksSword_Mis))
+	if(Npc_HasItems(self,ItMw_AlriksSword_MIS))
 	{
 		AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_03");	//Его меч все еще у меня.
 		AI_Output(other,self,"DIA_Jora_AlriksSchwert_15_04");	//Сколько ты хочешь за него?
@@ -522,7 +531,7 @@ instance DIA_Jora_BUYAlriksSchwert(C_Info)
 
 func int DIA_Jora_BUYAlriksSchwert_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jora_AlriksSchwert) && Npc_HasItems(self,ItMw_AlriksSword_Mis))
+	if(Npc_KnowsInfo(other,DIA_Jora_AlriksSchwert) && Npc_HasItems(self,ItMw_AlriksSword_MIS))
 	{
 		return TRUE;
 	};
@@ -538,7 +547,7 @@ func void DIA_Jora_BUYAlriksSchwert_Info()
 	else if(B_GiveInvItems(other,self,ItMi_Gold,50))
 	{
 		AI_Output(self,other,"DIA_Jora_BUYAlriksSchwert_08_04");	//Вот, держи - (ухмыляется) это выгодная сделка.
-		B_GiveInvItems(self,other,ItMw_AlriksSword_Mis,1);
+		B_GiveInvItems(self,other,ItMw_AlriksSword_MIS,1);
 	}
 	else
 	{

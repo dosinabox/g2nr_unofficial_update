@@ -250,10 +250,13 @@ instance ItMi_Broom(C_Item)
 
 func void Use_Broom()
 {
-	if(Npc_IsPlayer(self) && (Wld_GetPlayerPortalGuild() == GIL_NOV) && (MIS_ParlanFegen == LOG_Running))
+	if(Npc_IsPlayer(self))
 	{
-		B_Say(self,self,"$NOSWEEPING");
-		Print(PRINT_NoSweeping);
+		if((Wld_GetPlayerPortalGuild() == GIL_NOV) && (MIS_ParlanFegen == LOG_Running))
+		{
+			B_Say(self,self,"$NOSWEEPING");
+			Print(PRINT_NoSweeping);
+		};
 	};
 };
 

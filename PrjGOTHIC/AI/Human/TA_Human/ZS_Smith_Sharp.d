@@ -13,10 +13,7 @@ func void ZS_Smith_Sharp()
 
 func int ZS_Smith_Sharp_Loop()
 {
-	if(!C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && Wld_IsMobAvailable(self,"BSSHARP"))
-	{
-		AI_UseMob(self,"BSSHARP",1);
-	};
+	B_UseAvailableMob(self,"BSSHARP");
 	return LOOP_CONTINUE;
 };
 

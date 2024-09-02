@@ -21,7 +21,7 @@ instance ItSe_XardasNotfallBeutel_MIS(C_Item)
 func void Use_XardasNotfallBeutel()
 {
 	B_PlayerFindItem(ItWr_XardasErmahnungFuerIdioten_MIS,1);
-	B_PlayerFindItem(ItMi_InnosEye_Discharged_Mis,1);
+	B_PlayerFindItem(ItMi_InnosEye_Discharged_MIS,1);
 	XardasDIBagOpened = TRUE;
 };
 
@@ -42,7 +42,6 @@ instance ItWr_XardasErmahnungFuerIdioten_MIS(C_Item)
 
 func void Use_XardasErmahnungFuerIdioten()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -80,7 +79,6 @@ instance ItWr_Krypta_Garon(C_Item)
 
 func void Use_Krypta_Garon()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -147,21 +145,6 @@ instance ItKe_EVT_UNDEAD_02(C_Item)
 	inv_zbias = 145;
 };
 
-instance ItKe_LastDoorToUndeadDrgDI_MIS(C_Item)
-{
-	name = NAME_Key;
-	mainflag = ITEM_KAT_KEYS;
-	flags = ITEM_MISSION;
-	value = Value_Key_01;
-	visual = "ItKe_Key_03.3ds";
-	material = MAT_METAL;
-	description = "Ключ черного мага";
-	inv_rotz = -45;
-	inv_rotx = -25;
-	inv_roty = 0;
-	inv_zbias = 145;
-};
-
 instance ItWr_LastDoorToUndeadDrgDI_MIS(C_Item)
 {
 	name = "Свиток черного мага";
@@ -178,7 +161,6 @@ instance ItWr_LastDoorToUndeadDrgDI_MIS(C_Item)
 
 func void Use_ItWr_LastDoorToUndeadDrgDI_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -196,7 +178,14 @@ func void Use_ItWr_LastDoorToUndeadDrgDI_MIS()
 	Doc_Show(nDocID);
 	if(Read_LastDoorToUndeadDrgDI_MIS == FALSE)
 	{
-		B_LogEntry(TOPIC_HallenVonIrdorath,"Свиток черного мага содержит слова КАДОШ ЭМЕМ КАДАР. Это похоже на какую-то магическую формулу, но для чего она используется - и что такое Глаз Силы?");
+		if(!Npc_HasItems(hero,ItMi_PowerEye))
+		{
+			B_LogEntry(TOPIC_HallenVonIrdorath,"Свиток черного мага содержит слова КАДОШ ЭМЕМ КАДАР. Это похоже на какую-то магическую формулу, но для чего она используется - и что такое Глаз Силы?");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_HallenVonIrdorath,"Свиток черного мага содержит слова КАДОШ ЭМЕМ КАДАР. Это похоже на какую-то магическую формулу, но для чего она используется?");
+		};
 		Read_LastDoorToUndeadDrgDI_MIS = TRUE;
 	};
 };
@@ -234,7 +223,6 @@ instance ItWr_Rezept_MegaDrink_MIS(C_Item)
 
 func void Use_RezeptFuerMegaTrank()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -281,7 +269,6 @@ var int Use_Diary_BlackNovice_Once;
 
 func void Use_Diary_BlackNovice()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Wood_L.tga",0);
@@ -327,7 +314,6 @@ instance ItWr_ZugBruecke_MIS(C_Item)
 
 func void Use_ZugBruecke()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);

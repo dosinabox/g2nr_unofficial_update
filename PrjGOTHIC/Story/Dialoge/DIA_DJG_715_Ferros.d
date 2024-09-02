@@ -211,7 +211,7 @@ func void DIA_DJG_715_Ferros_FerrosAnySword_Silverblade()
 {
 	B_Ferros_FerrosAnySword_Give();
 	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
-	Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,"Нет, он нужен мне самому.",DIA_DJG_715_Ferros_FerrosAnySword_Silverblade_No);
+	Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,"Нет, он нужен мне самому.",DIA_DJG_715_Ferros_FerrosAnySword_No);
 	Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,"Да, забирай.",DIA_DJG_715_Ferros_FerrosAnySword_Silverblade_Yes);
 };
 
@@ -219,8 +219,15 @@ func void DIA_DJG_715_Ferros_FerrosAnySword_Oreblade()
 {
 	B_Ferros_FerrosAnySword_Give();
 	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
-	Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,"Нет, он нужен мне самому.",DIA_DJG_715_Ferros_FerrosAnySword_Oreblade_No);
+	Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,"Нет, он нужен мне самому.",DIA_DJG_715_Ferros_FerrosAnySword_No);
 	Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,"Да, забирай.",DIA_DJG_715_Ferros_FerrosAnySword_Oreblade_Yes);
+};
+
+func void DIA_DJG_715_Ferros_FerrosAnySword_No()
+{
+	AI_Output(other,self,"DIA_DJG_715_Ferros_FerrosAnySword_Blade_No_15_00");	//Нет, он нужен мне самому.
+	AI_Output(self,other,"DIA_DJG_715_Ferros_FerrosAnySword_Blade_No_01_01");	//Понимаю.
+	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
 };
 
 func void B_Ferros_FerrosAnySword_Yes1()
@@ -233,15 +240,9 @@ func void B_Ferros_FerrosAnySword_Yes2()
 	AI_Output(self,other,"DIA_DJG_715_Ferros_FerrosAnySword_Blade_Yes2_01_00");	//Спасибо. Я твой должник.
 	AI_Output(self,other,"DIA_DJG_715_Ferros_FerrosAnySword_Blade_Yes2_01_01");	//Взамен я покажу тебе парочку трюков, которые позволят тебе лучше использовать силу и ловкость в бою.
 	Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
-	B_LogEntry(TOPIC_Teacher_OC,"Феррос может повысить мои силу и ловкость.");
+	B_LogEntry(TOPIC_Teacher_OC,"Феррос может повысить мою силу и ловкость.");
 	MIS_FerrosSword = LOG_SUCCESS;
 	B_GivePlayerXP(XP_FerrosSword);
-};
-
-func void B_Ferros_FerrosAnySword_No()
-{
-	AI_Output(other,self,"DIA_DJG_715_Ferros_FerrosAnySword_Blade_No_15_00");	//Нет, он нужен мне самому.
-	AI_Output(self,other,"DIA_DJG_715_Ferros_FerrosAnySword_Blade_No_01_01");	//Понимаю.
 };
 
 func void DIA_DJG_715_Ferros_FerrosAnySword_Silverblade_Yes()
@@ -254,12 +255,6 @@ func void DIA_DJG_715_Ferros_FerrosAnySword_Silverblade_Yes()
 	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
 };
 
-func void DIA_DJG_715_Ferros_FerrosAnySword_Silverblade_No()
-{
-	B_Ferros_FerrosAnySword_No();
-	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
-};
-
 func void DIA_DJG_715_Ferros_FerrosAnySword_Oreblade_Yes()
 {
 	B_Ferros_FerrosAnySword_Yes1();
@@ -267,12 +262,6 @@ func void DIA_DJG_715_Ferros_FerrosAnySword_Oreblade_Yes()
 	B_GiveInvItems(other,self,ItMw_1H_Special_02,1);
 	B_InspectMeleeWeapon(self);
 	B_Ferros_FerrosAnySword_Yes2();
-	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
-};
-
-func void DIA_DJG_715_Ferros_FerrosAnySword_Oreblade_No()
-{
-	B_Ferros_FerrosAnySword_No();
 	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
 };
 
@@ -290,7 +279,7 @@ instance DIA_DJG_715_Ferros_FerrosHisSword(C_Info)
 
 func int DIA_DJG_715_Ferros_FerrosHisSword_Condition()
 {
-	if((MIS_FerrosSword == LOG_Running) && Npc_HasItems(other,ItMW_1H_FerrosSword_Mis))
+	if((MIS_FerrosSword == LOG_Running) && Npc_HasItems(other,ItMw_1H_FerrosSword_MIS))
 	{
 		return TRUE;
 	};
@@ -300,7 +289,7 @@ func void DIA_DJG_715_Ferros_FerrosHisSword_Info()
 {
 	AI_Output(other,self,"DIA_DJG_715_Ferros_FerrosHisSword_15_00");	//Я нашел твой меч.
 	AI_WaitTillEnd(self,other);
-	B_GiveInvItems(other,self,ItMW_1H_FerrosSword_Mis,1);
+	B_GiveInvItems(other,self,ItMw_1H_FerrosSword_MIS,1);
 	B_InspectMeleeWeapon(self);
 	B_Ferros_FerrosAnySword_Yes2();
 };
@@ -310,10 +299,10 @@ func void B_BuildLearnDialog_Ferros()
 {
 	Info_ClearChoices(DIA_Ferros_Teach);
 	Info_AddChoice(DIA_Ferros_Teach,Dialog_Back,DIA_Ferros_Teach_Back);
-	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Ferros_Teach_STR_1);
-	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Ferros_Teach_STR_5);
-	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_Ferros_Teach_DEX_1);
-	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_Ferros_Teach_DEX_5);
+	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_Ferros_Teach_STR_1);
+	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_Ferros_Teach_STR_5);
+	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnAttributeString(ATR_DEXTERITY,1),DIA_Ferros_Teach_DEX_1);
+	Info_AddChoice(DIA_Ferros_Teach,B_BuildLearnAttributeString(ATR_DEXTERITY,5),DIA_Ferros_Teach_DEX_5);
 };
 
 instance DIA_Ferros_Teach(C_Info)

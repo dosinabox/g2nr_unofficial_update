@@ -150,7 +150,7 @@ instance DIA_Dar_DuDieb(C_Info)
 
 func int DIA_Dar_DuDieb_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Cipher_TradeWhat) && (MIS_Cipher_Paket == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Cipher_TradeWhat))
 	{
 		return TRUE;
 	};
@@ -162,7 +162,6 @@ func void DIA_Dar_DuDieb_Info()
 	AI_Output(self,other,"DIA_Dar_DuDieb_03_01");	//(смеется идиотским приглушенным смехом)
 	AI_Output(other,self,"DIA_Dar_DuDieb_15_02");	//Ты ничего не знаешь об этом?
 	AI_Output(self,other,"DIA_Dar_DuDieb_03_03");	//(очень коротко) Нет.
-	Dar_Verdacht = TRUE;
 };
 
 
@@ -179,7 +178,7 @@ instance DIA_Dar_WoPaket(C_Info)
 
 func int DIA_Dar_WoPaket_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Dar_DuDieb) && (Dar_Dieb == FALSE) && (MIS_Cipher_Paket == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Dar_DuDieb) && (Dar_Dieb == FALSE))
 	{
 		return TRUE;
 	};
@@ -195,8 +194,8 @@ func void DIA_Dar_WoPaket_Info()
 		AI_Output(other,self,"DIA_Dar_WoPaket_15_03");	//Может, тебе нужна еще одна хорошая встряска?
 		AI_Output(self,other,"DIA_Dar_WoPaket_03_04");	//Если честно, я был обкуренный в хлам. Я совершенно не представляю, как этот парень выглядел.
 		AI_Output(self,other,"DIA_Dar_WoPaket_03_05");	//Это было в гавани около кораблестроителей. Это все, что я помню.
+		B_LogEntry(TOPIC_CipherPaket,"Дар признал, что украл тюк с травой. Он продал ее в портовом квартале Хориниса, около кораблестроителей.");
 		Dar_Dieb = TRUE;
-		B_LogEntry(Topic_CipherPaket,"Дар признал, что украл тюк с травой. Он продал ее в портовом квартале Хориниса, около кораблестроителей.");
 	}
 	else
 	{
@@ -349,17 +348,6 @@ func void DIA_Dar_ORCRING_necken()
 	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Dar_ORCRING_necken_03_02");	//Какой-то надутый простофиля из города. Тебе вообще ничего не светит.
-	};
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
-	{
-		AI_Output(self,other,"DIA_Dar_ORCRING_necken_03_03");	//Ты здесь всего пару дней и уже задрал нос выше облаков.
-	};
-	if(hero.guild == GIL_KDF)
-	{
-		AI_Output(self,other,"DIA_Dar_ORCRING_necken_03_04");	//Кого ты хочешь напугать этой своей магической чушью? Только не меня.
-	};
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
-	{
 		AI_Output(self,other,"DIA_Dar_ORCRING_necken_03_05");	//И даже, если подумать, раскроить твой череп - именно то, что мне нужно, чтобы заслужить уважение Ли и его парней.
 		Info_ClearChoices(DIA_Dar_ORCRING);
 		Info_AddChoice(DIA_Dar_ORCRING,"У меня нет времени на эту чушь.",DIA_Dar_ORCRING_necken_no);
@@ -367,6 +355,14 @@ func void DIA_Dar_ORCRING_necken()
 	}
 	else
 	{
+		if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+		{
+			AI_Output(self,other,"DIA_Dar_ORCRING_necken_03_03");	//Ты здесь всего пару дней и уже задрал нос выше облаков.
+		}
+		else if(hero.guild == GIL_KDF)
+		{
+			AI_Output(self,other,"DIA_Dar_ORCRING_necken_03_04");	//Кого ты хочешь напугать этой своей магической чушью? Только не меня.
+		};
 		AI_Output(self,other,"DIA_Dar_ORCRING_necken_03_06");	//Ты подожди. Я найду способ произвести впечатление на Ли.
 	};
 };
@@ -376,9 +372,9 @@ var int Dar_FightAgainstPaladin;
 
 func void DIA_Dar_ORCRING_necken_schlagen()
 {
-	Dar_FightAgainstPaladin = TRUE;
 	AI_Output(other,self,"DIA_Dar_ORCRING_necken_schlagen_15_00");	//Ладно. Попробуй.
 	AI_Output(self,other,"DIA_Dar_ORCRING_necken_schlagen_03_01");	//Ох, я не могу ждать.
+	Dar_FightAgainstPaladin = TRUE;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
@@ -423,7 +419,7 @@ instance DIA_Dar_FIGHTAGAINSTPALOVER(C_Info)
 
 func int DIA_Dar_FIGHTAGAINSTPALOVER_Condition()
 {
-	if((Dar_FightAgainstPaladin == TRUE) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL)))
+	if(Dar_FightAgainstPaladin == TRUE)
 	{
 		return TRUE;
 	};
@@ -450,7 +446,7 @@ instance DIA_Dar_BRINGORCELITERING(C_Info)
 
 func int DIA_Dar_BRINGORCELITERING_Condition()
 {
-	if((MIS_Dar_BringOrcEliteRing == LOG_Running) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (hero.guild == GIL_KDF)) && Npc_HasItems(other,ItRi_OrcEliteRing))
+	if((MIS_Dar_BringOrcEliteRing == LOG_Running) && Npc_HasItems(other,ItRi_OrcEliteRing))
 	{
 		return TRUE;
 	};
@@ -462,13 +458,9 @@ func void DIA_Dar_BRINGORCELITERING_Info()
 	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_03_01");	//Что ты там принес мне?
 	AI_Output(other,self,"DIA_Dar_BRINGORCELITERING_15_02");	//Кольцо предводителя орков.
 	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_03_03");	//Ух ты, в таком случае... Что ты хочешь за него?
-	MIS_Dar_BringOrcEliteRing = LOG_SUCCESS;
 	Info_ClearChoices(DIA_Dar_BRINGORCELITERING);
 	Info_AddChoice(DIA_Dar_BRINGORCELITERING,"Что ты можешь предложить мне?",DIA_Dar_BRINGORCELITERING_was);
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
-	{
-		Info_AddChoice(DIA_Dar_BRINGORCELITERING,"Заплати мне золотом.",DIA_Dar_BRINGORCELITERING_geld);
-	};
+	Info_AddChoice(DIA_Dar_BRINGORCELITERING,"Заплати мне золотом.",DIA_Dar_BRINGORCELITERING_geld);
 };
 
 func void DIA_Dar_BRINGORCELITERING_geld()
@@ -494,10 +486,11 @@ func void DIA_Dar_BRINGORCELITERING_geld_ok()
 	AI_Output(other,self,"DIA_Dar_BRINGORCELITERING_geld_ok_15_00");	//Договорились. Держи кольцо.
 	B_GiveInvItems(other,self,ItRi_OrcEliteRing,1);
 	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_geld_ok_03_01");	//Спасибо. Не терпится услышать, что скажут другие об этом.
-	Npc_ExchangeRoutine(self,"Start");
 	CreateInvItems(self,ItMi_Gold,1200);
 	B_GiveInvItems(self,other,ItMi_Gold,1200);
+	MIS_Dar_BringOrcEliteRing = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Dar_BringOrcEliteRing);
+	Npc_ExchangeRoutine(self,"Start");
 	Info_ClearChoices(DIA_Dar_BRINGORCELITERING);
 };
 
@@ -505,6 +498,8 @@ func void DIA_Dar_BRINGORCELITERING_geld_no()
 {
 	AI_Output(other,self,"DIA_Dar_BRINGORCELITERING_geld_no_15_00");	//Этого недостаточно.
 	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_geld_no_03_01");	//А я думаю, что это слишком много. Этот бизнес не нравится мне. Не хочу обидеть.
+	MIS_Dar_BringOrcEliteRing = LOG_OBSOLETE;
+	B_CheckLog();
 	Info_ClearChoices(DIA_Dar_BRINGORCELITERING);
 };
 
@@ -523,10 +518,11 @@ func void DIA_Dar_BRINGORCELITERING_was_am()
 	AI_Output(other,self,"DIA_Dar_BRINGORCELITERING_was_am_15_00");	//Давай мне амулет.
 	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_was_am_03_01");	//Конечно. Пусть он доставит тебе радость. Теперь давай мне это кольцо.
 	B_GiveInvItems(other,self,ItRi_OrcEliteRing,1);
+	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_was_am_03_02");	//Теперь я счастлив.
 	CreateInvItems(self,ItAm_Dex_01,1);
 	B_GiveInvItems(self,other,ItAm_Dex_01,1);
+	MIS_Dar_BringOrcEliteRing = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Dar_BringOrcEliteRing);
-	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_was_am_03_02");	//Теперь я счастлив.
 	Npc_ExchangeRoutine(self,"Start");
 	Info_ClearChoices(DIA_Dar_BRINGORCELITERING);
 };

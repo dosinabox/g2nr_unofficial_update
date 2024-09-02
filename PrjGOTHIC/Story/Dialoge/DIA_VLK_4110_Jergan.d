@@ -80,9 +80,9 @@ func void B_Jergan_NewsForOric()
 	if(!Npc_IsDead(Oric))
 	{
 		MIS_OricBruder = LOG_Running;
-		Log_CreateTopic(Topic_OricBruder,LOG_MISSION);
-		Log_SetTopicStatus(Topic_OricBruder,LOG_Running);
-		B_LogEntry(Topic_OricBruder,"Когда я окажусь в замке, то должен буду сказать Орику, что его брат погиб у Прохода.");
+		Log_CreateTopic(TOPIC_OricBruder,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_OricBruder,LOG_Running);
+		B_LogEntry(TOPIC_OricBruder,"Когда я окажусь в замке, то должен буду сказать Орику, что его брат погиб у Прохода.");
 	};
 };
 

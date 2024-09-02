@@ -34,7 +34,7 @@ instance DIA_PC_Thief_DI_Hallo(C_Info)
 
 func int DIA_PC_Thief_DI_Hallo_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -67,7 +67,7 @@ instance DIA_PC_Thief_DI_RAT(C_Info)
 
 func int DIA_PC_Thief_DI_RAT_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && Npc_KnowsInfo(other,DIA_PC_Thief_DI_Hallo))
+	if((UndeadDragonIsDead == FALSE) && Npc_KnowsInfo(other,DIA_PC_Thief_DI_Hallo))
 	{
 		return TRUE;
 	};
@@ -119,7 +119,7 @@ instance DIA_Diego_DI_TRADE(C_Info)
 
 func int DIA_Diego_DI_TRADE_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -143,12 +143,12 @@ func void B_BuildLearnDialog_Diego_DI()
 	{
 		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(NAME_Skill_PickLock,B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
 	};
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(ATR_DEXTERITY,1)),DIA_PC_Thief_DI_Training_DEX_1);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(ATR_DEXTERITY,5)),DIA_PC_Thief_DI_Training_DEX_5);
+	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnAttributeString(ATR_DEXTERITY,1),DIA_PC_Thief_DI_Training_DEX_1);
+	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnAttributeString(ATR_DEXTERITY,5),DIA_PC_Thief_DI_Training_DEX_5);
 	if(VisibleTalentValue(NPC_TALENT_BOW) < 100)
 	{
-		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_PC_Thief_DI_Training_Combat_BOW_1);
-		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_PC_Thief_DI_Training_Combat_BOW_5);
+		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnTalentString(other,NPC_TALENT_BOW,1),DIA_PC_Thief_DI_Training_Combat_BOW_1);
+		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnTalentString(other,NPC_TALENT_BOW,5),DIA_PC_Thief_DI_Training_Combat_BOW_5);
 	};
 };
 
@@ -165,7 +165,7 @@ instance DIA_PC_Thief_DI_Training_Talente(C_Info)
 
 func int DIA_PC_Thief_DI_Training_Talente_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon) && Npc_KnowsInfo(other,DIA_PC_Thief_DI_Hallo))
+	if((UndeadDragonIsDead == FALSE) && Npc_KnowsInfo(other,DIA_PC_Thief_DI_Hallo))
 	{
 		return TRUE;
 	};
@@ -256,7 +256,7 @@ instance DIA_PC_Thief_DI_UndeadDragonDead(C_Info)
 
 func int DIA_PC_Thief_DI_UndeadDragonDead_Condition()
 {
-	if(Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == TRUE)
 	{
 		return TRUE;
 	};
@@ -298,11 +298,11 @@ func void DIA_PC_Thief_DI_UndeadDragonDead_Info()
 	{
 		if(Lares_IsOnBoard != LOG_SUCCESS)
 		{
-			Npc_ExchangeRoutine(self,"SittingShipDI");
+			Npc_ExchangeRoutine(self,"SITTINGSHIPDI");
 		}
 		else
 		{
-			Npc_ExchangeRoutine(self,"Start");
+			Npc_ExchangeRoutine(self,"START");
 		};
 	};
 	DIA_PC_Thief_DI_UndeadDragonDead_OneTime = TRUE;

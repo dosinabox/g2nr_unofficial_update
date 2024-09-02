@@ -7,7 +7,7 @@ instance BDT_1083_Addon_Esteban(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
-	aivar[AIV_StoryBandit_Esteban] = TRUE;
+	aivar[AIV_SubGuild] = GIL_SUB_Esteban;
 	aivar[AIV_StoryBandit] = TRUE;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);

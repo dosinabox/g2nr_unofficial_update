@@ -179,11 +179,6 @@ func void DIA_Addon_Bengar_MissingPeople_back()
 };
 
 
-func void B_BengarIThoughtNoOneWouldCome()
-{
-	AI_Output(self,other,"DIA_Bengar_MILIZ_10_04");	//Я уж думал, что никто не придет.
-};
-
 func void B_BengarToldOnarFewDaysAgo()
 {
 	AI_Output(self,other,"DIA_Bengar_MILIZ_10_05");	//Я сказал об этом Онару еще пару дней назад. И за что я плачу свою ренту?!
@@ -213,15 +208,8 @@ func int DIA_Addon_Bengar_ReturnPardos_Condition()
 func void DIA_Addon_Bengar_ReturnPardos_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Bengar_ReturnPardos_15_00");	//Пардос вернулся?
-	if(Npc_GetDistToWP(Pardos_NW,"NW_FARM3_HOUSE_IN_NAVI_2") <= 1000)
-	{
-		AI_Output(self,other,"DIA_Addon_Bengar_ReturnPardos_10_01");	//Да, он в доме, отдыхает. Спасибо за все...
-		AI_Output(other,self,"DIA_Addon_Bengar_ReturnPardos_15_02");	//Не стоит.
-	}
-	else
-	{
-		B_BengarIThoughtNoOneWouldCome();
-	};
+	AI_Output(self,other,"DIA_Addon_Bengar_ReturnPardos_10_01");	//Да, он в доме, отдыхает. Спасибо за все...
+	AI_Output(other,self,"DIA_Addon_Bengar_ReturnPardos_15_02");	//Не стоит.
 	AI_Output(self,other,"DIA_Addon_Bengar_ReturnPardos_10_03");	//Я хотел бы наградить тебя, но у меня ничего нет...
 	AI_Output(other,self,"DIA_Addon_Bengar_ReturnPardos_15_04");	//Забудь об этом.
 	B_GivePlayerXP(XP_Ambient);
@@ -392,7 +380,7 @@ func void DIA_Bengar_MILIZ_Info()
 		}
 		else if(other.guild == GIL_SLD)
 		{
-			B_BengarIThoughtNoOneWouldCome();
+			AI_Output(self,other,"DIA_Bengar_MILIZ_10_04");	//Я уж думал, что никто не придет.
 			B_BengarToldOnarFewDaysAgo();
 		};
 		AI_Output(self,other,"DIA_Bengar_MILIZ_10_06");	//Эти ублюдки заявляются сюда каждую неделю и собирают налоги в пользу города.
@@ -472,9 +460,9 @@ func void DIA_Bengar_MILIZKLATSCHEN_Info()
 			AI_Output(self,other,"DIA_Bengar_MILIZKLATSCHEN_10_03");	//Удачи тебе! Покажи им, где раки зимуют.
 		};
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"MilComing");
-		B_StartOtherRoutine(Rick,"MilComing");
-		B_StartOtherRoutine(Rumbold,"MilComing");
+		Npc_ExchangeRoutine(self,"MILCOMING");
+		B_StartOtherRoutine(Rick,"MILCOMING");
+		B_StartOtherRoutine(Rumbold,"MILCOMING");
 	}
 	else
 	{
@@ -537,7 +525,7 @@ func void DIA_Bengar_MILIZWEG_Info()
 			B_GivePlayerXP(XP_Bengar_MILIZKLATSCHEN);
 		};
 		Bengar_MilSuccess = TRUE;
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 	};
 };
 
@@ -582,14 +570,14 @@ instance DIA_Bengar_BALTHASARDARFAUFWEIDE(C_Info)
 
 func int DIA_Bengar_BALTHASARDARFAUFWEIDE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_BALTHASAR))
+	if((MIS_Balthasar_BengarsWeide == LOG_Running) && Npc_KnowsInfo(other,DIA_Bengar_BALTHASAR))
 	{
 		if(Bengar_MilSuccess == TRUE)
 		{
 			DIA_Bengar_BALTHASARDARFAUFWEIDE.description = "Ополчение ушло, и Бальтазар может опять использовать твои пастбища.";
 			return TRUE;
-		}
-		else if(Npc_KnowsInfo(other,DIA_Bengar_SLDDA) || Npc_KnowsInfo(other,DIA_Bengar_MALAKWIEDERDA) || Npc_KnowsInfo(other,DIA_Addon_Bengar_ReturnPardos))
+		};
+		if(Npc_KnowsInfo(other,DIA_Bengar_SLDDA) || Npc_KnowsInfo(other,DIA_Bengar_MALAKWIEDERDA) || Npc_KnowsInfo(other,DIA_Addon_Bengar_ReturnPardos))
 		{
 			DIA_Bengar_BALTHASARDARFAUFWEIDE.description = "Бальтазар может опять использовать твои пастбища.";
 			return TRUE;
@@ -611,7 +599,7 @@ func void DIA_Bengar_BALTHASARDARFAUFWEIDE_Info()
 	AI_Output(other,self,"DIA_Bengar_BALTHASARDARFAUFWEIDE_15_02");	//(угрожающе) Потому что я так сказал.
 	AI_Output(self,other,"DIA_Bengar_BALTHASARDARFAUFWEIDE_10_03");	//Ммм. Хорошо, как скажешь.
 	AI_Output(self,other,"DIA_Bengar_BALTHASARDARFAUFWEIDE_10_04");	//Только пусть он пасет своих овец где-нибудь за полем.
-	MIS_Balthasar_BengarsWeide = LOG_SUCCESS;
+	B_LogEntry(TOPIC_BalthasarsSchafe,"Я убедил Бенгара разрешить Бальтазару снова пасти овец на его пастбищах.");
 	B_GivePlayerXP(XP_Ambient);
 };
 
@@ -664,24 +652,23 @@ func int DIA_Bengar_ALLEIN_Condition()
 func void DIA_Bengar_ALLEIN_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_ALLEIN_15_00");	//Как дела?
-	MIS_BengarsHelpingSLD = LOG_Running;
-	Log_CreateTopic(TOPIC_BengarALLEIN,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BengarALLEIN,LOG_Running);
-	B_LogEntry(TOPIC_BengarALLEIN,"Ферма Бенгара абсолютно беззащитна. Ему нужна помощь. Он говорит что-то о наемнике, которого зовут Вольф. Может быть, я знаю этого парня?!");
 	if((Malak_isAlive_Kap3 == TRUE) && (Npc_GetDistToWP(Malak,"FARM3") >= 3000))
 	{
 		AI_Output(self,other,"DIA_Bengar_ALLEIN_10_01");	//Малак ушел от меня и забрал с собой всех, кто работал на меня. Он сказал, что направляется в горы.
 		AI_Output(self,other,"DIA_Bengar_ALLEIN_10_02");	//Он больше не мог находиться здесь.
-		MIS_GetMalakBack = LOG_Running;
-		if(!Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS))
+		if(MIS_GetMalakBack == FALSE)
 		{
+			MIS_GetMalakBack = LOG_Running;
 			Log_CreateTopic(TOPIC_BengarMALAK,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_BengarMALAK,LOG_Running);
-			B_LogNextEntry(TOPIC_BengarMALAK,"Бенгар остался один на своей ферме. Малак ушел и увел с собой всех остальных. Бенгар думает, что они направились в горы.");
+		};
+		if(!Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS))
+		{
+			B_LogEntry(TOPIC_BengarMALAK,"Бенгар остался один на своей ферме. Малак ушел и увел с собой всех остальных. Бенгар думает, что они направились в горы.");
 		}
 		else
 		{
-			B_LogNextEntry(TOPIC_BengarMALAK,"Бенгар остался совсем один на своей ферме. Малак ушел и увел с собой всех остальных.");
+			B_LogEntry(TOPIC_BengarMALAK,"Бенгар остался совсем один на своей ферме. Малак ушел и увел с собой всех остальных.");
 		};
 	}
 	else
@@ -691,10 +678,12 @@ func void DIA_Bengar_ALLEIN_Info()
 	AI_Output(self,other,"DIA_Bengar_ALLEIN_10_04");	//Новые орды монстров каждый день приходят через Проход. Скоро они всех нас сожрут.
 	AI_Output(self,other,"DIA_Bengar_ALLEIN_10_05");	//Если бы только меня защищали хотя бы несколько наемников...
 	AI_Output(self,other,"DIA_Bengar_ALLEIN_10_06");	//Один из них даже был готов работать на меня. Но он передумал, впрочем. Мне кажется, его звали Вольф.
-	if(Npc_IsDead(SLD_Wolf))
+	if(!Npc_IsDead(SLD_Wolf))
 	{
-		MIS_BengarsHelpingSLD = LOG_FAILED;
-		B_CheckLog();
+		MIS_BengarsHelpingSLD = LOG_Running;
+		Log_CreateTopic(TOPIC_BengarALLEIN,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_BengarALLEIN,LOG_Running);
+		B_LogEntry(TOPIC_BengarALLEIN,"Ферма Бенгара абсолютно беззащитна. Ему нужна помощь. Он говорит что-то о наемнике, которого зовут Вольф. Может быть, я знаю этого парня?!");
 	};
 };
 
@@ -808,12 +797,12 @@ func int DIA_Bengar_PERM_Condition()
 func void DIA_Bengar_PERM_Info()
 {
 	DIA_Common_EverythingWillBeAlright();
-	if((Npc_GetDistToWP(Malak,"FARM3") < 3000) && !Npc_IsDead(Malak))
+	if(Npc_KnowsInfo(other,DIA_Bengar_MALAKWIEDERDA) && !Npc_IsDead(Malak))
 	{
 		AI_Output(self,other,"DIA_Bengar_PERM_10_01");	//Малак опять здесь, но ситуация почти не изменилась.
 		AI_Output(self,other,"DIA_Bengar_PERM_10_02");	//Если только не произойдет чудо, всем нам скоро настанет конец.
 	}
-	else if(Npc_KnowsInfo(other,DIA_Bengar_SLDDA) && !Npc_IsDead(SLD_Wolf) && (Npc_GetDistToWP(SLD_Wolf,"FARM3") < 3000))
+	else if(Npc_KnowsInfo(other,DIA_Bengar_SLDDA) && !Npc_IsDead(SLD_Wolf))
 	{
 		AI_Output(self,other,"DIA_Bengar_PERM_10_03");	//Вольф странный парень, но я надеюсь, он все же сможет помочь нам.
 	}
@@ -826,10 +815,5 @@ func void DIA_Bengar_PERM_Info()
 		};
 	};
 	AI_StopProcessInfos(self);
-	if(Npc_IsDead(SLD_Wolf) && (MIS_BengarsHelpingSLD == LOG_SUCCESS))
-	{
-		B_StartOtherRoutine(SLD_815_Soeldner,"Start");
-		B_StartOtherRoutine(SLD_817_Soeldner,"Start");
-	};
 };
 

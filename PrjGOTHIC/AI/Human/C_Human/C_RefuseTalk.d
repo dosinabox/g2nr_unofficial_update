@@ -17,20 +17,20 @@ func int C_RefuseTalk(var C_Npc slf,var C_Npc oth)
 		if(slf.flags != NPC_FLAG_IMMORTAL)
 		{
 			return TRUE;
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cavalorn))
+		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cavalorn))
 		{
 			return TRUE;
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lares))
+		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lares))
 		{
 			return TRUE;
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
+		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
 		{
 			return TRUE;
-		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY))
+		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY))
 		{
 			return TRUE;
 		};

@@ -14,7 +14,7 @@ func int B_TeachMagicCircle(var C_Npc slf,var C_Npc oth,var int circle)
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	if(PremiumTeachersEnabled == TRUE)
+	if(C_PremiumTeachersEnabled())
 	{
 		if(!B_GiveInvItems(oth,slf,ItMi_Gold,kosten * PremiumTeachersPrice))
 		{
@@ -24,9 +24,12 @@ func int B_TeachMagicCircle(var C_Npc slf,var C_Npc oth,var int circle)
 		};
 	};
 	oth.lp -= kosten;
+	if(!Npc_GetTalentSkill(oth,NPC_TALENT_MAGE))
+	{
+		Log_CreateTopic(TOPIC_TalentMagicCircle,LOG_NOTE);
+		Log_AddEntry(TOPIC_TalentMagicCircle,"Магические руны, к которым я имею доступ, подразделяются по кругам. Я не могу использовать заклинание, требующее более высокого круга, нежели изученный мной.");
+	};
 	Npc_SetTalentSkill(oth,NPC_TALENT_MAGE,circle);
-	Log_CreateTopic(TOPIC_TalentMagicCircle,LOG_NOTE);
-	B_LogEntry(TOPIC_TalentMagicCircle,"Магические руны, к которым я имею доступ, подразделяются по кругам. Я не могу использовать заклинание, требующее более высокого круга, нежели изученный мной.");
 	if(circle == 1)
 	{
 		PrintScreen(PRINT_LearnCircle_1,-1,-1,FONT_Screen,2);

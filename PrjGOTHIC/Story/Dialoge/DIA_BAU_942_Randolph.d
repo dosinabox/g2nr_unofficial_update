@@ -97,10 +97,10 @@ func void DIA_Randolph_HALLO_Info()
 	{
 		AI_Output(self,other,"DIA_Randolph_HALLO_06_03");	//От чего я не отказался бы сейчас - так это от стаканчика хорошего вина в таверне.
 	};
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	self.flags = 0;
-	B_StartOtherRoutine(Akil,"Start");
-	B_StartOtherRoutine(Kati,"Start");
+	B_StartOtherRoutine(Akil,"START");
+	B_StartOtherRoutine(Kati,"START");
 };
 
 
@@ -317,11 +317,11 @@ func void DIA_Randolph_ICHGEBEDIRGELD_Info()
 		DIA_Randolph_ICHGEBEDIRGELD_noPerm = TRUE;
 		B_NpcClearObsessionByDMT(self);
 		MIS_Rukhar_Wettkampf_Day = Wld_GetDay();
-		Npc_ExchangeRoutine(self,"Wettkampf");
-		B_StartOtherRoutine(Rukhar,"Wettkampf");
+		Npc_ExchangeRoutine(self,"WETTKAMPF");
+		B_StartOtherRoutine(Rukhar,"WETTKAMPF");
 		if(RangerMeetingRunning != LOG_Running)
 		{
-			B_StartOtherRoutine(Orlan,"Wettkampf");
+			B_StartOtherRoutine(Orlan,"WETTKAMPF");
 		};
 	}
 	else
@@ -404,7 +404,6 @@ func int DIA_Randolph_PERM_Condition()
 };
 
 
-var int DIA_Randolph_PERM_OneTime;
 var int DIA_Randolph_SoberForever;
 
 func void DIA_Randolph_PERM_Info()
@@ -530,7 +529,7 @@ func void DIA_Randolph_SAGITTAHEAL_Info()
 		B_GivePlayerXP(XP_HealRandolph / 2);
 	};
 	B_NpcClearObsessionByDMT(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 
@@ -560,7 +559,7 @@ func void DIA_Randolph_Heilung_Info()
 	B_NpcClearObsessionByDMT(self);
 	if(Randolph_ExchangeRoutine_Once == FALSE)
 	{
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 		Randolph_ExchangeRoutine_Once = TRUE;
 	};
 };

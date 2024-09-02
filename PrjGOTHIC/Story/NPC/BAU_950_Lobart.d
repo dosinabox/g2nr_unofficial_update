@@ -7,6 +7,7 @@ instance BAU_950_Lobart(Npc_Default)
 	voice = 5;
 	flags = 0;
 	npcType = NPCTYPE_MAIN;
+	aivar[AIV_SubGuild] = GIL_SUB_Lobart;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);

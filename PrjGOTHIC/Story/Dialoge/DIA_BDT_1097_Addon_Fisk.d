@@ -59,7 +59,6 @@ func void DIA_Addon_Fisk_Hi_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Fisk_Hi_12_00");	//Эй, если тебе нужен торговец, то ты его нашел.
 	B_Fisk_Trade();
-	EnteredBanditsCamp = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
 };

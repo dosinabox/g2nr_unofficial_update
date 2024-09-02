@@ -9,7 +9,7 @@ func void B_MM_AssessDamage()
 		Wld_PlayEffect("spellFX_ICEBOLT_COLLIDE",self,self,0,0,0,FALSE);
 		Snd_Play("WSP_WHOSH4");
 	}
-	else if(self.guild == GIL_Stoneguardian)
+	else if(self.guild == GIL_STONEGUARDIAN)
 	{
 		B_Awake_StoneGuardian(self);
 	};

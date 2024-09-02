@@ -21,8 +21,9 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		Cronos_NW_ItSc_Whirlwind_Count = 1;
 		Bennet_NW_ItMi_Swordraw_Count = 3;
 		IceDragonSpell = SPL_InstantFireball;
+		G2BodySkin = TRUE;
 		FullNPCRemoval = TRUE;
-		if(C_WorldIsFixed(NEWWORLD_ZEN))
+		if(C_WorldIsFixed())
 		{
 			Wld_InsertItem(ItRu_LightHeal,"FP_ITEM_PASS_02");
 			Wld_InsertItem(ItWr_OneHStonePlate1_Addon,"FP_ITEM_NW_BIGMILL_01");
@@ -58,8 +59,8 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 	}
 	else if(neues_Kapitel == 2)
 	{
-		Sekob.flags = 0;
-		Bengar.flags = 0;
+		B_SetMortal(Sekob);
+		B_SetMortal(Bengar);
 		Bennet_NW_ItMi_Swordraw_Count += 3;
 		IntroduceChapter(KapWechsel_2,KapWechsel_2_Text,"chapter2.tga","chapter_01.wav",6000);
 	}

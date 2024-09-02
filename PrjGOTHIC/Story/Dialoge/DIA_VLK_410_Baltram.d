@@ -1,4 +1,4 @@
-	
+
 func int C_BaltramCanTalkAboutLares()
 {
 	if((MIS_Lares_BringRangerToMe == LOG_Running) && (AnyRangerRingEquipped() || ArmorEquipped(other,ITAR_RANGER_Addon)))
@@ -128,7 +128,14 @@ func void DIA_Addon_Baltram_LaresAbloese_Info()
 	AI_Output(other,self,"DIA_Addon_Baltram_LaresAbloese_15_04");	//Я должен передать тебе, что дежурящий в порту Ларес хочет, чтобы его сменили.
 	AI_Output(self,other,"DIA_Addon_Baltram_LaresAbloese_01_05");	//Хорошо. Я прослежу, чтобы это сделали.
 	AI_Output(other,self,"DIA_Addon_Baltram_LaresAbloese_15_06");	//Понятно.
-	B_LogEntry(TOPIC_Addon_BringRangerToLares,"Бальтрам, торговец на рыночной площади, позаботится, чтобы Лареса сменили на его посту. Ларес может покинуть гавань ПРЯМО СЕЙЧАС.");
+	if(Kapitel < 3)
+	{
+		B_LogEntry(TOPIC_Addon_BringRangerToLares,"Бальтрам, торговец на рыночной площади, позаботится, чтобы Лареса сменили на его посту. Ларес может покинуть гавань ПРЯМО СЕЙЧАС.");
+	}
+	else
+	{
+		B_LogEntry(TOPIC_Addon_BringRangerToLares,"Бальтрам, торговец на рыночной площади, позаботится, чтобы Лареса сменили на его посту.");
+	};
 	Baltram_Exchange4Lares = TRUE;
 };
 
@@ -350,7 +357,24 @@ func void DIA_Addon_Baltram_Skip_pirat()
 };
 
 
-/*instance DIA_Addon_Baltram_SkipsRum_All(C_Info)
+func void B_Baltram_GetRum(var int amount)
+{
+	B_GiveInvItems(other,self,ItFo_Addon_Rum,amount);
+	AI_Output(self,other,"DIA_Addon_Baltram_SkipsRum_01_02");	//Что ж, много заплатить я тебе не могу. Думаю, этого хватит.
+	CreateInvItems(self,ItMi_Gold,10);
+	B_GiveInvItems(self,other,ItMi_Gold,10);
+	MIS_Addon_Baltram_Paket4Skip = LOG_SUCCESS;
+	if(amount > 2)
+	{
+		B_GivePlayerXP(XP_Ambient + XP_AmbientKap1);
+	}
+	else
+	{
+		B_GivePlayerXP(XP_Ambient);
+	};
+};
+
+instance DIA_Addon_Baltram_SkipsRum_All(C_Info)
 {
 	npc = VLK_410_Baltram;
 	nr = 8;
@@ -362,7 +386,7 @@ func void DIA_Addon_Baltram_Skip_pirat()
 
 func int DIA_Addon_Baltram_SkipsRum_All_Condition()
 {
-	if((Skip_Rum4Baltram == TRUE) && (Npc_HasItems(other,ItFo_Addon_Rum) >= 3))
+	if((Skip_Rum4Baltram == TRUE) && (MIS_Addon_Baltram_Paket4Skip != LOG_SUCCESS) && (Npc_HasItems(other,ItFo_Addon_Rum) >= 3))
 	{
 		return TRUE;
 	};
@@ -371,10 +395,8 @@ func int DIA_Addon_Baltram_SkipsRum_All_Condition()
 func void DIA_Addon_Baltram_SkipsRum_All_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Baltram_SkipsRum_15_00_add");	//Я принес ром.
-	B_GiveInvItems(other,self,ItFo_Addon_Rum,3);
-	MIS_Addon_Baltram_Paket4Skip = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Ambient);
-};*/
+	B_Baltram_GetRum(3);
+};
 
 
 instance DIA_Addon_Baltram_SkipsRum(C_Info)
@@ -389,7 +411,7 @@ instance DIA_Addon_Baltram_SkipsRum(C_Info)
 
 func int DIA_Addon_Baltram_SkipsRum_Condition()
 {
-	if((Skip_Rum4Baltram == TRUE) && (Npc_HasItems(other,ItFo_Addon_Rum) >= 2))
+	if((Skip_Rum4Baltram == TRUE) && (MIS_Addon_Baltram_Paket4Skip != LOG_SUCCESS) && (Npc_HasItems(other,ItFo_Addon_Rum) >= 2))
 	{
 		return TRUE;
 	};
@@ -399,12 +421,7 @@ func void DIA_Addon_Baltram_SkipsRum_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Baltram_SkipsRum_15_00");	//Я принес ром. Но Скип дал мне всего две бутылки.
 	AI_Output(self,other,"DIA_Addon_Baltram_SkipsRum_01_01");	//(сердито) Дороговато получается... Что он о себе возомнил? Ладно, давай их сюда.
-	B_GiveInvItems(other,self,ItFo_Addon_Rum,2);
-	AI_Output(self,other,"DIA_Addon_Baltram_SkipsRum_01_02");	//Что ж, много заплатить я тебе не могу. Думаю, этого хватит.
-	CreateInvItems(self,ItMi_Gold,10);
-	B_GiveInvItems(self,other,ItMi_Gold,10);
-	MIS_Addon_Baltram_Paket4Skip = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Ambient);
+	B_Baltram_GetRum(2);
 };
 
 

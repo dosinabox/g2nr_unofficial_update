@@ -235,7 +235,7 @@ instance DIA_Balthasar_BENGARUEBERREDET(C_Info)
 
 func int DIA_Balthasar_BENGARUEBERREDET_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Balthasar_TALKTOBENGAR) && (MIS_Balthasar_BengarsWeide == LOG_SUCCESS))
+	if((MIS_Balthasar_BengarsWeide == LOG_Running) && Npc_KnowsInfo(other,DIA_Bengar_BALTHASARDARFAUFWEIDE))
 	{
 		return TRUE;
 	};
@@ -250,11 +250,12 @@ func void DIA_Balthasar_BENGARUEBERREDET_Info()
 		AI_Output(self,other,"DIA_Balthasar_BENGARUEBERREDET_05_02");	//Вот, возьми эти овечьи шкуры в знак моей благодарности.
 		B_GiveInvItems(self,other,ItAt_SheepFur,10);
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"BengarsWeide");
-		B_StartOtherRoutine(BalthasarSheep1,"NewFarm");
-		B_StartOtherRoutine(BalthasarSheep2,"NewFarm");
-		B_StartOtherRoutine(BalthasarSheep3,"NewFarm");
+		Npc_ExchangeRoutine(self,"BENGARSWEIDE");
+		B_StartOtherRoutine(BalthasarSheep1,"NEWFARM");
+		B_StartOtherRoutine(BalthasarSheep2,"NEWFARM");
+		B_StartOtherRoutine(BalthasarSheep3,"NEWFARM");
 		BalthasarMovedToBengar = TRUE;
+		MIS_Balthasar_BengarsWeide = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Balthasar_BengarsWeide);
 	}
 	else
@@ -298,20 +299,25 @@ func void DIA_Balthasar_PERMKAP1_Info()
 		{
 			AI_Output(self,other,"DIA_Balthasar_PERMKAP1_05_03");	//Я думаю, лучше пойти к Секобу и признаться.
 		};
+		if(MIS_Balthasar_BengarsWeide != LOG_SUCCESS)
+		{
+			MIS_Balthasar_BengarsWeide = LOG_OBSOLETE;
+			B_CheckLog();
+		};
 		AI_StopProcessInfos(self);
 		if(BalthasarMovedToBengar == TRUE)
 		{
 			if(Kapitel < 3)
 			{
-				Npc_ExchangeRoutine(self,"Start");
+				Npc_ExchangeRoutine(self,"START");
 			}
 			else if(C_SekobDementorsDead())
 			{
-				Npc_ExchangeRoutine(self,"Start");
+				Npc_ExchangeRoutine(self,"START");
 			}
 			else
 			{
-				Npc_ExchangeRoutine(self,"FleeDMT");
+				Npc_ExchangeRoutine(self,"FLEEDMT");
 			};
 			BalthasarMovedToBengar = FALSE;
 		};

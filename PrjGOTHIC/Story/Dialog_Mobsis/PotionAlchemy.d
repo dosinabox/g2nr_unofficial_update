@@ -274,7 +274,7 @@ instance PC_Charge_InnosEye(C_Info)
 
 func int PC_Charge_InnosEye_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] == TRUE) && Npc_HasItems(self,ItMi_InnosEye_Discharged_Mis) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] == TRUE) && Npc_HasItems(self,ItMi_InnosEye_Discharged_MIS) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -286,7 +286,7 @@ func void PC_Charge_InnosEye_Info()
 	{
 		B_EndProductionDialog();
 	}
-	else if((Npc_HasItems(self,ItAt_IcedragonHeart) || Npc_HasItems(self,ItAt_RockdragonHeart) || Npc_HasItems(self,ItAt_FiredragonHeart) || Npc_HasItems(self,ItAt_SwampdragonHeart)) && (Npc_HasItems(self,ItMi_InnosEye_Discharged_Mis)))
+	else if((Npc_HasItems(self,ItAt_IcedragonHeart) || Npc_HasItems(self,ItAt_RockdragonHeart) || Npc_HasItems(self,ItAt_FiredragonHeart) || Npc_HasItems(self,ItAt_SwampdragonHeart)) && (Npc_HasItems(self,ItMi_InnosEye_Discharged_MIS)))
 	{
 		AI_Wait(self,0.5);
 		FlasksCount -= 1;
@@ -306,7 +306,7 @@ func void PC_Charge_InnosEye_Info()
 		{
 			Npc_RemoveInvItems(self,ItAt_IcedragonHeart,1);
 		};
-		Npc_RemoveInvItems(self,ItMi_InnosEye_Discharged_Mis,1);
+		Npc_RemoveInvItems(self,ItMi_InnosEye_Discharged_MIS,1);
 		CreateInvItems(self,ItMi_InnosEye_MIS,1);
 		AI_PrintScreen(PRINT_AlchemySuccessInnoseye,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 	}
@@ -389,7 +389,7 @@ instance PC_ItPo_Mana_01(C_Info)
 	condition = PC_ItPo_Mana_01_Condition;
 	information = PC_ItPo_Mana_01_Info;
 	permanent = TRUE;
-	description = ConcatStrings(NAME_Mana_Essenz," (2 огненных крапивы и 1 луговой горец)");
+	description = ConcatStrings(NAME_Mana_Essenz," (2 огненные крапивы и 1 луговой горец)");
 };
 
 
@@ -427,7 +427,7 @@ instance PC_ItPo_Mana_02(C_Info)
 	condition = PC_ItPo_Mana_02_Condition;
 	information = PC_ItPo_Mana_02_Info;
 	permanent = TRUE;
-	description = ConcatStrings(NAME_Mana_Extrakt," (2 огненных травы и 1 луговой горец)");
+	description = ConcatStrings(NAME_Mana_Extrakt," (2 огненные травы и 1 луговой горец)");
 };
 
 
@@ -1293,7 +1293,7 @@ instance PC_ItMi_Addon_Joint_01(C_Info)
 	condition = PC_ItMi_Addon_Joint_01_Condition;
 	information = PC_ItMi_Addon_Joint_01_Info;
 	permanent = TRUE;
-	description = "'Зеленый послушник' (2 болотных травы, 1 луговой горец)";
+	description = "'Зеленый послушник' (2 болотные травы, 1 луговой горец)";
 };
 
 

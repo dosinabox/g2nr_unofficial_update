@@ -9,7 +9,7 @@ func int B_TeachPlayerTalentForeignLanguage(var C_Npc slf,var C_Npc oth,var int 
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	if(PremiumTeachersEnabled == TRUE)
+	if(C_PremiumTeachersEnabled())
 	{
 		if(!B_GiveInvItems(oth,slf,ItMi_Gold,kosten * PremiumTeachersPrice))
 		{

@@ -325,7 +325,7 @@ func void DIA_Garond_NeedProof_Info()
 	MIS_ScoutMine = LOG_Running;
 	if(!Npc_IsDead(Jergan))
 	{
-		B_StartOtherRoutine(Jergan,"FAJETH");
+		Npc_ExchangeRoutine(Jergan,"FAJETH");
 		Jergan.aivar[AIV_IgnoresFakeGuild] = FALSE;
 		Jergan.aivar[AIV_IgnoresArmor] = FALSE;
 	};
@@ -334,7 +334,7 @@ func void DIA_Garond_NeedProof_Info()
 	Log_SetTopicStatus(TOPIC_ScoutMine,LOG_Running);
 	B_LogNextEntry(TOPIC_ScoutMine,"Командующий Гаронд дал мне поручение. Он отправил три группы старателей добывать магическую руду. И до сих пор они не вернулись.");
 	Log_AddEntry(TOPIC_ScoutMine,"Я должен найти эти три группы старателей и выяснить, сколько руды удалось им добыть.");
-	if(Npc_KnowsInfo(other,DIA_DiegoOw_Beweise))
+	if(Diego_ToldAboutSilvestroOre == TRUE)
 	{
 		Log_AddEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
 	};
@@ -456,19 +456,21 @@ func void DIA_Garond_Wo_Info()
 {
 	AI_Output(other,self,"DIA_Garond_Wo_15_00");	//Где мне найти эти шахты?
 	AI_Output(self,other,"DIA_Garond_Wo_10_01");	//Вот, возьми эту карту. На ней показаны две области, где находятся шахты.
-//	CreateInvItems(self,ItWr_Map_OldWorld_Oremines_MIS,1);
-//	B_GiveInvItems(self,other,ItWr_Map_OldWorld_Oremines_MIS,1);
 	CreateInvItems(self,ItWr_Map_OldWorld_Oremines_Small_MIS,1);
 	B_GiveInvItems(self,other,ItWr_Map_OldWorld_Oremines_Small_MIS,1);
 	AI_Output(self,other,"DIA_Garond_Wo_10_02");	//Если у тебя есть еще вопросы, обратись к Парсивалю. Он расскажет все, что тебе нужно знать о старателях.
 	B_LogEntry(TOPIC_ScoutMine,"Паладин Парсиваль может дать мне информацию о старателях.");
 };
 
-func void B_Garond_OreCounter3()
+func void B_Garond_OreCounter()
 {
-	AI_Output(self,other,"B_Garond_OreCounter3_10_00");	//Черт! Что там происходит? Неужели сам Белиар явился, чтобы стереть нас с лица земли?!
-	AI_Output(self,other,"B_Garond_OreCounter3_10_01");	//Мои люди почти все мертвы, а с той рудой, что у нас есть, мы НЕ МОЖЕМ ОСТАНОВИТЬ ДАЖЕ ОДНОГО ОРКА, НЕ ГОВОРЯ УЖЕ ОБ АРМИИ!
-	AI_Output(self,other,"B_Garond_OreCounter3_10_02");	//Эта экспедиция обречена на провал.
+	Ore_Counter += 1;
+	if(Ore_Counter >= 3)
+	{
+		AI_Output(self,other,"B_Garond_OreCounter3_10_00");	//Черт! Что там происходит? Неужели сам Белиар явился, чтобы стереть нас с лица земли?!
+		AI_Output(self,other,"B_Garond_OreCounter3_10_01");	//Мои люди почти все мертвы, а с той рудой, что у нас есть, мы НЕ МОЖЕМ ОСТАНОВИТЬ ДАЖЕ ОДНОГО ОРКА, НЕ ГОВОРЯ УЖЕ ОБ АРМИИ!
+		AI_Output(self,other,"B_Garond_OreCounter3_10_02");	//Эта экспедиция обречена на провал.
+	};
 };
 
 
@@ -499,12 +501,8 @@ func void DIA_Garond_Fajeth_Info()
 	AI_Output(self,other,"DIA_Garond_Fajeth_10_03");	//Хмм... два ящика? Мне не нужны два ящика - мне нужно ДВЕ СОТНИ.
 	AI_Output(other,self,"DIA_Garond_Fajeth_15_04");	//Он хочет, чтобы я передал тебе - ему нужны еще люди.
 	AI_Output(self,other,"DIA_Garond_Fajeth_10_05");	//Что? Я должен послать еще людей на верную смерть? Он может забыть об этом.
-	Ore_Counter += 1;
+	B_Garond_OreCounter();
 	B_GivePlayerXP(XP_Fajeth_Ore);
-	if(Ore_Counter >= 3)
-	{
-		B_Garond_OreCounter3();
-	};
 };
 
 
@@ -542,12 +540,8 @@ func void DIA_Garond_Silvestro_Info()
 	};
 	AI_Output(self,other,"DIA_Garond_Silvestro_10_03");	//А что насчет руды? Ты знаешь, сколько они добыли?
 	AI_Output(other,self,"DIA_Garond_Silvestro_15_04");	//Им удалось спрятать несколько ящиков. Они в пещере - по пути от замка к шахте.
-	Ore_Counter += 1;
+	B_Garond_OreCounter();
 	B_GivePlayerXP(XP_Silvestro_Ore);
-	if(Ore_Counter >= 3)
-	{
-		B_Garond_OreCounter3();
-	};
 };
 
 
@@ -578,25 +572,27 @@ func void DIA_Garond_Marcos_Info()
 	AI_Output(other,self,"DIA_Garond_Marcos_15_03");	//Теперь он охраняет эти ящики в небольшой долине за позициями орков. Он просит прислать подкрепление.
 	AI_Output(self,other,"DIA_Garond_Marcos_10_04");	//Что? Всего четыре ящика - и он покинул шахту? Черт, как это все плохо.
 	AI_Output(self,other,"DIA_Garond_Marcos_10_05");	//И ему нужны еще люди?.. Что ж, ладно, я пошлю к нему двух человек.
-	B_DeletePetzCrime(Marcos_Guard1);
-	B_DeletePetzCrime(Marcos_Guard2);
-	Marcos_Guard1.flags = 0;
-	Marcos_Guard2.flags = 0;
-	Marcos_Guard1.aivar[AIV_ToughGuy] = TRUE;
-	Marcos_Guard2.aivar[AIV_ToughGuy] = TRUE;
-	Marcos_Guard1.aivar[AIV_CommentedPlayerCrime] = FALSE;
-	Marcos_Guard2.aivar[AIV_CommentedPlayerCrime] = FALSE;
-	AI_Teleport(Marcos_Guard1,"OW_STAND_GUARDS");
-	AI_Teleport(Marcos_Guard2,"OW_STAND_GUARDS");
-	B_StartOtherRoutine(Marcos_Guard1,"MARCOS");
-	B_StartOtherRoutine(Marcos_Guard2,"MARCOS");
-	Ore_Counter += 1;
+	if(!Npc_IsDead(Marcos_Guard1))
+	{
+		B_DeletePetzCrime(Marcos_Guard1);
+		Marcos_Guard1.flags = 0;
+		Marcos_Guard1.aivar[AIV_ToughGuy] = TRUE;
+		Marcos_Guard1.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		AI_Teleport(Marcos_Guard1,"OW_STAND_GUARDS");
+		B_StartOtherRoutine(Marcos_Guard1,"MARCOS");
+	};
+	if(!Npc_IsDead(Marcos_Guard2))
+	{
+		B_DeletePetzCrime(Marcos_Guard2);
+		Marcos_Guard2.flags = 0;
+		Marcos_Guard2.aivar[AIV_ToughGuy] = TRUE;
+		Marcos_Guard2.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		AI_Teleport(Marcos_Guard2,"OW_STAND_GUARDS");
+		B_StartOtherRoutine(Marcos_Guard2,"MARCOS");
+	};
+	B_Garond_OreCounter();
 	MIS_Marcos_Jungs = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Marcos_Ore);
-	if(Ore_Counter >= 3)
-	{
-		B_Garond_OreCounter3();
-	};
 };
 
 

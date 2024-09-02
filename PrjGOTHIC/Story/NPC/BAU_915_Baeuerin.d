@@ -11,7 +11,7 @@ instance BAU_915_Baeuerin(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Mace);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe4",FaceBabe_N_VlkBlonde,BodyTexBabe_N,ITAR_BauBabe_L);
+	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe5",FaceBabe_N_VlkBlonde,BodyTexBabe_N,ITAR_BauBabe_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");
 	B_GiveNpcTalents(self);

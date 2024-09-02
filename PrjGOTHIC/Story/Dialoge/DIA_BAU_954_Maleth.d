@@ -150,7 +150,7 @@ instance DIA_Maleth_BanditsALIVE(C_Info)
 
 func int DIA_Maleth_BanditsALIVE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maleth_BANDITS) && (MIS_Maleth_Bandits != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Maleth_BANDITS))
 	{
 		if(!C_BragoBanditsDead())
 		{

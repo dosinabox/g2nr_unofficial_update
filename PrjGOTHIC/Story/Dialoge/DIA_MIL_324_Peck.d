@@ -1,4 +1,17 @@
 
+func int C_PeckIsInBarracks()
+{
+	if(Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000)
+	{
+		return TRUE;
+	};
+	if(Npc_GetDistToWP(self,"NW_CITY_BARRACK02_BED_PECK") <= 2000)
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 instance DIA_Peck_EXIT(C_Info)
 {
 	npc = MIL_324_Peck;
@@ -34,9 +47,12 @@ instance DIA_Peck_HEY(C_Info)
 
 func int DIA_Peck_HEY_Condition()
 {
-	if((MIS_Andre_Peck != LOG_Running) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_PECK") <= 500))
+	if(MIS_Andre_Peck != LOG_Running)
 	{
-		return TRUE;
+		if(!C_PeckIsInBarracks())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -61,9 +77,12 @@ instance DIA_Peck_FOUND_PECK(C_Info)
 
 func int DIA_Peck_FOUND_PECK_Condition()
 {
-	if((MIS_Andre_Peck == LOG_Running) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_PECK") <= 500))
+	if(MIS_Andre_Peck == LOG_Running)
 	{
-		return TRUE;
+		if(!C_PeckIsInBarracks())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -83,7 +102,7 @@ func void DIA_Peck_FOUND_PECK_Info()
 	self.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"STORAGE");
-	Npc_ExchangeRoutine(Vanja,"ALONE");
+	B_StartOtherRoutine(Vanja,"ALONE");
 };
 
 
@@ -105,19 +124,6 @@ func void B_GetWeaponFromPeckCh3()
 	};
 	DIA_Peck_WEAPON_perm = TRUE;
 	DIA_Peck_WEAPON2_perm = TRUE;
-};
-
-func int C_PeckIsInBarracks()
-{
-	if(Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000)
-	{
-		return TRUE;
-	};
-	if(Npc_GetDistToWP(self,"NW_CITY_BARRACK02_BED_PECK") <= 2000)
-	{
-		return TRUE;
-	};
-	return FALSE;
 };
 
 instance DIA_Peck_WEAPON(C_Info)
@@ -223,8 +229,8 @@ func int C_PeckCanSellArmor()
 	if(MIS_Addon_Andre_MissingPeople == LOG_SUCCESS)
 	{
 		return TRUE;
-	}
-	else if(MIS_OLDWORLD == LOG_SUCCESS)
+	};
+	if(MIS_OLDWORLD == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -346,7 +352,6 @@ func void DIA_Peck_ARMOR_Info()
 	};
 };
 
-
 func void DIA_Peck_ARMOR_Back()
 {
 	Info_ClearChoices(DIA_Peck_ARMOR);
@@ -367,35 +372,6 @@ func void DIA_Peck_ARMOR_BUY()
 	};
 	Info_ClearChoices(DIA_Peck_ARMOR);
 };
-
-/*instance DIA_Peck_TRADE(C_Info)
-{
-	npc = MIL_324_Peck;
-	nr = 4;
-	condition = DIA_Peck_TRADE_Condition;
-	information = DIA_Peck_TRADE_Info;
-	permanent = TRUE;
-	description = "У тебя есть что-нибудь для меня?";
-};
-
-
-func int DIA_Peck_TRADE_Condition()
-{
-	if((other.guild == GIL_MIL) && (DIA_Peck_ARMOR_perm == FALSE))
-	{
-		if(C_PeckIsInBarracks())
-		{
-			return TRUE;
-		};
-	};
-	return FALSE;
-};
-
-func void DIA_Peck_TRADE_Info()
-{
-	//AI_Output(other,self,"DIA_Parlan_Bibliothek_15_00");	//У тебя есть что-нибудь для меня?
-};*/
-
 
 instance DIA_Peck_PERM(C_Info)
 {
@@ -427,7 +403,7 @@ func void DIA_Peck_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Peck_PERM_12_01");	//Да, а с тобой?
 	}
-	else if(Kapitel == 3)
+	else
 	{
 		if(MIS_RescueBennet != LOG_SUCCESS)
 		{

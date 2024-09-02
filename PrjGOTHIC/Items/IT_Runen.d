@@ -669,7 +669,7 @@ instance ItRu_LightningFlash(C_Item)
 	count[1] = SPL_Cost_LightningFlash;
 	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_Damage_LightningFlash;
-	//text[3] = "Чистый урон в секунду:";
+	//text[3] = NAME_PureDamagePerSec;
 	//count[3] = SPL_ZAPPED_DAMAGE_PER_SEC;
 	//text[4] = "Длительность шока (секунд):";
 	//count[4] = 1;
@@ -769,7 +769,7 @@ instance ItRu_IceCube(C_Item)
 	count[2] = 60;
 	text[3] = NAME_Sec_Duration;
 	count[3] = SPL_TIME_FREEZE;
-	text[4] = "Чистый урон в секунду:";
+	text[4] = NAME_PureDamagePerSec;
 	count[4] = SPL_FREEZE_DAMAGE;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -917,7 +917,7 @@ instance ItRu_IceWave(C_Item)
 	count[2] = 60;
 	text[3] = NAME_Sec_Duration;
 	count[3] = SPL_TIME_FREEZE;
-	text[4] = "Чистый урон в секунду:";
+	text[4] = NAME_PureDamagePerSec;
 	count[4] = SPL_FREEZE_DAMAGE;
 	text[5] = NAME_Value;
 	count[5] = value;

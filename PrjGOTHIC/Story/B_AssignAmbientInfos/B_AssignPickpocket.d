@@ -47,7 +47,7 @@ func string B_BuildPickpocketString()
 	{
 		text = ConcatStrings(text,"карту");
 	}
-	else if(Hlp_IsItem(item,ItWr_Schuldenbuch) || Hlp_IsItem(item,ItWr_CorneliusTagebuch_Mis))
+	else if(Hlp_IsItem(item,ItWr_Schuldenbuch) || Hlp_IsItem(item,ItWr_CorneliusTagebuch_MIS))
 	{
 		text = ConcatStrings(text,"книгу");
 	}

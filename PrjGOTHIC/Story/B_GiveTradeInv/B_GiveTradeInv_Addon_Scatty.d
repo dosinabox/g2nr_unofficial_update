@@ -23,7 +23,6 @@ func void B_GiveTradeInv_Addon_Scatty(var C_Npc slf)
 		CreateInvItems(slf,ItRw_Crossbow_L_02,1);
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
-			
 		}
 		else
 		{

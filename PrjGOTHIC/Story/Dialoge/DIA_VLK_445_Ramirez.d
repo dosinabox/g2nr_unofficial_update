@@ -335,7 +335,7 @@ func void DIA_Ramirez_Viertel_Info()
 	else
 	{
 		AI_StopProcessInfos(self);
-	};	
+	};
 };
 
 
@@ -365,9 +365,9 @@ func void DIA_Ramirez_Sextant_Info()
 	AI_Output(self,other,"DIA_Ramirez_Sextant_14_01");	//Хмм... есть вещица, которую я хотел бы заполучить. Но я нигде не могу найти ее.
 	AI_Output(other,self,"DIA_Ramirez_Sextant_15_02");	//Что ты хотел бы получить?
 	AI_Output(self,other,"DIA_Ramirez_Sextant_14_03");	//Секстант. Принеси мне секстант - я заплачу за него хорошую цену.
-	Log_CreateTopic(Topic_RamirezSextant,LOG_MISSION);
-	Log_SetTopicStatus(Topic_RamirezSextant,LOG_Running);
-	B_LogEntry(Topic_RamirezSextant,"Рамирез хочет, чтобы я принес ему секстант.");
+	Log_CreateTopic(TOPIC_RamirezSextant,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_RamirezSextant,LOG_Running);
+	B_LogEntry(TOPIC_RamirezSextant,"Рамирез хочет, чтобы я принес ему секстант.");
 	MIS_RamirezSextant = LOG_Running;
 };
 

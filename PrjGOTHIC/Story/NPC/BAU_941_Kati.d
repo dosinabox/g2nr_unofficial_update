@@ -12,7 +12,7 @@ instance BAU_941_Kati(Npc_Default)
 	EquipItem(self,ItMw_1h_Bau_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,13,ItMi_Gold,15);
-	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe6",FaceBabe_N_Lilo,BodyTexBabe_N,ITAR_BauBabe_L);
+	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe8",FaceBabe_N_Lilo,BodyTexBabe_N,ITAR_BauBabe_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");
 	B_GiveNpcTalents(self);

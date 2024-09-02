@@ -17,11 +17,11 @@ instance BDT_10014_Addon_Thorus(Npc_Default)
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,65);
-	daily_routine = Rtn_PReStart_10014;
+	daily_routine = Rtn_PreStart_10014;
 };
 
 
-func void Rtn_PReStart_10014()
+func void Rtn_PreStart_10014()
 {
 	TA_Stand_Guarding(0,0,12,0,"BL_STAIRS_03");
 	TA_Stand_Guarding(12,0,0,0,"BL_STAIRS_03");

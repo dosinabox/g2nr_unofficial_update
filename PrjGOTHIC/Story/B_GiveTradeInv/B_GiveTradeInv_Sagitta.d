@@ -19,8 +19,8 @@ func void B_GiveTradeInv_Sagitta(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Health_01,3);
 		CreateInvItems(slf,ItPo_Health_Addon_04,3);
 		CreateInvItems(slf,ItPo_Mana_Addon_04,3);
-		CreateInvItems(slf,ITWr_Addon_Health_04,1);
-		CreateInvItems(slf,ITWr_Addon_Mana_04,1);
+		CreateInvItems(slf,ItWr_Addon_Health_04,1);
+		CreateInvItems(slf,ItWr_Addon_Mana_04,1);
 		CreateInvItems(slf,ItFo_Addon_Pfeffer_01,1);
 		CreateInvItems(slf,ItAt_KeilerHorn,1);
 		Sagitta_ItemsGiven_Chapter_1 = TRUE;

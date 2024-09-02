@@ -2,7 +2,7 @@
 prototype Mst_Default_Shadowbeast_Addon_Fire(C_Npc)
 {
 	name[0] = "Огненный дьявол";
-	guild = GIL_Gargoyle;
+	guild = GIL_SHADOWBEAST_FIRE;
 	aivar[AIV_MM_REAL_ID] = ID_SHADOWBEAST_FIRE;
 	level = 30;
 	attribute[ATR_STRENGTH] = 150;
@@ -17,7 +17,7 @@ prototype Mst_Default_Shadowbeast_Addon_Fire(C_Npc)
 	protection[PROT_FIRE] = 150;
 	protection[PROT_FLY] = 150;
 	protection[PROT_MAGIC] = 75;
-	damagetype = DAM_EDGE;	//DAM_FIRE;
+	damagetype = DAM_EDGE;
 	fight_tactic = FAI_GARGOYLE;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;

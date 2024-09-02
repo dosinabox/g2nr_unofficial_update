@@ -58,7 +58,7 @@ func void DIA_Addon_Skip_Hello_Info()
 	B_ReadFakeItem(self,other,Fakeheroface,1);
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_07");	//Не полное сходство, конечно, но это точно ты.
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_08");	//Но не расстраивайся, приятель. Мое лицо на объявлении о розыске выглядит не лучше.
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 
@@ -224,7 +224,7 @@ func void DIA_Addon_Skip_Bandits_Info()
 	AI_Output(self,other,"DIA_Addon_Skip_Bandits_08_12");	//Бандиты нападают на каждого, кто выглядит побогаче, чем они.
 	if(self.aivar[AIV_PARTYMEMBER] == FALSE)
 	{
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 	};
 };
 
@@ -655,7 +655,7 @@ func int DIA_Addon_Skip_Anheuern_Condition()
 
 func void DIA_Addon_Skip_Anheuern_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Skip_Anheuern_15_00");	//Ты должен мне помочь.
+	DIA_Common_YouGottaHelpMe();
 	AI_Output(self,other,"DIA_Addon_Skip_Anheuern_08_01");	//Каким образом?
 	AI_Output(other,self,"DIA_Addon_Skip_Anheuern_15_01");	//Нас ждет каньон.
 	if(C_HowManyPiratesInParty() >= 2)
@@ -789,7 +789,7 @@ instance DIA_Addon_Skip_Treffpunkt(C_Info)
 
 func int DIA_Addon_Skip_Treffpunkt_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToWP(self,"ADW_CANYON_TELEPORT_PATH_06") <= 800) && !C_AllCanyonRazorDead())
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToWP(self,"ADW_CANYON_TELEPORT_PATH_06") <= 800) && (CanyonRazorBodyCount < 10))
 	{
 		return TRUE;
 	};
@@ -842,7 +842,7 @@ instance DIA_Addon_Skip_AllRazorsDead(C_Info)
 
 func int DIA_Addon_Skip_AllRazorsDead_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_AllCanyonRazorDead())
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (CanyonRazorBodyCount >= 10))
 	{
 		if((Npc_GetDistToWP(self,"ADW_CANYON_PATH_TO_LIBRARY_31A") <= 6000) || (Npc_GetDistToWP(self,"ADW_CANYON_PATH_TO_MINE2_18") <= 6000))
 		{

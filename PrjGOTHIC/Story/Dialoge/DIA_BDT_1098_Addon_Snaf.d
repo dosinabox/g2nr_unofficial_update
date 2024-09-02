@@ -43,7 +43,6 @@ func int DIA_Addon_Snaf_Hi_Condition()
 func void DIA_Addon_Snaf_Hi_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Snaf_Hi_01_00");	//Хочешь жрать или болтать?
-	EnteredBanditsCamp = TRUE;
 };
 
 
@@ -100,7 +99,7 @@ func void DIA_Addon_Snaf_Cook_YES()
 {
 	AI_Output(other,self,"DIA_Addon_Snaf_Cook_HAMMER_YES_15_00");	//Собственно, почему бы и нет?
 	AI_Output(self,other,"DIA_Addon_Snaf_Cook_HAMMER_YES_01_01");	//Отлично, вот рецепт.
-	B_GiveInvItems(self,other,ITWr_Addon_Lou_Rezept,1);
+	B_GiveInvItems(self,other,ItWr_Addon_Lou_Rezept,1);
 	MIS_SnafHammer = LOG_Running;
 	Info_ClearChoices(DIA_Addon_Snaf_Cook);
 	Log_CreateTopic(Topic_Addon_Hammer,LOG_MISSION);

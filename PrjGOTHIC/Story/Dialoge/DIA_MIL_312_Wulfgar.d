@@ -251,8 +251,8 @@ func void B_BuildLearnDialog_Wulfgar()
 	Info_AddChoice(DIA_Wulfgar_Teach,Dialog_Back,DIA_Wulfgar_Teach_Back);
 	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Wulfgar)
 	{
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Wulfgar_Teach_2H_1);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Wulfgar_Teach_2H_5);
+		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,1),DIA_Wulfgar_Teach_2H_1);
+		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnTalentString(other,NPC_TALENT_2H,5),DIA_Wulfgar_Teach_2H_5);
 		DIA_Wulfgar_TeachState_2H = 1;
 	}
 	else
@@ -266,8 +266,8 @@ func void B_BuildLearnDialog_Wulfgar()
 	};
 	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Wulfgar)
 	{
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Wulfgar_Teach_1H_1);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Wulfgar_Teach_1H_5);
+		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnTalentString(other,NPC_TALENT_1H,1),DIA_Wulfgar_Teach_1H_1);
+		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnTalentString(other,NPC_TALENT_1H,5),DIA_Wulfgar_Teach_1H_5);
 		DIA_Wulfgar_TeachState_1H = 1;
 	}
 	else
@@ -433,7 +433,7 @@ func void DIA_Wulfgar_AlsMil_Info()
 	if(Mortis_TeachSTR == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher,"Ополченец Мортис может помочь мне повысить мою силу.");	
+		B_LogEntry(TOPIC_CityTeacher,"Ополченец Мортис может помочь мне повысить мою силу.");
 	};
 	B_Ruga_Teach_Log();
 };

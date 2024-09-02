@@ -7,7 +7,7 @@ instance VLK_492_Rengaru(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = NPCTYPE_MAIN;
-	aivar[AIV_IGNORE_Theft] = TRUE;
+	aivar[AIV_SubGuild] = GIL_SUB_Thief_City;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Sword);
@@ -40,7 +40,7 @@ func void Rtn_RunAway_492()
 func void Rtn_Prison_492()
 {
 	TA_Stand_ArmsCrossed(8,0,23,0,"NW_CITY_HABOUR_KASERN_RENGARU");
-	TA_Stand_ArmsCrossed(23,0,8,0,"NW_CITY_HABOUR_KASERN_RENGARU");
+	TA_Sit_Campfire(23,0,8,0,"NW_CITY_HABOUR_KASERN_RENGARU");
 };
 
 func void Rtn_Hide_492()

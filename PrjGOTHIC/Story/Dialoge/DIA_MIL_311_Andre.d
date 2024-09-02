@@ -100,21 +100,10 @@ func void B_Andre_Informed()
 	{
 		AI_Output(self,other,"B_Andre_CantharFalle_08_00");	//Ко мне приходил торговец Кантар. Он сказал, что ты беглый каторжник из колонии.
 		AI_Output(self,other,"B_Andre_CantharFalle_08_01");	//Я не знаю, правда ли это, и предпочитаю не спрашивать тебя об этом, но ты должен уладить этот вопрос.
-		if(!Npc_IsDead(Sarah))
-		{
-			if(SarahWeaponsRemoved == FALSE)
-			{
-				B_GiveTradeInv_Sarah(Sarah);
-				B_RemoveSarahWeapons();
-			};
-			B_RemoveNpc(VLK_470_Sarah);
-		};
+		B_RemoveSarah();
 		if((Canthar_Ausgeliefert == TRUE) && (Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000))
 		{
 			B_NpcSetReleased(Canthar);
-			Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
-			Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
-			Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
 		};
 		B_StartOtherRoutine(Canthar,"MARKTSTAND");
 		AI_Teleport(Canthar,"NW_CITY_SARAH");
@@ -908,7 +897,7 @@ instance DIA_Andre_Auslieferung(C_Info)
 
 func int DIA_Andre_Auslieferung_Condition()
 {
-	if((Rengaru_Ausgeliefert == FALSE) || (Halvor_Ausgeliefert == FALSE) || (Nagur_Ausgeliefert == FALSE) || (MIS_Canthars_KomproBrief == LOG_Running) || (Fernando_Ausgeliefert == FALSE))
+	if((Rengaru_Ausgeliefert == FALSE) || (Halvor_Ausgeliefert == FALSE) || (Nagur_Ausgeliefert == FALSE) || (MIS_Canthars_KomproBrief == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -1066,7 +1055,7 @@ func void DIA_Andre_Auslieferung_Sarah()
 		if(SarahWeaponsRemoved == FALSE)
 		{
 			B_GiveTradeInv_Sarah(Sarah);
-			B_RemoveSarahWeapons();
+			B_TransferSarahItemsToCanthar();
 		};
 		B_NpcSetJailed(Sarah);
 		B_StartOtherRoutine(Sarah,"KNAST");
@@ -1085,10 +1074,15 @@ func void DIA_Andre_Auslieferung_Sarah()
 
 func void B_AndreAskAboutSewer()
 {
-	AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_01");	//Где?
-	AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_02");	//В канализации под городом.
-	AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_03");	//Что? Мы запечатали канализацию...
-	AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_04");	//Похоже, это не помешало им проникнуть туда.
+	if(Andre_FoundThieves_Reported == FALSE)
+	{
+		AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_01");	//Где?
+		AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_02");	//В канализации под городом.
+		AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_03");	//Что? Мы запечатали канализацию...
+		AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_04");	//Похоже, это не помешало им проникнуть туда.
+		Andre_FoundThieves_Reported_Day = Wld_GetDay();
+		Andre_FoundThieves_Reported = TRUE;
+	};
 };
 
 instance DIA_Andre_DGRunning(C_Info)
@@ -1145,20 +1139,13 @@ func void DIA_Andre_DGRunning_Verrat()
 	AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_00");	//Я нашел логово гильдии воров!
 	B_AndreAskAboutSewer();
 	AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_05");	//Ты ликвидировал этих преступников?
-	Andre_FoundThieves_Reported_Day = Wld_GetDay();
-	Andre_FoundThieves_Reported = TRUE;
 };
 
 func void DIA_Andre_DGRunning_Success()
 {
 	AI_Output(other,self,"DIA_Andre_DGRunning_Success_15_00");	//Я всех их ликвидировал!
-	if(Andre_FoundThieves_Reported == FALSE)
-	{
-		B_AndreAskAboutSewer();
-	};
+	B_AndreAskAboutSewer();
 	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_01");	//Ты оказал городу большую услугу.
-	MIS_Andre_GuildOfThieves = LOG_SUCCESS;
-	B_GivePlayerXP(XP_GuildOfThievesPlatt);
 	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_02");	//Если ты все еще хочешь вступить в ополчение, дай мне знать.
@@ -1175,6 +1162,8 @@ func void DIA_Andre_DGRunning_Success()
 	{
 		B_SendMilitiaToHotel();
 	};
+	MIS_Andre_GuildOfThieves = LOG_SUCCESS;
+	B_GivePlayerXP(XP_GuildOfThievesPlatt);
 	Info_ClearChoices(DIA_Andre_DGRunning);
 };
 
@@ -1316,7 +1305,7 @@ func void DIA_Andre_JOIN_Yes()
 	B_GiveArmor(ITAR_MIL_L);
 	Snd_Play("LEVELUP");
 	B_StartOtherRoutine(Lothar,"START");
-	B_StartOtherRoutine(Babo,"Garden");
+	B_StartOtherRoutine(Babo,"GARDEN");
 	SLD_Aufnahme = LOG_OBSOLETE;
 	NOV_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;
@@ -1424,7 +1413,7 @@ func int DIA_Andre_FOUND_PECK_Condition()
 		{
 			return TRUE;
 		}
-		else if(Npc_KnowsInfo(hero,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
+		else if(Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
 		{
 			return TRUE;
 		}

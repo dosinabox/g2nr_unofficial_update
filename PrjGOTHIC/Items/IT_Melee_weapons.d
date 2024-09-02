@@ -30,7 +30,7 @@ instance ItMw_1H_Mace_L_01(C_Item)
 	material = MAT_METAL;
 	value = Value_Schuerhaken;
 	damageTotal = Damage_Schuerhaken;
-	damagetype = DAM_EDGE;
+	damagetype = DAM_BLUNT;
 	range = Range_Schuerhaken;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Schuerhaken;

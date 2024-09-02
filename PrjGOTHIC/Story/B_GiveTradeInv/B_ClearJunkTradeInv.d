@@ -134,12 +134,12 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		B_RemoveEveryInvItem(slf,ItPl_Planeberry);
 		B_RemoveEveryInvItem(slf,ItLsTorchburned);
 		B_RemoveEveryInvItem(slf,ItWr_Poster_MIS);
-		Npc_RemoveInvItem(slf,ItSE_Addon_EmptyFrancisChest);
+		Npc_RemoveInvItem(slf,ItSe_Addon_EmptyFrancisChest);
 		Npc_RemoveInvItem(slf,ItMi_Addon_Bloodwyn_Kopf);
-		Npc_RemoveInvItem(slf,ITWr_Addon_Hinweis_01);
-		Npc_RemoveInvItem(slf,ITWr_Addon_Hinweis_02);
-		Npc_RemoveInvItem(slf,ITWr_Addon_William_01);
-		Npc_RemoveInvItem(slf,ITWr_Addon_Pirates_01);
+		Npc_RemoveInvItem(slf,ItWr_Addon_Hinweis_01);
+		Npc_RemoveInvItem(slf,ItWr_Addon_Hinweis_02);
+		Npc_RemoveInvItem(slf,ItWr_Addon_William_01);
+		Npc_RemoveInvItem(slf,ItWr_Addon_Pirates_01);
 		Npc_RemoveInvItem(slf,ItWr_Kraeuterliste);
 		Npc_RemoveInvItem(slf,ItWr_BanditLetter_MIS);
 		Npc_RemoveInvItem(slf,ItWr_KDWLetter);
@@ -147,7 +147,7 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItem(slf,ItWr_Manowar);
 		Npc_RemoveInvItem(slf,ItWr_Pfandbrief_MIS);
 		Npc_RemoveInvItem(slf,ItWr_Silvestro_MIS);
-		Npc_RemoveInvItem(slf,ItWr_UseLampIdiot_Mis);
+		Npc_RemoveInvItem(slf,ItWr_UseLampIdiot_MIS);
 		Npc_RemoveInvItem(slf,ItWr_Krypta_Garon);
 		if(SC_SummonedAncientGhost == TRUE)
 		{
@@ -172,6 +172,10 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		if((MIS_CassiaKelche == LOG_SUCCESS) || (MIS_CassiaKelche == LOG_FAILED))
 		{
 			B_RemoveEveryInvItem(slf,ItMi_BloodCup_MIS);
+		};
+		if(Fortuno_Geheilt_01 == TRUE)
+		{
+			B_RemoveEveryInvItem(slf,ItMi_Addon_Joint_01);
 		};
 		if(MIS_Bromor_LuciaStoleGold == LOG_SUCCESS)
 		{

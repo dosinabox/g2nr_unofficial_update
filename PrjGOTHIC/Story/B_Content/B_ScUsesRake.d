@@ -42,10 +42,15 @@ func void B_SCGetTreasure_S1()
 		{
 			Wld_InsertItem(ItSe_GoldPocket25,RAKEPLACE_WP_01);
 			RakeTreasureSuccess(ItSe_GoldPocket25);
-			//TODO проверять местонахождение Грега
-			if(!ArmorEquipped(Greg_NW,ITAR_PIR_H_Addon))
+			if(!Npc_IsDead(Greg_NW) && (MIS_Addon_Greg_RakeCave == LOG_Running))
 			{
-				AI_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
+				if(Npc_GetDistToWP(Greg_NW,"NW_BIGFARM_LAKE_CAVE_01") < 1000)
+				{
+					if(!ArmorEquipped(Greg_NW,ITAR_PIR_H_Addon))
+					{
+						AI_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
+					};
+				};
 			};
 			RAKEPLACE[1] = TRUE;
 		}
@@ -164,8 +169,8 @@ func void B_SCGetTreasure_S1()
 		}
 		else if((Npc_GetDistToWP(self,RAKEPLACE_WP_24) < RAKE_BUDDEL_DIST_MIN) && (RAKEPLACE[24] == FALSE))
 		{
-			Wld_InsertItem(ItSE_Addon_FrancisChest,RAKEPLACE_WP_24);
-			RakeTreasureSuccess(ItSE_Addon_FrancisChest);
+			Wld_InsertItem(ItSe_Addon_FrancisChest,RAKEPLACE_WP_24);
+			RakeTreasureSuccess(ItSe_Addon_FrancisChest);
 			RAKEPLACE[24] = TRUE;
 		}
 		else if((Npc_GetDistToWP(self,RAKEPLACE_WP_25) < RAKE_BUDDEL_DIST_MIN) && (RAKEPLACE[25] == FALSE))
@@ -208,13 +213,13 @@ func void B_SCGetTreasure_S1()
 		}
 		else if((Npc_GetDistToWP(self,RAKEPLACE_WP_30) < RAKE_BUDDEL_DIST_MIN) && (RAKEPLACE[30] == FALSE))
 		{
-			Wld_InsertItem(ItMI_Addon_Kompass_Mis,RAKEPLACE_WP_30);
-			RakeTreasureSuccess(ItMI_Addon_Kompass_Mis);
+			Wld_InsertItem(ItMi_Addon_Kompass_MIS,RAKEPLACE_WP_30);
+			RakeTreasureSuccess(ItMi_Addon_Kompass_MIS);
 			RAKEPLACE[30] = TRUE;
 		}
 		else
 		{
-			player_plunder_is_empty();
+			Player_Plunder_Is_Empty();
 		};
 	};
 };

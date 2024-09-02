@@ -25,7 +25,7 @@ func int C_NpcIsUndead(var C_Npc slf)
 	{
 		return TRUE;
 	};
-	if(slf.guild == GIL_SummonedZombie)
+	if(slf.guild == GIL_SUMMONED_ZOMBIE)
 	{
 		return TRUE;
 	};

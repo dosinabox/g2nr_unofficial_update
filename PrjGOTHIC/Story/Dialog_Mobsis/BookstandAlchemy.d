@@ -5,7 +5,6 @@ var int ALchemy_3_permanent;
 
 func void Use_BookstandALCHEMY1_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -50,7 +49,6 @@ func void Use_BookstandALCHEMY1_S1()
 
 func void Use_BookstandALCHEMY2_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();
@@ -95,7 +93,6 @@ func void Use_BookstandALCHEMY2_S1()
 
 func void Use_BookstandALCHEMY3_S1()
 {
-	var int nDocID;
 	if(C_NpcIsHero(self))
 	{
 		nDocID = Doc_Create();

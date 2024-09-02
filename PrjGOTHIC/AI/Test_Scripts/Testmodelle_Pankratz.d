@@ -737,7 +737,6 @@ instance JI13(JOLY_ITEM)
 
 func void usejoly_item1()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"GOB_BODY2.TGA",0);
@@ -752,7 +751,6 @@ func void usejoly_item1()
 
 func void usejoly_item2()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"GOB_BODY3.TGA",0);

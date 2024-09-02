@@ -79,15 +79,12 @@ func void ZS_GolemDown_End()
 
 func void B_GolemRise()
 {
-	if(Npc_GetDistToNpc(self,hero) <= 700)
+	if(Npc_GetDistToNpc(self,hero) <= 800)
 	{
 		Snd_Play("GOL_AMBIENT_A2");
 		AI_PlayAni(self,"T_RISE");
-		self.noFocus = FALSE;
-		self.name[0] = "Каменный голем";
 		self.flags = 0;
 		AI_StartState(self,ZS_MM_Attack,0,"");
-		self.bodyStateInterruptableOverride = FALSE;
 		self.start_aistate = ZS_MM_AllScheduler;
 		self.aivar[AIV_MM_RestStart] = OnlyRoutine;
 	};
@@ -96,10 +93,8 @@ func void B_GolemRise()
 
 instance Shattered_Golem(Mst_Default_StoneGolem)
 {
-	name[0] = "";
 	level = 18;
-	noFocus = TRUE;
-	flags = NPC_FLAG_IMMORTAL;
+	flags = NPC_FLAG_NFOCUS | NPC_FLAG_IMMORTAL;
 	bodyStateInterruptableOverride = TRUE;
 	B_SetVisuals_StoneGolem();
 	Npc_SetToFistMode(self);
@@ -109,7 +104,7 @@ instance Shattered_Golem(Mst_Default_StoneGolem)
 instance StoneGolem_Dead1(Mst_Default_StoneGolem)
 {
 	name[0] = "";
-	noFocus = TRUE;
+	flags = NPC_FLAG_NFOCUS;
 	B_SetVisuals_StoneGolem();
 	Npc_SetToFistMode(self);
 };
@@ -117,7 +112,7 @@ instance StoneGolem_Dead1(Mst_Default_StoneGolem)
 instance StoneGolem_Dead2(Mst_Default_StoneGolem)
 {
 	name[0] = "";
-	noFocus = TRUE;
+	flags = NPC_FLAG_NFOCUS;
 	B_SetVisuals_StoneGolem();
 	Npc_SetToFistMode(self);
 };
@@ -125,7 +120,7 @@ instance StoneGolem_Dead2(Mst_Default_StoneGolem)
 instance StoneGolem_Dead3(Mst_Default_StoneGolem)
 {
 	name[0] = "";
-	noFocus = TRUE;
+	flags = NPC_FLAG_NFOCUS;
 	B_SetVisuals_StoneGolem();
 	Npc_SetToFistMode(self);
 };
@@ -133,7 +128,7 @@ instance StoneGolem_Dead3(Mst_Default_StoneGolem)
 instance StoneGolem_Dead4(Mst_Default_StoneGolem)
 {
 	name[0] = "";
-	noFocus = TRUE;
+	flags = NPC_FLAG_NFOCUS;
 	B_SetVisuals_StoneGolem();
 	Npc_SetToFistMode(self);
 };

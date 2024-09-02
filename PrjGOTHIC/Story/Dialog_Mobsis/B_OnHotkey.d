@@ -51,18 +51,15 @@ func int B_GetBestPlayerMap()
 			return ItWr_Map_OldWorld_Oremines_Small_MIS;
 		};
 	}
-	else if(CurrentLevel == DRAGONISLAND_ZEN)
-	{
-	}
 	else if(CurrentLevel == ADDONWORLD_ZEN)
 	{
 		if(Npc_HasItems(hero,ItWr_Map_AddonWorld))
 		{
 			return ItWr_Map_AddonWorld;
 		}
-		else if(Npc_HasItems(hero,ItWR_Addon_TreasureMap))
+		else if(Npc_HasItems(hero,ItWr_Addon_TreasureMap))
 		{
-			return ItWR_Addon_TreasureMap;
+			return ItWr_Addon_TreasureMap;
 		};
 	};
 	return FALSE;
@@ -118,14 +115,14 @@ func int B_GetAnyPlayerMap()
 	{
 		return ItWr_Map_AddonWorld;
 	}
-	else if(Npc_HasItems(hero,ItWR_Addon_TreasureMap))
+	else if(Npc_HasItems(hero,ItWr_Addon_TreasureMap))
 	{
-		return ItWR_Addon_TreasureMap;
+		return ItWr_Addon_TreasureMap;
 	};
 	return FALSE;
 };
 
-func int player_hotkey_screen_map()
+func int Player_Hotkey_Screen_Map()
 {
 	var int OldInstance;
 	var int NewInstance;
@@ -155,7 +152,7 @@ func int player_hotkey_screen_map()
 	};
 	if(CurrentLevel != ADDONWORLD_ZEN)
 	{
-		if((OldInstance == ItWr_Map_AddonWorld) || (OldInstance == ItWR_Addon_TreasureMap))
+		if((OldInstance == ItWr_Map_AddonWorld) || (OldInstance == ItWr_Addon_TreasureMap))
 		{
 			NewInstance = 0;
 		};
@@ -181,7 +178,7 @@ func void B_LameSchlork()
 	Snd_Play("DRINKBOTTLE");
 };
 
-func void player_hotkey_lame_potion()
+func void Player_Hotkey_Lame_Potion()
 {
 	if(!Npc_IsInState(hero,ZS_Dead))
 	{
@@ -255,7 +252,7 @@ func void player_hotkey_lame_potion()
 	};
 };
 
-func void player_hotkey_lame_heal()
+func void Player_Hotkey_Lame_Heal()
 {
 	if(!Npc_IsInState(hero,ZS_Dead))
 	{

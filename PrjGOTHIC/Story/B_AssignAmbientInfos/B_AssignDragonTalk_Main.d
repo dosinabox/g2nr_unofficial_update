@@ -176,7 +176,7 @@ func void B_EndDragonTalk()
 {
 	self.flags = 0;
 	Npc_RemoveInvItems(other,ItMi_InnosEye_MIS,1);
-	CreateInvItems(other,ItMi_InnosEye_Discharged_Mis,1);
+	CreateInvItems(other,ItMi_InnosEye_Discharged_MIS,1);
 	SC_IsWearingInnosEye = FALSE;
 	DragonTalk_Exit_Free = FALSE;
 	AI_StopProcessInfos(self);

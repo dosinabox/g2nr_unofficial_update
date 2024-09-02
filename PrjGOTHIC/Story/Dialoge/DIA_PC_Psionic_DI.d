@@ -34,7 +34,7 @@ instance DIA_Lester_DI_Hello(C_Info)
 
 func int DIA_Lester_DI_Hello_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == FALSE)
 	{
 		return TRUE;
 	};
@@ -82,11 +82,11 @@ func int DIA_Lester_DI_MarioArsch_Condition()
 {
 	if((DIA_Lester_DI_SCGotWarning1 == TRUE) || (DIA_Lester_DI_SCGotWarning2 == TRUE))
 	{
-		if(Npc_KnowsInfo(other,DIA_NONE_101_MARIO_DI_ambush))
+		if(Npc_KnowsInfo(other,DIA_NONE_101_MARIO_DI_Ambush))
 		{
 			return TRUE;
-		}
-		else if((Mario_DI_ReadyForAmbush == TRUE) && Npc_IsDead(Mario_DI))
+		};
+		if((Mario_DI_ReadyForAmbush == TRUE) && Npc_IsDead(Mario_DI))
 		{
 			return TRUE;
 		};
@@ -115,7 +115,7 @@ instance DIA_PC_Lester_DI_UndeadDragonDead(C_Info)
 
 func int DIA_PC_Lester_DI_UndeadDragonDead_Condition()
 {
-	if(Npc_IsDead(UndeadDragon))
+	if(UndeadDragonIsDead == TRUE)
 	{
 		return TRUE;
 	};
@@ -150,11 +150,11 @@ func void DIA_PC_Lester_DI_UndeadDragonDead_Info()
 	{
 		if(MiltenNW_IsOnBoard != LOG_SUCCESS)
 		{
-			Npc_ExchangeRoutine(self,"SittingShipDI");
+			Npc_ExchangeRoutine(self,"SITTINGSHIPDI");
 		}
 		else
 		{
-			Npc_ExchangeRoutine(self,"Start");
+			Npc_ExchangeRoutine(self,"START");
 		};
 	};
 	DIA_PC_Lester_DI_UndeadDragonDead_OneTime = TRUE;

@@ -41,7 +41,7 @@ func int DIA_BDT_1088_Addon_Torwache_FirstWarn_Condition()
 		Npc_SetRefuseTalk(self,5);
 		return FALSE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
+	if(C_NpcHasGuardStatus(self,BDT_1088_Checkpoint,GP_NONE) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -96,7 +96,7 @@ instance DIA_BDT_1088_Addon_Torwache_SecondWarn(C_Info)
 
 func int DIA_BDT_1088_Addon_Torwache_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,BDT_1088_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if(C_NpcHasGuardStatus(self,BDT_1088_Checkpoint,GP_FirstWarnGiven))
 	{
 		return TRUE;
 	};
@@ -124,7 +124,7 @@ instance DIA_BDT_1088_Addon_Torwache_Attack(C_Info)
 
 func int DIA_BDT_1088_Addon_Torwache_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,BDT_1088_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if(C_NpcHasGuardStatus(self,BDT_1088_Checkpoint,GP_SecondWarnGiven))
 	{
 		return TRUE;
 	};

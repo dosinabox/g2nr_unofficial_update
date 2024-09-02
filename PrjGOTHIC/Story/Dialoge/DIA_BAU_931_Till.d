@@ -49,9 +49,9 @@ func void DIA_Till_HALLO_Info()
 	{
 		Info_AddChoice(DIA_Till_HALLO,"Ты командуешь здесь?",DIA_Till_HALLO_selber);
 	};
-	if((Kapitel < 3) || (TOPIC_END_SekobDMT == TRUE))
+	if(Kapitel < 3)
 	{
-		B_StartOtherRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 	};
 };
 
@@ -394,7 +394,7 @@ func int DIA_Till_PERMKAP1_Condition()
 	{
 		if(Kapitel == 5)
 		{
-			if((MIS_bringRosiBackToSekob != LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE))
+			if((MIS_BringRosiBackToSekob != LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE))
 			{
 				DIA_Till_PERMKAP1.description = "А до дома-то далеко, а? Папочка не сможет помочь тебе здесь.";
 			}
@@ -423,7 +423,7 @@ func void DIA_Till_PERMKAP1_Info()
 {
 	if(Kapitel == 5)
 	{
-		if((MIS_bringRosiBackToSekob != LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE))
+		if((MIS_BringRosiBackToSekob != LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE))
 		{
 			AI_Output(other,self,"DIA_Till_PERMKAP1_15_00");	//А до дома-то далеко, а? Папочка не сможет помочь тебе здесь.
 			AI_Output(self,other,"DIA_Till_PERMKAP1_03_01");	//Когда-нибудь я набью тебе морду.

@@ -1,44 +1,9 @@
 
-func void ZS_MM_Rtn_DragonRest()
-{
-	Npc_SetPercTime(self,1);
-	self.aivar[AIV_MM_PRIORITY] = PRIO_EAT;
-	Perception_Set_Monster_Rtn();
-	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_MM_AssessPlayer);
-	Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessTalk);
-	AI_SetWalkMode(self,NPC_WALK);
-	B_MM_DeSynchronize();
-	if(!C_NpcIsOnRoutineWP(self))
-	{
-		AI_GotoWP(self,self.wp);
-	};
-	if(Wld_IsFPAvailable(self,"FP_ROAM"))
-	{
-		AI_GotoFP(self,"FP_ROAM");
-	}
-	else
-	{
-		AI_AlignToWP(self);
-	};
-	self.aivar[AIV_TAPOSITION] = 0;
-	self.aivar[AIV_StateTime] = Hlp_Random(100) % 8 + 1;
-};
-
-func int ZS_MM_Rtn_DragonRest_Loop()
+func void B_PlayRandomRoamAni()
 {
 	var int randomMove;
-	if(!Wld_IsTime(self.aivar[AIV_MM_RestStart],0,self.aivar[AIV_MM_RestEnd],self.aivar[AIV_StateTime]) && (self.aivar[AIV_MM_RestStart] != OnlyRoutine))
+	if((self.guild != GIL_STONEGUARDIAN) && (self.guild != GIL_HARPY) && (self.guild != GIL_SKELETON) && (self.guild != GIL_SKELETON_MAGE) && (self.guild != GIL_SWAMPSHARK) && (self.guild != GIL_BLOODFLY) && (self.guild != GIL_MEATBUG))
 	{
-		AI_StartState(self,ZS_MM_AllScheduler,1,"");
-		return LOOP_END;
-	};
-	if(self.guild == GIL_DRAGON)
-	{
-		B_DragonHeal(self);
-	}
-	else if(Hlp_Random(1000) <= 5)
-	{
-		AI_Standup(self);
 		randomMove = Hlp_Random(3);
 		if(randomMove == 0)
 		{
@@ -52,6 +17,49 @@ func int ZS_MM_Rtn_DragonRest_Loop()
 		{
 			AI_PlayAni(self,"R_ROAM3");
 		};
+	};
+};
+
+func void ZS_MM_Rtn_DragonRest()
+{
+	Npc_SetPercTime(self,1);
+	self.aivar[AIV_MM_PRIORITY] = PRIO_EAT;
+	Perception_Set_Monster_Rtn();
+	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_MM_AssessPlayer);
+	Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessTalk);
+	AI_SetWalkMode(self,NPC_WALK);
+	B_MM_DeSynchronize();
+	if(!C_NpcIsOnRoutineWP(self))
+	{
+		AI_GotoWP(self,self.wp);
+	};
+	if(Wld_IsFPAvailable(self,"ROAM"))
+	{
+		AI_GotoFP(self,"ROAM");
+	}
+	else
+	{
+		AI_AlignToWP(self);
+	};
+	self.aivar[AIV_TAPOSITION] = 0;
+	self.aivar[AIV_StateTime] = Hlp_Random(100) % 8 + 1;
+};
+
+func int ZS_MM_Rtn_DragonRest_Loop()
+{
+	if(!Wld_IsTime(self.aivar[AIV_MM_RestStart],0,self.aivar[AIV_MM_RestEnd],self.aivar[AIV_StateTime]) && (self.aivar[AIV_MM_RestStart] != OnlyRoutine))
+	{
+		AI_StartState(self,ZS_MM_AllScheduler,1,"");
+		return LOOP_END;
+	};
+	if(self.guild == GIL_DRAGON)
+	{
+		B_DragonHeal(self);
+	}
+	else if(Hlp_Random(1000) <= 5)
+	{
+		AI_Standup(self);
+		B_PlayRandomRoamAni();
 	};
 	return LOOP_CONTINUE;
 };

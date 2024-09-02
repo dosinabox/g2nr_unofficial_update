@@ -385,23 +385,44 @@ instance DIA_Thekla_SagittaPaket(C_Info)
 	nr = 4;
 	condition = DIA_Thekla_SagittaPaket_Condition;
 	information = DIA_Thekla_SagittaPaket_Info;
-	permanent = TRUE;
+	permanent = FALSE;
 	description = "Вот пакет от Сагитты.";
 };
 
 
 func int DIA_Thekla_SagittaPaket_Condition()
 {
-	if(Npc_HasItems(other,ItMi_TheklasPaket) && (MIS_Thekla_Paket == LOG_Running))
+	if(MIS_Thekla_Paket == LOG_Running)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_TheklasPaket))
+		{
+			return TRUE;
+		};
+		if(TheklasPaket_Open == TRUE)
+		{
+			if((Npc_HasItems(other,ItPl_Mana_Herb_01) >= 3) && Npc_HasItems(other,ItPl_Health_Herb_02) && Npc_HasItems(other,ItPl_Speed_Herb_01) && (Npc_HasItems(other,ItPl_Blueplant) >= 2))
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
 func void DIA_Thekla_SagittaPaket_Info()
 {
 	AI_Output(other,self,"DIA_Thekla_SagittaPaket_15_00");	//Вот пакет от Сагитты.
-	B_GiveInvItems(other,self,ItMi_TheklasPaket,1);
+	if(Npc_HasItems(other,ItMi_TheklasPaket))
+	{
+		B_GiveInvItems(other,self,ItMi_TheklasPaket,1);
+	}
+	else
+	{
+		Npc_RemoveInvItems(other,ItPl_Mana_Herb_01,3);
+		Npc_RemoveInvItems(other,ItPl_Health_Herb_02,1);
+		Npc_RemoveInvItems(other,ItPl_Speed_Herb_01,1);
+		Npc_RemoveInvItems(other,ItPl_Blueplant,2);
+		Print(PRINT_GivePlants);
+	};
 	AI_Output(self,other,"DIA_Thekla_SagittaPaket_17_01");	//Огромное спасибо. От тебя есть хоть какая-то польза в отличие от других.
 	DIA_Common_So();
 	AI_Output(self,other,"DIA_Thekla_PERM_17_10");	//Хорошо. Я сжалюсь над тобой. Вот, держи. Не могу смотреть, как ты умираешь от голода у меня на глазах.

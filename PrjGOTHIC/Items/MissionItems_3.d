@@ -2,7 +2,7 @@
 const int AM_EyeProtEdge = 10;
 const int AM_EyeProtPoint = 10;
 const int AM_EyeProtMage = 20;
-const int AM_EyeProtFire = 30; //20
+const int AM_EyeProtFire = 30;
 
 instance ItMi_InnosEye_MIS(C_Item)
 {
@@ -57,7 +57,7 @@ func void UnEquip_InnosEye()
 };
 
 
-instance ItMi_InnosEye_Discharged_Mis(C_Item)
+instance ItMi_InnosEye_Discharged_MIS(C_Item)
 {
 	name = NAME_InnosEye;
 	mainflag = ITEM_KAT_MAGIC;
@@ -66,20 +66,20 @@ instance ItMi_InnosEye_Discharged_Mis(C_Item)
 	visual = "ItMi_InnosEye_Discharged_MIS.3DS";
 	material = MAT_METAL;
 	description = name;
-	on_equip = Equip_ItMi_InnosEye_Discharged_Mis;
+	on_equip = Equip_ItMi_InnosEye_Discharged_MIS;
 	text[0] = "Глаз потух и не сияет.";
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
 
 
-func void Equip_ItMi_InnosEye_Discharged_Mis()
+func void Equip_ItMi_InnosEye_Discharged_MIS()
 {
 	Wld_PlayEffect("spellFX_Fear",self,self,0,0,0,FALSE);
 	Snd_Play("MFX_FEAR_CAST");
 };
 
 
-instance ItMi_InnosEye_Broken_Mis(C_Item)
+instance ItMi_InnosEye_Broken_MIS(C_Item)
 {
 	name = NAME_InnosEye;
 	mainflag = ITEM_KAT_MAGIC;
@@ -88,14 +88,14 @@ instance ItMi_InnosEye_Broken_Mis(C_Item)
 	visual = "ItMi_InnosEye_Broken_MIS.3DS";
 	material = MAT_METAL;
 	description = name;
-	on_equip = Equip_ItMi_InnosEye_Broken_Mis;
+	on_equip = Equip_ItMi_InnosEye_Broken_MIS;
 	text[0] = TEXT_Innoseye_Setting;
 	text[1] = TEXT_Innoseye_Gem;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
 
 
-func void Equip_ItMi_InnosEye_Broken_Mis()
+func void Equip_ItMi_InnosEye_Broken_MIS()
 {
 	Wld_PlayEffect("spellFX_Fear",self,self,0,0,0,FALSE);
 	Snd_Play("MFX_FEAR_CAST");
@@ -119,7 +119,6 @@ instance ItWr_PermissionToWearInnosEye_MIS(C_Item)
 
 func void Use_PermissionToWearInnosEye()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -140,7 +139,7 @@ func void Use_PermissionToWearInnosEye()
 };
 
 
-instance ItWr_XardasBookForPyrokar_Mis(C_Item)
+instance ItWr_XardasBookForPyrokar_MIS(C_Item)
 {
 	name = "Чертоги Ирдората";
 	mainflag = ITEM_KAT_DOCS;
@@ -178,7 +177,7 @@ instance ItKe_CHEST_SEKOB_XARDASBOOK_MIS(C_Item)
 	inv_zbias = 145;
 };
 
-instance ItWr_CorneliusTagebuch_Mis(C_Item)
+instance ItWr_CorneliusTagebuch_MIS(C_Item)
 {
 	name = "Дневник Корнелиуса";
 	mainflag = ITEM_KAT_DOCS;
@@ -194,7 +193,6 @@ instance ItWr_CorneliusTagebuch_Mis(C_Item)
 
 func void UseCorneliusTagebuch()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Brown_L.tga",0);
@@ -236,7 +234,6 @@ instance ITWR_DementorObsessionBook_MIS(C_Item)
 
 func void Use_DementorObsessionBook()
 {
-	var int nDocID;
 	Wld_PlayEffect("spellFX_Fear",hero,hero,0,0,0,FALSE);
 	Snd_Play("MFX_FEAR_CAST");
 	SC_ObsessionCounter = 100;
@@ -347,7 +344,6 @@ instance ItWr_PyrokarsObsessionList(C_Item)
 
 func void Use_PyrokarsObsessionList()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -524,7 +520,6 @@ instance ItWr_BabosLetter_MIS(C_Item)
 
 func void Use_BabosLetter()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -546,7 +541,6 @@ instance ItWr_BabosPinUp_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-//	visual = "ItWr_Scroll_01.3DS";
 	visual = "ItWr_BabosPinUp_MIS.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_BabosPinUp;
@@ -561,7 +555,6 @@ instance ItWr_BabosPinUp_MIS(C_Item)
 
 func void Use_BabosPinUp()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"Map_Pinup.TGA",TRUE);
@@ -596,7 +589,7 @@ func void Use_BabosDocs()
 };
 
 
-instance ItKe_IgarazChest_Mis(C_Item)
+instance ItKe_IgarazChest_MIS(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
@@ -613,7 +606,7 @@ instance ItKe_IgarazChest_Mis(C_Item)
 	inv_zbias = 145;
 };
 
-instance ItWr_Astronomy_Mis(C_Item)
+instance ItWr_Astronomy_MIS(C_Item)
 {
 	name = "Божественная сила звезд";
 	mainflag = ITEM_KAT_DOCS;
@@ -634,7 +627,6 @@ var int Astronomy_Once;
 
 func void Use_Astronomy()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
@@ -689,13 +681,12 @@ func void Use_HealObsession()
 		SC_ObsessionTimes += 1;
 		B_ClearSCObsession(self);
 		Wld_PlayEffect("spellFX_LIGHTSTAR_VIOLET",hero,hero,0,0,0,FALSE);
-//		Wld_PlayEffect("spellFX_LIGHTSTAR_GREEN",hero,hero,0,0,0,FALSE);
 		Snd_Play("SFX_HealObsession");
 	};
 };
 
 
-instance ItSe_Golemchest_Mis(C_Item)
+instance ItSe_Golemchest_MIS(C_Item)
 {
 	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
@@ -729,7 +720,7 @@ instance ItWr_ShatteredGolem_MIS(C_Item)
 	visual = "ItWr_Map_NW_02.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
-	on_state[0] = Use_ShatteredGolem_Mis;
+	on_state[0] = Use_ShatteredGolem_MIS;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -739,7 +730,7 @@ instance ItWr_ShatteredGolem_MIS(C_Item)
 };
 
 
-func void Use_ShatteredGolem_Mis()
+func void Use_ShatteredGolem_MIS()
 {
 	var int Document;
 	if(Npc_IsPlayer(self))
@@ -763,7 +754,7 @@ instance ItWr_DiegosLetter_MIS(C_Item)
 	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
-	on_state[0] = Use_DiegosLetter_Mis;
+	on_state[0] = Use_DiegosLetter_MIS;
 	scemeName = "MAP";
 	description = name;
 	inv_rotz = 180;
@@ -772,9 +763,8 @@ instance ItWr_DiegosLetter_MIS(C_Item)
 };
 
 
-func void Use_DiegosLetter_Mis()
+func void Use_DiegosLetter_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -792,13 +782,13 @@ func void Use_DiegosLetter_Mis()
 };
 
 
-instance ItSe_DiegosTreasure_Mis(C_Item)
+instance ItSe_DiegosTreasure_MIS(C_Item)
 {
 	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = DiegosTreasure;
-	visual = "ItMi_Pocket_Mis.3ds";
+	visual = "ItMi_Pocket_MIS.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	on_state[0] = Use_DiegosTreasure;
@@ -818,7 +808,7 @@ func void Use_DiegosTreasure()
 };
 
 
-instance ItMi_UltharsHolyWater_Mis(C_Item)
+instance ItMi_UltharsHolyWater_MIS(C_Item)
 {
 	name = "Святая вода Ультара";
 	mainflag = ITEM_KAT_NONE;
@@ -832,16 +822,15 @@ instance ItMi_UltharsHolyWater_Mis(C_Item)
 };
 
 
-instance ItWr_MinenAnteil_Mis(C_Item)
+instance ItWr_MinenAnteil_MIS(C_Item)
 {
 	name = "Акция рудника Хориниса";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 50;
 	visual = "ItWr_Scroll_02.3DS";
-//	visual = "Fakescroll.3ds";
 	material = MAT_LEATHER;
-	on_state[0] = Use_MinenAnteil_Mis;
+	on_state[0] = Use_MinenAnteil_MIS;
 	scemeName = "MAP";
 	description = name;
 	text[5] = NAME_Value;
@@ -849,9 +838,8 @@ instance ItWr_MinenAnteil_Mis(C_Item)
 };
 
 
-func void Use_MinenAnteil_Mis()
+func void Use_MinenAnteil_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -886,14 +874,13 @@ func void Use_MinenAnteil_Mis()
 };
 
 
-instance ItAm_Prot_BlackEye_Mis(C_Item)
+instance ItAm_Prot_BlackEye_MIS(C_Item)
 {
 	name = NAME_Amulett;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = Value_Am_HpMana;
-//	visual = "ItAm_Hp_Mana_01.3ds";
-	visual = "ItAm_Prot_BlackEye_Mis.3ds";
+	visual = "ItAm_Prot_BlackEye_MIS.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	wear = WEAR_EFFECT;
@@ -905,13 +892,12 @@ instance ItAm_Prot_BlackEye_Mis(C_Item)
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
 
-instance ItMi_KarrasBlessedStone_Mis(C_Item)
+instance ItMi_KarrasBlessedStone_MIS(C_Item)
 {
 	name = "Камень";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 0;
-//	visual = "ItMi_Rockcrystal.3ds";
 	visual = "ItMi_KarrasBlessedStone.3ds";
 	visual_skin = 0;
 	material = MAT_STONE;
@@ -935,7 +921,6 @@ instance ItWr_RichterKomproBrief_MIS(C_Item)
 
 func void Use_RichterKomproBrief()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -979,7 +964,6 @@ instance ItWr_MorgahardTip(C_Item)
 
 func void Use_MorgahardTip()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -994,7 +978,6 @@ func void Use_MorgahardTip()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"                     М.");
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -1034,7 +1017,7 @@ func void Use_Map_NewWorld_Shrine_MIS()
 };
 
 
-instance ItWr_VinosKellergeister_Mis(C_Item)
+instance ItWr_VinosKellergeister_MIS(C_Item)
 {
 	name = "Дух вина";
 	mainflag = ITEM_KAT_DOCS;
@@ -1044,13 +1027,12 @@ instance ItWr_VinosKellergeister_Mis(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-	on_state[0] = Use_VinosKellergeister_Mis;
+	on_state[0] = Use_VinosKellergeister_MIS;
 };
 
 
-func void Use_VinosKellergeister_Mis()
+func void Use_VinosKellergeister_MIS()
 {
-	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Red_L.tga",0);
@@ -1074,5 +1056,4 @@ func void Use_VinosKellergeister_Mis()
 	Doc_PrintLines(nDocID,1,"... Они стали подозрительными. Мне лучше оставить это занятие, пока все не успокоится немного, я вернусь к своей работе, когда буду уверен, что никто мной больше не интересуется ...");
 	Doc_Show(nDocID);
 };
-
 

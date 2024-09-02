@@ -163,6 +163,10 @@ func int VisibleAttributeValue(var int attrib)
 	{
 		return hero.attribute[ATR_MANA_MAX];
 	};
+	if(attrib == ATR_HITPOINTS_MAX)
+	{
+		return hero.attribute[ATR_HITPOINTS_MAX];
+	};
 	Print(PRINT_WrongParameter);
 	return 0;
 };

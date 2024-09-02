@@ -173,6 +173,7 @@ func void DIA_Gaertner_Sign_Info()
 	AI_Output(self,other,"DIA_Gaertner_Sign_09_00");	//Теперь ты один из нас. И я могу подкинуть тебе кое-какую информацию.
 	AI_Output(self,other,"DIA_Gaertner_Sign_09_01");	//В некоторых домах здесь есть секретные панели, которые открываются скрытыми выключателями.
 	AI_Output(self,other,"DIA_Gaertner_Sign_09_02");	//Люди хранят там самые ценные свои вещи.
+	self.aivar[AIV_IGNORE_Theft] = TRUE;
 };
 
 instance DIA_Gaertner_FreeLockpicks(C_Info)

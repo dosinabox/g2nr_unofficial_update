@@ -137,10 +137,10 @@ func void DIA_VLK_1_STANDARD_Info()
 
 func void B_AssignAmbientInfos_VLK_1(var C_Npc slf)
 {
-	dia_vlk_1_exit.npc = Hlp_GetInstanceID(slf);
-	dia_vlk_1_join.npc = Hlp_GetInstanceID(slf);
-	dia_vlk_1_people.npc = Hlp_GetInstanceID(slf);
-	dia_vlk_1_location.npc = Hlp_GetInstanceID(slf);
-	dia_vlk_1_standard.npc = Hlp_GetInstanceID(slf);
+	DIA_VLK_1_EXIT.npc = Hlp_GetInstanceID(slf);
+	DIA_VLK_1_JOIN.npc = Hlp_GetInstanceID(slf);
+	DIA_VLK_1_PEOPLE.npc = Hlp_GetInstanceID(slf);
+	DIA_VLK_1_LOCATION.npc = Hlp_GetInstanceID(slf);
+	DIA_VLK_1_STANDARD.npc = Hlp_GetInstanceID(slf);
 };
 

@@ -6,9 +6,6 @@ const string TOPIC_Addon_HolRiordian = "Риордиан";
 const string TOPIC_Addon_RingOfWater = "'Кольцо Воды'";
 const string TOPIC_Addon_KDW = "Маги Воды";
 const string TOPIC_Addon_CavalornTheHut = "Старая хижина Кавалорна";
-
-var int TOPIC_End_CavalornTheHut;
-
 const string TOPIC_Addon_KillBrago = "Бандиты Кавалорна";
 const string TOPIC_Addon_Bandittrader = "Поставщик оружия бандитам";
 const string TOPIC_Addon_MissingPeople = "Пропавшие люди";
@@ -108,9 +105,6 @@ const string TOPIC_INNOSEYE = "Глаз Инноса";
 var int TOPIC_END_INNOSEYE;
 
 const string TOPIC_DEMENTOREN = "Ищущие";
-
-var int TOPIC_END_DEMENTOREN;
-
 const string TOPIC_Buster_KillShadowbeasts = "Рога мракорисов для Бастера";
 const string TOPIC_Ulthar_HeileSchreine_PAL = "Оскверненные алтари";
 const string TOPIC_TraitorPedro = "Предатель Педро";
@@ -175,7 +169,7 @@ var int TOPIC_END_KerolothsGeldbeutel;
 
 const string TOPIC_BuchHallenVonIrdorath = "Повелитель драконов";
 const string TOPIC_RosisFlucht = "Бегство Рози";
-const string TOPIC_bringRosiBackToSekob = "Пропавшая жена Секоба";
+const string TOPIC_BringRosiBackToSekob = "Пропавшая жена Секоба";
 const string TOPIC_HealRandolph = "Похмелье";
 const string TOPIC_GeroldGiveFood = "Голод";
 const string TOPIC_HallenVonIrdorath = "Чертоги Ирдората";

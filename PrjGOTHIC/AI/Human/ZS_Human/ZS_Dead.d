@@ -19,7 +19,7 @@ func void ZS_Dead()
 	if(Hlp_IsValidNpc(other))
 	{
 		B_GiveDeathXP(other,self);
-		if((self.aivar[AIV_MM_REAL_ID] == ID_SWAMPDRONE) || (self.aivar[AIV_MM_REAL_ID] == ID_SWAMPZOMBIE))
+		if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPDRONE)
 		{
 			if(Npc_GetDistToNpc(self,other) < 300)
 			{
@@ -39,7 +39,7 @@ func void ZS_Dead()
 			}
 			else if(MIS_ThiefGuild_sucked == FALSE)
 			{
-				if(C_IAmThiefFromCity(self))
+				if(self.aivar[AIV_SubGuild] == GIL_SUB_Thief_City)
 				{
 					CityThieves_KilledByPlayer_Count += 1;
 					if(CityThieves_KilledByPlayer_Count >= 3)
@@ -52,7 +52,7 @@ func void ZS_Dead()
 		if(Npc_IsPlayer(other))
 		{
 			self.aivar[AIV_KilledByPlayer] = TRUE;
-			if(C_DropUnconscious())
+			if(C_DropUnconscious() && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Pedro_DI)))
 			{
 				MadKillerCount += 1;
 			};

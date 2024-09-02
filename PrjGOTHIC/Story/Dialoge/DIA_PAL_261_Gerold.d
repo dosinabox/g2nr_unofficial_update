@@ -75,7 +75,6 @@ func void DIA_Gerold_Jail_Info()
 	AI_Output(other,self,"DIA_Gerold_Jail_15_00");	//Ты пропустишь меня в темницу?
 	AI_Output(self,other,"DIA_Gerold_Jail_12_01");	//Нет. НИКТО не может входить в темницу. Это касается ВСЕХ. Тебя, Милтена и всех остальных.
 	AI_Output(self,other,"DIA_Gerold_Jail_12_02");	//Здесь вам не таверна, куда вы можете входить и выходить когда захотите. Помни об этом.
-//	KnowsAboutGorn = TRUE;
 };
 
 
@@ -365,7 +364,7 @@ func void DIA_Gerold_KAP4_ALLESRUHIG_geben()
 	AI_Output(self,other,"DIA_Gerold_KAP4_ALLESRUHIG_geben_12_04");	//Я думаю, в это время в храме никого нет. Я буду ждать тебя там.
 	AI_Output(self,other,"DIA_Gerold_KAP4_ALLESRUHIG_geben_12_05");	//Но смотри, чтобы это не оказалась черствая корка хлеба или какой-нибудь сырой кусок мяса, ты понял?
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Food");
+	Npc_ExchangeRoutine(self,"FOOD");
 	Log_CreateTopic(TOPIC_GeroldGiveFood,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_GeroldGiveFood,LOG_Running);
 	B_LogEntry(TOPIC_GeroldGiveFood,"Гаронд опять урезал паек. Мне лучше принести Герольду что-нибудь поесть, пока он с голодухи не выкинул какую-нибудь глупость. Я должен встретиться с ним в доме магов, когда все уснут.");
@@ -412,7 +411,7 @@ func void DIA_Gerold_MoreFood()
 		B_GiveInvItems(self,other,ItMi_Gold,450);
 		AI_Output(self,other,"DIA_Gerold_MoreFood_12_02");	//А теперь я лучше пойду, пока никто не увидел нас.
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 		MIS_GeroldGiveFood = LOG_SUCCESS;
 		B_GivePlayerXP(XP_GeroldGiveFood);
 	}
@@ -474,7 +473,7 @@ func void DIA_Gerold_FOOD_nichts()
 	AI_Output(self,other,"DIA_Gerold_FOOD_nichts_12_01");	//Сначала наобещаешь с три короба, а затем хочешь обмануть меня?
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	MIS_GeroldGiveFood = LOG_FAILED;
 	B_GivePlayerXP(50);
 };
@@ -487,7 +486,7 @@ func void DIA_Gerold_FOOD_kaese_nichtmehr()
 	B_GiveInvItems(self,other,ItMi_Gold,50);
 	AI_Output(self,other,"DIA_Gerold_FOOD_kaese_nichtmehr_12_02");	//Хорошо. А теперь мне нужно возвращаться на мой пост.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	MIS_GeroldGiveFood = LOG_OBSOLETE;
 	if(Gerold_FoodCounter < 4)
 	{

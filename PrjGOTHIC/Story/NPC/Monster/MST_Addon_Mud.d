@@ -1,7 +1,7 @@
 
 prototype Mst_Default_Mud(C_Npc)
 {
-	name[0] = "Мад";
+	name[0] = NAME_Addon_Undead_Mud;
 	guild = GIL_ZOMBIE;
 	aivar[AIV_MM_REAL_ID] = ID_ZOMBIE;
 	level = 0;
@@ -36,7 +36,6 @@ func void B_CreateInvItems_Mud()
 
 instance Undead_Mud(Mst_Default_Mud)
 {
-	name[0] = NAME_Addon_Undead_Mud;
 	B_SetVisuals_Mud();
 	B_CreateInvItems_Mud();
 	Npc_SetToFistMode(self);
@@ -45,7 +44,7 @@ instance Undead_Mud(Mst_Default_Mud)
 instance Summoned_Mud(Mst_Default_Mud)
 {
 	name[0] = NAME_Addon_Summoned_Mud;
-	guild = GIL_SummonedZombie;
+	guild = GIL_SUMMONED_ZOMBIE;
 	aivar[AIV_MM_REAL_ID] = ID_SUMMONED_ZOMBIE;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	B_SetAttitude(self,ATT_FRIENDLY);

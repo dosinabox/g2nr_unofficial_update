@@ -1,0 +1,16 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zComboExtraHitFix]
+		// engine specific
+		INT text_oCAniCtrl_Human_comboNr_overflow = ZenDef(0x006279D6, 0x0064CA56, 0x00653C39, 0x006B0579)
+		
+		INT field_oCAniCtrl_Human_flags = 0x1B0
+		// end of engine specific
+		
+		#assembler [text_oCAniCtrl_Human_comboNr_overflow]
+			orgcode
+			mov dl, [esi+$field_oCAniCtrl_Human_flags]
+			and dl, 0xFA ; reset canEnableNextCombo and comboCanHit
+			mov [esi+$field_oCAniCtrl_Human_flags], dl
+		#/assembler
+	#/patch
+#/engine

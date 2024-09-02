@@ -1,0 +1,27 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zDontEquipBestWeapon]
+		// engine specific
+		INT text_oCSpell_EndTimedEffect_call_saveNpc_Enable = ZenDef(0x0047F696, 0x0048A219, 0x00485A4A, 0x0048706A)
+		INT text_oCNpc_Enable_call_IsAPlayer = ZenDef(0x006A210B, 0x006D492F, 0x006E73CD, 0x00745E4D)
+		
+		INT is_player = 0
+		// end of engine specific
+		
+		#assembler [text_oCSpell_EndTimedEffect_call_saveNpc_Enable]
+			mov dword ptr [$is_player], 1
+			orgcode
+			mov dword ptr [$is_player], 0
+		#/assembler
+		
+		#assembler [text_oCNpc_Enable_call_IsAPlayer]
+			orgcode
+			
+			test eax, eax
+			jnz continue
+			
+			mov eax, dword ptr [$is_player]
+			
+		continue:
+		#/assembler
+	#/patch
+#/engine

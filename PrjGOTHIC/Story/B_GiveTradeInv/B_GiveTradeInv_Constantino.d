@@ -13,9 +13,9 @@ func void B_GiveTradeInv_Constantino(var C_Npc slf)
 		CreateInvItems(slf,ItMi_Flask,5);
 		CreateInvItems(slf,ItAt_GoblinBone,1);
 		CreateInvItems(slf,ItAt_Wing,3);
-		CreateInvItems(slf,ITWr_Addon_Health_04,1);
-		CreateInvItems(slf,ITWr_Addon_Mana_04,1);
-		CreateInvItems(slf,ItWr_Astronomy_Mis,1);
+		CreateInvItems(slf,ItWr_Addon_Health_04,1);
+		CreateInvItems(slf,ItWr_Addon_Mana_04,1);
+		CreateInvItems(slf,ItWr_Astronomy_MIS,1);
 		Constantino_ItemsGiven_Chapter_1 = TRUE;
 	};
 	if((Kapitel >= 2) && (Constantino_ItemsGiven_Chapter_2 == FALSE))

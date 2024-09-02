@@ -12,7 +12,7 @@ instance DIA_Xardas_FirstEXIT(C_Info)
 
 func int DIA_Xardas_FirstEXIT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_TODO) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Xardas_TODO))
 	{
 		return TRUE;
 	};
@@ -87,7 +87,6 @@ func int DIA_Xardas_Hello_Condition()
 
 func void DIA_Xardas_Hello_Info()
 {
-	NewLogEnabled = TRUE;
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_00");	//Наконец-то! (улыбается) Я и не думал, что нам с тобой доведется встретиться снова.
 	AI_Output(other,self,"DIA_Addon_Xardas_Hello_15_01");	//Я чувствую себя так, будто три недели пролежал под кучей камней.
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_02");	//Так оно и было. Ты выжил только благодаря магии твоих доспехов.
@@ -151,7 +150,7 @@ instance DIA_Xardas_AWAY(C_Info)
 
 func int DIA_Xardas_AWAY_Condition()
 {
-	if(!Npc_KnowsInfo(other,DIA_Xardas_TODO) && !Npc_KnowsInfo(other,DIA_Xardas_FirstEXIT) && (Kapitel < 3))
+	if(!Npc_KnowsInfo(other,DIA_Xardas_TODO))
 	{
 		return TRUE;
 	};
@@ -179,10 +178,7 @@ instance DIA_Xardas_TODO(C_Info)
 
 func int DIA_Xardas_TODO_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Xardas_TODO_Info()
@@ -195,6 +191,50 @@ func void DIA_Xardas_TODO_Info()
 	AI_Output(self,other,"DIA_Xardas_TODO_14_05");	//Расскажи паладинам о надвигающейся угрозе. Ты должен убедить их предводителя поддержать нас!
 	AI_Output(self,other,"DIA_Addon_Xardas_Add_14_07");	//А после этого ты должен найти артефакт Белиара.
 	AI_Output(self,other,"DIA_Addon_Xardas_Add_14_08");	//Это противоположность Глаза Инноса. Он не должен попасть в руки Зла.
+	if(C_WorldIsFixed())
+	{
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_017");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_018");
+		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_019");
+		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_019");
+		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_021");
+		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_021");
+		Wld_InsertNpc(Keiler,"SOME_NW_WAYPOINT_029");
+		Wld_InsertNpc(Keiler,"SOME_NW_WAYPOINT_029");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_054");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_054");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_061");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_061");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_041");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_041");
+		Wld_InsertNpc(Giant_Rat,"SOME_NW_WAYPOINT_049");
+		Wld_InsertNpc(Giant_Rat,"SOME_NW_WAYPOINT_049");
+		Wld_InsertNpc(Meatbug,"SOME_NW_WAYPOINT_037");
+		Wld_InsertNpc(Meatbug,"SOME_NW_WAYPOINT_037");
+		Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_03");
+	}
+	else
+	{
+		Wld_InsertNpc(Waran,"FP_ROAM_INSEL_02");
+		Wld_InsertNpc(Waran,"FP_ROAM_INSEL_01");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_07");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_08");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_09");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_10");
+		Wld_InsertNpc(Keiler,"FP_ROAM_XARDAS_SECRET_23");
+		Wld_InsertNpc(Keiler,"FP_ROAM_XARDAS_SECRET_23");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_08");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_08");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_15");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_15");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_04");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_04");
+		Wld_InsertNpc(Giant_Rat,"FP_ROAM_XARDAS_SECRET_27");
+		Wld_InsertNpc(Giant_Rat,"FP_ROAM_XARDAS_SECRET_27");
+		Wld_InsertNpc(Meatbug,"FP_ROAM_XARDAS_SECRET_01");
+		Wld_InsertNpc(Meatbug,"FP_ROAM_XARDAS_SECRET_01");
+		Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_02");
+	};
 	Log_CreateTopic(TOPIC_INNOSEYE,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_INNOSEYE,LOG_Running);
 	B_LogEntry(TOPIC_INNOSEYE,"В городе Хоринис расположился отряд паладинов. Они обладают сильным артефактом: Глазом Инноса. Его сила должна помочь нам избавиться от драконов. Я должен убедить паладинов, что нам нужно объединить наши усилия.");
@@ -222,6 +262,8 @@ func int DIA_Addon_Xardas_StonePlate_Condition()
 func void DIA_Addon_Xardas_StonePlate_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Xardas_StonePlate_15_00");	//Что ты можешь сказать об этой каменной табличке?
+	//AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_01");	//Ich habe so eine unten in der Hцhlen vor meinem Turm gefunden.
+	//AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_02");	//Sie sind in einer seltsam alten Sprache geschrieben, die ich in dieser Form noch nirgendwo gesehen habe.
 	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_03");	//Сначала я подозревал, что это магический артефакт, но потом пришел к выводу, что никакой ценности она не имеет.
 	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_04");	//Я не смог полностью расшифровать надписи на табличке, но, похоже, они относятся к истории какой-то древней культуры.
 	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_05");	//Если хочешь, можешь забрать табличку себе. Мне она ни к чему.
@@ -478,7 +520,7 @@ instance DIA_Xardas_Khorinis(C_Info)
 
 func int DIA_Xardas_Khorinis_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_TODO) && (PlayerEnteredCity == FALSE) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Xardas_TODO) && (PlayerEnteredCity == FALSE))
 	{
 		return TRUE;
 	};
@@ -563,9 +605,15 @@ instance DIA_Xardas_ABOUTLESTER(C_Info)
 
 func int DIA_Xardas_ABOUTLESTER_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS) && (Npc_GetDistToWP(Lester,"NW_XARDAS_TOWER_IN1_31") <= 500) && (Kapitel < 3))
+	if((Lester_SentToXardas == TRUE) && (Kapitel < 3))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Lester))
+		{
+			if(Npc_GetDistToWP(Lester,"NW_XARDAS_TOWER_IN1_31") <= 500)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -641,8 +689,9 @@ func void DIA_Xardas_FirstPal_Info()
 		DIA_Common_NoNotYet();
 		B_Xardas_SoLittleTime();
 	};
-	if((LesterMovedToXardas == FALSE) && Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
+	if((LesterMovedToXardas == FALSE) && (Lester_SentToXardas == TRUE))
 	{
+		AI_Teleport(Lester,"NW_XARDAS_TOWER_IN1_14");
 		B_StartOtherRoutine(Lester,"XARDAS");
 		LesterMovedToXardas = TRUE;
 		//сброс диалога, иначе DIA_Xardas_ABOUTLESTER становится доступным и ломает остальные опции
@@ -795,7 +844,7 @@ func void DIA_Xardas_DMTSINDDA_Info()
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_14_04");	//Игра в прятки окончена. Вчера еще никто не знал, какова будет атака врага. Но теперь это становится слишком очевидно.
 	B_LogEntry(TOPIC_INNOSEYE,"Врагу теперь известно, что я ищу Глаз Инноса. Мне нужно побыстрее найти его, пока еще не слишком поздно.");
 	Info_ClearChoices(DIA_Xardas_DMTSINDDA);
-	if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS) && !Npc_KnowsInfo(other,DIA_Xardas_ABOUTLESTER))
+	if((Lester_SentToXardas == TRUE) && !Npc_KnowsInfo(other,DIA_Xardas_ABOUTLESTER))
 	{
 		Info_AddChoice(DIA_Xardas_DMTSINDDA,"Ты уже поговорил с Лестером?",DIA_Xardas_ABOUTLESTER_Info);
 	};
@@ -811,8 +860,12 @@ func void DIA_Xardas_DMTSINDDA_DMT()
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_DMT_14_03");	//Держись от них подальше. Они сильные маги, и они попытаются во что бы то ни стало остановить тебя.
 	if(hero.guild == GIL_KDF)
 	{
-		Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
+		if(MIS_DementorsOrigins == FALSE)
+		{
+			Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
+			MIS_DementorsOrigins = LOG_Running;
+		};
 		B_LogEntry(TOPIC_DEMENTOREN,"Ксардас знает, кто такие эти люди в черных рясах. Похоже, именно Ищущие заправляют всем во вражеских рядах, и они очень опасны.");
 	};
 };
@@ -854,7 +907,7 @@ instance DIA_Xardas_INNOSEYEBROKEN(C_Info)
 
 func int DIA_Xardas_INNOSEYEBROKEN_Condition()
 {
-	if((Kapitel == 3) && Npc_KnowsInfo(other,DIA_Xardas_DMTSINDDA) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((Kapitel == 3) && Npc_KnowsInfo(other,DIA_Xardas_DMTSINDDA) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
 		return TRUE;
 	};
@@ -920,7 +973,7 @@ func void B_XardasGoesToRitual()
 		AI_UseMob(self,"THRONE",-1);
 	};
 	B_LogEntry(TOPIC_INNOSEYE,"Ксардас согласился участвовать в ритуале в Круге Солнца.");
-	Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");
+	Npc_ExchangeRoutine(self,"RITUALINNOSEYEREPAIR");
 	Xardas_GoesToRitualInnosEye = TRUE;
 };
 
@@ -1119,8 +1172,8 @@ func void DIA_Xardas_RitualInnosEyeRepairImportant_Info()
 func void DIA_Xardas_RitualInnosEyeRepairImportant_weiter()
 {
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
-	B_StartOtherRoutine(Vatras,"Start");
+	Npc_ExchangeRoutine(self,"START");
+	B_StartOtherRoutine(Vatras,"START");
 };
 
 

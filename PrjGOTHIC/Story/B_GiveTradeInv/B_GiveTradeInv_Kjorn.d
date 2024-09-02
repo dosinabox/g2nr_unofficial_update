@@ -37,4 +37,3 @@ func void B_GiveTradeInv_Kjorn(var C_Npc slf)
 	};
 };
 
-

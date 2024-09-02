@@ -61,19 +61,19 @@ var int TAL_PermBonus[TAL_Max];
 const int TAL_MinValue[TAL_Max] =
 {
 	0,
-	0,
-	0,
-	0,
-	0
+	0, //NPC_TALENT_1H
+	0, //NPC_TALENT_2H
+	0, //NPC_TALENT_BOW
+	0 //NPC_TALENT_CROSSBOW
 };
 
 const int TAL_MaxValue[TAL_Max] =
 {
 	0,
-	100,
-	100,
-	100,
-	100
+	100, //NPC_TALENT_1H
+	100, //NPC_TALENT_2H
+	999, //NPC_TALENT_BOW
+	999 //NPC_TALENT_CROSSBOW
 };
 
 // teacher over limiting depends on (training / equipment / permanent bonuses)
@@ -144,14 +144,23 @@ func void ValidateNpc(var C_Npc npc)
 
 func void ValidateTalent(var int talent)
 {
-	var string text;
-	if((talent < NPC_TALENT_1H) || (talent > NPC_TALENT_CROSSBOW))
+	if(talent == NPC_TALENT_1H)
 	{
-		text = "Talent System Error: invalid talent (";
-		text = ConcatStrings(text,IntToString(talent));
-		text = ConcatStrings(text,")");
-		Print(text);
+		return;
 	};
+	if(talent == NPC_TALENT_2H)
+	{
+		return;
+	};
+	if(talent == NPC_TALENT_BOW)
+	{
+		return;
+	};
+	if(talent == NPC_TALENT_CROSSBOW)
+	{
+		return;
+	};
+	Print(ConcatStrings("Talent System Error: invalid talent ",IntToString(talent)));
 };
 
 func int GetTalent(var C_Npc npc,var int talent)
@@ -171,6 +180,29 @@ func int GetTalent(var C_Npc npc,var int talent)
 	if(talent == NPC_TALENT_CROSSBOW)
 	{
 		return npc.HitChance[NPC_TALENT_CROSSBOW];
+	};
+	Print(PRINT_WrongParameter);
+	return 0;
+};
+
+// gets maximum in-game value of talent
+func int GetTalentMax(var int talent)
+{
+	if(talent == NPC_TALENT_1H)
+	{
+		return TAL_MaxValue[NPC_TALENT_1H];
+	};
+	if(talent == NPC_TALENT_2H)
+	{
+		return TAL_MaxValue[NPC_TALENT_2H];
+	};
+	if(talent == NPC_TALENT_BOW)
+	{
+		return TAL_MaxValue[NPC_TALENT_BOW];
+	};
+	if(talent == NPC_TALENT_CROSSBOW)
+	{
+		return TAL_MaxValue[NPC_TALENT_CROSSBOW];
 	};
 	Print(PRINT_WrongParameter);
 	return 0;
@@ -254,7 +286,7 @@ func int GetTalentPart_Cost_Hero(var int talent)
 		return 
 			TAL_Training[NPC_TALENT_2H] * TAL_CostFlags_TS_Training + 
 			TAL_TempBonus[NPC_TALENT_2H] * TAL_CostFlags_TS_TempBonus +
-			TAL_PermBonus[NPC_TALENT_2H] * TAL_CostFlags_TS_PermBonus;		
+			TAL_PermBonus[NPC_TALENT_2H] * TAL_CostFlags_TS_PermBonus;
 	};
 	if(talent == NPC_TALENT_BOW)
 	{
@@ -288,7 +320,7 @@ func int GetTalentPart_TeachLimit_Hero(var int talent)
 		return 
 			TAL_Training[NPC_TALENT_2H] * TAL_TeachLimitFlags_TS_Training + 
 			TAL_TempBonus[NPC_TALENT_2H] * TAL_TeachLimitFlags_TS_TempBonus +
-			TAL_PermBonus[NPC_TALENT_2H] * TAL_TeachLimitFlags_TS_PermBonus;		
+			TAL_PermBonus[NPC_TALENT_2H] * TAL_TeachLimitFlags_TS_PermBonus;
 	};
 	if(talent == NPC_TALENT_BOW)
 	{
@@ -305,18 +337,6 @@ func int GetTalentPart_TeachLimit_Hero(var int talent)
 			TAL_PermBonus[NPC_TALENT_CROSSBOW] * TAL_TeachLimitFlags_TS_PermBonus;
 	};
 	return 0;
-};
-
-// check RealHero talent value to start training
-func int TeacherCanTrainTalent(var int talent,var int teacherMin)
-{
-	var int teachPart;
-	teachPart = GetTalentPart_TeachLimit_Hero(talent);
-	if(teachPart >= teacherMin)
-	{
-		return TRUE;
-	};
-	return FALSE;
 };
 
 // get talent value without temp bonuses
@@ -363,6 +383,25 @@ func int VisibleTalentValue(var int talent)
 	};
 	Print(PRINT_WrongParameter);
 	return 0;
+};
+
+// check RealHero talent value to start training
+func int TeacherCanTrainTalent(var int talent,var int teacherMin)
+{
+	var int teachPart;
+	if(IgnoreBonuses == TRUE)
+	{
+		teachPart = RealTalentValue(talent);
+	}
+	else
+	{
+		teachPart = GetTalentPart_TeachLimit_Hero(talent);
+	};
+	if(teachPart >= teacherMin)
+	{
+		return TRUE;
+	};
+	return FALSE;
 };
 
 func void UpdateTalent(var C_Npc npc,var int talent,var int value)
@@ -547,7 +586,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 		}
 		else if(source == TS_PermBonus)
 		{
-			if(TAL_Training[NPC_TALENT_1H] + TAL_PermBonus[NPC_TALENT_1H] < 100)
+			if(TAL_Training[NPC_TALENT_1H] + TAL_PermBonus[NPC_TALENT_1H] < GetTalentMax(NPC_TALENT_1H))
 			{
 				TAL_PermBonus[NPC_TALENT_1H] += change;
 			}
@@ -556,7 +595,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 				return 0;
 			};
 		}
-		else 
+		else
 		{
 			Print(PRINT_Error);
 		};
@@ -579,7 +618,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 		}
 		else if(source == TS_PermBonus)
 		{
-			if(TAL_Training[NPC_TALENT_2H] + TAL_PermBonus[NPC_TALENT_2H] < 100)
+			if(TAL_Training[NPC_TALENT_2H] + TAL_PermBonus[NPC_TALENT_2H] < GetTalentMax(NPC_TALENT_2H))
 			{
 				TAL_PermBonus[NPC_TALENT_2H] += change;
 			}
@@ -588,7 +627,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 				return 0;
 			};
 		}
-		else 
+		else
 		{
 			Print(PRINT_Error);
 		};
@@ -611,7 +650,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 		}
 		else if(source == TS_PermBonus)
 		{
-			if(TAL_Training[NPC_TALENT_BOW] + TAL_PermBonus[NPC_TALENT_BOW] < 100)
+			if(TAL_Training[NPC_TALENT_BOW] + TAL_PermBonus[NPC_TALENT_BOW] < GetTalentMax(NPC_TALENT_BOW))
 			{
 				TAL_PermBonus[NPC_TALENT_BOW] += change;
 			}
@@ -620,7 +659,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 				return 0;
 			};
 		}
-		else 
+		else
 		{
 			Print(PRINT_Error);
 		};
@@ -643,7 +682,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 		}
 		else if(source == TS_PermBonus)
 		{
-			if(TAL_Training[NPC_TALENT_CROSSBOW] + TAL_PermBonus[NPC_TALENT_CROSSBOW] < 100)
+			if(TAL_Training[NPC_TALENT_CROSSBOW] + TAL_PermBonus[NPC_TALENT_CROSSBOW] < GetTalentMax(NPC_TALENT_CROSSBOW))
 			{
 				TAL_PermBonus[NPC_TALENT_CROSSBOW] += change;
 			}
@@ -652,7 +691,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 				return 0;
 			};
 		}
-		else 
+		else
 		{
 			Print(PRINT_Error);
 		};
@@ -685,7 +724,7 @@ func int GetNextTalentBarrier(var int talent,var int value)
 
 // calculates lp-cost of increasing talent by 'change'
 func int GetTalentTrainCost_Impl(var int talent,var int value,var int change)
-{	
+{
 	var int barrier;
 	var int costBefore;
 	var int costAfter;
@@ -695,7 +734,7 @@ func int GetTalentTrainCost_Impl(var int talent,var int value,var int change)
 		return change * LP_Static;
 	};
 	costBefore = GetTalentPointCost(talent,value);
-	if(HonestStatCalculation == FALSE)
+	if(!C_HonestLearnCostEnabled())
 	{
 		return change * costBefore;
 	};
@@ -715,29 +754,6 @@ func int GetTalentTrainCost_Hero(var int talent,var int change)
 func int GetTalentTrainCost(var C_Npc npc,var int talent,var int change)
 {
 	return GetTalentTrainCost_Impl(talent,GetTalent(npc,talent),change);
-};
-
-// gets maximum in-game value of talent
-func int GetTalentMax(var int talent)
-{
-	if(talent == NPC_TALENT_1H)
-	{
-		return TAL_MaxValue[NPC_TALENT_1H];
-	};
-	if(talent == NPC_TALENT_2H)
-	{
-		return TAL_MaxValue[NPC_TALENT_2H];
-	};
-	if(talent == NPC_TALENT_BOW)
-	{
-		return TAL_MaxValue[NPC_TALENT_BOW];
-	};
-	if(talent == NPC_TALENT_CROSSBOW)
-	{
-		return TAL_MaxValue[NPC_TALENT_CROSSBOW];
-	};
-	Print(PRINT_WrongParameter);
-	return 0;
 };
 
 // returns the reason the teacher can't teach talent

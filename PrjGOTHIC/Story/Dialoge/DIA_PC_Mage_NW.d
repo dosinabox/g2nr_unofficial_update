@@ -196,6 +196,27 @@ func void DIA_MiltenNW_Monastery_Info()
 };
 
 
+func void B_MiltenTalkAboutLester()
+{
+	AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_02");	//Лестер исчез, впрочем - и я понятия не имею, где он сейчас ошивается.
+	if(Npc_KnowsInfo(other,DIA_Lester_Hello) || Npc_KnowsInfo(other,DIA_Lester_BACKINTOWN))
+	{
+		if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS) || Npc_KnowsInfo(other,DIA_Lester_BACKINTOWN))
+		{
+			AI_Output(other,self,"DIA_MiltenOW_Hello_Friends_15_03");	//Я встретил Лестера - он теперь с Ксардасом.
+		}
+		else
+		{
+			AI_Output(other,self,"DIA_MiltenOW_Hello_Friends_15_03_add");	//Я встретил Лестера. Он в порядке.
+		};
+		AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_04");	//Ну, хоть какие-то хорошие новости.
+	}
+	else if(Kapitel > 2)
+	{
+		AI_Output(other,self,"Extro_Tempel_15_04");	//Хм, где же он?
+	};
+};
+
 instance DIA_MiltenNW_FourFriends(C_Info)
 {
 	npc = PC_Mage_NW;
@@ -246,23 +267,7 @@ func void DIA_MiltenNW_FourFriends_Info()
 	AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_09");	//Но я подозреваю, что он сейчас в городе. Ты знаешь его - он всегда там, где можно поживиться.
 	if(!Npc_KnowsInfo(other,DIA_MiltenOW_Hello))
 	{
-		AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_02");	//Лестер исчез, впрочем - и я понятия не имею, где он сейчас ошивается.
-		if(Npc_KnowsInfo(other,DIA_Lester_Hello) || Npc_KnowsInfo(other,DIA_Lester_BACKINTOWN))
-		{
-			if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS) || Npc_KnowsInfo(other,DIA_Lester_BACKINTOWN))
-			{
-				AI_Output(other,self,"DIA_MiltenOW_Hello_Friends_15_03");	//Я встретил Лестера - он теперь с Ксардасом.
-			}
-			else
-			{
-				AI_Output(other,self,"DIA_MiltenOW_Hello_Friends_15_03_add");	//Я встретил Лестера. Он в порядке.
-			};
-			AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_04");	//Ну, хоть какие-то хорошие новости.
-		}
-		else
-		{
-			AI_Output(other,self,"Extro_Tempel_15_04");	//Хм, где же он?
-		};
+		B_MiltenTalkAboutLester();
 	};
 };
 
@@ -656,7 +661,7 @@ func void DIA_MiltenNW_LeaveMyShip_Info()
 	AI_Output(self,other,"DIA_MiltenNW_LeaveMyShip_03_01");	//Ты лучше знаешь, кто тебе нужен. Если передумаешь, я буду ждать тебя в монастыре.
 	MiltenNW_IsOnBoard = LOG_OBSOLETE;
 	Crewmember_Count -= 1;
-	Npc_ExchangeRoutine(self,"ShipOff");
+	Npc_ExchangeRoutine(self,"SHIPOFF");
 };
 
 
@@ -766,8 +771,8 @@ func void B_BuildLearnDialog_Milten_NW()
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_04");	//Я посмотрю, что можно сделать.
 		Info_ClearChoices(DIA_MiltenNW_Mana);
 		Info_AddChoice(DIA_MiltenNW_Mana,Dialog_Back,DIA_MiltenNW_Mana_BACK);
-		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_MiltenNW_Mana_1);
-		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_MiltenNW_Mana_5);
+		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnAttributeString(ATR_MANA_MAX,1),DIA_MiltenNW_Mana_1);
+		Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnAttributeString(ATR_MANA_MAX,5),DIA_MiltenNW_Mana_5);
 	};
 };
 

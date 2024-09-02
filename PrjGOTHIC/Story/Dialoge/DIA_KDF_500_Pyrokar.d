@@ -34,7 +34,7 @@ instance DIA_Pyrokar_WELCOME(C_Info)
 
 func int DIA_Pyrokar_WELCOME_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Knows_Fire_Contest == FALSE) && (hero.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -167,11 +167,11 @@ instance DIA_Pyrokar_GOAWAY(C_Info)
 
 func int DIA_Pyrokar_GOAWAY_Condition()
 {
-	if(!Npc_KnowsInfo(hero,DIA_Addon_Pyrokar_MissingPeople) && (SC_HearedAboutMissingPeople == TRUE))
+	if(!Npc_KnowsInfo(other,DIA_Addon_Pyrokar_MissingPeople) && (SC_HearedAboutMissingPeople == TRUE))
 	{
 		return FALSE;
 	};
-	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(hero,DIA_Pyrokar_Hagen) && Npc_KnowsInfo(hero,DIA_Pyrokar_Auge) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Pyrokar_Hagen) && Npc_KnowsInfo(other,DIA_Pyrokar_Auge) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -214,7 +214,6 @@ func void DIA_Pyrokar_FIRE_Info()
 	AI_Output(other,self,"DIA_Pyrokar_FIRE_15_06");	//Я настаиваю на прохождении Испытания Огнем.
 	AI_Output(self,other,"DIA_Pyrokar_FIRE_11_07");	//В таком случае - так тому и быть. Когда ты будешь готов, каждый из магов Высшего Совета даст тебе задание, которое ты должен будешь выполнить.
 	AI_Output(self,other,"DIA_Pyrokar_FIRE_11_08");	//Да сжалится Иннос над твоей душой.
-//	KDF_Aufnahme = LOG_Running;
 	B_LogEntry(TOPIC_FireContest,"Я потребовал у Пирокара пройти Испытание Огнем. Теперь я должен выполнить три задания Высшего Совета.");
 };
 
@@ -232,7 +231,7 @@ instance DIA_Pyrokar_TEST(C_Info)
 
 func int DIA_Pyrokar_TEST_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Pyrokar_FIRE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -261,6 +260,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Igaraz.aivar[AIV_IgnoresArmor] = TRUE;
 		Igaraz.aivar[AIV_IgnoresFakeGuild] = TRUE;
 		Igaraz.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		Igaraz.aivar[AIV_MM_FollowTime] = 120;
 		CreateInvItems(Igaraz,ItKe_MagicChest,1);
 		AI_Teleport(Igaraz,"NW_TAVERNE_BIGFARM_05");
 		B_StartOtherRoutine(Igaraz,"CONTEST");
@@ -273,6 +273,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Agon.aivar[AIV_IgnoresArmor] = TRUE;
 		Agon.aivar[AIV_IgnoresFakeGuild] = TRUE;
 		Agon.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		Agon.aivar[AIV_MM_FollowTime] = 120;
 		CreateInvItems(Agon,ItKe_MagicChest,1);
 		AI_Teleport(Agon,"NW_MAGECAVE_RUNE");
 		B_StartOtherRoutine(Agon,"GOLEMDEAD");
@@ -284,6 +285,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Ulf.aivar[AIV_IgnoresArmor] = TRUE;
 		Ulf.aivar[AIV_IgnoresFakeGuild] = TRUE;
 		Ulf.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		Ulf.aivar[AIV_MM_FollowTime] = 120;
 		B_SetGuild(Ulf,GIL_NOV);
 		CreateInvItems(Ulf,ItKe_MagicChest,1);
 		AI_Teleport(Ulf,"NW_TROLLAREA_PATH_42");
@@ -296,7 +298,7 @@ func void DIA_Pyrokar_TEST_Info()
 
 func int C_FireContestRuneFound()
 {
-	if(C_WorldIsFixed(NEWWORLD_ZEN))
+	if(C_WorldIsFixed())
 	{
 		if(!Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
 		{
@@ -365,7 +367,7 @@ instance DIA_Pyrokar_SUCCESS(C_Info)
 
 func int DIA_Pyrokar_SUCCESS_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_Running) && (hero.guild == GIL_NOV))
+	if((MIS_Schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV))
 	{
 		if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
 		{
@@ -467,7 +469,7 @@ instance DIA_Pyrokar_OATH(C_Info)
 
 func int DIA_Pyrokar_OATH_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pyrokar_MAGICAN) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Pyrokar_MAGICAN) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -517,13 +519,12 @@ func void DIA_Pyrokar_OATH_Info()
 	Snd_Play("LEVELUP");
 	B_StartOtherRoutine(Lothar,"START");
 	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
-//	KDF_Aufnahme = LOG_SUCCESS;
 	B_CancelBengarMilitiaProblem();
 	B_GivePlayerXP(XP_BecomeMage);
 	if(!Npc_IsDead(Gorax))
 	{
 		CreateInvItems(Gorax,ItMi_RuneBlank,2);
-		CreateInvItems(Gorax,ItBE_Addon_KDF_01,1);
+		CreateInvItems(Gorax,ItBe_Addon_KDF_01,1);
 		CreateInvItems(Gorax,ItWr_Map_Shrine_MIS,1);
 	};
 	if(!Npc_IsDead(Karras))
@@ -538,11 +539,12 @@ func void DIA_Pyrokar_OATH_Info()
 		}
 		else
 		{
-			B_StartOtherRoutine(Igaraz,"Start");
+			B_StartOtherRoutine(Igaraz,"START");
 			Igaraz.aivar[AIV_DropDeadAndKill] = FALSE;
 			Igaraz.aivar[AIV_NewsOverride] = FALSE;
 			Igaraz.aivar[AIV_IgnoresArmor] = FALSE;
 			Igaraz.aivar[AIV_IgnoresFakeGuild] = FALSE;
+			Igaraz.aivar[AIV_MM_FollowTime] = NPC_TIME_FOLLOW;
 		};
 	};
 	if(!Npc_IsDead(Ulf))
@@ -553,11 +555,12 @@ func void DIA_Pyrokar_OATH_Info()
 		}
 		else
 		{
-			B_StartOtherRoutine(Ulf,"BackToMonastery");
+			B_StartOtherRoutine(Ulf,"BACKTOMONASTERY");
 			Ulf.aivar[AIV_DropDeadAndKill] = FALSE;
 			Ulf.aivar[AIV_NewsOverride] = FALSE;
 			Ulf.aivar[AIV_IgnoresArmor] = FALSE;
 			Ulf.aivar[AIV_IgnoresFakeGuild] = FALSE;
+			Ulf.aivar[AIV_MM_FollowTime] = NPC_TIME_FOLLOW;
 		};
 	};
 	if(!Npc_IsDead(Agon))
@@ -569,12 +572,13 @@ func void DIA_Pyrokar_OATH_Info()
 		}
 		else
 		{
-			B_StartOtherRoutine(Nov607,"Start");
-			B_StartOtherRoutine(Agon,"Start");
+			B_StartOtherRoutine(Nov607,"START");
+			B_StartOtherRoutine(Agon,"START");
 			Agon.aivar[AIV_DropDeadAndKill] = FALSE;
 			Agon.aivar[AIV_NewsOverride] = FALSE;
 			Agon.aivar[AIV_IgnoresArmor] = FALSE;
 			Agon.aivar[AIV_IgnoresFakeGuild] = FALSE;
+			Agon.aivar[AIV_MM_FollowTime] = NPC_TIME_FOLLOW;
 		};
 	};
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_08");	//Теперь, когда ты был принят в наши ряды, ты можешь поговорить с лордом Хагеном, главнокомандующим паладинов.
@@ -750,11 +754,11 @@ func void DIA_Pyrokar_Wunsch_Babo()
 	};
 	if((MIS_Babo_Training == LOG_SUCCESS) && !Npc_IsDead(Sergio))
 	{
-		B_StartOtherRoutine(Babo,"GardenAndTrain");
+		B_StartOtherRoutine(Babo,"GARDENANDTRAIN");
 	}
 	else
 	{
-		B_StartOtherRoutine(Babo,"Garden");
+		B_StartOtherRoutine(Babo,"GARDEN");
 	};
 	MIS_HelpBabo = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HelpBabo);
@@ -963,7 +967,7 @@ instance DIA_Pyrokar_Parlan(C_Info)
 
 func int DIA_Pyrokar_Parlan_Condition()
 {
-	if(((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV) || (hero.guild == GIL_PAL)) && (Parlan_Sends == TRUE))
+	if(((other.guild == GIL_KDF) || (other.guild == GIL_NOV) || (other.guild == GIL_PAL)) && (Parlan_Sends == TRUE))
 	{
 		return TRUE;
 	};
@@ -989,8 +993,8 @@ func void B_BuildLearnDialog_Pyrokar()
 	{
 		Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
 		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
-		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_Pyrokar_TEACH_MANA_1);
-		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_Pyrokar_TEACH_MANA_5);
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnAttributeString(ATR_MANA_MAX,1),DIA_Pyrokar_TEACH_MANA_1);
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnAttributeString(ATR_MANA_MAX,5),DIA_Pyrokar_TEACH_MANA_5);
 	};
 };
 
@@ -1007,7 +1011,7 @@ instance DIA_Pyrokar_TEACH_MANA(C_Info)
 
 func int DIA_Pyrokar_TEACH_MANA_Condition()
 {
-	if(((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV) || (hero.guild == GIL_PAL)) && Npc_KnowsInfo(hero,DIA_Pyrokar_Parlan) && (Pyrokar_TeachMANA_NoPerm == FALSE))
+	if(((other.guild == GIL_KDF) || (other.guild == GIL_NOV) || (other.guild == GIL_PAL)) && Npc_KnowsInfo(other,DIA_Pyrokar_Parlan) && (Pyrokar_TeachMANA_NoPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -1090,11 +1094,11 @@ func int DIA_Pyrokar_PERM_Condition()
 {
 	if(Kapitel >= 2)
 	{
-		if(hero.guild == GIL_KDF)
+		if(other.guild == GIL_KDF)
 		{
 			return TRUE;
 		};
-		if(hero.guild == GIL_NOV)
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -1121,7 +1125,7 @@ instance DIA_Pyrokar_PERM_nonKDF(C_Info)
 
 func int DIA_Pyrokar_PERM_nonKDF_Condition()
 {
-	if((Kapitel >= 2) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV))
+	if((Kapitel >= 2) && (other.guild != GIL_KDF) && (other.guild != GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -1165,8 +1169,12 @@ func void DIA_Pyrokar_BACKFROMOW_Info()
 	AI_Output(self,other,"DIA_Pyrokar_BACKFROMOW_11_08");	//Будучи одержимым, ты больше не будешь самим собой. Только здесь, в монастыре сможешь ты найти помощь. Так что будь осторожен.
 	if(hero.guild == GIL_KDF)
 	{
-		Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
+		if(MIS_DementorsOrigins == FALSE)
+		{
+			Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
+			MIS_DementorsOrigins = LOG_Running;
+		};
 		B_LogEntry(TOPIC_DEMENTOREN,"Пирокар рассказал мне об Ищущих, людях в черных рясах. Это приспешники Белиара. Он предупредил меня, что они могут сделать меня одержимым. Если это произойдет, я должен немедленно возвращаться в монастырь.");
 		if(!Npc_IsDead(Karras))
 		{
@@ -1223,7 +1231,7 @@ func void DIA_Pyrokar_GIVEINNOSEYE_Info()
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_11_03");	//Глаз Инноса был нагло украден из этих священных стен.
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
-		B_StartOtherRoutine(Gorax,"Wait");
+		B_StartOtherRoutine(Gorax,"WAIT");
 	};
 	if((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV))
 	{
@@ -1252,7 +1260,6 @@ func void DIA_Pyrokar_GIVEINNOSEYE_wer()
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_06");	//Враг овладел им, нанеся тем самым ужасное поражение всем нам.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_07");	//Педро пробил себе дорогу мечом в наши самые священные покои и украл Глаз.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_08");	//Я боюсь, что он просто слишком много времени проводил наедине, за воротами и защитными стенами монастыря, открытый для опасностей всякого рода.
-//	Pedro.flags = 0;
 	Pedro_Traitor = TRUE;
 	B_LogEntries(TOPIC_INNOSEYE,"Невероятно. Хотя я ожидал чего-то подобного. Я опоздал, эти тупицы из монастыря позволили какому-то послушнику украсть Глаз, и теперь мне придется гнаться за предателем Педро и надеяться, что он еще не продал Глаз кому-нибудь.");
 	Log_CreateTopic(TOPIC_TraitorPedro,LOG_MISSION);
@@ -1301,9 +1308,9 @@ instance DIA_Pyrokar_FOUNDINNOSEYE(C_Info)
 
 func int DIA_Pyrokar_FOUNDINNOSEYE_Condition()
 {
-	if((Kapitel == 3) && (MIS_NovizenChase == LOG_Running) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((Kapitel == 3) && (MIS_NovizenChase == LOG_Running) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
-		if(Npc_HasItems(hero,ItMi_InnosEye_Broken_Mis))
+		if(Npc_HasItems(hero,ItMi_InnosEye_Broken_MIS))
 		{
 			DIA_Pyrokar_FOUNDINNOSEYE.description = "Я нашел Глаз Инноса. Он поврежден.";
 		}
@@ -1317,7 +1324,7 @@ func int DIA_Pyrokar_FOUNDINNOSEYE_Condition()
 
 func void DIA_Pyrokar_FOUNDINNOSEYE_Info()
 {
-	if(Npc_HasItems(hero,ItMi_InnosEye_Broken_Mis))
+	if(Npc_HasItems(hero,ItMi_InnosEye_Broken_MIS))
 	{
 		AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_15_00");	//Я нашел Глаз Инноса. Он поврежден.
 	}
@@ -1458,7 +1465,7 @@ instance DIA_Pyrokar_BUCHZURUECK(C_Info)
 
 func int DIA_Pyrokar_BUCHZURUECK_Condition()
 {
-	if(Npc_HasItems(other,ItWr_XardasBookForPyrokar_Mis) && (Kapitel == 3))
+	if(Npc_HasItems(other,ItWr_XardasBookForPyrokar_MIS) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -1469,8 +1476,8 @@ func void DIA_Pyrokar_BUCHZURUECK_Info()
 	AI_Output(other,self,"DIA_Pyrokar_BUCHZURUECK_15_00");	//Я принес эту книгу от Ксардаса.
 	AI_Output(other,self,"DIA_Pyrokar_BUCHZURUECK_15_01");	//Это знак его доверия.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_02");	//Покажи.
-	B_GiveInvItems(other,self,ItWr_XardasBookForPyrokar_Mis,1);
-	Npc_RemoveInvItem(self,ItWr_XardasBookForPyrokar_Mis);
+	B_GiveInvItems(other,self,ItWr_XardasBookForPyrokar_MIS,1);
+	Npc_RemoveInvItem(self,ItWr_XardasBookForPyrokar_MIS);
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_03");	//(пораженно) Но это невероятно! Ты имеешь хоть малейшее представление о том, что ты только что дал мне?
 	AI_Output(other,self,"DIA_Pyrokar_BUCHZURUECK_15_04");	//Ээээ. Нет.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_05");	//(сердито) Это древний, давно потерянный том из давно прошедших дней.
@@ -1484,7 +1491,7 @@ func void DIA_Pyrokar_BUCHZURUECK_Info()
 	{
 		AI_UseMob(self,"THRONE",-1);
 	};
-	Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");
+	Npc_ExchangeRoutine(self,"RITUALINNOSEYEREPAIR");
 	B_LogEntry(TOPIC_INNOSEYE,"Пирокар наконец согласился отправиться к Кругу Солнца.");
 	Pyrokar_GoesToRitualInnosEye = TRUE;
 };
@@ -1596,7 +1603,7 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	MIS_ReadyforChapter4 = TRUE;
 	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 
@@ -1674,11 +1681,11 @@ func int DIA_Pyrokar_SCOBSESSED_KDF_Condition()
 {
 	if(SC_IsObsessed == TRUE)
 	{
-		if(hero.guild == GIL_KDF)
+		if(other.guild == GIL_KDF)
 		{
 			return TRUE;
 		};
-		if(hero.guild == GIL_NOV)
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -1689,7 +1696,7 @@ func int DIA_Pyrokar_SCOBSESSED_KDF_Condition()
 func void DIA_Pyrokar_SCOBSESSED_KDF_Info()
 {
 	AI_Output(other,self,"DIA_Pyrokar_SCOBSESSED_15_00");	//Исцели меня, Мастер, ибо я одержим.
-	if(((Got_HealObsession_Day <= (Wld_GetDay() - 2)) || (Got_HealObsession_Day == 0)) && !Npc_HasItems(other,ItPo_HealObsession_MIS))
+	if((C_DaysSinceEvent(Got_HealObsession_Day,2) || (Got_HealObsession_Day == 0)) && !Npc_HasItems(other,ItPo_HealObsession_MIS))
 	{
 		AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_01");	//Да будет так! Возьми это зелье. Оно избавит тебя от ночных кошмаров.
 		AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_02");	//Да избавит тебя Иннос от этой напасти.
@@ -1721,7 +1728,7 @@ instance DIA_Pyrokar_SCOBSESSED(C_Info)
 
 func int DIA_Pyrokar_SCOBSESSED_Condition()
 {
-	if((SC_IsObsessed == TRUE) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV))
+	if((SC_IsObsessed == TRUE) && (other.guild != GIL_KDF) && (other.guild != GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -1731,7 +1738,7 @@ func int DIA_Pyrokar_SCOBSESSED_Condition()
 func void DIA_Pyrokar_SCOBSESSED_Info()
 {
 	AI_Output(other,self,"DIA_Pyrokar_SCOBSESSED_15_05");	//Я думаю, я одержим. Ты можешь исцелить меня?
-	if(((Got_HealObsession_Day <= (Wld_GetDay() - 2)) || (Got_HealObsession_Day == 0)) && !Npc_HasItems(other,ItPo_HealObsession_MIS))
+	if((C_DaysSinceEvent(Got_HealObsession_Day,2) || (Got_HealObsession_Day == 0)) && !Npc_HasItems(other,ItPo_HealObsession_MIS))
 	{
 		AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_06");	//При условии проявления твоего уважения к этому монастырю, сын мой. 300 золотых.
 		Info_ClearChoices(DIA_Pyrokar_SCOBSESSED);
@@ -1784,7 +1791,7 @@ instance DIA_Pyrokar_AlmanachBringen(C_Info)
 
 func int DIA_Pyrokar_AlmanachBringen_Condition()
 {
-	if((Kapitel >= 3) && Npc_HasItems(other,ITWR_DementorObsessionBook_MIS) && (hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pyrokar_BUCHDERBESSENEN))
+	if((Kapitel >= 3) && Npc_HasItems(other,ITWR_DementorObsessionBook_MIS) && (other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pyrokar_BUCHDERBESSENEN))
 	{
 		return TRUE;
 	};
@@ -2204,8 +2211,8 @@ func void DIA_Pyrokar_AmulettofDeath_CanHaveIt()
 	AI_Output(other,self,"DIA_Pyrokar_AmulettofDeath_CanHaveIt_15_04");	//Да, конечно.
 	AI_Output(self,other,"DIA_Pyrokar_AmulettofDeath_CanHaveIt_11_05");	//Я не хочу, чтобы мне потом пришлось выкупать его назад у какого-нибудь торговца.
 	AI_Output(self,other,"DIA_Pyrokar_AmulettofDeath_CanHaveIt_11_06");	//Используй его разумно, и да хранит тебя Иннос.
-	CreateInvItems(self,ItAm_AmulettOfDeath_Mis,1);
-	B_GiveInvItems(self,other,ItAm_AmulettOfDeath_Mis,1);
+	CreateInvItems(self,ItAm_AmulettOfDeath_MIS,1);
+	B_GiveInvItems(self,other,ItAm_AmulettOfDeath_MIS,1);
 	Pyro_Gives_Aura = TRUE;
 };
 
@@ -2230,7 +2237,7 @@ instance DIA_Pyrokar_PotionofDeath(C_Info)
 
 func int DIA_Pyrokar_PotionofDeath_Condition()
 {
-	if(Npc_HasItems(other,ItPo_PotionOfDeath_01_Mis))
+	if(Npc_HasItems(other,ItPo_PotionOfDeath_01_MIS))
 	{
 		return TRUE;
 	};
@@ -2291,7 +2298,7 @@ func void DIA_Pyrokar_PotionofDeath_Weapon()
 	AI_Output(other,self,"DIA_Pyrokar_PotionofDeath_Weapon_15_04");	//Понятно.
 	AI_Output(self,other,"DIA_Pyrokar_PotionofDeath_Weapon_11_05");	//Но эти слезы могут также приносить страдания и смерть. Только члены нашего ордена могут пить их.
 	AI_Output(self,other,"DIA_Pyrokar_PotionofDeath_Weapon_11_06");	//Любого другого - даже паладина нашего Владыки - ожидает мучительная смерть.
-	Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_01_Mis,1);
-	CreateInvItems(hero,ItPo_PotionOfDeath_02_Mis,1);
+	Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_01_MIS,1);
+	CreateInvItems(hero,ItPo_PotionOfDeath_02_MIS,1);
 };
 

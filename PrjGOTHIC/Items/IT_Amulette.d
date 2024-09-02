@@ -482,7 +482,7 @@ func void UnEquip_ItAm_Mana_Regen()
 };
 
 
-instance ItAm_Run(C_Item)
+instance ItAm_Speed(C_Item)
 {
 	name = NAME_Amulett;
 	mainflag = ITEM_KAT_MAGIC;
@@ -491,8 +491,8 @@ instance ItAm_Run(C_Item)
 	visual = "ItMi_GoldNecklace.3DS";
 	visual_skin = 0;
 	material = MAT_METAL;
-	on_equip = Equip_ItAm_Run;
-	on_unequip = UnEquip_ItAm_Run;
+	on_equip = Equip_ItAm_Speed;
+	on_unequip = UnEquip_ItAm_Speed;
 	description = "Амулет проворства";
 	text[2] = "Повышает скорость.";
 	text[5] = NAME_Value;
@@ -501,12 +501,12 @@ instance ItAm_Run(C_Item)
 };
 
 
-func void Equip_ItAm_Run()
+func void Equip_ItAm_Speed()
 {
 	Mdl_ApplyOverlayMds(self,"Humans_Sprint.mds");
 };
 
-func void UnEquip_ItAm_Run()
+func void UnEquip_ItAm_Speed()
 {
 	Mdl_RemoveOverlayMDS(self,"Humans_Sprint.mds");
 };
@@ -542,5 +542,4 @@ func void UnEquip_ItAm_Fall()
 {
 	self.protection[PROT_FALL] = 0;
 };
-
 

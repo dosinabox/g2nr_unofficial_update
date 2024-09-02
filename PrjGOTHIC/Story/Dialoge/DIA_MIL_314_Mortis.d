@@ -198,8 +198,8 @@ func void B_BuildLearnDialog_Mortis()
 	{
 		Info_ClearChoices(DIA_Mortis_Teach);
 		Info_AddChoice(DIA_Mortis_Teach,Dialog_Back,DIA_Mortis_Teach_BACK);
-		Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(ATR_STRENGTH,1)),DIA_Mortis_Teach_1);
-		Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(ATR_STRENGTH,5)),DIA_Mortis_Teach_5);
+		Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_Mortis_Teach_1);
+		Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_Mortis_Teach_5);
 	};
 };
 
@@ -262,7 +262,7 @@ instance DIA_Mortis_RepairNecklace(C_Info)
 
 func int DIA_Mortis_RepairNecklace_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
 		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 		{

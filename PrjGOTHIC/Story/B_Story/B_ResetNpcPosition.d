@@ -59,8 +59,22 @@ func void B_ResetLares()
 	{
 		LaresGuide_OrnamentForest = 0;
 	};
+	Lares.aivar[AIV_PARTYMEMBER] = FALSE;
 	B_StartOtherRoutine(Lares,"START");
-	B_StartOtherRoutine(BridgeBandit,"Intercept");
+	B_StartOtherRoutine(BridgeBandit,"INTERCEPT");
+};
+
+func void B_ResetWolfSLDs()
+{
+	if(MIS_BengarsHelpingSLD == LOG_SUCCESS)
+	{
+		if(Npc_IsDead(SLD_Wolf))
+		{
+			B_StartOtherRoutine(SLD_815_Soeldner,"START");
+			B_StartOtherRoutine(SLD_817_Soeldner,"START");
+			MIS_BengarsHelpingSLD = LOG_OBSOLETE;
+		};
+	};
 };
 
 func void B_ResetHenryPirates()

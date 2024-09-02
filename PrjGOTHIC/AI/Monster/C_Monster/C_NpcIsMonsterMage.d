@@ -17,6 +17,10 @@ func int C_NpcIsMonsterMage(var C_Npc slf)
 	{
 		return TRUE;
 	};
+	if(slf.aivar[AIV_MM_REAL_ID] == ID_ORCSHAMAN)
+	{
+		return TRUE;
+	};
 	return FALSE;
 };
 

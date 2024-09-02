@@ -35,6 +35,27 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Addon_Baltram_Paket4Skip = LOG_FAILED;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Hanna))
+		{
+			if(MIS_HannaRetrieveLetter == LOG_Running)
+			{
+				MIS_HannaRetrieveLetter = LOG_FAILED;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Schiffswache_212))
+		{
+			if(Npc_IsDead(Schiffswache_213))
+			{
+				MIS_ShipIsFree = TRUE;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Schiffswache_213))
+		{
+			if(Npc_IsDead(Schiffswache_212))
+			{
+				MIS_ShipIsFree = TRUE;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fester))
 		{
 			if(MIS_Fester_KillBugs == LOG_Running)
@@ -49,7 +70,7 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Talbin_Runs = LOG_FAILED;
 			};
 		}
-		else if(C_IAmThiefFromSewer(slf))
+		else if(slf.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer)
 		{
 			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cassia))
 			{
@@ -70,6 +91,17 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				};
 			};
 			DG_gefunden = TRUE;
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Gorax))
+		{
+			if(MIS_GoraxEssen == LOG_Running)
+			{
+				MIS_GoraxEssen = LOG_FAILED;
+			};
+			if(MIS_GoraxWein == LOG_Running)
+			{
+				MIS_GoraxWein = LOG_FAILED;
+			};
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Isgaroth))
 		{
@@ -125,6 +157,20 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Gaan_Snapper = LOG_OBSOLETE;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Balthasar))
+		{
+			if(MIS_Balthasar_BengarsWeide == LOG_Running)
+			{
+				MIS_Balthasar_BengarsWeide = LOG_FAILED;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rod))
+		{
+			if(MIS_RodSword == LOG_Running)
+			{
+				MIS_RodSword = LOG_FAILED;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Buster))
 		{
 			if(MIS_Buster_KillShadowbeasts_DJG == LOG_Running)
@@ -148,7 +194,18 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 			};
 			Elvrich_IsDead = TRUE;
 		}
-		else if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Malak)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bengar)))
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bengar))
+		{
+			if(MIS_Balthasar_BengarsWeide == LOG_Running)
+			{
+				MIS_Balthasar_BengarsWeide = LOG_FAILED;
+			};
+			if(MIS_GetMalakBack == LOG_Running)
+			{
+				MIS_GetMalakBack = LOG_FAILED;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Malak))
 		{
 			if(MIS_GetMalakBack == LOG_Running)
 			{
@@ -157,9 +214,45 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(SLD_Wolf))
 		{
+			if(MIS_Wolf_BringCrawlerPlates == LOG_Running)
+			{
+				MIS_Wolf_BringCrawlerPlates = LOG_FAILED;
+			};
 			if(MIS_BengarsHelpingSLD == LOG_Running)
 			{
 				MIS_BengarsHelpingSLD = LOG_FAILED;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Pepe))
+		{
+			if(MIS_Pepe_KillWolves == LOG_Running)
+			{
+				MIS_Pepe_KillWolves = LOG_FAILED;
+			};
+			if(MIS_Pepe_KickBullco == LOG_Running)
+			{
+				MIS_Pepe_KickBullco = LOG_FAILED;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Skip_NW))
+		{
+			if((MIS_Addon_Baltram_Paket4Skip == LOG_Running) && (Skip_Rum4Baltram == FALSE))
+			{
+				MIS_Addon_Baltram_Paket4Skip = LOG_FAILED;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Dar))
+		{
+			if(MIS_Dar_BringOrcEliteRing == LOG_Running)
+			{
+				MIS_Dar_BringOrcEliteRing = LOG_FAILED;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cavalorn))
+		{
+			if(MIS_Addon_Cavalorn_TheHut == LOG_Running)
+			{
+				MIS_Addon_Cavalorn_TheHut = LOG_FAILED;
 			};
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cipher))
@@ -337,21 +430,18 @@ func void B_CheckDeadMissionAnimals(var C_Npc slf)
 	}
 	else if(CurrentLevel == ADDONWORLD_ZEN)
 	{
-		if(slf.aivar[AIV_MM_REAL_ID] == ID_RAZOR)
+		if(C_IsNpc(slf,CanyonRazor))
 		{
-			if(C_IAmCanyonRazor(slf))
+			CanyonRazorBodyCount += 1;
+			if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
 			{
-				CanyonRazorBodyCount += 1;
-				if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
-				{
-					B_CountCanyonRazor();
-				};
+				B_CountCanyonRazor();
 			};
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(GoldMinecrawler))
+		else if(C_IsNpc(slf,GoldMinecrawler))
 		{
 			Minecrawler_Killed += 1;
-			if((Minecrawler_Killed > 9) && (Bloodwyn_Spawn == FALSE) && !Npc_IsDead(Bloodwyn))
+			if((Minecrawler_Killed >= 10) && (Bloodwyn_Spawn == FALSE) && !Npc_IsDead(Bloodwyn))
 			{
 				AI_Teleport(Bloodwyn,"ADW_MINE_TO_MC_03");
 				B_StartOtherRoutine(Bloodwyn,"MINE");

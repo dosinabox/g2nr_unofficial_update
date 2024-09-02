@@ -111,7 +111,6 @@ func void DIA_Addon_Vatras_LastWarning_Reue()
 	AI_Output(self,other,"DIA_Addon_Vatras_LastWarning_Reue_ADD_05_00");	//Я буду молиться за тебя и просить богов, чтобы они вернули тебе рассудок.
 	AI_Output(self,other,"DIA_Addon_Vatras_LastWarning_Reue_ADD_05_01");	//Горе тебе, если я услышу хотя бы об одном убийстве, к которому ты приложил руку.
 	Info_ClearChoices(DIA_Addon_Vatras_LastWarning);
-	VatrasMadKillerCount = MadKillerCount;
 };
 
 
@@ -236,17 +235,18 @@ func void DIA_Addon_Vatras_Cavalorn_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Vatras_Cavalorn_15_00");	//У меня для тебя письмо.
 	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_01");	//Для меня?
+	MIS_Addon_Cavalorn_Letter2Vatras = LOG_SUCCESS;
 	if(SaturasFirstMessageOpened == FALSE)
 	{
-		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras);
 		B_GiveInvItems(other,self,ItWr_SaturasFirstMessage_Addon_Sealed,1);
 		Npc_RemoveInvItem(self,ItWr_SaturasFirstMessage_Addon_Sealed);
-		CreateInvItems(self,ItWr_SaturasFirstMessage_Addon,1);
+		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras);
 	}
 	else
 	{
-		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras / 4);
 		B_GiveInvItems(other,self,ItWr_SaturasFirstMessage_Addon,1);
+		Npc_RemoveInvItem(self,ItWr_SaturasFirstMessage_Addon);
+		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras / 4);
 		AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_02");	//Да, но... оно вскрыто. Я надеюсь, оно не попало в чужие руки?
 	};
 	B_ReadFakeItem(self,other,Fakescroll,1);
@@ -258,7 +258,6 @@ func void DIA_Addon_Vatras_Cavalorn_Info()
 	{
 		Info_AddChoice(DIA_Addon_Vatras_Cavalorn,"Я получил его у Кавалорна, охотника.",DIA_Addon_Vatras_Cavalorn_Cavalorn);
 	};
-	MIS_Addon_Cavalorn_Letter2Vatras = LOG_SUCCESS;
 };
 
 func void DIA_Addon_Vatras_Cavalorn_Bandit()
@@ -441,6 +440,46 @@ func void DIA_Addon_Vatras_Bandittrader_Info()
 };
 
 
+func void B_Vatras_REPEAT()
+{
+	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_01");	//Хорошо, давай подытожим:
+	if(Vatras_Third == TRUE)
+	{
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_02");	//Ты бывший заключенный...
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_03");	//Ты искатель приключений с юга...
+	};
+	if(Vatras_Second == TRUE)
+	{
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_04");	//... которому сказал некромант Ксардас...
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_05");	//... который слышал слухи...
+	};
+	if(Vatras_First == TRUE)
+	{
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_06");	//... о том, что пришли драконы, чтобы завоевать страну.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_07");	//... что скоро произойдут ужасные вещи.
+	};
+	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_08");	//И ты пришел, чтобы сообщить это паладинам...
+	if((Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
+	{
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_09");	//Это все звучит довольно фантастически, но я не думаю, что ты солгал мне.
+	};
+};
+
+func void B_Vatras_ReadyToJoin()
+{
+	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_10");	//Поэтому я вынужден предположить, что твои мотивы благородны.
+	AI_Output(self,other,"DIA_ADDON_Vatras_INFLUENCE_REPEAT_05_11");	//Я хочу дать тебе шанс присоединиться к Кольцу Воды.
+};
+
 instance DIA_Addon_Vatras_WannaBeRanger(C_Info)
 {
 	npc = VLK_439_Vatras;
@@ -470,14 +509,8 @@ func void DIA_Addon_Vatras_WannaBeRanger_Info()
 	};
 	if((Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
 	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_01");	//Хорошо, давай подытожим:
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_02");	//Ты бывший заключенный...
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_04");	//... которому сказал некромант Ксардас...
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_06");	//... о том, что пришли драконы, чтобы завоевать страну.
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_08");	//И ты пришел, чтобы сообщить это паладинам...
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_09");	//Это все звучит довольно фантастически, но я не думаю, что ты солгал мне.
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_10");	//Поэтому я вынужден предположить, что твои мотивы благородны.
-		AI_Output(self,other,"DIA_ADDON_Vatras_INFLUENCE_REPEAT_05_11");	//Я хочу дать тебе шанс присоединиться к Кольцу Воды.
+		B_Vatras_REPEAT();
+		B_Vatras_ReadyToJoin();
 	}
 	else
 	{
@@ -564,40 +597,6 @@ func void B_Vatras_Third_Lie()
 	Vatras_Third = FALSE;
 };
 
-func void B_Vatras_REPEAT()
-{
-	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_01");	//Хорошо, давай подытожим:
-	if(Vatras_Third == TRUE)
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_02");	//Ты бывший заключенный...
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_03");	//Ты искатель приключений с юга...
-	};
-	if(Vatras_Second == TRUE)
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_04");	//... которому сказал некромант Ксардас...
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_05");	//... который слышал слухи...
-	};
-	if(Vatras_First == TRUE)
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_06");	//... о том, что пришли драконы, чтобы завоевать страну.
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_07");	//... что скоро произойдут ужасные вещи.
-	};
-	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_08");	//И ты пришел, чтобы сообщить это паладинам...
-	if((Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_09");	//Это все звучит довольно фантастически, но я не думаю, что ты солгал мне.
-	};
-};
-
 func void B_Vatras_PLEASEDONTLIE()
 {
 	AI_Output(self,other,"DIA_Vatras_Add_05_00");	//Мне кажется, что ты не все говоришь мне.
@@ -616,8 +615,7 @@ func void B_Vatras_INFLUENCE_REPEAT()
 	B_Vatras_REPEAT();
 	if((Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
 	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_10");	//Поэтому я вынужден предположить, что твои мотивы благородны.
-		AI_Output(self,other,"DIA_ADDON_Vatras_INFLUENCE_REPEAT_05_11");	//Я хочу дать тебе шанс присоединиться к Кольцу Воды.
+		B_Vatras_ReadyToJoin();
 		Info_ClearChoices(DIA_Addon_Vatras_WannaBeRanger);
 	}
 	else
@@ -914,14 +912,15 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 	Log_SetTopicStatus(TOPIC_Addon_Sklaven,LOG_Running);
 	B_LogEntries(TOPIC_Addon_Sklaven,"Я должен узнать, с какой целью Ворон похищает жителей Хориниса.");
 	B_LogNextEntry(TOPIC_Addon_KDW,"Ватрас дал мне письмо для Сатураса. Я должен присоединиться к магам Воды и пройти через портал в неизвестную часть Хориниса, чтобы найти бывшего рудного барона Ворона.");
+	SC_KnowsPortal = TRUE;
 	RangerMeetingRunning = LOG_SUCCESS;
 	B_SchlussMitRangerMeeting();
 	B_GivePlayerXP(XP_AmbientKap3);
-	SC_KnowsPortal = TRUE;
 };
 
 
-var int MISSINGPEOPLEINFO[20];
+var int MISSINGPEOPLEINFO[9];
+var int DIA_Addon_Vatras_MissingPeople_Wo_NoPerm;
 
 instance DIA_Addon_Vatras_MissingPeople(C_Info)
 {
@@ -941,9 +940,6 @@ func int DIA_Addon_Vatras_MissingPeople_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Addon_Vatras_MissingPeople_Wo_NoPerm;
 
 func void DIA_Addon_Vatras_MissingPeople_Info()
 {
@@ -1375,49 +1371,48 @@ func int DIA_Addon_Vatras_SellStonplate_Condition()
 
 func void DIA_Addon_Vatras_SellStonplate_Info()
 {
-	var int anzahl;
-	anzahl = Npc_HasItems(other,ItWr_StonePlateCommon_Addon);
-	TotalStoneplatesForVatras += anzahl;
+	var int amount;
+	amount = Npc_HasItems(other,ItWr_StonePlateCommon_Addon);
 	AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//Я принес тебе еще таблички...
-	if((TotalStoneplatesForVatras > 25) && (MIS_Addon_Erol_BanditStuff == LOG_Running) && (CurrentLevel != DRAGONISLAND_ZEN))
-	{
-		MIS_Addon_Erol_BanditStuff = LOG_FAILED;
-		B_CheckLog();
-	};
-	B_GiveInvItems(other,self,ItWr_StonePlateCommon_Addon,anzahl);
+	B_GiveInvItems(other,self,ItWr_StonePlateCommon_Addon,amount);
+	TotalStoneplatesForVatras += amount;
 	AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_01");	//Отлично!
-	if(anzahl >= 10)
+	if(amount >= 10)
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_02");	//За это я повышу твои магические способности!
-		B_RaiseAttributeByPermBonus(other,ATR_MANA_MAX,anzahl);
+		B_RaiseAttributeByPermBonus(other,ATR_MANA_MAX,amount);
 	}
-	else if(anzahl >= 5)
+	else if(amount >= 5)
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_04");	//Вот, возьми в награду несколько магических свитков...
 		if(!Npc_HasItems(other,ItRu_InstantFireball))
 		{
-			CreateInvItems(self,ItSc_InstantFireball,anzahl);
-			B_GiveInvItems(self,other,ItSc_InstantFireball,anzahl);
+			CreateInvItems(self,ItSc_InstantFireball,amount);
+			B_GiveInvItems(self,other,ItSc_InstantFireball,amount);
 		}
 		else if(!Npc_HasItems(other,ItRu_Icelance))
 		{
-			CreateInvItems(self,ItSc_Icelance,anzahl);
-			B_GiveInvItems(self,other,ItSc_Icelance,anzahl);
+			CreateInvItems(self,ItSc_Icelance,amount);
+			B_GiveInvItems(self,other,ItSc_Icelance,amount);
 		}
 		else
 		{
-			CreateInvItems(self,ItSc_SumSkel,anzahl);
-			B_GiveInvItems(self,other,ItSc_SumSkel,anzahl);
+			CreateInvItems(self,ItSc_SumSkel,amount);
+			B_GiveInvItems(self,other,ItSc_SumSkel,amount);
 		};
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_03");	//Вот, возьми в награду несколько зелий...
-		CreateInvItems(self,ItPo_Health_03,anzahl + 1);
-		B_GiveInvItems(self,other,ItPo_Health_03,anzahl + 1);
+		CreateInvItems(self,ItPo_Health_03,amount + 1);
+		B_GiveInvItems(self,other,ItPo_Health_03,amount + 1);
+	};
+	if((TotalStoneplatesForVatras > 25) && (MIS_Addon_Erol_BanditStuff == LOG_Running) && (CurrentLevel != DRAGONISLAND_ZEN))
+	{
+		MIS_Addon_Erol_BanditStuff = LOG_FAILED;
 	};
 	B_RemoveEveryInvItem(self,ItWr_StonePlateCommon_Addon);
-	B_GivePlayerXP(XP_Addon_VatrasStonplate * anzahl);
+	B_GivePlayerXP(XP_Addon_VatrasStonplate * amount);
 };
 
 
@@ -1530,7 +1525,7 @@ func void DIA_Vatras_INFLUENCE_Info()
 	{
 		B_Vatras_NoMoreBlessing();
 	}
-	else 
+	else
 	{
 		AI_Output(self,other,"DIA_Vatras_INFLUENCE_05_01");	//Почему я должен дать тебе мое благословение, чужеземец?
 		AI_Output(other,self,"DIA_Vatras_INFLUENCE_15_02");	//Я хочу стать учеником одного из мастеров в нижней части города.
@@ -1772,8 +1767,8 @@ func void B_BuildLearnDialog_Vatras()
 	{
 		Info_ClearChoices(DIA_Vatras_Teach);
 		Info_AddChoice(DIA_Vatras_Teach,Dialog_Back,DIA_Vatras_Teach_BACK);
-		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(ATR_MANA_MAX,1)),DIA_Vatras_Teach_1);
-		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(ATR_MANA_MAX,5)),DIA_Vatras_Teach_5);
+		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnAttributeString(ATR_MANA_MAX,1),DIA_Vatras_Teach_1);
+		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnAttributeString(ATR_MANA_MAX,5),DIA_Vatras_Teach_5);
 	};
 };
 
@@ -2109,7 +2104,7 @@ instance DIA_Addon_Vatras_AbloesePre(C_Info)
 
 func int DIA_Addon_Vatras_AbloesePre_Condition()
 {
-	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == FALSE))
+	if((Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == FALSE))
 	{
 		if((RavenIsDead == FALSE) && (AddonDisabled == FALSE))
 		{
@@ -2193,7 +2188,7 @@ instance DIA_Vatras_INNOSEYEKAPUTT(C_Info)
 
 func int DIA_Vatras_INNOSEYEKAPUTT_Condition()
 {
-	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3))
+	if((Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3))
 	{
 		if((VatrasCanLeaveTown_Kap3 == TRUE) || (AddonDisabled == TRUE))
 		{
@@ -2231,7 +2226,7 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge()
 {
 	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_15_00");	//Что теперь будет с Глазом?
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_01");	//Мы должны восстановить его. Но это, боюсь, будет непростой задачей.
-	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis))
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 	{
 		if(MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS)
 		{
@@ -2253,7 +2248,7 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge()
 
 func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein()
 {
-	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis))
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 	{
 		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_15_00");	//Как можно восстановить силу камня?
 	}
@@ -2329,37 +2324,37 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_Xardas_weiter()
 	if(!Npc_IsDead(DMT_1202))
 	{
 		DMT_1202.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(DMT_1202,"AfterRitual");
+		Npc_ExchangeRoutine(DMT_1202,"AFTERRITUAL");
 	};
 	if(!Npc_IsDead(DMT_1204))
 	{
 		DMT_1204.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(DMT_1204,"AfterRitual");
+		Npc_ExchangeRoutine(DMT_1204,"AFTERRITUAL");
 	};
 	if(!Npc_IsDead(DMT_1206))
 	{
 		DMT_1206.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(DMT_1206,"AfterRitual");
+		Npc_ExchangeRoutine(DMT_1206,"AFTERRITUAL");
 	};
 	if(!Npc_IsDead(DMT_1207))
 	{
 		DMT_1207.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(DMT_1207,"AfterRitual");
+		Npc_ExchangeRoutine(DMT_1207,"AFTERRITUAL");
 	};
 	if(!Npc_IsDead(DMT_1209))
 	{
 		DMT_1209.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(DMT_1209,"AfterRitual");
+		Npc_ExchangeRoutine(DMT_1209,"AFTERRITUAL");
 	};
 	if(!Npc_IsDead(DMT_1210))
 	{
 		DMT_1210.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(DMT_1210,"AfterRitual");
+		Npc_ExchangeRoutine(DMT_1210,"AFTERRITUAL");
 	};
 	if(!Npc_IsDead(DMT_1211))
 	{
 		DMT_1211.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(DMT_1211,"AfterRitual");
+		Npc_ExchangeRoutine(DMT_1211,"AFTERRITUAL");
 	};
 };
 
@@ -2406,17 +2401,20 @@ instance DIA_Vatras_BEGINN(C_Info)
 
 func int DIA_Vatras_BEGINN_Condition()
 {
-	if((Kapitel == 3) && (Npc_GetDistToWP(self,"NW_TROLLAREA_RITUAL_02") < 2000) && (Npc_GetDistToWP(Xardas,"NW_TROLLAREA_RITUAL_02") < 2000) && (Npc_GetDistToWP(Pyrokar,"NW_TROLLAREA_RITUAL_02") < 2000) && Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) && (MIS_Bennet_InnosEyeRepairedSetting == LOG_SUCCESS))
+	if((Kapitel == 3) && Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) && (MIS_Bennet_InnosEyeRepairedSetting == LOG_SUCCESS))
 	{
-		return TRUE;
+		if((Npc_GetDistToWP(self,"NW_TROLLAREA_RITUAL_02") < 2000) && (Npc_GetDistToWP(Xardas,"NW_TROLLAREA_RITUAL_02") < 2000) && (Npc_GetDistToWP(Pyrokar,"NW_TROLLAREA_RITUAL_02") < 2000))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Vatras_BEGINN_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_BEGINN_15_00");	//Я сделал все, как ты сказал мне. Вот починенный Глаз.
-	B_GiveInvItems(other,self,ItMi_InnosEye_Broken_Mis,1);
-	Npc_RemoveInvItem(self,ItMi_InnosEye_Broken_Mis);
+	B_GiveInvItems(other,self,ItMi_InnosEye_Broken_MIS,1);
+	Npc_RemoveInvItem(self,ItMi_InnosEye_Broken_MIS);
 	AI_Output(self,other,"DIA_Vatras_BEGINN_05_01");	//Да, теперь все готово для проведения ритуала.
 	if(Npc_HasItems(other,ItPl_SwampHerb) >= 3)
 	{
@@ -2482,8 +2480,8 @@ func void DIA_Vatras_AUGEGEHEILT_Info()
 	Vatras_Listeners_ReadyToGo = TRUE;
 	RitualInnosEyeRuns = LOG_SUCCESS;
 	MIS_RitualInnosEyeRepair = LOG_SUCCESS;
-	B_StartOtherRoutine(Pyrokar,"RitualInnosEyeRepair");
-	B_StartOtherRoutine(Xardas,"RitualInnosEyeRepair");
+	B_StartOtherRoutine(Pyrokar,"RITUALINNOSEYEREPAIR");
+	B_StartOtherRoutine(Xardas,"RITUALINNOSEYEREPAIR");
 	B_Vatras_ListenersControl();
 };
 
@@ -2757,7 +2755,7 @@ instance DIA_Addon_Vatras_PissOffForever(C_Info)
 
 func int DIA_Addon_Vatras_PissOffForever_Condition()
 {
-	if((VatrasPissedOffForever == TRUE) && (Kapitel >= 5))
+	if((VatrasPissedOffForever == TRUE) && (Kapitel >= 5) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};

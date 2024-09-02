@@ -184,18 +184,17 @@ func void DIA_Nagur_Auftrag_Info()
 	{
 		Nagur_Job_Dia2_Passed = TRUE;
 		AI_Output(self,other,"DIA_Nagur_Auftrag_08_01");	//Ты знаешь торговца Бальтрама, нет? Если нет, пришло время поговорить с ним.
+		AI_Output(self,other,"DIA_Nagur_Auftrag_08_02");	//У этого Бальтрама есть посыльный, доставлявший ему товары с фермы Акила.
 		if(!Npc_IsDead(Bote))
 		{
-			AI_Output(self,other,"DIA_Nagur_Auftrag_08_02");	//У этого Бальтрама есть посыльный, доставлявший ему товары с фермы Акила.
 			AI_Output(self,other,"DIA_Nagur_Auftrag_08_03");	//Вернее, у него БЫЛ посыльный, пока я не перерезал ему глотку. И теперь Бальтраму придется искать нового мальчика на побегушках. И им будешь ты.
-			AI_Teleport(Bote,"NW_CITY_HABOUR_KASERN_05_01");
-			B_StartOtherRoutine(Bote,"Dead");
-			B_KillNpc(VLK_4006_Bote);
+			B_DeletePetzCrime(Bote);
+			B_RemoveNpc(VLK_4006_Bote);
 			Bote_Killed = TRUE;
-			if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_INKNAST) && !Npc_KnowsInfo(other,DIA_Rengaru_SPARE) && (Rengaru_Ausgeliefert == FALSE))
-			{
-				B_StartOtherRoutine(Rengaru,"Hide");
-			};
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Nagur_Auftrag_08_03_add");	//Вернее, у него БЫЛ посыльный. И им будешь ты.
 		};
 		AI_Output(self,other,"DIA_Nagur_Auftrag_08_04");	//Ты должен поступить на работу к Бальтраму и взять посылку у Акила.
 		AI_Output(self,other,"DIA_Nagur_Auftrag_08_05");	//Затем ты принесешь ее мне, а я продам ее заинтересованному покупателю. Он даст неплохую цену за нее.
@@ -238,7 +237,7 @@ func void DIA_Nagur_Auftrag_Wann()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Andre_Add_08_11");	//Тебе лучше отправиться прямо к нему.
+		AI_Output(self,other,"DIA_Nagur_Auftrag_Wann_08_01_add");	//Ты можешь сделать это прямо сейчас.
 	};
 };
 
@@ -251,7 +250,7 @@ func void DIA_Nagur_Auftrag_Okay()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Andre_PERM_08_02");	//Выполняй свои задания.
+		AI_Output(self,other,"DIA_Nagur_Auftrag_Okay_08_01_add");	//Отлично. Тогда за дело.
 	};
 	MIS_Nagur_Bote = LOG_Running;
 	Log_CreateTopic(TOPIC_Nagur,LOG_MISSION);
@@ -286,10 +285,10 @@ func void DIA_Nagur_Success_Info()
 	B_GiveInvItems(other,self,ItMi_BaltramPaket,1);
 	Npc_RemoveInvItem(self,ItMi_BaltramPaket);
 	AI_Output(self,other,"DIA_Nagur_Success_08_01");	//Отлично. Теперь мне нужно продать его. Заходи завтра.
+	NagurDay = B_GetDayPlus();
 	B_GivePlayerXP(XP_NagurOnlyGaveMoney);
 	B_LogEntry(TOPIC_Nagur,"Нагур получил посылку. Он заплатит мне золотом завтра.");
 	AI_StopProcessInfos(self);
-	NagurDay = B_GetDayPlus();
 };
 
 
@@ -419,6 +418,7 @@ func void DIA_Nagur_Sign_Info()
 	AI_PlayAni(other,"T_YES");
 	AI_Output(self,other,"DIA_Nagur_Sign_08_00");	//Так тебе удалось это. Теперь ты знаешь, кто мои хозяева.
 	AI_Output(self,other,"DIA_Nagur_Sign_08_01");	//Не забывай о том, что Кассия говорит тебе - нам не интересно, кто ты такой. Ты один из нас, и только это имеет значение.
+	self.aivar[AIV_IGNORE_Theft] = TRUE;
 	B_GivePlayerXP(XP_NagurGotThief);
 	AI_StopProcessInfos(self);
 };
@@ -442,6 +442,10 @@ func int DIA_Nagur_Perm_Condition()
 		if(Npc_KnowsInfo(other,DIA_Nagur_Sign))
 		{
 			return TRUE;
+		};
+		if(Knows_SecretSign == TRUE)
+		{
+			return FALSE;
 		};
 		if(Npc_KnowsInfo(other,DIA_Nagur_Auftraggeber))
 		{

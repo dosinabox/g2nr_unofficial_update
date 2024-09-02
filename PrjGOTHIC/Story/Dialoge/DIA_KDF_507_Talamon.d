@@ -36,7 +36,7 @@ instance DIA_KDF_507_Talamon_FirstWarn(C_Info)
 
 func int DIA_KDF_507_Talamon_FirstWarn_Condition()
 {
-	if((Pyrokar_LetYouPassTalamon == FALSE) && (self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
+	if(C_NpcHasGuardStatus(self,KDF_507_Checkpoint,GP_NONE) && (Pyrokar_LetYouPassTalamon == FALSE))
 	{
 		return TRUE;
 	};
@@ -64,7 +64,7 @@ instance DIA_KDF_507_Talamon_SecondWarn(C_Info)
 
 func int DIA_KDF_507_Talamon_SecondWarn_Condition()
 {
-	if((Pyrokar_LetYouPassTalamon == FALSE) && (self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,KDF_507_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if(C_NpcHasGuardStatus(self,KDF_507_Checkpoint,GP_FirstWarnGiven) && (Pyrokar_LetYouPassTalamon == FALSE))
 	{
 		return TRUE;
 	};
@@ -92,7 +92,7 @@ instance DIA_KDF_507_Talamon_Attack(C_Info)
 
 func int DIA_KDF_507_Talamon_Attack_Condition()
 {
-	if((Pyrokar_LetYouPassTalamon == FALSE) && (self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,KDF_507_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if(C_NpcHasGuardStatus(self,KDF_507_Checkpoint,GP_SecondWarnGiven) && (Pyrokar_LetYouPassTalamon == FALSE))
 	{
 		return TRUE;
 	};
@@ -134,7 +134,7 @@ func void DIA_Talamon_KAP5_Stop_Info()
 	self.aivar[AIV_PASSGATE] = TRUE;
 	self.aivar[AIV_NewsOverride] = FALSE;
 	self.flags = 0;
-	Npc_ExchangeRoutine(self,"PassGranted");
+	Npc_ExchangeRoutine(self,"PASSGRANTED");
 	B_LogEntry(TOPIC_BuchHallenVonIrdorath,"Таламон держал книгу Ксардаса на алхимическом столе в подвале.");
 };
 

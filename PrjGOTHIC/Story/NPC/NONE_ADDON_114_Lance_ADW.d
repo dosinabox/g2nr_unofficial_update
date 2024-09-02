@@ -7,7 +7,7 @@ instance NONE_ADDON_114_Lance_ADW(Npc_Default)
 	voice = 3;
 	flags = 0;
 	npcType = NPCTYPE_MAIN;
-	aivar[AIV_NPCIsRanger] = TRUE;
+	aivar[AIV_SubGuild] = GIL_SUB_Ranger;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	CreateInvItems(self,ItMw_1h_Vlk_Dagger,1);

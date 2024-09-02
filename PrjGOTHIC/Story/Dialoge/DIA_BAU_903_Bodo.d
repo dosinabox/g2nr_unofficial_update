@@ -125,7 +125,7 @@ instance DIA_Bodo_Cipher(C_Info)
 
 func int DIA_Bodo_Cipher_Condition()
 {
-	if(MIS_Cipher_Paket == LOG_Running)
+	if(Npc_KnowsInfo(other,DIA_Cipher_TradeWhat) && (Dar_Dieb == FALSE))
 	{
 		return TRUE;
 	};
@@ -155,9 +155,12 @@ instance DIA_Bodo_WeedOrElse(C_Info)
 
 func int DIA_Bodo_WeedOrElse_Condition()
 {
-	if((MIS_Cipher_Paket == LOG_Running) && (Dar_Dieb == FALSE) && Npc_KnowsInfo(other,DIA_Bodo_Cipher))
+	if(Npc_KnowsInfo(other,DIA_Bodo_Cipher) && (Dar_Dieb == FALSE))
 	{
-		return TRUE;
+		if(Mob_HasItems("CHEST_ANDRE_WAREHOUSE_PACKET",ItMi_HerbPaket))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -187,9 +190,12 @@ instance DIA_Bodo_WeedPERM(C_Info)
 
 func int DIA_Bodo_WeedPERM_Condition()
 {
-	if((MIS_Cipher_Paket == LOG_Running) && (Dar_Dieb == FALSE) && Npc_KnowsInfo(other,DIA_Bodo_WeedOrElse))
+	if(Npc_KnowsInfo(other,DIA_Bodo_WeedOrElse) && (Dar_Dieb == FALSE))
 	{
-		return TRUE;
+		if(Mob_HasItems("CHEST_ANDRE_WAREHOUSE_PACKET",ItMi_HerbPaket))
+		{
+			return TRUE;
+		};
 	};
 };
 
