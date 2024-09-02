@@ -17,7 +17,6 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 		CreateInvItems(slf,ItAm_Prot_Total_01,1);
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
-			
 		}
 		else
 		{

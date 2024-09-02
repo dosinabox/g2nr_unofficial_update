@@ -137,7 +137,7 @@ func void DIA_Gritta_WantsMoney_EnoughStuff()
 		AI_Output(other,self,"DIA_Gritta_WantsMoney_EnoughStuff_15_02");	//(ухмыляется) Видишь, это было не так уж сложно.
 		AI_Output(self,other,"DIA_Gritta_WantsMoney_EnoughStuff_16_03");	//(раздраженно) А теперь, пожалуйста, покинь мой дом.
 		Gritta_GoldGiven = TRUE;
-	};	
+	};
 	AI_StopProcessInfos(self);
 };
 

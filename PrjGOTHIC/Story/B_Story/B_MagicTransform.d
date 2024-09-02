@@ -1,6 +1,4 @@
 
-var int PlayerIsTransformed;
-
 func void B_StartMagicTransform()
 {
 	Wld_StopEffect("SLOW_MOTION");
@@ -27,8 +25,8 @@ func void B_StopMagicTransform()
 		if(LevelUpsDuringTransform > 0)
 		{
 			B_IncreaseHeroMaxHP(LevelUpsDuringTransform);
+			LevelUpsDuringTransform = 0;
 		};
-		//self.attribute[ATR_HITPOINTS] = 0;
 		PlayerIsTransformed = FALSE;
 	};
 };

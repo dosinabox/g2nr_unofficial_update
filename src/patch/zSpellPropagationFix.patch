@@ -1,0 +1,32 @@
+#engine [G2, G2A]
+	#patch [zSpellPropagationFix]
+		// engine specific
+		INT text_oCVisualFX_Init_mov_level_0_or_1 = ZenDef(0x00000000, 0x00000000, 0x00490AFA, 0x004924E6)
+		INT text_oCVisualFX_Init_mov_level_0_or_1_size = ZenDef(0x00000000, 0x00000000, 10, 6)
+		INT text_oCVisualFX_ProcessCollision_call_CreateAndPlay = ZenDef(0x00000000, 0x00000000, 0x00493F49, 0x00495B29)
+		INT text_oCVisualFX_ProcessCollision_call_SetInflictor_after = ZenDef(0x00000000, 0x00000000, 0x00493FA4, 0x00495B84)
+		INT text_oCVisualFX_ProcessCollision_zero_effect = ZenDef(0x00000000, 0x00000000, 0x00493FBA, 0x00495B9A)
+		
+		INT func_oCVisualFX_CreateAndCastFX = ZenDef(0x00487170, 0x00492530, 0x0048D4C0, 0x0048EE80)
+		
+		INT field_oCVisualFX_origin = ZenDef(0x458, 0x458, 0x4A8, 0x4A8)
+		INT field_oCVisualFX_emFXCollDyn_S = ZenDef(0x258, 0x258, 0x278, 0x278)
+		// end of engine specific
+		
+		MemSet(text_oCVisualFX_Init_mov_level_0_or_1, '90', text_oCVisualFX_Init_mov_level_0_or_1_size)
+		
+		#assembler [text_oCVisualFX_ProcessCollision_call_CreateAndPlay]
+			mov eax, [ebp+$field_oCVisualFX_origin]
+            push eax
+            mov eax, [esp+0x18] ; vobHit
+            push eax
+            lea eax, [ebp+$field_oCVisualFX_emFXCollDyn_S]
+            push eax
+            mov ecx, ebp
+            call $func_oCVisualFX_CreateAndCastFX
+            mov esi, eax
+			test esi, esi
+			jz $text_oCVisualFX_ProcessCollision_zero_effect
+		#/assembler [text_oCVisualFX_ProcessCollision_call_SetInflictor_after]
+	#/patch
+#/engine

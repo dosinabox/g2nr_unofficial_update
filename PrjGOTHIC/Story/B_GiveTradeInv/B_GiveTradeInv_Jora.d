@@ -21,7 +21,6 @@ func void B_GiveTradeInv_Jora(var C_Npc slf)
 		CreateInvItems(slf,ItAm_Prot_Point_01,1);
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
-			
 		}
 		else
 		{

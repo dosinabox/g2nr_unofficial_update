@@ -1031,7 +1031,7 @@ func void DIA_Constantino_TEACH_Info()
 	{
 		B_Constantino_NoYouAreWanted();
 		AI_StopProcessInfos(self);
-	};	
+	};
 };
 
 func void DIA_Constantino_Teach_BACK()

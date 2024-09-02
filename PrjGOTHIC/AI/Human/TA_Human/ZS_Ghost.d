@@ -10,7 +10,7 @@ func void ZS_Ghost()
 	}
 	else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rhademes))
 	{
-		if(Rhademes_fertig == TRUE)
+		if(Rhademes_Fertig == TRUE)
 		{
 			Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessPlayer);
 		};
@@ -34,7 +34,6 @@ func int ZS_Ghost_Loop()
 	{
 		if(Npc_GetDistToNpc(self,hero) > PERC_DIST_DIALOG)
 		{
-			//AI_AlignToWP(self);
 			Npc_SetStateTime(self,0);
 		};
 		B_RemoveGhost();

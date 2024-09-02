@@ -1,0 +1,61 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zExtendedTakeVob]
+		// engine specific
+		INT engine_version = ZenDef(1, 2, 3, 4)
+		INT text_oCNpc_EV_TakeVob_call_zCModelPrototype_SearchAni = ZenDef(0x006ADBC8, 0x006E1328, 0x006F4858, 0x0075361C)
+		
+		INT field_oCNpc_anictrl = ZenDef(0x9B8, 0x9C0, 0x8EC, 0x980)
+		INT field_oCAniCtrl_Human_t_stand_2_iget = 0x114C
+		// end of engine specific
+		
+		IF engine_version == 1
+			#assembler [text_oCNpc_EV_TakeVob_call_zCModelPrototype_SearchAni]
+				mov eax, [esp+0x4C]
+				cmp eax, 2
+				jne origin
+				
+				add esp, 4
+				mov eax, [esi+$field_oCNpc_anictrl]
+				mov eax, [eax+$field_oCAniCtrl_Human_t_stand_2_iget]
+				jmp 0x006ADBFF
+					
+			origin:
+				orgcode
+			#/assembler
+		END
+		
+		IF engine_version == 2
+			#assembler [text_oCNpc_EV_TakeVob_call_zCModelPrototype_SearchAni]
+				add esp, 4
+				mov eax, [esi+$field_oCNpc_anictrl]
+				mov eax, [eax+$field_oCAniCtrl_Human_t_stand_2_iget]
+				jmp 0x006E1339
+			#/assembler
+		END
+		
+		IF engine_version == 3
+			#assembler [text_oCNpc_EV_TakeVob_call_zCModelPrototype_SearchAni]
+				mov eax, [esp+0x4C]
+				cmp eax, 2
+				jne origin
+				
+				add esp, 4
+				mov eax, [esi+$field_oCNpc_anictrl]
+				mov eax, [eax+$field_oCAniCtrl_Human_t_stand_2_iget]
+				jmp 0x006F488F
+					
+			origin:
+				orgcode
+			#/assembler
+		END
+		
+		IF engine_version == 4
+			#assembler [text_oCNpc_EV_TakeVob_call_zCModelPrototype_SearchAni]
+				add esp, 4
+				mov eax, [ebx+$field_oCNpc_anictrl]
+				mov eax, [eax+$field_oCAniCtrl_Human_t_stand_2_iget]
+				jmp 0x00753674
+			#/assembler
+		END
+	#/patch
+#/engine

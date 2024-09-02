@@ -1,0 +1,11 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zStartFlyDamageFix]
+		// engine specific
+		INT text_oCAIHuman_StartFlyDamage_call_zMAT4_GetAtVector = ZenDef(0x006162F9, 0x00639230, 0x00641329, 0x0069DAF9)
+		
+		INT func_zMAT4_GetTranslation = ZenDef(0x00408C40, 0x00409B80, 0x00408EE0, 0x00408EE0)
+		// end of engine specific
+		
+		CALL(text_oCAIHuman_StartFlyDamage_call_zMAT4_GetAtVector, func_zMAT4_GetTranslation)
+	#/patch
+#/engine

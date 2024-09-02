@@ -1,0 +1,45 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zFallOnVobFix]
+		// engine specific
+		INT text_oCAniCtrl_Human_CheckFallStates_lea_edx_ray = ZenDef(0x0062C6AF, 0x00651D43, 0x0065933F, 0x006B5CCF)
+		INT text_oCAniCtrl_Human_CheckFallStates_call_TraceRayNearestHit_end = ZenDef(0x0062C6C1, 0x00651D58, 0x00659351, 0x006B5CE1)
+		
+		INT func_zCVob_GetCollisionObject = ZenDef(0x005F10C0, 0x00611DB0, 0x00616F00, 0x0061E650)
+		
+		INT field_zCAIPlayer_vob = 0x64
+		INT field_zCAIPlayer_feetY = 0x7C
+		INT field_zCCollObjectCharacter_m_oSpatialState_m_fFloorY = 0xC0
+		
+		INT const_restore_esp = ZenDef(12, 8, 12, 12)
+		// end of engine specific
+		
+		#assembler [func_zCAIPlayer_GetFloorY]
+			mov ecx, [ecx+$field_zCAIPlayer_vob]
+			call $func_zCVob_GetCollisionObject
+			fld dword ptr [eax+$field_zCCollObjectCharacter_m_oSpatialState_m_fFloorY]
+			ret
+		#/assembler
+		
+		#assembler [text_oCAniCtrl_Human_CheckFallStates_lea_edx_ray]
+			orgcode
+			add esp, $const_restore_esp
+			fld dword ptr [edx+4] ; ray[VY]
+			fld dword ptr [esi+$field_zCAIPlayer_feetY]
+			faddp
+			mov ecx, esi
+			call $func_zCAIPlayer_GetFloorY
+			fcompp
+			fnstsw ax
+			test ah, 1
+			jnp fall
+			
+			mov eax, 1
+			jmp continue
+			
+		fall:
+			xor eax, eax
+			
+		continue:
+		#/assembler [text_oCAniCtrl_Human_CheckFallStates_call_TraceRayNearestHit_end]
+	#/patch
+#/engine

@@ -14,7 +14,7 @@ instance NONE_ADDON_112_Rhademes(Npc_Default)
 	aivar[AIV_IGNORE_Sheepkiller] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_NoFightParker] = TRUE;
-//	protection[PROT_POINT] = 99999999;
+	bodyStateInterruptableOverride = TRUE;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_SetNpcVisual(self,MALE,"Ske_Head",0,BodyTex_N,ITAR_Raven_Addon);

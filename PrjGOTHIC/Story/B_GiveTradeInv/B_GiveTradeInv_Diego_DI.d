@@ -13,4 +13,3 @@ func void B_GiveTradeInv_Diego_DI(var C_Npc slf)
 	};
 };
 
-

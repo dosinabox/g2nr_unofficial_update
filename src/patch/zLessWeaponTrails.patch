@@ -1,0 +1,17 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zLessWeaponTrails]
+		// engine specific
+		INT text_oCAniCtrl_Human_HitCombo_call_ShowWeaponTrail = ZenDef(0x0062770E, 0x0064C78E, 0x006539CE, 0x006B027E)
+		INT text_oCAniCtrl_Human_HitCombo_call_ShowWeaponTrail_end = text_oCAniCtrl_Human_HitCombo_call_ShowWeaponTrail + 5
+		
+		INT field_oCAniCtrl_Human_flags = 0x1B0
+		// end of engine specific
+		
+		#assembler [text_oCAniCtrl_Human_HitCombo_call_ShowWeaponTrail]
+			mov eax, dword ptr [ecx+$field_oCAniCtrl_Human_flags]
+			and eax, 4
+			jz $text_oCAniCtrl_Human_HitCombo_call_ShowWeaponTrail_end
+			orgcode
+		#/assembler
+	#/patch
+#/engine

@@ -9,7 +9,6 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Engor_ItemsGiven_Chapter_1 == FALSE))
 	{
-//		CreateInvItems(slf,ItMi_Gold,80);
 		CreateInvItems(slf,ItMiSwordraw,3);
 		CreateInvItems(slf,ItPo_Health_01,10);
 		CreateInvItems(slf,ItPo_Health_02,5);
@@ -35,7 +34,6 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Engor_ItemsGiven_Chapter_2 == FALSE))
 	{
-//		CreateInvItems(slf,ItMi_Gold,90);
 		CreateInvItems(slf,ItRw_Arrow,55);
 		CreateInvItems(slf,ItRw_Bolt,50);
 		CreateInvItems(slf,ItPo_Health_02,1);
@@ -57,7 +55,6 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Engor_ItemsGiven_Chapter_3 == FALSE))
 	{
-//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItRw_Arrow,70);
 		CreateInvItems(slf,ItRw_Bolt,70);
 		CreateInvItems(slf,ItFo_Wine,4);
@@ -74,7 +71,6 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Engor_ItemsGiven_Chapter_4 == FALSE))
 	{
-//		CreateInvItems(slf,ItMi_Gold,150);
 		CreateInvItems(slf,ItRw_Arrow,100);
 		CreateInvItems(slf,ItRw_Bolt,110);
 		CreateInvItems(slf,ItPo_Health_01,10);
@@ -90,7 +86,6 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Engor_ItemsGiven_Chapter_5 == FALSE))
 	{
-//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItRw_Arrow,125);
 		CreateInvItems(slf,ItRw_Bolt,125);
 		CreateInvItems(slf,ItPo_Health_01,10);
@@ -104,5 +99,4 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 		Engor_ItemsGiven_Chapter_5 = TRUE;
 	};
 };
-
 

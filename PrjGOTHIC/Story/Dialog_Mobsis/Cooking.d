@@ -46,7 +46,6 @@ func void pan_s1()
 
 func void cook_s1()
 {
-	
 };
 
 instance PC_Pan_1(C_Info)

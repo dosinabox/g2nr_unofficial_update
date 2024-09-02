@@ -169,7 +169,7 @@ var int TOPIC_END_KerolothsGeldbeutel;
 
 const string TOPIC_BuchHallenVonIrdorath = "Повелитель драконов";
 const string TOPIC_RosisFlucht = "Бегство Рози";
-const string TOPIC_bringRosiBackToSekob = "Пропавшая жена Секоба";
+const string TOPIC_BringRosiBackToSekob = "Пропавшая жена Секоба";
 const string TOPIC_HealRandolph = "Похмелье";
 const string TOPIC_GeroldGiveFood = "Голод";
 const string TOPIC_HallenVonIrdorath = "Чертоги Ирдората";

@@ -1,0 +1,47 @@
+name: Check Syntax in D Files
+
+on:
+  push:
+    paths:
+      - '**/*.d'
+  pull_request:
+    paths:
+      - '**/*.d'
+
+jobs:
+  check_regex:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: sudo apt-get install -y grep
+
+    - name: Find and check d files
+      run: |
+        # Initialize error counter
+        errors=0
+
+        # Find all d files
+        d_files=$(git ls-files '*.d')
+
+        for file in $d_files; do
+          # Check for trailing spaces and tabs at the end of lines
+          if grep -Pan '[[:blank:]]$' "${file}"; then
+            echo "::error file=$file::File $file has trailing spaces or tabs at the end of lines"
+            errors=$((errors+1))
+          fi
+
+          # Check for assignments in conditions
+          if grep -Pan 'if\(.*\s=\s' "${file}"; then
+            echo "::error file=$file::File $file has assignment in condition"
+            errors=$((errors+1))
+          fi
+        done
+
+        if [ $errors -gt 0 ]; then
+          echo "$errors invalid files found!"
+          exit 1
+        fi

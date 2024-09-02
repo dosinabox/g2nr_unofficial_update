@@ -1,0 +1,88 @@
+#engine [G1, G1A, G2, G2A]
+    #patch [zCEventManager_DoFrameActivity_Fix]
+        // engine specific
+        INT loop_begin = ZenDef(0x006DCC8F, 0x00714E3F, 0x0072653F, 0x00785F7F)
+        INT loop_end = ZenDef(0x006DCCB2, 0x00714E62, 0x00726562, 0x00785FA2)
+ 
+        INT offset_zCEventManager_activeEM = ZenDef(0x008DC704, 0x00924940, 0x00984504, 0x00AB39BC)
+        INT offset_zCEventManager_activeEM_parray = offset_zCEventManager_activeEM
+        INT offset_zCEventManager_activeEM_numinarray = offset_zCEventManager_activeEM + 0x8
+        INT offset_ztimer = ZenDef(0x008CF1E8, 0x009150C0, 0x00974C7C, 0x0099B3D4)
+        INT offset_ztimer_frameTimeFloat = offset_ztimer + 0x4
+ 
+        INT field_zCObject_refCtr = 0x4
+        INT field_zCEventManager_active = 0x28
+ 
+        INT func_zCObject_Release = ZenDef(0x0042AC30, 0x0042DB30, 0x0040C310, 0x0040C310)
+ 
+        INT vfunc_zCEventManager_ProcessMessageList = 0x64
+        // end of engine specific
+ 
+        #assembler [loop_begin]
+            orgcode
+ 
+            mov ecx, $offset_ztimer_frameTimeFloat
+            mov ecx, [ecx]
+            test ecx, ecx
+            jz return
+ 
+            mov ecx, $offset_zCEventManager_activeEM_parray
+            mov ecx, [ecx]
+ 
+        copy_loop:
+            test eax, eax
+            jz process
+            dec eax
+ 
+            mov edx, [ecx+eax*0x4]
+            push edx
+ 
+            test edx, edx
+            jz copy_loop
+ 
+            push ecx
+            mov ecx, [edx+$field_zCObject_refCtr]
+            inc ecx
+            mov [edx+$field_zCObject_refCtr], ecx
+            pop ecx
+ 
+            jmp copy_loop
+ 
+        process:
+            mov eax, $offset_zCEventManager_activeEM_numinarray
+            mov eax, [eax]
+ 
+        process_loop:
+            dec eax
+ 
+            pop ecx
+            test ecx, ecx
+            jz process_continue
+ 
+            push eax
+            push ecx
+            call $func_zCObject_Release
+            pop ecx
+            test eax, eax
+            pop eax
+            jle process_continue
+ 
+            mov edx, [ecx+$field_zCEventManager_active]
+            test edx, edx
+            jz process_continue
+ 
+            push eax
+            mov edx, [ecx]
+            call [edx+$vfunc_zCEventManager_ProcessMessageList]
+            pop eax
+ 
+        process_continue:
+            test eax, eax
+            jnz process_loop
+ 
+        return:
+            pop esi
+            ret
+        #/assembler [loop_end]
+    #/patch
+#/engine

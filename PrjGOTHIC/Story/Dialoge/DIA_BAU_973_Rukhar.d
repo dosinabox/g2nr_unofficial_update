@@ -318,7 +318,7 @@ func void DIA_Rukhar_NoRandolph_Info()
 		CreateInvItems(self,ItMi_Gold,Rukhar_Einsatz);
 		B_GiveInvItems(self,other,ItMi_Gold,Rukhar_Einsatz);
 	}
-	else 
+	else
 	{
 		if(MIS_HealRandolph != FALSE)
 		{

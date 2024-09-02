@@ -1,0 +1,93 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zMenuIgnorePlayerStatus]
+		// engine specific
+		INT set_show_player_status_start = ZenDef(0x00638BE6, 0x0065F136, 0x00666296, 0x006C2D96)
+		INT set_show_player_status_epilogue = ZenDef(0x00638C3A, 0x0065F18A, 0x006662EA, 0x006C2DEA)
+		
+		INT log_start = ZenDef(0x0069A299, 0x006CC203, 0x006DF004, 0x0073D824)
+		INT status_start = ZenDef(0x0069A9D1, 0x006CC97D, 0x006DF705, 0x0073DF25)
+		// end of engine specific
+		
+		INT ignore_set_show_player_status = 0
+		INT last_value_set_show_player_status = 0
+		
+		#assembler [set_show_player_status_start]
+			mov [$last_value_set_show_player_status], edi
+			mov eax, [$ignore_set_show_player_status]
+			test eax, eax
+			jnz $set_show_player_status_epilogue
+			orgcode
+		#/assembler
+		
+		IF ZenDef(1, 2, 3, 4) <= 2
+			#assembler [log_start]
+				mov eax, [$ignore_set_show_player_status]
+				inc eax
+				mov [$ignore_set_show_player_status], eax
+				
+				xor eax, eax
+				mov [$last_value_set_show_player_status], eax
+				
+				orgcode
+				
+				mov eax, [$ignore_set_show_player_status]
+				dec eax
+				mov [$ignore_set_show_player_status], eax
+				
+				test eax, eax
+				jnz return
+				
+				mov eax, [$last_value_set_show_player_status]
+				or esi, eax
+				
+			return:
+			#/assembler
+		ELSE
+			#assembler [log_start]
+				mov eax, [$ignore_set_show_player_status]
+				inc eax
+				mov [$ignore_set_show_player_status], eax
+				
+				xor eax, eax
+				mov [$last_value_set_show_player_status], eax
+				
+				orgcode
+				
+				mov eax, [$ignore_set_show_player_status]
+				dec eax
+				mov [$ignore_set_show_player_status], eax
+				
+				test eax, eax
+				jnz return
+				
+				mov eax, [$last_value_set_show_player_status]
+				or edi, eax
+				
+			return:
+			#/assembler
+		END
+		
+		#assembler [status_start]
+			mov eax, [$ignore_set_show_player_status]
+			inc eax
+			mov [$ignore_set_show_player_status], eax
+			
+			xor eax, eax
+			mov [$last_value_set_show_player_status], eax
+			
+			orgcode
+			
+			mov eax, [$ignore_set_show_player_status]
+			dec eax
+			mov [$ignore_set_show_player_status], eax
+			
+			test eax, eax
+			jnz return
+			
+			mov eax, [$last_value_set_show_player_status]
+			or edi, eax
+			
+		return:
+		#/assembler
+	#/patch
+#/engine

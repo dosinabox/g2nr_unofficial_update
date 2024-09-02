@@ -1,0 +1,19 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zDisableMapHotkeyInDialogs]
+		// engine specific
+		INT text_oCGame_HandleEvent_jz_no_map = ZenDef(0x0065F027, 0x0068A481, 0x0069EB36, 0x006FC3E9)
+		
+		INT func_oCInformationManager_GetInformationManager = ZenDef(0x0072ABD0, 0x00768F70, 0x00776590, 0x0065F790)
+		INT func_oCInformationManager_HasFinished = ZenDef(0x0072BCC0, 0x0076A210, 0x007777B0, 0x006609D0)
+		// end of engine specific
+		
+		#assembler [text_oCGame_HandleEvent_jz_no_map]
+			orgcode
+			call $func_oCInformationManager_GetInformationManager
+			mov ecx, eax
+			call $func_oCInformationManager_HasFinished
+			test eax, eax
+			orgcode
+		#/assembler
+	#/patch
+#/engine

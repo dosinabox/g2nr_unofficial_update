@@ -1,0 +1,11 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zNoDayDot]
+		// engine specific
+		INT text_oCNpc_OpenScreen_Log_string_address_1 = ZenDef(0x0069A0EE, 0x006CC034, 0x006DEE87, 0x0073D6A7) + 1
+		INT text_oCNpc_OpenScreen_Log_string_address_2 = ZenDef(0x0069A141, 0x006CC082, 0x006DEE92, 0x0073D6B2) + 1
+		// end of engine specific
+		
+		INT @text_oCNpc_OpenScreen_Log_string_address_1 += 1
+		INT @text_oCNpc_OpenScreen_Log_string_address_2 += 1
+	#/patch
+#/engine

@@ -1,0 +1,11 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zFallenTorchModeFix]
+		// engine specific
+		INT text_oCAIHuman_PC_CheckSpecialStates_call_SetTorchAni_sfallen = ZenDef(0x00613275, 0x006365DC, 0x0063D085, 0x006998D5)
+		INT text_oCAIHuman_PC_CheckSpecialStates_call_SetTorchAni_sfallenb = ZenDef(0x006132E8, 0x006366B0, 0x0063D0F8, 0x00699948)
+		// end of engine specific
+		
+		MemSet(text_oCAIHuman_PC_CheckSpecialStates_call_SetTorchAni_sfallen - 4, '90', 9)
+		MemSet(text_oCAIHuman_PC_CheckSpecialStates_call_SetTorchAni_sfallenb - 4, '90', 9)
+	#/patch
+#/engine

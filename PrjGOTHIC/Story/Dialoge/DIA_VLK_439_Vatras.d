@@ -1525,7 +1525,7 @@ func void DIA_Vatras_INFLUENCE_Info()
 	{
 		B_Vatras_NoMoreBlessing();
 	}
-	else 
+	else
 	{
 		AI_Output(self,other,"DIA_Vatras_INFLUENCE_05_01");	//Почему я должен дать тебе мое благословение, чужеземец?
 		AI_Output(other,self,"DIA_Vatras_INFLUENCE_15_02");	//Я хочу стать учеником одного из мастеров в нижней части города.

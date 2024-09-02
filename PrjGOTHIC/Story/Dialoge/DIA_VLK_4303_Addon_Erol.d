@@ -376,7 +376,7 @@ func void DIA_Addon_Erol_PreTeach_Info()
 		AI_Output(self,other,"DIA_Addon_Erol_SLD_10_01");	//Да. А что? Что-нибудь не так?
 	}
 	else
-	{ 
+	{
 		AI_Output(self,other,"DIA_Addon_Erol_PreTeach_10_01");	//Да. Но они все еще сидят на мосту.
 	};
 	AI_Output(other,self,"DIA_Addon_Erol_PreTeach_15_02");	//Ты можешь научить меня такому удару?

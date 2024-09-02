@@ -433,7 +433,7 @@ func void DIA_Wulfgar_AlsMil_Info()
 	if(Mortis_TeachSTR == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher,"Ополченец Мортис может помочь мне повысить мою силу.");	
+		B_LogEntry(TOPIC_CityTeacher,"Ополченец Мортис может помочь мне повысить мою силу.");
 	};
 	B_Ruga_Teach_Log();
 };

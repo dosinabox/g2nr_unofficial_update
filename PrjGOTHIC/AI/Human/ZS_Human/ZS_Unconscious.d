@@ -10,14 +10,6 @@ func void ZS_Unconscious()
 		AI_StartState(self,ZS_Dead,0,"");
 		return;
 	};
-	random = Hlp_Random(3);
-	if(random == 1)
-	{
-		Mdl_ApplyRandomAni(self,"S_WOUNDED","T_WOUNDED_TRY");
-		Mdl_ApplyRandomAniFreq(self,"S_WOUNDED",8);
-		Mdl_ApplyRandomAni(self,"S_WOUNDEDB","T_WOUNDEDB_TRY");
-		Mdl_ApplyRandomAniFreq(self,"S_WOUNDEDB",4);
-	};
 	self.aivar[AIV_Guardpassage_Status] = GP_NONE;
 	Npc_SetRefuseTalk(self,0);
 	Npc_SetTempAttitude(self,Npc_GetPermAttitude(self,hero));
@@ -34,6 +26,13 @@ func void ZS_Unconscious()
 			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco))
 			{
 				DJG_Bullco_Defeated = TRUE;
+			}
+			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rod))
+			{
+				if(MIS_RodSword == LOG_Running)
+				{
+					MIS_RodSword = LOG_OBSOLETE;
+				};
 			}
 			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Valentino))
 			{
@@ -75,6 +74,17 @@ func void ZS_Unconscious()
 		B_ClearAlchemyInv(self);
 		B_ClearBonusFoodInv(self);
 		B_ClearInfiniteTools(self);
+		if(C_NpcIsToughGuy(self))
+		{
+			random = Hlp_Random(3);
+			if(random == 1)
+			{
+				Mdl_ApplyRandomAni(self,"S_WOUNDED","T_WOUNDED_TRY");
+				Mdl_ApplyRandomAniFreq(self,"S_WOUNDED",8);
+				Mdl_ApplyRandomAni(self,"S_WOUNDEDB","T_WOUNDEDB_TRY");
+				Mdl_ApplyRandomAniFreq(self,"S_WOUNDEDB",4);
+			};
+		};
 		if(self.guild == GIL_STRF)
 		{
 			B_RemoveEveryInvItem(self,ItMw_2H_Axe_L_01);

@@ -178,15 +178,14 @@ func void DIA_Addon_Rhademes_DeinVater_Info()
 };
 
 
-func void B_Addon_Rhademes_Lever(var int Choice)
+func void B_Addon_Rhademes_Lever(var int choice)
 {
 	AI_Output(self,other,"DIA_Addon_Rhademes_Lever_03_00");	//Это было так давно...
-	AI_StopProcessInfos(self);
-	if(Choice <= 1)
+	if(choice <= 1)
 	{
 		AI_GotoWP(self,"ADW_ADANOSTEMPEL_RHADEMES_04");
 	}
-	else if(Choice == 2)
+	else if(choice == 2)
 	{
 		AI_GotoWP(self,"ADW_ADANOSTEMPEL_RHADEMES_06");
 	}
@@ -196,8 +195,9 @@ func void B_Addon_Rhademes_Lever(var int Choice)
 	};
 	AI_UseMob(self,"LEVER",1);
 	AI_TurnToNPC(self,hero);
-	Npc_ExchangeRoutine(self,"Wait");
-	Rhademes_fertig = TRUE;
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"WAIT");
+	Rhademes_Fertig = TRUE;
 };
 
 func void DIA_Addon_Rhademes_DeinVater_Think()
@@ -232,7 +232,7 @@ instance DIA_Addon_Rhademes_PERM(C_Info)
 
 func int DIA_Addon_Rhademes_PERM_Condition()
 {
-	if(Rhademes_fertig == TRUE)
+	if(Rhademes_Fertig == TRUE)
 	{
 		return TRUE;
 	};

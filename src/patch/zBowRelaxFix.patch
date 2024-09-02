@@ -1,0 +1,7 @@
+#engine [G2A]
+    #patch [zBowRelaxFix]
+        #assembler [0x007395E4]
+            add esp, 12
+        #/assembler
+    #/patch
+#/engine

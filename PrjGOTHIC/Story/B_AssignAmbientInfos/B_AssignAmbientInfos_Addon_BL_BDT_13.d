@@ -16,7 +16,6 @@ func int DIA_Addon_BL_BDT_13_EXIT_Condition()
 
 func void DIA_Addon_BL_BDT_13_EXIT_Info()
 {
-	BDT_13_Nerver = 0;
 	AI_StopProcessInfos(self);
 };
 
@@ -131,23 +130,21 @@ func int DIA_Addon_BL_BDT_13_Gold_Condition()
 
 func void DIA_Addon_BL_BDT_13_Gold_Info()
 {
-	BDT_13_Nerver += 1;
 	AI_Output(other,self,"DIA_Addon_BL_BDT_13_Gold_15_00");	//Как мне достать много золота и побыстрее?
-	if(BDT_13_Nerver <= 2)
+	if(self.aivar[AIV_Nerver] == 0)
 	{
 		AI_Output(self,other,"DIA_Addon_BL_BDT_13_Gold_13_01");	//Хороший вопрос. Разве мы все не за этим здесь?
 		AI_Output(self,other,"DIA_Addon_BL_BDT_13_Gold_13_02");	//Тебе нужно взять у Торуса красный камень, тогда ты сможешь войти в шахту.
+		self.aivar[AIV_Nerver] += 1;
 	}
-	else if(BDT_13_Kill == FALSE)
+	else if(self.aivar[AIV_Nerver] == 1)
 	{
-		BDT_13_Nerver = 0;
-		BDT_13_Kill = TRUE;
 		AI_Output(self,other,"DIA_Addon_BL_BDT_13_Gold_13_03");	//Эй, что ты вертишься вокруг меня? Пошел вон!
+		self.aivar[AIV_Nerver] += 1;
 		AI_StopProcessInfos(self);
 	}
 	else
 	{
-		BDT_13_Nerver = 0;
 		AI_Output(self,other,"DIA_Addon_BL_BDT_13_Gold_13_04");	//Кончились игры и веселье!
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_NONE,1);

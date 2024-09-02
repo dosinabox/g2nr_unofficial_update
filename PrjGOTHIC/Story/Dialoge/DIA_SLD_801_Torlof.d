@@ -302,13 +302,10 @@ func void DIA_Torlof_RUF_Info()
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_10");	//Род просто хочет получить свой меч назад.
 	}
-	else if((Rod.aivar[AIV_DefeatedByPlayer] == TRUE) || (Rod_WetteGewonnen == TRUE))
+	else if((Rod.aivar[AIV_DefeatedByPlayer] == TRUE) || (MIS_RodSword == LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_11");	//Похоже, тебе удалось убедить Рода, что ты достаточно силен.
-		if(Rod.aivar[AIV_DefeatedByPlayer] == FALSE)
-		{
-			Points_Sld += 1;
-		};
+		Points_Sld += 1;
 	}
 	else if(Rod.aivar[AIV_TalkedToPlayer] == TRUE)
 	{

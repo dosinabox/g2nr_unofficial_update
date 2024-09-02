@@ -58,7 +58,7 @@ func void DIA_Addon_Skip_Hello_Info()
 	B_ReadFakeItem(self,other,Fakeheroface,1);
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_07");	//Не полное сходство, конечно, но это точно ты.
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_08");	//Но не расстраивайся, приятель. Мое лицо на объявлении о розыске выглядит не лучше.
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 
@@ -224,7 +224,7 @@ func void DIA_Addon_Skip_Bandits_Info()
 	AI_Output(self,other,"DIA_Addon_Skip_Bandits_08_12");	//Бандиты нападают на каждого, кто выглядит побогаче, чем они.
 	if(self.aivar[AIV_PARTYMEMBER] == FALSE)
 	{
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 	};
 };
 

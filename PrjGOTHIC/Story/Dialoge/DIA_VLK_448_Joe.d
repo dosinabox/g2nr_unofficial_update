@@ -116,4 +116,3 @@ func void DIA_Joe_Sign_Info()
 	AI_StopProcessInfos(self);
 };
 
-

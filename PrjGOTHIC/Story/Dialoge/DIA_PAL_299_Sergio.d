@@ -122,13 +122,15 @@ func void DIA_Sergio_Aufgabe_Info()
 {
 	AI_Output(other,self,"DIA_Sergio_Aufgabe_15_00");	//Мне нужен доступ в библиотеку.
 	AI_Output(self,other,"DIA_Sergio_Aufgabe_04_01");	//Ну, я не могу обеспечить тебе доступ. Для этого ты должен сначала выполнить свои задания.
-	AI_Output(self,other,"DIA_Sergio_Aufgabe_04_02");	//Но я могу помочь тебе. Иди к мастеру Исгароту и поговори с ним. Я слышал, ему нужна помощь и собирался сам помочь ему, но я поручаю эту задачу тебе.
-	Wld_InsertNpc(BlackWolf,"NW_PATH_TO_MONASTER_AREA_01");
-	B_InitNpcGlobals();
-	MIS_IsgarothWolf = LOG_Running;
-	Log_CreateTopic(Topic_IsgarothWolf,LOG_MISSION);
-	Log_SetTopicStatus(Topic_IsgarothWolf,LOG_Running);
-	B_LogEntry(Topic_IsgarothWolf,"Мастеру Исгароту необходима помощь в часовне. Я должен найти его.");
+	if(!Npc_IsDead(Isgaroth))
+	{
+		AI_Output(self,other,"DIA_Sergio_Aufgabe_04_02");	//Но я могу помочь тебе. Иди к мастеру Исгароту и поговори с ним. Я слышал, ему нужна помощь и собирался сам помочь ему, но я поручаю эту задачу тебе.
+		Wld_InsertNpc(BlackWolf,"NW_PATH_TO_MONASTER_AREA_01");
+		MIS_IsgarothWolf = LOG_Running;
+		Log_CreateTopic(TOPIC_IsgarothWolf,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_IsgarothWolf,LOG_Running);
+		B_LogEntry(TOPIC_IsgarothWolf,"Мастеру Исгароту необходима помощь в часовне. Я должен найти его.");
+	};
 };
 
 

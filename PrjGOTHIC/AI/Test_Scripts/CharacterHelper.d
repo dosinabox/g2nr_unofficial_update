@@ -3851,7 +3851,6 @@ func void DIA_CH_Misc_Wisp_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Wisp);
 	Info_AddChoice(DIA_CH_Misc_Wisp,Dialog_Back,DIA_CH_Misc_Wisp_BACK);
-	
 	if(PLAYER_TALENT_WISPDETECTOR[WISPSKILL_FF] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Wisp,B_BuildLearnString(NAME_ADDON_WISPSKILL_FF,B_GetLearnCostTalent(other,NPC_TALENT_WISPDETECTOR,WISPSKILL_FF)),DIA_CH_Misc_Wisp_WISPSKILL_FF);

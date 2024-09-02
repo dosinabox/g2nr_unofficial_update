@@ -218,7 +218,7 @@ func void DIA_Ulf_Schaf_Info()
 {
 	AI_Output(other,self,"DIA_Ulf_Schaf_15_00");	//А где я могу найти овцу?
 	AI_Output(self,other,"DIA_Ulf_Schaf_03_01");	//У фермеров, конечно же. Но ты не получишь ее даром.
-	B_LogEntry(Topic_Kloster,"Я могу раздобыть овцу у фермеров.");
+	B_LogEntry(TOPIC_Kloster,"Я могу раздобыть овцу у фермеров.");
 };
 
 

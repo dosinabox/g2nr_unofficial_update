@@ -44,5 +44,6 @@ const string MENU_TEXT_OFFON = "откл|вкл";
 const string MENU_TEXT_ONOFF = "вкл|откл";
 const string MENU_TEXT_UNKNOWN = "неизвестно";
 const string MENU_TEXT_KEYS_HINT = "Вверх/Вниз - выбор, ENTER - изменить, DELETE - очистить";
+const string MENU_TEXT_CHAPTER = "Глава:";
 const string NEEDS_RESTART = "Для вступления в силу необходимо перезапустить игру";
 const string PRESSNOW = "Нажмите клавишу для назначения или ESCAPE для отмены";

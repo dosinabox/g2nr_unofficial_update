@@ -1,0 +1,15 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zWmodeInitFix]
+		// engine specific
+		INT text_oCAniCtrl_Human_oCAniCtrl_Human_mov_wmode_0 = ZenDef(0x0061B592, 0x0063EEF2, 0x006472D2, 0x006A3B52)
+		
+		INT field_oCAniCtrl_Human_wmode = 0x150
+		
+		INT const_WMODE_NONE = 1
+		// end of engine specific
+		
+		#assembler [text_oCAniCtrl_Human_oCAniCtrl_Human_mov_wmode_0]
+			mov dword ptr [esi+$field_oCAniCtrl_Human_wmode], $const_WMODE_NONE
+		#/assembler
+	#/patch
+#/engine

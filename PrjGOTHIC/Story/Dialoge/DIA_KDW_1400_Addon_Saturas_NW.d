@@ -101,17 +101,6 @@ func int DIA_Addon_Saturas_Hallo_Condition()
 	};
 };
 
-func void DIA_Addon_Saturas_Hallo_YouKnow()
-{
-	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_00");	//Ты хоть имеешь представление о том, что ты наделал?
-	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_01");	//Ты настолько сильно пошатнул базовую структуру магического естества, что в Хоринисе все чуть не оглохли.
-	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_02");	//Скажи спасибо, что Барьера больше нет.
-	AI_Output(other,self,"DIA_Addon_Saturas_Hallo_weiЯtdu_15_03");	//Что же ты жалуешься, старче? Все ведь сработано как надо.
-	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_04");	//(высокомерно) Следите за языком, юноша!
-	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_05");	//(раздраженно) Что, во имя всех стихий, тебе здесь нужно?
-	Info_ClearChoices(DIA_Addon_Saturas_Hallo);
-};
-
 func void DIA_Addon_Saturas_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_14_00");	//Ты спятил? Вон!
@@ -124,13 +113,24 @@ func void DIA_Addon_Saturas_Hallo_Info()
 
 func void DIA_Addon_Saturas_Hallo_Video()
 {
-	PlayVideo("oreheap.bik");
+	PlayVideo("OREHEAP.BIK");
 	AI_Output(self,other,"DIA_Addon_Saturas_Video_14_00");	//(раздраженно) Ты каким-то образом высосал всю магическую энергию из нашей горы руды, а потом просто исчез!
 	AI_Output(self,other,"DIA_Addon_Saturas_Video_14_01");	//(раздраженно) И зачем только тебе это понадобилось!
 	Info_ClearChoices(DIA_Addon_Saturas_Hallo);
 	Info_AddChoice(DIA_Addon_Saturas_Hallo,"Мне правда очень жаль. Я не ведал, что творил.",DIA_Addon_Saturas_Hallo_sorry);
 	Info_AddChoice(DIA_Addon_Saturas_Hallo,"Ваш план не сработал бы, как ни крути.",DIA_Addon_Saturas_Hallo_Spott);
 	Info_AddChoice(DIA_Addon_Saturas_Hallo,"Такова жизнь. Без мощи накопленной вами руды я бы не смог одолеть Спящего.",DIA_Addon_Saturas_Hallo_notwendig);
+};
+
+func void DIA_Addon_Saturas_Hallo_YouKnow()
+{
+	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_00");	//Ты хоть имеешь представление о том, что ты наделал?
+	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_01");	//Ты настолько сильно пошатнул базовую структуру магического естества, что в Хоринисе все чуть не оглохли.
+	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_02");	//Скажи спасибо, что Барьера больше нет.
+	AI_Output(other,self,"DIA_Addon_Saturas_Hallo_weiЯtdu_15_03");	//Что же ты жалуешься, старче? Все ведь сработано как надо.
+	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_04");	//(высокомерно) Следите за языком, юноша!
+	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_05");	//(раздраженно) Что, во имя всех стихий, тебе здесь нужно?
+	Info_ClearChoices(DIA_Addon_Saturas_Hallo);
 };
 
 func void DIA_Addon_Saturas_Hallo_notwendig()
@@ -257,8 +257,8 @@ func int DIA_Addon_Saturas_Ornament_Condition()
 		if(Lares_Angekommen == FALSE)
 		{
 			return TRUE;
-		}
-		else if(Npc_KnowsInfo(other,DIA_Addon_Saturas_Lares))
+		};
+		if(Npc_KnowsInfo(other,DIA_Addon_Saturas_Lares))
 		{
 			return TRUE;
 		};
@@ -417,7 +417,6 @@ instance DIA_Addon_Saturas_WhatsOrnament(C_Info)
 
 func int DIA_Addon_Saturas_WhatsOrnament_Condition()
 {
-//	if((MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS) && (SC_KnowsOrnament == FALSE) && (RitualRingRuns == 0))
 	if((MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS) && (RitualRingRuns == FALSE))
 	{
 		return TRUE;
@@ -535,12 +534,12 @@ func void B_GivePortalRingToSC()
 	DIA_Addon_Saturas_OpenPortal_NoPerm = TRUE;
 	B_LogEntry(TOPIC_Addon_Ornament,"Сатурас дал мне украшенное кольцо. Я должен открыть портал, вставив кольцо в механизм, а затем пройти через портал.");
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"OpenPortal");
-	B_StartOtherRoutine(Cronos_NW,"OpenPortal");
-	B_StartOtherRoutine(Nefarius_NW,"OpenPortal");
-	B_StartOtherRoutine(Myxir_NW,"OpenPortal");
-	B_StartOtherRoutine(Riordian_NW,"OpenPortal");
-	B_StartOtherRoutine(Merdarion_NW,"OpenPortal");
+	Npc_ExchangeRoutine(self,"OPENPORTAL");
+	B_StartOtherRoutine(Cronos_NW,"OPENPORTAL");
+	B_StartOtherRoutine(Nefarius_NW,"OPENPORTAL");
+	B_StartOtherRoutine(Myxir_NW,"OPENPORTAL");
+	B_StartOtherRoutine(Riordian_NW,"OPENPORTAL");
+	B_StartOtherRoutine(Merdarion_NW,"OPENPORTAL");
 };
 
 instance DIA_Addon_Saturas_GiveVatrasLetter(C_Info)

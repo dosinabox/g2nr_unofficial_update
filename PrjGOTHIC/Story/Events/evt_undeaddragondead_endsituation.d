@@ -5,7 +5,7 @@ func void evt_undeaddragondead_endsituation()
 {
 	if(EVT_UNDEADDRAGONDEAD_ENDSITUATION_OneTime == FALSE)
 	{
-		if(Npc_IsDead(Dragon_Undead))
+		if(Npc_IsDead(UndeadDragon))
 		{
 			Angar_DI_Party = LOG_SUCCESS;
 			B_StartOtherRoutine(Angar_DI,"FIREDRAGONISLAND");

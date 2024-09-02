@@ -50,14 +50,14 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Warehouse,MIS_Andre_WAREHOUSE,0,6);
 	B_CloseTopic(TOPIC_Redlight,MIS_Andre_REDLIGHT,0,6);
 	B_CloseTopic(TOPIC_Feldraeuber,MIS_AndreHelpLobart,0,6);
-	B_CloseTopic(Topic_Kloster,NOV_Aufnahme,0,2);
+	B_CloseTopic(TOPIC_Kloster,NOV_Aufnahme,0,2);
 	B_CloseTopic(Topic_Gemeinschaft,MIS_KlosterArbeit,0,2);
 	B_CloseTopic(Topic_Neorasrezept,MIS_NeorasRezept,0,2);
 	B_CloseTopic(Topic_NeorasPflanzen,MIS_NeorasPflanzen,0,2);
-	B_CloseTopic(Topic_IsgarothWolf,MIS_IsgarothWolf,0,2);
+	B_CloseTopic(TOPIC_IsgarothWolf,MIS_IsgarothWolf,0,2);
 	B_CloseTopic(Topic_ParlanFegen,MIS_ParlanFegen,0,2);
-	B_CloseTopic(Topic_GoraxEssen,MIS_GoraxEssen,0,2);
-	B_CloseTopic(Topic_GoraxWein,MIS_GoraxWein,0,2);
+	B_CloseTopic(TOPIC_GoraxEssen,MIS_GoraxEssen,0,2);
+	B_CloseTopic(TOPIC_GoraxWein,MIS_GoraxWein,0,2);
 	B_CloseTopic(Topic_OpolosRezept,Opolos_Rezept,0,2);
 	B_CloseTopic(Topic_MardukBeten,MIS_MardukBeten,0,2);
 	B_CloseTopic(Topic_BaboTrain,MIS_Babo_Training,0,6);
@@ -76,7 +76,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_CordProve,0,Cord_Approved,2);
 	B_CloseTopic(TOPIC_CipherHerb,MIS_Cipher_BringWeed,0,2);
 	B_CloseTopic(TOPIC_CipherPaket,MIS_Cipher_Paket,0,6);
-	B_CloseTopic(TOPIC_RodWette,0,Rod_WetteGewonnen,2);
+	B_CloseTopic(TOPIC_RodWette,MIS_RodSword,0,2);
 	B_CloseTopic(TOPIC_FesterRauber,MIS_Fester_KillBugs,0,6);
 	B_CloseTopic(TOPIC_TheklaEintopf,MIS_Thekla_Paket,0,6);
 	B_CloseTopic(TOPIC_SagittaHerb,MIS_Sagitta_Herb,0,6);
@@ -160,10 +160,6 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Addon_VatrasAbloesung,0,VatrasCanLeaveTown_Kap3,4);
 	B_CloseTopic(TOPIC_Bronkoeingeschuechtert,MIS_Sekob_Bronko_eingeschuechtert,0,6);
 	B_CloseTopic(TOPIC_BalthasarsSchafe,MIS_Balthasar_BengarsWeide,0,6);
-	if((hero.guild != GIL_NONE) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG) && (MIS_Balthasar_BengarsWeide == LOG_Running))
-	{
-		Log_SetTopicStatus(TOPIC_BalthasarsSchafe,LOG_OBSOLETE);
-	};
 	B_CloseTopic(TOPIC_AkilsSLDStillthere,0,TOPIC_END_AkilsSLDStillthere,4);
 	B_CloseTopic(TOPIC_Wettsaufen,MIS_Rukhar_Wettkampf,0,6);
 	B_CloseTopic(TOPIC_GaanSchnaubi,MIS_Gaan_Snapper,0,6);
@@ -210,7 +206,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Talbin_Runs,MIS_Talbin_Runs,0,6);
 	B_CloseTopic(TOPIC_KerolothsGeldbeutel,0,TOPIC_END_KerolothsGeldbeutel,6);
 	B_CloseTopic(TOPIC_BuchHallenVonIrdorath,0,MIS_SCKnowsWayToIrdorath,6);
-	B_CloseTopic(TOPIC_bringRosiBackToSekob,MIS_bringRosiBackToSekob,0,6);
+	B_CloseTopic(TOPIC_BringRosiBackToSekob,MIS_BringRosiBackToSekob,0,6);
 	B_CloseTopic(TOPIC_RosisFlucht,MIS_RosisFlucht,0,6);
 	B_CloseTopic(TOPIC_HealRandolph,MIS_HealRandolph,0,6);
 	B_CloseTopic(TOPIC_HallenVonIrdorath,0,UndeadDragonIsDead,999);

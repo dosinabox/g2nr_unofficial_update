@@ -107,7 +107,7 @@ func void DIA_Isgaroth_Wolf_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_Wolf_15_00");	//Меня послал Сержио. Он поручил мне свои обязанности. Что нужно сделать?
 	AI_Output(self,other,"DIA_Isgaroth_Wolf_01_01");	//Здесь недавно появился черный волк. Найди его и убей.
-	B_LogEntry(Topic_IsgarothWolf,"Около алтаря бродит черный волк. Я должен найти его и убить.");
+	B_LogEntry(TOPIC_IsgarothWolf,"Около алтаря бродит черный волк. Я должен найти его и убить.");
 };
 
 
@@ -124,9 +124,12 @@ instance DIA_Isgaroth_tot(C_Info)
 
 func int DIA_Isgaroth_tot_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Isgaroth_Wolf) && Npc_IsDead(Wolfi))
+	if(Npc_KnowsInfo(other,DIA_Isgaroth_Wolf))
 	{
-		return TRUE;
+		if(Npc_IsDead(BlackWolf))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -211,9 +214,9 @@ func void B_KlosterTributInfo()
 {
 	if(SC_KnowsKlosterTribut == FALSE)
 	{
-		Log_CreateTopic(Topic_Kloster,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Kloster,LOG_Running);
-		B_LogEntry(Topic_Kloster,"Чтобы стать послушником монастыря Инноса, мне нужна овца и 1000 золотых монет.");
+		Log_CreateTopic(TOPIC_Kloster,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Kloster,LOG_Running);
+		B_LogEntry(TOPIC_Kloster,"Чтобы стать послушником монастыря Инноса, мне нужна овца и 1000 золотых монет.");
 		SC_KnowsKlosterTribut = TRUE;
 	};
 };

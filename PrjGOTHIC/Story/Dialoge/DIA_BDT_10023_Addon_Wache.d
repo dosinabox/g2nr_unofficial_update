@@ -62,7 +62,7 @@ func void DIA_Addon_10023_Wache_Hi_Info()
 
 
 var int PrisonGuard_Rules;
-var int Wache_einmal;
+var int Wache_Einmal;
 
 func void B_YouBetterLetSlavesGo()
 {
@@ -105,7 +105,7 @@ func void DIA_Addon_10023_Wache_go_Info()
 	{
 		Info_AddChoice(DIA_Addon_10023_Wache_go,"Я поговорил с Торусом. Он приказал отпустить рабов.",DIA_Addon_10023_Wache_go_Thorus);
 	}
-	else if(Wache_einmal == TRUE)
+	else if(Wache_Einmal == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_10023_Wache_go,"Лучше бы тебе отпустить рабов СЕЙЧАС ЖЕ.",DIA_Addon_10023_Wache_go_Threat);
 	}
@@ -135,7 +135,6 @@ func void DIA_Addon_10023_Wache_go_Blood()
 {
 	CreateInvItem(other,ItMi_FakeBloodwynHead);
 	AI_UseItemToState(other,ItMi_FakeBloodwynHead,1);
-	//эта функция нужна, чтобы ГГ не смотрел на голову Бладвина, но работает это неправильно
 	B_LookAtNpc(other,self);
 	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_00");	//Вот. Этого достаточно?
 	AI_UseItemToState(other,ItMi_FakeBloodwynHead,-1);
@@ -145,7 +144,7 @@ func void DIA_Addon_10023_Wache_go_Blood()
 	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_04");	//Но ты только что сказал, что рабы принадлежат Бладвину.
 	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Blood_11_05");	//Да, но я также сказал, что никого не отпущу без приказа от Торуса.
 	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_06");	//Ты из тех ребят, кто не может даже помочиться без приказа?
-	Wache_einmal = TRUE;
+	Wache_Einmal = TRUE;
 	Info_ClearChoices(DIA_Addon_10023_Wache_go);
 };
 
@@ -161,7 +160,7 @@ func void DIA_Addon_10023_Wache_go_Threat()
 func void DIA_Addon_10023_Wache_go_Thorus()
 {
 	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Thorus_15_00");	//Я поговорил с Торусом. Он приказал отпустить рабов.
-	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Thorus_11_01");	//Ну, если Торус приказал. Но я спрашиваю себя, зачем ему это могло понадобиться...
+	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Thorus_11_01");	//Ну, если Торус приказал... Но я спрашиваю себя, зачем ему это могло понадобиться...
 	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Thorus_15_02");	//... кажется, тебе не платят за то, чтобы ты задавал вопросы.
 	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Thorus_11_03");	//Ладно, ладно. Я теперь здесь, как понятно, не нужен, так что я пойду съем кусочек мяса.
 	Ready_Togo = TRUE;

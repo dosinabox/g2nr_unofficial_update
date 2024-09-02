@@ -185,7 +185,6 @@ var C_Npc Feger3;
 var C_Npc Isgaroth;
 var C_Npc Sergio;
 var C_Npc Ulf;
-var C_Npc Wolfi;
 var C_Npc Fed;
 var C_Npc Kervo;
 var C_Npc Geppert;
@@ -506,7 +505,6 @@ func void B_InitNpc_NW()
 	Feger2 = Hlp_GetNpc(NOV_611_Novize);
 	Feger3 = Hlp_GetNpc(NOV_609_Novize);
 	Sergio = Hlp_GetNpc(PAL_299_Sergio);
-	Wolfi = Hlp_GetNpc(BlackWolf);
 };
 
 func void B_InitNpc_ADW()

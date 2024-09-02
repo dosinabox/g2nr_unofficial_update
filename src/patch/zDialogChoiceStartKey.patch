@@ -1,0 +1,24 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zDialogChoiceStartKey]
+		// engine specific
+		INT text_zCViewDialogChoice_cmp_eax_9 = ZenDef(0x00758B0E, 0x0079B0C6, 0x007A59D4, 0x0068EC64)
+		INT text_zCViewDialogChoice_return_true = ZenDef(0x00758B3C, 0x0079B0F4, 0x007A5A2E, 0x0068EC92)
+		INT text_zCViewDialogChoice_return_false = ZenDef(0x00758A7A, 0x0079AFDA, 0x007A592A, 0x0068EBBA)
+		
+		INT func_zCViewDialogChoice_Select = ZenDef(0x007592C0, 0x0079B870, 0x007A61A0, 0x0068F440)
+		// end of engine specific
+		
+		#assembler [text_zCViewDialogChoice_cmp_eax_9]
+			cmp eax, 9
+			jg $text_zCViewDialogChoice_return_false
+			
+			cmp eax, 0
+			jl $text_zCViewDialogChoice_return_false
+			
+			mov edx, eax
+			mov ecx, esi
+			call $func_zCViewDialogChoice_Select
+			jmp $text_zCViewDialogChoice_return_true
+		#/assembler
+	#/patch
+#/engine

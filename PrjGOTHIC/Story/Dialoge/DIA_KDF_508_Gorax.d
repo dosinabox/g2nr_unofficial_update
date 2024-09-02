@@ -191,9 +191,9 @@ func void DIA_Gorax_Aufgabe_Info()
 	CreateInvItems(self,ItKe_KlosterStore,1);
 	B_GiveInvItems(self,other,ItKe_KlosterStore,1);
 	MIS_GoraxEssen = LOG_Running;
-	Log_CreateTopic(Topic_GoraxEssen,LOG_MISSION);
-	Log_SetTopicStatus(Topic_GoraxEssen,LOG_Running);
-	B_LogEntry(Topic_GoraxEssen,"Мастер Горакс хочет, чтобы я разделил баранью колбасу из кладовой поровну среди послушников. Кроме меня, в монастыре есть еще тринадцать послушников.");
+	Log_CreateTopic(TOPIC_GoraxEssen,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_GoraxEssen,LOG_Running);
+	B_LogEntry(TOPIC_GoraxEssen,"Мастер Горакс хочет, чтобы я разделил баранью колбасу из кладовой поровну среди послушников. Кроме меня, в монастыре есть еще тринадцать послушников.");
 };
 
 
@@ -265,9 +265,9 @@ func void DIA_Gorax_Aufgabe2_Info()
 	CreateInvItems(self,ItFo_Wine,12);
 	B_GiveInvItems(self,other,ItFo_Wine,12);
 	MIS_GoraxWein = LOG_Running;
-	Log_CreateTopic(Topic_GoraxWein,LOG_MISSION);
-	Log_SetTopicStatus(Topic_GoraxWein,LOG_Running);
-	B_LogEntry(Topic_GoraxWein,"Мастер Горакс хочет, чтобы я доставил Орлану, хозяину трактира, двенадцать бутылок вина. Они стоят 240 золотых монет.");
+	Log_CreateTopic(TOPIC_GoraxWein,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_GoraxWein,LOG_Running);
+	B_LogEntry(TOPIC_GoraxWein,"Мастер Горакс хочет, чтобы я доставил Орлану, хозяину трактира, двенадцать бутылок вина. Они стоят 240 золотых монет.");
 };
 
 

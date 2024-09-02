@@ -92,6 +92,17 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 			};
 			DG_gefunden = TRUE;
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Gorax))
+		{
+			if(MIS_GoraxEssen == LOG_Running)
+			{
+				MIS_GoraxEssen = LOG_FAILED;
+			};
+			if(MIS_GoraxWein == LOG_Running)
+			{
+				MIS_GoraxWein = LOG_FAILED;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Isgaroth))
 		{
 			if(MIS_Vatras_Message == LOG_Running)
@@ -146,6 +157,20 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Gaan_Snapper = LOG_OBSOLETE;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Balthasar))
+		{
+			if(MIS_Balthasar_BengarsWeide == LOG_Running)
+			{
+				MIS_Balthasar_BengarsWeide = LOG_FAILED;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rod))
+		{
+			if(MIS_RodSword == LOG_Running)
+			{
+				MIS_RodSword = LOG_FAILED;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Buster))
 		{
 			if(MIS_Buster_KillShadowbeasts_DJG == LOG_Running)
@@ -169,7 +194,18 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 			};
 			Elvrich_IsDead = TRUE;
 		}
-		else if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Malak)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bengar)))
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bengar))
+		{
+			if(MIS_Balthasar_BengarsWeide == LOG_Running)
+			{
+				MIS_Balthasar_BengarsWeide = LOG_FAILED;
+			};
+			if(MIS_GetMalakBack == LOG_Running)
+			{
+				MIS_GetMalakBack = LOG_FAILED;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Malak))
 		{
 			if(MIS_GetMalakBack == LOG_Running)
 			{
