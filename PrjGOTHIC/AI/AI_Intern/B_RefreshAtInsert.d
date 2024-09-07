@@ -98,9 +98,9 @@ func int C_NpcCanEquipWeapons(var C_Npc slf)
 func void B_RefreshMeleeWeapon(var C_Npc slf)
 {
 	var int rnd;
-	rnd = Hlp_Random(2);
 	if(C_NpcIsPaladin(slf))
 	{
+		rnd = Hlp_Random(2);
 		if(rnd == 0)
 		{
 			CreateInvItem(slf,ItMw_1h_MISC_Sword);
@@ -112,6 +112,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 	}
 	else if((slf.guild == GIL_MIL) || (slf.guild == GIL_SLD) || (slf.guild == GIL_DJG) || (slf.guild == GIL_PIR))
 	{
+		rnd = Hlp_Random(2);
 		if(rnd == 0)
 		{
 			CreateInvItem(slf,ItMw_1h_MISC_Sword);
@@ -123,6 +124,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 	}
 	else if(slf.guild == GIL_BAU)
 	{
+		rnd = Hlp_Random(2);
 		if(rnd == 0)
 		{
 			CreateInvItem(slf,ItMw_1h_Bau_Mace);
@@ -134,6 +136,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 	}
 	else if(slf.guild == GIL_NOV)
 	{
+		rnd = Hlp_Random(2);
 		if(rnd == 0)
 		{
 			CreateInvItem(slf,ItMw_1h_Vlk_Mace);
@@ -145,6 +148,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 	}
 	else if(slf.guild == GIL_VLK)
 	{
+		rnd = Hlp_Random(2);
 		if(rnd == 0)
 		{
 			CreateInvItem(slf,ItMw_1h_Vlk_Dagger);
@@ -166,7 +170,7 @@ func void B_RefreshAtInsert()
 	{
 		return;
 	};
-	if(self.attribute[ATR_HITPOINTS] <= 0)
+	if(Npc_IsDead(self))
 	{
 		return;
 	};

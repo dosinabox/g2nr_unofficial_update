@@ -120,13 +120,14 @@ Section "Основные файлы" SecMain
 
 	SetOutPath $INSTDIR
 	File "Changelog_${MOD_NAME}.txt"
+
 	WriteUninstaller "$INSTDIR\${UNINSTALLER_NAME}.exe"
 
-	WriteRegStr HKCU "Software\${MOD_NAME}" "InstallLocation" $INSTDIR
+	WriteRegStr HKCU "Software\${MOD_NAME}" "InstallLocation" "$INSTDIR"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "DisplayName" "${MOD_NAME_RU} (v${MOD_VERSION})" 
 	WriteRegStr HKLM "${REGISTRY_PATH}" "DisplayVersion" "${MOD_DETAILED_VERSION}" 
-	WriteRegStr HKLM "${REGISTRY_PATH}" "InstallLocation" $INSTDIR
-	WriteRegStr HKLM "${REGISTRY_PATH}" "UninstallString" "$INSTDIR\${UNINSTALLER_NAME}.exe"
+	WriteRegStr HKLM "${REGISTRY_PATH}" "InstallLocation" "$INSTDIR"
+	WriteRegStr HKLM "${REGISTRY_PATH}" "UninstallString" "$\"$INSTDIR\${UNINSTALLER_NAME}.exe$\""
 	WriteRegStr HKLM "${REGISTRY_PATH}" "HelpLink" "https://worldofplayers.ru/threads/36817"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "Publisher" "${MOD_AUTHOR}"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "DisplayIcon" "$INSTDIR\system\${MOD_NAME}.ico"

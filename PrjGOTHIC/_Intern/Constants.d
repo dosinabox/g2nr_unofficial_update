@@ -817,13 +817,13 @@ const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2024;
 const int FIX_DATE_MONTH = 9;
-const int FIX_DATE_DAY = 2;
+const int FIX_DATE_DAY = 7;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;
 var int FIX_DATE_DAY_SAVE;
 
-const int FIX_VERSION = 30;
+const int FIX_VERSION = 31;
 var int FIX_VERSION_SAVE;
 
 const int LEAST_SUPPORTED = 27;

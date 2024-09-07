@@ -88,11 +88,11 @@ func void B_ApplyFireBowDamage(var C_Npc target)
 {
 	var int damage;
 	Wld_PlayEffect("VOB_MAGICBURN",target,target,0,0,0,FALSE);
-	if(target.flags != NPC_FLAG_IMMORTAL)
+	if((target.flags != NPC_FLAG_IMMORTAL) && (target.protection[PROT_FIRE] != IMMUNE))
 	{
 		damage = SpecialDamage_FireBow - target.protection[PROT_FIRE];
 		Npc_ChangeAttribute(target,ATR_HITPOINTS,-damage);
-		if(target.attribute[ATR_HITPOINTS] <= 0)
+		if(Npc_IsDead(target))
 		{
 			if(target.guild < GIL_SEPERATOR_HUM)
 			{

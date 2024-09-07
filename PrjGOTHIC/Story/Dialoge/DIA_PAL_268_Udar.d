@@ -318,7 +318,7 @@ instance DIA_Udar_Sengrath(C_Info)
 
 func int DIA_Udar_Sengrath_Condition()
 {
-	if((Kapitel >= 4) && Npc_KnowsInfo(other,DIA_Udar_Kap4WiederDa) && (Sengrath_Missing == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Udar_Kap4WiederDa) && (Sengrath_Missing == TRUE))
 	{
 		return TRUE;
 	};
@@ -350,9 +350,12 @@ instance DIA_Udar_SENGRATHGEFUNDEN(C_Info)
 
 func int DIA_Udar_SENGRATHGEFUNDEN_Condition()
 {
-	if((Kapitel >= 4) && Npc_KnowsInfo(other,DIA_Udar_Sengrath) && !Npc_HasItems(DeadSengrath,ItRw_SengrathsArmbrust_MIS))
+	if(Npc_KnowsInfo(other,DIA_Udar_Sengrath))
 	{
-		return TRUE;
+		if(!Npc_HasItems(DeadSengrath,ItRw_SengrathsArmbrust_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

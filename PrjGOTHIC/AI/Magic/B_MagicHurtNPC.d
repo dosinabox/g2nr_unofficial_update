@@ -14,7 +14,7 @@ func void B_MagicHurtNpc(var C_Npc attacker,var C_Npc target,var int damage)
 func void B_FireHurtNpc(var C_Npc attacker,var C_Npc target,var int damage)
 {
 	var int effectiveDamage;
-	if((target.flags != NPC_FLAG_IMMORTAL) || (target.protection[PROT_FIRE] != IMMUNE))
+	if((target.flags != NPC_FLAG_IMMORTAL) && (target.protection[PROT_FIRE] != IMMUNE))
 	{
 		effectiveDamage = damage - target.protection[PROT_FIRE];
 		if(effectiveDamage < 0)

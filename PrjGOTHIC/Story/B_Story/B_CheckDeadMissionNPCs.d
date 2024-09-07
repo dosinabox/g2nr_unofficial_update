@@ -194,6 +194,17 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 			};
 			Elvrich_IsDead = TRUE;
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi))
+		{
+			if(MIS_BringRosiBackToSekob == LOG_Running)
+			{
+				MIS_BringRosiBackToSekob = LOG_FAILED;
+			};
+			if(MIS_RosisFlucht == LOG_Running)
+			{
+				MIS_RosisFlucht = LOG_FAILED;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bengar))
 		{
 			if(MIS_Balthasar_BengarsWeide == LOG_Running)

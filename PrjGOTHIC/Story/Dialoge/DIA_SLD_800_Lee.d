@@ -564,7 +564,6 @@ func void DIA_Addon_Lee_Ranger_Info()
 	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_04");	//Я больше не связан соглашением с магами Воды, которое мы заключили с ними в те времена, когда еще стоял Барьер.
 	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_05");	//Конечно, если я могу чем-то им помочь, я это делаю. Но большую часть времени я занят своими делами. Ни на что другое времени не остается.
 	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_06");	//Если ты хочешь узнать об этом обществе больше, поговори с Кордом. Насколько я знаю, он один из них.
-//	RangerHelp_gildeSLD = TRUE;
 	SC_KnowsCordAsRangerFromLee = TRUE;
 };
 
@@ -862,7 +861,6 @@ instance DIA_Lee_Success(C_Info)
 
 func int DIA_Lee_Success_Condition()
 {
-//	if((MIS_RescueGorn == LOG_SUCCESS) && (Kapitel >= 3) && (other.guild == GIL_SLD))
 	if((MIS_RescueGorn == LOG_SUCCESS) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
 	{
 		return TRUE;
@@ -976,7 +974,6 @@ instance DIA_Lee_Report(C_Info)
 	nr = 3;
 	condition = DIA_Lee_Report_Condition;
 	information = DIA_Lee_Report_Info;
-//	permanent = TRUE;
 	permanent = FALSE;
 	description = "Я пришел из Долины Рудников. Замок, находящийся там, был атакован драконами!";
 };
@@ -984,7 +981,6 @@ instance DIA_Lee_Report(C_Info)
 
 func int DIA_Lee_Report_Condition()
 {
-//	if((EnterOW_Kapitel2 == TRUE) && (Kapitel <= 3))
 	if(Enter_OldWorld_FirstTime_Trigger_OneTime == TRUE)
 	{
 		return TRUE;
@@ -1345,13 +1341,13 @@ func void DIA_Lee_DoAboutBennet_Info()
 	AI_Output(self,other,"DIA_Lee_DoAboutBennet_04_02");	//К счастью, у нас недостаточно людей для такой операции, и, кроме того, это не в моем стиле.
 	AI_Output(other,self,"DIA_Lee_DoAboutBennet_15_03");	//То есть ты собираешься сидеть сложа руки?
 	AI_Output(self,other,"DIA_Lee_DoAboutBennet_04_04");	//Конечно, нет.
-	B_LogEntry(TOPIC_RescueBennet,"Если я не смогу доказать невиновность Беннета достаточно быстро, Ли ничего не может гарантировать. Его люди могут не выдержать и напасть на город в любой момент, чтобы освободить Беннета.");
 	if(!Npc_IsDead(Lares))
 	{
 		AI_Output(self,other,"DIA_Lee_DoAboutBennet_04_05");	//Ларес все еще в городе и пытается выяснить, как можно вытащить Беннета.
 		AI_Output(self,other,"DIA_Lee_DoAboutBennet_04_06");	//А пока я попытаюсь успокоить моих парней. Остается надеяться, что Ларесу не понадобится слишком много времени на это.
 	};
 	B_Lee_Sends_To_Buster();
+	B_LogEntry(TOPIC_RescueBennet,"Если я не смогу доказать невиновность Беннета достаточно быстро, Ли ничего не может гарантировать. Его люди могут не выдержать и напасть на город в любой момент, чтобы освободить Беннета.");
 };
 
 
@@ -1496,7 +1492,6 @@ instance DIA_Lee_CanTeach(C_Info)
 
 func int DIA_Lee_CanTeach_Condition()
 {
-//	if((Kapitel >= 4) && (Lee_TeachPlayer == FALSE))
 	if(Lee_TeachPlayer == FALSE)
 	{
 		return TRUE;
@@ -1754,8 +1749,11 @@ func void DIA_Lee_GetShip_torlof()
 {
 	AI_Output(other,self,"DIA_Lee_GetShip_torlof_15_00");	//Ты знаешь кого-нибудь, кто мог бы управлять кораблем?
 	AI_Output(self,other,"DIA_Lee_GetShip_torlof_04_01");	//Насколько я знаю, Торлоф ходил в море. Он разбирается в морском деле.
+	if(!Npc_KnowsInfo(other,DIA_Torlof_BEMYCAPTAIN))
+	{
+		B_LogEntry(Topic_Captain,"Торлоф - старый морской волк. Возможно, он захочет стать моим капитаном.");
+	};
 	TorlofIsSailor = TRUE;
-	B_LogEntry(Topic_Captain,"Торлоф - старый морской волк. Возможно, он захочет стать моим капитаном.");
 };
 
 func void DIA_Lee_GetShip_crew()
