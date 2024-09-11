@@ -131,7 +131,8 @@ Items\MissionItems_6.d
 Items\MissionItems_Addon.d
 AI\Magic\B_MagicHurtNPC.d
 AI\Human\C_Human\C_BodyStateContains.d
-Story\B_Content\B_ScHasBeliarsWeapon.d
+Story\B_Content\C_SCHasBlessedSword.d
+Story\B_Content\B_UpgrateBeliarsWeapon.d
 Story\B_Content\B_SpecialWeaponDamage.d
 AI\Monster\C_Monster\C_NpcIsFireCreature.d
 AI\Monster\C_Monster\C_NpcIsIceCreature.d
@@ -140,6 +141,7 @@ AI\Monster\B_Monster\B_MM_DeSynchronize.d
 AI\Human\C_Human\C_NpcIsGateGuard.d
 AI\Human\C_Human\C_NpcIsMage.d
 AI\Human\C_Human\C_NpcIsPaladin.d
+AI\Human\C_Human\C_NpcIsSleeping.d
 AI\Human\C_Human\C_PlayerIsFakeBandit.d
 AI\Human\B_Human\B_SetFaceExpression.d
 AI\AI_Intern\Perception.d

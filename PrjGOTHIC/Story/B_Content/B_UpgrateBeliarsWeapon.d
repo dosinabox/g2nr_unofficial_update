@@ -219,31 +219,31 @@ func int C_ScHasMeleeBeliarsWeapon()
 	return FALSE;
 };
 
-func int C_IsItem1HBeliarsWeapon(var C_Item Weap)
+func int C_IsItem1HBeliarsWeapon(var C_Item weapon)
 {
-	if(Weap.id == ITEM_BELIAR_1H)
+	if(weapon.id == ITEM_BELIAR_1H)
 	{
 		return TRUE;
 	};
 	return FALSE;
 };
 
-func int C_IsItem2HBeliarsWeapon(var C_Item Weap)
+func int C_IsItem2HBeliarsWeapon(var C_Item weapon)
 {
-	if(Weap.id == ITEM_BELIAR_2H)
+	if(weapon.id == ITEM_BELIAR_2H)
 	{
 		return TRUE;
 	};
 	return FALSE;
 };
 
-func int C_IsItemMeleeBeliarsWeapon(var C_Item Weap)
+func int C_IsItemMeleeBeliarsWeapon(var C_Item weapon)
 {
-	if(C_IsItem1HBeliarsWeapon(Weap))
+	if(C_IsItem1HBeliarsWeapon(weapon))
 	{
 		return TRUE;
 	};
-	if(C_IsItem2HBeliarsWeapon(Weap))
+	if(C_IsItem2HBeliarsWeapon(weapon))
 	{
 		return TRUE;
 	};
@@ -521,11 +521,11 @@ func void B_UpgrateBeliarsWeapon()
 		if(BeliarWeapCurrentLvL >= 4)
 		{
 			Info_AddChoice(PC_PrayShrine_UPGRATEBELIARSWEAPON,NAME_SPL_Swarm,PC_PrayShrine_UPGRATEBELIARSWEAPON_Swarm);
-			Info_AddChoice(PC_PrayShrine_UPGRATEBELIARSWEAPON,NAME_SPL_SummonZombie,PC_PrayShrine_UPGRATEBELIARSWEAPON_summonZombie);
+			Info_AddChoice(PC_PrayShrine_UPGRATEBELIARSWEAPON,NAME_SPL_SummonZombie,PC_PrayShrine_UPGRATEBELIARSWEAPON_SummonZombie);
 		};
 		if(BeliarWeapCurrentLvL >= 5)
 		{
-			Info_AddChoice(PC_PrayShrine_UPGRATEBELIARSWEAPON,NAME_SPL_Skull,PC_PrayShrine_UPGRATEBELIARSWEAPON_SPL_Skull);
+			Info_AddChoice(PC_PrayShrine_UPGRATEBELIARSWEAPON,NAME_SPL_Skull,PC_PrayShrine_UPGRATEBELIARSWEAPON_Skull);
 		};
 	}
 	else
@@ -702,8 +702,9 @@ func void B_UpgrateBeliarsWeapon()
 	};
 };
 
-func void B_UpgradeBeliarsWeapon()
+func void B_CreateBeliarsRune(var int rune)
 {
+	CreateInvItem(self,rune);
 	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
 	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
 	Snd_Play("CS_Prayer_WaveOfInsanity");
@@ -713,64 +714,36 @@ func void B_UpgradeBeliarsWeapon()
 
 func void PC_PrayShrine_UPGRATEBELIARSWEAPON_GreenTentacle()
 {
-	CreateInvItem(hero,ItRu_GreenTentacle);
-	B_UpgradeBeliarsWeapon();
+	B_CreateBeliarsRune(ItRu_GreenTentacle);
 };
 
 func void PC_PrayShrine_UPGRATEBELIARSWEAPON_SuckEnergy()
 {
-	CreateInvItem(hero,ItRu_SuckEnergy);
-	B_UpgradeBeliarsWeapon();
+	B_CreateBeliarsRune(ItRu_SuckEnergy);
 };
 
 func void PC_PrayShrine_UPGRATEBELIARSWEAPON_SummonGuardian()
 {
-	CreateInvItem(hero,ItRu_SummonGuardian);
-	B_UpgradeBeliarsWeapon();
+	B_CreateBeliarsRune(ItRu_SummonGuardian);
 };
 
 func void PC_PrayShrine_UPGRATEBELIARSWEAPON_BeliarsRage()
 {
-	CreateInvItem(hero,ItRu_BeliarsRage);
-	B_UpgradeBeliarsWeapon();
+	B_CreateBeliarsRune(ItRu_BeliarsRage);
 };
 
 func void PC_PrayShrine_UPGRATEBELIARSWEAPON_Swarm()
 {
-	CreateInvItem(hero,ItRu_Swarm);
-	B_UpgradeBeliarsWeapon();
+	B_CreateBeliarsRune(ItRu_Swarm);
 };
 
-func void PC_PrayShrine_UPGRATEBELIARSWEAPON_summonZombie()
+func void PC_PrayShrine_UPGRATEBELIARSWEAPON_SummonZombie()
 {
-	CreateInvItem(hero,ItRu_SummonZombie);
-	B_UpgradeBeliarsWeapon();
+	B_CreateBeliarsRune(ItRu_SummonZombie);
 };
 
-func void PC_PrayShrine_UPGRATEBELIARSWEAPON_SPL_Skull()
+func void PC_PrayShrine_UPGRATEBELIARSWEAPON_Skull()
 {
-	CreateInvItem(hero,ItRu_Skull);
-	B_UpgradeBeliarsWeapon();
-};
-
-func int C_SCHasBlessedSword()
-{
-	if(Npc_HasItems(hero,ItMw_1H_Blessed_02))
-	{
-		return TRUE;
-	};
-	if(Npc_HasItems(hero,ItMw_1H_Blessed_03))
-	{
-		return TRUE;
-	};
-	if(Npc_HasItems(hero,ItMw_2H_Blessed_02))
-	{
-		return TRUE;
-	};
-	if(Npc_HasItems(hero,ItMw_2H_Blessed_03))
-	{
-		return TRUE;
-	};
-	return FALSE;
+	B_CreateBeliarsRune(ItRu_Skull);
 };
 

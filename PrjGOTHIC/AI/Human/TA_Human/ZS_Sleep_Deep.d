@@ -1,5 +1,5 @@
 
-func void ZS_GotoBed_Deep()
+/*func void ZS_GotoBed_Deep()
 {
 	Perception_Set_Normal();
 	B_ResetAll(self);
@@ -52,5 +52,5 @@ func void ZS_Sleep_Deep_End()
 		B_Say(self,self,"$AWAKE");
 	};
 	AI_UseMob(self,"BEDHIGH",-1);
-};
+};*/
 
