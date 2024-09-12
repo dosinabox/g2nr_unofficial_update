@@ -87,7 +87,7 @@ func void DIA_Aya_KommMit_Info()
 	AI_StopProcessInfos(self);
 	if(AyaGoldAmount > 0)
 	{
-		Npc_ExchangeRoutine(self,"Follow");
+		Npc_ExchangeRoutine(self,"FOLLOW");
 		self.aivar[AIV_PARTYMEMBER] = TRUE;
 	};
 };
@@ -117,7 +117,7 @@ func void DIA_Aya_WarteHier_Info()
 	DIA_Common_ImAfraidThatsTheEndForUs();
 	B_Say(self,other,"$YESGOOUTOFHERE");
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 };
 

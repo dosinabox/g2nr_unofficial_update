@@ -1,4 +1,55 @@
 
+func int C_SCHasAnyFurForBosper()
+{
+	if(Npc_HasItems(hero,ItAt_Addon_KeilerFur))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ItAt_SheepFur))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ItAt_WolfFur))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ItAt_IceWolfFur))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ItAt_WargFur))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ItAt_ShadowFur))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ItAt_TrollFur))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(hero,ItAt_TrollBlackFur))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+func void B_SellFurToBosper(var int itemInstance)
+{
+	var int furs;
+	var int gold;
+	Npc_GetInvItem(hero,itemInstance);
+	furs = Npc_HasItems(hero,itemInstance);
+	gold = furs * item.value;
+	AI_WaitTillEnd(hero,self);
+	B_GiveInvItems(self,hero,ItMi_Gold,gold);
+	B_GiveInvItems(hero,self,itemInstance,furs);
+	ApprenticeGoldCounter += gold;
+	BosperFurCounter += furs;
+};
+
 instance DIA_Bosper_EXIT(C_Info)
 {
 	npc = VLK_413_Bosper;
@@ -485,7 +536,6 @@ func void DIA_Bosper_BringFur_Info()
 	{
 		AI_Output(self,other,"DIA_Bosper_BringFur_11_01");	//Ты уже стал учеником другого мастера. Я буду покупать у тебя шкуры по обычной цене.
 		MIS_Bosper_WolfFurs = LOG_OBSOLETE;
-		//return;
 	}
 	else if(B_GiveInvItems(other,self,ItAt_WolfFur,6))
 	{
@@ -810,49 +860,39 @@ func int DIA_Bosper_SellFur_Condition()
 
 func void DIA_Bosper_SellFur_Info()
 {
-	var int furs;
 	AI_Output(other,self,"DIA_Bosper_SellFur_15_00");	//Я принес несколько шкур для тебя...
-	furs = Npc_HasItems(other,ItAt_Addon_KeilerFur) + Npc_HasItems(other,ItAt_SheepFur) + Npc_HasItems(other,ItAt_WolfFur) + Npc_HasItems(other,ItAt_IceWolfFur) + Npc_HasItems(other,ItAt_WargFur) + Npc_HasItems(other,ItAt_ShadowFur) + Npc_HasItems(other,ItAt_TrollFur) + Npc_HasItems(other,ItAt_TrollBlackFur);
-	if(furs > 0)
+	if(C_SCHasAnyFurForBosper())
 	{
-		BosperFurCounter += furs;
-		ApprenticeGoldCounter += (Npc_HasItems(other,ItAt_Addon_KeilerFur) * Value_Keilerfur) + (Npc_HasItems(other,ItAt_SheepFur) * Value_SheepFur) + (Npc_HasItems(other,ItAt_WolfFur) * Value_WolfFur) + (Npc_HasItems(other,ItAt_IceWolfFur) * Value_IceWolfFur) + (Npc_HasItems(other,ItAt_WargFur) * Value_WargFur) + (Npc_HasItems(other,ItAt_ShadowFur) * Value_ShadowFur) + (Npc_HasItems(other,ItAt_TrollFur) * Value_TrollFur) + (Npc_HasItems(other,ItAt_TrollBlackFur) * Value_TrollBlackFur);
 		if(Npc_HasItems(other,ItAt_Addon_KeilerFur))
 		{
 			B_Say(self,other,"$ABS_GOOD");
-			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_Addon_KeilerFur) * Value_Keilerfur);
-			B_GiveInvItems(other,self,ItAt_Addon_KeilerFur,Npc_HasItems(other,ItAt_Addon_KeilerFur));
+			B_SellFurToBosper(ItAt_Addon_KeilerFur);
 		};
 		if(Npc_HasItems(other,ItAt_SheepFur))
 		{
 			AI_Output(self,other,"DIA_Bosper_SellFur_11_01");	//Овечьи шкуры? Ты ведь не убивал овец фермеров на пастбищах, нет?
 			AI_Output(other,self,"DIA_Bosper_SellFur_15_02");	//Я даже и не думал заниматься этим...
-			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_SheepFur) * Value_SheepFur);
-			B_GiveInvItems(other,self,ItAt_SheepFur,Npc_HasItems(other,ItAt_SheepFur));
+			B_SellFurToBosper(ItAt_SheepFur);
 		};
 		if(Npc_HasItems(other,ItAt_WolfFur))
 		{
 			AI_Output(self,other,"DIA_Bosper_SellFur_11_03");	//Волчьи шкуры - это хорошо...
-			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_WolfFur) * Value_WolfFur);
-			B_GiveInvItems(other,self,ItAt_WolfFur,Npc_HasItems(other,ItAt_WolfFur));
+			B_SellFurToBosper(ItAt_WolfFur);
 		};
 		if(Npc_HasItems(other,ItAt_IceWolfFur))
 		{
 			B_Say(self,other,"$NOTBAD");
-			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_IceWolfFur) * Value_IceWolfFur);
-			B_GiveInvItems(other,self,ItAt_IceWolfFur,Npc_HasItems(other,ItAt_IceWolfFur));
+			B_SellFurToBosper(ItAt_IceWolfFur);
 		};
 		if(Npc_HasItems(other,ItAt_WargFur))
 		{
 			AI_Output(self,other,"DIA_Bosper_SellFur_11_04");	//Шкура варга? Это опасные звери...
-			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_WargFur) * Value_WargFur);
-			B_GiveInvItems(other,self,ItAt_WargFur,Npc_HasItems(other,ItAt_WargFur));
+			B_SellFurToBosper(ItAt_WargFur);
 		};
 		if(Npc_HasItems(other,ItAt_ShadowFur))
 		{
 			AI_Output(self,other,"DIA_Bosper_SellFur_11_05");	//Ах, и даже шкура мракориса - она дорогого стоит.
-			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_ShadowFur) * Value_ShadowFur);
-			B_GiveInvItems(other,self,ItAt_ShadowFur,Npc_HasItems(other,ItAt_ShadowFur));
+			B_SellFurToBosper(ItAt_ShadowFur);
 		};
 		if(Npc_HasItems(other,ItAt_TrollFur) || Npc_HasItems(other,ItAt_TrollBlackFur))
 		{
@@ -870,14 +910,12 @@ func void DIA_Bosper_SellFur_Info()
 			};
 			if(Npc_HasItems(other,ItAt_TrollFur))
 			{
-				B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_TrollFur) * Value_TrollFur);
-				B_GiveInvItems(other,self,ItAt_TrollFur,Npc_HasItems(other,ItAt_TrollFur));
+				B_SellFurToBosper(ItAt_TrollFur);
 			};
 			if(Npc_HasItems(other,ItAt_TrollBlackFur))
 			{
 				AI_Output(self,other,"DIA_Bosper_SellFur_11_11");	//И шкура черного тролля, надо же!
-				B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_TrollBlackFur) * Value_TrollBlackFur);
-				B_GiveInvItems(other,self,ItAt_TrollBlackFur,Npc_HasItems(other,ItAt_TrollBlackFur));
+				B_SellFurToBosper(ItAt_TrollBlackFur);
 			};
 		};
 		AI_Output(self,other,"DIA_Bosper_SellFur_11_12");	//Отличная работа. Заходи ко мне еще, когда у тебя будут шкуры...

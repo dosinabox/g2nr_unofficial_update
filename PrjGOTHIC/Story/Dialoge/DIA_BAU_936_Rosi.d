@@ -433,22 +433,6 @@ func void DIA_Rosi_HILFE_Info()
 		Till.aivar[AIV_PARTYMEMBER] = TRUE;
 		AI_Output(self,other,"DIA_Rosi_HILFE_17_06");	//Ты иди вперед. Мы пойдем за тобой.
 	};
-	AI_StopProcessInfos(self);
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_NONE))
-	{
-		Npc_ExchangeRoutine(self,"FOLLOWCITY");
-		B_StartOtherRoutine(Till,"FOLLOWCITY");
-	}
-	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
-	{
-		Npc_ExchangeRoutine(self,"FOLLOWBIGFARM");
-		B_StartOtherRoutine(Till,"FOLLOWBIGFARM");
-	}
-	else if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
-	{
-		Npc_ExchangeRoutine(self,"FOLLOWKLOSTER");
-		B_StartOtherRoutine(Till,"FOLLOWKLOSTER");
-	};
 	if(!Npc_KnowsInfo(other,DIA_Babera_Rosi))
 	{
 		Log_CreateTopic(TOPIC_RosisFlucht,LOG_MISSION);
@@ -456,6 +440,9 @@ func void DIA_Rosi_HILFE_Info()
 		B_LogEntry(TOPIC_RosisFlucht,"Рози больше не могла выносить жизнь на ферме Секоба и сбежала в лес, но заблудилась и теперь не знает, куда идти. Я выведу ее из лесной глуши.");
 	};
 	MIS_RosisFlucht = LOG_Running;
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"FOLLOW");
+	B_StartOtherRoutine(Till,"FOLLOW");
 };
 
 

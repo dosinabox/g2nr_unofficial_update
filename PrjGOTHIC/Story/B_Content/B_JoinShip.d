@@ -135,7 +135,7 @@ func void B_JoinShip(var C_Npc slf)
 	AI_StopProcessInfos(slf);
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Biff))
 	{
-		Npc_ExchangeRoutine(slf,"RunsToPass");
+		Npc_ExchangeRoutine(slf,"RUNSTOPASS");
 	}
 	else if(MIS_ReadyforChapter6 == TRUE)
 	{

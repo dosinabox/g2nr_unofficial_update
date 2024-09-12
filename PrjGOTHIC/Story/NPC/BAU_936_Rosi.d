@@ -40,22 +40,10 @@ func void Rtn_FleeFromSekob_936()
 	TA_Stand_ArmsCrossed(22,0,8,0,"NW_TAVERNE_TROLLAREA_14");
 };
 
-func void Rtn_FollowCity_936()
+func void Rtn_Follow_936()
 {
-	TA_Follow_Player(8,0,22,0,"CITY2");
-	TA_Follow_Player(22,0,8,0,"CITY2");
-};
-
-func void Rtn_FollowBigfarm_936()
-{
-	TA_Follow_Player(8,0,22,0,"NW_BIGFARM_KITCHEN_02");
-	TA_Follow_Player(22,0,8,0,"NW_BIGFARM_KITCHEN_02");
-};
-
-func void Rtn_FollowKloster_936()
-{
-	TA_Follow_Player(8,0,22,0,"KLOSTER");
-	TA_Follow_Player(22,0,8,0,"KLOSTER");
+	TA_Follow_Player(8,0,22,0,"NW_TAVERNE_TROLLAREA_14");
+	TA_Follow_Player(22,0,8,0,"NW_TAVERNE_TROLLAREA_14");
 };
 
 func void Rtn_City_936()

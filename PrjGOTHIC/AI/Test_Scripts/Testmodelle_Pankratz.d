@@ -183,7 +183,7 @@ instance J2(C_Item)
 
 func void UseJOLY2_Storyhelpletter()
 {
-	B_StartOtherRoutine(PIR_1300_Addon_Greg_NW,"Taverne");
+	B_StartOtherRoutine(PIR_1300_Addon_Greg_NW,"TAVERNE");
 	GregLocation = Greg_Taverne;
 	B_InsertGregWolfs();
 };

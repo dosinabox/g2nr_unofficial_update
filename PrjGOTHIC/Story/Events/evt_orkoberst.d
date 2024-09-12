@@ -28,13 +28,13 @@ func void evt_orkoberst()
 		if(TorlofIsCaptain == TRUE)
 		{
 			Wld_InsertNpc(OrcWarrior_Roam,"DI_SHIP_04");
-			B_StartOtherRoutine(Torlof_DI,"OrkSturmDI");
+			B_StartOtherRoutine(Torlof_DI,"ORKSTURMDI");
 		}
 		else if(JackIsCaptain == TRUE)
 		{
-			B_StartOtherRoutine(Jack_DI,"OrkSturmDI");
+			B_StartOtherRoutine(Jack_DI,"ORKSTURMDI");
 		};
-		B_StartOtherRoutine(Biff_DI,"OrkSturmDI");
+		B_StartOtherRoutine(Biff_DI,"ORKSTURMDI");
 		if(Vatras_PedroFound == FALSE)
 		{
 			B_SetImmortal(Vatras_DI);
@@ -42,7 +42,7 @@ func void evt_orkoberst()
 		if(!Npc_IsDead(Mario_DI))
 		{
 			CreateInvItem(Mario_DI,ITWR_DementorObsessionBook_MIS);
-			Npc_ExchangeRoutine(Mario_DI,"OrkSturmDI");
+			Npc_ExchangeRoutine(Mario_DI,"ORKSTURMDI");
 			B_SetGuild(Mario_DI,GIL_DMT);
 			Mario_DI.aivar[AIV_PARTYMEMBER] = FALSE;
 			Wld_InsertNpc(Skeleton_Mario1,"FP_ROAM_DI_MARIOSSKELETONS_01");

@@ -180,14 +180,6 @@ func void B_EndDragonTalk()
 	SC_IsWearingInnosEye = FALSE;
 	DragonTalk_Exit_Free = FALSE;
 	AI_StopProcessInfos(self);
-	if(CurrentLevel == OLDWORLD_ZEN)
-	{
-		if(DJG_Biff_Stay == TRUE)
-		{
-			B_StartOtherRoutine(Biff,"Follow");
-			DJG_Biff_Stay = FALSE;
-		};
-	};
 };
 
 func void B_AssignDragonTalk_Main(var C_Npc slf)
