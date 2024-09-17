@@ -49,7 +49,6 @@ Story\B_Content\B_IrrlichtBeep.d
 Story\B_Content\B_Greg_ComesToDexter.d
 Story\B_Content\B_Upgrade_Hero_HackChance.d
 Story\B_Content\B_CountCanyonRazor.d
-Story\B_Content\B_MalcomExident.d
 Story\B_Content\C_ArtefaktValues.d
 Story\Dialog_Mobsis\B_PlayerMap.d
 AI\Human\B_Human\B_Say.d
@@ -74,6 +73,7 @@ Story\B_Story\B_InsertNpc.d
 Story\B_Story\B_RemoveNpc.d
 Story\B_Content\B_RemoveGhost.d
 Story\B_Content\B_PlayerFindItem.d
+Story\B_Content\B_MalcomExident.d
 Story\B_Story\B_MagicTransform.d
 Story\B_Story\B_NpcSetDrunk.d
 Story\B_Story\B_CheckRedLightUndercover.d
@@ -235,6 +235,8 @@ Story\B_Content\B_GiveThiefXP.d
 Story\B_Story\B_GiveInvItems.d
 Story\B_Story\B_FeedNOV.d
 Story\B_Story\B_SetGuild.d
+Story\B_Story\C_AkilFarmIsFree.d
+Story\B_Story\C_BengarFarmIsFree.d
 Story\B_Content\B_SetObjectRoutine.d
 Story\B_Content\B_Beklauen.d
 Story\B_AssignAmbientInfos\B_Announce_Herold.d
@@ -1330,7 +1332,6 @@ Story\B_AssignAmbientInfos\B_AssignDementorTalk_Ritual.d
 Story\B_AssignAmbientInfos\B_AssignORC_AntiPaladinTalk.d
 Story\B_AssignAmbientInfos\B_NpcObsessedByDMT.d
 AI\Human\ZS_Human\ZS_Talk.d
-Story\B_Story\C_AkilFarmIsFree.d
 Story\B_Story\B_GregIsBack.d
 Story\B_Story\B_Enter_AddonWorld.d
 Story\B_Story\B_Enter_OldWorld.d

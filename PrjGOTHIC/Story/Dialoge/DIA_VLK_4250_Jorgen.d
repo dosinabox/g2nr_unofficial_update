@@ -1,21 +1,21 @@
 
-instance DIA_Jorgen_KAP3_EXIT(C_Info)
+instance DIA_Jorgen_EXIT(C_Info)
 {
 	npc = VLK_4250_Jorgen;
 	nr = 999;
-	condition = DIA_Jorgen_KAP3_EXIT_Condition;
-	information = DIA_Jorgen_KAP3_EXIT_Info;
+	condition = DIA_Jorgen_EXIT_Condition;
+	information = DIA_Jorgen_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Jorgen_KAP3_EXIT_Condition()
+func int DIA_Jorgen_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Jorgen_KAP3_EXIT_Info()
+func void DIA_Jorgen_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -283,6 +283,16 @@ func void DIA_Jorgen_BEMYCAPTAIN_Info()
 };
 
 
+func void B_MoveJorgenFromKloster()
+{
+	if(JorgenMovedFromKloster == FALSE)
+	{
+		Npc_ExchangeRoutine(self,"RAUSAUSKLOSTER");
+		B_StartOtherRoutine(Nov610,"START");
+		JorgenMovedFromKloster = TRUE;
+	};
+};
+
 instance DIA_Jorgen_BEMYCAPTAIN2(C_Info)
 {
 	npc = VLK_4250_Jorgen;
@@ -312,12 +322,10 @@ func void DIA_Jorgen_BEMYCAPTAIN2_Info()
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN2_07_04");	//Как теперь насчет твоего предложения? У тебя еще есть место для меня?
 		if(SCGotCaptain == TRUE)
 		{
-			AI_Output(other,self,"DIA_Lee_LeaveMyShip_15_00");	//Я все-таки не могу взять тебя с собой!
+			DIA_Common_ImAfraidThatsTheEndForUs();
 			AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_03");	//Мне нужно поискать для себя другое место. Посмотрим, куда еще меня занесет попутным ветром.
 			AI_StopProcessInfos(self);
-			Npc_ExchangeRoutine(self,"RausAusKloster");
-			B_StartOtherRoutine(Nov610,"Start");
-			JorgenMovedFromKloster = TRUE;
+			B_MoveJorgenFromKloster();
 		};
 	}
 	else if(SCGotCaptain == FALSE)
@@ -329,9 +337,7 @@ func void DIA_Jorgen_BEMYCAPTAIN2_Info()
 	{
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN2_07_05");	//Отлично. Теперь я могу убраться отсюда!
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"RausAusKloster");
-		B_StartOtherRoutine(Nov610,"Start");
-		JorgenMovedFromKloster = TRUE;
+		B_MoveJorgenFromKloster();
 	};
 };
 
@@ -361,12 +367,12 @@ func void DIA_Jorgen_BEMYCAPTAIN3_Info()
 	AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN3_07_02");	//Должен заметить, нам нужно по крайней мере пять человек.
 	AI_Output(other,self,"DIA_Jorgen_BEMYCAPTAIN3_15_03");	//Хорошо. Я посмотрю, что можно сделать. Жди меня в гавани.
 	AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN3_07_04");	//Есть, сэр.
-	AI_StopProcessInfos(self);
 	SCGotCaptain = TRUE;
 	JorgenIsCaptain = TRUE;
-	Npc_ExchangeRoutine(self,"WaitForShipCaptain");
-	B_StartOtherRoutine(Nov610,"Start");
 	B_GivePlayerXP(XP_Captain_Success);
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"WAITFORSHIPCAPTAIN");
+	B_StartOtherRoutine(Nov610,"START");
 };
 
 
@@ -447,7 +453,7 @@ func void DIA_Jorgen_PERM5_NOTCAPTAIN_Info()
 		AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_02");	//Они дают мне идиотские поручения вроде пасти овец, но все же люди здесь далеко не такие ограниченные и тупые, как в монастыре.
 		if(DIA_Jorgen_PERM5_NOTCAPTAIN_XPGiven == FALSE)
 		{
-			B_GivePlayerXP(XP_Ambient);
+			B_GivePlayerXP(XP_AmbientKap5);
 			DIA_Jorgen_PERM5_NOTCAPTAIN_XPGiven = TRUE;
 		};
 		AI_StopProcessInfos(self);
@@ -456,12 +462,7 @@ func void DIA_Jorgen_PERM5_NOTCAPTAIN_Info()
 	{
 		AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_03");	//Мне нужно поискать для себя другое место. Посмотрим, куда еще меня занесет попутным ветром.
 		AI_StopProcessInfos(self);
-		if(JorgenMovedFromKloster == FALSE)
-		{
-			Npc_ExchangeRoutine(self,"RausAusKloster");
-			B_StartOtherRoutine(Nov610,"Start");
-			JorgenMovedFromKloster = TRUE;
-		};
+		B_MoveJorgenFromKloster();
 	};
 };
 

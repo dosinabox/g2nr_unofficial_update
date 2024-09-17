@@ -1310,6 +1310,10 @@ func void DIA_Andre_JOIN_Yes()
 	NOV_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;
 	B_CancelBengarMilitiaProblem();
+	if(MIS_Torlof_HolPachtVonSekob == LOG_Running)
+	{
+		MIS_Torlof_HolPachtVonSekob = LOG_FAILED;
+	};
 	B_GivePlayerXP(XP_BecomeMiliz);
 	if(MIS_Addon_Daron_GetStatue == LOG_Running)
 	{

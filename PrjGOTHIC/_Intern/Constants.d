@@ -313,6 +313,7 @@ const int GIL_SUB_Thief_Sewer = 4;
 const int GIL_SUB_Lobart = 5;
 const int GIL_SUB_RedLight = 6;
 const int GIL_SUB_VinoRitual = 7;
+const int GIL_SUB_Dexter = 8;
 
 const int NPC_SOUND_DROPTAKE = 1;
 const int NPC_SOUND_SPEAK = 3;
@@ -817,7 +818,7 @@ const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2024;
 const int FIX_DATE_MONTH = 9;
-const int FIX_DATE_DAY = 12;
+const int FIX_DATE_DAY = 19;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;

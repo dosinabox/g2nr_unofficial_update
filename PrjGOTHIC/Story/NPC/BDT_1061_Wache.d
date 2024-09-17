@@ -7,6 +7,7 @@ instance BDT_1061_Wache(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = NPCTYPE_MAIN;
+	aivar[AIV_SubGuild] = GIL_SUB_Dexter;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;

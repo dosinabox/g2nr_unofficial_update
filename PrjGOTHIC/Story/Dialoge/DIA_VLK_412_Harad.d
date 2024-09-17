@@ -609,7 +609,7 @@ func void DIA_Harad_AlsLehrling_Info()
 		B_HaradCommentAnvilUses();
 		Harad_INNOSKommentar = TRUE;
 	}
-	else if((Harad_Lehrling_Day <= (Wld_GetDay() - 4)) && (Harad_MILKommentar == FALSE) && (Harad_PALKommentar == FALSE) && (Harad_INNOSKommentar == FALSE))
+	else if(C_DaysSinceEvent(Harad_Lehrling_Day,4) && (Harad_MILKommentar == FALSE) && (Harad_PALKommentar == FALSE) && (Harad_INNOSKommentar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_08");	//Давненько тебя не было видно здесь. Где ты был все это время, хм?
 	}

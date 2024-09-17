@@ -1,4 +1,7 @@
 
+const int STRDEX_PotionOfDeath = 5;
+const int AM_AmulettOfDeathProt = 30;
+
 instance ItWr_XardasLetterToOpenBook_MIS(C_Item)
 {
 	name = "Письмо Ксардаса";
@@ -383,13 +386,13 @@ func void UseItPo_PotionOfDeath()
 	{
 		if(C_NpcIsHero(self))
 		{
-			ATR_PermBonus[ATR_STRENGTH] += 5;
-			ATR_PermBonus[ATR_DEXTERITY] += 5;
+			ATR_PermBonus[ATR_STRENGTH] += STRDEX_PotionOfDeath;
+			ATR_PermBonus[ATR_DEXTERITY] += STRDEX_PotionOfDeath;
 		};
-		self.attribute[ATR_STRENGTH] += 5;
-		PrintScreen(ConcatStrings(PRINT_LearnSTR,"5"),-1,43,FONT_Screen,3);
-		self.attribute[ATR_DEXTERITY] += 5;
-		PrintScreen(ConcatStrings(PRINT_LearnDEX,"5"),-1,48,FONT_Screen,3);
+		self.attribute[ATR_STRENGTH] += STRDEX_PotionOfDeath;
+		PrintScreen(ConcatStrings(PRINT_LearnSTR,IntToString(STRDEX_PotionOfDeath)),-1,43,FONT_Screen,3);
+		self.attribute[ATR_DEXTERITY] += STRDEX_PotionOfDeath;
+		PrintScreen(ConcatStrings(PRINT_LearnDEX,IntToString(STRDEX_PotionOfDeath)),-1,48,FONT_Screen,3);
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
 		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 		PrintScreen(PRINT_FullyHealed,-1,53,FONT_Screen,3);
@@ -438,13 +441,13 @@ instance ItAm_AmulettOfDeath_MIS(C_Item)
 	description = "Божественная аура Инноса";
 	text[0] = "Этот амулет защищает владельца от всех форм урона.";
 	text[1] = NAME_Prot_Edge;
-	count[1] = 30;
+	count[1] = AM_AmulettOfDeathProt;
 	text[2] = NAME_Prot_Point;
-	count[2] = 30;
+	count[2] = AM_AmulettOfDeathProt;
 	text[3] = NAME_Prot_Fire;
-	count[3] = 30;
+	count[3] = AM_AmulettOfDeathProt;
 	text[4] = NAME_Prot_Magic;
-	count[4] = 30;
+	count[4] = AM_AmulettOfDeathProt;
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
@@ -453,11 +456,11 @@ instance ItAm_AmulettOfDeath_MIS(C_Item)
 
 func void Equip_ItAm_AmulettOfDeath_MIS()
 {
-	self.protection[PROT_EDGE] += 30;
-	self.protection[PROT_BLUNT] += 30;
-	self.protection[PROT_POINT] += 30;
-	self.protection[PROT_FIRE] += 30;
-	self.protection[PROT_MAGIC] += 30;
+	self.protection[PROT_EDGE] += AM_AmulettOfDeathProt;
+	self.protection[PROT_BLUNT] += AM_AmulettOfDeathProt;
+	self.protection[PROT_POINT] += AM_AmulettOfDeathProt;
+	self.protection[PROT_FIRE] += AM_AmulettOfDeathProt;
+	self.protection[PROT_MAGIC] += AM_AmulettOfDeathProt;
 	Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",self,self,0,0,0,FALSE);
 	Wld_PlayEffect("FX_EarthQuake",self,self,0,0,0,FALSE);
 	Wld_PlayEffect("spellFX_INCOVATION_WHITE",self,self,0,0,0,FALSE);
@@ -468,11 +471,11 @@ func void Equip_ItAm_AmulettOfDeath_MIS()
 
 func void UnEquip_ItAm_AmulettOfDeath_MIS()
 {
-	self.protection[PROT_EDGE] -= 30;
-	self.protection[PROT_BLUNT] -= 30;
-	self.protection[PROT_POINT] -= 30;
-	self.protection[PROT_FIRE] -= 30;
-	self.protection[PROT_MAGIC] -= 30;
+	self.protection[PROT_EDGE] -= AM_AmulettOfDeathProt;
+	self.protection[PROT_BLUNT] -= AM_AmulettOfDeathProt;
+	self.protection[PROT_POINT] -= AM_AmulettOfDeathProt;
+	self.protection[PROT_FIRE] -= AM_AmulettOfDeathProt;
+	self.protection[PROT_MAGIC] -= AM_AmulettOfDeathProt;
 };
 
 

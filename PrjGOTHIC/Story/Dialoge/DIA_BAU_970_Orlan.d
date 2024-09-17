@@ -539,7 +539,7 @@ func int DIA_Orlan_MieteFaellig_Condition()
 {
 	if((Orlan_RoomIsRented == TRUE) && (Orlan_RoomIsFree == FALSE) && (Orlan_RoomPaymentRefused == FALSE) && (SC_IsRanger == FALSE) && (Orlan_KnowsSCAsRanger == FALSE) && !AnyRangerRingEquipped())
 	{
-		if(Orlan_RoomPaymentDay <= (Wld_GetDay() - 7))
+		if(C_DaysSinceEvent(Orlan_RoomPaymentDay,7))
 		{
 			return TRUE;
 		};
@@ -612,7 +612,7 @@ instance DIA_Orlan_WETTKAMPFLAEUFT(C_Info)
 
 func int DIA_Orlan_WETTKAMPFLAEUFT_Condition()
 {
-	if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && ((MIS_Rukhar_Wettkampf_Day <= (Wld_GetDay() - 2)) || (Kapitel >= 4)))
+	if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (C_DaysSinceEvent(MIS_Rukhar_Wettkampf_Day,2) || (Kapitel >= 4)))
 	{
 		return TRUE;
 	};

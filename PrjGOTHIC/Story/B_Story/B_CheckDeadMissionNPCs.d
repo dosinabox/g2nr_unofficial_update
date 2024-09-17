@@ -279,7 +279,7 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		};
 		if(Greg_Rejected == TRUE)
 		{
-			if(C_AmIDexterBandit(slf))
+			if(slf.aivar[AIV_SubGuild] == GIL_SUB_Dexter)
 			{
 				DexterBanditsBodyCount += 1;
 				if(DexterBanditsBodyCount >= 19)

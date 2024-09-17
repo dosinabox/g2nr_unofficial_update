@@ -48,7 +48,11 @@ func int C_NpcBelongsToCity(var C_Npc slf)
 		};
 		if(RosiLocation == LOC_CITY)
 		{
-			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Till)))
+			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi))
+			{
+				return TRUE;
+			};
+			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Till))
 			{
 				return TRUE;
 			};
@@ -77,7 +81,11 @@ func int C_NpcBelongsToMonastery(var C_Npc slf)
 	};
 	if(RosiLocation == LOC_MONASTERY)
 	{
-		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Till)))
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi))
+		{
+			return TRUE;
+		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Till))
 		{
 			return TRUE;
 		};
@@ -110,6 +118,10 @@ func int C_NpcBelongsToFarm(var C_Npc slf)
 		{
 			return FALSE;
 		};
+	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Jorgen)) && (JorgenMovedFromKloster == TRUE))
+	{
+		return TRUE;
 	};
 	if((slf.guild == GIL_BAU) || (slf.guild == GIL_SLD))
 	{

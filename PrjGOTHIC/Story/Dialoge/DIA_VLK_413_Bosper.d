@@ -787,7 +787,7 @@ func void DIA_Bosper_AlsLehrling_Info()
 		AI_Output(self,other,"DIA_Bosper_AlsLehrling_11_04");	//Ты постригся в монастырь, да? Надеюсь, они будут отпускать тебя хоть иногда, и ты сможешь приносить мне шкуры...
 		Bosper_INNOSKommentar = TRUE;
 	}
-	else if((Bosper_Lehrling_Day <= (Wld_GetDay() - 4)) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF))
+	else if(C_DaysSinceEvent(Bosper_Lehrling_Day,4) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Bosper_AlsLehrling_11_05");	//Где ты болтаешься так долго?
 		if(Npc_KnowsInfo(other,DIA_Bosper_Aufgaben))

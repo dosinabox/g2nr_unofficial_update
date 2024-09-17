@@ -520,6 +520,10 @@ func void DIA_Pyrokar_OATH_Info()
 	B_StartOtherRoutine(Lothar,"START");
 	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
 	B_CancelBengarMilitiaProblem();
+	if(MIS_Torlof_HolPachtVonSekob == LOG_Running)
+	{
+		MIS_Torlof_HolPachtVonSekob = LOG_FAILED;
+	};
 	B_GivePlayerXP(XP_BecomeMage);
 	if(!Npc_IsDead(Gorax))
 	{

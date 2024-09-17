@@ -72,8 +72,6 @@ func void DIA_Torlof_WannaJoin_Info()
 };
 
 
-var int Torlof_Go;
-
 instance DIA_Torlof_Probe(C_Info)
 {
 	npc = SLD_801_Torlof;
@@ -543,11 +541,11 @@ var int Torlof_TheOtherMission_Day;
 
 func void B_Torlof_TheOtherMissionDay()
 {
-	if(Torlof_TheOtherMission_Day < (Wld_GetDay() - 1))
+	if(C_DaysSinceEvent(Torlof_TheOtherMission_Day,2) || (Kapitel >= 3))
 	{
 		AI_Output(self,other,"B_Torlof_TheOtherMissionDay_01_00");	//Ты потратил на это слишком много времени. Онар будет недоволен.
 		Torlof_TheOtherMission_TooLate = TRUE;
-		if(Enter_OldWorld_FirstTime_Trigger_OneTime == TRUE)
+		if(Torlof_KnowsDragons == TRUE)
 		{
 			AI_Output(self,other,"DIA_Torlof_Add_01_00");	//И ему все равно, погибнут паладины в Долине Рудников или нет...
 		};
@@ -572,9 +570,17 @@ instance DIA_Torlof_SekobSuccess(C_Info)
 
 func int DIA_Torlof_SekobSuccess_Condition()
 {
-	if(MIS_Torlof_HolPachtVonSekob == LOG_Running)
+	if((MIS_Torlof_HolPachtVonSekob == LOG_Running) && (Kapitel < 3))
 	{
+		if(Sekob_Pachtbezahlt == TRUE)
+		{
+			return TRUE;
+		};
 		if(Npc_IsDead(Sekob))
+		{
+			return TRUE;
+		};
+		if(Sekob.aivar[AIV_PlayerHasPickedMyPocket] == TRUE)
 		{
 			return TRUE;
 		};
@@ -594,6 +600,10 @@ func void DIA_Torlof_SekobSuccess_Info()
 		if(Npc_IsDead(Sekob))
 		{
 			AI_Output(other,self,"DIA_Torlof_SekobTot_15_00");	//Ну, с ним произошел несчастный случай...
+		}
+		else if(Sekob.aivar[AIV_PlayerHasPickedMyPocket] == TRUE)
+		{
+			DIA_Common_Well();
 		}
 		else
 		{
@@ -635,20 +645,9 @@ instance DIA_Torlof_BengarSuccess(C_Info)
 
 func int DIA_Torlof_BengarSuccess_Condition()
 {
-	if(MIS_Torlof_BengarMilizKlatschen == LOG_Running)
+	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && C_BengarFarmIsFree() && (Kapitel < 3))
 	{
-		if(Miliz_Flucht == TRUE)
-		{
-			return TRUE;
-		};
-		if(Bengar_MilSuccess == TRUE)
-		{
-			return TRUE;
-		};
-		if(Npc_IsDead(Rumbold) && Npc_IsDead(Rick))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -702,9 +701,6 @@ func void DIA_Torlof_Welcome_Info()
 	AI_Output(self,other,"DIA_Torlof_Welcome_01_02");	//Как только у меня будет работа для тебя, я дам тебе знать.
 };
 
-
-var int Torlof_KnowsDragons;
-
 func void B_Torlof_Dragons()
 {
 	AI_Output(self,other,"DIA_Torlof_Add_01_01");	//Где ты был?
@@ -714,6 +710,25 @@ func void B_Torlof_Dragons()
 	Torlof_KnowsDragons = TRUE;
 };
 
+func void B_Torlof_TooLate()
+{
+	if(Kapitel >= 3)
+	{
+		if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) || (MIS_Torlof_HolPachtVonSekob == LOG_Running))
+		{
+			B_Torlof_TheOtherMissionDay();
+			if(MIS_Torlof_BengarMilizKlatschen == LOG_Running)
+			{
+				MIS_Torlof_BengarMilizKlatschen = LOG_FAILED;
+			};
+			if(MIS_Torlof_HolPachtVonSekob == LOG_Running)
+			{
+				MIS_Torlof_HolPachtVonSekob = LOG_FAILED;
+			};
+			B_CheckLog();
+		};
+	};
+};
 
 instance DIA_Torlof_TheOtherMission(C_Info)
 {
@@ -728,7 +743,7 @@ instance DIA_Torlof_TheOtherMission(C_Info)
 
 func int DIA_Torlof_TheOtherMission_Condition()
 {
-	if((other.guild == GIL_SLD) && (Kapitel >= 2))
+	if((other.guild == GIL_SLD) && (Kapitel == 2))
 	{
 		return TRUE;
 	};
@@ -776,7 +791,36 @@ func int DIA_Torlof_Dragons_Condition()
 
 func void DIA_Torlof_Dragons_Info()
 {
+	B_Torlof_TooLate();
 	B_Torlof_Dragons();
+};
+
+
+instance DIA_Torlof_TooLate(C_Info)
+{
+	npc = SLD_801_Torlof;
+	nr = 13;
+	condition = DIA_Torlof_TooLate_Condition;
+	information = DIA_Torlof_TooLate_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_Torlof_TooLate_Condition()
+{
+	if((Kapitel >= 3) && (other.guild == GIL_SLD))
+	{
+		if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) || (MIS_Torlof_HolPachtVonSekob == LOG_Running))
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void DIA_Torlof_TooLate_Info()
+{
+	B_Torlof_TooLate();
 };
 
 
