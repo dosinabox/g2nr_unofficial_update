@@ -1,21 +1,21 @@
 
-instance DIA_Opolos_Kap1_EXIT(C_Info)
+instance DIA_Opolos_EXIT(C_Info)
 {
 	npc = NOV_605_Opolos;
 	nr = 999;
-	condition = DIA_Opolos_Kap1_EXIT_Condition;
-	information = DIA_Opolos_Kap1_EXIT_Info;
+	condition = DIA_Opolos_EXIT_Condition;
+	information = DIA_Opolos_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Opolos_Kap1_EXIT_Condition()
+func int DIA_Opolos_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Opolos_Kap1_EXIT_Info()
+func void DIA_Opolos_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -103,9 +103,9 @@ func void DIA_Opolos_HowLong_Info()
 	if(!Npc_KnowsInfo(other,DIA_Pyrokar_Wunsch))
 	{
 		MIS_HelpOpolos = LOG_Running;
-		Log_CreateTopic(Topic_OpolosStudy,LOG_MISSION);
-		Log_SetTopicStatus(Topic_OpolosStudy,LOG_Running);
-		B_LogEntry(Topic_OpolosStudy,"Ополос пасет овец, а хотел бы изучать свитки в библиотеке.");
+		Log_CreateTopic(TOPIC_OpolosStudy,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_OpolosStudy,LOG_Running);
+		B_LogEntry(TOPIC_OpolosStudy,"Ополос пасет овец, а хотел бы изучать свитки в библиотеке.");
 	};
 };
 
@@ -165,9 +165,10 @@ func void DIA_Opolos_beibringen_Info()
 	AI_Output(other,self,"DIA_Opolos_beibringen_15_03");	//Чем я могу помочь тебе в этом?
 	AI_Output(self,other,"DIA_Opolos_beibringen_12_04");	//Ну, если ты работаешь на Неораса, то у тебя наверняка будет возможность 'позаимствовать' ненадолго один из его рецептов.
 	AI_Output(self,other,"DIA_Opolos_beibringen_12_05");	//Если ты принесешь его мне, чтобы я мог изучить его, то я потренирую тебя.
-	Log_CreateTopic(Topic_OpolosRezept,LOG_MISSION);
-	Log_SetTopicStatus(Topic_OpolosRezept,LOG_Running);
-	B_LogEntry(Topic_OpolosRezept,"Ополос хочет взглянуть на рецепт приготовления магических зелий. Возможно, мне удастся позаимствовать его, работая на Неораса.");
+	MIS_Opolos_Rezept = LOG_Running;
+	Log_CreateTopic(TOPIC_OpolosRezept,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_OpolosRezept,LOG_Running);
+	B_LogEntry(TOPIC_OpolosRezept,"Ополос хочет взглянуть на рецепт приготовления магических зелий. Возможно, мне удастся позаимствовать его, работая на Неораса.");
 };
 
 
@@ -182,11 +183,9 @@ instance DIA_Opolos_rezept(C_Info)
 };
 
 
-var int DIA_Opolos_rezept_permanent;
-
 func int DIA_Opolos_rezept_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Opolos_beibringen) && ((other.guild == GIL_NOV) || (other.guild == GIL_KDF)) && (DIA_Opolos_rezept_permanent == FALSE))
+	if((MIS_Opolos_Rezept == LOG_Running) && ((other.guild == GIL_NOV) || (other.guild == GIL_KDF)))
 	{
 		return TRUE;
 	};
@@ -205,23 +204,21 @@ func void DIA_Opolos_rezept_Info()
 		B_ReadFakeItem(self,other,Fakescroll,1);
 		AI_Output(self,other,"DIA_Opolos_rezept_12_03");	//Хорошо. Огромное спасибо. Если хочешь, ты можешь потренироваться со мной.
 		AI_PrintScreen("Рецепт магических зелий получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-		Opolos_Rezept = LOG_SUCCESS;
+		MIS_Opolos_Rezept = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Ambient);
-		DIA_Opolos_rezept_permanent = TRUE;
 		Opolos_TeachSTR = TRUE;
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Ополос может помочь мне стать сильнее.");
+		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTeacher,"Ополос может помочь мне стать сильнее.");
 	}
 	else if(MIS_NeorasRezept == LOG_SUCCESS)
 	{
 		AI_Output(other,self,"DIA_Opolos_rezept_15_04");	//Я уже вернул этот рецепт Неорасу.
 		AI_Output(self,other,"DIA_Opolos_rezept_12_05");	//Ох, черт - мне, наверное, никогда не удастся научиться чему-нибудь здесь. Ладно. Я все равно потренирую тебя.
-		Opolos_Rezept = LOG_FAILED;
+		MIS_Opolos_Rezept = LOG_FAILED;
 		B_CheckLog();
-		DIA_Opolos_rezept_permanent = TRUE;
 		Opolos_TeachSTR = TRUE;
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Ополос может помочь мне стать сильнее.");
+		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTeacher,"Ополос может помочь мне стать сильнее.");
 	}
 	else
 	{
@@ -516,7 +513,6 @@ func void DIA_Opolos_Kap3_PERM_BACK()
 	Info_ClearChoices(DIA_Opolos_Kap3_PERM);
 };
 
-
 func void DIA_Opolos_Kap3_PERM_DRAGONS()
 {
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_DRAGONS_15_00");	//В Долине Рудников появились драконы. Вместе с армией орков они осаждают королевские войска.
@@ -528,7 +524,6 @@ func void DIA_Opolos_Kap3_PERM_DRAGONS()
 	Opolos_Dragons = TRUE;
 };
 
-
 func void DIA_Opolos_Kap3_PERM_DMT()
 {
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_DMT_15_00");	//Неизвестные в черных рясах стоят на каждом перекрестке.
@@ -539,7 +534,6 @@ func void DIA_Opolos_Kap3_PERM_DMT()
 	B_GivePlayerXP(XP_Ambient);
 	Opolos_DMT = TRUE;
 };
-
 
 func void DIA_Opolos_Kap3_PERM_PEDRO()
 {

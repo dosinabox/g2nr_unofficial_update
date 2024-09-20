@@ -21,6 +21,21 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				B_Greg_ComesToDexter();
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Hilda))
+		{
+			if(MIS_Lobart_RuebenToHilda == LOG_Running)
+			{
+				MIS_Lobart_RuebenToHilda = LOG_FAILED;
+			};
+			if(MIS_Hilda_PfanneKaufen == LOG_Running)
+			{
+				MIS_Hilda_PfanneKaufen = LOG_FAILED;
+			};
+			if(MIS_HealHilda == LOG_Running)
+			{
+				MIS_HealHilda = LOG_FAILED;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Canthar))
 		{
 			if(MIS_Canthars_KomproBrief == LOG_Running)

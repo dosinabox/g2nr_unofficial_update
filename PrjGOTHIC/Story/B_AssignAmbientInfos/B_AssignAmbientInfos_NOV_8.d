@@ -61,7 +61,7 @@ func void DIA_NOV_8_Fegen_Info()
 			B_GivePlayerXP(XP_Feger);
 			AI_StopProcessInfos(self);
 			Npc_ExchangeRoutine(self,"FEGEN");
-			B_LogEntry(Topic_ParlanFegen,"Я нашел послушника, желающего помочь мне подметать комнаты.");
+			B_LogEntry(TOPIC_ParlanFegen,"Я нашел послушника, желающего помочь мне подметать комнаты.");
 		}
 		else
 		{

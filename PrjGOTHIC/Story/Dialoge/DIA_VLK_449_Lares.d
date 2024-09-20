@@ -98,23 +98,23 @@ func void DIA_Addon_Lares_Patch_ja()
 	Info_ClearChoices(DIA_Addon_Lares_Patch);
 };
 
-instance DIA_Lares_Kap1_EXIT(C_Info)
+instance DIA_Lares_EXIT(C_Info)
 {
 	npc = VLK_449_Lares;
 	nr = 999;
-	condition = DIA_Lares_Kap1_EXIT_Condition;
-	information = DIA_Lares_Kap1_EXIT_Info;
+	condition = DIA_Lares_EXIT_Condition;
+	information = DIA_Lares_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Lares_Kap1_EXIT_Condition()
+func int DIA_Lares_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Lares_Kap1_EXIT_Info()
+func void DIA_Lares_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -1614,7 +1614,7 @@ func void DIA_Lares_GoNow_GoingConditions()
 	AI_Output(self,other,"DIA_Lares_GoNow_09_01");	//Пошли... Иди за мной.
 	AI_StopProcessInfos(self);
 	Lares_Distracted = FALSE;
-	Lares_Guide = Wld_GetDay();
+	Lares_Guide_Day = Wld_GetDay();
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	if(!Npc_KnowsInfo(other,DIA_Moe_Hallo) && !Npc_IsDead(Moe))
 	{
@@ -1786,7 +1786,7 @@ func void DIA_Lares_GoNow_warte()
 
 func void B_LaresDistractionCheck()
 {
-	if(Lares_Guide > (Wld_GetDay() - 2))
+	if(!C_DaysSinceEvent(Lares_Guide_Day,2))
 	{
 		if(C_NpcIsNearWP(self,"NW_TAVERNE_BIGFARM_05"))
 		{
@@ -2209,7 +2209,7 @@ func void DIA_Addon_Lares_GOFORESTPRE_Info()
 		AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_09_01");	//Ты уже подумал о походе в лес? Ты действительно хочешь туда направиться?
 	};
 	Lares_Distracted = FALSE;
-	Lares_Guide = Wld_GetDay();
+	Lares_Guide_Day = Wld_GetDay();
 	Info_ClearChoices(DIA_Addon_Lares_GOFORESTPRE);
 	Info_AddChoice(DIA_Addon_Lares_GOFORESTPRE,"Нет, можешь идти.",DIA_Addon_Lares_GOFORESTPRE_nein);
 	Info_AddChoice(DIA_Addon_Lares_GOFORESTPRE,"Да.",DIA_Addon_Lares_GOFORESTPRE_ja);
@@ -2317,7 +2317,7 @@ func void DIA_Addon_Lares_PortalInterWEITER_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_PortalInterWEITER_15_02");	//Двигаемся дальше.
 	Lares_Distracted = FALSE;
-	Lares_Guide = Wld_GetDay();
+	Lares_Guide_Day = Wld_GetDay();
 	if(LaresGuide_ZumPortal == 7)
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_PortalInterWEITER_09_03");	//Отойди немного назад.
@@ -2662,7 +2662,7 @@ func void DIA_Lares_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_Lares_KnowWhereEnemy_09_05");	//Тебе не нужен учитель ловкости или боя одноручным оружием в твоем путешествии?
 	if(SCToldLaresHeKnowWhereEnemy == FALSE)
 	{
-		B_LogEntry(Topic_Crew,"Если я возьму с собой Лареса, то он сможет помочь мне с одноручным оружием и повысить мою ловкость.");
+		B_LogEntry(TOPIC_Crew,"Если я возьму с собой Лареса, то он сможет помочь мне с одноручным оружием и повысить мою ловкость.");
 		SCToldLaresHeKnowWhereEnemy = TRUE;
 	};
 	if(Crewmember_Count >= Max_Crew)

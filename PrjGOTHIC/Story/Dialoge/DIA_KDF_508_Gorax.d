@@ -1,21 +1,21 @@
 
-instance DIA_Gorax_Kap1_EXIT(C_Info)
+instance DIA_Gorax_EXIT(C_Info)
 {
 	npc = KDF_508_Gorax;
 	nr = 999;
-	condition = DIA_Gorax_Kap1_EXIT_Condition;
-	information = DIA_Gorax_Kap1_EXIT_Info;
+	condition = DIA_Gorax_EXIT_Condition;
+	information = DIA_Gorax_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Gorax_Kap1_EXIT_Condition()
+func int DIA_Gorax_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Gorax_Kap1_EXIT_Info()
+func void DIA_Gorax_EXIT_Info()
 {
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
@@ -71,12 +71,11 @@ func int DIA_Gorax_GOLD_Condition()
 func void DIA_Gorax_GOLD_Info()
 {
 	AI_Output(other,self,"DIA_Gorax_GOLD_15_00");	//Я принес целую кучу золота.
-	if(Npc_HasItems(other,ItMi_Gold) >= Summe_Kloster)
+	if(B_GiveInvItems(other,self,ItMi_Gold,Summe_Kloster))
 	{
 		AI_Output(self,other,"DIA_Gorax_GOLD_14_01");	//(в предвкушении) Ах! Приношение Инносу. Это очень хорошо, сын мой.
 		AI_Output(self,other,"DIA_Gorax_GOLD_14_02");	//Я использую твое пожертвование на благо монастыря, как того желает Иннос.
 		DIA_Gorax_GOLD_perm = TRUE;
-		B_GiveInvItems(other,self,ItMi_Gold,Summe_Kloster);
 	}
 	else
 	{
@@ -222,9 +221,9 @@ func void DIA_Gorax_Wurst_Info()
 	if(Wurst_Gegeben >= 13)
 	{
 		AI_Output(self,other,"DIA_Gorax_Wurst_14_01");	//И разделил ее по справедливости. Вот, возьми эти свитки исцеления - и возвращайся к своей работе.
+		B_GiveInvItems(self,other,ItSc_LightHeal,2);
 		MIS_GoraxEssen = LOG_SUCCESS;
 		B_GivePlayerXP(XP_GoraxEssen);
-		B_GiveInvItems(self,other,ItSc_LightHeal,2);
 	}
 	else
 	{
@@ -320,7 +319,7 @@ func void DIA_Gorax_Orlan_100()
 	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_01");	//Ты продал ему вино дешевле? Ох, нет! И почему я послал ТЕБЯ?!
 	B_Gorax_YouAreUseless();
 	MIS_GoraxWein = LOG_FAILED;
-	Goraxday = Wld_GetDay() + 1;
+	Gorax_Mad_Day = Wld_GetDay();
 	Info_ClearChoices(DIA_Gorax_Orlan);
 	AI_StopProcessInfos(self);
 };
@@ -331,48 +330,36 @@ func void DIA_Gorax_Orlan_240()
 	if(B_GiveInvItems(other,self,ItMi_Gold,240))
 	{
 		AI_Output(self,other,"DIA_Gorax_Orlan_240_14_01");	//Превосходно. Ты проявляешь некоторые способности. Вот, возьми в качестве вознаграждения свиток исцеления. А теперь иди и займись каким-нибудь делом.
+		B_GiveInvItems(self,other,ItSc_MediumHeal,1);
 		MIS_GoraxWein = LOG_SUCCESS;
 		B_GivePlayerXP(XP_GoraxWein);
-		B_GiveInvItems(self,other,ItSc_MediumHeal,1);
 	}
 	else
 	{
 		B_GiveInvItems(other,self,ItMi_Gold,Npc_HasItems(other,ItMi_Gold));
 		AI_Output(self,other,"DIA_Gorax_Orlan_240_14_02");	//Но ты уже потратил часть этих денег, да? Ты ничтожество - пшел прочь!
 		MIS_GoraxWein = LOG_FAILED;
-		Goraxday = Wld_GetDay() + 1;
+		Gorax_Mad_Day = Wld_GetDay();
 	};
 	Info_ClearChoices(DIA_Gorax_Orlan);
 };
 
-
-/*instance DIA_Gorax_Orlan_TooLate(C_Info)
+func int C_Gorax_WantToTrade()
 {
-	npc = KDF_508_Gorax;
-	nr = 3;
-	condition = DIA_Gorax_Orlan_TooLate_Condition;
-	information = DIA_Gorax_Orlan_TooLate_Info;
-	permanent = FALSE;
-	important = TRUE;
-};
-
-
-func int DIA_Gorax_Orlan_TooLate_Condition()
-{
-	if((other.guild == GIL_NOV) && (MIS_GoraxWein == LOG_OBSOLETE))
+	if(hero.guild == GIL_KDF)
 	{
 		return TRUE;
 	};
-
+	if(MIS_GoraxWein != LOG_FAILED)
+	{
+		return TRUE;
+	};
+	if(C_DaysSinceEvent(Gorax_Mad_Day,2))
+	{
+		return TRUE;
+	};
+	return FALSE;
 };
-
-func void DIA_Gorax_Orlan_TooLate_Info()
-{
-	B_Gorax_YouAreUseless();
-	Goraxday = Wld_GetDay() + 1;
-	AI_StopProcessInfos(self);
-};*/
-
 
 instance DIA_Gorax_JOB(C_Info)
 {
@@ -395,11 +382,14 @@ func void DIA_Gorax_JOB_Info()
 	AI_Output(other,self,"DIA_Gorax_JOB_15_00");	//А что входит в твои обязанности здесь?
 	AI_Output(self,other,"DIA_Gorax_JOB_14_01");	//Мои обязанности многочисленны и разнообразны. Я не только управляющий, но также и казначей.
 	AI_Output(self,other,"DIA_Gorax_JOB_14_02");	//Кроме того, я заведую винным погребом, а также на моих плечах лежит обеспечение монастыря съестными припасами.
-	AI_Output(self,other,"DIA_Gorax_JOB_14_03");	//Поэтому, если тебе что-нибудь нужно, ты всегда можешь обратиться ко мне и получить все необходимое - за скромное пожертвование, конечно.
+	if(C_Gorax_WantToTrade())
+	{
+		AI_Output(self,other,"DIA_Gorax_JOB_14_03");	//Поэтому, если тебе что-нибудь нужно, ты всегда можешь обратиться ко мне и получить все необходимое - за скромное пожертвование, конечно.
+	};
 	if(Gorax_Trade == FALSE)
 	{
-		Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTrader,"Мастер Горакс в монастыре может предоставить мне все, что мне нужно.");
+		Log_CreateTopic(TOPIC_KlosterTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTrader,"Мастер Горакс в монастыре может предоставить мне все, что мне нужно.");
 		Gorax_Trade = TRUE;
 	};
 };
@@ -424,7 +414,7 @@ instance DIA_Gorax_TRADE(C_Info)
 
 func int DIA_Gorax_TRADE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gorax_JOB) && (Goraxday <= Wld_GetDay()))
+	if(Npc_KnowsInfo(other,DIA_Gorax_JOB) && C_Gorax_WantToTrade())
 	{
 		return TRUE;
 	};
@@ -441,7 +431,7 @@ func void DIA_Gorax_TRADE_Info()
 	Trade_IsActive = TRUE;
 };
 
-/////////////////////////////////////////////////////
+
 instance DIA_Gorax_NOTRADE(C_Info)
 {
 	npc = KDF_508_Gorax;
@@ -455,7 +445,7 @@ instance DIA_Gorax_NOTRADE(C_Info)
 
 func int DIA_Gorax_NOTRADE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gorax_JOB) && (Goraxday > Wld_GetDay()) && (other.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Gorax_JOB) && !C_Gorax_WantToTrade())
 	{
 		return TRUE;
 	};
@@ -468,7 +458,7 @@ func void DIA_Gorax_NOTRADE_Info()
 	AI_StopProcessInfos(self);
 };
 
-/////////////////////////////////////////////////////
+
 instance DIA_Gorax_KDF(C_Info)
 {
 	npc = KDF_508_Gorax;
@@ -492,6 +482,7 @@ func void DIA_Gorax_KDF_Info()
 {
 	AI_Output(other,self,"DIA_Gorax_KDF_15_00");	//Мне нужно место для сна.
 	AI_Output(self,other,"DIA_Gorax_KDF_14_01");	//У нас есть свободная комната справа отсюда. Вот, возьми ключ. Там ты найдешь все, что тебе может понадобиться.
+//	Wld_AssignRoomToNpc("kloster09",hero);
 	B_GiveInvItems(self,other,ItKe_KDFPlayer,1);
 	Wld_InsertItem(ItPo_Perm_Mana,"FP_ITEM_KDFPLAYER");
 };
@@ -509,7 +500,7 @@ instance DIA_Gorax_KILLPEDRO(C_Info)
 
 func int DIA_Gorax_KILLPEDRO_Condition()
 {
-	if((Pedro_Traitor == TRUE) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+	if((Pedro_Traitor == TRUE) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
 	{
 		return TRUE;
 	};
@@ -523,7 +514,7 @@ func void DIA_Gorax_KILLPEDRO_Info()
 	AI_Output(self,other,"DIA_Gorax_KILLPEDRO_14_03");	//В настоящий момент, похоже, все не доверяют друг другу. И к тому же, этот случай с Педро, это очень... (сглатывает)
 	AI_Output(self,other,"DIA_Gorax_KILLPEDRO_14_04");	//У меня есть поручение для тебя от первосвященников. Ты не являешься членом Братства Огня, и, следовательно, ты единственный, кто может помочь нам в решении этой проблемы.
 	AI_Output(self,other,"DIA_Gorax_KILLPEDRO_14_05");	//Но я должен предупредить тебя. Если я дам тебе это поручение, ты будешь обязан выполнить его. Когда ты узнаешь, в чем оно заключается, у тебя уже не будет выбора. Ты понимаешь это?
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	Info_ClearChoices(DIA_Gorax_KILLPEDRO);
 	Info_AddChoice(DIA_Gorax_KILLPEDRO,"Забудь об этом. Это слишком рискованное предприятие для меня.",DIA_Gorax_KILLPEDRO_nein);
 	Info_AddChoice(DIA_Gorax_KILLPEDRO,"Скажи мне, чего ты хочешь.",DIA_Gorax_KILLPEDRO_ja);
@@ -548,5 +539,4 @@ func void DIA_Gorax_KILLPEDRO_ja()
 	MIS_Gorax_KillPedro = LOG_Running;
 	AI_StopProcessInfos(self);
 };
-
 

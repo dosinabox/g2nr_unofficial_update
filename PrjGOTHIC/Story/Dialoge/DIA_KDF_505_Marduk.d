@@ -1,21 +1,21 @@
 
-instance DIA_Marduk_Kap1_EXIT(C_Info)
+instance DIA_Marduk_EXIT(C_Info)
 {
 	npc = KDF_505_Marduk;
 	nr = 999;
-	condition = DIA_Marduk_Kap1_EXIT_Condition;
-	information = DIA_Marduk_Kap1_EXIT_Info;
+	condition = DIA_Marduk_EXIT_Condition;
+	information = DIA_Marduk_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Marduk_Kap1_EXIT_Condition()
+func int DIA_Marduk_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Marduk_Kap1_EXIT_Info()
+func void DIA_Marduk_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -67,9 +67,9 @@ func void DIA_Marduk_Arbeit_Info()
 	AI_Output(other,self,"DIA_Marduk_Arbeit_15_00");	//Могу я сделать что-нибудь для тебя, Мастер?
 	AI_Output(self,other,"DIA_Marduk_Arbeit_05_01");	//Для меня? Нет, мне не нужна твоя помощь. Лучше помолись за воинов Инноса, отправившихся в Долину Рудников.
 	MIS_MardukBeten = LOG_Running;
-	Log_CreateTopic(Topic_MardukBeten,LOG_MISSION);
-	Log_SetTopicStatus(Topic_MardukBeten,LOG_Running);
-	B_LogEntry(Topic_MardukBeten,"У мастера Мардука нет заданий для меня. Он сказал, что мне лучше пойти помолиться за паладинов.");
+	Log_CreateTopic(TOPIC_MardukBeten,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_MardukBeten,LOG_Running);
+	B_LogEntry(TOPIC_MardukBeten,"У мастера Мардука нет заданий для меня. Он сказал, что мне лучше пойти помолиться за паладинов.");
 };
 
 
@@ -184,14 +184,14 @@ func void DIA_Marduk_BEFORETEACH_Info()
 		AI_Output(self,other,"DIA_Marduk_BEFORETEACH_05_02");	//Однако я обучаю только магов.
 		if(other.guild == GIL_NOV)
 		{
-			Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-			B_LogEntry(Topic_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома. Но для этого я должен быть магом Огня.");
+			Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома. Но для этого я должен быть магом Огня.");
 		};
 	}
 	else if(!Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
 	{
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома.");
+		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома.");
 	};
 };
 

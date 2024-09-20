@@ -1,21 +1,21 @@
 
-instance DIA_Karras_KAP1_EXIT(C_Info)
+instance DIA_Karras_EXIT(C_Info)
 {
 	npc = KDF_503_Karras;
 	nr = 999;
-	condition = DIA_Karras_KAP1_EXIT_Condition;
-	information = DIA_Karras_KAP1_EXIT_Info;
+	condition = DIA_Karras_EXIT_Condition;
+	information = DIA_Karras_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Karras_KAP1_EXIT_Condition()
+func int DIA_Karras_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Karras_KAP1_EXIT_Info()
+func void DIA_Karras_EXIT_Info()
 {
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
@@ -134,9 +134,9 @@ func void DIA_Karras_Aufgabe_Info()
 	AI_Output(other,self,"DIA_Karras_Aufgabe_15_06");	//Конечно.
 	AI_Output(self,other,"DIA_Karras_Aufgabe_10_07");	//Вот 150 золотых монет. Это должно компенсировать твои затраты.
 	MIS_KarrasVergessen = LOG_Running;
-	Log_CreateTopic(Topic_KarrasCharm,LOG_MISSION);
-	Log_SetTopicStatus(Topic_KarrasCharm,LOG_Running);
-	B_LogEntry(Topic_KarrasCharm,"Мастер Каррас отправил меня в город. Он хочет, чтобы я принес ему три свитка с заклинаниями, которые изготавливает и продает Игнац.");
+	Log_CreateTopic(TOPIC_KarrasCharm,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_KarrasCharm,LOG_Running);
+	B_LogEntry(TOPIC_KarrasCharm,"Мастер Каррас отправил меня в город. Он хочет, чтобы я принес ему три свитка с заклинаниями, которые изготавливает и продает Игнац.");
 	B_GiveInvItems(self,other,ItMi_Gold,150);
 	if(!Npc_IsDead(Ignaz))
 	{
@@ -212,23 +212,23 @@ func void DIA_Karras_JOB_Info()
 		if(other.guild == GIL_NOV)
 		{
 			AI_Output(self,other,"DIA_Karras_JOB_10_06");	//Но я могу продать их только членам нашего Ордена.
-			Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-			B_LogEntries(Topic_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями. Но для этого я должен быть магом Огня.");
-			Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-			B_LogNextEntry(Topic_KlosterTeacher,"Мастер Каррас обучает формулам вызова. Но для этого я должен быть магом Огня.");
+			Log_CreateTopic(TOPIC_KlosterTrader,LOG_NOTE);
+			B_LogEntries(TOPIC_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями. Но для этого я должен быть магом Огня.");
+			Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+			B_LogNextEntry(TOPIC_KlosterTeacher,"Мастер Каррас обучает формулам вызова. Но для этого я должен быть магом Огня.");
 		}
 		else
 		{
-			Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
+			Log_CreateTopic(TOPIC_KlosterTrader,LOG_NOTE);
 			if(Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
 			{
-				B_LogEntry(Topic_KlosterTrader,"Брат Каррас из монастыря может продать мне свитки с заклинаниями.");
+				B_LogEntry(TOPIC_KlosterTrader,"Брат Каррас из монастыря может продать мне свитки с заклинаниями.");
 			}
 			else
 			{
-				B_LogEntries(Topic_KlosterTrader,"Брат Каррас из монастыря может продать мне свитки с заклинаниями.");
-				Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-				B_LogNextEntry(Topic_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
+				B_LogEntries(TOPIC_KlosterTrader,"Брат Каррас из монастыря может продать мне свитки с заклинаниями.");
+				Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+				B_LogNextEntry(TOPIC_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
 			};
 		};
 	};
@@ -439,7 +439,7 @@ func void DIA_Karras_CIRCLE5_Info()
 			AI_Output(self,other,"DIA_Karras_CIRCLE5_10_01");	//Войди же в пятый круг магии. Тебе станет подвластна могущественная магия, несравнимая с тем, чем ты владел ранее.
 			AI_Output(self,other,"DIA_Karras_CIRCLE5_10_02");	//Используй эту силу во благо, брат - тьма еще сильна, и сильны твои враги.
 			AI_Output(self,other,"DIA_Karras_CIRCLE5_10_03");	//Я не могу сопроводить тебя по пути к шестому и наивысшему Кругу Магии. Сам Пирокар введет тебя в него, когда придет время.
-			B_LogEntry(Topic_KlosterTeacher,"Мастер Пирокар посвятит меня в шестой круг магии.");
+			B_LogEntry(TOPIC_KlosterTeacher,"Мастер Пирокар посвятит меня в шестой круг магии.");
 		};
 	}
 	else
@@ -462,7 +462,6 @@ instance DIA_Karras_ChasePedro(C_Info)
 
 func int DIA_Karras_ChasePedro_Condition()
 {
-//	if(Npc_IsInState(self,ZS_Talk) && (Kapitel == 3) && (MIS_NovizenChase == LOG_Running))
 	if((Kapitel == 3) && (MIS_NovizenChase == LOG_Running))
 	{
 		return TRUE;
@@ -544,7 +543,6 @@ instance DIA_Karras_InnosEyeRetrieved(C_Info)
 
 func int DIA_Karras_InnosEyeRetrieved_Condition()
 {
-//	if((Kapitel == 3) && (MIS_NovizenChase == LOG_SUCCESS))
 	if(MIS_NovizenChase == LOG_SUCCESS)
 	{
 		return TRUE;
@@ -559,8 +557,8 @@ func void DIA_Karras_InnosEyeRetrieved_Info()
 	{
 		AI_Output(self,other,"DIA_Karras_Success_10_02");	//Теперь ты можешь полностью посвятить себя обучению в библиотеке.
 		AI_Output(self,other,"DIA_Karras_JOB_10_05");	//Кроме того, у меня есть очень интересные свитки, которых нет даже у Горакса.
-		Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями.");
+		Log_CreateTopic(TOPIC_KlosterTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями.");
 	};
 	AI_Output(self,other,"DIA_Karras_InnosEyeRetrieved_10_02");	//Но опасность все еще нависает над нами. Враг разрабатывает новые планы и претворяет их в жизнь с необычайной агрессивностью.
 	AI_Output(other,self,"DIA_Karras_InnosEyeRetrieved_15_03");	//Я уже почувствовал это на своей шкуре.

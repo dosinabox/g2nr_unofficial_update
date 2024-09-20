@@ -1,21 +1,21 @@
 
-instance DIA_Babo_Kap1_EXIT(C_Info)
+instance DIA_Babo_EXIT(C_Info)
 {
 	npc = NOV_612_Babo;
 	nr = 999;
-	condition = DIA_Babo_Kap1_EXIT_Condition;
-	information = DIA_Babo_Kap1_EXIT_Info;
+	condition = DIA_Babo_EXIT_Condition;
+	information = DIA_Babo_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Babo_Kap1_EXIT_Condition()
+func int DIA_Babo_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Babo_Kap1_EXIT_Info()
+func void DIA_Babo_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -82,9 +82,9 @@ func void DIA_Babo_Anliegen_Info()
 	{
 		AI_Output(other,self,"DIA_Babo_Anliegen_15_03");	//Я посмотрю, что можно сделать.
 		MIS_Babo_Training = LOG_Running;
-		Log_CreateTopic(Topic_BaboTrain,LOG_MISSION);
-		Log_SetTopicStatus(Topic_BaboTrain,LOG_Running);
-		B_LogEntry(Topic_BaboTrain,"Если я смогу убедить паладина Сержио немного потренироваться с Бабо, он научит меня искусству обращения с двуручным оружием.");
+		Log_CreateTopic(TOPIC_BaboTrain,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_BaboTrain,LOG_Running);
+		B_LogEntry(TOPIC_BaboTrain,"Если я смогу убедить паладина Сержио немного потренироваться с Бабо, он научит меня искусству обращения с двуручным оружием.");
 	}
 	else
 	{
@@ -100,8 +100,8 @@ func void B_BaboIsTeacher()
 	if(Babo_TeachPlayer == FALSE)
 	{
 		AI_Output(self,other,"DIA_Babo_Sergio_03_02");	//Если хочешь, я также могу показать тебе несколько секретов боевого искусства.
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Бабо может обучить меня искусству обращения с двуручным оружием.");
+		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTeacher,"Бабо может обучить меня искусству обращения с двуручным оружием.");
 		Babo_TeachPlayer = TRUE;
 	};
 };
@@ -389,9 +389,9 @@ func void DIA_Babo_PlantLore_Info()
 	AI_Output(self,other,"DIA_Babo_PlantLore_03_01");	//У нас в семье была делянка, где мы выращивали различные травы, и я научился кое-чему у дедушки.
 	AI_Output(self,other,"DIA_Babo_PlantLore_03_02");	//Я бы так хотел опять работать в саду.
 	MIS_HelpBabo = LOG_Running;
-	Log_CreateTopic(Topic_BaboGaertner,LOG_MISSION);
-	Log_SetTopicStatus(Topic_BaboGaertner,LOG_Running);
-	B_LogEntry(Topic_BaboGaertner,"Бабо предпочел бы пропалывать травы, а не подметать двор.");
+	Log_CreateTopic(TOPIC_BaboGaertner,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_BaboGaertner,LOG_Running);
+	B_LogEntry(TOPIC_BaboGaertner,"Бабо предпочел бы пропалывать травы, а не подметать двор.");
 };
 
 
@@ -420,7 +420,7 @@ func void DIA_Babo_Fegen_Info()
 	AI_Output(self,other,"DIA_Babo_Fegen_03_01");	//Ты взвалил на себя слишком много работы. Знаешь что - я помогу тебе. Тебе ни за что не справиться одному.
 	AI_Output(self,other,"DIA_Babo_Fegen_03_02");	//Но мне очень нужен свиток с заклинанием 'Кулак ветра'. Знаешь, мне повезло, и мне было позволено прочесть книгу о нем.
 	AI_Output(self,other,"DIA_Babo_Fegen_03_03");	//И теперь, естественно, я хочу испытать это заклинание. Так что если ты мне принесешь этот свиток, я помогу тебе.
-	B_LogEntry(Topic_ParlanFegen,"Бабо поможет мне подмести кельи послушников, если я принесу ему свиток с заклинанием 'Кулак ветра'.");
+	B_LogEntry(TOPIC_ParlanFegen,"Бабо поможет мне подмести кельи послушников, если я принесу ему свиток с заклинанием 'Кулак ветра'.");
 };
 
 
@@ -458,7 +458,7 @@ func void DIA_Babo_Windfaust_Info()
 		B_GivePlayerXP(XP_Feger);
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"SWEEP");
-		B_LogEntry(Topic_ParlanFegen,"Бабо поможет мне подмести кельи послушников.");
+		B_LogEntry(TOPIC_ParlanFegen,"Бабо поможет мне подмести кельи послушников.");
 	}
 	else
 	{
