@@ -59,8 +59,8 @@ func void DIA_Dragon_Ice_Hello_Info()
 	AI_Output(self,other,"DIA_Dragon_Ice_Hello_20_05");	//Ха-ха! Тогда спрашивай. Но твои знания не помогут тебе.
 	if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2) && !Npc_IsDead(DJG_Sylvio))
 	{
-		B_StartOtherRoutine(DJG_Sylvio,"IceWait2");
-		B_StartOtherRoutine(DJG_Bullco,"IceWait2");
+		B_StartOtherRoutine(DJG_Sylvio,"ICEWAIT2");
+		B_StartOtherRoutine(DJG_Bullco,"ICEWAIT2");
 	};
 };
 

@@ -209,7 +209,7 @@ func void DIA_Jack_BANDITENWEG_Info()
 	};
 	B_SetGuild(self,GIL_NONE);
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Lighthouse");
+	Npc_ExchangeRoutine(self,"LIGHTHOUSE");
 	MIS_Jack_KillLighthouseBandits = LOG_SUCCESS;
 	B_GivePlayerXP(XP_KillLighthouseBandits);
 };
@@ -279,7 +279,7 @@ func void DIA_Jack_BEMYCAPTAIN_seaman()
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_14_01");	//„ерт мен€ побери! „то ты задумал, при€тель? “ы же не собираешьс€ захватить королевскую военную галеру, а?
 	AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN_seaman_15_02");	// то знает...
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_14_03");	//(смеетс€) Ёто будет что-то! ќх, черт. Ќо € не могу вот так вз€ть и бросить свой ма€к. ’м-м... „то же нам с этим делать?
-	B_LogEntry(Topic_Captain,"ƒжек, старый морской волк из гавани, мог бы стать хорошим капитаном. Ќо сначала € должен найти кого-нибудь, кто посторожит его ма€к.");
+	B_LogEntry(TOPIC_Captain,"ƒжек, старый морской волк из гавани, мог бы стать хорошим капитаном. Ќо сначала € должен найти кого-нибудь, кто посторожит его ма€к.");
 	Info_ClearChoices(DIA_Jack_BEMYCAPTAIN);
 	Info_AddChoice(DIA_Jack_BEMYCAPTAIN,"«абудь. Ёто € просто так сказал.",DIA_Jack_BEMYCAPTAIN_no);
 	Info_AddChoice(DIA_Jack_BEMYCAPTAIN,"ј что, если € приведу к тебе кого-нибудь, кто позаботилс€ бы о ма€ке в твое отсутствие?",DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer);
@@ -403,7 +403,7 @@ func void DIA_Jack_BEMYCAPTAIN3_Info()
 	SCGotCaptain = TRUE;
 	JackIsCaptain = TRUE;
 	B_SetImmortal(self);
-	Npc_ExchangeRoutine(self,"WaitForShipCaptain");
+	Npc_ExchangeRoutine(self,"WAITFORSHIPCAPTAIN");
 	B_GivePlayerXP(XP_Captain_Success);
 };
 

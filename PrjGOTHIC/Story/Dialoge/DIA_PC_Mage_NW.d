@@ -1,21 +1,21 @@
 
-instance DIA_MiltenNW_KAP3_EXIT(C_Info)
+instance DIA_MiltenNW_EXIT(C_Info)
 {
 	npc = PC_Mage_NW;
 	nr = 999;
-	condition = DIA_MiltenNW_KAP3_EXIT_Condition;
-	information = DIA_MiltenNW_KAP3_EXIT_Info;
+	condition = DIA_MiltenNW_EXIT_Condition;
+	information = DIA_MiltenNW_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_MiltenNW_KAP3_EXIT_Condition()
+func int DIA_MiltenNW_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_MiltenNW_KAP3_EXIT_Info()
+func void DIA_MiltenNW_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -116,8 +116,6 @@ func void DIA_MiltenNW_KAP3_Hello_FirstMeet_NO()
 	Info_ClearChoices(DIA_MiltenNW_KAP3_Hello_FirstMeet);
 };
 
-
-//////////////////////////////////////////////////////////////////
 
 instance DIA_MiltenNW_KAP3_Hello(C_Info)
 {
@@ -542,7 +540,7 @@ func void DIA_MiltenNW_KnowWhereEnemy_Info()
 		AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_02");	//Ты говорил с Диего? Я думаю, он согласится присоединиться к тебе.
 		if(SCToldDiegoHeKnowWhereEnemy == FALSE)
 		{
-			B_LogEntry(Topic_Crew,"Диего может оказаться полезным. Он никогда подолгу не задерживается на одном месте.");
+			B_LogEntry(TOPIC_Crew,"Диего может оказаться полезным. Он никогда подолгу не задерживается на одном месте.");
 			SCToldDiegoHeKnowWhereEnemy = TRUE;
 		};
 	};
@@ -551,7 +549,7 @@ func void DIA_MiltenNW_KnowWhereEnemy_Info()
 		AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_03");	//А что насчет Горна? Поговори с ним. Я слышал, он вернулся из Долины Рудников.
 		if(SCToldGornHeKnowWhereEnemy == FALSE)
 		{
-			B_LogEntry(Topic_Crew,"Горн, определенно, может оказаться полезным. Никогда не помешает иметь на своей стороне такого закаленного бойца. Возможно, он сможет тренировать меня.");
+			B_LogEntry(TOPIC_Crew,"Горн, определенно, может оказаться полезным. Никогда не помешает иметь на своей стороне такого закаленного бойца. Возможно, он сможет тренировать меня.");
 			SCToldGornHeKnowWhereEnemy = TRUE;
 		};
 	};
@@ -562,11 +560,11 @@ func void DIA_MiltenNW_KnowWhereEnemy_Info()
 		{
 			if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
 			{
-				B_LogEntry(Topic_Crew,"Лестер может обладать ценной информацией. Мне следует проведать его в башне Ксардаса.");
+				B_LogEntry(TOPIC_Crew,"Лестер может обладать ценной информацией. Мне следует проведать его в башне Ксардаса.");
 			}
 			else
 			{
-				B_LogEntry(Topic_Crew,"Если я не возьму Лестера с собой, ему никогда не выбраться из той долины.");
+				B_LogEntry(TOPIC_Crew,"Если я не возьму Лестера с собой, ему никогда не выбраться из той долины.");
 			};
 			SCToldLesterHeKnowWhereEnemy = TRUE;
 		};
@@ -574,7 +572,7 @@ func void DIA_MiltenNW_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_05");	//Я также вижу свою роль во всем этом. Я могу повысить твою ману и помочь в создании рун. Когда мы приступим?
 	if(SCToldMiltenHeKnowWhereEnemy == FALSE)
 	{
-		B_LogEntry(Topic_Crew,"Если Милтен отправится в путь со мной, он может научить меня создавать руны и повысить мою ману.");
+		B_LogEntry(TOPIC_Crew,"Если Милтен отправится в путь со мной, он может научить меня создавать руны и повысить мою ману.");
 		SCToldMiltenHeKnowWhereEnemy = TRUE;
 	};
 	if(Crewmember_Count >= Max_Crew)
@@ -632,7 +630,7 @@ func void DIA_MiltenNW_WhereCaptain_Info()
 	AI_Output(self,other,"DIA_MiltenNW_WhereCaptain_03_01");	//Спроси Йоргена. Он ведь моряк. Он, должно быть, все еще в монастыре.
 	AI_Output(self,other,"DIA_MiltenNW_WhereCaptain_03_02");	//Но если он не сможет помочь, попробуй поспрашивать на фермах или в городе, может быть, найдется человек, способный управлять твоим кораблем.
 	AI_Output(self,other,"DIA_MiltenNW_WhereCaptain_03_03");	//Лучше всего поговорить с Ли или поспрашивать в гавани Хориниса. Больше ничего сейчас мне в голову не приходит.
-	B_LogEntry(Topic_Captain,"Возможно, стоит взять с собой Йоргена в качестве капитана. Он все еще должен быть в монастыре. Хотя, кроме него есть и другие кандидаты на фермах и в городе. Возможно, мне стоит поговорить с Ли или поспрашивать в гавани.");
+	B_LogEntry(TOPIC_Captain,"Возможно, стоит взять с собой Йоргена в качестве капитана. Он все еще должен быть в монастыре. Хотя, кроме него есть и другие кандидаты на фермах и в городе. Возможно, мне стоит поговорить с Ли или поспрашивать в гавани.");
 };
 
 

@@ -40,8 +40,8 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 				{
 					if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2) && !Npc_IsDead(DJG_Sylvio))
 					{
-						B_StartOtherRoutine(DJG_Sylvio,"IceDragon");
-						B_StartOtherRoutine(DJG_Bullco,"IceDragon");
+						B_StartOtherRoutine(DJG_Sylvio,"ICEDRAGON");
+						B_StartOtherRoutine(DJG_Bullco,"ICEDRAGON");
 					};
 					MIS_KilledDragons += 1;
 					IceDragonIsDead = TRUE;
@@ -95,7 +95,7 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 			{
 				ADW_Myxir_Removed_Forever = TRUE;
 			};
-			B_StartOtherRoutine(KDW_14020_Addon_Nefarius_ADW,"MyxirLeft");
+			B_StartOtherRoutine(KDW_14020_Addon_Nefarius_ADW,"MYXIRLEFT");
 			Saturas_KnowsHow2GetInTempel = TRUE;
 			RavenIsDead = TRUE;
 			B_CheckLog();

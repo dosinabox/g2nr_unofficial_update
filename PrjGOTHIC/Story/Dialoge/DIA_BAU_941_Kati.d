@@ -96,11 +96,11 @@ func void DIA_Kati_HALLO_Info()
 	{
 		AI_Output(self,other,"DIA_Kati_HALLO_16_02");	//Да, я в порядке, спасибо.
 	};
-	Npc_ExchangeRoutine(self,"Start");
-	B_StartOtherRoutine(Akil,"Start");
+	Npc_ExchangeRoutine(self,"START");
+	B_StartOtherRoutine(Akil,"START");
 	if(DIA_Randolph_ICHGEBEDIRGELD_noPerm == FALSE)
 	{
-		B_StartOtherRoutine(Randolph,"Start");
+		B_StartOtherRoutine(Randolph,"START");
 	};
 	B_SetMortal(Randolph);
 };

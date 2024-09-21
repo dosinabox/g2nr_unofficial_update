@@ -33,7 +33,7 @@ func void DIA_Gaan_EXIT_Info()
 	AI_StopProcessInfos(self);
 	if(DIA_Gaan_EXIT_oneTime == FALSE)
 	{
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 		DIA_Gaan_EXIT_oneTime = TRUE;
 	};
 };
@@ -625,7 +625,7 @@ func void DIA_Gaan_JAGD_Info()
 		{
 			DIA_Common_HeIsDead();
 			B_Gaan_GiveReward();
-			Npc_ExchangeRoutine(self,"Start");
+			Npc_ExchangeRoutine(self,"START");
 		}
 		else if(MIS_Gaan_Snapper == FALSE)
 		{
