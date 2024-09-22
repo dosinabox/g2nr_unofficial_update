@@ -117,7 +117,7 @@ func void DIA_Addon_Edgor_MIS2_Info()
 	AI_Output(self,other,"DIA_Addon_Edgor_MIS2_06_01");	//ѕри€тель, € даже не пыталс€ ее искать. ¬се, что € знаю - это то, что она должна быть где-то в этом старом здании на болоте.
 	AI_Output(self,other,"DIA_Addon_Edgor_MIS2_06_02");	//ј мой внутренний голос говорит мне: 'Ёдгор, сторонись старых зданий, сто€щих на болоте'.
 	AI_Output(self,other,"DIA_Addon_Edgor_MIS2_06_03");	//я не собираюсь рисковать своей шкурой ради этого раздолба€ ‘ранко!
-	B_LogEntry(Topic_Addon_Stoneplate,"Ёдгор не собираетс€ искать каменную табличку. ќн говорит, что она находитс€ в каком-то старом строении на болотах.");
+	B_LogEntry(TOPIC_Addon_Stoneplate,"Ёдгор не собираетс€ искать каменную табличку. ќн говорит, что она находитс€ в каком-то старом строении на болотах.");
 };
 
 
@@ -213,8 +213,8 @@ func void DIA_Addon_Edgor_Teach_Info()
 	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_05");	// онечно, € ничего не буду делать бесплатно...
 	if(!Npc_KnowsInfo(other,DIA_Addon_Logan_Lern))
 	{
-		Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
-		B_LogEntry(Topic_Addon_BDT_Teacher,Log_Text_Addon_EdgorTeach);
+		Log_CreateTopic(TOPIC_Addon_BDT_Teacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_BDT_Teacher,Log_Text_Addon_EdgorTeach);
 	};
 };
 
@@ -334,8 +334,8 @@ func void DIA_Addon_Edgor_TrainStart_GIFT()
 		other.lp -= 1;
 		Knows_Bloodfly = TRUE;
 		PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
-		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-		B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);
+		Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
+		B_LogEntry(TOPIC_Bonus,PRINT_KnowsBloodfly);
 	}
 	else
 	{

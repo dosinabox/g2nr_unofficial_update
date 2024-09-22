@@ -573,14 +573,14 @@ func void DIA_Constantino_LEHRLING_Yes()
 	Wld_AssignRoomToGuild("alchemist",GIL_NONE);
 	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
-	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
+	Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
 	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
-		B_LogEntry(Topic_Bonus," онстантино прин€л мен€ в ученики. “еперь € смогу попасть в верхний квартал.");
+		B_LogEntry(TOPIC_Bonus," онстантино прин€л мен€ в ученики. “еперь € смогу попасть в верхний квартал.");
 	}
 	else
 	{
-		B_LogEntry(Topic_Bonus," онстантино прин€л мен€ в ученики.");
+		B_LogEntry(TOPIC_Bonus," онстантино прин€л мен€ в ученики.");
 	};
 	Info_ClearChoices(DIA_Constantino_LEHRLING);
 };
@@ -724,7 +724,7 @@ func void DIA_Constantino_Mushrooms_Info()
 	AI_Output(self,other,"DIA_Constantino_Mushrooms_10_01");	//я буду покупать все, что ты принесешь мне - и буду платить за травы обычную цену.
 	AI_Output(self,other,"DIA_Constantino_Mushrooms_10_02");	//Ќо что касаетс€ грибов, дл€ них у мен€ особа€ цена.
 	MIS_Constantino_Mushrooms = LOG_Running;
-	B_LogEntry(Topic_Bonus,"я могу продавать грибы  онстантино по очень хорошей цене.");
+	B_LogEntry(TOPIC_Bonus,"я могу продавать грибы  онстантино по очень хорошей цене.");
 };
 
 

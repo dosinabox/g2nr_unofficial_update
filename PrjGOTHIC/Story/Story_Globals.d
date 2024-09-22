@@ -1305,6 +1305,7 @@ var int TaverneTopicStarted;
 var int TotalStoneplatesForVatras;
 var int TotalSwampHerbsForFortuno;
 var int TotalSilverForHalvor;
+var int TotalOnarGoldTaken;
 var int TotalApplesEaten;
 var int TotalMushroomsEaten;
 var int TotalDexEaten;

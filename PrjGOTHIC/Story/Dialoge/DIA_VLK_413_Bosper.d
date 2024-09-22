@@ -326,14 +326,14 @@ func void DIA_Bosper_LEHRLING_OK()
 	Wld_AssignRoomToGuild("gritta",GIL_NONE);
 	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
-	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
+	Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
 	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
-		B_LogEntry(Topic_Bonus,"Боспер принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+		B_LogEntry(TOPIC_Bonus,"Боспер принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
 	}
 	else
 	{
-		B_LogEntry(Topic_Bonus,"Боспер принял меня в ученики.");
+		B_LogEntry(TOPIC_Bonus,"Боспер принял меня в ученики.");
 	};
 	Info_ClearChoices(DIA_Bosper_LEHRLING);
 };
@@ -833,7 +833,7 @@ func void DIA_Bosper_Aufgaben_Info()
 		AI_Output(other,self,"DIA_Bosper_Aufgaben_15_04");	//А где я буду спать?
 		AI_Output(self,other,"DIA_Bosper_Aufgaben_11_05");	//У меня здесь нет места для тебя. Но ты всегда найдешь свободную койку в отеле на рыночной площади.
 	};
-	B_LogEntry(Topic_Bonus,"Боспер готов платить очень хорошую цену за шкуры животных.");
+	B_LogEntry(TOPIC_Bonus,"Боспер готов платить очень хорошую цену за шкуры животных.");
 };
 
 

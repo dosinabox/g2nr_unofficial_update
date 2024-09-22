@@ -1,18 +1,18 @@
 
 func void B_CheckLog()
 {
-	B_CloseTopic(Topic_Addon_Fortuno,MIS_Fortuno_Delusion,0,6);
-	B_CloseTopic(Topic_Addon_Hammer,MIS_SnafHammer,0,6);
-	B_CloseTopic(Topic_Addon_Buddler,MIS_Send_Buddler,0,4);
-	B_CloseTopic(Topic_Addon_Logan,MIS_HlpLogan,0,4);
-	B_CloseTopic(Topic_Addon_Stoneplate,MIS_HlpEdgor,0,4);
-	B_CloseTopic(Topic_Addon_Esteban,MIS_Judas,0,4);
-	B_CloseTopic(Topic_Addon_Huno,MIS_Huno_Stahl,0,6);
-	B_CloseTopic(Topic_Addon_Fisk,MIS_Fisk_Lockpicks,0,6);
-	B_CloseTopic(Topic_Addon_Tempel,MIS_BloodwynRaus,0,4);
-	B_CloseTopic(Topic_Addon_Franco,0,Player_HasTalkedToBanditCamp,4);
-	B_CloseTopic(Topic_Addon_Senyan,Senyan_Erpressung,0,4);
-	B_CloseTopic(Topic_Bandits,MIS_Steckbriefe,0,4);
+	B_CloseTopic(TOPIC_Addon_Fortuno,MIS_Fortuno_Delusion,0,6);
+	B_CloseTopic(TOPIC_Addon_Hammer,MIS_SnafHammer,0,6);
+	B_CloseTopic(TOPIC_Addon_Buddler,MIS_Send_Buddler,0,4);
+	B_CloseTopic(TOPIC_Addon_Logan,MIS_HlpLogan,0,4);
+	B_CloseTopic(TOPIC_Addon_Stoneplate,MIS_HlpEdgor,0,4);
+	B_CloseTopic(TOPIC_Addon_Esteban,MIS_Judas,0,4);
+	B_CloseTopic(TOPIC_Addon_Huno,MIS_Huno_Stahl,0,6);
+	B_CloseTopic(TOPIC_Addon_Fisk,MIS_Fisk_Lockpicks,0,6);
+	B_CloseTopic(TOPIC_Addon_Tempel,MIS_BloodwynRaus,0,4);
+	B_CloseTopic(TOPIC_Addon_Franco,0,Player_HasTalkedToBanditCamp,4);
+	B_CloseTopic(TOPIC_Addon_Senyan,Senyan_Erpressung,0,4);
+	B_CloseTopic(TOPIC_Bandits,MIS_Steckbriefe,0,4);
 	B_CloseTopic(TOPIC_Kleidung,0,Lobart_Kleidung_Verkauft,2);
 	B_CloseTopic(TOPIC_Rueben,MIS_Lobart_Rueben,0,3);
 	B_CloseTopic(TOPIC_Ruebenbringen,MIS_Lobart_RuebenToHilda,0,3);
@@ -83,7 +83,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_PepeWolves,MIS_Pepe_KillWolves,0,6);
 	B_CloseTopic(TOPIC_KickBullco,MIS_Pepe_KickBullco,0,6);
 	B_CloseTopic(TOPIC_Frieden,MIS_Lee_Friedensangebot,0,6);
-	B_CloseTopic(Topic_MISOLDWORLD,MIS_OLDWORLD,0,4);
+	B_CloseTopic(TOPIC_MISOLDWORLD,MIS_OLDWORLD,0,4);
 	B_CloseTopic(TOPIC_ScoutMine,MIS_ScoutMine,0,3);
 	B_CloseTopic(TOPIC_RescueGorn,MIS_RescueGorn,0,3);
 	B_CloseTopic(TOPIC_FajethKillSnapper,MIS_Fajeth_Kill_Snapper,0,3);

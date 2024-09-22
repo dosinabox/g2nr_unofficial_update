@@ -329,7 +329,7 @@ func void DIA_Garond_NeedProof_Info()
 		Jergan.aivar[AIV_IgnoresFakeGuild] = FALSE;
 		Jergan.aivar[AIV_IgnoresArmor] = FALSE;
 	};
-	B_LogEntries(Topic_MISOLDWORLD,"Прежде чем командующий Гаронд отправит меня назад, он хочет, чтобы я разыскал три группы старателей и сообщил ему, сколько руды удалось им добыть.");
+	B_LogEntries(TOPIC_MISOLDWORLD,"Прежде чем командующий Гаронд отправит меня назад, он хочет, чтобы я разыскал три группы старателей и сообщил ему, сколько руды удалось им добыть.");
 	Log_CreateTopic(TOPIC_ScoutMine,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_ScoutMine,LOG_Running);
 	B_LogNextEntry(TOPIC_ScoutMine,"Командующий Гаронд дал мне поручение. Он отправил три группы старателей добывать магическую руду. И до сих пор они не вернулись.");
@@ -623,7 +623,7 @@ func void DIA_Garond_Success_Info()
 	CreateInvItems(self,ItWr_PaladinLetter_MIS,1);
 	B_GiveInvItems(self,other,ItWr_PaladinLetter_MIS,1);
 	KnowsPaladins_Ore = TRUE;
-	B_LogEntry(Topic_MISOLDWORLD,"Командующий Гаронд дал мне письмо. Его должно быть достаточно для подтверждения моих слов. Я могу отнести его лорду Хагену.");
+	B_LogEntry(TOPIC_MISOLDWORLD,"Командующий Гаронд дал мне письмо. Его должно быть достаточно для подтверждения моих слов. Я могу отнести его лорду Хагену.");
 	MIS_ScoutMine = LOG_SUCCESS;
 	B_GivePlayerXP(XP_ScoutMine);
 	MIS_ReadyForChapter3 = TRUE;
@@ -860,16 +860,15 @@ func void DIA_Garond_BACKINKAP4_Info()
 		if(DJG_AngarGotAmulett == TRUE)
 		{
 			AI_Teleport(DJG_Angar,"OW_CAVALORN_01");
-			B_StartOtherRoutine(DJG_Angar,"LeavingOW");
+			B_StartOtherRoutine(DJG_Angar,"LEAVINGOW");
 		}
 		else
 		{
 			AI_Teleport(DJG_Angar,"OW_DJG_WATCH_STONEHENGE_01");
-			B_StartOtherRoutine(DJG_Angar,"Start");
+			B_StartOtherRoutine(DJG_Angar,"START");
 			DJG_Angar_SentToStones = TRUE;
 		};
 	};
-	//TODO если MIS_Kervo_KillLurker != LOG_SUCCESS, то в пещере останутся трупы Керво и Гепперта под ногами охотников
 	B_StartOtherRoutine(Kjorn,"START");
 	B_StartOtherRoutine(Godar,"START");
 	B_StartOtherRoutine(Hokurn,"START");
@@ -882,6 +881,17 @@ func void DIA_Garond_BACKINKAP4_Info()
 	B_KillAnimal(Kervo_Lurker5);
 	B_KillAnimal(Kervo_Lurker6);
 	B_KillAnimal(Kervo_Lurker7);
+	if(MIS_Kervo_KillLurker != LOG_SUCCESS)
+	{
+		if(Hlp_IsValidNpc(Kervo))
+		{
+			Npc_ExchangeRoutine(Kervo,"ESCAPE");
+		};
+		if(Hlp_IsValidNpc(Geppert))
+		{
+			Npc_ExchangeRoutine(Geppert,"ESCAPE");
+		};
+	};
 	if(DJG_BiffParty == FALSE)
 	{
 		B_StartOtherRoutine(Biff,"START");

@@ -359,8 +359,8 @@ func void UseBloodMIS()
 	if(Knows_Bloodfly == FALSE)
 	{
 		PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
-		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-		B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);
+		Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
+		B_LogEntry(TOPIC_Bonus,PRINT_KnowsBloodfly);
 		Knows_Bloodfly = TRUE;
 		B_GivePlayerXP(XP_Ambient);
 	};

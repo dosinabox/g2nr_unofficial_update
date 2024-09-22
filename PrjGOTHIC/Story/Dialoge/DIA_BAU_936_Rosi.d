@@ -17,8 +17,8 @@ func void B_RosiTradeInfo()
 		}
 		else if(RosiLocation == LOC_MONASTERY)
 		{
-			Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-			B_LogEntry(Topic_KlosterTrader,"У Рози можно купить различные товары.");
+			Log_CreateTopic(TOPIC_KlosterTrader,LOG_NOTE);
+			B_LogEntry(TOPIC_KlosterTrader,"У Рози можно купить различные товары.");
 		}
 		else if(RosiLocation == LOC_FARM)
 		{

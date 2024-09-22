@@ -213,9 +213,9 @@ func void DIA_Coragon_BringSilber_Info()
 	B_GiveInvItems(other,self,ItMi_CoragonsSilber,8);
 	Npc_RemoveInvItems(self,ItMi_CoragonsSilber,8);
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_13");	//Правда?
-	B_GivePlayerXP(XP_CoragonsSilber);
 	B_Coragon_Bier();
 	MIS_Coragon_Silber = LOG_SUCCESS;
+	B_GivePlayerXP(XP_CoragonsSilber);
 };
 
 
@@ -278,8 +278,8 @@ func void DIA_Coragon_GiveBook_Info()
 		B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
 	};
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_19");	//Спасибо! Ты спас меня. Лемар может быть очень неприятным человеком.
-	B_GivePlayerXP(XP_Schuldenbuch);
 	B_Coragon_Bier();
+	B_GivePlayerXP(XP_Schuldenbuch);
 };
 
 
@@ -354,10 +354,12 @@ instance DIA_Coragon_News(C_Info)
 
 func int DIA_Coragon_News_Condition()
 {
-//	if(!Npc_IsDead(Valentino) && (Valentino.aivar[AIV_DefeatedByPlayer] == TRUE) && Npc_KnowsInfo(other,DIA_Regis_Valentino) && (Valentino_Day < Wld_GetDay()))
-	if(!Npc_IsDead(Valentino) && (Valentino.aivar[AIV_DefeatedByPlayer] == TRUE) && (Valentino_Day < Wld_GetDay()))
+	if(!Npc_IsDead(Valentino) && (Valentino_Day < Wld_GetDay()))
 	{
-		return TRUE;
+		if(Valentino.aivar[AIV_DefeatedByPlayer] == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -436,13 +438,13 @@ func void DIA_Coragon_PICKPOCKET_Book_DoIt()
 		CreateInvItem(other,ItWr_Schuldenbuch);
 		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Корагон",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Корагон",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
 		SchuldBuch_Stolen_Coragon = TRUE;
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Корагон",PRINT_PickPocketFailed));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Корагон",PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};

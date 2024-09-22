@@ -56,12 +56,12 @@ func void DIA_Zuris_PICKPOCKET_DoIt()
 		AI_PrintScreen(ConcatStrings(NAME_HP_Elixier,PRINT_ItemTaken),-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Зурис",ConcatStrings(PRINT_PickPocketSuccess,"Лечебный эликсир.")));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Зурис",ConcatStrings(PRINT_PickPocketSuccess,"Лечебный эликсир.")));
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Зурис",PRINT_PickPocketFailed));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Зурис",PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};
