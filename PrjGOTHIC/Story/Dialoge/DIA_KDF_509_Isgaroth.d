@@ -177,8 +177,8 @@ func void DIA_Isgaroth_Job_Info()
 	};
 	AI_Output(self,other,"DIA_Isgaroth_Job_01_03");	//Ко мне приходят люди, чтобы помолиться Инносу и получить благословение.
 	AI_Output(self,other,"DIA_Isgaroth_Job_01_04");	//А за небольшое пожертвование ты можешь получить от меня много полезного.
-	Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-	B_LogEntry(Topic_KlosterTrader,"Мастер Исгарот продает полезные магические предметы в часовне неподалеку от монастыря.");
+	Log_CreateTopic(TOPIC_KlosterTrader,LOG_NOTE);
+	B_LogEntry(TOPIC_KlosterTrader,"Мастер Исгарот продает полезные магические предметы в часовне неподалеку от монастыря.");
 };
 
 

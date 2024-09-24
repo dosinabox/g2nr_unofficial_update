@@ -75,8 +75,8 @@ func void DIA_Addon_Lucia_was_Info()
 	B_GiveInvItems(self,other,ItFo_Addon_Liquor,1);
 	if(!Npc_KnowsInfo(other,DIA_Addon_Scatty_Trinken))
 	{
-		Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
-		B_LogEntry(Topic_Addon_BDT_Trader,"У Люсии я могу купить выпивку.");
+		Log_CreateTopic(TOPIC_Addon_BDT_Trader,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_BDT_Trader,"У Люсии я могу купить выпивку.");
 	};
 };
 
@@ -347,8 +347,8 @@ func void DIA_Addon_Lucia_lernen_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lucia_lernen_15_00");	//Ты можешь меня чему-нибудь обучить?
 	AI_Output(self,other,"DIA_Addon_Lucia_lernen_16_01");	//(смеется) С радостью. Я могу помочь тебе увеличить ловкость.
-	Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Teacher,"Люсия может помочь мне стать более ловким.");
+	Log_CreateTopic(TOPIC_Addon_BDT_Teacher,LOG_NOTE);
+	B_LogEntry(TOPIC_Addon_BDT_Teacher,"Люсия может помочь мне стать более ловким.");
 };
 
 

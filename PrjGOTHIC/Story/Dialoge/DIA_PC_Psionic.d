@@ -499,7 +499,7 @@ func void DIA_Lester_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_03");	//я не могу объ€снить этого, но € знаю, что смогу получить ответ, только если отправлюсь с тобой.
 	if(SCToldLesterHeKnowWhereEnemy == FALSE)
 	{
-		B_LogEntry(Topic_Crew,"Ћестер может обладать ценной информацией.");
+		B_LogEntry(TOPIC_Crew,"Ћестер может обладать ценной информацией.");
 		SCToldLesterHeKnowWhereEnemy = TRUE;
 	};
 	if(Crewmember_Count >= Max_Crew)

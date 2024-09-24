@@ -68,9 +68,9 @@ func void DIA_Addon_BDT_10018_Torwache_FirstWarn_Info()
 		AI_Output(other,self,"DIA_Addon_BDT_10018_Torwache_FirstWarn_15_01");	//Уйди с дороги - мне нужно поговорить с Вороном.
 		AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_FirstWarn_04_02");	//Никто не должен входить сюда. Прямой приказ Ворона.
 		BDT_100018_Tells = TRUE;
-		Log_CreateTopic(Topic_Addon_Tempel,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Addon_Tempel,LOG_Running);
-		B_LogEntry(Topic_Addon_Tempel,"Охранник у ворот не пропустит меня в храм. Я должен найти способ попасть внутрь.");
+		Log_CreateTopic(TOPIC_Addon_Tempel,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_Tempel,LOG_Running);
+		B_LogEntry(TOPIC_Addon_Tempel,"Охранник у ворот не пропустит меня в храм. Я должен найти способ попасть внутрь.");
 	}
 	else
 	{
@@ -183,7 +183,7 @@ func void DIA_Addon_10018_Torwache_Hi_Info()
 {
 	AI_Output(other,self,"DIA_Addon_BDT_10018_Torwache_Hi_15_00");	//Это чертовски важно, я просто должен попасть к нему.
 	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_Hi_04_01");	//Нет. Это НЕ важно. Только Бладвин может находиться здесь.
-	B_LogEntry(Topic_Addon_Tempel,"В храм позволено заходить только Бладвину. Возможно, я смогу попасть туда через него.");
+	B_LogEntry(TOPIC_Addon_Tempel,"В храм позволено заходить только Бладвину. Возможно, я смогу попасть туда через него.");
 };
 
 
@@ -265,7 +265,7 @@ func void DIA_Addon_10018_Torwache_Drin_Info()
 	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_Drin_04_02");	//Может быть, в лагере ты теперь и важная персона. Но твоя власть заканчивается ПРЯМО ЗДЕСЬ. Теперь понял?
 	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_Drin_04_03");	//Так что пойди поработай в шахте или займись чем-нибудь еще - но не загораживай здесь проход!
 	MIS_BloodwynRaus = LOG_Running;
-	B_LogEntry(Topic_Addon_Tempel,"Бладвин находится в храме. Но это мне ничего не дает. Возможно, мне стоит наведаться в шахту.");
+	B_LogEntry(TOPIC_Addon_Tempel,"Бладвин находится в храме. Но это мне ничего не дает. Возможно, мне стоит наведаться в шахту.");
 };
 
 

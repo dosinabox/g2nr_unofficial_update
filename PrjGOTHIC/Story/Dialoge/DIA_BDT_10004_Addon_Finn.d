@@ -238,17 +238,17 @@ func int DIA_Addon_Finn_ein_Condition()
 };
 
 
-var int Finn_einmal;
+var int Finn_Einmal;
 var int Finn_Gratulation;
 
 func void DIA_Addon_Finn_ein_Info()
 {
 	var string concatText;
 	AI_Output(other,self,"DIA_Addon_Finn_ein_15_00");	//Можешь ты оценить мои умения рудокопа?
-	if(Finn_einmal == FALSE)
+	if(Finn_Einmal == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Finn_ein_07_01");	//Конечно. Я занимаюсь этим больше 35 лет. Нет ничего, что бы я не мог оценить!
-		Finn_einmal = TRUE;
+		Finn_Einmal = TRUE;
 	};
 	AI_Output(self,other,"DIA_Addon_Finn_ein_07_02");	//Что касается тебя, то ты...
 	if(Hero_HackChance < 20)
@@ -330,7 +330,7 @@ func void B_Addon_Finn_TellAll()
 	AI_Output(self,other,"DIA_Addon_Finn_TellAll_07_03");	//А обычно он ВСЕГДА на месте. ОЧЕНЬ подозрительно - вот что я думаю.
 	if(Finn_TellAll == FALSE)
 	{
-		B_LogEntry(Topic_Addon_Esteban,"Финн сказал, что Хуно не присутствовал при атаке.");
+		B_LogEntry(TOPIC_Addon_Esteban,"Финн сказал, что Хуно не присутствовал при атаке.");
 		Finn_TellAll = TRUE;
 	};
 };

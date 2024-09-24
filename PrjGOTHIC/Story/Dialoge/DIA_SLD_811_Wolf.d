@@ -318,7 +318,7 @@ func void DIA_Wolf_Stadt_Info()
 };
 
 
-var int Wolf_MakeArmor;
+var int Wolf_Armor_Day;
 var int Player_GotCrawlerArmor;
 
 instance DIA_Wolf_AboutCrawler(C_Info)
@@ -416,12 +416,11 @@ func void DIA_Wolf_BringPlates_Info()
 	AI_Output(other,self,"DIA_Wolf_BringPlates_15_00");	//Я принес панцири краулеров для доспехов.
 	AI_Output(self,other,"DIA_Wolf_BringPlates_08_01");	//Хорошо! Давай их сюда.
 	B_GiveInvItems(other,self,ItAt_CrawlerPlate,10);
+	Wolf_Armor_Day = B_GetDayPlus();
 	MIS_Wolf_BringCrawlerPlates = LOG_SUCCESS;
 	B_CheckLog();
 };
 
-
-var int Wolf_Armor_Day;
 
 instance DIA_Wolf_ArmorReady(C_Info)
 {
@@ -447,12 +446,7 @@ func void DIA_Wolf_ArmorReady_Info()
 	AI_Output(other,self,"DIA_Wolf_ArmorReady_15_00");	//Как мои доспехи?
 	if(Npc_HasItems(self,ItAt_CrawlerPlate) >= 10)
 	{
-		if(Wolf_MakeArmor == FALSE)
-		{
-			Wolf_Armor_Day = B_GetDayPlus();
-			Wolf_MakeArmor = TRUE;
-		};
-		if((Wolf_MakeArmor == TRUE) && (Wolf_Armor_Day >= Wld_GetDay()))
+		if(!C_DaysSinceEvent(Wolf_Armor_Day,1))
 		{
 			AI_Output(self,other,"DIA_Wolf_ArmorReady_08_01");	//Скоро они будут готовы. Заходи завтра.
 		}
@@ -465,13 +459,15 @@ func void DIA_Wolf_ArmorReady_Info()
 			AI_Output(other,self,"DIA_Wolf_ArmorReady_15_04");	//Спасибо!
 			AI_Output(self,other,"DIA_Wolf_ArmorReady_08_05");	//Да ладно.
 			Player_GotCrawlerArmor = TRUE;
-			CreateInvItems(Bennet,ItBe_Addon_MC,1);
+			if(!Npc_IsDead(Bennet))
+			{
+				CreateInvItems(Bennet,ItBe_Addon_MC,1);
+			};
 		};
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Wolf_ArmorReady_08_06");	//Ты шутник. Сначала мне нужны панцири краулеров...
-		Wolf_MakeArmor = FALSE;
 		MIS_Wolf_BringCrawlerPlates = LOG_Running;
 	};
 };
@@ -590,18 +586,18 @@ func void DIA_Wolf_PERMKAP3_Info()
 
 var int Wolf_SaidNo;
 
-instance DIA_Wolf_KAP5_EXIT(C_Info)
+instance DIA_Wolf_BENGARDEAD(C_Info)
 {
 	npc = SLD_811_Wolf;
 	nr = 1;
-	condition = DIA_Wolf_KAP5_EXIT_Condition;
-	information = DIA_Wolf_KAP5_EXIT_Info;
+	condition = DIA_Wolf_BENGARDEAD_Condition;
+	information = DIA_Wolf_BENGARDEAD_Info;
 	important = TRUE;
 	permanent = FALSE;
 };
 
 
-func int DIA_Wolf_KAP5_EXIT_Condition()
+func int DIA_Wolf_BENGARDEAD_Condition()
 {
 	if((Kapitel >= 3) && (Npc_GetDistToWP(self,"FARM3") < 3000) && (MIS_BengarsHelpingSLD == LOG_SUCCESS) && (Wolf_IsOnBoard != LOG_SUCCESS) && Npc_IsDead(Bengar))
 	{
@@ -609,7 +605,7 @@ func int DIA_Wolf_KAP5_EXIT_Condition()
 	};
 };
 
-func void DIA_Wolf_KAP5_EXIT_Info()
+func void DIA_Wolf_BENGARDEAD_Info()
 {
 	AI_Output(self,other,"DIA_Wolf_PERMKAP3_08_01");	//Мой работодатель мертв. Пусть земля ему будет пухом. Кстати, я всегда хотел иметь свою собственную ферму.
 	AI_StopProcessInfos(self);
@@ -647,7 +643,7 @@ func void DIA_Wolf_SHIP_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Wolf_SHIP_08_02");	//Да, конечно. Нужно сваливать отсюда. Ты не пожалеешь об этом. Я помогу тебе защитить корабль. Куда мы направляемся?
-		B_LogEntry(Topic_Crew,"Вольфу надоел этот остров, и он готов на все, чтобы убраться отсюда. Он хороший боец.");
+		B_LogEntry(TOPIC_Crew,"Вольфу надоел этот остров, и он готов на все, чтобы убраться отсюда. Он хороший боец.");
 	};
 };
 

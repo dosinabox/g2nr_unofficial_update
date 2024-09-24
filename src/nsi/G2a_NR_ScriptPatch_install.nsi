@@ -14,6 +14,11 @@
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"
 !define MOD_AUTHOR "Fizzban, Efectivo, Dimus, D36, Kvincius, N1kX, Kor Angar"
+!define MOD_LINK "https://worldofplayers.ru/threads/36817"
+!define MOD_SIZE "227000"
+!define MOD_HEADER "logo.bmp"
+!define MOD_PIC "pic.bmp"
+
 !define INSTALLER_NAME "${MOD_NAME}_install"
 !define UNINSTALLER_NAME "${MOD_NAME}_uninstall"
 !define REGISTRY_PATH "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}"
@@ -37,18 +42,17 @@ SetCompressor lzma
 !define MUI_ICON "${MOD_NAME}.ico"
 !define MUI_UNICON "${MOD_NAME}.ico"
 !define MUI_HEADERIMAGE
-!define MUI_HEADERIMAGE_BITMAP "logo.bmp"
-!define MUI_HEADERIMAGE_UNBITMAP "logo.bmp"
-!define MUI_WELCOMEFINISHPAGE_BITMAP "pic.bmp"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "pic.bmp"
+!define MUI_HEADERIMAGE_BITMAP "${MOD_HEADER}"
+!define MUI_HEADERIMAGE_UNBITMAP "${MOD_HEADER}"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "${MOD_PIC}"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "${MOD_PIC}"
 
 Caption "${MOD_NAME_RU} (v${MOD_VERSION}) - установка"
 !define MUI_TEXT_WELCOME_INFO_TITLE " "
 !define MUI_TEXT_WELCOME_INFO_TEXT "Данное обновление исправляет множество различных ошибок и недоработок в игре «Готика 2: Ночь Ворона». Установка рекомендуется на русскую версию игры от Акеллы с установленным Player Kit. Старые сохранения любой другой версии не поддерживаются: начало новой игры обязательно!"
 
 !define MUI_TEXT_DIRECTORY_SUBTITLE " "
-DirText "Программа установит неофициальное обновление в указанную папку. \
-$\n$\nЧтобы установить неофициальное обновление в другую папку, нажмите кнопку 'Обзор ...' и укажите ее. Если кнопка 'Далее' остается неактивной, то сначала установите Player Kit - официальный набор для запуска модов."
+DirText "Программа установит неофициальное обновление в указанную папку.$\n$\nЧтобы установить неофициальное обновление в другую папку, нажмите кнопку 'Обзор ...' и укажите ее. Если кнопка 'Далее' остается неактивной, то сначала установите Player Kit (официальный набор для запуска модов)."
 
 !define MUI_TEXT_COMPONENTS_TITLE "Выбор компонентов для установки"
 !define MUI_TEXT_COMPONENTS_SUBTITLE " "
@@ -128,10 +132,10 @@ Section "Основные файлы" SecMain
 	WriteRegStr HKLM "${REGISTRY_PATH}" "DisplayVersion" "${MOD_DETAILED_VERSION}" 
 	WriteRegStr HKLM "${REGISTRY_PATH}" "InstallLocation" "$INSTDIR"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "UninstallString" "$\"$INSTDIR\${UNINSTALLER_NAME}.exe$\""
-	WriteRegStr HKLM "${REGISTRY_PATH}" "HelpLink" "https://worldofplayers.ru/threads/36817"
+	WriteRegStr HKLM "${REGISTRY_PATH}" "HelpLink" "${MOD_LINK}"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "Publisher" "${MOD_AUTHOR}"
 	WriteRegStr HKLM "${REGISTRY_PATH}" "DisplayIcon" "$INSTDIR\system\${MOD_NAME}.ico"
-	WriteRegDWORD HKLM "${REGISTRY_PATH}" "EstimatedSize" "227000"
+	WriteRegDWORD HKLM "${REGISTRY_PATH}" "EstimatedSize" "${MOD_SIZE}"
 SectionEnd
 
 Section "Дополнительная русская озвучка" SecAdditional_1
@@ -163,10 +167,10 @@ Section "Un.Удалить обновление" SecUninstall_Main
 	Delete "$INSTDIR\_work\Data\Music\newworld\KAS_Loop_DayStd.sgt"
 	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}.mod"
 	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_ru.mod"
+	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_ru_hotfix.mod"
 	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_speech_add_ru.mod"
 	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_speech_fix_ru.mod"
 	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_widescreen.mod"
-	Delete "$INSTDIR\Data\ModVDF\scriptpatch_v${MOD_VERSION}_hotfix.mod"
 	Delete "$INSTDIR\Changelog_${MOD_NAME}.txt"
 	Delete "$INSTDIR\Changelog_Speech_v${MOD_VERSION}.txt"
 	Delete "$INSTDIR\${UNINSTALLER_NAME}.exe"

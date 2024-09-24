@@ -49,9 +49,9 @@ func void B_Senyan_Erpressung()
 	AI_Output(self,other,"DIA_Addon_Senyan_Erpressung_12_03");	//Недавно кто-то хотел убрать Эстебана. Но напоролся на телохранителей.
 	AI_Output(self,other,"DIA_Addon_Senyan_Erpressung_12_04");	//Пойди к Эстебану и поговори с ним. Потом возвращайся.
 	AI_StopProcessInfos(self);
-	Log_CreateTopic(Topic_Addon_Senyan,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Senyan,LOG_Running);
-	B_LogEntry(Topic_Addon_Senyan,"Сеньян узнал меня. Ему известно, кто я такой. Он хочет использовать меня для каких-то своих целей. Но сначала я должен поговорить с Эстебаном.");
+	Log_CreateTopic(TOPIC_Addon_Senyan,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Senyan,LOG_Running);
+	B_LogEntry(TOPIC_Addon_Senyan,"Сеньян узнал меня. Ему известно, кто я такой. Он хочет использовать меня для каких-то своих целей. Но сначала я должен поговорить с Эстебаном.");
 };
 
 
@@ -228,7 +228,7 @@ func void DIA_Addon_Senyan_Attentat_JA()
 	AI_Output(self,other,"DIA_Addon_Senyan_Attentat_JA_12_02");	//(хитро) Когда ты выполнишь свою работу - и выполнишь ее хорошо - и выяснишь, кто виноват, мы убьем тупицу вместе. А теперь иди!
 	Senyan_Erpressung = LOG_Running;
 	Info_ClearChoices(DIA_Addon_Senyan_Attentat);
-	B_LogEntry(Topic_Addon_Senyan,"Сеньян хочет, чтобы я нашел виновного и убил его. После этого я получу свою награду.");
+	B_LogEntry(TOPIC_Addon_Senyan,"Сеньян хочет, чтобы я нашел виновного и убил его. После этого я получу свою награду.");
 };
 
 
@@ -256,32 +256,6 @@ func void DIA_Addon_Senyan_ChangePlan_Info()
 	AI_Output(other,self,"DIA_Addon_Senyan_ChangePlan_15_00");	//Я передумал. Мы больше не работаем вместе!
 	B_Senyan_Attack();
 };
-
-
-/*instance DIA_Addon_BDT_1084_Senyan_Found(C_Info)
-{
-	npc = BDT_1084_Addon_Senyan;
-	nr = 3;
-	condition = DIA_Addon_Senyan_Found_Condition;
-	information = DIA_Addon_Senyan_Found_Info;
-	permanent = FALSE;
-	description = "Я нашел предателя. Это Фиск.";
-};
-
-
-func int DIA_Addon_Senyan_Found_Condition()
-{
-	if((Senyan_Erpressung == LOG_Running) && (MIS_Judas == LOG_SUCCESS))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Addon_Senyan_Found_Info()
-{
-	AI_Output(other,self,"DIA_Addon_BDT_1084_Senyan_Found_15_00");	//Я нашел предателя. Это Фиск.
-	B_Senyan_Attack();
-};*/
 
 
 instance DIA_Addon_BDT_1084_Senyan_derbe(C_Info)

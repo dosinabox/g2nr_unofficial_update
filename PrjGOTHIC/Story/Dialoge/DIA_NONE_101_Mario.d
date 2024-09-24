@@ -72,7 +72,7 @@ func void DIA_None_101_Mario_YouNeedMe_Info()
 	AI_Output(self,other,"DIA_None_101_Mario_YouNeedMe_07_00");	//Я слышал, что ты набираешь команду на свой корабль?
 	AI_Output(other,self,"DIA_None_101_Mario_YouNeedMe_15_01");	//И?
 	AI_Output(self,other,"DIA_None_101_Mario_YouNeedMe_07_02");	//Я готов!
-	B_LogEntry(Topic_Crew,"Некто Марио заговорил со мной в портовой таверне. Он вызвался плыть на корабле.");
+	B_LogEntry(TOPIC_Crew,"Некто Марио заговорил со мной в портовой таверне. Он вызвался плыть на корабле.");
 };
 
 
@@ -103,7 +103,7 @@ func void DIA_None_101_Mario_WhyNeedYou_Info()
 	AI_Output(self,other,"DIA_None_101_Mario_WhyNeedYou_07_03");	//Я служил моряком на 'Короле Робаре' и 'Гордости Миртаны'.
 	AI_Output(self,other,"DIA_None_101_Mario_WhyNeedYou_07_04");	//В битве у восточного архипелага я собственноручно отправил пару десятков орков назад в царство Белиара.
 	AI_Output(self,other,"DIA_None_101_Mario_WhyNeedYou_07_05");	//К сожалению, нас осталось слишком мало, когда наш флагман затонул и нам пришлось отступить.
-	B_LogEntry(Topic_Crew,"Марио - бывший моряк королевского флота.");
+	B_LogEntry(TOPIC_Crew,"Марио - бывший моряк королевского флота.");
 };
 
 
@@ -158,7 +158,7 @@ func void DIA_None_101_Mario_Abilities_Info()
 	AI_Output(other,self,"DIA_None_101_Mario_Abilities_15_00");	//Что ты можешь делать?
 	AI_Output(self,other,"DIA_None_101_Mario_Abilities_07_01");	//Я обучен абордажу и ближнему бою, к тому же я метко стреляю из корабельной пушки.
 	AI_Output(self,other,"DIA_None_101_Mario_Abilities_07_02");	//Я уверен, что я смогу обучить тебя чему-нибудь во время путешествия.
-	B_LogEntry(Topic_Crew,"Марио, похоже, собаку съел в том, что касается морских боев. Возможно, он сможет научить меня кое-чему.");
+	B_LogEntry(TOPIC_Crew,"Марио, похоже, собаку съел в том, что касается морских боев. Возможно, он сможет научить меня кое-чему.");
 };
 
 

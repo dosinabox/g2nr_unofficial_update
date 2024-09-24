@@ -48,13 +48,13 @@ func void DIA_Addon_Franco_HI_Info()
 	AI_Output(other,self,"DIA_Addon_Franco_HI_15_01");	//Да, я...
 	AI_Output(self,other,"DIA_Addon_Franco_HI_08_02");	//Меня не интересует, кто ты такой. Меня зовут Франко. Я здесь командую.
 	AI_Output(self,other,"DIA_Addon_Franco_HI_08_03");	//Если ты будешь хорошо работать, я отправлю тебя в лагерь.
-	Log_CreateTopic(Topic_Addon_Franco,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Franco,LOG_Running);
-	B_LogEntry(Topic_Addon_Franco,"Если я выполню задания Франко, он впустит меня в лагерь.");
+	Log_CreateTopic(TOPIC_Addon_Franco,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Franco,LOG_Running);
+	B_LogEntry(TOPIC_Addon_Franco,"Если я выполню задания Франко, он впустит меня в лагерь.");
 	if(Ramon_News == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Franco_HI_08_04");	//Стражник Рамон может тебе сказать, нужны ли в лагере новые люди. Поговори с ним.
-		Log_AddEntry(Topic_Addon_Franco,"Я должен спросить Рамона, нужны ли в лагере еще люди.");
+		Log_AddEntry(TOPIC_Addon_Franco,"Я должен спросить Рамона, нужны ли в лагере еще люди.");
 	};
 };
 
@@ -87,7 +87,7 @@ func void DIA_Addon_Franco_Hai_Info()
 	AI_Output(other,self,"DIA_Addon_Franco_Hai_15_04");	//Я сделал довольно много, вот только ты об этом не знаешь.
 	AI_Output(self,other,"DIA_Addon_Franco_Hai_08_05");	//Ну хорошо. Тебе нужен шанс? Ты его получишь. Тащи свою задницу к Логану. Его замучили болотные акулы.
 	AI_Output(self,other,"DIA_Addon_Franco_Hai_08_06");	//Помоги ему расправиться с чудовищами и считай, что ты в лагере.
-	B_LogEntry(Topic_Addon_Franco,"Франко хочет, чтобы я помог Логану.");
+	B_LogEntry(TOPIC_Addon_Franco,"Франко хочет, чтобы я помог Логану.");
 };
 
 
@@ -184,7 +184,7 @@ func void DIA_Addon_Franco_HaiSuccess_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Franco_HaiSuccess_08_02");	//Итак, ты победил болотных акул. Следовательно, ты полезен... но по крайней мере, полезнее, чем большинство местных бездельников.
 	B_GivePlayerXP(XP_Addon_HlpLogan);
-	B_LogEntry(Topic_Addon_Franco,"Одной помощи Логану оказалось недостаточно для того, чтобы попасть в лагерь.");
+	B_LogEntry(TOPIC_Addon_Franco,"Одной помощи Логану оказалось недостаточно для того, чтобы попасть в лагерь.");
 };
 
 
@@ -215,10 +215,10 @@ func void DIA_Addon_Franco_Mis2_Info()
 	AI_Output(self,other,"DIA_Addon_Franco_MIS2_08_03");	//Он должен был добыть для меня древнюю каменную табличку. Но с тех пор его никто не видел.
 	AI_Output(self,other,"DIA_Addon_Franco_MIS2_08_04");	//Узнай, что он делает, и принеси мне эту чертову табличку!
 	MIS_HlpEdgor = LOG_Running;
-	Log_CreateTopic(Topic_Addon_Stoneplate,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Stoneplate,LOG_Running);
-	B_LogEntries(Topic_Addon_Stoneplate,"Франко нужна каменная табличка, которую должен был принести ему Эдгор. Теперь это моя забота.");
-	B_LogNextEntry(Topic_Addon_Franco,"Франко хочет, чтобы я помог Эдгору.");
+	Log_CreateTopic(TOPIC_Addon_Stoneplate,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Stoneplate,LOG_Running);
+	B_LogEntries(TOPIC_Addon_Stoneplate,"Франко нужна каменная табличка, которую должен был принести ему Эдгор. Теперь это моя забота.");
+	B_LogNextEntry(TOPIC_Addon_Franco,"Франко хочет, чтобы я помог Эдгору.");
 };
 
 
@@ -331,7 +331,7 @@ func void DIA_Addon_Franco_Tafel_Info()
 	AI_Output(self,other,"DIA_Addon_Franco_Tafel_08_01");	//Очень хорошо. Ворон будет доволен.
 	MIS_HlpEdgor = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_HlpEdgor);
-	B_LogEntry(Topic_Addon_Franco,"Я принес Франко его каменную табличку.");
+	B_LogEntry(TOPIC_Addon_Franco,"Я принес Франко его каменную табличку.");
 };
 
 
@@ -370,7 +370,7 @@ func void DIA_Addon_Franco_JemandAnderen_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Franco_JemandAnderen_08_03");	//И больше люди в лагере не нужны.
 	AI_Output(self,other,"DIA_Addon_Franco_JemandAnderen_08_04");	//К тому же теперь, когда Логана больше здесь нет, я смогу использовать вместо него тебя.
-	B_LogEntry(Topic_Addon_Franco,"Франко не пускает меня в лагерь. Думаю, придется с ним разобраться...");
+	B_LogEntry(TOPIC_Addon_Franco,"Франко не пускает меня в лагерь. Думаю, придется с ним разобраться...");
 };
 
 

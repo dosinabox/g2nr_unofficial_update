@@ -589,7 +589,7 @@ func void DIA_DiegoNW_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_11_03");	//Также, я уверен, тебе не помешает хороший вор.
 	if(SCToldDiegoHeKnowWhereEnemy == FALSE)
 	{
-		B_LogEntry(Topic_Crew,"Конечно же, Диего готов пойти со мной. Ему кажется, что чем скорее он покинет Хоринис, тем лучше. Он мог бы научить меня, как стать более ловким и сделать из меня отличного лучника. Также он может научить меня пользоваться отмычками.");
+		B_LogEntry(TOPIC_Crew,"Конечно же, Диего готов пойти со мной. Ему кажется, что чем скорее он покинет Хоринис, тем лучше. Он мог бы научить меня, как стать более ловким и сделать из меня отличного лучника. Также он может научить меня пользоваться отмычками.");
 		SCToldDiegoHeKnowWhereEnemy = TRUE;
 	};
 	if(Crewmember_Count >= Max_Crew)
@@ -649,12 +649,12 @@ func void DIA_DiegoNW_LeaveMyShip_Info()
 	AI_Output(other,self,"DIA_DiegoNW_LeaveMyShip_15_02");	//Ты думаешь, мы еще встретимся?
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_03");	//Я никогда не забуду выражение твоего лица, когда ты лежал на земле после того, как Буллит вырубил тебя. Тогда мы встретились в первый раз.
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_04");	//Им никогда не одолеть тебя. Мы ОБЯЗАТЕЛЬНО встретимся снова. Береги себя.
-	if(!Npc_HasItems(self,ITAR_Vlk_H))
-	{
-		CreateInvItems(self,ITAR_Vlk_H,1);
-	};
 	if(!ArmorEquipped(self,ITAR_Vlk_H))
 	{
+		if(!Npc_HasItems(self,ITAR_Vlk_H))
+		{
+			CreateInvItems(self,ITAR_Vlk_H,1);
+		};
 		AI_EquipArmor(self,ITAR_Vlk_H);
 	};
 	Diego_IsOnBoard = LOG_OBSOLETE;
