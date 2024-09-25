@@ -185,7 +185,7 @@ func void DIA_Addon_Emilio_Senyan_Info()
 	AI_Output(self,other,"DIA_Addon_BDT_10015_Emilio_Senyan_10_05");	//ƒаже наоборот. (фальшиво) Ётот ублюдок работал на Ёстебана.
 	if(MIS_Judas == LOG_Running)
 	{
-		B_LogEntry(Topic_Addon_Esteban,"Ёмилио не на стороне Ёстебана.");
+		B_LogEntry(TOPIC_Addon_Esteban,"Ёмилио не на стороне Ёстебана.");
 	};
 };
 
@@ -250,7 +250,7 @@ func void DIA_Addon_Emilio_VonEmilio_Info()
 		AI_Output(self,other,"DIA_Addon_Emilio_VonEmilio_10_07");	//ќставь мен€ в покое!
 	};
 	AI_StopProcessInfos(self);
-	B_LogEntry(Topic_Addon_Esteban,"Ёмилио думает, что Ћеннар - идиот.");
+	B_LogEntry(TOPIC_Addon_Esteban,"Ёмилио думает, что Ћеннар - идиот.");
 };
 
 
@@ -285,7 +285,7 @@ func void DIA_Addon_Emilio_HilfMir_Info()
 	AI_Output(other,self,"DIA_Addon_Emilio_HilfMir_15_04");	//—лушаю.
 	AI_Output(self,other,"DIA_Addon_Emilio_HilfMir_10_05");	//’уно... поговори с ’уно. ќн должен что-то знать об этом деле.
 	Emilio_TellAll = TRUE;
-	B_LogEntry(Topic_Addon_Esteban,"Ёмилио наконец назвал им€: ’уно.");
+	B_LogEntry(TOPIC_Addon_Esteban,"Ёмилио наконец назвал им€: ’уно.");
 };
 
 

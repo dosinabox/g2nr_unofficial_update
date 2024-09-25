@@ -656,8 +656,8 @@ func void B_AlliJack_AlliKlar()
 func void B_AlligatorJack_CanLearn()
 {
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_02");	//Если хочешь, я могу заняться твоим обучением.
-	Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-	B_LogEntry(Topic_Addon_PIR_Teacher,"Аллигатор Джек может обучить меня снимать кожу с рептилий и выдирать зубы. Кроме того, он может научить меня лучше стрелять из лука.");
+	Log_CreateTopic(TOPIC_Addon_PIR_Teacher,LOG_NOTE);
+	B_LogEntry(TOPIC_Addon_PIR_Teacher,"Аллигатор Джек может обучить меня снимать кожу с рептилий и выдирать зубы. Кроме того, он может научить меня лучше стрелять из лука.");
 	AlligatorJack_Addon_TeachPlayer = TRUE;
 };
 

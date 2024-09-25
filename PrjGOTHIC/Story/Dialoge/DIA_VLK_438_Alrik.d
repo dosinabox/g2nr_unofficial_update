@@ -124,7 +124,7 @@ func void B_Alrik_Again()
 		AI_Standup(self);
 		B_TurnToNpc(self,other);
 	};
-	if(Alrik_ArenaKampfVerloren_Day <= (Wld_GetDay() - 2))
+	if(C_DaysSinceEvent(Alrik_ArenaKampfVerloren_Day,2))
 	{
 		AI_Output(self,other,"DIA_Alrik_Add_09_03");	//Как дела? Ты хочешь сразиться со мной еще раз? Я думаю, за это время я стал лучше...
 	}

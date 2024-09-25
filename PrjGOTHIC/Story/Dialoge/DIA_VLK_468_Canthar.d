@@ -501,7 +501,7 @@ instance DIA_Canthar_TooLate(C_Info)
 
 func int DIA_Canthar_TooLate_Condition()
 {
-	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2)) && !Npc_IsDead(Sarah) && (Kapitel < 3))
+	if((MIS_Canthars_KomproBrief == LOG_Running) && C_DaysSinceEvent(MIS_Canthars_KomproBrief_Day,2) && !Npc_IsDead(Sarah) && (Kapitel < 3))
 	{
 		return TRUE;
 	};

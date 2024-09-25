@@ -149,21 +149,21 @@ func void DIA_Rumbold_HALLO_geld_ok()
 	Rumbold_Bezahlt = TRUE;
 	if((VisibleGuild(other) == GIL_NONE) || (VisibleGuild(other) == GIL_NOV))
 	{
-		Npc_ExchangeRoutine(self,"Start");
-		B_StartOtherRoutine(Rick,"Start");
+		Npc_ExchangeRoutine(self,"START");
+		B_StartOtherRoutine(Rick,"START");
 	}
 	else
 	{
-		Npc_ExchangeRoutine(self,"Flucht3");
+		Npc_ExchangeRoutine(self,"FLUCHT3");
 		self.aivar[AIV_DropDeadAndKill] = FALSE;
 		if(!Npc_IsDead(Rick))
 		{
-			B_StartOtherRoutine(Rick,"Flucht3");
+			B_StartOtherRoutine(Rick,"FLUCHT3");
 			Rick.aivar[AIV_DropDeadAndKill] = FALSE;
 		};
 		Miliz_Flucht = TRUE;
 	};
-	B_StartOtherRoutine(Bengar,"Start");
+	B_StartOtherRoutine(Bengar,"START");
 };
 
 func void DIA_Rumbold_HALLO_Geld_TooMuch()

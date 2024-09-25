@@ -345,8 +345,8 @@ func void DIA_Addon_Bill_TeachPlayer_Info()
 	AI_Output(self,other,"DIA_Addon_Bill_TeachPlayer_03_02");	//Ќо ты должен быть достаточно ловким, иначе ничего не получитс€.
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 	{
-		Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Teacher,"Ѕилл может обучить мен€ карманным кражам.");
+		Log_CreateTopic(TOPIC_Addon_PIR_Teacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_PIR_Teacher,"Ѕилл может обучить мен€ карманным кражам.");
 	};
 	Bill_Addon_TeachPickPocket = TRUE;
 };

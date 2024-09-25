@@ -251,14 +251,14 @@ func void DIA_Sylvio_ICEGOLEMSKILLED_Info()
 	AI_StopProcessInfos(self);
 	MIS_DJG_Sylvio_KillIceGolem = LOG_SUCCESS;
 	B_GivePlayerXP(XP_SylvioDJGIceGolemDead);
-	Npc_ExchangeRoutine(self,"IceWait1");
+	Npc_ExchangeRoutine(self,"ICEWAIT1");
 	if(!Npc_IsDead(DJG_Bullco))
 	{
 		if(C_BodyStateContains(DJG_Bullco,BS_SIT))
 		{
 			AI_Standup(DJG_Bullco);
 		};
-		B_StartOtherRoutine(DJG_Bullco,"IceWait1");
+		B_StartOtherRoutine(DJG_Bullco,"ICEWAIT1");
 	};
 };
 
@@ -448,8 +448,8 @@ func void DIA_SylvioDJG_WHATNEXT_ATTACK()
 {
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,60);
-	Npc_ExchangeRoutine(self,"Start");
-	B_StartOtherRoutine(DJG_Bullco,"Start");
+	Npc_ExchangeRoutine(self,"START");
+	B_StartOtherRoutine(DJG_Bullco,"START");
 	B_LogEntry(TOPIC_Dragonhunter,"Эта грязная свинья Сильвио собирался присвоить себе мою победу над ледяным драконом. Мы немного повздорили.");
 	B_Attack(self,other,AR_KILL,1);
 	if(!C_NpcIsDown(DJG_Bullco))

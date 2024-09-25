@@ -854,15 +854,14 @@ func void DIA_Addon_Henry_WhatTeach_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_WhatTeach_Add_04_01");	//(смеется) Сначала заплати за проход в лагерь, а потом уже мы об этом поговорим.
 		AI_Output(self,other,"DIA_Addon_Henry_WhatTeach_Add_04_02");	//Цена обучения включена в плату за вход.
-//		Henry_Zoll_WhatFor = TRUE;
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_WhatTeach_Add_04_03");	//Конечно, почему нет?
 		if(!Npc_KnowsInfo(other,DIA_Addon_Bones_Teacher))
 		{
-			Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-			B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_HenryTeach);
+			Log_CreateTopic(TOPIC_Addon_PIR_Teacher,LOG_NOTE);
+			B_LogEntry(TOPIC_Addon_PIR_Teacher,Log_Text_Addon_HenryTeach);
 		};
 		Henry_Addon_TeachPlayer = TRUE;
 	};

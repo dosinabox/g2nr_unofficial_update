@@ -257,7 +257,7 @@ func void DIA_Angar_FOUNDAMULETT_nun()
 	AI_StopProcessInfos(self);
 	if(Npc_GetDistToWP(self,"OC_TO_MAGE") >= 1000)
 	{
-		Npc_ExchangeRoutine(self,"LeavingOW");
+		Npc_ExchangeRoutine(self,"LEAVINGOW");
 	};
 };
 
@@ -416,17 +416,17 @@ func void DIA_AngarDJG_WANTTOGOINTHERE_Info()
 {
 	AI_Output(other,self,"DIA_AngarDJG_WANTTOGOINTHERE_15_00");	//Пойдем вместе.
 	AI_Output(self,other,"DIA_AngarDJG_WANTTOGOINTHERE_04_01");	//Я попробую. Но нужно быть осторожными.
+	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	AI_StopProcessInfos(self);
 	if(Npc_IsDead(SkeletonMage_Angar))
 	{
-		Npc_ExchangeRoutine(self,"Zwischenstop");
+		Npc_ExchangeRoutine(self,"ZWISCHENSTOP");
 	}
 	else
 	{
-		Npc_ExchangeRoutine(self,"Angriff");
+		Npc_ExchangeRoutine(self,"ANGRIFF");
 		DJG_AngarAngriff = TRUE;
 	};
-	self.aivar[AIV_PARTYMEMBER] = TRUE;
 };
 
 
@@ -451,9 +451,9 @@ func int DIA_AngarDJG_UndeadMageDead_Condition()
 func void DIA_AngarDJG_UndeadMageDead_Info()
 {
 	AI_Output(self,other,"DIA_AngarDJG_UndeadMageDead_04_00");	//(тяжело дышит) Здесь только смерть и разрушение. Я должен уходить отсюда.
-	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
-	Npc_ExchangeRoutine(self,"RunToEntrance");
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"RUNTOENTRANCE");
 };
 
 
@@ -479,7 +479,7 @@ func void DIA_AngarDJG_UNDEADMAGECOMES_Info()
 {
 	AI_Output(self,other,"DIA_AngarDJG_UNDEADMAGECOMES_04_00");	//(шепчет) Вот, опять! Ты слышишь это?
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"GotoStonehendgeEntrance");
+	Npc_ExchangeRoutine(self,"GOTOSTONEHENDGEENTRANCE");
 };
 
 
@@ -516,10 +516,10 @@ func void DIA_Angar_WASISTLOS_Info()
 	{
 		AI_Output(self,other,"DIA_Angar_WASISTLOS_04_05");	//Каждый раз, когда я вижу одного из этих... отродий ада, у меня появляется чувство, что я сражаюсь против своих.
 	};
-	AI_StopProcessInfos(self);
 	B_LogEntry(TOPIC_Dragonhunter,"Ангар только что ушел. Из-за всей этой нежити у него появилось чувство, что он сражается против своих же людей.");
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
-	Npc_ExchangeRoutine(self,"LeavingOW");
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"LEAVINGOW");
 };
 
 

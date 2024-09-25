@@ -484,8 +484,8 @@ func void DIA_Addon_Morgan_TRAIN_Info()
 	AI_Output(self,other,"DIA_Addon_Morgan_TRAIN_07_01");	//Конечно. Я могу улучшить твое умение обращаться с одноручным оружием.
 	if(!Npc_KnowsInfo(other,DIA_Addon_Bones_Teacher))
 	{
-		Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_MorganTeach);
+		Log_CreateTopic(TOPIC_Addon_PIR_Teacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_PIR_Teacher,Log_Text_Addon_MorganTeach);
 	};
 	Morgan_Addon_TeachPlayer = TRUE;
 };
