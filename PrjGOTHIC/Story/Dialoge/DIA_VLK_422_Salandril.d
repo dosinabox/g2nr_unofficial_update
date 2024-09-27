@@ -203,12 +203,9 @@ func int DIA_Salandril_GehinsKloster_Condition()
 {
 	if((SC_KnowsProspektorSalandril == TRUE) || (MIS_Serpentes_BringSalandril_SLD == LOG_Running))
 	{
-		if(Npc_KnowsInfo(other,DIA_Salandril_KLOSTER))
+		if(Npc_KnowsInfo(other,DIA_Salandril_KLOSTER) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
 		{
-			if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
-			{
-				return TRUE;
-			};
+			return TRUE;
 		};
 	};
 };
@@ -228,7 +225,7 @@ func void DIA_Salandril_GehinsKloster_Info()
 	Salandril_SentToMonastery = TRUE;
 	SalandrilLocation = LOC_MONASTERY;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"KlosterUrteil");
+	Npc_ExchangeRoutine(self,"KLOSTERURTEIL");
 };
 
 
@@ -253,7 +250,6 @@ func int DIA_Salandril_Verschwinde_Condition()
 
 func void DIA_Salandril_Verschwinde_Info()
 {
-	AI_Output(self,other,"DIA_BDT_13_STANDARD_13_01");	//Проваливай!
-	AI_StopProcessInfos(self);
+	DIA_BDT_13_STANDARD_Info();
 };
 

@@ -234,7 +234,7 @@ func void DIA_Urshak_HOSHPAKDEAD_Info()
 	B_LogEntry(TOPIC_Urshak,"Хош-Пак мертв. Мой друг-орк направляется к палатке Хош-Пака. Он скорбит по своему наставнику. Я должен отпустить его.");
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,20);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	Wld_InsertNpc(OrcWarrior_Scout,"OW_HOSHPAK_05");
 	Wld_InsertNpc(OrcWarrior_Scout,"FP_ROAM_HOSHPAK_05");
 };

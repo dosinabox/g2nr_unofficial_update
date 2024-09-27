@@ -59,7 +59,7 @@ func void DIA_Raoul_NoSentenza_Info()
 		AI_Output(self,other,"DIA_Raoul_NoSentenza_01_05");	//Где же он? А, ладно, неважно, тебе повезло...
 	};
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 
@@ -94,7 +94,7 @@ func void DIA_Raoul_Hello_Info()
 	};
 	if(Npc_KnowsInfo(other,DIA_Sentenza_Hello))
 	{
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 	};
 };
 

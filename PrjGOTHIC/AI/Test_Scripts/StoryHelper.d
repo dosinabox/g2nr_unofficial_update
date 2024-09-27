@@ -1,26 +1,4 @@
 
-/*instance ItPo_Story(C_Item)
-{
-	name = "Счастье";
-	mainflag = ITEM_KAT_POTIONS;
-	flags = ITEM_MULTI;
-	visual = "ItPo_Perm_STR.3ds";
-	material = MAT_GLAS;
-	on_state[0] = UseItPo_Story;
-	scemeName = "POTIONFAST";
-	wear = WEAR_EFFECT;
-	effect = "SPELLFX_ITEMGLIMMER";
-	description = name;
-	text[0] = "Показ Raven Video I";
-};
-
-
-func void UseItPo_Story()
-{
-	B_RavensEscapeIntoTempelAVI();
-};*/
-
-
 instance SH(Npc_Default)
 {
 	name[0] = "Помощник по сюжету";
@@ -145,7 +123,7 @@ func void StoryHelper_Cavalorn()
 	//Найти каменные круги
 	MIS_Addon_Nefarius_BringMissingOrnaments = LOG_Running;
 	//...и Кавалорн отправился в один из них
-	B_StartotherRoutine(Cavalorn,"OrnamentSteinring");
+	B_StartotherRoutine(Cavalorn,"ORNAMENTSTEINRING");
 	//Игрок получил карту кругов
 	CreateInvItems(hero,ItWr_Map_NewWorld_Ornaments_Addon,1);
 	AI_StopProcessInfos(self);
@@ -352,45 +330,5 @@ func void StoryHelper_KAPITEL5ANFANG()
 	B_Kapitelwechsel(5,NEWWORLD_ZEN);
 	Info_ClearChoices(StoryHelper_INFO5);
 	AI_StopProcessInfos(self);
-};
-
-
-instance StoryHelper_INFO6(C_Info)
-{
-	npc = sh;
-	condition = StoryHelper_INFO6_Condition;
-	information = StoryHelper_INFO6_Info;
-	important = FALSE;
-	permanent = TRUE;
-	description = KapWechsel_6;
-};
-
-
-func int StoryHelper_INFO6_Condition()
-{
-	if(Kapitel < 6)
-	{
-		return TRUE;
-	};
-};
-
-func void StoryHelper_INFO6_Info()
-{
-	Info_ClearChoices(StoryHelper_INFO6);
-	Info_AddChoice(StoryHelper_INFO6,Dialog_Back,StoryHelper_BACK6);
-	Info_AddChoice(StoryHelper_INFO6,KapAnfang,StoryHelper_KAPITEL6ANFANG);
-};
-
-func void StoryHelper_BACK6()
-{
-	Info_ClearChoices(StoryHelper_INFO6);
-};
-
-func void StoryHelper_KAPITEL6ANFANG()
-{
-	JackIsCaptain = TRUE;
-	Info_ClearChoices(StoryHelper_INFO6);
-	AI_StopProcessInfos(self);
-	AI_Teleport(other,"SHIP_IN_14");
 };
 

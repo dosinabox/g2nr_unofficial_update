@@ -370,13 +370,12 @@ instance DIA_Buster_AboutSentenza(C_Info)
 
 func int DIA_Buster_AboutSentenza_Condition()
 {
-	if((Buster_SentenzaTip == TRUE) && !Npc_IsDead(Sentenza) && (Sentenza.aivar[AIV_TalkedToPlayer] == FALSE))
+	if((Buster_SentenzaTip == TRUE) && !Npc_IsDead(Sentenza) && (other.guild != GIL_DJG))
 	{
-		if((Kapitel >= 3) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
+		if(Sentenza.aivar[AIV_TalkedToPlayer] == FALSE)
 		{
-			return FALSE;
+			return TRUE;
 		};
-		return TRUE;
 	};
 };
 

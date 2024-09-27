@@ -241,7 +241,7 @@ func void DIA_GornDJG_LOSGEHTS_Info()
 	AI_Output(self,other,"DIA_GornDJG_LOSGEHTS_12_01");	//Как в старые времена, да? Но я хочу, чтоб ты знал: это мой бой. На этот раз я пойду первым!
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	Npc_ExchangeRoutine(self,"RunToRockRuinBridge");
+	Npc_ExchangeRoutine(self,"RUNTOROCKRUINBRIDGE");
 };
 
 
@@ -271,7 +271,7 @@ func void DIA_GornDJG_BISHIERHIN_Info()
 	B_GivePlayerXP(XP_GornDJGPlateauClear);
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 

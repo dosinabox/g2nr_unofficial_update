@@ -255,6 +255,7 @@ func void DIA_Talbin_PayTeacher_Info()
 	B_GiveInvItems(other,self,ItFo_Cheese,1);
 	AI_Output(self,other,"DIA_Talbin_PayTeacher_07_01");	//У тебя действительно есть сыр? Ох, давненько я не ел ничего подобного. Спасибо. Ээ, а что насчет... Ах, да, конечно!
 	B_Talbin_TeachAnimalTrophy();
+	self.npcType = NPCTYPE_FRIEND;
 	MIS_TalbinCheese = LOG_SUCCESS;
 	B_CheckLog();
 };
@@ -389,7 +390,6 @@ instance DIA_Talbin_KAP4_WASNEUES(C_Info)
 
 func int DIA_Talbin_KAP4_WASNEUES_Condition()
 {
-//	if((Kapitel >= 4) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE))
 	if((Kapitel >= 4) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE) && Npc_KnowsInfo(other,DIA_Garond_BACKINKAP4))
 	{
 		return TRUE;
@@ -515,7 +515,7 @@ func void DIA_Talbin_FOUNDENGROM_Info()
 	Log_SetTopicStatus(TOPIC_Talbin_Runs,LOG_Running);
 	B_LogEntry(TOPIC_Talbin_Runs,"Талбин, охотник из Долины Рудников, побежал к Проходу, как будто за ним по пятам гнался рой кровавых мух. Я думаю, он направился в Хоринис.");
 	B_GivePlayerXP(XP_Ambient);
-	Npc_ExchangeRoutine(self,"FleePass");
+	Npc_ExchangeRoutine(self,"FLEEPASS");
 	Wld_InsertNpc(Snapper,"START");
 	Talbin_Runs = TRUE;
 };
@@ -562,8 +562,9 @@ func void DIA_Talbin_WOHIN_ok()
 {
 	AI_Output(other,self,"DIA_Talbin_WOHIN_ok_15_00");	//Хорошо.
 	AI_Output(self,other,"DIA_Talbin_WOHIN_ok_07_01");	//Спасибо. Я просто пойду за тобой.
+	self.npcType = NPCTYPE_FRIEND;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"IntoPass");
+	Npc_ExchangeRoutine(self,"INTOPASS");
 	Talbin_FollowsThroughPass = LOG_Running;
 	MIS_TalbinCheese = LOG_OBSOLETE;
 	B_CheckLog();
