@@ -1,19 +1,28 @@
 
 func void B_AssessMurder()
 {
-	var C_Item readyweap;
+	if(!Hlp_IsValidNpc(other))
+	{
+		return;
+	};
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(other))
 	{
 		return;
 	};
 	B_SpecialRangedWeaponDamage(other,self,FALSE);
-	if((Npc_GetDistToNpc(self,other) > PERC_DIST_INTERMEDIAT) && (Npc_GetDistToNpc(self,victim) > PERC_DIST_INTERMEDIAT))
+	if(Npc_GetDistToNpc(self,other) > PERC_DIST_INTERMEDIAT)
 	{
-		return;
+		if(Npc_GetDistToNpc(self,victim) > PERC_DIST_INTERMEDIAT)
+		{
+			return;
+		};
 	};
-	if((Npc_GetHeightToNpc(self,other) > PERC_DIST_HEIGHT) && (Npc_GetHeightToNpc(self,victim) > PERC_DIST_HEIGHT))
+	if(Npc_GetHeightToNpc(self,other) > PERC_DIST_HEIGHT)
 	{
-		return;
+		if(Npc_GetHeightToNpc(self,victim) > PERC_DIST_HEIGHT)
+		{
+			return;
+		};
 	};
 	if(!Npc_CanSeeNpcFreeLOS(self,other) && !Npc_CanSeeNpcFreeLOS(self,victim))
 	{

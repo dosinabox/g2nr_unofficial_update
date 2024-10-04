@@ -15,7 +15,7 @@ prototype Mst_Default_OrcShaman(C_Npc)
 	protection[PROT_BLUNT] = 130;
 	protection[PROT_EDGE] = 130;
 	protection[PROT_POINT] = 130;
-	protection[PROT_FIRE] = 130;	//65;
+	protection[PROT_FIRE] = 130;
 	protection[PROT_FLY] = 130;
 	protection[PROT_MAGIC] = 65;
 	HitChance[NPC_TALENT_1H] = 60;
@@ -64,7 +64,6 @@ instance OrcShaman_Hosh_Pak(Mst_Default_OrcShaman)
 	attribute[ATR_HITPOINTS_MAX] = 400;
 	attribute[ATR_HITPOINTS] = 400;
 	damagetype = DAM_BLUNT;
-//	EquipItem(self,ItMw_2H_OrcAxe_01);
 	B_SetVisuals_Hosh_Pak();
 	EquipItem(self,ItMw_2H_OrcMace_01);
 	start_aistate = ZS_MM_AllScheduler;
@@ -78,7 +77,6 @@ instance OrcShaman_Sit_CanyonLibraryKey(Mst_Default_OrcShaman)
 	attribute[ATR_STRENGTH] = 105;
 	attribute[ATR_HITPOINTS_MAX] = 400;
 	attribute[ATR_HITPOINTS] = 400;
-//	EquipItem(self,ItMw_2H_OrcAxe_01);
 	B_SetVisuals_CanyonOrcShaman();
 	EquipItem(self,ItMw_2H_OrcAxe_03);
 	CreateInvItems(self,ItKe_CanyonLibrary_Hierarchy_Books_Addon,1);

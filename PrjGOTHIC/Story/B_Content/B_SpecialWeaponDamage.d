@@ -1,18 +1,22 @@
 
 var int RavenBlitz;
 
-func void B_SpecialMeleeWeaponDamage(var C_Npc oth,var C_Npc slf)
+func void B_SpecialMeleeWeaponDamage(var C_Npc attacker,var C_Npc target)
 {
 	var int RavenRandy;
 	var int DamageRandy;
-	var C_Item otherweap;
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Raven))
+	var C_Item ReadyWeap;
+	if(!Hlp_IsValidNpc(attacker))
 	{
-		Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",slf,slf,0,0,0,FALSE);
+		return;
+	};
+	if(Hlp_GetInstanceID(target) == Hlp_GetInstanceID(Raven))
+	{
+		Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",target,target,0,0,0,FALSE);
 		if(RavenBlitz <= 0)
 		{
-			Wld_PlayEffect("spellFX_BELIARSRAGE",oth,oth,0,0,0,FALSE);
-			B_MagicHurtNpc(slf,oth,BeliarSpecialDamage / 2);
+			Wld_PlayEffect("spellFX_BELIARSRAGE",attacker,attacker,0,0,0,FALSE);
+			B_MagicHurtNpc(target,attacker,BeliarSpecialDamage / 2);
 			RavenBlitz += 1;
 		}
 		else if(RavenBlitz >= 3)
@@ -28,50 +32,50 @@ func void B_SpecialMeleeWeaponDamage(var C_Npc oth,var C_Npc slf)
 			RavenBlitz += 1;
 		};
 	}
-	else if(Npc_IsPlayer(oth))
+	else if(Npc_IsPlayer(attacker))
 	{
-		if(!Npc_HasReadiedMeleeWeapon(oth))
+		if(!Npc_HasReadiedMeleeWeapon(attacker))
 		{
 			return;
 		};
-		otherweap = Npc_GetReadiedWeapon(oth);
-		if(C_IsItemMeleeBeliarsWeapon(otherweap))
+		ReadyWeap = Npc_GetReadiedWeapon(attacker);
+		if(C_IsItemMeleeBeliarsWeapon(ReadyWeap))
 		{
 			DamageRandy = Hlp_Random(100);
 			if(DamageRandy <= BeliarDamageChance_20)
 			{
-				Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",oth,oth,0,0,0,FALSE);
+				Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",attacker,attacker,0,0,0,FALSE);
 				if(DamageRandy <= BeliarDamageChance)
 				{
-					if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)
+					if(target.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)
 					{
-						Wld_PlayEffect("spellFX_BELIARSRAGE",oth,oth,0,0,0,FALSE);
-						B_MagicHurtNpc(slf,oth,BeliarSpecialDamage);
+						Wld_PlayEffect("spellFX_BELIARSRAGE",attacker,attacker,0,0,0,FALSE);
+						B_MagicHurtNpc(target,attacker,BeliarSpecialDamage);
 					}
-					else if(slf.flags != NPC_FLAG_IMMORTAL)
+					else if(target.flags != NPC_FLAG_IMMORTAL)
 					{
-						Wld_PlayEffect("spellFX_BELIARSRAGE",slf,slf,0,0,0,FALSE);
-						B_MagicHurtNpc(oth,slf,BeliarSpecialDamage);
+						Wld_PlayEffect("spellFX_BELIARSRAGE",target,target,0,0,0,FALSE);
+						B_MagicHurtNpc(attacker,target,BeliarSpecialDamage);
 					};
 				};
 			};
 		}
-		else if(Hlp_IsItem(otherweap,Holy_Hammer_MIS))
+		else if(Hlp_IsItem(ReadyWeap,Holy_Hammer_MIS))
 		{
-			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Magic_Golem))
+			if(Hlp_GetInstanceID(target) == Hlp_GetInstanceID(Magic_Golem))
 			{
-				Npc_ChangeAttribute(slf,ATR_HITPOINTS,-slf.attribute[ATR_HITPOINTS_MAX]);
-				if(!C_BodyStateContains(slf,BS_PARADE))
+				Npc_ChangeAttribute(target,ATR_HITPOINTS,-target.attribute[ATR_HITPOINTS_MAX]);
+				if(!C_BodyStateContains(target,BS_PARADE))
 				{
-					Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",slf,slf,0,0,0,FALSE);
+					Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",target,target,0,0,0,FALSE);
 					Snd_Play("MFX_Transform_Cast");
 				};
-				B_GiveDeathXP(oth,slf);
+				B_GiveDeathXP(attacker,target);
 			};
 		}
-		else if(Hlp_IsItem(otherweap,ItMw_BeliarWeapon_Fire))
+		else if(Hlp_IsItem(ReadyWeap,ItMw_BeliarWeapon_Fire))
 		{
-			Wld_PlayEffect("VOB_MAGICBURN",slf,slf,0,0,0,FALSE);
+			Wld_PlayEffect("VOB_MAGICBURN",target,target,0,0,0,FALSE);
 		};
 	};
 };
@@ -104,7 +108,7 @@ func void B_ApplyFireBowDamage(var C_Npc target)
 
 func void B_SpecialRangedWeaponDamage(var C_Npc attacker,var C_Npc target,var int directHit)
 {
-	var C_Item readyweap;
+	var C_Item ReadyWeap;
 	if(!Hlp_IsValidNpc(attacker))
 	{
 		return;
@@ -113,8 +117,8 @@ func void B_SpecialRangedWeaponDamage(var C_Npc attacker,var C_Npc target,var in
 	{
 		return;
 	};
-	readyweap = Npc_GetReadiedWeapon(attacker);
-	if(Hlp_IsItem(readyweap,ItRw_Addon_FireBow))
+	ReadyWeap = Npc_GetReadiedWeapon(attacker);
+	if(Hlp_IsItem(ReadyWeap,ItRw_Addon_FireBow))
 	{
 		if(directHit == TRUE)
 		{
@@ -131,7 +135,7 @@ func void B_SpecialRangedWeaponDamage(var C_Npc attacker,var C_Npc target,var in
 			B_ApplyFireBowDamage(target);
 		};
 	}
-	else if(Hlp_IsItem(readyweap,ItRw_Addon_MagicBow))
+	else if(Hlp_IsItem(ReadyWeap,ItRw_Addon_MagicBow))
 	{
 		if(directHit == TRUE)
 		{
@@ -139,7 +143,7 @@ func void B_SpecialRangedWeaponDamage(var C_Npc attacker,var C_Npc target,var in
 			B_ApplySpecialRangedWeaponDamage(target);
 		};
 	}
-	else if(Hlp_IsItem(readyweap,ItRw_Addon_MagicCrossbow))
+	else if(Hlp_IsItem(ReadyWeap,ItRw_Addon_MagicCrossbow))
 	{
 		if(directHit == TRUE)
 		{

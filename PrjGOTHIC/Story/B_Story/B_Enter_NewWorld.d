@@ -592,10 +592,12 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(Draconian,"FP_ROAM_NW_CITY_SMFOREST_09_03");
 			Wld_InsertNpc(Draconian,"FP_ROAM_NW_CITY_SMFOREST_09_02");
 			Wld_InsertNpc(Draconian,"FP_ROAM_NW_CITY_SMFOREST_09_01");
-			Wld_InsertItem(ItAt_DragonEgg_MIS,"FP_ROAM_NW_CITY_SMFOREST_05_03");
-			Wld_InsertNpc(Draconian,"FP_ROAM_NW_CITY_SMFOREST_05_04");
-			Wld_InsertNpc(Draconian,"FP_ROAM_NW_CITY_SMFOREST_05_02");
-			Wld_InsertNpc(Draconian,"FP_ROAM_NW_CITY_SMFOREST_05_01");
+			B_KillNpc(BDT_1000_Bandit_L);
+			B_KillNpc(BDT_1002_Bandit_L);
+			Wld_InsertItem(ItAt_DragonEgg_MIS,"FP_CAMPFIRE_NW_FOREST_04");
+			Wld_InsertNpc(Draconian,"NW_CITY_SMFOREST_BANDIT_04");
+			Wld_InsertNpc(Draconian,"NW_CITY_SMFOREST_BANDIT_03");
+			Wld_InsertNpc(Draconian,"NW_CITY_SMFOREST_11");
 			Wld_InsertNpc(Draconian,"FP_ROAM_CITYFOREST_KAP3_19");
 			Wld_InsertNpc(Draconian,"FP_ROAM_CITYFOREST_KAP3_08");
 			Wld_InsertNpc(Draconian,"FP_ROAM_CITYFOREST_KAP3_05");
