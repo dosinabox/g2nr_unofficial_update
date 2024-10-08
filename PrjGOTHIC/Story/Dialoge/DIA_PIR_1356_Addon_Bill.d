@@ -157,9 +157,12 @@ instance DIA_Addon_Bill_AngusnHank(C_Info)
 
 func int DIA_Addon_Bill_AngusnHank_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHank) && Npc_HasItems(Angus,ItRi_Addon_MorgansRing_Mission))
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHank))
 	{
-		return TRUE;
+		if(Npc_HasItems(Angus,ItRi_Addon_MorgansRing_Mission))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -189,9 +192,12 @@ instance DIA_Addon_Bill_FoundFriends(C_Info)
 
 func int DIA_Addon_Bill_FoundFriends_Condition()
 {
-	if(!Npc_HasItems(Angus,ItRi_Addon_MorgansRing_Mission))
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHank) || Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHankDead))
 	{
-		return TRUE;
+		if(!Npc_HasItems(Angus,ItRi_Addon_MorgansRing_Mission))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -270,9 +276,12 @@ instance DIA_Addon_Bill_KilledEsteban(C_Info)
 
 func int DIA_Addon_Bill_KilledEsteban_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Bill_JuanMurder) && Npc_IsDead(Juan))
+	if(Npc_KnowsInfo(other,DIA_Addon_Bill_JuanMurder))
 	{
-		return TRUE;
+		if(Npc_IsDead(Juan))
+		{
+			return TRUE;
+		};
 	};
 };
 

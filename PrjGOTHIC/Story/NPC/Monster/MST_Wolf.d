@@ -56,12 +56,11 @@ instance Summoned_Wolf(Mst_Default_Wolf)
 	protection[PROT_BLUNT] = 75;
 	protection[PROT_EDGE] = 75;
 	protection[PROT_POINT] = 25;
-	protection[PROT_FIRE] = 75;	//16;
+	protection[PROT_FIRE] = 75;
 	protection[PROT_FLY] = 75;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	B_SetAttitude(self,ATT_FRIENDLY);
 	start_aistate = ZS_MM_Rtn_Summoned;
-//	B_SetVisuals_Wolf();
 	B_SetVisuals_BLACKWOLF();
 	Npc_SetToFistMode(self);
 };

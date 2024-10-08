@@ -2152,7 +2152,7 @@ func int DIA_Pyrokar_DTCLEARED_Condition()
 {
 	if(MIS_PyrokarClearDemonTower == LOG_Running)
 	{
-		if(Npc_IsDead(Xardas_DT_Demon1) && Npc_IsDead(Xardas_DT_Demon2) && Npc_IsDead(Xardas_DT_Demon3) && Npc_IsDead(Xardas_DT_Demon4) && Npc_IsDead(Xardas_DT_Demon5) && Npc_IsDead(Xardas_DT_DemonLord))
+		if(C_XardasDemonsDead())
 		{
 			return TRUE;
 		};

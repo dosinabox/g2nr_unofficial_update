@@ -463,7 +463,7 @@ func void DIA_Addon_Garett_ArmorM_Back()
 
 func int DIA_Addon_Garett_StonePlate_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && (MIS_Addon_Morgan_SeekTraitor == LOG_SUCCESS) && Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+	if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && (Morgan_GotRing == TRUE) && Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
 	{
 		return TRUE;
 	};

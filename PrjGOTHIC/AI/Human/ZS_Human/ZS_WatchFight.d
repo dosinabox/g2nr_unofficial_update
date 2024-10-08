@@ -129,9 +129,9 @@ func int ZS_WatchFight_Loop()
 		Npc_ClearAIQueue(self);
 		return LOOP_END;
 	};
-	if(!(Npc_IsInState(other,ZS_Attack) || Npc_IsInState(other,ZS_ReactToDamage)) && !(Npc_IsInState(victim,ZS_Attack) || Npc_IsInState(victim,ZS_ReactToDamage)) && (Npc_GetStateTime(self) > 0))
+	if(!Npc_IsInState(other,ZS_Attack) && !Npc_IsInState(other,ZS_ReactToDamage) && !Npc_IsInState(victim,ZS_Attack) && !Npc_IsInState(victim,ZS_ReactToDamage) && (Npc_GetStateTime(self) > 0))
 	{
-		if(Npc_IsInState(other,ZS_Unconscious) || Npc_IsInState(victim,ZS_Unconscious) || Npc_IsInState(other,ZS_Dead) || Npc_IsInState(victim,ZS_Dead))
+		if(C_NpcIsDown(other) || C_NpcIsDown(victim) || Npc_IsInState(other,ZS_MagicFlee) || Npc_IsInState(victim,ZS_MagicFlee) || Npc_IsInState(other,ZS_Flee) || Npc_IsInState(victim,ZS_Flee))
 		{
 			if(self.aivar[AIV_TAPOSITION] == NOTINPOS)
 			{
@@ -150,9 +150,6 @@ func int ZS_WatchFight_Loop()
 			return LOOP_END;
 		};
 	};
-/*	if(C_NpcIsToughGuy(self))
-	{
-	}; */
 	if((Npc_GetDistToNpc(self,other) <= WATCHFIGHT_DIST_MIN) || (Npc_GetDistToNpc(self,victim) <= WATCHFIGHT_DIST_MIN))
 	{
 		Npc_ClearAIQueue(self);

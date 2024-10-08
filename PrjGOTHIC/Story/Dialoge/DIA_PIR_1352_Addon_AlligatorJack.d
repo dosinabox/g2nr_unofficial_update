@@ -593,7 +593,7 @@ instance DIA_Addon_AlligatorJack_Angus(C_Info)
 
 func int DIA_Addon_AlligatorJack_Angus_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Bill_AngusnHank))
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHank))
 	{
 		return TRUE;
 	};
@@ -622,9 +622,12 @@ instance DIA_Addon_AlligatorJack_Lake(C_Info)
 
 func int DIA_Addon_AlligatorJack_Lake_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Angus) && (MIS_Addon_Morgan_SeekTraitor != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Angus))
 	{
-		return TRUE;
+		if(Npc_HasItems(Angus,ItRi_Addon_MorgansRing_Mission))
+		{
+			return TRUE;
+		};
 	};
 };
 

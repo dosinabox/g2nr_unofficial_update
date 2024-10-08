@@ -413,9 +413,12 @@ instance DIA_Addon_Riordian_OrksWeg(C_Info)
 
 func int DIA_Addon_Riordian_OrksWeg_Condition()
 {
-	if(Npc_IsDead(OrcShaman_Sit_CanyonLibraryKey) && (FOUNDHOUSEINFO[Scientists] == TRUE))
+	if(FOUNDHOUSEINFO[Scientists] == TRUE)
 	{
-		return TRUE;
+		if(Npc_IsDead(OrcShaman_Sit_CanyonLibraryKey))
+		{
+			return TRUE;
+		};
 	};
 };
 

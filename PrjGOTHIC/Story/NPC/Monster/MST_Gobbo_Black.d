@@ -14,10 +14,9 @@ prototype Mst_Default_Gobbo_Black(C_Npc)
 	protection[PROT_BLUNT] = 40;
 	protection[PROT_EDGE] = 40;
 	protection[PROT_POINT] = 40;
-	protection[PROT_FIRE] = 40;	//17;
+	protection[PROT_FIRE] = 40;
 	protection[PROT_FLY] = 40;
 	protection[PROT_MAGIC] = 0;
-//	damagetype = DAM_EDGE;
 	damagetype = DAM_BLUNT;
 	fight_tactic = FAI_GOBBO;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;

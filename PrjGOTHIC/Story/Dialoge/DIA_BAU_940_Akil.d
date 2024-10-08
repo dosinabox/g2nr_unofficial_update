@@ -551,7 +551,7 @@ func int DIA_Akil_SCHAFDIEBEPLATT_Condition()
 {
 	if((Kapitel >= 3) && (MIS_Akil_SchafDiebe == LOG_Running))
 	{
-		if(Npc_IsDead(BDT_1025_Bandit_H) && Npc_IsDead(BDT_1026_Bandit_H) && Npc_IsDead(BDT_1027_Bandit_H))
+		if(C_AkilBanditsDead())
 		{
 			return TRUE;
 		};
