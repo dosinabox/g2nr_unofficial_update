@@ -82,26 +82,21 @@ func void B_SpecialMeleeWeaponDamage(var C_Npc attacker,var C_Npc target)
 
 func void B_ApplySpecialRangedWeaponDamage(var C_Npc target)
 {
-	if(target.flags != NPC_FLAG_IMMORTAL)
+	if((target.flags != NPC_FLAG_IMMORTAL) && (target.protection[PROT_POINT] > 0))
 	{
 		Npc_ChangeAttribute(target,ATR_HITPOINTS,-target.protection[PROT_POINT]);
 	};
 };
 
-func void B_ApplyFireBowDamage(var C_Npc target)
+func void B_ApplyFireBowDamage(var C_Npc attacker,var C_Npc target,var int damage)
 {
-	var int damage;
 	Wld_PlayEffect("VOB_MAGICBURN",target,target,0,0,0,FALSE);
-	if((target.flags != NPC_FLAG_IMMORTAL) && (target.protection[PROT_FIRE] != IMMUNE))
+	B_FireHurtNpc(attacker,target,damage);
+	if(Npc_IsDead(target))
 	{
-		damage = SpecialDamage_FireBow - target.protection[PROT_FIRE];
-		Npc_ChangeAttribute(target,ATR_HITPOINTS,-damage);
-		if(Npc_IsDead(target))
+		if(target.guild < GIL_SEPERATOR_HUM)
 		{
-			if(target.guild < GIL_SEPERATOR_HUM)
-			{
-				AI_PlayAni(target,"T_DEAD");
-			};
+			AI_PlayAni(target,"T_DEAD");
 		};
 	};
 };
@@ -124,15 +119,15 @@ func void B_SpecialRangedWeaponDamage(var C_Npc attacker,var C_Npc target,var in
 		{
 			Wld_PlayEffect("spellFX_Firestorm_SPREAD",target,target,0,0,0,FALSE);
 			B_ApplySpecialRangedWeaponDamage(target);
-			B_ApplyFireBowDamage(target);
+			B_ApplyFireBowDamage(attacker,target,SpecialDamage_FireBow);
 			if(Npc_GetDistToNpc(target,attacker) <= SpecialDamage_FireBow_Range)
 			{
-				B_ApplyFireBowDamage(attacker);
+				B_ApplyFireBowDamage(attacker,attacker,SpecialDamage_FireBow);
 			};
 		}
 		else if(Npc_GetDistToNpc(target,victim) <= SpecialDamage_FireBow_Range)
 		{
-			B_ApplyFireBowDamage(target);
+			B_ApplyFireBowDamage(attacker,target,SpecialDamage_FireBow);
 		};
 	}
 	else if(Hlp_IsItem(ReadyWeap,ItRw_Addon_MagicBow))

@@ -144,7 +144,7 @@ func void Bloodwyn_Wut()
 	AI_Output(self,other,"DIA_Addon_Bloodwyn_Wut_04_00");	//А-АХ! Ты, жалкая тварь!
 	self.attribute[ATR_STRENGTH] -= 5;
 	Npc_ChangeAttribute(self,ATR_HITPOINTS_MAX,-25);
-	if(self.attribute[ATR_HITPOINTS] > 25)
+	if(self.attribute[ATR_HITPOINTS] > 26)
 	{
 		self.attribute[ATR_HITPOINTS] -= 25;
 	};
