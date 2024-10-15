@@ -12,13 +12,11 @@ func void ZS_Circle()
 
 func int ZS_Circle_Loop()
 {
-	var int randy;
-	var int randyKDW;
-	var int randyKDW_Lightstar;
+	var int random;
 	if(self.guild == GIL_DMT)
 	{
-		randy = Hlp_Random(3000);
-		if(Npc_GetStateTime(self) > randy)
+		random = Hlp_Random(3000);
+		if(Npc_GetStateTime(self) > random)
 		{
 			Wld_PlayEffect("FX_EarthQuake",self,self,0,0,0,FALSE);
 			Npc_SetStateTime(self,0);
@@ -28,20 +26,20 @@ func int ZS_Circle_Loop()
 	}
 	else if(self.guild == GIL_KDW)
 	{
-		randyKDW = Hlp_Random(2500);
-		randyKDW_Lightstar = Hlp_Random(2);
-		if(Npc_GetStateTime(self) > randyKDW)
+		random = Hlp_Random(2500);
+		if(Npc_GetStateTime(self) > random)
 		{
 			AI_AlignToWP(self);
 			Npc_SetStateTime(self,0);
 			Wld_PlayEffect("FX_EarthQuake",self,self,0,0,0,FALSE);
 			AI_PlayAni(self,"T_PRACTICEMAGIC5");
 			Wld_PlayEffect("spellFX_RingRitual2",ItMi_AmbossEffekt_Addon,ItMi_AmbossEffekt_Addon,0,0,0,FALSE);
-			if(randyKDW_Lightstar == 0)
+			random = Hlp_Random(2);
+			if(random == 0)
 			{
 				Wld_PlayEffect("spellFX_RingRitual1",ItMi_AmbossEffekt_Addon,ItMi_AmbossEffekt_Addon,0,0,0,FALSE);
 			}
-			else if(randyKDW_Lightstar == 1)
+			else
 			{
 				Wld_PlayEffect("spellFX_LIGHTSTAR_RingRitual",ItMi_AmbossEffekt_Addon,ItMi_AmbossEffekt_Addon,0,0,0,FALSE);
 			};
@@ -49,8 +47,8 @@ func int ZS_Circle_Loop()
 	}
 	else if(MIS_RitualInnosEyeRepair != LOG_SUCCESS)
 	{
-		randy = Hlp_Random(1000);
-		if(Npc_GetStateTime(self) > randy)
+		random = Hlp_Random(1000);
+		if(Npc_GetStateTime(self) > random)
 		{
 			Npc_SetStateTime(self,0);
 			Wld_PlayEffect("FX_EarthQuake",self,self,0,0,0,FALSE);

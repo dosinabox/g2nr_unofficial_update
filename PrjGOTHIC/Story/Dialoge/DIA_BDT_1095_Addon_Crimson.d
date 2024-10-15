@@ -71,6 +71,8 @@ func void DIA_Addon_Crimson_How_Info()
 	AI_Output(other,self,"DIA_Addon_Crimson_How_15_00");	//—колько монет ты дашь мне за самородок?
 	AI_Output(self,other,"DIA_Addon_Crimson_How_10_01");	//Ќу, теб€ € совсем не знаю, но думаю, что дам тебе особую цену. «а один самородок € дам тебе...
 	B_Say_Gold(self,other,10);
+	Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
+	B_LogEntry(TOPIC_Bonus,"я могу продавать золотые самородки  римсону по особой цене.");
 };
 
 
@@ -258,15 +260,15 @@ func void DIA_Addon_Crimson_FATAGN_LOS()
 {
 	if(Crimson_SayBeliar == 1)
 	{
-		Snd_Play("Mystery_01");
+		Snd_Play("MYSTERY_01");
 	}
 	else if(Crimson_SayBeliar == 2)
 	{
-		Snd_Play("Mystery_03");
+		Snd_Play("MYSTERY_03");
 	}
 	else
 	{
-		Snd_Play("Mystery_07");
+		Snd_Play("MYSTERY_07");
 		Wld_PlayEffect("FX_EARTHQUAKE",self,self,0,0,0,FALSE);
 		Wld_PlayEffect("DEMENTOR_FX",self,self,0,0,0,FALSE);
 	};

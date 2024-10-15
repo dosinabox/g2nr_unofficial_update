@@ -467,14 +467,14 @@ func void DIA_Harad_LEHRLING_OK()
 	Wld_AssignRoomToGuild("schmied",GIL_NONE);
 	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
-	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
+	Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
 	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
-		B_LogEntries(Topic_Bonus,"√арад прин€л мен€ в ученики. “еперь € смогу попасть в верхний квартал.");
+		B_LogEntries(TOPIC_Bonus,"√арад прин€л мен€ в ученики. “еперь € смогу попасть в верхний квартал.");
 	}
 	else
 	{
-		B_LogEntries(Topic_Bonus,"√арад прин€л мен€ в ученики.");
+		B_LogEntries(TOPIC_Bonus,"√арад прин€л мен€ в ученики.");
 	};
 	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 	if(other.attribute[ATR_STRENGTH] < (T_MED - 30))
@@ -609,7 +609,7 @@ func void DIA_Harad_AlsLehrling_Info()
 		B_HaradCommentAnvilUses();
 		Harad_INNOSKommentar = TRUE;
 	}
-	else if((Harad_Lehrling_Day <= (Wld_GetDay() - 4)) && (Harad_MILKommentar == FALSE) && (Harad_PALKommentar == FALSE) && (Harad_INNOSKommentar == FALSE))
+	else if(C_DaysSinceEvent(Harad_Lehrling_Day,4) && (Harad_MILKommentar == FALSE) && (Harad_PALKommentar == FALSE) && (Harad_INNOSKommentar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_08");	//ƒавненько теб€ не было видно здесь. √де ты был все это врем€, хм?
 	}
@@ -676,7 +676,7 @@ func void DIA_Harad_Aufgaben_Info()
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_05");	// роме того, € научу теб€ всему, что нужно знать дл€ изготовлени€ обычных мечей.
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_06");	//»зготовление магических мечей - работа дл€ опытного кузнеца. “ебе до этого еще далеко...
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_07");	//≈сли тебе нужно место дл€ сна, ты можешь прилечь где-нибудь в моем доме. ¬се пон€тно?
-	B_LogEntry(Topic_Bonus,"√арад будет покупать оружие, выкованное мной, по хорошей цене.");
+	B_LogEntry(TOPIC_Bonus,"√арад будет покупать оружие, выкованное мной, по хорошей цене.");
 };
 
 

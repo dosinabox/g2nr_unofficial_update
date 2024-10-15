@@ -573,14 +573,14 @@ func void DIA_Constantino_LEHRLING_Yes()
 	Wld_AssignRoomToGuild("alchemist",GIL_NONE);
 	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
-	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
+	Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
 	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
-		B_LogEntry(Topic_Bonus,"Константино принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+		B_LogEntry(TOPIC_Bonus,"Константино принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
 	}
 	else
 	{
-		B_LogEntry(Topic_Bonus,"Константино принял меня в ученики.");
+		B_LogEntry(TOPIC_Bonus,"Константино принял меня в ученики.");
 	};
 	Info_ClearChoices(DIA_Constantino_LEHRLING);
 };
@@ -653,7 +653,7 @@ func void DIA_Constantino_AlsLehrling_Info()
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_08");	//И если, несмотря на твои новые обязанности, ты найдешь время заниматься алхимией, ты всегда можешь рассчитывать на теплый прием здесь.
 		Constantino_INNOSKommentar = TRUE;
 	}
-	else if((Constantino_Lehrling_Day <= (Wld_GetDay() - 4)) && (Constantino_INNOSKommentar == FALSE))
+	else if(C_DaysSinceEvent(Constantino_Lehrling_Day,4) && (Constantino_INNOSKommentar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_09");	//Где ты пропадал?
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_10");	//Я ожидаю от моего ученика большего усердия. Это никуда не годится, что ты появляешься здесь раз в месяц!
@@ -724,7 +724,7 @@ func void DIA_Constantino_Mushrooms_Info()
 	AI_Output(self,other,"DIA_Constantino_Mushrooms_10_01");	//Я буду покупать все, что ты принесешь мне - и буду платить за травы обычную цену.
 	AI_Output(self,other,"DIA_Constantino_Mushrooms_10_02");	//Но что касается грибов, для них у меня особая цена.
 	MIS_Constantino_Mushrooms = LOG_Running;
-	B_LogEntry(Topic_Bonus,"Я могу продавать грибы Константино по очень хорошей цене.");
+	B_LogEntry(TOPIC_Bonus,"Я могу продавать грибы Константино по очень хорошей цене.");
 };
 
 

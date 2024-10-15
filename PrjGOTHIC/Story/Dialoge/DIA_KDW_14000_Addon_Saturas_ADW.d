@@ -294,9 +294,12 @@ instance DIA_Addon_Saturas_LanceLeiche(C_Info)
 
 func int DIA_Addon_Saturas_LanceLeiche_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_PoorRanger) && !Npc_HasItems(Lance,ItRi_Ranger_Lance_Addon))
+	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_PoorRanger))
 	{
-		return TRUE;
+		if(!Npc_HasItems(Lance,ItRi_Ranger_Lance_Addon))
+		{
+			return TRUE;
+		};
 	};
 };
 

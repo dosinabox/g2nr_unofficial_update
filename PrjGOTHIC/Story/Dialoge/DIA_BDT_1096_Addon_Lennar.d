@@ -78,7 +78,7 @@ func void DIA_Addon_Lennar_Attentat_Info()
 	AI_Output(self,other,"DIA_Addon_Lennar_ATTENTAT_01_05");	//Ќо с момента нападени€ он только и делает, что сидит на скамейке.
 	AI_Output(self,other,"DIA_Addon_Lennar_ATTENTAT_01_06");	//Ёто же очевидно! „тобы попасть в шахту, он должен получить у Ёстебана красную табличку.
 	AI_Output(self,other,"DIA_Addon_Lennar_ATTENTAT_01_07");	//(шепотом) ƒумаю, он просто не в силах посмотреть ему в глаза.
-	B_LogEntry(Topic_Addon_Esteban,"Ћеннар подозревает Ёмилио, потому что он больше не ходит к Ёстебану.");
+	B_LogEntry(TOPIC_Addon_Esteban,"Ћеннар подозревает Ёмилио, потому что он больше не ходит к Ёстебану.");
 };
 
 

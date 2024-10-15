@@ -104,7 +104,7 @@ func void DIA_Bullco_SYLVIODEAD_Info()
 {
 	AI_Output(self,other,"DIA_Bullco_SYLVIODEAD_06_00");	//Черт. Сильвио мертв.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 
@@ -190,7 +190,7 @@ func void DIA_Bullco_WASNUN_woandere_zuihnen_Geld()
 			B_TurnToNpc(self,other);
 		};
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"Guide");
+		Npc_ExchangeRoutine(self,"GUIDE");
 	}
 	else
 	{
@@ -247,6 +247,6 @@ func void DIA_Bullco_GuideEnd_Info()
 	DIA_Bullco_DontGetLost();
 	Bullco_Guide = LOG_SUCCESS;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"DJGVorposten");
+	Npc_ExchangeRoutine(self,"DJGVORPOSTEN");
 };
 

@@ -61,7 +61,7 @@ func void DIA_NOV_3_Fegen_Info()
 				AI_Output(self,other,"DIA_NOV_3_Fegen_03_01");	//Ќикто не хочет помогать тебе, да? ’орошо, € помогу тебе, но только ты должен найти еще кого-нибудь мне в пару.
 				if(Feger1_Once == FALSE)
 				{
-					B_LogEntry(Topic_ParlanFegen,"ѕослушник, подметающий погреб, поможет мне, если € смогу найти еще одного послушника, готового помочь подмести комнаты.");
+					B_LogEntry(TOPIC_ParlanFegen,"ѕослушник, подметающий погреб, поможет мне, если € смогу найти еще одного послушника, готового помочь подмести комнаты.");
 					Feger1_Once = TRUE;
 				};
 			}
@@ -75,7 +75,7 @@ func void DIA_NOV_3_Fegen_Info()
 				B_GivePlayerXP(XP_Feger);
 				AI_StopProcessInfos(self);
 				Npc_ExchangeRoutine(self,"FEGEN");
-				B_LogEntry(Topic_ParlanFegen,"ѕослушник из погреба поможет мне подметать комнаты.");
+				B_LogEntry(TOPIC_ParlanFegen,"ѕослушник из погреба поможет мне подметать комнаты.");
 			};
 		}
 		else
@@ -91,7 +91,7 @@ func void DIA_NOV_3_Fegen_Info()
 			AI_Output(self,other,"DIA_NOV_3_Fegen_03_09");	//я прошу всего 50 золотых монет, мне нужно заплатить их ѕарлану.
 			if(Feger2_Once == FALSE)
 			{
-				B_LogEntry(Topic_ParlanFegen,"ѕослушник у церкви поможет мне, если € дам ему 50 золотых монет.");
+				B_LogEntry(TOPIC_ParlanFegen,"ѕослушник у церкви поможет мне, если € дам ему 50 золотых монет.");
 				Feger2_Once = TRUE;
 			};
 			Info_ClearChoices(DIA_NOV_3_Fegen);
@@ -129,7 +129,7 @@ func void DIA_NOV_3_Fegen_Ja()
 	Info_ClearChoices(DIA_NOV_3_Fegen);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FEGEN");
-	B_LogEntry(Topic_ParlanFegen,"ѕослушник у церкви поможет мне подметать комнаты.");
+	B_LogEntry(TOPIC_ParlanFegen,"ѕослушник у церкви поможет мне подметать комнаты.");
 };
 
 

@@ -164,7 +164,7 @@ func void STARTUP_DragonIsland()
 		Wld_InsertNpc(PC_Mage_DI,"SHIP_DECK_01");
 		if(Lester_IsOnBoard != LOG_SUCCESS)
 		{
-			B_StartOtherRoutine(PC_Mage_DI,"SittingShipDI");
+			B_StartOtherRoutine(PC_Mage_DI,"SITTINGSHIPDI");
 		};
 	};
 	if(Lester_IsOnBoard == LOG_SUCCESS)
@@ -172,7 +172,7 @@ func void STARTUP_DragonIsland()
 		Wld_InsertNpc(PC_Psionic_DI,"SHIP_DECK_01");
 		if(MiltenNW_IsOnBoard != LOG_SUCCESS)
 		{
-			B_StartOtherRoutine(PC_Psionic_DI,"SittingShipDI");
+			B_StartOtherRoutine(PC_Psionic_DI,"SITTINGSHIPDI");
 		};
 	};
 	if(Mario_IsOnBoard == LOG_SUCCESS)
@@ -196,7 +196,7 @@ func void STARTUP_DragonIsland()
 		Wld_InsertNpc(PC_Thief_DI,"SHIP_DECK_01");
 		if(Lares_IsOnBoard != LOG_SUCCESS)
 		{
-			B_StartOtherRoutine(PC_Thief_DI,"SittingShipDI");
+			B_StartOtherRoutine(PC_Thief_DI,"SITTINGSHIPDI");
 		};
 	};
 	if(Gorn_IsOnBoard == LOG_SUCCESS)
@@ -208,7 +208,7 @@ func void STARTUP_DragonIsland()
 		Wld_InsertNpc(VLK_449_Lares_DI,"SHIP_DECK_01");
 		if(Diego_IsOnBoard != LOG_SUCCESS)
 		{
-			B_StartOtherRoutine(VLK_449_Lares_DI,"SittingShipDI");
+			B_StartOtherRoutine(VLK_449_Lares_DI,"SITTINGSHIPDI");
 		};
 	};
 	if(Biff_IsOnBoard == LOG_SUCCESS)

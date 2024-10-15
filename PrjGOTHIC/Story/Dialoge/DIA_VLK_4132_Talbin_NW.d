@@ -55,7 +55,6 @@ instance DIA_Talbin_NW(C_Info)
 	information = DIA_Talbin_NW_Info;
 	permanent = FALSE;
 	important = TRUE;
-//	description = "Этот Проход был не таким уж и страшным, правда?";
 };
 
 
@@ -86,7 +85,7 @@ func void DIA_Talbin_NW_Info()
 	AI_Output(other,self,"DIA_Talbin_NW_15_00");	//Этот Проход был не таким уж и страшным, правда?
 	AI_Output(self,other,"DIA_Talbin_NW_07_05");	//Да защитит тебя Иннос.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Farm");
+	Npc_ExchangeRoutine(self,"FARM");
 	MIS_Talbin_Runs = LOG_SUCCESS;
 	B_GivePlayerXP(XP_SavedTalbin);
 };

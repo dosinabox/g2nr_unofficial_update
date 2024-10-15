@@ -1,6 +1,4 @@
 
-var int Scatty_Start;
-
 instance DIA_Addon_Scatty_EXIT(C_Info)
 {
 	npc = BDT_1086_Addon_Scatty;
@@ -21,11 +19,6 @@ func void DIA_Addon_Scatty_EXIT_Info()
 {
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
-	if(Scatty_Start == FALSE)
-	{
-		Npc_ExchangeRoutine(self,"START");
-		Scatty_Start = TRUE;
-	};
 };
 
 
@@ -51,8 +44,8 @@ func void DIA_Addon_Scatty_Hi_Info()
 	AI_Output(self,other,"DIA_Addon_Scatty_Hi_01_01");	//С тех пор, как гробница была открыта, покупателей не так много.
 	AI_Output(self,other,"DIA_Addon_Scatty_Hi_01_02");	//Ворону больше не нужны рабы, поэтому они теперь добывают золото. По приказу Бладвина.
 	AI_Output(self,other,"DIA_Addon_Scatty_Hi_01_03");	//Рудокопы не слишком усердствуют. (бормочет) А рудокопам, которые не усердствуют, не так много и нужно.
-	Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Trader,"Скатти продает различные товары.");
+	Log_CreateTopic(TOPIC_Addon_BDT_Trader,LOG_NOTE);
+	B_LogEntry(TOPIC_Addon_BDT_Trader,"Скатти продает различные товары.");
 };
 
 
@@ -179,8 +172,8 @@ func void DIA_Addon_Scatty_Trinken_Info()
 		AI_Output(self,other,"DIA_Addon_Scatty_Trinken_01_02");	//Но, может быть, у Люсии есть бутылочка...
 		if(!Npc_KnowsInfo(other,DIA_Addon_Lucia_was))
 		{
-			Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
-			B_LogEntry(Topic_Addon_BDT_Trader,"У Люсии я могу купить выпивку.");
+			Log_CreateTopic(TOPIC_Addon_BDT_Trader,LOG_NOTE);
+			B_LogEntry(TOPIC_Addon_BDT_Trader,"У Люсии я могу купить выпивку.");
 		};
 	};
 };

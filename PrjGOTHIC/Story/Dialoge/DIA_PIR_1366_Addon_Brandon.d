@@ -190,8 +190,8 @@ func void DIA_Addon_Brandon_SchnellerHering_Info()
 	B_UseItem(self,ItFo_Addon_SchnellerHering);
 	AI_Output(self,other,"DIA_Addon_Brandon_GiveGrog_04_01");	//Ах-х! Словно жидкий огонь!
 	B_LogEntries(TOPIC_Addon_BrandonBooze,"Я отдал Брэндону его ужасное пойло. Теперь он готов учить меня.");
-	Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-	B_LogNextEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_BrandonTeach);
+	Log_CreateTopic(TOPIC_Addon_PIR_Teacher,LOG_NOTE);
+	B_LogNextEntry(TOPIC_Addon_PIR_Teacher,Log_Text_Addon_BrandonTeach);
 	MIS_Brandon_BringHering = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };

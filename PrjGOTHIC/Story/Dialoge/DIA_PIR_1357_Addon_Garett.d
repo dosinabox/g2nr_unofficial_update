@@ -29,8 +29,8 @@ func void B_GarettTradeIntro()
 	AI_Output(self,other,"DIA_Addon_Garett_Hello_09_03");	//Кроме самогона. Если тебе нужен самогон, иди к Сэмюэлю.
 	if(!Npc_KnowsInfo(other,DIA_Addon_Skip_News))
 	{
-		Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
+		Log_CreateTopic(TOPIC_Addon_PIR_Trader,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
 	};
 };
 
@@ -123,8 +123,8 @@ func void DIA_Addon_Garett_Samuel_Info()
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_03");	//Я бы посоветовал тебе запастись грогом.
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_04");	//Не все наши ребята приветливо относятся к новичкам, надеюсь, ты меня понимаешь.
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_05");	//А бутылка-другая грога может сотворить настоящие чудеса!
-	Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
-	B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_SamuelTrade);
+	Log_CreateTopic(TOPIC_Addon_PIR_Trader,LOG_NOTE);
+	B_LogEntry(TOPIC_Addon_PIR_Trader,Log_Text_Addon_SamuelTrade);
 };
 
 
@@ -463,7 +463,7 @@ func void DIA_Addon_Garett_ArmorM_Back()
 
 func int DIA_Addon_Garett_StonePlate_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && (MIS_Addon_Morgan_SeekTraitor == LOG_SUCCESS) && Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+	if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && (Morgan_GotRing == TRUE) && Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
 	{
 		return TRUE;
 	};

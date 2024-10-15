@@ -21,6 +21,21 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				B_Greg_ComesToDexter();
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Hilda))
+		{
+			if(MIS_Lobart_RuebenToHilda == LOG_Running)
+			{
+				MIS_Lobart_RuebenToHilda = LOG_FAILED;
+			};
+			if(MIS_Hilda_PfanneKaufen == LOG_Running)
+			{
+				MIS_Hilda_PfanneKaufen = LOG_FAILED;
+			};
+			if(MIS_HealHilda == LOG_Running)
+			{
+				MIS_HealHilda = LOG_FAILED;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Canthar))
 		{
 			if(MIS_Canthars_KomproBrief == LOG_Running)
@@ -150,6 +165,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		{
 			MIS_Rukhar_Wettkampf = LOG_OBSOLETE;
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Randolph))
+		{
+			if(MIS_Rukhar_Wettkampf == LOG_Running)
+			{
+				MIS_Rukhar_Wettkampf = LOG_FAILED;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Gaan))
 		{
 			if(MIS_Gaan_Snapper == LOG_Running)
@@ -193,6 +215,17 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_LuciasLetter = LOG_FAILED;
 			};
 			Elvrich_IsDead = TRUE;
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi))
+		{
+			if(MIS_BringRosiBackToSekob == LOG_Running)
+			{
+				MIS_BringRosiBackToSekob = LOG_FAILED;
+			};
+			if(MIS_RosisFlucht == LOG_Running)
+			{
+				MIS_RosisFlucht = LOG_FAILED;
+			};
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bengar))
 		{
@@ -268,7 +301,7 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		};
 		if(Greg_Rejected == TRUE)
 		{
-			if(C_AmIDexterBandit(slf))
+			if(slf.aivar[AIV_SubGuild] == GIL_SUB_Dexter)
 			{
 				DexterBanditsBodyCount += 1;
 				if(DexterBanditsBodyCount >= 19)

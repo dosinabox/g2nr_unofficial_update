@@ -217,7 +217,6 @@ func void DIA_Halvor_MESSAGE_Info()
 	AI_Output(other,self,"DIA_Halvor_MESSAGE_15_00");	//Я думаю, этот клочок бумаги имеет отношение к тебе...
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_01");	//Что?.. Дай посмотрю.
 	DIA_Common_NotSoFastMyFriend();
-//	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_02");	//(в испарине) Э-э... Хорошо, давай поговорим спокойно об этом - э-э... послушай. Я перепродал товары, полученные от бандитов.
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_03");	//(торопливо) Но нет необходимости сообщать об этом ополчению, правда? Я уверен, мы можем прийти к взаимопониманию, разве нет?
 	Info_ClearChoices(DIA_Halvor_MESSAGE);
@@ -295,7 +294,7 @@ func void DIA_Halvor_Zeichen_Info()
 	AI_Output(self,other,"DIA_Halvor_Zeichen_06_00");	//Понимаю. Ты пришел не просто купить рыбу.
 	AI_Output(self,other,"DIA_Halvor_Zeichen_06_01");	//(тихо) Я готов сделать тебе предложение. Если у тебя есть серебряные тарелки или кубки, я возьму их по хорошей цене.
 	CreateInvItems(self,ItKe_Lockpick,20);
-	B_LogEntry(Topic_Diebesgilde,"Халвор купит серебряные тарелки и кубки по очень хорошей цене.");
+	B_LogEntry(TOPIC_Diebesgilde,"Халвор купит серебряные тарелки и кубки по очень хорошей цене.");
 	self.aivar[AIV_IGNORE_Theft] = TRUE;
 };
 

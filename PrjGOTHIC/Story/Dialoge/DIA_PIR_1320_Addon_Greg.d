@@ -729,7 +729,7 @@ func void DIA_Addon_Greg_RavenDead_Info()
 	B_GivePlayerXP(XP_Addon_GregRavenLohn);
 	if(MIS_Henry_HolOwen == LOG_SUCCESS)
 	{
-		B_StartOtherRoutine(Owen,"PostStart");
+		B_StartOtherRoutine(Owen,"POSTSTART");
 	};
 };
 
@@ -788,7 +788,7 @@ func void DIA_Addon_Greg_BeMyCap_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_da_01_01");	//Ё-э, тебе даже не стоит пытатьс€ туда попасть.
 	DIA_Common_SoWhatYouSay();
 	AI_Output(self,other,"DIA_Addon_Greg_NW_was_SLD_01_02");	//Ќеплохо дл€ сухопутной крысы.
-	B_LogEntry(Topic_Captain,"√рега не заинтересовало мое предложение.");
+	B_LogEntry(TOPIC_Captain,"√рега не заинтересовало мое предложение.");
 	AI_StopProcessInfos(self);
 };
 

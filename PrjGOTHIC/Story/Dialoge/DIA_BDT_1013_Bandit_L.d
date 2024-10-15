@@ -248,9 +248,9 @@ func void DIA_1013_BANDIT_NAME_Info()
 	AI_Output(self,other,"DIA_1013_BANDIT_NAME_01_03");	//Эй, послушай - я действительно не могу сказать тебе это. Кто знает, как все выйдет...
 	if(MIS_Steckbriefe == FALSE)
 	{
-		Log_CreateTopic(Topic_Bandits,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Bandits,LOG_Running);
-		B_LogEntry(Topic_Bandits,"За мной охотятся бандиты. У них есть листок с моим изображением. Интересно, что все это значит.");
+		Log_CreateTopic(TOPIC_Bandits,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Bandits,LOG_Running);
+		B_LogEntry(TOPIC_Bandits,"За мной охотятся бандиты. У них есть листок с моим изображением. Интересно, что все это значит.");
 		MIS_Steckbriefe = LOG_Running;
 	};
 };
@@ -284,7 +284,7 @@ func void DIA_1013_BANDIT_DEXTER_Info()
 	AI_Output(self,other,"DIA_1013_BANDIT_DEXTER_01_04");	//На ней сторожевая башня и несколько шахт. Он устроил свое логово где-то там.
 	if(MIS_Steckbriefe != LOG_SUCCESS)
 	{
-		B_LogEntry(Topic_Bandits,"Главаря бандитов зовут Декстер. Он скрывается в шахте около поместья лендлорда.");
+		B_LogEntry(TOPIC_Bandits,"Главаря бандитов зовут Декстер. Он скрывается в шахте около поместья лендлорда.");
 	};
 	if(B_GiveInvItems(other,self,ItMi_Gold,10))
 	{

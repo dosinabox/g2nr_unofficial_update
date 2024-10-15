@@ -65,7 +65,7 @@ func void B_StealItem()
 		else
 		{
 			text = ConcatStrings(text,item.description);
-			Snd_Play("Scroll_Unfold");
+			Snd_Play("SCROLL_UNFOLD");
 			if(Hlp_StrCmp(item.name,NAME_Beutel))
 			{
 				TotalTheftGold += item.value;
@@ -87,14 +87,14 @@ func void B_StealItem()
 		{
 			B_Say(self,self,"$AWAKE");
 		};
-		B_LogEntry(Topic_PickPocket,ConcatStrings(text,"."));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings(text,"."));
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		if(C_IsNpc(self,MIL_328_Miliz))
 		{

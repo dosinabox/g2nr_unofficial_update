@@ -61,6 +61,13 @@ func int C_NpcCanSleep(var C_Npc npc)
 	{
 		return FALSE;
 	};
+	if(Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(Raven))
+	{
+		if(npc.aivar[AIV_EnemyOverride] == FALSE)
+		{
+			return FALSE;
+		};
+	};
 	return TRUE;
 };
 

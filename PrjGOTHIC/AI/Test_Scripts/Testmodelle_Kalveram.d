@@ -334,7 +334,7 @@ func int DIA_TA_Testmodell_GuideStart_Condition()
 func void DIA_TA_Testmodell_GuideStart_Info()
 {
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Guide");
+	Npc_ExchangeRoutine(self,"GUIDE");
 };
 
 

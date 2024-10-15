@@ -13,15 +13,17 @@ const string TOPIC_Addon_KillJuan = "Убийцы Ангуса и Хэнка";
 const string TOPIC_Addon_ClearCanyon = "Охота на бритвозубов";
 const string TOPIC_Addon_ScoutBandits = "Разведка среди бандитов";
 const string TOPIC_Addon_MalcomsStunt = "Мальком";
-const string Topic_Addon_PIR_Trader = "Торговля с пиратами";
-const string Topic_Addon_PIR_Teacher = "Обучение у пиратов";
+const string TOPIC_Addon_PIR_Trader = "Торговля с пиратами";
+const string TOPIC_Addon_PIR_Teacher = "Обучение у пиратов";
+
+const string TOPIC_RescueBennet = "Беннет в тюрьме";
+const string TOPIC_Ship = "Мне нужен корабль";
+const string TOPIC_Crew = "Невозможно плыть без команды";
+const string TOPIC_Captain = "Кто будет моим капитаном?";
+
 const string Log_Text_Addon_ScoutBandits = "Бандиты контролируют золотую шахту. Именно поэтому они здесь.";
 const string Log_Text_Addon_HenryTeach = "Генри может научить меня управляться с двуручным оружием и арбалетами.";
 const string Log_Text_Addon_MorganTeach = "Морган учит сражаться одноручным оружием.";
 const string Log_Text_Addon_BrandonTeach = "Брэндон может помочь мне стать более сильным и ловким.";
 const string Log_Text_Addon_GarettTrade = "Гаретт - торговец. Я могу купить у него все, кроме выпивки.";
 const string Log_Text_Addon_SamuelTrade = "Сэмюэль - самогонщик. Он продает любой алкоголь.";
-const string TOPIC_RescueBennet = "Беннет в тюрьме";
-const string Topic_Ship = "Мне нужен корабль";
-const string Topic_Crew = "Невозможно плыть без команды";
-const string Topic_Captain = "Кто будет моим капитаном?";

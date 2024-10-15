@@ -520,6 +520,10 @@ func void DIA_Pyrokar_OATH_Info()
 	B_StartOtherRoutine(Lothar,"START");
 	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
 	B_CancelBengarMilitiaProblem();
+	if(MIS_Torlof_HolPachtVonSekob == LOG_Running)
+	{
+		MIS_Torlof_HolPachtVonSekob = LOG_FAILED;
+	};
 	B_GivePlayerXP(XP_BecomeMage);
 	if(!Npc_IsDead(Gorax))
 	{
@@ -618,23 +622,23 @@ func void DIA_Pyrokar_Lernen_Info()
 	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_06");	//Но каждый из них будет учить тебя только формулам - руны ты должен будешь создавать сам.
 	if(!Npc_KnowsInfo(other,DIA_Parlan_MAGE))
 	{
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Брат Парлан посвятит меня в первые круги магии и обучит множеству различных формул.");
+		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTeacher,"Брат Парлан посвятит меня в первые круги магии и обучит множеству различных формул.");
 	};
 	if(!Npc_KnowsInfo(other,DIA_Karras_JOB))
 	{
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
+		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
 	};
 	if(!Npc_KnowsInfo(other,DIA_Hyglas_JOB))
 	{
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Брат Хиглас может посвятить меня в тайны огня.");
+		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTeacher,"Брат Хиглас может посвятить меня в тайны огня.");
 	};
 	if(!Npc_KnowsInfo(other,DIA_Marduk_BEFORETEACH))
 	{
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома.");
+		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома.");
 	};
 };
 
@@ -2148,7 +2152,7 @@ func int DIA_Pyrokar_DTCLEARED_Condition()
 {
 	if(MIS_PyrokarClearDemonTower == LOG_Running)
 	{
-		if(Npc_IsDead(Xardas_DT_Demon1) && Npc_IsDead(Xardas_DT_Demon2) && Npc_IsDead(Xardas_DT_Demon3) && Npc_IsDead(Xardas_DT_Demon4) && Npc_IsDead(Xardas_DT_Demon5) && Npc_IsDead(Xardas_DT_DemonLord))
+		if(C_XardasDemonsDead())
 		{
 			return TRUE;
 		};

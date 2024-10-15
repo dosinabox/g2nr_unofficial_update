@@ -44,9 +44,7 @@ func void Perception_Set_Normal()
 	Npc_PercEnable(self,PERC_ASSESSENEMY,B_AssessEnemy);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_AssessDamage);
-	//********** огненная стрела
 	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_AssessOthersDamage);
-	//**********
 	Npc_PercEnable(self,PERC_ASSESSMURDER,B_AssessMurder);
 	Npc_PercEnable(self,PERC_ASSESSTHEFT,B_AssessTheft);
 	Npc_PercEnable(self,PERC_ASSESSUSEMOB,B_AssessUseMob);
@@ -58,7 +56,7 @@ func void Perception_Set_Normal()
 	Npc_PercEnable(self,PERC_ASSESSWARN,B_AssessWarn);
 	Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessTalk);
 	Npc_PercEnable(self,PERC_MOVEMOB,B_MoveMob);
-	if(!Npc_IsInState(self,ZS_Sleep) && !Npc_IsInState(self,ZS_Sleep_Deep) && !Npc_IsInState(self,ZS_MagicSleep))
+	if(!C_NpcIsSleeping(self))
 	{
 		B_ResetFaceExpression(self);
 	};
@@ -70,14 +68,12 @@ func void Perception_Set_Minimal()
 	self.senses_range = PERC_DIST_ACTIVE_MAX;
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_AssessDamage);
-	//********** огненная стрела
 	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_AssessOthersDamage);
-	//**********
 	Npc_PercEnable(self,PERC_ASSESSMURDER,B_AssessMurder);
 	Npc_PercEnable(self,PERC_ASSESSTHEFT,B_AssessTheft);
 	Npc_PercEnable(self,PERC_ASSESSUSEMOB,B_AssessUseMob);
 	Npc_PercEnable(self,PERC_ASSESSENTERROOM,B_AssessPortalCollision);
-	if(!Npc_IsInState(self,ZS_Sleep) && !Npc_IsInState(self,ZS_Sleep_Deep) && !Npc_IsInState(self,ZS_MagicSleep))
+	if(!C_NpcIsSleeping(self))
 	{
 		B_ResetFaceExpression(self);
 	};

@@ -211,7 +211,6 @@ prototype BeliarWeaponPrototype_2H(C_Item)
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
 	damagetype = DAM_EDGE;
-//	range = Range_Drachenschneide;
 	range = 140;
 	effect = "SPELLFX_FIRESWORDBLACK";
 	cond_atr[2] = ATR_STRENGTH;
@@ -438,13 +437,25 @@ instance ItMw_BeliarWeapon_Fire(BeliarWeaponPrototype_2H)
 	count[5] = value;
 };
 
-instance ItMw_BeliarWeapon_Fake(C_Item)
+instance ItMw_BeliarWeapon_1H_Fake(C_Item)
 {
 	name = NAME_Addon_BeliarsWeapon;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 0;
 	visual = "ItMw_BeliarWeapon_1H.3DS";
+	scemeName = "INSPECTWEAPON";
+	material = MAT_METAL;
+	description = name;
+};
+
+instance ItMw_BeliarWeapon_2H_Fake(C_Item)
+{
+	name = NAME_Addon_BeliarsWeapon;
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = 0;
+	visual = "ItMw_BeliarWeapon_2H.3DS";
 	scemeName = "INSPECTWEAPON";
 	material = MAT_METAL;
 	description = name;

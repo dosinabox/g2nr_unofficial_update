@@ -213,7 +213,7 @@ func void DIA_Addon_Paul_MaulPaul_Info()
 	AI_Output(other,self,"DIA_Addon_Paul_MaulPaul_15_08");	//Отлично! Вот видишь, это было не так сложно.
 	Npc_ExchangeRoutine(self,"START");
 	Paul_TellAll = TRUE;
-	B_LogEntry(Topic_Addon_Esteban,"Пол сказал, что Хуно ненавидит Эстебана, потому что он проворачивает свои дела.");
+	B_LogEntry(TOPIC_Addon_Esteban,"Пол сказал, что Хуно ненавидит Эстебана, потому что он проворачивает свои дела.");
 };
 
 

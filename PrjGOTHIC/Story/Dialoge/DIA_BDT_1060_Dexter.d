@@ -60,7 +60,7 @@ func void DIA_Dexter_Hallo_Info()
 	};
 	if(MIS_Steckbriefe == LOG_Running)
 	{
-		B_LogEntry(Topic_Bandits,"ƒекстер призналс€, что распростран€л объ€влени€ о розыске.");
+		B_LogEntry(TOPIC_Bandits,"ƒекстер призналс€, что распростран€л объ€влени€ о розыске.");
 		MIS_Steckbriefe = LOG_SUCCESS;
 		B_CheckLog();
 	};

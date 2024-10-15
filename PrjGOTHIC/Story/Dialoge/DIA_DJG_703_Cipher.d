@@ -152,7 +152,7 @@ func void DIA_CipherDJG_GO_Info()
 	DJG_SwampParty_GoGoGo = TRUE;
 	self.npcType = NPCTYPE_FRIEND;
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	Npc_ExchangeRoutine(self,"SwampWait1");
+	Npc_ExchangeRoutine(self,"SWAMPWAIT1");
 	if(!Npc_IsDead(DJG_Rod))
 	{
 		if(C_BodyStateContains(DJG_Rod,BS_SIT))
@@ -161,7 +161,7 @@ func void DIA_CipherDJG_GO_Info()
 		};
 		DJG_Rod.npcType = NPCTYPE_FRIEND;
 		DJG_Rod.aivar[AIV_PARTYMEMBER] = TRUE;
-		B_StartOtherRoutine(DJG_Rod,"SwampWait1");
+		B_StartOtherRoutine(DJG_Rod,"SWAMPWAIT1");
 	};
 };
 
@@ -198,12 +198,12 @@ func void DIA_CipherDJG_SwampWait2_weiter()
 	DJG_SwampParty_GoGoGo = TRUE;
 	self.npcType = NPCTYPE_FRIEND;
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	Npc_ExchangeRoutine(self,"SwampWait2");
+	Npc_ExchangeRoutine(self,"SWAMPWAIT2");
 	if(!Npc_IsDead(DJG_Rod))
 	{
 		DJG_Rod.npcType = NPCTYPE_FRIEND;
 		DJG_Rod.aivar[AIV_PARTYMEMBER] = TRUE;
-		B_StartOtherRoutine(DJG_Rod,"SwampWait2");
+		B_StartOtherRoutine(DJG_Rod,"SWAMPWAIT2");
 	};
 };
 
@@ -231,8 +231,8 @@ func void DIA_CipherDJG_GoForSwampDragon_Info()
 	{
 		AI_Output(self,other,"DIA_CipherDJG_GoForSwampDragon_07_00");	//(рычит) В атаку!
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"SwampDragon");
-		B_StartOtherRoutine(DJG_Rod,"SwampDragon");
+		Npc_ExchangeRoutine(self,"SWAMPDRAGON");
+		B_StartOtherRoutine(DJG_Rod,"SWAMPDRAGON");
 	}
 	else
 	{
@@ -270,11 +270,11 @@ func void DIA_CipherDJG_SWAMPDRAGONDEAD_Info()
 	DJG_SwampParty = FALSE;
 	DJG_SwampParty_GoGoGo = FALSE;
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	if(!Npc_IsDead(DJG_Rod))
 	{
 		DJG_Rod.aivar[AIV_PARTYMEMBER] = FALSE;
-		B_StartOtherRoutine(DJG_Rod,"Start");
+		B_StartOtherRoutine(DJG_Rod,"START");
 	};
 };
 

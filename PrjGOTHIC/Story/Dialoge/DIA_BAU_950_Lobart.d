@@ -750,9 +750,9 @@ func void DIA_Lobart_BUGDEAD_Info()
 {
 	AI_Output(other,self,"DIA_Lobart_BUGDEAD_15_00");	//я разделалс€ с этими твар€ми!
 	AI_Output(self,other,"DIA_Lobart_BUGDEAD_05_01");	//ќтлично. “ы не такой уж плохой ликвидатор. я порекомендую теб€ сосед€м. ¬от, держи заработанное.
-	B_StartOtherRoutine(Vino,"Start");
-	B_StartOtherRoutine(LobartsBauer1,"Start");
-	B_StartOtherRoutine(LobartsBauer2,"Start");
+	B_StartOtherRoutine(Vino,"START");
+	B_StartOtherRoutine(LobartsBauer1,"START");
+	B_StartOtherRoutine(LobartsBauer2,"START");
 	CreateInvItems(self,ItMi_Gold,20);
 	B_GiveInvItems(self,other,ItMi_Gold,20);
 	MIS_LobartKillBugs = LOG_SUCCESS;
@@ -854,7 +854,7 @@ func void DIA_Lobart_DMT_FrauHeilen()
 func void DIA_Lobart_DMT_BACK()
 {
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 func void DIA_Lobart_DMT_spokeToThem()
@@ -1008,9 +1008,9 @@ func void DIA_Lobart_ORKSWEG_Info()
 		AI_Output(self,other,"DIA_Lobart_ORKSWEG_05_01");	//Ќикому не позволю говорить, что паладины ничего не делают дл€ нас, простых фермеров.
 	};
 	AI_Output(self,other,"DIA_Lobart_ORKSWEG_05_02");	//—лава »нносу. я не могу дать тебе за это много, но € надеюсь, ты оценишь мой жест благодарности.
-	B_StartOtherRoutine(Vino,"Start");
-	B_StartOtherRoutine(LobartsBauer1,"Start");
-	B_StartOtherRoutine(LobartsBauer2,"Start");
+	B_StartOtherRoutine(Vino,"START");
+	B_StartOtherRoutine(LobartsBauer1,"START");
+	B_StartOtherRoutine(LobartsBauer2,"START");
 	TOPIC_END_LobartsOrkProblem = TRUE;
 	B_GivePlayerXP(XP_KilledLobartOrks);
 	CreateInvItems(self,ItMi_Gold,150);

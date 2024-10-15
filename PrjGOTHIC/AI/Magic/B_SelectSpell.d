@@ -174,24 +174,24 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			}
 			else if((slf.guild == GIL_KDW) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY)))
 			{
-				if(oth.protection[PROT_MAGIC] > SPL_Damage_ChargeZap)
+				if(oth.protection[PROT_MAGIC] < SPL_Damage_ChargeZap)
 				{
-					B_ReadySpell(slf,SPL_LightningFlash,SPL_Cost_LightningFlash);
+					B_ReadySpell(slf,SPL_ChargeZap,SPL_COST_ChargeZap);
 				}
 				else
 				{
-					B_ReadySpell(slf,SPL_ChargeZap,SPL_COST_ChargeZap);
+					B_ReadySpell(slf,SPL_LightningFlash,SPL_Cost_LightningFlash);
 				};
 			}
 			else
 			{
-				if(oth.protection[PROT_FIRE] > SPL_DAMAGE_InstantFireball)
+				if(oth.protection[PROT_MAGIC] < SPL_DAMAGE_InstantFireball)
 				{
-					B_ReadySpell(slf,SPL_Firestorm,SPL_Cost_FireStorm);
+					B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
 				}
 				else
 				{
-					B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+					B_ReadySpell(slf,SPL_Firestorm,SPL_Cost_FireStorm);
 				};
 			};
 			return TRUE;
@@ -224,13 +224,13 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		};
 		if((Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_MELEE) && C_NpcIsEvil(oth))
 		{
-			if(oth.protection[PROT_MAGIC] > SPL_Damage_PalHolyBolt)
+			if(oth.protection[PROT_MAGIC] < SPL_Damage_PalHolyBolt)
 			{
-				B_ReadySpell(slf,SPL_PalRepelEvil,SPL_Cost_PalRepelEvil);
+				B_ReadySpell(slf,SPL_PalHolyBolt,SPL_Cost_PalHolyBolt);
 			}
 			else
 			{
-				B_ReadySpell(slf,SPL_PalHolyBolt,SPL_Cost_PalHolyBolt);
+				B_ReadySpell(slf,SPL_PalRepelEvil,SPL_Cost_PalRepelEvil);
 			};
 			return TRUE;
 		};

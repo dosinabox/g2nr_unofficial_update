@@ -122,12 +122,6 @@ func void ZS_Unconscious_End()
 	{
 		return;
 	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Raven))
-	{
-		self.aivar[AIV_MagicUser] = MAGIC_ALWAYS;
-		B_Attack(self,hero,AR_GuildEnemy,0);
-		return;
-	};
 	if(Npc_CanSeeNpcFreeLOS(self,other) && (Npc_GetDistToNpc(self,other) < PERC_DIST_INTERMEDIAT))
 	{
 		B_TurnToNpc(self,other);

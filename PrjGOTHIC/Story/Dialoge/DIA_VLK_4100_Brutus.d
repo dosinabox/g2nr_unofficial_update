@@ -178,9 +178,12 @@ instance DIA_Brutus_Den(C_Info)
 
 func int DIA_Brutus_Den_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Brutus_Kasse) && (NpcObsessedByDMT_Brutus == FALSE) && Npc_HasItems(Den,ItMi_Gold))
+	if(Npc_KnowsInfo(other,DIA_Brutus_Kasse) && (NpcObsessedByDMT_Brutus == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(Den,ItMi_Gold))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -66,7 +66,7 @@ func void DIA_Dar_Hallo_Nein()
 };
 
 
-var int Dar_einmal;
+var int Dar_Einmal;
 
 instance DIA_Dar_PERM(C_Info)
 {
@@ -90,10 +90,10 @@ func int DIA_Dar_PERM_Condition()
 func void DIA_Dar_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Dar_PERM_15_00");	//Ты что-нибудь делаешь еще, кроме как куришь?
-	if((Dar_LostAgainstCipher == TRUE) && (Dar_einmal == FALSE))
+	if((Dar_LostAgainstCipher == TRUE) && (Dar_Einmal == FALSE))
 	{
 		AI_Output(self,other,"DIA_Dar_PERM_03_01");	//(саркастически) Иногда я позволяю всяким мстительным болотным наркоманам задать мне взбучку...
-		Dar_einmal = TRUE;
+		Dar_Einmal = TRUE;
 	}
 	else
 	{
@@ -261,7 +261,7 @@ func void DIA_Dar_Kameradenschwein_Info()
 		SCKnowsSLDVotes = TRUE;
 	};
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 
@@ -490,7 +490,7 @@ func void DIA_Dar_BRINGORCELITERING_geld_ok()
 	B_GiveInvItems(self,other,ItMi_Gold,1200);
 	MIS_Dar_BringOrcEliteRing = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Dar_BringOrcEliteRing);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	Info_ClearChoices(DIA_Dar_BRINGORCELITERING);
 };
 
@@ -523,7 +523,7 @@ func void DIA_Dar_BRINGORCELITERING_was_am()
 	B_GiveInvItems(self,other,ItAm_Dex_01,1);
 	MIS_Dar_BringOrcEliteRing = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Dar_BringOrcEliteRing);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	Info_ClearChoices(DIA_Dar_BRINGORCELITERING);
 };
 

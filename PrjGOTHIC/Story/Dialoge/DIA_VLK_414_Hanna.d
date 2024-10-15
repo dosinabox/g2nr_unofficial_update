@@ -29,7 +29,7 @@ func int C_Hanna_ThievesGuildIsExposed()
 	};
 	if(Andre_FoundThieves_Reported == TRUE)
 	{
-		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
+		if(C_DaysSinceEvent(Andre_FoundThieves_Reported_Day,2))
 		{
 			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
 			{
@@ -39,7 +39,7 @@ func int C_Hanna_ThievesGuildIsExposed()
 	};
 	if(Hanna_ThievesIsDead == TRUE)
 	{
-		if(Hanna_ThievesIsDead_Day <= (Wld_GetDay() - 2))
+		if(C_DaysSinceEvent(Hanna_ThievesIsDead_Day,2))
 		{
 			return TRUE;
 		};
@@ -649,12 +649,12 @@ func void DIA_Hanna_PICKPOCKET_Book_DoIt()
 		CreateInvItem(other,ItWr_Schuldenbuch);
 		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Ханна",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Ханна",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Ханна",PRINT_PickPocketFailed));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Ханна",PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};

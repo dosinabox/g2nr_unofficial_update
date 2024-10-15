@@ -1,21 +1,21 @@
 
-instance DIA_Neoras_Kap1_EXIT(C_Info)
+instance DIA_Neoras_EXIT(C_Info)
 {
 	npc = KDF_506_Neoras;
 	nr = 999;
-	condition = DIA_Neoras_Kap1_EXIT_Condition;
-	information = DIA_Neoras_Kap1_EXIT_Info;
+	condition = DIA_Neoras_EXIT_Condition;
+	information = DIA_Neoras_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Neoras_Kap1_EXIT_Condition()
+func int DIA_Neoras_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Neoras_Kap1_EXIT_Info()
+func void DIA_Neoras_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -82,15 +82,15 @@ func void DIA_Neoras_Arbeit_Info()
 	AI_Output(self,other,"DIA_Neoras_Arbeit_01_03");	//Если ты найдешь его, я буду очень благодарен.
 	MIS_NeorasPflanzen = LOG_Running;
 	MIS_NeorasRezept = LOG_Running;
-	Log_CreateTopic(Topic_NeorasPflanzen,LOG_MISSION);
-	Log_SetTopicStatus(Topic_NeorasPflanzen,LOG_Running);
-	B_LogEntries(Topic_NeorasPflanzen,"Я должен принести семь кустов огненной крапивы мастеру Неорасу, алхимику.");
-	Log_CreateTopic(Topic_Neorasrezept,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Neorasrezept,LOG_Running);
-	B_LogNextEntry(Topic_Neorasrezept,"Мастеру Неорасу не хватает рецепта для приготовления зелий маны.");
-	if(Npc_KnowsInfo(other,DIA_Opolos_beibringen))
+	Log_CreateTopic(TOPIC_NeorasPflanzen,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_NeorasPflanzen,LOG_Running);
+	B_LogEntries(TOPIC_NeorasPflanzen,"Я должен принести семь кустов огненной крапивы мастеру Неорасу, алхимику.");
+	Log_CreateTopic(TOPIC_Neorasrezept,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Neorasrezept,LOG_Running);
+	B_LogNextEntry(TOPIC_Neorasrezept,"Мастеру Неорасу не хватает рецепта для приготовления зелий маны.");
+	if(MIS_Opolos_Rezept == LOG_Running)
 	{
-		Log_AddEntry(Topic_Neorasrezept,"Это, должно быть, рецепт, на который так хочет взглянуть Ополос.");
+		Log_AddEntry(TOPIC_Neorasrezept,"Это, должно быть, рецепт, на который так хочет взглянуть Ополос.");
 	};
 };
 
@@ -122,9 +122,9 @@ func void DIA_Neoras_Rezept_Info()
 		DIA_Common_IFoundHim();
 		AI_Output(self,other,"DIA_Neoras_Rezept_01_02");	//Хорошо. Я боялся, что он потерян для меня навсегда.
 		AI_Output(self,other,"DIA_Neoras_Rezept_01_03");	//Вот, возьми в знак моей благодарности это магическое зелье.
+		B_GiveInvItems(self,other,ItPo_Mana_02,1);
 		MIS_NeorasRezept = LOG_SUCCESS;
 		B_GivePlayerXP(XP_NeorasRezept);
-		B_GiveInvItems(self,other,ItPo_Mana_02,1);
 	}
 	else
 	{
@@ -159,9 +159,9 @@ func void DIA_Neoras_Flieder_Info()
 	if(B_GiveInvItems(other,self,ItPl_Mana_Herb_01,7))
 	{
 		AI_Output(self,other,"DIA_Neoras_Flieder_01_01");	//Превосходно, теперь я могу работать. Возьми этот свиток с заклинанием 'Кулак ветра', надеюсь, он тебе пригодится.
+		B_GiveInvItems(self,other,ItSc_Windfist,1);
 		MIS_NeorasPflanzen = LOG_SUCCESS;
 		B_GivePlayerXP(XP_NeorasPflanzen);
-		B_GiveInvItems(self,other,ItSc_Windfist,1);
 	}
 	else
 	{
@@ -194,8 +194,8 @@ func void DIA_Neoras_TEACH_Info()
 		AI_Output(self,other,"DIA_Neoras_TEACH_01_01");	//Я могу обучить тебя секретам алхимии.
 		if(Neoras_TeachAlchemy == FALSE)
 		{
-			Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-			B_LogEntry(Topic_KlosterTeacher,"Неорас может обучить меня варить зелья.");
+			Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_KlosterTeacher,"Неорас может обучить меня варить зелья.");
 			Neoras_TeachAlchemy = TRUE;
 		};
 		Info_ClearChoices(DIA_Neoras_TEACH);
@@ -322,8 +322,8 @@ func void DIA_Neoras_BrewPotion_Info()
 		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_02");	//Ты можешь купить все, что тебе нужно, у Горакса.
 		if(Gorax_Trade == FALSE)
 		{
-			Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-			B_LogEntry(Topic_KlosterTrader,"Мастер Горакс в монастыре может предоставить мне все, что мне нужно.");
+			Log_CreateTopic(TOPIC_KlosterTrader,LOG_NOTE);
+			B_LogEntry(TOPIC_KlosterTrader,"Мастер Горакс в монастыре может предоставить мне все, что мне нужно.");
 			Gorax_Trade = TRUE;
 		};
 	}
@@ -582,9 +582,8 @@ func void DIA_Neoras_FOUNDDRAGONEGG_Info()
 {
 	AI_Output(other,self,"DIA_Neoras_FOUNDDRAGONEGG_15_00");	//Вот, я нашел для тебя яйцо дракона.
 	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_01_01");	//Ты что, издеваешься надо мной?
-//	B_GiveInvItems(other,self,ItAt_DragonEgg_MIS,1);
-	AI_PrintScreen("Драконье яйцо отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-	Npc_RemoveInvItem(other,ItAt_DragonEgg_MIS);
+	B_GiveInvItems(other,self,ItAt_DragonEgg_MIS,1);
+	Npc_RemoveInvItem(self,ItAt_DragonEgg_MIS);
 	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_01_02");	//Оно настоящее! Я даже не думал, что это возможно. Где ты нашел его?
 	AI_Output(other,self,"DIA_Neoras_FOUNDDRAGONEGG_15_03");	//Тебе этого лучше не знать.
 	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_01_04");	//Превосходно. Что ты хочешь за него?
@@ -656,7 +655,7 @@ func int DIA_Neoras_DRAGONEGGDRINK_Condition()
 func void DIA_Neoras_DRAGONEGGDRINK_Info()
 {
 	AI_Output(other,self,"DIA_Neoras_DRAGONEGGDRINK_15_00");	//Я пришел получить это загадочное зелье из яйца дракона.
-	if(Neoras_DragonEggDrink_Day <= (Wld_GetDay() - 2))
+	if(C_DaysSinceEvent(Neoras_DragonEggDrink_Day,2))
 	{
 		AI_Output(self,other,"DIA_Neoras_DRAGONEGGDRINK_01_01");	//Да. Я только что закончил его. Я еще не испытывал его и не несу никакой ответственности за его действие. Ты слышишь?
 		AI_Output(other,self,"DIA_Neoras_DRAGONEGGDRINK_15_02");	//Давай его сюда.

@@ -410,3 +410,49 @@ func int C_FajethSnappersDead()
 	return TRUE;
 };
 
+func int C_AkilBanditsDead()
+{
+	if(!Npc_IsDead(BDT_1025_Bandit_H))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_1026_Bandit_H))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_1027_Bandit_H))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+func int C_XardasDemonsDead()
+{
+	if(!Npc_IsDead(Xardas_DT_Demon1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Xardas_DT_Demon2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Xardas_DT_Demon3))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Xardas_DT_Demon4))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Xardas_DT_Demon5))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Xardas_DT_DemonLord))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+

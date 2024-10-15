@@ -102,9 +102,9 @@ func void DIA_Addon_Snaf_Cook_YES()
 	B_GiveInvItems(self,other,ItWr_Addon_Lou_Rezept,1);
 	MIS_SnafHammer = LOG_Running;
 	Info_ClearChoices(DIA_Addon_Snaf_Cook);
-	Log_CreateTopic(Topic_Addon_Hammer,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Hammer,LOG_Running);
-	B_LogEntry(Topic_Addon_Hammer,"Снафу нужен ингредиент для соуса. Он дал мне рецепт напитка 'Молот', который я могу приготовить на алхимическом столе.");
+	Log_CreateTopic(TOPIC_Addon_Hammer,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Hammer,LOG_Running);
+	B_LogEntry(TOPIC_Addon_Hammer,"Снафу нужен ингредиент для соуса. Он дал мне рецепт напитка 'Молот', который я могу приготовить на алхимическом столе.");
 };
 
 
@@ -230,7 +230,7 @@ func void DIA_Addon_Snaf_Abrechnung_Info()
 		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_03");	//Тебе нужно срочно исправить это и порвать с ним, иначе не видать тебе человека, что стоял за нападением.
 		if(Snaf_Tip_Senyan == FALSE)
 		{
-			B_LogEntry(Topic_Addon_Senyan,"Я должен порвать отношения с Сеньяном. Но нападать на него напрямую было бы глупо, поэтому я должен сначала с ним поговорить.");
+			B_LogEntry(TOPIC_Addon_Senyan,"Я должен порвать отношения с Сеньяном. Но нападать на него напрямую было бы глупо, поэтому я должен сначала с ним поговорить.");
 			Snaf_Tip_Senyan = TRUE;
 		};
 	}

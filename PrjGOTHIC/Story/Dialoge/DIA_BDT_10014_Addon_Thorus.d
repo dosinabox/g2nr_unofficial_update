@@ -223,9 +223,9 @@ func void DIA_Addon_Thorus_Rein_Info()
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Rein_15_05");	//» когда €, наконец, смогу попасть в эту чертову шахту?
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Rein_12_06");	//ƒелай свою работу - а после можешь заниматьс€, чем хочешь.
 	MIS_Send_Buddler = LOG_Running;
-	Log_CreateTopic(Topic_Addon_Buddler,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Buddler,LOG_Running);
-	B_LogEntry(Topic_Addon_Buddler,"я зан€л место Ёстебана, и теперь мне нужно послать в шахту трех шахтеров.");
+	Log_CreateTopic(TOPIC_Addon_Buddler,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Buddler,LOG_Running);
+	B_LogEntry(TOPIC_Addon_Buddler,"я зан€л место Ёстебана, и теперь мне нужно послать в шахту трех шахтеров.");
 };
 
 

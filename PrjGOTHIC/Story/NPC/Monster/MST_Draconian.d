@@ -14,7 +14,7 @@ prototype Mst_Default_Draconian(C_Npc)
 	protection[PROT_BLUNT] = 130;
 	protection[PROT_EDGE] = 130;
 	protection[PROT_POINT] = 130;
-	protection[PROT_FIRE] = 130;	//65;
+	protection[PROT_FIRE] = 130;
 	protection[PROT_FLY] = 130;
 	protection[PROT_MAGIC] = 65;
 	HitChance[NPC_TALENT_1H] = 80;

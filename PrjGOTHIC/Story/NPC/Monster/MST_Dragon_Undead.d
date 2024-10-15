@@ -43,7 +43,7 @@ instance Dragon_Undead(Mst_Default_Dragon_Undead)
 {
 	B_SetVisuals_Dragon_Undead();
 	flags = NPC_FLAG_IMMORTAL;
-	effect = "spellfx_undead_dragon";
+	effect = "SPELLFX_UNDEAD_DRAGON";
 	Npc_SetToFistMode(self);
 };
 

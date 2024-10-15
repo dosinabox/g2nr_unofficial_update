@@ -6,8 +6,8 @@ func void B_Fisk_Trade()
 	if(Fisk_Trade == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Fisk_Hi_12_01");	//Моя лавка находится за домом Эстебана. Если тебе что-нибудь понадобится, заходи.
-		Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
-		B_LogEntry(Topic_Addon_BDT_Trader,"Фиск продает самые разные товары.");
+		Log_CreateTopic(TOPIC_Addon_BDT_Trader,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_BDT_Trader,"Фиск продает самые разные товары.");
 		Fisk_Trade = TRUE;
 	};
 };
@@ -168,11 +168,11 @@ func void DIA_Addon_Fisk_Lieferung_Info()
 	AI_Output(self,other,"DIA_Addon_Fisk_Lieferung_12_02");	//Но парень по имени Хуан украл и отмычки, и золото, которое я заплатил!
 	AI_Output(self,other,"DIA_Addon_Fisk_Lieferung_12_03");	//Этот ублюдок прячется где-то на болоте.
 	MIS_Fisk_Lockpicks = LOG_Running;
-	Log_CreateTopic(Topic_Addon_Fisk,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Fisk,LOG_Running);
+	Log_CreateTopic(TOPIC_Addon_Fisk,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Fisk,LOG_Running);
 	if(MIS_Addon_Bill_SearchAngusMurder == LOG_Running)
 	{
-		B_LogEntries(Topic_Addon_Fisk,"Человек по имени Хуан украл у Фиска посылку - пакет с отмычками. Он прячется где-то на болоте.");
+		B_LogEntries(TOPIC_Addon_Fisk,"Человек по имени Хуан украл у Фиска посылку - пакет с отмычками. Он прячется где-то на болоте.");
 		if(SC_Knows_JuanMurderedAngus == TRUE)
 		{
 			B_LogNextEntry(TOPIC_Addon_KillJuan,"Парень по имени Хуан украл посылку для Фиска, сорвав сделку пиратов и бандитов. Он прячется где-то на болоте.");
@@ -184,7 +184,7 @@ func void DIA_Addon_Fisk_Lieferung_Info()
 	}
 	else
 	{
-		B_LogEntry(Topic_Addon_Fisk,"Человек по имени Хуан украл у Фиска посылку - пакет с отмычками. Он прячется где-то на болоте.");
+		B_LogEntry(TOPIC_Addon_Fisk,"Человек по имени Хуан украл у Фиска посылку - пакет с отмычками. Он прячется где-то на болоте.");
 	};
 };
 
@@ -430,7 +430,7 @@ func void DIA_Addon_Fisk_Meeting_Info()
 	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_12_01");	//Да. Эстебан стоит на моем пути. И это нехорошо.
 	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_12_02");	//Он не позволяет никому из бандитов работать на меня на руднике. Он хочет, чтобы все работали только на него.
 	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_12_03");	//Так он хочет получать свою долю с каждой сделки и держать весь лагерь за задницу.
-	B_LogEntry(Topic_Addon_Esteban,"Нападение на Эстебана заказал Фиск.");
+	B_LogEntry(TOPIC_Addon_Esteban,"Нападение на Эстебана заказал Фиск.");
 	MIS_Judas = LOG_SUCCESS;
 	B_CheckLog();
 	Info_ClearChoices(DIA_Addon_Fisk_Meeting);

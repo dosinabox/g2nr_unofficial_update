@@ -367,7 +367,7 @@ instance DIA_Addon_Morgan_FOUNDTHEM(C_Info)
 
 func int DIA_Addon_Morgan_FOUNDTHEM_Condition()
 {
-	if((MIS_Addon_Morgan_SeekTraitor != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHank))
+	if((Morgan_GotRing == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHank))
 	{
 		return TRUE;
 	};
@@ -423,7 +423,7 @@ func void DIA_Addon_Morgan_FOUNDTHEM_GiveRing()
 	AI_Output(self,other,"DIA_Addon_Morgan_FOUNDTHEM_GiveRing_07_01");	//(радостно) Да, это оно! Спасибо тебе!
 	AI_Output(self,other,"DIA_Addon_Morgan_FOUNDTHEM_GiveRing_07_02");	//Вот, возьми эту каменную табличку. Возможно, она на первый взгляд и бесполезна, но Гаретт тебе за нее хорошо заплатит.
 	B_GiveInvItems(self,other,ItWr_StonePlateCommon_Addon,1);
-	MIS_Addon_Morgan_SeekTraitor = LOG_SUCCESS;
+	Morgan_GotRing = TRUE;
 	B_GivePlayerXP(XP_Addon_MorgansRing);
 	Info_ClearChoices(DIA_Addon_Morgan_FOUNDTHEM);
 };
@@ -484,8 +484,8 @@ func void DIA_Addon_Morgan_TRAIN_Info()
 	AI_Output(self,other,"DIA_Addon_Morgan_TRAIN_07_01");	//Конечно. Я могу улучшить твое умение обращаться с одноручным оружием.
 	if(!Npc_KnowsInfo(other,DIA_Addon_Bones_Teacher))
 	{
-		Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_MorganTeach);
+		Log_CreateTopic(TOPIC_Addon_PIR_Teacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_PIR_Teacher,Log_Text_Addon_MorganTeach);
 	};
 	Morgan_Addon_TeachPlayer = TRUE;
 };

@@ -23,7 +23,7 @@ func void DIA_Meldor_EXIT_Info()
 
 func int C_LehmarDebtIsOverdue()
 {
-	if(Lehmar_GeldGeliehen_Day > (Wld_GetDay() - 2))
+	if(!C_DaysSinceEvent(Lehmar_GeldGeliehen_Day,2))
 	{
 		return FALSE;
 	};

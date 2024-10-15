@@ -179,6 +179,13 @@ func void DIA_Vino_ToTheCity_Info()
 var int Vino_Gossip_Orks;
 var int Vino_Gossip_Bugs;
 
+func void B_Vino_Complain()
+{
+	AI_Output(self,other,"DIA_Vino_PERM45UND6_05_04");	//К сожалению, ополчение нашло мой винокуренный заводик. Надеюсь, что они хотя бы меня не поймают.
+	B_GivePlayerXP(150);
+	Vino_Complain = TRUE;
+};
+
 instance DIA_Vino_PERM(C_Info)
 {
 	npc = BAU_952_Vino;
@@ -201,7 +208,7 @@ func int DIA_Vino_PERM_Condition()
 func void DIA_Vino_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Vino_PERM_15_00");	//Есть какие-нибудь интересные новости?
-	if((Vino_Gossip_Orks == FALSE) && (CityOrc_Killed_Day >= (Wld_GetDay() - 2)))
+	if((Vino_Gossip_Orks == FALSE) && !C_DaysSinceEvent(CityOrc_Killed_Day,2))
 	{
 		AI_Output(self,other,"DIA_Vino_PERM_05_01");	//Я могу поклясться, что видел орка вон там, на краю леса, два дня назад.
 		AI_Output(self,other,"DIA_Vino_PERM_05_02");	//С тех пор я сплю хотя бы с одним открытым глазом.
@@ -217,9 +224,7 @@ func void DIA_Vino_PERM_Info()
 	}
 	else if((FoundVinosKellerei == TRUE) && (Vino_Complain == FALSE) && (hero.guild != GIL_MIL) && (hero.guild != GIL_KDF))
 	{
-		AI_Output(self,other,"DIA_Vino_PERM45UND6_05_04");	//К сожалению, ополчение нашло мой винокуренный заводик. Надеюсь, что они хотя бы меня не поймают.
-		B_GivePlayerXP(150);
-		Vino_Complain = TRUE;
+		B_Vino_Complain();
 	}
 	else
 	{
@@ -297,7 +302,7 @@ func void DIA_Vino_Obesessed_Info()
 		AI_Output(self,other,"DIA_Vino_Obesessed_05_01");	//(рычит) Черт, убей их. Иначе они убьют меня.
 		AI_EquipBestMeleeWeapon(self);
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"RunFromRitual");
+		Npc_ExchangeRoutine(self,"RUNFROMRITUAL");
 		if(!Npc_IsDead(DMT_Vino1))
 		{
 			DMT_Vino1.aivar[AIV_EnemyOverride] = FALSE;
@@ -357,7 +362,7 @@ func void DIA_Vino_Heilung_Info()
 		};
 		B_LogEntry(TOPIC_DEMENTOREN,"Вино одержим. Я отправил его в монастырь на лечение. Надеюсь, он сможет добраться туда живым.");
 		B_NpcClearObsessionByDMT(self);
-		B_StartOtherRoutine(Vino,"Kloster");
+		B_StartOtherRoutine(Vino,"KLOSTER");
 		B_GivePlayerXP(XP_VinoFreeFromDMT);
 		DIA_Vino_Heilung_oneTime = TRUE;
 	};
@@ -423,9 +428,7 @@ func void DIA_Vino_PERM45UND6_Info()
 	AI_Output(other,self,"DIA_Vino_PERM45UND6_15_00");	//Есть новости?
 	if((FoundVinosKellerei == TRUE) && (Vino_Complain == FALSE) && (hero.guild != GIL_MIL))
 	{
-		AI_Output(self,other,"DIA_Vino_PERM45UND6_05_04");	//К сожалению, ополчение нашло мой винокуренный заводик. Надеюсь, что они хотя бы меня не поймают.
-		B_GivePlayerXP(150);
-		Vino_Complain = TRUE;
+		B_Vino_Complain();
 	}
 	else if(hero.guild == GIL_PAL)
 	{

@@ -57,11 +57,6 @@ func void ZS_MagicFlee()
 				ScaredRumbold = TRUE;
 			};
 		};
-		if((ScaredRick == TRUE) && (ScaredRumbold == TRUE))
-		{
-			Rumbold_Bezahlt = TRUE;
-			Miliz_Flucht = TRUE;
-		};
 	};
 	if(Kapitel < 4)
 	{
@@ -83,7 +78,7 @@ func void ZS_MagicFlee()
 				ScaredEngardo = TRUE;
 			};
 		};
-		if((ScaredAlvares == TRUE) && (ScaredEngardo == TRUE) && (ScaredFarmers == FALSE))
+		if(C_AkilFarmIsFree() && (ScaredFarmers == FALSE))
 		{
 			if(Hlp_IsValidNpc(Akil))
 			{
@@ -132,12 +127,12 @@ func void ZS_MagicFlee()
 		if(randy == 0)
 		{
 			AI_PlayAniBS(self,"T_STAND_2_FEAR_VICTIM1",BS_STAND);
-		};
-		if(randy == 1)
+		}
+		else if(randy == 1)
 		{
 			AI_PlayAniBS(self,"T_STAND_2_FEAR_VICTIM2",BS_STAND);
-		};
-		if(randy == 2)
+		}
+		else
 		{
 			AI_PlayAniBS(self,"T_STAND_2_FEAR_VICTIM3",BS_STAND);
 		};

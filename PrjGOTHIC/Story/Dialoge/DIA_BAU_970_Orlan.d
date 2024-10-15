@@ -539,7 +539,7 @@ func int DIA_Orlan_MieteFaellig_Condition()
 {
 	if((Orlan_RoomIsRented == TRUE) && (Orlan_RoomIsFree == FALSE) && (Orlan_RoomPaymentRefused == FALSE) && (SC_IsRanger == FALSE) && (Orlan_KnowsSCAsRanger == FALSE) && !AnyRangerRingEquipped())
 	{
-		if(Orlan_RoomPaymentDay <= (Wld_GetDay() - 7))
+		if(C_DaysSinceEvent(Orlan_RoomPaymentDay,7))
 		{
 			return TRUE;
 		};
@@ -612,9 +612,12 @@ instance DIA_Orlan_WETTKAMPFLAEUFT(C_Info)
 
 func int DIA_Orlan_WETTKAMPFLAEUFT_Condition()
 {
-	if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && ((MIS_Rukhar_Wettkampf_Day <= (Wld_GetDay() - 2)) || (Kapitel >= 4)))
+	if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (C_DaysSinceEvent(MIS_Rukhar_Wettkampf_Day,2) || (Kapitel >= 4)))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Rukhar) && !Npc_IsDead(Randolph))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -685,9 +688,12 @@ instance DIA_Orlan_EINGEBROCKT(C_Info)
 
 func int DIA_Orlan_EINGEBROCKT_Condition()
 {
-	if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (MIS_Rukhar_Wettkampf == LOG_Running) && (MIS_Rukhar_Wettkampf_Day > (Wld_GetDay() - 2)) && (Kapitel < 4))
+	if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (MIS_Rukhar_Wettkampf == LOG_Running) && !C_DaysSinceEvent(MIS_Rukhar_Wettkampf_Day,2) && (Kapitel < 4))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Rukhar) && !Npc_IsDead(Randolph))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -726,7 +732,7 @@ func void DIA_Orlan_Perm_Info()
 		AI_Output(self,other,"DIA_Orlan_Perm_05_01");	//Бывало и лучше.
 		AI_Output(self,other,"DIA_Orlan_Perm_05_02");	//Люди нынче не так охотно развязывают свои кошельки, как это было раньше.
 	}
-	else if(Kapitel >= 3)
+	else
 	{
 		AI_Output(self,other,"DIA_Orlan_Perm_05_03");	//Надеюсь, эти черные маги скоро уйдут, иначе, боюсь, мне придется закрыть таверну.
 		AI_Output(self,other,"DIA_Orlan_Perm_05_04");	//Почти никто не осмеливается больше заглядывать сюда.

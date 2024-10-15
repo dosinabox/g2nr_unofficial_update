@@ -1,21 +1,21 @@
 
-instance DIA_Hyglas_Kap1_EXIT(C_Info)
+instance DIA_Hyglas_EXIT(C_Info)
 {
 	npc = KDF_510_Hyglas;
 	nr = 999;
-	condition = DIA_Hyglas_Kap1_EXIT_Condition;
-	information = DIA_Hyglas_Kap1_EXIT_Info;
+	condition = DIA_Hyglas_EXIT_Condition;
+	information = DIA_Hyglas_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Hyglas_Kap1_EXIT_Condition()
+func int DIA_Hyglas_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Hyglas_Kap1_EXIT_Info()
+func void DIA_Hyglas_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -103,13 +103,13 @@ func void DIA_Hyglas_JOB_Info()
 	{
 		AI_Output(other,self,"DIA_Hyglas_JOB_15_03");	//Как это интересно! А не мог бы ты научить и меня этому?
 		AI_Output(self,other,"DIA_Hyglas_JOB_14_04");	//Магию дарует Иннос. И только его слугам, магам Огня, дано познать, как пользоваться этой силой.
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Мастер Хиглас может посвятить меня в тайны огня. Но для этого я должен быть магом Огня.");
+		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTeacher,"Мастер Хиглас может посвятить меня в тайны огня. Но для этого я должен быть магом Огня.");
 	};
 	if((other.guild == GIL_KDF) && !Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
 	{
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Брат Хиглас может посвятить меня в тайны огня.");
+		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTeacher,"Брат Хиглас может посвятить меня в тайны огня.");
 	};
 };
 
@@ -512,7 +512,6 @@ func void DIA_Hyglas_Kap4_PERM_Info()
 		AI_Output(other,self,"DIA_Hyglas_Kap4_PERM_15_02");	//Какого рода опасности?
 		AI_Output(self,other,"DIA_Hyglas_Kap4_PERM_14_03");	//Ну, материя между мирами, похоже, очень слаба. Нужна только небольшая часть силы, которая потребовалась бы в обычное время, чтобы прорвать брешь в этой материи.
 		AI_Output(self,other,"DIA_Hyglas_Kap4_PERM_14_04");	//Демоны могут использовать эти порталы, чтобы войти в наш мир, не встретив сопротивления.
-//		Hyglas_SendsToKarras = TRUE;
 	}
 	else if(MIS_HyglasBringBook == LOG_Running)
 	{

@@ -197,7 +197,7 @@ func void DIA_Addon_Miguel_Fortuno_Info()
 	B_GiveInvItems(self,other,ItWr_Addon_MCELIXIER_01,1);
 	AI_Output(self,other,"DIA_Addon_Miguel_Fortuno_11_06");	//Если ты как-то не так его сваришь, или возьмешь не тот ингредиент, он может быть смертельным.
 	AI_Output(other,self,"DIA_Addon_Miguel_Fortuno_15_07");	//Я буду осторожен.
-	B_LogEntry(Topic_Addon_Fortuno,"Мигель дал мне рецепт зелья, которое вернет Фортуно память. Но я должен быть уверен во всех ингредиентах, иначе у меня получится смертельный яд.");
+	B_LogEntry(TOPIC_Addon_Fortuno,"Мигель дал мне рецепт зелья, которое вернет Фортуно память. Но я должен быть уверен во всех ингредиентах, иначе у меня получится смертельный яд.");
 };
 
 
@@ -225,8 +225,8 @@ func void DIA_Addon_Miguel_BRAU_Info()
 	AI_Output(other,self,"DIA_Addon_Miguel_BRAU_15_00");	//Ты можешь научить меня кое-чему?
 	AI_Output(self,other,"DIA_Addon_Miguel_BRAU_11_01");	//У меня нет времени. Мне нужно зарабатывать золото. И пока я не могу попасть в лагерь, я живу, продавая растения.
 	AI_Output(self,other,"DIA_Addon_Miguel_BRAU_11_02");	//Но если тебе нужны зелья, у меня пока еще есть несколько.
-	Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Trader,"У Мигеля я могу покупать зелья и травы.");
+	Log_CreateTopic(TOPIC_Addon_BDT_Trader,LOG_NOTE);
+	B_LogEntry(TOPIC_Addon_BDT_Trader,"У Мигеля я могу покупать зелья и травы.");
 };
 
 

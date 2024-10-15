@@ -15,24 +15,26 @@ func int ZS_RansackBody_Loop()
 
 func void ZS_RansackBody_End()
 {
-	if(C_NpcIsDown(other))
+	var C_Npc target;
+	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
+	if(C_NpcIsDown(target))
 	{
-		AI_TurnToNpc(self,other);
+		AI_TurnToNpc(self,target);
 		AI_PlayAni(self,"T_PLUNDER");
 		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Garwig))
 		{
-			if(Npc_HasItems(other,Holy_Hammer_MIS))
+			if(Npc_HasItems(target,Holy_Hammer_MIS))
 			{
-				B_TransferAllInvItems(other,self,Holy_Hammer_MIS);
+				B_TransferAllInvItems(target,self,Holy_Hammer_MIS);
 				B_Say(self,self,"$GETUPANDBEGONE");
 				GarwigThiefOneTime = FALSE;
 			};
 		}
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rod))
 		{
-			if(Npc_HasItems(other,ItMw_2h_Rod))
+			if(Npc_HasItems(target,ItMw_2h_Rod))
 			{
-				B_TransferAllInvItems(other,self,ItMw_2h_Rod);
+				B_TransferAllInvItems(target,self,ItMw_2h_Rod);
 				AI_EquipBestMeleeWeapon(self);
 			};
 		}
@@ -40,7 +42,7 @@ func void ZS_RansackBody_End()
 		{
 			if(Orlan_RoomPaymentRefused == TRUE)
 			{
-				B_RemoveEveryInvItem(other,ItKe_Orlan_HotelZimmer);
+				B_RemoveEveryInvItem(target,ItKe_Orlan_HotelZimmer);
 			}
 			else if((Orlan_RoomIsRented == TRUE) && (Orlan_RoomIsFree == FALSE))
 			{
@@ -54,20 +56,20 @@ func void ZS_RansackBody_End()
 		{
 			if(GregIsBack == FALSE)
 			{
-				B_TransferAllInvItems(other,self,ItKe_Greg_Addon_MIS);
+				B_TransferAllInvItems(target,self,ItKe_Greg_Addon_MIS);
 			};
 		};
-		if(Npc_HasItems(other,ItMi_Gold))
+		if(Npc_HasItems(target,ItMi_Gold))
 		{
-			B_TransferAllInvItems(other,self,ItMi_Gold);
+			B_TransferAllInvItems(target,self,ItMi_Gold);
 			if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Garwig))
 			{
-				B_Say(self,other,"$ITOOKYOURGOLD");
+				B_Say(self,target,"$ITOOKYOURGOLD");
 			};
 		}
 		else if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Garwig))
 		{
-			B_Say(self,other,"$SHITNOGOLD");
+			B_Say(self,target,"$SHITNOGOLD");
 		};
 	};
 	Npc_PerceiveAll(self);
@@ -104,20 +106,16 @@ func void ZS_RansackBody_End()
 
 func void ZS_GetMeat()
 {
-	var int count;
+	var C_Npc target;
 	Perception_Set_Minimal();
 	AI_Standup(self);
-	AI_GotoNpc(self,other);
-	if(C_NpcIsDown(other))
+	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
+	AI_GotoNpc(self,target);
+	if(C_NpcIsDown(target))
 	{
-		AI_TurnToNPC(self,other);
+		AI_TurnToNPC(self,target);
 		AI_PlayAni(self,"T_PLUNDER");
-		count = Npc_HasItems(other,ItFoMuttonRaw);
-		if(count > 0)
-		{
-			CreateInvItems(self,ItFoMuttonRaw,count);
-			Npc_RemoveInvItems(other,ItFoMuttonRaw,count);
-		};
+		B_TransferAllInvItems(target,self,ItFoMuttonRaw);
 	};
 	if(self.attribute[ATR_HITPOINTS] < (self.attribute[ATR_HITPOINTS_MAX] / 2))
 	{

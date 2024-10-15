@@ -1,21 +1,21 @@
 
-instance DIA_Angar_NW_KAP5_EXIT(C_Info)
+instance DIA_Angar_NW_EXIT(C_Info)
 {
 	npc = DJG_705_Angar_NW;
 	nr = 999;
-	condition = DIA_Angar_NW_KAP5_EXIT_Condition;
-	information = DIA_Angar_NW_KAP5_EXIT_Info;
+	condition = DIA_Angar_NW_EXIT_Condition;
+	information = DIA_Angar_NW_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Angar_NW_KAP5_EXIT_Condition()
+func int DIA_Angar_NW_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Angar_NW_KAP5_EXIT_Info()
+func void DIA_Angar_NW_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -102,7 +102,7 @@ func void DIA_Angar_NW_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_Angar_NW_KnowWhereEnemy_04_01");	//Чем дальше я уйду от Долины Рудников, тем лучше. Когда мы отчаливаем?
 	if(SCToldAngarHeKnowWhereEnemy == FALSE)
 	{
-		B_LogEntry(Topic_Crew,"Ангар будет рад каждой миле, что разделяет его и Долину Рудников. Он предложил присоединиться ко мне и путешествовать вместе.");
+		B_LogEntry(TOPIC_Crew,"Ангар будет рад каждой миле, что разделяет его и Долину Рудников. Он предложил присоединиться ко мне и путешествовать вместе.");
 		SCToldAngarHeKnowWhereEnemy = TRUE;
 	};
 	if(Crewmember_Count >= Max_Crew)
@@ -159,7 +159,7 @@ func void DIA_Angar_NW_LeaveMyShip_Info()
 	AI_Output(self,other,"DIA_Angar_NW_LeaveMyShip_04_01");	//Хорошо. Я пойду назад. Может, так даже будет лучше.
 	Angar_IsOnBoard = LOG_OBSOLETE;
 	Crewmember_Count -= 1;
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 

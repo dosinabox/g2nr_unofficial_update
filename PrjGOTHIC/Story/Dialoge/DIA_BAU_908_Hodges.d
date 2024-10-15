@@ -1,21 +1,21 @@
 
-instance DIA_Hodges_Kap1_EXIT(C_Info)
+instance DIA_Hodges_EXIT(C_Info)
 {
 	npc = BAU_908_Hodges;
 	nr = 999;
-	condition = DIA_Hodges_Kap1_EXIT_Condition;
-	information = DIA_Hodges_Kap1_EXIT_Info;
+	condition = DIA_Hodges_EXIT_Condition;
+	information = DIA_Hodges_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Hodges_Kap1_EXIT_Condition()
+func int DIA_Hodges_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Hodges_Kap1_EXIT_Info()
+func void DIA_Hodges_EXIT_Info()
 {
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
@@ -233,7 +233,6 @@ instance DIA_Hodges_BennetsCrime(C_Info)
 
 func int DIA_Hodges_BennetsCrime_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Hodges_DontWork) && (MIS_RescueBennet != LOG_SUCCESS))
 	if(Npc_KnowsInfo(other,DIA_Hodges_WhatHappened) && (MIS_RescueBennet != LOG_SUCCESS))
 	{
 		return TRUE;

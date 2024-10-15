@@ -24,13 +24,14 @@ func int Spell_Logic_Charm(var int manaInvested)
 				if(Charm_Test == FALSE)
 				{
 					B_LogEntry(TOPIC_Ignaz,"Кажется, заклинание сработало! И, похоже, обошлось без свидетелей.");
+					Charm_Test = TRUE;
 				};
-				Charm_Test = TRUE;
 			};
 			B_DeletePetzCrime(other);
 			other.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
 			other.aivar[AIV_LastFightAgainstPlayer] = FIGHT_NONE;
 			other.aivar[AIV_CommentedPlayerCrime] = FALSE;
+			other.aivar[AIV_Nerver] = 0;
 			if(Wld_GetGuildAttitude(other.guild,self.guild) != ATT_HOSTILE)
 			{
 				if(Npc_GetAttitude(other,self) == ATT_HOSTILE)

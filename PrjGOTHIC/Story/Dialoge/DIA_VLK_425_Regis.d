@@ -150,9 +150,16 @@ instance DIA_Regis_ValDefeat(C_Info)
 
 func int DIA_Regis_ValDefeat_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Regis_Valentino) && (Valentino.aivar[AIV_DefeatedByPlayer] == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Regis_Valentino))
 	{
-		return TRUE;
+		if(Npc_IsDead(Valentino))
+		{
+			return TRUE;
+		};
+		if(Valentino.aivar[AIV_DefeatedByPlayer] == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -160,13 +167,19 @@ func void DIA_Regis_ValDefeat_Info()
 {
 	AI_Output(other,self,"DIA_Regis_Add_15_15");	//Я встретил этого Валентино...
 	AI_Output(self,other,"DIA_Regis_Add_13_16");	//И?
-	AI_Output(other,self,"DIA_Regis_Add_15_17");	//Я задал ему хорошую взбучку...
-	AI_Output(self,other,"DIA_Regis_Add_13_18");	//(смеется) Он заслужил это...
 	if(!Npc_IsDead(Valentino))
 	{
+		AI_Output(other,self,"DIA_Regis_Add_15_17");	//Я задал ему хорошую взбучку...
+		AI_Output(self,other,"DIA_Regis_Add_13_18");	//(смеется) Он заслужил это...
 		AI_Output(self,other,"DIA_Regis_Add_13_19");	//Вот - я нашел это кольцо в его кармане, когда наша стычка закончилась.
 		B_GiveInvItems(self,other,ItRi_Prot_Edge_01_Valentino,1);
 		AI_Output(self,other,"DIA_Regis_Add_13_20");	//(ухмыляется) Ты можешь передать его следующему, кто надает ему тумаков...
+	}
+	else
+	{
+		DIA_Common_HeIsDead();
+		B_Say(self,other,"$NOTNOW");
+		AI_StopProcessInfos(self);
 	};
 };
 

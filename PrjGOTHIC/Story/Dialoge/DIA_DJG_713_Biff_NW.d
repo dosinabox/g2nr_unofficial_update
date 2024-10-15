@@ -82,7 +82,7 @@ func void DIA_Biff_NW_QUIT_Info()
 	Biff_IsOnBoard = LOG_FAILED;
 	Crewmember_Count -= 1;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Quit");
+	Npc_ExchangeRoutine(self,"QUIT");
 	B_Attack(self,other,AR_NONE,1);
 };
 

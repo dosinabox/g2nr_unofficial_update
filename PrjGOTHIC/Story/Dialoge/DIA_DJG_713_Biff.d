@@ -166,7 +166,7 @@ func void DIA_Biff_WASHIERIMTAL_Info()
 	AI_Output(self,other,"DIA_Biff_WASHIERIMTAL_07_02");	//У меня будет достаточно, чтобы провести остаток своей жизни, пытаясь посетить все таверны и бордели в стране.
 	if(MIS_SCKnowsWayToIrdorath == TRUE)
 	{
-		B_LogEntry(Topic_Crew,"Охотник на драконов Бифф - типичный наемник. Если я заплачу ему, он будет сражаться вместе со мной.");
+		B_LogEntry(TOPIC_Crew,"Охотник на драконов Бифф - типичный наемник. Если я заплачу ему, он будет сражаться вместе со мной.");
 	}
 	else
 	{
@@ -701,18 +701,14 @@ func void DIA_Biff_MEHRGELD_zuTeuer()
 };
 
 
-func void B_Biff_NoTrankComment()
+func void B_Biff_GivePotion(var C_Npc giver,var C_Npc taker,var int potion)
 {
-	var int randy;
-	randy = Hlp_Random(2);
-	if(randy == 0)
+	B_GiveInvItems(giver,taker,potion,1);
+	if(taker.attribute[ATR_HITPOINTS] < taker.attribute[ATR_HITPOINTS_MAX])
 	{
-		AI_Output(self,other,"DIA_Biff_HEILUNG_HeilTrank_07_00");	//Я думаю, я могу подождать, когда ты раздобудешь его для меня.
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Biff_HEILUNG_HeilTrankLow_07_00");	//К сожалению, его у тебя нет. Вернемся к этому вопросу позже.
+		B_UseItem(taker,potion);
 	};
+	AI_StopProcessInfos(taker);
 };
 
 instance DIA_Biff_HEILUNG(C_Info)
@@ -737,89 +733,59 @@ func int DIA_Biff_HEILUNG_Condition()
 func void DIA_Biff_HEILUNG_Info()
 {
 	AI_Output(other,self,"DIA_Biff_HEILUNG_15_00");	//Тебе нужно лечебное зелье?
-	AI_Output(self,other,"DIA_Biff_HEILUNG_07_01");	//Конечно. Не помешает.
-	Info_ClearChoices(DIA_Biff_HEILUNG);
-	Info_AddChoice(DIA_Biff_HEILUNG,"Я дам тебе что-нибудь позже.",DIA_Biff_HEILUNG_Spaeter);
-	if(Npc_HasItems(other,ItPo_Health_Addon_04))
+	if(Npc_HasItems(other,ItPo_Health_01) || Npc_HasItems(other,ItPo_Health_02) || Npc_HasItems(other,ItPo_Health_03) || Npc_HasItems(other,ItPo_Health_Addon_04))
 	{
-		Info_AddChoice(DIA_Biff_HEILUNG,"(дать чистое здоровье)",DIA_Biff_HEILUNG_HeilTrankMax);
-	};
-	if(Npc_HasItems(other,ItPo_Health_03))
+		AI_Output(self,other,"DIA_Biff_HEILUNG_07_01");	//Конечно. Не помешает.
+		Info_ClearChoices(DIA_Biff_HEILUNG);
+		Info_AddChoice(DIA_Biff_HEILUNG,"Я дам тебе что-нибудь позже.",DIA_Biff_HEILUNG_Spaeter);
+		if(Npc_HasItems(other,ItPo_Health_Addon_04))
+		{
+			Info_AddChoice(DIA_Biff_HEILUNG,"(дать чистое здоровье)",DIA_Biff_HEILUNG_HeilTrankMax);
+		};
+		if(Npc_HasItems(other,ItPo_Health_03))
+		{
+			Info_AddChoice(DIA_Biff_HEILUNG,"(дать лечебный эликсир)",DIA_Biff_HEILUNG_HeilTrankHigh);
+		};
+		if(Npc_HasItems(other,ItPo_Health_02))
+		{
+			Info_AddChoice(DIA_Biff_HEILUNG,"(дать лечебный экстракт)",DIA_Biff_HEILUNG_HeilTrankMed);
+		};
+		if(Npc_HasItems(other,ItPo_Health_01))
+		{
+			Info_AddChoice(DIA_Biff_HEILUNG,"(дать лечебную эссенцию)",DIA_Biff_HEILUNG_HeilTrankLow);
+		};
+	}
+	else
 	{
-		Info_AddChoice(DIA_Biff_HEILUNG,"(дать лечебный эликсир)",DIA_Biff_HEILUNG_HeilTrankHigh);
-	};
-	if(Npc_HasItems(other,ItPo_Health_02))
-	{
-		Info_AddChoice(DIA_Biff_HEILUNG,"(дать лечебный экстракт)",DIA_Biff_HEILUNG_HeilTrankMed);
-	};
-	if(Npc_HasItems(other,ItPo_Health_01))
-	{
-		Info_AddChoice(DIA_Biff_HEILUNG,"(дать лечебную эссенцию)",DIA_Biff_HEILUNG_HeilTrankLow);
+		if(self.attribute[ATR_HITPOINTS] == self.attribute[ATR_HITPOINTS_MAX])
+		{
+			AI_Output(self,other,"DIA_Biff_HEILUNG_HeilTrank_07_00");	//Я думаю, я могу подождать, когда ты раздобудешь его для меня.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Biff_HEILUNG_HeilTrankLow_07_00");	//К сожалению, его у тебя нет. Вернемся к этому вопросу позже.
+		};
 	};
 };
 
 func void DIA_Biff_HEILUNG_HeilTrankMax()
 {
-	if(B_GiveInvItems(other,self,ItPo_Health_Addon_04,1))
-	{
-		if(self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX])
-		{
-			B_UseItem(self,ItPo_Health_Addon_04);
-		};
-	}
-	else
-	{
-		B_Biff_NoTrankComment();
-	};
-	AI_StopProcessInfos(self);
+	B_Biff_GivePotion(other,self,ItPo_Health_Addon_04);
 };
 
 func void DIA_Biff_HEILUNG_HeilTrankHigh()
 {
-	if(B_GiveInvItems(other,self,ItPo_Health_03,1))
-	{
-		if(self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX])
-		{
-			B_UseItem(self,ItPo_Health_03);
-		};
-	}
-	else
-	{
-		B_Biff_NoTrankComment();
-	};
-	AI_StopProcessInfos(self);
+	B_Biff_GivePotion(other,self,ItPo_Health_03);
 };
 
 func void DIA_Biff_HEILUNG_HeilTrankMed()
 {
-	if(B_GiveInvItems(other,self,ItPo_Health_02,1))
-	{
-		if(self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX])
-		{
-			B_UseItem(self,ItPo_Health_02);
-		};
-	}
-	else
-	{
-		B_Biff_NoTrankComment();
-	};
-	AI_StopProcessInfos(self);
+	B_Biff_GivePotion(other,self,ItPo_Health_02);
 };
 
 func void DIA_Biff_HEILUNG_HeilTrankLow()
 {
-	if(B_GiveInvItems(other,self,ItPo_Health_01,1))
-	{
-		if(self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX])
-		{
-			B_UseItem(self,ItPo_Health_01);
-		};
-	}
-	else
-	{
-		B_Biff_NoTrankComment();
-	};
-	AI_StopProcessInfos(self);
+	B_Biff_GivePotion(other,self,ItPo_Health_01);
 };
 
 func void DIA_Biff_HEILUNG_Spaeter()
@@ -914,7 +880,7 @@ func void DIA_Biff_KnowWhereEnemy_Yes()
 	AI_Output(self,other,"DIA_Biff_KnowWhereEnemy_Yes_07_03");	//В таком случае, я в деле. Куда мы направляемся?
 	AI_Output(other,self,"DIA_Biff_KnowWhereEnemy_Yes_15_04");	//Сначала нам нужно выбраться из Долины Рудников.
 	AI_Output(self,other,"DIA_Biff_KnowWhereEnemy_Yes_07_05");	//Нет проблем. Я уже в пути. Встретимся у Прохода.
-	B_LogEntry(Topic_Crew,"Перспектива разбогатеть убедила Биффа присоединиться ко мне. Пока он получает достаточно золота, я могу рассчитывать на него.");
+	B_LogEntry(TOPIC_Crew,"Перспектива разбогатеть убедила Биффа присоединиться ко мне. Пока он получает достаточно золота, я могу рассчитывать на него.");
 	Biff_FollowsThroughPass = LOG_Running;
 	B_JoinShip(self);
 };

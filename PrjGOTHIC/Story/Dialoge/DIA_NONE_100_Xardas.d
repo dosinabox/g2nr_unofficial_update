@@ -369,10 +369,35 @@ func void DIA_Addon_Xardas_AddonSuccess_Info()
 	if(C_ScHasMeleeBeliarsWeapon())
 	{
 		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_07");	//Да, вот он.
-		CreateInvItem(other,ItMw_BeliarWeapon_Fake);
-		AI_UseItem(other,ItMw_BeliarWeapon_Fake);
-		AI_Wait(other,0.5);
-		AI_WaitTillEnd(self,other);
+		if(!C_ScHasReadiedBeliarsWeapon())
+		{
+			if(!C_ScHasEquippedBeliarsWeapon())
+			{
+				if(Npc_HasReadiedMeleeWeapon(other) || Npc_HasReadiedRangedWeapon(other))
+				{
+					AI_RemoveWeapon(other);
+					AI_WaitTillEnd(other,self);
+				};
+				if(C_ScHas1HBeliarsWeapon())
+				{
+					CreateInvItem(other,ItMw_BeliarWeapon_1H_Fake);
+					AI_UseItem(other,ItMw_BeliarWeapon_1H_Fake);
+				}
+				else if(C_ScHas2HBeliarsWeapon())
+				{
+					CreateInvItem(other,ItMw_BeliarWeapon_2H_Fake);
+					AI_UseItem(other,ItMw_BeliarWeapon_2H_Fake);
+				};
+				AI_Wait(other,0.5);
+			}
+			else
+			{
+				AI_ReadyMeleeWeapon(other);
+				AI_StopLookAt(other);
+				AI_PlayAni(other,"T_1HSINSPECT");
+				AI_RemoveWeapon(other);
+			};
+		};
 		B_Xardas_ClawReaction();
 		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_10");	//Будь осторожнее! И самое главное, не потеряй Коготь!
 	}

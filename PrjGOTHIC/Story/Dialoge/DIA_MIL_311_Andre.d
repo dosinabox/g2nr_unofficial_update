@@ -59,7 +59,7 @@ func int C_Andre_InfoFromCanthar()
 {
 	if((Andre_ToldInfoFromCanthar == FALSE) && !Npc_IsDead(Canthar))
 	{
-		if(MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2))
+		if((MIS_Canthars_KomproBrief == LOG_Running) && C_DaysSinceEvent(MIS_Canthars_KomproBrief_Day,2))
 		{
 			return TRUE;
 		};
@@ -930,7 +930,7 @@ func void DIA_Andre_Auslieferung_Info()
 			Info_AddChoice(DIA_Andre_Auslieferung,"Нагур пытался использовать меня, чтобы перехватить товар с фермы Акила.",DIA_Andre_Auslieferung_Nagur);
 		};
 	};
-	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day > (Wld_GetDay() - 2)))
+	if((MIS_Canthars_KomproBrief == LOG_Running) && !C_DaysSinceEvent(MIS_Canthars_KomproBrief_Day,2))
 	{
 		if(!Npc_IsDead(Canthar))
 		{
@@ -1187,7 +1187,7 @@ func int DIA_Andre_FoundThieves_KilledByMilitia_Condition()
 	};
 	if(Andre_FoundThieves_Reported == TRUE)
 	{
-		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
+		if(C_DaysSinceEvent(Andre_FoundThieves_Reported_Day,2))
 		{
 			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
 			{
@@ -1310,6 +1310,10 @@ func void DIA_Andre_JOIN_Yes()
 	NOV_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;
 	B_CancelBengarMilitiaProblem();
+	if(MIS_Torlof_HolPachtVonSekob == LOG_Running)
+	{
+		MIS_Torlof_HolPachtVonSekob = LOG_FAILED;
+	};
 	B_GivePlayerXP(XP_BecomeMiliz);
 	if(MIS_Addon_Daron_GetStatue == LOG_Running)
 	{

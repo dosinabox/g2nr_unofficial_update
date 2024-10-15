@@ -91,7 +91,7 @@ instance DIA_Sekob_ZAHLPACHT(C_Info)
 
 func int DIA_Sekob_ZAHLPACHT_Condition()
 {
-	if(MIS_Torlof_HolPachtVonSekob == LOG_Running)
+	if((MIS_Torlof_HolPachtVonSekob == LOG_Running) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -119,7 +119,7 @@ instance DIA_Sekob_KohleRaus(C_Info)
 
 func int DIA_Sekob_KohleRaus_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sekob_ZAHLPACHT) && (self.aivar[AIV_DefeatedByPlayer] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Sekob_ZAHLPACHT) && (self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -147,7 +147,7 @@ instance DIA_Sekob_InformOnar(C_Info)
 
 func int DIA_Sekob_InformOnar_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sekob_ZAHLPACHT) && (self.aivar[AIV_DefeatedByPlayer] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Sekob_ZAHLPACHT) && (self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -175,7 +175,7 @@ instance DIA_Sekob_Defeated(C_Info)
 
 func int DIA_Sekob_Defeated_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == TRUE) && Npc_KnowsInfo(other,DIA_Sekob_ZAHLPACHT) && (Sekob_Pachtbezahlt == FALSE))
+	if((self.aivar[AIV_DefeatedByPlayer] == TRUE) && Npc_KnowsInfo(other,DIA_Sekob_ZAHLPACHT) && (Sekob_Pachtbezahlt == FALSE) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -235,7 +235,7 @@ instance DIA_Sekob_Again(C_Info)
 
 func int DIA_Sekob_Again_Condition()
 {
-	if((MIS_Sekob_RedeMitOnar == LOG_Running) && Npc_KnowsInfo(other,DIA_Sekob_Defeated) && (Sekob_Pachtbezahlt == FALSE) && (MIS_Torlof_HolPachtVonSekob != LOG_SUCCESS))
+	if((MIS_Sekob_RedeMitOnar == LOG_Running) && Npc_KnowsInfo(other,DIA_Sekob_Defeated) && (Sekob_Pachtbezahlt == FALSE) && (MIS_Torlof_HolPachtVonSekob != LOG_SUCCESS) && (Kapitel < 3))
 	{
 		return TRUE;
 	};

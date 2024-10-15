@@ -187,7 +187,7 @@ func void DIA_Sergio_Babo_Info()
 	AI_Output(other,self,"DIA_Sergio_Babo_15_02");	//Я думаю, он робеет.
 	AI_Output(self,other,"DIA_Sergio_Babo_04_03");	//Понимаю. Хорошо, если это так много значит для него, я буду тренировать его каждое утро в течение двух часов. Мы будем начинать в пять утра. Можешь передать ему это.
 	Npc_ExchangeRoutine(self,"TRAIN");
-	B_LogEntry(Topic_BaboTrain,"Сержио согласился тренировать Бабо по два часа каждое утро.");
+	B_LogEntry(TOPIC_BaboTrain,"Сержио согласился тренировать Бабо по два часа каждое утро.");
 };
 
 

@@ -160,9 +160,9 @@ func void DIA_Addon_Logan_HI_Info()
 		AI_Output(other,self,"DIA_Addon_Logan_HI_15_03");	//Ну, это зависит от того, в чем тебе нужна помощь.
 	};
 	AI_Output(self,other,"DIA_Addon_Logan_HI_10_04");	//Болотные акулы начинают подбираться ко мне слишком близко. Самое время прикончить некоторых из них.
-	Log_CreateTopic(Topic_Addon_Logan,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Logan,LOG_Running);
-	B_LogEntry(Topic_Addon_Logan,"Логан хочет, чтобы я отправился с ним на охоту на болотных акул.");
+	Log_CreateTopic(TOPIC_Addon_Logan,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Logan,LOG_Running);
+	B_LogEntry(TOPIC_Addon_Logan,"Логан хочет, чтобы я отправился с ним на охоту на болотных акул.");
 };
 
 
@@ -194,8 +194,8 @@ func void DIA_Addon_Logan_Why_Info()
 	AI_Output(self,other,"DIA_Addon_Logan_Why_10_04");	//Но я не думаю, что Франко пошлет тебя в лагерь просто за то, что мы здесь немного повеселимся с болотными акулами.
 	AI_Output(self,other,"DIA_Addon_Logan_Why_10_05");	//Здесь есть люди, которые уже долгое время ждут возможности попасть внутрь.
 	AI_Output(self,other,"DIA_Addon_Logan_Why_10_06");	//И следующим, кто туда попадет, буду я... (рычит)... Лучше бы это было так...
-	Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Teacher,"Логан может научить меня снимать кожу с рептилий и выдирать зубы и когти.");
+	Log_CreateTopic(TOPIC_Addon_BDT_Teacher,LOG_NOTE);
+	B_LogEntry(TOPIC_Addon_BDT_Teacher,"Логан может научить меня снимать кожу с рептилий и выдирать зубы и когти.");
 };
 
 
@@ -251,7 +251,7 @@ func void DIA_Addon_Logan_MIS_Info()
 	AI_Output(self,other,"DIA_Addon_Logan_MIS_10_01");	//(ворчливо) Ты, наконец, понял, как здесь нужно себя вести. Приятно слышать. Тсс... слышишь? Да-а, я их слышу.
 	AI_Output(other,self,"DIA_Addon_Logan_MIS_15_02");	//Понятно, и что нам теперь делать?
 	AI_Output(self,other,"DIA_Addon_Logan_MIS_10_03");	//Они приближаются. Они хотят закусить человечиной. Ну-ну, мы посмотрим, кто кого съест... Пойдем.
-	Snd_Play("SWA_Warn");
+	Snd_Play("SWA_WARN");
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"JAGD");
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
@@ -301,7 +301,7 @@ func void DIA_Addon_Logan_tot_Info()
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	MIS_HlpLogan = LOG_SUCCESS;
 	B_CheckLog();
-	B_LogEntry(Topic_Addon_Franco,"Я помог Логану. Посмотрим, что скажет на это Франко.");
+	B_LogEntry(TOPIC_Addon_Franco,"Я помог Логану. Посмотрим, что скажет на это Франко.");
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
 };
@@ -333,8 +333,8 @@ func void DIA_Addon_Logan_Lern_Info()
 	AI_Output(self,other,"DIA_Addon_Logan_Lern_10_02");	//А если тебя интересуют болотные акулы и ящеры, я могу научить тебя снимать шкуру и вынимать зубы.
 	if(!Npc_KnowsInfo(other,DIA_Addon_Edgor_Teach))
 	{
-		Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
-		B_LogEntry(Topic_Addon_BDT_Teacher,Log_Text_Addon_EdgorTeach);
+		Log_CreateTopic(TOPIC_Addon_BDT_Teacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_BDT_Teacher,Log_Text_Addon_EdgorTeach);
 	};
 };
 

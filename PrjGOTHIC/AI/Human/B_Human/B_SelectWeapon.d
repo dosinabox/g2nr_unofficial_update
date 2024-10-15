@@ -1,7 +1,15 @@
 
 func void B_SelectWeapon(var C_Npc slf,var C_Npc oth)
 {
-	if(C_BodyStateContains(slf,BS_FALL) || C_NpcIsSwimming(slf))
+	if(Npc_IsDead(slf))
+	{
+		return;
+	};
+	if(C_BodyStateContains(slf,BS_FALL))
+	{
+		return;
+	};
+	if(C_NpcIsSwimming(slf))
 	{
 		return;
 	};

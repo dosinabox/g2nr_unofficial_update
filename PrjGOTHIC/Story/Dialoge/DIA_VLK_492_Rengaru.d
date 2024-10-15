@@ -73,7 +73,7 @@ func void DIA_Rengaru_HALLODIEB_Info()
 	AI_Output(self,other,"DIA_Rengaru_HALLODIEB_07_01");	//Черт! Я сваливаю отсюда!
 	self.aivar[AIV_ToughGuy] = TRUE;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"RunAway");
+	Npc_ExchangeRoutine(self,"RUNAWAY");
 };
 
 
@@ -232,7 +232,7 @@ func void DIA_Rengaru_INKNAST_HauAb()
 	AI_Output(other,self,"DIA_Rengaru_INKNAST_HauAb_15_00");	//Проваливай! И чтоб больше я тебя здесь не видел!
 	AI_Output(self,other,"DIA_Rengaru_INKNAST_HauAb_07_01");	//Ты не пожалеешь об этом! Спасибо, парень!
 	self.aivar[AIV_ToughGuy] = FALSE;
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	AI_StopProcessInfos(self);
 	Diebesgilde_Okay += 1;
 };
@@ -244,7 +244,7 @@ func void DIA_Rengaru_INKNAST_Knast()
 	AI_Output(self,other,"DIA_Rengaru_INKNAST_Knast_07_02");	//(предупреждающе) Но берегись: мои друзья это дело так не оставят...
 	Rengaru_InKnast = TRUE;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Hide");
+	Npc_ExchangeRoutine(self,"HIDE");
 };
 
 func void DIA_Rengaru_INKNAST_keinKnast()

@@ -139,13 +139,13 @@ func void DIA_Addon_Bones_Teacher_Info()
 	Knows_HenrysEntertrupp = TRUE;
 	if(Henry_Addon_TeachPlayer == FALSE)
 	{
-		Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_HenryTeach);
+		Log_CreateTopic(TOPIC_Addon_PIR_Teacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_PIR_Teacher,Log_Text_Addon_HenryTeach);
 	};
 	if(Morgan_Addon_TeachPlayer == FALSE)
 	{
-		Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_MorganTeach);
+		Log_CreateTopic(TOPIC_Addon_PIR_Teacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_PIR_Teacher,Log_Text_Addon_MorganTeach);
 	};
 };
 

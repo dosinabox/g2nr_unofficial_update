@@ -2,8 +2,6 @@
 func void B_MM_AssessDamage()
 {
 	self.aivar[AIV_MM_PRIORITY] = PRIO_ATTACK;
-	B_SpecialMeleeWeaponDamage(other,self);
-	B_SpecialRangedWeaponDamage(other,self,TRUE);
 	if(self.guild == GIL_WISP)
 	{
 		Wld_PlayEffect("spellFX_ICEBOLT_COLLIDE",self,self,0,0,0,FALSE);
@@ -13,6 +11,12 @@ func void B_MM_AssessDamage()
 	{
 		B_Awake_StoneGuardian(self);
 	};
+	if(!Hlp_IsValidNpc(other))
+	{
+		return;
+	};
+	B_SpecialMeleeWeaponDamage(other,self);
+	B_SpecialRangedWeaponDamage(other,self,TRUE);
 	if(C_PredatorFoundPrey(other,self))
 	{
 		Npc_ClearAIQueue(self);

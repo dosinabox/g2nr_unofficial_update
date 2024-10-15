@@ -71,7 +71,7 @@ func void DIA_Schwarzmagier_HELLO_meister()
 	Wld_PlayEffect("DEMENTOR_FX",hero,hero,0,0,0,FALSE);
 	Wld_PlayEffect("spellFX_INCOVATION_RED",self,self,0,0,0,FALSE);
 	Wld_PlayEffect("FX_EarthQuake",self,self,0,0,0,FALSE);
-	Wld_PlayEffect("SFX_Circle",self,self,0,0,0,FALSE);
+//	Wld_PlayEffect("SFX_Circle",self,self,0,0,0,FALSE);
 	AI_PlayAni(self,"T_PRACTICEMAGIC5");
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_meister_09_00");	//(угрожающе) Хватит болтовни! Я уничтожу тебя.
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_meister_09_01");	//Твой взор потухнет, и твой дух растает во тьме.

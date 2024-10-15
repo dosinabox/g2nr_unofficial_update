@@ -94,9 +94,9 @@ func void DIA_Grimbald_HALLO_Was_ja()
 	};
 	AI_Output(self,other,"DIA_Grimbald_HALLO_Was_ja_07_02");	//И я не прощу тебе, если ты решишь выйти из игры.
 	Grimbald_HuntInProgress = TRUE;
-	Grimbald_HuntStart_Day = B_GetDayPlus();
+	Grimbald_HuntStart_Day = Wld_GetDay();
 //	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	Npc_ExchangeRoutine(self,"Jagd");
+	Npc_ExchangeRoutine(self,"JAGD");
 	AI_StopProcessInfos(self);
 };
 
@@ -352,7 +352,7 @@ func int DIA_Grimbald_Success_Condition()
 {
 	if(Grimbald_HuntInProgress == TRUE)
 	{
-		if(Grimbald_HuntStart_Day < Wld_GetDay())
+		if(C_DaysSinceEvent(Grimbald_HuntStart_Day,2))
 		{
 			return TRUE;
 		};
@@ -365,7 +365,7 @@ func int DIA_Grimbald_Success_Condition()
 
 func void DIA_Grimbald_Success_Info()
 {
-	if(Grimbald_HuntStart_Day < Wld_GetDay())
+	if(C_DaysSinceEvent(Grimbald_HuntStart_Day,2))
 	{
 		B_Say(self,other,"$NEVERHITMEAGAIN");
 		Grimbald_PissOff = TRUE;
@@ -380,7 +380,7 @@ func void DIA_Grimbald_Success_Info()
 	};
 	Grimbald_HuntInProgress = FALSE;
 //	self.aivar[AIV_PARTYMEMBER] = FALSE;
-	Npc_ExchangeRoutine(self,"JagdOver");
+	Npc_ExchangeRoutine(self,"JAGDOVER");
 	AI_StopProcessInfos(self);
 };
 

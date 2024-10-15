@@ -412,9 +412,12 @@ instance DIA_Addon_Skip_AngusHankDead(C_Info)
 
 func int DIA_Addon_Skip_AngusHankDead_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Skip_Bandits) && !Npc_HasItems(Angus,ItRi_Addon_MorgansRing_Mission))
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_Bandits))
 	{
-		return TRUE;
+		if(!Npc_HasItems(Angus,ItRi_Addon_MorgansRing_Mission))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -465,35 +468,6 @@ func void DIA_Addon_Skip_AngusHankMurder_Info()
 };
 
 
-func int C_SCHasSkipsGrog()
-{
-	if(Npc_HasItems(hero,ItMi_Grog_Crate) >= 5)
-	{
-		return TRUE;
-	}
-	else if((Npc_HasItems(hero,ItMi_Grog_Crate) == 4) && (Npc_HasItems(hero,ItFo_Addon_Grog) >= 4))
-	{
-		return TRUE;
-	}
-	else if((Npc_HasItems(hero,ItMi_Grog_Crate) == 3) && (Npc_HasItems(hero,ItFo_Addon_Grog) >= 8))
-	{
-		return TRUE;
-	}
-	else if((Npc_HasItems(hero,ItMi_Grog_Crate) == 2) && (Npc_HasItems(hero,ItFo_Addon_Grog) >= 12))
-	{
-		return TRUE;
-	}
-	else if((Npc_HasItems(hero,ItMi_Grog_Crate) == 1) && (Npc_HasItems(hero,ItFo_Addon_Grog) >= 16))
-	{
-		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItFo_Addon_Grog) >= 20)
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
 instance DIA_Addon_Skip_Grog(C_Info)
 {
 	npc = PIR_1355_Addon_Skip;
@@ -516,7 +490,7 @@ func int DIA_Addon_Skip_Grog_Condition()
 func void DIA_Addon_Skip_Grog_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_Grog_15_00");	//По поводу грога...
-	if(C_SCHasSkipsGrog())
+	if((Npc_HasItems(other,ItFo_Addon_Grog) + (Npc_HasItems(other,ItMi_Grog_Crate) * 4)) >= 20)
 	{
 		Info_ClearChoices(DIA_Addon_Skip_Grog);
 		Info_AddChoice(DIA_Addon_Skip_Grog,Dialog_Back,DIA_Addon_Skip_Grog_back);
@@ -628,8 +602,8 @@ func void DIA_Addon_Skip_News_Info()
 	AI_Output(self,other,"DIA_Addon_Skip_News_08_01");	//Если ты хочешь торговать, иди к Гаретту. Он отвечает за наши запасы.
 	if(!Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) && !Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern))
 	{
-		Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
+		Log_CreateTopic(TOPIC_Addon_PIR_Trader,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
 	};
 };
 

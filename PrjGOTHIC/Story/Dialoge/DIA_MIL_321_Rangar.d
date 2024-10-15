@@ -180,7 +180,7 @@ func void DIA_Addon_Rangar_Erwischt_Info()
 	SC_GotRangar = TRUE;
 	B_GivePlayerXP(XP_Addon_Martin_GotRangar);
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 

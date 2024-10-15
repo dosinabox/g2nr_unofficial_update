@@ -287,8 +287,8 @@ func void DIA_Ulthar_SCHREINEVERGIFTET_Info()
 	if(!Npc_HasItems(other,ItWr_Map_Shrine_MIS) && !Npc_IsDead(Gorax) && (Gorax_Trade == FALSE))
 	{
 		B_LogEntries(TOPIC_Ulthar_HeileSchreine_PAL,"Ультар дал мне задание очистить при помощи святой воды все алтари, оскверненные врагом.");
-		Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-		B_LogNextEntry(Topic_KlosterTrader,"Мастер Горакс в монастыре может предоставить мне все, что мне нужно.");
+		Log_CreateTopic(TOPIC_KlosterTrader,LOG_NOTE);
+		B_LogNextEntry(TOPIC_KlosterTrader,"Мастер Горакс в монастыре может предоставить мне все, что мне нужно.");
 		Gorax_Trade = TRUE;
 	}
 	else

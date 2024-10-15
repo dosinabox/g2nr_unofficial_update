@@ -223,7 +223,7 @@ func void DIA_Addon_Farim_William_Info()
 	AI_Output(self,other,"DIA_Addon_Farim_William_11_01");	//Именно так. Он был рыбаком, но на мой взгляд он слишком зазнался.
 	AI_Output(self,other,"DIA_Addon_Farim_William_11_02");	//Ему следовало держаться подальше от этой шайки.
 	self.flags = 0;
-	Farim_Day = B_GetDayPlus();
+	Farim_Day = Wld_GetDay();
 	if(!Npc_KnowsInfo(other,DIA_Addon_Garvell_MissingPeopleMore))
 	{
 		if(MissingPeopleReturnedHome == FALSE)
@@ -318,7 +318,7 @@ func void DIA_Addon_Farim_WilliamReport_Dead()
 	FoundDeadWilliam = TRUE;
 	ToldFarimAboutDeadWilliam = TRUE;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Rest");
+	Npc_ExchangeRoutine(self,"REST");
 };
 
 instance DIA_Addon_Farim_Perm(C_Info)
@@ -366,7 +366,7 @@ instance DIA_Addon_Farim_WilliamReport(C_Info)
 
 func int DIA_Addon_Farim_WilliamReport_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Farim_William) && (ToldFarimAboutDeadWilliam == FALSE) && (Farim_Day < Wld_GetDay()))
+	if(Npc_KnowsInfo(other,DIA_Addon_Farim_William) && (ToldFarimAboutDeadWilliam == FALSE) && C_DaysSinceEvent(Farim_Day,2))
 	{
 		if(Npc_HasItems(other,ItWr_Addon_William_01) || (FoundDeadWilliam == TRUE))
 		{

@@ -358,8 +358,8 @@ func void DIA_Cassia_beweisen_Info()
 
 func void B_AgreedToJoinThiefs()
 {
-	Log_CreateTopic(Topic_Diebesgilde,LOG_NOTE);
-	B_LogEntries(Topic_Diebesgilde,"Я согласился работать с городской гильдией воров. Теперь мне предстоит испытание.");
+	Log_CreateTopic(TOPIC_Diebesgilde,LOG_NOTE);
+	B_LogEntries(TOPIC_Diebesgilde,"Я согласился работать с городской гильдией воров. Теперь мне предстоит испытание.");
 	if(Npc_KnowsInfo(other,DIA_Cassia_Lernen))
 	{
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
@@ -682,8 +682,8 @@ func void DIA_Cassia_Aufnahme_Info()
 	MIS_CassiaRing = LOG_SUCCESS;
 	B_GivePlayerXP(XP_CassiaRing);
 	Knows_SecretSign = TRUE;
-	B_LogEntry(Topic_Diebesgilde,"Я был принят в гильдию воров.");
-	Log_AddEntry(Topic_Diebesgilde,"Я знаю знак воров. Если я покажу его нужным людям, они поймут, что я один из них.");
+	B_LogEntry(TOPIC_Diebesgilde,"Я был принят в гильдию воров.");
+	Log_AddEntry(TOPIC_Diebesgilde,"Я знаю знак воров. Если я покажу его нужным людям, они поймут, что я один из них.");
 };
 
 

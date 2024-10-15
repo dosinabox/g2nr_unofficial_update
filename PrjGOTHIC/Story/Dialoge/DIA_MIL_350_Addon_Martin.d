@@ -275,9 +275,8 @@ func void DIA_Addon_Martin_Auftrag_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Auftrag_07_03");	//¬озвращайс€ вечером и заступай на стражу. я в это врем€ буду в таверне.
 	};
-	B_StartOtherRoutine(Rangar,"PrePalCampKlau");
+	B_StartOtherRoutine(Rangar,"PREPALCAMPKLAU");
 	Info_ClearChoices(DIA_Addon_Martin_Auftrag);
-//	Info_AddChoice(DIA_Addon_Martin_Auftrag,"(еще)",DIA_Addon_Martin_Auftrag_weiter);
 	Info_AddChoice(DIA_Addon_Martin_Auftrag,Dialog_Ende,DIA_Addon_Martin_Auftrag_weiter);
 };
 
@@ -287,8 +286,8 @@ func void DIA_Addon_Martin_Auftrag_weiter()
 	MIS_Addon_Martin_GetRangar = LOG_Running;
 	MIS_Addon_Martin_GetRangar_Day = Wld_GetDay();
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
-	B_StartOtherRoutine(Rangar,"PalCampKlau");
+	Npc_ExchangeRoutine(self,"START");
+	B_StartOtherRoutine(Rangar,"PALCAMPKLAU");
 };
 
 
@@ -538,7 +537,7 @@ func int DIA_Addon_Martin_Perm_Condition()
 func void DIA_Addon_Martin_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Martin_Perm_15_00");	//¬се €щики на месте?
-	if((MIS_Addon_Martin_GetRangar_Day <= (Wld_GetDay() - 2)) && (MIS_Addon_Martin_GetRangar == LOG_Running))
+	if(C_DaysSinceEvent(MIS_Addon_Martin_GetRangar_Day,2) && (MIS_Addon_Martin_GetRangar == LOG_Running) && !Npc_IsDead(Rangar) && (SC_GotRangar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Perm_07_01");	//(сердито) ѕрокл€тый лент€й, ты должен был охран€ть эти €щики! ≈ще несколько вещей пропало!
 		if(Wld_IsTime(24,0,3,0))

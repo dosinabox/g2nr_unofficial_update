@@ -107,7 +107,7 @@ func int B_AssessEnterRoom()
 			return FALSE;
 		};
 	};
-	if(!Npc_IsInPlayersRoom(self) && Npc_IsInState(self,ZS_Sleep))
+	if(!Npc_IsInPlayersRoom(self) && C_NpcIsSleeping(self))
 	{
 		return FALSE;
 	};

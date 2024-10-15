@@ -1,21 +1,21 @@
 
-instance DIA_Serpentes_Kap1_EXIT(C_Info)
+instance DIA_Serpentes_EXIT(C_Info)
 {
 	npc = KDF_501_Serpentes;
 	nr = 999;
-	condition = DIA_Serpentes_Kap1_EXIT_Condition;
-	information = DIA_Serpentes_Kap1_EXIT_Info;
+	condition = DIA_Serpentes_EXIT_Condition;
+	information = DIA_Serpentes_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Serpentes_Kap1_EXIT_Condition()
+func int DIA_Serpentes_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Serpentes_Kap1_EXIT_Info()
+func void DIA_Serpentes_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

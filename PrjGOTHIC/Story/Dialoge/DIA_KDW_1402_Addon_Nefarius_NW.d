@@ -157,11 +157,11 @@ func void DIA_Addon_Nefarius_SCbringOrnaments_Info()
 	SC_KnowsPortal = TRUE;
 	if((Kapitel >= 3) && (hero.guild == GIL_KDF) && (Vino_isAlive_Kap3 == TRUE) && !C_VinoDementorsDead())
 	{
-		B_StartOtherRoutine(Cavalorn,"OrnamentSteinringCh3KDF");
+		B_StartOtherRoutine(Cavalorn,"ORNAMENTSTEINRINGCH3KDF");
 	}
 	else
 	{
-		B_StartOtherRoutine(Cavalorn,"OrnamentSteinring");
+		B_StartOtherRoutine(Cavalorn,"ORNAMENTSTEINRING");
 	};
 	if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_FromCavalorn == TRUE) && (Bdt_1013_ToCavalorn == FALSE))
 	{
@@ -264,12 +264,12 @@ func void DIA_Addon_Nefarius_MissingOrnaments_Info()
 			B_LogEntry(TOPIC_Addon_Ornament,"Я принес все части кольца Нефариусу. Теперь маги Воды смогут собрать кольцо.");
 			MIS_Addon_Nefarius_BringMissingOrnaments = LOG_SUCCESS;
 			AI_StopProcessInfos(self);
-			Npc_ExchangeRoutine(self,"PreRingritual");
-			B_StartOtherRoutine(Saturas_NW,"PreRingritual");
-			B_StartOtherRoutine(Cronos_NW,"PreRingritual");
-			B_StartOtherRoutine(Myxir_NW,"PreRingritual");
-			B_StartOtherRoutine(Riordian_NW,"PreRingritual");
-			B_StartOtherRoutine(Merdarion_NW,"PreRingritual");
+			Npc_ExchangeRoutine(self,"PRERINGRITUAL");
+			B_StartOtherRoutine(Saturas_NW,"PRERINGRITUAL");
+			B_StartOtherRoutine(Cronos_NW,"PRERINGRITUAL");
+			B_StartOtherRoutine(Myxir_NW,"PRERINGRITUAL");
+			B_StartOtherRoutine(Riordian_NW,"PRERINGRITUAL");
+			B_StartOtherRoutine(Merdarion_NW,"PRERINGRITUAL");
 		};
 	}
 	else
@@ -305,12 +305,12 @@ func void DIA_Addon_Nefarius_Ringritual_Info()
 	Npc_SetRefuseTalk(self,60);
 	RitualRingRuns = LOG_Running;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Ringritual");
-	B_StartOtherRoutine(Saturas_NW,"Ringritual");
-	B_StartOtherRoutine(Cronos_NW,"Ringritual");
-	B_StartOtherRoutine(Myxir_NW,"Ringritual");
-	B_StartOtherRoutine(Riordian_NW,"Ringritual");
-	B_StartOtherRoutine(Merdarion_NW,"Ringritual");
+	Npc_ExchangeRoutine(self,"RINGRITUAL");
+	B_StartOtherRoutine(Saturas_NW,"RINGRITUAL");
+	B_StartOtherRoutine(Cronos_NW,"RINGRITUAL");
+	B_StartOtherRoutine(Myxir_NW,"RINGRITUAL");
+	B_StartOtherRoutine(Riordian_NW,"RINGRITUAL");
+	B_StartOtherRoutine(Merdarion_NW,"RINGRITUAL");
 };
 
 
@@ -339,12 +339,12 @@ func void DIA_Addon_Nefarius_RingRitualEnds_Info()
 	AI_Output(self,other,"DIA_Addon_Nefarius_RingRitualEnds_05_02");	//Иди к Сатурасу и забери у него кольцо.
 	AI_Output(self,other,"DIA_Addon_Nefarius_RingRitualEnds_05_03");	//Надеюсь, портал откроется.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
-	B_StartOtherRoutine(Saturas_NW,"Start");
-	B_StartOtherRoutine(Cronos_NW,"Start");
-	B_StartOtherRoutine(Myxir_NW,"Start");
-	B_StartOtherRoutine(Riordian_NW,"Start");
-	B_StartOtherRoutine(Merdarion_NW,"Start");
+	Npc_ExchangeRoutine(self,"START");
+	B_StartOtherRoutine(Saturas_NW,"START");
+	B_StartOtherRoutine(Cronos_NW,"START");
+	B_StartOtherRoutine(Myxir_NW,"START");
+	B_StartOtherRoutine(Riordian_NW,"START");
+	B_StartOtherRoutine(Merdarion_NW,"START");
 	RitualRingRuns = LOG_SUCCESS;
 	B_LogEntry(TOPIC_Addon_Ornament,"Украшенное кольцо восстановлено. Я должен забрать его у Сатураса.");
 };

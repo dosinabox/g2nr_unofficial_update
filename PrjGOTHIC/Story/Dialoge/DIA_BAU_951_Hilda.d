@@ -93,8 +93,8 @@ func void DIA_Hilda_WasZuEssen_Info()
 					B_GiveInvItems(self,other,ItFo_Stew,1);
 					Hilda_Stew_Day = Wld_GetDay();
 					Rueben_TagNull = TRUE;
-					Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-					B_LogEntry(Topic_Bonus,"Я могу получать тарелку тушеной репы у Хильды каждый день.");
+					Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
+					B_LogEntry(TOPIC_Bonus,"Я могу получать тарелку тушеной репы у Хильды каждый день.");
 				}
 				else if(Hilda_Stew_Day != Wld_GetDay())
 				{
@@ -260,7 +260,7 @@ instance DIA_Hilda_PfanneTooLate(C_Info)
 
 func int DIA_Hilda_PfanneTooLate_Condition()
 {
-	if((MIS_Hilda_PfanneKaufen == LOG_Running) && (MIS_Hilda_PfanneKaufen_Day <= (Wld_GetDay() - 2)) && (Kapitel < 3))
+	if((MIS_Hilda_PfanneKaufen == LOG_Running) && C_DaysSinceEvent(MIS_Hilda_PfanneKaufen_Day,2) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -340,7 +340,6 @@ func void DIA_Hilda_KRANK_Info()
 		Info_AddChoice(DIA_Hilda_KRANK,"Могу я чем-нибудь помочь?",DIA_Hilda_KRANK_helfen);
 		DIA_Hilda_KRANK_OnTime = TRUE;
 	};
-//	MIS_HealHilda = LOG_Running;
 };
 
 func void DIA_Hilda_KRANK_besserung()

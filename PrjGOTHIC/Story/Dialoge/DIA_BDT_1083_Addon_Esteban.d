@@ -159,9 +159,9 @@ func void DIA_Addon_Esteban_MIS_Info()
 		AI_Output(self,other,"DIA_Addon_Esteban_MIS_07_08");	//Сеньян? Он тоже работает на меня. Я сказал ему, чтобы он смотрел в оба.
 	};
 	MIS_Judas = LOG_Running;
-	Log_CreateTopic(Topic_Addon_Esteban,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Esteban,LOG_Running);
-	B_LogEntry(Topic_Addon_Esteban,"На жизнь Эстебана было совершено покушение. Я должен выяснить, кто за этим стоит.");
+	Log_CreateTopic(TOPIC_Addon_Esteban,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Esteban,LOG_Running);
+	B_LogEntry(TOPIC_Addon_Esteban,"На жизнь Эстебана было совершено покушение. Я должен выяснить, кто за этим стоит.");
 };
 
 
@@ -190,7 +190,7 @@ func void DIA_Addon_Esteban_Kerl_Info()
 	AI_Output(self,other,"DIA_Addon_Esteban_Kerl_07_01");	//Все в лагере знают об этом. Поэтому ты играешь в открытую.
 	AI_Output(self,other,"DIA_Addon_Esteban_Kerl_07_02");	//Постарайся выяснить, кто на моей стороне, а кто - против, и не дай ребятам себя обдурить!
 	AI_Output(self,other,"DIA_Addon_Esteban_Kerl_07_03");	//Поговори со Снафом. Этот жирный повар много знает.
-	B_LogEntry(Topic_Addon_Esteban,"Чтобы найти виновного, я должен поговорить с людьми в лагере и выяснить, на чьей они стороне. Снаф может мне помочь - ему многое известно.");
+	B_LogEntry(TOPIC_Addon_Esteban,"Чтобы найти виновного, я должен поговорить с людьми в лагере и выяснить, на чьей они стороне. Снаф может мне помочь - ему многое известно.");
 };
 
 

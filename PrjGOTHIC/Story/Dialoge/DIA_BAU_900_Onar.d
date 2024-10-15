@@ -366,8 +366,8 @@ func void DIA_Onar_HowMuch_More()
 		AI_Output(self,other,"DIA_Onar_HowMuch_More_14_01");	// онечно, но ты можешь поработать на мен€ совсем бесплатно, если хочешь.
 	};
 	AI_Output(self,other,"DIA_Onar_HowMuch_More_14_02");	//Ёто все, что ты получишь!
-	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-	B_LogEntry(Topic_Bonus,"я могу получить у ќнара причитающеес€ мне вознаграждение, когда мне это заблагорассудитс€.");
+	Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
+	B_LogEntry(TOPIC_Bonus,"я могу получить у ќнара причитающеес€ мне вознаграждение, когда мне это заблагорассудитс€.");
 	Info_ClearChoices(DIA_Onar_HowMuch);
 };
 
@@ -375,8 +375,8 @@ func void DIA_Onar_HowMuch_Ok()
 {
 	AI_Output(other,self,"DIA_Onar_HowMuch_Ok_15_00");	//’орошо!
 	AI_Output(self,other,"DIA_Onar_HowMuch_Ok_14_01");	//я тоже так думаю. ј теперь иди, поговори с Ћи.
-	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-	B_LogEntry(Topic_Bonus,"я могу получить у ќнара причитающеес€ мне вознаграждение, когда мне это заблагорассудитс€.");
+	Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
+	B_LogEntry(TOPIC_Bonus,"я могу получить у ќнара причитающеес€ мне вознаграждение, когда мне это заблагорассудитс€.");
 	Info_ClearChoices(DIA_Onar_HowMuch);
 };
 
@@ -421,20 +421,20 @@ func void DIA_Onar_CollectGold_Info()
 	{
 		AI_Output(self,other,"DIA_Onar_CollectGold_14_06");	//я слышал, что ты устроил заварушку. —начала пойди к Ћи и урегулируй этот вопрос.
 	}
-	else if(Wld_GetDay() <= Onar_SOLD_Day)
+	else if(Wld_GetDay() == Onar_SOLD_Day)
 	{
 		AI_Output(self,other,"DIA_Onar_CollectGold_14_07");	//“ы что, совсем выжил из ума?
 		AI_Output(self,other,"DIA_Onar_CollectGold_14_08");	//“ы должен поработать у мен€ хот€ бы день. “ы получишь свое жалование завтра.
 	}
-	else if((Wld_GetDay() - 2) >= Onar_SOLD_Day)
+	else if(C_DaysSinceEvent(Onar_SOLD_Day,2))
 	{
-		if((Wld_GetDay() - 2) == Onar_SOLD_Day)
+		if(C_DaysSinceEvent(Onar_SOLD_Day,3))
 		{
-			AI_Output(self,other,"DIA_Onar_CollectGold_14_09");	//√де ты был вчера?
+			AI_Output(self,other,"DIA_Onar_CollectGold_14_10");	//√де ты был последние пару дней?
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Onar_CollectGold_14_10");	//√де ты был последние пару дней?
+			AI_Output(self,other,"DIA_Onar_CollectGold_14_09");	//√де ты был вчера?
 		};
 		AI_Output(self,other,"DIA_Onar_CollectGold_14_11");	//ƒа ты здесь даже не по€вл€лс€!
 		AI_Output(self,other,"DIA_Onar_CollectGold_14_12");	// то знает, где ты шл€лс€.
@@ -450,6 +450,7 @@ func void DIA_Onar_CollectGold_Info()
 			AI_Output(self,other,"DIA_Onar_HowMuch_PerDay_14_03");	//я не собираюсь подносить их тебе.
 			B_GiveInvItems(self,other,ItMi_Gold,Onar_SOLD_Gold);
 			B_Say_Gold(self,other,Onar_SOLD_Gold);
+			TotalOnarGoldTaken += Onar_SOLD_Gold;
 		}
 		else
 		{

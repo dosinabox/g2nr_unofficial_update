@@ -1558,7 +1558,7 @@ func void DIA_Bennet_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_Bennet_KnowWhereEnemy_06_03");	//Это лучше, чем работать на ферме Онара. Парень, даже ад ЛУЧШЕ, чем здесь. Ты можешь рассчитывать на меня.
 	if(SCToldBennetHeKnowWhereEnemy == FALSE)
 	{
-		B_LogEntry(Topic_Crew,"Беннет готов отправляться немедленно. Кузнец он непревзойденный. Я уверен, что смогу многому научиться у него.");
+		B_LogEntry(TOPIC_Crew,"Беннет готов отправляться немедленно. Кузнец он непревзойденный. Я уверен, что смогу многому научиться у него.");
 		SCToldBennetHeKnowWhereEnemy = TRUE;
 	};
 	if(Crewmember_Count >= Max_Crew)

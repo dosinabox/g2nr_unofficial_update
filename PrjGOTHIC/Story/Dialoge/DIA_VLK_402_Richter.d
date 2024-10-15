@@ -194,7 +194,7 @@ func void DIA_Richter_KillMorgahard_Info()
 	{
 		B_SetGuild(Garwig,GIL_NONE);
 		Garwig.aivar[AIV_CommentedPlayerCrime] = FALSE;
-		B_StartOtherRoutine(Garwig,"Exile");
+		Npc_ExchangeRoutine(Garwig,"EXILE");
 	};
 	B_InitNpcGlobals();
 	B_GivePlayerXP(XP_BringHolyHammer);
@@ -291,7 +291,7 @@ func void DIA_Richter_PermissionForShip_Info()
 	AI_Output(self,other,"DIA_Richter_PermissionForShip_10_07");	//Вот твоя бумага. А теперь проваливай. Я разберусь с тобой позже.
 	CreateInvItems(self,ItWr_ForgedShipLetter_MIS,1);
 	B_GiveInvItems(self,other,ItWr_ForgedShipLetter_MIS,1);
-	B_LogEntry(Topic_Ship,"Письмо о подтверждении полномочий должно позволить без проблем завладеть кораблем. Интересно, что скажет на это Ли.");
+	B_LogEntry(TOPIC_Ship,"Письмо о подтверждении полномочий должно позволить без проблем завладеть кораблем. Интересно, что скажет на это Ли.");
 	MIS_RichtersPermissionForShip = LOG_SUCCESS;
 	B_GivePlayerXP(XP_RichtersPermissionForShip);
 };

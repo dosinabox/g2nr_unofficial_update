@@ -129,11 +129,11 @@ func void DIA_Akil_NachKampf_Info()
 	Info_ClearChoices(DIA_Akil_NachKampf);
 	Info_AddChoice(DIA_Akil_NachKampf,"Ничего. Я просто рад, что у тебя теперь все в порядке.",DIA_Akil_NachKampf_Ehre);
 	Info_AddChoice(DIA_Akil_NachKampf,"Как насчет нескольких золотых?",DIA_Akil_NachKampf_Gold);
-	Npc_ExchangeRoutine(self,"Start");
-	B_StartOtherRoutine(Kati,"Start");
+	Npc_ExchangeRoutine(self,"START");
+	B_StartOtherRoutine(Kati,"START");
 	if(DIA_Randolph_ICHGEBEDIRGELD_noPerm == FALSE)
 	{
-		B_StartOtherRoutine(Randolph,"Start");
+		B_StartOtherRoutine(Randolph,"START");
 	};
 	B_SetMortal(Randolph);
 	TOPIC_END_AkilsSLDStillthere = TRUE;
@@ -551,7 +551,7 @@ func int DIA_Akil_SCHAFDIEBEPLATT_Condition()
 {
 	if((Kapitel >= 3) && (MIS_Akil_SchafDiebe == LOG_Running))
 	{
-		if(Npc_IsDead(BDT_1025_Bandit_H) && Npc_IsDead(BDT_1026_Bandit_H) && Npc_IsDead(BDT_1027_Bandit_H))
+		if(C_AkilBanditsDead())
 		{
 			return TRUE;
 		};
@@ -589,7 +589,6 @@ instance DIA_Akil_AkilsSchaf(C_Info)
 	condition = DIA_Akil_AkilsSchaf_Condition;
 	information = DIA_Akil_AkilsSchaf_Info;
 	important = TRUE;
-//	description = "(вернуть овцу)";
 };
 
 
@@ -614,9 +613,7 @@ func void DIA_Akil_AkilsSchaf_Info()
 	B_GiveInvItems(self,other,ItMi_Gold,150);
 	Follow_Sheep_AKIL.aivar[AIV_PARTYMEMBER] = FALSE;
 	Follow_Sheep_AKIL.aivar[AIV_TAPOSITION] = NOTINPOS;
-//	Follow_Sheep_AKIL.wp = "NW_FARM2_OUT_02";
-//	Follow_Sheep_AKIL.start_aistate = ZS_MM_AllScheduler;
-	B_StartOtherRoutine(Follow_Sheep_AKIL,"Farm");
+	B_StartOtherRoutine(Follow_Sheep_AKIL,"FARM");
 	B_GivePlayerXP(XP_AkilsSchaf);
 };
 

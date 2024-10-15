@@ -248,7 +248,7 @@ instance DIA_Malak_PERMKAP1(C_Info)
 
 func int DIA_Malak_PERMKAP1_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Malak_HALLO) && Npc_KnowsInfo(other,DIA_Malak_WASMACHSTDU) && Npc_KnowsInfo(other,DIA_Malak_PASS) && Npc_KnowsInfo(other,DIA_Malak_MINENTAL) && Npc_KnowsInfo(other,DIA_Malak_WARSTDUSCHONDA) && Npc_KnowsInfo(other,DIA_Malak_PALADINE) && Npc_KnowsInfo(other,DIA_Malak_KEINEFRAUEN) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Malak_PALADINE) && Npc_KnowsInfo(other,DIA_Malak_KEINEFRAUEN) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -326,14 +326,14 @@ func void B_Malak_BackToBengar()
 {
 	MalakIsBackToBengar = TRUE;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
-	B_StartOtherRoutine(BAU_962_Bauer,"Start");
-	B_StartOtherRoutine(BAU_964_Bauer,"Start");
-	B_StartOtherRoutine(BAU_965_Bauer,"Start");
-	B_StartOtherRoutine(BAU_966_Bauer,"Start");
-	B_StartOtherRoutine(BAU_967_Bauer,"Start");
-	B_StartOtherRoutine(BAU_968_Bauer,"Start");
-	B_StartOtherRoutine(BAU_969_Bauer,"Start");
+	Npc_ExchangeRoutine(self,"START");
+	B_StartOtherRoutine(BAU_962_Bauer,"START");
+	B_StartOtherRoutine(BAU_964_Bauer,"START");
+	B_StartOtherRoutine(BAU_965_Bauer,"START");
+	B_StartOtherRoutine(BAU_966_Bauer,"START");
+	B_StartOtherRoutine(BAU_967_Bauer,"START");
+	B_StartOtherRoutine(BAU_968_Bauer,"START");
+	B_StartOtherRoutine(BAU_969_Bauer,"START");
 };
 
 var int DIA_Malak_Heilung_oneTime;

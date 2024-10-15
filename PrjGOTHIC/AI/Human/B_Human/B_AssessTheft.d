@@ -26,20 +26,19 @@ func void B_AssessTheft()
 	{
 		return;
 	};
-	if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_FRIENDLY)
+	if(Hlp_IsValidItem(item))
 	{
-		if(!Hlp_IsValidItem(item))
+		if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_FRIENDLY)
+		{
+			if(!Npc_OwnedByNpc(item,self))
+			{
+				return;
+			};
+		};
+		if(!C_IsTakenItemMyPossession(self,item))
 		{
 			return;
 		};
-		if(!Npc_OwnedByNpc(item,self))
-		{
-			return;
-		};
-	};
-	if(!C_IsTakenItemMyPossession(self,item))
-	{
-		return;
 	};
 	if(!Npc_CanSeeNpc(self,other))
 	{

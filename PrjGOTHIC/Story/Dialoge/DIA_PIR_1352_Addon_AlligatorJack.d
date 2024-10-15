@@ -593,7 +593,7 @@ instance DIA_Addon_AlligatorJack_Angus(C_Info)
 
 func int DIA_Addon_AlligatorJack_Angus_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Bill_AngusnHank))
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHank))
 	{
 		return TRUE;
 	};
@@ -622,9 +622,12 @@ instance DIA_Addon_AlligatorJack_Lake(C_Info)
 
 func int DIA_Addon_AlligatorJack_Lake_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Angus) && (MIS_Addon_Morgan_SeekTraitor != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Angus))
 	{
-		return TRUE;
+		if(Npc_HasItems(Angus,ItRi_Addon_MorgansRing_Mission))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -656,8 +659,8 @@ func void B_AlliJack_AlliKlar()
 func void B_AlligatorJack_CanLearn()
 {
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_02");	//Если хочешь, я могу заняться твоим обучением.
-	Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-	B_LogEntry(Topic_Addon_PIR_Teacher,"Аллигатор Джек может обучить меня снимать кожу с рептилий и выдирать зубы. Кроме того, он может научить меня лучше стрелять из лука.");
+	Log_CreateTopic(TOPIC_Addon_PIR_Teacher,LOG_NOTE);
+	B_LogEntry(TOPIC_Addon_PIR_Teacher,"Аллигатор Джек может обучить меня снимать кожу с рептилий и выдирать зубы. Кроме того, он может научить меня лучше стрелять из лука.");
 	AlligatorJack_Addon_TeachPlayer = TRUE;
 };
 

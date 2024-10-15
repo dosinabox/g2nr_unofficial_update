@@ -80,12 +80,12 @@ func void B_Addon_Orlan_RangersReadyForComing()
 {
 	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE)
 	{
-		B_StartOtherRoutine(Cavalorn,"PreRangerMeeting");
+		B_StartOtherRoutine(Cavalorn,"PRERANGERMEETING");
 	};
-	B_StartOtherRoutine(Martin,"PreRangerMeeting");
-	B_StartOtherRoutine(Lares,"PreRangerMeeting");
-	B_StartOtherRoutine(Cord,"PreRangerMeeting");
-	B_StartOtherRoutine(Gaan,"PreRangerMeeting");
+	B_StartOtherRoutine(Martin,"PRERANGERMEETING");
+	B_StartOtherRoutine(Lares,"PRERANGERMEETING");
+	B_StartOtherRoutine(Cord,"PRERANGERMEETING");
+	B_StartOtherRoutine(Gaan,"PRERANGERMEETING");
 	Lares.aivar[AIV_PARTYMEMBER] = FALSE;
 };
 
@@ -93,13 +93,13 @@ func void B_Addon_Orlan_ComingRanger()
 {
 	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE)
 	{
-		B_StartOtherRoutine(Cavalorn,"RangerMeeting");
+		B_StartOtherRoutine(Cavalorn,"RANGERMEETING");
 	};
-	B_StartOtherRoutine(Martin,"RangerMeeting");
-	B_StartOtherRoutine(Lares,"RangerMeeting");
-	B_StartOtherRoutine(Cord,"RangerMeeting");
-	B_StartOtherRoutine(Gaan,"RangerMeeting");
-	B_StartOtherRoutine(Orlan,"RangerMeeting");
+	B_StartOtherRoutine(Martin,"RANGERMEETING");
+	B_StartOtherRoutine(Lares,"RANGERMEETING");
+	B_StartOtherRoutine(Cord,"RANGERMEETING");
+	B_StartOtherRoutine(Gaan,"RANGERMEETING");
+	B_StartOtherRoutine(Orlan,"RANGERMEETING");
 	RangerMeetingRunning = LOG_Running;
 };
 
@@ -107,13 +107,13 @@ func void B_RangerMeetingParking()
 {
 	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE)
 	{
-		B_StartOtherRoutine(Cavalorn,"Stadt");
+		B_StartOtherRoutine(Cavalorn,"STADT");
 	};
-	B_StartOtherRoutine(Orlan,"Start");
-	B_StartOtherRoutine(Lares,"Parking");
-	B_StartOtherRoutine(Cord,"Parking");
-	B_StartOtherRoutine(Gaan,"Parking");
-	B_StartOtherRoutine(Martin,"Parking");
+	B_StartOtherRoutine(Orlan,"START");
+	B_StartOtherRoutine(Lares,"PARKING");
+	B_StartOtherRoutine(Cord,"PARKING");
+	B_StartOtherRoutine(Gaan,"PARKING");
+	B_StartOtherRoutine(Martin,"PARKING");
 	Lares_HaltsMaul = TRUE;
 };
 
@@ -121,26 +121,26 @@ func void B_SchlussMitRangerMeeting()
 {
 	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE)
 	{
-		B_StartOtherRoutine(Cavalorn,"Stadt");
+		B_StartOtherRoutine(Cavalorn,"STADT");
 	};
 	if(Gaan.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
-		B_StartOtherRoutine(Gaan,"PreStart");
+		B_StartOtherRoutine(Gaan,"PRESTART");
 	}
 	else
 	{
-		B_StartOtherRoutine(Gaan,"Start");
+		B_StartOtherRoutine(Gaan,"START");
 	};
 	if(MIS_Addon_Martin_GetRangar == FALSE)
 	{
-		B_StartOtherRoutine(Martin,"PreStart");
+		B_StartOtherRoutine(Martin,"PRESTART");
 	}
 	else
 	{
-		B_StartOtherRoutine(Martin,"Start");
+		B_StartOtherRoutine(Martin,"START");
 	};
-	B_StartOtherRoutine(Orlan,"Start");
-	B_StartOtherRoutine(Cord,"Start");
+	B_StartOtherRoutine(Orlan,"START");
+	B_StartOtherRoutine(Cord,"START");
 	B_ResetLares();
 	Lares_HaltsMaul = LOG_OBSOLETE;
 };

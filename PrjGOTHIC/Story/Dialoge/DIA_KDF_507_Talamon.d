@@ -1,21 +1,21 @@
 
-instance DIA_Talamon_KAP1_EXIT(C_Info)
+instance DIA_Talamon_EXIT(C_Info)
 {
 	npc = KDF_507_Talamon;
 	nr = 999;
-	condition = DIA_Talamon_KAP1_EXIT_Condition;
-	information = DIA_Talamon_KAP1_EXIT_Info;
+	condition = DIA_Talamon_EXIT_Condition;
+	information = DIA_Talamon_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Talamon_KAP1_EXIT_Condition()
+func int DIA_Talamon_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Talamon_KAP1_EXIT_Info()
+func void DIA_Talamon_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

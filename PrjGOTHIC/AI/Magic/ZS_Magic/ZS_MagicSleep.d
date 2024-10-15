@@ -58,5 +58,9 @@ func int ZS_MagicSleep_Loop()
 
 func void ZS_MagicSleep_End()
 {
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Raven))
+	{
+		self.aivar[AIV_EnemyOverride] = FALSE;
+	};
 };
 

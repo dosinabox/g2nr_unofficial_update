@@ -160,9 +160,9 @@ func void B_Dyrian_GiveSleepScroll()
 	CreateInvItems(self,ItSc_Sleep,1);
 	B_GiveInvItems(self,other,ItSc_Sleep,1);
 	MIS_HelpDyrian = LOG_Running;
-	Log_CreateTopic(Topic_DyrianDrin,LOG_MISSION);
-	Log_SetTopicStatus(Topic_DyrianDrin,LOG_Running);
-	B_LogEntry(Topic_DyrianDrin,"Дуриан дал мне свиток с заклинанием 'Сон'. Взамен он хочет, чтобы я замолвил за него словечко, если я стану магом. Тогда он сможет остаться в монастыре.");
+	Log_CreateTopic(TOPIC_DyrianDrin,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_DyrianDrin,LOG_Running);
+	B_LogEntry(TOPIC_DyrianDrin,"Дуриан дал мне свиток с заклинанием 'Сон'. Взамен он хочет, чтобы я замолвил за него словечко, если я стану магом. Тогда он сможет остаться в монастыре.");
 };
 
 instance DIA_Dyrian_Scroll(C_Info)

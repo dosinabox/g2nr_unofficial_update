@@ -49,8 +49,8 @@ func void DIA_Addon_Sancho_HI_Info()
 		B_LogEntries(TOPIC_Addon_RavenKDW,LogText_Addon_RavensGoldmine);
 		B_LogNextEntry(TOPIC_Addon_Sklaven,LogText_Addon_RavensGoldmine);
 		B_LogNextEntry(TOPIC_Addon_ScoutBandits,Log_Text_Addon_ScoutBandits);
+		SC_KnowsRavensGoldmine = TRUE;
 	};
-	SC_KnowsRavensGoldmine = TRUE;
 };
 
 
@@ -78,10 +78,10 @@ func void DIA_Addon_Sancho_Lager_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Sancho_Lager_06_02");	//Но если ты захочешь попасть в шахту, тебе придется иметь дело с Франко.
 		AI_Output(self,other,"DIA_Addon_Sancho_Lager_06_03");	//Он считает, что все новички должны сначала немного поработать снаружи!
+		Log_CreateTopic(TOPIC_Addon_Franco,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_Franco,LOG_Running);
+		B_LogEntry(TOPIC_Addon_Franco,"Прежде чем попасть в шахту, все новички должны поработать на болоте.");
 	};
-	Log_CreateTopic(Topic_Addon_Franco,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Franco,LOG_Running);
-	B_LogEntry(Topic_Addon_Franco,"Прежде чем попасть в шахту, все новички должны поработать на болоте.");
 };
 
 
@@ -111,7 +111,7 @@ func void DIA_Addon_Sancho_Mine_Info()
 	AI_Output(self,other,"DIA_Addon_Sancho_Mine_06_02");	//Он решает, кто пойдет туда следующим.
 	AI_Output(self,other,"DIA_Addon_Sancho_Mine_06_03");	//И он пустит тебя туда, только если ты не будешь тут лодырничать.
 	AI_Output(self,other,"DIA_Addon_Sancho_Mine_06_04");	//Так что пойди к нему и попроси у него какую-нибудь работу!
-	B_LogEntry(Topic_Addon_Franco,"Франко решает, кто попадет в лагерь. Также он занимается распределением заданий.");
+	B_LogEntry(TOPIC_Addon_Franco,"Франко решает, кто попадет в лагерь. Также он занимается распределением заданий.");
 };
 
 
@@ -139,7 +139,7 @@ func void DIA_Addon_Sancho_Franco_Info()
 	AI_Output(other,self,"DIA_Addon_Sancho_Franco_15_00");	//Где я могу найти Франко?
 	AI_Output(self,other,"DIA_Addon_Sancho_Franco_06_01");	//Обычно он торчит во дворе перед лагерем.
 	AI_Output(self,other,"DIA_Addon_Sancho_Franco_06_02");	//Будь с ним в хороших отношениях - и ты получишь какую-нибудь работу получше той, что делаю я!
-	B_LogEntry(Topic_Addon_Franco,"Франко можно найти перед лагерем.");
+	B_LogEntry(TOPIC_Addon_Franco,"Франко можно найти перед лагерем.");
 };
 
 
