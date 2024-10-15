@@ -1,0 +1,36 @@
+#engine [G1, G1A, G2, G2A]
+	#patch [zBBoxSortFix]
+		// engine specific
+		INT text_zCBBox3DSorterBase_ArrayCompare_return_0 = ZenDef(0x0060AC1C, 0x0062D13A, 0x00633ACC, 0x0063B29C)
+		
+		INT field_zCBBox3DSorterBase_isBegin = 0x0;
+		// end of engine specific
+		
+		#assembler [text_zCBBox3DSorterBase_ArrayCompare_return_0]
+			mov eax, [edi]
+			mov eax, [eax+$field_zCBBox3DSorterBase_isBegin]
+			mov edx, [esi]
+			mov edx, [edx+$field_zCBBox3DSorterBase_isBegin]
+			
+			cmp eax, edx
+			mov eax, 0
+			je return
+			
+			mov eax, [edi]
+			mov eax, [eax+$field_zCBBox3DSorterBase_isBegin]
+			test eax, eax
+			jz greater
+			
+			mov eax, -1
+			jmp return
+			
+		greater:
+			mov eax, 1
+			
+		return:
+			pop edi
+			pop esi
+			ret
+		#/assembler
+	#/patch
+#/engine
