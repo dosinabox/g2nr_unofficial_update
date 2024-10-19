@@ -33,7 +33,7 @@ func int C_NpcCanSleep(var C_Npc npc)
 	{
 		return TRUE;
 	};
-	if(npc.flags == NPC_FLAG_IMMORTAL)
+	if(C_NpcIsImmortal(npc))
 	{
 		if(Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(Cornelius))
 		{

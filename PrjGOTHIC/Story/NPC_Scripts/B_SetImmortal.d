@@ -9,7 +9,7 @@ func void B_SetImmortal(var C_Npc npc)
 			{
 				npc.attribute[ATR_HITPOINTS] += 1;
 			};
-			npc.flags = NPC_FLAG_IMMORTAL;
+			npc.flags = npc.flags | NPC_FLAG_IMMORTAL;
 		};
 	};
 };
@@ -20,7 +20,7 @@ func void B_SetMortal(var C_Npc npc)
 	{
 		if(!Npc_IsDead(npc))
 		{
-			npc.flags = 0;
+			npc.flags = npc.flags & ~NPC_FLAG_IMMORTAL;
 		};
 	};
 };

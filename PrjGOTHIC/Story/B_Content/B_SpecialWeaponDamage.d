@@ -52,7 +52,7 @@ func void B_SpecialMeleeWeaponDamage(var C_Npc attacker,var C_Npc target)
 						Wld_PlayEffect("spellFX_BELIARSRAGE",attacker,attacker,0,0,0,FALSE);
 						B_MagicHurtNpc(target,attacker,BeliarSpecialDamage);
 					}
-					else if(target.flags != NPC_FLAG_IMMORTAL)
+					else if(!C_NpcIsImmortal(target))
 					{
 						Wld_PlayEffect("spellFX_BELIARSRAGE",target,target,0,0,0,FALSE);
 						B_MagicHurtNpc(attacker,target,BeliarSpecialDamage);
@@ -82,7 +82,7 @@ func void B_SpecialMeleeWeaponDamage(var C_Npc attacker,var C_Npc target)
 
 func void B_ApplySpecialRangedWeaponDamage(var C_Npc target)
 {
-	if((target.flags != NPC_FLAG_IMMORTAL) && (target.protection[PROT_POINT] > 0))
+	if(!C_NpcIsImmortal(target) && (target.protection[PROT_POINT] > 0))
 	{
 		Npc_ChangeAttribute(target,ATR_HITPOINTS,-target.protection[PROT_POINT]);
 	};

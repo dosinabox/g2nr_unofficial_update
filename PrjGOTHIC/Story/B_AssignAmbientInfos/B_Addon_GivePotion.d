@@ -11,7 +11,7 @@ instance DIA_Addon_GivePotion(C_Info)
 
 func int DIA_Addon_GivePotion_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (self.flags != NPC_FLAG_IMMORTAL))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && !C_NpcIsImmortal(self))
 	{
 		if(Npc_HasItems(other,ItPo_Health_01) || Npc_HasItems(other,ItPo_Health_02) || Npc_HasItems(other,ItPo_Health_03) || Npc_HasItems(other,ItPo_Health_Addon_04))
 		{

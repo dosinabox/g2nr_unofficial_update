@@ -164,7 +164,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		};
 		if(C_NpcHasAttackReasonToKill(slf))
 		{
-			if((oth.flags == NPC_FLAG_IMMORTAL) || (Hlp_GetInstanceID(oth) == Hlp_GetInstanceID(Raven)))
+			if(C_NpcIsImmortal(oth) || (Hlp_GetInstanceID(oth) == Hlp_GetInstanceID(Raven)))
 			{
 				B_ReadySpell(slf,SPL_Deathball,SPL_COST_Deathball);
 			}

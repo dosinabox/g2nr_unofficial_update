@@ -14,7 +14,7 @@ func int C_RefuseTalk(var C_Npc slf,var C_Npc oth)
 	};
 	if(C_PlayerHasFakeGuild(slf,oth))
 	{
-		if(slf.flags != NPC_FLAG_IMMORTAL)
+		if(!C_NpcIsImmortal(slf))
 		{
 			return TRUE;
 		};

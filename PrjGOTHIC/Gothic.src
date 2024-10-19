@@ -129,7 +129,8 @@ Items\MissionItems_4.d
 Items\MissionItems_5.d
 Items\MissionItems_6.d
 Items\MissionItems_Addon.d
-AI\Magic\B_MagicHurtNPC.d
+AI\Human\C_Human\C_NpcIsImmortal.d
+AI\Magic\B_MagicHurtNpc1.d
 AI\Magic\B_FireHurtNpc.d
 AI\Human\C_Human\C_BodyStateContains.d
 Story\B_Content\C_SCHasBlessedSword.d
