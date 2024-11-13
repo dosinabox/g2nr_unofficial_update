@@ -176,20 +176,16 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(other.guild == GIL_DMT)
 	{
+		if(self.guild == GIL_DMT)
+		{
+			return COLL_DONOTHING;
+		};
 		if((spellType == SPL_Firerain) || (spellType == SPL_Thunderstorm) || (spellType == SPL_LightningFlash))
 		{
-			if(self.guild == GIL_DMT)
-			{
-				return COLL_DONOTHING;
-			};
 			if(Npc_IsPlayer(self))
 			{
 				return COLL_APPLYHALVEDAMAGE;
 			};
-		};
-		if((spellType == SPL_Firestorm) && (self.guild == GIL_DMT))
-		{
-			return COLL_DONOTHING;
 		};
 	};
 	if((spellType == SPL_ChargeFireball) || (spellType == SPL_InstantFireball) || (spellType == SPL_Firerain) || (spellType == SPL_Firebolt) || (spellType == SPL_Firestorm) || (spellType == SPL_Pyrokinesis) || (spellType == SPL_Deathbolt) || (spellType == SPL_Deathball))

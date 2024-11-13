@@ -106,16 +106,17 @@ func void ZS_RansackBody_End()
 
 func void ZS_GetMeat()
 {
-	var C_Npc target;
 	Perception_Set_Minimal();
 	AI_Standup(self);
-	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
-	AI_GotoNpc(self,target);
-	if(C_NpcIsDown(target))
+	if(other.guild > GIL_SEPERATOR_HUM)
 	{
-		AI_TurnToNPC(self,target);
-		AI_PlayAni(self,"T_PLUNDER");
-		B_TransferAllInvItems(target,self,ItFoMuttonRaw);
+		AI_GotoNpc(self,other);
+		if(C_NpcIsDown(other))
+		{
+			AI_TurnToNPC(self,other);
+			AI_PlayAni(self,"T_PLUNDER");
+			B_TransferAllInvItems(other,self,ItFoMuttonRaw);
+		};
 	};
 	if(self.attribute[ATR_HITPOINTS] < (self.attribute[ATR_HITPOINTS_MAX] / 2))
 	{

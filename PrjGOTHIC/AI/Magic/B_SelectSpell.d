@@ -44,12 +44,12 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			CreateInvItems(slf,ItRu_Firestorm,1);
 		};
-		if(!Npc_HasItems(slf,ItRu_Skull))
-		{
-			CreateInvItems(slf,ItRu_Skull,1);
-		};
 		if(C_IsNpc(slf,DMT_1299_OberDementor_DI))
 		{
+			if(!Npc_HasItems(slf,ItRu_Skull))
+			{
+				CreateInvItems(slf,ItRu_Skull,1);
+			};
 			B_ReadySpell(slf,SPL_Skull,SPL_Cost_Skull);
 			return TRUE;
 		};
@@ -65,40 +65,28 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			if(Kapitel <= 3)
 			{
-				B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+				B_ReadySpell(slf,SPL_InstantFireball,SPL_Cost_InstantFireball);
 			}
 			else if(Kapitel == 4)
 			{
-				B_ReadySpell(slf,SPL_Deathbolt,SPL_COST_Deathbolt);
+				B_ReadySpell(slf,SPL_Deathbolt,SPL_Cost_Deathbolt);
 			}
 			else
 			{
-				B_ReadySpell(slf,SPL_Deathball,SPL_COST_Deathball);
+				B_ReadySpell(slf,SPL_Deathball,SPL_Cost_Deathball);
 			};
 		}
 		else if(slf.aivar[AIV_SelectSpell] == 10)
 		{
 			slf.aivar[AIV_SelectSpell] = 11;
 			dK_Mega = Hlp_Random(100);
-			if(dK_Mega <= 5)
+			if(dK_Mega <= 2)
 			{
-				//TODO применять всегда, но проверять гильдии в C_CanNpcCollideWithSpell
-				Npc_PerceiveAll(slf);
-				if(!Wld_DetectNpcEx(slf,-1,NOFUNC,GIL_DMT,TRUE))
-				{
-					if(dK_Mega <= 2)
-					{
-						B_ReadySpell(slf,SPL_Firerain,SPL_Cost_Firerain);
-					}
-					else
-					{
-						B_ReadySpell(slf,SPL_Thunderstorm,SPL_Cost_Thunderstorm);
-					};
-				}
-				else
-				{
-					B_ReadySpell(slf,SPL_LightningFlash,SPL_Cost_LightningFlash);
-				};
+				B_ReadySpell(slf,SPL_Firerain,SPL_Cost_Firerain);
+			}
+			else if(dK_Mega <= 5)
+			{
+				B_ReadySpell(slf,SPL_Thunderstorm,SPL_Cost_Thunderstorm);
 			}
 			else if(dK_Mega <= 10)
 			{
@@ -108,12 +96,12 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			{
 				if(Kapitel <= 3)
 				{
-					B_ReadySpell(slf,SPL_Firestorm,SPL_COST_Firestorm);
+					B_ReadySpell(slf,SPL_Firestorm,SPL_Cost_Firestorm);
 				}
 				else
 				{
 					//TODO нужно что-то более мощное
-					B_ReadySpell(slf,SPL_Deathball,SPL_COST_Deathball);
+					B_ReadySpell(slf,SPL_Deathball,SPL_Cost_Deathball);
 				};
 			};
 		}
@@ -166,7 +154,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			if(C_NpcIsImmortal(oth) || (Hlp_GetInstanceID(oth) == Hlp_GetInstanceID(Raven)))
 			{
-				B_ReadySpell(slf,SPL_Deathball,SPL_COST_Deathball);
+				B_ReadySpell(slf,SPL_Deathball,SPL_Cost_Deathball);
 			}
 			else if(C_NpcIsUndead(oth))
 			{
@@ -176,7 +164,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			{
 				if(oth.protection[PROT_MAGIC] < SPL_Damage_ChargeZap)
 				{
-					B_ReadySpell(slf,SPL_ChargeZap,SPL_COST_ChargeZap);
+					B_ReadySpell(slf,SPL_ChargeZap,SPL_Cost_ChargeZap);
 				}
 				else
 				{
@@ -185,9 +173,9 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			}
 			else
 			{
-				if(oth.protection[PROT_MAGIC] < SPL_DAMAGE_InstantFireball)
+				if(oth.protection[PROT_MAGIC] < SPL_Damage_InstantFireball)
 				{
-					B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+					B_ReadySpell(slf,SPL_InstantFireball,SPL_Cost_InstantFireball);
 				}
 				else
 				{
@@ -196,7 +184,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			};
 			return TRUE;
 		};
-		B_ReadySpell(slf,SPL_ConcussionBolt,SPL_COST_Concussionbolt);
+		B_ReadySpell(slf,SPL_ConcussionBolt,SPL_Cost_Concussionbolt);
 		return TRUE;
 	}
 	else if(slf.guild == GIL_PAL)
@@ -263,7 +251,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			B_ReadySpell(slf,SPL_SummonSkeleton,SPL_Cost_SummonSkeleton);
 			return TRUE;
 		};
-		B_ReadySpell(slf,SPL_Icebolt,SPL_COST_Icebolt);
+		B_ReadySpell(slf,SPL_Icebolt,SPL_Cost_Icebolt);
 		return TRUE;
 	}
 	else if(slf.guild == GIL_ICEGOLEM)
@@ -296,7 +284,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		};
 		if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_MELEE)
 		{
-			B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+			B_ReadySpell(slf,SPL_InstantFireball,SPL_Cost_InstantFireball);
 			return TRUE;
 		};
 	}
@@ -308,7 +296,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		};
 		if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
 		{
-			B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+			B_ReadySpell(slf,SPL_InstantFireball,SPL_Cost_InstantFireball);
 			return TRUE;
 		};
 	}
@@ -322,7 +310,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			};
 			if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
 			{
-				B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+				B_ReadySpell(slf,SPL_InstantFireball,SPL_Cost_InstantFireball);
 				return TRUE;
 			};
 		}
@@ -346,7 +334,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			};
 			if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
 			{
-				B_ReadySpell(slf,SPL_ChargeZap,SPL_COST_ChargeZap);
+				B_ReadySpell(slf,SPL_ChargeZap,SPL_Cost_ChargeZap);
 				return TRUE;
 			};
 		}
@@ -358,7 +346,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			};
 			if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
 			{
-				B_ReadySpell(slf,SPL_Icebolt,SPL_COST_Icebolt);
+				B_ReadySpell(slf,SPL_Icebolt,SPL_Cost_Icebolt);
 				return TRUE;
 			};
 		};
@@ -371,7 +359,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		};
 		if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
 		{
-			B_ReadySpell(slf,SPL_Deathball,SPL_COST_Deathball);
+			B_ReadySpell(slf,SPL_Deathball,SPL_Cost_Deathball);
 			return TRUE;
 		};
 	}
@@ -383,7 +371,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		};
 		if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_MELEE)
 		{
-			B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+			B_ReadySpell(slf,SPL_InstantFireball,SPL_Cost_InstantFireball);
 			return TRUE;
 		};
 	}

@@ -1,11 +1,11 @@
 
 const int SPL_Cost_Icelance = 20;
-const int SPL_DAMAGE_Icelance = 100;
+const int SPL_Damage_Icelance = 100;
 
 instance Spell_Icelance(C_Spell_Proto)
 {
 	time_per_mana = 0;
-	damage_per_level = SPL_DAMAGE_Icelance;
+	damage_per_level = SPL_Damage_Icelance;
 	damagetype = DAM_MAGIC;
 };
 
