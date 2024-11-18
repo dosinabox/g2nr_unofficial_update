@@ -33,8 +33,7 @@ func void Spell_Cast_Shrink()
 	{
 		self.attribute[ATR_MANA] -= SPL_Cost_Shrink;
 	};
-//	if((other.flags != NPC_FLAG_IMMORTAL) && !C_NpcIsUndead(other) && (other.guild > GIL_SEPERATOR_HUM) && (other.aivar[AIV_MM_ShrinkState] == 0) && !C_NpcIsGolem(other) && (other.guild != GIL_DEMON) && (other.guild != GIL_SUMMONED_DEMON))
-	if((other.protection[PROT_MAGIC] != IMMUNE) && (other.flags != NPC_FLAG_IMMORTAL) && !C_NpcIsUndead(other) && (other.guild > GIL_SEPERATOR_HUM) && (other.aivar[AIV_MM_ShrinkState] == 0))
+	if((other.protection[PROT_MAGIC] != IMMUNE) && !C_NpcIsImmortal(other) && !C_NpcIsUndead(other) && (other.guild > GIL_SEPERATOR_HUM) && (other.aivar[AIV_MM_ShrinkState] == 0))
 	{
 		Npc_ClearAIQueue(other);
 		B_ClearPerceptions(other);

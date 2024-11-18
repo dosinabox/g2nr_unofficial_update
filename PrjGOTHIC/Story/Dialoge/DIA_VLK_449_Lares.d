@@ -683,7 +683,7 @@ func void DIA_Addon_Lares_GetRangerArmor_end()
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_05");	//Да сохранит Аданос равновесие нашего мира.
 	if(!Npc_IsDead(Orlan))
 	{
-		CreateInvItem(Orlan,ItMW_Addon_Stab03);
+		CreateInvItem(Orlan,ItMw_Addon_Stab03);
 	};
 	Lares_TakeFirstMissionFromVatras = TRUE;
 	Info_ClearChoices(DIA_Addon_Lares_GetRangerArmor);

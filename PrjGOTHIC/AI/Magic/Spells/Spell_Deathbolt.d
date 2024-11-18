@@ -1,11 +1,11 @@
 
-const int SPL_COST_Deathbolt = 25;
-const int SPL_DAMAGE_Deathbolt = 125;
+const int SPL_Cost_Deathbolt = 25;
+const int SPL_Damage_Deathbolt = 125;
 
 instance Spell_Deathbolt(C_Spell_Proto)
 {
 	time_per_mana = 0;
-	damage_per_level = SPL_DAMAGE_Deathbolt;
+	damage_per_level = SPL_Damage_Deathbolt;
 	damagetype = DAM_MAGIC;
 };
 
@@ -16,7 +16,7 @@ func int Spell_Logic_Deathbolt(var int manaInvested)
 	{
 		return SPL_SENDCAST;
 	}
-	else if(self.attribute[ATR_MANA] >= SPL_COST_Deathbolt)
+	else if(self.attribute[ATR_MANA] >= SPL_Cost_Deathbolt)
 	{
 		return SPL_SENDCAST;
 	};
@@ -31,7 +31,7 @@ func void Spell_Cast_Deathbolt()
 	}
 	else
 	{
-		self.attribute[ATR_MANA] -= SPL_COST_Deathbolt;
+		self.attribute[ATR_MANA] -= SPL_Cost_Deathbolt;
 	};
 	self.aivar[AIV_SelectSpell] += 1;
 };

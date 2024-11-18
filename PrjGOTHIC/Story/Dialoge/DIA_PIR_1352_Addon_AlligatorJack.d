@@ -439,6 +439,11 @@ func void DIA_Addon_AlligatorJack_AlligatorJackInter1_Info()
 };
 
 
+func void B_AlliJack_AlliKlar()
+{
+	AI_Output(self,other,"DIA_Addon_AlligatorJack_Anheuern_12_01");	//Хорошо...
+};
+
 instance DIA_Addon_AlligatorJack_TheHunt(C_Info)
 {
 	npc = PIR_1352_Addon_AlligatorJack;
@@ -470,6 +475,7 @@ func void DIA_Addon_AlligatorJack_TheHunt_Info()
 	Wld_InsertNpc(Waran,"ADW_ENTRANCE_2_VALLEY_10");
 	Info_ClearChoices(DIA_Addon_AlligatorJack_TheHunt);
 	Info_AddChoice(DIA_Addon_AlligatorJack_TheHunt,"А что там, в каньоне?",DIA_Addon_AlligatorJack_TheHunt_Enough);
+	Info_AddChoice(DIA_Addon_AlligatorJack_TheHunt,"Мне нужно идти.",DIA_Addon_AlligatorJack_TheHunt_Stop);
 	Info_AddChoice(DIA_Addon_AlligatorJack_TheHunt,"Хорошо, пойдем.",DIA_Addon_AlligatorJack_TheHunt_Running);
 };
 
@@ -478,6 +484,17 @@ func void DIA_Addon_AlligatorJack_TheHunt_Enough()
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_TheHunt_Enough_15_00");	//А что там, в каньоне?
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_TheHunt_Enough_12_01");	//Мы стараемся избегать этого места.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_TheHunt_Enough_12_02");	//Там живут бритвозубы. Мерзкие твари. Если хочешь жить - держись от них подальше.
+};
+
+func void DIA_Addon_AlligatorJack_TheHunt_Stop()
+{
+	DIA_Common_IHaveToGo_v2();
+	B_AlliJack_AlliKlar();
+	MIS_KrokoJagd = LOG_FAILED;
+	B_CheckLog();
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"START");
+	self.aivar[AIV_PARTYMEMBER] = FALSE;
 };
 
 func void DIA_Addon_AlligatorJack_TheHunt_Running()
@@ -576,7 +593,14 @@ func void DIA_Addon_AlligatorJack_HuntEnd_Info()
 	B_LogEntry(TOPIC_Addon_BringMeat,"Аллигатор Джек дал мне десять кусков мяса. Я должен передать их Моргану.");
 	Log_AddEntry(TOPIC_Addon_RatHunt,"Охота была удачной. Мы убили несколько болотных крыс.");
 	MIS_KrokoJagd = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Addon_KrokoJagd);
+	if(AlligatorJack_KrokosKilled > 0)
+	{
+		B_GivePlayerXP(XP_Addon_KrokoJagd);
+	}
+	else
+	{
+		B_GivePlayerXP(XP_Addon_KrokoJagd / 2);
+	};
 };
 
 
@@ -651,11 +675,6 @@ func void DIA_Addon_AlligatorJack_Lake_Info()
 };
 
 
-func void B_AlliJack_AlliKlar()
-{
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Anheuern_12_01");	//Хорошо...
-};
-
 func void B_AlligatorJack_CanLearn()
 {
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_02");	//Если хочешь, я могу заняться твоим обучением.
@@ -706,7 +725,11 @@ func void DIA_Addon_AlligatorJack_CanLearn_Info()
 	if((VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_AlligatorJack) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_01");	//Конечно. Я хороший охотник и могу научить тебя снимать с животных шкуры и выдирать зубы.
-		if((GregIsBack == TRUE) && (MIS_KrokoJagd == FALSE))
+		if(MIS_KrokoJagd == LOG_SUCCESS)
+		{
+			B_AlligatorJack_CanLearn();
+		}
+		else if((GregIsBack == TRUE) || (MIS_KrokoJagd == LOG_FAILED))
 		{
 			B_Say_Gold(self,other,200);
 			Info_ClearChoices(DIA_Addon_AlligatorJack_CanLearn);
@@ -715,10 +738,6 @@ func void DIA_Addon_AlligatorJack_CanLearn_Info()
 			{
 				Info_AddChoice(DIA_Addon_AlligatorJack_CanLearn,"Держи.",DIA_Addon_AlligatorJack_CanLearn_Pay);
 			};
-		}
-		else if(MIS_KrokoJagd > LOG_Running)
-		{
-			B_AlligatorJack_CanLearn();
 		}
 		else
 		{

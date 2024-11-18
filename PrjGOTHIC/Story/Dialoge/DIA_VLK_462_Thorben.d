@@ -596,9 +596,12 @@ instance DIA_Addon_Thorben_ElvrichIsBack(C_Info)
 
 func int DIA_Addon_Thorben_ElvrichIsBack_Condition()
 {
-	if((Elvrich_GoesBack2Thorben == TRUE) && !Npc_IsDead(Elvrich))
+	if(Elvrich_GoesBack2Thorben == TRUE)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Elvrich))
+		{
+			return TRUE;
+		};
 	};
 };
 

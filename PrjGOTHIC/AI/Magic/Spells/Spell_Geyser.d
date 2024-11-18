@@ -1,11 +1,11 @@
 
 const int SPL_Cost_Geyser = 75;
-const int SPL_DAMAGE_Geyser = 150;
+const int SPL_Damage_Geyser = 150;
 
 instance Spell_Geyser(C_Spell_Proto)
 {
 	time_per_mana = 0;
-	damage_per_level = SPL_DAMAGE_Geyser;
+	damage_per_level = SPL_Damage_Geyser;
 	damagetype = DAM_MAGIC;
 };
 

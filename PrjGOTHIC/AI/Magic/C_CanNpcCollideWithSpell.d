@@ -11,7 +11,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 {
 	if(spellType == SPL_Whirlwind)
 	{
-		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || C_NpcIsGolem(self) || (self.guild == GIL_WISP) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON) || (self.flags == NPC_FLAG_IMMORTAL) || (self.guild == GIL_SHADOWBEAST) || (self.guild == GIL_SHADOWBEAST_SKELETON) || (self.guild == GIL_SHADOWBEAST_FIRE))
+		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || C_NpcIsGolem(self) || (self.guild == GIL_WISP) || C_NpcIsDemon(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON) || C_NpcIsImmortal(self) || (self.guild == GIL_SHADOWBEAST) || (self.guild == GIL_SHADOWBEAST_SKELETON) || (self.guild == GIL_SHADOWBEAST_FIRE))
 		{
 			return COLL_DONOTHING;
 		};
@@ -95,7 +95,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_SuckEnergy)
 	{
-		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || (self.guild > GIL_SEPERATOR_HUM) || (self.flags == NPC_FLAG_IMMORTAL) || (Npc_GetDistToNpc(self,other) > FIGHT_DIST_RANGED_OUTER) || (self.guild == GIL_DMT))
+		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || (self.guild > GIL_SEPERATOR_HUM) || C_NpcIsImmortal(self) || (Npc_GetDistToNpc(self,other) > FIGHT_DIST_RANGED_OUTER) || (self.guild == GIL_DMT))
 		{
 			return COLL_DONOTHING;
 		};
@@ -176,20 +176,16 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(other.guild == GIL_DMT)
 	{
+		if(self.guild == GIL_DMT)
+		{
+			return COLL_DONOTHING;
+		};
 		if((spellType == SPL_Firerain) || (spellType == SPL_Thunderstorm) || (spellType == SPL_LightningFlash))
 		{
-			if(self.guild == GIL_DMT)
-			{
-				return COLL_DONOTHING;
-			};
 			if(Npc_IsPlayer(self))
 			{
 				return COLL_APPLYHALVEDAMAGE;
 			};
-		};
-		if((spellType == SPL_Firestorm) && (self.guild == GIL_DMT))
-		{
-			return COLL_DONOTHING;
 		};
 	};
 	if((spellType == SPL_ChargeFireball) || (spellType == SPL_InstantFireball) || (spellType == SPL_Firerain) || (spellType == SPL_Firebolt) || (spellType == SPL_Firestorm) || (spellType == SPL_Pyrokinesis) || (spellType == SPL_Deathbolt) || (spellType == SPL_Deathball))

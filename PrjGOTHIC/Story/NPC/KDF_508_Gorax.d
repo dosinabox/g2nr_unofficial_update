@@ -12,7 +12,7 @@ instance KDF_508_Gorax(Npc_Default)
 	attribute[ATR_STRENGTH] = Condition_Stab04;
 	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMW_Addon_Stab04);
+	EquipItem(self,ItMw_Addon_Stab04);
 	CreateInvItems(self,ItKe_Innos_MIS,1);
 	B_CreateItemToSteal(self,80,ItKe_KlosterSchatz,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_OldBald_Jeremiah,BodyTex_N,ITAR_KDF_L);

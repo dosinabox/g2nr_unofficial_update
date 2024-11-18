@@ -16,12 +16,12 @@ func void B_UnEquipIllegalMagicWeapons(var int value)
 	};
 	var C_Item EquippedMeleeWeapon;
 	EquippedMeleeWeapon = Npc_GetEquippedMeleeWeapon(hero);
-	if(Hlp_IsItem(EquippedMeleeWeapon,ItMW_Addon_Stab02))
+	if(Hlp_IsItem(EquippedMeleeWeapon,ItMw_Addon_Stab02))
 	{
 		if(C_PredictedMana(value) < (Condition_Stab02 + Zauberstab_ManaBonus))
 		{
-			B_RemoveEveryInvItem(hero,ItMW_Addon_Stab02);
-			CreateInvItem(hero,ItMW_Addon_Stab02);
+			B_RemoveEveryInvItem(hero,ItMw_Addon_Stab02);
+			CreateInvItem(hero,ItMw_Addon_Stab02);
 		};
 	};
 };

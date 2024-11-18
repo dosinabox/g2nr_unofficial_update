@@ -23,6 +23,10 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 			SC_GotPortalTempelWalkthroughKey = TRUE;
 		};
 	};
+	if(EnterOW_Kapitel2 == TRUE)
+	{
+		B_ResetFernando();
+	};
 	if(GregIsBack == TRUE)
 	{
 		if(NW_Greg_Removed_Forever == FALSE)
@@ -96,8 +100,6 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 	};
 	B_KillThievesGuild();
 	B_ResetWolfSLDs();
-	B_ResetSergio();
-	B_ResetFernando();
 };
 
 
@@ -205,6 +207,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			B_ResetLares();
 		};
+		B_ResetSergio();
 		Wld_InsertNpc(PC_Fighter_NW_vor_DJG,"BIGFARM");
 		Wld_InsertNpc(PC_Thief_NW,"NW_CITY_ENTRANCE_01");
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"NW_PASS_GATE_02");

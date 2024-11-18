@@ -51,18 +51,6 @@ const int Value_Sc_TrfWarg = 125;
 const int Value_Sc_TrfFireWaran = 200;
 const int Value_Sc_TrfShadowbeast = 200;
 const int Value_Sc_TrfDragonSnapper = 200;
-/*const int Value_Sc_TrfSheep = 25;
-const int Value_Sc_TrfGiantRat = 50;
-const int Value_Sc_TrfWolf = 75;
-const int Value_Sc_TrfScavenger = 100;
-const int Value_Sc_TrfGiantBug = 150;
-const int Value_Sc_TrfLurker = 200;
-const int Value_Sc_TrfSnapper = 300;
-const int Value_Sc_TrfWaran = 400;
-const int Value_Sc_TrfWarg = 500;
-const int Value_Sc_TrfShadowbeast = 600;
-const int Value_Sc_TrfFireWaran = 700;
-const int Value_Sc_TrfDragonSnapper = 800;*/
 
 instance ItSc_PalLight(C_Item)
 {
@@ -289,7 +277,7 @@ instance ItSc_Icebolt(C_Item)
 	text[1] = NAME_Mana_needed;
 	count[1] = SPL_Cost_Scroll;
 	text[2] = NAME_Dam_Magic;
-	count[2] = SPL_DAMAGE_Icebolt;
+	count[2] = SPL_Damage_Icebolt;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -356,7 +344,7 @@ instance ItSc_InstantFireball(C_Item)
 	text[1] = NAME_Mana_needed;
 	count[1] = SPL_Cost_Scroll;
 	text[2] = NAME_Dam_Magic;
-	count[2] = SPL_DAMAGE_InstantFireball;
+	count[2] = SPL_Damage_InstantFireball;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -462,7 +450,6 @@ instance ItSc_Charm(C_Item)
 	mainflag = ITEM_KAT_RUNE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_Sc_Charm;
-//	visual = "ItSc_Sleep.3DS";
 	visual = "ItSc_Charm.3DS";
 	material = MAT_LEATHER;
 	spell = SPL_Charm;
@@ -546,7 +533,7 @@ instance ItSc_ChargeFireBall(C_Item)
 	text[1] = NAME_ManakostenMin;
 	count[1] = STEP_ChargeFireball;
 	text[2] = NAME_ManakostenMax;
-	count[2] = SPL_COST_ChargeFireball;
+	count[2] = SPL_Cost_ChargeFireball;
 	text[3] = NAME_Dam_MagicMin;
 	count[3] = SPL_Damage_ChargeFireball;
 	text[4] = NAME_Dam_MagicMax;
@@ -644,7 +631,7 @@ instance ItSc_ThunderBall(C_Item)
 	text[1] = NAME_ManakostenMin;
 	count[1] = STEP_ChargeZap;
 	text[2] = NAME_ManakostenMax;
-	count[2] = SPL_COST_ChargeZap;
+	count[2] = SPL_Cost_ChargeZap;
 	text[3] = "Урон магией (мин.):";
 	count[3] = SPL_Damage_ChargeZap;
 	text[4] = "Урон магией (макс.):";
@@ -715,7 +702,7 @@ instance ItSc_Pyrokinesis(C_Item)
 	text[1] = NAME_ManakostenMin;
 	count[1] = STEP_Firestorm;
 	text[2] = NAME_ManakostenMax;
-	count[2] = SPL_COST_Firestorm;
+	count[2] = SPL_Cost_Firestorm;
 	text[3] = NAME_Dam_MagicMin;
 	count[3] = SPL_Damage_Firestorm;
 	text[4] = NAME_Dam_MagicMax;

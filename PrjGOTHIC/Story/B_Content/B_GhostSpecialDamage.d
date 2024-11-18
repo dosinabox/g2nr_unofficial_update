@@ -2,7 +2,7 @@
 func void B_GhostSpecialDamage(var C_Npc attacker)
 {
 	Wld_PlayEffect("spellFX_BELIARSRAGE",attacker,attacker,0,0,0,FALSE);
-	if(attacker.flags != NPC_FLAG_IMMORTAL)
+	if(!C_NpcIsImmortal(attacker))
 	{
 		if(!C_NpcIsHero(attacker))
 		{
