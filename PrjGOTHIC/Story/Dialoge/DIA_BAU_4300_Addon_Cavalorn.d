@@ -486,8 +486,8 @@ func void DIA_Addon_Cavalorn_AUSRUESTUNG_Info()
 		AI_Output(self,other,"DIA_Addon_Cavalorn_AUSRUESTUNG_08_01");	//Эти свиньи не оставили мне почти ничего.
 	};
 	AI_Output(self,other,"DIA_Addon_Cavalorn_AUSRUESTUNG_08_02");	//Я могу дать тебе волчий нож. Этого пока хватит?
-	CreateInvItems(self,ItMW_Addon_Knife01,1);
-	B_GiveInvItems(self,other,ItMW_Addon_Knife01,1);
+	CreateInvItems(self,ItMw_Addon_Knife01,1);
+	B_GiveInvItems(self,other,ItMw_Addon_Knife01,1);
 	AI_Output(other,self,"DIA_Addon_Cavalorn_AUSRUESTUNG_15_03");	//Ты называешь это ножом?
 	AI_Output(other,self,"DIA_Addon_Cavalorn_AUSRUESTUNG_15_04");	//А что по поводу лечения?
 	AI_Output(self,other,"DIA_Addon_Cavalorn_AUSRUESTUNG_08_05");	//У меня есть еще 2 лечебных зелья. Нужны?

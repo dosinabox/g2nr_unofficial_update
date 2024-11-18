@@ -57,6 +57,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_HannaRetrieveLetter = LOG_FAILED;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fernando))
+		{
+			if(MIS_Fernando_Erz == LOG_Running)
+			{
+				MIS_Fernando_Erz = LOG_FAILED;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Schiffswache_212))
 		{
 			if(Npc_IsDead(Schiffswache_213))
@@ -131,6 +138,10 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sergio))
 		{
+			if(Sergio_GuideStatus == LOG_Running)
+			{
+				Sergio_GuideStatus = LOG_FAILED;
+			};
 			if(MIS_Babo_Training == LOG_Running)
 			{
 				MIS_Babo_Training = LOG_FAILED;

@@ -20,9 +20,9 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItSc_Windfist,1);
 		CreateInvItems(slf,ItSc_Zap,5);
 		CreateInvItems(slf,ItFo_Wine,3);
-		CreateInvItems(slf,ItMW_Addon_Stab01,1);
-		CreateInvItems(slf,ItMW_Addon_Stab02,1);
-		CreateInvItems(slf,ItMW_Addon_Stab04,1);
+		CreateInvItems(slf,ItMw_Addon_Stab01,1);
+		CreateInvItems(slf,ItMw_Addon_Stab02,1);
+		CreateInvItems(slf,ItMw_Addon_Stab04,1);
 		CreateInvItems(slf,ItRi_Mana_01,1);
 		CreateInvItems(slf,ItMi_Pliers,1);
 		CreateInvItems(slf,ItWr_Map_NewWorld,1);

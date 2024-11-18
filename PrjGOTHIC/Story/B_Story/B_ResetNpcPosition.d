@@ -1,7 +1,7 @@
 
 func void B_ResetSergio()
 {
-	if((EnterOW_Kapitel2 == TRUE) && (Sergio_Follow == TRUE) && (Sergio_Follow_End == FALSE))
+	if(Sergio_GuideStatus == LOG_Running)
 	{
 		if(!Npc_IsDead(Sergio))
 		{
@@ -16,7 +16,7 @@ func void B_ResetSergio()
 					Npc_ExchangeRoutine(Sergio,"START");
 				};
 				Sergio.aivar[AIV_PARTYMEMBER] = FALSE;
-				Sergio_Follow_End = TRUE;
+				Sergio_GuideStatus = LOG_SUCCESS;
 			};
 		};
 	};
@@ -24,11 +24,12 @@ func void B_ResetSergio()
 
 func void B_ResetFernando()
 {
-	if((Fernando_ImKnast == FALSE) && (Kapitel >= 2) && (MIS_Fernando_Erz == FALSE))
+	if((Fernando_ImKnast == FALSE) && (MIS_Fernando_Erz == FALSE))
 	{
 		if(!Npc_IsDead(Fernando))
 		{
 			Npc_ExchangeRoutine(Fernando,"START");
+			MIS_Fernando_Erz = LOG_OBSOLETE;
 		};
 	};
 };

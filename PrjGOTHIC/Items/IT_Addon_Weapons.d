@@ -1,5 +1,5 @@
 
-instance ItMW_Addon_Knife01(C_Item)
+instance ItMw_Addon_Knife01(C_Item)
 {
 	name = "Волчий нож";
 	mainflag = ITEM_KAT_NF;
@@ -25,7 +25,7 @@ instance ItMW_Addon_Knife01(C_Item)
 	count[5] = value;
 };
 
-instance ItMW_Addon_Stab01(C_Item)
+instance ItMw_Addon_Stab01(C_Item)
 {
 	name = "Посох мага Огня";
 	mainflag = ITEM_KAT_NF;
@@ -39,8 +39,7 @@ instance ItMW_Addon_Stab01(C_Item)
 	on_unequip = UnEquip_2H_03;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Stab01;
-//	visual = "ItMW_MageStaff_Good_2H_01.3DS";
-	visual = "ItMW_MageStaff_Good_2H_03.3DS";
+	visual = "ItMw_MageStaff_Good_2H_03.3DS";
 	effect = "SPELLFX_MAGESTAFF1";
 	description = name;
 	text[2] = NAME_Damage;
@@ -53,7 +52,7 @@ instance ItMW_Addon_Stab01(C_Item)
 	count[5] = value;
 };
 
-instance ItMW_Addon_Stab02(C_Item)
+instance ItMw_Addon_Stab02(C_Item)
 {
 	name = "Магический посох";
 	mainflag = ITEM_KAT_NF;
@@ -67,8 +66,7 @@ instance ItMW_Addon_Stab02(C_Item)
 	on_unequip = UnEquip_Zauberstab;
 	cond_atr[2] = ATR_MANA_MAX;
 	cond_value[2] = Condition_Stab02;
-//	visual = "ItMW_MageStaff_Good_2H_02.3DS";
-	visual = "ItMW_MageStaff_Normal_2H_01.3DS";
+	visual = "ItMw_MageStaff_Normal_2H_01.3DS";
 	effect = "SPELLFX_MAGESTAFF2";
 	description = name;
 	text[2] = NAME_Damage;
@@ -95,7 +93,7 @@ func void UnEquip_Zauberstab()
 	Reduce_MaxMana(Zauberstab_ManaBonus);
 };
 
-instance ItMW_Addon_Stab03(C_Item)
+instance ItMw_Addon_Stab03(C_Item)
 {
 	name = "Посох мага Воды";
 	mainflag = ITEM_KAT_NF;
@@ -109,8 +107,7 @@ instance ItMW_Addon_Stab03(C_Item)
 	on_unequip = UnEquip_2H_04;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Stab03;
-//	visual = "ItMW_MageStaff_Blades_2H_01.3DS";
-	visual = "ItMW_MageStaff_Good_2H_02.3DS";
+	visual = "ItMw_MageStaff_Good_2H_02.3DS";
 	effect = "SPELLFX_MAGESTAFF3";
 	description = name;
 	text[2] = NAME_Damage;
@@ -123,7 +120,7 @@ instance ItMW_Addon_Stab03(C_Item)
 	count[5] = value;
 };
 
-instance ItMW_Addon_Stab04(C_Item)
+instance ItMw_Addon_Stab04(C_Item)
 {
 	name = "Посох Ультара";
 	mainflag = ITEM_KAT_NF;
@@ -137,8 +134,7 @@ instance ItMW_Addon_Stab04(C_Item)
 	on_unequip = UnEquip_2H_04;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Stab04;
-//	visual = "ItMW_MageStaff_Good_2H_02.3DS";
-	visual = "ItMW_MageStaff_Ball_2H_01.3DS";
+	visual = "ItMw_MageStaff_Ball_2H_01.3DS";
 	effect = "SPELLFX_MAGESTAFF4";
 	description = name;
 	text[0] = "Ультар наделил этот посох магической силой.";
@@ -152,7 +148,7 @@ instance ItMW_Addon_Stab04(C_Item)
 	count[5] = value;
 };
 
-instance ItMW_Addon_Stab05(C_Item)
+instance ItMw_Addon_Stab05(C_Item)
 {
 	name = "Тайфун";
 	mainflag = ITEM_KAT_NF;
@@ -166,7 +162,7 @@ instance ItMW_Addon_Stab05(C_Item)
 	on_unequip = UnEquip_2H_05;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Stab05;
-	visual = "ItMW_MageStaff_Blades_2H_01.3DS";
+	visual = "ItMw_MageStaff_Blades_2H_01.3DS";
 	effect = "SPELLFX_MAGESTAFF5";
 	description = name;
 	text[2] = NAME_Damage;
@@ -179,7 +175,7 @@ instance ItMW_Addon_Stab05(C_Item)
 	count[5] = value;
 };
 
-instance ItMW_Addon_Hacker_1h_01(C_Item)
+instance ItMw_Addon_Hacker_1h_01(C_Item)
 {
 	name = "Мачете";
 	mainflag = ITEM_KAT_NF;
@@ -205,7 +201,7 @@ instance ItMW_Addon_Hacker_1h_01(C_Item)
 	count[5] = value;
 };
 
-instance ItMW_Addon_Hacker_1h_02(C_Item)
+instance ItMw_Addon_Hacker_1h_02(C_Item)
 {
 	name = "Старое мачете";
 	mainflag = ITEM_KAT_NF;
@@ -231,7 +227,7 @@ instance ItMW_Addon_Hacker_1h_02(C_Item)
 	count[5] = value;
 };
 
-instance ItMW_Addon_Hacker_2h_01(C_Item)
+instance ItMw_Addon_Hacker_2h_01(C_Item)
 {
 	name = "Гигантское мачете";
 	mainflag = ITEM_KAT_NF;
@@ -257,7 +253,7 @@ instance ItMW_Addon_Hacker_2h_01(C_Item)
 	count[5] = value;
 };
 
-instance ItMW_Addon_Hacker_2h_02(C_Item)
+instance ItMw_Addon_Hacker_2h_02(C_Item)
 {
 	name = "Старое гигантское мачете";
 	mainflag = ITEM_KAT_NF;
@@ -283,7 +279,7 @@ instance ItMW_Addon_Hacker_2h_02(C_Item)
 	count[5] = value;
 };
 
-instance ItMW_Addon_Keule_1h_01(C_Item)
+instance ItMw_Addon_Keule_1h_01(C_Item)
 {
 	name = "Дубинка ветра";
 	mainflag = ITEM_KAT_NF;
@@ -295,11 +291,9 @@ instance ItMW_Addon_Keule_1h_01(C_Item)
 	range = Range_Windknecht;
 	on_equip = UnEquip_1H_10;
 	on_unequip = Equip_1H_10;
-//	on_equip = Equip_1H_Keule;
-//	on_unequip = UnEquip_1H_Keule;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Windknecht;
-	visual = "ItMW_Club_1H_01.3DS";
+	visual = "ItMw_Club_1H_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -311,7 +305,7 @@ instance ItMW_Addon_Keule_1h_01(C_Item)
 	count[5] = value;
 };
 
-instance ItMW_Addon_Keule_2h_01(C_Item)
+instance ItMw_Addon_Keule_2h_01(C_Item)
 {
 	name = "Дубинка бури";
 	mainflag = ITEM_KAT_NF;
@@ -323,11 +317,9 @@ instance ItMW_Addon_Keule_2h_01(C_Item)
 	range = Range_Sturmknecht;
 	on_equip = UnEquip_2H_10;
 	on_unequip = Equip_2H_10;
-//	on_equip = Equip_2H_Keule;
-//	on_unequip = UnEquip_2H_Keule;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Sturmknecht;
-	visual = "ItMW_Club_2H_01.3DS";
+	visual = "ItMw_Club_2H_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -343,10 +335,8 @@ instance ItMw_1h_Pir_Dagger(C_Item)
 {
 	name = "Хороший кинжал";
 	mainflag = ITEM_KAT_NF;
-//	flags = ITEM_SWD | ITEM_MISSION;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
-//	value = 0;
 	value = Value_VLKDolch * 3;
 	damageTotal = Damage_VLKDolch * 2;
 	damagetype = DAM_EDGE;
@@ -355,7 +345,6 @@ instance ItMw_1h_Pir_Dagger(C_Item)
 	on_unequip = UnEquip_1H_05;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_VLKDolch;
-//	visual = "Itmw_005_1h_dagger_01.3DS";
 	visual = "Itmw_005_1h_dagger_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -380,7 +369,6 @@ instance ItMw_RangerStaff_Addon(C_Item)
 	range = Range_RangerStaff;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_RangerStaff;
-//	visual = "ItMw_020_2h_Nov_Staff_01.3DS";
 	visual = "ItMw_020_2h_Nov_Staff_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -404,7 +392,6 @@ instance ItMw_Addon_PIR2hAxe(C_Item)
 	range = Range_PIR2hAxe;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_PIR2hAxe;
-//	visual = "ItMw_070_2h_axe_heavy_03.3DS";
 	visual = "ItMw_070_2h_axe_heavy_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -428,7 +415,6 @@ instance ItMw_Addon_PIR2hSword(C_Item)
 	range = 115;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_PIR2hSword;
-//	visual = "ItMw_070_2h_sword_09.3DS";
 	visual = "ItMw_070_2h_sword_10.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -452,7 +438,6 @@ instance ItMw_Addon_PIR1hAxe(C_Item)
 	range = Range_PIR1hAxe;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_PIR1hAxe;
-//	visual = "ItMw_030_1h_axe_01.3DS";
 	visual = "ItMw_030_1h_axe_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -499,7 +484,6 @@ instance ItMw_Addon_BanditTrader(C_Item)
 	range = Range_VLKSchwert;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_VLKSchwert;
-//	visual = "ItMw_018_1h_SwordCane_01.3ds";
 	visual = "ItMw_018_1h_SwordCane_02.3ds";
 	description = name;
 	text[0] = "На эфесе нацарапана буква 'Ф.'";
@@ -516,7 +500,6 @@ instance ItMw_Addon_Betty(C_Item)
 {
 	name = "Бетти";
 	mainflag = ITEM_KAT_NF;
-//	flags = ITEM_AXE | ITEM_MISSION;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
 	value = Value_Betty;
@@ -525,7 +508,6 @@ instance ItMw_Addon_Betty(C_Item)
 	range = Range_ElBastardo;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_ElBastardo;
-//	visual = "ItMw_065_1h_sword_bastard_04.3DS";
 	visual = "ItMw_065_1h_sword_bastard_05.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -570,9 +552,7 @@ instance ItRw_Addon_MagicArrow(C_Item)
 	flags = ITEM_BOW | ITEM_MULTI;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ARROW";
-//	value = Value_Pfeil;
 	value = Damage_MagicBow;
-//	visual = "ItRw_Arrow.3ds";
 	visual = "ItRw_MagicArrow.3ds";
 	material = MAT_WOOD;
 	description = name;
@@ -587,9 +567,7 @@ instance ItRw_Addon_FireArrow(C_Item)
 	flags = ITEM_BOW | ITEM_MULTI;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_FIREARROW";
-//	value = Value_Pfeil;
 	value = Damage_FireBow;
-//	visual = "ItRw_Arrow.3ds";
 	visual = "ItRw_FireArrow.3ds";
 	material = MAT_WOOD;
 	description = name;
@@ -652,11 +630,9 @@ instance ItRw_Addon_MagicBolt(C_Item)
 	name = "Магический болт";
 	mainflag = ITEM_KAT_MUN;
 	flags = ITEM_CROSSBOW | ITEM_MULTI;
-//	value = Value_Bolzen;
 	value = Damage_MagicCrossbow;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_BOLT";
-//	visual = "ItRw_Bolt.3ds";
 	visual = "ItRw_MagicBolt.3ds";
 	material = MAT_WOOD;
 	description = name;

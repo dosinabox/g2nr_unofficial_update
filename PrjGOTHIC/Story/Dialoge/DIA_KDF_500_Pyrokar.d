@@ -831,7 +831,7 @@ func void DIA_Pyrokar_Nachricht_Info()
 		if(!Npc_IsDead(Sergio))
 		{
 			AI_Output(self,other,"DIA_Pyrokar_Nachricht_11_02");	//Хорошо. Ты выполнишь этот приказ. Паладин Сержио сопроводит тебя к Проходу.
-			Sergio_Follow = TRUE;
+			Sergio_CanGuide = TRUE;
 		};
 		AI_Output(self,other,"DIA_Pyrokar_Nachricht_11_03");	//Да хранит тебя Иннос.
 	}

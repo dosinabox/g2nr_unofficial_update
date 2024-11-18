@@ -232,11 +232,11 @@ func int DIA_Sergio_ORDERS_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Sergio_WHY) && (Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500))
 	{
-		if(Sergio_Follow == FALSE)
+		if(Sergio_CanGuide == FALSE)
 		{
 			return TRUE;
 		};
-		if(Sergio_Follow_End == TRUE)
+		if(Sergio_GuideStatus == LOG_SUCCESS)
 		{
 			return TRUE;
 		};
@@ -263,7 +263,7 @@ instance DIA_Sergio_Start(C_Info)
 
 func int DIA_Sergio_Start_Condition()
 {
-	if(Sergio_Follow == TRUE)
+	if((Sergio_CanGuide == TRUE) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -273,9 +273,10 @@ func void DIA_Sergio_Start_Info()
 {
 	AI_Output(other,self,"DIA_Sergio_Start_15_00");	//Ты должен сопровождать меня к Проходу.
 	AI_Output(self,other,"DIA_Sergio_Start_04_01");	//Хорошо, я сделаю это. Я знаю дорогу, иди за мной.
-	AI_StopProcessInfos(self);
+	Sergio_GuideStatus = LOG_Running;
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	self.npcType = NPCTYPE_FRIEND;
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"GUIDE");
 };
 
