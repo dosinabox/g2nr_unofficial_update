@@ -147,7 +147,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 			CreateInvItems(Engrom,ItAt_TalbinsLurkerSkin,1);
 			if(hero.guild == GIL_KDF)
 			{
-				CreateInvItems(Engrom,ITWR_DementorObsessionBook_MIS,1);
+				CreateInvItems(Engrom,ItWr_DementorObsessionBook_MIS,1);
 			}
 			else
 			{
@@ -495,7 +495,7 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 		};
 		if(!Npc_IsDead(Brutus))
 		{
-			CreateInvItems(Brutus,ITWR_DementorObsessionBook_MIS,1);
+			CreateInvItems(Brutus,ItWr_DementorObsessionBook_MIS,1);
 		};
 		if(!Npc_IsDead(OC_Sheep3))
 		{

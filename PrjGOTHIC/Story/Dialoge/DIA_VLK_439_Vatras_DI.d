@@ -509,7 +509,7 @@ instance DIA_Vatras_DI_DementorObsessionBook(C_Info)
 
 func int DIA_Vatras_DI_DementorObsessionBook_Condition()
 {
-	if(Npc_HasItems(other,ITWR_DementorObsessionBook_MIS))
+	if(Npc_HasItems(other,ItWr_DementorObsessionBook_MIS))
 	{
 		return TRUE;
 	};
@@ -517,7 +517,7 @@ func int DIA_Vatras_DI_DementorObsessionBook_Condition()
 
 func void DIA_Vatras_DI_DementorObsessionBook_Info()
 {
-	VatrasBookCount = Npc_HasItems(other,ITWR_DementorObsessionBook_MIS);
+	VatrasBookCount = Npc_HasItems(other,ItWr_DementorObsessionBook_MIS);
 	AI_Output(other,self,"DIA_Vatras_DI_DementorObsessionBook_15_00");	//Я принес альманах Одержимых.
 	if(DIA_Vatras_DI_DementorObsessionBook_OneTime == FALSE)
 	{
@@ -528,8 +528,8 @@ func void DIA_Vatras_DI_DementorObsessionBook_Info()
 	{
 		AI_Output(self,other,"DIA_Vatras_DI_DementorObsessionBook_05_02");	//У тебя есть еще? Принеси мне все, что найдешь.
 	};
-	B_GiveInvItems(other,self,ITWR_DementorObsessionBook_MIS,VatrasBookCount);
-	Npc_RemoveInvItems(self,ITWR_DementorObsessionBook_MIS,VatrasBookCount);
+	B_GiveInvItems(other,self,ItWr_DementorObsessionBook_MIS,VatrasBookCount);
+	Npc_RemoveInvItems(self,ItWr_DementorObsessionBook_MIS,VatrasBookCount);
 	B_GivePlayerXP(XP_AmbientKap6 * VatrasBookCount);
 };
 

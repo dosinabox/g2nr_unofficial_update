@@ -423,8 +423,9 @@ func void DIA_Bartok_HuntNOW_Info()
 	AI_EquipArmor(self,ITAR_Leather_L);
 	AI_EquipBestRangedWeapon(self);
 	Bartok_Los = TRUE;
-	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
+	self.npcType = NPCTYPE_FRIEND;
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"GUIDEMITTE");
 	Wld_InsertNpc(Wolf,"NW_FARM1_CITYWALL_FOREST_02");
 	Wld_InsertNpc(Wolf,"NW_FARM1_CITYWALL_FOREST_02");

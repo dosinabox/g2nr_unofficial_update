@@ -470,7 +470,7 @@ const int SPL_Reserved_98 = 98;
 const int SPL_Reserved_99 = 99;
 const int MAX_SPELL = 100;
 
-const string spellFxInstanceNames[100] =
+const string spellFxInstanceNames[MAX_SPELL] =
 {
 	"PalLight",
 	"PalHeal",
@@ -574,7 +574,7 @@ const string spellFxInstanceNames[100] =
 	"Light"
 };
 
-const string spellFxAniLetters[100] =
+const string spellFxAniLetters[MAX_SPELL] =
 {
 	"SLE",
 	"HEA",
@@ -818,7 +818,7 @@ const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2024;
 const int FIX_DATE_MONTH = 11;
-const int FIX_DATE_DAY = 18;
+const int FIX_DATE_DAY = 22;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;

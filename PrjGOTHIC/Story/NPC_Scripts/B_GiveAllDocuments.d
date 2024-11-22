@@ -21,7 +21,7 @@ func void B_GiveAllClassicDocuments(var C_Npc npc)
 	CreateInvItem(npc,ItWr_PermissionToWearInnosEye_MIS);
 	CreateInvItem(npc,ItWr_XardasBookForPyrokar_MIS);
 	CreateInvItem(npc,ItWr_CorneliusTagebuch_MIS);
-	CreateInvItem(npc,ITWR_DementorObsessionBook_MIS);
+	CreateInvItem(npc,ItWr_DementorObsessionBook_MIS);
 	CreateInvItem(npc,ItWr_PyrokarsObsessionList);
 	CreateInvItem(npc,ItWr_BabosLetter_MIS);
 	CreateInvItem(npc,ItWr_BabosPinUp_MIS);

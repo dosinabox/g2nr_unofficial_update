@@ -41,7 +41,7 @@ func void evt_orkoberst()
 		};
 		if(!Npc_IsDead(Mario_DI))
 		{
-			CreateInvItem(Mario_DI,ITWR_DementorObsessionBook_MIS);
+			CreateInvItem(Mario_DI,ItWr_DementorObsessionBook_MIS);
 			Npc_ExchangeRoutine(Mario_DI,"ORKSTURMDI");
 			B_SetGuild(Mario_DI,GIL_DMT);
 			Mario_DI.aivar[AIV_PARTYMEMBER] = FALSE;

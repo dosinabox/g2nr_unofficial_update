@@ -143,10 +143,10 @@ func void DIA_PAL_9_STANDARD_Info()
 
 func void B_AssignAmbientInfos_PAL_9(var C_Npc slf)
 {
-	dia_pal_9_exit.npc = Hlp_GetInstanceID(slf);
-	dia_pal_9_join.npc = Hlp_GetInstanceID(slf);
-	dia_pal_9_people.npc = Hlp_GetInstanceID(slf);
-	dia_pal_9_location.npc = Hlp_GetInstanceID(slf);
-	dia_pal_9_standard.npc = Hlp_GetInstanceID(slf);
+	DIA_PAL_9_EXIT.npc = Hlp_GetInstanceID(slf);
+	DIA_PAL_9_JOIN.npc = Hlp_GetInstanceID(slf);
+	DIA_PAL_9_PEOPLE.npc = Hlp_GetInstanceID(slf);
+	DIA_PAL_9_LOCATION.npc = Hlp_GetInstanceID(slf);
+	DIA_PAL_9_STANDARD.npc = Hlp_GetInstanceID(slf);
 };
 

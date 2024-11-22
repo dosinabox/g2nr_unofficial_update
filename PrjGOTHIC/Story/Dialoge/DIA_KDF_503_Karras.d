@@ -666,7 +666,7 @@ instance DIA_Karras_HaveBook(C_Info)
 
 func int DIA_Karras_HaveBook_Condition()
 {
-	if((MIS_KarrasResearchDMT == LOG_Running) && Npc_HasItems(hero,ITWR_DementorObsessionBook_MIS) && (hero.guild == GIL_KDF))
+	if((MIS_KarrasResearchDMT == LOG_Running) && Npc_HasItems(hero,ItWr_DementorObsessionBook_MIS) && (hero.guild == GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -679,7 +679,7 @@ func void DIA_Karras_HaveBook_Info()
 {
 	AI_Output(other,self,"DIA_Karras_HaveBook_15_00");	//Я принес альманах Одержимых. Может быть, он чем-нибудь тебе поможет.
 	AI_Output(self,other,"DIA_Karras_HaveBook_10_01");	//Покажи.
-	Npc_RemoveInvItems(other,ITWR_DementorObsessionBook_MIS,1);
+	Npc_RemoveInvItems(other,ItWr_DementorObsessionBook_MIS,1);
 	AI_PrintScreen("Альманах отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Karras_HaveBook_10_02");	//Да, это может подойти. Я должен изучить эту книгу.
 	AI_Output(self,other,"DIA_Karras_HaveBook_10_03");	//Но я уже уверен в одном.
@@ -730,7 +730,7 @@ func void DIA_Karras_ResearchDMTEnd_Info()
 		AI_Output(other,self,"DIA_Karras_ResearchDMTEnd_15_10");	//У меня есть догадка. Это все похоже на Братство Спящего. Я знаю этих парней.
 		AI_Output(self,other,"DIA_Karras_ResearchDMTEnd_10_11");	//Надеюсь, ты понимаешь, с чем имеешь дело. Будь осторожен, брат.
 		AI_Output(self,other,"DIA_Karras_ResearchDMTEnd_10_12");	//Да, конечно же! Вот твой альманах. Мне он больше не нужен.
-		CreateInvItems(other,ITWR_DementorObsessionBook_MIS,1);
+		CreateInvItems(other,ItWr_DementorObsessionBook_MIS,1);
 		AI_PrintScreen("Альманах получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		SC_KnowsMadPsi = TRUE;
 		B_LogEntry(TOPIC_DEMENTOREN,"Исследования Карраса завершились успехом. Похоже, есть связь между Ищущими и Братством Спящего.");
