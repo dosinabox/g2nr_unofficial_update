@@ -197,6 +197,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Balthasar_BengarsWeide = LOG_FAILED;
 			};
 		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Jarvis))
+		{
+			if(MIS_Jarvis_SldKO == LOG_Running)
+			{
+				MIS_Jarvis_SldKO = LOG_FAILED;
+			};
+		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rod))
 		{
 			if(MIS_RodSword == LOG_Running)
@@ -344,6 +351,17 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 			if(MIS_TalbinCheese == LOG_Running)
 			{
 				MIS_TalbinCheese = LOG_OBSOLETE;
+			};
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Oric))
+		{
+			if(MIS_OricBruder == LOG_Running)
+			{
+				MIS_OricBruder = LOG_FAILED;
+			};
+			if(MIS_KillHoshPak == LOG_Running)
+			{
+				MIS_KillHoshPak = LOG_FAILED;
 			};
 		}
 		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bilgot))

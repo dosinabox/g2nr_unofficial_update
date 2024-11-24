@@ -1425,3 +1425,4 @@ var int LevelUpsDuringTransform;
 var int Torlof_KnowsDragons;
 var int Torlof_Go;
 var int Morgan_GotRing;
+var int Ehnim_KnowsVinoIsDead;
