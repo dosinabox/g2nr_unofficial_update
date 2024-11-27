@@ -2571,7 +2571,7 @@ func void DIA_Lares_AnyNews_Info()
 					Log_AddEntry(TOPIC_RescueBennet,"Чтобы узнать больше, мне надо поговорить с его учеником Ходжесом.");
 				};
 			};
- 		};
+		};
 	};
 };
 

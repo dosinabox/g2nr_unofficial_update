@@ -197,7 +197,7 @@ func void DIA_Brian_NEEDWEAPONS_Info()
 };
 
 
-var int Brian_Trade_einmal;
+var int Brian_Trade_Einmal;
 
 instance DIA_Brian_WASKAUFEN(C_Info)
 {
@@ -235,7 +235,7 @@ func void DIA_Brian_WASKAUFEN_Info()
 	{
 		AI_Output(self,other,"DIA_Brian_WASKAUFEN_04_05");	//Я могу продать тебе стальные заготовки.
 	};
-	if(Brian_Trade_einmal == FALSE)
+	if(Brian_Trade_Einmal == FALSE)
 	{
 		if(MIS_Jack_NewLighthouseOfficer != LOG_SUCCESS)
 		{
@@ -247,7 +247,7 @@ func void DIA_Brian_WASKAUFEN_Info()
 			Log_CreateTopic(TOPIC_OutTrader,LOG_NOTE);
 			B_LogEntry(TOPIC_OutTrader,"Брайан, бывший подмастерье Гарада, продает стальные заготовки в маяке неподалеку от города.");
 		};
-		Brian_Trade_einmal = TRUE;
+		Brian_Trade_Einmal = TRUE;
 	};
 	if(!Npc_HasItems(self,ItMw_1H_Mace_L_04) && !Npc_HasItems(other,ItMw_1H_Mace_L_04) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE) && (Player_IsApprentice == APP_Harad))
 	{

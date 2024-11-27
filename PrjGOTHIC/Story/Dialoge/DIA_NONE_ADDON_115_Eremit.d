@@ -280,7 +280,7 @@ func void DIA_Addon_Eremit_Klamotten_BACK()
 	Info_ClearChoices(DIA_Addon_Eremit_Klamotten);
 };
 
- func void DIA_Addon_Eremit_Klamotten_PIR_L()
+func void DIA_Addon_Eremit_Klamotten_PIR_L()
 {
 	B_GiveInvItems(other,self,ITAR_PIR_L_Addon,1);
 	B_Eremit_Tatsache();

@@ -128,7 +128,7 @@ func void DIA_Zuris_GREET_Info()
 };
 
 
-var int Zuris_einmal;
+var int Zuris_Einmal;
 
 instance DIA_Zuris_WAREZ(C_Info)
 {
@@ -150,10 +150,10 @@ func int DIA_Zuris_WAREZ_Condition()
 func void DIA_Zuris_WAREZ_Info()
 {
 	AI_Output(other,self,"DIA_Zuris_WAREZ_15_00");	//Покажи мне свои товары.
-	if(Zuris_einmal == FALSE)
+	if(Zuris_Einmal == FALSE)
 	{
 		AI_Output(self,other,"DIA_Zuris_GREET_14_02");	//Я только что получил несколько новых зелий. Мой гость, мастер Дарон, маг Огня, принес мне их из монастыря.
-		Zuris_einmal = TRUE;
+		Zuris_Einmal = TRUE;
 	};
 	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
 	{
@@ -296,7 +296,7 @@ instance DIA_Zuris_Kloster(C_Info)
 
 func int DIA_Zuris_Kloster_Condition()
 {
-	if((Zuris_einmal == TRUE) || Npc_KnowsInfo(other,DIA_Zuris_Potions))
+	if((Zuris_Einmal == TRUE) || Npc_KnowsInfo(other,DIA_Zuris_Potions))
 	{
 		if(other.guild != GIL_KDF)
 		{

@@ -52,6 +52,10 @@ func void DIA_Lee_EXIT_Info()
 	{
 		AI_Output(self,other,"DIA_Lee_DoAboutBennet_04_07_add");	//Чуть не забыл...
 		B_Lee_Teleport();
+	}
+	else
+	{
+		B_Lee_Sends_To_Buster();
 	};
 	AI_StopProcessInfos(self);
 };
@@ -1167,6 +1171,7 @@ func void DIA_Lee_Teleport_Info()
 	AI_Output(self,other,"DIA_Lee_Add_04_05");	//Ах. Хорошо, что ты пришел.
 	AI_Output(other,self,"DIA_Lee_Add_15_06");	//Что случилось?
 	B_Lee_Teleport();
+	B_Lee_Sends_To_Buster();
 };
 
 
@@ -1963,8 +1968,8 @@ func void DIA_Lee_StillNeedYou_Info()
 	{
 		AI_Output(self,other,"DIA_Lee_StillNeedYou_04_02");	//Знаешь, а не пошел бы ты! Сначала ты сказал, чтобы я пришел, затем отправил меня назад!
 		AI_Output(self,other,"DIA_Lee_StillNeedYou_04_03");	//Найди себе другого идиота!
-		AI_StopProcessInfos(self);
 		Lee_IsOnBoard = LOG_FAILED;
+		AI_StopProcessInfos(self);
 	};
 };
 
