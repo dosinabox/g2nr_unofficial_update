@@ -13,78 +13,78 @@ func int C_NpcCanEquipWeapons(var C_Npc slf)
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Quarhodron))
+	if(C_IsNpc(slf,NONE_ADDON_111_Quarhodron))
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rhademes))
+	if(C_IsNpc(slf,NONE_ADDON_112_Rhademes))
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Elvrich))
+	if(C_IsNpc(slf,VLK_4302_Addon_Elvrich))
 	{
 		if(Elvrich_GoesBack2Thorben == FALSE)
 		{
 			return FALSE;
 		};
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(GornOW))
+	else if(C_IsNpc(slf,PC_Fighter_OW))
 	{
 		if(MIS_RescueGorn != LOG_SUCCESS)
 		{
 			return FALSE;
 		};
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rengaru))
+	else if(C_IsNpc(slf,VLK_492_Rengaru))
 	{
 		if(Rengaru_Ausgeliefert == TRUE)
 		{
 			return FALSE;
 		};
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Halvor))
+	else if(C_IsNpc(slf,VLK_469_Halvor))
 	{
 		if(Halvor_Ausgeliefert == TRUE)
 		{
 			return FALSE;
 		};
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Nagur))
+	else if(C_IsNpc(slf,VLK_493_Nagur))
 	{
 		if(Nagur_Ausgeliefert == TRUE)
 		{
 			return FALSE;
 		};
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sarah))
+	else if(C_IsNpc(slf,VLK_470_Sarah))
 	{
 		if(Sarah_Ausgeliefert == TRUE)
 		{
 			return FALSE;
 		};
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Canthar))
+	else if(C_IsNpc(slf,VLK_468_Canthar))
 	{
 		if((Canthar_Ausgeliefert == TRUE) && (Andre_ToldInfoFromCanthar == FALSE))
 		{
 			return FALSE;
 		};
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bennet))
+	else if(C_IsNpc(slf,SLD_809_Bennet))
 	{
 		if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS))
 		{
 			return FALSE;
 		};
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fernando))
+	else if(C_IsNpc(slf,VLK_405_Fernando))
 	{
 		if(Fernando_ImKnast == TRUE)
 		{
 			return FALSE;
 		};
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Borka))
+	else if(C_IsNpc(slf,VLK_434_Borka))
 	{
 		if(MIS_Andre_REDLIGHT == LOG_SUCCESS)
 		{
@@ -182,7 +182,7 @@ func void B_RefreshAtInsert()
 	{
 		if((Pardos_Geheilt == FALSE) && (Sklaven_Flucht == FALSE))
 		{
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Pardos))
+			if(C_IsNpc(self,STRF_1122_Addon_Pardos))
 			{
 				return;
 			};

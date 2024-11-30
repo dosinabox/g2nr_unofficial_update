@@ -5,7 +5,7 @@ func int C_NpcIsPaladin(var C_Npc slf)
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Andre))
+	if(C_IsNpc(slf,MIL_311_Andre))
 	{
 		return TRUE;
 	};
@@ -13,7 +13,7 @@ func int C_NpcIsPaladin(var C_Npc slf)
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Torwache_305))
+	if(C_IsNpc(slf,MIL_305_Torwache))
 	{
 		return TRUE;
 	};

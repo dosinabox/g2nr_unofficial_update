@@ -7,7 +7,7 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 		armor = Npc_GetEquippedArmor(oth);
 		if(Hlp_IsItem(armor,ITAR_RANGER_Addon) && (CurrentLevel == NEWWORLD_ZEN))
 		{
-			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Baltram))
+			if(C_IsNpc(slf,VLK_410_Baltram))
 			{
 				if(Baltram_Exchange4Lares == TRUE)
 				{
@@ -17,7 +17,7 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 					};
 				};
 			}
-			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cavalorn))
+			else if(C_IsNpc(slf,BAU_4300_Addon_Cavalorn))
 			{
 				if(Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_PATH_15") < 5000)
 				{
@@ -28,14 +28,14 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 					return TRUE;
 				};
 			}
-			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lares))
+			else if(C_IsNpc(slf,VLK_449_Lares))
 			{
 				if(Npc_GetDistToWP(slf,"NW_CITY_HABOUR_02_B") < 5000)
 				{
 					return TRUE;
 				};
 			}
-			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
+			else if(C_IsNpc(slf,VLK_439_Vatras))
 			{
 				if(VatrasPissedOffForever == FALSE)
 				{
@@ -45,14 +45,14 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 					};
 				};
 			}
-			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY))
+			else if(C_IsNpc(slf,KDW_140300_Addon_Myxir_CITY))
 			{
 				if(Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_TEMPLE_FRONT") < 5000)
 				{
 					return TRUE;
 				};
 			}
-			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Martin))
+			else if(C_IsNpc(slf,MIL_350_Addon_Martin))
 			{
 				if(Npc_GetDistToWP(slf,"NW_CITY_PALCAMP_15") < 5000)
 				{
@@ -63,7 +63,7 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 					return TRUE;
 				};
 			}
-			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cord))
+			else if(C_IsNpc(slf,SLD_805_Cord))
 			{
 				if(Npc_GetDistToWP(slf,"NW_BIGFARM_HOUSE_15") < 1000)
 				{
@@ -119,14 +119,14 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 				return TRUE;
 			};
 		}
-		else if((slf.guild == GIL_NOV) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Ulf)))
+		else if((slf.guild == GIL_NOV) || C_IsNpc(slf,NOV_602_Ulf))
 		{
 			if(oth.guild == GIL_NOV)
 			{
 				return TRUE;
 			};
 		}
-		else if((slf.guild == GIL_KDF) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Daron)))
+		else if((slf.guild == GIL_KDF) || C_IsNpc(slf,KDF_511_Daron))
 		{
 			if((oth.guild == GIL_NOV) || (oth.guild == GIL_KDF))
 			{
@@ -211,14 +211,14 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 			return TRUE;
 		};
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Ulf))
+	else if(C_IsNpc(slf,NOV_602_Ulf))
 	{
 		if((oth.guild == GIL_NOV) && !Hlp_IsItem(armor,ITAR_NOV_L))
 		{
 			return TRUE;
 		};
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Daron))
+	else if(C_IsNpc(slf,KDF_511_Daron))
 	{
 		if((oth.guild == GIL_KDF) && !Hlp_IsItem(armor,ITAR_KDF_L) && !Hlp_IsItem(armor,ITAR_KDF_M) && !Hlp_IsItem(armor,ITAR_KDF_H) && !Hlp_IsItem(armor,ITAR_KDF_S))
 		{

@@ -223,7 +223,7 @@ var int SCUsed_AllNWTeleporststones;
 var int Lord_Hagen_GotOrnament;
 var int Hagen_BringProof;
 var int Vatras2Saturas_FindRaven_Open;
-var int SCUsed_TELEPORTER;
+//var int SCUsed_TELEPORTER;
 var int SCUsed_NW_TELEPORTSTATION_CITY;
 var int SCUsed_NW_TELEPORTSTATION_TAVERNE;
 var int SCUsed_NW_TELEPORTSTATION_MAYA;

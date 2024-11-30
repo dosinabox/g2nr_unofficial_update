@@ -738,9 +738,12 @@ instance DIA_Addon_Lares_Teleportstation(C_Info)
 
 func int DIA_Addon_Lares_Teleportstation_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS) && (SCUsed_TELEPORTER == TRUE) && (MIS_Lares_BringRangerToMe != FALSE))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS) && (MIS_Lares_BringRangerToMe != FALSE))
 	{
-		return TRUE;
+		if((SCUsed_NW_TELEPORTSTATION_MAYA == TRUE) || (SCUsed_NW_TELEPORTSTATION_TAVERNE == TRUE) || (SCUsed_NW_TELEPORTSTATION_CITY == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 

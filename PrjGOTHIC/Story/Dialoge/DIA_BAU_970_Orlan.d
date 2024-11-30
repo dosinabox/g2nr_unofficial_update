@@ -226,7 +226,7 @@ func int DIA_Addon_Orlan_Teleportstein_Condition()
 {
 	if((SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
 	{
-		if(SCUsed_TELEPORTER == TRUE)
+		if((SCUsed_NW_TELEPORTSTATION_MAYA == TRUE) || (SCUsed_NW_TELEPORTSTATION_TAVERNE == TRUE) || (SCUsed_NW_TELEPORTSTATION_CITY == TRUE))
 		{
 			return TRUE;
 		};

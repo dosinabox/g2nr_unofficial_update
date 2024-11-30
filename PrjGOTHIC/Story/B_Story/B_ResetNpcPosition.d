@@ -71,8 +71,8 @@ func void B_ResetWolfSLDs()
 	{
 		if(Npc_IsDead(SLD_Wolf))
 		{
-			B_StartOtherRoutine(SLD_815_Soeldner,"START");
-			B_StartOtherRoutine(SLD_817_Soeldner,"START");
+			B_StartOtherRoutine(SLD_815,"START");
+			B_StartOtherRoutine(SLD_817,"START");
 			MIS_BengarsHelpingSLD = LOG_OBSOLETE;
 		};
 	};

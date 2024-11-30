@@ -33,7 +33,7 @@ func void ZS_Dead()
 		};
 		if(Npc_IsPlayer(other) || ((other.aivar[AIV_PARTYMEMBER] == TRUE) && C_NpcIsSummon(other)))
 		{
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ramon))
+			if(C_IsNpc(self,BDT_1071_Addon_Ramon))
 			{
 				Player_HasTalkedToBanditCamp = TRUE;
 			}
@@ -52,7 +52,7 @@ func void ZS_Dead()
 		if(Npc_IsPlayer(other))
 		{
 			self.aivar[AIV_KilledByPlayer] = TRUE;
-			if(C_DropUnconscious() && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Pedro_DI)))
+			if(C_DropUnconscious() && !C_IsNpc(self,NOV_600_Pedro_DI))
 			{
 				MadKillerCount += 1;
 			};
@@ -98,23 +98,23 @@ func void ZS_Dead()
 						Grimbald_Snappers_KilledByPlayer += 1;
 					};
 				}
-				else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rod))
+				else if(C_IsNpc(self,SLD_804_Rod))
 				{
 					Rod_KilledByPlayer = TRUE;
 				}
-				else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Sentenza))
+				else if(C_IsNpc(self,SLD_814_Sentenza))
 				{
 					Sentenza_KilledByPlayer = TRUE;
 				}
-				else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Fester))
+				else if(C_IsNpc(self,SLD_816_Fester))
 				{
 					Fester_KilledByPlayer = TRUE;
 				}
-				else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Raoul))
+				else if(C_IsNpc(self,SLD_822_Raoul))
 				{
 					Raoul_KilledByPlayer = TRUE;
 				}
-				else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bullco))
+				else if(C_IsNpc(self,SLD_807_Bullco))
 				{
 					Bullco_KilledByPlayer = TRUE;
 				};

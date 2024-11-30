@@ -5,7 +5,6 @@ var C_Npc Ramon;
 var C_Npc BanditGuard;
 var C_Npc Lehmar;
 var C_Npc Franco;
-var C_Npc Edgor;
 var C_Npc Esteban;
 var C_Npc Carlos;
 var C_Npc Finn;
@@ -49,7 +48,6 @@ var C_Npc Greg;
 var C_Npc Malcom;
 var C_Npc Owen;
 var C_Npc Skip;
-var C_Npc Skip_NW;
 var C_Npc Brandon;
 var C_Npc Matt;
 var C_Npc RoastPirate;
@@ -135,7 +133,6 @@ var C_Npc Bosper;
 var C_Npc Matteo;
 var C_Npc Jack;
 var C_Npc Jack_DI;
-var C_Npc Jorgen_DI;
 var C_Npc Peck;
 var C_Npc Cassia;
 var C_Npc Jesper;
@@ -167,7 +164,6 @@ var C_Npc Akil;
 var C_Npc Orlan;
 var C_Npc Rukhar;
 var C_Npc Randolph;
-var C_Npc Pedro;
 var C_Npc Lares;
 var C_Npc Vatras;
 var C_Npc Vatras_DI;
@@ -197,7 +193,6 @@ var C_Npc GerbrandtsFrau;
 var C_Npc Morgahard;
 var C_Npc Tengron;
 var C_Npc Engor;
-var C_Npc Bruder;
 var C_Npc Den;
 var C_Npc Silvestro;
 var C_Npc Olav;
@@ -280,13 +275,11 @@ var C_Npc Pepe;
 var C_Npc Garwig;
 var C_Npc Lucia;
 var C_Npc Huno;
-var C_Npc Baltram;
 var C_Npc Zuris;
 var C_Npc Jora;
 var C_Npc Tandor;
 var C_Npc Khaled;
 var C_Npc Meldor;
-var C_Npc Daron;
 var C_Npc Lance;
 var C_Npc William;
 var C_Npc Serpentes;
@@ -294,15 +287,14 @@ var C_Npc Nov610;
 var C_Npc BridgeBandit;
 var C_Npc BDT_1051;
 var C_Npc BDT_1052;
-var C_Npc Talbin;
-var C_Npc TalbinNW;
 var C_Npc Hanna;
-var C_Npc Kardif;
 var C_Npc AntiPaladin_NW;
 var C_Npc AntiPaladin_DI;
 var C_Npc TowerBandit1;
 var C_Npc TowerBandit2;
 var C_Npc TowerBandit3;
+var C_Npc SLD_815;
+var C_Npc SLD_817;
 
 func void B_InitNpc_NW()
 {
@@ -324,7 +316,6 @@ func void B_InitNpc_NW()
 	Ambusher_1014 = Hlp_GetNpc(BDT_1014_Bandit_L);
 	Ambusher_1015 = Hlp_GetNpc(BDT_1015_Bandit_L);
 	Biff_NW = Hlp_GetNpc(DJG_713_Biff_NW);
-	TalbinNW = Hlp_GetNpc(VLK_4132_Talbin_NW);
 	Orlan = Hlp_GetNpc(BAU_970_Orlan);
 	Rukhar = Hlp_GetNpc(BAU_973_Rukhar);
 	Magic_Golem = Hlp_GetNpc(MagicGolem);
@@ -334,7 +325,6 @@ func void B_InitNpc_NW()
 	BridgeBandit = Hlp_GetNpc(BDT_1020_Bandit_L);
 	BDT_1051 = Hlp_GetNpc(BDT_1051_Wegelagerer);
 	BDT_1052 = Hlp_GetNpc(BDT_1052_Wegelagerer);
-	Skip_NW = Hlp_GetNpc(PIR_1301_Addon_Skip_NW);
 	//ферма ќнара
 	Lee = Hlp_GetNpc(SLD_800_Lee);
 	Torlof = Hlp_GetNpc(SLD_801_Torlof);
@@ -359,6 +349,8 @@ func void B_InitNpc_NW()
 	Angar_NW = Hlp_GetNpc(DJG_705_Angar_NW);
 	GornNW_vor_DJG = Hlp_GetNpc(PC_Fighter_NW_vor_DJG);
 	GornNW_nach_DJG = Hlp_GetNpc(PC_Fighter_NW_nach_DJG);
+	SLD_815 = Hlp_GetNpc(SLD_815_Soeldner);
+	SLD_817 = Hlp_GetNpc(SLD_817_Soeldner);
 	//ферма јкила
 	Akil = Hlp_GetNpc(BAU_940_Akil);
 	Kati = Hlp_GetNpc(BAU_941_Kati);
@@ -426,15 +418,12 @@ func void B_InitNpc_NW()
 	Wulfgar = Hlp_GetNpc(MIL_312_Wulfgar);
 	Mario = Hlp_GetNpc(NONE_101_Mario);
 	Hanna = Hlp_GetNpc(VLK_414_Hanna);
-	Kardif = Hlp_GetNpc(VLK_431_Kardif);
 	Bote = Hlp_GetNpc(VLK_4006_Bote);
 	Hakon = Hlp_GetNpc(VLK_407_Hakon);
 	Edda = Hlp_GetNpc(VLK_471_Edda);
-	Baltram = Hlp_GetNpc(VLK_410_Baltram);
 	Zuris = Hlp_GetNpc(VLK_409_Zuris);
 	Jora = Hlp_GetNpc(VLK_408_Jora);
 	Meldor = Hlp_GetNpc(VLK_415_Meldor);
-	Daron = Hlp_GetNpc(KDF_511_Daron);
 	Ulf = Hlp_GetNpc(NOV_602_Ulf);
 	DiegoNW = Hlp_GetNpc(PC_Thief_NW);
 	//верхний квартал
@@ -492,7 +481,6 @@ func void B_InitNpc_NW()
 	Karras = Hlp_GetNpc(KDF_503_Karras);
 	Gorax = Hlp_GetNpc(KDF_508_Gorax);
 	Isgaroth = Hlp_GetNpc(KDF_509_Isgaroth);
-	Pedro = Hlp_GetNpc(NOV_600_Pedro);
 	Igaraz = Hlp_GetNpc(NOV_601_Igaraz);
 	Agon = Hlp_GetNpc(NOV_603_Agon);
 	Dyrian = Hlp_GetNpc(NOV_604_Dyrian);
@@ -520,7 +508,6 @@ func void B_InitNpc_ADW()
 	Logan = Hlp_GetNpc(BDT_1072_Addon_Logan);
 	Ramon = Hlp_GetNpc(BDT_1071_Addon_Ramon);
 	Franco = Hlp_GetNpc(BDT_1093_Addon_Franco);
-	Edgor = Hlp_GetNpc(BDT_1074_Addon_Edgor);
 	Esteban = Hlp_GetNpc(BDT_1083_Addon_Esteban);
 	Scatty = Hlp_GetNpc(BDT_1086_Addon_Scatty);
 	Carlos = Hlp_GetNpc(BDT_1079_Addon_Carlos);
@@ -579,7 +566,6 @@ func void B_InitNpc_OW()
 	Kervo = Hlp_GetNpc(STRF_1116_Kervo);
 	Geppert = Hlp_GetNpc(STRF_1115_Geppert);
 	Jergan = Hlp_GetNpc(VLK_4110_Jergan);
-	Talbin = Hlp_GetNpc(VLK_4130_Talbin);
 	DiegoOW = Hlp_GetNpc(PC_ThiefOW);
 	DJG_Angar = Hlp_GetNpc(DJG_705_Angar);
 	//драконы
@@ -622,7 +608,6 @@ func void B_InitNpc_OW()
 	Marcos_Guard2 = Hlp_GetNpc(PAL_257_Ritter);
 	//трупы
 	DeadSengrath = Hlp_GetNpc(PAL_275_DeadSengrath);
-	Bruder = Hlp_GetNpc(PAL_2004_Bruder);
 	Den = Hlp_GetNpc(VLK_4112_Den);
 	Olav = Hlp_GetNpc(VLK_4152_Olav);
 	Silvestro = Hlp_GetNpc(PAL_2002_Leiche);
@@ -647,7 +632,6 @@ func void B_InitNpc_DI()
 	Biff_DI = Hlp_GetNpc(DJG_713_Biff_DI);
 	//капитаны
 	Jack_DI = Hlp_GetNpc(VLK_444_Jack_DI);
-	Jorgen_DI = Hlp_GetNpc(VLK_4250_Jorgen_DI);
 	Torlof_DI = Hlp_GetNpc(SLD_801_Torlof_DI);
 	//драконы
 	FireDragonIsland = Hlp_GetNpc(Dragon_Fire_Island);

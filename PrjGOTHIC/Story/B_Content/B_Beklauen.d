@@ -71,19 +71,19 @@ func void B_StealItem()
 				TotalTheftGold += item.value;
 			};
 		};
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lehmar))
+		if(C_IsNpc(self,VLK_484_Lehmar))
 		{
 			Lehmar_StealBook_Day = B_GetDayPlus();
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Franco))
+		else if(C_IsNpc(self,BDT_1093_Addon_Franco))
 		{
 			UnEquip_ItAm_Addon_Franco();
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Richter))
+		else if(C_IsNpc(self,VLK_402_Richter))
 		{
 			self.flags = 0;
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Edgor))
+		else if(C_IsNpc(self,BDT_1074_Addon_Edgor))
 		{
 			B_Say(self,self,"$AWAKE");
 		};
