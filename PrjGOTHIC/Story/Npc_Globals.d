@@ -61,12 +61,9 @@ var C_Npc Nefarius_NW;
 var C_Npc Cronos_ADW;
 var C_Npc Cronos_NW;
 var C_Npc Saturas_NW;
-var C_Npc Myxir_ADW;
-var C_Npc Myxir_CITY;
 var C_Npc Quarhodron;
 var C_Npc Rhademes;
 var C_Npc Dexter;
-var C_Npc GornOW;
 var C_Npc GornDJG;
 var C_Npc GornNW_vor_DJG;
 var C_Npc GornNW_nach_DJG;
@@ -113,7 +110,6 @@ var C_Npc Lothar;
 var C_Npc Girion;
 var C_Npc Salandril;
 var C_Npc Cornelius;
-var C_Npc Bartok;
 var C_Npc CityOrc;
 var C_Npc Gritta;
 var C_Npc Richter;
@@ -168,7 +164,7 @@ var C_Npc Lares;
 var C_Npc Vatras;
 var C_Npc Vatras_DI;
 var C_Npc Pablo;
-var C_Npc Nov607;
+var C_Npc NOV_607;
 var C_Npc Magic_Golem;
 var C_Npc Igaraz;
 var C_Npc Agon;
@@ -282,8 +278,7 @@ var C_Npc Khaled;
 var C_Npc Meldor;
 var C_Npc Lance;
 var C_Npc William;
-var C_Npc Serpentes;
-var C_Npc Nov610;
+var C_Npc NOV_610;
 var C_Npc BridgeBandit;
 var C_Npc BDT_1051;
 var C_Npc BDT_1052;
@@ -399,7 +394,6 @@ func void B_InitNpc_NW()
 	Moe = Hlp_GetNpc(VLK_432_Moe);
 	Sarah = Hlp_GetNpc(VLK_470_Sarah);
 	Andre = Hlp_GetNpc(MIL_311_Andre);
-	Bartok = Hlp_GetNpc(VLK_440_Bartok);
 	Gritta = Hlp_GetNpc(VLK_418_Gritta);
 	Constantino = Hlp_GetNpc(VLK_417_Constantino);
 	Thorben = Hlp_GetNpc(VLK_462_Thorben);
@@ -459,7 +453,6 @@ func void B_InitNpc_NW()
 	Saturas_NW = Hlp_GetNpc(KDW_1400_Addon_Saturas_NW);
 	Nefarius_NW = Hlp_GetNpc(KDW_1402_Addon_Nefarius_NW);
 	Cronos_NW = Hlp_GetNpc(KDW_1401_Addon_Cronos_NW);
-	Myxir_CITY = Hlp_GetNpc(KDW_140300_Addon_Myxir_CITY);
 	Myxir_NW = Hlp_GetNpc(KDW_1403_Addon_Myxir_NW);
 	Riordian_NW = Hlp_GetNpc(KDW_1404_Addon_Riordian_NW);
 	Merdarion_NW = Hlp_GetNpc(KDW_1405_Addon_Merdarion_NW);
@@ -477,7 +470,6 @@ func void B_InitNpc_NW()
 	DMT_Vino4 = Hlp_GetNpc(DMT_DementorSpeakerVino4);
 	//монастырь
 	Pyrokar = Hlp_GetNpc(KDF_500_Pyrokar);
-	Serpentes = Hlp_GetNpc(KDF_501_Serpentes);
 	Karras = Hlp_GetNpc(KDF_503_Karras);
 	Gorax = Hlp_GetNpc(KDF_508_Gorax);
 	Isgaroth = Hlp_GetNpc(KDF_509_Isgaroth);
@@ -487,8 +479,8 @@ func void B_InitNpc_NW()
 	Opolos = Hlp_GetNpc(NOV_605_Opolos);
 	Garwig = Hlp_GetNpc(NOV_608_Garwig);
 	Babo = Hlp_GetNpc(NOV_612_Babo);
-	Nov607 = Hlp_GetNpc(NOV_607_Novize);
-	Nov610 = Hlp_GetNpc(NOV_610_Novize);
+	NOV_607 = Hlp_GetNpc(NOV_607_Novize);
+	NOV_610 = Hlp_GetNpc(NOV_610_Novize);
 	Feger1 = Hlp_GetNpc(NOV_615_Novize);
 	Feger2 = Hlp_GetNpc(NOV_611_Novize);
 	Feger3 = Hlp_GetNpc(NOV_609_Novize);
@@ -552,7 +544,6 @@ func void B_InitNpc_ADW()
 	HammerPirate = Hlp_GetNpc(PIR_1360_Addon_Pirat);
 	//маги Воды
 	Cronos_ADW = Hlp_GetNpc(KDW_14010_Addon_Cronos_ADW);
-	Myxir_ADW = Hlp_GetNpc(KDW_14030_Addon_Myxir_ADW);
 	//трупы
 	Angus = Hlp_GetNpc(PIR_1370_Addon_Angus);
 	Lance = Hlp_GetNpc(NONE_ADDON_114_Lance_ADW);
@@ -593,7 +584,6 @@ func void B_InitNpc_OW()
 	Parlaf = Hlp_GetNpc(VLK_4107_Parlaf);
 	Garond = Hlp_GetNpc(PAL_250_Garond);
 	Oric = Hlp_GetNpc(PAL_251_Oric);
-	GornOW = Hlp_GetNpc(PC_Fighter_OW);
 	MiltenOW = Hlp_GetNpc(PC_Mage_OW);
 	Brutus = Hlp_GetNpc(VLK_4100_Brutus);
 	Rethon = Hlp_GetNpc(DJG_709_Rethon);

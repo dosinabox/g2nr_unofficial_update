@@ -152,7 +152,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		};
 		if(C_NpcHasAttackReasonToKill(slf))
 		{
-			if(C_NpcIsImmortal(oth) || (Hlp_GetInstanceID(oth) == Hlp_GetInstanceID(Raven)))
+			if(C_NpcIsImmortal(oth) || C_IsNpc(oth,BDT_1090_Addon_Raven))
 			{
 				B_ReadySpell(slf,SPL_Deathball,SPL_Cost_Deathball);
 			}
@@ -160,7 +160,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			{
 				B_ReadySpell(slf,SPL_DestroyUndead,SPL_Cost_DESTROYUNDEAD);
 			}
-			else if((slf.guild == GIL_KDW) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY)))
+			else if(C_NpcIsWaterMage(slf))
 			{
 				if(oth.protection[PROT_MAGIC] < SPL_Damage_ChargeZap)
 				{
@@ -375,7 +375,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			return TRUE;
 		};
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Hanna))
+	else if(C_IsNpc(slf,VLK_414_Hanna))
 	{
 		if(!Npc_IsInState(oth,ZS_MagicFreeze) && Npc_HasItems(slf,ItSc_IceCube))
 		{

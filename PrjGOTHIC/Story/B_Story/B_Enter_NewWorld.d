@@ -477,7 +477,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 	{
 		B_ResetSalandril();
 		B_StartOtherRoutine(Jorgen,"KLOSTER");
-		B_StartOtherRoutine(Nov610,"REST");
+		B_StartOtherRoutine(NOV_610,"REST");
 		B_KillNpc(BDT_1050_Landstreicher);
 		Wld_InsertItem(ItAt_DragonEgg_MIS,"FP_ITEM_XARDAS_01");
 		Wld_InsertNpc(Draconian,"FP_ROAM_XARDASCAVE_DJG_01");

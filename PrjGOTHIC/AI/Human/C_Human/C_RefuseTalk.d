@@ -7,7 +7,7 @@ func int C_RefuseTalk(var C_Npc slf,var C_Npc oth)
 	};
 	if((slf.aivar[AIV_TalkedToPlayer] == FALSE) && (Npc_GetDistToWP(slf,slf.wp) > 500) && (Mil_305_schonmalreingelassen == FALSE))
 	{
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lothar))
+		if(C_IsNpc(slf,PAL_203_Lothar))
 		{
 			return TRUE;
 		};
@@ -18,19 +18,19 @@ func int C_RefuseTalk(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cavalorn))
+		if(C_IsNpc(slf,BAU_4300_Addon_Cavalorn))
 		{
 			return TRUE;
 		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lares))
+		if(C_IsNpc(slf,VLK_449_Lares))
 		{
 			return TRUE;
 		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
+		if(C_IsNpc(slf,VLK_439_Vatras))
 		{
 			return TRUE;
 		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY))
+		if(C_IsNpc(slf,KDW_140300_Addon_Myxir_CITY))
 		{
 			return TRUE;
 		};

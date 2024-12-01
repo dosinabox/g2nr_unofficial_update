@@ -1,27 +1,15 @@
 
-func int C_NpcIsMage(var C_Npc slf)
+func int C_NpcIsMage(var C_Npc npc)
 {
-	if(slf.guild == GIL_KDF)
+	if(C_NpcIsFireMage(npc))
 	{
 		return TRUE;
 	};
-	if(slf.guild == GIL_KDW)
+	if(C_NpcIsWaterMage(npc))
 	{
 		return TRUE;
 	};
-	if(C_IsNpc(slf,NONE_100_Xardas))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,VLK_439_Vatras))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,KDW_140300_Addon_Myxir_CITY))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,KDF_511_Daron))
+	if(C_IsNpc(npc,NONE_100_Xardas))
 	{
 		return TRUE;
 	};

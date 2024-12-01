@@ -264,7 +264,7 @@ func void DIA_Pyrokar_TEST_Info()
 		CreateInvItems(Igaraz,ItKe_MagicChest,1);
 		AI_Teleport(Igaraz,"NW_TAVERNE_BIGFARM_05");
 		B_StartOtherRoutine(Igaraz,"CONTEST");
-		B_StartOtherRoutine(Nov607,"EXCHANGE");
+		B_StartOtherRoutine(NOV_607,"EXCHANGE");
 	};
 	if(!Npc_IsDead(Agon))
 	{
@@ -576,7 +576,7 @@ func void DIA_Pyrokar_OATH_Info()
 		}
 		else
 		{
-			B_StartOtherRoutine(Nov607,"START");
+			B_StartOtherRoutine(NOV_607,"START");
 			B_StartOtherRoutine(Agon,"START");
 			Agon.aivar[AIV_DropDeadAndKill] = FALSE;
 			Agon.aivar[AIV_NewsOverride] = FALSE;

@@ -288,7 +288,7 @@ func void B_MoveJorgenFromKloster()
 	if(JorgenMovedFromKloster == FALSE)
 	{
 		Npc_ExchangeRoutine(self,"RAUSAUSKLOSTER");
-		B_StartOtherRoutine(Nov610,"START");
+		B_StartOtherRoutine(NOV_610,"START");
 		JorgenMovedFromKloster = TRUE;
 	};
 };
@@ -372,7 +372,7 @@ func void DIA_Jorgen_BEMYCAPTAIN3_Info()
 	B_GivePlayerXP(XP_Captain_Success);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"WAITFORSHIPCAPTAIN");
-	B_StartOtherRoutine(Nov610,"START");
+	B_StartOtherRoutine(NOV_610,"START");
 };
 
 

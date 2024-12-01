@@ -53,11 +53,11 @@ func int ZS_Circle_Loop()
 			Npc_SetStateTime(self,0);
 			Wld_PlayEffect("FX_EarthQuake",self,self,0,0,0,FALSE);
 			AI_PlayAni(self,"T_PRACTICEMAGIC5");
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Xardas))
+			if(C_IsNpc(self,NONE_100_Xardas))
 			{
 				Wld_PlayEffect("spellFX_INCOVATION_VIOLET",self,self,0,0,0,FALSE);
 			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Pyrokar))
+			else if(C_IsNpc(self,KDF_500_Pyrokar))
 			{
 				Wld_PlayEffect("spellFX_INCOVATION_RED",self,self,0,0,0,FALSE);
 			}

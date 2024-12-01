@@ -126,7 +126,7 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 				return TRUE;
 			};
 		}
-		else if((slf.guild == GIL_KDF) || C_IsNpc(slf,KDF_511_Daron))
+		else if(C_NpcIsFireMage(slf))
 		{
 			if((oth.guild == GIL_NOV) || (oth.guild == GIL_KDF))
 			{
