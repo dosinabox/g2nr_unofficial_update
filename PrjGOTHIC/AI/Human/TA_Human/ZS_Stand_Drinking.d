@@ -57,7 +57,7 @@ func void ZS_Stand_Drinking()
 			self.aivar[AIV_Food] = DRINK_Booze;
 		};
 	}
-	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rukhar)))
+	else if(C_IsNpc(self,BAU_942_Randolph) || C_IsNpc(self,BAU_973_Rukhar))
 	{
 		if(!Npc_HasItems(self,ItFo_Beer))
 		{

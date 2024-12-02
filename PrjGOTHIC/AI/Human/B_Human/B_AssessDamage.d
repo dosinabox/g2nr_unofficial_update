@@ -1,14 +1,14 @@
 
 func void B_AssessDamage()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Greg_NW))
+	if(C_IsNpc(self,PIR_1300_Addon_Greg_NW))
 	{
-		if((B_Greg_ComesToDexter_OneTime == TRUE) && Npc_IsPlayer(other) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_CaughtDexter) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_CaughtDexter2) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_WodennNu))
+		if((B_Greg_ComesToDexter_OneTime == TRUE) && Npc_IsPlayer(other) && (Greg_TalkedToInDexterCamp == FALSE))
 		{
 			return;
 		};
 	}
-	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Quarhodron)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rhademes)))
+	else if(C_IsNpc(self,NONE_ADDON_111_Quarhodron) || C_IsNpc(self,NONE_ADDON_112_Rhademes))
 	{
 		B_GhostSpecialDamage(other);
 		return;
@@ -29,7 +29,7 @@ func void B_AssessDamage()
 	};
 	if(self.aivar[AIV_EnemyOverride] == TRUE)
 	{
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Raven))
+		if(C_IsNpc(self,BDT_1090_Addon_Raven))
 		{
 			self.aivar[AIV_EnemyOverride] = FALSE;
 			Npc_ExchangeRoutine(self,"WAITFORPLAYER");

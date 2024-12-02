@@ -1426,3 +1426,5 @@ var int Torlof_KnowsDragons;
 var int Torlof_Go;
 var int Morgan_GotRing;
 var int Ehnim_KnowsVinoIsDead;
+var int Greg_TalkedToInDexterCamp;
+var int Kardif_KnowsSCAsThief;

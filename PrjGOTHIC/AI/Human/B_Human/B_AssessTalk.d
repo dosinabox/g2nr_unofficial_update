@@ -71,7 +71,7 @@ func void B_AssessTalk()
 			}
 			else if(C_IsNpc(self,VLK_431_Kardif))
 			{
-				if(C_LawArmorEquipped(other) && !Npc_KnowsInfo(other,DIA_Kardif_Zeichen))
+				if(C_LawArmorEquipped(other) && (Kardif_KnowsSCAsThief == FALSE))
 				{
 					Kardif_Busted = TRUE;
 				};

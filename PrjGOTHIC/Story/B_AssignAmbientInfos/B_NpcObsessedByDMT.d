@@ -21,19 +21,19 @@ func void B_NpcClearObsessionByDMT(var C_Npc medium)
 	{
 		AI_EquipBestMeleeWeapon(medium);
 		AI_EquipBestRangedWeapon(medium);
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Sekob))
+		if(C_IsNpc(medium,BAU_930_Sekob))
 		{
 			AI_EquipArmor(medium,ITAR_Vlk_H);
 		}
-		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Randolph))
+		else if(C_IsNpc(medium,BAU_942_Randolph))
 		{
 			AI_EquipArmor(medium,ITAR_Bau_L);
 		}
-		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Vino))
+		else if(C_IsNpc(medium,BAU_952_Vino))
 		{
 			AI_EquipArmor(medium,ITAR_Bau_L);
 		}
-		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Malak))
+		else if(C_IsNpc(medium,BAU_963_Malak))
 		{
 			AI_EquipArmor(medium,ITAR_Bau_M);
 			if(!Npc_IsDead(BAU_962_Bauer))
@@ -72,19 +72,19 @@ func void B_NpcClearObsessionByDMT(var C_Npc medium)
 				AI_StartState(BAU_969_Bauer,ZS_Flee,0,"");
 			};
 		}
-		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Fernando))
+		else if(C_IsNpc(medium,VLK_405_Fernando))
 		{
 			AI_EquipArmor(medium,ITAR_Governor);
 		}
-		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Brutus))
+		else if(C_IsNpc(medium,VLK_4100_Brutus))
 		{
 			AI_EquipArmor(medium,ITAR_MIL_L);
 		}
-		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Engrom))
+		else if(C_IsNpc(medium,VLK_4131_Engrom))
 		{
 			AI_EquipArmor(medium,ITAR_Leather_L);
 		}
-		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Bromor))
+		else if(C_IsNpc(medium,VLK_433_Bromor))
 		{
 			AI_EquipArmor(medium,ITAR_Vlk_H);
 		};
@@ -110,7 +110,7 @@ func void B_NpcObsessedByDMT(var C_Npc medium)
 		AI_PlayAni(medium,"T_PRACTICEMAGIC5");
 		Wld_PlayEffect("spellFX_Fear",medium,medium,0,0,0,FALSE);
 		NpcObsessedByDMT = TRUE;
-		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Brutus))
+		if(C_IsNpc(medium,VLK_4100_Brutus))
 		{
 			if(MIS_OCGateOpen == TRUE)
 			{
@@ -122,37 +122,37 @@ func void B_NpcObsessedByDMT(var C_Npc medium)
 			};
 			NpcObsessedByDMT_Brutus = TRUE;
 		}
-		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Engrom))
+		else if(C_IsNpc(medium,VLK_4131_Engrom))
 		{
 			AI_Output(self,other,"DIA_Engrom_ObsessedByDMT_19_00");	//Поворачивай назад. Пока еще не слишком поздно.
 			NpcObsessedByDMT_Engrom = TRUE;
 		}
-		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Vino))
+		else if(C_IsNpc(medium,BAU_952_Vino))
 		{
 			AI_Output(self,other,"DIA_Vino_ObsessedByDMT_19_00");	//Скоро мы будем управлять всем. Ты и твоя жалкая магия не представляют опасности для нас.
 			NpcObsessedByDMT_Vino = TRUE;
 		}
-		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Malak))
+		else if(C_IsNpc(medium,BAU_963_Malak))
 		{
 			AI_Output(self,other,"DIA_Malak_ObsessedByDMT_19_00");	//Тебе не спасти эту душу, маг. Он никогда не станет прежним.
 			NpcObsessedByDMT_Malak = TRUE;
 		}
-		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Sekob))
+		else if(C_IsNpc(medium,BAU_930_Sekob))
 		{
 			AI_Output(self,other,"DIA_Sekob_ObsessedByDMT_19_00");	//Брось, маг. Тебе не суждено победить.
 			NpcObsessedByDMT_Sekob = TRUE;
 		}
-		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Randolph))
+		else if(C_IsNpc(medium,BAU_942_Randolph))
 		{
 			AI_Output(self,other,"DIA_Randolph_ObsessedByDMT_19_00");	//Не трать свои усилия на этого слабака. Мы поработим их всех.
 			NpcObsessedByDMT_Randolph = TRUE;
 		}
-		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Bromor))
+		else if(C_IsNpc(medium,VLK_433_Bromor))
 		{
 			B_DMTWurm();
 			NpcObsessedByDMT_Bromor = TRUE;
 		}
-		else if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Fernando))
+		else if(C_IsNpc(medium,VLK_405_Fernando))
 		{
 			B_DMTWurm();
 			NpcObsessedByDMT_Fernando = TRUE;
