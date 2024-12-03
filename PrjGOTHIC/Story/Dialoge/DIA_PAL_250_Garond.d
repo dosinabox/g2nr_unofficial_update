@@ -334,9 +334,10 @@ func void DIA_Garond_NeedProof_Info()
 	Log_SetTopicStatus(TOPIC_ScoutMine,LOG_Running);
 	B_LogNextEntry(TOPIC_ScoutMine,"Командующий Гаронд дал мне поручение. Он отправил три группы старателей добывать магическую руду. И до сих пор они не вернулись.");
 	Log_AddEntry(TOPIC_ScoutMine,"Я должен найти эти три группы старателей и выяснить, сколько руды удалось им добыть.");
-	if(Diego_ToldAboutSilvestroOre == TRUE)
+	if((Silvestro_Ore == TRUE) && (Log_Silvestro_Ore == FALSE))
 	{
-		Log_AddEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
+		Log_AddEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место руду, добытую старателями Сильвестро.");
+		Log_Silvestro_Ore = TRUE;
 	};
 };
 
@@ -536,10 +537,17 @@ func void DIA_Garond_Silvestro_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Neoras_Rezept_15_04");	//Я еще не нашел его.
+		DIA_Common_NotFoundYet();
 	};
 	AI_Output(self,other,"DIA_Garond_Silvestro_10_03");	//А что насчет руды? Ты знаешь, сколько они добыли?
-	AI_Output(other,self,"DIA_Garond_Silvestro_15_04");	//Им удалось спрятать несколько ящиков. Они в пещере - по пути от замка к шахте.
+	if(Npc_KnowsInfo(other,DIA_DiegoOw_Beweise))
+	{
+		AI_Output(other,self,"DIA_Garond_Silvestro_15_04");	//Им удалось спрятать несколько ящиков. Они в пещере - по пути от замка к шахте.
+	}
+	else
+	{
+		DIA_Common_No();
+	};
 	B_Garond_OreCounter();
 	B_GivePlayerXP(XP_Silvestro_Ore);
 };

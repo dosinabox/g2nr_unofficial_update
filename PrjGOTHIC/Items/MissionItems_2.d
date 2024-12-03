@@ -212,9 +212,10 @@ func void UseItwr_Silvestro()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Сильвестро");
 	Doc_Show(nDocID);
-	if((MIS_ScoutMine == LOG_Running) && Npc_IsDead(DiegoOW) && (Diego_ToldAboutSilvestroOre == FALSE) && (Silvestro_Ore == FALSE))
+	if((MIS_ScoutMine == LOG_Running) && (Log_Silvestro_Ore == FALSE))
 	{
 		B_LogEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место руду, добытую старателями Сильвестро. Через некоторое время на шахту напали краулеры. Никто не выжил.");
+		Log_Silvestro_Ore = TRUE;
 	};
 	Silvestro_Ore = TRUE;
 };

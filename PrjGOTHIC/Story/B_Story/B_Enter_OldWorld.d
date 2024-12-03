@@ -452,7 +452,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(DJG_732_ToterDrachenjaeger,"OC1");
 		Wld_InsertNpc(DJG_733_ToterDrachenjaeger,"OC1");
 		Wld_InsertNpc(DJG_734_ToterDrachenjaeger,"OC1");
-		if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2))
+		if(C_SylvioGolemsDead())
 		{
 			SylvioIceGolemsKilledBefore4Chapter = TRUE;
 			Npc_ExchangeRoutine(DJG_731_ToterDrachenjaeger,"ICEREGION");

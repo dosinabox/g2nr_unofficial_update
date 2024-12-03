@@ -314,6 +314,11 @@ func void DIA_Common_Maybe()
 	AI_Output(other,self,"DIA_Brian_AboutLehrling_15_02");	//Может быть.
 };
 
+func void DIA_Common_NotFoundYet()
+{
+	AI_Output(other,self,"DIA_Neoras_Rezept_15_04");	//Я еще не нашел его.
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?

@@ -52,7 +52,7 @@ func int DIA_NOV_3_Fegen_Condition()
 func void DIA_NOV_3_Fegen_Info()
 {
 	AI_Output(other,self,"DIA_NOV_3_Fegen_15_00");	//Мне нужна помощь, чтобы подмести кельи послушников.
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger1))
+	if(C_IsNpc(self,NOV_615_Novize))
 	{
 		if(Feger1_Permanent == FALSE)
 		{
@@ -83,7 +83,7 @@ func void DIA_NOV_3_Fegen_Info()
 			AI_Output(self,other,"DIA_NOV_3_Fegen_03_05");	//Послушай, брат, я уже помогаю тебе. Хватит болтать попусту.
 		};
 	}
-	else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger2))
+	else if(C_IsNpc(self,NOV_611_Novize))
 	{
 		if(Feger2_Permanent == FALSE)
 		{

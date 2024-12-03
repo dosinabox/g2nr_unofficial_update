@@ -1,14 +1,14 @@
 
 func void ZS_Ghost()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Quarhodron))
+	if(C_IsNpc(self,NONE_ADDON_111_Quarhodron))
 	{
 		if(Ghost_SCKnowsHow2GetInAdanosTempel == FALSE)
 		{
 			Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessTalk);
 		};
 	}
-	else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rhademes))
+	else if(C_IsNpc(self,NONE_ADDON_112_Rhademes))
 	{
 		if(Rhademes_Fertig == TRUE)
 		{

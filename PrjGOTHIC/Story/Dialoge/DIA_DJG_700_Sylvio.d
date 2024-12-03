@@ -225,7 +225,7 @@ instance DIA_Sylvio_ICEGOLEMSKILLED(C_Info)
 
 func int DIA_Sylvio_ICEGOLEMSKILLED_Condition()
 {
-	if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2) && (MIS_DJG_Sylvio_KillIceGolem == LOG_Running) && !Npc_IsDead(IceDragon))
+	if(C_SylvioGolemsDead() && (MIS_DJG_Sylvio_KillIceGolem == LOG_Running) && !Npc_IsDead(IceDragon))
 	{
 		if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
 		{

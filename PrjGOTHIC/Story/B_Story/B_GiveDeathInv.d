@@ -260,28 +260,28 @@ func void B_GiveDeathInv(var C_Npc slf)
 	{
 		if(DragonScaleLearnedOutsideOW == TRUE)
 		{
-			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(SwampDragon))
+			if(C_IsNpc(slf,Dragon_Swamp))
 			{
 				CreateInvItems(slf,ItAt_DragonScale,12);
 			}
-			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(RockDragon))
+			else if(C_IsNpc(slf,Dragon_Rock))
 			{
 				CreateInvItems(slf,ItAt_DragonScale,12);
 			}
-			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(FireDragon))
+			else if(C_IsNpc(slf,Dragon_Fire))
 			{
 				CreateInvItems(slf,ItAt_DragonScale,12);
 			}
-			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(IceDragon))
+			else if(C_IsNpc(slf,Dragon_Ice))
 			{
 				CreateInvItems(slf,ItAt_DragonScale,12);
 			};
 		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(FireDragonIsland))
+		if(C_IsNpc(slf,Dragon_Fire_Island))
 		{
 			CreateInvItems(slf,ItAt_DragonScale,12);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(UndeadDragon))
+		else if(C_IsNpc(slf,Dragon_Undead))
 		{
 			CreateInvItems(slf,ItAt_DragonScale,12);
 		};
@@ -290,28 +290,28 @@ func void B_GiveDeathInv(var C_Npc slf)
 	{
 		if(DragonBloodLearnedOutsideOW == TRUE)
 		{
-			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(SwampDragon))
+			if(C_IsNpc(slf,Dragon_Swamp))
 			{
 				CreateInvItems(slf,ItAt_DragonBlood,2);
 			}
-			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(RockDragon))
+			else if(C_IsNpc(slf,Dragon_Rock))
 			{
 				CreateInvItems(slf,ItAt_DragonBlood,2);
 			}
-			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(FireDragon))
+			else if(C_IsNpc(slf,Dragon_Fire))
 			{
 				CreateInvItems(slf,ItAt_DragonBlood,2);
 			}
-			else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(IceDragon))
+			else if(C_IsNpc(slf,Dragon_Ice))
 			{
 				CreateInvItems(slf,ItAt_DragonBlood,2);
 			};
 		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(FireDragonIsland))
+		if(C_IsNpc(slf,Dragon_Fire_Island))
 		{
 			CreateInvItems(slf,ItAt_DragonBlood,2);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(UndeadDragon))
+		else if(C_IsNpc(slf,Dragon_Undead))
 		{
 			CreateInvItems(slf,ItAt_DragonBlood,2);
 		};

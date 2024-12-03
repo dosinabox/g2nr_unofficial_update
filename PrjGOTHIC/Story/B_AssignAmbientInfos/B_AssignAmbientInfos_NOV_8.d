@@ -50,7 +50,7 @@ func int DIA_NOV_8_Fegen_Condition()
 func void DIA_NOV_8_Fegen_Info()
 {
 	AI_Output(other,self,"DIA_NOV_8_Fegen_15_00");	//Мне нужна помощь, чтобы подмести кельи послушников.
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger3))
+	if(C_IsNpc(self,NOV_609_Novize))
 	{
 		if(Feger3_Permanent == FALSE)
 		{

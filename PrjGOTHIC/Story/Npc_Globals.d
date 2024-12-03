@@ -56,6 +56,7 @@ var C_Npc HammerPirate;
 var C_Npc Merdarion_NW;
 var C_Npc Riordian_NW;
 var C_Npc Myxir_NW;
+var C_Npc Nefarius_ADW;
 var C_Npc Nefarius_NW;
 var C_Npc Cronos_ADW;
 var C_Npc Cronos_NW;
@@ -72,7 +73,6 @@ var C_Npc Lester_DI;
 var C_Npc MiltenOW;
 var C_Npc MiltenNW;
 var C_Npc Milten_DI;
-var C_Npc DiegoOW;
 var C_Npc DiegoNW;
 var C_Npc Diego_DI;
 var C_Npc Xardas;
@@ -98,7 +98,6 @@ var C_Npc Nadja;
 var C_Npc Vanja;
 var C_Npc Moe;
 var C_Npc Valentino;
-var C_Npc Sagitta;
 var C_Npc Karras;
 var C_Npc Gorax;
 var C_Npc Rengaru;
@@ -250,7 +249,6 @@ var C_Npc Cipher;
 var C_Npc Hakon;
 var C_Npc Edda;
 var C_Npc Elena;
-var C_Npc Lutero;
 var C_Npc Rod;
 var C_Npc Cord;
 var C_Npc Sylvio;
@@ -297,7 +295,6 @@ func void B_InitNpc_NW()
 	Dexter = Hlp_GetNpc(BDT_1060_Dexter);
 	Lester = Hlp_GetNpc(PC_Psionic);
 	Xardas = Hlp_GetNpc(NONE_100_Xardas);
-	Sagitta = Hlp_GetNpc(BAU_980_Sagitta);
 	AntiPaladin_NW = Hlp_GetNpc(OrkElite_AntiPaladinOrkOberst);
 	MiltenNW = Hlp_GetNpc(PC_Mage_NW);
 	CityOrc = Hlp_GetNpc(OrcWarrior_Harad);
@@ -417,7 +414,6 @@ func void B_InitNpc_NW()
 	GerbrandtsFrau = Hlp_GetNpc(VLK_497_Buergerin);
 	Richter = Hlp_GetNpc(VLK_402_Richter);
 	Fernando = Hlp_GetNpc(VLK_405_Fernando);
-	Lutero = Hlp_GetNpc(VLK_404_Lutero);
 	Salandril = Hlp_GetNpc(VLK_422_Salandril);
 	Valentino = Hlp_GetNpc(VLK_421_Valentino);
 	Lothar = Hlp_GetNpc(PAL_203_Lothar);
@@ -533,6 +529,7 @@ func void B_InitNpc_ADW()
 	HammerPirate = Hlp_GetNpc(PIR_1360_Addon_Pirat);
 	//маги Воды
 	Cronos_ADW = Hlp_GetNpc(KDW_14010_Addon_Cronos_ADW);
+	Nefarius_ADW = Hlp_GetNpc(KDW_14020_Addon_Nefarius_ADW);
 	//трупы
 	Angus = Hlp_GetNpc(PIR_1370_Addon_Angus);
 	Lance = Hlp_GetNpc(NONE_ADDON_114_Lance_ADW);
@@ -546,7 +543,6 @@ func void B_InitNpc_OW()
 	Kervo = Hlp_GetNpc(STRF_1116_Kervo);
 	Geppert = Hlp_GetNpc(STRF_1115_Geppert);
 	Jergan = Hlp_GetNpc(VLK_4110_Jergan);
-	DiegoOW = Hlp_GetNpc(PC_ThiefOW);
 	DJG_Angar = Hlp_GetNpc(DJG_705_Angar);
 	//драконы
 	SwampDragon = Hlp_GetNpc(Dragon_Swamp);
