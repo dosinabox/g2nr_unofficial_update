@@ -925,7 +925,7 @@ var int GornsTreasure;
 var int GornDJG_WhatMonsters;
 var int Knows_Diego;
 var int Knows_Milten;
-var int SearchForDiego;
+var int MIS_SearchForDiego;
 //var int FajethSendsYouBack;
 //var int Milten_Equipment;
 var int Fajeth_Pay;

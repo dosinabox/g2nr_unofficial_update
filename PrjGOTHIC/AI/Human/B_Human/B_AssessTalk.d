@@ -76,6 +76,10 @@ func void B_AssessTalk()
 					Kardif_Busted = TRUE;
 				};
 			}
+			else if(C_IsNpc(self,PC_Thief_NW))
+			{
+				MIS_SearchForDiego = LOG_SUCCESS;
+			}
 			else if(C_IsNpc(self,PIR_1300_Addon_Greg_NW))
 			{
 				PlayerTalkedToGregNW = TRUE;
@@ -132,6 +136,13 @@ func void B_AssessTalk()
 					B_Attack(self,other,AR_KILL,0);
 					return;
 				};
+			};
+		}
+		else if(CurrentLevel == OLDWORLD_ZEN)
+		{
+			if(C_IsNpc(self,PC_ThiefOW))
+			{
+				MIS_SearchForDiego = LOG_SUCCESS;
 			};
 		};
 		if(B_AssessEnemy())

@@ -333,6 +333,10 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 	{
 		if(C_IsNpc(slf,PC_ThiefOW))
 		{
+			if(MIS_SearchForDiego != LOG_SUCCESS)
+			{
+				MIS_SearchForDiego = LOG_FAILED;
+			};
 			Diego_IsDead = TRUE;
 		}
 		else if(C_IsNpc(slf,STRF_1116_Kervo))
