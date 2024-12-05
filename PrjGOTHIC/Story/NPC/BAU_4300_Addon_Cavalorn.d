@@ -61,11 +61,11 @@ func void Rtn_RangerMeeting_4300()
 	TA_RangerMeeting(20,0,5,0,"NW_TAVERNE_IN_RANGERMEETING");
 };
 
-func void Rtn_Parking_4300()
+/*func void Rtn_Parking_4300()
 {
 	TA_Stand_ArmsCrossed(5,0,20,0,"NW_TAVERNE_IN_RANGERMEETING");
 	TA_Stand_ArmsCrossed(20,0,5,0,"NW_TAVERNE_IN_RANGERMEETING");
-};
+};*/
 
 func void Rtn_Stadt_4300()
 {

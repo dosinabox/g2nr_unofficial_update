@@ -34,12 +34,12 @@ instance DIA_PAL_220_Schiffswache(C_Info)
 
 func int DIA_PAL_220_Schiffswache_Condition()
 {
-	return B_AssignSchiffswachenInfoConditions(self);
+	return B_AssignSchiffswachenInfoConditions();
 };
 
 func void DIA_PAL_220_Schiffswache_Info()
 {
-	B_AssignSchiffswachenTalk(self);
+	B_AssignSchiffswachenTalk();
 };
 
 
@@ -78,12 +78,12 @@ instance DIA_PAL_221_Schiffswache(C_Info)
 
 func int DIA_PAL_221_Schiffswache_Condition()
 {
-	return B_AssignSchiffswachenInfoConditions(self);
+	return B_AssignSchiffswachenInfoConditions();
 };
 
 func void DIA_PAL_221_Schiffswache_Info()
 {
-	B_AssignSchiffswachenTalk(self);
+	B_AssignSchiffswachenTalk();
 };
 
 
@@ -122,12 +122,12 @@ instance DIA_PAL_222_Schiffswache(C_Info)
 
 func int DIA_PAL_222_Schiffswache_Condition()
 {
-	return B_AssignSchiffswachenInfoConditions(self);
+	return B_AssignSchiffswachenInfoConditions();
 };
 
 func void DIA_PAL_222_Schiffswache_Info()
 {
-	B_AssignSchiffswachenTalk(self);
+	B_AssignSchiffswachenTalk();
 };
 
 
@@ -166,12 +166,12 @@ instance DIA_PAL_223_Schiffswache(C_Info)
 
 func int DIA_PAL_223_Schiffswache_Condition()
 {
-	return B_AssignSchiffswachenInfoConditions(self);
+	return B_AssignSchiffswachenInfoConditions();
 };
 
 func void DIA_PAL_223_Schiffswache_Info()
 {
-	B_AssignSchiffswachenTalk(self);
+	B_AssignSchiffswachenTalk();
 };
 
 
@@ -210,12 +210,12 @@ instance DIA_PAL_224_Schiffswache(C_Info)
 
 func int DIA_PAL_224_Schiffswache_Condition()
 {
-	return B_AssignSchiffswachenInfoConditions(self);
+	return B_AssignSchiffswachenInfoConditions();
 };
 
 func void DIA_PAL_224_Schiffswache_Info()
 {
-	B_AssignSchiffswachenTalk(self);
+	B_AssignSchiffswachenTalk();
 };
 
 
@@ -254,12 +254,12 @@ instance DIA_PAL_225_Schiffswache(C_Info)
 
 func int DIA_PAL_225_Schiffswache_Condition()
 {
-	return B_AssignSchiffswachenInfoConditions(self);
+	return B_AssignSchiffswachenInfoConditions();
 };
 
 func void DIA_PAL_225_Schiffswache_Info()
 {
-	B_AssignSchiffswachenTalk(self);
+	B_AssignSchiffswachenTalk();
 };
 
 
@@ -298,12 +298,12 @@ instance DIA_PAL_226_Schiffswache(C_Info)
 
 func int DIA_PAL_226_Schiffswache_Condition()
 {
-	return B_AssignSchiffswachenInfoConditions(self);
+	return B_AssignSchiffswachenInfoConditions();
 };
 
 func void DIA_PAL_226_Schiffswache_Info()
 {
-	B_AssignSchiffswachenTalk(self);
+	B_AssignSchiffswachenTalk();
 };
 
 
@@ -342,12 +342,12 @@ instance DIA_PAL_227_Schiffswache(C_Info)
 
 func int DIA_PAL_227_Schiffswache_Condition()
 {
-	return B_AssignSchiffswachenInfoConditions(self);
+	return B_AssignSchiffswachenInfoConditions();
 };
 
 func void DIA_PAL_227_Schiffswache_Info()
 {
-	B_AssignSchiffswachenTalk(self);
+	B_AssignSchiffswachenTalk();
 };
 
 
@@ -386,11 +386,11 @@ instance DIA_PAL_228_Schiffswache(C_Info)
 
 func int DIA_PAL_228_Schiffswache_Condition()
 {
-	return B_AssignSchiffswachenInfoConditions(self);
+	return B_AssignSchiffswachenInfoConditions();
 };
 
 func void DIA_PAL_228_Schiffswache_Info()
 {
-	B_AssignSchiffswachenTalk(self);
+	B_AssignSchiffswachenTalk();
 };
 

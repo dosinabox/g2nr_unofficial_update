@@ -41,7 +41,7 @@ jobs:
           fi
 
           # Check for extra newlines
-          if grep -Pan '(\n\s*){3,}$' "${file}"; then
+          if grep -Pan '(\r?\n){4,}' "${file}"; then
             echo "::error file=$file::File $file has extra newlines"
             errors=$((errors+1))
           fi
