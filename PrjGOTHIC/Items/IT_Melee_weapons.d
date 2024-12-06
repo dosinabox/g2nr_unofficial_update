@@ -439,18 +439,41 @@ instance ItMw_1h_MISC_Sword(C_Item)
 	count[5] = value;
 };
 
+instance ItMw_1h_OLD_Sword(C_Item)
+{
+	name = "Старый меч";
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_SWD;
+	material = MAT_METAL;
+	value = Value_OldSword;
+	damageTotal = Damage_OldSword;
+	damagetype = DAM_EDGE;
+	range = Range_OldSword;
+	cond_atr[2] = ATR_STRENGTH;
+	cond_value[2] = Condition_OldSword;
+	visual = "ItMw_020_1h_sword_old_02.3DS";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Str_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_OneHanded;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
 instance ItMw_TrainSword(C_Item)
 {
 	name = "Тренировочный меч";
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_AXE;
+	flags = ITEM_SWD;
 	material = MAT_WOOD;
 	value = 0;
 	damageTotal = 5;
 	damagetype = DAM_BLUNT;
 	range = 50;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = 5;
+	cond_value[2] = 1;
 	visual = "ItMw_TrainSword.3DS";
 	description = name;
 	text[4] = NAME_OneHanded;
