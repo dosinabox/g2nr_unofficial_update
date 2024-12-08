@@ -683,7 +683,7 @@ instance Holy_Hammer_MIS(C_Item)
 	flags = ITEM_MISSION | ITEM_2HD_AXE;
 	material = MAT_WOOD;
 	value = Value_HolyHammer;
-	owner = Nov_608_Garwig;
+	owner = NOV_608_Garwig;
 	damageTotal = Damage_HolyHammer;
 	damagetype = DAM_BLUNT;
 	range = Range_HolyHammer;

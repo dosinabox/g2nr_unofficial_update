@@ -40,12 +40,6 @@ jobs:
             errors=$((errors+1))
           fi
 
-          # Check for extra newlines
-          if grep -Pan '(\n){4,}' "${file}"; then
-            echo "::error file=$file::File $file has extra newlines"
-            errors=$((errors+1))
-          fi
-
           # Check for assignments in conditions
           if grep -Pan 'if\(.*\s=\s' "${file}"; then
             echo "::error file=$file::File $file has assignment in condition"

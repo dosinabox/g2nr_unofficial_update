@@ -237,6 +237,7 @@ AI\Human\B_Human\B_MoveMob.d
 AI\Human\B_Human\B_UseAvailableMob.d
 AI\Human\B_Human\B_RemoveWeapon.d
 Story\B_Content\B_GiveThiefXP.d
+Story\B_Story\B_DetectAndTakeItem.d
 Story\B_Story\B_GiveInvItems.d
 Story\B_Story\B_FeedNOV.d
 Story\B_Story\B_SetGuild.d
@@ -465,6 +466,8 @@ Story\NPC_Scripts\B_GiveAllArmor.d
 Story\NPC_Scripts\B_GiveAllDocuments.d
 Story\NPC_Scripts\B_GiveAllFood.d
 Story\NPC_Scripts\B_GiveAllKeys.d
+Story\NPC_Scripts\B_GiveAllMiscItems.d
+Story\NPC_Scripts\B_GiveAllMissionItems.d
 Story\NPC_Scripts\B_GiveAllPotions.d
 Story\NPC_Scripts\B_GiveAllRunes.d
 Story\NPC_Scripts\B_GiveAllScrolls.d

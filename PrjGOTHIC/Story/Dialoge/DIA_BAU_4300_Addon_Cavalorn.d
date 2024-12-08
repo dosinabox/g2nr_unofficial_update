@@ -182,7 +182,7 @@ instance DIA_Addon_Cavalorn_ImGoingToMineValley(C_Info)
 
 func int DIA_Addon_Cavalorn_ImGoingToMineValley_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO) && (Hagen_BringProof == TRUE) && (Kapitel < 3) && (MIS_Addon_Cavalorn_TheHut == FALSE) && !Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel) && (SC_OpenedCavalornsBeutel == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO) && (Hagen_BringProof == TRUE) && (Kapitel < 3) && (MIS_Addon_Cavalorn_TheHut == FALSE) && !Npc_HasItems(other,ItSe_Addon_CavalornsBeutel) && (SC_OpenedCavalornsBeutel == FALSE))
 	{
 		return TRUE;
 	};
@@ -207,7 +207,7 @@ instance DIA_Addon_Cavalorn_Beutel(C_Info)
 
 func int DIA_Addon_Cavalorn_Beutel_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO) && (Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel) || (SC_OpenedCavalornsBeutel == TRUE)))
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO) && (Npc_HasItems(other,ItSe_Addon_CavalornsBeutel) || (SC_OpenedCavalornsBeutel == TRUE)))
 	{
 		return TRUE;
 	};
@@ -232,7 +232,7 @@ func void DIA_Addon_Cavalorn_Beutel_Info()
 	MIS_Addon_Cavalorn_TheHut = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 	Info_ClearChoices(DIA_Addon_Cavalorn_Beutel);
-	if(Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel))
+	if(Npc_HasItems(other,ItSe_Addon_CavalornsBeutel))
 	{
 		Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"Конечно.",DIA_Addon_Cavalorn_Beutel_ja);
 	}
@@ -248,7 +248,7 @@ func void B_BuildCavalornOreDialog()
 	Info_ClearChoices(DIA_Addon_Cavalorn_Beutel);
 	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,Dialog_Back,DIA_Addon_Cavalorn_Beutel_back);
 	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"Почему ты не оставил ее себе?",DIA_Addon_Cavalorn_Beutel_why);
-	if(Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel) || Npc_HasItems(other,ItMi_Nugget))
+	if(Npc_HasItems(other,ItSe_Addon_CavalornsBeutel) || Npc_HasItems(other,ItMi_Nugget))
 	{
 		Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"Давай мне 100 золотых - и я отдам тебе твою руду.",DIA_Addon_Cavalorn_ErzGeben_Info);
 	};
@@ -308,7 +308,7 @@ func int DIA_Addon_Cavalorn_ErzGeben_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Beutel) && (Cavalorn_GotOre == FALSE))
 	{
-		if(Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel))
+		if(Npc_HasItems(other,ItSe_Addon_CavalornsBeutel))
 		{
 			return TRUE;
 		};
@@ -325,9 +325,9 @@ func void DIA_Addon_Cavalorn_ErzGeben_Info()
 	AI_Output(self,other,"DIA_Addon_Cavalorn_ErzGeben_08_01");	//По рукам. Вот деньги.
 	CreateInvItems(self,ItMi_Gold,100);
 	B_GiveInvItems(self,other,ItMi_Gold,100);
-	if(Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel))
+	if(Npc_HasItems(other,ItSe_Addon_CavalornsBeutel))
 	{
-		B_GiveInvItems(other,self,ItSe_ADDON_CavalornsBeutel,1);
+		B_GiveInvItems(other,self,ItSe_Addon_CavalornsBeutel,1);
 	}
 	else
 	{

@@ -52,6 +52,16 @@ func void ZS_RansackBody_End()
 				};
 			};
 		}
+		else if(C_IsNpc(self,VLK_438_Alrik))
+		{
+			if(Npc_HasItems(target,ItMw_AlriksSword_MIS))
+			{
+				B_TransferAllInvItems(target,self,ItMw_AlriksSword_MIS);
+				AI_EquipBestMeleeWeapon(self);
+				MIS_Alrik_Sword = LOG_SUCCESS;
+				B_CheckLog();
+			};
+		}
 		else if(C_IsNpc(self,PIR_1350_Addon_Francis))
 		{
 			if(GregIsBack == FALSE)
@@ -72,35 +82,25 @@ func void ZS_RansackBody_End()
 			B_Say(self,target,"$SHITNOGOLD");
 		};
 	};
-	Npc_PerceiveAll(self);
-	if(Wld_DetectItem(self,ITEM_KAT_NF))
+	if(B_DetectAndTakeItem(self,ITEM_KAT_NF))
 	{
-		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) <= 500))
+		if(!C_IsNpc(self,NOV_608_Garwig))
 		{
-			AI_TakeItem(self,item);
-			if(!C_IsNpc(self,NOV_608_Garwig))
-			{
-				B_Say(self,self,"$ITAKEYOURWEAPON");
-				AI_EquipBestMeleeWeapon(self);
-			};
+			B_Say(self,self,"$ITAKEYOURWEAPON");
+			AI_EquipBestMeleeWeapon(self);
 		};
 	};
-	if(Wld_DetectItem(self,ITEM_KAT_FF))
+	if(B_DetectAndTakeItem(self,ITEM_KAT_FF))
 	{
-		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) <= 500))
+		if(!C_IsNpc(self,NOV_608_Garwig))
 		{
-			AI_TakeItem(self,item);
-			if(!C_IsNpc(self,NOV_608_Garwig))
-			{
-				B_Say(self,self,"$ITAKEYOURWEAPON");
-				AI_EquipBestRangedWeapon(self);
-			};
+			B_Say(self,self,"$ITAKEYOURWEAPON");
+			AI_EquipBestRangedWeapon(self);
 		};
 	};
 	if(self.attribute[ATR_HITPOINTS] < (self.attribute[ATR_HITPOINTS_MAX] / 2))
 	{
 		AI_StartState(self,ZS_HealSelf,0,"");
-		return;
 	};
 };
 
@@ -121,7 +121,6 @@ func void ZS_GetMeat()
 	if(self.attribute[ATR_HITPOINTS] < (self.attribute[ATR_HITPOINTS_MAX] / 2))
 	{
 		AI_StartState(self,ZS_HealSelf,0,"");
-		return;
 	};
 };
 

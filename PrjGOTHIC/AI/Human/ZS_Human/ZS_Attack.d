@@ -298,7 +298,6 @@ func void ZS_Attack_End()
 	if(self.attribute[ATR_HITPOINTS] < (self.attribute[ATR_HITPOINTS_MAX] / 2))
 	{
 		AI_StartState(self,ZS_HealSelf,0,"");
-		return;
 	};
 };
 

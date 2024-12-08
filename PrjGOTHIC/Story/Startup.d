@@ -896,7 +896,7 @@ func void STARTUP_OldWorld_Part_Demontower()
 
 func void STARTUP_OldWorld_Part_Surface()
 {
-	Wld_InsertItem(ItSe_ADDON_CavalornsBeutel,"FP_OW_ITEM_02");
+	Wld_InsertItem(ItSe_Addon_CavalornsBeutel,"FP_OW_ITEM_02");
 	Wld_InsertItem(ItWr_KDWLetter,"FP_ITEM_OW_01");
 	Wld_InsertItem(ItWr_GilbertLetter,"FP_ITEM_OW_02");
 	Wld_InsertItem(ItWr_DexStonePlate2_Addon,"OW_ITEM_ROCKHORT_01");

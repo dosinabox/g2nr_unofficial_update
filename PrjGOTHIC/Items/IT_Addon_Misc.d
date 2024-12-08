@@ -117,7 +117,7 @@ instance ItMi_BromorsGeld_Addon(C_Item)
 	count[5] = value;
 };
 
-instance ItSe_ADDON_CavalornsBeutel(C_Item)
+instance ItSe_Addon_CavalornsBeutel(C_Item)
 {
 	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;

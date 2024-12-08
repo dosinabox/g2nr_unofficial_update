@@ -134,21 +134,8 @@ func void ZS_Unconscious_End()
 			B_Say(self,other,"$OHMYHEAD");
 		};
 	};
-	Npc_PerceiveAll(self);
-	if(Wld_DetectItem(self,ITEM_KAT_NF))
-	{
-		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) <= 500))
-		{
-			AI_TakeItem(self,item);
-		};
-	};
-	if(Wld_DetectItem(self,ITEM_KAT_FF))
-	{
-		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) <= 500))
-		{
-			AI_TakeItem(self,item);
-		};
-	};
+	B_DetectAndTakeItem(self,ITEM_KAT_NF);
+	B_DetectAndTakeItem(self,ITEM_KAT_FF);
 	AI_EquipBestMeleeWeapon(self);
 	AI_EquipBestRangedWeapon(self);
 	AI_StartState(self,ZS_HealSelf,0,"");
