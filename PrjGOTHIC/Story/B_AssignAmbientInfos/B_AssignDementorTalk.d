@@ -89,7 +89,7 @@ func void DIA_AmbientDementor_Info()
 	}
 	else if(CurrentLevel == DRAGONISLAND_ZEN)
 	{
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DragonIsle_Keymaster))
+		if(C_IsNpc(self,DragonIsle_Keymaster))
 		{
 			AI_Output(self,other,"DIA_AmbientDementor_19_01");	//(смеется) Ты пришел, чтобы бросить вызов мне и моей работе? Ты обречен на поражение.
 			AI_Output(self,other,"DIA_AmbientDementor_19_02");	//Никому еще не удавалось пройти в мой склеп. Поворачивай назад. Тебе никогда не добраться до священных Чертогов Ирдората.

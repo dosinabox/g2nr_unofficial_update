@@ -314,6 +314,7 @@ const int GIL_SUB_Lobart = 5;
 const int GIL_SUB_RedLight = 6;
 const int GIL_SUB_VinoRitual = 7;
 const int GIL_SUB_Dexter = 8;
+const int GIL_SUB_Brago = 9;
 
 const int NPC_SOUND_DROPTAKE = 1;
 const int NPC_SOUND_SPEAK = 3;
@@ -470,7 +471,7 @@ const int SPL_Reserved_98 = 98;
 const int SPL_Reserved_99 = 99;
 const int MAX_SPELL = 100;
 
-const string spellFxInstanceNames[100] =
+const string spellFxInstanceNames[MAX_SPELL] =
 {
 	"PalLight",
 	"PalHeal",
@@ -574,7 +575,7 @@ const string spellFxInstanceNames[100] =
 	"Light"
 };
 
-const string spellFxAniLetters[100] =
+const string spellFxAniLetters[MAX_SPELL] =
 {
 	"SLE",
 	"HEA",
@@ -817,8 +818,8 @@ const int INVCAM_Z_RING_STANDARD = 45;
 const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2024;
-const int FIX_DATE_MONTH = 11;
-const int FIX_DATE_DAY = 18;
+const int FIX_DATE_MONTH = 12;
+const int FIX_DATE_DAY = 11;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;

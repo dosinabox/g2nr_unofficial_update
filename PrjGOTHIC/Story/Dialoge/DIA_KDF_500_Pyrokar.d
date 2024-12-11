@@ -264,7 +264,7 @@ func void DIA_Pyrokar_TEST_Info()
 		CreateInvItems(Igaraz,ItKe_MagicChest,1);
 		AI_Teleport(Igaraz,"NW_TAVERNE_BIGFARM_05");
 		B_StartOtherRoutine(Igaraz,"CONTEST");
-		B_StartOtherRoutine(Nov607,"EXCHANGE");
+		B_StartOtherRoutine(NOV_607,"EXCHANGE");
 	};
 	if(!Npc_IsDead(Agon))
 	{
@@ -576,7 +576,7 @@ func void DIA_Pyrokar_OATH_Info()
 		}
 		else
 		{
-			B_StartOtherRoutine(Nov607,"START");
+			B_StartOtherRoutine(NOV_607,"START");
 			B_StartOtherRoutine(Agon,"START");
 			Agon.aivar[AIV_DropDeadAndKill] = FALSE;
 			Agon.aivar[AIV_NewsOverride] = FALSE;
@@ -1623,7 +1623,7 @@ instance DIA_Pyrokar_BUCHDERBESSENEN(C_Info)
 
 func int DIA_Pyrokar_BUCHDERBESSENEN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Pyrokar_BACKFROMOW) && Npc_HasItems(other,ITWR_DementorObsessionBook_MIS))
+	if(Npc_KnowsInfo(other,DIA_Pyrokar_BACKFROMOW) && Npc_HasItems(other,ItWr_DementorObsessionBook_MIS))
 	{
 		return TRUE;
 	};
@@ -1636,7 +1636,7 @@ func void DIA_Pyrokar_BUCHDERBESSENEN_Info()
 	AI_Output(other,self,"DIA_Pyrokar_BUCHDERBESSENEN_15_00");	//я нашел странный альманах.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_01");	//ƒа? „то это за альманах?
 	AI_Output(other,self,"DIA_Pyrokar_BUCHDERBESSENEN_15_02");	//я не уверен. я думал, ты можешь знать, что делать с ним.
-	B_GiveInvItems(other,self,ITWR_DementorObsessionBook_MIS,1);
+	B_GiveInvItems(other,self,ItWr_DementorObsessionBook_MIS,1);
 	AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_03");	//¬оистину, это очень тревожный знак. я рад, что ты принес его мне. Ёто было мудро.
 	B_GivePlayerXP(XP_Ambient);
 	if(hero.guild == GIL_KDF)
@@ -1795,7 +1795,7 @@ instance DIA_Pyrokar_AlmanachBringen(C_Info)
 
 func int DIA_Pyrokar_AlmanachBringen_Condition()
 {
-	if((Kapitel >= 3) && Npc_HasItems(other,ITWR_DementorObsessionBook_MIS) && (other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pyrokar_BUCHDERBESSENEN))
+	if((Kapitel >= 3) && Npc_HasItems(other,ItWr_DementorObsessionBook_MIS) && (other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pyrokar_BUCHDERBESSENEN))
 	{
 		return TRUE;
 	};
@@ -1807,7 +1807,7 @@ func void DIA_Pyrokar_AlmanachBringen_Info()
 	var int AlmanachGeld;
 	AI_Output(other,self,"DIA_Pyrokar_AlmanachBringen_15_00");	//я могу рассказать еще кое-что об этих одержимых.
 	AI_Output(self,other,"DIA_Pyrokar_AlmanachBringen_11_01");	//√овори, брат.
-	AlmanachCount = Npc_HasItems(other,ITWR_DementorObsessionBook_MIS);
+	AlmanachCount = Npc_HasItems(other,ItWr_DementorObsessionBook_MIS);
 	if(AlmanachCount == 1)
 	{
 		AI_Output(other,self,"DIA_Pyrokar_AlmanachBringen_15_02");	//я нашел еще один альманах.
@@ -1816,7 +1816,7 @@ func void DIA_Pyrokar_AlmanachBringen_Info()
 	{
 		AI_Output(other,self,"DIA_Pyrokar_AlmanachBringen_15_03");	//я нашел еще несколько книг »щущих.
 	};
-	B_GiveInvItems(other,self,ITWR_DementorObsessionBook_MIS,AlmanachCount);
+	B_GiveInvItems(other,self,ItWr_DementorObsessionBook_MIS,AlmanachCount);
 	B_GivePlayerXP(AlmanachCount * XP_KDF_BringAlmanach);
 	AlmanachCounter += AlmanachCount;
 	if(AlmanachCounter <= 5)

@@ -204,7 +204,6 @@ func void DIA_Onar_WegenPepe_Info()
 	AI_Output(other,self,"DIA_Onar_WegenPepe_15_02");	//Один из наемников.
 	AI_Output(self,other,"DIA_Onar_WegenPepe_14_03");	//Какое мне до этого дело? Если он притронулся к моим овцам, он будет отвечать перед Ли.
 	AI_Output(self,other,"DIA_Onar_WegenPepe_14_04");	//Зачем ты отвлекаешь меня по таким пустякам?
-//	Onar_WegenPepe = TRUE;
 };
 
 
@@ -288,6 +287,26 @@ func void DIA_Onar_LeeSentMe_Info()
 
 var int Onar_SOLD_Day;
 var int Onar_SOLD_XP;
+var int Onar_StopPayingDJG;
+
+func void B_Onar_StopPayingDJG()
+{
+	AI_Output(self,other,"DIA_Onar_CollectGold_14_01");	//Я плачу наемникам, а не охотникам на драконов.
+	Onar_StopPayingDJG = TRUE;
+};
+
+func void B_Onar_Payment_Log()
+{
+	Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
+	if(other.guild == GIL_SLD)
+	{
+		B_LogEntry(TOPIC_Bonus,"Я могу каждый день получать у Онара жалование.");
+	}
+	else
+	{
+		B_LogEntry(TOPIC_Bonus,"Если я присоединюсь к наемникам, то смогу получать у Онара жалование.");
+	};
+};
 
 instance DIA_Onar_HowMuch(C_Info)
 {
@@ -302,7 +321,7 @@ instance DIA_Onar_HowMuch(C_Info)
 
 func int DIA_Onar_HowMuch_Condition()
 {
-	if(Onar_Approved == TRUE)
+	if((Onar_Approved == TRUE) && ((other.guild == GIL_NONE) || (other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
 	{
 		return TRUE;
 	};
@@ -311,40 +330,47 @@ func int DIA_Onar_HowMuch_Condition()
 func void DIA_Onar_HowMuch_Info()
 {
 	AI_Output(other,self,"DIA_Onar_HowMuch_15_00");	//Так что насчет моего жалования?
-	AI_Output(self,other,"DIA_Onar_HowMuch_14_01");	//Так, посмотрим...
-	Onar_SOLD_Gold = 50;
-	if(Onar_WegenSldWerden == TRUE)
+	if(other.guild == GIL_DJG)
 	{
-		AI_Output(self,other,"DIA_Onar_HowMuch_14_02");	//Я не самого лучшего мнения о тебе.
-	};
-	if(Onar_WegenSekob == TRUE)
+		B_Onar_StopPayingDJG();
+	}
+	else
 	{
-		AI_Output(self,other,"DIA_Onar_HowMuch_14_03");	//Ты не отличаешься особой сообразительностью. Это очевидно после твоих похождений к Секобу.
-		Onar_SOLD_Gold -= 10;
+		AI_Output(self,other,"DIA_Onar_HowMuch_14_01");	//Так, посмотрим...
+		Onar_SOLD_Gold = 50;
+		if(Onar_WegenSldWerden == TRUE)
+		{
+			AI_Output(self,other,"DIA_Onar_HowMuch_14_02");	//Я не самого лучшего мнения о тебе.
+		};
+		if(Onar_WegenSekob == TRUE)
+		{
+			AI_Output(self,other,"DIA_Onar_HowMuch_14_03");	//Ты не отличаешься особой сообразительностью. Это очевидно после твоих похождений к Секобу.
+			Onar_SOLD_Gold -= 10;
+		};
+		if((ABSOLUTIONLEVEL_Farm > 1) || ((B_GetGreatestPetzCrime(self) > CRIME_NONE) && (ABSOLUTIONLEVEL_Farm > 0)))
+		{
+			AI_Output(self,other,"DIA_Onar_HowMuch_14_04");	//Ты уже неоднократно создавал проблемы здесь, на ферме.
+			Onar_SOLD_Gold -= 10;
+		};
+		if(Npc_KnowsInfo(other,DIA_Onar_WegenPepe) && ((Onar_WegenSekob == TRUE) || (Onar_WegenSldWerden == TRUE)))
+		{
+			AI_Output(self,other,"DIA_Onar_HowMuch_14_05");	//И ты постоянно допекаешь меня всяким вздором.
+			Onar_SOLD_Gold -= 10;
+		};
+		AI_Output(self,other,"DIA_Onar_HowMuch_14_06");	//Дай мне подумать...
+		B_Say_Gold(self,other,Onar_SOLD_Gold);
+		if(Onar_SOLD_Gold <= 30)
+		{
+			AI_Output(self,other,"DIA_Onar_HowMuch_14_06_add");	//Да и этого для тебя много.
+		};
+		Onar_SOLD_Day = Wld_GetDay();
+		Onar_SOLD_XP = other.exp;
+		AI_Output(self,other,"DIA_Onar_HowMuch_14_07");	//Что скажешь?
+		Info_ClearChoices(DIA_Onar_HowMuch);
+		Info_AddChoice(DIA_Onar_HowMuch,"Хорошо!",DIA_Onar_HowMuch_Ok);
+		Info_AddChoice(DIA_Onar_HowMuch,"Здесь не все...",DIA_Onar_HowMuch_More);
+		Info_AddChoice(DIA_Onar_HowMuch,"В день?",DIA_Onar_HowMuch_PerDay);
 	};
-	if((ABSOLUTIONLEVEL_Farm > 1) || ((B_GetGreatestPetzCrime(self) > CRIME_NONE) && (ABSOLUTIONLEVEL_Farm > 0)))
-	{
-		AI_Output(self,other,"DIA_Onar_HowMuch_14_04");	//Ты уже неоднократно создавал проблемы здесь, на ферме.
-		Onar_SOLD_Gold -= 10;
-	};
-	if(Npc_KnowsInfo(other,DIA_Onar_WegenPepe) && ((Onar_WegenSekob == TRUE) || (Onar_WegenSldWerden == TRUE)))
-	{
-		AI_Output(self,other,"DIA_Onar_HowMuch_14_05");	//И ты постоянно допекаешь меня всяким вздором.
-		Onar_SOLD_Gold -= 10;
-	};
-	AI_Output(self,other,"DIA_Onar_HowMuch_14_06");	//Дай мне подумать...
-	B_Say_Gold(self,other,Onar_SOLD_Gold);
-	if(Onar_SOLD_Gold <= 30)
-	{
-		AI_Output(self,other,"DIA_Onar_HowMuch_14_06_add");	//Да и этого для тебя много.
-	};
-	Onar_SOLD_Day = Wld_GetDay();
-	Onar_SOLD_XP = other.exp;
-	AI_Output(self,other,"DIA_Onar_HowMuch_14_07");	//Что скажешь?
-	Info_ClearChoices(DIA_Onar_HowMuch);
-	Info_AddChoice(DIA_Onar_HowMuch,"Хорошо!",DIA_Onar_HowMuch_Ok);
-	Info_AddChoice(DIA_Onar_HowMuch,"Здесь не все...",DIA_Onar_HowMuch_More);
-	Info_AddChoice(DIA_Onar_HowMuch,"В день?",DIA_Onar_HowMuch_PerDay);
 };
 
 func void DIA_Onar_HowMuch_PerDay()
@@ -366,8 +392,7 @@ func void DIA_Onar_HowMuch_More()
 		AI_Output(self,other,"DIA_Onar_HowMuch_More_14_01");	//Конечно, но ты можешь поработать на меня совсем бесплатно, если хочешь.
 	};
 	AI_Output(self,other,"DIA_Onar_HowMuch_More_14_02");	//Это все, что ты получишь!
-	Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
-	B_LogEntry(TOPIC_Bonus,"Я могу получить у Онара причитающееся мне вознаграждение, когда мне это заблагорассудится.");
+	B_Onar_Payment_Log();
 	Info_ClearChoices(DIA_Onar_HowMuch);
 };
 
@@ -375,13 +400,10 @@ func void DIA_Onar_HowMuch_Ok()
 {
 	AI_Output(other,self,"DIA_Onar_HowMuch_Ok_15_00");	//Хорошо!
 	AI_Output(self,other,"DIA_Onar_HowMuch_Ok_14_01");	//Я тоже так думаю. А теперь иди, поговори с Ли.
-	Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
-	B_LogEntry(TOPIC_Bonus,"Я могу получить у Онара причитающееся мне вознаграждение, когда мне это заблагорассудится.");
+	B_Onar_Payment_Log();
 	Info_ClearChoices(DIA_Onar_HowMuch);
 };
 
-
-var int Onar_StopPayingDJG;
 
 instance DIA_Onar_CollectGold(C_Info)
 {
@@ -407,8 +429,7 @@ func void DIA_Onar_CollectGold_Info()
 	AI_Output(other,self,"DIA_Onar_CollectGold_15_00");	//Заплати мне мое жалование!
 	if(other.guild == GIL_DJG)
 	{
-		AI_Output(self,other,"DIA_Onar_CollectGold_14_01");	//Я плачу наемникам, а не охотникам на драконов.
-		Onar_StopPayingDJG = TRUE;
+		B_Onar_StopPayingDJG();
 	}
 	else if(Torlof_TheOtherMission_TooLate == TRUE)
 	{

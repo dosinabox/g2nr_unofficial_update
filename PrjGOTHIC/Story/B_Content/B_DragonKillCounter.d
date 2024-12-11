@@ -10,7 +10,7 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 	{
 		if(MIS_AllDragonsDead == FALSE)
 		{
-			if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(SwampDragon))
+			if(C_IsNpc(current_dragon,Dragon_Swamp))
 			{
 				if(SwampDragonIsDead == FALSE)
 				{
@@ -18,7 +18,7 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 					SwampDragonIsDead = TRUE;
 				};
 			}
-			else if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(RockDragon))
+			else if(C_IsNpc(current_dragon,Dragon_Rock))
 			{
 				if(RockDragonIsDead == FALSE)
 				{
@@ -26,7 +26,7 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 					RockDragonIsDead = TRUE;
 				};
 			}
-			else if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(FireDragon))
+			else if(C_IsNpc(current_dragon,Dragon_Fire))
 			{
 				if(FireDragonIsDead == FALSE)
 				{
@@ -34,11 +34,11 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 					FireDragonIsDead = TRUE;
 				};
 			}
-			else if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(IceDragon))
+			else if(C_IsNpc(current_dragon,Dragon_Ice))
 			{
 				if(IceDragonIsDead == FALSE)
 				{
-					if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2) && !Npc_IsDead(DJG_Sylvio))
+					if(C_SylvioGolemsDead() && !Npc_IsDead(DJG_Sylvio))
 					{
 						B_StartOtherRoutine(DJG_Sylvio,"ICEDRAGON");
 						B_StartOtherRoutine(DJG_Bullco,"ICEDRAGON");
@@ -62,7 +62,7 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 		};
 		if(UndeadDragonIsDead == FALSE)
 		{
-			if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(UndeadDragon))
+			if(C_IsNpc(current_dragon,Dragon_Undead))
 			{
 				if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 				{
@@ -87,7 +87,7 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 	}
 	else if(RavenIsDead == FALSE)
 	{
-		if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(Raven))
+		if(C_IsNpc(current_dragon,BDT_1090_Addon_Raven))
 		{
 			PlayVideoEx("EXTRO_RAVEN.BIK",TRUE,FALSE);
 			B_RemoveNpc(KDW_14030_Addon_Myxir_ADW);
@@ -95,7 +95,7 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 			{
 				ADW_Myxir_Removed_Forever = TRUE;
 			};
-			B_StartOtherRoutine(KDW_14020_Addon_Nefarius_ADW,"MYXIRLEFT");
+			B_StartOtherRoutine(Nefarius_ADW,"MYXIRLEFT");
 			Saturas_KnowsHow2GetInTempel = TRUE;
 			RavenIsDead = TRUE;
 			B_CheckLog();

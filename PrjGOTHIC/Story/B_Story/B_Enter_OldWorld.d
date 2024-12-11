@@ -11,7 +11,7 @@ func void B_ENTER_OLDWORLD_Kapitel_1()
 			};
 		};
 	}
-	else if(Lutero_Krallen == LOG_Running)
+	else if(MIS_Lutero_Krallen == LOG_Running)
 	{
 		if(NewMine_LeadSnapper_Spawned == FALSE)
 		{
@@ -147,7 +147,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 			CreateInvItems(Engrom,ItAt_TalbinsLurkerSkin,1);
 			if(hero.guild == GIL_KDF)
 			{
-				CreateInvItems(Engrom,ITWR_DementorObsessionBook_MIS,1);
+				CreateInvItems(Engrom,ItWr_DementorObsessionBook_MIS,1);
 			}
 			else
 			{
@@ -452,7 +452,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(DJG_732_ToterDrachenjaeger,"OC1");
 		Wld_InsertNpc(DJG_733_ToterDrachenjaeger,"OC1");
 		Wld_InsertNpc(DJG_734_ToterDrachenjaeger,"OC1");
-		if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2))
+		if(C_SylvioGolemsDead())
 		{
 			SylvioIceGolemsKilledBefore4Chapter = TRUE;
 			Npc_ExchangeRoutine(DJG_731_ToterDrachenjaeger,"ICEREGION");
@@ -495,7 +495,7 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 		};
 		if(!Npc_IsDead(Brutus))
 		{
-			CreateInvItems(Brutus,ITWR_DementorObsessionBook_MIS,1);
+			CreateInvItems(Brutus,ItWr_DementorObsessionBook_MIS,1);
 		};
 		if(!Npc_IsDead(OC_Sheep3))
 		{

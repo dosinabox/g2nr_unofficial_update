@@ -26,9 +26,9 @@ func void B_MM_AssessEnemy()
 	}
 	else if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Magic_Golem))
+		if(C_IsNpc(self,MagicGolem))
 		{
-			if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Lares))
+			if(C_IsNpc(other,VLK_449_Lares))
 			{
 				return;
 			};

@@ -19,22 +19,22 @@ func void ZS_Unconscious()
 	{
 		if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
 		{
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bullco))
+			if(C_IsNpc(self,SLD_807_Bullco))
 			{
 				SLD_Bullco_Defeated = TRUE;
 			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco))
+			else if(C_IsNpc(self,DJG_701_Bullco))
 			{
 				DJG_Bullco_Defeated = TRUE;
 			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rod))
+			else if(C_IsNpc(self,SLD_804_Rod))
 			{
 				if(MIS_RodSword == LOG_Running)
 				{
 					MIS_RodSword = LOG_OBSOLETE;
 				};
 			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Valentino))
+			else if(C_IsNpc(self,VLK_421_Valentino))
 			{
 				Valentino_Day = B_GetDayPlus();
 			};
@@ -58,11 +58,11 @@ func void ZS_Unconscious()
 		{
 			other.aivar[AIV_ArenaFight] = AF_AFTER;
 		};
-		if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Bullco))
+		if(C_IsNpc(other,SLD_807_Bullco))
 		{
 			SLD_Bullco_Defeated_SC = TRUE;
 		}
-		else if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Sylvio))
+		else if(C_IsNpc(other,SLD_806_Sylvio))
 		{
 			SLD_Sylvio_Defeated_SC = TRUE;
 		};
@@ -89,9 +89,9 @@ func void ZS_Unconscious()
 		{
 			B_RemoveEveryInvItem(self,ItMw_2H_Axe_L_01);
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Dar))
+		else if(C_IsNpc(self,SLD_810_Dar))
 		{
-			if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cipher))
+			if(C_IsNpc(other,SLD_803_Cipher))
 			{
 				if(Sipher_KnowsDarStoleHisWeed == TRUE)
 				{
@@ -134,21 +134,8 @@ func void ZS_Unconscious_End()
 			B_Say(self,other,"$OHMYHEAD");
 		};
 	};
-	Npc_PerceiveAll(self);
-	if(Wld_DetectItem(self,ITEM_KAT_NF))
-	{
-		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) <= 500))
-		{
-			AI_TakeItem(self,item);
-		};
-	};
-	if(Wld_DetectItem(self,ITEM_KAT_FF))
-	{
-		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) <= 500))
-		{
-			AI_TakeItem(self,item);
-		};
-	};
+	B_DetectAndTakeItem(self,ITEM_KAT_NF);
+	B_DetectAndTakeItem(self,ITEM_KAT_FF);
 	AI_EquipBestMeleeWeapon(self);
 	AI_EquipBestRangedWeapon(self);
 	AI_StartState(self,ZS_HealSelf,0,"");

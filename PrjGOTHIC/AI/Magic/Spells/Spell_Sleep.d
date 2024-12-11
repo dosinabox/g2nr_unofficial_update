@@ -35,11 +35,11 @@ func int C_NpcCanSleep(var C_Npc npc)
 	};
 	if(C_NpcIsImmortal(npc))
 	{
-		if(Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(Cornelius))
+		if(C_IsNpc(npc,VLK_401_Cornelius))
 		{
 			return TRUE;
 		};
-		if(Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(Richter))
+		if(C_IsNpc(npc,VLK_402_Richter))
 		{
 			return TRUE;
 		};
@@ -61,7 +61,7 @@ func int C_NpcCanSleep(var C_Npc npc)
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(Raven))
+	if(C_IsNpc(npc,BDT_1090_Addon_Raven))
 	{
 		if(npc.aivar[AIV_EnemyOverride] == FALSE)
 		{

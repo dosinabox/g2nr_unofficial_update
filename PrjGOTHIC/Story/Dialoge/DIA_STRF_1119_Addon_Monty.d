@@ -21,7 +21,7 @@ func void DIA_Addon_Monty_EXIT_Info()
 };
 
 
-var int Monty_einmal;
+var int Monty_Einmal;
 
 instance DIA_Addon_Monty_Hi(C_Info)
 {
@@ -43,10 +43,10 @@ func void DIA_Addon_Monty_Hi_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Monty_Hi_15_00");	//Как идут дела?
 	AI_Output(self,other,"DIA_Addon_Monty_Hi_08_01");	//Я жив - и это все, что имеет для меня значение.
-	if(Monty_einmal == FALSE)
+	if(Monty_Einmal == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Monty_Hi_08_02");	//Если ты хочешь что-либо обсудить, тебе нужен Патрик.
-		Monty_einmal = TRUE;
+		Monty_Einmal = TRUE;
 	};
 };
 

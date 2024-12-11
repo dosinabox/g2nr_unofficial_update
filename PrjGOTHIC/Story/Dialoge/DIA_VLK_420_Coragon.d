@@ -175,6 +175,7 @@ var int Coragon_Bier;
 func void B_Coragon_Bier()
 {
 	Coragon_Bier += 1;
+	self.npcType = NPCTYPE_FRIEND;
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_14");	//Вот, возьми это в качестве награды.
 	B_GiveInvItems(self,other,ItFo_CoragonsBeer,1);
 	if(Coragon_Bier < 2)

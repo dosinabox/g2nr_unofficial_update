@@ -5,7 +5,7 @@ func void B_AssessGuidePlayer()
 	{
 		if(Npc_GetDistToWP(self,self.wp) < Npc_GetDistToWP(hero,self.wp))
 		{
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares))
+			if(C_IsNpc(self,VLK_449_Lares))
 			{
 				if(Npc_GetDistToNpc(self,hero) > 1100)
 				{

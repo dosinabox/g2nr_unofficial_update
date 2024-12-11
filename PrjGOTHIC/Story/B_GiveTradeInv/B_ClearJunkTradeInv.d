@@ -16,7 +16,7 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		{
 			B_RemoveEveryInvItem(slf,ItMw_1h_Bau_Mace);
 		};
-		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Cipher))
+		if(!C_IsNpc(slf,SLD_803_Cipher))
 		{
 			B_RemoveEveryInvItem(slf,ItMi_Joint);
 			B_RemoveEveryInvItem(slf,ItMw_2H_OrcAxe_01);
@@ -28,15 +28,15 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		B_RemoveEveryInvItem(slf,ItMw_2H_OrcSword_01);
 		B_RemoveEveryInvItem(slf,ItMw_2H_OrcSword_02);
 		B_RemoveEveryInvItem(slf,ItMw_TrainSword);
-		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Lutero))
+		if(!C_IsNpc(slf,VLK_404_Lutero))
 		{
 			B_RemoveEveryInvItem(slf,ItAt_CrawlerMandibles);
 		};
-		if((Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Lutero)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Fisk)))
+		if(!C_IsNpc(slf,VLK_404_Lutero) && !C_IsNpc(slf,BDT_1097_Addon_Fisk))
 		{
 			B_RemoveEveryInvItem(slf,ItAt_Sting);
 		};
-		if((Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Gorax)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Cronos_ADW)))
+		if(!C_IsNpc(slf,KDF_508_Gorax) && !C_IsNpc(slf,KDW_14010_Addon_Cronos_ADW))
 		{
 			B_RemoveEveryInvItem(slf,ItAt_WaranFiretongue);
 		};
@@ -63,13 +63,13 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		B_RemoveEveryInvItem(slf,ItAt_WaranSkin);
 		B_RemoveEveryInvItem(slf,ItAt_FireWaranSkin);
 		B_RemoveEveryInvItem(slf,ItAt_AlligatorSkin);
-		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Constantino))
+		if(!C_IsNpc(slf,VLK_417_Constantino))
 		{
 			B_RemoveEveryInvItem(slf,ItAt_GoblinBone);
 			B_RemoveEveryInvItem(slf,ItAt_SkeletonBone);
 			B_RemoveEveryInvItem(slf,ItAt_Wing);
 		};
-		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Sagitta))
+		if(!C_IsNpc(slf,BAU_980_Sagitta))
 		{
 			B_RemoveEveryInvItem(slf,ItAt_KeilerHorn);
 		};
@@ -90,19 +90,19 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		B_RemoveEveryInvItem(slf,ItFo_Water);
 		B_RemoveEveryInvItem(slf,ItFo_Beer);
 		B_RemoveEveryInvItem(slf,ItFo_Booze);
-		if((Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Lutero)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Sagitta)))
+		if(!C_IsNpc(slf,VLK_404_Lutero) && !C_IsNpc(slf,BAU_980_Sagitta))
 		{
 			B_RemoveEveryInvItem(slf,ItMi_Skull);
 		};
-		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Gorax))
+		if(!C_IsNpc(slf,KDF_508_Gorax))
 		{
 			B_RemoveEveryInvItem(slf,ItFo_Wine);
 		};
-		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Lucia))
+		if(!C_IsNpc(slf,BDT_1091_Addon_Lucia))
 		{
 			B_RemoveEveryInvItem(slf,ItFo_Addon_Liquor);
 		};
-		if((Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Canthar)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Matteo)))
+		if(!C_IsNpc(slf,VLK_468_Canthar) && !C_IsNpc(slf,VLK_416_Matteo))
 		{
 			B_RemoveEveryInvItem(slf,ItMi_Pan);
 		};
@@ -146,9 +146,12 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItem(slf,ItWr_GilbertLetter);
 		Npc_RemoveInvItem(slf,ItWr_Manowar);
 		Npc_RemoveInvItem(slf,ItWr_Pfandbrief_MIS);
-		Npc_RemoveInvItem(slf,ItWr_Silvestro_MIS);
 		Npc_RemoveInvItem(slf,ItWr_UseLampIdiot_MIS);
 		Npc_RemoveInvItem(slf,ItWr_Krypta_Garon);
+		if(Silvestro_Ore == TRUE)
+		{
+			Npc_RemoveInvItem(slf,ItWr_Silvestro_MIS);
+		};
 		if(SC_SummonedAncientGhost == TRUE)
 		{
 			Npc_RemoveInvItem(slf,ItWr_Addon_SUMMONANCIENTGHOST);
@@ -204,11 +207,11 @@ func void B_ClearTools(var C_Npc slf)
 			B_RemoveEveryInvItem(slf,ItMi_Scoop);
 			B_RemoveEveryInvItem(slf,ItMi_Brush);
 			B_RemoveEveryInvItem(slf,ItMi_Rake);
-			if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Canthar))
+			if(!C_IsNpc(slf,VLK_468_Canthar))
 			{
 				B_RemoveEveryInvItem(slf,ItMi_Saw);
 			};
-			if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Matteo))
+			if(!C_IsNpc(slf,VLK_416_Matteo))
 			{
 				B_RemoveEveryInvItem(slf,ItMi_Broom);
 				B_RemoveEveryInvItem(slf,ItMi_Lute);
@@ -223,7 +226,7 @@ func void B_ClearSpecialAmmo(var C_Npc slf)
 	{
 		if(!C_NpcIsHero(slf))
 		{
-			if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Bennet_DI))
+			if(!C_IsNpc(slf,SLD_809_Bennet_DI))
 			{
 				B_RemoveEveryInvItem(slf,ItRw_Addon_MagicBolt);
 				B_RemoveEveryInvItem(slf,ItRw_Addon_MagicArrow);

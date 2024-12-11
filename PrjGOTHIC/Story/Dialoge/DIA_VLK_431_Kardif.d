@@ -510,9 +510,9 @@ func void DIA_Kardif_Diebeswerk2_Info()
 		AI_PlayAni(self,"T_SEARCH");
 		AI_Output(self,other,"DIA_Kardif_Crew_14_04");	//“ы обращаешьс€ не по адресу. я простой трактирщик.
 	}
-	else if(Npc_KnowsInfo(other,DIA_Kardif_Zeichen) || B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
+	else if((Kardif_KnowsSCAsThief == TRUE) || B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
-		if(!Npc_KnowsInfo(other,DIA_Kardif_Zeichen))
+		if(Kardif_KnowsSCAsThief == FALSE)
 		{
 			AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_01");	//ƒа, есть кое-что - но это заинтересует теб€, только если ты блещешь разносторонними талантами.
 			AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_02");	//¬ыкладывай, что там у теб€?
@@ -708,6 +708,7 @@ func void DIA_Kardif_Zeichen_Info()
 		};
 	};
 	CreateInvItems(self,ItKe_Lockpick,20);
+	Kardif_KnowsSCAsThief = TRUE;
 	Kardif_Busted = FALSE;
 	self.aivar[AIV_IGNORE_Theft] = TRUE;
 };

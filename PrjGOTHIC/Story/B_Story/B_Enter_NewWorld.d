@@ -348,7 +348,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			B_StartOtherRoutine(BAU_969_Bauer,"FLEEFROMPASS");
 			if(hero.guild == GIL_KDF)
 			{
-				CreateInvItems(Malak,ITWR_DementorObsessionBook_MIS,1);
+				CreateInvItems(Malak,ItWr_DementorObsessionBook_MIS,1);
 			};
 		};
 		if((hero.guild != GIL_NOV) && (hero.guild != GIL_KDF))
@@ -382,7 +382,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				Vino_isAlive_Kap3 = TRUE;
 				Npc_ExchangeRoutine(Vino,"OBESESSIONRITUAL");
 				Vino.aivar[AIV_NoFightParker] = TRUE;
-				CreateInvItems(Vino,ITWR_DementorObsessionBook_MIS,1);
+				CreateInvItems(Vino,ItWr_DementorObsessionBook_MIS,1);
 				B_StartOtherRoutine(Lobart,"OBESESSIONRITUAL");
 				Wld_InsertNpc(DMT_DementorSpeakerVino1,"FP_STAND_DEMENTOR_KDF_31");
 				Wld_InsertNpc(DMT_DementorSpeakerVino2,"FP_STAND_DEMENTOR_KDF_32");
@@ -398,12 +398,12 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			if(!Npc_IsDead(Bromor))
 			{
 				Bromor_isAlive_Kap3 = TRUE;
-				CreateInvItems(Bromor,ITWR_DementorObsessionBook_MIS,1);
+				CreateInvItems(Bromor,ItWr_DementorObsessionBook_MIS,1);
 			};
 			if(!Npc_IsDead(Fernando))
 			{
 				Fernando_isAlive_Kap3 = TRUE;
-				CreateInvItems(Fernando,ITWR_DementorObsessionBook_MIS,1);
+				CreateInvItems(Fernando,ItWr_DementorObsessionBook_MIS,1);
 			};
 		};
 		if(!Npc_IsDead(Canthar))
@@ -477,7 +477,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 	{
 		B_ResetSalandril();
 		B_StartOtherRoutine(Jorgen,"KLOSTER");
-		B_StartOtherRoutine(Nov610,"REST");
+		B_StartOtherRoutine(NOV_610,"REST");
 		B_KillNpc(BDT_1050_Landstreicher);
 		Wld_InsertItem(ItAt_DragonEgg_MIS,"FP_ITEM_XARDAS_01");
 		Wld_InsertNpc(Draconian,"FP_ROAM_XARDASCAVE_DJG_01");
@@ -688,7 +688,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(DMT_DementorAmbientWalker7,"CITY1");
 			if(!Npc_IsDead(Randolph))
 			{
-				CreateInvItems(Randolph,ITWR_DementorObsessionBook_MIS,1);
+				CreateInvItems(Randolph,ItWr_DementorObsessionBook_MIS,1);
 				Npc_ExchangeRoutine(Randolph,"PRESTART");
 			};
 		};
@@ -821,7 +821,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 			Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_KDF_19");
 			Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_KDF_20");
 			Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_STAND_DEMENTOR_KDF_21");
-			Wld_InsertItem(ITWR_DementorObsessionBook_MIS,"FP_ITEM_FARM1_01");
+			Wld_InsertItem(ItWr_DementorObsessionBook_MIS,"FP_ITEM_FARM1_01");
 			Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_KDF_29");
 			Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_KDF_30");
 			Wld_InsertNpc(DMT_DementorAmbient,"NW_FARM1_BANDITS_CAVE_08");
@@ -840,7 +840,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 			if(!Npc_IsDead(Sekob))
 			{
 				Sekob_isAlive_Kap5 = TRUE;
-				CreateInvItems(Sekob,ITWR_DementorObsessionBook_MIS,1);
+				CreateInvItems(Sekob,ItWr_DementorObsessionBook_MIS,1);
 				Npc_ExchangeRoutine(Sekob,"OBSESSED");
 			};
 		};

@@ -288,7 +288,6 @@ func void DIA_Dyrian_HelloAgain_Info()
 };
 
 
-
 instance DIA_Dyrian_HowIsIt(C_Info)
 {
 	npc = NOV_604_Dyrian;

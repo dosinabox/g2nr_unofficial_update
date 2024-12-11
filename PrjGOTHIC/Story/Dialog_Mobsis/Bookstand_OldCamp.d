@@ -54,9 +54,9 @@ func void Bookstand_Milten_02_S1()
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"Милтен");
 		Doc_Show(nDocID);
-		if(Knows_Diego == TRUE)
+		if((Knows_Diego == TRUE) && (MIS_SearchForDiego == FALSE))
 		{
-			SearchForDiego = LOG_Running;
+			MIS_SearchForDiego = LOG_Running;
 		};
 	};
 };

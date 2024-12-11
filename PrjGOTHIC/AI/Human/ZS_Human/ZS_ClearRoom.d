@@ -13,9 +13,7 @@ func void B_ClearRoomTalk()
 
 func int B_ExitIfRoomLeft()
 {
-	var int portalguild;
-	portalguild = Wld_GetPlayerPortalGuild();
-	if(!C_NpcIsBotheredByPlayerRoomGuild(self) || (portalguild == GIL_PUBLIC))
+	if(!C_NpcIsBotheredByPlayerRoomGuild(self) || (Wld_GetPlayerPortalGuild() == GIL_PUBLIC))
 	{
 		Npc_ClearAIQueue(self);
 		AI_Standup(self);

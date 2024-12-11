@@ -51,36 +51,40 @@ func void B_AssessTalk()
 		};*/
 		if(CurrentLevel == NEWWORLD_ZEN)
 		{
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Baltram))
+			if(C_IsNpc(self,VLK_410_Baltram))
 			{
 				B_BaltramRangerCheck(other);
 			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru))
+			else if(C_IsNpc(self,VLK_492_Rengaru))
 			{
 				if(!C_RengaruIsReadyToTalk())
 				{
 					return;
 				};
 			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Meldor))
+			else if(C_IsNpc(self,VLK_415_Meldor))
 			{
 				if(C_LawArmorEquipped(other))
 				{
 					Meldor_Busted = TRUE;
 				};
 			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Kardif))
+			else if(C_IsNpc(self,VLK_431_Kardif))
 			{
-				if(C_LawArmorEquipped(other) && !Npc_KnowsInfo(other,DIA_Kardif_Zeichen))
+				if(C_LawArmorEquipped(other) && (Kardif_KnowsSCAsThief == FALSE))
 				{
 					Kardif_Busted = TRUE;
 				};
 			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Greg_NW))
+			else if(C_IsNpc(self,PC_Thief_NW))
+			{
+				MIS_SearchForDiego = LOG_SUCCESS;
+			}
+			else if(C_IsNpc(self,PIR_1300_Addon_Greg_NW))
 			{
 				PlayerTalkedToGregNW = TRUE;
 			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Skip_NW))
+			else if(C_IsNpc(self,PIR_1301_Addon_Skip_NW))
 			{
 				PlayerTalkedToSkipNW = TRUE;
 			}
@@ -88,12 +92,12 @@ func void B_AssessTalk()
 			{
 				if(C_LawArmorEquipped(other))
 				{
-					if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Borka))
+					if(C_IsNpc(self,VLK_434_Borka))
 					{
 						Undercover_Failed_Borka = TRUE;
 						B_CheckRedLightUndercover();
 					}
-					else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nadja))
+					else if(C_IsNpc(self,VLK_435_Nadja))
 					{
 						Undercover_Failed_Nadja = TRUE;
 						B_CheckRedLightUndercover();
@@ -102,7 +106,7 @@ func void B_AssessTalk()
 			};
 			if(self.guild == GIL_VLK)
 			{
-				if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Canthar))
+				if(!C_IsNpc(self,VLK_468_Canthar))
 				{
 					B_PlayerEnteredCity();
 				};
@@ -111,14 +115,14 @@ func void B_AssessTalk()
 			{
 				if((Parlan_DontTalkToNovice == LOG_Running) && Wld_IsTime(8,0,0,0))
 				{
-					if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger1))
+					if(C_IsNpc(self,NOV_615_Novize))
 					{
 						if(Npc_GetDistToWP(self,"NW_MONASTERY_CELLAR_08") > 900)
 						{
 							Parlan_DontTalkToNovice = LOG_FAILED;
 						};
 					}
-					else if((Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Garwig)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Pedro)))
+					else if(!C_IsNpc(self,NOV_608_Garwig) && !C_IsNpc(self,NOV_600_Pedro))
 					{
 						Parlan_DontTalkToNovice = LOG_FAILED;
 					};
@@ -132,6 +136,13 @@ func void B_AssessTalk()
 					B_Attack(self,other,AR_KILL,0);
 					return;
 				};
+			};
+		}
+		else if(CurrentLevel == OLDWORLD_ZEN)
+		{
+			if(C_IsNpc(self,PC_ThiefOW))
+			{
+				MIS_SearchForDiego = LOG_SUCCESS;
 			};
 		};
 		if(B_AssessEnemy())

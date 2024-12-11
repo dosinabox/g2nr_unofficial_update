@@ -130,7 +130,7 @@ const string MOBNAME_ADDON_TELEPORT_03 = "В болота";
 const string MOBNAME_ADDON_TELEPORT_04 = "В долину";
 const string MOBNAME_ADDON_TELEPORT_05 = "В каньон";
 
-const string TXT_GUILDS[66] =
+const string TXT_GUILDS[GIL_MAX] =
 {
 	"Нет гильдии",
 	"Паладин",
@@ -200,7 +200,7 @@ const string TXT_GUILDS[66] =
 	"GIL_EMPTY_Z"
 };
 
-const string TXT_SPELLS[100] =
+const string TXT_SPELLS[MAX_SPELL] =
 {
 	"Святой свет",
 	"Малое исцеление",
@@ -405,7 +405,7 @@ const string NAME_SPL_Reserved_97 = "NAME_SPL_RESERVED_97";
 const string NAME_SPL_Reserved_98 = "NAME_SPL_RESERVED_98";
 const string NAME_SPL_Reserved_99 = "NAME_SPL_RESERVED_99";
 
-const string TXT_TALENTS[22] =
+const string TXT_TALENTS[NPC_TALENT_MAX] =
 {
 	"",
 	"Одноручное",
@@ -431,7 +431,7 @@ const string TXT_TALENTS[22] =
 	""
 };
 
-const string TXT_TALENTS_SKILLS[22] =
+const string TXT_TALENTS_SKILLS[NPC_TALENT_MAX] =
 {
 	"",
 	"Новичок|Боец|Мастер",
@@ -457,7 +457,7 @@ const string TXT_TALENTS_SKILLS[22] =
 	""
 };
 
-const string TXT_INV_CAT[9] =
+const string TXT_INV_CAT[INV_CAT_MAX] =
 {
 	"",
 	"Оружие",
@@ -550,7 +550,7 @@ const string NAME_Mag_Circle = "Круг:";
 const string NAME_Manakosten = "Расход маны:";
 const string NAME_ManakostenMin = "Расход маны (мин.):";
 const string NAME_ManakostenMax = "Расход маны (макс.):";
-//const string NAME_ManaPerSec = "Маны в секунду:";
+const string NAME_ManaPerSec = "Расход маны (в сек.):";
 const string NAME_Duration = "Длительность (минут):";
 const string NAME_Sec_Duration = "Длительность (секунд):";
 const string NAME_Str_needed = "Необходима сила:";

@@ -17,7 +17,7 @@ func int Spell_Logic_Charm(var int manaInvested)
 {
 	if((Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll)) || (self.attribute[ATR_MANA] >= SPL_Cost_Charm))
 	{
-		if(Hlp_GetInstanceID(other) != Hlp_GetInstanceID(Ignaz))
+		if(!C_IsNpc(other,VLK_498_Ignaz))
 		{
 			if((other.aivar[AIV_NpcSawPlayerCommit] != CRIME_NONE) && (MIS_Ignaz_Charm == LOG_Running))
 			{
@@ -42,35 +42,35 @@ func int Spell_Logic_Charm(var int manaInvested)
 		};
 		if(Undercover_Failed == FALSE)
 		{
-			if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Borka))
+			if(C_IsNpc(other,VLK_434_Borka))
 			{
 				Undercover_Failed_Borka = FALSE;
 				Borka_RefuseToTalk = FALSE;
 			}
-			else if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Nadja))
+			else if(C_IsNpc(other,VLK_435_Nadja))
 			{
 				Undercover_Failed_Nadja = FALSE;
 				Nadja_BuyHerb_Failed = FALSE;
 			};
 		};
-		if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Meldor))
+		if(C_IsNpc(other,VLK_415_Meldor))
 		{
 			Undercover_Failed_Meldor = FALSE;
 			Meldor_Busted = FALSE;
 		}
-		else if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Kardif))
+		else if(C_IsNpc(other,VLK_431_Kardif))
 		{
 			Undercover_Failed_Kardif = FALSE;
 			Kardif_Busted = FALSE;
 		}
-		else if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Canthar))
+		else if(C_IsNpc(other,VLK_468_Canthar))
 		{
 			if(other.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE)
 			{
 				other.aivar[AIV_LastFightComment] = TRUE;
 			};
 		}
-		else if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Orlan))
+		else if(C_IsNpc(other,BAU_970_Orlan))
 		{
 			if(Orlan_RoomIsRented == TRUE)
 			{

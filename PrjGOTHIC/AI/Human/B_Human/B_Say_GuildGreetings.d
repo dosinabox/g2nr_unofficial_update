@@ -24,12 +24,12 @@ func void B_Say_GuildGreetings(var C_Npc slf,var C_Npc oth)
 		B_Say_Overlay(slf,oth,"$PALGREETINGS");
 		return;
 	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bartok)) && (Bartok_OrkGesagt == TRUE))
+	if(C_IsNpc(slf,VLK_440_Bartok) && (Bartok_OrkGesagt == TRUE))
 	{
 		B_Say_Overlay(slf,oth,"DIA_Bartok_Angekommen_04_02");
 		return;
 	};
-	/*if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Koch))
+	/*if(C_IsNpc(slf,STRF_1107_Straefling))
 	{
 		//не озвучено в русской версии
 		B_Say_Overlay(slf,oth,"Hackebeil_01_00");

@@ -3,25 +3,28 @@ func int B_AssessEnemy()
 {
 	if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Magic_Golem)))
+		if(C_IsNpc(self,VLK_449_Lares))
 		{
-			return FALSE;
+			if(C_IsNpc(other,MagicGolem))
+			{
+				return FALSE;
+			};
 		};
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cornelius)) && !Npc_IsPlayer(other))
+		if(C_IsNpc(self,VLK_401_Cornelius) && !Npc_IsPlayer(other))
 		{
 			if(Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") <= 1000)
 			{
 				return FALSE;
 			};
 		};
-		if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius))
+		if(C_IsNpc(other,VLK_401_Cornelius))
 		{
 			if(C_IsNpc(self,BDT_1031_Fluechtling) || C_IsNpc(self,BDT_1032_Fluechtling))
 			{
 				return FALSE;
 			};
 		};
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph)) && !Npc_IsPlayer(other))
+		if(C_IsNpc(self,BAU_942_Randolph) && !Npc_IsPlayer(other))
 		{
 			if(Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000)
 			{
@@ -70,7 +73,7 @@ func int B_AssessEnemy()
 	};
 	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		if(Npc_GetDistToNpc(self,other) > 1500)
+		if(Npc_GetDistToNpc(self,other) > PERC_DIST_MONSTER_ACTIVE_MAX)
 		{
 			return FALSE;
 		};

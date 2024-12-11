@@ -32,8 +32,8 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_HaradOrk,MIS_Harad_Orc,0,6);
 	B_CloseTopic(TOPIC_Canthar,MIS_Canthars_KomproBrief,0,6);
 	B_CloseTopic(TOPIC_HakonBanditen,MIS_HakonBandits,0,6);
-	B_CloseTopic(TOPIC_Jora,Jora_Gold,0,6);
-	B_CloseTopic(TOPIC_JoraDieb,Jora_Dieb,0,6);
+	B_CloseTopic(TOPIC_Jora,MIS_Jora_Gold,0,6);
+	B_CloseTopic(TOPIC_JoraDieb,MIS_Jora_Dieb,0,6);
 	B_CloseTopic(TOPIC_Matteo,MIS_Matteo_Gold,0,6);
 	B_CloseTopic(TOPIC_Nagur,MIS_Nagur_Bote,0,6);
 	B_CloseTopic(TOPIC_Baltram,MIS_Baltram_ScoutAkil,0,6);
@@ -94,7 +94,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_BilgotEscort,MIS_RescueBilgot,0,6);
 	B_CloseTopic(TOPIC_MarcosJungs,MIS_Marcos_Jungs,0,3);
 	B_CloseTopic(TOPIC_Botschaft,MIS_Vatras_Message,0,6);
-	B_CloseTopic(TOPIC_Lutero,Lutero_Krallen,0,6);
+	B_CloseTopic(TOPIC_Lutero,MIS_Lutero_Krallen,0,6);
 	B_CloseTopic(TOPIC_Fernando,MIS_Fernando_Erz,0,6);
 	B_CloseTopic(TOPIC_PyrokarClearDemonTower,MIS_PyrokarClearDemonTower,0,6);
 	B_CloseTopic(TOPIC_HyglasBringBook,MIS_HyglasBringBook,0,6);

@@ -2,7 +2,7 @@
 func void B_JoinShip(var C_Npc slf)
 {
 	B_SetImmortal(slf);
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Angar_NW))
+	if(C_IsNpc(slf,DJG_705_Angar_NW))
 	{
 		Angar_IsOnBoard = LOG_SUCCESS;
 		if(Angar_WasOnBoard == FALSE)
@@ -12,7 +12,7 @@ func void B_JoinShip(var C_Npc slf)
 		};
 		Crewmember_Count += 1;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Biff))
+	else if(C_IsNpc(slf,DJG_713_Biff))
 	{
 		Biff_IsOnBoard = LOG_SUCCESS;
 		if(Biff_WasOnBoard == FALSE)
@@ -22,7 +22,7 @@ func void B_JoinShip(var C_Npc slf)
 		};
 		Crewmember_Count += 1;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(GornNW_nach_DJG))
+	else if(C_IsNpc(slf,PC_Fighter_NW_nach_DJG))
 	{
 		Gorn_IsOnBoard = LOG_SUCCESS;
 		if(Gorn_WasOnBoard == FALSE)
@@ -32,7 +32,7 @@ func void B_JoinShip(var C_Npc slf)
 		};
 		Crewmember_Count += 1;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(MiltenNW))
+	else if(C_IsNpc(slf,PC_Mage_NW))
 	{
 		MiltenNW_IsOnBoard = LOG_SUCCESS;
 		if(MiltenNW_WasOnBoard == FALSE)
@@ -42,7 +42,7 @@ func void B_JoinShip(var C_Npc slf)
 		};
 		Crewmember_Count += 1;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lester))
+	else if(C_IsNpc(slf,PC_Psionic))
 	{
 		Lester_IsOnBoard = LOG_SUCCESS;
 		if(Lester_WasOnBoard == FALSE)
@@ -52,7 +52,7 @@ func void B_JoinShip(var C_Npc slf)
 		};
 		Crewmember_Count += 1;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(DiegoNW))
+	else if(C_IsNpc(slf,PC_Thief_NW))
 	{
 		Diego_IsOnBoard = LOG_SUCCESS;
 		if(Diego_WasOnBoard == FALSE)
@@ -62,7 +62,7 @@ func void B_JoinShip(var C_Npc slf)
 		};
 		Crewmember_Count += 1;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lee))
+	else if(C_IsNpc(slf,SLD_800_Lee))
 	{
 		Lee_IsOnBoard = LOG_SUCCESS;
 		if(Lee_WasOnBoard == FALSE)
@@ -72,7 +72,7 @@ func void B_JoinShip(var C_Npc slf)
 		};
 		Crewmember_Count += 1;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bennet))
+	else if(C_IsNpc(slf,SLD_809_Bennet))
 	{
 		Bennet_IsOnBoard = LOG_SUCCESS;
 		if(Bennet_WasOnBoard == FALSE)
@@ -82,7 +82,7 @@ func void B_JoinShip(var C_Npc slf)
 		};
 		Crewmember_Count += 1;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(SLD_Wolf))
+	else if(C_IsNpc(slf,SLD_811_Wolf))
 	{
 		Wolf_IsOnBoard = LOG_SUCCESS;
 		if(Wolf_WasOnBoard == FALSE)
@@ -92,7 +92,7 @@ func void B_JoinShip(var C_Npc slf)
 		};
 		Crewmember_Count += 1;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
+	else if(C_IsNpc(slf,VLK_439_Vatras))
 	{
 		Vatras_IsOnBoard = LOG_SUCCESS;
 		if(Vatras_WasOnBoard == FALSE)
@@ -102,7 +102,7 @@ func void B_JoinShip(var C_Npc slf)
 		};
 		Crewmember_Count += 1;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lares))
+	else if(C_IsNpc(slf,VLK_449_Lares))
 	{
 		Lares_IsOnBoard = LOG_SUCCESS;
 		if(Lares_WasOnBoard == FALSE)
@@ -112,7 +112,7 @@ func void B_JoinShip(var C_Npc slf)
 		};
 		Crewmember_Count += 1;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Mario))
+	else if(C_IsNpc(slf,NONE_101_Mario))
 	{
 		Mario_IsOnBoard = LOG_SUCCESS;
 		if(Mario_WasOnBoard == FALSE)
@@ -122,7 +122,7 @@ func void B_JoinShip(var C_Npc slf)
 		};
 		CrewmemberFree_Count += 1;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Girion))
+	else if(C_IsNpc(slf,PAL_207_Girion))
 	{
 		Girion_IsOnBoard = LOG_SUCCESS;
 		if(Girion_WasOnBoard == FALSE)
@@ -133,7 +133,7 @@ func void B_JoinShip(var C_Npc slf)
 		CrewmemberFree_Count += 1;
 	};
 	AI_StopProcessInfos(slf);
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Biff))
+	if(C_IsNpc(slf,DJG_713_Biff))
 	{
 		Npc_ExchangeRoutine(slf,"RUNSTOPASS");
 	}

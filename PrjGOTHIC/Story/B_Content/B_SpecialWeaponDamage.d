@@ -10,7 +10,7 @@ func void B_SpecialMeleeWeaponDamage(var C_Npc attacker,var C_Npc target)
 	{
 		return;
 	};
-	if(Hlp_GetInstanceID(target) == Hlp_GetInstanceID(Raven))
+	if(C_IsNpc(target,BDT_1090_Addon_Raven))
 	{
 		Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",target,target,0,0,0,FALSE);
 		if(RavenBlitz <= 0)
@@ -62,7 +62,7 @@ func void B_SpecialMeleeWeaponDamage(var C_Npc attacker,var C_Npc target)
 		}
 		else if(Hlp_IsItem(ReadyWeap,Holy_Hammer_MIS))
 		{
-			if(Hlp_GetInstanceID(target) == Hlp_GetInstanceID(Magic_Golem))
+			if(C_IsNpc(target,MagicGolem))
 			{
 				Npc_ChangeAttribute(target,ATR_HITPOINTS,-target.attribute[ATR_HITPOINTS_MAX]);
 				if(!C_BodyStateContains(target,BS_PARADE))

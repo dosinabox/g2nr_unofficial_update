@@ -41,7 +41,7 @@ func void ZS_MagicFlee()
 	{
 		if(ScaredRick == FALSE)
 		{
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rick))
+			if(C_IsNpc(self,MIL_336_Rick))
 			{
 				Npc_ExchangeRoutine(self,"FLUCHT3");
 				self.aivar[AIV_DropDeadAndKill] = FALSE;
@@ -50,7 +50,7 @@ func void ZS_MagicFlee()
 		};
 		if(ScaredRumbold == FALSE)
 		{
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rumbold))
+			if(C_IsNpc(self,MIL_335_Rumbold))
 			{
 				Npc_ExchangeRoutine(self,"FLUCHT3");
 				self.aivar[AIV_DropDeadAndKill] = FALSE;
@@ -62,7 +62,7 @@ func void ZS_MagicFlee()
 	{
 		if(ScaredAlvares == FALSE)
 		{
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Alvares))
+			if(C_IsNpc(self,SLD_840_Alvares))
 			{
 				B_SetGuild(self,GIL_SLD);
 				Npc_ExchangeRoutine(self,"BIGFARM");
@@ -71,7 +71,7 @@ func void ZS_MagicFlee()
 		};
 		if(ScaredEngardo == FALSE)
 		{
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Engardo))
+			if(C_IsNpc(self,SLD_841_Engardo))
 			{
 				B_SetGuild(self,GIL_SLD);
 				Npc_ExchangeRoutine(self,"BIGFARM");

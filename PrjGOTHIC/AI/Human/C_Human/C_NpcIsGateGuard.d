@@ -5,7 +5,7 @@ func int C_NpcIsGateGuard(var C_Npc slf)
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(BridgeBandit))
+	if(C_IsNpc(slf,BDT_1020_Bandit_L))
 	{
 		return FALSE;
 	};

@@ -48,10 +48,6 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 			return FALSE;
 		};
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(BridgeBandit))
-	{
-		return FALSE;
-	};
 	if(C_NpcIsGateGuard(slf))
 	{
 		return FALSE;
@@ -60,11 +56,7 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Greg))
-	{
-		return FALSE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Salandril))
+	if(C_IsNpc(slf,VLK_422_Salandril))
 	{
 		if(Salandril_SentToMonastery == TRUE)
 		{

@@ -508,7 +508,7 @@ instance DIA_Milten_DI_DementorObsessionBook(C_Info)
 
 func int DIA_Milten_DI_DementorObsessionBook_Condition()
 {
-	if(Npc_HasItems(other,ITWR_DementorObsessionBook_MIS))
+	if(Npc_HasItems(other,ItWr_DementorObsessionBook_MIS))
 	{
 		return TRUE;
 	};

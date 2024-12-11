@@ -67,7 +67,7 @@ instance DIA_Parcival_Diego(C_Info)
 
 func int DIA_Parcival_Diego_Condition()
 {
-	if((SearchForDiego == LOG_Running) && (Kapitel < 3) && Npc_KnowsInfo(other,DIA_Parcival_Schurfer))
+	if((MIS_SearchForDiego == LOG_Running) && Npc_KnowsInfo(other,DIA_Parcival_Schurfer))
 	{
 		return TRUE;
 	};
@@ -77,7 +77,10 @@ func void DIA_Parcival_Diego_Info()
 {
 	AI_Output(other,self,"DIA_Parcival_Diego_15_00");	//А с какой группой старателей пошел Диего?
 	AI_Output(self,other,"DIA_Parcival_Diego_13_01");	//Этот каторжник - Диего? Он с группой паладина Сильвестро.
-	B_LogEntry(TOPIC_ScoutMine,"Диего пошел со старателями, возглавляемыми паладином Сильвестро.");
+	if((MIS_ScoutMine == LOG_Running) && !Npc_KnowsInfo(other,DIA_Jergan_Diego) && (Silvestro_Ore == FALSE))
+	{
+		B_LogEntry(TOPIC_ScoutMine,"Диего пошел со старателями, возглавляемыми паладином Сильвестро.");
+	};
 };
 
 

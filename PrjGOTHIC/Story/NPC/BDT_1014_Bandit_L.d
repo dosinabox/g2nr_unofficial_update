@@ -7,6 +7,7 @@ instance BDT_1014_Bandit_L(Npc_Default)
 	voice = 6;
 	flags = 0;
 	npcType = NPCTYPE_MAIN;
+	aivar[AIV_SubGuild] = GIL_SUB_Brago;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,0);
 	fight_tactic = FAI_HUMAN_NORMAL;

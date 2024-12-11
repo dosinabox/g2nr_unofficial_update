@@ -4,7 +4,6 @@ func void evt_teleportstation_func()
 	Wld_PlayEffect("spellFX_Teleport_RING",hero,hero,0,0,0,FALSE);
 	Snd_Play("MFX_TELEPORT_CAST");
 	Npc_ClearAIQueue(hero);
-	SCUsed_TELEPORTER = TRUE;
 	if(CurrentLevel == NEWWORLD_ZEN)
 	{
 		if(Npc_GetDistToWP(hero,"NW_TELEPORTSTATION_CITY") < 3000)

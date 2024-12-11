@@ -539,8 +539,8 @@ func void DIA_Wolf_BENGAR_geld()
 			AI_UseMob(self,"BENCH",-1);
 		};
 		Npc_ExchangeRoutine(self,"BENGARSFARM");
-		B_StartOtherRoutine(SLD_815_Soeldner,"BENGARSFARM");
-		B_StartOtherRoutine(SLD_817_Soeldner,"BENGARSFARM");
+		B_StartOtherRoutine(SLD_815,"BENGARSFARM");
+		B_StartOtherRoutine(SLD_817,"BENGARSFARM");
 	}
 	else
 	{

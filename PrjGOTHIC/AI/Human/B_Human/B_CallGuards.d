@@ -1,22 +1,27 @@
 
 func int C_WantToCallGuards(var C_Npc slf)
 {
-	if(slf.aivar[AIV_PARTYMEMBER] == FALSE)
+	if(slf.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		if((slf.guild == GIL_PAL) || (slf.guild == GIL_MIL) || (slf.guild == GIL_VLK) || (slf.guild == GIL_SLD) || (slf.guild == GIL_BAU))
-		{
-			return TRUE;
-		};
+		return FALSE;
+	};
+	if(C_NpcBelongsToOldCamp(slf))
+	{
+		return TRUE;
+	};
+	if(C_NpcBelongsToCity(slf))
+	{
+		return TRUE;
+	};
+	if(C_NpcBelongsToFarm(slf))
+	{
+		return TRUE;
 	};
 	return FALSE;
 };
 
 func void B_CallGuards()
 {
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cavalorn)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Gaan)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Orlan)))
-	{
-		return;
-	};
 	if(!C_WantToCallGuards(self))
 	{
 		return;

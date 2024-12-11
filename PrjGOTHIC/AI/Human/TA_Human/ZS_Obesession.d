@@ -3,14 +3,14 @@ func void ZS_Obesession()
 {
 	Perception_Set_Normal();
 	B_ResetAll(self);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino4))
+	if(C_IsNpc(self,DMT_DementorSpeakerVino4))
 	{
 		if(!Npc_IsDead(Vino))
 		{
 			AI_TurnToNPC(self,Vino);
 		};
 	}
-	else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Vino))
+	else if(C_IsNpc(self,BAU_952_Vino))
 	{
 		if(!Npc_IsDead(DMT_Vino4))
 		{
@@ -22,14 +22,14 @@ func void ZS_Obesession()
 
 func int ZS_Obesession_Loop()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino4))
+	if(C_IsNpc(self,DMT_DementorSpeakerVino4))
 	{
 		if(!Npc_IsDead(Vino))
 		{
 			AI_PlayAni(self,"S_SCKSHOOT");
 		};
 	}
-	else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Vino))
+	else if(C_IsNpc(self,BAU_952_Vino))
 	{
 		if(!Npc_IsDead(DMT_Vino4))
 		{
@@ -42,7 +42,7 @@ func int ZS_Obesession_Loop()
 
 func void ZS_Obesession_End()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Vino))
+	if(C_IsNpc(self,BAU_952_Vino))
 	{
 		AI_EquipBestMeleeWeapon(self);
 	};

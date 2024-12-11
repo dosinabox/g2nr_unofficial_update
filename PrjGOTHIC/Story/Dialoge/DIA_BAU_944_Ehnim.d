@@ -265,6 +265,7 @@ func void DIA_Ehnim_MoleRatFett_tot()
 {
 	AI_Output(other,self,"DIA_Ehnim_MoleRatFett_tot_15_00");	//Вино мертв.
 	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_tot_12_01");	//О боже. Ужас-то какой.
+	Ehnim_KnowsVinoIsDead = TRUE;
 };
 
 func void DIA_Ehnim_MoleRatFett_was()
@@ -318,7 +319,7 @@ func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja()
 		if(Npc_HasItems(self,ItMi_Moleratlubric_MIS))
 		{
 			B_GiveInvItems(self,other,ItMi_Moleratlubric_MIS,1);
-			if(!Npc_IsDead(Vino))
+			if(Ehnim_KnowsVinoIsDead == FALSE)
 			{
 				AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_02");	//(себе под нос) Вино убьет меня за это.
 			};

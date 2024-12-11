@@ -3,15 +3,15 @@ func void B_ClearRuneInv(var C_Npc slf)
 {
 	if(!C_NpcIsHero(slf))
 	{
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Archol))
+		if(C_IsNpc(slf,Skeleton_Lord_Archol))
 		{
 			return;
 		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(AntiPaladin_NW))
+		if(C_IsNpc(slf,OrkElite_AntiPaladinOrkOberst))
 		{
 			return;
 		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bruder))
+		if(C_IsNpc(slf,PAL_2004_Bruder))
 		{
 			return;
 		};

@@ -498,7 +498,7 @@ func void DIA_Raoul_TROLLFELL_Info()
 
 func void DIA_Raoul_TROLLFELL_ja()
 {
-	AI_Output(other,self,"DIA_Raoul_TROLLFELL_ja_15_00");	//Продано.
+	DIA_Common_Sold();
 	AI_Output(self,other,"DIA_Raoul_TROLLFELL_ja_01_01");	//Отличная сделка.
 	CreateInvItems(other,ItPo_Health_03,3);
 	CreateInvItems(other,ItMi_Gold,500);

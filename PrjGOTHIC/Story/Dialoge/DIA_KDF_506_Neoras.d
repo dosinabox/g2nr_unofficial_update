@@ -128,7 +128,7 @@ func void DIA_Neoras_Rezept_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Neoras_Rezept_15_04");	//Я еще не нашел его.
+		DIA_Common_NotFoundYet();
 		AI_Output(self,other,"DIA_Neoras_Rezept_01_05");	//Ну, я все же надеюсь, что тебе удастся его найти.
 	};
 };

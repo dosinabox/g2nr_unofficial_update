@@ -218,7 +218,7 @@ func void UseCorneliusTagebuch()
 };
 
 
-instance ITWR_DementorObsessionBook_MIS(C_Item)
+instance ItWr_DementorObsessionBook_MIS(C_Item)
 {
 	name = "Альманах Одержимых";
 	mainflag = ITEM_KAT_DOCS;

@@ -169,5 +169,6 @@ func void B_GiveAllPatchWeapons(var C_Npc npc)
 	CreateInvItem(npc,ItMw_2H_Hammer_01);
 	CreateInvItem(npc,ItMw_2H_Hammer_02);
 	CreateInvItem(npc,ItMw_Addon_Becky);
+	CreateInvItem(npc,ItMw_1h_OLD_Sword);
 };
 

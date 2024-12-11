@@ -938,6 +938,7 @@ func void DIA_Addon_Greg_NW_CaughtDexter_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_CaughtDexter_01_00");	//(громко) Ну и где эта свинья?
 	AI_Output(other,self,"DIA_Addon_Greg_NW_CaughtDexter_15_01");	//Кто, главарь? Прямо здесь.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_CaughtDexter_01_02");	//Тогда прочь с моей дороги!
+	Greg_TalkedToInDexterCamp = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"DEXTERHOUSERUN");
 };
@@ -972,6 +973,7 @@ func void DIA_Addon_Greg_NW_WodennNu_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WodennNu_01_00");	//И куда же он делся?
 	AI_Output(other,self,"DIA_Addon_Greg_NW_WodennNu_15_01");	//Был здесь.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WodennNu_01_02");	//Ну так пойди и отыщи его!
+	Greg_TalkedToInDexterCamp = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"DEXTERHOUSEWALK");
 };
@@ -1007,6 +1009,7 @@ func void DIA_Addon_Greg_NW_CaughtDexter2_Info()
 	{
 		Npc_ExchangeRoutine(self,"DEXTERHOUSEWALK");
 	};
+	Greg_TalkedToInDexterCamp = TRUE;
 	B_GivePlayerXP(XP_Ambient);
 };
 

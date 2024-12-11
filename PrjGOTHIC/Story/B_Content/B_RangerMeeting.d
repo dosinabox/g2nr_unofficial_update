@@ -27,27 +27,27 @@ func void B_MakeRangerReadyToLeaveMeeting(var C_Npc ranger)
 	{
 		return;
 	};
-	if(Hlp_GetInstanceID(ranger) == Hlp_GetInstanceID(Martin))
+	if(C_IsNpc(ranger,MIL_350_Addon_Martin))
 	{
 		AI_EquipArmor(ranger,ITAR_MIL_L);
 	}
-	else if(Hlp_GetInstanceID(ranger) == Hlp_GetInstanceID(Lares))
+	else if(C_IsNpc(ranger,VLK_449_Lares))
 	{
 		AI_EquipArmor(ranger,ITAR_Vlk_L);
 	}
-	else if(Hlp_GetInstanceID(ranger) == Hlp_GetInstanceID(Cord))
+	else if(C_IsNpc(ranger,SLD_805_Cord))
 	{
 		AI_EquipArmor(ranger,ITAR_SLD_H);
 	}
-	else if(Hlp_GetInstanceID(ranger) == Hlp_GetInstanceID(Gaan))
+	else if(C_IsNpc(ranger,BAU_961_Gaan))
 	{
 		AI_EquipArmor(ranger,ITAR_Bau_L);
 	}
-	else if(Hlp_GetInstanceID(ranger) == Hlp_GetInstanceID(Orlan))
+	else if(C_IsNpc(ranger,BAU_970_Orlan))
 	{
 		AI_EquipArmor(ranger,ITAR_Bau_M);
 	}
-	else if(Hlp_GetInstanceID(ranger) == Hlp_GetInstanceID(Cavalorn))
+	else if(C_IsNpc(ranger,BAU_4300_Addon_Cavalorn))
 	{
 		if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE)
 		{
