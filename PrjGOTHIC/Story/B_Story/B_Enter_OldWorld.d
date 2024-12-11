@@ -11,7 +11,7 @@ func void B_ENTER_OLDWORLD_Kapitel_1()
 			};
 		};
 	}
-	else if(Lutero_Krallen == LOG_Running)
+	else if(MIS_Lutero_Krallen == LOG_Running)
 	{
 		if(NewMine_LeadSnapper_Spawned == FALSE)
 		{

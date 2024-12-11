@@ -57,6 +57,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_HannaRetrieveLetter = LOG_FAILED;
 			};
 		}
+		else if(C_IsNpc(slf,VLK_404_Lutero))
+		{
+			if(MIS_Lutero_Krallen == LOG_Running)
+			{
+				MIS_Lutero_Krallen = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,VLK_405_Fernando))
 		{
 			if(MIS_Fernando_Erz == LOG_Running)

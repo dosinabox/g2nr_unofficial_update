@@ -18,7 +18,7 @@ func int DIA_Jora_EXIT_Condition()
 func void DIA_Jora_EXIT_Info()
 {
 	DIA_Common_IHaveToGo_v2();
-	if(((Jora_Dieb == LOG_FAILED) || (Jora_Dieb == LOG_SUCCESS)) && (Jora_Gold == LOG_Running))
+	if(((MIS_Jora_Dieb == LOG_FAILED) || (MIS_Jora_Dieb == LOG_SUCCESS)) && (MIS_Jora_Gold == LOG_Running))
 	{
 		AI_Output(self,other,"DIA_Jora_EXIT_08_00");	//Эй! Как насчет моих денег?
 	}
@@ -256,11 +256,11 @@ func void DIA_Jora_HolDeinGold_DoIt()
 	AI_Output(self,other,"DIA_Jora_HolDeinGold_DoIt_08_02");	//Последнее время обстановка здесь значительно обострилась. С тех пор, как паладины прибыли в город, стража набрасывается на всех, кто вступает в драку.
 	AI_Output(self,other,"DIA_Jora_HolDeinGold_DoIt_08_03");	//Так что придумай что-нибудь...
 	AI_Output(other,self,"DIA_Jora_HolDeinGold_DoIt_15_04");	//Попробую.
-	Jora_Dieb = LOG_Running;
+	MIS_Jora_Dieb = LOG_Running;
 	Log_CreateTopic(TOPIC_JoraDieb,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_JoraDieb,LOG_Running);
 	B_LogEntries(TOPIC_JoraDieb,"Ренгару ограбил торговца Джору. Если я поймаю его, мне за это полагается награда.");
-	Jora_Gold = LOG_Running;
+	MIS_Jora_Gold = LOG_Running;
 	Log_CreateTopic(TOPIC_Jora,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Jora,LOG_Running);
 	B_LogNextEntry(TOPIC_Jora,"Парень по имени Ренгару ограбил торговца Джору. Он весь день околачивается на рынке. Я должен вернуть украденное золото Джоры.");
@@ -281,7 +281,7 @@ instance DIA_Jora_WegenDieb(C_Info)
 
 func int DIA_Jora_WegenDieb_Condition()
 {
-	if(Jora_Dieb == LOG_Running)
+	if(MIS_Jora_Dieb == LOG_Running)
 	{
 		return TRUE;
 	};
@@ -318,7 +318,7 @@ func void DIA_Jora_WegenDieb_Entkommen()
 {
 	AI_Output(other,self,"DIA_Jora_WegenDieb_Entkommen_15_00");	//Он сбежал от меня.
 	AI_Output(self,other,"DIA_Jora_WegenDieb_Entkommen_08_01");	//А мое золото? Он унес его с собой?
-	Jora_Dieb = LOG_FAILED;
+	MIS_Jora_Dieb = LOG_FAILED;
 	B_CheckLog();
 	Info_ClearChoices(DIA_Jora_WegenDieb);
 };
@@ -327,7 +327,7 @@ func void DIA_Jora_WegenDieb_ImKnast()
 {
 	AI_Output(other,self,"DIA_Jora_WegenDieb_ImKnast_15_00");	//Да, я поймал его. Пусть немного посидит за решеткой, подумает...
 	AI_Output(self,other,"DIA_Jora_WegenDieb_ImKnast_08_01");	//А что насчет моего золота?
-	Jora_Dieb = LOG_SUCCESS;
+	MIS_Jora_Dieb = LOG_SUCCESS;
 	B_CheckLog();
 	Info_ClearChoices(DIA_Jora_WegenDieb);
 };
@@ -337,7 +337,7 @@ func void DIA_Jora_WegenDieb_Tot()
 	AI_Output(other,self,"DIA_Jora_WegenDieb_Tot_15_00");	//Ну, с ним произошел несчастный случай.
 	AI_Output(self,other,"DIA_Jora_WegenDieb_Tot_08_01");	//Ну, хотя бы он теперь не сможет никого обокрасть! Правосудие Инноса свершилось!
 	AI_Output(self,other,"DIA_Jora_WegenDieb_Tot_08_02");	//Где мое золото?
-	Jora_Dieb = LOG_SUCCESS;
+	MIS_Jora_Dieb = LOG_SUCCESS;
 	B_CheckLog();
 	Info_ClearChoices(DIA_Jora_WegenDieb);
 };
@@ -356,7 +356,7 @@ instance DIA_Jora_BringGold(C_Info)
 
 func int DIA_Jora_BringGold_Condition()
 {
-	if(((Jora_Dieb == LOG_FAILED) || (Jora_Dieb == LOG_SUCCESS)) && (Jora_Gold == LOG_Running))
+	if(((MIS_Jora_Dieb == LOG_FAILED) || (MIS_Jora_Dieb == LOG_SUCCESS)) && (MIS_Jora_Gold == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -368,7 +368,7 @@ func void DIA_Jora_BringGold_Info()
 	if(B_GiveInvItems(other,self,ItMi_Gold,50))
 	{
 		AI_Output(self,other,"DIA_Jora_BringGold_08_01");	//Хвала Инносу! Есть еще правосудие в этом городе.
-		Jora_Gold = LOG_SUCCESS;
+		MIS_Jora_Gold = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Jora_Gold);
 	}
 	else
@@ -405,7 +405,7 @@ func int DIA_Jora_GHDgInfo_Condition()
 func void DIA_Jora_GHDgInfo_Info()
 {
 	AI_Output(other,self,"DIA_Jora_Add_15_05");	//Что ты знаешь о гильдии воров?
-	if(Jora_Gold != LOG_SUCCESS)
+	if(MIS_Jora_Gold != LOG_SUCCESS)
 	{
 		B_Jora_GoldForClue();
 	}
@@ -435,7 +435,7 @@ instance DIA_Jora_Belohnung(C_Info)
 
 func int DIA_Jora_Belohnung_Condition()
 {
-	if(Jora_Gold == LOG_SUCCESS)
+	if(MIS_Jora_Gold == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -486,7 +486,7 @@ func int DIA_Jora_AlriksSchwert_Condition()
 func void DIA_Jora_AlriksSchwert_Info()
 {
 	AI_Output(other,self,"DIA_Jora_AlriksSchwert_15_00");	//Альрик говорит, что у тебя его меч...
-	if(Jora_Gold == LOG_SUCCESS)
+	if(MIS_Jora_Gold == LOG_SUCCESS)
 	{
 		B_Say(self,other,"$AWAKE");
 	}
@@ -501,7 +501,7 @@ func void DIA_Jora_AlriksSchwert_Info()
 	{
 		AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_03");	//Его меч все еще у меня.
 		AI_Output(other,self,"DIA_Jora_AlriksSchwert_15_04");	//Сколько ты хочешь за него?
-		if(Jora_Gold == LOG_SUCCESS)
+		if(MIS_Jora_Gold == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_05");	//Ну, для тебя...
 			B_Jora_GivesAlriksSchwert();
@@ -540,7 +540,7 @@ func int DIA_Jora_BUYAlriksSchwert_Condition()
 func void DIA_Jora_BUYAlriksSchwert_Info()
 {
 	AI_Output(other,self,"DIA_Jora_BUYAlriksSchwert_15_00");	//Вот 50 золотых монет. Давай мне меч Альрика.
-	if(Jora_Gold == LOG_SUCCESS)
+	if(MIS_Jora_Gold == LOG_SUCCESS)
 	{
 		B_Jora_GivesAlriksSchwert();
 	}

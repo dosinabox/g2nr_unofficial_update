@@ -34,7 +34,7 @@ instance DIA_Rengaru_Hauab(C_Info)
 
 func int DIA_Rengaru_Hauab_Condition()
 {
-	if((Jora_Dieb == FALSE) && !Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU))
+	if((MIS_Jora_Dieb == FALSE) && !Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU))
 	{
 		return TRUE;
 	};
@@ -61,7 +61,7 @@ instance DIA_Rengaru_HALLODIEB(C_Info)
 
 func int DIA_Rengaru_HALLODIEB_Condition()
 {
-	if(Jora_Dieb == LOG_Running)
+	if(MIS_Jora_Dieb == LOG_Running)
 	{
 		return TRUE;
 	};

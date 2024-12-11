@@ -16,9 +16,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Install dependencies
-      run: sudo apt-get install -y grep
-
     - name: Find and check d files
       run: |
         # Initialize error counter

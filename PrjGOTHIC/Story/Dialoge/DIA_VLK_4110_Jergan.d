@@ -329,12 +329,12 @@ func int DIA_Jergan_Leader_Condition()
 func void DIA_Jergan_Leader_Info()
 {
 	AI_Output(self,other,"DIA_Jergan_Leader_13_00");	//Ты убил вожака стаи. И как - ты забрал когти этого зверя?
-	if(Npc_HasItems(other,ItAt_ClawLeader) || (Lutero_Krallen == LOG_SUCCESS))
+	if(Npc_HasItems(other,ItAt_ClawLeader) || (MIS_Lutero_Krallen == LOG_SUCCESS))
 	{
 		AI_Output(other,self,"DIA_Jergan_Leader_15_01");	//Да.
 		AI_Output(self,other,"DIA_Jergan_Leader_13_02");	//Они стоят целое состояние. Есть люди, которые коллекционируют такие вещи.
 		AI_Output(self,other,"DIA_Jergan_Leader_13_03");	//Если ты найдешь правильного покупателя, то получишь за них целую кучу золота.
-		if(Lutero_Krallen == LOG_SUCCESS)
+		if(MIS_Lutero_Krallen == LOG_SUCCESS)
 		{
 			DIA_Common_Sold();
 		};
