@@ -296,7 +296,7 @@ var int MIS_SnafHammer;
 //var int Knows_Senyan;
 //var int Finn_CONTRA;
 //var int Paul_CONTRA;
-var int Senyan_Erpressung;
+var int MIS_Senyan_Erpressung;
 var int Senyan_Contact;
 //var int Senyan_CONTRA;
 //var int Senyan_Gold;

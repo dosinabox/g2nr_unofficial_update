@@ -44,16 +44,16 @@ func void B_AssessMurder()
 			B_MemorizePlayerCrime(self,other,CRIME_SHEEPKILLER);
 		};
 	};
-	if((other.guild > GIL_SEPERATOR_HUM) && (victim.guild > GIL_SEPERATOR_HUM))
+	if(!C_NpcIsHuman(other) && !C_NpcIsHuman(victim))
 	{
 		return;
 	};
-	if(other.guild > GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(other))
 	{
 		B_Attack(self,other,AR_MonsterMurderedHuman,0);
 		return;
 	};
-	if(victim.guild > GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(victim))
 	{
 		return;
 	};

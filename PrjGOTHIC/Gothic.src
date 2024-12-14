@@ -22,6 +22,7 @@ Story\Text.d
 Story\NPC_Scripts\B_RemoveEveryInvItem.d
 AI\Human\C_Human\C_IsNpc.d
 AI\Human\C_Human\C_NpcIsHero.d
+AI\Human\C_Human\C_NpcIsHuman.d
 Story\B_Story\B_CheckOption.d
 Story\B_Story\C_NpcIsInQuarter.d
 Story\B_Story\B_GetLaresLocation.d

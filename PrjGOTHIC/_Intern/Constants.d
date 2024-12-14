@@ -192,7 +192,7 @@ const int IMPORTANT = 1;
 const int INF_TELL = 0;
 const int INF_UNKNOWN = 2;
 
-const int LOG_Running = 1;
+const int LOG_RUNNING = 1;
 const int LOG_SUCCESS = 2;
 const int LOG_FAILED = 3;
 const int LOG_OBSOLETE = 4;
@@ -819,7 +819,7 @@ const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2024;
 const int FIX_DATE_MONTH = 12;
-const int FIX_DATE_DAY = 11;
+const int FIX_DATE_DAY = 14;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;

@@ -8,7 +8,7 @@ func void B_KillNpc(var int npcInstance)
 		if(!Npc_IsDead(npc))
 		{
 			npc.flags = 0;
-			if(npc.guild < GIL_SEPERATOR_HUM)
+			if(C_NpcIsHuman(npc))
 			{
 				B_ClearRuneInv(npc);
 				B_ClearFakeItems(npc);

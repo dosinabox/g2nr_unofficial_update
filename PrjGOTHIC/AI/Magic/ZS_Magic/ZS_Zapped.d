@@ -1,10 +1,10 @@
 
-func void B_StopZapped()
+/*func void B_StopZapped()
 {
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_ClearAIQueue(self);
 	AI_Standup(self);
-	if(self.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(self))
 	{
 		B_AssessDamage();
 		AI_ContinueRoutine(self);
@@ -27,7 +27,7 @@ func void ZS_Zapped()
 	{
 		AI_StandupQuick(self);
 	};
-	if(self.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(self))
 	{
 		AI_PlayAni(self,"T_STAND_2_LIGHTNING_VICTIM");
 	};
@@ -51,5 +51,5 @@ func int ZS_Zapped_Loop()
 
 func void ZS_Zapped_End()
 {
-};
+};*/
 

@@ -145,7 +145,7 @@ func void DIA_Addon_Pyrokar_MissingPeople_Info()
 	AI_Output(other,self,"DIA_Addon_Pyrokar_MissingPeople_15_04");	//Да, но...
 	AI_Output(self,other,"DIA_Addon_Pyrokar_MissingPeople_11_05");	//Никаких 'но'! Мы будем поступать так, как считаем нужным, и я надеюсь, что ты это поймешь.
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Маги Огня огорчены исчезновениями горожан. Однако, они говорят, что этим должны заниматься маги Воды. В монастыре мне не удастся найти помощи по этому вопросу.");
 	if((other.guild == GIL_NOV) && (Knows_Fire_Contest == FALSE))
 	{
@@ -248,7 +248,7 @@ func void DIA_Pyrokar_TEST_Info()
 	AI_Output(self,other,"DIA_Pyrokar_TEST_11_06");	//Тебе понадобится этот ключ.
 	AI_Output(self,other,"DIA_Pyrokar_TEST_11_07");	//Это все, что мы можем сказать тебе.
 	Log_CreateTopic(TOPIC_Schnitzeljagd,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Schnitzeljagd,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Schnitzeljagd,LOG_RUNNING);
 	B_LogEntry(TOPIC_Schnitzeljagd,"Пирокар дает мне Испытание Магией. Это то же самое испытание, что должны пройти избранные послушники Ульф, Игарац и Агон.");
 	Log_AddEntry(TOPIC_Schnitzeljagd,"Я должен следовать знакам Инноса и 'принести то, что верующий находит в конце пути'. Также он дал мне ключ.");
 	CreateInvItems(self,ItKe_MagicChest,1);
@@ -291,7 +291,7 @@ func void DIA_Pyrokar_TEST_Info()
 		AI_Teleport(Ulf,"NW_TROLLAREA_PATH_42");
 		B_StartOtherRoutine(Ulf,"SUCHE");
 	};
-	MIS_Schnitzeljagd = LOG_Running;
+	MIS_Schnitzeljagd = LOG_RUNNING;
 	AI_StopProcessInfos(self);
 };
 
@@ -325,7 +325,7 @@ instance DIA_Pyrokar_RUNNING(C_Info)
 
 func int DIA_Pyrokar_RUNNING_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV))
+	if((MIS_Schnitzeljagd == LOG_RUNNING) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV))
 	{
 		if(!C_FireContestRuneFound())
 		{
@@ -367,7 +367,7 @@ instance DIA_Pyrokar_SUCCESS(C_Info)
 
 func int DIA_Pyrokar_SUCCESS_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV))
+	if((MIS_Schnitzeljagd == LOG_RUNNING) && (other.guild == GIL_NOV))
 	{
 		if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
 		{
@@ -485,31 +485,31 @@ func void DIA_Pyrokar_OATH_Info()
 	AI_Output(other,self,"DIA_Pyrokar_OATH_15_05");	//Клянусь.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_06");	//Произнеся слова этой клятвы, ты присоединился к Соглашению Огня.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_07");	//Носи эту робу в знак этих вечных уз.
-	if(MIS_NeorasPflanzen == LOG_Running)
+	if(MIS_NeorasPflanzen == LOG_RUNNING)
 	{
 		MIS_NeorasPflanzen = LOG_OBSOLETE;
 	};
-	if(MIS_NeorasRezept == LOG_Running)
+	if(MIS_NeorasRezept == LOG_RUNNING)
 	{
 		MIS_NeorasRezept = LOG_OBSOLETE;
 	};
-	if(MIS_IsgarothWolf == LOG_Running)
+	if(MIS_IsgarothWolf == LOG_RUNNING)
 	{
 		MIS_IsgarothWolf = LOG_OBSOLETE;
 	};
-	if(MIS_ParlanFegen == LOG_Running)
+	if(MIS_ParlanFegen == LOG_RUNNING)
 	{
 		MIS_ParlanFegen = LOG_OBSOLETE;
 	};
-	if(MIS_GoraxEssen == LOG_Running)
+	if(MIS_GoraxEssen == LOG_RUNNING)
 	{
 		MIS_GoraxEssen = LOG_OBSOLETE;
 	};
-	if(MIS_GoraxWein == LOG_Running)
+	if(MIS_GoraxWein == LOG_RUNNING)
 	{
 		MIS_GoraxWein = LOG_OBSOLETE;
 	};
-	if(MIS_MardukBeten == LOG_Running)
+	if(MIS_MardukBeten == LOG_RUNNING)
 	{
 		MIS_MardukBeten = LOG_OBSOLETE;
 	};
@@ -520,7 +520,7 @@ func void DIA_Pyrokar_OATH_Info()
 	B_StartOtherRoutine(Lothar,"START");
 	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
 	B_CancelBengarMilitiaProblem();
-	if(MIS_Torlof_HolPachtVonSekob == LOG_Running)
+	if(MIS_Torlof_HolPachtVonSekob == LOG_RUNNING)
 	{
 		MIS_Torlof_HolPachtVonSekob = LOG_FAILED;
 	};
@@ -560,6 +560,7 @@ func void DIA_Pyrokar_OATH_Info()
 		else
 		{
 			B_StartOtherRoutine(Ulf,"BACKTOMONASTERY");
+			B_SetGuild(Ulf,GIL_NOV);
 			Ulf.aivar[AIV_DropDeadAndKill] = FALSE;
 			Ulf.aivar[AIV_NewsOverride] = FALSE;
 			Ulf.aivar[AIV_IgnoresArmor] = FALSE;
@@ -676,15 +677,15 @@ func void DIA_Pyrokar_Wunsch_Info()
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_11_02");	//Итак, каким же будет твой первый шаг в качестве мага?
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
 	Info_AddChoice(DIA_Pyrokar_Wunsch,"Никаким.",DIA_Pyrokar_Wunsch_Nothing);
-	if((MIS_HelpBabo == LOG_Running) && !Npc_IsDead(Babo))
+	if((MIS_HelpBabo == LOG_RUNNING) && !Npc_IsDead(Babo))
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Бабо возглавить монастырский сад.",DIA_Pyrokar_Wunsch_Babo);
 	};
-	if((MIS_HelpOpolos == LOG_Running) && !Npc_IsDead(Opolos))
+	if((MIS_HelpOpolos == LOG_RUNNING) && !Npc_IsDead(Opolos))
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Ополосу получить доступ в библиотеку.",DIA_Pyrokar_Wunsch_Opolos);
 	};
-	if((MIS_HelpDyrian == LOG_Running) && (Kapitel == 1) && !Npc_IsDead(Dyrian))
+	if((MIS_HelpDyrian == LOG_RUNNING) && (Kapitel == 1) && !Npc_IsDead(Dyrian))
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Дуриану остаться в монастыре.",DIA_Pyrokar_Wunsch_Dyrian);
 	};
@@ -701,15 +702,15 @@ func void DIA_Pyrokar_Wunsch_Nothing()
 		AI_Teleport(Dyrian,"TAVERNE");
 		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	};
-	if(MIS_HelpDyrian == LOG_Running)
+	if(MIS_HelpDyrian == LOG_RUNNING)
 	{
 		MIS_HelpDyrian = LOG_FAILED;
 	};
-	if(MIS_HelpOpolos == LOG_Running)
+	if(MIS_HelpOpolos == LOG_RUNNING)
 	{
 		MIS_HelpOpolos = LOG_FAILED;
 	};
-	if(MIS_HelpBabo == LOG_Running)
+	if(MIS_HelpBabo == LOG_RUNNING)
 	{
 		MIS_HelpBabo = LOG_FAILED;
 	};
@@ -722,11 +723,11 @@ func void DIA_Pyrokar_Wunsch_Dyrian()
 	AI_Output(other,self,"DIA_Pyrokar_Wunsch_Dyrian_15_00");	//Позволь послушнику Дуриану остаться в монастыре.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Dyrian_11_01");	//Да будет так.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Dyrian_11_02");	//Этому послушнику будет позволено остаться в монастыре, и он займет место садовника, которое сейчас вакантно.
-	if(MIS_HelpOpolos == LOG_Running)
+	if(MIS_HelpOpolos == LOG_RUNNING)
 	{
 		MIS_HelpOpolos = LOG_FAILED;
 	};
-	if(MIS_HelpBabo == LOG_Running)
+	if(MIS_HelpBabo == LOG_RUNNING)
 	{
 		MIS_HelpBabo = LOG_FAILED;
 	};
@@ -748,11 +749,11 @@ func void DIA_Pyrokar_Wunsch_Babo()
 		AI_Teleport(Dyrian,"TAVERNE");
 		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	};
-	if(MIS_HelpDyrian == LOG_Running)
+	if(MIS_HelpDyrian == LOG_RUNNING)
 	{
 		MIS_HelpDyrian = LOG_FAILED;
 	};
-	if(MIS_HelpOpolos == LOG_Running)
+	if(MIS_HelpOpolos == LOG_RUNNING)
 	{
 		MIS_HelpOpolos = LOG_FAILED;
 	};
@@ -781,11 +782,11 @@ func void DIA_Pyrokar_Wunsch_Opolos()
 		AI_Teleport(Dyrian,"TAVERNE");
 		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	};
-	if(MIS_HelpDyrian == LOG_Running)
+	if(MIS_HelpDyrian == LOG_RUNNING)
 	{
 		MIS_HelpDyrian = LOG_FAILED;
 	};
-	if(MIS_HelpBabo == LOG_Running)
+	if(MIS_HelpBabo == LOG_RUNNING)
 	{
 		MIS_HelpBabo = LOG_FAILED;
 	};
@@ -809,7 +810,7 @@ instance DIA_Pyrokar_Nachricht(C_Info)
 
 func int DIA_Pyrokar_Nachricht_Condition()
 {
-	if(MIS_OLDWORLD == LOG_Running)
+	if(MIS_OLDWORLD == LOG_RUNNING)
 	{
 		if(other.guild == GIL_KDF)
 		{
@@ -1076,7 +1077,7 @@ func void B_Pyrokar_BLESSING()
 		AI_Output(self,other,"DIA_Pyrokar_PERM_11_03");	//Да встанет Иннос между тобой и болью на всех нечестивых путях, по которым тебе суждено пройти.
 	};
 	other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
-	if((MIS_Thorben_GetBlessings == LOG_Running) && !C_GotAnyInnosBlessing())
+	if((MIS_Thorben_GetBlessings == LOG_RUNNING) && !C_GotAnyInnosBlessing())
 	{
 		B_LogEntry(TOPIC_Thorben,"Маг Огня Пирокар благословил меня.");
 	};
@@ -1176,8 +1177,8 @@ func void DIA_Pyrokar_BACKFROMOW_Info()
 		if(MIS_DementorsOrigins == FALSE)
 		{
 			Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
-			MIS_DementorsOrigins = LOG_Running;
+			Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_RUNNING);
+			MIS_DementorsOrigins = LOG_RUNNING;
 		};
 		B_LogEntry(TOPIC_DEMENTOREN,"Пирокар рассказал мне об Ищущих, людях в черных рясах. Это приспешники Белиара. Он предупредил меня, что они могут сделать меня одержимым. Если это произойдет, я должен немедленно возвращаться в монастырь.");
 		if(!Npc_IsDead(Karras))
@@ -1267,7 +1268,7 @@ func void DIA_Pyrokar_GIVEINNOSEYE_wer()
 	Pedro_Traitor = TRUE;
 	B_LogEntries(TOPIC_INNOSEYE,"Невероятно. Хотя я ожидал чего-то подобного. Я опоздал, эти тупицы из монастыря позволили какому-то послушнику украсть Глаз, и теперь мне придется гнаться за предателем Педро и надеяться, что он еще не продал Глаз кому-нибудь.");
 	Log_CreateTopic(TOPIC_TraitorPedro,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_TraitorPedro,LOG_Running);
+	Log_SetTopicStatus(TOPIC_TraitorPedro,LOG_RUNNING);
 	B_LogNextEntry(TOPIC_TraitorPedro,"Предатель Педро украл Глаз Инноса из монастыря. Как я понимаю, маги Огня теперь из кожи вон лезут, чтобы найти этого предателя.");
 };
 
@@ -1296,7 +1297,7 @@ func void DIA_Pyrokar_NOVIZENCHASE_Info()
 	AI_Output(self,other,"DIA_Pyrokar_NOVIZENCHASE_11_01");	//Педро убил несколько послушников, пытавшихся остановить его, и растворился в утреннем тумане.
 	AI_Output(self,other,"DIA_Pyrokar_NOVIZENCHASE_11_02");	//Многие послушники бросились за ним в погоню, чтобы вернуть Глаз назад, на его законное место.
 	AI_Output(self,other,"DIA_Pyrokar_NOVIZENCHASE_11_03");	//Если ты хочешь догнать их, то поторопись, пока Педро не стал недосягаемым.
-	MIS_NovizenChase = LOG_Running;
+	MIS_NovizenChase = LOG_RUNNING;
 };
 
 
@@ -1312,7 +1313,7 @@ instance DIA_Pyrokar_FOUNDINNOSEYE(C_Info)
 
 func int DIA_Pyrokar_FOUNDINNOSEYE_Condition()
 {
-	if((Kapitel == 3) && (MIS_NovizenChase == LOG_Running) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((Kapitel == 3) && (MIS_NovizenChase == LOG_RUNNING) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
 		if(Npc_HasItems(hero,ItMi_InnosEye_Broken_MIS))
 		{
@@ -1363,7 +1364,7 @@ func void DIA_Pyrokar_FOUNDINNOSEYE_was()
 	Info_AddChoice(DIA_Pyrokar_FOUNDINNOSEYE,"Почему Ватрас?",DIA_Pyrokar_FOUNDINNOSEYE_was_vatras);
 	Info_AddChoice(DIA_Pyrokar_FOUNDINNOSEYE,"Что такое Круг Солнца?",DIA_Pyrokar_FOUNDINNOSEYE_sonnenkreis);
 	B_LogEntry(TOPIC_INNOSEYE,"Пирокар хочет, чтобы я спросил у мага Воды Ватраса, находящегося в городе, совета о том, что можно сделать с поврежденным Глазом.");
-	MIS_Pyrokar_GoToVatrasInnoseye = LOG_Running;
+	MIS_Pyrokar_GoToVatrasInnoseye = LOG_RUNNING;
 };
 
 func void DIA_Pyrokar_FOUNDINNOSEYE_was_vatras()
@@ -1403,7 +1404,7 @@ instance DIA_Pyrokar_SPOKETOVATRAS(C_Info)
 
 func int DIA_Pyrokar_SPOKETOVATRAS_Condition()
 {
-	if((MIS_RitualInnosEyeRepair == LOG_Running) && (Kapitel == 3))
+	if((MIS_RitualInnosEyeRepair == LOG_RUNNING) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -1514,7 +1515,7 @@ instance DIA_Pyrokar_PRERITUAL(C_Info)
 
 func int DIA_Pyrokar_PRERITUAL_Condition()
 {
-	if((Pyrokar_GoesToRitualInnosEye == TRUE) && (MIS_RitualInnosEyeRepair == LOG_Running) && (Kapitel == 3))
+	if((Pyrokar_GoesToRitualInnosEye == TRUE) && (MIS_RitualInnosEyeRepair == LOG_RUNNING) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -1602,7 +1603,7 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 		CreateInvItems(Gorax,ItMi_RuneBlank,1);
 	};
 	Log_CreateTopic(TOPIC_DRACHENJAGD,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_DRACHENJAGD,LOG_Running);
+	Log_SetTopicStatus(TOPIC_DRACHENJAGD,LOG_RUNNING);
 	B_LogEntry(TOPIC_DRACHENJAGD,"Теперь я готов к встрече с драконами. Глаз Инноса поможет мне уничтожить их. Но прежде чем вступать в битву с драконами, я должен не забыть надеть его. Я должен поговорить с драконами, прежде чем начинать сражение. Проблема состоит в том, что Глаз теряет свою силу каждый раз, когда я разговариваю с одним из них. Чтобы восстановить силу этого амулета, мне необходимо сердце дракона и пустая мензурка. Я должен объединить ослабленный камень и экстракт из драконьего сердца на алхимическом столе, прежде чем противостоять другому дракону.");
 	MIS_ReadyforChapter4 = TRUE;
 	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
@@ -2131,9 +2132,9 @@ func void DIA_Pyrokar_MACHDTFREI_Info()
 	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_03");	//Много людей слышало громкие вопли в ночи, исходящие оттуда, и видели странный свет, пляшущий над этой башней.
 	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_04");	//Только этого нам еще не хватало! Иди, проверь что там происходит и прекрати это безобразие!
 	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_05");	//Тогда ты сможешь забрать Йоргена.
-	MIS_PyrokarClearDemonTower = LOG_Running;
+	MIS_PyrokarClearDemonTower = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_PyrokarClearDemonTower,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_PyrokarClearDemonTower,LOG_Running);
+	Log_SetTopicStatus(TOPIC_PyrokarClearDemonTower,LOG_RUNNING);
 	B_LogEntry(TOPIC_PyrokarClearDemonTower,"Странные вещи творятся с башней Ксардаса. Если я соберусь выяснить, что там происходит, я могу взять с собой Йоргена.");
 };
 
@@ -2150,7 +2151,7 @@ instance DIA_Pyrokar_DTCLEARED(C_Info)
 
 func int DIA_Pyrokar_DTCLEARED_Condition()
 {
-	if(MIS_PyrokarClearDemonTower == LOG_Running)
+	if(MIS_PyrokarClearDemonTower == LOG_RUNNING)
 	{
 		if(C_XardasDemonsDead())
 		{

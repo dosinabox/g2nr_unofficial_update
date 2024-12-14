@@ -1,11 +1,11 @@
 
 func int C_DropUnconscious()
 {
-	if(self.guild > GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(self))
 	{
 		return FALSE;
 	};
-	if(other.guild > GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(other))
 	{
 		return FALSE;
 	};

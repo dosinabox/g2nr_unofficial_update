@@ -11,7 +11,7 @@ func void ZS_Talk()
 	B_SetFaceExpression(self,other);
 	self.aivar[AIV_INVINCIBLE] = TRUE;
 	other.aivar[AIV_INVINCIBLE] = TRUE;
-	if(self.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(self))
 	{
 		if(C_BodyStateContains(self,BS_SIT))
 		{
@@ -39,7 +39,7 @@ func void ZS_Talk()
 			AI_Dodge(other);
 		};
 	};
-	if(self.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(self))
 	{
 		if(self.aivar[AIV_DexToSteal] > 0)
 		{
@@ -104,7 +104,7 @@ func int ZS_Talk_Loop()
 		other.aivar[AIV_INVINCIBLE] = FALSE;
 		self.aivar[AIV_NpcStartedTalk] = FALSE;
 		self.aivar[AIV_TalkedToPlayer] = TRUE;
-		if(self.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(self))
 		{
 			B_StopLookAt(self);
 			B_ResetFaceExpression(self);

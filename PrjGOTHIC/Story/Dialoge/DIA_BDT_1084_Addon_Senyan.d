@@ -18,7 +18,7 @@ func int DIA_Addon_Senyan_EXIT_Condition()
 func void DIA_Addon_Senyan_EXIT_Info()
 {
 	DIA_Common_SeeYou();
-	if(Senyan_Erpressung == LOG_Running)
+	if(MIS_Senyan_Erpressung == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Addon_Senyan_EXIT_12_00");	//“ы знаешь, что тебе нужно сделать...
 	}
@@ -35,7 +35,7 @@ func void B_Senyan_Attack()
 	AI_Output(self,other,"DIA_Addon_Senyan_Attack_12_00");	//(насмеха€сь) “огда зачем ты мне еще нужен, туне€дец?
 	AI_Output(self,other,"DIA_Addon_Senyan_Attack_12_01");	//(зовет) Ёй, реб€та, посмотрите, кто у нас здесь!
 	Senyan_Called = TRUE;
-	Senyan_Erpressung = LOG_OBSOLETE;
+	MIS_Senyan_Erpressung = LOG_OBSOLETE;
 	B_CheckLog();
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
@@ -50,7 +50,7 @@ func void B_Senyan_Erpressung()
 	AI_Output(self,other,"DIA_Addon_Senyan_Erpressung_12_04");	//ѕойди к Ёстебану и поговори с ним. ѕотом возвращайс€.
 	AI_StopProcessInfos(self);
 	Log_CreateTopic(TOPIC_Addon_Senyan,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Senyan,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Senyan,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_Senyan,"—ень€н узнал мен€. ≈му известно, кто € такой. ќн хочет использовать мен€ дл€ каких-то своих целей. Ќо сначала € должен поговорить с Ёстебаном.");
 };
 
@@ -192,7 +192,7 @@ instance DIA_Addon_Senyan_Attentat(C_Info)
 
 func int DIA_Addon_Senyan_Attentat_Condition()
 {
-	if((MIS_Judas == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_BDT_1084_Senyan_Hi) && !Npc_IsDead(Esteban))
+	if((MIS_Judas == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_BDT_1084_Senyan_Hi) && !Npc_IsDead(Esteban))
 	{
 		return TRUE;
 	};
@@ -226,7 +226,7 @@ func void DIA_Addon_Senyan_Attentat_JA()
 	AI_Output(other,self,"DIA_Addon_Senyan_Attentat_JA_15_00");	//ћм-м, не то чтобы у мен€ был выбор...
 	AI_Output(self,other,"DIA_Addon_Senyan_Attentat_JA_12_01");	//я знал, что мы сможем договоритьс€.
 	AI_Output(self,other,"DIA_Addon_Senyan_Attentat_JA_12_02");	//(хитро)  огда ты выполнишь свою работу - и выполнишь ее хорошо - и вы€снишь, кто виноват, мы убьем тупицу вместе. ј теперь иди!
-	Senyan_Erpressung = LOG_Running;
+	MIS_Senyan_Erpressung = LOG_RUNNING;
 	Info_ClearChoices(DIA_Addon_Senyan_Attentat);
 	B_LogEntry(TOPIC_Addon_Senyan,"—ень€н хочет, чтобы € нашел виновного и убил его. ѕосле этого € получу свою награду.");
 };
@@ -245,7 +245,7 @@ instance DIA_Addon_Senyan_ChangePlan(C_Info)
 
 func int DIA_Addon_Senyan_ChangePlan_Condition()
 {
-	if((Senyan_Erpressung == LOG_Running) && (Snaf_Tip_Senyan == TRUE))
+	if((MIS_Senyan_Erpressung == LOG_RUNNING) && (Snaf_Tip_Senyan == TRUE))
 	{
 		return TRUE;
 	};
