@@ -13,7 +13,7 @@ func int C_PlayerIsFakePirate(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(slf.guild > GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(slf))
 	{
 		return FALSE;
 	};

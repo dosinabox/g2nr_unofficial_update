@@ -233,7 +233,7 @@ func int ZS_MM_Attack_Loop()
 func void ZS_MM_Attack_End()
 {
 	var C_Npc target;
-	if(self.guild > GIL_SEPERATOR_ORC)
+	if(C_NpcIsOrc(self))
 	{
 		AI_RemoveWeapon(self);
 		if(Npc_HasReadiedWeapon(self))

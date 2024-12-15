@@ -2,7 +2,7 @@
 func void B_MM_AssessBody()
 {
 	var C_Npc stoerenfried;
-	if(self.guild > GIL_SEPERATOR_ORC)
+	if(C_NpcIsOrc(self))
 	{
 		return;
 	};

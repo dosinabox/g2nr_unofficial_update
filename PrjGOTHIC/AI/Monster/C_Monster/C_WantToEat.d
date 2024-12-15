@@ -30,11 +30,11 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 	};
 	if(slf.guild == GIL_SCAVENGER)
 	{
-		if(oth.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(oth))
 		{
 			return TRUE;
 		};
-		if(oth.guild > GIL_SEPERATOR_ORC)
+		if(C_NpcIsOrc(oth))
 		{
 			return TRUE;
 		};
@@ -101,11 +101,11 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 	}
 	else if(slf.guild == GIL_GIANT_RAT)
 	{
-		if(oth.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(oth))
 		{
 			return TRUE;
 		};
-		if(oth.guild > GIL_SEPERATOR_ORC)
+		if(C_NpcIsOrc(oth))
 		{
 			return TRUE;
 		};
@@ -208,7 +208,7 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 	{
 		if(slf.aivar[AIV_MM_REAL_ID] != ID_KEILER)
 		{
-			if(oth.guild < GIL_SEPERATOR_HUM)
+			if(C_NpcIsHuman(oth))
 			{
 				return TRUE;
 			};
@@ -228,11 +228,11 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 	}
 	else if(slf.guild == GIL_MINECRAWLER)
 	{
-		if(oth.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(oth))
 		{
 			return TRUE;
 		};
-		if(oth.guild > GIL_SEPERATOR_ORC)
+		if(C_NpcIsOrc(oth))
 		{
 			return TRUE;
 		};
@@ -255,22 +255,22 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-		if(oth.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(oth))
 		{
 			return TRUE;
 		};
-		if(oth.guild > GIL_SEPERATOR_ORC)
+		if(C_NpcIsOrc(oth))
 		{
 			return TRUE;
 		};
 	}
 	else if(slf.guild == GIL_SNAPPER)
 	{
-		if(oth.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(oth))
 		{
 			return TRUE;
 		};
-		if(oth.guild > GIL_SEPERATOR_ORC)
+		if(C_NpcIsOrc(oth))
 		{
 			return TRUE;
 		};
@@ -321,11 +321,11 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 	}
 	else if(slf.guild == GIL_SHADOWBEAST)
 	{
-		if(oth.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(oth))
 		{
 			return TRUE;
 		};
-		if(oth.guild > GIL_SEPERATOR_ORC)
+		if(C_NpcIsOrc(oth))
 		{
 			return TRUE;
 		};

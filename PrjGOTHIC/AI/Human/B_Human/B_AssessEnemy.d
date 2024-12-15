@@ -41,8 +41,16 @@ func int B_AssessEnemy()
 			};
 		};
 	};
-	if(other.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(other))
 	{
+		if(self.aivar[AIV_EnemyOverride] == TRUE)
+		{
+			return FALSE;
+		};
+		if(other.aivar[AIV_EnemyOverride] == TRUE)
+		{
+			return FALSE;
+		};
 		if(!Npc_IsPlayer(other))
 		{
 			if(self.aivar[AIV_NoFightParker] == TRUE)
@@ -83,10 +91,6 @@ func int B_AssessEnemy()
 		};
 	};
 	if(C_PlayerIsFakeBandit(self,other) && (self.guild == GIL_BDT))
-	{
-		return FALSE;
-	};
-	if(((self.aivar[AIV_EnemyOverride] == TRUE) || (other.aivar[AIV_EnemyOverride] == TRUE)) && (other.guild < GIL_SEPERATOR_HUM))
 	{
 		return FALSE;
 	};

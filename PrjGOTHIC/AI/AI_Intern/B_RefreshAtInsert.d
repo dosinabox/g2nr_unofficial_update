@@ -166,7 +166,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 
 func void B_RefreshAtInsert()
 {
-	if(self.guild >= GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(self))
 	{
 		return;
 	};

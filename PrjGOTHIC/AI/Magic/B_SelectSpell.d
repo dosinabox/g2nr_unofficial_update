@@ -2,7 +2,7 @@
 func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 {
 	var int dK_Mega;
-	if((slf.npcType == NPCTYPE_FRIEND) && Npc_IsPlayer(oth) && (oth.guild < GIL_SEPERATOR_HUM))
+	if((slf.npcType == NPCTYPE_FRIEND) && Npc_IsPlayer(oth) && C_NpcIsHuman(oth))
 	{
 		if((slf.guild == GIL_KDF) || (slf.guild == GIL_KDW) || (slf.aivar[AIV_MagicUser] == MAGIC_ALWAYS))
 		{
