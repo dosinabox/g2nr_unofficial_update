@@ -6,16 +6,15 @@ func void B_StopMagicBurn()
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_ClearAIQueue(self);
 	AI_Standup(self);
-	if(self.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(self))
 	{
 		B_AssessDamage();
-		AI_ContinueRoutine(self);
 	}
 	else
 	{
 		Npc_SetTempAttitude(self,ATT_HOSTILE);
-		AI_ContinueRoutine(self);
 	};
+	AI_ContinueRoutine(self);
 };
 
 func void B_RestartBurn()

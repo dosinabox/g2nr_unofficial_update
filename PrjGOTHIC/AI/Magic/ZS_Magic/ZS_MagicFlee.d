@@ -3,7 +3,7 @@ func void B_StopMagicFlee()
 {
 	Npc_PercDisable(self,PERC_ASSESSDAMAGE);
 	Npc_SetTarget(self,hero);
-	if(self.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(self))
 	{
 		AI_StartState(self,ZS_Flee,0,"");
 	}
@@ -16,7 +16,7 @@ func void B_StopMagicFlee()
 func void ZS_MagicFlee()
 {
 	var int randy;
-	if(self.guild > GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(self))
 	{
 		if((self.guild != GIL_DRAGON) && (self.guild != GIL_TROLL) && !C_NpcIsGolem(self) && !C_NpcIsUndead(self))
 		{
@@ -121,7 +121,7 @@ func void ZS_MagicFlee()
 	{
 		AI_StandupQuick(self);
 	};
-	if(self.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(self))
 	{
 		randy = Hlp_Random(3);
 		if(randy == 0)

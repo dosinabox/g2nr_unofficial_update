@@ -9,7 +9,7 @@ func void B_MM_AssessEnemy()
 	{
 		return;
 	};
-	if((self.aivar[AIV_EnemyOverride] == TRUE) && (other.guild < GIL_SEPERATOR_HUM))
+	if((self.aivar[AIV_EnemyOverride] == TRUE) && C_NpcIsHuman(other))
 	{
 		return;
 	};
@@ -46,7 +46,7 @@ func void B_MM_AssessEnemy()
 	{
 		return;
 	};
-	if(Npc_IsPlayer(other) && (other.guild > GIL_SEPERATOR_HUM))
+	if(Npc_IsPlayer(other) && !C_NpcIsHuman(other))
 	{
 		if(Wld_GetGuildAttitude(self.guild,other.guild) != ATT_HOSTILE)
 		{

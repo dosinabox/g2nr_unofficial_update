@@ -26,7 +26,7 @@ func void B_StopMagicFreeze()
 	};
 	if(!Npc_IsPlayer(self))
 	{
-		if(self.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(self))
 		{
 			B_AssessDamage();
 		}

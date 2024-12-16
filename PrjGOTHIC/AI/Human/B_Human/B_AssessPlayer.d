@@ -13,7 +13,7 @@ func void B_AssessPlayer()
 	{
 		return;
 	};
-	if(other.guild > GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(other))
 	{
 		if(C_NpcIsGateGuard(self))
 		{

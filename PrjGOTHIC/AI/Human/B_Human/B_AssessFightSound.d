@@ -135,9 +135,9 @@ func void B_AssessFightSound()
 	{
 		return;
 	};
-	if(other.guild > GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(other))
 	{
-		if(victim.guild > GIL_SEPERATOR_HUM)
+		if(!C_NpcIsHuman(victim))
 		{
 			return;
 		};
@@ -147,10 +147,13 @@ func void B_AssessFightSound()
 			return;
 		};
 	};
-	if((victim.guild > GIL_SEPERATOR_HUM) && (Npc_GetAttitude(self,other) != ATT_HOSTILE) && !Npc_IsDead(victim))
+	if((Npc_GetAttitude(self,other) != ATT_HOSTILE) && !Npc_IsDead(victim))
 	{
-		B_Attack(self,victim,AR_MonsterVsHuman,0);
-		return;
+		if(!C_NpcIsHuman(victim))
+		{
+			B_Attack(self,victim,AR_MonsterVsHuman,0);
+			return;
+		};
 	};
 	if(self.aivar[AIV_EnemyOverride] == TRUE)
 	{
