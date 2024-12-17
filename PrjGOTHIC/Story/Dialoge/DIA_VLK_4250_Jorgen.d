@@ -72,7 +72,7 @@ instance DIA_Jorgen_Novice(C_Info)
 
 func int DIA_Jorgen_Novice_Condition()
 {
-	if((MIS_NovizenChase == LOG_Running) && (Kapitel == 3) && (MIS_SCKnowsInnosEyeIsBroken == FALSE))
+	if((MIS_NovizenChase == LOG_RUNNING) && (Kapitel == 3) && (MIS_SCKnowsInnosEyeIsBroken == FALSE))
 	{
 		return TRUE;
 	};

@@ -76,7 +76,7 @@ func void DIA_Wolf_WannaJoin_Info()
 	if(Torlof_GenugStimmen == FALSE)
 	{
 		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_RUNNING);
 	};
 	B_LogEntry(TOPIC_SLDRespekt,"Вольф не возражает против моего вступления в ряды наемников.");
 };
@@ -349,11 +349,11 @@ func void DIA_Wolf_AboutCrawler_Info()
 	AI_Output(self,other,"DIA_Wolf_AboutCrawler_08_04");	//Конечно. Принеси мне 10 панцирей краулеров, и я сделаю тебе доспехи.
 	AI_Output(other,self,"DIA_Wolf_AboutCrawler_15_05");	//Сколько ты хочешь за них?
 	AI_Output(self,other,"DIA_Wolf_AboutCrawler_08_06");	//Забудь об этом. Я сделаю их бесплатно. В память о старых временах.
-	MIS_Wolf_BringCrawlerPlates = LOG_Running;
+	MIS_Wolf_BringCrawlerPlates = LOG_RUNNING;
 	if(Kapitel < 4)
 	{
 		Log_CreateTopic(TOPIC_Wolf_BringCrawlerPlates,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Wolf_BringCrawlerPlates,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Wolf_BringCrawlerPlates,LOG_RUNNING);
 		B_LogEntry(TOPIC_Wolf_BringCrawlerPlates,"Вольф может сделать мне доспехи из 10 панцирей краулеров.");
 	};
 };
@@ -405,7 +405,7 @@ instance DIA_Wolf_BringPlates(C_Info)
 
 func int DIA_Wolf_BringPlates_Condition()
 {
-	if((MIS_Wolf_BringCrawlerPlates == LOG_Running) && (Npc_HasItems(other,ItAt_CrawlerPlate) >= 10))
+	if((MIS_Wolf_BringCrawlerPlates == LOG_RUNNING) && (Npc_HasItems(other,ItAt_CrawlerPlate) >= 10))
 	{
 		return TRUE;
 	};
@@ -468,7 +468,7 @@ func void DIA_Wolf_ArmorReady_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Wolf_ArmorReady_08_06");	//Ты шутник. Сначала мне нужны панцири краулеров...
-		MIS_Wolf_BringCrawlerPlates = LOG_Running;
+		MIS_Wolf_BringCrawlerPlates = LOG_RUNNING;
 	};
 };
 
@@ -486,7 +486,7 @@ instance DIA_Wolf_BENGAR(C_Info)
 
 func int DIA_Wolf_BENGAR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wolf_Hallo) && (MIS_BengarsHelpingSLD == LOG_Running) && (Kapitel >= 3) && (Wolf_IsOnBoard != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Wolf_Hallo) && (MIS_BengarsHelpingSLD == LOG_RUNNING) && (Kapitel >= 3) && (Wolf_IsOnBoard != LOG_SUCCESS))
 	{
 		return TRUE;
 	};

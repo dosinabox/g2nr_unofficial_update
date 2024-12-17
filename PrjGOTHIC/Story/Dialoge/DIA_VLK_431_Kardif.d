@@ -210,13 +210,13 @@ func void B_BuildInfoDialog_Kardif()
 {
 	Info_ClearChoices(DIA_Kardif_TradeInfo);
 	Info_AddChoice(DIA_Kardif_TradeInfo,Dialog_Back,DIA_Kardif_TradeInfo_Back);
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE) && (DIA_Kardif_DOPE_perm == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_RUNNING) && (Knows_Borka_Dealer == FALSE) && (DIA_Kardif_DOPE_perm == FALSE))
 	{
 		Info_AddChoice(DIA_Kardif_TradeInfo,"Где мне здесь купить травки?",DIA_Kardif_DOPE_Info);
 	};
 	if(Mob_HasItems("CHEST_ANDRE_WAREHOUSE_PACKET",ItMi_HerbPaket) && (DIA_Kardif_Paket_perm == FALSE))
 	{
-		if((MIS_Andre_WAREHOUSE == LOG_Running) || (Dar_Dieb == TRUE))
+		if((MIS_Andre_WAREHOUSE == LOG_RUNNING) || (Dar_Dieb == TRUE))
 		{
 			Info_AddChoice(DIA_Kardif_TradeInfo,"Ты что-нибудь слышал о тюке болотной травы?",DIA_Kardif_Paket_Info);
 		};
@@ -353,7 +353,7 @@ func void DIA_Addon_Kardif_MissingPeople_Info()
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_04");	//Если хочешь знать больше, поговори с Корагоном.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_05");	//У него пивная в нижней части города, и думаю, что от его уха не укрываются такие новости.
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 		if((Halvor_Ausgeliefert == FALSE) && !Npc_IsDead(Halvor))
 		{
 			AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_06");	//Халвор, торговец рыбой из лавки на пристани, тоже может кое-что знать - к нему заходит много людей.
@@ -577,7 +577,7 @@ func void DIA_Kardif_Paket_Info()
 		AI_Output(other,self,"DIA_Kardif_Paket_15_02");	//Не пытайся провести меня. Ты что-то знаешь. Давай, выкладывай!
 		AI_Output(self,other,"DIA_Kardif_Paket_14_03");	//Хорошо, хорошо - этот парень недавно заходил в мой трактир. Он из наемников.
 		AI_Output(self,other,"DIA_Kardif_Paket_14_04");	//Он сказал, что продал тюк болотной травы в гавани, но, конечно же, он был обкуренный в хлам. Это все, что я знаю.
-		if(MIS_Andre_WAREHOUSE == LOG_Running)
+		if(MIS_Andre_WAREHOUSE == LOG_RUNNING)
 		{
 			B_LogEntry(TOPIC_Warehouse,"Кардиф говорил с наемником. У этого парня был тюк болотной травы, который он хотел продать.");
 		};

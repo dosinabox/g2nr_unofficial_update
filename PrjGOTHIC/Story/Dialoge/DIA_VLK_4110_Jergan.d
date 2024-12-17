@@ -79,9 +79,9 @@ func void B_Jergan_NewsForOric()
 	AI_Output(self,other,"DIA_Jergan_Burg_13_02");	//Если тебе удастся добраться до замка, поговори с паладином Ориком. Скажи ему, что его брат погиб здесь, у Прохода.
 	if(!Npc_IsDead(Oric))
 	{
-		MIS_OricBruder = LOG_Running;
+		MIS_OricBruder = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_OricBruder,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_OricBruder,LOG_Running);
+		Log_SetTopicStatus(TOPIC_OricBruder,LOG_RUNNING);
 		B_LogEntry(TOPIC_OricBruder,"Когда я окажусь в замке, то должен буду сказать Орику, что его брат погиб у Прохода.");
 	};
 };
@@ -284,7 +284,7 @@ instance DIA_Jergan_Diego(C_Info)
 
 func int DIA_Jergan_Diego_Condition()
 {
-	if(MIS_SearchForDiego == LOG_Running)
+	if(MIS_SearchForDiego == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -297,7 +297,7 @@ func void DIA_Jergan_Diego_Info()
 	AI_Output(self,other,"DIA_Jergan_Diego_13_02");	//Я видел его с двумя рыцарями и ящиком, недалеко отсюда.
 	AI_Output(self,other,"DIA_Jergan_Diego_13_03");	//Видишь старую башню вон там справа? Иди туда, а затем по направлению к замку.
 	AI_Output(self,other,"DIA_Jergan_Diego_13_04");	//Дорога идет через скалы справа. Вот туда они и пошли.
-	if((MIS_ScoutMine == LOG_Running) && !Npc_KnowsInfo(other,DIA_Parcival_Diego) && (Silvestro_Ore == FALSE))
+	if((MIS_ScoutMine == LOG_RUNNING) && !Npc_KnowsInfo(other,DIA_Parcival_Diego) && (Silvestro_Ore == FALSE))
 	{
 		B_LogEntry(TOPIC_ScoutMine,"Диего был со старателями Сильвестро.");
 	};

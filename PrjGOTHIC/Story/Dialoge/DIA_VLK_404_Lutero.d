@@ -138,9 +138,9 @@ func void DIA_Lutero_Snapper_Info()
 	};
 	AI_Output(other,self,"DIA_Lutero_Hello_15_08");	//Я посмотрю, что можно сделать.
 	Log_CreateTopic(TOPIC_Lutero,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Lutero,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Lutero,LOG_RUNNING);
 	B_LogEntry(TOPIC_Lutero,"Торговец Лютеро ищет когти необычайно сильного снеппера.");
-	MIS_Lutero_Krallen = LOG_Running;
+	MIS_Lutero_Krallen = LOG_RUNNING;
 };
 
 

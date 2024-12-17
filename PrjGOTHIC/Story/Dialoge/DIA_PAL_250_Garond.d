@@ -304,7 +304,7 @@ instance DIA_Garond_NeedProof(C_Info)
 
 func int DIA_Garond_NeedProof_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Garond_Hello) && (MIS_OLDWORLD == LOG_Running) && (Kapitel == 2))
+	if(Npc_KnowsInfo(other,DIA_Garond_Hello) && (MIS_OLDWORLD == LOG_RUNNING) && (Kapitel == 2))
 	{
 		return TRUE;
 	};
@@ -322,7 +322,7 @@ func void DIA_Garond_NeedProof_Info()
 	AI_Output(self,other,"DIA_Garond_NeedProof_10_07");	//Посети все три шахты и доложи мне, сколько руды они добыли.
 	AI_Output(self,other,"DIA_Garond_NeedProof_10_08");	//После этого, я дам тебе письмо, которое ты отнесешь лорду Хагену.
 	AI_Output(other,self,"DIA_Garond_NeedProof_15_09");	//Ну, хорошо - похоже, у меня нет выбора.
-	MIS_ScoutMine = LOG_Running;
+	MIS_ScoutMine = LOG_RUNNING;
 	if(!Npc_IsDead(Jergan))
 	{
 		Npc_ExchangeRoutine(Jergan,"FAJETH");
@@ -331,7 +331,7 @@ func void DIA_Garond_NeedProof_Info()
 	};
 	B_LogEntries(TOPIC_MISOLDWORLD,"Прежде чем командующий Гаронд отправит меня назад, он хочет, чтобы я разыскал три группы старателей и сообщил ему, сколько руды удалось им добыть.");
 	Log_CreateTopic(TOPIC_ScoutMine,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_ScoutMine,LOG_Running);
+	Log_SetTopicStatus(TOPIC_ScoutMine,LOG_RUNNING);
 	B_LogNextEntry(TOPIC_ScoutMine,"Командующий Гаронд дал мне поручение. Он отправил три группы старателей добывать магическую руду. И до сих пор они не вернулись.");
 	Log_AddEntry(TOPIC_ScoutMine,"Я должен найти эти три группы старателей и выяснить, сколько руды удалось им добыть.");
 	if((Silvestro_Ore == TRUE) && (Log_Silvestro_Ore == FALSE))
@@ -355,7 +355,7 @@ instance DIA_Garond_Why(C_Info)
 
 func int DIA_Garond_Why_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2))
+	if((MIS_ScoutMine == LOG_RUNNING) && (Kapitel == 2))
 	{
 		return TRUE;
 	};
@@ -382,7 +382,7 @@ instance DIA_Garond_Equipment(C_Info)
 
 func int DIA_Garond_Equipment_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && ((other.guild == GIL_KDF) || (other.guild == GIL_MIL)))
+	if((MIS_ScoutMine == LOG_RUNNING) && (Kapitel == 2) && ((other.guild == GIL_KDF) || (other.guild == GIL_MIL)))
 	{
 		return TRUE;
 	};
@@ -420,7 +420,7 @@ instance DIA_Garond_zahlen(C_Info)
 
 func int DIA_Garond_zahlen_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && (other.guild == GIL_SLD))
+	if((MIS_ScoutMine == LOG_RUNNING) && (Kapitel == 2) && (other.guild == GIL_SLD))
 	{
 		return TRUE;
 	};
@@ -447,7 +447,7 @@ instance DIA_Garond_Wo(C_Info)
 
 func int DIA_Garond_Wo_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && (Ore_Counter < 3))
+	if((MIS_ScoutMine == LOG_RUNNING) && (Kapitel == 2) && (Ore_Counter < 3))
 	{
 		return TRUE;
 	};
@@ -488,7 +488,7 @@ instance DIA_Garond_Fajeth(C_Info)
 
 func int DIA_Garond_Fajeth_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && (Fajeth_Ore == TRUE))
+	if((MIS_ScoutMine == LOG_RUNNING) && (Kapitel == 2) && (Fajeth_Ore == TRUE))
 	{
 		return TRUE;
 	};
@@ -520,7 +520,7 @@ instance DIA_Garond_Silvestro(C_Info)
 
 func int DIA_Garond_Silvestro_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && (Silvestro_Ore == TRUE))
+	if((MIS_ScoutMine == LOG_RUNNING) && (Kapitel == 2) && (Silvestro_Ore == TRUE))
 	{
 		return TRUE;
 	};
@@ -566,7 +566,7 @@ instance DIA_Garond_Marcos(C_Info)
 
 func int DIA_Garond_Marcos_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && (Marcos_Ore == TRUE))
+	if((MIS_ScoutMine == LOG_RUNNING) && (Kapitel == 2) && (Marcos_Ore == TRUE))
 	{
 		return TRUE;
 	};
@@ -617,7 +617,7 @@ instance DIA_Garond_Success(C_Info)
 
 func int DIA_Garond_Success_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && (Ore_Counter >= 3))
+	if((MIS_ScoutMine == LOG_RUNNING) && (Kapitel == 2) && (Ore_Counter >= 3))
 	{
 		return TRUE;
 	};
@@ -678,7 +678,7 @@ instance DIA_Garond_Running(C_Info)
 
 func int DIA_Garond_Running_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && (Ore_Counter < 3))
+	if((MIS_ScoutMine == LOG_RUNNING) && (Kapitel == 2) && (Ore_Counter < 3))
 	{
 		return TRUE;
 	};
@@ -729,7 +729,7 @@ func void DIA_Garond_Gorn_Info()
 	AI_Output(self,other,"DIA_Garond_Gorn_10_03");	//Это возможно - но обойдется тебе очень недешево. Я хочу получить за Горна 1000 золотых.
 	AI_Output(other,self,"DIA_Garond_Gorn_15_04");	//Это огромная сумма.
 	AI_Output(self,other,"DIA_Garond_Gorn_10_05");	//Вина Горна тоже не маленькая. Принеси мне это золото, и я освобожу его.
-	MIS_RescueGorn = LOG_Running;
+	MIS_RescueGorn = LOG_RUNNING;
 	B_LogEntry(TOPIC_RescueGorn,"Гаронд требует тысячу золотых монет за освобождение Горна.");
 };
 
@@ -747,7 +747,7 @@ instance DIA_Garond_Pay(C_Info)
 
 func int DIA_Garond_Pay_Condition()
 {
-	if((MIS_RescueGorn == LOG_Running) && (Kapitel == 2) && (Garond_Kerkerauf == FALSE))
+	if((MIS_RescueGorn == LOG_RUNNING) && (Kapitel == 2) && (Garond_Kerkerauf == FALSE))
 	{
 		return TRUE;
 	};
@@ -1066,7 +1066,7 @@ instance DIA_Garond_JanBecomeSmith(C_Info)
 
 func int DIA_Garond_JanBecomeSmith_Condition()
 {
-	if((MIS_JanBecomesSmith == LOG_Running) && (Kapitel >= 4))
+	if((MIS_JanBecomesSmith == LOG_RUNNING) && (Kapitel >= 4))
 	{
 		return TRUE;
 	};

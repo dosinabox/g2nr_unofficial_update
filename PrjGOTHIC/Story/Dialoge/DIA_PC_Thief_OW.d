@@ -83,7 +83,7 @@ func int DIA_DiegoOw_Beweise_Condition()
 func void DIA_DiegoOw_Beweise_Info()
 {
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_11");	//Послушай, мне нужны доказательства.
-	if(MIS_ScoutMine == LOG_Running)
+	if(MIS_ScoutMine == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_14");	//Хорошо, я помогу тебе, чем смогу. Но я не буду рисковать своей шкурой неизвестно из-за чего.
 		AI_Output(other,self,"DIA_DiegoOw_Garond_15_00");	//Я здесь по поручению Гаронда. Он хочет знать, сколько руды было добыто к этому времени.
@@ -211,7 +211,7 @@ instance DIA_DiegoOw_Gorn(C_Info)
 
 func int DIA_DiegoOw_Gorn_Condition()
 {
-	if(MIS_RescueGorn == LOG_Running)
+	if(MIS_RescueGorn == LOG_RUNNING)
 	{
 		return TRUE;
 	};

@@ -36,7 +36,7 @@ instance DIA_Orlan_Wein(C_Info)
 
 func int DIA_Orlan_Wein_Condition()
 {
-	if((MIS_GoraxWein == LOG_Running) && (Npc_HasItems(other,ItFo_Wine) >= 12) && (Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU)))
+	if((MIS_GoraxWein == LOG_RUNNING) && (Npc_HasItems(other,ItFo_Wine) >= 12) && (Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU)))
 	{
 		return TRUE;
 	};
@@ -251,7 +251,7 @@ func void DIA_Addon_Orlan_Teleportstein_sehen()
 	CreateInvItems(self,ItKe_Orlan_TeleportStation,1);
 	B_GiveInvItems(self,other,ItKe_Orlan_TeleportStation,1);
 	Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_TeleportsNW,"Орлан запер телепорт в пещере к юго-западу от своей таверны.");
 };
 
@@ -274,7 +274,7 @@ instance DIA_Addon_Orlan_NoMeeting(C_Info)
 
 func int DIA_Addon_Orlan_NoMeeting_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && !Npc_KnowsInfo(other,DIA_Addon_Orlan_Ranger) && !AnyRangerRingEquipped() && (MIS_Addon_Lares_ComeToRangerMeeting == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && !Npc_KnowsInfo(other,DIA_Addon_Orlan_Ranger) && !AnyRangerRingEquipped() && (MIS_Addon_Lares_ComeToRangerMeeting == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -299,7 +299,7 @@ instance DIA_Addon_Orlan_WhenRangerMeeting(C_Info)
 
 func int DIA_Addon_Orlan_WhenRangerMeeting_Condition()
 {
-	if((MIS_Addon_Lares_ComeToRangerMeeting == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Orlan_Ranger))
+	if((MIS_Addon_Lares_ComeToRangerMeeting == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_Orlan_Ranger))
 	{
 		return TRUE;
 	};
@@ -438,7 +438,7 @@ func void DIA_Orlan_TRADE_Info()
 	{
 		AI_Output(self,other,"DIA_Orlan_TRADE_05_03");	//Если ты сможешь заплатить.
 	};
-	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING)
 	{
 		OrlanMinenAnteil = TRUE;
 	};
@@ -645,7 +645,7 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 		AI_Output(self,other,"DIA_Orlan_EINGEBROCKT_05_00");	//Да уж, доставил ты мне проблем. Теперь мне нужно быть поосторожнее с Рухаром.
 	};
 	AI_StopProcessInfos(self);
-	if(RangerMeetingRunning != LOG_Running)
+	if(RangerMeetingRunning != LOG_RUNNING)
 	{
 		Npc_ExchangeRoutine(self,"START");
 	};
@@ -688,7 +688,7 @@ instance DIA_Orlan_EINGEBROCKT(C_Info)
 
 func int DIA_Orlan_EINGEBROCKT_Condition()
 {
-	if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (MIS_Rukhar_Wettkampf == LOG_Running) && !C_DaysSinceEvent(MIS_Rukhar_Wettkampf_Day,2) && (Kapitel < 4))
+	if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (MIS_Rukhar_Wettkampf == LOG_RUNNING) && !C_DaysSinceEvent(MIS_Rukhar_Wettkampf_Day,2) && (Kapitel < 4))
 	{
 		if(!Npc_IsDead(Rukhar) && !Npc_IsDead(Randolph))
 		{
@@ -752,7 +752,7 @@ instance DIA_Orlan_Minenanteil(C_Info)
 
 func int DIA_Orlan_Minenanteil_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (OrlanMinenAnteil == TRUE))
+	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (OrlanMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

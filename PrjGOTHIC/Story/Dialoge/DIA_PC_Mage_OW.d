@@ -182,7 +182,7 @@ func void DIA_MiltenOW_Wo_Info()
 	AI_Output(self,other,"DIA_MiltenOW_Wo_Forget_03_02");	//Диего прикрепили к отряду старателей. Спроси паладина Парсиваля, он отправлял этот отряд.
 	if(MIS_SearchForDiego == FALSE)
 	{
-		MIS_SearchForDiego = LOG_Running;
+		MIS_SearchForDiego = LOG_RUNNING;
 	};
 	KnowsAboutGorn = TRUE;
 };
@@ -215,7 +215,7 @@ func void DIA_MiltenOW_Gorn_Info()
 	AI_Output(other,self,"DIA_MiltenOW_Gorn_15_03");	//Да, может быть...
 	AI_Output(self,other,"DIA_MiltenOW_Gorn_03_04");	//Держи меня в курсе.
 	Log_CreateTopic(TOPIC_RescueGorn,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_RescueGorn,LOG_Running);
+	Log_SetTopicStatus(TOPIC_RescueGorn,LOG_RUNNING);
 	B_LogEntry(TOPIC_RescueGorn,"Командующий Гаронд посадил Горна в тюрьму. Возможно, с ним можно договориться и нам удастся вытащить беднягу.");
 };
 
@@ -233,7 +233,7 @@ instance DIA_MiltenOW_Preis(C_Info)
 
 func int DIA_MiltenOW_Preis_Condition()
 {
-	if((MIS_RescueGorn == LOG_Running) && (Kapitel == 2))
+	if((MIS_RescueGorn == LOG_RUNNING) && (Kapitel == 2))
 	{
 		return TRUE;
 	};
@@ -261,7 +261,7 @@ instance DIA_MiltenOW_Mehr(C_Info)
 
 func int DIA_MiltenOW_Mehr_Condition()
 {
-	if((MIS_RescueGorn == LOG_Running) && (Kapitel == 2) && Npc_KnowsInfo(other,DIA_MiltenOW_Preis))
+	if((MIS_RescueGorn == LOG_RUNNING) && (Kapitel == 2) && Npc_KnowsInfo(other,DIA_MiltenOW_Preis))
 	{
 		return TRUE;
 	};
@@ -319,7 +319,7 @@ instance DIA_MiltenOW_Versteck(C_Info)
 
 func int DIA_MiltenOW_Versteck_Condition()
 {
-	if((GornsTreasure == TRUE) && !Npc_HasItems(other,ItMi_GornsTreasure_MIS) && (Gorns_Beutel == FALSE) && (Kapitel == 2) && (MIS_RescueGorn == LOG_Running))
+	if((GornsTreasure == TRUE) && !Npc_HasItems(other,ItMi_GornsTreasure_MIS) && (Gorns_Beutel == FALSE) && (Kapitel == 2) && (MIS_RescueGorn == LOG_RUNNING))
 	{
 		return TRUE;
 	};

@@ -61,7 +61,7 @@ instance DIA_Rengaru_HALLODIEB(C_Info)
 
 func int DIA_Rengaru_HALLODIEB_Condition()
 {
-	if(MIS_Jora_Dieb == LOG_Running)
+	if(MIS_Jora_Dieb == LOG_RUNNING)
 	{
 		return TRUE;
 	};

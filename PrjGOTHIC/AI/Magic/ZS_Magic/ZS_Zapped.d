@@ -7,13 +7,12 @@
 	if(C_NpcIsHuman(self))
 	{
 		B_AssessDamage();
-		AI_ContinueRoutine(self);
 	}
 	else
 	{
 		Npc_SetTempAttitude(self,ATT_HOSTILE);
-		AI_ContinueRoutine(self);
 	};
+	AI_ContinueRoutine(self);
 };
 
 func void ZS_Zapped()

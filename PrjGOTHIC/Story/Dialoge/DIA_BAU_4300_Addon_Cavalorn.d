@@ -39,7 +39,7 @@ var int DIA_Addon_Cavalorn_MeetingIsRunning_OneTime;
 
 func int DIA_Addon_Cavalorn_MeetingIsRunning_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (RangerMeetingRunning == LOG_Running))
+	if(Npc_IsInState(self,ZS_Talk) && (RangerMeetingRunning == LOG_RUNNING))
 	{
 		if(Npc_GetDistToWP(self,"NW_LITTLESTONEHENDGE") < 2000)
 		{
@@ -76,9 +76,9 @@ func void B_CavalornAboutHut()
 	Cavalorn_ToldAboutHut = TRUE;
 	if(MIS_Addon_Cavalorn_TheHut == FALSE)
 	{
-		MIS_Addon_Cavalorn_TheHut = LOG_Running;
+		MIS_Addon_Cavalorn_TheHut = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_Addon_CavalornTheHut,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_CavalornTheHut,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_CavalornTheHut,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_CavalornTheHut,"Кавалорн хочет, чтобы я проверил, цела ли еще его старая хижина в Долине Рудников. Насколько я помню, она находится среди холмов на западе, там, где был Старый Лагерь. Думаю, он там что-то оставил.");
 	};
 };
@@ -453,9 +453,9 @@ func void DIA_Addon_Cavalorn_HELFEN_Info()
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HELFEN_08_03");	//Так, слушай. Вниз по этой дороге располагается одна из тех грязных дыр, где прячутся бандиты.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HELFEN_08_04");	//Именно те ребята, что там сидят, меня и ограбили.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HELFEN_08_05");	//Скажи, когда будешь готов, и мы поймаем преступников.
-	MIS_Addon_Cavalorn_KillBrago = LOG_Running;
+	MIS_Addon_Cavalorn_KillBrago = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Addon_KillBrago,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_KillBrago,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_KillBrago,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_KillBrago,"Бандиты украли у Кавалорна что-то ценное. Он хочет, чтобы я помог ему расправиться с ними.");
 };
 
@@ -509,7 +509,7 @@ instance DIA_Addon_Cavalorn_LETSKILLBANDITS(C_Info)
 
 func int DIA_Addon_Cavalorn_LETSKILLBANDITS_Condition()
 {
-	if((MIS_Addon_Cavalorn_KillBrago == LOG_Running) && (MIS_Addon_Nefarius_BringMissingOrnaments == FALSE) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS))
+	if((MIS_Addon_Cavalorn_KillBrago == LOG_RUNNING) && (MIS_Addon_Nefarius_BringMissingOrnaments == FALSE) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS))
 	{
 		if(!C_BragoBanditsDead())
 		{
@@ -553,9 +553,9 @@ func void B_Addon_Cavalorn_VatrasBrief()
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_03");	//(вздыхает) Не знаю, как мне удастся сделать это вовремя.
 		AI_Output(other,self,"DIA_Addon_Cavalorn_VatrasBrief_15_04");	//(сухо) А что насчет меня?
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_05");	//(оценивающе) Хм-м. А почему бы и нет... Ты можешь доставить письмо в город.
-		MIS_Addon_Cavalorn_Letter2Vatras = LOG_Running;
+		MIS_Addon_Cavalorn_Letter2Vatras = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_KDW,"Кавалорн хочет, чтобы я доставил украденное бандитами письмо магу Воды Ватрасу, который читает проповеди в храме Аданоса в Хоринисе.");
 	};
 	AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_06");	//Тогда у меня будет слегка больше времени, чтобы позаботиться о своей экипировке.
@@ -575,7 +575,7 @@ func void B_Addon_Cavalorn_VatrasBrief()
 		if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
 		{
 			Log_CreateTopic(TOPIC_City,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_City,LOG_Running);
+			Log_SetTopicStatus(TOPIC_City,LOG_RUNNING);
 			Log_AddEntry(TOPIC_City,"Кавалорн посоветовал мне купить приличую одежду, чтобы я не выглядел слишком подозрительно.");
 		};
 	};
@@ -598,7 +598,7 @@ instance DIA_Addon_Cavalorn_BragoKilled(C_Info)
 
 func int DIA_Addon_Cavalorn_BragoKilled_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") < 500) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running))
+	if((Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") < 500) && (MIS_Addon_Cavalorn_KillBrago == LOG_RUNNING))
 	{
 		if(C_BragoBanditsDead())
 		{
@@ -669,7 +669,7 @@ func void DIA_Addon_Cavalorn_JUNGS_Info()
 	if(SC_KnowsRanger == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_RingOfWater,"Кавалорн рассказал мне, что он принадлежит к сообществу, которое называется 'Кольцо Воды'.");
 		SC_KnowsRanger = TRUE;
 	};
@@ -801,7 +801,7 @@ instance DIA_Addon_Cavalorn_Ornament(C_Info)
 
 func int DIA_Addon_Cavalorn_Ornament_Condition()
 {
-	if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO))
+	if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO))
 	{
 		return TRUE;
 	};
@@ -844,7 +844,7 @@ instance DIA_Addon_Cavalorn_Triggered(C_Info)
 
 func int DIA_Addon_Cavalorn_Triggered_Condition()
 {
-	if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Ornament) && (Ornament_Switched_Farm == TRUE))
+	if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Ornament) && (Ornament_Switched_Farm == TRUE))
 	{
 		return TRUE;
 	};
@@ -870,7 +870,7 @@ func void B_Cavalorn_Triggered_Wohin()
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"STADT");
 	B_LogEntry(TOPIC_Addon_Ornament,"Одна из частей орнамента находится у паладинов в верхнем квартале.");
-	MIS_Addon_Cavalorn_GetOrnamentFromPAL = LOG_Running;
+	MIS_Addon_Cavalorn_GetOrnamentFromPAL = LOG_RUNNING;
 	self.flags = 0;
 };
 
