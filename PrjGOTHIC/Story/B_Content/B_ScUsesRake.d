@@ -44,7 +44,7 @@ func void B_SCGetTreasure_S1()
 			{
 				Wld_InsertItem(ItSe_GoldPocket25,RAKEPLACE_WP_01);
 				RakeTreasureSuccess(ItSe_GoldPocket25);
-				if(!Npc_IsDead(Greg_NW) && (MIS_Addon_Greg_RakeCave == LOG_Running))
+				if(!Npc_IsDead(Greg_NW) && (MIS_Addon_Greg_RakeCave == LOG_RUNNING))
 				{
 					if(Npc_GetDistToWP(Greg_NW,"NW_BIGFARM_LAKE_CAVE_01") < 1000)
 					{

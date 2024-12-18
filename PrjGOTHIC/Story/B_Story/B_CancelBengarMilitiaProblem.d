@@ -1,7 +1,7 @@
 
 func void B_CancelBengarMilitiaProblem()
 {
-	if(MIS_Torlof_BengarMilizKlatschen == LOG_Running)
+	if(MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING)
 	{
 		if(RickReturnedToCity == FALSE)
 		{

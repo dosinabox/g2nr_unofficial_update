@@ -254,7 +254,7 @@ instance DIA_Addon_Lothar_Ornament(C_Info)
 
 func int DIA_Addon_Lothar_Ornament_Condition()
 {
-	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL == LOG_Running)
+	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -386,7 +386,7 @@ func void DIA_Addon_Lothar_MissingPeople_Info()
 	if(SC_HearedAboutMissingPeople == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
 		SC_HearedAboutMissingPeople = TRUE;
 	};
@@ -577,9 +577,12 @@ instance DIA_Lothar_WoAndre(C_Info)
 
 func int DIA_Lothar_WoAndre_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Lothar_Regeln) || Npc_KnowsInfo(other,DIA_Lothar_MESSAGE)) && (Andre.aivar[AIV_TalkedToPlayer] == FALSE))
+	if((Npc_KnowsInfo(other,DIA_Lothar_Regeln) || Npc_KnowsInfo(other,DIA_Lothar_MESSAGE)) && !Npc_IsDead(Andre))
 	{
-		return TRUE;
+		if(Andre.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -658,9 +661,12 @@ var int Lothar_Reported;
 
 func int C_Lothar_Reported()
 {
-	if((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (Lothar_Day < Wld_GetDay()) && (Lothar_Reported == FALSE))
+	if((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && !Npc_IsDead(LordHagen) && (Lothar_Day < Wld_GetDay()) && (Lothar_Reported == FALSE))
 	{
-		return TRUE;
+		if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 	return FALSE;
 };
@@ -823,9 +829,12 @@ instance DIA_Lothar_Hagen(C_Info)
 
 func int DIA_Lothar_Hagen_Condition()
 {
-	if((Player_KnowsLordHagen == TRUE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+	if((Player_KnowsLordHagen == TRUE) && !Npc_IsDead(LordHagen))
 	{
-		return TRUE;
+		if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -883,7 +892,7 @@ instance DIA_Lothar_OWRunning(C_Info)
 
 func int DIA_Lothar_OWRunning_Condition()
 {
-	if((MIS_OLDWORLD == LOG_Running) && !Npc_HasItems(hero,ItWr_PaladinLetter_MIS) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
+	if((MIS_OLDWORLD == LOG_RUNNING) && !Npc_HasItems(hero,ItWr_PaladinLetter_MIS) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
 	{
 		return TRUE;
 	};
@@ -914,7 +923,7 @@ instance DIA_Lothar_OWRunningBrief(C_Info)
 
 func int DIA_Lothar_OWRunningBrief_Condition()
 {
-	if((MIS_OLDWORLD == LOG_Running) && Npc_HasItems(hero,ItWr_PaladinLetter_MIS) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
+	if((MIS_OLDWORLD == LOG_RUNNING) && Npc_HasItems(hero,ItWr_PaladinLetter_MIS) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
 	{
 		return TRUE;
 	};

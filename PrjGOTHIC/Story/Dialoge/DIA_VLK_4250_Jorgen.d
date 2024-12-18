@@ -107,9 +107,12 @@ instance DIA_Jorgen_Milten(C_Info)
 
 func int DIA_Jorgen_Milten_Condition()
 {
-	if((Kapitel == 3) && (MIS_SCKnowsInnosEyeIsBroken == FALSE) && (MIS_OLDWORLD == LOG_SUCCESS) && (MiltenNW.aivar[AIV_TalkedToPlayer] == TRUE))
+	if((Kapitel == 3) && (MIS_SCKnowsInnosEyeIsBroken == FALSE) && (MIS_OLDWORLD == LOG_SUCCESS) && !Npc_IsDead(MiltenNW))
 	{
-		return TRUE;
+		if(MiltenNW.aivar[AIV_TalkedToPlayer] == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 

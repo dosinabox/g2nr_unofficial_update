@@ -82,11 +82,14 @@ func void B_Addon_Orlan_RangersReadyForComing()
 	{
 		B_StartOtherRoutine(Cavalorn,"PRERANGERMEETING");
 	};
+	if(!Npc_IsDead(Lares))
+	{
+		B_StartOtherRoutine(Lares,"PRERANGERMEETING");
+		Lares.aivar[AIV_PARTYMEMBER] = FALSE;
+	};
 	B_StartOtherRoutine(Martin,"PRERANGERMEETING");
-	B_StartOtherRoutine(Lares,"PRERANGERMEETING");
 	B_StartOtherRoutine(Cord,"PRERANGERMEETING");
 	B_StartOtherRoutine(Gaan,"PRERANGERMEETING");
-	Lares.aivar[AIV_PARTYMEMBER] = FALSE;
 };
 
 func void B_Addon_Orlan_ComingRanger()
@@ -100,7 +103,7 @@ func void B_Addon_Orlan_ComingRanger()
 	B_StartOtherRoutine(Cord,"RANGERMEETING");
 	B_StartOtherRoutine(Gaan,"RANGERMEETING");
 	B_StartOtherRoutine(Orlan,"RANGERMEETING");
-	RangerMeetingRunning = LOG_Running;
+	RangerMeetingRunning = LOG_RUNNING;
 };
 
 func void B_RangerMeetingParking()
@@ -123,13 +126,16 @@ func void B_SchlussMitRangerMeeting()
 	{
 		B_StartOtherRoutine(Cavalorn,"STADT");
 	};
-	if(Gaan.aivar[AIV_TalkedToPlayer] == FALSE)
+	if(!Npc_IsDead(Gaan))
 	{
-		B_StartOtherRoutine(Gaan,"PRESTART");
-	}
-	else
-	{
-		B_StartOtherRoutine(Gaan,"START");
+		if(Gaan.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			B_StartOtherRoutine(Gaan,"PRESTART");
+		}
+		else
+		{
+			B_StartOtherRoutine(Gaan,"START");
+		};
 	};
 	if(MIS_Addon_Martin_GetRangar == FALSE)
 	{
