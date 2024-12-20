@@ -40,12 +40,12 @@ func void Use_SaturasFirstMessage()
 	if(Use_SaturasFirstMessage_OneTime == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_RUNNING);
 		if(SC_KnowsRanger == FALSE)
 		{
 			B_LogEntries(TOPIC_Addon_KDW,"Я забрал у бандита письмо, которое Кавалорн должен был доставить магу Воды Ватрасу. Теперь это моя задача.");
 			Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_RUNNING);
 			B_LogNextEntry(TOPIC_Addon_RingOfWater,"Существует какое-то сообщество, которое называется 'Кольцо Воды'. Похоже, что управляют им маги Воды.");
 			Log_AddEntry(TOPIC_Addon_RingOfWater,"Кавалорн принадлежит к 'Кольцу Воды'.");
 			SC_KnowsRanger = TRUE;
@@ -373,7 +373,7 @@ func void Use_RavensKidnapperMission_Addon()
 		{
 			B_LogEntry(TOPIC_Addon_WhoStolePeople,"Теперь у меня есть письменные доказательства того, что Ворон, бывший рудный барон, стоит за похищениями граждан Хориниса. Убежище Ворона находится где-то за горами на северо-востоке.");
 		};
-		if(MIS_Addon_Vatras_WhereAreMissingPeople == LOG_Running)
+		if(MIS_Addon_Vatras_WhereAreMissingPeople == LOG_RUNNING)
 		{
 			Log_AddEntry(TOPIC_Addon_WhoStolePeople,"Я должен показать этот документ Ватрасу.");
 		};
@@ -474,17 +474,17 @@ func void Use_LuciasLoveLetter_Addon()
 	Doc_Show(nDocID);
 	if(MIS_LuciasLetter == FALSE)
 	{
-		if(MIS_LookingForLucia == LOG_Running)
+		if(MIS_LookingForLucia == LOG_RUNNING)
 		{
 			Log_AddEntry(TOPIC_Addon_Lucia,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
 		};
 		if(Elvrich_IsDead == FALSE)
 		{
 			Log_CreateTopic(TOPIC_Addon_LuciasLetter,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_LuciasLetter,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Addon_LuciasLetter,LOG_RUNNING);
 			B_LogEntry(TOPIC_Addon_LuciasLetter,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
 		};
-		MIS_LuciasLetter = LOG_Running;
+		MIS_LuciasLetter = LOG_RUNNING;
 	};
 	LuciaMentionedInKhorinis = TRUE;
 };

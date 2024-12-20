@@ -1,7 +1,7 @@
 
 func void B_AssignSchiffswachenGuard()
 {
-	if((MIS_ShipIsFree == TRUE) || (MIS_SCvisitShip == LOG_Running))
+	if((MIS_ShipIsFree == TRUE) || (MIS_SCvisitShip == LOG_RUNNING))
 	{
 		if(self.voice == 4)
 		{
@@ -94,7 +94,7 @@ func void B_AssignSchiffswachenTalk()
 
 func int B_AssignSchiffswachenInfoConditions()
 {
-	if((Kapitel < 5) && !Npc_RefuseTalk(self) && (MIS_SCvisitShip != LOG_Running))
+	if((Kapitel < 5) && !Npc_RefuseTalk(self) && (MIS_SCvisitShip != LOG_RUNNING))
 	{
 		return TRUE;
 	};

@@ -60,7 +60,7 @@ func void ZS_Dead()
 			{
 				if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPRAT)
 				{
-					if(MIS_KrokoJagd == LOG_Running)
+					if(MIS_KrokoJagd == LOG_RUNNING)
 					{
 						if(!Npc_IsDead(AlligatorJack))
 						{
@@ -80,7 +80,7 @@ func void ZS_Dead()
 			{
 				if(self.guild == GIL_GIANT_BUG)
 				{
-					if(MIS_Fester_KillBugs == LOG_Running)
+					if(MIS_Fester_KillBugs == LOG_RUNNING)
 					{
 						if(!Npc_IsDead(Fester))
 						{

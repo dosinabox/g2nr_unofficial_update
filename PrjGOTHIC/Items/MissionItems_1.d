@@ -805,9 +805,9 @@ func void UseBanditLetter()
 	if(MIS_Steckbriefe == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Bandits,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Bandits,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Bandits,LOG_RUNNING);
 		B_LogEntry(TOPIC_Bandits,"За мной охотятся бандиты. Интересно, что все это значит.");
-		MIS_Steckbriefe = LOG_Running;
+		MIS_Steckbriefe = LOG_RUNNING;
 	};
 };
 

@@ -252,7 +252,7 @@ func void Use_Broom()
 {
 	if(Npc_IsPlayer(self))
 	{
-		if((Wld_GetPlayerPortalGuild() == GIL_NOV) && (MIS_ParlanFegen == LOG_Running))
+		if((Wld_GetPlayerPortalGuild() == GIL_NOV) && (MIS_ParlanFegen == LOG_RUNNING))
 		{
 			B_Say(self,self,"$NOSWEEPING");
 			Print(PRINT_NoSweeping);

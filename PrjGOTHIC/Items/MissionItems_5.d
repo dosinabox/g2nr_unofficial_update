@@ -270,15 +270,15 @@ func void Use_Seamap_Irdorath()
 	if(MIS_SCKnowsWayToIrdorath == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Crew,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Crew,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Crew,LOG_RUNNING);
 		B_LogEntries(TOPIC_Crew,"Для путешествия на корабле и решающего сражения мне нужна команда.");
 		Log_CreateTopic(TOPIC_Captain,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Captain,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Captain,LOG_RUNNING);
 		B_LogNextEntry(TOPIC_Captain,"Для управления кораблем мне нужен опытный капитан, готовый отправиться со мной в опасное путешествие.");
 		if(MIS_ShipIsFree == FALSE)
 		{
 			Log_CreateTopic(TOPIC_Ship,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Ship,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Ship,LOG_RUNNING);
 			B_LogNextEntry(TOPIC_Ship,"Похоже, я должен добраться до этого странного вражеского острова. Но для этого мне нужен корабль.");
 		};
 		if(Kapitel < 6)

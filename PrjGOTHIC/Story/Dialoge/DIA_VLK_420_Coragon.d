@@ -136,7 +136,7 @@ func void DIA_Addon_Coragon_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_06");	//∆изнь в ’оринисе непроста€, но за воротами еще опаснее.
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_07");	//“е, кто не остаетс€ в городе, рано или поздно попадет в руки к бандитам или в зубы к диким животным. ¬се просто.
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"’акон, торговец на рыночной площади, и плотник “орбен знают что-то о пропавших люд€х.");
 };
 
@@ -166,7 +166,7 @@ func void DIA_Coragon_Bestohlen_Info()
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_09");	//ƒа, некоторое врем€ назад. “ем вечером было довольно людно, и € только и делал, что разносил пиво.
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_10");	//ќт стойки € надолго не отлучалс€, но этим подонкам хватило и небольшого времени.
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_11");	//я рассказал о краже ополчению, но они, конечно же, никого не нашли. Ёти лент€и предпочитают накачиватьс€ бесплатным пивом.
-	MIS_Coragon_Silber = LOG_Running;
+	MIS_Coragon_Silber = LOG_RUNNING;
 };
 
 
@@ -202,7 +202,7 @@ instance DIA_Coragon_BringSilber(C_Info)
 
 func int DIA_Coragon_BringSilber_Condition()
 {
-	if((MIS_Coragon_Silber == LOG_Running) && (Npc_HasItems(other,ItMi_CoragonsSilber) >= 8))
+	if((MIS_Coragon_Silber == LOG_RUNNING) && (Npc_HasItems(other,ItMi_CoragonsSilber) >= 8))
 	{
 		return TRUE;
 	};

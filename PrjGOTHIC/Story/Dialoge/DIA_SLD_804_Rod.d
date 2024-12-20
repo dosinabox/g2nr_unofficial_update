@@ -233,7 +233,7 @@ func void DIA_Rod_WannaJoin_Info()
 		if(Torlof_GenugStimmen == FALSE)
 		{
 			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_RUNNING);
 		};
 		SCKnowsSLDVotes = TRUE;
 		B_LogEntry(TOPIC_SLDRespekt,"Я получу голос Рода, если я захочу присоединиться к наемникам.");
@@ -262,7 +262,7 @@ func int DIA_Rod_Duell_Condition()
 {
 	if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
-		if(((MIS_RodSword != LOG_SUCCESS) && (Rod_SchwachGesagt == TRUE)) || (MIS_Jarvis_SldKO == LOG_Running))
+		if(((MIS_RodSword != LOG_SUCCESS) && (Rod_SchwachGesagt == TRUE)) || (MIS_Jarvis_SldKO == LOG_RUNNING))
 		{
 			return TRUE;
 		};
@@ -308,9 +308,9 @@ func void DIA_Rod_StarkGenug_Info()
 {
 	AI_Output(other,self,"DIA_Rod_StarkGenug_15_00");	//Я достаточно силен!
 	AI_Output(self,other,"DIA_Rod_StarkGenug_06_01");	//Чушь! Ты даже не смог ПОДНЯТЬ приличный меч вроде моего!
-	MIS_RodSword = LOG_Running;
+	MIS_RodSword = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_RodWette,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_RodWette,LOG_Running);
+	Log_SetTopicStatus(TOPIC_RodWette,LOG_RUNNING);
 	B_LogEntry(TOPIC_RodWette,"Наемник Род думает, что я не смогу удержать его меч.");
 };
 
@@ -356,7 +356,7 @@ instance DIA_Rod_Wette(C_Info)
 
 func int DIA_Rod_Wette_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && Npc_KnowsInfo(other,DIA_Rod_BINStarkGenug) && Npc_HasItems(self,ItMw_2h_Rod) && (MIS_RodSword == LOG_Running))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && Npc_KnowsInfo(other,DIA_Rod_BINStarkGenug) && Npc_HasItems(self,ItMw_2h_Rod) && (MIS_RodSword == LOG_RUNNING))
 	{
 		return TRUE;
 	};

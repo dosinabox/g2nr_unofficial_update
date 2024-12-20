@@ -19,7 +19,7 @@ func int Spell_Logic_Charm(var int manaInvested)
 	{
 		if(!C_IsNpc(other,VLK_498_Ignaz))
 		{
-			if((other.aivar[AIV_NpcSawPlayerCommit] != CRIME_NONE) && (MIS_Ignaz_Charm == LOG_Running))
+			if((other.aivar[AIV_NpcSawPlayerCommit] != CRIME_NONE) && (MIS_Ignaz_Charm == LOG_RUNNING))
 			{
 				if(Charm_Test == FALSE)
 				{

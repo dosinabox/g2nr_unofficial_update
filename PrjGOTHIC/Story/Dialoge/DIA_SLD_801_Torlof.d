@@ -105,7 +105,7 @@ func void DIA_Torlof_Probe_Info()
 		Torlof_Go = TRUE;
 		Npc_ExchangeRoutine(self,"START");
 		Log_CreateTopic(TOPIC_BecomeSLD,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_BecomeSLD,LOG_Running);
+		Log_SetTopicStatus(TOPIC_BecomeSLD,LOG_RUNNING);
 		B_LogEntry(TOPIC_BecomeSLD,"Чтобы быть принятым в ряды наемников, я должен пройти испытание Торлофа и заслужить уважение остальных наемников.");
 	}
 	else
@@ -147,7 +147,7 @@ func void DIA_Torlof_Respekt_Info()
 	if(Torlof_GenugStimmen == FALSE)
 	{
 		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_RUNNING);
 	};
 	B_LogEntry(TOPIC_SLDRespekt,"Если я хочу, чтобы наемники уважали меня, я должен пройти испытание, приготовленное мне Торлофом. Также их можно убедить, победив в дуэли.");
 };
@@ -184,7 +184,7 @@ func void DIA_Torlof_Duellregeln_Info()
 		if(Torlof_GenugStimmen == FALSE)
 		{
 			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_RUNNING);
 		};
 		B_LogEntry(TOPIC_SLDRespekt,"Правила дуэли: Дуэль должна начаться с вызова, тогда в нее никто не имеет права вмешаться. Противника в дуэли нельзя убивать.");
 	};
@@ -401,7 +401,7 @@ func void DIA_Torlof_RUF_Info()
 			if(Torlof_GenugStimmen == FALSE)
 			{
 				Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+				Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_RUNNING);
 			};
 			B_LogEntry(TOPIC_SLDRespekt,"Торлоф считает, что я могу выполнять обязанности наемника.");
 			GotTorlofVote = TRUE;
@@ -488,10 +488,10 @@ func void B_Torlof_HolPachtVonSekob()
 	{
 		DIA_Common_No();
 	};
-	MIS_Torlof_HolPachtVonSekob = LOG_Running;
+	MIS_Torlof_HolPachtVonSekob = LOG_RUNNING;
 	B_SetMortal(Sekob);
 	Log_CreateTopic(TOPIC_TorlofPacht,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_TorlofPacht,LOG_Running);
+	Log_SetTopicStatus(TOPIC_TorlofPacht,LOG_RUNNING);
 	B_LogEntry(TOPIC_TorlofPacht,"Торлоф попросил меня собрать ренту с фермера Секоба. Он должен заплатить 50 золотых монет.");
 };
 
@@ -510,13 +510,13 @@ func void B_Torlof_BengarMilizKlatschen()
 	{
 		DIA_Common_No();
 	};
-	MIS_Torlof_BengarMilizKlatschen = LOG_Running;
+	MIS_Torlof_BengarMilizKlatschen = LOG_RUNNING;
 	B_SetMortal(Bengar);
 	Wld_InsertNpc(MIL_335_Rumbold,"FARM3");
 	Wld_InsertNpc(MIL_336_Rick,"FARM3");
 	B_InitNpcGlobals();
 	Log_CreateTopic(TOPIC_TorlofMiliz,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_TorlofMiliz,LOG_Running);
+	Log_SetTopicStatus(TOPIC_TorlofMiliz,LOG_RUNNING);
 	B_LogEntry(TOPIC_TorlofMiliz,"Торлоф попросил прогнать ополчение с фермы Бенгара. Она находится на плоскогорье.");
 };
 
@@ -570,7 +570,7 @@ instance DIA_Torlof_SekobSuccess(C_Info)
 
 func int DIA_Torlof_SekobSuccess_Condition()
 {
-	if((MIS_Torlof_HolPachtVonSekob == LOG_Running) && (Kapitel < 3))
+	if((MIS_Torlof_HolPachtVonSekob == LOG_RUNNING) && (Kapitel < 3))
 	{
 		if(Sekob_Pachtbezahlt == TRUE)
 		{
@@ -645,7 +645,7 @@ instance DIA_Torlof_BengarSuccess(C_Info)
 
 func int DIA_Torlof_BengarSuccess_Condition()
 {
-	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && C_BengarFarmIsFree() && (Kapitel < 3))
+	if((MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING) && C_BengarFarmIsFree() && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -714,14 +714,14 @@ func void B_Torlof_TooLate()
 {
 	if(Kapitel >= 3)
 	{
-		if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) || (MIS_Torlof_HolPachtVonSekob == LOG_Running))
+		if((MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING) || (MIS_Torlof_HolPachtVonSekob == LOG_RUNNING))
 		{
 			B_Torlof_TheOtherMissionDay();
-			if(MIS_Torlof_BengarMilizKlatschen == LOG_Running)
+			if(MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING)
 			{
 				MIS_Torlof_BengarMilizKlatschen = LOG_FAILED;
 			};
-			if(MIS_Torlof_HolPachtVonSekob == LOG_Running)
+			if(MIS_Torlof_HolPachtVonSekob == LOG_RUNNING)
 			{
 				MIS_Torlof_HolPachtVonSekob = LOG_FAILED;
 			};
@@ -811,7 +811,7 @@ func int DIA_Torlof_TooLate_Condition()
 {
 	if((Kapitel >= 3) && (other.guild == GIL_SLD))
 	{
-		if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) || (MIS_Torlof_HolPachtVonSekob == LOG_Running))
+		if((MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING) || (MIS_Torlof_HolPachtVonSekob == LOG_RUNNING))
 		{
 			return TRUE;
 		};
@@ -982,9 +982,9 @@ func void DIA_Torlof_DEMENTOREN_Info()
 	AI_Output(self,other,"DIA_Torlof_DEMENTOREN_01_04");	//Возможно, тебе стоит сходить туда и разобраться с этими парнями!
 	Wld_InsertNpc(CastlemineDMT,"FP_STAND_DEMENTOR_KDF_12");
 	Log_CreateTopic(TOPIC_Torlof_Dmt,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Torlof_Dmt,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Torlof_Dmt,LOG_RUNNING);
 	B_LogEntry(TOPIC_Torlof_Dmt,"В южной части долины, в горах, в бандитском лагере, похоже, появились эти люди в черных рясах. Они очень беспокоят Торлофа. Я должен решить эту проблему для него.");
-	MIS_Torlof_Dmt = LOG_Running;
+	MIS_Torlof_Dmt = LOG_RUNNING;
 };
 
 
@@ -1000,7 +1000,7 @@ instance DIA_Torlof_DmtSuccess(C_Info)
 
 func int DIA_Torlof_DmtSuccess_Condition()
 {
-	if(MIS_Torlof_Dmt == LOG_Running)
+	if(MIS_Torlof_Dmt == LOG_RUNNING)
 	{
 		if(Npc_IsDead(CastlemineDMT))
 		{
