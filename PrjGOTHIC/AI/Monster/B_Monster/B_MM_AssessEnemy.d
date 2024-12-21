@@ -1,19 +1,29 @@
 
 func void B_MM_AssessEnemy()
 {
-	if((self.guild == GIL_DRAGON) && Npc_HasItems(hero,ItMi_InnosEye_MIS))
+	if(self.guild == GIL_DRAGON)
+	{
+		if(Npc_HasItems(hero,ItMi_InnosEye_MIS))
+		{
+			return;
+		};
+	};
+	if(self.aivar[AIV_NoFightParker] == TRUE)
 	{
 		return;
 	};
-	if((self.aivar[AIV_NoFightParker] == TRUE) || (other.aivar[AIV_NoFightParker] == TRUE))
+	if(other.aivar[AIV_NoFightParker] == TRUE)
 	{
 		return;
 	};
-	if((self.aivar[AIV_EnemyOverride] == TRUE) && C_NpcIsHuman(other))
+	if(self.aivar[AIV_EnemyOverride] == TRUE)
 	{
-		return;
+		if(C_NpcIsHuman(other))
+		{
+			return;
+		};
 	};
-	if(C_NpcIsLevelinspektor(other))
+	if(C_NpcIsGhost(other))
 	{
 		return;
 	};
@@ -63,7 +73,7 @@ func void B_MM_AssessEnemy()
 			};
 		};
 	};
-	if((self.guild == GIL_ORC) || (self.guild == GIL_FRIENDLY_ORC))
+	if(C_NpcIsOrc(self))
 	{
 		if(C_BodyStateContains(other,BS_SNEAK) || C_BodyStateContains(other,BS_STAND))
 		{

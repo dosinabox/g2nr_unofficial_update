@@ -13,11 +13,7 @@ func int C_NpcCanEquipWeapons(var C_Npc slf)
 	{
 		return FALSE;
 	};
-	if(C_IsNpc(slf,NONE_ADDON_111_Quarhodron))
-	{
-		return FALSE;
-	};
-	if(C_IsNpc(slf,NONE_ADDON_112_Rhademes))
+	if(C_NpcIsGhost(slf))
 	{
 		return FALSE;
 	};

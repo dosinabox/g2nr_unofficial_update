@@ -1,10 +1,10 @@
 
 func void B_AssessPlayer()
 {
-	if(C_NpcIsLevelinspektor(other))
+	/*if(C_NpcIsLevelinspektor(other))
 	{
 		return;
-	};
+	};*/
 	if(other.aivar[AIV_INVINCIBLE] == TRUE)
 	{
 		return;

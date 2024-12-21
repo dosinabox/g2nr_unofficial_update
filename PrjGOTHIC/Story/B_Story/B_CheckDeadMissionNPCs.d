@@ -143,6 +143,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_IsgarothWolf = LOG_FAILED;
 			};
 		}
+		else if(C_IsNpc(slf,KDF_510_Hyglas))
+		{
+			if(MIS_HyglasBringBook == LOG_RUNNING)
+			{
+				MIS_HyglasBringBook = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,PAL_299_Sergio))
 		{
 			if(Sergio_GuideStatus == LOG_RUNNING)

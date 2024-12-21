@@ -6,16 +6,6 @@ func void ZS_Dead()
 	B_StopLookAt(self);
 	AI_StopPointAt(self);
 	B_CheckDeadMissionNPCs(self);
-	if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON))
-	{
-		B_RemoveEveryInvItem(self,ItMw_1h_Bau_Mace);
-		B_RemoveEveryInvItem(self,ItMw_1h_MISC_Sword);
-		B_RemoveEveryInvItem(self,ItMw_1h_Misc_Axe);
-	}
-	else if(self.guild == GIL_SUMMONED_SKELETON)
-	{
-		B_RemoveEveryInvItem(self,ItMw_2H_Sword_M_01);
-	};
 	if(Hlp_IsValidNpc(other))
 	{
 		B_GiveDeathXP(other,self);
@@ -128,14 +118,30 @@ func void ZS_Dead()
 	};
 	if(!Npc_IsPlayer(self))
 	{
-		B_GiveTradeInv(self);
-		B_GiveDeathInv(self);
-		B_ClearSmithInv(self);
-		B_ClearAlchemyInv(self);
-		B_ClearBonusFoodInv(self);
-		B_ClearInfiniteTools(self);
-		B_DeletePetzCrime(self);
-		self.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
+		if(C_NpcIsHuman(self))
+		{
+			B_GiveTradeInv(self);
+			B_ClearSmithInv(self);
+			B_ClearAlchemyInv(self);
+			B_ClearBonusFoodInv(self);
+			B_ClearInfiniteTools(self);
+			B_DeletePetzCrime(self);
+			self.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
+		}
+		else
+		{
+			if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON))
+			{
+				B_RemoveEveryInvItem(self,ItMw_1h_Bau_Mace);
+				B_RemoveEveryInvItem(self,ItMw_1h_MISC_Sword);
+				B_RemoveEveryInvItem(self,ItMw_1h_Misc_Axe);
+			}
+			else if(self.guild == GIL_SUMMONED_SKELETON)
+			{
+				B_RemoveEveryInvItem(self,ItMw_2H_Sword_M_01);
+			};
+			B_GiveDeathInv(self);
+		};
 		self.aivar[AIV_TAPOSITION] = ISINPOS;
 	};
 	AI_UnequipWeapons(self);

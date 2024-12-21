@@ -32,12 +32,15 @@ func int B_AssessEnemy()
 				return FALSE;
 			};
 		};
-		if(((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE)) && ((other.guild == GIL_ORC) || C_NpcIsGolem(other)))
+		if((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE))
 		{
-			if(C_NpcIsAfraidOfOrcs(self))
+			if(C_NpcIsOrc(other) || C_NpcIsGolem(other))
 			{
-				B_Flee();
-				return FALSE;
+				if(C_NpcIsAfraidOfOrcs(self))
+				{
+					B_Flee();
+					return FALSE;
+				};
 			};
 		};
 	};
@@ -62,10 +65,14 @@ func int B_AssessEnemy()
 				return FALSE;
 			};
 		};
-		if(C_NpcIsLevelinspektor(other))
+		if(C_NpcIsGhost(other))
 		{
 			return FALSE;
 		};
+		/*if(C_NpcIsLevelinspektor(other))
+		{
+			return FALSE;
+		};*/
 	}
 	else if(other.aivar[AIV_NoFightParker] == TRUE)
 	{

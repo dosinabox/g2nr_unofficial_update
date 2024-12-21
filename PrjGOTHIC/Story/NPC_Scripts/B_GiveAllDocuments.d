@@ -138,5 +138,6 @@ func void B_GiveAllPatchDocuments(var C_Npc npc)
 	CreateInvItem(npc,StatsBook);
 	CreateInvItem(npc,AttBook);
 	CreateInvItem(npc,Openbook1);
+	CreateInvItem(npc,Openbook2);
 };
 
