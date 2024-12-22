@@ -6,6 +6,7 @@ func int C_PredictedMana(var int value)
 
 func void B_UnEquipIllegalMagicWeapons(var int value)
 {
+	var C_Item EquippedMeleeWeapon;
 	if(UnionActivated == FALSE)
 	{
 		return;
@@ -14,7 +15,6 @@ func void B_UnEquipIllegalMagicWeapons(var int value)
 	{
 		return;
 	};
-	var C_Item EquippedMeleeWeapon;
 	EquippedMeleeWeapon = Npc_GetEquippedMeleeWeapon(hero);
 	if(Hlp_IsItem(EquippedMeleeWeapon,ItMw_Addon_Stab02))
 	{
@@ -52,8 +52,20 @@ func void B_UnEquipIllegalMagicItems(var int value)
 	B_UnEquipIllegalScrolls(value);
 };
 
+func void B_UnEquipAllBeliarsRunes()
+{
+	B_UnEquipHeroItem(ItRu_BeliarsRage);
+	B_UnEquipHeroItem(ItRu_SuckEnergy);
+	B_UnEquipHeroItem(ItRu_GreenTentacle);
+	B_UnEquipHeroItem(ItRu_Swarm);
+	B_UnEquipHeroItem(ItRu_Skull);
+	B_UnEquipHeroItem(ItRu_SummonZombie);
+	B_UnEquipHeroItem(ItRu_SummonGuardian);
+};
+
 func void B_UnEquipAllCircleRunes()
 {
+	B_UnEquipAllBeliarsRunes();
 	B_UnEquipHeroItem(ItRu_Thunderstorm);
 	B_UnEquipHeroItem(ItRu_Whirlwind);
 	B_UnEquipHeroItem(ItRu_Geyser);

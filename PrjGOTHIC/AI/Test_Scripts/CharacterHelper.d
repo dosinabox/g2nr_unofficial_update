@@ -413,11 +413,19 @@ func int CH_RESET_Condition()
 
 func void CH_RESET_Info()
 {
+	if(Npc_IsDrawingSpell(hero))
+	{
+		AI_UnreadySpell(hero);
+	};
 	B_UnEquipHeroItem(ItSc_ThunderBall);
 	B_UnEquipHeroItem(ItSc_Windfist);
 	B_UnEquipHeroItem(ItSc_ChargeFireBall);
 	B_UnEquipHeroItem(ItSc_Pyrokinesis);
 	B_UnEquipAllCircleRunes();
+	if(Npc_HasReadiedWeapon(hero))
+	{
+		AI_RemoveWeapon(hero);
+	};
 	AI_UnequipWeapons(hero);
 	Info_ClearChoices(CH_RESET);
 	Info_AddChoice(CH_RESET,Dialog_Back,CH_RESET_Back);

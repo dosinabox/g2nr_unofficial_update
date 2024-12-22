@@ -84,7 +84,7 @@ func void DIA_Addon_Merdarion_Aufgabe_Info()
 	if(SC_KnowsPortal == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_RUNNING);
 		if(Npc_KnowsInfo(other,DIA_Addon_Riordian_Atlantis))
 		{
 			B_LogEntry(TOPIC_Addon_KDW,"Маги Воды считают, что за порталом находится древний затерянный город.");
@@ -220,7 +220,6 @@ instance DIA_Addon_Merdarion_Teleportstein(C_Info)
 
 func int DIA_Addon_Merdarion_Teleportstein_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe) && (MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS))
 	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe))
 	{
 		return TRUE;
@@ -267,7 +266,7 @@ func void DIA_Addon_Merdarion_Teleportstein_key()
 	B_GiveInvItems(self,other,ItKe_PortalTempelWalkthrough_Addon,1);
 	SC_GotPortalTempelWalkthroughKey = TRUE;
 	Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_TeleportsNW,"Мердарион дал мне ключ от запертой двери. За ней находится телепорт, который перенесет меня обратно к городу.");
 	Info_ClearChoices(DIA_Addon_Merdarion_Teleportstein);
 };

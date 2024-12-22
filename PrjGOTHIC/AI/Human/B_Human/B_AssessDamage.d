@@ -1,6 +1,22 @@
 
 func void B_AssessDamage()
 {
+	if(self.aivar[AIV_EnemyOverride] == TRUE)
+	{
+		if(C_IsNpc(self,BDT_1090_Addon_Raven))
+		{
+			self.aivar[AIV_EnemyOverride] = FALSE;
+			if(Raven_Awaken == FALSE)
+			{
+				Npc_ExchangeRoutine(self,"WAITFORPLAYER");
+				Raven_Awaken = TRUE;
+			};
+		};
+	};
+	if(!Hlp_IsValidNpc(other))
+	{
+		return;
+	};
 	if(C_IsNpc(self,PIR_1300_Addon_Greg_NW))
 	{
 		if((B_Greg_ComesToDexter_OneTime == TRUE) && Npc_IsPlayer(other) && (Greg_TalkedToInDexterCamp == FALSE))
@@ -8,7 +24,7 @@ func void B_AssessDamage()
 			return;
 		};
 	}
-	else if(C_IsNpc(self,NONE_ADDON_111_Quarhodron) || C_IsNpc(self,NONE_ADDON_112_Rhademes))
+	else if(C_NpcIsGhost(self))
 	{
 		B_GhostSpecialDamage(other);
 		return;
@@ -26,15 +42,6 @@ func void B_AssessDamage()
 	if(self.aivar[AIV_ArenaFight] == AF_AFTER)
 	{
 		self.aivar[AIV_ArenaFight] = AF_AFTER_PLUS_DAMAGE;
-	};
-	if(self.aivar[AIV_EnemyOverride] == TRUE)
-	{
-		if(C_IsNpc(self,BDT_1090_Addon_Raven))
-		{
-			self.aivar[AIV_EnemyOverride] = FALSE;
-			Npc_ExchangeRoutine(self,"WAITFORPLAYER");
-			Raven_Awaken = TRUE;
-		};
 	};
 	if(Npc_IsInState(self,ZS_Attack))
 	{

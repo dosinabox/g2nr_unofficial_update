@@ -575,7 +575,7 @@ func void UseAppleSTRRecipe()
 };
 
 
-instance Fakescroll_Addon(C_Item)
+/*instance Fakescroll_Addon(C_Item)
 {
 	name = "Клочок бумаги";
 	mainflag = ITEM_KAT_DOCS;
@@ -587,7 +587,7 @@ instance Fakescroll_Addon(C_Item)
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
-};
+};*/
 
 instance ItWr_Addon_AxtAnleitung(C_Item)
 {

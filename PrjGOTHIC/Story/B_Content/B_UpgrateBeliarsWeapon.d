@@ -250,6 +250,44 @@ func int C_IsItemMeleeBeliarsWeapon(var C_Item weapon)
 	return FALSE;
 };
 
+func int C_ScHasReadiedBeliarsMagic()
+{
+	var int activeSpell;
+	if(Npc_IsDrawingSpell(hero))
+	{
+		activeSpell = Npc_GetActiveSpell(hero);
+		if(activeSpell == SPL_Energyball)
+		{
+			return TRUE;
+		};
+		if(activeSpell == SPL_SuckEnergy)
+		{
+			return TRUE;
+		};
+		if(activeSpell == SPL_GreenTentacle)
+		{
+			return TRUE;
+		};
+		if(activeSpell == SPL_Swarm)
+		{
+			return TRUE;
+		};
+		if(activeSpell == SPL_Skull)
+		{
+			return TRUE;
+		};
+		if(activeSpell == SPL_SummonZombie)
+		{
+			return TRUE;
+		};
+		if(activeSpell == SPL_SummonGuardian)
+		{
+			return TRUE;
+		};
+	};
+	return FALSE;
+};
+
 func int C_ScHasReadiedBeliarsWeapon()
 {
 	var C_Item ReadyWeap;
