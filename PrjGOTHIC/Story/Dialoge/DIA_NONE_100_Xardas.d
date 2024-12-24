@@ -236,7 +236,7 @@ func void DIA_Xardas_TODO_Info()
 		Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_02");
 	};
 	Log_CreateTopic(TOPIC_INNOSEYE,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_INNOSEYE,LOG_Running);
+	Log_SetTopicStatus(TOPIC_INNOSEYE,LOG_RUNNING);
 	B_LogEntry(TOPIC_INNOSEYE,"В городе Хоринис расположился отряд паладинов. Они обладают сильным артефактом: Глазом Инноса. Его сила должна помочь нам избавиться от драконов. Я должен убедить паладинов, что нам нужно объединить наши усилия.");
 };
 
@@ -373,11 +373,11 @@ func void DIA_Addon_Xardas_AddonSuccess_Info()
 		{
 			if(!C_ScHasEquippedBeliarsWeapon())
 			{
-				if(Npc_HasReadiedMeleeWeapon(other) || Npc_HasReadiedRangedWeapon(other))
+				if(Npc_HasReadiedWeapon(other))
 				{
 					AI_RemoveWeapon(other);
-					AI_WaitTillEnd(other,self);
 				};
+				AI_WaitTillEnd(other,self);
 				if(C_ScHas1HBeliarsWeapon())
 				{
 					CreateInvItem(other,ItMw_BeliarWeapon_1H_Fake);
@@ -888,8 +888,8 @@ func void DIA_Xardas_DMTSINDDA_DMT()
 		if(MIS_DementorsOrigins == FALSE)
 		{
 			Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
-			MIS_DementorsOrigins = LOG_Running;
+			Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_RUNNING);
+			MIS_DementorsOrigins = LOG_RUNNING;
 		};
 		B_LogEntry(TOPIC_DEMENTOREN,"Ксардас знает, кто такие эти люди в черных рясах. Похоже, именно Ищущие заправляют всем во вражеских рядах, и они очень опасны.");
 	};
@@ -956,7 +956,7 @@ func void DIA_Xardas_INNOSEYEBROKEN_wasnun()
 	AI_Output(self,other,"DIA_Xardas_INNOSEYEBROKEN_wasnun_14_01");	//Это болезненный удар. Мы должны перестроиться. Я должен уединиться, и все взвесить.
 	AI_Output(self,other,"DIA_Xardas_INNOSEYEBROKEN_wasnun_14_02");	//А тем временем, ты отправляйся в город и поговори с Ватрасом, магом Воды. Возможно, он знает, что нужно делать.
 	B_LogEntry(TOPIC_INNOSEYE,"Ксардас остался не очень доволен уничтожением Глаза Инноса. Маг Воды Ватрас в городе Хоринис, возможно, наша единственная надежда.");
-	MIS_Xardas_GoToVatrasInnoseye = LOG_Running;
+	MIS_Xardas_GoToVatrasInnoseye = LOG_RUNNING;
 };
 
 
@@ -1014,7 +1014,7 @@ instance DIA_Xardas_RITUALREQUEST(C_Info)
 
 func int DIA_Xardas_RITUALREQUEST_Condition()
 {
-	if((MIS_RitualInnosEyeRepair == LOG_Running) && Npc_KnowsInfo(other,DIA_Xardas_INNOSEYEBROKEN) && (Kapitel == 3))
+	if((MIS_RitualInnosEyeRepair == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Xardas_INNOSEYEBROKEN) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -1128,7 +1128,7 @@ instance DIA_Xardas_BINGESPANNT(C_Info)
 
 func int DIA_Xardas_BINGESPANNT_Condition()
 {
-	if((MIS_RitualInnosEyeRepair == LOG_Running) && (Kapitel == 3) && (Xardas_GoesToRitualInnosEye == TRUE))
+	if((MIS_RitualInnosEyeRepair == LOG_RUNNING) && (Kapitel == 3) && (Xardas_GoesToRitualInnosEye == TRUE))
 	{
 		return TRUE;
 	};
@@ -1264,7 +1264,7 @@ func void DIA_Xardas_PERM4_Info()
 	AI_Output(other,self,"DIA_Xardas_PERM4_15_00");	//Что нового?
 	if(Kapitel == 3)
 	{
-		if(MIS_Ulthar_HeileSchreine_PAL == LOG_Running)
+		if(MIS_Ulthar_HeileSchreine_PAL == LOG_RUNNING)
 		{
 			AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_06");	//Приспешники Белиара оскверняют древнейшие алтари богов.
 			AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_03");	//Именно это и произошло.

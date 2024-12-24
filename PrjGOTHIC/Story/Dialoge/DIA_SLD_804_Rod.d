@@ -395,7 +395,7 @@ func void DIA_Rod_Wette_Yes()
 		B_GiveInvItems(self,other,ItMw_2h_Rod,1);
 		if(other.attribute[ATR_STRENGTH] >= Condition_Rod)
 		{
-			if(Npc_HasReadiedMeleeWeapon(other) || Npc_HasReadiedRangedWeapon(other))
+			if(Npc_HasReadiedWeapon(other))
 			{
 				AI_RemoveWeapon(other);
 			};

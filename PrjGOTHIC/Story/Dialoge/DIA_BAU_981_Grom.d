@@ -125,7 +125,6 @@ instance DIA_Grom_AskTeacher(C_Info)
 
 func int DIA_Grom_AskTeacher_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Grom_HALLO))
 	if(Npc_KnowsInfo(other,DIA_Grom_HALLO2))
 	{
 		return TRUE;
@@ -138,7 +137,7 @@ func void DIA_Grom_AskTeacher_Info()
 	AI_Output(self,other,"DIA_Grom_AskTeacher_08_01");	//Конечно. Но сначала принеси мне приличной еды. Я умираю от голода.
 	AI_Output(self,other,"DIA_Grom_AskTeacher_08_02");	//Я хочу бутыль молока, буханку хлеба и жирный окорок. И тогда я научу тебя всему, что сам знаю.
 	Log_CreateTopic(TOPIC_GromAskTeacher,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_GromAskTeacher,LOG_Running);
+	Log_SetTopicStatus(TOPIC_GromAskTeacher,LOG_RUNNING);
 	B_LogEntry(TOPIC_GromAskTeacher,"Охотник Гром научит меня всему, что знает, если я принесу ему бутылку молока, буханку хлеба и окорок.");
 };
 

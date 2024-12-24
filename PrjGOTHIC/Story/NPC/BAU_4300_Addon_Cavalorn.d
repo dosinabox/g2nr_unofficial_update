@@ -70,6 +70,6 @@ func void Rtn_RangerMeeting_4300()
 func void Rtn_Stadt_4300()
 {
 	TA_Sit_Bench(5,0,20,0,"NW_CITY_MERCHANT_PATH_15");
-	TA_Sit_Chair(20,0,5,0,"NW_CITY_TAVERN_IN_07");
+	TA_Sit_Chair(20,0,5,0,"TAVERN02_B");
 };
 

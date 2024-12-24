@@ -28,3 +28,22 @@ func void B_ReadySpell(var C_Npc slf,var int spell,var int mana)
 	AI_ReadySpell(slf,spell,mana);
 };
 
+func void B_ReadyRune(var C_Npc npc,var int rune,var int mana)
+{
+	if(!Npc_HasItems(npc,rune))
+	{
+		CreateInvItem(npc,rune);
+	};
+	Npc_GetInvItem(npc,rune);
+	B_ReadySpell(npc,item.spell,mana);
+};
+
+func void B_ReadyScroll(var C_Npc npc,var int scroll)
+{
+	if(Npc_HasItems(npc,scroll))
+	{
+		Npc_GetInvItem(npc,scroll);
+		B_ReadySpell(npc,item.spell,SPL_Cost_Scroll);
+	};
+};
+
