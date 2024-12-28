@@ -347,7 +347,10 @@ func void DIA_Harad_LEHRLING_Info()
 		AI_Output(self,other,"DIA_Harad_LEHRLING_12_04");	//Что касается моего мнения, то ты можешь приступать к работе хоть сейчас.
 		stimmen += 1;
 		AI_Output(self,other,"DIA_Harad_LEHRLING_12_05");	//А другие мастера...
-		if(Thorben.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Thorben))
+		{
+		}
+		else if(Thorben.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if(MIS_Thorben_GetBlessings == LOG_SUCCESS)
 			{
@@ -363,7 +366,10 @@ func void DIA_Harad_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Harad_LEHRLING_12_08");	//Торбен говорит, что никогда не видел тебя.
 		};
-		if(Bosper.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Bosper))
+		{
+		}
+		else if(Bosper.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			AI_Output(self,other,"DIA_Harad_LEHRLING_12_09");	//Боспер пытался отговорить меня от идеи взять тебя в ученики. Он хочет, чтобы ты стал ЕГО учеником.
 			if((MIS_Bosper_Bogen == LOG_SUCCESS) || (MIS_Bosper_WolfFurs == LOG_SUCCESS))
@@ -382,7 +388,10 @@ func void DIA_Harad_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Harad_LEHRLING_12_14");	//Боспер пока не знает, кто ты такой.
 		};
-		if(Constantino.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Constantino))
+		{
+		}
+		else if(Constantino.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
 			{
@@ -399,7 +408,10 @@ func void DIA_Harad_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Harad_LEHRLING_12_18");	//Константино никогда не слышал о тебе.
 		};
-		if(Matteo.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Matteo))
+		{
+		}
+		else if(Matteo.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if(MIS_Matteo_Gold == LOG_SUCCESS)
 			{

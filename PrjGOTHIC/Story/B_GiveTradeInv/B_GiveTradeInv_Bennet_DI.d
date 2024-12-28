@@ -5,7 +5,6 @@ func void B_GiveTradeInv_Bennet_DI(var C_Npc slf)
 {
 	if(Bennet_DI_ItemsGiven == FALSE)
 	{
-//		CreateInvItems(slf,ItMi_Gold,700);
 		CreateInvItems(slf,ItMiSwordraw,3);
 		CreateInvItems(slf,ItRw_Arrow,140);
 		CreateInvItems(slf,ItRw_Bolt,140);
@@ -14,11 +13,17 @@ func void B_GiveTradeInv_Bennet_DI(var C_Npc slf)
 		CreateInvItems(slf,ItMw_Folteraxt,1);
 		CreateInvItems(slf,ItMw_Zweihaender4,1);
 		CreateInvItems(slf,ItMw_Barbarenstreitaxt,1);
-//		CreateInvItems(slf,ItMw_Berserkeraxt,1);
-		CreateInvItems(slf,ItMw_Warrioraxt,1);
 		CreateInvItems(slf,ItMi_Nugget,4);
 		CreateInvItems(slf,ItBe_Addon_STR_10,1);
 		CreateInvItems(slf,ItBe_Addon_Prot_EDGE,1);
+		if(ClassicMeleeWeaponsTraders == FALSE)
+		{
+			CreateInvItems(slf,ItMw_Warrioraxt,1);
+		}
+		else
+		{
+			CreateInvItems(slf,ItMw_Berserkeraxt,1);
+		};
 		if(Npc_HasItems(hero,ItRw_Addon_FireBow))
 		{
 			CreateInvItems(slf,ItRw_Addon_FireArrow,20);

@@ -91,7 +91,7 @@ instance DIA_Sekob_ZAHLPACHT(C_Info)
 
 func int DIA_Sekob_ZAHLPACHT_Condition()
 {
-	if((MIS_Torlof_HolPachtVonSekob == LOG_Running) && (Kapitel < 3))
+	if((MIS_Torlof_HolPachtVonSekob == LOG_RUNNING) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -157,7 +157,7 @@ func void DIA_Sekob_InformOnar_Info()
 {
 	AI_Output(other,self,"DIA_Sekob_InformOnar_15_00");	//Что ж, тогда мне придется доложить об этом Онару.
 	AI_Output(self,other,"DIA_Sekob_InformOnar_01_01");	//Меня это не волнует! Можешь сказать Онару, что у меня ничего нет. Это печальная правда.
-	MIS_Sekob_RedeMitOnar = LOG_Running;
+	MIS_Sekob_RedeMitOnar = LOG_RUNNING;
 	AI_StopProcessInfos(self);
 };
 
@@ -200,7 +200,7 @@ func void DIA_Sekob_Defeated_weich()
 {
 	AI_Output(other,self,"DIA_Sekob_Defeated_weich_15_00");	//Хорошо, я поговорю с Онаром.
 	AI_Output(self,other,"DIA_Sekob_Defeated_weich_01_01");	//Спасибо, господин. Огромное спасибо!
-	MIS_Sekob_RedeMitOnar = LOG_Running;
+	MIS_Sekob_RedeMitOnar = LOG_RUNNING;
 	AI_StopProcessInfos(self);
 };
 
@@ -235,7 +235,7 @@ instance DIA_Sekob_Again(C_Info)
 
 func int DIA_Sekob_Again_Condition()
 {
-	if((MIS_Sekob_RedeMitOnar == LOG_Running) && Npc_KnowsInfo(other,DIA_Sekob_Defeated) && (Sekob_Pachtbezahlt == FALSE) && (MIS_Torlof_HolPachtVonSekob != LOG_SUCCESS) && (Kapitel < 3))
+	if((MIS_Sekob_RedeMitOnar == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Sekob_Defeated) && (Sekob_Pachtbezahlt == FALSE) && (MIS_Torlof_HolPachtVonSekob != LOG_SUCCESS) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -333,22 +333,22 @@ func void DIA_Sekob_DMT_Info()
 {
 	AI_Output(other,self,"DIA_Sekob_DMT_15_00");	//Что-нибудь случилось?
 	AI_Output(self,other,"DIA_Sekob_DMT_01_01");	//Ты должен помочь мне. Мой дом заняли люди в черных рясах.
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Sekob_DMT_01_02");	//Вы, слуги короля, ведь должны заботиться о населении, правда?
 	}
-	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Sekob_DMT_01_03");	//Я знаю, что вы, наемники, не занимаетесь благотворительностью, но я заплачу тебе.
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Sekob_DMT_01_04");	//Ты должен помочь мне, о, великий маг.
 	};
 	AI_Output(self,other,"DIA_Sekob_DMT_01_05");	//Эти люди говорят, что кого-то ищут. Но почему-то в моем доме?!
 	AI_Output(self,other,"DIA_Sekob_DMT_01_06");	//Пожалуйста, помоги мне. Заставь их убраться.
 	Log_CreateTopic(TOPIC_SekobDMT,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_SekobDMT,LOG_Running);
+	Log_SetTopicStatus(TOPIC_SekobDMT,LOG_RUNNING);
 	B_LogEntry(TOPIC_SekobDMT,"Черные маги выгнали Секоба из дома. Секоб хочет, чтобы я изгнал их.");
 };
 
@@ -377,16 +377,16 @@ func int DIA_Sekob_DMTWEG_Condition()
 func void DIA_Sekob_DMTWEG_Info()
 {
 	AI_Output(other,self,"DIA_Sekob_DMTWEG_15_00");	//Твой дом пуст. Людей в черных рясах больше нет.
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 //		AI_Output(self,other,"DIA_Sekob_DMTWEG_01_01");	//Я знал, что на стражника можно положиться.
 		AI_Output(self,other,"DIA_Sekob_DMTWEG_01_01_add");	//Я знал! Огромное спасибо!
 	}
-	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Sekob_DMTWEG_01_02");	//Ты отлично справился. Онар может гордиться, что на его стороне есть такие люди.
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Sekob_DMTWEG_01_03");	//Спасибо тебе, о великий маг. Что бы с нами сталось без защиты духовенства?!
 	};
@@ -446,7 +446,7 @@ func int DIA_Sekob_BELOHNUNG_Condition()
 func void DIA_Sekob_BELOHNUNG_Info()
 {
 	DIA_Common_NotSoFastMyFriend();
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		if(RosiToldAboutSekob == TRUE)
 		{
@@ -454,11 +454,11 @@ func void DIA_Sekob_BELOHNUNG_Info()
 		};
 		AI_Output(self,other,"DIA_Sekob_BELOHNUNG_01_02");	//Я не понимаю. Что еще тебе нужно?
 	}
-	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_03");	//Ты что-то там болтал о награде, или мне послышалось?
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_04");	//Меня интересует только одно. Что эти люди в черных рясах делали в твоем доме?
 		AI_Output(self,other,"DIA_Sekob_BELOHNUNG_01_05");	//Я сам не понимаю, о, великий маг. Возможно, они...
@@ -496,7 +496,7 @@ func int DIA_Sekob_PERM_Condition()
 func void DIA_Sekob_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Sekob_PERM_15_00");	//Что-нибудь произошло интересного?
-	if((hero.guild == GIL_KDF) && (Kapitel >= 5))
+	if((other.guild == GIL_KDF) && (Kapitel >= 5))
 	{
 		B_NpcObsessedByDMT(self);
 	}
@@ -514,12 +514,12 @@ func void DIA_Sekob_PERM_Info()
 		{
 			AI_Output(self,other,"DIA_Sekob_PERM_01_03");	//Моя жена исчезла. Сначала я не придал этому внимания, но она так и не вернулась.
 			AI_Output(self,other,"DIA_Sekob_PERM_01_04");	//Я подозреваю, что она убежала в лес, спасаясь от полевых хищников.
-			if(MIS_BringRosiBackToSekob != LOG_Running)
+			if(MIS_BringRosiBackToSekob != LOG_RUNNING)
 			{
 				AI_Output(self,other,"DIA_Sekob_PERM_01_05");	//Окажи мне услугу: если ты найдешь ее, приведи ее назад домой.
-				MIS_BringRosiBackToSekob = LOG_Running;
+				MIS_BringRosiBackToSekob = LOG_RUNNING;
 				Log_CreateTopic(TOPIC_BringRosiBackToSekob,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_BringRosiBackToSekob,LOG_Running);
+				Log_SetTopicStatus(TOPIC_BringRosiBackToSekob,LOG_RUNNING);
 				B_LogEntry(TOPIC_BringRosiBackToSekob,"Жена Секоба Рози пропала. Секоб хочет, чтобы она вернулась.");
 			};
 		}
@@ -544,7 +544,7 @@ instance DIA_Sekob_Heilung(C_Info)
 
 func int DIA_Sekob_Heilung_Condition()
 {
-	if((NpcObsessedByDMT_Sekob == TRUE) && (NpcObsessedByDMT == FALSE) && (hero.guild == GIL_KDF) && (Kapitel >= 5))
+	if((NpcObsessedByDMT_Sekob == TRUE) && (NpcObsessedByDMT == FALSE) && (other.guild == GIL_KDF) && (Kapitel >= 5))
 	{
 		return TRUE;
 	};
@@ -585,7 +585,7 @@ instance DIA_Sekob_ROSIBACKATSEKOB(C_Info)
 
 func int DIA_Sekob_ROSIBACKATSEKOB_Condition()
 {
-	if(!Npc_IsDead(Rosi) && (MIS_BringRosiBackToSekob == LOG_Running))
+	if(!Npc_IsDead(Rosi) && (MIS_BringRosiBackToSekob == LOG_RUNNING))
 	{
 		if((Npc_GetDistToWP(Rosi,"NW_FARM4_IN_04") < 3000) || (Npc_GetDistToWP(Rosi,"NW_BIGFARM_FARM4_PATH_01") < 3000))
 		{
@@ -625,7 +625,7 @@ instance DIA_Sekob_ROSINEVERBACK(C_Info)
 
 func int DIA_Sekob_ROSINEVERBACK_Condition()
 {
-	if((MIS_RosisFlucht == LOG_SUCCESS) && (MIS_BringRosiBackToSekob == LOG_Running))
+	if((MIS_RosisFlucht == LOG_SUCCESS) && (MIS_BringRosiBackToSekob == LOG_RUNNING))
 	{
 		return TRUE;
 	};

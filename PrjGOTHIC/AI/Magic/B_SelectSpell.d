@@ -50,7 +50,18 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			}
 			else if(dK_Mega <= 10)
 			{
-				B_ReadyRune(slf,ItRu_LightningFlash,SPL_Cost_LightningFlash);
+				if(Kapitel <= 3)
+				{
+					B_ReadyRune(slf,ItRu_LightningFlash,SPL_Cost_LightningFlash);
+				}
+				else if(Kapitel == 4)
+				{
+					B_ReadyRune(slf,ItRu_Deathball,SPL_Cost_LightningFlash);
+				}
+				else
+				{
+					B_ReadyRune(slf,ItRu_Thunderstorm,SPL_Cost_Thunderstorm);
+				};
 			}
 			else
 			{
@@ -60,7 +71,6 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 				}
 				else
 				{
-					//TODO нужно что-то более мощное
 					B_ReadyRune(slf,ItRu_Deathball,SPL_Cost_Deathball);
 				};
 			};

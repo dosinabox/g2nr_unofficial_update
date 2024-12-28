@@ -115,7 +115,7 @@ instance DIA_Bosper_IntoOV(C_Info)
 
 func int DIA_Bosper_IntoOV_Condition()
 {
-	if((hero.guild == GIL_NONE) && (Player_IsApprentice == APP_NONE))
+	if((other.guild == GIL_NONE) && (Player_IsApprentice == APP_NONE))
 	{
 		return TRUE;
 	};
@@ -132,7 +132,7 @@ func void DIA_Bosper_IntoOV_Info()
 		AI_Output(other,self,"DIA_Bosper_IntoOV_15_04");	//я это заметил...
 	};
 	Log_CreateTopic(TOPIC_OV,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_OV,LOG_Running);
+	Log_SetTopicStatus(TOPIC_OV,LOG_RUNNING);
 	B_LogEntry(TOPIC_OV,"„тобы попасть в верхний квартал, € либо должен стать уважаемым гражданином, либо получить работу.");
 };
 
@@ -173,7 +173,7 @@ func void DIA_Bosper_SeekWork_Info()
 	if(Player_IsApprentice == APP_NONE)
 	{
 		Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Lehrling,LOG_RUNNING);
 		B_LogEntry(TOPIC_Lehrling,"Ѕоспер ищет нового ученика. я могу начать работать у него.");
 	};
 };
@@ -210,7 +210,10 @@ func void DIA_Bosper_LEHRLING_Info()
 	{
 		AI_Output(self,other,"DIA_Bosper_LEHRLING_11_01");	//(ухмыл€етс€) ќтлично! ѕохоже, ты уже знаешь основы.
 		stimmen += 1;
-		if(Harad.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Harad))
+		{
+		}
+		else if(Harad.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if((MIS_Harad_Orc == LOG_SUCCESS) || (MIS_HakonBandits == LOG_SUCCESS))
 			{
@@ -226,7 +229,10 @@ func void DIA_Bosper_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Bosper_LEHRLING_11_04");	//Ќо √арад говорит, что никогда не видел теб€.
 		};
-		if(Thorben.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Thorben))
+		{
+		}
+		else if(Thorben.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if(MIS_Thorben_GetBlessings == LOG_SUCCESS)
 			{
@@ -242,7 +248,10 @@ func void DIA_Bosper_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Bosper_LEHRLING_11_07");	//“орбен пон€ти€ не имеет, кто ты такой.
 		};
-		if(Constantino.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Constantino))
+		{
+		}
+		else if(Constantino.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
 			{
@@ -259,14 +268,17 @@ func void DIA_Bosper_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Bosper_LEHRLING_11_11");	// онстантино никогда даже не слышал о тебе.
 		};
-		if(Matteo.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Matteo))
+		{
+		}
+		else if(Matteo.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if(MIS_Matteo_Gold == LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_12");	//ћаттео говорит, что ты стоишь столько же, сколько золото равное твоему весу.
 				stimmen += 1;
 			}
-			else if(MIS_Matteo_Gold == LOG_Running)
+			else if(MIS_Matteo_Gold == LOG_RUNNING)
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_13");	//ћаттео упом€нул о каких-то долгах - € не знаю, что он имеет в виду, но тебе лучше поговорить с ним.
 			}
@@ -487,7 +499,7 @@ func void DIA_Bosper_Job_Info()
 {
 	AI_Output(other,self,"DIA_Bosper_Job_15_00");	//„то ты хочешь, чтобы € сделал дл€ теб€?
 	Log_CreateTopic(TOPIC_BosperWolf,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BosperWolf,LOG_Running);
+	Log_SetTopicStatus(TOPIC_BosperWolf,LOG_RUNNING);
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Bosper_Job_11_01");	//я научу теб€ снимать шкуры с животных, и ты принесешь мне - скажем, полдюжины волчьих шкур.
@@ -506,7 +518,7 @@ func void DIA_Bosper_Job_Info()
 	{
 		AI_Output(self,other,"DIA_Bosper_Job_11_05");	//»ли (вздыхает) ты сможешь стать учеником другого мастера - если ты этого действительно хочешь.
 	};
-	MIS_Bosper_WolfFurs = LOG_Running;
+	MIS_Bosper_WolfFurs = LOG_RUNNING;
 };
 
 
@@ -523,7 +535,7 @@ instance DIA_Bosper_BringFur(C_Info)
 
 func int DIA_Bosper_BringFur_Condition()
 {
-	if(MIS_Bosper_WolfFurs == LOG_Running)
+	if(MIS_Bosper_WolfFurs == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -583,7 +595,7 @@ func void DIA_Bosper_TeachFUR_Info()
 	{
 		AI_Output(self,other,"DIA_Bosper_TeachFUR_11_01");	//’орошо. —лушай. Ёто довольно просто.
 		AI_Output(self,other,"DIA_Bosper_TeachFUR_11_02");	//Ѕерешь острый нож и разрезаешь брюхо животного. «атем делаешь несколько небольших надрезов на внутренней стороне ног, и снимаешь шкуру.
-		if(MIS_Bosper_WolfFurs == LOG_Running)
+		if(MIS_Bosper_WolfFurs == LOG_RUNNING)
 		{
 			AI_Output(self,other,"DIA_Bosper_TeachFUR_11_03");	//ѕринеси мне волчьи шкуры, а там посмотрим...
 			Log_AddEntry(TOPIC_BosperWolf,"Ѕоспер научил мен€ снимать шкуры с животных.");
@@ -605,7 +617,7 @@ instance DIA_Bosper_Trade(C_Info)
 
 func int DIA_Bosper_Trade_Condition()
 {
-	if(MIS_Bosper_WolfFurs != LOG_Running)
+	if(MIS_Bosper_WolfFurs != LOG_RUNNING)
 	{
 		DIA_Bosper_Trade.trade = TRUE;
 	};
@@ -620,7 +632,7 @@ func void DIA_Bosper_Trade_Info()
 		B_GiveTradeInv(self);
 		Trade_IsActive = TRUE;
 		B_RefreshTraderAmmo(self,50);
-		if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+		if(MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING)
 		{
 			BosperMinenAnteil = TRUE;
 		};
@@ -646,7 +658,7 @@ instance DIA_Bosper_BogenRunning(C_Info)
 
 func int DIA_Bosper_BogenRunning_Condition()
 {
-	if(MIS_Bosper_Bogen == LOG_Running)
+	if(MIS_Bosper_Bogen == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -667,7 +679,7 @@ func void DIA_Bosper_BogenRunning_Info()
 	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_07");	//√отов покл€стьс€, что мой лук все еще находитс€ где-то в городе. я поговорил со стражей у обоих городских ворот, но они не видели, чтобы кто-нибудь выходил из города с луком.
 	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_08");	// огда € доберусь до этого ублюдка...
 	Log_CreateTopic(TOPIC_BosperBogen,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BosperBogen,LOG_Running);
+	Log_SetTopicStatus(TOPIC_BosperBogen,LOG_RUNNING);
 	B_LogEntry(TOPIC_BosperBogen,"” Ѕоспера был украден лук. ¬ор побежал к гавани, и скрылс€ там. ќполчение обыскало портовый квартал, но они ничего не нашли, хот€ лук все еще должен быть в городе.");
 };
 
@@ -939,7 +951,7 @@ instance DIA_Bosper_Minenanteil(C_Info)
 
 func int DIA_Bosper_Minenanteil_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (BosperMinenAnteil == TRUE))
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (BosperMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

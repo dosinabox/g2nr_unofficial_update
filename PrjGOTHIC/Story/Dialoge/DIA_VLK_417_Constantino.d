@@ -304,7 +304,7 @@ func void DIA_Constantino_ZUSTIMMUNG_Info()
 	if(Constantino_Logpatch2 == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Lehrling,LOG_RUNNING);
 		B_LogEntry(TOPIC_Lehrling," онстантино даст мне свое одобрение, если € не обвин€юсь ни в одном преступлении в городе.");
 		Constantino_Logpatch2 = TRUE;
 	};
@@ -339,9 +339,9 @@ func void DIA_Constantino_BringHerbs_Info()
 	AI_Output(self,other,"DIA_Constantino_BringHerbs_10_04");	//(вздыхает) ¬от - это список самых важных растений.
 	B_GiveInvItems(self,other,ItWr_Kraeuterliste,1);
 	AI_Output(self,other,"DIA_Constantino_BringHerbs_10_05");	//ѕринеси мне одно растение каждого вида, и, возможно, € переменю свое мнение насчет ученика.
-	MIS_Constantino_BringHerbs = LOG_Running;
+	MIS_Constantino_BringHerbs = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_ConstantinoPlants,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_ConstantinoPlants,LOG_Running);
+	Log_SetTopicStatus(TOPIC_ConstantinoPlants,LOG_RUNNING);
 	B_LogEntry(TOPIC_ConstantinoPlants," онстантино хочет получить по одному экземпл€ру каждого растени€, иначе он не примет мен€ в ученики.");
 };
 
@@ -359,7 +359,7 @@ instance DIA_Constantino_HerbsRunning(C_Info)
 
 func int DIA_Constantino_HerbsRunning_Condition()
 {
-	if(MIS_Constantino_BringHerbs == LOG_Running)
+	if(MIS_Constantino_BringHerbs == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -411,7 +411,7 @@ func void DIA_Constantino_HerbsRunning_Success()
 	if(Player_IsApprentice == APP_NONE)
 	{
 		Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Lehrling,LOG_RUNNING);
 		B_LogEntry(TOPIC_Lehrling," онстантино примет мен€ в ученики, если другие мастера будут не против.");
 	};
 	Info_ClearChoices(DIA_Constantino_HerbsRunning);
@@ -454,7 +454,10 @@ func void DIA_Constantino_LEHRLING_Info()
 	{
 		AI_Output(self,other,"DIA_Constantino_LEHRLING_10_01");	//„то касаетс€ моего мнени€ - да.
 		stimmen += 1;
-		if(Harad.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Harad))
+		{
+		}
+		else if(Harad.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			AI_Output(self,other,"DIA_Constantino_LEHRLING_10_02");	//√араду важно только, чтобы ты был способен защищать город в случае нападени€ орков.
 			if((MIS_Harad_Orc == LOG_SUCCESS) || (MIS_HakonBandits == LOG_SUCCESS))
@@ -471,7 +474,10 @@ func void DIA_Constantino_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Constantino_LEHRLING_10_05");	//Ќо √арад утверждает, что никогда теб€ не видел.
 		};
-		if(Bosper.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Bosper))
+		{
+		}
+		else if(Bosper.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			AI_Output(self,other,"DIA_Constantino_LEHRLING_10_06");	//Ѕоспер очень неохотно отзывалс€ о твоих способност€х.
 			AI_Output(self,other,"DIA_Constantino_LEHRLING_10_07");	//я полагаю, что он хотел бы вз€ть теб€ в ученики сам.
@@ -490,7 +496,10 @@ func void DIA_Constantino_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Constantino_LEHRLING_10_11");	//» Ѕоспер пока теб€ не видел.
 		};
-		if(Thorben.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Thorben))
+		{
+		}
+		else if(Thorben.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			AI_Output(self,other,"DIA_Constantino_LEHRLING_10_12");	//“орбен - очень религиозный человек.
 			if(MIS_Thorben_GetBlessings == LOG_SUCCESS)
@@ -507,14 +516,17 @@ func void DIA_Constantino_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Constantino_LEHRLING_10_15");	//“орбен не знает, кто ты такой.
 		};
-		if(Matteo.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Matteo))
+		{
+		}
+		else if(Matteo.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if(MIS_Matteo_Gold == LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_16");	//„то касаетс€ ћаттео - он расхваливает теб€ на каждом углу.
 				stimmen += 1;
 			}
-			else if(MIS_Matteo_Gold == LOG_Running)
+			else if(MIS_Matteo_Gold == LOG_RUNNING)
 			{
 				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_17");	//ћаттео говорит, что ты что-то должен ему. ≈сли ты хочешь получить его голос, тебе лучше решить с ним эту мелкую проблему.
 			}
@@ -657,7 +669,7 @@ func void DIA_Constantino_AlsLehrling_Info()
 	{
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_09");	//√де ты пропадал?
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_10");	//я ожидаю от моего ученика большего усерди€. Ёто никуда не годитс€, что ты по€вл€ешьс€ здесь раз в мес€ц!
-		if(MIS_Constantino_Mushrooms == LOG_Running)
+		if(MIS_Constantino_Mushrooms == LOG_RUNNING)
 		{
 			AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_11");	//“ы хот€ бы принес мне грибы?
 		};
@@ -723,7 +735,7 @@ func void DIA_Constantino_Mushrooms_Info()
 	AI_Output(other,self,"DIA_Constantino_Mushrooms_15_00");	// акие растени€ € должен приносить?
 	AI_Output(self,other,"DIA_Constantino_Mushrooms_10_01");	//я буду покупать все, что ты принесешь мне - и буду платить за травы обычную цену.
 	AI_Output(self,other,"DIA_Constantino_Mushrooms_10_02");	//Ќо что касаетс€ грибов, дл€ них у мен€ особа€ цена.
-	MIS_Constantino_Mushrooms = LOG_Running;
+	MIS_Constantino_Mushrooms = LOG_RUNNING;
 	B_LogEntry(TOPIC_Bonus,"я могу продавать грибы  онстантино по очень хорошей цене.");
 };
 
@@ -741,7 +753,7 @@ instance DIA_Constantino_MushroomsRunning(C_Info)
 
 func int DIA_Constantino_MushroomsRunning_Condition()
 {
-	if(MIS_Constantino_Mushrooms == LOG_Running)
+	if(MIS_Constantino_Mushrooms == LOG_RUNNING)
 	{
 		return TRUE;
 	};

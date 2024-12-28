@@ -121,6 +121,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 			};
 			DG_gefunden = TRUE;
 		}
+		else if(C_IsNpc(slf,KDF_503_Karras))
+		{
+			if(MIS_KarrasVergessen == LOG_RUNNING)
+			{
+				MIS_KarrasVergessen = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,KDF_508_Gorax))
 		{
 			if(MIS_GoraxEssen == LOG_RUNNING)

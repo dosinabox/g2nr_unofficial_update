@@ -52,7 +52,7 @@ instance DIA_Addon_Gaan_MeetingIsRunning(C_Info)
 
 func int DIA_Addon_Gaan_MeetingIsRunning_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (RangerMeetingRunning == LOG_Running))
+	if(Npc_IsInState(self,ZS_Talk) && (RangerMeetingRunning == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -272,7 +272,7 @@ instance DIA_Gaan_MONSTER(C_Info)
 
 func int DIA_Gaan_MONSTER_Condition()
 {
-	if(MIS_Gaan_Snapper == LOG_Running)
+	if(MIS_Gaan_Snapper == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -298,7 +298,7 @@ instance DIA_Gaan_WASZAHLSTDU(C_Info)
 
 func int DIA_Gaan_WASZAHLSTDU_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && (MIS_Gaan_Snapper == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && (MIS_Gaan_Snapper == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -334,7 +334,7 @@ instance DIA_Gaan_WOHERMONSTER(C_Info)
 
 func int DIA_Gaan_WOHERMONSTER_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && (MIS_Gaan_Snapper == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && (MIS_Gaan_Snapper == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -375,7 +375,7 @@ instance DIA_Gaan_MONSTERTOT(C_Info)
 
 func int DIA_Gaan_MONSTERTOT_Condition()
 {
-	if((RangerMeetingRunning != LOG_Running) && (MIS_Gaan_Snapper != LOG_SUCCESS))
+	if((RangerMeetingRunning != LOG_RUNNING) && (MIS_Gaan_Snapper != LOG_SUCCESS))
 	{
 		if(Npc_GetDistToWP(self,"NW_FARM3_GAAN") < 2000)
 		{
@@ -583,7 +583,13 @@ func void DIA_Gaan_TEACHHUNTING_DrgSnapperHorn()
 	{
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_01");	//Нужно засунуть нож глубоко в лоб этого животного и осторожно выковыривать рог.
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_02");	//Если он не отделится от черепа, нужно поддеть его вторым ножом с другой стороны.
-		CreateInvItems(Gaans_Snapper,ItAt_DrgSnapperHorn,2);
+		if(Hlp_IsValidNpc(Gaans_Snapper))
+		{
+			if(Npc_IsDead(Gaans_Snapper))
+			{
+				CreateInvItems(Gaans_Snapper,ItAt_DrgSnapperHorn,2);
+			};
+		};
 	};
 	Info_ClearChoices(DIA_Gaan_TEACHHUNTING);
 };
@@ -630,9 +636,9 @@ func void DIA_Gaan_JAGD_Info()
 		else if(MIS_Gaan_Snapper == FALSE)
 		{
 			Log_CreateTopic(TOPIC_GaanSchnaubi,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_GaanSchnaubi,LOG_Running);
+			Log_SetTopicStatus(TOPIC_GaanSchnaubi,LOG_RUNNING);
 			B_LogEntry(TOPIC_GaanSchnaubi,"Этот фыркающий зверь доставляет неприятности охотнику Гаану. Если я не уничтожу этого зверя, он не сможет охотиться.");
-			MIS_Gaan_Snapper = LOG_Running;
+			MIS_Gaan_Snapper = LOG_RUNNING;
 		};
 	}
 	else if(Kapitel >= 3)
