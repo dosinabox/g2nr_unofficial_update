@@ -646,7 +646,6 @@ instance CH_Guild(C_Info)
 	nr = 7;
 	condition = CH_Guild_Condition;
 	information = CH_Guild_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = "Выбор гильдии";
 };
@@ -849,7 +848,6 @@ instance CH_Apprentice(C_Info)
 	nr = 8;
 	condition = CH_Apprentice_Condition;
 	information = CH_Apprentice_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = "Выбор ремесла";
 };
@@ -3683,7 +3681,6 @@ instance CH_Language(C_Info)
 	nr = 30;
 	condition = CH_Language_Condition;
 	information = CH_Language_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = "Языки зодчих";
 };

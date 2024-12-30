@@ -1,7 +1,7 @@
 
 func int C_BaltramCanTalkAboutLares()
 {
-	if((MIS_Lares_BringRangerToMe == LOG_Running) && (AnyRangerRingEquipped() || ArmorEquipped(other,ITAR_RANGER_Addon)))
+	if((MIS_Lares_BringRangerToMe == LOG_RUNNING) && (AnyRangerRingEquipped() || ArmorEquipped(other,ITAR_RANGER_Addon)))
 	{
 		return TRUE;
 	};
@@ -63,7 +63,6 @@ instance DIA_Baltram_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Baltram_Hallo_Condition;
 	information = DIA_Baltram_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -78,7 +77,7 @@ func int DIA_Baltram_Hallo_Condition()
 
 func void DIA_Baltram_Hallo_Info()
 {
-	if(((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG)) || (SC_KnowsBaltramAsRanger == TRUE))
+	if(((other.guild != GIL_SLD) && (other.guild != GIL_DJG)) || (SC_KnowsBaltramAsRanger == TRUE))
 	{
 		AI_Output(self,other,"DIA_Baltram_Hallo_01_00");	//Добро пожаловать, чужеземец, меня зовут Бальтрам. Ты хочешь запастись продовольствием?
 		AI_Output(self,other,"DIA_Baltram_Hallo_01_01");	//Боюсь, что мне придется разочаровать тебя. В настоящий момент я мало что могу предложить.
@@ -146,14 +145,13 @@ instance DIA_Baltram_Job(C_Info)
 	nr = 3;
 	condition = DIA_Baltram_Job_Condition;
 	information = DIA_Baltram_Job_Info;
-	permanent = FALSE;
 	description = "У тебя есть работа для меня?";
 };
 
 
 func int DIA_Baltram_Job_Condition()
 {
-	if((MIS_Nagur_Bote == FALSE) && (hero.guild == GIL_NONE))
+	if((MIS_Nagur_Bote == FALSE) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -172,14 +170,13 @@ instance DIA_Baltram_Trick(C_Info)
 	nr = 4;
 	condition = DIA_Baltram_Trick_Condition;
 	information = DIA_Baltram_Trick_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Baltram_Trick_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_Nagur_Bote == LOG_Running))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_Nagur_Bote == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -194,9 +191,9 @@ func void DIA_Baltram_Trick_Info()
 	AI_Output(self,other,"DIA_Baltram_Trick_01_04");	//Я дам тебе 50 золотых монет.
 	AI_Output(other,self,"DIA_Baltram_Trick_15_05");	//Отлично, я согласен.
 	AI_Output(self,other,"DIA_Baltram_Trick_01_06");	//Хорошо, просто скажи Акилу, что тебя послал я. Он передаст тебе пакет. Принеси его мне.
-	MIS_Baltram_ScoutAkil = LOG_Running;
+	MIS_Baltram_ScoutAkil = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Baltram,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Baltram,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Baltram,LOG_RUNNING);
 	B_LogEntries(TOPIC_Baltram,"Если я принесу Бальтраму его посылку, он заплатит мне 50 золотых монет.");
 	B_LogNextEntry(TOPIC_Nagur,"Бальтрам нанял меня в качестве мальчика на побегушках. Теперь я должен доставить ему посылку с фермы Акила.");
 };
@@ -220,7 +217,7 @@ instance DIA_Baltram_WAREZ(C_Info)
 
 func int DIA_Baltram_WAREZ_Condition()
 {
-	if((SC_KnowsBaltramAsRanger == TRUE) || ((MIS_BaltramTrade != LOG_Running) && (MIS_BaltramTrade != LOG_FAILED)))
+	if((SC_KnowsBaltramAsRanger == TRUE) || ((MIS_BaltramTrade != LOG_RUNNING) && (MIS_BaltramTrade != LOG_FAILED)))
 	{
 		return TRUE;
 	};
@@ -257,7 +254,7 @@ func void DIA_Baltram_WAREZ_Info()
 	};
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
-	if((MIS_BaltramTrade != LOG_SUCCESS) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (SC_KnowsBaltramAsRanger == FALSE))
+	if((MIS_BaltramTrade != LOG_SUCCESS) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)) && (SC_KnowsBaltramAsRanger == FALSE))
 	{
 		AI_Output(self,other,"DIA_Baltram_WAREZ_01_03");	//Такие, как ты, ничего от меня не получат.
 		AI_Output(other,self,"DIA_Baltram_WAREZ_15_04");	//Почему?
@@ -341,7 +338,7 @@ func void DIA_Addon_Baltram_Skip_Ich()
 	B_GiveInvItems(self,other,ItMi_Packet_Baltram4Skip_Addon,1);
 	AI_Output(self,other,"DIA_Addon_Baltram_Skip_Ich_01_02");	//Вот, возьми этот пакет и передай Скипу, что на этот раз мне нужно больше рома.
 	AI_Output(self,other,"DIA_Addon_Baltram_Skip_Ich_01_03");	//Как минимум три бутылки.
-	if(MIS_Addon_Baltram_Paket4Skip == LOG_Running)
+	if(MIS_Addon_Baltram_Paket4Skip == LOG_RUNNING)
 	{
 		B_LogEntry(TOPIC_Addon_BaltramSkipTrade,"Бальтрам дал мне пакет. Я должен отнести его Скипу.");
 	};
@@ -431,14 +428,13 @@ instance DIA_Baltram_AkilsHof(C_Info)
 	nr = 4;
 	condition = DIA_Baltram_AkilsHof_Condition;
 	information = DIA_Baltram_AkilsHof_Info;
-	permanent = FALSE;
 	description = "Где мне найти ферму Акила?";
 };
 
 
 func int DIA_Baltram_AkilsHof_Condition()
 {
-	if(MIS_Baltram_ScoutAkil == LOG_Running)
+	if(MIS_Baltram_ScoutAkil == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -458,7 +454,6 @@ instance DIA_Baltram_Lieferung(C_Info)
 	nr = 5;
 	condition = DIA_Baltram_Lieferung_Condition;
 	information = DIA_Baltram_Lieferung_Info;
-	permanent = FALSE;
 	description = "Я принес пакет от Акила.";
 };
 
@@ -490,7 +485,6 @@ instance DIA_Baltram_LetUsTrade(C_Info)
 	nr = 6;
 	condition = DIA_Baltram_LetUsTrade_Condition;
 	information = DIA_Baltram_LetUsTrade_Info;
-	permanent = FALSE;
 	description = "Может, нам опять поработать вместе?";
 };
 
@@ -508,7 +502,7 @@ func void DIA_Baltram_LetUsTrade_Info()
 	AI_Output(other,self,"DIA_Baltram_LetUsTrade_15_00");	//Может, нам опять поработать вместе?
 	AI_Output(self,other,"DIA_Baltram_LetUsTrade_01_01");	//Послушай, если ты принесешь мне 10 окороков и 10 бутылок вина, тогда я опять готов иметь с тобой дело.
 	AI_Output(other,self,"DIA_Baltram_LetUsTrade_15_02");	//Я попробую.
-	MIS_BaltramTrade = LOG_Running;
+	MIS_BaltramTrade = LOG_RUNNING;
 };
 
 
@@ -528,7 +522,7 @@ instance DIA_Baltram_HaveYourWarez(C_Info)
 
 func int DIA_Baltram_HaveYourWarez_Condition()
 {
-	if((MIS_BaltramTrade == LOG_Running) && (MIS_BaltramTrade != LOG_SUCCESS) && (SC_KnowsBaltramAsRanger == FALSE))
+	if((MIS_BaltramTrade == LOG_RUNNING) && (MIS_BaltramTrade != LOG_SUCCESS) && (SC_KnowsBaltramAsRanger == FALSE))
 	{
 		return TRUE;
 	};

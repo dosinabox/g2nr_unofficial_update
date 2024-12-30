@@ -27,7 +27,6 @@ instance DIA_MiltenOW_Hello(C_Info)
 	nr = TRUE;
 	condition = DIA_MiltenOW_Hello_Condition;
 	information = DIA_MiltenOW_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -97,7 +96,6 @@ instance DIA_MiltenOW_Bericht(C_Info)
 	nr = 3;
 	condition = DIA_MiltenOW_Bericht_Condition;
 	information = DIA_MiltenOW_Bericht_Info;
-	permanent = FALSE;
 	description = "Как здесь обстоят дела?";
 };
 
@@ -127,7 +125,6 @@ instance DIA_MiltenOW_Erz(C_Info)
 	nr = 4;
 	condition = DIA_MiltenOW_Erz_Condition;
 	information = DIA_MiltenOW_Erz_Info;
-	permanent = FALSE;
 	description = "Сколько руды удалось добыть?";
 };
 
@@ -155,7 +152,6 @@ instance DIA_MiltenOW_Wo(C_Info)
 	nr = 5;
 	condition = DIA_MiltenOW_Wo_Condition;
 	information = DIA_MiltenOW_Wo_Info;
-	permanent = FALSE;
 	description = "А где сейчас Горн и Диего?";
 };
 
@@ -194,7 +190,6 @@ instance DIA_MiltenOW_Gorn(C_Info)
 	nr = 5;
 	condition = DIA_MiltenOW_Gorn_Condition;
 	information = DIA_MiltenOW_Gorn_Info;
-	permanent = FALSE;
 	description = "Пойдем, освободим Горна!";
 };
 
@@ -226,7 +221,6 @@ instance DIA_MiltenOW_Preis(C_Info)
 	nr = 5;
 	condition = DIA_MiltenOW_Preis_Condition;
 	information = DIA_MiltenOW_Preis_Info;
-	permanent = FALSE;
 	description = "Гаронд хочет 1000 золотых монет за Горна.";
 };
 
@@ -254,7 +248,6 @@ instance DIA_MiltenOW_Mehr(C_Info)
 	nr = 5;
 	condition = DIA_MiltenOW_Mehr_Condition;
 	information = DIA_MiltenOW_Mehr_Info;
-	permanent = FALSE;
 	description = "Мне нужно больше золота, чтобы купить свободу Горна.";
 };
 
@@ -284,7 +277,6 @@ instance DIA_MiltenOW_Equipment(C_Info)
 	nr = 5;
 	condition = DIA_MiltenOW_Equipment_Condition;
 	information = DIA_MiltenOW_Equipment_Info;
-	permanent = FALSE;
 	description = "Ты можешь обеспечить меня снаряжением? Гаронд попросил меня отправиться в шахты.";
 };
 
@@ -311,8 +303,6 @@ instance DIA_MiltenOW_Versteck(C_Info)
 	nr = 1;
 	condition = DIA_MiltenOW_Versteck_Condition;
 	information = DIA_MiltenOW_Versteck_Info;
-	permanent = FALSE;
-	important = FALSE;
 	description = "Я получил ответ от Горна. Он говорит, что его золото находится у южных ворот.";
 };
 
@@ -342,7 +332,6 @@ instance DIA_MiltenOW_Frei(C_Info)
 	nr = 5;
 	condition = DIA_MiltenOW_Frei_Condition;
 	information = DIA_MiltenOW_Frei_Info;
-	permanent = FALSE;
 	description = "Я освободил Горна.";
 };
 
@@ -368,7 +357,6 @@ instance DIA_MiltenOW_Lehren(C_Info)
 	nr = 9;
 	condition = DIA_MiltenOW_Lehren_Condition;
 	information = DIA_MiltenOW_Lehren_Info;
-	permanent = FALSE;
 	description = "Ты можешь научить меня чему-нибудь?";
 };
 

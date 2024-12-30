@@ -21,6 +21,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				B_Greg_ComesToDexter();
 			};
 		}
+		else if(C_IsNpc(slf,BAU_940_Akil))
+		{
+			if(MIS_Akil_SchafDiebe == LOG_RUNNING)
+			{
+				MIS_Akil_SchafDiebe = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,BAU_951_Hilda))
 		{
 			if(MIS_Lobart_RuebenToHilda == LOG_RUNNING)
@@ -41,6 +48,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 			if(MIS_Canthars_KomproBrief == LOG_RUNNING)
 			{
 				MIS_Canthars_KomproBrief = LOG_FAILED;
+			};
+		}
+		else if(C_IsNpc(slf,VLK_407_Hakon))
+		{
+			if(MIS_HakonBandits == LOG_RUNNING)
+			{
+				MIS_HakonBandits = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,VLK_410_Baltram))

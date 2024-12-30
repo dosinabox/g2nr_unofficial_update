@@ -37,7 +37,7 @@ func void B_DaronSegen(var int gold)
 			other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
 		};
 	};
-	if((MIS_Thorben_GetBlessings == LOG_Running) && !C_GotAnyInnosBlessing())
+	if((MIS_Thorben_GetBlessings == LOG_RUNNING) && !C_GotAnyInnosBlessing())
 	{
 		B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон благословил меня.");
 	};
@@ -73,7 +73,6 @@ instance DIA_Daron_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Daron_Hallo_Condition;
 	information = DIA_Daron_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -89,7 +88,7 @@ func int DIA_Daron_Hallo_Condition()
 func void DIA_Daron_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Daron_Hallo_10_00");	//Что я могу сделать для тебя? Ты ищешь душевного комфорта?
-	if(hero.guild != GIL_KDF)
+	if(other.guild != GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Daron_Hallo_10_01");	//Ты хочешь помолиться нашему владыке Инносу, или, может, хочешь пожертвовать золото его церкви?
 	};
@@ -102,7 +101,6 @@ instance DIA_Daron_Paladine(C_Info)
 	nr = 2;
 	condition = DIA_Daron_Paladine_Condition;
 	information = DIA_Daron_Paladine_Info;
-	permanent = FALSE;
 	description = "Мне нужно поговорить с паладинами. Ты можешь помочь мне в этом?";
 };
 
@@ -139,14 +137,13 @@ instance DIA_Daron_AboutSegen(C_Info)
 	nr = 2;
 	condition = DIA_Daron_AboutSegen_Condition;
 	information = DIA_Daron_AboutSegen_Info;
-	permanent = FALSE;
 	description = "Я пришел, чтобы получить твое благословение!";
 };
 
 
 func int DIA_Daron_AboutSegen_Condition()
 {
-	if((MIS_Thorben_GetBlessings == LOG_Running) && (Player_IsApprentice == APP_NONE) && (hero.guild != GIL_KDF))
+	if((MIS_Thorben_GetBlessings == LOG_RUNNING) && (Player_IsApprentice == APP_NONE) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -176,14 +173,13 @@ instance DIA_Daron_Spenden(C_Info)
 	nr = 3;
 	condition = DIA_Daron_Spenden_Condition;
 	information = DIA_Daron_Spenden_Info;
-	permanent = FALSE;
 	description = "И какое пожертвование обычно считается достаточным?";
 };
 
 
 func int DIA_Daron_Spenden_Condition()
 {
-	if(hero.guild != GIL_KDF)
+	if(other.guild != GIL_KDF)
 	{
 		return TRUE;
 	};
@@ -198,7 +194,7 @@ func void DIA_Daron_Spenden_Info()
 	if(Npc_HasItems(other,ItMi_Gold) < 10)
 	{
 		AI_Output(self,other,"DIA_Daron_Spenden_10_03");	//Хм, ты ведь бедняк, да? Оставь себе то немногое, что у тебя есть.
-		if((MIS_Thorben_GetBlessings == LOG_Running) && !C_GotAnyInnosBlessing())
+		if((MIS_Thorben_GetBlessings == LOG_RUNNING) && !C_GotAnyInnosBlessing())
 		{
 			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон не благословил меня. Мне кажется, это означает, что я должен пожертвовать ему немного золота. Без этого он не благословит меня.");
 		};
@@ -234,7 +230,6 @@ instance DIA_Daron_Woher(C_Info)
 	nr = 9;
 	condition = DIA_Daron_Woher_Condition;
 	information = DIA_Daron_Woher_Info;
-	permanent = FALSE;
 	description = "Откуда ты пришел?";
 };
 
@@ -264,7 +259,6 @@ instance DIA_Daron_Innos(C_Info)
 	nr = 9;
 	condition = DIA_Daron_Innos_Condition;
 	information = DIA_Daron_Innos_Info;
-	permanent = FALSE;
 	description = "Расскажи мне об Инносе.";
 };
 
@@ -292,7 +286,6 @@ instance DIA_Daron_Kloster(C_Info)
 	nr = 10;
 	condition = DIA_Daron_Kloster_Condition;
 	information = DIA_Daron_Kloster_Info;
-	permanent = FALSE;
 	description = "Расскажи мне подробнее о монастыре.";
 };
 
@@ -320,7 +313,6 @@ instance DIA_Daron_Stadt(C_Info)
 	nr = 99;
 	condition = DIA_Daron_Stadt_Condition;
 	information = DIA_Daron_Stadt_Info;
-	permanent = FALSE;
 	description = "А что ты делаешь в городе?";
 };
 
@@ -366,7 +358,7 @@ func int DIA_Addon_Daron_GuildHelp_Condition()
 			return TRUE;
 		};
 	}
-	else if(MIS_Addon_Vatras_Go2Daron == LOG_Running)
+	else if(MIS_Addon_Vatras_Go2Daron == LOG_RUNNING)
 	{
 		DIA_Addon_Daron_GuildHelp.description = "Я слышал, у вас пропала ценная статуэтка.";
 		return TRUE;
@@ -386,7 +378,7 @@ func void DIA_Addon_Daron_GuildHelp_Info()
 			DIA_Common_YouLookSoSad();
 		};
 	}
-	else if(MIS_Addon_Vatras_Go2Daron == LOG_Running)
+	else if(MIS_Addon_Vatras_Go2Daron == LOG_RUNNING)
 	{
 		AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_15_00");	//Я слышал, у вас пропала ценная статуэтка.
 		AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_01");	//Неужели? Об этом знал только маг Воды Ватрас.
@@ -443,7 +435,7 @@ func void DIA_Addon_Daron_GuildHelp_auftrag()
 	AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_auftrag_15_00");	//Я услышал достаточно. Я найду статуэтку.
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_auftrag_10_01");	//Да направит тебя Иннос, и да защитит он тебя от опасностей, подстерегающих тебя за воротами города.
 	Info_ClearChoices(DIA_Addon_Daron_GuildHelp);
-	MIS_Addon_Daron_GetStatue = LOG_Running;
+	MIS_Addon_Daron_GetStatue = LOG_RUNNING;
 	if(other.guild == GIL_NONE)
 	{
 		B_LogEntry(TOPIC_Addon_RangerHelpKDF,TOPIC_Addon_DaronGobbos);
@@ -451,7 +443,7 @@ func void DIA_Addon_Daron_GuildHelp_auftrag()
 	else
 	{
 		Log_CreateTopic(TOPIC_Addon_HelpDaron,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_HelpDaron,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_HelpDaron,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_HelpDaron,TOPIC_Addon_DaronGobbos);
 	};
 };
@@ -479,7 +471,7 @@ instance DIA_Addon_Daron_FoundStatue(C_Info)
 
 func int DIA_Addon_Daron_FoundStatue_Condition()
 {
-	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron) && (MIS_Addon_Daron_GetStatue == LOG_Running) && (LostInnosStatueInMonastery == FALSE))
+	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron) && (MIS_Addon_Daron_GetStatue == LOG_RUNNING) && (LostInnosStatueInMonastery == FALSE))
 	{
 		return TRUE;
 	};
@@ -543,7 +535,6 @@ instance DIA_Daron_arm(C_Info)
 	nr = 10;
 	condition = DIA_Daron_arm_Condition;
 	information = DIA_Daron_arm_Info;
-	permanent = FALSE;
 	description = "Я как раз бедный!";
 };
 
@@ -579,7 +570,7 @@ instance DIA_Daron_Spende(C_Info)
 
 func int DIA_Daron_Spende_Condition()
 {
-	if((DIA_Daron_Spende_permanent == FALSE) && Npc_KnowsInfo(other,DIA_Daron_Spenden) && (hero.guild != GIL_KDF))
+	if((DIA_Daron_Spende_permanent == FALSE) && Npc_KnowsInfo(other,DIA_Daron_Spenden) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};

@@ -5,7 +5,6 @@ instance DIA_SylvioDJG_EXIT(C_Info)
 	nr = 999;
 	condition = DIA_SylvioDJG_EXIT_Condition;
 	information = DIA_SylvioDJG_EXIT_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
@@ -280,8 +279,8 @@ func int DIA_Sylvio_WASJETZT_Condition()
 		if(MIS_DJG_Sylvio_KillIceGolem == LOG_SUCCESS)
 		{
 			return TRUE;
-		}
-		else if((SylvioIceGolemsKilledBefore4Chapter == TRUE) && Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER))
+		};
+		if((SylvioIceGolemsKilledBefore4Chapter == TRUE) && Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER))
 		{
 			return TRUE;
 		};

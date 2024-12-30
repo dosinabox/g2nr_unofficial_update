@@ -264,7 +264,6 @@ instance DIA_Lord_Hagen_Hallo(C_Info)
 	condition = DIA_Lord_Hagen_Hallo_Condition;
 	information = DIA_Lord_Hagen_Hallo_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
@@ -312,7 +311,6 @@ instance DIA_Lord_Hagen_Frieden(C_Info)
 	nr = 2;
 	condition = DIA_Lord_Hagen_Frieden_Condition;
 	information = DIA_Lord_Hagen_Frieden_Info;
-	permanent = FALSE;
 	description = "Я принес предложение мира от наемников!";
 };
 
@@ -350,7 +348,6 @@ instance DIA_Lord_Hagen_Armee(C_Info)
 	nr = 2;
 	condition = DIA_Lord_Hagen_Armee_Condition;
 	information = DIA_Lord_Hagen_Armee_Info;
-	permanent = FALSE;
 	description = "Силы Зла собираются очень близко отсюда. В Долине Рудников.";
 };
 
@@ -436,7 +433,6 @@ instance DIA_Lord_Hagen_Auge(C_Info)
 	nr = 2;
 	condition = DIA_Lord_Hagen_Auge_Condition;
 	information = DIA_Lord_Hagen_Auge_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о Глазе Инноса?";
 };
 
@@ -465,7 +461,6 @@ instance DIA_Lord_Hagen_Pass(C_Info)
 	nr = 2;
 	condition = DIA_Lord_Hagen_Pass_Condition;
 	information = DIA_Lord_Hagen_Pass_Info;
-	permanent = FALSE;
 	description = "Как я пройду через Проход?";
 };
 
@@ -534,7 +529,6 @@ instance DIA_Lord_Hagen_Khorinis(C_Info)
 	nr = 2;
 	condition = DIA_Lord_Hagen_Khorinis_Condition;
 	information = DIA_Lord_Hagen_Khorinis_Info;
-	permanent = FALSE;
 	description = "Зачем вы пришли в Хоринис?";
 };
 
@@ -739,7 +733,7 @@ func int DIA_Lord_Hagen_Knight_Condition()
 func void DIA_Lord_Hagen_Knight_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_Knight_15_00");	//Я хочу поступить на службу в орден.
-	if(MIS_RescueBennet == LOG_SUCCESS)
+	if((MIS_RescueBennet == LOG_SUCCESS) && (MIS_OLDWORLD == LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_01");	//Хорошо, ты доказал, что у тебя есть мужество, опыт и знания, чтобы служить Инносу.
 		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_02");	//Твои дела свидетельствуют о том, что у тебя чистое сердце.
@@ -811,7 +805,6 @@ instance DIA_Lord_Hagen_WhatProof(C_Info)
 	nr = 991;
 	condition = DIA_Lord_Hagen_WhatProof_Condition;
 	information = DIA_Lord_Hagen_WhatProof_Info;
-	permanent = FALSE;
 	description = "Как я могу доказать, что достоин?";
 };
 
@@ -885,7 +878,6 @@ instance DIA_Lord_Hagen_EyeBroken(C_Info)
 	nr = 1;
 	condition = DIA_Lord_Hagen_EyeBroken_Condition;
 	information = DIA_Lord_Hagen_EyeBroken_Info;
-	permanent = FALSE;
 	description = "Глаз у меня, но он поврежден.";
 };
 
@@ -935,7 +927,6 @@ instance DIA_Lord_Hagen_BACKINTOWN(C_Info)
 	nr = 2;
 	condition = DIA_Lord_Hagen_BACKINTOWN_Condition;
 	information = DIA_Lord_Hagen_BACKINTOWN_Info;
-	permanent = FALSE;
 	description = "Я принес тебе новости от Гаронда. Вот, он начертал эти строки для тебя.";
 };
 
@@ -1172,7 +1163,6 @@ instance DIA_Lord_Hagen_AugeAmStart(C_Info)
 	nr = 4;
 	condition = DIA_Lord_Hagen_AugeAmStart_Condition;
 	information = DIA_Lord_Hagen_AugeAmStart_Info;
-	permanent = FALSE;
 	description = "Я надел Глаз!";
 };
 
@@ -1350,7 +1340,6 @@ instance DIA_Lord_Hagen_AllDragonsDead(C_Info)
 	nr = 4;
 	condition = DIA_Lord_Hagen_AllDragonsDead_Condition;
 	information = DIA_Lord_Hagen_AllDragonsDead_Info;
-	permanent = FALSE;
 	description = "Драконы мертвы.";
 };
 
@@ -1387,7 +1376,6 @@ instance DIA_Lord_Hagen_NeedShip(C_Info)
 	nr = 4;
 	condition = DIA_Lord_Hagen_NeedShip_Condition;
 	information = DIA_Lord_Hagen_NeedShip_Info;
-	permanent = FALSE;
 	description = "Мне нужен корабль.";
 };
 
@@ -1438,7 +1426,6 @@ instance DIA_Lord_Hagen_GateOpen(C_Info)
 	nr = 5;
 	condition = DIA_Lord_Hagen_GateOpen_Condition;
 	information = DIA_Lord_Hagen_GateOpen_Info;
-	permanent = FALSE;
 	description = "Орки ворвались в замок в Долине Рудников!";
 };
 

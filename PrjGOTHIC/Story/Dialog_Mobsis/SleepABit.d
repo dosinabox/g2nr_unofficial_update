@@ -42,7 +42,7 @@ func void PC_Sleep(var int t)
 	};
 	if(Parlan_DontTalkToNovice == LOG_FAILED)
 	{
-		Parlan_DontTalkToNovice = LOG_Running;
+		Parlan_DontTalkToNovice = LOG_RUNNING;
 	};
 	B_CheckLog();
 	B_CoolHotDraw(hero);
@@ -56,7 +56,6 @@ instance PC_NoSleep(C_Info)
 	nr = 999;
 	condition = PC_NoSleep_Condition;
 	information = PC_NoSleep_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
@@ -85,7 +84,6 @@ instance PC_SleepTime_Morning(C_Info)
 	nr = 1;
 	condition = PC_SleepTime_Morning_Condition;
 	information = PC_SleepTime_Morning_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = "Спать до утра";
 };
@@ -111,7 +109,6 @@ instance PC_SleepTime_Noon(C_Info)
 	nr = 2;
 	condition = PC_SleepTime_Noon_Condition;
 	information = PC_SleepTime_Noon_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = "Спать до полудня";
 };
@@ -137,7 +134,6 @@ instance PC_SleepTime_Evening(C_Info)
 	nr = 3;
 	condition = PC_SleepTime_Evening_Condition;
 	information = PC_SleepTime_Evening_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = "Спать до вечера";
 };
@@ -163,7 +159,6 @@ instance PC_SleepTime_Midnight(C_Info)
 	nr = 4;
 	condition = PC_SleepTime_Midnight_Condition;
 	information = PC_SleepTime_Midnight_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = "Спать до полуночи";
 };
@@ -189,7 +184,6 @@ instance PC_SleepTime_Dawn(C_Info)
 	nr = 5;
 	condition = PC_SleepTime_Dawn_Condition;
 	information = PC_SleepTime_Dawn_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = "Спать до рассвета";
 };

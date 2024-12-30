@@ -27,7 +27,6 @@ instance DIA_Bartok_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Bartok_Hallo_Condition;
 	information = DIA_Bartok_Hallo_Info;
-	permanent = FALSE;
 	description = "Как дела?";
 };
 
@@ -53,7 +52,6 @@ instance DIA_Bartok_Jaeger(C_Info)
 	nr = 2;
 	condition = DIA_Bartok_Jaeger_Condition;
 	information = DIA_Bartok_Jaeger_Info;
-	permanent = FALSE;
 	description = "Где мне найти других охотников?";
 };
 
@@ -101,7 +99,6 @@ func void DIA_Addon_Bartok_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Bartok_MissingPeople_04_02");	//Несколько дней назад мы выпивали в таверне Корагона и разговаривали об охоте.
 	AI_Output(self,other,"DIA_Addon_Bartok_MissingPeople_04_03");	//Не спрашивай меня, что было дальше. К тому времени я уже изрядно накачался.
 	AI_Output(self,other,"DIA_Addon_Bartok_MissingPeople_04_04");	//Я помню, как Трокар говорил что-то о том, что собирается добыть несколько косяков из болотной травы. С тех пор я его не видел.
-//	MIS_Bartok_MissingTrokar = LOG_Running;
 	Info_ClearChoices(DIA_Addon_Bartok_MissingPeople);
 	Info_AddChoice(DIA_Addon_Bartok_MissingPeople,"А ты не искал его?",DIA_Addon_Bartok_MissingPeople_such);
 	Info_AddChoice(DIA_Addon_Bartok_MissingPeople,"А где можно найти косяк из болотной травы?",DIA_Addon_Bartok_MissingPeople_wo);
@@ -130,7 +127,6 @@ instance DIA_Bartok_Bosper(C_Info)
 	nr = 3;
 	condition = DIA_Bartok_Bosper_Condition;
 	information = DIA_Bartok_Bosper_Info;
-	permanent = FALSE;
 	description = "Боспер говорит, что ты работал на него...";
 };
 
@@ -155,7 +151,7 @@ func void DIA_Bartok_Bosper_Info()
 	AI_Output(self,other,"DIA_Bartok_Bosper_04_07");	//Воры наглеют прямо на глазах!
 	if(MIS_Bosper_Bogen != LOG_SUCCESS)
 	{
-		MIS_Bosper_Bogen = LOG_Running;
+		MIS_Bosper_Bogen = LOG_RUNNING;
 	};
 };
 
@@ -166,7 +162,6 @@ instance DIA_Bartok_WannaLearn(C_Info)
 	nr = 4;
 	condition = DIA_Bartok_WannaLearn_Condition;
 	information = DIA_Bartok_WannaLearn_Info;
-	permanent = FALSE;
 	description = "Ты можешь научить меня охотиться?";
 };
 
@@ -399,7 +394,6 @@ instance DIA_Bartok_HuntNOW(C_Info)
 	nr = 5;
 	condition = DIA_Bartok_HuntNOW_Condition;
 	information = DIA_Bartok_HuntNOW_Info;
-	permanent = FALSE;
 	description = "Пойдем охотиться!";
 };
 
@@ -441,7 +435,6 @@ instance DIA_Bartok_ImWald(C_Info)
 	nr = 1;
 	condition = DIA_Bartok_ImWald_Condition;
 	information = DIA_Bartok_ImWald_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -505,7 +498,6 @@ instance DIA_Bartok_Angekommen(C_Info)
 	nr = 1;
 	condition = DIA_Bartok_Angekommen_Condition;
 	information = DIA_Bartok_Angekommen_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
