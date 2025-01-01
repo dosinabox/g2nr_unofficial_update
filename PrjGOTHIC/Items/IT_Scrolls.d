@@ -448,7 +448,7 @@ instance ItSc_Charm(C_Item)
 {
 	name = NAME_Spruchrolle;
 	mainflag = ITEM_KAT_RUNE;
-	flags = ITEM_MULTI | ITEM_MISSION;
+	flags = ITEM_MULTI;
 	value = Value_Sc_Charm;
 	visual = "ItSc_Charm.3DS";
 	material = MAT_LEATHER;
@@ -1193,7 +1193,7 @@ instance ItSc_Teleport_Maya(C_Item)
 {
 	name = NAME_Spruchrolle;
 	mainflag = ITEM_KAT_RUNE;
-	flags = ITEM_MULTI | ITEM_MISSION;
+	flags = ITEM_MULTI;
 	value = 50;
 	visual = "ItSc_Teleport_Maya.3DS";
 	material = MAT_LEATHER;

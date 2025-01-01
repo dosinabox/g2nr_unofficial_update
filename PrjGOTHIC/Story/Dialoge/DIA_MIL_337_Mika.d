@@ -357,15 +357,35 @@ func void DIA_Mika_HILFE_Akil()
 func void DIA_Mika_HILFE_monster()
 {
 	AI_Output(other,self,"DIA_Mika_HILFE_monster_15_00");	//На меня напали монстры.
-	AI_Output(self,other,"DIA_Mika_HILFE_monster_12_01");	//Но я не вижу никаких монстров. Я думаю, тебе померещилось.
-	AI_StopProcessInfos(self);
+	Npc_PerceiveAll(self);
+	if(!Wld_DetectNpc(self,-1,ZS_MM_Attack,-1))
+	{
+		AI_Output(self,other,"DIA_Mika_HILFE_monster_12_01");	//Но я не вижу никаких монстров. Я думаю, тебе померещилось.
+		AI_StopProcessInfos(self);
+	}
+	else
+	{
+		AI_WaitTillEnd(self,hero);
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_MonsterCloseToGate,0);
+	};
 };
 
 func void DIA_Mika_HILFE_schongut()
 {
 	AI_Output(other,self,"DIA_Mika_HILFE_schongut_15_00");	//Меня преследуют бандиты.
-	AI_Output(self,other,"DIA_Mika_HILFE_schongut_12_01");	//Да ну? И где же они? Если бы за тобой гнались, я бы видел хотя бы одного из них, правильно?
-	AI_StopProcessInfos(self);
+	Npc_PerceiveAll(self);
+	if(!Wld_DetectNpc(self,-1,ZS_Attack,GIL_BDT))
+	{
+		AI_Output(self,other,"DIA_Mika_HILFE_schongut_12_01");	//Да ну? И где же они? Если бы за тобой гнались, я бы видел хотя бы одного из них, правильно?
+		AI_StopProcessInfos(self);
+	}
+	else
+	{
+		AI_WaitTillEnd(self,hero);
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_GuardCalledToKill,0);
+	};
 };
 
 

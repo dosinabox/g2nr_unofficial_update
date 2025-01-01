@@ -292,7 +292,7 @@ instance PC_PrayShrine_Paladine(C_Info)
 
 func int PC_PrayShrine_Paladine_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (MIS_MardukBeten == LOG_Running))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (MIS_MardukBeten == LOG_RUNNING))
 	{
 		if(Kapitel == 1)
 		{

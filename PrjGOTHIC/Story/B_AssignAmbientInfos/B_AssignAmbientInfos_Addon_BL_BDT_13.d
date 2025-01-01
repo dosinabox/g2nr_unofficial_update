@@ -122,7 +122,7 @@ instance DIA_Addon_BL_BDT_13_Gold(C_Info)
 
 func int DIA_Addon_BL_BDT_13_Gold_Condition()
 {
-	if((MIS_Send_Buddler != LOG_Running) && (MIS_Send_Buddler != LOG_SUCCESS))
+	if((MIS_Send_Buddler != LOG_RUNNING) && (MIS_Send_Buddler != LOG_SUCCESS))
 	{
 		return TRUE;
 	};

@@ -6,7 +6,7 @@ func void B_Myxir_WillYouTeachMe()
 	AI_Output(other,self,"DIA_Addon_Myxir_WillYouTeachMe_15_00");	//Ты можешь научить меня языку зодчих?
 	AI_Output(self,other,"DIA_Addon_Myxir_WillYouTeachMe_12_01");	//Конечно, почему нет? Я с радостью поделюсь с тобой своими знаниями.
 	Log_CreateTopic(TOPIC_Addon_Stoneplates,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Stoneplates,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Stoneplates,LOG_RUNNING);
 	B_LogEntries(TOPIC_Addon_Stoneplates,LogText_Addon_MyxirTeach);
 	if(CurrentLevel == NEWWORLD_ZEN)
 	{
