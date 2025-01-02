@@ -53,7 +53,6 @@ instance DIA_Addon_Finn_Hi(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Finn_Hi_Condition;
 	information = DIA_Addon_Finn_Hi_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -79,7 +78,6 @@ instance DIA_Addon_Finn_Hacke(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Finn_Hacke_Condition;
 	information = DIA_Addon_Finn_Hacke_Info;
-	permanent = FALSE;
 	description = "√де € могу вз€ть кирку?";
 };
 
@@ -104,7 +102,6 @@ instance DIA_Addon_Finn_Esteban(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Finn_Esteban_Condition;
 	information = DIA_Addon_Finn_Esteban_Info;
-	permanent = FALSE;
 	description = "—кажи мне, что ты думаешь об Ёстебане?";
 };
 
@@ -131,7 +128,6 @@ instance DIA_Addon_Finn_Profi(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Finn_Profi_Condition;
 	information = DIA_Addon_Finn_Profi_Info;
-	permanent = FALSE;
 	description = "ј ты знаешь это дело?";
 };
 
@@ -157,14 +153,13 @@ instance DIA_Addon_BDT_10004_Finn_Mine(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Finn_Mine_Condition;
 	information = DIA_Addon_Finn_Mine_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_MINE_DESCRIPTION;
 };
 
 
 func int DIA_Addon_Finn_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
+	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
 	{
 		return TRUE;
 	};
@@ -194,7 +189,6 @@ instance DIA_Addon_Finn_Gold(C_Info)
 	nr = 6;
 	condition = DIA_Addon_Finn_Gold_Condition;
 	information = DIA_Addon_Finn_Gold_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_GOLD_DESCRIPTION;
 };
 
@@ -218,6 +212,9 @@ func void DIA_Addon_Finn_Gold_Info()
 };
 
 
+var int Finn_Einmal;
+var int Finn_Gratulation;
+
 instance DIA_Addon_Finn_ein(C_Info)
 {
 	npc = BDT_10004_Addon_Finn;
@@ -236,10 +233,6 @@ func int DIA_Addon_Finn_ein_Condition()
 		return TRUE;
 	};
 };
-
-
-var int Finn_Einmal;
-var int Finn_Gratulation;
 
 func void DIA_Addon_Finn_ein_Info()
 {
@@ -298,14 +291,13 @@ instance DIA_Addon_Finn_Attentat(C_Info)
 	nr = 8;
 	condition = DIA_Addon_Finn_Attentat_Condition;
 	information = DIA_Addon_Finn_Attentat_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_ATTENTAT_DESCRIPTION2;
 };
 
 
 func int DIA_Addon_Finn_Attentat_Condition()
 {
-	if(MIS_Judas == LOG_Running)
+	if(MIS_Judas == LOG_RUNNING)
 	{
 		return TRUE;
 	};

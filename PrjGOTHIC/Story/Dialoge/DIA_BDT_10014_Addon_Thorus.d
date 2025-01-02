@@ -27,7 +27,6 @@ instance DIA_Addon_BDT_10014_Thorus_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Thorus_Hi_Condition;
 	information = DIA_Addon_Thorus_Hi_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -61,7 +60,6 @@ instance DIA_Addon_BDT_10014_Thorus_Raven(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Thorus_Raven_Condition;
 	information = DIA_Addon_Thorus_Raven_Info;
-	permanent = FALSE;
 	description = "Это очень важно, мне нужно попасть к Ворону...";
 };
 
@@ -81,7 +79,7 @@ func void DIA_Addon_Thorus_Raven_Info()
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raven_12_02");	//Его охранники твердо выполняют приказ не пускать НИКОГО. Ты умрешь даже раньше, чем сможешь его увидеть.
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raven_12_03");	//Так что лучше выкинь эту идею из своей головы.
 	Log_CreateTopic(TOPIC_Addon_RavenKDW,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_RavenKDW,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_RavenKDW,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_RavenKDW,"Ворон - предводитель бандитов. Чтобы добраться до него, мне придется убить тех, кто встанет у меня на пути.");
 };
 
@@ -92,7 +90,6 @@ instance DIA_Addon_BDT_10014_Thorus_Zeit(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Thorus_Zeit_Condition;
 	information = DIA_Addon_Thorus_Zeit_Info;
-	permanent = FALSE;
 	description = "Ты не помнишь меня? Я из Старого Лагеря...";
 };
 
@@ -158,15 +155,6 @@ func void DIA_Addon_Thorus_GoodOldPerm_Info()
 	};
 };
 
-func int C_PlayerHasWrongToken()
-{
-	if(C_ScHasMagicStonePlate() || Npc_HasItems(hero,ItWr_StonePlateCommon_Addon) || Npc_HasItems(hero,ItMi_Addon_Stone_02) || Npc_HasItems(hero,ItMi_Addon_Stone_03) || Npc_HasItems(hero,ItMi_Addon_Stone_04) || Npc_HasItems(hero,ItMi_Addon_Stone_05))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
 
 instance DIA_Addon_BDT_10014_Thorus_Stein(C_Info)
 {
@@ -181,9 +169,12 @@ instance DIA_Addon_BDT_10014_Thorus_Stein(C_Info)
 
 func int DIA_Addon_Thorus_Stein_Condition()
 {
-	if(C_PlayerHasWrongToken() && (RavenIsDead == FALSE) && (MIS_Send_Buddler != LOG_Running) && (MIS_Send_Buddler != LOG_SUCCESS))
+	if((RavenIsDead == FALSE) && (MIS_Send_Buddler != LOG_SUCCESS) && !Npc_HasItems(other,ItMi_Addon_Stone_01) && !Npc_KnowsInfo(other,DIA_Addon_BDT_10014_Thorus_Rein))
 	{
-		return TRUE;
+		if(C_ScHasMagicStonePlate() || C_ScHasColoredStonePlate() || Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -200,14 +191,13 @@ instance DIA_Addon_BDT_10014_Thorus_Rein(C_Info)
 	nr = 9;
 	condition = DIA_Addon_Thorus_Rein_Condition;
 	information = DIA_Addon_Thorus_Rein_Info;
-	permanent = FALSE;
 	description = "Вот, у меня есть красная каменная табличка...";
 };
 
 
 func int DIA_Addon_Thorus_Rein_Condition()
 {
-	if((MIS_Send_Buddler != LOG_SUCCESS) && Npc_HasItems(other,ItMi_Addon_Stone_01) && (RavenIsDead == FALSE))
+	if((RavenIsDead == FALSE) && (MIS_Send_Buddler != LOG_SUCCESS) && Npc_HasItems(other,ItMi_Addon_Stone_01))
 	{
 		return TRUE;
 	};
@@ -222,9 +212,9 @@ func void DIA_Addon_Thorus_Rein_Info()
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Rein_12_04");	//Три работника уже погибли. Твоя задача - найти им замену.
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Rein_15_05");	//И когда я, наконец, смогу попасть в эту чертову шахту?
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Rein_12_06");	//Делай свою работу - а после можешь заниматься, чем хочешь.
-	MIS_Send_Buddler = LOG_Running;
+	MIS_Send_Buddler = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Addon_Buddler,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Buddler,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Buddler,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_Buddler,"Я занял место Эстебана, и теперь мне нужно послать в шахту трех шахтеров.");
 };
 
@@ -235,7 +225,6 @@ instance DIA_Addon_BDT_10014_Thorus_Sent(C_Info)
 	nr = 9;
 	condition = DIA_Addon_Thorus_Sent_Condition;
 	information = DIA_Addon_Thorus_Sent_Info;
-	permanent = FALSE;
 	description = "Я послал трех новых ребят.";
 };
 
@@ -263,7 +252,6 @@ instance DIA_Addon_BDT_10014_Thorus_Armor(C_Info)
 	nr = 99;
 	condition = DIA_Addon_Thorus_Armor_Condition;
 	information = DIA_Addon_Thorus_Armor_Info;
-	permanent = FALSE;
 	description = "Эй, а что на тебе за доспехи? Где я могу достать такие же?";
 };
 
@@ -293,7 +281,6 @@ instance DIA_Addon_Thorus_Gefangene(C_Info)
 	nr = 88;
 	condition = DIA_Addon_Thorus_Gefangene_Condition;
 	information = DIA_Addon_Thorus_Gefangene_Info;
-	permanent = FALSE;
 	description = "Как там заключенные?";
 };
 
@@ -328,14 +315,13 @@ instance DIA_Addon_Thorus_Attack(C_Info)
 	nr = 90;
 	condition = DIA_Addon_Thorus_Attack_Condition;
 	information = DIA_Addon_Thorus_Attack_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Addon_Thorus_Attack_Condition()
 {
-	if((Npc_IsDead(Torwache2)) && (RavenIsDead == FALSE))
+	if(Npc_IsDead(Torwache2) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -360,7 +346,6 @@ instance DIA_Addon_Thorus_Speech(C_Info)
 	nr = 91;
 	condition = DIA_Addon_Thorus_Speech_Condition;
 	information = DIA_Addon_Thorus_Speech_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -418,7 +403,6 @@ instance DIA_Addon_Thorus_Answer(C_Info)
 	nr = 93;
 	condition = DIA_Addon_Thorus_Answer_Condition;
 	information = DIA_Addon_Thorus_Answer_Info;
-	permanent = FALSE;
 	description = "Ах, да. И позаботься о том, чтобы заключенные покинули лагерь спокойно.";
 };
 
@@ -453,7 +437,6 @@ instance DIA_Addon_Thorus_Raventot(C_Info)
 	nr = 92;
 	condition = DIA_Addon_Thorus_Raventot_Condition;
 	information = DIA_Addon_Thorus_Raventot_Info;
-	permanent = FALSE;
 	description = "Я сделал это. Ворон готов.";
 };
 
@@ -475,6 +458,10 @@ func void DIA_Addon_Thorus_Raventot_Info()
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raventot_12_04");	//(смеется) Да, ты постоянно куда-то движешься, так ведь? (серьезно) Счастливого тебе пути.
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Raventot_15_05");	//Кто знает, может, наши пути еще пересекутся.
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raventot_12_06");	//Кто знает. У тебя на пути будет много ворот и много переходов. И на одном из них ты можешь встретить меня...
+	if(!Npc_IsDead(Torwache2))
+	{
+		Torwache2.aivar[AIV_PASSGATE] = TRUE;
+	};
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
 };

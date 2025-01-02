@@ -27,7 +27,6 @@ instance DIA_Addon_BDT_10015_Emilio_Hi(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Emilio_Hi_Condition;
 	information = DIA_Addon_Emilio_Hi_Info;
-	permanent = FALSE;
 	description = "Ты выглядишь, как рудокоп.";
 };
 
@@ -57,7 +56,6 @@ instance DIA_Addon_BDT_10015_Emilio_Gold(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Emilio_Gold_Condition;
 	information = DIA_Addon_Emilio_Gold_Info;
-	permanent = FALSE;
 	description = "Куда девается золото, которое вы добываете?";
 };
 
@@ -85,7 +83,6 @@ instance DIA_Addon_BDT_10015_Emilio_Stein(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Emilio_Stein_Condition;
 	information = DIA_Addon_Emilio_Stein_Info;
-	permanent = FALSE;
 	description = "Что это за система с красными камнями?";
 };
 
@@ -127,7 +124,7 @@ func int DIA_Addon_Emilio_Attentat_Condition()
 	{
 		return FALSE;
 	};
-	if(MIS_Judas == LOG_Running)
+	if(MIS_Judas == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -156,7 +153,6 @@ instance DIA_Addon_BDT_10015_Emilio_Senyan(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Emilio_Senyan_Condition;
 	information = DIA_Addon_Emilio_Senyan_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -183,7 +179,7 @@ func void DIA_Addon_Emilio_Senyan_Info()
 	AI_Output(other,self,"DIA_Addon_BDT_10015_Emilio_Senyan_15_03");	//А что? Какие-то проблемы?
 	AI_Output(self,other,"DIA_Addon_BDT_10015_Emilio_Senyan_10_04");	//(быстро) Нет, приятель, у меня к тебе по этому поводу никаких претензий.
 	AI_Output(self,other,"DIA_Addon_BDT_10015_Emilio_Senyan_10_05");	//Даже наоборот. (фальшиво) Этот ублюдок работал на Эстебана.
-	if(MIS_Judas == LOG_Running)
+	if(MIS_Judas == LOG_RUNNING)
 	{
 		B_LogEntry(TOPIC_Addon_Esteban,"Эмилио не на стороне Эстебана.");
 	};
@@ -196,7 +192,6 @@ instance DIA_Addon_Emilio_Jetzt(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Emilio_Jetzt_Condition;
 	information = DIA_Addon_Emilio_Jetzt_Info;
-	permanent = FALSE;
 	description = "Почему ты сейчас не в шахте?";
 };
 
@@ -223,7 +218,6 @@ instance DIA_Addon_Emilio_VonEmilio(C_Info)
 	nr = 6;
 	condition = DIA_Addon_Emilio_VonEmilio_Condition;
 	information = DIA_Addon_Emilio_VonEmilio_Info;
-	permanent = FALSE;
 	description = "Леннар рассказывал мне о тебе...";
 };
 
@@ -249,8 +243,11 @@ func void DIA_Addon_Emilio_VonEmilio_Info()
 		AI_Output(self,other,"DIA_Addon_Emilio_VonEmilio_10_06");	//Пока что Эстебан ничем не помог нам. Почему я должен верить его людям?
 		AI_Output(self,other,"DIA_Addon_Emilio_VonEmilio_10_07");	//Оставь меня в покое!
 	};
+	if(MIS_Judas == LOG_RUNNING)
+	{
+		B_LogEntry(TOPIC_Addon_Esteban,"Эмилио думает, что Леннар - идиот.");
+	};
 	AI_StopProcessInfos(self);
-	B_LogEntry(TOPIC_Addon_Esteban,"Эмилио думает, что Леннар - идиот.");
 };
 
 
@@ -260,7 +257,6 @@ instance DIA_Addon_Emilio_HilfMir(C_Info)
 	nr = 7;
 	condition = DIA_Addon_Emilio_HilfMir_Condition;
 	information = DIA_Addon_Emilio_HilfMir_Info;
-	permanent = FALSE;
 	description = "Помоги мне выяснить, кто организовал нападение!";
 };
 
@@ -284,8 +280,11 @@ func void DIA_Addon_Emilio_HilfMir_Info()
 	AI_Output(self,other,"DIA_Addon_Emilio_HilfMir_10_03");	//(неловко) Я... черт! Я скажу тебе одно имя. И больше ничего.
 	AI_Output(other,self,"DIA_Addon_Emilio_HilfMir_15_04");	//Слушаю.
 	AI_Output(self,other,"DIA_Addon_Emilio_HilfMir_10_05");	//Хуно... поговори с Хуно. Он должен что-то знать об этом деле.
+	if(MIS_Judas == LOG_RUNNING)
+	{
+		B_LogEntry(TOPIC_Addon_Esteban,"Эмилио наконец назвал имя: Хуно.");
+	};
 	Emilio_TellAll = TRUE;
-	B_LogEntry(TOPIC_Addon_Esteban,"Эмилио наконец назвал имя: Хуно.");
 };
 
 
@@ -295,7 +294,6 @@ instance DIA_Addon_Emilio_GegenEsteban(C_Info)
 	nr = 8;
 	condition = DIA_Addon_Emilio_GegenEsteban_Condition;
 	information = DIA_Addon_Emilio_GegenEsteban_Info;
-	permanent = FALSE;
 	description = "Что ты имеешь против Эстебана?";
 };
 
@@ -325,14 +323,13 @@ instance DIA_Addon_BDT_10015_Emilio_Mine(C_Info)
 	nr = 9;
 	condition = DIA_Addon_Emilio_Mine_Condition;
 	information = DIA_Addon_Emilio_Mine_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_MINE_DESCRIPTION;
 };
 
 
 func int DIA_Addon_Emilio_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
+	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
 	{
 		return TRUE;
 	};

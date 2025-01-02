@@ -35,7 +35,7 @@ instance DIA_Addon_Martin_MeetingIsRunning(C_Info)
 
 func int DIA_Addon_Martin_MeetingIsRunning_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (RangerMeetingRunning == LOG_Running))
+	if(Npc_IsInState(self,ZS_Talk) && (RangerMeetingRunning == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -152,7 +152,7 @@ instance DIA_Addon_Martin_Farim(C_Info)
 
 func int DIA_Addon_Martin_Farim_Condition()
 {
-	if((MIS_Addon_Farim_PaladinFisch == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Martin_PreTrade))
+	if((MIS_Addon_Farim_PaladinFisch == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_Martin_PreTrade))
 	{
 		return TRUE;
 	};
@@ -216,7 +216,7 @@ instance DIA_Addon_Martin_Rangerhelp(C_Info)
 
 func int DIA_Addon_Martin_Rangerhelp_Condition()
 {
-	if((RangerHelp_gildeMIL == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Martin_WasMachstDu) && (hero.guild == GIL_NONE))
+	if((RangerHelp_gildeMIL == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Martin_WasMachstDu) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -254,7 +254,7 @@ instance DIA_Addon_Martin_Auftrag(C_Info)
 
 func int DIA_Addon_Martin_Auftrag_Condition()
 {
-	if((RangerHelp_gildeMIL == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Martin_Rangerhelp) && (hero.guild == GIL_NONE))
+	if((RangerHelp_gildeMIL == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Martin_Rangerhelp) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -283,7 +283,7 @@ func void DIA_Addon_Martin_Auftrag_Info()
 func void DIA_Addon_Martin_Auftrag_weiter()
 {
 	B_EquipTrader(self);
-	MIS_Addon_Martin_GetRangar = LOG_Running;
+	MIS_Addon_Martin_GetRangar = LOG_RUNNING;
 	MIS_Addon_Martin_GetRangar_Day = Wld_GetDay();
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
@@ -373,7 +373,7 @@ func void DIA_Addon_Martin_AboutBandits_Info()
 	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_01");	//ћы знаем, что они устраивают засады на дорогах, соедин€ющих город с фермами.
 	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_02");	//≈ще нам известно, что несколько дней назад они получили крупную партию оружи€.
 	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_03");	//ƒумаю, что сейчас самое врем€ дл€ поиска улик, указывающих на личность сотрудничающего с ними торговца.
-	MIS_Martin_FindTheBanditTrader = LOG_Running;
+	MIS_Martin_FindTheBanditTrader = LOG_RUNNING;
 	B_LogEntry(TOPIC_Addon_Bandittrader,"Ѕандиты устраивают засады на дорогах между городом и фермами. ¬озможно, там € найду улики, указывающие на поставщика оружи€.");
 };
 
@@ -408,7 +408,7 @@ instance DIA_Addon_Martin_Fernando(C_Info)
 
 func int DIA_Addon_Martin_Fernando_Condition()
 {
-	if(MIS_Martin_FindTheBanditTrader == LOG_Running)
+	if(MIS_Martin_FindTheBanditTrader == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -537,7 +537,7 @@ func int DIA_Addon_Martin_Perm_Condition()
 func void DIA_Addon_Martin_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Martin_Perm_15_00");	//¬се €щики на месте?
-	if(C_DaysSinceEvent(MIS_Addon_Martin_GetRangar_Day,2) && (MIS_Addon_Martin_GetRangar == LOG_Running) && !Npc_IsDead(Rangar) && (SC_GotRangar == FALSE))
+	if(C_DaysSinceEvent(MIS_Addon_Martin_GetRangar_Day,2) && (MIS_Addon_Martin_GetRangar == LOG_RUNNING) && !Npc_IsDead(Rangar) && (SC_GotRangar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Perm_07_01");	//(сердито) ѕрокл€тый лент€й, ты должен был охран€ть эти €щики! ≈ще несколько вещей пропало!
 		if(Wld_IsTime(24,0,3,0))
@@ -549,7 +549,7 @@ func void DIA_Addon_Martin_Perm_Info()
 			AI_Output(self,other,"DIA_Addon_Martin_Perm_07_03");	//» этой ночью, когда € уйду, будь повнимательнее!
 		};
 	}
-	else if((MIS_Addon_Martin_GetRangar != FALSE) || (hero.guild != GIL_NONE) || (SC_IsRanger == TRUE))
+	else if((MIS_Addon_Martin_GetRangar != FALSE) || (other.guild != GIL_NONE) || (SC_IsRanger == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Perm_07_04");	//ƒавай, давай, смейс€. ѕопробовал бы ты посто€ть целый день на пирсе, пыта€сь разобратьс€ во всем этом хаосе.
 		AI_Output(self,other,"DIA_Addon_Martin_Perm_07_05");	//ѕаладины привезли с собой столько вс€кого хлама, что это даже не смешно.
@@ -573,7 +573,7 @@ instance DIA_Addon_Martin_GotRangar(C_Info)
 
 func int DIA_Addon_Martin_GotRangar_Condition()
 {
-	if((MIS_Addon_Martin_GetRangar == LOG_Running) && (SC_GotRangar == TRUE))
+	if((MIS_Addon_Martin_GetRangar == LOG_RUNNING) && (SC_GotRangar == TRUE))
 	{
 		return TRUE;
 	};

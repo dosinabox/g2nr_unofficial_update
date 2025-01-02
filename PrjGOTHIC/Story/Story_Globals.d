@@ -1209,6 +1209,7 @@ var int LoganToldAboutEsteban;
 var int Rod_SchwertXPGiven;
 var int Neoras_DragonEggDrinkGiven;
 var int RamirezToldAboutWambo;
+var int Gorn_SldMGiven;
 var int Lee_SldMGiven;
 var int Lee_SldHGiven;
 var int SylvioIceGolemsKilledBefore4Chapter;
