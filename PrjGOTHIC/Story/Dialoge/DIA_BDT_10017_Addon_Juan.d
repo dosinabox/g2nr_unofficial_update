@@ -28,7 +28,6 @@ instance DIA_Addon_Juan_HI(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Juan_HI_Condition;
 	information = DIA_Addon_Juan_HI_Info;
-	permanent = FALSE;
 	description = "Как дела?";
 };
 
@@ -56,14 +55,13 @@ instance DIA_Addon_Juan_Losung(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Juan_Losung_Condition;
 	information = DIA_Addon_Juan_Losung_Info;
-	permanent = FALSE;
 	description = "Говорят, у тебя есть интересные вещи...";
 };
 
 
 func int DIA_Addon_Juan_Losung_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Juan_HI) && ((Tom_Tells == TRUE) || (MIS_Huno_Stahl == LOG_Running)))
+	if(Npc_KnowsInfo(other,DIA_Addon_Juan_HI) && ((Tom_Tells == TRUE) || (MIS_Huno_Stahl == LOG_RUNNING)))
 	{
 		return TRUE;
 	};
@@ -86,7 +84,6 @@ instance DIA_Addon_Juan_AufsMaul(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Juan_AufsMaul_Condition;
 	information = DIA_Addon_Juan_AufsMaul_Info;
-	permanent = FALSE;
 	description = "Я пришел не от Эстебана!";
 };
 

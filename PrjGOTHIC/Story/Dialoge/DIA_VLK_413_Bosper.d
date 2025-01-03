@@ -79,7 +79,6 @@ instance DIA_Bosper_HALLO(C_Info)
 	nr = 2;
 	condition = DIA_Bosper_HALLO_Condition;
 	information = DIA_Bosper_HALLO_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -108,7 +107,6 @@ instance DIA_Bosper_IntoOV(C_Info)
 	nr = 1;
 	condition = DIA_Bosper_IntoOV_Condition;
 	information = DIA_Bosper_IntoOV_Info;
-	permanent = FALSE;
 	description = "ћне нужно попасть в верхний квартал...";
 };
 
@@ -127,9 +125,12 @@ func void DIA_Bosper_IntoOV_Info()
 	AI_Output(self,other,"DIA_Bosper_IntoOV_11_01");	//√де живут паладины? «абудь об этом.
 	AI_Output(self,other,"DIA_Bosper_IntoOV_11_02");	//“ебе нужно быть уважаемым гражданином или, хот€ бы, иметь приличную работу.
 	AI_Output(self,other,"DIA_Bosper_IntoOV_11_03");	//ј чужаку вроде теб€ ни за что туда не попасть.
-	if(Torwache_305.aivar[AIV_TalkedToPlayer] == TRUE)
+	if(!Npc_IsDead(Torwache_305))
 	{
-		AI_Output(other,self,"DIA_Bosper_IntoOV_15_04");	//я это заметил...
+		if(Torwache_305.aivar[AIV_TalkedToPlayer] == TRUE)
+		{
+			AI_Output(other,self,"DIA_Bosper_IntoOV_15_04");	//я это заметил...
+		};
 	};
 	Log_CreateTopic(TOPIC_OV,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_OV,LOG_RUNNING);
@@ -143,7 +144,6 @@ instance DIA_Bosper_SeekWork(C_Info)
 	nr = 2;
 	condition = DIA_Bosper_SeekWork_Condition;
 	information = DIA_Bosper_SeekWork_Info;
-	permanent = FALSE;
 	description = "я ищу работу!";
 };
 
@@ -364,7 +364,6 @@ instance DIA_Bosper_OtherMasters(C_Info)
 	nr = 3;
 	condition = DIA_Bosper_OtherMasters_Condition;
 	information = DIA_Bosper_OtherMasters_Info;
-	permanent = FALSE;
 	description = "ј что, если € захочу поступить в ученики к другому мастеру?";
 };
 
@@ -395,7 +394,6 @@ instance DIA_Bosper_Bartok(C_Info)
 	nr = 4;
 	condition = DIA_Bosper_Bartok_Condition;
 	information = DIA_Bosper_Bartok_Info;
-	permanent = FALSE;
 	description = "ј почему твой ученик бросил работу?";
 };
 
@@ -482,7 +480,6 @@ instance DIA_Bosper_Job(C_Info)
 	nr = 2;
 	condition = DIA_Bosper_Job_Condition;
 	information = DIA_Bosper_Job_Info;
-	permanent = FALSE;
 	description = "„то ты хочешь, чтобы € сделал дл€ теб€?";
 };
 
@@ -651,7 +648,6 @@ instance DIA_Bosper_BogenRunning(C_Info)
 	nr = 5;
 	condition = DIA_Bosper_BogenRunning_Condition;
 	information = DIA_Bosper_BogenRunning_Info;
-	permanent = FALSE;
 	description = "я слышал, что у теб€ что-то украли.";
 };
 
@@ -690,7 +686,6 @@ instance DIA_Bosper_BogenSuccess(C_Info)
 	nr = 6;
 	condition = DIA_Bosper_BogenSuccess_Condition;
 	information = DIA_Bosper_BogenSuccess_Info;
-	permanent = FALSE;
 	description = "я думаю, это твой лук...";
 };
 
@@ -821,7 +816,6 @@ instance DIA_Bosper_Aufgaben(C_Info)
 	nr = 1;
 	condition = DIA_Bosper_Aufgaben_Condition;
 	information = DIA_Bosper_Aufgaben_Info;
-	permanent = FALSE;
 	description = "„то должен делать ученик?";
 };
 
@@ -963,7 +957,7 @@ func void DIA_Bosper_Minenanteil_Info()
 	if(Npc_HasItems(self,ItWr_MinenAnteil_MIS) && (Player_IsApprentice == APP_Bosper))
 	{
 		AI_Output(self,other,"DIA_Bosper_Minenanteil_11_01");	//’м-м, € ничего не знаю об этом. “ы можешь забрать их, если хочешь.
-		B_GiveInvItems(self,other,ItWr_MinenAnteil_MIS,Npc_HasItems(self,ItWr_MinenAnteil_MIS));
+		B_GiveAllInvItems(self,other,ItWr_MinenAnteil_MIS);
 	}
 	else
 	{

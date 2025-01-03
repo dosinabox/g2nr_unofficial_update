@@ -333,7 +333,7 @@ func void DIA_Gorax_Orlan_240()
 	}
 	else
 	{
-		B_GiveInvItems(other,self,ItMi_Gold,Npc_HasItems(other,ItMi_Gold));
+		B_GiveAllInvItems(other,self,ItMi_Gold);
 		AI_Output(self,other,"DIA_Gorax_Orlan_240_14_02");	//Но ты уже потратил часть этих денег, да? Ты ничтожество - пшел прочь!
 		MIS_GoraxWein = LOG_FAILED;
 		Gorax_Mad_Day = Wld_GetDay();

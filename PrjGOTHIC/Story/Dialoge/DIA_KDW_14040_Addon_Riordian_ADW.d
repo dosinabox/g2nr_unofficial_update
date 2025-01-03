@@ -17,7 +17,7 @@ func int DIA_Addon_Riordian_ADW_EXIT_Condition()
 
 func void DIA_Addon_Riordian_ADW_EXIT_Info()
 {
-	if(MIS_Addon_Saturas_BringRiordian2Me == LOG_Running)
+	if(MIS_Addon_Saturas_BringRiordian2Me == LOG_RUNNING)
 	{
 		MIS_Addon_Saturas_BringRiordian2Me = LOG_FAILED;
 		B_CheckLog();
@@ -82,7 +82,7 @@ func void DIA_Addon_Riordian_WhatToFind_Info()
 			if(Sklaven_Flucht == FALSE)
 			{
 				Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+				Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 			};
 			B_LogEntry(TOPIC_Addon_MissingPeople,"Рыбак из Хориниса Вильям мертв. Я нашел его тело в Яркендаре.");
 		};
@@ -93,7 +93,7 @@ func void DIA_Addon_Riordian_WhatToFind_Info()
 		if(Sklaven_Flucht == FALSE)
 		{
 			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 		};
 		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamLeiche);
 	};
@@ -226,7 +226,7 @@ func void DIA_Addon_Riordian_HousesOfRulers_Info()
 	AI_Output(other,self,"DIA_Addon_Riordian_HousesOfRulers_15_00");	//Меня послал Сатурас. Я должен исследовать пять дворцов Яркендара.
 	AI_Output(self,other,"DIA_Addon_Riordian_HousesOfRulers_10_01");	//На то, чтобы найти сведения об их местонахождении в записях зодчих, мне понадобилось приличное количество времени.
 	AI_Output(self,other,"DIA_Addon_Riordian_HousesOfRulers_10_02");	//Но зато теперь я могу дать тебе точную информацию.
-	MIS_Riordian_HousesOfRulers = LOG_Running;
+	MIS_Riordian_HousesOfRulers = LOG_RUNNING;
 };
 
 
@@ -263,7 +263,7 @@ instance DIA_Addon_Riordian_WhereAreHouses(C_Info)
 
 func int DIA_Addon_Riordian_WhereAreHouses_Condition()
 {
-	if(MIS_Riordian_HousesOfRulers == LOG_Running)
+	if(MIS_Riordian_HousesOfRulers == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -319,7 +319,7 @@ func void DIA_Addon_Riordian_FoundHouse_Info()
 		FOUNDHOUSEINFO[Scientists] = TRUE;
 		RiordianHouseNeuigkeit += 1;
 		Log_CreateTopic(TOPIC_Addon_CanyonOrcs,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_CanyonOrcs,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_CanyonOrcs,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_CanyonOrcs,"Риордиан будет доволен, если я очищу каньон от орков.");
 	};
 	if((Npc_IsDead(Stoneguardian_Heiler) || Npc_HasItems(other,ItMi_Addon_Stone_04) || (Saturas_SCFound_ItMi_Addon_Stone_04 == TRUE)) && (FOUNDHOUSEINFO[Healers] == FALSE))

@@ -12,20 +12,7 @@ func void B_KillNpc(var int npcInstance)
 			{
 				B_ClearRuneInv(npc);
 				B_ClearFakeItems(npc);
-				if(npc.guild == GIL_PAL)
-				{
-					if(RandomGoblinBerries == FALSE)
-					{
-						B_RemoveEveryInvItem(npc,ItPl_Dex_Herb_01);
-					};
-				}
-				else if(npc.guild == GIL_PIR)
-				{
-					if(RandomPepper == FALSE)
-					{
-						B_RemoveEveryInvItem(npc,ItFo_Addon_Pfeffer_01);
-					};
-				};
+				B_ClearRandomItems(npc);
 			};
 			CreateInvItem(npc,ItMi_OldCoin);
 			Npc_ChangeAttribute(npc,ATR_HITPOINTS,-npc.attribute[ATR_HITPOINTS_MAX]);

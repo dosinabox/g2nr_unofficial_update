@@ -1,7 +1,7 @@
 
 func void B_MageCaveTrigger()
 {
-	if(MIS_Schnitzeljagd == LOG_Running)
+	if(MIS_Schnitzeljagd == LOG_RUNNING)
 	{
 		if(Agon_Wait == FALSE)
 		{

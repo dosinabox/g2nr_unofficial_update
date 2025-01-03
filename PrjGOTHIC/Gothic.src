@@ -64,6 +64,7 @@ Story\B_Story\B_GivePlayerXP.d
 Story\B_Content\B_ScUsesRake.d
 Story\B_GiveTradeInv\B_ClearRuneInv.d
 Story\B_Story\B_ClearFakeItems.d
+Story\B_Story\B_ClearRandomItems.d
 Story\B_Story\B_KillNpc.d
 Story\B_Story\C_CanRemoveKey.d
 Story\B_Story\C_WorldIsFixed.d

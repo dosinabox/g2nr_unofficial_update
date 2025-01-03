@@ -27,7 +27,6 @@ instance DIA_Alrik_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_Hallo_Condition;
 	information = DIA_Alrik_Hallo_Info;
-	permanent = FALSE;
 	description = "Что ты делаешь здесь?";
 };
 
@@ -62,7 +61,6 @@ instance DIA_Alrik_YouFight(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_YouFight_Condition;
 	information = DIA_Alrik_YouFight_Info;
-	permanent = FALSE;
 	description = "Ты устраиваешь бои?";
 };
 
@@ -93,7 +91,6 @@ instance DIA_Alrik_Regeln(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_Regeln_Condition;
 	information = DIA_Alrik_Regeln_Info;
-	permanent = FALSE;
 	description = "Каковы правила боев?";
 };
 
@@ -143,7 +140,6 @@ instance DIA_Alrik_NewFights3(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_NewFights3_Condition;
 	information = DIA_Alrik_NewFights3_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -176,7 +172,6 @@ instance DIA_Alrik_NewFights5(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_NewFights5_Condition;
 	information = DIA_Alrik_NewFights5_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -242,7 +237,7 @@ func void DIA_Alrik_WannaFight_Info()
 			AI_Output(self,other,"DIA_Alrik_WannaFight_09_03");	//Мне несколько дней назад пришлось продать свой меч.
 			AI_Output(self,other,"DIA_Alrik_WannaFight_09_04");	//С ним я непобедим! Если ты вернешь его мне, я готов опять сражаться с тобой!
 			Log_CreateTopic(TOPIC_AlrikSchwert,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_AlrikSchwert,LOG_Running);
+			Log_SetTopicStatus(TOPIC_AlrikSchwert,LOG_RUNNING);
 			if(Npc_KnowsInfo(other,DIA_Alrik_WerSchwert))
 			{
 				B_LogEntry(TOPIC_AlrikSchwert,"Альрик продал свой меч торговцу Джоре. Он будет сражаться со мной, только если я верну ему его меч.");
@@ -403,7 +398,7 @@ func void DIA_Alrik_AfterFight_Info()
 			{
 				AI_Output(self,other,"DIA_Alrik_AfterFight_09_04");	//Ты пошарил в моих карманах, пока я был без сознания!
 				AI_Output(self,other,"DIA_Alrik_AfterFight_09_05");	//Это дурной тон! Но ладно, эти деньги все равно были твоими! Вот остальное.
-				B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
+				B_GiveAllInvItems(self,other,ItMi_Gold);
 			};
 			Alrik_ArenaKampfVerloren += 1;
 			Alrik_ArenaKampfVerloren_Day = Wld_GetDay();
@@ -459,7 +454,6 @@ instance DIA_Alrik_DuWohnst(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_DuWohnst_Condition;
 	information = DIA_Alrik_DuWohnst_Info;
-	permanent = FALSE;
 	description = "Ты 'живешь' за этим складом?";
 };
 
@@ -489,7 +483,6 @@ instance DIA_Alrik_WerSchwert(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_WerSchwert_Condition;
 	information = DIA_Alrik_WerSchwert_Info;
-	permanent = FALSE;
 	description = "Кому ты продал свой меч?";
 };
 
@@ -513,7 +506,7 @@ func void DIA_Alrik_WerSchwert_Info()
 	{
 		B_LogEntry(TOPIC_AlrikSchwert,"Альрик продал свой меч торговцу Джоре.");
 	};
-	MIS_Alrik_Sword = LOG_Running;
+	MIS_Alrik_Sword = LOG_RUNNING;
 };
 
 
@@ -573,7 +566,6 @@ instance DIA_Alrik_Krieg(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_Krieg_Condition;
 	information = DIA_Alrik_Krieg_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о войне с орками?";
 };
 

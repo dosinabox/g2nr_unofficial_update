@@ -27,7 +27,6 @@ instance DIA_Moe_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Moe_Hallo_Condition;
 	information = DIA_Moe_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -139,7 +138,7 @@ func void DIA_Moe_Hallo_Zahlen()
 		Info_AddChoice(DIA_Moe_Hallo,"Забудь об этом, ты не получишь ни цента!",DIA_Moe_Hallo_Vergisses);
 		Info_AddChoice(DIA_Moe_Hallo,"Хорошо, это все, что у меня есть.",DIA_Moe_Hallo_Alles);
 	}
-	else if(Npc_HasItems(hero,ItMi_Gold) > 9)
+	else if(Npc_HasItems(other,ItMi_Gold) > 9)
 	{
 		AI_Output(other,self,"DIA_Moe_Hallo_Zahlen_15_02");	//... но у меня нет с собой столько золота.
 		AI_Output(self,other,"DIA_Moe_Hallo_Zahlen_01_03");	//Это не важно. Просто отдай мне все, что у тебя есть.
@@ -167,9 +166,9 @@ func void DIA_Moe_Hallo_Vergisses()
 func void DIA_Moe_Hallo_Alles()
 {
 	AI_Output(other,self,"DIA_Moe_Hallo_Alles_15_00");	//Хорошо, это все, что у меня есть.
-	if(Npc_HasItems(hero,ItMi_Gold) > 0)
+	if(Npc_HasItems(other,ItMi_Gold))
 	{
-		B_GiveInvItems(other,self,ItMi_Gold,Npc_HasItems(other,ItMi_Gold));
+		B_GiveAllInvItems(other,self,ItMi_Gold);
 		AI_Output(self,other,"DIA_Moe_Hallo_Alles_01_01");	//Отлично, этого достаточно. Я сегодня великодушен. (ухмыляется)
 	}
 	else
@@ -235,11 +234,11 @@ func void DIA_Moe_Harbor_Rumors()
 	}
 	else if(Kapitel == 2)
 	{
-		if(hero.guild == GIL_MIL)
+		if(other.guild == GIL_MIL)
 		{
 			AI_Output(self,other,"DIA_Moe_Harbor_Rumors_01_02");	//Ничего, да и что может случиться? Все тихо.
 		}
-		else if((hero.guild == GIL_KDF) || (hero.guild == GIL_PAL))
+		else if((other.guild == GIL_KDF) || (other.guild == GIL_PAL))
 		{
 			AI_Output(self,other,"DIA_Moe_Harbor_Rumors_01_03");	//(наиграно) Все плохо. Времена настали тяжелые, но мы все еще пытаемся не сбиться с праведного пути.
 			AI_Output(other,self,"DIA_Moe_Harbor_Rumors_15_04");	//Хватит издеваться надо мной.
@@ -260,7 +259,7 @@ func void DIA_Moe_Harbor_Rumors()
 		}
 		else
 		{
-			if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+			if((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 			{
 				AI_Output(self,other,"DIA_Moe_Harbor_Rumors_01_08");	//К этому делу мы не имеем никакого отношения.
 				AI_Output(other,self,"DIA_Moe_Harbor_Rumors_15_09");	//К какому делу?
@@ -290,7 +289,6 @@ instance DIA_Moe_LEHMARGELDEINTREIBEN(C_Info)
 	nr = 2;
 	condition = DIA_Moe_LEHMARGELDEINTREIBEN_Condition;
 	information = DIA_Moe_LEHMARGELDEINTREIBEN_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
