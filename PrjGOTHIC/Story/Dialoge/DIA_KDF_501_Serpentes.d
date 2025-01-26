@@ -420,7 +420,6 @@ func void DIA_Serpentes_MinenAnteile_was_ja()
 	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_ja_10_02");	//Я думаю, они захотят продать их, но наверняка откажутся иметь с тобой дело, если поймут, что ты действуешь по поручению Церкви, понимаешь?
 	AI_Output(other,self,"DIA_Serpentes_MinenAnteile_was_ja_15_03");	//Да.
 	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_ja_10_04");	//Тогда за работу. Я желаю тебе успеха, брат.
-	Info_ClearChoices(DIA_Serpentes_MinenAnteile);
 	MIS_Serpentes_MinenAnteil_KDF = LOG_RUNNING;
 	if(!Npc_IsDead(Salandril))
 	{
@@ -470,6 +469,7 @@ func void DIA_Serpentes_MinenAnteile_was_ja()
 	Log_CreateTopic(TOPIC_MinenAnteileKDF,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_MinenAnteileKDF,LOG_RUNNING);
 	B_LogEntry(TOPIC_MinenAnteileKDF,"Кто-то продает фальшивые акции шахты и обогащается таким незаконным способом. Я должен найти того, кто продает эти акции торговцам. Серпентес хочет заполучить все эти поддельные документы.");
+	Info_ClearChoices(DIA_Serpentes_MinenAnteile);
 };
 
 func void DIA_Serpentes_MinenAnteile_KillSLD()

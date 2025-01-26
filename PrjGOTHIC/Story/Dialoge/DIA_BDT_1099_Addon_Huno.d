@@ -71,7 +71,6 @@ instance DIA_Addon_Huno_Hi(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Huno_Hi_Condition;
 	information = DIA_Addon_Huno_Hi_Info;
-	permanent = FALSE;
 	description = "Я гляжу, ты в своем деле собаку съел.";
 };
 
@@ -118,7 +117,6 @@ instance DIA_Addon_Huno_Blitz(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Huno_Blitz_Condition;
 	information = DIA_Addon_Huno_Blitz_Info;
-	permanent = FALSE;
 	description = "Скажи, как ты спасся?";
 };
 
@@ -215,14 +213,13 @@ instance DIA_Addon_Huno_Attentat(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Huno_Attentat_Condition;
 	information = DIA_Addon_Huno_Attentat_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_ATTENTAT_DESCRIPTION2;
 };
 
 
 func int DIA_Addon_Huno_Attentat_Condition()
 {
-	if(MIS_Judas == LOG_Running)
+	if(MIS_Judas == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -347,10 +344,10 @@ func void DIA_Addon_Huno_SomeThings_Contra()
 	AI_Output(other,self,"DIA_Addon_Huno_SomeThings_Contra_15_07");	//А как звать этого пьяного бандита?
 	AI_Output(self,other,"DIA_Addon_Huno_SomeThings_Contra_06_08");	//Его имя тебя не касается. Но вот кто тебе в самом деле нужен, так это Хуан. Я не видел его в лагере довольно долго.
 	AI_Output(self,other,"DIA_Addon_Huno_SomeThings_Contra_06_09");	//Глянь на болоте. Он скорее всего там.
-	MIS_Huno_Stahl = LOG_Running;
+	MIS_Huno_Stahl = LOG_RUNNING;
 	Huno_Angepisst = FALSE;
 	Log_CreateTopic(TOPIC_Addon_Huno,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Huno,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Huno,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_Huno,"Хуно ждет посылку со сталью, которую ему должны были доставить от пиратов. Он думает, что ее украл для Эстебана человек по имени Хуан. Он прячется на болотах.");
 	Info_ClearChoices(DIA_Addon_Huno_SomeThings);
 	Info_AddChoice(DIA_Addon_Huno_SomeThings,"Скажи мне сначала, кто стоял за атакой!",DIA_Addon_Huno_SomeThings_TellMeNow);
@@ -386,14 +383,13 @@ instance DIA_Addon_Huno_Paket(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Huno_Paket_Condition;
 	information = DIA_Addon_Huno_Paket_Info;
-	permanent = FALSE;
 	description = "Вот твоя сталь.";
 };
 
 
 func int DIA_Addon_Huno_Paket_Condition()
 {
-	if((MIS_Huno_Stahl == LOG_Running) && Npc_HasItems(other,ItMi_Addon_Steel_Paket))
+	if((MIS_Huno_Stahl == LOG_RUNNING) && Npc_HasItems(other,ItMi_Addon_Steel_Paket))
 	{
 		return TRUE;
 	};
@@ -458,7 +454,6 @@ instance DIA_Huno_RepairNecklace(C_Info)
 	nr = 600;
 	condition = DIA_Huno_RepairNecklace_Condition;
 	information = DIA_Huno_RepairNecklace_Info;
-	permanent = FALSE;
 	description = "Ты можешь чинить драгоценности?";
 };
 

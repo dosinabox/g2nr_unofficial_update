@@ -501,7 +501,14 @@ func void DIA_Alrik_WerSchwert_Info()
 	AI_Output(self,other,"DIA_Alrik_WerSchwert_09_01");	//Я обменял его у торговца с рыночной площади на кое-какие вещи.
 	AI_Output(self,other,"DIA_Alrik_WerSchwert_09_02");	//Его зовут Джора. Факелы и мясо, что он дал мне, давно закончились.
 	AI_Output(other,self,"DIA_Alrik_WerSchwert_15_03");	//Он вряд ли отдаст мне этот меч просто так...
-	AI_Output(self,other,"DIA_Alrik_WerSchwert_09_04");	//Это старый меч. Он вряд ли много за него запросит. Просто думай об этих деньгах, как о дополнительной ставке. (ухмыляется)
+	if(Npc_KnowsInfo(other,DIA_Alrik_Regeln))
+	{
+		AI_Output(self,other,"DIA_Alrik_WerSchwert_09_04");	//Это старый меч, он вряд ли много за него запросит. Просто думай об этих деньгах, как о дополнительной ставке. (ухмыляется)
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Alrik_WerSchwert_09_04_add");	//Это старый меч, он вряд ли много за него запросит.
+	};
 	if(Alrik_Sword_Once == TRUE)
 	{
 		B_LogEntry(TOPIC_AlrikSchwert,"Альрик продал свой меч торговцу Джоре.");

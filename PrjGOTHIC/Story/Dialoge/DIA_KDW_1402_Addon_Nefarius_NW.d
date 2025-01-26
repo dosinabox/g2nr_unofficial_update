@@ -300,6 +300,7 @@ func int DIA_Addon_Nefarius_Ringritual_Condition()
 func void DIA_Addon_Nefarius_Ringritual_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Nefarius_Ringritual_05_00");	//А теперь отойди назад.
+	Wld_InsertItem(ItMi_AmbossEffekt_Addon,"FP_ITEM_TROLLAREA_PORTALRITUAL_01");
 	Npc_SetRefuseTalk(self,60);
 	RitualRingRuns = LOG_RUNNING;
 	AI_StopProcessInfos(self);

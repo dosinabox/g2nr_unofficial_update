@@ -139,6 +139,10 @@ func void ZS_Dead()
 			else if(self.guild == GIL_SUMMONED_SKELETON)
 			{
 				B_RemoveEveryInvItem(self,ItMw_2H_Sword_M_01);
+			}
+			else if(C_NpcIsMonsterMage(self))
+			{
+				B_ClearRuneInv(self);
 			};
 			B_GiveDeathInv(self);
 		};

@@ -882,7 +882,7 @@ func void INIT_SUB_OldWorld_Part_Oldcamp()
 
 func void STARTUP_OldWorld_Part_Demontower()
 {
-	Wld_InsertNpc(Gobbo_SkeletonOWDemonTower,"DT_E1_06");
+	Wld_InsertNpc(Gobbo_Skeleton,"DT_E1_06");
 	Wld_InsertNpc(Gobbo_Skeleton,"DT_E2_07");
 	Wld_InsertNpc(Gobbo_Skeleton,"DT_E2_09");
 	Wld_InsertNpc(Gobbo_Skeleton,"DT_E2_04");
@@ -2793,7 +2793,6 @@ func void STARTUP_NewWorld_Part_TrollArea_01()
 	Wld_InsertNpc(KDW_1403_Addon_Myxir_NW,"MAYA");
 	Wld_InsertNpc(KDW_1404_Addon_Riordian_NW,"MAYA");
 	Wld_InsertNpc(KDW_1405_Addon_Merdarion_NW,"MAYA");
-	Wld_InsertItem(ItMi_AmbossEffekt_Addon,"FP_ITEM_TROLLAREA_PORTALRITUAL_01");
 	Wld_InsertNpc(Gobbo_Skeleton,"NW_TROLLAREA_PORTALTEMPEL_15_A");
 	Wld_InsertNpc(Gobbo_Skeleton,"NW_TROLLAREA_PORTALTEMPEL_15_B");
 	Wld_InsertNpc(Gobbo_Skeleton,"NW_TROLLAREA_PORTALTEMPEL_15_B");

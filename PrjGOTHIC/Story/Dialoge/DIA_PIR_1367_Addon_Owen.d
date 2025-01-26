@@ -124,7 +124,7 @@ instance DIA_Addon_Owen_Henry(C_Info)
 
 func int DIA_Addon_Owen_Henry_Condition()
 {
-	if((MIS_Henry_HolOwen == LOG_Running) && (Owen_ComesToHenry == FALSE))
+	if((MIS_Henry_HolOwen == LOG_RUNNING) && (Owen_ComesToHenry == FALSE))
 	{
 		return TRUE;
 	};
@@ -180,11 +180,11 @@ func void DIA_Addon_Owen_MalcomStunt_Info()
 		AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_07");	//Я слышал, как внизу Мальком дерется с луркером. А потом все стихло.
 		AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_08");	//Не знаю, жив ли еще Мальком.
 		Log_CreateTopic(TOPIC_Addon_MalcomsStunt,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MalcomsStunt,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_MalcomsStunt,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_MalcomsStunt,"Оуэн хочет узнать, что случилось с его другом Малькомом, который упал в глубокую яму после того, как схватился с луркером.");
 		Log_AddEntry(TOPIC_Addon_MalcomsStunt,"Оуэн сказал мне, что на дне ямы вода, и сначала упавший туда Мальком был жив. Но через некоторое время шум в яме стих.");
 	};
-	MIS_Owen_FindMalcom = LOG_Running;
+	MIS_Owen_FindMalcom = LOG_RUNNING;
 };
 
 
@@ -200,9 +200,9 @@ instance DIA_Addon_Owen_runter(C_Info)
 
 func int DIA_Addon_Owen_runter_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Owen_MalcomStunt) && (MIS_Owen_FindMalcom == LOG_Running) && (Malcom_Accident_Deadly == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Owen_MalcomStunt) && (MIS_Owen_FindMalcom == LOG_RUNNING) && (Malcom_Accident_Deadly == TRUE))
 	{
-		if(Npc_HasItems(Malcom,ItMi_OldCoin) && !Npc_IsDead(Lurker_SecretCave1) && !Npc_IsDead(Lurker_SecretCave2))
+		if(Npc_HasItems(Malcom,ItMi_OldCoin) && !C_SecretCaveLurkersDead())
 		{
 			return TRUE;
 		};
@@ -228,9 +228,9 @@ instance DIA_Addon_Owen_MalcomDead(C_Info)
 
 func int DIA_Addon_Owen_MalcomDead_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Owen_MalcomStunt) && (MIS_Owen_FindMalcom == LOG_Running) && (Malcom_Accident_Deadly == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Owen_MalcomStunt) && (MIS_Owen_FindMalcom == LOG_RUNNING) && (Malcom_Accident_Deadly == TRUE))
 	{
-		if(!Npc_HasItems(Malcom,ItMi_OldCoin) || Npc_IsDead(Lurker_SecretCave1) || Npc_IsDead(Lurker_SecretCave2))
+		if(!Npc_HasItems(Malcom,ItMi_OldCoin) || C_SecretCaveLurkersDead())
 		{
 			return TRUE;
 		};

@@ -494,7 +494,7 @@ prototype EffectItemPrototype_Addon(C_Item)
 {
 	name = "Камень";
 	mainflag = ITEM_KAT_LIGHT;
-	flags = ITEM_MULTI;
+	flags = ITEM_MULTI | ITEM_NFOCUS;
 	value = 15;
 	visual = "ItMi_Coal.3ds";
 	material = MAT_STONE;
@@ -508,9 +508,9 @@ instance ItMi_AmbossEffekt_Addon(EffectItemPrototype_Addon)
 {
 };
 
-instance ItMi_OrnamentEffekt_FARM_Addon(EffectItemPrototype_Addon)
+/*instance ItMi_OrnamentEffekt_FARM_Addon(EffectItemPrototype_Addon)
 {
-};
+};*/
 
 instance ItMi_OrnamentEffekt_FOREST_Addon(EffectItemPrototype_Addon)
 {

@@ -200,9 +200,9 @@ func int DIA_Addon_Saturas_MissingPeople_Condition()
 
 func void DIA_Addon_Saturas_MissingPeople_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_missingPeople_15_00");	//Есть какие-нибудь следы пропавших людей?
-	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_01");	//Только вчера мы нашли тело рыбака. Оно лежало под развалинами к востоку отсюда.
-	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, это был рыбак из Хориниса. Взгляни там.
+	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_MissingPeople_15_00");	//Есть какие-нибудь следы пропавших людей?
+	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_MissingPeople_14_01");	//Только вчера мы нашли тело рыбака. Оно лежало под развалинами к востоку отсюда.
+	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_MissingPeople_14_02");	//Похоже, это был рыбак из Хориниса. Взгляни там.
 	if(!Npc_HasItems(William,ItWr_Addon_William_01))
 	{
 		DIA_Common_IFoundHim();
@@ -931,35 +931,35 @@ func void DIA_Addon_Saturas_RelictsBack_Info()
 		if(Npc_HasItems(self,ItMi_Addon_Stone_01) && (Saturas_SCFound_ItMi_Addon_Stone_01 == TRUE))
 		{
 			Npc_RemoveInvItems(self,ItMi_Addon_Stone_01,1);
-			CreateInvItems(hero,ItMi_Addon_Stone_01,1);
+			CreateInvItems(other,ItMi_Addon_Stone_01,1);
 			AI_PrintScreen("Красная каменная табличка получено",-1,info_ypos,FONT_ScreenSmall,3);
 			info_ypos += 3;
 		};
 		if(Npc_HasItems(self,ItMi_Addon_Stone_02) && (Saturas_SCFound_ItMi_Addon_Stone_02 == TRUE))
 		{
 			Npc_RemoveInvItems(self,ItMi_Addon_Stone_02,1);
-			CreateInvItems(hero,ItMi_Addon_Stone_02,1);
+			CreateInvItems(other,ItMi_Addon_Stone_02,1);
 			AI_PrintScreen("Фиолетовая каменная табличка получено",-1,info_ypos,FONT_ScreenSmall,3);
 			info_ypos += 3;
 		};
 		if(Npc_HasItems(self,ItMi_Addon_Stone_03) && (Saturas_SCFound_ItMi_Addon_Stone_03 == TRUE))
 		{
 			Npc_RemoveInvItems(self,ItMi_Addon_Stone_03,1);
-			CreateInvItems(hero,ItMi_Addon_Stone_03,1);
+			CreateInvItems(other,ItMi_Addon_Stone_03,1);
 			AI_PrintScreen("Синяя каменная табличка получено",-1,info_ypos,FONT_ScreenSmall,3);
 			info_ypos += 3;
 		};
 		if(Npc_HasItems(self,ItMi_Addon_Stone_04) && (Saturas_SCFound_ItMi_Addon_Stone_04 == TRUE))
 		{
 			Npc_RemoveInvItems(self,ItMi_Addon_Stone_04,1);
-			CreateInvItems(hero,ItMi_Addon_Stone_04,1);
+			CreateInvItems(other,ItMi_Addon_Stone_04,1);
 			AI_PrintScreen("Зеленая каменная табличка получено",-1,info_ypos,FONT_ScreenSmall,3);
 			info_ypos += 3;
 		};
 		if(Npc_HasItems(self,ItMi_Addon_Stone_05) && (Saturas_SCFound_ItMi_Addon_Stone_05 == TRUE))
 		{
 			Npc_RemoveInvItems(self,ItMi_Addon_Stone_05,1);
-			CreateInvItems(hero,ItMi_Addon_Stone_05,1);
+			CreateInvItems(other,ItMi_Addon_Stone_05,1);
 			AI_PrintScreen("Желтая каменная табличка получено",-1,info_ypos,FONT_ScreenSmall,3);
 		};
 	};
@@ -1058,7 +1058,7 @@ func int DIA_Addon_Saturas_BeliarsWeapon_Condition()
 func void DIA_Addon_Saturas_BeliarsWeapon_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_BeliarsWeapon_15_00");	//Я забрал Коготь Белиара.
-	if(Npc_HasItems(hero,ItMw_BeliarWeapon_Raven) && (SC_FailedToEquipBeliarsWeapon == TRUE))
+	if(Npc_HasItems(other,ItMw_BeliarWeapon_Raven) && (SC_FailedToEquipBeliarsWeapon == TRUE))
 	{
 		AI_Output(other,self,"DIA_Addon_Saturas_BeliarsWeapon_15_01");	//Но я не могу его использовать!
 	};
@@ -1210,7 +1210,7 @@ instance DIA_Addon_Saturas_ADW_PreTeachCircle(C_Info)
 
 func int DIA_Addon_Saturas_ADW_PreTeachCircle_Condition()
 {
-	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6))
+	if((other.guild == GIL_KDF) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) < 6))
 	{
 		return TRUE;
 	};
@@ -1219,7 +1219,7 @@ func int DIA_Addon_Saturas_ADW_PreTeachCircle_Condition()
 func void DIA_Addon_Saturas_ADW_PreTeachCircle_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_ADW_PreTeachCircle_15_00");	//Ты можешь обучить меня кругам магии?
-	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 5)
+	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 5)
 	{
 		B_Saturas_ADW_CantTeach5Circle();
 	}
@@ -1259,7 +1259,7 @@ func int DIA_Addon_Saturas_ADW_CIRCLE_Condition()
 	var int kosten;
 	circle = Npc_GetTalentSkill(other,NPC_TALENT_MAGE) + 1;
 	kosten = B_GetLearnCostTalent(other,NPC_TALENT_MAGE,circle);
-	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
 	{
 		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Следующий Круг магии",kosten);
 		return TRUE;
@@ -1269,7 +1269,7 @@ func int DIA_Addon_Saturas_ADW_CIRCLE_Condition()
 func void DIA_Addon_Saturas_ADW_CIRCLE_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_ADW_CIRCLE_15_00");	//Я хочу перейти на следующий уровень магии.
-	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 1) && (Kapitel >= 2))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 1) && (Kapitel >= 2))
 	{
 		if(B_TeachMagicCircle(self,other,2))
 		{
@@ -1277,7 +1277,7 @@ func void DIA_Addon_Saturas_ADW_CIRCLE_Info()
 			AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_02");	//Вступи же во второй круг магии! Да поможет тебе Аданос мудро распоряжаться дарованными тебе знаниями.
 		};
 	}
-	else if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 2) && (Kapitel >= 3))
+	else if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 2) && (Kapitel >= 3))
 	{
 		if(B_TeachMagicCircle(self,other,3))
 		{
@@ -1285,7 +1285,7 @@ func void DIA_Addon_Saturas_ADW_CIRCLE_Info()
 			AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_04");	//Теперь ты сможешь применять более мощные заклинания. Используя их, будь рассудителен.
 		};
 	}
-	else if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 3) && (MIS_ReadyforChapter4 == TRUE))
+	else if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 3) && (MIS_ReadyforChapter4 == TRUE))
 	{
 		if(B_TeachMagicCircle(self,other,4))
 		{
@@ -1293,7 +1293,7 @@ func void DIA_Addon_Saturas_ADW_CIRCLE_Info()
 			AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_06");	//Да будут могущественными твои слова и деяния! Но не используй свои силы безрассудно.
 		};
 	}
-	else if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 4) && (Kapitel >= 5))
+	else if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 4) && (Kapitel >= 5))
 	{
 		if(B_TeachMagicCircle(self,other,5))
 		{
@@ -1302,7 +1302,7 @@ func void DIA_Addon_Saturas_ADW_CIRCLE_Info()
 			AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_09");	//Держи себя под контролем! Не дай мании величия овладеть тобой.
 		};
 	}
-	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 5)
+	else if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 5)
 	{
 		B_Saturas_ADW_CantTeach5Circle();
 		DIA_Addon_Saturas_ADW_CIRCLE_NoPerm = TRUE;

@@ -29,7 +29,7 @@ prototype Mst_Default_Skeleton_Mage(C_Npc)
 
 func void B_SetVisuals_Skeleton_Mage()
 {
-	Mdl_SetVisual(self,"HumanS.mds");
+	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_ApplyOverlayMds(self,"humans_skeleton_fly.mds");
 	Mdl_SetVisualBody(self,"Ske_Fly_Body",1,DEFAULT,"",1,DEFAULT,-1);
 };

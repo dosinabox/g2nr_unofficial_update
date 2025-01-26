@@ -384,6 +384,19 @@ func int C_XardasDemonsDead()
 	return TRUE;
 };
 
+func int C_SecretCaveLurkersDead()
+{
+	if(!Npc_IsDead(Lurker_SecretCave1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Lurker_SecretCave2))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 func int C_SylvioGolemsDead()
 {
 	if(!Npc_IsDead(IceGolem_Sylvio1))

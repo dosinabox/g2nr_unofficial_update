@@ -1251,6 +1251,10 @@ func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 				AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_16");	//Ёлитные воины орков - его специализаци€. ≈му часто приходилось иметь с ними дело.
 				Log_AddEntry(TOPIC_OrcElite,"»нгмар очень много знает об элитных воинах орков.");
 			};
+		}
+		else
+		{
+			B_GiveInvItems(self,other,ItRi_OrcEliteRing,1);
 		};
 		Hagen_SawOrcRing = TRUE;
 		B_GivePlayerXP(XP_PAL_OrcRing);
