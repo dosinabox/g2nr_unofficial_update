@@ -395,6 +395,8 @@ func int C_SCHasAnyFernandoEvidence()
 	return FALSE;
 };
 
+var int Martin_IrrlichtHint;
+
 instance DIA_Addon_Martin_Fernando(C_Info)
 {
 	npc = MIL_350_Addon_Martin;
@@ -414,9 +416,6 @@ func int DIA_Addon_Martin_Fernando_Condition()
 	};
 };
 
-
-var int Martin_IrrlichtHint;
-
 func void DIA_Addon_Martin_Fernando_Info()
 {
 	var int FernandoHintsCount;
@@ -427,15 +426,12 @@ func void DIA_Addon_Martin_Fernando_Info()
 		AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_01");	//Что тебе удалось узнать?
 		if(C_SCHasAnyFernandoEvidence())
 		{
-			if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
+			if(Npc_HasItems(other,ItMw_Addon_BanditTrader) && (FernandoHints_ItMw == FALSE))
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_02");	//Такие шпаги я нашел у бандитов. На эфесе выгравирована буква 'Ф'.
-				if(FernandoHints_ItMw == FALSE)
-				{
-					Npc_RemoveInvItems(other,ItMw_Addon_BanditTrader,1);
-					FernandoHintsCount += 1;
-					FernandoHints_ItMw = TRUE;
-				};
+				Npc_RemoveInvItems(other,ItMw_Addon_BanditTrader,1);
+				FernandoHintsCount += 1;
+				FernandoHints_ItMw = TRUE;
 			};
 			if(Npc_HasItems(other,ItRi_Addon_BanditTrader))
 			{

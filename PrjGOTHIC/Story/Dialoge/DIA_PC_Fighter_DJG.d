@@ -108,17 +108,17 @@ func void DIA_GornDJG_WHATSUP_Info()
 {
 	AI_Output(other,self,"DIA_GornDJG_WHATSUP_15_00");	//Что-нибудь выяснил?
 	AI_Output(self,other,"DIA_GornDJG_WHATSUP_12_01");	//Я все еще выжидаю. Мне кажется, там, наверху, в этих руинах на скале, может что-то быть. Ночью там виден свет и доносятся крики.
+	B_LogEntry(TOPIC_Dragonhunter,"Горн находится у подножья плоскогорья, ведущего к старой крепости в скалах. Отсюда он может наблюдать за плоскогорьем и барьером орков.");
 	Info_ClearChoices(DIA_GornDJG_WHATSUP);
 	Info_AddChoice(DIA_GornDJG_WHATSUP,"Может, это Лестер, который вернулся в свои старые руины на скале?",DIA_GornDJG_WHATSUP_Lester);
 	Info_AddChoice(DIA_GornDJG_WHATSUP,"Дракон?",DIA_GornDJG_WHATSUP_A_Dragon);
-	B_LogEntry(TOPIC_Dragonhunter,"Горн находится у подножья плоскогорья, ведущего к старой крепости в скалах. Отсюда он может наблюдать за плоскогорьем и барьером орков.");
 };
 
 func void DIA_GornDJG_WHATSUP_Lester()
 {
 	AI_Output(other,self,"DIA_GornDJG_WHATSUP_Lester_15_00");	//Может, это Лестер, который вернулся в свои старые руины на скале?
 	AI_Output(self,other,"DIA_GornDJG_WHATSUP_Lester_12_01");	//Может. Но, насколько я знаю, Лестер больше не живет там.
-	if(!Npc_KnowsInfo(other,DIA_Lester_Hello) && !Npc_KnowsInfo(other,DIA_Lester_BACKINTOWN))
+	if(PlayerTalkedToLesterNW == FALSE)
 	{
 		AI_Output(other,self,"Extro_Tempel_15_04");	//Хм, где же он?
 		AI_Output(self,other,"INTRO_DiegoGorn_12_00");	//(вздыхает) Конечно же, он еще жив. А ты как думал?
@@ -199,9 +199,12 @@ instance DIA_GornDJG_HELPKILLDRACONIANS(C_Info)
 
 func int DIA_GornDJG_HELPKILLDRACONIANS_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_GornDJG_WHATMONSTERS) && Npc_KnowsInfo(other,DIA_GornDJG_WAHTABOUTORCS) && !Npc_IsDead(RockDragon))
+	if(Npc_KnowsInfo(other,DIA_GornDJG_WHATMONSTERS) && Npc_KnowsInfo(other,DIA_GornDJG_WAHTABOUTORCS))
 	{
-		return TRUE;
+		if(!Npc_IsDead(RockDragon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -286,9 +289,12 @@ instance DIA_GornDJG_DRAGONDEAD(C_Info)
 
 func int DIA_GornDJG_DRAGONDEAD_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_GornDJG_WHATSUP) && (Npc_GetDistToWP(self,"OW_DJG_ROCKCAMP_01") < 1000) && Npc_IsDead(RockDragon))
+	if(Npc_KnowsInfo(other,DIA_GornDJG_WHATSUP) && (Npc_GetDistToWP(self,"OW_DJG_ROCKCAMP_01") < 1000))
 	{
-		return TRUE;
+		if(Npc_IsDead(RockDragon))
+		{
+			return TRUE;
+		};
 	};
 };
 

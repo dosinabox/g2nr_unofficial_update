@@ -35,6 +35,10 @@ func void B_MM_AssessDamage()
 		{
 			return;
 		};
+		if((self.aivar[AIV_MM_REAL_ID] == ID_WARG) && (other.aivar[AIV_MM_REAL_ID] == ID_ORCSHAMAN))
+		{
+			return;
+		};
 		if(Hlp_GetInstanceID(other) != self.aivar[AIV_LASTTARGET])
 		{
 			if(self.aivar[AIV_HitByOtherNpc] == Hlp_GetInstanceID(other))

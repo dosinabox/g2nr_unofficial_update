@@ -1,5 +1,5 @@
 
-instance FH(Npc_Default)
+/*instance FH(Npc_Default)
 {
 	name[0] = "Помощник по лицам";
 	npcType = NPCTYPE_FRIEND;
@@ -17,13 +17,13 @@ instance FH(Npc_Default)
 	attribute[ATR_HITPOINTS] = 220;
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Gomez,BodyTex_N,NO_ARMOR);
 	fight_tactic = FAI_HUMAN_STRONG;
-	daily_routine = Rtn_start_1311;
+	daily_routine = Rtn_Start_1311;
 };
 
 
-func void Rtn_start_1311()
+func void Rtn_Start_1311()
 {
 	TA_Smalltalk(8,0,23,0,"XXX");
 	TA_Smalltalk(23,0,8,0,"XXX");
-};
+};*/
 

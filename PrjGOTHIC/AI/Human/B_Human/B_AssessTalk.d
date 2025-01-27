@@ -80,6 +80,10 @@ func void B_AssessTalk()
 			{
 				MIS_SearchForDiego = LOG_SUCCESS;
 			}
+			else if(C_IsNpc(self,PC_Psionic))
+			{
+				PlayerTalkedToLesterNW = TRUE;
+			}
 			else if(C_IsNpc(self,PIR_1300_Addon_Greg_NW))
 			{
 				PlayerTalkedToGregNW = TRUE;

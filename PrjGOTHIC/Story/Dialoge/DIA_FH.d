@@ -1,5 +1,5 @@
 
-var int FH_SkinTexture;
+/*var int FH_SkinTexture;
 
 var string FH_HeadMesh;
 
@@ -393,5 +393,5 @@ func void DIA_FH_Choose_HeadMesh_6()
 func void DIA_FH_Choose_HeadMesh_7()
 {
 	Info_ClearChoices(DIA_FH_Choose_HeadMesh);
-};
+};*/
 

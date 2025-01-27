@@ -24,7 +24,7 @@ func void DIA_MiltenOW_EXIT_Info()
 instance DIA_MiltenOW_Hello(C_Info)
 {
 	npc = PC_Mage_OW;
-	nr = TRUE;
+	nr = 1;
 	condition = DIA_MiltenOW_Hello_Condition;
 	information = DIA_MiltenOW_Hello_Info;
 	important = TRUE;

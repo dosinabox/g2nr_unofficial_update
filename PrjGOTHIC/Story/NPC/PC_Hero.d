@@ -82,7 +82,6 @@ instance PC_L20(Npc_Default)
 	B_AddFightSkill(self,NPC_TALENT_BOW,10);
 	B_AddFightSkill(self,NPC_TALENT_CROSSBOW,10);
 	CreateInvItems(self,ItMi_Gold,1000);
-	CreateInvItems(self,ItRw_Arrow,100);
 	CreateInvItems(self,ItRw_Bolt,100);
 	EquipItem(self,ItMw_Rubinklinge);
 	EquipItem(self,ItRw_Crossbow_M_02);
@@ -167,7 +166,7 @@ instance PC_L60(Npc_Default)
 	CreateInvItems(self,ItRu_PalDestroyEvil,1);
 };
 
-instance PC_E3Mage(Npc_Default)
+/*instance PC_E3Mage(Npc_Default)
 {
 	name[0] = NAME_Hero;
 	guild = GIL_KDF;
@@ -355,5 +354,5 @@ instance PC_Bandit(Npc_Default)
 	CreateInvItems(self,ItPl_Beet,10);
 	CreateInvItems(self,ItAt_SharkTeeth,10);
 	CreateInvItems(self,ItFo_Addon_Rum,20);
-};
+};*/
 

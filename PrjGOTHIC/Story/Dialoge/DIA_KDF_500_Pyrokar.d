@@ -27,7 +27,6 @@ instance DIA_Pyrokar_WELCOME(C_Info)
 	nr = 2;
 	condition = DIA_Pyrokar_WELCOME_Condition;
 	information = DIA_Pyrokar_WELCOME_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -53,7 +52,6 @@ instance DIA_Pyrokar_Hagen(C_Info)
 	nr = 10;
 	condition = DIA_Pyrokar_Hagen_Condition;
 	information = DIA_Pyrokar_Hagen_Info;
-	permanent = FALSE;
 	description = "Я должен поговорить с паладинами. Это срочно.";
 };
 
@@ -89,7 +87,6 @@ instance DIA_Pyrokar_Auge(C_Info)
 	nr = 10;
 	condition = DIA_Pyrokar_Auge_Condition;
 	information = DIA_Pyrokar_Auge_Info;
-	permanent = FALSE;
 	description = "Я ищу Глаз Инноса.";
 };
 
@@ -190,7 +187,6 @@ instance DIA_Pyrokar_FIRE(C_Info)
 	nr = 1;
 	condition = DIA_Pyrokar_FIRE_Condition;
 	information = DIA_Pyrokar_FIRE_Info;
-	permanent = FALSE;
 	description = "Я хочу пройти Испытание Огнем.";
 };
 
@@ -224,7 +220,6 @@ instance DIA_Pyrokar_TEST(C_Info)
 	nr = 10;
 	condition = DIA_Pyrokar_TEST_Condition;
 	information = DIA_Pyrokar_TEST_Info;
-	permanent = FALSE;
 	description = "Я готов пройти испытание, Мастер.";
 };
 
@@ -346,7 +341,7 @@ func void DIA_Pyrokar_RUNNING_Info()
 	{
 		AI_Output(self,other,"DIA_Pyrokar_RUNNING_11_01");	//Чего ты ждешь? Иди, проходи испытание!
 	}
-	else if(randomizer == 2)
+	else
 	{
 		AI_Output(self,other,"DIA_Pyrokar_RUNNING_11_02");	//Пришло время подтвердить твои громкие слова делами. Тебе так не кажется, послушник?
 	};
@@ -360,7 +355,6 @@ instance DIA_Pyrokar_SUCCESS(C_Info)
 	nr = 2;
 	condition = DIA_Pyrokar_SUCCESS_Condition;
 	information = DIA_Pyrokar_SUCCESS_Info;
-	permanent = FALSE;
 	description = "Я нашел рунный камень.";
 };
 
@@ -434,7 +428,6 @@ instance DIA_Pyrokar_MAGICAN(C_Info)
 	nr = 3;
 	condition = DIA_Pyrokar_MAGICAN_Condition;
 	information = DIA_Pyrokar_MAGICAN_Info;
-	permanent = FALSE;
 	description = "Теперь я буду принят в Гильдию Магов?";
 };
 
@@ -462,7 +455,6 @@ instance DIA_Pyrokar_OATH(C_Info)
 	nr = 1;
 	condition = DIA_Pyrokar_OATH_Condition;
 	information = DIA_Pyrokar_OATH_Info;
-	permanent = FALSE;
 	description = "Я готов вступить в Круг Огня.";
 };
 
@@ -599,7 +591,6 @@ instance DIA_Pyrokar_Lernen(C_Info)
 	nr = 2;
 	condition = DIA_Pyrokar_Lernen_Condition;
 	information = DIA_Pyrokar_Lernen_Info;
-	permanent = FALSE;
 	description = "Что я могу изучить теперь?";
 };
 
@@ -650,7 +641,6 @@ instance DIA_Pyrokar_Wunsch(C_Info)
 	nr = 2;
 	condition = DIA_Pyrokar_Wunsch_Condition;
 	information = DIA_Pyrokar_Wunsch_Info;
-	permanent = FALSE;
 	description = "Я хотел бы высказать пожелание...";
 };
 
@@ -803,7 +793,6 @@ instance DIA_Pyrokar_Nachricht(C_Info)
 	nr = 2;
 	condition = DIA_Pyrokar_Nachricht_Condition;
 	information = DIA_Pyrokar_Nachricht_Info;
-	permanent = FALSE;
 	description = "Я принес новости от лорда Хагена.";
 };
 
@@ -965,7 +954,6 @@ instance DIA_Pyrokar_Parlan(C_Info)
 	nr = 99;
 	condition = DIA_Pyrokar_Parlan_Condition;
 	information = DIA_Pyrokar_Parlan_Info;
-	permanent = FALSE;
 	description = "Меня прислал Парлан. Я хочу повысить мои магические способности.";
 };
 
@@ -2088,7 +2076,7 @@ instance DIA_Pyrokar_SCWILLJORGEN(C_Info)
 
 func int DIA_Pyrokar_SCWILLJORGEN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jorgen_Home) && Npc_KnowsInfo(other,DIA_Pyrokar_SCKNOWSWAYTOIRDORATH) && (Kapitel == 5))
+	if((DIA_Jorgen_BEMYCAPTAIN_OneTime == TRUE) && Npc_KnowsInfo(other,DIA_Pyrokar_SCKNOWSWAYTOIRDORATH) && (Kapitel == 5))
 	{
 		return TRUE;
 	};
@@ -2118,7 +2106,7 @@ instance DIA_Pyrokar_MACHDTFREI(C_Info)
 
 func int DIA_Pyrokar_MACHDTFREI_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Pyrokar_SCWILLJORGEN) && (Kapitel == 5))
+	if(Npc_KnowsInfo(other,DIA_Pyrokar_SCWILLJORGEN))
 	{
 		return TRUE;
 	};

@@ -27,7 +27,6 @@ instance DIA_Jorgen_Hallo(C_Info)
 	nr = 4;
 	condition = DIA_Jorgen_Hallo_Condition;
 	information = DIA_Jorgen_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -42,7 +41,7 @@ func int DIA_Jorgen_Hallo_Condition()
 
 func void DIA_Jorgen_Hallo_Info()
 {
-	if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
+	if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Jorgen_Hallo_07_00");	//Эй, ты!
 		AI_Output(self,other,"DIA_Jorgen_Hallo_07_01");	//Я вижу, ты из монастыря магов.
@@ -65,7 +64,6 @@ instance DIA_Jorgen_Novice(C_Info)
 	nr = 6;
 	condition = DIA_Jorgen_Novice_Condition;
 	information = DIA_Jorgen_Novice_Info;
-	permanent = FALSE;
 	description = "Мимо тебя не проходил послушник?";
 };
 
@@ -100,7 +98,6 @@ instance DIA_Jorgen_Milten(C_Info)
 	nr = 5;
 	condition = DIA_Jorgen_Milten_Condition;
 	information = DIA_Jorgen_Milten_Info;
-	permanent = FALSE;
 	description = "Если ты идешь в монастырь, тебе нужно поговорить с Милтеном.";
 };
 
@@ -207,7 +204,7 @@ func void DIA_Jorgen_NEUHIER_Info()
 		AI_Output(self,other,"DIA_Jorgen_NEUHIER_07_02");	//Но все же, спасибо за совет. Милтен действительно помог мне получить место здесь.
 		B_GivePlayerXP(XP_Ambient);
 	};
-	if(hero.guild != GIL_KDF)
+	if(other.guild != GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Jorgen_NEUHIER_07_03");	//Я чувствую себя идиотом среди этих всегда ворчащих благодетелей.
 	};
@@ -240,7 +237,7 @@ var int DIA_Jorgen_PERM4_OneTime;
 func void DIA_Jorgen_PERM4_Info()
 {
 	AI_Output(other,self,"DIA_Jorgen_PERM4_15_00");	//Я верю, что у тебя все будет в порядке.
-	if((DIA_Jorgen_PERM4_OneTime == FALSE) && (hero.guild != GIL_KDF))
+	if((DIA_Jorgen_PERM4_OneTime == FALSE) && (other.guild != GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Jorgen_PERM4_07_01");	//Только представь: я должен пропалывать их огород. Если так будет продолжаться и дальше, я сойду с ума.
 		DIA_Jorgen_PERM4_OneTime = TRUE;
@@ -267,9 +264,6 @@ func int DIA_Jorgen_BEMYCAPTAIN_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Jorgen_BEMYCAPTAIN_OneTime;
 
 func void DIA_Jorgen_BEMYCAPTAIN_Info()
 {

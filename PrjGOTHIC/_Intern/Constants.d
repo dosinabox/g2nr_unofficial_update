@@ -445,14 +445,14 @@ const int SPL_WaterFist = 72;
 const int SPL_IceLance = 73;
 const int SPL_Inflate = 74;
 const int SPL_Geyser = 75;
-const int SPL_Waterwall = 76;
+//const int SPL_Waterwall = 76;
 //const int SPL_Reserved_77 = 77;
 //const int SPL_Reserved_78 = 78;
 //const int SPL_Reserved_79 = 79;
-const int SPL_Plague = 80;
+//const int SPL_Plague = 80;
 const int SPL_Swarm = 81;
 const int SPL_GreenTentacle = 82;
-const int SPL_Earthquake = 83;
+//const int SPL_Earthquake = 83;
 const int SPL_SummonGuardian = 84;
 const int SPL_Energyball = 85;
 const int SPL_SuckEnergy = 86;
@@ -819,7 +819,7 @@ const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2025;
 const int FIX_DATE_MONTH = 1;
-const int FIX_DATE_DAY = 26;
+const int FIX_DATE_DAY = 27;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;

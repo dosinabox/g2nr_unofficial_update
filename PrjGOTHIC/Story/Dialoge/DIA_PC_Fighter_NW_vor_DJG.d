@@ -1,21 +1,21 @@
 
-instance DIA_GornNW_KAP3_EXIT(C_Info)
+instance DIA_GornNW_EXIT(C_Info)
 {
 	npc = PC_Fighter_NW_vor_DJG;
 	nr = 999;
-	condition = DIA_GornNW_KAP3_EXIT_Condition;
-	information = DIA_GornNW_KAP3_EXIT_Info;
+	condition = DIA_GornNW_EXIT_Condition;
+	information = DIA_GornNW_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_GornNW_KAP3_EXIT_Condition()
+func int DIA_GornNW_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_GornNW_KAP3_EXIT_Info()
+func void DIA_GornNW_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -27,7 +27,6 @@ instance DIA_GornNW_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_GornNW_Hallo_Condition;
 	information = DIA_GornNW_Hallo_Info;
-	permanent = FALSE;
 	description = "С тобой все в порядке?";
 };
 
@@ -67,7 +66,10 @@ instance DIA_GornNW_WhatNext(C_Info)
 
 func int DIA_GornNW_WhatNext_Condition()
 {
-	return TRUE;
+	if(Npc_KnowsInfo(other,DIA_GornNW_Hallo))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_GornNW_WhatNext_Info()
