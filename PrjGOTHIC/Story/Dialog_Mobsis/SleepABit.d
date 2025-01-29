@@ -44,6 +44,14 @@ func void PC_Sleep(var int t)
 	{
 		Parlan_DontTalkToNovice = LOG_RUNNING;
 	};
+	if(!Npc_IsDead(CH))
+	{
+		Wld_RemoveNpc(CH);
+	};
+	if(!Npc_IsDead(SH))
+	{
+		Wld_RemoveNpc(SH);
+	};
 	B_CheckLog();
 	B_CoolHotDraw(hero);
 	B_ClearFakeItems(hero);

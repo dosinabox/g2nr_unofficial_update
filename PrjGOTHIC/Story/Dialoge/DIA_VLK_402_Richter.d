@@ -27,7 +27,6 @@ instance DIA_Richter_Hello(C_Info)
 	nr = 4;
 	condition = DIA_Richter_Hello_Condition;
 	information = DIA_Richter_Hello_Info;
-	permanent = FALSE;
 	description = "Что ты делаешь здесь?";
 };
 
@@ -82,7 +81,7 @@ instance DIA_Richter_Perm(C_Info)
 
 func int DIA_Richter_Perm_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Richter_Hello) || (MIS_Lee_JudgeRichter == LOG_Running)) && (SCIstRichtersLakai == FALSE))
+	if((Npc_KnowsInfo(other,DIA_Richter_Hello) || (MIS_Lee_JudgeRichter == LOG_RUNNING)) && (SCIstRichtersLakai == FALSE))
 	{
 		return TRUE;
 	};
@@ -91,7 +90,7 @@ func int DIA_Richter_Perm_Condition()
 func void DIA_Richter_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Richter_Perm_15_00");	//Как дела?
-	if((MIS_Lee_JudgeRichter == LOG_Running) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+	if((MIS_Lee_JudgeRichter == LOG_RUNNING) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
 	{
 		AI_Output(self,other,"DIA_Richter_Perm_10_01");	//Тебе лучше убраться отсюда, грязный наемник, пока я не позвал стражу.
 		AI_Output(other,self,"DIA_Richter_Perm_15_02");	//Расслабься. Я здесь не для того, чтобы обокрасть тебя. Я ищу работу.
@@ -131,11 +130,11 @@ func void DIA_Richter_RichtersLakai_Info()
 	AI_Output(other,self,"DIA_Richter_RichtersLakai_15_00");	//Испытай меня.
 	AI_Output(self,other,"DIA_Richter_RichtersLakai_10_01");	//М-м-м. Хорошо. Слушай. Принеси мне священный молот магов Огня. Они хранят его где-то в подвалах монастыря.
 	AI_Output(self,other,"DIA_Richter_RichtersLakai_10_02");	//Если тебе удастся это, я подумаю насчет того, чтобы принять тебя в телохранители.
+	B_LogEntry(TOPIC_RichterLakai,"Судья не доверяет мне. Я должен доказать свою верность ему. Я должен украсть священный молот из подвала монастыря магов Огня и принести молот ему.");
+	MIS_Richter_BringHolyHammer = LOG_RUNNING;
 	Info_ClearChoices(DIA_Richter_RichtersLakai);
 	Info_AddChoice(DIA_Richter_RichtersLakai,"Я должен украсть у магов? Да у тебя крыша поехала.",DIA_Richter_RichtersLakai_nein);
 	Info_AddChoice(DIA_Richter_RichtersLakai,"Хорошо.",DIA_Richter_RichtersLakai_ja);
-	B_LogEntry(TOPIC_RichterLakai,"Судья не доверяет мне. Я должен доказать свою верность ему. Я должен украсть священный молот из подвала монастыря магов Огня и принести молот ему.");
-	MIS_Richter_BringHolyHammer = LOG_Running;
 };
 
 func void DIA_Richter_RichtersLakai_nein()
@@ -165,7 +164,7 @@ instance DIA_Richter_KillMorgahard(C_Info)
 
 func int DIA_Richter_KillMorgahard_Condition()
 {
-	if(Npc_HasItems(other,Holy_Hammer_MIS) && (MIS_Richter_BringHolyHammer == LOG_Running))
+	if(Npc_HasItems(other,Holy_Hammer_MIS) && (MIS_Richter_BringHolyHammer == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -197,10 +196,10 @@ func void DIA_Richter_KillMorgahard_Info()
 		Npc_ExchangeRoutine(Garwig,"EXILE");
 	};
 	B_InitNpcGlobals();
-	B_GivePlayerXP(XP_BringHolyHammer);
 	MIS_Richter_BringHolyHammer = LOG_SUCCESS;
+	B_GivePlayerXP(XP_BringHolyHammer);
 	B_LogEntry(TOPIC_RichterLakai,"Несколько заключенных сбежали от судьи. Я должен найти их и прикончить, а также прикончить их главаря - МОРГАХАРДА. Они, предположительно, скрываются в горах, где-то по направлению к новой башне Ксардаса.");
-	MIS_Richter_KillMorgahard = LOG_Running;
+	MIS_Richter_KillMorgahard = LOG_RUNNING;
 	AI_StopProcessInfos(self);
 };
 
@@ -217,9 +216,12 @@ instance DIA_Richter_KilledMorgahard(C_Info)
 
 func int DIA_Richter_KilledMorgahard_Condition()
 {
-	if(Npc_IsDead(Morgahard) && (MIS_Richter_KillMorgahard == LOG_Running))
+	if(MIS_Richter_KillMorgahard == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_IsDead(Morgahard))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -229,9 +231,9 @@ func void DIA_Richter_KilledMorgahard_Info()
 	AI_Output(self,other,"DIA_Richter_KilledMorgahard_10_01");	//Ах! Ты отличный парень. Вот твоя награда.
 	CreateInvItems(self,ItMi_Gold,400);
 	B_GiveInvItems(self,other,ItMi_Gold,400);
+	MIS_Richter_KillMorgahard = LOG_SUCCESS;
 	B_GivePlayerXP(XP_KillMorgahard);
 	B_LogEntry(TOPIC_RichterLakai,"Судью явно обрадовала новость о смерти Моргахарда. А, ладно, мне до этого нет дела. Моя основная цель - выполнение задания Ли.");
-	MIS_Richter_KillMorgahard = LOG_SUCCESS;
 };
 
 
@@ -273,7 +275,7 @@ instance DIA_Richter_PermissionForShip(C_Info)
 
 func int DIA_Richter_PermissionForShip_Condition()
 {
-	if(MIS_RichtersPermissionForShip == LOG_Running)
+	if(MIS_RichtersPermissionForShip == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -319,6 +321,6 @@ func int DIA_Richter_perm2_Condition()
 func void DIA_Richter_perm2_Info()
 {
 	AI_Output(self,other,"DIA_Richter_perm2_10_00");	//Убирайся с глаз моих.
-	AI_StopProcessInfos(self);
+	AI_StopProcessInfos_Pickpocket();
 };
 

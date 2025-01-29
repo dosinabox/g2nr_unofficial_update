@@ -28,7 +28,7 @@ func void Change_FH_Visual()
 
 instance DIA_FH_EXIT(C_Info)
 {
-	npc = fh;
+	npc = FH;
 	nr = 999;
 	condition = DIA_FH_EXIT_Condition;
 	information = DIA_FH_EXIT_Info;
@@ -50,7 +50,7 @@ func void DIA_FH_EXIT_Info()
 
 instance DIA_FH_NextFace(C_Info)
 {
-	npc = fh;
+	npc = FH;
 	nr = 3;
 	condition = DIA_FH_NextFace_Condition;
 	information = DIA_FH_NextFace_Info;
@@ -73,7 +73,7 @@ func void DIA_FH_NextFace_Info()
 
 instance DIA_FH_NextFace10(C_Info)
 {
-	npc = fh;
+	npc = FH;
 	nr = 5;
 	condition = DIA_FH_NextFace10_Condition;
 	information = DIA_FH_NextFace10_Info;
@@ -96,7 +96,7 @@ func void DIA_FH_NextFace10_Info()
 
 instance DIA_FH_PreviousFace(C_Info)
 {
-	npc = fh;
+	npc = FH;
 	nr = 4;
 	condition = DIA_FH_PreviousFace_Condition;
 	information = DIA_FH_PreviousFace_Info;
@@ -119,7 +119,7 @@ func void DIA_FH_PreviousFace_Info()
 
 instance DIA_FH_PreviousFace10(C_Info)
 {
-	npc = fh;
+	npc = FH;
 	nr = 6;
 	condition = DIA_FH_PreviousFace10_Condition;
 	information = DIA_FH_PreviousFace10_Info;
@@ -142,7 +142,7 @@ func void DIA_FH_PreviousFace10_Info()
 
 instance DIA_FH_ResetFace(C_Info)
 {
-	npc = fh;
+	npc = FH;
 	nr = 7;
 	condition = DIA_FH_ResetFace_Condition;
 	information = DIA_FH_ResetFace_Info;
@@ -167,7 +167,7 @@ func void DIA_FH_ResetFace_Info()
 
 instance DIA_FH_WomanFace(C_Info)
 {
-	npc = fh;
+	npc = FH;
 	nr = 8;
 	condition = DIA_FH_WomanFace_Condition;
 	information = DIA_FH_WomanFace_Info;
@@ -190,7 +190,7 @@ func void DIA_FH_WomanFace_Info()
 
 instance DIA_FH_Repeat(C_Info)
 {
-	npc = fh;
+	npc = FH;
 	nr = 1;
 	condition = DIA_FH_Repeat_Condition;
 	information = DIA_FH_Repeat_Info;
@@ -212,7 +212,7 @@ func void DIA_FH_Repeat_Info()
 
 instance DIA_FH_Sex(C_Info)
 {
-	npc = fh;
+	npc = FH;
 	nr = 9;
 	condition = DIA_FH_Sex_Condition;
 	information = DIA_FH_Sex_Info;
@@ -242,7 +242,7 @@ func void DIA_FH_Sex_Info()
 
 instance DIA_FH_Choose_HeadMesh(C_Info)
 {
-	npc = fh;
+	npc = FH;
 	nr = 2;
 	condition = DIA_FH_Choose_HeadMesh_Condition;
 	information = DIA_FH_Choose_HeadMesh_Info;

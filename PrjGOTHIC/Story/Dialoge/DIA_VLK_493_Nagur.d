@@ -252,9 +252,9 @@ func void DIA_Nagur_Auftrag_Okay()
 	{
 		AI_Output(self,other,"DIA_Nagur_Auftrag_Okay_08_01_add");	//Отлично. Тогда за дело.
 	};
-	MIS_Nagur_Bote = LOG_Running;
+	MIS_Nagur_Bote = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Nagur,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Nagur,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Nagur,LOG_RUNNING);
 	B_LogEntry(TOPIC_Nagur,"Я должен заставить Бальтрама взять меня в качестве мальчика на побегушках. Затем я должен забрать посылку у фермера Акила и принести ее Нагуру.");
 	AI_StopProcessInfos(self);
 };
@@ -266,14 +266,13 @@ instance DIA_Nagur_Success(C_Info)
 	nr = 5;
 	condition = DIA_Nagur_Success_Condition;
 	information = DIA_Nagur_Success_Info;
-	permanent = FALSE;
 	description = "Я принес пакет.";
 };
 
 
 func int DIA_Nagur_Success_Condition()
 {
-	if((MIS_Nagur_Bote == LOG_Running) && Npc_HasItems(other,ItMi_BaltramPaket) && (Nagur_Ausgeliefert == FALSE))
+	if((MIS_Nagur_Bote == LOG_RUNNING) && Npc_HasItems(other,ItMi_BaltramPaket) && (Nagur_Ausgeliefert == FALSE))
 	{
 		return TRUE;
 	};
@@ -303,11 +302,9 @@ instance DIA_Nagur_Deal(C_Info)
 };
 
 
-var int DIA_Nagur_Deal_permanent;
-
 func int DIA_Nagur_Deal_Condition()
 {
-	if((DIA_Nagur_Deal_permanent == FALSE) && (MIS_Nagur_Bote == LOG_Running) && (Nagur_Ausgeliefert == FALSE) && Npc_KnowsInfo(other,DIA_Nagur_Success))
+	if((MIS_Nagur_Bote == LOG_RUNNING) && (Nagur_Ausgeliefert == FALSE) && Npc_KnowsInfo(other,DIA_Nagur_Success))
 	{
 		return TRUE;
 	};
@@ -328,7 +325,6 @@ func void DIA_Nagur_Deal_Info()
 		MIS_Nagur_Bote = LOG_SUCCESS;
 		MIS_Baltram_ScoutAkil = LOG_FAILED;
 		B_GivePlayerXP(XP_Nagur_Bote);
-		DIA_Nagur_Deal_permanent = TRUE;
 		Diebesgilde_Okay += 1;
 		AI_StopProcessInfos(self);
 	}
@@ -345,7 +341,6 @@ instance DIA_Nagur_Auftraggeber(C_Info)
 	nr = 7;
 	condition = DIA_Nagur_Auftraggeber_Condition;
 	information = DIA_Nagur_Auftraggeber_Info;
-	permanent = FALSE;
 	description = "Кто твои хозяева?";
 };
 
@@ -400,7 +395,6 @@ instance DIA_Nagur_Sign(C_Info)
 	nr = 800;
 	condition = DIA_Nagur_Sign_Condition;
 	information = DIA_Nagur_Sign_Info;
-	permanent = FALSE;
 	description = DIALOG_SecretSign;
 };
 

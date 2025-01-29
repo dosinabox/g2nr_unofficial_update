@@ -478,6 +478,7 @@ Story\NPC_Scripts\B_GiveAllRunes.d
 Story\NPC_Scripts\B_GiveAllScrolls.d
 Story\NPC_Scripts\B_GiveAllTrophies.d
 Story\NPC_Scripts\B_GiveAllWeapons.d
+Story\NPC_Scripts\B_GiveBasicEquipment.d
 Story\NPC_Scripts\Npc_Default.d
 Items\IT_ScriptPatch.d
 Story\NPC\BAU_4300_Addon_Cavalorn.d

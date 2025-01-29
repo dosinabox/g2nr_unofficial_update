@@ -230,7 +230,7 @@ func int DIA_Addon_Owen_MalcomDead_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Owen_MalcomStunt) && (MIS_Owen_FindMalcom == LOG_RUNNING) && (Malcom_Accident_Deadly == TRUE))
 	{
-		if(!Npc_HasItems(Malcom,ItMi_OldCoin) || C_SecretCaveLurkersDead())
+		if(!Npc_HasItems(Malcom,ItMi_OldCoin) || Npc_IsDead(Lurker_SecretCave1) || Npc_IsDead(Lurker_SecretCave2))
 		{
 			return TRUE;
 		};

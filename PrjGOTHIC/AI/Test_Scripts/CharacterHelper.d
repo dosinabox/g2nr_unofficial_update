@@ -46,7 +46,7 @@ instance CH(Npc_Default)
 {
 	name[0] = "Помощник по персонажу";
 	guild = GIL_NONE;
-	id = 0;
+	id = 9997;
 	voice = 15;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
@@ -58,11 +58,11 @@ instance CH(Npc_Default)
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player_G1,NO_ARMOR);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
-	daily_routine = Rtn_Start_0;
+	daily_routine = Rtn_Start_9997;
 };
 
 
-func void Rtn_Start_0()
+func void Rtn_Start_9997()
 {
 	TA_Stand_ArmsCrossed(8,0,23,0,"XXX");
 	TA_Stand_ArmsCrossed(23,0,8,0,"XXX");
@@ -369,7 +369,7 @@ func void B_ResetHeroSkin()
 
 instance CH_Exit(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 999;
 	condition = CH_Exit_Condition;
 	information = CH_Exit_Info;
@@ -394,7 +394,7 @@ func void CH_Exit_Info()
 
 instance CH_RESET(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 998;
 	condition = CH_RESET_Condition;
 	information = CH_RESET_Info;
@@ -442,6 +442,7 @@ func void CH_RESET_Ok()
 	if(C_ScHasMeleeBeliarsWeapon() || C_SCHasBeliarsRune())
 	{
 		B_ClearBeliarsItems();
+		B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_Raven);
 		CreateInvItem(hero,ItMw_BeliarWeapon_Raven);
 	};
 	B_UnEquipAllTempBonusItems();
@@ -592,7 +593,7 @@ var int GuildStart;
 
 instance CH_Guild_Start(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 1;
 	condition = CH_Guild_Start_Condition;
 	information = CH_Guild_Start_Info;
@@ -617,7 +618,7 @@ func void CH_Guild_Start_Info()
 
 instance CH_Guild_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = CH_Guild_Stopper_Condition;
 	information = CH_Guild_Stopper_Info;
@@ -642,7 +643,7 @@ func void CH_Guild_Stopper_Info()
 
 instance CH_Guild(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 7;
 	condition = CH_Guild_Condition;
 	information = CH_Guild_Info;
@@ -844,7 +845,7 @@ func void CH_Guild_NONE()
 
 instance CH_Apprentice(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 8;
 	condition = CH_Apprentice_Condition;
 	information = CH_Apprentice_Info;
@@ -918,7 +919,7 @@ var int LevelStart;
 
 instance CH_Level_Start(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 2;
 	condition = CH_Level_Start_Condition;
 	information = CH_Level_Start_Info;
@@ -943,7 +944,7 @@ func void CH_Level_Start_Info()
 
 instance CH_Level_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = CH_Level_Stopper_Condition;
 	information = CH_Level_Stopper_Info;
@@ -969,7 +970,7 @@ func void CH_Level_Stopper_Info()
 
 instance CH_Lernpunkte(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 5;
 	condition = CH_Lernpunkte_Condition;
 	information = CH_Lernpunkte_Info;
@@ -1039,7 +1040,7 @@ func void CH_Lernpunkte_5()
 
 instance CH_Level_niedrig(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 2;
 	condition = CH_Level_niedrig_Condition;
 	information = CH_Level_niedrig_Info;
@@ -1070,7 +1071,7 @@ func void CH_Level_niedrig_Info()
 
 instance CH_Level_hoch(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 3;
 	condition = CH_Level_hoch_Condition;
 	information = CH_Level_hoch_Info;
@@ -1530,7 +1531,7 @@ var int AttributeStart;
 
 instance DIA_CH_Attribute_Start(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 3;
 	condition = DIA_CH_Attribute_Start_Condition;
 	information = DIA_CH_Attribute_Start_Info;
@@ -1555,7 +1556,7 @@ func void DIA_CH_Attribute_Start_Info()
 
 instance DIA_CH_Attribute_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = DIA_CH_Attribute_Stopper_Condition;
 	information = DIA_CH_Attribute_Stopper_Info;
@@ -1580,7 +1581,7 @@ func void DIA_CH_Attribute_Stopper_Info()
 
 instance DIA_CH_Strength(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 2;
 	condition = DIA_CH_Strength_Condition;
 	information = DIA_CH_Strength_Info;
@@ -1639,7 +1640,7 @@ func void DIA_CH_Strength_20()
 
 instance DIA_CH_Dex(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 3;
 	condition = DIA_CH_Dex_Condition;
 	information = DIA_CH_Dex_Info;
@@ -1698,7 +1699,7 @@ func void DIA_CH_Dex_20()
 
 instance DIA_CH_Mana(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 4;
 	condition = DIA_CH_Mana_Condition;
 	information = DIA_CH_Mana_Info;
@@ -1757,7 +1758,7 @@ func void DIA_CH_Mana_20()
 
 instance DIA_CH_HP(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 5;
 	condition = DIA_CH_HP_Condition;
 	information = DIA_CH_HP_Info;
@@ -1818,7 +1819,7 @@ var int MagieStart;
 
 instance DIA_CH_MAGIE(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 4;
 	condition = DIA_CH_MAGIE_Condition;
 	information = DIA_CH_MAGIE_Info;
@@ -1843,7 +1844,7 @@ func void DIA_CH_MAGIE_Info()
 
 instance DIA_CH_MAGIE_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = DIA_CH_MAGIE_Stopper_Condition;
 	information = DIA_CH_MAGIE_Stopper_Info;
@@ -1868,7 +1869,7 @@ func void DIA_CH_MAGIE_Stopper_Info()
 
 instance DIA_CH_KREISE(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 4;
 	condition = DIA_CH_KREISE_Condition;
 	information = DIA_CH_KREISE_Info;
@@ -1968,7 +1969,7 @@ func void DIA_CH_KREISE_6()
 
 instance DIA_CH_Runen(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 5;
 	condition = DIA_CH_Runen_Condition;
 	information = DIA_CH_Runen_Info;
@@ -2369,7 +2370,7 @@ func void CH_Training_Runen_Circle_5_SPL_Shrink()
 
 instance DIA_CH_Misc_PaladinStart(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 7;
 	condition = DIA_CH_Misc_PaladinStart_Condition;
 	information = DIA_CH_Misc_PaladinStart_Info;
@@ -2480,7 +2481,7 @@ var int KampfStart;
 
 instance DIA_CH_Kampf_Start(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 5;
 	condition = DIA_CH_Kampf_Start_Condition;
 	information = DIA_CH_Kampf_Start_Info;
@@ -2505,7 +2506,7 @@ func void DIA_CH_Kampf_Start_Info()
 
 instance DIA_CH_Kampf_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = DIA_CH_Kampf_Stopper_Condition;
 	information = DIA_CH_Kampf_Stopper_Info;
@@ -2530,7 +2531,7 @@ func void DIA_CH_Kampf_Stopper_Info()
 
 instance DIA_CH_Kampf_Einhand(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 6;
 	condition = DIA_CH_Kampf_Einhand_Condition;
 	information = DIA_CH_Kampf_Einhand_Info;
@@ -2589,7 +2590,7 @@ func void CH_Training_Combat_1H_20()
 
 instance DIA_CH_Kampf_Zweihand(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 7;
 	condition = DIA_CH_Kampf_Zweihand_Condition;
 	information = DIA_CH_Kampf_Zweihand_Info;
@@ -2648,7 +2649,7 @@ func void CH_Training_Combat_2H_20()
 
 instance DIA_CH_Kampf_Bogen(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 8;
 	condition = DIA_CH_Kampf_Bogen_Condition;
 	information = DIA_CH_Kampf_Bogen_Info;
@@ -2707,7 +2708,7 @@ func void CH_Training_Combat_BOW_20()
 
 instance DIA_CH_Kampf_Armbrust(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 8;
 	condition = DIA_CH_Kampf_Armbrust_Condition;
 	information = DIA_CH_Kampf_Armbrust_Info;
@@ -2766,7 +2767,7 @@ func void CH_Training_Combat_CROSSBOW_20()
 
 instance DIA_CH_Dieb_Start(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 6;
 	condition = DIA_CH_Dieb_Start_Condition;
 	information = DIA_CH_Dieb_Start_Info;
@@ -2835,7 +2836,7 @@ var int MiscStart;
 
 instance DIA_CH_Misc_Start(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 20;
 	condition = DIA_CH_Misc_Start_Condition;
 	information = DIA_CH_Misc_Start_Info;
@@ -2860,7 +2861,7 @@ func void DIA_CH_Misc_Start_Info()
 
 instance DIA_CH_Misc_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = DIA_CH_Misc_Stopper_Condition;
 	information = DIA_CH_Misc_Stopper_Info;
@@ -2887,7 +2888,7 @@ var int AlchemyStart;
 
 instance DIA_CH_Misc_Alchemie(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 5;
 	condition = DIA_CH_Misc_Alchemie_Condition;
 	information = DIA_CH_Misc_Alchemie_Info;
@@ -2912,7 +2913,7 @@ func void DIA_CH_Misc_Alchemie_Info()
 
 instance DIA_CH_Misc_Alchemie_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = DIA_CH_Misc_Alchemie_Stopper_Condition;
 	information = DIA_CH_Misc_Alchemie_Stopper_Info;
@@ -2937,7 +2938,7 @@ func void DIA_CH_Misc_Alchemie_Stopper_Info()
 
 instance DIA_CH_Misc_Health(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 5;
 	condition = DIA_CH_Misc_Health_Condition;
 	information = DIA_CH_Misc_Health_Info;
@@ -3004,7 +3005,7 @@ func void CH_Training_Alchemy_POTION_Health_04()
 
 instance DIA_CH_Misc_Mana(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 6;
 	condition = DIA_CH_Misc_Mana_Condition;
 	information = DIA_CH_Misc_Mana_Info;
@@ -3071,7 +3072,7 @@ func void CH_Training_Alchemy_POTION_Mana_04()
 
 instance DIA_CH_Misc_Special(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 6;
 	condition = DIA_CH_Misc_Special_Condition;
 	information = DIA_CH_Misc_Special_Info;
@@ -3158,7 +3159,7 @@ var int SmithStart;
 
 instance DIA_CH_Misc_SmithStart(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 10;
 	condition = DIA_CH_Misc_SmithStart_Condition;
 	information = DIA_CH_Misc_SmithStart_Info;
@@ -3183,7 +3184,7 @@ func void DIA_CH_Misc_SmithStart_Info()
 
 instance DIA_CH_Misc_SmithStopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = DIA_CH_Misc_SmithStopper_Condition;
 	information = DIA_CH_Misc_SmithStopper_Info;
@@ -3208,7 +3209,7 @@ func void DIA_CH_Misc_SmithStopper_Info()
 
 instance DIA_CH_Misc_Smithniedrig(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 8;
 	condition = DIA_CH_Misc_Smithniedrig_Condition;
 	information = DIA_CH_Misc_Smithniedrig_Info;
@@ -3254,7 +3255,7 @@ func void DIA_CH_Misc_Smithniedrig_Info()
 
 instance DIA_CH_Misc_SmithHoch(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 9;
 	condition = DIA_CH_Misc_SmithHoch_Condition;
 	information = DIA_CH_Misc_SmithHoch_Info;
@@ -3390,7 +3391,7 @@ var int AnimalStart;
 
 instance DIA_CH_Misc_Animal_Start(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 20;
 	condition = DIA_CH_Misc_Animal_Start_Condition;
 	information = DIA_CH_Misc_Animal_Start_Info;
@@ -3415,7 +3416,7 @@ func void DIA_CH_Misc_Animal_Start_Info()
 
 instance DIA_CH_Misc_Animal_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = DIA_CH_Misc_Animal_Stopper_Condition;
 	information = DIA_CH_Misc_Animal_Stopper_Info;
@@ -3440,7 +3441,7 @@ func void DIA_CH_Misc_Animal_Stopper_Info()
 
 instance DIA_CH_Misc_Animal_allg(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 5;
 	condition = DIA_CH_Misc_Animal_allg_Condition;
 	information = DIA_CH_Misc_Animal_allg_Info;
@@ -3516,7 +3517,7 @@ func void CH_Training_TROPHYS_Heart()
 
 instance DIA_CH_Misc_Animal_Speziell(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 6;
 	condition = DIA_CH_Misc_Animal_Speziell_Condition;
 	information = DIA_CH_Misc_Animal_Speziell_Info;
@@ -3601,7 +3602,7 @@ func void CH_Training_TROPHYS_Mandibles()
 
 instance DIA_CH_Misc_Animal_other(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 7;
 	condition = DIA_CH_Misc_Animal_other_Condition;
 	information = DIA_CH_Misc_Animal_other_Info;
@@ -3677,7 +3678,7 @@ func void CH_Training_TROPHYS_DragonBlood()
 
 instance CH_Language(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 30;
 	condition = CH_Language_Condition;
 	information = CH_Language_Info;
@@ -3737,7 +3738,7 @@ func void CH_Language_Priest()
 
 instance DIA_CH_Misc_InnosEye(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 40;
 	condition = DIA_CH_Misc_InnosEye_Condition;
 	information = DIA_CH_Misc_InnosEye_Info;
@@ -3763,7 +3764,7 @@ func void DIA_CH_Misc_InnosEye_Info()
 
 instance DIA_CH_Misc_Gold(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 50;
 	condition = DIA_CH_Misc_Gold_Condition;
 	information = DIA_CH_Misc_Gold_Info;
@@ -3833,7 +3834,7 @@ func void DIA_CH_Misc_Gold_1()
 
 instance DIA_CH_Misc_Wisp(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 60;
 	condition = DIA_CH_Misc_Wisp_Condition;
 	information = DIA_CH_Misc_Wisp_Info;
@@ -3986,7 +3987,7 @@ func string B_BuildCurrentRegenerateValue(var int stats)
 
 instance DIA_CH_Misc_Regenerate(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 70;
 	condition = DIA_CH_Misc_Regenerate_Condition;
 	information = DIA_CH_Misc_Regenerate_Info;
@@ -4063,7 +4064,7 @@ func void DIA_CH_Misc_Regenerate_HP()
 
 instance CH_Overlay(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 36;
 	condition = CH_Overlay_Condition;
 	information = CH_Overlay_Info;
@@ -4172,7 +4173,7 @@ func void CH_Overlay_Clear()
 
 instance CH_Skin(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 37;
 	condition = CH_Skin_Condition;
 	information = CH_Skin_Info;
@@ -4245,20 +4246,9 @@ func void CH_Skin_Naked()
 	CH_Skin_Info();
 };
 
-func void B_SetHeroEquipment()
-{
-	B_RefreshInvItemToAmount(hero,ItRw_Arrow,100);
-	B_RefreshInvItemToAmount(hero,ItRw_Bolt,100);
-	B_RefreshInvItemToAmount(hero,ItLsTorch,20);
-	B_RefreshInvItemToAmount(hero,ItMi_Gold,500);
-	B_RefreshInvItemToAmount(hero,ItPo_Health_03,10);
-	B_RefreshInvItemToAmount(hero,ItPo_Mana_03,10);
-	B_RefreshInvItemToAmount(hero,ItKe_Lockpick,30);
-};
-
 instance CH_Equipment(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 38;
 	condition = CH_Equipment_Condition;
 	information = CH_Equipment_Info;
@@ -4277,14 +4267,14 @@ func int CH_Equipment_Condition()
 
 func void CH_Equipment_Info()
 {
-	B_SetHeroEquipment();
+	B_GiveBasicEquipment(hero);
 	PrintScreen("Снаряжение обновлено",-1,-1,FONT_Screen,3);
 };
 
 
 instance CH_StatsBook(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 39;
 	condition = CH_StatsBook_Condition;
 	information = CH_StatsBook_Info;

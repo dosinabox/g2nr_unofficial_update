@@ -50,6 +50,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Canthars_KomproBrief = LOG_FAILED;
 			};
 		}
+		else if(C_IsNpc(slf,VLK_493_Nagur))
+		{
+			if(MIS_Nagur_Bote == LOG_RUNNING)
+			{
+				MIS_Nagur_Bote = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,VLK_407_Hakon))
 		{
 			if(MIS_HakonBandits == LOG_RUNNING)
