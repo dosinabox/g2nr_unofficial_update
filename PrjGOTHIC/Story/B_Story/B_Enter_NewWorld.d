@@ -178,6 +178,7 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		};
 		if((MIS_HelpDyrian != LOG_SUCCESS) && !Npc_IsDead(Dyrian))
 		{
+			B_DeletePetzCrime(Dyrian);
 			B_SetGuild(Dyrian,GIL_NONE);
 			Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 			Npc_ExchangeRoutine(Dyrian,"NOFAVOUR");
@@ -257,7 +258,11 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Peck.aivar[AIV_IGNORE_Theft] = FALSE;
 			Peck.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
 		};
-		B_RemoveNpc(PAL_203_Lothar);
+		if(!Npc_IsDead(Lothar))
+		{
+			B_DeletePetzCrime(Lothar);
+			B_RemoveNpc(PAL_203_Lothar);
+		};
 		Wld_InsertNpc(Giant_Bug,"NW_FARM4_WOOD_MONSTER_N_1_MONSTER");
 		Wld_InsertNpc(Giant_Bug,"NW_FARM4_WOOD_MONSTER_N_1_MONSTER");
 		Wld_InsertNpc(Bloodfly,"NW_TROLLAREA_RIVERSIDE_09");

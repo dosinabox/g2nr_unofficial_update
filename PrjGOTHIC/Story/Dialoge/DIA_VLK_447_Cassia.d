@@ -27,7 +27,6 @@ instance DIA_Cassia_Gilde(C_Info)
 	nr = 1;
 	condition = DIA_Cassia_Gilde_Condition;
 	information = DIA_Cassia_Gilde_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -61,7 +60,6 @@ instance DIA_Cassia_Abgelaufen(C_Info)
 	nr = 2;
 	condition = DIA_Cassia_Abgelaufen_Condition;
 	information = DIA_Cassia_Abgelaufen_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -88,7 +86,6 @@ instance DIA_Cassia_News(C_Info)
 	nr = 1;
 	condition = DIA_Cassia_News_Condition;
 	information = DIA_Cassia_News_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -138,7 +135,6 @@ instance DIA_Cassia_mehr(C_Info)
 	nr = 2;
 	condition = DIA_Cassia_mehr_Condition;
 	information = DIA_Cassia_mehr_Info;
-	permanent = FALSE;
 	description = "Расскажи мне о вашей организации.";
 };
 
@@ -163,7 +159,6 @@ instance DIA_Cassia_MissingPeople(C_Info)
 	nr = 2;
 	condition = DIA_Cassia_MissingPeople_Condition;
 	information = DIA_Cassia_MissingPeople_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о пропавших людях?";
 };
 
@@ -192,7 +187,6 @@ instance DIA_Cassia_Vorteil(C_Info)
 	nr = 3;
 	condition = DIA_Cassia_Vorteil_Condition;
 	information = DIA_Cassia_Vorteil_Info;
-	permanent = FALSE;
 	description = "А какая мне выгода от присоединения к вам?";
 };
 
@@ -217,7 +211,6 @@ instance DIA_Cassia_Lernen(C_Info)
 	nr = 4;
 	condition = DIA_Cassia_Lernen_Condition;
 	information = DIA_Cassia_Lernen_Info;
-	permanent = FALSE;
 	description = "Чему я могу научиться у вас?";
 };
 
@@ -266,7 +259,6 @@ instance DIA_Cassia_Regeln(C_Info)
 	nr = 3;
 	condition = DIA_Cassia_Regeln_Condition;
 	information = DIA_Cassia_Regeln_Info;
-	permanent = FALSE;
 	description = "Что у вас за правила?";
 };
 
@@ -295,7 +287,6 @@ instance DIA_Cassia_Erwischen(C_Info)
 	nr = 2;
 	condition = DIA_Cassia_Erwischen_Condition;
 	information = DIA_Cassia_Erwischen_Info;
-	permanent = FALSE;
 	description = "Что будет, если меня поймают?";
 };
 
@@ -347,10 +338,10 @@ func void DIA_Cassia_beweisen_Info()
 	{
 		AI_Output(self,other,"DIA_Cassia_beweisen_16_02");	//У этого упрямого алхимика - Константино, есть прекрасное кольцо.
 		AI_Output(self,other,"DIA_Cassia_beweisen_16_03");	//Но оно ему совсем ни к чему. Я хочу, чтобы оно украшало мою руку.
-		MIS_CassiaRing = LOG_Running;
+		MIS_CassiaRing = LOG_RUNNING;
 		DIA_Cassia_beweisen_permanent = TRUE;
 		Log_CreateTopic(TOPIC_CassiaRing,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_CassiaRing,LOG_Running);
+		Log_SetTopicStatus(TOPIC_CassiaRing,LOG_RUNNING);
 		B_LogEntry(TOPIC_CassiaRing,"Кассия хочет, чтобы я принес ей кольцо Константино.");
 	};
 };
@@ -394,7 +385,6 @@ instance DIA_Cassia_Beitreten(C_Info)
 	nr = 10;
 	condition = DIA_Cassia_Beitreten_Condition;
 	information = DIA_Cassia_Beitreten_Info;
-	permanent = FALSE;
 	description = "Хорошо, я в деле.";
 };
 
@@ -421,7 +411,6 @@ instance DIA_Cassia_Ablehnen(C_Info)
 	nr = 9;
 	condition = DIA_Cassia_Ablehnen_Condition;
 	information = DIA_Cassia_Ablehnen_Info;
-	permanent = FALSE;
 	description = "А что, если я не хочу присоединяться к вам?";
 };
 
@@ -655,14 +644,13 @@ instance DIA_Cassia_Aufnahme(C_Info)
 	nr = 2;
 	condition = DIA_Cassia_Aufnahme_Condition;
 	information = DIA_Cassia_Aufnahme_Info;
-	permanent = FALSE;
 	description = "Я принес кольцо Константино.";
 };
 
 
 func int DIA_Cassia_Aufnahme_Condition()
 {
-	if((MIS_CassiaRing == LOG_Running) && Npc_HasItems(other,ItRi_Prot_Point_01_MIS))
+	if((MIS_CassiaRing == LOG_RUNNING) && Npc_HasItems(other,ItRi_Prot_Point_01_MIS))
 	{
 		return TRUE;
 	};
@@ -693,7 +681,6 @@ instance DIA_Cassia_Versteck(C_Info)
 	nr = 2;
 	condition = DIA_Cassia_Versteck_Condition;
 	information = DIA_Cassia_Versteck_Info;
-	permanent = FALSE;
 	description = "А где вы прячете награбленное?";
 };
 
@@ -761,10 +748,10 @@ func void DIA_Cassia_Blutkelche_Info()
 		AI_Output(self,other,"DIA_Cassia_Blutkelche_16_08");	//Принеси их мне. А тем временем я подыщу покупателя для них.
 		AI_Output(other,self,"DIA_Cassia_Blutkelche_15_09");	//А мне что с этого будет?
 		AI_Output(self,other,"DIA_Cassia_Blutkelche_16_10");	//Либо половина от дохода, либо ты сможешь выбрать что-нибудь из моей сокровищницы.
-		MIS_CassiaKelche = LOG_Running;
+		MIS_CassiaKelche = LOG_RUNNING;
 		DIA_Cassia_Blutkelche_permanent = TRUE;
 		Log_CreateTopic(TOPIC_CassiaKelche,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_CassiaKelche,LOG_Running);
+		Log_SetTopicStatus(TOPIC_CassiaKelche,LOG_RUNNING);
 		B_LogEntry(TOPIC_CassiaKelche,"Кассия хочет, чтобы я принес ей шесть кровавых кубков. По-видимому, они находятся в городе.");
 	};
 };
@@ -783,7 +770,7 @@ instance DIA_Cassia_abgeben(C_Info)
 
 func int DIA_Cassia_abgeben_Condition()
 {
-	if(MIS_CassiaKelche == LOG_Running)
+	if(MIS_CassiaKelche == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -814,7 +801,6 @@ instance DIA_Cassia_Belohnung(C_Info)
 	nr = 2;
 	condition = DIA_Cassia_Belohnung_Condition;
 	information = DIA_Cassia_Belohnung_Info;
-	permanent = FALSE;
 	description = "Я пришел за своей наградой.";
 };
 
@@ -864,7 +850,6 @@ instance DIA_Cassia_Killer(C_Info)
 	nr = 1;
 	condition = DIA_Cassia_Killer_Condition;
 	information = DIA_Cassia_Killer_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

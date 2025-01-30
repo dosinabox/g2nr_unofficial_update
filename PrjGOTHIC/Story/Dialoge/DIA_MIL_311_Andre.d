@@ -1669,7 +1669,11 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 		if((Nadja_Victim == TRUE) || (Npc_IsDead(Nadja) && (Knows_Borka_Dealer == FALSE)))
 		{
 			AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_03");	//Эта девочка из Красного Фонаря, Надя, мертва. Возможно, это просто случайное совпадение.
-			B_RemoveNpc(VLK_435_Nadja);
+			if(!Npc_IsDead(Nadja))
+			{
+				B_DeletePetzCrime(Nadja);
+				B_RemoveNpc(VLK_435_Nadja);
+			};
 		};
 		if(Undercover_Failed == TRUE)
 		{

@@ -251,6 +251,7 @@ var C_Npc Edda;
 var C_Npc Elena;
 var C_Npc Rod;
 var C_Npc Cord;
+var C_Npc Sylvio;
 var C_Npc Bullco;
 var C_Npc Jarvis;
 var C_Npc Hodges;
@@ -317,6 +318,7 @@ func void B_InitNpc_NW()
 	Cipher = Hlp_GetNpc(SLD_803_Cipher);
 	Rod = Hlp_GetNpc(SLD_804_Rod);
 	Cord = Hlp_GetNpc(SLD_805_Cord);
+	Sylvio = Hlp_GetNpc(SLD_806_Sylvio);
 	Bullco = Hlp_GetNpc(SLD_807_Bullco);
 	Jarvis = Hlp_GetNpc(SLD_808_Jarvis);
 	Bennet = Hlp_GetNpc(SLD_809_Bennet);

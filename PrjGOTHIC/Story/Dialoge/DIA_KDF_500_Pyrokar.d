@@ -281,6 +281,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Ulf.aivar[AIV_IgnoresFakeGuild] = TRUE;
 		Ulf.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		Ulf.aivar[AIV_MM_FollowTime] = 120;
+		B_DeletePetzCrime(Ulf);
 		B_SetGuild(Ulf,GIL_NOV);
 		CreateInvItems(Ulf,ItKe_MagicChest,1);
 		AI_Teleport(Ulf,"NW_TROLLAREA_PATH_42");
@@ -531,6 +532,7 @@ func void DIA_Pyrokar_OATH_Info()
 	{
 		if(Npc_KnowsInfo(other,DIA_Igaraz_Stein))
 		{
+			B_DeletePetzCrime(Igaraz);
 			B_RemoveNpc(NOV_601_Igaraz);
 		}
 		else
@@ -547,6 +549,7 @@ func void DIA_Pyrokar_OATH_Info()
 	{
 		if(Npc_KnowsInfo(other,DIA_Ulf_Abrechnung))
 		{
+			B_DeletePetzCrime(Ulf);
 			B_RemoveNpc(NOV_602_Ulf);
 		}
 		else
@@ -564,6 +567,7 @@ func void DIA_Pyrokar_OATH_Info()
 	{
 		if(Npc_KnowsInfo(other,DIA_Agon_GolemDead) || Npc_KnowsInfo(other,DIA_Agon_GolemLives))
 		{
+			B_DeletePetzCrime(Agon);
 			B_RemoveNpc(NOV_603_Agon);
 			Wld_InsertNpc(VLK_4007_Agon,"CITY2");
 		}

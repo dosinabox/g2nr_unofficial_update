@@ -7,7 +7,10 @@ func void ZS_MM_Rtn_Wusel()
 	{
 		AI_GotoWP(self,self.wp);
 	};
-	AI_GotoFP(self,"ROAM");
+	if(Wld_IsFPAvailable(self,"ROAM"))
+	{
+		AI_GotoFP(self,"ROAM");
+	};
 	self.aivar[AIV_StateTime] = Hlp_Random(100) % 8 + 1;
 };
 
@@ -30,7 +33,10 @@ func int ZS_MM_Rtn_Wusel_Loop()
 		}
 		else if(!C_BodyStateContains(self,BS_WALK) && !C_BodyStateContains(self,BS_RUN))
 		{
-			AI_GotoFP(self,"ROAM");
+			if(Wld_IsFPAvailable(self,"ROAM"))
+			{
+				AI_GotoFP(self,"ROAM");
+			};
 		};
 		Npc_SetStateTime(self,0);
 		self.aivar[AIV_TAPOSITION] = NOTINPOS;

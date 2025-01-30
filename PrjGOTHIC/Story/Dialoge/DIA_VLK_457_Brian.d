@@ -28,7 +28,6 @@ instance DIA_Brian_HALLO(C_Info)
 	nr = 1;
 	condition = DIA_Brian_HALLO_Condition;
 	information = DIA_Brian_HALLO_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -53,7 +52,6 @@ instance DIA_Brian_AboutLehrling(C_Info)
 	nr = 1;
 	condition = DIA_Brian_AboutLehrling_Condition;
 	information = DIA_Brian_AboutLehrling_Info;
-	permanent = FALSE;
 	description = "Каково это, быть учеником кузнеца?";
 };
 
@@ -62,7 +60,7 @@ func int DIA_Brian_AboutLehrling_Condition()
 {
 	if(Player_IsApprentice == APP_NONE)
 	{
-		if((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV))
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 		{
 			return TRUE;
 		};
@@ -85,7 +83,6 @@ instance DIA_Brian_WhyLeave(C_Info)
 	nr = 1;
 	condition = DIA_Brian_WhyLeave_Condition;
 	information = DIA_Brian_WhyLeave_Info;
-	permanent = FALSE;
 	description = "Почему ты хочешь покинуть город?";
 };
 
@@ -114,7 +111,6 @@ instance DIA_Brian_OtherMasters(C_Info)
 	nr = 1;
 	condition = DIA_Brian_OtherMasters_Condition;
 	information = DIA_Brian_OtherMasters_Info;
-	permanent = FALSE;
 	description = "А кто здесь другие мастера?";
 };
 
@@ -131,9 +127,9 @@ func void DIA_Brian_OtherMasters_Info()
 {
 	AI_Output(other,self,"DIA_Brian_Add_15_00");	//А кто здесь другие мастера?
 	AI_Output(self,other,"DIA_Brian_Add_04_01");	//Ну, это плотник Торбен, мастер-лучник Боспер, алхимик Константино и Маттео.
+	AI_Output(self,other,"DIA_Brian_Add_04_02");	//Он продает доспехи, но, в первую очередь, он торговец.
 	if(MIS_Jack_NewLighthouseOfficer != LOG_SUCCESS)
 	{
-		AI_Output(self,other,"DIA_Brian_Add_04_02");	//Он продает доспехи, но, в первую очередь, он торговец.
 		AI_Output(self,other,"DIA_Brian_Add_04_03");	//У каждого мастера есть свой дом на этой улице.
 		AI_Output(self,other,"DIA_Brian_Add_04_04");	//А лавка Константино находится в подземном проходе, ведущем к храму.
 	};
@@ -146,7 +142,6 @@ instance DIA_Brian_AboutHarad(C_Info)
 	nr = 2;
 	condition = DIA_Brian_AboutHarad_Condition;
 	information = DIA_Brian_AboutHarad_Info;
-	permanent = FALSE;
 	description = "Расскажи мне о мастере Гараде.";
 };
 
@@ -175,7 +170,6 @@ instance DIA_Brian_NEEDWEAPONS(C_Info)
 	nr = 4;
 	condition = DIA_Brian_NEEDWEAPONS_Condition;
 	information = DIA_Brian_NEEDWEAPONS_Info;
-	permanent = FALSE;
 	description = "Могу я купить оружие у тебя?";
 };
 
@@ -264,29 +258,22 @@ instance DIA_Brian_RepairNecklace(C_Info)
 	nr = 8;
 	condition = DIA_Brian_RepairNecklace_Condition;
 	information = DIA_Brian_RepairNecklace_Info;
-	permanent = FALSE;
 	description = "Ты можешь ремонтировать ювелирные изделия?";
 };
 
 
 func int DIA_Brian_RepairNecklace_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
-		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
 func void DIA_Brian_RepairNecklace_Info()
 {
 	AI_Output(other,self,"DIA_Brian_RepairNecklace_15_00");	//Ты можешь ремонтировать ювелирные изделия?
-	if(!Npc_IsDead(Harad) || (MIS_Jack_NewLighthouseOfficer == LOG_SUCCESS))
-	{
-		AI_Output(self,other,"DIA_Brian_RepairNecklace_04_02");	//Ювелирные изделия? Тебе лучше обратиться к мастеру.
-	};
+	AI_Output(self,other,"DIA_Brian_RepairNecklace_04_02");	//Ювелирные изделия? Тебе лучше обратиться к мастеру.
 	if(MIS_Jack_NewLighthouseOfficer != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Brian_RepairNecklace_04_01");	//Я всего лишь помощник, я радуюсь, когда мне позволяют сделать хотя бы кинжал.
@@ -307,7 +294,7 @@ instance DIA_Brian_NEWLIGHTHOUSEOFFICER(C_Info)
 
 func int DIA_Brian_NEWLIGHTHOUSEOFFICER_Condition()
 {
-	if((Kapitel == 5) && (MIS_Jack_NewLighthouseOfficer == LOG_Running))
+	if((Kapitel == 5) && (MIS_Jack_NewLighthouseOfficer == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -322,6 +309,7 @@ func void DIA_Brian_NEWLIGHTHOUSEOFFICER_Info()
 	AI_Output(self,other,"DIA_Brian_NEWLIGHTHOUSEOFFICER_04_04");	//(смеется) Не для меня. Мне все равно не заполучить кузницу Гарада. Я уже выбросил эту мысль из головы.
 	AI_Output(self,other,"DIA_Brian_NEWLIGHTHOUSEOFFICER_04_05");	//Согласен. Встретимся у Джека.
 	MIS_Jack_NewLighthouseOfficer = LOG_SUCCESS;
+	B_DeletePetzCrime(self);
 	B_SetGuild(self,GIL_NONE);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"LIGHTHOUSE");
@@ -342,9 +330,12 @@ instance DIA_Brian_LIGHTHOUSEFREE(C_Info)
 
 func int DIA_Brian_LIGHTHOUSEFREE_Condition()
 {
-	if((MIS_Jack_NewLighthouseOfficer == LOG_SUCCESS) && (Npc_GetDistToWP(self,"NW_LIGHTHOUSE_IN_01") < 1000) && (Kapitel == 5))
+	if((MIS_Jack_NewLighthouseOfficer == LOG_SUCCESS) && (Kapitel == 5))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_LIGHTHOUSE_IN_01") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
