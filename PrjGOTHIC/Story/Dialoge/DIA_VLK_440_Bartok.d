@@ -411,10 +411,9 @@ func void DIA_Bartok_HuntNOW_Info()
 	AI_Output(other,self,"DIA_Bartok_HuntNOW_15_00");	//Пойдем охотиться!
 	AI_Output(self,other,"DIA_Bartok_HuntNOW_GO_04_01");	//Хорошо, пошли за мной. За южными воротами начинается лес. Там водится более чем достаточно всяких тварей.
 	AI_Output(self,other,"DIA_Bartok_HuntNOW_GO_04_02");	//(себе под нос) Даже больше, чем хотелось бы...
-	CreateInvItem(self,ITAR_Leather_L);
 	CreateInvItem(self,ItRw_Bow_M_03);
 	B_RefreshInvItemToAmount(self,ItRw_Arrow,40);
-	AI_EquipArmor(self,ITAR_Leather_L);
+	B_EquipArmor(self,ITAR_Leather_L);
 	AI_EquipBestRangedWeapon(self);
 	Bartok_Los = TRUE;
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
@@ -461,7 +460,7 @@ func void B_Bartok_BackInCity()
 {
 	Bartok_Ende = TRUE;
 	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
-	AI_EquipArmor(self,ITAR_Vlk_L);
+	B_EquipArmor(self,ITAR_Vlk_L);
 	AI_UnequipWeapons(self);
 	AI_EquipBestMeleeWeapon(self);
 	Npc_RemoveInvItem(self,ItRw_Bow_M_03);

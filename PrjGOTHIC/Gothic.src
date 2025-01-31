@@ -29,6 +29,8 @@ Story\B_Story\C_NpcIsInQuarter.d
 Story\B_Story\B_GetLaresLocation.d
 Story\B_Story\C_DiegoTooFar.d
 Story\B_Story\B_ArmorChecks.d
+Story\B_Story\B_UnEquipHeroItem.d
+Story\B_Story\B_EquipArmor.d
 Story\B_Story\B_NewTalentSystem.d
 Story\B_Story\B_AddFightSkill.d
 Story\B_Story\B_RaiseFightTalent.d
@@ -82,9 +84,7 @@ Story\B_Story\B_MagicTransform.d
 Story\B_Story\B_NpcSetDrunk.d
 Story\B_Story\B_CheckRedLightUndercover.d
 Story\B_Story\B_UnEquipAllWeapons.d
-Story\B_Story\B_UnEquipHeroItem.d
 Story\B_Story\B_UnEquipIllegalMagicItems.d
-Story\B_Story\B_EquipArmor.d
 Items\Tuning_Addon_BeliarsWeapons.d
 Items\Tuning_Melee_Weapons.d
 Items\Tuning_Ranged_Weapons.d
@@ -439,6 +439,7 @@ Story\B_Story\B_BuildPriceString.d
 Story\B_Story\B_BuildDateString.d
 Story\B_Story\B_BuildFullVersionString.d
 Story\B_Story\B_BuildOptionString.d
+Story\B_Story\B_RemoveTestNpcs.d
 Story\Dialog_Mobsis\Bookstand.d
 Story\Dialog_Mobsis\BookstandAlchemy.d
 Story\Dialog_Mobsis\BookstandAnimals.d

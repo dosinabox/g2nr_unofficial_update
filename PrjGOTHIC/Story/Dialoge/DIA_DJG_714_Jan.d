@@ -27,7 +27,6 @@ instance DIA_JAN_Hello(C_Info)
 	nr = 4;
 	condition = DIA_Jan_Hello_Condition;
 	information = DIA_Jan_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -63,7 +62,6 @@ instance DIA_JAN_Dragons(C_Info)
 	nr = 4;
 	condition = DIA_Jan_Dragons_Condition;
 	information = DIA_Jan_Dragons_Info;
-	permanent = FALSE;
 	description = "Ты забыл о драконах!";
 };
 
@@ -83,7 +81,7 @@ func void DIA_Jan_Dragons_Info()
 	AI_Output(self,other,"DIA_Jan_Dragons_10_02");	//Я делаю оружие. А сражаются им пусть другие.
 	AI_Output(other,self,"DIA_Jan_Dragons_15_03");	//Тогда почему ты не стоишь за этой наковальней?
 	AI_Output(self,other,"DIA_Jan_Dragons_10_04");	//Паладины не подпускают меня к кузнице. Если я подойду к ней, меня бросят за решетку.
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Jan_Dragons_10_05");	//Ты ведь один из них. Можешь замолвить за меня словечко?
 	};
@@ -101,9 +99,9 @@ func void DIA_JAN_Dragons_HelpYou()
 	AI_Output(other,self,"DIA_JAN_Dragons_HelpYou_15_03");	//Я сделаю все, что смогу.
 	AI_Output(self,other,"DIA_JAN_Dragons_HelpYou_10_04");	//Представить себе не могу, что он послушает тебя.
 	Log_CreateTopic(TOPIC_JanBecomesSmith,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_JanBecomesSmith,LOG_Running);
+	Log_SetTopicStatus(TOPIC_JanBecomesSmith,LOG_RUNNING);
 	B_LogEntry(TOPIC_JanBecomesSmith,"Охотник на драконов Ян, находящийся в замке Долины Рудников, хочет работать в кузнице. Но Парсиваль запрещает ему это.");
-	MIS_JanBecomesSmith = LOG_Running;
+	MIS_JanBecomesSmith = LOG_RUNNING;
 	Info_ClearChoices(DIA_JAN_Dragons);
 };
 
@@ -111,7 +109,7 @@ func void DIA_JAN_Dragons_Reward()
 {
 	AI_Output(other,self,"DIA_JAN_Dragons_Reward_15_00");	//А что мне будет, если я помогу тебе?
 	AI_Output(self,other,"DIA_JAN_Dragons_Reward_10_01");	//У меня ничего нет. Единственное, я могу научить тебя чему-нибудь.
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_JAN_Dragons_Reward_10_02");	//Я знаю способ, как сделать клинок, выкованный из магической руды, еще прочнее.
 	}
@@ -136,7 +134,6 @@ instance DIA_JAN_Home(C_Info)
 	nr = 4;
 	condition = DIA_Jan_Home_Condition;
 	information = DIA_Jan_Home_Info;
-	permanent = FALSE;
 	description = "Откуда ты пришел?";
 };
 
@@ -189,7 +186,6 @@ instance DIA_JAN_Parcival(C_Info)
 	nr = 4;
 	condition = DIA_Jan_Parcival_Condition;
 	information = DIA_Jan_Parcival_Info;
-	permanent = FALSE;
 	description = "Я поговорил с Парсивалем.";
 };
 
@@ -206,7 +202,7 @@ func void DIA_Jan_Parcival_Info()
 {
 	AI_Output(other,self,"DIA_Jan_Parcival_15_00");	//Я поговорил с Парсивалем.
 	AI_Output(self,other,"DIA_Jan_Parcival_10_01");	//И?
-	if(hero.guild == GIL_DJG)
+	if(other.guild == GIL_DJG)
 	{
 		AI_Output(other,self,"DIA_Jan_Parcival_15_02");	//Он не доверяет нам, охотникам на драконов.
 	}
@@ -225,7 +221,6 @@ instance DIA_JAN_JanIsSmith(C_Info)
 	nr = 4;
 	condition = DIA_Jan_JanIsSmith_Condition;
 	information = DIA_Jan_JanIsSmith_Info;
-	permanent = FALSE;
 	description = "Берись за молот, для тебя есть работа.";
 };
 
@@ -257,7 +252,6 @@ instance DIA_JAN_SellWeapons(C_Info)
 	nr = 4;
 	condition = DIA_Jan_SellWeapons_Condition;
 	information = DIA_Jan_SellWeapons_Info;
-	permanent = FALSE;
 	description = "Ты продаешь оружие?";
 };
 
@@ -273,7 +267,7 @@ func int DIA_Jan_SellWeapons_Condition()
 func void DIA_Jan_SellWeapons_Info()
 {
 	AI_Output(other,self,"DIA_Jan_SellWeapons_15_00");	//Ты продаешь оружие?
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Jan_SellWeapons_10_01");	//Ни за что. Чтобы потом твои собратья бросили меня в темницу за торговлю из-под полы? Нет, забудь об этом!
 	}
@@ -308,7 +302,7 @@ func int Jan_Training_Talente_Condition()
 func void Jan_Training_Talente_Info()
 {
 	AI_Output(other,self,"DIA_Jan_TeachPlayer_15_00");	//Обучи меня кузнечному делу.
-	if((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE))
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE))
 	{
 		B_Say(self,other,"$NOLEARNOVERPERSONALMAX");
 	}
@@ -325,7 +319,7 @@ func void Jan_Training_Talente_Info()
 		{
 			Info_AddChoice(Jan_Training_Talente,B_BuildLearnString(NAME_Skill_Smith,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),Jan_Training_Smith_Common);
 		}
-		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+		else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 		{
 			if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] == FALSE)
 			{
@@ -402,15 +396,15 @@ func int DIA_Jan_SellArmor_Condition()
 func void DIA_Jan_SellArmor_Info()
 {
 	AI_Output(other,self,"DIA_Jan_SellArmor_15_00");	//Могу я купить у тебя доспехи?
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Jan_SellArmor_10_01");	//Мои доспехи не идут ни в какое сравнение с теми, что у тебя сейчас есть. Забудь об этом.
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Jan_SellArmor_10_02");	//Маг, который нуждается в доспехах? Забудь об этом - тебе лучше обратиться к портному. Я не могу сделать доспехи для тебя.
 	}
-	else if(hero.guild == GIL_DJG)
+	else if(other.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_Jan_SellArmor_10_03");	//Если бы они у меня были, я бы продал их тебе. Но, к сожалению, у меня их нет.
 		Info_ClearChoices(DIA_JAN_SellArmor);
@@ -545,7 +539,7 @@ instance DIA_Jan_DJG_ARMOR_M(C_Info)
 
 func int DIA_Jan_DJG_ARMOR_M_Condition()
 {
-	if((Jan_DIA_Jan_DJG_ARMOR_M_permanent == FALSE) && (hero.guild == GIL_DJG) && (DJG_Armor_is_offered == TRUE))
+	if((Jan_DIA_Jan_DJG_ARMOR_M_permanent == FALSE) && (other.guild == GIL_DJG) && (DJG_Armor_is_offered == TRUE))
 	{
 		return TRUE;
 	};
@@ -562,7 +556,7 @@ func void DIA_Jan_DJG_ARMOR_M_Info()
 		if(Helmets_Enabled == TRUE)
 		{
 			B_GiveArmor(ITAR_DJGN_M);
-			CreateInvItem(hero,ITHE_DJG_M);
+			CreateInvItem(other,ItHe_DJG_M);
 		}
 		else
 		{
@@ -621,7 +615,7 @@ func void DIA_Jan_DragonPlettBericht_Info()
 	{
 		AI_Output(other,self,"DIA_Jan_DragonPlettBericht_15_02");	//Я убил всех драконов.
 	};
-	if(hero.guild == GIL_DJG)
+	if(other.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_03");	//И что? Ты ведь охотник на драконов, разве нет?
 		AI_Output(other,self,"DIA_Jan_DragonPlettBericht_15_04");	//А ты разве нет?
@@ -631,7 +625,7 @@ func void DIA_Jan_DragonPlettBericht_Info()
 	{
 		AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_06");	//Я уже говорил тебе, мне больше нравится делать оружие, чем убивать драконов.
 	};
-	if((hero.guild != GIL_DJG) && (hero.guild != GIL_SLD))
+	if((other.guild != GIL_DJG) && (other.guild != GIL_SLD))
 	{
 		AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_07");	//Впрочем, есть кое-что, что может заинтересовать меня.
 		AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_08");	//Если бы ты принес мне драконьей крови, я бы хорошо заплатил за нее.
@@ -653,7 +647,7 @@ instance DIA_Jan_DragonBlood(C_Info)
 
 func int DIA_Jan_DragonBlood_Condition()
 {
-	if((Jan_WantsDragonBlood == TRUE) && (MIS_OCGateOpen == FALSE) && Npc_HasItems(other,ItAt_DragonBlood) && ((hero.guild != GIL_DJG) && (hero.guild != GIL_SLD)))
+	if((Jan_WantsDragonBlood == TRUE) && (MIS_OCGateOpen == FALSE) && Npc_HasItems(other,ItAt_DragonBlood) && ((other.guild != GIL_DJG) && (other.guild != GIL_SLD)))
 	{
 		return TRUE;
 	};
@@ -750,7 +744,7 @@ func void DIA_Jan_NACHOCGATEOPEN_Info()
 {
 	AI_Output(other,self,"DIA_Jan_NACHOCGATEOPEN_15_00");	//Все в порядке?
 	AI_Output(self,other,"DIA_Jan_NACHOCGATEOPEN_10_01");	//Абсолютно ничего не ясно!
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Jan_NACHOCGATEOPEN_10_02");	//Зачем эти идиоты открыли ворота? Вы, паладины, ни на что не годитесь!
 	}

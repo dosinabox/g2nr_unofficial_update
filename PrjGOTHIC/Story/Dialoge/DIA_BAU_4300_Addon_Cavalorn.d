@@ -444,7 +444,7 @@ func int DIA_Addon_Cavalorn_HELFEN_Condition()
 func void DIA_Addon_Cavalorn_HELFEN_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_HELFEN_15_00");	//Могу я помочь тебе с бандитами?
-	if(!Npc_HasEquippedArmor(other) && (hero.guild == GIL_NONE))
+	if(!Npc_HasEquippedArmor(other) && (other.guild == GIL_NONE))
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_HELFEN_08_01");	//(хитро) Возможно. Но ты выглядишь таким тощим, ты наверняка не держал меча несколько недель.
 		CavalornWeakComment = TRUE;
@@ -566,7 +566,7 @@ func void B_Addon_Cavalorn_VatrasBrief()
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_09");	//Скажи ему, что мне не удалось.
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_10");	//А если он спросит, где я, просто скажи ему, что я уже на пути к месту встречи, ладно?
 	};
-	if(!Npc_HasEquippedArmor(other) && (hero.guild == GIL_NONE))
+	if(!Npc_HasEquippedArmor(other) && (other.guild == GIL_NONE))
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_11");	//А, да, и еще одно. Сначала купи приличную одежду у какого-нибудь фермера.
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_12");	//Иначе тебя могут принять за бандита. Вот пара монет.
@@ -682,7 +682,6 @@ instance DIA_Addon_Cavalorn_Ring(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Cavalorn_Ring_Condition;
 	information = DIA_Addon_Cavalorn_Ring_Info;
-	permanent = FALSE;
 	description = "Расскажи мне о 'Кольце Воды'!";
 };
 
@@ -712,7 +711,6 @@ instance DIA_Addon_Cavalorn_Feinde(C_Info)
 	nr = 6;
 	condition = DIA_Addon_Cavalorn_Feinde_Condition;
 	information = DIA_Addon_Cavalorn_Feinde_Info;
-	permanent = FALSE;
 	description = "Разве ты и твои ребята раньше не были врагами магов Воды?";
 };
 
@@ -741,7 +739,6 @@ instance DIA_Addon_Cavalorn_KdWTask(C_Info)
 	nr = 6;
 	condition = DIA_Addon_Cavalorn_KdWTask_Condition;
 	information = DIA_Addon_Cavalorn_KdWTask_Info;
-	permanent = FALSE;
 	description = "А что, собственно, делают маги Воды?";
 };
 
@@ -876,8 +873,7 @@ func void B_Cavalorn_Triggered_Wohin()
 
 func void DIA_Addon_Cavalorn_Triggered_OBack()
 {
-	CreateInvItems(self,ITAR_Bau_L,1);
-	AI_EquipArmor(self,ITAR_Bau_L);
+	B_EquipArmor(self,ITAR_Bau_L);
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Triggered_OBack_15_00");	//Тогда я пойду и попрошу у них орнамент.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_OBack_08_01");	//Отлично.
 	B_Cavalorn_Triggered_Wohin();
@@ -885,8 +881,7 @@ func void DIA_Addon_Cavalorn_Triggered_OBack()
 
 func void DIA_Addon_Cavalorn_Triggered_Pal()
 {
-	CreateInvItems(self,ITAR_Bau_L,1);
-	AI_EquipArmor(self,ITAR_Bau_L);
+	B_EquipArmor(self,ITAR_Bau_L);
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Triggered_Pal_15_00");	//Кому-то из нас придется подняться в верхнюю часть города.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_Pal_08_01");	//У меня нет на это времени. Это придется сделать тебе.
 	B_Cavalorn_Triggered_Wohin();
@@ -926,7 +921,6 @@ instance DIA_Addon_Cavalorn_WannaLearn(C_Info)
 	nr = 7;
 	condition = DIA_Addon_Cavalorn_WannaLearn_Condition;
 	information = DIA_Addon_Cavalorn_WannaLearn_Info;
-	permanent = FALSE;
 	description = "Ты можешь научить меня кое-чему?";
 };
 

@@ -296,7 +296,7 @@ instance DIA_Fernando_Success(C_Info)
 
 func int DIA_Fernando_Success_Condition()
 {
-	if((Kapitel >= 3) && (MIS_Fernando_Erz == LOG_RUNNING))
+	if((Kapitel >= 3) && (MIS_Fernando_Erz == LOG_RUNNING) && (NpcObsessedByDMT == FALSE))
 	{
 		return TRUE;
 	};

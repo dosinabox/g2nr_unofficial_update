@@ -806,7 +806,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 			if(Helmets_Enabled == TRUE)
 			{
 				Wld_InsertItem(ITAR_PALN_H,"FP_ITEM_PALFINALARMOR");
-				Wld_InsertItem(ITHE_PAL_H,"FP_ITEM_PALFINALWEAPON");
+				Wld_InsertItem(ItHe_PAL_H,"FP_ITEM_PALFINALWEAPON");
 			}
 			else
 			{

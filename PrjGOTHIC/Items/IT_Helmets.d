@@ -1,11 +1,4 @@
 
-var int OHTHelmet_Equipped;
-var int DHTHelmet_Equipped;
-var int DJGMHelmet_Equipped;
-var int DJGHHelmet_Equipped;
-var int PALMHelmet_Equipped;
-var int PALHHelmet_Equipped;
-
 func void Equip_Helmet()
 {
 	if(Npc_IsPlayer(self))
@@ -21,7 +14,7 @@ func void Equip_Helmet()
 	};
 };
 
-instance ITHE_OHT(C_Item)
+instance ItHe_OHT(C_Item)
 {
 	name = "Шлем охотника на орков";
 	mainflag = ITEM_KAT_ARMOR;
@@ -33,11 +26,10 @@ instance ITHE_OHT(C_Item)
 	protection[PROT_MAGIC] = 5;
 	value = 1000;
 	wear = WEAR_Head;
-	visual = "ITHE_OHT.3ds";
+	visual = "ItHe_OHT.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITHE_OHT;
-	on_unequip = UnEquip_ITHE_OHT;
+	on_equip = Equip_Helmet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -51,19 +43,7 @@ instance ITHE_OHT(C_Item)
 	count[5] = value;
 };
 
-
-func void Equip_ITHE_OHT()
-{
-	Equip_Helmet();
-	OHTHelmet_Equipped = TRUE;
-};
-
-func void UnEquip_ITHE_OHT()
-{
-	OHTHelmet_Equipped = FALSE;
-};
-
-instance ITHE_DHT(C_Item)
+instance ItHe_DHT(C_Item)
 {
 	name = "Шлем охотника на демонов";
 	mainflag = ITEM_KAT_ARMOR;
@@ -75,11 +55,10 @@ instance ITHE_DHT(C_Item)
 	protection[PROT_MAGIC] = 5;
 	value = 1000;
 	wear = WEAR_Head;
-	visual = "ITHE_DHT.3ds";
+	visual = "ItHe_DHT.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITHE_DHT;
-	on_unequip = UnEquip_ITHE_DHT;
+	on_equip = Equip_Helmet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -93,19 +72,7 @@ instance ITHE_DHT(C_Item)
 	count[5] = value;
 };
 
-
-func void Equip_ITHE_DHT()
-{
-	Equip_Helmet();
-	DHTHelmet_Equipped = TRUE;
-};
-
-func void UnEquip_ITHE_DHT()
-{
-	DHTHelmet_Equipped = FALSE;
-};
-
-instance ITHE_DJG_M(C_Item)
+instance ItHe_DJG_M(C_Item)
 {
 	name = "Шлем охотника на драконов";
 	mainflag = ITEM_KAT_ARMOR;
@@ -117,11 +84,10 @@ instance ITHE_DJG_M(C_Item)
 	protection[PROT_MAGIC] = 5;
 	value = 1000;
 	wear = WEAR_Head;
-	visual = "ITHE_DJG_M.3ds";
+	visual = "ItHe_DJG_M.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITHE_DJG_M;
-	on_unequip = UnEquip_ITHE_DJG_M;
+	on_equip = Equip_Helmet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -135,19 +101,7 @@ instance ITHE_DJG_M(C_Item)
 	count[5] = value;
 };
 
-
-func void Equip_ITHE_DJG_M()
-{
-	Equip_Helmet();
-	DJGMHelmet_Equipped = TRUE;
-};
-
-func void UnEquip_ITHE_DJG_M()
-{
-	DJGMHelmet_Equipped = FALSE;
-};
-
-instance ITHE_DJG_H(C_Item)
+instance ItHe_DJG_H(C_Item)
 {
 	name = "Крепкий шлем охотника на драконов";
 	mainflag = ITEM_KAT_ARMOR;
@@ -159,11 +113,10 @@ instance ITHE_DJG_H(C_Item)
 	protection[PROT_MAGIC] = 10;
 	value = 2000;
 	wear = WEAR_Head;
-	visual = "ITHE_DJG_H.3ds";
+	visual = "ItHe_DJG_H.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
-	on_equip = Equip_ITHE_DJG_H;
-	on_unequip = UnEquip_ITHE_DJG_H;
+	on_equip = Equip_Helmet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -177,19 +130,7 @@ instance ITHE_DJG_H(C_Item)
 	count[5] = value;
 };
 
-
-func void Equip_ITHE_DJG_H()
-{
-	Equip_Helmet();
-	DJGHHelmet_Equipped = TRUE;
-};
-
-func void UnEquip_ITHE_DJG_H()
-{
-	DJGHHelmet_Equipped = FALSE;
-};
-
-instance ITHE_PAL_M(C_Item)
+instance ItHe_PAL_M(C_Item)
 {
 	name = "Кольчужный капюшон";
 	mainflag = ITEM_KAT_ARMOR;
@@ -201,11 +142,10 @@ instance ITHE_PAL_M(C_Item)
 	protection[PROT_MAGIC] = 5;
 	value = 1000;
 	wear = WEAR_Head;
-	visual = "ITHE_PAL_M.3ds";
+	visual = "ItHe_PAL_M.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	on_equip = Equip_ITHE_PAL_M;
-	on_unequip = UnEquip_ITHE_PAL_M;
+	on_equip = Equip_Helmet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -220,19 +160,7 @@ instance ITHE_PAL_M(C_Item)
 	inv_zbias = 130;
 };
 
-
-func void Equip_ITHE_PAL_M()
-{
-	Equip_Helmet();
-	PALMHelmet_Equipped = TRUE;
-};
-
-func void UnEquip_ITHE_PAL_M()
-{
-	PALMHelmet_Equipped = FALSE;
-};
-
-instance ITHE_PAL_H(C_Item)
+instance ItHe_PAL_H(C_Item)
 {
 	name = "Шлем паладина";
 	mainflag = ITEM_KAT_ARMOR;
@@ -244,11 +172,10 @@ instance ITHE_PAL_H(C_Item)
 	protection[PROT_MAGIC] = 10;
 	value = 2000;
 	wear = WEAR_Head;
-	visual = "ITHE_PAL_H.3ds";
+	visual = "ItHe_PAL_H.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	on_equip = Equip_ITHE_PAL_H;
-	on_unequip = UnEquip_ITHE_PAL_H;
+	on_equip = Equip_Helmet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -261,17 +188,5 @@ instance ITHE_PAL_H(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = 130;
-};
-
-
-func void Equip_ITHE_PAL_H()
-{
-	Equip_Helmet();
-	PALHHelmet_Equipped = TRUE;
-};
-
-func void UnEquip_ITHE_PAL_H()
-{
-	PALHHelmet_Equipped = FALSE;
 };
 

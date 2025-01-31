@@ -1,20 +1,11 @@
 
 func void B_MakeRangerReadyForMeeting(var C_Npc ranger)
 {
-	if(Npc_IsDead(ranger))
+	if(!Npc_IsDead(ranger))
 	{
-		return;
+		ranger.npcType = NPCTYPE_FRIEND;
+		B_EquipArmor(ranger,ITAR_Fake_RANGER);
 	};
-	if(ArmorEquipped(ranger,ITAR_Fake_RANGER))
-	{
-		return;
-	};
-	if(!Npc_HasItems(ranger,ITAR_Fake_RANGER))
-	{
-		CreateInvItem(ranger,ITAR_Fake_RANGER);
-	};
-	AI_EquipArmor(ranger,ITAR_Fake_RANGER);
-	ranger.npcType = NPCTYPE_FRIEND;
 };
 
 func void B_MakeRangerReadyToLeaveMeeting(var C_Npc ranger)
@@ -23,35 +14,31 @@ func void B_MakeRangerReadyToLeaveMeeting(var C_Npc ranger)
 	{
 		return;
 	};
-	if(!ArmorEquipped(ranger,ITAR_Fake_RANGER))
-	{
-		return;
-	};
 	if(C_IsNpc(ranger,MIL_350_Addon_Martin))
 	{
-		AI_EquipArmor(ranger,ITAR_MIL_L);
+		B_EquipArmor(ranger,ITAR_MIL_L);
 	}
 	else if(C_IsNpc(ranger,VLK_449_Lares))
 	{
-		AI_EquipArmor(ranger,ITAR_Vlk_L);
+		B_EquipArmor(ranger,ITAR_Vlk_L);
 	}
 	else if(C_IsNpc(ranger,SLD_805_Cord))
 	{
-		AI_EquipArmor(ranger,ITAR_SLD_H);
+		B_EquipArmor(ranger,ITAR_SLD_H);
 	}
 	else if(C_IsNpc(ranger,BAU_961_Gaan))
 	{
-		AI_EquipArmor(ranger,ITAR_Bau_L);
+		B_EquipArmor(ranger,ITAR_Bau_L);
 	}
 	else if(C_IsNpc(ranger,BAU_970_Orlan))
 	{
-		AI_EquipArmor(ranger,ITAR_Bau_M);
+		B_EquipArmor(ranger,ITAR_Bau_M);
 	}
 	else if(C_IsNpc(ranger,BAU_4300_Addon_Cavalorn))
 	{
 		if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE)
 		{
-			AI_EquipArmor(ranger,ITAR_Bau_L);
+			B_EquipArmor(ranger,ITAR_Bau_L);
 		};
 	};
 };

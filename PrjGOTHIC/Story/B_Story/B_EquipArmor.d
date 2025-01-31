@@ -1,4 +1,16 @@
 
+func void B_EquipArmor(var C_Npc npc,var int itemInstance)
+{
+	if(!Npc_HasItems(npc,itemInstance))
+	{
+		CreateInvItem(npc,itemInstance);
+	};
+	if(!ArmorEquipped(npc,itemInstance))
+	{
+		AI_EquipArmor(npc,itemInstance);
+	};
+};
+
 func void B_SetBeltBonus(var int bonus)
 {
 	self.protection[PROT_EDGE] += bonus;
@@ -21,12 +33,12 @@ func void Equip_ArmorSet()
 {
 	if(Npc_IsPlayer(self))
 	{
-		B_UnEquipHeroItem(ITHE_OHT);
-		B_UnEquipHeroItem(ITHE_DHT);
-		B_UnEquipHeroItem(ITHE_DJG_M);
-		B_UnEquipHeroItem(ITHE_DJG_H);
-		B_UnEquipHeroItem(ITHE_PAL_M);
-		B_UnEquipHeroItem(ITHE_PAL_H);
+		B_UnEquipHeroItem(ItHe_OHT);
+		B_UnEquipHeroItem(ItHe_DHT);
+		B_UnEquipHeroItem(ItHe_DJG_M);
+		B_UnEquipHeroItem(ItHe_DJG_H);
+		B_UnEquipHeroItem(ItHe_PAL_M);
+		B_UnEquipHeroItem(ItHe_PAL_H);
 	};
 };
 

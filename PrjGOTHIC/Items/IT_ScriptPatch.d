@@ -260,12 +260,12 @@ func void UseHelmets()
 	CreateInvItem(self,ITAR_PALN_H);
 	CreateInvItem(self,ITAR_OHT);
 	CreateInvItem(self,ITAR_DHT);
-	CreateInvItem(self,ITHE_DJG_M);
-	CreateInvItem(self,ITHE_DJG_H);
-	CreateInvItem(self,ITHE_PAL_M);
-	CreateInvItem(self,ITHE_PAL_H);
-	CreateInvItem(self,ITHE_OHT);
-	CreateInvItem(self,ITHE_DHT);
+	CreateInvItem(self,ItHe_DJG_M);
+	CreateInvItem(self,ItHe_DJG_H);
+	CreateInvItem(self,ItHe_PAL_M);
+	CreateInvItem(self,ItHe_PAL_H);
+	CreateInvItem(self,ItHe_OHT);
+	CreateInvItem(self,ItHe_DHT);
 	Print("Ќайдено много разных доспехов и шлемов!");
 };
 

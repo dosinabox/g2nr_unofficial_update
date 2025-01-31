@@ -34,7 +34,6 @@ func void PC_Sleep(var int t)
 	}
 	else
 	{
-//		B_Say_Overlay(hero,hero,"$AWAKE");
 		PrintScreen(PRINT_SleepOver,-1,-1,FONT_Screen,2);
 		BeerDay = 0;
 		hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
@@ -44,14 +43,7 @@ func void PC_Sleep(var int t)
 	{
 		Parlan_DontTalkToNovice = LOG_RUNNING;
 	};
-	if(!Npc_IsDead(CH))
-	{
-		Wld_RemoveNpc(CH);
-	};
-	if(!Npc_IsDead(SH))
-	{
-		Wld_RemoveNpc(SH);
-	};
+	B_RemoveTestNpcs();
 	B_CheckLog();
 	B_CoolHotDraw(hero);
 	B_ClearFakeItems(hero);

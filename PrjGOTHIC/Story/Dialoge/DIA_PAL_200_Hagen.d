@@ -772,7 +772,7 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	if(Helmets_Enabled == TRUE)
 	{
 		B_GiveArmor(ITAR_PALN_M);
-		CreateInvItem(hero,ITHE_PAL_M);
+		CreateInvItem(hero,ItHe_PAL_M);
 	}
 	else
 	{

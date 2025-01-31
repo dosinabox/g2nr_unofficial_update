@@ -682,164 +682,80 @@ func void CH_Guild_BACK()
 
 func void CH_Guild_PIR()
 {
+	B_EquipArmor(hero,ITAR_PIR_L_Addon);
 	Info_ClearChoices(CH_Guild);
-	if(!Npc_HasItems(hero,ITAR_PIR_L_Addon))
-	{
-		CreateInvItem(hero,ITAR_PIR_L_Addon);
-	};
-	if(!ArmorEquipped(hero,ITAR_PIR_L_Addon))
-	{
-		AI_EquipArmor(hero,ITAR_PIR_L_Addon);
-	};
 };
 
 func void CH_Guild_BDT()
 {
+	B_EquipArmor(hero,ITAR_BDT_M);
 	Info_ClearChoices(CH_Guild);
-	if(!Npc_HasItems(hero,ITAR_BDT_M))
-	{
-		CreateInvItem(hero,ITAR_BDT_M);
-	};
-	if(!ArmorEquipped(hero,ITAR_BDT_M))
-	{
-		AI_EquipArmor(hero,ITAR_BDT_M);
-	};
 };
 
 func void CH_Guild_NOV()
 {
-	Info_ClearChoices(CH_Guild);
+	B_EquipArmor(hero,ITAR_NOV_L);
 	B_SetGuild(hero,GIL_NOV);
-	if(!Npc_HasItems(hero,ITAR_NOV_L))
-	{
-		CreateInvItem(hero,ITAR_NOV_L);
-	};
-	if(!ArmorEquipped(hero,ITAR_NOV_L))
-	{
-		AI_EquipArmor(hero,ITAR_NOV_L);
-	};
+	Info_ClearChoices(CH_Guild);
 };
 
 func void CH_Guild_KDF()
 {
-	Info_ClearChoices(CH_Guild);
+	B_EquipArmor(hero,ITAR_KDF_L);
 	B_SetGuild(hero,GIL_KDF);
-	if(!Npc_HasItems(hero,ITAR_KDF_L))
-	{
-		CreateInvItem(hero,ITAR_KDF_L);
-	};
-	if(!ArmorEquipped(hero,ITAR_KDF_L))
-	{
-		AI_EquipArmor(hero,ITAR_KDF_L);
-	};
+	Info_ClearChoices(CH_Guild);
 };
 
 func void CH_Guild_SLD()
 {
-	Info_ClearChoices(CH_Guild);
+	B_EquipArmor(hero,ITAR_SLD_M);
 	B_SetGuild(hero,GIL_SLD);
-	if(!Npc_HasItems(hero,ITAR_SLD_M))
-	{
-		CreateInvItem(hero,ITAR_SLD_M);
-	};
-	if(!ArmorEquipped(hero,ITAR_SLD_M))
-	{
-		AI_EquipArmor(hero,ITAR_SLD_M);
-	};
+	Info_ClearChoices(CH_Guild);
 };
 
 func void CH_Guild_DJG()
 {
-	Info_ClearChoices(CH_Guild);
-	B_SetGuild(hero,GIL_DJG);
 	if(Helmets_Enabled == TRUE)
 	{
-		if(!Npc_HasItems(hero,ITHE_DJG_M))
-		{
-			CreateInvItem(hero,ITHE_DJG_M);
-		};
-		if(DJGMHelmet_Equipped == FALSE)
-		{
-			AI_EquipArmor(hero,ITHE_DJG_M);
-		};
-		if(!Npc_HasItems(hero,ITAR_DJGN_M))
-		{
-			CreateInvItem(hero,ITAR_DJGN_M);
-		};
-		if(!ArmorEquipped(hero,ITAR_DJGN_M))
-		{
-			AI_EquipArmor(hero,ITAR_DJGN_M);
-		};
+		B_EquipArmor(hero,ItHe_DJG_M);
+		B_EquipArmor(hero,ITAR_DJGN_M);
 	}
 	else
 	{
-		if(!Npc_HasItems(hero,ITAR_DJG_M))
-		{
-			CreateInvItem(hero,ITAR_DJG_M);
-		};
-		if(!ArmorEquipped(hero,ITAR_DJG_M))
-		{
-			AI_EquipArmor(hero,ITAR_DJG_M);
-		};
+		B_EquipArmor(hero,ITAR_DJG_M);
 	};
+	B_SetGuild(hero,GIL_DJG);
+	Info_ClearChoices(CH_Guild);
 };
 
 func void CH_Guild_MIL()
 {
-	Info_ClearChoices(CH_Guild);
+	B_EquipArmor(hero,ITAR_MIL_L);
 	B_SetGuild(hero,GIL_MIL);
-	if(!Npc_HasItems(hero,ITAR_MIL_L))
-	{
-		CreateInvItem(hero,ITAR_MIL_L);
-	};
-	if(!ArmorEquipped(hero,ITAR_MIL_L))
-	{
-		AI_EquipArmor(hero,ITAR_MIL_L);
-	};
+	Info_ClearChoices(CH_Guild);
 };
 
 func void CH_Guild_PAL()
 {
-	Info_ClearChoices(CH_Guild);
-	B_SetGuild(hero,GIL_PAL);
 	if(Helmets_Enabled == TRUE)
 	{
-		if(!Npc_HasItems(hero,ITHE_PAL_M))
-		{
-			CreateInvItem(hero,ITHE_PAL_M);
-		};
-		if(PALMHelmet_Equipped == FALSE)
-		{
-			AI_EquipArmor(hero,ITHE_PAL_M);
-		};
-		if(!Npc_HasItems(hero,ITAR_PALN_M))
-		{
-			CreateInvItem(hero,ITAR_PALN_M);
-		};
-		if(!ArmorEquipped(hero,ITAR_PALN_M))
-		{
-			AI_EquipArmor(hero,ITAR_PALN_M);
-		};
+		B_EquipArmor(hero,ItHe_PAL_M);
+		B_EquipArmor(hero,ITAR_PALN_M);
 	}
 	else
 	{
-		if(!Npc_HasItems(hero,ITAR_PAL_M))
-		{
-			CreateInvItem(hero,ITAR_PAL_M);
-		};
-		if(!ArmorEquipped(hero,ITAR_PAL_M))
-		{
-			AI_EquipArmor(hero,ITAR_PAL_M);
-		};
+		B_EquipArmor(hero,ITAR_PAL_M);
 	};
+	B_SetGuild(hero,GIL_PAL);
 	B_SetPaladinEquipment();
+	Info_ClearChoices(CH_Guild);
 };
 
 func void CH_Guild_NONE()
 {
-	Info_ClearChoices(CH_Guild);
-	B_SetGuild(hero,GIL_NONE);
 	AI_UnequipArmor(hero);
+	B_SetGuild(hero,GIL_NONE);
+	Info_ClearChoices(CH_Guild);
 };
 
 

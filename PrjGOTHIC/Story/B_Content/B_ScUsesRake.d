@@ -48,10 +48,7 @@ func void B_SCGetTreasure_S1()
 				{
 					if(Npc_GetDistToWP(Greg_NW,"NW_BIGFARM_LAKE_CAVE_01") < 1000)
 					{
-						if(!ArmorEquipped(Greg_NW,ITAR_PIR_H_Addon))
-						{
-							AI_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
-						};
+						B_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
 					};
 				};
 				RAKEPLACE[1] = TRUE;
