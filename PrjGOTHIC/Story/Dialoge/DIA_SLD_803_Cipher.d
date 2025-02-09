@@ -28,7 +28,6 @@ instance DIA_Cipher_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Cipher_Hello_Condition;
 	information = DIA_Cipher_Hello_Info;
-	permanent = FALSE;
 	description = "Как дела?";
 };
 
@@ -53,7 +52,6 @@ instance DIA_Cipher_TradeWhat(C_Info)
 	nr = 2;
 	condition = DIA_Cipher_TradeWhat_Condition;
 	information = DIA_Cipher_TradeWhat_Info;
-	permanent = FALSE;
 	description = "А чем ты торгуешь сейчас?";
 };
 
@@ -76,14 +74,14 @@ func void DIA_Cipher_TradeWhat_Info()
 	Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
 	B_LogEntries(TOPIC_SoldierTrader,"Сифер - торговец на ферме Онара.");
 	Log_CreateTopic(TOPIC_CipherPaket,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_CipherPaket,LOG_Running);
+	Log_SetTopicStatus(TOPIC_CipherPaket,LOG_RUNNING);
 	B_LogNextEntry(TOPIC_CipherPaket,"Наемник Сифер потерял тюк болотной травы.");
 	if(!Npc_IsDead(Bodo))
 	{
 		AI_Output(self,other,"DIA_Cipher_TradeWhat_07_05");	//Я почти уверен, что это Бодо. Он спит в той же комнате, что и я, и всегда ухмыляется при встрече, как идиот...
 		Log_AddEntry(TOPIC_CipherPaket,"Он подозревает, что его украл Бодо.");
 	};
-	MIS_Cipher_Paket = LOG_Running;
+	MIS_Cipher_Paket = LOG_RUNNING;
 };
 
 
@@ -93,7 +91,6 @@ instance DIA_Cipher_DoWithThief(C_Info)
 	nr = 2;
 	condition = DIA_Cipher_DoWithThief_Condition;
 	information = DIA_Cipher_DoWithThief_Info;
-	permanent = FALSE;
 	description = "И что ты собираешься делать с вором?";
 };
 
@@ -125,7 +122,6 @@ instance DIA_Cipher_WannaJoin(C_Info)
 	nr = 2;
 	condition = DIA_Cipher_WannaJoin_Condition;
 	information = DIA_Cipher_WannaJoin_Info;
-	permanent = FALSE;
 	description = "Я хочу присоединиться к людям Ли!";
 };
 
@@ -160,13 +156,13 @@ func void B_CipherHappyForWeedPaket()
 		if(Torlof_GenugStimmen == FALSE)
 		{
 			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_RUNNING);
 		};
 		B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
 		SCKnowsSLDVotes = TRUE;
 		GotCipherVote = TRUE;
 	};
-	if(MIS_Cipher_BringWeed == LOG_Running)
+	if(MIS_Cipher_BringWeed == LOG_RUNNING)
 	{
 		MIS_Cipher_BringWeed = LOG_SUCCESS;
 		B_GivePlayerXP(XP_CipherWeed);
@@ -179,7 +175,6 @@ instance DIA_Cipher_YesJoin(C_Info)
 	nr = 2;
 	condition = DIA_Cipher_YesJoin_Condition;
 	information = DIA_Cipher_YesJoin_Info;
-	permanent = FALSE;
 	description = "Я все равно хочу стать одним из вас!";
 };
 
@@ -206,9 +201,9 @@ func void DIA_Cipher_YesJoin_Info()
 		AI_Output(self,other,"DIA_Cipher_YesJoin_07_03");	//Ну, я уже давно ничего не курил. Принеси мне несколько косяков из болотной травы, и ты получишь мой голос.
 		AI_Output(self,other,"DIA_Cipher_YesJoin_07_04");	//Я уверен, тебе удастся что-нибудь найти.
 		SCKnowsSLDVotes = TRUE;
-		MIS_Cipher_BringWeed = LOG_Running;
+		MIS_Cipher_BringWeed = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_CipherHerb,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_CipherHerb,LOG_Running);
+		Log_SetTopicStatus(TOPIC_CipherHerb,LOG_RUNNING);
 		B_LogEntry(TOPIC_CipherHerb,"Сифер проголосует за меня, если я принесу ему несколько косяков болотной травы.");
 	};
 };
@@ -227,7 +222,7 @@ instance DIA_Cipher_Joints(C_Info)
 
 func int DIA_Cipher_Joints_Condition()
 {
-	if(MIS_Cipher_BringWeed == LOG_Running)
+	if(MIS_Cipher_BringWeed == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -269,7 +264,7 @@ func void DIA_Cipher_Joints_Success()
 			if(Torlof_GenugStimmen == FALSE)
 			{
 				Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+				Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_RUNNING);
 			};
 			B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
 			SCKnowsSLDVotes = TRUE;
@@ -334,7 +329,6 @@ instance DIA_Cipher_DarDieb(C_Info)
 	nr = 2;
 	condition = DIA_Cipher_DarDieb_Condition;
 	information = DIA_Cipher_DarDieb_Info;
-	permanent = FALSE;
 	description = "Я знаю, кто взял твою траву.";
 };
 
@@ -392,7 +386,6 @@ instance DIA_Cipher_DarLOST(C_Info)
 	nr = 2;
 	condition = DIA_Cipher_DarLOST_Condition;
 	information = DIA_Cipher_DarLOST_Info;
-	permanent = FALSE;
 	description = "Ты сделал из Дара отбивную... Теперь тебе лучше?";
 };
 
@@ -421,14 +414,13 @@ instance DIA_Cipher_KrautPaket(C_Info)
 	nr = 2;
 	condition = DIA_Cipher_KrautPaket_Condition;
 	information = DIA_Cipher_KrautPaket_Info;
-	permanent = FALSE;
 	description = "Это случайно не твой тюк болотной травы?";
 };
 
 
 func int DIA_Cipher_KrautPaket_Condition()
 {
-	if(Npc_HasItems(other,ItMi_HerbPaket) && (MIS_Cipher_Paket == LOG_Running))
+	if(Npc_HasItems(other,ItMi_HerbPaket) && (MIS_Cipher_Paket == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -447,7 +439,7 @@ func void DIA_Cipher_KrautPaket_Info()
 		if(Torlof_GenugStimmen == FALSE)
 		{
 			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_RUNNING);
 		};
 		B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
 		SCKnowsSLDVotes = TRUE;

@@ -326,7 +326,6 @@ func void UseItWr_ForgedShipLetter_MIS()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"    Королевская печать");
-	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
 

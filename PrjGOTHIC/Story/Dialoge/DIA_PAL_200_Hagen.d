@@ -1207,7 +1207,7 @@ instance DIA_Lord_Hagen_ANTIPALADINE(C_Info)
 
 func int DIA_Lord_Hagen_ANTIPALADINE_Condition()
 {
-	if(((TalkedTo_AntiPaladin == TRUE) || Npc_HasItems(other,ItRi_OrcEliteRing)) && (Hagen_SawOrcRing == FALSE))
+	if(((AntiPaladinTalkCount > 0) || Npc_HasItems(other,ItRi_OrcEliteRing)) && (Hagen_SawOrcRing == FALSE))
 	{
 		return TRUE;
 	};
@@ -1216,7 +1216,7 @@ func int DIA_Lord_Hagen_ANTIPALADINE_Condition()
 func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_00");	//Ёлитные воины орков нападают на наши земли.
-	if((TalkedTo_AntiPaladin == TRUE) && (MIS_KillOrkOberst == FALSE))
+	if((AntiPaladinTalkCount > 0) && (MIS_KillOrkOberst == FALSE))
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_01");	//ќткуда у теб€ така€ информаци€?
 		AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_02");	//я говорил с одним из них. “вое им€ также упоминалось.

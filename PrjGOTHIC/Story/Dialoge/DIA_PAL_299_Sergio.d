@@ -37,7 +37,7 @@ instance DIA_Sergio_WELCOME(C_Info)
 
 func int DIA_Sergio_WELCOME_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && !Npc_KnowsInfo(other,PC_PrayShrine_Paladine))
+	if(Npc_IsInState(self,ZS_Talk) && (SC_PrayedForPaladins == FALSE))
 	{
 		return TRUE;
 	};
@@ -62,7 +62,7 @@ instance DIA_Sergio_Isgaroth(C_Info)
 
 func int DIA_Sergio_Isgaroth_Condition()
 {
-	if(Npc_KnowsInfo(other,PC_PrayShrine_Paladine))
+	if(SC_PrayedForPaladins == TRUE)
 	{
 		if(Kapitel == 1)
 		{

@@ -95,7 +95,6 @@ func void Use_Krypta_Garon()
 	Doc_PrintLine(nDocID,0,"Да спасет Иннос ваши души.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"                                 Иван");
-	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
 
@@ -174,7 +173,6 @@ func void Use_ItWr_LastDoorToUndeadDrgDI_MIS()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Глаз Силы освещает твой путь.");
-	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 	if(Read_LastDoorToUndeadDrgDI_MIS == FALSE)
 	{

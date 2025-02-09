@@ -57,7 +57,6 @@ func void Use_Canthars_KomproBrief()
 	Doc_PrintLines(nDocID,0,"        мы понимаем друг друга!!!!!!!!!!!!");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"            Онар");
-	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
 
@@ -236,7 +235,6 @@ func void Use_Kraeuterliste()
 	Doc_PrintLines(nDocID,0,"Примечание: Пусть кандидат в ученики соберет эти травы для тебя. Это позволит проверить его способности.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"С уважением, Зурис");
-	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
 
@@ -276,7 +274,6 @@ func void Use_ManaRezept()
 	Doc_PrintLine(nDocID,0,"Луговой горец");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Мастер Неорас");
-	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
 
@@ -324,7 +321,6 @@ func void UsePassierschein()
 	Doc_PrintLine(nDocID,0,"            Лариус");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"            королевский губернатор");
-	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 	Player_KnowsLariusAsGovernor = TRUE;
 };
@@ -750,7 +746,6 @@ func void UsePassage()
 	Doc_PrintLines(nDocID,0,"Я умоляю вас: примите решение со всей присущей вам мудростью.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Подпись:   Генерал Ли");
-	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
 
@@ -800,7 +795,6 @@ func void UseBanditLetter()
 	Doc_PrintLines(nDocID,0,"    около поместья землевладельца.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Д.");
-	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 	if(MIS_Steckbriefe == FALSE)
 	{
@@ -965,36 +959,6 @@ instance ItKe_EVT_CRYPT_03(C_Item)
 	inv_rotx = -25;
 	inv_roty = 0;
 	inv_zbias = 145;
-};
-
-instance ITAR_PAL_Skel(C_Item)
-{
-	name = "Старые доспехи паладина";
-	mainflag = ITEM_KAT_ARMOR;
-	flags = 0;
-	protection[PROT_EDGE] = 100;
-	protection[PROT_BLUNT] = 100;
-	protection[PROT_POINT] = 100;
-	protection[PROT_FIRE] = 50;
-	protection[PROT_MAGIC] = 50;
-	value = 500;
-	wear = WEAR_TORSO;
-	visual = "ItAr_Pal_Skel.3ds";
-	visual_change = "Armor_Pal_Skeleton.asc";
-	visual_skin = 0;
-	material = MAT_METAL;
-	on_equip = Equip_ArmorSet;
-	description = name;
-	text[1] = NAME_Prot_Edge;
-	count[1] = protection[PROT_EDGE];
-	text[2] = NAME_Prot_Point;
-	count[2] = protection[PROT_POINT];
-	text[3] = NAME_Prot_Fire;
-	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-	text[5] = NAME_Value;
-	count[5] = value;
 };
 
 instance ItKe_Valentino(C_Item)
