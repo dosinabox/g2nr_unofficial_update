@@ -316,17 +316,6 @@ func int C_ScHasEquippedBeliarsWeapon()
 	return FALSE;
 };
 
-func void B_ClearBeliarsRune()
-{
-	B_RemoveEveryInvItem(hero,ItRu_BeliarsRage);
-	B_RemoveEveryInvItem(hero,ItRu_SuckEnergy);
-	B_RemoveEveryInvItem(hero,ItRu_GreenTentacle);
-	B_RemoveEveryInvItem(hero,ItRu_Swarm);
-	B_RemoveEveryInvItem(hero,ItRu_Skull);
-	B_RemoveEveryInvItem(hero,ItRu_SummonZombie);
-	B_RemoveEveryInvItem(hero,ItRu_SummonGuardian);
-};
-
 func void B_ClearBeliarsWeapon()
 {
 	B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_Raven);
@@ -374,7 +363,7 @@ func void B_ClearBeliarsWeapon()
 
 func void B_ClearBeliarsItems()
 {
-	B_ClearBeliarsRune();
+	B_RemoveAllBeliarRunes(hero);
 	B_ClearBeliarsWeapon();
 };
 

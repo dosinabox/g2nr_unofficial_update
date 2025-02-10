@@ -89,137 +89,50 @@ func void B_SetKDFRunes()
 {
 	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 1)
 	{
-		if(!Npc_HasItems(hero,ItRu_Light))
-		{
-			CreateInvItem(hero,ItRu_Light);
-		};
-		if(!Npc_HasItems(hero,ItRu_FireBolt))
-		{
-			CreateInvItem(hero,ItRu_FireBolt);
-		};
-		if(!Npc_HasItems(hero,ItRu_LightHeal))
-		{
-			CreateInvItem(hero,ItRu_LightHeal);
-		};
-		if(!Npc_HasItems(hero,ItRu_SumGobSkel))
-		{
-			CreateInvItem(hero,ItRu_SumGobSkel);
-		};
-		if(!Npc_HasItems(hero,ItRu_Zap))
-		{
-			CreateInvItem(hero,ItRu_Zap);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_Light,1);
+		B_RefreshInvItemToAmount(hero,ItRu_FireBolt,1);
+		B_RefreshInvItemToAmount(hero,ItRu_LightHeal,1);
+		B_RefreshInvItemToAmount(hero,ItRu_SumGobSkel,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Zap,1);
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 2)
 	{
-		if(!Npc_HasItems(hero,ItRu_InstantFireball))
-		{
-			CreateInvItem(hero,ItRu_InstantFireball);
-		};
-		if(!Npc_HasItems(hero,ItRu_Icebolt))
-		{
-			CreateInvItem(hero,ItRu_Icebolt);
-		};
-		if(!Npc_HasItems(hero,ItRu_SumWolf))
-		{
-			CreateInvItem(hero,ItRu_SumWolf);
-		};
-		if(!Npc_HasItems(hero,ItRu_Windfist))
-		{
-			CreateInvItem(hero,ItRu_Windfist);
-		};
-		if(!Npc_HasItems(hero,ItRu_Sleep))
-		{
-			CreateInvItem(hero,ItRu_Sleep);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_InstantFireball,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Icebolt,1);
+		B_RefreshInvItemToAmount(hero,ItRu_SumWolf,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Windfist,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Sleep,1);
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 3)
 	{
-		if(!Npc_HasItems(hero,ItRu_MediumHeal))
-		{
-			CreateInvItem(hero,ItRu_MediumHeal);
-		};
-		if(!Npc_HasItems(hero,ItRu_Firestorm))
-		{
-			CreateInvItem(hero,ItRu_Firestorm);
-		};
-		if(!Npc_HasItems(hero,ItRu_ThunderBall))
-		{
-			CreateInvItem(hero,ItRu_ThunderBall);
-		};
-		if(!Npc_HasItems(hero,ItRu_SumSkel))
-		{
-			CreateInvItem(hero,ItRu_SumSkel);
-		};
-		if(!Npc_HasItems(hero,ItRu_Fear))
-		{
-			CreateInvItem(hero,ItRu_Fear);
-		};
-		if(!Npc_HasItems(hero,ItRu_IceCube))
-		{
-			CreateInvItem(hero,ItRu_IceCube);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_MediumHeal,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Firestorm,1);
+		B_RefreshInvItemToAmount(hero,ItRu_ThunderBall,1);
+		B_RefreshInvItemToAmount(hero,ItRu_SumSkel,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Fear,1);
+		B_RefreshInvItemToAmount(hero,ItRu_IceCube,1);
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 4)
 	{
-		if(!Npc_HasItems(hero,ItRu_SumGol))
-		{
-			CreateInvItem(hero,ItRu_SumGol);
-		};
-		if(!Npc_HasItems(hero,ItRu_HarmUndead))
-		{
-			CreateInvItem(hero,ItRu_HarmUndead);
-		};
-		if(!Npc_HasItems(hero,ItRu_LightningFlash))
-		{
-			CreateInvItem(hero,ItRu_LightningFlash);
-		};
-		if(!Npc_HasItems(hero,ItRu_ChargeFireball))
-		{
-			CreateInvItem(hero,ItRu_ChargeFireball);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_SumGol,1);
+		B_RefreshInvItemToAmount(hero,ItRu_HarmUndead,1);
+		B_RefreshInvItemToAmount(hero,ItRu_LightningFlash,1);
+		B_RefreshInvItemToAmount(hero,ItRu_ChargeFireball,1);
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 5)
 	{
-		if(!Npc_HasItems(hero,ItRu_Pyrokinesis))
-		{
-			CreateInvItem(hero,ItRu_Pyrokinesis);
-		};
-		if(!Npc_HasItems(hero,ItRu_IceWave))
-		{
-			CreateInvItem(hero,ItRu_IceWave);
-		};
-		if(!Npc_HasItems(hero,ItRu_SumDemon))
-		{
-			CreateInvItem(hero,ItRu_SumDemon);
-		};
-		if(!Npc_HasItems(hero,ItRu_FullHeal))
-		{
-			CreateInvItem(hero,ItRu_FullHeal);
-		};
-		if(!Npc_HasItems(hero,ItRu_Shrink))
-		{
-			CreateInvItem(hero,ItRu_Shrink);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_Pyrokinesis,1);
+		B_RefreshInvItemToAmount(hero,ItRu_IceWave,1);
+		B_RefreshInvItemToAmount(hero,ItRu_SumDemon,1);
+		B_RefreshInvItemToAmount(hero,ItRu_FullHeal,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Shrink,1);
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 6)
 	{
-		if(!Npc_HasItems(hero,ItRu_Firerain))
-		{
-			CreateInvItem(hero,ItRu_Firerain);
-		};
-		if(!Npc_HasItems(hero,ItRu_BreathOfDeath))
-		{
-			CreateInvItem(hero,ItRu_BreathOfDeath);
-		};
-		if(!Npc_HasItems(hero,ItRu_MassDeath))
-		{
-			CreateInvItem(hero,ItRu_MassDeath);
-		};
-		if(!Npc_HasItems(hero,ItRu_ArmyOfDarkness))
-		{
-			CreateInvItem(hero,ItRu_ArmyOfDarkness);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_Firerain,1);
+		B_RefreshInvItemToAmount(hero,ItRu_BreathOfDeath,1);
+		B_RefreshInvItemToAmount(hero,ItRu_MassDeath,1);
+		B_RefreshInvItemToAmount(hero,ItRu_ArmyOfDarkness,1);
 	};
 };
 
@@ -227,69 +140,29 @@ func void B_SetKDWRunes()
 {
 	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 2)
 	{
-		if(!Npc_HasItems(hero,ItRu_Icelance))
-		{
-			CreateInvItem(hero,ItRu_Icelance);
-		};
-		if(!Npc_HasItems(hero,ItRu_Whirlwind))
-		{
-			CreateInvItem(hero,ItRu_Whirlwind);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_Icelance,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Whirlwind,1);
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 3)
 	{
-		if(!Npc_HasItems(hero,ItRu_Thunderstorm))
-		{
-			CreateInvItem(hero,ItRu_Thunderstorm);
-		};
-		if(!Npc_HasItems(hero,ItRu_Geyser))
-		{
-			CreateInvItem(hero,ItRu_Geyser);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_Thunderstorm,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Geyser,1);
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 4)
 	{
-		if(!Npc_HasItems(hero,ItRu_Waterfist))
-		{
-			CreateInvItem(hero,ItRu_Waterfist);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_Waterfist,1);
 	};
 };
 
 func void B_SetPaladinEquipment()
 {
-	if(!Npc_HasItems(hero,ItRu_PalLight))
-	{
-		CreateInvItem(hero,ItRu_PalLight);
-	};
-	if(!Npc_HasItems(hero,ItRu_PalHeal_01))
-	{
-		CreateInvItem(hero,ItRu_PalHeal_01);
-	};
-	if(!Npc_HasItems(hero,ItRu_PalHolyBolt))
-	{
-		CreateInvItem(hero,ItRu_PalHolyBolt);
-	};
-	if(!Npc_HasItems(hero,ItRu_PalHeal_02))
-	{
-		CreateInvItem(hero,ItRu_PalHeal_02);
-	};
-	if(!Npc_HasItems(hero,ItRu_PalRepelEvil))
-	{
-		CreateInvItem(hero,ItRu_PalRepelEvil);
-	};
-	if(!Npc_HasItems(hero,ItRu_PalHeal_03))
-	{
-		CreateInvItem(hero,ItRu_PalHeal_03);
-	};
-	if(!Npc_HasItems(hero,ItRu_PalDestroyEvil))
-	{
-		CreateInvItem(hero,ItRu_PalDestroyEvil);
-	};
-	if(!Npc_HasItems(hero,ItRu_PalTeleportSecret))
-	{
-		CreateInvItem(hero,ItRu_PalTeleportSecret);
-	};
+	B_RefreshInvItemToAmount(hero,ItRu_PalLight,1);
+	B_RefreshInvItemToAmount(hero,ItRu_PalHeal_01,1);
+	B_RefreshInvItemToAmount(hero,ItRu_PalHeal_02,1);
+	B_RefreshInvItemToAmount(hero,ItRu_PalHeal_03,1);
+	B_RefreshInvItemToAmount(hero,ItRu_PalHolyBolt,1);
+	B_RefreshInvItemToAmount(hero,ItRu_PalRepelEvil,1);
+	B_RefreshInvItemToAmount(hero,ItRu_PalDestroyEvil,1);
 };
 
 func void B_UnEquipAllTempBonusItems()
@@ -421,6 +294,8 @@ func void CH_RESET_Info()
 	B_UnEquipHeroItem(ItSc_Windfist);
 	B_UnEquipHeroItem(ItSc_ChargeFireBall);
 	B_UnEquipHeroItem(ItSc_Pyrokinesis);
+	B_UnEquipAllBeliarsRunes();
+	B_UnEquipAllPaladinRunes();
 	B_UnEquipAllCircleRunes();
 	if(Npc_HasReadiedWeapon(hero))
 	{
@@ -445,6 +320,8 @@ func void CH_RESET_Ok()
 		B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_Raven);
 		CreateInvItem(hero,ItMw_BeliarWeapon_Raven);
 	};
+	B_RemoveAllPaladinRunes(hero);
+	B_RemoveAllCircleRunes(hero);
 	B_UnEquipAllTempBonusItems();
 	AI_UnequipArmor(hero);
 	B_SetGuild(hero,GIL_NONE);

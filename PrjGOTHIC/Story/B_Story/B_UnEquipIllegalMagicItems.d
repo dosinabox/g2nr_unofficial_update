@@ -63,9 +63,19 @@ func void B_UnEquipAllBeliarsRunes()
 	B_UnEquipHeroItem(ItRu_SummonGuardian);
 };
 
+func void B_UnEquipAllPaladinRunes()
+{
+	B_UnEquipHeroItem(ItRu_PalLight);
+	B_UnEquipHeroItem(ItRu_PalHeal_01);
+	B_UnEquipHeroItem(ItRu_PalHeal_02);
+	B_UnEquipHeroItem(ItRu_PalHeal_03);
+	B_UnEquipHeroItem(ItRu_PalHolyBolt);
+	B_UnEquipHeroItem(ItRu_PalRepelEvil);
+	B_UnEquipHeroItem(ItRu_PalDestroyEvil);
+};
+
 func void B_UnEquipAllCircleRunes()
 {
-	B_UnEquipAllBeliarsRunes();
 	B_UnEquipHeroItem(ItRu_Thunderstorm);
 	B_UnEquipHeroItem(ItRu_Whirlwind);
 	B_UnEquipHeroItem(ItRu_Geyser);

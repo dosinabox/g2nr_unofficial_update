@@ -6,7 +6,11 @@ func void B_CheerFight()
 	{
 		return;
 	};
-	if(!C_NpcIsHuman(other) || !C_NpcIsHuman(victim))
+	if(!C_NpcIsHuman(other))
+	{
+		return;
+	};
+	if(!C_NpcIsHuman(victim))
 	{
 		return;
 	};

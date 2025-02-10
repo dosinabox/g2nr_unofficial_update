@@ -27,7 +27,6 @@ instance DIA_Fajeth_First(C_Info)
 	nr = 2;
 	condition = DIA_Fajeth_First_Condition;
 	information = DIA_Fajeth_First_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -55,14 +54,13 @@ instance DIA_Fajeth_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Fajeth_Hallo_Condition;
 	information = DIA_Fajeth_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Fajeth_Hallo_Condition()
 {
-	if((Kapitel == 2) && (MIS_ScoutMine == LOG_Running))
+	if((Kapitel == 2) && (MIS_ScoutMine == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -124,9 +122,9 @@ func void DIA_Fajeth_Hallo_Tun()
 	Wld_InsertNpc(NewMine_Snapper7,"OW_PATH_333");
 	Wld_InsertNpc(NewMine_Snapper8,"OW_PATH_333");
 	Wld_InsertNpc(NewMine_Snapper3,"SPAWN_OW_BLOCKGOBBO_CAVE_DM6");
-	MIS_Fajeth_Kill_Snapper = LOG_Running;
+	MIS_Fajeth_Kill_Snapper = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_FajethKillSnapper,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_FajethKillSnapper,LOG_Running);
+	Log_SetTopicStatus(TOPIC_FajethKillSnapper,LOG_RUNNING);
 	B_LogEntry(TOPIC_FajethKillSnapper,"Фаджет дал мне задание: поохотиться на снепперов, которые стаями бродят вокруг шахты.");
 	Info_ClearChoices(DIA_Fajeth_Hallo);
 };
@@ -174,14 +172,13 @@ instance DIA_Fajeth_Leader(C_Info)
 	nr = 2;
 	condition = DIA_Fajeth_Leader_Condition;
 	information = DIA_Fajeth_Leader_Info;
-	permanent = FALSE;
 	description = "Я убил вожака стаи.";
 };
 
 
 func int DIA_Fajeth_Leader_Condition()
 {
-	if((MIS_Fajeth_Kill_Snapper == LOG_Running) && (NewMine_LeadSnapper_Spawned == TRUE))
+	if((MIS_Fajeth_Kill_Snapper == LOG_RUNNING) && (NewMine_LeadSnapper_Spawned == TRUE))
 	{
 		if(Npc_IsDead(NewMine_LeadSnapper))
 		{
@@ -218,7 +215,7 @@ instance DIA_Fajeth_SNAPPER_KILLED(C_Info)
 
 func int DIA_Fajeth_SNAPPER_KILLED_Condition()
 {
-	if(MIS_Fajeth_Kill_Snapper == LOG_Running)
+	if(MIS_Fajeth_Kill_Snapper == LOG_RUNNING)
 	{
 		if(C_FajethSnappersDead())
 		{
@@ -255,7 +252,7 @@ instance DIA_Fajeth_Running(C_Info)
 
 func int DIA_Fajeth_Running_Condition()
 {
-	if(MIS_Fajeth_Kill_Snapper == LOG_Running)
+	if(MIS_Fajeth_Kill_Snapper == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -275,7 +272,6 @@ instance DIA_Fajeth_BELOHNUNG(C_Info)
 	nr = 3;
 	condition = DIA_Fajeth_BELOHNUNG_Condition;
 	information = DIA_Fajeth_BELOHNUNG_Info;
-	permanent = FALSE;
 	description = "Скажи мне, сколько руды удалось вам добыть.";
 };
 

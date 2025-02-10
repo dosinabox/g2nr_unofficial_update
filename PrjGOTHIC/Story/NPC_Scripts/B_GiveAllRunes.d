@@ -3,10 +3,10 @@ func void B_GiveAllClassicRunes(var C_Npc npc)
 {
 	CreateInvItem(npc,ItRu_PalLight);
 	CreateInvItem(npc,ItRu_PalHeal_01);
-	CreateInvItem(npc,ItRu_PalHolyBolt);
 	CreateInvItem(npc,ItRu_PalHeal_02);
-	CreateInvItem(npc,ItRu_PalRepelEvil);
 	CreateInvItem(npc,ItRu_PalHeal_03);
+	CreateInvItem(npc,ItRu_PalHolyBolt);
+	CreateInvItem(npc,ItRu_PalRepelEvil);
 	CreateInvItem(npc,ItRu_PalDestroyEvil);
 	CreateInvItem(npc,ItRu_PalTeleportSecret);
 	CreateInvItem(npc,ItRu_TeleportSeaport);

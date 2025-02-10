@@ -29,7 +29,6 @@ instance DIA_Orlan_Wein(C_Info)
 	nr = 3;
 	condition = DIA_Orlan_Wein_Condition;
 	information = DIA_Orlan_Wein_Info;
-	permanent = FALSE;
 	description = "Я принес вино из монастыря.";
 };
 
@@ -49,7 +48,7 @@ func void DIA_Orlan_Wein_Info()
 	AI_Output(self,other,"DIA_Orlan_Wein_05_02");	//Я уже договорился о цене с мастером Гораксом. Я дам тебе 100 золотых монет прямо сейчас.
 	Info_ClearChoices(DIA_Orlan_Wein);
 	Info_AddChoice(DIA_Orlan_Wein,"Хорошо, давай мне это золото.",DIA_Orlan_Wein_JA);
-	Info_AddChoice(DIA_Orlan_Wein,"Ты пытаешься надуть меня?",DIA_Orlan_Wein_NEIN);
+	Info_AddChoice(DIA_Orlan_Wein,"Ты пытаешься надуть меня? Оно стоит 240 монет.",DIA_Orlan_Wein_NEIN);
 };
 
 func void DIA_Orlan_Wein_JA()
@@ -88,9 +87,9 @@ func void DIA_Orlan_Wein_Okay()
 	AI_Output(self,other,"DIA_Orlan_Wein_Okay_05_01");	//Вот твои свитки и золото.
 	B_GiveInvItems(self,other,ItMi_Gold,100);
 	AI_PrintScreen("4 свитка получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-	CreateInvItems(hero,ItSc_Light,2);
-	CreateInvItems(hero,ItSc_LightHeal,1);
-	CreateInvItems(hero,ItSc_SumGobSkel,1);
+	CreateInvItems(other,ItSc_Light,2);
+	CreateInvItems(other,ItSc_LightHeal,1);
+	CreateInvItems(other,ItSc_SumGobSkel,1);
 	Info_ClearChoices(DIA_Orlan_Wein);
 };
 
@@ -345,6 +344,8 @@ func void DIA_Addon_Orlan_WhenRangerMeeting_Los()
 };
 
 
+var int DIA_Orlan_RUESTUNG_noPerm;
+
 instance DIA_Orlan_RUESTUNG(C_Info)
 {
 	npc = BAU_970_Orlan;
@@ -355,8 +356,6 @@ instance DIA_Orlan_RUESTUNG(C_Info)
 	description = "Что за доспехи ты можешь предложить?";
 };
 
-
-var int DIA_Orlan_RUESTUNG_noPerm;
 
 func int DIA_Orlan_RUESTUNG_Condition()
 {
@@ -426,11 +425,11 @@ func void DIA_Orlan_TRADE_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Orlan_TRADE_05_00");	//Конечно, брат по Кольцу.
 	}
-	else if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+	else if((other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Orlan_TRADE_05_01");	//Конечно. Для меня большая честь услужить такому важному гостю.
 	}
-	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (hero.guild == GIL_MIL))
+	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG) || (other.guild == GIL_MIL))
 	{
 		AI_Output(self,other,"DIA_Orlan_TRADE_05_02");	//Конечно, сэр.
 	}
@@ -469,13 +468,13 @@ func int DIA_Orlan_HotelZimmer_Condition()
 func void DIA_Orlan_HotelZimmer_Info()
 {
 	AI_Output(other,self,"DIA_Orlan_HotelZimmer_15_00");	//Сколько ты берешь за комнату?
-	if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF) || (SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
+	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF) || (SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
 	{
 		if((SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
 		{
 			AI_Output(self,other,"DIA_Addon_Orlan_HotelZimmer_05_00");	//Братья по Кольцу живут у меня бесплатно.
 		}
-		else if(hero.guild == GIL_PAL)
+		else if(other.guild == GIL_PAL)
 		{
 			AI_Output(self,other,"DIA_Orlan_HotelZimmer_05_01");	//Для рыцаря короля у меня всегда найдется свободная комната. Совершенно бесплатно, естественно.
 		}
@@ -548,7 +547,7 @@ func int DIA_Orlan_MieteFaellig_Condition()
 
 func void DIA_Orlan_MieteFaellig_Info()
 {
-	if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Orlan_MieteFaellig_05_00");	//(неискренне) Я очень рад визиту такого гостя. Оставайся здесь, сколько пожелаешь. Это честь для меня.
 		Orlan_RoomIsFree = TRUE;
@@ -636,7 +635,7 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_05");	//Как всегда Рухар напоил Рэндольфа в стельку. Этого следовало ожидать.
 		Rukhar_Won_Wettkampf = TRUE;
 	};
-	if((hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
+	if((other.guild != GIL_PAL) && (other.guild != GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_06");	//Я надеюсь, это было в последний раз. Я не хочу, чтобы подобное повторялось в моем доме. Заруби это у себя на носу.
 	}
@@ -752,7 +751,7 @@ instance DIA_Orlan_Minenanteil(C_Info)
 
 func int DIA_Orlan_Minenanteil_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (OrlanMinenAnteil == TRUE))
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (OrlanMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};
