@@ -1,6 +1,5 @@
 
 const int Value_Lockpick = 10;
-const int Value_Key_01 = 0;
 
 instance ItKe_Lockpick(C_Item)
 {

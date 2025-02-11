@@ -27,7 +27,6 @@ instance DIA_Gritta_Hello(C_Info)
 	nr = 10;
 	condition = DIA_Gritta_Hello_Condition;
 	information = DIA_Gritta_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -47,28 +46,26 @@ func void DIA_Gritta_Hello_Info()
 };
 
 
+var int Gritta_WantPay;
+var int Gritta_Threatened;
+
 instance DIA_Gritta_WantsMoney(C_Info)
 {
 	npc = VLK_418_Gritta;
 	nr = 2;
 	condition = DIA_Gritta_WantsMoney_Condition;
 	information = DIA_Gritta_WantsMoney_Info;
-	permanent = FALSE;
 	description = "Меня прислал Маттео. Он говорит, что ты задолжала ему.";
 };
 
 
 func int DIA_Gritta_WantsMoney_Condition()
 {
-	if(MIS_Matteo_Gold == LOG_Running)
+	if(MIS_Matteo_Gold == LOG_RUNNING)
 	{
 		return TRUE;
 	};
 };
-
-
-var int Gritta_WantPay;
-var int Gritta_Threatened;
 
 func void DIA_Gritta_WantsMoney_Info()
 {
@@ -166,7 +163,6 @@ instance DIA_Gritta_WINE(C_Info)
 	nr = 2;
 	condition = DIA_Gritta_WINE_Condition;
 	information = DIA_Gritta_WINE_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

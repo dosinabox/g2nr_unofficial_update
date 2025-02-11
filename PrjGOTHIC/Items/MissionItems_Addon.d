@@ -1210,7 +1210,7 @@ instance ItKe_Addon_Bloodwyn_01(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = "Ключ Бладвина";
@@ -1226,7 +1226,7 @@ instance ItKe_Addon_Heiler(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_05.3ds";
 	material = MAT_METAL;
 	description = "Ключ каменного стража";

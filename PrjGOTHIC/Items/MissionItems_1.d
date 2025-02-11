@@ -4,7 +4,7 @@ instance ItKe_Xardas(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -181,7 +181,7 @@ instance ItKe_Dexter(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -346,7 +346,7 @@ instance ItKe_Storage(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -563,7 +563,7 @@ instance ItKe_KlosterSchatz(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -579,7 +579,7 @@ instance ItKe_KlosterStore(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -595,7 +595,7 @@ instance ItKe_KDFPlayer(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -611,7 +611,7 @@ instance ItKe_KlosterBibliothek(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -838,7 +838,7 @@ instance ItKe_Bandit(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -918,7 +918,7 @@ instance ItKe_EVT_CRYPT_01(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_05.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -934,7 +934,7 @@ instance ItKe_EVT_CRYPT_02(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_05.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -950,7 +950,7 @@ instance ItKe_EVT_CRYPT_03(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_05.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -966,7 +966,7 @@ instance ItKe_Valentino(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -983,7 +983,7 @@ instance ItKe_Buerger(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_04.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -999,7 +999,7 @@ instance ItKe_Richter(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_04.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -1016,7 +1016,7 @@ instance ItKe_Salandril(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -1033,7 +1033,7 @@ instance ItKe_PaladinTruhe(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_04.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -1050,7 +1050,7 @@ instance ItKe_ThiefTreasure(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION | ITEM_MULTI;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_04.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -1066,7 +1066,7 @@ instance ItKe_Fingers(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_05.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -1147,7 +1147,7 @@ instance ItKe_Orlan_HotelZimmer(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;

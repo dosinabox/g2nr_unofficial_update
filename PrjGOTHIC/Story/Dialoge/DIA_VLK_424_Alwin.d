@@ -27,7 +27,6 @@ instance DIA_Alwin_Sheep(C_Info)
 	nr = 3;
 	condition = DIA_Alwin_Sheep_Condition;
 	information = DIA_Alwin_Sheep_Info;
-	permanent = FALSE;
 	description = "Это твои овцы?";
 };
 
@@ -58,16 +57,18 @@ instance DIA_Alwin_Fellan(C_Info)
 	nr = 2;
 	condition = DIA_Alwin_Fellan_Condition;
 	information = DIA_Alwin_Fellan_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Alwin_Fellan_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Fellan))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Fellan))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -86,7 +87,6 @@ instance DIA_Alwin_FellanRunning(C_Info)
 	nr = 2;
 	condition = DIA_Alwin_FellanRunning_Condition;
 	information = DIA_Alwin_FellanRunning_Info;
-	permanent = FALSE;
 	description = "Я могу поговорить с Фелланом...";
 };
 
@@ -106,13 +106,13 @@ func void DIA_Alwin_FellanRunning_Info()
 	AI_Output(other,self,"DIA_Alwin_FellanRunning_15_02");	//Ты скажи мне.
 	AI_Output(self,other,"DIA_Alwin_FellanRunning_12_03");	//Ох, вот ты как! Хорошо - если ты заставишь его перестать молотить, я заплачу тебе 25 золотых монет.
 	AI_Output(self,other,"DIA_Alwin_FellanRunning_12_04");	//Но я скажу тебе сразу - ты не сможешь уговорить этого парня. Он сошел с ума. Единственное, что может помочь, это несколько хороших тумаков!
-	MIS_AttackFellan = LOG_Running;
+	MIS_AttackFellan = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Alwin,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Alwin,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Alwin,LOG_RUNNING);
 	B_LogEntry(TOPIC_Alwin,"Алвин хочет, чтобы я заставил Феллана перестать колотить молотком. Впрочем, убивать его за это не стоит.");
 	Info_ClearChoices(DIA_Alwin_FellanRunning);
 	Info_AddChoice(DIA_Alwin_FellanRunning,"Я посмотрю, что можно сделать...",DIA_Alwin_FellanRunning_Ok);
-	if((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
+	if((other.guild != GIL_MIL) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF))
 	{
 		Info_AddChoice(DIA_Alwin_FellanRunning,"Если я начну бить его, у меня будут проблемы с ополчением...",DIA_Alwin_FellanRunning_Problems);
 	};
@@ -139,16 +139,18 @@ instance DIA_Alwin_FellanSuccess(C_Info)
 	nr = 4;
 	condition = DIA_Alwin_FellanSuccess_Condition;
 	information = DIA_Alwin_FellanSuccess_Info;
-	permanent = FALSE;
 	description = "Феллан больше не будет стучать.";
 };
 
 
 func int DIA_Alwin_FellanSuccess_Condition()
 {
-	if((MIS_AttackFellan == LOG_Running) && ((FellanGeschlagen == TRUE) || Npc_IsDead(Fellan)))
+	if(MIS_AttackFellan == LOG_RUNNING)
 	{
-		return TRUE;
+		if((FellanGeschlagen == TRUE) || Npc_IsDead(Fellan))
+		{
+			return TRUE;
+		};
 	};
 };
 
