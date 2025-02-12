@@ -63,7 +63,7 @@ func void DIA_Engardo_HALLO_Info()
 		if(Akils_SLDStillthere == FALSE)
 		{
 			Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
+			Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_RUNNING);
 			B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
 			Akils_SLDStillthere = TRUE;
 		};

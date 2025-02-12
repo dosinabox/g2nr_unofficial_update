@@ -27,7 +27,6 @@ instance DIA_Dar_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Dar_Hallo_Condition;
 	information = DIA_Dar_Hallo_Info;
-	permanent = FALSE;
 	description = "Что ты куришь?";
 };
 
@@ -108,7 +107,6 @@ instance DIA_Dar_WannaJoin(C_Info)
 	nr = 3;
 	condition = DIA_Dar_WannaJoin_Condition;
 	information = DIA_Dar_WannaJoin_Info;
-	permanent = FALSE;
 	description = "Я хочу присоединиться к наемникам. Ты не возражаешь?";
 };
 
@@ -143,7 +141,6 @@ instance DIA_Dar_DuDieb(C_Info)
 	nr = 4;
 	condition = DIA_Dar_DuDieb_Condition;
 	information = DIA_Dar_DuDieb_Info;
-	permanent = FALSE;
 	description = "Сифер сказал мне, что кто-то украл у него тюк болотной травы...";
 };
 
@@ -210,7 +207,6 @@ instance DIA_Dar_AufsMaul(C_Info)
 	nr = 5;
 	condition = DIA_Dar_AufsMaul_Condition;
 	information = DIA_Dar_AufsMaul_Info;
-	permanent = FALSE;
 	description = "Я вышибу эту информацию из тебя!";
 };
 
@@ -238,7 +234,6 @@ instance DIA_Dar_Kameradenschwein(C_Info)
 	nr = 1;
 	condition = DIA_Dar_Kameradenschwein_Condition;
 	information = DIA_Dar_Kameradenschwein_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -271,7 +266,6 @@ instance DIA_Dar_Pilztabak(C_Info)
 	nr = 6;
 	condition = DIA_Dar_Pilztabak_Condition;
 	information = DIA_Dar_Pilztabak_Info;
-	permanent = FALSE;
 	description = "Ты когда-нибудь пробовал грибной табак?";
 };
 
@@ -335,7 +329,7 @@ func void DIA_Dar_ORCRING_Info()
 	Info_ClearChoices(DIA_Dar_ORCRING);
 	Info_AddChoice(DIA_Dar_ORCRING,"Меня это не интересует.",DIA_Dar_ORCRING_no);
 	Info_AddChoice(DIA_Dar_ORCRING,"Крутой парень? Ты?",DIA_Dar_ORCRING_necken);
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (hero.guild == GIL_KDF))
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG) || (other.guild == GIL_KDF))
 	{
 		Info_AddChoice(DIA_Dar_ORCRING,"Как это должно выглядеть?",DIA_Dar_ORCRING_wie);
 	};
@@ -345,7 +339,7 @@ func void DIA_Dar_ORCRING_necken()
 {
 	AI_Output(other,self,"DIA_Dar_ORCRING_necken_15_00");	//Крутой парень? Ты?
 	AI_Output(self,other,"DIA_Dar_ORCRING_necken_03_01");	//(злобно) Ох, ладно, заткнись. Ты-то вообще кто такой?
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Dar_ORCRING_necken_03_02");	//Какой-то надутый простофиля из города. Тебе вообще ничего не светит.
 		AI_Output(self,other,"DIA_Dar_ORCRING_necken_03_05");	//И даже, если подумать, раскроить твой череп - именно то, что мне нужно, чтобы заслужить уважение Ли и его парней.
@@ -355,11 +349,11 @@ func void DIA_Dar_ORCRING_necken()
 	}
 	else
 	{
-		if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+		if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 		{
 			AI_Output(self,other,"DIA_Dar_ORCRING_necken_03_03");	//Ты здесь всего пару дней и уже задрал нос выше облаков.
 		}
-		else if(hero.guild == GIL_KDF)
+		else if(other.guild == GIL_KDF)
 		{
 			AI_Output(self,other,"DIA_Dar_ORCRING_necken_03_04");	//Кого ты хочешь напугать этой своей магической чушью? Только не меня.
 		};
@@ -393,9 +387,9 @@ func void DIA_Dar_ORCRING_wie()
 	AI_Output(self,other,"DIA_Dar_ORCRING_wie_03_02");	//Что-нибудь вроде эмблемы лидера орков, ну или что-то вроде. Знамя, нарукавная нашивка или кольцо, ну, ты понял.
 	AI_Output(self,other,"DIA_Dar_ORCRING_wie_03_03");	//Я не могу произвести впечатление без этого. Это очевидно.
 	Log_CreateTopic(TOPIC_Dar_BringOrcEliteRing,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Dar_BringOrcEliteRing,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Dar_BringOrcEliteRing,LOG_RUNNING);
 	B_LogEntry(TOPIC_Dar_BringOrcEliteRing,"Дар хочет стать важной шишкой в рядах наемников. Он хочет заполучить трофей орков. Знамя, нарукавную нашивку, кольцо, или еще что-нибудь.");
-	MIS_Dar_BringOrcEliteRing = LOG_Running;
+	MIS_Dar_BringOrcEliteRing = LOG_RUNNING;
 	Info_ClearChoices(DIA_Dar_ORCRING);
 };
 
@@ -446,7 +440,7 @@ instance DIA_Dar_BRINGORCELITERING(C_Info)
 
 func int DIA_Dar_BRINGORCELITERING_Condition()
 {
-	if((MIS_Dar_BringOrcEliteRing == LOG_Running) && Npc_HasItems(other,ItRi_OrcEliteRing))
+	if((MIS_Dar_BringOrcEliteRing == LOG_RUNNING) && Npc_HasItems(other,ItRi_OrcEliteRing))
 	{
 		return TRUE;
 	};
@@ -466,13 +460,13 @@ func void DIA_Dar_BRINGORCELITERING_Info()
 func void DIA_Dar_BRINGORCELITERING_geld()
 {
 	AI_Output(other,self,"DIA_Dar_BRINGORCELITERING_geld_15_00");	//Заплати мне золотом.
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_geld_03_01");	//Ммм. 600 золотых монет?
 		AI_Output(other,self,"DIA_Dar_BRINGORCELITERING_geld_15_02");	//Что?
 	};
 	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_geld_03_03");	//Ладно. Я дам тебе 1200 монет.
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_geld_03_04");	//Забирай их или оставь себе это кольцо.
 	};

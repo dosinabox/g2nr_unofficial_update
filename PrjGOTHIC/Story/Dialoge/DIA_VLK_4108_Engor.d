@@ -112,7 +112,6 @@ instance DIA_Engor_Ruestung(C_Info)
 	nr = 2;
 	condition = DIA_Engor_Ruestung_Condition;
 	information = DIA_Engor_Ruestung_Info;
-	permanent = FALSE;
 	description = "У тебя есть что-нибудь интересное для меня?";
 };
 
@@ -218,10 +217,10 @@ func void DIA_Engor_HELP_YES()
 	AI_Output(other,self,"DIA_Engor_HELP_YES_15_00");	//Не волнуйся, я принесу тебе мясо.
 	AI_Output(self,other,"DIA_Engor_HELP_YES_13_01");	//Две дюжины кусков хватило бы, чтобы накормить все эти голодные рты. Возвращайся, когда у тебя будет это мясо. А мне нужно работать.
 	Log_CreateTopic(TOPIC_BringMeat,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BringMeat,LOG_Running);
+	Log_SetTopicStatus(TOPIC_BringMeat,LOG_RUNNING);
 	B_LogEntry(TOPIC_BringMeat,"Энгору нужно две дюжины кусков мяса, чтобы накормить людей в замке.");
 	Log_AddEntry(TOPIC_BringMeat,"Неважно, что это будет - колбаса, окорок, сырое или жареное мясо. Что угодно, лишь бы это можно было жевать.");
-	MIS_Engor_BringMeat = LOG_Running;
+	MIS_Engor_BringMeat = LOG_RUNNING;
 	AI_StopProcessInfos(self);
 };
 
@@ -239,29 +238,29 @@ instance DIA_Engor_BRINGMEAT(C_Info)
 
 func int DIA_Engor_BRINGMEAT_Condition()
 {
-	if((MIS_Engor_BringMeat == LOG_Running) && (Meat_Counter < Meat_Amount))
+	if((MIS_Engor_BringMeat == LOG_RUNNING) && (Meat_Counter < Meat_Amount))
 	{
-		if(Npc_HasItems(hero,ItFo_Bacon))
+		if(Npc_HasItems(other,ItFo_Bacon))
 		{
 			return TRUE;
 		};
-		if(Npc_HasItems(hero,ItFoMuttonRaw))
+		if(Npc_HasItems(other,ItFoMuttonRaw))
 		{
 			return TRUE;
 		};
-		if(Npc_HasItems(hero,ItFoMutton))
+		if(Npc_HasItems(other,ItFoMutton))
 		{
 			return TRUE;
 		};
-		if(Npc_HasItems(hero,ItFo_Sausage))
+		if(Npc_HasItems(other,ItFo_Sausage))
 		{
 			return TRUE;
 		};
-		if(Npc_HasItems(hero,ItFo_NiclasBacon))
+		if(Npc_HasItems(other,ItFo_NiclasBacon))
 		{
 			return TRUE;
 		};
-		if(Npc_HasItems(hero,ItFo_Schafswurst))
+		if(Npc_HasItems(other,ItFo_Schafswurst))
 		{
 			if(Kapitel > 1)
 			{
@@ -422,7 +421,6 @@ instance DIA_Engor_Business(C_Info)
 	nr = 1;
 	condition = DIA_Engor_Business_Condition;
 	information = DIA_Engor_Business_Info;
-	permanent = FALSE;
 	description = "Как бизнес?";
 };
 
@@ -438,11 +436,11 @@ func int DIA_Engor_Business_Condition()
 func void DIA_Engor_Business_Info()
 {
 	AI_Output(other,self,"DIA_Engor_Business_15_00");	//Как бизнес?
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Engor_Business_13_01");	//Неважно. Я надеюсь, что хотя бы у этих охотников на драконов есть какое-нибудь золото.
 	};
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Engor_Business_13_02");	//Паршиво! Паладины ничего не покупают.
 	};

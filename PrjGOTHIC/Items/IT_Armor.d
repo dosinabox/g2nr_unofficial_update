@@ -276,7 +276,7 @@ instance ITAR_Vlk_H(C_Item)
 	value = VALUE_ITAR_Vlk_H;
 	wear = WEAR_TORSO;
 	visual = "ItAr_VLK_H.3DS";
-	visual_change = "Armor_VLH_H.asc";
+	visual_change = "Armor_VLK_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
