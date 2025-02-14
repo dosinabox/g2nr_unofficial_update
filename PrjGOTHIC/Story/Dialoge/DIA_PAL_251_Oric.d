@@ -27,7 +27,6 @@ instance DIA_Oric_HALLO(C_Info)
 	nr = 4;
 	condition = DIA_Oric_HALLO_Condition;
 	information = DIA_Oric_HALLO_Info;
-	permanent = FALSE;
 	description = "Каковы твои обязанности?";
 };
 
@@ -52,14 +51,13 @@ instance DIA_Oric_Bruder(C_Info)
 	nr = 4;
 	condition = DIA_Oric_Bruder_Condition;
 	information = DIA_Oric_Bruder_Info;
-	permanent = FALSE;
 	description = "У меня есть известие для тебя.";
 };
 
 
 func int DIA_Oric_Bruder_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Oric_HALLO) && (MIS_OricBruder == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Oric_HALLO) && (MIS_OricBruder == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -84,14 +82,13 @@ instance DIA_Oric_ScoutMine(C_Info)
 	nr = 1;
 	condition = DIA_Oric_ScoutMine_Condition;
 	information = DIA_Oric_ScoutMine_Info;
-	permanent = FALSE;
 	description = "Я отправляюсь к шахтам.";
 };
 
 
 func int DIA_Oric_ScoutMine_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel < 3) && Npc_KnowsInfo(other,DIA_Oric_HALLO) && ((Fajeth_Ore == FALSE) || (Marcos_Ore == FALSE) || (Silvestro_Ore == FALSE)))
+	if((MIS_ScoutMine == LOG_RUNNING) && (Kapitel < 3) && Npc_KnowsInfo(other,DIA_Oric_HALLO) && ((Fajeth_Ore == FALSE) || (Marcos_Ore == FALSE) || (Silvestro_Ore == FALSE)))
 	{
 		return TRUE;
 	};
@@ -127,7 +124,7 @@ func int DIA_Oric_Perm_Condition()
 func void DIA_Oric_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Oric_Perm_15_00");	//Как обстановка?
-	if(MIS_ScoutMine == LOG_Running)
+	if(MIS_ScoutMine == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Oric_Perm_11_01");	//Ты должен найти старателей и выяснить, сколько у них руды. А там будет видно, как и когда мы сможем покинуть эту долину.
 	}
@@ -165,11 +162,11 @@ func void DIA_Oric_IAmBack_Info()
 {
 	AI_Output(other,self,"DIA_Oric_IAmBack_15_00");	//Я уже вернулся.
 	AI_Output(self,other,"DIA_Oric_IAmBack_11_01");	//Я уже не надеялся, что мы еще когда-нибудь увидим тебя после того, что произошло, когда ты был здесь несколько дней назад.
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Oric_IAmBack_11_02");	//Я приветствую тебя от имени нашего ордена.
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 //		AI_Output(self,other,"DIA_Oric_IAmBack_11_03");	//Я вижу, ты стал высшим магом. Мое почтение.
 		AI_Output(self,other,"DIA_Oric_IAmBack_11_03");	//Я вижу, ты стал магом. Мое почтение.
@@ -224,11 +221,11 @@ func void DIA_Oric_CanHelp_WhatYouMean()
 	{
 		AI_Output(other,self,"DIA_Oric_CanHelp_WhatYouMean_15_05");	//Ты шутишь!?
 	};
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Oric_CanHelp_WhatYouMean_11_06");	//Ты единственный, кого мы можем выделить для этого дела. Все остальные рыцари нужны здесь.
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Oric_CanHelp_WhatYouMean_11_07");	//Мне нелегко просить тебя об этом, Мастер. Но ты как нельзя лучше подходишь для этого задания.
 	}
@@ -347,7 +344,6 @@ instance DIA_Oric_WillHelp(C_Info)
 	nr = 5;
 	condition = DIA_Oric_WillHelp_Condition;
 	information = DIA_Oric_WillHelp_Info;
-	permanent = FALSE;
 	description = "Хорошо. Я убью Хош-Пака.";
 };
 
@@ -370,9 +366,9 @@ func void DIA_Oric_WillHelp_Info()
 	AI_Output(self,other,"DIA_Oric_WillHelp_11_02");	//Палатка Хош-Пака находится на небольшом утесе. Ты, должно быть, уже видел его раньше.
 	AI_Output(self,other,"DIA_Oric_WillHelp_11_03");	//Этот утес стоит неподалеку от дороги, ведущей к нашей шахте. В тени огромной горы.
 	Log_CreateTopic(TOPIC_KillHoshPak,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_KillHoshPak,LOG_Running);
+	Log_SetTopicStatus(TOPIC_KillHoshPak,LOG_RUNNING);
 	B_LogEntry(TOPIC_KillHoshPak,"Орик хочет, чтобы я убил шамана орков Хош-Пака. Его палатка находится на небольшом утесе недалеко от задней части замка.");
-	MIS_KillHoshPak = LOG_Running;
+	MIS_KillHoshPak = LOG_RUNNING;
 };
 
 
@@ -382,7 +378,6 @@ instance DIA_Oric_HoshDead(C_Info)
 	nr = 8;
 	condition = DIA_Oric_HoshDead_Condition;
 	information = DIA_Oric_HoshDead_Info;
-	permanent = FALSE;
 	description = "Хош-Пак мертв!";
 };
 
@@ -449,6 +444,13 @@ func void DIA_Oric_AnyNews_Info()
 };
 
 
+var int Oric_SwampdragonInfo_OneTime;
+var int Oric_RockdragonInfo_OneTime;
+var int Oric_FiredragonInfo_OneTime;
+var int Oric_IcedragonInfo_OneTime;
+var int Oric_DragonCounter;
+var int Oric_FirstQuestion;
+
 instance DIA_Oric_DragonPlettBericht(C_Info)
 {
 	npc = PAL_251_Oric;
@@ -467,14 +469,6 @@ func int DIA_Oric_DragonPlettBericht_Condition()
 		return TRUE;
 	};
 };
-
-
-var int Oric_SwampdragonInfo_OneTime;
-var int Oric_RockdragonInfo_OneTime;
-var int Oric_FiredragonInfo_OneTime;
-var int Oric_IcedragonInfo_OneTime;
-var int Oric_DragonCounter;
-var int Oric_FirstQuestion;
 
 func void DIA_Oric_DragonPlettBericht_Info()
 {

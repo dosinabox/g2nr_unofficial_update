@@ -215,7 +215,7 @@ instance DIA_Ehnim_PERMKAP1(C_Info)
 
 func int DIA_Ehnim_PERMKAP1_Condition()
 {
-	if((DIA_Ehnim_STREIT5_noPerm == TRUE) && Npc_IsInState(self,ZS_Talk) && ((Kapitel < 3) || (hero.guild == GIL_KDF)))
+	if((DIA_Ehnim_STREIT5_noPerm == TRUE) && Npc_IsInState(self,ZS_Talk) && ((Kapitel < 3) || (other.guild == GIL_KDF)))
 	{
 		return TRUE;
 	};
@@ -239,7 +239,7 @@ instance DIA_Ehnim_MoleRatFett(C_Info)
 
 func int DIA_Ehnim_MoleRatFett_Condition()
 {
-	if((DIA_Ehnim_STREIT5_noPerm == TRUE) && (Kapitel >= 3) && (hero.guild != GIL_KDF))
+	if((DIA_Ehnim_STREIT5_noPerm == TRUE) && (Kapitel >= 3) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -278,7 +278,7 @@ func void DIA_Ehnim_MoleRatFett_was()
 	if(FoundVinosKellerei == FALSE)
 	{
 		Log_CreateTopic(TOPIC_FoundVinosKellerei,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_FoundVinosKellerei,LOG_Running);
+		Log_SetTopicStatus(TOPIC_FoundVinosKellerei,LOG_RUNNING);
 		B_LogEntry(TOPIC_FoundVinosKellerei,"Ёним рассказал мне, что ¬ино содержит секретный винокуренный завод в лесу около фермы јкила. Ќо механизм, открывающий решетку, заклинило, и починить его можно только смазав шестеренки жиром крысокрота.");
 		Info_AddChoice(DIA_Ehnim_MoleRatFett,"»? “ы достал смазку?",DIA_Ehnim_MoleRatFett_was_Fett);
 	}

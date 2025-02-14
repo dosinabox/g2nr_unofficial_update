@@ -21,6 +21,8 @@ func void DIA_Addon_Myxir_CITY_EXIT_Info()
 };
 
 
+var int DIA_Addon_Myxir_CITY_HelloCITY_OneTime;
+
 instance DIA_Addon_Myxir_CITY_HelloCITY(C_Info)
 {
 	npc = KDW_140300_Addon_Myxir_CITY;
@@ -36,9 +38,6 @@ func int DIA_Addon_Myxir_CITY_HelloCITY_Condition()
 {
 	return TRUE;
 };
-
-
-var int DIA_Addon_Myxir_CITY_HelloCITY_OneTime;
 
 func void DIA_Addon_Myxir_CITY_HelloCITY_Info()
 {
@@ -69,7 +68,7 @@ instance DIA_Addon_Myxir_CITY_TalkedToGhost(C_Info)
 
 func int DIA_Addon_Myxir_CITY_TalkedToGhost_Condition()
 {
-	if((MIS_ADDON_Myxir_GeistBeschwoeren == LOG_Running) && (SC_TalkedToGhost == TRUE))
+	if((MIS_ADDON_Myxir_GeistBeschwoeren == LOG_RUNNING) && (SC_TalkedToGhost == TRUE))
 	{
 		return TRUE;
 	};

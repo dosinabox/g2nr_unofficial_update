@@ -34,7 +34,6 @@ instance DIA_Isgaroth_Hello(C_Info)
 	nr = 2;
 	condition = DIA_Isgaroth_Hello_Condition;
 	information = DIA_Isgaroth_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -76,7 +75,7 @@ func void DIA_Isgaroth_Segen_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_Segen_15_00");	//Благослови меня!
 	AI_Output(self,other,"DIA_Isgaroth_Segen_01_01");	//Благословляю тебя во имя Инноса. Пусть огонь Всевышнего горит в твоем сердце и дает тебе силы жить согласно его заветам.
-	if((MIS_Thorben_GetBlessings == LOG_Running) && !C_GotAnyInnosBlessing())
+	if((MIS_Thorben_GetBlessings == LOG_RUNNING) && !C_GotAnyInnosBlessing())
 	{
 		B_LogEntry(TOPIC_Thorben,"Маг Огня Исгарот благословил меня.");
 	};
@@ -90,14 +89,13 @@ instance DIA_Isgaroth_Wolf(C_Info)
 	nr = 2;
 	condition = DIA_Isgaroth_Wolf_Condition;
 	information = DIA_Isgaroth_Wolf_Info;
-	permanent = FALSE;
 	description = "Меня послал Сержио. Он поручил мне свои обязанности. Что нужно сделать?";
 };
 
 
 func int DIA_Isgaroth_Wolf_Condition()
 {
-	if((MIS_IsgarothWolf == LOG_Running) && (Kapitel == 1))
+	if((MIS_IsgarothWolf == LOG_RUNNING) && (Kapitel == 1))
 	{
 		return TRUE;
 	};
@@ -117,7 +115,6 @@ instance DIA_Isgaroth_tot(C_Info)
 	nr = 2;
 	condition = DIA_Isgaroth_tot_Condition;
 	information = DIA_Isgaroth_tot_Info;
-	permanent = FALSE;
 	description = "Я убил волка.";
 };
 
@@ -157,7 +154,6 @@ instance DIA_Isgaroth_Job(C_Info)
 	nr = 4;
 	condition = DIA_Isgaroth_Job_Condition;
 	information = DIA_Isgaroth_Job_Info;
-	permanent = FALSE;
 	description = "Что ты делаешь здесь?";
 };
 
@@ -215,7 +211,7 @@ func void B_KlosterTributInfo()
 	if(SC_KnowsKlosterTribut == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Kloster,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Kloster,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Kloster,LOG_RUNNING);
 		B_LogEntry(TOPIC_Kloster,"Чтобы стать послушником монастыря Инноса, мне нужна овца и 1000 золотых монет.");
 		SC_KnowsKlosterTribut = TRUE;
 	};
@@ -227,7 +223,6 @@ instance DIA_Isgaroth_Kloster(C_Info)
 	nr = 3;
 	condition = DIA_Isgaroth_Kloster_Condition;
 	information = DIA_Isgaroth_Kloster_Info;
-	permanent = FALSE;
 	description = "Куда ведет эта дорога?";
 };
 
@@ -270,7 +265,7 @@ instance DIA_Isgaroth_Vatras(C_Info)
 
 func int DIA_Isgaroth_Vatras_Condition()
 {
-	if((MIS_Vatras_Message == LOG_Running) && (Npc_HasItems(other,ItWr_VatrasMessage) || Npc_HasItems(other,ItWr_VatrasMessage_Open)))
+	if((MIS_Vatras_Message == LOG_RUNNING) && (Npc_HasItems(other,ItWr_VatrasMessage) || Npc_HasItems(other,ItWr_VatrasMessage_Open)))
 	{
 		return TRUE;
 	};

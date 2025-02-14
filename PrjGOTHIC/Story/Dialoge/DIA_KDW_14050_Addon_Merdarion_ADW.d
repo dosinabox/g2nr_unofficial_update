@@ -146,7 +146,7 @@ func void DIA_Addon_Merdarion_FokusGeben_Info()
 	CreateInvItems(self,ItMi_Focus,1);
 	B_GiveInvItems(self,other,ItMi_Focus,1);
 	Log_CreateTopic(TOPIC_Addon_TeleportsADW,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_TeleportsADW,"Маг Воды Мердарион дал мне один из старых фокусирующих камней, которые использовались для создания Барьера вокруг Долины Рудников. С его помощью я могу попробовать активировать какой-нибудь телепорт.");
 };
 

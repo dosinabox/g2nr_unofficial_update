@@ -78,7 +78,7 @@ func void B_AngarTellsAboutAmulett()
 	{
 		AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_04_03");	//И что еще хуже, я также потерял амулет, который был со мной многие годы. Я сойду с ума, если не найду его.
 		Log_CreateTopic(TOPIC_AngarsAmulett,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_AngarsAmulett,LOG_Running);
+		Log_SetTopicStatus(TOPIC_AngarsAmulett,LOG_RUNNING);
 		B_LogEntry(TOPIC_AngarsAmulett,"Ангар потерял свой амулет и теперь в отчаянии пытается найти его.");
 		SC_KnowsAngarsAmulett = TRUE;
 	};

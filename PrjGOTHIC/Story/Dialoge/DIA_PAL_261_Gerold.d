@@ -27,7 +27,6 @@ instance DIA_Gerold_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Gerold_Hallo_Condition;
 	information = DIA_Gerold_Hallo_Info;
-	permanent = FALSE;
 	description = "Что ты охраняешь?";
 };
 
@@ -57,7 +56,6 @@ instance DIA_Gerold_Jail(C_Info)
 	nr = 2;
 	condition = DIA_Gerold_Jail_Condition;
 	information = DIA_Gerold_Jail_Info;
-	permanent = FALSE;
 	description = "Ты пропустишь меня в темницу?";
 };
 
@@ -84,7 +82,6 @@ instance DIA_Gerold_Ausnahme(C_Info)
 	nr = 2;
 	condition = DIA_Gerold_Ausnahme_Condition;
 	information = DIA_Gerold_Ausnahme_Info;
-	permanent = FALSE;
 	description = "Ты не мог бы сделать исключение для меня?";
 };
 
@@ -110,7 +107,6 @@ instance DIA_Gerold_Gold(C_Info)
 	nr = 2;
 	condition = DIA_Gerold_Gold_Condition;
 	information = DIA_Gerold_Gold_Info;
-	permanent = FALSE;
 	description = "А что, если я заплачу золотом?";
 };
 
@@ -137,14 +133,13 @@ instance DIA_Gerold_Deal(C_Info)
 	nr = 2;
 	condition = DIA_Gerold_Deal_Condition;
 	information = DIA_Gerold_Deal_Info;
-	permanent = FALSE;
 	description = "У меня есть записка для одного из заключенных. Ты можешь передать ее?";
 };
 
 
 func int DIA_Gerold_Deal_Condition()
 {
-	if((MIS_RescueGorn == LOG_Running) && Npc_HasItems(other,ItWr_LetterForGorn_MIS) && (Kapitel == 2) && (Garond_Kerkerauf == FALSE))
+	if((MIS_RescueGorn == LOG_RUNNING) && Npc_HasItems(other,ItWr_LetterForGorn_MIS) && (Kapitel == 2) && (Garond_Kerkerauf == FALSE))
 	{
 		return TRUE;
 	};
@@ -164,6 +159,8 @@ func void DIA_Gerold_Deal_Info()
 };
 
 
+var int DIA_Gerold_Stuff_permanent;
+
 instance DIA_Gerold_Stuff(C_Info)
 {
 	npc = PAL_261_Gerold;
@@ -173,9 +170,6 @@ instance DIA_Gerold_Stuff(C_Info)
 	permanent = TRUE;
 	description = "Я принес тебе кое-что. Вот еда, как ты и просил.";
 };
-
-
-var int DIA_Gerold_Stuff_permanent;
 
 func int DIA_Gerold_Stuff_Condition()
 {
@@ -213,6 +207,8 @@ func void DIA_Gerold_Stuff_Info()
 };
 
 
+var int DIA_Gerold_Antwort_permanent;
+
 instance DIA_Gerold_Antwort(C_Info)
 {
 	npc = PAL_261_Gerold;
@@ -222,9 +218,6 @@ instance DIA_Gerold_Antwort(C_Info)
 	permanent = TRUE;
 	description = "Горн получил записку?";
 };
-
-
-var int DIA_Gerold_Antwort_permanent;
 
 func int DIA_Gerold_Antwort_Condition()
 {
@@ -270,7 +263,6 @@ instance DIA_Gerold_SetGornFree(C_Info)
 	nr = 2;
 	condition = DIA_Gerold_SetGornFree_Condition;
 	information = DIA_Gerold_SetGornFree_Info;
-	permanent = FALSE;
 	description = "Освободи Горна. Это приказ командующего Гаронда.";
 };
 
@@ -366,9 +358,9 @@ func void DIA_Gerold_KAP4_ALLESRUHIG_geben()
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FOOD");
 	Log_CreateTopic(TOPIC_GeroldGiveFood,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_GeroldGiveFood,LOG_Running);
+	Log_SetTopicStatus(TOPIC_GeroldGiveFood,LOG_RUNNING);
 	B_LogEntry(TOPIC_GeroldGiveFood,"Гаронд опять урезал паек. Мне лучше принести Герольду что-нибудь поесть, пока он с голодухи не выкинул какую-нибудь глупость. Я должен встретиться с ним в доме магов, когда все уснут.");
-	MIS_GeroldGiveFood = LOG_Running;
+	MIS_GeroldGiveFood = LOG_RUNNING;
 };
 
 func void DIA_Gerold_KAP4_ALLESRUHIG_Nein()
@@ -394,7 +386,7 @@ instance DIA_Gerold_FOOD(C_Info)
 
 func int DIA_Gerold_FOOD_Condition()
 {
-	if((Npc_GetDistToWP(self,"OC_MAGE_IN") < 500) && (MIS_GeroldGiveFood == LOG_Running))
+	if((Npc_GetDistToWP(self,"OC_MAGE_IN") < 500) && (MIS_GeroldGiveFood == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -601,7 +593,7 @@ func void DIA_Gerold_PERM4_Info()
 	{
 		AI_Output(self,other,"DIA_Gerold_PERM4_12_03");	//Да. Но все же, спасибо за помощь.
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Gerold_PERM4_12_04");	//Все в порядке, Мастер.
 	}

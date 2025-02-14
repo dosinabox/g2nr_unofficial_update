@@ -56,7 +56,7 @@ func void DIA_BDT_1088_Addon_Torwache_FirstWarn_Info()
 		AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_FirstWarn_06_02");	//А, все в порядке, можешь проходить.
 		self.aivar[AIV_PASSGATE] = TRUE;
 	}
-	else if(MIS_Send_Buddler == LOG_Running)
+	else if(MIS_Send_Buddler == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Addon_BDT_1088_Addon_Torwache_FirstWarn_06_06");	//Эй, пока Торус не выдал тебе пропуск, ты не пройдешь здесь.
 	}

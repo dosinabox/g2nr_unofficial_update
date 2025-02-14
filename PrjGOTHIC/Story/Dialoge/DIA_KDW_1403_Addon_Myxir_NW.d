@@ -98,7 +98,7 @@ func void DIA_Addon_Myxir_Steintafeln_Info()
 	if(TOPIC_End_Stoneplates == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_Stoneplates,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_Stoneplates,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_Stoneplates,LOG_RUNNING);
 	};
 	B_LogEntry(TOPIC_Addon_Stoneplates,"Ќа каменных табличках записаны древние знани€ зодчих. Ќекоторые из них могут волшебным образом увеличить познани€ в области сражений или магии. ќднако их нужно еще суметь прочитать.");
 };

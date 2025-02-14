@@ -27,7 +27,6 @@ instance DIA_Addon_Sancho_HI(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Sancho_HI_Condition;
 	information = DIA_Addon_Sancho_HI_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -60,7 +59,6 @@ instance DIA_Addon_Sancho_Lager(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Sancho_Lager_Condition;
 	information = DIA_Addon_Sancho_Lager_Info;
-	permanent = FALSE;
 	description = "Как мне попасть в лагерь?";
 };
 
@@ -79,7 +77,7 @@ func void DIA_Addon_Sancho_Lager_Info()
 		AI_Output(self,other,"DIA_Addon_Sancho_Lager_06_02");	//Но если ты захочешь попасть в шахту, тебе придется иметь дело с Франко.
 		AI_Output(self,other,"DIA_Addon_Sancho_Lager_06_03");	//Он считает, что все новички должны сначала немного поработать снаружи!
 		Log_CreateTopic(TOPIC_Addon_Franco,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_Franco,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_Franco,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_Franco,"Прежде чем попасть в шахту, все новички должны поработать на болоте.");
 	};
 };
@@ -91,7 +89,6 @@ instance DIA_Addon_Sancho_Mine(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Sancho_Mine_Condition;
 	information = DIA_Addon_Sancho_Mine_Info;
-	permanent = FALSE;
 	description = "Расскажи мне про шахту...";
 };
 
@@ -121,7 +118,6 @@ instance DIA_Addon_Sancho_Franco(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Sancho_Franco_Condition;
 	information = DIA_Addon_Sancho_Franco_Info;
-	permanent = FALSE;
 	description = "Где я могу найти Франко?";
 };
 
@@ -149,7 +145,6 @@ instance DIA_Addon_Sancho_Spitzel(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Sancho_Spitzel_Condition;
 	information = DIA_Addon_Sancho_Spitzel_Info;
-	permanent = FALSE;
 	description = "Ты должен все время здесь сидеть?";
 };
 
@@ -171,6 +166,9 @@ func void DIA_Addon_Sancho_Spitzel_Info()
 };
 
 
+var int Comment_Franco;
+var int Comment_Esteban;
+
 instance DIA_Addon_Sancho_Perm(C_Info)
 {
 	npc = BDT_1073_Addon_Sancho;
@@ -189,10 +187,6 @@ func int DIA_Addon_Sancho_Perm_Condition()
 		return TRUE;
 	};
 };
-
-
-var int Comment_Franco;
-var int Comment_Esteban;
 
 func void DIA_Addon_Sancho_Perm_Info()
 {

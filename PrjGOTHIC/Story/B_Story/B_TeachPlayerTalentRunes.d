@@ -45,8 +45,8 @@ func void B_CreateScrollForTrading(var int scroll)
 		if(!Npc_IsDead(Vatras_DI))
 		{
 			trader = Hlp_GetNpc(Vatras_DI);
-		};
-		if(!Npc_IsDead(Milten_DI))
+		}
+		else if(!Npc_IsDead(Milten_DI))
 		{
 			trader = Hlp_GetNpc(Milten_DI);
 		};
