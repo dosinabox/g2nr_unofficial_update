@@ -27,7 +27,6 @@ instance DIA_DJG_715_Ferros_Hello(C_Info)
 	nr = 4;
 	condition = DIA_DJG_715_Ferros_Hello_Condition;
 	information = DIA_DJG_715_Ferros_Hello_Info;
-	permanent = FALSE;
 	description = "Откуда ты?";
 };
 
@@ -43,7 +42,7 @@ func void DIA_DJG_715_Ferros_Hello_Info()
 	AI_Output(self,other,"DIA_DJG_715_Ferros_Hello_01_01");	//С материка. Мои люди и я бежали оттуда.
 	AI_Output(self,other,"DIA_DJG_715_Ferros_Hello_01_02");	//Там становится все хуже. Орки сжигают за собой все, что горит.
 	AI_Output(self,other,"DIA_DJG_715_Ferros_Hello_01_03");	//Король потерял контроль над своим королевством.
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_DJG_715_Ferros_Hello_01_04");	//Вы, паладины, провалили все дело, если тебе интересно мое мнение.
 	};
@@ -56,7 +55,6 @@ instance DIA_DJG_715_Ferros_Friends(C_Info)
 	nr = 5;
 	condition = DIA_DJG_715_Ferros_Friends_Condition;
 	information = DIA_DJG_715_Ferros_Friends_Info;
-	permanent = FALSE;
 	description = "А где сейчас твои люди?";
 };
 
@@ -83,7 +81,6 @@ instance DIA_DJG_715_Ferros_War(C_Info)
 	nr = 6;
 	condition = DIA_DJG_715_Ferros_War_Condition;
 	information = DIA_DJG_715_Ferros_War_Info;
-	permanent = FALSE;
 	description = "Что еще ты знаешь о войне?";
 };
 
@@ -99,7 +96,7 @@ func int DIA_DJG_715_Ferros_War_Condition()
 func void DIA_DJG_715_Ferros_War_Info()
 {
 	AI_Output(other,self,"DIA_DJG_715_Ferros_War_15_00");	//Что еще ты знаешь о войне?
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_DJG_715_Ferros_War_01_01");	//Ты ведь давно не видел своего короля, а?
 	};
@@ -114,7 +111,6 @@ instance DIA_DJG_715_Ferros_OldCamp(C_Info)
 	nr = 7;
 	condition = DIA_DJG_715_Ferros_OldCamp_Condition;
 	information = DIA_DJG_715_Ferros_OldCamp_Info;
-	permanent = FALSE;
 	description = "А что ты делаешь здесь, в замке?";
 };
 
@@ -134,7 +130,7 @@ func void DIA_DJG_715_Ferros_OldCamp_Info()
 	Info_AddChoice(DIA_DJG_715_Ferros_OldCamp,"Я желаю тебе удачи в твоих поисках.",DIA_DJG_715_Ferros_OldCamp_No);
 	Info_AddChoice(DIA_DJG_715_Ferros_OldCamp,"Что ты дашь мне, если я найду твой меч?",DIA_DJG_715_Ferros_OldCamp_Price);
 	Info_AddChoice(DIA_DJG_715_Ferros_OldCamp,"Я найду твой меч.",DIA_DJG_715_Ferros_OldCamp_Yes);
-	MIS_FerrosSword = LOG_Running;
+	MIS_FerrosSword = LOG_RUNNING;
 };
 
 func void DIA_DJG_715_Ferros_OldCamp_No()
@@ -156,7 +152,7 @@ func void DIA_DJG_715_Ferros_OldCamp_Yes()
 	AI_Output(self,other,"DIA_DJG_715_Ferros_OldCamp_Yes_01_01");	//Это было бы великолепно. Тебе стоит поискать у большого утеса на юге.
 	AI_Output(self,other,"DIA_DJG_715_Ferros_OldCamp_Yes_01_02");	//Я, вероятно, потерял его там, около палаток орков.
 	Log_CreateTopic(TOPIC_FerrosSword,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_FerrosSword,LOG_Running);
+	Log_SetTopicStatus(TOPIC_FerrosSword,LOG_RUNNING);
 	B_LogEntry(TOPIC_FerrosSword,"Похоже, Феррос потерял свой меч на высоком утесе на юге, там, где находятся палатки орков. Как безрассудно.");
 	Info_ClearChoices(DIA_DJG_715_Ferros_OldCamp);
 };
@@ -175,7 +171,7 @@ instance DIA_DJG_715_Ferros_FerrosAnySword(C_Info)
 
 func int DIA_DJG_715_Ferros_FerrosAnySword_Condition()
 {
-	if((MIS_FerrosSword == LOG_Running) && (Npc_HasItems(other,ItMw_1H_Special_01) || Npc_HasItems(other,ItMw_1H_Special_02)))
+	if((MIS_FerrosSword == LOG_RUNNING) && (Npc_HasItems(other,ItMw_1H_Special_01) || Npc_HasItems(other,ItMw_1H_Special_02)))
 	{
 		return TRUE;
 	};
@@ -272,14 +268,13 @@ instance DIA_DJG_715_Ferros_FerrosHisSword(C_Info)
 	nr = 6;
 	condition = DIA_DJG_715_Ferros_FerrosHisSword_Condition;
 	information = DIA_DJG_715_Ferros_FerrosHisSword_Info;
-	permanent = FALSE;
 	description = "Я нашел твой меч.";
 };
 
 
 func int DIA_DJG_715_Ferros_FerrosHisSword_Condition()
 {
-	if((MIS_FerrosSword == LOG_Running) && Npc_HasItems(other,ItMw_1H_FerrosSword_MIS))
+	if((MIS_FerrosSword == LOG_RUNNING) && Npc_HasItems(other,ItMw_1H_FerrosSword_MIS))
 	{
 		return TRUE;
 	};
@@ -381,7 +376,6 @@ instance DIA_Ferros_AllDragonsDead(C_Info)
 	nr = 5;
 	condition = DIA_Ferros_AllDragonsDead_Condition;
 	information = DIA_Ferros_AllDragonsDead_Info;
-	permanent = FALSE;
 	description = "Все драконы мертвы.";
 };
 

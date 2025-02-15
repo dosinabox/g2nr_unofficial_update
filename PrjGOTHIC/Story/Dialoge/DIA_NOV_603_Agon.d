@@ -27,14 +27,13 @@ instance DIA_Agon_Hello(C_Info)
 	nr = 2;
 	condition = DIA_Agon_Hello_Condition;
 	information = DIA_Agon_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Agon_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_Schnitzeljagd != LOG_Running) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_Schnitzeljagd != LOG_RUNNING) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -52,7 +51,6 @@ instance DIA_Agon_Wurst(C_Info)
 	nr = 2;
 	condition = DIA_Agon_Wurst_Condition;
 	information = DIA_Agon_Wurst_Info;
-	permanent = FALSE;
 	description = "Вот, у меня есть баранья колбаса для тебя.";
 };
 
@@ -81,7 +79,6 @@ instance DIA_Agon_New(C_Info)
 	nr = 1;
 	condition = DIA_Agon_New_Condition;
 	information = DIA_Agon_New_Info;
-	permanent = FALSE;
 	description = "Я новичок здесь.";
 };
 
@@ -108,7 +105,6 @@ instance DIA_Agon_YouAndBabo(C_Info)
 	nr = 1;
 	condition = DIA_Agon_YouAndBabo_Condition;
 	information = DIA_Agon_YouAndBabo_Info;
-	permanent = FALSE;
 	description = "Что произошло между тобой и Бабо?";
 };
 
@@ -203,14 +199,13 @@ instance DIA_Agon_GolemDead(C_Info)
 	nr = 1;
 	condition = DIA_Agon_GolemDead_Condition;
 	information = DIA_Agon_GolemDead_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Agon_GolemDead_Condition()
 {
-	if(MIS_Schnitzeljagd == LOG_Running)
+	if(MIS_Schnitzeljagd == LOG_RUNNING)
 	{
 		if(Npc_IsDead(Magic_Golem))
 		{
@@ -282,14 +277,13 @@ instance DIA_Agon_GolemLives(C_Info)
 	nr = 1;
 	condition = DIA_Agon_GolemLives_Condition;
 	information = DIA_Agon_GolemLives_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Agon_GolemLives_Condition()
 {
-	if(MIS_Schnitzeljagd == LOG_Running)
+	if(MIS_Schnitzeljagd == LOG_RUNNING)
 	{
 		if(!Npc_IsDead(Magic_Golem))
 		{

@@ -132,7 +132,7 @@ func void DIA_Addon_Myxir_GeistTafel_Info()
 	AI_Output(self,other,"DIA_Addon_Myxir_GeistTafel_12_12");	//Мне в руки попадалось множество бессмысленных манускриптов.
 	AI_Output(self,other,"DIA_Addon_Myxir_GeistTafel_12_13");	//Например, записи Ю'Бериона, предводителя Братства Спящего.
 	AI_Output(self,other,"DIA_Addon_Myxir_GeistTafel_12_14");	//Но автору ЭТИХ записей я верю.
-	MIS_ADDON_Myxir_GeistBeschwoeren = LOG_Running;
+	MIS_ADDON_Myxir_GeistBeschwoeren = LOG_RUNNING;
 	Info_ClearChoices(DIA_Addon_Myxir_GeistTafel);
 	Info_AddChoice(DIA_Addon_Myxir_GeistTafel,"Ты серьезно?",DIA_Addon_Myxir_GeistTafel_geist);
 	Info_AddChoice(DIA_Addon_Myxir_GeistTafel,"Почему Куарходрон? Почему не верховный жрец Кардимон?",DIA_Addon_Myxir_GeistTafel_Khardimon);
@@ -190,7 +190,7 @@ instance DIA_Addon_Myxir_GeistPerm(C_Info)
 
 func int DIA_Addon_Myxir_GeistPerm_Condition()
 {
-	if((MIS_ADDON_Myxir_GeistBeschwoeren == LOG_Running) && (SC_TalkedToGhost == FALSE))
+	if((MIS_ADDON_Myxir_GeistBeschwoeren == LOG_RUNNING) && (SC_TalkedToGhost == FALSE))
 	{
 		return TRUE;
 	};
@@ -217,7 +217,7 @@ instance DIA_Addon_Myxir_TalkedToGhost(C_Info)
 
 func int DIA_Addon_Myxir_TalkedToGhost_Condition()
 {
-	if((MIS_ADDON_Myxir_GeistBeschwoeren == LOG_Running) && (SC_TalkedToGhost == TRUE))
+	if((MIS_ADDON_Myxir_GeistBeschwoeren == LOG_RUNNING) && (SC_TalkedToGhost == TRUE))
 	{
 		return TRUE;
 	};

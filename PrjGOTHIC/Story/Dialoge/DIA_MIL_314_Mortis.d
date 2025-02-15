@@ -27,7 +27,6 @@ instance DIA_Mortis_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Mortis_Hallo_Condition;
 	information = DIA_Mortis_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -66,14 +65,13 @@ instance DIA_Mortis_Waffe(C_Info)
 	nr = 3;
 	condition = DIA_Mortis_Waffe_Condition;
 	information = DIA_Mortis_Waffe_Info;
-	permanent = FALSE;
 	description = "А где Пек?";
 };
 
 
 func int DIA_Mortis_Waffe_Condition()
 {
-	if((MIS_Andre_Peck == LOG_Running) && !Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
+	if((MIS_Andre_Peck == LOG_RUNNING) && !Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -93,14 +91,13 @@ instance DIA_Mortis_Paket(C_Info)
 	nr = 4;
 	condition = DIA_Mortis_Paket_Condition;
 	information = DIA_Mortis_Paket_Info;
-	permanent = FALSE;
 	description = "Ты что-нибудь знаешь о тюке травки?";
 };
 
 
 func int DIA_Mortis_Paket_Condition()
 {
-	if(MIS_Andre_WAREHOUSE == LOG_Running)
+	if(MIS_Andre_WAREHOUSE == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -122,14 +119,13 @@ instance DIA_Mortis_Redlight(C_Info)
 	nr = 5;
 	condition = DIA_Mortis_Redlight_Condition;
 	information = DIA_Mortis_Redlight_Info;
-	permanent = FALSE;
 	description = "Я хочу найти того, кто продает болотную траву.";
 };
 
 
 func int DIA_Mortis_Redlight_Condition()
 {
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_RUNNING) && (Knows_Borka_Dealer == FALSE))
 	{
 		return TRUE;
 	};
@@ -255,7 +251,6 @@ instance DIA_Mortis_RepairNecklace(C_Info)
 	nr = 8;
 	condition = DIA_Mortis_RepairNecklace_Condition;
 	information = DIA_Mortis_RepairNecklace_Info;
-	permanent = FALSE;
 	description = "Ты можешь чинить драгоценности?";
 };
 

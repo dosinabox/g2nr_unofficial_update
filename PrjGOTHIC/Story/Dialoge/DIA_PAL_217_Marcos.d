@@ -27,7 +27,6 @@ instance DIA_Marcos_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Marcos_Hallo_Condition;
 	information = DIA_Marcos_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -69,7 +68,6 @@ instance DIA_Marcos_Hagen(C_Info)
 	nr = 2;
 	condition = DIA_Marcos_Hagen_Condition;
 	information = DIA_Marcos_Hagen_Info;
-	permanent = FALSE;
 	description = "Я должен доставить лорду Хагену доказательства существования драконов.";
 };
 
@@ -98,14 +96,13 @@ instance DIA_Marcos_Garond(C_Info)
 	nr = 2;
 	condition = DIA_Marcos_Garond_Condition;
 	information = DIA_Marcos_Garond_Info;
-	permanent = FALSE;
 	description = "Я пришел от Гаронда - он хочет знать, какое количество руды готово к транспортировке.";
 };
 
 
 func int DIA_Marcos_Garond_Condition()
 {
-	if((Kapitel == 2) && (MIS_ScoutMine == LOG_Running))
+	if((Kapitel == 2) && (MIS_ScoutMine == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -122,9 +119,9 @@ func void DIA_Marcos_Garond_Info()
 	AI_Output(other,self,"DIA_Marcos_Garond_15_06");	//Я дам ему знать.
 	B_LogEntries(TOPIC_ScoutMine,"Паладин Маркос охраняет ЧЕТЫРЕ ящика в небольшой долине.");
 	Log_CreateTopic(TOPIC_MarcosJungs,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_MarcosJungs,LOG_Running);
+	Log_SetTopicStatus(TOPIC_MarcosJungs,LOG_RUNNING);
 	B_LogNextEntry(TOPIC_MarcosJungs,"Маркос хочет, чтобы Гаронд послал ему подмогу.");
-	MIS_Marcos_Jungs = LOG_Running;
+	MIS_Marcos_Jungs = LOG_RUNNING;
 	Marcos_Ore = TRUE;
 	self.flags = 0;
 };
@@ -157,7 +154,7 @@ func void DIA_Marcos_Perm_Info()
 		AI_Output(self,other,"DIA_Marcos_Perm_04_01");	//Мне очень нужны лечебные зелья!
 		B_UseItem(self,ItPo_Health_03);
 	}
-	else if(MIS_Marcos_Jungs == LOG_Running)
+	else if(MIS_Marcos_Jungs == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Marcos_Perm_04_02");	//Я выдержу, и я надеюсь, что Гаронд скоро пришлет подкрепление.
 	}

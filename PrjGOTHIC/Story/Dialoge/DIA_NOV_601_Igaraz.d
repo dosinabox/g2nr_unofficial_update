@@ -27,7 +27,6 @@ instance DIA_Igaranz_Hello(C_Info)
 	nr = 2;
 	condition = DIA_Igaraz_Hello_Condition;
 	information = DIA_Igaraz_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -59,7 +58,6 @@ instance DIA_Igaraz_Wurst(C_Info)
 	nr = 2;
 	condition = DIA_Igaraz_Wurst_Condition;
 	information = DIA_Igaraz_Wurst_Info;
-	permanent = FALSE;
 	description = "Я раздаю колбасу.";
 };
 
@@ -86,7 +84,6 @@ instance DIA_Igaranz_NotWork(C_Info)
 	nr = 3;
 	condition = DIA_Igaraz_NotWork_Condition;
 	information = DIA_Igaraz_NotWork_Info;
-	permanent = FALSE;
 	description = "Почему ты не работаешь?";
 };
 
@@ -120,7 +117,7 @@ instance DIA_Igaranz_Choosen(C_Info)
 
 func int DIA_Igaraz_Choosen_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaranz_NotWork) && (Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500) && (Knows_Fire_Contest == FALSE) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Igaranz_NotWork) && (Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -163,7 +160,6 @@ instance DIA_Igaranz_StudyInnos(C_Info)
 	nr = 2;
 	condition = DIA_Igaraz_StudyInnos_Condition;
 	information = DIA_Igaraz_StudyInnos_Info;
-	permanent = FALSE;
 	description = "Как я могу начать изучать писания?";
 };
 
@@ -196,7 +192,7 @@ instance DIA_Igaraz_IMTHEMAN(C_Info)
 
 func int DIA_Igaraz_IMTHEMAN_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein))
+	if((MIS_Schnitzeljagd == LOG_RUNNING) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein))
 	{
 		return TRUE;
 	};
@@ -214,7 +210,6 @@ instance DIA_Igaraz_METOO(C_Info)
 	nr = 19;
 	condition = DIA_Igaraz_METOO_Condition;
 	information = DIA_Igaraz_METOO_Info;
-	permanent = FALSE;
 	description = "Я тоже - я потребовал прохождения Испытания Огнем.";
 };
 
@@ -271,14 +266,13 @@ instance DIA_Igaraz_ADD(C_Info)
 	nr = 23;
 	condition = DIA_Igaraz_ADD_Condition;
 	information = DIA_Igaraz_ADD_Info;
-	permanent = FALSE;
 	description = "Ты знаешь что-нибудь о 'живой скале'?";
 };
 
 
 func int DIA_Igaraz_ADD_Condition()
 {
-	if(((Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) || (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_66") <= 3500)) && (MIS_Golem == LOG_Running) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
+	if(((Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) || (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_66") <= 3500)) && (MIS_Golem == LOG_RUNNING) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
 	{
 		if(!Npc_IsDead(Magic_Golem))
 		{
@@ -345,13 +339,12 @@ instance DIA_Igaraz_Stein(C_Info)
 	condition = DIA_Igaraz_Stein_Condition;
 	information = DIA_Igaraz_Stein_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
 func int DIA_Igaraz_Stein_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV))
+	if((MIS_Schnitzeljagd == LOG_RUNNING) && (other.guild == GIL_NOV))
 	{
 		if(C_FireContestRuneFound())
 		{
@@ -385,14 +378,13 @@ instance DIA_Igaranz_TalkAboutBabo(C_Info)
 	nr = 31;
 	condition = DIA_Igaraz_TalkAboutBabo_Condition;
 	information = DIA_Igaraz_TalkAboutBabo_Info;
-	permanent = FALSE;
 	description = "Нам нужно поговорить о Бабо.";
 };
 
 
 func int DIA_Igaraz_TalkAboutBabo_Condition()
 {
-	if(MIS_BabosDocs == LOG_Running)
+	if(MIS_BabosDocs == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -411,7 +403,6 @@ instance DIA_Igaranz_BabosBelongings(C_Info)
 	nr = 31;
 	condition = DIA_Igaraz_BabosBelongings_Condition;
 	information = DIA_Igaraz_BabosBelongings_Info;
-	permanent = FALSE;
 	description = "У тебя есть кое-что, принадлежащее Бабо.";
 };
 
@@ -439,7 +430,6 @@ instance DIA_Igaranz_WhereDocs(C_Info)
 	nr = 31;
 	condition = DIA_Igaraz_WhereDocs_Condition;
 	information = DIA_Igaraz_WhereDocs_Info;
-	permanent = FALSE;
 	description = "Где эти бумаги?";
 };
 
@@ -474,7 +464,6 @@ instance DIA_Igaranz_BabosJob(C_Info)
 	nr = 31;
 	condition = DIA_Igaraz_BabosJob_Condition;
 	information = DIA_Igaraz_BabosJob_Info;
-	permanent = FALSE;
 	description = "Что Бабо должен делать для тебя?";
 };
 
@@ -503,7 +492,6 @@ instance DIA_Igaranz_Price(C_Info)
 	nr = 31;
 	condition = DIA_Igaraz_Price_Condition;
 	information = DIA_Igaraz_Price_Info;
-	permanent = FALSE;
 	description = "Сколько ты хочешь за эти бумаги?";
 };
 
@@ -576,14 +564,13 @@ instance DIA_Igaranz_Perm(C_Info)
 	nr = 2;
 	condition = DIA_Igaraz_Perm_Condition;
 	information = DIA_Igaraz_Perm_Info;
-	permanent = FALSE;
 	description = "У тебя есть что-нибудь интересное для меня?";
 };
 
 
 func int DIA_Igaraz_Perm_Condition()
 {
-	if((Kapitel >= 3) && (other.guild != GIL_KDF) && (MIS_BabosDocs != LOG_Running))
+	if((Kapitel >= 3) && (other.guild != GIL_KDF) && (MIS_BabosDocs != LOG_RUNNING))
 	{
 		return TRUE;
 	};

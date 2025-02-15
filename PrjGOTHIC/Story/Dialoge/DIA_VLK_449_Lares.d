@@ -167,7 +167,6 @@ instance DIA_Lares_HALLO(C_Info)
 	nr = 2;
 	condition = DIA_Lares_HALLO_Condition;
 	information = DIA_Lares_HALLO_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -271,7 +270,6 @@ instance DIA_Lares_AboutGorn(C_Info)
 	nr = 98;
 	condition = DIA_Lares_AboutGorn_Condition;
 	information = DIA_Lares_AboutGorn_Info;
-	permanent = FALSE;
 	description = "Горн сказал тебе обо мне? Что произошло с ним?";
 };
 
@@ -681,7 +679,7 @@ func void DIA_Addon_Lares_GetRangerArmor_end()
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_03");	//Братья! Пришло время вернуться к нашей работе.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_04");	//Нападения бандитов все еще продолжаются. Мы должны ликвидировать эту угрозу.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_05");	//Да сохранит Аданос равновесие нашего мира.
-	if(!Npc_IsDead(Orlan))
+	if(!Npc_IsDead(Orlan) && (ClassicMeleeWeaponsTraders == FALSE))
 	{
 		CreateInvItem(Orlan,ItMw_Addon_Stab03);
 	};
@@ -1143,7 +1141,6 @@ instance DIA_Lares_Paladine(C_Info)
 	nr = 4;
 	condition = DIA_Lares_Paladine_Condition;
 	information = DIA_Lares_Paladine_Info;
-	permanent = FALSE;
 	description = "Мне во что бы то ни стало нужно поговорить с паладинами!";
 };
 
@@ -1193,7 +1190,6 @@ instance DIA_Lares_WhyPalHere(C_Info)
 	nr = 4;
 	condition = DIA_Lares_WhyPalHere_Condition;
 	information = DIA_Lares_WhyPalHere_Info;
-	permanent = FALSE;
 	description = "Ты знаешь, зачем паладины прибыли сюда?";
 };
 
@@ -1409,7 +1405,6 @@ instance DIA_Lares_GuildOfThieves(C_Info)
 	nr = 14;
 	condition = DIA_Lares_GuildOfThieves_Condition;
 	information = DIA_Lares_GuildOfThieves_Info;
-	permanent = FALSE;
 	description = "Ты знаешь что-нибудь о городской гильдии воров?";
 };
 
@@ -1437,7 +1432,6 @@ instance DIA_Lares_WhereGuildOfThieves(C_Info)
 	nr = 15;
 	condition = DIA_Lares_WhereGuildOfThieves_Condition;
 	information = DIA_Lares_WhereGuildOfThieves_Info;
-	permanent = FALSE;
 	description = "Ты знаешь, где мне найти гильдию воров?";
 };
 
@@ -1469,7 +1463,6 @@ instance DIA_Lares_GotKey(C_Info)
 	nr = 16;
 	condition = DIA_Lares_GotKey_Condition;
 	information = DIA_Lares_GotKey_Info;
-	permanent = FALSE;
 	description = "Я нашел здесь этот ключ. Он весь изъеден морской водой...";
 };
 
@@ -1497,7 +1490,6 @@ instance DIA_Lares_Kanalisation(C_Info)
 	nr = 17;
 	condition = DIA_Lares_Kanalisation_Condition;
 	information = DIA_Lares_Kanalisation_Info;
-	permanent = FALSE;
 	description = "Где мне найти канализацию?";
 };
 
@@ -1523,7 +1515,6 @@ instance DIA_Lares_OtherGuild(C_Info)
 	nr = 1;
 	condition = DIA_Lares_OtherGuild_Condition;
 	information = DIA_Lares_OtherGuild_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -1834,7 +1825,6 @@ instance DIA_Lares_GUIDE(C_Info)
 	nr = 1;
 	condition = DIA_Lares_GUIDE_Condition;
 	information = DIA_Lares_GUIDE_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -2377,7 +2367,6 @@ instance DIA_Addon_Lares_ErolProblem(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Lares_ErolProblem_Condition;
 	information = DIA_Addon_Lares_ErolProblem_Info;
-	permanent = FALSE;
 	description = "У этого парня проблемы с бандитами.";
 };
 
@@ -2402,7 +2391,6 @@ instance DIA_Lares_DEX(C_Info)
 	nr = 20;
 	condition = DIA_Lares_DEX_Condition;
 	information = DIA_Lares_DEX_Info;
-	permanent = FALSE;
 	description = "Ты можешь научить меня чему-нибудь?";
 };
 
@@ -2585,7 +2573,6 @@ instance DIA_Lares_NewsAboutBennet(C_Info)
 	nr = 6;
 	condition = DIA_Lares_NewsAboutBennet_Condition;
 	information = DIA_Lares_NewsAboutBennet_Info;
-	permanent = FALSE;
 	description = "Есть новости о Беннете?";
 };
 
@@ -2614,8 +2601,6 @@ instance DIA_Lares_Kap4_PERM(C_Info)
 	nr = 6;
 	condition = DIA_Lares_Kap4_PERM_Condition;
 	information = DIA_Lares_Kap4_PERM_Info;
-//	permanent = TRUE;
-	permanent = FALSE;
 	description = "Почему ты не охотишься на драконов?";
 };
 
@@ -2692,7 +2677,7 @@ func void DIA_Lares_KnowWhereEnemy_No()
 {
 	AI_Output(other,self,"DIA_Lares_KnowWhereEnemy_No_15_00");	//Я ценю твое предложение, но вынужден отказать тебе.
 	AI_Output(self,other,"DIA_Lares_KnowWhereEnemy_No_09_01");	//Ты должен понять, что ты хочешь. Если захочешь вернуться к этому вопросу, ты знаешь, где меня найти.
-	if(hero.guild == GIL_DJG)
+	if(other.guild == GIL_DJG)
 	{
 		Lares_IsOnBoard = LOG_OBSOLETE;
 	}
@@ -2727,7 +2712,7 @@ func void DIA_Lares_LeaveMyShip_Info()
 {
 	AI_Output(other,self,"DIA_Lares_LeaveMyShip_15_00");	//Будет лучше, если ты не поплывешь со мной.
 	AI_Output(self,other,"DIA_Lares_LeaveMyShip_09_01");	//Как знаешь, но в будущем думай, что ты обещаешь и кому.
-	if(hero.guild == GIL_DJG)
+	if(other.guild == GIL_DJG)
 	{
 		Lares_IsOnBoard = LOG_OBSOLETE;
 	}
