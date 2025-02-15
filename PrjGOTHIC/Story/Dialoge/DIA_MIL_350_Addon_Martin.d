@@ -35,7 +35,7 @@ instance DIA_Addon_Martin_MeetingIsRunning(C_Info)
 
 func int DIA_Addon_Martin_MeetingIsRunning_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (RangerMeetingRunning == LOG_Running))
+	if(Npc_IsInState(self,ZS_Talk) && (RangerMeetingRunning == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -152,7 +152,7 @@ instance DIA_Addon_Martin_Farim(C_Info)
 
 func int DIA_Addon_Martin_Farim_Condition()
 {
-	if((MIS_Addon_Farim_PaladinFisch == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Martin_PreTrade))
+	if((MIS_Addon_Farim_PaladinFisch == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_Martin_PreTrade))
 	{
 		return TRUE;
 	};
@@ -216,7 +216,7 @@ instance DIA_Addon_Martin_Rangerhelp(C_Info)
 
 func int DIA_Addon_Martin_Rangerhelp_Condition()
 {
-	if((RangerHelp_gildeMIL == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Martin_WasMachstDu) && (hero.guild == GIL_NONE))
+	if((RangerHelp_gildeMIL == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Martin_WasMachstDu) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -254,7 +254,7 @@ instance DIA_Addon_Martin_Auftrag(C_Info)
 
 func int DIA_Addon_Martin_Auftrag_Condition()
 {
-	if((RangerHelp_gildeMIL == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Martin_Rangerhelp) && (hero.guild == GIL_NONE))
+	if((RangerHelp_gildeMIL == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Martin_Rangerhelp) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -283,7 +283,7 @@ func void DIA_Addon_Martin_Auftrag_Info()
 func void DIA_Addon_Martin_Auftrag_weiter()
 {
 	B_EquipTrader(self);
-	MIS_Addon_Martin_GetRangar = LOG_Running;
+	MIS_Addon_Martin_GetRangar = LOG_RUNNING;
 	MIS_Addon_Martin_GetRangar_Day = Wld_GetDay();
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
@@ -373,7 +373,7 @@ func void DIA_Addon_Martin_AboutBandits_Info()
 	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_01");	//Мы знаем, что они устраивают засады на дорогах, соединяющих город с фермами.
 	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_02");	//Еще нам известно, что несколько дней назад они получили крупную партию оружия.
 	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_03");	//Думаю, что сейчас самое время для поиска улик, указывающих на личность сотрудничающего с ними торговца.
-	MIS_Martin_FindTheBanditTrader = LOG_Running;
+	MIS_Martin_FindTheBanditTrader = LOG_RUNNING;
 	B_LogEntry(TOPIC_Addon_Bandittrader,"Бандиты устраивают засады на дорогах между городом и фермами. Возможно, там я найду улики, указывающие на поставщика оружия.");
 };
 
@@ -395,6 +395,8 @@ func int C_SCHasAnyFernandoEvidence()
 	return FALSE;
 };
 
+var int Martin_IrrlichtHint;
+
 instance DIA_Addon_Martin_Fernando(C_Info)
 {
 	npc = MIL_350_Addon_Martin;
@@ -408,14 +410,11 @@ instance DIA_Addon_Martin_Fernando(C_Info)
 
 func int DIA_Addon_Martin_Fernando_Condition()
 {
-	if(MIS_Martin_FindTheBanditTrader == LOG_Running)
+	if(MIS_Martin_FindTheBanditTrader == LOG_RUNNING)
 	{
 		return TRUE;
 	};
 };
-
-
-var int Martin_IrrlichtHint;
 
 func void DIA_Addon_Martin_Fernando_Info()
 {
@@ -427,15 +426,12 @@ func void DIA_Addon_Martin_Fernando_Info()
 		AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_01");	//Что тебе удалось узнать?
 		if(C_SCHasAnyFernandoEvidence())
 		{
-			if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
+			if(Npc_HasItems(other,ItMw_Addon_BanditTrader) && (FernandoHints_ItMw == FALSE))
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_02");	//Такие шпаги я нашел у бандитов. На эфесе выгравирована буква 'Ф'.
-				if(FernandoHints_ItMw == FALSE)
-				{
-					Npc_RemoveInvItems(other,ItMw_Addon_BanditTrader,1);
-					FernandoHintsCount += 1;
-					FernandoHints_ItMw = TRUE;
-				};
+				Npc_RemoveInvItems(other,ItMw_Addon_BanditTrader,1);
+				FernandoHintsCount += 1;
+				FernandoHints_ItMw = TRUE;
 			};
 			if(Npc_HasItems(other,ItRi_Addon_BanditTrader))
 			{
@@ -537,7 +533,7 @@ func int DIA_Addon_Martin_Perm_Condition()
 func void DIA_Addon_Martin_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Martin_Perm_15_00");	//Все ящики на месте?
-	if(C_DaysSinceEvent(MIS_Addon_Martin_GetRangar_Day,2) && (MIS_Addon_Martin_GetRangar == LOG_Running) && !Npc_IsDead(Rangar) && (SC_GotRangar == FALSE))
+	if(C_DaysSinceEvent(MIS_Addon_Martin_GetRangar_Day,2) && (MIS_Addon_Martin_GetRangar == LOG_RUNNING) && !Npc_IsDead(Rangar) && (SC_GotRangar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Perm_07_01");	//(сердито) Проклятый лентяй, ты должен был охранять эти ящики! Еще несколько вещей пропало!
 		if(Wld_IsTime(24,0,3,0))
@@ -549,7 +545,7 @@ func void DIA_Addon_Martin_Perm_Info()
 			AI_Output(self,other,"DIA_Addon_Martin_Perm_07_03");	//И этой ночью, когда я уйду, будь повнимательнее!
 		};
 	}
-	else if((MIS_Addon_Martin_GetRangar != FALSE) || (hero.guild != GIL_NONE) || (SC_IsRanger == TRUE))
+	else if((MIS_Addon_Martin_GetRangar != FALSE) || (other.guild != GIL_NONE) || (SC_IsRanger == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Perm_07_04");	//Давай, давай, смейся. Попробовал бы ты постоять целый день на пирсе, пытаясь разобраться во всем этом хаосе.
 		AI_Output(self,other,"DIA_Addon_Martin_Perm_07_05");	//Паладины привезли с собой столько всякого хлама, что это даже не смешно.
@@ -573,7 +569,7 @@ instance DIA_Addon_Martin_GotRangar(C_Info)
 
 func int DIA_Addon_Martin_GotRangar_Condition()
 {
-	if((MIS_Addon_Martin_GetRangar == LOG_Running) && (SC_GotRangar == TRUE))
+	if((MIS_Addon_Martin_GetRangar == LOG_RUNNING) && (SC_GotRangar == TRUE))
 	{
 		return TRUE;
 	};

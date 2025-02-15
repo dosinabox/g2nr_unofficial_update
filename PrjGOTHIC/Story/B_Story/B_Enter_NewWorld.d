@@ -73,7 +73,7 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 			MyxirMovedToNW = TRUE;
 		};
 	};
-	if(Talbin_FollowsThroughPass == LOG_Running)
+	if(Talbin_FollowsThroughPass == LOG_RUNNING)
 	{
 		if(Npc_GetDistToWP(hero,"NW_PASS_SECRET_17") < 1000)
 		{
@@ -81,7 +81,7 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 			Talbin_FollowsThroughPass = LOG_SUCCESS;
 		};
 	};
-	if(Biff_FollowsThroughPass == LOG_Running)
+	if(Biff_FollowsThroughPass == LOG_RUNNING)
 	{
 		Wld_InsertNpc(DJG_713_Biff_NW,"LEVELCHANGE");
 		Biff_FollowsThroughPass = LOG_SUCCESS;
@@ -178,6 +178,7 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		};
 		if((MIS_HelpDyrian != LOG_SUCCESS) && !Npc_IsDead(Dyrian))
 		{
+			B_DeletePetzCrime(Dyrian);
 			B_SetGuild(Dyrian,GIL_NONE);
 			Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 			Npc_ExchangeRoutine(Dyrian,"NOFAVOUR");
@@ -203,7 +204,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Hodges_isAlive_Kap3 = TRUE;
 			Npc_ExchangeRoutine(Hodges,"BENNETWEG");
 		};
-		if(!Npc_IsDead(Lares) && (RangerMeetingRunning != LOG_Running))
+		if(!Npc_IsDead(Lares) && (RangerMeetingRunning != LOG_RUNNING))
 		{
 			B_ResetLares();
 		};
@@ -257,7 +258,11 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Peck.aivar[AIV_IGNORE_Theft] = FALSE;
 			Peck.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
 		};
-		B_RemoveNpc(PAL_203_Lothar);
+		if(!Npc_IsDead(Lothar))
+		{
+			B_DeletePetzCrime(Lothar);
+			B_RemoveNpc(PAL_203_Lothar);
+		};
 		Wld_InsertNpc(Giant_Bug,"NW_FARM4_WOOD_MONSTER_N_1_MONSTER");
 		Wld_InsertNpc(Giant_Bug,"NW_FARM4_WOOD_MONSTER_N_1_MONSTER");
 		Wld_InsertNpc(Bloodfly,"NW_TROLLAREA_RIVERSIDE_09");
@@ -330,7 +335,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		if(!Npc_IsDead(Fester))
 		{
 			Npc_ExchangeRoutine(Fester,"CH3");
-			if(MIS_Fester_KillBugs == LOG_Running)
+			if(MIS_Fester_KillBugs == LOG_RUNNING)
 			{
 				MIS_Fester_KillBugs = LOG_FAILED;
 			};
@@ -390,7 +395,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				Wld_InsertNpc(DMT_DementorSpeakerVino4,"NW_LITTLESTONEHENDGE_02");
 				B_KillAnimal(YGiant_Bug_VinoRitual1);
 				B_KillAnimal(YGiant_Bug_VinoRitual2);
-				if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_Running) && (MIS_Addon_Cavalorn_GetOrnamentFromPAL == FALSE))
+				if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_RUNNING) && (MIS_Addon_Cavalorn_GetOrnamentFromPAL == FALSE))
 				{
 					B_StartOtherRoutine(Cavalorn,"ORNAMENTSTEINRINGCH3KDF");
 				};
@@ -722,7 +727,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			MIS_Rukhar_Wettkampf = LOG_OBSOLETE;
 			B_CheckLog();
 		};
-		if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (MIS_Rukhar_Wettkampf == LOG_Running))
+		if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (MIS_Rukhar_Wettkampf == LOG_RUNNING))
 		{
 			if(Mob_HasItems("CHEST_RUKHAR",ItFo_Booze))
 			{
@@ -801,7 +806,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 			if(Helmets_Enabled == TRUE)
 			{
 				Wld_InsertItem(ITAR_PALN_H,"FP_ITEM_PALFINALARMOR");
-				Wld_InsertItem(ITHE_PAL_H,"FP_ITEM_PALFINALWEAPON");
+				Wld_InsertItem(ItHe_PAL_H,"FP_ITEM_PALFINALWEAPON");
 			}
 			else
 			{

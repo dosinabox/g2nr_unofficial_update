@@ -4,7 +4,7 @@ func void B_Say_AttackEnd()
 	var int random;
 	if((self.aivar[AIV_ATTACKREASON] == AR_GuildEnemy) || (self.aivar[AIV_ATTACKREASON] == AR_MonsterMurderedHuman))
 	{
-		if(other.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(other))
 		{
 			if(!Npc_IsDead(other))
 			{
@@ -89,7 +89,7 @@ func void B_Say_AttackEnd()
 	};
 	if(self.aivar[AIV_ATTACKREASON] == AR_SheepKiller)
 	{
-		if(other.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(other))
 		{
 			B_Say(self,other,"$SHEEPATTACKERDOWN");
 		}

@@ -106,7 +106,6 @@ instance DIA_Zuris_GREET(C_Info)
 	nr = 2;
 	condition = DIA_Zuris_GREET_Condition;
 	information = DIA_Zuris_GREET_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -155,7 +154,7 @@ func void DIA_Zuris_WAREZ_Info()
 		AI_Output(self,other,"DIA_Zuris_GREET_14_02");	//Я только что получил несколько новых зелий. Мой гость, мастер Дарон, маг Огня, принес мне их из монастыря.
 		Zuris_Einmal = TRUE;
 	};
-	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING)
 	{
 		ZurisMinenAnteil = TRUE;
 	};
@@ -170,7 +169,6 @@ instance DIA_Zuris_Potions(C_Info)
 	nr = 2;
 	condition = DIA_Zuris_POTIONS_Condition;
 	information = DIA_Zuris_POTIONS_Info;
-	permanent = FALSE;
 	description = "Ты сам готовишь свои зелья?";
 };
 
@@ -199,7 +197,6 @@ instance DIA_Zuris_Kraut(C_Info)
 	nr = 2;
 	condition = DIA_Zuris_Kraut_Condition;
 	information = DIA_Zuris_Kraut_Info;
-	permanent = FALSE;
 	description = "А где именно Константино собирает травы?";
 };
 
@@ -236,7 +233,6 @@ instance DIA_Zuris_Kronstoeckel(C_Info)
 	nr = 2;
 	condition = DIA_Zuris_Kronstoeckel_Condition;
 	information = DIA_Zuris_Kronstoeckel_Info;
-	permanent = FALSE;
 	description = "Константино говорил тебе, где можно найти царский щавель?";
 };
 
@@ -264,7 +260,6 @@ instance DIA_Zuris_WHERE(C_Info)
 	npc = VLK_409_Zuris;
 	condition = DIA_Zuris_WHERE_Condition;
 	information = DIA_Zuris_WHERE_Info;
-	permanent = FALSE;
 	description = "Где я могу найти Константино?";
 };
 
@@ -324,7 +319,7 @@ instance DIA_Zuris_Minenanteil(C_Info)
 
 func int DIA_Zuris_Minenanteil_Condition()
 {
-	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (ZurisMinenAnteil == TRUE))
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (ZurisMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

@@ -142,7 +142,7 @@ instance PC_Booze_Lou(C_Info)
 	condition = PC_Booze_Lou_Condition;
 	information = PC_Booze_Lou_Info;
 	permanent = TRUE;
-	description = "'Молот Лу' (1 вода, 2 репы, 1 болотная трава, 1 зуб болотной акулы и 1 ром)";
+	description = "'Молот Лу' (1 вода, 2 репы, 1 болотная трава, 1 зуб болотной акулы, 1 ром)";
 };
 
 
@@ -183,7 +183,7 @@ instance PC_Booze_Schlaf(C_Info)
 	condition = PC_Booze_Schlaf_Condition;
 	information = PC_Booze_Schlaf_Info;
 	permanent = TRUE;
-	description = "Двойной 'Молот Лу' (1 'Молот Лу' и 1 ром)";
+	description = "Двойной 'Молот Лу' (1 'Молот Лу', 1 ром)";
 };
 
 
@@ -221,7 +221,7 @@ instance PC_Booze_SchnellerHering(C_Info)
 	condition = PC_Booze_SchnellerHering_Condition;
 	information = PC_Booze_SchnellerHering_Info;
 	permanent = TRUE;
-	description = "'Быстрая селедка' (1 вода, 1 ром, 1 рыба и 1 снеппер-трава)";
+	description = "'Быстрая селедка' (1 вода, 1 ром, 1 рыба, 1 снеппер-трава)";
 };
 
 
@@ -389,7 +389,7 @@ instance PC_ItPo_Mana_01(C_Info)
 	condition = PC_ItPo_Mana_01_Condition;
 	information = PC_ItPo_Mana_01_Info;
 	permanent = TRUE;
-	description = ConcatStrings(NAME_Mana_Essenz," (2 огненные крапивы и 1 луговой горец)");
+	description = ConcatStrings(NAME_Mana_Essenz," (2 огненные крапивы, 1 луговой горец)");
 };
 
 
@@ -427,7 +427,7 @@ instance PC_ItPo_Mana_02(C_Info)
 	condition = PC_ItPo_Mana_02_Condition;
 	information = PC_ItPo_Mana_02_Info;
 	permanent = TRUE;
-	description = ConcatStrings(NAME_Mana_Extrakt," (2 огненные травы и 1 луговой горец)");
+	description = ConcatStrings(NAME_Mana_Extrakt," (2 огненные травы, 1 луговой горец)");
 };
 
 
@@ -1117,7 +1117,7 @@ instance PC_ItPo_Addon_Geist(C_Info)
 	condition = PC_ItPo_Addon_Geist_Condition;
 	information = PC_ItPo_Addon_Geist_Info;
 	permanent = TRUE;
-	description = ConcatStrings(NAME_Geist," (2 жала кровавой мухи, 1 экстракт маны, 1 лечебная эссенция и 1 красный жгучий перец)");
+	description = ConcatStrings(NAME_Geist," (2 жала кровавой мухи, 1 экстракт маны, 1 лечебная эссенция, 1 красный жгучий перец)");
 };
 
 

@@ -8,10 +8,14 @@ func void ZS_MM_ThreatenEnemy()
 	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_MM_AssessOthersDamage);
 	Npc_PercEnable(self,PERC_ASSESSMURDER,B_MM_AssessOthersDamage);
 	AI_Standup(self);
+	if((self.guild == GIL_HARPY) || (self.guild == GIL_BLOODFLY))
+	{
+		AI_SetWalkMode(self,NPC_RUN);
+	};
 	Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
 };
 
-func int ZS_MM_ThreatenEnemy_loop()
+func int ZS_MM_ThreatenEnemy_Loop()
 {
 	if(Npc_GetDistToNpc(self,other) > PERC_DIST_MONSTER_ACTIVE_MAX)
 	{
@@ -37,7 +41,7 @@ func int ZS_MM_ThreatenEnemy_loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_MM_ThreatenEnemy_end()
+func void ZS_MM_ThreatenEnemy_End()
 {
 };
 

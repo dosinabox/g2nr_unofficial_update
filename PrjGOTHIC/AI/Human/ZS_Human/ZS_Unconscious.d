@@ -15,7 +15,7 @@ func void ZS_Unconscious()
 	Npc_SetTempAttitude(self,Npc_GetPermAttitude(self,hero));
 	B_StopLookAt(self);
 	AI_StopPointAt(self);
-	if((self.guild < GIL_SEPERATOR_HUM) && C_NpcIsHero(other))
+	if(C_NpcIsHuman(self) && C_NpcIsHero(other))
 	{
 		if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
 		{
@@ -29,7 +29,7 @@ func void ZS_Unconscious()
 			}
 			else if(C_IsNpc(self,SLD_804_Rod))
 			{
-				if(MIS_RodSword == LOG_Running)
+				if(MIS_RodSword == LOG_RUNNING)
 				{
 					MIS_RodSword = LOG_OBSOLETE;
 				};

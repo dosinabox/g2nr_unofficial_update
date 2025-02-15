@@ -325,7 +325,7 @@ func void DIA_Parlan_WELCOME_Info()
 	AI_Output(self,other,"DIA_Parlan_WELCOME_05_06");	//Прежде всего, ты должен выполнять свои обязанности послушника. Ты будешь работать и служить Братству.
 	B_GrantAbsolution(LOC_ALL);
 	Log_CreateTopic(TOPIC_Gemeinschaft,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Gemeinschaft,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Gemeinschaft,LOG_RUNNING);
 	B_LogEntry(TOPIC_Gemeinschaft,"В обязанности послушника входят работы на благо общины.");
 	if(Pedro_NOV_Aufnahme_LostInnosStatue_Daron == FALSE)
 	{
@@ -419,9 +419,12 @@ instance DIA_Parlan_Hagen(C_Info)
 
 func int DIA_Parlan_Hagen_Condition()
 {
-	if((LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild == GIL_NOV))
+	if((other.guild == GIL_NOV) && !Npc_IsDead(LordHagen))
 	{
-		return TRUE;
+		if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -497,7 +500,7 @@ func void DIA_Parlan_WORK_Info()
 		AI_Output(self,other,"DIA_Parlan_WORK_05_03");	//Поговори с другими магами. Они дадут тебе поручения.
 		AI_Output(self,other,"DIA_Parlan_WORK_05_04");	//Я буду наблюдать за твоей работой, и если ты хорошо будешь справляться с ней, ты получишь позволение войти в библиотеку, чтобы изучать учение Инноса.
 		DIA_Parlan_WORK_perm = TRUE;
-		MIS_KlosterArbeit = LOG_Running;
+		MIS_KlosterArbeit = LOG_RUNNING;
 		B_LogEntry(TOPIC_Gemeinschaft,"Если я выполню все задания магов, мне будет даровано право посещать библиотеку.");
 	};
 };
@@ -516,7 +519,7 @@ instance DIA_Parlan_Stand(C_Info)
 
 func int DIA_Parlan_Stand_Condition()
 {
-	if((MIS_KlosterArbeit == LOG_Running) && (other.guild == GIL_NOV))
+	if((MIS_KlosterArbeit == LOG_RUNNING) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -597,7 +600,7 @@ instance DIA_Parlan_Aufgabe(C_Info)
 
 func int DIA_Parlan_Aufgabe_Condition()
 {
-	if(MIS_KlosterArbeit == LOG_Running)
+	if(MIS_KlosterArbeit == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -610,9 +613,9 @@ func void DIA_Parlan_Aufgabe_Info()
 	AI_Output(self,other,"DIA_Parlan_Aufgabe_05_02");	//Кельям послушников не помешает хорошая уборка. Позаботься об этом.
 	AI_Output(other,self,"DIA_Parlan_Aufgabe_15_03");	//Но это займет целую вечность...
 	AI_Output(self,other,"DIA_Parlan_Aufgabe_05_04");	//Тогда тебе лучше не терять время попусту, разве нет?
-	MIS_ParlanFegen = LOG_Running;
+	MIS_ParlanFegen = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_ParlanFegen,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_ParlanFegen,LOG_Running);
+	Log_SetTopicStatus(TOPIC_ParlanFegen,LOG_RUNNING);
 	B_LogEntry(TOPIC_ParlanFegen,"Мастер Парлан хочет, чтобы я подмел четыре кельи послушников. Это займет целую вечность.");
 };
 
@@ -630,7 +633,7 @@ instance DIA_Parlan_Fegen(C_Info)
 
 func int DIA_Parlan_Fegen_Condition()
 {
-	if(MIS_ParlanFegen == LOG_Running)
+	if(MIS_ParlanFegen == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -1098,7 +1101,7 @@ func void DIA_Parlan_IAmParlan_Info()
 	{
 		AI_Output(self,other,"DIA_Parlan_IAmParlan_05_02");	//Я не знаю, почему тебя пустили в монастырь. Я Парлан, и я отвечаю за наших послушников.
 		AI_Output(self,other,"DIA_Parlan_IAmParlan_05_03");	//Я не хочу, чтобы ты отрывал их от работы своими дурацкими вопросами. Надеюсь, это ясно?
-		Parlan_DontTalkToNovice = LOG_Running;
+		Parlan_DontTalkToNovice = LOG_RUNNING;
 		Info_ClearChoices(DIA_Parlan_IAmParlan);
 		Info_AddChoice(DIA_Parlan_IAmParlan,"Я буду делать то, что сочту нужным.",DIA_Parlan_IAmParlan_MyChoice);
 		Info_AddChoice(DIA_Parlan_IAmParlan,"Конечно.",DIA_Parlan_IAmParlan_OK);
@@ -1181,7 +1184,7 @@ func void DIA_Parlan_DontDisturb_Info()
 	AI_Output(self,other,"DIA_Parlan_DontDisturb_05_00");	//(угрожающе) Я не люблю повторять. Оставь послушников в покое.
 	AI_Output(self,other,"DIA_Parlan_DontDisturb_05_01");	//Они должны очищать свой дух физическим трудом и готовить себя к жизни в монастыре.
 	AI_Output(self,other,"DIA_Parlan_DontDisturb_05_02");	//(резко) Я не потерплю вмешательства в их работу!
-	Parlan_DontTalkToNovice = LOG_Running;
+	Parlan_DontTalkToNovice = LOG_RUNNING;
 	AI_StopProcessInfos(self);
 };
 

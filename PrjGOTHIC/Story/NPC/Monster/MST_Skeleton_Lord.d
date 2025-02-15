@@ -30,7 +30,7 @@ prototype Mst_Skeleton_Lord(C_Npc)
 
 func void B_SetVisuals_Skeleton_Lord()
 {
-	Mdl_SetVisual(self,"HumanS.mds");
+	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_ApplyOverlayMds(self,"humans_1hST1.mds");
 	Mdl_ApplyOverlayMds(self,"humans_2hST2.mds");
 	Mdl_ApplyOverlayMds(self,"humans_BowT1.mds");

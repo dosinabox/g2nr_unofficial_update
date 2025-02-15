@@ -54,7 +54,6 @@ instance DIA_Halvor_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Halvor_Hallo_Condition;
 	information = DIA_Halvor_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -176,7 +175,7 @@ func void DIA_Addon_Halvor_MissingPeople_wer()
 	AI_Output(other,self,"DIA_Addon_Halvor_MissingPeople_wer_15_00");	//Ты знаешь кого-нибудь, кто пропал?
 	AI_Output(self,other,"DIA_Addon_Halvor_MissingPeople_wer_06_01");	//Нет. Попробуй спросить у корабельщиков.
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Единственное, что смог мне посоветовать торговец рыбой Халвор - это обратиться к кораблестроителям.");
 };
 
@@ -199,7 +198,6 @@ instance DIA_Halvor_MESSAGE(C_Info)
 	nr = 2;
 	condition = DIA_Halvor_MESSAGE_Condition;
 	information = DIA_Halvor_MESSAGE_Info;
-	permanent = FALSE;
 	description = "Я думаю, этот клочок бумаги имеет отношение к тебе...";
 };
 
@@ -275,7 +273,6 @@ instance DIA_Halvor_Zeichen(C_Info)
 	nr = 800;
 	condition = DIA_Halvor_Zeichen_Condition;
 	information = DIA_Halvor_Zeichen_Info;
-	permanent = FALSE;
 	description = DIALOG_SecretSign;
 };
 
@@ -387,7 +384,6 @@ instance DIA_Halvor_Crew(C_Info)
 	nr = 51;
 	condition = DIA_Halvor_Crew_Condition;
 	information = DIA_Halvor_Crew_Info;
-	permanent = FALSE;
 	description = "Я набираю команду.";
 };
 

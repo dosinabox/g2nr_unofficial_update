@@ -33,7 +33,6 @@ instance DIA_Keroloth_HELLO(C_Info)
 	nr = 2;
 	condition = DIA_Keroloth_HELLO_Condition;
 	information = DIA_Keroloth_HELLO_Info;
-	permanent = FALSE;
 	description = "Ты тренируешь людей?";
 };
 
@@ -56,7 +55,6 @@ instance DIA_Keroloth_WantTeach(C_Info)
 	nr = 3;
 	condition = DIA_Keroloth_WantTeach_Condition;
 	information = DIA_Keroloth_WantTeach_Info;
-	permanent = FALSE;
 	description = "Ты можешь обучить и меня?";
 };
 
@@ -248,7 +246,6 @@ instance DIA_Keroloth_Udar(C_Info)
 	nr = 4;
 	condition = DIA_Keroloth_Udar_Condition;
 	information = DIA_Keroloth_Udar_Info;
-	permanent = FALSE;
 	description = "Что насчет дальнего боя?";
 };
 
@@ -302,7 +299,6 @@ func void DIA_Keroloth_KAP4_HELLO_Info()
 	DIA_Common_YouLookSoSad();
 	AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_07_01");	//(возбужденно) Будь они прокляты. Мой тебе совет: глаз не спускай со своих вещей.
 	AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_07_02");	//Чуть отвернешься, и все - вещички уже увели. Вот подонки!
-//	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,Dialog_Back,DIA_Keroloth_KAP4_HELLO_ende);
 	Info_ClearChoices(DIA_Keroloth_KAP4_HELLO);
 	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,"Успокойся! Паладин не должен так просто выходить из себя.",DIA_Keroloth_KAP4_HELLO_ruhig);
 	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,"У тебя что-то украли?",DIA_Keroloth_KAP4_HELLO_bestohlen);
@@ -334,7 +330,7 @@ func void DIA_Keroloth_KAP4_HELLO_bestohlen_wasfehlt()
 	AI_Output(other,self,"DIA_Keroloth_KAP4_HELLO_bestohlen_wasfehlt_15_03");	//Он где-нибудь всплывет.
 	AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_bestohlen_wasfehlt_07_04");	//Когда я доберусь до него...
 	Log_CreateTopic(TOPIC_KerolothsGeldbeutel,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_KerolothsGeldbeutel,LOG_Running);
+	Log_SetTopicStatus(TOPIC_KerolothsGeldbeutel,LOG_RUNNING);
 	B_LogEntry(TOPIC_KerolothsGeldbeutel,"Паладин Керолот потерял свой кошелек. Он утверждает, что его украли охотники на драконов.");
 	Info_ClearChoices(DIA_Keroloth_KAP4_HELLO);
 };
@@ -342,7 +338,7 @@ func void DIA_Keroloth_KAP4_HELLO_bestohlen_wasfehlt()
 func void DIA_Keroloth_KAP4_HELLO_pack()
 {
 	AI_Output(other,self,"DIA_Keroloth_KAP4_HELLO_pack_15_00");	//Что за подонки?
-	if(hero.guild == GIL_DJG)
+	if(other.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_pack_07_01");	//Вы, оборванцы, охотники на драконов, конечно. Кто еще?
 	}
@@ -392,7 +388,7 @@ func void DIA_Keroloth_KAP4_GELDGEFUNDEN_Info()
 	{
 		AI_Output(self,other,"DIA_Keroloth_KAP4_GELDGEFUNDEN_07_02");	//Что? Где? Какой ублюдок сделал это?
 	};
-	if(hero.guild == GIL_DJG)
+	if(other.guild == GIL_DJG)
 	{
 		Info_AddChoice(DIA_Keroloth_KAP4_GELDGEFUNDEN,"Минутку. А как насчет награды?",DIA_Keroloth_KAP4_GELDGEFUNDEN_Lohn);
 	};
@@ -404,7 +400,7 @@ func void DIA_Keroloth_KAP4_GELDGEFUNDEN_Info()
 func void DIA_Keroloth_KAP4_GELDGEFUNDEN_keineAhnung()
 {
 	AI_Output(other,self,"DIA_Keroloth_KAP4_GELDGEFUNDEN_keineAhnung_15_00");	//Откуда мне знать?
-	if(hero.guild == GIL_DJG)
+	if(other.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_Keroloth_KAP4_GELDGEFUNDEN_keineAhnung_07_01");	//Ты пытаешься надуть меня? Это ведь был ты, признайся.
 		Info_ClearChoices(DIA_Keroloth_KAP4_GELDGEFUNDEN);
@@ -437,7 +433,7 @@ func void DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG()
 {
 	AI_Output(other,self,"DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG_15_00");	//Я подозреваю одного охотника на драконов.
 	AI_Output(self,other,"DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG_07_01");	//(зло) Я знал это.
-	if(hero.guild == GIL_DJG)
+	if(other.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG_07_03");	//Ну, подожди, я покажу этой свинье...
 	}
@@ -499,7 +495,7 @@ instance DIA_Keroloth_KAP4_BELOHNUNG(C_Info)
 
 func int DIA_Keroloth_KAP4_BELOHNUNG_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Keroloth_KAP4_GELDGEFUNDEN) && (Keroloth_HasPayed == FALSE) && (hero.guild != GIL_KDF))
+	if(Npc_KnowsInfo(other,DIA_Keroloth_KAP4_GELDGEFUNDEN) && (Keroloth_HasPayed == FALSE) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -508,7 +504,7 @@ func int DIA_Keroloth_KAP4_BELOHNUNG_Condition()
 func void DIA_Keroloth_KAP4_BELOHNUNG_Info()
 {
 	AI_Output(other,self,"DIA_Keroloth_KAP4_BELOHNUNG_15_00");	//Я хочу получить честные комиссионные за эту находку.
-	if((Keroloths_BeutelLeer == TRUE) || (hero.guild == GIL_DJG))
+	if((Keroloths_BeutelLeer == TRUE) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Keroloth_KAP4_BELOHNUNG_07_01");	//Да, а рискуешь получить удар в челюсть!
 		AI_StopProcessInfos(self);
@@ -546,7 +542,7 @@ func int DIA_Keroloth_KAP4_ENTSPANNDICH_Condition()
 func void DIA_Keroloth_KAP4_ENTSPANNDICH_Info()
 {
 	AI_Output(other,self,"DIA_Keroloth_KAP4_ENTSPANNDICH_15_00");	//Расслабься.
-	if(hero.guild == GIL_KDF)
+	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Keroloth_KAP4_ENTSPANNDICH_07_01");	//Да, Мастер. Я попытаюсь.
 	}

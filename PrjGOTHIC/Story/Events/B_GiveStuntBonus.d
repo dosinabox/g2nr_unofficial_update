@@ -1,7 +1,7 @@
 
 func void B_GiveStuntBonus_FUNC()
 {
-	if(MIS_Owen_FindMalcom == LOG_Running)
+	if(MIS_Owen_FindMalcom == LOG_RUNNING)
 	{
 		if(StuntBonus_Once == FALSE)
 		{

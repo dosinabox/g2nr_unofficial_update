@@ -17,14 +17,6 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(slf.guild == GIL_ORC)
-	{
-		return FALSE;
-	};
-	if(slf.guild == GIL_FRIENDLY_ORC)
-	{
-		return FALSE;
-	};
 	if((slf.guild == GIL_KDW) && (SC_KnowsPortal == TRUE))
 	{
 		return FALSE;
@@ -34,6 +26,10 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 		return FALSE;
 	};
 	if((slf.npcType == NPCTYPE_FRIEND) && Npc_IsPlayer(oth))
+	{
+		return FALSE;
+	};
+	if(C_NpcIsOrc(slf))
 	{
 		return FALSE;
 	};

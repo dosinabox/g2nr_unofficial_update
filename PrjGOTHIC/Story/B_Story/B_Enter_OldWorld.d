@@ -11,7 +11,7 @@ func void B_ENTER_OLDWORLD_Kapitel_1()
 			};
 		};
 	}
-	else if(MIS_Lutero_Krallen == LOG_Running)
+	else if(MIS_Lutero_Krallen == LOG_RUNNING)
 	{
 		if(NewMine_LeadSnapper_Spawned == FALSE)
 		{
@@ -168,6 +168,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		};
 		if(!Npc_IsDead(Sengrath))
 		{
+			B_DeletePetzCrime(Sengrath);
 			B_RemoveNpc(PAL_267_Sengrath);
 			Wld_InsertNpc(PAL_275_DeadSengrath,"OC1");
 			B_KillNpc(PAL_275_DeadSengrath);
@@ -194,7 +195,10 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(Meatbug_Brutus2,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus3,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus4,"OC_FOLTER_SHARP");
-		Wld_InsertNpc(DJG_700_Sylvio,"OC1");
+		if(SLD_Sylvio_isAlive == TRUE)
+		{
+			Wld_InsertNpc(DJG_700_Sylvio,"OC1");
+		};
 		if(SLD_Bullco_isAlive == TRUE)
 		{
 			Wld_InsertNpc(DJG_701_Bullco,"OC1");
@@ -474,7 +478,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 			Wld_RemoveNpc(OC_Sheep2);
 		};
 		Log_CreateTopic(TOPIC_Dragonhunter,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Dragonhunter,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Dragonhunter,LOG_RUNNING);
 		B_LogEntry(TOPIC_Dragonhunter,"Началась масштабная охота на драконов. Она привлекла многих искателей приключений в Долину Рудников. Мне остается только надеяться, что они не будут мешаться у меня под ногами.");
 		IntroduceChapter(KapWechsel_4,KapWechsel_4_Text,"chapter4.tga","chapter_01.wav",6000);
 		EnterOW_Kapitel4 = TRUE;

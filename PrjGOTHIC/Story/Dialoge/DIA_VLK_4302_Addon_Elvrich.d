@@ -77,7 +77,7 @@ func void DIA_Addon_Elvrich_Wer_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Elvrich_Wer_15_00");	//Кто ты такой?
 	AI_Output(self,other,"DIA_Addon_Elvrich_Wer_04_01");	//Меня зовут Элврих. Я из города.
-	if(MIS_Thorben_BringElvrichBack == LOG_Running)
+	if(MIS_Thorben_BringElvrichBack == LOG_RUNNING)
 	{
 		AI_Output(other,self,"DIA_Addon_Elvrich_Wer_15_02");	//Мастер Торбен говорил, что ты пропал.
 	};
@@ -162,7 +162,7 @@ func void DIA_Addon_Elvrich_WhatExactly_Pirates()
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_Pirates_04_06");	//По-моему, бандиты просто не знали, что им делать дальше. А потом пришел ты.
 	Elvrich_SCKnowsPirats = TRUE;
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Элврих, ученик плотника из Хориниса Торбена, был похищен бандитами. Похоже, что пираты и бандиты в сговоре.");
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Пираты в Хоринисе?",DIA_Addon_Elvrich_WhatExactly_Here);
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Где находится лагерь пиратов?",DIA_Addon_Elvrich_WhatExactly_pirat);
@@ -191,7 +191,7 @@ func void DIA_Addon_Elvrich_WhatExactly_pirat()
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_pirat_04_02");	//Если ты встанешь на набережной лицом к морю, то он будет справа.
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_pirat_04_03");	//Первый небольшой залив, который встретится тебе на пути, и будет нужным тебе местом.
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Чтобы найти место встречи с пиратами, нужно пойти в порт Хориниса и встать на набережной лицом к морю. Затем нужно спрыгнуть в море и поплыть вдоль берега направо.");
 	Info_ClearChoices(DIA_Addon_Elvrich_WhatExactly);
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,Dialog_Back,DIA_Addon_Elvrich_WhatExactly_Back);
@@ -223,7 +223,7 @@ instance DIA_Addon_Elvrich_Bromor(C_Info)
 
 func int DIA_Addon_Elvrich_Bromor_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Elvrich_WhatExactly) && (MIS_Bromor_LuciaStoleGold == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Addon_Elvrich_WhatExactly) && (MIS_Bromor_LuciaStoleGold == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -233,8 +233,6 @@ func void DIA_Addon_Elvrich_Bromor_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Elvrich_Bromor_15_00");	//Бромор сказал, что Люсия украла у него золотое блюдо...
 	AI_Output(self,other,"DIA_Addon_Elvrich_Bromor_04_01");	//Ну, если Люсия что-то и украла у Бромора, у нее отобрали это бандиты.
-//	Log_CreateTopic(TOPIC_Addon_BromorsGold,LOG_MISSION);
-//	Log_SetTopicStatus(TOPIC_Addon_BromorsGold,LOG_Running);
 	B_LogEntry(TOPIC_Addon_BromorsGold,"Золотое блюдо Бромора, по всей видимости, находится у бандитов, живущих в лесном лагере к северу от фермы Секоба.");
 };
 
@@ -266,10 +264,10 @@ func void DIA_Addon_Elvrich_WhereIsLucia_Info()
 	if(MIS_LookingForLucia == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
-		MIS_LookingForLucia = LOG_Running;
+		Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_RUNNING);
+		MIS_LookingForLucia = LOG_RUNNING;
 	};
-	if(MIS_LookingForLucia == LOG_Running)
+	if(MIS_LookingForLucia == LOG_RUNNING)
 	{
 		B_LogEntry(TOPIC_Addon_Lucia,"Люсию увели бандиты. Они направились в лес, который находится к северу от фермы Секоба.");
 	};
@@ -289,7 +287,7 @@ instance DIA_Addon_Elvrich_FernandosWaffen(C_Info)
 
 func int DIA_Addon_Elvrich_FernandosWaffen_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Elvrich_WhatExactly) && (MIS_Vatras_FindTheBanditTrader == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Addon_Elvrich_WhatExactly) && (MIS_Vatras_FindTheBanditTrader == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -301,8 +299,6 @@ func void DIA_Addon_Elvrich_FernandosWaffen_Info()
 	AI_Output(self,other,"DIA_Addon_Elvrich_FernandosWaffen_04_01");	//О да. Оружия было столько, что они еле его унесли.
 	AI_Output(self,other,"DIA_Addon_Elvrich_FernandosWaffen_04_02");	//Все это оружие они утащили в направлении фермы Секоба.
 	B_GivePlayerXP(XP_Ambient);
-//	Log_CreateTopic(TOPIC_Addon_Bandittrader,LOG_MISSION);
-//	Log_SetTopicStatus(TOPIC_Addon_Bandittrader,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Bandittrader,"След ведет меня в лес, который находится к северу от фермы Секоба. Там разместились бандиты, получившие недавно большую партию оружия.");
 };
 
@@ -339,10 +335,10 @@ func void DIA_Addon_Elvrich_LuciaLetter_Info()
 	if(MIS_LookingForLucia == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
-		MIS_LookingForLucia = LOG_Running;
+		Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_RUNNING);
+		MIS_LookingForLucia = LOG_RUNNING;
 	};
-	if((MIS_LookingForLucia == LOG_Running) || (MIS_LookingForLucia == LOG_SUCCESS))
+	if((MIS_LookingForLucia == LOG_RUNNING) || (MIS_LookingForLucia == LOG_SUCCESS))
 	{
 		B_LogEntry(TOPIC_Addon_Lucia,"Элврих не хочет верить, что Люсия ушла с бандитами добровольно. Несмотря на письмо, которое она ему написала, он все еще надеется на ее возвращение.");
 	};
@@ -383,7 +379,7 @@ func void DIA_Addon_Elvrich_WasNun_Info()
 	if(MissingPeopleReturnedHome == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 	};
 	B_LogEntry(TOPIC_Addon_MissingPeople,"Элврих отправился обратно к мастеру Торбену.");
 	Elvrich_GoesBack2Thorben = TRUE;
@@ -400,14 +396,13 @@ instance DIA_Addon_Elvrich_PERM(C_Info)
 	condition = DIA_Addon_Elvrich_PERM_Condition;
 	information = DIA_Addon_Elvrich_PERM_Info;
 	permanent = TRUE;
-//	important = TRUE;
 	description = "Все в порядке?";
 };
 
 
 func int DIA_Addon_Elvrich_PERM_Condition()
 {
-	if((Elvrich_GoesBack2Thorben == TRUE) && Npc_IsInState(self,ZS_Talk) && (MIS_LuciasLetter != LOG_Running))
+	if((Elvrich_GoesBack2Thorben == TRUE) && Npc_IsInState(self,ZS_Talk) && (MIS_LuciasLetter != LOG_RUNNING))
 	{
 		return TRUE;
 	};

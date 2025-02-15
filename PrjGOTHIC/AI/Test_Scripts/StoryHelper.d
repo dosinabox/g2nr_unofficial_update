@@ -28,11 +28,10 @@ func void Rtn_Start_9999()
 
 instance StoryHelper_Exit(C_Info)
 {
-	npc = sh;
+	npc = SH;
 	nr = 999;
 	condition = StoryHelper_Exit_Condition;
 	information = StoryHelper_Exit_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
@@ -48,14 +47,13 @@ func void StoryHelper_Exit_Info()
 	AI_StopProcessInfos(self);
 };
 
+
 instance StoryHelper_PatchSettings(C_Info)
 {
-	npc = sh;
-//	npc = NONE_100_Xardas;
+	npc = SH;
 	nr = 995;
 	condition = StoryHelper_PatchSettings_Condition;
 	information = StoryHelper_PatchSettings_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = "(настройки неофициального обновления)";
 };
@@ -74,10 +72,10 @@ func void StoryHelper_PatchSettings_Info()
 
 instance StoryHelper_INFO1(C_Info)
 {
-	npc = sh;
+	npc = SH;
+	nr = 1;
 	condition = StoryHelper_INFO1_Condition;
 	information = StoryHelper_INFO1_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = KapWechsel_1;
 };
@@ -102,7 +100,7 @@ func void StoryHelper_INFO1_Info()
 
 func void StoryHelper_SATURAS()
 {
-	MIS_Addon_Lares_Ornament2Saturas = LOG_Running;
+	MIS_Addon_Lares_Ornament2Saturas = LOG_RUNNING;
 	CreateInvItems(other,ItMi_Ornament_Addon,1);
 	SC_KnowsRanger = TRUE;
 	B_Kapitelwechsel(1,NEWWORLD_ZEN);
@@ -121,7 +119,7 @@ func void StoryHelper_Cavalorn()
 	//Кольцо колец :)
 	CreateInvItems(hero,ItRi_Ranger_Addon,1);
 	//Найти каменные круги
-	MIS_Addon_Nefarius_BringMissingOrnaments = LOG_Running;
+	MIS_Addon_Nefarius_BringMissingOrnaments = LOG_RUNNING;
 	//...и Кавалорн отправился в один из них
 	B_StartotherRoutine(Cavalorn,"ORNAMENTSTEINRING");
 	//Игрок получил карту кругов
@@ -143,10 +141,10 @@ func void StoryHelper_KAPITEL1ANFANG()
 
 instance StoryHelper_INFO2(C_Info)
 {
-	npc = sh;
+	npc = SH;
+	nr = 2;
 	condition = StoryHelper_INFO2_Condition;
 	information = StoryHelper_INFO2_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = KapWechsel_2;
 };
@@ -178,7 +176,7 @@ func void StoryHelper_KAPITEL2ANFANG()
 	Mil_305_schonmalreingelassen = TRUE;
 	B_StartOtherRoutine(Lothar,"START");
 	CreateInvItems(hero,ItKe_Pass_MIS,1);
-	MIS_OLDWORLD = LOG_Running;
+	MIS_OLDWORLD = LOG_RUNNING;
 	B_Kapitelwechsel(2,NEWWORLD_ZEN);
 	Info_ClearChoices(StoryHelper_INFO2);
 	AI_StopProcessInfos(self);
@@ -187,10 +185,10 @@ func void StoryHelper_KAPITEL2ANFANG()
 
 instance StoryHelper_INFO3(C_Info)
 {
-	npc = sh;
+	npc = SH;
+	nr = 3;
 	condition = StoryHelper_INFO3_Condition;
 	information = StoryHelper_INFO3_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = KapWechsel_3;
 };
@@ -218,7 +216,7 @@ func void StoryHelper_BACK3()
 
 func void StoryHelper_KAPITEL3ANFANG()
 {
-	MIS_OLDWORLD = LOG_Running;
+	MIS_OLDWORLD = LOG_RUNNING;
 	CreateInvItems(hero,ItWr_PaladinLetter_MIS,1);
 	KnowsPaladins_Ore = TRUE;
 	MIS_ScoutMine = LOG_SUCCESS;
@@ -231,10 +229,10 @@ func void StoryHelper_KAPITEL3ANFANG()
 
 instance StoryHelper_INFO4(C_Info)
 {
-	npc = sh;
+	npc = SH;
+	nr = 4;
 	condition = StoryHelper_INFO4_Condition;
 	information = StoryHelper_INFO4_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = KapWechsel_4;
 };
@@ -262,7 +260,7 @@ func void StoryHelper_BACK4()
 
 func void StoryHelper_KAPITEL4ANFANG()
 {
-	MIS_OLDWORLD = LOG_Running;
+	MIS_OLDWORLD = LOG_RUNNING;
 	CreateInvItems(hero,ItWr_PaladinLetter_MIS,1);
 	KnowsPaladins_Ore = TRUE;
 	MIS_ScoutMine = LOG_SUCCESS;
@@ -281,10 +279,10 @@ func void StoryHelper_KAPITEL4ANFANG()
 
 instance StoryHelper_INFO5(C_Info)
 {
-	npc = sh;
+	npc = SH;
+	nr = 5;
 	condition = StoryHelper_INFO5_Condition;
 	information = StoryHelper_INFO5_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = KapWechsel_5;
 };
@@ -312,7 +310,7 @@ func void StoryHelper_BACK5()
 
 func void StoryHelper_KAPITEL5ANFANG()
 {
-	MIS_OLDWORLD = LOG_Running;
+	MIS_OLDWORLD = LOG_RUNNING;
 	CreateInvItems(hero,ItWr_PaladinLetter_MIS,1);
 	KnowsPaladins_Ore = TRUE;
 	MIS_ScoutMine = LOG_SUCCESS;

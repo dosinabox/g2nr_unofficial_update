@@ -39,15 +39,15 @@ func int DIA_Rega_HALLO_Condition()
 func void DIA_Rega_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Rega_HALLO_15_00");	//Как дела?
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Rega_HALLO_17_01");	//Ты из города, да?
 	}
-	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Rega_HALLO_17_02");	//Ты один из наемников Онара, да?
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Rega_HALLO_17_03");	//Ты маг, да?
 	}
@@ -78,7 +78,7 @@ instance DIA_Rega_ONAR(C_Info)
 
 func int DIA_Rega_ONAR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rega_HALLO) && ((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG)) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Rega_HALLO) && (other.guild != GIL_SLD) && (other.guild != GIL_DJG) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -104,7 +104,7 @@ instance DIA_Rega_SLD(C_Info)
 
 func int DIA_Rega_SLD_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rega_HALLO) && ((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG)) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Rega_HALLO) && (other.guild != GIL_SLD) && (other.guild != GIL_DJG) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -155,7 +155,6 @@ instance DIA_Rega_BRONKO(C_Info)
 
 func int DIA_Rega_BRONKO_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Bronko_HALLO) && (MIS_Sekob_Bronko_eingeschuechtert == LOG_Running))
 	if(Npc_KnowsInfo(other,DIA_Bronko_HALLO) && Npc_KnowsInfo(other,DIA_Rega_HALLO) && !Npc_KnowsInfo(other,DIA_Babera_BRONKO) && !Npc_IsDead(Bronko))
 	{
 		return TRUE;
@@ -192,15 +191,15 @@ func int DIA_Rega_PERMKAP1_Condition()
 func void DIA_Rega_PERMKAP1_Info()
 {
 	AI_Output(other,self,"DIA_Rega_PERMKAP1_15_00");	//Выше нос.
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Rega_PERMKAP1_17_01");	//Тебе легко говорить. Ты ведь живешь в городе.
 	}
-	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Rega_PERMKAP1_17_02");	//Если бы вы, наемники, не доставляли нам столько проблем, жизнь здесь была бы не такой уж плохой.
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Rega_PERMKAP1_17_03");	//Магов вокруг становится все меньше и меньше. Надеюсь, ты не последний из них. Вы нужны нам - и сейчас как никогда.
 	}

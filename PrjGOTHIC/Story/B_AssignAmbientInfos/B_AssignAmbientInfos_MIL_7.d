@@ -32,7 +32,7 @@ instance DIA_MIL_7_JOIN(C_Info)
 
 func int DIA_MIL_7_JOIN_Condition()
 {
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		return TRUE;
 	};
@@ -63,7 +63,7 @@ instance DIA_MIL_7_PEOPLE(C_Info)
 
 func int DIA_MIL_7_PEOPLE_Condition()
 {
-	if(hero.guild != GIL_PAL)
+	if(other.guild != GIL_PAL)
 	{
 		return TRUE;
 	};
@@ -96,11 +96,11 @@ func int DIA_MIL_7_LOCATION_Condition()
 func void DIA_MIL_7_LOCATION_Info()
 {
 	AI_Output(other,self,"DIA_MIL_7_LOCATION_15_00");	//А чем я могу заняться в городе?
-	if(((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV)) && (Player_IsApprentice == APP_NONE))
+	if(((other.guild == GIL_NONE) || (other.guild == GIL_NOV)) && (Player_IsApprentice == APP_NONE))
 	{
 		AI_Output(self,other,"DIA_MIL_7_LOCATION_07_01");	//Если ты не хочешь закончить жизнь в сточной канаве в порту, найди постоянную работу. Поспрашивай в нижней части города - возможно, тебе повезет.
 	};
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_MIL_7_LOCATION_07_02");	//Если ты планируешь остаться в городе надолго, тебе стоит подумать о вступлении в ополчение или, по крайней мере, потренироваться в боевых искусствах.
 		AI_Output(self,other,"DIA_MIL_7_LOCATION_07_03");	//Инструкторы боя в казармах тренируют и гражданских.
@@ -131,13 +131,13 @@ func void DIA_MIL_7_STANDARD_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_MIL_7_STANDARD_07_00");	//Горожане исчезают один за одним. Пока что нам не удалось выяснить, в чем дело. Может быть, виноваты орки?
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
 		SC_HearedAboutMissingPeople = TRUE;
 	}
 	else if(Kapitel == 1)
 	{
-		if(hero.guild == GIL_MIL)
+		if(other.guild == GIL_MIL)
 		{
 			AI_Output(self,other,"DIA_SLD_7_JOIN_07_01");	//Я слышал, ты вступил в ополчение. Такие люди, как ты, нужны нам...
 		}

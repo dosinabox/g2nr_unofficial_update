@@ -27,7 +27,6 @@ instance DIA_Borka_PISSOFF(C_Info)
 	condition = DIA_Borka_PISSOFF_Condition;
 	information = DIA_Borka_PISSOFF_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
@@ -49,7 +48,7 @@ func void DIA_Borka_PISSOFF_Info()
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_02");	//Моряки из самых дальних уголков света приплывают сюда, чтобы провести несколько незабываемых ночей в 'Красном Фонаре'.
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_03");	//А теперь и у тебя появился такой шанс - нет, честь - провести ночь с Надей, самым страстным цветком богов!
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_04");	//Заходи же, и ты познаешь наслаждение, о котором другие не могут даже и мечтать!
-	if(MIS_Andre_REDLIGHT != LOG_Running)
+	if(MIS_Andre_REDLIGHT != LOG_RUNNING)
 	{
 		AI_StopProcessInfos_Pickpocket();
 	};
@@ -79,7 +78,7 @@ func void DIA_Borka_TROUBLE_Info()
 {
 	AI_Output(self,other,"DIA_Borka_TROUBLE_11_00");	//Что ты стоишь здесь и колеблешься? Заходи внутрь, познакомься с нашей любвеобильной Надей.
 	AI_Output(self,other,"DIA_Borka_TROUBLE_11_01");	//Это страстное создание ночи придаст твоей жизни новый смысл!
-	if(MIS_Andre_REDLIGHT != LOG_Running)
+	if(MIS_Andre_REDLIGHT != LOG_RUNNING)
 	{
 		AI_StopProcessInfos_Pickpocket();
 	};
@@ -92,14 +91,13 @@ instance DIA_Borka_Smoke(C_Info)
 	nr = 3;
 	condition = DIA_Borka_Smoke_Condition;
 	information = DIA_Borka_Smoke_Info;
-	permanent = FALSE;
 	description = "Ты не знаешь, где можно купить травки?";
 };
 
 
 func int DIA_Borka_Smoke_Condition()
 {
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_RUNNING) && (Knows_Borka_Dealer == FALSE))
 	{
 		return TRUE;
 	};
@@ -132,7 +130,7 @@ instance DIA_Borka_BUYHERB(C_Info)
 
 func int DIA_Borka_BUYHERB_Condition()
 {
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == TRUE) && (Borka_RefuseToTalk == FALSE) && (Nadja_Victim == FALSE) && (Borka_Deal == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_RUNNING) && (Knows_Borka_Dealer == TRUE) && (Borka_RefuseToTalk == FALSE) && (Nadja_Victim == FALSE) && (Borka_Deal == FALSE))
 	{
 		return TRUE;
 	};
@@ -211,11 +209,11 @@ func void DIA_Borka_SECOND_CHANCE_Info()
 	}
 	else
 	{
-		B_GiveInvItems(hero,self,ItMi_Gold,50);
+		B_GiveInvItems(other,self,ItMi_Gold,50);
 		AI_Output(self,other,"DIA_Borka_SECOND_CHANCE_11_01");	//Хорошо...
 		AI_PlayAni(self,"T_SEARCH");
 		AI_Output(self,other,"DIA_Borka_SECOND_CHANCE_11_02");	//... вот, держи свежий, смолистый косячок.
-		B_GiveInvItems(self,hero,ItMi_Joint,1);
+		B_GiveInvItems(self,other,ItMi_Joint,1);
 		Borka_Deal = 2;
 	};
 	AI_StopProcessInfos(self);

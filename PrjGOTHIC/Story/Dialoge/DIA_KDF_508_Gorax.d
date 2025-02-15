@@ -28,7 +28,6 @@ instance DIA_Gorax_HELP(C_Info)
 	nr = 2;
 	condition = DIA_Gorax_HELP_Condition;
 	information = DIA_Gorax_HELP_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -101,7 +100,7 @@ func int DIA_Addon_Gorax_DaronsStatue_Condition()
 	{
 		return TRUE;
 	};
-	if((MIS_OLDWORLD == LOG_SUCCESS) && (MIS_Addon_Daron_GetStatue == LOG_Running) && (LostInnosStatueInMonastery == FALSE))
+	if((MIS_OLDWORLD == LOG_SUCCESS) && (MIS_Addon_Daron_GetStatue == LOG_RUNNING) && (LostInnosStatueInMonastery == FALSE))
 	{
 		return TRUE;
 	};
@@ -168,14 +167,13 @@ instance DIA_Gorax_Aufgabe(C_Info)
 	nr = 3;
 	condition = DIA_Gorax_Aufgabe_Condition;
 	information = DIA_Gorax_Aufgabe_Info;
-	permanent = FALSE;
 	description = "У тебя есть какое-нибудь задание для меня?";
 };
 
 
 func int DIA_Gorax_Aufgabe_Condition()
 {
-	if(MIS_KlosterArbeit == LOG_Running)
+	if(MIS_KlosterArbeit == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -189,9 +187,9 @@ func void DIA_Gorax_Aufgabe_Info()
 	AI_Output(self,other,"DIA_Gorax_Aufgabe_14_03");	//А когда закончишь с этим, можешь опять обратиться ко мне.
 	CreateInvItems(self,ItKe_KlosterStore,1);
 	B_GiveInvItems(self,other,ItKe_KlosterStore,1);
-	MIS_GoraxEssen = LOG_Running;
+	MIS_GoraxEssen = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_GoraxEssen,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_GoraxEssen,LOG_Running);
+	Log_SetTopicStatus(TOPIC_GoraxEssen,LOG_RUNNING);
 	B_LogEntry(TOPIC_GoraxEssen,"Мастер Горакс хочет, чтобы я разделил баранью колбасу из кладовой поровну среди послушников. Кроме меня, в монастыре есть еще тринадцать послушников.");
 };
 
@@ -209,7 +207,7 @@ instance DIA_Gorax_Wurst(C_Info)
 
 func int DIA_Gorax_Wurst_Condition()
 {
-	if((MIS_GoraxEssen == LOG_Running) && !Mob_HasItems("WURSTTRUHE",ItFo_Schafswurst))
+	if((MIS_GoraxEssen == LOG_RUNNING) && !Mob_HasItems("WURSTTRUHE",ItFo_Schafswurst))
 	{
 		return TRUE;
 	};
@@ -242,7 +240,6 @@ instance DIA_Gorax_Aufgabe2(C_Info)
 	nr = 3;
 	condition = DIA_Gorax_Aufgabe2_Condition;
 	information = DIA_Gorax_Aufgabe2_Info;
-	permanent = FALSE;
 	description = "У тебя есть еще какое-нибудь поручение для меня?";
 };
 
@@ -263,9 +260,9 @@ func void DIA_Gorax_Aufgabe2_Info()
 	AI_Output(self,other,"DIA_Gorax_Aufgabe2_14_03");	//Отнеси ему эти бутылки - но смотри, чтобы он не обсчитал тебя.
 	CreateInvItems(self,ItFo_Wine,12);
 	B_GiveInvItems(self,other,ItFo_Wine,12);
-	MIS_GoraxWein = LOG_Running;
+	MIS_GoraxWein = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_GoraxWein,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_GoraxWein,LOG_Running);
+	Log_SetTopicStatus(TOPIC_GoraxWein,LOG_RUNNING);
 	B_LogEntry(TOPIC_GoraxWein,"Мастер Горакс хочет, чтобы я доставил Орлану, хозяину трактира, двенадцать бутылок вина. Они стоят 240 золотых монет.");
 };
 
@@ -284,7 +281,7 @@ instance DIA_Gorax_Orlan(C_Info)
 
 func int DIA_Gorax_Orlan_Condition()
 {
-	if((MIS_GoraxWein == LOG_Running) && Npc_KnowsInfo(other,DIA_Orlan_Wein) && (DIA_Gorax_Orlan_permanent == FALSE))
+	if((MIS_GoraxWein == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Orlan_Wein) && (DIA_Gorax_Orlan_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -336,7 +333,7 @@ func void DIA_Gorax_Orlan_240()
 	}
 	else
 	{
-		B_GiveInvItems(other,self,ItMi_Gold,Npc_HasItems(other,ItMi_Gold));
+		B_GiveAllInvItems(other,self,ItMi_Gold);
 		AI_Output(self,other,"DIA_Gorax_Orlan_240_14_02");	//Но ты уже потратил часть этих денег, да? Ты ничтожество - пшел прочь!
 		MIS_GoraxWein = LOG_FAILED;
 		Gorax_Mad_Day = Wld_GetDay();
@@ -346,7 +343,7 @@ func void DIA_Gorax_Orlan_240()
 
 func int C_Gorax_WantToTrade()
 {
-	if(hero.guild == GIL_KDF)
+	if(other.guild == GIL_KDF)
 	{
 		return TRUE;
 	};
@@ -367,7 +364,6 @@ instance DIA_Gorax_JOB(C_Info)
 	nr = 35;
 	condition = DIA_Gorax_JOB_Condition;
 	information = DIA_Gorax_JOB_Info;
-	permanent = FALSE;
 	description = "А что входит в твои обязанности здесь?";
 };
 
@@ -465,7 +461,6 @@ instance DIA_Gorax_KDF(C_Info)
 	nr = 5;
 	condition = DIA_Gorax_KDF_Condition;
 	information = DIA_Gorax_KDF_Info;
-	permanent = FALSE;
 	description = "Мне нужно место для сна.";
 };
 
@@ -536,7 +531,7 @@ func void DIA_Gorax_KILLPEDRO_ja()
 	AI_Output(self,other,"DIA_Gorax_KILLPEDRO_ja_14_04");	//Я ничего тебе не говорил. И ты ничего не слышал. Понятно?
 	B_LogEntry(TOPIC_TraitorPedro,"Горакс сказал мне, что Серпентес хочет, чтобы я убил предателя Педро, если я повстречаюсь с ним.");
 	B_GivePlayerXP(XP_Gorax_KILLPEDRO_GotMission);
-	MIS_Gorax_KillPedro = LOG_Running;
+	MIS_Gorax_KillPedro = LOG_RUNNING;
 	AI_StopProcessInfos(self);
 };
 

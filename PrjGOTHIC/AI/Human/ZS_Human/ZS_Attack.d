@@ -89,7 +89,7 @@ func int ZS_Attack_Loop()
 		self.aivar[AIV_PursuitEnd] = TRUE;
 		self.aivar[AIV_Dist] = Npc_GetDistToNpc(self,other);
 		self.aivar[AIV_StateTime] = Npc_GetStateTime(self);
-		if(other.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(other))
 		{
 			AI_PlayAni(self,"T_IGETYOU");
 			B_Say_Overlay(self,other,"$RUNCOWARD");
@@ -284,12 +284,12 @@ func void ZS_Attack_End()
 	if(C_WantToRansack(self,target))
 	{
 		target.aivar[AIV_RANSACKED] = TRUE;
-		if(target.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(target))
 		{
 			AI_StartState(self,ZS_RansackBody,0,"");
 			return;
-		}
-		else if(C_IsNpc(self,PIR_1352_Addon_AlligatorJack) && (target.aivar[AIV_MM_REAL_ID] == ID_SWAMPRAT))
+		};
+		if(C_IsNpc(self,PIR_1352_Addon_AlligatorJack) && (target.aivar[AIV_MM_REAL_ID] == ID_SWAMPRAT))
 		{
 			AI_StartState(self,ZS_GetMeat,0,"");
 			return;

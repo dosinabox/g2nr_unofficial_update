@@ -138,7 +138,7 @@ instance DIA_Hilda_BringBeet(C_Info)
 
 func int DIA_Hilda_BringBeet_Condition()
 {
-	if((MIS_Lobart_RuebenToHilda == LOG_Running) && Npc_HasItems(other,ItPl_Beet) && (Kapitel < 3))
+	if((MIS_Lobart_RuebenToHilda == LOG_RUNNING) && Npc_HasItems(other,ItPl_Beet) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -202,10 +202,10 @@ func void DIA_Hilda_Einkaufen_Info()
 		B_Say_Gold(self,other,20);
 	};
 	B_GiveInvItems(self,other,ItMi_Gold,20);
-	MIS_Hilda_PfanneKaufen = LOG_Running;
+	MIS_Hilda_PfanneKaufen = LOG_RUNNING;
 	MIS_Hilda_PfanneKaufen_Day = B_GetDayPlus();
 	Log_CreateTopic(TOPIC_Hilda,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Hilda,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Hilda,LOG_RUNNING);
 	B_LogEntry(TOPIC_Hilda,"Хильда, жена фермера Лобарта, хочет, чтобы я купил для нее у странствующего торговца сковороду.");
 };
 
@@ -223,7 +223,7 @@ instance DIA_Hilda_PfanneGeholt(C_Info)
 
 func int DIA_Hilda_PfanneGeholt_Condition()
 {
-	if((MIS_Hilda_PfanneKaufen == LOG_Running) && Npc_HasItems(other,ItMi_Pan) && (Kapitel < 3))
+	if((MIS_Hilda_PfanneKaufen == LOG_RUNNING) && Npc_HasItems(other,ItMi_Pan) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -260,7 +260,7 @@ instance DIA_Hilda_PfanneTooLate(C_Info)
 
 func int DIA_Hilda_PfanneTooLate_Condition()
 {
-	if((MIS_Hilda_PfanneKaufen == LOG_Running) && C_DaysSinceEvent(MIS_Hilda_PfanneKaufen_Day,2) && (Kapitel < 3))
+	if((MIS_Hilda_PfanneKaufen == LOG_RUNNING) && C_DaysSinceEvent(MIS_Hilda_PfanneKaufen_Day,2) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -357,9 +357,9 @@ func void DIA_Hilda_KRANK_helfen()
 	if(MIS_HealHilda == FALSE)
 	{
 		Log_CreateTopic(TOPIC_HealHilda,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_HealHilda,LOG_Running);
+		Log_SetTopicStatus(TOPIC_HealHilda,LOG_RUNNING);
 		B_LogEntry(TOPIC_HealHilda,"Жена Лобарта Хильда больна, но у Ватраса есть лекарство, которое может вылечить ее.");
-		MIS_HealHilda = LOG_Running;
+		MIS_HealHilda = LOG_RUNNING;
 	};
 	AI_StopProcessInfos(self);
 };
@@ -411,8 +411,7 @@ instance DIA_Hilda_DISTURB(C_Info)
 
 func int DIA_Hilda_DISTURB_Condition()
 {
-//	if((MIS_HealHilda == LOG_SUCCESS) || (((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (Kapitel > 3)))
-	if(((MIS_HealHilda == LOG_SUCCESS) || (MIS_HealHilda == LOG_Running)) && (DIA_Hilda_KRANK_OnTime == TRUE))
+	if(((MIS_HealHilda == LOG_SUCCESS) || (MIS_HealHilda == LOG_RUNNING)) && (DIA_Hilda_KRANK_OnTime == TRUE))
 	{
 		return TRUE;
 	};

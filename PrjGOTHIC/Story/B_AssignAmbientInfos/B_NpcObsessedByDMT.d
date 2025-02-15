@@ -23,19 +23,19 @@ func void B_NpcClearObsessionByDMT(var C_Npc medium)
 		AI_EquipBestRangedWeapon(medium);
 		if(C_IsNpc(medium,BAU_930_Sekob))
 		{
-			AI_EquipArmor(medium,ITAR_Vlk_H);
+			B_EquipArmor(medium,ITAR_Vlk_H);
 		}
 		else if(C_IsNpc(medium,BAU_942_Randolph))
 		{
-			AI_EquipArmor(medium,ITAR_Bau_L);
+			B_EquipArmor(medium,ITAR_Bau_L);
 		}
 		else if(C_IsNpc(medium,BAU_952_Vino))
 		{
-			AI_EquipArmor(medium,ITAR_Bau_L);
+			B_EquipArmor(medium,ITAR_Bau_L);
 		}
 		else if(C_IsNpc(medium,BAU_963_Malak))
 		{
-			AI_EquipArmor(medium,ITAR_Bau_M);
+			B_EquipArmor(medium,ITAR_Bau_M);
 			if(!Npc_IsDead(BAU_962_Bauer))
 			{
 				Npc_SetTarget(BAU_962_Bauer,medium);
@@ -74,19 +74,19 @@ func void B_NpcClearObsessionByDMT(var C_Npc medium)
 		}
 		else if(C_IsNpc(medium,VLK_405_Fernando))
 		{
-			AI_EquipArmor(medium,ITAR_Governor);
+			B_EquipArmor(medium,ITAR_Governor);
 		}
 		else if(C_IsNpc(medium,VLK_4100_Brutus))
 		{
-			AI_EquipArmor(medium,ITAR_MIL_L);
+			B_EquipArmor(medium,ITAR_MIL_L);
 		}
 		else if(C_IsNpc(medium,VLK_4131_Engrom))
 		{
-			AI_EquipArmor(medium,ITAR_Leather_L);
+			B_EquipArmor(medium,ITAR_Leather_L);
 		}
 		else if(C_IsNpc(medium,VLK_433_Bromor))
 		{
-			AI_EquipArmor(medium,ITAR_Vlk_H);
+			B_EquipArmor(medium,ITAR_Vlk_H);
 		};
 		NpcObsessedByDMT = FALSE;
 		medium.flags = 0;
@@ -105,8 +105,7 @@ func void B_NpcObsessedByDMT(var C_Npc medium)
 		Wld_PlayEffect("DEMENTOR_FX",hero,hero,0,0,0,FALSE);
 		AI_UnequipWeapons(medium);
 		medium.attribute[ATR_MANA_MAX] = CONDITION_ARMOR_FAKE_DEMENTOR;
-		CreateInvItems(medium,ITAR_Fake_Dementor,1);
-		AI_EquipArmor(medium,ITAR_Fake_Dementor);
+		B_EquipArmor(medium,ITAR_Fake_Dementor);
 		AI_PlayAni(medium,"T_PRACTICEMAGIC5");
 		Wld_PlayEffect("spellFX_Fear",medium,medium,0,0,0,FALSE);
 		NpcObsessedByDMT = TRUE;

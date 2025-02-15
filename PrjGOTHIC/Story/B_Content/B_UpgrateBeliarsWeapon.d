@@ -250,6 +250,44 @@ func int C_IsItemMeleeBeliarsWeapon(var C_Item weapon)
 	return FALSE;
 };
 
+func int C_ScHasReadiedBeliarsMagic()
+{
+	var int activeSpell;
+	if(Npc_IsDrawingSpell(hero))
+	{
+		activeSpell = Npc_GetActiveSpell(hero);
+		if(activeSpell == SPL_Energyball)
+		{
+			return TRUE;
+		};
+		if(activeSpell == SPL_SuckEnergy)
+		{
+			return TRUE;
+		};
+		if(activeSpell == SPL_GreenTentacle)
+		{
+			return TRUE;
+		};
+		if(activeSpell == SPL_Swarm)
+		{
+			return TRUE;
+		};
+		if(activeSpell == SPL_Skull)
+		{
+			return TRUE;
+		};
+		if(activeSpell == SPL_SummonZombie)
+		{
+			return TRUE;
+		};
+		if(activeSpell == SPL_SummonGuardian)
+		{
+			return TRUE;
+		};
+	};
+	return FALSE;
+};
+
 func int C_ScHasReadiedBeliarsWeapon()
 {
 	var C_Item ReadyWeap;
@@ -276,17 +314,6 @@ func int C_ScHasEquippedBeliarsWeapon()
 		};
 	};
 	return FALSE;
-};
-
-func void B_ClearBeliarsRune()
-{
-	B_RemoveEveryInvItem(hero,ItRu_BeliarsRage);
-	B_RemoveEveryInvItem(hero,ItRu_SuckEnergy);
-	B_RemoveEveryInvItem(hero,ItRu_GreenTentacle);
-	B_RemoveEveryInvItem(hero,ItRu_Swarm);
-	B_RemoveEveryInvItem(hero,ItRu_Skull);
-	B_RemoveEveryInvItem(hero,ItRu_SummonZombie);
-	B_RemoveEveryInvItem(hero,ItRu_SummonGuardian);
 };
 
 func void B_ClearBeliarsWeapon()
@@ -336,7 +363,7 @@ func void B_ClearBeliarsWeapon()
 
 func void B_ClearBeliarsItems()
 {
-	B_ClearBeliarsRune();
+	B_RemoveAllBeliarRunes(hero);
 	B_ClearBeliarsWeapon();
 };
 

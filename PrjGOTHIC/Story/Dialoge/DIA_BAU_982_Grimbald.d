@@ -21,6 +21,10 @@ func void DIA_Grimbald_EXIT_Info()
 };
 
 
+var int Grimbald_PissOff;
+var int Grimbald_HuntInProgress;
+var int Grimbald_HuntStart_Day;
+
 instance DIA_Grimbald_HALLO(C_Info)
 {
 	npc = BAU_982_Grimbald;
@@ -35,11 +39,6 @@ func int DIA_Grimbald_HALLO_Condition()
 {
 	return TRUE;
 };
-
-
-var int Grimbald_PissOff;
-var int Grimbald_HuntInProgress;
-var int Grimbald_HuntStart_Day;
 
 func void DIA_Grimbald_HALLO_Info()
 {
@@ -298,7 +297,7 @@ instance DIA_Grimbald_NovChase(C_Info)
 
 func int DIA_Grimbald_NovChase_Condition()
 {
-	if(MIS_NovizenChase == LOG_Running)
+	if(MIS_NovizenChase == LOG_RUNNING)
 	{
 		return TRUE;
 	};

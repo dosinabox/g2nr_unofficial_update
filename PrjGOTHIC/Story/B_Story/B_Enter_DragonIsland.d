@@ -232,7 +232,7 @@ func void STARTUP_DragonIsland()
 	STARTUP_DragonIsland_Part_Final_01();
 	PlayVideo("SHIP.BIK");
 	Log_CreateTopic(TOPIC_HallenVonIrdorath,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_HallenVonIrdorath,LOG_Running);
+	Log_SetTopicStatus(TOPIC_HallenVonIrdorath,LOG_RUNNING);
 	Log_AddEntry(TOPIC_HallenVonIrdorath,"Я добрался до вражеского острова. Один Иннос знает, что за создания поджидают в глубине этих гор.");
 	B_Kapitelwechsel(6,DRAGONISLAND_ZEN);
 };

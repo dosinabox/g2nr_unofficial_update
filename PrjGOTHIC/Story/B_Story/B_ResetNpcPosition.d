@@ -1,7 +1,7 @@
 
 func void B_ResetSergio()
 {
-	if(Sergio_GuideStatus == LOG_Running)
+	if(Sergio_GuideStatus == LOG_RUNNING)
 	{
 		if(!Npc_IsDead(Sergio))
 		{
@@ -60,8 +60,11 @@ func void B_ResetLares()
 	{
 		LaresGuide_OrnamentForest = 0;
 	};
-	Lares.aivar[AIV_PARTYMEMBER] = FALSE;
-	B_StartOtherRoutine(Lares,"START");
+	if(!Npc_IsDead(Lares))
+	{
+		B_StartOtherRoutine(Lares,"START");
+		Lares.aivar[AIV_PARTYMEMBER] = FALSE;
+	};
 	B_StartOtherRoutine(BridgeBandit,"INTERCEPT");
 };
 
@@ -84,16 +87,16 @@ func void B_ResetHenryPirates()
 	{
 		if(SawPirate.aivar[AIV_PARTYMEMBER] == TRUE)
 		{
-			SawPirate.aivar[AIV_PARTYMEMBER] = FALSE;
 			Npc_ExchangeRoutine(SawPirate,"START");
+			SawPirate.aivar[AIV_PARTYMEMBER] = FALSE;
 		};
 	};
 	if(!Npc_IsDead(HammerPirate))
 	{
 		if(HammerPirate.aivar[AIV_PARTYMEMBER] == TRUE)
 		{
-			HammerPirate.aivar[AIV_PARTYMEMBER] = FALSE;
 			Npc_ExchangeRoutine(HammerPirate,"START");
+			HammerPirate.aivar[AIV_PARTYMEMBER] = FALSE;
 		};
 	};
 };

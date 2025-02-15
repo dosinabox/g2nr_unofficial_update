@@ -27,7 +27,6 @@ instance DIA_Addon_Tom_HI(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Tom_HI_Condition;
 	information = DIA_Addon_Tom_HI_Info;
-	permanent = FALSE;
 	description = "Почему ты торчишь здесь?";
 };
 
@@ -55,7 +54,6 @@ instance DIA_Addon_Tom_Juan(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Tom_Juan_Condition;
 	information = DIA_Addon_Tom_Juan_Info;
-	permanent = FALSE;
 	description = "Что случилось?";
 };
 
@@ -75,7 +73,7 @@ func void DIA_Addon_Tom_Juan_Info()
 	AI_Output(self,other,"DIA_Addon_Tom_Juan_11_02");	//Я как раз собирался заключить сделку с пиратами, когда он выскочил из темноты и сбил меня с ног двумя ударами!
 	AI_Output(self,other,"DIA_Addon_Tom_Juan_11_03");	//Этот парень очень быстр! Но недостаточно быстр. Мне удалось убежать от него.
 	SC_Knows_JuanMurderedAngus = TRUE;
-	if(MIS_Addon_Bill_SearchAngusMurder == LOG_Running)
+	if(MIS_Addon_Bill_SearchAngusMurder == LOG_RUNNING)
 	{
 		B_LogEntry(TOPIC_Addon_KillJuan,"Хэнка и Ангуса подстерег и убил Хуан.");
 	};
@@ -88,7 +86,6 @@ instance DIA_Addon_Tom_Esteban(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Tom_Esteban_Condition;
 	information = DIA_Addon_Tom_Esteban_Info;
-	permanent = FALSE;
 	description = "И с тех пор ты сидишь здесь?";
 };
 
@@ -118,7 +115,6 @@ instance DIA_Addon_Tom_Dead(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Tom_Dead_Condition;
 	information = DIA_Addon_Tom_Dead_Info;
-	permanent = FALSE;
 	description = "Эстебан мертв.";
 };
 

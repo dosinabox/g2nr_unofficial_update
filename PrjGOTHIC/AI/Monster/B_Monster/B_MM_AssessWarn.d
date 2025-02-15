@@ -1,7 +1,7 @@
 
 func void B_MM_AssessWarn()
 {
-	if(self.guild > GIL_SEPERATOR_ORC)
+	if(C_NpcIsOrc(self))
 	{
 		if(Npc_IsInState(self,ZS_MM_Attack))
 		{
@@ -16,7 +16,7 @@ func void B_MM_AssessWarn()
 		};
 		return;
 	};
-	if(other.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(other))
 	{
 		return;
 	};

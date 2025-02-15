@@ -95,8 +95,8 @@ func void evt_raven_awake_func()
 		{
 			B_StartOtherRoutine(Raven,"WAITFORPLAYER");
 			AI_TurnToNPC(Raven,hero);
+			Raven_Awaken = TRUE;
 		};
-		Raven_Awaken = TRUE;
 	};
 };
 

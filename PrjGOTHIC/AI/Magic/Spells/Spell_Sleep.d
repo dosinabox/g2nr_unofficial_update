@@ -13,7 +13,7 @@ instance Spell_Sleep(C_Spell_Proto)
 
 func int C_NpcCanSleep(var C_Npc npc)
 {
-	if(npc.guild >= GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(npc))
 	{
 		return FALSE;
 	};
@@ -35,15 +35,15 @@ func int C_NpcCanSleep(var C_Npc npc)
 	};
 	if(C_NpcIsImmortal(npc))
 	{
+		if(C_IsNpc(npc,VLK_400_Larius))
+		{
+			return TRUE;
+		};
 		if(C_IsNpc(npc,VLK_401_Cornelius))
 		{
 			return TRUE;
 		};
 		if(C_IsNpc(npc,VLK_402_Richter))
-		{
-			return TRUE;
-		};
-		if(C_IsNpc(npc,VLK_400_Larius))
 		{
 			return TRUE;
 		};

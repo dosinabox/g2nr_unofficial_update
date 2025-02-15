@@ -27,14 +27,16 @@ instance DIA_GornOW_Hello(C_Info)
 	nr = 2;
 	condition = DIA_GornOW_Hello_Condition;
 	information = DIA_GornOW_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_GornOW_Hello_Condition()
 {
-	return TRUE;
+	if(Npc_IsInState(self,ZS_Talk))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_GornOW_Hello_Info()
@@ -56,7 +58,7 @@ func void DIA_GornOW_Hello_Info()
 		else
 		{
 			B_GiveArmor(ITAR_SLD_M);
-			Lee_SldMGiven = TRUE;
+			Gorn_SldMGiven = TRUE;
 		};
 		AI_Output(other,self,"DIA_GornOW_Add_15_03");	//Спасибо! Увидимся у Милтена.
 	}
@@ -79,7 +81,6 @@ instance DIA_GornOW_MetMilten(C_Info)
 	nr = 2;
 	condition = DIA_GornOW_MetMilten_Condition;
 	information = DIA_GornOW_MetMilten_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

@@ -56,7 +56,10 @@ func void ZS_GhostWusel()
 	{
 		AI_GotoWP(self,self.wp);
 	};
-	AI_GotoFP(self,"ROAM");
+	if(Wld_IsFPAvailable(self,"ROAM"))
+	{
+		AI_GotoFP(self,"ROAM");
+	};
 };
 
 func int ZS_GhostWusel_Loop()
@@ -73,7 +76,10 @@ func int ZS_GhostWusel_Loop()
 		}
 		else if(!C_BodyStateContains(self,BS_WALK) && !C_BodyStateContains(self,BS_RUN))
 		{
-			AI_GotoFP(self,"ROAM");
+			if(Wld_IsFPAvailable(self,"ROAM"))
+			{
+				AI_GotoFP(self,"ROAM");
+			};
 		};
 		Npc_SetStateTime(self,0);
 	};

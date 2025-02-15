@@ -46,7 +46,9 @@ instance Itemhoshi(Npc_Default)
 	B_GiveAllAddonMissionItems(self);
 	B_GiveAllPatchMissionItems(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_OldBald_Jeremiah,BodyTex_N,NO_ARMOR);
-	B_GiveNpcTalents(self);
+	Npc_SetTalentSkill(self,NPC_TALENT_MAGE,6);
+	Npc_SetTalentSkill(self,NPC_TALENT_PICKLOCK,1);
+	Npc_SetTalentSkill(self,NPC_TALENT_SNEAK,1);
 	B_SetFightSkills(self,70);
 };
 

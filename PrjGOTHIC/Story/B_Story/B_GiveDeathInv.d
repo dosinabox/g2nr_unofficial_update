@@ -581,7 +581,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) && (slf.aivar[AIV_MM_REAL_ID] == ID_TROLL_BLACK))
 	{
 		TrollBlackFurWasted = TRUE;
-		if(MIS_Raoul_KillTrollBlack == LOG_Running)
+		if(MIS_Raoul_KillTrollBlack == LOG_RUNNING)
 		{
 			MIS_Raoul_KillTrollBlack = LOG_FAILED;
 			B_CheckLog();

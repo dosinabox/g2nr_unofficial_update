@@ -27,7 +27,6 @@ instance DIA_Gerbrandt_PreHello(C_Info)
 	nr = 2;
 	condition = DIA_Gerbrandt_PreHello_Condition;
 	information = DIA_Gerbrandt_PreHello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -54,7 +53,6 @@ instance DIA_Gerbrandt_Hello(C_Info)
 	nr = 5;
 	condition = DIA_Gerbrandt_Hello_Condition;
 	information = DIA_Gerbrandt_Hello_Info;
-	permanent = FALSE;
 	description = "Что ты делаешь здесь?";
 };
 
@@ -198,14 +196,13 @@ instance DIA_Gerbrandt_GreetingsFromDiego(C_Info)
 	nr = 10;
 	condition = DIA_Gerbrandt_GreetingsFromDiego_Condition;
 	information = DIA_Gerbrandt_GreetingsFromDiego_Info;
-	permanent = FALSE;
 	description = "Диего передает тебе привет.";
 };
 
 
 func int DIA_Gerbrandt_GreetingsFromDiego_Condition()
 {
-	if((MIS_DiegosResidence == LOG_Running) && Npc_HasItems(other,ItWr_DiegosLetter_MIS))
+	if((MIS_DiegosResidence == LOG_RUNNING) && Npc_HasItems(other,ItWr_DiegosLetter_MIS))
 	{
 		return TRUE;
 	};

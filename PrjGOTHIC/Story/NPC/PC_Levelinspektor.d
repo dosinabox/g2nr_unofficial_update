@@ -1,5 +1,5 @@
 
-instance PC_Levelinspektor(Npc_Default)
+/*instance PC_Levelinspektor(Npc_Default)
 {
 	name[0] = "Инспектор";
 	npcType = NPCTYPE_MAIN;
@@ -18,5 +18,5 @@ instance PC_Levelinspektor(Npc_Default)
 	B_SetFightSkills(self,100);
 	EquipItem(self,ItMw_ShortSword3);
 	EquipItem(self,ItRw_Bow_L_01);
-};
+};*/
 

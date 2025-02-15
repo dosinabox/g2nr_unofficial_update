@@ -2,7 +2,7 @@
 func void B_AssessTalk()
 {
 	var int rnd;
-	if(self.guild > GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(self))
 	{
 		if(!Npc_CheckInfo(self,1))
 		{
@@ -12,7 +12,7 @@ func void B_AssessTalk()
 			};
 		};
 	}
-	else if(self.guild < GIL_SEPERATOR_HUM)
+	else
 	{
 		/*if(C_NpcIsLevelinspektor(other) || C_NpcIsRockefeller(other))
 		{
@@ -80,6 +80,10 @@ func void B_AssessTalk()
 			{
 				MIS_SearchForDiego = LOG_SUCCESS;
 			}
+			else if(C_IsNpc(self,PC_Psionic))
+			{
+				PlayerTalkedToLesterNW = TRUE;
+			}
 			else if(C_IsNpc(self,PIR_1300_Addon_Greg_NW))
 			{
 				PlayerTalkedToGregNW = TRUE;
@@ -88,7 +92,7 @@ func void B_AssessTalk()
 			{
 				PlayerTalkedToSkipNW = TRUE;
 			}
-			else if(MIS_Andre_REDLIGHT == LOG_Running)
+			else if(MIS_Andre_REDLIGHT == LOG_RUNNING)
 			{
 				if(C_LawArmorEquipped(other))
 				{
@@ -113,7 +117,7 @@ func void B_AssessTalk()
 			}
 			else if(self.guild == GIL_NOV)
 			{
-				if((Parlan_DontTalkToNovice == LOG_Running) && Wld_IsTime(8,0,0,0))
+				if((Parlan_DontTalkToNovice == LOG_RUNNING) && Wld_IsTime(8,0,0,0))
 				{
 					if(C_IsNpc(self,NOV_615_Novize))
 					{

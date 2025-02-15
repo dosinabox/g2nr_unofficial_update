@@ -46,8 +46,12 @@ func int DIA_Addon_Saturas_ADW_EXIT_Condition()
 
 func void DIA_Addon_Saturas_ADW_EXIT_Info()
 {
-	AI_StopProcessInfos(self);
+	if(Saturas_KlaueInsMeer == TRUE)
+	{
+		B_ClearBeliarsItems();
+	};
 	AI_Output(self,other,"DIA_Addon_Saturas_ADW_EXIT_14_00");	//Пусть Аданос защитит тебя.
+	AI_StopProcessInfos(self);
 };
 
 
@@ -140,15 +144,15 @@ func void DIA_Addon_Saturas_ADWStart_wastun2()
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_07");	//Кроме того, ты должен найти способ освободить рабов.
 	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_wastun2_15_08");	//Ха. (цинично) И это все? Я сделаю все это одной левой.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_09");	//(раздраженно) Я знаю, что прошу слишком о многом. Воспринимай это как шанс вернуть мое доверие.
-	MIS_ADDON_Saturas_GoToRaven = LOG_Running;
+	MIS_ADDON_Saturas_GoToRaven = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Addon_RavenKDW,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_RavenKDW,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_RavenKDW,LOG_RUNNING);
 	B_LogEntries(TOPIC_Addon_RavenKDW,"Ворон оскверняет святой храм Аданоса. Я должен остановить его, даже если мне придется его убить.");
 	Log_CreateTopic(TOPIC_Addon_Sklaven,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Sklaven,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Sklaven,LOG_RUNNING);
 	B_LogNextEntry(TOPIC_Addon_Sklaven,"Сатурас хочет, чтобы я освободил рабов.");
 	Log_CreateTopic(TOPIC_Addon_Relicts,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Relicts,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Relicts,LOG_RUNNING);
 	B_LogNextEntry(TOPIC_Addon_Relicts,"Сатурас хочет, чтобы я приносил ему все, что поможет узнать новую информацию о зодчих.");
 	Info_AddChoice(DIA_Addon_Saturas_ADWStart,"Тогда я пойду.",DIA_Addon_Saturas_ADWStart_back);
 };
@@ -167,7 +171,7 @@ func void DIA_Addon_Saturas_ADWStart_back()
 		if(!C_SCHasBDTArmor())
 		{
 			Log_CreateTopic(TOPIC_Addon_BDTRuestung,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_BDTRuestung,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Addon_BDTRuestung,LOG_RUNNING);
 			B_LogEntry(TOPIC_Addon_BDTRuestung,"Бандиты убивают всех, кто не выглядит, как они. Чтобы попасть к ним, мне нужны бандитские доспехи.");
 		};
 	};
@@ -196,9 +200,9 @@ func int DIA_Addon_Saturas_MissingPeople_Condition()
 
 func void DIA_Addon_Saturas_MissingPeople_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_missingPeople_15_00");	//Есть какие-нибудь следы пропавших людей?
-	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_01");	//Только вчера мы нашли тело рыбака. Оно лежало под развалинами к востоку отсюда.
-	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, это был рыбак из Хориниса. Взгляни там.
+	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_MissingPeople_15_00");	//Есть какие-нибудь следы пропавших людей?
+	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_MissingPeople_14_01");	//Только вчера мы нашли тело рыбака. Оно лежало под развалинами к востоку отсюда.
+	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_MissingPeople_14_02");	//Похоже, это был рыбак из Хориниса. Взгляни там.
 	if(!Npc_HasItems(William,ItWr_Addon_William_01))
 	{
 		DIA_Common_IFoundHim();
@@ -208,7 +212,7 @@ func void DIA_Addon_Saturas_MissingPeople_Info()
 			if(Sklaven_Flucht == FALSE)
 			{
 				Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+				Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 			};
 			B_LogEntry(TOPIC_Addon_MissingPeople,"Рыбак из Хориниса Вильям мертв. Я нашел его тело в Яркендаре.");
 		};
@@ -219,7 +223,7 @@ func void DIA_Addon_Saturas_MissingPeople_Info()
 		if(Sklaven_Flucht == FALSE)
 		{
 			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 		};
 		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamLeiche);
 	};
@@ -247,7 +251,7 @@ func void DIA_Addon_Saturas_PoorRanger_Info()
 	AI_Output(self,other,"DIA_Addon_Saturas_PoorRanger_14_01");	//Его звали Ланс.
 	AI_Output(self,other,"DIA_Addon_Saturas_PoorRanger_14_02");	//Боюсь, он не ушел далеко.
 	Log_CreateTopic(TOPIC_Addon_Lance,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Lance,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Lance,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_Lance,"Сатурас послал на болото человека по имени Ланс. Он боится, что Лансу не удалось далеко уйти.");
 };
 
@@ -264,7 +268,6 @@ instance DIA_Addon_Saturas_Piraten(C_Info)
 
 func int DIA_Addon_Saturas_Piraten_Condition()
 {
-//	if((AlligatorJack.aivar[AIV_TalkedToPlayer] == FALSE) && (Greg.aivar[AIV_TalkedToPlayer] == FALSE))
 	if(!C_SCHasBDTArmor() && (RavenIsDead == FALSE))
 	{
 		return TRUE;
@@ -541,7 +544,7 @@ func void DIA_Addon_Saturas_StonePlateHint_wo()
 	AI_Output(self,other,"DIA_Addon_Saturas_StonePlateHint_wo_14_02");	//Он скажет, где тебе искать эти дворцы.
 	SaturasSendsToRiordian = TRUE;
 	Log_CreateTopic(TOPIC_Addon_HousesOfRulers,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_HousesOfRulers,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_HousesOfRulers,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_HousesOfRulers,"Сатурас хочет, чтобы я обыскал дворцы зодчих. Риордиан скажет мне, где найти эти строения.");
 };
 
@@ -662,7 +665,7 @@ var int Addon_Saturas_Fortuno;
 
 func int DIA_Addon_Saturas_RavenInfos_Condition()
 {
-	if((MIS_ADDON_Saturas_GoToRaven == LOG_Running) && (RavenIsDead == FALSE))
+	if((MIS_ADDON_Saturas_GoToRaven == LOG_RUNNING) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -780,7 +783,7 @@ func void DIA_Addon_Saturas_TuerZu_Info()
 	AI_Output(self,other,"DIA_Addon_Saturas_TuerZu_14_14");	//Он получил знание о том, как попасть в храм, у духа!
 	AI_Output(self,other,"DIA_Addon_Saturas_TuerZu_14_15");	//Ты должен рассказать об этом Миксиру!
 	Log_CreateTopic(TOPIC_Addon_Quarhodron,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Quarhodron,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Quarhodron,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_Quarhodron,"Ворон обрел силу стражей мертвых. Он получил от призрака знания о храме Аданоса. Я должен рассказать об этом Миксиру.");
 	Saturas_RiesenPlan = TRUE;
 };
@@ -871,7 +874,7 @@ func void DIA_Addon_Saturas_TalkedToGhost_wasistdas()
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_13");	//В его руках Коготь будет неудержимым оружием разрушения.
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_14");	//Ворон не должен завладеть Когтем, иначе все будет потеряно.
 	Log_CreateTopic(TOPIC_Addon_Klaue,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Klaue,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Klaue,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_Klaue,"В храме Аданоса находится могучее оружие. Оно называется 'Коготь Белиара'. Ворон не должен получить его в свои руки!");
 };
 
@@ -884,7 +887,7 @@ func void DIA_Addon_Saturas_TalkedToGhost_kammern()
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_kammern_14_04");	//Когда ты соберешь все реликвии и поймешь, о чем говорят нанесенные на них надписи, ты сможешь попасть во внутреннее святилище храма.
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_kammern_14_05");	//Не знаю, смог ли Ворон решить головоломки храма, но если ему это удалось, то у нас начнутся большие неприятности.
 	Log_CreateTopic(TOPIC_Addon_Kammern,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Kammern,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Kammern,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_Kammern,LogText_Addon_Relicts);
 	Log_AddEntry(TOPIC_Addon_Kammern,"Сатурас послал меня в храм. Я должен пройти через его залы и остановить Ворона.");
 	if(Saturas_SCBroughtAllToken == FALSE)
@@ -928,35 +931,35 @@ func void DIA_Addon_Saturas_RelictsBack_Info()
 		if(Npc_HasItems(self,ItMi_Addon_Stone_01) && (Saturas_SCFound_ItMi_Addon_Stone_01 == TRUE))
 		{
 			Npc_RemoveInvItems(self,ItMi_Addon_Stone_01,1);
-			CreateInvItems(hero,ItMi_Addon_Stone_01,1);
+			CreateInvItems(other,ItMi_Addon_Stone_01,1);
 			AI_PrintScreen("Красная каменная табличка получено",-1,info_ypos,FONT_ScreenSmall,3);
 			info_ypos += 3;
 		};
 		if(Npc_HasItems(self,ItMi_Addon_Stone_02) && (Saturas_SCFound_ItMi_Addon_Stone_02 == TRUE))
 		{
 			Npc_RemoveInvItems(self,ItMi_Addon_Stone_02,1);
-			CreateInvItems(hero,ItMi_Addon_Stone_02,1);
+			CreateInvItems(other,ItMi_Addon_Stone_02,1);
 			AI_PrintScreen("Фиолетовая каменная табличка получено",-1,info_ypos,FONT_ScreenSmall,3);
 			info_ypos += 3;
 		};
 		if(Npc_HasItems(self,ItMi_Addon_Stone_03) && (Saturas_SCFound_ItMi_Addon_Stone_03 == TRUE))
 		{
 			Npc_RemoveInvItems(self,ItMi_Addon_Stone_03,1);
-			CreateInvItems(hero,ItMi_Addon_Stone_03,1);
+			CreateInvItems(other,ItMi_Addon_Stone_03,1);
 			AI_PrintScreen("Синяя каменная табличка получено",-1,info_ypos,FONT_ScreenSmall,3);
 			info_ypos += 3;
 		};
 		if(Npc_HasItems(self,ItMi_Addon_Stone_04) && (Saturas_SCFound_ItMi_Addon_Stone_04 == TRUE))
 		{
 			Npc_RemoveInvItems(self,ItMi_Addon_Stone_04,1);
-			CreateInvItems(hero,ItMi_Addon_Stone_04,1);
+			CreateInvItems(other,ItMi_Addon_Stone_04,1);
 			AI_PrintScreen("Зеленая каменная табличка получено",-1,info_ypos,FONT_ScreenSmall,3);
 			info_ypos += 3;
 		};
 		if(Npc_HasItems(self,ItMi_Addon_Stone_05) && (Saturas_SCFound_ItMi_Addon_Stone_05 == TRUE))
 		{
 			Npc_RemoveInvItems(self,ItMi_Addon_Stone_05,1);
-			CreateInvItems(hero,ItMi_Addon_Stone_05,1);
+			CreateInvItems(other,ItMi_Addon_Stone_05,1);
 			AI_PrintScreen("Желтая каменная табличка получено",-1,info_ypos,FONT_ScreenSmall,3);
 		};
 	};
@@ -999,7 +1002,7 @@ func void DIA_Addon_Saturas_RavensDead_Info()
 	AI_Output(self,other,"DIA_Addon_Saturas_RavensDead_14_12");	//Обратно отправился только Миксир. Он поможет Ватрасу.
 	AI_Output(self,other,"DIA_Addon_Saturas_RavensDead_14_13");	//Слишком долго Ватрас оставался в городе один.
 	Log_CreateTopic(TOPIC_Addon_VatrasAbloesung,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_VatrasAbloesung,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_VatrasAbloesung,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_VatrasAbloesung,"Миксира послали на помощь Ватрасу.");
 	B_GivePlayerXP(XP_Addon_Saturas_RavensDead);
 };
@@ -1054,9 +1057,8 @@ func int DIA_Addon_Saturas_BeliarsWeapon_Condition()
 
 func void DIA_Addon_Saturas_BeliarsWeapon_Info()
 {
-//	AI_UnequipWeapons(hero);
 	AI_Output(other,self,"DIA_Addon_Saturas_BeliarsWeapon_15_00");	//Я забрал Коготь Белиара.
-	if(Npc_HasItems(hero,ItMw_BeliarWeapon_Raven) && (SC_FailedToEquipBeliarsWeapon == TRUE))
+	if(Npc_HasItems(other,ItMw_BeliarWeapon_Raven) && (SC_FailedToEquipBeliarsWeapon == TRUE))
 	{
 		AI_Output(other,self,"DIA_Addon_Saturas_BeliarsWeapon_15_01");	//Но я не могу его использовать!
 	};
@@ -1087,7 +1089,7 @@ func void DIA_Addon_Saturas_BeliarsWeapon_geben()
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_geben_14_03");	//Если ты отдашь его мне, я лишу меч его сил, и он больше никогда не сможет послужить Злу.
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_geben_14_04");	//Так что решай. Выбор за тобой.
 	Log_CreateTopic(TOPIC_Addon_Klaue,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Klaue,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Klaue,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_Klaue,"Я могу отдать Коготь Белиара Сатурасу или оставить его себе.");
 };
 
@@ -1098,7 +1100,7 @@ func void DIA_Addon_Saturas_BeliarsWeapon_besser()
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_besser_14_02");	//Но будь осторожен! Белиар зол и коварен.
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_besser_14_03");	//Если ты вызовешь его недовольство, он обрушит на тебя свой гнев.
 	Log_CreateTopic(TOPIC_Addon_Klaue,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Klaue,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Klaue,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_Klaue,"Чтобы подчинить Коготь своей воле, я должен помолиться Белиару.");
 	B_Say(other,self,"$VERSTEHE");
 };
@@ -1168,7 +1170,20 @@ func void DIA_Addon_Saturas_BeliarWeapGeben_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_BeliarWeapGeben_15_00");	//Возьми Коготь Белиара и уничтожь его.
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarWeapGeben_14_01");	//Как скажешь, сын мой. Дай мне Коготь.
-	B_ClearBeliarsItems();
+	if(C_ScHasReadiedBeliarsMagic())
+	{
+		AI_UnreadySpell(other);
+		B_UnEquipAllBeliarsRunes();
+	};
+	if(C_ScHasReadiedBeliarsWeapon())
+	{
+		AI_RemoveWeapon(other);
+		AI_UnequipWeapons(other);
+	};
+	if(!C_ScHasReadiedBeliarsMagic() && !C_ScHasReadiedBeliarsWeapon())
+	{
+		B_ClearBeliarsItems();
+	};
 	AI_PrintScreen("Коготь Белиара отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarWeapGeben_14_02");	//Теперь Коготь лишен своей силы. Я утоплю его в глубинах моря.
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarWeapGeben_14_03");	//Мудрость Аданоса укроет его от Зла.
@@ -1195,8 +1210,7 @@ instance DIA_Addon_Saturas_ADW_PreTeachCircle(C_Info)
 
 func int DIA_Addon_Saturas_ADW_PreTeachCircle_Condition()
 {
-//	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1))
-	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6))
+	if((other.guild == GIL_KDF) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) < 6))
 	{
 		return TRUE;
 	};
@@ -1205,7 +1219,7 @@ func int DIA_Addon_Saturas_ADW_PreTeachCircle_Condition()
 func void DIA_Addon_Saturas_ADW_PreTeachCircle_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_ADW_PreTeachCircle_15_00");	//Ты можешь обучить меня кругам магии?
-	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 5)
+	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 5)
 	{
 		B_Saturas_ADW_CantTeach5Circle();
 	}
@@ -1245,10 +1259,8 @@ func int DIA_Addon_Saturas_ADW_CIRCLE_Condition()
 	var int kosten;
 	circle = Npc_GetTalentSkill(other,NPC_TALENT_MAGE) + 1;
 	kosten = B_GetLearnCostTalent(other,NPC_TALENT_MAGE,circle);
-//	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
-	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
 	{
-//		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Я хочу перейти на следующий уровень магии",kosten);
 		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Следующий Круг магии",kosten);
 		return TRUE;
 	};
@@ -1257,7 +1269,7 @@ func int DIA_Addon_Saturas_ADW_CIRCLE_Condition()
 func void DIA_Addon_Saturas_ADW_CIRCLE_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_ADW_CIRCLE_15_00");	//Я хочу перейти на следующий уровень магии.
-	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 1) && (Kapitel >= 2))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 1) && (Kapitel >= 2))
 	{
 		if(B_TeachMagicCircle(self,other,2))
 		{
@@ -1265,7 +1277,7 @@ func void DIA_Addon_Saturas_ADW_CIRCLE_Info()
 			AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_02");	//Вступи же во второй круг магии! Да поможет тебе Аданос мудро распоряжаться дарованными тебе знаниями.
 		};
 	}
-	else if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 2) && (Kapitel >= 3))
+	else if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 2) && (Kapitel >= 3))
 	{
 		if(B_TeachMagicCircle(self,other,3))
 		{
@@ -1273,7 +1285,7 @@ func void DIA_Addon_Saturas_ADW_CIRCLE_Info()
 			AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_04");	//Теперь ты сможешь применять более мощные заклинания. Используя их, будь рассудителен.
 		};
 	}
-	else if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 3) && (MIS_ReadyforChapter4 == TRUE))
+	else if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 3) && (MIS_ReadyforChapter4 == TRUE))
 	{
 		if(B_TeachMagicCircle(self,other,4))
 		{
@@ -1281,7 +1293,7 @@ func void DIA_Addon_Saturas_ADW_CIRCLE_Info()
 			AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_06");	//Да будут могущественными твои слова и деяния! Но не используй свои силы безрассудно.
 		};
 	}
-	else if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 4) && (Kapitel >= 5))
+	else if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 4) && (Kapitel >= 5))
 	{
 		if(B_TeachMagicCircle(self,other,5))
 		{
@@ -1290,7 +1302,7 @@ func void DIA_Addon_Saturas_ADW_CIRCLE_Info()
 			AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_09");	//Держи себя под контролем! Не дай мании величия овладеть тобой.
 		};
 	}
-	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 5)
+	else if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 5)
 	{
 		B_Saturas_ADW_CantTeach5Circle();
 		DIA_Addon_Saturas_ADW_CIRCLE_NoPerm = TRUE;

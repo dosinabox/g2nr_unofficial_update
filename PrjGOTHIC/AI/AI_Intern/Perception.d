@@ -100,7 +100,7 @@ func void B_ClearPerceptions(var C_Npc slf)
 	Npc_PercDisable(slf,PERC_ASSESSOTHERSDAMAGE);
 	Npc_PercDisable(slf,PERC_ASSESSSTOPMAGIC);
 	Npc_PercDisable(slf,PERC_ASSESSSURPRISE);
-	if(slf.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(slf))
 	{
 		B_ResetFaceExpression(slf);
 	};

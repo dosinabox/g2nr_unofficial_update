@@ -108,7 +108,7 @@ func void ZS_GetMeat()
 {
 	Perception_Set_Minimal();
 	AI_Standup(self);
-	if(other.guild > GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(other))
 	{
 		AI_GotoNpc(self,other);
 		if(C_NpcIsDown(other))

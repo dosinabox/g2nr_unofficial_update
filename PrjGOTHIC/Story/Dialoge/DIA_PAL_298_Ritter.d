@@ -27,7 +27,6 @@ instance DIA_PAL_298_Pass(C_Info)
 	nr = 2;
 	condition = DIA_PAL_298_Pass_Condition;
 	information = DIA_PAL_298_Pass_Info;
-	permanent = FALSE;
 	description = "Куда ведет эта дорога?";
 };
 
@@ -55,14 +54,13 @@ instance DIA_PAL_298_TRESPASS(C_Info)
 	nr = 2;
 	condition = DIA_PAL_298_TRESPASS_Condition;
 	information = DIA_PAL_298_TRESPASS_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_PAL_298_TRESPASS_Condition()
 {
-	if(MIS_OLDWORLD == LOG_Running)
+	if(MIS_OLDWORLD == LOG_RUNNING)
 	{
 		return TRUE;
 	};

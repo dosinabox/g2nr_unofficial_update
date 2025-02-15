@@ -208,7 +208,7 @@ func void Use_William_01()
 		if(Sklaven_Flucht == FALSE)
 		{
 			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 		};
 		B_LogEntry(TOPIC_Addon_MissingPeople,"Рыбак из Хориниса Вильям мертв. Я нашел его тело в Яркендаре.");
 		FoundDeadWilliam = TRUE;
@@ -575,7 +575,7 @@ func void UseAppleSTRRecipe()
 };
 
 
-instance Fakescroll_Addon(C_Item)
+/*instance Fakescroll_Addon(C_Item)
 {
 	name = "Клочок бумаги";
 	mainflag = ITEM_KAT_DOCS;
@@ -587,7 +587,7 @@ instance Fakescroll_Addon(C_Item)
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
-};
+};*/
 
 instance ItWr_Addon_AxtAnleitung(C_Item)
 {

@@ -1,10 +1,10 @@
 
 func void B_AssessPlayer()
 {
-	if(C_NpcIsLevelinspektor(other))
+	/*if(C_NpcIsLevelinspektor(other))
 	{
 		return;
-	};
+	};*/
 	if(other.aivar[AIV_INVINCIBLE] == TRUE)
 	{
 		return;
@@ -13,7 +13,7 @@ func void B_AssessPlayer()
 	{
 		return;
 	};
-	if(other.guild > GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(other))
 	{
 		if(C_NpcIsGateGuard(self))
 		{

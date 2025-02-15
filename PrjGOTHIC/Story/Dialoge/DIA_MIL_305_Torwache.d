@@ -174,14 +174,17 @@ func int DIA_Mil_305_Torwache_MESSAGE_Condition()
 	if(Mil_305_schonmalreingelassen == TRUE)
 	{
 		return FALSE;
-	}
-	else if(Npc_HasItems(other,ItWr_Passage_MIS))
+	};
+	if(Npc_HasItems(other,ItWr_Passage_MIS))
 	{
 		return FALSE;
-	}
-	else if((Player_KnowsLordHagen == TRUE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+	};
+	if((Player_KnowsLordHagen == TRUE) && !Npc_IsDead(LordHagen))
 	{
-		return TRUE;
+		if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 

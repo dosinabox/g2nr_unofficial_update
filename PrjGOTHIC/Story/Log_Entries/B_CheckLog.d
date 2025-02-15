@@ -11,7 +11,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Addon_Fisk,MIS_Fisk_Lockpicks,0,6);
 	B_CloseTopic(TOPIC_Addon_Tempel,MIS_BloodwynRaus,0,4);
 	B_CloseTopic(TOPIC_Addon_Franco,0,Player_HasTalkedToBanditCamp,4);
-	B_CloseTopic(TOPIC_Addon_Senyan,Senyan_Erpressung,0,4);
+	B_CloseTopic(TOPIC_Addon_Senyan,MIS_Senyan_Erpressung,0,4);
 	B_CloseTopic(TOPIC_Bandits,MIS_Steckbriefe,0,4);
 	B_CloseTopic(TOPIC_Kleidung,0,Lobart_Kleidung_Verkauft,2);
 	B_CloseTopic(TOPIC_Rueben,MIS_Lobart_Rueben,0,3);

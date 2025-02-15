@@ -35,7 +35,6 @@ func void B_GiveAllClassicAccessories(var C_Npc npc)
 	CreateInvItem(npc,ItRi_Prot_Point_02);
 	CreateInvItem(npc,ItRi_Prot_Total_01);
 	CreateInvItem(npc,ItRi_Prot_Total_02);
-	CreateInvItem(npc,ItRi_Prot_Total_03);
 	CreateInvItem(npc,ItRi_OrcEliteRing);
 	CreateInvItem(npc,ItRi_Prot_Edge_01_Valentino);
 	CreateInvItem(npc,ItRi_Prot_Point_01_MIS);
@@ -45,7 +44,6 @@ func void B_GiveAllClassicAccessories(var C_Npc npc)
 func void B_GiveAllAddonAccessories(var C_Npc npc)
 {
 	CreateInvItem(npc,ItAm_Addon_Franco);
-	CreateInvItem(npc,ItAm_Addon_Greg);
 	CreateInvItem(npc,ItAm_Addon_Health);
 	CreateInvItem(npc,ItAm_Addon_MANA);
 	CreateInvItem(npc,ItAm_Addon_STR);
@@ -56,8 +54,8 @@ func void B_GiveAllAddonAccessories(var C_Npc npc)
 	CreateInvItem(npc,ItRi_Addon_MANA_02);
 	CreateInvItem(npc,ItRi_Addon_STR_01);
 	CreateInvItem(npc,ItRi_Addon_STR_02);
-	CreateInvItem(npc,ItRi_Ranger_Lares_Addon);
 	CreateInvItem(npc,ItRi_Ranger_Addon);
+	CreateInvItem(npc,ItRi_Ranger_Lares_Addon);
 	CreateInvItem(npc,ItRi_Ranger_Lance_Addon);
 	CreateInvItem(npc,ItRi_Addon_BanditTrader);
 	CreateInvItem(npc,ItRi_Addon_MorgansRing_Mission);
@@ -81,10 +79,12 @@ func void B_GiveAllAddonAccessories(var C_Npc npc)
 
 func void B_GiveAllPatchAccessories(var C_Npc npc)
 {
+	CreateInvItem(npc,ItAm_Addon_Greg);
 	CreateInvItem(npc,ItAm_Hp_Regen);
 	CreateInvItem(npc,ItAm_Mana_Regen);
 	CreateInvItem(npc,ItAm_Fall);
 	CreateInvItem(npc,ItAm_Speed);
 	CreateInvItem(npc,ItRi_Prot_Mage_03);
+	CreateInvItem(npc,ItRi_Prot_Total_03);
 };
 

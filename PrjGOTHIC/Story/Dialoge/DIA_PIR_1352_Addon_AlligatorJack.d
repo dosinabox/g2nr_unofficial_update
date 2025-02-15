@@ -23,10 +23,13 @@ func void DIA_Addon_AlligatorJack_Exit_Info()
 	if((MIS_KrokoJagd == LOG_SUCCESS) && (DIA_Addon_AlligatorJack_Exit_Info_OneTime == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_Exit_12_00");	//Если я тебе понадоблюсь, ты можешь найти меня у моего лагеря рядом с частоколом.
-		if(Henry.aivar[AIV_TalkedToPlayer] == FALSE)
+		if(!Npc_IsDead(Henry))
 		{
-			AI_Output(other,self,"DIA_Addon_AlligatorJack_Exit_15_01");	//Частоколом?
-			AI_Output(self,other,"DIA_Addon_AlligatorJack_Exit_12_02");	//Продолжай идти на запад, и ты увидишь, о чем я говорю.
+			if(Henry.aivar[AIV_TalkedToPlayer] == FALSE)
+			{
+				AI_Output(other,self,"DIA_Addon_AlligatorJack_Exit_15_01");	//Частоколом?
+				AI_Output(self,other,"DIA_Addon_AlligatorJack_Exit_12_02");	//Продолжай идти на запад, и ты увидишь, о чем я говорю.
+			};
 		};
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"START");
@@ -269,7 +272,7 @@ func void DIA_Addon_AlligatorJack_PIRLager_Info()
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PIRLager_12_06");	//Судя по виду, ты сильный человек.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PIRLager_12_07");	//Ты мог бы помочь мне охотиться. Согласен?
 	Log_CreateTopic(TOPIC_Addon_RatHunt,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_RatHunt,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_RatHunt,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_RatHunt,"Аллигатору Джеку нужна помощь в охоте.");
 };
 
@@ -399,7 +402,7 @@ func void DIA_Addon_AlligatorJack_LetsGoHunting_Yes()
 	Wld_InsertNpc(Swamprat,"ADW_CANYON_TELEPORT_PATH_06");
 	Wld_InsertNpc(Swamprat,"ADW_CANYON_TELEPORT_PATH_06");
 	AlligatorJack_JagdStart = AlligatorJack_Inter1;
-	MIS_KrokoJagd = LOG_Running;
+	MIS_KrokoJagd = LOG_RUNNING;
 };
 
 func void DIA_Addon_AlligatorJack_LetsGoHunting_No()
@@ -587,9 +590,9 @@ func void DIA_Addon_AlligatorJack_HuntEnd_Info()
 		};
 	};
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
-	MIS_AlligatorJack_BringMeat = LOG_Running;
+	MIS_AlligatorJack_BringMeat = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Addon_BringMeat,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_BringMeat,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_BringMeat,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_BringMeat,"Аллигатор Джек дал мне десять кусков мяса. Я должен передать их Моргану.");
 	Log_AddEntry(TOPIC_Addon_RatHunt,"Охота была удачной. Мы убили несколько болотных крыс.");
 	MIS_KrokoJagd = LOG_SUCCESS;
@@ -867,7 +870,7 @@ instance DIA_Addon_AlligatorJack_Anheuern(C_Info)
 
 func int DIA_Addon_AlligatorJack_Anheuern_Condition()
 {
-	if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+	if(MIS_Addon_Greg_ClearCanyon == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -897,7 +900,7 @@ instance DIA_Addon_AlligatorJack_ComeOn(C_Info)
 
 func int DIA_Addon_AlligatorJack_ComeOn_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Addon_Greg_ClearCanyon == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Anheuern))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Addon_Greg_ClearCanyon == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Anheuern))
 	{
 		return TRUE;
 	};
@@ -934,7 +937,7 @@ instance DIA_Addon_AlligatorJack_GoHome(C_Info)
 
 func int DIA_Addon_AlligatorJack_GoHome_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (MIS_Addon_Greg_ClearCanyon == LOG_Running))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (MIS_Addon_Greg_ClearCanyon == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -963,7 +966,7 @@ instance DIA_Addon_AlligatorJack_TooFar(C_Info)
 
 func int DIA_Addon_AlligatorJack_TooFar_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_GregsPiratesTooFar() && (MIS_Addon_Greg_ClearCanyon == LOG_Running))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_GregsPiratesTooFar() && (MIS_Addon_Greg_ClearCanyon == LOG_RUNNING))
 	{
 		return TRUE;
 	};

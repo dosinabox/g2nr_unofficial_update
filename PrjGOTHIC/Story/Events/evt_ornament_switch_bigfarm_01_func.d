@@ -12,7 +12,7 @@ func void evt_ornament_switch_bigfarm_01_func()
 		Snd_Play("THRILLJINGLE_02");
 		Wld_PlayEffect("spellFX_LIGHTSTAR_RingRitual",ItMi_OrnamentEffekt_BIGFARM_Addon,ItMi_OrnamentEffekt_BIGFARM_Addon,0,0,0,FALSE);
 		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_Ornament,"Я активировал механизм круга камней, находящегося неподалеку от фермы Секоба. Раздался грохот, а потом появился каменный страж, который попытался меня убить.");
 		Ornament_Switched_Bigfarm = TRUE;
 	};
@@ -24,7 +24,7 @@ func void evt_ornament_switch_farm_01_func()
 	{
 		Wld_PlayEffect("FX_EarthQuake",hero,hero,0,0,0,FALSE);
 		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_Ornament,"Я активировал механизм круга камней, находящегося неподалеку от фермы Лобарта. Земля затряслась, но ничего не произошло.");
 		Ornament_Switched_Farm = TRUE;
 	};
@@ -43,7 +43,7 @@ func void evt_ornament_switch_forest_01_func()
 		Snd_Play("THRILLJINGLE_02");
 		Wld_PlayEffect("spellFX_LIGHTSTAR_RingRitual",ItMi_OrnamentEffekt_FOREST_Addon,ItMi_OrnamentEffekt_FOREST_Addon,0,0,0,FALSE);
 		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_Ornament,"Я активировал механизм круга камней, находящегося в лесу на севере. Появился огромный каменный страж в очень дурном настроении.");
 		Ornament_Switched_Forest = TRUE;
 	};

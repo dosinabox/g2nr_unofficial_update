@@ -137,7 +137,7 @@ func void DIA_Matteo_TRADE_Info()
 		Matteo_TradeNewsPermanent = 3;
 	};
 	B_GiveTradeInv(self);
-	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING)
 	{
 		MatteoMinenAnteil = TRUE;
 	};
@@ -409,9 +409,9 @@ func void B_Matteo_RegDichAb()
 	AI_Output(self,other,"B_Matteo_RegDichAb_09_04");	//Но эта маленькая вертихвостка постоянно дефилирует в новых платьях - это означает, что деньги у нее есть.
 	AI_Output(self,other,"B_Matteo_RegDichAb_09_05");	//Я хочу, чтобы ты выбил из нее этот долг. Но мастер Торбен, плотник - тоже очень влиятельный человек.
 	AI_Output(self,other,"B_Matteo_RegDichAb_09_06");	//Принеси мне эти деньги, и я помогу тебе.
-	MIS_Matteo_Gold = LOG_Running;
+	MIS_Matteo_Gold = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Matteo,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Matteo,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Matteo,LOG_RUNNING);
 	B_LogEntry(TOPIC_Matteo,"Племянница плотника Торбена Гритта должна Маттео 100 золотых монет. Если я верну их ему, он поможет мне попасть в верхний квартал.");
 };
 
@@ -443,7 +443,7 @@ instance DIA_Matteo_WoGritta(C_Info)
 
 func int DIA_Matteo_WoGritta_Condition()
 {
-	if(MIS_Matteo_Gold == LOG_Running)
+	if(MIS_Matteo_Gold == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -469,7 +469,7 @@ instance DIA_Matteo_GoldRunning(C_Info)
 
 func int DIA_Matteo_GoldRunning_Condition()
 {
-	if(MIS_Matteo_Gold == LOG_Running)
+	if(MIS_Matteo_Gold == LOG_RUNNING)
 	{
 		if(Npc_KnowsInfo(other,DIA_Gritta_WantsMoney))
 		{
@@ -533,7 +533,7 @@ var int DIA_Matteo_Zustimmung_perm;
 
 func int DIA_Matteo_Zustimmung_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) && ((MIS_Matteo_Gold == LOG_Running) || (MIS_Matteo_Gold == LOG_SUCCESS)) && (Player_IsApprentice == APP_NONE) && (DIA_Matteo_Zustimmung_perm == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) && ((MIS_Matteo_Gold == LOG_RUNNING) || (MIS_Matteo_Gold == LOG_SUCCESS)) && (Player_IsApprentice == APP_NONE) && (DIA_Matteo_Zustimmung_perm == FALSE))
 	{
 		return TRUE;
 	};
@@ -585,7 +585,7 @@ func void DIA_Matteo_HowCanYouHelp_Info()
 		AI_Output(self,other,"DIA_Matteo_HowCanYouHelp_09_02");	//Став учеником, ты автоматически станешь гражданином города и сможешь попасть в верхний квартал. Помимо этого, ты сможешь что-нибудь заработать.
 	};
 	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Lehrling,LOG_RUNNING);
 	B_LogEntry(TOPIC_Lehrling,"Маттео может помочь мне стать учеником одного из мастеров.");
 };
 
@@ -617,7 +617,7 @@ func void DIA_Matteo_WoAlsLehrling_Info()
 	AI_Output(self,other,"DIA_Matteo_WoAlsLehrling_09_03");	//Один из них обязательно возьмет тебя.
 	AI_Output(self,other,"DIA_Matteo_WoAlsLehrling_09_04");	//Но важно, чтобы с этим были согласны другие мастера. Таков обычай Хориниса.
 	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Lehrling,LOG_RUNNING);
 	B_LogEntry(TOPIC_Lehrling,"Я могу стать учеником мастера-лучника Боспера, кузнеца Гарада, плотника Торбена или алхимика Константино.");
 	Log_AddEntry(TOPIC_Lehrling,"Прежде чем я стану учеником, я должен получить одобрение других мастеров.");
 };
@@ -737,7 +737,7 @@ instance DIA_Matteo_Minenanteil(C_Info)
 
 func int DIA_Matteo_Minenanteil_Condition()
 {
-	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (MatteoMinenAnteil == TRUE))
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (MatteoMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

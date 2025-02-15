@@ -285,14 +285,13 @@ instance PC_PrayShrine_Paladine(C_Info)
 	nr = 3;
 	condition = PC_PrayShrine_Paladine_Condition;
 	information = PC_PrayShrine_Paladine_Info;
-	permanent = FALSE;
 	description = "Помолиться за паладинов";
 };
 
 
 func int PC_PrayShrine_Paladine_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (MIS_MardukBeten == LOG_Running))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (MIS_MardukBeten == LOG_RUNNING))
 	{
 		if(Kapitel == 1)
 		{
@@ -311,6 +310,7 @@ func void PC_PrayShrine_Paladine_Info()
 	PrintScreen(Pray_Paladin2,-1,36,FONT_ScreenSmall,4);
 	PrintScreen(Pray_Paladin3,-1,39,FONT_ScreenSmall,5);
 	PrintScreen(Pray_Paladin4,-1,42,FONT_ScreenSmall,6);
+	SC_PrayedForPaladins = TRUE;
 };
 
 

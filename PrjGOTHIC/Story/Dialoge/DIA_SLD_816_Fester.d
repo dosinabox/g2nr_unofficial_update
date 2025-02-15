@@ -87,7 +87,6 @@ instance DIA_Fester_YouFight(C_Info)
 
 func int DIA_Fester_YouFight_Condition()
 {
-//	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE) && Npc_KnowsInfo(other,DIA_Fester_Hello) && (MIS_Fester_KillBugs == FALSE))
 	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE) && Npc_KnowsInfo(other,DIA_Fester_Auftrag) && (MIS_Fester_KillBugs == FALSE))
 	{
 		return TRUE;
@@ -227,9 +226,9 @@ func void DIA_Fester_TogetherNOW_NOW()
 	self.npcType = NPCTYPE_FRIEND;
 	Npc_ExchangeRoutine(self,"GUIDE");
 	Fester_Losgeh_Day = B_GetDayPlus();
-	MIS_Fester_KillBugs = LOG_Running;
+	MIS_Fester_KillBugs = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_FesterRauber,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_FesterRauber,LOG_Running);
+	Log_SetTopicStatus(TOPIC_FesterRauber,LOG_RUNNING);
 	B_LogEntry(TOPIC_FesterRauber,"Я собираюсь атаковать гнездо полевых хищников вместе с Фестером.");
 	Info_ClearChoices(DIA_Fester_TogetherNOW);
 	AI_StopProcessInfos(self);
@@ -256,7 +255,7 @@ instance DIA_Fester_InCave(C_Info)
 
 func int DIA_Fester_InCave_Condition()
 {
-	if((MIS_Fester_KillBugs == LOG_Running) && (Npc_GetDistToWP(self,"NW_BIGFARM_FELDREUBER4") <= 500))
+	if((MIS_Fester_KillBugs == LOG_RUNNING) && (Npc_GetDistToWP(self,"NW_BIGFARM_FELDREUBER4") <= 500))
 	{
 		self.aivar[AIV_LastFightComment] = TRUE;
 		return TRUE;

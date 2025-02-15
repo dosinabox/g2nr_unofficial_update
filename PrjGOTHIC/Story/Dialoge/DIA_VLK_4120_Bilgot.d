@@ -28,7 +28,6 @@ instance DIA_Bilgot_HALLO(C_Info)
 	condition = DIA_Bilgot_HALLO_Condition;
 	information = DIA_Bilgot_HALLO_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
@@ -73,7 +72,6 @@ instance DIA_Bilgot_Job(C_Info)
 	nr = 3;
 	condition = DIA_Bilgot_Job_Condition;
 	information = DIA_Bilgot_Job_Info;
-	permanent = FALSE;
 	description = "А что ты вообще здесь делаешь, кстати?";
 };
 
@@ -101,14 +99,13 @@ instance DIA_Bilgot_Hilfe(C_Info)
 	nr = 3;
 	condition = DIA_Bilgot_Hilfe_Condition;
 	information = DIA_Bilgot_Hilfe_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о снепперах?";
 };
 
 
 func int DIA_Bilgot_Hilfe_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bilgot_Job) && (MIS_Fajeth_Kill_Snapper == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Bilgot_Job) && (MIS_Fajeth_Kill_Snapper == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -137,14 +134,13 @@ instance DIA_Bilgot_KNOWSLEADSNAPPER(C_Info)
 	nr = 4;
 	condition = DIA_Bilgot_KNOWSLEADSNAPPER_Condition;
 	information = DIA_Bilgot_KNOWSLEADSNAPPER_Info;
-	permanent = FALSE;
 	description = "Расскажи мне, что ты знаешь. И я вытащу тебя отсюда!";
 };
 
 
 func int DIA_Bilgot_KNOWSLEADSNAPPER_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bilgot_Hilfe) && (MIS_Fajeth_Kill_Snapper == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Bilgot_Hilfe) && (MIS_Fajeth_Kill_Snapper == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -166,7 +162,7 @@ func void DIA_Bilgot_KNOWSLEADSNAPPER_Info()
 	NewMine_LeadSnapper_Spawned = TRUE;
 	B_LogEntries(TOPIC_FajethKillSnapper,"Билгот рассказал мне о вожаке стаи снепперов. Он должен быть у старой сторожевой башни.");
 	Log_CreateTopic(TOPIC_BilgotEscort,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BilgotEscort,LOG_Running);
+	Log_SetTopicStatus(TOPIC_BilgotEscort,LOG_RUNNING);
 	B_LogNextEntry(TOPIC_BilgotEscort,"Билгот хочет, чтобы я вывел его из долины.");
 };
 
@@ -177,7 +173,6 @@ instance DIA_Bilgot_TAKEYOUWITHME(C_Info)
 	nr = 2;
 	condition = DIA_Bilgot_TAKEYOUWITHME_Condition;
 	information = DIA_Bilgot_TAKEYOUWITHME_Info;
-	permanent = FALSE;
 	description = "Время пришло, Билгот! Пакуй свои вещи, мы отправляемся в путь.";
 };
 
@@ -196,10 +191,10 @@ func void DIA_Bilgot_TAKEYOUWITHME_Info()
 //	AI_Output(self,other,"DIA_Bilgot_TAKEYOUWITHME_05_01");	//GroЯartig! Es reicht mir schon, wenn du mich ьber die groЯe Brьcke am Fluss vor der belagerten Burg bringst. Den Rest schaff ich dann schon.
 //	AI_Output(other,self,"DIA_Bilgot_TAKEYOUWITHME_15_02");	//Dann beeil dich!
 	AI_Output(self,other,"DIA_Bilgot_TAKEYOUWITHME_05_03");	//Я готов!
-	MIS_RescueBilgot = LOG_Running;
+	MIS_RescueBilgot = LOG_RUNNING;
 	self.flags = 0;
-	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FOLLOWTOOCBRIDGE");
 };
 
@@ -210,14 +205,13 @@ instance DIA_Bilgot_LAUFSCHNELLER(C_Info)
 	nr = 5;
 	condition = DIA_Bilgot_LAUFSCHNELLER_Condition;
 	information = DIA_Bilgot_LAUFSCHNELLER_Info;
-	permanent = FALSE;
 	description = "Ты не мог бы идти немного быстрее?!";
 };
 
 
 func int DIA_Bilgot_LAUFSCHNELLER_Condition()
 {
-	if(MIS_RescueBilgot == LOG_Running)
+	if(MIS_RescueBilgot == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -237,13 +231,12 @@ instance DIA_Bilgot_BEIBRUECKEANGEKOMMEN(C_Info)
 	condition = DIA_Bilgot_BEIBRUECKEANGEKOMMEN_Condition;
 	information = DIA_Bilgot_BEIBRUECKEANGEKOMMEN_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
 func int DIA_Bilgot_BEIBRUECKEANGEKOMMEN_Condition()
 {
-	if(MIS_RescueBilgot == LOG_Running)
+	if(MIS_RescueBilgot == LOG_RUNNING)
 	{
 		if(Npc_GetDistToWP(self,"START") < 2000)
 		{
@@ -261,8 +254,8 @@ func void DIA_Bilgot_BEIBRUECKEANGEKOMMEN_Info()
 	RescueBilgot_Day = Wld_GetDay();
 	MIS_RescueBilgot = LOG_SUCCESS;
 	B_GivePlayerXP(XP_BilgotEscort);
-	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FLEEOUTOFOW");
 };
 
@@ -305,7 +298,6 @@ instance DIA_Bilgot_Olav(C_Info)
 	nr = 3;
 	condition = DIA_Bilgot_Olav_Condition;
 	information = DIA_Bilgot_Olav_Info;
-	permanent = FALSE;
 	description = "Я нашел Олава.";
 };
 

@@ -7,8 +7,6 @@ prototype Mst_Default_Meatbug(C_Npc)
 	level = 1;
 	attribute[ATR_STRENGTH] = 1;
 	attribute[ATR_DEXTERITY] = 1;
-//	attribute[ATR_HITPOINTS_MAX] = 10;
-//	attribute[ATR_HITPOINTS] = 10;
 	attribute[ATR_HITPOINTS_MAX] = 5;
 	attribute[ATR_HITPOINTS] = 5;
 	attribute[ATR_MANA_MAX] = 0;
@@ -21,7 +19,7 @@ prototype Mst_Default_Meatbug(C_Npc)
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
 	senses = SENSE_SMELL;
-	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;
+	senses_range = 200;
 	aivar[AIV_MM_FollowInWater] = FALSE;
 	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_WuselStart] = OnlyRoutine;

@@ -294,7 +294,7 @@ instance DIA_Addon_Henry_MeatForMorgan(C_Info)
 
 func int DIA_Addon_Henry_MeatForMorgan_Condition()
 {
-	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen) && (MIS_AlligatorJack_BringMeat == LOG_Running) && Npc_HasItems(other,ItFoMuttonRaw))
+	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen) && (MIS_AlligatorJack_BringMeat == LOG_RUNNING) && Npc_HasItems(other,ItFoMuttonRaw))
 	{
 		return TRUE;
 	};
@@ -516,7 +516,7 @@ func void DIA_Addon_Henry_Palisade_WhatFor_Info()
 	if(MIS_Henry_FreeBDTTower != LOG_SUCCESS)
 	{
 		Log_CreateTopic(TOPIC_Addon_BanditsTower,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_BanditsTower,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_BanditsTower,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_BanditsTower,"Несколько бандитов заняли башню к югу от пиратского лагеря.");
 	};
 };
@@ -569,7 +569,7 @@ func void DIA_Addon_Henry_Turmbanditen_WhatFor_Info()
 		B_LogEntry(TOPIC_Addon_BanditsTower,"Бандиты из башни убиты.");
 		B_GivePlayerXP(XP_Addon_Henry_FreeBDTTower);
 	}
-	else if(MIS_Henry_FreeBDTTower == LOG_Running)
+	else if(MIS_Henry_FreeBDTTower == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_Turmbanditen_04_07");	//Что еще ты хочешь?
 		B_Henry_WhereIsTower();
@@ -673,7 +673,7 @@ func void DIA_Addon_Henry_Entercrew_Info()
 			};
 			B_Henry_WhereIsTower();
 			AI_Output(other,self,"DIA_Addon_Henry_Entercrew_15_09");	//Есть, сэр!
-			MIS_Henry_FreeBDTTower = LOG_Running;
+			MIS_Henry_FreeBDTTower = LOG_RUNNING;
 		};
 		Henry_EnterCrewMember = TRUE;
 	};
@@ -692,7 +692,6 @@ instance DIA_Addon_Henry_Owen(C_Info)
 
 func int DIA_Addon_Henry_Owen_Condition()
 {
-//	if((MIS_Henry_FreeBDTTower == LOG_SUCCESS) && (Henry_EnterCrewMember == TRUE) && !Npc_IsDead(Malcom))
 	if((MIS_Henry_FreeBDTTower == LOG_SUCCESS) && (Henry_EnterCrewMember == TRUE))
 	{
 		return TRUE;
@@ -715,9 +714,9 @@ func void DIA_Addon_Henry_Owen_Info()
 	AI_Output(self,other,"DIA_Addon_Henry_Owen_04_08");	//Скажи ему, что мне надоело ждать!
 	AI_Output(self,other,"DIA_Addon_Henry_Owen_04_09");	//Нет, погоди! Лучше скажи это Оуэну. Мальком слишком ненадежен.
 	B_MalcomExident();
-	MIS_Henry_HolOwen = LOG_Running;
+	MIS_Henry_HolOwen = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Addon_HolOwen,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_HolOwen,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_HolOwen,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_HolOwen,"Генри нужно дерево для строительства частокола. Я должен сказать об этом Оуэну. Его и Малькома можно найти в низине.");
 };
 
@@ -742,7 +741,7 @@ instance DIA_Addon_Henry_Owen2(C_Info)
 
 func int DIA_Addon_Henry_Owen2_Condition()
 {
-	if(MIS_Henry_HolOwen == LOG_Running)
+	if(MIS_Henry_HolOwen == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -1082,7 +1081,7 @@ instance DIA_Addon_Henry_YourOwnTrupp(C_Info)
 
 func int DIA_Addon_Henry_YourOwnTrupp_Condition()
 {
-	if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+	if(MIS_Addon_Greg_ClearCanyon == LOG_RUNNING)
 	{
 		if(C_HowManyPiratesInParty() > 0)
 		{

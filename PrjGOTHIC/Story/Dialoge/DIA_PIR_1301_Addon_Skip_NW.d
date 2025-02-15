@@ -138,9 +138,9 @@ func void DIA_Addon_Skip_NW_Baltram_Info()
 	AI_Output(self,other,"DIA_Addon_Skip_NW_Baltram_08_02");	//Я же только что сам об этом сказал.
 	AI_Output(self,other,"DIA_Addon_Skip_NW_Baltram_08_03");	//Этот никчемный торговец всяким хламом, похоже, забыл про нашу встречу.
 	AI_Output(self,other,"DIA_Addon_Skip_NW_Baltram_08_04");	//Если бы я только мог до него добраться...
-	MIS_Addon_Baltram_Paket4Skip = LOG_Running;
+	MIS_Addon_Baltram_Paket4Skip = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Addon_BaltramSkipTrade,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_BaltramSkipTrade,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_BaltramSkipTrade,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_BaltramSkipTrade,"Пират Скип сообщил мне, что городской торговец Бальтрам сотрудничает с пиратами.");
 };
 
@@ -149,7 +149,7 @@ func void B_Skip_GiveRumForBaltram()
 {
 	CreateInvItems(self,ItFo_Addon_Rum,2);
 	B_GiveInvItems(self,other,ItFo_Addon_Rum,2);
-	if(MIS_Addon_Baltram_Paket4Skip == LOG_Running)
+	if(MIS_Addon_Baltram_Paket4Skip == LOG_RUNNING)
 	{
 		B_LogEntry(TOPIC_Addon_BaltramSkipTrade,"Скип дал мне ром, который я должен отнести Бальтраму.");
 	};
@@ -267,7 +267,7 @@ instance DIA_Addon_Skip_NW_MissingPeople(C_Info)
 
 func int DIA_Addon_Skip_NW_MissingPeople_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Skip_NW_Woher) && (MIS_Addon_Vatras_WhereAreMissingPeople == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_NW_Woher) && (MIS_Addon_Vatras_WhereAreMissingPeople == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -316,7 +316,7 @@ func void B_Skip_SaysDextersName()
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_SaysDextersName_08_00");	//Я вспомнил, как зовут главаря! Декстер. Да, они звали его Декстер.
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_WhoStolePeople,"Людей похищают по приказу предводителя бандитов Декстера. Найти Декстера можно к югу от фермы Онара.");
 		SC_KnowsDexterAsKidnapper = TRUE;
 		Ranger_SCKnowsDexter = TRUE;

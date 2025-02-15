@@ -32,17 +32,28 @@ func int B_AssessEnemy()
 				return FALSE;
 			};
 		};
-		if(((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE)) && ((other.guild == GIL_ORC) || C_NpcIsGolem(other)))
+		if((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE))
 		{
-			if(C_NpcIsAfraidOfOrcs(self))
+			if(C_NpcIsOrc(other) || C_NpcIsGolem(other))
 			{
-				B_Flee();
-				return FALSE;
+				if(C_NpcIsAfraidOfOrcs(self))
+				{
+					B_Flee();
+					return FALSE;
+				};
 			};
 		};
 	};
-	if(other.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(other))
 	{
+		if(self.aivar[AIV_EnemyOverride] == TRUE)
+		{
+			return FALSE;
+		};
+		if(other.aivar[AIV_EnemyOverride] == TRUE)
+		{
+			return FALSE;
+		};
 		if(!Npc_IsPlayer(other))
 		{
 			if(self.aivar[AIV_NoFightParker] == TRUE)
@@ -54,10 +65,14 @@ func int B_AssessEnemy()
 				return FALSE;
 			};
 		};
-		if(C_NpcIsLevelinspektor(other))
+		if(C_NpcIsGhost(other))
 		{
 			return FALSE;
 		};
+		/*if(C_NpcIsLevelinspektor(other))
+		{
+			return FALSE;
+		};*/
 	}
 	else if(other.aivar[AIV_NoFightParker] == TRUE)
 	{
@@ -83,10 +98,6 @@ func int B_AssessEnemy()
 		};
 	};
 	if(C_PlayerIsFakeBandit(self,other) && (self.guild == GIL_BDT))
-	{
-		return FALSE;
-	};
-	if(((self.aivar[AIV_EnemyOverride] == TRUE) || (other.aivar[AIV_EnemyOverride] == TRUE)) && (other.guild < GIL_SEPERATOR_HUM))
 	{
 		return FALSE;
 	};

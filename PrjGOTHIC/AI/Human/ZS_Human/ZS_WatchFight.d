@@ -6,7 +6,11 @@ func void B_CheerFight()
 	{
 		return;
 	};
-	if((other.guild > GIL_SEPERATOR_HUM) || (victim.guild > GIL_SEPERATOR_HUM))
+	if(!C_NpcIsHuman(other))
+	{
+		return;
+	};
+	if(!C_NpcIsHuman(victim))
 	{
 		return;
 	};
@@ -107,7 +111,7 @@ func void ZS_WatchFight()
 	AI_Standup(self);
 	B_TurnToNpc(self,victim);
 	AI_RemoveWeapon(self);
-	if(((Npc_GetDistToNpc(self,other) < PERC_DIST_INTERMEDIAT) || (Npc_GetDistToNpc(self,victim) < PERC_DIST_INTERMEDIAT)) && !Npc_IsInState(other,ZS_Unconscious) && !Npc_IsInState(victim,ZS_Unconscious) && ((other.guild < GIL_SEPERATOR_HUM) && (victim.guild < GIL_SEPERATOR_HUM)))
+	if(((Npc_GetDistToNpc(self,other) < PERC_DIST_INTERMEDIAT) || (Npc_GetDistToNpc(self,victim) < PERC_DIST_INTERMEDIAT)) && !Npc_IsInState(other,ZS_Unconscious) && !Npc_IsInState(victim,ZS_Unconscious) && C_NpcIsHuman(other) && C_NpcIsHuman(victim))
 	{
 		if(C_NpcIsToughGuy(self))
 		{

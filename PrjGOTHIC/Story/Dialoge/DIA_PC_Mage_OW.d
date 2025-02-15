@@ -24,10 +24,9 @@ func void DIA_MiltenOW_EXIT_Info()
 instance DIA_MiltenOW_Hello(C_Info)
 {
 	npc = PC_Mage_OW;
-	nr = TRUE;
+	nr = 1;
 	condition = DIA_MiltenOW_Hello_Condition;
 	information = DIA_MiltenOW_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -97,7 +96,6 @@ instance DIA_MiltenOW_Bericht(C_Info)
 	nr = 3;
 	condition = DIA_MiltenOW_Bericht_Condition;
 	information = DIA_MiltenOW_Bericht_Info;
-	permanent = FALSE;
 	description = "Как здесь обстоят дела?";
 };
 
@@ -127,7 +125,6 @@ instance DIA_MiltenOW_Erz(C_Info)
 	nr = 4;
 	condition = DIA_MiltenOW_Erz_Condition;
 	information = DIA_MiltenOW_Erz_Info;
-	permanent = FALSE;
 	description = "Сколько руды удалось добыть?";
 };
 
@@ -155,7 +152,6 @@ instance DIA_MiltenOW_Wo(C_Info)
 	nr = 5;
 	condition = DIA_MiltenOW_Wo_Condition;
 	information = DIA_MiltenOW_Wo_Info;
-	permanent = FALSE;
 	description = "А где сейчас Горн и Диего?";
 };
 
@@ -182,7 +178,7 @@ func void DIA_MiltenOW_Wo_Info()
 	AI_Output(self,other,"DIA_MiltenOW_Wo_Forget_03_02");	//Диего прикрепили к отряду старателей. Спроси паладина Парсиваля, он отправлял этот отряд.
 	if(MIS_SearchForDiego == FALSE)
 	{
-		MIS_SearchForDiego = LOG_Running;
+		MIS_SearchForDiego = LOG_RUNNING;
 	};
 	KnowsAboutGorn = TRUE;
 };
@@ -194,7 +190,6 @@ instance DIA_MiltenOW_Gorn(C_Info)
 	nr = 5;
 	condition = DIA_MiltenOW_Gorn_Condition;
 	information = DIA_MiltenOW_Gorn_Info;
-	permanent = FALSE;
 	description = "Пойдем, освободим Горна!";
 };
 
@@ -215,7 +210,7 @@ func void DIA_MiltenOW_Gorn_Info()
 	AI_Output(other,self,"DIA_MiltenOW_Gorn_15_03");	//Да, может быть...
 	AI_Output(self,other,"DIA_MiltenOW_Gorn_03_04");	//Держи меня в курсе.
 	Log_CreateTopic(TOPIC_RescueGorn,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_RescueGorn,LOG_Running);
+	Log_SetTopicStatus(TOPIC_RescueGorn,LOG_RUNNING);
 	B_LogEntry(TOPIC_RescueGorn,"Командующий Гаронд посадил Горна в тюрьму. Возможно, с ним можно договориться и нам удастся вытащить беднягу.");
 };
 
@@ -226,14 +221,13 @@ instance DIA_MiltenOW_Preis(C_Info)
 	nr = 5;
 	condition = DIA_MiltenOW_Preis_Condition;
 	information = DIA_MiltenOW_Preis_Info;
-	permanent = FALSE;
 	description = "Гаронд хочет 1000 золотых монет за Горна.";
 };
 
 
 func int DIA_MiltenOW_Preis_Condition()
 {
-	if((MIS_RescueGorn == LOG_Running) && (Kapitel == 2))
+	if((MIS_RescueGorn == LOG_RUNNING) && (Kapitel == 2))
 	{
 		return TRUE;
 	};
@@ -254,14 +248,13 @@ instance DIA_MiltenOW_Mehr(C_Info)
 	nr = 5;
 	condition = DIA_MiltenOW_Mehr_Condition;
 	information = DIA_MiltenOW_Mehr_Info;
-	permanent = FALSE;
 	description = "Мне нужно больше золота, чтобы купить свободу Горна.";
 };
 
 
 func int DIA_MiltenOW_Mehr_Condition()
 {
-	if((MIS_RescueGorn == LOG_Running) && (Kapitel == 2) && Npc_KnowsInfo(other,DIA_MiltenOW_Preis))
+	if((MIS_RescueGorn == LOG_RUNNING) && (Kapitel == 2) && Npc_KnowsInfo(other,DIA_MiltenOW_Preis))
 	{
 		return TRUE;
 	};
@@ -284,7 +277,6 @@ instance DIA_MiltenOW_Equipment(C_Info)
 	nr = 5;
 	condition = DIA_MiltenOW_Equipment_Condition;
 	information = DIA_MiltenOW_Equipment_Info;
-	permanent = FALSE;
 	description = "Ты можешь обеспечить меня снаряжением? Гаронд попросил меня отправиться в шахты.";
 };
 
@@ -311,15 +303,13 @@ instance DIA_MiltenOW_Versteck(C_Info)
 	nr = 1;
 	condition = DIA_MiltenOW_Versteck_Condition;
 	information = DIA_MiltenOW_Versteck_Info;
-	permanent = FALSE;
-	important = FALSE;
 	description = "Я получил ответ от Горна. Он говорит, что его золото находится у южных ворот.";
 };
 
 
 func int DIA_MiltenOW_Versteck_Condition()
 {
-	if((GornsTreasure == TRUE) && !Npc_HasItems(other,ItMi_GornsTreasure_MIS) && (Gorns_Beutel == FALSE) && (Kapitel == 2) && (MIS_RescueGorn == LOG_Running))
+	if((GornsTreasure == TRUE) && !Npc_HasItems(other,ItMi_GornsTreasure_MIS) && (Gorns_Beutel == FALSE) && (Kapitel == 2) && (MIS_RescueGorn == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -342,7 +332,6 @@ instance DIA_MiltenOW_Frei(C_Info)
 	nr = 5;
 	condition = DIA_MiltenOW_Frei_Condition;
 	information = DIA_MiltenOW_Frei_Info;
-	permanent = FALSE;
 	description = "Я освободил Горна.";
 };
 
@@ -368,7 +357,6 @@ instance DIA_MiltenOW_Lehren(C_Info)
 	nr = 9;
 	condition = DIA_MiltenOW_Lehren_Condition;
 	information = DIA_MiltenOW_Lehren_Info;
-	permanent = FALSE;
 	description = "Ты можешь научить меня чему-нибудь?";
 };
 

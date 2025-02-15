@@ -220,7 +220,7 @@ instance DIA_Onar_WegenSekob(C_Info)
 
 func int DIA_Onar_WegenSekob_Condition()
 {
-	if((MIS_Sekob_RedeMitOnar == LOG_Running) && (MIS_Torlof_HolPachtVonSekob != LOG_SUCCESS))
+	if((MIS_Sekob_RedeMitOnar == LOG_RUNNING) && (MIS_Torlof_HolPachtVonSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};

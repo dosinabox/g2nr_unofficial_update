@@ -202,8 +202,6 @@ LangString DESC_SecAdditional_3 ${LANG_RUSSIAN} "Установка фона главного меню и 
 ###################################
 
 Function .onInit
-	SetSilent normal
-	!insertmacro MUI_LANGDLL_DISPLAY
 	ReadRegStr $INSTDIR HKCU "Software\${MOD_NAME}" "InstallLocation"
 	StrCmp $INSTDIR "" "" InstallPathIsFound
 	StrCpy $INSTDIR "$PROGRAMFILES\Akella Games\Gothic II"

@@ -297,7 +297,6 @@ instance SH_Oldworld_Exit(C_Info)
 	nr = 999;
 	condition = SH_Oldworld_Exit_Condition;
 	information = SH_Oldworld_Exit_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
@@ -319,7 +318,6 @@ instance SH_Oldworld_INFO1(C_Info)
 	npc = SH_Oldworld;
 	condition = SH_Oldworld_INFO1_Condition;
 	information = SH_Oldworld_INFO1_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = KapWechsel_1;
 };
@@ -354,7 +352,6 @@ instance SH_Oldworld_INFO2(C_Info)
 	npc = SH_Oldworld;
 	condition = SH_Oldworld_INFO2_Condition;
 	information = SH_Oldworld_INFO2_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = KapWechsel_2;
 };
@@ -382,7 +379,7 @@ func void SH_Oldworld_KAPITEL2ANFANG()
 	Torwache_305.aivar[AIV_PASSGATE] = TRUE;
 	Mil_305_schonmalreingelassen = TRUE;
 	CreateInvItems(hero,ItKe_Pass_MIS,1);
-	MIS_OLDWORLD = LOG_Running;
+	MIS_OLDWORLD = LOG_RUNNING;
 	B_Kapitelwechsel(2,OLDWORLD_ZEN);
 	Info_ClearChoices(SH_Oldworld_INFO2);
 	AI_StopProcessInfos(self);
@@ -394,7 +391,6 @@ instance SH_Oldworld_INFO3(C_Info)
 	npc = SH_Oldworld;
 	condition = SH_Oldworld_INFO3_Condition;
 	information = SH_Oldworld_INFO3_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = KapWechsel_3;
 };
@@ -419,7 +415,7 @@ func void SH_Oldworld_BACK3()
 
 func void SH_Oldworld_KAPITEL3ANFANG()
 {
-	MIS_OLDWORLD = LOG_Running;
+	MIS_OLDWORLD = LOG_RUNNING;
 	CreateInvItems(hero,ItWr_PaladinLetter_MIS,1);
 	KnowsPaladins_Ore = TRUE;
 	MIS_ScoutMine = LOG_SUCCESS;
@@ -436,7 +432,6 @@ instance SH_Oldworld_INFO4(C_Info)
 	npc = SH_Oldworld;
 	condition = SH_Oldworld_INFO4_Condition;
 	information = SH_Oldworld_INFO4_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = KapWechsel_4;
 };
@@ -461,7 +456,7 @@ func void SH_Oldworld_BACK4()
 
 func void SH_Oldworld_KAPITEL4ANFANG()
 {
-	MIS_OLDWORLD = LOG_Running;
+	MIS_OLDWORLD = LOG_RUNNING;
 	CreateInvItems(hero,ItWr_PaladinLetter_MIS,1);
 	KnowsPaladins_Ore = TRUE;
 	MIS_ScoutMine = LOG_SUCCESS;
@@ -484,7 +479,6 @@ instance SH_Oldworld_INFO5(C_Info)
 	npc = SH_Oldworld;
 	condition = SH_Oldworld_INFO5_Condition;
 	information = SH_Oldworld_INFO5_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = KapWechsel_5;
 };
@@ -509,7 +503,7 @@ func void SH_Oldworld_BACK5()
 
 func void SH_Oldworld_KAPITEL5ANFANG()
 {
-	MIS_OLDWORLD = LOG_Running;
+	MIS_OLDWORLD = LOG_RUNNING;
 	CreateInvItems(hero,ItWr_PaladinLetter_MIS,1);
 	KnowsPaladins_Ore = TRUE;
 	MIS_ScoutMine = LOG_SUCCESS;
@@ -536,7 +530,6 @@ instance SH_Oldworld_INFO6(C_Info)
 	npc = SH_Oldworld;
 	condition = SH_Oldworld_INFO6_Condition;
 	information = SH_Oldworld_INFO6_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = KapWechsel_6;
 };

@@ -54,7 +54,7 @@ func void DIA_Sonja_STANDARD_Info()
 	{
 		AI_Output(self,other,"DIA_Sonja_STANDARD_16_02");	//Если ты хочешь поговорить, иди, найди себе женщину, и женись на ней.
 	};
-	if((MIS_Andre_REDLIGHT != LOG_Running) || (Knows_Borka_Dealer == TRUE))
+	if((MIS_Andre_REDLIGHT != LOG_RUNNING) || (Knows_Borka_Dealer == TRUE))
 	{
 		AI_StopProcessInfos_Pickpocket();
 	};
@@ -73,7 +73,7 @@ instance DIA_Sonja_WEED(C_Info)
 
 func int DIA_Sonja_WEED_Condition()
 {
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_RUNNING) && (Knows_Borka_Dealer == FALSE))
 	{
 		return TRUE;
 	};

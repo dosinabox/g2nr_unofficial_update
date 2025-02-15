@@ -397,11 +397,11 @@ func void B_GiveTradeInv(var C_Npc slf)
 	}
 	else
 	{
-		if(C_IsNpc(slf,Gorax))
+		if(C_IsNpc(slf,KDF_508_Gorax))
 		{
 			B_HideTradeItem(slf,ItKe_KlosterSchatz);
 		}
-		else if(C_IsNpc(slf,Salandril))
+		else if(C_IsNpc(slf,VLK_422_Salandril))
 		{
 			B_HideTradeItem(slf,ItKe_Salandril);
 		};

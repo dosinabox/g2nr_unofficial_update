@@ -207,7 +207,6 @@ instance DIA_Bennet_HALLO(C_Info)
 	nr = 1;
 	condition = DIA_Bennet_HALLO_Condition;
 	information = DIA_Bennet_HALLO_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -277,7 +276,6 @@ instance DIA_Bennet_WhichWeapons(C_Info)
 	nr = 2;
 	condition = DIA_Bennet_WhichWeapons_Condition;
 	information = DIA_Bennet_WhichWeapons_Info;
-	permanent = FALSE;
 	description = "Какое оружие ты делаешь?";
 };
 
@@ -307,7 +305,6 @@ instance DIA_Bennet_BauOrSld(C_Info)
 	nr = 3;
 	condition = DIA_Bennet_BauOrSld_Condition;
 	information = DIA_Bennet_BauOrSld_Info;
-	permanent = FALSE;
 	description = "Ты с фермерами или с наемниками?";
 };
 
@@ -506,9 +503,9 @@ func void DIA_Bennet_WannaSmithORE_Info()
 			AI_Output(other,self,"DIA_Bennet_WannaSmithORE_15_08");	//Ах, да ладно. Я с наемниками, и я знаю кузнечное дело. Что еще тебе нужно?
 			AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_09");	//Скажи мне, как, интересно, я должен ковать магическое оружие, не имея магической руды?
 			AI_Output(other,self,"DIA_Bennet_WannaSmithORE_15_10");	//Нууу...
-			MIS_Bennet_BringOre = LOG_Running;
+			MIS_Bennet_BringOre = LOG_RUNNING;
 			Log_CreateTopic(TOPIC_BennetOre,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_BennetOre,LOG_Running);
+			Log_SetTopicStatus(TOPIC_BennetOre,LOG_RUNNING);
 			B_LogEntry(TOPIC_BennetOre,"Кузнецу наемников Беннету нужно пять кусков магической руды.");
 		};
 		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_11");	//Вот что скажу. Мне нужно как минимум 5 кусков руды - или ты можешь забыть об этом.
@@ -532,14 +529,13 @@ instance DIA_Bennet_WhereOre(C_Info)
 	nr = 8;
 	condition = DIA_Bennet_WhereOre_Condition;
 	information = DIA_Bennet_WhereOre_Info;
-	permanent = FALSE;
 	description = "Где мне найти магическую руду?";
 };
 
 
 func int DIA_Bennet_WhereOre_Condition()
 {
-	if((MIS_Bennet_BringOre == LOG_Running) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
+	if((MIS_Bennet_BringOre == LOG_RUNNING) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
 	{
 		return TRUE;
 	};
@@ -561,14 +557,13 @@ instance DIA_Bennet_BringOre(C_Info)
 	nr = 9;
 	condition = DIA_Bennet_BringOre_Condition;
 	information = DIA_Bennet_BringOre_Info;
-	permanent = FALSE;
 	description = "Вот, держи. (отдать 5 кусков руды)";
 };
 
 
 func int DIA_Bennet_BringOre_Condition()
 {
-	if((MIS_Bennet_BringOre == LOG_Running) && (Npc_HasItems(other,ItMi_Nugget) >= 5) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
+	if((MIS_Bennet_BringOre == LOG_RUNNING) && (Npc_HasItems(other,ItMi_Nugget) >= 5) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
 	{
 		return TRUE;
 	};
@@ -798,7 +793,6 @@ instance DIA_Bennet_WhyPrison(C_Info)
 	nr = 8;
 	condition = DIA_Bennet_WhyPrison_Condition;
 	information = DIA_Bennet_WhyPrison_Info;
-	permanent = FALSE;
 	description = "Как ты попал за решетку?";
 };
 
@@ -819,11 +813,11 @@ func void DIA_Bennet_WhyPrison_Info()
 	AI_Output(other,self,"DIA_Bennet_WhyPrison_15_03");	//Зачем бы им это?
 	AI_Output(self,other,"DIA_Bennet_WhyPrison_06_04");	//Откуда мне знать? Ты должен вытащить меня отсюда.
 	AI_Output(self,other,"DIA_Bennet_WhyPrison_06_05");	//Поговори с лордом Хагеном, проломи стену... ну, я не знаю... сделай же что-нибудь!
-	if(MIS_RescueBennet != LOG_Running)
+	if(MIS_RescueBennet != LOG_RUNNING)
 	{
-		MIS_RescueBennet = LOG_Running;
+		MIS_RescueBennet = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
+		Log_SetTopicStatus(TOPIC_RescueBennet,LOG_RUNNING);
 		B_LogEntry(TOPIC_RescueBennet,"У Беннета серьезные проблемы. Он на все готов, чтобы только вырваться из тюрьмы.");
 	};
 };
@@ -835,14 +829,13 @@ instance DIA_Bennet_WhatHappened(C_Info)
 	nr = 8;
 	condition = DIA_Bennet_WhatHappened_Condition;
 	information = DIA_Bennet_WhatHappened_Info;
-	permanent = FALSE;
 	description = "Что произошло?";
 };
 
 
 func int DIA_Bennet_WhatHappened_Condition()
 {
-	if((MIS_RescueBennet == LOG_Running) && Npc_KnowsInfo(other,DIA_Bennet_WhyPrison))
+	if((MIS_RescueBennet == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Bennet_WhyPrison))
 	{
 		return TRUE;
 	};
@@ -873,14 +866,13 @@ instance DIA_Bennet_Victim(C_Info)
 	nr = 8;
 	condition = DIA_Bennet_Victim_Condition;
 	information = DIA_Bennet_Victim_Info;
-	permanent = FALSE;
 	description = "Кто был убит?";
 };
 
 
 func int DIA_Bennet_Victim_Condition()
 {
-	if((MIS_RescueBennet == LOG_Running) && Npc_KnowsInfo(other,DIA_Bennet_WhyPrison))
+	if((MIS_RescueBennet == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Bennet_WhyPrison))
 	{
 		return TRUE;
 	};
@@ -903,14 +895,13 @@ instance DIA_Bennet_Evidence(C_Info)
 	nr = 8;
 	condition = DIA_Bennet_Evidence_Condition;
 	information = DIA_Bennet_Evidence_Info;
-	permanent = FALSE;
 	description = "У них есть доказательства против тебя?";
 };
 
 
 func int DIA_Bennet_Evidence_Condition()
 {
-	if((MIS_RescueBennet == LOG_Running) && Npc_KnowsInfo(other,DIA_Bennet_WhyPrison))
+	if((MIS_RescueBennet == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Bennet_WhyPrison))
 	{
 		return TRUE;
 	};
@@ -923,7 +914,6 @@ func void DIA_Bennet_Evidence_Info()
 	AI_Output(other,self,"DIA_Bennet_Evidence_15_02");	//Ты знаешь, кто этот свидетель?
 	AI_Output(self,other,"DIA_Bennet_Evidence_06_03");	//Нет. Я знаю только, что он лжет.
 	B_LogEntry(TOPIC_RescueBennet,"Есть свидетель, утверждающий, что видел, как это сделал Беннет. Я должен найти этого свидетеля, если я хочу выяснить правду.");
-//	RescueBennet_KnowsWitness = TRUE;
 };
 
 
@@ -933,14 +923,13 @@ instance DIA_Bennet_Investigation(C_Info)
 	nr = 8;
 	condition = DIA_Bennet_Investigation_Condition;
 	information = DIA_Bennet_Investigation_Info;
-	permanent = FALSE;
 	description = "Кто ведет расследование?";
 };
 
 
 func int DIA_Bennet_Investigation_Condition()
 {
-	if((MIS_RescueBennet == LOG_Running) && Npc_KnowsInfo(other,DIA_Bennet_Evidence))
+	if((MIS_RescueBennet == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Bennet_Evidence))
 	{
 		return TRUE;
 	};
@@ -963,7 +952,6 @@ instance DIA_Bennet_ThankYou(C_Info)
 	nr = 8;
 	condition = DIA_Bennet_ThankYou_Condition;
 	information = DIA_Bennet_ThankYou_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -995,7 +983,6 @@ instance DIA_Bennet_Present(C_Info)
 	nr = 8;
 	condition = DIA_Bennet_Present_Condition;
 	information = DIA_Bennet_Present_Info;
-	permanent = FALSE;
 	description = "Какой презент?";
 };
 
@@ -1116,7 +1103,7 @@ func void DIA_Bennet_DJG_ARMOR_M_Info()
 		if(Helmets_Enabled == TRUE)
 		{
 			B_GiveArmor(ITAR_DJGN_M);
-			CreateInvItem(hero,ITHE_DJG_M);
+			CreateInvItem(hero,ItHe_DJG_M);
 		}
 		else
 		{
@@ -1137,7 +1124,6 @@ instance DIA_Bennet_BetterArmor(C_Info)
 	nr = 8;
 	condition = DIA_Bennet_BetterArmor_Condition;
 	information = DIA_Bennet_BetterArmor_Info;
-	permanent = FALSE;
 	description = "Я знаю, как можно еще улучшить доспехи.";
 };
 
@@ -1192,7 +1178,7 @@ func void DIA_Bennet_DJG_ARMOR_H_Info()
 		if(Helmets_Enabled == TRUE)
 		{
 			B_GiveArmor(ITAR_DJGN_H);
-			CreateInvItem(hero,ITHE_DJG_H);
+			CreateInvItem(hero,ItHe_DJG_H);
 		}
 		else
 		{
@@ -1213,7 +1199,6 @@ instance DIA_Bennet_RepairNecklace(C_Info)
 	nr = 8;
 	condition = DIA_Bennet_RepairNecklace_Condition;
 	information = DIA_Bennet_RepairNecklace_Info;
-	permanent = FALSE;
 	description = "Ты можешь ремонтировать ювелирные изделия?";
 };
 
@@ -1245,7 +1230,6 @@ instance DIA_Bennet_ShowInnosEye(C_Info)
 	nr = 8;
 	condition = DIA_Bennet_ShowInnosEye_Condition;
 	information = DIA_Bennet_ShowInnosEye_Info;
-	permanent = FALSE;
 	description = "Ты можешь взглянуть на этот амулет?";
 };
 
@@ -1287,7 +1271,6 @@ instance DIA_Bennet_GiveInnosEye(C_Info)
 	nr = 8;
 	condition = DIA_Bennet_GiveInnosEye_Condition;
 	information = DIA_Bennet_GiveInnosEye_Info;
-	permanent = FALSE;
 	description = "Вот амулет, пожалуйста, почини его.";
 };
 
@@ -1376,7 +1359,7 @@ instance DIA_Bennet_DRACHENEIER(C_Info)
 
 func int DIA_Bennet_DRACHENEIER_Condition()
 {
-	if((Kapitel >= 4) && (BennetsDragonEggOffer == 0) && Npc_HasItems(other,ItAt_DragonEgg_MIS) && (hero.guild == GIL_DJG))
+	if((Kapitel >= 4) && (BennetsDragonEggOffer == 0) && Npc_HasItems(other,ItAt_DragonEgg_MIS) && (other.guild == GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -1398,7 +1381,7 @@ func void DIA_Bennet_DRACHENEIER_Info()
 		if(TOPIC_END_DRACHENEIER == FALSE)
 		{
 			Log_CreateTopic(TOPIC_DRACHENEIER,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_DRACHENEIER,LOG_Running);
+			Log_SetTopicStatus(TOPIC_DRACHENEIER,LOG_RUNNING);
 		};
 		B_LogEntry(TOPIC_DRACHENEIER,"Беннет готов дать хорошую цену за драконьи яйца, которые я найду.");
 		B_GivePlayerXP(XP_DJG_BringDragonEgg);
@@ -1482,7 +1465,7 @@ instance DIA_Bennet_EierBringen(C_Info)
 
 func int DIA_Bennet_EierBringen_Condition()
 {
-	if((BennetsDragonEggOffer > 0) && (Kapitel >= 4) && Npc_HasItems(other,ItAt_DragonEgg_MIS) && (hero.guild == GIL_DJG))
+	if((BennetsDragonEggOffer > 0) && (Kapitel >= 4) && Npc_HasItems(other,ItAt_DragonEgg_MIS) && (other.guild == GIL_DJG))
 	{
 		return TRUE;
 	};

@@ -218,7 +218,7 @@ instance ITAR_Vlk_L(C_Item)
 	value = VALUE_ITAR_Vlk_L;
 	wear = WEAR_TORSO;
 	visual = "ItAr_VLK_L.3DS";
-	visual_change = "Armor_Vlk_L.asc";
+	visual_change = "Armor_VLK_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
@@ -247,7 +247,7 @@ instance ITAR_Vlk_M(C_Item)
 	value = VALUE_ITAR_Vlk_M;
 	wear = WEAR_TORSO;
 	visual = "ItAr_VLK_M.3DS";
-	visual_change = "Armor_Vlk_M.asc";
+	visual_change = "Armor_VLK_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
@@ -276,7 +276,7 @@ instance ITAR_Vlk_H(C_Item)
 	value = VALUE_ITAR_Vlk_H;
 	wear = WEAR_TORSO;
 	visual = "ItAr_VLK_H.3DS";
-	visual_change = "Armor_Vlk_H.asc";
+	visual_change = "Armor_VLK_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
@@ -304,8 +304,8 @@ instance ITAR_VlkBabe_L(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = 0;
 	wear = WEAR_TORSO;
-	visual = "ItAr_VlkBabe_L.3DS";
-	visual_change = "Armor_VlkBabe_L.asc";
+	visual = "ItAr_VLKBabe_L.3DS";
+	visual_change = "Armor_VLKBabe_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
@@ -331,8 +331,8 @@ instance ITAR_VlkBabe_M(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = 0;
 	wear = WEAR_TORSO;
-	visual = "ItAr_VlkBabe_M.3DS";
-	visual_change = "Armor_VlkBabe_M.asc";
+	visual = "ItAr_VLKBabe_M.3DS";
+	visual_change = "Armor_VLKBabe_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
@@ -359,7 +359,7 @@ instance ITAR_VlkBabe_H(C_Item)
 	value = 0;
 	wear = WEAR_TORSO;
 	visual = "ItAr_VLKBabe.3DS";
-	visual_change = "Armor_VlkBabe_H.asc";
+	visual_change = "Armor_VLKBabe_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
@@ -386,7 +386,7 @@ instance ITAR_MIL_L(C_Item)
 	value = VALUE_ITAR_MIL_L;
 	wear = WEAR_TORSO;
 	visual = "ItAr_MIL_L.3DS";
-	visual_change = "Armor_Mil_L.asc";
+	visual_change = "Armor_MIL_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ITAR_MIL;
@@ -447,8 +447,8 @@ instance ITAR_PAL_M(C_Item)
 	protection[PROT_MAGIC] = 25;
 	value = VALUE_ITAR_PAL_M;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Pal_M.3ds";
-	visual_change = "Armor_Pal_M.asc";
+	visual = "ItAr_PAL_M.3ds";
+	visual_change = "Armor_PAL_M.asc";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_ArmorSet;
@@ -477,8 +477,8 @@ instance ITAR_PAL_H(C_Item)
 	protection[PROT_MAGIC] = 50;
 	value = VALUE_ITAR_PAL_H;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Pal_H.3ds";
-	visual_change = "Armor_Pal_H.asc";
+	visual = "ItAr_PAL_H.3ds";
+	visual_change = "Armor_PAL_H.asc";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_ArmorSet;
@@ -507,8 +507,8 @@ instance ITAR_Bau_L(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Bau_L;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Bau_L.3DS";
-	visual_change = "Armor_Bau_L.asc";
+	visual = "ItAr_BAU_L.3DS";
+	visual_change = "Armor_BAU_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_OpenArmor;
@@ -538,8 +538,8 @@ instance ITAR_Bau_M(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Bau_M;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Bau_M.3ds";
-	visual_change = "Armor_Bau_M.asc";
+	visual = "ItAr_BAU_M.3ds";
+	visual_change = "Armor_BAU_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_OpenArmor;
@@ -569,8 +569,8 @@ instance ITAR_BauBabe_L(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = 0;
 	wear = WEAR_TORSO;
-	visual = "ItAr_BauBabe_L.3DS";
-	visual_change = "Armor_BauBabe_L.asc";
+	visual = "ItAr_BAUBabe_L.3DS";
+	visual_change = "Armor_BAUBabe_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
@@ -596,8 +596,8 @@ instance ITAR_BauBabe_M(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = 0;
 	wear = WEAR_TORSO;
-	visual = "ItAr_BauBabe_M.3DS";
-	visual_change = "Armor_BauBabe_M.asc";
+	visual = "ItAr_BAUBabe_M.3DS";
+	visual_change = "Armor_BAUBabe_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
@@ -623,8 +623,8 @@ instance ITAR_SLD_L(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_SLD_L;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Sld_L.3ds";
-	visual_change = "Armor_Sld_L.asc";
+	visual = "ItAr_SLD_L.3ds";
+	visual_change = "Armor_SLD_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ITAR_SLD;
@@ -654,8 +654,8 @@ instance ITAR_SLD_M(C_Item)
 	protection[PROT_MAGIC] = 5;
 	value = VALUE_ITAR_SLD_M;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Sld_M.3ds";
-	visual_change = "Armor_Sld_M.asc";
+	visual = "ItAr_SLD_M.3ds";
+	visual_change = "Armor_SLD_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ITAR_SLD;
@@ -685,8 +685,8 @@ instance ITAR_SLD_H(C_Item)
 	protection[PROT_MAGIC] = 10;
 	value = VALUE_ITAR_SLD_H;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Sld_H.3ds";
-	visual_change = "Armor_Sld_H.asc";
+	visual = "ItAr_SLD_H.3ds";
+	visual_change = "Armor_SLD_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ITAR_SLD;
@@ -716,8 +716,8 @@ instance ITAR_DJG_Crawler(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_DJG_Crawler;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Djg_Crawler.3ds";
-	visual_change = "Armor_Djg_Crawler.asc";
+	visual = "ItAr_DJG_Crawler.3ds";
+	visual_change = "Armor_DJG_Crawler.asc";
 	visual_skin = 0;
 	material = MAT_WOOD;
 	on_equip = Equip_ITAR_DJG_Crawler;
@@ -747,8 +747,8 @@ instance ITAR_DJG_L(C_Item)
 	protection[PROT_MAGIC] = 25;
 	value = VALUE_ITAR_DJG_L;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Djg_L.3ds";
-	visual_change = "Armor_Djg_L.asc";
+	visual = "ItAr_DJG_L.3ds";
+	visual_change = "Armor_DJG_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
@@ -776,8 +776,8 @@ instance ITAR_DJG_M(C_Item)
 	protection[PROT_MAGIC] = 35;
 	value = VALUE_ITAR_DJG_M;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Djg_M.3ds";
-	visual_change = "Armor_Djg_M.asc";
+	visual = "ItAr_DJG_M.3ds";
+	visual_change = "Armor_DJG_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ArmorSet;
@@ -806,8 +806,8 @@ instance ITAR_DJG_H(C_Item)
 	protection[PROT_MAGIC] = 50;
 	value = VALUE_ITAR_DJG_H;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Djg_H.3ds";
-	visual_change = "Armor_Djg_H.asc";
+	visual = "ItAr_DJG_H.3ds";
+	visual_change = "Armor_DJG_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ArmorSet;
@@ -824,33 +824,6 @@ instance ITAR_DJG_H(C_Item)
 	count[5] = value;
 };
 
-/*instance ITAR_DJG_Babe(C_Item)
-{
-	name = "Доспехи охотницы на драконов";
-	mainflag = ITEM_KAT_ARMOR;
-	flags = 0;
-	protection[PROT_EDGE] = 60;
-	protection[PROT_BLUNT] = 60;
-	protection[PROT_POINT] = 60;
-	protection[PROT_FIRE] = 30;
-	protection[PROT_MAGIC] = 0;
-	value = 0;
-	wear = WEAR_TORSO;
-	visual = "ItAr_Djg_L.3DS";
-	visual_change = "Armor_Djg_Babe.asc";
-	visual_skin = 0;
-	material = MAT_LEATHER;
-	description = name;
-	text[1] = NAME_Prot_Edge;
-	count[1] = protection[PROT_EDGE];
-	text[2] = NAME_Prot_Point;
-	count[2] = protection[PROT_POINT];
-	text[3] = NAME_Prot_Fire;
-	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-};*/
-
 instance ITAR_NOV_L(C_Item)
 {
 	name = "Роба послушника";
@@ -863,8 +836,8 @@ instance ITAR_NOV_L(C_Item)
 	protection[PROT_MAGIC] = 10;
 	value = VALUE_ITAR_NOV_L;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Nov_L.3ds";
-	visual_change = "Armor_Nov_L.asc";
+	visual = "ItAr_NOV_L.3ds";
+	visual_change = "Armor_NOV_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ITAR_NOV;
@@ -894,8 +867,8 @@ instance ITAR_KDF_L(C_Item)
 	protection[PROT_MAGIC] = 20;
 	value = VALUE_ITAR_KDF_L;
 	wear = WEAR_TORSO;
-	visual = "ItAr_KdF_L.3ds";
-	visual_change = "Armor_Kdf_L.asc";
+	visual = "ItAr_KDF_L.3ds";
+	visual_change = "Armor_KDF_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ITAR_KDF;
@@ -925,8 +898,8 @@ instance ITAR_KDF_H(C_Item)
 	protection[PROT_MAGIC] = 50;
 	value = VALUE_ITAR_KDF_H;
 	wear = WEAR_TORSO;
-	visual = "ItAr_KdF_H.3ds";
-	visual_change = "Armor_Kdf_H.asc";
+	visual = "ItAr_KDF_H.3ds";
+	visual_change = "Armor_KDF_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ITAR_KDF;
@@ -987,8 +960,8 @@ instance ITAR_BDT_M(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_BDT_M;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Bdt_M.3ds";
-	visual_change = "Armor_Bdt_M.asc";
+	visual = "ItAr_BDT_M.3ds";
+	visual_change = "Armor_BDT_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_OpenArmor;
@@ -1019,8 +992,8 @@ instance ITAR_BDT_H(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_BDT_H;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Bdt_H.3ds";
-	visual_change = "Armor_Bdt_H.asc";
+	visual = "ItAr_BDT_H.3ds";
+	visual_change = "Armor_BDT_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_OpenArmor;
@@ -1081,7 +1054,7 @@ instance ITAR_PSI_M(C_Item)
 	value = VALUE_ITAR_PSI_M;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Lester.3ds";
-	visual_change = "Armor_Psi_M.asc";
+	visual_change = "Armor_PSI_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_OpenArmor;
@@ -1112,7 +1085,7 @@ instance ITAR_PSI_H(C_Item)
 	value = VALUE_ITAR_PSI_H;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Lester.3ds";
-	visual_change = "Armor_Psi_H.asc";
+	visual_change = "Armor_PSI_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_OpenArmor;
@@ -1254,8 +1227,8 @@ instance ITAR_KDW_H(C_Item)
 	protection[PROT_MAGIC] = 50;
 	value = VALUE_ITAR_KDW_H;
 	wear = WEAR_TORSO;
-	visual = "ItAr_KdW_H.3ds";
-	visual_change = "Armor_KdW_H.asc";
+	visual = "ItAr_KDW_H.3ds";
+	visual_change = "Armor_KDW_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
@@ -1381,35 +1354,6 @@ instance ITAR_BEGGAR(C_Item)
 	count[2] = protection[PROT_POINT];
 };
 
-/*instance ITAR_ALCH(C_Item)
-{
-	name = "Одежда алхимика";
-	mainflag = ITEM_KAT_ARMOR;
-	flags = 0;
-	protection[PROT_EDGE] = 15;
-	protection[PROT_BLUNT] = 15;
-	protection[PROT_POINT] = 15;
-	protection[PROT_FIRE] = 5;
-	protection[PROT_MAGIC] = 0;
-	value = 150;
-	wear = WEAR_TORSO;
-	visual = "ItAr_Alch.3DS";
-	visual_change = "Armor_Alch.asc";
-	visual_skin = 0;
-	material = MAT_LEATHER;
-	description = name;
-	text[1] = NAME_Prot_Edge;
-	count[1] = protection[PROT_EDGE];
-	text[2] = NAME_Prot_Point;
-	count[2] = protection[PROT_POINT];
-	text[3] = NAME_Prot_Fire;
-	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-	text[5] = NAME_Value;
-	count[5] = value;
-};*/
-
 instance ITAR_DJGN_M(C_Item)
 {
 	name = "Средние доспехи охотника на драконов";
@@ -1422,8 +1366,8 @@ instance ITAR_DJGN_M(C_Item)
 	protection[PROT_MAGIC] = 35 - 5;
 	value = VALUE_ITAR_DJG_M - 1000;
 	wear = WEAR_TORSO;
-	visual = "ITAR_DJGN_M.3ds";
-	visual_change = "ARMOR_DJGN_M.asc";
+	visual = "ItAr_DJGN_M.3ds";
+	visual_change = "Armor_DJGN_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
@@ -1451,8 +1395,8 @@ instance ITAR_DJGN_H(C_Item)
 	protection[PROT_MAGIC] = 50 - 10;
 	value = VALUE_ITAR_DJG_H - 2000;
 	wear = WEAR_TORSO;
-	visual = "ITAR_DJGN_H.3ds";
-	visual_change = "ARMOR_DJGN_H.asc";
+	visual = "ItAr_DJGN_H.3ds";
+	visual_change = "Armor_DJGN_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
@@ -1480,8 +1424,8 @@ instance ITAR_PALN_M(C_Item)
 	protection[PROT_MAGIC] = 25 - 5;
 	value = VALUE_ITAR_PAL_M - 1000;
 	wear = WEAR_TORSO;
-	visual = "ITAR_PALN_M.3ds";
-	visual_change = "ARMOR_PALN_M.asc";
+	visual = "ItAr_PALN_M.3ds";
+	visual_change = "Armor_PALN_M.asc";
 	visual_skin = 0;
 	material = MAT_METAL;
 	description = name;
@@ -1509,8 +1453,8 @@ instance ITAR_PALN_H(C_Item)
 	protection[PROT_MAGIC] = 50 - 10;
 	value = VALUE_ITAR_PAL_H - 2000;
 	wear = WEAR_TORSO;
-	visual = "ITAR_PALN_H.3ds";
-	visual_change = "ARMOR_PALN_H.asc";
+	visual = "ItAr_PALN_H.3ds";
+	visual_change = "Armor_PALN_H.asc";
 	visual_skin = 0;
 	material = MAT_METAL;
 	description = name;
@@ -1538,8 +1482,8 @@ instance ITAR_PAL_S(C_Item)
 	protection[PROT_MAGIC] = 60;
 	value = 30000;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Pal_S.3ds";
-	visual_change = "Armor_Pal_S.asc";
+	visual = "ItAr_PAL_S.3ds";
+	visual_change = "Armor_PAL_S.asc";
 	visual_skin = 0;
 	material = MAT_METAL;
 	description = name;
@@ -1567,8 +1511,8 @@ instance ITAR_OHT(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_DJG_Crawler;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Oht.3ds";
-	visual_change = "Armor_Oht.asc";
+	visual = "ItAr_OHT.3ds";
+	visual_change = "Armor_OHT.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
@@ -1596,8 +1540,8 @@ instance ITAR_DHT(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_DJG_Crawler;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Dht.3ds";
-	visual_change = "Armor_Dht.asc";
+	visual = "ItAr_DHT.3ds";
+	visual_change = "Armor_DHT.asc";
 	visual_skin = 0;
 	material = MAT_WOOD;
 	description = name;
@@ -1625,8 +1569,8 @@ instance ITAR_KDF_M(C_Item)
 	protection[PROT_MAGIC] = 20;
 	value = VALUE_ITAR_KDF_L;
 	wear = WEAR_TORSO;
-	visual = "ItAr_KdF_M.3ds";
-	visual_change = "Armor_Kdf_M.asc";
+	visual = "ItAr_KDF_M.3ds";
+	visual_change = "Armor_KDF_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ITAR_KDF;
@@ -1656,8 +1600,8 @@ instance ITAR_KDF_S(C_Item)
 	protection[PROT_MAGIC] = 50;
 	value = VALUE_ITAR_KDF_H;
 	wear = WEAR_TORSO;
-	visual = "ItAr_KdF_S.3ds";
-	visual_change = "Armor_Kdf_S.asc";
+	visual = "ItAr_KDF_S.3ds";
+	visual_change = "Armor_KDF_S.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ITAR_KDF;
@@ -1687,12 +1631,42 @@ instance ITAR_SLD_S(C_Item)
 	protection[PROT_MAGIC] = 5;
 	value = VALUE_ITAR_SLD_S;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Sld_S.3ds";
-	visual_change = "Armor_Sld_S.asc";
+	visual = "ItAr_SLD_S.3ds";
+	visual_change = "Armor_SLD_S.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ITAR_SLD;
 	on_unequip = UnEquip_ITAR_SLD;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ITAR_PAL_Skel(C_Item)
+{
+	name = "Старые доспехи паладина";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 100;
+	protection[PROT_BLUNT] = 100;
+	protection[PROT_POINT] = 100;
+	protection[PROT_FIRE] = 50;
+	protection[PROT_MAGIC] = 50;
+	value = 500;
+	wear = WEAR_TORSO;
+	visual = "ItAr_PAL_Skel.3ds";
+	visual_change = "Armor_PAL_Skeleton.asc";
+	visual_skin = 0;
+	material = MAT_METAL;
+	on_equip = Equip_ArmorSet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];

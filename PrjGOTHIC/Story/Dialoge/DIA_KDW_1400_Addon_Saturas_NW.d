@@ -24,9 +24,9 @@ func void DIA_Addon_Saturas_EXIT_Info()
 			AI_Output(self,other,"DIA_Addon_Saturas_auftrag_14_01");	//Ну, раз никаким другим образом тебя нельзя уговорить оставить в покое других магов, придется дать тебе задание.
 			AI_Output(self,other,"DIA_Addon_Saturas_auftrag_14_02");	//Доложи Риордиану, что я его жду.
 			AI_Output(self,other,"DIA_Addon_Saturas_auftrag_14_03");	//Ты найдешь его в задней части хранилища.
-			MIS_Addon_Saturas_BringRiordian2Me = LOG_Running;
+			MIS_Addon_Saturas_BringRiordian2Me = LOG_RUNNING;
 			Log_CreateTopic(TOPIC_Addon_HolRiordian,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_HolRiordian,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Addon_HolRiordian,LOG_RUNNING);
 			B_LogEntry(TOPIC_Addon_HolRiordian,"Сатурас хочет, чтобы я прислал к нему мага Риордиана. Он должен быть в одном из дальних залов.");
 		};
 	};
@@ -46,7 +46,7 @@ instance DIA_Addon_Saturas_Nefarius(C_Info)
 
 func int DIA_Addon_Saturas_Nefarius_Condition()
 {
-	if(MIS_Addon_Nefarius_BringMissingOrnaments == LOG_Running)
+	if(MIS_Addon_Nefarius_BringMissingOrnaments == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -87,7 +87,6 @@ instance DIA_Addon_Saturas_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Saturas_Hallo_Condition;
 	information = DIA_Addon_Saturas_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -181,7 +180,7 @@ func void DIA_Addon_Saturas_keineAhnung_Info()
 	AI_Output(self,other,"DIA_Addon_Saturas_keineAhnung_14_01");	//Ты тратишь мое драгоценное время. Уходи прочь с моих глаз.
 	AI_Output(self,other,"DIA_Addon_Saturas_keineAhnung_14_02");	//(бормочет) Я разберусь с тобой позже.
 	Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_KDW,"Я нашел магов Воды на месте раскопок. Мне нужно выяснить, чем они там занимаются. Сатурас пока ничего мне не говорит. Он все никак не может забыть ту историю в колонии.");
 	AI_StopProcessInfos(self);
 };
@@ -344,7 +343,7 @@ func void DIA_Addon_Saturas_geheimbund_Info()
 		AI_Output(other,self,"DIA_Addon_Saturas_geheimbund_15_07");	//(сухо) Постараюсь...
 	};
 	Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_RingOfWater,"Сатурас не готов принять меня в Кольцо Воды.");
 };
 
@@ -440,7 +439,7 @@ func void DIA_Addon_Saturas_WhatsOrnament_Info()
 		if(Npc_KnowsInfo(other,DIA_Addon_Riordian_Atlantis))
 		{
 			Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_RUNNING);
 			B_LogEntry(TOPIC_Addon_KDW,"Маги Воды считают, что за порталом находится древний затерянный город.");
 			SC_KnowsPortal = TRUE;
 		};

@@ -42,10 +42,13 @@ func void DIA_MIL_6_JOIN_Info()
 {
 	AI_Output(other,self,"DIA_MIL_6_JOIN_15_00");	//Что мне нужно сделать, чтобы вступить в ополчение?
 	AI_Output(self,other,"DIA_MIL_6_JOIN_06_01");	//Иди к лорду Андрэ и поговори с ним. С тех пор, как паладины пришли в город, он командует всем ополчением.
-	if((C_NpcIsInQuarter(self) != Q_KASERNE) && (Andre.aivar[AIV_TalkedToPlayer] == FALSE))
+	if((C_NpcIsInQuarter(self) != Q_KASERNE) && !Npc_IsDead(Andre))
 	{
-		AI_Output(other,self,"DIA_Lothar_Add_15_66");	//Где мне найти командира ополчения?
-		AI_Output(self,other,"DIA_MIL_6_JOIN_06_02");	//Ты найдешь его в казармах. Он практически всегда там.
+		if(Andre.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			AI_Output(other,self,"DIA_Lothar_Add_15_66");	//Где мне найти командира ополчения?
+			AI_Output(self,other,"DIA_MIL_6_JOIN_06_02");	//Ты найдешь его в казармах. Он практически всегда там.
+		};
 	};
 };
 
@@ -176,7 +179,7 @@ func void DIA_MIL_6_STANDARD_Info()
 		AI_Output(self,other,"DIA_Addon_MIL_6_MissingPeople_06_01");	//И я недавно слышал слухи об исчезновении людей.
 		AI_Output(self,other,"DIA_Addon_MIL_6_MissingPeople_06_02");	//Не могу даже представить, чем это можно объяснить.
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
 		SC_HearedAboutMissingPeople = TRUE;
 	};

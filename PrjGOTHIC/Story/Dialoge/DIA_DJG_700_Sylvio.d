@@ -5,7 +5,6 @@ instance DIA_SylvioDJG_EXIT(C_Info)
 	nr = 999;
 	condition = DIA_SylvioDJG_EXIT_Condition;
 	information = DIA_SylvioDJG_EXIT_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
@@ -158,9 +157,9 @@ func void DIA_Sylvio_WASISTPASSIERT_Info()
 	Info_AddChoice(DIA_Sylvio_WASISTPASSIERT,"Что я за это получу?",DIA_Sylvio_WASISTPASSIERT_warum);
 	Info_AddChoice(DIA_Sylvio_WASISTPASSIERT,"Почему ты не расправишься с ними сам?",DIA_Sylvio_WASISTPASSIERT_selbst);
 	Log_CreateTopic(TOPIC_SylvioKillIceGolem,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_SylvioKillIceGolem,LOG_Running);
+	Log_SetTopicStatus(TOPIC_SylvioKillIceGolem,LOG_RUNNING);
 	B_LogEntry(TOPIC_SylvioKillIceGolem,"Сильвио испугался ледяных големов у входа в заснеженный район Долины Рудников.");
-	MIS_DJG_Sylvio_KillIceGolem = LOG_Running;
+	MIS_DJG_Sylvio_KillIceGolem = LOG_RUNNING;
 };
 
 func void DIA_Sylvio_WASISTPASSIERT_selbst()
@@ -225,7 +224,7 @@ instance DIA_Sylvio_ICEGOLEMSKILLED(C_Info)
 
 func int DIA_Sylvio_ICEGOLEMSKILLED_Condition()
 {
-	if(C_SylvioGolemsDead() && (MIS_DJG_Sylvio_KillIceGolem == LOG_Running) && !Npc_IsDead(IceDragon))
+	if(C_SylvioGolemsDead() && (MIS_DJG_Sylvio_KillIceGolem == LOG_RUNNING) && !Npc_IsDead(IceDragon))
 	{
 		if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
 		{
@@ -280,8 +279,8 @@ func int DIA_Sylvio_WASJETZT_Condition()
 		if(MIS_DJG_Sylvio_KillIceGolem == LOG_SUCCESS)
 		{
 			return TRUE;
-		}
-		else if((SylvioIceGolemsKilledBefore4Chapter == TRUE) && Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER))
+		};
+		if((SylvioIceGolemsKilledBefore4Chapter == TRUE) && Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER))
 		{
 			return TRUE;
 		};

@@ -42,7 +42,7 @@ func int DIA_Vanja_STANDARD_Condition()
 func void DIA_Vanja_STANDARD_Info()
 {
 	AI_Output(self,other,"DIA_Vanja_STANDARD_17_00");	//Я занята.
-	if((MIS_Andre_REDLIGHT != LOG_Running) || (Knows_Borka_Dealer == TRUE))
+	if((MIS_Andre_REDLIGHT != LOG_RUNNING) || (Knows_Borka_Dealer == TRUE))
 	{
 		AI_StopProcessInfos_Pickpocket();
 	};
@@ -55,14 +55,13 @@ instance DIA_Vanja_DOPE(C_Info)
 	nr = 3;
 	condition = DIA_Vanja_DOPE_Condition;
 	information = DIA_Vanja_DOPE_Info;
-	permanent = FALSE;
 	description = "Где здесь можно купить травки?";
 };
 
 
 func int DIA_Vanja_DOPE_Condition()
 {
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_RUNNING) && (Knows_Borka_Dealer == FALSE))
 	{
 		return TRUE;
 	};

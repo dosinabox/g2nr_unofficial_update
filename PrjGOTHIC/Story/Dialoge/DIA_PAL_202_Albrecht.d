@@ -34,9 +34,12 @@ instance DIA_Albrecht_Hagen(C_Info)
 
 func int DIA_Albrecht_Hagen_Condition()
 {
-	if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+	if(!Npc_IsDead(LordHagen))
 	{
-		return TRUE;
+		if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 

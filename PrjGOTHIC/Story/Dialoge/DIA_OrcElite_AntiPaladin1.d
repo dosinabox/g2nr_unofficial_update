@@ -42,7 +42,7 @@ func int DIA_ORC_AntiPaladin1_Condition()
 
 func void DIA_ORC_AntiPaladin1_Info()
 {
-	B_AssignORC_AntiPaladinTalk(self);
+	B_AssignORC_AntiPaladinTalk();
 };
 
 
@@ -89,7 +89,7 @@ func int DIA_ORC_AntiPaladin2_Condition()
 
 func void DIA_ORC_AntiPaladin2_Info()
 {
-	B_AssignORC_AntiPaladinTalk(self);
+	B_AssignORC_AntiPaladinTalk();
 };
 
 
@@ -136,6 +136,6 @@ func int DIA_ORC_AntiPaladin3_Condition()
 
 func void DIA_ORC_AntiPaladin3_Info()
 {
-	B_AssignORC_AntiPaladinTalk(self);
+	B_AssignORC_AntiPaladinTalk();
 };
 

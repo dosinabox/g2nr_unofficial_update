@@ -27,7 +27,6 @@ instance DIA_Harad_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Harad_Hallo_Condition;
 	information = DIA_Harad_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -52,7 +51,6 @@ instance DIA_Harad_Arbeit(C_Info)
 	nr = 1;
 	condition = DIA_Harad_Arbeit_Condition;
 	information = DIA_Harad_Arbeit_Info;
-	permanent = FALSE;
 	description = "Я ищу работу!";
 };
 
@@ -78,7 +76,7 @@ func void DIA_Harad_Arbeit_Info()
 	if(Player_IsApprentice == APP_NONE)
 	{
 		Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Lehrling,LOG_RUNNING);
 		B_LogEntry(TOPIC_Lehrling,"Если я смогу убедить Гарада, что я хоть на что-нибудь гожусь, он примет меня в ученики.");
 	};
 };
@@ -90,7 +88,6 @@ instance DIA_Harad_Taugenichts(C_Info)
 	nr = 1;
 	condition = DIA_Harad_Taugenichts_Condition;
 	information = DIA_Harad_Taugenichts_Info;
-	permanent = FALSE;
 	description = "Я не никчемный!";
 };
 
@@ -112,9 +109,9 @@ func void DIA_Harad_Taugenichts_Info()
 	AI_Output(self,other,"DIA_Harad_Taugenichts_12_04");	//Орков недавно видели около города. Я думаю, тебе не придется искать их слишком долго.
 	AI_Output(self,other,"DIA_Harad_Taugenichts_12_05");	//Если тебе удастся завалить одного из них, я возьму тебя в ученики.
 	AI_Output(self,other,"DIA_Harad_Taugenichts_12_06");	//Если, конечно, другие мастера будут согласны.
-	MIS_Harad_Orc = LOG_Running;
+	MIS_Harad_Orc = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_HaradOrk,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_HaradOrk,LOG_Running);
+	Log_SetTopicStatus(TOPIC_HaradOrk,LOG_RUNNING);
 	B_LogEntry(TOPIC_HaradOrk,"Неподалеку от города видели орка. Кузнец Гарад хочет, чтобы я убил его. Оружие орка послужит достаточным доказательством.");
 };
 
@@ -125,14 +122,13 @@ instance DIA_Harad_OrcRunning(C_Info)
 	nr = 1;
 	condition = DIA_Harad_OrcRunning_Condition;
 	information = DIA_Harad_OrcRunning_Info;
-	permanent = FALSE;
 	description = "Давай еще поговорим об этих орках...";
 };
 
 
 func int DIA_Harad_OrcRunning_Condition()
 {
-	if((MIS_Harad_Orc == LOG_Running) && (Harad_HakonMission == FALSE))
+	if((MIS_Harad_Orc == LOG_RUNNING) && (Harad_HakonMission == FALSE))
 	{
 		return TRUE;
 	};
@@ -161,7 +157,7 @@ func void DIA_Harad_OrcRunning_TooHard()
 	if(Player_IsApprentice == APP_NONE)
 	{
 		Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Lehrling,LOG_RUNNING);
 		if(MIS_HakonBandits == FALSE)
 		{
 			B_LogEntry(TOPIC_Lehrling,"Гарад сказал мне, что бандиты ограбили торговца Хакона недалеко от города. Если я смогу убить их, это убедит его, что я хоть на что-то гожусь. Я должен поговорить с Хаконом. Возможно, он знает, где скрываются эти бандиты.");
@@ -223,14 +219,13 @@ instance DIA_Harad_OrcSuccess(C_Info)
 	nr = 1;
 	condition = DIA_Harad_OrcSuccess_Condition;
 	information = DIA_Harad_OrcSuccess_Info;
-	permanent = FALSE;
 	description = "Я принес тебе оружие орков, как ты хотел.";
 };
 
 
 func int DIA_Harad_OrcSuccess_Condition()
 {
-	if((MIS_Harad_Orc == LOG_Running) && C_ScHasOrcWeapon())
+	if((MIS_Harad_Orc == LOG_RUNNING) && C_ScHasOrcWeapon())
 	{
 		return TRUE;
 	};
@@ -347,7 +342,10 @@ func void DIA_Harad_LEHRLING_Info()
 		AI_Output(self,other,"DIA_Harad_LEHRLING_12_04");	//Что касается моего мнения, то ты можешь приступать к работе хоть сейчас.
 		stimmen += 1;
 		AI_Output(self,other,"DIA_Harad_LEHRLING_12_05");	//А другие мастера...
-		if(Thorben.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Thorben))
+		{
+		}
+		else if(Thorben.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if(MIS_Thorben_GetBlessings == LOG_SUCCESS)
 			{
@@ -363,7 +361,10 @@ func void DIA_Harad_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Harad_LEHRLING_12_08");	//Торбен говорит, что никогда не видел тебя.
 		};
-		if(Bosper.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Bosper))
+		{
+		}
+		else if(Bosper.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			AI_Output(self,other,"DIA_Harad_LEHRLING_12_09");	//Боспер пытался отговорить меня от идеи взять тебя в ученики. Он хочет, чтобы ты стал ЕГО учеником.
 			if((MIS_Bosper_Bogen == LOG_SUCCESS) || (MIS_Bosper_WolfFurs == LOG_SUCCESS))
@@ -382,7 +383,10 @@ func void DIA_Harad_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Harad_LEHRLING_12_14");	//Боспер пока не знает, кто ты такой.
 		};
-		if(Constantino.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Constantino))
+		{
+		}
+		else if(Constantino.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
 			{
@@ -399,14 +403,17 @@ func void DIA_Harad_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Harad_LEHRLING_12_18");	//Константино никогда не слышал о тебе.
 		};
-		if(Matteo.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Matteo))
+		{
+		}
+		else if(Matteo.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if(MIS_Matteo_Gold == LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Harad_LEHRLING_12_19");	//Маттео говорит, что ты вернул ему его золото. Мне кажется, ты благородный молодой человек.
 				stimmen += 1;
 			}
-			else if(MIS_Matteo_Gold == LOG_Running)
+			else if(MIS_Matteo_Gold == LOG_RUNNING)
 			{
 				AI_Output(self,other,"DIA_Harad_LEHRLING_12_20");	//Маттео говорит, что ты ему что-то должен. Я не знаю, что у вас там за дела, но ты должен урегулировать эту проблему.
 			}
@@ -627,7 +634,6 @@ instance DIA_Harad_Waffen(C_Info)
 	nr = 3;
 	condition = DIA_Harad_Waffen_Condition;
 	information = DIA_Harad_Waffen_Info;
-	permanent = FALSE;
 	description = "Ты продаешь оружие?";
 };
 
@@ -654,7 +660,6 @@ instance DIA_Harad_Aufgaben(C_Info)
 	nr = 1;
 	condition = DIA_Harad_Aufgaben_Condition;
 	information = DIA_Harad_Aufgaben_Info;
-	permanent = FALSE;
 	description = "Что должен делать ученик?";
 };
 
@@ -971,7 +976,6 @@ instance DIA_Harad_ImmerNoch(C_Info)
 	nr = 3;
 	condition = DIA_Harad_ImmerNoch_Condition;
 	information = DIA_Harad_ImmerNoch_Info;
-	permanent = FALSE;
 	description = "Ты все еще работаешь на паладинов?";
 };
 
@@ -1000,7 +1004,6 @@ instance DIA_Harad_AboutErzklingen(C_Info)
 	nr = 3;
 	condition = DIA_Harad_AboutErzklingen_Condition;
 	information = DIA_Harad_AboutErzklingen_Info;
-	permanent = FALSE;
 	description = "Расскажи мне о мечах из магической руды!";
 };
 
@@ -1054,7 +1057,7 @@ func int DIA_Harad_Erzklingen_Condition()
 func void DIA_Harad_Erzklingen_Info()
 {
 	AI_Output(other,self,"DIA_Harad_Erzklingen_15_00");	//Я хочу купить меч из магической руды.
-	if(hero.guild != GIL_PAL)
+	if(other.guild != GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Harad_Erzklingen_12_01");	//Я продаю магические мечи только паладинам. И только по одному в одни руки.
 	}
@@ -1125,7 +1128,6 @@ instance DIA_Harad_RepairNecklace(C_Info)
 	nr = 8;
 	condition = DIA_Harad_RepairNecklace_Condition;
 	information = DIA_Harad_RepairNecklace_Info;
-	permanent = FALSE;
 	description = "Ты можешь чинить драгоценности?";
 };
 
@@ -1157,7 +1159,6 @@ instance DIA_Harad_Goldsmith(C_Info)
 	nr = 8;
 	condition = DIA_Harad_Goldsmith_Condition;
 	information = DIA_Harad_Goldsmith_Info;
-	permanent = FALSE;
 	description = "Где мне найти ювелира?";
 };
 

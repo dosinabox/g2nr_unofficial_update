@@ -3,7 +3,7 @@ func int C_WantToFlee(var C_Npc slf)
 {
 	if(NpcWantToFlee == TRUE)
 	{
-		if(slf.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(slf))
 		{
 			if((slf.guild != GIL_DMT) && ((slf.npcType == NPCTYPE_AMBIENT) || (slf.npcType == NPCTYPE_OCAMBIENT) || (slf.npcType == NPCTYPE_OWAMBIENT) || (slf.npcType == NPCTYPE_BL_AMBIENT) || (slf.npcType == NPCTYPE_TAL_AMBIENT) || (slf.fight_tactic == FAI_HUMAN_COWARD)))
 			{

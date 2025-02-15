@@ -35,7 +35,7 @@ instance DIA_Karras_Hello(C_Info)
 
 func int DIA_Karras_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_NovizenChase != LOG_Running))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_NovizenChase != LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -43,15 +43,15 @@ func int DIA_Karras_Hello_Condition()
 
 func void DIA_Karras_Hello_Info()
 {
-	if(hero.guild == GIL_NOV)
+	if(other.guild == GIL_NOV)
 	{
 		AI_Output(self,other,"DIA_Karras_Hello_10_00");	//Что я могу сделать для тебя, послушник?
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Karras_Hello_10_01");	//Что я могу сделать для тебя, брат?
 	}
-	else if(hero.guild == GIL_PAL)
+	else if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Karras_Hello_10_02");	//Благородные воины Инноса редко останавливаются здесь.
 		AI_Output(self,other,"DIA_Karras_Hello_10_03");	//Что я могу сделать для тебя?
@@ -133,9 +133,9 @@ func void DIA_Karras_Aufgabe_Info()
 	AI_Output(self,other,"DIA_Karras_Aufgabe_10_05");	//Но никому ни слова - понятно?
 	AI_Output(other,self,"DIA_Karras_Aufgabe_15_06");	//Конечно.
 	AI_Output(self,other,"DIA_Karras_Aufgabe_10_07");	//Вот 150 золотых монет. Это должно компенсировать твои затраты.
-	MIS_KarrasVergessen = LOG_Running;
+	MIS_KarrasVergessen = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_KarrasCharm,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_KarrasCharm,LOG_Running);
+	Log_SetTopicStatus(TOPIC_KarrasCharm,LOG_RUNNING);
 	B_LogEntry(TOPIC_KarrasCharm,"Мастер Каррас отправил меня в город. Он хочет, чтобы я принес ему три свитка с заклинаниями, которые изготавливает и продает Игнац.");
 	B_GiveInvItems(self,other,ItMi_Gold,150);
 	if(!Npc_IsDead(Ignaz))
@@ -161,7 +161,7 @@ instance DIA_Karras_Success(C_Info)
 
 func int DIA_Karras_Success_Condition()
 {
-	if((MIS_KarrasVergessen == LOG_Running) && (Npc_HasItems(other,ItSc_Charm) >= 3) && (MIS_Ignaz_Charm != FALSE))
+	if((MIS_KarrasVergessen == LOG_RUNNING) && (Npc_HasItems(other,ItSc_Charm) >= 3) && (MIS_Ignaz_Charm != FALSE))
 	{
 		return TRUE;
 	};
@@ -249,7 +249,7 @@ instance DIA_Karras_Trade(C_Info)
 
 func int DIA_Karras_Trade_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Karras_JOB) && (Npc_KnowsInfo(other,DIA_Karras_InnosEyeRetrieved) || (hero.guild == GIL_KDF)))
+	if(Npc_KnowsInfo(other,DIA_Karras_JOB) && (Npc_KnowsInfo(other,DIA_Karras_InnosEyeRetrieved) || (other.guild == GIL_KDF)))
 	{
 		return TRUE;
 	};
@@ -462,7 +462,7 @@ instance DIA_Karras_ChasePedro(C_Info)
 
 func int DIA_Karras_ChasePedro_Condition()
 {
-	if((Kapitel == 3) && (MIS_NovizenChase == LOG_Running))
+	if((Kapitel == 3) && (MIS_NovizenChase == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -470,7 +470,7 @@ func int DIA_Karras_ChasePedro_Condition()
 
 func void DIA_Karras_ChasePedro_Info()
 {
-	if(hero.guild == GIL_KDF)
+	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Karras_ChasePedro_10_00");	//Брат, тебе нельзя терять времени. Ты должен найти Педро и вернуть Глаз Инноса монастырю.
 		AI_Output(self,other,"DIA_Karras_ChasePedro_10_01");	//Если Глаз не вернуть, мы все обречены.
@@ -517,7 +517,7 @@ instance DIA_Karras_NeedInfo(C_Info)
 
 func int DIA_Karras_NeedInfo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Karras_ChasePedro) && (Kapitel == 3) && (hero.guild != GIL_KDF) && (MIS_NovizenChase == LOG_Running) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_KnowsInfo(other,DIA_Karras_ChasePedro) && (Kapitel == 3) && (other.guild != GIL_KDF) && (MIS_NovizenChase == LOG_RUNNING) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -590,7 +590,7 @@ func int DIA_Karras_KAP3_Perm_Condition()
 func void DIA_Karras_KAP3_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Karras_KAP3_Perm_15_00");	//Как продвигаются твои исследования?
-	if((MIS_KarrasResearchDMT == FALSE) && (PyrokarToldKarrasToResearchDMT == TRUE) && (hero.guild == GIL_KDF))
+	if((MIS_KarrasResearchDMT == FALSE) && (PyrokarToldKarrasToResearchDMT == TRUE) && (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Karras_KAP3_Perm_10_01");	//Я смог выяснить кое-что об Ищущих.
 		AI_Output(other,self,"DIA_Karras_KAP3_Perm_15_02");	//И что это такое?
@@ -599,7 +599,7 @@ func void DIA_Karras_KAP3_Perm_Info()
 		AI_Output(other,self,"DIA_Karras_KAP3_Perm_15_05");	//Надо же! Какая свежая концепция!
 		AI_Output(self,other,"DIA_Karras_KAP3_Perm_10_06");	//Я приношу свои извинения, но у меня недостаточно материала, чтобы сделать более детальное утверждение.
 		AI_Output(self,other,"DIA_Karras_KAP3_Perm_10_07");	//Но ты мог бы принести мне что-нибудь, принадлежащее им, для изучения...
-		MIS_KarrasResearchDMT = LOG_Running;
+		MIS_KarrasResearchDMT = LOG_RUNNING;
 		B_LogEntry(TOPIC_DEMENTOREN,"Чтобы продолжать свои исследования, Каррасу нужно что-нибудь, что было в прямом контакте с Ищущими.");
 		Info_ClearChoices(DIA_Karras_KAP3_Perm);
 		Info_AddChoice(DIA_Karras_KAP3_Perm,Dialog_Back,DIA_Karras_KAP3_Perm_Back);
@@ -607,7 +607,7 @@ func void DIA_Karras_KAP3_Perm_Info()
 		Info_AddChoice(DIA_Karras_KAP3_Perm,"Может иметь к этому отношение Спящий?",DIA_Karras_KAP3_Perm_Sleeper);
 		Info_AddChoice(DIA_Karras_KAP3_Perm,"Что именно тебе нужно?",DIA_Karras_KAP3_Perm_Material);
 	}
-	else if(MIS_KarrasResearchDMT == LOG_Running)
+	else if(MIS_KarrasResearchDMT == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Karras_KAP3_Perm_10_08");	//Я все еще работаю над интерпретацией данных об Ищущих.
 		AI_Output(self,other,"DIA_Karras_KAP3_Perm_10_09");	//Как только я что-нибудь выясню, я, конечно же, немедленно информирую тебя.
@@ -666,7 +666,7 @@ instance DIA_Karras_HaveBook(C_Info)
 
 func int DIA_Karras_HaveBook_Condition()
 {
-	if((MIS_KarrasResearchDMT == LOG_Running) && Npc_HasItems(hero,ItWr_DementorObsessionBook_MIS) && (hero.guild == GIL_KDF))
+	if((MIS_KarrasResearchDMT == LOG_RUNNING) && Npc_HasItems(hero,ItWr_DementorObsessionBook_MIS) && (other.guild == GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -707,7 +707,7 @@ instance DIA_Karras_ResearchDMTEnd(C_Info)
 
 func int DIA_Karras_ResearchDMTEnd_Condition()
 {
-	if((MIS_KarrasResearchDMT == LOG_SUCCESS) && (hero.guild == GIL_KDF) && (SC_KnowsMadPsi == FALSE))
+	if((MIS_KarrasResearchDMT == LOG_SUCCESS) && (other.guild == GIL_KDF) && (SC_KnowsMadPsi == FALSE))
 	{
 		return TRUE;
 	};
@@ -756,7 +756,7 @@ instance DIA_Karras_Prot_BlackEye(C_Info)
 
 func int DIA_Karras_Prot_BlackEye_Condition()
 {
-	if((hero.guild == GIL_KDF) && (Pyrokar_AskKarrasAboutDMTAmulett == TRUE) && (MIS_Karras_FindBlessedStone == FALSE) && Npc_KnowsInfo(other,DIA_Karras_JOB))
+	if((other.guild == GIL_KDF) && (Pyrokar_AskKarrasAboutDMTAmulett == TRUE) && (MIS_Karras_FindBlessedStone == FALSE) && Npc_KnowsInfo(other,DIA_Karras_JOB))
 	{
 		return TRUE;
 	};
@@ -773,7 +773,7 @@ func void DIA_Karras_Prot_BlackEye_Info()
 		AI_Output(other,self,"DIA_Karras_Prot_BlackEye_15_04");	//Хорошо. Я попробую раздобыть такой камень.
 		AI_Output(self,other,"DIA_Karras_Prot_BlackEye_10_05");	//Да, сделай это. Но даже не думай, чтобы повредить какой-нибудь алтарь, ты слышишь меня?
 		B_LogEntry(TOPIC_DEMENTOREN,"Каррас может дать мне некоторую защиту от ментальных атак Ищущих. Для этого ему нужен камень из благословенной земли. Некоторые алтари сделаны из таких камней.");
-		MIS_Karras_FindBlessedStone = LOG_Running;
+		MIS_Karras_FindBlessedStone = LOG_RUNNING;
 	}
 	else
 	{
@@ -794,7 +794,7 @@ instance DIA_Karras_KarrasBlessedStone(C_Info)
 
 func int DIA_Karras_KarrasBlessedStone_Condition()
 {
-	if((hero.guild == GIL_KDF) && Npc_HasItems(other,ItMi_KarrasBlessedStone_MIS) && (MIS_Karras_FindBlessedStone == LOG_Running))
+	if((other.guild == GIL_KDF) && Npc_HasItems(other,ItMi_KarrasBlessedStone_MIS) && (MIS_Karras_FindBlessedStone == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -819,6 +819,8 @@ func void DIA_Karras_KarrasBlessedStone_Info()
 };
 
 
+var int DIA_Karras_ItAm_Prot_BlackEye_MIS_NoPerm;
+
 instance DIA_Karras_ItAm_Prot_BlackEye_MIS(C_Info)
 {
 	npc = KDF_503_Karras;
@@ -830,11 +832,9 @@ instance DIA_Karras_ItAm_Prot_BlackEye_MIS(C_Info)
 };
 
 
-var int DIA_Karras_ItAm_Prot_BlackEye_MIS_NoPerm;
-
 func int DIA_Karras_ItAm_Prot_BlackEye_MIS_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Karras_FindBlessedStone == LOG_SUCCESS) && (DIA_Karras_ItAm_Prot_BlackEye_MIS_NoPerm == FALSE))
+	if((other.guild == GIL_KDF) && (MIS_Karras_FindBlessedStone == LOG_SUCCESS) && (DIA_Karras_ItAm_Prot_BlackEye_MIS_NoPerm == FALSE))
 	{
 		return TRUE;
 	};

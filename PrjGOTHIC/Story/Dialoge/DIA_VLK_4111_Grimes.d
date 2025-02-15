@@ -29,7 +29,6 @@ instance DIA_Grimes_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Grimes_Hallo_Condition;
 	information = DIA_Grimes_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -64,14 +63,13 @@ instance DIA_Grimes_Erz(C_Info)
 	nr = 2;
 	condition = DIA_Grimes_Erz_Condition;
 	information = DIA_Grimes_Erz_Info;
-	permanent = FALSE;
 	description = "Сколько руды вам удалось добыть?";
 };
 
 
 func int DIA_Grimes_Erz_Condition()
 {
-	if((Kapitel == 2) && (MIS_ScoutMine == LOG_Running))
+	if((Kapitel == 2) && (MIS_ScoutMine == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -91,7 +89,6 @@ instance DIA_Grimes_Weg(C_Info)
 	nr = 3;
 	condition = DIA_Grimes_Weg_Condition;
 	information = DIA_Grimes_Weg_Info;
-	permanent = FALSE;
 	description = "Ты знаешь, в каком направлении пошел Маркос?";
 };
 
@@ -119,7 +116,6 @@ instance DIA_Grimes_Grimes(C_Info)
 	nr = 2;
 	condition = DIA_Grimes_Grimes_Condition;
 	information = DIA_Grimes_Grimes_Info;
-	permanent = FALSE;
 	description = "Ты хочешь покинуть Долину?";
 };
 

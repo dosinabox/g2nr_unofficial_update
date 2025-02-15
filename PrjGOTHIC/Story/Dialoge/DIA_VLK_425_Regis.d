@@ -27,7 +27,6 @@ instance DIA_Regis_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Regis_Hallo_Condition;
 	information = DIA_Regis_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -55,7 +54,6 @@ instance DIA_Regis_MILIZ(C_Info)
 	nr = 5;
 	condition = DIA_Regis_MILIZ_Condition;
 	information = DIA_Regis_MILIZ_Info;
-	permanent = FALSE;
 	description = "Что ты можешь рассказать об ополчении?";
 };
 
@@ -84,7 +82,6 @@ instance DIA_Regis_ANDRE(C_Info)
 	nr = 5;
 	condition = DIA_Regis_ANDRE_Condition;
 	information = DIA_Regis_ANDRE_Info;
-	permanent = FALSE;
 	description = "Что еще ты можешь рассказать о лорде Андрэ?";
 };
 
@@ -116,7 +113,6 @@ instance DIA_Regis_Valentino(C_Info)
 	nr = 5;
 	condition = DIA_Regis_Valentino_Condition;
 	information = DIA_Regis_Valentino_Info;
-	permanent = FALSE;
 	description = "С кем ты дрался?";
 };
 
@@ -143,7 +139,6 @@ instance DIA_Regis_ValDefeat(C_Info)
 	nr = 5;
 	condition = DIA_Regis_ValDefeat_Condition;
 	information = DIA_Regis_ValDefeat_Info;
-	permanent = FALSE;
 	description = "Я встретил этого Валентино...";
 };
 
@@ -216,7 +211,7 @@ func void DIA_Regis_PERM_Info()
 	if((Regis_Bogendieb == 0) && (MIS_Bosper_Bogen != LOG_SUCCESS))
 	{
 		B_Regis_AboutThief();
-		MIS_Bosper_Bogen = LOG_Running;
+		MIS_Bosper_Bogen = LOG_RUNNING;
 		Regis_Bogendieb = 1;
 	}
 	else if((MIS_Bosper_Bogen == LOG_SUCCESS) && (Regis_Bogendieb != 2))
@@ -257,7 +252,6 @@ instance DIA_Regis_Crew(C_Info)
 	nr = 51;
 	condition = DIA_Regis_Crew_Condition;
 	information = DIA_Regis_Crew_Info;
-	permanent = FALSE;
 	description = "Я пытаюсь собрать команду для морской прогулки.";
 };
 

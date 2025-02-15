@@ -79,7 +79,6 @@ instance DIA_Bosper_HALLO(C_Info)
 	nr = 2;
 	condition = DIA_Bosper_HALLO_Condition;
 	information = DIA_Bosper_HALLO_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -108,14 +107,13 @@ instance DIA_Bosper_IntoOV(C_Info)
 	nr = 1;
 	condition = DIA_Bosper_IntoOV_Condition;
 	information = DIA_Bosper_IntoOV_Info;
-	permanent = FALSE;
 	description = "Мне нужно попасть в верхний квартал...";
 };
 
 
 func int DIA_Bosper_IntoOV_Condition()
 {
-	if((hero.guild == GIL_NONE) && (Player_IsApprentice == APP_NONE))
+	if((other.guild == GIL_NONE) && (Player_IsApprentice == APP_NONE))
 	{
 		return TRUE;
 	};
@@ -127,12 +125,15 @@ func void DIA_Bosper_IntoOV_Info()
 	AI_Output(self,other,"DIA_Bosper_IntoOV_11_01");	//Где живут паладины? Забудь об этом.
 	AI_Output(self,other,"DIA_Bosper_IntoOV_11_02");	//Тебе нужно быть уважаемым гражданином или, хотя бы, иметь приличную работу.
 	AI_Output(self,other,"DIA_Bosper_IntoOV_11_03");	//А чужаку вроде тебя ни за что туда не попасть.
-	if(Torwache_305.aivar[AIV_TalkedToPlayer] == TRUE)
+	if(!Npc_IsDead(Torwache_305))
 	{
-		AI_Output(other,self,"DIA_Bosper_IntoOV_15_04");	//Я это заметил...
+		if(Torwache_305.aivar[AIV_TalkedToPlayer] == TRUE)
+		{
+			AI_Output(other,self,"DIA_Bosper_IntoOV_15_04");	//Я это заметил...
+		};
 	};
 	Log_CreateTopic(TOPIC_OV,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_OV,LOG_Running);
+	Log_SetTopicStatus(TOPIC_OV,LOG_RUNNING);
 	B_LogEntry(TOPIC_OV,"Чтобы попасть в верхний квартал, я либо должен стать уважаемым гражданином, либо получить работу.");
 };
 
@@ -143,7 +144,6 @@ instance DIA_Bosper_SeekWork(C_Info)
 	nr = 2;
 	condition = DIA_Bosper_SeekWork_Condition;
 	information = DIA_Bosper_SeekWork_Info;
-	permanent = FALSE;
 	description = "Я ищу работу!";
 };
 
@@ -173,7 +173,7 @@ func void DIA_Bosper_SeekWork_Info()
 	if(Player_IsApprentice == APP_NONE)
 	{
 		Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Lehrling,LOG_RUNNING);
 		B_LogEntry(TOPIC_Lehrling,"Боспер ищет нового ученика. Я могу начать работать у него.");
 	};
 };
@@ -210,7 +210,10 @@ func void DIA_Bosper_LEHRLING_Info()
 	{
 		AI_Output(self,other,"DIA_Bosper_LEHRLING_11_01");	//(ухмыляется) Отлично! Похоже, ты уже знаешь основы.
 		stimmen += 1;
-		if(Harad.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Harad))
+		{
+		}
+		else if(Harad.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if((MIS_Harad_Orc == LOG_SUCCESS) || (MIS_HakonBandits == LOG_SUCCESS))
 			{
@@ -226,7 +229,10 @@ func void DIA_Bosper_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Bosper_LEHRLING_11_04");	//Но Гарад говорит, что никогда не видел тебя.
 		};
-		if(Thorben.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Thorben))
+		{
+		}
+		else if(Thorben.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if(MIS_Thorben_GetBlessings == LOG_SUCCESS)
 			{
@@ -242,7 +248,10 @@ func void DIA_Bosper_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Bosper_LEHRLING_11_07");	//Торбен понятия не имеет, кто ты такой.
 		};
-		if(Constantino.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Constantino))
+		{
+		}
+		else if(Constantino.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
 			{
@@ -259,14 +268,17 @@ func void DIA_Bosper_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Bosper_LEHRLING_11_11");	//Константино никогда даже не слышал о тебе.
 		};
-		if(Matteo.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_IsDead(Matteo))
+		{
+		}
+		else if(Matteo.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if(MIS_Matteo_Gold == LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_12");	//Маттео говорит, что ты стоишь столько же, сколько золото равное твоему весу.
 				stimmen += 1;
 			}
-			else if(MIS_Matteo_Gold == LOG_Running)
+			else if(MIS_Matteo_Gold == LOG_RUNNING)
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_13");	//Маттео упомянул о каких-то долгах - я не знаю, что он имеет в виду, но тебе лучше поговорить с ним.
 			}
@@ -352,7 +364,6 @@ instance DIA_Bosper_OtherMasters(C_Info)
 	nr = 3;
 	condition = DIA_Bosper_OtherMasters_Condition;
 	information = DIA_Bosper_OtherMasters_Info;
-	permanent = FALSE;
 	description = "А что, если я захочу поступить в ученики к другому мастеру?";
 };
 
@@ -383,7 +394,6 @@ instance DIA_Bosper_Bartok(C_Info)
 	nr = 4;
 	condition = DIA_Bosper_Bartok_Condition;
 	information = DIA_Bosper_Bartok_Info;
-	permanent = FALSE;
 	description = "А почему твой ученик бросил работу?";
 };
 
@@ -470,7 +480,6 @@ instance DIA_Bosper_Job(C_Info)
 	nr = 2;
 	condition = DIA_Bosper_Job_Condition;
 	information = DIA_Bosper_Job_Info;
-	permanent = FALSE;
 	description = "Что ты хочешь, чтобы я сделал для тебя?";
 };
 
@@ -487,7 +496,7 @@ func void DIA_Bosper_Job_Info()
 {
 	AI_Output(other,self,"DIA_Bosper_Job_15_00");	//Что ты хочешь, чтобы я сделал для тебя?
 	Log_CreateTopic(TOPIC_BosperWolf,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BosperWolf,LOG_Running);
+	Log_SetTopicStatus(TOPIC_BosperWolf,LOG_RUNNING);
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Bosper_Job_11_01");	//Я научу тебя снимать шкуры с животных, и ты принесешь мне - скажем, полдюжины волчьих шкур.
@@ -506,7 +515,7 @@ func void DIA_Bosper_Job_Info()
 	{
 		AI_Output(self,other,"DIA_Bosper_Job_11_05");	//Или (вздыхает) ты сможешь стать учеником другого мастера - если ты этого действительно хочешь.
 	};
-	MIS_Bosper_WolfFurs = LOG_Running;
+	MIS_Bosper_WolfFurs = LOG_RUNNING;
 };
 
 
@@ -523,7 +532,7 @@ instance DIA_Bosper_BringFur(C_Info)
 
 func int DIA_Bosper_BringFur_Condition()
 {
-	if(MIS_Bosper_WolfFurs == LOG_Running)
+	if(MIS_Bosper_WolfFurs == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -583,7 +592,7 @@ func void DIA_Bosper_TeachFUR_Info()
 	{
 		AI_Output(self,other,"DIA_Bosper_TeachFUR_11_01");	//Хорошо. Слушай. Это довольно просто.
 		AI_Output(self,other,"DIA_Bosper_TeachFUR_11_02");	//Берешь острый нож и разрезаешь брюхо животного. Затем делаешь несколько небольших надрезов на внутренней стороне ног, и снимаешь шкуру.
-		if(MIS_Bosper_WolfFurs == LOG_Running)
+		if(MIS_Bosper_WolfFurs == LOG_RUNNING)
 		{
 			AI_Output(self,other,"DIA_Bosper_TeachFUR_11_03");	//Принеси мне волчьи шкуры, а там посмотрим...
 			Log_AddEntry(TOPIC_BosperWolf,"Боспер научил меня снимать шкуры с животных.");
@@ -605,7 +614,7 @@ instance DIA_Bosper_Trade(C_Info)
 
 func int DIA_Bosper_Trade_Condition()
 {
-	if(MIS_Bosper_WolfFurs != LOG_Running)
+	if(MIS_Bosper_WolfFurs != LOG_RUNNING)
 	{
 		DIA_Bosper_Trade.trade = TRUE;
 	};
@@ -620,7 +629,7 @@ func void DIA_Bosper_Trade_Info()
 		B_GiveTradeInv(self);
 		Trade_IsActive = TRUE;
 		B_RefreshTraderAmmo(self,50);
-		if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+		if(MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING)
 		{
 			BosperMinenAnteil = TRUE;
 		};
@@ -639,14 +648,13 @@ instance DIA_Bosper_BogenRunning(C_Info)
 	nr = 5;
 	condition = DIA_Bosper_BogenRunning_Condition;
 	information = DIA_Bosper_BogenRunning_Info;
-	permanent = FALSE;
 	description = "Я слышал, что у тебя что-то украли.";
 };
 
 
 func int DIA_Bosper_BogenRunning_Condition()
 {
-	if(MIS_Bosper_Bogen == LOG_Running)
+	if(MIS_Bosper_Bogen == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -667,7 +675,7 @@ func void DIA_Bosper_BogenRunning_Info()
 	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_07");	//Готов поклясться, что мой лук все еще находится где-то в городе. Я поговорил со стражей у обоих городских ворот, но они не видели, чтобы кто-нибудь выходил из города с луком.
 	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_08");	//Когда я доберусь до этого ублюдка...
 	Log_CreateTopic(TOPIC_BosperBogen,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BosperBogen,LOG_Running);
+	Log_SetTopicStatus(TOPIC_BosperBogen,LOG_RUNNING);
 	B_LogEntry(TOPIC_BosperBogen,"У Боспера был украден лук. Вор побежал к гавани, и скрылся там. Ополчение обыскало портовый квартал, но они ничего не нашли, хотя лук все еще должен быть в городе.");
 };
 
@@ -678,7 +686,6 @@ instance DIA_Bosper_BogenSuccess(C_Info)
 	nr = 6;
 	condition = DIA_Bosper_BogenSuccess_Condition;
 	information = DIA_Bosper_BogenSuccess_Info;
-	permanent = FALSE;
 	description = "Я думаю, это твой лук...";
 };
 
@@ -809,7 +816,6 @@ instance DIA_Bosper_Aufgaben(C_Info)
 	nr = 1;
 	condition = DIA_Bosper_Aufgaben_Condition;
 	information = DIA_Bosper_Aufgaben_Info;
-	permanent = FALSE;
 	description = "Что должен делать ученик?";
 };
 
@@ -939,7 +945,7 @@ instance DIA_Bosper_Minenanteil(C_Info)
 
 func int DIA_Bosper_Minenanteil_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (BosperMinenAnteil == TRUE))
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (BosperMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};
@@ -951,7 +957,7 @@ func void DIA_Bosper_Minenanteil_Info()
 	if(Npc_HasItems(self,ItWr_MinenAnteil_MIS) && (Player_IsApprentice == APP_Bosper))
 	{
 		AI_Output(self,other,"DIA_Bosper_Minenanteil_11_01");	//Хм-м, я ничего не знаю об этом. Ты можешь забрать их, если хочешь.
-		B_GiveInvItems(self,other,ItWr_MinenAnteil_MIS,Npc_HasItems(self,ItWr_MinenAnteil_MIS));
+		B_GiveAllInvItems(self,other,ItWr_MinenAnteil_MIS);
 	}
 	else
 	{

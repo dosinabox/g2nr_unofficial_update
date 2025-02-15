@@ -12,14 +12,12 @@ func void ZS_Study_WP()
 func int ZS_Study_WP_Loop()
 {
 	var int randy;
-	var int Eventrandy;
+	var int eventrandy;
 	var int randystatetime;
-	var int wait;
 	var float waittime;
-	randystatetime = randy + 25;
 	randy = Hlp_Random(10);
-	wait = randy + 5;
-	waittime = IntToFloat(wait);
+	randystatetime = randy + 25;
+	waittime = IntToFloat(randy + 5);
 	if(Npc_GetDistToWP(self,self.wp) > TA_DIST_SELFWP_MAX)
 	{
 		AI_GotoWP(self,self.wp);
@@ -52,19 +50,19 @@ func int ZS_Study_WP_Loop()
 		{
 			AI_PlayAni(self,"T_LGUARD_2_STAND");
 			self.aivar[AIV_TAPOSITION] = NOTINPOS;
-			if(!Npc_HasItems(self,Fakescroll_Addon))
+			if(!Npc_HasItems(self,Fakescroll))
 			{
-				CreateInvItem(self,Fakescroll_Addon);
+				CreateInvItem(self,Fakescroll);
 			};
 			B_StopLookAt(self);
-			AI_UseItemToState(self,Fakescroll_Addon,1);
+			AI_UseItemToState(self,Fakescroll,1);
 			AI_Wait(self,waittime);
-			AI_UseItemToState(self,Fakescroll_Addon,-1);
+			AI_UseItemToState(self,Fakescroll,-1);
 			Npc_SetStateTime(self,0);
 			if((self.guild == GIL_KDW) && (RavenIsDead == FALSE))
 			{
-				Eventrandy = Hlp_Random(100);
-				if(((Eventrandy < 5) && (CurrentLevel == NEWWORLD_ZEN)) || ((Eventrandy == 1) && (CurrentLevel == ADDONWORLD_ZEN)))
+				eventrandy = Hlp_Random(100);
+				if(((eventrandy < 5) && (CurrentLevel == NEWWORLD_ZEN)) || ((eventrandy == 1) && (CurrentLevel == ADDONWORLD_ZEN)))
 				{
 					B_Event_Portal_EarthQuake();
 				};
@@ -81,6 +79,6 @@ func int ZS_Study_WP_Loop()
 
 func void ZS_Study_WP_End()
 {
-	B_RemoveEveryInvItem(self,Fakescroll_Addon);
+	B_RemoveEveryInvItem(self,Fakescroll);
 };
 

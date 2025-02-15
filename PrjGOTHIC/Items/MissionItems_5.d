@@ -55,7 +55,7 @@ instance ItKe_MonastarySecretLibrary_MIS(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_04.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -270,15 +270,15 @@ func void Use_Seamap_Irdorath()
 	if(MIS_SCKnowsWayToIrdorath == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Crew,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Crew,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Crew,LOG_RUNNING);
 		B_LogEntries(TOPIC_Crew,"ƒл€ путешестви€ на корабле и решающего сражени€ мне нужна команда.");
 		Log_CreateTopic(TOPIC_Captain,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Captain,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Captain,LOG_RUNNING);
 		B_LogNextEntry(TOPIC_Captain,"ƒл€ управлени€ кораблем мне нужен опытный капитан, готовый отправитьс€ со мной в опасное путешествие.");
 		if(MIS_ShipIsFree == FALSE)
 		{
 			Log_CreateTopic(TOPIC_Ship,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Ship,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Ship,LOG_RUNNING);
 			B_LogNextEntry(TOPIC_Ship,"ѕохоже, € должен добратьс€ до этого странного вражеского острова. Ќо дл€ этого мне нужен корабль.");
 		};
 		if(Kapitel < 6)
@@ -326,7 +326,6 @@ func void UseItWr_ForgedShipLetter_MIS()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"     оролевска€ печать");
-	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
 
@@ -336,7 +335,7 @@ instance ItKe_OC_MainGate_MIS(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -352,7 +351,7 @@ instance ItKe_Ship_Levelchange_MIS(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;

@@ -257,17 +257,17 @@ func void DIA_Biff_ARBEITEN_HalbeHalbe()
 	AI_Output(other,self,"DIA_Biff_ARBEITEN_HalbeHalbe_15_00");	//Ты получишь половину добычи.
 	AI_Output(self,other,"DIA_Biff_ARBEITEN_HalbeHalbe_07_01");	//Звучит заманчиво. Но предупреждаю тебя: не пытайся обмануть меня! Ты пожалеешь об этом!
 	AI_Output(self,other,"DIA_Biff_ARBEITEN_HalbeHalbe_07_02");	//И еще одно: мне не нужно оружие и другое барахло, что ты соберешь там. Меня интересует только золото! Понятно?
-	DJG_Biff_HalbeHalbe = TRUE;
-	B_StartBiffParty();
 	if(DJG_Biff_HalbeHalbe_again == FALSE)
 	{
-		DJG_Biff_SCGold = Npc_HasItems(hero,ItMi_Gold);
+		DJG_Biff_SCGold = Npc_HasItems(other,ItMi_Gold);
 		DJG_Biff_HalbeHalbe_again = TRUE;
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Biff_ARBEITEN_HalbeHalbe_07_03");	//Но что я говорю. Ты уже знаешь все это.
 	};
+	DJG_Biff_HalbeHalbe = TRUE;
+	B_StartBiffParty();
 };
 
 func void DIA_Biff_ARBEITEN_lebenlassen()
@@ -283,12 +283,12 @@ var int BIFF_LABERT_GELDEINTREIBEN;
 
 func void B_GiveBiffsAnteil()
 {
-	AI_Output(self,other,"DIA_Biff_GELDEINTREIBEN_geben_07_01");	//Хорошо. Тогда в путь.
-	AI_StopProcessInfos(self);
 	B_GiveInvItems(other,self,ItMi_Gold,BiffsAnteil);
-	B_Biff_SetRefuseTalk();
+	AI_Output(self,other,"DIA_Biff_GELDEINTREIBEN_geben_07_01");	//Хорошо. Тогда в путь.
 	BIFF_LABERT_GELDEINTREIBEN = FALSE;
-	DJG_Biff_SCGold = Npc_HasItems(hero,ItMi_Gold);
+	DJG_Biff_SCGold = Npc_HasItems(other,ItMi_Gold);
+	AI_StopProcessInfos(self);
+	B_Biff_SetRefuseTalk();
 };
 
 instance DIA_Biff_GELDEINTREIBEN(C_Info)
@@ -469,6 +469,8 @@ func void DIA_Biff_ICHBLEIBHIER_Info()
 	var int location;
 	location = B_GetBiffLocation(1000);
 	AI_Output(self,other,"DIA_Biff_ICHBLEIBHIER_07_00");	//Очень опасная местность. Ты иди первым. А я буду прикрывать тебя сзади.
+	DJG_Biff_Stay = TRUE;
+	DJG_Biff_SCGold = Npc_HasItems(other,ItMi_Gold);
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,300);
 	if(location == LOC_BURG)
@@ -491,8 +493,6 @@ func void DIA_Biff_ICHBLEIBHIER_Info()
 	{
 		Npc_ExchangeRoutine(self,"STAY_ICE");
 	};
-	DJG_Biff_Stay = TRUE;
-	DJG_Biff_SCGold = Npc_HasItems(hero,ItMi_Gold);
 };
 
 
@@ -538,10 +538,10 @@ func void DIA_Biff_Stay_AwayFromOC_Info()
 {
 	B_KommMit();
 	AI_WaitTillEnd(self,other);
+	DJG_Biff_Stay = FALSE;
+	DJG_Biff_SCGold = Npc_HasItems(other,ItMi_Gold);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FOLLOW");
-	DJG_Biff_Stay = FALSE;
-	DJG_Biff_SCGold = Npc_HasItems(hero,ItMi_Gold);
 };
 
 
@@ -576,8 +576,8 @@ func void DIA_Biff_KOHLEWEGGEBEN_Info()
 {
 	AI_Output(self,other,"DIA_Biff_KOHLEWEGGEBEN_07_00");	//Не разбрасывай свое золото.
 	AI_Output(self,other,"DIA_Biff_KOHLEWEGGEBEN_07_01");	//Лучше дай мне его сюда.
+	DJG_Biff_SCGold = Npc_HasItems(other,ItMi_Gold);
 	AI_StopProcessInfos(self);
-	DJG_Biff_SCGold = Npc_HasItems(hero,ItMi_Gold);
 };
 
 
@@ -669,11 +669,11 @@ func void DIA_Biff_MEHRGELD_ok()
 	if(B_GiveInvItems(other,self,ItMi_Gold,100))
 	{
 		AI_Output(self,other,"DIA_Biff_MEHRGELD_ok_07_01");	//Да уж, это точно. Теперь пошли дальше.
-		AI_StopProcessInfos(self);
 		if(DJG_Biff_HalbeHalbe == TRUE)
 		{
-			DJG_Biff_SCGold = Npc_HasItems(hero,ItMi_Gold);
+			DJG_Biff_SCGold = Npc_HasItems(other,ItMi_Gold);
 		};
+		AI_StopProcessInfos(self);
 		B_Biff_SetRefuseTalk();
 	}
 	else
@@ -881,7 +881,7 @@ func void DIA_Biff_KnowWhereEnemy_Yes()
 	AI_Output(other,self,"DIA_Biff_KnowWhereEnemy_Yes_15_04");	//Сначала нам нужно выбраться из Долины Рудников.
 	AI_Output(self,other,"DIA_Biff_KnowWhereEnemy_Yes_07_05");	//Нет проблем. Я уже в пути. Встретимся у Прохода.
 	B_LogEntry(TOPIC_Crew,"Перспектива разбогатеть убедила Биффа присоединиться ко мне. Пока он получает достаточно золота, я могу рассчитывать на него.");
-	Biff_FollowsThroughPass = LOG_Running;
+	Biff_FollowsThroughPass = LOG_RUNNING;
 	B_JoinShip(self);
 };
 
@@ -927,7 +927,6 @@ instance DIA_Biff_StillNeedYou(C_Info)
 	nr = 55;
 	condition = DIA_Biff_StillNeedYou_Condition;
 	information = DIA_Biff_StillNeedYou_Info;
-	permanent = FALSE;
 	description = "Ты все еще заинтересован в месте на корабле?";
 };
 

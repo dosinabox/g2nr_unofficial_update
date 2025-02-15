@@ -1,5 +1,5 @@
 
-instance PC_MageTest(Npc_Default)
+/*instance PC_MageTest(Npc_Default)
 {
 	name[0] = "Магический чувак";
 	npcType = NPCTYPE_MAIN;
@@ -20,5 +20,5 @@ instance PC_MageTest(Npc_Default)
 	B_SetFightSkills(self,100);
 	EquipItem(self,ItMw_2h_Pal_Sword);
 	B_GiveAllAddonRunes(self);
-};
+};*/
 

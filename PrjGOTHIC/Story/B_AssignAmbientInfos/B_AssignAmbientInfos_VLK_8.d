@@ -32,7 +32,7 @@ instance DIA_VLK_8_JOIN(C_Info)
 
 func int DIA_VLK_8_JOIN_Condition()
 {
-	if((hero.guild == GIL_NONE) && (Player_IsApprentice == APP_NONE))
+	if((other.guild == GIL_NONE) && (Player_IsApprentice == APP_NONE))
 	{
 		return TRUE;
 	};
@@ -120,7 +120,7 @@ func void DIA_VLK_8_STANDARD_Info()
 		if(SC_HearedAboutMissingPeople == FALSE)
 		{
 			Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 			B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
 			SC_HearedAboutMissingPeople = TRUE;
 		};

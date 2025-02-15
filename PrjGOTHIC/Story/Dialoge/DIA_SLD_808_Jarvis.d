@@ -126,7 +126,7 @@ func int DIA_Jarvis_LeesPlan_Condition()
 func void DIA_Jarvis_LeesPlan_Info()
 {
 	AI_Output(other,self,"DIA_Jarvis_LeesPlan_15_00");	//Ты знаешь, что собирается делать Ли?
-	if((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL))
+	if((other.guild != GIL_MIL) && (other.guild != GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Jarvis_LeesPlan_04_01");	//Ли хочет, чтобы мы выжидали и морили голодом паладинов в городе.
 	};
@@ -218,10 +218,10 @@ func void DIA_Jarvis_MissionKO_Info()
 	AI_Output(other,self,"DIA_Jarvis_MissionKO_15_00");	//И что я должен сделать?
 	AI_Output(self,other,"DIA_Jarvis_MissionKO_04_01");	//Это просто. Отдубась нескольких парней Сильвио! Так обе стороны сразу поймут, с кем ты.
 	AI_Output(self,other,"DIA_Jarvis_MissionKO_04_02");	//А если ты будешь придерживаться правил дуэли, ты даже сможешь завоевать уважение остальных.
-	MIS_Jarvis_SldKO = LOG_Running;
+	MIS_Jarvis_SldKO = LOG_RUNNING;
 	self.aivar[AIV_IGNORE_Murder] = TRUE;
 	Log_CreateTopic(TOPIC_JarvisSLDKo,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_JarvisSLDKo,LOG_Running);
+	Log_SetTopicStatus(TOPIC_JarvisSLDKo,LOG_RUNNING);
 	if(other.guild == GIL_NONE)
 	{
 		B_LogEntry(TOPIC_JarvisSLDKo,"Джарвис хочет, чтобы я вырубил парочку парней Сильвио. Тогда он проголосует за меня.");
@@ -239,7 +239,7 @@ func void B_Jarvis_SylvioLeft()
 {
 	AI_Output(self,other,"DIA_Jarvis_PERM_04_04");	//Сильвио наконец-то свалил. После того, как он услышал о драконах, он со своими парнями отправился в колонию.
 	AI_Output(self,other,"DIA_Jarvis_PERM_04_05");	//Он, вероятно, думает, что там будет лучше.
-	if(MIS_Jarvis_SldKO == LOG_Running)
+	if(MIS_Jarvis_SldKO == LOG_RUNNING)
 	{
 		self.aivar[AIV_IGNORE_Murder] = FALSE;
 		MIS_Jarvis_SldKO = LOG_FAILED;
@@ -261,7 +261,7 @@ instance DIA_Jarvis_DuellRegeln(C_Info)
 
 func int DIA_Jarvis_DuellRegeln_Condition()
 {
-	if(MIS_Jarvis_SldKO == LOG_Running)
+	if(MIS_Jarvis_SldKO == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -296,7 +296,7 @@ instance DIA_Jarvis_SylviosMen(C_Info)
 
 func int DIA_Jarvis_SylviosMen_Condition()
 {
-	if(MIS_Jarvis_SldKO == LOG_Running)
+	if(MIS_Jarvis_SldKO == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -332,7 +332,7 @@ instance DIA_Jarvis_HowMany(C_Info)
 
 func int DIA_Jarvis_HowMany_Condition()
 {
-	if(MIS_Jarvis_SldKO == LOG_Running)
+	if(MIS_Jarvis_SldKO == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -368,7 +368,7 @@ instance DIA_Jarvis_HowManyLeft(C_Info)
 
 func int DIA_Jarvis_HowManyLeft_Condition()
 {
-	if((MIS_Jarvis_SldKO == LOG_Running) && Npc_KnowsInfo(other,DIA_Jarvis_HowMany))
+	if((MIS_Jarvis_SldKO == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Jarvis_HowMany))
 	{
 		return TRUE;
 	};
@@ -459,7 +459,7 @@ func void DIA_Jarvis_HowManyLeft_Info()
 				if(Torlof_GenugStimmen == FALSE)
 				{
 					Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-					Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+					Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_RUNNING);
 				};
 				SCKnowsSLDVotes = TRUE;
 				B_LogEntry(TOPIC_SLDRespekt,"Джарвис проголосует за меня, если я решу присоединиться к наемникам.");

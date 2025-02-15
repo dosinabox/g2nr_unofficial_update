@@ -135,7 +135,6 @@ instance DIA_Sentenza_Vzwei(C_Info)
 	nr = 2;
 	condition = DIA_Sentenza_Vzwei_Condition;
 	information = DIA_Sentenza_Vzwei_Info;
-//	permanent = FALSE;
 	permanent = TRUE;
 	important = TRUE;
 };
@@ -236,7 +235,7 @@ func void DIA_Sentenza_Vote_Info()
 			if(Torlof_GenugStimmen == FALSE)
 			{
 				Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+				Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_RUNNING);
 			};
 			B_LogEntry(TOPIC_SLDRespekt,"Сентенза не возражает против моего вступления в ряды наемников.");
 		};
@@ -293,8 +292,6 @@ func void DIA_Sentenza_Pay50_Info()
 };
 
 
-//var int Sentenza_Einmal;
-
 instance DIA_Sentenza_GoldBack(C_Info)
 {
 	npc = SLD_814_Sentenza;
@@ -310,23 +307,16 @@ func int DIA_Sentenza_GoldBack_Condition()
 {
 	if(Npc_HasItems(self,ItMi_Gold) >= 50)
 	{
-		/*if((Sentenza_GoldGiven == FALSE) || (other.guild == GIL_SLD))
-		{
-			return TRUE;
-		};*/
 		return TRUE;
 	};
 };
 
 func void DIA_Sentenza_GoldBack_Info()
 {
-	AI_Output(other,self,"DIA_Sentenza_GoldBack_15_00");	//Верни мне мое золото!
-//	if((other.guild == GIL_SLD) && (Torlof_SentenzaCounted == TRUE) && (Sentenza_Einmal == FALSE))
 	if(Torlof_SentenzaCounted == TRUE)
 	{
 		AI_Output(self,other,"DIA_Sentenza_GoldBack_09_01");	//После того, как я проголосовал за тебя?
 		AI_Output(self,other,"DIA_Sentenza_GoldBack_09_02");	//Ах ты, мерзкий попрошайка!
-//		Sentenza_Einmal = TRUE;
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_NONE,1);
 	}

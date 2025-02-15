@@ -12,7 +12,7 @@ func void B_StopGreententacle()
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_ClearAIQueue(self);
 	AI_Standup(self);
-	if(self.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(self))
 	{
 		B_AssessDamage();
 	}
@@ -31,7 +31,7 @@ func void ZS_Greententacle()
 	AI_Standup(self);
 	if(!C_BodyStateContains(self,BS_UNCONSCIOUS))
 	{
-		if(self.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(self))
 		{
 			AI_PlayAniBS(self,"T_STAND_2_GREENTENTACLEA_VICTIM",BS_UNCONSCIOUS);
 		}

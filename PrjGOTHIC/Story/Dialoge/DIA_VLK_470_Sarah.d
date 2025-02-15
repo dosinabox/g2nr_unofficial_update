@@ -52,7 +52,6 @@ instance DIA_Sarah_HALLO(C_Info)
 	npc = VLK_470_Sarah;
 	condition = DIA_Sarah_HALLO_Condition;
 	information = DIA_Sarah_HALLO_Info;
-	permanent = FALSE;
 	description = "Как торговля?";
 };
 
@@ -82,7 +81,6 @@ instance DIA_Sarah_Bauern(C_Info)
 	nr = 2;
 	condition = DIA_Sarah_Bauern_Condition;
 	information = DIA_Sarah_Bauern_Info;
-	permanent = FALSE;
 	description = "А что за проблема с фермерами?";
 };
 
@@ -110,7 +108,7 @@ func void DIA_Sarah_Bauern_Info()
 		if(Akils_SLDStillthere == FALSE)
 		{
 			Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
+			Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_RUNNING);
 			B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
 			Akils_SLDStillthere = TRUE;
 		};
@@ -124,7 +122,6 @@ instance DIA_Sarah_AkilsHof(C_Info)
 	nr = 3;
 	condition = DIA_Sarah_AkilsHof_Condition;
 	information = DIA_Sarah_AkilsHof_Info;
-	permanent = FALSE;
 	description = "Где мне найти ферму Акила?";
 };
 
@@ -210,7 +207,6 @@ instance DIA_Sarah_Success(C_Info)
 	nr = 4;
 	condition = DIA_Sarah_Success_Condition;
 	information = DIA_Sarah_Success_Info;
-	permanent = FALSE;
 	description = "Кантар пытался подставить тебя и заполучить твой прилавок.";
 };
 
@@ -228,7 +224,7 @@ func void DIA_Sarah_Success_Info()
 	AI_Output(other,self,"DIA_Sarah_Success_15_00");	//Кантар пытался подставить тебя и заполучить твой прилавок. Но я сдал его городской страже.
 	AI_Output(self,other,"DIA_Sarah_Success_16_01");	//Ты этим нажил себе очень опасного врага. Я давно знаю этого ублюдка. И он всегда хотел заполучить мой прилавок.
 	AI_Output(self,other,"DIA_Sarah_Success_16_02");	//Возьми это оружие в знак моей благодарности.
-	B_GivePlayerXP(XP_CantharImKnast);
 	B_GiveInvItems(self,other,ItMw_Piratensaebel,1);
+	B_GivePlayerXP(XP_CantharImKnast);
 };
 

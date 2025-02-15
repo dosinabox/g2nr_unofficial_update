@@ -59,7 +59,7 @@ func int C_Andre_InfoFromCanthar()
 {
 	if((Andre_ToldInfoFromCanthar == FALSE) && !Npc_IsDead(Canthar))
 	{
-		if((MIS_Canthars_KomproBrief == LOG_Running) && C_DaysSinceEvent(MIS_Canthars_KomproBrief_Day,2))
+		if((MIS_Canthars_KomproBrief == LOG_RUNNING) && C_DaysSinceEvent(MIS_Canthars_KomproBrief_Day,2))
 		{
 			return TRUE;
 		};
@@ -439,9 +439,12 @@ instance DIA_Andre_Message(C_Info)
 
 func int DIA_Andre_Message_Condition()
 {
-	if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+	if(!Npc_IsDead(LordHagen))
 	{
-		return TRUE;
+		if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -642,9 +645,9 @@ func void DIA_Andre_AskToJoin_Info()
 	AI_Output(self,other,"DIA_Andre_AskToJoin_08_05");	//Мой командующий опасается, что в наши ряды могут проникнуть шпионы или диверсанты.
 	AI_Output(self,other,"DIA_Andre_AskToJoin_08_06");	//Он хочет таким образом свести риск к минимуму.
 	AI_Output(self,other,"DIA_Andre_AskToJoin_08_07");	//Поэтому ты сначала должен стать гражданином города. Не знаю, имеет это правило смысл или нет, но приказ есть приказ.
-	MIL_Aufnahme = LOG_Running;
+	MIL_Aufnahme = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_BecomeMIL,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BecomeMIL,LOG_Running);
+	Log_SetTopicStatus(TOPIC_BecomeMIL,LOG_RUNNING);
 	B_LogEntry(TOPIC_BecomeMIL,"Прежде чем я смогу вступить в ряды городской стражи, я должен стать гражданином города.");
 };
 
@@ -747,7 +750,7 @@ func void B_Andre_StartGuildOfThievesQuest()
 	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_01");	//Последнее время в городе развелось слишком много воров. И мы никак не можем поймать ни одного из них. Воры действуют очень осторожно.
 	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_02");	//Эти мерзавцы знают свое дело. Я уверен, что в городе действует организованная банда.
 	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_03");	//Я не удивлюсь, если в Хоринисе появилась гильдия воров. Найди главарей этой банды и ликвидируй их.
-	MIS_Andre_GuildOfThieves = LOG_Running;
+	MIS_Andre_GuildOfThieves = LOG_RUNNING;
 };
 
 instance DIA_Andre_GuildOfThieves(C_Info)
@@ -799,7 +802,7 @@ instance DIA_Andre_WhereThieves(C_Info)
 
 func int DIA_Andre_WhereThieves_Condition()
 {
-	if(MIS_Andre_GuildOfThieves == LOG_Running)
+	if(MIS_Andre_GuildOfThieves == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -833,7 +836,7 @@ instance DIA_Andre_WhatToDo(C_Info)
 
 func int DIA_Andre_WhatToDo_Condition()
 {
-	if(MIS_Andre_GuildOfThieves == LOG_Running)
+	if(MIS_Andre_GuildOfThieves == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -897,7 +900,7 @@ instance DIA_Andre_Auslieferung(C_Info)
 
 func int DIA_Andre_Auslieferung_Condition()
 {
-	if((Rengaru_Ausgeliefert == FALSE) || (Halvor_Ausgeliefert == FALSE) || (Nagur_Ausgeliefert == FALSE) || (MIS_Canthars_KomproBrief == LOG_Running))
+	if((Rengaru_Ausgeliefert == FALSE) || (Halvor_Ausgeliefert == FALSE) || (Nagur_Ausgeliefert == FALSE) || (MIS_Canthars_KomproBrief == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -919,7 +922,7 @@ func void DIA_Andre_Auslieferung_Info()
 			Info_AddChoice(DIA_Andre_Auslieferung,"Халвор торгует краденым.",DIA_Andre_Auslieferung_Halvor);
 		};
 	};
-	if(((MIS_Nagur_Bote == LOG_Running) || (MIS_Nagur_Bote == LOG_FAILED)) && (Nagur_Ausgeliefert == FALSE) && !Npc_IsDead(Nagur))
+	if(((MIS_Nagur_Bote == LOG_RUNNING) || (MIS_Nagur_Bote == LOG_FAILED)) && (Nagur_Ausgeliefert == FALSE) && !Npc_IsDead(Nagur))
 	{
 		if(Bote_Killed == TRUE)
 		{
@@ -930,7 +933,7 @@ func void DIA_Andre_Auslieferung_Info()
 			Info_AddChoice(DIA_Andre_Auslieferung,"Нагур пытался использовать меня, чтобы перехватить товар с фермы Акила.",DIA_Andre_Auslieferung_Nagur);
 		};
 	};
-	if((MIS_Canthars_KomproBrief == LOG_Running) && !C_DaysSinceEvent(MIS_Canthars_KomproBrief_Day,2))
+	if((MIS_Canthars_KomproBrief == LOG_RUNNING) && !C_DaysSinceEvent(MIS_Canthars_KomproBrief_Day,2))
 	{
 		if(!Npc_IsDead(Canthar))
 		{
@@ -1098,7 +1101,7 @@ instance DIA_Andre_DGRunning(C_Info)
 
 func int DIA_Andre_DGRunning_Condition()
 {
-	if(MIS_Andre_GuildOfThieves == LOG_Running)
+	if(MIS_Andre_GuildOfThieves == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -1208,15 +1211,15 @@ func void DIA_Andre_FoundThieves_KilledByMilitia_Info()
 	};
 	B_KillThievesGuild();
 	MIS_Andre_GuildOfThieves = LOG_FAILED;
-	if(MIS_CassiaRing == LOG_Running)
+	if(MIS_CassiaRing == LOG_RUNNING)
 	{
 		MIS_CassiaRing = LOG_FAILED;
 	};
-	if(MIS_CassiaKelche == LOG_Running)
+	if(MIS_CassiaKelche == LOG_RUNNING)
 	{
 		MIS_CassiaKelche = LOG_FAILED;
 	};
-	if(MIS_RamirezSextant == LOG_Running)
+	if(MIS_RamirezSextant == LOG_RUNNING)
 	{
 		MIS_RamirezSextant = LOG_FAILED;
 	};
@@ -1310,15 +1313,15 @@ func void DIA_Andre_JOIN_Yes()
 	NOV_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;
 	B_CancelBengarMilitiaProblem();
-	if(MIS_Torlof_HolPachtVonSekob == LOG_Running)
+	if(MIS_Torlof_HolPachtVonSekob == LOG_RUNNING)
 	{
 		MIS_Torlof_HolPachtVonSekob = LOG_FAILED;
 	};
 	B_GivePlayerXP(XP_BecomeMiliz);
-	if(MIS_Addon_Daron_GetStatue == LOG_Running)
+	if(MIS_Addon_Daron_GetStatue == LOG_RUNNING)
 	{
 		Log_CreateTopic(TOPIC_Addon_HelpDaron,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_HelpDaron,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_HelpDaron,LOG_RUNNING);
 		Log_AddEntry(TOPIC_Addon_HelpDaron,TOPIC_Addon_DaronGobbos);
 	};
 	Info_ClearChoices(DIA_Andre_JOIN);
@@ -1345,9 +1348,12 @@ instance DIA_Andre_LORDHAGEN(C_Info)
 
 func int DIA_Andre_LORDHAGEN_Condition()
 {
-	if((other.guild == GIL_MIL) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (Andre_LordHagenNichtZuSprechen == TRUE))
+	if((other.guild == GIL_MIL) && (Andre_LordHagenNichtZuSprechen == TRUE) && !Npc_IsDead(LordHagen))
 	{
-		return TRUE;
+		if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1385,9 +1391,9 @@ func void DIA_Andre_Waffe_Info()
 	AI_Output(self,other,"DIA_Andre_Waffe_08_01");	//Конечно. Обычно этим занимается Пек. Но что-то я давно его не видел.
 	AI_Output(self,other,"DIA_Andre_Waffe_08_02");	//Найди, где он скрывается, и приведи его сюда. Тогда он выдаст тебе оружие.
 	AI_Output(self,other,"DIA_Andre_Waffe_08_03");	//А если ты хочешь поспать, можешь выбрать любую койку в наших казармах.
-	MIS_Andre_Peck = LOG_Running;
+	MIS_Andre_Peck = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Peck,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Peck,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Peck,LOG_RUNNING);
 	B_LogEntry(TOPIC_Peck,"Пек где-то в городе. Если я приведу его назад, в казармы, я смогу получить от него оружие.");
 	AI_StopProcessInfos(self);
 };
@@ -1411,7 +1417,7 @@ instance DIA_Andre_FOUND_PECK(C_Info)
 
 func int DIA_Andre_FOUND_PECK_Condition()
 {
-	if(MIS_Andre_Peck == LOG_Running)
+	if(MIS_Andre_Peck == LOG_RUNNING)
 	{
 		if(Npc_IsDead(Peck))
 		{
@@ -1516,9 +1522,9 @@ func void DIA_Andre_FIRSTMISSION_Info()
 		AI_Output(other,self,"DIA_Andre_FIRSTMISSION_15_06");	//Что я могу сделать?
 		AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_07");	//Мортис, один из наших людей, слышал в портовом кабаке, что где-то в порту находится целый тюк этой травы.
 		AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_08");	//Поищи там и принеси этот тюк мне.
-		MIS_Andre_WAREHOUSE = LOG_Running;
+		MIS_Andre_WAREHOUSE = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_Warehouse,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Warehouse,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Warehouse,LOG_RUNNING);
 		B_LogEntry(TOPIC_Warehouse,"Тюк болотной травы прибыл в гавань. Мортис прослышал об этом в местном пабе. Я должен найти этот тюк и принести его лорду Андрэ.");
 	}
 	else
@@ -1541,7 +1547,7 @@ instance DIA_Andre_FOUND_STUFF(C_Info)
 
 func int DIA_Andre_FOUND_STUFF_Condition()
 {
-	if(MIS_Andre_WAREHOUSE == LOG_Running)
+	if(MIS_Andre_WAREHOUSE == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -1589,13 +1595,13 @@ func void B_AndreStartFindDealerQuest()
 			AI_Output(other,self,"DIA_Andre_FIND_DEALER_15_05");	//Что именно мне нужно сделать?
 			AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_06");	//Найди торговца и заставь его продать тебе этой травы. Это будет непросто, но иначе мы не сможем арестовать его.
 			AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_07");	//Поговори с Мортисом. Он хорошо знает портовый квартал. Возможно, он сможет помочь тебе.
-			MIS_Andre_REDLIGHT = LOG_Running;
+			MIS_Andre_REDLIGHT = LOG_RUNNING;
 			if(Bromor_Pay != 2)
 			{
 				B_StartOtherRoutine(Nadja,"SMOKE");
 			};
 			Log_CreateTopic(TOPIC_Redlight,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Redlight,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Redlight,LOG_RUNNING);
 			B_LogEntry(TOPIC_Redlight,"Я должен найти человека, продающего болотную траву в портовом квартале. Я должен заставить его продать мне немного травы. Мортис может помочь мне в этом.");
 		}
 		else
@@ -1644,7 +1650,7 @@ instance DIA_Andre_REDLIGHT_SUCCESS(C_Info)
 
 func int DIA_Andre_REDLIGHT_SUCCESS_Condition()
 {
-	if(MIS_Andre_REDLIGHT == LOG_Running)
+	if(MIS_Andre_REDLIGHT == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -1663,7 +1669,11 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 		if((Nadja_Victim == TRUE) || (Npc_IsDead(Nadja) && (Knows_Borka_Dealer == FALSE)))
 		{
 			AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_03");	//Эта девочка из Красного Фонаря, Надя, мертва. Возможно, это просто случайное совпадение.
-			B_RemoveNpc(VLK_435_Nadja);
+			if(!Npc_IsDead(Nadja))
+			{
+				B_DeletePetzCrime(Nadja);
+				B_RemoveNpc(VLK_435_Nadja);
+			};
 		};
 		if(Undercover_Failed == TRUE)
 		{
@@ -1728,9 +1738,9 @@ func void DIA_Andre_HILFBAUERLOBART_Info()
 		AI_Output(self,other,"DIA_Andre_HILFBAUERLOBART_08_01");	//У фермера Лобарта какие-то проблемы на его полях.
 		AI_Output(self,other,"DIA_Andre_HILFBAUERLOBART_08_02");	//Если мы поможем ему, это укрепит его отношения с городом. Так что отправляйся туда и посмотри, что там не так.
 		Log_CreateTopic(TOPIC_Feldraeuber,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Feldraeuber,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Feldraeuber,LOG_RUNNING);
 		B_LogEntry(TOPIC_Feldraeuber,"Андрэ отправил меня на ферму Лобарта. Я опять должен помочь Лобарту восстановить порядок на ферме.");
-		MIS_AndreHelpLobart = LOG_Running;
+		MIS_AndreHelpLobart = LOG_RUNNING;
 		Wld_InsertNpc(Lobarts_Giant_Bug1,"NW_FARM1_FIELD_06");
 		Wld_InsertNpc(Lobarts_Giant_Bug2,"NW_FARM1_FIELD_06");
 		Wld_InsertNpc(Lobarts_Giant_Bug3,"NW_FARM1_FIELD_05");
@@ -1837,7 +1847,7 @@ func void DIA_Addon_Andre_MissingPeople_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Andre_MissingPeople_08_06");	//А ТЫ будешь заниматься тем, чем я тебе прикажу. Понимаешь меня?
 	};
-	MIS_Addon_Andre_MissingPeople = LOG_Running;
+	MIS_Addon_Andre_MissingPeople = LOG_RUNNING;
 };
 
 
@@ -1863,7 +1873,7 @@ func void DIA_Addon_Andre_MissingPeople2_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Andre_MissingPeople2_15_00");	//По поводу пропавших людей...
 	AI_Output(self,other,"DIA_Addon_Andre_MissingPeople2_08_01");	//Оставь меня в покое! У меня полно других забот.
-	MIS_Addon_Andre_MissingPeople = LOG_Running;
+	MIS_Addon_Andre_MissingPeople = LOG_RUNNING;
 };
 
 
@@ -1879,7 +1889,7 @@ instance DIA_Addon_Andre_ReturnedMissingPeople(C_Info)
 
 func int DIA_Addon_Andre_ReturnedMissingPeople_Condition()
 {
-	if((MissingPeopleReturnedHome == TRUE) && (MIS_Addon_Andre_MissingPeople == LOG_Running))
+	if((MissingPeopleReturnedHome == TRUE) && (MIS_Addon_Andre_MissingPeople == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -1954,7 +1964,7 @@ instance DIA_Andre_BennetInPrison(C_Info)
 
 func int DIA_Andre_BennetInPrison_Condition()
 {
-	if(MIS_RescueBennet == LOG_Running)
+	if(MIS_RescueBennet == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -1981,7 +1991,7 @@ instance DIA_Andre_Cornelius_Liar(C_Info)
 
 func int DIA_Andre_Cornelius_Liar_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Cornelius_WhatYouSee) && Npc_KnowsInfo(other,DIA_Andre_BennetInPrison) && (MIS_RescueBennet == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Cornelius_WhatYouSee) && Npc_KnowsInfo(other,DIA_Andre_BennetInPrison) && (MIS_RescueBennet == LOG_RUNNING))
 	{
 		return TRUE;
 	};

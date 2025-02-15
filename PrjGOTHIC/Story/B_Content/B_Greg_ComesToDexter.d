@@ -5,9 +5,9 @@ func void B_Greg_ComesToDexter()
 {
 	if(Greg_Rejected == FALSE)
 	{
-		if(!ArmorEquipped(Greg_NW,ITAR_PIR_H_Addon))
+		if(!Npc_IsDead(Greg_NW))
 		{
-			AI_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
+			B_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
 		};
 		if(B_Greg_ComesToDexter_OneTime == FALSE)
 		{
@@ -32,9 +32,9 @@ func void B_Greg_ComesToDexter()
 
 func void B_Greg_ComesToDexterLater()
 {
-	if(!ArmorEquipped(Greg_NW,ITAR_PIR_H_Addon))
+	if(!Npc_IsDead(Greg_NW))
 	{
-		AI_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
+		B_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
 	};
 	if(B_Greg_ComesToDexter_OneTime == FALSE)
 	{

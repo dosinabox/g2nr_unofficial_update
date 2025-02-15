@@ -3,7 +3,10 @@ func void B_Announce_Herold()
 {
 	var int randy;
 	AI_RemoveWeapon(self);
-	CreateInvItem(self,Fakescroll);
+	if(!Npc_HasItems(self,Fakescroll))
+	{
+		CreateInvItem(self,Fakescroll);
+	};
 	AI_UseItemToState(self,Fakescroll,1);
 	AI_Output(self,self,"DIA_Herold_Announce_04_00");	//Слушайте, жители Хориниса! По прямому указанию достопочтимого лорда Хагена, сегодня вступает в силу следующий декрет.
 	if(Kapitel <= 2)

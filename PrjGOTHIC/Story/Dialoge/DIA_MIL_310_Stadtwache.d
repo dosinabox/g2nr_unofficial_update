@@ -98,7 +98,7 @@ func void DIA_Mil_310_Stadtwache_FirstWarn_Info()
 			if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
 			{
 				Log_CreateTopic(TOPIC_City,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_City,LOG_Running);
+				Log_SetTopicStatus(TOPIC_City,LOG_RUNNING);
 				B_LogEntry(TOPIC_City,"„тобы стражники позволили мне войти в город, € должен выгл€деть так, как будто у мен€ есть деньги. Ќу, или € должен найти какой-нибудь другой способ.");
 			};
 		}
@@ -242,7 +242,6 @@ instance DIA_Mil_310_Stadtwache_Passierschein(C_Info)
 	nr = 4;
 	condition = DIA_Mil_310_Stadtwache_Passierschein_Condition;
 	information = DIA_Mil_310_Stadtwache_Passierschein_Info;
-	permanent = FALSE;
 	description = "” мен€ есть пропуск!";
 };
 
@@ -283,7 +282,6 @@ instance DIA_Mil_310_Stadtwache_ZumSchmied(C_Info)
 	nr = 3;
 	condition = DIA_Mil_310_Stadtwache_ZumSchmied_Condition;
 	information = DIA_Mil_310_Stadtwache_ZumSchmied_Info;
-	permanent = FALSE;
 	description = "я хочу увидетьс€ с кузнецом. ќн должен починить кое-какую утварь.";
 };
 
@@ -390,7 +388,7 @@ instance DIA_Addon_Mil_310_Stadtwache_Constantino(C_Info)
 
 func int DIA_Addon_Mil_310_Stadtwache_Constantino_Condition()
 {
-	if((MIS_Addon_Lester_PickForConstantino == LOG_Running) && (Mil_310_schonmalreingelassen == FALSE))
+	if((MIS_Addon_Lester_PickForConstantino == LOG_RUNNING) && (Mil_310_schonmalreingelassen == FALSE))
 	{
 		return TRUE;
 	};
@@ -436,7 +434,6 @@ instance DIA_Mil_310_Stadtwache_MilizWerden(C_Info)
 	nr = 2;
 	condition = DIA_Mil_310_Stadtwache_MilizWerden_Condition;
 	information = DIA_Mil_310_Stadtwache_MilizWerden_Info;
-	permanent = FALSE;
 	description = "я пришел, чтобы вступить в ополчение!";
 };
 
@@ -463,7 +460,6 @@ instance DIA_Mil_310_Stadtwache_Paladine(C_Info)
 	nr = 1;
 	condition = DIA_Mil_310_Stadtwache_Paladine_Condition;
 	information = DIA_Mil_310_Stadtwache_Paladine_Info;
-	permanent = FALSE;
 	description = "ћне нужно увидеть главу паладинов! ” мен€ важное сообщение дл€ него!";
 };
 

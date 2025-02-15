@@ -18,7 +18,7 @@ func int DIA_Addon_Logan_EXIT_Condition()
 func void DIA_Addon_Logan_EXIT_Info()
 {
 	DIA_Common_IllBeBackLater();
-	if((MIS_HlpLogan == LOG_Running) && (Logan_Inside == FALSE))
+	if((MIS_HlpLogan == LOG_RUNNING) && (Logan_Inside == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Logan_EXIT_10_01");	//(ворчливо) Да-а, просто убегаешь. А я останусь здесь и остановлю каждого, кто подойдет слишком близко.
 	}
@@ -36,14 +36,13 @@ instance DIA_Addon_BDT_1072_Logan_Mine(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Logan_Mine_Condition;
 	information = DIA_Addon_Logan_Mine_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_MINE_DESCRIPTION;
 };
 
 
 func int DIA_Addon_Logan_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01) && (Logan_Inside == TRUE))
+	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01) && (Logan_Inside == TRUE))
 	{
 		if(Npc_GetDistToWP(self,"BL_INN_05_D") <= 1200)
 		{
@@ -70,7 +69,6 @@ instance DIA_Addon_Logan_How2(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Logan_How2_Condition;
 	information = DIA_Addon_Logan_How2_Info;
-	permanent = FALSE;
 	description = "Как у тебя дела?";
 };
 
@@ -107,14 +105,13 @@ instance DIA_Addon_Logan_Attentat(C_Info)
 	nr = 9;
 	condition = DIA_Addon_Logan_Attentat_Condition;
 	information = DIA_Addon_Logan_Attentat_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_ATTENTAT_DESCRIPTION;
 };
 
 
 func int DIA_Addon_Logan_Attentat_Condition()
 {
-	if((MIS_Judas == LOG_Running) && (LoganToldAboutEsteban == TRUE))
+	if((MIS_Judas == LOG_RUNNING) && (LoganToldAboutEsteban == TRUE))
 	{
 		return TRUE;
 	};
@@ -134,7 +131,6 @@ instance DIA_Addon_Logan_HI(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Logan_HI_Condition;
 	information = DIA_Addon_Logan_HI_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -161,7 +157,7 @@ func void DIA_Addon_Logan_HI_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Logan_HI_10_04");	//Болотные акулы начинают подбираться ко мне слишком близко. Самое время прикончить некоторых из них.
 	Log_CreateTopic(TOPIC_Addon_Logan,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Logan,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Logan,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_Logan,"Логан хочет, чтобы я отправился с ним на охоту на болотных акул.");
 };
 
@@ -172,7 +168,6 @@ instance DIA_Addon_Logan_Why(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Logan_Why_Condition;
 	information = DIA_Addon_Logan_Why_Info;
-	permanent = FALSE;
 	description = "Что я получу за помощь?";
 };
 
@@ -205,7 +200,6 @@ instance DIA_Addon_Logan_Lager(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Logan_Lager_Condition;
 	information = DIA_Addon_Logan_Lager_Info;
-	permanent = FALSE;
 	description = "А что в лагере?";
 };
 
@@ -232,7 +226,6 @@ instance DIA_Addon_Logan_MIS(C_Info)
 	nr = 99;
 	condition = DIA_Addon_Logan_MIS_Condition;
 	information = DIA_Addon_Logan_MIS_Info;
-	permanent = FALSE;
 	description = "Давай разберемся с болотными акулами.";
 };
 
@@ -251,11 +244,11 @@ func void DIA_Addon_Logan_MIS_Info()
 	AI_Output(self,other,"DIA_Addon_Logan_MIS_10_01");	//(ворчливо) Ты, наконец, понял, как здесь нужно себя вести. Приятно слышать. Тсс... слышишь? Да-а, я их слышу.
 	AI_Output(other,self,"DIA_Addon_Logan_MIS_15_02");	//Понятно, и что нам теперь делать?
 	AI_Output(self,other,"DIA_Addon_Logan_MIS_10_03");	//Они приближаются. Они хотят закусить человечиной. Ну-ну, мы посмотрим, кто кого съест... Пойдем.
+	MIS_HlpLogan = LOG_RUNNING;
 	Snd_Play("SWA_WARN");
+	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"JAGD");
-	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	MIS_HlpLogan = LOG_Running;
 	Wld_InsertNpc(MIS_Addon_Swampshark_01,"ADW_SWAMPSHARK_01");
 	Wld_InsertNpc(MIS_Addon_Swampshark_02,"ADW_SWAMPSHARK_02");
 	Wld_InsertNpc(MIS_Addon_Swampshark_03,"ADW_BANDIT_VP3_06");
@@ -270,7 +263,6 @@ instance DIA_Addon_Logan_tot(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Logan_tot_Condition;
 	information = DIA_Addon_Logan_tot_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -313,7 +305,6 @@ instance DIA_Addon_Logan_Lern(C_Info)
 	nr = 100;
 	condition = DIA_Addon_Logan_Lern_Condition;
 	information = DIA_Addon_Logan_Lern_Info;
-	permanent = FALSE;
 	description = "Покажи мне, как разделывать туши животных...";
 };
 

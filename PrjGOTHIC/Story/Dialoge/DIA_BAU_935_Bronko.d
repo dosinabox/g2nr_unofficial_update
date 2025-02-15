@@ -43,7 +43,7 @@ func void DIA_Bronko_HALLO_Info()
 {
 	AI_Output(self,other,"DIA_Bronko_HALLO_06_00");	//(отечески) И куда это мы направляемся, а?
 	AI_Output(other,self,"DIA_Bronko_HALLO_15_01");	//А ты что, здесь старший?
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Bronko_HALLO_06_02");	//Сейчас в морду получишь, придурок.
 	};
@@ -82,13 +82,13 @@ func void DIA_Bronko_HALLO_hiergeld()
 func void DIA_Bronko_HALLO_vergisses()
 {
 	AI_Output(other,self,"DIA_Bronko_HALLO_vergisses_15_00");	//Забудь об этом. Ты ничего не получишь от меня.
-	if(hero.guild == GIL_KDF)
+	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Bronko_HALLO_vergisses_06_03");	//Меня не волнует, что ты маг. Тебе придется заплатить. Понятно?
 	}
 	else
 	{
-		if(hero.guild == GIL_MIL)
+		if(other.guild == GIL_MIL)
 		{
 			AI_Output(self,other,"DIA_Bronko_HALLO_vergisses_06_02");	//У вас, парней из городской стражи, плохо с финансами, ха?
 		};
@@ -123,7 +123,7 @@ var int DIA_Bronko_KEINBAUER_noPerm;
 
 func int DIA_Bronko_KEINBAUER_Condition()
 {
-	if(((MIS_Sekob_Bronko_eingeschuechtert == LOG_Running) || (Babera_BronkoKeinBauer == TRUE)) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST) && (DIA_Bronko_KEINBAUER_noPerm == FALSE))
+	if(((MIS_Sekob_Bronko_eingeschuechtert == LOG_RUNNING) || (Babera_BronkoKeinBauer == TRUE)) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST) && (DIA_Bronko_KEINBAUER_noPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -138,7 +138,7 @@ func void DIA_Bronko_KEINBAUER_Info()
 	{
 		Info_AddChoice(DIA_Bronko_KEINBAUER,"(пригрозить Бронко наемниками)",DIA_Bronko_KEINBAUER_SLD);
 	};
-	if(MIS_Sekob_Bronko_eingeschuechtert == LOG_Running)
+	if(MIS_Sekob_Bronko_eingeschuechtert == LOG_RUNNING)
 	{
 		Info_AddChoice(DIA_Bronko_KEINBAUER,"Фермер здесь - Секоб, а ты просто мелкий жулик.",DIA_Bronko_KEINBAUER_sekobderbauer);
 	};
@@ -175,8 +175,9 @@ func void DIA_Bronko_KEINBAUER_SLD()
 	AI_Output(self,other,"DIA_Bronko_KEINBAUER_SLD_06_01");	//Черт. Подожди минутку. Онар пошлет сюда наемников.
 	AI_Output(other,self,"DIA_Bronko_KEINBAUER_SLD_15_02");	//И что?
 	AI_Output(self,other,"DIA_Bronko_KEINBAUER_SLD_06_03");	//Хорошо, хорошо. Я дам тебе все, что ты захочешь, но только не вмешивай в это дело наемников, хорошо?
-	if(B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold)))
+	if(Npc_HasItems(self,ItMi_Gold))
 	{
+		B_GiveAllInvItems(self,other,ItMi_Gold);
 		AI_Output(self,other,"DIA_Bronko_KEINBAUER_SLD_06_04");	//Вот, я даже отдам тебе все мое золото.
 	};
 	if(Wld_IsTime(8,0,22,0))
@@ -208,7 +209,6 @@ instance DIA_Bronko_FLEISSIG(C_Info)
 	nr = 3;
 	condition = DIA_Bronko_FLEISSIG_Condition;
 	information = DIA_Bronko_FLEISSIG_Info;
-	permanent = FALSE;
 	description = "Как дела? Желание трепаться еще не пропало?";
 };
 
@@ -261,7 +261,7 @@ func int DIA_Bronko_FLEISSIG2_Condition()
 func void DIA_Bronko_FLEISSIG2_Info()
 {
 	AI_Output(other,self,"DIA_Bronko_FLEISSIG_15_00");	//Как дела? Работаешь как пчелка, да?
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_02");	//Ты наемник, да? Я мог бы догадаться.
 	}

@@ -27,7 +27,6 @@ instance DIA_Abuyin_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Abuyin_Hallo_Condition;
 	information = DIA_Abuyin_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -57,7 +56,6 @@ instance DIA_Abuyin_du(C_Info)
 	nr = 2;
 	condition = DIA_Abuyin_du_Condition;
 	information = DIA_Abuyin_du_Info;
-	permanent = FALSE;
 	description = "Кто ты?";
 };
 
@@ -80,7 +78,6 @@ instance DIA_Abuyin_Kraut(C_Info)
 	nr = 2;
 	condition = DIA_Abuyin_Kraut_Condition;
 	information = DIA_Abuyin_Kraut_Info;
-	permanent = FALSE;
 	description = "Что за табак ты предлагаешь?";
 };
 
@@ -110,7 +107,6 @@ instance DIA_Abuyin_anderen(C_Info)
 	nr = 2;
 	condition = DIA_Abuyin_anderen_Condition;
 	information = DIA_Abuyin_anderen_Info;
-	permanent = FALSE;
 	description = "А у тебя есть другой табак?";
 };
 
@@ -140,7 +136,6 @@ instance DIA_Abuyin_Woher(C_Info)
 	nr = 2;
 	condition = DIA_Abuyin_Woher_Condition;
 	information = DIA_Abuyin_Woher_Info;
-	permanent = FALSE;
 	description = "Где мне взять яблочный табак?";
 };
 
@@ -220,6 +215,7 @@ func void DIA_Abuyin_Mischung_BACK()
 func void DIA_Abuyin_Mischung_Sumpf()
 {
 	B_GiveInvItems(other,self,ItMi_SumpfTabak,1);
+	Npc_RemoveInvItems(self,ItMi_SumpfTabak,1);
 	B_TabakProbieren();
 	Info_ClearChoices(DIA_Abuyin_Mischung);
 };
@@ -227,6 +223,7 @@ func void DIA_Abuyin_Mischung_Sumpf()
 func void DIA_Abuyin_Mischung_Pilz()
 {
 	B_GiveInvItems(other,self,ItMi_PilzTabak,1);
+	Npc_RemoveInvItems(self,ItMi_PilzTabak,1);
 	B_TabakProbieren();
 	Info_ClearChoices(DIA_Abuyin_Mischung);
 };
@@ -234,6 +231,7 @@ func void DIA_Abuyin_Mischung_Pilz()
 func void DIA_Abuyin_Mischung_Doppel()
 {
 	B_GiveInvItems(other,self,ItMi_DoppelTabak,1);
+	Npc_RemoveInvItems(self,ItMi_DoppelTabak,1);
 	B_TabakProbieren();
 	Info_ClearChoices(DIA_Abuyin_Mischung);
 };
@@ -241,6 +239,7 @@ func void DIA_Abuyin_Mischung_Doppel()
 func void DIA_Abuyin_Mischung_Super()
 {
 	B_GiveInvItems(other,self,ItMi_Honigtabak,1);
+	Npc_RemoveInvItems(self,ItMi_Honigtabak,1);
 	AI_Output(self,other,"DIA_Abuyin_Mischung_Super_13_00");	//Давай я попробую твой табак.
 	CreateInvItems(self,ItMi_Joint,1);
 	B_UseItem(self,ItMi_Joint);
@@ -293,7 +292,6 @@ instance DIA_Abuyin_Herb(C_Info)
 	nr = 2;
 	condition = DIA_Abuyin_Herb_Condition;
 	information = DIA_Abuyin_Herb_Info;
-	permanent = FALSE;
 	description = "Тебя не заинтересует этот тюк травы?";
 };
 
@@ -315,6 +313,29 @@ func void DIA_Abuyin_Herb_Info()
 	AI_Output(self,other,"DIA_Abuyin_Herb_13_04");	//Попробуй избавиться от нее где-нибудь за пределами городских стен. А здесь... тебя здесь ждет с ней одна головная боль.
 };
 
+func void B_Abuyin_SayProphecyPrice()
+{
+	if(Kapitel == 1)
+	{
+		AI_Output(self,other,"DIA_Abuyin_Weissagung_13_03");	//За какие-то 25 монет я рискну заглянуть для тебя в будущее.
+	}
+	else if(Kapitel == 2)
+	{
+		AI_Output(self,other,"DIA_Abuyin_Weissagung2_13_00");	//За какие-то 100 монет я рискну заглянуть для тебя в будущее.
+	}
+	else if(Kapitel == 3)
+	{
+		AI_Output(self,other,"DIA_Abuyin_Weissagung3_13_00");	//За какие-то 250 монет я рискну заглянуть для тебя в будущее.
+	}
+	else if(Kapitel == 4)
+	{
+		AI_Output(self,other,"DIA_Abuyin_Weissagung4_13_00");	//За какие-то 500 монет я рискну заглянуть для тебя в будущее.
+	}
+	else if(Kapitel == 5)
+	{
+		AI_Output(self,other,"DIA_Abuyin_Weissagung5_13_00");	//За какие-то 1000 монет я рискну заглянуть для тебя в будущее.
+	};
+};
 
 instance DIA_Abuyin_Weissagung(C_Info)
 {
@@ -322,7 +343,6 @@ instance DIA_Abuyin_Weissagung(C_Info)
 	nr = 2;
 	condition = DIA_Abuyin_Weissagung_Condition;
 	information = DIA_Abuyin_Weissagung_Info;
-	permanent = FALSE;
 	description = "Ты можешь сделать пророчество?";
 };
 
@@ -340,7 +360,7 @@ func void DIA_Abuyin_Weissagung_Info()
 	AI_Output(other,self,"DIA_Abuyin_Weissagung_15_00");	//Ты можешь сделать пророчество?
 	AI_Output(self,other,"DIA_Abuyin_Weissagung_13_01");	//Я к твоим услугам за скромное вознаграждение, о, Отец Щедрости.
 	AI_Output(other,self,"DIA_Abuyin_Weissagung_15_02");	//Сколько ты хочешь?
-	AI_Output(self,other,"DIA_Abuyin_Weissagung_13_03");	//За какие-то 25 монет я рискну заглянуть для тебя в будущее.
+	B_Abuyin_SayProphecyPrice();
 	AI_Output(self,other,"DIA_Abuyin_Weissagung_13_04");	//Но помни - будущее всегда неопределенно. Все, что в моих силах - это уловить лишь крошечные фрагменты времени.
 };
 
@@ -436,9 +456,17 @@ func void DIA_Abuyin_Nochmal_Info()
 
 func void B_Abuyin_Weissagung()
 {
-	AI_Output(other,self,"B_Abuyin_Weissagung_15_00");	//Ты можешь сделать пророчество?
-	AI_Output(self,other,"B_Abuyin_Weissagung_13_01");	//Да, время ушло вперед, и я могу сделать еще одно пророчество, если у тебя найдется несколько монет.
-	AI_Output(other,self,"B_Abuyin_Weissagung_15_02");	//Сколько?
+	if(Abuyin_Zukunft > 0)
+	{
+		AI_Output(other,self,"B_Abuyin_Weissagung_15_00");	//Ты можешь сделать пророчество?
+		AI_Output(self,other,"B_Abuyin_Weissagung_13_01");	//Да, время ушло вперед, и я могу сделать еще одно пророчество, если у тебя найдется несколько монет.
+		AI_Output(other,self,"B_Abuyin_Weissagung_15_02");	//Сколько?
+		B_Abuyin_SayProphecyPrice();
+	}
+	else
+	{
+		DIA_Abuyin_Weissagung_Info();
+	};
 };
 
 
@@ -448,7 +476,6 @@ instance DIA_Abuyin_Weissagung2(C_Info)
 	nr = 2;
 	condition = DIA_Abuyin_Weissagung2_Condition;
 	information = DIA_Abuyin_Weissagung2_Info;
-	permanent = FALSE;
 	description = "Ты можешь сделать пророчество?";
 };
 
@@ -464,7 +491,6 @@ func int DIA_Abuyin_Weissagung2_Condition()
 func void DIA_Abuyin_Weissagung2_Info()
 {
 	B_Abuyin_Weissagung();
-	AI_Output(self,other,"DIA_Abuyin_Weissagung2_13_00");	//За какие-то 100 монет я рискну заглянуть для тебя в будущее.
 };
 
 
@@ -520,7 +546,6 @@ instance DIA_Abuyin_Weissagung3(C_Info)
 	nr = 2;
 	condition = DIA_Abuyin_Weissagung3_Condition;
 	information = DIA_Abuyin_Weissagung3_Info;
-	permanent = FALSE;
 	description = "Ты можешь сделать пророчество?";
 };
 
@@ -536,7 +561,6 @@ func int DIA_Abuyin_Weissagung3_Condition()
 func void DIA_Abuyin_Weissagung3_Info()
 {
 	B_Abuyin_Weissagung();
-	AI_Output(self,other,"DIA_Abuyin_Weissagung3_13_00");	//За какие-то 250 монет я рискну заглянуть для тебя в будущее.
 };
 
 
@@ -592,7 +616,6 @@ instance DIA_Abuyin_Weissagung4(C_Info)
 	nr = 2;
 	condition = DIA_Abuyin_Weissagung4_Condition;
 	information = DIA_Abuyin_Weissagung4_Info;
-	permanent = FALSE;
 	description = "Ты можешь сделать пророчество?";
 };
 
@@ -608,7 +631,6 @@ func int DIA_Abuyin_Weissagung4_Condition()
 func void DIA_Abuyin_Weissagung4_Info()
 {
 	B_Abuyin_Weissagung();
-	AI_Output(self,other,"DIA_Abuyin_Weissagung4_13_00");	//За какие-то 500 монет я рискну заглянуть для тебя в будущее.
 };
 
 
@@ -664,7 +686,6 @@ instance DIA_Abuyin_Weissagung5(C_Info)
 	nr = 2;
 	condition = DIA_Abuyin_Weissagung5_Condition;
 	information = DIA_Abuyin_Weissagung5_Info;
-	permanent = FALSE;
 	description = "Ты можешь сделать пророчество?";
 };
 
@@ -680,7 +701,6 @@ func int DIA_Abuyin_Weissagung5_Condition()
 func void DIA_Abuyin_Weissagung5_Info()
 {
 	B_Abuyin_Weissagung();
-	AI_Output(self,other,"DIA_Abuyin_Weissagung5_13_00");	//За какие-то 1000 монет я рискну заглянуть для тебя в будущее.
 };
 
 

@@ -45,7 +45,7 @@ func void DIA_Fellan_News_Info()
 	if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
 	{
 		AI_Output(self,other,"DIA_Fellan_News_06_00");	//Ох, ты побил меня. Какой героический поступок!
-		if((MIS_AttackFellan == LOG_Running) && (FellanGeschlagen == FALSE))
+		if((MIS_AttackFellan == LOG_RUNNING) && (FellanGeschlagen == FALSE))
 		{
 			AI_Output(other,self,"DIA_Fellan_News_15_01");	//Ты прекратишь стучать молотком, или мне задать тебе трепку еще раз?
 			AI_Output(self,other,"DIA_Fellan_News_06_02");	//Нет, не надо бить меня больше. Я перестану. Но здесь все обрушится, и в этом будешь виноват ты!
@@ -100,14 +100,13 @@ instance DIA_Fellan_Stop(C_Info)
 	nr = 3;
 	condition = DIA_Fellan_Stop_Condition;
 	information = DIA_Fellan_Stop_Info;
-	permanent = FALSE;
 	description = "Ты не мог бы перестать молотить?";
 };
 
 
 func int DIA_Fellan_Stop_Condition()
 {
-	if((MIS_AttackFellan == LOG_Running) && (FellanGeschlagen == FALSE))
+	if((MIS_AttackFellan == LOG_RUNNING) && (FellanGeschlagen == FALSE))
 	{
 		return TRUE;
 	};

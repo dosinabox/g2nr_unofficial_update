@@ -4,7 +4,6 @@ instance DIA_DragonTalk_Main_1(C_Info)
 	nr = 10;
 	condition = DIA_DragonTalk_Main_1_Condition;
 	information = DIA_DragonTalk_Main_1_Info;
-	permanent = FALSE;
 	description = "Слуга Зла. Что заставило тебя появиться здесь?";
 };
 
@@ -41,7 +40,7 @@ func void DIA_DragonTalk_Main_1_verbannen()
 		if(TOPIC_END_DRACHENEIER == FALSE)
 		{
 			Log_CreateTopic(TOPIC_DRACHENEIER,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_DRACHENEIER,LOG_Running);
+			Log_SetTopicStatus(TOPIC_DRACHENEIER,LOG_RUNNING);
 			B_LogEntry(TOPIC_DRACHENEIER,"Один из драконов пробормотал что-то об 'отпрыске' и продолжении его родового древа. Боюсь, они могли распихать свой выводок по всем миру.");
 		};
 	}
@@ -64,7 +63,6 @@ instance DIA_DragonTalk_Main_2(C_Info)
 	nr = 10;
 	condition = DIA_DragonTalk_Main_2_Condition;
 	information = DIA_DragonTalk_Main_2_Info;
-	permanent = FALSE;
 	description = "Чьи приказы вы выполняете? Кто послал вас сюда?";
 };
 
@@ -95,7 +93,6 @@ instance DIA_DragonTalk_Main_3(C_Info)
 	nr = 10;
 	condition = DIA_DragonTalk_Main_3_Condition;
 	information = DIA_DragonTalk_Main_3_Info;
-	permanent = FALSE;
 	description = "Как я могу победить вашего хозяина?";
 };
 
@@ -143,7 +140,6 @@ instance DIA_DragonTalk_Main_4(C_Info)
 	nr = 10;
 	condition = DIA_DragonTalk_Main_4_Condition;
 	information = DIA_DragonTalk_Main_4_Info;
-	permanent = FALSE;
 	description = "Как мне найти вашего хозяина?";
 };
 
@@ -166,7 +162,7 @@ func void DIA_DragonTalk_Main_4_Info()
 	AI_Output(self,other,"DIA_DragonTalk_Main_4_20_05");	//Если слово Ирдорат ничего не значит для тебя, то тебе лучше отправиться к своим магам и попросить их, чтобы тебе позволили заниматься их мирскими делами.
 	AI_Output(self,other,"DIA_DragonTalk_Main_4_20_06");	//Так как, очевидно, ты еще не готов взвалить на себя ношу их высшего знания.
 	Log_CreateTopic(TOPIC_BuchHallenVonIrdorath,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BuchHallenVonIrdorath,LOG_Running);
+	Log_SetTopicStatus(TOPIC_BuchHallenVonIrdorath,LOG_RUNNING);
 	B_LogEntry(TOPIC_BuchHallenVonIrdorath,"Говорят, что повелитель драконов нашел прибежище в огромной скале священных Чертогов Ирдората. Ммм... Это что-то знакомое. И где я читал о них?");
 	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
 	DragonTalk_Exit_Free = TRUE;

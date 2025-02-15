@@ -27,7 +27,6 @@ instance DIA_Opolos_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Opolos_Hello_Condition;
 	information = DIA_Opolos_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -53,7 +52,6 @@ instance DIA_Opolos_Wurst(C_Info)
 	nr = 2;
 	condition = DIA_Opolos_Wurst_Condition;
 	information = DIA_Opolos_Wurst_Info;
-	permanent = FALSE;
 	description = "Я принес баранью колбасу...";
 };
 
@@ -80,7 +78,6 @@ instance DIA_Opolos_HowLong(C_Info)
 	nr = 1;
 	condition = DIA_Opolos_HowLong_Condition;
 	information = DIA_Opolos_HowLong_Info;
-	permanent = FALSE;
 	description = "Ты давно в монастыре?";
 };
 
@@ -102,9 +99,9 @@ func void DIA_Opolos_HowLong_Info()
 	AI_Output(self,other,"DIA_Opolos_HowLong_12_04");	//И пока мастер Парлан не освободит меня от этой обязанности, мне не позволят начать обучение в библиотеке.
 	if(!Npc_KnowsInfo(other,DIA_Pyrokar_Wunsch))
 	{
-		MIS_HelpOpolos = LOG_Running;
+		MIS_HelpOpolos = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_OpolosStudy,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_OpolosStudy,LOG_Running);
+		Log_SetTopicStatus(TOPIC_OpolosStudy,LOG_RUNNING);
 		B_LogEntry(TOPIC_OpolosStudy,"Ополос пасет овец, а хотел бы изучать свитки в библиотеке.");
 	};
 };
@@ -116,7 +113,6 @@ instance DIA_Opolos_Monastery(C_Info)
 	nr = 3;
 	condition = DIA_Opolos_Monastery_Condition;
 	information = DIA_Opolos_Monastery_Info;
-	permanent = FALSE;
 	description = "Как я должен вести себя в монастыре?";
 };
 
@@ -144,7 +140,6 @@ instance DIA_Opolos_beibringen(C_Info)
 	nr = 3;
 	condition = DIA_Opolos_beibringen_Condition;
 	information = DIA_Opolos_beibringen_Info;
-	permanent = FALSE;
 	description = "Ты можешь чему-нибудь научить меня?";
 };
 
@@ -165,9 +160,9 @@ func void DIA_Opolos_beibringen_Info()
 	AI_Output(other,self,"DIA_Opolos_beibringen_15_03");	//Чем я могу помочь тебе в этом?
 	AI_Output(self,other,"DIA_Opolos_beibringen_12_04");	//Ну, если ты работаешь на Неораса, то у тебя наверняка будет возможность 'позаимствовать' ненадолго один из его рецептов.
 	AI_Output(self,other,"DIA_Opolos_beibringen_12_05");	//Если ты принесешь его мне, чтобы я мог изучить его, то я потренирую тебя.
-	MIS_Opolos_Rezept = LOG_Running;
+	MIS_Opolos_Rezept = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_OpolosRezept,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_OpolosRezept,LOG_Running);
+	Log_SetTopicStatus(TOPIC_OpolosRezept,LOG_RUNNING);
 	B_LogEntry(TOPIC_OpolosRezept,"Ополос хочет взглянуть на рецепт приготовления магических зелий. Возможно, мне удастся позаимствовать его, работая на Неораса.");
 };
 
@@ -185,7 +180,7 @@ instance DIA_Opolos_rezept(C_Info)
 
 func int DIA_Opolos_rezept_Condition()
 {
-	if((MIS_Opolos_Rezept == LOG_Running) && ((other.guild == GIL_NOV) || (other.guild == GIL_KDF)))
+	if((MIS_Opolos_Rezept == LOG_RUNNING) && ((other.guild == GIL_NOV) || (other.guild == GIL_KDF)))
 	{
 		return TRUE;
 	};
@@ -294,7 +289,6 @@ instance DIA_Opolos_Agon(C_Info)
 	nr = 4;
 	condition = DIA_Opolos_Agon_Condition;
 	information = DIA_Opolos_Agon_Info;
-	permanent = FALSE;
 	description = "А кто такие Агон и Бабо?";
 };
 
@@ -399,7 +393,6 @@ instance DIA_Opolos_HelloAgain(C_Info)
 	nr = 2;
 	condition = DIA_Opolos_HelloAgain_Condition;
 	information = DIA_Opolos_HelloAgain_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

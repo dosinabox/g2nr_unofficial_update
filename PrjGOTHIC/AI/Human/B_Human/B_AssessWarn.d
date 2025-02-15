@@ -9,7 +9,7 @@ func void B_AssessWarn()
 	{
 		return;
 	};
-	if(other.guild > GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(other))
 	{
 		return;
 	};

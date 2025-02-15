@@ -33,9 +33,12 @@ instance DIA_BullcoDJG_HALLO(C_Info)
 
 func int DIA_BullcoDJG_HALLO_Condition()
 {
-	if(!Npc_IsDead(DJG_Sylvio))
+	if(SLD_Sylvio_isAlive == TRUE)
 	{
-		return TRUE;
+		if(!Npc_IsDead(DJG_Sylvio))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -94,9 +97,12 @@ instance DIA_Bullco_SYLVIODEAD(C_Info)
 
 func int DIA_Bullco_SYLVIODEAD_Condition()
 {
-	if(Npc_IsDead(DJG_Sylvio))
+	if(SLD_Sylvio_isAlive == TRUE)
 	{
-		return TRUE;
+		if(Npc_IsDead(DJG_Sylvio))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -130,7 +136,7 @@ instance DIA_Bullco_WASNUN(C_Info)
 
 func int DIA_Bullco_WASNUN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bullco_SYLVIODEAD))
+	if(Npc_KnowsInfo(other,DIA_Bullco_SYLVIODEAD) || (SLD_Sylvio_isAlive == FALSE))
 	{
 		return TRUE;
 	};
@@ -183,7 +189,7 @@ func void DIA_Bullco_WASNUN_woandere_zuihnen_Geld()
 	{
 		AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_zuihnen_Geld_06_01");	//Хорошо. Давай их сюда.
 		AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_zuihnen_Geld_06_02");	//Иди за мной. Я отведу тебя туда, где я последний раз видел других охотников на драконов.
-		Bullco_Guide = LOG_Running;
+		Bullco_Guide = LOG_RUNNING;
 		if(C_BodyStateContains(self,BS_SIT))
 		{
 			AI_Standup(self);
@@ -233,7 +239,7 @@ instance DIA_Bullco_GuideEnd(C_Info)
 
 func int DIA_Bullco_GuideEnd_Condition()
 {
-	if(Bullco_Guide == LOG_Running)
+	if(Bullco_Guide == LOG_RUNNING)
 	{
 		if(Npc_GetDistToWP(self,"OW_MOVEMENT_BGOBBO1") <= 300)
 		{

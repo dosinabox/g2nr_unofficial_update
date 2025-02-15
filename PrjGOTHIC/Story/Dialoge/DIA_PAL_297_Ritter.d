@@ -27,14 +27,13 @@ instance DIA_PAL_297_FIRST(C_Info)
 	nr = 1;
 	condition = DIA_PAL_297_FIRST_Condition;
 	information = DIA_PAL_297_FIRST_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_PAL_297_FIRST_Condition()
 {
-	if(MIS_OLDWORLD != LOG_Running)
+	if(MIS_OLDWORLD != LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -96,7 +95,7 @@ instance DIA_Addon_PAL_297_Rangerbandits(C_Info)
 
 func int DIA_Addon_PAL_297_Rangerbandits_Condition()
 {
-	if(MIS_Vatras_FindTheBanditTrader == LOG_Running)
+	if(MIS_Vatras_FindTheBanditTrader == LOG_RUNNING)
 	{
 		return TRUE;
 	};

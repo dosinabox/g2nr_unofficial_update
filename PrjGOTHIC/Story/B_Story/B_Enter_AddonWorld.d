@@ -202,7 +202,7 @@ func void B_ENTER_ADDONWORLD_Kapitel_4()
 		Wld_InsertNpc(MinecrawlerWarrior,"ADW_CANYON_PATH_TO_BANDITS_14");
 		Wld_InsertNpc(MinecrawlerWarrior,"ADW_CANYON_PATH_TO_BANDITS_62");
 		Wld_InsertNpc(MinecrawlerWarrior,"ADW_CANYON_PATH_TO_BANDITS_19");
-		if(Npc_IsDead(Lurker_SecretCave1) && Npc_IsDead(Lurker_SecretCave2))
+		if(C_SecretCaveLurkersDead())
 		{
 			Wld_InsertNpc(Alligator,"ADW_PIRATECAMP_SECRETCAVE_01");
 		};

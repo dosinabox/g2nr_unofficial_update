@@ -95,7 +95,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_SuckEnergy)
 	{
-		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || (self.guild > GIL_SEPERATOR_HUM) || C_NpcIsImmortal(self) || (Npc_GetDistToNpc(self,other) > FIGHT_DIST_RANGED_OUTER) || (self.guild == GIL_DMT))
+		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || !C_NpcIsHuman(self) || C_NpcIsImmortal(self) || (Npc_GetDistToNpc(self,other) > FIGHT_DIST_RANGED_OUTER) || (self.guild == GIL_DMT))
 		{
 			return COLL_DONOTHING;
 		};
@@ -115,7 +115,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		{
 			return COLL_DONOTHING;
 		};
-		if((self.guild > GIL_SEPERATOR_HUM) || C_NpcIsGateGuard(self))
+		if(!C_NpcIsHuman(self) || C_NpcIsGateGuard(self))
 		{
 			return COLL_APPLYDAMAGE;
 		};
@@ -278,7 +278,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_Shrink)
 	{
-		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || (self.guild < GIL_SEPERATOR_HUM))
+		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || C_NpcIsHuman(self))
 		{
 			return COLL_DONOTHING;
 		};

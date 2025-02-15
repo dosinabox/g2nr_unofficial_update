@@ -53,7 +53,6 @@ instance DIA_Pedro_Wurst(C_Info)
 	nr = 2;
 	condition = DIA_Pedro_Wurst_Condition;
 	information = DIA_Pedro_Wurst_Info;
-	permanent = FALSE;
 	description = "Вот, возьми колбасу, брат!";
 };
 
@@ -108,7 +107,6 @@ instance DIA_Pedro_EINLASS(C_Info)
 	npc = NOV_600_Pedro;
 	condition = DIA_Pedro_EINLASS_Condition;
 	information = DIA_Pedro_EINLASS_Info;
-	permanent = FALSE;
 	description = "Я хочу войти в монастырь.";
 };
 
@@ -135,7 +133,6 @@ instance DIA_Pedro_TEMPEL(C_Info)
 	nr = 2;
 	condition = DIA_Pedro_TEMPEL_Condition;
 	information = DIA_Pedro_TEMPEL_Info;
-	permanent = FALSE;
 	description = "Что нужно сделать, чтобы меня приняли в монастырь?";
 };
 
@@ -189,14 +186,13 @@ instance DIA_Addon_Pedro_Statuette(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Pedro_Statuette_Condition;
 	information = DIA_Addon_Pedro_Statuette_Info;
-	permanent = FALSE;
 	description = "У меня есть вот эта статуэтка. Думаю, она пропала из монастыря.";
 };
 
 
 func int DIA_Addon_Pedro_Statuette_Condition()
 {
-	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron) && (MIS_Addon_Daron_GetStatue == LOG_Running))
+	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron) && (MIS_Addon_Daron_GetStatue == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -234,7 +230,6 @@ instance DIA_Addon_Pedro_Statuette_Abgeben(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Pedro_Statuette_Abgeben_Condition;
 	information = DIA_Addon_Pedro_Statuette_Abgeben_Info;
-	permanent = FALSE;
 	description = "Я могу отдать статуэтку тебе?";
 };
 
@@ -262,7 +257,6 @@ instance DIA_Pedro_Rules(C_Info)
 	nr = 2;
 	condition = DIA_Pedro_Rules_Condition;
 	information = DIA_Pedro_Rules_Info;
-	permanent = FALSE;
 	description = "Что это за правила, по которым вы живете?";
 };
 
@@ -284,12 +278,14 @@ func void DIA_Pedro_Rules_Info()
 	AI_Output(self,other,"DIA_Pedro_Rules_09_04");	//Будучи послушником, ты должен проявлять ПОСЛУШАНИЕ и УВАЖЕНИЕ ко всем магам Огня.
 	AI_Output(other,self,"DIA_Pedro_Rules_15_05");	//Понятно.
 	AI_Output(self,other,"DIA_Pedro_Rules_09_06");	//Кроме того, послушник ОБЯЗАН выполнять работу в монастыре на благо общины.
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Pedro_Rules_09_07");	//Если ты готов следовать этим правилам, и у тебя есть приношение Инносу, мы готовы принять тебя в монастырь в качестве послушника.
 	};
 };
 
+
+var int DIA_Pedro_AUFNAHME_NOPERM;
 
 instance DIA_Pedro_AUFNAHME(C_Info)
 {
@@ -300,8 +296,6 @@ instance DIA_Pedro_AUFNAHME(C_Info)
 	description = "Я хочу стать послушником.";
 };
 
-
-var int DIA_Pedro_AUFNAHME_NOPERM;
 
 func int DIA_Pedro_AUFNAHME_Condition()
 {
@@ -322,7 +316,7 @@ func void DIA_Pedro_AUFNAHME_Info()
 {
 	AI_Output(other,self,"DIA_Pedro_AUFNAHME_15_00");	//Я хочу стать послушником.
 	Npc_PerceiveAll(self);
-	if(hero.guild != GIL_NONE)
+	if(other.guild != GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Pedro_AUFNAHME_09_01");	//Ты уже выбрал свой путь. Путь магии закрыт для тебя.
 		DIA_Pedro_AUFNAHME_NOPERM = TRUE;
@@ -375,10 +369,10 @@ func void DIA_Pedro_AUFNAHME_YES()
 		Pedro_NOV_Aufnahme_LostInnosStatue_Daron = TRUE;
 		Liesel_Giveaway = LOG_OBSOLETE;
 	};
-	if(MIS_Addon_Daron_GetStatue == LOG_Running)
+	if(MIS_Addon_Daron_GetStatue == LOG_RUNNING)
 	{
 		Log_CreateTopic(TOPIC_Addon_HelpDaron,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_HelpDaron,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_HelpDaron,LOG_RUNNING);
 		Log_AddEntry(TOPIC_Addon_HelpDaron,TOPIC_Addon_DaronGobbos);
 		Log_AddEntry(TOPIC_Addon_HelpDaron,TOPIC_Addon_PedroPass);
 	};

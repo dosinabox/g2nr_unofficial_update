@@ -27,7 +27,6 @@ instance DIA_Maria_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Maria_Hallo_Condition;
 	information = DIA_Maria_Hallo_Info;
-	permanent = FALSE;
 	description = " то ты?";
 };
 
@@ -51,7 +50,6 @@ instance DIA_Maria_Umsehen(C_Info)
 	nr = 2;
 	condition = DIA_Maria_Umsehen_Condition;
 	information = DIA_Maria_Umsehen_Info;
-	permanent = FALSE;
 	description = "я просто хотел посмотреть, как вы живете...";
 };
 
@@ -78,7 +76,6 @@ instance DIA_Maria_Soeldner(C_Info)
 	nr = 3;
 	condition = DIA_Maria_Soeldner_Condition;
 	information = DIA_Maria_Soeldner_Info;
-	permanent = FALSE;
 	description = "“еб€ беспоко€т наемники?";
 };
 
@@ -94,7 +91,7 @@ func int DIA_Maria_Soeldner_Condition()
 func void DIA_Maria_Soeldner_Info()
 {
 	AI_Output(other,self,"DIA_Maria_Soeldner_15_00");	//“еб€ беспоко€т наемники?
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Maria_Soeldner_17_01");	//ќх, забудь о том, что € только что сказала - с тех пор, как вы здесь, жить здесь стало значительно безопаснее.
 	}
@@ -118,7 +115,6 @@ instance DIA_Maria_Mission(C_Info)
 	nr = 4;
 	condition = DIA_Maria_Mission_Condition;
 	information = DIA_Maria_Mission_Info;
-	permanent = FALSE;
 	description = "ј что они украли у теб€?";
 };
 
@@ -139,7 +135,7 @@ func void DIA_Maria_Mission_Info()
 	{
 		AI_Output(self,other,"DIA_Maria_Mission_17_02");	//–учаюсь, она сейчас пылитс€ в сундуке у какого-нибудь городского стражника.
 	};
-	MIS_Maria_BringPlate = LOG_Running;
+	MIS_Maria_BringPlate = LOG_RUNNING;
 };
 
 
@@ -149,7 +145,6 @@ instance DIA_Maria_BringPlate(C_Info)
 	nr = 5;
 	condition = DIA_Maria_BringPlate_Condition;
 	information = DIA_Maria_BringPlate_Info;
-	permanent = FALSE;
 	description = "я принес золотую тарелку. Ёто не тво€?";
 };
 
@@ -281,7 +276,6 @@ instance DIA_Maria_AboutOnar(C_Info)
 	nr = 7;
 	condition = DIA_Maria_AboutOnar_Condition;
 	information = DIA_Maria_AboutOnar_Info;
-	permanent = FALSE;
 	description = "–асскажи мне об ќнаре.";
 };
 
@@ -311,7 +305,6 @@ instance DIA_Maria_PERM(C_Info)
 	nr = 8;
 	condition = DIA_Maria_PERM_Condition;
 	information = DIA_Maria_PERM_Info;
-	permanent = FALSE;
 	description = "„то интересного было в последнее врем€?";
 };
 

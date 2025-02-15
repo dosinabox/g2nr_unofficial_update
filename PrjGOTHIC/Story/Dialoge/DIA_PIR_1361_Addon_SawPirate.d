@@ -50,7 +50,6 @@ instance DIA_Addon_SawPirate_Anheuern(C_Info)
 	nr = 11;
 	condition = DIA_Addon_SawPirate_Anheuern_Condition;
 	information = DIA_Addon_SawPirate_Anheuern_Info;
-	permanent = FALSE;
 	description = "Ты один из людей Генри?";
 };
 
@@ -89,7 +88,7 @@ instance DIA_Addon_SawPirate_ComeOn(C_Info)
 
 func int DIA_Addon_SawPirate_ComeOn_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Henry_FreeBDTTower == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_SawPirate_Anheuern))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Henry_FreeBDTTower == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_SawPirate_Anheuern))
 	{
 		if(!C_TowerBanditsDead())
 		{

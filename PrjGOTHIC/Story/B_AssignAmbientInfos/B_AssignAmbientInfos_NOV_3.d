@@ -36,7 +36,7 @@ instance DIA_NOV_3_Fegen(C_Info)
 
 func int DIA_NOV_3_Fegen_Condition()
 {
-	if((MIS_ParlanFegen == LOG_Running) && (NOV_Helfer < 4))
+	if((MIS_ParlanFegen == LOG_RUNNING) && (NOV_Helfer < 4))
 	{
 		if(Kapitel == 1)
 		{
@@ -171,7 +171,7 @@ instance DIA_NOV_3_JOIN(C_Info)
 
 func int DIA_NOV_3_JOIN_Condition()
 {
-	if(hero.guild == GIL_NOV)
+	if(other.guild == GIL_NOV)
 	{
 		return TRUE;
 	};
@@ -198,7 +198,7 @@ instance DIA_NOV_3_PEOPLE(C_Info)
 
 func int DIA_NOV_3_PEOPLE_Condition()
 {
-	if(hero.guild != GIL_KDF)
+	if(other.guild != GIL_KDF)
 	{
 		return TRUE;
 	};
@@ -231,7 +231,7 @@ func void DIA_NOV_3_LOCATION_Info()
 {
 	AI_Output(other,self,"DIA_NOV_3_LOCATION_15_00");	//Что ты можешь сказать мне об этом монастыре?
 	AI_Output(self,other,"DIA_NOV_3_LOCATION_03_01");	//Мы своим трудом добываем хлеб насущный. Мы выращиваем овец и делаем вино.
-	if(hero.guild != GIL_KDF)
+	if(other.guild != GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_NOV_3_LOCATION_03_02");	//Здесь есть библиотека, но вход в нее разрешен только магам и избранным послушникам.
 		AI_Output(self,other,"DIA_NOV_3_LOCATION_03_03");	//Мы же, остальные послушники, следим за тем, чтобы маги Круга Огня ни в чем не нуждались.
@@ -259,7 +259,7 @@ func void DIA_NOV_3_STANDARD_Info()
 	AI_Output(other,self,"DIA_NOV_3_STANDARD_15_00");	//Что новенького?
 	if(Kapitel == 1)
 	{
-		if(hero.guild == GIL_KDF)
+		if(other.guild == GIL_KDF)
 		{
 			AI_Output(self,other,"DIA_NOV_3_STANDARD_03_01");	//И ты еще спрашиваешь! Да все послушники только о тебе и говорят.
 			AI_Output(self,other,"DIA_NOV_3_STANDARD_03_02");	//Очень редко бывает так, чтобы зеленый новичок вроде тебя был избран в Круг Огня.

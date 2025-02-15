@@ -17,7 +17,7 @@ func int C_WantToAttackSheepKiller(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if((oth.guild < GIL_SEPERATOR_HUM) && (oth.aivar[AIV_ATTACKREASON] != AR_NONE))
+	if(C_NpcIsHuman(oth) && (oth.aivar[AIV_ATTACKREASON] != AR_NONE))
 	{
 		return FALSE;
 	};

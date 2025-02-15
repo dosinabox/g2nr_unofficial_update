@@ -27,14 +27,13 @@ instance DIA_Tengron_First(C_Info)
 	nr = 2;
 	condition = DIA_Tengron_First_Condition;
 	information = DIA_Tengron_First_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Tengron_First_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_ScoutMine != LOG_Running) && (MIS_ScoutMine != LOG_SUCCESS))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_ScoutMine != LOG_RUNNING) && (MIS_ScoutMine != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -54,14 +53,13 @@ instance DIA_Tengron_HALLO(C_Info)
 	nr = 2;
 	condition = DIA_Tengron_HALLO_Condition;
 	information = DIA_Tengron_HALLO_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Tengron_HALLO_Condition()
 {
-	if((Npc_IsInState(self,ZS_Talk) && (MIS_ScoutMine == LOG_Running)) || (MIS_ScoutMine == LOG_SUCCESS))
+	if((Npc_IsInState(self,ZS_Talk) && (MIS_ScoutMine == LOG_RUNNING)) || (MIS_ScoutMine == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -84,7 +82,6 @@ instance DIA_Tengron_News(C_Info)
 	nr = 7;
 	condition = DIA_Tengron_News_Condition;
 	information = DIA_Tengron_News_Info;
-	permanent = FALSE;
 	description = "Насчет новостей...";
 };
 
@@ -124,7 +121,7 @@ func void DIA_Tengron_News_Yes()
 	B_GiveInvItems(self,other,ItRi_HP_01_Tengron,1);
 	Info_ClearChoices(DIA_Tengron_News);
 	Log_CreateTopic(TOPIC_TengronRing,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_TengronRing,LOG_Running);
+	Log_SetTopicStatus(TOPIC_TengronRing,LOG_RUNNING);
 	B_LogEntry(TOPIC_TengronRing,"Тенгрон дал мне кольцо, которое я должен передать Удару в замке.");
 };
 
@@ -162,14 +159,13 @@ instance DIA_Tengron_HELP(C_Info)
 	nr = 9;
 	condition = DIA_Tengron_HELP_Condition;
 	information = DIA_Tengron_HELP_Info;
-	permanent = FALSE;
 	description = "Мне нужна твоя помощь. Фаджет хочет, чтобы я перебил снепперов и...";
 };
 
 
 func int DIA_Tengron_HELP_Condition()
 {
-	if((MIS_Fajeth_Kill_Snapper == LOG_Running) && Npc_KnowsInfo(other,DIA_Tengron_HALLO))
+	if((MIS_Fajeth_Kill_Snapper == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Tengron_HALLO))
 	{
 		return TRUE;
 	};

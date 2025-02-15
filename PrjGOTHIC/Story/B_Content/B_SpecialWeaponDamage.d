@@ -94,7 +94,7 @@ func void B_ApplyFireBowDamage(var C_Npc attacker,var C_Npc target,var int damag
 	B_FireHurtNpc(attacker,target,damage);
 	if(Npc_IsDead(target))
 	{
-		if(target.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(target))
 		{
 			AI_PlayAni(target,"T_DEAD");
 		};

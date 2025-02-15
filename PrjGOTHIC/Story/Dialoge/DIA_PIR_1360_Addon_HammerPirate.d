@@ -64,7 +64,6 @@ instance DIA_Addon_HammerPirate_Anheuern(C_Info)
 	nr = 11;
 	condition = DIA_Addon_HammerPirate_Anheuern_Condition;
 	information = DIA_Addon_HammerPirate_Anheuern_Info;
-	permanent = FALSE;
 	description = "Ты должен мне помочь.";
 };
 
@@ -103,7 +102,7 @@ instance DIA_Addon_HammerPirate_ComeOn(C_Info)
 
 func int DIA_Addon_HammerPirate_ComeOn_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Henry_FreeBDTTower == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_HammerPirate_Anheuern))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Henry_FreeBDTTower == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_HammerPirate_Anheuern))
 	{
 		if(!C_TowerBanditsDead())
 		{

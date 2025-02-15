@@ -34,7 +34,7 @@ instance DIA_NOV_8_Fegen(C_Info)
 
 func int DIA_NOV_8_Fegen_Condition()
 {
-	if((MIS_ParlanFegen == LOG_Running) && (NOV_Helfer < 4))
+	if((MIS_ParlanFegen == LOG_RUNNING) && (NOV_Helfer < 4))
 	{
 		if(Kapitel == 1)
 		{
@@ -113,7 +113,7 @@ instance DIA_NOV_8_JOIN(C_Info)
 
 func int DIA_NOV_8_JOIN_Condition()
 {
-	if(hero.guild == GIL_NOV)
+	if(other.guild == GIL_NOV)
 	{
 		return TRUE;
 	};
@@ -139,7 +139,7 @@ instance DIA_NOV_8_PEOPLE(C_Info)
 
 func int DIA_NOV_8_PEOPLE_Condition()
 {
-	if(hero.guild != GIL_KDF)
+	if(other.guild != GIL_KDF)
 	{
 		return TRUE;
 	};

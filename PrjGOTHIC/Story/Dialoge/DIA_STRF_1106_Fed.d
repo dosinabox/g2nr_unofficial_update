@@ -27,7 +27,6 @@ instance DIA_Fed_HALLO(C_Info)
 	nr = 2;
 	condition = DIA_Fed_HALLO_Condition;
 	information = DIA_Fed_HALLO_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -55,14 +54,13 @@ instance DIA_Fed_Snapper(C_Info)
 	nr = 3;
 	condition = DIA_Fed_Snapper_Condition;
 	information = DIA_Fed_Snapper_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о снепперах?";
 };
 
 
 func int DIA_Fed_Snapper_Condition()
 {
-	if(MIS_Fajeth_Kill_Snapper == LOG_Running)
+	if(MIS_Fajeth_Kill_Snapper == LOG_RUNNING)
 	{
 		return TRUE;
 	};

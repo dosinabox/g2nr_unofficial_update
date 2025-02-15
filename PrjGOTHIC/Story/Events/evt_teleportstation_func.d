@@ -12,7 +12,7 @@ func void evt_teleportstation_func()
 			if(SCUsed_NW_TELEPORTSTATION_CITY == FALSE)
 			{
 				Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);
+				Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_RUNNING);
 				B_LogEntry(TOPIC_Addon_TeleportsNW,"“елепорт в пещере к востоку от города ведет к таверне 'ћертва€ гарпи€'.");
 				SCUsed_NW_TELEPORTSTATION_CITY = TRUE;
 			};
@@ -23,7 +23,7 @@ func void evt_teleportstation_func()
 			if(SCUsed_NW_TELEPORTSTATION_TAVERNE == FALSE)
 			{
 				Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);
+				Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_RUNNING);
 				B_LogEntry(TOPIC_Addon_TeleportsNW,"“елепорт у таверны 'ћертва€ гарпи€' ведет к порталу таинственных зодчих.");
 				SCUsed_NW_TELEPORTSTATION_TAVERNE = TRUE;
 			};
@@ -34,7 +34,7 @@ func void evt_teleportstation_func()
 			if(SCUsed_NW_TELEPORTSTATION_MAYA == FALSE)
 			{
 				Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);
+				Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_RUNNING);
 				B_LogEntry(TOPIC_Addon_TeleportsNW,"“елепорт у портала таинственных зодчих ведет к пещере к востоку от города.");
 				SCUsed_NW_TELEPORTSTATION_MAYA = TRUE;
 			};
@@ -57,7 +57,7 @@ func void evt_teleportstation_func()
 			if(SCUsed_ADW_TELEPORTSTATION_PORTALTEMPEL == FALSE)
 			{
 				Log_CreateTopic(TOPIC_Addon_TeleportsADW,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_Running);
+				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_RUNNING);
 				B_LogEntry(TOPIC_Addon_TeleportsADW,"я активировал телепорт, который находитс€ р€дом с порталом, ведущим в ’оринис.");
 				B_GivePlayerXP(XP_Ambient);
 				SCUsed_ADW_TELEPORTSTATION_PORTALTEMPEL = TRUE;
@@ -69,7 +69,7 @@ func void evt_teleportstation_func()
 			if(SCUsed_ADW_TELEPORTSTATION_ADANOSTEMPEL == FALSE)
 			{
 				Log_CreateTopic(TOPIC_Addon_TeleportsADW,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_Running);
+				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_RUNNING);
 				B_LogEntry(TOPIC_Addon_TeleportsADW,"ћне удалось активировать телепорт, наход€щийс€ в верхней части лагер€ бандитов.");
 				B_GivePlayerXP(XP_Ambient);
 				SCUsed_ADW_TELEPORTSTATION_ADANOSTEMPEL = TRUE;
@@ -81,7 +81,7 @@ func void evt_teleportstation_func()
 			if(SCUsed_ADW_TELEPORTSTATION_SOUTHEAST == FALSE)
 			{
 				Log_CreateTopic(TOPIC_Addon_TeleportsADW,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_Running);
+				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_RUNNING);
 				B_LogEntry(TOPIC_Addon_TeleportsADW,"я активировал телепорт, который находитс€ на болоте, к югу от лагер€ бандитов.");
 				B_GivePlayerXP(XP_Ambient);
 				SCUsed_ADW_TELEPORTSTATION_SOUTHEAST = TRUE;
@@ -93,7 +93,7 @@ func void evt_teleportstation_func()
 			if(SCUsed_ADW_TELEPORTSTATION_SOUTHWEST == FALSE)
 			{
 				Log_CreateTopic(TOPIC_Addon_TeleportsADW,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_Running);
+				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_RUNNING);
 				B_LogEntry(TOPIC_Addon_TeleportsADW,"я нашел телепорт на юго-западе.");
 				B_GivePlayerXP(XP_Ambient);
 				SCUsed_ADW_TELEPORTSTATION_SOUTHWEST = TRUE;
@@ -105,7 +105,7 @@ func void evt_teleportstation_func()
 			if(SCUsed_ADW_TELEPORTSTATION_PIRATES == FALSE)
 			{
 				Log_CreateTopic(TOPIC_Addon_TeleportsADW,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_Running);
+				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_RUNNING);
 				B_LogEntry(TOPIC_Addon_TeleportsADW,"¬ небольшой пещере в каньоне есть телепорт. я активировал его.");
 				B_GivePlayerXP(XP_Ambient);
 				SCUsed_ADW_TELEPORTSTATION_PIRATES = TRUE;

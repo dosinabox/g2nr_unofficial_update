@@ -73,7 +73,6 @@ func int DIA_AmbientDementor_Condition()
 func void DIA_AmbientDementor_Info()
 {
 	var int randy;
-	randy = Hlp_Random(4);
 	Wld_PlayEffect("DEMENTOR_FX",hero,hero,0,0,0,FALSE);
 	Wld_PlayEffect("spellFX_Fear",self,self,0,0,0,FALSE);
 	AI_PlayAni(self,"T_PRACTICEMAGIC5");
@@ -96,6 +95,7 @@ func void DIA_AmbientDementor_Info()
 		}
 		else
 		{
+			randy = Hlp_Random(4);
 			if(randy == 0)
 			{
 				AI_Output(self,other,"DIA_AmbientDementor_19_03");	//Ты уже зашел слишком далеко, презренный червь. Тебе никогда не добраться до внутреннего святилища.
@@ -116,6 +116,7 @@ func void DIA_AmbientDementor_Info()
 	}
 	else if(hero.guild == GIL_KDF)
 	{
+		randy = Hlp_Random(4);
 		if(randy == 0)
 		{
 			AI_Output(self,other,"DIA_AmbientDementor_19_07");	//Жалкий маг, тебе никогда не сравниться с силой Хозяина.
@@ -135,6 +136,7 @@ func void DIA_AmbientDementor_Info()
 	}
 	else
 	{
+		randy = Hlp_Random(4);
 		if(randy == 0)
 		{
 			AI_Output(self,other,"DIA_AmbientDementor_19_11");	//Сдайся на нашу милость, пока еще можешь. Тебе отсюда не уйти.

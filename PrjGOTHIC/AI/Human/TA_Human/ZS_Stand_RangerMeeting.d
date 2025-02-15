@@ -14,7 +14,7 @@ func void ZS_Stand_RangerMeeting()
 	};
 	Npc_PercEnable(self,PERC_MOVEMOB,B_MoveMob);
 	Npc_PercEnable(self,PERC_ASSESSFIGHTSOUND,B_AssessGuideFightSound);
-	if(C_IsNpc(self,VLK_449_Lares) || C_IsNpc(self,Greg_NW))
+	if(C_IsNpc(self,VLK_449_Lares) || C_IsNpc(self,PIR_1300_Addon_Greg_NW))
 	{
 		AI_SetWalkMode(self,NPC_RUN);
 		if(Npc_GetDistToWP(self,self.wp) > TA_DIST_SELFWP_MAX)

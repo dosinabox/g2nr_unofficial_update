@@ -27,7 +27,6 @@ instance DIA_Babo_Hello(C_Info)
 	nr = 2;
 	condition = DIA_Babo_Hello_Condition;
 	information = DIA_Babo_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -60,7 +59,6 @@ instance DIA_Babo_Anliegen(C_Info)
 	nr = 2;
 	condition = DIA_Babo_Anliegen_Condition;
 	information = DIA_Babo_Anliegen_Info;
-	permanent = FALSE;
 	description = "Что за просьба?";
 };
 
@@ -81,9 +79,9 @@ func void DIA_Babo_Anliegen_Info()
 	if(!Npc_IsDead(Sergio))
 	{
 		AI_Output(other,self,"DIA_Babo_Anliegen_15_03");	//Я посмотрю, что можно сделать.
-		MIS_Babo_Training = LOG_Running;
+		MIS_Babo_Training = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_BaboTrain,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_BaboTrain,LOG_Running);
+		Log_SetTopicStatus(TOPIC_BaboTrain,LOG_RUNNING);
 		B_LogEntry(TOPIC_BaboTrain,"Если я смогу убедить паладина Сержио немного потренироваться с Бабо, он научит меня искусству обращения с двуручным оружием.");
 	}
 	else
@@ -112,7 +110,6 @@ instance DIA_Babo_Sergio(C_Info)
 	nr = 2;
 	condition = DIA_Babo_Sergio_Condition;
 	information = DIA_Babo_Sergio_Info;
-	permanent = FALSE;
 	description = "Я поговорил с Сержио. Он будет тренировать тебя по два часа каждое утро, с пяти часов.";
 };
 
@@ -262,7 +259,6 @@ instance DIA_Babo_Wurst(C_Info)
 	nr = 2;
 	condition = DIA_Babo_Wurst_Condition;
 	information = DIA_Babo_Wurst_Info;
-	permanent = FALSE;
 	description = "Вот, держи колбасу.";
 };
 
@@ -315,7 +311,6 @@ instance DIA_Babo_YouAndAgon(C_Info)
 	nr = 3;
 	condition = DIA_Babo_YouAndAgon_Condition;
 	information = DIA_Babo_YouAndAgon_Info;
-	permanent = FALSE;
 	description = "Что произошло между тобой и Агоном?";
 };
 
@@ -344,14 +339,13 @@ instance DIA_Babo_WhyDidAgon(C_Info)
 	nr = 4;
 	condition = DIA_Babo_WhyDidAgon_Condition;
 	information = DIA_Babo_WhyDidAgon_Info;
-	permanent = FALSE;
 	description = "Зачем Агон сделал это?";
 };
 
 
 func int DIA_Babo_WhyDidAgon_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Babo_YouAndAgon) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Babo_YouAndAgon) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -370,14 +364,13 @@ instance DIA_Babo_PlantLore(C_Info)
 	nr = 5;
 	condition = DIA_Babo_PlantLore_Condition;
 	information = DIA_Babo_PlantLore_Info;
-	permanent = FALSE;
 	description = "Похоже, ты хорошо разбираешься в растениях?";
 };
 
 
 func int DIA_Babo_PlantLore_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Babo_YouAndAgon) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Babo_YouAndAgon) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -388,9 +381,9 @@ func void DIA_Babo_PlantLore_Info()
 	AI_Output(other,self,"DIA_Babo_PlantLore_15_00");	//Похоже, ты хорошо разбираешься в растениях?
 	AI_Output(self,other,"DIA_Babo_PlantLore_03_01");	//У нас в семье была делянка, где мы выращивали различные травы, и я научился кое-чему у дедушки.
 	AI_Output(self,other,"DIA_Babo_PlantLore_03_02");	//Я бы так хотел опять работать в саду.
-	MIS_HelpBabo = LOG_Running;
+	MIS_HelpBabo = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_BaboGaertner,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BaboGaertner,LOG_Running);
+	Log_SetTopicStatus(TOPIC_BaboGaertner,LOG_RUNNING);
 	B_LogEntry(TOPIC_BaboGaertner,"Бабо предпочел бы пропалывать травы, а не подметать двор.");
 };
 
@@ -401,14 +394,13 @@ instance DIA_Babo_Fegen(C_Info)
 	nr = 2;
 	condition = DIA_Babo_Fegen_Condition;
 	information = DIA_Babo_Fegen_Info;
-	permanent = FALSE;
 	description = "Я должен подметать кельи послушников.";
 };
 
 
 func int DIA_Babo_Fegen_Condition()
 {
-	if(MIS_ParlanFegen == LOG_Running)
+	if(MIS_ParlanFegen == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -439,7 +431,7 @@ var int DIA_Babo_Windfaust_permanent;
 
 func int DIA_Babo_Windfaust_Condition()
 {
-	if((MIS_ParlanFegen == LOG_Running) && Npc_KnowsInfo(other,DIA_Babo_Fegen) && (DIA_Babo_Windfaust_permanent == FALSE))
+	if((MIS_ParlanFegen == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Babo_Fegen) && (DIA_Babo_Windfaust_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -517,7 +509,7 @@ instance DIA_Babo_HowIsIt(C_Info)
 
 func int DIA_Babo_HowIsIt_Condition()
 {
-	if((hero.guild == GIL_KDF) && (Kapitel < 3))
+	if((other.guild == GIL_KDF) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -552,7 +544,6 @@ instance DIA_Babo_Kap3_Hello(C_Info)
 	nr = 31;
 	condition = DIA_Babo_Kap3_Hello_Condition;
 	information = DIA_Babo_Kap3_Hello_Info;
-	permanent = FALSE;
 	description = "Что ты делаешь здесь?";
 };
 
@@ -568,7 +559,7 @@ func int DIA_Babo_Kap3_Hello_Condition()
 func void DIA_Babo_Kap3_Hello_Info()
 {
 	AI_Output(other,self,"DIA_Babo_Kap3_Hello_15_00");	//Что ты делаешь здесь?
-	if(hero.guild == GIL_KDF)
+	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Babo_Kap3_Hello_03_01");	//(застенчиво) Я пытаюсь выполнить задания, данные мне, так, чтобы маги монастыря остались довольны.
 	}
@@ -585,14 +576,13 @@ instance DIA_Babo_Kap3_KeepTheFaith(C_Info)
 	nr = 31;
 	condition = DIA_Babo_Kap3_KeepTheFaith_Condition;
 	information = DIA_Babo_Kap3_KeepTheFaith_Info;
-	permanent = FALSE;
 	description = "Ты не должен терять веры.";
 };
 
 
 func int DIA_Babo_Kap3_KeepTheFaith_Condition()
 {
-	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Babo_Kap3_Hello) && (hero.guild == GIL_KDF))
+	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Babo_Kap3_Hello) && (other.guild == GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -615,14 +605,13 @@ instance DIA_Babo_Kap3_Unhappy(C_Info)
 	nr = 31;
 	condition = DIA_Babo_Kap3_Unhappy_Condition;
 	information = DIA_Babo_Kap3_Unhappy_Info;
-	permanent = FALSE;
 	description = "Ты не выглядишь особенно веселым.";
 };
 
 
 func int DIA_Babo_Kap3_Unhappy_Condition()
 {
-	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Babo_Kap3_Hello) && (hero.guild != GIL_KDF))
+	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Babo_Kap3_Hello) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -713,9 +702,9 @@ func void DIA_Babo_Kap3_Unhappy_Yes()
 	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_Yes_03_01");	//(счастливо) Правда?! Я знаю, у тебя получится! Я верю!
 	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_Yes_03_02");	//Тебе нужно только выяснить, где Игарац держит свои вещи. Затем ты выкрадешь их у него, и все будет в порядке.
 	AI_Output(other,self,"DIA_Babo_Kap3_Unhappy_Yes_15_03");	//Расслабься. Продолжай работать. А я позабочусь об остальном.
-	MIS_BabosDocs = LOG_Running;
+	MIS_BabosDocs = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_BabosDocs,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BabosDocs,LOG_Running);
+	Log_SetTopicStatus(TOPIC_BabosDocs,LOG_RUNNING);
 	B_LogEntry(TOPIC_BabosDocs,"Игарац шантажирует послушника Бабо какими-то документами.");
 	Info_ClearChoices(DIA_Babo_Kap3_Unhappy);
 };
@@ -778,14 +767,13 @@ instance DIA_Babo_Kap3_HaveYourDocs(C_Info)
 	nr = 31;
 	condition = DIA_Babo_Kap3_HaveYourDocs_Condition;
 	information = DIA_Babo_Kap3_HaveYourDocs_Info;
-	permanent = FALSE;
 	description = "Я нашел твои записки.";
 };
 
 
 func int DIA_Babo_Kap3_HaveYourDocs_Condition()
 {
-	if(MIS_BabosDocs == LOG_Running)
+	if(MIS_BabosDocs == LOG_RUNNING)
 	{
 		if(C_SCHasBabosDocs())
 		{
@@ -930,7 +918,6 @@ instance DIA_Babo_Kap3_HaveYourDocs2(C_Info)
 	nr = 31;
 	condition = DIA_Babo_Kap3_HaveYourDocs2_Condition;
 	information = DIA_Babo_Kap3_HaveYourDocs2_Info;
-	permanent = FALSE;
 	description = "Держи.";
 };
 
@@ -978,7 +965,7 @@ func int DIA_Babo_Kap3_Perm_Condition()
 func void DIA_Babo_Kap3_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Babo_Kap3_Perm_15_00");	//Ты доволен своей работой?
-	if(hero.guild == GIL_KDF)
+	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_01");	//(неубедительно) Да, конечно. Моя вера в мудрость и силу Инноса придает мне силы.
 		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_02");	//(уклончиво) Я не хочу показаться невежливым, но у меня много дел сегодня.

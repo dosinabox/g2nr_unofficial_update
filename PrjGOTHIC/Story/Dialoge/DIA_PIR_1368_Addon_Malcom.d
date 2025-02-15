@@ -77,10 +77,13 @@ func void DIA_Addon_Malcom_WasMachen_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Malcom_WasMachen_15_00");	//Ты занят?
 	AI_Output(self,other,"DIA_Addon_Malcom_WasMachen_04_01");	//И не спрашивай... Генри хочет, чтобы я срубил все эти деревья.
-	if(Henry.aivar[AIV_TalkedToPlayer] == FALSE)
+	if(!Npc_IsDead(Henry))
 	{
-		AI_Output(other,self,"DIA_Addon_Malcom_WasMachen_15_02");	//Генри?
-		AI_Output(self,other,"DIA_Addon_Malcom_Add_04_00");	//Он командует нашей группой.
+		if(Henry.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			AI_Output(other,self,"DIA_Addon_Malcom_WasMachen_15_02");	//Генри?
+			AI_Output(self,other,"DIA_Addon_Malcom_Add_04_00");	//Он командует нашей группой.
+		};
 	};
 	AI_Output(self,other,"DIA_Addon_Malcom_WasMachen_04_04");	//Постоянно стоит у ворот лагеря и разглагольствует.
 	AI_Output(self,other,"DIA_Addon_Malcom_WasMachen_04_05");	//Говорит, что надо самоотверженно трудиться на благо общества и все такое.

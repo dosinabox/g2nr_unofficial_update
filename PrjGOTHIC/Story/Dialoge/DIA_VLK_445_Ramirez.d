@@ -352,7 +352,6 @@ instance DIA_Ramirez_Sextant(C_Info)
 
 func int DIA_Ramirez_Sextant_Condition()
 {
-//	if((MIS_CassiaRing == LOG_SUCCESS) && (Kapitel >= 2) && Npc_KnowsInfo(other,DIA_Ramirez_Zeichen))
 	if(Join_Thiefs == TRUE)
 	{
 		return TRUE;
@@ -366,9 +365,9 @@ func void DIA_Ramirez_Sextant_Info()
 	AI_Output(other,self,"DIA_Ramirez_Sextant_15_02");	//Что ты хотел бы получить?
 	AI_Output(self,other,"DIA_Ramirez_Sextant_14_03");	//Секстант. Принеси мне секстант - я заплачу за него хорошую цену.
 	Log_CreateTopic(TOPIC_RamirezSextant,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_RamirezSextant,LOG_Running);
+	Log_SetTopicStatus(TOPIC_RamirezSextant,LOG_RUNNING);
 	B_LogEntry(TOPIC_RamirezSextant,"Рамирез хочет, чтобы я принес ему секстант.");
-	MIS_RamirezSextant = LOG_Running;
+	MIS_RamirezSextant = LOG_RUNNING;
 };
 
 
@@ -398,7 +397,6 @@ func void DIA_Ramirez_Success_Info()
 	AI_Output(self,other,"DIA_Ramirez_Success_14_01");	//Невероятно. Тебе удалось найти его!
 	AI_Output(self,other,"DIA_Ramirez_Success_14_02");	//Вот, держи, ты заслужил эти деньги.
 	B_GiveInvItems(self,other,ItMi_Gold,Value_Sextant / 2);
-//	Ramirez_Sextant = TRUE;
 	MIS_RamirezSextant = LOG_SUCCESS;
 	B_GivePlayerXP(XP_RamirezSextant);
 };
@@ -406,15 +404,15 @@ func void DIA_Ramirez_Success_Info()
 
 func void B_ThievesKiller()
 {
-	if(MIS_CassiaRing == LOG_Running)
+	if(MIS_CassiaRing == LOG_RUNNING)
 	{
 		MIS_CassiaRing = LOG_FAILED;
 	};
-	if(MIS_CassiaKelche == LOG_Running)
+	if(MIS_CassiaKelche == LOG_RUNNING)
 	{
 		MIS_CassiaKelche = LOG_FAILED;
 	};
-	if(MIS_RamirezSextant == LOG_Running)
+	if(MIS_RamirezSextant == LOG_RUNNING)
 	{
 		MIS_RamirezSextant = LOG_FAILED;
 	};

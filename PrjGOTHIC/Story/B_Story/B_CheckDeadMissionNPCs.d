@@ -5,7 +5,7 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 	{
 		if(C_IsNpc(slf,VLK_498_Ignaz))
 		{
-			if(MIS_Ignaz_Charm == LOG_Running)
+			if(MIS_Ignaz_Charm == LOG_RUNNING)
 			{
 				MIS_Ignaz_Charm = LOG_FAILED;
 			};
@@ -21,52 +21,73 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				B_Greg_ComesToDexter();
 			};
 		}
+		else if(C_IsNpc(slf,BAU_940_Akil))
+		{
+			if(MIS_Akil_SchafDiebe == LOG_RUNNING)
+			{
+				MIS_Akil_SchafDiebe = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,BAU_951_Hilda))
 		{
-			if(MIS_Lobart_RuebenToHilda == LOG_Running)
+			if(MIS_Lobart_RuebenToHilda == LOG_RUNNING)
 			{
 				MIS_Lobart_RuebenToHilda = LOG_FAILED;
 			};
-			if(MIS_Hilda_PfanneKaufen == LOG_Running)
+			if(MIS_Hilda_PfanneKaufen == LOG_RUNNING)
 			{
 				MIS_Hilda_PfanneKaufen = LOG_FAILED;
 			};
-			if(MIS_HealHilda == LOG_Running)
+			if(MIS_HealHilda == LOG_RUNNING)
 			{
 				MIS_HealHilda = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,VLK_468_Canthar))
 		{
-			if(MIS_Canthars_KomproBrief == LOG_Running)
+			if(MIS_Canthars_KomproBrief == LOG_RUNNING)
 			{
 				MIS_Canthars_KomproBrief = LOG_FAILED;
 			};
 		}
+		else if(C_IsNpc(slf,VLK_493_Nagur))
+		{
+			if(MIS_Nagur_Bote == LOG_RUNNING)
+			{
+				MIS_Nagur_Bote = LOG_FAILED;
+			};
+		}
+		else if(C_IsNpc(slf,VLK_407_Hakon))
+		{
+			if(MIS_HakonBandits == LOG_RUNNING)
+			{
+				MIS_HakonBandits = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,VLK_410_Baltram))
 		{
-			if(MIS_Addon_Baltram_Paket4Skip == LOG_Running)
+			if(MIS_Addon_Baltram_Paket4Skip == LOG_RUNNING)
 			{
 				MIS_Addon_Baltram_Paket4Skip = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,VLK_414_Hanna))
 		{
-			if(MIS_HannaRetrieveLetter == LOG_Running)
+			if(MIS_HannaRetrieveLetter == LOG_RUNNING)
 			{
 				MIS_HannaRetrieveLetter = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,VLK_404_Lutero))
 		{
-			if(MIS_Lutero_Krallen == LOG_Running)
+			if(MIS_Lutero_Krallen == LOG_RUNNING)
 			{
 				MIS_Lutero_Krallen = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,VLK_405_Fernando))
 		{
-			if(MIS_Fernando_Erz == LOG_Running)
+			if(MIS_Fernando_Erz == LOG_RUNNING)
 			{
 				MIS_Fernando_Erz = LOG_FAILED;
 			};
@@ -87,14 +108,14 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		}
 		else if(C_IsNpc(slf,SLD_816_Fester))
 		{
-			if(MIS_Fester_KillBugs == LOG_Running)
+			if(MIS_Fester_KillBugs == LOG_RUNNING)
 			{
 				MIS_Fester_KillBugs = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,VLK_4132_Talbin_NW))
 		{
-			if(MIS_Talbin_Runs == LOG_Running)
+			if(MIS_Talbin_Runs == LOG_RUNNING)
 			{
 				MIS_Talbin_Runs = LOG_FAILED;
 			};
@@ -103,78 +124,92 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		{
 			if(C_IsNpc(slf,VLK_447_Cassia))
 			{
-				if(MIS_CassiaRing == LOG_Running)
+				if(MIS_CassiaRing == LOG_RUNNING)
 				{
 					MIS_CassiaRing = LOG_FAILED;
 				};
-				if(MIS_CassiaKelche == LOG_Running)
+				if(MIS_CassiaKelche == LOG_RUNNING)
 				{
 					MIS_CassiaKelche = LOG_FAILED;
 				};
 			}
 			else if(C_IsNpc(slf,VLK_445_Ramirez))
 			{
-				if(MIS_RamirezSextant == LOG_Running)
+				if(MIS_RamirezSextant == LOG_RUNNING)
 				{
 					MIS_RamirezSextant = LOG_FAILED;
 				};
 			};
 			DG_gefunden = TRUE;
 		}
+		else if(C_IsNpc(slf,KDF_503_Karras))
+		{
+			if(MIS_KarrasVergessen == LOG_RUNNING)
+			{
+				MIS_KarrasVergessen = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,KDF_508_Gorax))
 		{
-			if(MIS_GoraxEssen == LOG_Running)
+			if(MIS_GoraxEssen == LOG_RUNNING)
 			{
 				MIS_GoraxEssen = LOG_FAILED;
 			};
-			if(MIS_GoraxWein == LOG_Running)
+			if(MIS_GoraxWein == LOG_RUNNING)
 			{
 				MIS_GoraxWein = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,KDF_509_Isgaroth))
 		{
-			if(MIS_Vatras_Message == LOG_Running)
+			if(MIS_Vatras_Message == LOG_RUNNING)
 			{
 				MIS_Vatras_Message = LOG_FAILED;
 			};
-			if(MIS_IsgarothWolf == LOG_Running)
+			if(MIS_IsgarothWolf == LOG_RUNNING)
 			{
 				MIS_IsgarothWolf = LOG_FAILED;
 			};
 		}
+		else if(C_IsNpc(slf,KDF_510_Hyglas))
+		{
+			if(MIS_HyglasBringBook == LOG_RUNNING)
+			{
+				MIS_HyglasBringBook = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,PAL_299_Sergio))
 		{
-			if(Sergio_GuideStatus == LOG_Running)
+			if(Sergio_GuideStatus == LOG_RUNNING)
 			{
 				Sergio_GuideStatus = LOG_FAILED;
 			};
-			if(MIS_Babo_Training == LOG_Running)
+			if(MIS_Babo_Training == LOG_RUNNING)
 			{
 				MIS_Babo_Training = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,NOV_604_Dyrian))
 		{
-			if(MIS_HelpDyrian == LOG_Running)
+			if(MIS_HelpDyrian == LOG_RUNNING)
 			{
 				MIS_HelpDyrian = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,NOV_605_Opolos))
 		{
-			if(MIS_HelpOpolos == LOG_Running)
+			if(MIS_HelpOpolos == LOG_RUNNING)
 			{
 				MIS_HelpOpolos = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,NOV_612_Babo))
 		{
-			if(MIS_HelpBabo == LOG_Running)
+			if(MIS_HelpBabo == LOG_RUNNING)
 			{
 				MIS_HelpBabo = LOG_FAILED;
 			};
-			if(MIS_Babo_Training == LOG_Running)
+			if(MIS_Babo_Training == LOG_RUNNING)
 			{
 				MIS_Babo_Training = LOG_FAILED;
 			};
@@ -185,42 +220,42 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		}
 		else if(C_IsNpc(slf,BAU_942_Randolph))
 		{
-			if(MIS_Rukhar_Wettkampf == LOG_Running)
+			if(MIS_Rukhar_Wettkampf == LOG_RUNNING)
 			{
 				MIS_Rukhar_Wettkampf = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,BAU_961_Gaan))
 		{
-			if(MIS_Gaan_Snapper == LOG_Running)
+			if(MIS_Gaan_Snapper == LOG_RUNNING)
 			{
 				MIS_Gaan_Snapper = LOG_OBSOLETE;
 			};
 		}
 		else if(C_IsNpc(slf,BAU_932_Balthasar))
 		{
-			if(MIS_Balthasar_BengarsWeide == LOG_Running)
+			if(MIS_Balthasar_BengarsWeide == LOG_RUNNING)
 			{
 				MIS_Balthasar_BengarsWeide = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,SLD_808_Jarvis))
 		{
-			if(MIS_Jarvis_SldKO == LOG_Running)
+			if(MIS_Jarvis_SldKO == LOG_RUNNING)
 			{
 				MIS_Jarvis_SldKO = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,SLD_804_Rod))
 		{
-			if(MIS_RodSword == LOG_Running)
+			if(MIS_RodSword == LOG_RUNNING)
 			{
 				MIS_RodSword = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,SLD_802_Buster))
 		{
-			if(MIS_Buster_KillShadowbeasts_DJG == LOG_Running)
+			if(MIS_Buster_KillShadowbeasts_DJG == LOG_RUNNING)
 			{
 				MIS_Buster_KillShadowbeasts_DJG = LOG_FAILED;
 			};
@@ -235,7 +270,7 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		}
 		else if(C_IsNpc(slf,VLK_4302_Addon_Elvrich))
 		{
-			if(MIS_LuciasLetter == LOG_Running)
+			if(MIS_LuciasLetter == LOG_RUNNING)
 			{
 				MIS_LuciasLetter = LOG_FAILED;
 			};
@@ -243,83 +278,83 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		}
 		else if(C_IsNpc(slf,BAU_936_Rosi))
 		{
-			if(MIS_BringRosiBackToSekob == LOG_Running)
+			if(MIS_BringRosiBackToSekob == LOG_RUNNING)
 			{
 				MIS_BringRosiBackToSekob = LOG_FAILED;
 			};
-			if(MIS_RosisFlucht == LOG_Running)
+			if(MIS_RosisFlucht == LOG_RUNNING)
 			{
 				MIS_RosisFlucht = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,BAU_960_Bengar))
 		{
-			if(MIS_Balthasar_BengarsWeide == LOG_Running)
+			if(MIS_Balthasar_BengarsWeide == LOG_RUNNING)
 			{
 				MIS_Balthasar_BengarsWeide = LOG_FAILED;
 			};
-			if(MIS_GetMalakBack == LOG_Running)
+			if(MIS_GetMalakBack == LOG_RUNNING)
 			{
 				MIS_GetMalakBack = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,BAU_963_Malak))
 		{
-			if(MIS_GetMalakBack == LOG_Running)
+			if(MIS_GetMalakBack == LOG_RUNNING)
 			{
 				MIS_GetMalakBack = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,SLD_811_Wolf))
 		{
-			if(MIS_Wolf_BringCrawlerPlates == LOG_Running)
+			if(MIS_Wolf_BringCrawlerPlates == LOG_RUNNING)
 			{
 				MIS_Wolf_BringCrawlerPlates = LOG_FAILED;
 			};
-			if(MIS_BengarsHelpingSLD == LOG_Running)
+			if(MIS_BengarsHelpingSLD == LOG_RUNNING)
 			{
 				MIS_BengarsHelpingSLD = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,BAU_912_Pepe))
 		{
-			if(MIS_Pepe_KillWolves == LOG_Running)
+			if(MIS_Pepe_KillWolves == LOG_RUNNING)
 			{
 				MIS_Pepe_KillWolves = LOG_FAILED;
 			};
-			if(MIS_Pepe_KickBullco == LOG_Running)
+			if(MIS_Pepe_KickBullco == LOG_RUNNING)
 			{
 				MIS_Pepe_KickBullco = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,PIR_1301_Addon_Skip_NW))
 		{
-			if((MIS_Addon_Baltram_Paket4Skip == LOG_Running) && (Skip_Rum4Baltram == FALSE))
+			if((MIS_Addon_Baltram_Paket4Skip == LOG_RUNNING) && (Skip_Rum4Baltram == FALSE))
 			{
 				MIS_Addon_Baltram_Paket4Skip = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,SLD_810_Dar))
 		{
-			if(MIS_Dar_BringOrcEliteRing == LOG_Running)
+			if(MIS_Dar_BringOrcEliteRing == LOG_RUNNING)
 			{
 				MIS_Dar_BringOrcEliteRing = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,BAU_4300_Addon_Cavalorn))
 		{
-			if(MIS_Addon_Cavalorn_TheHut == LOG_Running)
+			if(MIS_Addon_Cavalorn_TheHut == LOG_RUNNING)
 			{
 				MIS_Addon_Cavalorn_TheHut = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,SLD_803_Cipher))
 		{
-			if(MIS_Cipher_Paket == LOG_Running)
+			if(MIS_Cipher_Paket == LOG_RUNNING)
 			{
 				MIS_Cipher_Paket = LOG_FAILED;
 			};
-			if(MIS_Cipher_BringWeed == LOG_Running)
+			if(MIS_Cipher_BringWeed == LOG_RUNNING)
 			{
 				MIS_Cipher_BringWeed = LOG_FAILED;
 			};
@@ -348,47 +383,47 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		}
 		else if(C_IsNpc(slf,STRF_1116_Kervo))
 		{
-			if(MIS_Kervo_KillLurker == LOG_Running)
+			if(MIS_Kervo_KillLurker == LOG_RUNNING)
 			{
 				MIS_Kervo_KillLurker = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,VLK_4130_Talbin))
 		{
-			if(MIS_Talbin_Runs == LOG_Running)
+			if(MIS_Talbin_Runs == LOG_RUNNING)
 			{
 				MIS_Talbin_Runs = LOG_OBSOLETE;
 			};
-			if(MIS_TalbinCheese == LOG_Running)
+			if(MIS_TalbinCheese == LOG_RUNNING)
 			{
 				MIS_TalbinCheese = LOG_OBSOLETE;
 			};
 		}
 		else if(C_IsNpc(slf,PAL_251_Oric))
 		{
-			if(MIS_OricBruder == LOG_Running)
+			if(MIS_OricBruder == LOG_RUNNING)
 			{
 				MIS_OricBruder = LOG_FAILED;
 			};
-			if(MIS_KillHoshPak == LOG_Running)
+			if(MIS_KillHoshPak == LOG_RUNNING)
 			{
 				MIS_KillHoshPak = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,VLK_4120_Bilgot))
 		{
-			if(MIS_RescueBilgot == LOG_Running)
+			if(MIS_RescueBilgot == LOG_RUNNING)
 			{
 				MIS_RescueBilgot = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,DJG_703_Cipher))
 		{
-			if(MIS_Cipher_Paket == LOG_Running)
+			if(MIS_Cipher_Paket == LOG_RUNNING)
 			{
 				MIS_Cipher_Paket = LOG_FAILED;
 			};
-			if(MIS_Cipher_BringWeed == LOG_Running)
+			if(MIS_Cipher_BringWeed == LOG_RUNNING)
 			{
 				MIS_Cipher_BringWeed = LOG_FAILED;
 			};
@@ -421,50 +456,50 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		};
 		if(C_IsNpc(slf,PIR_1352_Addon_AlligatorJack))
 		{
-			if(MIS_KrokoJagd == LOG_Running)
+			if(MIS_KrokoJagd == LOG_RUNNING)
 			{
 				MIS_KrokoJagd = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,PIR_1353_Addon_Morgan))
 		{
-			if(MIS_AlligatorJack_BringMeat == LOG_Running)
+			if(MIS_AlligatorJack_BringMeat == LOG_RUNNING)
 			{
 				MIS_AlligatorJack_BringMeat = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,PIR_1355_Addon_Skip))
 		{
-			if((MIS_Addon_Baltram_Paket4Skip == LOG_Running) && (Skip_Rum4Baltram == FALSE))
+			if((MIS_Addon_Baltram_Paket4Skip == LOG_RUNNING) && (Skip_Rum4Baltram == FALSE))
 			{
 				MIS_Addon_Baltram_Paket4Skip = LOG_FAILED;
 			};
-			if(MIS_ADDON_SkipsGrog == LOG_Running)
+			if(MIS_ADDON_SkipsGrog == LOG_RUNNING)
 			{
 				MIS_ADDON_SkipsGrog = LOG_OBSOLETE;
 			};
 		}
 		else if(C_IsNpc(slf,PIR_1366_Addon_Brandon))
 		{
-			if(MIS_Brandon_BringHering == LOG_Running)
+			if(MIS_Brandon_BringHering == LOG_RUNNING)
 			{
 				MIS_Brandon_BringHering = LOG_OBSOLETE;
 			};
 		}
 		else if(C_IsNpc(slf,BDT_1075_Addon_Fortuno))
 		{
-			if(MIS_Fortuno_Delusion == LOG_Running)
+			if(MIS_Fortuno_Delusion == LOG_RUNNING)
 			{
 				MIS_Fortuno_Delusion = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,BDT_1093_Addon_Franco))
 		{
-			if(MIS_HlpLogan == LOG_Running)
+			if(MIS_HlpLogan == LOG_RUNNING)
 			{
 				MIS_HlpLogan = LOG_OBSOLETE;
 			};
-			if(MIS_HlpEdgor == LOG_Running)
+			if(MIS_HlpEdgor == LOG_RUNNING)
 			{
 				MIS_HlpEdgor = LOG_OBSOLETE;
 			};
@@ -475,7 +510,7 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		}
 		else if(C_IsNpc(slf,BDT_1084_Addon_Senyan))
 		{
-			Senyan_Erpressung = LOG_OBSOLETE;
+			MIS_Senyan_Erpressung = LOG_OBSOLETE;
 		}
 		else if(C_IsNpc(slf,BDT_1085_Addon_Bloodwyn))
 		{
@@ -506,7 +541,7 @@ func void B_CheckDeadMissionAnimals(var C_Npc slf)
 		if(C_IsNpc(slf,CanyonRazor))
 		{
 			CanyonRazorBodyCount += 1;
-			if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+			if(MIS_Addon_Greg_ClearCanyon == LOG_RUNNING)
 			{
 				B_CountCanyonRazor();
 			};
@@ -526,7 +561,7 @@ func void B_CheckDeadMissionAnimals(var C_Npc slf)
 
 func void B_CheckDeadMissionNPCs(var C_Npc npc)
 {
-	if(npc.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(npc))
 	{
 		B_CheckDeadMissionHumans(npc);
 	}

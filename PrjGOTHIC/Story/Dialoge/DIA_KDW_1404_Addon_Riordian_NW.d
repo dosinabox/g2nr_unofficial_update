@@ -102,7 +102,7 @@ func void DIA_Addon_Riordian_Atlantis_Info()
 		if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe) || Npc_KnowsInfo(other,DIA_Addon_Saturas_WhatsOrnament))
 		{
 			Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_RUNNING);
 			B_LogEntry(TOPIC_Addon_KDW,"Маги Воды считают, что за порталом находится древний затерянный город.");
 			SC_KnowsPortal = TRUE;
 		};
@@ -122,7 +122,7 @@ instance DIA_Addon_Riordian_SaturasWantYou(C_Info)
 
 func int DIA_Addon_Riordian_SaturasWantYou_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Riordian_Hallo) && (MIS_Addon_Saturas_BringRiordian2Me == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Addon_Riordian_Hallo) && (MIS_Addon_Saturas_BringRiordian2Me == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -139,10 +139,13 @@ func void DIA_Addon_Riordian_SaturasWantYou_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Riordian_SaturasWantYou_10_01");	//Ему удалось добиться прогресса в исследованиях? В таком случае я отправляюсь к нему немедленно.
-		if(Nefarius_NW.aivar[AIV_TalkedToPlayer] == FALSE)
+		if(!Npc_IsDead(Nefarius_NW))
 		{
-			AI_Output(self,other,"DIA_Addon_Riordian_SaturasWantYou_10_02");	//Если ты хочешь узнать об этих строениях больше, поговори с Нефариусом.
-			AI_Output(self,other,"DIA_Addon_Riordian_SaturasWantYou_10_03");	//Ты найдешь его в дальней части залов.
+			if(Nefarius_NW.aivar[AIV_TalkedToPlayer] == FALSE)
+			{
+				AI_Output(self,other,"DIA_Addon_Riordian_SaturasWantYou_10_02");	//Если ты хочешь узнать об этих строениях больше, поговори с Нефариусом.
+				AI_Output(self,other,"DIA_Addon_Riordian_SaturasWantYou_10_03");	//Ты найдешь его в дальней части залов.
+			};
 		};
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"SATURAS");

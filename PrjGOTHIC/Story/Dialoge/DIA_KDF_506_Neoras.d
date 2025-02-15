@@ -68,7 +68,7 @@ instance DIA_Neoras_Arbeit(C_Info)
 
 func int DIA_Neoras_Arbeit_Condition()
 {
-	if(MIS_KlosterArbeit == LOG_Running)
+	if(MIS_KlosterArbeit == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -80,15 +80,15 @@ func void DIA_Neoras_Arbeit_Info()
 	AI_Output(self,other,"DIA_Neoras_Arbeit_01_01");	//Да, мне нужны травы для моих экспериментов. Мы сами выращиваем их, но у нас совсем закончилась огненная крапива.
 	AI_Output(self,other,"DIA_Neoras_Arbeit_01_02");	//Семи цветков будет достаточно. Принеси мне их - ох, да - я еще потерял рецепт магических зелий.
 	AI_Output(self,other,"DIA_Neoras_Arbeit_01_03");	//Если ты найдешь его, я буду очень благодарен.
-	MIS_NeorasPflanzen = LOG_Running;
-	MIS_NeorasRezept = LOG_Running;
+	MIS_NeorasPflanzen = LOG_RUNNING;
+	MIS_NeorasRezept = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_NeorasPflanzen,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_NeorasPflanzen,LOG_Running);
+	Log_SetTopicStatus(TOPIC_NeorasPflanzen,LOG_RUNNING);
 	B_LogEntries(TOPIC_NeorasPflanzen,"Я должен принести семь кустов огненной крапивы мастеру Неорасу, алхимику.");
 	Log_CreateTopic(TOPIC_Neorasrezept,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Neorasrezept,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Neorasrezept,LOG_RUNNING);
 	B_LogNextEntry(TOPIC_Neorasrezept,"Мастеру Неорасу не хватает рецепта для приготовления зелий маны.");
-	if(MIS_Opolos_Rezept == LOG_Running)
+	if(MIS_Opolos_Rezept == LOG_RUNNING)
 	{
 		Log_AddEntry(TOPIC_Neorasrezept,"Это, должно быть, рецепт, на который так хочет взглянуть Ополос.");
 	};
@@ -108,7 +108,7 @@ instance DIA_Neoras_Rezept(C_Info)
 
 func int DIA_Neoras_Rezept_Condition()
 {
-	if(MIS_NeorasRezept == LOG_Running)
+	if(MIS_NeorasRezept == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -147,7 +147,7 @@ instance DIA_Neoras_Flieder(C_Info)
 
 func int DIA_Neoras_Flieder_Condition()
 {
-	if(MIS_NeorasPflanzen == LOG_Running)
+	if(MIS_NeorasPflanzen == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -531,9 +531,9 @@ func void DIA_Neoras_DRACHENEIER_ei_jep()
 	AI_Output(other,self,"DIA_Neoras_DRACHENEIER_ei_jep_15_02");	//Давай лучше подождем.
 	Info_ClearChoices(DIA_Neoras_DRACHENEIER);
 	Log_CreateTopic(TOPIC_DRACHENEIERNeoras,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_DRACHENEIERNeoras,LOG_Running);
+	Log_SetTopicStatus(TOPIC_DRACHENEIERNeoras,LOG_RUNNING);
 	B_LogEntry(TOPIC_DRACHENEIERNeoras,"Неорасу для экспериментов нужно драконье яйцо. Он думает, что, возможно я смогу найти его в какой-нибудь пещере.");
-	MIS_Neoras_DragonEgg = LOG_Running;
+	MIS_Neoras_DragonEgg = LOG_RUNNING;
 };
 
 func void DIA_Neoras_DRACHENEIER_ei_statt()
@@ -569,7 +569,7 @@ instance DIA_Neoras_FOUNDDRAGONEGG(C_Info)
 
 func int DIA_Neoras_FOUNDDRAGONEGG_Condition()
 {
-	if(Npc_HasItems(other,ItAt_DragonEgg_MIS) && (MIS_Neoras_DragonEgg == LOG_Running))
+	if(Npc_HasItems(other,ItAt_DragonEgg_MIS) && (MIS_Neoras_DragonEgg == LOG_RUNNING))
 	{
 		return TRUE;
 	};
