@@ -117,9 +117,9 @@ func void DIA_Addon_Farim_MilizProbs_helfen()
 	AI_Output(other,self,"DIA_Addon_Farim_MilizProbs_helfen_15_04");	//Я посмотрю, что можно сделать.
 	Info_ClearChoices(DIA_Addon_Farim_MilizProbs);
 	Log_CreateTopic(TOPIC_Addon_FarimsFish,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_FarimsFish,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_FarimsFish,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_FarimsFish,"У рыбака Фарима проблемы с ополчением. Они забирают у него столько рыбы, что ему не хватает на жизнь. Чтобы помочь ему, я должен поговорить с кем-нибудь, имеющим влияние среди ополчения или паладинов.");
-	MIS_Addon_Farim_PaladinFisch = LOG_Running;
+	MIS_Addon_Farim_PaladinFisch = LOG_RUNNING;
 };
 
 
@@ -135,7 +135,7 @@ instance DIA_Addon_Farim_MartinHelps(C_Info)
 
 func int DIA_Addon_Farim_MartinHelps_Condition()
 {
-	if((MIS_Addon_Farim_PaladinFisch == LOG_Running) && (Martin_KnowsFarim == TRUE))
+	if((MIS_Addon_Farim_PaladinFisch == LOG_RUNNING) && (Martin_KnowsFarim == TRUE))
 	{
 		return TRUE;
 	};
@@ -229,7 +229,7 @@ func void DIA_Addon_Farim_William_Info()
 		if(MissingPeopleReturnedHome == FALSE)
 		{
 			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 		};
 		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
 	};
@@ -273,7 +273,7 @@ func void DIA_Addon_Farim_William_Wo()
 	if(MIS_Addon_Vatras_WhereAreMissingPeople != LOG_SUCCESS)
 	{
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 	};
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Рыбак Фарим пожаловался мне, что пропал его приятель Вильям. Фарим рассказал, что Вильям встречался с какими-то головорезами на пляже к северу от гавани.");
 	Info_AddChoice(DIA_Addon_Farim_William,"Я услышал все, что хотел знать.",DIA_Addon_Farim_William_Tschau);

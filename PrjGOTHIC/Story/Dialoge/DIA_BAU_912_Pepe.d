@@ -127,15 +127,15 @@ func void DIA_Pepe_KillWolves_Info()
 	AI_Output(other,self,"DIA_Pepe_KillWolves_15_02");	//Забудь об этом. Это было всего лишь предположение. Я пойду к парням, и посмотрим, что ОНИ скажут насчет этого...
 	AI_Output(self,other,"DIA_Pepe_KillWolves_03_03");	//(испуганно) Подожди минутку. Хорошо, хорошо! Эээ... ты величайший воин, и можешь уложить сотню волков одной левой. Нет проблем!
 	AI_Output(self,other,"DIA_Pepe_KillWolves_03_04");	//Обычно они шныряют в лесу около пастбища. (как бы между прочим) Я думаю, их всего четверо...
+	MIS_Pepe_KillWolves = LOG_RUNNING;
+	Log_CreateTopic(TOPIC_PepeWolves,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_PepeWolves,LOG_RUNNING);
+	B_LogEntry(TOPIC_PepeWolves,"Овцы Пепе страдают от волков. Я должен прогнать их.");
 	AI_StopProcessInfos(self);
 	Wld_InsertNpc(PEPES_YWolf1,"FP_ROAM_NW_BIGFARM_PEPES_WOLFS_01");
 	Wld_InsertNpc(PEPES_YWolf2,"FP_ROAM_NW_BIGFARM_PEPES_WOLFS_02");
 	Wld_InsertNpc(PEPES_YWolf3,"FP_ROAM_NW_BIGFARM_PEPES_WOLFS_03");
 	Wld_InsertNpc(PEPES_YWolf4,"FP_ROAM_NW_BIGFARM_PEPES_WOLFS_04");
-	MIS_Pepe_KillWolves = LOG_RUNNING;
-	Log_CreateTopic(TOPIC_PepeWolves,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_PepeWolves,LOG_RUNNING);
-	B_LogEntry(TOPIC_PepeWolves,"Овцы Пепе страдают от волков. Я должен прогнать их.");
 };
 
 
@@ -353,8 +353,8 @@ func void DIA_Pepe_BuyLiesel_Info()
 		};
 		Npc_RemoveInvItems(self,ItMi_Gold,100);
 		Pepe_SchafGekauft += 1;
-		Wld_InsertNpc(Follow_Sheep,"NW_BIGFARM_SHEEP2_02");
 		AI_StopProcessInfos(self);
+		Wld_InsertNpc(Follow_Sheep,"NW_BIGFARM_SHEEP2_02");
 	}
 	else
 	{

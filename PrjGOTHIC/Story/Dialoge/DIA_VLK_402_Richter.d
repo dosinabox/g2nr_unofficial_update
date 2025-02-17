@@ -183,12 +183,6 @@ func void DIA_Richter_KillMorgahard_Info()
 	AI_Output(self,other,"DIA_Richter_KillMorgahard_10_04");	//Эти сукины дети отправились в горы. Скорее всего, по направлению к новой башне Ксардаса.
 	AI_Output(self,other,"DIA_Richter_KillMorgahard_10_05");	//Их главаря зовут Моргахард. Я хочу, чтобы ты убил его.
 	AI_Output(self,other,"DIA_Richter_KillMorgahard_10_06");	//Поторопись, пока они не исчезли куда-нибудь еще.
-	Wld_InsertNpc(BDT_1031_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
-	Wld_InsertNpc(BDT_1032_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
-	Wld_InsertNpc(BDT_1033_Fluechtling,"NW_TAVERNE_IN_06");
-	Wld_InsertNpc(BDT_1034_Fluechtling,"NW_TAVERNE_IN_06");
-	Wld_InsertNpc(BDT_1035_Fluechtling,"NW_BIGFARM_HOUSE_OUT_05");
-	Wld_InsertNpc(BDT_1030_Morgahard,"NW_BIGFARM_HOUSE_OUT_05");
 	if(!Npc_IsDead(Garwig))
 	{
 		B_DeletePetzCrime(Garwig);
@@ -196,12 +190,18 @@ func void DIA_Richter_KillMorgahard_Info()
 		Garwig.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		Npc_ExchangeRoutine(Garwig,"EXILE");
 	};
-	B_InitNpcGlobals();
 	MIS_Richter_BringHolyHammer = LOG_SUCCESS;
 	B_GivePlayerXP(XP_BringHolyHammer);
 	B_LogEntry(TOPIC_RichterLakai,"Несколько заключенных сбежали от судьи. Я должен найти их и прикончить, а также прикончить их главаря - МОРГАХАРДА. Они, предположительно, скрываются в горах, где-то по направлению к новой башне Ксардаса.");
 	MIS_Richter_KillMorgahard = LOG_RUNNING;
 	AI_StopProcessInfos(self);
+	Wld_InsertNpc(BDT_1031_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
+	Wld_InsertNpc(BDT_1032_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
+	Wld_InsertNpc(BDT_1033_Fluechtling,"NW_TAVERNE_IN_06");
+	Wld_InsertNpc(BDT_1034_Fluechtling,"NW_TAVERNE_IN_06");
+	Wld_InsertNpc(BDT_1035_Fluechtling,"NW_BIGFARM_HOUSE_OUT_05");
+	Wld_InsertNpc(BDT_1030_Morgahard,"NW_BIGFARM_HOUSE_OUT_05");
+	B_InitNpcGlobals();
 };
 
 

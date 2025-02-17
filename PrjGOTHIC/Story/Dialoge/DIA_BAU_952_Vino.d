@@ -31,7 +31,6 @@ instance DIA_Vino_HALLO(C_Info)
 	nr = 1;
 	condition = DIA_Vino_HALLO_Condition;
 	information = DIA_Vino_HALLO_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -61,7 +60,6 @@ instance DIA_Vino_SeekWork(C_Info)
 	nr = 1;
 	condition = DIA_Vino_SeekWork_Condition;
 	information = DIA_Vino_SeekWork_Info;
-	permanent = FALSE;
 	description = "Могу я чем-нибудь помочь? Я ищу работу.";
 };
 
@@ -77,7 +75,7 @@ func int DIA_Vino_SeekWork_Condition()
 func void DIA_Vino_SeekWork_Info()
 {
 	AI_Output(other,self,"DIA_Vino_SeekWork_15_00");	//Могу я чем-нибудь помочь? Я ищу работу.
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Vino_SeekWork_05_01");	//А ты вообще что-нибудь знаешь о полевых работах?
 		AI_Output(other,self,"DIA_Vino_SeekWork_15_02");	//А что там такого знать-то?
@@ -89,9 +87,9 @@ func void DIA_Vino_SeekWork_Info()
 			AI_Output(other,self,"DIA_Vino_SeekWork_15_05");	//Он предложил купить у него чистую одежду дешевле, если я буду помогать на ферме.
 			AI_Output(self,other,"DIA_Vino_SeekWork_05_06");	//Хмм. У меня нет для тебя никакой работы, но ты можешь принести мне и парням что-нибудь выпить.
 			AI_Output(self,other,"DIA_Vino_SeekWork_05_07");	//Принеси мне бутылку вина, и я скажу Лобарту, что ты очень помог нам. (смеется издевательски)
-			MIS_Vino_Wein = LOG_Running;
+			MIS_Vino_Wein = LOG_RUNNING;
 			Log_CreateTopic(TOPIC_Vino,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Vino,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Vino,LOG_RUNNING);
 			B_LogEntry(TOPIC_Vino,"Если я принесу Вино бутылку вина, он скажет Лобарту, что я помог ему.");
 		};
 	}
@@ -108,14 +106,13 @@ instance DIA_Vino_BringWine(C_Info)
 	nr = 1;
 	condition = DIA_Vino_BringWine_Condition;
 	information = DIA_Vino_BringWine_Info;
-	permanent = FALSE;
 	description = "Вот твое вино.";
 };
 
 
 func int DIA_Vino_BringWine_Condition()
 {
-	if((MIS_Vino_Wein == LOG_Running) && (Kapitel < 3))
+	if((MIS_Vino_Wein == LOG_RUNNING) && (Kapitel < 3))
 	{
 		if(Npc_HasItems(other,ItFo_Wine) || Npc_HasItems(other,ItFo_DarkWine))
 		{
@@ -140,7 +137,7 @@ func void DIA_Vino_BringWine_Info()
 	if(!Npc_IsDead(Lobart))
 	{
 		AI_Output(self,other,"DIA_Vino_BringWine_05_02");	//Но все равно, спасибо.
-		if(hero.guild == GIL_NONE)
+		if(other.guild == GIL_NONE)
 		{
 			AI_Output(self,other,"DIA_Vino_BringWine_05_03");	//Лобарт услышит только хорошее о тебе.
 		};
@@ -154,7 +151,6 @@ instance DIA_Vino_ToTheCity(C_Info)
 	nr = 3;
 	condition = DIA_Vino_ToTheCity_Condition;
 	information = DIA_Vino_ToTheCity_Info;
-	permanent = FALSE;
 	description = "Я направляюсь в город.";
 };
 
@@ -215,14 +211,14 @@ func void DIA_Vino_PERM_Info()
 		Vino_Gossip_Orks = TRUE;
 		Knows_Ork = TRUE;
 	}
-	else if((Vino_Gossip_Bugs == FALSE) && (MIS_AndreHelpLobart == LOG_Running))
+	else if((Vino_Gossip_Bugs == FALSE) && (MIS_AndreHelpLobart == LOG_RUNNING))
 	{
 		AI_Output(self,other,"DIA_Vino_PERM_05_03");	//Эти огромные отвратительные насекомые уже всех достали. Они повсюду. Они сожрут все, что мы вырастили, если мы не сделаем что-нибудь.
 		AI_Output(self,other,"DIA_Vino_PERM_05_04");	//Несколько дней назад я лежал в траве, размышляя о своем, и собирался вздремнуть, когда одна из этих тварей сожрала мой ботинок!
 		AI_Output(self,other,"DIA_Vino_PERM_05_05");	//Ты бы видел, как я улепетывал. С тех пор я не могу спать спокойно.
 		Vino_Gossip_Bugs = TRUE;
 	}
-	else if((FoundVinosKellerei == TRUE) && (Vino_Complain == FALSE) && (hero.guild != GIL_MIL) && (hero.guild != GIL_KDF))
+	else if((FoundVinosKellerei == TRUE) && (Vino_Complain == FALSE) && (other.guild != GIL_MIL) && (other.guild != GIL_KDF))
 	{
 		B_Vino_Complain();
 	}
@@ -246,7 +242,7 @@ instance DIA_Vino_DMTAMSTART(C_Info)
 
 func int DIA_Vino_DMTAMSTART_Condition()
 {
-	if((Kapitel == 3) && (hero.guild != GIL_KDF))
+	if((Kapitel == 3) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -256,7 +252,7 @@ func int DIA_Vino_DMTAMSTART_Condition()
 func void DIA_Vino_DMTAMSTART_Info()
 {
 	AI_Output(other,self,"DIA_Vino_DMTAMSTART_15_00");	//А как у тебя дела?
-	if((FoundVinosKellerei == TRUE) && (Vino_Complain == FALSE) && (hero.guild != GIL_MIL))
+	if((FoundVinosKellerei == TRUE) && (Vino_Complain == FALSE) && (other.guild != GIL_MIL))
 	{
 		AI_Output(self,other,"DIA_Vino_DMTAMSTART_05_01");	//Дерьмово. Ополчение нашло мой тайный винокуренный заводик.
 		AI_Output(self,other,"DIA_Vino_DMTAMSTART_05_02");	//Остается надеяться, что они никогда не узнают, что он принадлежал мне.
@@ -283,7 +279,7 @@ instance DIA_Vino_Obesessed(C_Info)
 
 func int DIA_Vino_Obesessed_Condition()
 {
-	if((NpcObsessedByDMT_Vino == FALSE) && (Kapitel >= 3) && (hero.guild == GIL_KDF))
+	if((NpcObsessedByDMT_Vino == FALSE) && (Kapitel >= 3) && (other.guild == GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -324,6 +320,8 @@ func void DIA_Vino_Obesessed_Info()
 };
 
 
+var int DIA_Vino_Heilung_oneTime;
+
 instance DIA_Vino_Heilung(C_Info)
 {
 	npc = BAU_952_Vino;
@@ -337,14 +335,11 @@ instance DIA_Vino_Heilung(C_Info)
 
 func int DIA_Vino_Heilung_Condition()
 {
-	if((NpcObsessedByDMT_Vino == TRUE) && (NpcObsessedByDMT == FALSE) && (hero.guild == GIL_KDF) && (Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_07") >= 4000))
+	if((NpcObsessedByDMT_Vino == TRUE) && (NpcObsessedByDMT == FALSE) && (other.guild == GIL_KDF) && (Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_07") >= 4000))
 	{
 		return TRUE;
 	};
 };
-
-
-var int DIA_Vino_Heilung_oneTime;
 
 func void DIA_Vino_Heilung_Info()
 {
@@ -357,8 +352,8 @@ func void DIA_Vino_Heilung_Info()
 		if(MIS_DementorsOrigins == FALSE)
 		{
 			Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
-			MIS_DementorsOrigins = LOG_Running;
+			Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_RUNNING);
+			MIS_DementorsOrigins = LOG_RUNNING;
 		};
 		B_LogEntry(TOPIC_DEMENTOREN,"Вино одержим. Я отправил его в монастырь на лечение. Надеюсь, он сможет добраться туда живым.");
 		B_NpcClearObsessionByDMT(self);
@@ -382,7 +377,7 @@ instance DIA_Vino_PERM4OBSESSED(C_Info)
 
 func int DIA_Vino_PERM4OBSESSED_Condition()
 {
-	if((hero.guild == GIL_KDF) && (NpcObsessedByDMT_Vino == TRUE) && (Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_07") < 4000))
+	if((other.guild == GIL_KDF) && (NpcObsessedByDMT_Vino == TRUE) && (Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_07") < 4000))
 	{
 		return TRUE;
 	};
@@ -417,7 +412,7 @@ instance DIA_Vino_PERM45UND6(C_Info)
 
 func int DIA_Vino_PERM45UND6_Condition()
 {
-	if((Kapitel >= 4) && (hero.guild != GIL_KDF) && (NpcObsessedByDMT_Vino == FALSE))
+	if((Kapitel >= 4) && (other.guild != GIL_KDF) && (NpcObsessedByDMT_Vino == FALSE))
 	{
 		return TRUE;
 	};
@@ -426,11 +421,11 @@ func int DIA_Vino_PERM45UND6_Condition()
 func void DIA_Vino_PERM45UND6_Info()
 {
 	AI_Output(other,self,"DIA_Vino_PERM45UND6_15_00");	//Есть новости?
-	if((FoundVinosKellerei == TRUE) && (Vino_Complain == FALSE) && (hero.guild != GIL_MIL))
+	if((FoundVinosKellerei == TRUE) && (Vino_Complain == FALSE) && (other.guild != GIL_MIL))
 	{
 		B_Vino_Complain();
 	}
-	else if(hero.guild == GIL_PAL)
+	else if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Vino_PERM45UND6_05_01");	//Здесь все просто кишит орками.
 		AI_Output(self,other,"DIA_Vino_PERM45UND6_05_02");	//Вы, паладины, ведь прикончите их, да?

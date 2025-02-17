@@ -150,7 +150,7 @@ func void DIA_Till_WASMACHSTDU_Info()
 {
 	AI_Output(other,self,"DIA_Till_WASMACHSTDU_15_00");	//ј что ты делаешь, когда не играешь в хоз€ина этой фермы?
 	AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_01");	//—тою на страже.
-	if(hero.guild != GIL_MIL)
+	if(other.guild != GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_02");	//√р€зные ополченцы из города все чаще забредают на наши земли и воруют все, что плохо лежит.
 		AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_03");	//Ёти ублюдки были здесь только на прошлой неделе, они украли наших овец.
@@ -172,7 +172,7 @@ instance DIA_Till_WARUMNICHTSLD(C_Info)
 
 func int DIA_Till_WARUMNICHTSLD_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Till_WASMACHSTDU) && (hero.guild != GIL_MIL) && (Kapitel < 5))
+	if(Npc_KnowsInfo(other,DIA_Till_WASMACHSTDU) && (other.guild != GIL_MIL) && (Kapitel < 5))
 	{
 		return TRUE;
 	};
@@ -217,6 +217,8 @@ func void DIA_Till_BRONKO_Info()
 };
 
 
+var int DIA_Till_BRONKOZURARBEIT_noPerm;
+
 instance DIA_Till_BRONKOZURARBEIT(C_Info)
 {
 	npc = BAU_931_Till;
@@ -227,8 +229,6 @@ instance DIA_Till_BRONKOZURARBEIT(C_Info)
 	description = "ћожет быть, € смогу помочь.";
 };
 
-
-var int DIA_Till_BRONKOZURARBEIT_noPerm;
 
 func int DIA_Till_BRONKOZURARBEIT_Condition()
 {
@@ -271,9 +271,9 @@ func void DIA_Till_BRONKOZURARBEIT_ok()
 	DIA_Till_BRONKOZURARBEIT_noPerm = TRUE;
 	if(MIS_Sekob_Bronko_eingeschuechtert != LOG_SUCCESS)
 	{
-		MIS_Sekob_Bronko_eingeschuechtert = LOG_Running;
+		MIS_Sekob_Bronko_eingeschuechtert = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_Bronkoeingeschuechtert,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Bronkoeingeschuechtert,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Bronkoeingeschuechtert,LOG_RUNNING);
 		B_LogEntry(TOPIC_Bronkoeingeschuechtert,"“илл не может заставить Ѕронко работать. “илл хочет, чтобы это попробовал сделать €.");
 	}
 	else
@@ -350,7 +350,7 @@ instance DIA_Till_BRONKOWIEDERANARBEIT(C_Info)
 
 func int DIA_Till_BRONKOWIEDERANARBEIT_Condition()
 {
-	if((MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS) && (DIA_Till_BRONKOZURARBEIT_noPerm == TRUE) && (Kapitel < 5))
+	if((MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS) && (DIA_Till_BRONKOZURARBEIT_noPerm == TRUE) && (Kapitel < 5) && !Npc_IsDead(Bronko))
 	{
 		return TRUE;
 	};

@@ -21,6 +21,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				B_Greg_ComesToDexter();
 			};
 		}
+		else if(C_IsNpc(slf,BAU_935_Bronko))
+		{
+			if(MIS_Sekob_Bronko_eingeschuechtert == LOG_RUNNING)
+			{
+				MIS_Sekob_Bronko_eingeschuechtert = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,BAU_940_Akil))
 		{
 			if(MIS_Akil_SchafDiebe == LOG_RUNNING)
