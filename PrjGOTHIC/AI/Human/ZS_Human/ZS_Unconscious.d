@@ -34,6 +34,13 @@ func void ZS_Unconscious()
 					MIS_RodSword = LOG_OBSOLETE;
 				};
 			}
+			else if(C_IsNpc(self,PIR_1364_Addon_Pirat))
+			{
+				if(MIS_Addon_GrogForRoastPirate == LOG_RUNNING)
+				{
+					MIS_Addon_GrogForRoastPirate = LOG_OBSOLETE;
+				};
+			}
 			else if(C_IsNpc(self,VLK_421_Valentino))
 			{
 				Valentino_Day = B_GetDayPlus();
