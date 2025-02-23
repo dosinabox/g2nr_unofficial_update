@@ -27,7 +27,6 @@ instance DIA_Dragomir_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Dragomir_Hello_Condition;
 	information = DIA_Dragomir_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -53,7 +52,6 @@ instance DIA_Dragomir_OutHere(C_Info)
 	nr = 2;
 	condition = DIA_Dragomir_OutHere_Condition;
 	information = DIA_Dragomir_OutHere_Info;
-	permanent = FALSE;
 	description = "Что ты делаешь здесь?";
 };
 
@@ -77,7 +75,6 @@ instance DIA_Dragomir_Settlers(C_Info)
 	nr = 2;
 	condition = DIA_Dragomir_Settlers_Condition;
 	information = DIA_Dragomir_Settlers_Info;
-	permanent = FALSE;
 	description = "А кто жил в этом лагере?";
 };
 
@@ -103,7 +100,6 @@ instance DIA_Dragomir_Dangerous(C_Info)
 	nr = 2;
 	condition = DIA_Dragomir_Dangerous_Condition;
 	information = DIA_Dragomir_Dangerous_Info;
-	permanent = FALSE;
 	description = "А разве здесь не опасно?";
 };
 
@@ -127,9 +123,9 @@ func void DIA_Dragomir_Dangerous_Info()
 	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_06");	//Мне пришлось бежать со всех ног.
 	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_07");	//А когда я бежал, арбалет выскользнул из моей руки. Я думаю, что он все еще лежит там, у этого странного круга на севере.
 	Log_CreateTopic(TOPIC_DragomirsArmbrust,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_DragomirsArmbrust,LOG_Running);
+	Log_SetTopicStatus(TOPIC_DragomirsArmbrust,LOG_RUNNING);
 	B_LogEntry(TOPIC_DragomirsArmbrust,"Драгомир потерял свой арбалет в странном каменном круге, находящемся далеко в северных горах.");
-	MIS_DragomirsArmbrust = LOG_Running;
+	MIS_DragomirsArmbrust = LOG_RUNNING;
 };
 
 
@@ -139,14 +135,13 @@ instance DIA_Dragomir_Armbrust(C_Info)
 	nr = 2;
 	condition = DIA_Dragomir_Armbrust_Condition;
 	information = DIA_Dragomir_Armbrust_Info;
-	permanent = FALSE;
 	description = "Вот. Я нашел твой арбалет.";
 };
 
 
 func int DIA_Dragomir_Armbrust_Condition()
 {
-	if((MIS_DragomirsArmbrust == LOG_Running) && Npc_HasItems(other,ItRw_DragomirsArmbrust_MIS))
+	if((MIS_DragomirsArmbrust == LOG_RUNNING) && Npc_HasItems(other,ItRw_DragomirsArmbrust_MIS))
 	{
 		return TRUE;
 	};

@@ -27,7 +27,6 @@ instance DIA_Wasili_HALLO(C_Info)
 	nr = 1;
 	condition = DIA_Wasili_HALLO_Condition;
 	information = DIA_Wasili_HALLO_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -52,7 +51,6 @@ instance DIA_Wasili_Job(C_Info)
 	nr = 1;
 	condition = DIA_Wasili_Job_Condition;
 	information = DIA_Wasili_Job_Info;
-	permanent = FALSE;
 	description = "Чем ты занимаешься?";
 };
 
@@ -78,7 +76,6 @@ instance DIA_Wasili_Sammler(C_Info)
 	nr = 4;
 	condition = DIA_Wasili_Sammler_Condition;
 	information = DIA_Wasili_Sammler_Info;
-	permanent = FALSE;
 	description = "Как я погляжу, здесь целая груда мусора.";
 };
 
@@ -95,7 +92,7 @@ func void DIA_Wasili_Sammler_Info()
 	AI_Output(self,other,"DIA_Wasili_Sammler_01_02");	//Простой человек, вроде меня, едва ли может позволить себе такое богатство. Мне больше нравятся другие вещи.
 	AI_Output(other,self,"DIA_Wasili_Sammler_15_03");	//И что, например?
 	AI_Output(self,other,"DIA_Wasili_Sammler_01_04");	//Я собираю старые монеты.
-	MIS_Wasili_BringOldCoin = LOG_Running;
+	MIS_Wasili_BringOldCoin = LOG_RUNNING;
 };
 
 
@@ -117,7 +114,7 @@ instance DIA_Wasili_FirstOldCoin(C_Info)
 
 func int DIA_Wasili_FirstOldCoin_Condition()
 {
-	if((MIS_Wasili_BringOldCoin == LOG_Running) && Npc_HasItems(other,ItMi_OldCoin))
+	if((MIS_Wasili_BringOldCoin == LOG_RUNNING) && Npc_HasItems(other,ItMi_OldCoin))
 	{
 		return TRUE;
 	};

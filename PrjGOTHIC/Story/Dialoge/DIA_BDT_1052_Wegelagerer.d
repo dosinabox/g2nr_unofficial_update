@@ -50,18 +50,18 @@ func void DIA_1052_Wegelagerer_Hello_Info()
 };
 
 
-instance DIA_Wegelagerer_ANGRIFF2(C_Info)
+instance DIA_1052_Wegelagerer_ANGRIFF(C_Info)
 {
 	npc = BDT_1052_Wegelagerer;
 	nr = 2;
-	condition = DIA_Wegelagerer_ANGRIFF2_Condition;
-	information = DIA_Wegelagerer_ANGRIFF2_Info;
+	condition = DIA_1052_Wegelagerer_ANGRIFF_Condition;
+	information = DIA_1052_Wegelagerer_ANGRIFF_Info;
 	important = TRUE;
 	permanent = TRUE;
 };
 
 
-func int DIA_Wegelagerer_ANGRIFF2_Condition()
+func int DIA_1052_Wegelagerer_ANGRIFF_Condition()
 {
 	if(!Npc_RefuseTalk(self) && C_NpcIsDown(BDT_1051))
 	{
@@ -69,7 +69,7 @@ func int DIA_Wegelagerer_ANGRIFF2_Condition()
 	};
 };
 
-func void DIA_Wegelagerer_ANGRIFF2_Info()
+func void DIA_1052_Wegelagerer_ANGRIFF_Info()
 {
 	AI_Output(self,other,"DIA_Wegelagerer_ANGRIFF2_06_00");	//Ладно, приятель. Сейчас ты получишь.
 	AI_StopProcessInfos(self);

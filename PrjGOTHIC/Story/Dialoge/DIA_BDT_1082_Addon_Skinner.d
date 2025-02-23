@@ -27,14 +27,13 @@ instance DIA_Addon_Skinner_Attentat(C_Info)
 	nr = 9;
 	condition = DIA_Addon_Skinner_Attentat_Condition;
 	information = DIA_Addon_Skinner_Attentat_Info;
-	permanent = FALSE;
 	description = "По поводу нападения...";
 };
 
 
 func int DIA_Addon_Skinner_Attentat_Condition()
 {
-	if(MIS_Judas == LOG_Running)
+	if(MIS_Judas == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -53,7 +52,6 @@ func void DIA_Addon_Skinner_ATTENTAT_ADDON_CONTRA()
 {
 	AI_Output(other,self,"DIA_Addon_Skinner_ATTENTAT_ADDON_CONTRA_15_00");	//Я хочу убрать Эстебана.
 	AI_Output(self,other,"DIA_Addon_Skinner_ATTENTAT_ADDON_CONTRA_08_01");	//Отлично.
-//	Judas_Counter += 1;
 	Info_ClearChoices(DIA_Addon_Skinner_Attentat);
 };
 
@@ -86,7 +84,7 @@ func int DIA_Addon_Skinner_Hi_Condition()
 
 func void DIA_Addon_Skinner_Hi_Info()
 {
-	if(Wld_IsTime(12,0,20,0) && (MIS_Judas == LOG_Running) && !Npc_KnowsInfo(other,DIA_Addon_Skinner_Attentat))
+	if(Wld_IsTime(12,0,20,0) && (MIS_Judas == LOG_RUNNING) && !Npc_KnowsInfo(other,DIA_Addon_Skinner_Attentat))
 	{
 		B_Say(self,self,"$AWAKE");
 	}

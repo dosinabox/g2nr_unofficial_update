@@ -40,8 +40,8 @@ func int DIA_Addon_BenchPirate_Hello_Condition()
 func void DIA_Addon_BenchPirate_Hello_Info()
 {
 	var int randy;
-	AI_Output(other,self,"DIA_Addon_Pir_7_Hello_15_00");	//Как дела?
 	randy = Hlp_Random(3);
+	AI_Output(other,self,"DIA_Addon_Pir_7_Hello_15_00");	//Как дела?
 	if(GregIsBack == TRUE)
 	{
 		if(!Npc_IsDead(Greg))
@@ -85,14 +85,13 @@ instance DIA_Addon_BenchPirate_Anheuern(C_Info)
 	nr = 11;
 	condition = DIA_Addon_BenchPirate_Anheuern_Condition;
 	information = DIA_Addon_BenchPirate_Anheuern_Info;
-	permanent = FALSE;
 	description = "Ты должен мне помочь.";
 };
 
 
 func int DIA_Addon_BenchPirate_Anheuern_Condition()
 {
-	if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+	if(MIS_Addon_Greg_ClearCanyon == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -119,7 +118,7 @@ instance DIA_Addon_BenchPirate_ComeOn(C_Info)
 
 func int DIA_Addon_BenchPirate_ComeOn_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Addon_Greg_ClearCanyon == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_BenchPirate_Anheuern))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Addon_Greg_ClearCanyon == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_BenchPirate_Anheuern))
 	{
 		return TRUE;
 	};
