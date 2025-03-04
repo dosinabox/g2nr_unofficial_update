@@ -98,9 +98,9 @@ func void ZS_Unconscious()
 		}
 		else if(C_IsNpc(self,SLD_810_Dar))
 		{
-			if(C_IsNpc(other,SLD_803_Cipher))
+			if(C_IsNpc(other,SLD_803_Cipher) && (Sipher_KnowsDarStoleHisWeed == TRUE))
 			{
-				if(Sipher_KnowsDarStoleHisWeed == TRUE)
+				if(!Npc_IsDead(Cipher))
 				{
 					Cipher.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
 					Dar_LostAgainstCipher = TRUE;

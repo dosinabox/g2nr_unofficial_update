@@ -349,12 +349,12 @@ func void DIA_Maleth_PROBLEME_schafe_probleme()
 	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Maleth_PROBLEME_schafe_probleme_08_01");	//(резко) “ы служишь в городской страже или нет? “огда сделай что-нибудь с этими ублюдками в черных р€сах.
-	};
-	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+	}
+	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Maleth_PROBLEME_schafe_probleme_08_02");	//(зло) ¬ы, гр€зные наемники, думаете только об одном: как переложить деньги других людей в свои карманы.
-	};
-	if(other.guild == GIL_KDF)
+	}
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Maleth_PROBLEME_schafe_probleme_08_03");	//¬ы, могущественные маги из монастыр€, должны что-нибудь сделать с этими парн€ми в черных р€сах.
 	};
@@ -433,10 +433,10 @@ func void DIA_Maleth_GEHSTOCK_ok()
 	AI_EquipBestMeleeWeapon(self);
 	AI_Output(self,other,"DIA_Maleth_GEHSTOCK_ok_08_01");	//Ћадно. ѕросто иди на запад, вон к тому лесу. “ам ты увидишь ущелье.
 	AI_Output(self,other,"DIA_Maleth_GEHSTOCK_ok_08_02");	//¬ пещере внизу ты наверн€ка найдешь что-нибудь.
-	if(!Npc_IsDead(BDT_1024_MalethsBandit))
+	if(!Npc_IsDead(MalethsBandit))
 	{
 		B_LogEntry(TOPIC_MalethsGehstock,"ћалет рассказал мне, что в пещере к западу от фермы Ћобарта находитс€ убежище бандитов.");
-		CreateInvItems(BDT_1024_MalethsBandit,ItMi_MalethsBanditGold,1);
+		CreateInvItems(MalethsBandit,ItMi_MalethsBanditGold,1);
 	}
 	else
 	{

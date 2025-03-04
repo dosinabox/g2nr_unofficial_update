@@ -257,7 +257,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Igaraz.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		Igaraz.aivar[AIV_MM_FollowTime] = 120;
 		CreateInvItems(Igaraz,ItKe_MagicChest,1);
-		AI_Teleport(Igaraz,"NW_TAVERNE_BIGFARM_05");
+		AI_Teleport(Igaraz,"NW_TAVERNE_TROLLAREA_05");
 		B_StartOtherRoutine(Igaraz,"CONTEST");
 		B_StartOtherRoutine(NOV_607,"EXCHANGE");
 	};
@@ -542,6 +542,7 @@ func void DIA_Pyrokar_OATH_Info()
 		else
 		{
 			B_StartOtherRoutine(Igaraz,"START");
+			B_StartOtherRoutine(NOV_607,"START");
 			Igaraz.aivar[AIV_DropDeadAndKill] = FALSE;
 			Igaraz.aivar[AIV_NewsOverride] = FALSE;
 			Igaraz.aivar[AIV_IgnoresArmor] = FALSE;
@@ -577,7 +578,6 @@ func void DIA_Pyrokar_OATH_Info()
 		}
 		else
 		{
-			B_StartOtherRoutine(NOV_607,"START");
 			B_StartOtherRoutine(Agon,"START");
 			Agon.aivar[AIV_DropDeadAndKill] = FALSE;
 			Agon.aivar[AIV_NewsOverride] = FALSE;
@@ -1593,6 +1593,10 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	if(!Npc_IsDead(Gorax))
 	{
 		CreateInvItems(Gorax,ItMi_RuneBlank,1);
+	};
+	if(Sipher_KnowsDarStoleHisWeed == TRUE)
+	{
+		B_StartOtherRoutine(Dar,"START");
 	};
 	Log_CreateTopic(TOPIC_DRACHENJAGD,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_DRACHENJAGD,LOG_RUNNING);

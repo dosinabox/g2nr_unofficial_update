@@ -30,6 +30,13 @@ func void ZS_RansackBody_End()
 				GarwigThiefOneTime = FALSE;
 			};
 		}
+		else if(C_IsNpc(self,SLD_803_Cipher))
+		{
+			if(C_IsNpc(target,SLD_810_Dar))
+			{
+				B_TransferAllInvItems(target,self,ItMi_Joint);
+			};
+		}
 		else if(C_IsNpc(self,SLD_804_Rod))
 		{
 			if(Npc_HasItems(target,ItMw_2h_Rod))

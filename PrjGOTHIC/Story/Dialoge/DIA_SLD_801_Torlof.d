@@ -27,7 +27,6 @@ instance DIA_Torlof_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Torlof_HALLO_Condition;
 	information = DIA_Torlof_HALLO_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -52,7 +51,6 @@ instance DIA_Torlof_WannaJoin(C_Info)
 	nr = 2;
 	condition = DIA_Torlof_WannaJoin_Condition;
 	information = DIA_Torlof_WannaJoin_Info;
-	permanent = FALSE;
 	description = "Я хочу присоединиться к наемникам!";
 };
 
@@ -85,7 +83,7 @@ instance DIA_Torlof_Probe(C_Info)
 
 func int DIA_Torlof_Probe_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Torlof_WannaJoin) && (hero.guild == GIL_NONE) && (Torlof_Go == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Torlof_WannaJoin) && (other.guild == GIL_NONE) && (Torlof_Go == FALSE))
 	{
 		return TRUE;
 	};
@@ -123,14 +121,13 @@ instance DIA_Torlof_Respekt(C_Info)
 	nr = 4;
 	condition = DIA_Torlof_Respekt_Condition;
 	information = DIA_Torlof_Respekt_Info;
-	permanent = FALSE;
 	description = "Как мне заслужить уважение других наемников?";
 };
 
 
 func int DIA_Torlof_Respekt_Condition()
 {
-	if((Torlof_Go == TRUE) && (hero.guild == GIL_NONE))
+	if((Torlof_Go == TRUE) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -159,7 +156,6 @@ instance DIA_Torlof_Duellregeln(C_Info)
 	nr = 5;
 	condition = DIA_Torlof_Duellregeln_Condition;
 	information = DIA_Torlof_Duellregeln_Info;
-	permanent = FALSE;
 	description = "Каковы правила дуэли?";
 };
 
@@ -197,7 +193,6 @@ instance DIA_Torlof_DeineStimme(C_Info)
 	nr = 6;
 	condition = DIA_Torlof_DeineStimme_Condition;
 	information = DIA_Torlof_DeineStimme_Info;
-	permanent = FALSE;
 	description = "А как насчет тебя? Ты проголосуешь за меня?";
 };
 
@@ -232,7 +227,7 @@ instance DIA_Torlof_RUF(C_Info)
 
 func int DIA_Torlof_RUF_Condition()
 {
-	if((Torlof_Go == TRUE) && (Torlof_GenugStimmen == FALSE) && (hero.guild == GIL_NONE))
+	if((Torlof_Go == TRUE) && (Torlof_GenugStimmen == FALSE) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -366,7 +361,7 @@ func void DIA_Torlof_RUF_Info()
 	{
 		Points_Sld += 1;
 	}
-	else if(Dar_LostAgainstCipher == TRUE)
+	else if(Npc_KnowsInfo(other,DIA_Cipher_DarDieb))
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_21");	//Дар говорит, что ты трепач. Но к его голосу здесь не особенно прислушиваются.
 	};
@@ -450,14 +445,13 @@ instance DIA_Torlof_Aufgaben(C_Info)
 	nr = 8;
 	condition = DIA_Torlof_Aufgaben_Condition;
 	information = DIA_Torlof_Aufgaben_Info;
-	permanent = FALSE;
 	description = "А каковы обязанности наемника?";
 };
 
 
 func int DIA_Torlof_Aufgaben_Condition()
 {
-	if((Torlof_Go == TRUE) && (hero.guild == GIL_NONE))
+	if((Torlof_Go == TRUE) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -619,7 +613,7 @@ func void DIA_Torlof_SekobSuccess_Info()
 		};
 		MIS_Torlof_HolPachtVonSekob = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Torlof_SekobsKohlebekommen);
-		if(hero.guild == GIL_NONE)
+		if(other.guild == GIL_NONE)
 		{
 			B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
 		};
@@ -638,7 +632,6 @@ instance DIA_Torlof_BengarSuccess(C_Info)
 	nr = 10;
 	condition = DIA_Torlof_BengarSuccess_Condition;
 	information = DIA_Torlof_BengarSuccess_Info;
-	permanent = FALSE;
 	description = "Я решил проблемы Бенгара с ополчением.";
 };
 
@@ -667,7 +660,7 @@ func void DIA_Torlof_BengarSuccess_Info()
 	};
 	MIS_Torlof_BengarMilizKlatschen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Bengar_MILIZKLATSCHEN);
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
 	};
@@ -681,7 +674,6 @@ instance DIA_Torlof_Welcome(C_Info)
 	nr = 11;
 	condition = DIA_Torlof_Welcome_Condition;
 	information = DIA_Torlof_Welcome_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -736,7 +728,6 @@ instance DIA_Torlof_TheOtherMission(C_Info)
 	nr = 11;
 	condition = DIA_Torlof_TheOtherMission_Condition;
 	information = DIA_Torlof_TheOtherMission_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -776,7 +767,6 @@ instance DIA_Torlof_Dragons(C_Info)
 	nr = 12;
 	condition = DIA_Torlof_Dragons_Condition;
 	information = DIA_Torlof_Dragons_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -802,7 +792,6 @@ instance DIA_Torlof_TooLate(C_Info)
 	nr = 13;
 	condition = DIA_Torlof_TooLate_Condition;
 	information = DIA_Torlof_TooLate_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -830,7 +819,6 @@ instance DIA_Torlof_WhatCanYouTeach(C_Info)
 	nr = 140;
 	condition = DIA_Torlof_WhatCanYouTeach_Condition;
 	information = DIA_Torlof_WhatCanYouTeach_Info;
-	permanent = FALSE;
 	description = "Ты можешь помочь мне улучшить мои способности?";
 };
 

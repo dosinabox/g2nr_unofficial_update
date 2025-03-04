@@ -184,10 +184,10 @@ func void TA_Smoke_Waterpipe(var int start_h,var int start_m,var int stop_h,var 
 	TA_Min(self,start_h,start_m,stop_h,stop_m,ZS_Smoke_Waterpipe,waypoint);
 };
 
-func void TA_Spit_Fire(var int start_h,var int start_m,var int stop_h,var int stop_m,var string waypoint)
+/*func void TA_Spit_Fire(var int start_h,var int start_m,var int stop_h,var int stop_m,var string waypoint)
 {
 	TA_Min(self,start_h,start_m,stop_h,stop_m,ZS_Spit_Fire,waypoint);
-};
+};*/
 
 func void TA_Stand_ArmsCrossed(var int start_h,var int start_m,var int stop_h,var int stop_m,var string waypoint)
 {

@@ -282,6 +282,7 @@ var C_Npc TowerBandit2;
 var C_Npc TowerBandit3;
 var C_Npc SLD_815;
 var C_Npc SLD_817;
+var C_Npc MalethsBandit;
 
 func void B_InitNpc_NW()
 {
@@ -311,6 +312,7 @@ func void B_InitNpc_NW()
 	BridgeBandit = Hlp_GetNpc(BDT_1020_Bandit_L);
 	BDT_1051 = Hlp_GetNpc(BDT_1051_Wegelagerer);
 	BDT_1052 = Hlp_GetNpc(BDT_1052_Wegelagerer);
+	MalethsBandit = Hlp_GetNpc(BDT_1024_MalethsBandit);
 	//ферма Онара
 	Lee = Hlp_GetNpc(SLD_800_Lee);
 	Torlof = Hlp_GetNpc(SLD_801_Torlof);
