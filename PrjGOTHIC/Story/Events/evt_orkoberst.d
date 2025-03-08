@@ -1,5 +1,5 @@
 
-func void evt_orkoberst()
+func void EVT_OrkOberst()
 {
 	if(OrkSturmDI == FALSE)
 	{
@@ -61,5 +61,12 @@ func void evt_orkoberst()
 		B_LogEntry(TOPIC_HallenVonIrdorath,"Полковник орков - крепкий орешек. Где-то в его тронном зале должен быть какой-то секрет.");
 		OrkSturmDI = TRUE;
 	};
+};
+
+var int EVT_OrkOberst_Switch_Found;
+
+func void EVT_OrkOberst_Switch_s1()
+{
+	EVT_OrkOberst_Switch_Found = TRUE;
 };
 

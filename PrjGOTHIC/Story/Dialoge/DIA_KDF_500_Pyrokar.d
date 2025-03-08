@@ -1594,10 +1594,7 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	{
 		CreateInvItems(Gorax,ItMi_RuneBlank,1);
 	};
-	if(Sipher_KnowsDarStoleHisWeed == TRUE)
-	{
-		B_StartOtherRoutine(Dar,"START");
-	};
+	B_StartOtherRoutine(Dar,"START");
 	Log_CreateTopic(TOPIC_DRACHENJAGD,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_DRACHENJAGD,LOG_RUNNING);
 	B_LogEntry(TOPIC_DRACHENJAGD,"“еперь € готов к встрече с драконами. √лаз »нноса поможет мне уничтожить их. Ќо прежде чем вступать в битву с драконами, € должен не забыть надеть его. я должен поговорить с драконами, прежде чем начинать сражение. ѕроблема состоит в том, что √лаз тер€ет свою силу каждый раз, когда € разговариваю с одним из них. „тобы восстановить силу этого амулета, мне необходимо сердце дракона и пуста€ мензурка. я должен объединить ослабленный камень и экстракт из драконьего сердца на алхимическом столе, прежде чем противосто€ть другому дракону.");

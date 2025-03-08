@@ -1,14 +1,14 @@
 
-var int EVT_CAVALORNSGOBBOS_FUNC_OneTime;
+var int EVT_CavalornsGobbos_Func_OneTime;
 
-func void evt_cavalornsgobbos_func()
+func void EVT_CavalornsGobbos_Func()
 {
-	if(EVT_CAVALORNSGOBBOS_FUNC_OneTime == FALSE)
+	if(EVT_CavalornsGobbos_Func_OneTime == FALSE)
 	{
 		Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_GOBBO_01");
 		Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_GOBBO_02");
 		Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_GOBBO_02");
-		EVT_CAVALORNSGOBBOS_FUNC_OneTime = TRUE;
+		EVT_CavalornsGobbos_Func_OneTime = TRUE;
 	};
 };
 

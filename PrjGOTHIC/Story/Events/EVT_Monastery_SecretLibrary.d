@@ -1,5 +1,5 @@
 
-func void evt_monastery_secretlibrary_s1()
+func void EVT_Monastery_SecretLibrary_s1()
 {
 	if(SecretLibraryIsOpen == FALSE)
 	{

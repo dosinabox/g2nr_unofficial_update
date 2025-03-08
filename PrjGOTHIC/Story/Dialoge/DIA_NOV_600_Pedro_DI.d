@@ -143,7 +143,7 @@ func void DIA_Pedro_DI_ArrivedAtShip_Info()
 	AI_Output(self,other,"DIA_Pedro_DI_ArrivedAtShip_09_03");	//Да, конечно. С чего мне начать?
 	Info_ClearChoices(DIA_Pedro_DI_ArrivedAtShip);
 	Info_AddChoice(DIA_Pedro_DI_ArrivedAtShip,"Я услышал достаточно. Иди, найди себе место на моем корабле.",DIA_Pedro_DI_ArrivedAtShip_Back);
-	if(EVT_ORKOBERST_SWITCH_FOUND == FALSE)
+	if(EVT_OrkOberst_Switch_Found == FALSE)
 	{
 		Info_AddChoice(DIA_Pedro_DI_ArrivedAtShip,"Как мне попасть внутрь этого острова?",DIA_Pedro_DI_ArrivedAtShip_Innere);
 	};
