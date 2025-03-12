@@ -1,5 +1,5 @@
 
-func void evt_ornament_switch_bigfarm_01_func()
+func void EVT_Ornament_Switch_BigFarm_01_Func()
 {
 	if(Ornament_Switched_Bigfarm == FALSE)
 	{
@@ -18,7 +18,7 @@ func void evt_ornament_switch_bigfarm_01_func()
 	};
 };
 
-func void evt_ornament_switch_farm_01_func()
+func void EVT_Ornament_Switch_Farm_01_Func()
 {
 	if(Ornament_Switched_Farm == FALSE)
 	{
@@ -30,7 +30,7 @@ func void evt_ornament_switch_farm_01_func()
 	};
 };
 
-func void evt_ornament_switch_forest_01_func()
+func void EVT_Ornament_Switch_Forest_01_Func()
 {
 	if(Ornament_Switched_Forest == FALSE)
 	{

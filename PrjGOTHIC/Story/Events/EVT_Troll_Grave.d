@@ -1,5 +1,5 @@
 
-func void evt_troll_grave_01()
+func void EVT_Troll_Grave_01()
 {
 	Wld_InsertNpc(SkeletonMage,"NW_TROLLAREA_TROLLROCKCAVE_07");
 	Wld_InsertNpc(SkeletonMage,"NW_TROLLAREA_TROLLROCKCAVE_08");
