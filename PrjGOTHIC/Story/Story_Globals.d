@@ -262,7 +262,7 @@ var int SCUsed_ADW_TELEPORTSTATION_SOUTHWEST;
 var int SCUsed_ADW_TELEPORTSTATION_PIRATES;
 //var int SCUsed_ADW_TELEPORTSTATION_RAVENTELEPORT_OUT;
 var int SCUsed_ADW_TELEPORTSTATION_PIRATES_JACKSMONSTER;
-var int SC_ADW_ActivatedAllTelePortStones;
+var int SC_ADW_ActivatedAllTeleportStones;
 var int NefariusADW_Talk2Saturas;
 var int SC_KnowsRavensGoldmine;
 var int nDocID;

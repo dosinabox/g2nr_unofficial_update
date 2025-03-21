@@ -372,7 +372,7 @@ Story\B_Story\B_SetLastUsedMobsi.d
 Story\B_Story\B_GiveDeathInv.d
 Story\B_Content\B_DragonKillCounter.d
 Story\Events\B_Event_Portal_EarthQuake.d
-Story\Events\evt_teleportstation_func.d
+Story\Events\EVT_TeleportStation.d
 AI\Human\TA.d
 AI\Human\TA_Human\ZS_Announce_Herold.d
 AI\Human\TA_Human\ZS_Bandit.d
@@ -1773,7 +1773,7 @@ Story\Events\EVT_Final_Door.d
 Story\Events\evt_right_room_01_skel_01.d
 Story\Events\EVT_Monastery_SecretLibrary.d
 Story\Events\EVT_OC_MainGate.d
-Story\Events\EVT_OrkOberst.d
+Story\Events\EVT_OrkOberst1.d
 Story\Events\EVT_Ornament_Switch.d
 Story\Events\EVT_Troll_Grave.d
 Story\Events\EVT_Truhe_OW.d
