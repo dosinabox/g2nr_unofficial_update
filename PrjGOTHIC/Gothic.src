@@ -1770,10 +1770,10 @@ Story\Events\EVT_CavalornsGobbos.d
 Story\Events\EVT_Crypt.d
 Story\Events\EVT_DIBridge.d
 Story\Events\EVT_Final_Door.d
-Story\Events\evt_right_room_01_skel_01.d
+Story\Events\EVT_DIRooms.d
 Story\Events\EVT_Monastery_SecretLibrary.d
 Story\Events\EVT_OC_MainGate.d
-Story\Events\EVT_OrkOberst1.d
+Story\Events\EVT_OrkOberst.d
 Story\Events\EVT_Ornament_Switch.d
 Story\Events\EVT_Troll_Grave.d
 Story\Events\EVT_Truhe_OW.d
