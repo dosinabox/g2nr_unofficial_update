@@ -34,6 +34,13 @@ func void ZS_Unconscious()
 					MIS_RodSword = LOG_OBSOLETE;
 				};
 			}
+			else if(C_IsNpc(self,PIR_1364_Addon_Pirat))
+			{
+				if(MIS_Addon_GrogForRoastPirate == LOG_RUNNING)
+				{
+					MIS_Addon_GrogForRoastPirate = LOG_OBSOLETE;
+				};
+			}
 			else if(C_IsNpc(self,VLK_421_Valentino))
 			{
 				Valentino_Day = B_GetDayPlus();
@@ -91,13 +98,10 @@ func void ZS_Unconscious()
 		}
 		else if(C_IsNpc(self,SLD_810_Dar))
 		{
-			if(C_IsNpc(other,SLD_803_Cipher))
+			if(C_IsNpc(other,SLD_803_Cipher) && (Sipher_KnowsDarStoleHisWeed == TRUE))
 			{
-				if(Sipher_KnowsDarStoleHisWeed == TRUE)
-				{
-					Cipher.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
-					Dar_LostAgainstCipher = TRUE;
-				};
+				other.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
+				Dar_LostAgainstCipher = TRUE;
 			};
 		};
 	};

@@ -356,6 +356,7 @@ func void DIA_Cipher_DarDieb_Info()
 		{
 			AI_Output(other,self,"DIA_Cipher_DarDieb_15_06");	//Çà êóõíåé, íà óãëó...
 			AI_Output(self,other,"DIA_Cipher_DarDieb_07_07");	//ß ÏÐÈÊÎÍ×Ó ÅÃÎ!
+			Npc_ExchangeRoutine(Dar,"NOSMOKING");
 			AI_StopProcessInfos(self);
 			other.aivar[AIV_INVINCIBLE] = FALSE;
 			if(Npc_GetDistToNpc(self,Dar) > FIGHT_DIST_CANCEL)

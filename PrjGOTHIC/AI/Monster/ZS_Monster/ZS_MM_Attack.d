@@ -263,11 +263,14 @@ func void ZS_MM_Attack_End()
 		return;
 	};
 	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
-	if(Npc_IsDead(target) && C_WantToEat(self,target))
+	if(Hlp_IsValidNpc(target))
 	{
-		Npc_ClearAIQueue(self);
-		AI_StartState(self,ZS_MM_EatBody,0,"");
-		return;
+		if(Npc_IsDead(target) && C_WantToEat(self,target))
+		{
+			Npc_ClearAIQueue(self);
+			AI_StartState(self,ZS_MM_EatBody,0,"");
+			return;
+		};
 	};
 };
 

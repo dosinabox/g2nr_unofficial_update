@@ -37,7 +37,6 @@ instance DIA_Addon_Edgor_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Edgor_Hi_Condition;
 	information = DIA_Addon_Edgor_Hi_Info;
-	permanent = FALSE;
 	description = "Как дела?";
 };
 
@@ -71,7 +70,6 @@ instance DIA_Addon_Edgor_Franco(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Edgor_Franco_Condition;
 	information = DIA_Addon_Edgor_Franco_Info;
-	permanent = FALSE;
 	description = "Как Франко сделался старшим?";
 };
 
@@ -98,14 +96,13 @@ instance DIA_Addon_Edgor_MIS2(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Edgor_MIS2_Condition;
 	information = DIA_Addon_Edgor_MIS2_Info;
-	permanent = FALSE;
 	description = "Франко послал меня по поводу этой каменной таблички. Ты ее нашел?";
 };
 
 
 func int DIA_Addon_Edgor_MIS2_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_Hi) && (MIS_HlpEdgor == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_Hi) && (MIS_HlpEdgor == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -127,14 +124,13 @@ instance DIA_Addon_Edgor_Weg(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Edgor_Weg_Condition;
 	information = DIA_Addon_Edgor_Weg_Info;
-	permanent = FALSE;
 	description = "А где находится это старое здание?";
 };
 
 
 func int DIA_Addon_Edgor_Weg_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_MIS2) && !Npc_HasItems(other,ItMi_Addon_Stone_04) && (MIS_HlpEdgor == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_MIS2) && !Npc_HasItems(other,ItMi_Addon_Stone_04) && (MIS_HlpEdgor == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -156,7 +152,6 @@ instance DIA_Addon_Edgor_Found(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Edgor_Found_Condition;
 	information = DIA_Addon_Edgor_Found_Info;
-	permanent = FALSE;
 	description = "Я нашел каменную табличку!";
 };
 
@@ -190,7 +185,6 @@ instance DIA_Addon_Edgor_Teach(C_Info)
 	nr = 9;
 	condition = DIA_Addon_Edgor_Teach_Condition;
 	information = DIA_Addon_Edgor_Teach_Info;
-	permanent = FALSE;
 	description = "Можешь научить меня кое-чему?";
 };
 

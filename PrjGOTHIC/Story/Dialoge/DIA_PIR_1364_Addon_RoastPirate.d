@@ -21,9 +21,6 @@ func void DIA_Addon_RoastPirate_EXIT_Info()
 };
 
 
-var int PIR_1364_Grog;
-var int RoastGrog_OneTime;
-
 instance DIA_Addon_RoastPirate_GimmeGrog(C_Info)
 {
 	npc = PIR_1364_Addon_Pirat;
@@ -37,7 +34,7 @@ instance DIA_Addon_RoastPirate_GimmeGrog(C_Info)
 
 func int DIA_Addon_RoastPirate_GimmeGrog_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && Npc_WasInState(self,ZS_Roast_Scavenger) && (PIR_1364_Grog == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_Addon_GrogForRoastPirate != LOG_SUCCESS) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE))
 	{
 		return TRUE;
 	};
@@ -45,7 +42,10 @@ func int DIA_Addon_RoastPirate_GimmeGrog_Condition()
 
 func void DIA_Addon_RoastPirate_GimmeGrog_Info()
 {
-	AI_Output(self,other,"DIA_Addon_PIR_6_GimmeGrog_06_00");	//Жар костра вызывает у меня жажду.
+	if(Npc_WasInState(self,ZS_Roast_Scavenger))
+	{
+		AI_Output(self,other,"DIA_Addon_PIR_6_GimmeGrog_06_00");	//Жар костра вызывает у меня жажду.
+	};
 	AI_Output(self,other,"DIA_Addon_PIR_6_GimmeGrog_06_01");	//У тебя не найдется для меня грога?
 	Info_ClearChoices(DIA_Addon_RoastPirate_GimmeGrog);
 	Info_AddChoice(DIA_Addon_RoastPirate_GimmeGrog,"Нет.",DIA_Addon_RoastPirate_GimmeGrog_DontHaveAny);
@@ -59,12 +59,12 @@ func void DIA_Addon_RoastPirate_GimmeGrog_DontHaveAny()
 {
 	AI_Output(other,self,"DIA_Addon_PIR_6_GimmeGrog_DontHaveAny_15_00");	//Нет.
 	AI_Output(self,other,"DIA_Addon_PIR_6_GimmeGrog_DontHaveAny_06_00");	//Проклятье! Умираю от жажды...
-	if(RoastGrog_OneTime == FALSE)
+	if(MIS_Addon_GrogForRoastPirate == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_RoastGrog,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_RoastGrog,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_RoastGrog,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_RoastGrog,"Пирату у костра нужен грог.");
-		RoastGrog_OneTime = TRUE;
+		MIS_Addon_GrogForRoastPirate = LOG_RUNNING;
 	};
 	Info_ClearChoices(DIA_Addon_RoastPirate_GimmeGrog);
 	AI_StopProcessInfos(self);
@@ -76,14 +76,17 @@ func void DIA_Addon_RoastPirate_GimmeGrog_HereIsGrog()
 	B_GiveInvItems(other,self,ItFo_Addon_Grog,1);
 	AI_Output(self,other,"DIA_Addon_PIR_6_GimmeGrog_HereIsGrog_06_01");	//Спасибо, приятель!
 	B_UseItem(self,ItFo_Addon_Grog);
-	PIR_1364_Grog = TRUE;
-	if(RoastGrog_OneTime == TRUE)
+	if(MIS_Addon_GrogForRoastPirate == LOG_RUNNING)
 	{
 		B_LogEntry(TOPIC_Addon_RoastGrog,"Грог не дал пирату умереть от жажды.");
 	};
-	Info_ClearChoices(DIA_Addon_RoastPirate_GimmeGrog);
-	Npc_ExchangeRoutine(self,"START");
+	MIS_Addon_GrogForRoastPirate = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
+	Info_ClearChoices(DIA_Addon_RoastPirate_GimmeGrog);
+	if(self.aivar[AIV_PARTYMEMBER] == FALSE)
+	{
+		Npc_ExchangeRoutine(self,"START");
+	};
 };
 
 
@@ -120,7 +123,6 @@ instance DIA_Addon_RoastPirate_Francis(C_Info)
 	nr = 3;
 	condition = DIA_Addon_RoastPirate_Francis_Condition;
 	information = DIA_Addon_RoastPirate_Francis_Info;
-	permanent = FALSE;
 	description = "Что ты мне можешь сказать о Фрэнсисе?";
 };
 
@@ -168,8 +170,8 @@ func int DIA_Addon_RoastPirate_PERM_Condition()
 func void DIA_Addon_RoastPirate_PERM_Info()
 {
 	var int randy;
-	AI_Output(other,self,"DIA_Addon_Matt_Job_15_00");	//Что-нибудь еще?
 	randy = Hlp_Random(3);
+	AI_Output(other,self,"DIA_Addon_Matt_Job_15_00");	//Что-нибудь еще?
 	if(GregIsBack == TRUE)
 	{
 		if(!Npc_IsDead(Greg))
@@ -213,14 +215,13 @@ instance DIA_Addon_RoastPirate_Anheuern(C_Info)
 	nr = 11;
 	condition = DIA_Addon_RoastPirate_Anheuern_Condition;
 	information = DIA_Addon_RoastPirate_Anheuern_Info;
-	permanent = FALSE;
 	description = "Ты должен мне помочь.";
 };
 
 
 func int DIA_Addon_RoastPirate_Anheuern_Condition()
 {
-	if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+	if(MIS_Addon_Greg_ClearCanyon == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -247,7 +248,7 @@ instance DIA_Addon_RoastPirate_ComeOn(C_Info)
 
 func int DIA_Addon_RoastPirate_ComeOn_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Addon_Greg_ClearCanyon == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_RoastPirate_Anheuern))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Addon_Greg_ClearCanyon == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_RoastPirate_Anheuern))
 	{
 		return TRUE;
 	};

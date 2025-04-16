@@ -56,7 +56,7 @@ func void DIA_Kati_SLDNOCHDA_Info()
 	if(Akils_SLDStillthere == FALSE)
 	{
 		Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
+		Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_RUNNING);
 		B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
 		Akils_SLDStillthere = TRUE;
 	};
@@ -70,7 +70,6 @@ instance DIA_Kati_HALLO(C_Info)
 	nr = 5;
 	condition = DIA_Kati_HALLO_Condition;
 	information = DIA_Kati_HALLO_Info;
-	permanent = FALSE;
 	description = "С тобой все в порядке?";
 };
 
@@ -112,7 +111,6 @@ instance DIA_Kati_ESSEN(C_Info)
 	nr = 12;
 	condition = DIA_Kati_ESSEN_Condition;
 	information = DIA_Kati_ESSEN_Info;
-	permanent = FALSE;
 	description = "Акил говорит, что ты можешь накормить меня.";
 };
 
@@ -148,14 +146,13 @@ instance DIA_Kati_Baltram(C_Info)
 	nr = 4;
 	condition = DIA_Kati_Baltram_Condition;
 	information = DIA_Kati_Baltram_Info;
-	permanent = FALSE;
 	description = "Меня прислал Бальтрам. Я должен забрать посылку для него.";
 };
 
 
 func int DIA_Kati_Baltram_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Kati_HALLO) && Npc_IsDead(Akil) && (MIS_Baltram_ScoutAkil == LOG_Running) && (Lieferung_Geholt == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Kati_HALLO) && Npc_IsDead(Akil) && (MIS_Baltram_ScoutAkil == LOG_RUNNING) && (Lieferung_Geholt == FALSE))
 	{
 		return TRUE;
 	};
@@ -175,7 +172,6 @@ instance DIA_Kati_BAUERNAUFSTAND(C_Info)
 	nr = 6;
 	condition = DIA_Kati_BAUERNAUFSTAND_Condition;
 	information = DIA_Kati_BAUERNAUFSTAND_Info;
-	permanent = FALSE;
 	description = "Почему вы не противостоите тирании Онара?";
 };
 
@@ -202,7 +198,6 @@ instance DIA_Kati_ANDEREHOEFE(C_Info)
 	nr = 7;
 	condition = DIA_Kati_ANDEREHOEFE_Condition;
 	information = DIA_Kati_ANDEREHOEFE_Info;
-	permanent = FALSE;
 	description = "Где находятся фермы Бенгара и Секоба?";
 };
 
@@ -228,7 +223,6 @@ instance DIA_Kati_HIERWEG(C_Info)
 	nr = 9;
 	condition = DIA_Kati_HIERWEG_Condition;
 	information = DIA_Kati_HIERWEG_Info;
-	permanent = FALSE;
 	description = "А вы не думали о том, чтобы уехать отсюда?";
 };
 
@@ -256,7 +250,6 @@ instance DIA_Kati_PASS(C_Info)
 	nr = 10;
 	condition = DIA_Kati_PASS_Condition;
 	information = DIA_Kati_PASS_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о Проходе?";
 };
 

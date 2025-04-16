@@ -74,9 +74,9 @@ func void DIA_Addon_Erol_what_Info()
 	if(TotalStoneplatesForVatras <= 25)
 	{
 		Log_CreateTopic(TOPIC_Addon_Erol,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_Erol,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_Erol,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_Erol,"На торговца Эрола напали бандиты. Они забрали все его товары. Эрол хочет, чтобы я вернул похищенные каменные таблички. Бандиты расположились на мосту неподалеку от таверны 'Мертвая гарпия'.");
-		MIS_Addon_Erol_BanditStuff = LOG_Running;
+		MIS_Addon_Erol_BanditStuff = LOG_RUNNING;
 	};
 	Info_ClearChoices(DIA_Addon_Erol_what);
 	Info_AddChoice(DIA_Addon_Erol_what,"Так это твои вещи лежат под мостом?",DIA_Addon_Erol_what_dein);
@@ -189,7 +189,7 @@ instance DIA_Addon_Erol_FernandosWeapons(C_Info)
 
 func int DIA_Addon_Erol_FernandosWeapons_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Erol_what) && (MIS_Vatras_FindTheBanditTrader == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Addon_Erol_what) && (MIS_Vatras_FindTheBanditTrader == LOG_RUNNING))
 	{
 		return TRUE;
 	};

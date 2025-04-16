@@ -42,7 +42,7 @@ func int DIA_Malak_HALLO_Condition()
 func void DIA_Malak_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Malak_HALLO_15_00");	//Все в порядке?
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Malak_HALLO_08_01");	//Еще один поденный рабочий, который не знает, чем заняться? Нет проблем. Поговори с нашим фермером Бенгаром.
 	}
@@ -283,7 +283,7 @@ func int DIA_Malak_FLEEFROMPASS_Condition()
 func void DIA_Malak_FLEEFROMPASS_Info()
 {
 	AI_Output(other,self,"DIA_Malak_FLEEFROMPASS_15_00");	//Что ты делаешь здесь?
-	if((NpcObsessedByDMT_Malak == FALSE) && (hero.guild == GIL_KDF))
+	if((NpcObsessedByDMT_Malak == FALSE) && (other.guild == GIL_KDF))
 	{
 		B_NpcObsessedByDMT(self);
 	}
@@ -294,9 +294,9 @@ func void DIA_Malak_FLEEFROMPASS_Info()
 		AI_Output(other,self,"DIA_Malak_FLEEFROMPASS_15_03");	//Могу.
 		if(MIS_GetMalakBack == FALSE)
 		{
-			MIS_GetMalakBack = LOG_Running;
+			MIS_GetMalakBack = LOG_RUNNING;
 			Log_CreateTopic(TOPIC_BengarMALAK,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_BengarMALAK,LOG_Running);
+			Log_SetTopicStatus(TOPIC_BengarMALAK,LOG_RUNNING);
 		};
 		B_LogEntry(TOPIC_BengarMALAK,"Малак спрятался в укрепленном месте на юге, потому что боится тварей, приходящих на его пастбища из Прохода.");
 		B_GivePlayerXP(XP_FoundMalakFLEEFROMPASS);
@@ -313,9 +313,9 @@ func void B_Malak_DementorComment()
 	{
 		if(MIS_GetMalakBack == FALSE)
 		{
-			MIS_GetMalakBack = LOG_Running;
+			MIS_GetMalakBack = LOG_RUNNING;
 			Log_CreateTopic(TOPIC_BengarMALAK,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_BengarMALAK,LOG_Running);
+			Log_SetTopicStatus(TOPIC_BengarMALAK,LOG_RUNNING);
 		};
 		B_LogEntry(TOPIC_BengarMALAK,"Эти фигуры в черных рясах повсюду! Малак никуда не уйдет, пока я не разберусь с одним из них прямо около его убежища.");
 		Malak_DementorCommentLog = TRUE;
@@ -351,7 +351,7 @@ instance DIA_Malak_Heilung(C_Info)
 
 func int DIA_Malak_Heilung_Condition()
 {
-	if((NpcObsessedByDMT_Malak == TRUE) && (NpcObsessedByDMT == FALSE) && (hero.guild == GIL_KDF) && (Kapitel >= 3))
+	if((NpcObsessedByDMT_Malak == TRUE) && (NpcObsessedByDMT == FALSE) && (other.guild == GIL_KDF) && (Kapitel >= 3))
 	{
 		return TRUE;
 	};
@@ -395,7 +395,7 @@ instance DIA_Malak_PERMCASTLE(C_Info)
 
 func int DIA_Malak_PERMCASTLE_Condition()
 {
-	if((Npc_GetDistToWP(self,"CASTLEMINE") < 4000) && (MalakIsBackToBengar == FALSE) && Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && (NpcObsessedByDMT_Malak == FALSE) && (hero.guild != GIL_KDF) && (Kapitel >= 3))
+	if((Npc_GetDistToWP(self,"CASTLEMINE") < 4000) && (MalakIsBackToBengar == FALSE) && Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && (NpcObsessedByDMT_Malak == FALSE) && (other.guild != GIL_KDF) && (Kapitel >= 3))
 	{
 		return TRUE;
 	};
@@ -421,7 +421,7 @@ instance DIA_Malak_BACKTOBENGAR(C_Info)
 
 func int DIA_Malak_BACKTOBENGAR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && Npc_KnowsInfo(other,DIA_Bengar_ALLEIN) && !Npc_IsDead(Bengar) && (NpcObsessedByDMT_Malak == FALSE) && (hero.guild != GIL_KDF) && (Kapitel >= 3) && (MalakIsBackToBengar == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && Npc_KnowsInfo(other,DIA_Bengar_ALLEIN) && !Npc_IsDead(Bengar) && (NpcObsessedByDMT_Malak == FALSE) && (other.guild != GIL_KDF) && (Kapitel >= 3) && (MalakIsBackToBengar == FALSE))
 	{
 		return TRUE;
 	};
@@ -479,7 +479,7 @@ instance DIA_Malak_BACK(C_Info)
 
 func int DIA_Malak_BACK_Condition()
 {
-	if((MalakIsBackToBengar == TRUE) && (Npc_GetDistToWP(self,"FARM3") < 3000) && (NpcObsessedByDMT_Malak == FALSE) && (hero.guild != GIL_KDF) && (Kapitel >= 3))
+	if((MalakIsBackToBengar == TRUE) && (Npc_GetDistToWP(self,"FARM3") < 3000) && (NpcObsessedByDMT_Malak == FALSE) && (other.guild != GIL_KDF) && (Kapitel >= 3))
 	{
 		return TRUE;
 	};

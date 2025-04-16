@@ -257,7 +257,7 @@ func void DIA_Pyrokar_TEST_Info()
 		Igaraz.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		Igaraz.aivar[AIV_MM_FollowTime] = 120;
 		CreateInvItems(Igaraz,ItKe_MagicChest,1);
-		AI_Teleport(Igaraz,"NW_TAVERNE_BIGFARM_05");
+		AI_Teleport(Igaraz,"NW_TAVERNE_TROLLAREA_05");
 		B_StartOtherRoutine(Igaraz,"CONTEST");
 		B_StartOtherRoutine(NOV_607,"EXCHANGE");
 	};
@@ -478,6 +478,17 @@ func void DIA_Pyrokar_OATH_Info()
 	AI_Output(other,self,"DIA_Pyrokar_OATH_15_05");	//Клянусь.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_06");	//Произнеся слова этой клятвы, ты присоединился к Соглашению Огня.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_07");	//Носи эту робу в знак этих вечных уз.
+	B_SetGuild(hero,GIL_KDF);
+	B_GiveArmor(ITAR_KDF_L);
+	Fire_Contest = TRUE;
+	Snd_Play("LEVELUP");
+	AI_Output(self,other,"DIA_Pyrokar_OATH_11_08");	//Теперь, когда ты был принят в наши ряды, ты можешь поговорить с лордом Хагеном, главнокомандующим паладинов.
+	AI_Output(self,other,"DIA_Pyrokar_OATH_11_09");	//Нам также очень интересно знать, как он оценивает ситуацию. Так что ты теперь можешь отправляться в Хоринис.
+	AI_Output(self,other,"DIA_Pyrokar_OATH_11_10");	//Мы ожидаем, что ты принесешь его ответ немедленно.
+	Player_KnowsLordHagen = TRUE;
+	B_StartOtherRoutine(Lothar,"START");
+	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
+	B_CancelBengarMilitiaProblem();
 	if(MIS_NeorasPflanzen == LOG_RUNNING)
 	{
 		MIS_NeorasPflanzen = LOG_OBSOLETE;
@@ -506,13 +517,6 @@ func void DIA_Pyrokar_OATH_Info()
 	{
 		MIS_MardukBeten = LOG_OBSOLETE;
 	};
-	B_SetGuild(hero,GIL_KDF);
-	B_GiveArmor(ITAR_KDF_L);
-	Fire_Contest = TRUE;
-	Snd_Play("LEVELUP");
-	B_StartOtherRoutine(Lothar,"START");
-	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
-	B_CancelBengarMilitiaProblem();
 	if(MIS_Torlof_HolPachtVonSekob == LOG_RUNNING)
 	{
 		MIS_Torlof_HolPachtVonSekob = LOG_FAILED;
@@ -538,6 +542,7 @@ func void DIA_Pyrokar_OATH_Info()
 		else
 		{
 			B_StartOtherRoutine(Igaraz,"START");
+			B_StartOtherRoutine(NOV_607,"START");
 			Igaraz.aivar[AIV_DropDeadAndKill] = FALSE;
 			Igaraz.aivar[AIV_NewsOverride] = FALSE;
 			Igaraz.aivar[AIV_IgnoresArmor] = FALSE;
@@ -573,7 +578,6 @@ func void DIA_Pyrokar_OATH_Info()
 		}
 		else
 		{
-			B_StartOtherRoutine(NOV_607,"START");
 			B_StartOtherRoutine(Agon,"START");
 			Agon.aivar[AIV_DropDeadAndKill] = FALSE;
 			Agon.aivar[AIV_NewsOverride] = FALSE;
@@ -582,10 +586,6 @@ func void DIA_Pyrokar_OATH_Info()
 			Agon.aivar[AIV_MM_FollowTime] = NPC_TIME_FOLLOW;
 		};
 	};
-	AI_Output(self,other,"DIA_Pyrokar_OATH_11_08");	//Теперь, когда ты был принят в наши ряды, ты можешь поговорить с лордом Хагеном, главнокомандующим паладинов.
-	AI_Output(self,other,"DIA_Pyrokar_OATH_11_09");	//Нам также очень интересно знать, как он оценивает ситуацию. Так что ты теперь можешь отправляться в Хоринис.
-	AI_Output(self,other,"DIA_Pyrokar_OATH_11_10");	//Мы ожидаем, что ты принесешь его ответ немедленно.
-	Player_KnowsLordHagen = TRUE;
 };
 
 
@@ -1594,6 +1594,7 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	{
 		CreateInvItems(Gorax,ItMi_RuneBlank,1);
 	};
+	B_StartOtherRoutine(Dar,"START");
 	Log_CreateTopic(TOPIC_DRACHENJAGD,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_DRACHENJAGD,LOG_RUNNING);
 	B_LogEntry(TOPIC_DRACHENJAGD,"Теперь я готов к встрече с драконами. Глаз Инноса поможет мне уничтожить их. Но прежде чем вступать в битву с драконами, я должен не забыть надеть его. Я должен поговорить с драконами, прежде чем начинать сражение. Проблема состоит в том, что Глаз теряет свою силу каждый раз, когда я разговариваю с одним из них. Чтобы восстановить силу этого амулета, мне необходимо сердце дракона и пустая мензурка. Я должен объединить ослабленный камень и экстракт из драконьего сердца на алхимическом столе, прежде чем противостоять другому дракону.");

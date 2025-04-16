@@ -1,5 +1,5 @@
 
-func void evt_teleportstation_func()
+func void EVT_TeleportStation_Func()
 {
 	Wld_PlayEffect("spellFX_Teleport_RING",hero,hero,0,0,0,FALSE);
 	Snd_Play("MFX_TELEPORT_CAST");
@@ -134,19 +134,19 @@ func void evt_teleportstation_func()
 
 
 var int TriggeredTeleporterADW;
-var int ADW_PORTALTEMPEL_FOCUS_FUNC_OneTime;
+var int ADW_PortalTempel_Focus_Func_OneTime;
 
-func void adw_portaltempel_focus_func()
+func void ADW_PortalTempel_Focus_Func()
 {
 	Snd_Play("MFX_TELEKINESIS_STARTINVEST");
 	Npc_RemoveInvItems(hero,ItMi_Focus,1);
 	TriggeredTeleporterADW += 1;
 	if(TriggeredTeleporterADW >= 5)
 	{
-		SC_ADW_ActivatedAllTelePortStones = TRUE;
+		SC_ADW_ActivatedAllTeleportStones = TRUE;
 		B_CheckLog();
 	};
-	if((ADW_PORTALTEMPEL_FOCUS_FUNC_OneTime == FALSE) && (Npc_GetDistToWP(hero,"ADW_PORTALTEMPEL_TELEPORTSTATION") < 3000))
+	if((ADW_PortalTempel_Focus_Func_OneTime == FALSE) && (Npc_GetDistToWP(hero,"ADW_PORTALTEMPEL_TELEPORTSTATION") < 3000))
 	{
 		B_Awake_StoneGuardian(Stoneguardian_NailedPortalADW1);
 		B_Awake_StoneGuardian(Stoneguardian_NailedPortalADW2);
@@ -154,7 +154,7 @@ func void adw_portaltempel_focus_func()
 		{
 			Snd_Play("THRILLJINGLE_02");
 		};
-		ADW_PORTALTEMPEL_FOCUS_FUNC_OneTime = TRUE;
+		ADW_PortalTempel_Focus_Func_OneTime = TRUE;
 	};
 };
 

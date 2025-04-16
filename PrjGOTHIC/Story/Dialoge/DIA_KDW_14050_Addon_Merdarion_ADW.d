@@ -24,7 +24,7 @@ func void DIA_Addon_Merdarion_ADW_EXIT_Info()
 	};
 	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_FokusGeben) || (Merdarion_GotFocusCount > 0))
 	{
-		if((SC_ADW_ActivatedAllTelePortStones == FALSE) && (TriggeredTeleporterADW <= Merdarion_GotFocusCount) && !Npc_HasItems(other,ItMi_Focus))
+		if((SC_ADW_ActivatedAllTeleportStones == FALSE) && (TriggeredTeleporterADW <= Merdarion_GotFocusCount) && !Npc_HasItems(other,ItMi_Focus))
 		{
 			CreateInvItems(self,ItMi_Focus,1);
 			B_GiveInvItems(self,other,ItMi_Focus,1);
@@ -213,7 +213,7 @@ func int DIA_Addon_Merdarion_ActivateTeleports_Condition()
 func void DIA_Addon_Merdarion_ActivateTeleports_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Merdarion_ActivateTeleports_15_00");	//я активировал еще один телепортационный камень.
-	if(SC_ADW_ActivatedAllTelePortStones == FALSE)
+	if(SC_ADW_ActivatedAllTeleportStones == FALSE)
 	{
 		AI_Output(other,self,"DIA_Addon_Merdarion_ActivateTeleports_15_01");	//ƒай мне следующий фокусирующий камень.
 		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_02");	// онечно, пожалуйста.

@@ -73,7 +73,7 @@ func void DIA_Rukhar_WASMACHSTDU_Info()
 		if(TaverneTopicStarted == FALSE)
 		{
 			Log_CreateTopic(TOPIC_Wettsaufen,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Wettsaufen,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Wettsaufen,LOG_RUNNING);
 			B_LogEntry(TOPIC_Wettsaufen,"В таверне можно заключить пари.");
 			TaverneTopicStarted = TRUE;
 		};
@@ -247,6 +247,8 @@ func void DIA_Rukhar_RANDOLPHWILL_100()
 };
 
 
+var int DIA_Rukhar_ICHSEHEDICH_noPerm;
+
 instance DIA_Rukhar_ICHSEHEDICH(C_Info)
 {
 	npc = BAU_973_Rukhar;
@@ -257,8 +259,6 @@ instance DIA_Rukhar_ICHSEHEDICH(C_Info)
 	description = "Вот моя ставка.";
 };
 
-
-var int DIA_Rukhar_ICHSEHEDICH_noPerm;
 
 func int DIA_Rukhar_ICHSEHEDICH_Condition()
 {
@@ -275,7 +275,7 @@ func void DIA_Rukhar_ICHSEHEDICH_Info()
 	{
 		AI_Output(self,other,"DIA_Rukhar_ICHSEHEDICH_12_01");	//Хорошо. Но только не тяни, приведи Рэндольфа побыстрее, слышишь?
 		DIA_Rukhar_ICHSEHEDICH_noPerm = TRUE;
-		MIS_Rukhar_Wettkampf = LOG_Running;
+		MIS_Rukhar_Wettkampf = LOG_RUNNING;
 		B_GivePlayerXP(XP_Ambient);
 	}
 	else
@@ -292,14 +292,13 @@ instance DIA_Rukhar_NoRandolph(C_Info)
 	nr = 3;
 	condition = DIA_Rukhar_NoRandolph_Condition;
 	information = DIA_Rukhar_NoRandolph_Info;
-	permanent = FALSE;
 	description = "Насчет Рэндольфа...";
 };
 
 
 func int DIA_Rukhar_NoRandolph_Condition()
 {
-	if(MIS_Rukhar_Wettkampf == LOG_Running)
+	if(MIS_Rukhar_Wettkampf == LOG_RUNNING)
 	{
 		if(Npc_IsDead(Randolph) || (MIS_HealRandolph != FALSE) || (NpcObsessedByDMT_Randolph == TRUE) || (DIA_Randolph_SoberForever == TRUE))
 		{
@@ -364,6 +363,8 @@ func void DIA_Rukhar_GELDZURUECK_Info()
 };
 
 
+var int DIA_Rukhar_HAENSELN_nureimalgeld;
+
 instance DIA_Rukhar_HAENSELN(C_Info)
 {
 	npc = BAU_973_Rukhar;
@@ -382,9 +383,6 @@ func int DIA_Rukhar_HAENSELN_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Rukhar_HAENSELN_nureimalgeld;
 
 func void DIA_Rukhar_HAENSELN_Info()
 {

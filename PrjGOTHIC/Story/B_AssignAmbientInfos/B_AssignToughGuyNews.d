@@ -29,6 +29,17 @@ func int DIA_ToughGuy_NEWS_Condition()
 			return FALSE;
 		};
 	};
+	if(C_IsNpc(self,SLD_810_Dar))
+	{
+		if(!Npc_KnowsInfo(other,DIA_Dar_FIGHTAGAINSTPALOVER) && (Dar_FightAgainstPaladin == TRUE))
+		{
+			return FALSE;
+		};
+		if(!Npc_KnowsInfo(other,DIA_Dar_Kameradenschwein) && (Dar_LostAgainstCipher == TRUE))
+		{
+			return FALSE;
+		};
+	};
 	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE) && (self.aivar[AIV_LastFightComment] == FALSE))
 	{
 		if(!C_IsNpc(self,SLD_814_Sentenza))

@@ -1,5 +1,5 @@
 
-func void evt_oc_maingate_func_s1()
+func void EVT_OC_MainGate_Func_s1()
 {
 	if(MIS_OCGateOpen == FALSE)
 	{

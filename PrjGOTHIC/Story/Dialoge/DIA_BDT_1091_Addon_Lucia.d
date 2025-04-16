@@ -28,7 +28,6 @@ instance DIA_Addon_Lucia_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Lucia_Hi_Condition;
 	information = DIA_Addon_Lucia_Hi_Info;
-	permanent = FALSE;
 	description = "Как дела?";
 };
 
@@ -51,7 +50,6 @@ instance DIA_Addon_Lucia_was(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Lucia_was_Condition;
 	information = DIA_Addon_Lucia_was_Info;
-	permanent = FALSE;
 	description = "И что же вы здесь пьете?";
 };
 
@@ -87,14 +85,13 @@ instance DIA_Addon_Lucia_Khorinis(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Lucia_Khorinis_Condition;
 	information = DIA_Addon_Lucia_Khorinis_Info;
-	permanent = FALSE;
 	description = "Ты из Хориниса, верно?";
 };
 
 
 func int DIA_Addon_Lucia_Khorinis_Condition()
 {
-	if((MIS_LookingForLucia == LOG_Running) || (LuciaMentionedInKhorinis == TRUE))
+	if((MIS_LookingForLucia == LOG_RUNNING) || (LuciaMentionedInKhorinis == TRUE))
 	{
 		return TRUE;
 	};
@@ -106,7 +103,7 @@ func void DIA_Addon_Lucia_Khorinis_Info()
 	AI_Output(self,other,"DIA_Addon_Lucia_Khorinis_16_01");	//Ох, не напоминай. Жизнь у меня там была незавидная.
 	AI_Output(self,other,"DIA_Addon_Lucia_Khorinis_16_02");	//Пока в город приходили корабли с заключенными, там еще можно было как-то прожить.
 	AI_Output(self,other,"DIA_Addon_Lucia_Khorinis_16_03");	//Но потом... (смеется) Нет, спасибо. Может быть, это из-за того, что мы на острове... Ладно, в любом случае, с той жизнью покончено.
-	if(MIS_LookingForLucia == LOG_Running)
+	if(MIS_LookingForLucia == LOG_RUNNING)
 	{
 		B_LogEntry(TOPIC_Addon_Lucia,"Похоже, что Люсия в полном порядке. Она сама ушла к бандитам и довольна своей новой жизнью.");
 	};
@@ -121,7 +118,6 @@ instance DIA_Addon_Lucia_SadElvrich(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Lucia_SadElvrich_Condition;
 	information = DIA_Addon_Lucia_SadElvrich_Info;
-	permanent = FALSE;
 	description = "А как же Элврих?";
 };
 
@@ -150,7 +146,6 @@ instance DIA_Addon_Lucia_Jetzt(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Lucia_Jetzt_Condition;
 	information = DIA_Addon_Lucia_Jetzt_Info;
-	permanent = FALSE;
 	description = "Что ты собираешься делать?";
 };
 
@@ -178,7 +173,6 @@ instance DIA_Addon_Lucia_Paladine(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Lucia_Paladine_Condition;
 	information = DIA_Addon_Lucia_Paladine_Info;
-	permanent = FALSE;
 	description = "Ты не очень-то любишь паладинов, верно?";
 };
 
@@ -254,14 +248,13 @@ instance DIA_Addon_Lucia_Attentat(C_Info)
 	nr = 9;
 	condition = DIA_Addon_Lucia_Attentat_Condition;
 	information = DIA_Addon_Lucia_Attentat_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_ATTENTAT_DESCRIPTION;
 };
 
 
 func int DIA_Addon_Lucia_Attentat_Condition()
 {
-	if(MIS_Judas == LOG_Running)
+	if(MIS_Judas == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -330,7 +323,6 @@ instance DIA_Addon_Lucia_lernen(C_Info)
 	nr = 19;
 	condition = DIA_Addon_Lucia_lernen_Condition;
 	information = DIA_Addon_Lucia_lernen_Info;
-	permanent = FALSE;
 	description = "Ты можешь меня чему-нибудь обучить?";
 };
 

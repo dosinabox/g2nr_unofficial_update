@@ -101,6 +101,12 @@ func void DIA_Dar_PERM_Info()
 };
 
 
+func void B_Dar_NoVote()
+{
+	AI_Output(self,other,"DIA_Dar_Kameradenschwein_03_01");	//Я ни за что не проголосую за тебя.
+	SCKnowsSLDVotes = TRUE;
+};
+
 instance DIA_Dar_WannaJoin(C_Info)
 {
 	npc = SLD_810_Dar;
@@ -122,14 +128,13 @@ func int DIA_Dar_WannaJoin_Condition()
 func void DIA_Dar_WannaJoin_Info()
 {
 	AI_Output(other,self,"DIA_Dar_WannaJoin_15_00");	//Я хочу присоединиться к наемникам. Ты не возражаешь?
-	if(Dar_LostAgainstCipher == FALSE)
+	if(!Npc_KnowsInfo(other,DIA_Cipher_DarDieb))
 	{
 		AI_Output(self,other,"DIA_Dar_WannaJoin_03_01");	//Мне все равно.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Dar_Kameradenschwein_03_01");	//Я ни за что не проголосую за тебя.
-		SCKnowsSLDVotes = TRUE;
+		B_Dar_NoVote();
 		AI_StopProcessInfos(self);
 	};
 };
@@ -147,7 +152,7 @@ instance DIA_Dar_DuDieb(C_Info)
 
 func int DIA_Dar_DuDieb_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Cipher_TradeWhat))
+	if(Npc_KnowsInfo(other,DIA_Dar_Hallo) && Npc_KnowsInfo(other,DIA_Cipher_TradeWhat))
 	{
 		return TRUE;
 	};
@@ -242,7 +247,6 @@ func int DIA_Dar_Kameradenschwein_Condition()
 {
 	if(Dar_LostAgainstCipher == TRUE)
 	{
-		self.aivar[AIV_LastFightComment] = FALSE;
 		return TRUE;
 	};
 };
@@ -252,11 +256,9 @@ func void DIA_Dar_Kameradenschwein_Info()
 	AI_Output(self,other,"DIA_Dar_Kameradenschwein_03_00");	//Трепач! Ты сказал Сиферу, что я взял его траву!
 	if(Npc_KnowsInfo(other,DIA_Dar_WannaJoin) && (other.guild == GIL_NONE))
 	{
-		AI_Output(self,other,"DIA_Dar_Kameradenschwein_03_01");	//Я ни за что не проголосую за тебя.
-		SCKnowsSLDVotes = TRUE;
+		B_Dar_NoVote();
 	};
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"START");
 };
 
 
@@ -484,7 +486,6 @@ func void DIA_Dar_BRINGORCELITERING_geld_ok()
 	B_GiveInvItems(self,other,ItMi_Gold,1200);
 	MIS_Dar_BringOrcEliteRing = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Dar_BringOrcEliteRing);
-	Npc_ExchangeRoutine(self,"START");
 	Info_ClearChoices(DIA_Dar_BRINGORCELITERING);
 };
 
@@ -517,7 +518,6 @@ func void DIA_Dar_BRINGORCELITERING_was_am()
 	B_GiveInvItems(self,other,ItAm_Dex_01,1);
 	MIS_Dar_BringOrcEliteRing = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Dar_BringOrcEliteRing);
-	Npc_ExchangeRoutine(self,"START");
 	Info_ClearChoices(DIA_Dar_BRINGORCELITERING);
 };
 

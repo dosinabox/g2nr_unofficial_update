@@ -508,16 +508,19 @@ func void DIA_Talbin_FOUNDENGROM_Info()
 		AI_Output(other,self,"DIA_Talbin_FOUNDENGROM_15_07");	//Приспешники преисподней. Это они командуют орками.
 	};
 	AI_Output(self,other,"DIA_Talbin_FOUNDENGROM_07_08");	//О, Иннос. Мне нужно выбираться отсюда, даже если при этом я найду свою смерть. Сейчас или никогда!
-	MIS_TalbinCheese = LOG_OBSOLETE;
+	if(MIS_TalbinCheese == LOG_RUNNING)
+	{
+		MIS_TalbinCheese = LOG_OBSOLETE;
+	};
 	MIS_Talbin_Runs = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Talbin_Runs,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Talbin_Runs,LOG_RUNNING);
 	B_LogEntry(TOPIC_Talbin_Runs,"Талбин, охотник из Долины Рудников, побежал к Проходу, как будто за ним по пятам гнался рой кровавых мух. Я думаю, он направился в Хоринис.");
-	Wld_InsertNpc(Snapper,"START");
 	Talbin_Runs = TRUE;
 	B_GivePlayerXP(XP_Ambient);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FLEEPASS");
+	Wld_InsertNpc(Snapper,"START");
 };
 
 
@@ -565,8 +568,6 @@ func void DIA_Talbin_WOHIN_ok()
 	self.npcType = NPCTYPE_FRIEND;
 	B_SetImmortal(self);
 	Talbin_FollowsThroughPass = LOG_RUNNING;
-	MIS_TalbinCheese = LOG_OBSOLETE;
-	B_CheckLog();
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"INTOPASS");
 };
@@ -583,7 +584,6 @@ func void DIA_Talbin_WOHIN_()
 	AI_Output(self,other,"DIA_Talbin_WOHIN_schwein_07_01");	//Ты оставляешь меня здесь умирать?! Ты будешь гореть в аду за это!
 	Talbin_FollowsThroughPass = LOG_OBSOLETE;
 	MIS_Talbin_Runs = LOG_OBSOLETE;
-	MIS_TalbinCheese = LOG_FAILED;
 	B_CheckLog();
 	AI_StopProcessInfos(self);
 };

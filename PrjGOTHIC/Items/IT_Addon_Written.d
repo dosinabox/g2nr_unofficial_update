@@ -575,20 +575,6 @@ func void UseAppleSTRRecipe()
 };
 
 
-/*instance Fakescroll_Addon(C_Item)
-{
-	name = "Клочок бумаги";
-	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
-	visual = "ItWr_Scroll_01.3ds";
-	material = MAT_LEATHER;
-	scemeName = "MAPSEALED";
-	description = name;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
-};*/
-
 instance ItWr_Addon_AxtAnleitung(C_Item)
 {
 	name = "Схема бандитского топора";
@@ -656,21 +642,26 @@ func void UseSummonAncientGhost()
 	if(SC_SummonedAncientGhost == FALSE)
 	{
 		B_Say(self,self,"$ADDON_SUMMONANCIENTGHOST");
-		if(Npc_GetDistToWP(self,"ADW_ANCIENTGHOST") < 1000)
-		{
-			Wld_InsertNpc(NONE_ADDON_111_Quarhodron,"ADW_ANCIENTGHOST");
-			Wld_PlayEffect("spellFX_Maya_Ghost",NONE_ADDON_111_Quarhodron,NONE_ADDON_111_Quarhodron,0,0,0,FALSE);
-			Wld_PlayEffect("SPELLFX_LIGHTSTAR_WHITE",NONE_ADDON_111_Quarhodron,NONE_ADDON_111_Quarhodron,0,0,0,FALSE);
-			Snd_Play("MFX_GhostVoice");
-			Snd_Play("MFX_Firestorm_Cast");
-			Snd_Play("MFX_Lightning_Origin");
-			B_InitNpcGlobals();
-			SC_SummonedAncientGhost = TRUE;
-		}
-		else
+		if(CurrentLevel != ADDONWORLD_ZEN)
 		{
 			B_CannotUse_Addon();
 			B_Say(self,self,"$ADDON_ANCIENTGHOST_NOTNEAR");
+		}
+		else if(Npc_GetDistToWP(self,"ADW_ANCIENTGHOST") > 1000)
+		{
+			B_CannotUse_Addon();
+			B_Say(self,self,"$ADDON_ANCIENTGHOST_NOTNEAR");
+		}
+		else
+		{
+			Wld_InsertNpc(NONE_ADDON_111_Quarhodron,"ADW_ANCIENTGHOST");
+			B_InitNpcGlobals();
+			Wld_PlayEffect("SPELLFX_MAYA_GHOST",Quarhodron,Quarhodron,0,0,0,FALSE);
+			Wld_PlayEffect("SPELLFX_LIGHTSTAR_WHITE",Quarhodron,Quarhodron,0,0,0,FALSE);
+			Snd_Play("MFX_GHOSTVOICE");
+			Snd_Play("MFX_FIRESTORM_CAST");
+			Snd_Play("MFX_LIGHTNING_ORIGIN");
+			SC_SummonedAncientGhost = TRUE;
 		};
 	};
 };

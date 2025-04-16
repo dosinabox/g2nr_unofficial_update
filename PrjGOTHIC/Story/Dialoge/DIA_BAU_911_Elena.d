@@ -28,7 +28,6 @@ instance DIA_Elena_HALLO(C_Info)
 	nr = 1;
 	condition = DIA_Elena_HALLO_Condition;
 	information = DIA_Elena_HALLO_Info;
-	permanent = FALSE;
 	description = "Привет, красавица.";
 };
 
@@ -58,7 +57,6 @@ instance DIA_Elena_Aufstand(C_Info)
 	nr = 2;
 	condition = DIA_Elena_Aufstand_Condition;
 	information = DIA_Elena_Aufstand_Info;
-	permanent = FALSE;
 	description = "Говорят, что вы восстали против короля?";
 };
 
@@ -88,7 +86,6 @@ instance DIA_Elena_Arbeit(C_Info)
 	nr = 3;
 	condition = DIA_Elena_Arbeit_Condition;
 	information = DIA_Elena_Arbeit_Info;
-	permanent = FALSE;
 	description = "Здесь, на ферме, есть какая-нибудь работа?";
 };
 
@@ -118,7 +115,6 @@ instance DIA_Elena_Regeln(C_Info)
 	nr = 4;
 	condition = DIA_Elena_Regeln_Condition;
 	information = DIA_Elena_Regeln_Info;
-	permanent = FALSE;
 	description = "Здесь есть какие-нибудь правила, которых мне нужно придерживаться?";
 };
 
@@ -159,7 +155,6 @@ instance DIA_Elena_AUFGABE(C_Info)
 	nr = 5;
 	condition = DIA_Elena_AUFGABE_Condition;
 	information = DIA_Elena_AUFGABE_Info;
-	permanent = FALSE;
 	description = "А чем ты занимаешься?";
 };
 
@@ -205,7 +200,7 @@ func void DIA_Elena_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Elena_TRADE_15_00");	//Покажи мне свои товары.
 	AI_Output(self,other,"DIA_Elena_TRADE_16_01");	//Выбирай.
-	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING)
 	{
 		ElenaMinenAnteil = TRUE;
 	};
@@ -273,7 +268,7 @@ instance DIA_Elena_MINENANTEIL(C_Info)
 
 func int DIA_Elena_MINENANTEIL_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (ElenaMinenAnteil == TRUE))
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (ElenaMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

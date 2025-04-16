@@ -27,7 +27,6 @@ instance DIA_Addon_Matt_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Matt_Hello_Condition;
 	information = DIA_Addon_Matt_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -67,7 +66,7 @@ func void DIA_Addon_Matt_PERM_Info()
 	AI_Output(other,self,"DIA_Addon_Matt_Alright_15_01");	//Как дела?
 	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		if(self.attribute[ATR_HITPOINTS] <= 200)
+		if(self.attribute[ATR_HITPOINTS] <= (self.attribute[ATR_HITPOINTS_MAX] / 2))
 		{
 			AI_Output(self,other,"DIA_Addon_Matt_Alright_10_02");	//Какую часть фразы 'ЛЕЧЕБНОЕ ЗЕЛЬЕ' ты не понял?
 		}
@@ -153,14 +152,13 @@ instance DIA_Addon_Matt_Anheuern(C_Info)
 	nr = 11;
 	condition = DIA_Addon_Matt_Anheuern_Condition;
 	information = DIA_Addon_Matt_Anheuern_Info;
-	permanent = FALSE;
 	description = "Пойдем со мной.";
 };
 
 
 func int DIA_Addon_Matt_Anheuern_Condition()
 {
-	if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+	if(MIS_Addon_Greg_ClearCanyon == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -214,7 +212,7 @@ instance DIA_Addon_Matt_ComeOn(C_Info)
 
 func int DIA_Addon_Matt_ComeOn_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Addon_Greg_ClearCanyon == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Matt_Anheuern))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Addon_Greg_ClearCanyon == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_Matt_Anheuern))
 	{
 		return TRUE;
 	};
@@ -309,14 +307,13 @@ instance DIA_Addon_Matt_Healing(C_Info)
 	nr = 15;
 	condition = DIA_Addon_Matt_Healing_Condition;
 	information = DIA_Addon_Matt_Healing_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Addon_Matt_Healing_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (self.attribute[ATR_HITPOINTS] <= 200))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (self.attribute[ATR_HITPOINTS] <= (self.attribute[ATR_HITPOINTS_MAX] / 2)))
 	{
 		return TRUE;
 	};

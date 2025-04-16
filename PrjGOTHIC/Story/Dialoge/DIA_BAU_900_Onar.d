@@ -27,7 +27,6 @@ instance DIA_Onar_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Onar_Hallo_Condition;
 	information = DIA_Onar_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -99,7 +98,6 @@ instance DIA_Onar_Work(C_Info)
 	nr = 2;
 	condition = DIA_Onar_Work_Condition;
 	information = DIA_Onar_Work_Info;
-	permanent = FALSE;
 	description = "Я хочу работать на тебя!";
 };
 
@@ -122,18 +120,17 @@ func void DIA_Onar_Work_Info()
 };
 
 
-instance DIA_Onar_WorkAsSld(C_Info)
+instance DIA_Onar_WorkAsSLD(C_Info)
 {
 	npc = BAU_900_Onar;
 	nr = 2;
-	condition = DIA_Onar_WorkAsSld_Condition;
-	information = DIA_Onar_WorkAsSld_Info;
-	permanent = FALSE;
+	condition = DIA_Onar_WorkAsSLD_Condition;
+	information = DIA_Onar_WorkAsSLD_Info;
 	description = "Я хочу поработать здесь в качестве наемника!";
 };
 
 
-func int DIA_Onar_WorkAsSld_Condition()
+func int DIA_Onar_WorkAsSLD_Condition()
 {
 	if((Lee_SendToOnar == FALSE) && (Onar_WegenSldWerden == FALSE) && Npc_KnowsInfo(other,DIA_Onar_Work) && (other.guild == GIL_NONE))
 	{
@@ -141,11 +138,11 @@ func int DIA_Onar_WorkAsSld_Condition()
 	};
 };
 
-func void DIA_Onar_WorkAsSld_Info()
+func void DIA_Onar_WorkAsSLD_Info()
 {
-	AI_Output(other,self,"DIA_Onar_WorkAsSld_15_00");	//Я хочу поработать здесь в качестве наемника!
-	AI_Output(self,other,"DIA_Onar_WorkAsSld_14_01");	//Ты? Наемника? Не смеши меня! Если бы из тебя мог получиться хороший наемник, Ли наверняка бы рассказал мне о тебе.
-	AI_Output(self,other,"DIA_Onar_WorkAsSld_14_02");	//А теперь убирайся отсюда, и поживее!
+	AI_Output(other,self,"DIA_Onar_WorkAsSLD_15_00");	//Я хочу поработать здесь в качестве наемника!
+	AI_Output(self,other,"DIA_Onar_WorkAsSLD_14_01");	//Ты? Наемника? Не смеши меня! Если бы из тебя мог получиться хороший наемник, Ли наверняка бы рассказал мне о тебе.
+	AI_Output(self,other,"DIA_Onar_WorkAsSLD_14_02");	//А теперь убирайся отсюда, и поживее!
 	Onar_WegenSldWerden = TRUE;
 	AI_StopProcessInfos(self);
 };
@@ -157,7 +154,6 @@ instance DIA_Onar_Aufstand(C_Info)
 	nr = 3;
 	condition = DIA_Onar_Aufstand_Condition;
 	information = DIA_Onar_Aufstand_Info;
-	permanent = FALSE;
 	description = "Ты противостоишь городу, как я слышал?";
 };
 
@@ -184,7 +180,6 @@ instance DIA_Onar_WegenPepe(C_Info)
 	nr = 4;
 	condition = DIA_Onar_WegenPepe_Condition;
 	information = DIA_Onar_WegenPepe_Info;
-	permanent = FALSE;
 	description = "Можешь благодарить Буллко, у тебя стало на несколько овец меньше.";
 };
 
@@ -213,7 +208,6 @@ instance DIA_Onar_WegenSekob(C_Info)
 	nr = 5;
 	condition = DIA_Onar_WegenSekob_Condition;
 	information = DIA_Onar_WegenSekob_Info;
-	permanent = FALSE;
 	description = "Я пришел по поводу ренты Секоба...";
 };
 
@@ -254,7 +248,6 @@ instance DIA_Onar_LeeSentMe(C_Info)
 	nr = 6;
 	condition = DIA_Onar_LeeSentMe_Condition;
 	information = DIA_Onar_LeeSentMe_Info;
-	permanent = FALSE;
 	description = "Меня послал Ли. Я хочу работать в качестве наемника!";
 };
 
@@ -314,7 +307,6 @@ instance DIA_Onar_HowMuch(C_Info)
 	nr = 7;
 	condition = DIA_Onar_HowMuch_Condition;
 	information = DIA_Onar_HowMuch_Info;
-	permanent = FALSE;
 	description = "Так что насчет моего жалования?";
 };
 
@@ -490,7 +482,6 @@ instance DIA_Onar_MariaGold(C_Info)
 	nr = 9;
 	condition = DIA_Onar_MariaGold_Condition;
 	information = DIA_Onar_MariaGold_Info;
-	permanent = FALSE;
 	description = "Мария думает, что я получаю недостаточно.";
 };
 
@@ -580,8 +571,8 @@ func void DIA_Onar_BuyLiesel_Info()
 	{
 		AI_Output(self,other,"DIA_Onar_BuyLiesel_14_01");	//Ты можешь сам выбрать себе овцу на пастбище.
 		AI_Output(self,other,"DIA_Onar_BuyLiesel_14_02");	//Одна из них обязательно пойдет за тобой. Большинство моих овец отзываются на имя Бетси.
-		Wld_InsertNpc(Follow_Sheep,"NW_BIGFARM_SHEEP2_02");
 		AI_StopProcessInfos(self);
+		Wld_InsertNpc(Follow_Sheep,"NW_BIGFARM_SHEEP2_02");
 	}
 	else
 	{

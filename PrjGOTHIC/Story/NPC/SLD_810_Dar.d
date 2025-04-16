@@ -36,3 +36,9 @@ func void Rtn_Start_810()
 	TA_Sit_Chair(22,0,8,0,"NW_BIGFARM_HOUSE_19");
 };
 
+func void Rtn_NoSmoking_810()
+{
+	TA_Stand_ArmsCrossed(8,0,22,0,"NW_BIGFARM_KITCHEN_DAR");
+	TA_Stand_ArmsCrossed(22,0,8,0,"NW_BIGFARM_KITCHEN_DAR");
+};
+

@@ -245,7 +245,6 @@ func void B_Lares_AboutLee()
 		AI_Output(self,other,"B_Lares_AboutLee_09_02");	//Он договорился с этим фермером. Ли с парнями защищает ферму, а Онар кормит их за это.
 	};
 	AI_Output(self,other,"DIA_Lares_WhyInCity_09_03");	//А зачем ТЫ пришел в город?
-	AI_Output(other,self,"DIA_Lares_Alternative_15_00");	//У меня есть выбор?
 };
 
 func void DIA_Lares_HALLO_LEE()
@@ -1114,8 +1113,15 @@ func void DIA_Addon_Lares_RangerHelp_waffe()
 func void DIA_Addon_Lares_RangerHelp_geld()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_RangerHelp_geld_15_00");	//Мне нужны деньги.
-	AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_geld_09_01");	//А кому они не нужны? Извини, но я сам поиздержался. Впрочем, ростовщик Лемар кое-чем мне обязан.
-	AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_geld_09_02");	//Отправляйся к нему и одолжи столько, сколько тебе нужно. Об остальном я позабочусь. Дом Лемара находится на границе порта и нижнего квартала города.
+	if(!Npc_IsDead(Lehmar))
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_geld_09_01");	//А кому они не нужны? Извини, но я сам поиздержался. Впрочем, ростовщик Лемар кое-чем мне обязан.
+		AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_geld_09_02");	//Отправляйся к нему и одолжи столько, сколько тебе нужно. Об остальном я позабочусь. Дом Лемара находится на границе порта и нижнего квартала города.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_geld_09_01_add");	//А кому они не нужны? Извини, но я сам поиздержался.
+	};
 	DIA_Addon_Lares_RangerHelp_gilde_OneTime_geld = TRUE;
 	RangerHelp_LehmarKohle = TRUE;
 };
@@ -1175,6 +1181,9 @@ func void DIA_Lares_Paladine_Info()
 		if(other.guild == GIL_NONE)
 		{
 			AI_Output(self,other,"DIA_Lares_Paladine_09_05");	//Конечно, если ты сможешь снискать уважение горожан или станешь мальчиком на побегушках в ополчении...
+			AI_Output(other,self,"DIA_Lares_Alternative_15_00");	//У меня есть выбор?
+			AI_Output(self,other,"DIA_Lares_Alternative_09_01");	//На твоем месте я бы пошел на ферму Онара и поговорил с Ли.
+			AI_Output(self,other,"DIA_Lares_Alternative_09_02");	//Я уверен, он найдет способ попасть в верхний квартал.
 		}
 		else
 		{
@@ -1845,11 +1854,6 @@ func void DIA_Lares_GUIDE_Info()
 	B_LaresDistractionCheck();
 	AI_Output(self,other,"DIA_Lares_GUIDE_09_02");	//Что ж, оставшуюся часть пути ты сможешь пройти сам. А мне нужно возвращаться в город...
 	AI_Output(self,other,"DIA_Lares_GUIDE_09_03");	//Просто пойдешь по этой дороге. Но помни - сумей постоять за себя, не нарушай закон и все будет в порядке.
-	if((other.guild == GIL_NONE) && Npc_KnowsInfo(other,DIA_Lares_Paladine))
-	{
-		AI_Output(self,other,"DIA_Lares_Alternative_09_01");	//На твоем месте я бы пошел на ферму Онара и поговорил с Ли.
-		AI_Output(self,other,"DIA_Lares_Alternative_09_02");	//Я уверен, он найдет способ попасть в верхний квартал.
-	};
 	Knows_Taverne = TRUE;
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;

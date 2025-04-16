@@ -3,10 +3,10 @@ ver 1
 zCArchiverGeneric
 ASCII
 saveGame 0
-date 4.10.2018 16:59:15
-user User
+date 9.4.2025 21:41:06
+user D36
 END
-objects 155      
+objects 157      
 END
 
 [% zCMaterial 39939 0]
@@ -4015,6 +4015,58 @@ END
 []
 [% zCMaterial 39939 154]
 	name=string:P:VALDUNGEON01_
+	matGroup=enum:0
+	color=color:0 0 0 255
+	smoothAngle=float:60
+	texture=string:
+	texScale=string:1 1
+	texAniFPS=float:0
+	texAniMapMode=enum:0
+	texAniMapDir=string:0 0
+	noCollDet=bool:0
+	noLightmap=bool:0
+	lodDontCollapse=bool:0
+	detailObject=string:
+	detailObjectScale=float:1
+	forceOccluder=bool:0
+	environmentalMapping=bool:0
+	environmentalMappingStrength=float:1
+	waveMode=enum:0
+	waveSpeed=enum:2
+	waveMaxAmplitude=float:30
+	waveGridSize=float:100
+	ignoreSunLight=bool:0
+	alphaFunc=enum:1
+	defaultMapping=rawFloat:2.34375 2.34375 
+[]
+[% zCMaterial 39939 155]
+	name=string:P:_SMALLCAVE
+	matGroup=enum:0
+	color=color:0 0 0 255
+	smoothAngle=float:60
+	texture=string:
+	texScale=string:1 1
+	texAniFPS=float:0
+	texAniMapMode=enum:0
+	texAniMapDir=string:0 0
+	noCollDet=bool:0
+	noLightmap=bool:0
+	lodDontCollapse=bool:0
+	detailObject=string:
+	detailObjectScale=float:1
+	forceOccluder=bool:0
+	environmentalMapping=bool:0
+	environmentalMappingStrength=float:1
+	waveMode=enum:0
+	waveSpeed=enum:2
+	waveMaxAmplitude=float:30
+	waveGridSize=float:100
+	ignoreSunLight=bool:0
+	alphaFunc=enum:1
+	defaultMapping=rawFloat:2.34375 2.34375 
+[]
+[% zCMaterial 39939 156]
+	name=string:P:SMALLCAVE_
 	matGroup=enum:0
 	color=color:0 0 0 255
 	smoothAngle=float:60

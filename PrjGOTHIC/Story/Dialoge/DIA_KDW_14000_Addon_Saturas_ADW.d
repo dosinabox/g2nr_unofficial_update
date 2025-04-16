@@ -144,7 +144,7 @@ func void DIA_Addon_Saturas_ADWStart_wastun2()
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_07");	//Кроме того, ты должен найти способ освободить рабов.
 	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_wastun2_15_08");	//Ха. (цинично) И это все? Я сделаю все это одной левой.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_09");	//(раздраженно) Я знаю, что прошу слишком о многом. Воспринимай это как шанс вернуть мое доверие.
-	MIS_ADDON_Saturas_GoToRaven = LOG_RUNNING;
+	MIS_Addon_Saturas_GoToRaven = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Addon_RavenKDW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_RavenKDW,LOG_RUNNING);
 	B_LogEntries(TOPIC_Addon_RavenKDW,"Ворон оскверняет святой храм Аданоса. Я должен остановить его, даже если мне придется его убить.");
@@ -665,7 +665,7 @@ var int Addon_Saturas_Fortuno;
 
 func int DIA_Addon_Saturas_RavenInfos_Condition()
 {
-	if((MIS_ADDON_Saturas_GoToRaven == LOG_RUNNING) && (RavenIsDead == FALSE))
+	if((MIS_Addon_Saturas_GoToRaven == LOG_RUNNING) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -724,7 +724,7 @@ func void DIA_Addon_Saturas_RavenInfos_Info()
 		AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_17");	//Я опоздал. Он скрылся в храме Аданоса у меня на глазах.
 		AI_Output(self,other,"DIA_Addon_Saturas_RavenInfos_14_18");	//(взволнованно) Что?! Это КАТАСТРОФА! Почему ты не последовал за ним?!
 		DIA_Addon_Saturas_RavenInfos_OneTime4 = TRUE;
-		MIS_ADDON_Saturas_GoToRaven = LOG_SUCCESS;
+		MIS_Addon_Saturas_GoToRaven = LOG_SUCCESS;
 		RavenNeuigkeit += 1;
 	};
 	if(RavenNeuigkeit != 0)
@@ -753,7 +753,7 @@ instance DIA_Addon_Saturas_TuerZu(C_Info)
 
 func int DIA_Addon_Saturas_TuerZu_Condition()
 {
-	if((MIS_ADDON_Saturas_GoToRaven == LOG_SUCCESS) && (RavenIsDead == FALSE))
+	if((MIS_Addon_Saturas_GoToRaven == LOG_SUCCESS) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};

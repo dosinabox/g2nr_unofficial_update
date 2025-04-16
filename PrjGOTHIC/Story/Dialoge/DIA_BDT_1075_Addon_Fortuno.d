@@ -47,9 +47,9 @@ func void DIA_Addon_Fortuno_Hi_Info()
 		AI_Output(self,other,"DIA_Addon_Fortuno_Hi_13_00");	//(тревожно) Темное облако накрыло дом... ОН приближается...
 		AI_Output(self,other,"DIA_Addon_Fortuno_Hi_13_01");	//С кровью... которая нужна, чтобы позвать его... ОН, кто видит меня... он видит меня... О, нет, уйди, уйди прочь...
 		AI_Output(other,self,"DIA_Addon_Fortuno_Hi_15_02");	//С тобой все в порядке?
-		MIS_Fortuno_Delusion = LOG_Running;
+		MIS_Fortuno_Delusion = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_Addon_Fortuno,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_Fortuno,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_Fortuno,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_Fortuno,"Фортуно сошел с ума. Ему нужен 'Зеленый послушник'.");
 	};
 	AI_Output(self,other,"DIA_Addon_Fortuno_Hi_13_03");	//Зеленый... зеленый послушник... Я не могу найти...
@@ -110,7 +110,6 @@ instance DIA_Addon_Fortuno_wer(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Fortuno_wer_Condition;
 	information = DIA_Addon_Fortuno_wer_Info;
-	permanent = FALSE;
 	description = "Да, скажи мне, что с тобой случилось.";
 };
 
@@ -143,7 +142,6 @@ instance DIA_Addon_Fortuno_FREE(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Fortuno_FREE_Condition;
 	information = DIA_Addon_Fortuno_FREE_Info;
-	permanent = FALSE;
 	description = "Должен же быть способ вернуть тебе память.";
 };
 
@@ -179,7 +177,6 @@ instance DIA_Addon_Fortuno_Herb(C_Info)
 	nr = 99;
 	condition = DIA_Addon_Fortuno_Herb_Condition;
 	information = DIA_Addon_Fortuno_Herb_Info;
-	permanent = FALSE;
 	description = "Тебе нужна еще болотная трава?";
 };
 
@@ -280,7 +277,6 @@ instance DIA_Addon_Fortuno_Trank(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Fortuno_Trank_Condition;
 	information = DIA_Addon_Fortuno_Trank_Info;
-	permanent = FALSE;
 	description = "У меня есть зелье, которое поможет тебе вспомнить.";
 };
 
@@ -317,7 +313,6 @@ instance DIA_Addon_Fortuno_more(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Fortuno_more_Condition;
 	information = DIA_Addon_Fortuno_more_Info;
-	permanent = FALSE;
 	description = "И?..";
 };
 
@@ -365,14 +360,13 @@ instance DIA_Addon_Fortuno_Attentat(C_Info)
 	nr = 9;
 	condition = DIA_Addon_Fortuno_Attentat_Condition;
 	information = DIA_Addon_Fortuno_Attentat_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_ATTENTAT_DESCRIPTION;
 };
 
 
 func int DIA_Addon_Fortuno_Attentat_Condition()
 {
-	if((MIS_Judas == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Fortuno_Trank))
+	if((MIS_Judas == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_Fortuno_Trank))
 	{
 		return TRUE;
 	};

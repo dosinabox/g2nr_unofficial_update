@@ -17,7 +17,7 @@ func int DIA_Addon_Skip_EXIT_Condition()
 
 func void DIA_Addon_Skip_EXIT_Info()
 {
-	if((MIS_ADDON_SkipsGrog == LOG_RUNNING) && (Npc_GetDistToWP(self,"ADW_PIRATECAMP_HUT3_01") < 2000))
+	if((MIS_Addon_SkipsGrog == LOG_RUNNING) && (Npc_GetDistToWP(self,"ADW_PIRATECAMP_HUT3_01") < 2000))
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_03");	//Мне бы свой грог назад получить...
 	};
@@ -171,7 +171,7 @@ func int DIA_Addon_Skip_Transport_Condition()
 func void DIA_Addon_Skip_Transport_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_Transport_15_00");	//Ты можешь отвезти меня в Хоринис?
-	if(MIS_ADDON_SkipsGrog != LOG_SUCCESS)
+	if(MIS_Addon_SkipsGrog != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_Transport_08_01");	//Нет, приятель. Сейчас я никуда не поплыву. Сначала мне нужно достать себе грога.
 	}
@@ -388,7 +388,7 @@ func void DIA_Addon_Skip_AngusHank_Info()
 	AI_Output(self,other,"DIA_Addon_Skip_AngusnHank_08_07");	//А он еще молод, и перенести исчезновение друзей для него непросто.
 	AI_Output(self,other,"DIA_Addon_Skip_AngusnHank_08_08");	//Впрочем, жизнь продолжается. Потерю товара мы переживем. (вздыхает) Но у них был с собой грог...
 	AI_Output(self,other,"DIA_Addon_Skip_AngusnHank_08_09");	//(сердито) По меньшей мере, 20 бутылок!
-	MIS_ADDON_SkipsGrog = LOG_RUNNING;
+	MIS_Addon_SkipsGrog = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Addon_SkipsGrog,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_SkipsGrog,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_SkipsGrog,"Бандиты отобрали у Скипа 20 бутылок грога. Он хочет вернуть их.");
@@ -451,7 +451,7 @@ func int DIA_Addon_Skip_AngusHankMurder_Condition()
 func void DIA_Addon_Skip_AngusHankMurder_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_JuanMurder_15_00");	//Я знаю, кто убил Хэнка и Ангуса.
-	if(MIS_ADDON_SkipsGrog == LOG_RUNNING)
+	if(MIS_Addon_SkipsGrog == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_04");	//Меня не интересует, кто их убил. Что с моим грогом?!
 	}
@@ -476,7 +476,7 @@ instance DIA_Addon_Skip_Grog(C_Info)
 
 func int DIA_Addon_Skip_Grog_Condition()
 {
-	if(MIS_ADDON_SkipsGrog == LOG_RUNNING)
+	if(MIS_Addon_SkipsGrog == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -543,7 +543,7 @@ func void DIA_Addon_Skip_Grog_geben()
 		B_GiveInvItems(other,self,ItFo_Addon_Grog,20);
 	};
 	B_LogEntry(TOPIC_Addon_SkipsGrog,"Скип получил назад свои 20 бутылок грога и теперь очень счастлив.");
-	MIS_ADDON_SkipsGrog = LOG_SUCCESS;
+	MIS_Addon_SkipsGrog = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_SkipsGrog);
 	AI_Output(self,other,"DIA_Addon_Skip_Grog_geben_08_01");	//Что? Вот так вот просто?
 	AI_Output(other,self,"DIA_Addon_Skip_Grog_geben_15_02");	//Ну-у...
