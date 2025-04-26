@@ -260,7 +260,6 @@ instance DIA_Garond_Hello(C_Info)
 	condition = DIA_Garond_Hello_Condition;
 	information = DIA_Garond_Hello_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
@@ -277,11 +276,11 @@ func void DIA_Garond_Hello_Info()
 	AI_Output(self,other,"DIA_Garond_Hello_10_00");	//Откуда ты взялся? Ты не из старателей, и ты не один из моих людей. Так кто же ты?
 	AI_Output(other,self,"DIA_Garond_Hello_15_01");	//Я пришел через Проход.
 	AI_Output(self,other,"DIA_Garond_Hello_10_02");	//Через Проход?.. Ты действительно прошел там?! О, Иннос всемогущий!
-	if(hero.guild == GIL_KDF)
+	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Garond_Hello_10_03");	//Зачем ты прошел этот путь, маг?
 	}
-	else if(hero.guild == GIL_MIL)
+	else if(other.guild == GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Garond_Hello_10_04");	//Какой приказ ты выполняешь, солдат?
 	}
@@ -348,7 +347,6 @@ instance DIA_Garond_Why(C_Info)
 	nr = 4;
 	condition = DIA_Garond_Why_Condition;
 	information = DIA_Garond_Why_Info;
-	permanent = FALSE;
 	description = "Но почему именно я?";
 };
 
@@ -375,7 +373,6 @@ instance DIA_Garond_Equipment(C_Info)
 	nr = 4;
 	condition = DIA_Garond_Equipment_Condition;
 	information = DIA_Garond_Equipment_Info;
-	permanent = FALSE;
 	description = "Мне нужно снаряжение.";
 };
 
@@ -413,7 +410,6 @@ instance DIA_Garond_zahlen(C_Info)
 	nr = 4;
 	condition = DIA_Garond_zahlen_Condition;
 	information = DIA_Garond_zahlen_Info;
-	permanent = FALSE;
 	description = "Сколько ты заплатишь мне за эту работу?";
 };
 
@@ -440,7 +436,6 @@ instance DIA_Garond_Wo(C_Info)
 	nr = 4;
 	condition = DIA_Garond_Wo_Condition;
 	information = DIA_Garond_Wo_Info;
-	permanent = FALSE;
 	description = "Где мне найти эти шахты?";
 };
 
@@ -481,7 +476,6 @@ instance DIA_Garond_Fajeth(C_Info)
 	nr = 2;
 	condition = DIA_Garond_Fajeth_Condition;
 	information = DIA_Garond_Fajeth_Info;
-	permanent = FALSE;
 	description = "Я поговорил с Фаджетом.";
 };
 
@@ -513,7 +507,6 @@ instance DIA_Garond_Silvestro(C_Info)
 	nr = 2;
 	condition = DIA_Garond_Silvestro_Condition;
 	information = DIA_Garond_Silvestro_Info;
-	permanent = FALSE;
 	description = "Насчет шахты Сильвестро...";
 };
 
@@ -559,7 +552,6 @@ instance DIA_Garond_Marcos(C_Info)
 	nr = 2;
 	condition = DIA_Garond_Marcos_Condition;
 	information = DIA_Garond_Marcos_Info;
-	permanent = FALSE;
 	description = "Я встретил Маркоса.";
 };
 
@@ -610,7 +602,6 @@ instance DIA_Garond_Success(C_Info)
 	nr = 4;
 	condition = DIA_Garond_Success_Condition;
 	information = DIA_Garond_Success_Info;
-	permanent = FALSE;
 	description = "Что насчет письма для лорда Хагена?";
 };
 
@@ -635,6 +626,8 @@ func void DIA_Garond_Success_Info()
 	MIS_ScoutMine = LOG_SUCCESS;
 	B_GivePlayerXP(XP_ScoutMine);
 	MIS_ReadyForChapter3 = TRUE;
+	STORYPOINT[SP_C2_P2] = TRUE;
+	CurrentStoryPoint = SP_C2_P2;
 };
 
 
@@ -644,7 +637,6 @@ instance DIA_Garond_SLD(C_Info)
 	nr = 4;
 	condition = DIA_Garond_SLD_Condition;
 	information = DIA_Garond_SLD_Info;
-	permanent = FALSE;
 	description = "Как насчет оплаты?";
 };
 
@@ -708,7 +700,6 @@ instance DIA_Garond_Gorn(C_Info)
 	nr = 4;
 	condition = DIA_Garond_Gorn_Condition;
 	information = DIA_Garond_Gorn_Info;
-	permanent = FALSE;
 	description = "Я хочу, чтобы ты освободил Горна.";
 };
 
@@ -829,7 +820,6 @@ instance DIA_Garond_BACKINKAP4(C_Info)
 	nr = 12;
 	condition = DIA_Garond_BACKINKAP4_Condition;
 	information = DIA_Garond_BACKINKAP4_Info;
-	permanent = FALSE;
 	description = "Я вернулся.";
 };
 
@@ -854,7 +844,7 @@ func void DIA_Garond_BACKINKAP4_Info()
 		AI_Output(self,other,"DIA_Garond_WASGIBTSNEUES_10_02");	//Даже Милтен покинул замок. Но мне не нужно несколько человек - мне нужно БОЛЬШОЕ подкрепление!
 	};
 	AI_Output(other,self,"DIA_Garond_BACKINKAP4_15_05");	//Прибыли волонтеры.
-	if(hero.guild == GIL_DJG)
+	if(other.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_Garond_BACKINKAP4_10_06");	//Ты имеешь в виду себя и твоих друзей, охотников на драконов, что ли? Вы, конечно, можете помочь нам, но вас слишком мало.
 	}
@@ -990,7 +980,6 @@ instance DIA_Garond_OricExperte(C_Info)
 	nr = 12;
 	condition = DIA_Garond_OricExperte_Condition;
 	information = DIA_Garond_OricExperte_Info;
-	permanent = FALSE;
 	description = "Ты можешь еще что-нибудь рассказать о драконах?";
 };
 
@@ -1025,7 +1014,6 @@ instance DIA_Garond_AllDragonDead(C_Info)
 	nr = 12;
 	condition = DIA_Garond_AllDragonDead_Condition;
 	information = DIA_Garond_AllDragonDead_Info;
-	permanent = FALSE;
 	description = "Все драконы мертвы.";
 };
 
@@ -1080,7 +1068,7 @@ func void DIA_Garond_JanBecomeSmith_Info()
 		AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_01");	//Каком кузнеце? Он исчез.
 		AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_02");	//Он что, вернулся? Тогда можешь сказать ему...
 		AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_03");	//Нет, я говорю о Яне.
-		if(hero.guild == GIL_DJG)
+		if(other.guild == GIL_DJG)
 		{
 			AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_04");	//Он охотник на драконов, как и я, и хороший кузнец.
 		}

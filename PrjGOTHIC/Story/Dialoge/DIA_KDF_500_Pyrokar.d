@@ -1599,6 +1599,8 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	Log_SetTopicStatus(TOPIC_DRACHENJAGD,LOG_RUNNING);
 	B_LogEntry(TOPIC_DRACHENJAGD,"“еперь € готов к встрече с драконами. √лаз »нноса поможет мне уничтожить их. Ќо прежде чем вступать в битву с драконами, € должен не забыть надеть его. я должен поговорить с драконами, прежде чем начинать сражение. ѕроблема состоит в том, что √лаз тер€ет свою силу каждый раз, когда € разговариваю с одним из них. „тобы восстановить силу этого амулета, мне необходимо сердце дракона и пуста€ мензурка. я должен объединить ослабленный камень и экстракт из драконьего сердца на алхимическом столе, прежде чем противосто€ть другому дракону.");
 	MIS_ReadyforChapter4 = TRUE;
+	STORYPOINT[SP_C3_P3] = TRUE;
+	CurrentStoryPoint = SP_C3_P3;
 	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");

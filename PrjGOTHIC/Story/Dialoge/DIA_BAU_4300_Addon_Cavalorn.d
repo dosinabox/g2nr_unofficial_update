@@ -572,7 +572,7 @@ func void B_Addon_Cavalorn_VatrasBrief()
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_12");	//Иначе тебя могут принять за бандита. Вот пара монет.
 		CreateInvItems(self,ItMi_Gold,50);
 		B_GiveInvItems(self,other,ItMi_Gold,50);
-		if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
+		if((CityPassGranted == FALSE) && (PlayerEnteredCity == FALSE))
 		{
 			Log_CreateTopic(TOPIC_City,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_City,LOG_RUNNING);

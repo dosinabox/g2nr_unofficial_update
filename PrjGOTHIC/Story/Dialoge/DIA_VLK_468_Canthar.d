@@ -132,7 +132,6 @@ instance DIA_Canthar_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Canthar_Hallo_Condition;
 	information = DIA_Canthar_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -196,7 +195,6 @@ instance DIA_Canthar_WhatOffer(C_Info)
 	nr = 1;
 	condition = DIA_Canthar_WhatOffer_Condition;
 	information = DIA_Canthar_WhatOffer_Info;
-	permanent = FALSE;
 	description = "Что ты можешь предложить мне?";
 };
 
@@ -269,7 +267,7 @@ func void DIA_Canthar_WhatOffer_Ok()
 	AI_Output(self,other,"DIA_Canthar_WhatOffer_Ok_09_01");	//Держи. Но обращайся с ней аккуратно, она очень ценная.
 	CreateInvItems(self,ItWr_Passierschein,1);
 	B_GiveInvItems(self,other,ItWr_Passierschein,1);
-	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
+	if(CityPassGranted == FALSE)
 	{
 		Log_CreateTopic(TOPIC_City,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_City,LOG_RUNNING);
@@ -297,8 +295,8 @@ instance DIA_Canthar_TRADE(C_Info)
 	condition = DIA_Canthar_TRADE_Condition;
 	information = DIA_Canthar_TRADE_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
 	trade = TRUE;
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -330,7 +328,6 @@ instance DIA_Canthar_PAYPRICEINCITY(C_Info)
 	condition = DIA_Canthar_PAYPRICEINCITY_Condition;
 	information = DIA_Canthar_PAYPRICEINCITY_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
@@ -462,7 +459,6 @@ instance DIA_Canthar_SarahIsDead(C_Info)
 	nr = 5;
 	condition = DIA_Canthar_SarahIsDead_Condition;
 	information = DIA_Canthar_SarahIsDead_Info;
-	permanent = FALSE;
 	description = "Сара мертва.";
 };
 
@@ -495,7 +491,6 @@ instance DIA_Canthar_TooLate(C_Info)
 	condition = DIA_Canthar_TooLate_Condition;
 	information = DIA_Canthar_TooLate_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
@@ -523,7 +518,6 @@ instance DIA_Canthar_Success(C_Info)
 	condition = DIA_Canthar_Success_Condition;
 	information = DIA_Canthar_Success_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
@@ -550,7 +544,6 @@ instance DIA_Canthar_Again(C_Info)
 	nr = 5;
 	condition = DIA_Canthar_Again_Condition;
 	information = DIA_Canthar_Again_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -680,7 +673,7 @@ instance DIA_Canthar_MinenAnteil(C_Info)
 
 func int DIA_Canthar_MinenAnteil_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (CantharMinenAnteil == TRUE))
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (CantharMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

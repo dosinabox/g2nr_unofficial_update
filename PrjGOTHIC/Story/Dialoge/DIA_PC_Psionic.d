@@ -206,7 +206,7 @@ instance DIA_Addon_Lester_STADT(C_Info)
 
 func int DIA_Addon_Lester_STADT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lester_Hello) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Lester_Hello) && (CityPassGranted == FALSE) && (PlayerEnteredCity == FALSE))
 	{
 		return TRUE;
 	};
@@ -234,7 +234,7 @@ instance DIA_Addon_Lester_Vorschlag(C_Info)
 
 func int DIA_Addon_Lester_Vorschlag_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Lester_STADT) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Lester_STADT) && (CityPassGranted == FALSE) && (PlayerEnteredCity == FALSE))
 	{
 		return TRUE;
 	};

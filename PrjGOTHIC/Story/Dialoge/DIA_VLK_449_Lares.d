@@ -182,13 +182,13 @@ func int DIA_Lares_HALLO_Condition()
 func void DIA_Lares_HALLO_Info()
 {
 	AI_Output(self,other,"DIA_Lares_HALLO_09_00");	//Я, должно быть, сошел с ума! Что ты делаешь здесь?
-	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
+	if(CityPassGranted == FALSE)
 	{
 		B_GivePlayerXP(500);
 	};
 	if(other.guild == GIL_NONE)
 	{
-		if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (B_GetLaresLocation() == LOC_CITY))
+		if((CityPassGranted == FALSE) && (B_GetLaresLocation() == LOC_CITY))
 		{
 			AI_Output(self,other,"DIA_Lares_HALLO_09_01");	//Ты что, ПРИПЛЫЛ сюда?
 			AI_Output(self,other,"DIA_Lares_HALLO_09_02");	//(смеется) Это единственный способ миновать стражу у городских ворот.

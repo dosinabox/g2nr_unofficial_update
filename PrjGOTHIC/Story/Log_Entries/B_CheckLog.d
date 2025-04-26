@@ -19,11 +19,10 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Vino,MIS_Vino_Wein,0,3);
 	B_CloseTopic(TOPIC_Hilda,MIS_Hilda_PfanneKaufen,0,3);
 	B_CloseTopic(TOPIC_Maleth,MIS_Maleth_Bandits,0,3);
-	B_CloseTopic(TOPIC_City,0,Mil_310_schonmalreingelassen,2);
-	B_CloseTopic(TOPIC_City,0,Mil_333_schonmalreingelassen,2);
+	B_CloseTopic(TOPIC_City,0,CityPassGranted,2);
 	B_CloseTopic(TOPIC_City,0,PlayerEnteredCity,2);
 	B_CloseTopic(TOPIC_Lehrling,MIS_Apprentice,0,6);
-	B_CloseTopic(TOPIC_OV,0,Mil_305_schonmalreingelassen,2);
+	B_CloseTopic(TOPIC_OV,0,MIL_305_schonmalreingelassen,2);
 	B_CloseTopic(TOPIC_Thorben,MIS_Thorben_GetBlessings,0,6);
 	B_CloseTopic(TOPIC_Thorben,MIS_Apprentice,0,6);
 	B_CloseTopic(TOPIC_BosperWolf,MIS_Bosper_WolfFurs,0,6);
@@ -119,7 +118,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Addon_ClearCanyon,MIS_Addon_Greg_ClearCanyon,0,6);
 	B_CloseTopic(TOPIC_Addon_ScoutBandits,MIS_Greg_ScoutBandits,0,6);
 	B_CloseTopic(TOPIC_Addon_MalcomsStunt,MIS_Owen_FindMalcom,0,6);
-	B_CloseTopic(TOPIC_Addon_PickForConstantino,0,Mil_310_schonmalreingelassen,3);
+	B_CloseTopic(TOPIC_Addon_PickForConstantino,0,MIL_310_schonmalreingelassen,3);
 	B_CloseTopic(TOPIC_Addon_Greg_NW,MIS_Addon_Greg_RakeCave,ENTERED_ADDONWORLD,6);
 	B_CloseTopic(TOPIC_Addon_Ornament,0,ENTERED_ADDONWORLD,6);
 	B_CloseTopic(TOPIC_Addon_RingOfWater,RangerMeetingRunning,0,3);
