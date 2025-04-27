@@ -20,7 +20,7 @@ func void Enter_DI_FirstTime_Trigger()
 				SC_InnosEyeVergessen_DI = TRUE;
 				B_LogEntry(TOPIC_HallenVonIrdorath,"Прошлой ночью мне приснился сон. Со мной говорил Ксардас, он попросил меня подойти к алхимическому столу на корабле, чтобы забрать кое-что с него. Это очень странно, но я ничего не пил вчера вечером.");
 			};
-			if(!Npc_HasItems(player,ItAt_IcedragonHeart) && !Npc_HasItems(player,ItAt_RockdragonHeart) && !Npc_HasItems(player,ItAt_FiredragonHeart) && !Npc_HasItems(player,ItAt_SwampdragonHeart))
+			if(!C_SCHasAnyDragonHeart(player))
 			{
 				CreateInvItems(AntiPaladin_DI,ItAt_RockdragonHeart,1);
 			};

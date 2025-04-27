@@ -45,6 +45,7 @@ Story\B_Story\B_BlessAttribute.d
 Story\B_Story\B_StartOtherRoutine.d
 Story\B_Story\B_CancelBengarMilitiaProblem.d
 Story\B_Story\B_ResetNpcPosition.d
+Story\B_Story\B_GetStoryPointName.d
 Story\B_Content\B_RangerMeeting.d
 Story\B_Content\B_ScObsession.d
 Story\B_Content\B_Extro_AVI.d
@@ -440,6 +441,7 @@ Story\B_Story\B_BuildDateString.d
 Story\B_Story\B_BuildFullVersionString.d
 Story\B_Story\B_BuildOptionString.d
 Story\B_Story\B_RemoveTestNpcs.d
+Story\B_Story\C_SCHasAnyDragonHeart.d
 Story\Dialog_Mobsis\Bookstand.d
 Story\Dialog_Mobsis\BookstandAlchemy.d
 Story\Dialog_Mobsis\BookstandAnimals.d
@@ -1360,6 +1362,7 @@ Story\B_Content\B_CaptainConditions.d
 Story\B_Content\B_JoinShip.d
 Story\B_Content\B_CaptainCallsAllOnBoard.d
 Story\B_Content\B_Addon_PiratesGoHome.d
+Story\B_Story\B_SetStoryPoint.d
 Story\Dialoge\DIA_BAU_4300_Addon_Cavalorn.d
 Story\Dialoge\DIA_BDT_10004_Addon_Finn.d
 Story\Dialoge\DIA_BDT_10005_Addon_Wache_02.d
@@ -1788,6 +1791,5 @@ AI\Test_Scripts\ScriptPatch.d
 AI\Test_Scripts\StoryHelper.d
 AI\Test_Scripts\Testmodelle_Bendlin.d
 AI\Test_Scripts\Testmodelle_Kalveram.d
-AI\Test_Scripts\Testmodelle_Pankratz.d
 Story\B_Story\B_Enter_DragonIsland.d
 Story\Startup.d
