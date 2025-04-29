@@ -106,6 +106,7 @@ func void B_SetStoryPoint(var int newStoryPoint)
 	};
 	if((newStoryPoint >= SP_C6_P2) && (STORYPOINT[SP_C6_P2] == FALSE))
 	{
+		FireDragonIslandIsDead = TRUE;
 		STORYPOINT[SP_C6_P2] = TRUE;
 	};
 	if((newStoryPoint >= SP_C6_P3) && (STORYPOINT[SP_C6_P3] == FALSE))

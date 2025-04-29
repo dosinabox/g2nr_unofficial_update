@@ -226,7 +226,7 @@ instance DIA_StoryHelper_StoryPoints(C_Info)
 	condition = DIA_StoryHelper_StoryPoints_Condition;
 	information = DIA_StoryHelper_StoryPoints_Info;
 	permanent = TRUE;
-	description = "Перемотка сюжета";
+	description = "Перемотка основного сюжета";
 };
 
 

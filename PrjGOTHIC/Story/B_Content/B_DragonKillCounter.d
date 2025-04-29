@@ -62,6 +62,15 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 				B_CheckLog();
 			};
 		};
+		if(FireDragonIslandIsDead == FALSE)
+		{
+			if(C_IsNpc(current_dragon,Dragon_Fire_Island))
+			{
+				FireDragonIslandIsDead = TRUE;
+				STORYPOINT[SP_C6_P2] = TRUE;
+				CurrentStoryPoint = SP_C6_P2;
+			};
+		};
 		if(UndeadDragonIsDead == FALSE)
 		{
 			if(C_IsNpc(current_dragon,Dragon_Undead))

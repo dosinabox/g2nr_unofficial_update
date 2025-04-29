@@ -1439,3 +1439,4 @@ var int AntiPaladinTalkCount;
 var int CityPassGranted;
 var int CurrentStoryPoint;
 var int PAL_205_schonmalreingelassen;
+var int FireDragonIslandIsDead;

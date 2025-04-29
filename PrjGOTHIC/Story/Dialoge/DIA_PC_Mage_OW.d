@@ -384,7 +384,7 @@ instance DIA_MiltenOW_TeachCircle1(C_Info)
 	condition = DIA_MiltenOW_TeachCircle1_Condition;
 	information = DIA_MiltenOW_TeachCircle1_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Первый Круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1));
+	description = B_BuildLearnString(NAME_Circle_1,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1));
 };
 
 
@@ -416,7 +416,7 @@ instance DIA_MiltenOW_TeachCircle2(C_Info)
 	information = DIA_MiltenOW_TeachCircle2_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Обучи меня второму Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2));
-	description = B_BuildLearnString("Второй Круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2));
+	description = B_BuildLearnString(NAME_Circle_2,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2));
 };
 
 

@@ -28,7 +28,6 @@ instance DIA_Karras_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Karras_Hello_Condition;
 	information = DIA_Karras_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -74,7 +73,6 @@ instance DIA_Karras_Mission(C_Info)
 	nr = 2;
 	condition = DIA_Karras_Mission_Condition;
 	information = DIA_Karras_Mission_Info;
-	permanent = FALSE;
 	description = "Я пришел почитать писания.";
 };
 
@@ -110,7 +108,6 @@ instance DIA_Karras_Aufgabe(C_Info)
 	nr = 2;
 	condition = DIA_Karras_Aufgabe_Condition;
 	information = DIA_Karras_Aufgabe_Info;
-	permanent = FALSE;
 	description = "У тебя есть поручение для меня?";
 };
 
@@ -154,7 +151,6 @@ instance DIA_Karras_Success(C_Info)
 	nr = 2;
 	condition = DIA_Karras_Success_Condition;
 	information = DIA_Karras_Success_Info;
-	permanent = FALSE;
 	description = "Вот свитки, которые ты хотел получить.";
 };
 
@@ -189,7 +185,6 @@ instance DIA_Karras_JOB(C_Info)
 	nr = 2;
 	condition = DIA_Karras_JOB_Condition;
 	information = DIA_Karras_JOB_Info;
-	permanent = FALSE;
 	description = "А чем именно ты занимаешься?";
 };
 
@@ -242,8 +237,8 @@ instance DIA_Karras_Trade(C_Info)
 	condition = DIA_Karras_Trade_Condition;
 	information = DIA_Karras_Trade_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
 	trade = TRUE;
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -379,7 +374,7 @@ instance DIA_Karras_CIRCLE4(C_Info)
 	information = DIA_Karras_CIRCLE4_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Я хочу изучить четвертый Круг Магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,4));
-	description = B_BuildLearnString("Четвертый Круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,4));
+	description = B_BuildLearnString(NAME_Circle_4,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,4));
 };
 
 
@@ -417,7 +412,7 @@ instance DIA_Karras_CIRCLE5(C_Info)
 	information = DIA_Karras_CIRCLE5_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Я хочу изучить пятый Круг Магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,5));
-	description = B_BuildLearnString("Пятый Круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,5));
+	description = B_BuildLearnString(NAME_Circle_5,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,5));
 };
 
 
@@ -455,7 +450,6 @@ instance DIA_Karras_ChasePedro(C_Info)
 	nr = 31;
 	condition = DIA_Karras_ChasePedro_Condition;
 	information = DIA_Karras_ChasePedro_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -536,7 +530,6 @@ instance DIA_Karras_InnosEyeRetrieved(C_Info)
 	nr = 1;
 	condition = DIA_Karras_InnosEyeRetrieved_Condition;
 	information = DIA_Karras_InnosEyeRetrieved_Info;
-	permanent = FALSE;
 	description = "Я принес назад Глаз Инноса.";
 };
 
@@ -659,7 +652,6 @@ instance DIA_Karras_HaveBook(C_Info)
 	nr = 2;
 	condition = DIA_Karras_HaveBook_Condition;
 	information = DIA_Karras_HaveBook_Info;
-	permanent = FALSE;
 	description = "Я принес альманах Одержимых. Может быть, он чем-нибудь тебе поможет.";
 };
 

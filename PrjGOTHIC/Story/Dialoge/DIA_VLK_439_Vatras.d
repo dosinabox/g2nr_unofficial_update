@@ -288,7 +288,6 @@ instance DIA_Addon_Vatras_CavalornSentMe(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Vatras_CavalornSentMe_Condition;
 	information = DIA_Addon_Vatras_CavalornSentMe_Info;
-	permanent = FALSE;
 	description = "Меня прислал к тебе Кавалорн!";
 };
 
@@ -853,7 +852,7 @@ func void DIA_Addon_Vatras_NowRanger_Info()
 		AI_Output(self,other,"DIA_Addon_Vatras_NowRanger_05_09");	//Я вручаю тебе это кольцо. Пусть оно поможет тебе найти твоих собратьев и вместе с ними хранить баланс сил в этом мире.
 		CreateInvItems(self,ItRi_Ranger_Addon,1);
 		B_GiveInvItems(self,other,ItRi_Ranger_Addon,1);
-		if(hero.guild == GIL_KDF)
+		if(other.guild == GIL_KDF)
 		{
 			AI_Output(self,other,"DIA_Addon_Vatras_NowRanger_05_10");	//Ты первый маг Огня среди нас. Я очень рад этому факту.
 		};
@@ -1116,7 +1115,6 @@ instance DIA_Addon_Vatras_Free(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Vatras_Free_Condition;
 	information = DIA_Addon_Vatras_Free_Info;
-	permanent = FALSE;
 	description = "Пропавшие люди вернулись в свои дома.";
 };
 
@@ -1613,7 +1611,6 @@ instance DIA_Vatras_WoKdF(C_Info)
 	nr = 93;
 	condition = DIA_Vatras_WoKdF_Condition;
 	information = DIA_Vatras_WoKdF_Info;
-	permanent = FALSE;
 	description = "Где мне найти жреца Инноса?";
 };
 
@@ -1732,7 +1729,6 @@ instance DIA_Vatras_CanTeach(C_Info)
 	nr = 95;
 	condition = DIA_Vatras_CanTeach_Condition;
 	information = DIA_Vatras_CanTeach_Info;
-	permanent = FALSE;
 	description = "Ты можешь научить меня чему-нибудь из области магии?";
 };
 
@@ -1909,10 +1905,10 @@ func int DIA_Vatras_HEAL_Condition()
 func void DIA_Vatras_HEAL_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_HEAL_15_00");	//Ты можешь вылечить меня?
-	if(hero.attribute[ATR_HITPOINTS] < hero.attribute[ATR_HITPOINTS_MAX])
+	if(other.attribute[ATR_HITPOINTS] < other.attribute[ATR_HITPOINTS_MAX])
 	{
 		AI_Output(self,other,"DIA_Vatras_HEAL_05_01");	//(благочестиво) Аданос, благослови это тело. Освободи его от ран и вдохни в него силу новой жизни.
-		hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
+		other.attribute[ATR_HITPOINTS] = other.attribute[ATR_HITPOINTS_MAX];
 		AI_PrintScreen(PRINT_FullyHealed,-1,-1,FONT_Screen,2);
 	}
 	else

@@ -301,7 +301,6 @@ instance DIA_Parlan_WELCOME(C_Info)
 	nr = 1;
 	condition = DIA_Parlan_WELCOME_Condition;
 	information = DIA_Parlan_WELCOME_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -353,7 +352,6 @@ instance DIA_Parlan_Auge(C_Info)
 	nr = 2;
 	condition = DIA_Parlan_Auge_Condition;
 	information = DIA_Parlan_Auge_Info;
-	permanent = FALSE;
 	description = "Я ищу Глаз Инноса.";
 };
 
@@ -381,7 +379,6 @@ instance DIA_Parlan_Amulett(C_Info)
 	nr = 3;
 	condition = DIA_Parlan_Amulett_Condition;
 	information = DIA_Parlan_Amulett_Info;
-	permanent = FALSE;
 	description = "Расскажи мне о Глазе Инноса.";
 };
 
@@ -412,7 +409,6 @@ instance DIA_Parlan_Hagen(C_Info)
 	nr = 2;
 	condition = DIA_Parlan_Hagen_Condition;
 	information = DIA_Parlan_Hagen_Info;
-	permanent = FALSE;
 	description = "Я должен поговорить с командующим паладинами!";
 };
 
@@ -593,7 +589,6 @@ instance DIA_Parlan_Aufgabe(C_Info)
 	nr = 10;
 	condition = DIA_Parlan_Aufgabe_Condition;
 	information = DIA_Parlan_Aufgabe_Info;
-	permanent = FALSE;
 	description = "У тебя есть поручение для меня?";
 };
 
@@ -673,7 +668,6 @@ instance DIA_Parlan_LEARN(C_Info)
 	nr = 23;
 	condition = DIA_Parlan_LEARN_Condition;
 	information = DIA_Parlan_LEARN_Info;
-	permanent = FALSE;
 	description = "Как мне изучить основы магии?";
 };
 
@@ -701,7 +695,6 @@ instance DIA_Parlan_KNOWSJUDGE(C_Info)
 	nr = 23;
 	condition = DIA_Parlan_KNOWSJUDGE_Condition;
 	information = DIA_Parlan_KNOWSJUDGE_Info;
-	permanent = FALSE;
 	description = "Я хочу пройти Испытание Огнем.";
 };
 
@@ -793,7 +786,6 @@ instance DIA_Parlan_MAGE(C_Info)
 	nr = 2;
 	condition = DIA_Parlan_MAGE_Condition;
 	information = DIA_Parlan_MAGE_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -835,7 +827,7 @@ instance DIA_Parlan_CIRCLE1(C_Info)
 	information = DIA_Parlan_CIRCLE1_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Научи меня первому Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1));
-	description = B_BuildLearnString("Первый Круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1));
+	description = B_BuildLearnString(NAME_Circle_1,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1));
 };
 
 
@@ -867,7 +859,7 @@ instance DIA_Parlan_CIRCLE2(C_Info)
 	information = DIA_Parlan_CIRCLE2_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Научи меня второму Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2));
-	description = B_BuildLearnString("Второй Круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2));
+	description = B_BuildLearnString(NAME_Circle_2,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2));
 };
 
 
@@ -906,7 +898,7 @@ instance DIA_Parlan_CIRCLE3(C_Info)
 	information = DIA_Parlan_CIRCLE3_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Научи меня третьему Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,3));
-	description = B_BuildLearnString("Третий Круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,3));
+	description = B_BuildLearnString(NAME_Circle_3,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,3));
 };
 
 
@@ -1077,7 +1069,6 @@ instance DIA_Parlan_IAmParlan(C_Info)
 	nr = 39;
 	condition = DIA_Parlan_IAmParlan_Condition;
 	information = DIA_Parlan_IAmParlan_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -1130,7 +1121,6 @@ instance DIA_Parlan_Bibliothek(C_Info)
 	nr = 40;
 	condition = DIA_Parlan_Bibliothek_Condition;
 	information = DIA_Parlan_Bibliothek_Info;
-	permanent = FALSE;
 	description = "У тебя есть что-нибудь для меня?";
 };
 
