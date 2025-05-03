@@ -26,23 +26,23 @@ func void Rtn_Start_9999()
 };
 
 
-instance StoryHelper_Exit(C_Info)
+instance StoryHelper_EXIT(C_Info)
 {
 	npc = SH;
 	nr = 999;
-	condition = StoryHelper_Exit_Condition;
-	information = StoryHelper_Exit_Info;
+	condition = StoryHelper_EXIT_Condition;
+	information = StoryHelper_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int StoryHelper_Exit_Condition()
+func int StoryHelper_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void StoryHelper_Exit_Info()
+func void StoryHelper_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

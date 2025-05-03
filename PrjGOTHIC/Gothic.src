@@ -484,6 +484,10 @@ Story\NPC_Scripts\B_GiveAllWeapons.d
 Story\NPC_Scripts\B_GiveBasicEquipment.d
 Story\NPC_Scripts\Npc_Default.d
 Items\IT_ScriptPatch.d
+AI\Test_Scripts\FaceHelper.d
+AI\Test_Scripts\PC_Levelinspektor.d
+AI\Test_Scripts\PC_MageTest.d
+AI\Test_Scripts\PC_Rockefeller.d
 Story\NPC\BAU_4300_Addon_Cavalorn.d
 Story\NPC\BAU_900_Onar.d
 Story\NPC\BAU_901_Bauer.d
@@ -908,14 +912,11 @@ Story\NPC\PC_Fighter_NW_nach_DJG.d
 Story\NPC\PC_Fighter_NW_vor_DJG.d
 Story\NPC\PC_Fighter_OW.d
 Story\NPC\PC_Hero.d
-Story\NPC\PC_Levelinspektor.d
-Story\NPC\PC_MageTest.d
 Story\NPC\PC_Mage_DI.d
 Story\NPC\PC_Mage_NW.d
 Story\NPC\PC_Mage_OW.d
 Story\NPC\PC_Psionic.d
 Story\NPC\PC_Psionic_DI.d
-Story\NPC\PC_Rockefeller.d
 Story\NPC\PC_Thief_OW.d
 Story\NPC\PC_Thief_DI.d
 Story\NPC\PC_Thief_NW.d
@@ -1182,7 +1183,6 @@ Story\NPC\VLK_496_Buergerin.d
 Story\NPC\VLK_497_Buergerin.d
 Story\NPC\VLK_498_Ignaz.d
 Story\NPC\VLK_499_Buerger.d
-Story\NPC\FH.d
 Story\NPC\Monster\MST_Addon_Alligator.d
 Story\NPC\Monster\MST_Addon_Blattcrawler.d
 Story\NPC\Monster\MST_Addon_Bloodhound.d
@@ -1524,7 +1524,6 @@ Story\Dialoge\DIA_DJG_714_Jan.d
 Story\Dialoge\DIA_DJG_715_Ferros.d
 Story\Dialoge\DIA_DMT_1200_Dementor.d
 Story\Dialoge\DIA_DMT_1299_OberDementor_DI.d
-Story\Dialoge\DIA_FH.d
 Story\Dialoge\DIA_KDF_500_Pyrokar.d
 Story\Dialoge\DIA_KDF_501_Serpentes.d
 Story\Dialoge\DIA_KDF_502_Ulthar.d

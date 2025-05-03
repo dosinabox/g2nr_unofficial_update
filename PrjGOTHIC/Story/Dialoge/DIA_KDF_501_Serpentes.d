@@ -483,9 +483,6 @@ func void DIA_Serpentes_MinenAnteile_KillSLD()
 	Info_AddChoice(DIA_Serpentes_MinenAnteile,"Нет проблем. Я сделаю это.",DIA_Serpentes_MinenAnteile_was_jaSLD);
 };
 
-
-var int MIS_Serpentes_BringSalandril_SLD;
-
 func void DIA_Serpentes_MinenAnteile_was_jaSLD()
 {
 	AI_Output(other,self,"DIA_Serpentes_MinenAnteile_was_jaSLD_15_00");	//Нет проблем. Я сделаю это.

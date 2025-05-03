@@ -790,6 +790,7 @@ var int MIS_RescueBilgot;
 var int MIS_Buster_KillShadowbeasts_DJG;
 var int MIS_Ulthar_HeileSchreine_PAL;
 var int MIS_Serpentes_MinenAnteil_KDF;
+var int MIS_Serpentes_BringSalandril_SLD;
 var int MIS_DJG_Sylvio_KillIceGolem;
 var int MIS_AllDragonsDead;
 var int MIS_KilledDragons;

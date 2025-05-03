@@ -27,11 +27,11 @@ func void Rtn_Start_10024()
 	TA_Stand_Guarding(12,0,6,0,"ADW_MINE_TO_MC_04");
 };
 
-func void Rtn_Attack_10024()
+/*func void Rtn_Attack_10024()
 {
 	TA_Guide_Player(6,0,12,0,"ADW_MINE_MC_07");
 	TA_Guide_Player(12,0,6,0,"ADW_MINE_MC_07");
-};
+};*/
 
 func void Rtn_Gold_10024()
 {
