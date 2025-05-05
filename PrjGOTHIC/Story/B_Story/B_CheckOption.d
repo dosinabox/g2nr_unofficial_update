@@ -29,3 +29,8 @@ func int C_TradersHaveLimitedAmmo()
 	return B_CheckOption("TradersHaveLimitedAmmo",TradersHaveLimitedAmmo);
 };
 
+func int C_IgnorePermBonuses()
+{
+	return B_CheckOption("IgnorePermBonuses",IgnorePermBonuses);
+};
+

@@ -1117,7 +1117,7 @@ var int Player_TalkedAboutDragonsToSomeone;
 var int NpcWantToFlee;
 var int TradersHaveLimitedAmmo;
 var int Dont_Fix_Unlim;
-var int IgnoreBonuses;
+var int IgnorePermBonuses;
 var int RandomGoblinBerries;
 var int RandomPepper;
 var int InfiniteApples;

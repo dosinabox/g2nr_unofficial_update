@@ -66,7 +66,7 @@ instance ItMw_Addon_Stab02(C_Item)
 	on_unequip = UnEquip_Zauberstab;
 	cond_atr[2] = ATR_MANA_MAX;
 	cond_value[2] = Condition_Stab02;
-	visual = "ItMw_MageStaff_Normal_2H_01.3DS";
+	visual = "ItMw_MageStaff_Good_2H_01.3DS";
 	effect = "SPELLFX_MAGESTAFF2";
 	description = name;
 	text[2] = NAME_Damage;

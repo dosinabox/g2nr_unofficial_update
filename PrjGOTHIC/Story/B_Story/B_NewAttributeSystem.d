@@ -3,16 +3,6 @@ var int ATR_Training[ATR_INDEX_MAX];
 var int ATR_TempBonus[ATR_INDEX_MAX];
 var int ATR_PermBonus[ATR_INDEX_MAX];
 
-// teacher over limiting depends on (training / equipment / permanent bonuses)
-var int ATR_TeachLimitFlags_TS_Training;
-var int ATR_TeachLimitFlags_TS_TempBonus;
-var int ATR_TeachLimitFlags_TS_PermBonus;
-
-// learn price depends on (training / equipment / permanent bonuses)
-var int ATR_CostFlags_TS_Training;
-var int ATR_CostFlags_TS_TempBonus;
-var int ATR_CostFlags_TS_PermBonus;
-
 func void B_RaiseAttributeByTraining(var C_Npc oth,var int attrib,var int points)
 {
 	B_RaiseAttribute(oth,attrib,points);
@@ -111,7 +101,7 @@ func int RealAttributeValue(var int attrib)
 {
 	if(attrib == ATR_STRENGTH)
 	{
-		if(IgnoreBonuses == TRUE)
+		if(C_IgnorePermBonuses())
 		{
 			return ATR_Training[ATR_STRENGTH];
 		};
@@ -119,7 +109,7 @@ func int RealAttributeValue(var int attrib)
 	};
 	if(attrib == ATR_DEXTERITY)
 	{
-		if(IgnoreBonuses == TRUE)
+		if(C_IgnorePermBonuses())
 		{
 			return ATR_Training[ATR_DEXTERITY];
 		};
@@ -127,7 +117,7 @@ func int RealAttributeValue(var int attrib)
 	};
 	if(attrib == ATR_MANA_MAX)
 	{
-		if(IgnoreBonuses == TRUE)
+		if(C_IgnorePermBonuses())
 		{
 			return ATR_Training[ATR_MANA_MAX];
 		};
@@ -135,7 +125,7 @@ func int RealAttributeValue(var int attrib)
 	};
 	if(attrib == ATR_HITPOINTS_MAX)
 	{
-		if(IgnoreBonuses == TRUE)
+		if(C_IgnorePermBonuses())
 		{
 			return ATR_Training[ATR_HITPOINTS_MAX];
 		};
@@ -147,7 +137,7 @@ func int RealAttributeValue(var int attrib)
 
 func int VisibleAttributeValue(var int attrib)
 {
-	if(IgnoreBonuses == TRUE)
+	if(C_IgnorePermBonuses())
 	{
 		return RealAttributeValue(attrib);
 	};
@@ -194,12 +184,6 @@ func void B_ResetAttributeSystem()
 
 func void B_InitAttributeSystem()
 {
-	ATR_CostFlags_TS_Training = 1;
-	ATR_CostFlags_TS_TempBonus = 0;
-	ATR_CostFlags_TS_PermBonus = 1;
-	ATR_TeachLimitFlags_TS_Training = 1;
-	ATR_TeachLimitFlags_TS_TempBonus = 1;
-	ATR_TeachLimitFlags_TS_PermBonus = 1;
 	ATR_Training[ATR_STRENGTH] = START_ATR_STRENGTH;
 	ATR_Training[ATR_DEXTERITY] = START_ATR_DEXTERITY;
 	ATR_Training[ATR_MANA_MAX] = START_ATR_MANA_MAX;

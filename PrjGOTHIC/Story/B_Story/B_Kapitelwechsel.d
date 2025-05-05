@@ -23,6 +23,8 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		IceDragonSpell = SPL_InstantFireball;
 		G2BodySkin = TRUE;
 		FullNPCRemoval = TRUE;
+		RandomGoblinBerries = TRUE;
+		RandomPepper = TRUE;
 		if(C_WorldIsFixed())
 		{
 			Wld_InsertItem(ItRu_LightHeal,"FP_ITEM_PASS_02");
