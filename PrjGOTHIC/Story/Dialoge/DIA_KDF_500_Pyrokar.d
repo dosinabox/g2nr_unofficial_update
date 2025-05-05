@@ -846,7 +846,7 @@ instance DIA_Pyrokar_TEACH(C_Info)
 	information = DIA_Pyrokar_TEACH_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Обучи меня последнему Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,6));
-	description = B_BuildLearnString("Шестой Круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,6));
+	description = B_BuildLearnString(NAME_Circle_6,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,6));
 };
 
 
@@ -1599,6 +1599,8 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	Log_SetTopicStatus(TOPIC_DRACHENJAGD,LOG_RUNNING);
 	B_LogEntry(TOPIC_DRACHENJAGD,"Теперь я готов к встрече с драконами. Глаз Инноса поможет мне уничтожить их. Но прежде чем вступать в битву с драконами, я должен не забыть надеть его. Я должен поговорить с драконами, прежде чем начинать сражение. Проблема состоит в том, что Глаз теряет свою силу каждый раз, когда я разговариваю с одним из них. Чтобы восстановить силу этого амулета, мне необходимо сердце дракона и пустая мензурка. Я должен объединить ослабленный камень и экстракт из драконьего сердца на алхимическом столе, прежде чем противостоять другому дракону.");
 	MIS_ReadyforChapter4 = TRUE;
+	STORYPOINT[SP_C3_P3] = TRUE;
+	CurrentStoryPoint = SP_C3_P3;
 	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");

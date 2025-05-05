@@ -40,8 +40,6 @@ func void B_Mil_205_Torwache_Crimes()
 
 const string PAL_205_Checkpoint = "NW_CITY_CITYHALL_IN";
 
-var int PAL_205_schonmalreingelassen;
-
 instance DIA_PAL_205_Torwache_FirstWarn(C_Info)
 {
 	npc = PAL_205_Torwache;
@@ -213,6 +211,8 @@ func void B_CityHallPass()
 {
 	self.aivar[AIV_PASSGATE] = TRUE;
 	PAL_205_schonmalreingelassen = TRUE;
+	STORYPOINT[SP_C1_P3] = TRUE;
+	CurrentStoryPoint = SP_C1_P3;
 	B_PlayerEnteredCity();
 };
 

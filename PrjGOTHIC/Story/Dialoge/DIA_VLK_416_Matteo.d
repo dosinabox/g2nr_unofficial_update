@@ -28,7 +28,6 @@ instance DIA_Matteo_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Matteo_Hallo_Condition;
 	information = DIA_Matteo_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -53,7 +52,6 @@ instance DIA_Matteo_SellWhat(C_Info)
 	nr = 1;
 	condition = DIA_Matteo_SellWhat_Condition;
 	information = DIA_Matteo_SellWhat_Info;
-	permanent = FALSE;
 	description = "Что ты продаешь?";
 };
 
@@ -194,7 +192,6 @@ instance DIA_Matteo_Paladine(C_Info)
 	nr = 2;
 	condition = DIA_Matteo_Paladine_Condition;
 	information = DIA_Matteo_Paladine_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о паладинах?";
 };
 
@@ -236,7 +233,6 @@ instance DIA_Matteo_Confiscated(C_Info)
 	nr = 2;
 	condition = DIA_Matteo_Confiscated_Condition;
 	information = DIA_Matteo_Confiscated_Info;
-	permanent = FALSE;
 	description = "Паладины забрали твои товары?";
 };
 
@@ -267,7 +263,6 @@ instance DIA_Matteo_HelpMeToOV(C_Info)
 	nr = 3;
 	condition = DIA_Matteo_HelpMeToOV_Condition;
 	information = DIA_Matteo_HelpMeToOV_Info;
-	permanent = FALSE;
 	description = "Ты можешь помочь мне попасть в верхний квартал?";
 };
 
@@ -320,7 +315,6 @@ instance DIA_Matteo_HelpMeNow(C_Info)
 	nr = 3;
 	condition = DIA_Matteo_HelpMeNow_Condition;
 	information = DIA_Matteo_HelpMeNow_Info;
-	permanent = FALSE;
 	description = "Так ты можешь помочь мне попасть в верхний квартал?";
 };
 
@@ -349,7 +343,6 @@ instance DIA_Matteo_LehrlingLater(C_Info)
 	nr = 3;
 	condition = DIA_Matteo_LehrlingLater_Condition;
 	information = DIA_Matteo_LehrlingLater_Info;
-	permanent = FALSE;
 	description = "Помоги мне стать учеником одного из мастеров.";
 };
 
@@ -378,7 +371,6 @@ instance DIA_Matteo_PriceOfHelp(C_Info)
 	nr = 3;
 	condition = DIA_Matteo_PriceOfHelp_Condition;
 	information = DIA_Matteo_PriceOfHelp_Info;
-	permanent = FALSE;
 	description = "Что ты хочешь за свои услуги?";
 };
 
@@ -436,7 +428,6 @@ instance DIA_Matteo_WoGritta(C_Info)
 	nr = 2;
 	condition = DIA_Matteo_WoGritta_Condition;
 	information = DIA_Matteo_WoGritta_Info;
-	permanent = FALSE;
 	description = "Где мне найти эту Гритту?";
 };
 
@@ -563,7 +554,6 @@ instance DIA_Matteo_HowCanYouHelp(C_Info)
 	nr = 4;
 	condition = DIA_Matteo_HowCanYouHelp_Condition;
 	information = DIA_Matteo_HowCanYouHelp_Info;
-	permanent = FALSE;
 	description = "Как ИМЕННО ты собираешься помочь мне?";
 };
 
@@ -596,7 +586,6 @@ instance DIA_Matteo_WoAlsLehrling(C_Info)
 	nr = 4;
 	condition = DIA_Matteo_WoAlsLehrling_Condition;
 	information = DIA_Matteo_WoAlsLehrling_Info;
-	permanent = FALSE;
 	description = "А к кому я могу поступить в ученики?";
 };
 
@@ -629,7 +618,6 @@ instance DIA_Matteo_WieZustimmung(C_Info)
 	nr = 5;
 	condition = DIA_Matteo_WieZustimmung_Condition;
 	information = DIA_Matteo_WieZustimmung_Info;
-	permanent = FALSE;
 	description = "Как мне получить одобрение других мастеров?";
 };
 
@@ -657,7 +645,6 @@ instance DIA_Matteo_WarumNichtBeiDir(C_Info)
 	nr = 6;
 	condition = DIA_Matteo_WarumNichtBeiDir_Condition;
 	information = DIA_Matteo_WarumNichtBeiDir_Info;
-	permanent = FALSE;
 	description = "А почему ТЫ не возьмешь меня в ученики?";
 };
 
@@ -693,14 +680,13 @@ instance DIA_Matteo_OtherWay(C_Info)
 	nr = 6;
 	condition = DIA_Matteo_OtherWay_Condition;
 	information = DIA_Matteo_OtherWay_Info;
-	permanent = FALSE;
 	description = "А есть другой способ попасть в верхний квартал?";
 };
 
 
 func int DIA_Matteo_OtherWay_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) || (MIS_Matteo_Gold == LOG_FAILED)) && (Mil_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE))
+	if((Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) || (MIS_Matteo_Gold == LOG_FAILED)) && (MIL_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE))
 	{
 		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 		{

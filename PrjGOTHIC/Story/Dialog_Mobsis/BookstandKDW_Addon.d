@@ -15,20 +15,20 @@ func void Use_Runemaking_KDW_CIRC1_S1()
 		Doc_PrintLines(nDocID,0,"Руны Воды и ингредиенты для их создания.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"Смерч:");
+		Doc_PrintLine(nDocID,0,ConcatStrings(NAME_SPL_Whirlwind,":"));
 		Doc_PrintLine(nDocID,0,"- крылья кровавой мухи");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"Ледяное копье:");
+		Doc_PrintLine(nDocID,0,ConcatStrings(NAME_SPL_IceLance,":"));
 		Doc_PrintLine(nDocID,0,"- ледяной кварц");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"Гейзер:");
+		Doc_PrintLine(nDocID,0,ConcatStrings(NAME_SPL_Geyser,":"));
 		Doc_PrintLine(nDocID,0,"- аквамарин");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"Буря:");
+		Doc_PrintLine(nDocID,0,ConcatStrings(NAME_SPL_Thunderstorm,":"));
 		Doc_PrintLine(nDocID,0,"- ледяной кварц");
 		Doc_PrintLine(nDocID,0,"- крылья кровавой мухи");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"Кулак воды:");
+		Doc_PrintLine(nDocID,0,ConcatStrings(NAME_SPL_WaterFist,":"));
 		Doc_PrintLine(nDocID,0,"- аквамарин");
 		Doc_PrintLine(nDocID,0,"- горный хрусталь");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
@@ -42,29 +42,4 @@ func void Use_Runemaking_KDW_CIRC1_S1()
 		SC_KnowsBlankRuneForFirebolt = TRUE;
 	};
 };
-
-/*func void Use_Runemaking_KDW_CIRC2_S1()
-{
-	Use_Runemaking_KDW_CIRC1_S1();
-};
-
-func void Use_Runemaking_KDW_CIRC3_S1()
-{
-	Use_Runemaking_KDW_CIRC1_S1();
-};
-
-func void Use_Runemaking_KDW_CIRC4_S1()
-{
-	Use_Runemaking_KDW_CIRC1_S1();
-};
-
-func void Use_Runemaking_KDW_CIRC5_S1()
-{
-	Use_Runemaking_KDW_CIRC1_S1();
-};
-
-func void Use_Runemaking_KDW_CIRC6_S1()
-{
-	Use_Runemaking_KDW_CIRC1_S1();
-};*/
 

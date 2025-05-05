@@ -1,21 +1,21 @@
 
-instance DIA_Cornelius_Exit(C_Info)
+instance DIA_Cornelius_EXIT(C_Info)
 {
 	npc = VLK_401_Cornelius;
 	nr = 999;
-	condition = DIA_Cornelius_Exit_Condition;
-	information = DIA_Cornelius_Exit_Info;
+	condition = DIA_Cornelius_EXIT_Condition;
+	information = DIA_Cornelius_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Cornelius_Exit_Condition()
+func int DIA_Cornelius_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Cornelius_Exit_Info()
+func void DIA_Cornelius_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -39,8 +39,8 @@ func int DIA_Cornelius_Hello_Condition()
 		if(RescueBennet_KnowsCornelius == FALSE)
 		{
 			return TRUE;
-		}
-		else if(MIS_RescueBennet == LOG_SUCCESS)
+		};
+		if(MIS_RescueBennet == LOG_SUCCESS)
 		{
 			return TRUE;
 		};
@@ -67,7 +67,6 @@ instance DIA_Cornelius_SeeMurder(C_Info)
 	nr = 4;
 	condition = DIA_Cornelius_SeeMurder_Condition;
 	information = DIA_Cornelius_SeeMurder_Info;
-	permanent = FALSE;
 	description = "Ты видел, как убили Лотара, да?";
 };
 
@@ -95,7 +94,6 @@ instance DIA_Cornelius_WhatYouSee(C_Info)
 	nr = 5;
 	condition = DIA_Cornelius_WhatYouSee_Condition;
 	information = DIA_Cornelius_WhatYouSee_Info;
-	permanent = FALSE;
 	description = "Что именно ты видел?";
 };
 
@@ -124,7 +122,6 @@ instance DIA_Cornelius_Enough(C_Info)
 	nr = 6;
 	condition = DIA_Cornelius_Enough_Condition;
 	information = DIA_Cornelius_Enough_Info;
-	permanent = FALSE;
 	description = "Хватит! ЧТО ТЫ ВИДЕЛ?";
 };
 
@@ -175,15 +172,15 @@ func void DIA_Cornelius_DontBelieveYou_Info()
 	Info_ClearChoices(DIA_Cornelius_DontBelieveYou);
 	Info_AddChoice(DIA_Cornelius_DontBelieveYou,"Сколько ты хочешь?",DIA_Cornelius_DontBelieveYou_WhatYouWant);
 	Info_AddChoice(DIA_Cornelius_DontBelieveYou,"Ты ведь очень дорожишь своей жизнью, правда?",DIA_Cornelius_DontBelieveYou_WantSurvive);
-	if(hero.guild == GIL_KDF)
+	if(other.guild == GIL_KDF)
 	{
 		Info_AddChoice(DIA_Cornelius_DontBelieveYou,"Тебя могли бы заставить говорить в монастыре.",DIA_Cornelius_DontBelieveYou_Monastery);
 	}
-	else if(hero.guild == GIL_SLD)
+	else if(other.guild == GIL_SLD)
 	{
 		Info_AddChoice(DIA_Cornelius_DontBelieveYou,"Я могу сказать наемникам, где ты живешь.",DIA_Cornelius_DontBelieveYou_KnowYourHome);
 	}
-	else if(hero.guild == GIL_MIL)
+	else if(other.guild == GIL_MIL)
 	{
 		Info_AddChoice(DIA_Cornelius_DontBelieveYou,"За лжесвидетельство тебя посадят в тюрьму - и надолго!",DIA_Cornelius_DontBelieveYou_Perjury);
 	};
@@ -239,7 +236,6 @@ func void DIA_Cornelius_DontBelieveYou_Perjury()
 	AI_Output(other,self,"DIA_Cornelius_DontBelieveYou_Perjury_15_00");	//За лжесвидетельство тебя посадят в тюрьму - и надолго!
 	AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_Perjury_13_01");	//Ты пытаешься угрожать мне? Какой-то жалкий стражник угрожает мне, секретарю губернатора?
 	AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_Perjury_13_02");	//Если ты немедленно не исчезнешь, я позабочусь, чтобы тебя разжаловали.
-//	Cornelius_ThreatenByMilSC = TRUE;
 	AI_StopProcessInfos(self);
 };
 
@@ -250,7 +246,6 @@ instance DIA_Cornelius_PayCornelius(C_Info)
 	nr = 4;
 	condition = DIA_Cornelius_PayCornelius_Condition;
 	information = DIA_Cornelius_PayCornelius_Info;
-	permanent = FALSE;
 	description = "Вот золото.";
 };
 
@@ -329,7 +324,7 @@ instance DIA_Cornelius_Fleeing(C_Info)
 
 func int DIA_Cornelius_Fleeing_Condition()
 {
-	if((CorneliusFlee == TRUE) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (CorneliusFlee == TRUE))
 	{
 		return TRUE;
 	};

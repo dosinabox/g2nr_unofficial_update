@@ -1,47 +1,4 @@
 
-/*instance ItSe_Addon_Sack(C_Item)
-{
-	name = NAME_Bag;
-	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MISSION;
-	value = 0;
-	visual = "ItMi_Bag.3DS";
-	material = MAT_LEATHER;
-	scemeName = "MAPSEALED";
-	on_state[0] = Use_Sack;
-	description = name;
-	text[0] = "Мешок наполнен новым оружием!";
-};
-
-
-func void Use_Sack()
-{
-	Snd_Play("Geldbeutel");
-	Print("Найдено много разного нового оружия!");
-	B_GiveAllAddonWeapons(self);
-};
-
-
-instance ItFo_TestTrigger(C_Item)
-{
-	name = "Триггер мира аддона";
-	mainflag = ITEM_KAT_FOOD;
-	flags = ITEM_MULTI;
-	value = 0;
-	visual = "ItFo_Honey.3DS";
-	material = MAT_STONE;
-	scemeName = "FOODHUGE";
-	on_state[0] = Use_TestTrigger;
-	description = name;
-};
-
-
-func void Use_TestTrigger()
-{
-	Enter_AddonWorld_FirstTime_Trigger_Func();
-};*/
-
-
 instance CH(Npc_Default)
 {
 	name[0] = "Помощник по персонажу";
@@ -240,18 +197,18 @@ func void B_ResetHeroSkin()
 	NakedBodySkin = FALSE;
 };
 
-instance CH_Exit(C_Info)
+instance CH_EXIT(C_Info)
 {
 	npc = CH;
 	nr = 999;
-	condition = CH_Exit_Condition;
-	information = CH_Exit_Info;
+	condition = CH_EXIT_Condition;
+	information = CH_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int CH_Exit_Condition()
+func int CH_EXIT_Condition()
 {
 	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (MiscStart == FALSE))
 	{
@@ -259,7 +216,7 @@ func int CH_Exit_Condition()
 	};
 };
 
-func void CH_Exit_Info()
+func void CH_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

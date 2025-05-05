@@ -45,6 +45,7 @@ Story\B_Story\B_BlessAttribute.d
 Story\B_Story\B_StartOtherRoutine.d
 Story\B_Story\B_CancelBengarMilitiaProblem.d
 Story\B_Story\B_ResetNpcPosition.d
+Story\B_Story\B_GetStoryPointName.d
 Story\B_Content\B_RangerMeeting.d
 Story\B_Content\B_ScObsession.d
 Story\B_Content\B_Extro_AVI.d
@@ -440,6 +441,7 @@ Story\B_Story\B_BuildDateString.d
 Story\B_Story\B_BuildFullVersionString.d
 Story\B_Story\B_BuildOptionString.d
 Story\B_Story\B_RemoveTestNpcs.d
+Story\B_Story\C_SCHasAnyDragonHeart.d
 Story\Dialog_Mobsis\Bookstand.d
 Story\Dialog_Mobsis\BookstandAlchemy.d
 Story\Dialog_Mobsis\BookstandAnimals.d
@@ -482,6 +484,10 @@ Story\NPC_Scripts\B_GiveAllWeapons.d
 Story\NPC_Scripts\B_GiveBasicEquipment.d
 Story\NPC_Scripts\Npc_Default.d
 Items\IT_ScriptPatch.d
+AI\Test_Scripts\FaceHelper.d
+AI\Test_Scripts\PC_Levelinspektor.d
+AI\Test_Scripts\PC_MageTest.d
+AI\Test_Scripts\PC_Rockefeller.d
 Story\NPC\BAU_4300_Addon_Cavalorn.d
 Story\NPC\BAU_900_Onar.d
 Story\NPC\BAU_901_Bauer.d
@@ -906,14 +912,11 @@ Story\NPC\PC_Fighter_NW_nach_DJG.d
 Story\NPC\PC_Fighter_NW_vor_DJG.d
 Story\NPC\PC_Fighter_OW.d
 Story\NPC\PC_Hero.d
-Story\NPC\PC_Levelinspektor.d
-Story\NPC\PC_MageTest.d
 Story\NPC\PC_Mage_DI.d
 Story\NPC\PC_Mage_NW.d
 Story\NPC\PC_Mage_OW.d
 Story\NPC\PC_Psionic.d
 Story\NPC\PC_Psionic_DI.d
-Story\NPC\PC_Rockefeller.d
 Story\NPC\PC_Thief_OW.d
 Story\NPC\PC_Thief_DI.d
 Story\NPC\PC_Thief_NW.d
@@ -1180,7 +1183,6 @@ Story\NPC\VLK_496_Buergerin.d
 Story\NPC\VLK_497_Buergerin.d
 Story\NPC\VLK_498_Ignaz.d
 Story\NPC\VLK_499_Buerger.d
-Story\NPC\FH.d
 Story\NPC\Monster\MST_Addon_Alligator.d
 Story\NPC\Monster\MST_Addon_Blattcrawler.d
 Story\NPC\Monster\MST_Addon_Bloodhound.d
@@ -1360,6 +1362,7 @@ Story\B_Content\B_CaptainConditions.d
 Story\B_Content\B_JoinShip.d
 Story\B_Content\B_CaptainCallsAllOnBoard.d
 Story\B_Content\B_Addon_PiratesGoHome.d
+Story\B_Story\B_SetStoryPoint.d
 Story\Dialoge\DIA_BAU_4300_Addon_Cavalorn.d
 Story\Dialoge\DIA_BDT_10004_Addon_Finn.d
 Story\Dialoge\DIA_BDT_10005_Addon_Wache_02.d
@@ -1441,7 +1444,6 @@ Story\Dialoge\DIA_PIR_1366_Addon_Brandon.d
 Story\Dialoge\DIA_PIR_1365_Addon_Matt.d
 Story\Dialoge\DIA_PIR_1367_Addon_Owen.d
 Story\Dialoge\DIA_PIR_1368_Addon_Malcom.d
-Story\Dialoge\DIA_PIR_1389_Addon_Tom.d
 Story\Dialoge\DIA_STRF_1118_Addon_Patrick.d
 Story\Dialoge\DIA_STRF_1119_Addon_Monty.d
 Story\Dialoge\DIA_STRF_1120_Addon_Tonak.d
@@ -1521,7 +1523,6 @@ Story\Dialoge\DIA_DJG_714_Jan.d
 Story\Dialoge\DIA_DJG_715_Ferros.d
 Story\Dialoge\DIA_DMT_1200_Dementor.d
 Story\Dialoge\DIA_DMT_1299_OberDementor_DI.d
-Story\Dialoge\DIA_FH.d
 Story\Dialoge\DIA_KDF_500_Pyrokar.d
 Story\Dialoge\DIA_KDF_501_Serpentes.d
 Story\Dialoge\DIA_KDF_502_Ulthar.d
@@ -1701,7 +1702,6 @@ Story\Dialoge\DIA_VLK_457_Brian.d
 Story\Dialoge\DIA_VLK_458_Rupert.d
 Story\Dialoge\DIA_VLK_461_Carl.d
 Story\Dialoge\DIA_VLK_462_Thorben.d
-Story\Dialoge\DIA_VLK_466_Gernod.d
 Story\Dialoge\DIA_VLK_468_Canthar.d
 Story\Dialoge\DIA_VLK_469_Halvor.d
 Story\Dialoge\DIA_VLK_470_Sarah.d
@@ -1788,6 +1788,5 @@ AI\Test_Scripts\ScriptPatch.d
 AI\Test_Scripts\StoryHelper.d
 AI\Test_Scripts\Testmodelle_Bendlin.d
 AI\Test_Scripts\Testmodelle_Kalveram.d
-AI\Test_Scripts\Testmodelle_Pankratz.d
 Story\B_Story\B_Enter_DragonIsland.d
 Story\Startup.d

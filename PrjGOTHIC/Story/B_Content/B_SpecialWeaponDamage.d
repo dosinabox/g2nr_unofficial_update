@@ -32,50 +32,50 @@ func void B_SpecialMeleeWeaponDamage(var C_Npc attacker,var C_Npc target)
 			RavenBlitz += 1;
 		};
 	}
-	else if(Npc_IsPlayer(attacker))
+	else if(Npc_HasReadiedMeleeWeapon(attacker))
 	{
-		if(!Npc_HasReadiedMeleeWeapon(attacker))
-		{
-			return;
-		};
 		ReadyWeap = Npc_GetReadiedWeapon(attacker);
-		if(C_IsItemMeleeBeliarsWeapon(ReadyWeap))
+		if(C_IsNpc(target,MagicGolem))
 		{
-			DamageRandy = Hlp_Random(100);
-			if(DamageRandy <= BeliarDamageChance_20)
-			{
-				Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",attacker,attacker,0,0,0,FALSE);
-				if(DamageRandy <= BeliarDamageChance)
-				{
-					if(target.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)
-					{
-						Wld_PlayEffect("spellFX_BELIARSRAGE",attacker,attacker,0,0,0,FALSE);
-						B_MagicHurtNpc(target,attacker,BeliarSpecialDamage);
-					}
-					else if(!C_NpcIsImmortal(target))
-					{
-						Wld_PlayEffect("spellFX_BELIARSRAGE",target,target,0,0,0,FALSE);
-						B_MagicHurtNpc(attacker,target,BeliarSpecialDamage);
-					};
-				};
-			};
-		}
-		else if(Hlp_IsItem(ReadyWeap,Holy_Hammer_MIS))
-		{
-			if(C_IsNpc(target,MagicGolem))
+			if(Hlp_IsItem(ReadyWeap,Holy_Hammer_MIS))
 			{
 				Npc_ChangeAttribute(target,ATR_HITPOINTS,-target.attribute[ATR_HITPOINTS_MAX]);
 				if(!C_BodyStateContains(target,BS_PARADE))
 				{
 					Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",target,target,0,0,0,FALSE);
-					Snd_Play("MFX_Transform_Cast");
+					Snd_Play("CS_IHI_ME_CL");
+					Snd_Play("MFX_TRANSFORM_CAST");
 				};
 				B_GiveDeathXP(attacker,target);
 			};
 		}
-		else if(Hlp_IsItem(ReadyWeap,ItMw_BeliarWeapon_Fire))
+		else if(Npc_IsPlayer(attacker))
 		{
-			Wld_PlayEffect("VOB_MAGICBURN",target,target,0,0,0,FALSE);
+			if(C_IsItemMeleeBeliarsWeapon(ReadyWeap))
+			{
+				DamageRandy = Hlp_Random(100);
+				if(DamageRandy <= BeliarDamageChance_20)
+				{
+					Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",attacker,attacker,0,0,0,FALSE);
+					if(DamageRandy <= BeliarDamageChance)
+					{
+						if(target.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)
+						{
+							Wld_PlayEffect("spellFX_BELIARSRAGE",attacker,attacker,0,0,0,FALSE);
+							B_MagicHurtNpc(target,attacker,BeliarSpecialDamage);
+						}
+						else if(!C_NpcIsImmortal(target))
+						{
+							Wld_PlayEffect("spellFX_BELIARSRAGE",target,target,0,0,0,FALSE);
+							B_MagicHurtNpc(attacker,target,BeliarSpecialDamage);
+						};
+					};
+				};
+			}
+			else if(Hlp_IsItem(ReadyWeap,ItMw_BeliarWeapon_Fire))
+			{
+				Wld_PlayEffect("VOB_MAGICBURN",target,target,0,0,0,FALSE);
+			};
 		};
 	};
 };

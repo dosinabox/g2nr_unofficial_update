@@ -1,26 +1,25 @@
 
-instance DIA_Addon_AlligatorJack_Exit(C_Info)
+var int DIA_Addon_AlligatorJack_EXIT_Info_OneTime;
+
+instance DIA_Addon_AlligatorJack_EXIT(C_Info)
 {
 	npc = PIR_1352_Addon_AlligatorJack;
 	nr = 999;
-	condition = DIA_Addon_AlligatorJack_Exit_Condition;
-	information = DIA_Addon_AlligatorJack_Exit_Info;
+	condition = DIA_Addon_AlligatorJack_EXIT_Condition;
+	information = DIA_Addon_AlligatorJack_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Addon_AlligatorJack_Exit_Condition()
+func int DIA_Addon_AlligatorJack_EXIT_Condition()
 {
 	return TRUE;
 };
 
-
-var int DIA_Addon_AlligatorJack_Exit_Info_OneTime;
-
-func void DIA_Addon_AlligatorJack_Exit_Info()
+func void DIA_Addon_AlligatorJack_EXIT_Info()
 {
-	if((MIS_KrokoJagd == LOG_SUCCESS) && (DIA_Addon_AlligatorJack_Exit_Info_OneTime == FALSE))
+	if((MIS_KrokoJagd == LOG_SUCCESS) && (DIA_Addon_AlligatorJack_EXIT_Info_OneTime == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_Exit_12_00");	//Если я тебе понадоблюсь, ты можешь найти меня у моего лагеря рядом с частоколом.
 		if(!Npc_IsDead(Henry))
@@ -34,7 +33,7 @@ func void DIA_Addon_AlligatorJack_Exit_Info()
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"START");
 		self.aivar[AIV_PARTYMEMBER] = FALSE;
-		DIA_Addon_AlligatorJack_Exit_Info_OneTime = TRUE;
+		DIA_Addon_AlligatorJack_EXIT_Info_OneTime = TRUE;
 	};
 	AI_StopProcessInfos(self);
 };
@@ -46,7 +45,6 @@ instance DIA_Addon_AlligatorJack_Hello(C_Info)
 	nr = 5;
 	condition = DIA_Addon_AlligatorJack_Hello_Condition;
 	information = DIA_Addon_AlligatorJack_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -321,7 +319,6 @@ instance DIA_Addon_AlligatorJack_Pirates(C_Info)
 	nr = 5;
 	condition = DIA_Addon_AlligatorJack_Pirates_Condition;
 	information = DIA_Addon_AlligatorJack_Pirates_Info;
-	permanent = FALSE;
 	description = "Расскажи мне больше о пиратах.";
 };
 
@@ -453,7 +450,6 @@ instance DIA_Addon_AlligatorJack_TheHunt(C_Info)
 	nr = 5;
 	condition = DIA_Addon_AlligatorJack_TheHunt_Condition;
 	information = DIA_Addon_AlligatorJack_TheHunt_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -543,7 +539,6 @@ instance DIA_Addon_AlligatorJack_HuntEnd(C_Info)
 	nr = 5;
 	condition = DIA_Addon_AlligatorJack_HuntEnd_Condition;
 	information = DIA_Addon_AlligatorJack_HuntEnd_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -613,7 +608,6 @@ instance DIA_Addon_AlligatorJack_Angus(C_Info)
 	nr = 5;
 	condition = DIA_Addon_AlligatorJack_Angus_Condition;
 	information = DIA_Addon_AlligatorJack_Angus_Info;
-	permanent = FALSE;
 	description = "Ты знаешь Ангуса и Хэнка?";
 };
 
@@ -642,7 +636,6 @@ instance DIA_Addon_AlligatorJack_Lake(C_Info)
 	nr = 5;
 	condition = DIA_Addon_AlligatorJack_Lake_Condition;
 	information = DIA_Addon_AlligatorJack_Lake_Info;
-	permanent = FALSE;
 	description = "Что это за озеро?";
 };
 
@@ -863,7 +856,6 @@ instance DIA_Addon_AlligatorJack_Anheuern(C_Info)
 	nr = 11;
 	condition = DIA_Addon_AlligatorJack_Anheuern_Condition;
 	information = DIA_Addon_AlligatorJack_Anheuern_Info;
-	permanent = FALSE;
 	description = "Пойдем на охоту.";
 };
 

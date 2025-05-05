@@ -200,7 +200,7 @@ func void DIA_Maleth_ToTheCity_Info()
 	};
 	AI_Output(other,self,"DIA_Maleth_ToTheCity_15_04");	//И что это?
 	AI_Output(self,other,"DIA_Maleth_ToTheCity_08_05");	//Ну, например, что ты с фермы Лобарта и идешь к городскому кузнецу.
-	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
+	if((CityPassGranted == FALSE) && (PlayerEnteredCity == FALSE))
 	{
 		Log_CreateTopic(TOPIC_City,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_City,LOG_RUNNING);

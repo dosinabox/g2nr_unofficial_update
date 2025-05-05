@@ -26,25 +26,218 @@ func void Rtn_Start_9999()
 };
 
 
-instance StoryHelper_Exit(C_Info)
+instance StoryHelper_EXIT(C_Info)
 {
 	npc = SH;
 	nr = 999;
-	condition = StoryHelper_Exit_Condition;
-	information = StoryHelper_Exit_Info;
+	condition = StoryHelper_EXIT_Condition;
+	information = StoryHelper_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int StoryHelper_Exit_Condition()
+func int StoryHelper_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void StoryHelper_Exit_Info()
+func void StoryHelper_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
+};
+
+
+func void B_Build_StoryPoints_Diag()
+{
+	Info_ClearChoices(DIA_StoryHelper_StoryPoints);
+	Info_AddChoice(DIA_StoryHelper_StoryPoints,Dialog_Back,StoryHelper_StoryPoints_BACK);
+	if(CurrentStoryPoint < SP_C6_P3)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C6_P3),StoryHelper_StoryPoints_SP_C6_P3);
+	};
+	if(CurrentStoryPoint < SP_C6_P2)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C6_P2),StoryHelper_StoryPoints_SP_C6_P2);
+	};
+	if(CurrentStoryPoint < SP_C6_P1)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C6_P1),StoryHelper_StoryPoints_SP_C6_P1);
+	};
+	if(CurrentStoryPoint < SP_C5_P3)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C5_P3),StoryHelper_StoryPoints_SP_C5_P3);
+	};
+	if(CurrentStoryPoint < SP_C5_P2)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C5_P2),StoryHelper_StoryPoints_SP_C5_P2);
+	};
+	if(CurrentStoryPoint < SP_C5_P1)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C5_P1),StoryHelper_StoryPoints_SP_C5_P1);
+	};
+	if(CurrentStoryPoint < SP_C4_P2)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C4_P2),StoryHelper_StoryPoints_SP_C4_P2);
+	};
+	if(CurrentStoryPoint < SP_C4_P1)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C4_P1),StoryHelper_StoryPoints_SP_C4_P1);
+	};
+	if(CurrentStoryPoint < SP_C3_P3)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C3_P3),StoryHelper_StoryPoints_SP_C3_P3);
+	};
+	if(CurrentStoryPoint < SP_C3_P2)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C3_P2),StoryHelper_StoryPoints_SP_C3_P2);
+	};
+	if(CurrentStoryPoint < SP_C3_P1)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C3_P1),StoryHelper_StoryPoints_SP_C3_P1);
+	};
+	if(CurrentStoryPoint < SP_C2_P2)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C2_P2),StoryHelper_StoryPoints_SP_C2_P2);
+	};
+	if(CurrentStoryPoint < SP_C2_P1)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C2_P1),StoryHelper_StoryPoints_SP_C2_P1);
+	};
+	if(CurrentStoryPoint < SP_C1_P3)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C1_P3),StoryHelper_StoryPoints_SP_C1_P3);
+	};
+	if(CurrentStoryPoint < SP_C1_P2)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C1_P2),StoryHelper_StoryPoints_SP_C1_P2);
+	};
+	if(CurrentStoryPoint < SP_C1_P1)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C1_P1),StoryHelper_StoryPoints_SP_C1_P1);
+	};
+};
+
+func void StoryHelper_StoryPoints_SP_C1_P1()
+{
+	B_SetStoryPoint(SP_C1_P1);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C1_P2()
+{
+	B_SetStoryPoint(SP_C1_P2);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C1_P3()
+{
+	B_SetStoryPoint(SP_C1_P3);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C2_P1()
+{
+	B_SetStoryPoint(SP_C2_P1);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C2_P2()
+{
+	B_SetStoryPoint(SP_C2_P2);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C3_P1()
+{
+	B_SetStoryPoint(SP_C3_P1);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C3_P2()
+{
+	B_SetStoryPoint(SP_C3_P2);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C3_P3()
+{
+	B_SetStoryPoint(SP_C3_P3);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C4_P1()
+{
+	B_SetStoryPoint(SP_C4_P1);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C4_P2()
+{
+	B_SetStoryPoint(SP_C4_P2);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C5_P1()
+{
+	B_SetStoryPoint(SP_C5_P1);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C5_P2()
+{
+	B_SetStoryPoint(SP_C5_P2);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C5_P3()
+{
+	B_SetStoryPoint(SP_C5_P3);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C6_P1()
+{
+	B_SetStoryPoint(SP_C6_P1);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C6_P2()
+{
+	B_SetStoryPoint(SP_C6_P2);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C6_P3()
+{
+	B_SetStoryPoint(SP_C6_P3);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_BACK()
+{
+	Info_ClearChoices(DIA_StoryHelper_StoryPoints);
+};
+
+instance DIA_StoryHelper_StoryPoints(C_Info)
+{
+	npc = SH;
+	nr = 1;
+	condition = DIA_StoryHelper_StoryPoints_Condition;
+	information = DIA_StoryHelper_StoryPoints_Info;
+	permanent = TRUE;
+	description = "Перемотка основного сюжета";
+};
+
+
+func int DIA_StoryHelper_StoryPoints_Condition()
+{
+	return TRUE;
+};
+
+func void DIA_StoryHelper_StoryPoints_Info()
+{
+	B_Build_StoryPoints_Diag();
 };
 
 
@@ -55,7 +248,7 @@ instance StoryHelper_PatchSettings(C_Info)
 	condition = StoryHelper_PatchSettings_Condition;
 	information = StoryHelper_PatchSettings_Info;
 	permanent = TRUE;
-	description = "(настройки неофициального обновления)";
+	description = "Настройки неофициального обновления";
 };
 
 
@@ -70,7 +263,7 @@ func void StoryHelper_PatchSettings_Info()
 };
 
 
-instance StoryHelper_INFO1(C_Info)
+/*instance StoryHelper_INFO1(C_Info)
 {
 	npc = SH;
 	nr = 1;
@@ -173,7 +366,7 @@ func void StoryHelper_BACK2()
 func void StoryHelper_KAPITEL2ANFANG()
 {
 	Torwache_305.aivar[AIV_PASSGATE] = TRUE;
-	Mil_305_schonmalreingelassen = TRUE;
+	MIL_305_schonmalreingelassen = TRUE;
 	B_StartOtherRoutine(Lothar,"START");
 	CreateInvItems(hero,ItKe_Pass_MIS,1);
 	MIS_OLDWORLD = LOG_RUNNING;
@@ -328,5 +521,5 @@ func void StoryHelper_KAPITEL5ANFANG()
 	B_Kapitelwechsel(5,NEWWORLD_ZEN);
 	Info_ClearChoices(StoryHelper_INFO5);
 	AI_StopProcessInfos(self);
-};
+};*/
 

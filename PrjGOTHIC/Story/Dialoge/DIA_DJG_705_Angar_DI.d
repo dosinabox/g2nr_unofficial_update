@@ -122,7 +122,7 @@ func void B_AngarStays()
 		{
 			Npc_ExchangeRoutine(self,"START");
 		}
-		else if(Npc_IsDead(FireDragonIsland))
+		else if(FireDragonIslandIsDead == TRUE)
 		{
 			Npc_ExchangeRoutine(self,"FIREDRAGONISLAND");
 		}
@@ -211,7 +211,7 @@ func int DIA_Angar_DI_FOLLOWSTOP_Condition()
 {
 	if(Angar_DI_Party == LOG_RUNNING)
 	{
-		if(!Npc_IsDead(FireDragonIsland))
+		if(FireDragonIslandIsDead == FALSE)
 		{
 			if(Npc_GetDistToWP(self,"DI_DRACONIANAREA_16") < 3000)
 			{

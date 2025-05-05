@@ -1145,6 +1145,8 @@ func void DIA_Lord_Hagen_Cornelius_Info()
 		B_StartOtherRoutine(Cornelius,"PRISON");
 	};
 	MIS_RescueBennet = LOG_SUCCESS;
+	STORYPOINT[SP_C3_P2] = TRUE;
+	CurrentStoryPoint = SP_C3_P2;
 	B_GivePlayerXP(XP_RescueBennet);
 	if(other.guild == GIL_MIL)
 	{

@@ -63,14 +63,6 @@ func void B_Build_Settings_Diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Соединить шлемы и доспехи",StoryHelper_Helmets);
 	};
-	if(IgnoreBonuses == FALSE)
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование постоянных бонусов при обучении",StoryHelper_Bonuses);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование постоянных бонусов при обучении",StoryHelper_Bonuses);
-	};
 	if(AddonDisabled == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить возможность прохождения без аддона",StoryHelper_Addon);
@@ -172,6 +164,14 @@ func void B_Build_Settings_Diag()
 	};
 	if(UnionActivated == FALSE)
 	{
+		if(IgnorePermBonuses == FALSE)
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование постоянных бонусов при обучении",StoryHelper_Bonuses);
+		}
+		else
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование постоянных бонусов при обучении",StoryHelper_Bonuses);
+		};
 		if(HonestLearnCostEnabled == FALSE)
 		{
 			Info_AddChoice(StoryHelper_PatchSettings,"Включить честный расчет стоимости обучения",StoryHelper_HonestLearnCost);
@@ -246,18 +246,14 @@ func void StoryHelper_Unlimfix()
 
 func void StoryHelper_Bonuses()
 {
-	if(IgnoreBonuses == TRUE)
+	if(IgnorePermBonuses == TRUE)
 	{
-		IgnoreBonuses = FALSE;
-		TAL_TeachLimitFlags_TS_PermBonus = 1;
-		TAL_CostFlags_TS_PermBonus = 1;
+		IgnorePermBonuses = FALSE;
 		PrintScreen("Оригинал: бонусы нужно копить",-1,-1,FONT_Screen,2);
 	}
 	else
 	{
-		IgnoreBonuses = TRUE;
-		TAL_TeachLimitFlags_TS_PermBonus = 0;
-		TAL_CostFlags_TS_PermBonus = 0;
+		IgnorePermBonuses = TRUE;
 		PrintScreen("Теперь бонусы можно не копить",-1,-1,FONT_Screen,2);
 	};
 	B_Build_Settings_Diag();

@@ -4,7 +4,7 @@ var int EVT_UndeadDragon_Trap_01_Func_Count_NoMore;
 
 func void EVT_UndeadDragon_Trap_01_Func()
 {
-	if((EVT_UndeadDragon_Trap_01_Func_Count_NoMore < 10) && !Npc_IsDead(UndeadDragon))
+	if((EVT_UndeadDragon_Trap_01_Func_Count_NoMore < 10) && (UndeadDragonIsDead == FALSE))
 	{
 		if((EVT_UndeadDragon_Trap_01_Func_Count < 2) && (EVT_UndeadDragon_Trap_01_Func_Count != 0))
 		{
@@ -25,7 +25,7 @@ var int EVT_UndeadDragon_Trap_02_Func_Count_NoMore;
 
 func void EVT_UndeadDragon_Trap_02_Func()
 {
-	if((EVT_UndeadDragon_Trap_02_Func_Count_NoMore < 10) && !Npc_IsDead(UndeadDragon))
+	if((EVT_UndeadDragon_Trap_02_Func_Count_NoMore < 10) && (UndeadDragonIsDead == FALSE))
 	{
 		if((EVT_UndeadDragon_Trap_02_Func_Count < 2) && (EVT_UndeadDragon_Trap_02_Func_Count != 0))
 		{
@@ -46,7 +46,7 @@ var int EVT_UndeadDragon_Trap_03_Func_Count_NoMore;
 
 func void EVT_UndeadDragon_Trap_03_Func()
 {
-	if((EVT_UndeadDragon_Trap_03_Func_Count_NoMore < 10) && !Npc_IsDead(UndeadDragon))
+	if((EVT_UndeadDragon_Trap_03_Func_Count_NoMore < 10) && (UndeadDragonIsDead == FALSE))
 	{
 		if((EVT_UndeadDragon_Trap_03_Func_Count < 2) && (EVT_UndeadDragon_Trap_03_Func_Count != 0))
 		{
@@ -68,7 +68,7 @@ func void EVT_UndeadDragonDead_EndSituation()
 {
 	if(EVT_UndeadDragonDead_EndSituation_OneTime == FALSE)
 	{
-		if(Npc_IsDead(UndeadDragon))
+		if(UndeadDragonIsDead == TRUE)
 		{
 			Angar_DI_Party = LOG_SUCCESS;
 			B_StartOtherRoutine(Angar_DI,"FIREDRAGONISLAND");

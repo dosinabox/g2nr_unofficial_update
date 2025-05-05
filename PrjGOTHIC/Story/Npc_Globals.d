@@ -236,8 +236,6 @@ var C_Npc SwampDragon;
 var C_Npc RockDragon;
 var C_Npc FireDragon;
 var C_Npc IceDragon;
-var C_Npc UndeadDragon;
-var C_Npc FireDragonIsland;
 var C_Npc Pedro_DI;
 var C_Npc Archol;
 var C_Npc Lee;
@@ -609,9 +607,6 @@ func void B_InitNpc_DI()
 	//капитаны
 	Jack_DI = Hlp_GetNpc(VLK_444_Jack_DI);
 	Torlof_DI = Hlp_GetNpc(SLD_801_Torlof_DI);
-	//драконы
-	FireDragonIsland = Hlp_GetNpc(Dragon_Fire_Island);
-	UndeadDragon = Hlp_GetNpc(Dragon_Undead);
 };
 
 func void B_InitNpcGlobals()

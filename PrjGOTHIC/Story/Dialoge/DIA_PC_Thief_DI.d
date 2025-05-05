@@ -82,7 +82,7 @@ func void DIA_PC_Thief_DI_RAT_Info()
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_02");	//Орки - хитрые создания. Зачастую их недооценивают. Я полагаю, у них там что-то вроде секретного прохода. Осмотри стены на предмет скрытых выключателей.
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_03");	//Помни, впрочем - эти выключатели обычно нужно нажимать в определенном порядке, чтобы механизм сработал.
 	}
-	else if(Npc_IsDead(FireDragonIsland) && (EVT_DIBridge_Opened == FALSE))
+	else if((FireDragonIslandIsDead == TRUE) && (EVT_DIBridge_Opened == FALSE))
 	{
 		AI_Output(other,self,"DIA_PC_Thief_DI_RAT_15_04");	//Я сражался с драконом и теперь застрял перед пропастью с подъемным мостом. Этот мост поднят, и я не знаю, как опустить его.
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_05");	//Ммм. А ты не пробовал дальнобойное оружие? Может быть, механизм можно активировать при помощи выстрела.

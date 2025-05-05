@@ -286,6 +286,8 @@ func void Use_Seamap_Irdorath()
 			B_Say(self,self,"$IRDORATHTHEREYOUARE");
 		};
 		MIS_SCKnowsWayToIrdorath = TRUE;
+		STORYPOINT[SP_C5_P3] = TRUE;
+		CurrentStoryPoint = SP_C5_P3;
 		B_GivePlayerXP(XP_SCKnowsWayToIrdorath);
 	};
 };

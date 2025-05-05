@@ -57,7 +57,18 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 					};
 				};
 				MIS_AllDragonsDead = TRUE;
+				STORYPOINT[SP_C4_P2] = TRUE;
+				CurrentStoryPoint = SP_C4_P2;
 				B_CheckLog();
+			};
+		};
+		if(FireDragonIslandIsDead == FALSE)
+		{
+			if(C_IsNpc(current_dragon,Dragon_Fire_Island))
+			{
+				FireDragonIslandIsDead = TRUE;
+				STORYPOINT[SP_C6_P2] = TRUE;
+				CurrentStoryPoint = SP_C6_P2;
 			};
 		};
 		if(UndeadDragonIsDead == FALSE)
@@ -81,6 +92,8 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 				Log_SetTopicStatus(TOPIC_BackToShip,LOG_RUNNING);
 				B_LogEntry(TOPIC_BackToShip,PRINT_DragKillCount);
 				UndeadDragonIsDead = TRUE;
+				STORYPOINT[SP_C6_P3] = TRUE;
+				CurrentStoryPoint = SP_C6_P3;
 				B_CheckLog();
 			};
 		};

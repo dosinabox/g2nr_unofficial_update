@@ -805,6 +805,24 @@ const int FREEMINE_ZEN = 5;
 const int ORCGRAVEYARD_ZEN = 6;
 const int ABANDONEDMINE_ZEN = 7;
 
+const int SP_C1_P1 = 0;
+const int SP_C1_P2 = 1;
+const int SP_C1_P3 = 2;
+const int SP_C2_P1 = 3;
+const int SP_C2_P2 = 4;
+const int SP_C3_P1 = 5;
+const int SP_C3_P2 = 6;
+const int SP_C3_P3 = 7;
+const int SP_C4_P1 = 8;
+const int SP_C4_P2 = 9;
+const int SP_C5_P1 = 10;
+const int SP_C5_P2 = 11;
+const int SP_C5_P3 = 12;
+const int SP_C6_P1 = 13;
+const int SP_C6_P2 = 14;
+const int SP_C6_P3 = 15;
+var int STORYPOINT[16];
+
 const int INVCAM_ENTF_RING_STANDARD = 400;
 const int INVCAM_ENTF_AMULETTE_STANDARD = 150;
 const int INVCAM_ENTF_MISC_STANDARD = 200;
@@ -818,8 +836,8 @@ const int INVCAM_Z_RING_STANDARD = 45;
 const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2025;
-const int FIX_DATE_MONTH = 4;
-const int FIX_DATE_DAY = 16;
+const int FIX_DATE_MONTH = 5;
+const int FIX_DATE_DAY = 5;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;

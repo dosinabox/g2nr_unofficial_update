@@ -286,7 +286,7 @@ func void PC_Charge_InnosEye_Info()
 	{
 		B_EndProductionDialog();
 	}
-	else if((Npc_HasItems(self,ItAt_IcedragonHeart) || Npc_HasItems(self,ItAt_RockdragonHeart) || Npc_HasItems(self,ItAt_FiredragonHeart) || Npc_HasItems(self,ItAt_SwampdragonHeart)) && (Npc_HasItems(self,ItMi_InnosEye_Discharged_MIS)))
+	else if(C_SCHasAnyDragonHeart(self) && Npc_HasItems(self,ItMi_InnosEye_Discharged_MIS))
 	{
 		AI_Wait(self,0.5);
 		FlasksCount -= 1;
