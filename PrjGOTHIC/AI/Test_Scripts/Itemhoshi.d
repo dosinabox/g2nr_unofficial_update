@@ -1,0 +1,55 @@
+
+instance Itemhoshi(Npc_Default)
+{
+	name[0] = "Мистер Вещь Хоша";
+	guild = GIL_MIL;
+	id = 1500;
+	voice = 3;
+	flags = NPC_FLAG_IMMORTAL;
+	npcType = NPCTYPE_MAIN;
+	B_SetAttributesToChapter(self,6);
+	fight_tactic = FAI_HUMAN_STRONG;
+	B_GiveAllClassicWeapons(self);
+	B_GiveAllAddonWeapons(self);
+	B_GiveAllPatchWeapons(self);
+	B_GiveAllClassicArmor(self);
+	B_GiveAllAddonArmor(self);
+	B_GiveAllPatchArmor(self);
+	B_GiveAllClassicRunes(self);
+	B_GiveAllAddonRunes(self);
+	B_GiveAllPatchRunes(self);
+	B_GiveAllClassicScrolls(self);
+	B_GiveAllAddonScrolls(self);
+	B_GiveAllPatchScrolls(self);
+	B_GiveAllClassicKeys(self);
+	B_GiveAllAddonKeys(self);
+	B_GiveAllPatchKeys(self);
+	B_GiveAllClassicTrophies(self);
+	B_GiveAllAddonTrophies(self);
+	B_GiveAllPatchTrophies(self);
+	B_GiveAllClassicFood(self);
+	B_GiveAllAddonFood(self);
+	B_GiveAllPatchFood(self);
+	B_GiveAllClassicDocuments(self);
+	B_GiveAllAddonDocuments(self);
+	B_GiveAllPatchDocuments(self);
+	B_GiveAllClassicPotions(self);
+	B_GiveAllAddonPotions(self);
+	B_GiveAllPatchPotions(self);
+	B_GiveAllClassicAccessories(self);
+	B_GiveAllAddonAccessories(self);
+	B_GiveAllPatchAccessories(self);
+	B_GiveAllClassicMiscItems(self);
+	B_GiveAllAddonMiscItems(self);
+	B_GiveAllPatchMiscItems(self);
+	B_GiveAllClassicMissionItems(self);
+	B_GiveAllAddonMissionItems(self);
+	B_GiveAllPatchMissionItems(self);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_OldBald_Jeremiah,BodyTex_N,NO_ARMOR);
+	Npc_SetTalentSkill(self,NPC_TALENT_MAGE,6);
+	Npc_SetTalentSkill(self,NPC_TALENT_PICKLOCK,1);
+	Npc_SetTalentSkill(self,NPC_TALENT_SNEAK,1);
+	Npc_SetTalentSkill(self,NPC_TALENT_ACROBAT,1);
+	B_SetFightSkills(self,70);
+};
+

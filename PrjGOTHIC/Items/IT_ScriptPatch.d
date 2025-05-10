@@ -78,17 +78,15 @@ func void Use_StatsBook()
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter),PRINT_GoldTaken));
 	};
 	Doc_SetMargins(nDocID,-1,10,20,275,20,1);
-	Doc_PrintLine(nDocID,1,"Молитвы Инносу:");
+	Doc_PrintLine(nDocID,1,"Молитвы:");
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_GoldGiven),PRINT_GoldGiven));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Beliar_GoldTaken),PRINT_GoldTaken));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_Str)," силы получено"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_Dex)," ловкости получено"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_MaxHp)," макс. здоровья получено"));
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_MaxMana)," макс. маны получено"));
-	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLine(nDocID,1,"Молитвы Белиару:");
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Beliar_HpGiven)," макс. здоровья отдано"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_MaxMana)," макс. маны получено"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Beliar_ManaGiven)," макс. маны отдано"));
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Beliar_GoldTaken),PRINT_GoldTaken));
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Улучшения Когтя:");
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Beliar_ClawMaxHp)," макс. здоровья отдано"));
@@ -236,6 +234,54 @@ func void UsePickPocketSyncer()
 {
 	B_SyncItemsToSteal();
 	PrintScreen("Предметы для кражи обновлены",-1,55,FONT_Screen,4);
+};
+
+instance MobsiBrief(C_Item)
+{
+	name = "Руна MobsiBrief";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItRu_TeleportOWDemonTower.3DS";
+	material = MAT_STONE;
+	scemeName = "MAP";
+	description = name;
+	text[0] = "Исправить блокировку состояния.";
+	on_state[0] = UseMobsiBrief;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
+};
+
+
+func void UseMobsiBrief()
+{
+	PLAYER_MOBSI_PRODUCTION = MOBSI_NONE;
+	self.aivar[AIV_INVINCIBLE] = FALSE;
+	PrintScreen("PLAYER_MOBSI_PRODUCTION = MOBSI_NONE",-1,50,FONT_Screen,4);
+	PrintScreen("self.aivar[AIV_INVINCIBLE] = FALSE",-1,55,FONT_Screen,4);
+};
+
+instance Gold(C_Item)
+{
+	name = NAME_Bag;
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = 0;
+	visual = "ItMi_Bag.3ds";
+	scemeName = "MAPSEALED";
+	material = MAT_LEATHER;
+	on_state[0] = UseGold;
+	description = name;
+	text[0] = "Целый мешок золота!";
+};
+
+
+func void UseGold()
+{
+	B_PlayerFindItem(ItMi_Gold,1000);
+	PrintScreen("Наказание за читерство",-1,50,FONT_Screen,2);
+	B_GivePlayerXP(XP_EXPLOITBONUS);
 };
 
 instance Helmets(C_Item)

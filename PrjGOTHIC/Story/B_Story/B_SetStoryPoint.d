@@ -68,10 +68,22 @@ func void B_SetStoryPoint(var int newStoryPoint)
 	};
 	if((newStoryPoint >= SP_C4_P2) && (STORYPOINT[SP_C4_P2] == FALSE))
 	{
+		if(CurrentLevel == OLDWORLD_ZEN)
+		{
+			B_RemoveNpc(Dragon_Swamp);
+			B_RemoveNpc(Dragon_Rock);
+			B_RemoveNpc(Dragon_Fire);
+			B_RemoveNpc(Dragon_Ice);
+		};
 		if(!C_SCHasAnyDragonHeart(hero))
 		{
 			CreateInvItem(hero,ItAt_IcedragonHeart);
 		};
+		SwampDragonIsDead = TRUE;
+		RockDragonIsDead = TRUE;
+		FireDragonIsDead = TRUE;
+		IceDragonIsDead = TRUE;
+		MIS_KilledDragons = 4;
 		MIS_AllDragonsDead = TRUE;
 		STORYPOINT[SP_C4_P2] = TRUE;
 	};
@@ -106,11 +118,23 @@ func void B_SetStoryPoint(var int newStoryPoint)
 	};
 	if((newStoryPoint >= SP_C6_P2) && (STORYPOINT[SP_C6_P2] == FALSE))
 	{
+		if(CurrentLevel == DRAGONISLAND_ZEN)
+		{
+			B_RemoveNpc(Dragon_Fire_Island);
+		};
+		if(!C_SCHasAnyDragonHeart(hero))
+		{
+			CreateInvItem(hero,ItAt_FiredragonHeart);
+		};
 		FireDragonIslandIsDead = TRUE;
 		STORYPOINT[SP_C6_P2] = TRUE;
 	};
 	if((newStoryPoint >= SP_C6_P3) && (STORYPOINT[SP_C6_P3] == FALSE))
 	{
+		if(CurrentLevel == DRAGONISLAND_ZEN)
+		{
+			B_RemoveNpc(Dragon_Undead);
+		};
 		UndeadDragonIsDead = TRUE;
 		STORYPOINT[SP_C6_P3] = TRUE;
 	};

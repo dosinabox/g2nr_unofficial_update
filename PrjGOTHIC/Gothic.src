@@ -1752,6 +1752,7 @@ AI\Monster\ZS_Monster\ZS_MM_Flee.d
 AI\Monster\ZS_Monster\ZS_MM_Hunt.d
 AI\Monster\ZS_Monster\ZS_MM_ThreatenEnemy.d
 Story\B_Story\B_MageCaveTrigger.d
+Story\B_Story\C_MeleeWeaponsGivenToTraders.d
 Story\Events\B_Addon_Portal_Activated.d
 Story\Events\B_Function_Touch_And_Get_Killed.d
 Story\Events\NewWorld_FishFood_Trigger.d
@@ -1786,7 +1787,6 @@ AI\Test_Scripts\CharacterHelper.d
 AI\Test_Scripts\PC_ItemFeller.d
 AI\Test_Scripts\ScriptPatch.d
 AI\Test_Scripts\StoryHelper.d
-AI\Test_Scripts\Testmodelle_Bendlin.d
-AI\Test_Scripts\Testmodelle_Kalveram.d
+AI\Test_Scripts\Itemhoshi.d
 Story\B_Story\B_Enter_DragonIsland.d
 Story\Startup.d
