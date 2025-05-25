@@ -32,11 +32,11 @@ func string B_GetStoryPointName(var int storyPoint)
 	};
 	if(storyPoint == SP_C1_P2)
 	{
-		text = ConcatStrings(text,"получен доступ в верхний квартал");
+		text = ConcatStrings(text,"верхний квартал");
 	};
 	if(storyPoint == SP_C1_P3)
 	{
-		text = ConcatStrings(text,"получен доступ в ратушу");
+		text = ConcatStrings(text,"ратуша");
 	};
 	if(storyPoint == SP_C2_P1)
 	{
@@ -44,7 +44,7 @@ func string B_GetStoryPointName(var int storyPoint)
 	};
 	if(storyPoint == SP_C2_P2)
 	{
-		text = ConcatStrings(text,"получено письмо Гаронда");
+		text = ConcatStrings(text,"письмо Гаронда");
 	};
 	if(storyPoint == SP_C3_P1)
 	{
@@ -52,11 +52,11 @@ func string B_GetStoryPointName(var int storyPoint)
 	};
 	if(storyPoint == SP_C3_P2)
 	{
-		text = ConcatStrings(text,"освобожден Беннет");
+		text = ConcatStrings(text,"Беннет на свободе");
 	};
 	if(storyPoint == SP_C3_P3)
 	{
-		text = ConcatStrings(text,"восстановлен Глаз Инноса");
+		text = ConcatStrings(text,"восстановлен Глаз");
 	};
 	if(storyPoint == SP_C4_P1)
 	{
@@ -72,7 +72,7 @@ func string B_GetStoryPointName(var int storyPoint)
 	};
 	if(storyPoint == SP_C5_P2)
 	{
-		text = ConcatStrings(text,"найдена морская карта");
+		text = ConcatStrings(text,"найдена карта");
 	};
 	if(storyPoint == SP_C5_P3)
 	{

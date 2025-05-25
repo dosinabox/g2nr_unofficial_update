@@ -15,95 +15,89 @@ func void B_StopMagicFlee()
 
 func void ZS_MagicFlee()
 {
-	var int randy;
-	if(!C_NpcIsHuman(self))
+	var int random;
+	if(C_NpcIsHuman(self))
 	{
-		if((self.guild != GIL_DRAGON) && (self.guild != GIL_TROLL) && !C_NpcIsGolem(self) && !C_NpcIsUndead(self))
+		if(C_NpcIsMage(self) || C_NpcIsPaladin(self))
 		{
-			AI_StartState(self,ZS_MM_Flee,0,"");
-		}
-		else
+			if(!Npc_IsInState(self,ZS_ReactToWeapon))
+			{
+				B_Say(self,hero,"$ISAIDSTOPMAGIC");
+				AI_ContinueRoutine(self);
+			};
+			return;
+		};
+		if(CurrentLevel == NEWWORLD_ZEN)
+		{
+			if((Miliz_Flucht == FALSE) && (Kapitel < 3))
+			{
+				if(ScaredRick == FALSE)
+				{
+					if(C_IsNpc(self,MIL_336_Rick))
+					{
+						Npc_ExchangeRoutine(self,"FLUCHT3");
+						self.aivar[AIV_DropDeadAndKill] = FALSE;
+						ScaredRick = TRUE;
+					};
+				};
+				if(ScaredRumbold == FALSE)
+				{
+					if(C_IsNpc(self,MIL_335_Rumbold))
+					{
+						Npc_ExchangeRoutine(self,"FLUCHT3");
+						self.aivar[AIV_DropDeadAndKill] = FALSE;
+						ScaredRumbold = TRUE;
+					};
+				};
+			};
+			if(Kapitel < 4)
+			{
+				if(ScaredAlvares == FALSE)
+				{
+					if(C_IsNpc(self,SLD_840_Alvares))
+					{
+						B_SetGuild(self,GIL_SLD);
+						Npc_ExchangeRoutine(self,"BIGFARM");
+						ScaredAlvares = TRUE;
+					};
+				};
+				if(ScaredEngardo == FALSE)
+				{
+					if(C_IsNpc(self,SLD_841_Engardo))
+					{
+						B_SetGuild(self,GIL_SLD);
+						Npc_ExchangeRoutine(self,"BIGFARM");
+						ScaredEngardo = TRUE;
+					};
+				};
+				if(C_AkilFarmIsFree() && (ScaredFarmers == FALSE))
+				{
+					if(!Npc_IsDead(Akil))
+					{
+						Npc_ExchangeRoutine(Akil,"START");
+					};
+					if(!Npc_IsDead(Kati))
+					{
+						Npc_ExchangeRoutine(Kati,"START");
+					};
+					if(!Npc_IsDead(Randolph))
+					{
+						Npc_ExchangeRoutine(Randolph,"START");
+						Randolph.flags = 0;
+					};
+					ScaredFarmers = TRUE;
+				};
+			};
+		};
+	}
+	else
+	{
+		if((self.guild == GIL_DRAGON) || (self.guild == GIL_TROLL) || C_NpcIsGolem(self) || C_NpcIsUndead(self))
 		{
 			AI_ContinueRoutine(self);
 			return;
 		};
-	};
-	if(C_NpcIsMage(self) || C_NpcIsPaladin(self))
-	{
-		if(!Npc_IsInState(self,ZS_ReactToWeapon))
-		{
-			B_Say(self,other,"$ISAIDSTOPMAGIC");
-			AI_ContinueRoutine(self);
-		};
-		return;
-	};
-	if((Miliz_Flucht == FALSE) && (Kapitel < 3))
-	{
-		if(ScaredRick == FALSE)
-		{
-			if(C_IsNpc(self,MIL_336_Rick))
-			{
-				Npc_ExchangeRoutine(self,"FLUCHT3");
-				self.aivar[AIV_DropDeadAndKill] = FALSE;
-				ScaredRick = TRUE;
-			};
-		};
-		if(ScaredRumbold == FALSE)
-		{
-			if(C_IsNpc(self,MIL_335_Rumbold))
-			{
-				Npc_ExchangeRoutine(self,"FLUCHT3");
-				self.aivar[AIV_DropDeadAndKill] = FALSE;
-				ScaredRumbold = TRUE;
-			};
-		};
-	};
-	if(Kapitel < 4)
-	{
-		if(ScaredAlvares == FALSE)
-		{
-			if(C_IsNpc(self,SLD_840_Alvares))
-			{
-				B_SetGuild(self,GIL_SLD);
-				Npc_ExchangeRoutine(self,"BIGFARM");
-				ScaredAlvares = TRUE;
-			};
-		};
-		if(ScaredEngardo == FALSE)
-		{
-			if(C_IsNpc(self,SLD_841_Engardo))
-			{
-				B_SetGuild(self,GIL_SLD);
-				Npc_ExchangeRoutine(self,"BIGFARM");
-				ScaredEngardo = TRUE;
-			};
-		};
-		if(C_AkilFarmIsFree() && (ScaredFarmers == FALSE))
-		{
-			if(Hlp_IsValidNpc(Akil))
-			{
-				if(!Npc_IsDead(Akil))
-				{
-					Npc_ExchangeRoutine(Akil,"START");
-				};
-			};
-			if(Hlp_IsValidNpc(Kati))
-			{
-				if(!Npc_IsDead(Kati))
-				{
-					Npc_ExchangeRoutine(Kati,"START");
-				};
-			};
-			if(Hlp_IsValidNpc(Randolph))
-			{
-				if(!Npc_IsDead(Randolph))
-				{
-					Npc_ExchangeRoutine(Randolph,"START");
-					Randolph.flags = 0;
-				};
-			};
-			ScaredFarmers = TRUE;
-		};
+		AI_StartState(self,ZS_MM_Flee,0,"");
 	};
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_StopMagicFlee);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
@@ -123,12 +117,12 @@ func void ZS_MagicFlee()
 	};
 	if(C_NpcIsHuman(self))
 	{
-		randy = Hlp_Random(3);
-		if(randy == 0)
+		random = Hlp_Random(3);
+		if(random == 0)
 		{
 			AI_PlayAniBS(self,"T_STAND_2_FEAR_VICTIM1",BS_STAND);
 		}
-		else if(randy == 1)
+		else if(random == 1)
 		{
 			AI_PlayAniBS(self,"T_STAND_2_FEAR_VICTIM2",BS_STAND);
 		}

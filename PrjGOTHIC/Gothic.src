@@ -1362,6 +1362,7 @@ Story\B_Content\B_CaptainConditions.d
 Story\B_Content\B_JoinShip.d
 Story\B_Content\B_CaptainCallsAllOnBoard.d
 Story\B_Content\B_Addon_PiratesGoHome.d
+Story\Events\EVT_OrkOberst.d
 Story\B_Story\B_SetStoryPoint.d
 Story\Dialoge\DIA_BAU_4300_Addon_Cavalorn.d
 Story\Dialoge\DIA_BDT_10004_Addon_Finn.d
@@ -1774,7 +1775,6 @@ Story\Events\EVT_Final_Door.d
 Story\Events\EVT_DIRooms.d
 Story\Events\EVT_Monastery_SecretLibrary.d
 Story\Events\EVT_OC_MainGate.d
-Story\Events\EVT_OrkOberst.d
 Story\Events\EVT_Ornament_Switch.d
 Story\Events\EVT_Troll_Grave.d
 Story\Events\EVT_Truhe_OW.d

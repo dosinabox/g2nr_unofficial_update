@@ -28,17 +28,22 @@ instance DIA_Sengrath_Hello(C_Info)
 	nr = 2;
 	condition = DIA_Sengrath_Hello_Condition;
 	information = DIA_Sengrath_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Sengrath_Hello_Condition()
 {
-//	return TRUE;
-	if((Npc_GetDistToWP(hero,"OC_RAMP_17") < 380) || (Npc_IsInState(self,ZS_Talk)))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
+	};
+	if(Hlp_IsValidNpc(hero))
+	{
+		if(Npc_GetDistToWP(hero,"OC_RAMP_17") < 380)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -59,7 +64,6 @@ instance DIA_Sengrath_Equipment(C_Info)
 	nr = 2;
 	condition = DIA_Sengrath_Equipment_Condition;
 	information = DIA_Sengrath_Equipment_Info;
-	permanent = FALSE;
 	description = "Где я могу найти снаряжение здесь?";
 };
 
@@ -86,7 +90,6 @@ instance DIA_Sengrath_Perm(C_Info)
 	nr = 2;
 	condition = DIA_Sengrath_Perm_Condition;
 	information = DIA_Sengrath_Perm_Info;
-	permanent = FALSE;
 	description = "Кто здесь может научить меня чему-нибудь?";
 };
 

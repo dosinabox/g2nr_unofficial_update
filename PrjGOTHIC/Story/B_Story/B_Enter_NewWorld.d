@@ -244,9 +244,12 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Wld_InsertNpc(DMT_DementorAmbientSekob4,"NW_FARM4_IN_04");
 			B_SetImmortal(Sekob);
 		};
+		if(MIS_RescueBennet != LOG_SUCCESS)
+		{
+			B_NpcSetJailed(Bennet);
+			B_StartOtherRoutine(Bennet,"PRISON");
+		};
 		B_StartOtherRoutine(Lester,"WAITFORPLAYER");
-		B_NpcSetJailed(Bennet);
-		B_StartOtherRoutine(Bennet,"PRISON");
 		B_StartOtherRoutine(Vanja,"ALONE");
 		if(!Npc_IsDead(Peck))
 		{

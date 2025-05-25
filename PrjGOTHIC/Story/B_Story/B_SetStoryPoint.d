@@ -48,6 +48,12 @@ func void B_SetStoryPoint(var int newStoryPoint)
 	};
 	if((newStoryPoint >= SP_C3_P2) && (STORYPOINT[SP_C3_P2] == FALSE))
 	{
+		if(CurrentLevel == NEWWORLD_ZEN)
+		{
+			B_NpcSetReleased(Bennet);
+			B_StartOtherRoutine(Bennet,"START");
+			B_StartOtherRoutine(Hodges,"START");
+		};
 		MIS_RescueBennet = LOG_SUCCESS;
 		STORYPOINT[SP_C3_P2] = TRUE;
 	};
@@ -120,6 +126,7 @@ func void B_SetStoryPoint(var int newStoryPoint)
 	{
 		if(CurrentLevel == DRAGONISLAND_ZEN)
 		{
+			EVT_OrkOberst();
 			B_RemoveNpc(Dragon_Fire_Island);
 		};
 		if(!C_SCHasAnyDragonHeart(hero))
@@ -133,7 +140,16 @@ func void B_SetStoryPoint(var int newStoryPoint)
 	{
 		if(CurrentLevel == DRAGONISLAND_ZEN)
 		{
+			B_RemoveNpc(DMT_1299_OberDementor_DI);
 			B_RemoveNpc(Dragon_Undead);
+		};
+		if(!Npc_HasItems(hero,ItWr_LastDoorToUndeadDrgDI_MIS))
+		{
+			CreateInvItem(hero,ItWr_LastDoorToUndeadDrgDI_MIS);
+		};
+		if(!Npc_HasItems(hero,ItKe_ChestMasterDementor_MIS))
+		{
+			CreateInvItem(hero,ItKe_ChestMasterDementor_MIS);
 		};
 		UndeadDragonIsDead = TRUE;
 		STORYPOINT[SP_C6_P3] = TRUE;
