@@ -1,11 +1,11 @@
 
 func void B_SetStoryPoint(var int newStoryPoint)
 {
-	if((newStoryPoint >= SP_C1_P1) && (STORYPOINT[SP_C1_P1] == FALSE))
+	/*if((newStoryPoint >= SP_C1_P1) && (STORYPOINT[SP_C1_P1] == FALSE))
 	{
 		Kapitel = 1;
 		STORYPOINT[SP_C1_P1] = TRUE;
-	};
+	};*/
 	if((newStoryPoint >= SP_C1_P2) && (STORYPOINT[SP_C1_P2] == FALSE))
 	{
 		MIL_305_schonmalreingelassen = TRUE;

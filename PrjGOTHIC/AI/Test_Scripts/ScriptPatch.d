@@ -63,13 +63,16 @@ func void B_Build_Settings_Diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Соединить шлемы и доспехи",StoryHelper_Helmets);
 	};
-	if(AddonDisabled == FALSE)
+	if(RavenIsDead == FALSE)
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить возможность прохождения без аддона",StoryHelper_Addon);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить возможность прохождения без аддона",StoryHelper_Addon);
+		if(AddonDisabled == FALSE)
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Включить возможность прохождения без аддона",StoryHelper_Addon);
+		}
+		else
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Выключить возможность прохождения без аддона",StoryHelper_Addon);
+		};
 	};
 	if(GuildlessMode == FALSE)
 	{

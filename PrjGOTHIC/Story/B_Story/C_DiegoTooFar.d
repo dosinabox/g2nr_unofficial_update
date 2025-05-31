@@ -19,6 +19,10 @@ func int C_DiegoTooFar(var int tolerance)
 	{
 		return LOC_NONE;
 	};
+	if(!C_NpcIsValidAndAlive(hero))
+	{
+		return LOC_NONE;
+	};
 	if(Npc_GetDistToWP(hero,"SPAWN_OW_SHADOWBEAST_10_01") < (4000 + tolerance))
 	{
 		return LOC_ANGAR;
