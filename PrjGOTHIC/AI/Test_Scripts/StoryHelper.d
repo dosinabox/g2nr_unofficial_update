@@ -219,6 +219,67 @@ func void StoryHelper_StoryPoints_BACK()
 	Info_ClearChoices(DIA_StoryHelper_StoryPoints);
 };
 
+func void B_Build_AddonStoryPoints_Diag()
+{
+	Info_ClearChoices(DIA_StoryHelper_AddonStoryPoints);
+	Info_AddChoice(DIA_StoryHelper_AddonStoryPoints,Dialog_Back,StoryHelper_AddonStoryPoints_BACK);
+	if(CurrentAddonStoryPoint < SP_A5)
+	{
+		Info_AddChoice(DIA_StoryHelper_AddonStoryPoints,B_GetAddonStoryPointName(SP_A5),StoryHelper_AddonStoryPoints_SP_A5);
+	};
+	if(CurrentAddonStoryPoint < SP_A4)
+	{
+		Info_AddChoice(DIA_StoryHelper_AddonStoryPoints,B_GetAddonStoryPointName(SP_A4),StoryHelper_AddonStoryPoints_SP_A4);
+	};
+	if(CurrentAddonStoryPoint < SP_A3)
+	{
+		Info_AddChoice(DIA_StoryHelper_AddonStoryPoints,B_GetAddonStoryPointName(SP_A3),StoryHelper_AddonStoryPoints_SP_A3);
+	};
+	if(CurrentAddonStoryPoint < SP_A2)
+	{
+		Info_AddChoice(DIA_StoryHelper_AddonStoryPoints,B_GetAddonStoryPointName(SP_A2),StoryHelper_AddonStoryPoints_SP_A2);
+	};
+	if(STORYPOINT_ADDON[SP_A1] == FALSE)
+	{
+		Info_AddChoice(DIA_StoryHelper_AddonStoryPoints,B_GetAddonStoryPointName(SP_A1),StoryHelper_AddonStoryPoints_SP_A1);
+	};
+};
+
+func void StoryHelper_AddonStoryPoints_SP_A1()
+{
+	B_SetAddonStoryPoint(SP_A1);
+	B_Build_AddonStoryPoints_Diag();
+};
+
+func void StoryHelper_AddonStoryPoints_SP_A2()
+{
+	B_SetAddonStoryPoint(SP_A2);
+	B_Build_AddonStoryPoints_Diag();
+};
+
+func void StoryHelper_AddonStoryPoints_SP_A3()
+{
+	B_SetAddonStoryPoint(SP_A3);
+	B_Build_AddonStoryPoints_Diag();
+};
+
+func void StoryHelper_AddonStoryPoints_SP_A4()
+{
+	B_SetAddonStoryPoint(SP_A4);
+	B_Build_AddonStoryPoints_Diag();
+};
+
+func void StoryHelper_AddonStoryPoints_SP_A5()
+{
+	B_SetAddonStoryPoint(SP_A5);
+	B_Build_AddonStoryPoints_Diag();
+};
+
+func void StoryHelper_AddonStoryPoints_BACK()
+{
+	Info_ClearChoices(DIA_StoryHelper_AddonStoryPoints);
+};
+
 instance DIA_StoryHelper_StoryPoints(C_Info)
 {
 	npc = SH;
@@ -232,7 +293,7 @@ instance DIA_StoryHelper_StoryPoints(C_Info)
 
 func int DIA_StoryHelper_StoryPoints_Condition()
 {
-	if(CurrentStoryPoint > 0)
+	if(STORYPOINT[SP_C1_P1] == TRUE)
 	{
 		return TRUE;
 	};
@@ -241,6 +302,31 @@ func int DIA_StoryHelper_StoryPoints_Condition()
 func void DIA_StoryHelper_StoryPoints_Info()
 {
 	B_Build_StoryPoints_Diag();
+};
+
+
+instance DIA_StoryHelper_AddonStoryPoints(C_Info)
+{
+	npc = SH;
+	nr = 2;
+	condition = DIA_StoryHelper_AddonStoryPoints_Condition;
+	information = DIA_StoryHelper_AddonStoryPoints_Info;
+	permanent = TRUE;
+	description = "Перемотка сюжета аддона";
+};
+
+
+func int DIA_StoryHelper_AddonStoryPoints_Condition()
+{
+	if(STORYPOINT[SP_C1_P1] == TRUE)
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_StoryHelper_AddonStoryPoints_Info()
+{
+	B_Build_AddonStoryPoints_Diag();
 };
 
 

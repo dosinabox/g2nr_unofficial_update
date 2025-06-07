@@ -27,7 +27,6 @@ instance DIA_Neoras_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Neoras_Hallo_Condition;
 	information = DIA_Neoras_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -42,7 +41,7 @@ func int DIA_Neoras_Hallo_Condition()
 
 func void DIA_Neoras_Hallo_Info()
 {
-	if(Npc_GetDistToWP(self,"NW_MONASTERY_ALCHEMY_01") <= 500)
+	if(Npc_GetDistToWP(self,"NW_MONASTERY_ALCHEMY_01") <= 1000)
 	{
 		AI_Output(self,other,"DIA_Neoras_Hallo_01_00");	//Что... что-то случилось? Зачем ты беспокоишь меня? Разве ты не видишь - я провожу очень сложный эксперимент?
 	}
@@ -61,7 +60,6 @@ instance DIA_Neoras_Arbeit(C_Info)
 	nr = 5;
 	condition = DIA_Neoras_Arbeit_Condition;
 	information = DIA_Neoras_Arbeit_Info;
-	permanent = FALSE;
 	description = "У тебя есть работа для меня?";
 };
 
@@ -233,7 +231,7 @@ func void DIA_Neoras_TEACH_Info()
 			Info_AddChoice(DIA_Neoras_TEACH,B_BuildLearnString(NAME_ManaMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),DIA_Neoras_TEACH_Perm_Mana);
 		};
 	}
-	else if(hero.guild == GIL_NOV)
+	else if(other.guild == GIL_NOV)
 	{
 		AI_Output(self,other,"DIA_Neoras_TEACH_01_02");	//Я не обучаю новичков. Если однажды ты будешь принят в Круг Огня,
 		AI_Output(self,other,"DIA_Neoras_TEACH_01_03");	//тогда я покажу тебе, как создавать сильные зелья.
@@ -316,7 +314,7 @@ func int DIA_Neoras_BrewPotion_Condition()
 func void DIA_Neoras_BrewPotion_Info()
 {
 	AI_Output(other,self,"DIA_Neoras_BrewPotion_15_00");	//Не мог бы ты сварить мне зелье?
-	if(hero.guild == GIL_NOV)
+	if(other.guild == GIL_NOV)
 	{
 		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_01");	//Для новичка ты слишком нетерпелив. Иди, занимайся своими обязанностями.
 		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_02");	//Ты можешь купить все, что тебе нужно, у Горакса.
@@ -498,7 +496,7 @@ instance DIA_Neoras_DRACHENEIER(C_Info)
 
 func int DIA_Neoras_DRACHENEIER_Condition()
 {
-	if((Kapitel >= 4) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)) && (MIS_Neoras_DragonEgg == FALSE) && (Npc_GetDistToWP(self,"NW_MONASTERY_ALCHEMY_01") <= 1000))
+	if((Kapitel >= 4) && ((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF)) && (MIS_Neoras_DragonEgg == FALSE))
 	{
 		return TRUE;
 	};

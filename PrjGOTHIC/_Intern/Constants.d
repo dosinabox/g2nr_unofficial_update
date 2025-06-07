@@ -823,6 +823,13 @@ const int SP_C6_P2 = 14;
 const int SP_C6_P3 = 15;
 var int STORYPOINT[16];
 
+const int SP_A1 = 0;
+const int SP_A2 = 1;
+const int SP_A3 = 2;
+const int SP_A4 = 3;
+const int SP_A5 = 4;
+var int STORYPOINT_ADDON[5];
+
 const int INVCAM_ENTF_RING_STANDARD = 400;
 const int INVCAM_ENTF_AMULETTE_STANDARD = 150;
 const int INVCAM_ENTF_MISC_STANDARD = 200;
@@ -836,8 +843,8 @@ const int INVCAM_Z_RING_STANDARD = 45;
 const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2025;
-const int FIX_DATE_MONTH = 5;
-const int FIX_DATE_DAY = 31;
+const int FIX_DATE_MONTH = 6;
+const int FIX_DATE_DAY = 7;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;

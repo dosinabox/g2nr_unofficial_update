@@ -258,15 +258,15 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_MassDeath)
 	{
-		if(!C_NpcIsUndead(self))
+		if(C_NpcIsUndead(self))
 		{
-			if(self.guild == GIL_DRAGON)
-			{
-				return COLL_APPLYHALVEDAMAGE;
-			};
-			return COLL_DOEVERYTHING;
+			return COLL_DONOTHING;
 		};
-		return COLL_DONOTHING;
+		if(self.guild == GIL_DRAGON)
+		{
+			return COLL_APPLYHALVEDAMAGE;
+		};
+		return COLL_DOEVERYTHING;
 	};
 	if(spellType == SPL_MasterOfDisaster)
 	{

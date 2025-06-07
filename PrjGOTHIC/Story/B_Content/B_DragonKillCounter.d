@@ -111,6 +111,8 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 			B_StartOtherRoutine(Nefarius_ADW,"MYXIRLEFT");
 			Saturas_KnowsHow2GetInTempel = TRUE;
 			RavenIsDead = TRUE;
+			STORYPOINT_ADDON[SP_A5] = TRUE;
+			CurrentAddonStoryPoint = SP_A5;
 			B_CheckLog();
 		};
 	};

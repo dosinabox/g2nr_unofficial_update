@@ -531,6 +531,8 @@ func void B_GivePortalRingToSC()
 	B_GiveInvItems(self,other,ItMi_PortalRing_Addon,1);
 	AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_09");	//Если Нефариус прав, портал откроется, как только в него вставят кольцо.
 	DIA_Addon_Saturas_OpenPortal_NoPerm = TRUE;
+	STORYPOINT_ADDON[SP_A3] = TRUE;
+	CurrentAddonStoryPoint = SP_A3;
 	B_LogEntry(TOPIC_Addon_Ornament,"Сатурас дал мне украшенное кольцо. Я должен открыть портал, вставив кольцо в механизм, а затем пройти через портал.");
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"OPENPORTAL");

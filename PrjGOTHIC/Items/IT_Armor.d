@@ -1281,8 +1281,8 @@ instance ITAR_BlackMage(C_Item)
 	protection[PROT_EDGE] = 100;
 	protection[PROT_BLUNT] = 100;
 	protection[PROT_POINT] = 100;
-	protection[PROT_FIRE] = 60;
-	protection[PROT_MAGIC] = 60;
+	protection[PROT_FIRE] = 50;
+	protection[PROT_MAGIC] = 50;
 	value = VALUE_ITAR_Xardas;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Dementor.3ds";

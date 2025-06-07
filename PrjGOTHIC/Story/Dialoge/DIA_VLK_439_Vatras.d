@@ -914,6 +914,8 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 	SC_KnowsPortal = TRUE;
 	RangerMeetingRunning = LOG_SUCCESS;
 	B_SchlussMitRangerMeeting();
+	STORYPOINT_ADDON[SP_A2] = TRUE;
+	CurrentAddonStoryPoint = SP_A2;
 	B_GivePlayerXP(XP_AmbientKap3);
 };
 
