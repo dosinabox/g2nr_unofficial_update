@@ -239,7 +239,7 @@ func void B_Build_AddonStoryPoints_Diag()
 	{
 		Info_AddChoice(DIA_StoryHelper_AddonStoryPoints,B_GetAddonStoryPointName(SP_A2),StoryHelper_AddonStoryPoints_SP_A2);
 	};
-	if(STORYPOINT_ADDON[SP_A1] == FALSE)
+	if(CurrentAddonStoryPoint < SP_A1)
 	{
 		Info_AddChoice(DIA_StoryHelper_AddonStoryPoints,B_GetAddonStoryPointName(SP_A1),StoryHelper_AddonStoryPoints_SP_A1);
 	};
@@ -293,7 +293,7 @@ instance DIA_StoryHelper_StoryPoints(C_Info)
 
 func int DIA_StoryHelper_StoryPoints_Condition()
 {
-	if(STORYPOINT[SP_C1_P1] == TRUE)
+	if(CurrentStoryPoint > 0)
 	{
 		return TRUE;
 	};
@@ -318,7 +318,7 @@ instance DIA_StoryHelper_AddonStoryPoints(C_Info)
 
 func int DIA_StoryHelper_AddonStoryPoints_Condition()
 {
-	if(STORYPOINT[SP_C1_P1] == TRUE)
+	if(CurrentStoryPoint > 0)
 	{
 		return TRUE;
 	};
