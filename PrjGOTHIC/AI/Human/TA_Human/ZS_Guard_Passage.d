@@ -7,15 +7,18 @@ func void ZS_Guard_Passage()
 	AI_Standup(self);
 	AI_SetWalkMode(self,NPC_WALK);
 	AI_GotoWP(self,self.wp);
-	if(Npc_GetDistToNpc(self,hero) > PERC_DIST_DIALOG)
+	if(C_NpcIsValidAndAlive(hero))
 	{
-		AI_AlignToWP(self);
-	}
-	else if(self.aivar[AIV_PASSGATE] == FALSE)
-	{
-		if(!C_BodyStateContains(hero,BS_SNEAK))
+		if(Npc_GetDistToNpc(self,hero) > PERC_DIST_DIALOG)
 		{
-			AI_TurnToNPC(self,hero);
+			AI_AlignToWP(self);
+		}
+		else if(self.aivar[AIV_PASSGATE] == FALSE)
+		{
+			if(!C_BodyStateContains(hero,BS_SNEAK))
+			{
+				AI_TurnToNPC(self,hero);
+			};
 		};
 	};
 };
@@ -25,6 +28,11 @@ func int ZS_Guard_Passage_Loop()
 	var int random;
 	if(Npc_GetStateTime(self) >= 3)
 	{
+		if(!C_NpcIsValidAndAlive(hero))
+		{
+			Npc_SetStateTime(self,0);
+			return LOOP_CONTINUE;
+		};
 		if(Npc_GetDistToNpc(self,hero) > PERC_DIST_DIALOG)
 		{
 			random = Hlp_Random(70);

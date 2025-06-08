@@ -4,7 +4,7 @@ func void B_Build_Settings_Diag()
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
 	Info_AddChoice(StoryHelper_PatchSettings,"Изменить магию ледяного дракона",StoryHelper_IceDragonSpell);
-	if((Tandor_ItemsGiven_Chapter_1 == FALSE) && (Sarah_ItemsGiven_Chapter_1 == FALSE) && (Rethon_ItemsGiven_Chapter_4 == FALSE) && (Orlan_ItemsGiven_Chapter_1 == FALSE) && (Jora_ItemsGiven_Chapter_1 == FALSE) && (Hakon_ItemsGiven_Chapter_1 == FALSE) && (Canthar_ItemsGiven_Chapter_1 == FALSE) && (Scatty_ItemsGiven_Chapter_1 == FALSE) && (Huno_ItemsGiven_Chapter_1 == FALSE) && (Garett_ItemsGiven_Chapter_1 == FALSE) && (Fisk_ItemsGiven_Chapter_1 == FALSE) && (Erol_ItemsGiven_Chapter_1 == FALSE) && (Khaled_ItemsGiven_Chapter_1 == FALSE))
+	if(!C_MeleeWeaponsGivenToTraders())
 	{
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
@@ -63,13 +63,16 @@ func void B_Build_Settings_Diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Соединить шлемы и доспехи",StoryHelper_Helmets);
 	};
-	if(AddonDisabled == FALSE)
+	if(RavenIsDead == FALSE)
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить возможность прохождения без аддона",StoryHelper_Addon);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить возможность прохождения без аддона",StoryHelper_Addon);
+		if(AddonDisabled == FALSE)
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Включить возможность прохождения без аддона",StoryHelper_Addon);
+		}
+		else
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Выключить возможность прохождения без аддона",StoryHelper_Addon);
+		};
 	};
 	if(GuildlessMode == FALSE)
 	{

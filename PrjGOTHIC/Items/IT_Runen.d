@@ -985,7 +985,7 @@ instance ItRu_Firerain(C_Item)
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_Firerain;
 	text[2] = NAME_Dam_Magic;
-	count[2] = SPL_Damage_FireRain;
+	count[2] = 1000; //SPL_Damage_FireRain * 2
 	text[5] = NAME_Value;
 	count[5] = value;
 };

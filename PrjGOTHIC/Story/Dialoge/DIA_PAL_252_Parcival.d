@@ -27,7 +27,6 @@ instance DIA_Parcival_Schurfer(C_Info)
 	nr = 2;
 	condition = DIA_Parcival_Schurfer_Condition;
 	information = DIA_Parcival_Schurfer_Info;
-	permanent = FALSE;
 	description = "Что ты можешь рассказать мне о старателях?";
 };
 
@@ -60,7 +59,6 @@ instance DIA_Parcival_Diego(C_Info)
 	nr = 9;
 	condition = DIA_Parcival_Diego_Condition;
 	information = DIA_Parcival_Diego_Info;
-	permanent = FALSE;
 	description = "А с какой группой старателей пошел Диего?";
 };
 
@@ -90,7 +88,6 @@ instance DIA_Parcival_Weg(C_Info)
 	nr = 8;
 	condition = DIA_Parcival_Weg_Condition;
 	information = DIA_Parcival_Weg_Info;
-	permanent = FALSE;
 	description = "Ты знаешь, как добраться до этих шахт?";
 };
 
@@ -177,9 +174,12 @@ instance DIA_Parcival_BRAVE(C_Info)
 
 func int DIA_Parcival_BRAVE_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Parcival_DRAGONS) && (Kapitel < 3) && (Parcival_BRAVE_LaberCount <= 6))
+	if(Npc_IsInState(self,ZS_Talk) && (Kapitel < 3) && (Parcival_BRAVE_LaberCount <= 6))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Parcival_DRAGONS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -188,19 +188,19 @@ var int Parcival_BRAVE_LaberCount;
 
 func void DIA_Parcival_BRAVE_Info()
 {
-	var int randy;
+	var int random;
 	if(Parcival_BRAVE_LaberCount < 6)
 	{
-		randy = Hlp_Random(3);
-		if(randy == 0)
+		random = Hlp_Random(3);
+		if(random == 0)
 		{
 			AI_Output(self,other,"DIA_Parcival_BRAVE_13_00");	//Пока все спокойно. Но все может быстро перемениться.
-		};
-		if(randy == 1)
+		}
+		else if(random == 1)
 		{
 			AI_Output(self,other,"DIA_Parcival_BRAVE_13_01");	//Мы будем держаться, сколько сможем.
-		};
-		if(randy == 2)
+		}
+		else
 		{
 			AI_Output(self,other,"DIA_Parcival_BRAVE_13_02");	//Иннос поможет нам. Его свет озаряет наши сердца!
 		};
@@ -280,7 +280,7 @@ func int DIA_Parcival_AnyNews_Condition()
 func void DIA_Parcival_AnyNews_Info()
 {
 	AI_Output(other,self,"DIA_Parcival_AnyNews_15_00");	//Ничего важного не произошло?
-	if(hero.guild == GIL_DJG)
+	if(other.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_Parcival_AnyNews_13_01");	//Ты один из этих отбросов общества, что называют себя охотниками на драконов?
 		AI_Output(self,other,"DIA_Parcival_AnyNews_13_02");	//Вообще-то, я полагал, что у тебя хватит ума не связываться с этими недоумками.
@@ -331,7 +331,6 @@ instance DIA_Parcival_Jan(C_Info)
 	nr = 2;
 	condition = DIA_Parcival_Jan_Condition;
 	information = DIA_Parcival_Jan_Info;
-	permanent = FALSE;
 	description = "Мне нужно поговорить с тобой о Яне.";
 };
 

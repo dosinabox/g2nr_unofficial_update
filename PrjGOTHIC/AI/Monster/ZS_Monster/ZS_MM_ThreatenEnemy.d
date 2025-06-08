@@ -12,11 +12,19 @@ func void ZS_MM_ThreatenEnemy()
 	{
 		AI_SetWalkMode(self,NPC_RUN);
 	};
-	Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
+	if(Hlp_IsValidNpc(other))
+	{
+		Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
+	};
 };
 
 func int ZS_MM_ThreatenEnemy_Loop()
 {
+	if(!Hlp_IsValidNpc(other))
+	{
+		Npc_ClearAIQueue(self);
+		return LOOP_END;
+	};
 	if(Npc_GetDistToNpc(self,other) > PERC_DIST_MONSTER_ACTIVE_MAX)
 	{
 		Npc_ClearAIQueue(self);

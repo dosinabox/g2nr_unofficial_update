@@ -1,7 +1,7 @@
 
 func void B_Say_GuildGreetings(var C_Npc slf,var C_Npc oth)
 {
-	var int zufall;
+	var int random;
 	if((slf.guild == GIL_MIL) && ((oth.guild == GIL_MIL) || (oth.guild == GIL_PAL)))
 	{
 		B_Say_Overlay(slf,oth,"$MILGREETINGS");
@@ -24,7 +24,7 @@ func void B_Say_GuildGreetings(var C_Npc slf,var C_Npc oth)
 		B_Say_Overlay(slf,oth,"$PALGREETINGS");
 		return;
 	};
-	if(C_IsNpc(slf,VLK_440_Bartok) && (Bartok_OrkGesagt == TRUE))
+	if(C_IsNpc(slf,VLK_440_Bartok) && (Bartok_OrkGesagt == TRUE) && (Kapitel < 4))
 	{
 		B_Say_Overlay(slf,oth,"DIA_Bartok_Angekommen_04_02");
 		return;
@@ -41,8 +41,8 @@ func void B_Say_GuildGreetings(var C_Npc slf,var C_Npc oth)
 	};
 	if(Wld_IsRaining())
 	{
-		zufall = Hlp_Random(100);
-		if(zufall <= 80)
+		random = Hlp_Random(100);
+		if(random <= 80)
 		{
 			B_Say_Overlay(slf,oth,"$WEATHER");
 		};

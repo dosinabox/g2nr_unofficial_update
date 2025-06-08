@@ -367,6 +367,8 @@ func void Use_RavensKidnapperMission_Addon()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"     Ворон");
 	Doc_Show(nDocID);
+	STORYPOINT_ADDON[SP_A1] = TRUE;
+	CurrentAddonStoryPoint = SP_A1;
 	if(SCKnowsMissingPeopleAreInAddonWorld == FALSE)
 	{
 		if(SC_HearedAboutMissingPeople == TRUE)

@@ -40,7 +40,10 @@ func void ZS_MM_Attack()
 		AI_Standup(self);
 	};
 	AI_SetWalkMode(self,NPC_RUN);
-	Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
+	if(Hlp_IsValidNpc(other))
+	{
+		Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
+	};
 	self.aivar[AIV_PursuitEnd] = FALSE;
 	self.aivar[AIV_StateTime] = 0;
 	self.aivar[AIV_HitByOtherNpc] = 0;

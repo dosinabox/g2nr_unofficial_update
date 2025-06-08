@@ -21,6 +21,7 @@ Story\SVM.d
 Story\Text.d
 Story\NPC_Scripts\B_RemoveEveryInvItem.d
 AI\Human\C_Human\C_IsNpc.d
+AI\Human\C_Human\C_NpcIsValidAndAlive.d
 AI\Human\C_Human\C_NpcIsHero.d
 AI\Human\C_Human\C_NpcIsHuman.d
 AI\Monster\C_Monster\C_NpcIsOrc.d
@@ -1362,6 +1363,7 @@ Story\B_Content\B_CaptainConditions.d
 Story\B_Content\B_JoinShip.d
 Story\B_Content\B_CaptainCallsAllOnBoard.d
 Story\B_Content\B_Addon_PiratesGoHome.d
+Story\Events\EVT_OrkOberst.d
 Story\B_Story\B_SetStoryPoint.d
 Story\Dialoge\DIA_BAU_4300_Addon_Cavalorn.d
 Story\Dialoge\DIA_BDT_10004_Addon_Finn.d
@@ -1752,6 +1754,7 @@ AI\Monster\ZS_Monster\ZS_MM_Flee.d
 AI\Monster\ZS_Monster\ZS_MM_Hunt.d
 AI\Monster\ZS_Monster\ZS_MM_ThreatenEnemy.d
 Story\B_Story\B_MageCaveTrigger.d
+Story\B_Story\C_MeleeWeaponsGivenToTraders.d
 Story\Events\B_Addon_Portal_Activated.d
 Story\Events\B_Function_Touch_And_Get_Killed.d
 Story\Events\NewWorld_FishFood_Trigger.d
@@ -1773,7 +1776,6 @@ Story\Events\EVT_Final_Door.d
 Story\Events\EVT_DIRooms.d
 Story\Events\EVT_Monastery_SecretLibrary.d
 Story\Events\EVT_OC_MainGate.d
-Story\Events\EVT_OrkOberst.d
 Story\Events\EVT_Ornament_Switch.d
 Story\Events\EVT_Troll_Grave.d
 Story\Events\EVT_Truhe_OW.d
@@ -1786,7 +1788,6 @@ AI\Test_Scripts\CharacterHelper.d
 AI\Test_Scripts\PC_ItemFeller.d
 AI\Test_Scripts\ScriptPatch.d
 AI\Test_Scripts\StoryHelper.d
-AI\Test_Scripts\Testmodelle_Bendlin.d
-AI\Test_Scripts\Testmodelle_Kalveram.d
+AI\Test_Scripts\Itemhoshi.d
 Story\B_Story\B_Enter_DragonIsland.d
 Story\Startup.d

@@ -1,7 +1,7 @@
 
 func void ZS_MM_Flee()
 {
-	if((self.guild == GIL_DRAGON) || (self.guild == GIL_TROLL) || C_NpcIsGolem(other) || C_NpcIsUndead(other))
+	if((self.guild == GIL_DRAGON) || (self.guild == GIL_TROLL) || C_NpcIsGolem(self) || C_NpcIsUndead(self))
 	{
 		AI_ContinueRoutine(self);
 		return;
@@ -10,7 +10,10 @@ func void ZS_MM_Flee()
 	B_ValidateOther();
 	AI_Standup(self);
 	AI_SetWalkMode(self,NPC_RUN);
-	Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
+	if(Hlp_IsValidNpc(other))
+	{
+		Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
+	};
 	if(C_NpcIsOrc(self))
 	{
 		AI_RemoveWeapon(self);
@@ -29,18 +32,23 @@ func void ZS_MM_Flee()
 func int ZS_MM_Flee_Loop()
 {
 	Npc_GetTarget(self);
-	if(Npc_GetDistToNpc(self,other) < 2000)
+	if(!Hlp_IsValidNpc(other))
 	{
-		if(Npc_GetStateTime(self) > 0)
-		{
-			Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
-			Npc_SetStateTime(self,0);
-		};
-		AI_Flee(self);
-		return LOOP_CONTINUE;
+		Npc_ClearAIQueue(self);
+		return LOOP_END;
 	};
-	Npc_ClearAIQueue(self);
-	return LOOP_END;
+	if(Npc_GetDistToNpc(self,other) >= 2000)
+	{
+		Npc_ClearAIQueue(self);
+		return LOOP_END;
+	};
+	if(Npc_GetStateTime(self) > 0)
+	{
+		Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
+		Npc_SetStateTime(self,0);
+	};
+	AI_Flee(self);
+	return LOOP_CONTINUE;
 };
 
 func void ZS_MM_Flee_End()

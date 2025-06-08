@@ -382,5 +382,7 @@ func void DIA_Addon_Quarhodron_GibMirKey_Info()
 	B_LogEntries(TOPIC_Addon_Kammern,"Куарходрон сказал, что я должен быть осторожнее в 'Залах Аданоса'. Я должен выяснить, что он имел в виду, если не хочу попасть в ловушку.");
 	B_LogNextEntry(TOPIC_Addon_Quarhodron,"Куарходрон дал мне каменную табличку, которая откроет мне вход в храм Аданоса.");
 	Ghost_SCKnowsHow2GetInAdanosTempel = TRUE;
+	STORYPOINT_ADDON[SP_A4] = TRUE;
+	CurrentAddonStoryPoint = SP_A4;
 };
 

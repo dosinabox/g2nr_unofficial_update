@@ -53,10 +53,3 @@ instance Summoned_Gobbo_Skeleton(Mst_Default_Gobbo_Skeleton)
 	Npc_SetToFightMode(self,ItMw_1h_Bau_Mace);
 };
 
-//TODO не используется, удалить
-instance Gobbo_SkeletonOWDemonTower(Mst_Default_Gobbo_Skeleton)
-{
-	B_SetVisuals_Gobbo_Skeleton();
-	Npc_SetToFightMode(self,ItMw_1h_Bau_Mace);
-};
-

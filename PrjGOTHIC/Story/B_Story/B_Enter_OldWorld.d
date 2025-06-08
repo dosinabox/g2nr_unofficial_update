@@ -1,7 +1,7 @@
 
 func void B_ENTER_OLDWORLD_Kapitel_1()
 {
-	if(!Npc_IsDead(Bilgot))
+	if(C_NpcIsValidAndAlive(Bilgot))
 	{
 		if(MIS_RescueBilgot == LOG_SUCCESS)
 		{
@@ -19,7 +19,7 @@ func void B_ENTER_OLDWORLD_Kapitel_1()
 			NewMine_LeadSnapper_Spawned = TRUE;
 		};
 	};
-	if(!Npc_IsDead(Biff))
+	if(C_NpcIsValidAndAlive(Biff))
 	{
 		if(Biff_FollowsThroughPass == LOG_SUCCESS)
 		{
