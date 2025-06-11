@@ -53,49 +53,10 @@ instance Summoned_Golem(Mst_Default_StoneGolem)
 	Npc_SetToFistMode(self);
 };
 
-
-func void ZS_GolemDown()
-{
-	self.senses = SENSE_SMELL;
-	self.senses_range = 2000;
-	Npc_SetPercTime(self,1);
-	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_GolemRise);
-	self.aivar[AIV_TAPOSITION] = NOTINPOS;
-};
-
-func int ZS_GolemDown_Loop()
-{
-	if(self.aivar[AIV_TAPOSITION] == NOTINPOS)
-	{
-		AI_PlayAni(self,"T_DEAD");
-		self.aivar[AIV_TAPOSITION] = ISINPOS;
-	};
-	return LOOP_CONTINUE;
-};
-
-func void ZS_GolemDown_End()
-{
-};
-
-func void B_GolemRise()
-{
-	if(Npc_GetDistToNpc(self,hero) <= 800)
-	{
-		Snd_Play("GOL_AMBIENT_A2");
-		AI_PlayAni(self,"T_RISE");
-		self.flags = 0;
-		AI_StartState(self,ZS_MM_Attack,0,"");
-		self.start_aistate = ZS_MM_AllScheduler;
-		self.aivar[AIV_MM_RestStart] = OnlyRoutine;
-	};
-};
-
-
 instance Shattered_Golem(Mst_Default_StoneGolem)
 {
 	level = 18;
 	flags = NPC_FLAG_NFOCUS | NPC_FLAG_IMMORTAL;
-	bodyStateInterruptableOverride = TRUE;
 	B_SetVisuals_StoneGolem();
 	Npc_SetToFistMode(self);
 	start_aistate = ZS_GolemDown;

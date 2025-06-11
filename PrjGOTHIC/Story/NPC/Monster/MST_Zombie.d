@@ -116,40 +116,6 @@ instance Zombie_Addon_Bloodwyn_Headless(Mst_Default_Zombie)
 	Npc_SetToFistMode(self);
 };*/
 
-func void ZS_Pal_ZOMBIE()
-{
-	self.senses = SENSE_SMELL;
-	self.senses_range = 2000;
-	Npc_SetPercTime(self,1);
-	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_Pal_ZOMBIE_RISE);
-	self.aivar[AIV_TAPOSITION] = NOTINPOS;
-};
-
-func int ZS_Pal_ZOMBIE_Loop()
-{
-	if(self.aivar[AIV_TAPOSITION] == NOTINPOS)
-	{
-		AI_PlayAni(self,"T_DOWN");
-		self.aivar[AIV_TAPOSITION] = ISINPOS;
-	};
-	return LOOP_CONTINUE;
-};
-
-func void ZS_Pal_ZOMBIE_End()
-{
-};
-
-func void B_Pal_ZOMBIE_RISE()
-{
-	if(Npc_GetDistToNpc(self,hero) <= 1400)
-	{
-		AI_PlayAni(self,"T_RISE");
-		AI_StartState(self,ZS_MM_Attack,0,"");
-		self.start_aistate = ZS_MM_AllScheduler;
-		self.aivar[AIV_MM_RestStart] = OnlyRoutine;
-	};
-};
-
 func void B_SetVisuals_Pal_Zombie01()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
@@ -178,36 +144,40 @@ func void B_SetVisuals_Pal_Zombie04()
 instance Pal_Zombie01(Mst_Default_Zombie)
 {
 	protection[PROT_FIRE] = 0;
+	flags = NPC_FLAG_IMMORTAL;
 	B_SetVisuals_Pal_Zombie01();
 	Npc_SetToFistMode(self);
-	start_aistate = ZS_Pal_ZOMBIE;
+	start_aistate = ZS_ZombieDown;
 	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };
 
 instance Pal_Zombie02(Mst_Default_Zombie)
 {
 	protection[PROT_FIRE] = 0;
+	flags = NPC_FLAG_IMMORTAL;
 	B_SetVisuals_Pal_Zombie02();
 	Npc_SetToFistMode(self);
-	start_aistate = ZS_Pal_ZOMBIE;
+	start_aistate = ZS_ZombieDown;
 	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };
 
 instance Pal_Zombie03(Mst_Default_Zombie)
 {
 	protection[PROT_FIRE] = 0;
+	flags = NPC_FLAG_IMMORTAL;
 	B_SetVisuals_Pal_Zombie03();
 	Npc_SetToFistMode(self);
-	start_aistate = ZS_Pal_ZOMBIE;
+	start_aistate = ZS_ZombieDown;
 	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };
 
 instance Pal_Zombie04(Mst_Default_Zombie)
 {
 	protection[PROT_FIRE] = 0;
+	flags = NPC_FLAG_IMMORTAL;
 	B_SetVisuals_Pal_Zombie04();
 	Npc_SetToFistMode(self);
-	start_aistate = ZS_Pal_ZOMBIE;
+	start_aistate = ZS_ZombieDown;
 	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };
 
@@ -253,9 +223,10 @@ func void B_SetVisuals_Maya_Zombie04()
 instance MayaZombie01(Mst_Default_Zombie)
 {
 	protection[PROT_FIRE] = 0;
+	flags = NPC_FLAG_IMMORTAL;
 	B_SetVisuals_Maya_Zombie01();
 	Npc_SetToFistMode(self);
-	start_aistate = ZS_Pal_ZOMBIE;
+	start_aistate = ZS_ZombieDown;
 	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };
 
@@ -269,9 +240,10 @@ instance MayaZombie02(Mst_Default_Zombie)
 instance MayaZombie03(Mst_Default_Zombie)
 {
 	protection[PROT_FIRE] = 0;
+	flags = NPC_FLAG_IMMORTAL;
 	B_SetVisuals_Maya_Zombie03();
 	Npc_SetToFistMode(self);
-	start_aistate = ZS_Pal_ZOMBIE;
+	start_aistate = ZS_ZombieDown;
 	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };
 

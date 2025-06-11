@@ -1748,11 +1748,13 @@ AI\Monster\RTN_Monster\ZS_MM_Rtn_Sleep.d
 AI\Monster\RTN_Monster\ZS_MM_Rtn_Summoned.d
 AI\Monster\RTN_Monster\ZS_MM_Rtn_Wusel.d
 AI\Monster\RTN_Monster\ZS_MM_AllScheduler.d
+AI\Monster\ZS_Monster\ZS_GolemDown.d
 AI\Monster\ZS_Monster\ZS_MM_Attack.d
 AI\Monster\ZS_Monster\ZS_MM_EatBody.d
 AI\Monster\ZS_Monster\ZS_MM_Flee.d
 AI\Monster\ZS_Monster\ZS_MM_Hunt.d
 AI\Monster\ZS_Monster\ZS_MM_ThreatenEnemy.d
+AI\Monster\ZS_Monster\ZS_ZombieDown.d
 Story\B_Story\B_MageCaveTrigger.d
 Story\B_Story\C_MeleeWeaponsGivenToTraders.d
 Story\Events\B_Addon_Portal_Activated.d
