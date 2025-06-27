@@ -264,7 +264,6 @@ instance DIA_Lord_Hagen_Hallo(C_Info)
 	condition = DIA_Lord_Hagen_Hallo_Condition;
 	information = DIA_Lord_Hagen_Hallo_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
@@ -312,14 +311,13 @@ instance DIA_Lord_Hagen_Frieden(C_Info)
 	nr = 2;
 	condition = DIA_Lord_Hagen_Frieden_Condition;
 	information = DIA_Lord_Hagen_Frieden_Info;
-	permanent = FALSE;
 	description = "Я принес предложение мира от наемников!";
 };
 
 
 func int DIA_Lord_Hagen_Frieden_Condition()
 {
-	if((MIS_Lee_Friedensangebot == LOG_Running) && Npc_HasItems(other,ItWr_Passage_MIS))
+	if((MIS_Lee_Friedensangebot == LOG_RUNNING) && Npc_HasItems(other,ItWr_Passage_MIS))
 	{
 		return TRUE;
 	};
@@ -350,7 +348,6 @@ instance DIA_Lord_Hagen_Armee(C_Info)
 	nr = 2;
 	condition = DIA_Lord_Hagen_Armee_Condition;
 	information = DIA_Lord_Hagen_Armee_Info;
-	permanent = FALSE;
 	description = "Силы Зла собираются очень близко отсюда. В Долине Рудников.";
 };
 
@@ -404,7 +401,7 @@ func int DIA_Lord_Hagen_Proof_Condition()
 func void DIA_Lord_Hagen_Proof_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_Proof_15_00");	//То есть ты хочешь, чтобы я принес тебе доказательство?
-	if(((hero.guild != GIL_NONE) && (hero.guild != GIL_NOV)) || (GuildlessMode == TRUE))
+	if(((other.guild != GIL_NONE) && (other.guild != GIL_NOV)) || (GuildlessMode == TRUE))
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Proof_04_01");	//Именно. Пройди через Проход в Долину Рудников. Когда ты будешь там, найди нашу экспедицию, а когда ты найдешь их, поговори с командующим Гарондом.
 		AI_Output(self,other,"DIA_Lord_Hagen_Proof_04_02");	//Вряд ли кто-то лучше его знает ситуацию там.
@@ -417,7 +414,7 @@ func void DIA_Lord_Hagen_Proof_Info()
 	}
 	else
 	{
-		if(hero.guild == GIL_NOV)
+		if(other.guild == GIL_NOV)
 		{
 			PrintScreen(PRINT_Addon_GuildNeeded_NOV,-1,-1,FONT_Screen,2);
 		}
@@ -436,7 +433,6 @@ instance DIA_Lord_Hagen_Auge(C_Info)
 	nr = 2;
 	condition = DIA_Lord_Hagen_Auge_Condition;
 	information = DIA_Lord_Hagen_Auge_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о Глазе Инноса?";
 };
 
@@ -465,7 +461,6 @@ instance DIA_Lord_Hagen_Pass(C_Info)
 	nr = 2;
 	condition = DIA_Lord_Hagen_Pass_Condition;
 	information = DIA_Lord_Hagen_Pass_Info;
-	permanent = FALSE;
 	description = "Как я пройду через Проход?";
 };
 
@@ -484,13 +479,13 @@ func void DIA_Lord_Hagen_Pass_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_Pass_04_01");	//Я дам тебе ключ от ворот Прохода. Однако тебе самому придется решать, как пробраться через толпы орков.
 	AI_Output(self,other,"DIA_Lord_Hagen_Pass_04_02");	//Да защитит тебя Иннос.
 	AI_StopProcessInfos(self);
-	MIS_OLDWORLD = LOG_Running;
+	MIS_OLDWORLD = LOG_RUNNING;
 	B_Kapitelwechsel(2,NEWWORLD_ZEN);
 	CreateInvItems(self,ItKe_Pass_MIS,1);
 	B_GiveInvItems(self,other,ItKe_Pass_MIS,1);
-	Log_CreateTopic(Topic_MISOLDWORLD,LOG_MISSION);
-	Log_SetTopicStatus(Topic_MISOLDWORLD,LOG_Running);
-	B_LogEntry(Topic_MISOLDWORLD,"Лорд Хаген хочет, чтобы я принес ему доказательства существования армии Зла. Я должен отправиться в Долину Рудников и поговорить с командующим Гарондом.");
+	Log_CreateTopic(TOPIC_MISOLDWORLD,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_MISOLDWORLD,LOG_RUNNING);
+	B_LogEntry(TOPIC_MISOLDWORLD,"Лорд Хаген хочет, чтобы я принес ему доказательства существования армии Зла. Я должен отправиться в Долину Рудников и поговорить с командующим Гарондом.");
 	if((Fernando_Betrayal == FALSE) && (Fernando_ImKnast == FALSE))
 	{
 		B_StartOtherRoutine(Fernando,"WAIT");
@@ -510,7 +505,7 @@ instance DIA_Addon_Lord_Hagen_Ornament(C_Info)
 
 func int DIA_Addon_Lord_Hagen_Ornament_Condition()
 {
-	if((MIS_Addon_Cavalorn_GetOrnamentFromPAL == LOG_Running) && (Lord_Hagen_GotOrnament == FALSE))
+	if((MIS_Addon_Cavalorn_GetOrnamentFromPAL == LOG_RUNNING) && (Lord_Hagen_GotOrnament == FALSE))
 	{
 		return TRUE;
 	};
@@ -534,7 +529,6 @@ instance DIA_Lord_Hagen_Khorinis(C_Info)
 	nr = 2;
 	condition = DIA_Lord_Hagen_Khorinis_Condition;
 	information = DIA_Lord_Hagen_Khorinis_Info;
-	permanent = FALSE;
 	description = "Зачем вы пришли в Хоринис?";
 };
 
@@ -730,7 +724,7 @@ instance DIA_Lord_Hagen_Knight(C_Info)
 
 func int DIA_Lord_Hagen_Knight_Condition()
 {
-	if(hero.guild == GIL_MIL)
+	if(other.guild == GIL_MIL)
 	{
 		return TRUE;
 	};
@@ -739,11 +733,7 @@ func int DIA_Lord_Hagen_Knight_Condition()
 func void DIA_Lord_Hagen_Knight_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_Knight_15_00");	//Я хочу поступить на службу в орден.
-	if((MIS_OLDWORLD == LOG_Running) && (KAPITEL == 3))
-	{
-		AI_Output(self,other,"DIA_Lord_Hagen_WhatProof_04_01");	//Твои дела покажут, достоин ты или нет.
-	}
-	else if(MIS_RescueBennet == LOG_SUCCESS)
+	if((MIS_RescueBennet == LOG_SUCCESS) && (MIS_OLDWORLD == LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_01");	//Хорошо, ты доказал, что у тебя есть мужество, опыт и знания, чтобы служить Инносу.
 		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_02");	//Твои дела свидетельствуют о том, что у тебя чистое сердце.
@@ -782,7 +772,7 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	if(Helmets_Enabled == TRUE)
 	{
 		B_GiveArmor(ITAR_PALN_M);
-		CreateInvItem(hero,ITHE_PAL_M);
+		CreateInvItem(hero,ItHe_PAL_M);
 	}
 	else
 	{
@@ -815,7 +805,6 @@ instance DIA_Lord_Hagen_WhatProof(C_Info)
 	nr = 991;
 	condition = DIA_Lord_Hagen_WhatProof_Condition;
 	information = DIA_Lord_Hagen_WhatProof_Info;
-	permanent = FALSE;
 	description = "Как я могу доказать, что достоин?";
 };
 
@@ -889,7 +878,6 @@ instance DIA_Lord_Hagen_EyeBroken(C_Info)
 	nr = 1;
 	condition = DIA_Lord_Hagen_EyeBroken_Condition;
 	information = DIA_Lord_Hagen_EyeBroken_Info;
-	permanent = FALSE;
 	description = "Глаз у меня, но он поврежден.";
 };
 
@@ -939,14 +927,13 @@ instance DIA_Lord_Hagen_BACKINTOWN(C_Info)
 	nr = 2;
 	condition = DIA_Lord_Hagen_BACKINTOWN_Condition;
 	information = DIA_Lord_Hagen_BACKINTOWN_Info;
-	permanent = FALSE;
 	description = "Я принес тебе новости от Гаронда. Вот, он начертал эти строки для тебя.";
 };
 
 
 func int DIA_Lord_Hagen_BACKINTOWN_Condition()
 {
-	if((MIS_OLDWORLD == LOG_Running) && Npc_HasItems(other,ItWr_PaladinLetter_MIS) && (Kapitel == 3))
+	if((MIS_OLDWORLD == LOG_RUNNING) && Npc_HasItems(other,ItWr_PaladinLetter_MIS) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -1037,7 +1024,7 @@ instance DIA_Lord_Hagen_RescueBennet(C_Info)
 
 func int DIA_Lord_Hagen_RescueBennet_Condition()
 {
-	if((MIS_RescueBennet == LOG_Running) && !C_SCReadyToRescueBennet())
+	if((MIS_RescueBennet == LOG_RUNNING) && !C_SCReadyToRescueBennet())
 	{
 		return TRUE;
 	};
@@ -1055,7 +1042,7 @@ func void DIA_Lord_Hagen_RescueBennet_Info()
 	Info_AddChoice(DIA_Lord_Hagen_RescueBennet,Dialog_Back,DIA_Lord_Hagen_RescueBennet_Back);
 	Info_AddChoice(DIA_Lord_Hagen_RescueBennet,"Почему ты так уверен, что убийца именно Беннет?",DIA_Lord_Hagen_RescueBennet_WhySure);
 	Info_AddChoice(DIA_Lord_Hagen_RescueBennet,"Я верю, что Беннет невиновен.",DIA_Lord_Hagen_RescueBennet_Innoscent);
-	if((MIS_RitualInnosEyeRepair == LOG_Running) && (Hagen_KnowsEyeKaputt == TRUE))
+	if((MIS_RitualInnosEyeRepair == LOG_RUNNING) && (Hagen_KnowsEyeKaputt == TRUE))
 	{
 		Info_AddChoice(DIA_Lord_Hagen_RescueBennet,"Беннет мог бы помочь нам починить Глаз Инноса.",DIA_Lord_Hagen_RescueBennet_Hilfe);
 	};
@@ -1117,7 +1104,7 @@ instance DIA_Lord_Hagen_Cornelius(C_Info)
 
 func int DIA_Lord_Hagen_Cornelius_Condition()
 {
-	if((MIS_RescueBennet == LOG_Running) && C_SCReadyToRescueBennet())
+	if((MIS_RescueBennet == LOG_RUNNING) && C_SCReadyToRescueBennet())
 	{
 		return TRUE;
 	};
@@ -1158,8 +1145,10 @@ func void DIA_Lord_Hagen_Cornelius_Info()
 		B_StartOtherRoutine(Cornelius,"PRISON");
 	};
 	MIS_RescueBennet = LOG_SUCCESS;
+	STORYPOINT[SP_C3_P2] = TRUE;
+	CurrentStoryPoint = SP_C3_P2;
 	B_GivePlayerXP(XP_RescueBennet);
-	if(hero.guild == GIL_MIL)
+	if(other.guild == GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_12");	//Твои дела спасли нас от бесчестья.
 	};
@@ -1176,7 +1165,6 @@ instance DIA_Lord_Hagen_AugeAmStart(C_Info)
 	nr = 4;
 	condition = DIA_Lord_Hagen_AugeAmStart_Condition;
 	information = DIA_Lord_Hagen_AugeAmStart_Info;
-	permanent = FALSE;
 	description = "Я надел Глаз!";
 };
 
@@ -1221,7 +1209,7 @@ instance DIA_Lord_Hagen_ANTIPALADINE(C_Info)
 
 func int DIA_Lord_Hagen_ANTIPALADINE_Condition()
 {
-	if(((TalkedTo_AntiPaladin == TRUE) || Npc_HasItems(other,ItRi_OrcEliteRing)) && (Hagen_SawOrcRing == FALSE))
+	if(((AntiPaladinTalkCount > 0) || Npc_HasItems(other,ItRi_OrcEliteRing)) && (Hagen_SawOrcRing == FALSE))
 	{
 		return TRUE;
 	};
@@ -1230,17 +1218,17 @@ func int DIA_Lord_Hagen_ANTIPALADINE_Condition()
 func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_00");	//Элитные воины орков нападают на наши земли.
-	if((TalkedTo_AntiPaladin == TRUE) && (MIS_KillOrkOberst == FALSE))
+	if((AntiPaladinTalkCount > 0) && (MIS_KillOrkOberst == FALSE))
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_01");	//Откуда у тебя такая информация?
 		AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_02");	//Я говорил с одним из них. Твое имя также упоминалось.
 	};
 	AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_03");	//Чушь. Мои люди не докладывали о массированном вторжении орков.
 	AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_04");	//Возможно, какие-то их разведчики заблудились в близлежащих лесах.
-	if((hero.guild == GIL_PAL) && (Hagen_KnowsOrcElite == FALSE))
+	if((other.guild == GIL_PAL) && (Hagen_KnowsOrcElite == FALSE))
 	{
 		Log_CreateTopic(TOPIC_OrcElite,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_OrcElite,LOG_Running);
+		Log_SetTopicStatus(TOPIC_OrcElite,LOG_RUNNING);
 		B_LogEntry(TOPIC_OrcElite,"Я рассказал лорду Хагену о приближающихся ордах предводителей орков.");
 	};
 	if(Npc_HasItems(other,ItRi_OrcEliteRing))
@@ -1253,7 +1241,7 @@ func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 		AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_09");	//Я не видел, чтобы их было много. В основном, это их предводители и всего несколько бойцов.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_10");	//Да? Значит, они замышляют что-то еще. Это не похоже на орков, чтобы их лидеры в одиночку покидали свои защитные частоколы.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_11");	//Но, впрочем, это может стать хорошей возможностью нанести им чувствительный удар.
-		if(hero.guild == GIL_PAL)
+		if(other.guild == GIL_PAL)
 		{
 			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_12");	//Если они потеряют своих лидеров, их боевой дух резко снизится.
 			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_13");	//У тебя новое задание, рыцарь. Иди и убей всех лидеров орков, каких найдешь в прилежащих землях.
@@ -1265,11 +1253,15 @@ func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 				AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_16");	//Элитные воины орков - его специализация. Ему часто приходилось иметь с ними дело.
 				Log_AddEntry(TOPIC_OrcElite,"Ингмар очень много знает об элитных воинах орков.");
 			};
+		}
+		else
+		{
+			B_GiveInvItems(self,other,ItRi_OrcEliteRing,1);
 		};
 		Hagen_SawOrcRing = TRUE;
 		B_GivePlayerXP(XP_PAL_OrcRing);
 	}
-	else if(hero.guild == GIL_PAL)
+	else if(other.guild == GIL_PAL)
 	{
 		if(MIS_KillOrkOberst == LOG_SUCCESS)
 		{
@@ -1305,7 +1297,7 @@ instance DIA_Lord_Hagen_RINGEBRINGEN(C_Info)
 
 func int DIA_Lord_Hagen_RINGEBRINGEN_Condition()
 {
-	if((Hagen_SawOrcRing == TRUE) && Npc_HasItems(other,ItRi_OrcEliteRing) && (hero.guild == GIL_PAL))
+	if((Hagen_SawOrcRing == TRUE) && Npc_HasItems(other,ItRi_OrcEliteRing) && (other.guild == GIL_PAL))
 	{
 		return TRUE;
 	};
@@ -1354,7 +1346,6 @@ instance DIA_Lord_Hagen_AllDragonsDead(C_Info)
 	nr = 4;
 	condition = DIA_Lord_Hagen_AllDragonsDead_Condition;
 	information = DIA_Lord_Hagen_AllDragonsDead_Info;
-	permanent = FALSE;
 	description = "Драконы мертвы.";
 };
 
@@ -1379,7 +1370,7 @@ func void DIA_Lord_Hagen_AllDragonsDead_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_23");	//Я уже отдал приказ своим людям. Мы готовимся выступать.
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_24");	//Мы ВСЕ отправимся туда. Я оставлю только минимальную охрану на корабле.
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_25");	//Этого должно быть достаточно, чтобы, наконец, разделаться с этими орками!
-	MIS_SCvisitShip = LOG_Running;
+	MIS_SCvisitShip = LOG_RUNNING;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"SHIPFREE");
 };
@@ -1391,7 +1382,6 @@ instance DIA_Lord_Hagen_NeedShip(C_Info)
 	nr = 4;
 	condition = DIA_Lord_Hagen_NeedShip_Condition;
 	information = DIA_Lord_Hagen_NeedShip_Info;
-	permanent = FALSE;
 	description = "Мне нужен корабль.";
 };
 
@@ -1407,11 +1397,11 @@ func int DIA_Lord_Hagen_NeedShip_Condition()
 func void DIA_Lord_Hagen_NeedShip_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_NeedShip_15_00");	//Мне нужен корабль.
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_01");	//Он многим нужен, солдат.
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_02");	//(смеется) Я слышу это чуть ли не каждый день, дорогой. Но...
 	};
@@ -1442,7 +1432,6 @@ instance DIA_Lord_Hagen_GateOpen(C_Info)
 	nr = 5;
 	condition = DIA_Lord_Hagen_GateOpen_Condition;
 	information = DIA_Lord_Hagen_GateOpen_Info;
-	permanent = FALSE;
 	description = "Орки ворвались в замок в Долине Рудников!";
 };
 

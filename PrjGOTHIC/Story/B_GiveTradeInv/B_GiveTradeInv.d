@@ -1,87 +1,87 @@
 
 func int C_AmIWeaponTrader(var C_Npc slf)
 {
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Erol))
+	if(C_IsNpc(slf,VLK_4303_Addon_Erol))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fisk))
+	if(C_IsNpc(slf,BDT_1097_Addon_Fisk))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Garett))
+	if(C_IsNpc(slf,PIR_1357_Addon_Garett))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Huno))
+	if(C_IsNpc(slf,BDT_1099_Addon_Huno))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Martin))
+	if(C_IsNpc(slf,MIL_350_Addon_Martin))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Scatty))
+	if(C_IsNpc(slf,BDT_1086_Addon_Scatty))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bennet_DI))
+	if(C_IsNpc(slf,SLD_809_Bennet_DI))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Canthar))
+	if(C_IsNpc(slf,VLK_468_Canthar))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cipher))
+	if(C_IsNpc(slf,SLD_803_Cipher))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Hakon))
+	if(C_IsNpc(slf,VLK_407_Hakon))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Hodges))
+	if(C_IsNpc(slf,BAU_908_Hodges))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Jora))
+	if(C_IsNpc(slf,VLK_408_Jora))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Khaled))
+	if(C_IsNpc(slf,SLD_823_Khaled))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Matteo))
+	if(C_IsNpc(slf,VLK_416_Matteo))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Orlan))
+	if(C_IsNpc(slf,BAU_970_Orlan))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rethon))
+	if(C_IsNpc(slf,DJG_709_Rethon))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sarah))
+	if(C_IsNpc(slf,VLK_470_Sarah))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Tandor))
+	if(C_IsNpc(slf,PAL_260_Tandor))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bosper))
+	if(C_IsNpc(slf,VLK_413_Bosper))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Engor))
+	if(C_IsNpc(slf,VLK_4108_Engor))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi))
+	if(C_IsNpc(slf,BAU_936_Rosi))
 	{
 		return TRUE;
 	};
@@ -90,35 +90,35 @@ func int C_AmIWeaponTrader(var C_Npc slf)
 
 func int C_TraderCanEquipRangedWeapon(var C_Npc slf)
 {
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Garett))
+	if(C_IsNpc(slf,PIR_1357_Addon_Garett))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Engor))
+	if(C_IsNpc(slf,VLK_4108_Engor))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bosper))
+	if(C_IsNpc(slf,VLK_413_Bosper))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Diego_DI))
+	if(C_IsNpc(slf,PC_Thief_DI))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Tandor))
+	if(C_IsNpc(slf,PAL_260_Tandor))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sengrath))
+	if(C_IsNpc(slf,PAL_267_Sengrath))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Khaled))
+	if(C_IsNpc(slf,SLD_823_Khaled))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cipher))
+	if(C_IsNpc(slf,SLD_803_Cipher))
 	{
 		return TRUE;
 	};
@@ -397,11 +397,11 @@ func void B_GiveTradeInv(var C_Npc slf)
 	}
 	else
 	{
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Gorax))
+		if(C_IsNpc(slf,KDF_508_Gorax))
 		{
 			B_HideTradeItem(slf,ItKe_KlosterSchatz);
 		}
-		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Salandril))
+		else if(C_IsNpc(slf,VLK_422_Salandril))
 		{
 			B_HideTradeItem(slf,ItKe_Salandril);
 		};

@@ -1,21 +1,21 @@
 
-instance DIA_Jorgen_KAP3_EXIT(C_Info)
+instance DIA_Jorgen_EXIT(C_Info)
 {
 	npc = VLK_4250_Jorgen;
 	nr = 999;
-	condition = DIA_Jorgen_KAP3_EXIT_Condition;
-	information = DIA_Jorgen_KAP3_EXIT_Info;
+	condition = DIA_Jorgen_EXIT_Condition;
+	information = DIA_Jorgen_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Jorgen_KAP3_EXIT_Condition()
+func int DIA_Jorgen_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Jorgen_KAP3_EXIT_Info()
+func void DIA_Jorgen_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -27,7 +27,6 @@ instance DIA_Jorgen_Hallo(C_Info)
 	nr = 4;
 	condition = DIA_Jorgen_Hallo_Condition;
 	information = DIA_Jorgen_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -42,7 +41,7 @@ func int DIA_Jorgen_Hallo_Condition()
 
 func void DIA_Jorgen_Hallo_Info()
 {
-	if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
+	if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Jorgen_Hallo_07_00");	//Ёй, ты!
 		AI_Output(self,other,"DIA_Jorgen_Hallo_07_01");	//я вижу, ты из монастыр€ магов.
@@ -65,14 +64,13 @@ instance DIA_Jorgen_Novice(C_Info)
 	nr = 6;
 	condition = DIA_Jorgen_Novice_Condition;
 	information = DIA_Jorgen_Novice_Info;
-	permanent = FALSE;
 	description = "ћимо теб€ не проходил послушник?";
 };
 
 
 func int DIA_Jorgen_Novice_Condition()
 {
-	if((MIS_NovizenChase == LOG_Running) && (Kapitel == 3) && (MIS_SCKnowsInnosEyeIsBroken == FALSE))
+	if((MIS_NovizenChase == LOG_RUNNING) && (Kapitel == 3) && (MIS_SCKnowsInnosEyeIsBroken == FALSE))
 	{
 		return TRUE;
 	};
@@ -100,16 +98,18 @@ instance DIA_Jorgen_Milten(C_Info)
 	nr = 5;
 	condition = DIA_Jorgen_Milten_Condition;
 	information = DIA_Jorgen_Milten_Info;
-	permanent = FALSE;
 	description = "≈сли ты идешь в монастырь, тебе нужно поговорить с ћилтеном.";
 };
 
 
 func int DIA_Jorgen_Milten_Condition()
 {
-	if((Kapitel == 3) && (MIS_SCKnowsInnosEyeIsBroken == FALSE) && (MIS_OLDWORLD == LOG_SUCCESS) && (MiltenNW.aivar[AIV_TalkedToPlayer] == TRUE))
+	if((Kapitel == 3) && (MIS_SCKnowsInnosEyeIsBroken == FALSE) && (MIS_OLDWORLD == LOG_SUCCESS) && !Npc_IsDead(MiltenNW))
 	{
-		return TRUE;
+		if(MiltenNW.aivar[AIV_TalkedToPlayer] == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -204,7 +204,7 @@ func void DIA_Jorgen_NEUHIER_Info()
 		AI_Output(self,other,"DIA_Jorgen_NEUHIER_07_02");	//Ќо все же, спасибо за совет. ћилтен действительно помог мне получить место здесь.
 		B_GivePlayerXP(XP_Ambient);
 	};
-	if(hero.guild != GIL_KDF)
+	if(other.guild != GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Jorgen_NEUHIER_07_03");	//я чувствую себ€ идиотом среди этих всегда ворчащих благодетелей.
 	};
@@ -237,7 +237,7 @@ var int DIA_Jorgen_PERM4_OneTime;
 func void DIA_Jorgen_PERM4_Info()
 {
 	AI_Output(other,self,"DIA_Jorgen_PERM4_15_00");	//я верю, что у теб€ все будет в пор€дке.
-	if((DIA_Jorgen_PERM4_OneTime == FALSE) && (hero.guild != GIL_KDF))
+	if((DIA_Jorgen_PERM4_OneTime == FALSE) && (other.guild != GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Jorgen_PERM4_07_01");	//“олько представь: € должен пропалывать их огород. ≈сли так будет продолжатьс€ и дальше, € сойду с ума.
 		DIA_Jorgen_PERM4_OneTime = TRUE;
@@ -265,9 +265,6 @@ func int DIA_Jorgen_BEMYCAPTAIN_Condition()
 	};
 };
 
-
-var int DIA_Jorgen_BEMYCAPTAIN_OneTime;
-
 func void DIA_Jorgen_BEMYCAPTAIN_Info()
 {
 	DIA_Common_MaybeICanOfferYouCaptainJob();
@@ -276,12 +273,22 @@ func void DIA_Jorgen_BEMYCAPTAIN_Info()
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN_07_01");	//“ы не издеваешьс€ надо мной, парень? ≈сли ты скажешь, что это правда, € всегда готов.
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN_07_02");	//Ёээ... есть только одна маленька€ проблема. я съел половину кладовки послушников.
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN_07_03");	//ќни чуть не сошли с ума от злости, когда узнали. я не думаю, что главный маг позволит мне вот так просто уйти.
-		B_LogEntry(Topic_Captain,"…орген готов стать моим капитаном, но € сначала должен оплатить его долг перед монастырем.");
+		B_LogEntry(TOPIC_Captain,"…орген готов стать моим капитаном, но € сначала должен оплатить его долг перед монастырем.");
 		DIA_Jorgen_BEMYCAPTAIN_OneTime = TRUE;
 	};
 	AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN_07_04");	//—начала мне нужно отработать мой долг перед ѕирокаром. »звини.
 };
 
+
+func void B_MoveJorgenFromKloster()
+{
+	if(JorgenMovedFromKloster == FALSE)
+	{
+		Npc_ExchangeRoutine(self,"RAUSAUSKLOSTER");
+		B_StartOtherRoutine(NOV_610,"START");
+		JorgenMovedFromKloster = TRUE;
+	};
+};
 
 instance DIA_Jorgen_BEMYCAPTAIN2(C_Info)
 {
@@ -312,12 +319,10 @@ func void DIA_Jorgen_BEMYCAPTAIN2_Info()
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN2_07_04");	// ак теперь насчет твоего предложени€? ” теб€ еще есть место дл€ мен€?
 		if(SCGotCaptain == TRUE)
 		{
-			AI_Output(other,self,"DIA_Lee_LeaveMyShip_15_00");	//я все-таки не могу вз€ть теб€ с собой!
+			DIA_Common_ImAfraidThatsTheEndForUs();
 			AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_03");	//ћне нужно поискать дл€ себ€ другое место. ѕосмотрим, куда еще мен€ занесет попутным ветром.
 			AI_StopProcessInfos(self);
-			Npc_ExchangeRoutine(self,"RausAusKloster");
-			B_StartOtherRoutine(Nov610,"Start");
-			JorgenMovedFromKloster = TRUE;
+			B_MoveJorgenFromKloster();
 		};
 	}
 	else if(SCGotCaptain == FALSE)
@@ -329,9 +334,7 @@ func void DIA_Jorgen_BEMYCAPTAIN2_Info()
 	{
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN2_07_05");	//ќтлично. “еперь € могу убратьс€ отсюда!
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"RausAusKloster");
-		B_StartOtherRoutine(Nov610,"Start");
-		JorgenMovedFromKloster = TRUE;
+		B_MoveJorgenFromKloster();
 	};
 };
 
@@ -361,12 +364,12 @@ func void DIA_Jorgen_BEMYCAPTAIN3_Info()
 	AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN3_07_02");	//ƒолжен заметить, нам нужно по крайней мере п€ть человек.
 	AI_Output(other,self,"DIA_Jorgen_BEMYCAPTAIN3_15_03");	//’орошо. я посмотрю, что можно сделать. ∆ди мен€ в гавани.
 	AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN3_07_04");	//≈сть, сэр.
-	AI_StopProcessInfos(self);
 	SCGotCaptain = TRUE;
 	JorgenIsCaptain = TRUE;
-	Npc_ExchangeRoutine(self,"WaitForShipCaptain");
-	B_StartOtherRoutine(Nov610,"Start");
 	B_GivePlayerXP(XP_Captain_Success);
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"WAITFORSHIPCAPTAIN");
+	B_StartOtherRoutine(NOV_610,"START");
 };
 
 
@@ -447,7 +450,7 @@ func void DIA_Jorgen_PERM5_NOTCAPTAIN_Info()
 		AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_02");	//ќни дают мне идиотские поручени€ вроде пасти овец, но все же люди здесь далеко не такие ограниченные и тупые, как в монастыре.
 		if(DIA_Jorgen_PERM5_NOTCAPTAIN_XPGiven == FALSE)
 		{
-			B_GivePlayerXP(XP_Ambient);
+			B_GivePlayerXP(XP_AmbientKap5);
 			DIA_Jorgen_PERM5_NOTCAPTAIN_XPGiven = TRUE;
 		};
 		AI_StopProcessInfos(self);
@@ -456,12 +459,7 @@ func void DIA_Jorgen_PERM5_NOTCAPTAIN_Info()
 	{
 		AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_03");	//ћне нужно поискать дл€ себ€ другое место. ѕосмотрим, куда еще мен€ занесет попутным ветром.
 		AI_StopProcessInfos(self);
-		if(JorgenMovedFromKloster == FALSE)
-		{
-			Npc_ExchangeRoutine(self,"RausAusKloster");
-			B_StartOtherRoutine(Nov610,"Start");
-			JorgenMovedFromKloster = TRUE;
-		};
+		B_MoveJorgenFromKloster();
 	};
 };
 

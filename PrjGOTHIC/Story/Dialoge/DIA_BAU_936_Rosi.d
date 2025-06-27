@@ -17,8 +17,8 @@ func void B_RosiTradeInfo()
 		}
 		else if(RosiLocation == LOC_MONASTERY)
 		{
-			Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-			B_LogEntry(Topic_KlosterTrader,"У Рози можно купить различные товары.");
+			Log_CreateTopic(TOPIC_KlosterTrader,LOG_NOTE);
+			B_LogEntry(TOPIC_KlosterTrader,"У Рози можно купить различные товары.");
 		}
 		else if(RosiLocation == LOC_FARM)
 		{
@@ -163,7 +163,7 @@ func void DIA_Rosi_WAREZ_Info()
 	AI_Output(other,self,"DIA_Rosi_WAREZ_15_00");	//Что ты можешь предложить мне?
 	B_RosiTradeInfo();
 	AI_Output(self,other,"DIA_Rosi_WAREZ_17_01");	//Выбирай.
-	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING)
 	{
 		RosiMinenAnteil = TRUE;
 	};
@@ -274,7 +274,7 @@ func int DIA_Rosi_Miliz_Condition()
 func void DIA_Rosi_Miliz_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_Miliz_15_00");	//А почему ополчение нападает на ваши фермы?
-	if(hero.guild != GIL_MIL)
+	if(other.guild != GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Rosi_Miliz_17_01");	//Потому что здесь никого нет, кто не позволит им просто грабить наши фермы, вместо того, чтобы покупать наши продукты.
 		AI_Output(self,other,"DIA_Rosi_Miliz_17_02");	//Король далеко, а нам остается только работать на Онара, надеясь, что он пришлет помощь, когда она действительно будет нам необходима.
@@ -309,12 +309,12 @@ func void DIA_Rosi_ONAR_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_ONAR_15_00");	//А на что похожа помощь Онара?
 	AI_Output(self,other,"DIA_Rosi_ONAR_17_01");	//Иногда мы заранее узнаем, что ополчение планирует нанести нам визит.
-	if(hero.guild != GIL_MIL)
+	if(other.guild != GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Rosi_ONAR_17_02");	//Тогда мы посылаем кого-нибудь к лендлорду с просьбой о помощи.
 		AI_Output(self,other,"DIA_Rosi_ONAR_17_03");	//И затем, обычно вскоре, появляются наемники, которым он платит, чтобы те пришли сюда и прогнали ополчение.
 	};
-	if((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Rosi_ONAR_17_04");	//Но, откровенно говоря, наемники не многим лучше ополчения.
 	};
@@ -411,15 +411,15 @@ func void DIA_Rosi_HILFE_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_HILFE_15_00");	//Я выведу тебя отсюда.
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_NONE))
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_NONE))
 	{
 		AI_Output(other,self,"DIA_Rosi_HILFE_15_01");	//Я могу отвести тебя в город.
 	}
-	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(other,self,"DIA_Rosi_HILFE_15_02");	//Я отведу тебя на ферму лендлорда.
 	}
-	else if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
+	else if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
 	{
 		AI_Output(other,self,"DIA_Rosi_HILFE_15_03");	//Пойдем в монастырь. Тебя хорошо примут там.
 	};
@@ -433,29 +433,16 @@ func void DIA_Rosi_HILFE_Info()
 		Till.aivar[AIV_PARTYMEMBER] = TRUE;
 		AI_Output(self,other,"DIA_Rosi_HILFE_17_06");	//Ты иди вперед. Мы пойдем за тобой.
 	};
-	AI_StopProcessInfos(self);
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_NONE))
-	{
-		Npc_ExchangeRoutine(self,"FOLLOWCITY");
-		B_StartOtherRoutine(Till,"FOLLOWCITY");
-	}
-	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
-	{
-		Npc_ExchangeRoutine(self,"FOLLOWBIGFARM");
-		B_StartOtherRoutine(Till,"FOLLOWBIGFARM");
-	}
-	else if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
-	{
-		Npc_ExchangeRoutine(self,"FOLLOWKLOSTER");
-		B_StartOtherRoutine(Till,"FOLLOWKLOSTER");
-	};
 	if(!Npc_KnowsInfo(other,DIA_Babera_Rosi))
 	{
 		Log_CreateTopic(TOPIC_RosisFlucht,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_RosisFlucht,LOG_Running);
+		Log_SetTopicStatus(TOPIC_RosisFlucht,LOG_RUNNING);
 		B_LogEntry(TOPIC_RosisFlucht,"Рози больше не могла выносить жизнь на ферме Секоба и сбежала в лес, но заблудилась и теперь не знает, куда идти. Я выведу ее из лесной глуши.");
 	};
-	MIS_RosisFlucht = LOG_Running;
+	MIS_RosisFlucht = LOG_RUNNING;
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"FOLLOW");
+	B_StartOtherRoutine(Till,"FOLLOW");
 };
 
 
@@ -473,21 +460,21 @@ func int DIA_Rosi_ANGEKOMMEN_Condition()
 {
 	if((MIS_BringRosiBackToSekob != LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE))
 	{
-		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_NONE))
+		if((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_NONE))
 		{
 			if((Npc_GetDistToWP(self,"CITY1") < 6000) || (Npc_GetDistToWP(self,"CITY2") < 6000))
 			{
 				return TRUE;
 			};
 		}
-		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+		else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 		{
 			if(Npc_GetDistToWP(self,"NW_BIGFARM_KITCHEN_02") < 6000)
 			{
 				return TRUE;
 			};
 		}
-		else if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
+		else if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
 		{
 			if(Npc_GetDistToWP(self,"KLOSTER") < 6000)
 			{
@@ -578,7 +565,7 @@ instance DIA_Rosi_MinenAnteil(C_Info)
 
 func int DIA_Rosi_MinenAnteil_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (RosiMinenAnteil == TRUE))
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (RosiMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

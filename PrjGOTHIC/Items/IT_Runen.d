@@ -526,9 +526,9 @@ instance ItRu_InstantFireball(C_Item)
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
-	count[1] = SPL_COST_InstantFireball;
+	count[1] = SPL_Cost_InstantFireball;
 	text[2] = NAME_Dam_Magic;
-	count[2] = SPL_DAMAGE_InstantFireball;
+	count[2] = SPL_Damage_InstantFireball;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -549,9 +549,9 @@ instance ItRu_Icebolt(C_Item)
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
-	count[1] = SPL_COST_Icebolt;
+	count[1] = SPL_Cost_Icebolt;
 	text[2] = NAME_Dam_Magic;
-	count[2] = SPL_DAMAGE_Icebolt;
+	count[2] = SPL_Damage_Icebolt;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -695,7 +695,7 @@ instance ItRu_ChargeFireball(C_Item)
 	text[1] = NAME_ManakostenMin;
 	count[1] = STEP_ChargeFireball;
 	text[2] = NAME_ManakostenMax;
-	count[2] = SPL_COST_ChargeFireball;
+	count[2] = SPL_Cost_ChargeFireball;
 	text[3] = NAME_Dam_MagicMin;
 	count[3] = SPL_Damage_ChargeFireball;
 	text[4] = NAME_Dam_MagicMax;
@@ -793,7 +793,7 @@ instance ItRu_ThunderBall(C_Item)
 	text[1] = NAME_ManakostenMin;
 	count[1] = STEP_ChargeZap;
 	text[2] = NAME_ManakostenMax;
-	count[2] = SPL_COST_ChargeZap;
+	count[2] = SPL_Cost_ChargeZap;
 	text[3] = "Урон магией (мин.):";
 	count[3] = SPL_Damage_ChargeZap;
 	text[4] = "Урон магией (макс.):";
@@ -864,7 +864,7 @@ instance ItRu_Pyrokinesis(C_Item)
 	text[1] = NAME_ManakostenMin;
 	count[1] = STEP_Firestorm;
 	text[2] = NAME_ManakostenMax;
-	count[2] = SPL_COST_Firestorm;
+	count[2] = SPL_Cost_Firestorm;
 	text[3] = NAME_Dam_MagicMin;
 	count[3] = SPL_Damage_Firestorm;
 	text[4] = NAME_Dam_MagicMax;
@@ -1031,7 +1031,7 @@ instance ItRu_MassDeath(C_Item)
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_MassDeath;
 	text[2] = NAME_Dam_Magic;
-	count[2] = SPL_Damage_MassDeath;
+	count[2] = 1000; //SPL_Damage_MassDeath * 2
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1052,9 +1052,9 @@ instance ItRu_MasterOfDisaster(C_Item)
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
-	count[1] = SPL_COST_MasterOfDisaster;
+	count[1] = SPL_Cost_MasterOfDisaster;
 	text[2] = NAME_Dam_Magic;
-	count[2] = SPL_DAMAGE_MasterOfDisaster;
+	count[2] = SPL_Damage_MasterOfDisaster;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1117,11 +1117,9 @@ instance ItRu_Deathbolt(C_Item)
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
-	count[1] = SPL_COST_Deathbolt;
+	count[1] = SPL_Cost_Deathbolt;
 	text[2] = NAME_Dam_Magic;
-	count[2] = SPL_DAMAGE_Deathbolt;
-	/*text[5] = NAME_Value;
-	count[5] = value;*/
+	count[2] = SPL_Damage_Deathbolt;
 };
 
 instance ItRu_Deathball(C_Item)
@@ -1140,11 +1138,9 @@ instance ItRu_Deathball(C_Item)
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
-	count[1] = SPL_COST_Deathball;
+	count[1] = SPL_Cost_Deathball;
 	text[2] = NAME_Dam_Magic;
-	count[2] = SPL_DAMAGE_Deathball;
-	/*text[5] = NAME_Value;
-	count[5] = value;*/
+	count[2] = SPL_Damage_Deathball;
 };
 
 instance ItRu_Concussionbolt(C_Item)
@@ -1163,11 +1159,9 @@ instance ItRu_Concussionbolt(C_Item)
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
-	count[1] = SPL_COST_Concussionbolt;
+	count[1] = SPL_Cost_Concussionbolt;
 	text[2] = NAME_Dam_Magic;
-	count[2] = SPL_DAMAGE_Concussionbolt;
+	count[2] = SPL_Damage_Concussionbolt;
 	text[4] = NAME_Addon_SpellDontKill;
-	/*text[5] = NAME_Value;
-	count[5] = value;*/
 };
 

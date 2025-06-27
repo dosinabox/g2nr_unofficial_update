@@ -78,15 +78,15 @@ func void DIA_Addon_Bromor_MissingPeople_Info()
 	if(MissingPeopleReturnedHome == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 	};
 	B_LogEntries(TOPIC_Addon_MissingPeople,"Шлюха по имени Люсия пропала из борделя в гавани.");
 	if(MIS_LookingForLucia == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_RUNNING);
 		B_LogNextEntry(TOPIC_Addon_Lucia,"Шлюха по имени Люсия пропала из борделя в гавани.");
-		MIS_LookingForLucia = LOG_Running;
+		MIS_LookingForLucia = LOG_RUNNING;
 	};
 };
 
@@ -118,9 +118,9 @@ func void DIA_Addon_Bromor_Lucia_Info()
 	AI_Output(self,other,"DIA_Addon_Bromor_Lucia_07_04");	//Если она попадет ко мне в руки, она поплатится!
 	AI_Output(self,other,"DIA_Addon_Bromor_Lucia_07_05");	//Но тебе-то какое до этого дело? Ты что, хочешь надо мной посмеяться?
 	Log_CreateTopic(TOPIC_Addon_BromorsGold,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_BromorsGold,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_BromorsGold,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_BromorsGold,"Шлюха Люсия украла золотое блюдо у своего босса, Бромора. Бромор хочет вернуть его назад.");
-	MIS_Bromor_LuciaStoleGold = LOG_Running;
+	MIS_Bromor_LuciaStoleGold = LOG_RUNNING;
 };
 
 
@@ -139,8 +139,7 @@ instance DIA_Addon_Bromor_LuciaGold(C_Info)
 
 func int DIA_Addon_Bromor_LuciaGold_Condition()
 {
-//	if((NpcObsessedByDMT_Bromor == FALSE) && (MIS_Bromor_LuciaStoleGold == LOG_Running) && Npc_HasItems(other,ItMi_BromorsGeld_Addon))
-	if((MIS_Bromor_LuciaStoleGold == LOG_Running) && Npc_HasItems(other,ItMi_BromorsGeld_Addon))
+	if((MIS_Bromor_LuciaStoleGold == LOG_RUNNING) && Npc_HasItems(other,ItMi_BromorsGeld_Addon))
 	{
 		return TRUE;
 	};
@@ -307,7 +306,7 @@ instance DIA_Bromor_DOPE(C_Info)
 
 func int DIA_Bromor_DOPE_Condition()
 {
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE) && (NpcObsessedByDMT_Bromor == FALSE) && Npc_KnowsInfo(other,DIA_Bromor_GIRLS))
+	if((MIS_Andre_REDLIGHT == LOG_RUNNING) && (Knows_Borka_Dealer == FALSE) && (NpcObsessedByDMT_Bromor == FALSE) && Npc_KnowsInfo(other,DIA_Bromor_GIRLS))
 	{
 		return TRUE;
 	};

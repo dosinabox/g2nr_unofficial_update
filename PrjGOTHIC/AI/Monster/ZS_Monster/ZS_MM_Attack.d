@@ -40,7 +40,10 @@ func void ZS_MM_Attack()
 		AI_Standup(self);
 	};
 	AI_SetWalkMode(self,NPC_RUN);
-	Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
+	if(Hlp_IsValidNpc(other))
+	{
+		Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
+	};
 	self.aivar[AIV_PursuitEnd] = FALSE;
 	self.aivar[AIV_StateTime] = 0;
 	self.aivar[AIV_HitByOtherNpc] = 0;
@@ -233,7 +236,7 @@ func int ZS_MM_Attack_Loop()
 func void ZS_MM_Attack_End()
 {
 	var C_Npc target;
-	if(self.guild > GIL_SEPERATOR_ORC)
+	if(C_NpcIsOrc(self))
 	{
 		AI_RemoveWeapon(self);
 		if(Npc_HasReadiedWeapon(self))
@@ -263,11 +266,14 @@ func void ZS_MM_Attack_End()
 		return;
 	};
 	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
-	if(Npc_IsDead(target) && C_WantToEat(self,target))
+	if(Hlp_IsValidNpc(target))
 	{
-		Npc_ClearAIQueue(self);
-		AI_StartState(self,ZS_MM_EatBody,0,"");
-		return;
+		if(Npc_IsDead(target) && C_WantToEat(self,target))
+		{
+			Npc_ClearAIQueue(self);
+			AI_StartState(self,ZS_MM_EatBody,0,"");
+			return;
+		};
 	};
 };
 

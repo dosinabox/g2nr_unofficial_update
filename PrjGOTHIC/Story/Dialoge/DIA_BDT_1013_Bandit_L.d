@@ -5,7 +5,6 @@ instance DIA_BDT_1013_BANDIT_FIRSTEXIT(C_Info)
 	nr = 999;
 	condition = DIA_BDT_1013_BANDIT_FIRSTEXIT_Condition;
 	information = DIA_BDT_1013_BANDIT_FIRSTEXIT_Info;
-	permanent = FALSE;
 	description = Dialog_Ende;
 };
 
@@ -56,7 +55,6 @@ instance DIA_BDT_1013_BANDIT_WHERE(C_Info)
 	nr = 3;
 	condition = DIA_BDT_1013_BANDIT_WHERE_Condition;
 	information = DIA_BDT_1013_BANDIT_WHERE_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -193,7 +191,6 @@ instance DIA_1013_BANDIT_AMBUSH(C_Info)
 	nr = 1;
 	condition = DIA_1013_BANDIT_AMBUSH_Condition;
 	information = DIA_1013_BANDIT_AMBUSH_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -227,7 +224,6 @@ instance DIA_1013_BANDIT_NAME(C_Info)
 	nr = 1;
 	condition = DIA_1013_BANDIT_NAME_Condition;
 	information = DIA_1013_BANDIT_NAME_Info;
-	permanent = FALSE;
 	description = "Кто назначил цену за мою голову?";
 };
 
@@ -248,10 +244,10 @@ func void DIA_1013_BANDIT_NAME_Info()
 	AI_Output(self,other,"DIA_1013_BANDIT_NAME_01_03");	//Эй, послушай - я действительно не могу сказать тебе это. Кто знает, как все выйдет...
 	if(MIS_Steckbriefe == FALSE)
 	{
-		Log_CreateTopic(Topic_Bandits,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Bandits,LOG_Running);
-		B_LogEntry(Topic_Bandits,"За мной охотятся бандиты. У них есть листок с моим изображением. Интересно, что все это значит.");
-		MIS_Steckbriefe = LOG_Running;
+		Log_CreateTopic(TOPIC_Bandits,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Bandits,LOG_RUNNING);
+		B_LogEntry(TOPIC_Bandits,"За мной охотятся бандиты. У них есть листок с моим изображением. Интересно, что все это значит.");
+		MIS_Steckbriefe = LOG_RUNNING;
 	};
 };
 
@@ -262,7 +258,6 @@ instance DIA_1013_BANDIT_DEXTER(C_Info)
 	nr = 1;
 	condition = DIA_1013_BANDIT_DEXTER_Condition;
 	information = DIA_1013_BANDIT_DEXTER_Info;
-	permanent = FALSE;
 	description = "10 золотых монет за имя того, кто назначил цену за мою голову.";
 };
 
@@ -284,7 +279,7 @@ func void DIA_1013_BANDIT_DEXTER_Info()
 	AI_Output(self,other,"DIA_1013_BANDIT_DEXTER_01_04");	//На ней сторожевая башня и несколько шахт. Он устроил свое логово где-то там.
 	if(MIS_Steckbriefe != LOG_SUCCESS)
 	{
-		B_LogEntry(Topic_Bandits,"Главаря бандитов зовут Декстер. Он скрывается в шахте около поместья лендлорда.");
+		B_LogEntry(TOPIC_Bandits,"Главаря бандитов зовут Декстер. Он скрывается в шахте около поместья лендлорда.");
 	};
 	if(B_GiveInvItems(other,self,ItMi_Gold,10))
 	{
@@ -306,7 +301,6 @@ instance DIA_1013_BANDIT_PIC(C_Info)
 	nr = 2;
 	condition = DIA_1013_BANDIT_PIC_Condition;
 	information = DIA_1013_BANDIT_PIC_Info;
-	permanent = FALSE;
 	description = "Могу я взять эту картинку?";
 };
 
@@ -334,14 +328,13 @@ instance DIA_1013_BANDIT_FromMaleth(C_Info)
 	nr = 3;
 	condition = DIA_1013_BANDIT_FromMaleth_Condition;
 	information = DIA_1013_BANDIT_FromMaleth_Info;
-	permanent = FALSE;
 	description = "Меня послал один из фермеров у города...";
 };
 
 
 func int DIA_1013_BANDIT_FromMaleth_Condition()
 {
-	if((Bdt13_Friend == TRUE) && ((MIS_Maleth_Bandits == LOG_Running) || (MIS_Maleth_Bandits == LOG_SUCCESS)))
+	if((Bdt13_Friend == TRUE) && ((MIS_Maleth_Bandits == LOG_RUNNING) || (MIS_Maleth_Bandits == LOG_SUCCESS)))
 	{
 		return TRUE;
 	};
@@ -384,14 +377,13 @@ instance DIA_1013_BANDIT_FromCavalorn(C_Info)
 	nr = 3;
 	condition = DIA_1013_BANDIT_FromCavalorn_Condition;
 	information = DIA_1013_BANDIT_FromCavalorn_Info;
-	permanent = FALSE;
 	description = "Похоже, у тебя скоро будут проблемы!";
 };
 
 
 func int DIA_1013_BANDIT_FromCavalorn_Condition()
 {
-	if((Bdt13_Friend == TRUE) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running) && !Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Ornament))
+	if((Bdt13_Friend == TRUE) && (MIS_Addon_Cavalorn_KillBrago == LOG_RUNNING) && !Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Ornament))
 	{
 		return TRUE;
 	};
@@ -419,7 +411,7 @@ func void DIA_1013_BANDIT_FromCavalorn_Info()
 };
 
 
-var int bdt13_Gossip_Wildnis;
+var int Bdt_1013_Gossip;
 
 instance DIA_1013_BANDIT_PERM(C_Info)
 {
@@ -443,11 +435,11 @@ func int DIA_1013_BANDIT_PERM_Condition()
 func void DIA_1013_BANDIT_PERM_Info()
 {
 	AI_Output(other,self,"DIA_1013_BANDIT_PERM_15_00");	//Есть что-нибудь еще, что может заинтересовать меня?
-	if(bdt13_Gossip_Wildnis == FALSE)
+	if(Bdt_1013_Gossip == FALSE)
 	{
 		AI_Output(self,other,"DIA_1013_BANDIT_PERM_01_01");	//Ты имеешь в виду эту местность? Если хочешь остаться в живых, тебе лучше держаться дороги.
 		AI_Output(self,other,"DIA_1013_BANDIT_PERM_01_02");	//Чем дальше ты заходишь в глушь, тем опаснее там находиться.
-		bdt13_Gossip_Wildnis = TRUE;
+		Bdt_1013_Gossip = TRUE;
 	}
 	else
 	{

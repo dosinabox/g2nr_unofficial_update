@@ -9,21 +9,20 @@ func void ZS_CommentFakeGuild()
 	};
 	if(!C_BodyStateContains(other,BS_SIT))
 	{
-//		B_TurnToNpc(other,self);
 		if(Npc_GetDistToNpc(other,self) < 80)
 		{
 			AI_Dodge(other);
 		};
 	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Baltram))
+	if(C_IsNpc(self,VLK_410_Baltram))
 	{
 		B_Say(self,other,"$ADDON_WRONGARMOR_SLD");
 	}
-	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Martin)) && (other.guild != GIL_MIL))
+	else if(C_IsNpc(self,MIL_350_Addon_Martin) && (other.guild != GIL_MIL))
 	{
 		B_Say(self,other,"$ADDON_WRONGARMOR");
 	}
-	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cord)) && (other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+	else if(C_IsNpc(self,SLD_805_Cord) && (other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		B_Say(self,other,"$ADDON_WRONGARMOR");
 	}
@@ -46,7 +45,7 @@ func void ZS_CommentFakeGuild()
 			B_Say(self,other,"$ADDON_NOARMOR_BDT");
 		};
 	}
-	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Daron)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ulf)))
+	else if(C_IsNpc(self,KDF_511_Daron) || C_IsNpc(self,NOV_602_Ulf))
 	{
 		B_Say(self,other,"$ADDON_WRONGARMOR_KDF");
 	}

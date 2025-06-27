@@ -27,7 +27,6 @@ instance DIA_Addon_Bill_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Bill_Hello_Condition;
 	information = DIA_Addon_Bill_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -150,16 +149,18 @@ instance DIA_Addon_Bill_AngusnHank(C_Info)
 	nr = 11;
 	condition = DIA_Addon_Bill_AngusnHank_Condition;
 	information = DIA_Addon_Bill_AngusnHank_Info;
-	permanent = FALSE;
 	description = "Я ищу Ангуса и Хэнка.";
 };
 
 
 func int DIA_Addon_Bill_AngusnHank_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHank) && Npc_HasItems(Angus,ItRi_Addon_MorgansRing_Mission))
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHank))
 	{
-		return TRUE;
+		if(Npc_HasItems(Angus,ItRi_Addon_MorgansRing_Mission))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -182,16 +183,18 @@ instance DIA_Addon_Bill_FoundFriends(C_Info)
 	nr = 12;
 	condition = DIA_Addon_Bill_FoundFriends_Condition;
 	information = DIA_Addon_Bill_FoundFriends_Info;
-	permanent = FALSE;
 	description = "Я нашел твоих друзей.";
 };
 
 
 func int DIA_Addon_Bill_FoundFriends_Condition()
 {
-	if(!Npc_HasItems(Angus,ItRi_Addon_MorgansRing_Mission))
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHank) || Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHankDead))
 	{
-		return TRUE;
+		if(!Npc_HasItems(Angus,ItRi_Addon_MorgansRing_Mission))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -207,9 +210,9 @@ func void DIA_Addon_Bill_FoundFriends_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Bill_FoundFriends_03_04");	//Чертовы свиньи! Вы будете гореть в аду.
 	AI_Output(self,other,"DIA_Addon_Bill_FoundFriends_03_05");	//Если бы я только знал имя тех подонков, кто это сделал...
-	MIS_Addon_Bill_SearchAngusMurder = LOG_Running;
+	MIS_Addon_Bill_SearchAngusMurder = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Addon_KillJuan,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_KillJuan,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_KillJuan,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_KillJuan,"Билл был потрясен, когда я сказал ему о смерти Ангуса и Хэнка. Он хочет знать имена их убийц.");
 	if(Npc_KnowsInfo(other,DIA_Addon_Fisk_Lieferung))
 	{
@@ -241,7 +244,7 @@ instance DIA_Addon_Bill_JuanMurder(C_Info)
 
 func int DIA_Addon_Bill_JuanMurder_Condition()
 {
-	if((MIS_Addon_Bill_SearchAngusMurder == LOG_Running) && (SC_Knows_JuanMurderedAngus == TRUE))
+	if((MIS_Addon_Bill_SearchAngusMurder == LOG_RUNNING) && (SC_Knows_JuanMurderedAngus == TRUE))
 	{
 		return TRUE;
 	};
@@ -270,9 +273,12 @@ instance DIA_Addon_Bill_KilledEsteban(C_Info)
 
 func int DIA_Addon_Bill_KilledEsteban_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Bill_JuanMurder) && Npc_IsDead(Juan))
+	if(Npc_KnowsInfo(other,DIA_Addon_Bill_JuanMurder))
 	{
-		return TRUE;
+		if(Npc_IsDead(Juan))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -345,8 +351,8 @@ func void DIA_Addon_Bill_TeachPlayer_Info()
 	AI_Output(self,other,"DIA_Addon_Bill_TeachPlayer_03_02");	//Но ты должен быть достаточно ловким, иначе ничего не получится.
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 	{
-		Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Teacher,"Билл может обучить меня карманным кражам.");
+		Log_CreateTopic(TOPIC_Addon_PIR_Teacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_PIR_Teacher,"Билл может обучить меня карманным кражам.");
 	};
 	Bill_Addon_TeachPickPocket = TRUE;
 };

@@ -36,7 +36,7 @@ instance DIA_NOV_3_Fegen(C_Info)
 
 func int DIA_NOV_3_Fegen_Condition()
 {
-	if((MIS_ParlanFegen == LOG_Running) && (NOV_Helfer < 4))
+	if((MIS_ParlanFegen == LOG_RUNNING) && (NOV_Helfer < 4))
 	{
 		if(Kapitel == 1)
 		{
@@ -52,7 +52,7 @@ func int DIA_NOV_3_Fegen_Condition()
 func void DIA_NOV_3_Fegen_Info()
 {
 	AI_Output(other,self,"DIA_NOV_3_Fegen_15_00");	//Мне нужна помощь, чтобы подмести кельи послушников.
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger1))
+	if(C_IsNpc(self,NOV_615_Novize))
 	{
 		if(Feger1_Permanent == FALSE)
 		{
@@ -61,7 +61,7 @@ func void DIA_NOV_3_Fegen_Info()
 				AI_Output(self,other,"DIA_NOV_3_Fegen_03_01");	//Никто не хочет помогать тебе, да? Хорошо, я помогу тебе, но только ты должен найти еще кого-нибудь мне в пару.
 				if(Feger1_Once == FALSE)
 				{
-					B_LogEntry(Topic_ParlanFegen,"Послушник, подметающий погреб, поможет мне, если я смогу найти еще одного послушника, готового помочь подмести комнаты.");
+					B_LogEntry(TOPIC_ParlanFegen,"Послушник, подметающий погреб, поможет мне, если я смогу найти еще одного послушника, готового помочь подмести комнаты.");
 					Feger1_Once = TRUE;
 				};
 			}
@@ -75,7 +75,7 @@ func void DIA_NOV_3_Fegen_Info()
 				B_GivePlayerXP(XP_Feger);
 				AI_StopProcessInfos(self);
 				Npc_ExchangeRoutine(self,"FEGEN");
-				B_LogEntry(Topic_ParlanFegen,"Послушник из погреба поможет мне подметать комнаты.");
+				B_LogEntry(TOPIC_ParlanFegen,"Послушник из погреба поможет мне подметать комнаты.");
 			};
 		}
 		else
@@ -83,7 +83,7 @@ func void DIA_NOV_3_Fegen_Info()
 			AI_Output(self,other,"DIA_NOV_3_Fegen_03_05");	//Послушай, брат, я уже помогаю тебе. Хватит болтать попусту.
 		};
 	}
-	else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger2))
+	else if(C_IsNpc(self,NOV_611_Novize))
 	{
 		if(Feger2_Permanent == FALSE)
 		{
@@ -91,7 +91,7 @@ func void DIA_NOV_3_Fegen_Info()
 			AI_Output(self,other,"DIA_NOV_3_Fegen_03_09");	//Я прошу всего 50 золотых монет, мне нужно заплатить их Парлану.
 			if(Feger2_Once == FALSE)
 			{
-				B_LogEntry(Topic_ParlanFegen,"Послушник у церкви поможет мне, если я дам ему 50 золотых монет.");
+				B_LogEntry(TOPIC_ParlanFegen,"Послушник у церкви поможет мне, если я дам ему 50 золотых монет.");
 				Feger2_Once = TRUE;
 			};
 			Info_ClearChoices(DIA_NOV_3_Fegen);
@@ -129,7 +129,7 @@ func void DIA_NOV_3_Fegen_Ja()
 	Info_ClearChoices(DIA_NOV_3_Fegen);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FEGEN");
-	B_LogEntry(Topic_ParlanFegen,"Послушник у церкви поможет мне подметать комнаты.");
+	B_LogEntry(TOPIC_ParlanFegen,"Послушник у церкви поможет мне подметать комнаты.");
 };
 
 
@@ -171,7 +171,7 @@ instance DIA_NOV_3_JOIN(C_Info)
 
 func int DIA_NOV_3_JOIN_Condition()
 {
-	if(hero.guild == GIL_NOV)
+	if(other.guild == GIL_NOV)
 	{
 		return TRUE;
 	};
@@ -198,7 +198,7 @@ instance DIA_NOV_3_PEOPLE(C_Info)
 
 func int DIA_NOV_3_PEOPLE_Condition()
 {
-	if(hero.guild != GIL_KDF)
+	if(other.guild != GIL_KDF)
 	{
 		return TRUE;
 	};
@@ -231,7 +231,7 @@ func void DIA_NOV_3_LOCATION_Info()
 {
 	AI_Output(other,self,"DIA_NOV_3_LOCATION_15_00");	//Что ты можешь сказать мне об этом монастыре?
 	AI_Output(self,other,"DIA_NOV_3_LOCATION_03_01");	//Мы своим трудом добываем хлеб насущный. Мы выращиваем овец и делаем вино.
-	if(hero.guild != GIL_KDF)
+	if(other.guild != GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_NOV_3_LOCATION_03_02");	//Здесь есть библиотека, но вход в нее разрешен только магам и избранным послушникам.
 		AI_Output(self,other,"DIA_NOV_3_LOCATION_03_03");	//Мы же, остальные послушники, следим за тем, чтобы маги Круга Огня ни в чем не нуждались.
@@ -259,7 +259,7 @@ func void DIA_NOV_3_STANDARD_Info()
 	AI_Output(other,self,"DIA_NOV_3_STANDARD_15_00");	//Что новенького?
 	if(Kapitel == 1)
 	{
-		if(hero.guild == GIL_KDF)
+		if(other.guild == GIL_KDF)
 		{
 			AI_Output(self,other,"DIA_NOV_3_STANDARD_03_01");	//И ты еще спрашиваешь! Да все послушники только о тебе и говорят.
 			AI_Output(self,other,"DIA_NOV_3_STANDARD_03_02");	//Очень редко бывает так, чтобы зеленый новичок вроде тебя был избран в Круг Огня.

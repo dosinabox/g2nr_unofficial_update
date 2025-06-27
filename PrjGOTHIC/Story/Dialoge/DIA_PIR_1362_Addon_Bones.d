@@ -40,7 +40,7 @@ instance DIA_Addon_Bones_Anheuern(C_Info)
 
 func int DIA_Addon_Bones_Anheuern_Condition()
 {
-	if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+	if(MIS_Addon_Greg_ClearCanyon == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -59,7 +59,6 @@ instance DIA_Addon_Bones_Hello(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Bones_Hello_Condition;
 	information = DIA_Addon_Bones_Hello_Info;
-	permanent = FALSE;
 	description = "Как дела?";
 };
 
@@ -87,7 +86,6 @@ instance DIA_Addon_Bones_Train(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Bones_Train_Condition;
 	information = DIA_Addon_Bones_Train_Info;
-	permanent = FALSE;
 	description = "Ты можешь меня чему-нибудь научить?";
 };
 
@@ -113,7 +111,6 @@ instance DIA_Addon_Bones_Teacher(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Bones_Teacher_Condition;
 	information = DIA_Addon_Bones_Teacher_Info;
-	permanent = FALSE;
 	description = "Кто здесь может чему-нибудь меня научить?";
 };
 
@@ -139,13 +136,13 @@ func void DIA_Addon_Bones_Teacher_Info()
 	Knows_HenrysEntertrupp = TRUE;
 	if(Henry_Addon_TeachPlayer == FALSE)
 	{
-		Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_HenryTeach);
+		Log_CreateTopic(TOPIC_Addon_PIR_Teacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_PIR_Teacher,Log_Text_Addon_HenryTeach);
 	};
 	if(Morgan_Addon_TeachPlayer == FALSE)
 	{
-		Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_MorganTeach);
+		Log_CreateTopic(TOPIC_Addon_PIR_Teacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_PIR_Teacher,Log_Text_Addon_MorganTeach);
 	};
 };
 
@@ -156,7 +153,6 @@ instance DIA_Addon_Bones_Francis(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Bones_Francis_Condition;
 	information = DIA_Addon_Bones_Francis_Info;
-	permanent = FALSE;
 	description = "Что ты скажешь о Фрэнсисе?";
 };
 
@@ -229,14 +225,13 @@ instance DIA_Addon_Bones_GiveArmor(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Bones_GiveArmor_Condition;
 	information = DIA_Addon_Bones_GiveArmor_Info;
-	permanent = FALSE;
 	description = "Ты должен отдать мне доспехи бандитов. Приказ Грега.";
 };
 
 
 func int DIA_Addon_Bones_GiveArmor_Condition()
 {
-	if((MIS_Greg_ScoutBandits == LOG_Running) && !C_SCHasBDTArmor())
+	if((MIS_Greg_ScoutBandits == LOG_RUNNING) && !C_SCHasBDTArmor())
 	{
 		return TRUE;
 	};

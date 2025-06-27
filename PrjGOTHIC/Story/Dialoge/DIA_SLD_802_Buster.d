@@ -279,7 +279,7 @@ func void DIA_Buster_WannaJoin_Info()
 		if(Torlof_GenugStimmen == FALSE)
 		{
 			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_RUNNING);
 		};
 		if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
 		{
@@ -370,13 +370,12 @@ instance DIA_Buster_AboutSentenza(C_Info)
 
 func int DIA_Buster_AboutSentenza_Condition()
 {
-	if((Buster_SentenzaTip == TRUE) && !Npc_IsDead(Sentenza) && (Sentenza.aivar[AIV_TalkedToPlayer] == FALSE))
+	if((Buster_SentenzaTip == TRUE) && !Npc_IsDead(Sentenza) && (other.guild != GIL_DJG))
 	{
-		if((Kapitel >= 3) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
+		if(Sentenza.aivar[AIV_TalkedToPlayer] == FALSE)
 		{
-			return FALSE;
+			return TRUE;
 		};
-		return TRUE;
 	};
 };
 
@@ -459,7 +458,6 @@ instance DIA_Buster_WhatHappened(C_Info)
 
 func int DIA_Buster_WhatHappened_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Buster_LeeLeader) && ((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG)))
 	if(Npc_KnowsInfo(other,DIA_Buster_LeeLeader))
 	{
 		return TRUE;
@@ -635,9 +633,9 @@ func void DIA_Buster_SHADOWBEASTS_was_wieviel()
 		AI_Output(self,other,"DIA_Buster_SHADOWBEASTS_was_wieviel_13_02");	//А помня о том золоте, что ты дал мне, я сделаю для тебя особую цену.
 	};
 	AI_Output(other,self,"DIA_Buster_SHADOWBEASTS_was_wieviel_15_03");	//Звучит заманчиво! Я дам тебе знать, когда добуду эти рога.
-	MIS_Buster_KillShadowbeasts_DJG = LOG_Running;
+	MIS_Buster_KillShadowbeasts_DJG = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Buster_KillShadowbeasts,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Buster_KillShadowbeasts,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Buster_KillShadowbeasts,LOG_RUNNING);
 	B_LogEntry(TOPIC_Buster_KillShadowbeasts,"Бастер даст хорошую цену за каждый рог мракориса, что я принесу ему.");
 	Info_ClearChoices(DIA_Buster_SHADOWBEASTS);
 };
@@ -694,7 +692,7 @@ func void DIA_Buster_TeachTrophyShadowbeast_teach()
 		AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_teach_13_01");	//Ладно, слушай. Убиваешь мракориса, и как можно крепче берешь его рог правой рукой.
 		AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_teach_13_02");	//Затем приставляешь нож к его лбу и делаешь глубокий разрез вокруг рога.
 		AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_teach_13_03");	//Ну, а потом просто поддеваешь рог ножом, используя его как рычаг, и кладешь рог себе в карман.
-		if(MIS_Buster_KillShadowbeasts_DJG == LOG_Running)
+		if(MIS_Buster_KillShadowbeasts_DJG == LOG_RUNNING)
 		{
 			AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_teach_13_04");	//И приносишь его мне. Я думаю, у тебя получится.
 			AI_Output(other,self,"DIA_Buster_BringTrophyShadowbeast_back_15_00");	//Я вернусь к тебе с рогами.
@@ -706,7 +704,7 @@ func void DIA_Buster_TeachTrophyShadowbeast_teach()
 func void DIA_Buster_TeachTrophyShadowbeast_back()
 {
 	DIA_Common_WeWillGetToThatLater();
-	if(MIS_Buster_KillShadowbeasts_DJG == LOG_Running)
+	if(MIS_Buster_KillShadowbeasts_DJG == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_back_13_01");	//Надеюсь.
 	};
@@ -728,7 +726,7 @@ instance DIA_Buster_BringTrophyShadowbeast(C_Info)
 
 func int DIA_Buster_BringTrophyShadowbeast_Condition()
 {
-	if((MIS_Buster_KillShadowbeasts_DJG == LOG_Running) && Npc_HasItems(other,ItAt_ShadowHorn) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+	if((MIS_Buster_KillShadowbeasts_DJG == LOG_RUNNING) && Npc_HasItems(other,ItAt_ShadowHorn) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
 	{
 		if(Npc_HasItems(other,ItAt_ShadowHorn) > 1)
 		{
@@ -779,7 +777,7 @@ instance DIA_Buster_DealerIsDead(C_Info)
 
 func int DIA_Buster_DealerIsDead_Condition()
 {
-	if((MIS_Buster_KillShadowbeasts_DJG == LOG_Running) && (Kapitel >= 5))
+	if((MIS_Buster_KillShadowbeasts_DJG == LOG_RUNNING) && (Kapitel >= 5))
 	{
 		return TRUE;
 	};

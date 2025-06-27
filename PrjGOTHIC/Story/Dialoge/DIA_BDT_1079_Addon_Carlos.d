@@ -29,7 +29,6 @@ instance DIA_Addon_Carlos_HI(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Carlos_HI_Condition;
 	information = DIA_Addon_Carlos_HI_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -71,14 +70,13 @@ instance DIA_Addon_Carlos_Attentat(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Carlos_Attentat_Condition;
 	information = DIA_Addon_Carlos_Attentat_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_ATTENTAT_DESCRIPTION;
 };
 
 
 func int DIA_Addon_Carlos_Attentat_Condition()
 {
-	if(MIS_Judas == LOG_Running)
+	if(MIS_Judas == LOG_RUNNING)
 	{
 		return TRUE;
 	};

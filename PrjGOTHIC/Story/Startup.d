@@ -267,7 +267,7 @@ func void STARTUP_Addon_Part_BanditsCamp_01()
 	Wld_InsertItem(ItPo_Speed,"FP_ITEM_BANDITSCAMP_13");
 	Wld_InsertItem(ItPl_Temp_Herb,"FP_ITEM_BANDITSCAMP_14");
 	Wld_InsertItem(ItPo_Health_03,"FP_ITEM_BANDITSCAMP_15");
-	Wld_InsertItem(ItMW_Addon_Keule_2h_01,"FP_ITEM_BANDITSCAMP_16");
+	Wld_InsertItem(ItMw_Addon_Keule_2h_01,"FP_ITEM_BANDITSCAMP_16");
 	Wld_InsertItem(ItMi_GoldNugget_Addon,"FP_ITEM_BANDITSCAMP_17");
 	Wld_InsertItem(ItPl_Speed_Herb_01,"FP_ITEM_BANDITSCAMP_19");
 	Wld_InsertItem(ItPl_Temp_Herb,"FP_ITEM_BANDITSCAMP_20");
@@ -882,7 +882,7 @@ func void INIT_SUB_OldWorld_Part_Oldcamp()
 
 func void STARTUP_OldWorld_Part_Demontower()
 {
-	Wld_InsertNpc(Gobbo_SkeletonOWDemonTower,"DT_E1_06");
+	Wld_InsertNpc(Gobbo_Skeleton,"DT_E1_06");
 	Wld_InsertNpc(Gobbo_Skeleton,"DT_E2_07");
 	Wld_InsertNpc(Gobbo_Skeleton,"DT_E2_09");
 	Wld_InsertNpc(Gobbo_Skeleton,"DT_E2_04");
@@ -896,7 +896,7 @@ func void STARTUP_OldWorld_Part_Demontower()
 
 func void STARTUP_OldWorld_Part_Surface()
 {
-	Wld_InsertItem(ItSe_ADDON_CavalornsBeutel,"FP_OW_ITEM_02");
+	Wld_InsertItem(ItSe_Addon_CavalornsBeutel,"FP_OW_ITEM_02");
 	Wld_InsertItem(ItWr_KDWLetter,"FP_ITEM_OW_01");
 	Wld_InsertItem(ItWr_GilbertLetter,"FP_ITEM_OW_02");
 	Wld_InsertItem(ItWr_DexStonePlate2_Addon,"OW_ITEM_ROCKHORT_01");
@@ -2793,7 +2793,6 @@ func void STARTUP_NewWorld_Part_TrollArea_01()
 	Wld_InsertNpc(KDW_1403_Addon_Myxir_NW,"MAYA");
 	Wld_InsertNpc(KDW_1404_Addon_Riordian_NW,"MAYA");
 	Wld_InsertNpc(KDW_1405_Addon_Merdarion_NW,"MAYA");
-	Wld_InsertItem(ItMi_AmbossEffekt_Addon,"FP_ITEM_TROLLAREA_PORTALRITUAL_01");
 	Wld_InsertNpc(Gobbo_Skeleton,"NW_TROLLAREA_PORTALTEMPEL_15_A");
 	Wld_InsertNpc(Gobbo_Skeleton,"NW_TROLLAREA_PORTALTEMPEL_15_B");
 	Wld_InsertNpc(Gobbo_Skeleton,"NW_TROLLAREA_PORTALTEMPEL_15_B");

@@ -56,12 +56,12 @@ func void DIA_Zuris_PICKPOCKET_DoIt()
 		AI_PrintScreen(ConcatStrings(NAME_HP_Elixier,PRINT_ItemTaken),-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Зурис",ConcatStrings(PRINT_PickPocketSuccess,"Лечебный эликсир.")));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Зурис",ConcatStrings(PRINT_PickPocketSuccess,"Лечебный эликсир.")));
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Зурис",PRINT_PickPocketFailed));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Зурис",PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};
@@ -106,7 +106,6 @@ instance DIA_Zuris_GREET(C_Info)
 	nr = 2;
 	condition = DIA_Zuris_GREET_Condition;
 	information = DIA_Zuris_GREET_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -128,7 +127,7 @@ func void DIA_Zuris_GREET_Info()
 };
 
 
-var int Zuris_einmal;
+var int Zuris_Einmal;
 
 instance DIA_Zuris_WAREZ(C_Info)
 {
@@ -150,12 +149,12 @@ func int DIA_Zuris_WAREZ_Condition()
 func void DIA_Zuris_WAREZ_Info()
 {
 	AI_Output(other,self,"DIA_Zuris_WAREZ_15_00");	//Покажи мне свои товары.
-	if(Zuris_einmal == FALSE)
+	if(Zuris_Einmal == FALSE)
 	{
 		AI_Output(self,other,"DIA_Zuris_GREET_14_02");	//Я только что получил несколько новых зелий. Мой гость, мастер Дарон, маг Огня, принес мне их из монастыря.
-		Zuris_einmal = TRUE;
+		Zuris_Einmal = TRUE;
 	};
-	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING)
 	{
 		ZurisMinenAnteil = TRUE;
 	};
@@ -170,7 +169,6 @@ instance DIA_Zuris_Potions(C_Info)
 	nr = 2;
 	condition = DIA_Zuris_POTIONS_Condition;
 	information = DIA_Zuris_POTIONS_Info;
-	permanent = FALSE;
 	description = "Ты сам готовишь свои зелья?";
 };
 
@@ -199,7 +197,6 @@ instance DIA_Zuris_Kraut(C_Info)
 	nr = 2;
 	condition = DIA_Zuris_Kraut_Condition;
 	information = DIA_Zuris_Kraut_Info;
-	permanent = FALSE;
 	description = "А где именно Константино собирает травы?";
 };
 
@@ -236,7 +233,6 @@ instance DIA_Zuris_Kronstoeckel(C_Info)
 	nr = 2;
 	condition = DIA_Zuris_Kronstoeckel_Condition;
 	information = DIA_Zuris_Kronstoeckel_Info;
-	permanent = FALSE;
 	description = "Константино говорил тебе, где можно найти царский щавель?";
 };
 
@@ -264,7 +260,6 @@ instance DIA_Zuris_WHERE(C_Info)
 	npc = VLK_409_Zuris;
 	condition = DIA_Zuris_WHERE_Condition;
 	information = DIA_Zuris_WHERE_Info;
-	permanent = FALSE;
 	description = "Где я могу найти Константино?";
 };
 
@@ -296,7 +291,7 @@ instance DIA_Zuris_Kloster(C_Info)
 
 func int DIA_Zuris_Kloster_Condition()
 {
-	if((Zuris_einmal == TRUE) || Npc_KnowsInfo(other,DIA_Zuris_Potions))
+	if((Zuris_Einmal == TRUE) || Npc_KnowsInfo(other,DIA_Zuris_Potions))
 	{
 		if(other.guild != GIL_KDF)
 		{
@@ -324,7 +319,7 @@ instance DIA_Zuris_Minenanteil(C_Info)
 
 func int DIA_Zuris_Minenanteil_Condition()
 {
-	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (ZurisMinenAnteil == TRUE))
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (ZurisMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

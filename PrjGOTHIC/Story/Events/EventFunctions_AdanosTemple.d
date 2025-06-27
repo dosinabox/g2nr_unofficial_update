@@ -1,9 +1,9 @@
 
-var int ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_01_OneTime;
+var int ADW_AdanosTempel_StoneGrd_Trigg_Func_01_OneTime;
 
-func void adw_adanostempel_stonegrd_trigg_func_01()
+func void ADW_AdanosTempel_StoneGrd_Trigg_Func_01()
 {
-	if(ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_01_OneTime == FALSE)
+	if(ADW_AdanosTempel_StoneGrd_Trigg_Func_01_OneTime == FALSE)
 	{
 		B_Awake_StoneGuardian(Stoneguardian_ADANOSTEMPELENTRANCE_01);
 		B_Awake_StoneGuardian(Stoneguardian_ADANOSTEMPELENTRANCE_02);
@@ -13,16 +13,15 @@ func void adw_adanostempel_stonegrd_trigg_func_01()
 		{
 			Snd_Play("THRILLJINGLE_02");
 		};
-		ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_01_OneTime = TRUE;
+		ADW_AdanosTempel_StoneGrd_Trigg_Func_01_OneTime = TRUE;
 	};
 };
 
+var int Open_AdanosTempelChest_01_Func_OneTime;
 
-var int OPEN_ADANOSTEMPELCHEST_01_FUNC_OneTime;
-
-func void open_adanostempelchest_01_func_s1()
+func void Open_AdanosTempelChest_01_Func_s1()
 {
-	if(OPEN_ADANOSTEMPELCHEST_01_FUNC_OneTime == FALSE)
+	if(Open_AdanosTempelChest_01_Func_OneTime == FALSE)
 	{
 		B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_05A);
 		B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_05C);
@@ -37,16 +36,15 @@ func void open_adanostempelchest_01_func_s1()
 		{
 			Snd_Play("THRILLJINGLE_03");
 		};
-		OPEN_ADANOSTEMPELCHEST_01_FUNC_OneTime = TRUE;
+		Open_AdanosTempelChest_01_Func_OneTime = TRUE;
 	};
 };
 
+var int ADW_AdanosTempel_StoneGrd_Trigg_Func_02_OneTime;
 
-var int ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_02_OneTime;
-
-func void adw_adanostempel_stonegrd_trigg_func_02()
+func void ADW_AdanosTempel_StoneGrd_Trigg_Func_02()
 {
-	if(ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_02_OneTime == FALSE)
+	if(ADW_AdanosTempel_StoneGrd_Trigg_Func_02_OneTime == FALSE)
 	{
 		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14A);
 		B_Awake_StoneGuardian(Stoneguardian_RHADEMES_14B);
@@ -58,16 +56,15 @@ func void adw_adanostempel_stonegrd_trigg_func_02()
 		{
 			Snd_Play("THRILLJINGLE_02");
 		};
-		ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_02_OneTime = TRUE;
+		ADW_AdanosTempel_StoneGrd_Trigg_Func_02_OneTime = TRUE;
 	};
 };
 
+var int Open_AdanosTempelChest_02_Func_OneTime;
 
-var int OPEN_ADANOSTEMPELCHEST_02_FUNC_OneTime;
-
-func void open_adanostempelchest_02_func_s1()
+func void Open_AdanosTempelChest_02_Func_s1()
 {
-	if(OPEN_ADANOSTEMPELCHEST_02_FUNC_OneTime == FALSE)
+	if(Open_AdanosTempelChest_02_Func_OneTime == FALSE)
 	{
 		B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_09A);
 		B_Awake_StoneGuardian(Stoneguardian_TREASUREPITS_09C);
@@ -82,12 +79,11 @@ func void open_adanostempelchest_02_func_s1()
 		{
 			Snd_Play("THRILLJINGLE_03");
 		};
-		OPEN_ADANOSTEMPELCHEST_02_FUNC_OneTime = TRUE;
+		Open_AdanosTempelChest_02_Func_OneTime = TRUE;
 	};
 };
 
-
-func void evt_raven_awake_func()
+func void EVT_Raven_Awake_Func()
 {
 	if(Raven_Awaken == FALSE)
 	{
@@ -95,8 +91,13 @@ func void evt_raven_awake_func()
 		{
 			B_StartOtherRoutine(Raven,"WAITFORPLAYER");
 			AI_TurnToNPC(Raven,hero);
+			Raven_Awaken = TRUE;
 		};
-		Raven_Awaken = TRUE;
 	};
+};
+
+func void EVT_Addon_AdanosDoor_Entrance_VoiceScript()
+{
+	B_Say(self,self,"$ADDON_OPENADANOSTEMPLE");
 };
 

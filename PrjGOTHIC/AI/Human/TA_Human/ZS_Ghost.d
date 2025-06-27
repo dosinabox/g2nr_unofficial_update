@@ -1,14 +1,14 @@
 
 func void ZS_Ghost()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Quarhodron))
+	if(C_IsNpc(self,NONE_ADDON_111_Quarhodron))
 	{
 		if(Ghost_SCKnowsHow2GetInAdanosTempel == FALSE)
 		{
 			Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessTalk);
 		};
 	}
-	else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rhademes))
+	else if(C_IsNpc(self,NONE_ADDON_112_Rhademes))
 	{
 		if(Rhademes_Fertig == TRUE)
 		{
@@ -56,7 +56,10 @@ func void ZS_GhostWusel()
 	{
 		AI_GotoWP(self,self.wp);
 	};
-	AI_GotoFP(self,"ROAM");
+	if(Wld_IsFPAvailable(self,"ROAM"))
+	{
+		AI_GotoFP(self,"ROAM");
+	};
 };
 
 func int ZS_GhostWusel_Loop()
@@ -73,7 +76,10 @@ func int ZS_GhostWusel_Loop()
 		}
 		else if(!C_BodyStateContains(self,BS_WALK) && !C_BodyStateContains(self,BS_RUN))
 		{
-			AI_GotoFP(self,"ROAM");
+			if(Wld_IsFPAvailable(self,"ROAM"))
+			{
+				AI_GotoFP(self,"ROAM");
+			};
 		};
 		Npc_SetStateTime(self,0);
 	};

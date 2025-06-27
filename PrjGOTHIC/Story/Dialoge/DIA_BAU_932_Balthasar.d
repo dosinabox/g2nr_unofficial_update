@@ -87,7 +87,7 @@ instance DIA_Addon_Balthasar_Rangerbandits(C_Info)
 
 func int DIA_Addon_Balthasar_Rangerbandits_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Balthasar_HALLO) && ((MIS_Vatras_FindTheBanditTrader == LOG_Running) || (SC_KnowsLuciaCaughtByBandits == TRUE)))
+	if(Npc_KnowsInfo(other,DIA_Balthasar_HALLO) && ((MIS_Vatras_FindTheBanditTrader == LOG_RUNNING) || (SC_KnowsLuciaCaughtByBandits == TRUE)))
 	{
 		return TRUE;
 	};
@@ -212,9 +212,9 @@ func void DIA_Balthasar_TALKTOBENGAR_Info()
 		AI_Output(self,other,"DIA_Balthasar_TALKTOBENGAR_05_01");	//Ты сделаешь это для меня? Но что бы ты ни говорил ему, имей в виду, я не хочу никаких проблем, хорошо?
 		AI_Output(other,self,"DIA_Balthasar_TALKTOBENGAR_15_02");	//Посмотрим.
 		Log_CreateTopic(TOPIC_BalthasarsSchafe,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_BalthasarsSchafe,LOG_Running);
+		Log_SetTopicStatus(TOPIC_BalthasarsSchafe,LOG_RUNNING);
 		B_LogEntry(TOPIC_BalthasarsSchafe,"Фермер Бенгар запретил пастуху Бальтазару пасти овец на его высокогорных пастбищах.");
-		MIS_Balthasar_BengarsWeide = LOG_Running;
+		MIS_Balthasar_BengarsWeide = LOG_RUNNING;
 	}
 	else
 	{
@@ -235,7 +235,7 @@ instance DIA_Balthasar_BENGARUEBERREDET(C_Info)
 
 func int DIA_Balthasar_BENGARUEBERREDET_Condition()
 {
-	if((MIS_Balthasar_BengarsWeide == LOG_Running) && Npc_KnowsInfo(other,DIA_Bengar_BALTHASARDARFAUFWEIDE))
+	if((MIS_Balthasar_BengarsWeide == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Bengar_BALTHASARDARFAUFWEIDE))
 	{
 		return TRUE;
 	};

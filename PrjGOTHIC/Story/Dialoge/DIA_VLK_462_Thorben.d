@@ -57,7 +57,6 @@ instance DIA_Thorben_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Thorben_Hallo_Condition;
 	information = DIA_Thorben_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -87,7 +86,6 @@ instance DIA_Thorben_Arbeit(C_Info)
 	nr = 2;
 	condition = DIA_Thorben_Arbeit_Condition;
 	information = DIA_Thorben_Arbeit_Info;
-	permanent = FALSE;
 	description = "Я ищу работу.";
 };
 
@@ -109,7 +107,7 @@ func void DIA_Thorben_Arbeit_Info()
 	if(Player_IsApprentice == APP_NONE)
 	{
 		Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Lehrling,LOG_RUNNING);
 		B_LogEntry(TOPIC_Lehrling,"Торбен не примет меня в ученики.");
 	};
 };
@@ -121,7 +119,6 @@ instance DIA_Thorben_OtherMasters(C_Info)
 	nr = 2;
 	condition = DIA_Thorben_OtherMasters_Condition;
 	information = DIA_Thorben_OtherMasters_Info;
-	permanent = FALSE;
 	description = "А что, если я поступлю в ученики к одному из других здешних мастеров?";
 };
 
@@ -156,9 +153,9 @@ func void B_Thorben_GetBlessings()
 		AI_Output(self,other,"B_Thorben_GetBlessings_06_01");	//Он также подскажет тебе, где найти жреца Инноса. Ты должен получить и его благословение.
 	};
 	AI_Output(self,other,"B_Thorben_GetBlessings_06_02");	//А когда ты получишь благословение богов, я проголосую за тебя.
-	MIS_Thorben_GetBlessings = LOG_Running;
+	MIS_Thorben_GetBlessings = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Thorben,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Thorben,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Thorben,LOG_RUNNING);
 	B_LogEntry(TOPIC_Thorben,"Торбен даст мне свое одобрение, если жрецы Аданоса и Инноса дадут мне свое благословение.");
 };
 
@@ -193,7 +190,7 @@ instance DIA_Thorben_ZUSTIMMUNG(C_Info)
 
 func int DIA_Thorben_ZUSTIMMUNG_Condition()
 {
-	if((Player_IsApprentice == APP_NONE) && (MIS_Thorben_GetBlessings == LOG_Running))
+	if((Player_IsApprentice == APP_NONE) && (MIS_Thorben_GetBlessings == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -214,7 +211,7 @@ func void DIA_Thorben_ZUSTIMMUNG_Info()
 			MIS_Thorben_GetBlessings = LOG_SUCCESS;
 			B_GivePlayerXP(XP_Zustimmung);
 			Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Lehrling,LOG_RUNNING);
 			B_LogEntry(TOPIC_Lehrling,"Торбен даст мне свое одобрение, если я захочу стать учеником.");
 		}
 		else
@@ -237,7 +234,6 @@ instance DIA_Thorben_Locksmith(C_Info)
 	nr = 2;
 	condition = DIA_Thorben_Locksmith_Condition;
 	information = DIA_Thorben_Locksmith_Info;
-	permanent = FALSE;
 	description = "Так ты разбираешься в замках?";
 };
 
@@ -265,7 +261,6 @@ instance DIA_Thorben_Schuldenbuch(C_Info)
 	nr = 2;
 	condition = DIA_Thorben_Schuldenbuch_Condition;
 	information = DIA_Thorben_Schuldenbuch_Info;
-	permanent = FALSE;
 	description = "У меня есть гроссбух Лемара...";
 };
 
@@ -284,10 +279,8 @@ func void DIA_Thorben_Schuldenbuch_Info()
 	AI_Output(self,other,"DIA_Thorben_Schuldenbuch_06_01");	//(подозрительно) Где ты взял его?
 	AI_Output(other,self,"DIA_Thorben_Schuldenbuch_15_02");	//Тебя должно интересовать не где я взял его, а то, что в нем записано твое имя.
 	AI_Output(self,other,"DIA_Thorben_Schuldenbuch_06_03");	//Дай его сюда!
-//	B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
 	AI_Output(other,self,"DIA_Thorben_Schuldenbuch_15_04");	//А что ты готов дать за него?
 	AI_Output(self,other,"DIA_Thorben_Schuldenbuch_06_05");	//У меня нет денег. Но ты можешь рассчитывать на мою сердечную благодарность.
-//	B_GivePlayerXP(XP_Schuldenbuch);
 };
 
 
@@ -297,7 +290,6 @@ instance DIA_Thorben_GiveBook(C_Info)
 	nr = 2;
 	condition = DIA_Thorben_GiveBook_Condition;
 	information = DIA_Thorben_GiveBook_Info;
-	permanent = FALSE;
 	description = "Вот твоя книга.";
 };
 
@@ -543,11 +535,11 @@ func void DIA_Addon_Thorben_MissingPeople_Info()
 	AI_Output(other,self,"DIA_Addon_Thorben_MissingPeople_15_02");	//И что случилось?
 	AI_Output(self,other,"DIA_Addon_Thorben_MissingPeople_06_03");	//Его имя Элврих. Он мой племянник.
 	AI_Output(self,other,"DIA_Addon_Thorben_MissingPeople_06_04");	//Я был им очень доволен, но однажды он просто взял и не пришел на работу.
-	MIS_Thorben_BringElvrichBack = LOG_Running;
+	MIS_Thorben_BringElvrichBack = LOG_RUNNING;
 	if(MissingPeopleReturnedHome == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 	};
 	B_LogEntry(TOPIC_Addon_MissingPeople,"Элврих, ученик плотника Торбена, пропал.");
 	Info_ClearChoices(DIA_Addon_Thorben_MissingPeople);
@@ -596,9 +588,12 @@ instance DIA_Addon_Thorben_ElvrichIsBack(C_Info)
 
 func int DIA_Addon_Thorben_ElvrichIsBack_Condition()
 {
-	if((Elvrich_GoesBack2Thorben == TRUE) && !Npc_IsDead(Elvrich))
+	if(Elvrich_GoesBack2Thorben == TRUE)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Elvrich))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -621,7 +616,6 @@ instance DIA_Thorben_Paladine(C_Info)
 	nr = 4;
 	condition = DIA_Thorben_Paladine_Condition;
 	information = DIA_Thorben_Paladine_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о паладинах?";
 };
 
@@ -651,7 +645,6 @@ instance DIA_Thorben_Bauernaufstand(C_Info)
 	nr = 4;
 	condition = DIA_Thorben_Bauernaufstand_Condition;
 	information = DIA_Thorben_Bauernaufstand_Info;
-	permanent = FALSE;
 	description = "Ты знаешь что-нибудь о восстании фермеров?";
 };
 
@@ -681,14 +674,13 @@ instance DIA_Thorben_Gritta(C_Info)
 	nr = 5;
 	condition = DIA_Thorben_Gritta_Condition;
 	information = DIA_Thorben_Gritta_Info;
-	permanent = FALSE;
 	description = "Я насчет Гритты...";
 };
 
 
 func int DIA_Thorben_Gritta_Condition()
 {
-	if(MIS_Matteo_Gold == LOG_Running)
+	if(MIS_Matteo_Gold == LOG_RUNNING)
 	{
 		if(!Npc_IsDead(Gritta))
 		{
@@ -726,7 +718,6 @@ instance DIA_Thorben_GrittaHatteGold(C_Info)
 	nr = 5;
 	condition = DIA_Thorben_GrittaHatteGold_Condition;
 	information = DIA_Thorben_GrittaHatteGold_Info;
-	permanent = FALSE;
 	description = "У твоей племянницы было 100 золотых монет.";
 };
 
@@ -850,13 +841,13 @@ func void DIA_Thorben_PICKPOCKET_Book_DoIt()
 		CreateInvItem(other,ItWr_Schuldenbuch);
 		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Торбен",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Торбен",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
 		SchuldBuch_Stolen_Thorben = TRUE;
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Торбен",PRINT_PickPocketFailed));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Торбен",PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};

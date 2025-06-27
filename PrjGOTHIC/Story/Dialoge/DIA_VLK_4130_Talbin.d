@@ -213,9 +213,9 @@ func void DIA_Talbin_AskTeacher_Info()
 	AI_Output(other,self,"DIA_Talbin_AskTeacher_15_02");	//Что ты хочешь за это?
 	AI_Output(self,other,"DIA_Talbin_AskTeacher_07_03");	//У тебя ничего нет поесть кроме мяса луркеров? Может быть, кусок сыра? Да, кусок сыра. Жизнь бы отдал за этот кусок...
 	AI_Output(other,self,"DIA_Talbin_AskTeacher_15_04");	//Я посмотрю, что можно сделать.
-	MIS_TalbinCheese = LOG_Running;
+	MIS_TalbinCheese = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_TalbinCheese,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_TalbinCheese,LOG_Running);
+	Log_SetTopicStatus(TOPIC_TalbinCheese,LOG_RUNNING);
 	B_LogEntry(TOPIC_TalbinCheese,"Охотник в Долине Рудников по имени Талбин научит меня снимать трофеи с животных, если я принесу ему сыр.");
 };
 
@@ -243,7 +243,7 @@ instance DIA_Talbin_PayTeacher(C_Info)
 
 func int DIA_Talbin_PayTeacher_Condition()
 {
-	if((MIS_TalbinCheese == LOG_Running) && Npc_HasItems(other,ItFo_Cheese))
+	if((MIS_TalbinCheese == LOG_RUNNING) && Npc_HasItems(other,ItFo_Cheese))
 	{
 		return TRUE;
 	};
@@ -255,6 +255,7 @@ func void DIA_Talbin_PayTeacher_Info()
 	B_GiveInvItems(other,self,ItFo_Cheese,1);
 	AI_Output(self,other,"DIA_Talbin_PayTeacher_07_01");	//У тебя действительно есть сыр? Ох, давненько я не ел ничего подобного. Спасибо. Ээ, а что насчет... Ах, да, конечно!
 	B_Talbin_TeachAnimalTrophy();
+	self.npcType = NPCTYPE_FRIEND;
 	MIS_TalbinCheese = LOG_SUCCESS;
 	B_CheckLog();
 };
@@ -272,7 +273,7 @@ instance DIA_Talbin_PayTeacher_NoCheese(C_Info)
 
 func int DIA_Talbin_PayTeacher_NoCheese_Condition()
 {
-	if((MIS_TalbinCheese == LOG_Running) && !Npc_HasItems(other,ItFo_Cheese))
+	if((MIS_TalbinCheese == LOG_RUNNING) && !Npc_HasItems(other,ItFo_Cheese))
 	{
 		return TRUE;
 	};
@@ -389,7 +390,6 @@ instance DIA_Talbin_KAP4_WASNEUES(C_Info)
 
 func int DIA_Talbin_KAP4_WASNEUES_Condition()
 {
-//	if((Kapitel >= 4) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE))
 	if((Kapitel >= 4) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE) && Npc_KnowsInfo(other,DIA_Garond_BACKINKAP4))
 	{
 		return TRUE;
@@ -463,7 +463,7 @@ func void DIA_Talbin_WOENGROM_Info()
 		AI_Output(other,self,"DIA_Talbin_WOENGROM_15_05");	//Но у меня было впечатление, что он не собирался уходить отсюда, пока орки все еще в долине.
 		AI_Output(self,other,"DIA_Talbin_WOENGROM_07_06");	//Я же сказал: у него крыша поехала.
 	};
-	MIS_Tabin_LookForEngrom = LOG_Running;
+	MIS_Tabin_LookForEngrom = LOG_RUNNING;
 };
 
 
@@ -501,23 +501,26 @@ func void DIA_Talbin_FOUNDENGROM_Info()
 	{
 		AI_Output(other,self,"DIA_Talbin_FOUNDENGROM_15_04");	//Вот. Я нашел при нем эту шкуру луркера.
 	};
-	if(hero.guild == GIL_KDF)
+	if(other.guild == GIL_KDF)
 	{
 		AI_Output(other,self,"DIA_Talbin_FOUNDENGROM_15_05");	//Ищущие овладели им.
 		AI_Output(self,other,"DIA_Talbin_FOUNDENGROM_07_06");	//Ищущие? Кто это такие?
 		AI_Output(other,self,"DIA_Talbin_FOUNDENGROM_15_07");	//Приспешники преисподней. Это они командуют орками.
 	};
 	AI_Output(self,other,"DIA_Talbin_FOUNDENGROM_07_08");	//О, Иннос. Мне нужно выбираться отсюда, даже если при этом я найду свою смерть. Сейчас или никогда!
-	AI_StopProcessInfos(self);
-	MIS_TalbinCheese = LOG_OBSOLETE;
-	MIS_Talbin_Runs = LOG_Running;
+	if(MIS_TalbinCheese == LOG_RUNNING)
+	{
+		MIS_TalbinCheese = LOG_OBSOLETE;
+	};
+	MIS_Talbin_Runs = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Talbin_Runs,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Talbin_Runs,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Talbin_Runs,LOG_RUNNING);
 	B_LogEntry(TOPIC_Talbin_Runs,"Талбин, охотник из Долины Рудников, побежал к Проходу, как будто за ним по пятам гнался рой кровавых мух. Я думаю, он направился в Хоринис.");
-	B_GivePlayerXP(XP_Ambient);
-	Npc_ExchangeRoutine(self,"FleePass");
-	Wld_InsertNpc(Snapper,"START");
 	Talbin_Runs = TRUE;
+	B_GivePlayerXP(XP_Ambient);
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"FLEEPASS");
+	Wld_InsertNpc(Snapper,"START");
 };
 
 
@@ -562,12 +565,11 @@ func void DIA_Talbin_WOHIN_ok()
 {
 	AI_Output(other,self,"DIA_Talbin_WOHIN_ok_15_00");	//Хорошо.
 	AI_Output(self,other,"DIA_Talbin_WOHIN_ok_07_01");	//Спасибо. Я просто пойду за тобой.
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"IntoPass");
-	Talbin_FollowsThroughPass = LOG_Running;
-	MIS_TalbinCheese = LOG_OBSOLETE;
-	B_CheckLog();
+	self.npcType = NPCTYPE_FRIEND;
 	B_SetImmortal(self);
+	Talbin_FollowsThroughPass = LOG_RUNNING;
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"INTOPASS");
 };
 
 func void DIA_Talbin_WOHIN_durch()
@@ -582,7 +584,6 @@ func void DIA_Talbin_WOHIN_()
 	AI_Output(self,other,"DIA_Talbin_WOHIN_schwein_07_01");	//Ты оставляешь меня здесь умирать?! Ты будешь гореть в аду за это!
 	Talbin_FollowsThroughPass = LOG_OBSOLETE;
 	MIS_Talbin_Runs = LOG_OBSOLETE;
-	MIS_TalbinCheese = LOG_FAILED;
 	B_CheckLog();
 	AI_StopProcessInfos(self);
 };

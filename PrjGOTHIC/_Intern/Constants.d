@@ -192,7 +192,7 @@ const int IMPORTANT = 1;
 const int INF_TELL = 0;
 const int INF_UNKNOWN = 2;
 
-const int LOG_Running = 1;
+const int LOG_RUNNING = 1;
 const int LOG_SUCCESS = 2;
 const int LOG_FAILED = 3;
 const int LOG_OBSOLETE = 4;
@@ -313,6 +313,8 @@ const int GIL_SUB_Thief_Sewer = 4;
 const int GIL_SUB_Lobart = 5;
 const int GIL_SUB_RedLight = 6;
 const int GIL_SUB_VinoRitual = 7;
+const int GIL_SUB_Dexter = 8;
+const int GIL_SUB_Brago = 9;
 
 const int NPC_SOUND_DROPTAKE = 1;
 const int NPC_SOUND_SPEAK = 3;
@@ -432,44 +434,44 @@ const int SPL_Deathbolt = 61;
 const int SPL_Deathball = 62;
 const int SPL_ConcussionBolt = 63;
 const int SPL_Teleport_Maya = 64;
-const int SPL_Reserved_65 = 65;
-const int SPL_Reserved_66 = 66;
-const int SPL_Reserved_67 = 67;
-const int SPL_Reserved_68 = 68;
-const int SPL_Reserved_69 = 69;
+//const int SPL_Reserved_65 = 65;
+//const int SPL_Reserved_66 = 66;
+//const int SPL_Reserved_67 = 67;
+//const int SPL_Reserved_68 = 68;
+//const int SPL_Reserved_69 = 69;
 const int SPL_Thunderstorm = 70;
 const int SPL_Whirlwind = 71;
 const int SPL_WaterFist = 72;
 const int SPL_IceLance = 73;
 const int SPL_Inflate = 74;
 const int SPL_Geyser = 75;
-const int SPL_Waterwall = 76;
-const int SPL_Reserved_77 = 77;
-const int SPL_Reserved_78 = 78;
-const int SPL_Reserved_79 = 79;
-const int SPL_Plague = 80;
+//const int SPL_Waterwall = 76;
+//const int SPL_Reserved_77 = 77;
+//const int SPL_Reserved_78 = 78;
+//const int SPL_Reserved_79 = 79;
+//const int SPL_Plague = 80;
 const int SPL_Swarm = 81;
 const int SPL_GreenTentacle = 82;
-const int SPL_Earthquake = 83;
+//const int SPL_Earthquake = 83;
 const int SPL_SummonGuardian = 84;
 const int SPL_Energyball = 85;
 const int SPL_SuckEnergy = 86;
 const int SPL_Skull = 87;
 const int SPL_SummonZombie = 88;
 const int SPL_SummonMud = 89;
-const int SPL_Reserved_90 = 90;
-const int SPL_Reserved_91 = 91;
-const int SPL_Reserved_92 = 92;
-const int SPL_Reserved_93 = 93;
-const int SPL_Reserved_94 = 94;
-const int SPL_Reserved_95 = 95;
-const int SPL_Reserved_96 = 96;
-const int SPL_Reserved_97 = 97;
-const int SPL_Reserved_98 = 98;
-const int SPL_Reserved_99 = 99;
+//const int SPL_Reserved_90 = 90;
+//const int SPL_Reserved_91 = 91;
+//const int SPL_Reserved_92 = 92;
+//const int SPL_Reserved_93 = 93;
+//const int SPL_Reserved_94 = 94;
+//const int SPL_Reserved_95 = 95;
+//const int SPL_Reserved_96 = 96;
+//const int SPL_Reserved_97 = 97;
+//const int SPL_Reserved_98 = 98;
+//const int SPL_Reserved_99 = 99;
 const int MAX_SPELL = 100;
 
-const string spellFxInstanceNames[100] =
+const string spellFxInstanceNames[MAX_SPELL] =
 {
 	"PalLight",
 	"PalHeal",
@@ -573,7 +575,7 @@ const string spellFxInstanceNames[100] =
 	"Light"
 };
 
-const string spellFxAniLetters[100] =
+const string spellFxAniLetters[MAX_SPELL] =
 {
 	"SLE",
 	"HEA",
@@ -803,6 +805,31 @@ const int FREEMINE_ZEN = 5;
 const int ORCGRAVEYARD_ZEN = 6;
 const int ABANDONEDMINE_ZEN = 7;
 
+const int SP_C1_P1 = 1;
+const int SP_C1_P2 = 2;
+const int SP_C1_P3 = 3;
+const int SP_C2_P1 = 4;
+const int SP_C2_P2 = 5;
+const int SP_C3_P1 = 6;
+const int SP_C3_P2 = 7;
+const int SP_C3_P3 = 8;
+const int SP_C4_P1 = 9;
+const int SP_C4_P2 = 10;
+const int SP_C5_P1 = 11;
+const int SP_C5_P2 = 12;
+const int SP_C5_P3 = 13;
+const int SP_C6_P1 = 14;
+const int SP_C6_P2 = 15;
+const int SP_C6_P3 = 16;
+var int STORYPOINT[17];
+
+const int SP_A1 = 1;
+const int SP_A2 = 2;
+const int SP_A3 = 3;
+const int SP_A4 = 4;
+const int SP_A5 = 5;
+var int STORYPOINT_ADDON[6];
+
 const int INVCAM_ENTF_RING_STANDARD = 400;
 const int INVCAM_ENTF_AMULETTE_STANDARD = 150;
 const int INVCAM_ENTF_MISC_STANDARD = 200;
@@ -815,15 +842,15 @@ const int INVCAM_Z_RING_STANDARD = 45;
 
 const int UnionActivated = 0;
 
-const int FIX_DATE_YEAR = 2024;
-const int FIX_DATE_MONTH = 9;
-const int FIX_DATE_DAY = 2;
+const int FIX_DATE_YEAR = 2025;
+const int FIX_DATE_MONTH = 6;
+const int FIX_DATE_DAY = 27;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;
 var int FIX_DATE_DAY_SAVE;
 
-const int FIX_VERSION = 30;
+const int FIX_VERSION = 31;
 var int FIX_VERSION_SAVE;
 
 const int LEAST_SUPPORTED = 27;

@@ -6,6 +6,7 @@ func int C_PredictedMana(var int value)
 
 func void B_UnEquipIllegalMagicWeapons(var int value)
 {
+	var C_Item EquippedMeleeWeapon;
 	if(UnionActivated == FALSE)
 	{
 		return;
@@ -14,14 +15,13 @@ func void B_UnEquipIllegalMagicWeapons(var int value)
 	{
 		return;
 	};
-	var C_Item EquippedMeleeWeapon;
 	EquippedMeleeWeapon = Npc_GetEquippedMeleeWeapon(hero);
-	if(Hlp_IsItem(EquippedMeleeWeapon,ItMW_Addon_Stab02))
+	if(Hlp_IsItem(EquippedMeleeWeapon,ItMw_Addon_Stab02))
 	{
 		if(C_PredictedMana(value) < (Condition_Stab02 + Zauberstab_ManaBonus))
 		{
-			B_RemoveEveryInvItem(hero,ItMW_Addon_Stab02);
-			CreateInvItem(hero,ItMW_Addon_Stab02);
+			B_RemoveEveryInvItem(hero,ItMw_Addon_Stab02);
+			CreateInvItem(hero,ItMw_Addon_Stab02);
 		};
 	};
 };
@@ -50,6 +50,28 @@ func void B_UnEquipIllegalMagicItems(var int value)
 {
 	B_UnEquipIllegalMagicWeapons(value);
 	B_UnEquipIllegalScrolls(value);
+};
+
+func void B_UnEquipAllBeliarsRunes()
+{
+	B_UnEquipHeroItem(ItRu_BeliarsRage);
+	B_UnEquipHeroItem(ItRu_SuckEnergy);
+	B_UnEquipHeroItem(ItRu_GreenTentacle);
+	B_UnEquipHeroItem(ItRu_Swarm);
+	B_UnEquipHeroItem(ItRu_Skull);
+	B_UnEquipHeroItem(ItRu_SummonZombie);
+	B_UnEquipHeroItem(ItRu_SummonGuardian);
+};
+
+func void B_UnEquipAllPaladinRunes()
+{
+	B_UnEquipHeroItem(ItRu_PalLight);
+	B_UnEquipHeroItem(ItRu_PalHeal_01);
+	B_UnEquipHeroItem(ItRu_PalHeal_02);
+	B_UnEquipHeroItem(ItRu_PalHeal_03);
+	B_UnEquipHeroItem(ItRu_PalHolyBolt);
+	B_UnEquipHeroItem(ItRu_PalRepelEvil);
+	B_UnEquipHeroItem(ItRu_PalDestroyEvil);
 };
 
 func void B_UnEquipAllCircleRunes()

@@ -14,10 +14,9 @@ prototype Mst_Default_Gobbo_Skeleton(C_Npc)
 	protection[PROT_BLUNT] = 75;
 	protection[PROT_EDGE] = 75;
 	protection[PROT_POINT] = 125;
-	protection[PROT_FIRE] = 75;	//16;
+	protection[PROT_FIRE] = 75;
 	protection[PROT_FLY] = 75;
 	protection[PROT_MAGIC] = 0;
-//	damagetype = DAM_EDGE;
 	damagetype = DAM_BLUNT;
 	fight_tactic = FAI_GOBBO;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
@@ -50,12 +49,6 @@ instance Summoned_Gobbo_Skeleton(Mst_Default_Gobbo_Skeleton)
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	B_SetAttitude(self,ATT_FRIENDLY);
 	start_aistate = ZS_MM_Rtn_Summoned;
-	B_SetVisuals_Gobbo_Skeleton();
-	Npc_SetToFightMode(self,ItMw_1h_Bau_Mace);
-};
-
-instance Gobbo_SkeletonOWDemonTower(Mst_Default_Gobbo_Skeleton)
-{
 	B_SetVisuals_Gobbo_Skeleton();
 	Npc_SetToFightMode(self,ItMw_1h_Bau_Mace);
 };

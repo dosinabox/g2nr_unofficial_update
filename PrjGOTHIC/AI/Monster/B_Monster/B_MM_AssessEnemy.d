@@ -1,19 +1,29 @@
 
 func void B_MM_AssessEnemy()
 {
-	if((self.guild == GIL_DRAGON) && Npc_HasItems(hero,ItMi_InnosEye_MIS))
+	if(self.guild == GIL_DRAGON)
+	{
+		if(Npc_HasItems(hero,ItMi_InnosEye_MIS))
+		{
+			return;
+		};
+	};
+	if(self.aivar[AIV_NoFightParker] == TRUE)
 	{
 		return;
 	};
-	if((self.aivar[AIV_NoFightParker] == TRUE) || (other.aivar[AIV_NoFightParker] == TRUE))
+	if(other.aivar[AIV_NoFightParker] == TRUE)
 	{
 		return;
 	};
-	if((self.aivar[AIV_EnemyOverride] == TRUE) && (other.guild < GIL_SEPERATOR_HUM))
+	if(self.aivar[AIV_EnemyOverride] == TRUE)
 	{
-		return;
+		if(C_NpcIsHuman(other))
+		{
+			return;
+		};
 	};
-	if(C_NpcIsLevelinspektor(other))
+	if(C_NpcIsGhost(other))
 	{
 		return;
 	};
@@ -26,9 +36,9 @@ func void B_MM_AssessEnemy()
 	}
 	else if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Magic_Golem))
+		if(C_IsNpc(self,MagicGolem))
 		{
-			if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Lares))
+			if(C_IsNpc(other,VLK_449_Lares))
 			{
 				return;
 			};
@@ -46,7 +56,7 @@ func void B_MM_AssessEnemy()
 	{
 		return;
 	};
-	if(Npc_IsPlayer(other) && (other.guild > GIL_SEPERATOR_HUM))
+	if(Npc_IsPlayer(other) && !C_NpcIsHuman(other))
 	{
 		if(Wld_GetGuildAttitude(self.guild,other.guild) != ATT_HOSTILE)
 		{
@@ -63,7 +73,7 @@ func void B_MM_AssessEnemy()
 			};
 		};
 	};
-	if((self.guild == GIL_ORC) || (self.guild == GIL_FRIENDLY_ORC))
+	if(C_NpcIsOrc(self))
 	{
 		if(C_BodyStateContains(other,BS_SNEAK) || C_BodyStateContains(other,BS_STAND))
 		{

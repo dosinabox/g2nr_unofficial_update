@@ -6,8 +6,8 @@ func void B_Fisk_Trade()
 	if(Fisk_Trade == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Fisk_Hi_12_01");	//Моя лавка находится за домом Эстебана. Если тебе что-нибудь понадобится, заходи.
-		Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
-		B_LogEntry(Topic_Addon_BDT_Trader,"Фиск продает самые разные товары.");
+		Log_CreateTopic(TOPIC_Addon_BDT_Trader,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_BDT_Trader,"Фиск продает самые разные товары.");
 		Fisk_Trade = TRUE;
 	};
 };
@@ -42,7 +42,6 @@ instance DIA_Addon_Fisk_Hi(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Fisk_Hi_Condition;
 	information = DIA_Addon_Fisk_Hi_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -116,14 +115,13 @@ instance DIA_Addon_Fisk_Attentat(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Fisk_Attentat_Condition;
 	information = DIA_Addon_Fisk_Attentat_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_ATTENTAT_DESCRIPTION;
 };
 
 
 func int DIA_Addon_Fisk_Attentat_Condition()
 {
-	if((MIS_Judas == LOG_Running) && !Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH))
+	if((MIS_Judas == LOG_RUNNING) && !Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH))
 	{
 		return TRUE;
 	};
@@ -148,7 +146,6 @@ instance DIA_Addon_Fisk_Lieferung(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Fisk_Lieferung_Condition;
 	information = DIA_Addon_Fisk_Lieferung_Info;
-	permanent = FALSE;
 	description = "Что за товар ты должен был получить?";
 };
 
@@ -167,12 +164,12 @@ func void DIA_Addon_Fisk_Lieferung_Info()
 	AI_Output(self,other,"DIA_Addon_Fisk_Lieferung_12_01");	//Пакет с отмычками. Кто-то должен был принести мне его от пиратов.
 	AI_Output(self,other,"DIA_Addon_Fisk_Lieferung_12_02");	//Но парень по имени Хуан украл и отмычки, и золото, которое я заплатил!
 	AI_Output(self,other,"DIA_Addon_Fisk_Lieferung_12_03");	//Этот ублюдок прячется где-то на болоте.
-	MIS_Fisk_Lockpicks = LOG_Running;
-	Log_CreateTopic(Topic_Addon_Fisk,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Fisk,LOG_Running);
-	if(MIS_Addon_Bill_SearchAngusMurder == LOG_Running)
+	MIS_Fisk_Lockpicks = LOG_RUNNING;
+	Log_CreateTopic(TOPIC_Addon_Fisk,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Fisk,LOG_RUNNING);
+	if(MIS_Addon_Bill_SearchAngusMurder == LOG_RUNNING)
 	{
-		B_LogEntries(Topic_Addon_Fisk,"Человек по имени Хуан украл у Фиска посылку - пакет с отмычками. Он прячется где-то на болоте.");
+		B_LogEntries(TOPIC_Addon_Fisk,"Человек по имени Хуан украл у Фиска посылку - пакет с отмычками. Он прячется где-то на болоте.");
 		if(SC_Knows_JuanMurderedAngus == TRUE)
 		{
 			B_LogNextEntry(TOPIC_Addon_KillJuan,"Парень по имени Хуан украл посылку для Фиска, сорвав сделку пиратов и бандитов. Он прячется где-то на болоте.");
@@ -184,7 +181,7 @@ func void DIA_Addon_Fisk_Lieferung_Info()
 	}
 	else
 	{
-		B_LogEntry(Topic_Addon_Fisk,"Человек по имени Хуан украл у Фиска посылку - пакет с отмычками. Он прячется где-то на болоте.");
+		B_LogEntry(TOPIC_Addon_Fisk,"Человек по имени Хуан украл у Фиска посылку - пакет с отмычками. Он прячется где-то на болоте.");
 	};
 };
 
@@ -240,14 +237,13 @@ instance DIA_Addon_Fisk_GivePaket(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Fisk_GivePaket_Condition;
 	information = DIA_Addon_Fisk_GivePaket_Info;
-	permanent = FALSE;
 	description = "Я принес тебе твой пакет.";
 };
 
 
 func int DIA_Addon_Fisk_GivePaket_Condition()
 {
-	if((MIS_Fisk_Lockpicks == LOG_Running) && Npc_HasItems(other,ItMi_Addon_Fisk_Paket))
+	if((MIS_Fisk_Lockpicks == LOG_RUNNING) && Npc_HasItems(other,ItMi_Addon_Fisk_Paket))
 	{
 		return TRUE;
 	};
@@ -271,14 +267,13 @@ instance DIA_Addon_Fisk_PaketOpen(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Fisk_PaketOpen_Condition;
 	information = DIA_Addon_Fisk_PaketOpen_Info;
-	permanent = FALSE;
 	description = "Я открыл твой пакет!";
 };
 
 
 func int DIA_Addon_Fisk_PaketOpen_Condition()
 {
-	if((MIS_Fisk_Lockpicks == LOG_Running) && (FiskPaket_Open == TRUE))
+	if((MIS_Fisk_Lockpicks == LOG_RUNNING) && (FiskPaket_Open == TRUE))
 	{
 		return TRUE;
 	};
@@ -307,7 +302,7 @@ instance DIA_Addon_Fisk_GivePicks(C_Info)
 
 func int DIA_Addon_Fisk_GivePicks_Condition()
 {
-	if((MIS_Fisk_Lockpicks == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Fisk_PaketOpen))
+	if((MIS_Fisk_Lockpicks == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_Fisk_PaketOpen))
 	{
 		return TRUE;
 	};
@@ -334,7 +329,6 @@ instance DIA_Addon_Fisk_Inspektor(C_Info)
 	nr = 7;
 	condition = DIA_Addon_Fisk_Inspektor_Condition;
 	information = DIA_Addon_Fisk_Inspektor_Info;
-	permanent = FALSE;
 	description = "Хуан работал на Эстебана!";
 };
 
@@ -411,14 +405,13 @@ instance DIA_Addon_Fisk_Meeting(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Fisk_Meeting_Condition;
 	information = DIA_Addon_Fisk_Meeting_Info;
-	permanent = FALSE;
 	description = "Значит, ты спланировал нападение!";
 };
 
 
 func int DIA_Addon_Fisk_Meeting_Condition()
 {
-	if((Npc_GetDistToWP(self,"BL_INN_UP_06") <= 500) && Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH) && (MIS_Judas == LOG_Running))
+	if((Npc_GetDistToWP(self,"BL_INN_UP_06") <= 500) && Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH) && (MIS_Judas == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -430,7 +423,7 @@ func void DIA_Addon_Fisk_Meeting_Info()
 	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_12_01");	//Да. Эстебан стоит на моем пути. И это нехорошо.
 	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_12_02");	//Он не позволяет никому из бандитов работать на меня на руднике. Он хочет, чтобы все работали только на него.
 	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_12_03");	//Так он хочет получать свою долю с каждой сделки и держать весь лагерь за задницу.
-	B_LogEntry(Topic_Addon_Esteban,"Нападение на Эстебана заказал Фиск.");
+	B_LogEntry(TOPIC_Addon_Esteban,"Нападение на Эстебана заказал Фиск.");
 	MIS_Judas = LOG_SUCCESS;
 	B_CheckLog();
 	Info_ClearChoices(DIA_Addon_Fisk_Meeting);
@@ -501,7 +494,6 @@ instance DIA_Addon_Fisk_Sieg(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Fisk_Sieg_Condition;
 	information = DIA_Addon_Fisk_Sieg_Info;
-	permanent = FALSE;
 	description = "С Эстебаном можно больше не считаться. Он мертв.";
 };
 
@@ -530,7 +522,6 @@ instance DIA_Addon_Fisk_WhatsNew(C_Info)
 	nr = 9;
 	condition = DIA_Addon_Fisk_WhatsNew_Condition;
 	information = DIA_Addon_Fisk_WhatsNew_Info;
-	permanent = FALSE;
 	description = "Есть новости?";
 };
 

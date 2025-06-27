@@ -1,7 +1,7 @@
 
 func void B_ENTER_OLDWORLD_Kapitel_1()
 {
-	if(!Npc_IsDead(Bilgot))
+	if(C_NpcIsValidAndAlive(Bilgot))
 	{
 		if(MIS_RescueBilgot == LOG_SUCCESS)
 		{
@@ -11,7 +11,7 @@ func void B_ENTER_OLDWORLD_Kapitel_1()
 			};
 		};
 	}
-	else if(Lutero_Krallen == LOG_Running)
+	else if(MIS_Lutero_Krallen == LOG_RUNNING)
 	{
 		if(NewMine_LeadSnapper_Spawned == FALSE)
 		{
@@ -19,7 +19,7 @@ func void B_ENTER_OLDWORLD_Kapitel_1()
 			NewMine_LeadSnapper_Spawned = TRUE;
 		};
 	};
-	if(!Npc_IsDead(Biff))
+	if(C_NpcIsValidAndAlive(Biff))
 	{
 		if(Biff_FollowsThroughPass == LOG_SUCCESS)
 		{
@@ -147,7 +147,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 			CreateInvItems(Engrom,ItAt_TalbinsLurkerSkin,1);
 			if(hero.guild == GIL_KDF)
 			{
-				CreateInvItems(Engrom,ITWR_DementorObsessionBook_MIS,1);
+				CreateInvItems(Engrom,ItWr_DementorObsessionBook_MIS,1);
 			}
 			else
 			{
@@ -168,6 +168,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		};
 		if(!Npc_IsDead(Sengrath))
 		{
+			B_DeletePetzCrime(Sengrath);
 			B_RemoveNpc(PAL_267_Sengrath);
 			Wld_InsertNpc(PAL_275_DeadSengrath,"OC1");
 			B_KillNpc(PAL_275_DeadSengrath);
@@ -194,7 +195,10 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(Meatbug_Brutus2,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus3,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus4,"OC_FOLTER_SHARP");
-		Wld_InsertNpc(DJG_700_Sylvio,"OC1");
+		if(SLD_Sylvio_isAlive == TRUE)
+		{
+			Wld_InsertNpc(DJG_700_Sylvio,"OC1");
+		};
 		if(SLD_Bullco_isAlive == TRUE)
 		{
 			Wld_InsertNpc(DJG_701_Bullco,"OC1");
@@ -452,7 +456,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(DJG_732_ToterDrachenjaeger,"OC1");
 		Wld_InsertNpc(DJG_733_ToterDrachenjaeger,"OC1");
 		Wld_InsertNpc(DJG_734_ToterDrachenjaeger,"OC1");
-		if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2))
+		if(C_SylvioGolemsDead())
 		{
 			SylvioIceGolemsKilledBefore4Chapter = TRUE;
 			Npc_ExchangeRoutine(DJG_731_ToterDrachenjaeger,"ICEREGION");
@@ -474,7 +478,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 			Wld_RemoveNpc(OC_Sheep2);
 		};
 		Log_CreateTopic(TOPIC_Dragonhunter,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Dragonhunter,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Dragonhunter,LOG_RUNNING);
 		B_LogEntry(TOPIC_Dragonhunter,"Началась масштабная охота на драконов. Она привлекла многих искателей приключений в Долину Рудников. Мне остается только надеяться, что они не будут мешаться у меня под ногами.");
 		IntroduceChapter(KapWechsel_4,KapWechsel_4_Text,"chapter4.tga","chapter_01.wav",6000);
 		EnterOW_Kapitel4 = TRUE;
@@ -495,7 +499,7 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 		};
 		if(!Npc_IsDead(Brutus))
 		{
-			CreateInvItems(Brutus,ITWR_DementorObsessionBook_MIS,1);
+			CreateInvItems(Brutus,ItWr_DementorObsessionBook_MIS,1);
 		};
 		if(!Npc_IsDead(OC_Sheep3))
 		{

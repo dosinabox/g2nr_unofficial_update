@@ -27,7 +27,6 @@ instance DIA_Dexter_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Dexter_Hallo_Condition;
 	information = DIA_Dexter_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -58,9 +57,9 @@ func void DIA_Dexter_Hallo_Info()
 		AI_Output(self,other,"DIA_Addon_Dexter_Hallo_09_04");	//Впрочем, ты прав. Я распространял объявления о розыске. Я искал тебя - и ты явился.
 		B_GivePlayerXP(XP_Ambient);
 	};
-	if(MIS_Steckbriefe == LOG_Running)
+	if(MIS_Steckbriefe == LOG_RUNNING)
 	{
-		B_LogEntry(Topic_Bandits,"Декстер признался, что распространял объявления о розыске.");
+		B_LogEntry(TOPIC_Bandits,"Декстер признался, что распространял объявления о розыске.");
 		MIS_Steckbriefe = LOG_SUCCESS;
 		B_CheckLog();
 	};
@@ -76,7 +75,6 @@ instance DIA_Dexter_Glaube(C_Info)
 	nr = 5;
 	condition = DIA_Dexter_Glaube_Condition;
 	information = DIA_Dexter_Glaube_Info;
-	permanent = FALSE;
 	description = "Я не верю ни одному твоему слову.";
 };
 
@@ -108,7 +106,7 @@ instance DIA_Addon_Dexter_Patrick(C_Info)
 
 func int DIA_Addon_Dexter_Patrick_Condition()
 {
-	if((MIS_Addon_Cord_Look4Patrick == LOG_Running) && (Knows_Dexter == TRUE))
+	if((MIS_Addon_Cord_Look4Patrick == LOG_RUNNING) && (Knows_Dexter == TRUE))
 	{
 		return TRUE;
 	};
@@ -122,7 +120,7 @@ func void DIA_Addon_Dexter_Patrick_Info()
 	AI_Output(self,other,"DIA_Addon_Dexter_Patrick_09_03");	//Но я не видел его уже черт знает сколько времени.
 	AI_Output(self,other,"DIA_Addon_Dexter_Patrick_09_04");	//Возможно, он в конце концов нарвался на неприятности. Мне это неизвестно.
 	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_MissingPeople,"Декстер утверждает, что не знает наемника Патрика.");
 	Dexter_KnowsPatrick = TRUE;
 	B_GivePlayerXP(XP_Addon_Dexter_KnowsPatrick);
@@ -211,7 +209,7 @@ func void DIA_Addon_Dexter_missingPeople_Raven()
 	AI_Output(self,other,"DIA_Addon_Dexter_missingPeople_Raven_09_05");	//Я дам тебе один совет. Беги из Хориниса. Беги, пока еще не слишком поздно.
 	AI_Output(self,other,"DIA_Addon_Dexter_missingPeople_Raven_09_06");	//(мрачно) Здесь тебя ждет лишь верная смерть.
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"У Декстера есть хозяин. Зовут его Ворон. Ворон - бывший рудный барон. Похоже, что именно Ворон стоит за всеми этими похищениями людей. Теперь мне нужно только получить доказательство этого.");
 	Info_ClearChoices(DIA_Addon_Dexter_missingPeople);
 };
@@ -255,7 +253,6 @@ instance DIA_Dexter_Vor(C_Info)
 	nr = 5;
 	condition = DIA_Dexter_Vor_Condition;
 	information = DIA_Dexter_Vor_Info;
-	permanent = FALSE;
 	description = "И что ты собираешься делать сейчас? Убить меня?";
 };
 
@@ -287,7 +284,6 @@ instance DIA_Dexter_Kill(C_Info)
 	nr = 2;
 	condition = DIA_Dexter_Kill_Condition;
 	information = DIA_Dexter_Kill_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -310,7 +306,7 @@ func void DIA_Dexter_Kill_Info()
 	{
 		AI_Output(self,other,"DIA_Dexter_Kill_09_01");	//Ох, тебе не стоило показываться здесь. Ты оказался не в то время и не в том месте.
 	};
-	if(MIS_Steckbriefe == LOG_Running)
+	if(MIS_Steckbriefe == LOG_RUNNING)
 	{
 		MIS_Steckbriefe = LOG_OBSOLETE;
 		B_CheckLog();
@@ -333,7 +329,6 @@ instance DIA_Dexter_Kopf(C_Info)
 	nr = 5;
 	condition = DIA_Dexter_Kopf_Condition;
 	information = DIA_Dexter_Kopf_Info;
-	permanent = FALSE;
 	description = "Тебе нужна моя голова? Что ж, попробуй ее взять!";
 };
 

@@ -46,7 +46,7 @@ func int DIA_Fenia_Hallo_Condition()
 
 func void DIA_Fenia_Hallo_Info()
 {
-	if((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV))
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
 		AI_Output(self,other,"DIA_Fenia_Hallo_17_00");	//Ты выглядишь уставшим. Давно не спал, да?
 		AI_Output(other,self,"DIA_Fenia_Hallo_15_01");	//Слишком давно, я бы сказал.
@@ -127,7 +127,6 @@ instance DIA_Fenia_Infos(C_Info)
 	nr = 10;
 	condition = DIA_Fenia_Infos_Condition;
 	information = DIA_Fenia_Infos_Info;
-	permanent = FALSE;
 	description = "Ты сказала, что у тебя есть все, что мне нужно. Это включает информацию?";
 };
 
@@ -153,7 +152,6 @@ instance DIA_Fenia_MoreTraders(C_Info)
 	nr = 11;
 	condition = DIA_Fenia_MoreTraders_Condition;
 	information = DIA_Fenia_MoreTraders_Info;
-	permanent = FALSE;
 	description = "Есть здесь, в порту, другие торговцы?";
 };
 
@@ -186,14 +184,13 @@ instance DIA_Fenia_OV(C_Info)
 	nr = 13;
 	condition = DIA_Fenia_OV_Condition;
 	information = DIA_Fenia_OV_Info;
-	permanent = FALSE;
 	description = "Ты знаешь кого-нибудь из верхнего квартала?";
 };
 
 
 func int DIA_Fenia_OV_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Fenia_Infos) && (Mil_305_schonmalreingelassen == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Fenia_Infos) && (MIL_305_schonmalreingelassen == FALSE))
 	{
 		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 		{
@@ -215,7 +212,6 @@ instance DIA_Fenia_Interesting(C_Info)
 	nr = 14;
 	condition = DIA_Fenia_Interesting_Condition;
 	information = DIA_Fenia_Interesting_Info;
-	permanent = FALSE;
 	description = "На что интересное стоит обратить внимание в порту?";
 };
 
@@ -247,7 +243,6 @@ instance DIA_Fenia_Aufregend(C_Info)
 	nr = 15;
 	condition = DIA_Fenia_Aufregend_Condition;
 	information = DIA_Fenia_Aufregend_Info;
-	permanent = FALSE;
 	description = "Ничего интересного не было?";
 };
 

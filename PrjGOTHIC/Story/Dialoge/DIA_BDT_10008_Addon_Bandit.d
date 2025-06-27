@@ -77,8 +77,8 @@ func void DIA_Addon_10008_Bandit_soup_Info()
 	B_GiveInvItems(self,other,ItFo_Addon_Meatsoup,1);
 	AI_Output(self,other,"DIA_Addon_10008_Bandit_soup_01_03");	//Это очень важно - тренировать свою силу. Вокруг столько опасностей.
 	AI_Output(self,other,"DIA_Addon_10008_Bandit_soup_01_04");	//Если хочешь, я готов помочь тебе стать сильнее.
-	Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Teacher,"Бандит Марус может помочь мне стать сильнее.");
+	Log_CreateTopic(TOPIC_Addon_BDT_Teacher,LOG_NOTE);
+	B_LogEntry(TOPIC_Addon_BDT_Teacher,"Бандит Марус может помочь мне стать сильнее.");
 };
 
 

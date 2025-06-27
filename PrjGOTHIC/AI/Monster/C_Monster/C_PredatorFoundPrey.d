@@ -29,7 +29,7 @@ func int C_PredatorFoundPrey(var C_Npc slf,var C_Npc oth)
 	};
 	if(slf.guild == GIL_SNAPPER)
 	{
-		if(oth.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(oth))
 		{
 			return TRUE;
 		};
@@ -56,11 +56,11 @@ func int C_PredatorFoundPrey(var C_Npc slf,var C_Npc oth)
 	};
 	if(slf.guild == GIL_SHADOWBEAST)
 	{
-		if(oth.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(oth))
 		{
 			return TRUE;
 		};
-		if(oth.guild > GIL_SEPERATOR_ORC)
+		if(C_NpcIsOrc(oth))
 		{
 			return TRUE;
 		};

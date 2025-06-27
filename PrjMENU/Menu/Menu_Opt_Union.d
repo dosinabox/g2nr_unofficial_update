@@ -18,7 +18,9 @@ instance MENU_OPT_UNION(C_MENU_DEF)
 	items[13] = "MENUITEM_UNION_HONESTLEARNCOST_CHOICE";
 	items[14] = "MENUITEM_UNION_LIMITEDAMMO";
 	items[15] = "MENUITEM_UNION_LIMITEDAMMO_CHOICE";
-	items[16] = "MENUITEM_UNION_BACK";
+	items[16] = "MENUITEM_UNION_IGNOREPERMBONUSES";
+	items[17] = "MENUITEM_UNION_IGNOREPERMBONUSES_CHOICE";
+	items[18] = "MENUITEM_UNION_BACK";
 	flags = flags | MENU_SHOW_INFO;
 };
 
@@ -249,6 +251,35 @@ instance MENUITEM_UNION_LIMITEDAMMO_CHOICE(C_MENU_ITEM_DEF)
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "TradersHaveLimitedAmmo";
+	onchgsetoptionsection = "SCRIPTPATCH";
+	flags = flags & ~IT_SELECTABLE;
+	flags = flags | IT_TXT_CENTER;
+};
+
+instance MENUITEM_UNION_IGNOREPERMBONUSES(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_ITEM_BACK_PIC;
+	text[0] = "Свободные бонусы";
+	text[1] = "Игнорирование постоянных бонусов при обучении";
+	posx = 700;
+	posy = MENU_START_Y + (MENU_STEP_Y * 8);
+	dimx = 4400;
+	dimy = MENU_MAIN_DY;
+	onselaction[0] = SEL_ACTION_UNDEF;
+	flags = flags | IT_EFFECTS_NEXT;
+};
+
+instance MENUITEM_UNION_IGNOREPERMBONUSES_CHOICE(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_CHOICE_BACK_PIC;
+	type = MENU_ITEM_CHOICEBOX;
+	text[0] = MENU_TEXT_OFFON;
+	fontname = MENU_FONT_SMALL;
+	posx = MENU_BUTTONS;
+	posy = MENU_START_Y + (MENU_STEP_Y * 8) + MENU_CHOICE_YPLUS;
+	dimx = MENU_SLIDER_DX;
+	dimy = MENU_CHOICE_DY;
+	onchgsetoption = "IgnorePermBonuses";
 	onchgsetoptionsection = "SCRIPTPATCH";
 	flags = flags & ~IT_SELECTABLE;
 	flags = flags | IT_TXT_CENTER;

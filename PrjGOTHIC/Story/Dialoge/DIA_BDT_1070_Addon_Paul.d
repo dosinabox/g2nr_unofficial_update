@@ -27,7 +27,6 @@ instance DIA_Addon_Paul_Hi(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Paul_Hi_Condition;
 	information = DIA_Addon_Paul_Hi_Info;
-	permanent = FALSE;
 	description = "У тебя есть что-нибудь из кузнечного инструмента?";
 };
 
@@ -51,7 +50,6 @@ instance DIA_Addon_Paul_Huno(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Paul_Huno_Condition;
 	information = DIA_Addon_Paul_Huno_Info;
-	permanent = FALSE;
 	description = "Ты работаешь на Хуно?";
 };
 
@@ -79,14 +77,13 @@ instance DIA_Addon_Paul_Attentat(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Paul_Attentat_Condition;
 	information = DIA_Addon_Paul_Attentat_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_ATTENTAT_DESCRIPTION;
 };
 
 
 func int DIA_Addon_Paul_Attentat_Condition()
 {
-	if(MIS_Judas == LOG_Running)
+	if(MIS_Judas == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -105,14 +102,13 @@ instance DIA_Addon_Paul_HunoVerdacht(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Paul_HunoVerdacht_Condition;
 	information = DIA_Addon_Paul_HunoVerdacht_Info;
-	permanent = FALSE;
 	description = "Хуно подозревается в причастности к нападению...";
 };
 
 
 func int DIA_Addon_Paul_HunoVerdacht_Condition()
 {
-	if(((Finn_TellAll == TRUE) || (Emilio_TellAll == TRUE)) && (MIS_Judas == LOG_Running))
+	if(((Finn_TellAll == TRUE) || (Emilio_TellAll == TRUE)) && (MIS_Judas == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -131,14 +127,13 @@ instance DIA_Addon_Paul_HunoArbeit(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Paul_HunoArbeit_Condition;
 	information = DIA_Addon_Paul_HunoArbeit_Info;
-	permanent = FALSE;
 	description = "Но ты же работаешь на Хуно! Так что ты должен что-то знать!";
 };
 
 
 func int DIA_Addon_Paul_HunoArbeit_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Paul_Huno) && Npc_KnowsInfo(other,DIA_Addon_Paul_HunoVerdacht) && (MIS_Judas == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Addon_Paul_Huno) && Npc_KnowsInfo(other,DIA_Addon_Paul_HunoVerdacht) && (MIS_Judas == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -159,14 +154,13 @@ instance DIA_Addon_Paul_FearEsteban(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Paul_FearEsteban_Condition;
 	information = DIA_Addon_Paul_FearEsteban_Info;
-	permanent = FALSE;
 	description = "Ты знаешь, что Эстебан сделает с тобой, если узнает, что ты прикрываешь Хуно?";
 };
 
 
 func int DIA_Addon_Paul_FearEsteban_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Paul_HunoArbeit) && (MIS_Judas == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Addon_Paul_HunoArbeit) && (MIS_Judas == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -187,14 +181,13 @@ instance DIA_Addon_Paul_MaulPaul(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Paul_MaulPaul_Condition;
 	information = DIA_Addon_Paul_MaulPaul_Info;
-	permanent = FALSE;
 	description = "Пол, скажи мне, что тебе известно, или я размажу тебя по этой стенке!";
 };
 
 
 func int DIA_Addon_Paul_MaulPaul_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Paul_FearEsteban) && (MIS_Judas == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Addon_Paul_FearEsteban) && (MIS_Judas == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -213,7 +206,7 @@ func void DIA_Addon_Paul_MaulPaul_Info()
 	AI_Output(other,self,"DIA_Addon_Paul_MaulPaul_15_08");	//Отлично! Вот видишь, это было не так сложно.
 	Npc_ExchangeRoutine(self,"START");
 	Paul_TellAll = TRUE;
-	B_LogEntry(Topic_Addon_Esteban,"Пол сказал, что Хуно ненавидит Эстебана, потому что он проворачивает свои дела.");
+	B_LogEntry(TOPIC_Addon_Esteban,"Пол сказал, что Хуно ненавидит Эстебана, потому что он проворачивает свои дела.");
 };
 
 
@@ -223,14 +216,13 @@ instance DIA_Addon_BDT_1070_Paul_Mine(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Paul_Mine_Condition;
 	information = DIA_Addon_Paul_Mine_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_MINE_DESCRIPTION;
 };
 
 
 func int DIA_Addon_Paul_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
+	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
 	{
 		return TRUE;
 	};

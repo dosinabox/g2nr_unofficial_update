@@ -11,27 +11,38 @@ instance DIA_ToughGuy_NEWS(C_Info)
 
 func int DIA_ToughGuy_NEWS_Condition()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BridgeBandit))
+	if(C_IsNpc(self,BDT_1020_Bandit_L))
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Sylvio))
+	if(C_IsNpc(self,DJG_700_Sylvio))
 	{
 		if(Npc_KnowsInfo(other,DIA_SylvioDJG_WHATNEXT))
 		{
 			return FALSE;
 		};
 	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco))
+	if(C_IsNpc(self,DJG_701_Bullco))
 	{
 		if(!Npc_KnowsInfo(other,DIA_Bullco_SYLVIODEAD) && Npc_IsDead(DJG_Sylvio))
 		{
 			return FALSE;
 		};
 	};
+	if(C_IsNpc(self,SLD_810_Dar))
+	{
+		if(!Npc_KnowsInfo(other,DIA_Dar_FIGHTAGAINSTPALOVER) && (Dar_FightAgainstPaladin == TRUE))
+		{
+			return FALSE;
+		};
+		if(!Npc_KnowsInfo(other,DIA_Dar_Kameradenschwein) && (Dar_LostAgainstCipher == TRUE))
+		{
+			return FALSE;
+		};
+	};
 	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE) && (self.aivar[AIV_LastFightComment] == FALSE))
 	{
-		if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Sentenza))
+		if(!C_IsNpc(self,SLD_814_Sentenza))
 		{
 			return TRUE;
 		}
@@ -60,7 +71,7 @@ func void DIA_ToughGuy_NEWS_Info()
 		B_Say(self,other,"$TOUGHGUY_PLAYERATTACK");
 	};
 	self.aivar[AIV_LastFightComment] = TRUE;
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Skinner))
+	if(C_IsNpc(self,BDT_1082_Addon_Skinner))
 	{
 		AI_Output(self,other,"DIA_Addon_Skinner_ToughguyNews_08_00");	//...но я не хочу говорить с тобой...
 		AI_StopProcessInfos(self);

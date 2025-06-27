@@ -76,16 +76,6 @@ const int TAL_MaxValue[TAL_Max] =
 	999 //NPC_TALENT_CROSSBOW
 };
 
-// teacher over limiting depends on (training / equipment / permanent bonuses)
-var int TAL_TeachLimitFlags_TS_Training;
-var int TAL_TeachLimitFlags_TS_TempBonus;
-var int TAL_TeachLimitFlags_TS_PermBonus;
-
-// learn price depends on (training / equipment / permanent bonuses)
-var int TAL_CostFlags_TS_Training;
-var int TAL_CostFlags_TS_TempBonus;
-var int TAL_CostFlags_TS_PermBonus;
-
 // Teach Limit Reasons
 const int TLR_AlreadyMax = 5; // talent >= 100
 const int TLR_WillBeOverMax = 4; // talent + percent > 100
@@ -276,31 +266,35 @@ func int GetTalentPart_Cost_Hero(var int talent)
 {
 	if(talent == NPC_TALENT_1H)
 	{
-		return 
-			TAL_Training[NPC_TALENT_1H] * TAL_CostFlags_TS_Training + 
-			TAL_TempBonus[NPC_TALENT_1H] * TAL_CostFlags_TS_TempBonus +
-			TAL_PermBonus[NPC_TALENT_1H] * TAL_CostFlags_TS_PermBonus;
+		if(C_IgnorePermBonuses())
+		{
+			return TAL_Training[NPC_TALENT_1H];
+		};
+		return TAL_Training[NPC_TALENT_1H] + TAL_PermBonus[NPC_TALENT_1H];
 	};
 	if(talent == NPC_TALENT_2H)
 	{
-		return 
-			TAL_Training[NPC_TALENT_2H] * TAL_CostFlags_TS_Training + 
-			TAL_TempBonus[NPC_TALENT_2H] * TAL_CostFlags_TS_TempBonus +
-			TAL_PermBonus[NPC_TALENT_2H] * TAL_CostFlags_TS_PermBonus;
+		if(C_IgnorePermBonuses())
+		{
+			return TAL_Training[NPC_TALENT_2H];
+		};
+		return TAL_Training[NPC_TALENT_2H] + TAL_PermBonus[NPC_TALENT_2H];
 	};
 	if(talent == NPC_TALENT_BOW)
 	{
-		return 
-			TAL_Training[NPC_TALENT_BOW] * TAL_CostFlags_TS_Training + 
-			TAL_TempBonus[NPC_TALENT_BOW] * TAL_CostFlags_TS_TempBonus +
-			TAL_PermBonus[NPC_TALENT_BOW] * TAL_CostFlags_TS_PermBonus;
+		if(C_IgnorePermBonuses())
+		{
+			return TAL_Training[NPC_TALENT_BOW];
+		};
+		return TAL_Training[NPC_TALENT_BOW] + TAL_PermBonus[NPC_TALENT_BOW];
 	};
 	if(talent == NPC_TALENT_CROSSBOW)
 	{
-		return 
-			TAL_Training[NPC_TALENT_CROSSBOW] * TAL_CostFlags_TS_Training + 
-			TAL_TempBonus[NPC_TALENT_CROSSBOW] * TAL_CostFlags_TS_TempBonus +
-			TAL_PermBonus[NPC_TALENT_CROSSBOW] * TAL_CostFlags_TS_PermBonus;
+		if(C_IgnorePermBonuses())
+		{
+			return TAL_Training[NPC_TALENT_CROSSBOW];
+		};
+		return TAL_Training[NPC_TALENT_CROSSBOW] + TAL_PermBonus[NPC_TALENT_CROSSBOW];
 	};
 	return 0;
 };
@@ -310,31 +304,35 @@ func int GetTalentPart_TeachLimit_Hero(var int talent)
 {
 	if(talent == NPC_TALENT_1H)
 	{
-		return 
-			TAL_Training[NPC_TALENT_1H] * TAL_TeachLimitFlags_TS_Training + 
-			TAL_TempBonus[NPC_TALENT_1H] * TAL_TeachLimitFlags_TS_TempBonus +
-			TAL_PermBonus[NPC_TALENT_1H] * TAL_TeachLimitFlags_TS_PermBonus;
+		if(C_IgnorePermBonuses())
+		{
+			return TAL_Training[NPC_TALENT_1H] + TAL_TempBonus[NPC_TALENT_1H];
+		};
+		return TAL_Training[NPC_TALENT_1H] + TAL_TempBonus[NPC_TALENT_1H] + TAL_PermBonus[NPC_TALENT_1H];
 	};
 	if(talent == NPC_TALENT_2H)
 	{
-		return 
-			TAL_Training[NPC_TALENT_2H] * TAL_TeachLimitFlags_TS_Training + 
-			TAL_TempBonus[NPC_TALENT_2H] * TAL_TeachLimitFlags_TS_TempBonus +
-			TAL_PermBonus[NPC_TALENT_2H] * TAL_TeachLimitFlags_TS_PermBonus;
+		if(C_IgnorePermBonuses())
+		{
+			return TAL_Training[NPC_TALENT_2H] + TAL_TempBonus[NPC_TALENT_2H];
+		};
+		return TAL_Training[NPC_TALENT_2H] + TAL_TempBonus[NPC_TALENT_2H] + TAL_PermBonus[NPC_TALENT_2H];
 	};
 	if(talent == NPC_TALENT_BOW)
 	{
-		return 
-			TAL_Training[NPC_TALENT_BOW] * TAL_TeachLimitFlags_TS_Training + 
-			TAL_TempBonus[NPC_TALENT_BOW] * TAL_TeachLimitFlags_TS_TempBonus +
-			TAL_PermBonus[NPC_TALENT_BOW] * TAL_TeachLimitFlags_TS_PermBonus;
+		if(C_IgnorePermBonuses())
+		{
+			return TAL_Training[NPC_TALENT_BOW] + TAL_TempBonus[NPC_TALENT_BOW];
+		};
+		return TAL_Training[NPC_TALENT_BOW] + TAL_TempBonus[NPC_TALENT_BOW] + TAL_PermBonus[NPC_TALENT_BOW];
 	};
 	if(talent == NPC_TALENT_CROSSBOW)
 	{
-		return 
-			TAL_Training[NPC_TALENT_CROSSBOW] * TAL_TeachLimitFlags_TS_Training + 
-			TAL_TempBonus[NPC_TALENT_CROSSBOW] * TAL_TeachLimitFlags_TS_TempBonus +
-			TAL_PermBonus[NPC_TALENT_CROSSBOW] * TAL_TeachLimitFlags_TS_PermBonus;
+		if(C_IgnorePermBonuses())
+		{
+			return TAL_Training[NPC_TALENT_CROSSBOW] + TAL_TempBonus[NPC_TALENT_CROSSBOW];
+		};
+		return TAL_Training[NPC_TALENT_CROSSBOW] + TAL_TempBonus[NPC_TALENT_CROSSBOW] + TAL_PermBonus[NPC_TALENT_CROSSBOW];
 	};
 	return 0;
 };
@@ -389,7 +387,7 @@ func int VisibleTalentValue(var int talent)
 func int TeacherCanTrainTalent(var int talent,var int teacherMin)
 {
 	var int teachPart;
-	if(IgnoreBonuses == TRUE)
+	if(C_IgnorePermBonuses())
 	{
 		teachPart = RealTalentValue(talent);
 	}
@@ -469,6 +467,13 @@ func int CutChange_Hero(var int talent,var int change,var int source)
 	var int maxChange;
 	var int teachPart;
 	var int isPositive;
+	if(C_IgnorePermBonuses())
+	{
+		if(source == TS_PermBonus)
+		{
+			return change;
+		};
+	};
 	minChange = -10000;
 	maxChange = 10000;
 	teachPart = GetTalentPart_TeachLimit_Hero(talent);
@@ -476,15 +481,6 @@ func int CutChange_Hero(var int talent,var int change,var int source)
 	if(change > 0)
 	{
 		isPositive = TRUE;
-	};
-	if(
-		((source == TS_Training) && (TAL_TeachLimitFlags_TS_Training == 0)) ||
-		((source == TS_TempBonus) && (TAL_TeachLimitFlags_TS_TempBonus == 0)) ||
-		((source == TS_PermBonus) && (TAL_TeachLimitFlags_TS_PermBonus == 0))
-	)
-	{
-		// source doesn't affect teach limit (don't cut)
-		return change;
 	};
 	if(talent == NPC_TALENT_1H)
 	{
@@ -761,7 +757,6 @@ func int GetTeachLimitReason_Hero(var int talent,var int change,var int teacherM
 {
 	var int teachPart;
 	var int talentMax;
-	change *= TAL_TeachLimitFlags_TS_Training;
 	teachPart = GetTalentPart_TeachLimit_Hero(talent);
 	talentMax = GetTalentMax(talent);
 	if(teachPart >= GetTalentMax(talent))
@@ -819,12 +814,6 @@ func int GetTeachLimitReason(var C_Npc npc,var int talent,var int change,var int
 // initialize the talent system (must not be called twice)
 func void B_InitTalentSystem()
 {
-	TAL_CostFlags_TS_Training = 1;
-	TAL_CostFlags_TS_TempBonus = 0;
-	TAL_CostFlags_TS_PermBonus = 1;
-	TAL_TeachLimitFlags_TS_Training = 1;
-	TAL_TeachLimitFlags_TS_TempBonus = 1;
-	TAL_TeachLimitFlags_TS_PermBonus = 1;
 	TAL_Training[NPC_TALENT_1H] = START_TALENT_1H;
 	TAL_Training[NPC_TALENT_2H] = START_TALENT_2H;
 	TAL_Training[NPC_TALENT_BOW] = START_TALENT_BOW;

@@ -15,26 +15,33 @@ func void ZS_Unconscious()
 	Npc_SetTempAttitude(self,Npc_GetPermAttitude(self,hero));
 	B_StopLookAt(self);
 	AI_StopPointAt(self);
-	if((self.guild < GIL_SEPERATOR_HUM) && C_NpcIsHero(other))
+	if(C_NpcIsHuman(self) && C_NpcIsHero(other))
 	{
 		if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
 		{
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bullco))
+			if(C_IsNpc(self,SLD_807_Bullco))
 			{
 				SLD_Bullco_Defeated = TRUE;
 			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco))
+			else if(C_IsNpc(self,DJG_701_Bullco))
 			{
 				DJG_Bullco_Defeated = TRUE;
 			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rod))
+			else if(C_IsNpc(self,SLD_804_Rod))
 			{
-				if(MIS_RodSword == LOG_Running)
+				if(MIS_RodSword == LOG_RUNNING)
 				{
 					MIS_RodSword = LOG_OBSOLETE;
 				};
 			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Valentino))
+			else if(C_IsNpc(self,PIR_1364_Addon_Pirat))
+			{
+				if(MIS_Addon_GrogForRoastPirate == LOG_RUNNING)
+				{
+					MIS_Addon_GrogForRoastPirate = LOG_OBSOLETE;
+				};
+			}
+			else if(C_IsNpc(self,VLK_421_Valentino))
 			{
 				Valentino_Day = B_GetDayPlus();
 			};
@@ -58,11 +65,11 @@ func void ZS_Unconscious()
 		{
 			other.aivar[AIV_ArenaFight] = AF_AFTER;
 		};
-		if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Bullco))
+		if(C_IsNpc(other,SLD_807_Bullco))
 		{
 			SLD_Bullco_Defeated_SC = TRUE;
 		}
-		else if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Sylvio))
+		else if(C_IsNpc(other,SLD_806_Sylvio))
 		{
 			SLD_Sylvio_Defeated_SC = TRUE;
 		};
@@ -89,15 +96,12 @@ func void ZS_Unconscious()
 		{
 			B_RemoveEveryInvItem(self,ItMw_2H_Axe_L_01);
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Dar))
+		else if(C_IsNpc(self,SLD_810_Dar))
 		{
-			if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cipher))
+			if(C_IsNpc(other,SLD_803_Cipher) && (Sipher_KnowsDarStoleHisWeed == TRUE))
 			{
-				if(Sipher_KnowsDarStoleHisWeed == TRUE)
-				{
-					Cipher.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
-					Dar_LostAgainstCipher = TRUE;
-				};
+				other.aivar[AIV_FightDistCancel] = FIGHT_DIST_CANCEL;
+				Dar_LostAgainstCipher = TRUE;
 			};
 		};
 	};
@@ -122,12 +126,6 @@ func void ZS_Unconscious_End()
 	{
 		return;
 	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Raven))
-	{
-		self.aivar[AIV_MagicUser] = MAGIC_ALWAYS;
-		B_Attack(self,hero,AR_GuildEnemy,0);
-		return;
-	};
 	if(Npc_CanSeeNpcFreeLOS(self,other) && (Npc_GetDistToNpc(self,other) < PERC_DIST_INTERMEDIAT))
 	{
 		B_TurnToNpc(self,other);
@@ -140,21 +138,8 @@ func void ZS_Unconscious_End()
 			B_Say(self,other,"$OHMYHEAD");
 		};
 	};
-	Npc_PerceiveAll(self);
-	if(Wld_DetectItem(self,ITEM_KAT_NF))
-	{
-		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) <= 500))
-		{
-			AI_TakeItem(self,item);
-		};
-	};
-	if(Wld_DetectItem(self,ITEM_KAT_FF))
-	{
-		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) <= 500))
-		{
-			AI_TakeItem(self,item);
-		};
-	};
+	B_DetectAndTakeItem(self,ITEM_KAT_NF);
+	B_DetectAndTakeItem(self,ITEM_KAT_FF);
 	AI_EquipBestMeleeWeapon(self);
 	AI_EquipBestRangedWeapon(self);
 	AI_StartState(self,ZS_HealSelf,0,"");

@@ -14,7 +14,7 @@ prototype Mst_Default_Skeleton_Mage(C_Npc)
 	protection[PROT_BLUNT] = 125;
 	protection[PROT_EDGE] = 125;
 	protection[PROT_POINT] = 175;
-	protection[PROT_FIRE] = 125;	//50;
+	protection[PROT_FIRE] = 125;
 	protection[PROT_FLY] = 125;
 	protection[PROT_MAGIC] = 50;
 	damagetype = DAM_EDGE;
@@ -29,7 +29,7 @@ prototype Mst_Default_Skeleton_Mage(C_Npc)
 
 func void B_SetVisuals_Skeleton_Mage()
 {
-	Mdl_SetVisual(self,"HumanS.mds");
+	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_ApplyOverlayMds(self,"humans_skeleton_fly.mds");
 	Mdl_SetVisualBody(self,"Ske_Fly_Body",1,DEFAULT,"",1,DEFAULT,-1);
 };

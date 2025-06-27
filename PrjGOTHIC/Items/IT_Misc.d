@@ -247,19 +247,17 @@ instance ItMi_Broom(C_Item)
 	count[5] = value;
 };
 
-
 func void Use_Broom()
 {
 	if(Npc_IsPlayer(self))
 	{
-		if((Wld_GetPlayerPortalGuild() == GIL_NOV) && (MIS_ParlanFegen == LOG_Running))
+		if((Wld_GetPlayerPortalGuild() == GIL_NOV) && (MIS_ParlanFegen == LOG_RUNNING))
 		{
 			B_Say(self,self,"$NOSWEEPING");
 			Print(PRINT_NoSweeping);
 		};
 	};
 };
-
 
 instance ItMi_Lute(C_Item)
 {
@@ -305,7 +303,6 @@ instance ItMi_Joint(C_Item)
 	inv_zbias = 200;
 };
 
-
 func void Use_Joint()
 {
 	if(Npc_IsPlayer(self))
@@ -315,6 +312,18 @@ func void Use_Joint()
 	};
 };
 
+instance ItMi_Joint_Fake(C_Item)
+{
+	name = NAME_Joint;
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = 0;
+	visual = "ItMi_Joint.3ds";
+	material = MAT_LEATHER;
+	scemeName = "JOINT";
+	description = name;
+	inv_zbias = 200;
+};
 
 instance ItMi_Pocket(C_Item)
 {
@@ -332,12 +341,10 @@ instance ItMi_Pocket(C_Item)
 	count[5] = value;
 };
 
-
 func void UsePocket()
 {
 	B_PlayerFindItem(ItMi_Gold,10);
 };
-
 
 instance ItMi_Nugget(C_Item)
 {
@@ -808,7 +815,6 @@ instance ItMi_AlarmHorn(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 };
-
 
 func void Use_AlarmHorn()
 {

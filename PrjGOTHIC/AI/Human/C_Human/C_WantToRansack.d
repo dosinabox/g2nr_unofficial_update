@@ -1,7 +1,7 @@
 
 func int C_WantToRansack(var C_Npc slf,var C_Npc oth)
 {
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(AlligatorJack))
+	if(C_IsNpc(slf,PIR_1352_Addon_AlligatorJack))
 	{
 		if(oth.aivar[AIV_MM_REAL_ID] == ID_SWAMPRAT)
 		{
@@ -22,14 +22,14 @@ func int C_WantToRansack(var C_Npc slf,var C_Npc oth)
 		{
 			if(MIS_Golem == LOG_SUCCESS)
 			{
-				if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Serpentes))
+				if(C_IsNpc(slf,KDF_501_Serpentes))
 				{
 					return TRUE;
 				};
 			};
 			if(Hammer_Taken == TRUE)
 			{
-				if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Garwig))
+				if(C_IsNpc(slf,NOV_608_Garwig))
 				{
 					return TRUE;
 				};
@@ -37,7 +37,7 @@ func int C_WantToRansack(var C_Npc slf,var C_Npc oth)
 		};
 		if(Npc_HasItems(oth,ItMw_2h_Rod))
 		{
-			if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rod))
+			if(C_IsNpc(slf,SLD_804_Rod))
 			{
 				return TRUE;
 			};
@@ -67,7 +67,7 @@ func int C_WantToRansack(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Raven))
+	if(C_IsNpc(slf,BDT_1090_Addon_Raven))
 	{
 		return FALSE;
 	};

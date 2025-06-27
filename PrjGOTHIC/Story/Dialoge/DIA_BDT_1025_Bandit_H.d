@@ -118,7 +118,7 @@ instance DIA_NAME_BANDIT_RUECKDASSCHAFRAUS(C_Info)
 
 func int DIA_NAME_BANDIT_RUECKDASSCHAFRAUS_Condition()
 {
-	if((MIS_Akil_SchafDiebe == LOG_Running) && (DIA_NAME_BANDIT_RUECKDASSCHAFRAUS_NoPerm == FALSE))
+	if((MIS_Akil_SchafDiebe == LOG_RUNNING) && (DIA_NAME_BANDIT_RUECKDASSCHAFRAUS_NoPerm == FALSE))
 	{
 		return TRUE;
 	};

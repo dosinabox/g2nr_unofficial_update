@@ -10,8 +10,6 @@ instance DIA_Grimes_EXIT(C_Info)
 };
 
 
-var int Grimes_First;
-
 func int DIA_Grimes_EXIT_Condition()
 {
 	return TRUE;
@@ -29,7 +27,6 @@ instance DIA_Grimes_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Grimes_Hallo_Condition;
 	information = DIA_Grimes_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -46,15 +43,11 @@ func void DIA_Grimes_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Grimes_Hallo_05_00");	//Ты? Кто бы мог подумать, что мы опять свидимся!
 	AI_Output(self,other,"DIA_Grimes_Hallo_05_01");	//Похоже, мы оба умеем выживать, но, как видишь, я застрял в этой шахте.
-	if(Grimes_First == FALSE)
-	{
-		Wld_InsertNpc(Snapper,"OW_PATH_148_A");
-		Wld_InsertNpc(Snapper,"OW_PATH_146");
-		Wld_InsertNpc(Snapper,"OW_PATH_147");
-		Wld_InsertNpc(Snapper,"OW_PATH_148");
-		Wld_InsertNpc(Snapper,"OW_PATH_264");
-		Grimes_First = TRUE;
-	};
+	Wld_InsertNpc(Snapper,"OW_PATH_148_A");
+	Wld_InsertNpc(Snapper,"OW_PATH_146");
+	Wld_InsertNpc(Snapper,"OW_PATH_147");
+	Wld_InsertNpc(Snapper,"OW_PATH_148");
+	Wld_InsertNpc(Snapper,"OW_PATH_264");
 };
 
 
@@ -64,14 +57,13 @@ instance DIA_Grimes_Erz(C_Info)
 	nr = 2;
 	condition = DIA_Grimes_Erz_Condition;
 	information = DIA_Grimes_Erz_Info;
-	permanent = FALSE;
 	description = "Сколько руды вам удалось добыть?";
 };
 
 
 func int DIA_Grimes_Erz_Condition()
 {
-	if((Kapitel == 2) && (MIS_ScoutMine == LOG_Running))
+	if((Kapitel == 2) && (MIS_ScoutMine == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -91,7 +83,6 @@ instance DIA_Grimes_Weg(C_Info)
 	nr = 3;
 	condition = DIA_Grimes_Weg_Condition;
 	information = DIA_Grimes_Weg_Info;
-	permanent = FALSE;
 	description = "Ты знаешь, в каком направлении пошел Маркос?";
 };
 
@@ -119,17 +110,13 @@ instance DIA_Grimes_Grimes(C_Info)
 	nr = 2;
 	condition = DIA_Grimes_Grimes_Condition;
 	information = DIA_Grimes_Grimes_Info;
-	permanent = FALSE;
 	description = "Ты хочешь покинуть Долину?";
 };
 
 
 func int DIA_Grimes_Grimes_Condition()
 {
-	if(Kapitel == 2)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Grimes_Grimes_Info()
@@ -155,10 +142,7 @@ instance DIA_Grimes_PERM(C_Info)
 
 func int DIA_Grimes_PERM_Condition()
 {
-	if(Kapitel >= 2)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Grimes_PERM_Info()

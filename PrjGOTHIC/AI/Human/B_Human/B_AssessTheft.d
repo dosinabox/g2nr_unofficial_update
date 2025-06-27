@@ -26,6 +26,13 @@ func void B_AssessTheft()
 	{
 		return;
 	};
+	if(!Npc_CanSeeNpc(self,other))
+	{
+		if(!C_IsPlayerObservedByNpc(self))
+		{
+			return;
+		};
+	};
 	if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_FRIENDLY)
 	{
 		if(!Hlp_IsValidItem(item))
@@ -40,13 +47,6 @@ func void B_AssessTheft()
 	if(!C_IsTakenItemMyPossession(self,item))
 	{
 		return;
-	};
-	if(!Npc_CanSeeNpc(self,other))
-	{
-		if(!C_IsPlayerObservedByNpc(self))
-		{
-			return;
-		};
 	};
 	if(!C_WantToAttackThief(self,other))
 	{

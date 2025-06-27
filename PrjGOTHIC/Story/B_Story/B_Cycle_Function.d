@@ -49,9 +49,15 @@ func void B_Cycle_Function()
 		{
 			if(Npc_HasItems(hero,ItMi_Addon_Bloodwyn_Kopf))
 			{
-				Snd_Play("CS_IAM_ME_FL_A3");
-				Mdl_SetVisualBody(Bloodwyn,"hum_body_Bloodwyn_Headless",1,0,"Hum_Headless",0,DEFAULT,NO_ARMOR);
-				AI_UnequipArmor(Bloodwyn);
+				if(Hlp_IsValidNpc(Bloodwyn))
+				{
+					if(Npc_IsDead(Bloodwyn) && (Npc_GetDistToNpc(hero,Bloodwyn) <= 1000))
+					{
+						Snd_Play("CS_IAM_ME_FL_A3");
+						Mdl_SetVisualBody(Bloodwyn,"hum_body_Bloodwyn_Headless",1,0,"Hum_Headless",0,DEFAULT,NO_ARMOR);
+						AI_UnequipArmor(Bloodwyn);
+					};
+				};
 				BloodwynIsHeadless = TRUE;
 			}
 			else

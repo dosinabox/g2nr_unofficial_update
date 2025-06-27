@@ -3,7 +3,7 @@ func int B_GetPlayerCrime(var C_Npc slf)
 {
 	if(slf.aivar[AIV_NpcSawPlayerCommit] <= CRIME_ATTACK)
 	{
-		if(slf.aivar[AIV_NpcSawPlayerCommitDay] < (Wld_GetDay() - 2))
+		if(C_DaysSinceEvent(slf.aivar[AIV_NpcSawPlayerCommitDay],3))
 		{
 			return CRIME_NONE;
 		};

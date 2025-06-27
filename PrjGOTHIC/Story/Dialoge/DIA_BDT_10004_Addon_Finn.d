@@ -53,7 +53,6 @@ instance DIA_Addon_Finn_Hi(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Finn_Hi_Condition;
 	information = DIA_Addon_Finn_Hi_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -79,7 +78,6 @@ instance DIA_Addon_Finn_Hacke(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Finn_Hacke_Condition;
 	information = DIA_Addon_Finn_Hacke_Info;
-	permanent = FALSE;
 	description = "Где я могу взять кирку?";
 };
 
@@ -104,7 +102,6 @@ instance DIA_Addon_Finn_Esteban(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Finn_Esteban_Condition;
 	information = DIA_Addon_Finn_Esteban_Info;
-	permanent = FALSE;
 	description = "Скажи мне, что ты думаешь об Эстебане?";
 };
 
@@ -131,7 +128,6 @@ instance DIA_Addon_Finn_Profi(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Finn_Profi_Condition;
 	information = DIA_Addon_Finn_Profi_Info;
-	permanent = FALSE;
 	description = "А ты знаешь это дело?";
 };
 
@@ -157,14 +153,13 @@ instance DIA_Addon_BDT_10004_Finn_Mine(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Finn_Mine_Condition;
 	information = DIA_Addon_Finn_Mine_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_MINE_DESCRIPTION;
 };
 
 
 func int DIA_Addon_Finn_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
+	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
 	{
 		return TRUE;
 	};
@@ -194,7 +189,6 @@ instance DIA_Addon_Finn_Gold(C_Info)
 	nr = 6;
 	condition = DIA_Addon_Finn_Gold_Condition;
 	information = DIA_Addon_Finn_Gold_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_GOLD_DESCRIPTION;
 };
 
@@ -218,6 +212,9 @@ func void DIA_Addon_Finn_Gold_Info()
 };
 
 
+var int Finn_Einmal;
+var int Finn_Gratulation;
+
 instance DIA_Addon_Finn_ein(C_Info)
 {
 	npc = BDT_10004_Addon_Finn;
@@ -237,18 +234,14 @@ func int DIA_Addon_Finn_ein_Condition()
 	};
 };
 
-
-var int Finn_einmal;
-var int Finn_Gratulation;
-
 func void DIA_Addon_Finn_ein_Info()
 {
 	var string concatText;
 	AI_Output(other,self,"DIA_Addon_Finn_ein_15_00");	//Можешь ты оценить мои умения рудокопа?
-	if(Finn_einmal == FALSE)
+	if(Finn_Einmal == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Finn_ein_07_01");	//Конечно. Я занимаюсь этим больше 35 лет. Нет ничего, что бы я не мог оценить!
-		Finn_einmal = TRUE;
+		Finn_Einmal = TRUE;
 	};
 	AI_Output(self,other,"DIA_Addon_Finn_ein_07_02");	//Что касается тебя, то ты...
 	if(Hero_HackChance < 20)
@@ -298,14 +291,13 @@ instance DIA_Addon_Finn_Attentat(C_Info)
 	nr = 8;
 	condition = DIA_Addon_Finn_Attentat_Condition;
 	information = DIA_Addon_Finn_Attentat_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_ATTENTAT_DESCRIPTION2;
 };
 
 
 func int DIA_Addon_Finn_Attentat_Condition()
 {
-	if(MIS_Judas == LOG_Running)
+	if(MIS_Judas == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -330,7 +322,7 @@ func void B_Addon_Finn_TellAll()
 	AI_Output(self,other,"DIA_Addon_Finn_TellAll_07_03");	//А обычно он ВСЕГДА на месте. ОЧЕНЬ подозрительно - вот что я думаю.
 	if(Finn_TellAll == FALSE)
 	{
-		B_LogEntry(Topic_Addon_Esteban,"Финн сказал, что Хуно не присутствовал при атаке.");
+		B_LogEntry(TOPIC_Addon_Esteban,"Финн сказал, что Хуно не присутствовал при атаке.");
 		Finn_TellAll = TRUE;
 	};
 };

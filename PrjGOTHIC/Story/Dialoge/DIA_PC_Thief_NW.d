@@ -160,9 +160,9 @@ func void DIA_DiegoNW_NeedHelp_Problem_WillHelpYou()
 	AI_Output(self,other,"DIA_Addon_DiegoNW_WillHelpYou_11_02");	//Это было довольно давно, и поэтому когда я оттуда уходил, я забыл его забрать.
 	AI_Output(self,other,"DIA_Addon_DiegoNW_WillHelpYou_11_03");	//А сейчас мне очень нужны эти деньги.
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_11_03");	//Если вкратце, ты должен пойти в Долину Рудников и забрать мое золото.
-	MIS_HelpDiegoNW = LOG_Running;
+	MIS_HelpDiegoNW = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_HelpDiegoNW,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_HelpDiegoNW,LOG_Running);
+	Log_SetTopicStatus(TOPIC_HelpDiegoNW,LOG_RUNNING);
 	B_LogEntry(TOPIC_HelpDiegoNW,"Золото Диего находится в Долине Рудников. Оно нужно ему, чтобы попасть в верхнюю часть города, и он попросил меня найти это золото.");
 	Info_ClearChoices(DIA_DiegoNW_NeedHelp);
 	Info_AddChoice(DIA_DiegoNW_NeedHelp,"Что ты собираешься делать с этим золотом?",DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_YourPlan);
@@ -226,7 +226,6 @@ instance DIA_DiegoNW_HelpYou(C_Info)
 	nr = 30;
 	condition = DIA_DiegoNW_HelpYou_Condition;
 	information = DIA_DiegoNW_HelpYou_Info;
-	permanent = FALSE;
 	description = "Ладно, я все же помогу тебе.";
 };
 
@@ -249,9 +248,9 @@ func void DIA_DiegoNW_HelpYou_Info()
 	DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold();
 	DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_Why();
 	DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold_End_TryIt();
-	MIS_HelpDiegoNW = LOG_Running;
+	MIS_HelpDiegoNW = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_HelpDiegoNW,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_HelpDiegoNW,LOG_Running);
+	Log_SetTopicStatus(TOPIC_HelpDiegoNW,LOG_RUNNING);
 	B_LogEntry(TOPIC_HelpDiegoNW,"Золото Диего находится в Долине Рудников. Оно нужно ему, чтобы попасть в верхнюю часть города, и он попросил меня найти это золото.");
 };
 
@@ -283,7 +282,7 @@ instance DIA_DiegoNW_HaveYourGold(C_Info)
 
 func int DIA_DiegoNW_HaveYourGold_Condition()
 {
-	if(((OpenedDiegosBag == TRUE) || Npc_HasItems(other,ItSe_DiegosTreasure_MIS)) && (MIS_HelpDiegoNW == LOG_Running) && (Diego_IsOnBoard != LOG_SUCCESS))
+	if(((OpenedDiegosBag == TRUE) || Npc_HasItems(other,ItSe_DiegosTreasure_MIS)) && (MIS_HelpDiegoNW == LOG_RUNNING) && (Diego_IsOnBoard != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -317,9 +316,9 @@ func void DIA_DiegoNW_HaveYourGold_Info()
 		CreateInvItems(self,ItWr_DiegosLetter_MIS,1);
 		B_GiveInvItems(self,other,ItWr_DiegosLetter_MIS,1);
 		B_StartOtherRoutine(Gerbrandt,"WAITFORDIEGO");
-		MIS_DiegosResidence = LOG_Running;
+		MIS_DiegosResidence = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_DiegosResidence,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_DiegosResidence,LOG_Running);
+		Log_SetTopicStatus(TOPIC_DiegosResidence,LOG_RUNNING);
 		B_LogEntry(TOPIC_DiegosResidence,"Диего дал мне письмо для торговца Гербрандта.");
 		AI_StopProcessInfos(self);
 	};
@@ -332,7 +331,6 @@ instance DIA_DiegoNW_DeliveredLetter(C_Info)
 	nr = 30;
 	condition = DIA_DiegoNW_DeliveredLetter_Condition;
 	information = DIA_DiegoNW_DeliveredLetter_Info;
-	permanent = FALSE;
 	description = "Я доставил твое письмо.";
 };
 
@@ -552,11 +550,7 @@ func void B_DiegoNW_GoHomeAndChangeArmor()
 		AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_02");	//Подожди, я буду готов через минуту.
 		AI_SetWalkMode(self,NPC_RUN);
 		AI_GotoWP(self,"NW_CITY_UPTOWN_HUT_01_01");
-		if(!Npc_HasItems(self,ITAR_Diego))
-		{
-			CreateInvItems(self,ITAR_Diego,1);
-		};
-		AI_EquipArmor(self,ITAR_Diego);
+		B_EquipArmor(self,ITAR_Diego);
 		AI_Wait(self,1);
 		AI_GotoWP(self,"NW_CITY_UPTOWN_PATH_23");
 	};
@@ -589,7 +583,7 @@ func void DIA_DiegoNW_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_11_03");	//Также, я уверен, тебе не помешает хороший вор.
 	if(SCToldDiegoHeKnowWhereEnemy == FALSE)
 	{
-		B_LogEntry(Topic_Crew,"Конечно же, Диего готов пойти со мной. Ему кажется, что чем скорее он покинет Хоринис, тем лучше. Он мог бы научить меня, как стать более ловким и сделать из меня отличного лучника. Также он может научить меня пользоваться отмычками.");
+		B_LogEntry(TOPIC_Crew,"Конечно же, Диего готов пойти со мной. Ему кажется, что чем скорее он покинет Хоринис, тем лучше. Он мог бы научить меня, как стать более ловким и сделать из меня отличного лучника. Также он может научить меня пользоваться отмычками.");
 		SCToldDiegoHeKnowWhereEnemy = TRUE;
 	};
 	if(Crewmember_Count >= Max_Crew)
@@ -649,14 +643,7 @@ func void DIA_DiegoNW_LeaveMyShip_Info()
 	AI_Output(other,self,"DIA_DiegoNW_LeaveMyShip_15_02");	//Ты думаешь, мы еще встретимся?
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_03");	//Я никогда не забуду выражение твоего лица, когда ты лежал на земле после того, как Буллит вырубил тебя. Тогда мы встретились в первый раз.
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_04");	//Им никогда не одолеть тебя. Мы ОБЯЗАТЕЛЬНО встретимся снова. Береги себя.
-	if(!Npc_HasItems(self,ITAR_Vlk_H))
-	{
-		CreateInvItems(self,ITAR_Vlk_H,1);
-	};
-	if(!ArmorEquipped(self,ITAR_Vlk_H))
-	{
-		AI_EquipArmor(self,ITAR_Vlk_H);
-	};
+	B_EquipArmor(self,ITAR_Vlk_H);
 	Diego_IsOnBoard = LOG_OBSOLETE;
 	Crewmember_Count -= 1;
 	if(MIS_DiegosResidence == LOG_SUCCESS)

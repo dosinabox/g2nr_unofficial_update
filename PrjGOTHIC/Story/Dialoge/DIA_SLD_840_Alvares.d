@@ -27,7 +27,6 @@ instance DIA_Alvares_HAUAB(C_Info)
 	nr = 4;
 	condition = DIA_Alvares_HAUAB_Condition;
 	information = DIA_Alvares_HAUAB_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -46,7 +45,7 @@ func void DIA_Alvares_HAUAB_Info()
 	if(Akils_SLDStillthere == FALSE)
 	{
 		Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
+		Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_RUNNING);
 		B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
 		Akils_SLDStillthere = TRUE;
 	};
@@ -60,7 +59,6 @@ instance DIA_Alvares_ATTACK(C_Info)
 	nr = 6;
 	condition = DIA_Alvares_ATTACK_Condition;
 	information = DIA_Alvares_ATTACK_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -84,7 +82,7 @@ func void DIA_Alvares_ATTACK_Info()
 	};
 	Info_AddChoice(DIA_Alvares_ATTACK,"Вы, парни, сейчас исчезнете отсюда. Все понятно?",DIA_Alvares_ATTACK_Witz);
 	Info_AddChoice(DIA_Alvares_ATTACK,"Мне не нужны проблемы.",DIA_Alvares_ATTACK_Aerger);
-	if(MIS_Baltram_ScoutAkil == LOG_Running)
+	if(MIS_Baltram_ScoutAkil == LOG_RUNNING)
 	{
 		Info_AddChoice(DIA_Alvares_ATTACK,"Я просто пришел сюда за товаром.",DIA_Alvares_ATTACK_Lieferung);
 	};
@@ -145,7 +143,6 @@ instance DIA_Alvares_Schluss(C_Info)
 	nr = 4;
 	condition = DIA_Alvares_Schluss_Condition;
 	information = DIA_Alvares_Schluss_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

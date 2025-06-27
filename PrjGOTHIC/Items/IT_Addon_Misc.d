@@ -117,7 +117,7 @@ instance ItMi_BromorsGeld_Addon(C_Item)
 	count[5] = value;
 };
 
-instance ItSe_ADDON_CavalornsBeutel(C_Item)
+instance ItSe_Addon_CavalornsBeutel(C_Item)
 {
 	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
@@ -141,11 +141,11 @@ func void Use_CavalornsBeutel()
 	B_PlayerFindItem(ItMi_Nugget,1);
 	if(MIS_Addon_Cavalorn_TheHut == FALSE)
 	{
-		MIS_Addon_Cavalorn_TheHut = LOG_Running;
+		MIS_Addon_Cavalorn_TheHut = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_Addon_CavalornTheHut,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_CavalornTheHut,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_CavalornTheHut,LOG_RUNNING);
 	};
-	if(MIS_Addon_Cavalorn_TheHut == LOG_Running)
+	if(MIS_Addon_Cavalorn_TheHut == LOG_RUNNING)
 	{
 		B_LogEntry(TOPIC_Addon_CavalornTheHut,"Я нашел мешочек с куском руды около хижины Кавалорна в Долине Рудников. Его, должно быть, забыл там старый пройдоха Кавалорн.");
 	};

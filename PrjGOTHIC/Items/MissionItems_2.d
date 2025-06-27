@@ -212,9 +212,10 @@ func void UseItwr_Silvestro()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Сильвестро");
 	Doc_Show(nDocID);
-	if((MIS_ScoutMine == LOG_Running) && Npc_IsDead(DiegoOW) && (Diego_ToldAboutSilvestroOre == FALSE) && (Silvestro_Ore == FALSE))
+	if((MIS_ScoutMine == LOG_RUNNING) && (Log_Silvestro_Ore == FALSE))
 	{
 		B_LogEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место руду, добытую старателями Сильвестро. Через некоторое время на шахту напали краулеры. Никто не выжил.");
+		Log_Silvestro_Ore = TRUE;
 	};
 	Silvestro_Ore = TRUE;
 };
@@ -359,8 +360,8 @@ func void UseBloodMIS()
 	if(Knows_Bloodfly == FALSE)
 	{
 		PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
-		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-		B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);
+		Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
+		B_LogEntry(TOPIC_Bonus,PRINT_KnowsBloodfly);
 		Knows_Bloodfly = TRUE;
 		B_GivePlayerXP(XP_Ambient);
 	};

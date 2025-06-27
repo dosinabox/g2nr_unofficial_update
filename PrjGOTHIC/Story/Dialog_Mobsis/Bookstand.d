@@ -28,7 +28,7 @@ func void Use_Bookstand_01_S1()
 		{
 			Knows_Fire_Contest = TRUE;
 			Log_CreateTopic(TOPIC_FireContest,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_FireContest,LOG_Running);
+			Log_SetTopicStatus(TOPIC_FireContest,LOG_RUNNING);
 			B_LogEntry(TOPIC_FireContest,"Будучи послушником, я имею право требовать прохождения Испытания Огнем. Каждый из трех магов Высшего Совета должен дать мне задание. Если я пройду эти испытания, я буду принят в Круг Огня.");
 		};
 	};

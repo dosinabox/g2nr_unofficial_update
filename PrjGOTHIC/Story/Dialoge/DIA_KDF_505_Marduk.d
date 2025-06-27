@@ -1,21 +1,21 @@
 
-instance DIA_Marduk_Kap1_EXIT(C_Info)
+instance DIA_Marduk_EXIT(C_Info)
 {
 	npc = KDF_505_Marduk;
 	nr = 999;
-	condition = DIA_Marduk_Kap1_EXIT_Condition;
-	information = DIA_Marduk_Kap1_EXIT_Info;
+	condition = DIA_Marduk_EXIT_Condition;
+	information = DIA_Marduk_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Marduk_Kap1_EXIT_Condition()
+func int DIA_Marduk_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Marduk_Kap1_EXIT_Info()
+func void DIA_Marduk_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -26,7 +26,6 @@ instance DIA_Marduk_JOB(C_Info)
 	npc = KDF_505_Marduk;
 	condition = DIA_Marduk_JOB_Condition;
 	information = DIA_Marduk_JOB_Info;
-	permanent = FALSE;
 	description = "Что ты делаешь здесь?";
 };
 
@@ -49,14 +48,13 @@ instance DIA_Marduk_Arbeit(C_Info)
 	nr = 3;
 	condition = DIA_Marduk_Arbeit_Condition;
 	information = DIA_Marduk_Arbeit_Info;
-	permanent = FALSE;
 	description = "Могу я сделать что-нибудь для тебя, Мастер?";
 };
 
 
 func int DIA_Marduk_Arbeit_Condition()
 {
-	if(MIS_KlosterArbeit == LOG_Running)
+	if(MIS_KlosterArbeit == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -66,10 +64,10 @@ func void DIA_Marduk_Arbeit_Info()
 {
 	AI_Output(other,self,"DIA_Marduk_Arbeit_15_00");	//Могу я сделать что-нибудь для тебя, Мастер?
 	AI_Output(self,other,"DIA_Marduk_Arbeit_05_01");	//Для меня? Нет, мне не нужна твоя помощь. Лучше помолись за воинов Инноса, отправившихся в Долину Рудников.
-	MIS_MardukBeten = LOG_Running;
-	Log_CreateTopic(Topic_MardukBeten,LOG_MISSION);
-	Log_SetTopicStatus(Topic_MardukBeten,LOG_Running);
-	B_LogEntry(Topic_MardukBeten,"У мастера Мардука нет заданий для меня. Он сказал, что мне лучше пойти помолиться за паладинов.");
+	MIS_MardukBeten = LOG_RUNNING;
+	Log_CreateTopic(TOPIC_MardukBeten,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_MardukBeten,LOG_RUNNING);
+	B_LogEntry(TOPIC_MardukBeten,"У мастера Мардука нет заданий для меня. Он сказал, что мне лучше пойти помолиться за паладинов.");
 };
 
 
@@ -79,14 +77,13 @@ instance DIA_Marduk_Gebetet(C_Info)
 	nr = 3;
 	condition = DIA_Marduk_Gebetet_Condition;
 	information = DIA_Marduk_Gebetet_Info;
-	permanent = FALSE;
 	description = "Я помолился за паладинов.";
 };
 
 
 func int DIA_Marduk_Gebetet_Condition()
 {
-	if((MIS_MardukBeten == LOG_Running) && Npc_KnowsInfo(other,PC_PrayShrine_Paladine))
+	if((MIS_MardukBeten == LOG_RUNNING) && (SC_PrayedForPaladins == TRUE))
 	{
 		return TRUE;
 	};
@@ -134,7 +131,6 @@ instance DIA_Marduk_Pal(C_Info)
 	npc = KDF_505_Marduk;
 	condition = DIA_Marduk_Pal_Condition;
 	information = DIA_Marduk_Pal_Info;
-	permanent = FALSE;
 	description = "Но в монастыре живут только маги и послушники.";
 };
 
@@ -162,7 +158,6 @@ instance DIA_Marduk_BEFORETEACH(C_Info)
 	nr = 3;
 	condition = DIA_Marduk_BEFORETEACH_Condition;
 	information = DIA_Marduk_BEFORETEACH_Info;
-	permanent = FALSE;
 	description = "Ты можешь чему-нибудь научить меня?";
 };
 
@@ -184,14 +179,14 @@ func void DIA_Marduk_BEFORETEACH_Info()
 		AI_Output(self,other,"DIA_Marduk_BEFORETEACH_05_02");	//Однако я обучаю только магов.
 		if(other.guild == GIL_NOV)
 		{
-			Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-			B_LogEntry(Topic_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома. Но для этого я должен быть магом Огня.");
+			Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома. Но для этого я должен быть магом Огня.");
 		};
 	}
 	else if(!Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
 	{
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома.");
+		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома.");
 	};
 };
 
@@ -305,7 +300,6 @@ instance DIA_Marduk_Kap3_Hello(C_Info)
 	nr = 30;
 	condition = DIA_Marduk_Kap3_Hello_Condition;
 	information = DIA_Marduk_Kap3_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -374,6 +368,8 @@ func void DIA_Marduk_Kap3_Hello_DJG()
 };
 
 
+var int Marduk_TrainPals_permanent;
+
 instance DIA_Marduk_TrainPals(C_Info)
 {
 	npc = KDF_505_Marduk;
@@ -384,8 +380,6 @@ instance DIA_Marduk_TrainPals(C_Info)
 	description = "Чему ты можешь обучить меня?";
 };
 
-
-var int Marduk_TrainPals_permanent;
 
 func int DIA_Marduk_TrainPals_Condition()
 {
@@ -604,7 +598,6 @@ instance DIA_Marduk_BennetIsNotGuilty(C_Info)
 	nr = 40;
 	condition = DIA_Marduk_BennetIsNotGuilty_Condition;
 	information = DIA_Marduk_BennetIsNotGuilty_Info;
-	permanent = FALSE;
 	description = "Беннет невиновен. Свидетель солгал.";
 };
 

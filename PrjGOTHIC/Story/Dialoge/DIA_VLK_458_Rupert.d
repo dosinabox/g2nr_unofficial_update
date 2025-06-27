@@ -28,7 +28,6 @@ instance DIA_Rupert_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Rupert_Hello_Condition;
 	information = DIA_Rupert_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -43,7 +42,7 @@ func int DIA_Rupert_Hello_Condition()
 
 func void DIA_Rupert_Hello_Info()
 {
-	if((hero.guild == GIL_NONE) && (Player_IsApprentice == APP_NONE))
+	if((other.guild == GIL_NONE) && (Player_IsApprentice == APP_NONE))
 	{
 		AI_Output(self,other,"DIA_Rupert_Hello_03_00");	//Привет, чужеземец!
 	};
@@ -59,7 +58,6 @@ instance DIA_Rupert_ZuPal(C_Info)
 	nr = 1;
 	condition = DIA_Rupert_ZuPal_Condition;
 	information = DIA_Rupert_ZuPal_Info;
-	permanent = FALSE;
 	description = "Откровенно говоря, я пришел, чтобы встретиться с паладинами...";
 };
 
@@ -85,14 +83,13 @@ instance DIA_Rupert_HelpMeIntoOV(C_Info)
 	nr = 1;
 	condition = DIA_Rupert_HelpMeIntoOV_Condition;
 	information = DIA_Rupert_HelpMeIntoOV_Info;
-	permanent = FALSE;
 	description = "Ты можешь помочь мне попасть в верхний квартал?";
 };
 
 
 func int DIA_Rupert_HelpMeIntoOV_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rupert_ZuPal) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV)) && (Player_IsApprentice == APP_NONE))
+	if(Npc_KnowsInfo(other,DIA_Rupert_ZuPal) && ((other.guild == GIL_NONE) || (other.guild == GIL_NOV)) && (Player_IsApprentice == APP_NONE))
 	{
 		return TRUE;
 	};
@@ -105,7 +102,7 @@ func void DIA_Rupert_HelpMeIntoOV_Info()
 	AI_Output(self,other,"DIA_Rupert_HelpMeIntoOV_03_02");	//Всего несколько людей в нижней части города влиятельны настолько, что могут заставить стражу пропустить тебя.
 	AI_Output(self,other,"DIA_Rupert_HelpMeIntoOV_03_03");	//Маттео, мой босс - один из них. Возможно, тебе стоит поговорить с ним.
 	Log_CreateTopic(TOPIC_OV,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_OV,LOG_Running);
+	Log_SetTopicStatus(TOPIC_OV,LOG_RUNNING);
 	B_LogEntry(TOPIC_OV,"Чтобы попасть в верхний квартал, мне нужна помощь влиятельных граждан из нижней части города.");
 	Log_AddEntry(TOPIC_OV,"Торговец Маттео - один из влиятельных граждан нижней части города.");
 };
@@ -117,14 +114,13 @@ instance DIA_Rupert_WoMatteo(C_Info)
 	nr = 1;
 	condition = DIA_Rupert_WoMatteo_Condition;
 	information = DIA_Rupert_WoMatteo_Info;
-	permanent = FALSE;
 	description = "Где я могу найти Маттео?";
 };
 
 
 func int DIA_Rupert_WoMatteo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rupert_HelpMeIntoOV) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV)) && (Knows_Matteo == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Rupert_HelpMeIntoOV) && ((other.guild == GIL_NONE) || (other.guild == GIL_NOV)) && (Knows_Matteo == FALSE))
 	{
 		return TRUE;
 	};
@@ -149,14 +145,13 @@ instance DIA_Rupert_WerEinfluss(C_Info)
 	nr = 2;
 	condition = DIA_Rupert_WerEinfluss_Condition;
 	information = DIA_Rupert_WerEinfluss_Info;
-	permanent = FALSE;
 	description = "А что насчет других влиятельных горожан?";
 };
 
 
 func int DIA_Rupert_WerEinfluss_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rupert_HelpMeIntoOV) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV)))
+	if(Npc_KnowsInfo(other,DIA_Rupert_HelpMeIntoOV) && ((other.guild == GIL_NONE) || (other.guild == GIL_NOV)))
 	{
 		return TRUE;
 	};
@@ -181,14 +176,13 @@ instance DIA_Rupert_Work(C_Info)
 	nr = 3;
 	condition = DIA_Rupert_Work_Condition;
 	information = DIA_Rupert_Work_Info;
-	permanent = FALSE;
 	description = "Мне нужны деньги и я ищу работу.";
 };
 
 
 func int DIA_Rupert_Work_Condition()
 {
-	if(((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV)) && (Player_IsApprentice == APP_NONE))
+	if(((other.guild == GIL_NONE) || (other.guild == GIL_NOV)) && (Player_IsApprentice == APP_NONE))
 	{
 		return TRUE;
 	};
@@ -210,7 +204,6 @@ instance DIA_Rupert_YourOffer(C_Info)
 	nr = 4;
 	condition = DIA_Rupert_YourOffer_Condition;
 	information = DIA_Rupert_YourOffer_Info;
-	permanent = FALSE;
 	description = "Что ты можешь мне предложить?";
 };
 
@@ -224,7 +217,7 @@ func void DIA_Rupert_YourOffer_Info()
 {
 	AI_Output(other,self,"DIA_Rupert_YourOffer_15_00");	//Что ты можешь мне предложить?
 	AI_Output(self,other,"DIA_Rupert_YourOffer_03_01");	//Сейчас у меня мало что есть.
-	if((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Rupert_YourOffer_03_02");	//Этот чертов лендлорд не поставляет больше продукты, а того, что мы получаем с маленьких ферм, недостаточно для удовлетворения потребностей города.
 		RupertMentionedOnar = TRUE;
@@ -239,8 +232,8 @@ instance DIA_Rupert_Trade(C_Info)
 	condition = DIA_Rupert_Trade_Condition;
 	information = DIA_Rupert_Trade_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
 	trade = TRUE;
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -260,7 +253,7 @@ func void DIA_Rupert_Trade_Info()
 	{
 		CreateInvItems(self,ItFo_Cheese,5);
 	};
-	if((hero.guild == GIL_KDF) || (hero.guild == GIL_PAL))
+	if((other.guild == GIL_KDF) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Rupert_Trade_03_01");	//Я приношу извинения за скудный выбор. Человек вашего положения наверняка привык к лучшему.
 	};
@@ -274,14 +267,13 @@ instance DIA_Rupert_Bauernaufstand(C_Info)
 	nr = 4;
 	condition = DIA_Rupert_Bauernaufstand_Condition;
 	information = DIA_Rupert_Bauernaufstand_Info;
-	permanent = FALSE;
 	description = "Расскажи мне о восстании крестьян.";
 };
 
 
 func int DIA_Rupert_Bauernaufstand_Condition()
 {
-	if((RupertMentionedOnar == TRUE) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
+	if((RupertMentionedOnar == TRUE) && (other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -304,14 +296,13 @@ instance DIA_Rupert_Mercs(C_Info)
 	nr = 4;
 	condition = DIA_Rupert_Mercs_Condition;
 	information = DIA_Rupert_Mercs_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о наемниках Онара?";
 };
 
 
 func int DIA_Rupert_Mercs_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rupert_Bauernaufstand) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
+	if(Npc_KnowsInfo(other,DIA_Rupert_Bauernaufstand) && (other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		return TRUE;
 	};

@@ -28,7 +28,6 @@ instance DIA_Matteo_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Matteo_Hallo_Condition;
 	information = DIA_Matteo_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -53,7 +52,6 @@ instance DIA_Matteo_SellWhat(C_Info)
 	nr = 1;
 	condition = DIA_Matteo_SellWhat_Condition;
 	information = DIA_Matteo_SellWhat_Info;
-	permanent = FALSE;
 	description = "Что ты продаешь?";
 };
 
@@ -137,7 +135,7 @@ func void DIA_Matteo_TRADE_Info()
 		Matteo_TradeNewsPermanent = 3;
 	};
 	B_GiveTradeInv(self);
-	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING)
 	{
 		MatteoMinenAnteil = TRUE;
 	};
@@ -194,7 +192,6 @@ instance DIA_Matteo_Paladine(C_Info)
 	nr = 2;
 	condition = DIA_Matteo_Paladine_Condition;
 	information = DIA_Matteo_Paladine_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о паладинах?";
 };
 
@@ -236,7 +233,6 @@ instance DIA_Matteo_Confiscated(C_Info)
 	nr = 2;
 	condition = DIA_Matteo_Confiscated_Condition;
 	information = DIA_Matteo_Confiscated_Info;
-	permanent = FALSE;
 	description = "Паладины забрали твои товары?";
 };
 
@@ -267,7 +263,6 @@ instance DIA_Matteo_HelpMeToOV(C_Info)
 	nr = 3;
 	condition = DIA_Matteo_HelpMeToOV_Condition;
 	information = DIA_Matteo_HelpMeToOV_Info;
-	permanent = FALSE;
 	description = "Ты можешь помочь мне попасть в верхний квартал?";
 };
 
@@ -320,7 +315,6 @@ instance DIA_Matteo_HelpMeNow(C_Info)
 	nr = 3;
 	condition = DIA_Matteo_HelpMeNow_Condition;
 	information = DIA_Matteo_HelpMeNow_Info;
-	permanent = FALSE;
 	description = "Так ты можешь помочь мне попасть в верхний квартал?";
 };
 
@@ -349,7 +343,6 @@ instance DIA_Matteo_LehrlingLater(C_Info)
 	nr = 3;
 	condition = DIA_Matteo_LehrlingLater_Condition;
 	information = DIA_Matteo_LehrlingLater_Info;
-	permanent = FALSE;
 	description = "Помоги мне стать учеником одного из мастеров.";
 };
 
@@ -378,7 +371,6 @@ instance DIA_Matteo_PriceOfHelp(C_Info)
 	nr = 3;
 	condition = DIA_Matteo_PriceOfHelp_Condition;
 	information = DIA_Matteo_PriceOfHelp_Info;
-	permanent = FALSE;
 	description = "Что ты хочешь за свои услуги?";
 };
 
@@ -409,9 +401,9 @@ func void B_Matteo_RegDichAb()
 	AI_Output(self,other,"B_Matteo_RegDichAb_09_04");	//Но эта маленькая вертихвостка постоянно дефилирует в новых платьях - это означает, что деньги у нее есть.
 	AI_Output(self,other,"B_Matteo_RegDichAb_09_05");	//Я хочу, чтобы ты выбил из нее этот долг. Но мастер Торбен, плотник - тоже очень влиятельный человек.
 	AI_Output(self,other,"B_Matteo_RegDichAb_09_06");	//Принеси мне эти деньги, и я помогу тебе.
-	MIS_Matteo_Gold = LOG_Running;
+	MIS_Matteo_Gold = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Matteo,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Matteo,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Matteo,LOG_RUNNING);
 	B_LogEntry(TOPIC_Matteo,"Племянница плотника Торбена Гритта должна Маттео 100 золотых монет. Если я верну их ему, он поможет мне попасть в верхний квартал.");
 };
 
@@ -436,14 +428,13 @@ instance DIA_Matteo_WoGritta(C_Info)
 	nr = 2;
 	condition = DIA_Matteo_WoGritta_Condition;
 	information = DIA_Matteo_WoGritta_Info;
-	permanent = FALSE;
 	description = "Где мне найти эту Гритту?";
 };
 
 
 func int DIA_Matteo_WoGritta_Condition()
 {
-	if(MIS_Matteo_Gold == LOG_Running)
+	if(MIS_Matteo_Gold == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -469,7 +460,7 @@ instance DIA_Matteo_GoldRunning(C_Info)
 
 func int DIA_Matteo_GoldRunning_Condition()
 {
-	if(MIS_Matteo_Gold == LOG_Running)
+	if(MIS_Matteo_Gold == LOG_RUNNING)
 	{
 		if(Npc_KnowsInfo(other,DIA_Gritta_WantsMoney))
 		{
@@ -533,7 +524,7 @@ var int DIA_Matteo_Zustimmung_perm;
 
 func int DIA_Matteo_Zustimmung_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) && ((MIS_Matteo_Gold == LOG_Running) || (MIS_Matteo_Gold == LOG_SUCCESS)) && (Player_IsApprentice == APP_NONE) && (DIA_Matteo_Zustimmung_perm == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) && ((MIS_Matteo_Gold == LOG_RUNNING) || (MIS_Matteo_Gold == LOG_SUCCESS)) && (Player_IsApprentice == APP_NONE) && (DIA_Matteo_Zustimmung_perm == FALSE))
 	{
 		return TRUE;
 	};
@@ -563,7 +554,6 @@ instance DIA_Matteo_HowCanYouHelp(C_Info)
 	nr = 4;
 	condition = DIA_Matteo_HowCanYouHelp_Condition;
 	information = DIA_Matteo_HowCanYouHelp_Info;
-	permanent = FALSE;
 	description = "Как ИМЕННО ты собираешься помочь мне?";
 };
 
@@ -585,7 +575,7 @@ func void DIA_Matteo_HowCanYouHelp_Info()
 		AI_Output(self,other,"DIA_Matteo_HowCanYouHelp_09_02");	//Став учеником, ты автоматически станешь гражданином города и сможешь попасть в верхний квартал. Помимо этого, ты сможешь что-нибудь заработать.
 	};
 	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Lehrling,LOG_RUNNING);
 	B_LogEntry(TOPIC_Lehrling,"Маттео может помочь мне стать учеником одного из мастеров.");
 };
 
@@ -596,7 +586,6 @@ instance DIA_Matteo_WoAlsLehrling(C_Info)
 	nr = 4;
 	condition = DIA_Matteo_WoAlsLehrling_Condition;
 	information = DIA_Matteo_WoAlsLehrling_Info;
-	permanent = FALSE;
 	description = "А к кому я могу поступить в ученики?";
 };
 
@@ -617,7 +606,7 @@ func void DIA_Matteo_WoAlsLehrling_Info()
 	AI_Output(self,other,"DIA_Matteo_WoAlsLehrling_09_03");	//Один из них обязательно возьмет тебя.
 	AI_Output(self,other,"DIA_Matteo_WoAlsLehrling_09_04");	//Но важно, чтобы с этим были согласны другие мастера. Таков обычай Хориниса.
 	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Lehrling,LOG_RUNNING);
 	B_LogEntry(TOPIC_Lehrling,"Я могу стать учеником мастера-лучника Боспера, кузнеца Гарада, плотника Торбена или алхимика Константино.");
 	Log_AddEntry(TOPIC_Lehrling,"Прежде чем я стану учеником, я должен получить одобрение других мастеров.");
 };
@@ -629,7 +618,6 @@ instance DIA_Matteo_WieZustimmung(C_Info)
 	nr = 5;
 	condition = DIA_Matteo_WieZustimmung_Condition;
 	information = DIA_Matteo_WieZustimmung_Info;
-	permanent = FALSE;
 	description = "Как мне получить одобрение других мастеров?";
 };
 
@@ -657,7 +645,6 @@ instance DIA_Matteo_WarumNichtBeiDir(C_Info)
 	nr = 6;
 	condition = DIA_Matteo_WarumNichtBeiDir_Condition;
 	information = DIA_Matteo_WarumNichtBeiDir_Info;
-	permanent = FALSE;
 	description = "А почему ТЫ не возьмешь меня в ученики?";
 };
 
@@ -693,14 +680,13 @@ instance DIA_Matteo_OtherWay(C_Info)
 	nr = 6;
 	condition = DIA_Matteo_OtherWay_Condition;
 	information = DIA_Matteo_OtherWay_Info;
-	permanent = FALSE;
 	description = "А есть другой способ попасть в верхний квартал?";
 };
 
 
 func int DIA_Matteo_OtherWay_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) || (MIS_Matteo_Gold == LOG_FAILED)) && (Mil_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE))
+	if((Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) || (MIS_Matteo_Gold == LOG_FAILED)) && (MIL_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE))
 	{
 		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 		{
@@ -737,7 +723,7 @@ instance DIA_Matteo_Minenanteil(C_Info)
 
 func int DIA_Matteo_Minenanteil_Condition()
 {
-	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (MatteoMinenAnteil == TRUE))
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (MatteoMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

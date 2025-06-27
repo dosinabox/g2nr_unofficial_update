@@ -124,9 +124,9 @@ func void DIA_Addon_Bengar_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Bengar_MissingPeople_10_02");	//Но самым необычным было исчезновение Пардоса.
 	AI_Output(self,other,"DIA_Addon_Bengar_MissingPeople_10_03");	//Это один из моих рабочих. Понимаешь, он не из тех, кто способен в один прекрасный момент все бросить и сбежать в неизвестном направлении.
 	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_MissingPeople,"У фермера Бенгара пропал его работник - Пардос.");
-	MIS_Bengar_BringMissPeopleBack = LOG_Running;
+	MIS_Bengar_BringMissPeopleBack = LOG_RUNNING;
 	B_GivePlayerXP(XP_Ambient);
 	Info_ClearChoices(DIA_Addon_Bengar_MissingPeople);
 	Info_AddChoice(DIA_Addon_Bengar_MissingPeople,Dialog_Back,DIA_Addon_Bengar_MissingPeople_back);
@@ -196,7 +196,7 @@ instance DIA_Addon_Bengar_ReturnPardos(C_Info)
 
 func int DIA_Addon_Bengar_ReturnPardos_Condition()
 {
-	if((MIS_Bengar_BringMissPeopleBack == LOG_Running) && (MissingPeopleReturnedHome == TRUE))
+	if((MIS_Bengar_BringMissPeopleBack == LOG_RUNNING) && (MissingPeopleReturnedHome == TRUE))
 	{
 		if(!Npc_IsDead(Pardos_NW))
 		{
@@ -228,7 +228,7 @@ instance DIA_Addon_Bengar_FernandosWeapons(C_Info)
 
 func int DIA_Addon_Bengar_FernandosWeapons_Condition()
 {
-	if((Bengar_ToldAboutRangerBandits == TRUE) && (MIS_Vatras_FindTheBanditTrader == LOG_Running))
+	if((Bengar_ToldAboutRangerBandits == TRUE) && (MIS_Vatras_FindTheBanditTrader == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -267,7 +267,7 @@ func void DIA_Bengar_REBELLIEREN_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_REBELLIEREN_15_00");	//Что ты думаешь об Онаре?
 	AI_Output(self,other,"DIA_Bengar_REBELLIEREN_10_01");	//Это жадный ублюдок. Из-за него нас всех повесят.
-	if(hero.guild != GIL_PAL)
+	if(other.guild != GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Bengar_REBELLIEREN_10_02");	//Однажды придут паладины из города и заставят нас, мелких фермеров, расплачиваться за все, что он наделал.
 	};
@@ -289,7 +289,7 @@ instance DIA_Bengar_PALADINE(C_Info)
 
 func int DIA_Bengar_PALADINE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_REBELLIEREN) && (hero.guild != GIL_PAL))
+	if(Npc_KnowsInfo(other,DIA_Bengar_REBELLIEREN) && (other.guild != GIL_PAL))
 	{
 		return TRUE;
 	};
@@ -299,12 +299,12 @@ func void DIA_Bengar_PALADINE_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_PALADINE_15_00");	//А что ты имеешь против королевских войск?
 	AI_Output(self,other,"DIA_Bengar_PALADINE_10_01");	//Это очевидно. С тех пор, как паладины прибыли в город, не видно никаких улучшений. Скорее наоборот.
-	if(hero.guild != GIL_MIL)
+	if(other.guild != GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Bengar_PALADINE_10_02");	//Теперь это чертово ополчение стало появляться у нас даже чаще. Они воруют все, что только могут, а паладины ничего не делают с этим.
 	};
 	AI_Output(self,other,"DIA_Bengar_PALADINE_10_03");	//Единственные паладины, что я вообще когда-либо видел, это вон те два стражника у Прохода.
-	if(hero.guild != GIL_MIL)
+	if(other.guild != GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Bengar_PALADINE_10_04");	//Они не пошевелятся, даже если ополчение вырежет нас всех.
 	};
@@ -361,7 +361,7 @@ instance DIA_Bengar_MILIZ(C_Info)
 
 func int DIA_Bengar_MILIZ_Condition()
 {
-	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && Npc_KnowsInfo(other,DIA_Bengar_HALLO))
+	if((MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Bengar_HALLO))
 	{
 		return TRUE;
 	};
@@ -407,7 +407,7 @@ instance DIA_Bengar_Selber(C_Info)
 
 func int DIA_Bengar_Selber_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZ))
+	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZ) && (Kapitel < 3))
 	{
 		if((other.guild == GIL_NONE) || (other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 		{
@@ -436,9 +436,13 @@ instance DIA_Bengar_MILIZKLATSCHEN(C_Info)
 
 func int DIA_Bengar_MILIZKLATSCHEN_Condition()
 {
-	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && Npc_KnowsInfo(other,DIA_Bengar_MILIZ) && (Miliz_Flucht == FALSE))
+	if((MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Bengar_MILIZ))
 	{
-		if(!Npc_IsDead(Rick) && !Npc_IsDead(Rumbold))
+		if(Kapitel >= 3)
+		{
+			return TRUE;
+		};
+		if(!C_BengarFarmIsFree())
 		{
 			return TRUE;
 		};
@@ -488,7 +492,11 @@ func int DIA_Bengar_MILIZWEG_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZ) && (Bengar_MilSuccess == FALSE) && (MIS_Torlof_BengarMilizKlatschen != LOG_FAILED))
 	{
-		if((Npc_IsDead(Rick) && Npc_IsDead(Rumbold)) || (Rumbold_Bezahlt == TRUE) || (MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS))
+		if(Rumbold_Bezahlt == TRUE)
+		{
+			return TRUE;
+		};
+		if(C_BengarFarmIsFree())
 		{
 			return TRUE;
 		};
@@ -498,19 +506,15 @@ func int DIA_Bengar_MILIZWEG_Condition()
 func void DIA_Bengar_MILIZWEG_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_MILIZWEG_15_00");	//Твои проблемы с ополчением уже в прошлом.
-	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && (!Npc_IsDead(Rick) || !Npc_IsDead(Rumbold)) && (Miliz_Flucht == FALSE))
+	if(!C_BengarFarmIsFree())
 	{
 		AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_01");	//Ты с ума сошел? Да ты знаешь, что они сделают со мной, когда ты уйдешь?
-		if(Kapitel < 3)
-		{
-			AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_02");	//Они все еще стоят вон там. Скажи им, чтобы они исчезли, СОВСЕМ!
-		}
-		else
-		{
-			MIS_Torlof_BengarMilizKlatschen = LOG_FAILED;
-			B_CheckLog();
-		};
+		AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_02");	//Они все еще стоят вон там. Скажи им, чтобы они исчезли, СОВСЕМ!
 		AI_StopProcessInfos(self);
+	}
+	else if(Kapitel >= 3)
+	{
+		B_BengarTooLate();
 	}
 	else
 	{
@@ -542,7 +546,7 @@ instance DIA_Bengar_BALTHASAR(C_Info)
 
 func int DIA_Bengar_BALTHASAR_Condition()
 {
-	if((MIS_Balthasar_BengarsWeide == LOG_Running) && Npc_KnowsInfo(other,DIA_Bengar_WOVONLEBTIHR))
+	if((MIS_Balthasar_BengarsWeide == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Bengar_WOVONLEBTIHR))
 	{
 		return TRUE;
 	};
@@ -570,7 +574,7 @@ instance DIA_Bengar_BALTHASARDARFAUFWEIDE(C_Info)
 
 func int DIA_Bengar_BALTHASARDARFAUFWEIDE_Condition()
 {
-	if((MIS_Balthasar_BengarsWeide == LOG_Running) && Npc_KnowsInfo(other,DIA_Bengar_BALTHASAR))
+	if((MIS_Balthasar_BengarsWeide == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Bengar_BALTHASAR))
 	{
 		if(Bengar_MilSuccess == TRUE)
 		{
@@ -658,17 +662,17 @@ func void DIA_Bengar_ALLEIN_Info()
 		AI_Output(self,other,"DIA_Bengar_ALLEIN_10_02");	//Он больше не мог находиться здесь.
 		if(MIS_GetMalakBack == FALSE)
 		{
-			MIS_GetMalakBack = LOG_Running;
+			MIS_GetMalakBack = LOG_RUNNING;
 			Log_CreateTopic(TOPIC_BengarMALAK,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_BengarMALAK,LOG_Running);
+			Log_SetTopicStatus(TOPIC_BengarMALAK,LOG_RUNNING);
 		};
 		if(!Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS))
 		{
-			B_LogEntry(TOPIC_BengarMALAK,"Бенгар остался один на своей ферме. Малак ушел и увел с собой всех остальных. Бенгар думает, что они направились в горы.");
+			B_LogEntries(TOPIC_BengarMALAK,"Бенгар остался один на своей ферме. Малак ушел и увел с собой всех остальных. Бенгар думает, что они направились в горы.");
 		}
 		else
 		{
-			B_LogEntry(TOPIC_BengarMALAK,"Бенгар остался совсем один на своей ферме. Малак ушел и увел с собой всех остальных.");
+			B_LogEntries(TOPIC_BengarMALAK,"Бенгар остался совсем один на своей ферме. Малак ушел и увел с собой всех остальных.");
 		};
 	}
 	else
@@ -680,10 +684,10 @@ func void DIA_Bengar_ALLEIN_Info()
 	AI_Output(self,other,"DIA_Bengar_ALLEIN_10_06");	//Один из них даже был готов работать на меня. Но он передумал, впрочем. Мне кажется, его звали Вольф.
 	if(!Npc_IsDead(SLD_Wolf))
 	{
-		MIS_BengarsHelpingSLD = LOG_Running;
+		MIS_BengarsHelpingSLD = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_BengarALLEIN,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_BengarALLEIN,LOG_Running);
-		B_LogEntry(TOPIC_BengarALLEIN,"Ферма Бенгара абсолютно беззащитна. Ему нужна помощь. Он говорит что-то о наемнике, которого зовут Вольф. Может быть, я знаю этого парня?!");
+		Log_SetTopicStatus(TOPIC_BengarALLEIN,LOG_RUNNING);
+		B_LogNextEntry(TOPIC_BengarALLEIN,"Ферма Бенгара абсолютно беззащитна. Ему нужна помощь. Он говорит что-то о наемнике, которого зовут Вольф. Может быть, я знаю этого парня?!");
 	};
 };
 

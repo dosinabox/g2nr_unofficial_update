@@ -1,27 +1,15 @@
 
-func int C_NpcIsMage(var C_Npc slf)
+func int C_NpcIsMage(var C_Npc npc)
 {
-	if(slf.guild == GIL_KDF)
+	if(C_NpcIsFireMage(npc))
 	{
 		return TRUE;
 	};
-	if(slf.guild == GIL_KDW)
+	if(C_NpcIsWaterMage(npc))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Xardas))
-	{
-		return TRUE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
-	{
-		return TRUE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY))
-	{
-		return TRUE;
-	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Daron))
+	if(C_IsNpc(npc,NONE_100_Xardas))
 	{
 		return TRUE;
 	};

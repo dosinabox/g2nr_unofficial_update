@@ -27,7 +27,6 @@ instance DIA_Addon_Garaz_Probleme(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Garaz_Probleme_Condition;
 	information = DIA_Addon_Garaz_Probleme_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -51,16 +50,18 @@ instance DIA_Addon_Garaz_Hi(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Garaz_Hi_Condition;
 	information = DIA_Addon_Garaz_Hi_Info;
-	permanent = FALSE;
 	description = "Почему мы не можем на них напасть?";
 };
 
 
 func int DIA_Addon_Garaz_Hi_Condition()
 {
-	if(!Npc_IsDead(Bloodwyn) && (Minecrawler_Killed <= 9))
+	if(Minecrawler_Killed <= 9)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Bloodwyn))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -82,16 +83,18 @@ instance DIA_Addon_Garaz_Bloodwyn(C_Info)
 	nr = 8;
 	condition = DIA_Addon_Garaz_Bloodwyn_Condition;
 	information = DIA_Addon_Garaz_Bloodwyn_Info;
-	permanent = FALSE;
 	description = "Ты мне можешь рассказать что-нибудь про Бладвина?";
 };
 
 
 func int DIA_Addon_Garaz_Bloodwyn_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Garaz_Hi) && (Minecrawler_Killed <= 9) && !Npc_IsDead(Bloodwyn))
+	if(Npc_KnowsInfo(other,DIA_Addon_Garaz_Hi) && (Minecrawler_Killed <= 9))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Bloodwyn))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -103,8 +106,8 @@ func void DIA_Addon_Garaz_Bloodwyn_Info()
 	AI_Output(other,self,"DIA_Addon_Garaz_Bloodwyn_15_03");	//Что еще?
 	AI_Output(self,other,"DIA_Addon_Garaz_Bloodwyn_08_04");	//Он думает, что он - лучший и терпеть не может, если у кого-то больше денег, чем у него. Пожалуйста - я не встану у него на пути.
 	AI_Output(self,other,"DIA_Addon_Garaz_Bloodwyn_08_05");	//Просто не стой у него на пути и не провоцируй его, если не хочешь, чтобы он впал в ярость и перестал себя контролировать...
-	B_LogEntry(Topic_Addon_Tempel,"Если Бладвин узнает, что в шахте была открыта новая золотая жила, он наверняка покинет храм.");
-	Log_AddEntry(Topic_Addon_Tempel,"Когда Бладвин рассержен, он теряет над собой контроль. Это может мне помочь.");
+	B_LogEntry(TOPIC_Addon_Tempel,"Если Бладвин узнает, что в шахте была открыта новая золотая жила, он наверняка покинет храм.");
+	Log_AddEntry(TOPIC_Addon_Tempel,"Когда Бладвин рассержен, он теряет над собой контроль. Это может мне помочь.");
 };
 
 
@@ -114,16 +117,18 @@ instance DIA_Addon_Garaz_Sieg(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Garaz_Sieg_Condition;
 	information = DIA_Addon_Garaz_Sieg_Info;
-	permanent = FALSE;
 	description = "Ну, готово. С краулерами покончено.";
 };
 
 
 func int DIA_Addon_Garaz_Sieg_Condition()
 {
-	if((Minecrawler_Killed > 9) && !Npc_IsDead(Bloodwyn))
+	if(Minecrawler_Killed > 9)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Bloodwyn))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -133,7 +138,10 @@ func void DIA_Addon_Garaz_Sieg_Info()
 	AI_Output(self,other,"DIA_Addon_Garaz_Sieg_08_01");	//Бладвин уже идет сюда. Ты ведь этого хотел?
 	AI_Output(self,other,"DIA_Addon_Garaz_Sieg_08_02");	//Я хочу сказать, что ты перебил краулеров, чтобы Бладвин пришел сюда, да? Тогда, что бы ты ни планировал, делай это СЕЙЧАС.
 	B_GivePlayerXP(XP_Addon_Bloodywyn);
-	B_StartOtherRoutine(Bloodwyn,"GOLD");
+	if(!Npc_KnowsInfo(other,DIA_Addon_Bloodwyn_Wait))
+	{
+		B_StartOtherRoutine(Bloodwyn,"GOLD");
+	};
 };
 
 
@@ -143,16 +151,18 @@ instance DIA_Addon_Garaz_Blood(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Garaz_Blood_Condition;
 	information = DIA_Addon_Garaz_Blood_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Addon_Garaz_Blood_Condition()
 {
-	if(Npc_IsDead(Bloodwyn) && Npc_KnowsInfo(other,DIA_Addon_Garaz_Sieg))
+	if(Npc_KnowsInfo(other,DIA_Addon_Garaz_Sieg))
 	{
-		return TRUE;
+		if(Npc_IsDead(Bloodwyn))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -172,7 +182,6 @@ instance DIA_Addon_Garaz_Gold(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Garaz_Gold_Condition;
 	information = DIA_Addon_Garaz_Gold_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

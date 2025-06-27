@@ -57,7 +57,6 @@ instance DIA_Hakon_Hallo(C_Info)
 	condition = DIA_Hakon_Hallo_Condition;
 	information = DIA_Hakon_Hallo_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
@@ -100,11 +99,11 @@ func void DIA_Hakon_Trade_Info()
 {
 	AI_Output(other,self,"DIA_Hakon_Trade_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
-	if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Hakon_Trade_12_01");	//Для меня большая честь, что представитель святой церкви проявил интерес к моим товарам.
 	};
-	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING)
 	{
 		HakonMinenAnteil = TRUE;
 	};
@@ -142,7 +141,7 @@ func void DIA_Addon_Hakon_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Hakon_MissingPeople_12_07");	//Я рассказал об этом ополчению.
 	AI_Output(self,other,"DIA_Addon_Hakon_MissingPeople_12_08");	//Но лорд Андрэ сказал, что не понимает, о чем я говорю. Он даже не знал, что это за парень.
 	Log_CreateTopic(TOPIC_Addon_Joe,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Joe,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Joe,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_Joe,"Хакон, торговец из Хориниса, говорит, что человек по имени Джо бесследно исчез. Хакон утверждает, что Джо знает, как проникнуть в одну из башен города, где ополчение хранит оружие.");
 	B_GivePlayerXP(XP_Ambient);
 };
@@ -154,7 +153,6 @@ instance DIA_Hakon_OutOfTown(C_Info)
 	nr = 2;
 	condition = DIA_Hakon_OutOfTown_Condition;
 	information = DIA_Hakon_OutOfTown_Info;
-	permanent = FALSE;
 	description = "Расскажи мне подробнее о местности вокруг города.";
 };
 
@@ -180,7 +178,6 @@ instance DIA_Hakon_Paladine(C_Info)
 	nr = 3;
 	condition = DIA_Hakon_Paladine_Condition;
 	information = DIA_Hakon_Paladine_Info;
-	permanent = FALSE;
 	description = "Ты знаешь что-нибудь о паладинах?";
 };
 
@@ -212,7 +209,6 @@ instance DIA_Hakon_WoWaffen(C_Info)
 	nr = 4;
 	condition = DIA_Hakon_WoWaffen_Condition;
 	information = DIA_Hakon_WoWaffen_Info;
-	permanent = FALSE;
 	description = "Где ты берешь оружие?";
 };
 
@@ -258,7 +254,6 @@ instance DIA_Hakon_HaradBandits(C_Info)
 	nr = 5;
 	condition = DIA_Hakon_HaradBandits_Condition;
 	information = DIA_Hakon_HaradBandits_Info;
-	permanent = FALSE;
 	description = "Гарад рассказал мне о нападении бандитов...";
 };
 
@@ -293,7 +288,6 @@ instance DIA_Hakon_Banditen(C_Info)
 	nr = 6;
 	condition = DIA_Hakon_Banditen_Condition;
 	information = DIA_Hakon_Banditen_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь об этих бандитах?";
 };
 
@@ -321,7 +315,6 @@ instance DIA_Hakon_Wieviel(C_Info)
 	nr = 6;
 	condition = DIA_Hakon_Wieviel_Condition;
 	information = DIA_Hakon_Wieviel_Info;
-	permanent = FALSE;
 	description = "Я разберусь с этим...";
 };
 
@@ -350,9 +343,9 @@ func void DIA_Hakon_Wieviel_Info()
 		AI_Output(self,other,"DIA_Hakon_Banditen_Kohle_12_02");	//Ладно, мне это тоже нужно. Я заплачу тебе 100 золотых, если ты уничтожишь этих бандитов.
 		MIS_HakonBanditsPay = TRUE;
 	};
-	MIS_HakonBandits = LOG_Running;
+	MIS_HakonBandits = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_HakonBanditen,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_HakonBanditen,LOG_Running);
+	Log_SetTopicStatus(TOPIC_HakonBanditen,LOG_RUNNING);
 	B_LogEntry(TOPIC_HakonBanditen,"Хакон, торговец оружием, был ограблен бандитами неподалеку от города.");
 };
 
@@ -363,14 +356,13 @@ instance DIA_Hakon_Miliz(C_Info)
 	nr = 4;
 	condition = DIA_Hakon_Miliz_Condition;
 	information = DIA_Hakon_Miliz_Info;
-	permanent = FALSE;
 	description = "Ты не знаешь, кто в ополчении занимался их поиском?";
 };
 
 
 func int DIA_Hakon_Miliz_Condition()
 {
-	if(MIS_HakonBandits == LOG_Running)
+	if(MIS_HakonBandits == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -390,14 +382,13 @@ instance DIA_Hakon_Pablo(C_Info)
 	nr = 4;
 	condition = DIA_Hakon_Pablo_Condition;
 	information = DIA_Hakon_Pablo_Info;
-	permanent = FALSE;
 	description = "Ты знаешь, где мне найти Пабло?";
 };
 
 
 func int DIA_Hakon_Pablo_Condition()
 {
-	if((MIS_HakonBandits == LOG_Running) && Npc_KnowsInfo(other,DIA_Hakon_Miliz))
+	if((MIS_HakonBandits == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Hakon_Miliz))
 	{
 		return TRUE;
 	};
@@ -416,14 +407,13 @@ instance DIA_Hakon_Wo(C_Info)
 	nr = 5;
 	condition = DIA_Hakon_Wo_Condition;
 	information = DIA_Hakon_Wo_Info;
-	permanent = FALSE;
 	description = "Где они напали на тебя?";
 };
 
 
 func int DIA_Hakon_Wo_Condition()
 {
-	if(MIS_HakonBandits == LOG_Running)
+	if(MIS_HakonBandits == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -443,14 +433,13 @@ instance DIA_Hakon_Success(C_Info)
 	nr = 2;
 	condition = DIA_Hakon_Success_Condition;
 	information = DIA_Hakon_Success_Info;
-	permanent = FALSE;
 	description = "Я расправился с бандитами.";
 };
 
 
 func int DIA_Hakon_Success_Condition()
 {
-	if((MIS_HakonBandits == LOG_Running) && Npc_KnowsInfo(other,DIA_Hakon_Wo))
+	if((MIS_HakonBandits == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Hakon_Wo))
 	{
 		if(C_HakonBanditsDead())
 		{
@@ -486,14 +475,13 @@ instance DIA_Hakon_Minenanteil(C_Info)
 	nr = 3;
 	condition = DIA_Hakon_Minenanteil_Condition;
 	information = DIA_Hakon_Minenanteil_Info;
-	permanent = FALSE;
 	description = "Где ты взял эти акции, что ты продаешь здесь?";
 };
 
 
 func int DIA_Hakon_Minenanteil_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (HakonMinenAnteil == TRUE))
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (HakonMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};
@@ -513,7 +501,6 @@ instance DIA_Hakon_Kapitel2(C_Info)
 	nr = 5;
 	condition = DIA_Hakon_Kapitel2_Condition;
 	information = DIA_Hakon_Kapitel2_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

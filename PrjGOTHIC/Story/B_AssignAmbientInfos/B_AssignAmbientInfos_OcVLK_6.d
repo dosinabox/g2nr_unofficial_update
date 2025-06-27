@@ -106,8 +106,8 @@ func void DIA_OCVLK_6_STANDARD_Info()
 		AI_Output(self,other,"DIA_OCVLK_6_STANDARD_06_01");	//ќни говорили: '¬ступи в армию и у теб€ не будет забот'. » вот как все вышло.
 		AI_Output(self,other,"DIA_OCVLK_6_STANDARD_06_02");	//“еперь под страхом смерти запрещено даже приближатьс€ к запасам продовольстви€. √аронд, похоже, боитс€, что мы соберем манатки и свалим отсюда. (горька€ усмешка)
 		AI_Output(self,other,"DIA_OCVLK_6_STANDARD_06_03");	//ћы все здесь сдохнем от голода, если эти чертовы драконы не убьют нас раньше!
-	};
-	if(Kapitel == 4)
+	}
+	else if(Kapitel == 4)
 	{
 		if(!Npc_KnowsInfo(other,DIA_Garond_AllDragonDead))
 		{
@@ -117,8 +117,8 @@ func void DIA_OCVLK_6_STANDARD_Info()
 		{
 			AI_Output(self,other,"DIA_OCVLK_6_STANDARD_06_05");	//√овор€т, что все драконы убиты! “еперь у нас по€вилс€ шанс!
 		};
-	};
-	if(Kapitel >= 5)
+	}
+	else
 	{
 		if(MIS_OCGateOpen == FALSE)
 		{
@@ -133,9 +133,9 @@ func void DIA_OCVLK_6_STANDARD_Info()
 
 func void B_AssignAmbientInfos_OCVLK_6(var C_Npc slf)
 {
-	dia_ocvlk_6_exit.npc = Hlp_GetInstanceID(slf);
-	dia_ocvlk_6_people.npc = Hlp_GetInstanceID(slf);
-	dia_ocvlk_6_location.npc = Hlp_GetInstanceID(slf);
-	dia_ocvlk_6_standard.npc = Hlp_GetInstanceID(slf);
+	DIA_OCVLK_6_EXIT.npc = Hlp_GetInstanceID(slf);
+	DIA_OCVLK_6_PEOPLE.npc = Hlp_GetInstanceID(slf);
+	DIA_OCVLK_6_LOCATION.npc = Hlp_GetInstanceID(slf);
+	DIA_OCVLK_6_STANDARD.npc = Hlp_GetInstanceID(slf);
 };
 

@@ -100,11 +100,11 @@ func void DIA_Addon_Snaf_Cook_YES()
 	AI_Output(other,self,"DIA_Addon_Snaf_Cook_HAMMER_YES_15_00");	//Собственно, почему бы и нет?
 	AI_Output(self,other,"DIA_Addon_Snaf_Cook_HAMMER_YES_01_01");	//Отлично, вот рецепт.
 	B_GiveInvItems(self,other,ItWr_Addon_Lou_Rezept,1);
-	MIS_SnafHammer = LOG_Running;
+	MIS_SnafHammer = LOG_RUNNING;
 	Info_ClearChoices(DIA_Addon_Snaf_Cook);
-	Log_CreateTopic(Topic_Addon_Hammer,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Hammer,LOG_Running);
-	B_LogEntry(Topic_Addon_Hammer,"Снафу нужен ингредиент для соуса. Он дал мне рецепт напитка 'Молот', который я могу приготовить на алхимическом столе.");
+	Log_CreateTopic(TOPIC_Addon_Hammer,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Hammer,LOG_RUNNING);
+	B_LogEntry(TOPIC_Addon_Hammer,"Снафу нужен ингредиент для соуса. Он дал мне рецепт напитка 'Молот', который я могу приготовить на алхимическом столе.");
 };
 
 
@@ -121,7 +121,7 @@ instance DIA_Addon_Snaf_Booze(C_Info)
 
 func int DIA_Addon_Snaf_Booze_Condition()
 {
-	if(Npc_HasItems(other,ItFo_Addon_LousHammer) && (MIS_SnafHammer == LOG_Running))
+	if(Npc_HasItems(other,ItFo_Addon_LousHammer) && (MIS_SnafHammer == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -160,7 +160,7 @@ instance DIA_Addon_Snaf_Attentat(C_Info)
 
 func int DIA_Addon_Snaf_Attentat_Condition()
 {
-	if(MIS_Judas == LOG_Running)
+	if(MIS_Judas == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -214,7 +214,7 @@ instance DIA_Addon_Snaf_Abrechnung(C_Info)
 
 func int DIA_Addon_Snaf_Abrechnung_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Snaf_Attentat) && (MIS_Judas == LOG_Running) && (Huno_zuSnaf == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Snaf_Attentat) && (MIS_Judas == LOG_RUNNING) && (Huno_zuSnaf == FALSE))
 	{
 		return TRUE;
 	};
@@ -224,13 +224,13 @@ func void DIA_Addon_Snaf_Abrechnung_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Snaf_Abrechnung_15_00");	//Ну и каковы же?
 	AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_01");	//Хм...
-	if((Senyan_Erpressung == LOG_Running) && !Npc_IsDead(Senyan))
+	if((MIS_Senyan_Erpressung == LOG_RUNNING) && !Npc_IsDead(Senyan))
 	{
 		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_02");	//Невысоки, я бы сказал. Некоторые уже заметили, что у тебя общие дела с Сеньяном.
 		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_03");	//Тебе нужно срочно исправить это и порвать с ним, иначе не видать тебе человека, что стоял за нападением.
 		if(Snaf_Tip_Senyan == FALSE)
 		{
-			B_LogEntry(Topic_Addon_Senyan,"Я должен порвать отношения с Сеньяном. Но нападать на него напрямую было бы глупо, поэтому я должен сначала с ним поговорить.");
+			B_LogEntry(TOPIC_Addon_Senyan,"Я должен порвать отношения с Сеньяном. Но нападать на него напрямую было бы глупо, поэтому я должен сначала с ним поговорить.");
 			Snaf_Tip_Senyan = TRUE;
 		};
 	}

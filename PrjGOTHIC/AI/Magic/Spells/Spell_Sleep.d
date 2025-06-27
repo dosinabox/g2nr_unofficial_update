@@ -13,7 +13,7 @@ instance Spell_Sleep(C_Spell_Proto)
 
 func int C_NpcCanSleep(var C_Npc npc)
 {
-	if(npc.guild >= GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(npc))
 	{
 		return FALSE;
 	};
@@ -33,17 +33,17 @@ func int C_NpcCanSleep(var C_Npc npc)
 	{
 		return TRUE;
 	};
-	if(npc.flags == NPC_FLAG_IMMORTAL)
+	if(C_NpcIsImmortal(npc))
 	{
-		if(Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(Cornelius))
-		{
-			return TRUE;
-		};
-		if(Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(Richter))
-		{
-			return TRUE;
-		};
 		if(C_IsNpc(npc,VLK_400_Larius))
+		{
+			return TRUE;
+		};
+		if(C_IsNpc(npc,VLK_401_Cornelius))
+		{
+			return TRUE;
+		};
+		if(C_IsNpc(npc,VLK_402_Richter))
 		{
 			return TRUE;
 		};
@@ -60,6 +60,13 @@ func int C_NpcCanSleep(var C_Npc npc)
 	if(npc.guild == GIL_DMT)
 	{
 		return FALSE;
+	};
+	if(C_IsNpc(npc,BDT_1090_Addon_Raven))
+	{
+		if(npc.aivar[AIV_EnemyOverride] == FALSE)
+		{
+			return FALSE;
+		};
 	};
 	return TRUE;
 };

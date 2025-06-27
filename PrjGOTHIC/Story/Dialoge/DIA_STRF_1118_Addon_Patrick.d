@@ -27,7 +27,6 @@ instance DIA_Addon_Patrick_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Patrick_Hi_Condition;
 	information = DIA_Addon_Patrick_Hi_Info;
-	permanent = FALSE;
 	description = "Меня послали маги Воды. Я пришел, чтобы освободить вас.";
 };
 
@@ -51,10 +50,10 @@ func void DIA_Addon_Patrick_Hi_Info()
 	if(FoundDeadWilliam == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_MissingPeople,"Патрик сказал мне, что один из рабов по имени Вильям погиб при попытке бегства.");
+		FoundDeadWilliam = TRUE;
 	};
-	FoundDeadWilliam = TRUE;
 	Info_ClearChoices(DIA_Addon_Patrick_Hi);
 	Info_AddChoice(DIA_Addon_Patrick_Hi,"Как ты себе это представляешь? Я должен убедить Ворона освободить вас?",DIA_Addon_Patrick_Hi_Raven);
 	Info_AddChoice(DIA_Addon_Patrick_Hi,"Мне нужно перебить всех бандитов до единого?",DIA_Addon_Patrick_Hi_Kill);
@@ -85,32 +84,31 @@ func void DIA_Addon_Patrick_Hi_Kill()
 };
 
 
-instance DIA_Addon_Patrick_ready(C_Info)
+instance DIA_Addon_Patrick_Ready(C_Info)
 {
 	npc = STRF_1118_Addon_Patrick;
 	nr = 2;
-	condition = DIA_Addon_Patrick_ready_Condition;
-	information = DIA_Addon_Patrick_ready_Info;
-	permanent = FALSE;
+	condition = DIA_Addon_Patrick_Ready_Condition;
+	information = DIA_Addon_Patrick_Ready_Info;
 	description = "Все хорошо. Вы можете идти.";
 };
 
 
-func int DIA_Addon_Patrick_ready_Condition()
+func int DIA_Addon_Patrick_Ready_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi))
 	{
 		if(Ready_Togo == TRUE)
 		{
 			return TRUE;
-		}
-		else if(Npc_IsDead(PrisonGuard) && Npc_IsDead(Bloodwyn))
+		};
+		if(Npc_IsDead(PrisonGuard) && Npc_IsDead(Bloodwyn))
 		{
 			if(Npc_KnowsInfo(other,DIA_Addon_Thorus_Answer))
 			{
 				return TRUE;
-			}
-			else if(Npc_IsDead(Thorus))
+			};
+			if(Npc_IsDead(Thorus))
 			{
 				return TRUE;
 			};
@@ -118,21 +116,21 @@ func int DIA_Addon_Patrick_ready_Condition()
 	};
 };
 
-func void DIA_Addon_Patrick_ready_Info()
+func void DIA_Addon_Patrick_Ready_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Patrick_ready_15_00");	//Все хорошо. Вы можете идти.
-	AI_Output(self,other,"DIA_Addon_Patrick_ready_07_01");	//Отлично! Я знаю на болоте одну пещеру, где мы можем укрыться. Но что нам делать дальше?
-	AI_Output(other,self,"DIA_Addon_Patrick_ready_15_02");	//Идите на юго-запад. Покинув болото, вы найдете развалины древнего храма. Там устроили лагерь маги Воды.
-	AI_Output(other,self,"DIA_Addon_Patrick_ready_15_03");	//Они расскажут вам, как выбраться из этой долины.
-	AI_Output(self,other,"DIA_Addon_Patrick_ready_07_04");	//Спасибо, спасибо большое. Мы все перед тобой в долгу...
-	AI_Output(other,self,"DIA_Addon_Patrick_ready_15_05");	//Не за что.
+	AI_Output(other,self,"DIA_Addon_Patrick_Ready_15_00");	//Все хорошо. Вы можете идти.
+	AI_Output(self,other,"DIA_Addon_Patrick_Ready_07_01");	//Отлично! Я знаю на болоте одну пещеру, где мы можем укрыться. Но что нам делать дальше?
+	AI_Output(other,self,"DIA_Addon_Patrick_Ready_15_02");	//Идите на юго-запад. Покинув болото, вы найдете развалины древнего храма. Там устроили лагерь маги Воды.
+	AI_Output(other,self,"DIA_Addon_Patrick_Ready_15_03");	//Они расскажут вам, как выбраться из этой долины.
+	AI_Output(self,other,"DIA_Addon_Patrick_Ready_07_04");	//Спасибо, спасибо большое. Мы все перед тобой в долгу...
+	AI_Output(other,self,"DIA_Addon_Patrick_Ready_15_05");	//Не за что.
 	Sklaven_Flucht = TRUE;
 	B_GivePlayerXP(XP_Addon_Flucht);
-	Info_ClearChoices(DIA_Addon_Patrick_ready);
-	Info_AddChoice(DIA_Addon_Patrick_ready,Dialog_Ende,DIA_Addon_Patrick_ready_END);
+	Info_ClearChoices(DIA_Addon_Patrick_Ready);
+	Info_AddChoice(DIA_Addon_Patrick_Ready,Dialog_Ende,DIA_Addon_Patrick_Ready_END);
 };
 
-func void DIA_Addon_Patrick_ready_END()
+func void DIA_Addon_Patrick_Ready_END()
 {
 	var C_Npc Slave_1;
 	var C_Npc Slave_2;
@@ -182,14 +180,13 @@ instance DIA_Addon_Patrick_Killer(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Patrick_Killer_Condition;
 	information = DIA_Addon_Patrick_Killer_Info;
-	permanent = FALSE;
 	description = "Я разобрался с охранником. Вы можете идти.";
 };
 
 
 func int DIA_Addon_Patrick_Killer_Condition()
 {
-	if(Npc_IsDead(PrisonGuard) && (Ready_Togo == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi))
+	if(Npc_IsDead(PrisonGuard) && (Ready_Togo == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi) && (Sklaven_Flucht == FALSE))
 	{
 		return TRUE;
 	};
@@ -215,9 +212,12 @@ instance DIA_Addon_Patrick_Hoehle(C_Info)
 
 func int DIA_Addon_Patrick_Hoehle_Condition()
 {
-	if(Npc_GetDistToWP(self,"ADW_BL_HOEHLE_05") <= 1000)
+	if(Sklaven_Flucht == TRUE)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"ADW_BL_HOEHLE_05") <= 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -1,14 +1,5 @@
 
-var int Brahim_ShowedMaps;
-
-func void B_BrahimNewMaps()
-{
-	if((Brahim_ShowedMaps == TRUE) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
-	{
-		AI_Output(self,other,"B_BrahimNewMaps_07_00");	//Заходи попозже. Я уверен, что смогу приготовить что-нибудь интересное для тебя.
-	};
-};
-
+var int Brahim_ToldAboutOldMap;
 
 instance DIA_Brahim_EXIT(C_Info)
 {
@@ -23,19 +14,60 @@ instance DIA_Brahim_EXIT(C_Info)
 
 func int DIA_Brahim_EXIT_Condition()
 {
-	if(Kapitel <= 2)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Brahim_EXIT_Info()
 {
-	B_BrahimNewMaps();
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
+	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE) && Npc_HasItems(other,ItWr_ShatteredGolem_MIS) && (Brahim_ToldAboutOldMap == FALSE))
+	{
+		AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_07_00");	//Я знал, что этот клочок бумаги заинтересует тебя.
+		AI_Output(other,self,"DIA_Brahim_Kap3_First_EXIT_15_01");	//Какой клочок?
+		AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_07_02");	//Ну, та старая карта, что ты только что купил.
+		AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_07_03");	//Я знаю таких людей, как ты. Вы используете каждый шанс, чтобы найти сокровища.
+		Brahim_ToldAboutOldMap = TRUE;
+		Info_ClearChoices(DIA_Brahim_EXIT);
+		Info_AddChoice(DIA_Brahim_EXIT,Dialog_Back,DIA_Brahim_EXIT_BACK);
+		Info_AddChoice(DIA_Brahim_EXIT,"Где ты взял эту карту?",DIA_Brahim_EXIT_WhereGetIt);
+		Info_AddChoice(DIA_Brahim_EXIT,"Что это за карта?",DIA_Brahim_EXIT_Content);
+		Info_AddChoice(DIA_Brahim_EXIT,"Почему ты не оставил ее себе?",DIA_Brahim_EXIT_KeepIt);
+	}
+	else
+	{
+		if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE) && (Brahim_ItemsGiven_Chapter_1 == TRUE) && (Brahim_ItemsGiven_Chapter_4 == FALSE))
+		{
+			AI_Output(self,other,"B_BrahimNewMaps_07_00");	//Заходи попозже. Я уверен, что смогу приготовить что-нибудь интересное для тебя.
+		};
+		B_EquipTrader(self);
+		AI_StopProcessInfos(self);
+	};
 };
 
+func void DIA_Brahim_EXIT_BACK()
+{
+	Info_ClearChoices(DIA_Brahim_EXIT);
+};
+
+func void DIA_Brahim_EXIT_WhereGetIt()
+{
+	AI_Output(other,self,"DIA_Brahim_Kap3_First_EXIT_WhereGetIt_15_00");	//Где ты взял эту карту?
+	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_WhereGetIt_07_01");	//Ох, я нашел ее в стопке старых карт, что я купил недавно.
+	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_WhereGetIt_07_02");	//Продавец, должно быть, проглядел ее.
+};
+
+func void DIA_Brahim_EXIT_Content()
+{
+	AI_Output(other,self,"DIA_Brahim_Kap3_First_EXIT_Content_15_00");	//Что это за карта?
+	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_Content_07_01");	//Похоже, это карта сокровищ или что-то вроде.
+	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_Content_07_02");	//Но, похоже, ты из тех, кто способен выяснить это самостоятельно.
+};
+
+func void DIA_Brahim_EXIT_KeepIt()
+{
+	AI_Output(other,self,"DIA_Brahim_Kap3_First_EXIT_KeepIt_15_00");	//Почему ты не оставил ее себе?
+	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_KeepIt_07_01");	//Я старый человек, и времена, когда я сам искал сокровища, давно прошли.
+	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_KeepIt_07_02");	//Пусть этим занимаются те, кто помоложе.
+};
 
 instance DIA_Brahim_GREET(C_Info)
 {
@@ -131,108 +163,5 @@ func void DIA_Brahim_BUY_Info()
 	};
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
-	Brahim_ShowedMaps = TRUE;
-};
-
-
-instance DIA_Brahim_Kap3_EXIT(C_Info)
-{
-	npc = VLK_437_Brahim;
-	nr = 999;
-	condition = DIA_Brahim_Kap3_EXIT_Condition;
-	information = DIA_Brahim_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Brahim_Kap3_EXIT_Condition()
-{
-	if((Kapitel >= 3) && (Npc_KnowsInfo(other,DIA_Brahim_Kap3_First_EXIT) || !Npc_HasItems(other,ItWr_ShatteredGolem_MIS)))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Brahim_Kap3_EXIT_Info()
-{
-	if(Kapitel <= 4)
-	{
-		B_BrahimNewMaps();
-	};
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Brahim_Kap3_First_EXIT(C_Info)
-{
-	npc = VLK_437_Brahim;
-	nr = 999;
-	condition = DIA_Brahim_Kap3_First_EXIT_Condition;
-	information = DIA_Brahim_Kap3_First_EXIT_Info;
-	permanent = FALSE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Brahim_Kap3_First_EXIT_Condition()
-{
-	if(Kapitel >= 3)
-	{
-		if(Npc_HasItems(other,ItWr_ShatteredGolem_MIS) || (MIS_HannaRetrieveLetter == LOG_SUCCESS))
-		{
-			return TRUE;
-		};
-	};
-};
-
-func void DIA_Brahim_Kap3_First_EXIT_Info()
-{
-	if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE)
-	{
-		AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_07_00");	//Я знал, что этот клочок бумаги заинтересует тебя.
-		AI_Output(other,self,"DIA_Brahim_Kap3_First_EXIT_15_01");	//Какой клочок?
-		AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_07_02");	//Ну, та старая карта, что ты только что купил.
-	};
-	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_07_03");	//Я знаю таких людей, как ты. Вы используете каждый шанс, чтобы найти сокровища.
-	if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE)
-	{
-		Info_ClearChoices(DIA_Brahim_Kap3_First_EXIT);
-		Info_AddChoice(DIA_Brahim_Kap3_First_EXIT,Dialog_Back,DIA_Brahim_Kap3_First_EXIT_BACK);
-		Info_AddChoice(DIA_Brahim_Kap3_First_EXIT,"Где ты взял эту карту?",DIA_Brahim_Kap3_First_EXIT_WhereGetIt);
-		Info_AddChoice(DIA_Brahim_Kap3_First_EXIT,"Что это за карта?",DIA_Brahim_Kap3_First_EXIT_Content);
-		Info_AddChoice(DIA_Brahim_Kap3_First_EXIT,"Почему ты не оставил ее себе?",DIA_Brahim_Kap3_First_EXIT_KeepIt);
-	}
-	else
-	{
-		AI_StopProcessInfos(self);
-	};
-};
-
-func void DIA_Brahim_Kap3_First_EXIT_BACK()
-{
-	Info_ClearChoices(DIA_Brahim_Kap3_First_EXIT);
-};
-
-func void DIA_Brahim_Kap3_First_EXIT_WhereGetIt()
-{
-	AI_Output(other,self,"DIA_Brahim_Kap3_First_EXIT_WhereGetIt_15_00");	//Где ты взял эту карту?
-	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_WhereGetIt_07_01");	//Ох, я нашел ее в стопке старых карт, что я купил недавно.
-	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_WhereGetIt_07_02");	//Продавец, должно быть, проглядел ее.
-};
-
-func void DIA_Brahim_Kap3_First_EXIT_Content()
-{
-	AI_Output(other,self,"DIA_Brahim_Kap3_First_EXIT_Content_15_00");	//Что это за карта?
-	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_Content_07_01");	//Похоже, это карта сокровищ или что-то вроде.
-	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_Content_07_02");	//Но, похоже, ты из тех, кто способен выяснить это самостоятельно.
-};
-
-func void DIA_Brahim_Kap3_First_EXIT_KeepIt()
-{
-	AI_Output(other,self,"DIA_Brahim_Kap3_First_EXIT_KeepIt_15_00");	//Почему ты не оставил ее себе?
-	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_KeepIt_07_01");	//Я старый человек, и времена, когда я сам искал сокровища, давно прошли.
-	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_KeepIt_07_02");	//Пусть этим занимаются те, кто помоложе.
 };
 

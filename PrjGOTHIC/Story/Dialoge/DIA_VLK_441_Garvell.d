@@ -133,7 +133,7 @@ func void DIA_Addon_Garvell_MissingPeople_Info()
 	AI_Output(other,self,"DIA_Addon_Garvell_MissingPeople_wo_15_00");	//Когда в последний раз ты видел Монти?
 	AI_Output(self,other,"DIA_Addon_Garvell_MissingPeople_wo_04_01");	//(сердито) Первый раз он не потрудился прийти на работу два дня назад.
 	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_MissingPeople,"Гарвелл жалуется на своего работника Монти, который не вышел на работу несколько дней назад. Гарвелл думает, что Монти сбежал к фермерам.");
 };
 
@@ -163,7 +163,7 @@ func void DIA_Addon_Garvell_MissingPeopleMore_Info()
 	AI_Output(self,other,"DIA_Addon_Garvell_MissingPeople_more_04_03");	//Я уверен, что за всем этим стоят орки.
 	SCKnowsFarimAsWilliamsFriend = TRUE;
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 	if(Npc_KnowsInfo(other,DIA_Addon_Farim_William))
 	{
 		B_LogEntry(TOPIC_Addon_WhoStolePeople,"Похоже, рыбак Фарим что-то знает об исчезновении своего друга Вильяма.");
@@ -172,7 +172,7 @@ func void DIA_Addon_Garvell_MissingPeopleMore_Info()
 	{
 		B_LogEntries(TOPIC_Addon_WhoStolePeople,"Похоже, рыбак Фарим что-то знает об исчезновении своего друга Вильяма.");
 		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 		B_LogNextEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
 	};
 	Info_ClearChoices(DIA_Addon_Garvell_MissingPeopleMore);
@@ -232,7 +232,6 @@ instance DIA_Garvell_MISSION(C_Info)
 	nr = 2;
 	condition = DIA_Garvell_MISSION_Condition;
 	information = DIA_Garvell_MISSION_Info;
-	permanent = FALSE;
 	description = "Могу я чем-нибудь помочь?";
 };
 
@@ -253,10 +252,10 @@ func void DIA_Garvell_MISSION_Info()
 	AI_Output(self,other,"DIA_Garvell_MISSION_04_03");	//Одного из этих отродий видели совсем неподалеку от города.
 	AI_Output(self,other,"DIA_Garvell_MISSION_04_04");	//Просто сообщай мне всю информацию, что раздобудешь.
 	AI_Output(self,other,"DIA_Garvell_Add_04_00");	//Я должен знать, сколько у меня осталось времени на постройку судна.
-	MIS_Garvell_Infos = LOG_Running;
+	MIS_Garvell_Infos = LOG_RUNNING;
 	Knows_Ork = TRUE;
 	Log_CreateTopic(TOPIC_Garvell,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Garvell,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Garvell,LOG_RUNNING);
 	B_LogEntry(TOPIC_Garvell,"Гарвелл хочет получить информацию об орках и о цели прибытия паладинов.");
 };
 
@@ -296,14 +295,13 @@ instance DIA_Garvell_Orks(C_Info)
 	nr = 3;
 	condition = DIA_Garvell_Orks_Condition;
 	information = DIA_Garvell_Orks_Info;
-	permanent = FALSE;
 	description = "У меня есть информация об орках.";
 };
 
 
 func int DIA_Garvell_Orks_Condition()
 {
-	if((MIS_Garvell_Infos == LOG_Running) && ((RangarToldAboutPaladins == TRUE) || Npc_KnowsInfo(other,DIA_Garond_NeedProof)))
+	if((MIS_Garvell_Infos == LOG_RUNNING) && ((RangarToldAboutPaladins == TRUE) || Npc_KnowsInfo(other,DIA_Garond_NeedProof)))
 	{
 		return TRUE;
 	};
@@ -325,14 +323,13 @@ instance DIA_Garvell_Paladine(C_Info)
 	nr = 2;
 	condition = DIA_Garvell_Paladine_Condition;
 	information = DIA_Garvell_Paladine_Info;
-	permanent = FALSE;
 	description = "Я знаю, зачем паладины здесь.";
 };
 
 
 func int DIA_Garvell_Paladine_Condition()
 {
-	if((MIS_Garvell_Infos == LOG_Running) && (KnowsPaladins_Ore == TRUE))
+	if((MIS_Garvell_Infos == LOG_RUNNING) && (KnowsPaladins_Ore == TRUE))
 	{
 		return TRUE;
 	};
@@ -354,14 +351,13 @@ instance DIA_Garvell_City(C_Info)
 	nr = 4;
 	condition = DIA_Garvell_City_Condition;
 	information = DIA_Garvell_City_Info;
-	permanent = FALSE;
 	description = "Что касается орка около города...";
 };
 
 
 func int DIA_Garvell_City_Condition()
 {
-	if((MIS_Garvell_Infos == LOG_Running) && ((RangarToldAboutOrc == TRUE) || Npc_IsDead(CityOrc)))
+	if((MIS_Garvell_Infos == LOG_RUNNING) && ((RangarToldAboutOrc == TRUE) || Npc_IsDead(CityOrc)))
 	{
 		return TRUE;
 	};

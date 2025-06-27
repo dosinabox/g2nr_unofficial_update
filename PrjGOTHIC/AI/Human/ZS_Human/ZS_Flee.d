@@ -2,11 +2,6 @@
 func void ZS_Flee()
 {
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
-	/*B_ValidateOther();
-	if(self.aivar[AIV_LOADGAME] == FALSE)
-	{
-		B_Say_FleeReason();
-	};*/
 	B_Say_FleeReason();
 	AI_RemoveWeapon(self);
 	AI_SetWalkMode(self,NPC_RUN);
@@ -17,12 +12,12 @@ func void ZS_Flee()
 func int ZS_Flee_Loop()
 {
 	Npc_GetTarget(self);
-	if(Npc_GetDistToNpc(self,hero) > FIGHT_DIST_CANCEL)
+	if(C_NpcIsDown(hero))
 	{
 		Npc_ClearAIQueue(self);
 		return LOOP_END;
 	};
-	if(C_NpcIsDown(hero))
+	if(Npc_GetDistToNpc(self,hero) > FIGHT_DIST_CANCEL)
 	{
 		Npc_ClearAIQueue(self);
 		return LOOP_END;

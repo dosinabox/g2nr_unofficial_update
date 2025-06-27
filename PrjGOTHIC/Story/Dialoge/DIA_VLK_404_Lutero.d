@@ -138,9 +138,9 @@ func void DIA_Lutero_Snapper_Info()
 	};
 	AI_Output(other,self,"DIA_Lutero_Hello_15_08");	//Я посмотрю, что можно сделать.
 	Log_CreateTopic(TOPIC_Lutero,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Lutero,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Lutero,LOG_RUNNING);
 	B_LogEntry(TOPIC_Lutero,"Торговец Лютеро ищет когти необычайно сильного снеппера.");
-	Lutero_Krallen = LOG_Running;
+	MIS_Lutero_Krallen = LOG_RUNNING;
 };
 
 
@@ -181,7 +181,7 @@ func void DIA_Lutero_Kralle_Info()
 		AI_Output(self,other,"DIA_Lutero_Hello_13_05");	//Вот кольцо, как я и обещал тебе.
 		B_GiveInvItems(self,other,ItRi_Prot_Total_01,1);
 	};
-	Lutero_Krallen = LOG_SUCCESS;
+	MIS_Lutero_Krallen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };
 

@@ -190,7 +190,7 @@ func void DIA_Lobart_Hallo_What()
 func void B_StartLobartClothesTopic()
 {
 	Log_CreateTopic(TOPIC_Kleidung,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Kleidung,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Kleidung,LOG_RUNNING);
 	B_LogEntry(TOPIC_Kleidung,"Фермер Лобарт готов продать мне рабочую одежду. Он может снизить цену за одежду, если я поработаю на его ферме. Чем больше я сделаю, тем дешевле обойдется мне одежда.");
 };
 
@@ -532,7 +532,7 @@ func void DIA_Lobart_WorkNOW_Ok()
 		AI_Output(self,other,"DIA_Lobart_WorkNOW_Ok_05_01");	//Тогда поторопись, пока я не передумал.
 	};
 	Log_CreateTopic(TOPIC_Rueben,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Rueben,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Rueben,LOG_RUNNING);
 	if(Lobart_Kleidung_Verkauft == FALSE)
 	{
 		B_LogEntry(TOPIC_Rueben,"Фермер Лобарт хочет, чтобы я собрал репу на поле. За это он заплатит мне золотом или продаст мне одежду по значительно сниженной цене.");
@@ -541,7 +541,7 @@ func void DIA_Lobart_WorkNOW_Ok()
 	{
 		B_LogEntry(TOPIC_Rueben,"Фермер Лобарт хочет, чтобы я собрал репу на поле.");
 	};
-	MIS_Lobart_Rueben = LOG_Running;
+	MIS_Lobart_Rueben = LOG_RUNNING;
 	Info_ClearChoices(DIA_Lobart_WorkNOW);
 };
 
@@ -558,7 +558,7 @@ func void DIA_Lobart_WorkNOW_WannaFoolMe()
 		AI_Output(self,other,"DIA_Lobart_WorkNOW_WannaFoolMe_05_03");	//Сейчас у меня нет другой работы для тебя.
 	};
 	Log_CreateTopic(TOPIC_Rueben,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Rueben,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Rueben,LOG_RUNNING);
 	if(Lobart_Kleidung_Verkauft == FALSE)
 	{
 		B_LogEntry(TOPIC_Rueben,"Фермер Лобарт хочет, чтобы я собрал репу на поле. За это он заплатит мне золотом или продаст мне одежду по значительно сниженной цене.");
@@ -567,7 +567,7 @@ func void DIA_Lobart_WorkNOW_WannaFoolMe()
 	{
 		B_LogEntry(TOPIC_Rueben,"Фермер Лобарт хочет, чтобы я собрал репу на поле.");
 	};
-	MIS_Lobart_Rueben = LOG_Running;
+	MIS_Lobart_Rueben = LOG_RUNNING;
 	Info_ClearChoices(DIA_Lobart_WorkNOW);
 };
 
@@ -585,7 +585,7 @@ instance DIA_Lobart_RuebenRunning(C_Info)
 
 func int DIA_Lobart_RuebenRunning_Condition()
 {
-	if((MIS_Lobart_Rueben == LOG_Running) && Npc_HasItems(other,ItPl_Beet) && (Kapitel < 3))
+	if((MIS_Lobart_Rueben == LOG_RUNNING) && Npc_HasItems(other,ItPl_Beet) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -603,9 +603,9 @@ func void DIA_Lobart_RuebenRunning_Info()
 		if(!Npc_IsDead(Hilda))
 		{
 			AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_02");	//Отнеси ее моей жене в дом и скажи ей, чтобы она приготовила ее.
-			MIS_Lobart_RuebenToHilda = LOG_Running;
+			MIS_Lobart_RuebenToHilda = LOG_RUNNING;
 			Log_CreateTopic(TOPIC_Ruebenbringen,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Ruebenbringen,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Ruebenbringen,LOG_RUNNING);
 			B_LogEntry(TOPIC_Ruebenbringen,"Я должен отнести собранную репу жене Лобарта, находящейся в доме.");
 		};
 		MIS_Lobart_Rueben = LOG_SUCCESS;
@@ -674,7 +674,7 @@ instance DIA_Lobart_MoreWork(C_Info)
 
 func int DIA_Lobart_MoreWork_Condition()
 {
-	if(((MIS_Lobart_Rueben == LOG_Running) || (MIS_Lobart_Rueben == LOG_SUCCESS)) && (Kapitel < 3))
+	if(((MIS_Lobart_Rueben == LOG_RUNNING) || (MIS_Lobart_Rueben == LOG_SUCCESS)) && (Kapitel < 3))
 	{
 		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 		{
@@ -686,7 +686,7 @@ func int DIA_Lobart_MoreWork_Condition()
 func void DIA_Lobart_MoreWork_Info()
 {
 	AI_Output(other,self,"DIA_Lobart_MoreWork_15_00");	//У тебя есть еще какая-нибудь работа для меня?
-	if(MIS_Lobart_Rueben == LOG_Running)
+	if(MIS_Lobart_Rueben == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Lobart_MoreWork_05_01");	//Сначала собери репу с поля. А там посмотрим.
 	}
@@ -708,7 +708,7 @@ instance DIA_Lobart_ANDREHELPLOBART(C_Info)
 
 func int DIA_Lobart_ANDREHELPLOBART_Condition()
 {
-	if(MIS_AndreHelpLobart == LOG_Running)
+	if(MIS_AndreHelpLobart == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -720,7 +720,7 @@ func void DIA_Lobart_ANDREHELPLOBART_Info()
 	AI_Output(self,other,"DIA_Lobart_ANDREHELPLOBART_05_01");	//Да, конечно. Меня уже тошнит от этих проклятых полевых хищников.
 	AI_Output(self,other,"DIA_Lobart_ANDREHELPLOBART_05_02");	//Прикончи их всех. Меня не волнует, как!
 	B_LogEntry(TOPIC_Feldraeuber,"Поля Лобарта наводнены полевыми хищниками. Он хочет, чтобы я прогнал их.");
-	MIS_LobartKillBugs = LOG_Running;
+	MIS_LobartKillBugs = LOG_RUNNING;
 	AI_StopProcessInfos(self);
 };
 
@@ -737,7 +737,7 @@ instance DIA_Lobart_BUGDEAD(C_Info)
 
 func int DIA_Lobart_BUGDEAD_Condition()
 {
-	if(MIS_LobartKillBugs == LOG_Running)
+	if(MIS_LobartKillBugs == LOG_RUNNING)
 	{
 		if(C_LobartBugsDead())
 		{
@@ -750,9 +750,9 @@ func void DIA_Lobart_BUGDEAD_Info()
 {
 	AI_Output(other,self,"DIA_Lobart_BUGDEAD_15_00");	//Я разделался с этими тварями!
 	AI_Output(self,other,"DIA_Lobart_BUGDEAD_05_01");	//Отлично. Ты не такой уж плохой ликвидатор. Я порекомендую тебя соседям. Вот, держи заработанное.
-	B_StartOtherRoutine(Vino,"Start");
-	B_StartOtherRoutine(LobartsBauer1,"Start");
-	B_StartOtherRoutine(LobartsBauer2,"Start");
+	B_StartOtherRoutine(Vino,"START");
+	B_StartOtherRoutine(LobartsBauer1,"START");
+	B_StartOtherRoutine(LobartsBauer2,"START");
 	CreateInvItems(self,ItMi_Gold,20);
 	B_GiveInvItems(self,other,ItMi_Gold,20);
 	MIS_LobartKillBugs = LOG_SUCCESS;
@@ -774,7 +774,7 @@ instance DIA_Lobart_BUGALIVE(C_Info)
 
 func int DIA_Lobart_BUGALIVE_Condition()
 {
-	if(MIS_LobartKillBugs == LOG_Running)
+	if(MIS_LobartKillBugs == LOG_RUNNING)
 	{
 		if(!C_LobartBugsDead())
 		{
@@ -845,16 +845,16 @@ func void DIA_Lobart_DMT_FrauHeilen()
 	if(MIS_HealHilda == FALSE)
 	{
 		Log_CreateTopic(TOPIC_HealHilda,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_HealHilda,LOG_Running);
+		Log_SetTopicStatus(TOPIC_HealHilda,LOG_RUNNING);
 		B_LogEntry(TOPIC_HealHilda,"Жена Лобарта Хильда больна, но у Ватраса есть лекарство, которое может вылечить ее.");
-		MIS_HealHilda = LOG_Running;
+		MIS_HealHilda = LOG_RUNNING;
 	};
 };
 
 func void DIA_Lobart_DMT_BACK()
 {
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 func void DIA_Lobart_DMT_spokeToThem()
@@ -973,7 +973,7 @@ func void DIA_Lobart_ORKPROBLEM_Info()
 	AI_Output(self,other,"DIA_Lobart_ORKPROBLEM_05_01");	//(зло) Черт. Ну когда-нибудь все это кончится?!
 	AI_Output(self,other,"DIA_Lobart_ORKPROBLEM_05_02");	//Если так будет продолжаться, моя ферма не будет стоить и трех золотых монет.
 	Log_CreateTopic(TOPIC_LobartsOrkProblem,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_LobartsOrkProblem,LOG_Running);
+	Log_SetTopicStatus(TOPIC_LobartsOrkProblem,LOG_RUNNING);
 	B_LogEntry(TOPIC_LobartsOrkProblem,"На ферме Лобарта поселились орки. Он хочет, чтобы я избавил его от них.");
 	AI_StopProcessInfos(self);
 };
@@ -1008,9 +1008,9 @@ func void DIA_Lobart_ORKSWEG_Info()
 		AI_Output(self,other,"DIA_Lobart_ORKSWEG_05_01");	//Никому не позволю говорить, что паладины ничего не делают для нас, простых фермеров.
 	};
 	AI_Output(self,other,"DIA_Lobart_ORKSWEG_05_02");	//Слава Инносу. Я не могу дать тебе за это много, но я надеюсь, ты оценишь мой жест благодарности.
-	B_StartOtherRoutine(Vino,"Start");
-	B_StartOtherRoutine(LobartsBauer1,"Start");
-	B_StartOtherRoutine(LobartsBauer2,"Start");
+	B_StartOtherRoutine(Vino,"START");
+	B_StartOtherRoutine(LobartsBauer1,"START");
+	B_StartOtherRoutine(LobartsBauer2,"START");
 	TOPIC_END_LobartsOrkProblem = TRUE;
 	B_GivePlayerXP(XP_KilledLobartOrks);
 	CreateInvItems(self,ItMi_Gold,150);

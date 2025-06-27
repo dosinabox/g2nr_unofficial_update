@@ -1,21 +1,21 @@
 
-instance DIA_GornNW_nach_DJG_KAP5_EXIT(C_Info)
+instance DIA_GornNW_nach_DJG_EXIT(C_Info)
 {
 	npc = PC_Fighter_NW_nach_DJG;
 	nr = 999;
-	condition = DIA_GornNW_nach_DJG_KAP5_EXIT_Condition;
-	information = DIA_GornNW_nach_DJG_KAP5_EXIT_Info;
+	condition = DIA_GornNW_nach_DJG_EXIT_Condition;
+	information = DIA_GornNW_nach_DJG_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_GornNW_nach_DJG_KAP5_EXIT_Condition()
+func int DIA_GornNW_nach_DJG_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_GornNW_nach_DJG_KAP5_EXIT_Info()
+func void DIA_GornNW_nach_DJG_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -76,7 +76,7 @@ func void DIA_GornNW_nach_DJG_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_12_03");	//(смеется) Конечно. Всегда готов. Просто скажи, что нужно делать.
 	if(SCToldGornHeKnowWhereEnemy == FALSE)
 	{
-		B_LogEntry(Topic_Crew,"Горн был готов на все, когда я рассказал ему об острове. Если мне понадобится его топор, я могу взять его с собой.");
+		B_LogEntry(TOPIC_Crew,"Горн был готов на все, когда я рассказал ему об острове. Если мне понадобится его топор, я могу взять его с собой.");
 		SCToldGornHeKnowWhereEnemy = TRUE;
 	};
 	if(Crewmember_Count >= Max_Crew)
@@ -134,7 +134,7 @@ func void DIA_GornNW_nach_DJG_LeaveMyShip_Info()
 	AI_Output(self,other,"DIA_GornNW_nach_DJG_LeaveMyShip_12_01");	//Ты хочешь, чтобы я отпустил тебя одного? Ммм. Мне нелегко это сделать, но это твоя война. Найди меня, если решишь, что я все же тебе нужен.
 	Gorn_IsOnBoard = LOG_OBSOLETE;
 	Crewmember_Count -= 1;
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 

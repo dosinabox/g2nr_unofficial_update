@@ -20,7 +20,7 @@ func void B_Say_AttackReason()
 				return;
 			};
 		};
-		if(other.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(other))
 		{
 			if(C_PlayerIsFakeBandit(self,other))
 			{
@@ -76,7 +76,7 @@ func void B_Say_AttackReason()
 	};
 	if(self.aivar[AIV_ATTACKREASON] == AR_SheepKiller)
 	{
-		if(other.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(other))
 		{
 			B_Say_Overlay(self,other,"$SHEEPKILLER");
 		}
@@ -109,7 +109,7 @@ func void B_Say_AttackReason()
 	};
 	if(self.aivar[AIV_ATTACKREASON] == AR_ReactToDamage)
 	{
-		if(other.guild > GIL_SEPERATOR_HUM)
+		if(!C_NpcIsHuman(other))
 		{
 			B_Say_Overlay(self,other,"$YOUASKEDFORIT");
 		}

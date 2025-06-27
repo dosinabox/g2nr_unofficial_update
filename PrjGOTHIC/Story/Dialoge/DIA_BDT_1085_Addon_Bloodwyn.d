@@ -27,7 +27,6 @@ instance DIA_Addon_Bloodwyn_Dead(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Bloodwyn_Dead_Condition;
 	information = DIA_Addon_Bloodwyn_Dead_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -80,7 +79,6 @@ instance DIA_Addon_Bloodwyn_Wait(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Bloodwyn_Wait_Condition;
 	information = DIA_Addon_Bloodwyn_Wait_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -131,7 +129,7 @@ func void DIA_Addon_Bloodwyn_Wait_FIGHT()
 		B_Say(self,other,"$KILLENEMY");
 	};
 	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_NONE,1);
+	B_Attack(self,other,AR_KILL,1);
 };
 
 func void Bloodwyn_Lach()
@@ -144,7 +142,7 @@ func void Bloodwyn_Wut()
 	AI_Output(self,other,"DIA_Addon_Bloodwyn_Wut_04_00");	//А-АХ! Ты, жалкая тварь!
 	self.attribute[ATR_STRENGTH] -= 5;
 	Npc_ChangeAttribute(self,ATR_HITPOINTS_MAX,-25);
-	if(self.attribute[ATR_HITPOINTS] > 25)
+	if(self.attribute[ATR_HITPOINTS] > 26)
 	{
 		self.attribute[ATR_HITPOINTS] -= 25;
 	};

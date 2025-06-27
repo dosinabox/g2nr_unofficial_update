@@ -37,7 +37,6 @@ instance DIA_Addon_Edgor_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Edgor_Hi_Condition;
 	information = DIA_Addon_Edgor_Hi_Info;
-	permanent = FALSE;
 	description = " ак дела?";
 };
 
@@ -71,7 +70,6 @@ instance DIA_Addon_Edgor_Franco(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Edgor_Franco_Condition;
 	information = DIA_Addon_Edgor_Franco_Info;
-	permanent = FALSE;
 	description = " ак ‘ранко сделалс€ старшим?";
 };
 
@@ -98,14 +96,13 @@ instance DIA_Addon_Edgor_MIS2(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Edgor_MIS2_Condition;
 	information = DIA_Addon_Edgor_MIS2_Info;
-	permanent = FALSE;
 	description = "‘ранко послал мен€ по поводу этой каменной таблички. “ы ее нашел?";
 };
 
 
 func int DIA_Addon_Edgor_MIS2_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_Hi) && (MIS_HlpEdgor == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_Hi) && (MIS_HlpEdgor == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -117,7 +114,7 @@ func void DIA_Addon_Edgor_MIS2_Info()
 	AI_Output(self,other,"DIA_Addon_Edgor_MIS2_06_01");	//ѕри€тель, € даже не пыталс€ ее искать. ¬се, что € знаю - это то, что она должна быть где-то в этом старом здании на болоте.
 	AI_Output(self,other,"DIA_Addon_Edgor_MIS2_06_02");	//ј мой внутренний голос говорит мне: 'Ёдгор, сторонись старых зданий, сто€щих на болоте'.
 	AI_Output(self,other,"DIA_Addon_Edgor_MIS2_06_03");	//я не собираюсь рисковать своей шкурой ради этого раздолба€ ‘ранко!
-	B_LogEntry(Topic_Addon_Stoneplate,"Ёдгор не собираетс€ искать каменную табличку. ќн говорит, что она находитс€ в каком-то старом строении на болотах.");
+	B_LogEntry(TOPIC_Addon_Stoneplate,"Ёдгор не собираетс€ искать каменную табличку. ќн говорит, что она находитс€ в каком-то старом строении на болотах.");
 };
 
 
@@ -127,14 +124,13 @@ instance DIA_Addon_Edgor_Weg(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Edgor_Weg_Condition;
 	information = DIA_Addon_Edgor_Weg_Info;
-	permanent = FALSE;
 	description = "ј где находитс€ это старое здание?";
 };
 
 
 func int DIA_Addon_Edgor_Weg_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_MIS2) && !Npc_HasItems(other,ItMi_Addon_Stone_04) && (MIS_HlpEdgor == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_MIS2) && !Npc_HasItems(other,ItMi_Addon_Stone_04) && (MIS_HlpEdgor == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -156,7 +152,6 @@ instance DIA_Addon_Edgor_Found(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Edgor_Found_Condition;
 	information = DIA_Addon_Edgor_Found_Info;
-	permanent = FALSE;
 	description = "я нашел каменную табличку!";
 };
 
@@ -190,7 +185,6 @@ instance DIA_Addon_Edgor_Teach(C_Info)
 	nr = 9;
 	condition = DIA_Addon_Edgor_Teach_Condition;
 	information = DIA_Addon_Edgor_Teach_Info;
-	permanent = FALSE;
 	description = "ћожешь научить мен€ кое-чему?";
 };
 
@@ -213,8 +207,8 @@ func void DIA_Addon_Edgor_Teach_Info()
 	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_05");	// онечно, € ничего не буду делать бесплатно...
 	if(!Npc_KnowsInfo(other,DIA_Addon_Logan_Lern))
 	{
-		Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
-		B_LogEntry(Topic_Addon_BDT_Teacher,Log_Text_Addon_EdgorTeach);
+		Log_CreateTopic(TOPIC_Addon_BDT_Teacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_BDT_Teacher,Log_Text_Addon_EdgorTeach);
 	};
 };
 
@@ -334,8 +328,8 @@ func void DIA_Addon_Edgor_TrainStart_GIFT()
 		other.lp -= 1;
 		Knows_Bloodfly = TRUE;
 		PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
-		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-		B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);
+		Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
+		B_LogEntry(TOPIC_Bonus,PRINT_KnowsBloodfly);
 	}
 	else
 	{

@@ -15,7 +15,9 @@ const int Value_Health_Herb_02 = 20;
 const int HP_Health_Herb_02 = 20;
 const int Value_Health_Herb_03 = 30;
 const int HP_Health_Herb_03 = 30;
+const int Dex_Herb_01_Bonus = 1;
 const int Value_Dex_Herb_01 = 250;
+const int Strength_Herb_01_Bonus = 1;
 const int Value_Strength_Herb_01 = 500;
 const int Value_Speed_Herb_01 = 100;
 const int Speed_Boost = 15000;
@@ -261,7 +263,7 @@ instance ItPl_Dex_Herb_01(C_Item)
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_Dex;
-	count[1] = 1;
+	count[1] = Dex_Herb_01_Bonus;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -270,7 +272,7 @@ instance ItPl_Dex_Herb_01(C_Item)
 func void Use_Dex_Herb_01()
 {
 	TotalDexEaten += 1;
-	B_RaiseAttributeByPermBonus(self,ATR_DEXTERITY,1);
+	B_RaiseAttributeByPermBonus(self,ATR_DEXTERITY,Dex_Herb_01_Bonus);
 };
 
 
@@ -286,7 +288,7 @@ instance ItPl_Strength_Herb_01(C_Item)
 	scemeName = "FOOD";
 	description = name;
 	text[1] = NAME_Bonus_Str;
-	count[1] = 1;
+	count[1] = Strength_Herb_01_Bonus;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -295,7 +297,7 @@ instance ItPl_Strength_Herb_01(C_Item)
 func void Use_Strength_Herb_01()
 {
 	TotalStrEaten += 1;
-	B_RaiseAttributeByPermBonus(self,ATR_STRENGTH,1);
+	B_RaiseAttributeByPermBonus(self,ATR_STRENGTH,Strength_Herb_01_Bonus);
 };
 
 

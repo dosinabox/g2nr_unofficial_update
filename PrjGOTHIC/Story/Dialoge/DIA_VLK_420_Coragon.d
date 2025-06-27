@@ -136,7 +136,7 @@ func void DIA_Addon_Coragon_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_06");	//Жизнь в Хоринисе непростая, но за воротами еще опаснее.
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_07");	//Те, кто не остается в городе, рано или поздно попадет в руки к бандитам или в зубы к диким животным. Все просто.
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Хакон, торговец на рыночной площади, и плотник Торбен знают что-то о пропавших людях.");
 };
 
@@ -166,7 +166,7 @@ func void DIA_Coragon_Bestohlen_Info()
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_09");	//Да, некоторое время назад. Тем вечером было довольно людно, и я только и делал, что разносил пиво.
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_10");	//От стойки я надолго не отлучался, но этим подонкам хватило и небольшого времени.
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_11");	//Я рассказал о краже ополчению, но они, конечно же, никого не нашли. Эти лентяи предпочитают накачиваться бесплатным пивом.
-	MIS_Coragon_Silber = LOG_Running;
+	MIS_Coragon_Silber = LOG_RUNNING;
 };
 
 
@@ -175,6 +175,7 @@ var int Coragon_Bier;
 func void B_Coragon_Bier()
 {
 	Coragon_Bier += 1;
+	self.npcType = NPCTYPE_FRIEND;
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_14");	//Вот, возьми это в качестве награды.
 	B_GiveInvItems(self,other,ItFo_CoragonsBeer,1);
 	if(Coragon_Bier < 2)
@@ -201,7 +202,7 @@ instance DIA_Coragon_BringSilber(C_Info)
 
 func int DIA_Coragon_BringSilber_Condition()
 {
-	if((MIS_Coragon_Silber == LOG_Running) && (Npc_HasItems(other,ItMi_CoragonsSilber) >= 8))
+	if((MIS_Coragon_Silber == LOG_RUNNING) && (Npc_HasItems(other,ItMi_CoragonsSilber) >= 8))
 	{
 		return TRUE;
 	};
@@ -213,9 +214,9 @@ func void DIA_Coragon_BringSilber_Info()
 	B_GiveInvItems(other,self,ItMi_CoragonsSilber,8);
 	Npc_RemoveInvItems(self,ItMi_CoragonsSilber,8);
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_13");	//Правда?
-	B_GivePlayerXP(XP_CoragonsSilber);
 	B_Coragon_Bier();
 	MIS_Coragon_Silber = LOG_SUCCESS;
+	B_GivePlayerXP(XP_CoragonsSilber);
 };
 
 
@@ -278,8 +279,8 @@ func void DIA_Coragon_GiveBook_Info()
 		B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
 	};
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_19");	//Спасибо! Ты спас меня. Лемар может быть очень неприятным человеком.
-	B_GivePlayerXP(XP_Schuldenbuch);
 	B_Coragon_Bier();
+	B_GivePlayerXP(XP_Schuldenbuch);
 };
 
 
@@ -354,10 +355,12 @@ instance DIA_Coragon_News(C_Info)
 
 func int DIA_Coragon_News_Condition()
 {
-//	if(!Npc_IsDead(Valentino) && (Valentino.aivar[AIV_DefeatedByPlayer] == TRUE) && Npc_KnowsInfo(other,DIA_Regis_Valentino) && (Valentino_Day < Wld_GetDay()))
-	if(!Npc_IsDead(Valentino) && (Valentino.aivar[AIV_DefeatedByPlayer] == TRUE) && (Valentino_Day < Wld_GetDay()))
+	if(!Npc_IsDead(Valentino) && (Valentino_Day < Wld_GetDay()))
 	{
-		return TRUE;
+		if(Valentino.aivar[AIV_DefeatedByPlayer] == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -436,13 +439,13 @@ func void DIA_Coragon_PICKPOCKET_Book_DoIt()
 		CreateInvItem(other,ItWr_Schuldenbuch);
 		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Корагон",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Корагон",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
 		SchuldBuch_Stolen_Coragon = TRUE;
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Корагон",PRINT_PickPocketFailed));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Корагон",PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};

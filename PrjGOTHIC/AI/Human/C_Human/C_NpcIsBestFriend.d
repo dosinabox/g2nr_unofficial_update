@@ -1,75 +1,75 @@
 
 func int C_NpcIsBestFriend(var C_Npc slf)
 {
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(DiegoOW))
+	if(C_IsNpc(slf,PC_ThiefOW))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(DiegoNW))
+	if(C_IsNpc(slf,PC_Thief_NW))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Diego_DI))
+	if(C_IsNpc(slf,PC_Thief_DI))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lester))
+	if(C_IsNpc(slf,PC_Psionic))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lester_DI))
+	if(C_IsNpc(slf,PC_Psionic_DI))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(MiltenOW))
+	if(C_IsNpc(slf,PC_Mage_OW))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(MiltenNW))
+	if(C_IsNpc(slf,PC_Mage_NW))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Milten_DI))
+	if(C_IsNpc(slf,PC_Mage_DI))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(GornOW))
+	if(C_IsNpc(slf,PC_Fighter_OW))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(GornNW_vor_DJG))
+	if(C_IsNpc(slf,PC_Fighter_NW_vor_DJG))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(GornDJG))
+	if(C_IsNpc(slf,PC_Fighter_DJG))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(GornNW_nach_DJG))
+	if(C_IsNpc(slf,PC_Fighter_NW_nach_DJG))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Gorn_DI))
+	if(C_IsNpc(slf,PC_Fighter_DI))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(DJG_Angar))
+	if(C_IsNpc(slf,DJG_705_Angar))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Angar_NW))
+	if(C_IsNpc(slf,DJG_705_Angar_NW))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Angar_DI))
+	if(C_IsNpc(slf,DJG_705_Angar_DI))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Xardas))
+	if(C_IsNpc(slf,NONE_100_Xardas))
 	{
 		return TRUE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Greg_NW))
+	if(C_IsNpc(slf,PIR_1300_Addon_Greg_NW))
 	{
 		return TRUE;
 	};

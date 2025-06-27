@@ -1,21 +1,21 @@
 
-instance DIA_MiltenNW_KAP3_EXIT(C_Info)
+instance DIA_MiltenNW_EXIT(C_Info)
 {
 	npc = PC_Mage_NW;
 	nr = 999;
-	condition = DIA_MiltenNW_KAP3_EXIT_Condition;
-	information = DIA_MiltenNW_KAP3_EXIT_Info;
+	condition = DIA_MiltenNW_EXIT_Condition;
+	information = DIA_MiltenNW_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_MiltenNW_KAP3_EXIT_Condition()
+func int DIA_MiltenNW_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_MiltenNW_KAP3_EXIT_Info()
+func void DIA_MiltenNW_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -27,7 +27,6 @@ instance DIA_MiltenNW_KAP3_Hello_FirstMeet(C_Info)
 	nr = 31;
 	condition = DIA_MiltenNW_KAP3_Hello_FirstMeet_Condition;
 	information = DIA_MiltenNW_KAP3_Hello_FirstMeet_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -43,14 +42,14 @@ func int DIA_MiltenNW_KAP3_Hello_FirstMeet_Condition()
 func void DIA_MiltenNW_KAP3_Hello_FirstMeet_Info()
 {
 	AI_Output(self,other,"DIA_MiltenOW_Hello_03_00");	//Посмотрите, кто вернулся! Наш герой из-за Барьера!
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_00");	//(не веря) Я не могу поверить в это. Ты действительно стал паладином?
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_01");	//Похоже на то.
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_02");	//(в эйфории) Если такие, как ты, становятся паладинами, то прихвостням Белиара нужно держать ухо востро.
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_03");	//Какая-то горстка орков для тебя не проблема.
 	}
-	else if(hero.guild == GIL_DJG)
+	else if(other.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_10");	//Я вижу, что слухи оказались правдой.
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_11");	//Какие слухи?
@@ -64,7 +63,7 @@ func void DIA_MiltenNW_KAP3_Hello_FirstMeet_Info()
 		AI_Output(self,other,"DIA_MiltenOW_Hello_NO_03_01");	//Ты через многое прошел, да?
 	};
 	Info_ClearChoices(DIA_MiltenNW_KAP3_Hello_FirstMeet);
-	if((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG))
+	if((other.guild == GIL_PAL) || (other.guild == GIL_DJG))
 	{
 		Info_AddChoice(DIA_MiltenNW_KAP3_Hello_FirstMeet,"Проблема не только в орках.",DIA_MiltenNW_KAP3_Hello_FirstMeet_YES);
 	}
@@ -78,7 +77,7 @@ func void DIA_MiltenNW_KAP3_Hello_FirstMeet_Info()
 
 func void DIA_MiltenNW_KAP3_Hello_FirstMeet_YES()
 {
-	if((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG))
+	if((other.guild == GIL_PAL) || (other.guild == GIL_DJG))
 	{
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_04");	//Проблема не только в орках.
 	}
@@ -86,7 +85,7 @@ func void DIA_MiltenNW_KAP3_Hello_FirstMeet_YES()
 	{
 		DIA_Common_EverythingWillBeAlright();
 	};
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_05");	//Я знаю, но все равно хорошо, что ты на нашей стороне.
 		DIA_Common_Yeah();
@@ -94,7 +93,7 @@ func void DIA_MiltenNW_KAP3_Hello_FirstMeet_YES()
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_08");	//Возможно.
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_09");	//Я знал это - лучше всего тебе поговорить с Мардуком, он отвечает за вас, паладинов. Ты найдешь его перед часовней.
 	}
-	else if(hero.guild == GIL_DJG)
+	else if(other.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_17");	//Я знаю, но, тем не менее, они доставляют проблемы. А ты важная птица.
 	}
@@ -117,22 +116,19 @@ func void DIA_MiltenNW_KAP3_Hello_FirstMeet_NO()
 };
 
 
-//////////////////////////////////////////////////////////////////
-
 instance DIA_MiltenNW_KAP3_Hello(C_Info)
 {
 	npc = PC_Mage_NW;
 	nr = 31;
 	condition = DIA_MiltenNW_KAP3_Hello_Condition;
 	information = DIA_MiltenNW_KAP3_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_MiltenNW_KAP3_Hello_Condition()
 {
-	if(((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)) && Npc_KnowsInfo(other,DIA_MiltenOW_Hello))
+	if(((other.guild == GIL_PAL) || (other.guild == GIL_DJG)) && Npc_KnowsInfo(other,DIA_MiltenOW_Hello))
 	{
 		return TRUE;
 	};
@@ -140,7 +136,7 @@ func int DIA_MiltenNW_KAP3_Hello_Condition()
 
 func void DIA_MiltenNW_KAP3_Hello_Info()
 {
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_00");	//(не веря) Я не могу поверить в это. Ты действительно стал паладином?
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_01");	//Похоже на то.
@@ -153,7 +149,7 @@ func void DIA_MiltenNW_KAP3_Hello_Info()
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_08");	//Возможно.
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_09");	//Я знал это - лучше всего тебе поговорить с Мардуком, он отвечает за вас, паладинов. Ты найдешь его перед часовней.
 	}
-	else if(hero.guild == GIL_DJG)
+	else if(other.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_10");	//Я вижу, что слухи оказались правдой.
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_11");	//Какие слухи?
@@ -175,7 +171,6 @@ instance DIA_MiltenNW_Monastery(C_Info)
 	nr = 35;
 	condition = DIA_MiltenNW_Monastery_Condition;
 	information = DIA_MiltenNW_Monastery_Info;
-	permanent = FALSE;
 	description = "Как ты смог добраться до монастыря так быстро?";
 };
 
@@ -199,7 +194,7 @@ func void DIA_MiltenNW_Monastery_Info()
 func void B_MiltenTalkAboutLester()
 {
 	AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_02");	//Лестер исчез, впрочем - и я понятия не имею, где он сейчас ошивается.
-	if(Npc_KnowsInfo(other,DIA_Lester_Hello) || Npc_KnowsInfo(other,DIA_Lester_BACKINTOWN))
+	if(PlayerTalkedToLesterNW == TRUE)
 	{
 		if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS) || Npc_KnowsInfo(other,DIA_Lester_BACKINTOWN))
 		{
@@ -210,8 +205,9 @@ func void B_MiltenTalkAboutLester()
 			AI_Output(other,self,"DIA_MiltenOW_Hello_Friends_15_03_add");	//Я встретил Лестера. Он в порядке.
 		};
 		AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_04");	//Ну, хоть какие-то хорошие новости.
+		Milten_KnowsWhereIsLester = TRUE;
 	}
-	else if(Kapitel > 2)
+	else if(Kapitel >= 3)
 	{
 		AI_Output(other,self,"Extro_Tempel_15_04");	//Хм, где же он?
 	};
@@ -223,7 +219,6 @@ instance DIA_MiltenNW_FourFriends(C_Info)
 	nr = 35;
 	condition = DIA_MiltenNW_FourFriends_Condition;
 	information = DIA_MiltenNW_FourFriends_Info;
-	permanent = FALSE;
 	description = "Ты знаешь, где остальные?";
 };
 
@@ -232,6 +227,10 @@ func int DIA_MiltenNW_FourFriends_Condition()
 {
 	if((Kapitel == 3) && ((Knows_Milten == TRUE) || (Knows_Diego == TRUE)))
 	{
+		if(Npc_KnowsInfo(other,DIA_DiegoNW_NeedHelp) && Npc_KnowsInfo(other,DIA_GornNW_Hallo) && (PlayerTalkedToLesterNW == TRUE))
+		{
+			return FALSE;
+		};
 		return TRUE;
 	};
 };
@@ -239,33 +238,26 @@ func int DIA_MiltenNW_FourFriends_Condition()
 func void DIA_MiltenNW_FourFriends_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_FourFriends_15_00");	//Ты знаешь, где остальные?
-	if(!Npc_IsDead(GornNW_vor_DJG))
+	AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_01");	//Горн, похоже, ничуть не изменился после заключения в тюрьме Гаронда.
+	if(MIS_RescueGorn != LOG_SUCCESS)
 	{
-		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_01");	//Горн, похоже, ничуть не изменился после заключения в тюрьме Гаронда.
-		if(MIS_RescueGorn != LOG_SUCCESS)
+		AI_Output(other,self,"DIA_MiltenNW_FourFriends_15_02");	//Как ему удалось выбраться?
+		if(Npc_KnowsInfo(other,DIA_DiegoOw_Gorn))
 		{
-			AI_Output(other,self,"DIA_MiltenNW_FourFriends_15_02");	//Как ему удалось выбраться?
-			if(Npc_KnowsInfo(other,DIA_DiegoOw_Gorn))
-			{
-				AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_03");	//Мне пришлось солгать Гаронду, так что он снял все обвинения.
-				AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_04");	//Но это только между нами, понятно?
-				AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_07");	//Горн не виноват.
-			}
-			else
-			{
-				AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_10");	//Диего выкупил Горна - похоже, что Барьер изменил и его.
-			};
+			AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_03");	//Мне пришлось солгать Гаронду, так что он снял все обвинения.
+			AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_04");	//Но это только между нами, понятно?
+			AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_07");	//Горн не виноват.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_10");	//Диего выкупил Горна - похоже, что Барьер изменил и его.
 		};
-		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_05");	//В любом случае, он хотел отправиться к Ли и посмотреть, что происходит на ферме.
-		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_06");	//После голодания в темнице, он, вероятно, сейчас пытается восполнить потерю в весе и испытывает на прочность кладовку наемников.
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_07");	//Горн не виноват.
 	};
+	AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_05");	//В любом случае, он хотел отправиться к Ли и посмотреть, что происходит на ферме.
+	AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_06");	//После голодания в темнице, он, вероятно, сейчас пытается восполнить потерю в весе и испытывает на прочность кладовку наемников.
 	AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_08");	//Диего бормотал что-то о расплате. Но я понятия не имею, что он хотел сказать этим.
 	AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_09");	//Но я подозреваю, что он сейчас в городе. Ты знаешь его - он всегда там, где можно поживиться.
-	if(!Npc_KnowsInfo(other,DIA_MiltenOW_Hello))
+	if(Milten_KnowsWhereIsLester == FALSE)
 	{
 		B_MiltenTalkAboutLester();
 	};
@@ -299,7 +291,7 @@ instance DIA_MiltenNW_KAP3_Entry(C_Info)
 
 func int DIA_MiltenNW_KAP3_Entry_Condition()
 {
-	if((Kapitel == 3) && (hero.guild != GIL_KDF) && (MiltenNW_GivesMonasteryKey == FALSE))
+	if((Kapitel == 3) && (other.guild != GIL_KDF) && (MiltenNW_GivesMonasteryKey == FALSE))
 	{
 		return TRUE;
 	};
@@ -308,7 +300,7 @@ func int DIA_MiltenNW_KAP3_Entry_Condition()
 func void DIA_MiltenNW_KAP3_Entry_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_KAP3_Entry_15_00");	//Мне нужно попасть в монастырь. Это срочно!
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_03_01");	//Да, конечно. Вот ключ.
 		B_MiltenNW_GiveMonasteryKey();
@@ -359,14 +351,13 @@ instance DIA_MiltenNW_KAP3_NovizenChase(C_Info)
 	nr = 31;
 	condition = DIA_MiltenNW_KAP3_NovizenChase_Condition;
 	information = DIA_MiltenNW_KAP3_NovizenChase_Info;
-	permanent = FALSE;
 	description = "Ты знаешь, где Педро?";
 };
 
 
 func int DIA_MiltenNW_KAP3_NovizenChase_Condition()
 {
-	if((Kapitel == 3) && (MIS_NovizenChase == LOG_Running) && (MIS_SCKnowsInnosEyeIsBroken == FALSE))
+	if((Kapitel == 3) && (MIS_NovizenChase == LOG_RUNNING) && (MIS_SCKnowsInnosEyeIsBroken == FALSE))
 	{
 		return TRUE;
 	};
@@ -387,7 +378,6 @@ instance DIA_MiltenNW_KAP3_Perm(C_Info)
 	nr = 39;
 	condition = DIA_MiltenNW_KAP3_Perm_Condition;
 	information = DIA_MiltenNW_KAP3_Perm_Info;
-	permanent = FALSE;
 	description = "Ты знаешь что-нибудь о людях в черных рясах?";
 };
 
@@ -435,12 +425,12 @@ func void DIA_MiltenNW_KAP4_PERM_Info()
 		AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_01");	//Это я должен тебя спрашивать. Мы все здесь очень обеспокоены.
 		AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_02");	//Высший Совет пытается предугадать следующий ход врага.
 		AI_Output(other,self,"DIA_MiltenNW_KAP4_PERM_15_03");	//Что-нибудь еще?
-		if(hero.guild == GIL_PAL)
+		if(other.guild == GIL_PAL)
 		{
 			AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_04");	//Последнее время все больше сообщений о нападении орков, даже за пределами Долины Рудников.
 			AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_05");	//Мне это все не нравится - я не думаю, что у нас осталось много времени.
 		}
-		else if(hero.guild == GIL_DJG)
+		else if(other.guild == GIL_DJG)
 		{
 			AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_06");	//Фермер сообщил о появлении чешуйчатых существ у его фермы.
 			AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_07");	//Я не знаю, что все это значит, но я думаю, что враг что-то задумал.
@@ -463,7 +453,6 @@ instance DIA_MiltenNW_AllDragonsDead(C_Info)
 	nr = 900;
 	condition = DIA_MiltenNW_AllDragonsDead_Condition;
 	information = DIA_MiltenNW_AllDragonsDead_Info;
-	permanent = FALSE;
 	description = "Я убил всех драконов.";
 };
 
@@ -542,7 +531,7 @@ func void DIA_MiltenNW_KnowWhereEnemy_Info()
 		AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_02");	//Ты говорил с Диего? Я думаю, он согласится присоединиться к тебе.
 		if(SCToldDiegoHeKnowWhereEnemy == FALSE)
 		{
-			B_LogEntry(Topic_Crew,"Диего может оказаться полезным. Он никогда подолгу не задерживается на одном месте.");
+			B_LogEntry(TOPIC_Crew,"Диего может оказаться полезным. Он никогда подолгу не задерживается на одном месте.");
 			SCToldDiegoHeKnowWhereEnemy = TRUE;
 		};
 	};
@@ -551,22 +540,30 @@ func void DIA_MiltenNW_KnowWhereEnemy_Info()
 		AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_03");	//А что насчет Горна? Поговори с ним. Я слышал, он вернулся из Долины Рудников.
 		if(SCToldGornHeKnowWhereEnemy == FALSE)
 		{
-			B_LogEntry(Topic_Crew,"Горн, определенно, может оказаться полезным. Никогда не помешает иметь на своей стороне такого закаленного бойца. Возможно, он сможет тренировать меня.");
+			B_LogEntry(TOPIC_Crew,"Горн, определенно, может оказаться полезным. Никогда не помешает иметь на своей стороне такого закаленного бойца. Возможно, он сможет тренировать меня.");
 			SCToldGornHeKnowWhereEnemy = TRUE;
 		};
 	};
 	if(!Npc_IsDead(Lester))
 	{
-		AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_04");	//И не забудь Лестера. Если ты не вытащишь его из долины, он сгниет там.
+		if(Milten_KnowsWhereIsLester == TRUE)
+		{
+			AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_04");	//И не забудь Лестера. Если ты не вытащишь его из долины, он сгниет там.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_04_add");	//И не забудь Лестера.
+			B_MiltenTalkAboutLester();
+		};
 		if(SCToldLesterHeKnowWhereEnemy == FALSE)
 		{
 			if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
 			{
-				B_LogEntry(Topic_Crew,"Лестер может обладать ценной информацией. Мне следует проведать его в башне Ксардаса.");
+				B_LogEntry(TOPIC_Crew,"Лестер может обладать ценной информацией. Мне следует проведать его в башне Ксардаса.");
 			}
 			else
 			{
-				B_LogEntry(Topic_Crew,"Если я не возьму Лестера с собой, ему никогда не выбраться из той долины.");
+				B_LogEntry(TOPIC_Crew,"Если я не возьму Лестера с собой, ему никогда не выбраться из той долины.");
 			};
 			SCToldLesterHeKnowWhereEnemy = TRUE;
 		};
@@ -574,7 +571,7 @@ func void DIA_MiltenNW_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_05");	//Я также вижу свою роль во всем этом. Я могу повысить твою ману и помочь в создании рун. Когда мы приступим?
 	if(SCToldMiltenHeKnowWhereEnemy == FALSE)
 	{
-		B_LogEntry(Topic_Crew,"Если Милтен отправится в путь со мной, он может научить меня создавать руны и повысить мою ману.");
+		B_LogEntry(TOPIC_Crew,"Если Милтен отправится в путь со мной, он может научить меня создавать руны и повысить мою ману.");
 		SCToldMiltenHeKnowWhereEnemy = TRUE;
 	};
 	if(Crewmember_Count >= Max_Crew)
@@ -632,7 +629,7 @@ func void DIA_MiltenNW_WhereCaptain_Info()
 	AI_Output(self,other,"DIA_MiltenNW_WhereCaptain_03_01");	//Спроси Йоргена. Он ведь моряк. Он, должно быть, все еще в монастыре.
 	AI_Output(self,other,"DIA_MiltenNW_WhereCaptain_03_02");	//Но если он не сможет помочь, попробуй поспрашивать на фермах или в городе, может быть, найдется человек, способный управлять твоим кораблем.
 	AI_Output(self,other,"DIA_MiltenNW_WhereCaptain_03_03");	//Лучше всего поговорить с Ли или поспрашивать в гавани Хориниса. Больше ничего сейчас мне в голову не приходит.
-	B_LogEntry(Topic_Captain,"Возможно, стоит взять с собой Йоргена в качестве капитана. Он все еще должен быть в монастыре. Хотя, кроме него есть и другие кандидаты на фермах и в городе. Возможно, мне стоит поговорить с Ли или поспрашивать в гавани.");
+	B_LogEntry(TOPIC_Captain,"Возможно, стоит взять с собой Йоргена в качестве капитана. Он все еще должен быть в монастыре. Хотя, кроме него есть и другие кандидаты на фермах и в городе. Возможно, мне стоит поговорить с Ли или поспрашивать в гавани.");
 };
 
 

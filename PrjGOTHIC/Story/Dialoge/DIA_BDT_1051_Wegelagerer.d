@@ -1,5 +1,5 @@
 
-var int BDT_1051_Wegelagerer_Angriff;
+var int BDT_1051_Attack;
 
 instance DIA_1051_Wegelagerer_EXIT(C_Info)
 {
@@ -14,17 +14,15 @@ instance DIA_1051_Wegelagerer_EXIT(C_Info)
 
 func int DIA_1051_Wegelagerer_EXIT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_1051_Wegelagerer_Question) || (BDT_1051_Wegelagerer_Angriff == TRUE))
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_1051_Wegelagerer_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-	if(BDT_1051_Wegelagerer_Angriff == TRUE)
+	if(BDT_1051_Attack == TRUE)
 	{
+		Npc_SetRefuseTalk(self,40);
 		self.aivar[AIV_EnemyOverride] = FALSE;
 		if(!Npc_IsDead(BDT_1052))
 		{
@@ -37,55 +35,59 @@ func void DIA_1051_Wegelagerer_EXIT_Info()
 instance DIA_1051_Wegelagerer_Hello(C_Info)
 {
 	npc = BDT_1051_Wegelagerer;
-	nr = 4;
-	condition = DIA_Wegelagerer_Hello_Condition;
-	information = DIA_Wegelagerer_Hello_Info;
-	permanent = FALSE;
-	important = TRUE;
-//	description = "Что вы делаете здесь?";
+	nr = 1;
+	condition = DIA_1051_Wegelagerer_Hello_Condition;
+	information = DIA_1051_Wegelagerer_Hello_Info;
+	description = "Что вы делаете здесь?";
 };
 
 
-func int DIA_Wegelagerer_Hello_Condition()
+func int DIA_1051_Wegelagerer_Hello_Condition()
 {
-	if((BDT_1051_Wegelagerer_Angriff == FALSE) && Npc_IsInState(self,ZS_Talk))
+	if(BDT_1051_Attack == FALSE)
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_Wegelagerer_Hello_Info()
+func void DIA_1051_Wegelagerer_Hello_Info()
 {
 	AI_Output(other,self,"DIA_1051_Wegelagerer_Hello_15_00");	//Что вы делаете здесь?
 	AI_Output(self,other,"DIA_1051_Wegelagerer_Hello_07_01");	//Что тебе нужно?
 };
 
 
+func void B_BDT_1051_LookingForYou()
+{
+	AI_Output(other,self,"DIA_1051_Wegelagerer_Question_Novice_Who_15_00");	//И кого же?
+	AI_Output(self,other,"DIA_1051_Wegelagerer_Question_Novice_Who_07_01");	//Тебя!
+};
+
 instance DIA_1051_Wegelagerer_Novice(C_Info)
 {
 	npc = BDT_1051_Wegelagerer;
-	nr = 4;
-	condition = DIA_Wegelagerer_Novice_Condition;
-	information = DIA_Wegelagerer_Novice_Info;
-	permanent = FALSE;
+	nr = 2;
+	condition = DIA_1051_Wegelagerer_Novice_Condition;
+	information = DIA_1051_Wegelagerer_Novice_Info;
 	description = "Я ищу послушника.";
 };
 
 
-func int DIA_Wegelagerer_Novice_Condition()
+func int DIA_1051_Wegelagerer_Novice_Condition()
 {
-	if((MIS_NovizenChase == LOG_Running) && (MIS_SCKnowsInnosEyeIsBroken == FALSE) && (BDT_1051_Wegelagerer_Angriff == FALSE))
+	if(Npc_KnowsInfo(other,DIA_1051_Wegelagerer_Hello) && (BDT_1051_Attack == FALSE) && (MIS_NovizenChase == LOG_RUNNING) && (MIS_SCKnowsInnosEyeIsBroken == FALSE))
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_Wegelagerer_Novice_Info()
+func void DIA_1051_Wegelagerer_Novice_Info()
 {
 	AI_Output(other,self,"DIA_1051_Wegelagerer_Novice_15_00");	//Я ищу послушника.
 	AI_Output(self,other,"DIA_1051_Wegelagerer_Novice_07_01");	//Очень интересно. Мы тоже кое-кого ищем.
-	Info_ClearChoices(DIA_1051_Wegelagerer_Question);
-	Info_AddChoice(DIA_1051_Wegelagerer_Novice,"И кого же?",DIA_1051_Wegelagerer_Question_Novice_Who);
+	B_BDT_1051_LookingForYou();
+	BDT_1051_Attack = TRUE;
+	AI_StartState(self,DIA_1051_Wegelagerer_EXIT_Info,1,"");
 };
 
 
@@ -93,28 +95,27 @@ instance DIA_1051_Wegelagerer_Question(C_Info)
 {
 	npc = BDT_1051_Wegelagerer;
 	nr = 4;
-	condition = DIA_Wegelagerer_Question_Condition;
-	information = DIA_Wegelagerer_Question_Info;
-	permanent = FALSE;
+	condition = DIA_1051_Wegelagerer_Question_Condition;
+	information = DIA_1051_Wegelagerer_Question_Info;
 	description = "Я просто спросил.";
 };
 
 
-func int DIA_Wegelagerer_Question_Condition()
+func int DIA_1051_Wegelagerer_Question_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_1051_Wegelagerer_Hello) && (BDT_1051_Wegelagerer_Angriff == FALSE))
+	if(Npc_KnowsInfo(other,DIA_1051_Wegelagerer_Hello) && (BDT_1051_Attack == FALSE))
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_Wegelagerer_Question_Info()
+func void DIA_1051_Wegelagerer_Question_Info()
 {
 	AI_Output(other,self,"DIA_1051_Wegelagerer_Question_15_00");	//Я просто спросил.
 	AI_Output(self,other,"DIA_1051_Wegelagerer_Question_07_01");	//Понятно. Но что ТЫ делаешь здесь?
 	AI_Output(self,other,"DIA_1051_Wegelagerer_Question_07_02");	//Ладно. Это наша дорога, и мы не любим, когда кто-то беспокоит нас здесь.
 	Info_ClearChoices(DIA_1051_Wegelagerer_Question);
-	if((MIS_NovizenChase == LOG_Running) && (MIS_SCKnowsInnosEyeIsBroken == FALSE))
+	if((MIS_NovizenChase == LOG_RUNNING) && (MIS_SCKnowsInnosEyeIsBroken == FALSE))
 	{
 		Info_AddChoice(DIA_1051_Wegelagerer_Question,"Я ищу послушника.",DIA_1051_Wegelagerer_Question_Novice);
 	};
@@ -132,11 +133,10 @@ func void DIA_1051_Wegelagerer_Question_Novice()
 
 func void DIA_1051_Wegelagerer_Question_Novice_Who()
 {
-	AI_Output(other,self,"DIA_1051_Wegelagerer_Question_Novice_Who_15_00");	//И кого же?
-	AI_Output(self,other,"DIA_1051_Wegelagerer_Question_Novice_Who_07_01");	//Тебя!
-	BDT_1051_Wegelagerer_Angriff = TRUE;
-	Npc_SetRefuseTalk(self,40);
+	B_BDT_1051_LookingForYou();
 	Info_ClearChoices(DIA_1051_Wegelagerer_Question);
+	BDT_1051_Attack = TRUE;
+	AI_StartState(self,DIA_1051_Wegelagerer_EXIT_Info,1,"");
 };
 
 func void DIA_1051_Wegelagerer_Question_MyConcern()
@@ -152,55 +152,52 @@ func void DIA_1051_Wegelagerer_Question_MyConcern_No()
 {
 	AI_Output(other,self,"DIA_1051_Wegelagerer_Question_MyConcern_No_15_00");	//Нет, ничего. Не надо никаких неприятностей.
 	AI_Output(self,other,"DIA_1051_Wegelagerer_Question_MyConcern_No_07_01");	//Понятно, в штаны наложил. А теперь проваливай.
+	Info_ClearChoices(DIA_1051_Wegelagerer_Question);
 	AI_StopProcessInfos(self);
 };
 
 func void DIA_1051_Wegelagerer_Question_MyConcern_Yes()
 {
 	AI_Output(other,self,"DIA_1051_Wegelagerer_Question_MyConcern_Yes_15_00");	//Если вам так угодно.
-	AI_Output(self,other,"DIA_1051_Wegelagerer_Question_MyConcern_Yes_07_01");	//Хо-хо, какой наглец.
+	AI_Output(self,other,"DIA_1051_Wegelagerer_Question_MyConcern_Yes_07_01");	//Хо-хо-хо-хо, какой наглец.
 	AI_Output(self,other,"DIA_1051_Wegelagerer_Question_MyConcern_Yes_07_02");	//Сейчас мы заткнем твою пасть.
-	BDT_1051_Wegelagerer_Angriff = TRUE;
-	Npc_SetRefuseTalk(self,40);
 	Info_ClearChoices(DIA_1051_Wegelagerer_Question);
+	BDT_1051_Attack = TRUE;
+	AI_StartState(self,DIA_1051_Wegelagerer_EXIT_Info,1,"");
 };
 
 func void DIA_1051_Wegelagerer_Question_LookAround()
 {
 	AI_Output(other,self,"DIA_1051_Wegelagerer_Question_LookAround_15_00");	//Я просто любуюсь природой.
 	AI_Output(self,other,"DIA_1051_Wegelagerer_Question_LookAround_07_01");	//Любуйся дальше, только к нам больше не приставай.
+	Info_ClearChoices(DIA_1051_Wegelagerer_Question);
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_Wegelagerer_ANGRIFF(C_Info)
+instance DIA_1051_Wegelagerer_ANGRIFF(C_Info)
 {
 	npc = BDT_1051_Wegelagerer;
 	nr = 2;
-	condition = DIA_Wegelagerer_ANGRIFF_Condition;
-	information = DIA_Wegelagerer_ANGRIFF_Info;
+	condition = DIA_1051_Wegelagerer_ANGRIFF_Condition;
+	information = DIA_1051_Wegelagerer_ANGRIFF_Info;
 	important = TRUE;
 	permanent = TRUE;
 };
 
 
-func int DIA_Wegelagerer_ANGRIFF_Condition()
+func int DIA_1051_Wegelagerer_ANGRIFF_Condition()
 {
-	if(!Npc_RefuseTalk(self) && ((BDT_1051_Wegelagerer_Angriff == TRUE) || C_NpcIsDown(BDT_1052)))
+	if(!Npc_RefuseTalk(self) && ((BDT_1051_Attack == TRUE) || C_NpcIsDown(BDT_1052)))
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_Wegelagerer_ANGRIFF_Info()
+func void DIA_1051_Wegelagerer_ANGRIFF_Info()
 {
 	AI_Output(self,other,"DIA_Wegelagerer_ANGRIFF_07_00");	//Сейчас ты получишь.
-	AI_StopProcessInfos(self);
-	Npc_SetRefuseTalk(self,40);
-	self.aivar[AIV_EnemyOverride] = FALSE;
-	if(!Npc_IsDead(BDT_1052))
-	{
-		BDT_1052.aivar[AIV_EnemyOverride] = FALSE;
-	};
+	BDT_1051_Attack = TRUE;
+	AI_StartState(self,DIA_1051_Wegelagerer_EXIT_Info,1,"");
 };
 

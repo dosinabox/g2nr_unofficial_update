@@ -71,7 +71,6 @@ instance DIA_Addon_Huno_Hi(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Huno_Hi_Condition;
 	information = DIA_Addon_Huno_Hi_Info;
-	permanent = FALSE;
 	description = "Я гляжу, ты в своем деле собаку съел.";
 };
 
@@ -87,8 +86,8 @@ func void DIA_Addon_Huno_Hi_Info()
 	AI_Output(self,other,"DIA_Addon_Huno_Hi_06_01");	//И не одну. Сталь принес?
 	AI_Output(other,self,"DIA_Addon_Huno_Hi_15_02");	//Сталь? Кажется, ты меня с кем-то спутал...
 	AI_Output(self,other,"DIA_Addon_Huno_Hi_06_03");	//Хм... Мы нигде раньше не пересекались?
-	Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Trader,"Хуно продает изделия из металла.");
+	Log_CreateTopic(TOPIC_Addon_BDT_Trader,LOG_NOTE);
+	B_LogEntry(TOPIC_Addon_BDT_Trader,"Хуно продает изделия из металла.");
 	Info_ClearChoices(DIA_Addon_Huno_Hi);
 	Info_AddChoice(DIA_Addon_Huno_Hi,"Ну да. В Старом Лагере.",DIA_Addon_Huno_Hi_JA);
 	Info_AddChoice(DIA_Addon_Huno_Hi,"Я думаю, нет. Нет, не пересекались.",DIA_Addon_Huno_Hi_NO);
@@ -118,7 +117,6 @@ instance DIA_Addon_Huno_Blitz(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Huno_Blitz_Condition;
 	information = DIA_Addon_Huno_Blitz_Info;
-	permanent = FALSE;
 	description = "Скажи, как ты спасся?";
 };
 
@@ -215,14 +213,13 @@ instance DIA_Addon_Huno_Attentat(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Huno_Attentat_Condition;
 	information = DIA_Addon_Huno_Attentat_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_ATTENTAT_DESCRIPTION2;
 };
 
 
 func int DIA_Addon_Huno_Attentat_Condition()
 {
-	if(MIS_Judas == LOG_Running)
+	if(MIS_Judas == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -305,7 +302,7 @@ func void DIA_Addon_Huno_SomeThings_Info()
 			AI_PlayAni(self,"T_SEARCH");
 			AI_Output(self,other,"DIA_Addon_Huno_SomeThings_06_10");	//А это что еще значит?
 			Huno_SomeThings_PERM = TRUE;
-			B_LogEntry(Topic_Addon_Esteban,"Похоже, я взял Хуно за задницу.");
+			B_LogEntry(TOPIC_Addon_Esteban,"Похоже, я взял Хуно за задницу.");
 			Info_ClearChoices(DIA_Addon_Huno_SomeThings);
 			Info_AddChoice(DIA_Addon_Huno_SomeThings,"Я хочу встать на твою сторону, Хуно!",DIA_Addon_Huno_SomeThings_Contra);
 			Info_AddChoice(DIA_Addon_Huno_SomeThings,"Если ты организовал нападение, ты за это поплатишься!",DIA_Addon_Huno_SomeThings_Pro);
@@ -347,11 +344,11 @@ func void DIA_Addon_Huno_SomeThings_Contra()
 	AI_Output(other,self,"DIA_Addon_Huno_SomeThings_Contra_15_07");	//А как звать этого пьяного бандита?
 	AI_Output(self,other,"DIA_Addon_Huno_SomeThings_Contra_06_08");	//Его имя тебя не касается. Но вот кто тебе в самом деле нужен, так это Хуан. Я не видел его в лагере довольно долго.
 	AI_Output(self,other,"DIA_Addon_Huno_SomeThings_Contra_06_09");	//Глянь на болоте. Он скорее всего там.
-	MIS_Huno_Stahl = LOG_Running;
+	MIS_Huno_Stahl = LOG_RUNNING;
 	Huno_Angepisst = FALSE;
-	Log_CreateTopic(Topic_Addon_Huno,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Huno,LOG_Running);
-	B_LogEntry(Topic_Addon_Huno,"Хуно ждет посылку со сталью, которую ему должны были доставить от пиратов. Он думает, что ее украл для Эстебана человек по имени Хуан. Он прячется на болотах.");
+	Log_CreateTopic(TOPIC_Addon_Huno,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Huno,LOG_RUNNING);
+	B_LogEntry(TOPIC_Addon_Huno,"Хуно ждет посылку со сталью, которую ему должны были доставить от пиратов. Он думает, что ее украл для Эстебана человек по имени Хуан. Он прячется на болотах.");
 	Info_ClearChoices(DIA_Addon_Huno_SomeThings);
 	Info_AddChoice(DIA_Addon_Huno_SomeThings,"Скажи мне сначала, кто стоял за атакой!",DIA_Addon_Huno_SomeThings_TellMeNow);
 	Info_AddChoice(DIA_Addon_Huno_SomeThings,"Хорошо, я займусь этим.",DIA_Addon_Huno_SomeThings_Mission);
@@ -373,7 +370,7 @@ func void DIA_Addon_Huno_SomeThings_TellMeNow()
 	AI_Output(other,self,"DIA_Addon_Huno_SomeThings_TellMeNow_15_03");	//Выбирай.
 	AI_Output(self,other,"DIA_Addon_Huno_SomeThings_TellMeNow_06_04");	//(вздыхает) Ладно. Я организую встречу. Но только так, как я этого хочу, понял?
 	AI_Output(self,other,"DIA_Addon_Huno_SomeThings_TellMeNow_06_05");	//Иди в таверну и поговори с хозяином. Он скажет, что делать дальше.
-	B_LogEntry(Topic_Addon_Esteban,"Хуно сказал, что я должен поговорить со Снафом.");
+	B_LogEntry(TOPIC_Addon_Esteban,"Хуно сказал, что я должен поговорить со Снафом.");
 	Huno_zuSnaf = TRUE;
 	Info_ClearChoices(DIA_Addon_Huno_SomeThings);
 	AI_StopProcessInfos(self);
@@ -386,14 +383,13 @@ instance DIA_Addon_Huno_Paket(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Huno_Paket_Condition;
 	information = DIA_Addon_Huno_Paket_Info;
-	permanent = FALSE;
 	description = "Вот твоя сталь.";
 };
 
 
 func int DIA_Addon_Huno_Paket_Condition()
 {
-	if((MIS_Huno_Stahl == LOG_Running) && Npc_HasItems(other,ItMi_Addon_Steel_Paket))
+	if((MIS_Huno_Stahl == LOG_RUNNING) && Npc_HasItems(other,ItMi_Addon_Steel_Paket))
 	{
 		return TRUE;
 	};
@@ -417,7 +413,7 @@ func void DIA_Addon_Huno_Paket_Info()
 	{
 		AI_Output(other,self,"DIA_Addon_Huno_Paket_15_06");	//А теперь давай поговорим о нашем договоре.
 		AI_Output(self,other,"DIA_Addon_Huno_Paket_06_07");	//Нужный тебе человек ждет тебя в таверне. Поговори с хозяином.
-		B_LogEntry(Topic_Addon_Esteban,"Хуно сказал, что я должен поговорить со Снафом.");
+		B_LogEntry(TOPIC_Addon_Esteban,"Хуно сказал, что я должен поговорить со Снафом.");
 		Huno_zuSnaf = TRUE;
 	};
 	MIS_Huno_Stahl = LOG_SUCCESS;
@@ -458,7 +454,6 @@ instance DIA_Huno_RepairNecklace(C_Info)
 	nr = 600;
 	condition = DIA_Huno_RepairNecklace_Condition;
 	information = DIA_Huno_RepairNecklace_Info;
-	permanent = FALSE;
 	description = "Ты можешь чинить драгоценности?";
 };
 

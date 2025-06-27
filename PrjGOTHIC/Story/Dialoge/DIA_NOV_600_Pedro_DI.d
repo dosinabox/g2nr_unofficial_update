@@ -41,15 +41,15 @@ func void DIA_Pedro_DI_YOU_Info()
 	AI_Output(other,self,"DIA_Pedro_DI_YOU_15_00");	//Предатель! Наконец-то я нашел тебя.
 	SCFoundPedro = TRUE;
 	B_CheckLog();
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(other,self,"DIA_Pedro_DI_YOU_15_01");	//Ты можешь не надеяться, что я пощажу тебя, потому что я паладин.
 	}
-	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(other,self,"DIA_Pedro_DI_YOU_15_02");	//Многие из нас, наемников, продали свою душу Белиару, и зачастую я чувствую вину, когда убиваю их. Но для тебя, подлая свинья, я сделаю исключение!
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(other,self,"DIA_Pedro_DI_YOU_15_03");	//Из всех бездушных ублюдков, что я встречал в своей жизни, ты худший. Ты позор для нашего ордена.
 	};
@@ -61,7 +61,7 @@ func void DIA_Pedro_DI_YOU_Info()
 	Info_AddChoice(DIA_Pedro_DI_YOU,"Рассказывай, что ты знаешь.",DIA_Pedro_DI_YOU_verschon);
 	Info_AddChoice(DIA_Pedro_DI_YOU,"И слышать ничего не хочу. Я убью тебя.",DIA_Pedro_DI_YOU_tot);
 	Info_AddChoice(DIA_Pedro_DI_YOU,"Назови хотя бы одну причину, по которой я должен поверить тебе.",DIA_Pedro_DI_YOU_grund);
-	if(MIS_Gorax_KillPedro == LOG_Running)
+	if(MIS_Gorax_KillPedro == LOG_RUNNING)
 	{
 		Info_AddChoice(DIA_Pedro_DI_YOU,"Серпентес дал мне приказ убить тебя.",DIA_Pedro_DI_YOU_Serpentes);
 	};
@@ -83,7 +83,7 @@ func void DIA_Pedro_DI_YOU_tot()
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"SHIP");
 	B_Attack(self,other,AR_NONE,1);
-	PedroDI_Flee = LOG_Running;
+	PedroDI_Flee = LOG_RUNNING;
 };
 
 func void DIA_Pedro_DI_YOU_Serpentes()
@@ -113,7 +113,7 @@ func void DIA_Pedro_DI_YOU_FollowShip()
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FOLLOWSHIP");
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	MIS_Pedro_DI_FollowShip = LOG_Running;
+	MIS_Pedro_DI_FollowShip = LOG_RUNNING;
 };
 
 
@@ -129,7 +129,7 @@ instance DIA_Pedro_DI_ArrivedAtShip(C_Info)
 
 func int DIA_Pedro_DI_ArrivedAtShip_Condition()
 {
-	if((Npc_GetDistToWP(self,"SHIP") < 6000) && (MIS_Pedro_DI_FollowShip == LOG_Running))
+	if((Npc_GetDistToWP(self,"SHIP") < 6000) && (MIS_Pedro_DI_FollowShip == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -143,7 +143,7 @@ func void DIA_Pedro_DI_ArrivedAtShip_Info()
 	AI_Output(self,other,"DIA_Pedro_DI_ArrivedAtShip_09_03");	//Да, конечно. С чего мне начать?
 	Info_ClearChoices(DIA_Pedro_DI_ArrivedAtShip);
 	Info_AddChoice(DIA_Pedro_DI_ArrivedAtShip,"Я услышал достаточно. Иди, найди себе место на моем корабле.",DIA_Pedro_DI_ArrivedAtShip_Back);
-	if(EVT_ORKOBERST_SWITCH_FOUND == FALSE)
+	if(EVT_OrkOberst_Switch_Found == FALSE)
 	{
 		Info_AddChoice(DIA_Pedro_DI_ArrivedAtShip,"Как мне попасть внутрь этого острова?",DIA_Pedro_DI_ArrivedAtShip_Innere);
 	};
@@ -198,6 +198,8 @@ func void DIA_Pedro_DI_ArrivedAtShip_Back()
 };
 
 
+var int PedroDI_TalkNomore;
+
 instance DIA_Pedro_DI_PERM(C_Info)
 {
 	npc = NOV_600_Pedro_DI;
@@ -208,8 +210,6 @@ instance DIA_Pedro_DI_PERM(C_Info)
 	description = "Устал?";
 };
 
-
-var int PedroDI_TalkNomore;
 
 func int DIA_Pedro_DI_PERM_Condition()
 {
@@ -224,7 +224,7 @@ func void DIA_Pedro_DI_PERM_Info()
 	AI_Output(other,self,"DIA_Pedro_DI_PERM_15_00");	//Устал?
 	if(Npc_GetDistToWP(self,"SHIP_DECK_05") < 1000)
 	{
-		if(PedroDI_Flee == LOG_Running)
+		if(PedroDI_Flee == LOG_RUNNING)
 		{
 			AI_Output(other,self,"DIA_Pedro_DI_PERM_15_01");	//Хочешь, я принесу тебе подушку?
 			AI_Output(self,other,"DIA_Pedro_DI_PERM_09_02");	//Пощади меня, пожалуйста. Я буду сидеть здесь очень тихо и не издам ни звука.

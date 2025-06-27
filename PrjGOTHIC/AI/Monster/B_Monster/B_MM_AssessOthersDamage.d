@@ -1,14 +1,24 @@
 
 func void B_MM_AssessOthersDamage()
 {
-	var C_Item readyweap;
-	if((Npc_GetDistToNpc(self,victim) > PERC_DIST_INTERMEDIAT) && (Npc_GetDistToNpc(self,other) > PERC_DIST_INTERMEDIAT))
+	if((self.guild == GIL_STONEGUARDIAN) && (victim.guild == GIL_STONEGUARDIAN))
 	{
-		return;
+		B_Awake_StoneGuardian(self);
 	};
 	if(!Npc_CanSeeNpcFreeLOS(self,victim))
 	{
 		return;
+	};
+	if(!Hlp_IsValidNpc(other))
+	{
+		return;
+	};
+	if(Npc_GetDistToNpc(self,other) > PERC_DIST_INTERMEDIAT)
+	{
+		if(Npc_GetDistToNpc(self,victim) > PERC_DIST_INTERMEDIAT)
+		{
+			return;
+		};
 	};
 	if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(self))
 	{
@@ -44,10 +54,6 @@ func void B_MM_AssessOthersDamage()
 			AI_StartState(self,ZS_MM_Rtn_Summoned,0,"");
 			return;
 		};
-	};
-	if((self.guild == GIL_STONEGUARDIAN) && (victim.guild == GIL_STONEGUARDIAN))
-	{
-		B_Awake_StoneGuardian(self);
 	};
 	if((Wld_GetGuildAttitude(self.guild,victim.guild) == ATT_FRIENDLY) && (Wld_GetGuildAttitude(self.guild,other.guild) != ATT_FRIENDLY))
 	{

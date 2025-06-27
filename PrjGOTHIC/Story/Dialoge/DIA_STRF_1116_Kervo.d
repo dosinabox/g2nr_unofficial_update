@@ -87,10 +87,10 @@ func void DIA_Kervo_HILFE_Problem()
 {
 	AI_Output(other,self,"DIA_Kervo_HILFE_Problem_15_00");	//Что ты мне дашь, если я убью этих тварей?
 	AI_Output(self,other,"DIA_Kervo_HILFE_Problem_13_01");	//Ммм. Ну. Я был бы не прочь, чтобы эти луркеры, что бродят перед пещерой, исчезли.
-	MIS_Kervo_KillLurker = LOG_Running;
+	MIS_Kervo_KillLurker = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_KervoLurkers,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_KervoLurkers,LOG_Running);
-	if(hero.guild == GIL_KDF)
+	Log_SetTopicStatus(TOPIC_KervoLurkers,LOG_RUNNING);
+	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Kervo_HILFE_Problem_13_02");	//Я нашел чистый рунный камень. Ты ведь маг. Я уверен, ты найдешь применение ему.
 		B_LogEntry(TOPIC_KervoLurkers,"Беглый каторжник Керво пообещал мне рунный камень, если я убью луркеров около его убежища.");
@@ -136,10 +136,10 @@ func void DIA_Kervo_LurkerPlatt_Info()
 {
 	AI_Output(other,self,"DIA_Kervo_LurkerPlatt_15_00");	//Луркеров больше нет.
 	AI_Output(self,other,"DIA_Kervo_LurkerPlatt_13_01");	//Отлично. Теперь я опять смогу спать спокойно.
-	if(MIS_Kervo_KillLurker == LOG_Running)
+	if(MIS_Kervo_KillLurker == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Kervo_LurkerPlatt_13_02");	//Вот то, что я обещал тебе.
-		if(hero.guild == GIL_KDF)
+		if(other.guild == GIL_KDF)
 		{
 			CreateInvItems(self,ItMi_RuneBlank,1);
 			B_GiveInvItems(self,other,ItMi_RuneBlank,1);

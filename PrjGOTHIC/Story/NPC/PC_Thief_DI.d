@@ -37,8 +37,8 @@ func void Rtn_Start_31()
 
 func void Rtn_UNDEADDRAGONDEAD_31()
 {
-	TA_Stand_WP(8,0,23,0,"WP_UNDEAD_RIGHT_DOWN_01");
-	TA_Stand_WP(23,0,8,0,"WP_UNDEAD_RIGHT_DOWN_01");
+	TA_Stand_Guarding(8,0,23,0,"WP_UNDEAD_MIDDLE_01");
+	TA_Stand_Guarding(23,0,8,0,"WP_UNDEAD_MIDDLE_01");
 };
 
 func void Rtn_SittingShipDI_31()

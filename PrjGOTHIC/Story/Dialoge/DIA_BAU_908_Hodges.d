@@ -1,21 +1,21 @@
 
-instance DIA_Hodges_Kap1_EXIT(C_Info)
+instance DIA_Hodges_EXIT(C_Info)
 {
 	npc = BAU_908_Hodges;
 	nr = 999;
-	condition = DIA_Hodges_Kap1_EXIT_Condition;
-	information = DIA_Hodges_Kap1_EXIT_Info;
+	condition = DIA_Hodges_EXIT_Condition;
+	information = DIA_Hodges_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Hodges_Kap1_EXIT_Condition()
+func int DIA_Hodges_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Hodges_Kap1_EXIT_Info()
+func void DIA_Hodges_EXIT_Info()
 {
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
@@ -28,7 +28,6 @@ instance DIA_Hodges_HALLO(C_Info)
 	nr = 1;
 	condition = DIA_Hodges_HALLO_Condition;
 	information = DIA_Hodges_HALLO_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -63,7 +62,6 @@ instance DIA_Hodges_TellAboutFarm(C_Info)
 	nr = 2;
 	condition = DIA_Hodges_TellAboutFarm_Condition;
 	information = DIA_Hodges_TellAboutFarm_Info;
-	permanent = FALSE;
 	description = "Что ты можешь рассказать мне об этой ферме?";
 };
 
@@ -101,14 +99,13 @@ instance DIA_Hodges_AboutSld(C_Info)
 	nr = 2;
 	condition = DIA_Hodges_AboutSld_Condition;
 	information = DIA_Hodges_AboutSld_Info;
-	permanent = FALSE;
 	description = "А что насчет наемников?";
 };
 
 
 func int DIA_Hodges_AboutSld_Condition()
 {
-	if((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
 	{
 		return TRUE;
 	};
@@ -133,8 +130,8 @@ instance DIA_Hodges_TRADE(C_Info)
 	condition = DIA_Hodges_TRADE_Condition;
 	information = DIA_Hodges_TRADE_Info;
 	permanent = TRUE;
-	description = "Могу я купить оружие у тебя?";
 	trade = TRUE;
+	description = "Могу я купить оружие у тебя?";
 };
 
 
@@ -164,7 +161,6 @@ instance DIA_Hodges_DontWork(C_Info)
 	nr = 31;
 	condition = DIA_Hodges_DontWork_Condition;
 	information = DIA_Hodges_DontWork_Info;
-	permanent = FALSE;
 	description = "Почему ты не работаешь?";
 };
 
@@ -181,11 +177,11 @@ func void DIA_Hodges_DontWork_Info()
 {
 	AI_Output(other,self,"DIA_Hodges_DontWork_15_00");	//Почему ты не работаешь?
 	AI_Output(self,other,"DIA_Hodges_DontWork_03_01");	//Ты еще ничего не слышал? Паладины арестовали Беннета.
-	if(MIS_RescueBennet != LOG_Running)
+	if(MIS_RescueBennet != LOG_RUNNING)
 	{
-		MIS_RescueBennet = LOG_Running;
+		MIS_RescueBennet = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
+		Log_SetTopicStatus(TOPIC_RescueBennet,LOG_RUNNING);
 		B_LogEntry(TOPIC_RescueBennet,"Кузнец Беннет арестован паладинами в городе.");
 	};
 };
@@ -197,7 +193,6 @@ instance DIA_Hodges_WhatHappened(C_Info)
 	nr = 31;
 	condition = DIA_Hodges_WhatHappened_Condition;
 	information = DIA_Hodges_WhatHappened_Info;
-	permanent = FALSE;
 	description = "Что случилось?";
 };
 
@@ -226,14 +221,12 @@ instance DIA_Hodges_BennetsCrime(C_Info)
 	nr = 32;
 	condition = DIA_Hodges_BennetsCrime_Condition;
 	information = DIA_Hodges_BennetsCrime_Info;
-	permanent = FALSE;
 	description = "Так почему Беннета арестовали?";
 };
 
 
 func int DIA_Hodges_BennetsCrime_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Hodges_DontWork) && (MIS_RescueBennet != LOG_SUCCESS))
 	if(Npc_KnowsInfo(other,DIA_Hodges_WhatHappened) && (MIS_RescueBennet != LOG_SUCCESS))
 	{
 		return TRUE;
@@ -258,7 +251,6 @@ instance DIA_Hodges_BennetAndSLD(C_Info)
 	nr = 33;
 	condition = DIA_Hodges_BennetAndSLD_Condition;
 	information = DIA_Hodges_BennetAndSLD_Info;
-	permanent = FALSE;
 	description = "А как отреагировали наемники на ферме?";
 };
 

@@ -42,10 +42,13 @@ func void DIA_MIL_6_JOIN_Info()
 {
 	AI_Output(other,self,"DIA_MIL_6_JOIN_15_00");	//Что мне нужно сделать, чтобы вступить в ополчение?
 	AI_Output(self,other,"DIA_MIL_6_JOIN_06_01");	//Иди к лорду Андрэ и поговори с ним. С тех пор, как паладины пришли в город, он командует всем ополчением.
-	if((C_NpcIsInQuarter(self) != Q_KASERNE) && (Andre.aivar[AIV_TalkedToPlayer] == FALSE))
+	if((C_NpcIsInQuarter(self) != Q_KASERNE) && !Npc_IsDead(Andre))
 	{
-		AI_Output(other,self,"DIA_Lothar_Add_15_66");	//Где мне найти командира ополчения?
-		AI_Output(self,other,"DIA_MIL_6_JOIN_06_02");	//Ты найдешь его в казармах. Он практически всегда там.
+		if(Andre.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			AI_Output(other,self,"DIA_Lothar_Add_15_66");	//Где мне найти командира ополчения?
+			AI_Output(self,other,"DIA_MIL_6_JOIN_06_02");	//Ты найдешь его в казармах. Он практически всегда там.
+		};
 	};
 };
 
@@ -71,8 +74,6 @@ func int DIA_Addon_MIL_6_MissingPeople_Condition()
 func void DIA_Addon_MIL_6_MissingPeople_Info()
 {
 	AI_Output(other,self,"DIA_Addon_MIL_6_MissingPeople_15_00");	//Я слышал, что исчезли несколько горожан.
-	AI_Output(self,other,"DIA_Addon_MIL_6_MissingPeople_06_01");	//И я недавно слышал слухи об исчезновении людей.
-	AI_Output(self,other,"DIA_Addon_MIL_6_MissingPeople_06_02");	//Не могу даже представить, чем это можно объяснить.
 	AI_Output(self,other,"DIA_Addon_MIL_6_MissingPeople_06_03");	//И мы не можем сделать ничего, кроме того, чтобы смотреть в оба и исполнять свой долг стражников.
 };
 
@@ -173,14 +174,24 @@ func void DIA_MIL_6_STANDARD_Info()
 	{
 		AI_Output(self,other,"DIA_MIL_6_STANDARD_06_08");	//Говорят, что все драконы уничтожены! Лорд Хаген собирает свои войска, чтобы изгнать оставшихся тварей из Долины Рудников.
 	};
+	if((SC_HearedAboutMissingPeople == FALSE) && (MissingPeopleReturnedHome == FALSE))
+	{
+		AI_Output(self,other,"DIA_Addon_MIL_6_MissingPeople_06_01");	//И я недавно слышал слухи об исчезновении людей.
+		AI_Output(self,other,"DIA_Addon_MIL_6_MissingPeople_06_02");	//Не могу даже представить, чем это можно объяснить.
+		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
+		B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
+		SC_HearedAboutMissingPeople = TRUE;
+	};
 };
 
 func void B_AssignAmbientInfos_MIL_6(var C_Npc slf)
 {
-	dia_mil_6_exit.npc = Hlp_GetInstanceID(slf);
-	dia_mil_6_join.npc = Hlp_GetInstanceID(slf);
-	dia_mil_6_people.npc = Hlp_GetInstanceID(slf);
-	dia_mil_6_location.npc = Hlp_GetInstanceID(slf);
-	dia_mil_6_standard.npc = Hlp_GetInstanceID(slf);
+	DIA_MIL_6_EXIT.npc = Hlp_GetInstanceID(slf);
+	DIA_MIL_6_JOIN.npc = Hlp_GetInstanceID(slf);
+	DIA_Addon_MIL_6_MissingPeople.npc = Hlp_GetInstanceID(slf);
+	DIA_MIL_6_PEOPLE.npc = Hlp_GetInstanceID(slf);
+	DIA_MIL_6_LOCATION.npc = Hlp_GetInstanceID(slf);
+	DIA_MIL_6_STANDARD.npc = Hlp_GetInstanceID(slf);
 };
 

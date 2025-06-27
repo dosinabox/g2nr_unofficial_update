@@ -35,7 +35,7 @@ instance DIA_Pablo_WANTED(C_Info)
 
 func int DIA_Pablo_WANTED_Condition()
 {
-	if((hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
+	if((other.guild != GIL_PAL) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -85,7 +85,6 @@ instance DIA_Pablo_Banditen(C_Info)
 	nr = 3;
 	condition = DIA_Pablo_Banditen_Condition;
 	information = DIA_Pablo_Banditen_Info;
-	permanent = FALSE;
 	description = "„то ты знаешь об этих бандитах?";
 };
 
@@ -126,7 +125,6 @@ instance DIA_Pablo_HakonBandits(C_Info)
 	nr = 3;
 	condition = DIA_Pablo_HakonBandits_Condition;
 	information = DIA_Pablo_HakonBandits_Info;
-	permanent = FALSE;
 	description = "„то ты знаешь о бандитах, ограбивших торговца ’акона?";
 };
 
@@ -147,7 +145,7 @@ func void DIA_Pablo_HakonBandits_Info()
 	AI_Output(self,other,"DIA_Pablo_Banditen_12_01");	//Ёти крысы уползли в свою нору и больше не высовываютс€ оттуда.
 	AI_Output(self,other,"DIA_Pablo_Banditen_12_02");	// ак-то нам даже удалось выследить их и погнатьс€ за ними. Ќо нам пришлось прервать погоню в лесу у города.
 	AI_Output(self,other,"DIA_Pablo_Banditen_12_03");	//“ам бродит слишком много вс€ких зверей и это слишком опасно.
-	if(MIS_HakonBandits == LOG_Running)
+	if(MIS_HakonBandits == LOG_RUNNING)
 	{
 		B_LogEntry(TOPIC_HakonBanditen,"Ѕандиты, ограбившие ’акона, скрываютс€ где-то в лесу неподалеку от города.");
 	};
@@ -170,7 +168,6 @@ instance DIA_Pablo_MyBandits(C_Info)
 	nr = 4;
 	condition = DIA_Pablo_MyBandits_Condition;
 	information = DIA_Pablo_MyBandits_Info;
-	permanent = FALSE;
 	description = "ј откуда пришли бандиты, у которых нашли листок с моим изображением?";
 };
 
@@ -201,9 +198,9 @@ func void DIA_Pablo_MyBandits_Info()
 	AI_Output(self,other,"DIA_Pablo_Add_12_17");	//я думаю, они были частью банды, котора€ засела в горах около фермы ќнара.
 	AI_Output(self,other,"DIA_Pablo_Add_12_18");	//Ќо если ты захочешь отправитьс€ туда, позволь мне теб€ предупредить. Ёти головорезы могут сделать котлету из кого угодно!
 	AI_Output(other,self,"DIA_Pablo_Add_15_19");	//я запомню это.
-	if(MIS_Steckbriefe == LOG_Running)
+	if(MIS_Steckbriefe == LOG_RUNNING)
 	{
-		B_LogEntry(Topic_Bandits,"ќполчение нашло бандитов с объ€влением о моем розыке неподалеку от поместь€ ќнара. ѕохоже, что они из банды, котора€ засела там в горах.");
+		B_LogEntry(TOPIC_Bandits,"ќполчение нашло бандитов с объ€влением о моем розыке неподалеку от поместь€ ќнара. ѕохоже, что они из банды, котора€ засела там в горах.");
 	};
 };
 
@@ -231,12 +228,12 @@ func void DIA_Pablo_Perm_Info()
 	{
 		if(MIS_RescueBennet != LOG_SUCCESS)
 		{
-			if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+			if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 			{
 				AI_Output(self,other,"DIA_Pablo_Perm_12_01");	//я всегда говорил, что этим наемникам нельз€ довер€ть.
 				AI_Output(self,other,"DIA_Pablo_Perm_12_02");	//ѕришло врем€ преподать этому сброду урок. Ѕеннет не мог провернуть все это в одиночку.
 			}
-			else if(hero.guild == GIL_KDF)
+			else if(other.guild == GIL_KDF)
 			{
 				AI_Output(self,other,"DIA_Pablo_Perm_12_03");	//я глубоко потр€сен убийством достопочтенного паладина Ћотара.
 				AI_Output(self,other,"DIA_Pablo_Perm_12_04");	//Ќо € знаю, что церковь подберет справедливое наказание дл€ этого злоде€.
@@ -256,11 +253,11 @@ func void DIA_Pablo_Perm_Info()
 	{
 		AI_Output(self,other,"DIA_Pablo_Perm_12_08");	//я не знаю, что будет с нами, если паладины уйдут отсюда.
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Pablo_Perm_12_09");	//“ы можешь рассчитывать на нас, мы сделаем все возможное, чтобы этот город не превратилс€ в притон дл€ бандитов.
 	}
-	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Pablo_Perm_12_10");	//ѕостарайс€ вести себ€ как подобает. ћы глаз не спускаем с таких как ты.
 	}

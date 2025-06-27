@@ -1,7 +1,7 @@
 
 func int C_PlayerIsFakeBandit(var C_Npc slf,var C_Npc oth)
 {
-	if(slf.guild > GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(slf))
 	{
 		return FALSE;
 	};

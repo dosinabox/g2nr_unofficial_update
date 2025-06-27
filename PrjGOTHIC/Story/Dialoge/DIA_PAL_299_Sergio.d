@@ -37,7 +37,7 @@ instance DIA_Sergio_WELCOME(C_Info)
 
 func int DIA_Sergio_WELCOME_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && !Npc_KnowsInfo(other,PC_PrayShrine_Paladine))
+	if(Npc_IsInState(self,ZS_Talk) && (SC_PrayedForPaladins == FALSE))
 	{
 		return TRUE;
 	};
@@ -55,14 +55,13 @@ instance DIA_Sergio_Isgaroth(C_Info)
 	nr = 2;
 	condition = DIA_Sergio_Isgaroth_Condition;
 	information = DIA_Sergio_Isgaroth_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Sergio_Isgaroth_Condition()
 {
-	if(Npc_KnowsInfo(other,PC_PrayShrine_Paladine))
+	if(SC_PrayedForPaladins == TRUE)
 	{
 		if(Kapitel == 1)
 		{
@@ -126,9 +125,9 @@ func void DIA_Sergio_Aufgabe_Info()
 	{
 		AI_Output(self,other,"DIA_Sergio_Aufgabe_04_02");	//Но я могу помочь тебе. Иди к мастеру Исгароту и поговори с ним. Я слышал, ему нужна помощь и собирался сам помочь ему, но я поручаю эту задачу тебе.
 		Wld_InsertNpc(BlackWolf,"NW_PATH_TO_MONASTER_AREA_01");
-		MIS_IsgarothWolf = LOG_Running;
+		MIS_IsgarothWolf = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_IsgarothWolf,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_IsgarothWolf,LOG_Running);
+		Log_SetTopicStatus(TOPIC_IsgarothWolf,LOG_RUNNING);
 		B_LogEntry(TOPIC_IsgarothWolf,"Мастеру Исгароту необходима помощь в часовне. Я должен найти его.");
 	};
 };
@@ -174,7 +173,7 @@ instance DIA_Sergio_Babo(C_Info)
 
 func int DIA_Sergio_Babo_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Babo_Training == LOG_Running) && !Npc_IsDead(Babo))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Babo_Training == LOG_RUNNING) && !Npc_IsDead(Babo))
 	{
 		return TRUE;
 	};
@@ -187,7 +186,7 @@ func void DIA_Sergio_Babo_Info()
 	AI_Output(other,self,"DIA_Sergio_Babo_15_02");	//Я думаю, он робеет.
 	AI_Output(self,other,"DIA_Sergio_Babo_04_03");	//Понимаю. Хорошо, если это так много значит для него, я буду тренировать его каждое утро в течение двух часов. Мы будем начинать в пять утра. Можешь передать ему это.
 	Npc_ExchangeRoutine(self,"TRAIN");
-	B_LogEntry(Topic_BaboTrain,"Сержио согласился тренировать Бабо по два часа каждое утро.");
+	B_LogEntry(TOPIC_BaboTrain,"Сержио согласился тренировать Бабо по два часа каждое утро.");
 };
 
 
@@ -232,11 +231,11 @@ func int DIA_Sergio_ORDERS_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Sergio_WHY) && (Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500))
 	{
-		if(Sergio_Follow == FALSE)
+		if(Sergio_CanGuide == FALSE)
 		{
 			return TRUE;
 		};
-		if(Sergio_Follow_End == TRUE)
+		if(Sergio_GuideStatus == LOG_SUCCESS)
 		{
 			return TRUE;
 		};
@@ -256,14 +255,13 @@ instance DIA_Sergio_Start(C_Info)
 	nr = 10;
 	condition = DIA_Sergio_Start_Condition;
 	information = DIA_Sergio_Start_Info;
-	permanent = FALSE;
 	description = "Ты должен сопровождать меня к Проходу.";
 };
 
 
 func int DIA_Sergio_Start_Condition()
 {
-	if(Sergio_Follow == TRUE)
+	if((Sergio_CanGuide == TRUE) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -273,9 +271,10 @@ func void DIA_Sergio_Start_Info()
 {
 	AI_Output(other,self,"DIA_Sergio_Start_15_00");	//Ты должен сопровождать меня к Проходу.
 	AI_Output(self,other,"DIA_Sergio_Start_04_01");	//Хорошо, я сделаю это. Я знаю дорогу, иди за мной.
-	AI_StopProcessInfos(self);
+	Sergio_GuideStatus = LOG_RUNNING;
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	self.npcType = NPCTYPE_FRIEND;
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"GUIDE");
 };
 
@@ -314,7 +313,6 @@ instance DIA_Sergio_Ende(C_Info)
 	nr = 2;
 	condition = DIA_Sergio_Ende_Condition;
 	information = DIA_Sergio_Ende_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -343,7 +341,6 @@ instance DIA_Sergio_Perm(C_Info)
 	nr = 2;
 	condition = DIA_Sergio_Perm_Condition;
 	information = DIA_Sergio_Perm_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

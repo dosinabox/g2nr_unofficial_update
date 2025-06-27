@@ -117,9 +117,9 @@ func void DIA_Addon_Brandon_WannaLearn_Info()
 	AI_Output(other,self,"DIA_Addon_Pir_7_HenrysCrew_OfferDrink_15_00");	//Затем, что я угощу тебя выпивкой.
 	AI_Output(self,other,"DIA_Addon_Brandon_WannaLearn_04_03");	//(усмехается) Неплохо, сынок! Угадал с первой попытки.
 	AI_Output(self,other,"DIA_Addon_Brandon_WannaLearn_04_04");	//Но не вздумай подсовывать мне какое-нибудь дешевое пойло.
-	MIS_Brandon_BringHering = LOG_Running;
+	MIS_Brandon_BringHering = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Addon_BrandonBooze,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_BrandonBooze,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_BrandonBooze,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_BrandonBooze,"Я должен принести Брэндону выпивку. Тогда он согласится учить меня.");
 };
 
@@ -190,8 +190,8 @@ func void DIA_Addon_Brandon_SchnellerHering_Info()
 	B_UseItem(self,ItFo_Addon_SchnellerHering);
 	AI_Output(self,other,"DIA_Addon_Brandon_GiveGrog_04_01");	//Ах-х! Словно жидкий огонь!
 	B_LogEntries(TOPIC_Addon_BrandonBooze,"Я отдал Брэндону его ужасное пойло. Теперь он готов учить меня.");
-	Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-	B_LogNextEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_BrandonTeach);
+	Log_CreateTopic(TOPIC_Addon_PIR_Teacher,LOG_NOTE);
+	B_LogNextEntry(TOPIC_Addon_PIR_Teacher,Log_Text_Addon_BrandonTeach);
 	MIS_Brandon_BringHering = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };
@@ -295,14 +295,13 @@ instance DIA_Addon_Brandon_Anheuern(C_Info)
 	nr = 11;
 	condition = DIA_Addon_Brandon_Anheuern_Condition;
 	information = DIA_Addon_Brandon_Anheuern_Info;
-	permanent = FALSE;
 	description = "Ты должен мне помочь.";
 };
 
 
 func int DIA_Addon_Brandon_Anheuern_Condition()
 {
-	if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+	if(MIS_Addon_Greg_ClearCanyon == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -331,7 +330,7 @@ instance DIA_Addon_Brandon_ComeOn(C_Info)
 
 func int DIA_Addon_Brandon_ComeOn_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Addon_Greg_ClearCanyon == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Brandon_Anheuern))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Addon_Greg_ClearCanyon == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_Brandon_Anheuern))
 	{
 		return TRUE;
 	};

@@ -54,7 +54,6 @@ instance DIA_Udar_YouAreBest(C_Info)
 	nr = 3;
 	condition = DIA_Udar_YouAreBest_Condition;
 	information = DIA_Udar_YouAreBest_Info;
-	permanent = FALSE;
 	description = "Я слышал, что ты ЛУЧШИЙ арбалетчик во всей округе.";
 };
 
@@ -80,7 +79,6 @@ instance DIA_Udar_TeachMe(C_Info)
 	nr = 3;
 	condition = DIA_Udar_TeachMe_Condition;
 	information = DIA_Udar_TeachME_Info;
-	permanent = FALSE;
 	description = "Научи меня стрелять из арбалета.";
 };
 
@@ -106,7 +104,6 @@ instance DIA_Udar_ImGood(C_Info)
 	nr = 3;
 	condition = DIA_Udar_ImGood_Condition;
 	information = DIA_Udar_ImGood_Info;
-	permanent = FALSE;
 	description = "Самый великий арбалетчик - я.";
 };
 
@@ -251,7 +248,6 @@ instance DIA_Udar_Ring(C_Info)
 	nr = 11;
 	condition = DIA_Udar_Ring_Condition;
 	information = DIA_Udar_Ring_Info;
-	permanent = FALSE;
 	description = "Вот, я принес тебе кольцо Тенгрона. Оно будет защищать тебя.";
 };
 
@@ -296,7 +292,7 @@ func int DIA_Udar_Kap4WiederDa_Condition()
 func void DIA_Udar_Kap4WiederDa_Info()
 {
 	AI_Output(self,other,"DIA_Udar_Kap4WiederDa_09_00");	//Хорошо, что ты пришел. Здесь творится сущий ад.
-	if(hero.guild != GIL_DJG)
+	if(other.guild != GIL_DJG)
 	{
 		AI_Output(other,self,"DIA_Udar_Kap4WiederDa_15_01");	//Что случилось?
 		AI_Output(self,other,"DIA_Udar_Kap4WiederDa_09_02");	//Охотники на драконов ошиваются по всему замку и бахвалятся, что могут решить проблему с драконами.
@@ -318,7 +314,7 @@ instance DIA_Udar_Sengrath(C_Info)
 
 func int DIA_Udar_Sengrath_Condition()
 {
-	if((Kapitel >= 4) && Npc_KnowsInfo(other,DIA_Udar_Kap4WiederDa) && (Sengrath_Missing == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Udar_Kap4WiederDa) && (Sengrath_Missing == TRUE))
 	{
 		return TRUE;
 	};
@@ -333,7 +329,7 @@ func void DIA_Udar_Sengrath_Info()
 	AI_Output(self,other,"DIA_Udar_Sengrath_09_04");	//Сенграт проснулся и побежал в ночь по направлению к частоколу орков. С тех пор его никто не видел.
 	AI_Output(self,other,"DIA_Udar_Sengrath_09_05");	//Да пребудет с нами Иннос!
 	Log_CreateTopic(TOPIC_Sengrath_Missing,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Sengrath_Missing,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Sengrath_Missing,LOG_RUNNING);
 	B_LogEntry(TOPIC_Sengrath_Missing,"Удар, рыцарь из замка, скучает по своему приятелю Сенграту. Последний раз он видел его как-то поздно ночью, тот направлялся к забору орков, чтобы вернуть свой арбалет.");
 };
 
@@ -350,9 +346,12 @@ instance DIA_Udar_SENGRATHGEFUNDEN(C_Info)
 
 func int DIA_Udar_SENGRATHGEFUNDEN_Condition()
 {
-	if((Kapitel >= 4) && Npc_KnowsInfo(other,DIA_Udar_Sengrath) && !Npc_HasItems(DeadSengrath,ItRw_SengrathsArmbrust_MIS))
+	if(Npc_KnowsInfo(other,DIA_Udar_Sengrath))
 	{
-		return TRUE;
+		if(!Npc_HasItems(DeadSengrath,ItRw_SengrathsArmbrust_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

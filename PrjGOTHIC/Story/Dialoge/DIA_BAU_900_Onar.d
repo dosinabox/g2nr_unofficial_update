@@ -27,7 +27,6 @@ instance DIA_Onar_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Onar_Hallo_Condition;
 	information = DIA_Onar_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -99,7 +98,6 @@ instance DIA_Onar_Work(C_Info)
 	nr = 2;
 	condition = DIA_Onar_Work_Condition;
 	information = DIA_Onar_Work_Info;
-	permanent = FALSE;
 	description = "Я хочу работать на тебя!";
 };
 
@@ -122,18 +120,17 @@ func void DIA_Onar_Work_Info()
 };
 
 
-instance DIA_Onar_WorkAsSld(C_Info)
+instance DIA_Onar_WorkAsSLD(C_Info)
 {
 	npc = BAU_900_Onar;
 	nr = 2;
-	condition = DIA_Onar_WorkAsSld_Condition;
-	information = DIA_Onar_WorkAsSld_Info;
-	permanent = FALSE;
+	condition = DIA_Onar_WorkAsSLD_Condition;
+	information = DIA_Onar_WorkAsSLD_Info;
 	description = "Я хочу поработать здесь в качестве наемника!";
 };
 
 
-func int DIA_Onar_WorkAsSld_Condition()
+func int DIA_Onar_WorkAsSLD_Condition()
 {
 	if((Lee_SendToOnar == FALSE) && (Onar_WegenSldWerden == FALSE) && Npc_KnowsInfo(other,DIA_Onar_Work) && (other.guild == GIL_NONE))
 	{
@@ -141,11 +138,11 @@ func int DIA_Onar_WorkAsSld_Condition()
 	};
 };
 
-func void DIA_Onar_WorkAsSld_Info()
+func void DIA_Onar_WorkAsSLD_Info()
 {
-	AI_Output(other,self,"DIA_Onar_WorkAsSld_15_00");	//Я хочу поработать здесь в качестве наемника!
-	AI_Output(self,other,"DIA_Onar_WorkAsSld_14_01");	//Ты? Наемника? Не смеши меня! Если бы из тебя мог получиться хороший наемник, Ли наверняка бы рассказал мне о тебе.
-	AI_Output(self,other,"DIA_Onar_WorkAsSld_14_02");	//А теперь убирайся отсюда, и поживее!
+	AI_Output(other,self,"DIA_Onar_WorkAsSLD_15_00");	//Я хочу поработать здесь в качестве наемника!
+	AI_Output(self,other,"DIA_Onar_WorkAsSLD_14_01");	//Ты? Наемника? Не смеши меня! Если бы из тебя мог получиться хороший наемник, Ли наверняка бы рассказал мне о тебе.
+	AI_Output(self,other,"DIA_Onar_WorkAsSLD_14_02");	//А теперь убирайся отсюда, и поживее!
 	Onar_WegenSldWerden = TRUE;
 	AI_StopProcessInfos(self);
 };
@@ -157,7 +154,6 @@ instance DIA_Onar_Aufstand(C_Info)
 	nr = 3;
 	condition = DIA_Onar_Aufstand_Condition;
 	information = DIA_Onar_Aufstand_Info;
-	permanent = FALSE;
 	description = "Ты противостоишь городу, как я слышал?";
 };
 
@@ -184,7 +180,6 @@ instance DIA_Onar_WegenPepe(C_Info)
 	nr = 4;
 	condition = DIA_Onar_WegenPepe_Condition;
 	information = DIA_Onar_WegenPepe_Info;
-	permanent = FALSE;
 	description = "Можешь благодарить Буллко, у тебя стало на несколько овец меньше.";
 };
 
@@ -204,7 +199,6 @@ func void DIA_Onar_WegenPepe_Info()
 	AI_Output(other,self,"DIA_Onar_WegenPepe_15_02");	//Один из наемников.
 	AI_Output(self,other,"DIA_Onar_WegenPepe_14_03");	//Какое мне до этого дело? Если он притронулся к моим овцам, он будет отвечать перед Ли.
 	AI_Output(self,other,"DIA_Onar_WegenPepe_14_04");	//Зачем ты отвлекаешь меня по таким пустякам?
-//	Onar_WegenPepe = TRUE;
 };
 
 
@@ -214,14 +208,13 @@ instance DIA_Onar_WegenSekob(C_Info)
 	nr = 5;
 	condition = DIA_Onar_WegenSekob_Condition;
 	information = DIA_Onar_WegenSekob_Info;
-	permanent = FALSE;
 	description = "Я пришел по поводу ренты Секоба...";
 };
 
 
 func int DIA_Onar_WegenSekob_Condition()
 {
-	if((MIS_Sekob_RedeMitOnar == LOG_Running) && (MIS_Torlof_HolPachtVonSekob != LOG_SUCCESS))
+	if((MIS_Sekob_RedeMitOnar == LOG_RUNNING) && (MIS_Torlof_HolPachtVonSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -255,7 +248,6 @@ instance DIA_Onar_LeeSentMe(C_Info)
 	nr = 6;
 	condition = DIA_Onar_LeeSentMe_Condition;
 	information = DIA_Onar_LeeSentMe_Info;
-	permanent = FALSE;
 	description = "Меня послал Ли. Я хочу работать в качестве наемника!";
 };
 
@@ -288,6 +280,26 @@ func void DIA_Onar_LeeSentMe_Info()
 
 var int Onar_SOLD_Day;
 var int Onar_SOLD_XP;
+var int Onar_StopPayingDJG;
+
+func void B_Onar_StopPayingDJG()
+{
+	AI_Output(self,other,"DIA_Onar_CollectGold_14_01");	//Я плачу наемникам, а не охотникам на драконов.
+	Onar_StopPayingDJG = TRUE;
+};
+
+func void B_Onar_Payment_Log()
+{
+	Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
+	if(other.guild == GIL_SLD)
+	{
+		B_LogEntry(TOPIC_Bonus,"Я могу каждый день получать у Онара жалование.");
+	}
+	else
+	{
+		B_LogEntry(TOPIC_Bonus,"Если я присоединюсь к наемникам, то смогу получать у Онара жалование.");
+	};
+};
 
 instance DIA_Onar_HowMuch(C_Info)
 {
@@ -295,14 +307,13 @@ instance DIA_Onar_HowMuch(C_Info)
 	nr = 7;
 	condition = DIA_Onar_HowMuch_Condition;
 	information = DIA_Onar_HowMuch_Info;
-	permanent = FALSE;
 	description = "Так что насчет моего жалования?";
 };
 
 
 func int DIA_Onar_HowMuch_Condition()
 {
-	if(Onar_Approved == TRUE)
+	if((Onar_Approved == TRUE) && ((other.guild == GIL_NONE) || (other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
 	{
 		return TRUE;
 	};
@@ -311,40 +322,47 @@ func int DIA_Onar_HowMuch_Condition()
 func void DIA_Onar_HowMuch_Info()
 {
 	AI_Output(other,self,"DIA_Onar_HowMuch_15_00");	//Так что насчет моего жалования?
-	AI_Output(self,other,"DIA_Onar_HowMuch_14_01");	//Так, посмотрим...
-	Onar_SOLD_Gold = 50;
-	if(Onar_WegenSldWerden == TRUE)
+	if(other.guild == GIL_DJG)
 	{
-		AI_Output(self,other,"DIA_Onar_HowMuch_14_02");	//Я не самого лучшего мнения о тебе.
-	};
-	if(Onar_WegenSekob == TRUE)
+		B_Onar_StopPayingDJG();
+	}
+	else
 	{
-		AI_Output(self,other,"DIA_Onar_HowMuch_14_03");	//Ты не отличаешься особой сообразительностью. Это очевидно после твоих похождений к Секобу.
-		Onar_SOLD_Gold -= 10;
+		AI_Output(self,other,"DIA_Onar_HowMuch_14_01");	//Так, посмотрим...
+		Onar_SOLD_Gold = 50;
+		if(Onar_WegenSldWerden == TRUE)
+		{
+			AI_Output(self,other,"DIA_Onar_HowMuch_14_02");	//Я не самого лучшего мнения о тебе.
+		};
+		if(Onar_WegenSekob == TRUE)
+		{
+			AI_Output(self,other,"DIA_Onar_HowMuch_14_03");	//Ты не отличаешься особой сообразительностью. Это очевидно после твоих похождений к Секобу.
+			Onar_SOLD_Gold -= 10;
+		};
+		if((ABSOLUTIONLEVEL_Farm > 1) || ((B_GetGreatestPetzCrime(self) > CRIME_NONE) && (ABSOLUTIONLEVEL_Farm > 0)))
+		{
+			AI_Output(self,other,"DIA_Onar_HowMuch_14_04");	//Ты уже неоднократно создавал проблемы здесь, на ферме.
+			Onar_SOLD_Gold -= 10;
+		};
+		if(Npc_KnowsInfo(other,DIA_Onar_WegenPepe) && ((Onar_WegenSekob == TRUE) || (Onar_WegenSldWerden == TRUE)))
+		{
+			AI_Output(self,other,"DIA_Onar_HowMuch_14_05");	//И ты постоянно допекаешь меня всяким вздором.
+			Onar_SOLD_Gold -= 10;
+		};
+		AI_Output(self,other,"DIA_Onar_HowMuch_14_06");	//Дай мне подумать...
+		B_Say_Gold(self,other,Onar_SOLD_Gold);
+		if(Onar_SOLD_Gold <= 30)
+		{
+			AI_Output(self,other,"DIA_Onar_HowMuch_14_06_add");	//Да и этого для тебя много.
+		};
+		Onar_SOLD_Day = Wld_GetDay();
+		Onar_SOLD_XP = other.exp;
+		AI_Output(self,other,"DIA_Onar_HowMuch_14_07");	//Что скажешь?
+		Info_ClearChoices(DIA_Onar_HowMuch);
+		Info_AddChoice(DIA_Onar_HowMuch,"Хорошо!",DIA_Onar_HowMuch_Ok);
+		Info_AddChoice(DIA_Onar_HowMuch,"Здесь не все...",DIA_Onar_HowMuch_More);
+		Info_AddChoice(DIA_Onar_HowMuch,"В день?",DIA_Onar_HowMuch_PerDay);
 	};
-	if((ABSOLUTIONLEVEL_Farm > 1) || ((B_GetGreatestPetzCrime(self) > CRIME_NONE) && (ABSOLUTIONLEVEL_Farm > 0)))
-	{
-		AI_Output(self,other,"DIA_Onar_HowMuch_14_04");	//Ты уже неоднократно создавал проблемы здесь, на ферме.
-		Onar_SOLD_Gold -= 10;
-	};
-	if(Npc_KnowsInfo(other,DIA_Onar_WegenPepe) && ((Onar_WegenSekob == TRUE) || (Onar_WegenSldWerden == TRUE)))
-	{
-		AI_Output(self,other,"DIA_Onar_HowMuch_14_05");	//И ты постоянно допекаешь меня всяким вздором.
-		Onar_SOLD_Gold -= 10;
-	};
-	AI_Output(self,other,"DIA_Onar_HowMuch_14_06");	//Дай мне подумать...
-	B_Say_Gold(self,other,Onar_SOLD_Gold);
-	if(Onar_SOLD_Gold <= 30)
-	{
-		AI_Output(self,other,"DIA_Onar_HowMuch_14_06_add");	//Да и этого для тебя много.
-	};
-	Onar_SOLD_Day = Wld_GetDay();
-	Onar_SOLD_XP = other.exp;
-	AI_Output(self,other,"DIA_Onar_HowMuch_14_07");	//Что скажешь?
-	Info_ClearChoices(DIA_Onar_HowMuch);
-	Info_AddChoice(DIA_Onar_HowMuch,"Хорошо!",DIA_Onar_HowMuch_Ok);
-	Info_AddChoice(DIA_Onar_HowMuch,"Здесь не все...",DIA_Onar_HowMuch_More);
-	Info_AddChoice(DIA_Onar_HowMuch,"В день?",DIA_Onar_HowMuch_PerDay);
 };
 
 func void DIA_Onar_HowMuch_PerDay()
@@ -366,8 +384,7 @@ func void DIA_Onar_HowMuch_More()
 		AI_Output(self,other,"DIA_Onar_HowMuch_More_14_01");	//Конечно, но ты можешь поработать на меня совсем бесплатно, если хочешь.
 	};
 	AI_Output(self,other,"DIA_Onar_HowMuch_More_14_02");	//Это все, что ты получишь!
-	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-	B_LogEntry(Topic_Bonus,"Я могу получить у Онара причитающееся мне вознаграждение, когда мне это заблагорассудится.");
+	B_Onar_Payment_Log();
 	Info_ClearChoices(DIA_Onar_HowMuch);
 };
 
@@ -375,13 +392,10 @@ func void DIA_Onar_HowMuch_Ok()
 {
 	AI_Output(other,self,"DIA_Onar_HowMuch_Ok_15_00");	//Хорошо!
 	AI_Output(self,other,"DIA_Onar_HowMuch_Ok_14_01");	//Я тоже так думаю. А теперь иди, поговори с Ли.
-	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-	B_LogEntry(Topic_Bonus,"Я могу получить у Онара причитающееся мне вознаграждение, когда мне это заблагорассудится.");
+	B_Onar_Payment_Log();
 	Info_ClearChoices(DIA_Onar_HowMuch);
 };
 
-
-var int Onar_StopPayingDJG;
 
 instance DIA_Onar_CollectGold(C_Info)
 {
@@ -407,8 +421,7 @@ func void DIA_Onar_CollectGold_Info()
 	AI_Output(other,self,"DIA_Onar_CollectGold_15_00");	//Заплати мне мое жалование!
 	if(other.guild == GIL_DJG)
 	{
-		AI_Output(self,other,"DIA_Onar_CollectGold_14_01");	//Я плачу наемникам, а не охотникам на драконов.
-		Onar_StopPayingDJG = TRUE;
+		B_Onar_StopPayingDJG();
 	}
 	else if(Torlof_TheOtherMission_TooLate == TRUE)
 	{
@@ -421,20 +434,20 @@ func void DIA_Onar_CollectGold_Info()
 	{
 		AI_Output(self,other,"DIA_Onar_CollectGold_14_06");	//Я слышал, что ты устроил заварушку. Сначала пойди к Ли и урегулируй этот вопрос.
 	}
-	else if(Wld_GetDay() <= Onar_SOLD_Day)
+	else if(Wld_GetDay() == Onar_SOLD_Day)
 	{
 		AI_Output(self,other,"DIA_Onar_CollectGold_14_07");	//Ты что, совсем выжил из ума?
 		AI_Output(self,other,"DIA_Onar_CollectGold_14_08");	//Ты должен поработать у меня хотя бы день. Ты получишь свое жалование завтра.
 	}
-	else if((Wld_GetDay() - 2) >= Onar_SOLD_Day)
+	else if(C_DaysSinceEvent(Onar_SOLD_Day,2))
 	{
-		if((Wld_GetDay() - 2) == Onar_SOLD_Day)
+		if(C_DaysSinceEvent(Onar_SOLD_Day,3))
 		{
-			AI_Output(self,other,"DIA_Onar_CollectGold_14_09");	//Где ты был вчера?
+			AI_Output(self,other,"DIA_Onar_CollectGold_14_10");	//Где ты был последние пару дней?
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Onar_CollectGold_14_10");	//Где ты был последние пару дней?
+			AI_Output(self,other,"DIA_Onar_CollectGold_14_09");	//Где ты был вчера?
 		};
 		AI_Output(self,other,"DIA_Onar_CollectGold_14_11");	//Да ты здесь даже не появлялся!
 		AI_Output(self,other,"DIA_Onar_CollectGold_14_12");	//Кто знает, где ты шлялся.
@@ -450,6 +463,7 @@ func void DIA_Onar_CollectGold_Info()
 			AI_Output(self,other,"DIA_Onar_HowMuch_PerDay_14_03");	//Я не собираюсь подносить их тебе.
 			B_GiveInvItems(self,other,ItMi_Gold,Onar_SOLD_Gold);
 			B_Say_Gold(self,other,Onar_SOLD_Gold);
+			TotalOnarGoldTaken += Onar_SOLD_Gold;
 		}
 		else
 		{
@@ -468,7 +482,6 @@ instance DIA_Onar_MariaGold(C_Info)
 	nr = 9;
 	condition = DIA_Onar_MariaGold_Condition;
 	information = DIA_Onar_MariaGold_Info;
-	permanent = FALSE;
 	description = "Мария думает, что я получаю недостаточно.";
 };
 
@@ -558,8 +571,8 @@ func void DIA_Onar_BuyLiesel_Info()
 	{
 		AI_Output(self,other,"DIA_Onar_BuyLiesel_14_01");	//Ты можешь сам выбрать себе овцу на пастбище.
 		AI_Output(self,other,"DIA_Onar_BuyLiesel_14_02");	//Одна из них обязательно пойдет за тобой. Большинство моих овец отзываются на имя Бетси.
-		Wld_InsertNpc(Follow_Sheep,"NW_BIGFARM_SHEEP2_02");
 		AI_StopProcessInfos(self);
+		Wld_InsertNpc(Follow_Sheep,"NW_BIGFARM_SHEEP2_02");
 	}
 	else
 	{

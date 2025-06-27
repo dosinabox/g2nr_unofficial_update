@@ -1,18 +1,18 @@
 
-var int SC_COMESINTO_CANYONLIBRARY_FUNC_OneTime;
+var int SC_ComesInto_CanyonLibrary_Func_OneTime;
 
-func void sc_comesinto_canyonlibrary_func()
+func void SC_ComesInto_CanyonLibrary_Func()
 {
-	if(SC_COMESINTO_CANYONLIBRARY_FUNC_OneTime == FALSE)
+	if(SC_ComesInto_CanyonLibrary_Func_OneTime == FALSE)
 	{
 		if(!Npc_IsDead(Shadowbeast_Addon_Fire_CanyonLib))
 		{
 			AI_Standup(Shadowbeast_Addon_Fire_CanyonLib);
 			Shadowbeast_Addon_Fire_CanyonLib.aivar[AIV_EnemyOverride] = FALSE;
 			Snd_Play("THRILLJINGLE_03");
-			Snd_Play("GOL_Ambient_A2");
+			Snd_Play("GOL_AMBIENT_A2");
 		};
-		SC_COMESINTO_CANYONLIBRARY_FUNC_OneTime = TRUE;
+		SC_ComesInto_CanyonLibrary_Func_OneTime = TRUE;
 	};
 };
 

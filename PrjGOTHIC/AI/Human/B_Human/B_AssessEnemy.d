@@ -3,25 +3,28 @@ func int B_AssessEnemy()
 {
 	if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Magic_Golem)))
+		if(C_IsNpc(self,VLK_449_Lares))
 		{
-			return FALSE;
+			if(C_IsNpc(other,MagicGolem))
+			{
+				return FALSE;
+			};
 		};
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cornelius)) && !Npc_IsPlayer(other))
+		if(C_IsNpc(self,VLK_401_Cornelius) && !Npc_IsPlayer(other))
 		{
 			if(Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") <= 1000)
 			{
 				return FALSE;
 			};
 		};
-		if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius))
+		if(C_IsNpc(other,VLK_401_Cornelius))
 		{
 			if(C_IsNpc(self,BDT_1031_Fluechtling) || C_IsNpc(self,BDT_1032_Fluechtling))
 			{
 				return FALSE;
 			};
 		};
-		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph)) && !Npc_IsPlayer(other))
+		if(C_IsNpc(self,BAU_942_Randolph) && !Npc_IsPlayer(other))
 		{
 			if(Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000)
 			{
@@ -29,17 +32,28 @@ func int B_AssessEnemy()
 				return FALSE;
 			};
 		};
-		if(((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE)) && ((other.guild == GIL_ORC) || C_NpcIsGolem(other)))
+		if((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE))
 		{
-			if(C_NpcIsAfraidOfOrcs(self))
+			if(C_NpcIsOrc(other) || C_NpcIsGolem(other))
 			{
-				B_Flee();
-				return FALSE;
+				if(C_NpcIsAfraidOfOrcs(self))
+				{
+					B_Flee();
+					return FALSE;
+				};
 			};
 		};
 	};
-	if(other.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(other))
 	{
+		if(self.aivar[AIV_EnemyOverride] == TRUE)
+		{
+			return FALSE;
+		};
+		if(other.aivar[AIV_EnemyOverride] == TRUE)
+		{
+			return FALSE;
+		};
 		if(!Npc_IsPlayer(other))
 		{
 			if(self.aivar[AIV_NoFightParker] == TRUE)
@@ -51,10 +65,14 @@ func int B_AssessEnemy()
 				return FALSE;
 			};
 		};
-		if(C_NpcIsLevelinspektor(other))
+		if(C_NpcIsGhost(other))
 		{
 			return FALSE;
 		};
+		/*if(C_NpcIsLevelinspektor(other))
+		{
+			return FALSE;
+		};*/
 	}
 	else if(other.aivar[AIV_NoFightParker] == TRUE)
 	{
@@ -70,7 +88,7 @@ func int B_AssessEnemy()
 	};
 	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		if(Npc_GetDistToNpc(self,other) > 1500)
+		if(Npc_GetDistToNpc(self,other) > PERC_DIST_MONSTER_ACTIVE_MAX)
 		{
 			return FALSE;
 		};
@@ -80,10 +98,6 @@ func int B_AssessEnemy()
 		};
 	};
 	if(C_PlayerIsFakeBandit(self,other) && (self.guild == GIL_BDT))
-	{
-		return FALSE;
-	};
-	if(((self.aivar[AIV_EnemyOverride] == TRUE) || (other.aivar[AIV_EnemyOverride] == TRUE)) && (other.guild < GIL_SEPERATOR_HUM))
 	{
 		return FALSE;
 	};

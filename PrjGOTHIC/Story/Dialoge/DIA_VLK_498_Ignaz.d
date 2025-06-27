@@ -28,7 +28,6 @@ instance DIA_Ignaz_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Ignaz_Hallo_Condition;
 	information = DIA_Ignaz_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -57,7 +56,6 @@ instance DIA_Ignaz_Traenke(C_Info)
 	nr = 3;
 	condition = DIA_Ignaz_Traenke_Condition;
 	information = DIA_Ignaz_Traenke_Info;
-	permanent = FALSE;
 	description = "» что € получу за то, что помогу тебе?";
 };
 
@@ -84,7 +82,6 @@ instance DIA_Ignaz_Experiment(C_Info)
 	nr = 4;
 	condition = DIA_Ignaz_Experiment_Condition;
 	information = DIA_Ignaz_Experiment_Info;
-	permanent = FALSE;
 	description = "–асскажи мне подробнее об этом эксперименте и самом заклинании.";
 };
 
@@ -115,7 +112,6 @@ instance DIA_Ignaz_teilnehmen(C_Info)
 	nr = 5;
 	condition = DIA_Ignaz_teilnehmen_Condition;
 	information = DIA_Ignaz_teilnehmen_Info;
-	permanent = FALSE;
 	description = "’орошо, € испытаю это заклинание.";
 };
 
@@ -134,11 +130,9 @@ func void DIA_Ignaz_teilnehmen_Info()
 	AI_Output(self,other,"DIA_Ignaz_teilnehmen_14_01");	//“огда возьми этот свиток и найди подход€щего подопытного кролика.
 	AI_Output(self,other,"DIA_Ignaz_teilnehmen_14_02");	//ј когда закончишь, возвращайс€ и расскажи мне как все прошло.
 	B_GiveInvItems(self,other,ItSc_Charm,1);
-	MIS_Ignaz_Charm = LOG_Running;
+	MIS_Ignaz_Charm = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Ignaz,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Ignaz,LOG_Running);
-//	B_LogEntry(TOPIC_Ignaz,"я должен испытать новое заклинание »гнаца. Ёто заклинание называетс€ «абвение. »ногда кто-нибудь выходит из себ€ в результате драки или по другой причине и больше не хочет говорить со мной. Ёто идеальный момент дл€ использовани€ этого заклинани€.");
-//	B_LogEntry(TOPIC_Ignaz,"Ёто идеальна€ возможность испытать заклинание. ѕодопытный также забудет доложить о произошедшем власт€м. я не думаю, что кто-либо в портовом квартале сильно обидитс€, если € вырублю его.");
+	Log_SetTopicStatus(TOPIC_Ignaz,LOG_RUNNING);
 	B_LogEntry(TOPIC_Ignaz,"я должен испытать новое заклинание »гнаца. Ёто заклинание называетс€ «абвение. »ногда кто-нибудь выходит из себ€ в результате драки или по другой причине и больше не хочет говорить со мной. Ёто идеальный момент дл€ использовани€ этого заклинани€.");
 	Log_AddEntry(TOPIC_Ignaz,"ѕодопытный также забудет доложить о произошедшем власт€м, но не должно быть ни одного свидетел€ нашей драки или ссоры. ƒумаю, нет смысла испытывать заклинание в портовом квартале: драки там - привычное дело.");
 	AI_StopProcessInfos(self);
@@ -158,14 +152,13 @@ instance DIA_Ignaz_Running(C_Info)
 	nr = 2;
 	condition = DIA_Ignaz_Running_Condition;
 	information = DIA_Ignaz_Running_Info;
-	permanent = FALSE;
 	description = "Ќасчет эксперимента...";
 };
 
 
 func int DIA_Ignaz_Running_Condition()
 {
-	if((MIS_Ignaz_Charm == LOG_Running) && (Charm_Test == FALSE))
+	if((MIS_Ignaz_Charm == LOG_RUNNING) && (Charm_Test == FALSE))
 	{
 		return TRUE;
 	};
@@ -185,14 +178,13 @@ instance DIA_Ignaz_Danach(C_Info)
 	nr = 6;
 	condition = DIA_Ignaz_Danach_Condition;
 	information = DIA_Ignaz_Danach_Info;
-	permanent = FALSE;
 	description = "я использовал свиток.";
 };
 
 
 func int DIA_Ignaz_Danach_Condition()
 {
-	if((Charm_Test == TRUE) && (MIS_Ignaz_Charm == LOG_Running))
+	if((Charm_Test == TRUE) && (MIS_Ignaz_Charm == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -206,6 +198,7 @@ func void DIA_Ignaz_Danach_Info()
 	AI_Output(self,other,"DIA_Ignaz_Danach_14_03");	//ѕревосходно. ћожет, с точки зрени€ науки это не очень большое достижение, но дл€ мен€ оно очень много значит!
 	AI_Output(self,other,"DIA_Ignaz_Danach_14_04");	//“еперь € могу уделить тебе врем€ и обучить теб€ искусству алхимии.
 	AI_Output(self,other,"DIA_Ignaz_Danach_14_05");	//я также могу продать тебе что-нибудь полезное, если ты, конечно, хочешь этого.
+	CreateInvItems(self,ItSc_Charm,3);
 	Ignaz_TeachAlchemy = TRUE;
 	if(!Npc_KnowsInfo(other,DIA_Ignaz_Running))
 	{
@@ -218,7 +211,6 @@ func void DIA_Ignaz_Danach_Info()
 	};
 	MIS_Ignaz_Charm = LOG_SUCCESS;
 	B_GivePlayerXP(XP_MIS_Ignaz_Charm);
-	CreateInvItems(self,ItSc_Charm,3);
 };
 
 

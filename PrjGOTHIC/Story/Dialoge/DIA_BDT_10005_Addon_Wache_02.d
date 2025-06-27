@@ -27,7 +27,6 @@ instance DIA_Addon_Wache_02_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Wache_02_Hi_Condition;
 	information = DIA_Addon_Wache_02_Hi_Info;
-	permanent = FALSE;
 	description = "Как дела?";
 };
 
@@ -52,14 +51,13 @@ instance DIA_Addon_Wache_02_Attentat(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Wache_02_Attentat_Condition;
 	information = DIA_Addon_Wache_02_Attentat_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о нападении?";
 };
 
 
 func int DIA_Addon_Wache_02_Attentat_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Wache_02_Hi) && (MIS_Judas == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Addon_Wache_02_Hi) && (MIS_Judas == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -96,7 +94,7 @@ func void DIA_Addon_Wache_02_perm_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Wache_02_perm_15_00");	//Как дела?
 	AI_Output(self,other,"DIA_Addon_Wache_02_perm_13_01");	//Пока что тихо.
-	if(MIS_Judas == LOG_Running)
+	if(MIS_Judas == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Addon_Wache_02_perm_13_02");	//Ты найдешь предателя - мы позаботимся о нем...
 	};

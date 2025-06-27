@@ -9,23 +9,23 @@ func void B_Parlan_HAMMER()
 	Parlan_Hammer = TRUE;
 };
 
-instance DIA_Parlan_Kap1_EXIT(C_Info)
+instance DIA_Parlan_EXIT(C_Info)
 {
 	npc = KDF_504_Parlan;
 	nr = 999;
-	condition = DIA_Parlan_Kap1_EXIT_Condition;
-	information = DIA_Parlan_Kap1_EXIT_Info;
+	condition = DIA_Parlan_EXIT_Condition;
+	information = DIA_Parlan_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Parlan_Kap1_EXIT_Condition()
+func int DIA_Parlan_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Parlan_Kap1_EXIT_Info()
+func void DIA_Parlan_EXIT_Info()
 {
 	if((Parlan_Hammer == FALSE) && (Hammer_Taken == TRUE) && !Npc_IsDead(Garwig))
 	{
@@ -301,7 +301,6 @@ instance DIA_Parlan_WELCOME(C_Info)
 	nr = 1;
 	condition = DIA_Parlan_WELCOME_Condition;
 	information = DIA_Parlan_WELCOME_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -324,10 +323,9 @@ func void DIA_Parlan_WELCOME_Info()
 	AI_Output(other,self,"DIA_Parlan_WELCOME_15_05");	//И что теперь?
 	AI_Output(self,other,"DIA_Parlan_WELCOME_05_06");	//Прежде всего, ты должен выполнять свои обязанности послушника. Ты будешь работать и служить Братству.
 	B_GrantAbsolution(LOC_ALL);
-//	Snd_Play("LEVELUP");
-	Log_CreateTopic(Topic_Gemeinschaft,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Gemeinschaft,LOG_Running);
-	B_LogEntry(Topic_Gemeinschaft,"В обязанности послушника входят работы на благо общины.");
+	Log_CreateTopic(TOPIC_Gemeinschaft,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Gemeinschaft,LOG_RUNNING);
+	B_LogEntry(TOPIC_Gemeinschaft,"В обязанности послушника входят работы на благо общины.");
 	if(Pedro_NOV_Aufnahme_LostInnosStatue_Daron == FALSE)
 	{
 		if(Liesel_Giveaway == FALSE)
@@ -354,7 +352,6 @@ instance DIA_Parlan_Auge(C_Info)
 	nr = 2;
 	condition = DIA_Parlan_Auge_Condition;
 	information = DIA_Parlan_Auge_Info;
-	permanent = FALSE;
 	description = "Я ищу Глаз Инноса.";
 };
 
@@ -382,7 +379,6 @@ instance DIA_Parlan_Amulett(C_Info)
 	nr = 3;
 	condition = DIA_Parlan_Amulett_Condition;
 	information = DIA_Parlan_Amulett_Info;
-	permanent = FALSE;
 	description = "Расскажи мне о Глазе Инноса.";
 };
 
@@ -413,16 +409,18 @@ instance DIA_Parlan_Hagen(C_Info)
 	nr = 2;
 	condition = DIA_Parlan_Hagen_Condition;
 	information = DIA_Parlan_Hagen_Info;
-	permanent = FALSE;
 	description = "Я должен поговорить с командующим паладинами!";
 };
 
 
 func int DIA_Parlan_Hagen_Condition()
 {
-	if((LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild == GIL_NOV))
+	if((other.guild == GIL_NOV) && !Npc_IsDead(LordHagen))
 	{
-		return TRUE;
+		if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -498,8 +496,8 @@ func void DIA_Parlan_WORK_Info()
 		AI_Output(self,other,"DIA_Parlan_WORK_05_03");	//Поговори с другими магами. Они дадут тебе поручения.
 		AI_Output(self,other,"DIA_Parlan_WORK_05_04");	//Я буду наблюдать за твоей работой, и если ты хорошо будешь справляться с ней, ты получишь позволение войти в библиотеку, чтобы изучать учение Инноса.
 		DIA_Parlan_WORK_perm = TRUE;
-		MIS_KlosterArbeit = LOG_Running;
-		B_LogEntry(Topic_Gemeinschaft,"Если я выполню все задания магов, мне будет даровано право посещать библиотеку.");
+		MIS_KlosterArbeit = LOG_RUNNING;
+		B_LogEntry(TOPIC_Gemeinschaft,"Если я выполню все задания магов, мне будет даровано право посещать библиотеку.");
 	};
 };
 
@@ -517,7 +515,7 @@ instance DIA_Parlan_Stand(C_Info)
 
 func int DIA_Parlan_Stand_Condition()
 {
-	if((MIS_KlosterArbeit == LOG_Running) && (other.guild == GIL_NOV))
+	if((MIS_KlosterArbeit == LOG_RUNNING) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -591,14 +589,13 @@ instance DIA_Parlan_Aufgabe(C_Info)
 	nr = 10;
 	condition = DIA_Parlan_Aufgabe_Condition;
 	information = DIA_Parlan_Aufgabe_Info;
-	permanent = FALSE;
 	description = "У тебя есть поручение для меня?";
 };
 
 
 func int DIA_Parlan_Aufgabe_Condition()
 {
-	if(MIS_KlosterArbeit == LOG_Running)
+	if(MIS_KlosterArbeit == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -611,10 +608,10 @@ func void DIA_Parlan_Aufgabe_Info()
 	AI_Output(self,other,"DIA_Parlan_Aufgabe_05_02");	//Кельям послушников не помешает хорошая уборка. Позаботься об этом.
 	AI_Output(other,self,"DIA_Parlan_Aufgabe_15_03");	//Но это займет целую вечность...
 	AI_Output(self,other,"DIA_Parlan_Aufgabe_05_04");	//Тогда тебе лучше не терять время попусту, разве нет?
-	MIS_ParlanFegen = LOG_Running;
-	Log_CreateTopic(Topic_ParlanFegen,LOG_MISSION);
-	Log_SetTopicStatus(Topic_ParlanFegen,LOG_Running);
-	B_LogEntry(Topic_ParlanFegen,"Мастер Парлан хочет, чтобы я подмел четыре кельи послушников. Это займет целую вечность.");
+	MIS_ParlanFegen = LOG_RUNNING;
+	Log_CreateTopic(TOPIC_ParlanFegen,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_ParlanFegen,LOG_RUNNING);
+	B_LogEntry(TOPIC_ParlanFegen,"Мастер Парлан хочет, чтобы я подмел четыре кельи послушников. Это займет целую вечность.");
 };
 
 
@@ -631,7 +628,7 @@ instance DIA_Parlan_Fegen(C_Info)
 
 func int DIA_Parlan_Fegen_Condition()
 {
-	if(MIS_ParlanFegen == LOG_Running)
+	if(MIS_ParlanFegen == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -671,7 +668,6 @@ instance DIA_Parlan_LEARN(C_Info)
 	nr = 23;
 	condition = DIA_Parlan_LEARN_Condition;
 	information = DIA_Parlan_LEARN_Info;
-	permanent = FALSE;
 	description = "Как мне изучить основы магии?";
 };
 
@@ -689,7 +685,7 @@ func void DIA_Parlan_LEARN_Info()
 	AI_Output(other,self,"DIA_Parlan_LEARN_15_00");	//Как мне изучить основы магии?
 	AI_Output(self,other,"DIA_Parlan_LEARN_05_01");	//Ты здесь не для того, чтобы получить дар магии. Ты здесь, чтобы служить Инносу.
 	AI_Output(self,other,"DIA_Parlan_LEARN_05_02");	//Но я могу показать тебе, как повысить твои магические способности.
-	B_LogEntry(Topic_KlosterTeacher,"Мастер Парлан может помочь мне повысить мою магическую энергию.");
+	B_LogEntry(TOPIC_KlosterTeacher,"Мастер Парлан может помочь мне повысить мою магическую энергию.");
 };
 
 
@@ -699,7 +695,6 @@ instance DIA_Parlan_KNOWSJUDGE(C_Info)
 	nr = 23;
 	condition = DIA_Parlan_KNOWSJUDGE_Condition;
 	information = DIA_Parlan_KNOWSJUDGE_Info;
-	permanent = FALSE;
 	description = "Я хочу пройти Испытание Огнем.";
 };
 
@@ -724,7 +719,7 @@ func void DIA_Parlan_KNOWSJUDGE_Info()
 
 func void B_BuildLearnDialog_Parlan()
 {
-	if((RealAttributeValue(ATR_MANA_MAX) >= T_MED) || ((IgnoreBonuses == TRUE) && (other.attribute[ATR_MANA_MAX] >= T_MED)))
+	if((RealAttributeValue(ATR_MANA_MAX) >= T_MED) || (C_IgnorePermBonuses() && (other.attribute[ATR_MANA_MAX] >= T_MED)))
 	{
 		AI_Output(self,other,"DIA_Parlan_TEACH_MANA_05_00");	//Твоя магическая энергия выросла. Я не могу помочь тебе повысить ее еще больше.
 		AI_Output(self,other,"DIA_Parlan_TEACH_MANA_05_01");	//Если ты хочешь научиться большему, поговори с Пирокаром.
@@ -791,14 +786,12 @@ instance DIA_Parlan_MAGE(C_Info)
 	nr = 2;
 	condition = DIA_Parlan_MAGE_Condition;
 	information = DIA_Parlan_MAGE_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Parlan_MAGE_Condition()
 {
-//	if((other.guild == GIL_KDF) && Npc_IsInState(self,ZS_Talk))
 	if((other.guild == GIL_KDF) && (B_GetGreatestPetzCrime(self) == CRIME_NONE))
 	{
 		return TRUE;
@@ -815,13 +808,13 @@ func void DIA_Parlan_MAGE_Info()
 	AI_PrintScreen("Рунный камень получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	if(!Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
 	{
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Брат Парлан посвятит меня в первые круги магии и обучит множеству различных формул.");
+		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTeacher,"Брат Парлан посвятит меня в первые круги магии и обучит множеству различных формул.");
 	};
 	if(!Npc_KnowsInfo(other,DIA_Parlan_LEARN))
 	{
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Брат Парлан может помочь мне повысить мою магическую энергию.");
+		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTeacher,"Брат Парлан может помочь мне повысить мою магическую энергию.");
 	};
 };
 
@@ -834,7 +827,7 @@ instance DIA_Parlan_CIRCLE1(C_Info)
 	information = DIA_Parlan_CIRCLE1_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Научи меня первому Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1));
-	description = B_BuildLearnString("Первый Круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1));
+	description = B_BuildLearnString(NAME_Circle_1,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1));
 };
 
 
@@ -866,7 +859,7 @@ instance DIA_Parlan_CIRCLE2(C_Info)
 	information = DIA_Parlan_CIRCLE2_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Научи меня второму Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2));
-	description = B_BuildLearnString("Второй Круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2));
+	description = B_BuildLearnString(NAME_Circle_2,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2));
 };
 
 
@@ -905,7 +898,7 @@ instance DIA_Parlan_CIRCLE3(C_Info)
 	information = DIA_Parlan_CIRCLE3_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Научи меня третьему Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,3));
-	description = B_BuildLearnString("Третий Круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,3));
+	description = B_BuildLearnString(NAME_Circle_3,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,3));
 };
 
 
@@ -927,7 +920,7 @@ func void DIA_Parlan_CIRCLE3_Info()
 			AI_Output(self,other,"DIA_Parlan_TECH_CIRCLE3_05_01");	//Да, время пришло. Войди в третий Круг магии. Тебя ждут новые заклинания.
 			AI_Output(self,other,"DIA_Parlan_TECH_CIRCLE3_05_02");	//Они тебе понадобятся - Зло хочет погрузить землю в хаос, и остановить его можно только с помощью силы Инноса.
 			AI_Output(self,other,"DIA_Parlan_TECH_CIRCLE3_05_03");	//Я научил тебя всем Кругам, которыми владею сам. Каррас введет тебя в другие Круги.
-			B_LogEntry(Topic_KlosterTeacher,"Брат Парлан обучил меня первым трем Кругам. Брат Каррас поможет мне изучить следующие Круги.");
+			B_LogEntry(TOPIC_KlosterTeacher,"Брат Парлан обучил меня первым трем Кругам. Брат Каррас поможет мне изучить следующие Круги.");
 		};
 	}
 	else
@@ -1076,14 +1069,12 @@ instance DIA_Parlan_IAmParlan(C_Info)
 	nr = 39;
 	condition = DIA_Parlan_IAmParlan_Condition;
 	information = DIA_Parlan_IAmParlan_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Parlan_IAmParlan_Condition()
 {
-//	if((Kapitel >= 3) && Npc_IsInState(self,ZS_Talk) && ((other.guild != GIL_NOV) && (other.guild != GIL_KDF)))
 	if((Kapitel >= 3) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF) && (B_GetGreatestPetzCrime(self) == CRIME_NONE))
 	{
 		return TRUE;
@@ -1101,7 +1092,7 @@ func void DIA_Parlan_IAmParlan_Info()
 	{
 		AI_Output(self,other,"DIA_Parlan_IAmParlan_05_02");	//Я не знаю, почему тебя пустили в монастырь. Я Парлан, и я отвечаю за наших послушников.
 		AI_Output(self,other,"DIA_Parlan_IAmParlan_05_03");	//Я не хочу, чтобы ты отрывал их от работы своими дурацкими вопросами. Надеюсь, это ясно?
-		Parlan_DontTalkToNovice = LOG_Running;
+		Parlan_DontTalkToNovice = LOG_RUNNING;
 		Info_ClearChoices(DIA_Parlan_IAmParlan);
 		Info_AddChoice(DIA_Parlan_IAmParlan,"Я буду делать то, что сочту нужным.",DIA_Parlan_IAmParlan_MyChoice);
 		Info_AddChoice(DIA_Parlan_IAmParlan,"Конечно.",DIA_Parlan_IAmParlan_OK);
@@ -1130,14 +1121,12 @@ instance DIA_Parlan_Bibliothek(C_Info)
 	nr = 40;
 	condition = DIA_Parlan_Bibliothek_Condition;
 	information = DIA_Parlan_Bibliothek_Info;
-	permanent = FALSE;
 	description = "У тебя есть что-нибудь для меня?";
 };
 
 
 func int DIA_Parlan_Bibliothek_Condition()
 {
-//	if((other.guild != GIL_KDF) && (Kapitel >= 3) && (other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	if((other.guild != GIL_KDF) && (Kapitel >= 3))
 	{
 		return TRUE;
@@ -1174,7 +1163,6 @@ instance DIA_Parlan_DontDisturb(C_Info)
 
 func int DIA_Parlan_DontDisturb_Condition()
 {
-//	if((Parlan_DontTalkToNovice == LOG_SUCCESS) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && ((other.guild != GIL_PAL) || (other.guild != GIL_NOV) || (other.guild != GIL_KDF)))
 	if((Parlan_DontTalkToNovice == LOG_FAILED) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && (other.guild != GIL_PAL))
 	{
 		return TRUE;
@@ -1186,7 +1174,7 @@ func void DIA_Parlan_DontDisturb_Info()
 	AI_Output(self,other,"DIA_Parlan_DontDisturb_05_00");	//(угрожающе) Я не люблю повторять. Оставь послушников в покое.
 	AI_Output(self,other,"DIA_Parlan_DontDisturb_05_01");	//Они должны очищать свой дух физическим трудом и готовить себя к жизни в монастыре.
 	AI_Output(self,other,"DIA_Parlan_DontDisturb_05_02");	//(резко) Я не потерплю вмешательства в их работу!
-	Parlan_DontTalkToNovice = LOG_Running;
+	Parlan_DontTalkToNovice = LOG_RUNNING;
 	AI_StopProcessInfos(self);
 };
 

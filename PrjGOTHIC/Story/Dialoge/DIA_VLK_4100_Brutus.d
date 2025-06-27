@@ -55,7 +55,7 @@ func void DIA_Brutus_AFTER_FIGHT_Info()
 		{
 			AI_Output(self,other,"DIA_Brutus_AFTER_FIGHT_06_04");	//Вот это зелье поможет тебе встать на ноги. Также оно сотворит чудеса с твоими внутренностями!
 			CreateInvItems(self,ItPo_Health_01,1);
-			B_GiveInvItems(self,hero,ItPo_Health_01,1);
+			B_GiveInvItems(self,other,ItPo_Health_01,1);
 			Brutus_einmalig = TRUE;
 		};
 	}
@@ -134,7 +134,6 @@ instance DIA_Brutus_Kasse(C_Info)
 	nr = 2;
 	condition = DIA_Brutus_Kasse_Condition;
 	information = DIA_Brutus_Kasse_Info;
-	permanent = FALSE;
 	description = "Ты не мог бы потренировать меня?";
 };
 
@@ -160,7 +159,7 @@ func void DIA_Brutus_Kasse_Info()
 	AI_Output(self,other,"DIA_Brutus_Kasse_06_08");	//Это была приличная сумма. В сундуке было 200 золотых монет, а также ценные ювелирные изделия.
 	AI_Output(self,other,"DIA_Brutus_Kasse_06_09");	//Если ты вернешь мне это золото, драгоценности можешь оставить себе. И тогда я буду готов обучить тебя.
 	Log_CreateTopic(TOPIC_BrutusKasse,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BrutusKasse,LOG_Running);
+	Log_SetTopicStatus(TOPIC_BrutusKasse,LOG_RUNNING);
 	B_LogEntry(TOPIC_BrutusKasse,"Партнер Брутуса Ден скрылся с 200 золотыми монетами и кое-какими драгоценностями. Если я верну ему 200 золотых монет, он поможет мне стать сильнее.");
 };
 
@@ -171,16 +170,18 @@ instance DIA_Brutus_Den(C_Info)
 	nr = 2;
 	condition = DIA_Brutus_Den_Condition;
 	information = DIA_Brutus_Den_Info;
-	permanent = FALSE;
 	description = "Ты знаешь, куда направился этот Ден?";
 };
 
 
 func int DIA_Brutus_Den_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Brutus_Kasse) && (NpcObsessedByDMT_Brutus == FALSE) && Npc_HasItems(Den,ItMi_Gold))
+	if(Npc_KnowsInfo(other,DIA_Brutus_Kasse) && (NpcObsessedByDMT_Brutus == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(Den,ItMi_Gold))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -338,7 +339,7 @@ func void DIA_Brutus_WARUMNICHTARBBEIT_Info()
 	AI_Output(self,other,"DIA_Brutus_WARUMNICHTARBBEIT_06_03");	//Я не знаю, кто жил там раньше, но ноги моей не будет в этом грязном хлеву.
 	AI_Output(self,other,"DIA_Brutus_WARUMNICHTARBBEIT_06_04");	//Я ненавижу этих тварей. И хватит ржать, как идиот.
 	Log_CreateTopic(TOPIC_BrutusMeatbugs,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BrutusMeatbugs,LOG_Running);
+	Log_SetTopicStatus(TOPIC_BrutusMeatbugs,LOG_RUNNING);
 	B_LogEntry(TOPIC_BrutusMeatbugs,"Брутус, палач замка, говорит, что от безобидных мясных жуков в его комнате, у него мурашки по коже. А он казался мне таким крепким парнем.");
 };
 
@@ -415,7 +416,7 @@ func int DIA_Brutus_PERM4_Condition()
 func void DIA_Brutus_PERM4_Info()
 {
 	DIA_Common_IsEverythingOk();
-	if((MIS_OCGateOpen == TRUE) || ((hero.guild == GIL_KDF) && (Kapitel >= 5)))
+	if((MIS_OCGateOpen == TRUE) || ((other.guild == GIL_KDF) && (Kapitel >= 5)))
 	{
 		B_NpcObsessedByDMT(self);
 	}
@@ -451,7 +452,7 @@ func int DIA_Brutus_BESSEN_Condition()
 func void DIA_Brutus_BESSEN_Info()
 {
 	AI_Output(other,self,"DIA_Brutus_BESSEN_15_00");	//Да ты одержим!
-	if((hero.guild == GIL_KDF) || (hero.guild == GIL_PAL))
+	if((other.guild == GIL_KDF) || (other.guild == GIL_PAL))
 	{
 		AI_Output(other,self,"DIA_Brutus_BESSEN_15_01");	//Отправляйся в монастырь, пусть они вылечат тебя.
 		AI_Output(self,other,"DIA_Brutus_BESSEN_06_02");	//Мне никто не может помочь. Убирайся!

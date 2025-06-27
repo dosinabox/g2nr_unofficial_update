@@ -1,4 +1,54 @@
 
+func int C_WantToHelpNpcToKill(var C_Npc npc)
+{
+	if(Npc_GetAttitude(self,npc) != ATT_FRIENDLY)
+	{
+		return FALSE;
+	};
+	if(npc.aivar[AIV_ATTACKREASON] == AR_GuardStopsIntruder)
+	{
+		return TRUE;
+	};
+	if(npc.aivar[AIV_ATTACKREASON] == AR_MonsterCloseToGate)
+	{
+		return TRUE;
+	};
+	if(npc.aivar[AIV_ATTACKREASON] == AR_HumanMurderedHuman)
+	{
+		return TRUE;
+	};
+	if(npc.aivar[AIV_ATTACKREASON] == AR_GuildEnemy)
+	{
+		return TRUE;
+	};
+	if(npc.aivar[AIV_ATTACKREASON] == AR_GuardCalledToKill)
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+func int C_WantToHelpNpcToStopFight(var C_Npc npc)
+{
+	if(Npc_GetAttitude(self,npc) != ATT_FRIENDLY)
+	{
+		return FALSE;
+	};
+	if(npc.aivar[AIV_ATTACKREASON] == AR_GuardStopsFight)
+	{
+		return TRUE;
+	};
+	if(npc.aivar[AIV_ATTACKREASON] == AR_ReactToDamage)
+	{
+		return TRUE;
+	};
+	if(npc.aivar[AIV_ATTACKREASON] == AR_ReactToWeapon)
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 func void B_AssessFightSound()
 {
 	if(!Hlp_IsValidNpc(victim))
@@ -23,7 +73,7 @@ func void B_AssessFightSound()
 			return;
 		};
 	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Peck))
+	if(C_IsNpc(self,MIL_324_Peck))
 	{
 		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_PECK") <= 500)
 		{
@@ -85,9 +135,9 @@ func void B_AssessFightSound()
 	{
 		return;
 	};
-	if(other.guild > GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(other))
 	{
-		if(victim.guild > GIL_SEPERATOR_HUM)
+		if(!C_NpcIsHuman(victim))
 		{
 			return;
 		};
@@ -97,10 +147,13 @@ func void B_AssessFightSound()
 			return;
 		};
 	};
-	if((victim.guild > GIL_SEPERATOR_HUM) && (Npc_GetAttitude(self,other) != ATT_HOSTILE) && !Npc_IsDead(victim))
+	if((Npc_GetAttitude(self,other) != ATT_HOSTILE) && !Npc_IsDead(victim))
 	{
-		B_Attack(self,victim,AR_MonsterVsHuman,0);
-		return;
+		if(!C_NpcIsHuman(victim))
+		{
+			B_Attack(self,victim,AR_MonsterVsHuman,0);
+			return;
+		};
 	};
 	if(self.aivar[AIV_EnemyOverride] == TRUE)
 	{
@@ -146,17 +199,17 @@ func void B_AssessFightSound()
 			};
 		};
 	};
-	if(((other.aivar[AIV_ATTACKREASON] == AR_GuardStopsIntruder) || (other.aivar[AIV_ATTACKREASON] == AR_MonsterCloseToGate) || (other.aivar[AIV_ATTACKREASON] == AR_HumanMurderedHuman) || (other.aivar[AIV_ATTACKREASON] == AR_GuildEnemy) || (other.aivar[AIV_ATTACKREASON] == AR_GuardCalledToKill)) && (Npc_GetAttitude(self,other) == ATT_FRIENDLY))
+	if(C_WantToHelpNpcToKill(other))
 	{
 		B_Attack(self,victim,AR_GuardCalledToKill,0);
 		return;
 	};
-	if(((victim.aivar[AIV_ATTACKREASON] == AR_GuardStopsIntruder) || (victim.aivar[AIV_ATTACKREASON] == AR_MonsterCloseToGate) || (victim.aivar[AIV_ATTACKREASON] == AR_HumanMurderedHuman) || (victim.aivar[AIV_ATTACKREASON] == AR_GuildEnemy) || (victim.aivar[AIV_ATTACKREASON] == AR_GuardCalledToKill)) && (Npc_GetAttitude(self,victim) == ATT_FRIENDLY))
+	if(C_WantToHelpNpcToKill(victim))
 	{
 		B_Attack(self,other,AR_GuardCalledToKill,0);
 		return;
 	};
-	if(((other.aivar[AIV_ATTACKREASON] == AR_GuardStopsFight) || (other.aivar[AIV_ATTACKREASON] == AR_ReactToDamage) || (other.aivar[AIV_ATTACKREASON] == AR_ReactToWeapon)) && (Npc_GetAttitude(self,other) == ATT_FRIENDLY))
+	if(C_WantToHelpNpcToStopFight(other))
 	{
 		if(((other.guild == GIL_SLD) || (other.guild == GIL_DJG) || (other.guild == GIL_NONE)) && ((victim.guild == GIL_SLD) || (victim.guild == GIL_DJG) || (victim.guild == GIL_NONE)))
 		{
@@ -170,7 +223,7 @@ func void B_AssessFightSound()
 			return;
 		};
 	};
-	if(((victim.aivar[AIV_ATTACKREASON] == AR_GuardStopsFight) || (victim.aivar[AIV_ATTACKREASON] == AR_ReactToDamage) || (victim.aivar[AIV_ATTACKREASON] == AR_ReactToWeapon)) && (Npc_GetAttitude(self,victim) == ATT_FRIENDLY))
+	if(C_WantToHelpNpcToStopFight(victim))
 	{
 		if(((other.guild == GIL_SLD) || (other.guild == GIL_DJG) || (other.guild == GIL_NONE)) && ((victim.guild == GIL_SLD) || (victim.guild == GIL_DJG) || (victim.guild == GIL_NONE)))
 		{

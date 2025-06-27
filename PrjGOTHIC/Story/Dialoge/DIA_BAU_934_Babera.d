@@ -65,7 +65,7 @@ func void DIA_Babera_WIESIEHTSAUS_Info()
 {
 	AI_Output(other,self,"DIA_Babera_WIESIEHTSAUS_15_00");	//Как идет работа в поле?
 	AI_Output(self,other,"DIA_Babera_WIESIEHTSAUS_16_01");	//Посмотри на эти огромные поля, которые нам нужно обработать, и ты сам все поймешь.
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Babera_WIESIEHTSAUS_16_02");	//Ты хочешь работать на поле?
 		Info_ClearChoices(DIA_Babera_WIESIEHTSAUS);
@@ -116,7 +116,7 @@ func void DIA_Babera_BRONKO_Info()
 	AI_Output(other,self,"DIA_Babera_BRONKO_15_02");	//Это ваш фермер?
 	AI_Output(self,other,"DIA_Babera_BRONKO_16_03");	//(смеется) Это он сказал тебе? Наш фермер - Секоб. А Бронко просто болтун и бездельник. Но сильный как бык.
 	AI_Output(self,other,"DIA_Babera_BRONKO_16_04");	//Вот почему никто не протестует против того, что он не работает.
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Babera_BRONKO_16_05");	//Он никого не боится. Только наемников.
 	}
@@ -140,7 +140,7 @@ instance DIA_Babera_Rosi(C_Info)
 
 func int DIA_Babera_Rosi_Condition()
 {
-	if((MIS_BringRosiBackToSekob == LOG_Running) && (Kapitel >= 5) && (RosiFoundKap5 == FALSE))
+	if((MIS_BringRosiBackToSekob == LOG_RUNNING) && (Kapitel >= 5) && (RosiFoundKap5 == FALSE))
 	{
 		return TRUE;
 	};
@@ -151,7 +151,7 @@ func void DIA_Babera_Rosi_Info()
 	AI_Output(other,self,"DIA_Babera_Rosi_15_00");	//А где Рози?
 	AI_Output(self,other,"DIA_Babera_Rosi_16_01");	//Она больше не могла выносить такую жизнь и ушла на север, в лес.
 	Log_CreateTopic(TOPIC_RosisFlucht,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_RosisFlucht,LOG_Running);
+	Log_SetTopicStatus(TOPIC_RosisFlucht,LOG_RUNNING);
 	B_LogEntries(TOPIC_RosisFlucht,"Рози сбежала с фермы Секоба. Бабера говорит, что она направилась на север, в лес.");
 	B_LogNextEntry(TOPIC_BringRosiBackToSekob,"Рози сбежала с фермы Секоба. Бабера говорит, что она направилась на север, в лес.");
 };

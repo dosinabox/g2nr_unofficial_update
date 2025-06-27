@@ -1,5 +1,5 @@
 
-func void ZS_Spit_Fire()
+/*func void ZS_Spit_Fire()
 {
 	Perception_Set_Normal();
 	B_ResetAll(self);
@@ -37,5 +37,5 @@ func int ZS_Spit_Fire_loop()
 func void ZS_Spit_Fire_end()
 {
 	AI_UseItemToState(self,ItLsTorchFirespit,-1);
-};
+};*/
 

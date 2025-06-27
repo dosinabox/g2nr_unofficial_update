@@ -73,7 +73,7 @@ func void B_UseRakeBilanz()
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_00_add");	//И не думай, что я забыл!
 	}
-	else if((MIS_Addon_Greg_RakeCave == LOG_Running) || (MIS_Addon_Greg_RakeCave == LOG_FAILED))
+	else if((MIS_Addon_Greg_RakeCave == LOG_RUNNING) || (MIS_Addon_Greg_RakeCave == LOG_FAILED))
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_00");	//И не думай, что я забыл, что ты мой должник.
 		if(Greg_SuchWeiter == TRUE)
@@ -204,9 +204,9 @@ func void DIA_Addon_Greg_JoinPirates_Info()
 		AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_01_02");	//Эта ленивая свинья Морган будет пилить древесину.
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_01_03");	//А ты займешься работой Моргана и очистишь каньон от этих проклятых зверей.
-	MIS_Addon_Greg_ClearCanyon = LOG_Running;
+	MIS_Addon_Greg_ClearCanyon = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Addon_ClearCanyon,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_ClearCanyon,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_ClearCanyon,LOG_RUNNING);
 	if(Greg_NoHelpInNW < 2)
 	{
 		B_LogEntry(TOPIC_Addon_ClearCanyon,"Грег хочет, чтобы я взял на себя работу Моргана и очистил каньон от зверей.");
@@ -277,7 +277,7 @@ instance DIA_Addon_Greg_AboutCanyon(C_Info)
 
 func int DIA_Addon_Greg_AboutCanyon_Condition()
 {
-	if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+	if(MIS_Addon_Greg_ClearCanyon == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -369,7 +369,7 @@ func void DIA_Addon_Greg_BanditArmor_Info()
 	if(MIS_Addon_Greg_ClearCanyon != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_BanditArmor_01_01");	//Сначала покажи, на что ты способен. После этого поговорим.
-		if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+		if(MIS_Addon_Greg_ClearCanyon == LOG_RUNNING)
 		{
 			AI_Output(self,other,"DIA_Addon_Greg_BanditArmor_01_02");	//Сначала ты должен убить всех бритвозубов!
 		};
@@ -390,9 +390,9 @@ func void DIA_Addon_Greg_BanditArmor_Info()
 		AI_Output(other,self,"DIA_Addon_Greg_BanditArmor_15_09");	//Будет сделано, капитан!
 		B_LogEntries(TOPIC_Addon_BDTRuestung,"Я разобрался с бритвозубами для Грега и теперь могу забрать доспехи у Бонеса.");
 		Log_CreateTopic(TOPIC_Addon_ScoutBandits,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_ScoutBandits,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_ScoutBandits,LOG_RUNNING);
 		B_LogNextEntry(TOPIC_Addon_ScoutBandits,"Я должен узнать, для чего бандиты пришли в долину, и сообщить Грегу.");
-		MIS_Greg_ScoutBandits = LOG_Running;
+		MIS_Greg_ScoutBandits = LOG_RUNNING;
 	};
 };
 
@@ -430,18 +430,18 @@ func void DIA_Addon_Greg_Auftraege2_Info()
 		AI_Output(self,other,"DIA_Addon_Greg_Auftraege2_01_01");	//Северное побережье все еще населяют звери.
 		AI_Output(self,other,"DIA_Addon_Greg_Auftraege2_01_02");	//Похоже, Морган ничего не сделал.
 		Log_CreateTopic(TOPIC_Addon_MorganBeach,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MorganBeach,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_MorganBeach,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_MorganBeach,"Грег хочет, чтобы я очистил кишащий монстрами пляж.");
-		MIS_Addon_MorganLurker = LOG_Running;
+		MIS_Addon_MorganLurker = LOG_RUNNING;
 	};
 	if(!C_TowerBanditsDead())
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_Auftraege2_01_03");	//В южной башне все еще есть бандиты.
 		AI_Output(self,other,"DIA_Addon_Greg_Auftraege2_01_04");	//Фрэнсис должен был уже давно с ними разобраться, но ничего не сделал.
 		Log_CreateTopic(TOPIC_Addon_BanditsTower,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_BanditsTower,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_BanditsTower,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_BanditsTower,"Грег попросил меня разобраться с бандитами, занявшими башню к югу от лагеря.");
-		MIS_Henry_FreeBDTTower = LOG_Running;
+		MIS_Henry_FreeBDTTower = LOG_RUNNING;
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_Auftraege2_01_05");	//Думаю, ты можешь этим заняться.
 };
@@ -549,7 +549,7 @@ instance DIA_Addon_Greg_BanditGoldmine(C_Info)
 
 func int DIA_Addon_Greg_BanditGoldmine_Condition()
 {
-	if((SC_KnowsRavensGoldmine == TRUE) && (MIS_Greg_ScoutBandits == LOG_Running))
+	if((SC_KnowsRavensGoldmine == TRUE) && (MIS_Greg_ScoutBandits == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -729,7 +729,7 @@ func void DIA_Addon_Greg_RavenDead_Info()
 	B_GivePlayerXP(XP_Addon_GregRavenLohn);
 	if(MIS_Henry_HolOwen == LOG_SUCCESS)
 	{
-		B_StartOtherRoutine(Owen,"PostStart");
+		B_StartOtherRoutine(Owen,"POSTSTART");
 	};
 };
 
@@ -746,7 +746,7 @@ instance DIA_Addon_Greg_ItemsInADW(C_Info)
 
 func int DIA_Addon_Greg_ItemsInADW_Condition()
 {
-	if((RAKEPLACE[1] == TRUE) && (RAKEPLACE[2] == TRUE) && (RAKEPLACE[3] == TRUE) && (RAKEPLACE[4] == TRUE) && (RAKEPLACE[5] == TRUE) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (Greg_SuchWeiter == TRUE) && C_SCHasGregsItems())
+	if((RAKEPLACE[1] == TRUE) && (RAKEPLACE[2] == TRUE) && (RAKEPLACE[3] == TRUE) && (RAKEPLACE[4] == TRUE) && (RAKEPLACE[5] == TRUE) && (MIS_Addon_Greg_RakeCave == LOG_RUNNING) && (Greg_SuchWeiter == TRUE) && C_SCHasGregsItems())
 	{
 		return TRUE;
 	};
@@ -788,7 +788,7 @@ func void DIA_Addon_Greg_BeMyCap_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_da_01_01");	//Э-э, тебе даже не стоит пытаться туда попасть.
 	DIA_Common_SoWhatYouSay();
 	AI_Output(self,other,"DIA_Addon_Greg_NW_was_SLD_01_02");	//Неплохо для сухопутной крысы.
-	B_LogEntry(Topic_Captain,"Грега не заинтересовало мое предложение.");
+	B_LogEntry(TOPIC_Captain,"Грега не заинтересовало мое предложение.");
 	AI_StopProcessInfos(self);
 };
 

@@ -48,21 +48,21 @@ func int DIA_Lothar_FirstEXIT_Condition()
 func void DIA_Lothar_FirstEXIT_Info()
 {
 	DIA_Common_IHaveToGo_v1();
-	if((Lothar_Regeln == FALSE) && (Mil_305_schonmalreingelassen == FALSE))
+	if((Lothar_Regeln == FALSE) && (MIL_305_schonmalreingelassen == FALSE))
 	{
 		AI_Output(self,other,"DIA_Lothar_FirstEXIT_01_01");	//Подожди! Ты даже не знаешь новых законов города!
 		AI_Output(other,self,"DIA_Lothar_FirstEXIT_15_02");	//Позже.
 	}
 	else
 	{
-		if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
+		if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF))
 		{
 			AI_Output(self,other,"DIA_Lothar_FirstEXIT_01_03");	//Если я еще хоть раз услышу, что ты рассказываешь людям о драконах, у тебя будут большие проблемы, тебе все ясно?
 		}
 		else
 		{
 			AI_Output(self,other,"DIA_Lothar_FirstEXIT_01_04");	//Пока ты находишься в Хоринисе, ты можешь чувствовать себя в безопасности.
-			if(hero.guild != GIL_PAL)
+			if(other.guild != GIL_PAL)
 			{
 				AI_Output(self,other,"DIA_Lothar_FirstEXIT_01_05");	//Город теперь охраняют паладины короля!
 			};
@@ -80,14 +80,13 @@ instance DIA_Lothar_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Lothar_Hallo_Condition;
 	information = DIA_Lothar_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Lothar_Hallo_Condition()
 {
-	if((self.aivar[AIV_TalkedToPlayer] == FALSE) && (Mil_305_schonmalreingelassen == FALSE))
+	if((self.aivar[AIV_TalkedToPlayer] == FALSE) && (MIL_305_schonmalreingelassen == FALSE))
 	{
 		return TRUE;
 	};
@@ -99,7 +98,7 @@ func void DIA_Lothar_Hallo_Info()
 	{
 		AI_Output(self,other,"DIA_Lothar_Hallo_01_00");	//Стой, чужеземец!
 	};
-	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF) && (hero.guild != GIL_MIL))
+	if((CityPassGranted == FALSE) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF) && (other.guild != GIL_MIL))
 	{
 		AI_Output(self,other,"DIA_Lothar_Hallo_01_01");	//Я не видел, чтобы ты проходил через эти ворота.
 		AI_Output(other,self,"DIA_Lothar_Hallo_15_02");	//И?
@@ -122,7 +121,6 @@ instance DIA_Lothar_MESSAGE(C_Info)
 	nr = 1;
 	condition = DIA_Lothar_MESSAGE_Condition;
 	information = DIA_Lothar_MESSAGE_Info;
-	permanent = FALSE;
 	description = "У меня важное сообщение для предводителя паладинов!";
 };
 
@@ -131,7 +129,7 @@ func int DIA_Lothar_MESSAGE_Condition()
 {
 	if(PAL_205_schonmalreingelassen == FALSE)
 	{
-		if((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV))
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 		{
 			return TRUE;
 		};
@@ -161,7 +159,6 @@ instance DIA_Lothar_EyeInnos(C_Info)
 	nr = 2;
 	condition = DIA_Lothar_EyeInnos_Condition;
 	information = DIA_Lothar_EyeInnos_Info;
-	permanent = FALSE;
 	description = "Я пришел, чтобы получить Глаз Инноса!";
 };
 
@@ -177,7 +174,7 @@ func int DIA_Lothar_EyeInnos_Condition()
 func void DIA_Lothar_EyeInnos_Info()
 {
 	AI_Output(other,self,"DIA_Lothar_EyeInnos_15_00");	//Я пришел, чтобы получить Глаз Инноса!
-	if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Lothar_EyeInnos_01_01");	//Вопрос о Глазе должен решать лорд Хаген. Поговори с ним об этом.
 		Player_KnowsLordHagen = TRUE;
@@ -204,7 +201,6 @@ instance DIA_Lothar_Dragons(C_Info)
 	nr = 1;
 	condition = DIA_Lothar_Dragons_Condition;
 	information = DIA_Lothar_Dragons_Info;
-	permanent = FALSE;
 	description = "Послушай - этому городу угрожают драконы!";
 };
 
@@ -220,7 +216,7 @@ func int DIA_Lothar_Dragons_Condition()
 func void DIA_Lothar_Dragons_Info()
 {
 	AI_Output(other,self,"DIA_Lothar_Dragons_15_00");	//Послушай - этому городу угрожают драконы!
-	if((hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
+	if((other.guild != GIL_PAL) && (other.guild != GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_01");	//Это не может быть правдой!
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_02");	//Еще один сумасшедший!
@@ -254,7 +250,7 @@ instance DIA_Addon_Lothar_Ornament(C_Info)
 
 func int DIA_Addon_Lothar_Ornament_Condition()
 {
-	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL == LOG_Running)
+	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -298,7 +294,6 @@ instance DIA_Lothar_WhoDragons(C_Info)
 	nr = 1;
 	condition = DIA_Lothar_WhoDragons_Condition;
 	information = DIA_Lothar_WhoDragons_Info;
-	permanent = FALSE;
 	description = "Кто-то уже докладывал о драконах?";
 };
 
@@ -315,7 +310,7 @@ func void DIA_Lothar_WhoDragons_Info()
 {
 	AI_Output(other,self,"DIA_Lothar_WhoDragons_15_00");	//Кто-то уже докладывал о драконах?
 	AI_Output(self,other,"DIA_Lothar_WhoDragons_01_01");	//Да. Парень по имени Диего. Если я не ошибаюсь.
-	if((hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
+	if((other.guild != GIL_PAL) && (other.guild != GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Lothar_WhoDragons_01_02");	//(угрожающе) Я предупреждал его - как и тебя! Но этот безумец не переставал действовать мне на нервы!
 	};
@@ -328,14 +323,13 @@ instance DIA_Lothar_Regeln(C_Info)
 	nr = 3;
 	condition = DIA_Lothar_Regeln_Condition;
 	information = DIA_Lothar_Regeln_Info;
-	permanent = FALSE;
 	description = "Хорошо - объясни мне законы этого города!";
 };
 
 
 func int DIA_Lothar_Regeln_Condition()
 {
-	if(Mil_305_schonmalreingelassen == FALSE)
+	if(MIL_305_schonmalreingelassen == FALSE)
 	{
 		return TRUE;
 	};
@@ -386,7 +380,7 @@ func void DIA_Addon_Lothar_MissingPeople_Info()
 	if(SC_HearedAboutMissingPeople == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
 		SC_HearedAboutMissingPeople = TRUE;
 	};
@@ -399,7 +393,6 @@ instance DIA_Lothar_HowCitizen(C_Info)
 	nr = 4;
 	condition = DIA_Lothar_HowCitizen_Condition;
 	information = DIA_Lothar_HowCitizen_Info;
-	permanent = FALSE;
 	description = "Как я могу стать гражданином этого города?";
 };
 
@@ -432,7 +425,6 @@ instance DIA_Lothar_WoArbeit(C_Info)
 	nr = 5;
 	condition = DIA_Lothar_WoArbeit_Condition;
 	information = DIA_Lothar_WoArbeit_Info;
-	permanent = FALSE;
 	description = "Где я могу найти работу?";
 };
 
@@ -467,14 +459,13 @@ instance DIA_Lothar_ToOV(C_Info)
 	nr = 6;
 	condition = DIA_Lothar_ToOV_Condition;
 	information = DIA_Lothar_ToOV_Info;
-	permanent = FALSE;
 	description = "Как мне попасть в верхний квартал?";
 };
 
 
 func int DIA_Lothar_ToOV_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lothar_Regeln) && (Mil_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE) && !Npc_KnowsInfo(other,DIA_Lothar_HelloAgain))
+	if(Npc_KnowsInfo(other,DIA_Lothar_Regeln) && (MIL_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE) && !Npc_KnowsInfo(other,DIA_Lothar_HelloAgain))
 	{
 		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 		{
@@ -498,7 +489,6 @@ instance DIA_Lothar_ToMiliz(C_Info)
 	nr = 7;
 	condition = DIA_Lothar_ToMiliz_Condition;
 	information = DIA_Lothar_ToMiliz_Info;
-	permanent = FALSE;
 	description = "А как я могу поступить на службу в ополчение?";
 };
 
@@ -534,7 +524,6 @@ instance DIA_Lothar_ToPaladins(C_Info)
 	nr = 7;
 	condition = DIA_Lothar_ToPaladins_Condition;
 	information = DIA_Lothar_ToPaladins_Info;
-	permanent = FALSE;
 	description = "Что мне нужно сделать, чтобы получить доспехи как у тебя?";
 };
 
@@ -570,16 +559,18 @@ instance DIA_Lothar_WoAndre(C_Info)
 	nr = 8;
 	condition = DIA_Lothar_WoAndre_Condition;
 	information = DIA_Lothar_WoAndre_Info;
-	permanent = FALSE;
 	description = "Где мне найти командира городской стражи?";
 };
 
 
 func int DIA_Lothar_WoAndre_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Lothar_Regeln) || Npc_KnowsInfo(other,DIA_Lothar_MESSAGE)) && (Andre.aivar[AIV_TalkedToPlayer] == FALSE))
+	if((Npc_KnowsInfo(other,DIA_Lothar_Regeln) || Npc_KnowsInfo(other,DIA_Lothar_MESSAGE)) && !Npc_IsDead(Andre))
 	{
-		return TRUE;
+		if(Andre.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -596,7 +587,6 @@ instance DIA_Lothar_Schlafen(C_Info)
 	nr = 9;
 	condition = DIA_Lothar_Schlafen_Condition;
 	information = DIA_Lothar_Schlafen_Info;
-	permanent = FALSE;
 	description = "Где я могу провести ночь?";
 };
 
@@ -631,7 +621,7 @@ instance DIA_Lothar_PermB4OV(C_Info)
 
 func int DIA_Lothar_PermB4OV_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Mil_305_schonmalreingelassen == FALSE) && (Lothar_Regeln == TRUE) && !Npc_KnowsInfo(other,DIA_Lothar_HelloAgain))
+	if(Npc_IsInState(self,ZS_Talk) && (MIL_305_schonmalreingelassen == FALSE) && (Lothar_Regeln == TRUE) && !Npc_KnowsInfo(other,DIA_Lothar_HelloAgain))
 	{
 		if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen))
 		{
@@ -658,9 +648,12 @@ var int Lothar_Reported;
 
 func int C_Lothar_Reported()
 {
-	if((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (Lothar_Day < Wld_GetDay()) && (Lothar_Reported == FALSE))
+	if((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && !Npc_IsDead(LordHagen) && (Lothar_Day < Wld_GetDay()) && (Lothar_Reported == FALSE))
 	{
-		return TRUE;
+		if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 	return FALSE;
 };
@@ -684,14 +677,13 @@ instance DIA_Lothar_HelloAgain(C_Info)
 	nr = 1;
 	condition = DIA_Lothar_HelloAgain_Condition;
 	information = DIA_Lothar_HelloAgain_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Lothar_HelloAgain_Condition()
 {
-	if(Mil_305_schonmalreingelassen == TRUE)
+	if(MIL_305_schonmalreingelassen == TRUE)
 	{
 		return TRUE;
 	};
@@ -816,16 +808,18 @@ instance DIA_Lothar_Hagen(C_Info)
 	nr = 2;
 	condition = DIA_Lothar_Hagen_Condition;
 	information = DIA_Lothar_Hagen_Info;
-	permanent = FALSE;
 	description = "Где я могу найти лорда Хагена?";
 };
 
 
 func int DIA_Lothar_Hagen_Condition()
 {
-	if((Player_KnowsLordHagen == TRUE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+	if((Player_KnowsLordHagen == TRUE) && !Npc_IsDead(LordHagen))
 	{
-		return TRUE;
+		if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -850,7 +844,6 @@ instance DIA_Lothar_Reported(C_Info)
 	nr = 1;
 	condition = DIA_Lothar_Reported_Condition;
 	information = DIA_Lothar_Reported_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -876,14 +869,13 @@ instance DIA_Lothar_OWRunning(C_Info)
 	nr = 2;
 	condition = DIA_Lothar_OWRunning_Condition;
 	information = DIA_Lothar_OWRunning_Info;
-	permanent = FALSE;
 	description = "Я поговорил с лордом Хагеном...";
 };
 
 
 func int DIA_Lothar_OWRunning_Condition()
 {
-	if((MIS_OLDWORLD == LOG_Running) && !Npc_HasItems(hero,ItWr_PaladinLetter_MIS) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
+	if((MIS_OLDWORLD == LOG_RUNNING) && !Npc_HasItems(hero,ItWr_PaladinLetter_MIS) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
 	{
 		return TRUE;
 	};
@@ -907,14 +899,13 @@ instance DIA_Lothar_OWRunningBrief(C_Info)
 	nr = 2;
 	condition = DIA_Lothar_OWRunningBrief_Condition;
 	information = DIA_Lothar_OWRunningBrief_Info;
-	permanent = FALSE;
 	description = "У меня есть доказательство! Вот письмо от командующего Гаронда!";
 };
 
 
 func int DIA_Lothar_OWRunningBrief_Condition()
 {
-	if((MIS_OLDWORLD == LOG_Running) && Npc_HasItems(hero,ItWr_PaladinLetter_MIS) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
+	if((MIS_OLDWORLD == LOG_RUNNING) && Npc_HasItems(hero,ItWr_PaladinLetter_MIS) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
 	{
 		return TRUE;
 	};
@@ -949,7 +940,7 @@ instance DIA_Lothar_PERM(C_Info)
 
 func int DIA_Lothar_PERM_Condition()
 {
-	if(Mil_305_schonmalreingelassen == TRUE)
+	if(MIL_305_schonmalreingelassen == TRUE)
 	{
 		return TRUE;
 	};

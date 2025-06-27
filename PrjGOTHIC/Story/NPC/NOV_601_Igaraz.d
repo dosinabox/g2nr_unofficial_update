@@ -29,14 +29,14 @@ func void Rtn_Start_601()
 
 func void Rtn_CONTEST_601()
 {
-	TA_Stand_ArmsCrossed(8,0,23,4,"NW_TAVERNE_TROLLAREA_05");
-	TA_Stand_ArmsCrossed(23,4,8,0,"NW_TAVERNE_TROLLAREA_05");
+	TA_Stand_ArmsCrossed(8,0,23,0,"NW_TAVERNE_TROLLAREA_05");
+	TA_Stand_ArmsCrossed(23,0,8,0,"NW_TAVERNE_TROLLAREA_05");
 };
 
 func void Rtn_CONTESTWAIT_601()
 {
-	TA_Stand_ArmsCrossed(8,0,23,4,"NW_TROLLAREA_PATH_66");
-	TA_Stand_ArmsCrossed(23,4,8,0,"NW_TROLLAREA_PATH_66");
+	TA_Stand_ArmsCrossed(8,0,23,0,"NW_TROLLAREA_PATH_66");
+	TA_Stand_ArmsCrossed(23,0,8,0,"NW_TROLLAREA_PATH_66");
 };
 
 func void Rtn_Tot_601()

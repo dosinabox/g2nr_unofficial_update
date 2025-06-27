@@ -14,7 +14,7 @@ prototype Mst_Default_Giant_DesertRat(C_Npc)
 	protection[PROT_BLUNT] = 75;
 	protection[PROT_EDGE] = 75;
 	protection[PROT_POINT] = 25;
-	protection[PROT_FIRE] = 75;	//16;
+	protection[PROT_FIRE] = 75;
 	protection[PROT_FLY] = 75;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;

@@ -35,7 +35,6 @@ instance DIA_Salandril_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Salandril_Hallo_Condition;
 	information = DIA_Salandril_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -61,7 +60,6 @@ instance DIA_Salandril_Trank(C_Info)
 	nr = 2;
 	condition = DIA_Salandril_Trank_Condition;
 	information = DIA_Salandril_Trank_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -112,7 +110,7 @@ func void DIA_Salandril_Trade_Info()
 	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Salandril_Trade_13_01");	//С удовольствием, преподобный брат.
-		if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+		if(MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING)
 		{
 			SalandrilMinenAnteil = TRUE;
 		};
@@ -138,7 +136,7 @@ instance DIA_Salandril_Minenanteil(C_Info)
 
 func int DIA_Salandril_Minenanteil_Condition()
 {
-	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (SalandrilMinenAnteil == TRUE) && (SC_KnowsProspektorSalandril == FALSE))
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (SalandrilMinenAnteil == TRUE) && (SC_KnowsProspektorSalandril == FALSE))
 	{
 		return TRUE;
 	};
@@ -164,7 +162,7 @@ instance DIA_Salandril_KLOSTER(C_Info)
 
 func int DIA_Salandril_KLOSTER_Condition()
 {
-	if((SC_KnowsProspektorSalandril == TRUE) || (MIS_Serpentes_BringSalandril_SLD == LOG_Running))
+	if((SC_KnowsProspektorSalandril == TRUE) || (MIS_Serpentes_BringSalandril_SLD == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -174,7 +172,7 @@ func void DIA_Salandril_KLOSTER_Info()
 {
 	AI_Output(other,self,"DIA_Salandril_KLOSTER_15_00");	//Ты должен отправиться в монастырь, чтобы предстать перед судом.
 	AI_Output(self,other,"DIA_Salandril_KLOSTER_13_01");	//Что? У тебя крыша поехала? Черта с два! У этих жалких магов нет никаких доказательств против меня.
-	if((hero.guild == GIL_KDF) && (SC_KnowsProspektorSalandril == TRUE))
+	if((other.guild == GIL_KDF) && (SC_KnowsProspektorSalandril == TRUE))
 	{
 		AI_Output(other,self,"DIA_Salandril_KLOSTER_15_02");	//А как насчет этих фальшивых акций, которыми ты наводнил всю страну? На них твоя подпись. Ты виновен.
 	}
@@ -201,14 +199,11 @@ instance DIA_Salandril_GehinsKloster(C_Info)
 
 func int DIA_Salandril_GehinsKloster_Condition()
 {
-	if((SC_KnowsProspektorSalandril == TRUE) || (MIS_Serpentes_BringSalandril_SLD == LOG_Running))
+	if((SC_KnowsProspektorSalandril == TRUE) || (MIS_Serpentes_BringSalandril_SLD == LOG_RUNNING))
 	{
-		if(Npc_KnowsInfo(other,DIA_Salandril_KLOSTER))
+		if(Npc_KnowsInfo(other,DIA_Salandril_KLOSTER) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
 		{
-			if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
-			{
-				return TRUE;
-			};
+			return TRUE;
 		};
 	};
 };
@@ -217,18 +212,18 @@ func void DIA_Salandril_GehinsKloster_Info()
 {
 	AI_Output(other,self,"DIA_Salandril_GehinsKloster_15_00");	//Так ты пойдешь в монастырь, или тебя еще раз проучить?
 	AI_Output(self,other,"DIA_Salandril_GehinsKloster_13_01");	//Ты еще пожалеешь об этом. Да, черт тебя побери, я пойду в этот монастырь, но тебе это просто так с рук не сойдет.
-	if(Npc_HasItems(self,ItWr_MinenAnteil_MIS) && (hero.guild == GIL_KDF))
+	if(Npc_HasItems(self,ItWr_MinenAnteil_MIS) && (other.guild == GIL_KDF))
 	{
-		B_GiveInvItems(self,other,ItWr_MinenAnteil_MIS,Npc_HasItems(self,ItWr_MinenAnteil_MIS));
+		B_GiveAllInvItems(self,other,ItWr_MinenAnteil_MIS);
 	};
-	if(MIS_Serpentes_BringSalandril_SLD == LOG_Running)
+	if(MIS_Serpentes_BringSalandril_SLD == LOG_RUNNING)
 	{
 		MIS_Serpentes_BringSalandril_SLD = LOG_SUCCESS;
 	};
 	Salandril_SentToMonastery = TRUE;
 	SalandrilLocation = LOC_MONASTERY;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"KlosterUrteil");
+	Npc_ExchangeRoutine(self,"KLOSTERURTEIL");
 };
 
 
@@ -253,7 +248,6 @@ func int DIA_Salandril_Verschwinde_Condition()
 
 func void DIA_Salandril_Verschwinde_Info()
 {
-	AI_Output(self,other,"DIA_BDT_13_STANDARD_13_01");	//Проваливай!
-	AI_StopProcessInfos(self);
+	DIA_BDT_13_STANDARD_Info();
 };
 

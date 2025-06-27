@@ -3,11 +3,11 @@ func void ZS_FleeToWp()
 {
 	Perception_Set_Normal();
 	B_ResetAll(self);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cornelius))
+	if(C_IsNpc(self,VLK_401_Cornelius))
 	{
 		Npc_PercDisable(self,PERC_ASSESSENTERROOM);
 	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru))
+	if(C_IsNpc(self,VLK_492_Rengaru))
 	{
 		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_RENGARU") < 400)
 		{

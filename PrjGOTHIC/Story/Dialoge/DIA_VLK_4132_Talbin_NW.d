@@ -34,7 +34,7 @@ instance DIA_Talbin_NW_MOVING(C_Info)
 
 func int DIA_Talbin_NW_MOVING_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_GREATPEASENT_TO_PASS") > 2100) && (MIS_Talbin_Runs == LOG_Running) && (Npc_IsInState(self,ZS_Talk)))
+	if((Npc_GetDistToWP(self,"NW_GREATPEASENT_TO_PASS") > 2100) && (MIS_Talbin_Runs == LOG_RUNNING) && (Npc_IsInState(self,ZS_Talk)))
 	{
 		return TRUE;
 	};
@@ -53,9 +53,7 @@ instance DIA_Talbin_NW(C_Info)
 	nr = 1;
 	condition = DIA_Talbin_NW_Condition;
 	information = DIA_Talbin_NW_Info;
-	permanent = FALSE;
 	important = TRUE;
-//	description = "Этот Проход был не таким уж и страшным, правда?";
 };
 
 
@@ -71,7 +69,7 @@ func void DIA_Talbin_NW_Info()
 {
 	AI_Output(self,other,"DIA_Talbin_NW_07_01");	//Спасибо, что спас меня. Вот...
 	AI_Output(self,other,"DIA_Talbin_NW_07_02");	//... я нашел этот камень в Проходе. Я думаю, он пригодится тебе.
-	if(hero.guild == GIL_KDF)
+	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Talbin_NW_07_03");	//Мне кажется, это рунный камень.
 		AI_WaitTillEnd(other,self);
@@ -86,7 +84,7 @@ func void DIA_Talbin_NW_Info()
 	AI_Output(other,self,"DIA_Talbin_NW_15_00");	//Этот Проход был не таким уж и страшным, правда?
 	AI_Output(self,other,"DIA_Talbin_NW_07_05");	//Да защитит тебя Иннос.
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Farm");
+	Npc_ExchangeRoutine(self,"FARM");
 	MIS_Talbin_Runs = LOG_SUCCESS;
 	B_GivePlayerXP(XP_SavedTalbin);
 };

@@ -17,7 +17,7 @@ func int DIA_Addon_Skip_EXIT_Condition()
 
 func void DIA_Addon_Skip_EXIT_Info()
 {
-	if((MIS_ADDON_SkipsGrog == LOG_Running) && (Npc_GetDistToWP(self,"ADW_PIRATECAMP_HUT3_01") < 2000))
+	if((MIS_Addon_SkipsGrog == LOG_RUNNING) && (Npc_GetDistToWP(self,"ADW_PIRATECAMP_HUT3_01") < 2000))
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_03");	//Мне бы свой грог назад получить...
 	};
@@ -171,7 +171,7 @@ func int DIA_Addon_Skip_Transport_Condition()
 func void DIA_Addon_Skip_Transport_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_Transport_15_00");	//Ты можешь отвезти меня в Хоринис?
-	if(MIS_ADDON_SkipsGrog != LOG_SUCCESS)
+	if(MIS_Addon_SkipsGrog != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_Transport_08_01");	//Нет, приятель. Сейчас я никуда не поплыву. Сначала мне нужно достать себе грога.
 	}
@@ -266,7 +266,6 @@ instance DIA_Addon_Skip_GregsHut(C_Info)
 	nr = 6;
 	condition = DIA_Addon_Skip_GregsHut_Condition;
 	information = DIA_Addon_Skip_GregsHut_Info;
-	permanent = FALSE;
 	description = "Ты можешь сказать, как попасть в его хижину?";
 };
 
@@ -299,7 +298,6 @@ instance DIA_Addon_Skip_Francis(C_Info)
 	nr = 6;
 	condition = DIA_Addon_Skip_Francis_Condition;
 	information = DIA_Addon_Skip_Francis_Info;
-	permanent = FALSE;
 	description = "Что ты скажешь о Фрэнсисе?";
 };
 
@@ -337,7 +335,6 @@ instance DIA_Addon_Skip_Raven(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Skip_Raven_Condition;
 	information = DIA_Addon_Skip_Raven_Info;
-	permanent = FALSE;
 	description = "Ты когда-нибудь видел Ворона?";
 };
 
@@ -391,9 +388,9 @@ func void DIA_Addon_Skip_AngusHank_Info()
 	AI_Output(self,other,"DIA_Addon_Skip_AngusnHank_08_07");	//А он еще молод, и перенести исчезновение друзей для него непросто.
 	AI_Output(self,other,"DIA_Addon_Skip_AngusnHank_08_08");	//Впрочем, жизнь продолжается. Потерю товара мы переживем. (вздыхает) Но у них был с собой грог...
 	AI_Output(self,other,"DIA_Addon_Skip_AngusnHank_08_09");	//(сердито) По меньшей мере, 20 бутылок!
-	MIS_ADDON_SkipsGrog = LOG_Running;
+	MIS_Addon_SkipsGrog = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Addon_SkipsGrog,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_SkipsGrog,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_SkipsGrog,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_SkipsGrog,"Бандиты отобрали у Скипа 20 бутылок грога. Он хочет вернуть их.");
 	Log_AddEntry(TOPIC_Addon_SkipsGrog,"Ангус и Хэнк должны были встретиться с бандитами. С тех пор их никто не видел. Поиски Моргана и Билла прошли безуспешно.");
 };
@@ -405,16 +402,18 @@ instance DIA_Addon_Skip_AngusHankDead(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Skip_AngusHankDead_Condition;
 	information = DIA_Addon_Skip_AngusHankDead_Info;
-	permanent = FALSE;
 	description = "Насчет Ангуса и Хэнка...";
 };
 
 
 func int DIA_Addon_Skip_AngusHankDead_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Skip_Bandits) && !Npc_HasItems(Angus,ItRi_Addon_MorgansRing_Mission))
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_Bandits))
 	{
-		return TRUE;
+		if(!Npc_HasItems(Angus,ItRi_Addon_MorgansRing_Mission))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -437,7 +436,6 @@ instance DIA_Addon_Skip_AngusHankMurder(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Skip_AngusHankMurder_Condition;
 	information = DIA_Addon_Skip_AngusHankMurder_Info;
-	permanent = FALSE;
 	description = "Я знаю, кто убил Хэнка и Ангуса.";
 };
 
@@ -453,7 +451,7 @@ func int DIA_Addon_Skip_AngusHankMurder_Condition()
 func void DIA_Addon_Skip_AngusHankMurder_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_JuanMurder_15_00");	//Я знаю, кто убил Хэнка и Ангуса.
-	if(MIS_ADDON_SkipsGrog == LOG_Running)
+	if(MIS_Addon_SkipsGrog == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_04");	//Меня не интересует, кто их убил. Что с моим грогом?!
 	}
@@ -464,35 +462,6 @@ func void DIA_Addon_Skip_AngusHankMurder_Info()
 	};
 };
 
-
-func int C_SCHasSkipsGrog()
-{
-	if(Npc_HasItems(hero,ItMi_Grog_Crate) >= 5)
-	{
-		return TRUE;
-	}
-	else if((Npc_HasItems(hero,ItMi_Grog_Crate) == 4) && (Npc_HasItems(hero,ItFo_Addon_Grog) >= 4))
-	{
-		return TRUE;
-	}
-	else if((Npc_HasItems(hero,ItMi_Grog_Crate) == 3) && (Npc_HasItems(hero,ItFo_Addon_Grog) >= 8))
-	{
-		return TRUE;
-	}
-	else if((Npc_HasItems(hero,ItMi_Grog_Crate) == 2) && (Npc_HasItems(hero,ItFo_Addon_Grog) >= 12))
-	{
-		return TRUE;
-	}
-	else if((Npc_HasItems(hero,ItMi_Grog_Crate) == 1) && (Npc_HasItems(hero,ItFo_Addon_Grog) >= 16))
-	{
-		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItFo_Addon_Grog) >= 20)
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
 
 instance DIA_Addon_Skip_Grog(C_Info)
 {
@@ -507,7 +476,7 @@ instance DIA_Addon_Skip_Grog(C_Info)
 
 func int DIA_Addon_Skip_Grog_Condition()
 {
-	if(MIS_ADDON_SkipsGrog == LOG_Running)
+	if(MIS_Addon_SkipsGrog == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -516,7 +485,7 @@ func int DIA_Addon_Skip_Grog_Condition()
 func void DIA_Addon_Skip_Grog_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_Grog_15_00");	//По поводу грога...
-	if(C_SCHasSkipsGrog())
+	if((Npc_HasItems(other,ItFo_Addon_Grog) + (Npc_HasItems(other,ItMi_Grog_Crate) * 4)) >= 20)
 	{
 		Info_ClearChoices(DIA_Addon_Skip_Grog);
 		Info_AddChoice(DIA_Addon_Skip_Grog,Dialog_Back,DIA_Addon_Skip_Grog_back);
@@ -574,7 +543,7 @@ func void DIA_Addon_Skip_Grog_geben()
 		B_GiveInvItems(other,self,ItFo_Addon_Grog,20);
 	};
 	B_LogEntry(TOPIC_Addon_SkipsGrog,"Скип получил назад свои 20 бутылок грога и теперь очень счастлив.");
-	MIS_ADDON_SkipsGrog = LOG_SUCCESS;
+	MIS_Addon_SkipsGrog = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_SkipsGrog);
 	AI_Output(self,other,"DIA_Addon_Skip_Grog_geben_08_01");	//Что? Вот так вот просто?
 	AI_Output(other,self,"DIA_Addon_Skip_Grog_geben_15_02");	//Ну-у...
@@ -612,7 +581,6 @@ instance DIA_Addon_Skip_News(C_Info)
 	nr = 776;
 	condition = DIA_Addon_Skip_News_Condition;
 	information = DIA_Addon_Skip_News_Info;
-	permanent = FALSE;
 	description = "Ты можешь мне что-нибудь продать?";
 };
 
@@ -628,8 +596,8 @@ func void DIA_Addon_Skip_News_Info()
 	AI_Output(self,other,"DIA_Addon_Skip_News_08_01");	//Если ты хочешь торговать, иди к Гаретту. Он отвечает за наши запасы.
 	if(!Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) && !Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern))
 	{
-		Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
+		Log_CreateTopic(TOPIC_Addon_PIR_Trader,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
 	};
 };
 
@@ -640,14 +608,13 @@ instance DIA_Addon_Skip_Anheuern(C_Info)
 	nr = 11;
 	condition = DIA_Addon_Skip_Anheuern_Condition;
 	information = DIA_Addon_Skip_Anheuern_Info;
-	permanent = FALSE;
 	description = "Ты должен мне помочь.";
 };
 
 
 func int DIA_Addon_Skip_Anheuern_Condition()
 {
-	if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+	if(MIS_Addon_Greg_ClearCanyon == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -683,7 +650,7 @@ instance DIA_Addon_Skip_ComeOn(C_Info)
 
 func int DIA_Addon_Skip_ComeOn_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Addon_Greg_ClearCanyon == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Skip_Anheuern))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Addon_Greg_ClearCanyon == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_Skip_Anheuern))
 	{
 		return TRUE;
 	};
@@ -782,7 +749,6 @@ instance DIA_Addon_Skip_Treffpunkt(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Skip_Treffpunkt_Condition;
 	information = DIA_Addon_Skip_Treffpunkt_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -809,7 +775,6 @@ instance DIA_Addon_Skip_Orks(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Skip_Orks_Condition;
 	information = DIA_Addon_Skip_Orks_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -835,7 +800,6 @@ instance DIA_Addon_Skip_AllRazorsDead(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Skip_AllRazorsDead_Condition;
 	information = DIA_Addon_Skip_AllRazorsDead_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

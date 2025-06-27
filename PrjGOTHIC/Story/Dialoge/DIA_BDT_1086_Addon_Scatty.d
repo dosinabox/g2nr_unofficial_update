@@ -1,6 +1,4 @@
 
-var int Scatty_Start;
-
 instance DIA_Addon_Scatty_EXIT(C_Info)
 {
 	npc = BDT_1086_Addon_Scatty;
@@ -21,11 +19,6 @@ func void DIA_Addon_Scatty_EXIT_Info()
 {
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
-	if(Scatty_Start == FALSE)
-	{
-		Npc_ExchangeRoutine(self,"START");
-		Scatty_Start = TRUE;
-	};
 };
 
 
@@ -35,7 +28,6 @@ instance DIA_Addon_Scatty_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Scatty_Hi_Condition;
 	information = DIA_Addon_Scatty_Hi_Info;
-	permanent = FALSE;
 	description = "Как идут дела?";
 };
 
@@ -51,8 +43,8 @@ func void DIA_Addon_Scatty_Hi_Info()
 	AI_Output(self,other,"DIA_Addon_Scatty_Hi_01_01");	//С тех пор, как гробница была открыта, покупателей не так много.
 	AI_Output(self,other,"DIA_Addon_Scatty_Hi_01_02");	//Ворону больше не нужны рабы, поэтому они теперь добывают золото. По приказу Бладвина.
 	AI_Output(self,other,"DIA_Addon_Scatty_Hi_01_03");	//Рудокопы не слишком усердствуют. (бормочет) А рудокопам, которые не усердствуют, не так много и нужно.
-	Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Trader,"Скатти продает различные товары.");
+	Log_CreateTopic(TOPIC_Addon_BDT_Trader,LOG_NOTE);
+	B_LogEntry(TOPIC_Addon_BDT_Trader,"Скатти продает различные товары.");
 };
 
 
@@ -62,16 +54,18 @@ instance DIA_Addon_Scatty_last(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Scatty_last_Condition;
 	information = DIA_Addon_Scatty_last_Info;
-	permanent = FALSE;
 	description = "Бладвин? Он сейчас командует?";
 };
 
 
 func int DIA_Addon_Scatty_last_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Scatty_Hi) && !Npc_IsDead(Bloodwyn))
+	if(Npc_KnowsInfo(other,DIA_Addon_Scatty_Hi))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Bloodwyn))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -92,7 +86,6 @@ instance DIA_Addon_Scatty_Gruft(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Scatty_Gruft_Condition;
 	information = DIA_Addon_Scatty_Gruft_Info;
-	permanent = FALSE;
 	description = "А что это за гробница?";
 };
 
@@ -122,7 +115,6 @@ instance DIA_Addon_Scatty_GruftAgain(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Scatty_GruftAgain_Condition;
 	information = DIA_Addon_Scatty_GruftAgain_Info;
-	permanent = FALSE;
 	description = "Что Ворону нужно в гробнице?";
 };
 
@@ -157,7 +149,6 @@ instance DIA_Addon_Scatty_Trinken(C_Info)
 	nr = 99;
 	condition = DIA_Addon_Scatty_Trinken_Condition;
 	information = DIA_Addon_Scatty_Trinken_Info;
-	permanent = FALSE;
 	description = "Хочешь выпить?";
 };
 
@@ -179,8 +170,8 @@ func void DIA_Addon_Scatty_Trinken_Info()
 		AI_Output(self,other,"DIA_Addon_Scatty_Trinken_01_02");	//Но, может быть, у Люсии есть бутылочка...
 		if(!Npc_KnowsInfo(other,DIA_Addon_Lucia_was))
 		{
-			Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
-			B_LogEntry(Topic_Addon_BDT_Trader,"У Люсии я могу купить выпивку.");
+			Log_CreateTopic(TOPIC_Addon_BDT_Trader,LOG_NOTE);
+			B_LogEntry(TOPIC_Addon_BDT_Trader,"У Люсии я могу купить выпивку.");
 		};
 	};
 };
@@ -192,7 +183,6 @@ instance DIA_Addon_Scatty_Bier(C_Info)
 	nr = 99;
 	condition = DIA_Addon_Scatty_Bier_Condition;
 	information = DIA_Addon_Scatty_Bier_Info;
-	permanent = FALSE;
 	description = "Вот, пожалуйста. (дать пиво)";
 };
 
@@ -210,7 +200,7 @@ func void DIA_Addon_Scatty_Bier_Info()
 	AI_Output(other,self,"DIA_Addon_Scatty_Bier_15_00");	//Вот, пожалуйста.
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItFo_Beer,1);
-	AI_UseItem(self,ItFo_Beer);
+	B_UseItem(self,ItFo_Beer);
 	AI_Output(self,other,"DIA_Addon_Scatty_Bier_01_01");	//О, спасибо, это вкусно. Спасибо. Ты - мой герой.
 	B_GivePlayerXP(XP_Ambient * 5);
 };
@@ -222,7 +212,6 @@ instance DIA_Addon_Scatty_Gold(C_Info)
 	nr = 800;
 	condition = DIA_Addon_Scatty_Gold_Condition;
 	information = DIA_Addon_Scatty_Gold_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_GOLD_DESCRIPTION;
 };
 
@@ -297,7 +286,6 @@ instance DIA_Addon_Scatty_tot(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Scatty_tot_Condition;
 	information = DIA_Addon_Scatty_tot_Info;
-	permanent = FALSE;
 	description = "Бладвин мертв.";
 };
 

@@ -29,7 +29,7 @@ func int C_Hanna_ThievesGuildIsExposed()
 	};
 	if(Andre_FoundThieves_Reported == TRUE)
 	{
-		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
+		if(C_DaysSinceEvent(Andre_FoundThieves_Reported_Day,2))
 		{
 			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
 			{
@@ -39,7 +39,7 @@ func int C_Hanna_ThievesGuildIsExposed()
 	};
 	if(Hanna_ThievesIsDead == TRUE)
 	{
-		if(Hanna_ThievesIsDead_Day <= (Wld_GetDay() - 2))
+		if(C_DaysSinceEvent(Hanna_ThievesIsDead_Day,2))
 		{
 			return TRUE;
 		};
@@ -233,6 +233,15 @@ func void DIA_Hanna_City_City()
 
 var int Hanna_PriceForLetter;
 
+func void B_Hanna_RetrieveLetter(var int price)
+{
+	MIS_HannaRetrieveLetter = LOG_RUNNING;
+	Log_CreateTopic(TOPIC_HannaRetrieveLetter,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_HannaRetrieveLetter,LOG_RUNNING);
+	B_LogEntry(TOPIC_HannaRetrieveLetter,"У Ханны пропал документ. Похоже, он пропал в гавани, там, где живет картограф Ибрагим.");
+	Hanna_PriceForLetter = price;
+};
+
 instance DIA_Hanna_AnyNews(C_Info)
 {
 	npc = VLK_414_Hanna;
@@ -266,8 +275,6 @@ func void DIA_Hanna_AnyNews_No()
 {
 	AI_Output(other,self,"DIA_Hanna_AnyNews_No_15_00");	//Ну, в общем, да.
 	AI_Output(self,other,"DIA_Hanna_AnyNews_No_17_01");	//Ну, значит я права. Сейчас все думают только о себе. Так что тебе нужно?
-	MIS_HannaRetrieveLetter = LOG_FAILED;
-	B_CheckLog();
 	Info_ClearChoices(DIA_Hanna_AnyNews);
 };
 
@@ -276,8 +283,6 @@ func void DIA_Hanna_AnyNews_Depends()
 	AI_Output(other,self,"DIA_Hanna_AnyNews_Depends_15_00");	//Ну, как сказать, э...
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Depends_17_01");	//Это зависит от того, сколько на этом можно заработать, ты хочешь сказать?
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Depends_17_02");	//Я не люблю таких, как ты.
-	MIS_HannaRetrieveLetter = LOG_FAILED;
-	B_CheckLog();
 	Info_ClearChoices(DIA_Hanna_AnyNews);
 };
 
@@ -288,10 +293,6 @@ func void DIA_Hanna_AnyNews_Yes()
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_17_02");	//Но потом я заметила, что у меня не хватает одного документа.
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_17_03");	//Я думаю, он мог случайно оказаться в стопке этих карт.
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_17_04");	//Ты не мог бы вернуть его мне?
-	MIS_HannaRetrieveLetter = LOG_Running;
-	Log_CreateTopic(TOPIC_HannaRetrieveLetter,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_HannaRetrieveLetter,LOG_Running);
-	B_LogEntry(TOPIC_HannaRetrieveLetter,"У Ханны пропал документ. Похоже, он пропал в гавани, там, где живет картограф Ибрагим.");
 	Info_ClearChoices(DIA_Hanna_AnyNews);
 	Info_AddChoice(DIA_Hanna_AnyNews,"Я тебе не мальчик на побегушках.",DIA_Hanna_AnyNews_Yes_Footboy);
 	Info_AddChoice(DIA_Hanna_AnyNews,"Что я за это получу?",DIA_Hanna_AnyNews_Yes_Reward);
@@ -320,7 +321,7 @@ func void DIA_Hanna_AnyNews_Yes_Reward_OK()
 {
 	AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_Reward_OK_15_00");	//Ладно, забудь.
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_Reward_OK_17_01");	//Ну, хоть остатки совести у тебя еще есть. Если ты принесешь мне этот документ, я дам тебе 75 золотых.
-	Hanna_PriceForLetter = 75;
+	B_Hanna_RetrieveLetter(75);
 	Info_ClearChoices(DIA_Hanna_AnyNews);
 };
 
@@ -328,8 +329,6 @@ func void DIA_Hanna_AnyNews_Yes_Reward_BeNice()
 {
 	AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_Reward_BeNice_15_00");	//Ну, ты могла бы быть немного поласковее со мной... Как женщина...
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_Reward_BeNice_17_01");	//Ну, ты хам! Я... убирайся отсюда! Неотесанный мужлан!
-	MIS_HannaRetrieveLetter = LOG_FAILED;
-	B_CheckLog();
 	AI_StopProcessInfos(self);
 };
 
@@ -338,7 +337,7 @@ func void DIA_Hanna_AnyNews_Yes_Reward_Gold()
 	AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_Reward_Gold_15_00");	//Золото.
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_Reward_Gold_17_01");	//Тебе нужен этот презренный металл? Ладно - я оцениваю этот документ в 50 золотых.
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_Reward_Gold_17_02");	//Если ты сможешь вернуть мне этот документ, я дам тебе 50 золотых монет.
-	Hanna_PriceForLetter = 50;
+	B_Hanna_RetrieveLetter(50);
 	Info_ClearChoices(DIA_Hanna_AnyNews);
 };
 
@@ -347,7 +346,7 @@ func void DIA_Hanna_AnyNews_Yes_WillSee()
 	AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_WillSee_15_00");	//Я попробую.
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_WillSee_17_01");	//Ты такой любезный. Я желаю тебе удачи!
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_WillSee_17_02");	//Если ты принесешь мне эту бумагу, тебя ждет награда.
-	Hanna_PriceForLetter = 200;
+	B_Hanna_RetrieveLetter(200);
 	Info_ClearChoices(DIA_Hanna_AnyNews);
 };
 
@@ -365,7 +364,7 @@ instance DIA_Hanna_ThisLetter(C_Info)
 
 func int DIA_Hanna_ThisLetter_Condition()
 {
-	if((MIS_HannaRetrieveLetter == LOG_Running) && Npc_HasItems(other,ItWr_ShatteredGolem_MIS) && (Andre_FoundThieves_KilledByMilitia == FALSE))
+	if((MIS_HannaRetrieveLetter == LOG_RUNNING) && Npc_HasItems(other,ItWr_ShatteredGolem_MIS) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
 		return TRUE;
 	};
@@ -593,19 +592,19 @@ func void DIA_Hanna_Blubb3_Info()
 	{
 		B_Say(self,other,"$YOUMURDERER");
 	};
-	B_SelectSpell(self,other);
+	B_ReadyScroll(self,ItSc_IceCube);
 	AI_Output(self,other,"DIA_Hanna_Add_17_35");	//Я купила это специально для тебя.
 	AI_Output(self,other,"DIA_Hanna_Add_17_36");	//Это обошлось мне в кругленькую сумму. Но для тебя ничего не жалко, свинья...
 	B_KillThievesGuild();
-	if(MIS_CassiaRing == LOG_Running)
+	if(MIS_CassiaRing == LOG_RUNNING)
 	{
 		MIS_CassiaRing = LOG_FAILED;
 	};
-	if(MIS_CassiaKelche == LOG_Running)
+	if(MIS_CassiaKelche == LOG_RUNNING)
 	{
 		MIS_CassiaKelche = LOG_FAILED;
 	};
-	if(MIS_RamirezSextant == LOG_Running)
+	if(MIS_RamirezSextant == LOG_RUNNING)
 	{
 		MIS_RamirezSextant = LOG_FAILED;
 	};
@@ -649,12 +648,12 @@ func void DIA_Hanna_PICKPOCKET_Book_DoIt()
 		CreateInvItem(other,ItWr_Schuldenbuch);
 		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Ханна",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Ханна",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings("Ханна",PRINT_PickPocketFailed));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Ханна",PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};

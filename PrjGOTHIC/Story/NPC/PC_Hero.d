@@ -45,17 +45,17 @@ instance PC_L10(Npc_Default)
 	attribute[ATR_DEXTERITY] = 32;
 	attribute[ATR_MANA_MAX] = 64;
 	attribute[ATR_MANA] = 64;
-	attribute[ATR_HITPOINTS_MAX] = 148;
-	attribute[ATR_HITPOINTS] = 148;
+	attribute[ATR_HITPOINTS_MAX] = 160;
+	attribute[ATR_HITPOINTS] = 160;
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_N,ITAR_MIL_L);
 	B_AddFightSkill(self,NPC_TALENT_1H,30);
 	B_AddFightSkill(self,NPC_TALENT_2H,10);
 	B_AddFightSkill(self,NPC_TALENT_BOW,10);
 	B_AddFightSkill(self,NPC_TALENT_CROSSBOW,10);
-	CreateInvItems(self,ItMi_Gold,500);
-	CreateInvItems(self,ItRw_Arrow,100);
+	Npc_SetTalentSkill(self,NPC_TALENT_PICKLOCK,1);
 	EquipItem(self,ItMw_Nagelkeule2);
 	EquipItem(self,ItRw_Bow_L_01);
+	B_GiveBasicEquipment(self);
 };
 
 instance PC_L20(Npc_Default)
@@ -81,14 +81,13 @@ instance PC_L20(Npc_Default)
 	B_AddFightSkill(self,NPC_TALENT_2H,30);
 	B_AddFightSkill(self,NPC_TALENT_BOW,10);
 	B_AddFightSkill(self,NPC_TALENT_CROSSBOW,10);
-	CreateInvItems(self,ItMi_Gold,1000);
-	CreateInvItems(self,ItRw_Arrow,100);
-	CreateInvItems(self,ItRw_Bolt,100);
+	Npc_SetTalentSkill(self,NPC_TALENT_PICKLOCK,1);
 	EquipItem(self,ItMw_Rubinklinge);
 	EquipItem(self,ItRw_Crossbow_M_02);
 	CreateInvItems(self,ItRu_PalLight,1);
 	CreateInvItems(self,ItRu_PalHeal_01,1);
 	CreateInvItems(self,ItRu_PalHolyBolt,1);
+	B_GiveBasicEquipment(self);
 };
 
 instance PC_L40(Npc_Default)
@@ -115,20 +114,14 @@ instance PC_L40(Npc_Default)
 	B_AddFightSkill(self,NPC_TALENT_BOW,10);
 	B_AddFightSkill(self,NPC_TALENT_CROSSBOW,10);
 	Npc_SetTalentSkill(self,NPC_TALENT_PICKLOCK,1);
-	CreateInvItems(self,ItMi_Gold,2000);
-	CreateInvItems(self,ItRw_Bolt,100);
 	EquipItem(self,ItMw_1H_Blessed_02);
-	EquipItem(self,ItRw_Crossbow_M_02);
-	CreateInvItems(self,ItKe_Lockpick,10);
-	CreateInvItems(self,ItMi_Flask,2);
-	CreateInvItems(self,ItPo_Health_02,10);
-	CreateInvItems(self,ItPo_Speed,5);
-	CreateInvItems(self,ItLsTorch,50);
+	EquipItem(self,ItRw_Crossbow_H_01);
 	CreateInvItems(self,ItRu_PalLight,1);
 	CreateInvItems(self,ItRu_PalHeal_01,1);
 	CreateInvItems(self,ItRu_PalHolyBolt,1);
 	CreateInvItems(self,ItRu_PalHeal_02,1);
 	CreateInvItems(self,ItRu_PalRepelEvil,1);
+	B_GiveBasicEquipment(self);
 };
 
 instance PC_L60(Npc_Default)
@@ -154,10 +147,10 @@ instance PC_L60(Npc_Default)
 	B_AddFightSkill(self,NPC_TALENT_2H,60);
 	B_AddFightSkill(self,NPC_TALENT_BOW,10);
 	B_AddFightSkill(self,NPC_TALENT_CROSSBOW,10);
-	CreateInvItems(self,ItMi_Gold,3000);
-	CreateInvItems(self,ItRw_Bolt,100);
+	Npc_SetTalentSkill(self,NPC_TALENT_PICKLOCK,1);
+	Npc_SetTalentSkill(self,NPC_TALENT_ACROBAT,1);
 	EquipItem(self,ItMw_1H_Blessed_03);
-	EquipItem(self,ItRw_Crossbow_M_02);
+	EquipItem(self,ItRw_Crossbow_H_02);
 	CreateInvItems(self,ItRu_PalLight,1);
 	CreateInvItems(self,ItRu_PalHeal_01,1);
 	CreateInvItems(self,ItRu_PalHolyBolt,1);
@@ -165,9 +158,10 @@ instance PC_L60(Npc_Default)
 	CreateInvItems(self,ItRu_PalRepelEvil,1);
 	CreateInvItems(self,ItRu_PalHeal_03,1);
 	CreateInvItems(self,ItRu_PalDestroyEvil,1);
+	B_GiveBasicEquipment(self);
 };
 
-instance PC_E3Mage(Npc_Default)
+/*instance PC_E3Mage(Npc_Default)
 {
 	name[0] = NAME_Hero;
 	guild = GIL_KDF;
@@ -355,5 +349,5 @@ instance PC_Bandit(Npc_Default)
 	CreateInvItems(self,ItPl_Beet,10);
 	CreateInvItems(self,ItAt_SharkTeeth,10);
 	CreateInvItems(self,ItFo_Addon_Rum,20);
-};
+};*/
 

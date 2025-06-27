@@ -1,52 +1,9 @@
 
-/*instance ItSe_Addon_Sack(C_Item)
-{
-	name = NAME_Bag;
-	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MISSION;
-	value = 0;
-	visual = "ItMi_Bag.3DS";
-	material = MAT_LEATHER;
-	scemeName = "MAPSEALED";
-	on_state[0] = Use_Sack;
-	description = name;
-	text[0] = "Мешок наполнен новым оружием!";
-};
-
-
-func void Use_Sack()
-{
-	Snd_Play("Geldbeutel");
-	Print("Найдено много разного нового оружия!");
-	B_GiveAllAddonWeapons(self);
-};
-
-
-instance ItFo_TestTrigger(C_Item)
-{
-	name = "Триггер мира аддона";
-	mainflag = ITEM_KAT_FOOD;
-	flags = ITEM_MULTI;
-	value = 0;
-	visual = "ItFo_Honey.3DS";
-	material = MAT_STONE;
-	scemeName = "FOODHUGE";
-	on_state[0] = Use_TestTrigger;
-	description = name;
-};
-
-
-func void Use_TestTrigger()
-{
-	Enter_AddonWorld_FirstTime_Trigger_Func();
-};*/
-
-
 instance CH(Npc_Default)
 {
 	name[0] = "Помощник по персонажу";
 	guild = GIL_NONE;
-	id = 0;
+	id = 9997;
 	voice = 15;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
@@ -58,11 +15,11 @@ instance CH(Npc_Default)
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player_G1,NO_ARMOR);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
-	daily_routine = Rtn_Start_0;
+	daily_routine = Rtn_Start_9997;
 };
 
 
-func void Rtn_Start_0()
+func void Rtn_Start_9997()
 {
 	TA_Stand_ArmsCrossed(8,0,23,0,"XXX");
 	TA_Stand_ArmsCrossed(23,0,8,0,"XXX");
@@ -89,137 +46,50 @@ func void B_SetKDFRunes()
 {
 	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 1)
 	{
-		if(!Npc_HasItems(hero,ItRu_Light))
-		{
-			CreateInvItem(hero,ItRu_Light);
-		};
-		if(!Npc_HasItems(hero,ItRu_FireBolt))
-		{
-			CreateInvItem(hero,ItRu_FireBolt);
-		};
-		if(!Npc_HasItems(hero,ItRu_LightHeal))
-		{
-			CreateInvItem(hero,ItRu_LightHeal);
-		};
-		if(!Npc_HasItems(hero,ItRu_SumGobSkel))
-		{
-			CreateInvItem(hero,ItRu_SumGobSkel);
-		};
-		if(!Npc_HasItems(hero,ItRu_Zap))
-		{
-			CreateInvItem(hero,ItRu_Zap);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_Light,1);
+		B_RefreshInvItemToAmount(hero,ItRu_FireBolt,1);
+		B_RefreshInvItemToAmount(hero,ItRu_LightHeal,1);
+		B_RefreshInvItemToAmount(hero,ItRu_SumGobSkel,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Zap,1);
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 2)
 	{
-		if(!Npc_HasItems(hero,ItRu_InstantFireball))
-		{
-			CreateInvItem(hero,ItRu_InstantFireball);
-		};
-		if(!Npc_HasItems(hero,ItRu_Icebolt))
-		{
-			CreateInvItem(hero,ItRu_Icebolt);
-		};
-		if(!Npc_HasItems(hero,ItRu_SumWolf))
-		{
-			CreateInvItem(hero,ItRu_SumWolf);
-		};
-		if(!Npc_HasItems(hero,ItRu_Windfist))
-		{
-			CreateInvItem(hero,ItRu_Windfist);
-		};
-		if(!Npc_HasItems(hero,ItRu_Sleep))
-		{
-			CreateInvItem(hero,ItRu_Sleep);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_InstantFireball,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Icebolt,1);
+		B_RefreshInvItemToAmount(hero,ItRu_SumWolf,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Windfist,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Sleep,1);
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 3)
 	{
-		if(!Npc_HasItems(hero,ItRu_MediumHeal))
-		{
-			CreateInvItem(hero,ItRu_MediumHeal);
-		};
-		if(!Npc_HasItems(hero,ItRu_Firestorm))
-		{
-			CreateInvItem(hero,ItRu_Firestorm);
-		};
-		if(!Npc_HasItems(hero,ItRu_ThunderBall))
-		{
-			CreateInvItem(hero,ItRu_ThunderBall);
-		};
-		if(!Npc_HasItems(hero,ItRu_SumSkel))
-		{
-			CreateInvItem(hero,ItRu_SumSkel);
-		};
-		if(!Npc_HasItems(hero,ItRu_Fear))
-		{
-			CreateInvItem(hero,ItRu_Fear);
-		};
-		if(!Npc_HasItems(hero,ItRu_IceCube))
-		{
-			CreateInvItem(hero,ItRu_IceCube);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_MediumHeal,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Firestorm,1);
+		B_RefreshInvItemToAmount(hero,ItRu_ThunderBall,1);
+		B_RefreshInvItemToAmount(hero,ItRu_SumSkel,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Fear,1);
+		B_RefreshInvItemToAmount(hero,ItRu_IceCube,1);
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 4)
 	{
-		if(!Npc_HasItems(hero,ItRu_SumGol))
-		{
-			CreateInvItem(hero,ItRu_SumGol);
-		};
-		if(!Npc_HasItems(hero,ItRu_HarmUndead))
-		{
-			CreateInvItem(hero,ItRu_HarmUndead);
-		};
-		if(!Npc_HasItems(hero,ItRu_LightningFlash))
-		{
-			CreateInvItem(hero,ItRu_LightningFlash);
-		};
-		if(!Npc_HasItems(hero,ItRu_ChargeFireball))
-		{
-			CreateInvItem(hero,ItRu_ChargeFireball);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_SumGol,1);
+		B_RefreshInvItemToAmount(hero,ItRu_HarmUndead,1);
+		B_RefreshInvItemToAmount(hero,ItRu_LightningFlash,1);
+		B_RefreshInvItemToAmount(hero,ItRu_ChargeFireball,1);
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 5)
 	{
-		if(!Npc_HasItems(hero,ItRu_Pyrokinesis))
-		{
-			CreateInvItem(hero,ItRu_Pyrokinesis);
-		};
-		if(!Npc_HasItems(hero,ItRu_IceWave))
-		{
-			CreateInvItem(hero,ItRu_IceWave);
-		};
-		if(!Npc_HasItems(hero,ItRu_SumDemon))
-		{
-			CreateInvItem(hero,ItRu_SumDemon);
-		};
-		if(!Npc_HasItems(hero,ItRu_FullHeal))
-		{
-			CreateInvItem(hero,ItRu_FullHeal);
-		};
-		if(!Npc_HasItems(hero,ItRu_Shrink))
-		{
-			CreateInvItem(hero,ItRu_Shrink);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_Pyrokinesis,1);
+		B_RefreshInvItemToAmount(hero,ItRu_IceWave,1);
+		B_RefreshInvItemToAmount(hero,ItRu_SumDemon,1);
+		B_RefreshInvItemToAmount(hero,ItRu_FullHeal,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Shrink,1);
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 6)
 	{
-		if(!Npc_HasItems(hero,ItRu_Firerain))
-		{
-			CreateInvItem(hero,ItRu_Firerain);
-		};
-		if(!Npc_HasItems(hero,ItRu_BreathOfDeath))
-		{
-			CreateInvItem(hero,ItRu_BreathOfDeath);
-		};
-		if(!Npc_HasItems(hero,ItRu_MassDeath))
-		{
-			CreateInvItem(hero,ItRu_MassDeath);
-		};
-		if(!Npc_HasItems(hero,ItRu_ArmyOfDarkness))
-		{
-			CreateInvItem(hero,ItRu_ArmyOfDarkness);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_Firerain,1);
+		B_RefreshInvItemToAmount(hero,ItRu_BreathOfDeath,1);
+		B_RefreshInvItemToAmount(hero,ItRu_MassDeath,1);
+		B_RefreshInvItemToAmount(hero,ItRu_ArmyOfDarkness,1);
 	};
 };
 
@@ -227,69 +97,29 @@ func void B_SetKDWRunes()
 {
 	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 2)
 	{
-		if(!Npc_HasItems(hero,ItRu_Icelance))
-		{
-			CreateInvItem(hero,ItRu_Icelance);
-		};
-		if(!Npc_HasItems(hero,ItRu_Whirlwind))
-		{
-			CreateInvItem(hero,ItRu_Whirlwind);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_Icelance,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Whirlwind,1);
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 3)
 	{
-		if(!Npc_HasItems(hero,ItRu_Thunderstorm))
-		{
-			CreateInvItem(hero,ItRu_Thunderstorm);
-		};
-		if(!Npc_HasItems(hero,ItRu_Geyser))
-		{
-			CreateInvItem(hero,ItRu_Geyser);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_Thunderstorm,1);
+		B_RefreshInvItemToAmount(hero,ItRu_Geyser,1);
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 4)
 	{
-		if(!Npc_HasItems(hero,ItRu_Waterfist))
-		{
-			CreateInvItem(hero,ItRu_Waterfist);
-		};
+		B_RefreshInvItemToAmount(hero,ItRu_Waterfist,1);
 	};
 };
 
 func void B_SetPaladinEquipment()
 {
-	if(!Npc_HasItems(hero,ItRu_PalLight))
-	{
-		CreateInvItem(hero,ItRu_PalLight);
-	};
-	if(!Npc_HasItems(hero,ItRu_PalHeal_01))
-	{
-		CreateInvItem(hero,ItRu_PalHeal_01);
-	};
-	if(!Npc_HasItems(hero,ItRu_PalHolyBolt))
-	{
-		CreateInvItem(hero,ItRu_PalHolyBolt);
-	};
-	if(!Npc_HasItems(hero,ItRu_PalHeal_02))
-	{
-		CreateInvItem(hero,ItRu_PalHeal_02);
-	};
-	if(!Npc_HasItems(hero,ItRu_PalRepelEvil))
-	{
-		CreateInvItem(hero,ItRu_PalRepelEvil);
-	};
-	if(!Npc_HasItems(hero,ItRu_PalHeal_03))
-	{
-		CreateInvItem(hero,ItRu_PalHeal_03);
-	};
-	if(!Npc_HasItems(hero,ItRu_PalDestroyEvil))
-	{
-		CreateInvItem(hero,ItRu_PalDestroyEvil);
-	};
-	if(!Npc_HasItems(hero,ItRu_PalTeleportSecret))
-	{
-		CreateInvItem(hero,ItRu_PalTeleportSecret);
-	};
+	B_RefreshInvItemToAmount(hero,ItRu_PalLight,1);
+	B_RefreshInvItemToAmount(hero,ItRu_PalHeal_01,1);
+	B_RefreshInvItemToAmount(hero,ItRu_PalHeal_02,1);
+	B_RefreshInvItemToAmount(hero,ItRu_PalHeal_03,1);
+	B_RefreshInvItemToAmount(hero,ItRu_PalHolyBolt,1);
+	B_RefreshInvItemToAmount(hero,ItRu_PalRepelEvil,1);
+	B_RefreshInvItemToAmount(hero,ItRu_PalDestroyEvil,1);
 };
 
 func void B_UnEquipAllTempBonusItems()
@@ -367,18 +197,18 @@ func void B_ResetHeroSkin()
 	NakedBodySkin = FALSE;
 };
 
-instance CH_Exit(C_Info)
+instance CH_EXIT(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 999;
-	condition = CH_Exit_Condition;
-	information = CH_Exit_Info;
+	condition = CH_EXIT_Condition;
+	information = CH_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int CH_Exit_Condition()
+func int CH_EXIT_Condition()
 {
 	if((GuildStart == FALSE) && (LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (MiscStart == FALSE))
 	{
@@ -386,7 +216,7 @@ func int CH_Exit_Condition()
 	};
 };
 
-func void CH_Exit_Info()
+func void CH_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -394,7 +224,7 @@ func void CH_Exit_Info()
 
 instance CH_RESET(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 998;
 	condition = CH_RESET_Condition;
 	information = CH_RESET_Info;
@@ -413,11 +243,21 @@ func int CH_RESET_Condition()
 
 func void CH_RESET_Info()
 {
+	if(Npc_IsDrawingSpell(hero))
+	{
+		AI_UnreadySpell(hero);
+	};
 	B_UnEquipHeroItem(ItSc_ThunderBall);
 	B_UnEquipHeroItem(ItSc_Windfist);
 	B_UnEquipHeroItem(ItSc_ChargeFireBall);
 	B_UnEquipHeroItem(ItSc_Pyrokinesis);
+	B_UnEquipAllBeliarsRunes();
+	B_UnEquipAllPaladinRunes();
 	B_UnEquipAllCircleRunes();
+	if(Npc_HasReadiedWeapon(hero))
+	{
+		AI_RemoveWeapon(hero);
+	};
 	AI_UnequipWeapons(hero);
 	Info_ClearChoices(CH_RESET);
 	Info_AddChoice(CH_RESET,Dialog_Back,CH_RESET_Back);
@@ -434,8 +274,11 @@ func void CH_RESET_Ok()
 	if(C_ScHasMeleeBeliarsWeapon() || C_SCHasBeliarsRune())
 	{
 		B_ClearBeliarsItems();
+		B_RemoveEveryInvItem(hero,ItMw_BeliarWeapon_Raven);
 		CreateInvItem(hero,ItMw_BeliarWeapon_Raven);
 	};
+	B_RemoveAllPaladinRunes(hero);
+	B_RemoveAllCircleRunes(hero);
 	B_UnEquipAllTempBonusItems();
 	AI_UnequipArmor(hero);
 	B_SetGuild(hero,GIL_NONE);
@@ -584,7 +427,7 @@ var int GuildStart;
 
 instance CH_Guild_Start(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 1;
 	condition = CH_Guild_Start_Condition;
 	information = CH_Guild_Start_Info;
@@ -609,7 +452,7 @@ func void CH_Guild_Start_Info()
 
 instance CH_Guild_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = CH_Guild_Stopper_Condition;
 	information = CH_Guild_Stopper_Info;
@@ -634,11 +477,10 @@ func void CH_Guild_Stopper_Info()
 
 instance CH_Guild(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 7;
 	condition = CH_Guild_Condition;
 	information = CH_Guild_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = "Выбор гильдии";
 };
@@ -674,174 +516,89 @@ func void CH_Guild_BACK()
 
 func void CH_Guild_PIR()
 {
+	B_EquipArmor(hero,ITAR_PIR_L_Addon);
 	Info_ClearChoices(CH_Guild);
-	if(!Npc_HasItems(hero,ITAR_PIR_L_Addon))
-	{
-		CreateInvItem(hero,ITAR_PIR_L_Addon);
-	};
-	if(!ArmorEquipped(hero,ITAR_PIR_L_Addon))
-	{
-		AI_EquipArmor(hero,ITAR_PIR_L_Addon);
-	};
 };
 
 func void CH_Guild_BDT()
 {
+	B_EquipArmor(hero,ITAR_BDT_M);
 	Info_ClearChoices(CH_Guild);
-	if(!Npc_HasItems(hero,ITAR_BDT_M))
-	{
-		CreateInvItem(hero,ITAR_BDT_M);
-	};
-	if(!ArmorEquipped(hero,ITAR_BDT_M))
-	{
-		AI_EquipArmor(hero,ITAR_BDT_M);
-	};
 };
 
 func void CH_Guild_NOV()
 {
-	Info_ClearChoices(CH_Guild);
+	B_EquipArmor(hero,ITAR_NOV_L);
 	B_SetGuild(hero,GIL_NOV);
-	if(!Npc_HasItems(hero,ITAR_NOV_L))
-	{
-		CreateInvItem(hero,ITAR_NOV_L);
-	};
-	if(!ArmorEquipped(hero,ITAR_NOV_L))
-	{
-		AI_EquipArmor(hero,ITAR_NOV_L);
-	};
+	Info_ClearChoices(CH_Guild);
 };
 
 func void CH_Guild_KDF()
 {
-	Info_ClearChoices(CH_Guild);
+	B_EquipArmor(hero,ITAR_KDF_L);
 	B_SetGuild(hero,GIL_KDF);
-	if(!Npc_HasItems(hero,ITAR_KDF_L))
-	{
-		CreateInvItem(hero,ITAR_KDF_L);
-	};
-	if(!ArmorEquipped(hero,ITAR_KDF_L))
-	{
-		AI_EquipArmor(hero,ITAR_KDF_L);
-	};
+	Info_ClearChoices(CH_Guild);
 };
 
 func void CH_Guild_SLD()
 {
-	Info_ClearChoices(CH_Guild);
+	B_EquipArmor(hero,ITAR_SLD_M);
 	B_SetGuild(hero,GIL_SLD);
-	if(!Npc_HasItems(hero,ITAR_SLD_M))
-	{
-		CreateInvItem(hero,ITAR_SLD_M);
-	};
-	if(!ArmorEquipped(hero,ITAR_SLD_M))
-	{
-		AI_EquipArmor(hero,ITAR_SLD_M);
-	};
+	Info_ClearChoices(CH_Guild);
 };
 
 func void CH_Guild_DJG()
 {
-	Info_ClearChoices(CH_Guild);
-	B_SetGuild(hero,GIL_DJG);
 	if(Helmets_Enabled == TRUE)
 	{
-		if(!Npc_HasItems(hero,ITHE_DJG_M))
-		{
-			CreateInvItem(hero,ITHE_DJG_M);
-		};
-		if(DJGMHelmet_Equipped == FALSE)
-		{
-			AI_EquipArmor(hero,ITHE_DJG_M);
-		};
-		if(!Npc_HasItems(hero,ITAR_DJGN_M))
-		{
-			CreateInvItem(hero,ITAR_DJGN_M);
-		};
-		if(!ArmorEquipped(hero,ITAR_DJGN_M))
-		{
-			AI_EquipArmor(hero,ITAR_DJGN_M);
-		};
+		B_EquipArmor(hero,ItHe_DJG_M);
+		B_EquipArmor(hero,ITAR_DJGN_M);
 	}
 	else
 	{
-		if(!Npc_HasItems(hero,ITAR_DJG_M))
-		{
-			CreateInvItem(hero,ITAR_DJG_M);
-		};
-		if(!ArmorEquipped(hero,ITAR_DJG_M))
-		{
-			AI_EquipArmor(hero,ITAR_DJG_M);
-		};
+		B_EquipArmor(hero,ITAR_DJG_M);
 	};
+	B_SetGuild(hero,GIL_DJG);
+	Info_ClearChoices(CH_Guild);
 };
 
 func void CH_Guild_MIL()
 {
-	Info_ClearChoices(CH_Guild);
+	B_EquipArmor(hero,ITAR_MIL_L);
 	B_SetGuild(hero,GIL_MIL);
-	if(!Npc_HasItems(hero,ITAR_MIL_L))
-	{
-		CreateInvItem(hero,ITAR_MIL_L);
-	};
-	if(!ArmorEquipped(hero,ITAR_MIL_L))
-	{
-		AI_EquipArmor(hero,ITAR_MIL_L);
-	};
+	Info_ClearChoices(CH_Guild);
 };
 
 func void CH_Guild_PAL()
 {
-	Info_ClearChoices(CH_Guild);
-	B_SetGuild(hero,GIL_PAL);
 	if(Helmets_Enabled == TRUE)
 	{
-		if(!Npc_HasItems(hero,ITHE_PAL_M))
-		{
-			CreateInvItem(hero,ITHE_PAL_M);
-		};
-		if(PALMHelmet_Equipped == FALSE)
-		{
-			AI_EquipArmor(hero,ITHE_PAL_M);
-		};
-		if(!Npc_HasItems(hero,ITAR_PALN_M))
-		{
-			CreateInvItem(hero,ITAR_PALN_M);
-		};
-		if(!ArmorEquipped(hero,ITAR_PALN_M))
-		{
-			AI_EquipArmor(hero,ITAR_PALN_M);
-		};
+		B_EquipArmor(hero,ItHe_PAL_M);
+		B_EquipArmor(hero,ITAR_PALN_M);
 	}
 	else
 	{
-		if(!Npc_HasItems(hero,ITAR_PAL_M))
-		{
-			CreateInvItem(hero,ITAR_PAL_M);
-		};
-		if(!ArmorEquipped(hero,ITAR_PAL_M))
-		{
-			AI_EquipArmor(hero,ITAR_PAL_M);
-		};
+		B_EquipArmor(hero,ITAR_PAL_M);
 	};
+	B_SetGuild(hero,GIL_PAL);
 	B_SetPaladinEquipment();
+	Info_ClearChoices(CH_Guild);
 };
 
 func void CH_Guild_NONE()
 {
-	Info_ClearChoices(CH_Guild);
-	B_SetGuild(hero,GIL_NONE);
 	AI_UnequipArmor(hero);
+	B_SetGuild(hero,GIL_NONE);
+	Info_ClearChoices(CH_Guild);
 };
 
 
 instance CH_Apprentice(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 8;
 	condition = CH_Apprentice_Condition;
 	information = CH_Apprentice_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = "Выбор ремесла";
 };
@@ -912,7 +669,7 @@ var int LevelStart;
 
 instance CH_Level_Start(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 2;
 	condition = CH_Level_Start_Condition;
 	information = CH_Level_Start_Info;
@@ -937,7 +694,7 @@ func void CH_Level_Start_Info()
 
 instance CH_Level_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = CH_Level_Stopper_Condition;
 	information = CH_Level_Stopper_Info;
@@ -963,7 +720,7 @@ func void CH_Level_Stopper_Info()
 
 instance CH_Lernpunkte(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 5;
 	condition = CH_Lernpunkte_Condition;
 	information = CH_Lernpunkte_Info;
@@ -1033,7 +790,7 @@ func void CH_Lernpunkte_5()
 
 instance CH_Level_niedrig(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 2;
 	condition = CH_Level_niedrig_Condition;
 	information = CH_Level_niedrig_Info;
@@ -1064,7 +821,7 @@ func void CH_Level_niedrig_Info()
 
 instance CH_Level_hoch(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 3;
 	condition = CH_Level_hoch_Condition;
 	information = CH_Level_hoch_Info;
@@ -1524,7 +1281,7 @@ var int AttributeStart;
 
 instance DIA_CH_Attribute_Start(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 3;
 	condition = DIA_CH_Attribute_Start_Condition;
 	information = DIA_CH_Attribute_Start_Info;
@@ -1549,7 +1306,7 @@ func void DIA_CH_Attribute_Start_Info()
 
 instance DIA_CH_Attribute_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = DIA_CH_Attribute_Stopper_Condition;
 	information = DIA_CH_Attribute_Stopper_Info;
@@ -1574,7 +1331,7 @@ func void DIA_CH_Attribute_Stopper_Info()
 
 instance DIA_CH_Strength(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 2;
 	condition = DIA_CH_Strength_Condition;
 	information = DIA_CH_Strength_Info;
@@ -1633,7 +1390,7 @@ func void DIA_CH_Strength_20()
 
 instance DIA_CH_Dex(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 3;
 	condition = DIA_CH_Dex_Condition;
 	information = DIA_CH_Dex_Info;
@@ -1692,7 +1449,7 @@ func void DIA_CH_Dex_20()
 
 instance DIA_CH_Mana(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 4;
 	condition = DIA_CH_Mana_Condition;
 	information = DIA_CH_Mana_Info;
@@ -1751,7 +1508,7 @@ func void DIA_CH_Mana_20()
 
 instance DIA_CH_HP(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 5;
 	condition = DIA_CH_HP_Condition;
 	information = DIA_CH_HP_Info;
@@ -1812,7 +1569,7 @@ var int MagieStart;
 
 instance DIA_CH_MAGIE(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 4;
 	condition = DIA_CH_MAGIE_Condition;
 	information = DIA_CH_MAGIE_Info;
@@ -1837,7 +1594,7 @@ func void DIA_CH_MAGIE_Info()
 
 instance DIA_CH_MAGIE_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = DIA_CH_MAGIE_Stopper_Condition;
 	information = DIA_CH_MAGIE_Stopper_Info;
@@ -1862,7 +1619,7 @@ func void DIA_CH_MAGIE_Stopper_Info()
 
 instance DIA_CH_KREISE(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 4;
 	condition = DIA_CH_KREISE_Condition;
 	information = DIA_CH_KREISE_Info;
@@ -1962,7 +1719,7 @@ func void DIA_CH_KREISE_6()
 
 instance DIA_CH_Runen(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 5;
 	condition = DIA_CH_Runen_Condition;
 	information = DIA_CH_Runen_Info;
@@ -2363,7 +2120,7 @@ func void CH_Training_Runen_Circle_5_SPL_Shrink()
 
 instance DIA_CH_Misc_PaladinStart(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 7;
 	condition = DIA_CH_Misc_PaladinStart_Condition;
 	information = DIA_CH_Misc_PaladinStart_Info;
@@ -2474,7 +2231,7 @@ var int KampfStart;
 
 instance DIA_CH_Kampf_Start(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 5;
 	condition = DIA_CH_Kampf_Start_Condition;
 	information = DIA_CH_Kampf_Start_Info;
@@ -2499,7 +2256,7 @@ func void DIA_CH_Kampf_Start_Info()
 
 instance DIA_CH_Kampf_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = DIA_CH_Kampf_Stopper_Condition;
 	information = DIA_CH_Kampf_Stopper_Info;
@@ -2524,7 +2281,7 @@ func void DIA_CH_Kampf_Stopper_Info()
 
 instance DIA_CH_Kampf_Einhand(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 6;
 	condition = DIA_CH_Kampf_Einhand_Condition;
 	information = DIA_CH_Kampf_Einhand_Info;
@@ -2583,7 +2340,7 @@ func void CH_Training_Combat_1H_20()
 
 instance DIA_CH_Kampf_Zweihand(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 7;
 	condition = DIA_CH_Kampf_Zweihand_Condition;
 	information = DIA_CH_Kampf_Zweihand_Info;
@@ -2642,7 +2399,7 @@ func void CH_Training_Combat_2H_20()
 
 instance DIA_CH_Kampf_Bogen(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 8;
 	condition = DIA_CH_Kampf_Bogen_Condition;
 	information = DIA_CH_Kampf_Bogen_Info;
@@ -2701,7 +2458,7 @@ func void CH_Training_Combat_BOW_20()
 
 instance DIA_CH_Kampf_Armbrust(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 8;
 	condition = DIA_CH_Kampf_Armbrust_Condition;
 	information = DIA_CH_Kampf_Armbrust_Info;
@@ -2760,7 +2517,7 @@ func void CH_Training_Combat_CROSSBOW_20()
 
 instance DIA_CH_Dieb_Start(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 6;
 	condition = DIA_CH_Dieb_Start_Condition;
 	information = DIA_CH_Dieb_Start_Info;
@@ -2829,7 +2586,7 @@ var int MiscStart;
 
 instance DIA_CH_Misc_Start(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 20;
 	condition = DIA_CH_Misc_Start_Condition;
 	information = DIA_CH_Misc_Start_Info;
@@ -2854,7 +2611,7 @@ func void DIA_CH_Misc_Start_Info()
 
 instance DIA_CH_Misc_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = DIA_CH_Misc_Stopper_Condition;
 	information = DIA_CH_Misc_Stopper_Info;
@@ -2881,7 +2638,7 @@ var int AlchemyStart;
 
 instance DIA_CH_Misc_Alchemie(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 5;
 	condition = DIA_CH_Misc_Alchemie_Condition;
 	information = DIA_CH_Misc_Alchemie_Info;
@@ -2906,7 +2663,7 @@ func void DIA_CH_Misc_Alchemie_Info()
 
 instance DIA_CH_Misc_Alchemie_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = DIA_CH_Misc_Alchemie_Stopper_Condition;
 	information = DIA_CH_Misc_Alchemie_Stopper_Info;
@@ -2931,7 +2688,7 @@ func void DIA_CH_Misc_Alchemie_Stopper_Info()
 
 instance DIA_CH_Misc_Health(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 5;
 	condition = DIA_CH_Misc_Health_Condition;
 	information = DIA_CH_Misc_Health_Info;
@@ -2998,7 +2755,7 @@ func void CH_Training_Alchemy_POTION_Health_04()
 
 instance DIA_CH_Misc_Mana(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 6;
 	condition = DIA_CH_Misc_Mana_Condition;
 	information = DIA_CH_Misc_Mana_Info;
@@ -3065,7 +2822,7 @@ func void CH_Training_Alchemy_POTION_Mana_04()
 
 instance DIA_CH_Misc_Special(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 6;
 	condition = DIA_CH_Misc_Special_Condition;
 	information = DIA_CH_Misc_Special_Info;
@@ -3152,7 +2909,7 @@ var int SmithStart;
 
 instance DIA_CH_Misc_SmithStart(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 10;
 	condition = DIA_CH_Misc_SmithStart_Condition;
 	information = DIA_CH_Misc_SmithStart_Info;
@@ -3177,7 +2934,7 @@ func void DIA_CH_Misc_SmithStart_Info()
 
 instance DIA_CH_Misc_SmithStopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = DIA_CH_Misc_SmithStopper_Condition;
 	information = DIA_CH_Misc_SmithStopper_Info;
@@ -3202,7 +2959,7 @@ func void DIA_CH_Misc_SmithStopper_Info()
 
 instance DIA_CH_Misc_Smithniedrig(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 8;
 	condition = DIA_CH_Misc_Smithniedrig_Condition;
 	information = DIA_CH_Misc_Smithniedrig_Info;
@@ -3248,7 +3005,7 @@ func void DIA_CH_Misc_Smithniedrig_Info()
 
 instance DIA_CH_Misc_SmithHoch(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 9;
 	condition = DIA_CH_Misc_SmithHoch_Condition;
 	information = DIA_CH_Misc_SmithHoch_Info;
@@ -3384,7 +3141,7 @@ var int AnimalStart;
 
 instance DIA_CH_Misc_Animal_Start(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 20;
 	condition = DIA_CH_Misc_Animal_Start_Condition;
 	information = DIA_CH_Misc_Animal_Start_Info;
@@ -3409,7 +3166,7 @@ func void DIA_CH_Misc_Animal_Start_Info()
 
 instance DIA_CH_Misc_Animal_Stopper(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 99;
 	condition = DIA_CH_Misc_Animal_Stopper_Condition;
 	information = DIA_CH_Misc_Animal_Stopper_Info;
@@ -3434,7 +3191,7 @@ func void DIA_CH_Misc_Animal_Stopper_Info()
 
 instance DIA_CH_Misc_Animal_allg(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 5;
 	condition = DIA_CH_Misc_Animal_allg_Condition;
 	information = DIA_CH_Misc_Animal_allg_Info;
@@ -3510,7 +3267,7 @@ func void CH_Training_TROPHYS_Heart()
 
 instance DIA_CH_Misc_Animal_Speziell(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 6;
 	condition = DIA_CH_Misc_Animal_Speziell_Condition;
 	information = DIA_CH_Misc_Animal_Speziell_Info;
@@ -3565,8 +3322,6 @@ func void CH_Training_TROPHYS_BFGift()
 		other.lp -= 1;
 		Knows_Bloodfly = TRUE;
 		PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
-		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-		B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);
 	}
 	else
 	{
@@ -3597,7 +3352,7 @@ func void CH_Training_TROPHYS_Mandibles()
 
 instance DIA_CH_Misc_Animal_other(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 7;
 	condition = DIA_CH_Misc_Animal_other_Condition;
 	information = DIA_CH_Misc_Animal_other_Info;
@@ -3673,11 +3428,10 @@ func void CH_Training_TROPHYS_DragonBlood()
 
 instance CH_Language(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 30;
 	condition = CH_Language_Condition;
 	information = CH_Language_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = "Языки зодчих";
 };
@@ -3734,7 +3488,7 @@ func void CH_Language_Priest()
 
 instance DIA_CH_Misc_InnosEye(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 40;
 	condition = DIA_CH_Misc_InnosEye_Condition;
 	information = DIA_CH_Misc_InnosEye_Info;
@@ -3760,7 +3514,7 @@ func void DIA_CH_Misc_InnosEye_Info()
 
 instance DIA_CH_Misc_Gold(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 50;
 	condition = DIA_CH_Misc_Gold_Condition;
 	information = DIA_CH_Misc_Gold_Info;
@@ -3830,7 +3584,7 @@ func void DIA_CH_Misc_Gold_1()
 
 instance DIA_CH_Misc_Wisp(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 60;
 	condition = DIA_CH_Misc_Wisp_Condition;
 	information = DIA_CH_Misc_Wisp_Info;
@@ -3983,7 +3737,7 @@ func string B_BuildCurrentRegenerateValue(var int stats)
 
 instance DIA_CH_Misc_Regenerate(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 70;
 	condition = DIA_CH_Misc_Regenerate_Condition;
 	information = DIA_CH_Misc_Regenerate_Info;
@@ -4060,7 +3814,7 @@ func void DIA_CH_Misc_Regenerate_HP()
 
 instance CH_Overlay(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 36;
 	condition = CH_Overlay_Condition;
 	information = CH_Overlay_Info;
@@ -4169,7 +3923,7 @@ func void CH_Overlay_Clear()
 
 instance CH_Skin(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 37;
 	condition = CH_Skin_Condition;
 	information = CH_Skin_Info;
@@ -4242,20 +3996,9 @@ func void CH_Skin_Naked()
 	CH_Skin_Info();
 };
 
-func void B_SetHeroEquipment()
-{
-	B_RefreshInvItemToAmount(hero,ItRw_Arrow,100);
-	B_RefreshInvItemToAmount(hero,ItRw_Bolt,100);
-	B_RefreshInvItemToAmount(hero,ItLsTorch,20);
-	B_RefreshInvItemToAmount(hero,ItMi_Gold,500);
-	B_RefreshInvItemToAmount(hero,ItPo_Health_03,10);
-	B_RefreshInvItemToAmount(hero,ItPo_Mana_03,10);
-	B_RefreshInvItemToAmount(hero,ItKe_Lockpick,30);
-};
-
 instance CH_Equipment(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 38;
 	condition = CH_Equipment_Condition;
 	information = CH_Equipment_Info;
@@ -4274,14 +4017,14 @@ func int CH_Equipment_Condition()
 
 func void CH_Equipment_Info()
 {
-	B_SetHeroEquipment();
+	B_GiveBasicEquipment(hero);
 	PrintScreen("Снаряжение обновлено",-1,-1,FONT_Screen,3);
 };
 
 
 instance CH_StatsBook(C_Info)
 {
-	npc = ch;
+	npc = CH;
 	nr = 39;
 	condition = CH_StatsBook_Condition;
 	information = CH_StatsBook_Info;

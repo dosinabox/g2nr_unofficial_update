@@ -36,7 +36,7 @@ func void Rtn_FleePass_4130()
 
 func void Rtn_IntoPass_4130()
 {
-	TA_Stand_Eating(8,0,23,0,"TOT");
-	TA_Stand_Eating(23,0,8,0,"TOT");
+	TA_Stand_Eating(8,0,23,0,"OW_VM_ENTRANCE");
+	TA_Stand_Eating(23,0,8,0,"OW_VM_ENTRANCE");
 };
 

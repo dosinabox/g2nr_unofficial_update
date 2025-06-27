@@ -27,7 +27,7 @@ instance NOV_608_Garwig(Npc_Default)
 func void Rtn_Start_608()
 {
 	TA_Guard_Hammer(8,0,23,0,"NW_MONASTERY_SANCTUM_02");
-	TA_Guard_Hammer(23,0,8,0,"NW_MONASTERY_SANCTUM_01");
+	TA_Guard_Hammer(23,0,8,0,"NW_MONASTERY_SANCTUM_02");
 };
 
 func void Rtn_Exile_608()

@@ -25,8 +25,8 @@ func void DIA_Dragon_Swamp_Exit_Info()
 	{
 		if(!Npc_IsDead(DJG_Cipher))
 		{
-			B_StartOtherRoutine(DJG_Rod,"SwampDragon");
-			B_StartOtherRoutine(DJG_Cipher,"SwampDragon");
+			B_StartOtherRoutine(DJG_Rod,"SWAMPDRAGON");
+			B_StartOtherRoutine(DJG_Cipher,"SWAMPDRAGON");
 		};
 	};
 };

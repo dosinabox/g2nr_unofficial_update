@@ -54,7 +54,6 @@ instance DIA_Halvor_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Halvor_Hallo_Condition;
 	information = DIA_Halvor_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -176,7 +175,7 @@ func void DIA_Addon_Halvor_MissingPeople_wer()
 	AI_Output(other,self,"DIA_Addon_Halvor_MissingPeople_wer_15_00");	//Ты знаешь кого-нибудь, кто пропал?
 	AI_Output(self,other,"DIA_Addon_Halvor_MissingPeople_wer_06_01");	//Нет. Попробуй спросить у корабельщиков.
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Единственное, что смог мне посоветовать торговец рыбой Халвор - это обратиться к кораблестроителям.");
 };
 
@@ -199,7 +198,6 @@ instance DIA_Halvor_MESSAGE(C_Info)
 	nr = 2;
 	condition = DIA_Halvor_MESSAGE_Condition;
 	information = DIA_Halvor_MESSAGE_Info;
-	permanent = FALSE;
 	description = "Я думаю, этот клочок бумаги имеет отношение к тебе...";
 };
 
@@ -217,7 +215,6 @@ func void DIA_Halvor_MESSAGE_Info()
 	AI_Output(other,self,"DIA_Halvor_MESSAGE_15_00");	//Я думаю, этот клочок бумаги имеет отношение к тебе...
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_01");	//Что?.. Дай посмотрю.
 	DIA_Common_NotSoFastMyFriend();
-//	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_02");	//(в испарине) Э-э... Хорошо, давай поговорим спокойно об этом - э-э... послушай. Я перепродал товары, полученные от бандитов.
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_03");	//(торопливо) Но нет необходимости сообщать об этом ополчению, правда? Я уверен, мы можем прийти к взаимопониманию, разве нет?
 	Info_ClearChoices(DIA_Halvor_MESSAGE);
@@ -276,7 +273,6 @@ instance DIA_Halvor_Zeichen(C_Info)
 	nr = 800;
 	condition = DIA_Halvor_Zeichen_Condition;
 	information = DIA_Halvor_Zeichen_Info;
-	permanent = FALSE;
 	description = DIALOG_SecretSign;
 };
 
@@ -295,7 +291,7 @@ func void DIA_Halvor_Zeichen_Info()
 	AI_Output(self,other,"DIA_Halvor_Zeichen_06_00");	//Понимаю. Ты пришел не просто купить рыбу.
 	AI_Output(self,other,"DIA_Halvor_Zeichen_06_01");	//(тихо) Я готов сделать тебе предложение. Если у тебя есть серебряные тарелки или кубки, я возьму их по хорошей цене.
 	CreateInvItems(self,ItKe_Lockpick,20);
-	B_LogEntry(Topic_Diebesgilde,"Халвор купит серебряные тарелки и кубки по очень хорошей цене.");
+	B_LogEntry(TOPIC_Diebesgilde,"Халвор купит серебряные тарелки и кубки по очень хорошей цене.");
 	self.aivar[AIV_IGNORE_Theft] = TRUE;
 };
 
@@ -388,7 +384,6 @@ instance DIA_Halvor_Crew(C_Info)
 	nr = 51;
 	condition = DIA_Halvor_Crew_Condition;
 	information = DIA_Halvor_Crew_Info;
-	permanent = FALSE;
 	description = "Я набираю команду.";
 };
 

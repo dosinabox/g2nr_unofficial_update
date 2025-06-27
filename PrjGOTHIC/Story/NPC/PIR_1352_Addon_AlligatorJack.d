@@ -64,11 +64,11 @@ func void Rtn_Hunt4_1352()
 	TA_Guide_Player(13,0,1,0,"ADW_CANYON_TELEPORT_PATH_06");
 };
 
-func void Rtn_PIRATECAMP_1352()
+/*func void Rtn_PIRATECAMP_1352()
 {
 	TA_Guide_Player(1,0,13,0,"ADW_PIRATECAMP_WAY_07");
 	TA_Guide_Player(13,0,1,0,"ADW_PIRATECAMP_WAY_07");
-};
+};*/
 
 func void Rtn_GregIsBack_1352()
 {

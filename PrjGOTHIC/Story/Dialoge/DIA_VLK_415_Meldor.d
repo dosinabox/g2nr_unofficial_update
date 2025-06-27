@@ -23,7 +23,7 @@ func void DIA_Meldor_EXIT_Info()
 
 func int C_LehmarDebtIsOverdue()
 {
-	if(Lehmar_GeldGeliehen_Day > (Wld_GetDay() - 2))
+	if(!C_DaysSinceEvent(Lehmar_GeldGeliehen_Day,2))
 	{
 		return FALSE;
 	};
@@ -44,16 +44,18 @@ instance DIA_Meldor_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Meldor_Hallo_Condition;
 	information = DIA_Meldor_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Meldor_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && !C_LehmarDebtIsOverdue() && !Npc_IsDead(Lehmar))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && !C_LehmarDebtIsOverdue())
 	{
-		return TRUE;
+		if(!Npc_IsDead(Lehmar))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -73,7 +75,6 @@ instance DIA_Meldor_Interessantes(C_Info)
 	nr = 2;
 	condition = DIA_Meldor_Interessantes_Condition;
 	information = DIA_Meldor_Interessantes_Info;
-	permanent = FALSE;
 	description = "Что здесь интересного?";
 };
 
@@ -109,16 +110,18 @@ instance DIA_Meldor_Arbeitest(C_Info)
 	nr = 4;
 	condition = DIA_Meldor_Arbeitest_Condition;
 	information = DIA_Meldor_Arbeitest_Info;
-	permanent = FALSE;
 	description = "Ты работаешь на Лемара?";
 };
 
 
 func int DIA_Meldor_Arbeitest_Condition()
 {
-	if((MeldorToldAboutLehmar == TRUE) && !Npc_IsDead(Lehmar) && !Npc_KnowsInfo(other,DIA_Meldor_VonLehmar))
+	if((MeldorToldAboutLehmar == TRUE) && !Npc_KnowsInfo(other,DIA_Meldor_VonLehmar))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Lehmar))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -135,7 +138,6 @@ instance DIA_Meldor_InsOV(C_Info)
 	nr = 5;
 	condition = DIA_Meldor_InsOV_Condition;
 	information = DIA_Meldor_InsOV_Info;
-	permanent = FALSE;
 	description = "Вообще-то я направлялся в верхний квартал...";
 };
 
@@ -162,7 +164,6 @@ instance DIA_Meldor_Citizen(C_Info)
 	nr = 6;
 	condition = DIA_Meldor_Citizen_Condition;
 	information = DIA_Meldor_Citizen_Info;
-	permanent = FALSE;
 	description = "Ты гражданин этого города?";
 };
 
@@ -190,14 +191,13 @@ instance DIA_Meldor_Smoke(C_Info)
 	nr = 5;
 	condition = DIA_Meldor_Smoke_Condition;
 	information = DIA_Meldor_Smoke_Info;
-	permanent = FALSE;
 	description = "Ты не знаешь, где мне купить травки?";
 };
 
 
 func int DIA_Meldor_Smoke_Condition()
 {
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_RUNNING) && (Knows_Borka_Dealer == FALSE))
 	{
 		return TRUE;
 	};
@@ -278,7 +278,6 @@ instance DIA_Meldor_VonLehmar(C_Info)
 	nr = 1;
 	condition = DIA_Meldor_VonLehmar_Condition;
 	information = DIA_Meldor_VonLehmar_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

@@ -1,17 +1,14 @@
 
 const int SPL_Cost_Thunderstorm = 100;
-const int SPL_DAMAGE_Thunderstorm = 250;
+const int SPL_Damage_Thunderstorm = 250;
 
 instance Spell_Thunderstorm(C_Spell_Proto)
 {
 	time_per_mana = 0;
-	damage_per_level = SPL_DAMAGE_Thunderstorm;
+	damage_per_level = SPL_Damage_Thunderstorm;
 	damagetype = DAM_MAGIC;
 	targetCollectAlgo = TARGET_COLLECT_NONE;
 	targetCollectRange = 1000;
-//	targetCollectRange = 0;
-//	targetCollectAzi = 0;
-//	targetCollectElev = 0;
 };
 
 

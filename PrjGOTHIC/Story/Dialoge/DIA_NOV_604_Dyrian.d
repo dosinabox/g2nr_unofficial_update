@@ -159,10 +159,10 @@ func void B_Dyrian_GiveSleepScroll()
 {
 	CreateInvItems(self,ItSc_Sleep,1);
 	B_GiveInvItems(self,other,ItSc_Sleep,1);
-	MIS_HelpDyrian = LOG_Running;
-	Log_CreateTopic(Topic_DyrianDrin,LOG_MISSION);
-	Log_SetTopicStatus(Topic_DyrianDrin,LOG_Running);
-	B_LogEntry(Topic_DyrianDrin,"Дуриан дал мне свиток с заклинанием 'Сон'. Взамен он хочет, чтобы я замолвил за него словечко, если я стану магом. Тогда он сможет остаться в монастыре.");
+	MIS_HelpDyrian = LOG_RUNNING;
+	Log_CreateTopic(TOPIC_DyrianDrin,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_DyrianDrin,LOG_RUNNING);
+	B_LogEntry(TOPIC_DyrianDrin,"Дуриан дал мне свиток с заклинанием 'Сон'. Взамен он хочет, чтобы я замолвил за него словечко, если я стану магом. Тогда он сможет остаться в монастыре.");
 };
 
 instance DIA_Dyrian_Scroll(C_Info)
@@ -178,7 +178,7 @@ instance DIA_Dyrian_Scroll(C_Info)
 
 func int DIA_Dyrian_Scroll_Condition()
 {
-	if((Kapitel == 1) && (MIS_Schnitzeljagd == LOG_Running) || (MIS_Rune == LOG_Running) || (MIS_Golem == LOG_Running))
+	if((Kapitel == 1) && (MIS_Schnitzeljagd == LOG_RUNNING) || (MIS_Rune == LOG_RUNNING) || (MIS_Golem == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -245,7 +245,7 @@ instance DIA_Dyrian_Doch(C_Info)
 
 func int DIA_Dyrian_Doch_Condition()
 {
-	if((Kapitel == 1) && Npc_KnowsInfo(other,DIA_Dyrian_Scroll) && (MIS_HelpDyrian != LOG_Running) && (other.guild == GIL_NOV))
+	if((Kapitel == 1) && Npc_KnowsInfo(other,DIA_Dyrian_Scroll) && (MIS_HelpDyrian != LOG_RUNNING) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -286,7 +286,6 @@ func void DIA_Dyrian_HelloAgain_Info()
 	B_GivePlayerXP(XP_Ambient);
 	AI_StopProcessInfos(self);
 };
-
 
 
 instance DIA_Dyrian_HowIsIt(C_Info)

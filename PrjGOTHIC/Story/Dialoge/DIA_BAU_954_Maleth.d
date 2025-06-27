@@ -40,7 +40,6 @@ instance DIA_Maleth_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Maleth_Hallo_Condition;
 	information = DIA_Maleth_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -56,7 +55,7 @@ func int DIA_Maleth_Hallo_Condition()
 func void DIA_Maleth_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Maleth_Hallo_08_00");	//Привет, чужеземец!
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Maleth_Hallo_08_01");	//Я видел, как ты спустился с гор.
 		AI_Output(self,other,"DIA_Maleth_Hallo_08_02");	//Тебе повезло, что ты не пришел три недели назад.
@@ -81,14 +80,13 @@ instance DIA_Maleth_BANDITS(C_Info)
 	nr = 1;
 	condition = DIA_Maleth_BANDITS_Condition;
 	information = DIA_Maleth_BANDITS_Info;
-	permanent = FALSE;
 	description = "На меня напали бандиты в горах.";
 };
 
 
 func int DIA_Maleth_BANDITS_Condition()
 {
-	if((Kapitel < 3) && (Npc_KnowsInfo(other,DIA_BDT_1013_BANDIT_WHERE) || Npc_KnowsInfo(other,DIA_BDT_1014_BANDIT_KILLER) || Npc_KnowsInfo(other,DIA_1015_BANDIT_AMBUSH) || Npc_IsDead(Ambusher_1013) || Npc_IsDead(Ambusher_1014) || Npc_IsDead(Ambusher_1015) || Npc_KnowsInfo(other,DIA_Addon_Cavalorn_LETSKILLBANDITS) || (BragoBanditsAttacked == TRUE)))
+	if((Kapitel < 3) && (Npc_KnowsInfo(other,DIA_BDT_1013_BANDIT_WHERE) || Npc_KnowsInfo(other,DIA_BDT_1014_BANDIT_KILLER) || Npc_KnowsInfo(other,DIA_1015_BANDIT_AMBUSH) || C_BragoBanditsDead() || Npc_KnowsInfo(other,DIA_Addon_Cavalorn_LETSKILLBANDITS) || (BragoBanditsAttacked == TRUE)))
 	{
 		return TRUE;
 	};
@@ -108,7 +106,6 @@ instance DIA_Maleth_BanditsDEAD(C_Info)
 	nr = 1;
 	condition = DIA_Maleth_BanditsDEAD_Condition;
 	information = DIA_Maleth_BanditsDEAD_Info;
-	permanent = FALSE;
 	description = "Эти бандиты больше не будут беспокоить вас...";
 };
 
@@ -143,7 +140,6 @@ instance DIA_Maleth_BanditsALIVE(C_Info)
 	nr = 1;
 	condition = DIA_Maleth_BanditsALIVE_Condition;
 	information = DIA_Maleth_BanditsALIVE_Info;
-	permanent = FALSE;
 	description = "Я знаю, где прячутся эти бандиты...";
 };
 
@@ -165,9 +161,9 @@ func void DIA_Maleth_BanditsALIVE_Info()
 	AI_Output(self,other,"DIA_Maleth_BanditsALIVE_08_01");	//Ты хочешь напасть на них? Я в такие игры не играю! Это слишком опасно!
 	AI_Output(self,other,"DIA_Maleth_BanditsALIVE_08_02");	//Кроме того, мне нужно присматривать за овцами!
 	AI_Output(self,other,"DIA_Maleth_BanditsALIVE_08_03");	//Но если ты думаешь, что можешь избавить нас от этих подонков, все на этой ферме будут очень благодарны тебе.
-	MIS_Maleth_Bandits = LOG_Running;
+	MIS_Maleth_Bandits = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Maleth,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Maleth,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Maleth,LOG_RUNNING);
 	B_LogEntry(TOPIC_Maleth,"Если я уничтожу бандитов, поселившихся на полпути от башни Ксардаса к ферме Лобарта, все обитатели фермы будут очень благодарны мне.");
 };
 
@@ -178,14 +174,13 @@ instance DIA_Maleth_ToTheCity(C_Info)
 	nr = 2;
 	condition = DIA_Maleth_ToTheCity_Condition;
 	information = DIA_Maleth_ToTheCity_Info;
-	permanent = FALSE;
 	description = "Я иду в город.";
 };
 
 
 func int DIA_Maleth_ToTheCity_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maleth_Hallo) && (hero.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Maleth_Hallo) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -205,10 +200,10 @@ func void DIA_Maleth_ToTheCity_Info()
 	};
 	AI_Output(other,self,"DIA_Maleth_ToTheCity_15_04");	//И что это?
 	AI_Output(self,other,"DIA_Maleth_ToTheCity_08_05");	//Ну, например, что ты с фермы Лобарта и идешь к городскому кузнецу.
-	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
+	if((CityPassGranted == FALSE) && (PlayerEnteredCity == FALSE))
 	{
 		Log_CreateTopic(TOPIC_City,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_City,LOG_Running);
+		Log_SetTopicStatus(TOPIC_City,LOG_RUNNING);
 		B_LogEntry(TOPIC_City,"Чтобы попасть в город, я могу сказать стражникам у ворот, что я иду с фермы Лобарта и хочу повидать кузнеца.");
 	};
 	if(VisibleGuild(other) != GIL_BAU)
@@ -226,14 +221,13 @@ instance DIA_Maleth_Equipment(C_Info)
 	nr = 3;
 	condition = DIA_Maleth_Equipment_Condition;
 	information = DIA_Maleth_Equipment_Info;
-	permanent = FALSE;
 	description = "Мне нужно снаряжение!";
 };
 
 
 func int DIA_Maleth_Equipment_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maleth_Hallo) && (hero.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Maleth_Hallo) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -257,14 +251,13 @@ instance DIA_Maleth_LOBART(C_Info)
 	nr = 3;
 	condition = DIA_Maleth_LOBART_Condition;
 	information = DIA_Maleth_LOBART_Info;
-	permanent = FALSE;
 	description = "Где мне найти Лобарта?";
 };
 
 
 func int DIA_Maleth_LOBART_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maleth_Equipment) && !Npc_IsDead(Lobart) && (hero.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Maleth_Equipment) && !Npc_IsDead(Lobart) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -353,22 +346,22 @@ func void DIA_Maleth_PROBLEME_schafe()
 func void DIA_Maleth_PROBLEME_schafe_probleme()
 {
 	AI_Output(other,self,"DIA_Maleth_PROBLEME_schafe_probleme_15_00");	//Мои проблемы? Да что ты знаешь об этом?
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Maleth_PROBLEME_schafe_probleme_08_01");	//(резко) Ты служишь в городской страже или нет? Тогда сделай что-нибудь с этими ублюдками в черных рясах.
-	};
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	}
+	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Maleth_PROBLEME_schafe_probleme_08_02");	//(зло) Вы, грязные наемники, думаете только об одном: как переложить деньги других людей в свои карманы.
-	};
-	if(hero.guild == GIL_KDF)
+	}
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Maleth_PROBLEME_schafe_probleme_08_03");	//Вы, могущественные маги из монастыря, должны что-нибудь сделать с этими парнями в черных рясах.
 	};
 	Info_ClearChoices(DIA_Maleth_PROBLEME);
 	Info_AddChoice(DIA_Maleth_PROBLEME,Dialog_Back,DIA_Maleth_PROBLEME_Back);
 	Info_AddChoice(DIA_Maleth_PROBLEME,"Эй, полегче на поворотах, приятель.",DIA_Maleth_PROBLEME_schafe_probleme_drohen);
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		Info_AddChoice(DIA_Maleth_PROBLEME,"Что у тебя за проблемы?",DIA_Maleth_PROBLEME_schafe_probleme_geldher_auftrag);
 	};
@@ -382,7 +375,7 @@ func void DIA_Maleth_PROBLEME_schafe_probleme_geldher_auftrag()
 	AI_Output(other,self,"DIA_Maleth_PROBLEME_schafe_probleme_geldher_auftrag_15_03");	//И из-за этого ты так шумишь?
 	AI_Output(self,other,"DIA_Maleth_PROBLEME_schafe_probleme_geldher_auftrag_08_04");	//Тебе легко говорить, это же не твой посох пропал.
 	Log_CreateTopic(TOPIC_MalethsGehstock,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_MalethsGehstock,LOG_Running);
+	Log_SetTopicStatus(TOPIC_MalethsGehstock,LOG_RUNNING);
 	B_LogEntry(TOPIC_MalethsGehstock,"Малет напился в стельку и потерял свой посох. Насколько я знаю его, он никогда не уходил далеко от фермы Лобарта. Возможно, я найду этот посох где-нибудь неподалеку.");
 	Info_ClearChoices(DIA_Maleth_PROBLEME);
 };
@@ -440,10 +433,10 @@ func void DIA_Maleth_GEHSTOCK_ok()
 	AI_EquipBestMeleeWeapon(self);
 	AI_Output(self,other,"DIA_Maleth_GEHSTOCK_ok_08_01");	//Ладно. Просто иди на запад, вон к тому лесу. Там ты увидишь ущелье.
 	AI_Output(self,other,"DIA_Maleth_GEHSTOCK_ok_08_02");	//В пещере внизу ты наверняка найдешь что-нибудь.
-	if(!Npc_IsDead(BDT_1024_MalethsBandit))
+	if(!Npc_IsDead(MalethsBandit))
 	{
 		B_LogEntry(TOPIC_MalethsGehstock,"Малет рассказал мне, что в пещере к западу от фермы Лобарта находится убежище бандитов.");
-		CreateInvItems(BDT_1024_MalethsBandit,ItMi_MalethsBanditGold,1);
+		CreateInvItems(MalethsBandit,ItMi_MalethsBanditGold,1);
 	}
 	else
 	{

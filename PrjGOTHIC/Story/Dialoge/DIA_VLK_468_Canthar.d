@@ -88,7 +88,7 @@ func void DIA_Canthar_PersonalCRIMES_Info()
 	{
 		AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_09_01");	//(насмешливо) Ты думал, что так просто сможешь справиться со мной?
 	};
-	if((MIS_Canthars_KomproBrief == LOG_Running) && !Npc_IsDead(Sarah) && (Kapitel < 3))
+	if((MIS_Canthars_KomproBrief == LOG_RUNNING) && !Npc_IsDead(Sarah) && (Kapitel < 3))
 	{
 		B_Canthar_Fail();
 		Canthars_KomproBrief_Failed = TRUE;
@@ -132,7 +132,6 @@ instance DIA_Canthar_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Canthar_Hallo_Condition;
 	information = DIA_Canthar_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -196,7 +195,6 @@ instance DIA_Canthar_WhatOffer(C_Info)
 	nr = 1;
 	condition = DIA_Canthar_WhatOffer_Condition;
 	information = DIA_Canthar_WhatOffer_Info;
-	permanent = FALSE;
 	description = "Что ты можешь предложить мне?";
 };
 
@@ -269,10 +267,10 @@ func void DIA_Canthar_WhatOffer_Ok()
 	AI_Output(self,other,"DIA_Canthar_WhatOffer_Ok_09_01");	//Держи. Но обращайся с ней аккуратно, она очень ценная.
 	CreateInvItems(self,ItWr_Passierschein,1);
 	B_GiveInvItems(self,other,ItWr_Passierschein,1);
-	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
+	if(CityPassGranted == FALSE)
 	{
 		Log_CreateTopic(TOPIC_City,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_City,LOG_Running);
+		Log_SetTopicStatus(TOPIC_City,LOG_RUNNING);
 		B_LogEntry(TOPIC_City,"Я получил пропуск у торговца Кантара, который позволит мне попасть в город. Взамен я должен оказать ему услугу в следующий раз, когда увижу его в городе.");
 	};
 	AI_Output(self,other,"DIA_Canthar_WhatOffer_Ok_09_02");	//И еще одно: даже и не думай нарушить свое слово!
@@ -297,8 +295,8 @@ instance DIA_Canthar_TRADE(C_Info)
 	condition = DIA_Canthar_TRADE_Condition;
 	information = DIA_Canthar_TRADE_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
 	trade = TRUE;
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -314,7 +312,7 @@ func void DIA_Canthar_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Canthar_TRADE_15_00");	//Покажи мне свои товары.
 	AI_Output(self,other,"DIA_Canthar_TRADE_09_01");	//Выбирай.
-	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING)
 	{
 		CantharMinenAnteil = TRUE;
 	};
@@ -330,7 +328,6 @@ instance DIA_Canthar_PAYPRICEINCITY(C_Info)
 	condition = DIA_Canthar_PAYPRICEINCITY_Condition;
 	information = DIA_Canthar_PAYPRICEINCITY_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
@@ -396,10 +393,10 @@ func void DIA_Canthar_PAYPRICEINCITY_Ok()
 	AI_Output(other,self,"DIA_Canthar_PAYPRICEINCITY_Ok_15_02");	//А как я подложу ей это письмо?
 	AI_Output(self,other,"DIA_Canthar_PAYPRICEINCITY_Ok_09_03");	//Пусть она покажет тебе свои товары - а пока она будет делать это, ты подложишь ей письмо.
 	AI_Output(self,other,"DIA_Canthar_PAYPRICEINCITY_Ok_09_04");	//И помни, я очень влиятельный человек, так что не пытайся провести меня.
-	MIS_Canthars_KomproBrief = LOG_Running;
+	MIS_Canthars_KomproBrief = LOG_RUNNING;
 	MIS_Canthars_KomproBrief_Day = Wld_GetDay();
 	Log_CreateTopic(TOPIC_Canthar,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Canthar,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Canthar,LOG_RUNNING);
 	if(Canthar_Gefallen == TRUE)
 	{
 		B_LogEntry(TOPIC_Canthar,"Кантар хочет, чтобы я оказал ему услугу, как обещал.");
@@ -428,7 +425,7 @@ instance DIA_Canthar_SARAHERLEDIGT(C_Info)
 
 func int DIA_Canthar_SARAHERLEDIGT_Condition()
 {
-	if((MIS_Canthars_KomproBrief == LOG_Running) && !Npc_IsDead(Sarah) && (Kapitel < 3) && !Npc_KnowsInfo(other,DIA_Canthar_TooLate))
+	if((MIS_Canthars_KomproBrief == LOG_RUNNING) && !Npc_IsDead(Sarah) && (Kapitel < 3) && !Npc_KnowsInfo(other,DIA_Canthar_TooLate))
 	{
 		return TRUE;
 	};
@@ -462,14 +459,13 @@ instance DIA_Canthar_SarahIsDead(C_Info)
 	nr = 5;
 	condition = DIA_Canthar_SarahIsDead_Condition;
 	information = DIA_Canthar_SarahIsDead_Info;
-	permanent = FALSE;
 	description = "Сара мертва.";
 };
 
 
 func int DIA_Canthar_SarahIsDead_Condition()
 {
-	if((MIS_Canthars_KomproBrief == LOG_Running) && Npc_IsDead(Sarah) && (Kapitel < 3))
+	if((MIS_Canthars_KomproBrief == LOG_RUNNING) && Npc_IsDead(Sarah) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -495,13 +491,12 @@ instance DIA_Canthar_TooLate(C_Info)
 	condition = DIA_Canthar_TooLate_Condition;
 	information = DIA_Canthar_TooLate_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
 func int DIA_Canthar_TooLate_Condition()
 {
-	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2)) && !Npc_IsDead(Sarah) && (Kapitel < 3))
+	if((MIS_Canthars_KomproBrief == LOG_RUNNING) && C_DaysSinceEvent(MIS_Canthars_KomproBrief_Day,2) && !Npc_IsDead(Sarah) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -523,7 +518,6 @@ instance DIA_Canthar_Success(C_Info)
 	condition = DIA_Canthar_Success_Condition;
 	information = DIA_Canthar_Success_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
@@ -550,7 +544,6 @@ instance DIA_Canthar_Again(C_Info)
 	nr = 5;
 	condition = DIA_Canthar_Again_Condition;
 	information = DIA_Canthar_Again_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -571,7 +564,7 @@ func void DIA_Canthar_Again_Info()
 		AI_Output(other,self,"DIA_Canthar_Again_15_01");	//Почему ты не в тюрьме?
 		AI_Output(self,other,"DIA_Canthar_Again_09_02");	//Меня отпустили. Как я уже говорил тебе - я очень влиятельный человек в этом городе.
 	}
-	else if(MIS_Canthars_KomproBrief == LOG_Running)
+	else if(MIS_Canthars_KomproBrief == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Canthar_Again_09_03");	//Кстати, я разделался с Сарой сам. Ты можешь забыть об этом деле с письмом.
 	}
@@ -680,8 +673,7 @@ instance DIA_Canthar_MinenAnteil(C_Info)
 
 func int DIA_Canthar_MinenAnteil_Condition()
 {
-	//if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Canthar_WhatOffer))
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (CantharMinenAnteil == TRUE))
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (CantharMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

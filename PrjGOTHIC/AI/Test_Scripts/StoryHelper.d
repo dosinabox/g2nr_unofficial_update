@@ -1,26 +1,4 @@
 
-/*instance ItPo_Story(C_Item)
-{
-	name = "Счастье";
-	mainflag = ITEM_KAT_POTIONS;
-	flags = ITEM_MULTI;
-	visual = "ItPo_Perm_STR.3ds";
-	material = MAT_GLAS;
-	on_state[0] = UseItPo_Story;
-	scemeName = "POTIONFAST";
-	wear = WEAR_EFFECT;
-	effect = "SPELLFX_ITEMGLIMMER";
-	description = name;
-	text[0] = "Показ Raven Video I";
-};
-
-
-func void UseItPo_Story()
-{
-	B_RavensEscapeIntoTempelAVI();
-};*/
-
-
 instance SH(Npc_Default)
 {
 	name[0] = "Помощник по сюжету";
@@ -48,38 +26,318 @@ func void Rtn_Start_9999()
 };
 
 
-instance StoryHelper_Exit(C_Info)
+instance StoryHelper_EXIT(C_Info)
 {
-	npc = sh;
+	npc = SH;
 	nr = 999;
-	condition = StoryHelper_Exit_Condition;
-	information = StoryHelper_Exit_Info;
-	important = FALSE;
+	condition = StoryHelper_EXIT_Condition;
+	information = StoryHelper_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int StoryHelper_Exit_Condition()
+func int StoryHelper_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void StoryHelper_Exit_Info()
+func void StoryHelper_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
 
+
+func void B_Build_StoryPoints_Diag()
+{
+	Info_ClearChoices(DIA_StoryHelper_StoryPoints);
+	Info_AddChoice(DIA_StoryHelper_StoryPoints,Dialog_Back,StoryHelper_StoryPoints_BACK);
+	if(CurrentStoryPoint < SP_C6_P3)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C6_P3),StoryHelper_StoryPoints_SP_C6_P3);
+	};
+	if(CurrentStoryPoint < SP_C6_P2)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C6_P2),StoryHelper_StoryPoints_SP_C6_P2);
+	};
+	if(CurrentStoryPoint < SP_C6_P1)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C6_P1),StoryHelper_StoryPoints_SP_C6_P1);
+	};
+	if(CurrentStoryPoint < SP_C5_P3)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C5_P3),StoryHelper_StoryPoints_SP_C5_P3);
+	};
+	if(CurrentStoryPoint < SP_C5_P2)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C5_P2),StoryHelper_StoryPoints_SP_C5_P2);
+	};
+	if(CurrentStoryPoint < SP_C5_P1)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C5_P1),StoryHelper_StoryPoints_SP_C5_P1);
+	};
+	if(CurrentStoryPoint < SP_C4_P2)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C4_P2),StoryHelper_StoryPoints_SP_C4_P2);
+	};
+	if(CurrentStoryPoint < SP_C4_P1)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C4_P1),StoryHelper_StoryPoints_SP_C4_P1);
+	};
+	if(CurrentStoryPoint < SP_C3_P3)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C3_P3),StoryHelper_StoryPoints_SP_C3_P3);
+	};
+	if(CurrentStoryPoint < SP_C3_P2)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C3_P2),StoryHelper_StoryPoints_SP_C3_P2);
+	};
+	if(CurrentStoryPoint < SP_C3_P1)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C3_P1),StoryHelper_StoryPoints_SP_C3_P1);
+	};
+	if(CurrentStoryPoint < SP_C2_P2)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C2_P2),StoryHelper_StoryPoints_SP_C2_P2);
+	};
+	if(CurrentStoryPoint < SP_C2_P1)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C2_P1),StoryHelper_StoryPoints_SP_C2_P1);
+	};
+	if(CurrentStoryPoint < SP_C1_P3)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C1_P3),StoryHelper_StoryPoints_SP_C1_P3);
+	};
+	if(CurrentStoryPoint < SP_C1_P2)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C1_P2),StoryHelper_StoryPoints_SP_C1_P2);
+	};
+	/*if(CurrentStoryPoint < SP_C1_P1)
+	{
+		Info_AddChoice(DIA_StoryHelper_StoryPoints,B_GetStoryPointName(SP_C1_P1),StoryHelper_StoryPoints_SP_C1_P1);
+	};*/
+};
+
+/*func void StoryHelper_StoryPoints_SP_C1_P1()
+{
+	B_SetStoryPoint(SP_C1_P1);
+	B_Build_StoryPoints_Diag();
+};*/
+
+func void StoryHelper_StoryPoints_SP_C1_P2()
+{
+	B_SetStoryPoint(SP_C1_P2);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C1_P3()
+{
+	B_SetStoryPoint(SP_C1_P3);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C2_P1()
+{
+	B_SetStoryPoint(SP_C2_P1);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C2_P2()
+{
+	B_SetStoryPoint(SP_C2_P2);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C3_P1()
+{
+	B_SetStoryPoint(SP_C3_P1);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C3_P2()
+{
+	B_SetStoryPoint(SP_C3_P2);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C3_P3()
+{
+	B_SetStoryPoint(SP_C3_P3);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C4_P1()
+{
+	B_SetStoryPoint(SP_C4_P1);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C4_P2()
+{
+	B_SetStoryPoint(SP_C4_P2);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C5_P1()
+{
+	B_SetStoryPoint(SP_C5_P1);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C5_P2()
+{
+	B_SetStoryPoint(SP_C5_P2);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C5_P3()
+{
+	B_SetStoryPoint(SP_C5_P3);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C6_P1()
+{
+	B_SetStoryPoint(SP_C6_P1);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C6_P2()
+{
+	B_SetStoryPoint(SP_C6_P2);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_SP_C6_P3()
+{
+	B_SetStoryPoint(SP_C6_P3);
+	B_Build_StoryPoints_Diag();
+};
+
+func void StoryHelper_StoryPoints_BACK()
+{
+	Info_ClearChoices(DIA_StoryHelper_StoryPoints);
+};
+
+func void B_Build_AddonStoryPoints_Diag()
+{
+	Info_ClearChoices(DIA_StoryHelper_AddonStoryPoints);
+	Info_AddChoice(DIA_StoryHelper_AddonStoryPoints,Dialog_Back,StoryHelper_AddonStoryPoints_BACK);
+	if(CurrentAddonStoryPoint < SP_A5)
+	{
+		Info_AddChoice(DIA_StoryHelper_AddonStoryPoints,B_GetAddonStoryPointName(SP_A5),StoryHelper_AddonStoryPoints_SP_A5);
+	};
+	if(CurrentAddonStoryPoint < SP_A4)
+	{
+		Info_AddChoice(DIA_StoryHelper_AddonStoryPoints,B_GetAddonStoryPointName(SP_A4),StoryHelper_AddonStoryPoints_SP_A4);
+	};
+	if(CurrentAddonStoryPoint < SP_A3)
+	{
+		Info_AddChoice(DIA_StoryHelper_AddonStoryPoints,B_GetAddonStoryPointName(SP_A3),StoryHelper_AddonStoryPoints_SP_A3);
+	};
+	if(CurrentAddonStoryPoint < SP_A2)
+	{
+		Info_AddChoice(DIA_StoryHelper_AddonStoryPoints,B_GetAddonStoryPointName(SP_A2),StoryHelper_AddonStoryPoints_SP_A2);
+	};
+	if(CurrentAddonStoryPoint < SP_A1)
+	{
+		Info_AddChoice(DIA_StoryHelper_AddonStoryPoints,B_GetAddonStoryPointName(SP_A1),StoryHelper_AddonStoryPoints_SP_A1);
+	};
+};
+
+func void StoryHelper_AddonStoryPoints_SP_A1()
+{
+	B_SetAddonStoryPoint(SP_A1);
+	B_Build_AddonStoryPoints_Diag();
+};
+
+func void StoryHelper_AddonStoryPoints_SP_A2()
+{
+	B_SetAddonStoryPoint(SP_A2);
+	B_Build_AddonStoryPoints_Diag();
+};
+
+func void StoryHelper_AddonStoryPoints_SP_A3()
+{
+	B_SetAddonStoryPoint(SP_A3);
+	B_Build_AddonStoryPoints_Diag();
+};
+
+func void StoryHelper_AddonStoryPoints_SP_A4()
+{
+	B_SetAddonStoryPoint(SP_A4);
+	B_Build_AddonStoryPoints_Diag();
+};
+
+func void StoryHelper_AddonStoryPoints_SP_A5()
+{
+	B_SetAddonStoryPoint(SP_A5);
+	B_Build_AddonStoryPoints_Diag();
+};
+
+func void StoryHelper_AddonStoryPoints_BACK()
+{
+	Info_ClearChoices(DIA_StoryHelper_AddonStoryPoints);
+};
+
+instance DIA_StoryHelper_StoryPoints(C_Info)
+{
+	npc = SH;
+	nr = 1;
+	condition = DIA_StoryHelper_StoryPoints_Condition;
+	information = DIA_StoryHelper_StoryPoints_Info;
+	permanent = TRUE;
+	description = "Перемотка основного сюжета";
+};
+
+
+func int DIA_StoryHelper_StoryPoints_Condition()
+{
+	if(CurrentStoryPoint > 0)
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_StoryHelper_StoryPoints_Info()
+{
+	B_Build_StoryPoints_Diag();
+};
+
+
+instance DIA_StoryHelper_AddonStoryPoints(C_Info)
+{
+	npc = SH;
+	nr = 2;
+	condition = DIA_StoryHelper_AddonStoryPoints_Condition;
+	information = DIA_StoryHelper_AddonStoryPoints_Info;
+	permanent = TRUE;
+	description = "Перемотка сюжета аддона";
+};
+
+
+func int DIA_StoryHelper_AddonStoryPoints_Condition()
+{
+	if(CurrentStoryPoint > 0)
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_StoryHelper_AddonStoryPoints_Info()
+{
+	B_Build_AddonStoryPoints_Diag();
+};
+
+
 instance StoryHelper_PatchSettings(C_Info)
 {
-	npc = sh;
-//	npc = NONE_100_Xardas;
+	npc = SH;
 	nr = 995;
 	condition = StoryHelper_PatchSettings_Condition;
 	information = StoryHelper_PatchSettings_Info;
-	important = FALSE;
 	permanent = TRUE;
-	description = "(настройки неофициального обновления)";
+	description = "Настройки неофициального обновления";
 };
 
 
@@ -91,306 +349,5 @@ func int StoryHelper_PatchSettings_Condition()
 func void StoryHelper_PatchSettings_Info()
 {
 	B_Build_Settings_Diag();
-};
-
-
-instance StoryHelper_INFO1(C_Info)
-{
-	npc = sh;
-	condition = StoryHelper_INFO1_Condition;
-	information = StoryHelper_INFO1_Info;
-	important = FALSE;
-	permanent = TRUE;
-	description = KapWechsel_1;
-};
-
-
-func int StoryHelper_INFO1_Condition()
-{
-	if(Kapitel == 1)
-	{
-		return TRUE;
-	};
-};
-
-func void StoryHelper_INFO1_Info()
-{
-	Info_ClearChoices(StoryHelper_INFO1);
-	Info_AddChoice(StoryHelper_INFO1,Dialog_Back,StoryHelper_BACK1);
-	Info_AddChoice(StoryHelper_INFO1,KapAnfang,StoryHelper_KAPITEL1ANFANG);
-	Info_AddChoice(StoryHelper_INFO1,"АДДОН Готов к первой встрече с Сатурасом (забыть о Ларесе)",StoryHelper_SATURAS);
-	Info_AddChoice(StoryHelper_INFO1,"АДДОН Баг с Кавалорном",StoryHelper_Cavalorn);
-};
-
-func void StoryHelper_SATURAS()
-{
-	MIS_Addon_Lares_Ornament2Saturas = LOG_Running;
-	CreateInvItems(other,ItMi_Ornament_Addon,1);
-	SC_KnowsRanger = TRUE;
-	B_Kapitelwechsel(1,NEWWORLD_ZEN);
-	AI_StopProcessInfos(self);
-};
-
-func void StoryHelper_Cavalorn()
-{
-	B_Kapitelwechsel(1,NEWWORLD_ZEN);
-	//Получено письмо для Ватраса
-	MIS_Addon_Cavalorn_Letter2Vatras = LOG_SUCCESS;
-	//Найден торговец, продававший оружие бандитам
-	MIS_Vatras_FindTheBanditTrader = LOG_SUCCESS;
-	//Где же пропавшие люди?
-	MIS_Addon_Vatras_WhereAreMissingPeople = LOG_SUCCESS;
-	//Кольцо колец :)
-	CreateInvItems(hero,ItRi_Ranger_Addon,1);
-	//Найти каменные круги
-	MIS_Addon_Nefarius_BringMissingOrnaments = LOG_Running;
-	//...и Кавалорн отправился в один из них
-	B_StartotherRoutine(Cavalorn,"OrnamentSteinring");
-	//Игрок получил карту кругов
-	CreateInvItems(hero,ItWr_Map_NewWorld_Ornaments_Addon,1);
-	AI_StopProcessInfos(self);
-};
-
-func void StoryHelper_BACK1()
-{
-	Info_ClearChoices(StoryHelper_INFO1);
-};
-
-func void StoryHelper_KAPITEL1ANFANG()
-{
-	B_Kapitelwechsel(1,NEWWORLD_ZEN);
-	AI_StopProcessInfos(self);
-};
-
-
-instance StoryHelper_INFO2(C_Info)
-{
-	npc = sh;
-	condition = StoryHelper_INFO2_Condition;
-	information = StoryHelper_INFO2_Info;
-	important = FALSE;
-	permanent = TRUE;
-	description = KapWechsel_2;
-};
-
-
-func int StoryHelper_INFO2_Condition()
-{
-	if(Kapitel < 2)
-	{
-		return TRUE;
-	};
-};
-
-func void StoryHelper_INFO2_Info()
-{
-	Info_ClearChoices(StoryHelper_INFO2);
-	Info_AddChoice(StoryHelper_INFO2,Dialog_Back,StoryHelper_BACK2);
-	Info_AddChoice(StoryHelper_INFO2,KapAnfang,StoryHelper_KAPITEL2ANFANG);
-};
-
-func void StoryHelper_BACK2()
-{
-	Info_ClearChoices(StoryHelper_INFO2);
-};
-
-func void StoryHelper_KAPITEL2ANFANG()
-{
-	Torwache_305.aivar[AIV_PASSGATE] = TRUE;
-	Mil_305_schonmalreingelassen = TRUE;
-	B_StartOtherRoutine(Lothar,"START");
-	CreateInvItems(hero,ItKe_Pass_MIS,1);
-	MIS_OLDWORLD = LOG_Running;
-	B_Kapitelwechsel(2,NEWWORLD_ZEN);
-	Info_ClearChoices(StoryHelper_INFO2);
-	AI_StopProcessInfos(self);
-};
-
-
-instance StoryHelper_INFO3(C_Info)
-{
-	npc = sh;
-	condition = StoryHelper_INFO3_Condition;
-	information = StoryHelper_INFO3_Info;
-	important = FALSE;
-	permanent = TRUE;
-	description = KapWechsel_3;
-};
-
-
-func int StoryHelper_INFO3_Condition()
-{
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
-};
-
-func void StoryHelper_INFO3_Info()
-{
-	Info_ClearChoices(StoryHelper_INFO3);
-	Info_AddChoice(StoryHelper_INFO3,Dialog_Back,StoryHelper_BACK3);
-	Info_AddChoice(StoryHelper_INFO3,KapAnfang,StoryHelper_KAPITEL3ANFANG);
-};
-
-func void StoryHelper_BACK3()
-{
-	Info_ClearChoices(StoryHelper_INFO3);
-};
-
-func void StoryHelper_KAPITEL3ANFANG()
-{
-	MIS_OLDWORLD = LOG_Running;
-	CreateInvItems(hero,ItWr_PaladinLetter_MIS,1);
-	KnowsPaladins_Ore = TRUE;
-	MIS_ScoutMine = LOG_SUCCESS;
-	MIS_ReadyForChapter3 = TRUE;
-	B_Kapitelwechsel(3,NEWWORLD_ZEN);
-	Info_ClearChoices(StoryHelper_INFO3);
-	AI_StopProcessInfos(self);
-};
-
-
-instance StoryHelper_INFO4(C_Info)
-{
-	npc = sh;
-	condition = StoryHelper_INFO4_Condition;
-	information = StoryHelper_INFO4_Info;
-	important = FALSE;
-	permanent = TRUE;
-	description = KapWechsel_4;
-};
-
-
-func int StoryHelper_INFO4_Condition()
-{
-	if(Kapitel < 4)
-	{
-		return TRUE;
-	};
-};
-
-func void StoryHelper_INFO4_Info()
-{
-	Info_ClearChoices(StoryHelper_INFO4);
-	Info_AddChoice(StoryHelper_INFO4,Dialog_Back,StoryHelper_BACK4);
-	Info_AddChoice(StoryHelper_INFO4,KapAnfang,StoryHelper_KAPITEL4ANFANG);
-};
-
-func void StoryHelper_BACK4()
-{
-	Info_ClearChoices(StoryHelper_INFO4);
-};
-
-func void StoryHelper_KAPITEL4ANFANG()
-{
-	MIS_OLDWORLD = LOG_Running;
-	CreateInvItems(hero,ItWr_PaladinLetter_MIS,1);
-	KnowsPaladins_Ore = TRUE;
-	MIS_ScoutMine = LOG_SUCCESS;
-	MIS_ReadyForChapter3 = TRUE;
-	B_Kapitelwechsel(3,NEWWORLD_ZEN);
-	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
-	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
-	CreateInvItems(hero,ItMi_InnosEye_MIS,1);
-	MIS_ReadyforChapter4 = TRUE;
-	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
-	B_Kapitelwechsel(4,NEWWORLD_ZEN);
-	Info_ClearChoices(StoryHelper_INFO4);
-	AI_StopProcessInfos(self);
-};
-
-
-instance StoryHelper_INFO5(C_Info)
-{
-	npc = sh;
-	condition = StoryHelper_INFO5_Condition;
-	information = StoryHelper_INFO5_Info;
-	important = FALSE;
-	permanent = TRUE;
-	description = KapWechsel_5;
-};
-
-
-func int StoryHelper_INFO5_Condition()
-{
-	if(Kapitel < 5)
-	{
-		return TRUE;
-	};
-};
-
-func void StoryHelper_INFO5_Info()
-{
-	Info_ClearChoices(StoryHelper_INFO5);
-	Info_AddChoice(StoryHelper_INFO5,Dialog_Back,StoryHelper_BACK5);
-	Info_AddChoice(StoryHelper_INFO5,KapAnfang,StoryHelper_KAPITEL5ANFANG);
-};
-
-func void StoryHelper_BACK5()
-{
-	Info_ClearChoices(StoryHelper_INFO5);
-};
-
-func void StoryHelper_KAPITEL5ANFANG()
-{
-	MIS_OLDWORLD = LOG_Running;
-	CreateInvItems(hero,ItWr_PaladinLetter_MIS,1);
-	KnowsPaladins_Ore = TRUE;
-	MIS_ScoutMine = LOG_SUCCESS;
-	MIS_ReadyForChapter3 = TRUE;
-	B_Kapitelwechsel(3,NEWWORLD_ZEN);
-	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
-	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
-	CreateInvItems(hero,ItMi_InnosEye_MIS,1);
-	MIS_ReadyforChapter4 = TRUE;
-	B_Kapitelwechsel(4,NEWWORLD_ZEN);
-	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
-	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
-	CreateInvItems(hero,ItAt_IcedragonHeart,1);
-	MIS_AllDragonsDead = TRUE;
-	B_Kapitelwechsel(5,NEWWORLD_ZEN);
-	Info_ClearChoices(StoryHelper_INFO5);
-	AI_StopProcessInfos(self);
-};
-
-
-instance StoryHelper_INFO6(C_Info)
-{
-	npc = sh;
-	condition = StoryHelper_INFO6_Condition;
-	information = StoryHelper_INFO6_Info;
-	important = FALSE;
-	permanent = TRUE;
-	description = KapWechsel_6;
-};
-
-
-func int StoryHelper_INFO6_Condition()
-{
-	if(Kapitel < 6)
-	{
-		return TRUE;
-	};
-};
-
-func void StoryHelper_INFO6_Info()
-{
-	Info_ClearChoices(StoryHelper_INFO6);
-	Info_AddChoice(StoryHelper_INFO6,Dialog_Back,StoryHelper_BACK6);
-	Info_AddChoice(StoryHelper_INFO6,KapAnfang,StoryHelper_KAPITEL6ANFANG);
-};
-
-func void StoryHelper_BACK6()
-{
-	Info_ClearChoices(StoryHelper_INFO6);
-};
-
-func void StoryHelper_KAPITEL6ANFANG()
-{
-	JackIsCaptain = TRUE;
-	Info_ClearChoices(StoryHelper_INFO6);
-	AI_StopProcessInfos(self);
-	AI_Teleport(other,"SHIP_IN_14");
 };
 

@@ -34,7 +34,7 @@ instance DIA_Rumbold_PrePerm(C_Info)
 
 func int DIA_Rumbold_PrePerm_Condition()
 {
-	if(!Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN) || (MIS_Torlof_BengarMilizKlatschen != LOG_Running) || (ScaredRumbold == TRUE) || (Kapitel >= 3))
+	if(!Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN) || (MIS_Torlof_BengarMilizKlatschen != LOG_RUNNING) || (ScaredRumbold == TRUE) || (Kapitel >= 3))
 	{
 		if((Kapitel >= 3) || Npc_IsDead(Rick))
 		{
@@ -69,14 +69,13 @@ instance DIA_Rumbold_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Rumbold_Hallo_Condition;
 	information = DIA_Rumbold_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Rumbold_Hallo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN) && (MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING) && (Kapitel < 3))
 	{
 		if(ScaredRumbold == FALSE)
 		{
@@ -149,21 +148,21 @@ func void DIA_Rumbold_HALLO_geld_ok()
 	Rumbold_Bezahlt = TRUE;
 	if((VisibleGuild(other) == GIL_NONE) || (VisibleGuild(other) == GIL_NOV))
 	{
-		Npc_ExchangeRoutine(self,"Start");
-		B_StartOtherRoutine(Rick,"Start");
+		Npc_ExchangeRoutine(self,"START");
+		B_StartOtherRoutine(Rick,"START");
 	}
 	else
 	{
-		Npc_ExchangeRoutine(self,"Flucht3");
+		Npc_ExchangeRoutine(self,"FLUCHT3");
 		self.aivar[AIV_DropDeadAndKill] = FALSE;
 		if(!Npc_IsDead(Rick))
 		{
-			B_StartOtherRoutine(Rick,"Flucht3");
+			B_StartOtherRoutine(Rick,"FLUCHT3");
 			Rick.aivar[AIV_DropDeadAndKill] = FALSE;
 		};
 		Miliz_Flucht = TRUE;
 	};
-	B_StartOtherRoutine(Bengar,"Start");
+	B_StartOtherRoutine(Bengar,"START");
 };
 
 func void DIA_Rumbold_HALLO_Geld_TooMuch()
@@ -204,7 +203,7 @@ instance DIA_Rumbold_FightNow(C_Info)
 
 func int DIA_Rumbold_FightNow_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rumbold_Hallo) && (Rumbold_Bezahlt == FALSE) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Rumbold_Hallo) && (Rumbold_Bezahlt == FALSE) && (MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING) && (Kapitel < 3))
 	{
 		if(ScaredRumbold == FALSE)
 		{
@@ -245,7 +244,7 @@ instance DIA_Rumbold_StillThere(C_Info)
 
 func int DIA_Rumbold_StillThere_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rumbold_Hallo) && (Rumbold_Bezahlt == TRUE) && (Miliz_Flucht == FALSE) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Rumbold_Hallo) && (Rumbold_Bezahlt == TRUE) && (Miliz_Flucht == FALSE) && (MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING) && (Kapitel < 3))
 	{
 		if(ScaredRumbold == FALSE)
 		{

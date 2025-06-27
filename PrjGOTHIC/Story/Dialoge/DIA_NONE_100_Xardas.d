@@ -5,7 +5,6 @@ instance DIA_Xardas_FirstEXIT(C_Info)
 	nr = 990;
 	condition = DIA_Xardas_FirstEXIT_Condition;
 	information = DIA_Xardas_FirstEXIT_Info;
-	permanent = FALSE;
 	description = "Я немедленно отправляюсь в путь!";
 };
 
@@ -75,7 +74,6 @@ instance DIA_Xardas_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Xardas_Hello_Condition;
 	information = DIA_Xardas_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -143,7 +141,6 @@ instance DIA_Xardas_AWAY(C_Info)
 	nr = 2;
 	condition = DIA_Xardas_AWAY_Condition;
 	information = DIA_Xardas_AWAY_Info;
-	permanent = FALSE;
 	description = "Тогда давай побыстрее уносить отсюда ноги!";
 };
 
@@ -171,7 +168,6 @@ instance DIA_Xardas_TODO(C_Info)
 	nr = 1;
 	condition = DIA_Xardas_TODO_Condition;
 	information = DIA_Xardas_TODO_Info;
-	permanent = FALSE;
 	description = "Что мы можем сделать?";
 };
 
@@ -236,7 +232,7 @@ func void DIA_Xardas_TODO_Info()
 		Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_02");
 	};
 	Log_CreateTopic(TOPIC_INNOSEYE,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_INNOSEYE,LOG_Running);
+	Log_SetTopicStatus(TOPIC_INNOSEYE,LOG_RUNNING);
 	B_LogEntry(TOPIC_INNOSEYE,"В городе Хоринис расположился отряд паладинов. Они обладают сильным артефактом: Глазом Инноса. Его сила должна помочь нам избавиться от драконов. Я должен убедить паладинов, что нам нужно объединить наши усилия.");
 };
 
@@ -369,10 +365,35 @@ func void DIA_Addon_Xardas_AddonSuccess_Info()
 	if(C_ScHasMeleeBeliarsWeapon())
 	{
 		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_07");	//Да, вот он.
-		CreateInvItem(other,ItMw_BeliarWeapon_Fake);
-		AI_UseItem(other,ItMw_BeliarWeapon_Fake);
-		AI_Wait(other,0.5);
-		AI_WaitTillEnd(self,other);
+		if(!C_ScHasReadiedBeliarsWeapon())
+		{
+			if(!C_ScHasEquippedBeliarsWeapon())
+			{
+				if(Npc_HasReadiedWeapon(other))
+				{
+					AI_RemoveWeapon(other);
+				};
+				AI_WaitTillEnd(other,self);
+				if(C_ScHas1HBeliarsWeapon())
+				{
+					CreateInvItem(other,ItMw_BeliarWeapon_1H_Fake);
+					AI_UseItem(other,ItMw_BeliarWeapon_1H_Fake);
+				}
+				else if(C_ScHas2HBeliarsWeapon())
+				{
+					CreateInvItem(other,ItMw_BeliarWeapon_2H_Fake);
+					AI_UseItem(other,ItMw_BeliarWeapon_2H_Fake);
+				};
+				AI_Wait(other,0.5);
+			}
+			else
+			{
+				AI_ReadyMeleeWeapon(other);
+				AI_StopLookAt(other);
+				AI_PlayAni(other,"T_1HSINSPECT");
+				AI_RemoveWeapon(other);
+			};
+		};
 		B_Xardas_ClawReaction();
 		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_10");	//Будь осторожнее! И самое главное, не потеряй Коготь!
 	}
@@ -400,7 +421,6 @@ instance DIA_Xardas_WhereIsClaw(C_Info)
 	nr = 77;
 	condition = DIA_Xardas_WhereIsClaw_Condition;
 	information = DIA_Xardas_WhereIsClaw_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -428,7 +448,6 @@ instance DIA_Xardas_WEAPON(C_Info)
 	nr = 5;
 	condition = DIA_Xardas_WEAPON_Condition;
 	information = DIA_Xardas_WEAPON_Info;
-	permanent = FALSE;
 	description = "Мне нужно оружие.";
 };
 
@@ -455,7 +474,6 @@ instance DIA_Xardas_ARTEFAKT(C_Info)
 	nr = 2;
 	condition = DIA_Xardas_ARTEFAKT_Condition;
 	information = DIA_Xardas_ARTEFAKT_Info;
-	permanent = FALSE;
 	description = "А что такое этот 'Глаз Инноса'?";
 };
 
@@ -483,7 +501,6 @@ instance DIA_Xardas_PALADIN(C_Info)
 	nr = 3;
 	condition = DIA_Xardas_PALADIN_Condition;
 	information = DIA_Xardas_PALADIN_Info;
-	permanent = FALSE;
 	description = "А почему паладины должны отдать мне этот Глаз Инноса?";
 };
 
@@ -513,7 +530,6 @@ instance DIA_Xardas_Khorinis(C_Info)
 	nr = 4;
 	condition = DIA_Xardas_Khorinis_Condition;
 	information = DIA_Xardas_Khorinis_Info;
-	permanent = FALSE;
 	description = "А как мне добраться до города?";
 };
 
@@ -540,7 +556,6 @@ instance DIA_Xardas_WhereEx(C_Info)
 	nr = 6;
 	condition = DIA_Xardas_WhereEx_Condition;
 	information = DIA_Xardas_WhereEx_Info;
-	permanent = FALSE;
 	description = "А где именно мы сейчас находимся?";
 };
 
@@ -570,7 +585,6 @@ instance DIA_Xardas_EQUIPMENT(C_Info)
 	nr = 7;
 	condition = DIA_Xardas_EQUIPMENT_Condition;
 	information = DIA_Xardas_EQUIPMENT_Info;
-	permanent = FALSE;
 	description = "А где я смогу найти снаряжение получше?";
 };
 
@@ -598,7 +612,6 @@ instance DIA_Xardas_ABOUTLESTER(C_Info)
 	nr = 5;
 	condition = DIA_Xardas_ABOUTLESTER_Condition;
 	information = DIA_Xardas_ABOUTLESTER_Info;
-	permanent = FALSE;
 	description = "Ты уже поговорил с Лестером?";
 };
 
@@ -736,7 +749,6 @@ instance DIA_Xardas_KdfSecret(C_Info)
 	nr = 9;
 	condition = DIA_Xardas_KdfSecret_Condition;
 	information = DIA_Xardas_KdfSecret_Info;
-	permanent = FALSE;
 	description = "Почему Круг Огня не должен знать о тебе?";
 };
 
@@ -766,7 +778,6 @@ instance DIA_Xardas_HelloKap3(C_Info)
 	nr = 1;
 	condition = DIA_Xardas_HelloKap3_Condition;
 	information = DIA_Xardas_HelloKap3_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -858,13 +869,13 @@ func void DIA_Xardas_DMTSINDDA_DMT()
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_DMT_14_01");	//У врага много обличий. Ищущие - одно из них. Они те, кто подготавливает плацдарм для врага.
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_DMT_14_02");	//Они заняли позиции в стратегических местах, и теперь только ждут возможности захлопнуть ловушку.
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_DMT_14_03");	//Держись от них подальше. Они сильные маги, и они попытаются во что бы то ни стало остановить тебя.
-	if(hero.guild == GIL_KDF)
+	if(other.guild == GIL_KDF)
 	{
 		if(MIS_DementorsOrigins == FALSE)
 		{
 			Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
-			MIS_DementorsOrigins = LOG_Running;
+			Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_RUNNING);
+			MIS_DementorsOrigins = LOG_RUNNING;
 		};
 		B_LogEntry(TOPIC_DEMENTOREN,"Ксардас знает, кто такие эти люди в черных рясах. Похоже, именно Ищущие заправляют всем во вражеских рядах, и они очень опасны.");
 	};
@@ -931,7 +942,7 @@ func void DIA_Xardas_INNOSEYEBROKEN_wasnun()
 	AI_Output(self,other,"DIA_Xardas_INNOSEYEBROKEN_wasnun_14_01");	//Это болезненный удар. Мы должны перестроиться. Я должен уединиться, и все взвесить.
 	AI_Output(self,other,"DIA_Xardas_INNOSEYEBROKEN_wasnun_14_02");	//А тем временем, ты отправляйся в город и поговори с Ватрасом, магом Воды. Возможно, он знает, что нужно делать.
 	B_LogEntry(TOPIC_INNOSEYE,"Ксардас остался не очень доволен уничтожением Глаза Инноса. Маг Воды Ватрас в городе Хоринис, возможно, наша единственная надежда.");
-	MIS_Xardas_GoToVatrasInnoseye = LOG_Running;
+	MIS_Xardas_GoToVatrasInnoseye = LOG_RUNNING;
 };
 
 
@@ -963,7 +974,7 @@ func void B_XardasGivesProofForPyrokar()
 
 func void B_XardasGoesToRitual()
 {
-	if(Pyrokar_DeniesInnosEyeRitual == TRUE)
+	if((Pyrokar_DeniesInnosEyeRitual == TRUE) && (Sekob_RoomFree == FALSE))
 	{
 		B_XardasGivesProofForPyrokar();
 	};
@@ -989,7 +1000,7 @@ instance DIA_Xardas_RITUALREQUEST(C_Info)
 
 func int DIA_Xardas_RITUALREQUEST_Condition()
 {
-	if((MIS_RitualInnosEyeRepair == LOG_Running) && Npc_KnowsInfo(other,DIA_Xardas_INNOSEYEBROKEN) && (Kapitel == 3))
+	if((MIS_RitualInnosEyeRepair == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Xardas_INNOSEYEBROKEN) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -1002,11 +1013,11 @@ func void DIA_Xardas_RITUALREQUEST_Info()
 	AI_Output(other,self,"DIA_Xardas_RITUALREQUEST_15_02");	//Он сказал что-то о ритуале обращения в Круге Солнца.
 	AI_Output(self,other,"DIA_Xardas_RITUALREQUEST_14_03");	//(смеется) Вот старый дьявол. Думаю, я знаю, что он затеял. Ты пришел, чтобы призвать меня к нему.
 	AI_Output(other,self,"DIA_Xardas_RITUALREQUEST_15_04");	//Похоже на то. Когда ты отправляешься?
-	if((hero.guild == GIL_KDF) || (hero.guild == GIL_DJG) || (hero.guild == GIL_PAL) || (GuildlessMode == TRUE))
+	if((other.guild == GIL_KDF) || (other.guild == GIL_DJG) || (other.guild == GIL_PAL) || (GuildlessMode == TRUE))
 	{
 		AI_Output(self,other,"DIA_Xardas_RITUALREQUEST_14_05");	//Не стоит заставлять Ватраса ждать. Я отправляюсь немедленно. А ты должен выполнить свою задачу, а затем присоединиться ко мне опять.
-		B_GivePlayerXP(XP_AmbientKap3 * 2);
 		B_XardasGoesToRitual();
+		B_GivePlayerXP(XP_AmbientKap3 * 2);
 	}
 	else
 	{
@@ -1029,7 +1040,7 @@ instance DIA_Xardas_WARUMNICHTJETZT(C_Info)
 
 func int DIA_Xardas_WARUMNICHTJETZT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_RITUALREQUEST) && (Xardas_GoesToRitualInnosEye == FALSE) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_SLD)))
+	if(Npc_KnowsInfo(other,DIA_Xardas_RITUALREQUEST) && (Xardas_GoesToRitualInnosEye == FALSE) && ((other.guild == GIL_MIL) || (other.guild == GIL_SLD)))
 	{
 		return TRUE;
 	};
@@ -1075,7 +1086,7 @@ instance DIA_Xardas_BEREIT(C_Info)
 
 func int DIA_Xardas_BEREIT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_RITUALREQUEST) && (Xardas_GoesToRitualInnosEye == FALSE) && ((hero.guild == GIL_DJG) || (hero.guild == GIL_PAL)))
+	if(Npc_KnowsInfo(other,DIA_Xardas_RITUALREQUEST) && (Xardas_GoesToRitualInnosEye == FALSE) && ((other.guild == GIL_DJG) || (other.guild == GIL_PAL)))
 	{
 		return TRUE;
 	};
@@ -1085,8 +1096,8 @@ func void DIA_Xardas_BEREIT_Info()
 {
 	AI_Output(other,self,"DIA_Xardas_BEREIT_15_00");	//Я готов к сражению с драконами.
 	AI_Output(self,other,"DIA_Xardas_BEREIT_14_01");	//Тогда не будем терять времени. Я немедленно отправлюсь к Кругу Солнца. А ты выполни свои задачи. Я встречу тебя там.
-	B_GivePlayerXP(XP_AmbientKap3);
 	B_XardasGoesToRitual();
+	B_GivePlayerXP(XP_AmbientKap3);
 };
 
 
@@ -1103,7 +1114,7 @@ instance DIA_Xardas_BINGESPANNT(C_Info)
 
 func int DIA_Xardas_BINGESPANNT_Condition()
 {
-	if((MIS_RitualInnosEyeRepair == LOG_Running) && (Kapitel == 3) && (Xardas_GoesToRitualInnosEye == TRUE))
+	if((MIS_RitualInnosEyeRepair == LOG_RUNNING) && (Kapitel == 3) && (Xardas_GoesToRitualInnosEye == TRUE))
 	{
 		return TRUE;
 	};
@@ -1239,7 +1250,7 @@ func void DIA_Xardas_PERM4_Info()
 	AI_Output(other,self,"DIA_Xardas_PERM4_15_00");	//Что нового?
 	if(Kapitel == 3)
 	{
-		if(MIS_Ulthar_HeileSchreine_PAL == LOG_Running)
+		if(MIS_Ulthar_HeileSchreine_PAL == LOG_RUNNING)
 		{
 			AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_06");	//Приспешники Белиара оскверняют древнейшие алтари богов.
 			AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_03");	//Именно это и произошло.

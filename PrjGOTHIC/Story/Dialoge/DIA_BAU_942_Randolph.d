@@ -27,7 +27,6 @@ instance DIA_Randolph_SchwereLuft(C_Info)
 	nr = 4;
 	condition = DIA_Randolph_SchwereLuft_Condition;
 	information = DIA_Randolph_SchwereLuft_Info;
-	permanent = FALSE;
 	description = "Все в порядке?";
 };
 
@@ -49,7 +48,7 @@ func void DIA_Randolph_SchwereLuft_Info()
 	if(Akils_SLDStillthere == FALSE)
 	{
 		Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
+		Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_RUNNING);
 		B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
 		Akils_SLDStillthere = TRUE;
 	};
@@ -63,7 +62,6 @@ instance DIA_Randolph_HALLO(C_Info)
 	nr = 4;
 	condition = DIA_Randolph_HALLO_Condition;
 	information = DIA_Randolph_HALLO_Info;
-	permanent = FALSE;
 	description = "Все в порядке?";
 };
 
@@ -110,14 +108,13 @@ instance DIA_Randolph_Baltram(C_Info)
 	nr = 5;
 	condition = DIA_Randolph_Baltram_Condition;
 	information = DIA_Randolph_Baltram_Info;
-	permanent = FALSE;
 	description = "Меня прислал Бальтрам. Я должен забрать пакет для него.";
 };
 
 
 func int DIA_Randolph_Baltram_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Randolph_HALLO) && (MIS_Baltram_ScoutAkil == LOG_Running) && Npc_IsDead(Akil) && Npc_IsDead(Kati) && (Lieferung_Geholt == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Randolph_HALLO) && (MIS_Baltram_ScoutAkil == LOG_RUNNING) && Npc_IsDead(Akil) && Npc_IsDead(Kati) && (Lieferung_Geholt == FALSE))
 	{
 		return TRUE;
 	};
@@ -126,7 +123,7 @@ func int DIA_Randolph_Baltram_Condition()
 func void DIA_Randolph_Baltram_Info()
 {
 	AI_Output(other,self,"DIA_Randolph_Baltram_15_00");	//Меня прислал Бальтрам. Я должен забрать пакет для него.
-	if((Kapitel >= 4) && (hero.guild == GIL_KDF) && (NpcObsessedByDMT_Randolph == FALSE))
+	if((Kapitel >= 4) && (other.guild == GIL_KDF) && (NpcObsessedByDMT_Randolph == FALSE))
 	{
 		CreateInvItems(self,ItMi_BaltramPaket,1);
 		Lieferung_Geholt = TRUE;
@@ -146,7 +143,6 @@ instance DIA_Randolph_Geschichte(C_Info)
 	nr = 5;
 	condition = DIA_Randolph_Geschichte_Condition;
 	information = DIA_Randolph_Geschichte_Info;
-	permanent = FALSE;
 	description = "Ты ведь нездешний, да?";
 };
 
@@ -221,7 +217,7 @@ func void DIA_Randolph_WASISTINTAVERNE_Info()
 	if(TaverneTopicStarted == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Wettsaufen,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Wettsaufen,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Wettsaufen,LOG_RUNNING);
 		B_LogEntry(TOPIC_Wettsaufen,"В таверне можно заключить пари.");
 		TaverneTopicStarted = TRUE;
 	};
@@ -271,7 +267,7 @@ instance DIA_Randolph_WASBRAUCHSTDU(C_Info)
 
 func int DIA_Randolph_WASBRAUCHSTDU_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Randolph_GEGENWEN) && (MIS_Rukhar_Wettkampf == LOG_Running) && (Kapitel < 4))
+	if(Npc_KnowsInfo(other,DIA_Randolph_GEGENWEN) && (MIS_Rukhar_Wettkampf == LOG_RUNNING) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -319,7 +315,7 @@ func void DIA_Randolph_ICHGEBEDIRGELD_Info()
 		MIS_Rukhar_Wettkampf_Day = Wld_GetDay();
 		Npc_ExchangeRoutine(self,"WETTKAMPF");
 		B_StartOtherRoutine(Rukhar,"WETTKAMPF");
-		if(RangerMeetingRunning != LOG_Running)
+		if(RangerMeetingRunning != LOG_RUNNING)
 		{
 			B_StartOtherRoutine(Orlan,"WETTKAMPF");
 		};
@@ -409,17 +405,17 @@ var int DIA_Randolph_SoberForever;
 func void DIA_Randolph_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Randolph_PERM_15_00");	//Ты в порядке?
-	if(hero.guild == GIL_KDF)
+	if(other.guild == GIL_KDF)
 	{
 		B_NpcObsessedByDMT(self);
 	}
-	else if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	else if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		if(MIS_HealRandolph == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Randolph_PERM_06_07");	//Я все еще чувствую слабость в ногах, но мне уже стало лучше.
 		}
-		else if(MIS_HealRandolph == LOG_Running)
+		else if(MIS_HealRandolph == LOG_RUNNING)
 		{
 			AI_Output(self,other,"DIA_Randolph_PERM_06_04");	//Мне плохо. Каждый раз, когда я перестаю пить, это похмелье убивает меня. Мне очень нужна помощь.
 		}
@@ -428,9 +424,9 @@ func void DIA_Randolph_PERM_Info()
 			AI_Output(self,other,"DIA_Randolph_PERM_06_04");	//Мне плохо. Каждый раз, когда я перестаю пить, это похмелье убивает меня. Мне очень нужна помощь.
 			AI_Output(self,other,"DIA_Randolph_PERM_06_05");	//Но есть лекарство, которое может помочь.
 			AI_Output(self,other,"DIA_Randolph_PERM_06_06");	//Сагитта, ведьма-целительница, уже готовила его для меня. Но я не думаю, что теперь смогу добраться до нее сам. Там повсюду орки.
-			MIS_HealRandolph = LOG_Running;
+			MIS_HealRandolph = LOG_RUNNING;
 			Log_CreateTopic(TOPIC_HealRandolph,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_HealRandolph,LOG_Running);
+			Log_SetTopicStatus(TOPIC_HealRandolph,LOG_RUNNING);
 			B_LogEntry(TOPIC_HealRandolph,"Рэндольф, похоже, решил бросить пить и послал меня к Сагитте за лекарством от похмельного синдрома.");
 		};
 	}
@@ -466,7 +462,7 @@ instance DIA_Randolph_PAYME(C_Info)
 
 func int DIA_Randolph_PAYME_Condition()
 {
-	if((MIS_HealRandolph == LOG_Running) && (DIA_Sagitta_HEALRANDOLPH_KnowsPrice == TRUE))
+	if((MIS_HealRandolph == LOG_RUNNING) && (DIA_Sagitta_HEALRANDOLPH_KnowsPrice == TRUE))
 	{
 		return TRUE;
 	};
@@ -494,7 +490,7 @@ instance DIA_Randolph_SAGITTAHEAL(C_Info)
 
 func int DIA_Randolph_SAGITTAHEAL_Condition()
 {
-	if((MIS_HealRandolph == LOG_Running) && Npc_HasItems(other,ItPo_HealRandolph_MIS))
+	if((MIS_HealRandolph == LOG_RUNNING) && Npc_HasItems(other,ItPo_HealRandolph_MIS))
 	{
 		return TRUE;
 	};
@@ -518,7 +514,7 @@ func void DIA_Randolph_SAGITTAHEAL_Info()
 	{
 		AI_Output(self,other,"DIA_Randolph_SAGITTAHEAL_06_02");	//Чем я могу отплатить тебе за это?
 		AI_Output(other,self,"DIA_Randolph_SAGITTAHEAL_15_04");	//Я заплатил за тебя кучу денег. Твои жалкие несколько монет никак не могут компенсировать мои затраты.
-		if(hero.guild == GIL_PAL)
+		if(other.guild == GIL_PAL)
 		{
 			AI_Output(self,other,"DIA_Randolph_SAGITTAHEAL_06_05");	//Ну, в таком случае мне повезло, что я встретил такого великодушного паладина, тебе так не кажется?
 		}
@@ -546,7 +542,7 @@ instance DIA_Randolph_Heilung(C_Info)
 
 func int DIA_Randolph_Heilung_Condition()
 {
-	if((NpcObsessedByDMT_Randolph == TRUE) && (NpcObsessedByDMT == FALSE) && (hero.guild == GIL_KDF))
+	if((NpcObsessedByDMT_Randolph == TRUE) && (NpcObsessedByDMT == FALSE) && (other.guild == GIL_KDF))
 	{
 		return TRUE;
 	};

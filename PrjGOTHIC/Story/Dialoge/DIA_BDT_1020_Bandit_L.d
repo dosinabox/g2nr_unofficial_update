@@ -3,22 +3,23 @@ instance DIA_BDT_1020_Wegelagerer_EXIT(C_Info)
 {
 	npc = BDT_1020_Bandit_L;
 	nr = 999;
-	condition = DIA_Wegelagerer_EXIT_Condition;
-	information = DIA_Wegelagerer_EXIT_Info;
+	condition = DIA_BDT_1020_Wegelagerer_EXIT_Condition;
+	information = DIA_BDT_1020_Wegelagerer_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Wegelagerer_EXIT_Condition()
+func int DIA_BDT_1020_Wegelagerer_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Wegelagerer_EXIT_Info()
+func void DIA_BDT_1020_Wegelagerer_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
+
 
 func void B_BuildWegelagererDialogOptions()
 {
@@ -29,7 +30,7 @@ func void B_BuildWegelagererDialogOptions()
 	};
 	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Извини, у меня нет денег.",DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney);
 	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Прочь с моей дороги!",DIA_BDT_1020_Wegelagerer_FirstWarn_Never);
-	if((Wegelagerer_Surprise == FALSE) && (MIS_Schnitzeljagd == LOG_Running) && !Npc_KnowsInfo(other,DIA_Agon_GolemDead) && !Npc_KnowsInfo(other,DIA_Agon_GolemLives))
+	if((Wegelagerer_Surprise == FALSE) && (MIS_Schnitzeljagd == LOG_RUNNING) && !Npc_KnowsInfo(other,DIA_Agon_GolemDead) && !Npc_KnowsInfo(other,DIA_Agon_GolemLives))
 	{
 		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Скажи, ты не видел послушника?",DIA_BDT_1020_Wegelagerer_AGON);
 	};
@@ -80,7 +81,7 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_Info()
 		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Сколько ты хочешь?",DIA_BDT_1020_Wegelagerer_FirstWarn_HowMuch);
 		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Ты шутишь.",DIA_BDT_1020_Wegelagerer_FirstWarn_Joke);
 		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Убирайся с дороги!",DIA_BDT_1020_Wegelagerer_PissOff);
-		if((Wegelagerer_Surprise == FALSE) && (MIS_Schnitzeljagd == LOG_Running) && !Npc_KnowsInfo(other,DIA_Agon_GolemDead) && !Npc_KnowsInfo(other,DIA_Agon_GolemLives))
+		if((Wegelagerer_Surprise == FALSE) && (MIS_Schnitzeljagd == LOG_RUNNING) && !Npc_KnowsInfo(other,DIA_Agon_GolemDead) && !Npc_KnowsInfo(other,DIA_Agon_GolemLives))
 		{
 			Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Скажи, ты не видел послушника?",DIA_BDT_1020_Wegelagerer_AGON);
 		};
@@ -289,6 +290,7 @@ func void DIA_BDT_1020_Wegelagerer_Attack_Info()
 	B_Attack(self,other,AR_NONE,1);
 };
 
+
 instance BDT_1020_Bandit_L_GetLost(C_Info)
 {
 	npc = BDT_1020_Bandit_L;
@@ -314,26 +316,26 @@ func void BDT_1020_Bandit_L_GetLost_Info()
 	AI_StopProcessInfos(self);
 };
 
+
 instance DIA_BDT_1020_Wegelagerer_AGON2(C_Info)
 {
 	npc = BDT_1020_Bandit_L;
 	nr = 900;
-	condition = DIA_Wegelagerer_AGON2_Condition;
-	information = DIA_Wegelagerer_AGON2_Info;
-	permanent = FALSE;
+	condition = DIA_BDT_1020_Wegelagerer_AGON2_Condition;
+	information = DIA_BDT_1020_Wegelagerer_AGON2_Info;
 	description = "Мимо тебя не проходил послушник?";
 };
 
 
-func int DIA_Wegelagerer_AGON2_Condition()
+func int DIA_BDT_1020_Wegelagerer_AGON2_Condition()
 {
-	if((Wegelagerer_Surprise == FALSE) && (MIS_Schnitzeljagd == LOG_Running) && !Npc_KnowsInfo(other,DIA_Agon_GolemDead) && !Npc_KnowsInfo(other,DIA_Agon_GolemLives))
+	if((Wegelagerer_Surprise == FALSE) && (MIS_Schnitzeljagd == LOG_RUNNING) && !Npc_KnowsInfo(other,DIA_Agon_GolemDead) && !Npc_KnowsInfo(other,DIA_Agon_GolemLives))
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_Wegelagerer_AGON2_Info()
+func void DIA_BDT_1020_Wegelagerer_AGON2_Info()
 {
 	DIA_Common_NovicePassedBy();
 	B_WegelagererToldAboutAgon();

@@ -34,7 +34,7 @@ instance DIA_NOV_8_Fegen(C_Info)
 
 func int DIA_NOV_8_Fegen_Condition()
 {
-	if((MIS_ParlanFegen == LOG_Running) && (NOV_Helfer < 4))
+	if((MIS_ParlanFegen == LOG_RUNNING) && (NOV_Helfer < 4))
 	{
 		if(Kapitel == 1)
 		{
@@ -50,7 +50,7 @@ func int DIA_NOV_8_Fegen_Condition()
 func void DIA_NOV_8_Fegen_Info()
 {
 	AI_Output(other,self,"DIA_NOV_8_Fegen_15_00");	//Мне нужна помощь, чтобы подмести кельи послушников.
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Feger3))
+	if(C_IsNpc(self,NOV_609_Novize))
 	{
 		if(Feger3_Permanent == FALSE)
 		{
@@ -61,7 +61,7 @@ func void DIA_NOV_8_Fegen_Info()
 			B_GivePlayerXP(XP_Feger);
 			AI_StopProcessInfos(self);
 			Npc_ExchangeRoutine(self,"FEGEN");
-			B_LogEntry(Topic_ParlanFegen,"Я нашел послушника, желающего помочь мне подметать комнаты.");
+			B_LogEntry(TOPIC_ParlanFegen,"Я нашел послушника, желающего помочь мне подметать комнаты.");
 		}
 		else
 		{
@@ -113,7 +113,7 @@ instance DIA_NOV_8_JOIN(C_Info)
 
 func int DIA_NOV_8_JOIN_Condition()
 {
-	if(hero.guild == GIL_NOV)
+	if(other.guild == GIL_NOV)
 	{
 		return TRUE;
 	};
@@ -139,7 +139,7 @@ instance DIA_NOV_8_PEOPLE(C_Info)
 
 func int DIA_NOV_8_PEOPLE_Condition()
 {
-	if(hero.guild != GIL_KDF)
+	if(other.guild != GIL_KDF)
 	{
 		return TRUE;
 	};

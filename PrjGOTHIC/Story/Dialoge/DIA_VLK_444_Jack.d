@@ -79,9 +79,9 @@ func void DIA_Jack_Job_Info()
 	AI_Output(self,other,"DIA_Jack_Job_14_09");	//Я думаю, они поджидают корабль, на котором могли бы уплыть.
 	AI_Output(self,other,"DIA_Jack_Job_14_10");	//Ха! Пусть плывут куда хотят. Тогда, по крайней мере, они уберутся с моего маяка.
 	Log_CreateTopic(TOPIC_KillLighthouseBandits,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_KillLighthouseBandits,LOG_Running);
+	Log_SetTopicStatus(TOPIC_KillLighthouseBandits,LOG_RUNNING);
 	B_LogEntry(TOPIC_KillLighthouseBandits,"Старый морской волк Джек не может вернуться на свой маяк, так как там засели бандиты.");
-	MIS_Jack_KillLighthouseBandits = LOG_Running;
+	MIS_Jack_KillLighthouseBandits = LOG_RUNNING;
 };
 
 
@@ -188,7 +188,7 @@ instance DIA_Jack_BANDITENWEG(C_Info)
 
 func int DIA_Jack_BANDITENWEG_Condition()
 {
-	if(MIS_Jack_KillLighthouseBandits == LOG_Running)
+	if(MIS_Jack_KillLighthouseBandits == LOG_RUNNING)
 	{
 		if(C_LighthouseBanditsDead())
 		{
@@ -207,11 +207,12 @@ func void DIA_Jack_BANDITENWEG_Info()
 		AI_Standup(self);
 		B_TurnToNpc(self,other);
 	};
+	B_DeletePetzCrime(self);
 	B_SetGuild(self,GIL_NONE);
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Lighthouse");
 	MIS_Jack_KillLighthouseBandits = LOG_SUCCESS;
 	B_GivePlayerXP(XP_KillLighthouseBandits);
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"LIGHTHOUSE");
 };
 
 
@@ -279,7 +280,7 @@ func void DIA_Jack_BEMYCAPTAIN_seaman()
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_14_01");	//Черт меня побери! Что ты задумал, приятель? Ты же не собираешься захватить королевскую военную галеру, а?
 	AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN_seaman_15_02");	//Кто знает...
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_14_03");	//(смеется) Это будет что-то! Ох, черт. Но я не могу вот так взять и бросить свой маяк. Хм-м... Что же нам с этим делать?
-	B_LogEntry(Topic_Captain,"Джек, старый морской волк из гавани, мог бы стать хорошим капитаном. Но сначала я должен найти кого-нибудь, кто посторожит его маяк.");
+	B_LogEntry(TOPIC_Captain,"Джек, старый морской волк из гавани, мог бы стать хорошим капитаном. Но сначала я должен найти кого-нибудь, кто посторожит его маяк.");
 	Info_ClearChoices(DIA_Jack_BEMYCAPTAIN);
 	Info_AddChoice(DIA_Jack_BEMYCAPTAIN,"Забудь. Это я просто так сказал.",DIA_Jack_BEMYCAPTAIN_no);
 	Info_AddChoice(DIA_Jack_BEMYCAPTAIN,"А что, если я приведу к тебе кого-нибудь, кто позаботился бы о маяке в твое отсутствие?",DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer);
@@ -292,7 +293,7 @@ func void DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer()
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_14_02");	//У Гарада, кузнеца, есть подмастерье по имени Брайан. Я много раз беседовал с ним.
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_14_03");	//Я бы хотел доверить свой маяк ему. Я думаю, он лучше всего подходит для этого.
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_14_04");	//Иди, поговори с ним. Возможно, нам повезет, и этот парень согласится помочь нам.
-	MIS_Jack_NewLighthouseOfficer = LOG_Running;
+	MIS_Jack_NewLighthouseOfficer = LOG_RUNNING;
 	Info_ClearChoices(DIA_Jack_BEMYCAPTAIN);
 };
 
@@ -350,7 +351,7 @@ instance DIA_Jack_BrianIsDead(C_Info)
 
 func int DIA_Jack_BrianIsDead_Condition()
 {
-	if(MIS_Jack_NewLighthouseOfficer == LOG_Running)
+	if(MIS_Jack_NewLighthouseOfficer == LOG_RUNNING)
 	{
 		if(Npc_IsDead(Brian))
 		{
@@ -399,12 +400,12 @@ func void DIA_Jack_BEMYCAPTAIN3_Info()
 		AI_Standup(self);
 		B_TurnToNpc(self,other);
 	};
-	AI_StopProcessInfos(self);
 	SCGotCaptain = TRUE;
 	JackIsCaptain = TRUE;
-	B_SetImmortal(self);
-	Npc_ExchangeRoutine(self,"WaitForShipCaptain");
 	B_GivePlayerXP(XP_Captain_Success);
+	B_SetImmortal(self);
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"WAITFORSHIPCAPTAIN");
 };
 
 

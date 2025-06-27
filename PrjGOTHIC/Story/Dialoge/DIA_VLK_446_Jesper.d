@@ -274,9 +274,12 @@ instance DIA_Jesper_Bogen(C_Info)
 
 func int DIA_Jesper_Bogen_Condition()
 {
-	if(Mob_HasItems("BOW_CHEST",ItRw_Bow_L_03_MIS) && (MIS_Bosper_Bogen == LOG_Running) && (Join_Thiefs == TRUE))
+	if((MIS_Bosper_Bogen == LOG_RUNNING) && (Join_Thiefs == TRUE))
 	{
-		return TRUE;
+		if(Mob_HasItems("BOW_CHEST",ItRw_Bow_L_03_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -305,7 +308,6 @@ instance DIA_Jesper_Tuer(C_Info)
 
 func int DIA_Jesper_Tuer_Condition()
 {
-//	if((MIS_CassiaRing == LOG_SUCCESS) && (Kapitel >= 3))
 	if(Join_Thiefs == TRUE)
 	{
 		return TRUE;

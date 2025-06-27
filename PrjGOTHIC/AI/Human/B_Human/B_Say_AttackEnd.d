@@ -4,7 +4,7 @@ func void B_Say_AttackEnd()
 	var int random;
 	if((self.aivar[AIV_ATTACKREASON] == AR_GuildEnemy) || (self.aivar[AIV_ATTACKREASON] == AR_MonsterMurderedHuman))
 	{
-		if(other.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(other))
 		{
 			if(!Npc_IsDead(other))
 			{
@@ -48,7 +48,7 @@ func void B_Say_AttackEnd()
 				}
 				else if(self.voice == 12)
 				{
-					if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GornOW)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GornDJG)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GornNW_vor_DJG)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GornNW_nach_DJG)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Gorn_DI)))
+					if(C_IsNpc(self,PC_Fighter_OW) || C_IsNpc(self,PC_Fighter_DJG) || C_IsNpc(self,PC_Fighter_NW_vor_DJG) || C_IsNpc(self,PC_Fighter_NW_nach_DJG) || C_IsNpc(self,PC_Fighter_DI))
 					{
 						random = Hlp_Random(2);
 						if(random == 0)
@@ -89,7 +89,7 @@ func void B_Say_AttackEnd()
 	};
 	if(self.aivar[AIV_ATTACKREASON] == AR_SheepKiller)
 	{
-		if(other.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(other))
 		{
 			B_Say(self,other,"$SHEEPATTACKERDOWN");
 		}
@@ -171,7 +171,7 @@ func void B_Say_AttackEnd()
 	{
 		if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 		{
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares))
+			if(C_IsNpc(self,VLK_449_Lares))
 			{
 				B_Say(self,other,"$ILIKEIT");
 			}

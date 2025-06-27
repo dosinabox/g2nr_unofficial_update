@@ -27,7 +27,6 @@ instance DIA_Fernando_Hello(C_Info)
 	nr = 5;
 	condition = DIA_Fernando_Hello_Condition;
 	information = DIA_Fernando_Hello_Info;
-	permanent = FALSE;
 	description = "Как идут дела?";
 };
 
@@ -93,14 +92,13 @@ instance DIA_Fernando_Minental(C_Info)
 	nr = 2;
 	condition = DIA_Fernando_Minental_Condition;
 	information = DIA_Fernando_Minental_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Fernando_Minental_Condition()
 {
-	if((NpcObsessedByDMT_Fernando == FALSE) && (MIS_OLDWORLD == LOG_Running) && (EnterOW_Kapitel2 == FALSE) && (Fernando_Betrayal == FALSE) && (Fernando_ImKnast == FALSE))
+	if((NpcObsessedByDMT_Fernando == FALSE) && (MIS_OLDWORLD == LOG_RUNNING) && (EnterOW_Kapitel2 == FALSE) && (Fernando_Betrayal == FALSE) && (Fernando_ImKnast == FALSE))
 	{
 		return TRUE;
 	};
@@ -122,9 +120,9 @@ func void DIA_Fernando_Minental_Info()
 	AI_Output(other,self,"DIA_Fernando_Minental_15_05");	//Я посмотрю, что можно сделать.
 	B_NpcClearObsessionByDMT(self);
 	Npc_ExchangeRoutine(self,"START");
-	MIS_Fernando_Erz = LOG_Running;
+	MIS_Fernando_Erz = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Fernando,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Fernando,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Fernando,LOG_RUNNING);
 	B_LogEntry(TOPIC_Fernando,"Торговец Фернандо хочет знать, как обстоят дела с рудой в Долине Рудников.");
 };
 
@@ -142,7 +140,7 @@ instance DIA_Addon_Fernando_BanditTrader(C_Info)
 
 func int DIA_Addon_Fernando_BanditTrader_Condition()
 {
-	if((FernandoBlame_noPerm == FALSE) && (MIS_Vatras_FindTheBanditTrader == LOG_Running) && Npc_KnowsInfo(other,DIA_Fernando_Hello) && (NpcObsessedByDMT_Fernando == FALSE) && C_SCHasAnyFernandoEvidence() && (Fernando_ImKnast == FALSE))
+	if((FernandoBlame_noPerm == FALSE) && (MIS_Vatras_FindTheBanditTrader == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Fernando_Hello) && (NpcObsessedByDMT_Fernando == FALSE) && C_SCHasAnyFernandoEvidence() && (Fernando_ImKnast == FALSE))
 	{
 		return TRUE;
 	};
@@ -292,14 +290,13 @@ instance DIA_Fernando_Success(C_Info)
 	nr = 5;
 	condition = DIA_Fernando_Success_Condition;
 	information = DIA_Fernando_Success_Info;
-	permanent = FALSE;
 	description = "Я был в Долине Рудников.";
 };
 
 
 func int DIA_Fernando_Success_Condition()
 {
-	if((Kapitel >= 3) && (MIS_Fernando_Erz == LOG_Running))
+	if((Kapitel >= 3) && (MIS_Fernando_Erz == LOG_RUNNING) && (NpcObsessedByDMT == FALSE))
 	{
 		return TRUE;
 	};
@@ -361,7 +358,7 @@ func int DIA_Fernando_Prison_Condition()
 {
 	if((Fernando_ImKnast == TRUE) && Npc_IsInState(self,ZS_Talk) && (NpcObsessedByDMT_Fernando == FALSE))
 	{
-		if((Kapitel >= 3) && (hero.guild == GIL_KDF))
+		if((Kapitel >= 3) && (other.guild == GIL_KDF))
 		{
 			return FALSE;
 		};
@@ -378,7 +375,7 @@ func void DIA_Fernando_Prison_Info()
 		Fernando_ThreatFromPrison = TRUE;
 	};
 	AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_09");	//(зло) Ничего, мое время еще придет.
-	if(MIS_Fernando_Erz == LOG_Running)
+	if(MIS_Fernando_Erz == LOG_RUNNING)
 	{
 		B_FailFernandoErz();
 	};
@@ -398,7 +395,7 @@ instance DIA_Fernando_Obsession(C_Info)
 
 func int DIA_Fernando_Obsession_Condition()
 {
-	if((Kapitel >= 3) && (NpcObsessedByDMT_Fernando == FALSE) && (hero.guild == GIL_KDF))
+	if((Kapitel >= 3) && (NpcObsessedByDMT_Fernando == FALSE) && (other.guild == GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -424,7 +421,7 @@ instance DIA_Fernando_Heilung(C_Info)
 
 func int DIA_Fernando_Heilung_Condition()
 {
-	if((NpcObsessedByDMT_Fernando == TRUE) && (NpcObsessedByDMT == FALSE) && (hero.guild == GIL_KDF))
+	if((NpcObsessedByDMT_Fernando == TRUE) && (NpcObsessedByDMT == FALSE) && (other.guild == GIL_KDF))
 	{
 		return TRUE;
 	};

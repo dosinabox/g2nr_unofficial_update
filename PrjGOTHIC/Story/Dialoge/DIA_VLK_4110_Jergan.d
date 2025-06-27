@@ -79,9 +79,9 @@ func void B_Jergan_NewsForOric()
 	AI_Output(self,other,"DIA_Jergan_Burg_13_02");	//Если тебе удастся добраться до замка, поговори с паладином Ориком. Скажи ему, что его брат погиб здесь, у Прохода.
 	if(!Npc_IsDead(Oric))
 	{
-		MIS_OricBruder = LOG_Running;
+		MIS_OricBruder = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_OricBruder,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_OricBruder,LOG_Running);
+		Log_SetTopicStatus(TOPIC_OricBruder,LOG_RUNNING);
 		B_LogEntry(TOPIC_OricBruder,"Когда я окажусь в замке, то должен буду сказать Орику, что его брат погиб у Прохода.");
 	};
 };
@@ -284,7 +284,7 @@ instance DIA_Jergan_Diego(C_Info)
 
 func int DIA_Jergan_Diego_Condition()
 {
-	if(!Npc_KnowsInfo(other,DIA_DiegoOw_Hallo) && Npc_KnowsInfo(other,DIA_Parcival_Diego))
+	if(MIS_SearchForDiego == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -297,6 +297,10 @@ func void DIA_Jergan_Diego_Info()
 	AI_Output(self,other,"DIA_Jergan_Diego_13_02");	//Я видел его с двумя рыцарями и ящиком, недалеко отсюда.
 	AI_Output(self,other,"DIA_Jergan_Diego_13_03");	//Видишь старую башню вон там справа? Иди туда, а затем по направлению к замку.
 	AI_Output(self,other,"DIA_Jergan_Diego_13_04");	//Дорога идет через скалы справа. Вот туда они и пошли.
+	if((MIS_ScoutMine == LOG_RUNNING) && !Npc_KnowsInfo(other,DIA_Parcival_Diego) && (Silvestro_Ore == FALSE))
+	{
+		B_LogEntry(TOPIC_ScoutMine,"Диего был со старателями Сильвестро.");
+	};
 };
 
 
@@ -325,14 +329,14 @@ func int DIA_Jergan_Leader_Condition()
 func void DIA_Jergan_Leader_Info()
 {
 	AI_Output(self,other,"DIA_Jergan_Leader_13_00");	//Ты убил вожака стаи. И как - ты забрал когти этого зверя?
-	if(Npc_HasItems(other,ItAt_ClawLeader) || (Lutero_Krallen == LOG_SUCCESS))
+	if(Npc_HasItems(other,ItAt_ClawLeader) || (MIS_Lutero_Krallen == LOG_SUCCESS))
 	{
 		AI_Output(other,self,"DIA_Jergan_Leader_15_01");	//Да.
 		AI_Output(self,other,"DIA_Jergan_Leader_13_02");	//Они стоят целое состояние. Есть люди, которые коллекционируют такие вещи.
 		AI_Output(self,other,"DIA_Jergan_Leader_13_03");	//Если ты найдешь правильного покупателя, то получишь за них целую кучу золота.
-		if(Lutero_Krallen == LOG_SUCCESS)
+		if(MIS_Lutero_Krallen == LOG_SUCCESS)
 		{
-			AI_Output(other,self,"DIA_Raoul_TROLLFELL_ja_15_00");	//Продано.
+			DIA_Common_Sold();
 		};
 	}
 	else

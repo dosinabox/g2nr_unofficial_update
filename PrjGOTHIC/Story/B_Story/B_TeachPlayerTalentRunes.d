@@ -39,6 +39,17 @@ func void B_CreateScrollForTrading(var int scroll)
 		{
 			trader = Hlp_GetNpc(Cronos_ADW);
 		};
+	}
+	else if(CurrentLevel == DRAGONISLAND_ZEN)
+	{
+		if(!Npc_IsDead(Vatras_DI))
+		{
+			trader = Hlp_GetNpc(Vatras_DI);
+		}
+		else if(!Npc_IsDead(Milten_DI))
+		{
+			trader = Hlp_GetNpc(Milten_DI);
+		};
 	};
 	if(Hlp_IsValidNpc(trader))
 	{

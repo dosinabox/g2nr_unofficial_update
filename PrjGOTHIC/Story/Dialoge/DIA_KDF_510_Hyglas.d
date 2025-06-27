@@ -1,21 +1,21 @@
 
-instance DIA_Hyglas_Kap1_EXIT(C_Info)
+instance DIA_Hyglas_EXIT(C_Info)
 {
 	npc = KDF_510_Hyglas;
 	nr = 999;
-	condition = DIA_Hyglas_Kap1_EXIT_Condition;
-	information = DIA_Hyglas_Kap1_EXIT_Info;
+	condition = DIA_Hyglas_EXIT_Condition;
+	information = DIA_Hyglas_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Hyglas_Kap1_EXIT_Condition()
+func int DIA_Hyglas_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Hyglas_Kap1_EXIT_Info()
+func void DIA_Hyglas_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -103,13 +103,16 @@ func void DIA_Hyglas_JOB_Info()
 	{
 		AI_Output(other,self,"DIA_Hyglas_JOB_15_03");	//Как это интересно! А не мог бы ты научить и меня этому?
 		AI_Output(self,other,"DIA_Hyglas_JOB_14_04");	//Магию дарует Иннос. И только его слугам, магам Огня, дано познать, как пользоваться этой силой.
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Мастер Хиглас может посвятить меня в тайны огня. Но для этого я должен быть магом Огня.");
-	};
-	if((other.guild == GIL_KDF) && !Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
+		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTeacher,"Мастер Хиглас может посвятить меня в тайны огня. Но для этого я должен быть магом Огня.");
+	}
+	else if(other.guild == GIL_KDF)
 	{
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Брат Хиглас может посвятить меня в тайны огня.");
+		if(!Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
+		{
+			Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_KlosterTeacher,"Брат Хиглас может посвятить меня в тайны огня.");
+		};
 	};
 };
 
@@ -127,7 +130,7 @@ instance DIA_Hyglas_CONTEST(C_Info)
 
 func int DIA_Hyglas_CONTEST_Condition()
 {
-	if((MIS_Rune == LOG_Running) && Npc_KnowsInfo(other,DIA_Hyglas_JOB))
+	if((MIS_Rune == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Hyglas_JOB))
 	{
 		return TRUE;
 	};
@@ -180,23 +183,23 @@ func void DIA_Hyglas_TALENT_FIREBOLT_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Hyglas_CONTEST_14_04");	//Хорошо, я научу тебя. Но сначала ты должен найти все необходимые ингредиенты.
-		if(Firebolt_Scroll_Once == FALSE)
+		if(!Npc_HasItems(other,ItSc_Firebolt) && (Firebolt_Scroll_Once == FALSE))
 		{
-			if(!Npc_HasItems(other,ItSc_Firebolt))
+			B_LogEntry(TOPIC_Rune,"Пока у меня нет свитка огненной стрелы, Хиглас не сможет обучить меня созданию руны.");
+			if(!Npc_IsDead(Gorax))
 			{
-				B_LogEntry(TOPIC_Rune,"Пока у меня нет свитка огненной стрелы, Хиглас не сможет обучить меня созданию руны.");
-				if(!Npc_IsDead(Gorax))
+				if(!Npc_HasItems(Gorax,ItSc_Firebolt))
 				{
 					CreateInvItem(Gorax,ItSc_Firebolt);
-					B_LogEntry(TOPIC_Rune,"Возможно, я смогу купить такой свиток у Горакса.");
-				}
-				else
-				{
-					Wld_InsertItem(ItSc_Firebolt,"FP_ITEM_KLOSTER_01");
-					B_LogEntry(TOPIC_Rune,"Похоже, что мне придется искать этот свиток по всему монастырю.");
 				};
-				Firebolt_Scroll_Once = TRUE;
+				Log_AddEntry(TOPIC_Rune,"Возможно, я смогу купить такой свиток у Горакса.");
+			}
+			else
+			{
+				Wld_InsertItem(ItSc_Firebolt,"FP_ITEM_KLOSTER_01");
+				Log_AddEntry(TOPIC_Rune,"Похоже, что мне придется искать этот свиток по всему монастырю.");
 			};
+			Firebolt_Scroll_Once = TRUE;
 		};
 		AI_StopProcessInfos(self);
 	};
@@ -242,7 +245,7 @@ instance DIA_Hyglas_BLANK_RUNE(C_Info)
 
 func int DIA_Hyglas_BLANK_RUNE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (MIS_Rune == LOG_Running) && !Npc_HasItems(other,ItMi_RuneBlank) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (MIS_Rune == LOG_RUNNING) && !Npc_HasItems(other,ItMi_RuneBlank) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
 	{
 		if(SC_KnowsBlankRuneForFirebolt == TRUE)
 		{
@@ -271,7 +274,7 @@ instance DIA_Hyglas_GOTRUNE(C_Info)
 
 func int DIA_Hyglas_GOTRUNE_Condition()
 {
-	if((MIS_Rune == LOG_Running) && Npc_HasItems(other,ItRu_FireBolt) && !Npc_KnowsInfo(other,DIA_Ulthar_SUCCESS))
+	if((MIS_Rune == LOG_RUNNING) && Npc_HasItems(other,ItRu_FireBolt) && !Npc_KnowsInfo(other,DIA_Ulthar_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -439,10 +442,10 @@ func void DIA_Hyglas_BringBook_Yes()
 	AI_Output(other,self,"DIA_Hyglas_BringBook_Yes_15_00");	//Я попробую найти ее.
 	AI_Output(self,other,"DIA_Hyglas_BringBook_Yes_14_01");	//Хорошо - это сэкономит мое время, и я смогу заняться другими делами.
 	AI_Output(self,other,"DIA_Hyglas_BringBook_Yes_14_02");	//Но не трать на это слишком много времени. Как раз времени-то, боюсь, у нас очень мало.
-	MIS_HyglasBringBook = LOG_Running;
+	MIS_HyglasBringBook = LOG_RUNNING;
 	Info_ClearChoices(DIA_Hyglas_BringBook);
 	Log_CreateTopic(TOPIC_HyglasBringBook,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_HyglasBringBook,LOG_Running);
+	Log_SetTopicStatus(TOPIC_HyglasBringBook,LOG_RUNNING);
 	B_LogEntry(TOPIC_HyglasBringBook,"Хиглас хочет, чтобы я принес ему книгу 'Божественная сила звезд'. Она может быть у одного из торговцев в городе.");
 };
 
@@ -469,7 +472,7 @@ func int DIA_Hyglas_HaveBook_Condition()
 func void DIA_Hyglas_HaveBook_Info()
 {
 	AI_Output(other,self,"DIA_Hyglas_HaveBook_15_00");	//Я принес тебе книгу.
-	if(MIS_HyglasBringBook == LOG_Running)
+	if(MIS_HyglasBringBook == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Hyglas_HaveBook_14_01");	//Очень хорошо, давай ее сюда.
 	}
@@ -512,9 +515,8 @@ func void DIA_Hyglas_Kap4_PERM_Info()
 		AI_Output(other,self,"DIA_Hyglas_Kap4_PERM_15_02");	//Какого рода опасности?
 		AI_Output(self,other,"DIA_Hyglas_Kap4_PERM_14_03");	//Ну, материя между мирами, похоже, очень слаба. Нужна только небольшая часть силы, которая потребовалась бы в обычное время, чтобы прорвать брешь в этой материи.
 		AI_Output(self,other,"DIA_Hyglas_Kap4_PERM_14_04");	//Демоны могут использовать эти порталы, чтобы войти в наш мир, не встретив сопротивления.
-//		Hyglas_SendsToKarras = TRUE;
 	}
-	else if(MIS_HyglasBringBook == LOG_Running)
+	else if(MIS_HyglasBringBook == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Hyglas_Kap4_PERM_14_05");	//Нет, я все еще жду эту книгу.
 	}

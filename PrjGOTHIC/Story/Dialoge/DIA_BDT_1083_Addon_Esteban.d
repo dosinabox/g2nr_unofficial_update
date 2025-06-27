@@ -30,7 +30,6 @@ instance DIA_Addon_Esteban_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Esteban_Hi_Condition;
 	information = DIA_Addon_Esteban_Hi_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -65,7 +64,6 @@ instance DIA_Addon_Esteban_Mine(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Esteban_Mine_Condition;
 	information = DIA_Addon_Esteban_Mine_Info;
-	permanent = FALSE;
 	description = "Я хочу попасть в шахту!";
 };
 
@@ -93,7 +91,6 @@ instance DIA_Addon_Esteban_Rot(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Esteban_Rot_Condition;
 	information = DIA_Addon_Esteban_Rot_Info;
-	permanent = FALSE;
 	description = "Дай мне один из этих красных камней.";
 };
 
@@ -131,7 +128,6 @@ instance DIA_Addon_Esteban_MIS(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Esteban_MIS_Condition;
 	information = DIA_Addon_Esteban_MIS_Info;
-	permanent = FALSE;
 	description = "Какая работа?";
 };
 
@@ -158,10 +154,10 @@ func void DIA_Addon_Esteban_MIS_Info()
 		AI_Output(other,self,"DIA_Addon_Esteban_MIS_15_07");	//Сеньян послал меня к тебе по этому делу.
 		AI_Output(self,other,"DIA_Addon_Esteban_MIS_07_08");	//Сеньян? Он тоже работает на меня. Я сказал ему, чтобы он смотрел в оба.
 	};
-	MIS_Judas = LOG_Running;
-	Log_CreateTopic(Topic_Addon_Esteban,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Esteban,LOG_Running);
-	B_LogEntry(Topic_Addon_Esteban,"На жизнь Эстебана было совершено покушение. Я должен выяснить, кто за этим стоит.");
+	MIS_Judas = LOG_RUNNING;
+	Log_CreateTopic(TOPIC_Addon_Esteban,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Esteban,LOG_RUNNING);
+	B_LogEntry(TOPIC_Addon_Esteban,"На жизнь Эстебана было совершено покушение. Я должен выяснить, кто за этим стоит.");
 };
 
 
@@ -171,14 +167,13 @@ instance DIA_Addon_Esteban_Kerl(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Esteban_Kerl_Condition;
 	information = DIA_Addon_Esteban_Kerl_Info;
-	permanent = FALSE;
 	description = "И что мне нужно сделать?";
 };
 
 
 func int DIA_Addon_Esteban_Kerl_Condition()
 {
-	if(MIS_Judas == LOG_Running)
+	if(MIS_Judas == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -190,7 +185,7 @@ func void DIA_Addon_Esteban_Kerl_Info()
 	AI_Output(self,other,"DIA_Addon_Esteban_Kerl_07_01");	//Все в лагере знают об этом. Поэтому ты играешь в открытую.
 	AI_Output(self,other,"DIA_Addon_Esteban_Kerl_07_02");	//Постарайся выяснить, кто на моей стороне, а кто - против, и не дай ребятам себя обдурить!
 	AI_Output(self,other,"DIA_Addon_Esteban_Kerl_07_03");	//Поговори со Снафом. Этот жирный повар много знает.
-	B_LogEntry(Topic_Addon_Esteban,"Чтобы найти виновного, я должен поговорить с людьми в лагере и выяснить, на чьей они стороне. Снаф может мне помочь - ему многое известно.");
+	B_LogEntry(TOPIC_Addon_Esteban,"Чтобы найти виновного, я должен поговорить с людьми в лагере и выяснить, на чьей они стороне. Снаф может мне помочь - ему многое известно.");
 };
 
 
@@ -200,7 +195,6 @@ instance DIA_Addon_Esteban_Armor(C_Info)
 	nr = 9;
 	condition = DIA_Addon_Esteban_Armor_Condition;
 	information = DIA_Addon_Esteban_Armor_Info;
-	permanent = FALSE;
 	description = "Мне нужны доспехи получше.";
 };
 
@@ -217,7 +211,7 @@ func void DIA_Addon_Esteban_Armor_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Esteban_Armor_15_00");	//Мне нужны доспехи получше.
 	AI_Output(self,other,"DIA_Addon_Esteban_Armor_07_01");	//Зачем? У тебя уже есть доспехи, пока что вполне можешь обойтись ими!
-	if(MIS_Judas == LOG_Running)
+	if(MIS_Judas == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Addon_Esteban_Armor_07_02");	//Если ты выполнишь мое задание, мы поговорим об этом...
 	};
@@ -237,7 +231,7 @@ instance DIA_Addon_Esteban_Auftrag(C_Info)
 
 func int DIA_Addon_Esteban_Auftrag_Condition()
 {
-	if(((MIS_Judas == LOG_Running) || (MIS_Judas == LOG_SUCCESS)) && (Esteban_KnowsFiskAsTraitor == FALSE))
+	if(((MIS_Judas == LOG_RUNNING) || (MIS_Judas == LOG_SUCCESS)) && (Esteban_KnowsFiskAsTraitor == FALSE))
 	{
 		return TRUE;
 	};
@@ -297,7 +291,6 @@ instance DIA_Addon_Esteban_Away(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Esteban_Away_Condition;
 	information = DIA_Addon_Esteban_Away_Info;
-	permanent = FALSE;
 	description = "И что теперь будет?";
 };
 
@@ -327,7 +320,6 @@ instance DIA_Addon_Esteban_Stone(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Esteban_Stone_Condition;
 	information = DIA_Addon_Esteban_Stone_Info;
-	permanent = FALSE;
 	description = "Могу я теперь получить красный камень?";
 };
 
@@ -354,7 +346,6 @@ instance DIA_Addon_Esteban_not(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Esteban_not_Condition;
 	information = DIA_Addon_Esteban_not_Info;
-	permanent = FALSE;
 	description = "Я подумаю об этом.";
 };
 
@@ -387,7 +378,6 @@ instance DIA_Addon_Esteban_fight(C_Info)
 	nr = 6;
 	condition = DIA_Addon_Esteban_fight_Condition;
 	information = DIA_Addon_Esteban_fight_Info;
-	permanent = FALSE;
 	description = "Ты хочешь одурачить меня? И речи не было о том, чтобы я на тебя работал.";
 };
 
@@ -439,7 +429,6 @@ instance DIA_Addon_Esteban_Duell(C_Info)
 	nr = 99;
 	condition = DIA_Addon_Esteban_Duell_Condition;
 	information = DIA_Addon_Esteban_Duell_Info;
-	permanent = FALSE;
 	description = "Давай сюда камень СЕЙЧАС ЖЕ, или я заберу его сам!";
 };
 

@@ -195,7 +195,7 @@ instance DIA_Addon_Eremit_Klamotten(C_Info)
 
 func int DIA_Addon_Eremit_Klamotten_Condition()
 {
-	if(MIS_Eremit_Klamotten == LOG_Running)
+	if(MIS_Eremit_Klamotten == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -280,7 +280,7 @@ func void DIA_Addon_Eremit_Klamotten_BACK()
 	Info_ClearChoices(DIA_Addon_Eremit_Klamotten);
 };
 
- func void DIA_Addon_Eremit_Klamotten_PIR_L()
+func void DIA_Addon_Eremit_Klamotten_PIR_L()
 {
 	B_GiveInvItems(other,self,ITAR_PIR_L_Addon,1);
 	B_Eremit_Tatsache();
@@ -383,7 +383,7 @@ func void DIA_Addon_Eremit_PERM_Info()
 		AI_Output(self,other,"DIA_Addon_Eremit_Add_04_12");	//Иногда я жалею, что не взял с собой одежду.
 		AI_Output(self,other,"DIA_Addon_Eremit_Add_04_13");	//Я не умею ни шить, ни дубить кожу...
 		AI_Output(self,other,"DIA_Addon_Eremit_Add_04_14");	//А ночами в этой части острова бывает довольно холодно.
-		MIS_Eremit_Klamotten = LOG_Running;
+		MIS_Eremit_Klamotten = LOG_RUNNING;
 	}
 	else
 	{

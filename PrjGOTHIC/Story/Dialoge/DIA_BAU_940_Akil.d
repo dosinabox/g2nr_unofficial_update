@@ -36,7 +36,6 @@ instance DIA_Akil_Hallo(C_Info)
 	nr = 4;
 	condition = DIA_Akil_Hallo_Condition;
 	information = DIA_Akil_Hallo_Info;
-	permanent = FALSE;
 	description = "У тебя какие-то проблемы?";
 };
 
@@ -58,7 +57,7 @@ func void DIA_Akil_Hallo_Info()
 	if(Akils_SLDStillthere == FALSE)
 	{
 		Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
+		Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_RUNNING);
 		B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
 		Akils_SLDStillthere = TRUE;
 	};
@@ -98,7 +97,6 @@ instance DIA_Akil_NachKampf(C_Info)
 	nr = 5;
 	condition = DIA_Akil_NachKampf_Condition;
 	information = DIA_Akil_NachKampf_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -129,11 +127,11 @@ func void DIA_Akil_NachKampf_Info()
 	Info_ClearChoices(DIA_Akil_NachKampf);
 	Info_AddChoice(DIA_Akil_NachKampf,"Ничего. Я просто рад, что у тебя теперь все в порядке.",DIA_Akil_NachKampf_Ehre);
 	Info_AddChoice(DIA_Akil_NachKampf,"Как насчет нескольких золотых?",DIA_Akil_NachKampf_Gold);
-	Npc_ExchangeRoutine(self,"Start");
-	B_StartOtherRoutine(Kati,"Start");
+	Npc_ExchangeRoutine(self,"START");
+	B_StartOtherRoutine(Kati,"START");
 	if(DIA_Randolph_ICHGEBEDIRGELD_noPerm == FALSE)
 	{
-		B_StartOtherRoutine(Randolph,"Start");
+		B_StartOtherRoutine(Randolph,"START");
 	};
 	B_SetMortal(Randolph);
 	TOPIC_END_AkilsSLDStillthere = TRUE;
@@ -168,7 +166,6 @@ instance DIA_Akil_Soeldner(C_Info)
 	nr = 7;
 	condition = DIA_Akil_Soeldner_Condition;
 	information = DIA_Akil_Soeldner_Info;
-	permanent = FALSE;
 	description = "Что эти наемники хотели от тебя?";
 };
 
@@ -184,7 +181,7 @@ func int DIA_Akil_Soeldner_Condition()
 func void DIA_Akil_Soeldner_Info()
 {
 	AI_Output(other,self,"DIA_Akil_Soeldner_15_00");	//Что эти наемники хотели от тебя?
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Akil_Soeldner_13_01");	//Ты издеваешься надо мной? Эти наемники хотели собрать ренту.
 	}
@@ -224,9 +221,9 @@ func void DIA_Addon_Akil_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_05");	//Если ты узнаешь что-нибудь об их судьбе, обязательно дай мне знать.
 	B_GivePlayerXP(XP_Ambient);
 	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_MissingPeople,"Фермер Акил беспокоится о двух пропавших работниках - Тонаке и Телборе.");
-	MIS_Akil_BringMissPeopleBack = LOG_Running;
+	MIS_Akil_BringMissPeopleBack = LOG_RUNNING;
 };
 
 
@@ -236,14 +233,13 @@ instance DIA_Addon_Akil_ReturnPeople(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Akil_ReturnPeople_Condition;
 	information = DIA_Addon_Akil_ReturnPeople_Info;
-	permanent = FALSE;
 	description = "Насчет твоих работников...";
 };
 
 
 func int DIA_Addon_Akil_ReturnPeople_Condition()
 {
-	if((MIS_Akil_BringMissPeopleBack == LOG_Running) && (MissingPeopleReturnedHome == TRUE))
+	if((MIS_Akil_BringMissPeopleBack == LOG_RUNNING) && (MissingPeopleReturnedHome == TRUE))
 	{
 		if(!Npc_IsDead(Tonak_NW))
 		{
@@ -289,14 +285,13 @@ instance DIA_Akil_Lieferung(C_Info)
 	nr = 20;
 	condition = DIA_Akil_Lieferung_Condition;
 	information = DIA_Akil_Lieferung_Info;
-	permanent = FALSE;
 	description = "Меня прислал Бальтрам. Я должен забрать посылку для него.";
 };
 
 
 func int DIA_Akil_Lieferung_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Akil_NachKampf) && (MIS_Baltram_ScoutAkil == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Akil_NachKampf) && (MIS_Baltram_ScoutAkil == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -316,7 +311,6 @@ instance DIA_Akil_Gegend(C_Info)
 	nr = 90;
 	condition = DIA_Akil_Gegend_Condition;
 	information = DIA_Akil_Gegend_Info;
-	permanent = FALSE;
 	description = "Ты знаешь здешние места?";
 };
 
@@ -343,14 +337,13 @@ instance DIA_Akil_Hof(C_Info)
 	nr = 20;
 	condition = DIA_Akil_Hof_Condition;
 	information = DIA_Akil_Hof_Info;
-	permanent = FALSE;
 	description = "Как мне найти ферму Онара?";
 };
 
 
 func int DIA_Akil_Hof_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Akil_Gegend) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
+	if(Npc_KnowsInfo(other,DIA_Akil_Gegend) && (other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -371,7 +364,6 @@ instance DIA_Akil_Taverne(C_Info)
 	nr = 20;
 	condition = DIA_Akil_Taverne_Condition;
 	information = DIA_Akil_Taverne_Info;
-	permanent = FALSE;
 	description = "Что это за таверна к востоку отсюда?";
 };
 
@@ -397,7 +389,6 @@ instance DIA_Akil_Wald(C_Info)
 	nr = 20;
 	condition = DIA_Akil_Wald_Condition;
 	information = DIA_Akil_Wald_Info;
-	permanent = FALSE;
 	description = "А что там, в лесу за твоей фермой?";
 };
 
@@ -460,15 +451,15 @@ func void DIA_Akil_Perm_Info()
 	}
 	else
 	{
-		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+		if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 		{
 			AI_Output(self,other,"DIA_Akil_Perm_13_03");	//Орки теперь повсюду. Говорят даже, что у них здесь где-то есть штаб-квартира. Расспроси об этом фермера Лобарта.
 		};
-		if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+		if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 		{
 			AI_Output(self,other,"DIA_Akil_Perm_13_04");	//Говорят, что в округе появились люди-ящеры. На твоем месте я бы не ходил в пещеры.
 		};
-		if(hero.guild == GIL_KDF)
+		if(other.guild == GIL_KDF)
 		{
 			AI_Output(self,other,"DIA_Akil_Perm_13_05");	//Люди в черных рясах ищут тебя.
 		};
@@ -516,9 +507,9 @@ func void DIA_Akil_SCHAFDIEB_wer()
 	AI_Output(self,other,"DIA_Akil_SCHAFDIEB_wer_13_01");	//У меня есть подозрения.
 	AI_Output(self,other,"DIA_Akil_SCHAFDIEB_wer_13_02");	//Какие-то темные личности обосновались в пещере вон в том лесу.
 	AI_Output(self,other,"DIA_Akil_SCHAFDIEB_wer_13_03");	//Мне трудно поверить, что они питаются только ягодами. Я почти уверен, что именно они виновны в исчезновении моих овец.
-	MIS_Akil_SchafDiebe = LOG_Running;
+	MIS_Akil_SchafDiebe = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_AkilSchafDiebe,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_AkilSchafDiebe,LOG_Running);
+	Log_SetTopicStatus(TOPIC_AkilSchafDiebe,LOG_RUNNING);
 	B_LogEntry(TOPIC_AkilSchafDiebe,"Овцы Акила продолжают пропадать. Он подозревает, что к этому причастны бандиты, живущие в пещере в соседнем лесу.");
 	Info_ClearChoices(DIA_Akil_SCHAFDIEB);
 };
@@ -549,9 +540,9 @@ instance DIA_Akil_SCHAFDIEBEPLATT(C_Info)
 
 func int DIA_Akil_SCHAFDIEBEPLATT_Condition()
 {
-	if((Kapitel >= 3) && (MIS_Akil_SchafDiebe == LOG_Running))
+	if((Kapitel >= 3) && (MIS_Akil_SchafDiebe == LOG_RUNNING))
 	{
-		if(Npc_IsDead(BDT_1025_Bandit_H) && Npc_IsDead(BDT_1026_Bandit_H) && Npc_IsDead(BDT_1027_Bandit_H))
+		if(C_AkilBanditsDead())
 		{
 			return TRUE;
 		};
@@ -562,11 +553,11 @@ func void DIA_Akil_SCHAFDIEBEPLATT_Info()
 {
 	AI_Output(other,self,"DIA_Akil_SCHAFDIEBEPLATT_15_00");	//Я нашел тех, кто воровал у тебя овец.
 	AI_Output(other,self,"DIA_Akil_SCHAFDIEBEPLATT_15_01");	//Ты был прав. Это были бандиты из пещеры в лесу. Но больше они у тебя ничего не украдут.
-	if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Akil_SCHAFDIEBEPLATT_13_02");	//Спасибо тебе, о, благородный служитель Инноса.
 	}
-	else if(hero.guild == GIL_MIL)
+	else if(other.guild == GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Akil_SCHAFDIEBEPLATT_13_03");	//Спасибо. Теперь я вижу, что ополчение иногда помогает нам, мелким фермерам.
 	}
@@ -589,7 +580,6 @@ instance DIA_Akil_AkilsSchaf(C_Info)
 	condition = DIA_Akil_AkilsSchaf_Condition;
 	information = DIA_Akil_AkilsSchaf_Info;
 	important = TRUE;
-//	description = "(вернуть овцу)";
 };
 
 
@@ -614,9 +604,7 @@ func void DIA_Akil_AkilsSchaf_Info()
 	B_GiveInvItems(self,other,ItMi_Gold,150);
 	Follow_Sheep_AKIL.aivar[AIV_PARTYMEMBER] = FALSE;
 	Follow_Sheep_AKIL.aivar[AIV_TAPOSITION] = NOTINPOS;
-//	Follow_Sheep_AKIL.wp = "NW_FARM2_OUT_02";
-//	Follow_Sheep_AKIL.start_aistate = ZS_MM_AllScheduler;
-	B_StartOtherRoutine(Follow_Sheep_AKIL,"Farm");
+	B_StartOtherRoutine(Follow_Sheep_AKIL,"FARM");
 	B_GivePlayerXP(XP_AkilsSchaf);
 };
 

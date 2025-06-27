@@ -98,16 +98,16 @@ func int B_AssessEnterRoom()
 	};
 	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 	{
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rick))
+		if(C_IsNpc(self,MIL_336_Rick))
 		{
 			return FALSE;
 		};
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rumbold))
+		if(C_IsNpc(self,MIL_335_Rumbold))
 		{
 			return FALSE;
 		};
 	};
-	if(!Npc_IsInPlayersRoom(self) && Npc_IsInState(self,ZS_Sleep))
+	if(!Npc_IsInPlayersRoom(self) && C_NpcIsSleeping(self))
 	{
 		return FALSE;
 	};

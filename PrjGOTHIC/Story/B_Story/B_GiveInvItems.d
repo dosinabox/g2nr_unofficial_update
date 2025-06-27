@@ -71,6 +71,16 @@ func int B_GiveInvItems(var C_Npc giver,var C_Npc taker,var int itemInstance,var
 	return TRUE;
 };
 
+func void B_GiveAllInvItems(var C_Npc giver,var C_Npc taker,var int itemInstance)
+{
+	var int amount;
+	amount = Npc_HasItems(giver,itemInstance);
+	if(amount > 0)
+	{
+		B_GiveInvItems(giver,taker,itemInstance,amount);
+	};
+};
+
 func void B_GiveArmor(var int itemInstance)
 {
 	CreateInvItem(hero,itemInstance);

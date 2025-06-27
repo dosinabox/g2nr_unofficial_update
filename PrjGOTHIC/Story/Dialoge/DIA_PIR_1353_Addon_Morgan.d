@@ -68,7 +68,7 @@ func int DIA_Addon_Morgan_Anheuern_Condition()
 func void DIA_Addon_Morgan_Anheuern_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Morgan_Anheuern_07_00");	//Замечательно! Теперь Грег заставит меня пилить доски!
-	if((MIS_Addon_Greg_ClearCanyon == LOG_Running) || (MIS_Addon_MorganLurker == LOG_Running))
+	if((MIS_Addon_Greg_ClearCanyon == LOG_RUNNING) || (MIS_Addon_MorganLurker == LOG_RUNNING))
 	{
 		AI_Output(self,other,"DIA_Addon_Morgan_Anheuern_07_01");	//(с сарказмом) Удачи в потрошении монстров!
 	};
@@ -116,7 +116,7 @@ instance DIA_Addon_Morgan_Meat(C_Info)
 
 func int DIA_Addon_Morgan_Meat_Condition()
 {
-	if((MIS_AlligatorJack_BringMeat == LOG_Running) && Npc_HasItems(other,ItFoMuttonRaw))
+	if((MIS_AlligatorJack_BringMeat == LOG_RUNNING) && Npc_HasItems(other,ItFoMuttonRaw))
 	{
 		return TRUE;
 	};
@@ -163,10 +163,6 @@ instance DIA_Addon_Morgan_Job(C_Info)
 
 func int DIA_Addon_Morgan_Job_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Addon_Morgan_Meat) || (GregIsBack == TRUE) || Npc_IsDead(AlligatorJack))
-//	{
-//		return TRUE;
-//	};
 	return TRUE;
 };
 
@@ -253,9 +249,9 @@ func void DIA_Addon_Morgan_JoinMorgan_Info()
 	if(MIS_Addon_MorganLurker != LOG_SUCCESS)
 	{
 		Log_CreateTopic(TOPIC_Addon_MorganBeach,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MorganBeach,LOG_Running);
+		Log_SetTopicStatus(TOPIC_Addon_MorganBeach,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_MorganBeach,"Я присоединился к боевой группе Моргана. Он хочет, чтобы я очистил северный пляж от монстров.");
-		MIS_Addon_MorganLurker = LOG_Running;
+		MIS_Addon_MorganLurker = LOG_RUNNING;
 	};
 	AI_StopProcessInfos(self);
 };
@@ -276,7 +272,7 @@ instance DIA_Addon_Morgan_LurkerPlatt(C_Info)
 
 func int DIA_Addon_Morgan_LurkerPlatt_Condition()
 {
-	if(MIS_Addon_MorganLurker == LOG_Running)
+	if(MIS_Addon_MorganLurker == LOG_RUNNING)
 	{
 		if(Npc_IsDead(BeachLurker1) && Npc_IsDead(BeachLurker2) && Npc_IsDead(BeachLurker3) && Npc_IsDead(BeachWaran1) && Npc_IsDead(BeachWaran2))
 		{
@@ -367,7 +363,7 @@ instance DIA_Addon_Morgan_FOUNDTHEM(C_Info)
 
 func int DIA_Addon_Morgan_FOUNDTHEM_Condition()
 {
-	if((MIS_Addon_Morgan_SeekTraitor != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHank))
+	if((Morgan_GotRing == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHank))
 	{
 		return TRUE;
 	};
@@ -423,7 +419,7 @@ func void DIA_Addon_Morgan_FOUNDTHEM_GiveRing()
 	AI_Output(self,other,"DIA_Addon_Morgan_FOUNDTHEM_GiveRing_07_01");	//(радостно) Да, это оно! Спасибо тебе!
 	AI_Output(self,other,"DIA_Addon_Morgan_FOUNDTHEM_GiveRing_07_02");	//Вот, возьми эту каменную табличку. Возможно, она на первый взгляд и бесполезна, но Гаретт тебе за нее хорошо заплатит.
 	B_GiveInvItems(self,other,ItWr_StonePlateCommon_Addon,1);
-	MIS_Addon_Morgan_SeekTraitor = LOG_SUCCESS;
+	Morgan_GotRing = TRUE;
 	B_GivePlayerXP(XP_Addon_MorgansRing);
 	Info_ClearChoices(DIA_Addon_Morgan_FOUNDTHEM);
 };
@@ -484,8 +480,8 @@ func void DIA_Addon_Morgan_TRAIN_Info()
 	AI_Output(self,other,"DIA_Addon_Morgan_TRAIN_07_01");	//Конечно. Я могу улучшить твое умение обращаться с одноручным оружием.
 	if(!Npc_KnowsInfo(other,DIA_Addon_Bones_Teacher))
 	{
-		Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_MorganTeach);
+		Log_CreateTopic(TOPIC_Addon_PIR_Teacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_PIR_Teacher,Log_Text_Addon_MorganTeach);
 	};
 	Morgan_Addon_TeachPlayer = TRUE;
 };

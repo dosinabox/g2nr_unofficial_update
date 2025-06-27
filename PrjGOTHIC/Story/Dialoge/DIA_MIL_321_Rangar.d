@@ -27,7 +27,6 @@ instance DIA_Rangar_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Rangar_Hallo_Condition;
 	information = DIA_Rangar_Hallo_Info;
-	permanent = FALSE;
 	description = "Эй, как дела?";
 };
 
@@ -67,7 +66,6 @@ instance DIA_Rangar_Ork(C_Info)
 	nr = 3;
 	condition = DIA_Rangar_Ork_Condition;
 	information = DIA_Rangar_Ork_Info;
-	permanent = FALSE;
 	description = "А как ситуация с орками?";
 };
 
@@ -110,11 +108,11 @@ func int DIA_Rangar_Bier_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Rangar_Ork) && (Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") >= 500) && (Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") >= 500))
 	{
-		if(MIS_Garvell_Infos == LOG_Running)
+		if(MIS_Garvell_Infos == LOG_RUNNING)
 		{
 			return TRUE;
-		}
-		else if((MIS_Garvell_Infos == FALSE) && (Knows_Ork == TRUE) && !Npc_IsDead(CityOrc) && (RangarToldAboutOrc == FALSE))
+		};
+		if((MIS_Garvell_Infos == FALSE) && (Knows_Ork == TRUE) && !Npc_IsDead(CityOrc) && (RangarToldAboutOrc == FALSE))
 		{
 			return TRUE;
 		};
@@ -126,7 +124,7 @@ func void DIA_Rangar_Bier_Info()
 	AI_Output(other,self,"DIA_Rangar_Bier_15_00");	//Хочешь еще пива?
 	if(B_GiveInvItems(other,self,ItFo_Beer,1))
 	{
-		if((RangarToldAboutPaladins == FALSE) && (MIS_Garvell_Infos == LOG_Running))
+		if((RangarToldAboutPaladins == FALSE) && (MIS_Garvell_Infos == LOG_RUNNING))
 		{
 			AI_Output(self,other,"DIA_Rangar_Bier_07_01");	//Ах, нет ничего лучше, чем холодный эль.
 			B_UseItem(self,ItFo_Beer);
@@ -165,9 +163,12 @@ instance DIA_Addon_Rangar_Erwischt(C_Info)
 
 func int DIA_Addon_Rangar_Erwischt_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") < 500) && (MIS_Addon_Martin_GetRangar == LOG_Running))
+	if(MIS_Addon_Martin_GetRangar == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") < 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -180,7 +181,7 @@ func void DIA_Addon_Rangar_Erwischt_Info()
 	SC_GotRangar = TRUE;
 	B_GivePlayerXP(XP_Addon_Martin_GotRangar);
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 
@@ -197,7 +198,7 @@ instance DIA_Addon_Rangar_nachhaken(C_Info)
 
 func int DIA_Addon_Rangar_nachhaken_Condition()
 {
-	if((SC_GotRangar == TRUE) && (MIS_Addon_Martin_GetRangar == LOG_Running))
+	if((SC_GotRangar == TRUE) && (MIS_Addon_Martin_GetRangar == LOG_RUNNING))
 	{
 		return TRUE;
 	};

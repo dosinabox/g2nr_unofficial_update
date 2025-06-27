@@ -1,11 +1,11 @@
 
-const int SPL_COST_Deathball = 35;
-const int SPL_DAMAGE_Deathball = 165;
+const int SPL_Cost_Deathball = 35;
+const int SPL_Damage_Deathball = 165;
 
 instance Spell_Deathball(C_Spell_Proto)
 {
 	time_per_mana = 0;
-	damage_per_level = SPL_DAMAGE_Deathball;
+	damage_per_level = SPL_Damage_Deathball;
 	damagetype = DAM_MAGIC;
 };
 
@@ -16,7 +16,7 @@ func int Spell_Logic_Deathball(var int manaInvested)
 	{
 		return SPL_SENDCAST;
 	}
-	else if(self.attribute[ATR_MANA] >= SPL_COST_Deathball)
+	else if(self.attribute[ATR_MANA] >= SPL_Cost_Deathball)
 	{
 		return SPL_SENDCAST;
 	};
@@ -31,7 +31,7 @@ func void Spell_Cast_Deathball()
 	}
 	else
 	{
-		self.attribute[ATR_MANA] -= SPL_COST_Deathball;
+		self.attribute[ATR_MANA] -= SPL_Cost_Deathball;
 	};
 	self.aivar[AIV_SelectSpell] += 1;
 };

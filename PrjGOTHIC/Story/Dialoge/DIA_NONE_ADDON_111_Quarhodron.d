@@ -32,11 +32,9 @@ instance DIA_Addon_Quarhodron_Hello(C_Info)
 };
 
 
-var int DIA_Addon_Quarhodron_Hello_NoPerm;
-
 func int DIA_Addon_Quarhodron_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (DIA_Addon_Quarhodron_Hello_NoPerm == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (SC_TalkedToGhost == FALSE))
 	{
 		return TRUE;
 	};
@@ -48,13 +46,12 @@ func void DIA_Addon_Quarhodron_Hello_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Quarhodron_Hello_11_00");	//Почему ты нарушаешь мой покой, страж?
 		AI_Output(self,other,"DIA_Addon_Quarhodron_Hello_11_01");	//Говори, что тебе нужно?
+		Npc_RemoveInvItems(other,ItWr_Addon_SUMMONANCIENTGHOST,1);
 		Info_ClearChoices(DIA_Addon_Quarhodron_Hello);
 		Info_AddChoice(DIA_Addon_Quarhodron_Hello,"Что находится в храме Аданоса?",DIA_Addon_Quarhodron_Hello_schwert);
 		Info_AddChoice(DIA_Addon_Quarhodron_Hello,"Кто-то смог проникнуть в храм Аданоса.",DIA_Addon_Quarhodron_Hello_raven);
 		Info_AddChoice(DIA_Addon_Quarhodron_Hello,"Расскажи мне, как попасть в храм Аданоса.",DIA_Addon_Quarhodron_Hello_tempel);
 		Info_AddChoice(DIA_Addon_Quarhodron_Hello,"Наша страна содрогается от землетрясений. Мы должны что-то сделать, иначе весь остров уйдет под воду.",DIA_Addon_Quarhodron_Hello_erdbeben);
-		DIA_Addon_Quarhodron_Hello_NoPerm = TRUE;
-		Npc_RemoveInvItems(hero,ItWr_Addon_SUMMONANCIENTGHOST,1);
 		SC_TalkedToGhost = TRUE;
 	}
 	else
@@ -121,7 +118,7 @@ func void DIA_Addon_Quarhodron_Hello_frech()
 	AI_Output(self,other,"DIA_Addon_Quarhodron_Hello_frech_11_03");	//Если тебе нужна моя помощь, ты должен доказать, что ты говоришь мне правду.
 	AI_Output(self,other,"DIA_Addon_Quarhodron_Hello_frech_11_04");	//Ответь на мои вопросы, чтобы я мог убедиться, что не выдаю чужаку наши тайны.
 	Log_CreateTopic(TOPIC_Addon_Quarhodron,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Quarhodron,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Quarhodron,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_Quarhodron,"Куарходрон поможет мне только в том случае, если я докажу, что я достоин этого. Он задал мне несколько сложных вопросов. Я должен ответить на них, и только тогда он мне поможет.");
 	Info_ClearChoices(DIA_Addon_Quarhodron_Hello);
 };
@@ -375,15 +372,17 @@ func void DIA_Addon_Quarhodron_GibMirKey_Info()
 	AI_Output(self,other,"DIA_Addon_Quarhodron_GibMirKey_11_07");	//Я дам тебе каменную табличку, на которой записаны тайные слова. Произнеси их перед запечатанными воротами храма, и они распахнутся перед тобой.
 	CreateInvItems(self,ItMi_TempelTorKey,1);
 	B_GiveInvItems(self,other,ItMi_TempelTorKey,1);
-	AI_Output(self,other,"DIA_Addon_Quarhodron_GibMirKey_11_08");	//(умирает) Мое время подходит к концу. Увы, но больше я ни в чем тебе помочь не смогу.
-	AI_Output(self,other,"DIA_Addon_Quarhodron_GibMirKey_11_09");	//(умирает) Помни, залы Аданоса смертельно опасны. Будь осторожнее.
+	AI_Output(self,other,"DIA_Addon_Quarhodron_GibMirKey_11_08");	//(исчезает) Мое время подходит к концу. Увы, но больше я ни в чем тебе помочь не смогу.
+	AI_Output(self,other,"DIA_Addon_Quarhodron_GibMirKey_11_09");	//(исчезает) Помни, залы Аданоса смертельно опасны. Будь осторожнее.
 	AI_Output(other,self,"DIA_Addon_Quarhodron_GibMirKey_15_10");	//Постой! Что находится в этих залах?
-	AI_Output(self,other,"DIA_Addon_Quarhodron_GibMirKey_11_11");	//(умирает) Силы покидают меня. Прощай! Когда-нибудь мы снова встретимся в стране мертвых.
+	AI_Output(self,other,"DIA_Addon_Quarhodron_GibMirKey_11_11");	//(исчезает) Силы покидают меня. Прощай! Когда-нибудь мы снова встретимся в стране мертвых.
 	AI_StopProcessInfos(self);
 	Log_CreateTopic(TOPIC_Addon_Kammern,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Kammern,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Kammern,LOG_RUNNING);
 	B_LogEntries(TOPIC_Addon_Kammern,"Куарходрон сказал, что я должен быть осторожнее в 'Залах Аданоса'. Я должен выяснить, что он имел в виду, если не хочу попасть в ловушку.");
 	B_LogNextEntry(TOPIC_Addon_Quarhodron,"Куарходрон дал мне каменную табличку, которая откроет мне вход в храм Аданоса.");
 	Ghost_SCKnowsHow2GetInAdanosTempel = TRUE;
+	STORYPOINT_ADDON[SP_A4] = TRUE;
+	CurrentAddonStoryPoint = SP_A4;
 };
 

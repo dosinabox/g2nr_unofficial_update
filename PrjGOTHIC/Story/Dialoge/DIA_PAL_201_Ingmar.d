@@ -21,6 +21,8 @@ func void DIA_Ingmar_EXIT_Info()
 };
 
 
+var int DIA_Ingmar_Hallo_permanent;
+
 instance DIA_Ingmar_Hallo(C_Info)
 {
 	npc = PAL_201_Ingmar;
@@ -31,8 +33,6 @@ instance DIA_Ingmar_Hallo(C_Info)
 	important = TRUE;
 };
 
-
-var int DIA_Ingmar_Hallo_permanent;
 
 func int DIA_Ingmar_Hallo_Condition()
 {
@@ -48,7 +48,7 @@ func void DIA_Ingmar_Hallo_Info()
 	{
 		AI_Output(self,other,"DIA_Ingmar_Hallo_06_03");	//Я думал, ты пришел поговорить с лордом Хагеном. Так иди же к нему.
 	}
-	else if(MIS_OLDWORLD == LOG_Running)
+	else if(MIS_OLDWORLD == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Ingmar_Hallo_06_00");	//Согласно полученным мной сообщениям, Долина Рудников - опасное место.
 		AI_Output(self,other,"DIA_Ingmar_Hallo_06_01");	//Позаботься о своем снаряжении, прежде чем отправляться туда.
@@ -67,7 +67,6 @@ instance DIA_Ingmar_Krieg(C_Info)
 	nr = 99;
 	condition = DIA_Ingmar_Krieg_Condition;
 	information = DIA_Ingmar_Krieg_Info;
-	permanent = FALSE;
 	description = "Как дела на материке?";
 };
 
@@ -195,7 +194,7 @@ instance DIA_Ingmar_ORKELITE(C_Info)
 
 func int DIA_Ingmar_ORKELITE_Condition()
 {
-	if(((TalkedTo_AntiPaladin == TRUE) || Npc_HasItems(other,ItRi_OrcEliteRing) || (Hagen_SawOrcRing == TRUE)) && (hero.guild == GIL_PAL))
+	if(((AntiPaladinTalkCount > 0) || Npc_HasItems(other,ItRi_OrcEliteRing) || (Hagen_SawOrcRing == TRUE)) && (other.guild == GIL_PAL))
 	{
 		return TRUE;
 	};
@@ -205,7 +204,7 @@ func void DIA_Ingmar_ORKELITE_Info()
 {
 	AI_Output(other,self,"DIA_Ingmar_ORKELITE_15_00");	//Орки готовят массированное наступление.
 	AI_Output(self,other,"DIA_Ingmar_ORKELITE_06_01");	//Да ну? Ну что ж, это очень интересно. А откуда тебе это известно?
-	if(TalkedTo_AntiPaladin == TRUE)
+	if(AntiPaladinTalkCount > 0)
 	{
 		AI_Output(other,self,"DIA_Ingmar_ORKELITE_15_02");	//Я говорил с ними.
 	};
@@ -214,10 +213,10 @@ func void DIA_Ingmar_ORKELITE_Info()
 	if(TOPIC_END_OrcElite == FALSE)
 	{
 		Log_CreateTopic(TOPIC_OrcElite,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_OrcElite,LOG_Running);
+		Log_SetTopicStatus(TOPIC_OrcElite,LOG_RUNNING);
 	};
 	B_LogEntry(TOPIC_OrcElite,"Ингмар был очень заинтересован историей о вторжении орков.");
-	MIS_KillOrkOberst = LOG_Running;
+	MIS_KillOrkOberst = LOG_RUNNING;
 	Info_ClearChoices(DIA_Ingmar_ORKELITE);
 	Info_AddChoice(DIA_Ingmar_ORKELITE,"Тебе нужно найти способ избавить нас от них.",DIA_Ingmar_ORKELITE_loswerden);
 	Info_AddChoice(DIA_Ingmar_ORKELITE,"Что нам делать теперь?",DIA_Ingmar_ORKELITE_wasTun);
@@ -260,14 +259,13 @@ instance DIA_Ingmar_HAUPTQUARTIER(C_Info)
 	nr = 41;
 	condition = DIA_Ingmar_HAUPTQUARTIER_Condition;
 	information = DIA_Ingmar_HAUPTQUARTIER_Info;
-	permanent = FALSE;
 	description = "Я смог найти штаб-квартиру орков. Их военачальник пал.";
 };
 
 
 func int DIA_Ingmar_HAUPTQUARTIER_Condition()
 {
-	if(MIS_KillOrkOberst == LOG_Running)
+	if(MIS_KillOrkOberst == LOG_RUNNING)
 	{
 		if(Npc_IsDead(AntiPaladin_NW))
 		{

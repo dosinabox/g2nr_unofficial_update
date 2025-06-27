@@ -1,11 +1,11 @@
 
-const int SPL_COST_InstantFireball = 15;
-const int SPL_DAMAGE_InstantFireball = 75;
+const int SPL_Cost_InstantFireball = 15;
+const int SPL_Damage_InstantFireball = 75;
 
 instance Spell_InstantFireball(C_Spell_Proto)
 {
 	time_per_mana = 0;
-	damage_per_level = SPL_DAMAGE_InstantFireball;
+	damage_per_level = SPL_Damage_InstantFireball;
 	damagetype = DAM_MAGIC;
 };
 
@@ -16,7 +16,7 @@ func int Spell_Logic_InstantFireball(var int manaInvested)
 	{
 		return SPL_SENDCAST;
 	}
-	else if(self.attribute[ATR_MANA] >= SPL_COST_InstantFireball)
+	else if(self.attribute[ATR_MANA] >= SPL_Cost_InstantFireball)
 	{
 		return SPL_SENDCAST;
 	};
@@ -31,7 +31,7 @@ func void Spell_Cast_InstantFireball()
 	}
 	else
 	{
-		self.attribute[ATR_MANA] -= SPL_COST_InstantFireball;
+		self.attribute[ATR_MANA] -= SPL_Cost_InstantFireball;
 	};
 	self.aivar[AIV_SelectSpell] += 1;
 };

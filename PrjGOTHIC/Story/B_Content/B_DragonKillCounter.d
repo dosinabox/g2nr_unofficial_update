@@ -10,7 +10,7 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 	{
 		if(MIS_AllDragonsDead == FALSE)
 		{
-			if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(SwampDragon))
+			if(C_IsNpc(current_dragon,Dragon_Swamp))
 			{
 				if(SwampDragonIsDead == FALSE)
 				{
@@ -18,7 +18,7 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 					SwampDragonIsDead = TRUE;
 				};
 			}
-			else if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(RockDragon))
+			else if(C_IsNpc(current_dragon,Dragon_Rock))
 			{
 				if(RockDragonIsDead == FALSE)
 				{
@@ -26,7 +26,7 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 					RockDragonIsDead = TRUE;
 				};
 			}
-			else if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(FireDragon))
+			else if(C_IsNpc(current_dragon,Dragon_Fire))
 			{
 				if(FireDragonIsDead == FALSE)
 				{
@@ -34,14 +34,14 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 					FireDragonIsDead = TRUE;
 				};
 			}
-			else if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(IceDragon))
+			else if(C_IsNpc(current_dragon,Dragon_Ice))
 			{
 				if(IceDragonIsDead == FALSE)
 				{
-					if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2) && !Npc_IsDead(DJG_Sylvio))
+					if(C_SylvioGolemsDead() && !Npc_IsDead(DJG_Sylvio))
 					{
-						B_StartOtherRoutine(DJG_Sylvio,"IceDragon");
-						B_StartOtherRoutine(DJG_Bullco,"IceDragon");
+						B_StartOtherRoutine(DJG_Sylvio,"ICEDRAGON");
+						B_StartOtherRoutine(DJG_Bullco,"ICEDRAGON");
 					};
 					MIS_KilledDragons += 1;
 					IceDragonIsDead = TRUE;
@@ -57,12 +57,23 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 					};
 				};
 				MIS_AllDragonsDead = TRUE;
+				STORYPOINT[SP_C4_P2] = TRUE;
+				CurrentStoryPoint = SP_C4_P2;
 				B_CheckLog();
+			};
+		};
+		if(FireDragonIslandIsDead == FALSE)
+		{
+			if(C_IsNpc(current_dragon,Dragon_Fire_Island))
+			{
+				FireDragonIslandIsDead = TRUE;
+				STORYPOINT[SP_C6_P2] = TRUE;
+				CurrentStoryPoint = SP_C6_P2;
 			};
 		};
 		if(UndeadDragonIsDead == FALSE)
 		{
-			if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(UndeadDragon))
+			if(C_IsNpc(current_dragon,Dragon_Undead))
 			{
 				if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 				{
@@ -78,16 +89,18 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 				};
 				AI_Teleport(hero,"UNDEAD_ENDTELEPORT");
 				Log_CreateTopic(TOPIC_BackToShip,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_BackToShip,LOG_Running);
+				Log_SetTopicStatus(TOPIC_BackToShip,LOG_RUNNING);
 				B_LogEntry(TOPIC_BackToShip,PRINT_DragKillCount);
 				UndeadDragonIsDead = TRUE;
+				STORYPOINT[SP_C6_P3] = TRUE;
+				CurrentStoryPoint = SP_C6_P3;
 				B_CheckLog();
 			};
 		};
 	}
 	else if(RavenIsDead == FALSE)
 	{
-		if(Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(Raven))
+		if(C_IsNpc(current_dragon,BDT_1090_Addon_Raven))
 		{
 			PlayVideoEx("EXTRO_RAVEN.BIK",TRUE,FALSE);
 			B_RemoveNpc(KDW_14030_Addon_Myxir_ADW);
@@ -95,9 +108,11 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 			{
 				ADW_Myxir_Removed_Forever = TRUE;
 			};
-			B_StartOtherRoutine(KDW_14020_Addon_Nefarius_ADW,"MyxirLeft");
+			B_StartOtherRoutine(Nefarius_ADW,"MYXIRLEFT");
 			Saturas_KnowsHow2GetInTempel = TRUE;
 			RavenIsDead = TRUE;
+			STORYPOINT_ADDON[SP_A5] = TRUE;
+			CurrentAddonStoryPoint = SP_A5;
 			B_CheckLog();
 		};
 	};

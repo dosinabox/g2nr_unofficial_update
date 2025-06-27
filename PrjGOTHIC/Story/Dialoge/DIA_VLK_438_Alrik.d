@@ -27,7 +27,6 @@ instance DIA_Alrik_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_Hallo_Condition;
 	information = DIA_Alrik_Hallo_Info;
-	permanent = FALSE;
 	description = "Что ты делаешь здесь?";
 };
 
@@ -62,7 +61,6 @@ instance DIA_Alrik_YouFight(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_YouFight_Condition;
 	information = DIA_Alrik_YouFight_Info;
-	permanent = FALSE;
 	description = "Ты устраиваешь бои?";
 };
 
@@ -93,7 +91,6 @@ instance DIA_Alrik_Regeln(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_Regeln_Condition;
 	information = DIA_Alrik_Regeln_Info;
-	permanent = FALSE;
 	description = "Каковы правила боев?";
 };
 
@@ -124,7 +121,7 @@ func void B_Alrik_Again()
 		AI_Standup(self);
 		B_TurnToNpc(self,other);
 	};
-	if(Alrik_ArenaKampfVerloren_Day <= (Wld_GetDay() - 2))
+	if(C_DaysSinceEvent(Alrik_ArenaKampfVerloren_Day,2))
 	{
 		AI_Output(self,other,"DIA_Alrik_Add_09_03");	//Как дела? Ты хочешь сразиться со мной еще раз? Я думаю, за это время я стал лучше...
 	}
@@ -143,7 +140,6 @@ instance DIA_Alrik_NewFights3(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_NewFights3_Condition;
 	information = DIA_Alrik_NewFights3_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -176,7 +172,6 @@ instance DIA_Alrik_NewFights5(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_NewFights5_Condition;
 	information = DIA_Alrik_NewFights5_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -242,7 +237,7 @@ func void DIA_Alrik_WannaFight_Info()
 			AI_Output(self,other,"DIA_Alrik_WannaFight_09_03");	//Мне несколько дней назад пришлось продать свой меч.
 			AI_Output(self,other,"DIA_Alrik_WannaFight_09_04");	//С ним я непобедим! Если ты вернешь его мне, я готов опять сражаться с тобой!
 			Log_CreateTopic(TOPIC_AlrikSchwert,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_AlrikSchwert,LOG_Running);
+			Log_SetTopicStatus(TOPIC_AlrikSchwert,LOG_RUNNING);
 			if(Npc_KnowsInfo(other,DIA_Alrik_WerSchwert))
 			{
 				B_LogEntry(TOPIC_AlrikSchwert,"Альрик продал свой меч торговцу Джоре. Он будет сражаться со мной, только если я верну ему его меч.");
@@ -403,7 +398,7 @@ func void DIA_Alrik_AfterFight_Info()
 			{
 				AI_Output(self,other,"DIA_Alrik_AfterFight_09_04");	//Ты пошарил в моих карманах, пока я был без сознания!
 				AI_Output(self,other,"DIA_Alrik_AfterFight_09_05");	//Это дурной тон! Но ладно, эти деньги все равно были твоими! Вот остальное.
-				B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
+				B_GiveAllInvItems(self,other,ItMi_Gold);
 			};
 			Alrik_ArenaKampfVerloren += 1;
 			Alrik_ArenaKampfVerloren_Day = Wld_GetDay();
@@ -459,7 +454,6 @@ instance DIA_Alrik_DuWohnst(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_DuWohnst_Condition;
 	information = DIA_Alrik_DuWohnst_Info;
-	permanent = FALSE;
 	description = "Ты 'живешь' за этим складом?";
 };
 
@@ -489,7 +483,6 @@ instance DIA_Alrik_WerSchwert(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_WerSchwert_Condition;
 	information = DIA_Alrik_WerSchwert_Info;
-	permanent = FALSE;
 	description = "Кому ты продал свой меч?";
 };
 
@@ -508,12 +501,19 @@ func void DIA_Alrik_WerSchwert_Info()
 	AI_Output(self,other,"DIA_Alrik_WerSchwert_09_01");	//Я обменял его у торговца с рыночной площади на кое-какие вещи.
 	AI_Output(self,other,"DIA_Alrik_WerSchwert_09_02");	//Его зовут Джора. Факелы и мясо, что он дал мне, давно закончились.
 	AI_Output(other,self,"DIA_Alrik_WerSchwert_15_03");	//Он вряд ли отдаст мне этот меч просто так...
-	AI_Output(self,other,"DIA_Alrik_WerSchwert_09_04");	//Это старый меч. Он вряд ли много за него запросит. Просто думай об этих деньгах, как о дополнительной ставке. (ухмыляется)
+	if(Npc_KnowsInfo(other,DIA_Alrik_Regeln))
+	{
+		AI_Output(self,other,"DIA_Alrik_WerSchwert_09_04");	//Это старый меч, он вряд ли много за него запросит. Просто думай об этих деньгах, как о дополнительной ставке. (ухмыляется)
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Alrik_WerSchwert_09_04_add");	//Это старый меч, он вряд ли много за него запросит.
+	};
 	if(Alrik_Sword_Once == TRUE)
 	{
 		B_LogEntry(TOPIC_AlrikSchwert,"Альрик продал свой меч торговцу Джоре.");
 	};
-	MIS_Alrik_Sword = LOG_Running;
+	MIS_Alrik_Sword = LOG_RUNNING;
 };
 
 
@@ -573,7 +573,6 @@ instance DIA_Alrik_Krieg(C_Info)
 	nr = 1;
 	condition = DIA_Alrik_Krieg_Condition;
 	information = DIA_Alrik_Krieg_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о войне с орками?";
 };
 

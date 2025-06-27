@@ -13,7 +13,7 @@ func void B_CloseTopic(var string topic,var int MissionVar,var int CommonVar,var
 	{
 		Log_SetTopicStatus(topic,LOG_FAILED);
 	}
-	else if((Kapitel >= EndChapter) && ((MissionVar == LOG_Running) || (CommonVar == FALSE)))
+	else if((Kapitel >= EndChapter) && ((MissionVar == LOG_RUNNING) || (CommonVar == FALSE)))
 	{
 		Log_SetTopicStatus(topic,LOG_OBSOLETE);
 	};

@@ -27,7 +27,6 @@ instance DIA_Ulthar_GREET(C_Info)
 	nr = 2;
 	condition = DIA_Ulthar_GREET_Condition;
 	information = DIA_Ulthar_GREET_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -111,7 +110,6 @@ instance DIA_Ulthar_TEST(C_Info)
 	nr = 10;
 	condition = DIA_Ulthar_TEST_Condition;
 	information = DIA_Ulthar_TEST_Info;
-	permanent = FALSE;
 	description = "Я готов пройти твое испытание, Мастер.";
 };
 
@@ -134,9 +132,9 @@ func void DIA_Ulthar_TEST_Info()
 	AI_Output(other,self,"DIA_Ulthar_TEST_15_05");	//Недолго ему осталось быть единственным, кто прошел это испытание.
 	AI_Output(self,other,"DIA_Ulthar_TEST_05_06");	//Тогда я не буду больше испытывать твое терпение. Вот мое испытание для тебя:
 	AI_Output(self,other,"DIA_Ulthar_TEST_05_07");	//Создай руну 'Огненная стрела'. Это все - да поможет тебе Иннос.
-	MIS_Rune = LOG_Running;
+	MIS_Rune = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Rune,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Rune,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Rune,LOG_RUNNING);
 	B_LogEntry(TOPIC_Rune,"Ультар дал мне испытание. Я должен создать руну 'Огненная стрела'.");
 	AI_StopProcessInfos(self);
 };
@@ -155,7 +153,7 @@ instance DIA_Ulthar_RUNNING(C_Info)
 
 func int DIA_Ulthar_RUNNING_Condition()
 {
-	if((MIS_Rune == LOG_Running) && Npc_IsInState(self,ZS_Talk) && !Npc_HasItems(other,ItRu_FireBolt))
+	if((MIS_Rune == LOG_RUNNING) && Npc_IsInState(self,ZS_Talk) && !Npc_HasItems(other,ItRu_FireBolt))
 	{
 		return TRUE;
 	};
@@ -174,14 +172,13 @@ instance DIA_Ulthar_SUCCESS(C_Info)
 	nr = 2;
 	condition = DIA_Ulthar_SUCCESS_Condition;
 	information = DIA_Ulthar_SUCCESS_Info;
-	permanent = FALSE;
 	description = "Я создал руну!";
 };
 
 
 func int DIA_Ulthar_SUCCESS_Condition()
 {
-	if((MIS_Rune == LOG_Running) && Npc_HasItems(hero,ItRu_FireBolt))
+	if((MIS_Rune == LOG_RUNNING) && Npc_HasItems(other,ItRu_FireBolt))
 	{
 		return TRUE;
 	};
@@ -193,7 +190,7 @@ func void DIA_Ulthar_SUCCESS_Info()
 	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_01");	//Отлично, послушник. Храни ее - свою первую руну.
 	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_02");	//Когда ты достигнешь первого Круга Огня, ты сможешь использовать ее.
 	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_03");	//Ты прошел это испытание, к моему полному удовлетворению.
-	if((MIS_Golem == LOG_Running) && !Npc_IsDead(Magic_Golem))
+	if((MIS_Golem == LOG_RUNNING) && !Npc_IsDead(Magic_Golem))
 	{
 		AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_04");	//Но опасное испытание, что приготовил Серпентес, еще ожидает тебя!
 	};
@@ -224,7 +221,7 @@ func int DIA_Ulthar_PermAbKap3_Condition()
 func void DIA_Ulthar_PermAbKap3_Info()
 {
 	AI_Output(other,self,"DIA_Ulthar_PermAbKap3_15_00");	//Есть новости?
-	if(hero.guild != GIL_KDF)
+	if(other.guild != GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Ulthar_PermAbKap3_05_01");	//Пока нет. Иди и занимайся своими задачами. Тебе еще многое нужно сделать.
 	}
@@ -281,14 +278,14 @@ func void DIA_Ulthar_SCHREINEVERGIFTET_Info()
 		};
 	};
 	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_07");	//Теперь иди и выполняй свои поручения.
-	MIS_Ulthar_HeileSchreine_PAL = LOG_Running;
+	MIS_Ulthar_HeileSchreine_PAL = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Ulthar_HeileSchreine_PAL,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Ulthar_HeileSchreine_PAL,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Ulthar_HeileSchreine_PAL,LOG_RUNNING);
 	if(!Npc_HasItems(other,ItWr_Map_Shrine_MIS) && !Npc_IsDead(Gorax) && (Gorax_Trade == FALSE))
 	{
 		B_LogEntries(TOPIC_Ulthar_HeileSchreine_PAL,"Ультар дал мне задание очистить при помощи святой воды все алтари, оскверненные врагом.");
-		Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-		B_LogNextEntry(Topic_KlosterTrader,"Мастер Горакс в монастыре может предоставить мне все, что мне нужно.");
+		Log_CreateTopic(TOPIC_KlosterTrader,LOG_NOTE);
+		B_LogNextEntry(TOPIC_KlosterTrader,"Мастер Горакс в монастыре может предоставить мне все, что мне нужно.");
 		Gorax_Trade = TRUE;
 	}
 	else
@@ -321,7 +318,7 @@ func void DIA_Ulthar_WARN_Info()
 {
 	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_08");	//Еще одно. Держись подальше от придорожных алтарей. Мы слышали, что некоторые из них были осквернены.
 	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_09");	//Никто не знает, как теперь они действуют.
-	if(hero.guild != GIL_MIL)
+	if(other.guild != GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_10");	//Тебя не должна волновать эта проблема. О ней позаботятся паладины.
 	};

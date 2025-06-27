@@ -27,7 +27,6 @@ instance DIA_Lester_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Lester_Hello_Condition;
 	information = DIA_Lester_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -98,7 +97,6 @@ instance DIA_Lester_WhatHappened(C_Info)
 	nr = 1;
 	condition = DIA_Lester_WhatHappened_Condition;
 	information = DIA_Lester_WhatHappened_Info;
-	permanent = FALSE;
 	description = "„то произошло?";
 };
 
@@ -131,7 +129,6 @@ instance DIA_Lester_MineColony(C_Info)
 	nr = 2;
 	condition = DIA_Lester_MineColony_Condition;
 	information = DIA_Lester_MineColony_Info;
-	permanent = FALSE;
 	description = "—колько ты уже скрываешьс€ в этой долине?";
 };
 
@@ -162,7 +159,6 @@ instance DIA_Lester_SEND_XARDAS(C_Info)
 	nr = 4;
 	condition = DIA_Lester_SEND_XARDAS_Condition;
 	information = DIA_Lester_SEND_XARDAS_Info;
-	permanent = FALSE;
 	description = "“ы должен рассказать  сардасу об этой тени. Ёто может быть важно.";
 };
 
@@ -210,7 +206,7 @@ instance DIA_Addon_Lester_STADT(C_Info)
 
 func int DIA_Addon_Lester_STADT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lester_Hello) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Lester_Hello) && (CityPassGranted == FALSE) && (PlayerEnteredCity == FALSE))
 	{
 		return TRUE;
 	};
@@ -238,7 +234,7 @@ instance DIA_Addon_Lester_Vorschlag(C_Info)
 
 func int DIA_Addon_Lester_Vorschlag_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Lester_STADT) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Lester_STADT) && (CityPassGranted == FALSE) && (PlayerEnteredCity == FALSE))
 	{
 		return TRUE;
 	};
@@ -255,9 +251,9 @@ func void DIA_Addon_Lester_Vorschlag_Info()
 	AI_Output(self,other,"DIA_Addon_Lester_Vorschlag_13_06");	//ƒумаю, дес€ти одинаковых растений будет достаточно.
 	AI_Output(other,self,"DIA_Addon_Lester_Vorschlag_15_07");	//—пасибо за совет.
 	Log_CreateTopic(TOPIC_Addon_PickForConstantino,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_PickForConstantino,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_PickForConstantino,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_PickForConstantino,"Ћестер говорит, что € могу пройти мимо городской стражи, если у мен€ будет 10 растений одного вида, и если € скажу им, что они предназначены дл€ алхимика  онстантино.");
-	MIS_Addon_Lester_PickForConstantino = LOG_Running;
+	MIS_Addon_Lester_PickForConstantino = LOG_RUNNING;
 };
 
 
@@ -400,7 +396,7 @@ var int DIA_Lester_PERM3_OneTime;
 func void DIA_Lester_PERM3_Info()
 {
 	AI_Output(other,self,"DIA_Lester_PERM3_15_00");	//“ы не очень-то хорошо выгл€дишь.
-	if((hero.guild == GIL_KDF) && (DIA_Lester_PERM3_OneTime == FALSE))
+	if((other.guild == GIL_KDF) && (DIA_Lester_PERM3_OneTime == FALSE))
 	{
 		AI_Output(self,other,"DIA_Lester_PERM3_13_01");	//я и чувствую себ€ не очень хорошо. я совершенно обессилен, и еще эти посто€нные головные боли...
 		AI_Output(self,other,"DIA_Lester_PERM3_13_02");	// аждый раз, когда один из этих парней в черных р€сах по€вл€етс€ здесь, они только усиливаютс€.
@@ -425,7 +421,7 @@ func void DIA_Lester_PERM3_Info()
 		AI_Output(self,other,"DIA_Lester_PERM3_13_12");	//√оловные боли все еще мучают мен€, но € надеюсь, эта проблема скоро будет решена.
 		AI_Output(self,other,"DIA_Lester_PERM3_13_13");	//“ак или иначе.
 	}
-	else if((hero.guild == GIL_DJG) && (Kapitel >= 4))
+	else if((other.guild == GIL_DJG) && (Kapitel >= 4))
 	{
 		AI_Output(self,other,"DIA_Lester_PERM3_13_14");	//ћои головные боли стали просто невыносимыми. ј теперь еще эти люди-€щеры посто€нно нападают на мен€. я задаю себе вопрос - откуда они все вз€лись?
 	}
@@ -499,7 +495,7 @@ func void DIA_Lester_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_03");	//я не могу объ€снить этого, но € знаю, что смогу получить ответ, только если отправлюсь с тобой.
 	if(SCToldLesterHeKnowWhereEnemy == FALSE)
 	{
-		B_LogEntry(Topic_Crew,"Ћестер может обладать ценной информацией.");
+		B_LogEntry(TOPIC_Crew,"Ћестер может обладать ценной информацией.");
 		SCToldLesterHeKnowWhereEnemy = TRUE;
 	};
 	if(Crewmember_Count >= Max_Crew)

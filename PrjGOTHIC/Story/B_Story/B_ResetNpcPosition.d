@@ -1,7 +1,7 @@
 
 func void B_ResetSergio()
 {
-	if((EnterOW_Kapitel2 == TRUE) && (Sergio_Follow == TRUE) && (Sergio_Follow_End == FALSE))
+	if(Sergio_GuideStatus == LOG_RUNNING)
 	{
 		if(!Npc_IsDead(Sergio))
 		{
@@ -16,7 +16,7 @@ func void B_ResetSergio()
 					Npc_ExchangeRoutine(Sergio,"START");
 				};
 				Sergio.aivar[AIV_PARTYMEMBER] = FALSE;
-				Sergio_Follow_End = TRUE;
+				Sergio_GuideStatus = LOG_SUCCESS;
 			};
 		};
 	};
@@ -24,11 +24,12 @@ func void B_ResetSergio()
 
 func void B_ResetFernando()
 {
-	if((Fernando_ImKnast == FALSE) && (Kapitel >= 2) && (MIS_Fernando_Erz == FALSE))
+	if((Fernando_ImKnast == FALSE) && (MIS_Fernando_Erz == FALSE))
 	{
 		if(!Npc_IsDead(Fernando))
 		{
 			Npc_ExchangeRoutine(Fernando,"START");
+			MIS_Fernando_Erz = LOG_OBSOLETE;
 		};
 	};
 };
@@ -59,8 +60,11 @@ func void B_ResetLares()
 	{
 		LaresGuide_OrnamentForest = 0;
 	};
-	Lares.aivar[AIV_PARTYMEMBER] = FALSE;
-	B_StartOtherRoutine(Lares,"START");
+	if(!Npc_IsDead(Lares))
+	{
+		B_StartOtherRoutine(Lares,"START");
+		Lares.aivar[AIV_PARTYMEMBER] = FALSE;
+	};
 	B_StartOtherRoutine(BridgeBandit,"INTERCEPT");
 };
 
@@ -70,8 +74,8 @@ func void B_ResetWolfSLDs()
 	{
 		if(Npc_IsDead(SLD_Wolf))
 		{
-			B_StartOtherRoutine(SLD_815_Soeldner,"START");
-			B_StartOtherRoutine(SLD_817_Soeldner,"START");
+			B_StartOtherRoutine(SLD_815,"START");
+			B_StartOtherRoutine(SLD_817,"START");
 			MIS_BengarsHelpingSLD = LOG_OBSOLETE;
 		};
 	};
@@ -83,16 +87,16 @@ func void B_ResetHenryPirates()
 	{
 		if(SawPirate.aivar[AIV_PARTYMEMBER] == TRUE)
 		{
-			SawPirate.aivar[AIV_PARTYMEMBER] = FALSE;
 			Npc_ExchangeRoutine(SawPirate,"START");
+			SawPirate.aivar[AIV_PARTYMEMBER] = FALSE;
 		};
 	};
 	if(!Npc_IsDead(HammerPirate))
 	{
 		if(HammerPirate.aivar[AIV_PARTYMEMBER] == TRUE)
 		{
-			HammerPirate.aivar[AIV_PARTYMEMBER] = FALSE;
 			Npc_ExchangeRoutine(HammerPirate,"START");
+			HammerPirate.aivar[AIV_PARTYMEMBER] = FALSE;
 		};
 	};
 };

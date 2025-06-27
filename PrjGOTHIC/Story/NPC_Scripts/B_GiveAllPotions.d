@@ -14,12 +14,6 @@ func void B_GiveAllClassicPotions(var C_Npc npc)
 	CreateInvItems(npc,ItPo_Perm_LittleMana,10);
 	CreateInvItems(npc,ItPo_Speed,10);
 	CreateInvItems(npc,ItPo_MegaDrink,10);
-	CreateInvItems(npc,ItPo_HealHilda_MIS,10);
-	CreateInvItems(npc,ItPo_HealRandolph_MIS,10);
-	CreateInvItems(npc,ItPo_HealObsession_MIS,10);
-	CreateInvItems(npc,ItPo_DragonEggDrinkNeoras_MIS,1);
-	CreateInvItems(npc,ItPo_PotionOfDeath_01_MIS,1);
-	CreateInvItems(npc,ItPo_PotionOfDeath_02_MIS,1);
 };
 
 func void B_GiveAllAddonPotions(var C_Npc npc)

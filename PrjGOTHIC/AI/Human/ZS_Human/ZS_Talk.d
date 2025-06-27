@@ -11,7 +11,7 @@ func void ZS_Talk()
 	B_SetFaceExpression(self,other);
 	self.aivar[AIV_INVINCIBLE] = TRUE;
 	other.aivar[AIV_INVINCIBLE] = TRUE;
-	if(self.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(self))
 	{
 		if(C_BodyStateContains(self,BS_SIT))
 		{
@@ -39,7 +39,7 @@ func void ZS_Talk()
 			AI_Dodge(other);
 		};
 	};
-	if(self.guild < GIL_SEPERATOR_HUM)
+	if(C_NpcIsHuman(self))
 	{
 		if(self.aivar[AIV_DexToSteal] > 0)
 		{
@@ -55,7 +55,7 @@ func void ZS_Talk()
 		};
 		if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 		{
-			if((Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff_NW)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Biff_DI)))
+			if(!C_IsNpc(self,DJG_713_Biff) && !C_IsNpc(self,DJG_713_Biff_NW) && !C_IsNpc(self,DJG_713_Biff_DI))
 			{
 				B_Addon_GivePotion(self);
 			};
@@ -68,22 +68,22 @@ func void ZS_Talk()
 		{
 			B_AssignAmbientNEWS(self);
 		};
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lucia))
+		if(C_IsNpc(self,BDT_1091_Addon_Lucia))
 		{
 			if(MIS_LookingForLucia == FALSE)
 			{
 				MIS_LookingForLucia = LOG_SUCCESS;
 			};
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Myxir_NW))
+		else if(C_IsNpc(self,KDW_1403_Addon_Myxir_NW))
 		{
 			B_AssignMyxirTeach(self);
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Myxir_ADW))
+		else if(C_IsNpc(self,KDW_14030_Addon_Myxir_ADW))
 		{
 			B_AssignMyxirTeach(self);
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Myxir_CITY))
+		else if(C_IsNpc(self,KDW_140300_Addon_Myxir_CITY))
 		{
 			B_AssignMyxirTeach(self);
 		};
@@ -104,7 +104,7 @@ func int ZS_Talk_Loop()
 		other.aivar[AIV_INVINCIBLE] = FALSE;
 		self.aivar[AIV_NpcStartedTalk] = FALSE;
 		self.aivar[AIV_TalkedToPlayer] = TRUE;
-		if(self.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(self))
 		{
 			B_StopLookAt(self);
 			B_ResetFaceExpression(self);
@@ -131,11 +131,11 @@ func void ZS_Talk_End()
 		{
 			return;
 		};
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cornelius))
+		if(C_IsNpc(self,VLK_401_Cornelius))
 		{
 			return;
 		};
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Salandril))
+		if(C_IsNpc(self,VLK_422_Salandril))
 		{
 			if(Salandril_SentToMonastery == TRUE)
 			{

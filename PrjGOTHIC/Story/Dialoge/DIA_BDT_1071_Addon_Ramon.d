@@ -89,9 +89,9 @@ func void DIA_Addon_Ramon_FirstWarn_Info()
 			AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_17");	//Командир нижнего лагеря. Он определяет, кто пойдет в шахту.
 		};
 		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_18");	//Так что скажи Франко, что Торусу нужен новый человек. Понял?
-		Log_CreateTopic(Topic_Addon_Franco,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Addon_Franco,LOG_Running);
-		B_LogEntry(Topic_Addon_Franco,"Торусу нужен еще один человек. Это может заинтересовать Франко.");
+		Log_CreateTopic(TOPIC_Addon_Franco,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_Franco,LOG_RUNNING);
+		B_LogEntry(TOPIC_Addon_Franco,"Торусу нужен еще один человек. Это может заинтересовать Франко.");
 		Info_ClearChoices(DIA_Addon_Ramon_FirstWarn);
 		Info_AddChoice(DIA_Addon_Ramon_FirstWarn,"Торус? Сам Торус?",DIA_Addon_Ramon_FirstWarn_YES);
 		Info_AddChoice(DIA_Addon_Ramon_FirstWarn,"Торус? Никогда про него слышал...",DIA_Addon_Ramon_FirstWarn_NO);
@@ -192,7 +192,6 @@ instance DIA_Addon_Ramon_News(C_Info)
 	nr = 10;
 	condition = DIA_Addon_Ramon_News_Condition;
 	information = DIA_Addon_Ramon_News_Info;
-	permanent = FALSE;
 	description = "Я тот новый человек.";
 };
 
@@ -218,7 +217,6 @@ instance DIA_Addon_Ramon_Lie(C_Info)
 	nr = 10;
 	condition = DIA_Addon_Ramon_Lie_Condition;
 	information = DIA_Addon_Ramon_Lie_Info;
-	permanent = FALSE;
 	description = "Франко послал меня...";
 };
 

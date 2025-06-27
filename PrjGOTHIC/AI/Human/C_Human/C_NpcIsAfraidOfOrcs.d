@@ -9,27 +9,27 @@ func int C_NpcIsAfraidOfOrcs(var C_Npc slf)
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Mario))
+	if(C_IsNpc(slf,NONE_101_Mario))
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(DiegoNW))
+	if(C_IsNpc(slf,PC_Thief_NW))
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lares))
+	if(C_IsNpc(slf,VLK_449_Lares))
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bartok))
+	if(C_IsNpc(slf,VLK_440_Bartok))
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lester))
+	if(C_IsNpc(slf,PC_Psionic))
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cavalorn))
+	if(C_IsNpc(slf,BAU_4300_Addon_Cavalorn))
 	{
 		return FALSE;
 	};

@@ -27,6 +27,12 @@ func void Rtn_Start_1116()
 	TA_Sit_Bench(23,0,8,0,"OW_DJG_VORPOSTEN_01");
 };
 
+func void Rtn_Escape_1116()
+{
+	TA_Sleep(8,0,23,0,"SPAWN_OW_BLACKGOBBO_A2");
+	TA_Sleep(23,0,8,0,"SPAWN_OW_BLACKGOBBO_A2");
+};
+
 func void Rtn_Tot_1116()
 {
 	TA_Sleep(8,0,23,0,"TOT");

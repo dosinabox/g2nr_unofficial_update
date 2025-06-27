@@ -126,7 +126,7 @@ func int DIA_Jarvis_LeesPlan_Condition()
 func void DIA_Jarvis_LeesPlan_Info()
 {
 	AI_Output(other,self,"DIA_Jarvis_LeesPlan_15_00");	//Ты знаешь, что собирается делать Ли?
-	if((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL))
+	if((other.guild != GIL_MIL) && (other.guild != GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Jarvis_LeesPlan_04_01");	//Ли хочет, чтобы мы выжидали и морили голодом паладинов в городе.
 	};
@@ -207,7 +207,7 @@ instance DIA_Jarvis_MissionKO(C_Info)
 
 func int DIA_Jarvis_MissionKO_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jarvis_WannaJoin) && Npc_KnowsInfo(other,DIA_Jarvis_DieLage))
+	if(Npc_KnowsInfo(other,DIA_Jarvis_WannaJoin) && Npc_KnowsInfo(other,DIA_Jarvis_DieLage) && (MIS_ReadyforChapter4 == FALSE))
 	{
 		return TRUE;
 	};
@@ -218,10 +218,10 @@ func void DIA_Jarvis_MissionKO_Info()
 	AI_Output(other,self,"DIA_Jarvis_MissionKO_15_00");	//И что я должен сделать?
 	AI_Output(self,other,"DIA_Jarvis_MissionKO_04_01");	//Это просто. Отдубась нескольких парней Сильвио! Так обе стороны сразу поймут, с кем ты.
 	AI_Output(self,other,"DIA_Jarvis_MissionKO_04_02");	//А если ты будешь придерживаться правил дуэли, ты даже сможешь завоевать уважение остальных.
-	MIS_Jarvis_SldKO = LOG_Running;
+	MIS_Jarvis_SldKO = LOG_RUNNING;
 	self.aivar[AIV_IGNORE_Murder] = TRUE;
 	Log_CreateTopic(TOPIC_JarvisSLDKo,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_JarvisSLDKo,LOG_Running);
+	Log_SetTopicStatus(TOPIC_JarvisSLDKo,LOG_RUNNING);
 	if(other.guild == GIL_NONE)
 	{
 		B_LogEntry(TOPIC_JarvisSLDKo,"Джарвис хочет, чтобы я вырубил парочку парней Сильвио. Тогда он проголосует за меня.");
@@ -232,6 +232,21 @@ func void DIA_Jarvis_MissionKO_Info()
 	};
 };
 
+
+var int Jarvis_SylvioComment;
+
+func void B_Jarvis_SylvioLeft()
+{
+	AI_Output(self,other,"DIA_Jarvis_PERM_04_04");	//Сильвио наконец-то свалил. После того, как он услышал о драконах, он со своими парнями отправился в колонию.
+	AI_Output(self,other,"DIA_Jarvis_PERM_04_05");	//Он, вероятно, думает, что там будет лучше.
+	if(MIS_Jarvis_SldKO == LOG_RUNNING)
+	{
+		self.aivar[AIV_IGNORE_Murder] = FALSE;
+		MIS_Jarvis_SldKO = LOG_FAILED;
+		B_CheckLog();
+	};
+	Jarvis_SylvioComment = TRUE;
+};
 
 instance DIA_Jarvis_DuellRegeln(C_Info)
 {
@@ -246,7 +261,7 @@ instance DIA_Jarvis_DuellRegeln(C_Info)
 
 func int DIA_Jarvis_DuellRegeln_Condition()
 {
-	if(MIS_Jarvis_SldKO == LOG_Running)
+	if(MIS_Jarvis_SldKO == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -255,9 +270,16 @@ func int DIA_Jarvis_DuellRegeln_Condition()
 func void DIA_Jarvis_DuellRegeln_Info()
 {
 	AI_Output(other,self,"DIA_Jarvis_DuellRegeln_15_00");	//Что за правила дуэлей?
-	AI_Output(self,other,"DIA_Jarvis_DuellRegeln_04_01");	//Поговори с Торлофом, он все объяснит, если тебе это интересно.
-	AI_Output(self,other,"DIA_Jarvis_DuellRegeln_04_02");	//Я хочу, чтобы между нами не было недопонимания: меня не волнует, будешь ты придерживаться этих правил или нет. Если только тебе удастся извалять этих парней в грязи!
-	B_LogEntry(TOPIC_JarvisSLDKo,"И мне даже не нужно придерживаться этих дурацких правил дуэли...");
+	if(MIS_ReadyforChapter4 == FALSE)
+	{
+		AI_Output(self,other,"DIA_Jarvis_DuellRegeln_04_01");	//Поговори с Торлофом, он все объяснит, если тебе это интересно.
+		AI_Output(self,other,"DIA_Jarvis_DuellRegeln_04_02");	//Я хочу, чтобы между нами не было недопонимания: меня не волнует, будешь ты придерживаться этих правил или нет. Если только тебе удастся извалять этих парней в грязи!
+		B_LogEntry(TOPIC_JarvisSLDKo,"И мне даже не нужно придерживаться этих дурацких правил дуэли...");
+	}
+	else
+	{
+		B_Jarvis_SylvioLeft();
+	};
 };
 
 
@@ -274,7 +296,7 @@ instance DIA_Jarvis_SylviosMen(C_Info)
 
 func int DIA_Jarvis_SylviosMen_Condition()
 {
-	if(MIS_Jarvis_SldKO == LOG_Running)
+	if(MIS_Jarvis_SldKO == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -286,7 +308,14 @@ func void DIA_Jarvis_SylviosMen_Info()
 	AI_Output(self,other,"DIA_Jarvis_SylviosMen_04_01");	//Их шестеро. Прежде всего, сам Сильвио и его правая рука Буллко.
 	AI_Output(self,other,"DIA_Jarvis_SylviosMen_04_02");	//Также есть Род, Сентенза, Фестер и Рауль.
 	AI_Output(self,other,"DIA_Jarvis_SylviosMen_04_03");	//Остальные занимают либо нейтральную позицию, либо на стороне Ли.
-	B_LogEntry(TOPIC_JarvisSLDKo,"Люди Сильвио - это сам Сильвио, его правая рука Буллко, Род, Сентенза, Фестер и Рауль.");
+	if(MIS_ReadyforChapter4 == FALSE)
+	{
+		B_LogEntry(TOPIC_JarvisSLDKo,"Люди Сильвио - это сам Сильвио, его правая рука Буллко, Род, Сентенза, Фестер и Рауль.");
+	}
+	else
+	{
+		B_Jarvis_SylvioLeft();
+	};
 };
 
 
@@ -303,7 +332,7 @@ instance DIA_Jarvis_HowMany(C_Info)
 
 func int DIA_Jarvis_HowMany_Condition()
 {
-	if(MIS_Jarvis_SldKO == LOG_Running)
+	if(MIS_Jarvis_SldKO == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -312,10 +341,17 @@ func int DIA_Jarvis_HowMany_Condition()
 func void DIA_Jarvis_HowMany_Info()
 {
 	AI_Output(other,self,"DIA_Jarvis_HowMany_15_00");	//И сколько людей Сильвио я должен победить?
-	AI_Output(self,other,"DIA_Jarvis_HowMany_04_01");	//Если ты вырубишь троих из них, ты докажешь, на чьей ты стороне.
-	AI_Output(self,other,"DIA_Jarvis_HowMany_04_02");	//Кого ты выберешь - это твое дело.
-	AI_Output(self,other,"DIA_Jarvis_HowMany_04_03");	//Дам одну подсказку: не стоит пытаться проявить мужество. Не выступай против самого Сильвио - он сделает из тебя котлету.
-	B_LogEntry(TOPIC_JarvisSLDKo,"Вполне достаточно, если я вырублю троих людей Сильвио. Впрочем, с самим Сильвио мне лучше пока не связываться.");
+	if(MIS_ReadyforChapter4 == FALSE)
+	{
+		AI_Output(self,other,"DIA_Jarvis_HowMany_04_01");	//Если ты вырубишь троих из них, ты докажешь, на чьей ты стороне.
+		AI_Output(self,other,"DIA_Jarvis_HowMany_04_02");	//Кого ты выберешь - это твое дело.
+		AI_Output(self,other,"DIA_Jarvis_HowMany_04_03");	//Дам одну подсказку: не стоит пытаться проявить мужество. Не выступай против самого Сильвио - он сделает из тебя котлету.
+		B_LogEntry(TOPIC_JarvisSLDKo,"Вполне достаточно, если я вырублю троих людей Сильвио. Впрочем, с самим Сильвио мне лучше пока не связываться.");
+	}
+	else
+	{
+		B_Jarvis_SylvioLeft();
+	};
 };
 
 
@@ -332,7 +368,7 @@ instance DIA_Jarvis_HowManyLeft(C_Info)
 
 func int DIA_Jarvis_HowManyLeft_Condition()
 {
-	if((MIS_Jarvis_SldKO == LOG_Running) && Npc_KnowsInfo(other,DIA_Jarvis_HowMany) && (Kapitel < 4))
+	if((MIS_Jarvis_SldKO == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Jarvis_HowMany))
 	{
 		return TRUE;
 	};
@@ -344,10 +380,7 @@ func void DIA_Jarvis_HowManyLeft_Info()
 	AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_00");	//Сколько людей Сильвио мне еще нужно уложить?
 	if(MIS_ReadyforChapter4 == TRUE)
 	{
-		AI_Output(self,other,"DIA_Jarvis_PERM_04_04");	//Сильвио наконец-то свалил. После того, как он услышал о драконах, он со своими парнями отправился в колонию.
-		MIS_Jarvis_SldKO = LOG_FAILED;
-		B_CheckLog();
-		self.aivar[AIV_IGNORE_Murder] = FALSE;
+		B_Jarvis_SylvioLeft();
 	}
 	else
 	{
@@ -426,7 +459,7 @@ func void DIA_Jarvis_HowManyLeft_Info()
 				if(Torlof_GenugStimmen == FALSE)
 				{
 					Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-					Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+					Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_RUNNING);
 				};
 				SCKnowsSLDVotes = TRUE;
 				B_LogEntry(TOPIC_SLDRespekt,"Джарвис проголосует за меня, если я решу присоединиться к наемникам.");
@@ -440,7 +473,6 @@ func void DIA_Jarvis_HowManyLeft_Info()
 
 
 var int Jarvis_GuildComment;
-var int Jarvis_SylvioComment;
 
 instance DIA_Jarvis_PERM(C_Info)
 {
@@ -464,7 +496,11 @@ func int DIA_Jarvis_PERM_Condition()
 func void DIA_Jarvis_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Jarvis_PERM_15_00");	//Есть новости?
-	if(Kapitel <= 3)
+	if((MIS_ReadyforChapter4 == TRUE) && (Jarvis_SylvioComment == FALSE))
+	{
+		B_Jarvis_SylvioLeft();
+	}
+	else if(Kapitel <= 3)
 	{
 		if(Jarvis_GuildComment == FALSE)
 		{
@@ -482,19 +518,10 @@ func void DIA_Jarvis_PERM_Info()
 		{
 			AI_Output(self,other,"DIA_Jarvis_PERM_04_03");	//Последнее время люди Сильвио ходят какие-то подавленные. (грязный смешок)
 		};
-	};
-	if(Kapitel >= 4)
+	}
+	else
 	{
-		if(Jarvis_SylvioComment == FALSE)
-		{
-			AI_Output(self,other,"DIA_Jarvis_PERM_04_04");	//Сильвио наконец-то свалил. После того, как он услышал о драконах, он со своими парнями отправился в колонию.
-			AI_Output(self,other,"DIA_Jarvis_PERM_04_05");	//Он, вероятно, думает, что там будет лучше.
-			Jarvis_SylvioComment = TRUE;
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Jarvis_PERM_04_06");	//Нет, пока все спокойно. Мне очень интересно, чем все это кончится.
-		};
+		AI_Output(self,other,"DIA_Jarvis_PERM_04_06");	//Нет, пока все спокойно. Мне очень интересно, чем все это кончится.
 	};
 };
 

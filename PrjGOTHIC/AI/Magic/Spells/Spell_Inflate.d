@@ -14,7 +14,7 @@ func int Spell_Logic_Inflate(var int manaInvested)
 {
 	if((Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll)) || (self.attribute[ATR_MANA] >= SPL_Cost_Inflate))
 	{
-		if(!C_NpcIsSwimming(other) && !C_NpcIsDown(other) && (other.guild < GIL_SEPERATOR_HUM) && (other.flags != NPC_FLAG_IMMORTAL) && (Npc_GetDistToNpc(self,other) <= 1000) && (other.guild != GIL_KDF) && (other.guild != GIL_DMT) && (other.guild != GIL_PAL))
+		if(!C_NpcIsSwimming(other) && !C_NpcIsDown(other) && C_NpcIsHuman(other) && !C_NpcIsImmortal(other) && (Npc_GetDistToNpc(self,other) <= 1000) && !C_NpcIsMage(other) && !C_NpcIsPaladin(other) && (other.guild != GIL_DMT))
 		{
 			Npc_ClearAIQueue(other);
 			B_ClearPerceptions(other);

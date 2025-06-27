@@ -7,6 +7,7 @@ instance BDT_1060_Dexter(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = NPCTYPE_MAIN;
+	aivar[AIV_SubGuild] = GIL_SUB_Dexter;
 	aivar[AIV_EnemyOverride] = TRUE;
 	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,2);

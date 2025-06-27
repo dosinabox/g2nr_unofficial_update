@@ -29,7 +29,6 @@ instance DIA_Addon_Lennar_Hi(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Lennar_Hi_Condition;
 	information = DIA_Addon_Lennar_Hi_Info;
-	permanent = FALSE;
 	description = "ѕривет.";
 };
 
@@ -54,14 +53,13 @@ instance DIA_Addon_Lennar_Attentat(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Lennar_Attentat_Condition;
 	information = DIA_Addon_Lennar_Attentat_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_ATTENTAT_DESCRIPTION2;
 };
 
 
 func int DIA_Addon_Lennar_Attentat_Condition()
 {
-	if(MIS_Judas == LOG_Running)
+	if(MIS_Judas == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -78,7 +76,7 @@ func void DIA_Addon_Lennar_Attentat_Info()
 	AI_Output(self,other,"DIA_Addon_Lennar_ATTENTAT_01_05");	//Ќо с момента нападени€ он только и делает, что сидит на скамейке.
 	AI_Output(self,other,"DIA_Addon_Lennar_ATTENTAT_01_06");	//Ёто же очевидно! „тобы попасть в шахту, он должен получить у Ёстебана красную табличку.
 	AI_Output(self,other,"DIA_Addon_Lennar_ATTENTAT_01_07");	//(шепотом) ƒумаю, он просто не в силах посмотреть ему в глаза.
-	B_LogEntry(Topic_Addon_Esteban,"Ћеннар подозревает Ёмилио, потому что он больше не ходит к Ёстебану.");
+	B_LogEntry(TOPIC_Addon_Esteban,"Ћеннар подозревает Ёмилио, потому что он больше не ходит к Ёстебану.");
 };
 
 
@@ -88,7 +86,6 @@ instance DIA_Addon_Lennar_Inspektor(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Lennar_Inspektor_Condition;
 	information = DIA_Addon_Lennar_Inspektor_Info;
-	permanent = FALSE;
 	description = "Ќо что получил бы Ёмилио от смерти Ёстебана?";
 };
 
@@ -115,14 +112,13 @@ instance DIA_Addon_Lennar_Mine(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Lennar_Mine_Condition;
 	information = DIA_Addon_Lennar_Mine_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_MINE_DESCRIPTION;
 };
 
 
 func int DIA_Addon_Lennar_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
+	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
 	{
 		return TRUE;
 	};
@@ -149,7 +145,6 @@ instance DIA_Addon_Lennar_Gold(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Lennar_Gold_Condition;
 	information = DIA_Addon_Lennar_Gold_Info;
-	permanent = FALSE;
 	description = "“ы мне можешь рассказать что-нибудь о добыче золота?";
 };
 

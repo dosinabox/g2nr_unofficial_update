@@ -130,7 +130,7 @@ const string MOBNAME_ADDON_TELEPORT_03 = "В болота";
 const string MOBNAME_ADDON_TELEPORT_04 = "В долину";
 const string MOBNAME_ADDON_TELEPORT_05 = "В каньон";
 
-const string TXT_GUILDS[66] =
+const string TXT_GUILDS[GIL_MAX] =
 {
 	"Нет гильдии",
 	"Паладин",
@@ -200,7 +200,7 @@ const string TXT_GUILDS[66] =
 	"GIL_EMPTY_Z"
 };
 
-const string TXT_SPELLS[100] =
+const string TXT_SPELLS[MAX_SPELL] =
 {
 	"Святой свет",
 	"Малое исцеление",
@@ -369,43 +369,43 @@ const string NAME_SPL_Deathbolt = "Стрела смерти";
 const string NAME_SPL_Deathball = "Шар смерти";
 const string NAME_SPL_ConcussionBolt = "Стрела сотрясения";
 const string NAME_SPL_Teleport_Maya = "Телепорт зодчих";
-const string NAME_SPL_Reserved_65 = "NAME_SPL_RESERVED_65";
-const string NAME_SPL_Reserved_66 = "NAME_SPL_RESERVED_66";
-const string NAME_SPL_Reserved_67 = "NAME_SPL_RESERVED_67";
-const string NAME_SPL_Reserved_68 = "NAME_SPL_RESERVED_68";
-const string NAME_SPL_Reserved_69 = "NAME_SPL_RESERVED_69";
+//const string NAME_SPL_Reserved_65 = "NAME_SPL_RESERVED_65";
+//const string NAME_SPL_Reserved_66 = "NAME_SPL_RESERVED_66";
+//const string NAME_SPL_Reserved_67 = "NAME_SPL_RESERVED_67";
+//const string NAME_SPL_Reserved_68 = "NAME_SPL_RESERVED_68";
+//const string NAME_SPL_Reserved_69 = "NAME_SPL_RESERVED_69";
 const string NAME_SPL_Thunderstorm = "Буря";
 const string NAME_SPL_Whirlwind = "Смерч";
 const string NAME_SPL_WaterFist = "Кулак воды";
 const string NAME_SPL_IceLance = "Ледяное копье";
 const string NAME_SPL_Inflate = "Надувание людей";
 const string NAME_SPL_Geyser = "Гейзер";
-const string NAME_SPL_Waterwall = "Водопад";
-const string NAME_SPL_Reserved_77 = "NAME_SPL_RESERVED_77";
-const string NAME_SPL_Reserved_78 = "NAME_SPL_RESERVED_78";
-const string NAME_SPL_Reserved_79 = "NAME_SPL_RESERVED_79";
-const string NAME_SPL_Plague = "Нашествие насекомых";
+//const string NAME_SPL_Waterwall = "Водопад";
+//const string NAME_SPL_Reserved_77 = "NAME_SPL_RESERVED_77";
+//const string NAME_SPL_Reserved_78 = "NAME_SPL_RESERVED_78";
+//const string NAME_SPL_Reserved_79 = "NAME_SPL_RESERVED_79";
+//const string NAME_SPL_Plague = "Нашествие насекомых";
 const string NAME_SPL_Swarm = "Рой насекомых";
 const string NAME_SPL_GreenTentacle = "Корень-ловушка";
-const string NAME_SPL_Earthquake = "Землетрясение";
+//const string NAME_SPL_Earthquake = "Землетрясение";
 const string NAME_SPL_SummonGuardian = "Вызов стража";
 const string NAME_SPL_BeliarsRage = "Гнев Белиара";
 const string NAME_SPL_SuckEnergy = "Кража энергии";
 const string NAME_SPL_Skull = "Крик смерти";
 const string NAME_SPL_SummonZombie = "Вызов зомби";
 const string NAME_SPL_SummonMud = "Вызов Мада";
-const string NAME_SPL_Reserved_90 = "NAME_SPL_RESERVED_90";
-const string NAME_SPL_Reserved_91 = "NAME_SPL_RESERVED_91";
-const string NAME_SPL_Reserved_92 = "NAME_SPL_RESERVED_92";
-const string NAME_SPL_Reserved_93 = "NAME_SPL_RESERVED_93";
-const string NAME_SPL_Reserved_94 = "NAME_SPL_RESERVED_94";
-const string NAME_SPL_Reserved_95 = "NAME_SPL_RESERVED_95";
-const string NAME_SPL_Reserved_96 = "NAME_SPL_RESERVED_96";
-const string NAME_SPL_Reserved_97 = "NAME_SPL_RESERVED_97";
-const string NAME_SPL_Reserved_98 = "NAME_SPL_RESERVED_98";
-const string NAME_SPL_Reserved_99 = "NAME_SPL_RESERVED_99";
+//const string NAME_SPL_Reserved_90 = "NAME_SPL_RESERVED_90";
+//const string NAME_SPL_Reserved_91 = "NAME_SPL_RESERVED_91";
+//const string NAME_SPL_Reserved_92 = "NAME_SPL_RESERVED_92";
+//const string NAME_SPL_Reserved_93 = "NAME_SPL_RESERVED_93";
+//const string NAME_SPL_Reserved_94 = "NAME_SPL_RESERVED_94";
+//const string NAME_SPL_Reserved_95 = "NAME_SPL_RESERVED_95";
+//const string NAME_SPL_Reserved_96 = "NAME_SPL_RESERVED_96";
+//const string NAME_SPL_Reserved_97 = "NAME_SPL_RESERVED_97";
+//const string NAME_SPL_Reserved_98 = "NAME_SPL_RESERVED_98";
+//const string NAME_SPL_Reserved_99 = "NAME_SPL_RESERVED_99";
 
-const string TXT_TALENTS[22] =
+const string TXT_TALENTS[NPC_TALENT_MAX] =
 {
 	"",
 	"Одноручное",
@@ -431,7 +431,7 @@ const string TXT_TALENTS[22] =
 	""
 };
 
-const string TXT_TALENTS_SKILLS[22] =
+const string TXT_TALENTS_SKILLS[NPC_TALENT_MAX] =
 {
 	"",
 	"Новичок|Боец|Мастер",
@@ -457,7 +457,7 @@ const string TXT_TALENTS_SKILLS[22] =
 	""
 };
 
-const string TXT_INV_CAT[9] =
+const string TXT_INV_CAT[INV_CAT_MAX] =
 {
 	"",
 	"Оружие",
@@ -550,7 +550,7 @@ const string NAME_Mag_Circle = "Круг:";
 const string NAME_Manakosten = "Расход маны:";
 const string NAME_ManakostenMin = "Расход маны (мин.):";
 const string NAME_ManakostenMax = "Расход маны (макс.):";
-//const string NAME_ManaPerSec = "Маны в секунду:";
+const string NAME_ManaPerSec = "Расход маны (в сек.):";
 const string NAME_Duration = "Длительность (минут):";
 const string NAME_Sec_Duration = "Длительность (секунд):";
 const string NAME_Str_needed = "Необходима сила:";

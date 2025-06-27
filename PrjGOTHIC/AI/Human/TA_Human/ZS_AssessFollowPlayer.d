@@ -1,7 +1,7 @@
 
 func void B_AssessFollowPlayer()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DiegoOW))
+	if(C_IsNpc(self,PC_ThiefOW))
 	{
 		if((Npc_GetDistToNpc(self,hero) < self.aivar[AIV_FollowDist]) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
 		{
@@ -73,7 +73,7 @@ func int ZS_Follow_Player_Loop()
 {
 	if(Npc_GetDistToNpc(self,hero) > self.aivar[AIV_FollowDist])
 	{
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DiegoOW))
+		if(C_IsNpc(self,PC_ThiefOW))
 		{
 			if(C_DiegoTooFar(0))
 			{

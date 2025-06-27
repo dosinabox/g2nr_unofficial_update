@@ -4,7 +4,7 @@ func void B_Build_Settings_Diag()
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
 	Info_AddChoice(StoryHelper_PatchSettings,"Изменить магию ледяного дракона",StoryHelper_IceDragonSpell);
-	if((Tandor_ItemsGiven_Chapter_1 == FALSE) && (Sarah_ItemsGiven_Chapter_1 == FALSE) && (Rethon_ItemsGiven_Chapter_4 == FALSE) && (Orlan_ItemsGiven_Chapter_1 == FALSE) && (Jora_ItemsGiven_Chapter_1 == FALSE) && (Hakon_ItemsGiven_Chapter_1 == FALSE) && (Canthar_ItemsGiven_Chapter_1 == FALSE) && (Scatty_ItemsGiven_Chapter_1 == FALSE) && (Huno_ItemsGiven_Chapter_1 == FALSE) && (Garett_ItemsGiven_Chapter_1 == FALSE) && (Fisk_ItemsGiven_Chapter_1 == FALSE) && (Erol_ItemsGiven_Chapter_1 == FALSE) && (Khaled_ItemsGiven_Chapter_1 == FALSE))
+	if(!C_MeleeWeaponsGivenToTraders())
 	{
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
@@ -63,21 +63,16 @@ func void B_Build_Settings_Diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Соединить шлемы и доспехи",StoryHelper_Helmets);
 	};
-	if(IgnoreBonuses == FALSE)
+	if(RavenIsDead == FALSE)
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование постоянных бонусов при обучении",StoryHelper_Bonuses);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование постоянных бонусов при обучении",StoryHelper_Bonuses);
-	};
-	if(AddonDisabled == FALSE)
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить возможность прохождения без аддона",StoryHelper_Addon);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить возможность прохождения без аддона",StoryHelper_Addon);
+		if(AddonDisabled == FALSE)
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Включить возможность прохождения без аддона",StoryHelper_Addon);
+		}
+		else
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Выключить возможность прохождения без аддона",StoryHelper_Addon);
+		};
 	};
 	if(GuildlessMode == FALSE)
 	{
@@ -172,6 +167,14 @@ func void B_Build_Settings_Diag()
 	};
 	if(UnionActivated == FALSE)
 	{
+		if(IgnorePermBonuses == FALSE)
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование постоянных бонусов при обучении",StoryHelper_Bonuses);
+		}
+		else
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование постоянных бонусов при обучении",StoryHelper_Bonuses);
+		};
 		if(HonestLearnCostEnabled == FALSE)
 		{
 			Info_AddChoice(StoryHelper_PatchSettings,"Включить честный расчет стоимости обучения",StoryHelper_HonestLearnCost);
@@ -246,18 +249,14 @@ func void StoryHelper_Unlimfix()
 
 func void StoryHelper_Bonuses()
 {
-	if(IgnoreBonuses == TRUE)
+	if(IgnorePermBonuses == TRUE)
 	{
-		IgnoreBonuses = FALSE;
-		TAL_TeachLimitFlags_TS_PermBonus = 1;
-		TAL_CostFlags_TS_PermBonus = 1;
+		IgnorePermBonuses = FALSE;
 		PrintScreen("Оригинал: бонусы нужно копить",-1,-1,FONT_Screen,2);
 	}
 	else
 	{
-		IgnoreBonuses = TRUE;
-		TAL_TeachLimitFlags_TS_PermBonus = 0;
-		TAL_CostFlags_TS_PermBonus = 0;
+		IgnorePermBonuses = TRUE;
 		PrintScreen("Теперь бонусы можно не копить",-1,-1,FONT_Screen,2);
 	};
 	B_Build_Settings_Diag();
@@ -313,10 +312,10 @@ func void StoryHelper_Helmets()
 	if(Helmets_Enabled == TRUE)
 	{
 		PrintScreen("Шлемы и доспехи одной моделью (оригинал)",-1,-1,FONT_Screen,3);
-		Npc_RemoveInvItem(hero,ITHE_PAL_M);
-		Npc_RemoveInvItem(hero,ITHE_PAL_H);
-		Npc_RemoveInvItem(hero,ITHE_DJG_M);
-		Npc_RemoveInvItem(hero,ITHE_DJG_H);
+		Npc_RemoveInvItem(hero,ItHe_PAL_M);
+		Npc_RemoveInvItem(hero,ItHe_PAL_H);
+		Npc_RemoveInvItem(hero,ItHe_DJG_M);
+		Npc_RemoveInvItem(hero,ItHe_DJG_H);
 		if(Npc_HasItems(hero,ITAR_PALN_M))
 		{
 			Npc_RemoveInvItem(hero,ITAR_PALN_M);
@@ -346,25 +345,25 @@ func void StoryHelper_Helmets()
 		{
 			Npc_RemoveInvItem(hero,ITAR_PAL_M);
 			CreateInvItem(hero,ITAR_PALN_M);
-			CreateInvItem(hero,ITHE_PAL_M);
+			CreateInvItem(hero,ItHe_PAL_M);
 		};
 		if(Npc_HasItems(hero,ITAR_PAL_H))
 		{
 			Npc_RemoveInvItem(hero,ITAR_PAL_H);
 			CreateInvItem(hero,ITAR_PALN_H);
-			CreateInvItem(hero,ITHE_PAL_H);
+			CreateInvItem(hero,ItHe_PAL_H);
 		};
 		if(Npc_HasItems(hero,ITAR_DJG_M))
 		{
 			Npc_RemoveInvItem(hero,ITAR_DJG_M);
 			CreateInvItem(hero,ITAR_DJGN_M);
-			CreateInvItem(hero,ITHE_DJG_M);
+			CreateInvItem(hero,ItHe_DJG_M);
 		};
 		if(Npc_HasItems(hero,ITAR_DJG_H))
 		{
 			Npc_RemoveInvItem(hero,ITAR_DJG_H);
 			CreateInvItem(hero,ITAR_DJGN_H);
-			CreateInvItem(hero,ITHE_DJG_H);
+			CreateInvItem(hero,ItHe_DJG_H);
 		};
 		Helmets_Enabled = TRUE;
 	};

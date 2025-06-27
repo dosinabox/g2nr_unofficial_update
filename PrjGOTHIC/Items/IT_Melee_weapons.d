@@ -241,7 +241,6 @@ instance ItMw_1H_Sword_L_03(C_Item)
 	range = Range_Wolfsklinge;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Wolfsklinge;
-//	visual = "ItMw_012_1h_Knife_02.3DS";
 	visual = "ItMw_012_1h_Knife_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -440,18 +439,41 @@ instance ItMw_1h_MISC_Sword(C_Item)
 	count[5] = value;
 };
 
+instance ItMw_1h_OLD_Sword(C_Item)
+{
+	name = "Старый меч";
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_SWD;
+	material = MAT_METAL;
+	value = Value_OldSword;
+	damageTotal = Damage_OldSword;
+	damagetype = DAM_EDGE;
+	range = Range_OldSword;
+	cond_atr[2] = ATR_STRENGTH;
+	cond_value[2] = Condition_OldSword;
+	visual = "ItMw_020_1h_sword_old_02.3DS";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Str_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_OneHanded;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
 instance ItMw_TrainSword(C_Item)
 {
 	name = "Тренировочный меч";
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_AXE;
+	flags = ITEM_SWD;
 	material = MAT_WOOD;
 	value = 0;
 	damageTotal = 5;
 	damagetype = DAM_BLUNT;
 	range = 50;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = 5;
+	cond_value[2] = 1;
 	visual = "ItMw_TrainSword.3DS";
 	description = name;
 	text[4] = NAME_OneHanded;
@@ -553,7 +575,6 @@ instance ItMw_1h_Sld_Sword(C_Item)
 {
 	name = "Грубый меч";
 	mainflag = ITEM_KAT_NF;
-//	flags = ITEM_AXE;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
 	value = Value_Sld1hSchwert;
@@ -1022,7 +1043,6 @@ instance ItMw_Nagelkeule2(C_Item)
 	range = Range_Nagelkeule2;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Nagelkeule2;
-//	visual = "ItMw_018_1h_Mace_01.3DS";
 	visual = "ItMw_028_1h_Mace_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -1069,7 +1089,6 @@ instance ItMw_Piratensaebel(C_Item)
 	range = Range_Piratensaebel;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Piratensaebel;
-//	visual = "ItMw_030_1h_sword_03.3DS";
 	visual = "ItMw_030_1h_sword_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -1398,7 +1417,7 @@ instance ItMw_Morgenstern(C_Item)
 	range = Range_Morgenstern;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Morgenstern;
-	visual = "ItMW_045_1h_mace_04.3DS";
+	visual = "ItMw_045_1h_mace_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1711,7 +1730,6 @@ instance ItMw_Inquisitor(C_Item)
 	material = MAT_WOOD;
 	value = Value_Inquisitor;
 	damageTotal = Damage_Inquisitor;
-//	damagetype = DAM_EDGE;
 	damagetype = DAM_BLUNT;
 	range = Range_Inquisitor;
 	cond_atr[2] = ATR_STRENGTH;
@@ -1829,8 +1847,6 @@ instance ItMw_ElBastardo(C_Item)
 {
 	name = NAME_Addon_Harad_04;
 	mainflag = ITEM_KAT_NF;
-//	flags = ITEM_AXE;
-//	material = MAT_WOOD;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
 	value = Value_ElBastardo;

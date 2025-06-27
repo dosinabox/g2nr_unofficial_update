@@ -215,7 +215,7 @@ instance DIA_Ehnim_PERMKAP1(C_Info)
 
 func int DIA_Ehnim_PERMKAP1_Condition()
 {
-	if((DIA_Ehnim_STREIT5_noPerm == TRUE) && Npc_IsInState(self,ZS_Talk) && ((Kapitel < 3) || (hero.guild == GIL_KDF)))
+	if((DIA_Ehnim_STREIT5_noPerm == TRUE) && Npc_IsInState(self,ZS_Talk) && ((Kapitel < 3) || (other.guild == GIL_KDF)))
 	{
 		return TRUE;
 	};
@@ -239,7 +239,7 @@ instance DIA_Ehnim_MoleRatFett(C_Info)
 
 func int DIA_Ehnim_MoleRatFett_Condition()
 {
-	if((DIA_Ehnim_STREIT5_noPerm == TRUE) && (Kapitel >= 3) && (hero.guild != GIL_KDF))
+	if((DIA_Ehnim_STREIT5_noPerm == TRUE) && (Kapitel >= 3) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -265,6 +265,7 @@ func void DIA_Ehnim_MoleRatFett_tot()
 {
 	AI_Output(other,self,"DIA_Ehnim_MoleRatFett_tot_15_00");	//Вино мертв.
 	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_tot_12_01");	//О боже. Ужас-то какой.
+	Ehnim_KnowsVinoIsDead = TRUE;
 };
 
 func void DIA_Ehnim_MoleRatFett_was()
@@ -277,7 +278,7 @@ func void DIA_Ehnim_MoleRatFett_was()
 	if(FoundVinosKellerei == FALSE)
 	{
 		Log_CreateTopic(TOPIC_FoundVinosKellerei,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_FoundVinosKellerei,LOG_Running);
+		Log_SetTopicStatus(TOPIC_FoundVinosKellerei,LOG_RUNNING);
 		B_LogEntry(TOPIC_FoundVinosKellerei,"Эним рассказал мне, что Вино содержит секретный винокуренный завод в лесу около фермы Акила. Но механизм, открывающий решетку, заклинило, и починить его можно только смазав шестеренки жиром крысокрота.");
 		Info_AddChoice(DIA_Ehnim_MoleRatFett,"И? Ты достал смазку?",DIA_Ehnim_MoleRatFett_was_Fett);
 	}
@@ -318,7 +319,7 @@ func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja()
 		if(Npc_HasItems(self,ItMi_Moleratlubric_MIS))
 		{
 			B_GiveInvItems(self,other,ItMi_Moleratlubric_MIS,1);
-			if(!Npc_IsDead(Vino))
+			if(Ehnim_KnowsVinoIsDead == FALSE)
 			{
 				AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_02");	//(себе под нос) Вино убьет меня за это.
 			};

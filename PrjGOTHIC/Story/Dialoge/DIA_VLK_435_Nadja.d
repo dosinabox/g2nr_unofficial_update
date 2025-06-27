@@ -77,40 +77,12 @@ func void DIA_Nadja_STANDARD_Info()
 };
 
 
-/*instance DIA_Nadja_Danach(C_Info)
-{
-	npc = VLK_435_Nadja;
-	nr = 2;
-	condition = DIA_Nadja_Danach_Condition;
-	information = DIA_Nadja_Danach_Info;
-	important = TRUE;
-	permanent = TRUE;
-};
-
-
-func int DIA_Nadja_Danach_Condition()
-{
-	if(Npc_IsInState(self,ZS_Talk) && (Bromor_Pay == 0) && (Nadja_Nacht == TRUE))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Nadja_Danach_Info()
-{
-	AI_Output(self,other,"DIA_Nadja_Danach_16_00");	//Заходи в другой раз.
-	Nadja_Nacht = FALSE;
-	AI_StopProcessInfos(self);
-};*/
-
-
 instance DIA_Nadja_hochgehen(C_Info)
 {
 	npc = VLK_435_Nadja;
 	nr = 3;
 	condition = DIA_Nadja_hochgehen_Condition;
 	information = DIA_Nadja_hochgehen_Info;
-	important = FALSE;
 	permanent = TRUE;
 	description = "Пошли наверх.";
 };
@@ -198,16 +170,16 @@ func void DIA_Addon_Nadja_LuciaInfo_wo()
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_wo_16_02");	//Готова поспорить, что она уехала с этим парнем.
 	if((SC_KnowsLuciaCaughtByBandits == FALSE) && (MIS_LuciasLetter != LOG_SUCCESS))
 	{
-		if(MIS_LookingForLucia == LOG_Running)
+		if(MIS_LookingForLucia == LOG_RUNNING)
 		{
 			B_LogEntry(TOPIC_Addon_Lucia,"Возможно, Люсия сбежала вместе с Элврихом, учеником плотника Торбена.");
 		}
 		else if(MIS_LookingForLucia == FALSE)
 		{
 			Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
+			Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_RUNNING);
 			B_LogEntry(TOPIC_Addon_Lucia,"Шлюха Люсия неожиданно исчезла из борделя Бромора. Возможно, она сбежала вместе с Элврихом, учеником плотника Торбена.");
-			MIS_LookingForLucia = LOG_Running;
+			MIS_LookingForLucia = LOG_RUNNING;
 		};
 		Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Куда они могли направиться?",DIA_Addon_Nadja_LuciaInfo_Elvrich);
 	}
@@ -246,7 +218,7 @@ func void DIA_Addon_Nadja_LuciaInfo_sonst()
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_sonst_16_04");	//К сожалению, это все, что я могу рассказать.
 	B_Nadja_WhatsNextHoney();
 	Info_ClearChoices(DIA_Addon_Nadja_LuciaInfo);
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_RUNNING) && (Knows_Borka_Dealer == FALSE))
 	{
 		if(Nadja_Money == FALSE)
 		{
@@ -430,7 +402,7 @@ instance DIA_Nadja_BUYHERB(C_Info)
 
 func int DIA_Nadja_BUYHERB_Condition()
 {
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Nadja_Money == FALSE) && (Nadja_BuyHerb_Failed == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_RUNNING) && (Nadja_Money == FALSE) && (Nadja_BuyHerb_Failed == FALSE))
 	{
 		return TRUE;
 	};
@@ -455,7 +427,7 @@ instance DIA_Nadja_WANT_HERB(C_Info)
 
 func int DIA_Nadja_WANT_HERB_Condition()
 {
-	if((Nadja_Money == TRUE) && (MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE))
+	if((Nadja_Money == TRUE) && (MIS_Andre_REDLIGHT == LOG_RUNNING) && (Knows_Borka_Dealer == FALSE))
 	{
 		return TRUE;
 	};

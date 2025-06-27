@@ -36,11 +36,11 @@ func void B_AssessUseMob()
 	{
 		if(Hlp_StrCmp(detMob,"TOUCHPLATE"))
 		{
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Salandril))
+			if(C_IsNpc(self,VLK_422_Salandril))
 			{
 				B_Attack(self,other,AR_UseMob,0);
 			}
-			else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Richter))
+			else if(C_IsNpc(self,VLK_402_Richter))
 			{
 				B_Attack(self,other,AR_UseMob,0);
 			}
@@ -51,7 +51,7 @@ func void B_AssessUseMob()
 		}
 		else if(Hlp_StrCmp(detMob,"LEVER"))
 		{
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Valentino))
+			if(C_IsNpc(self,VLK_421_Valentino))
 			{
 				B_Attack(self,other,AR_UseMob,0);
 			}

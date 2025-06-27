@@ -40,30 +40,9 @@ func void DIA_Grom_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Grom_HALLO_15_00");	//Все в порядке?
 	AI_Output(self,other,"DIA_Grom_HALLO_08_01");	//Ах, незнакомый странник. Я очень занят. Что ты хочешь?
-//	Info_ClearChoices(DIA_Grom_HALLO);
-//	Info_AddChoice(DIA_Grom_HALLO,"На что интересное стоит обратить внимание здесь?",DIA_Grom_HALLO_waszusehen);
-//	Info_AddChoice(DIA_Grom_HALLO,"Чем ты занимаешься здесь?",DIA_Grom_HALLO_was);
 };
 
-/*func void DIA_Grom_HALLO_waszusehen()
-{
-	AI_Output(other,self,"DIA_Grom_HALLO_waszusehen_15_00");	//На что интересное стоит обратить внимание здесь?
-	AI_Output(self,other,"DIA_Grom_HALLO_waszusehen_08_01");	//Интересное - это хорошо сказано. Если ты углубишься в здешний лес, то наткнешься на очень злобных парней.
-	AI_Output(self,other,"DIA_Grom_HALLO_waszusehen_08_02");	//Они около десяти футов высотой, волосатые и в очень дурном расположении духа. Так что лучше не ходи туда, если не считаешь, что достаточно силен.
-};
 
-func void DIA_Grom_HALLO_was()
-{
-	AI_Output(other,self,"DIA_Grom_HALLO_was_15_00");	//Чем ты занимаешься здесь?
-	AI_Output(self,other,"DIA_Grom_HALLO_was_08_01");	//Ну, чем обычно занимаются дровосеки и охотники?
-	Info_AddChoice(DIA_Grom_HALLO,Dialog_Back,DIA_Grom_HALLO_BACK);
-};
-
-func void DIA_Grom_HALLO_BACK()
-{
-	Info_ClearChoices(DIA_Grom_HALLO);
-};
-*/
 instance DIA_Grom_HALLO2(C_Info)
 {
 	npc = BAU_981_Grom;
@@ -87,6 +66,7 @@ func void DIA_Grom_HALLO2_Info()
 	AI_Output(other,self,"DIA_Grom_HALLO_was_15_00");	//Чем ты занимаешься здесь?
 	AI_Output(self,other,"DIA_Grom_HALLO_was_08_01");	//Ну, чем обычно занимаются дровосеки и охотники?
 };
+
 
 instance DIA_Grom_HALLO3(C_Info)
 {
@@ -113,6 +93,7 @@ func void DIA_Grom_HALLO3_Info()
 	AI_Output(self,other,"DIA_Grom_HALLO_waszusehen_08_02");	//Они около десяти футов высотой, волосатые и в очень дурном расположении духа. Так что лучше не ходи туда, если не считаешь, что достаточно силен.
 };
 
+
 instance DIA_Grom_AskTeacher(C_Info)
 {
 	npc = BAU_981_Grom;
@@ -125,7 +106,6 @@ instance DIA_Grom_AskTeacher(C_Info)
 
 func int DIA_Grom_AskTeacher_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Grom_HALLO))
 	if(Npc_KnowsInfo(other,DIA_Grom_HALLO2))
 	{
 		return TRUE;
@@ -138,7 +118,7 @@ func void DIA_Grom_AskTeacher_Info()
 	AI_Output(self,other,"DIA_Grom_AskTeacher_08_01");	//Конечно. Но сначала принеси мне приличной еды. Я умираю от голода.
 	AI_Output(self,other,"DIA_Grom_AskTeacher_08_02");	//Я хочу бутыль молока, буханку хлеба и жирный окорок. И тогда я научу тебя всему, что сам знаю.
 	Log_CreateTopic(TOPIC_GromAskTeacher,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_GromAskTeacher,LOG_Running);
+	Log_SetTopicStatus(TOPIC_GromAskTeacher,LOG_RUNNING);
 	B_LogEntry(TOPIC_GromAskTeacher,"Охотник Гром научит меня всему, что знает, если я принесу ему бутылку молока, буханку хлеба и окорок.");
 };
 

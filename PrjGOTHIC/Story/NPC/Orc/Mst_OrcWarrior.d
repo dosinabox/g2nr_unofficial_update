@@ -15,7 +15,7 @@ prototype Mst_Default_OrcWarrior(C_Npc)
 	protection[PROT_BLUNT] = 150;
 	protection[PROT_EDGE] = 150;
 	protection[PROT_POINT] = 150;
-	protection[PROT_FIRE] = 150;	//20;
+	protection[PROT_FIRE] = 150;
 	protection[PROT_FLY] = 150;
 	protection[PROT_MAGIC] = 20;
 	HitChance[NPC_TALENT_1H] = 60;
@@ -77,7 +77,7 @@ instance OrcWarrior_Harad(Mst_Default_OrcWarrior)
 	protection[PROT_BLUNT] = 75;
 	protection[PROT_EDGE] = 75;
 	protection[PROT_POINT] = 75;
-	protection[PROT_FIRE] = 75;	//20;
+	protection[PROT_FIRE] = 75;
 	protection[PROT_FLY] = 75;
 	B_SetVisuals_OrcScout();
 	EquipItem(self,ItMw_2H_OrcAxe_01);
@@ -96,7 +96,7 @@ instance OrcWarrior_Scout(Mst_Default_OrcWarrior)
 	protection[PROT_BLUNT] = 75;
 	protection[PROT_EDGE] = 75;
 	protection[PROT_POINT] = 75;
-	protection[PROT_FIRE] = 75;	//20;
+	protection[PROT_FIRE] = 75;
 	protection[PROT_FLY] = 75;
 	B_SetVisuals_OrcScout();
 	EquipItem(self,ItMw_2H_OrcAxe_01);

@@ -1,11 +1,11 @@
 
 const int SPL_Cost_Waterfist = 25;
-const int SPL_DAMAGE_Waterfist = 125;
+const int SPL_Damage_Waterfist = 125;
 
 instance Spell_Waterfist(C_Spell_Proto)
 {
 	time_per_mana = 0;
-	damage_per_level = SPL_DAMAGE_Waterfist;
+	damage_per_level = SPL_Damage_Waterfist;
 	damagetype = DAM_MAGIC;
 };
 

@@ -84,7 +84,7 @@ func void DIA_Angar_DI_ORKS_follow()
 {
 	AI_Output(other,self,"DIA_Angar_DI_ORKS_follow_15_00");	//Так помоги мне и прекрати скулить.
 	AI_Output(self,other,"DIA_Angar_DI_ORKS_follow_04_01");	//Хорошо. Но ты пойдешь первым. Вперед!
-	Angar_DI_Party = LOG_Running;
+	Angar_DI_Party = LOG_RUNNING;
 	B_GivePlayerXP(XP_AmbientKap6);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FOLLOWDI");
@@ -105,23 +105,24 @@ func void B_AngarStays()
 	{
 		AI_Output(other,self,"DIA_Angar_DI_FOLLOW_15_01");	//Об остальном я сам позабочусь.
 		AI_Output(self,other,"DIA_Angar_DI_FOLLOW_04_02");	//Удачи.
-		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"FIREDRAGONISLAND");
 		if(Angar_DI_Party != LOG_SUCCESS)
 		{
 			B_GivePlayerXP(XP_AmbientKap6);
 			Angar_DI_Party = LOG_SUCCESS;
 		};
+		AI_StopProcessInfos(self);
+		Npc_ExchangeRoutine(self,"FIREDRAGONISLAND");
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Angar_DI_FOLLOW_04_03");	//Конечно.
+		Angar_DI_Party = LOG_OBSOLETE;
 		AI_StopProcessInfos(self);
 		if(Npc_GetDistToWP(self,"SHIP") < 10000)
 		{
 			Npc_ExchangeRoutine(self,"START");
 		}
-		else if(Npc_IsDead(FireDragonIsland))
+		else if(FireDragonIslandIsDead == TRUE)
 		{
 			Npc_ExchangeRoutine(self,"FIREDRAGONISLAND");
 		}
@@ -137,7 +138,6 @@ func void B_AngarStays()
 		{
 			Npc_ExchangeRoutine(self,"START");
 		};
-		Angar_DI_Party = LOG_OBSOLETE;
 	};
 };
 
@@ -155,7 +155,7 @@ instance DIA_Angar_DI_FOLLOW(C_Info)
 
 func int DIA_Angar_DI_FOLLOW_Condition()
 {
-	if(Angar_DI_Party == LOG_Running)
+	if(Angar_DI_Party == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -190,7 +190,7 @@ func void DIA_Angar_DI_FOLLOWAGAIN_Info()
 {
 	AI_Output(other,self,"DIA_Angar_DI_FOLLOWAGAIN_15_00");	//Иди за мной.
 	AI_Output(self,other,"DIA_Angar_DI_FOLLOWAGAIN_04_01");	//Ты идешь первым.
-	Angar_DI_Party = LOG_Running;
+	Angar_DI_Party = LOG_RUNNING;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FOLLOWDI");
 };
@@ -209,9 +209,9 @@ instance DIA_Angar_DI_FOLLOWSTOP(C_Info)
 
 func int DIA_Angar_DI_FOLLOWSTOP_Condition()
 {
-	if(Angar_DI_Party == LOG_Running)
+	if(Angar_DI_Party == LOG_RUNNING)
 	{
-		if(!Npc_IsDead(FireDragonIsland))
+		if(FireDragonIslandIsDead == FALSE)
 		{
 			if(Npc_GetDistToWP(self,"DI_DRACONIANAREA_16") < 3000)
 			{

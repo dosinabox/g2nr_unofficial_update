@@ -90,11 +90,11 @@ func void B_Thekla_BennetNews()
 			AI_Output(self,other,"DIA_Thekla_PERM_17_14");	//Эти ублюдки из ополчения бросили Беннета за решетку.
 			AI_Output(self,other,"DIA_Thekla_PERM_17_15");	//Окажи мне услугу, вызволи его оттуда, хорошо? А тем временем я сварю для тебя очень вкусную похлебку.
 			Thekla_PromisedStew = TRUE;
-			if(MIS_RescueBennet != LOG_Running)
+			if(MIS_RescueBennet != LOG_RUNNING)
 			{
-				MIS_RescueBennet = LOG_Running;
+				MIS_RescueBennet = LOG_RUNNING;
 				Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
+				Log_SetTopicStatus(TOPIC_RescueBennet,LOG_RUNNING);
 				B_LogEntry(TOPIC_RescueBennet,"Кузнец Беннет арестован паладинами в городе.");
 			};
 		};
@@ -139,7 +139,6 @@ instance DIA_Thekla_HALLO(C_Info)
 	nr = 1;
 	condition = DIA_Thekla_HALLO_Condition;
 	information = DIA_Thekla_HALLO_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -167,7 +166,6 @@ instance DIA_Thekla_Lecker(C_Info)
 	nr = 2;
 	condition = DIA_Thekla_Lecker_Condition;
 	information = DIA_Thekla_Lecker_Info;
-	permanent = FALSE;
 	description = "Как у тебя здесь вкусно пахнет!";
 };
 
@@ -194,7 +192,6 @@ instance DIA_Thekla_Arbeit(C_Info)
 	nr = 4;
 	condition = DIA_Thekla_Arbeit_Condition;
 	information = DIA_Thekla_Arbeit_Info;
-	permanent = FALSE;
 	description = "Я ищу работу.";
 };
 
@@ -221,7 +218,6 @@ instance DIA_Thekla_WannaJoin(C_Info)
 	nr = 5;
 	condition = DIA_Thekla_WannaJoin_Condition;
 	information = DIA_Thekla_WannaJoin_Info;
-	permanent = FALSE;
 	description = "Вообще-то я планировал присоединиться к наемникам...";
 };
 
@@ -248,7 +244,6 @@ instance DIA_Thekla_Schlafen(C_Info)
 	nr = 6;
 	condition = DIA_Thekla_Schlafen_Condition;
 	information = DIA_Thekla_Schlafen_Info;
-	permanent = FALSE;
 	description = "Где тут можно поспать?";
 };
 
@@ -274,7 +269,6 @@ instance DIA_Thekla_Problem(C_Info)
 	nr = 7;
 	condition = DIA_Thekla_Problem_Condition;
 	information = DIA_Thekla_Problem_Info;
-	permanent = FALSE;
 	description = "Почему ты не любишь наемников?";
 };
 
@@ -307,7 +301,6 @@ instance DIA_Thekla_Manieren(C_Info)
 	nr = 7;
 	condition = DIA_Thekla_Manieren_Condition;
 	information = DIA_Thekla_Manieren_Info;
-	permanent = FALSE;
 	description = "Хочешь, я научу этих двоих хорошим манерам?";
 };
 
@@ -338,7 +331,6 @@ instance DIA_Thekla_AfterFight(C_Info)
 	nr = 7;
 	condition = DIA_Thekla_AfterFight_Condition;
 	information = DIA_Thekla_AfterFight_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -385,14 +377,13 @@ instance DIA_Thekla_SagittaPaket(C_Info)
 	nr = 4;
 	condition = DIA_Thekla_SagittaPaket_Condition;
 	information = DIA_Thekla_SagittaPaket_Info;
-	permanent = FALSE;
 	description = "Вот пакет от Сагитты.";
 };
 
 
 func int DIA_Thekla_SagittaPaket_Condition()
 {
-	if(MIS_Thekla_Paket == LOG_Running)
+	if(MIS_Thekla_Paket == LOG_RUNNING)
 	{
 		if(Npc_HasItems(other,ItMi_TheklasPaket))
 		{
@@ -421,7 +412,7 @@ func void DIA_Thekla_SagittaPaket_Info()
 		Npc_RemoveInvItems(other,ItPl_Health_Herb_02,1);
 		Npc_RemoveInvItems(other,ItPl_Speed_Herb_01,1);
 		Npc_RemoveInvItems(other,ItPl_Blueplant,2);
-		Print(PRINT_GivePlants);
+		AI_PrintScreen(PRINT_GivePlants,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	};
 	AI_Output(self,other,"DIA_Thekla_SagittaPaket_17_01");	//Огромное спасибо. От тебя есть хоть какая-то польза в отличие от других.
 	DIA_Common_So();
@@ -539,12 +530,12 @@ func void DIA_Thekla_PERM_Info()
 		AI_Output(other,self,"DIA_Thekla_PERM_15_07");	//Что?
 		AI_Output(self,other,"DIA_Thekla_PERM_17_08");	//Сходи к Сагитте, знахарке, что живет за фермой Секоба, и принеси мне от нее пакет с травой.
 		AI_Output(self,other,"DIA_Thekla_PERM_17_09");	//Если ты принесешь мне эти травы, я сварю похлебку для тебя.
-		MIS_Thekla_Paket = LOG_Running;
+		MIS_Thekla_Paket = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_TheklaEintopf,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_TheklaEintopf,LOG_Running);
+		Log_SetTopicStatus(TOPIC_TheklaEintopf,LOG_RUNNING);
 		B_LogEntry(TOPIC_TheklaEintopf,"Если я принесу Текле травы от знахарки Сагитты, она сварит еще одну похлебку для меня. Сагитта живет за фермой Секоба.");
 	}
-	else if(MIS_Thekla_Paket == LOG_Running)
+	else if(MIS_Thekla_Paket == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Thekla_PERM_17_21");	//Нет трав - нет похлебки, понятно?
 	}

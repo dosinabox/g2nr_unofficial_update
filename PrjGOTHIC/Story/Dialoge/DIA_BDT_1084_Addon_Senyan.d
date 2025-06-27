@@ -18,7 +18,7 @@ func int DIA_Addon_Senyan_EXIT_Condition()
 func void DIA_Addon_Senyan_EXIT_Info()
 {
 	DIA_Common_SeeYou();
-	if(Senyan_Erpressung == LOG_Running)
+	if(MIS_Senyan_Erpressung == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Addon_Senyan_EXIT_12_00");	//Ты знаешь, что тебе нужно сделать...
 	}
@@ -35,7 +35,7 @@ func void B_Senyan_Attack()
 	AI_Output(self,other,"DIA_Addon_Senyan_Attack_12_00");	//(насмехаясь) Тогда зачем ты мне еще нужен, тунеядец?
 	AI_Output(self,other,"DIA_Addon_Senyan_Attack_12_01");	//(зовет) Эй, ребята, посмотрите, кто у нас здесь!
 	Senyan_Called = TRUE;
-	Senyan_Erpressung = LOG_OBSOLETE;
+	MIS_Senyan_Erpressung = LOG_OBSOLETE;
 	B_CheckLog();
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
@@ -49,9 +49,9 @@ func void B_Senyan_Erpressung()
 	AI_Output(self,other,"DIA_Addon_Senyan_Erpressung_12_03");	//Недавно кто-то хотел убрать Эстебана. Но напоролся на телохранителей.
 	AI_Output(self,other,"DIA_Addon_Senyan_Erpressung_12_04");	//Пойди к Эстебану и поговори с ним. Потом возвращайся.
 	AI_StopProcessInfos(self);
-	Log_CreateTopic(Topic_Addon_Senyan,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Senyan,LOG_Running);
-	B_LogEntry(Topic_Addon_Senyan,"Сеньян узнал меня. Ему известно, кто я такой. Он хочет использовать меня для каких-то своих целей. Но сначала я должен поговорить с Эстебаном.");
+	Log_CreateTopic(TOPIC_Addon_Senyan,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Senyan,LOG_RUNNING);
+	B_LogEntry(TOPIC_Addon_Senyan,"Сеньян узнал меня. Ему известно, кто я такой. Он хочет использовать меня для каких-то своих целей. Но сначала я должен поговорить с Эстебаном.");
 };
 
 
@@ -192,7 +192,7 @@ instance DIA_Addon_Senyan_Attentat(C_Info)
 
 func int DIA_Addon_Senyan_Attentat_Condition()
 {
-	if((MIS_Judas == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_BDT_1084_Senyan_Hi) && !Npc_IsDead(Esteban))
+	if((MIS_Judas == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_BDT_1084_Senyan_Hi) && !Npc_IsDead(Esteban))
 	{
 		return TRUE;
 	};
@@ -226,9 +226,9 @@ func void DIA_Addon_Senyan_Attentat_JA()
 	AI_Output(other,self,"DIA_Addon_Senyan_Attentat_JA_15_00");	//Мм-м, не то чтобы у меня был выбор...
 	AI_Output(self,other,"DIA_Addon_Senyan_Attentat_JA_12_01");	//Я знал, что мы сможем договориться.
 	AI_Output(self,other,"DIA_Addon_Senyan_Attentat_JA_12_02");	//(хитро) Когда ты выполнишь свою работу - и выполнишь ее хорошо - и выяснишь, кто виноват, мы убьем тупицу вместе. А теперь иди!
-	Senyan_Erpressung = LOG_Running;
+	MIS_Senyan_Erpressung = LOG_RUNNING;
 	Info_ClearChoices(DIA_Addon_Senyan_Attentat);
-	B_LogEntry(Topic_Addon_Senyan,"Сеньян хочет, чтобы я нашел виновного и убил его. После этого я получу свою награду.");
+	B_LogEntry(TOPIC_Addon_Senyan,"Сеньян хочет, чтобы я нашел виновного и убил его. После этого я получу свою награду.");
 };
 
 
@@ -245,7 +245,7 @@ instance DIA_Addon_Senyan_ChangePlan(C_Info)
 
 func int DIA_Addon_Senyan_ChangePlan_Condition()
 {
-	if((Senyan_Erpressung == LOG_Running) && (Snaf_Tip_Senyan == TRUE))
+	if((MIS_Senyan_Erpressung == LOG_RUNNING) && (Snaf_Tip_Senyan == TRUE))
 	{
 		return TRUE;
 	};
@@ -256,32 +256,6 @@ func void DIA_Addon_Senyan_ChangePlan_Info()
 	AI_Output(other,self,"DIA_Addon_Senyan_ChangePlan_15_00");	//Я передумал. Мы больше не работаем вместе!
 	B_Senyan_Attack();
 };
-
-
-/*instance DIA_Addon_BDT_1084_Senyan_Found(C_Info)
-{
-	npc = BDT_1084_Addon_Senyan;
-	nr = 3;
-	condition = DIA_Addon_Senyan_Found_Condition;
-	information = DIA_Addon_Senyan_Found_Info;
-	permanent = FALSE;
-	description = "Я нашел предателя. Это Фиск.";
-};
-
-
-func int DIA_Addon_Senyan_Found_Condition()
-{
-	if((Senyan_Erpressung == LOG_Running) && (MIS_Judas == LOG_SUCCESS))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Addon_Senyan_Found_Info()
-{
-	AI_Output(other,self,"DIA_Addon_BDT_1084_Senyan_Found_15_00");	//Я нашел предателя. Это Фиск.
-	B_Senyan_Attack();
-};*/
 
 
 instance DIA_Addon_BDT_1084_Senyan_derbe(C_Info)

@@ -1,11 +1,11 @@
 
 const int SPL_Cost_Energyball = 100;
-const int SPL_DAMAGE_Energyball = 200;
+const int SPL_Damage_Energyball = 200;
 
 instance Spell_EnergyBall(C_Spell_Proto)
 {
 	time_per_mana = 0;
-	damage_per_level = SPL_DAMAGE_Energyball;
+	damage_per_level = SPL_Damage_Energyball;
 	damagetype = DAM_MAGIC;
 };
 

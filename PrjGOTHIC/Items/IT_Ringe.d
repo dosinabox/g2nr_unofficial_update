@@ -852,9 +852,9 @@ instance ItRi_Dex_Strg_01(C_Item)
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо мощи";
 	text[2] = NAME_Bonus_Str;
-	count[2] = 4;
+	count[2] = Ri_DexStrg_Strg;
 	text[3] = NAME_Bonus_Dex;
-	count[3] = 4;
+	count[3] = Ri_DexStrg_Dex;
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_RING_STANDARD;

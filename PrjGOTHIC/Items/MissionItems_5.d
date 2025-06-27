@@ -1,4 +1,7 @@
 
+const int STRDEX_PotionOfDeath = 5;
+const int AM_AmulettOfDeathProt = 30;
+
 instance ItWr_XardasLetterToOpenBook_MIS(C_Item)
 {
 	name = "ѕисьмо  сардаса";
@@ -52,7 +55,7 @@ instance ItKe_MonastarySecretLibrary_MIS(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_04.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -266,23 +269,25 @@ func void Use_Seamap_Irdorath()
 	Doc_Show(nDocID);
 	if(MIS_SCKnowsWayToIrdorath == FALSE)
 	{
-		Log_CreateTopic(Topic_Crew,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Crew,LOG_Running);
-		B_LogEntries(Topic_Crew,"ƒл€ путешестви€ на корабле и решающего сражени€ мне нужна команда.");
-		Log_CreateTopic(Topic_Captain,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Captain,LOG_Running);
-		B_LogNextEntry(Topic_Captain,"ƒл€ управлени€ кораблем мне нужен опытный капитан, готовый отправитьс€ со мной в опасное путешествие.");
+		Log_CreateTopic(TOPIC_Crew,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Crew,LOG_RUNNING);
+		B_LogEntries(TOPIC_Crew,"ƒл€ путешестви€ на корабле и решающего сражени€ мне нужна команда.");
+		Log_CreateTopic(TOPIC_Captain,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Captain,LOG_RUNNING);
+		B_LogNextEntry(TOPIC_Captain,"ƒл€ управлени€ кораблем мне нужен опытный капитан, готовый отправитьс€ со мной в опасное путешествие.");
 		if(MIS_ShipIsFree == FALSE)
 		{
-			Log_CreateTopic(Topic_Ship,LOG_MISSION);
-			Log_SetTopicStatus(Topic_Ship,LOG_Running);
-			B_LogNextEntry(Topic_Ship,"ѕохоже, € должен добратьс€ до этого странного вражеского острова. Ќо дл€ этого мне нужен корабль.");
+			Log_CreateTopic(TOPIC_Ship,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Ship,LOG_RUNNING);
+			B_LogNextEntry(TOPIC_Ship,"ѕохоже, € должен добратьс€ до этого странного вражеского острова. Ќо дл€ этого мне нужен корабль.");
 		};
 		if(Kapitel < 6)
 		{
 			B_Say(self,self,"$IRDORATHTHEREYOUARE");
 		};
 		MIS_SCKnowsWayToIrdorath = TRUE;
+		STORYPOINT[SP_C5_P3] = TRUE;
+		CurrentStoryPoint = SP_C5_P3;
 		B_GivePlayerXP(XP_SCKnowsWayToIrdorath);
 	};
 };
@@ -323,7 +328,6 @@ func void UseItWr_ForgedShipLetter_MIS()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"     оролевска€ печать");
-	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
 
@@ -333,7 +337,7 @@ instance ItKe_OC_MainGate_MIS(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -349,7 +353,7 @@ instance ItKe_Ship_Levelchange_MIS(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -383,13 +387,13 @@ func void UseItPo_PotionOfDeath()
 	{
 		if(C_NpcIsHero(self))
 		{
-			ATR_PermBonus[ATR_STRENGTH] += 5;
-			ATR_PermBonus[ATR_DEXTERITY] += 5;
+			ATR_PermBonus[ATR_STRENGTH] += STRDEX_PotionOfDeath;
+			ATR_PermBonus[ATR_DEXTERITY] += STRDEX_PotionOfDeath;
 		};
-		self.attribute[ATR_STRENGTH] += 5;
-		PrintScreen(ConcatStrings(PRINT_LearnSTR,"5"),-1,43,FONT_Screen,3);
-		self.attribute[ATR_DEXTERITY] += 5;
-		PrintScreen(ConcatStrings(PRINT_LearnDEX,"5"),-1,48,FONT_Screen,3);
+		self.attribute[ATR_STRENGTH] += STRDEX_PotionOfDeath;
+		PrintScreen(ConcatStrings(PRINT_LearnSTR,IntToString(STRDEX_PotionOfDeath)),-1,43,FONT_Screen,3);
+		self.attribute[ATR_DEXTERITY] += STRDEX_PotionOfDeath;
+		PrintScreen(ConcatStrings(PRINT_LearnDEX,IntToString(STRDEX_PotionOfDeath)),-1,48,FONT_Screen,3);
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
 		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 		PrintScreen(PRINT_FullyHealed,-1,53,FONT_Screen,3);
@@ -438,13 +442,13 @@ instance ItAm_AmulettOfDeath_MIS(C_Item)
 	description = "Ѕожественна€ аура »нноса";
 	text[0] = "Ётот амулет защищает владельца от всех форм урона.";
 	text[1] = NAME_Prot_Edge;
-	count[1] = 30;
+	count[1] = AM_AmulettOfDeathProt;
 	text[2] = NAME_Prot_Point;
-	count[2] = 30;
+	count[2] = AM_AmulettOfDeathProt;
 	text[3] = NAME_Prot_Fire;
-	count[3] = 30;
+	count[3] = AM_AmulettOfDeathProt;
 	text[4] = NAME_Prot_Magic;
-	count[4] = 30;
+	count[4] = AM_AmulettOfDeathProt;
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
@@ -453,11 +457,11 @@ instance ItAm_AmulettOfDeath_MIS(C_Item)
 
 func void Equip_ItAm_AmulettOfDeath_MIS()
 {
-	self.protection[PROT_EDGE] += 30;
-	self.protection[PROT_BLUNT] += 30;
-	self.protection[PROT_POINT] += 30;
-	self.protection[PROT_FIRE] += 30;
-	self.protection[PROT_MAGIC] += 30;
+	self.protection[PROT_EDGE] += AM_AmulettOfDeathProt;
+	self.protection[PROT_BLUNT] += AM_AmulettOfDeathProt;
+	self.protection[PROT_POINT] += AM_AmulettOfDeathProt;
+	self.protection[PROT_FIRE] += AM_AmulettOfDeathProt;
+	self.protection[PROT_MAGIC] += AM_AmulettOfDeathProt;
 	Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",self,self,0,0,0,FALSE);
 	Wld_PlayEffect("FX_EarthQuake",self,self,0,0,0,FALSE);
 	Wld_PlayEffect("spellFX_INCOVATION_WHITE",self,self,0,0,0,FALSE);
@@ -468,11 +472,11 @@ func void Equip_ItAm_AmulettOfDeath_MIS()
 
 func void UnEquip_ItAm_AmulettOfDeath_MIS()
 {
-	self.protection[PROT_EDGE] -= 30;
-	self.protection[PROT_BLUNT] -= 30;
-	self.protection[PROT_POINT] -= 30;
-	self.protection[PROT_FIRE] -= 30;
-	self.protection[PROT_MAGIC] -= 30;
+	self.protection[PROT_EDGE] -= AM_AmulettOfDeathProt;
+	self.protection[PROT_BLUNT] -= AM_AmulettOfDeathProt;
+	self.protection[PROT_POINT] -= AM_AmulettOfDeathProt;
+	self.protection[PROT_FIRE] -= AM_AmulettOfDeathProt;
+	self.protection[PROT_MAGIC] -= AM_AmulettOfDeathProt;
 };
 
 

@@ -1,7 +1,7 @@
 
 func int C_CanFeedNOV(var C_Npc slf)
 {
-	if((MIS_GoraxEssen == LOG_Running) && Npc_HasItems(hero,ItFo_Schafswurst) && (slf.aivar[AIV_SchafswurstGiven] == FALSE))
+	if((MIS_GoraxEssen == LOG_RUNNING) && Npc_HasItems(hero,ItFo_Schafswurst) && (slf.aivar[AIV_SchafswurstGiven] == FALSE))
 	{
 		if(Kapitel == 1)
 		{

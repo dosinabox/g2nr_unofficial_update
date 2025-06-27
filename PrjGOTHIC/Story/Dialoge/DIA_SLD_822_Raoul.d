@@ -59,7 +59,7 @@ func void DIA_Raoul_NoSentenza_Info()
 		AI_Output(self,other,"DIA_Raoul_NoSentenza_01_05");	//Где же он? А, ладно, неважно, тебе повезло...
 	};
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 };
 
 
@@ -94,7 +94,7 @@ func void DIA_Raoul_Hello_Info()
 	};
 	if(Npc_KnowsInfo(other,DIA_Sentenza_Hello))
 	{
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 	};
 };
 
@@ -239,7 +239,7 @@ func void DIA_Raoul_Stimme_Info()
 		if(Torlof_GenugStimmen == FALSE)
 		{
 			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_RUNNING);
 		};
 		B_LogEntry(TOPIC_SLDRespekt,"Рауль не возражает против моего вступления в ряды наемников.");
 		Raoul_Voted = TRUE;
@@ -303,7 +303,7 @@ func int DIA_Raoul_PERM_Condition()
 func void DIA_Raoul_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Raoul_PERM_15_00");	//Все в порядке?
-	if(MIS_Raoul_KillTrollBlack == LOG_Running)
+	if(MIS_Raoul_KillTrollBlack == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Raoul_PERM_01_01");	//Не болтай попусту. Иди и принеси шкуру черного тролля.
 	}
@@ -397,9 +397,9 @@ func void B_Raoul_Blame()
 	AI_Output(self,other,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_01_05");	//Скажем, я заплачу тебе целую кучу денег, если ты принесешь мне шкуру черного тролля. Как тебе?
 	AI_Output(other,self,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_15_06");	//Уже лучше.
 	AI_Output(self,other,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_01_07");	//Тогда чего ты ждешь?
-	MIS_Raoul_KillTrollBlack = LOG_Running;
+	MIS_Raoul_KillTrollBlack = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_KillTrollBlack,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_KillTrollBlack,LOG_Running);
+	Log_SetTopicStatus(TOPIC_KillTrollBlack,LOG_RUNNING);
 	B_LogEntry(TOPIC_KillTrollBlack,"Рауль хочет, чтобы я принес ему шкуру черного тролля.");
 	Info_ClearChoices(DIA_Raoul_TROLL);
 };
@@ -445,7 +445,7 @@ instance DIA_Raoul_TrophyFur(C_Info)
 
 func int DIA_Raoul_TrophyFur_Condition()
 {
-	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) && (MIS_Raoul_KillTrollBlack == LOG_Running))
+	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) && (MIS_Raoul_KillTrollBlack == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -498,7 +498,7 @@ func void DIA_Raoul_TROLLFELL_Info()
 
 func void DIA_Raoul_TROLLFELL_ja()
 {
-	AI_Output(other,self,"DIA_Raoul_TROLLFELL_ja_15_00");	//Продано.
+	DIA_Common_Sold();
 	AI_Output(self,other,"DIA_Raoul_TROLLFELL_ja_01_01");	//Отличная сделка.
 	CreateInvItems(other,ItPo_Health_03,3);
 	CreateInvItems(other,ItMi_Gold,500);
@@ -512,7 +512,7 @@ func void DIA_Raoul_TROLLFELL_nein()
 	AI_Output(other,self,"DIA_Raoul_TROLLFELL_nein_15_00");	//Этого недостаточно.
 	AI_Output(self,other,"DIA_Raoul_TROLLFELL_nein_01_01");	//Как знаешь. Я все равно заберу эту шкуру.
 	AI_Output(self,other,"DIA_Raoul_TROLLFELL_nein_01_02");	//Я не прощу себе, если упущу такую возможность.
-	MIS_Raoul_DoesntPayTrollFur = LOG_Running;
+	MIS_Raoul_DoesntPayTrollFur = LOG_RUNNING;
 	AI_StopProcessInfos(self);
 };
 
@@ -530,7 +530,7 @@ instance DIA_Raoul_FELLZURUECK(C_Info)
 
 func int DIA_Raoul_FELLZURUECK_Condition()
 {
-	if((MIS_Raoul_DoesntPayTrollFur == LOG_Running) && Npc_HasItems(self,ItAt_TrollBlackFur))
+	if((MIS_Raoul_DoesntPayTrollFur == LOG_RUNNING) && Npc_HasItems(self,ItAt_TrollBlackFur))
 	{
 		return TRUE;
 	};
@@ -556,7 +556,7 @@ instance DIA_Raoul_GotTrollFurBack(C_Info)
 
 func int DIA_Raoul_GotTrollFurBack_Condition()
 {
-	if((MIS_Raoul_DoesntPayTrollFur == LOG_Running) && !Npc_HasItems(self,ItAt_TrollBlackFur) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
+	if((MIS_Raoul_DoesntPayTrollFur == LOG_RUNNING) && !Npc_HasItems(self,ItAt_TrollBlackFur) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
 	{
 		return TRUE;
 	};

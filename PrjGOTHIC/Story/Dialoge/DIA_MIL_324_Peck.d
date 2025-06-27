@@ -47,7 +47,7 @@ instance DIA_Peck_HEY(C_Info)
 
 func int DIA_Peck_HEY_Condition()
 {
-	if(MIS_Andre_Peck != LOG_Running)
+	if(MIS_Andre_Peck != LOG_RUNNING)
 	{
 		if(!C_PeckIsInBarracks())
 		{
@@ -70,14 +70,13 @@ instance DIA_Peck_FOUND_PECK(C_Info)
 	nr = 2;
 	condition = DIA_Peck_FOUND_PECK_Condition;
 	information = DIA_Peck_FOUND_PECK_Info;
-	permanent = FALSE;
 	description = "Эй, тебе пора возвращаться назад.";
 };
 
 
 func int DIA_Peck_FOUND_PECK_Condition()
 {
-	if(MIS_Andre_Peck == LOG_Running)
+	if(MIS_Andre_Peck == LOG_RUNNING)
 	{
 		if(!C_PeckIsInBarracks())
 		{
@@ -151,7 +150,7 @@ func int DIA_Peck_WEAPON_Condition()
 func void DIA_Peck_WEAPON_Info()
 {
 	AI_Output(other,self,"DIA_Peck_WEAPON_15_00");	//Я пришел за оружием.
-	if(MIS_Andre_Peck == LOG_Running)
+	if(MIS_Andre_Peck == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Peck_WEAPON_12_01");	//Сходи сначала к Андрэ и доложи ему.
 	}
@@ -313,7 +312,7 @@ func int DIA_Peck_ARMOR_Condition()
 func void DIA_Peck_ARMOR_Info()
 {
 	DIA_Common_WhatAboutBetterArmor();
-	if(MIS_Andre_Peck == LOG_Running)
+	if(MIS_Andre_Peck == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_Peck_WEAPON_12_01");	//Сходи сначала к Андрэ и доложи ему.
 	}
@@ -407,12 +406,12 @@ func void DIA_Peck_PERM_Info()
 	{
 		if(MIS_RescueBennet != LOG_SUCCESS)
 		{
-			if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+			if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 			{
 				AI_Output(self,other,"DIA_Peck_PERM_12_02");	//Не совсем. Меня волнуют эти наемники. Я хочу сказать, они могут попытаться освободить своего дружка из тюрьмы силой.
 				AI_Output(self,other,"DIA_Peck_PERM_12_03");	//Мне что-то не очень хочется выступать против банды опытных бойцов.
 			}
-			else if(hero.guild == GIL_KDF)
+			else if(other.guild == GIL_KDF)
 			{
 				AI_Output(self,other,"DIA_Peck_PERM_12_04");	//Конечно! Мы готовы ко всему. Маги могут быть уверены, что этому заключенному не удастся сбежать.
 			}

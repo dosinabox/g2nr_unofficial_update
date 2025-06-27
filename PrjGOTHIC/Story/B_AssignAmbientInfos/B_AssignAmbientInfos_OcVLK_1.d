@@ -89,8 +89,8 @@ func void DIA_OCVLK_1_STANDARD_Info()
 	if(Kapitel <= 3)
 	{
 		AI_Output(self,other,"DIA_OCVLK_1_STANDARD_01_01");	//Орки загнали нас в угол, как и хотели! Без подкрепления никому из нас не выжить! Я удивлен, что драконы все еще не прикончили нас.
-	};
-	if(Kapitel == 4)
+	}
+	else if(Kapitel == 4)
 	{
 		if(!Npc_KnowsInfo(other,DIA_Garond_AllDragonDead))
 		{
@@ -100,8 +100,8 @@ func void DIA_OCVLK_1_STANDARD_Info()
 		{
 			AI_Output(self,other,"DIA_OCVLK_1_STANDARD_01_03");	//Я слышал, что драконы были уничтожены? Слава Инносу!
 		};
-	};
-	if(Kapitel >= 5)
+	}
+	else
 	{
 		if(MIS_OCGateOpen == FALSE)
 		{
@@ -116,9 +116,9 @@ func void DIA_OCVLK_1_STANDARD_Info()
 
 func void B_AssignAmbientInfos_OCVLK_1(var C_Npc slf)
 {
-	dia_ocvlk_1_exit.npc = Hlp_GetInstanceID(slf);
-	dia_ocvlk_1_people.npc = Hlp_GetInstanceID(slf);
-	dia_ocvlk_1_location.npc = Hlp_GetInstanceID(slf);
-	dia_ocvlk_1_standard.npc = Hlp_GetInstanceID(slf);
+	DIA_OCVLK_1_EXIT.npc = Hlp_GetInstanceID(slf);
+	DIA_OCVLK_1_PEOPLE.npc = Hlp_GetInstanceID(slf);
+	DIA_OCVLK_1_LOCATION.npc = Hlp_GetInstanceID(slf);
+	DIA_OCVLK_1_STANDARD.npc = Hlp_GetInstanceID(slf);
 };
 

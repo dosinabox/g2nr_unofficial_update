@@ -46,8 +46,8 @@ func void DIA_Addon_Samuel_Hello_Info()
 	AI_Output(self,other,"DIA_Addon_Samuel_Hello_14_01");	//Итак, чего ты хочешь? Рому или чего-нибудь покрепче?
 	if(!Npc_KnowsInfo(other,DIA_Addon_Garett_Samuel))
 	{
-		Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_SamuelTrade);
+		Log_CreateTopic(TOPIC_Addon_PIR_Trader,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_PIR_Trader,Log_Text_Addon_SamuelTrade);
 	};
 };
 

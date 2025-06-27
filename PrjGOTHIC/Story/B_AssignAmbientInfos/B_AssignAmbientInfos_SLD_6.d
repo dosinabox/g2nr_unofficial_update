@@ -164,11 +164,11 @@ func void DIA_SLD_6_STANDARD_Info()
 		else
 		{
 			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_08");	//Если Беннета не выпустят из тюрьмы, мы сами пойдем туда и освободим его.
-			if(MIS_RescueBennet != LOG_Running)
+			if(MIS_RescueBennet != LOG_RUNNING)
 			{
-				MIS_RescueBennet = LOG_Running;
+				MIS_RescueBennet = LOG_RUNNING;
 				Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
+				Log_SetTopicStatus(TOPIC_RescueBennet,LOG_RUNNING);
 				B_LogEntry(TOPIC_RescueBennet,"У кузнеца Беннета серьезные проблемы. Говорят, что он был арестован.");
 			};
 		};

@@ -8,13 +8,13 @@ func void ZS_Stand_RangerMeeting()
 	Npc_SetPercTime(self,1);
 	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessGuidePlayer);
 	Npc_PercEnable(self,PERC_ASSESSENEMY,B_AssessEnemy);
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Erol)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Greg_NW)))
+	if(C_IsNpc(self,VLK_449_Lares) || C_IsNpc(self,VLK_4303_Addon_Erol) || C_IsNpc(self,PIR_1300_Addon_Greg_NW))
 	{
 		Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessTalk);
 	};
 	Npc_PercEnable(self,PERC_MOVEMOB,B_MoveMob);
 	Npc_PercEnable(self,PERC_ASSESSFIGHTSOUND,B_AssessGuideFightSound);
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Greg_NW)))
+	if(C_IsNpc(self,VLK_449_Lares) || C_IsNpc(self,PIR_1300_Addon_Greg_NW))
 	{
 		AI_SetWalkMode(self,NPC_RUN);
 		if(Npc_GetDistToWP(self,self.wp) > TA_DIST_SELFWP_MAX)
@@ -38,7 +38,7 @@ func void ZS_Stand_RangerMeeting()
 func int ZS_Stand_RangerMeeting_Loop()
 {
 	var int random;
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares))
+	if(C_IsNpc(self,VLK_449_Lares))
 	{
 		if(Npc_GetStateTime(self) > 5)
 		{
@@ -104,10 +104,7 @@ func int ZS_Stand_RangerMeeting_Loop()
 
 func void ZS_Stand_RangerMeeting_End()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares))
-	{
-	}
-	else
+	if(!C_IsNpc(self,VLK_449_Lares))
 	{
 		AI_PlayAni(self,"T_LGUARD_2_STAND");
 	};

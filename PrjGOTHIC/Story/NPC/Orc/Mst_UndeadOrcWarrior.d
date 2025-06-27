@@ -14,14 +14,13 @@ prototype Mst_Default_UndeadOrcWarrior(C_Npc)
 	protection[PROT_BLUNT] = 150;
 	protection[PROT_EDGE] = 150;
 	protection[PROT_POINT] = 150;
-	protection[PROT_FIRE] = 150;	//17;
+	protection[PROT_FIRE] = 150;
 	protection[PROT_FLY] = 150;
 	protection[PROT_MAGIC] = 0;
 	HitChance[NPC_TALENT_1H] = 80;
 	HitChance[NPC_TALENT_2H] = 80;
 	HitChance[NPC_TALENT_BOW] = 80;
 	HitChance[NPC_TALENT_CROSSBOW] = 80;
-//	damagetype = DAM_EDGE;
 	damagetype = DAM_BLUNT;
 	fight_tactic = FAI_ORC;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
@@ -40,7 +39,6 @@ func void B_SetVisuals_UndeadOrcWarrior()
 instance UndeadOrcWarrior(Mst_Default_UndeadOrcWarrior)
 {
 	B_SetVisuals_UndeadOrcWarrior();
-	//EquipItem(self,ItMw_2H_OrcAxe_02);
 	EquipItem(self,ItMw_2H_OrcMace_01);
 	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_RestStart] = OnlyRoutine;

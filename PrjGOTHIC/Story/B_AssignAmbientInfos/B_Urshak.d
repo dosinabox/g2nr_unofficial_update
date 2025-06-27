@@ -48,7 +48,7 @@ func void DIA_Urshak_HALLO_Info()
 	AI_Output(self,other,"DIA_Urshak_HALLO_18_02");	//Друг убивать злого демона КРУШАКА.
 	B_GivePlayerXP(XP_UrshakFound);
 	Log_CreateTopic(TOPIC_Urshak,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Urshak,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Urshak,LOG_RUNNING);
 	B_LogEntry(TOPIC_Urshak,"Я нашел своего старого друга-орка - Ур-Шака.");
 	Info_ClearChoices(DIA_Urshak_HALLO);
 	Info_AddChoice(DIA_Urshak_HALLO,"Что ты делаешь здесь?",DIA_Urshak_HALLO_freund);
@@ -234,7 +234,7 @@ func void DIA_Urshak_HOSHPAKDEAD_Info()
 	B_LogEntry(TOPIC_Urshak,"Хош-Пак мертв. Мой друг-орк направляется к палатке Хош-Пака. Он скорбит по своему наставнику. Я должен отпустить его.");
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,20);
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	Wld_InsertNpc(OrcWarrior_Scout,"OW_HOSHPAK_05");
 	Wld_InsertNpc(OrcWarrior_Scout,"FP_ROAM_HOSHPAK_05");
 };

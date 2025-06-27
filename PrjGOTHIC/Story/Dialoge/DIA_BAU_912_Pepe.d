@@ -27,7 +27,6 @@ instance DIA_Pepe_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Pepe_Hallo_Condition;
 	information = DIA_Pepe_Hallo_Info;
-	permanent = FALSE;
 	description = "Что ты делаешь здесь?";
 };
 
@@ -41,7 +40,7 @@ func void DIA_Pepe_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Pepe_Hallo_15_00");	//Что ты делаешь здесь?
 	AI_Output(self,other,"DIA_Pepe_Hallo_03_01");	//(скучая) Стерегу овец! (вздыхает) И, по возможности, стараюсь держаться подальше от неприятностей.
-	if((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		AI_Output(other,self,"DIA_Pepe_Hallo_15_02");	//Это не всегда возможно, да?
 		AI_Output(self,other,"DIA_Pepe_Hallo_03_03");	//Да уж, особенно когда дело касается наемников. Я очень рад, что работаю здесь, на пастбище, подальше от них. Хотя и здесь не совсем безопасно.
@@ -55,7 +54,6 @@ instance DIA_Pepe_Danger(C_Info)
 	nr = 2;
 	condition = DIA_Pepe_Danger_Condition;
 	information = DIA_Pepe_Danger_Info;
-	permanent = FALSE;
 	description = "А что опасного на пастбище?";
 };
 
@@ -82,7 +80,6 @@ instance DIA_Pepe_WhyNotSLD(C_Info)
 	nr = 3;
 	condition = DIA_Pepe_WhyNotSLD_Condition;
 	information = DIA_Pepe_WhyNotSLD_Info;
-	permanent = FALSE;
 	description = "Почему ты не скажешь наемникам о волках? Мне казалось, это их работа.";
 };
 
@@ -111,7 +108,6 @@ instance DIA_Pepe_KillWolves(C_Info)
 	nr = 4;
 	condition = DIA_Pepe_KillWolves_Condition;
 	information = DIA_Pepe_KillWolves_Info;
-	permanent = FALSE;
 	description = "Что, если я убью этих волков?";
 };
 
@@ -131,15 +127,15 @@ func void DIA_Pepe_KillWolves_Info()
 	AI_Output(other,self,"DIA_Pepe_KillWolves_15_02");	//Забудь об этом. Это было всего лишь предположение. Я пойду к парням, и посмотрим, что ОНИ скажут насчет этого...
 	AI_Output(self,other,"DIA_Pepe_KillWolves_03_03");	//(испуганно) Подожди минутку. Хорошо, хорошо! Эээ... ты величайший воин, и можешь уложить сотню волков одной левой. Нет проблем!
 	AI_Output(self,other,"DIA_Pepe_KillWolves_03_04");	//Обычно они шныряют в лесу около пастбища. (как бы между прочим) Я думаю, их всего четверо...
+	MIS_Pepe_KillWolves = LOG_RUNNING;
+	Log_CreateTopic(TOPIC_PepeWolves,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_PepeWolves,LOG_RUNNING);
+	B_LogEntry(TOPIC_PepeWolves,"Овцы Пепе страдают от волков. Я должен прогнать их.");
 	AI_StopProcessInfos(self);
 	Wld_InsertNpc(PEPES_YWolf1,"FP_ROAM_NW_BIGFARM_PEPES_WOLFS_01");
 	Wld_InsertNpc(PEPES_YWolf2,"FP_ROAM_NW_BIGFARM_PEPES_WOLFS_02");
 	Wld_InsertNpc(PEPES_YWolf3,"FP_ROAM_NW_BIGFARM_PEPES_WOLFS_03");
 	Wld_InsertNpc(PEPES_YWolf4,"FP_ROAM_NW_BIGFARM_PEPES_WOLFS_04");
-	MIS_Pepe_KillWolves = LOG_Running;
-	Log_CreateTopic(TOPIC_PepeWolves,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_PepeWolves,LOG_Running);
-	B_LogEntry(TOPIC_PepeWolves,"Овцы Пепе страдают от волков. Я должен прогнать их.");
 };
 
 
@@ -156,7 +152,7 @@ instance DIA_Pepe_KilledWolves(C_Info)
 
 func int DIA_Pepe_KilledWolves_Condition()
 {
-	if(MIS_Pepe_KillWolves == LOG_Running)
+	if(MIS_Pepe_KillWolves == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -186,16 +182,18 @@ instance DIA_Pepe_Bullco(C_Info)
 	nr = 5;
 	condition = DIA_Pepe_Bullco_Condition;
 	information = DIA_Pepe_Bullco_Info;
-	permanent = FALSE;
 	description = "Что ты сказал насчет Буллко?";
 };
 
 
 func int DIA_Pepe_Bullco_Condition()
 {
-	if((MIS_Pepe_KillWolves == LOG_SUCCESS) && !Npc_IsDead(Bullco) && (MIS_ReadyforChapter4 == FALSE))
+	if((MIS_Pepe_KillWolves == LOG_SUCCESS) && (MIS_ReadyforChapter4 == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Bullco))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -206,9 +204,9 @@ func void DIA_Pepe_Bullco_Info()
 	AI_Output(self,other,"DIA_Pepe_Bullco_03_02");	//Но вместо этого он и его приятель Сильвио день напролет ошиваются в кухне у Теклы.
 	AI_Output(self,other,"DIA_Pepe_Bullco_03_03");	//Это этот ублюдок будет виноват, если мне не заплатят за многие недели работы из-за потери овец.
 	AI_Output(self,other,"DIA_Pepe_Bullco_03_04");	//Как я хотел бы набить ему морду. Но никому это не по силам. Этот парень - убийца.
-	MIS_Pepe_KickBullco = LOG_Running;
+	MIS_Pepe_KickBullco = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_KickBullco,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_KickBullco,LOG_Running);
+	Log_SetTopicStatus(TOPIC_KickBullco,LOG_RUNNING);
 	B_LogEntry(TOPIC_KickBullco,"Буллко плохо охраняет овец Пепе. Пепе хочет, чтобы кто-нибудь проучил его.");
 };
 
@@ -219,14 +217,13 @@ instance DIA_Pepe_BullcoDefeated(C_Info)
 	nr = 5;
 	condition = DIA_Pepe_BullcoDefeated_Condition;
 	information = DIA_Pepe_BullcoDefeated_Info;
-	permanent = FALSE;
 	description = "Буллко получил по заслугам. Я преподал ему урок.";
 };
 
 
 func int DIA_Pepe_BullcoDefeated_Condition()
 {
-	if((MIS_Pepe_KickBullco == LOG_Running) && ((SLD_Bullco_Defeated == TRUE) || (DJG_Bullco_Defeated == TRUE)))
+	if((MIS_Pepe_KickBullco == LOG_RUNNING) && ((SLD_Bullco_Defeated == TRUE) || (DJG_Bullco_Defeated == TRUE)))
 	{
 		return TRUE;
 	};
@@ -291,7 +288,6 @@ instance DIA_Pepe_Liesel(C_Info)
 	nr = 7;
 	condition = DIA_Pepe_Liesel_Condition;
 	information = DIA_Pepe_Liesel_Info;
-	permanent = FALSE;
 	description = "Могу я купить овцу?";
 };
 
@@ -357,8 +353,8 @@ func void DIA_Pepe_BuyLiesel_Info()
 		};
 		Npc_RemoveInvItems(self,ItMi_Gold,100);
 		Pepe_SchafGekauft += 1;
-		Wld_InsertNpc(Follow_Sheep,"NW_BIGFARM_SHEEP2_02");
 		AI_StopProcessInfos(self);
+		Wld_InsertNpc(Follow_Sheep,"NW_BIGFARM_SHEEP2_02");
 	}
 	else
 	{

@@ -87,7 +87,7 @@ func void DIA_Addon_Nefarius_Neues_find()
 	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_find_05_01");	//Пока у меня есть только смутные догадки. Ты должен поговорить с Сатурасом.
 	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_find_05_02");	//У него есть какие-то определенные мысли на этот счет.
 	Log_CreateTopic(TOPIC_Addon_Flut,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Flut,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Flut,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_Flut,"Нефариус сказал, что я должен поговорить с Сатурасом о затонувшем городе.");
 	NefariusADW_Talk2Saturas = TRUE;
 };
@@ -156,7 +156,7 @@ instance DIA_Addon_Nefarius_PreTeach(C_Info)
 
 func int DIA_Addon_Nefarius_PreTeach_Condition()
 {
-	if((hero.guild == GIL_KDF) && (Nefarius_Addon_TeachRunes == FALSE))
+	if((other.guild == GIL_KDF) && (Nefarius_Addon_TeachRunes == FALSE))
 	{
 		return TRUE;
 	};
@@ -165,7 +165,7 @@ func int DIA_Addon_Nefarius_PreTeach_Condition()
 func void DIA_Addon_Nefarius_PreTeach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Nefarius_PreTeach_15_00");	//Ты можешь поделиться со мной своим знанием магии?
-	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1)
+	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1)
 	{
 		AI_Output(self,other,"DIA_Addon_Nefarius_PreTeach_05_01");	//Я могу научить тебя делать магические руны, а Кронос продаст тебе их формулы.
 		AI_Output(self,other,"DIA_Addon_Nefarius_PreTeach_05_02");	//У него всегда с собой его книги рун.

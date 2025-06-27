@@ -166,7 +166,7 @@ instance ItKe_CHEST_SEKOB_XARDASBOOK_MIS(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -218,7 +218,7 @@ func void UseCorneliusTagebuch()
 };
 
 
-instance ITWR_DementorObsessionBook_MIS(C_Item)
+instance ItWr_DementorObsessionBook_MIS(C_Item)
 {
 	name = "Альманах Одержимых";
 	mainflag = ITEM_KAT_DOCS;
@@ -433,7 +433,7 @@ instance ItPo_HealHilda_MIS(C_Item)
 func void Use_HealHilda()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Essenz);
-	if(MIS_HealHilda == LOG_Running)
+	if(MIS_HealHilda == LOG_RUNNING)
 	{
 		MIS_HealHilda = LOG_FAILED;
 		B_CheckLog();
@@ -594,7 +594,7 @@ instance ItKe_IgarazChest_MIS(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
-	value = Value_Key_01;
+	value = 0;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;

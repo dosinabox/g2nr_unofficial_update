@@ -23,6 +23,8 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		IceDragonSpell = SPL_InstantFireball;
 		G2BodySkin = TRUE;
 		FullNPCRemoval = TRUE;
+		RandomGoblinBerries = TRUE;
+		RandomPepper = TRUE;
 		if(C_WorldIsFixed())
 		{
 			Wld_InsertItem(ItRu_LightHeal,"FP_ITEM_PASS_02");
@@ -55,6 +57,8 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 			Wld_InsertItem(ItWr_StrStonePlate1_Addon,"FP_STAND_DEMENTOR_09");
 			Wld_InsertItem(ItWr_HitPointStonePlate3_Addon,"FP_STAND_DEMENTOR_KDF_12");
 		};
+		STORYPOINT[SP_C1_P1] = TRUE;
+		CurrentStoryPoint = SP_C1_P1;
 		IntroduceChapter(KapWechsel_1,KapWechsel_1_Text,"chapter1.tga","chapter_01.wav",6000);
 	}
 	else if(neues_Kapitel == 2)
@@ -62,28 +66,38 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		B_SetMortal(Sekob);
 		B_SetMortal(Bengar);
 		Bennet_NW_ItMi_Swordraw_Count += 3;
+		STORYPOINT[SP_C2_P1] = TRUE;
+		CurrentStoryPoint = SP_C2_P1;
 		IntroduceChapter(KapWechsel_2,KapWechsel_2_Text,"chapter2.tga","chapter_01.wav",6000);
 	}
 	else if(neues_Kapitel == 3)
 	{
 		Bennet_NW_ItMi_Swordraw_Count += 3;
 		Bennet_NW_ItMi_Nugget_Count = 1;
+		STORYPOINT[SP_C3_P1] = TRUE;
+		CurrentStoryPoint = SP_C3_P1;
 	}
 	else if(neues_Kapitel == 4)
 	{
 		Bennet_NW_ItMi_Swordraw_Count += 3;
 		Bennet_NW_ItMi_Nugget_Count += 2;
 		PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
+		STORYPOINT[SP_C4_P1] = TRUE;
+		CurrentStoryPoint = SP_C4_P1;
 	}
 	else if(neues_Kapitel == 5)
 	{
 		Bennet_NW_ItMi_Swordraw_Count += 3;
 		Bennet_NW_ItMi_Nugget_Count += 2;
 		PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
+		STORYPOINT[SP_C5_P1] = TRUE;
+		CurrentStoryPoint = SP_C5_P1;
 	}
 	else if(neues_Kapitel == 6)
 	{
 		PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
+		STORYPOINT[SP_C6_P1] = TRUE;
+		CurrentStoryPoint = SP_C6_P1;
 	};
 	if(aktuelles_Level_Zen == OLDWORLD_ZEN)
 	{

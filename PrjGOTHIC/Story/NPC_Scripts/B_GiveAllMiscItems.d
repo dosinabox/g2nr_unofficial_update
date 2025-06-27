@@ -1,0 +1,93 @@
+
+func void B_GiveAllClassicMiscItems(var C_Npc npc)
+{
+	CreateInvItems(npc,ItMi_Gold,1000);
+	CreateInvItems(npc,ItKe_Lockpick,10);
+	CreateInvItems(npc,ItLsTorch,10);
+	CreateInvItem(npc,ItLsTorchburned);
+	CreateInvItem(npc,ItLsTorchFirespit);
+	CreateInvItem(npc,ItMiSwordraw);
+	CreateInvItem(npc,ItMiSwordrawhot);
+	CreateInvItem(npc,ItMiSwordbladehot);
+	CreateInvItem(npc,ItMiSwordblade);
+	CreateInvItem(npc,ItMi_Pan);
+	CreateInvItem(npc,ItMi_PanFull);
+	CreateInvItem(npc,ItMi_Pliers);
+	CreateInvItem(npc,ItMi_Saw);
+	CreateInvItem(npc,ItMi_Brush);
+	CreateInvItem(npc,ItMi_Flask);
+	CreateInvItem(npc,ItMi_Stomper);
+	CreateInvItem(npc,ItMi_Broom);
+	CreateInvItem(npc,ItMi_Rake);
+	CreateInvItem(npc,ItMi_Hammer);
+	CreateInvItem(npc,ItMi_Scoop);
+	CreateInvItem(npc,ItMi_Nugget);
+	CreateInvItem(npc,ItMi_Joint);
+	CreateInvItem(npc,ItMi_Lute);
+	CreateInvItem(npc,ItMi_RuneBlank);
+	CreateInvItem(npc,ItMi_Sulfur);
+	CreateInvItem(npc,ItMi_Quartz);
+	CreateInvItem(npc,ItMi_Pitch);
+	CreateInvItem(npc,ItMi_Rockcrystal);
+	CreateInvItem(npc,ItMi_Aquamarine);
+	CreateInvItem(npc,ItMi_HolyWater);
+	CreateInvItem(npc,ItMi_Coal);
+	CreateInvItem(npc,ItMi_DarkPearl);
+	CreateInvItem(npc,ItMi_SilverCandleHolder);
+	CreateInvItem(npc,ItMi_SilverChalice);
+	CreateInvItem(npc,ItMi_SilverNecklace);
+	CreateInvItem(npc,ItMi_SilverCup);
+	CreateInvItem(npc,ItMi_SilverRing);
+	CreateInvItem(npc,ItMi_SilverPlate);
+	CreateInvItem(npc,ItMi_GoldCandleHolder);
+	CreateInvItem(npc,ItMi_GoldChalice);
+	CreateInvItem(npc,ItMi_GoldNecklace);
+	CreateInvItem(npc,ItMi_GoldCup);
+	CreateInvItem(npc,ItMi_GoldRing);
+	CreateInvItem(npc,ItMi_GoldPlate);
+	CreateInvItem(npc,ItMi_GoldChest);
+	CreateInvItem(npc,ItMi_JeweleryChest);
+	CreateInvItem(npc,ItMi_InnosStatue);
+	CreateInvItem(npc,ItMi_Sextant);
+	CreateInvItem(npc,ItMi_OldCoin);
+	CreateInvItem(npc,ItMi_ApfelTabak);
+	CreateInvItem(npc,ItMi_PilzTabak);
+	CreateInvItem(npc,ItMi_DoppelTabak);
+	CreateInvItem(npc,ItMi_Honigtabak);
+	CreateInvItem(npc,ItMi_SumpfTabak);
+	CreateInvItem(npc,ItMi_Pocket);
+	CreateInvItem(npc,ItSe_GoldPocket25);
+	CreateInvItem(npc,ItSe_GoldPocket50);
+	CreateInvItem(npc,ItSe_GoldPocket100);
+	CreateInvItem(npc,ItSe_ErzFisch);
+	CreateInvItem(npc,ItSe_GoldFisch);
+	CreateInvItem(npc,ItSe_RingFisch);
+	CreateInvItem(npc,ItSe_LockpickFisch);
+};
+
+func void B_GiveAllAddonMiscItems(var C_Npc npc)
+{
+	CreateInvItem(npc,ItMi_IECello);
+	CreateInvItem(npc,ItMi_IECelloBow);
+	CreateInvItem(npc,ItMi_IEDrum);
+	CreateInvItem(npc,ItMi_IEDrumScheit);
+	CreateInvItem(npc,ItMi_IEDrumStick);
+	CreateInvItem(npc,ItMi_IEDudelBlau);
+	CreateInvItem(npc,ItMi_IEDudelGelb);
+	CreateInvItem(npc,ItMi_IEHarfe);
+	CreateInvItem(npc,ItMi_IELaute);
+	CreateInvItem(npc,ItMi_GoldNugget_Addon);
+	CreateInvItem(npc,ItMi_Addon_WhitePearl);
+	CreateInvItem(npc,ItMi_Addon_Joint_01);
+	CreateInvItem(npc,ItMi_Skull);
+	CreateInvItem(npc,ItMi_Zeitspalt_Addon);
+	CreateInvItem(npc,ItMi_Addon_Shell_01);
+	CreateInvItem(npc,ItMi_Addon_Shell_02);
+};
+
+func void B_GiveAllPatchMiscItems(var C_Npc npc)
+{
+	CreateInvItem(npc,ItMi_AlarmHorn);
+	CreateInvItem(npc,ItMi_ArrowPack);
+};
+

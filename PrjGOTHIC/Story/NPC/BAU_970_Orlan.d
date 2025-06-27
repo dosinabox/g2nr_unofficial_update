@@ -42,9 +42,9 @@ func void Rtn_RangerMeeting_970()
 	TA_RangerMeeting(22,0,8,0,"NW_TAVERNE_IN_RANGERMEETING");
 };
 
-func void Rtn_Parking_970()
+/*func void Rtn_Parking_970()
 {
 	TA_Stand_Guarding(8,0,22,0,"NW_TAVERNE_IN_RANGERMEETING");
 	TA_Stand_Guarding(22,0,8,0,"NW_TAVERNE_IN_RANGERMEETING");
-};
+};*/
 

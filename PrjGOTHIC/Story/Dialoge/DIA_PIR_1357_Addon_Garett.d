@@ -29,8 +29,8 @@ func void B_GarettTradeIntro()
 	AI_Output(self,other,"DIA_Addon_Garett_Hello_09_03");	//Кроме самогона. Если тебе нужен самогон, иди к Сэмюэлю.
 	if(!Npc_KnowsInfo(other,DIA_Addon_Skip_News))
 	{
-		Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
+		Log_CreateTopic(TOPIC_Addon_PIR_Trader,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
 	};
 };
 
@@ -46,7 +46,7 @@ instance DIA_Addon_Garett_Anheuern(C_Info)
 
 func int DIA_Addon_Garett_Anheuern_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_Addon_Greg_ClearCanyon == LOG_Running))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_Addon_Greg_ClearCanyon == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -77,7 +77,7 @@ instance DIA_Addon_Garett_Hello(C_Info)
 
 func int DIA_Addon_Garett_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_Addon_Greg_ClearCanyon != LOG_Running))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_Addon_Greg_ClearCanyon != LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -96,7 +96,6 @@ instance DIA_Addon_Garett_Samuel(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Garett_Samuel_Condition;
 	information = DIA_Addon_Garett_Samuel_Info;
-	permanent = FALSE;
 	description = "Кто такой Сэмюэль?";
 };
 
@@ -123,8 +122,8 @@ func void DIA_Addon_Garett_Samuel_Info()
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_03");	//Я бы посоветовал тебе запастись грогом.
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_04");	//Не все наши ребята приветливо относятся к новичкам, надеюсь, ты меня понимаешь.
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_05");	//А бутылка-другая грога может сотворить настоящие чудеса!
-	Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
-	B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_SamuelTrade);
+	Log_CreateTopic(TOPIC_Addon_PIR_Trader,LOG_NOTE);
+	B_LogEntry(TOPIC_Addon_PIR_Trader,Log_Text_Addon_SamuelTrade);
 };
 
 
@@ -185,7 +184,6 @@ instance DIA_Addon_Garett_Greg(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Garett_Greg_Condition;
 	information = DIA_Addon_Garett_Greg_Info;
-	permanent = FALSE;
 	description = "Ваш капитан Грег. Какой он?";
 };
 
@@ -235,9 +233,9 @@ func void DIA_Addon_Garett_Tips_Info()
 	AI_Output(self,other,"DIA_Addon_Garett_Tips_09_04");	//Грег нередко там бывает. Может быть, тебе удастся там что-нибудь найти.
 	AI_Output(self,other,"DIA_Addon_Garett_Tips_09_05");	//Однажды я сам попытался исследовать это место, но оказалось, что оно кишит монстрами.
 	AI_Output(self,other,"DIA_Addon_Garett_Tips_09_06");	//Если ты все же решишься туда отправиться, не забудь кирку.
-	MIS_Addon_Garett_BringKompass = LOG_Running;
+	MIS_Addon_Garett_BringKompass = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Addon_Kompass,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Kompass,LOG_Running);
+	Log_SetTopicStatus(TOPIC_Addon_Kompass,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_Kompass,"Грег отобрал у Гаретта драгоценный компас. Гаретт думает, что Грег закопал его где-то на южном пляже.");
 };
 
@@ -254,14 +252,13 @@ instance DIA_Addon_Garett_GiveKompass(C_Info)
 	nr = 6;
 	condition = DIA_Addon_Garett_GiveKompass_Condition;
 	information = DIA_Addon_Garett_GiveKompass_Info;
-	permanent = FALSE;
 	description = "Вот твой компас.";
 };
 
 
 func int DIA_Addon_Garett_GiveKompass_Condition()
 {
-	if(Npc_HasItems(other,ItMi_Addon_Kompass_MIS) && (MIS_Addon_Garett_BringKompass == LOG_Running))
+	if(Npc_HasItems(other,ItMi_Addon_Kompass_MIS) && (MIS_Addon_Garett_BringKompass == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -302,7 +299,6 @@ instance DIA_Addon_Garett_Francis(C_Info)
 	nr = 7;
 	condition = DIA_Addon_Garett_Francis_Condition;
 	information = DIA_Addon_Garett_Francis_Info;
-	permanent = FALSE;
 	description = "Что ты можешь мне сказать о Фрэнсисе?";
 };
 
@@ -372,8 +368,8 @@ instance DIA_Addon_Garett_Trade(C_Info)
 	condition = DIA_Addon_Garett_Trade_Condition;
 	information = DIA_Addon_Garett_Trade_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
 	trade = TRUE;
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -449,30 +445,4 @@ func void DIA_Addon_Garett_ArmorM_Back()
 {
 	Info_ClearChoices(DIA_Addon_Garett_ArmorM);
 };
-
-/*instance DIA_Addon_Garett_StonePlate(C_Info)
-{
-	npc = PIR_1357_Addon_Garett;
-	nr = 9;
-	condition = DIA_Addon_Garett_StonePlate_Condition;
-	information = DIA_Addon_Garett_StonePlate_Info;
-	permanent = FALSE;
-	description = "У меня с собой есть каменная табличка. Сколько ты готов дать за это?";
-};
-
-
-func int DIA_Addon_Garett_StonePlate_Condition()
-{
-	if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && (MIS_Addon_Morgan_SeekTraitor == LOG_SUCCESS) && Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
-func void DIA_Addon_Garett_StonePlate_Info()
-{
-	AI_Output(other,self,"DIA_Addon_Garett_StonePlate_15_00_add");	//У меня с собой есть каменная табличка. Сколько ты готов дать за это?
-	AI_Output(self,other,"DIA_Addon_Garett_StonePlate_09_01_add");	//
-};*/
 

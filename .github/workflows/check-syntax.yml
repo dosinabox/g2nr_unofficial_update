@@ -14,10 +14,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Install dependencies
-      run: sudo apt-get install -y grep
+      uses: actions/checkout@v4
 
     - name: Find and check d files
       run: |
@@ -31,6 +28,12 @@ jobs:
           # Check for trailing spaces and tabs at the end of lines
           if grep -Pan '[[:blank:]]$' "${file}"; then
             echo "::error file=$file::File $file has trailing spaces or tabs at the end of lines"
+            errors=$((errors+1))
+          fi
+
+          # Check for spaces at the start of lines
+          if grep -Pan '^ +' "${file}"; then
+            echo "::error file=$file::File $file has spaces at the start of lines"
             errors=$((errors+1))
           fi
 

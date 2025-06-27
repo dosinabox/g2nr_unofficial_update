@@ -28,8 +28,8 @@ func int C_Mika_FreeHelp()
 	if(Mika_FreeHelp == TRUE)
 	{
 		return TRUE;
-	}
-	else if((VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_PAL) || (VisibleGuild(other) == GIL_MIL))
+	};
+	if((VisibleGuild(other) == GIL_KDF) || (VisibleGuild(other) == GIL_PAL) || (VisibleGuild(other) == GIL_MIL))
 	{
 		Mika_FreeHelp = TRUE;
 		return TRUE;
@@ -52,11 +52,14 @@ func int DIA_Mika_Refuse_Condition()
 {
 	if(Npc_IsInState(self,ZS_Talk) && (Npc_GetDistToWP(self,"NW_FARM2_PATH_03") >= 10000))
 	{
-		if((Lares.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToNpc(self,Lares) < 2000))
+		if(!Npc_IsDead(Lares))
 		{
-			return TRUE;
-		}
-		else if(Npc_GetDistToWP(self,"NW_CITY_KASERN_BARRACK02_03") < 3000)
+			if((Lares.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToNpc(self,Lares) < 2000))
+			{
+				return TRUE;
+			};
+		};
+		if(Npc_GetDistToWP(self,"NW_CITY_KASERN_BARRACK02_03") < 3000)
 		{
 			return TRUE;
 		};
@@ -89,8 +92,15 @@ instance DIA_Mika_WOHIN(C_Info)
 
 func int DIA_Mika_WOHIN_Condition()
 {
-	if((Lares.aivar[AIV_PARTYMEMBER] == FALSE) && (Npc_GetDistToWP(self,"NW_CITY_TO_FOREST_01") < 700))
+	if(Npc_GetDistToWP(self,"NW_CITY_TO_FOREST_01") < 700)
 	{
+		if(!Npc_IsDead(Lares))
+		{
+			if((Lares.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToNpc(self,Lares) < 2000))
+			{
+				return FALSE;
+			};
+		};
 		if(ArmorEquipped(other,ITAR_MIL_L))
 		{
 			return TRUE;
@@ -341,21 +351,41 @@ func void DIA_Mika_HILFE_Akil()
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	B_GivePlayerXP(XP_Ambient);
 	B_LogEntry(TOPIC_AkilsSLDStillthere,"Мика хочет помочь мне решить проблему с наемниками на ферме Акила.");
-	Npc_ExchangeRoutine(self,"Akil");
+	Npc_ExchangeRoutine(self,"AKIL");
 };
 
 func void DIA_Mika_HILFE_monster()
 {
 	AI_Output(other,self,"DIA_Mika_HILFE_monster_15_00");	//На меня напали монстры.
-	AI_Output(self,other,"DIA_Mika_HILFE_monster_12_01");	//Но я не вижу никаких монстров. Я думаю, тебе померещилось.
-	AI_StopProcessInfos(self);
+	Npc_PerceiveAll(self);
+	if(!Wld_DetectNpc(self,-1,ZS_MM_Attack,-1))
+	{
+		AI_Output(self,other,"DIA_Mika_HILFE_monster_12_01");	//Но я не вижу никаких монстров. Я думаю, тебе померещилось.
+		AI_StopProcessInfos(self);
+	}
+	else
+	{
+		AI_WaitTillEnd(self,hero);
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_MonsterCloseToGate,0);
+	};
 };
 
 func void DIA_Mika_HILFE_schongut()
 {
 	AI_Output(other,self,"DIA_Mika_HILFE_schongut_15_00");	//Меня преследуют бандиты.
-	AI_Output(self,other,"DIA_Mika_HILFE_schongut_12_01");	//Да ну? И где же они? Если бы за тобой гнались, я бы видел хотя бы одного из них, правильно?
-	AI_StopProcessInfos(self);
+	Npc_PerceiveAll(self);
+	if(!Wld_DetectNpc(self,-1,ZS_Attack,GIL_BDT))
+	{
+		AI_Output(self,other,"DIA_Mika_HILFE_schongut_12_01");	//Да ну? И где же они? Если бы за тобой гнались, я бы видел хотя бы одного из них, правильно?
+		AI_StopProcessInfos(self);
+	}
+	else
+	{
+		AI_WaitTillEnd(self,hero);
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_GuardCalledToKill,0);
+	};
 };
 
 
@@ -427,7 +457,7 @@ func void DIA_Mika_WIEDERNACHHAUSE_Info()
 	AI_Output(self,other,"DIA_Mika_WIEDERNACHHAUSE_12_00");	//Вот и все. Я могу возвращаться назад.
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
-	Npc_ExchangeRoutine(self,"Start");
+	Npc_ExchangeRoutine(self,"START");
 	B_GivePlayerXP(XP_Ambient);
 };
 

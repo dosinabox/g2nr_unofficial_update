@@ -1,10 +1,10 @@
 
 func void B_AssessPlayer()
 {
-	if(C_NpcIsLevelinspektor(other))
+	/*if(C_NpcIsLevelinspektor(other))
 	{
 		return;
-	};
+	};*/
 	if(other.aivar[AIV_INVINCIBLE] == TRUE)
 	{
 		return;
@@ -13,7 +13,7 @@ func void B_AssessPlayer()
 	{
 		return;
 	};
-	if(other.guild > GIL_SEPERATOR_HUM)
+	if(!C_NpcIsHuman(other))
 	{
 		if(C_NpcIsGateGuard(self))
 		{
@@ -85,19 +85,19 @@ func void B_AssessPlayer()
 		self.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		if(Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG)
 		{
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Garwig))
+			if(C_IsNpc(self,NOV_608_Garwig))
 			{
 				self.aivar[AIV_NpcStartedTalk] = TRUE;
 				B_AssessTalk();
 				return;
-			}
-			else if(C_NpcIsGateGuard(self))
+			};
+			if(C_NpcIsGateGuard(self))
 			{
 				self.aivar[AIV_NpcStartedTalk] = TRUE;
 				B_AssessTalk();
 				return;
-			}
-			else if(!C_BodyStateContains(other,BS_FALL) && !C_NpcIsSwimming(other) && (B_GetPlayerCrime(self) == CRIME_NONE) && !C_RefuseTalk(self,other) && !C_PlayerHasFakeGuild(self,other))
+			};
+			if(!C_BodyStateContains(other,BS_FALL) && !C_NpcIsSwimming(other) && (B_GetPlayerCrime(self) == CRIME_NONE) && !C_RefuseTalk(self,other) && !C_PlayerHasFakeGuild(self,other))
 			{
 				self.aivar[AIV_NpcStartedTalk] = TRUE;
 				B_AssessTalk();

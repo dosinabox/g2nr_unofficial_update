@@ -83,7 +83,7 @@ func int DIA_DiegoOw_Beweise_Condition()
 func void DIA_DiegoOw_Beweise_Info()
 {
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_11");	//Послушай, мне нужны доказательства.
-	if(MIS_ScoutMine == LOG_Running)
+	if(MIS_ScoutMine == LOG_RUNNING)
 	{
 		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_14");	//Хорошо, я помогу тебе, чем смогу. Но я не буду рисковать своей шкурой неизвестно из-за чего.
 		AI_Output(other,self,"DIA_DiegoOw_Garond_15_00");	//Я здесь по поручению Гаронда. Он хочет знать, сколько руды было добыто к этому времени.
@@ -94,7 +94,11 @@ func void DIA_DiegoOw_Beweise_Info()
 			AI_Output(self,other,"DIA_DiegoOw_Garond_11_03");	//Конечно, что ты хочешь знать?
 			AI_Output(other,self,"DIA_DiegoOw_Silvestro_15_00");	//Что ты знаешь о руде Сильвестро?
 		};
-		B_LogEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
+		if(Log_Silvestro_Ore == FALSE)
+		{
+			B_LogEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
+			Log_Silvestro_Ore = TRUE;
+		};
 	}
 	else
 	{
@@ -112,7 +116,6 @@ func void DIA_DiegoOw_Beweise_Info()
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Silvestro_11_01");	//В пещере неподалеку от того места, где я спрятался, хранятся ЧЕТЫРЕ ящика руды. Их добыли люди Сильвестро.
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Silvestro_11_02");	//Гаронд может прийти и забрать их.
 	};
-	Diego_ToldAboutSilvestroOre = TRUE;
 	Silvestro_Ore = TRUE;
 };
 
@@ -130,7 +133,7 @@ instance DIA_DiegoOw_Mine(C_Info)
 
 func int DIA_DiegoOw_Mine_Condition()
 {
-	if(Diego_ToldAboutSilvestroOre == TRUE)
+	if(Npc_KnowsInfo(other,DIA_DiegoOw_Beweise))
 	{
 		return TRUE;
 	};
@@ -208,7 +211,7 @@ instance DIA_DiegoOw_Gorn(C_Info)
 
 func int DIA_DiegoOw_Gorn_Condition()
 {
-	if(MIS_RescueGorn == LOG_Running)
+	if(MIS_RescueGorn == LOG_RUNNING)
 	{
 		return TRUE;
 	};

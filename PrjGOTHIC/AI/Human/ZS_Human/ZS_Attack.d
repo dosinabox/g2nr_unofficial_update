@@ -16,11 +16,11 @@ func void ZS_Attack()
 	self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);
 	if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Dexter))
+		if(C_IsNpc(self,BDT_1060_Dexter))
 		{
 			B_Greg_ComesToDexter();
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph))
+		else if(C_IsNpc(self,BAU_942_Randolph))
 		{
 			if(Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000)
 			{
@@ -28,7 +28,7 @@ func void ZS_Attack()
 				return;
 			};
 		}
-		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cornelius))
+		else if(C_IsNpc(self,VLK_401_Cornelius))
 		{
 			if(Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") <= 5000)
 			{
@@ -36,12 +36,9 @@ func void ZS_Attack()
 				return;
 			};
 		}
-		else if((BragoBanditsAttacked == FALSE) && (Kapitel < 3))
+		else if(self.aivar[AIV_SubGuild] == GIL_SUB_Brago)
 		{
-			if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ambusher_1013)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ambusher_1014)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ambusher_1015)))
-			{
-				BragoBanditsAttacked = TRUE;
-			};
+			BragoBanditsAttacked = TRUE;
 		};
 	};
 	if(C_WantToFlee(self))
@@ -92,9 +89,8 @@ func int ZS_Attack_Loop()
 		self.aivar[AIV_PursuitEnd] = TRUE;
 		self.aivar[AIV_Dist] = Npc_GetDistToNpc(self,other);
 		self.aivar[AIV_StateTime] = Npc_GetStateTime(self);
-		if(other.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(other))
 		{
-			//B_Say(self,other,"$RUNCOWARD");
 			AI_PlayAni(self,"T_IGETYOU");
 			B_Say_Overlay(self,other,"$RUNCOWARD");
 		};
@@ -288,12 +284,12 @@ func void ZS_Attack_End()
 	if(C_WantToRansack(self,target))
 	{
 		target.aivar[AIV_RANSACKED] = TRUE;
-		if(target.guild < GIL_SEPERATOR_HUM)
+		if(C_NpcIsHuman(target))
 		{
 			AI_StartState(self,ZS_RansackBody,0,"");
 			return;
-		}
-		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(AlligatorJack)) && (target.aivar[AIV_MM_REAL_ID] == ID_SWAMPRAT))
+		};
+		if(C_IsNpc(self,PIR_1352_Addon_AlligatorJack) && (target.aivar[AIV_MM_REAL_ID] == ID_SWAMPRAT))
 		{
 			AI_StartState(self,ZS_GetMeat,0,"");
 			return;
@@ -302,7 +298,6 @@ func void ZS_Attack_End()
 	if(self.attribute[ATR_HITPOINTS] < (self.attribute[ATR_HITPOINTS_MAX] / 2))
 	{
 		AI_StartState(self,ZS_HealSelf,0,"");
-		return;
 	};
 };
 
