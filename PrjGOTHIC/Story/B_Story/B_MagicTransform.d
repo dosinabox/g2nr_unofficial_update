@@ -13,7 +13,7 @@ func void B_StopMagicTransform()
 {
 	if(PlayerIsTransformed == TRUE)
 	{
-		if(UnionActivated == TRUE)
+		if((UnionActivated == TRUE) && (TransformExitAnimationDisabled == FALSE))
 		{
 			Npc_StopAni(hero,"S_RUN");
 			AI_PlayAni(hero,"T_TRFSHOOT_2_STAND");
@@ -24,7 +24,10 @@ func void B_StopMagicTransform()
 		};
 		if(LevelUpsDuringTransform > 0)
 		{
-			B_IncreaseHeroMaxHP(LevelUpsDuringTransform);
+			if(TransformedLevelUpHPBoostDisabled == FALSE)
+			{
+				B_IncreaseHeroMaxHP(LevelUpsDuringTransform);
+			};
 			LevelUpsDuringTransform = 0;
 		};
 		PlayerIsTransformed = FALSE;
