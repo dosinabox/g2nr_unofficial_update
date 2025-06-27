@@ -47,7 +47,6 @@ func void B_AssessMagic()
 		if(lastHitSpellID == SPL_Firerain)
 		{
 			Npc_ClearAIQueue(self);
-			//TODO почему здесь нет B_ClearPerceptions(self)?
 			AI_StartState(self,ZS_MagicBurnShort,0,"");
 			return;
 		};
@@ -55,9 +54,9 @@ func void B_AssessMagic()
 		{
 			if(other.guild != GIL_DRAGON)
 			{
-				var int zap;
-				zap = Hlp_Random(2);
-				if(zap == 0)
+				var int random;
+				random = Hlp_Random(2);
+				if(random == 0)
 				{
 					Npc_ClearAIQueue(self);
 					B_ClearPerceptions(self);

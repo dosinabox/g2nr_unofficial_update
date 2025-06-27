@@ -8,8 +8,8 @@
 ##            Основное           ##
 ###################################
 
-!define MOD_VERSION "30"
-!define MOD_DATE "9.2"
+!define MOD_VERSION "31"
+!define MOD_DATE "6.27"
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"
@@ -27,10 +27,10 @@ Name "${MOD_NAME}"
 OutFile "${INSTALLER_NAME}.exe"
 
 VIProductVersion "${MOD_DETAILED_VERSION}"
-VIAddVersionKey "FileVersion" "${INSTALLER_VERSION}"
+VIAddVersionKey "FileVersion" "${MOD_VERSION}"
 VIAddVersionKey "LegalCopyright" "© ${MOD_AUTHOR}"
 VIAddVersionKey "FileDescription" "${MOD_NAME_RU}"
-VIAddVersionKey "ProductVersion" "1.${MOD_VERSION}"
+VIAddVersionKey "ProductVersion" "${MOD_VERSION}"
 
 Unicode true
 SetCompressor lzma

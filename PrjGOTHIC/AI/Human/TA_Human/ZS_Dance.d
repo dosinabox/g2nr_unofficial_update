@@ -18,36 +18,36 @@ func int ZS_Dance_Loop()
 	if(danceStyle == 0)
 	{
 		AI_PlayAni(self,"T_DANCE_01");
-	};
-	if(danceStyle == 1)
+	}
+	else if(danceStyle == 1)
 	{
 		AI_PlayAni(self,"T_DANCE_02");
-	};
-	if(danceStyle == 2)
+	}
+	else if(danceStyle == 2)
 	{
 		AI_PlayAni(self,"T_DANCE_03");
-	};
-	if(danceStyle == 3)
+	}
+	else if(danceStyle == 3)
 	{
 		AI_PlayAni(self,"T_DANCE_04");
-	};
-	if(danceStyle == 4)
+	}
+	else if(danceStyle == 4)
 	{
 		AI_PlayAni(self,"T_DANCE_05");
-	};
-	if(danceStyle == 5)
+	}
+	else if(danceStyle == 5)
 	{
 		AI_PlayAni(self,"T_DANCE_06");
-	};
-	if(danceStyle == 6)
+	}
+	else if(danceStyle == 6)
 	{
 		AI_PlayAni(self,"T_DANCE_07");
-	};
-	if(danceStyle == 7)
+	}
+	else if(danceStyle == 7)
 	{
 		AI_PlayAni(self,"T_DANCE_08");
-	};
-	if(danceStyle == 8)
+	}
+	else
 	{
 		AI_PlayAni(self,"T_DANCE_09");
 	};
