@@ -580,7 +580,7 @@ var int Knows_Attila_Was;
 var int MIS_Jora_Dieb;
 var int MIS_Jora_Gold;
 //var int Thorben_Deal;
-var int Dietrichgeben;
+var int Thorben_LockpicksUpdated;
 //var int Wulfgar_First;
 var int Cassia_Day;
 var int MIS_CassiaKelche;

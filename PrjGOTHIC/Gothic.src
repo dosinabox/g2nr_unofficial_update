@@ -6,7 +6,6 @@ _Intern\Classes.d
 AI\AI_Intern\AI_Constants.d
 AI\AI_Intern\BodyStates.d
 AI\AI_Intern\Focus.d
-AI\AI_Intern\Npc_SetToMad.d
 AI\AI_Intern\Species.d
 AI\AI_Intern\PrintDebug.d
 Story\Events\B_Awake_StoneGuardian.d

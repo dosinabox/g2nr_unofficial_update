@@ -843,14 +843,14 @@ const int INVCAM_Z_RING_STANDARD = 45;
 const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2025;
-const int FIX_DATE_MONTH = 6;
-const int FIX_DATE_DAY = 27;
+const int FIX_DATE_MONTH = 8;
+const int FIX_DATE_DAY = 6;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;
 var int FIX_DATE_DAY_SAVE;
 
-const int FIX_VERSION = 31;
+const int FIX_VERSION = 32;
 var int FIX_VERSION_SAVE;
 
 const int LEAST_SUPPORTED = 27;

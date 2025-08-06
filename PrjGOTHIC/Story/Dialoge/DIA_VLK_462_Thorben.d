@@ -495,10 +495,10 @@ func void DIA_Thorben_TRADE_Info()
 	{
 		AI_Output(self,other,"DIA_Thorben_TRADE_06_02");	//Хорошо. Но они ничем не помогут тебе, пока ты не научишься пользоваться ими.
 	};
-	if(!Npc_HasItems(self,ItKe_Lockpick) && (Kapitel > Dietrichgeben))
+	if(!Npc_HasItems(self,ItKe_Lockpick) && (Kapitel > Thorben_LockpicksUpdated))
 	{
 		CreateInvItems(self,ItKe_Lockpick,5);
-		Dietrichgeben += 1;
+		Thorben_LockpicksUpdated += 1;
 	};
 	if(Thorben_TradeLog == FALSE)
 	{
