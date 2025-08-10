@@ -868,7 +868,6 @@ func void INIT_SUB_OldWorld_Part_Oldcamp()
 	Wld_AssignRoomToGuild("klo",GIL_MIL);
 	Wld_AssignRoomToGuild("eg3",GIL_MIL);
 	Wld_AssignRoomToGuild("eg5",GIL_MIL);
-	Wld_AssignRoomToGuild("hh1",-1);
 	Wld_AssignRoomToGuild("hh2",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("hh3",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("hhmh1",GIL_PUBLIC);
@@ -1499,12 +1498,6 @@ func void STARTUP_OldWorld_Part_Surface()
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
-};
-
-func void INIT_SUB_OldWorld_Part_Surface()
-{
-	Wld_AssignRoomToGuild("DT1",GIL_DMT);
-	Wld_AssignRoomToGuild("DT2",GIL_DMT);
 };
 
 func void STARTUP_NewWorld_Part_City_01()
@@ -2943,7 +2936,6 @@ func void INIT_OldWorld()
 	CurrentLevel = OLDWORLD_ZEN;
 	B_Enter_OldWorld();
 	INIT_SUB_OldWorld_Part_Oldcamp();
-	INIT_SUB_OldWorld_Part_Surface();
 	if((MIS_ReadyforChapter4 == TRUE) && (B_Chapter4_OneTime == FALSE))
 	{
 		B_Kapitelwechsel(4,OLDWORLD_ZEN);

@@ -3,7 +3,7 @@ func void B_RemoveTestNpc(var int npcInstance)
 {
 	var C_Npc npc;
 	npc = Hlp_GetNpc(npcInstance);
-	if(C_NpcIsValidAndAlive(npc))
+	if(Hlp_IsValidNpc(npc))
 	{
 		if(!Npc_IsPlayer(npc))
 		{

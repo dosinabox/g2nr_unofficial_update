@@ -37,16 +37,24 @@ func void B_ENTER_OLDWORLD_Kapitel_1()
 			};
 		};
 	};
-	if(Talbin_FollowsThroughPass == LOG_OBSOLETE)
+	if(Hlp_IsValidNpc(PC_ThiefOW))
 	{
-		B_KillNpc(VLK_4130_Talbin);
-		Wld_InsertNpc(DragonSnapper,"START");
-		Talbin_FollowsThroughPass = LOG_FAILED;
-	}
-	else if(Talbin_FollowsThroughPass == LOG_SUCCESS)
+		if(Kapitel >= 3)
+		{
+			Wld_RemoveNpc(PC_ThiefOW);
+		};
+	};
+	if(C_NpcIsValidAndAlive(VLK_4130_Talbin))
 	{
-		B_RemoveNpc(VLK_4130_Talbin);
-		Talbin_FollowsThroughPass = LOG_FAILED;
+		if(Talbin_FollowsThroughPass == LOG_OBSOLETE)
+		{
+			B_KillNpc(VLK_4130_Talbin);
+			Wld_InsertNpc(DragonSnapper,"START");
+		}
+		else if(Talbin_FollowsThroughPass == LOG_SUCCESS)
+		{
+			B_RemoveNpc(VLK_4130_Talbin);
+		};
 	};
 };
 
@@ -70,7 +78,6 @@ func void B_ENTER_OLDWORLD_Kapitel_3()
 	{
 		B_RemoveNpc(PC_Mage_OW);
 		B_RemoveNpc(PC_Fighter_OW);
-		B_RemoveNpc(PC_ThiefOW);
 		Wld_InsertNpc(Snapper,"SPAWN_OW_MOLERATS_WOOD_OM");
 		Wld_InsertNpc(Snapper,"SPAWN_OW_MOLERATS_WOOD_OM");
 		Wld_InsertNpc(Snapper,"SPAWN_OW_MOLERATS_WOOD_OM");
