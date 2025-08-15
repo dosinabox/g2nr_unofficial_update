@@ -122,7 +122,7 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertItem(ItPo_Speed,"FP_ITEM_SHIP_05");
 	Wld_InsertItem(ItPo_Perm_STR,"FP_ITEM_SHIP_06");
 	Wld_InsertItem(ItPo_Health_03,"FP_ITEM_SHIP_08");
-	Wld_InsertItem(ItMiSwordraw,"FP_ITEM_SHIP_09");
+	Wld_InsertItem(ItMiSwordRaw,"FP_ITEM_SHIP_09");
 	Wld_InsertItem(ItMi_Pocket,"FP_ITEM_SHIP_10");
 	Wld_InsertItem(ItSe_GoldPocket100,"FP_ITEM_SHIP_11");
 	Wld_InsertItem(ItSc_Zap,"FP_ITEM_SHIP_12");

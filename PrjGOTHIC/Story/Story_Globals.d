@@ -1265,7 +1265,7 @@ var int Cronos_NW_ItSc_LightHeal_Count;
 var int Cronos_NW_ItSc_SumGobSkel_Count;
 var int Cronos_NW_ItSc_Icelance_Count;
 var int Cronos_NW_ItSc_Whirlwind_Count;
-var int Bennet_NW_ItMi_Swordraw_Count;
+var int Bennet_NW_ItMi_SwordRaw_Count;
 var int Bennet_NW_ItMi_Nugget_Count;
 var int Valentino_Day;
 var int Lothar_Day;

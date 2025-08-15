@@ -189,6 +189,10 @@ func void B_AssessTalk()
 			};
 			AI_StandupQuick(self);
 			AI_TurnToNPC(self,other);
+			if(Npc_GetDistToNpc(self,other) < 160)
+			{
+				AI_Dodge(self);
+			};
 			AI_Wait(self,2);
 			return;
 		};

@@ -270,7 +270,7 @@ instance PC_E3Paladin(Npc_Default)
 	EquipItem(self,ItRu_PalRepelEvil);
 	CreateInvItems(self,ItMi_Gold,100);
 	CreateInvItems(self,ItMi_Nugget,50);
-	CreateInvItems(self,ItMiSwordraw,10);
+	CreateInvItems(self,ItMiSwordRaw,10);
 	CreateInvItems(self,ItAt_DragonBlood,10);
 	CreateInvItems(self,ItSc_InstantFireball,10);
 	CreateInvItems(self,ItSc_TrfSheep,5);
