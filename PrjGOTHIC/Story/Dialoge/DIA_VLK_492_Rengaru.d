@@ -54,7 +54,6 @@ instance DIA_Rengaru_HALLODIEB(C_Info)
 	nr = 2;
 	condition = DIA_Rengaru_HALLODIEB_Condition;
 	information = DIA_Rengaru_HALLODIEB_Info;
-	permanent = FALSE;
 	description = "Джора говорит, что ты украл у него деньги...";
 };
 
@@ -97,7 +96,6 @@ instance DIA_Rengaru_GOTYOU(C_Info)
 	nr = 3;
 	condition = DIA_Rengaru_GOTYOU_Condition;
 	information = DIA_Rengaru_GOTYOU_Info;
-	permanent = FALSE;
 	description = "Поймал!";
 };
 
@@ -205,7 +203,6 @@ instance DIA_Rengaru_INKNAST(C_Info)
 	nr = 4;
 	condition = DIA_Rengaru_INKNAST_Condition;
 	information = DIA_Rengaru_INKNAST_Info;
-	permanent = FALSE;
 	description = "Я должен сдать тебя ополчению.";
 };
 
@@ -261,7 +258,6 @@ instance DIA_Rengaru_SPARE(C_Info)
 	nr = 5;
 	condition = DIA_Rengaru_SPARE_Condition;
 	information = DIA_Rengaru_SPARE_Info;
-	permanent = FALSE;
 	description = "Проваливай! И чтоб больше я тебя здесь не видел!";
 };
 
@@ -319,7 +315,6 @@ instance DIA_Rengaru_Zeichen(C_Info)
 	nr = 800;
 	condition = DIA_Rengaru_Zeichen_Condition;
 	information = DIA_Rengaru_Zeichen_Info;
-	permanent = FALSE;
 	description = DIALOG_SecretSign;
 };
 

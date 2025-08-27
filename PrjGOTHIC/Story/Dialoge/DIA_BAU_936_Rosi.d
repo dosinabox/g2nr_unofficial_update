@@ -10,17 +10,17 @@ func void B_RosiTradeInfo()
 	if(RosiTradeInfo == FALSE)
 	{
 		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_06");	//Ты хочешь купить какой-нибудь еды или, возможно, что-то для охоты в лесу?
-		if(RosiLocation == LOC_CITY)
+		if(RosiLocation == LOC_NW_CITY)
 		{
 			Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 			B_LogEntry(TOPIC_CityTrader,"У Рози можно купить различные товары.");
 		}
-		else if(RosiLocation == LOC_MONASTERY)
+		else if(RosiLocation == LOC_NW_MONASTERY)
 		{
 			Log_CreateTopic(TOPIC_KlosterTrader,LOG_NOTE);
 			B_LogEntry(TOPIC_KlosterTrader,"У Рози можно купить различные товары.");
 		}
-		else if(RosiLocation == LOC_FARM)
+		else if(RosiLocation == LOC_NW_BIGFARM)
 		{
 			Log_CreateTopic(TOPIC_SoldierTrader,LOG_NOTE);
 			B_LogEntry(TOPIC_SoldierTrader,"У Рози можно купить различные товары.");
@@ -508,19 +508,19 @@ func void DIA_Rosi_ANGEKOMMEN_Info()
 	{
 		Npc_ExchangeRoutine(self,"CITY");
 		B_StartOtherRoutine(Till,"CITY");
-		RosiLocation = LOC_CITY;
+		RosiLocation = LOC_NW_CITY;
 	}
 	else if(Npc_GetDistToWP(self,"NW_BIGFARM_KITCHEN_02") < 8000)
 	{
 		Npc_ExchangeRoutine(self,"BIGFARM");
 		B_StartOtherRoutine(Till,"BIGFARM");
-		RosiLocation = LOC_FARM;
+		RosiLocation = LOC_NW_BIGFARM;
 	}
 	else if(Npc_GetDistToWP(self,"KLOSTER") < 8000)
 	{
 		Npc_ExchangeRoutine(self,"KLOSTER");
 		B_StartOtherRoutine(Till,"KLOSTER");
-		RosiLocation = LOC_MONASTERY;
+		RosiLocation = LOC_NW_MONASTERY;
 	};
 };
 

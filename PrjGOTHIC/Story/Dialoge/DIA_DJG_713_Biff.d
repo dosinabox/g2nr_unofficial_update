@@ -368,48 +368,48 @@ func int B_GetBiffLocation(var int tolerance)
 {
 	if(Npc_GetDistToWP(self,"OC_CENTER_GUARD_02") < (4500 + tolerance))
 	{
-		return LOC_BURG;
+		return LOC_OW_OLDCAMP;
 	};
 	if(!Npc_IsDead(SwampDragon))
 	{
-		if(SwampDragon.flags != 0)
+		if(C_NpcIsImmortal(SwampDragon))
 		{
 			if(Npc_GetDistToWP(self,"OW_SWAMPDRAGON_01") < (4000 + tolerance))
 			{
-				return LOC_SWAMP;
+				return LOC_OW_SWAMPDRAGON;
 			};
 		};
 	};
 	if(!Npc_IsDead(RockDragon))
 	{
-		if(RockDragon.flags != 0)
+		if(C_NpcIsImmortal(RockDragon))
 		{
 			if(Npc_GetDistToWP(self,"LOCATION_19_03_PATH_RUIN8") < (2000 + tolerance))
 			{
-				return LOC_ROCK;
+				return LOC_OW_ROCKDRAGON;
 			};
 		};
 	};
 	if(!Npc_IsDead(FireDragon))
 	{
-		if(FireDragon.flags != 0)
+		if(C_NpcIsImmortal(FireDragon))
 		{
 			if(Npc_GetDistToWP(self,"CASTLE_36") < (4000 + tolerance))
 			{
 				if(Npc_GetHeightToNpc(self,FireDragon) < 500)
 				{
-					return LOC_FIRE;
+					return LOC_OW_FIREDRAGON;
 				};
 			};
 		};
 	};
 	if(!Npc_IsDead(IceDragon))
 	{
-		if(IceDragon.flags != 0)
+		if(C_NpcIsImmortal(IceDragon))
 		{
 			if(Npc_GetDistToWP(self,"OW_ICEDRAGON_01") < (4000 + tolerance))
 			{
-				return LOC_ICE;
+				return LOC_OW_ICEDRAGON;
 			};
 		};
 	};
@@ -441,23 +441,23 @@ func int DIA_Biff_ICHBLEIBHIER_Condition()
 	{
 		var int location;
 		location = B_GetBiffLocation(0);
-		if(location == LOC_BURG)
+		if(location == LOC_OW_OLDCAMP)
 		{
 			return TRUE;
 		};
-		if(location == LOC_SWAMP)
+		if(location == LOC_OW_SWAMPDRAGON)
 		{
 			return TRUE;
 		};
-		if(location == LOC_ROCK)
+		if(location == LOC_OW_ROCKDRAGON)
 		{
 			return TRUE;
 		};
-		if(location == LOC_FIRE)
+		if(location == LOC_OW_FIREDRAGON)
 		{
 			return TRUE;
 		};
-		if(location == LOC_ICE)
+		if(location == LOC_OW_ICEDRAGON)
 		{
 			return TRUE;
 		};
@@ -473,23 +473,23 @@ func void DIA_Biff_ICHBLEIBHIER_Info()
 	DJG_Biff_SCGold = Npc_HasItems(other,ItMi_Gold);
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,300);
-	if(location == LOC_BURG)
+	if(location == LOC_OW_OLDCAMP)
 	{
 		Npc_ExchangeRoutine(self,"STAY_AWAYFROMOC");
 	}
-	else if(location == LOC_SWAMP)
+	else if(location == LOC_OW_SWAMPDRAGON)
 	{
 		Npc_ExchangeRoutine(self,"STAY_SWAMP");
 	}
-	else if(location == LOC_ROCK)
+	else if(location == LOC_OW_ROCKDRAGON)
 	{
 		Npc_ExchangeRoutine(self,"STAY_ROCK");
 	}
-	else if(location == LOC_FIRE)
+	else if(location == LOC_OW_FIREDRAGON)
 	{
 		Npc_ExchangeRoutine(self,"STAY_FIRE");
 	}
-	else if(location == LOC_ICE)
+	else if(location == LOC_OW_ICEDRAGON)
 	{
 		Npc_ExchangeRoutine(self,"STAY_ICE");
 	};
@@ -609,6 +609,7 @@ func void DIA_Biff_BIFFLOSWERDEN_Info()
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	DJG_Biff_HalbeHalbe = FALSE;
 	DJG_BiffParty = FALSE;
+	DJG_Biff_Stay = FALSE;
 	DJG_BiffParty_nomore += 1;
 	if(Biff_IsOnBoard == LOG_SUCCESS)
 	{

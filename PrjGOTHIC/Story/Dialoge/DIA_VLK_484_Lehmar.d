@@ -27,7 +27,6 @@ instance DIA_Lehmar_ENTSCHULDIGUNG(C_Info)
 	nr = 2;
 	condition = DIA_Lehmar_ENTSCHULDIGUNG_Condition;
 	information = DIA_Lehmar_ENTSCHULDIGUNG_Info;
-	permanent = FALSE;
 	description = "Как дела?";
 };
 
@@ -134,7 +133,6 @@ instance DIA_Lehmar_WARUMGELD(C_Info)
 	nr = 3;
 	condition = DIA_Lehmar_WARUMGELD_Condition;
 	information = DIA_Lehmar_WARUMGELD_Info;
-	permanent = FALSE;
 	description = "Ты всегда так легко раздаешь деньги?";
 };
 
@@ -164,7 +162,6 @@ instance DIA_Lehmar_GELDEINTREIBEN(C_Info)
 	nr = 5;
 	condition = DIA_Lehmar_GELDEINTREIBEN_Condition;
 	information = DIA_Lehmar_GELDEINTREIBEN_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -312,7 +309,6 @@ instance DIA_Lehmar_BuchWeg(C_Info)
 	nr = 1;
 	condition = DIA_Lehmar_BuchWeg_Condition;
 	information = DIA_Lehmar_BuchWeg_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

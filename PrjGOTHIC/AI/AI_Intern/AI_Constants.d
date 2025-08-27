@@ -266,11 +266,23 @@ var int PETZCOUNTER_Farm_Attack;
 var int PETZCOUNTER_Farm_Sheepkiller;
 
 const int LOC_NONE = 0;
-const int LOC_OLDCAMP = 1;
-const int LOC_CITY = 2;
-const int LOC_MONASTERY = 3;
-const int LOC_FARM = 4;
-const int LOC_ALL = 6;
+const int LOC_ALL = 1;
+const int LOC_NW_CITY = 2;
+const int LOC_NW_MONASTERY = 3;
+const int LOC_NW_BIGFARM = 4;
+const int LOC_OW_OLDCAMP = 5;
+const int LOC_OW_XARDAS = 6;
+const int LOC_OW_FAJETHMINE = 7;
+const int LOC_OW_SILVESTROMINE = 8;
+const int LOC_OW_GRIMESMINE = 9;
+const int LOC_OW_ANGAR = 10;
+const int LOC_OW_ORCBARRIER = 11;
+const int LOC_OW_ORCBARRIER_FAR = 12;
+const int LOC_OW_ROCKDRAGON = 13;
+const int LOC_OW_ICEDRAGON = 14;
+const int LOC_OW_SWAMPDRAGON = 15;
+const int LOC_OW_FIREDRAGON = 16;
+const int LOC_OW_LAKE = 17;
 
 const int Q_KASERNE = 1;
 const int Q_GALGEN = 2;

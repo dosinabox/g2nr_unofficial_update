@@ -221,7 +221,7 @@ func void DIA_Salandril_GehinsKloster_Info()
 		MIS_Serpentes_BringSalandril_SLD = LOG_SUCCESS;
 	};
 	Salandril_SentToMonastery = TRUE;
-	SalandrilLocation = LOC_MONASTERY;
+	SalandrilLocation = LOC_NW_MONASTERY;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"KLOSTERURTEIL");
 };

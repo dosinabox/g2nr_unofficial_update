@@ -36,12 +36,12 @@ func void B_ResetFernando()
 
 func void B_ResetSalandril()
 {
-	if((SalandrilLocation == LOC_MONASTERY) && (TOPIC_END_MinenAnteile == TRUE))
+	if((SalandrilLocation == LOC_NW_MONASTERY) && (TOPIC_END_MinenAnteile == TRUE))
 	{
 		if(!Npc_IsDead(Salandril))
 		{
 			Npc_ExchangeRoutine(Salandril,"START");
-			SalandrilLocation = LOC_CITY;
+			SalandrilLocation = LOC_NW_CITY;
 		};
 	};
 };
