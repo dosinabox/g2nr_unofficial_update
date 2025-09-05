@@ -1,6 +1,4 @@
 
-var int Urshak_Sucked;
-
 instance DIA_Urshak_EXIT(C_Info)
 {
 	npc = NONE_110_Urshak;
@@ -252,9 +250,12 @@ instance DIA_Urshak_GEH(C_Info)
 
 func int DIA_Urshak_GEH_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Npc_GetDistToWP(self,"OW_HOSHPAK_04") > 1000) && (Urshak_Sucked == FALSE) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Urshak_Sucked == FALSE) && Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"OW_HOSHPAK_04") > 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -276,9 +277,12 @@ instance DIA_Urshak_HOSHPAKRACHE(C_Info)
 
 func int DIA_Urshak_HOSHPAKRACHE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Npc_GetDistToWP(self,"OW_HOSHPAK_04") <= 1000) && (Urshak_Sucked == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Urshak_Sucked == FALSE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"OW_HOSHPAK_04") <= 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 

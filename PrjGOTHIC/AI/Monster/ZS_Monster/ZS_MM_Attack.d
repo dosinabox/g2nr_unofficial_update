@@ -80,7 +80,7 @@ func int ZS_MM_Attack_Loop()
 		B_KillNpc(self);
 		return LOOP_END;
 	};
-	if(CurrentLevel == OLDWORLD_ZEN)
+	if((CurrentLevel == OLDWORLD_ZEN) && (MIS_OCGateOpen == FALSE))
 	{
 		if(Npc_GetDistToWP(self,"OC_RAMP_07") <= 500)
 		{

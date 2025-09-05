@@ -732,9 +732,20 @@ instance DIA_Addon_Greg_NW_PermTaverne(C_Info)
 
 func int DIA_Addon_Greg_NW_PermTaverne_Condition()
 {
-	if(((GregLocation == Greg_Bigcross) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_Bigcross) && ((Npc_GetDistToWP(self,"BIGCROSS") >= 1000) || (MIS_Addon_Greg_RakeCave == LOG_SUCCESS))) || ((GregLocation == Greg_Dexter) && Npc_KnowsInfo(other,DIA_Addon_Greg_NW_WasWillstDu)))
+	if((GregLocation == Greg_Dexter) && Npc_KnowsInfo(other,DIA_Addon_Greg_NW_WasWillstDu))
 	{
 		return TRUE;
+	};
+	if((GregLocation == Greg_Bigcross) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_Bigcross))
+	{
+		if(MIS_Addon_Greg_RakeCave == LOG_SUCCESS)
+		{
+			return TRUE;
+		};
+		if(Npc_GetDistToWP(self,"BIGCROSS") >= 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1145,7 +1156,7 @@ func void DIA_Addon_Greg_NW_Skip_Info()
 
 func int C_SCHasGregsItems()
 {
-	if((Npc_HasItems(other,ItSe_GoldPocket100) || (Npc_HasItems(other,ItMi_Gold) >= 100)) && Npc_HasItems(other,ItMi_GoldChalice) && Npc_HasItems(other,ItMi_GregsSilverPlate) && Npc_HasItems(other,ItAm_Addon_Greg))
+	if((Npc_HasItems(hero,ItSe_GoldPocket100) || (Npc_HasItems(hero,ItMi_Gold) >= 100)) && Npc_HasItems(hero,ItMi_GoldChalice) && Npc_HasItems(hero,ItMi_GregsSilverPlate) && Npc_HasItems(hero,ItAm_Addon_Greg))
 	{
 		return TRUE;
 	};

@@ -1444,3 +1444,4 @@ var int PAL_205_schonmalreingelassen;
 var int FireDragonIslandIsDead;
 var int TransformExitAnimationDisabled;
 var int TransformedLevelUpHPBoostDisabled;
+var int Urshak_Sucked;

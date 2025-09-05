@@ -6,13 +6,11 @@ const int Value_Ru_Geyser = 1500;
 const int Value_Ru_Waterfist = 2000;
 const int Value_Ru_Greententacle = 2500;
 const int Value_Ru_Swarm = 1500;
-const int Value_Ru_Energyball = 3500;
+const int Value_Ru_BeliarsRage = 3500;
 const int Value_Ru_SuckEnergy = 3500;
 const int Value_Ru_Skull = 2000;
 const int Value_Ru_SummonGuardian = 2000;
 const int Value_Ru_SummonZombie = 2000;
-//const int Value_Ru_Beliar = 100;
-//const int Value_Ru_Water = 200;
 
 instance ItRu_Thunderstorm(C_Item)
 {
@@ -56,8 +54,6 @@ instance ItRu_Whirlwind(C_Item)
 	count[1] = SPL_Cost_Whirlwind;
 	text[2] = NAME_Dam_Magic;
 	count[2] = 60;
-	//text[3] = NAME_PureDamagePerSec;
-	//count[3] = SPL_Whirlwind_DAMAGE;
 	text[3] = NAME_Sec_Duration;
 	count[3] = SPL_TIME_WHIRLWIND;
 	text[5] = NAME_Value;
@@ -140,10 +136,10 @@ instance ItRu_BeliarsRage(C_Item)
 	name = NAME_Rune;
 	mainflag = ITEM_KAT_RUNE;
 	flags = 0;
-	value = Value_Ru_Energyball;
+	value = Value_Ru_BeliarsRage;
 	visual = "ItRu_Beliar04.3DS";
 	material = MAT_STONE;
-	spell = SPL_Energyball;
+	spell = SPL_BeliarsRage;
 	mag_circle = 3;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER_RED";
@@ -151,9 +147,9 @@ instance ItRu_BeliarsRage(C_Item)
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
-	count[1] = SPL_Cost_Energyball;
+	count[1] = SPL_Cost_BeliarsRage;
 	text[2] = NAME_Dam_Magic;
-	count[2] = SPL_Damage_Energyball;
+	count[2] = SPL_Damage_BeliarsRage;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
