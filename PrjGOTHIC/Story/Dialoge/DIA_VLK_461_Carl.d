@@ -33,7 +33,6 @@ instance DIA_Carl_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Carl_Hallo_Condition;
 	information = DIA_Carl_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -77,7 +76,6 @@ instance DIA_Carl_Diebe(C_Info)
 	nr = 3;
 	condition = DIA_Carl_Diebe_Condition;
 	information = DIA_Carl_Diebe_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о ворах?";
 };
 
@@ -102,7 +100,6 @@ instance DIA_Carl_Lernen(C_Info)
 	nr = 3;
 	condition = DIA_Carl_Lernen_Condition;
 	information = DIA_Carl_Lernen_Info;
-	permanent = FALSE;
 	description = "Ты можешь научить меня чему-нибудь?";
 };
 
@@ -150,7 +147,6 @@ instance DIA_Carl_Wieviel(C_Info)
 	nr = 3;
 	condition = DIA_Carl_Wieviel_Condition;
 	information = DIA_Carl_Wieviel_Info;
-	permanent = FALSE;
 	description = "Сколько ты берешь за обучение?";
 };
 
@@ -277,7 +273,6 @@ instance DIA_Carl_RepairNecklace(C_Info)
 	nr = 8;
 	condition = DIA_Carl_RepairNecklace_Condition;
 	information = DIA_Carl_RepairNecklace_Info;
-	permanent = FALSE;
 	description = "Ты можешь чинить драгоценности?";
 };
 

@@ -53,12 +53,12 @@ func void DIA_Fellan_News_Info()
 			Npc_ExchangeRoutine(self,"OHNEHAMMER");
 			AI_StopProcessInfos(self);
 		};
-	};
-	if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_WON)
+	}
+	else if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_WON)
 	{
 		AI_Output(self,other,"DIA_Fellan_News_06_03");	//В чем дело? Хочешь еще получить по морде?
-	};
-	if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_CANCEL)
+	}
+	else if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_CANCEL)
 	{
 		AI_Output(self,other,"DIA_Fellan_News_06_04");	//Что ты за псих? То сражаешься, то убегаешь, то болтаешь - что тебе вообще нужно?
 	};
@@ -72,14 +72,13 @@ instance DIA_Fellan_HALLO(C_Info)
 	nr = 2;
 	condition = DIA_Fellan_HALLO_Condition;
 	information = DIA_Fellan_HALLO_Info;
-	permanent = FALSE;
 	description = "Зачем ты колотишь молотком?";
 };
 
 
 func int DIA_Fellan_HALLO_Condition()
 {
-	if(FellanGeschlagen == FALSE)
+	if((FellanGeschlagen == FALSE) && Npc_WasInState(self,ZS_Repair_Hut))
 	{
 		return TRUE;
 	};
@@ -156,7 +155,7 @@ instance DIA_Fellan_klar(C_Info)
 
 func int DIA_Fellan_klar_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Fellan_HALLO))
+	if(Npc_KnowsInfo(other,DIA_Fellan_HALLO) || (FellanGeschlagen == TRUE))
 	{
 		return TRUE;
 	};

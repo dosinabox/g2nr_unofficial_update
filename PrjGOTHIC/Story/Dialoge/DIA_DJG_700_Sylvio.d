@@ -244,8 +244,7 @@ func void DIA_Sylvio_ICEGOLEMSKILLED_Info()
 	};
 	if(C_BodyStateContains(self,BS_SIT))
 	{
-		AI_Standup(self);
-		B_TurnToNpc(self,other);
+		AI_UseMob(self,"BENCH",-1);
 	};
 	AI_StopProcessInfos(self);
 	MIS_DJG_Sylvio_KillIceGolem = LOG_SUCCESS;
@@ -255,7 +254,7 @@ func void DIA_Sylvio_ICEGOLEMSKILLED_Info()
 	{
 		if(C_BodyStateContains(DJG_Bullco,BS_SIT))
 		{
-			AI_Standup(DJG_Bullco);
+			AI_UseMob(DJG_Bullco,"BENCH",-1);
 		};
 		B_StartOtherRoutine(DJG_Bullco,"ICEWAIT1");
 	};
@@ -274,15 +273,18 @@ instance DIA_Sylvio_WASJETZT(C_Info)
 
 func int DIA_Sylvio_WASJETZT_Condition()
 {
-	if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+	if(!Npc_IsDead(IceDragon))
 	{
-		if(MIS_DJG_Sylvio_KillIceGolem == LOG_SUCCESS)
+		if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
 		{
-			return TRUE;
-		};
-		if((SylvioIceGolemsKilledBefore4Chapter == TRUE) && Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER))
-		{
-			return TRUE;
+			if(MIS_DJG_Sylvio_KillIceGolem == LOG_SUCCESS)
+			{
+				return TRUE;
+			};
+			if((SylvioIceGolemsKilledBefore4Chapter == TRUE) && Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER))
+			{
+				return TRUE;
+			};
 		};
 	};
 };

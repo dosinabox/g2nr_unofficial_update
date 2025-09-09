@@ -192,8 +192,7 @@ func void DIA_Bullco_WASNUN_woandere_zuihnen_Geld()
 		Bullco_Guide = LOG_RUNNING;
 		if(C_BodyStateContains(self,BS_SIT))
 		{
-			AI_Standup(self);
-			B_TurnToNpc(self,other);
+			AI_UseMob(self,"BENCH",-1);
 		};
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"GUIDE");

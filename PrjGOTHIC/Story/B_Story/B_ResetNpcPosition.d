@@ -101,3 +101,22 @@ func void B_ResetHenryPirates()
 	};
 };
 
+func void B_ResetSwampParty()
+{
+	if(DJG_SwampParty == TRUE)
+	{
+		if(!Npc_IsDead(DJG_Cipher))
+		{
+			Npc_ExchangeRoutine(DJG_Cipher,"START");
+			DJG_Cipher.aivar[AIV_PARTYMEMBER] = FALSE;
+		};
+		if(!Npc_IsDead(DJG_Rod))
+		{
+			Npc_ExchangeRoutine(DJG_Rod,"START");
+			DJG_Rod.aivar[AIV_PARTYMEMBER] = FALSE;
+		};
+		DJG_SwampParty = FALSE;
+		DJG_SwampParty_GoGoGo = FALSE;
+	};
+};
+
