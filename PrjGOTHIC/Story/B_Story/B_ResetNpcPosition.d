@@ -116,7 +116,6 @@ func void B_ResetSwampParty()
 			DJG_Rod.aivar[AIV_PARTYMEMBER] = FALSE;
 		};
 		DJG_SwampParty = FALSE;
-		DJG_SwampParty_GoGoGo = FALSE;
 	};
 };
 

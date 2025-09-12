@@ -1,13 +1,14 @@
 
 const int SPL_Cost_Whirlwind = 30;
-const int SPL_Whirlwind_DAMAGE = 0;
+//const int SPL_WHIRLWIND_DAMAGE_PER_SEC = 0;
 const int SPL_TIME_WHIRLWIND = 10;
+const int SPL_Damage_Whirlwind = 60;
 
 instance Spell_Whirlwind(C_Spell_Proto)
 {
 	time_per_mana = 0;
 	targetCollectAlgo = TARGET_COLLECT_FOCUS;
-	damage_per_level = 60;
+	damage_per_level = SPL_Damage_Whirlwind;
 };
 
 

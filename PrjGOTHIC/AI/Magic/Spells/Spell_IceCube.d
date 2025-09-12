@@ -2,11 +2,12 @@
 const int SPL_Cost_IceCube = 40;
 const int SPL_FREEZE_DAMAGE = 2;
 const int SPL_TIME_FREEZE = 19;
+const int SPL_Damage_IceCube = 60;
 
 instance Spell_IceCube(C_Spell_Proto)
 {
 	time_per_mana = 0;
-	damage_per_level = 60;
+	damage_per_level = SPL_Damage_IceCube;
 };
 
 

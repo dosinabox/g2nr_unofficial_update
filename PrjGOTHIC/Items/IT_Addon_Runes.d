@@ -53,7 +53,7 @@ instance ItRu_Whirlwind(C_Item)
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_Whirlwind;
 	text[2] = NAME_Dam_Magic;
-	count[2] = 60;
+	count[2] = SPL_Damage_Whirlwind;
 	text[3] = NAME_Sec_Duration;
 	count[3] = SPL_TIME_WHIRLWIND;
 	text[5] = NAME_Value;

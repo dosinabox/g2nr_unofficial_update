@@ -9,7 +9,7 @@ instance DJG_702_Rod(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_1h_Sld_Sword);
+	B_EquipPersonalWeapon_Rod(self);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,16,ItMi_Gold,320);
 	CreateInvItems(self,ItPo_Health_02,6);

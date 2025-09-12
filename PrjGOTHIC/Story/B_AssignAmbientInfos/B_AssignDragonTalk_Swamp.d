@@ -21,7 +21,7 @@ func void DIA_Dragon_Swamp_Exit_Info()
 {
 	AI_Output(self,other,"DIA_Dragon_Swamp_Exit_20_00");	//Сила Глаза иссякла. Твоя жизнь закончится здесь, человек.
 	B_EndDragonTalk();
-	if((DJG_SwampParty_GoGoGo == TRUE) && (DJG_SwampParty == TRUE))
+	if(DJG_SwampParty == TRUE)
 	{
 		if(!Npc_IsDead(DJG_Cipher))
 		{

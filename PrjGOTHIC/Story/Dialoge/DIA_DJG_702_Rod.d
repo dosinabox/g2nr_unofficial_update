@@ -254,7 +254,7 @@ instance DIA_RodDJG_CipherDead(C_Info)
 
 func int DIA_RodDJG_CipherDead_Condition()
 {
-	if((DJG_SwampParty == TRUE) && (DJG_SwampParty_GoGoGo == TRUE))
+	if((DJG_SwampParty == TRUE) && Npc_KnowsInfo(other,DIA_CipherDJG_GO))
 	{
 		if(Npc_IsDead(DJG_Cipher))
 		{
@@ -267,7 +267,6 @@ func void DIA_RodDJG_CipherDead_Info()
 {
 	B_Say(self,other,"$RUNAWAY");
 	DJG_SwampParty = FALSE;
-	DJG_SwampParty_GoGoGo = FALSE;
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"START");

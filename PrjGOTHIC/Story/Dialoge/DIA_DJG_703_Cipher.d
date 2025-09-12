@@ -98,7 +98,7 @@ func void DIA_CipherDJG_HELLOAGAIN_GoTogether()
 {
 	AI_Output(other,self,"DIA_CipherDJG_HELLOAGAIN_GoTogether_15_00");	//Почему бы и нет. Помощь мне не помешает.
 	B_CipherDJG_GetOutOfHere();
-	DJG_SwampParty = TRUE;
+	Cipher_ReadyForSwampParty = TRUE;
 	Info_ClearChoices(DIA_CipherDJG_HELLOAGAIN);
 };
 
@@ -114,7 +114,7 @@ instance DIA_CipherDJG_GOTOGETHERAGAIN(C_Info)
 
 func int DIA_CipherDJG_GOTOGETHERAGAIN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_CipherDJG_HELLOAGAIN) && (DJG_SwampParty == FALSE))
+	if(Npc_KnowsInfo(other,DIA_CipherDJG_HELLOAGAIN) && (Cipher_ReadyForSwampParty == FALSE))
 	{
 		if(!Npc_IsDead(SwampDragon))
 		{
@@ -128,7 +128,7 @@ func void DIA_CipherDJG_GOTOGETHERAGAIN_Info()
 	AI_Output(other,self,"DIA_CipherDJG_GOTOGETHERAGAIN_15_00");	//Я передумал! Пойдем вместе!
 //	AI_Output(self,other,"DIA_CipherDJG_GOTOGETHERAGAIN_07_01");	//Просто дай мне слово!
 	AI_Output(self,other,"DIA_Biff_KnowWhereEnemy_No_07_01");	//Да, да. Тогда повеселимся.
-	DJG_SwampParty = TRUE;
+	Cipher_ReadyForSwampParty = TRUE;
 };
 
 
@@ -143,7 +143,7 @@ instance DIA_CipherDJG_GO(C_Info)
 
 func int DIA_CipherDJG_GO_Condition()
 {
-	if(DJG_SwampParty == TRUE)
+	if(Cipher_ReadyForSwampParty == TRUE)
 	{
 		if(!Npc_IsDead(SwampDragon))
 		{
@@ -161,7 +161,7 @@ func void DIA_CipherDJG_GO_Info()
 		AI_UseMob(self,"BENCH",-1);
 	};
 	AI_StopProcessInfos(self);
-	DJG_SwampParty_GoGoGo = TRUE;
+	DJG_SwampParty = TRUE;
 	self.npcType = NPCTYPE_FRIEND;
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	Npc_ExchangeRoutine(self,"SWAMPWAIT1");
@@ -189,7 +189,7 @@ instance DIA_CipherDJG_SwampWait2(C_Info)
 
 func int DIA_CipherDJG_SwampWait2_Condition()
 {
-	if(DJG_SwampParty_GoGoGo == TRUE)
+	if(DJG_SwampParty == TRUE)
 	{
 		if((Npc_GetDistToWP(self,"OW_DJG_SWAMP_WAIT1_01") < 700) && !Npc_IsDead(SwampDragon))
 		{
@@ -210,15 +210,9 @@ func void DIA_CipherDJG_SwampWait2_Info()
 func void DIA_CipherDJG_SwampWait2_weiter()
 {
 	AI_StopProcessInfos(self);
-	DJG_SwampParty = TRUE;
-	DJG_SwampParty_GoGoGo = TRUE;
-	self.npcType = NPCTYPE_FRIEND;
-	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	Npc_ExchangeRoutine(self,"SWAMPWAIT2");
 	if(!Npc_IsDead(DJG_Rod))
 	{
-		DJG_Rod.npcType = NPCTYPE_FRIEND;
-		DJG_Rod.aivar[AIV_PARTYMEMBER] = TRUE;
 		B_StartOtherRoutine(DJG_Rod,"SWAMPWAIT2");
 	};
 };
@@ -235,7 +229,7 @@ instance DIA_CipherDJG_GoForSwampDragon(C_Info)
 
 func int DIA_CipherDJG_GoForSwampDragon_Condition()
 {
-	if(DJG_SwampParty_GoGoGo == TRUE)
+	if(DJG_SwampParty == TRUE)
 	{
 		if((Npc_GetDistToWP(self,"OW_DJG_SWAMP_WAIT2_01") < 1000) && !Npc_IsDead(SwampDragon))
 		{
@@ -246,7 +240,7 @@ func int DIA_CipherDJG_GoForSwampDragon_Condition()
 
 func void DIA_CipherDJG_GoForSwampDragon_Info()
 {
-	if(Npc_KnowsInfo(other,DIA_Dragon_Swamp_Exit))
+	if(!C_NpcIsImmortal(SwampDragon))
 	{
 		AI_Output(self,other,"DIA_CipherDJG_GoForSwampDragon_07_00");	//(рычит) В атаку!
 		AI_StopProcessInfos(self);
@@ -273,7 +267,7 @@ instance DIA_CipherDJG_SWAMPDRAGONDEAD(C_Info)
 
 func int DIA_CipherDJG_SWAMPDRAGONDEAD_Condition()
 {
-	if((DJG_SwampParty == TRUE) && (DJG_SwampParty_GoGoGo == TRUE))
+	if(DJG_SwampParty == TRUE)
 	{
 		if(Npc_IsDead(SwampDragon))
 		{
@@ -290,7 +284,6 @@ func void DIA_CipherDJG_SWAMPDRAGONDEAD_Info()
 	AI_StopProcessInfos(self);
 	B_GivePlayerXP(XP_CipherDJGDeadDragon);
 	DJG_SwampParty = FALSE;
-	DJG_SwampParty_GoGoGo = FALSE;
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"START");
 	if(!Npc_IsDead(DJG_Rod))

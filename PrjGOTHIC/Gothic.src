@@ -222,6 +222,7 @@ AI\Human\C_Human\C_WantToReactToSneaker.d
 AI\Magic\B_ReadySpell.d
 AI\Magic\B_SelectSpell.d
 Story\B_Story\C_RengaruIsReadyToTalk.d
+Story\B_Story\B_EquipPersonalWeapon.d
 AI\Human\B_Human\B_FinishingMove.d
 AI\Human\B_Human\B_SelectWeapon.d
 AI\Human\B_Human\B_AssessEnemy.d
@@ -344,7 +345,7 @@ AI\Magic\Spells\Spell_SummonSkeleton.d
 AI\Magic\Spells\Spell_SummonWolf.d
 AI\Magic\Spells\Spell_SummonZombie.d
 AI\Magic\Spells\Spell_Swarm.d
-AI\Magic\Spells\Spell_Teleport_Alle.d
+AI\Magic\Spells\Spell_Teleport.d
 AI\Magic\Spells\Spell_Thunderstorm.d
 AI\Magic\Spells\Spell_Transform.d
 AI\Magic\Spells\Spell_Waterfist.d
