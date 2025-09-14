@@ -28,7 +28,6 @@ instance DIA_Rod_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Rod_Hello_Condition;
 	information = DIA_Rod_Hello_Info;
-	permanent = FALSE;
 	description = "Как дела?";
 };
 
@@ -291,7 +290,6 @@ instance DIA_Rod_StarkGenug(C_Info)
 	nr = 5;
 	condition = DIA_Rod_StarkGenug_Condition;
 	information = DIA_Rod_StarkGenug_Info;
-	permanent = FALSE;
 	description = "Я достаточно силен!";
 };
 
@@ -321,7 +319,6 @@ instance DIA_Rod_BINStarkGenug(C_Info)
 	nr = 5;
 	condition = DIA_Rod_BINStarkGenug_Condition;
 	information = DIA_Rod_BINStarkGenug_Info;
-	permanent = FALSE;
 	description = "Я сказал, я достаточно силен!";
 };
 
@@ -496,6 +493,11 @@ func void DIA_Rod_GiveItBack_Info()
 	AI_Output(self,other,"DIA_Rod_GiveItBack_06_01");	//Вовремя!
 	if(Hlp_IsItem(ReadyWeap,ItMw_2h_Rod))
 	{
+		if(C_BodyStateContains(self,BS_SIT))
+		{
+			AI_UseMob(self,"BENCH",-1);
+			B_TurnToNpc(self,other);
+		};
 		AI_TakeItem(self,ReadyWeap);
 	};
 	AI_EquipBestMeleeWeapon(self);

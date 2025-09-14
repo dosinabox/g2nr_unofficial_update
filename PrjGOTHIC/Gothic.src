@@ -386,11 +386,11 @@ AI\Human\TA_Human\ZS_Cook_Pan.d
 AI\Human\TA_Human\ZS_Cook_Stove.d
 AI\Human\TA_Human\ZS_Dance.d
 AI\Human\TA_Human\ZS_FleeToWp.d
-AI\Human\TA_Human\ZS_AssessFollowPlayer.d
+AI\Human\TA_Human\ZS_Follow_Player.d
 AI\Human\TA_Human\ZS_Ghost.d
 AI\Human\TA_Human\ZS_Guard_Hammer.d
 AI\Human\TA_Human\ZS_Guard_Passage.d
-AI\Human\TA_Human\ZS_AssessGuidePlayer.d
+AI\Human\TA_Human\ZS_Guide_Player.d
 AI\Human\TA_Human\ZS_Obesession.d
 AI\Human\TA_Human\ZS_Pee.d
 AI\Human\TA_Human\ZS_Pick_FP.d

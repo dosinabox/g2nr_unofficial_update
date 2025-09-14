@@ -74,6 +74,5 @@ instance WargTransform(Mst_Default_Warg)
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_WARG();
 	Npc_SetToFistMode(self);
-	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
