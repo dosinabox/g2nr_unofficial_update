@@ -27,14 +27,17 @@ instance DIA_1015_BANDIT_AMBUSH(C_Info)
 	nr = 2;
 	condition = DIA_1015_BANDIT_AMBUSH_Condition;
 	information = DIA_1015_BANDIT_AMBUSH_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_1015_BANDIT_AMBUSH_Condition()
 {
-	if(Npc_IsDead(Ambusher_1014) || Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk))
+	{
+		return TRUE;
+	};
+	if(Npc_IsDead(Ambusher_1014))
 	{
 		return TRUE;
 	};

@@ -27,7 +27,6 @@ instance DIA_1061_Wache_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_1061_Wache_Hallo_Condition;
 	information = DIA_1061_Wache_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

@@ -635,6 +635,7 @@ func void STARTUP_AddonWorld_Part_Valley_01()
 
 func void STARTUP_AddonWorld()
 {
+	Wld_SetTime(60,0);
 	STARTUP_AddonWorld_Part_BanditsCamp_01();
 	STARTUP_AddonWorld_Part_PiratesCamp_01();
 	STARTUP_AddonWorld_Part_Entrance_01();
@@ -643,7 +644,6 @@ func void STARTUP_AddonWorld()
 	STARTUP_AddonWorld_Part_Valley_01();
 	STARTUP_AddonWorld_Part_AdanosTemple_01();
 	ENTERED_ADDONWORLD = TRUE;
-	Wld_SetTime(60,0);
 };
 
 func void INIT_AddonWorld()

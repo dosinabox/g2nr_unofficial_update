@@ -856,13 +856,13 @@ func void STARTUP_OldWorld_Part_Surface()
 
 func void STARTUP_OldWorld()
 {
-	STARTUP_OldWorld_Part_Oldcamp();
-	STARTUP_OldWorld_Part_Demontower();
-	STARTUP_OldWorld_Part_Surface();
 	if(Wld_IsTime(4,0,21,0))
 	{
 		Wld_SetTime(23,59);
 	};
+	STARTUP_OldWorld_Part_Oldcamp();
+	STARTUP_OldWorld_Part_Demontower();
+	STARTUP_OldWorld_Part_Surface();
 };
 
 func void INIT_OldWorld()

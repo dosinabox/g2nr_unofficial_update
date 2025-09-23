@@ -27,7 +27,6 @@ instance DIA_Dobar_HALLO(C_Info)
 	nr = 2;
 	condition = DIA_Dobar_HALLO_Condition;
 	information = DIA_Dobar_HALLO_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -52,7 +51,6 @@ instance DIA_Dobar_Talent(C_Info)
 	nr = 3;
 	condition = DIA_Dobar_Talent_Condition;
 	information = DIA_Dobar_Talent_Info;
-	permanent = FALSE;
 	description = "я немного знаю кузнечное дело.";
 };
 
@@ -78,7 +76,6 @@ instance DIA_Dobar_Schmiede(C_Info)
 	nr = 3;
 	condition = DIA_Dobar_Schmiede_Condition;
 	information = DIA_Dobar_Schmiede_Info;
-	permanent = FALSE;
 	description = "ћогу € воспользоватьс€ твоей кузницей?";
 };
 
@@ -105,7 +102,6 @@ instance DIA_Dobar_beibringen(C_Info)
 	nr = 4;
 	condition = DIA_Dobar_beibringen_Condition;
 	information = DIA_Dobar_beibringen_Info;
-	permanent = FALSE;
 	description = "“ы можешь научить мен€ чему-нибудь?";
 };
 
@@ -151,7 +147,7 @@ func int DIA_Dobar_Teach_Condition()
 func void DIA_Dobar_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Dobar_Teach_15_00");	//ѕокажи мне, как выковать хороший меч.
-	if(B_TeachPlayerTalentSmith(self,hero,WEAPON_1H_Special_01))
+	if(B_TeachPlayerTalentSmith(self,other,WEAPON_1H_Special_01))
 	{
 		AI_Output(self,other,"DIA_Dobar_Teach_08_01");	//–азогрей сталь, чтобы она равномерно светилась по всей длине, без этого хороший меч не выковать.
 		AI_Output(self,other,"DIA_Dobar_Teach_08_02");	//≈сли ты будешь помнить это, сделанные тобой клинки будут прочнее и острее.
@@ -170,7 +166,6 @@ instance DIA_Dobar_Waffe(C_Info)
 	nr = 6;
 	condition = DIA_Dobar_Waffe_Condition;
 	information = DIA_Dobar_Waffe_Info;
-	permanent = FALSE;
 	description = "“ы можешь сделать оружие дл€ мен€?";
 };
 
@@ -239,7 +234,6 @@ instance DIA_Dobar_RepairNecklace(C_Info)
 	nr = 8;
 	condition = DIA_Dobar_RepairNecklace_Condition;
 	information = DIA_Dobar_RepairNecklace_Info;
-	permanent = FALSE;
 	description = "“ы можешь чинить драгоценности?";
 };
 
