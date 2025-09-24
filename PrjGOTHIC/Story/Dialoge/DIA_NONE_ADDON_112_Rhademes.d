@@ -73,7 +73,6 @@ instance DIA_Addon_Rhademes_Pforte(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Rhademes_Pforte_Condition;
 	information = DIA_Addon_Rhademes_Pforte_Info;
-	permanent = FALSE;
 	description = "Как открыть ворота?";
 };
 
@@ -98,7 +97,6 @@ instance DIA_Addon_Rhademes_Hebel(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Rhademes_Hebel_Condition;
 	information = DIA_Addon_Rhademes_Hebel_Info;
-	permanent = FALSE;
 	description = "Но не все активируют ловушку, верно?";
 };
 
@@ -125,7 +123,6 @@ instance DIA_Addon_Rhademes_DontBelieve(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Rhademes_DontBelieve_Condition;
 	information = DIA_Addon_Rhademes_DontBelieve_Info;
-	permanent = FALSE;
 	description = "Я не верю тебе!";
 };
 
@@ -151,7 +148,6 @@ instance DIA_Addon_Rhademes_DeinVater(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Rhademes_DeinVater_Condition;
 	information = DIA_Addon_Rhademes_DeinVater_Info;
-	permanent = FALSE;
 	description = "Твой отец создал эту ловушку. Откуда тебе знать, как она работает?!";
 };
 
@@ -225,7 +221,6 @@ instance DIA_Addon_Rhademes_PERM(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Rhademes_PERM_Condition;
 	information = DIA_Addon_Rhademes_PERM_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

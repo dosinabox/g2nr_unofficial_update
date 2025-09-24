@@ -126,7 +126,6 @@ instance DIA_DiegoOw_Mine(C_Info)
 	nr = 3;
 	condition = DIA_DiegoOw_Mine_Condition;
 	information = DIA_DiegoOw_Mine_Info;
-	permanent = FALSE;
 	description = "А какое ты имеешь отношение к руде?";
 };
 
@@ -155,7 +154,6 @@ instance DIA_DiegoOw_Ritter(C_Info)
 	nr = 4;
 	condition = DIA_DiegoOw_Ritter_Condition;
 	information = DIA_DiegoOw_Ritter_Info;
-	permanent = FALSE;
 	description = "А что насчет этих двух мертвых рыцарей перед твоим укрытием?";
 };
 
@@ -179,7 +177,6 @@ instance DIA_DiegoOw_Perm(C_Info)
 	nr = 5;
 	condition = DIA_DiegoOw_Perm_Condition;
 	information = DIA_DiegoOw_Perm_Info;
-	permanent = FALSE;
 	description = "Что мне нужно знать о Долине?";
 };
 
@@ -204,7 +201,6 @@ instance DIA_DiegoOw_Gorn(C_Info)
 	nr = 6;
 	condition = DIA_DiegoOw_Gorn_Condition;
 	information = DIA_DiegoOw_Gorn_Info;
-	permanent = FALSE;
 	description = "Я хочу купить свободу Горну, но Гаронд просит за это 1000 золотых.";
 };
 
@@ -656,9 +652,12 @@ instance DIA_Addon_ThiefOW_Angekommen(C_Info)
 
 func int DIA_Addon_ThiefOW_Angekommen_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_VM_ENTRANCE") < 800) && !Npc_KnowsInfo(other,DIA_Addon_ThiefOW_Nostalgie))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && !Npc_KnowsInfo(other,DIA_Addon_ThiefOW_Nostalgie))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"OW_VM_ENTRANCE") < 800)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -682,9 +681,12 @@ instance DIA_Addon_ThiefOW_Nostalgie(C_Info)
 
 func int DIA_Addon_ThiefOW_Nostalgie_Condition()
 {
-	if(Npc_GetDistToWP(self,"WP_INTRO14") < 2000)
+	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"WP_INTRO14") < 2000)
+		{
+			return TRUE;
+		};
 	};
 };
 

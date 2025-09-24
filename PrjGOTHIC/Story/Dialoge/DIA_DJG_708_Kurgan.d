@@ -96,6 +96,8 @@ func void DIA_Kurgan_Leader_Info()
 };
 
 
+var int Kurgan_KillDragon_Day;
+
 instance DIA_Kurgan_KillDragon(C_Info)
 {
 	npc = DJG_708_Kurgan;
@@ -112,9 +114,6 @@ func int DIA_Kurgan_KillDragon_Condition()
 		return TRUE;
 	};
 };
-
-
-var int Kurgan_KillDragon_Day;
 
 func void DIA_Kurgan_KillDragon_Info()
 {
@@ -184,7 +183,6 @@ instance DIA_Kurgan_AllDragonsDead(C_Info)
 	nr = 5;
 	condition = DIA_Kurgan_AllDragonsDead_Condition;
 	information = DIA_Kurgan_AllDragonsDead_Info;
-	permanent = FALSE;
 	description = "Драконы мертвы.";
 };
 

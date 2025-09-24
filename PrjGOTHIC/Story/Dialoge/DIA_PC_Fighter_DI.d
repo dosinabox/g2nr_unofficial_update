@@ -27,7 +27,6 @@ instance DIA_Gorn_DI_First(C_Info)
 	nr = 1;
 	condition = DIA_Gorn_DI_First_Condition;
 	information = DIA_Gorn_DI_First_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -192,7 +191,7 @@ func void DIA_Gorn_DI_UndeadDragonDead_Info()
 {
 	AI_Output(other,self,"DIA_Gorn_DI_UndeadDragonDead_15_00");	//Ты все это время был на корабле?
 	AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_01");	//Конечно. Только представь, чтоб мы делали, если бы он пропал.
-	if((hero.guild == GIL_DJG) && (DIA_Gorn_DI_UndeadDragonDead_OneTime == FALSE))
+	if((other.guild == GIL_DJG) && (DIA_Gorn_DI_UndeadDragonDead_OneTime == FALSE))
 	{
 		AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_02");	//А что случилось?
 		AI_Output(other,self,"DIA_Gorn_DI_UndeadDragonDead_15_03");	//Ничего. Я собираюсь отправляться домой.

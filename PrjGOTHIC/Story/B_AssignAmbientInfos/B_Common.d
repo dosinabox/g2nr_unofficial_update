@@ -329,6 +329,11 @@ func void DIA_Common_Sold()
 	AI_Output(other,self,"DIA_Raoul_TROLLFELL_ja_15_00");	//Продано.
 };
 
+func void DIA_Common_HeresYourWine()
+{
+	AI_Output(other,self,"DIA_Vino_BringWine_15_00");	//Вот твое вино.
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?
