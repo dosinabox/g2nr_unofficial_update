@@ -50,8 +50,8 @@ func void DIA_Fellan_News_Info()
 			AI_Output(other,self,"DIA_Fellan_News_15_01");	//“ы прекратишь стучать молотком, или мне задать тебе трепку еще раз?
 			AI_Output(self,other,"DIA_Fellan_News_06_02");	//Ќет, не надо бить мен€ больше. я перестану. Ќо здесь все обрушитс€, и в этом будешь виноват ты!
 			FellanGeschlagen = TRUE;
-			Npc_ExchangeRoutine(self,"OHNEHAMMER");
 			AI_StopProcessInfos(self);
+			Npc_ExchangeRoutine(self,"OHNEHAMMER");
 		};
 	}
 	else if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_WON)

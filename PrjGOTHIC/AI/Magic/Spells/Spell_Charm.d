@@ -32,6 +32,7 @@ func int Spell_Logic_Charm(var int manaInvested)
 			other.aivar[AIV_LastFightAgainstPlayer] = FIGHT_NONE;
 			other.aivar[AIV_CommentedPlayerCrime] = FALSE;
 			other.aivar[AIV_Nerver] = 0;
+			other.aivar[AIV_RefuseService] = FALSE;
 			if(Wld_GetGuildAttitude(other.guild,self.guild) != ATT_HOSTILE)
 			{
 				if(Npc_GetAttitude(other,self) == ATT_HOSTILE)

@@ -46,6 +46,10 @@ func void ZS_Unconscious()
 				Valentino_Day = B_GetDayPlus();
 			};
 		};
+		if(C_NpcHasPersonalServices(self))
+		{
+			self.aivar[AIV_RefuseService] = TRUE;
+		};
 		self.aivar[AIV_DefeatedByPlayer] = TRUE;
 		self.aivar[AIV_LastFightAgainstPlayer] = FIGHT_LOST;
 		if((self.aivar[AIV_LastPlayerAR] == AR_NONE) && (self.aivar[AIV_DuelLost] == FALSE) && (self.guild == GIL_SLD))

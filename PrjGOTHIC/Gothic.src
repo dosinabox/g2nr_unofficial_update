@@ -214,6 +214,7 @@ AI\Human\B_Human\B_Flee.d
 AI\Human\B_Human\B_CallGuards.d
 AI\Human\B_Human\B_CreateAmmo.d
 AI\Human\C_Human\C_NpcHasAmbientNews.d
+AI\Human\C_Human\C_NpcHasPersonalServices.d
 AI\Human\C_Human\C_WantToAttackSheepKiller.d
 AI\Human\C_Human\C_WantToAttackMurder.d
 AI\Human\C_Human\C_WantToAttackThief.d

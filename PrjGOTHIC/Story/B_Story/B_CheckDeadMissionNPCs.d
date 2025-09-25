@@ -50,6 +50,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_HealHilda = LOG_FAILED;
 			};
 		}
+		else if(C_IsNpc(slf,BAU_983_Dragomir))
+		{
+			if(MIS_DragomirsArmbrust == LOG_RUNNING)
+			{
+				MIS_DragomirsArmbrust = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,VLK_468_Canthar))
 		{
 			if(MIS_Canthars_KomproBrief == LOG_RUNNING)
@@ -97,6 +104,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 			if(MIS_Fernando_Erz == LOG_RUNNING)
 			{
 				MIS_Fernando_Erz = LOG_FAILED;
+			};
+		}
+		else if(C_IsNpc(slf,VLK_4301_Addon_Farim))
+		{
+			if(MIS_Addon_Farim_PaladinFisch == LOG_RUNNING)
+			{
+				MIS_Addon_Farim_PaladinFisch = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,PAL_212_Schiffswache))

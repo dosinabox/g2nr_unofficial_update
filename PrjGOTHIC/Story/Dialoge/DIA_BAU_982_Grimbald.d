@@ -94,9 +94,8 @@ func void DIA_Grimbald_HALLO_Was_ja()
 	AI_Output(self,other,"DIA_Grimbald_HALLO_Was_ja_07_02");	//И я не прощу тебе, если ты решишь выйти из игры.
 	Grimbald_HuntInProgress = TRUE;
 	Grimbald_HuntStart_Day = Wld_GetDay();
-//	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	Npc_ExchangeRoutine(self,"JAGD");
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"JAGD");
 };
 
 func void DIA_Grimbald_HALLO_nein()
@@ -150,7 +149,7 @@ func void DIA_Grimbald_Jagd_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Grimbald_Jagd_07_02");	//Конечно. Но не бесплатно.
-		B_Say_Gold(self,other,200);
+		B_Say_Gold(self,other,Grimbald_TeachingCost);
 		Info_ClearChoices(DIA_Grimbald_Jagd);
 		Info_AddChoice(DIA_Grimbald_Jagd,"Я подумаю над этим.",DIA_Grimbald_Jagd_zuviel);
 		Info_AddChoice(DIA_Grimbald_Jagd,"Хорошо, вот деньги.",DIA_Grimbald_Jagd_ja);
@@ -160,7 +159,7 @@ func void DIA_Grimbald_Jagd_Info()
 func void DIA_Grimbald_Jagd_ja()
 {
 	AI_Output(other,self,"DIA_Grimbald_Jagd_ja_15_00");	//Хорошо, вот деньги.
-	if(B_GiveInvItems(other,self,ItMi_Gold,200))
+	if(B_GiveInvItems(other,self,ItMi_Gold,Grimbald_TeachingCost))
 	{
 		AI_Output(self,other,"DIA_Grimbald_Jagd_ja_07_01");	//Отлично. Скажешь, когда захочешь научиться чему-нибудь.
 		B_Grimbald_IsTeacher();
@@ -199,11 +198,15 @@ func int DIA_Grimbald_TEACHHUNTING_Condition()
 	};
 };
 
-
 func void DIA_Grimbald_TEACHHUNTING_Info()
 {
 	AI_Output(other,self,"DIA_Grimbald_TEACHHUNTING_15_00");	//Научи меня охотиться.
-	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == FALSE))
+	if(self.aivar[AIV_RefuseService] == TRUE)
+	{
+		B_Say(self,other,"$NOTNOW");
+		AI_StopProcessInfos(self);
+	}
+	else if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == FALSE))
 	{
 		AI_Output(self,other,"DIA_Grimbald_TEACHHUNTING_07_01");	//Что именно ты хочешь узнать?
 		Info_AddChoice(DIA_Grimbald_TEACHHUNTING,Dialog_Back,DIA_Grimbald_TEACHHUNTING_BACK);
@@ -378,8 +381,7 @@ func void DIA_Grimbald_Success_Info()
 		B_Say(self,other,"$GOODMONSTERKILL");
 	};
 	Grimbald_HuntInProgress = FALSE;
-//	self.aivar[AIV_PARTYMEMBER] = FALSE;
-	Npc_ExchangeRoutine(self,"JAGDOVER");
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"JAGDOVER");
 };
 
