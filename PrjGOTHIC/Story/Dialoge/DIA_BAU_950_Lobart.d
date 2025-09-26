@@ -37,9 +37,12 @@ instance DIA_Lobart_STOLENCLOTHS(C_Info)
 
 func int DIA_Lobart_STOLENCLOTHS_Condition()
 {
-	if(!Mob_HasItems("CHEST_LOBART",ITAR_Bau_L) && (Lobart_Kleidung_Verkauft == FALSE) && (other.guild == GIL_NONE))
+	if((Lobart_Kleidung_Verkauft == FALSE) && (other.guild == GIL_NONE))
 	{
-		return TRUE;
+		if(!Mob_HasItems("CHEST_LOBART",ITAR_Bau_L))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -490,7 +493,7 @@ func void DIA_Lobart_WorkNOW_Info()
 	AI_Output(other,self,"DIA_Lobart_WorkNOW_15_00");	//я ищу работу.
 	AI_Output(self,other,"DIA_Lobart_WorkNOW_05_01");	//ћне не нужен еще один посто€нный работник. Ќо € могу предложить тебе поденную работу.
 	AI_Output(self,other,"DIA_Lobart_WorkNOW_05_02");	//я хочу сказать, ты можешь помочь на поле. “акже здесь еще наверн€ка найдетс€ кое-кака€ работенка дл€ теб€.
-	if((other.guild == GIL_NONE) && (LobartGotGoldForStolenClothes == FALSE))
+	if((other.guild == GIL_NONE) && (LobartGotGoldForStolenClothes == FALSE) && !Npc_KnowsInfo(other,DIA_Lobart_STOLENCLOTHS))
 	{
 		AI_Output(self,other,"DIA_Lobart_WorkNOW_05_03");	//я могу заплатить тебе золотом. »ли дать приличную одежду.
 		if(Lobart_Kleidung_Verkauft == FALSE)
@@ -525,7 +528,7 @@ func void DIA_Lobart_WorkNOW_Ok()
 	};
 	Log_CreateTopic(TOPIC_Rueben,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Rueben,LOG_RUNNING);
-	if(Lobart_Kleidung_Verkauft == FALSE)
+	if((Lobart_Kleidung_Verkauft == FALSE) && (other.guild == GIL_NONE) && (LobartGotGoldForStolenClothes == FALSE) && !Npc_KnowsInfo(other,DIA_Lobart_STOLENCLOTHS))
 	{
 		B_LogEntry(TOPIC_Rueben,"‘ермер Ћобарт хочет, чтобы € собрал репу на поле. «а это он заплатит мне золотом или продаст мне одежду по значительно сниженной цене.");
 	}
@@ -604,7 +607,7 @@ func void DIA_Lobart_RuebenRunning_Info()
 		B_GivePlayerXP(XP_LobartHolRueben);
 		AI_Output(other,self,"DIA_Lobart_RuebenRunning_15_03");	//„то насчет моей платы?
 		AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_04");	//я могу дать тебе 5 золотых монет.
-		if((Lobart_Kleidung_Verkauft == TRUE) || (other.guild != GIL_NONE))
+		if((Lobart_Kleidung_Verkauft == TRUE) || (other.guild != GIL_NONE) || Npc_KnowsInfo(other,DIA_Lobart_STOLENCLOTHS))
 		{
 			B_GiveInvItems(self,other,ItMi_Gold,5);
 			if(other.guild == GIL_NONE)

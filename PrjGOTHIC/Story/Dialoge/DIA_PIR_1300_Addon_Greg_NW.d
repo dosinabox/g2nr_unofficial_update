@@ -353,7 +353,7 @@ func void DIA_Addon_Greg_NW_was_Info()
 	B_Greg_Search_Dexter();
 	Info_ClearChoices(DIA_Addon_Greg_NW_was);
 	Info_AddChoice(DIA_Addon_Greg_NW_was,"Ты говоришь о Диего?",DIA_Addon_Greg_NW_was_Diego);
-	if((Bdt13_Dexter_verraten == TRUE) || (Ranger_SCKnowsDexter == TRUE))
+	if(Ranger_SCKnowsDexter == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_Greg_NW_was,"Тебе нужен Декстер?",DIA_Addon_Greg_NW_was_Dexter);
 	};
@@ -858,7 +858,7 @@ instance DIA_Addon_Greg_NW_DexterFound(C_Info)
 
 func int DIA_Addon_Greg_NW_DexterFound_Condition()
 {
-	if((SC_KnowsGregsSearchsDexter == TRUE) && ((Bdt13_Dexter_verraten == TRUE) || (Ranger_SCKnowsDexter == TRUE)) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_CaughtDexter2))
+	if((SC_KnowsGregsSearchsDexter == TRUE) && (Ranger_SCKnowsDexter == TRUE) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_CaughtDexter2))
 	{
 		return TRUE;
 	};

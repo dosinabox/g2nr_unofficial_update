@@ -21,7 +21,7 @@ func void DIA_PAL_205_Torwache_EXIT_Info()
 };
 
 
-func void B_Mil_205_Torwache_Crimes()
+func void B_PAL_205_Torwache_Crimes()
 {
 	if(B_GetGreatestPetzCrime(self) == CRIME_MURDER)
 	{
@@ -88,7 +88,7 @@ func void DIA_PAL_205_Torwache_FirstWarn_Info()
 	AI_Output(self,other,"DIA_PAL_205_Torwache_FirstWarn_12_00");	//СТОЙ!
 	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
 	{
-		B_Mil_205_Torwache_Crimes();
+		B_PAL_205_Torwache_Crimes();
 	}
 	else
 	{
@@ -222,7 +222,6 @@ instance DIA_PAL_205_Torwache_PassAsArmoredMil(C_Info)
 	nr = 3;
 	condition = DIA_PAL_205_Torwache_PassAsArmoredMil_Condition;
 	information = DIA_PAL_205_Torwache_PassAsArmoredMil_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -267,7 +266,7 @@ func void DIA_PAL_205_Torwache_PassAsMil_Info()
 	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsMil_15_00");	//Я состою в ополчении.
 	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
 	{
-		B_Mil_205_Torwache_Crimes();
+		B_PAL_205_Torwache_Crimes();
 	}
 	else
 	{
@@ -299,10 +298,10 @@ func int DIA_PAL_205_Torwache_PassAsMage_Condition()
 
 func void DIA_PAL_205_Torwache_PassAsMage_Info()
 {
-	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsMage_15_00");	//Я маг Огня.
+	DIA_Common_IAmFireMage();
 	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
 	{
-		B_Mil_205_Torwache_Crimes();
+		B_PAL_205_Torwache_Crimes();
 	}
 	else
 	{
@@ -337,7 +336,7 @@ func void DIA_PAL_205_Torwache_PassAsSld_Info()
 	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsSld_15_00");	//Дай мне пройти, я несу послание от наемников.
 	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
 	{
-		B_Mil_205_Torwache_Crimes();
+		B_PAL_205_Torwache_Crimes();
 	}
 	else
 	{

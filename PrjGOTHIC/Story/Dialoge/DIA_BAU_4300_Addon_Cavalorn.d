@@ -526,7 +526,7 @@ func void DIA_Addon_Cavalorn_LETSKILLBANDITS_Info()
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"KILLBANDITS");
-	if(Bdt_1013_Away == FALSE)
+	if(BDT_1013_Away == FALSE)
 	{
 		if(!Npc_IsDead(Ambusher_1013))
 		{

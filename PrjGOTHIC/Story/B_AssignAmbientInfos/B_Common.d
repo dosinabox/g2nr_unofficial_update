@@ -334,6 +334,11 @@ func void DIA_Common_HeresYourWine()
 	AI_Output(other,self,"DIA_Vino_BringWine_15_00");	//Вот твое вино.
 };
 
+func void DIA_Common_IAmFireMage()
+{
+	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsMage_15_00");	//Я маг Огня.
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?

@@ -35,6 +35,17 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Akil_SchafDiebe = LOG_FAILED;
 			};
 		}
+		else if(C_IsNpc(slf,BAU_950_Lobart))
+		{
+			if(MIS_Lobart_Rueben == LOG_RUNNING)
+			{
+				MIS_Lobart_Rueben = LOG_FAILED;
+			};
+			if(MIS_AndreHelpLobart == LOG_RUNNING)
+			{
+				MIS_AndreHelpLobart = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,BAU_951_Hilda))
 		{
 			if(MIS_Lobart_RuebenToHilda == LOG_RUNNING)
@@ -111,6 +122,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 			if(MIS_Addon_Farim_PaladinFisch == LOG_RUNNING)
 			{
 				MIS_Addon_Farim_PaladinFisch = LOG_FAILED;
+			};
+		}
+		else if(C_IsNpc(slf,VLK_4303_Addon_Erol))
+		{
+			if(MIS_Addon_Erol_BanditStuff == LOG_RUNNING)
+			{
+				MIS_Addon_Erol_BanditStuff = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,PAL_212_Schiffswache))

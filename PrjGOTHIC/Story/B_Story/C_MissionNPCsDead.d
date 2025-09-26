@@ -50,6 +50,35 @@ func int C_LighthouseBanditsDead()
 	return TRUE;
 };
 
+func int C_ErolBanditsDead()
+{
+	if(!Npc_IsDead(BDT_10305_Addon_RangerBandit_L))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_10304_Addon_RangerBandit_M))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_10303_Addon_RangerBandit_L))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_10302_Addon_RangerBandit_L))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_10301_Addon_RangerBandit_M))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(BDT_10300_Addon_RangerBandit_L))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 func int C_ElvrichBanditsDead()
 {
 	if(!Npc_IsDead(BDT_10307_Addon_RangerBandit_M))
@@ -73,7 +102,7 @@ func int C_ElvrichBanditsDead()
 
 func int C_BragoBanditsDead()
 {
-	if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_Away == FALSE))
+	if(!Npc_IsDead(Ambusher_1013) && (BDT_1013_Away == FALSE))
 	{
 		return FALSE;
 	};

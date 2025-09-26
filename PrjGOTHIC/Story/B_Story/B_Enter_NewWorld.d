@@ -280,7 +280,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(Wolf,"NW_PATH_TO_MONASTER_AREA_10");
 		Wld_InsertNpc(Warg,"NW_XARDAS_GOBBO_01");
 		Wld_InsertNpc(Warg,"NW_XARDAS_GOBBO_01");
-		if(Bdt_1013_ToCavalorn == TRUE)
+		if(BDT_1013_ToCavalorn == TRUE)
 		{
 			B_KillNpc(BDT_1013_Bandit_L);
 		};

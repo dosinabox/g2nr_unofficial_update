@@ -45,7 +45,7 @@ func void DIA_1061_Wache_Hallo_Info()
 	BDT_1061_FirstContact = TRUE;
 	Info_ClearChoices(DIA_1061_Wache_Hallo);
 	Info_AddChoice(DIA_1061_Wache_Hallo,"Ли.",DIA_1061_Wache_Hallo_Lee);
-	if((Bdt13_Dexter_verraten == TRUE) || (Ranger_SCKnowsDexter == TRUE))
+	if(Ranger_SCKnowsDexter == TRUE)
 	{
 		Info_AddChoice(DIA_1061_Wache_Hallo,"Декстер.",DIA_1061_Wache_Hallo_Dexter);
 	};
