@@ -17,6 +17,13 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
+	if(slf.guild == GIL_STRF)
+	{
+		if(!C_IsNpc(slf,STRF_1115_Geppert) && !C_IsNpc(slf,STRF_1116_Kervo))
+		{
+			return FALSE;
+		};
+	};
 	if((slf.guild == GIL_KDW) && (SC_KnowsPortal == TRUE))
 	{
 		return FALSE;
@@ -65,14 +72,6 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 		{
 			return FALSE;
 		};
-	};
-	if(Hlp_StrCmp(slf.name[0],NAME_Addon_Sklave))
-	{
-		return FALSE;
-	};
-	if(Hlp_StrCmp(slf.name[0],NAME_Straefling))
-	{
-		return FALSE;
 	};
 	return TRUE;
 };

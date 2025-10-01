@@ -27,7 +27,6 @@ instance DIA_Bote_Hello(C_Info)
 	nr = 4;
 	condition = DIA_Bote_Hello_Condition;
 	information = DIA_Bote_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -47,6 +46,7 @@ func void DIA_Bote_Hello_Info()
 	AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_NotEnough_09_01");	//“огда зачем ты попусту тратишь мое врем€?
 	AI_StopProcessInfos(self);
 };
+
 
 instance DIA_Bote_Talk(C_Info)
 {

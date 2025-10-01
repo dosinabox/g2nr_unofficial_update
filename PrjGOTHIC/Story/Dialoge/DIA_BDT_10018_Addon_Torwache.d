@@ -62,12 +62,12 @@ func void DIA_Addon_BDT_10018_Torwache_FirstWarn_Info()
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_GuardStopsIntruder,0);
 	}
-	else if(BDT_100018_Tells == FALSE)
+	else if(MIS_BloodwynRaus == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_FirstWarn_04_00");	//Эй, притормози! Ты туда не попадешь, так что отвали!
 		AI_Output(other,self,"DIA_Addon_BDT_10018_Torwache_FirstWarn_15_01");	//Уйди с дороги - мне нужно поговорить с Вороном.
 		AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_FirstWarn_04_02");	//Никто не должен входить сюда. Прямой приказ Ворона.
-		BDT_100018_Tells = TRUE;
+		MIS_BloodwynRaus = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_Addon_Tempel,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_Tempel,LOG_RUNNING);
 		B_LogEntry(TOPIC_Addon_Tempel,"Охранник у ворот не пропустит меня в храм. Я должен найти способ попасть внутрь.");
@@ -198,9 +198,12 @@ instance DIA_Addon_BDT_10018_Torwache_Bloodwyn(C_Info)
 
 func int DIA_Addon_10018_Torwache_Bloodwyn_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_BDT_10018_Torwache_Hi) && !Npc_IsDead(Bloodwyn))
+	if(Npc_KnowsInfo(other,DIA_Addon_BDT_10018_Torwache_Hi))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Bloodwyn))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -223,9 +226,12 @@ instance DIA_Addon_BDT_10018_Torwache_Bribe(C_Info)
 
 func int DIA_Addon_10018_Torwache_Bribe_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_BDT_10018_Torwache_Hi) && !Npc_IsDead(Bloodwyn))
+	if(Npc_KnowsInfo(other,DIA_Addon_BDT_10018_Torwache_Hi))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Bloodwyn))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -248,9 +254,12 @@ instance DIA_Addon_BDT_10018_Torwache_Drin(C_Info)
 
 func int DIA_Addon_10018_Torwache_Drin_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_BDT_10018_Torwache_Hi) && !Npc_IsDead(Bloodwyn) && (Bloodwyn_Spawn == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_BDT_10018_Torwache_Hi) && (Bloodwyn_Spawn == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Bloodwyn))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -260,7 +269,6 @@ func void DIA_Addon_10018_Torwache_Drin_Info()
 	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_Drin_04_01");	//Ха! Ты действительно думаешь, что я это сделаю?
 	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_Drin_04_02");	//Может быть, в лагере ты теперь и важная персона. Но твоя власть заканчивается ПРЯМО ЗДЕСЬ. Теперь понял?
 	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_Drin_04_03");	//Так что пойди поработай в шахте или займись чем-нибудь еще - но не загораживай здесь проход!
-	MIS_BloodwynRaus = LOG_RUNNING;
 	B_LogEntry(TOPIC_Addon_Tempel,"Бладвин находится в храме. Но это мне ничего не дает. Возможно, мне стоит наведаться в шахту.");
 };
 

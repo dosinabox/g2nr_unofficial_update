@@ -207,9 +207,12 @@ instance DIA_Gorax_Wurst(C_Info)
 
 func int DIA_Gorax_Wurst_Condition()
 {
-	if((MIS_GoraxEssen == LOG_RUNNING) && !Mob_HasItems("WURSTTRUHE",ItFo_Schafswurst))
+	if(MIS_GoraxEssen == LOG_RUNNING)
 	{
-		return TRUE;
+		if(!Mob_HasItems("WURSTTRUHE",ItFo_Schafswurst))
+		{
+			return TRUE;
+		};
 	};
 };
 

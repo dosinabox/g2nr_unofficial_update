@@ -145,6 +145,21 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_ShipIsFree = TRUE;
 			};
 		}
+		else if(C_IsNpc(slf,SLD_801_Torlof))
+		{
+			if(MIS_Torlof_HolPachtVonSekob == LOG_RUNNING)
+			{
+				MIS_Torlof_HolPachtVonSekob = LOG_FAILED;
+			};
+			if(MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING)
+			{
+				MIS_Torlof_BengarMilizKlatschen = LOG_FAILED;
+			};
+			if(MIS_Torlof_DMT == LOG_RUNNING)
+			{
+				MIS_Torlof_DMT = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,SLD_816_Fester))
 		{
 			if(MIS_Fester_KillBugs == LOG_RUNNING)
@@ -530,6 +545,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 			if(MIS_Brandon_BringHering == LOG_RUNNING)
 			{
 				MIS_Brandon_BringHering = LOG_OBSOLETE;
+			};
+		}
+		else if(C_IsNpc(slf,BDT_10018_Addon_Torwache))
+		{
+			if(MIS_BloodwynRaus == LOG_RUNNING)
+			{
+				MIS_BloodwynRaus = LOG_SUCCESS;
 			};
 		}
 		else if(C_IsNpc(slf,BDT_1075_Addon_Fortuno))

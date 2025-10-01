@@ -168,7 +168,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_BennetOre,MIS_Bennet_BringOre,0,6);
 	B_CloseTopic(TOPIC_DragomirsArmbrust,MIS_DragomirsArmbrust,0,6);
 	B_CloseTopic(TOPIC_KillLighthouseBandits,MIS_Jack_KillLighthouseBandits,0,6);
-	B_CloseTopic(TOPIC_Torlof_Dmt,MIS_Torlof_Dmt,0,6);
+	B_CloseTopic(TOPIC_Torlof_DMT,MIS_Torlof_DMT,0,6);
 	B_CloseTopic(TOPIC_HannaRetrieveLetter,MIS_HannaRetrieveLetter,0,6);
 	B_CloseTopic(TOPIC_Buster_KillShadowbeasts,MIS_Buster_KillShadowbeasts_DJG,0,6);
 	B_CloseTopic(TOPIC_Ulthar_HeileSchreine_PAL,MIS_Ulthar_HeileSchreine_PAL,0,6);

@@ -40,17 +40,9 @@ func int DIA_Engardo_HALLO_Condition()
 	};
 };
 
-func void DIA_Engardo_HALLO_End()
-{
-	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_SuddenEnemyInferno,1);
-};
-
-var int Chance;
-
 func void DIA_Engardo_HALLO_Info()
 {
-	if(Chance == 0)
+	if(self.aivar[AIV_Nerver] == 0)
 	{
 		if(other.guild == GIL_NONE)
 		{
@@ -67,21 +59,32 @@ func void DIA_Engardo_HALLO_Info()
 			B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
 			Akils_SLDStillthere = TRUE;
 		};
-		Chance = 1;
+		self.aivar[AIV_Nerver] += 1;
 		AI_StopProcessInfos_Pickpocket();
 	}
-	else if(Chance == 1)
+	else if(self.aivar[AIV_Nerver] == 1)
 	{
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_01");	//Ты оказался не в том месте не в то время...
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_02");	//... так что, если хочешь жить, лучше топай отсюда. Понял?
-		Chance = 2;
+		self.aivar[AIV_Nerver] += 1;
 		AI_StopProcessInfos_Pickpocket();
 	}
-	else if(Chance == 2)
+	else
 	{
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_03");	//У тебя что, со слухом не все в порядке, или тебе очень хочется умереть? (грубо) Ладно - все равно уже слишком поздно.
 		Info_ClearChoices(DIA_Engardo_HALLO);
 		Info_AddChoice(DIA_Engardo_HALLO,Dialog_Ende,DIA_Engardo_HALLO_End);
 	};
+};
+
+func void DIA_Engardo_HALLO_End()
+{
+	if(!Npc_IsDead(Alvares))
+	{
+		Alvares.aivar[AIV_EnemyOverride] = FALSE;
+	};
+	self.aivar[AIV_EnemyOverride] = FALSE;
+	AI_StopProcessInfos(self);
+	B_Attack(self,other,AR_SuddenEnemyInferno,1);
 };
 
