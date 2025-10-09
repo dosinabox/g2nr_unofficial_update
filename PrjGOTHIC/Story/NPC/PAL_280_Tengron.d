@@ -29,9 +29,9 @@ func void Rtn_Start_280()
 	TA_Stand_Guarding(23,0,8,0,"OW_NEWMINE_02");
 };
 
-/* func void Rtn_RunAfterVirtualRefugee_280()
+/*func void Rtn_RunAfterVirtualRefugee_280()
 {
 	TA_RunToWP(8,0,23,0,"OW_PATH_06_05");
 	TA_RunToWP(23,0,8,0,"OW_PATH_06_05");
-}; */
+};*/
 

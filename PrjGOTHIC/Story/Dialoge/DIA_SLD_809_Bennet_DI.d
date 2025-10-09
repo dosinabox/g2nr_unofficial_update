@@ -341,14 +341,13 @@ instance DIA_Bennet_DI_BetterArmor(C_Info)
 	nr = 700;
 	condition = DIA_Bennet_DI_BetterArmor_Condition;
 	information = DIA_Bennet_BetterArmor_Info;
-	permanent = FALSE;
 	description = "Я знаю, как можно еще улучшить доспехи.";
 };
 
 
 func int DIA_Bennet_DI_BetterArmor_Condition()
 {
-	if((PlayergetsFinalDJGArmor == TRUE) && (hero.guild == GIL_DJG) && !Npc_KnowsInfo(other,DIA_Bennet_BetterArmor))
+	if((PlayerGetsFinalDJGArmor == TRUE) && (other.guild == GIL_DJG) && !Npc_KnowsInfo(other,DIA_Bennet_BetterArmor))
 	{
 		return TRUE;
 	};

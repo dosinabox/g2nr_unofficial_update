@@ -45,7 +45,6 @@ instance DIA_Lutero_Hallo(C_Info)
 	nr = 5;
 	condition = DIA_Lutero_Hallo_Condition;
 	information = DIA_Lutero_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -107,7 +106,6 @@ instance DIA_Lutero_Snapper(C_Info)
 	nr = 5;
 	condition = DIA_Lutero_Snapper_Condition;
 	information = DIA_Lutero_Snapper_Info;
-	permanent = FALSE;
 	description = "Ты ищешь что-нибудь конкретное?";
 };
 
@@ -150,7 +148,6 @@ instance DIA_Lutero_Kralle(C_Info)
 	nr = 5;
 	condition = DIA_Lutero_Kralle_Condition;
 	information = DIA_Lutero_Kralle_Info;
-	permanent = FALSE;
 	description = "У меня есть особенные когти снеппера для тебя.";
 };
 
@@ -193,8 +190,8 @@ instance DIA_Lutero_Trade(C_Info)
 	condition = DIA_Lutero_Trade_Condition;
 	information = DIA_Lutero_Trade_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
 	trade = TRUE;
+	description = DIALOG_TRADE_v4;
 };
 
 

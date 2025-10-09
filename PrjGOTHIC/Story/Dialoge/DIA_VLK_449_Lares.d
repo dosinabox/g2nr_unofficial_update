@@ -2763,6 +2763,5 @@ func void DIA_Lares_StillNeedYou_Info()
 		AI_Output(self,other,"DIA_Lares_StillNeedYou_09_04");	//Мне лучше остаться здесь.
 		AI_StopProcessInfos(self);
 	};
-	B_CheckLog();
 };
 

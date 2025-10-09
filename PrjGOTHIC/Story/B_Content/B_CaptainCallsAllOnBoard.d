@@ -57,8 +57,8 @@ func void B_CaptainCallsAllOnBoard(var C_Npc captain)
 		B_StartOtherRoutine(Girion,"SHIP");
 	};
 	MIS_ReadyforChapter6 = TRUE;
-	STORYPOINT[SP_C5_P2] = TRUE;
-	CurrentStoryPoint = SP_C5_P2;
+	STORYPOINT[SP_C5_P3] = TRUE;
+	CurrentStoryPoint = SP_C5_P3;
 	B_CheckLog();
 };
 

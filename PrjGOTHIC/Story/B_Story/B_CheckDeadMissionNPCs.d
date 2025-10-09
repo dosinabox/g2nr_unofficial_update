@@ -442,6 +442,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Kervo_KillLurker = LOG_FAILED;
 			};
 		}
+		else if(C_IsNpc(slf,VLK_4108_Engor))
+		{
+			if(MIS_Engor_BringMeat == LOG_RUNNING)
+			{
+				MIS_Engor_BringMeat = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,VLK_4130_Talbin))
 		{
 			if(MIS_Talbin_Runs == LOG_RUNNING)

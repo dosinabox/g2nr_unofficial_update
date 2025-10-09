@@ -85,11 +85,11 @@ func void Use_HallsofIrdorath()
 	if(MIS_Xardas_SCCanOpenIrdorathBook == TRUE)
 	{
 		B_Say(self,self,"$SCOPENSIRDORATHBOOK");
-		Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",hero,hero,0,0,0,FALSE);
+		Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",self,self,0,0,0,FALSE);
 		Snd_Play("SFX_HealObsession");
-		CreateInvItems(hero,ItWr_HallsofIrdorath_Open_MIS,1);
-		CreateInvItems(hero,ItKe_MonastarySecretLibrary_MIS,1);
-		CreateInvItems(hero,ItWr_UseLampIdiot_MIS,1);
+		CreateInvItems(self,ItWr_HallsofIrdorath_Open_MIS,1);
+		CreateInvItems(self,ItKe_MonastarySecretLibrary_MIS,1);
+		CreateInvItems(self,ItWr_UseLampIdiot_MIS,1);
 		Print(PRINT_IrdorathBookHiddenKey);
 		B_GivePlayerXP(XP_HallsofIrdorathIsOpen);
 		ItWr_HallsofIrdorathIsOpen = TRUE;
@@ -97,7 +97,7 @@ func void Use_HallsofIrdorath()
 	}
 	else
 	{
-		CreateInvItems(hero,ItWr_HallsofIrdorath_MIS,1);
+		CreateInvItems(self,ItWr_HallsofIrdorath_MIS,1);
 		Print(PRINT_IrdorathBookDoesntOpen);
 		Wld_PlayEffect("spellFX_Fear",self,self,0,0,0,FALSE);
 		Snd_Play("MFX_FEAR_CAST");
@@ -177,14 +177,14 @@ func void Use_XardasSeamapBook_MIS()
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLines(nDocID,0,"... “еперь € почти уверен, что здание, о котором идет речь - „ертоги »рдората. ќни наход€тс€ на острове, недалеко от гавани ’ориниса. »нтерес Ѕелиара к этим шахтам вполне очевиден ...");
 	Doc_PrintLine(nDocID,0,"");
-	if(hero.guild == GIL_PAL)
+	if(self.guild == GIL_PAL)
 	{
 		Doc_PrintLines(nDocID,0,"... „ем они сильнее, тем, похоже, дл€ него выше их ценность как слуг-нежити. Ёти обращенные паладины очень сильны, и с ними очень т€жело справитьс€. ќдин из них попал в мои руки. ћне остаетс€ только наде€тьс€, что другие не почувствуют его присутствие здесь ...");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_SetFont(nDocID,1,FONT_Book);
 		Doc_PrintLines(nDocID,1,"... ќбращенный паладин, похоже, ни на что не реагирует. я запер его доспехи и остальные его вещи в задней комнате. ƒверь в нее можно открыть только изнутри. я создал руну телепортации, позвол€ющую переместитьс€ туда. »нструкции по пользованию ей наход€тс€ в альманахе, где »збранный сможет найти их ...");
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(self.guild == GIL_KDF)
 	{
 		Doc_PrintLines(nDocID,0,"... ¬ значении этих знамений невозможно ошибитьс€!  огда »збранный придет, ему понадобитс€ вс€ помощь, которую мы сможем дать. Ѕелиар уже очень силен. ћне удалось раздобыть несколько ценных артефактов, которые € схороню здесь, на вс€кий случай.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
@@ -193,7 +193,7 @@ func void Use_XardasSeamapBook_MIS()
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"... “еперь € уверен. ћы не можем противитьс€ судьбе.  ак только Ѕелиар почувствует, что достаточно силен, он подниметс€ и попытаетс€ вз€ть бразды правлени€ миром в свои руки. я должен найти »збранного, иначе нам всем конец.");
 	}
-	else if(hero.guild == GIL_DJG)
+	else if(self.guild == GIL_DJG)
 	{
 		Doc_PrintLines(nDocID,0,"... » будет война, война за судьбу мира. ѕохоже, только € один могу интерпретировать эти знамени€. ¬се вокруг мен€, похоже, игнорируют их. »збранный придет, и его пришествие возвестит о начале войны. Ёта война стара как сам мир, но ее конец, похоже, уже близок.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
@@ -286,8 +286,8 @@ func void Use_Seamap_Irdorath()
 			B_Say(self,self,"$IRDORATHTHEREYOUARE");
 		};
 		MIS_SCKnowsWayToIrdorath = TRUE;
-		STORYPOINT[SP_C5_P3] = TRUE;
-		CurrentStoryPoint = SP_C5_P3;
+		STORYPOINT[SP_C5_P2] = TRUE;
+		CurrentStoryPoint = SP_C5_P2;
 		B_GivePlayerXP(XP_SCKnowsWayToIrdorath);
 	};
 };
