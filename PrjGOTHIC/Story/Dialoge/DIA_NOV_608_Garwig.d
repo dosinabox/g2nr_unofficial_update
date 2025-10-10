@@ -27,7 +27,6 @@ instance DIA_Garwig_Wurst(C_Info)
 	nr = 3;
 	condition = DIA_Garwig_Wurst_Condition;
 	information = DIA_Garwig_Wurst_Info;
-	permanent = FALSE;
 	description = "Хочешь колбасы?";
 };
 
@@ -55,7 +54,6 @@ instance DIA_Garwig_Hello(C_Info)
 	nr = 3;
 	condition = DIA_Garwig_Hello_Condition;
 	information = DIA_Garwig_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -82,7 +80,6 @@ instance DIA_Garwig_Room(C_Info)
 	nr = 5;
 	condition = DIA_Garwig_Room_Condition;
 	information = DIA_Garwig_Room_Info;
-	permanent = FALSE;
 	description = "Что это за комната?";
 };
 
@@ -135,7 +132,6 @@ instance DIA_Garwig_Shield(C_Info)
 	nr = 98;
 	condition = DIA_Garwig_Shield_Condition;
 	information = DIA_Garwig_Shield_Info;
-	permanent = FALSE;
 	description = "Расскажи мне об этом щите.";
 };
 
@@ -162,7 +158,6 @@ instance DIA_Garwig_Auge(C_Info)
 	nr = 4;
 	condition = DIA_Garwig_Auge_Condition;
 	information = DIA_Garwig_Auge_Info;
-	permanent = FALSE;
 	description = "А Глаз Инноса тоже хранится здесь?";
 };
 
@@ -270,11 +265,18 @@ func int DIA_Garwig_THIEF_Condition()
 func void DIA_Garwig_THIEF_Info()
 {
 	var C_Item EquipWeap;
-	EquipWeap = Npc_GetEquippedMeleeWeapon(other);
-	if((Hammer_Taken == TRUE) || Hlp_IsItem(EquipWeap,Holy_Hammer_MIS))
+	if(Npc_HasEquippedMeleeWeapon(other))
+	{
+		EquipWeap = Npc_GetEquippedMeleeWeapon(other);
+		if(Hlp_IsItem(EquipWeap,Holy_Hammer_MIS))
+		{
+			Hammer_Taken = TRUE;
+		};
+	};
+	if(Hammer_Taken == TRUE)
 	{
 		AI_Output(self,other,"DIA_Garwig_THIEF_06_00");	//(разочаровано) Вор! Ты опозорил не только себя и меня, но и весь монастырь!
-		if((MIS_Golem != LOG_SUCCESS) && Npc_HasItems(other,Holy_Hammer_MIS))
+		if(Npc_HasItems(other,Holy_Hammer_MIS))
 		{
 			AI_Output(self,other,"DIA_Garwig_THIEF_06_01");	//Ты поплатишься за это святотатство. И, заклинаю Инносом - ВЕРНИ МНЕ ЭТОТ МОЛОТ!
 		}
@@ -313,6 +315,17 @@ func int DIA_Garwig_Abgeben_Condition()
 
 func void DIA_Garwig_Abgeben_Info()
 {
+	var C_Item ReadyWeap;
+	if(Npc_HasReadiedMeleeWeapon(other))
+	{
+		ReadyWeap = Npc_GetReadiedWeapon(other);
+		if(Hlp_IsItem(ReadyWeap,Holy_Hammer_MIS))
+		{
+			AI_DropItem(other,Holy_Hammer_MIS);
+			AI_RemoveWeapon(other);
+		};
+	};
+	B_GiveInvItems(other,self,Holy_Hammer_MIS,1);
 	AI_Output(other,self,"DIA_Garwig_Abgeben_15_00");	//Я принес молот назад.
 	if(Hammer_Taken == TRUE)
 	{
@@ -323,32 +336,35 @@ func void DIA_Garwig_Abgeben_Info()
 		AI_Output(self,other,"DIA_Garwig_Abgeben_06_02");	//Так это ты взял его...
 	};
 	AI_Output(self,other,"DIA_Garwig_Abgeben_06_03");	//Но я не вправе судить тебя. Пусть Иннос осудит тебя, и ты понесешь заслуженную кару!
-	B_GiveInvItems(other,self,Holy_Hammer_MIS,1);
+	if(Hlp_IsItem(ReadyWeap,Holy_Hammer_MIS))
+	{
+		AI_TakeItem(self,ReadyWeap);
+	};
 	Hammer_Taken = FALSE;
 	GarwigThiefOneTime = FALSE;
 };
 
 
-instance DIA_Garwig_EXIE(C_Info)
+instance DIA_Garwig_EXILE(C_Info)
 {
 	npc = NOV_608_Garwig;
 	nr = 2;
-	condition = DIA_Garwig_EXIE_Condition;
-	information = DIA_Garwig_EXIE_Info;
+	condition = DIA_Garwig_EXILE_Condition;
+	information = DIA_Garwig_EXILE_Info;
 	permanent = TRUE;
 	important = TRUE;
 };
 
 
-func int DIA_Garwig_EXIE_Condition()
+func int DIA_Garwig_EXILE_Condition()
 {
-	if((MIS_Richter_BringHolyHammer == LOG_SUCCESS) && (Npc_IsInState(self,ZS_Talk)))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_Richter_BringHolyHammer == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_Garwig_EXIE_Info()
+func void DIA_Garwig_EXILE_Info()
 {
 	B_Say(self,other,"$NEVERENTERROOMAGAIN");
 	AI_StopProcessInfos(self);

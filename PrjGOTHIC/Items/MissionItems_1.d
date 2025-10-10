@@ -684,7 +684,7 @@ instance Holy_Hammer_MIS(C_Item)
 	damagetype = DAM_BLUNT;
 	range = Range_HolyHammer;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = Condition_HolyHammer;
+	cond_value[2] = START_ATR_STRENGTH;
 	visual = "ItMw_030_2h_kdf_hammer_01.3DS";
 	description = name;
 	text[2] = NAME_DamageUnknown;

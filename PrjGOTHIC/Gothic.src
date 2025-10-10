@@ -252,6 +252,8 @@ Story\B_Story\B_FeedNOV.d
 Story\B_Story\B_SetGuild.d
 Story\B_Story\C_AkilFarmIsFree.d
 Story\B_Story\C_BengarFarmIsFree.d
+Story\B_Story\C_FireContestRuneFound.d
+Story\B_Story\C_GotAnyInnosBlessing.d
 Story\B_Content\B_SetObjectRoutine.d
 Story\B_Content\B_Beklauen.d
 Story\B_AssignAmbientInfos\B_Announce_Herold.d

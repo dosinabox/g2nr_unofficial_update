@@ -27,7 +27,6 @@ instance DIA_Dyrian_Hello(C_Info)
 	nr = 2;
 	condition = DIA_Dyrian_Hello_Condition;
 	information = DIA_Dyrian_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -52,7 +51,6 @@ instance DIA_Dyrian_Wurst(C_Info)
 	nr = 3;
 	condition = DIA_Dyrian_Wurst_Condition;
 	information = DIA_Dyrian_Wurst_Info;
-	permanent = FALSE;
 	description = "Я занимаюсь распределением колбасы.";
 };
 
@@ -79,7 +77,6 @@ instance DIA_Dyrian_Job(C_Info)
 	nr = 1;
 	condition = DIA_Dyrian_Job_Condition;
 	information = DIA_Dyrian_Job_Info;
-	permanent = FALSE;
 	description = "Что ты делаешь здесь?";
 };
 
@@ -106,7 +103,6 @@ instance DIA_Dyrian_WhatDone(C_Info)
 	nr = 3;
 	condition = DIA_Dyrian_WhatDone_Condition;
 	information = DIA_Dyrian_WhatDone_Info;
-	permanent = FALSE;
 	description = "Расскажи мне, что произошло.";
 };
 
@@ -171,7 +167,6 @@ instance DIA_Dyrian_Scroll(C_Info)
 	nr = 1;
 	condition = DIA_Dyrian_Scroll_Condition;
 	information = DIA_Dyrian_Scroll_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -265,7 +260,6 @@ instance DIA_Dyrian_HelloAgain(C_Info)
 	nr = 2;
 	condition = DIA_Dyrian_HelloAgain_Condition;
 	information = DIA_Dyrian_HelloAgain_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -333,7 +327,6 @@ instance DIA_Dyrian_Kneipe(C_Info)
 	nr = 3;
 	condition = DIA_Dyrian_Kneipe_Condition;
 	information = DIA_Dyrian_Kneipe_Info;
-	permanent = FALSE;
 	description = "Как дела?";
 };
 

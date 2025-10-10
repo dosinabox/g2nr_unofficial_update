@@ -66,7 +66,7 @@ instance ItKe_MonastarySecretLibrary_MIS(C_Item)
 	inv_zbias = 190;
 };
 
-instance ItWr_HallsofIrdorath_MIS(C_Item)
+instance ItWr_HallsOfIrdorath_MIS(C_Item)
 {
 	name = "Чертоги Ирдората";
 	mainflag = ITEM_KAT_DOCS;
@@ -76,28 +76,28 @@ instance ItWr_HallsofIrdorath_MIS(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	description = name;
-	on_state[0] = Use_HallsofIrdorath;
+	on_state[0] = Use_HallsOfIrdorath;
 };
 
 
-func void Use_HallsofIrdorath()
+func void Use_HallsOfIrdorath()
 {
 	if(MIS_Xardas_SCCanOpenIrdorathBook == TRUE)
 	{
 		B_Say(self,self,"$SCOPENSIRDORATHBOOK");
 		Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",self,self,0,0,0,FALSE);
 		Snd_Play("SFX_HealObsession");
-		CreateInvItems(self,ItWr_HallsofIrdorath_Open_MIS,1);
+		CreateInvItems(self,ItWr_HallsOfIrdorath_Open_MIS,1);
 		CreateInvItems(self,ItKe_MonastarySecretLibrary_MIS,1);
 		CreateInvItems(self,ItWr_UseLampIdiot_MIS,1);
 		Print(PRINT_IrdorathBookHiddenKey);
-		B_GivePlayerXP(XP_HallsofIrdorathIsOpen);
-		ItWr_HallsofIrdorathIsOpen = TRUE;
+		ItWr_HallsOfIrdorathIsOpen = TRUE;
 		B_LogEntry(TOPIC_BuchHallenVonIrdorath,"Я смог открыть книгу Ксардаса. В ней находилось секретное сообщение и странный ключ. Кто знает, что еще смогу найти я в монастырских подвалах.");
+		B_GivePlayerXP(XP_HallsOfIrdorathIsOpen);
 	}
 	else
 	{
-		CreateInvItems(self,ItWr_HallsofIrdorath_MIS,1);
+		CreateInvItems(self,ItWr_HallsOfIrdorath_MIS,1);
 		Print(PRINT_IrdorathBookDoesntOpen);
 		Wld_PlayEffect("spellFX_Fear",self,self,0,0,0,FALSE);
 		Snd_Play("MFX_FEAR_CAST");
@@ -105,7 +105,7 @@ func void Use_HallsofIrdorath()
 };
 
 
-instance ItWr_HallsofIrdorath_Open_MIS(C_Item)
+instance ItWr_HallsOfIrdorath_Open_MIS(C_Item)
 {
 	name = "Чертоги Ирдората";
 	mainflag = ITEM_KAT_DOCS;
@@ -115,11 +115,11 @@ instance ItWr_HallsofIrdorath_Open_MIS(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-	on_state[0] = Use_HallsofIrdorath_Open;
+	on_state[0] = Use_HallsOfIrdorath_Open;
 };
 
 
-func void Use_HallsofIrdorath_Open()
+func void Use_HallsOfIrdorath_Open()
 {
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
@@ -142,10 +142,10 @@ func void Use_HallsofIrdorath_Open()
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Этот ключ открывает последнюю дверь.");
 	Doc_Show(nDocID);
-	if(ItWr_SCReadsHallsofIrdorath == FALSE)
+	if(ItWr_SCReadsHallsOfIrdorath == FALSE)
 	{
 		B_LogEntry(TOPIC_BuchHallenVonIrdorath,"Я прочел книгу Ксардаса. В ней упоминается секретная библиотека. Она должна быть где-то здесь, в подвалах монастыря.");
-		ItWr_SCReadsHallsofIrdorath = TRUE;
+		ItWr_SCReadsHallsOfIrdorath = TRUE;
 	};
 };
 
