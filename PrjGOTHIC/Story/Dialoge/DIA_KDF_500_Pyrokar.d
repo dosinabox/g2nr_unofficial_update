@@ -1189,7 +1189,7 @@ func void DIA_Pyrokar_GIVEINNOSEYE_Info()
 	{
 		AI_Output(self,other,"DIA_Pyrokar_Auge_11_01");	//Любой, кто полагает, что он может не только найти этот священный амулет, но также и носить его - идиот.
 	};
-	AI_Output(other,self,"DIA_Addon_Vatras_Cavalorn_15_00");	//У меня для тебя письмо.
+	DIA_Common_IHaveLetterForYou();
 	B_GiveInvItems(other,self,ItWr_PermissionToWearInnosEye_MIS,1);
 	if(C_BodyStateContains(self,BS_SIT))
 	{
@@ -1457,14 +1457,14 @@ func void DIA_Pyrokar_BUCHZURUECK_Info()
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_08");	//Да, я отправляюсь в Круг Солнца, но, конечно, не потому, что я убедился в добрых намерениях Ксардаса.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_09");	//На самом деле, я собираюсь заставить этого шакала объяснить, где он прятал эту книгу столько долгих лет. На этот раз он, определенно, зашел слишком далеко.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_10");	//Увидимся в Круге Солнца.
-	AI_StopProcessInfos(self);
 	if(C_BodyStateContains(self,BS_SIT))
 	{
 		AI_UseMob(self,"THRONE",-1);
 	};
-	Npc_ExchangeRoutine(self,"RITUALINNOSEYEREPAIR");
 	B_LogEntry(TOPIC_INNOSEYE,"Пирокар наконец согласился отправиться к Кругу Солнца.");
 	Pyrokar_GoesToRitualInnosEye = TRUE;
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"RITUALINNOSEYEREPAIR");
 };
 
 

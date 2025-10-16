@@ -27,7 +27,6 @@ instance DIA_Albrecht_Hagen(C_Info)
 	nr = 1;
 	condition = DIA_Albrecht_Hagen_Condition;
 	information = DIA_Albrecht_Hagen_Info;
-	permanent = FALSE;
 	description = "Мне нужно поговорить с лордом Хагеном!";
 };
 
@@ -57,7 +56,6 @@ instance DIA_Albrecht_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Albrecht_Hallo_Condition;
 	information = DIA_Albrecht_Hallo_Info;
-	permanent = FALSE;
 	description = "Каково это, быть паладином?";
 };
 

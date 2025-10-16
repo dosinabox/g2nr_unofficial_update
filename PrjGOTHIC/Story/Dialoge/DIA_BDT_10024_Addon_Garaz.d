@@ -140,7 +140,7 @@ func void DIA_Addon_Garaz_Sieg_Info()
 	AI_Output(other,self,"DIA_Addon_Garaz_Sieg_15_00");	//Ну, готово. С краулерами покончено.
 	AI_Output(self,other,"DIA_Addon_Garaz_Sieg_08_01");	//Бладвин уже идет сюда. Ты ведь этого хотел?
 	AI_Output(self,other,"DIA_Addon_Garaz_Sieg_08_02");	//Я хочу сказать, что ты перебил краулеров, чтобы Бладвин пришел сюда, да? Тогда, что бы ты ни планировал, делай это СЕЙЧАС.
-	B_GivePlayerXP(XP_Addon_Bloodywyn);
+	B_GivePlayerXP(XP_Addon_Bloodwyn);
 	if(!Npc_KnowsInfo(other,DIA_Addon_Bloodwyn_Wait))
 	{
 		B_StartOtherRoutine(Bloodwyn,"GOLD");

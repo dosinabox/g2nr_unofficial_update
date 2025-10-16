@@ -688,7 +688,7 @@ const int START_TALENT_2H = 10;
 const int START_TALENT_BOW = 10;
 const int START_TALENT_CROSSBOW = 10;
 
-const int NPC_TALENT_UNKNOWN = 0;
+//const int NPC_TALENT_UNKNOWN = 0;
 const int NPC_TALENT_1H = 1;
 const int NPC_TALENT_2H = 2;
 const int NPC_TALENT_BOW = 3;
@@ -697,7 +697,7 @@ const int NPC_TALENT_PICKLOCK = 5;
 const int NPC_TALENT_MAGE = 7;
 const int NPC_TALENT_SNEAK = 8;
 const int NPC_TALENT_REGENERATE = 9;
-const int NPC_TALENT_FIREMASTER = 10;
+//const int NPC_TALENT_10 = 10;
 const int NPC_TALENT_ACROBAT = 11;
 const int NPC_TALENT_PICKPOCKET = 12;
 const int NPC_TALENT_SMITH = 13;
@@ -707,8 +707,8 @@ const int NPC_TALENT_TAKEANIMALFUR = 16;
 const int NPC_TALENT_FOREIGNLANGUAGE = 17;
 const int NPC_TALENT_WISPDETECTOR = 18;
 const int NPC_TALENT_TAKEANIMALTROPHY = 19;
-const int NPC_TALENT_D = 20;
-const int NPC_TALENT_E = 21;
+//const int NPC_TALENT_20 = 20;
+//const int NPC_TALENT_21 = 21;
 const int NPC_TALENT_MAX = 22;
 
 var int PLAYER_TALENT_RUNES[MAX_SPELL];
@@ -844,7 +844,7 @@ const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2025;
 const int FIX_DATE_MONTH = 10;
-const int FIX_DATE_DAY = 10;
+const int FIX_DATE_DAY = 16;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;

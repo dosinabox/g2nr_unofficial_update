@@ -83,7 +83,7 @@ const int XP_Addon_FiskPaket = 200;
 //const int XP_Addon_Tom = 100;
 const int XP_Addon_Auftraggeber = 500;
 const int XP_Addon_Loushammer = 150;
-const int XP_Addon_Bloodywyn = 500;
+const int XP_Addon_Bloodwyn = 500;
 const int XP_Addon_Flucht = 500;
 var int XP_Ambient;
 const int XP_AmbientKap1 = 50;

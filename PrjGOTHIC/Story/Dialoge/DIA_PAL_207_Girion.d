@@ -27,7 +27,6 @@ instance DIA_Girion_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Girion_Hallo_Condition;
 	information = DIA_Girion_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -70,7 +69,7 @@ func int DIA_Girion_CanTeach_Condition()
 func void DIA_Girion_CanTeach_Info()
 {
 	AI_Output(other,self,"DIA_Girion_CanTeach_15_00");	//“ы можешь обучить мен€?
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Girion_CanTeach_08_01");	//Ёто хорошо, что ты хочешь обучитьс€ самому благородному из всех боевых стилей.  ак и подобает насто€щему воину »нноса.
 		AI_Output(self,other,"DIA_Girion_CanTeach_08_02");	//я обучу теб€. ќбратись ко мне, когда будешь готов.
@@ -222,9 +221,12 @@ instance DIA_Girion_CATCHPLAYERSTOLENSHIP(C_Info)
 
 func int DIA_Girion_CATCHPLAYERSTOLENSHIP_Condition()
 {
-	if((Kapitel >= 5) && (MIS_ShipIsFree == TRUE) && (Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_25") < 1000))
+	if((Kapitel >= 5) && (MIS_ShipIsFree == TRUE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_25") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -241,7 +243,7 @@ func void DIA_Girion_CATCHPLAYERSTOLENSHIP_no()
 {
 	AI_Output(other,self,"DIA_Girion_CATCHPLAYERSTOLENSHIP_no_15_00");	//я не знаю, о чем ты говоришь.
 	AI_Output(self,other,"DIA_Girion_CATCHPLAYERSTOLENSHIP_no_08_01");	//я говорю о том, что ты сделал с корабельной стражей. Ёто дело плохо пахнет.
-	if((hero.guild == GIL_KDF) && !Npc_IsDead(Schiffswache_212) && !Npc_IsDead(Schiffswache_213))
+	if((other.guild == GIL_KDF) && !Npc_IsDead(Schiffswache_212) && !Npc_IsDead(Schiffswache_213))
 	{
 		AI_Output(self,other,"DIA_Girion_CATCHPLAYERSTOLENSHIP_no_08_02");	//ƒаже несмотр€ на то, что ты маг, € не довер€ю тебе.
 	};
@@ -256,7 +258,7 @@ func void DIA_Girion_CATCHPLAYERSTOLENSHIP_weg()
 	if(!Npc_IsDead(Schiffswache_212) && !Npc_IsDead(Schiffswache_213))
 	{
 		AI_Output(self,other,"DIA_Girion_CATCHPLAYERSTOLENSHIP_weg_08_01");	//¬озможно, тебе удалось обмануть охрану корабл€, но со мной тебе так просто не справитьс€, мой маленький друг.
-		if(hero.guild == GIL_PAL)
+		if(other.guild == GIL_PAL)
 		{
 			AI_Output(self,other,"DIA_Girion_CATCHPLAYERSTOLENSHIP_weg_08_02");	//ƒаже хот€ ты один из нас, это не дает тебе права воровать собственность корол€. ”мри, прокл€тый предатель.
 		};
@@ -278,7 +280,7 @@ func void B_GirionStayOnShip()
 func void DIA_Girion_CATCHPLAYERSTOLENSHIP_ship()
 {
 	AI_Output(other,self,"DIA_Girion_CATCHPLAYERSTOLENSHIP_ship_15_00");	//ћне нужен этот корабль. ѕоэтому € забираю его.
-	if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Girion_CATCHPLAYERSTOLENSHIP_ship_08_01");	//“ы не можешь сделать это. Ёто транспорт дл€ руды...
 	}

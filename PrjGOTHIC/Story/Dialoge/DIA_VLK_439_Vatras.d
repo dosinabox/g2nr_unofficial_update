@@ -233,7 +233,7 @@ func int DIA_Addon_Vatras_Cavalorn_Condition()
 
 func void DIA_Addon_Vatras_Cavalorn_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Vatras_Cavalorn_15_00");	//У меня для тебя письмо.
+	DIA_Common_IHaveLetterForYou();
 	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_01");	//Для меня?
 	MIS_Addon_Cavalorn_Letter2Vatras = LOG_SUCCESS;
 	if(SaturasFirstMessageOpened == FALSE)

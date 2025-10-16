@@ -254,7 +254,6 @@ func void STARTUP_OldWorld_Part_Surface()
 	Wld_InsertItem(ItWr_GilbertLetter,"FP_ITEM_OW_02");
 	Wld_InsertItem(ItWr_DexStonePlate2_Addon,"OW_ITEM_ROCKHORT_01");
 	Wld_InsertItem(ItWr_DexStonePlate1_Addon,"FP_REST_ORK_OC_29");
-	Wld_InsertItem(ItWr_HitPointStonePlate1_Addon,"FP_ROAM_ORC_04");
 	Wld_InsertItem(ItWr_StonePlateCommon_Addon,"FP_ROAM_OW_WARAN_DEMON_02");
 	Wld_InsertItem(ItWr_OneHStonePlate1_Addon,"FP_ROAM_ITEM_SPECIAL_01");
 	Wld_InsertItem(ItWr_ManaStonePlate2_Addon,"OW_ITEM_ICEHORT_01");

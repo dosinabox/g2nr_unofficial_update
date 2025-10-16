@@ -255,7 +255,7 @@ Story\B_Story\C_BengarFarmIsFree.d
 Story\B_Story\C_FireContestRuneFound.d
 Story\B_Story\C_GotAnyInnosBlessing.d
 Story\B_Content\B_SetObjectRoutine.d
-Story\B_Content\B_Beklauen.d
+Story\B_Content\B_StealItem.d
 Story\B_AssignAmbientInfos\B_Announce_Herold.d
 Story\B_AssignAmbientInfos\B_Preach_Vatras.d
 Story\B_AssignAmbientInfos\B_AssignAmbientInfos_Addon_BL_BDT_1.d
