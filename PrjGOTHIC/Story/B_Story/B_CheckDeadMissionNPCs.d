@@ -117,6 +117,24 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Fernando_Erz = LOG_FAILED;
 			};
 		}
+		else if(C_IsNpc(slf,VLK_447_Cassia))
+		{
+			if(MIS_CassiaRing == LOG_RUNNING)
+			{
+				MIS_CassiaRing = LOG_FAILED;
+			};
+			if(MIS_CassiaKelche == LOG_RUNNING)
+			{
+				MIS_CassiaKelche = LOG_FAILED;
+			};
+		}
+		else if(C_IsNpc(slf,VLK_445_Ramirez))
+		{
+			if(MIS_RamirezSextant == LOG_RUNNING)
+			{
+				MIS_RamirezSextant = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,VLK_4301_Addon_Farim))
 		{
 			if(MIS_Addon_Farim_PaladinFisch == LOG_RUNNING)
@@ -173,28 +191,6 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 			{
 				MIS_Talbin_Runs = LOG_FAILED;
 			};
-		}
-		else if(slf.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer)
-		{
-			if(C_IsNpc(slf,VLK_447_Cassia))
-			{
-				if(MIS_CassiaRing == LOG_RUNNING)
-				{
-					MIS_CassiaRing = LOG_FAILED;
-				};
-				if(MIS_CassiaKelche == LOG_RUNNING)
-				{
-					MIS_CassiaKelche = LOG_FAILED;
-				};
-			}
-			else if(C_IsNpc(slf,VLK_445_Ramirez))
-			{
-				if(MIS_RamirezSextant == LOG_RUNNING)
-				{
-					MIS_RamirezSextant = LOG_FAILED;
-				};
-			};
-			DG_gefunden = TRUE;
 		}
 		else if(C_IsNpc(slf,KDF_503_Karras))
 		{
@@ -413,15 +409,16 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Cipher_BringWeed = LOG_FAILED;
 			};
 		};
-		if(Greg_Rejected == TRUE)
+		if(slf.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer)
 		{
-			if(slf.aivar[AIV_SubGuild] == GIL_SUB_Dexter)
+			DG_gefunden = TRUE;
+		}
+		else if(slf.aivar[AIV_SubGuild] == GIL_SUB_Dexter)
+		{
+			DexterBanditsBodyCount += 1;
+			if((DexterBanditsBodyCount >= 19) && (Greg_Rejected == TRUE))
 			{
-				DexterBanditsBodyCount += 1;
-				if(DexterBanditsBodyCount >= 19)
-				{
-					B_Greg_ComesToDexterLater();
-				};
+				B_Greg_ComesToDexterLater();
 			};
 		};
 	}

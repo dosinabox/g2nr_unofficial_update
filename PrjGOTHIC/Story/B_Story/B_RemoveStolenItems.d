@@ -46,6 +46,18 @@ func void B_RemoveStolenItems(var C_Npc owner,var C_Npc thief)
 			};
 		};
 	}
+	else if(C_IsNpc(owner,VLK_402_Richter))
+	{
+		B_TransferAllInvItems(thief,owner,ItKe_Richter);
+	}
+	else if(C_IsNpc(owner,VLK_421_Valentino))
+	{
+		if(Npc_IsPlayer(thief))
+		{
+			B_TransferAllInvItems(thief,owner,ItKe_Valentino);
+			B_TransferAllInvItems(thief,owner,ItRi_Prot_Edge_01_Valentino);
+		};
+	}
 	else if(C_IsNpc(owner,VLK_438_Alrik))
 	{
 		if(Npc_HasItems(thief,ItMw_AlriksSword_MIS))
