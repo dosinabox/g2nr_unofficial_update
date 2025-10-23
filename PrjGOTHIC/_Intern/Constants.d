@@ -688,12 +688,13 @@ const int START_TALENT_2H = 10;
 const int START_TALENT_BOW = 10;
 const int START_TALENT_CROSSBOW = 10;
 
-//const int NPC_TALENT_UNKNOWN = 0;
+//const int NPC_TALENT_0 = 0;
 const int NPC_TALENT_1H = 1;
 const int NPC_TALENT_2H = 2;
 const int NPC_TALENT_BOW = 3;
 const int NPC_TALENT_CROSSBOW = 4;
 const int NPC_TALENT_PICKLOCK = 5;
+//const int NPC_TALENT_6 = 6; не использовать!
 const int NPC_TALENT_MAGE = 7;
 const int NPC_TALENT_SNEAK = 8;
 const int NPC_TALENT_REGENERATE = 9;
@@ -844,7 +845,7 @@ const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2025;
 const int FIX_DATE_MONTH = 10;
-const int FIX_DATE_DAY = 21;
+const int FIX_DATE_DAY = 23;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;

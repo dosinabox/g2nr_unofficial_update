@@ -46,9 +46,40 @@ func void B_RemoveStolenItems(var C_Npc owner,var C_Npc thief)
 			};
 		};
 	}
+	else if(C_IsNpc(owner,DJG_715_Ferros))
+	{
+		if(Npc_IsPlayer(thief))
+		{
+			if(Npc_HasItems(thief,ItMw_1H_FerrosSword_MIS))
+			{
+				B_TransferAllInvItems(thief,owner,ItMw_1H_FerrosSword_MIS);
+				AI_EquipBestMeleeWeapon(owner);
+				if(MIS_FerrosSword == LOG_RUNNING)
+				{
+					MIS_FerrosSword = LOG_FAILED;
+					B_CheckLog();
+				};
+			};
+		};
+	}
 	else if(C_IsNpc(owner,VLK_402_Richter))
 	{
 		B_TransferAllInvItems(thief,owner,ItKe_Richter);
+	}
+	else if(C_IsNpc(owner,VLK_413_Bosper))
+	{
+		if(Npc_IsPlayer(thief))
+		{
+			if(Npc_HasItems(thief,ItRw_Bow_L_03_MIS))
+			{
+				B_RemoveEveryInvItem(thief,ItRw_Bow_L_03_MIS);
+				if(MIS_Bosper_Bogen == LOG_RUNNING)
+				{
+					MIS_Bosper_Bogen = LOG_FAILED;
+					B_CheckLog();
+				};
+			};
+		};
 	}
 	else if(C_IsNpc(owner,VLK_421_Valentino))
 	{

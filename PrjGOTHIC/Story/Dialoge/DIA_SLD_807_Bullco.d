@@ -58,7 +58,6 @@ instance DIA_Bullco_Quatscher(C_Info)
 	nr = 2;
 	condition = DIA_Bullco_Quatscher_Condition;
 	information = DIA_Bullco_Quatscher_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -89,7 +88,6 @@ instance DIA_Bullco_PleaseLeave(C_Info)
 	nr = 3;
 	condition = DIA_Bullco_PleaseLeave_Condition;
 	information = DIA_Bullco_PleaseLeave_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -161,7 +159,6 @@ instance DIA_Bullco_DailyCheck(C_Info)
 	nr = 4;
 	condition = DIA_Bullco_DailyCheck_Condition;
 	information = DIA_Bullco_DailyCheck_Info;
-//	permanent = FALSE;
 	permanent = TRUE;
 	important = TRUE;
 };
@@ -221,7 +218,6 @@ instance DIA_Bullco_WontLeave(C_Info)
 	nr = 5;
 	condition = DIA_Bullco_WontLeave_Condition;
 	information = DIA_Bullco_WontLeave_Info;
-	permanent = FALSE;
 	description = "Я НЕ СОБИРАЮСЬ уходить отсюда!";
 };
 
@@ -246,7 +242,6 @@ instance DIA_Bullco_PepesSchafe(C_Info)
 	nr = 6;
 	condition = DIA_Bullco_PepesSchafe_Condition;
 	information = DIA_Bullco_PepesSchafe_Info;
-	permanent = FALSE;
 	description = "Тебе имя Пепе говорит о чем-нибудь?";
 };
 

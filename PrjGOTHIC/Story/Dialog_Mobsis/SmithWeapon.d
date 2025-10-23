@@ -19,27 +19,21 @@ var int Normalwaffen;
 
 func void smithweapon_s1()
 {
-	var C_Item EquipWeap;
 	if(C_NpcIsHero(self))
 	{
 		HotRawSwordsCount = Npc_HasItems(self,ItMiSwordRawHot) + 1;
 		B_RemoveEveryInvItem(self,ItMiSwordRawHot);
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_SmithWeapon;
-		//перенести снятие оружия в smithweapon_cond(), если будут готовы зены
-		if(Npc_HasEquippedMeleeWeapon(self))
+		if(C_NpcHasEquippedMeleeWeapon(self,ItMw_1H_Mace_L_04))
 		{
-			EquipWeap = Npc_GetEquippedMeleeWeapon(self);
-			if(Hlp_IsItem(EquipWeap,ItMw_1H_Mace_L_04))
+			if(UnionActivated == TRUE)
 			{
-				if(UnionActivated == TRUE)
-				{
-					B_UnEquipHeroItem(ItMw_1H_Mace_L_04);
-				}
-				else
-				{
-					AI_UnequipWeapons(self);
-				};
+				B_UnEquipHeroItem(ItMw_1H_Mace_L_04);
+			}
+			else
+			{
+				AI_UnequipWeapons(self);
 			};
 		};
 		AI_ProcessInfos(self);

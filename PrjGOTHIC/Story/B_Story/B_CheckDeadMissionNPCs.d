@@ -96,6 +96,17 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_Addon_Baltram_Paket4Skip = LOG_FAILED;
 			};
 		}
+		else if(C_IsNpc(slf,VLK_413_Bosper))
+		{
+			if(MIS_Bosper_WolfFurs == LOG_RUNNING)
+			{
+				MIS_Bosper_WolfFurs = LOG_FAILED;
+			};
+			if(MIS_Bosper_Bogen == LOG_RUNNING)
+			{
+				MIS_Bosper_Bogen = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,VLK_414_Hanna))
 		{
 			if(MIS_HannaRetrieveLetter == LOG_RUNNING)

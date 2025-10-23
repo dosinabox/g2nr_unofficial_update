@@ -23,6 +23,7 @@ AI\Human\C_Human\C_IsNpc.d
 AI\Human\C_Human\C_NpcIsValidAndAlive.d
 AI\Human\C_Human\C_NpcIsHero.d
 AI\Human\C_Human\C_NpcIsHuman.d
+AI\Human\C_Human\C_NpcHasEquippedMeleeWeapon.d
 AI\Monster\C_Monster\C_NpcIsOrc.d
 Story\B_Story\B_CheckOption.d
 Story\B_Story\C_NpcIsInQuarter.d

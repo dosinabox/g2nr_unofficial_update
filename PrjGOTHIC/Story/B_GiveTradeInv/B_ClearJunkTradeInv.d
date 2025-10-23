@@ -1,18 +1,9 @@
 
 func void B_ClearJunkTradeInv(var C_Npc slf)
 {
-	var C_Item EquipWeap;
 	if(Hlp_IsValidNpc(slf))
 	{
-		if(Npc_HasEquippedMeleeWeapon(slf))
-		{
-			EquipWeap = Npc_GetEquippedMeleeWeapon(slf);
-			if(!Hlp_IsItem(EquipWeap,ItMw_1h_Bau_Mace))
-			{
-				B_RemoveEveryInvItem(slf,ItMw_1h_Bau_Mace);
-			};
-		}
-		else
+		if(!C_NpcHasEquippedMeleeWeapon(slf,ItMw_1h_Bau_Mace))
 		{
 			B_RemoveEveryInvItem(slf,ItMw_1h_Bau_Mace);
 		};
