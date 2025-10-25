@@ -264,14 +264,9 @@ func int DIA_Garwig_THIEF_Condition()
 
 func void DIA_Garwig_THIEF_Info()
 {
-	var C_Item EquipWeap;
-	if(Npc_HasEquippedMeleeWeapon(other))
+	if(C_NpcHasEquippedMeleeWeapon(other,Holy_Hammer_MIS))
 	{
-		EquipWeap = Npc_GetEquippedMeleeWeapon(other);
-		if(Hlp_IsItem(EquipWeap,Holy_Hammer_MIS))
-		{
-			Hammer_Taken = TRUE;
-		};
+		Hammer_Taken = TRUE;
 	};
 	if(Hammer_Taken == TRUE)
 	{
@@ -315,18 +310,8 @@ func int DIA_Garwig_Abgeben_Condition()
 
 func void DIA_Garwig_Abgeben_Info()
 {
-	var C_Item ReadyWeap;
-	if(Npc_HasReadiedMeleeWeapon(other))
-	{
-		ReadyWeap = Npc_GetReadiedWeapon(other);
-		if(Hlp_IsItem(ReadyWeap,Holy_Hammer_MIS))
-		{
-			AI_DropItem(other,Holy_Hammer_MIS);
-			AI_RemoveWeapon(other);
-		};
-	};
-	B_GiveInvItems(other,self,Holy_Hammer_MIS,1);
 	AI_Output(other,self,"DIA_Garwig_Abgeben_15_00");	//Я принес молот назад.
+	B_GiveWeapon(other,self,Holy_Hammer_MIS,1);
 	if(Hammer_Taken == TRUE)
 	{
 		AI_Output(self,other,"DIA_Garwig_Abgeben_06_01");	//Ах ты, подлый вор!
@@ -336,10 +321,6 @@ func void DIA_Garwig_Abgeben_Info()
 		AI_Output(self,other,"DIA_Garwig_Abgeben_06_02");	//Так это ты взял его...
 	};
 	AI_Output(self,other,"DIA_Garwig_Abgeben_06_03");	//Но я не вправе судить тебя. Пусть Иннос осудит тебя, и ты понесешь заслуженную кару!
-	if(Hlp_IsItem(ReadyWeap,Holy_Hammer_MIS))
-	{
-		AI_TakeItem(self,ReadyWeap);
-	};
 	Hammer_Taken = FALSE;
 	GarwigThiefOneTime = FALSE;
 };

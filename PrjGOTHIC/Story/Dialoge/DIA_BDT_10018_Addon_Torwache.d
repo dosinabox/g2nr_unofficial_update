@@ -18,10 +18,10 @@ func int DIA_Addon_BDT_10018_Torwache_EXIT_Condition()
 func void DIA_Addon_BDT_10018_Torwache_EXIT_Info()
 {
 	AI_Output(other,self,"DIA_Addon_BDT_10018_Torwache_EXIT_15_00");	//Мы еще поговорим.
-	if(BDT_100018_Einmal == FALSE)
+	if(self.aivar[AIV_Nerver] == 0)
 	{
 		AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_EXIT_04_01");	//Ты знаешь, что я тебе скажу...
-		BDT_100018_Einmal = TRUE;
+		self.aivar[AIV_Nerver] += 1;
 	}
 	else
 	{

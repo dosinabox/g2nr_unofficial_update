@@ -150,7 +150,7 @@ func int DIA_Dragomir_Armbrust_Condition()
 func void DIA_Dragomir_Armbrust_Info()
 {
 	AI_Output(other,self,"DIA_Dragomir_Armbrust_15_00");	//Вот. Я нашел твой арбалет.
-	B_GiveInvItems(other,self,ItRw_DragomirsArmbrust_MIS,1);
+	B_GiveWeapon(other,self,ItRw_DragomirsArmbrust_MIS,1);
 	AI_Output(self,other,"DIA_Dragomir_Armbrust_12_01");	//Точно, это мой арбалет. Только не говори мне, что ты ходил к этому каменному кругу?
 	AI_Output(other,self,"DIA_Dragomir_Armbrust_15_02");	//А что в этом такого?
 	AI_Output(self,other,"DIA_Dragomir_Armbrust_12_03");	//Это было очень безрассудно с твоей стороны. Но все равно, спасибо.

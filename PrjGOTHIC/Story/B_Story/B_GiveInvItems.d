@@ -88,3 +88,25 @@ func void B_GiveArmor(var int itemInstance)
 	AI_PrintScreen(ConcatStrings(item.description,PRINT_ItemTaken),-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 };
 
+func void B_GiveWeapon(var C_Npc giver,var C_Npc taker,var int itemInstance,var int amount)
+{
+	if(C_NpcHasReadiedWeapon(giver,itemInstance))
+	{
+		Npc_GetInvItem(giver,itemInstance);
+		AI_DropItem(giver,itemInstance);
+		AI_RemoveWeapon(giver);
+		AI_WaitTillEnd(taker,giver);
+		if(C_BodyStateContains(taker,BS_SIT))
+		{
+			AI_Standup(taker);
+			B_TurnToNpc(taker,giver);
+		};
+		AI_TakeItem(taker,item);
+		B_TurnToNpc(taker,giver);
+	}
+	else
+	{
+		B_GiveInvItems(giver,taker,itemInstance,amount);
+	};
+};
+

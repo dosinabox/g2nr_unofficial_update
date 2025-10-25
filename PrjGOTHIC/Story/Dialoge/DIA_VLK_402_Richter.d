@@ -173,7 +173,7 @@ func int DIA_Richter_KillMorgahard_Condition()
 func void DIA_Richter_KillMorgahard_Info()
 {
 	AI_Output(other,self,"DIA_Richter_KillMorgahard_15_00");	//Вот священный молот магов.
-	B_GiveInvItems(other,self,Holy_Hammer_MIS,1);
+	B_GiveWeapon(other,self,Holy_Hammer_MIS,1);
 	Npc_RemoveInvItem(self,Holy_Hammer_MIS);
 	AI_Output(self,other,"DIA_Richter_KillMorgahard_10_01");	//Я поражен. Похоже, у тебя действительно серьезные намерения. Вот твое вознаграждение.
 	CreateInvItems(self,ItMi_Gold,300);

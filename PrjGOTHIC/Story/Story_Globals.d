@@ -420,7 +420,6 @@ var int Torwache_Greetings;
 var int Player_SentBuddler;
 //var int Juan_Parole;
 var int Knows_MCELIXIER;
-var int BDT_100018_Einmal;
 var int Crimson_SayBeliar;
 //var int Patrick_trust;
 var int Sklaven_Flucht;
