@@ -101,6 +101,7 @@ func void B_RemoveStolenItems(var C_Npc owner,var C_Npc thief)
 	}
 	else if(C_IsNpc(owner,PIR_1350_Addon_Francis))
 	{
+		B_TransferAllInvItems(thief,owner,ItWr_Addon_FrancisAbrechnung_MIS);
 		if(GregIsBack == FALSE)
 		{
 			B_TransferAllInvItems(thief,owner,ItKe_Greg_Addon_MIS);

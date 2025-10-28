@@ -27,7 +27,6 @@ instance DIA_Addon_Francis_First(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Francis_First_Condition;
 	information = DIA_Addon_Francis_First_Info;
-	permanent = FALSE;
 	description = "Это твоя хижина?";
 };
 
@@ -54,7 +53,6 @@ instance DIA_Addon_Francis_LetMeIn(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Francis_LetMeIn_Condition;
 	information = DIA_Addon_Francis_LetMeIn_Info;
-	permanent = FALSE;
 	description = "Я должен попасть в хижину Грега.";
 };
 
@@ -82,7 +80,6 @@ instance DIA_Addon_Francis_AboutGreg(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Francis_AboutGreg_Condition;
 	information = DIA_Addon_Francis_AboutGreg_Info;
-	permanent = FALSE;
 	description = "Грег - твой начальник?";
 };
 

@@ -64,9 +64,12 @@ instance DIA_Bullco_Quatscher(C_Info)
 
 func int DIA_Bullco_Quatscher_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Sylvio_angequatscht >= 2))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && !Npc_IsDead(Sylvio))
 	{
-		return TRUE;
+		if(Sylvio.aivar[AIV_Nerver] >= 2)
+		{
+			return TRUE;
+		};
 	};
 };
 

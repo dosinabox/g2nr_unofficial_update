@@ -176,7 +176,7 @@ func void B_AssessTalk()
 			};
 			return;
 		};
-		if(C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && !C_NpcIsSleeping(self))
+		/*if(C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && !C_NpcIsSleeping(self))
 		{
 			rnd = Hlp_Random(2);
 			if(rnd == 0)
@@ -195,7 +195,7 @@ func void B_AssessTalk()
 			};
 			AI_Wait(self,2);
 			return;
-		};
+		};*/
 	};
 	if(self.aivar[AIV_NpcStartedTalk] == FALSE)
 	{
