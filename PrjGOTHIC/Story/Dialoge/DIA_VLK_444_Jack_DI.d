@@ -108,6 +108,6 @@ func void DIA_Jack_DI_UndeadDragonDead_moment()
 func void DIA_Jack_DI_UndeadDragonDead_over()
 {
 	AI_StopProcessInfos(self);
-	B_Extro_Avi();
+	B_Extro_AVI();
 };
 

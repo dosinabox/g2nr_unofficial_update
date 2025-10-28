@@ -24,7 +24,7 @@ func void Use_Bookstand_01_S1()
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"Высший Cовет");
 		Doc_Show(nDocID);
-		if((hero.guild == GIL_NOV) && (Knows_Fire_Contest == FALSE))
+		if((self.guild == GIL_NOV) && (Knows_Fire_Contest == FALSE))
 		{
 			Knows_Fire_Contest = TRUE;
 			Log_CreateTopic(TOPIC_FireContest,LOG_MISSION);
@@ -48,7 +48,7 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
 		Doc_PrintLines(nDocID,0,"... Я надеюсь, что этот купол защитит руду от коварства Белиара. Король настолько наивен, что верит, что мы строим этот купол для предотвращения побегов. Что ж, пока эта уловка позволяет нам следовать нашей высшей цели, пусть так и будет. Мне остается только надеяться, что у нас остается достаточно времени, чтобы подготовиться к битве. Как только купол вокруг Долины Рудников будет воздвигнут, я соберу все имеющиеся в моем распоряжении силы, чтобы принять участие в грядущей битве.");
-		if(hero.guild == GIL_KDF)
+		if(self.guild == GIL_KDF)
 		{
 			Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 			Doc_PrintLines(nDocID,1,"... Я следовал инструкциям и просто окропил святой водой чистый рунный камень, лежащий на рунном столе. Рунный камень был уничтожен. Я подозреваю, что это заклинание подвластно только Избранному.");
@@ -64,7 +64,7 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 				B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Святой удар': 1 святая вода. Свиток не нужен.");
 			};
 		}
-		else if(hero.guild == GIL_PAL)
+		else if(self.guild == GIL_PAL)
 		{
 			Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 			Doc_PrintLines(nDocID,1,"Чтобы достичь секретного места, необходимо создать руну телепортации. Для этого необходим чистый рунный камень и небольшая бутылочка святой воды. При помощи этой руны можно телепортироваться в комнату.");
@@ -90,7 +90,7 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 			Doc_PrintLine(nDocID,1,"");
 			Doc_PrintLines(nDocID,1,"Примечание: 'Каринис' вероятно соответствует нынешнему названию 'Хоринис'.");
 			Doc_Show(nDocID);
-			PlayergetsFinalDJGArmor = TRUE;
+			PlayerGetsFinalDJGArmor = TRUE;
 			if(FinalDragonEquipment_Once == FALSE)
 			{
 				if(Npc_GetTalentSkill(self,NPC_TALENT_SMITH) == 0)

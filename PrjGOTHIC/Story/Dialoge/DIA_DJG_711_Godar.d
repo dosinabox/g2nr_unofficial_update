@@ -27,7 +27,6 @@ instance DIA_Godar_Hello(C_Info)
 	nr = 4;
 	condition = DIA_Godar_Hello_Condition;
 	information = DIA_Godar_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -52,7 +51,6 @@ instance DIA_Godar_ComeFrom(C_Info)
 	nr = 4;
 	condition = DIA_Godar_ComeFrom_Condition;
 	information = DIA_Godar_ComeFrom_Info;
-	permanent = FALSE;
 	description = "Откуда вы?";
 };
 
@@ -138,7 +136,6 @@ instance DIA_Godar_Plan(C_Info)
 	nr = 5;
 	condition = DIA_Godar_Plan_Condition;
 	information = DIA_Godar_Plan_Info;
-	permanent = FALSE;
 	description = "Что вы делаете здесь?";
 };
 
@@ -164,7 +161,6 @@ instance DIA_Godar_DragonLore(C_Info)
 	nr = 5;
 	condition = DIA_Godar_DragonLore_Condition;
 	information = DIA_Godar_DragonLore_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о драконах?";
 };
 
@@ -185,13 +181,14 @@ func void DIA_Godar_DragonLore_Info()
 };
 
 
+var int Godar_MentionedPrison;
+
 instance DIA_Godar_Destination(C_Info)
 {
 	npc = DJG_711_Godar;
 	nr = 5;
 	condition = DIA_Godar_Destination_Condition;
 	information = DIA_Godar_Destination_Info;
-	permanent = FALSE;
 	description = "А куда вы собираетесь идти отсюда?";
 };
 
@@ -208,11 +205,12 @@ func void DIA_Godar_Destination_Info()
 {
 	AI_Output(other,self,"DIA_Godar_Destination_15_00");	//А куда вы собираетесь идти отсюда?
 	AI_Output(self,other,"DIA_Godar_Destination_13_01");	//Понятия не имею. Мы все еще думаем над этим.
-	if((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL))
+	if((other.guild != GIL_MIL) && (other.guild != GIL_PAL))
 	{
 		AI_Output(other,self,"DIA_Godar_Destination_15_02");	//Вы могли бы пойти в замок.
 		AI_Output(self,other,"DIA_Godar_Destination_13_03");	//Меня туда силком не затащишь. Нет уж. Только не к паладинам.
 		AI_Output(self,other,"DIA_Godar_Destination_13_04");	//Я не хочу обратно в тюрьму. Я уже был там, и мне этого хватило.
+		Godar_MentionedPrison = TRUE;
 	};
 };
 
@@ -223,7 +221,6 @@ instance DIA_Godar_Orks(C_Info)
 	nr = 5;
 	condition = DIA_Godar_Orks_Condition;
 	information = DIA_Godar_Orks_Info;
-	permanent = FALSE;
 	description = "Что насчет орков?";
 };
 
@@ -252,14 +249,13 @@ instance DIA_Godar_Prison(C_Info)
 	nr = 5;
 	condition = DIA_Godar_Prison_Condition;
 	information = DIA_Godar_Prison_Info;
-	permanent = FALSE;
 	description = "За что ты сидел?";
 };
 
 
 func int DIA_Godar_Prison_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Godar_Destination) && (hero.guild != GIL_MIL) && (hero.guild != GIL_PAL))
+	if(Godar_MentionedPrison == TRUE)
 	{
 		return TRUE;
 	};
@@ -268,10 +264,13 @@ func int DIA_Godar_Prison_Condition()
 func void DIA_Godar_Prison_Info()
 {
 	AI_Output(other,self,"DIA_Godar_Prison_15_00");	//За что ты сидел?
-	if(hero.guild == GIL_KDF)
+	if((other.guild == GIL_KDF) || (other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Godar_Prison_13_01");	//Так я тебе и сказал! Ха!
-		AI_Output(self,other,"DIA_Godar_Prison_13_02");	//Вы, маги, заодно с паладинами. Нет, дружок. Забудь об этом.
+		if(other.guild == GIL_KDF)
+		{
+			AI_Output(self,other,"DIA_Godar_Prison_13_02");	//Вы, маги, заодно с паладинами. Нет, дружок. Забудь об этом.
+		};
 	}
 	else
 	{
@@ -312,14 +311,13 @@ instance DIA_Godar_Hunting(C_Info)
 	nr = 5;
 	condition = DIA_Godar_Hunting_Condition;
 	information = DIA_Godar_Hunting_Info;
-	permanent = FALSE;
 	description = "Ты можешь научить меня охотиться?";
 };
 
 
 func int DIA_Godar_Hunting_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Godar_Prison) && (hero.guild != GIL_MIL) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
+	if(Npc_KnowsInfo(other,DIA_Godar_Prison) && (other.guild != GIL_MIL) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -430,7 +428,12 @@ func int DIA_Godar_Teach_Condition()
 func void DIA_Godar_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Godar_Teach_15_00");	//Научи меня охотиться.
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == FALSE))
+	if(self.aivar[AIV_RefuseService] == TRUE)
+	{
+		B_Say(self,other,"$NOTNOW");
+		AI_StopProcessInfos(self);
+	}
+	else if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == FALSE))
 	{
 		Info_AddChoice(DIA_Godar_Teach,Dialog_Back,DIA_Godar_Teach_Back);
 		if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
@@ -533,7 +536,6 @@ instance DIA_Godar_AllDragonsDead(C_Info)
 	nr = 5;
 	condition = DIA_Godar_AllDragonsDead_Condition;
 	information = DIA_Godar_AllDragonsDead_Info;
-	permanent = FALSE;
 	description = "Я убил всех драконов.";
 };
 

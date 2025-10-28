@@ -56,7 +56,6 @@ instance DIA_Kardif_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Kardif_Hi_Condition;
 	information = DIA_Kardif_Hi_Info;
-	permanent = FALSE;
 	description = " ак дела?";
 };
 
@@ -88,7 +87,6 @@ instance DIA_Kardif_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Kardif_Hallo_Condition;
 	information = DIA_Kardif_Hallo_Info;
-	permanent = FALSE;
 	description = "√отов побитьс€ об заклад, ты многое здесь слышишь...";
 };
 
@@ -646,7 +644,6 @@ instance DIA_Kardif_DEFEATEDATTILA(C_Info)
 	nr = 2;
 	condition = DIA_Kardif_DEFEATEDATTILA_Condition;
 	information = DIA_Kardif_DEFEATEDATTILA_Info;
-	permanent = FALSE;
 	description = "Ётот ублюдок пыталс€ убить мен€!";
 };
 
@@ -681,7 +678,6 @@ instance DIA_Kardif_Zeichen(C_Info)
 	nr = 800;
 	condition = DIA_Kardif_Zeichen_Condition;
 	information = DIA_Kardif_Zeichen_Info;
-	permanent = FALSE;
 	description = DIALOG_SecretSign;
 };
 
@@ -720,7 +716,6 @@ instance DIA_Kardif_Crew(C_Info)
 	nr = 51;
 	condition = DIA_Kardif_Crew_Condition;
 	information = DIA_Kardif_Crew_Info;
-	permanent = FALSE;
 	description = "ћне все еще нужны матросы.";
 };
 

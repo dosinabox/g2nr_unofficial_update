@@ -42,7 +42,7 @@ func void B_GiveTradeInv_Addon_Garett(var C_Npc slf)
 		CreateInvItems(slf,ItRw_Arrow,50);
 		CreateInvItems(slf,ItRw_Bolt,50);
 		CreateInvItems(slf,ItMi_Joint,1);
-		CreateInvItems(slf,ItMiSwordraw,2);
+		CreateInvItems(slf,ItMiSwordRaw,2);
 		CreateInvItems(slf,ItMi_DarkPearl,1);
 		CreateInvItems(slf,ItRw_Crossbow_M_01,1);
 		CreateInvItems(slf,ItRw_Crossbow_H_01,1);

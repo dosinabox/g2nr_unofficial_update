@@ -90,6 +90,11 @@ func void DIA_Alvares_ATTACK_Info()
 
 func void DIA_Alvares_ATTACK_End()
 {
+	if(!Npc_IsDead(Engardo))
+	{
+		Engardo.aivar[AIV_EnemyOverride] = FALSE;
+	};
+	self.aivar[AIV_EnemyOverride] = FALSE;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_SuddenEnemyInferno,1);
 };
@@ -109,7 +114,10 @@ func void DIA_Alvares_ATTACK_Kerle()
 {
 	AI_Output(other,self,"DIA_Alvares_ATTACK_Kerle_15_00");	// то вы такие, парни - пара клоунов?
 	AI_Output(self,other,"DIA_Alvares_ATTACK_Kerle_11_01");	//“ы правильно пон€л. » € буду продолжать сме€тьс€, когда твой труп будет лежать в дорожной пыли.
-	AI_Output(self,other,"DIA_Alvares_ATTACK_Kerle_11_02");	//(зовет) Ёнгардо, давай начинать! “ы берешь на себ€ фермера - а € разберусь с этим клоуном!
+	if(!C_NpcIsDown(Engardo))
+	{
+		AI_Output(self,other,"DIA_Alvares_ATTACK_Kerle_11_02");	//(зовет) Ёнгардо, давай начинать! “ы берешь на себ€ фермера - а € разберусь с этим клоуном!
+	};
 	Info_ClearChoices(DIA_Alvares_ATTACK);
 	Info_AddChoice(DIA_Alvares_ATTACK,Dialog_Ende,DIA_Alvares_ATTACK_End);
 };
@@ -158,7 +166,10 @@ func int DIA_Alvares_Schluss_Condition()
 func void DIA_Alvares_Schluss_Info()
 {
 	AI_Output(self,other,"DIA_Alvares_Schluss_11_00");	//я дал тебе шанс. Ќо, похоже, ты не прислушиваешьс€ к здравому смыслу.
-	AI_Output(self,other,"DIA_Alvares_Schluss_11_01");	//’орошо - значит, мне придетс€ убить теб€. (зовет) Ёнгардо, давай, прикончим их!
+	if(!C_NpcIsDown(Engardo))
+	{
+		AI_Output(self,other,"DIA_Alvares_Schluss_11_01");	//’орошо - значит, мне придетс€ убить теб€. (зовет) Ёнгардо, давай, прикончим их!
+	};
 	Info_ClearChoices(DIA_Alvares_Schluss);
 	Info_AddChoice(DIA_Alvares_Schluss,Dialog_Ende,DIA_Alvares_ATTACK_End);
 };

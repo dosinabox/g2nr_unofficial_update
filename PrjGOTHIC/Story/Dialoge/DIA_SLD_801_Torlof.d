@@ -969,26 +969,26 @@ func void DIA_Torlof_DEMENTOREN_Info()
 	AI_Output(self,other,"DIA_Torlof_DEMENTOREN_01_03");	//Они пришли со стороны лагеря бандитов, который находится в горах, в южной части этой долины.
 	AI_Output(self,other,"DIA_Torlof_DEMENTOREN_01_04");	//Возможно, тебе стоит сходить туда и разобраться с этими парнями!
 	Wld_InsertNpc(CastlemineDMT,"FP_STAND_DEMENTOR_KDF_12");
-	Log_CreateTopic(TOPIC_Torlof_Dmt,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Torlof_Dmt,LOG_RUNNING);
-	B_LogEntry(TOPIC_Torlof_Dmt,"В южной части долины, в горах, в бандитском лагере, похоже, появились эти люди в черных рясах. Они очень беспокоят Торлофа. Я должен решить эту проблему для него.");
-	MIS_Torlof_Dmt = LOG_RUNNING;
+	Log_CreateTopic(TOPIC_Torlof_DMT,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Torlof_DMT,LOG_RUNNING);
+	B_LogEntry(TOPIC_Torlof_DMT,"В южной части долины, в горах, в бандитском лагере, похоже, появились эти люди в черных рясах. Они очень беспокоят Торлофа. Я должен решить эту проблему для него.");
+	MIS_Torlof_DMT = LOG_RUNNING;
 };
 
 
-instance DIA_Torlof_DmtSuccess(C_Info)
+instance DIA_Torlof_DMTSuccess(C_Info)
 {
 	npc = SLD_801_Torlof;
 	nr = 30;
-	condition = DIA_Torlof_DmtSuccess_Condition;
-	information = DIA_Torlof_DmtSuccess_Info;
+	condition = DIA_Torlof_DMTSuccess_Condition;
+	information = DIA_Torlof_DMTSuccess_Info;
 	description = "Люди с гор в черных рясах больше не будут беспокоить нас.";
 };
 
 
-func int DIA_Torlof_DmtSuccess_Condition()
+func int DIA_Torlof_DMTSuccess_Condition()
 {
-	if(MIS_Torlof_Dmt == LOG_RUNNING)
+	if(MIS_Torlof_DMT == LOG_RUNNING)
 	{
 		if(Npc_IsDead(CastlemineDMT))
 		{
@@ -997,12 +997,12 @@ func int DIA_Torlof_DmtSuccess_Condition()
 	};
 };
 
-func void DIA_Torlof_DmtSuccess_Info()
+func void DIA_Torlof_DMTSuccess_Info()
 {
-	AI_Output(other,self,"DIA_Torlof_DmtSuccess_15_00");	//Люди с гор в черных рясах больше не будут беспокоить нас.
-	AI_Output(self,other,"DIA_Torlof_DmtSuccess_01_01");	//Ты смог разобраться с ними? Отлично!
-	AI_Output(self,other,"DIA_Torlof_DmtSuccess_01_02");	//Я сразу не доверял этим парням. За версту было видно, что от них будут одни неприятности...
-	MIS_Torlof_Dmt = LOG_SUCCESS;
+	AI_Output(other,self,"DIA_Torlof_DMTSuccess_15_00");	//Люди с гор в черных рясах больше не будут беспокоить нас.
+	AI_Output(self,other,"DIA_Torlof_DMTSuccess_01_01");	//Ты смог разобраться с ними? Отлично!
+	AI_Output(self,other,"DIA_Torlof_DMTSuccess_01_02");	//Я сразу не доверял этим парням. За версту было видно, что от них будут одни неприятности...
+	MIS_Torlof_DMT = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Torlof_DMT);
 };
 

@@ -198,12 +198,12 @@ func int DIA_Addon_Cord_YouAreRanger_Condition()
 	if(RangerHelp_gildeSLD == TRUE)
 	{
 		return TRUE;
-	}
-	else if(SC_KnowsCordAsRangerFromLee == TRUE)
+	};
+	if(SC_KnowsCordAsRangerFromLee == TRUE)
 	{
 		return TRUE;
-	}
-	else if(MIS_Addon_Lares_ComeToRangerMeeting == LOG_SUCCESS)
+	};
+	if(MIS_Addon_Lares_ComeToRangerMeeting == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -460,6 +460,11 @@ func void B_Cord_IDoItForYou()
 	AI_Output(self,other,"DIA_Addon_Cord_IDoItForYou_14_06");	//Я говорил ему, что это плохая мысль, но этот идиот меня не послушал.
 	AI_Output(self,other,"DIA_Addon_Cord_IDoItForYou_14_07");	//Думаю, они расправились с ним. Но не уверен.
 	AI_Output(self,other,"DIA_Addon_Cord_IDoItForYou_14_08");	//Ты должен выяснить, что с ним случилось.
+	if(RangerHelp_gildeSLD == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_RangerHelpSLD,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_RangerHelpSLD,LOG_RUNNING);
+	};
 	B_LogEntry(TOPIC_Addon_RangerHelpSLD,"Корд готов решить проблему с испытанием Торлофа. Пропал приятель Корда Патрик. Корд хочет, чтобы я отправился в лагерь бандитов в горах на юго-востоке и выяснил, нет ли там Патрика.");
 	Info_ClearChoices(DIA_Addon_Cord_RangerHelp2GetSLD);
 	Info_AddChoice(DIA_Addon_Cord_RangerHelp2GetSLD,"Забудь об этом. Это гораздо сложнее, чем задание Торлофа.",B_Cord_IDoItForYou_mist);

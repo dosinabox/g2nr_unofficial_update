@@ -16,7 +16,7 @@ func int DIA_BDT_1013_BANDIT_FIRSTEXIT_Condition()
 
 func void DIA_BDT_1013_BANDIT_FIRSTEXIT_Info()
 {
-	if((Bdt13_Friend == TRUE) && !Npc_IsDead(Ambusher_1014) && !Npc_IsDead(Ambusher_1015))
+	if((BDT_1013_Friend == TRUE) && !Npc_IsDead(Ambusher_1014) && !Npc_IsDead(Ambusher_1015))
 	{
 		AI_Output(self,other,"DIA_BDT_1013_BANDIT_FIRSTEXIT_01_00");	//На твоем месте я бы не ходил в эту пещеру - мои приятели, что живут там, сдерут с тебя шкуру живьем.
 	};
@@ -160,7 +160,7 @@ func void DIA_BDT_1013_BANDIT_WHERE_Prisoner()
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_PRISONER_01_07");	//Но я думаю, что мы, бывшие заключенные из колонии, должны держаться вместе!
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_PRISONER_15_08");	//Тогда я должен сказать тебе большое спасибо...
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_PRISONER_01_09");	//Пустяки. Просто постарайся остаться в живых.
-	Bdt13_Friend = TRUE;
+	BDT_1013_Friend = TRUE;
 	B_SetAttitude(self,ATT_FRIENDLY);
 	self.npcType = NPCTYPE_FRIEND;
 	self.aivar[AIV_EnemyOverride] = FALSE;
@@ -197,15 +197,18 @@ instance DIA_1013_BANDIT_AMBUSH(C_Info)
 
 func int DIA_1013_BANDIT_AMBUSH_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_RIGHT") <= 300) && (Bdt13_Friend == FALSE))
+	if(BDT_1013_Friend == FALSE)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_RIGHT") <= 300)
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_1013_BANDIT_AMBUSH_Info()
 {
-	if(!Npc_IsDead(Ambusher_1014) && !Npc_IsDead(Ambusher_1015))
+	if(!C_NpcIsDown(Ambusher_1014) && !C_NpcIsDown(Ambusher_1015))
 	{
 		AI_Output(self,other,"DIA_1013_BANDIT_AMBUSH_01_01");	//Эй, парни, посмотрите, кто у нас здесь...
 	}
@@ -230,7 +233,7 @@ instance DIA_1013_BANDIT_NAME(C_Info)
 
 func int DIA_1013_BANDIT_NAME_Condition()
 {
-	if(Bdt13_Friend == TRUE)
+	if(BDT_1013_Friend == TRUE)
 	{
 		return TRUE;
 	};
@@ -264,7 +267,7 @@ instance DIA_1013_BANDIT_DEXTER(C_Info)
 
 func int DIA_1013_BANDIT_DEXTER_Condition()
 {
-	if((Bdt13_Friend == TRUE) && Npc_KnowsInfo(other,DIA_1013_BANDIT_NAME))
+	if((BDT_1013_Friend == TRUE) && Npc_KnowsInfo(other,DIA_1013_BANDIT_NAME))
 	{
 		return TRUE;
 	};
@@ -291,7 +294,7 @@ func void DIA_1013_BANDIT_DEXTER_Info()
 		AI_Output(self,other,"DIA_1013_BANDIT_DEXTER_01_07");	//Что?! Я... Ох, забудь об этом, я сам виноват. Не нужно было называть тебе имя, пока я не увидел золота...
 	};
 	AI_Output(self,other,"DIA_1013_BANDIT_DEXTER_01_08");	//Только никому не говори, что это я назвал тебе его.
-	Bdt13_Dexter_verraten = TRUE;
+	Ranger_SCKnowsDexter = TRUE;
 };
 
 
@@ -307,7 +310,7 @@ instance DIA_1013_BANDIT_PIC(C_Info)
 
 func int DIA_1013_BANDIT_PIC_Condition()
 {
-	if(Bdt13_Friend == TRUE)
+	if(BDT_1013_Friend == TRUE)
 	{
 		return TRUE;
 	};
@@ -334,7 +337,7 @@ instance DIA_1013_BANDIT_FromMaleth(C_Info)
 
 func int DIA_1013_BANDIT_FromMaleth_Condition()
 {
-	if((Bdt13_Friend == TRUE) && ((MIS_Maleth_Bandits == LOG_RUNNING) || (MIS_Maleth_Bandits == LOG_SUCCESS)))
+	if((BDT_1013_Friend == TRUE) && ((MIS_Maleth_Bandits == LOG_RUNNING) || (MIS_Maleth_Bandits == LOG_SUCCESS)))
 	{
 		return TRUE;
 	};
@@ -355,17 +358,17 @@ func void DIA_1013_BANDIT_FromMaleth_Info()
 		AI_Output(self,other,"DIA_1013_BANDIT_FromMaleth_01_05");	//Подожди - ты ведь не сделаешь этого со мной, правда, ведь я помог тебе?
 		AI_Output(self,other,"DIA_1013_BANDIT_FromMaleth_01_06");	//Иди туда и расправься с другими, если ты так жаждешь крови - а я сваливаю отсюда!
 	};
-	Bdt_1013_Away = TRUE;
+	BDT_1013_Away = TRUE;
 	B_GivePlayerXP(XP_BanditWeg);
 	if(MIS_Addon_Nefarius_BringMissingOrnaments == FALSE)
 	{
 		Npc_ExchangeRoutine(self,"AWAY2");
-		Bdt_1013_FromCavalorn = TRUE;
+		BDT_1013_FromCavalorn = TRUE;
 	}
 	else
 	{
 		Npc_ExchangeRoutine(self,"AWAY");
-		Bdt_1013_ToCavalorn = TRUE;
+		BDT_1013_ToCavalorn = TRUE;
 	};
 	AI_StopProcessInfos(self);
 };
@@ -383,7 +386,7 @@ instance DIA_1013_BANDIT_FromCavalorn(C_Info)
 
 func int DIA_1013_BANDIT_FromCavalorn_Condition()
 {
-	if((Bdt13_Friend == TRUE) && (MIS_Addon_Cavalorn_KillBrago == LOG_RUNNING) && !Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Ornament))
+	if((BDT_1013_Friend == TRUE) && (MIS_Addon_Cavalorn_KillBrago == LOG_RUNNING) && !Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Ornament))
 	{
 		return TRUE;
 	};
@@ -395,23 +398,23 @@ func void DIA_1013_BANDIT_FromCavalorn_Info()
 	AI_Output(self,other,"DIA_ADDON_1013_BANDIT_FromCavalorn_01_01");	//Что такое?
 	AI_Output(other,self,"DIA_ADDON_1013_BANDIT_FromCavalorn_15_02");	//Сюда направляется парень по имени Кавалорн.
 	AI_Output(self,other,"DIA_ADDON_1013_BANDIT_FromCavalorn_01_03");	//Проклятье! Он все еще жив? Я сматываюсь отсюда...
-	Bdt_1013_Away = TRUE;
+	BDT_1013_Away = TRUE;
 	B_GivePlayerXP(XP_BanditWeg);
+	AI_StopProcessInfos(self);
 	if(MIS_Addon_Nefarius_BringMissingOrnaments == FALSE)
 	{
 		Npc_ExchangeRoutine(self,"AWAY2");
-		Bdt_1013_FromCavalorn = TRUE;
+		BDT_1013_FromCavalorn = TRUE;
 	}
 	else
 	{
 		Npc_ExchangeRoutine(self,"AWAY");
-		Bdt_1013_ToCavalorn = TRUE;
+		BDT_1013_ToCavalorn = TRUE;
 	};
-	AI_StopProcessInfos(self);
 };
 
 
-var int Bdt_1013_Gossip;
+var int BDT_1013_Gossip;
 
 instance DIA_1013_BANDIT_PERM(C_Info)
 {
@@ -426,7 +429,7 @@ instance DIA_1013_BANDIT_PERM(C_Info)
 
 func int DIA_1013_BANDIT_PERM_Condition()
 {
-	if(Bdt13_Friend == TRUE)
+	if(BDT_1013_Friend == TRUE)
 	{
 		return TRUE;
 	};
@@ -435,11 +438,11 @@ func int DIA_1013_BANDIT_PERM_Condition()
 func void DIA_1013_BANDIT_PERM_Info()
 {
 	AI_Output(other,self,"DIA_1013_BANDIT_PERM_15_00");	//Есть что-нибудь еще, что может заинтересовать меня?
-	if(Bdt_1013_Gossip == FALSE)
+	if(BDT_1013_Gossip == FALSE)
 	{
 		AI_Output(self,other,"DIA_1013_BANDIT_PERM_01_01");	//Ты имеешь в виду эту местность? Если хочешь остаться в живых, тебе лучше держаться дороги.
 		AI_Output(self,other,"DIA_1013_BANDIT_PERM_01_02");	//Чем дальше ты заходишь в глушь, тем опаснее там находиться.
-		Bdt_1013_Gossip = TRUE;
+		BDT_1013_Gossip = TRUE;
 	}
 	else
 	{

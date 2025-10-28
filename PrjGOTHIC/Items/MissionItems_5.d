@@ -66,7 +66,7 @@ instance ItKe_MonastarySecretLibrary_MIS(C_Item)
 	inv_zbias = 190;
 };
 
-instance ItWr_HallsofIrdorath_MIS(C_Item)
+instance ItWr_HallsOfIrdorath_MIS(C_Item)
 {
 	name = "Чертоги Ирдората";
 	mainflag = ITEM_KAT_DOCS;
@@ -76,28 +76,28 @@ instance ItWr_HallsofIrdorath_MIS(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	description = name;
-	on_state[0] = Use_HallsofIrdorath;
+	on_state[0] = Use_HallsOfIrdorath;
 };
 
 
-func void Use_HallsofIrdorath()
+func void Use_HallsOfIrdorath()
 {
 	if(MIS_Xardas_SCCanOpenIrdorathBook == TRUE)
 	{
 		B_Say(self,self,"$SCOPENSIRDORATHBOOK");
-		Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",hero,hero,0,0,0,FALSE);
+		Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",self,self,0,0,0,FALSE);
 		Snd_Play("SFX_HealObsession");
-		CreateInvItems(hero,ItWr_HallsofIrdorath_Open_MIS,1);
-		CreateInvItems(hero,ItKe_MonastarySecretLibrary_MIS,1);
-		CreateInvItems(hero,ItWr_UseLampIdiot_MIS,1);
+		CreateInvItems(self,ItWr_HallsOfIrdorath_Open_MIS,1);
+		CreateInvItems(self,ItKe_MonastarySecretLibrary_MIS,1);
+		CreateInvItems(self,ItWr_UseLampIdiot_MIS,1);
 		Print(PRINT_IrdorathBookHiddenKey);
-		B_GivePlayerXP(XP_HallsofIrdorathIsOpen);
-		ItWr_HallsofIrdorathIsOpen = TRUE;
+		ItWr_HallsOfIrdorathIsOpen = TRUE;
 		B_LogEntry(TOPIC_BuchHallenVonIrdorath,"Я смог открыть книгу Ксардаса. В ней находилось секретное сообщение и странный ключ. Кто знает, что еще смогу найти я в монастырских подвалах.");
+		B_GivePlayerXP(XP_HallsOfIrdorathIsOpen);
 	}
 	else
 	{
-		CreateInvItems(hero,ItWr_HallsofIrdorath_MIS,1);
+		CreateInvItems(self,ItWr_HallsOfIrdorath_MIS,1);
 		Print(PRINT_IrdorathBookDoesntOpen);
 		Wld_PlayEffect("spellFX_Fear",self,self,0,0,0,FALSE);
 		Snd_Play("MFX_FEAR_CAST");
@@ -105,7 +105,7 @@ func void Use_HallsofIrdorath()
 };
 
 
-instance ItWr_HallsofIrdorath_Open_MIS(C_Item)
+instance ItWr_HallsOfIrdorath_Open_MIS(C_Item)
 {
 	name = "Чертоги Ирдората";
 	mainflag = ITEM_KAT_DOCS;
@@ -115,11 +115,11 @@ instance ItWr_HallsofIrdorath_Open_MIS(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-	on_state[0] = Use_HallsofIrdorath_Open;
+	on_state[0] = Use_HallsOfIrdorath_Open;
 };
 
 
-func void Use_HallsofIrdorath_Open()
+func void Use_HallsOfIrdorath_Open()
 {
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
@@ -142,10 +142,10 @@ func void Use_HallsofIrdorath_Open()
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Этот ключ открывает последнюю дверь.");
 	Doc_Show(nDocID);
-	if(ItWr_SCReadsHallsofIrdorath == FALSE)
+	if(ItWr_SCReadsHallsOfIrdorath == FALSE)
 	{
 		B_LogEntry(TOPIC_BuchHallenVonIrdorath,"Я прочел книгу Ксардаса. В ней упоминается секретная библиотека. Она должна быть где-то здесь, в подвалах монастыря.");
-		ItWr_SCReadsHallsofIrdorath = TRUE;
+		ItWr_SCReadsHallsOfIrdorath = TRUE;
 	};
 };
 
@@ -177,14 +177,14 @@ func void Use_XardasSeamapBook_MIS()
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLines(nDocID,0,"... Теперь я почти уверен, что здание, о котором идет речь - Чертоги Ирдората. Они находятся на острове, недалеко от гавани Хориниса. Интерес Белиара к этим шахтам вполне очевиден ...");
 	Doc_PrintLine(nDocID,0,"");
-	if(hero.guild == GIL_PAL)
+	if(self.guild == GIL_PAL)
 	{
 		Doc_PrintLines(nDocID,0,"... Чем они сильнее, тем, похоже, для него выше их ценность как слуг-нежити. Эти обращенные паладины очень сильны, и с ними очень тяжело справиться. Один из них попал в мои руки. Мне остается только надеяться, что другие не почувствуют его присутствие здесь ...");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_SetFont(nDocID,1,FONT_Book);
 		Doc_PrintLines(nDocID,1,"... Обращенный паладин, похоже, ни на что не реагирует. Я запер его доспехи и остальные его вещи в задней комнате. Дверь в нее можно открыть только изнутри. Я создал руну телепортации, позволяющую переместиться туда. Инструкции по пользованию ей находятся в альманахе, где Избранный сможет найти их ...");
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(self.guild == GIL_KDF)
 	{
 		Doc_PrintLines(nDocID,0,"... В значении этих знамений невозможно ошибиться! Когда Избранный придет, ему понадобится вся помощь, которую мы сможем дать. Белиар уже очень силен. Мне удалось раздобыть несколько ценных артефактов, которые я схороню здесь, на всякий случай.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
@@ -193,7 +193,7 @@ func void Use_XardasSeamapBook_MIS()
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"... Теперь я уверен. Мы не можем противиться судьбе. Как только Белиар почувствует, что достаточно силен, он поднимется и попытается взять бразды правления миром в свои руки. Я должен найти Избранного, иначе нам всем конец.");
 	}
-	else if(hero.guild == GIL_DJG)
+	else if(self.guild == GIL_DJG)
 	{
 		Doc_PrintLines(nDocID,0,"... И будет война, война за судьбу мира. Похоже, только я один могу интерпретировать эти знамения. Все вокруг меня, похоже, игнорируют их. Избранный придет, и его пришествие возвестит о начале войны. Эта война стара как сам мир, но ее конец, похоже, уже близок.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
@@ -286,8 +286,8 @@ func void Use_Seamap_Irdorath()
 			B_Say(self,self,"$IRDORATHTHEREYOUARE");
 		};
 		MIS_SCKnowsWayToIrdorath = TRUE;
-		STORYPOINT[SP_C5_P3] = TRUE;
-		CurrentStoryPoint = SP_C5_P3;
+		STORYPOINT[SP_C5_P2] = TRUE;
+		CurrentStoryPoint = SP_C5_P2;
 		B_GivePlayerXP(XP_SCKnowsWayToIrdorath);
 	};
 };

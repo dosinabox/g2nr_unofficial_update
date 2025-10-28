@@ -30,7 +30,6 @@ instance DIA_Sentenza_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Sentenza_Hello_Condition;
 	information = DIA_Sentenza_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -46,6 +45,7 @@ func int DIA_Sentenza_Hello_Condition()
 func void DIA_Sentenza_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Sentenza_Hello_09_00");	//И куда это ты собрался?!
+	B_StartOtherRoutine(Raoul,"START");
 	self.aivar[AIV_LastFightComment] = TRUE;
 	Sentenza_SearchDay = B_GetDayPlus();
 	Info_ClearChoices(DIA_Sentenza_Hello);
@@ -179,14 +179,13 @@ instance DIA_Sentenza_WannaJoin(C_Info)
 	nr = 3;
 	condition = DIA_Sentenza_WannaJoin_Condition;
 	information = DIA_Sentenza_WannaJoin_Info;
-	permanent = FALSE;
 	description = "Я пришел, чтобы присоединиться к вам!";
 };
 
 
 func int DIA_Sentenza_WannaJoin_Condition()
 {
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		return TRUE;
 	};
@@ -333,7 +332,6 @@ instance DIA_Sentenza_AufsMaul(C_Info)
 	nr = 7;
 	condition = DIA_Sentenza_AufsMaul_Condition;
 	information = DIA_Sentenza_AufsMaul_Info;
-	permanent = FALSE;
 	description = "Слушай, а что это у тебя перед головой? Лицо или задница?";
 };
 

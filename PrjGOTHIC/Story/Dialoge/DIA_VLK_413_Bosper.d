@@ -701,7 +701,7 @@ func int DIA_Bosper_BogenSuccess_Condition()
 func void DIA_Bosper_BogenSuccess_Info()
 {
 	AI_Output(other,self,"DIA_Bosper_BogenSuccess_15_00");	//Я думаю, это твой лук...
-	B_GiveInvItems(other,self,ItRw_Bow_L_03_MIS,1);
+	B_GiveWeapon(other,self,ItRw_Bow_L_03_MIS,1);
 	AI_Output(self,other,"DIA_Bosper_BogenSuccess_11_01");	//Мой лук! Где ты нашел его?
 	AI_Output(other,self,"DIA_Bosper_BogenSuccess_15_02");	//В темной дыре, полной крыс.
 	AI_Output(self,other,"DIA_Bosper_BogenSuccess_11_03");	//Надеюсь, у тебя не возникло проблем из-за этого...

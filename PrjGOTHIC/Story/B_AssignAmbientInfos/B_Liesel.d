@@ -27,7 +27,6 @@ instance DIA_Liesel_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Liesel_Hallo_Condition;
 	information = DIA_Liesel_Hallo_Info;
-	permanent = FALSE;
 	description = "Здравствуй, овечка.";
 };
 
@@ -97,7 +96,7 @@ func int DIA_Liesel_WarteHier_Condition()
 
 func void DIA_Liesel_WarteHier_Info()
 {
-	AI_Output(other,self,"DIA_Liesel_WarteHier_15_00");	//Подожди здесь!
+	DIA_Common_WaitHere();
 	B_LieselMaeh();
 	Npc_ExchangeRoutine(self,"START");
 	self.aivar[AIV_PARTYMEMBER] = FALSE;

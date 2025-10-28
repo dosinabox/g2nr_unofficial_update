@@ -9,11 +9,11 @@ func void B_MM_AssessPlayer()
 	{
 		return;
 	};
-	if(self.guild == GIL_MEATBUG)
+	if((self.guild == GIL_MEATBUG) && (MeatbugStompDisabled == FALSE))
 	{
 		if(Npc_GetDistToNpc(self,other) < 100)
 		{
-			if(C_BodyStateContains(other,BS_WALK) || C_BodyStateContains(other,BS_SNEAK) || C_BodyStateContains(other,BS_RUN) || C_BodyStateContains(other,BS_JUMP))
+			if(C_BodyStateContains(other,BS_WALK) || C_BodyStateContains(other,BS_SNEAK) || C_BodyStateContains(other,BS_RUN) || C_BodyStateContains(other,BS_JUMP) || C_BodyStateContains(other,BS_FALL))
 			{
 				Snd_Play("MEATBUG_STOMP");
 				B_KillAnimal(self);

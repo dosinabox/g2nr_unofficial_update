@@ -95,7 +95,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		};
 		return COLL_APPLYDAMAGE | COLL_DONTKILL;
 	};
-	if(spellType == SPL_Energyball)
+	if(spellType == SPL_BeliarsRage)
 	{
 		if(C_NpcIsDown(self) || C_NpcIsSwimming(self))
 		{

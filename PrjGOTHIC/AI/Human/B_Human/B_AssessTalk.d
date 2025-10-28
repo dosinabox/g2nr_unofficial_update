@@ -176,6 +176,26 @@ func void B_AssessTalk()
 			};
 			return;
 		};
+		/*if(C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT) && !C_NpcIsSleeping(self))
+		{
+			rnd = Hlp_Random(2);
+			if(rnd == 0)
+			{
+				B_Say(other,self,"$SC_HEYTURNAROUND03");
+			}
+			else
+			{
+				B_Say(other,self,"$SC_HEYTURNAROUND04");
+			};
+			AI_StandupQuick(self);
+			AI_TurnToNPC(self,other);
+			if(Npc_GetDistToNpc(self,other) < 160)
+			{
+				AI_Dodge(self);
+			};
+			AI_Wait(self,2);
+			return;
+		};*/
 	};
 	if(self.aivar[AIV_NpcStartedTalk] == FALSE)
 	{
@@ -198,7 +218,7 @@ func void B_AssessTalk()
 			{
 				B_Say(other,self,"$SC_HEYTURNAROUND03");
 			}
-			else if(rnd <= 99)
+			else
 			{
 				B_Say(other,self,"$SC_HEYTURNAROUND04");
 			};
@@ -244,7 +264,6 @@ func void B_AssessTalk()
 			AI_Standup(other);
 		};
 		AI_StartState(self,ZS_Talk,0,"");
-		return;
 	};
 };
 

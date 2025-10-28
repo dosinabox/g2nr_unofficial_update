@@ -21,6 +21,8 @@ func void DIA_Addon_Elvrich_EXIT_Info()
 };
 
 
+var int DIA_Addon_Elvrich_BanditsThere_NoPerm;
+
 instance DIA_Addon_Elvrich_BanditsThere(C_Info)
 {
 	npc = VLK_4302_Addon_Elvrich;
@@ -30,9 +32,6 @@ instance DIA_Addon_Elvrich_BanditsThere(C_Info)
 	important = TRUE;
 	permanent = TRUE;
 };
-
-
-var int DIA_Addon_Elvrich_BanditsThere_NoPerm;
 
 func int DIA_Addon_Elvrich_BanditsThere_Condition()
 {
@@ -161,8 +160,11 @@ func void DIA_Addon_Elvrich_WhatExactly_Pirates()
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_Pirates_04_05");	//Но пираты отказались, и бандитам пришлось уйти. С тех пор мы здесь и сидим.
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_Pirates_04_06");	//По-моему, бандиты просто не знали, что им делать дальше. А потом пришел ты.
 	Elvrich_SCKnowsPirats = TRUE;
-	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
+	if(MIS_Addon_Vatras_WhereAreMissingPeople != LOG_SUCCESS)
+	{
+		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
+	};
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Элврих, ученик плотника из Хориниса Торбена, был похищен бандитами. Похоже, что пираты и бандиты в сговоре.");
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Пираты в Хоринисе?",DIA_Addon_Elvrich_WhatExactly_Here);
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Где находится лагерь пиратов?",DIA_Addon_Elvrich_WhatExactly_pirat);
@@ -190,8 +192,6 @@ func void DIA_Addon_Elvrich_WhatExactly_pirat()
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_pirat_04_01");	//Недалеко от гавани Хориниса.
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_pirat_04_02");	//Если ты встанешь на набережной лицом к морю, то он будет справа.
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_pirat_04_03");	//Первый небольшой залив, который встретится тебе на пути, и будет нужным тебе местом.
-	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Чтобы найти место встречи с пиратами, нужно пойти в порт Хориниса и встать на набережной лицом к морю. Затем нужно спрыгнуть в море и поплыть вдоль берега направо.");
 	Info_ClearChoices(DIA_Addon_Elvrich_WhatExactly);
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,Dialog_Back,DIA_Addon_Elvrich_WhatExactly_Back);
@@ -352,7 +352,6 @@ instance DIA_Addon_Elvrich_WasNun(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Elvrich_WasNun_Condition;
 	information = DIA_Addon_Elvrich_WasNun_Info;
-	permanent = FALSE;
 	description = "Ты должен вернуться в город!";
 };
 
@@ -383,9 +382,8 @@ func void DIA_Addon_Elvrich_WasNun_Info()
 	};
 	B_LogEntry(TOPIC_Addon_MissingPeople,"Элврих отправился обратно к мастеру Торбену.");
 	Elvrich_GoesBack2Thorben = TRUE;
-	AI_EquipBestMeleeWeapon(self);
-	Npc_ExchangeRoutine(self,"BACKINTHECITY");
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"BACKINTHECITY");
 };
 
 
@@ -402,7 +400,7 @@ instance DIA_Addon_Elvrich_PERM(C_Info)
 
 func int DIA_Addon_Elvrich_PERM_Condition()
 {
-	if((Elvrich_GoesBack2Thorben == TRUE) && Npc_IsInState(self,ZS_Talk) && (MIS_LuciasLetter != LOG_RUNNING))
+	if((Elvrich_GoesBack2Thorben == TRUE) && (MIS_LuciasLetter != LOG_RUNNING))
 	{
 		return TRUE;
 	};

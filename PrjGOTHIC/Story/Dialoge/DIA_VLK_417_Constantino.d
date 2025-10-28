@@ -47,7 +47,6 @@ instance DIA_Constantino_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Constantino_Hallo_Condition;
 	information = DIA_Constantino_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -83,7 +82,6 @@ instance DIA_Constantino_AboutLehrling(C_Info)
 	nr = 1;
 	condition = DIA_Constantino_AboutLehrling_Condition;
 	information = DIA_Constantino_AboutLehrling_Info;
-	permanent = FALSE;
 	description = "Я хочу поступить в ученики.";
 };
 
@@ -109,7 +107,6 @@ instance DIA_Constantino_Heilung(C_Info)
 	nr = 5;
 	condition = DIA_Constantino_Heilung_Condition;
 	information = DIA_Constantino_Heilung_Info;
-	permanent = FALSE;
 	description = "Мне нужно лечение.";
 };
 
@@ -181,8 +178,8 @@ instance DIA_Constantino_Trade(C_Info)
 	condition = DIA_Constantino_Trade_Condition;
 	information = DIA_Constantino_Trade_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
 	trade = TRUE;
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -246,7 +243,6 @@ instance DIA_Constantino_BeiDir(C_Info)
 	nr = 1;
 	condition = DIA_Constantino_BeiDir_Condition;
 	information = DIA_Constantino_BeiDir_Info;
-	permanent = FALSE;
 	description = "Я хочу стать твоим учеником.";
 };
 
@@ -317,7 +313,6 @@ instance DIA_Constantino_BringHerbs(C_Info)
 	nr = 1;
 	condition = DIA_Constantino_BringHerbs_Condition;
 	information = DIA_Constantino_BringHerbs_Info;
-	permanent = FALSE;
 	description = "Что мне нужно сделать, чтобы стать ТВОИМ учеником?";
 };
 
@@ -688,7 +683,6 @@ instance DIA_Constantino_Aufgaben(C_Info)
 	nr = 2;
 	condition = DIA_Constantino_Aufgaben_Condition;
 	information = DIA_Constantino_Aufgaben_Info;
-	permanent = FALSE;
 	description = "Каковы мои задачи?";
 };
 
@@ -717,7 +711,6 @@ instance DIA_Constantino_Mushrooms(C_Info)
 	nr = 2;
 	condition = DIA_Constantino_Mushrooms_Condition;
 	information = DIA_Constantino_Mushrooms_Info;
-	permanent = FALSE;
 	description = "Какие растения я должен приносить?";
 };
 
@@ -957,6 +950,8 @@ func void DIA_Constantino_NewRecipes_Info()
 };
 
 
+var int DIA_Constantino_Teach_permanent;
+
 instance DIA_Constantino_TEACH(C_Info)
 {
 	npc = VLK_417_Constantino;
@@ -967,8 +962,6 @@ instance DIA_Constantino_TEACH(C_Info)
 	description = "Каким рецептам ты можешь обучить меня?";
 };
 
-
-var int DIA_Constantino_Teach_permanent;
 
 func int DIA_Constantino_TEACH_Condition()
 {

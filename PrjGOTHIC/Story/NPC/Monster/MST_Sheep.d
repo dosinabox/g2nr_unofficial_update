@@ -65,7 +65,6 @@ instance Follow_Sheep(Mst_Default_Sheep)
 	B_SetVisuals_Sheep();
 	Npc_SetToFistMode(self);
 	aivar[AIV_MM_RoamStart] = OnlyRoutine;
-//	start_aistate = ZS_MM_Rtn_Follow_Sheep;
 	CreateInvItems(self,ItFoMuttonRaw,1);
 	daily_routine = Rtn_Start_167;
 };
@@ -95,7 +94,6 @@ instance Follow_Sheep_AKIL(Mst_Default_Sheep)
 	B_SetVisuals_Sheep();
 	Npc_SetToFistMode(self);
 	aivar[AIV_MM_RoamStart] = OnlyRoutine;
-//	start_aistate = ZS_MM_Rtn_Follow_Sheep;
 	CreateInvItems(self,ItFoMuttonRaw,1);
 	daily_routine = Rtn_Cave_166;
 };
@@ -124,7 +122,6 @@ instance Balthasar_Sheep1(Mst_Default_Sheep)
 	id = 168;
 	B_SetVisuals_Hammel();
 	Npc_SetToFistMode(self);
-//	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_RoamStart] = OnlyRoutine;
 	CreateInvItems(self,ItFoMuttonRaw,1);
 	daily_routine = Rtn_Start_168;
@@ -147,7 +144,6 @@ instance Balthasar_Sheep2(Mst_Default_Sheep)
 	id = 169;
 	B_SetVisuals_Sheep();
 	Npc_SetToFistMode(self);
-//	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_RoamStart] = OnlyRoutine;
 	CreateInvItems(self,ItFoMuttonRaw,1);
 	daily_routine = Rtn_Start_169;
@@ -170,7 +166,6 @@ instance Balthasar_Sheep3(Mst_Default_Sheep)
 	id = 170;
 	B_SetVisuals_Sheep();
 	Npc_SetToFistMode(self);
-//	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_RoamStart] = OnlyRoutine;
 	CreateInvItems(self,ItFoMuttonRaw,1);
 	daily_routine = Rtn_Start_170;
@@ -193,9 +188,6 @@ instance SheepTransform(Mst_Default_Sheep)
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_Sheep();
 	Npc_SetToFistMode(self);
-	start_aistate = ZS_MM_AllScheduler;
-	aivar[AIV_MM_RoamStart] = OnlyRoutine;
-	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
 instance OC_Sheep1(Mst_Default_Sheep)

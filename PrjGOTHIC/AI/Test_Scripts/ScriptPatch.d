@@ -311,60 +311,12 @@ func void StoryHelper_Helmets()
 {
 	if(Helmets_Enabled == TRUE)
 	{
-		PrintScreen("Шлемы и доспехи одной моделью (оригинал)",-1,-1,FONT_Screen,3);
-		Npc_RemoveInvItem(hero,ItHe_PAL_M);
-		Npc_RemoveInvItem(hero,ItHe_PAL_H);
-		Npc_RemoveInvItem(hero,ItHe_DJG_M);
-		Npc_RemoveInvItem(hero,ItHe_DJG_H);
-		if(Npc_HasItems(hero,ITAR_PALN_M))
-		{
-			Npc_RemoveInvItem(hero,ITAR_PALN_M);
-			CreateInvItem(hero,ITAR_PAL_M);
-		};
-		if(Npc_HasItems(hero,ITAR_PALN_H))
-		{
-			Npc_RemoveInvItem(hero,ITAR_PALN_H);
-			CreateInvItem(hero,ITAR_PAL_H);
-		};
-		if(Npc_HasItems(hero,ITAR_DJGN_M))
-		{
-			Npc_RemoveInvItem(hero,ITAR_DJGN_M);
-			CreateInvItem(hero,ITAR_DJG_M);
-		};
-		if(Npc_HasItems(hero,ITAR_DJGN_H))
-		{
-			Npc_RemoveInvItem(hero,ITAR_DJGN_H);
-			CreateInvItem(hero,ITAR_DJG_H);
-		};
+		B_CombineHelmets(hero);
 		Helmets_Enabled = FALSE;
 	}
 	else
 	{
-		PrintScreen("Шлемы и доспехи разделены",-1,-1,FONT_Screen,2);
-		if(Npc_HasItems(hero,ITAR_PAL_M))
-		{
-			Npc_RemoveInvItem(hero,ITAR_PAL_M);
-			CreateInvItem(hero,ITAR_PALN_M);
-			CreateInvItem(hero,ItHe_PAL_M);
-		};
-		if(Npc_HasItems(hero,ITAR_PAL_H))
-		{
-			Npc_RemoveInvItem(hero,ITAR_PAL_H);
-			CreateInvItem(hero,ITAR_PALN_H);
-			CreateInvItem(hero,ItHe_PAL_H);
-		};
-		if(Npc_HasItems(hero,ITAR_DJG_M))
-		{
-			Npc_RemoveInvItem(hero,ITAR_DJG_M);
-			CreateInvItem(hero,ITAR_DJGN_M);
-			CreateInvItem(hero,ItHe_DJG_M);
-		};
-		if(Npc_HasItems(hero,ITAR_DJG_H))
-		{
-			Npc_RemoveInvItem(hero,ITAR_DJG_H);
-			CreateInvItem(hero,ITAR_DJGN_H);
-			CreateInvItem(hero,ItHe_DJG_H);
-		};
+		B_SeparateHelmets(hero);
 		Helmets_Enabled = TRUE;
 	};
 	B_Build_Settings_Diag();

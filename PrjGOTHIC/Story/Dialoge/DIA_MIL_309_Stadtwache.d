@@ -1,70 +1,70 @@
 
-instance DIA_Mil_309_Stadtwache_EXIT(C_Info)
+instance DIA_MIL_309_Stadtwache_EXIT(C_Info)
 {
 	npc = MIL_309_Stadtwache;
 	nr = 999;
-	condition = DIA_Mil_309_Stadtwache_EXIT_Condition;
-	information = DIA_Mil_309_Stadtwache_EXIT_Info;
+	condition = DIA_MIL_309_Stadtwache_EXIT_Condition;
+	information = DIA_MIL_309_Stadtwache_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Mil_309_Stadtwache_EXIT_Condition()
+func int DIA_MIL_309_Stadtwache_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Mil_309_Stadtwache_EXIT_Info()
+func void DIA_MIL_309_Stadtwache_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_Mil_309_Stadtwache_Hallo(C_Info)
+instance DIA_MIL_309_Stadtwache_Hallo(C_Info)
 {
 	npc = MIL_309_Stadtwache;
 	nr = 2;
-	condition = DIA_Mil_309_Stadtwache_Hallo_Condition;
-	information = DIA_Mil_309_Stadtwache_Hallo_Info;
+	condition = DIA_MIL_309_Stadtwache_Hallo_Condition;
+	information = DIA_MIL_309_Stadtwache_Hallo_Info;
 	permanent = TRUE;
 	description = "В чем дело?";
 };
 
 
-func int DIA_Mil_309_Stadtwache_Hallo_Condition()
+func int DIA_MIL_309_Stadtwache_Hallo_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_Mil_309_Stadtwache_Hallo_Info()
+func void DIA_MIL_309_Stadtwache_Hallo_Info()
 {
-	AI_Output(other,self,"DIA_Mil_309_Stadtwache_Hallo_15_00");	//В чем дело?
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+	AI_Output(other,self,"DIA_MIL_309_Stadtwache_Hallo_15_00");	//В чем дело?
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 	{
-		AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_01");	//Все в порядке. Но мы должны быть настороже.
+		AI_Output(self,other,"DIA_MIL_309_Stadtwache_Hallo_06_01");	//Все в порядке. Но мы должны быть настороже.
 	}
 	else if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
 	{
-		AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_05");	//Возвращайся туда, откуда выполз, подонок!
+		AI_Output(self,other,"DIA_MIL_309_Stadtwache_Hallo_06_05");	//Возвращайся туда, откуда выполз, подонок!
 	}
 	else if(Stadtwache_310.aivar[AIV_PASSGATE] == FALSE)
 	{
-		AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_02");	//Послушай. Мы не можем пропустить тебя в город.
-		AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_03");	//Но я дам тебе совет, и совершенно бесплатно.
-		AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_04");	//Держись подальше от этого леса впереди - там бродят полчища ужасных монстров.
+		AI_Output(self,other,"DIA_MIL_309_Stadtwache_Hallo_06_02");	//Послушай. Мы не можем пропустить тебя в город.
+		AI_Output(self,other,"DIA_MIL_309_Stadtwache_Hallo_06_03");	//Но я дам тебе совет, и совершенно бесплатно.
+		AI_Output(self,other,"DIA_MIL_309_Stadtwache_Hallo_06_04");	//Держись подальше от этого леса впереди - там бродят полчища ужасных монстров.
 	}
 	else
 	{
-		if(Mil_309_News == FALSE)
+		if(MIL_309_News == FALSE)
 		{
-			AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_06");	//Послушай, ты имеешь право находиться в городе. Но это не означает, что ты можешь делать здесь все, что тебе заблагорассудится.
-			AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_07");	//Если ты не придерживаешься общепринятых правил, ты потеряешь свои права здесь!
-			MIl_309_News = TRUE;
+			AI_Output(self,other,"DIA_MIL_309_Stadtwache_Hallo_06_06");	//Послушай, ты имеешь право находиться в городе. Но это не означает, что ты можешь делать здесь все, что тебе заблагорассудится.
+			AI_Output(self,other,"DIA_MIL_309_Stadtwache_Hallo_06_07");	//Если ты не придерживаешься общепринятых правил, ты потеряешь свои права здесь!
+			MIL_309_News = TRUE;
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_08");	//Давай - проходи!
+			AI_Output(self,other,"DIA_MIL_309_Stadtwache_Hallo_06_08");	//Давай - проходи!
 		};
 	};
 	AI_StopProcessInfos(self);

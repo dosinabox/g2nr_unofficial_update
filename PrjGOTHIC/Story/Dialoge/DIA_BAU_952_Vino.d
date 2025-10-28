@@ -123,7 +123,7 @@ func int DIA_Vino_BringWine_Condition()
 
 func void DIA_Vino_BringWine_Info()
 {
-	AI_Output(other,self,"DIA_Vino_BringWine_15_00");	//Вот твое вино.
+	DIA_Common_HeresYourWine();
 	MIS_Vino_Wein = LOG_SUCCESS;
 	if(B_GiveInvItems(other,self,ItFo_Wine,1))
 	{

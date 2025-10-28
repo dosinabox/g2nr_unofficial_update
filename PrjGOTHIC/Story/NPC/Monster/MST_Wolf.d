@@ -156,6 +156,5 @@ instance WolfTransform(Mst_Default_Wolf)
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_Wolf();
 	Npc_SetToFistMode(self);
-	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 

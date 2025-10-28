@@ -150,7 +150,7 @@ func int DIA_Dragomir_Armbrust_Condition()
 func void DIA_Dragomir_Armbrust_Info()
 {
 	AI_Output(other,self,"DIA_Dragomir_Armbrust_15_00");	//Вот. Я нашел твой арбалет.
-	B_GiveInvItems(other,self,ItRw_DragomirsArmbrust_MIS,1);
+	B_GiveWeapon(other,self,ItRw_DragomirsArmbrust_MIS,1);
 	AI_Output(self,other,"DIA_Dragomir_Armbrust_12_01");	//Точно, это мой арбалет. Только не говори мне, что ты ходил к этому каменному кругу?
 	AI_Output(other,self,"DIA_Dragomir_Armbrust_15_02");	//А что в этом такого?
 	AI_Output(self,other,"DIA_Dragomir_Armbrust_12_03");	//Это было очень безрассудно с твоей стороны. Но все равно, спасибо.
@@ -161,10 +161,6 @@ func void DIA_Dragomir_Armbrust_Info()
 	B_GivePlayerXP(XP_DragomirsArmbrust);
 	AI_EquipBestRangedWeapon(self);
 };
-
-
-var int Dragomir_TeachPlayer;
-const int Dragomir_TeachingCost = 150;
 
 instance DIA_Dragomir_Learn(C_Info)
 {
@@ -217,10 +213,10 @@ func void DIA_Dragomir_Learn_Here()
 	AI_Output(other,self,"DIA_Dragomir_Learn_Here_15_00");	//Вот твое золото.
 	B_GiveInvItems(other,self,ItMi_Gold,Dragomir_TeachingCost);
 	AI_Output(self,other,"DIA_Dragomir_Learn_Here_12_01");	//Хорошо, мы можем начать хоть сейчас.
-	Dragomir_TeachPlayer = TRUE;
-	Info_ClearChoices(DIA_Dragomir_Learn);
 	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
 	B_LogEntry(TOPIC_OutTeacher,"Драгомир может научить меня пользоваться арбалетом.");
+	Dragomir_TeachPlayer = TRUE;
+	Info_ClearChoices(DIA_Dragomir_Learn);
 };
 
 
@@ -269,7 +265,15 @@ func int DIA_Dragomir_Teach_Condition()
 func void DIA_Dragomir_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Dragomir_Teach_15_00");	//Научи меня чему-нибудь.
-	B_BuildLearnDialog_Dragomir();
+	if(self.aivar[AIV_RefuseService] == TRUE)
+	{
+		B_Say(self,other,"$NOTNOW");
+		AI_StopProcessInfos(self);
+	}
+	else
+	{
+		B_BuildLearnDialog_Dragomir();
+	};
 };
 
 func void DIA_Dragomir_Teach_Back()

@@ -395,9 +395,12 @@ instance DIA_Malak_PERMCASTLE(C_Info)
 
 func int DIA_Malak_PERMCASTLE_Condition()
 {
-	if((Npc_GetDistToWP(self,"CASTLEMINE") < 4000) && (MalakIsBackToBengar == FALSE) && Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && (NpcObsessedByDMT_Malak == FALSE) && (other.guild != GIL_KDF) && (Kapitel >= 3))
+	if((MalakIsBackToBengar == FALSE) && Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && (NpcObsessedByDMT_Malak == FALSE) && (other.guild != GIL_KDF) && (Kapitel >= 3))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"CASTLEMINE") < 4000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -407,6 +410,8 @@ func void DIA_Malak_PERMCASTLE_Info()
 	AI_Output(self,other,"DIA_Malak_PERMCASTLE_08_01");	//Здесь мне приходится иметь дело только с бандитами. Это все же меньшее зло.
 };
 
+
+var int DIA_Malak_BACKTOBENGAR_Once;
 
 instance DIA_Malak_BACKTOBENGAR(C_Info)
 {
@@ -421,13 +426,14 @@ instance DIA_Malak_BACKTOBENGAR(C_Info)
 
 func int DIA_Malak_BACKTOBENGAR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && Npc_KnowsInfo(other,DIA_Bengar_ALLEIN) && !Npc_IsDead(Bengar) && (NpcObsessedByDMT_Malak == FALSE) && (other.guild != GIL_KDF) && (Kapitel >= 3) && (MalakIsBackToBengar == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && Npc_KnowsInfo(other,DIA_Bengar_ALLEIN) && (NpcObsessedByDMT_Malak == FALSE) && (other.guild != GIL_KDF) && (Kapitel >= 3) && (MalakIsBackToBengar == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Bengar))
+		{
+			return TRUE;
+		};
 	};
 };
-
-var int DIA_Malak_BACKTOBENGAR_Once;
 
 func void DIA_Malak_BACKTOBENGAR_Info()
 {
@@ -479,9 +485,12 @@ instance DIA_Malak_BACK(C_Info)
 
 func int DIA_Malak_BACK_Condition()
 {
-	if((MalakIsBackToBengar == TRUE) && (Npc_GetDistToWP(self,"FARM3") < 3000) && (NpcObsessedByDMT_Malak == FALSE) && (other.guild != GIL_KDF) && (Kapitel >= 3))
+	if((MalakIsBackToBengar == TRUE) && (NpcObsessedByDMT_Malak == FALSE) && (other.guild != GIL_KDF) && (Kapitel >= 3))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"FARM3") < 3000)
+		{
+			return TRUE;
+		};
 	};
 };
 

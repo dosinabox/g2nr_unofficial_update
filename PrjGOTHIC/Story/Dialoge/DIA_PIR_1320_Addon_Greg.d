@@ -27,7 +27,6 @@ instance DIA_Addon_Greg_ImNew(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Greg_ImNew_Condition;
 	information = DIA_Addon_Greg_ImNew_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -182,7 +181,6 @@ instance DIA_Addon_Greg_JoinPirates(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Greg_JoinPirates_Condition;
 	information = DIA_Addon_Greg_JoinPirates_Info;
-	permanent = FALSE;
 	description = "Что нужно сделать?";
 };
 
@@ -581,7 +579,6 @@ instance DIA_Addon_Greg_WhoAreYou(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Greg_WhoAreYou_Condition;
 	information = DIA_Addon_Greg_WhoAreYou_Info;
-	permanent = FALSE;
 	description = "Кто ты?";
 };
 
@@ -608,7 +605,6 @@ instance DIA_Addon_Greg_NiceToSeeYou(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Greg_NiceToSeeYou_Condition;
 	information = DIA_Addon_Greg_NiceToSeeYou_Info;
-	permanent = FALSE;
 	description = "А как ты сюда попал?";
 };
 
@@ -799,7 +795,6 @@ instance DIA_Addon_Greg_GiveFrancisBook(C_Info)
 	nr = 700;
 	condition = DIA_Addon_Greg_GiveFrancisBook_Condition;
 	information = DIA_Addon_Greg_GiveFrancisBook_Info;
-	permanent = FALSE;
 	description = "Похоже, этот парень прикарманил много золота...";
 };
 
@@ -818,6 +813,11 @@ func void DIA_Addon_Greg_GiveFrancisBook_Info()
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItWr_Addon_FrancisAbrechnung_MIS,1);
 	Npc_RemoveInvItem(self,ItWr_Addon_FrancisAbrechnung_MIS);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_UseMob(self,"BENCH",-1);
+		B_TurnToNpc(self,other);
+	};
 	B_ReadFakeItem(self,other,Openbook2,2);
 	AI_Output(self,other,"DIA_Addon_Greg_GiveFrancisBook_01_01_add");	//Не ожидал я этого...
 	B_GivePlayerXP(200);

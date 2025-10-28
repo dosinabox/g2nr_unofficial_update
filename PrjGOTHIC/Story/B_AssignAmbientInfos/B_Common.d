@@ -254,6 +254,11 @@ func void DIA_Common_INeedYourHelp()
 	AI_Output(other,self,"DIA_Sylvio_DUHIER_15_00");	//Мне не помешала бы твоя помощь.
 };
 
+func void DIA_Common_WaitHere()
+{
+	AI_Output(other,self,"DIA_Liesel_WarteHier_15_00");	//Подожди здесь!
+};
+
 func void DIA_Common_WhatDoYouKnowAboutBandits()
 {
 	AI_Output(other,self,"DIA_Addon_Garett_Bandits_15_00");	//Что ты знаешь о бандитах?
@@ -322,6 +327,21 @@ func void DIA_Common_NotFoundYet()
 func void DIA_Common_Sold()
 {
 	AI_Output(other,self,"DIA_Raoul_TROLLFELL_ja_15_00");	//Продано.
+};
+
+func void DIA_Common_HeresYourWine()
+{
+	AI_Output(other,self,"DIA_Vino_BringWine_15_00");	//Вот твое вино.
+};
+
+func void DIA_Common_IAmFireMage()
+{
+	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsMage_15_00");	//Я маг Огня.
+};
+
+func void DIA_Common_IHaveLetterForYou()
+{
+	AI_Output(other,self,"DIA_Addon_Vatras_Cavalorn_15_00");	//У меня для тебя письмо.
 };
 
 func void DIA_Common_01_AreYouTryingToPissMeOff()

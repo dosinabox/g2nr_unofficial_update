@@ -53,7 +53,7 @@ instance DIA_CipherDJG_HELLOAGAIN(C_Info)
 
 func int DIA_CipherDJG_HELLOAGAIN_Condition()
 {
-	if(!Npc_IsDead(SwampDragon) && Npc_KnowsInfo(other,DIA_Cipher_HALLO))
+	if(Npc_KnowsInfo(other,DIA_Cipher_HALLO))
 	{
 		return TRUE;
 	};
@@ -72,23 +72,33 @@ func void DIA_CipherDJG_HELLOAGAIN_Info()
 		AI_Output(self,other,"DIA_CipherDJG_HELLOAGAIN_07_06");	//Правда, со мной Род. Но он побежит сломя голову даже при виде мясного жука.
 	};
 	AI_Output(self,other,"DIA_CipherDJG_HELLOAGAIN_07_07");	//А как насчет тебя? Ты ведь тоже пришел сюда не на прогулку, правда? Пойдем туда вместе.
-	B_LogEntry(TOPIC_Dragonhunter,"Сифер сказал мне, что в болотах Долины Рудников живет дракон.");
-	Info_AddChoice(DIA_CipherDJG_HELLOAGAIN,"Я предпочитаю действовать в одиночку.",DIA_CipherDJG_HELLOAGAIN_GoAlone);
-	Info_AddChoice(DIA_CipherDJG_HELLOAGAIN,"Почему бы и нет. Помощь мне не помешает.",DIA_CipherDJG_HELLOAGAIN_GoTogether);
+	if(!Npc_IsDead(SwampDragon))
+	{
+		B_LogEntry(TOPIC_Dragonhunter,"Сифер сказал мне, что в болотах Долины Рудников живет дракон.");
+		Info_ClearChoices(DIA_CipherDJG_HELLOAGAIN);
+		Info_AddChoice(DIA_CipherDJG_HELLOAGAIN,"Я предпочитаю действовать в одиночку.",DIA_CipherDJG_HELLOAGAIN_GoAlone);
+		Info_AddChoice(DIA_CipherDJG_HELLOAGAIN,"Почему бы и нет. Помощь мне не помешает.",DIA_CipherDJG_HELLOAGAIN_GoTogether);
+	};
 };
 
 func void DIA_CipherDJG_HELLOAGAIN_GoAlone()
 {
 	AI_Output(other,self,"DIA_CipherDJG_HELLOAGAIN_GoAlone_15_00");	//Я предпочитаю действовать в одиночку.
 	AI_Output(self,other,"DIA_CipherDJG_HELLOAGAIN_GoAlone_07_01");	//Как знаешь. Значит, я ошибался в тебе!
+	Info_ClearChoices(DIA_CipherDJG_HELLOAGAIN);
 	AI_StopProcessInfos(self);
+};
+
+func void B_CipherDJG_GetOutOfHere()
+{
+	AI_Output(self,other,"DIA_CipherDJG_HELLOAGAIN_GoTogether_07_01");	//Это хорошо. Тогда я, наконец, смогу выбраться отсюда. Эта вонь невыносима.
 };
 
 func void DIA_CipherDJG_HELLOAGAIN_GoTogether()
 {
 	AI_Output(other,self,"DIA_CipherDJG_HELLOAGAIN_GoTogether_15_00");	//Почему бы и нет. Помощь мне не помешает.
-	AI_Output(self,other,"DIA_CipherDJG_HELLOAGAIN_GoTogether_07_01");	//Это хорошо. Тогда я, наконец, смогу выбраться отсюда. Эта вонь невыносима.
-	DJG_SwampParty = TRUE;
+	B_CipherDJG_GetOutOfHere();
+	Cipher_ReadyForSwampParty = TRUE;
 	Info_ClearChoices(DIA_CipherDJG_HELLOAGAIN);
 };
 
@@ -104,9 +114,12 @@ instance DIA_CipherDJG_GOTOGETHERAGAIN(C_Info)
 
 func int DIA_CipherDJG_GOTOGETHERAGAIN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_CipherDJG_HELLOAGAIN) && (DJG_SwampParty == FALSE) && !Npc_IsDead(SwampDragon))
+	if(Npc_KnowsInfo(other,DIA_CipherDJG_HELLOAGAIN) && (Cipher_ReadyForSwampParty == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(SwampDragon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -115,7 +128,7 @@ func void DIA_CipherDJG_GOTOGETHERAGAIN_Info()
 	AI_Output(other,self,"DIA_CipherDJG_GOTOGETHERAGAIN_15_00");	//Я передумал! Пойдем вместе!
 //	AI_Output(self,other,"DIA_CipherDJG_GOTOGETHERAGAIN_07_01");	//Просто дай мне слово!
 	AI_Output(self,other,"DIA_Biff_KnowWhereEnemy_No_07_01");	//Да, да. Тогда повеселимся.
-	DJG_SwampParty = TRUE;
+	Cipher_ReadyForSwampParty = TRUE;
 };
 
 
@@ -130,14 +143,14 @@ instance DIA_CipherDJG_GO(C_Info)
 
 func int DIA_CipherDJG_GO_Condition()
 {
-	if((DJG_SwampParty == TRUE) && !Npc_IsDead(SwampDragon))
+	if(Cipher_ReadyForSwampParty == TRUE)
 	{
-		return TRUE;
+		if(!Npc_IsDead(SwampDragon))
+		{
+			return TRUE;
+		};
 	};
 };
-
-
-var int DJG_SwampParty_GoGoGo;
 
 func void DIA_CipherDJG_GO_Info()
 {
@@ -145,11 +158,10 @@ func void DIA_CipherDJG_GO_Info()
 	AI_Output(self,other,"DIA_CipherDJG_GO_07_01");	//Тогда пойдем!
 	if(C_BodyStateContains(self,BS_SIT))
 	{
-		AI_Standup(self);
-		B_TurnToNpc(self,other);
+		AI_UseMob(self,"BENCH",-1);
 	};
 	AI_StopProcessInfos(self);
-	DJG_SwampParty_GoGoGo = TRUE;
+	DJG_SwampParty = TRUE;
 	self.npcType = NPCTYPE_FRIEND;
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	Npc_ExchangeRoutine(self,"SWAMPWAIT1");
@@ -157,7 +169,7 @@ func void DIA_CipherDJG_GO_Info()
 	{
 		if(C_BodyStateContains(DJG_Rod,BS_SIT))
 		{
-			AI_Standup(DJG_Rod);
+			AI_UseMob(DJG_Rod,"BENCH",-1);
 		};
 		DJG_Rod.npcType = NPCTYPE_FRIEND;
 		DJG_Rod.aivar[AIV_PARTYMEMBER] = TRUE;
@@ -177,9 +189,12 @@ instance DIA_CipherDJG_SwampWait2(C_Info)
 
 func int DIA_CipherDJG_SwampWait2_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_DJG_SWAMP_WAIT1_01") < 700) && !Npc_IsDead(SwampDragon))
+	if(DJG_SwampParty == TRUE)
 	{
-		return TRUE;
+		if((Npc_GetDistToWP(self,"OW_DJG_SWAMP_WAIT1_01") < 700) && !Npc_IsDead(SwampDragon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -188,21 +203,16 @@ func void DIA_CipherDJG_SwampWait2_Info()
 	AI_Output(self,other,"DIA_CipherDJG_SwampWait2_07_00");	//Болото начинается сразу за последующим поворотом. Я предлагаю идти прямо туда!
 	AI_Output(self,other,"DIA_CipherDJG_SwampWait2_07_01");	//Ну, ты также можешь проверить вон тот проход, чтобы эти твари не напали на нас сзади. Что ты выбираешь?
 	AI_Output(other,self,"DIA_CipherDJG_SwampWait2_15_02");	//Не будем терять времени!
+	Info_ClearChoices(DIA_CipherDJG_SwampWait2);
 	Info_AddChoice(DIA_CipherDJG_SwampWait2,Dialog_Ende,DIA_CipherDJG_SwampWait2_weiter);
 };
 
 func void DIA_CipherDJG_SwampWait2_weiter()
 {
 	AI_StopProcessInfos(self);
-	DJG_SwampParty = TRUE;
-	DJG_SwampParty_GoGoGo = TRUE;
-	self.npcType = NPCTYPE_FRIEND;
-	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	Npc_ExchangeRoutine(self,"SWAMPWAIT2");
 	if(!Npc_IsDead(DJG_Rod))
 	{
-		DJG_Rod.npcType = NPCTYPE_FRIEND;
-		DJG_Rod.aivar[AIV_PARTYMEMBER] = TRUE;
 		B_StartOtherRoutine(DJG_Rod,"SWAMPWAIT2");
 	};
 };
@@ -219,15 +229,18 @@ instance DIA_CipherDJG_GoForSwampDragon(C_Info)
 
 func int DIA_CipherDJG_GoForSwampDragon_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_DJG_SWAMP_WAIT2_01") < 1000) && !Npc_IsDead(SwampDragon))
+	if(DJG_SwampParty == TRUE)
 	{
-		return TRUE;
+		if((Npc_GetDistToWP(self,"OW_DJG_SWAMP_WAIT2_01") < 1000) && !Npc_IsDead(SwampDragon))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_CipherDJG_GoForSwampDragon_Info()
 {
-	if(Npc_KnowsInfo(other,DIA_Dragon_Swamp_Exit))
+	if(!C_NpcIsImmortal(SwampDragon))
 	{
 		AI_Output(self,other,"DIA_CipherDJG_GoForSwampDragon_07_00");	//(рычит) В атаку!
 		AI_StopProcessInfos(self);
@@ -254,9 +267,12 @@ instance DIA_CipherDJG_SWAMPDRAGONDEAD(C_Info)
 
 func int DIA_CipherDJG_SWAMPDRAGONDEAD_Condition()
 {
-	if(Npc_IsDead(SwampDragon) && (DJG_SwampParty == TRUE) && (DJG_SwampParty_GoGoGo == TRUE))
+	if(DJG_SwampParty == TRUE)
 	{
-		return TRUE;
+		if(Npc_IsDead(SwampDragon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -268,16 +284,18 @@ func void DIA_CipherDJG_SWAMPDRAGONDEAD_Info()
 	AI_StopProcessInfos(self);
 	B_GivePlayerXP(XP_CipherDJGDeadDragon);
 	DJG_SwampParty = FALSE;
-	DJG_SwampParty_GoGoGo = FALSE;
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"START");
 	if(!Npc_IsDead(DJG_Rod))
 	{
+		DJG_RodSurvivedSwampDragon = TRUE;
 		DJG_Rod.aivar[AIV_PARTYMEMBER] = FALSE;
 		B_StartOtherRoutine(DJG_Rod,"START");
 	};
 };
 
+
+var int DIA_CipherDJG_WHATNEXT_Once;
 
 instance DIA_CipherDJG_WHATNEXT(C_Info)
 {
@@ -291,23 +309,31 @@ instance DIA_CipherDJG_WHATNEXT(C_Info)
 
 func int DIA_CipherDJG_WHATNEXT_Condition()
 {
-	if(Npc_IsDead(SwampDragon))
+	if(Npc_KnowsInfo(other,DIA_CipherDJG_HELLOAGAIN))
 	{
-		return TRUE;
+		if(Npc_IsDead(SwampDragon))
+		{
+			return TRUE;
+		};
 	};
 };
-
-var int DIA_CipherDJG_WHATNEXT_Once;
 
 func void DIA_CipherDJG_WHATNEXT_Info()
 {
 	AI_Output(other,self,"DIA_CipherDJG_WHATNEXT_15_00");	//Болотный дракон мертв! Что ты будешь делать дальше?
-	AI_Output(self,other,"DIA_CipherDJG_WHATNEXT_07_01");	//Понятия не имею. Я еще об этом не думал. А ты теперь можешь вернуться в Хоринис как герой.
-	AI_Output(self,other,"DIA_CipherDJG_WHATNEXT_07_02");	//Ручаюсь, на этом можно сделать состояние. Подумай над этим.
-	if(DIA_CipherDJG_WHATNEXT_Once == FALSE)
+	if(Npc_KnowsInfo(other,DIA_CipherDJG_SWAMPDRAGONDEAD))
 	{
-		B_LogEntry(TOPIC_Dragonhunter,"Сифер думает, что теперь, когда болотный дракон мертв, он может заработать кучу денег как великий 'герой'. Что ж, посмотрим.");
-		DIA_CipherDJG_WHATNEXT_Once = TRUE;
+		AI_Output(self,other,"DIA_CipherDJG_WHATNEXT_07_01");	//Понятия не имею. Я еще об этом не думал. А ты теперь можешь вернуться в Хоринис как герой.
+		AI_Output(self,other,"DIA_CipherDJG_WHATNEXT_07_02");	//Ручаюсь, на этом можно сделать состояние. Подумай над этим.
+		if(DIA_CipherDJG_WHATNEXT_Once == FALSE)
+		{
+			B_LogEntry(TOPIC_Dragonhunter,"Сифер думает, что теперь, когда болотный дракон мертв, он может заработать кучу денег как великий 'герой'. Что ж, посмотрим.");
+			DIA_CipherDJG_WHATNEXT_Once = TRUE;
+		};
+	}
+	else
+	{
+		B_CipherDJG_GetOutOfHere();
 	};
 	AI_StopProcessInfos(self);
 };

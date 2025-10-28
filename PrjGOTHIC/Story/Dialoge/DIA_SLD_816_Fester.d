@@ -27,7 +27,6 @@ instance DIA_Fester_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Fester_Hello_Condition;
 	information = DIA_Fester_Hello_Info;
-	permanent = FALSE;
 	description = "Что ты делаешь здесь?";
 };
 
@@ -50,7 +49,6 @@ instance DIA_Fester_Auftrag(C_Info)
 	nr = 2;
 	condition = DIA_Fester_Auftrag_Condition;
 	information = DIA_Fester_Auftrag_Info;
-	permanent = FALSE;
 	description = "Зачем?";
 };
 
@@ -80,7 +78,6 @@ instance DIA_Fester_YouFight(C_Info)
 	nr = 3;
 	condition = DIA_Fester_YouFight_Condition;
 	information = DIA_Fester_YouFight_Info;
-	permanent = FALSE;
 	description = "Ты хороший боец?";
 };
 
@@ -106,7 +103,6 @@ instance DIA_Fester_WoNest(C_Info)
 	nr = 4;
 	condition = DIA_Fester_WoNest_Condition;
 	information = DIA_Fester_WoNest_Info;
-	permanent = FALSE;
 	description = "Где это гнездо?";
 };
 
@@ -136,7 +132,6 @@ instance DIA_Fester_Together(C_Info)
 	nr = 5;
 	condition = DIA_Fester_Together_Condition;
 	information = DIA_Fester_Together_Info;
-	permanent = FALSE;
 	description = "Мы могли бы атаковать это гнездо вместе...";
 };
 
@@ -155,7 +150,7 @@ func void DIA_Fester_Together_Info()
 	AI_Output(self,other,"DIA_Fester_Together_08_01");	//Ты хочешь помочь мне? Почему?
 	Info_ClearChoices(DIA_Fester_Together);
 	Info_AddChoice(DIA_Fester_Together,"Я хочу получить за это золото!",DIA_Fester_Together_Gold);
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		Info_AddChoice(DIA_Fester_Together,"Я хочу присоединиться к вам!",DIA_Fester_Together_Join);
 	};
@@ -224,7 +219,6 @@ func void DIA_Fester_TogetherNOW_NOW()
 	AI_Output(other,self,"DIA_Fester_TogetherNOW_Now_15_00");	//Лучшей возможности, чем сейчас, не будет.
 	AI_Output(self,other,"DIA_Fester_TogetherNOW_Now_08_01");	//Хорошо, давай посмотрим, на что ты способен.
 	self.npcType = NPCTYPE_FRIEND;
-	Npc_ExchangeRoutine(self,"GUIDE");
 	Fester_Losgeh_Day = B_GetDayPlus();
 	MIS_Fester_KillBugs = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_FesterRauber,LOG_MISSION);
@@ -232,6 +226,7 @@ func void DIA_Fester_TogetherNOW_NOW()
 	B_LogEntry(TOPIC_FesterRauber,"Я собираюсь атаковать гнездо полевых хищников вместе с Фестером.");
 	Info_ClearChoices(DIA_Fester_TogetherNOW);
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"GUIDE");
 };
 
 func void DIA_Fester_TogetherNOW_Later()
@@ -248,17 +243,19 @@ instance DIA_Fester_InCave(C_Info)
 	nr = 7;
 	condition = DIA_Fester_InCave_Condition;
 	information = DIA_Fester_InCave_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Fester_InCave_Condition()
 {
-	if((MIS_Fester_KillBugs == LOG_RUNNING) && (Npc_GetDistToWP(self,"NW_BIGFARM_FELDREUBER4") <= 500))
+	if(MIS_Fester_KillBugs == LOG_RUNNING)
 	{
-		self.aivar[AIV_LastFightComment] = TRUE;
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_BIGFARM_FELDREUBER4") <= 500)
+		{
+			self.aivar[AIV_LastFightComment] = TRUE;
+			return TRUE;
+		};
 	};
 };
 
@@ -274,6 +271,7 @@ func void DIA_Fester_InCave_Info()
 	};
 	AI_Output(self,other,"DIA_Fester_InCave_08_02");	//Похоже, все эти грязные твари уничтожены.
 	AI_Output(self,other,"DIA_Fester_InCave_08_03");	//Пойдем назад!
+	AI_StopProcessInfos(self);
 	if(Kapitel < 3)
 	{
 		Npc_ExchangeRoutine(self,"START");
@@ -282,7 +280,6 @@ func void DIA_Fester_InCave_Info()
 	{
 		Npc_ExchangeRoutine(self,"CH3");
 	};
-	AI_StopProcessInfos(self);
 };
 
 
@@ -292,7 +289,6 @@ instance DIA_Fester_WasMitAbmachung(C_Info)
 	nr = 8;
 	condition = DIA_Fester_WasMitAbmachung_Condition;
 	information = DIA_Fester_WasMitAbmachung_Info;
-	permanent = FALSE;
 	description = "Что насчет нашего соглашения?";
 };
 

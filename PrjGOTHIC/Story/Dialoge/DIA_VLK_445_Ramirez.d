@@ -27,7 +27,6 @@ instance DIA_Ramirez_Zeichen(C_Info)
 	nr = 800;
 	condition = DIA_Ramirez_Zeichen_Condition;
 	information = DIA_Ramirez_Zeichen_Info;
-	permanent = FALSE;
 	description = DIALOG_SecretSign;
 };
 
@@ -53,16 +52,18 @@ instance DIA_Ramirez_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Ramirez_Hallo_Condition;
 	information = DIA_Ramirez_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Ramirez_Hallo_Condition()
 {
-	if((Join_Thiefs == FALSE) && !Npc_IsDead(Cassia) && !Npc_IsDead(Jesper))
+	if(Join_Thiefs == FALSE)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Cassia) && !Npc_IsDead(Jesper))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -80,16 +81,18 @@ instance DIA_Ramirez_Hallo_Joined(C_Info)
 	nr = 2;
 	condition = DIA_Ramirez_Hallo_Joined_Condition;
 	information = DIA_Ramirez_Hallo_Joined_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Ramirez_Hallo_Joined_Condition()
 {
-	if((Join_Thiefs == TRUE) && !Npc_IsDead(Cassia) && !Npc_IsDead(Jesper))
+	if(Join_Thiefs == TRUE)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Cassia) && !Npc_IsDead(Jesper))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -107,7 +110,6 @@ instance DIA_Ramirez_Beute(C_Info)
 	nr = 3;
 	condition = DIA_Ramirez_Beute_Condition;
 	information = DIA_Ramirez_Beute_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -187,6 +189,8 @@ func void DIA_Ramirez_Beute_Info()
 };
 
 
+var int DIA_Ramirez_Bezahlen_permanent;
+
 instance DIA_Ramirez_Bezahlen(C_Info)
 {
 	npc = VLK_445_Ramirez;
@@ -197,8 +201,6 @@ instance DIA_Ramirez_Bezahlen(C_Info)
 	description = "“ы можешь научить мен€ чему-нибудь?";
 };
 
-
-var int DIA_Ramirez_Bezahlen_permanent;
 
 func int DIA_Ramirez_Bezahlen_Condition()
 {
@@ -345,7 +347,6 @@ instance DIA_Ramirez_Sextant(C_Info)
 	nr = 2;
 	condition = DIA_Ramirez_Sextant_Condition;
 	information = DIA_Ramirez_Sextant_Info;
-	permanent = FALSE;
 	description = "” теб€ есть работа дл€ мен€?";
 };
 
@@ -377,7 +378,6 @@ instance DIA_Ramirez_Success(C_Info)
 	nr = 2;
 	condition = DIA_Ramirez_Success_Condition;
 	information = DIA_Ramirez_Success_Info;
-	permanent = FALSE;
 	description = "я принес тебе секстант.";
 };
 
@@ -428,7 +428,6 @@ instance DIA_Ramirez_Killer(C_Info)
 	nr = 1;
 	condition = DIA_Ramirez_Killer_Condition;
 	information = DIA_Ramirez_Killer_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

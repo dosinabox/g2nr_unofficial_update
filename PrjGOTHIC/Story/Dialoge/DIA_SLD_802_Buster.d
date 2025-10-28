@@ -27,14 +27,13 @@ instance DIA_Buster_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Buster_Hello_Condition;
 	information = DIA_Buster_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Buster_Hello_Condition()
 {
-	if((self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST) && ((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG)))
+	if((self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST) && ((other.guild != GIL_SLD) && (other.guild != GIL_DJG)))
 	{
 		return TRUE;
 	};
@@ -190,7 +189,6 @@ instance DIA_Buster_FightNone(C_Info)
 	nr = 1;
 	condition = DIA_Buster_FightNone_Condition;
 	information = DIA_Buster_FightNone_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -314,14 +312,13 @@ instance DIA_Buster_OtherSld(C_Info)
 	nr = 1;
 	condition = DIA_Buster_OtherSld_Condition;
 	information = DIA_Buster_OtherSld_Info;
-	permanent = FALSE;
 	description = "Я хочу узнать больше о наемниках и этой местности.";
 };
 
 
 func int DIA_Buster_OtherSld_Condition()
 {
-	if((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -331,13 +328,13 @@ func void DIA_Buster_OtherSld_Info()
 {
 	AI_Output(other,self,"DIA_Buster_OtherSld_15_00");	//Я хочу узнать больше о наемниках и этой местности.
 	AI_Output(self,other,"DIA_Buster_OtherSld_13_01");	//О местности я мало что могу сказать. Тебе лучше поспрашивать фермеров.
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Buster_OtherSld_13_02");	//А что касается наемников - то правила у нас просты: если можешь постоять за себя - добро пожаловать к нам.
 	};
 	if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
 	{
-		if(hero.guild == GIL_NONE)
+		if(other.guild == GIL_NONE)
 		{
 			AI_Output(self,other,"DIA_Buster_OtherSld_13_03");	//Я думаю, ты достоин стать одним из нас.
 			AI_Output(self,other,"DIA_Buster_OtherSld_13_04");	//Но не стоит обольщаться. Тебе просто повезло во время нашего последнего боя.
@@ -363,7 +360,6 @@ instance DIA_Buster_AboutSentenza(C_Info)
 	nr = 1;
 	condition = DIA_Buster_AboutSentenza_Condition;
 	information = DIA_Buster_AboutSentenza_Info;
-	permanent = FALSE;
 	description = "Что там насчет Сентензы?";
 };
 
@@ -421,7 +417,6 @@ instance DIA_Buster_LeeLeader(C_Info)
 	nr = 2;
 	condition = DIA_Buster_LeeLeader_Condition;
 	information = DIA_Buster_LeeLeader_Info;
-	permanent = FALSE;
 	description = "Наемников возглавляет Ли, да?";
 };
 
@@ -451,7 +446,6 @@ instance DIA_Buster_WhatHappened(C_Info)
 	nr = 2;
 	condition = DIA_Buster_WhatHappened_Condition;
 	information = DIA_Buster_WhatHappened_Info;
-	permanent = FALSE;
 	description = "Что стало с наемниками из колонии?";
 };
 
@@ -480,7 +474,6 @@ instance DIA_Buster_PreTeach(C_Info)
 	nr = 8;
 	condition = DIA_Buster_PreTeach_Condition;
 	information = DIA_Buster_PreTeach_Info;
-	permanent = FALSE;
 	description = "Ты можешь научить меня сражаться?";
 };
 
@@ -581,14 +574,13 @@ instance DIA_Buster_SHADOWBEASTS(C_Info)
 	nr = 30;
 	condition = DIA_Buster_SHADOWBEASTS_Condition;
 	information = DIA_Buster_SHADOWBEASTS_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Buster_SHADOWBEASTS_Condition()
 {
-	if(((Kapitel == 3) || (Kapitel == 4)) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+	if(((Kapitel == 3) || (Kapitel == 4)) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
 	{
 		return TRUE;
 	};
@@ -726,7 +718,7 @@ instance DIA_Buster_BringTrophyShadowbeast(C_Info)
 
 func int DIA_Buster_BringTrophyShadowbeast_Condition()
 {
-	if((MIS_Buster_KillShadowbeasts_DJG == LOG_RUNNING) && Npc_HasItems(other,ItAt_ShadowHorn) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+	if((MIS_Buster_KillShadowbeasts_DJG == LOG_RUNNING) && Npc_HasItems(other,ItAt_ShadowHorn) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
 	{
 		if(Npc_HasItems(other,ItAt_ShadowHorn) > 1)
 		{

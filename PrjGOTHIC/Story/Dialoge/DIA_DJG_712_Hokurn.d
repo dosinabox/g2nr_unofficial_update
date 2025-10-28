@@ -158,7 +158,6 @@ instance DIA_Hokurn_Hello(C_Info)
 	nr = 4;
 	condition = DIA_Hokurn_Hello_Condition;
 	information = DIA_Hokurn_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -207,12 +206,14 @@ func void DIA_Hokurn_Hello_ASK2()
 {
 	AI_Output(other,self,"DIA_Hokurn_Hello_ASK2_15_00");	//Это важно.
 	AI_Output(self,other,"DIA_Hokurn_Hello_ASK2_01_01");	//(ревет) Ты сам напросился!
+	Info_ClearChoices(DIA_Hokurn_Hello);
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
 
 func void DIA_Hokurn_Hello_END()
 {
+	Info_ClearChoices(DIA_Hokurn_Hello);
 	AI_StopProcessInfos(self);
 };
 
@@ -237,7 +238,7 @@ instance DIA_Hokurn_Drink(C_Info)
 
 func int DIA_Hokurn_Drink_Condition()
 {
-	if((HokurnGetsDrink == FALSE) && C_GotDrinkForHokurn())
+	if(Npc_KnowsInfo(other,DIA_Hokurn_Hello) && (HokurnGetsDrink == FALSE) && C_GotDrinkForHokurn())
 	{
 		return TRUE;
 	};
@@ -275,6 +276,7 @@ func void DIA_Hokurn_Question_Info()
 	AI_Output(other,self,"DIA_Hokurn_Question_15_00");	//Мне нужна кое-какая информация.
 	AI_Output(self,other,"DIA_Hokurn_Question_01_01");	//(раздраженно) Я думал, ты меня понял. Я говорю только с друзьями.
 	AI_Output(self,other,"DIA_Hokurn_Question_01_02");	//А друзья всегда делятся со мной выпивкой. Понял? Теперь проваливай!
+	AI_StopProcessInfos(self);
 };
 
 
@@ -286,7 +288,6 @@ instance DIA_Hokurn_Learn(C_Info)
 	nr = 6;
 	condition = DIA_Hokurn_Learn_Condition;
 	information = DIA_Hokurn_Learn_Info;
-	permanent = FALSE;
 	description = "Я ищу человека, который мог бы научить меня чему-нибудь.";
 };
 
@@ -499,7 +500,12 @@ func int DIA_Hokurn_Teach_Condition()
 func void DIA_Hokurn_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Hokurn_Teach_15_00");	//Давай начнем обучение.
-	if(HokurnLastDrink < Wld_GetDay())
+	if(self.aivar[AIV_RefuseService] == TRUE)
+	{
+		B_Say(self,other,"$NOTNOW");
+		AI_StopProcessInfos(self);
+	}
+	else if(HokurnLastDrink < Wld_GetDay())
 	{
 		AI_Output(self,other,"DIA_Hokurn_Teach_01_01");	//Сначала принеси мне что-нибудь выпить!
 		if(VisibleGuild(other) == GIL_PAL)
@@ -557,7 +563,6 @@ instance DIA_Hokurn_StayHere(C_Info)
 	nr = 5;
 	condition = DIA_Hokurn_StayHere_Condition;
 	information = DIA_Hokurn_StayHere_Info;
-	permanent = FALSE;
 	description = "Кстати, а что ты вообще здесь делаешь?";
 };
 
@@ -665,7 +670,7 @@ func void DIA_Hokurn_WhereDragon_GiveDrink()
 {
 	if((Hokurn_WineComment == TRUE) && (Npc_HasItems(other,ItFo_Wine) || Npc_HasItems(other,ItFo_DarkWine)))
 	{
-		AI_Output(other,self,"DIA_Vino_BringWine_15_00");	//Вот твое вино.
+		DIA_Common_HeresYourWine();
 		B_HokurnGiveMeThat();
 		if(Npc_HasItems(other,ItFo_Wine))
 		{

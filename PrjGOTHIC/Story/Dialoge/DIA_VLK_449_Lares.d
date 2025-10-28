@@ -188,7 +188,7 @@ func void DIA_Lares_HALLO_Info()
 	};
 	if(other.guild == GIL_NONE)
 	{
-		if((CityPassGranted == FALSE) && (B_GetLaresLocation() == LOC_CITY))
+		if((CityPassGranted == FALSE) && (B_GetLaresLocation() == LOC_NW_CITY))
 		{
 			AI_Output(self,other,"DIA_Lares_HALLO_09_01");	//Ты что, ПРИПЛЫЛ сюда?
 			AI_Output(self,other,"DIA_Lares_HALLO_09_02");	//(смеется) Это единственный способ миновать стражу у городских ворот.
@@ -1647,7 +1647,7 @@ func void DIA_Addon_Lares_InfoOutsideTheCity2()
 
 func void B_StartLaresGuideToPortal()
 {
-	if(B_GetLaresLocation() == LOC_CITY)
+	if(B_GetLaresLocation() == LOC_NW_CITY)
 	{
 		LaresGuide_ZumPortal = 1;
 		Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL1");
@@ -1729,7 +1729,7 @@ func void DIA_Lares_GoNow_Info()
 func void DIA_Lares_GoNow_Maya()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_GoNow_Maya_15_00");	//Давай вернем орнамент Ватраса.
-	if(B_GetLaresLocation() == LOC_CITY)
+	if(B_GetLaresLocation() == LOC_NW_CITY)
 	{
 		LaresGuide_ZumPortal = 1;
 		Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL1");
@@ -2162,7 +2162,7 @@ func int DIA_Addon_Lares_Albern_Condition()
 
 func void DIA_Addon_Lares_Albern_Info()
 {
-	if(B_GetLaresLocation() == LOC_CITY)
+	if(B_GetLaresLocation() == LOC_NW_CITY)
 	{
 		AI_Output(self,other,"DIA_Canthar_WhatOffer_Price_09_05");	//Ну что, договорились?
 		DIA_Common_NoNotYet();
@@ -2763,6 +2763,5 @@ func void DIA_Lares_StillNeedYou_Info()
 		AI_Output(self,other,"DIA_Lares_StillNeedYou_09_04");	//Мне лучше остаться здесь.
 		AI_StopProcessInfos(self);
 	};
-	B_CheckLog();
 };
 

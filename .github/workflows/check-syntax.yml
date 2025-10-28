@@ -18,31 +18,31 @@ jobs:
 
     - name: Find and check d files
       run: |
-        # Initialize error counter
+        validated=0
         errors=0
 
-        # Find all d files
         d_files=$(git ls-files '*.d')
 
         for file in $d_files; do
-          # Check for trailing spaces and tabs at the end of lines
           if grep -Pan '[[:blank:]]$' "${file}"; then
             echo "::error file=$file::File $file has trailing spaces or tabs at the end of lines"
             errors=$((errors+1))
           fi
 
-          # Check for spaces at the start of lines
           if grep -Pan '^ +' "${file}"; then
             echo "::error file=$file::File $file has spaces at the start of lines"
             errors=$((errors+1))
           fi
 
-          # Check for assignments in conditions
           if grep -Pan 'if\(.*\s=\s' "${file}"; then
             echo "::error file=$file::File $file has assignment in condition"
             errors=$((errors+1))
           fi
+
+          validated=$((validated+1))	
         done
+
+        echo "$validated files validated."
 
         if [ $errors -gt 0 ]; then
           echo "$errors invalid files found!"

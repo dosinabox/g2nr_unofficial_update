@@ -41,9 +41,12 @@ func void DIA_DiegoOw_Hallo_Info()
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_00");	//Эй, я думал, ты мертв.
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_01");	//Да... так было.
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_02");	//Ну, теперь я вернулся и ищу доказательства появления драконов.
-	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_03");	//Для кого ты это делаешь?
-	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_04");	//Я работаю на лорда Хагена. С помощью паладинов драконов можно остановить.
-	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_05");	//Паладины? Позволь мне сказать тебе кое-что. После того, как мне удалось вырваться отсюда, я отправился в Хоринис.
+	if(Kapitel == 2)
+	{
+		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_03");	//Для кого ты это делаешь?
+		AI_Output(other,self,"DIA_DiegoOw_Hallo_15_04");	//Я работаю на лорда Хагена. С помощью паладинов драконов можно остановить.
+		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_05");	//Паладины? Позволь мне сказать тебе кое-что. После того, как мне удалось вырваться отсюда, я отправился в Хоринис.
+	};
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_06");	//Я хотел предупредить паладинов о драконах. Сам не знаю, зачем мне это было нужно.
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_07");	//Этот напыщенный Лотар даже не стал слушать меня - и, конечно же, не позволил мне поговорить с лордом Хагеном.
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_08");	//Вместо этого они отправили меня назад, с экспедицией. Так что лучше не напоминай мне о паладинах...
@@ -126,7 +129,6 @@ instance DIA_DiegoOw_Mine(C_Info)
 	nr = 3;
 	condition = DIA_DiegoOw_Mine_Condition;
 	information = DIA_DiegoOw_Mine_Info;
-	permanent = FALSE;
 	description = "А какое ты имеешь отношение к руде?";
 };
 
@@ -155,7 +157,6 @@ instance DIA_DiegoOw_Ritter(C_Info)
 	nr = 4;
 	condition = DIA_DiegoOw_Ritter_Condition;
 	information = DIA_DiegoOw_Ritter_Info;
-	permanent = FALSE;
 	description = "А что насчет этих двух мертвых рыцарей перед твоим укрытием?";
 };
 
@@ -179,7 +180,6 @@ instance DIA_DiegoOw_Perm(C_Info)
 	nr = 5;
 	condition = DIA_DiegoOw_Perm_Condition;
 	information = DIA_DiegoOw_Perm_Info;
-	permanent = FALSE;
 	description = "Что мне нужно знать о Долине?";
 };
 
@@ -204,7 +204,6 @@ instance DIA_DiegoOw_Gorn(C_Info)
 	nr = 6;
 	condition = DIA_DiegoOw_Gorn_Condition;
 	information = DIA_DiegoOw_Gorn_Info;
-	permanent = FALSE;
 	description = "Я хочу купить свободу Горну, но Гаронд просит за это 1000 золотых.";
 };
 
@@ -404,28 +403,28 @@ func void DIA_Addon_ThiefOW_GoHome_Info()
 	var int location;
 	location = C_DiegoTooFar(1000);
 	AI_Output(other,self,"DIA_Addon_Diego_WarteHier_15_00");	//Подожди здесь!
-	if(location == LOC_XARDAS)
+	if(location == LOC_OW_XARDAS)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_02");	//Я подожду снаружи у башни.
 		AI_StopProcessInfos(self);
 		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		Npc_ExchangeRoutine(self,"XARDAS");
 	}
-	else if(location == LOC_FAJETHMINE)
+	else if(location == LOC_OW_FAJETHMINE)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_03");	//Я подожду у шахты.
 		AI_StopProcessInfos(self);
 		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		Npc_ExchangeRoutine(self,"FAJETH");
 	}
-	else if(location == LOC_SILVESTROMINE)
+	else if(location == LOC_OW_SILVESTROMINE)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_04");	//Я подожду перед шахтой.
 		AI_StopProcessInfos(self);
 		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		Npc_ExchangeRoutine(self,"SILVESTRO");
 	}
-	else if(location == LOC_GRIMESMINE)
+	else if(location == LOC_OW_GRIMESMINE)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_05");	//Я подожду поблизости.
 		AI_StopProcessInfos(self);
@@ -503,12 +502,12 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 {
 	var int location;
 	location = C_DiegoTooFar(1000);
-	if(location == LOC_ANGAR)
+	if(location == LOC_OW_ANGAR)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_02");	//От этой старой гробницы веет ужасом.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_03");	//Лучше нам ее обойти.
 	}
-	else if(location == LOC_ICE)
+	else if(location == LOC_OW_ICEDRAGON)
 	{
 		if(Diego_IceVariation == 0)
 		{
@@ -518,24 +517,24 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 		};
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_01");	//Чтобы попасть к Проходу, мы должны идти в другом направлении.
 	}
-	else if(location == LOC_SWAMP)
+	else if(location == LOC_OW_SWAMPDRAGON)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_06");	//Это болото кончается тупиком.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_07");	//Не удивлюсь, если там нас может поджидать дракон.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_08");	//Не стоит туда идти.
 	}
-	else if(location == LOC_FIRE)
+	else if(location == LOC_OW_FIREDRAGON)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_09");	//Если мы продолжим лезть на эту гору, мы наверняка встретим дракона.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_10");	//А я хотел бы все же живым добраться до Хориниса.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_11");	//Давай пойдем по другому пути.
 	}
-	else if(location == LOC_LAKE)
+	else if(location == LOC_OW_LAKE)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_12");	//Эта дорога нас никуда не приведет.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_13");	//Чтобы попасть к Проходу, мы должны идти в другом направлении!
 	}
-	else if(location == LOC_XARDAS)
+	else if(location == LOC_OW_XARDAS)
 	{
 		if(Diego_XardasVariation == 0)
 		{
@@ -548,7 +547,7 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		Npc_ExchangeRoutine(self,"XARDAS");
 	}
-	else if(location == LOC_FAJETHMINE)
+	else if(location == LOC_OW_FAJETHMINE)
 	{
 		if(Diego_FajethVariation == 0)
 		{
@@ -561,7 +560,7 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 			AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_18");	//Я намерен держаться от этой шахты подальше!
 		};
 	}
-	else if(location == LOC_SILVESTROMINE)
+	else if(location == LOC_OW_SILVESTROMINE)
 	{
 		if(Diego_SilvestroVariation == 0)
 		{
@@ -580,7 +579,7 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		Npc_ExchangeRoutine(self,"SILVESTRO");
 	}
-	else if(location == LOC_GRIMESMINE)
+	else if(location == LOC_OW_GRIMESMINE)
 	{
 		if(Diego_GrimesVariation == 0)
 		{
@@ -593,7 +592,7 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 			AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_23");	//Давай обойдем ее подальше.
 		};
 	}
-	else if(location == LOC_BURG)
+	else if(location == LOC_OW_OLDCAMP)
 	{
 		if(Diego_BurgVariation == 0)
 		{
@@ -611,17 +610,17 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 			Diego_BurgVariation = 1;
 		};
 	}
-	else if(location == LOC_ORCBARRIER)
+	else if(location == LOC_OW_ORCBARRIER)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_27");	//Нам нельзя туда идти. У Стены орков слишком опасно.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_28");	//Я думаю, нам будет лучше пойти на запад и двигаться по другой стороне.
 	}
-	else if(location == LOC_ORCBARRIER_FAR)
+	else if(location == LOC_OW_ORCBARRIER_FAR)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_29");	//Если мы продолжим двигаться в этом направлении, мы снова упремся в Стену орков.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_30");	//Пойдем к Проходу!
 	}
-	else if(location == LOC_ROCK)
+	else if(location == LOC_OW_ROCKDRAGON)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_09");	//Если мы продолжим лезть на эту гору, мы наверняка встретим дракона.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_08");	//Не стоит туда идти.
@@ -656,9 +655,12 @@ instance DIA_Addon_ThiefOW_Angekommen(C_Info)
 
 func int DIA_Addon_ThiefOW_Angekommen_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_VM_ENTRANCE") < 800) && !Npc_KnowsInfo(other,DIA_Addon_ThiefOW_Nostalgie))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && !Npc_KnowsInfo(other,DIA_Addon_ThiefOW_Nostalgie))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"OW_VM_ENTRANCE") < 800)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -682,9 +684,12 @@ instance DIA_Addon_ThiefOW_Nostalgie(C_Info)
 
 func int DIA_Addon_ThiefOW_Nostalgie_Condition()
 {
-	if(Npc_GetDistToWP(self,"WP_INTRO14") < 2000)
+	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"WP_INTRO14") < 2000)
+		{
+			return TRUE;
+		};
 	};
 };
 

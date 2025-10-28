@@ -65,7 +65,6 @@ instance DIA_Addon_BDT_1084_Senyan_Hi(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Senyan_Hi_Condition;
 	information = DIA_Addon_Senyan_Hi_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -163,9 +162,12 @@ instance DIA_Addon_Senyan_unterwegs(C_Info)
 
 func int DIA_Addon_Senyan_unterwegs_Condition()
 {
-	if((MIS_Judas == FALSE) && Npc_KnowsInfo(other,DIA_Addon_BDT_1084_Senyan_Hi) && !Npc_IsDead(Esteban))
+	if((MIS_Judas == FALSE) && Npc_KnowsInfo(other,DIA_Addon_BDT_1084_Senyan_Hi))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Esteban))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -185,16 +187,18 @@ instance DIA_Addon_Senyan_Attentat(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Senyan_Attentat_Condition;
 	information = DIA_Addon_Senyan_Attentat_Info;
-	permanent = FALSE;
 	description = "я поговорил с Ёстебаном.";
 };
 
 
 func int DIA_Addon_Senyan_Attentat_Condition()
 {
-	if((MIS_Judas == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_BDT_1084_Senyan_Hi) && !Npc_IsDead(Esteban))
+	if((MIS_Judas == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Addon_BDT_1084_Senyan_Hi))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Esteban))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -238,7 +242,6 @@ instance DIA_Addon_Senyan_ChangePlan(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Senyan_ChangePlan_Condition;
 	information = DIA_Addon_Senyan_ChangePlan_Info;
-	permanent = FALSE;
 	description = "я передумал. ћы больше не работаем вместе!";
 };
 
@@ -264,7 +267,6 @@ instance DIA_Addon_BDT_1084_Senyan_derbe(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Senyan_derbe_Condition;
 	information = DIA_Addon_Senyan_derbe_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

@@ -1,4 +1,9 @@
 
+const int Prot_Helmet_M = 5;
+const int Prot_Helmet_H = 10;
+const int Value_Helmet_M = 1000;
+const int Value_Helmet_H = 2000;
+
 func void Equip_Helmet()
 {
 	if(Npc_IsPlayer(self))
@@ -77,12 +82,12 @@ instance ItHe_DJG_M(C_Item)
 	name = "Шлем охотника на драконов";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
-	protection[PROT_EDGE] = 5;
-	protection[PROT_BLUNT] = 5;
-	protection[PROT_POINT] = 5;
-	protection[PROT_FIRE] = 5;
-	protection[PROT_MAGIC] = 5;
-	value = 1000;
+	protection[PROT_EDGE] = Prot_Helmet_M;
+	protection[PROT_BLUNT] = Prot_Helmet_M;
+	protection[PROT_POINT] = Prot_Helmet_M;
+	protection[PROT_FIRE] = Prot_Helmet_M;
+	protection[PROT_MAGIC] = Prot_Helmet_M;
+	value = Value_Helmet_M;
 	wear = WEAR_Head;
 	visual = "ItHe_DJG_M.3ds";
 	visual_skin = 0;
@@ -106,12 +111,12 @@ instance ItHe_DJG_H(C_Item)
 	name = "Крепкий шлем охотника на драконов";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
-	protection[PROT_EDGE] = 10;
-	protection[PROT_BLUNT] = 10;
-	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 10;
-	protection[PROT_MAGIC] = 10;
-	value = 2000;
+	protection[PROT_EDGE] = Prot_Helmet_H;
+	protection[PROT_BLUNT] = Prot_Helmet_H;
+	protection[PROT_POINT] = Prot_Helmet_H;
+	protection[PROT_FIRE] = Prot_Helmet_H;
+	protection[PROT_MAGIC] = Prot_Helmet_H;
+	value = Value_Helmet_H;
 	wear = WEAR_Head;
 	visual = "ItHe_DJG_H.3ds";
 	visual_skin = 0;
@@ -135,12 +140,12 @@ instance ItHe_PAL_M(C_Item)
 	name = "Кольчужный капюшон";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
-	protection[PROT_EDGE] = 5;
-	protection[PROT_BLUNT] = 5;
-	protection[PROT_POINT] = 5;
-	protection[PROT_FIRE] = 5;
-	protection[PROT_MAGIC] = 5;
-	value = 1000;
+	protection[PROT_EDGE] = Prot_Helmet_M;
+	protection[PROT_BLUNT] = Prot_Helmet_M;
+	protection[PROT_POINT] = Prot_Helmet_M;
+	protection[PROT_FIRE] = Prot_Helmet_M;
+	protection[PROT_MAGIC] = Prot_Helmet_M;
+	value = Value_Helmet_M;
 	wear = WEAR_Head;
 	visual = "ItHe_PAL_M.3ds";
 	visual_skin = 0;
@@ -165,12 +170,12 @@ instance ItHe_PAL_H(C_Item)
 	name = "Шлем паладина";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
-	protection[PROT_EDGE] = 10;
-	protection[PROT_BLUNT] = 10;
-	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 10;
-	protection[PROT_MAGIC] = 10;
-	value = 2000;
+	protection[PROT_EDGE] = Prot_Helmet_H;
+	protection[PROT_BLUNT] = Prot_Helmet_H;
+	protection[PROT_POINT] = Prot_Helmet_H;
+	protection[PROT_FIRE] = Prot_Helmet_H;
+	protection[PROT_MAGIC] = Prot_Helmet_H;
+	value = Value_Helmet_H;
 	wear = WEAR_Head;
 	visual = "ItHe_PAL_H.3ds";
 	visual_skin = 0;

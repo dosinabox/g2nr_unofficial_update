@@ -90,7 +90,6 @@ instance DIA_Jora_GREET(C_Info)
 	nr = 1;
 	condition = DIA_Jora_GREET_Condition;
 	information = DIA_Jora_GREET_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -134,7 +133,6 @@ instance DIA_Jora_Bestohlen(C_Info)
 	nr = 1;
 	condition = DIA_Jora_Bestohlen_Condition;
 	information = DIA_Jora_Bestohlen_Info;
-	permanent = FALSE;
 	description = " то-то обокрал теб€?";
 };
 
@@ -179,7 +177,6 @@ instance DIA_Jora_HolDeinGold(C_Info)
 	nr = 1;
 	condition = DIA_Jora_HolDeinGold_Condition;
 	information = DIA_Jora_HolDeinGold_Info;
-	permanent = FALSE;
 	description = "я мог бы вернуть тебе это золото.";
 };
 
@@ -428,7 +425,6 @@ instance DIA_Jora_Belohnung(C_Info)
 	nr = 1;
 	condition = DIA_Jora_Belohnung_Condition;
 	information = DIA_Jora_Belohnung_Info;
-	permanent = FALSE;
 	description = "я хочу получить часть золота в качестве вознаграждени€!";
 };
 
@@ -470,7 +466,6 @@ instance DIA_Jora_AlriksSchwert(C_Info)
 	nr = 1;
 	condition = DIA_Jora_AlriksSchwert_Condition;
 	information = DIA_Jora_AlriksSchwert_Info;
-	permanent = FALSE;
 	description = "јльрик говорит, что у теб€ его меч...";
 };
 

@@ -21,61 +21,7 @@ func void ZS_RansackBody_End()
 	{
 		AI_TurnToNpc(self,target);
 		AI_PlayAni(self,"T_PLUNDER");
-		if(C_IsNpc(self,NOV_608_Garwig))
-		{
-			if(Npc_HasItems(target,Holy_Hammer_MIS))
-			{
-				B_TransferAllInvItems(target,self,Holy_Hammer_MIS);
-				B_Say(self,self,"$GETUPANDBEGONE");
-				GarwigThiefOneTime = FALSE;
-			};
-		}
-		else if(C_IsNpc(self,SLD_803_Cipher))
-		{
-			if(C_IsNpc(target,SLD_810_Dar))
-			{
-				B_TransferAllInvItems(target,self,ItMi_Joint);
-			};
-		}
-		else if(C_IsNpc(self,SLD_804_Rod))
-		{
-			if(Npc_HasItems(target,ItMw_2h_Rod))
-			{
-				B_TransferAllInvItems(target,self,ItMw_2h_Rod);
-				AI_EquipBestMeleeWeapon(self);
-			};
-		}
-		else if(C_IsNpc(self,BAU_970_Orlan))
-		{
-			if(Orlan_RoomPaymentRefused == TRUE)
-			{
-				B_RemoveEveryInvItem(target,ItKe_Orlan_HotelZimmer);
-			}
-			else if((Orlan_RoomIsRented == TRUE) && (Orlan_RoomIsFree == FALSE))
-			{
-				if(C_DaysSinceEvent(Orlan_RoomPaymentDay,7))
-				{
-					Orlan_RoomPaymentDay = Wld_GetDay();
-				};
-			};
-		}
-		else if(C_IsNpc(self,VLK_438_Alrik))
-		{
-			if(Npc_HasItems(target,ItMw_AlriksSword_MIS))
-			{
-				B_TransferAllInvItems(target,self,ItMw_AlriksSword_MIS);
-				AI_EquipBestMeleeWeapon(self);
-				MIS_Alrik_Sword = LOG_SUCCESS;
-				B_CheckLog();
-			};
-		}
-		else if(C_IsNpc(self,PIR_1350_Addon_Francis))
-		{
-			if(GregIsBack == FALSE)
-			{
-				B_TransferAllInvItems(target,self,ItKe_Greg_Addon_MIS);
-			};
-		};
+		B_RemoveStolenItems(self,target);
 		if(Npc_HasItems(target,ItMi_Gold))
 		{
 			B_TransferAllInvItems(target,self,ItMi_Gold);

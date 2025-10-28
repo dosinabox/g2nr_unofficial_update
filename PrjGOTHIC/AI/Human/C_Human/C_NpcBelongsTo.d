@@ -48,7 +48,7 @@ func int C_NpcBelongsToCity(var C_Npc slf)
 	{
 		return TRUE;
 	};
-	if(RosiLocation == LOC_CITY)
+	if(RosiLocation == LOC_NW_CITY)
 	{
 		if(C_IsNpc(slf,BAU_936_Rosi))
 		{
@@ -80,7 +80,7 @@ func int C_NpcBelongsToMonastery(var C_Npc slf)
 	{
 		return TRUE;
 	};
-	if(RosiLocation == LOC_MONASTERY)
+	if(RosiLocation == LOC_NW_MONASTERY)
 	{
 		if(C_IsNpc(slf,BAU_936_Rosi))
 		{

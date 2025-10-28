@@ -5,7 +5,6 @@ func void B_SpecialMeleeWeaponDamage(var C_Npc attacker,var C_Npc target)
 {
 	var int RavenRandy;
 	var int DamageRandy;
-	var C_Item ReadyWeap;
 	if(!Hlp_IsValidNpc(attacker))
 	{
 		return;
@@ -34,10 +33,9 @@ func void B_SpecialMeleeWeaponDamage(var C_Npc attacker,var C_Npc target)
 	}
 	else if(Npc_HasReadiedMeleeWeapon(attacker))
 	{
-		ReadyWeap = Npc_GetReadiedWeapon(attacker);
 		if(C_IsNpc(target,MagicGolem))
 		{
-			if(Hlp_IsItem(ReadyWeap,Holy_Hammer_MIS))
+			if(C_NpcHasReadiedWeapon(attacker,Holy_Hammer_MIS))
 			{
 				Npc_ChangeAttribute(target,ATR_HITPOINTS,-target.attribute[ATR_HITPOINTS_MAX]);
 				if(!C_BodyStateContains(target,BS_PARADE))
@@ -51,7 +49,7 @@ func void B_SpecialMeleeWeaponDamage(var C_Npc attacker,var C_Npc target)
 		}
 		else if(Npc_IsPlayer(attacker))
 		{
-			if(C_IsItemMeleeBeliarsWeapon(ReadyWeap))
+			if(C_ScHasReadiedBeliarsWeapon())
 			{
 				DamageRandy = Hlp_Random(100);
 				if(DamageRandy <= BeliarDamageChance_20)
@@ -72,7 +70,7 @@ func void B_SpecialMeleeWeaponDamage(var C_Npc attacker,var C_Npc target)
 					};
 				};
 			}
-			else if(Hlp_IsItem(ReadyWeap,ItMw_BeliarWeapon_Fire))
+			else if(C_NpcHasReadiedWeapon(attacker,ItMw_BeliarWeapon_Fire))
 			{
 				Wld_PlayEffect("VOB_MAGICBURN",target,target,0,0,0,FALSE);
 			};
@@ -103,7 +101,6 @@ func void B_ApplyFireBowDamage(var C_Npc attacker,var C_Npc target,var int damag
 
 func void B_SpecialRangedWeaponDamage(var C_Npc attacker,var C_Npc target,var int directHit)
 {
-	var C_Item ReadyWeap;
 	if(!Hlp_IsValidNpc(attacker))
 	{
 		return;
@@ -112,8 +109,7 @@ func void B_SpecialRangedWeaponDamage(var C_Npc attacker,var C_Npc target,var in
 	{
 		return;
 	};
-	ReadyWeap = Npc_GetReadiedWeapon(attacker);
-	if(Hlp_IsItem(ReadyWeap,ItRw_Addon_FireBow))
+	if(C_NpcHasReadiedWeapon(attacker,ItRw_Addon_FireBow))
 	{
 		if(directHit == TRUE)
 		{
@@ -130,7 +126,7 @@ func void B_SpecialRangedWeaponDamage(var C_Npc attacker,var C_Npc target,var in
 			B_ApplyFireBowDamage(attacker,target,SpecialDamage_FireBow);
 		};
 	}
-	else if(Hlp_IsItem(ReadyWeap,ItRw_Addon_MagicBow))
+	else if(C_NpcHasReadiedWeapon(attacker,ItRw_Addon_MagicBow))
 	{
 		if(directHit == TRUE)
 		{
@@ -138,7 +134,7 @@ func void B_SpecialRangedWeaponDamage(var C_Npc attacker,var C_Npc target,var in
 			B_ApplySpecialRangedWeaponDamage(target);
 		};
 	}
-	else if(Hlp_IsItem(ReadyWeap,ItRw_Addon_MagicCrossbow))
+	else if(C_NpcHasReadiedWeapon(attacker,ItRw_Addon_MagicCrossbow))
 	{
 		if(directHit == TRUE)
 		{

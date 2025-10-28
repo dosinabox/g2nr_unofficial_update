@@ -62,16 +62,18 @@ instance DIA_Hanna_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Hanna_Hello_Condition;
 	information = DIA_Hanna_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Hanna_Hello_Condition()
 {
-	if(!C_Hanna_ThievesGuildIsExposed() && (HotelDoorOpened == FALSE) && (Knows_SecretSign == FALSE))
+	if((HotelDoorOpened == FALSE) && (Knows_SecretSign == FALSE))
 	{
-		return TRUE;
+		if(!C_Hanna_ThievesGuildIsExposed())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -87,7 +89,6 @@ instance DIA_Hanna_Room(C_Info)
 	nr = 2;
 	condition = DIA_Hanna_Room_Condition;
 	information = DIA_Hanna_Room_Info;
-	permanent = FALSE;
 	description = "Я хочу снять комнату.";
 };
 
@@ -127,7 +128,6 @@ instance DIA_Hanna_WhyPay(C_Info)
 	nr = 3;
 	condition = DIA_Hanna_WhyPay_Condition;
 	information = DIA_Hanna_WhyPay_Info;
-	permanent = FALSE;
 	description = "А почему паладины платят за все?";
 };
 
@@ -248,7 +248,6 @@ instance DIA_Hanna_AnyNews(C_Info)
 	nr = 31;
 	condition = DIA_Hanna_AnyNews_Condition;
 	information = DIA_Hanna_AnyNews_Info;
-	permanent = FALSE;
 	description = "Как дела?";
 };
 
@@ -357,7 +356,6 @@ instance DIA_Hanna_ThisLetter(C_Info)
 	nr = 31;
 	condition = DIA_Hanna_ThisLetter_Condition;
 	information = DIA_Hanna_ThisLetter_Info;
-	permanent = FALSE;
 	description = "Ты этот документ имела в виду?";
 };
 
@@ -390,16 +388,18 @@ instance DIA_Hanna_AusKeller(C_Info)
 	nr = 11;
 	condition = DIA_Hanna_AusKeller_Condition;
 	information = DIA_Hanna_AusKeller_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Hanna_AusKeller_Condition()
 {
-	if(((HotelDoorOpened == TRUE) || (Knows_SecretSign == TRUE)) && !C_Hanna_ThievesGuildIsExposed())
+	if((HotelDoorOpened == TRUE) || (Knows_SecretSign == TRUE))
 	{
-		return TRUE;
+		if(!C_Hanna_ThievesGuildIsExposed())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -439,7 +439,6 @@ instance DIA_Hanna_Schuldenbuch(C_Info)
 	nr = 1;
 	condition = DIA_Hanna_Schuldenbuch_Condition;
 	information = DIA_Hanna_Schuldenbuch_Info;
-	permanent = FALSE;
 	description = "Посмотри, какая у меня есть книга!";
 };
 
@@ -467,7 +466,6 @@ instance DIA_Hanna_GiveSchuldenbuch(C_Info)
 	nr = 1;
 	condition = DIA_Hanna_GiveSchuldenbuch_Condition;
 	information = DIA_Hanna_GiveSchuldenbuch_Info;
-	permanent = FALSE;
 	description = "Вот - возьми эту книгу.";
 };
 
@@ -525,6 +523,7 @@ func void DIA_Hanna_Blubb_Info()
 		B_Hanna_ThievesCheck();
 	};
 };
+
 
 instance DIA_Hanna_Blubb2(C_Info)
 {
@@ -614,6 +613,7 @@ func void DIA_Hanna_Blubb3_Info()
 	B_Attack(self,other,AR_NONE,1);
 };
 
+
 instance DIA_Hanna_PICKPOCKET_Book(C_Info)
 {
 	npc = VLK_414_Hanna;
@@ -674,6 +674,7 @@ instance DIA_Hanna_Blubb4(C_Info)
 	permanent = TRUE;
 	important = TRUE;
 };
+
 
 func int DIA_Hanna_Blubb4_Condition()
 {

@@ -22,6 +22,8 @@ func void DIA_Addon_Martin_EXIT_Info()
 };
 
 
+var int DIA_Addon_Martin_MeetingIsRunning_OneTime;
+
 instance DIA_Addon_Martin_MeetingIsRunning(C_Info)
 {
 	npc = MIL_350_Addon_Martin;
@@ -40,9 +42,6 @@ func int DIA_Addon_Martin_MeetingIsRunning_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Addon_Martin_MeetingIsRunning_OneTime;
 
 func void DIA_Addon_Martin_MeetingIsRunning_Info()
 {
@@ -68,9 +67,12 @@ instance DIA_Addon_Martin_Hallo(C_Info)
 
 func int DIA_Addon_Martin_Hallo_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") < 1000) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (RangerMeetingRunning != LOG_SUCCESS) && (SC_IsRanger == FALSE) && (other.guild != GIL_MIL) && (other.guild != GIL_PAL))
+	if((self.aivar[AIV_TalkedToPlayer] == FALSE) && (RangerMeetingRunning != LOG_SUCCESS) && (SC_IsRanger == FALSE) && (other.guild != GIL_MIL) && (other.guild != GIL_PAL))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -259,9 +261,6 @@ func int DIA_Addon_Martin_Auftrag_Condition()
 		return TRUE;
 	};
 };
-
-
-var int MIS_Addon_Martin_GetRangar_Day;
 
 func void DIA_Addon_Martin_Auftrag_Info()
 {

@@ -6,10 +6,10 @@ func void B_GiveAllClassicMiscItems(var C_Npc npc)
 	CreateInvItems(npc,ItLsTorch,10);
 	CreateInvItem(npc,ItLsTorchburned);
 	CreateInvItem(npc,ItLsTorchFirespit);
-	CreateInvItem(npc,ItMiSwordraw);
-	CreateInvItem(npc,ItMiSwordrawhot);
-	CreateInvItem(npc,ItMiSwordbladehot);
-	CreateInvItem(npc,ItMiSwordblade);
+	CreateInvItem(npc,ItMiSwordRaw);
+	CreateInvItem(npc,ItMiSwordRawHot);
+	CreateInvItem(npc,ItMiSwordBladeHot);
+	CreateInvItem(npc,ItMiSwordBlade);
 	CreateInvItem(npc,ItMi_Pan);
 	CreateInvItem(npc,ItMi_PanFull);
 	CreateInvItem(npc,ItMi_Pliers);

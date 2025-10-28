@@ -27,7 +27,6 @@ instance DIA_Ruga_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Ruga_Hallo_Condition;
 	information = DIA_Ruga_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -70,7 +69,7 @@ func void DIA_Ruga_Train_Info()
 {
 	AI_Output(other,self,"DIA_Ruga_Train_15_00");	//Ты можешь потренировать меня?
 	B_Ruga_Teach_Log();
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Ruga_Train_11_01");	//Конечно. Если у тебя достаточно опыта, я готов помочь тебе.
 		AI_Output(self,other,"DIA_Ruga_Train_11_02");	//Но нужно понимать, что ловкость и стрельба неотделимы друг от друга, как арбалет и стрела. Одно...
@@ -78,12 +77,12 @@ func void DIA_Ruga_Train_Info()
 		Ruga_TeachCrossbow = TRUE;
 		Ruga_TeachDEX = TRUE;
 	}
-	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Ruga_Train_11_04");	//(презрительно) Убирайся с глаз моих, наемник.
 		AI_StopProcessInfos(self);
 	}
-	else if(hero.guild == GIL_NOV)
+	else if(other.guild == GIL_NOV)
 	{
 		B_Say(self,other,"$NOLEARNNOPOINTS");
 	}

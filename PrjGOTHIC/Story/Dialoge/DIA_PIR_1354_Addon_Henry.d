@@ -20,6 +20,7 @@ func void DIA_Addon_Henry_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
+
 func void B_Henry_Gold(var int gold)
 {
 	if(gold == 500)
@@ -176,7 +177,6 @@ instance DIA_Addon_Henry_WantEnter(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Henry_WantEnter_Condition;
 	information = DIA_Addon_Henry_WantEnter_Info;
-	permanent = FALSE;
 	description = "Я хочу попасть внутрь.";
 };
 
@@ -287,7 +287,6 @@ instance DIA_Addon_Henry_MeatForMorgan(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Henry_MeatForMorgan_Condition;
 	information = DIA_Addon_Henry_MeatForMorgan_Info;
-	permanent = FALSE;
 	description = "Я должен отдать Моргану мясо.";
 };
 
@@ -464,7 +463,6 @@ instance DIA_Addon_Henry_Palisade(C_Info)
 	nr = 11;
 	condition = DIA_Addon_Henry_Palisade_Condition;
 	information = DIA_Addon_Henry_Palisade_Info;
-	permanent = FALSE;
 	description = "Что ты здесь делаешь?";
 };
 
@@ -492,7 +490,6 @@ instance DIA_Addon_Henry_Palisade_WhatFor(C_Info)
 	nr = 12;
 	condition = DIA_Addon_Henry_Palisade_WhatFor_Condition;
 	information = DIA_Addon_Henry_Palisade_WhatFor_Info;
-	permanent = FALSE;
 	description = "Зачем вам понадобился частокол?";
 };
 
@@ -521,13 +518,13 @@ func void DIA_Addon_Henry_Palisade_WhatFor_Info()
 	};
 };
 
+
 func void B_Henry_WhereIsTower()
 {
 	AI_Output(other,self,"DIA_Addon_Francis_BanditsDead_15_08");	//Где именно находится башня?
 	AI_Output(self,other,"DIA_Addon_Henry_Entercrew_Add_04_07");	//Иди на юг и придерживайся правой стороны.
 	AI_Output(self,other,"DIA_Addon_Henry_Entercrew_Add_04_08");	//Ты увидишь башню на небольшом утесе.
 };
-
 
 instance DIA_Addon_Henry_Turmbanditen(C_Info)
 {
@@ -589,7 +586,6 @@ instance DIA_Addon_Henry_Palisade_Bandits(C_Info)
 	nr = 14;
 	condition = DIA_Addon_Henry_Palisade_Bandits_Condition;
 	information = DIA_Addon_Henry_Palisade_Bandits_Info;
-	permanent = FALSE;
 	description = "Почему ты думаешь, что бандиты могут на вас напасть?";
 };
 
@@ -1036,7 +1032,6 @@ instance DIA_Addon_Henry_Palisade_Train(C_Info)
 	nr = 11;
 	condition = DIA_Addon_Henry_Palisade_Train_Condition;
 	information = DIA_Addon_Henry_Palisade_Train_Info;
-	permanent = FALSE;
 	description = "Грег - ваш командир?";
 };
 
@@ -1074,7 +1069,6 @@ instance DIA_Addon_Henry_YourOwnTrupp(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Henry_YourOwnTrupp_Condition;
 	information = DIA_Addon_Henry_YourOwnTrupp_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

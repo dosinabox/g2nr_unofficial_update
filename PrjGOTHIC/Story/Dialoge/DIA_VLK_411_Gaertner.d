@@ -28,7 +28,6 @@ instance DIA_Gaertner_Job(C_Info)
 	nr = 5;
 	condition = DIA_Gaertner_Job_Condition;
 	information = DIA_Gaertner_Job_Info;
-	permanent = FALSE;
 	description = "Что ты делаешь здесь?";
 };
 
@@ -57,7 +56,6 @@ instance DIA_Gaertner_Plants(C_Info)
 	nr = 5;
 	condition = DIA_Gaertner_Plants_Condition;
 	information = DIA_Gaertner_Plants_Info;
-	permanent = FALSE;
 	description = "Ты выращиваешь какие-нибудь травы?";
 };
 
@@ -87,8 +85,8 @@ instance DIA_Gaertner_Trade(C_Info)
 	condition = DIA_Gaertner_Trade_Condition;
 	information = DIA_Gaertner_Trade_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
 	trade = TRUE;
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -114,7 +112,6 @@ instance DIA_Gaertner_Krautabak(C_Info)
 	nr = 6;
 	condition = DIA_Gaertner_Krautabak_Condition;
 	information = DIA_Gaertner_Krautabak_Info;
-	permanent = FALSE;
 	description = "У меня есть травяной табак. Хочешь затянуться?";
 };
 
@@ -154,7 +151,6 @@ instance DIA_Gaertner_Sign(C_Info)
 	nr = 800;
 	condition = DIA_Gaertner_Sign_Condition;
 	information = DIA_Gaertner_Sign_Info;
-	permanent = FALSE;
 	description = DIALOG_SecretSign;
 };
 
@@ -176,13 +172,13 @@ func void DIA_Gaertner_Sign_Info()
 	self.aivar[AIV_IGNORE_Theft] = TRUE;
 };
 
+
 instance DIA_Gaertner_FreeLockpicks(C_Info)
 {
 	npc = VLK_411_Gaertner;
 	nr = 8;
 	condition = DIA_Gaertner_FreeLockpicks_Condition;
 	information = DIA_Gaertner_FreeLockpicks_Info;
-	permanent = FALSE;
 	description = "У меня больше нет отмычек...";
 };
 

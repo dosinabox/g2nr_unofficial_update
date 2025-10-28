@@ -103,9 +103,6 @@ func void DIA_Pedro_DI_YOU_verschon()
 	Info_AddChoice(DIA_Pedro_DI_YOU,"Хорошо. Иди за мной, я отведу тебя на корабль.",DIA_Pedro_DI_YOU_FollowShip);
 };
 
-
-var int MIS_Pedro_DI_FollowShip;
-
 func void DIA_Pedro_DI_YOU_FollowShip()
 {
 	AI_Output(other,self,"DIA_Pedro_DI_YOU_FollowShip_15_00");	//Хорошо. Иди за мной, я отведу тебя на корабль.
@@ -129,9 +126,12 @@ instance DIA_Pedro_DI_ArrivedAtShip(C_Info)
 
 func int DIA_Pedro_DI_ArrivedAtShip_Condition()
 {
-	if((Npc_GetDistToWP(self,"SHIP") < 6000) && (MIS_Pedro_DI_FollowShip == LOG_RUNNING))
+	if(MIS_Pedro_DI_FollowShip == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"SHIP") < 6000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -141,6 +141,7 @@ func void DIA_Pedro_DI_ArrivedAtShip_Info()
 	AI_Output(self,other,"DIA_Pedro_DI_ArrivedAtShip_09_01");	//Потрясающий корабль у тебя. Ты настоящий генерал.
 	AI_Output(other,self,"DIA_Pedro_DI_ArrivedAtShip_15_02");	//Хватит болтать. Рассказывай, что я должен узнать?
 	AI_Output(self,other,"DIA_Pedro_DI_ArrivedAtShip_09_03");	//Да, конечно. С чего мне начать?
+	MIS_Pedro_DI_FollowShip = LOG_SUCCESS;
 	Info_ClearChoices(DIA_Pedro_DI_ArrivedAtShip);
 	Info_AddChoice(DIA_Pedro_DI_ArrivedAtShip,"Я услышал достаточно. Иди, найди себе место на моем корабле.",DIA_Pedro_DI_ArrivedAtShip_Back);
 	if(EVT_OrkOberst_Switch_Found == FALSE)

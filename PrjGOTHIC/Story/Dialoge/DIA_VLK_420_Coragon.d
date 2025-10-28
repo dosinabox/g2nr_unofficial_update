@@ -28,7 +28,6 @@ instance DIA_Coragon_HALLO(C_Info)
 	nr = 2;
 	condition = DIA_Coragon_HALLO_Condition;
 	information = DIA_Coragon_HALLO_Info;
-	permanent = FALSE;
 	description = "Могу я выпить здесь?";
 };
 
@@ -54,8 +53,8 @@ instance DIA_Coragon_Trade(C_Info)
 	condition = DIA_Coragon_Trade_Condition;
 	information = DIA_Coragon_Trade_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
 	trade = TRUE;
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -81,7 +80,6 @@ instance DIA_Coragon_WhatsUp(C_Info)
 	nr = 3;
 	condition = DIA_Coragon_WhatsUp_Condition;
 	information = DIA_Coragon_WhatsUp_Info;
-	permanent = FALSE;
 	description = "Как идут дела?";
 };
 
@@ -147,7 +145,6 @@ instance DIA_Coragon_Bestohlen(C_Info)
 	nr = 4;
 	condition = DIA_Coragon_Bestohlen_Condition;
 	information = DIA_Coragon_Bestohlen_Info;
-	permanent = FALSE;
 	description = "Тебя ограбили?";
 };
 
@@ -195,7 +192,6 @@ instance DIA_Coragon_BringSilber(C_Info)
 	nr = 5;
 	condition = DIA_Coragon_BringSilber_Condition;
 	information = DIA_Coragon_BringSilber_Info;
-	permanent = FALSE;
 	description = "Я принес твое серебро.";
 };
 
@@ -226,7 +222,6 @@ instance DIA_Coragon_Schuldenbuch(C_Info)
 	nr = 6;
 	condition = DIA_Coragon_Schuldenbuch_Condition;
 	information = DIA_Coragon_Schuldenbuch_Info;
-	permanent = FALSE;
 	description = "Посмотри, что у меня есть...";
 };
 
@@ -253,7 +248,6 @@ instance DIA_Coragon_GiveBook(C_Info)
 	nr = 7;
 	condition = DIA_Coragon_GiveBook_Condition;
 	information = DIA_Coragon_GiveBook_Info;
-	permanent = FALSE;
 	description = "Вот твоя книга.";
 };
 
@@ -290,7 +284,6 @@ instance DIA_Coragon_ToOV(C_Info)
 	nr = 9;
 	condition = DIA_Coragon_ToOV_Condition;
 	information = DIA_Coragon_ToOV_Info;
-	permanent = FALSE;
 	description = "Как мне попасть в верхний квартал?";
 };
 
@@ -319,7 +312,6 @@ instance DIA_Coragon_Valentino(C_Info)
 	nr = 8;
 	condition = DIA_Coragon_Valentino_Condition;
 	information = DIA_Coragon_Valentino_Info;
-	permanent = FALSE;
 	description = "А что там насчет Валентино?";
 };
 
@@ -348,7 +340,6 @@ instance DIA_Coragon_News(C_Info)
 	nr = 1;
 	condition = DIA_Coragon_News_Condition;
 	information = DIA_Coragon_News_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -382,7 +373,6 @@ instance DIA_Coragon_Ring(C_Info)
 	nr = 10;
 	condition = DIA_Coragon_Ring_Condition;
 	information = DIA_Coragon_Ring_Info;
-	permanent = FALSE;
 	description = "Вот - возьми это кольцо.";
 };
 

@@ -5,7 +5,7 @@ func void B_GiveTradeInv_Bennet_DI(var C_Npc slf)
 {
 	if(Bennet_DI_ItemsGiven == FALSE)
 	{
-		CreateInvItems(slf,ItMiSwordraw,3);
+		CreateInvItems(slf,ItMiSwordRaw,3);
 		CreateInvItems(slf,ItRw_Arrow,140);
 		CreateInvItems(slf,ItRw_Bolt,140);
 		CreateInvItems(slf,ItMw_1H_Mace_L_04,1);
@@ -36,9 +36,9 @@ func void B_GiveTradeInv_Bennet_DI(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItRw_Addon_MagicBolt,10);
 		};
-		if(Bennet_NW_ItMi_Swordraw_Count > 0)
+		if(Bennet_NW_ItMi_SwordRaw_Count > 0)
 		{
-			CreateInvItems(slf,ItMiSwordraw,Bennet_NW_ItMi_Swordraw_Count);
+			CreateInvItems(slf,ItMiSwordRaw,Bennet_NW_ItMi_SwordRaw_Count);
 		};
 		if(Bennet_NW_ItMi_Nugget_Count > 0)
 		{

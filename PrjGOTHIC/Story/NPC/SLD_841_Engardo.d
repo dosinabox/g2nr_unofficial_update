@@ -28,11 +28,11 @@ func void Rtn_PreStart_841()
 	TA_Stand_Guarding(22,0,8,0,"NW_FARM2_PATH_02");
 };
 
-func void Rtn_Start_841()
+/*func void Rtn_Start_841()
 {
 	TA_Smalltalk(8,0,22,0,"NW_FARM2_TO_TAVERN_08");
 	TA_Smalltalk(22,0,8,0,"NW_FARM2_TO_TAVERN_08");
-};
+};*/
 
 func void Rtn_Bigfarm_841()
 {

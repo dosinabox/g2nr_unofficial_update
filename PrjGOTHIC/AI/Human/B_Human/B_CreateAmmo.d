@@ -2,7 +2,7 @@
 func void B_CreateAmmo(var C_Npc slf)
 {
 	var C_Item rangedWeapon;
-	if(Npc_IsInFightMode(slf,FMODE_FAR))
+	if(Npc_HasReadiedRangedWeapon(slf))
 	{
 		rangedWeapon = Npc_GetReadiedWeapon(slf);
 	}

@@ -299,9 +299,9 @@ func int Spell_ProcessMana(var int manaInvested)
 	{
 		return Spell_Logic_SummonGuardian(manaInvested);
 	};
-	if(activeSpell == SPL_Energyball)
+	if(activeSpell == SPL_BeliarsRage)
 	{
-		return Spell_Logic_EnergyBall(manaInvested);
+		return Spell_Logic_BeliarsRage(manaInvested);
 	};
 	if(activeSpell == SPL_SuckEnergy)
 	{

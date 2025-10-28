@@ -27,7 +27,6 @@ instance DIA_Joe_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Joe_Hallo_Condition;
 	information = DIA_Joe_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -93,7 +92,6 @@ instance DIA_Joe_Sign(C_Info)
 	nr = 800;
 	condition = DIA_Joe_Sign_Condition;
 	information = DIA_Joe_Sign_Info;
-	permanent = FALSE;
 	description = DIALOG_SecretSign;
 };
 

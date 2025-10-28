@@ -50,6 +50,5 @@ instance ScavengerTransform(Mst_Default_Scavenger)
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_Scavenger();
 	Npc_SetToFistMode(self);
-	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 

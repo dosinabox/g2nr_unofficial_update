@@ -541,7 +541,7 @@ func int DIA_Alrik_HaveSword_Condition()
 func void DIA_Alrik_HaveSword_Info()
 {
 	AI_Output(other,self,"DIA_Alrik_HaveSword_15_00");	//Я принес твой меч!
-	B_GiveInvItems(other,self,ItMw_AlriksSword_MIS,1);
+	B_GiveWeapon(other,self,ItMw_AlriksSword_MIS,1);
 	AI_WaitTillEnd(self,other);
 	AI_EquipBestMeleeWeapon(self);
 	if(Alrik_EinmalSchwertBonus == FALSE)

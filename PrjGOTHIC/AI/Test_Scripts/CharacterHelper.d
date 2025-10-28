@@ -2980,25 +2980,25 @@ func void DIA_CH_Misc_Smithniedrig_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Smithniedrig);
 	Info_AddChoice(DIA_CH_Misc_Smithniedrig,Dialog_Back,DIA_CH_Misc_Smithniedrig_BACK);
-	if(PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE)
+	if(PLAYER_TALENT_SMITH[WEAPON_1H_Harad_04] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Smithniedrig,B_BuildLearnString(NAME_ItMw_1H_Common_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),CH_Training_Smith_Common);
-	};
-	if(PLAYER_TALENT_SMITH[WEAPON_1H_Harad_01] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_Smithniedrig,B_BuildLearnString(NAME_Addon_Harad_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Harad_01)),CH_Training_Smith_Harad01);
-	};
-	if(PLAYER_TALENT_SMITH[WEAPON_1H_Harad_02] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_Smithniedrig,B_BuildLearnString(NAME_Addon_Harad_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Harad_02)),CH_Training_Smith_Harad02);
+		Info_AddChoice(DIA_CH_Misc_Smithniedrig,B_BuildLearnString(NAME_Addon_Harad_04,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Harad_04)),CH_Training_Smith_Harad04);
 	};
 	if(PLAYER_TALENT_SMITH[WEAPON_1H_Harad_03] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Smithniedrig,B_BuildLearnString(NAME_Addon_Harad_03,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Harad_03)),CH_Training_Smith_Harad03);
 	};
-	if(PLAYER_TALENT_SMITH[WEAPON_1H_Harad_04] == FALSE)
+	if(PLAYER_TALENT_SMITH[WEAPON_1H_Harad_02] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Smithniedrig,B_BuildLearnString(NAME_Addon_Harad_04,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Harad_04)),CH_Training_Smith_Harad04);
+		Info_AddChoice(DIA_CH_Misc_Smithniedrig,B_BuildLearnString(NAME_Addon_Harad_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Harad_02)),CH_Training_Smith_Harad02);
+	};
+	if(PLAYER_TALENT_SMITH[WEAPON_1H_Harad_01] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_Smithniedrig,B_BuildLearnString(NAME_Addon_Harad_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Harad_01)),CH_Training_Smith_Harad01);
+	};
+	if(PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_Smithniedrig,B_BuildLearnString(NAME_ItMw_1H_Common_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),CH_Training_Smith_Common);
 	};
 };
 
@@ -3026,37 +3026,37 @@ func void DIA_CH_Misc_SmithHoch_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_SmithHoch);
 	Info_AddChoice(DIA_CH_Misc_SmithHoch,Dialog_Back,DIA_CH_Misc_SmithHoch_BACK);
-	if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] == FALSE)
+	if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_1H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_01)),CH_Training_Smith_1hSpecial1);
-	};
-	if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_2H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_01)),CH_Training_Smith_2hSpecial1);
-	};
-	if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_02] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_1H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_02)),CH_Training_Smith_1hSpecial2);
-	};
-	if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_02] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_2H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_02)),CH_Training_Smith_2hSpecial2);
-	};
-	if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_03] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_1H_Special_03,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_03)),CH_Training_Smith_1hSpecial3);
-	};
-	if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_03] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_2H_Special_03,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_03)),CH_Training_Smith_2hSpecial3);
+		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_2H_Special_04,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_04)),CH_Training_Smith_2hSpecial4);
 	};
 	if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_1H_Special_04,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_04)),CH_Training_Smith_1hSpecial4);
 	};
-	if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] == FALSE)
+	if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_03] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_2H_Special_04,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_04)),CH_Training_Smith_2hSpecial4);
+		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_2H_Special_03,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_03)),CH_Training_Smith_2hSpecial3);
+	};
+	if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_03] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_1H_Special_03,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_03)),CH_Training_Smith_1hSpecial3);
+	};
+	if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_02] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_2H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_02)),CH_Training_Smith_2hSpecial2);
+	};
+	if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_02] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_1H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_02)),CH_Training_Smith_1hSpecial2);
+	};
+	if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_2H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_01)),CH_Training_Smith_2hSpecial1);
+	};
+	if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_1H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_01)),CH_Training_Smith_1hSpecial1);
 	};
 };
 

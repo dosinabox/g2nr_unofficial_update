@@ -54,7 +54,6 @@ instance DIA_None_101_Mario_YouNeedMe(C_Info)
 	nr = 4;
 	condition = DIA_None_101_Mario_YouNeedMe_Condition;
 	information = DIA_None_101_Mario_YouNeedMe_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -82,7 +81,6 @@ instance DIA_None_101_Mario_WhyNeedYou(C_Info)
 	nr = 5;
 	condition = DIA_None_101_Mario_WhyNeedYou_Condition;
 	information = DIA_None_101_Mario_WhyNeedYou_Info;
-	permanent = FALSE;
 	description = "Почему я должен брать тебя?";
 };
 
@@ -113,7 +111,6 @@ instance DIA_None_101_Mario_WhyHere(C_Info)
 	nr = 7;
 	condition = DIA_None_101_Mario_WhyHere_Condition;
 	information = DIA_None_101_Mario_WhyHere_Info;
-	permanent = FALSE;
 	description = "А что ты делаешь здесь?";
 };
 
@@ -140,7 +137,6 @@ instance DIA_None_101_Mario_Abilities(C_Info)
 	nr = 8;
 	condition = DIA_None_101_Mario_Abilities_Condition;
 	information = DIA_None_101_Mario_Abilities_Info;
-	permanent = FALSE;
 	description = "Что ты можешь делать?";
 };
 
@@ -168,7 +164,6 @@ instance DIA_None_101_Mario_YourPrice(C_Info)
 	nr = 9;
 	condition = DIA_None_101_Mario_YourPrice_Condition;
 	information = DIA_None_101_Mario_YourPrice_Info;
-	permanent = FALSE;
 	description = "Что ты за это хочешь?";
 };
 
@@ -195,7 +190,6 @@ instance DIA_None_101_Mario_CouldBeDangerous(C_Info)
 	nr = 10;
 	condition = DIA_None_101_Mario_CouldBeDangerous_Condition;
 	information = DIA_None_101_Mario_CouldBeDangerous_Info;
-	permanent = FALSE;
 	description = "Путешествие может быть опасным.";
 };
 
@@ -223,7 +217,6 @@ instance DIA_None_101_Mario_DontNeedYou(C_Info)
 	nr = 13;
 	condition = DIA_None_101_Mario_DontNeedYou_Condition;
 	information = DIA_None_101_Mario_DontNeedYou_Info;
-	permanent = FALSE;
 	description = "Ты не нужен мне.";
 };
 
@@ -251,7 +244,6 @@ instance DIA_None_101_Mario_NeedGoodMen(C_Info)
 	nr = 2;
 	condition = DIA_None_101_Mario_NeedGoodMen_Condition;
 	information = DIA_None_101_Mario_NeedGoodMen_Info;
-	permanent = FALSE;
 	description = "Я всегда найду место для хороших людей.";
 };
 

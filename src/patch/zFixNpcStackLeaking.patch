@@ -1,0 +1,8 @@
+#engine [G2A]
+    #patch [Fix Npc Stack Leaking]
+        HEX @0x006E69D1 = '90 90 90 90 90 90' //Npc_SetTalentSkill
+        HEX @0x006E6BE1 = '90 90 90 90 90 90' //Npc_SetTalentValue
+        HEX @0x006EFB7D = '90 90 90 90 90 90' //AI_ReadyMeleeWeapon
+        HEX @0x006EFCCD = '90 90 90 90 90 90' //AI_ReadyRangedWeapon
+    #/patch
+#/engine

@@ -454,7 +454,7 @@ const int SPL_Swarm = 81;
 const int SPL_GreenTentacle = 82;
 //const int SPL_Earthquake = 83;
 const int SPL_SummonGuardian = 84;
-const int SPL_Energyball = 85;
+const int SPL_BeliarsRage = 85;
 const int SPL_SuckEnergy = 86;
 const int SPL_Skull = 87;
 const int SPL_SummonZombie = 88;
@@ -688,16 +688,17 @@ const int START_TALENT_2H = 10;
 const int START_TALENT_BOW = 10;
 const int START_TALENT_CROSSBOW = 10;
 
-const int NPC_TALENT_UNKNOWN = 0;
+//const int NPC_TALENT_0 = 0;
 const int NPC_TALENT_1H = 1;
 const int NPC_TALENT_2H = 2;
 const int NPC_TALENT_BOW = 3;
 const int NPC_TALENT_CROSSBOW = 4;
 const int NPC_TALENT_PICKLOCK = 5;
+//const int NPC_TALENT_6 = 6; не использовать!
 const int NPC_TALENT_MAGE = 7;
 const int NPC_TALENT_SNEAK = 8;
 const int NPC_TALENT_REGENERATE = 9;
-const int NPC_TALENT_FIREMASTER = 10;
+//const int NPC_TALENT_10 = 10;
 const int NPC_TALENT_ACROBAT = 11;
 const int NPC_TALENT_PICKPOCKET = 12;
 const int NPC_TALENT_SMITH = 13;
@@ -707,8 +708,8 @@ const int NPC_TALENT_TAKEANIMALFUR = 16;
 const int NPC_TALENT_FOREIGNLANGUAGE = 17;
 const int NPC_TALENT_WISPDETECTOR = 18;
 const int NPC_TALENT_TAKEANIMALTROPHY = 19;
-const int NPC_TALENT_D = 20;
-const int NPC_TALENT_E = 21;
+//const int NPC_TALENT_20 = 20;
+//const int NPC_TALENT_21 = 21;
 const int NPC_TALENT_MAX = 22;
 
 var int PLAYER_TALENT_RUNES[MAX_SPELL];
@@ -843,14 +844,14 @@ const int INVCAM_Z_RING_STANDARD = 45;
 const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2025;
-const int FIX_DATE_MONTH = 6;
-const int FIX_DATE_DAY = 27;
+const int FIX_DATE_MONTH = 10;
+const int FIX_DATE_DAY = 28;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;
 var int FIX_DATE_DAY_SAVE;
 
-const int FIX_VERSION = 31;
+const int FIX_VERSION = 32;
 var int FIX_VERSION_SAVE;
 
 const int LEAST_SUPPORTED = 27;

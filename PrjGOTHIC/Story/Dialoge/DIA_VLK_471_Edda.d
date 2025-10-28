@@ -27,14 +27,13 @@ instance DIA_Edda_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Edda_Hallo_Condition;
 	information = DIA_Edda_Hallo_Info;
-	permanent = FALSE;
 	description = "Что ты варишь?";
 };
 
 
 func int DIA_Edda_Hallo_Condition()
 {
-	if(Wld_IsTime(8,0,22,0))
+	if(Npc_WasInState(self,ZS_Cook_Cauldron))
 	{
 		return TRUE;
 	};
@@ -71,7 +70,6 @@ instance DIA_Edda_Sleep(C_Info)
 	nr = 3;
 	condition = DIA_Edda_Sleep_Condition;
 	information = DIA_Edda_Sleep_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -96,7 +94,6 @@ instance DIA_Edda_Stadt(C_Info)
 	nr = 9;
 	condition = DIA_Edda_Stadt_Condition;
 	information = DIA_Edda_Stadt_Info;
-	permanent = FALSE;
 	description = "Что ты можешь рассказать мне о городе?";
 };
 
@@ -183,7 +180,6 @@ instance DIA_Edda_Statue(C_Info)
 	nr = 6;
 	condition = DIA_Edda_Statue_Condition;
 	information = DIA_Edda_Statue_Info;
-	permanent = FALSE;
 	description = "Посмотри, я принес статую Инноса для тебя.";
 };
 
