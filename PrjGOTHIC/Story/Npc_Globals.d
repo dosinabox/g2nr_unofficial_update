@@ -118,6 +118,7 @@ var C_Npc Fellan;
 var C_Npc Bromor;
 var C_Npc Fernando;
 var C_Npc Wulfgar;
+var C_Npc Wambo;
 var C_Npc Mario;
 var C_Npc Mario_DI;
 var C_Npc Ignaz;
@@ -400,6 +401,7 @@ func void B_InitNpc_NW()
 	Fellan = Hlp_GetNpc(VLK_480_Fellan);
 	Bromor = Hlp_GetNpc(VLK_433_Bromor);
 	Wulfgar = Hlp_GetNpc(MIL_312_Wulfgar);
+	Wambo = Hlp_GetNpc(MIL_316_Wambo);
 	Mario = Hlp_GetNpc(NONE_101_Mario);
 	Hanna = Hlp_GetNpc(VLK_414_Hanna);
 	Bote = Hlp_GetNpc(VLK_4006_Bote);

@@ -21,22 +21,19 @@ func void DIA_Wambo_EXIT_Info()
 };
 
 
-var int DIA_Wambo_Deal_permanent;
-
 instance DIA_Wambo_Job(C_Info)
 {
 	npc = MIL_316_Wambo;
 	nr = 5;
 	condition = DIA_Wambo_Job_Condition;
 	information = DIA_Wambo_Job_Info;
-	permanent = FALSE;
 	description = "Что ты делаешь здесь?";
 };
 
 
 func int DIA_Wambo_Job_Condition()
 {
-	if(DIA_Wambo_Deal_permanent == FALSE)
+	if(WamboLocation == LOC_NONE)
 	{
 		return TRUE;
 	};
@@ -63,7 +60,7 @@ instance DIA_Wambo_Situation(C_Info)
 
 func int DIA_Wambo_Situation_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wambo_Job) || (DIA_Wambo_Deal_permanent == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Wambo_Job) || (WamboLocation != LOC_NONE))
 	{
 		return TRUE;
 	};
@@ -82,7 +79,6 @@ instance DIA_Wambo_Ramirez(C_Info)
 	nr = 5;
 	condition = DIA_Wambo_Ramirez_Condition;
 	information = DIA_Wambo_Ramirez_Info;
-	permanent = FALSE;
 	description = "Я пришел от нашего общего друга, Рамиреза.";
 };
 
@@ -120,7 +116,7 @@ instance DIA_Wambo_Deal(C_Info)
 
 func int DIA_Wambo_Deal_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wambo_Ramirez) && (DIA_Wambo_Deal_permanent == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Wambo_Ramirez) && (WamboLocation == LOC_NONE))
 	{
 		return TRUE;
 	};
@@ -133,7 +129,8 @@ func void DIA_Wambo_Deal_Info()
 	{
 		AI_Output(self,other,"DIA_Wambo_Deal_03_01");	//Хорошо, тогда я исчезаю на всю ночь.
 		AI_Output(self,other,"DIA_Wambo_Deal_03_02");	//И помни: если у тебя возникнут проблемы, я не знаю тебя.
-		DIA_Wambo_Deal_permanent = TRUE;
+		Wambo_Day = Wld_GetDay();
+		WamboLocation = Q_HAFEN;
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"DRINK");
 	}

@@ -3,8 +3,7 @@ var int RavenBlitz;
 
 func void B_SpecialMeleeWeaponDamage(var C_Npc attacker,var C_Npc target)
 {
-	var int RavenRandy;
-	var int DamageRandy;
+	var int random;
 	if(!Hlp_IsValidNpc(attacker))
 	{
 		return;
@@ -20,8 +19,8 @@ func void B_SpecialMeleeWeaponDamage(var C_Npc attacker,var C_Npc target)
 		}
 		else if(RavenBlitz >= 3)
 		{
-			RavenRandy = Hlp_Random(100);
-			if(RavenRandy <= 50)
+			random = Hlp_Random(100);
+			if(random <= 50)
 			{
 				RavenBlitz = 0;
 			};
@@ -51,11 +50,11 @@ func void B_SpecialMeleeWeaponDamage(var C_Npc attacker,var C_Npc target)
 		{
 			if(C_ScHasReadiedBeliarsWeapon())
 			{
-				DamageRandy = Hlp_Random(100);
-				if(DamageRandy <= BeliarDamageChance_20)
+				random = Hlp_Random(100);
+				if(random <= BeliarDamageChance_20)
 				{
 					Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",attacker,attacker,0,0,0,FALSE);
-					if(DamageRandy <= BeliarDamageChance)
+					if(random <= BeliarDamageChance)
 					{
 						if(target.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)
 						{

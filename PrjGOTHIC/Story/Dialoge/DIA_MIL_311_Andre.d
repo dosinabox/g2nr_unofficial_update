@@ -30,7 +30,6 @@ instance DIA_Andre_FIRSTEXIT(C_Info)
 	nr = 999;
 	condition = DIA_Andre_FIRSTEXIT_Condition;
 	information = DIA_Andre_FIRSTEXIT_Info;
-	permanent = FALSE;
 	description = Dialog_Ende;
 };
 
@@ -392,7 +391,6 @@ instance DIA_Andre_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Andre_Hallo_Condition;
 	information = DIA_Andre_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -432,7 +430,6 @@ instance DIA_Andre_Message(C_Info)
 	nr = 1;
 	condition = DIA_Andre_Message_Condition;
 	information = DIA_Andre_Message_Info;
-	permanent = FALSE;
 	description = "У меня есть важное сообщение для лорда Хагена.";
 };
 
@@ -515,7 +512,6 @@ instance DIA_Andre_Paladine(C_Info)
 	nr = 3;
 	condition = DIA_Andre_Paladine_Condition;
 	information = DIA_Andre_Paladine_Info;
-	permanent = FALSE;
 	description = "Почему паладины прибыли в город?";
 };
 
@@ -553,7 +549,6 @@ instance DIA_Andre_PaladineAgain(C_Info)
 	nr = 3;
 	condition = DIA_Andre_PaladineAgain_Condition;
 	information = DIA_Andre_PaladineAgain_Info;
-	permanent = FALSE;
 	description = "Так ты скажешь мне, зачем паладины прибыли в Хоринис?";
 };
 
@@ -587,7 +582,6 @@ instance DIA_Andre_PaladineAgain2(C_Info)
 	nr = 3;
 	condition = DIA_Andre_PaladineAgain2_Condition;
 	information = DIA_Andre_PaladineAgain2_Info;
-	permanent = FALSE;
 	description = "Что паладины делают в городе?";
 };
 
@@ -616,14 +610,13 @@ instance DIA_Andre_AskToJoin(C_Info)
 	nr = 2;
 	condition = DIA_Andre_AskToJoin_Condition;
 	information = DIA_Andre_AskToJoin_Info;
-	permanent = FALSE;
 	description = "Я хочу поступить на службу к паладинам!";
 };
 
 
 func int DIA_Andre_AskToJoin_Condition()
 {
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		return TRUE;
 	};
@@ -658,7 +651,6 @@ instance DIA_Andre_AboutMiliz(C_Info)
 	nr = 5;
 	condition = DIA_Andre_AboutMiliz_Condition;
 	information = DIA_Andre_AboutMiliz_Info;
-	permanent = FALSE;
 	description = "Что я получу от вступления в ополчение?";
 };
 
@@ -705,7 +697,7 @@ func void DIA_Addon_Andre_MartinEmpfehlung_Info()
 	B_GiveInvItems(other,self,ItWr_Martin_MilizEmpfehlung_Addon,1);
 	B_ReadFakeItem(self,other,Fakescroll,1);
 	AI_Output(self,other,"DIA_Addon_Andre_MartinEmpfehlung_08_02");	//(удивленно) Ну надо же! Тебе, должно быть, пришлось потрудиться! Не так-то просто получить нечто подобное от Мартина.
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Addon_Andre_MartinEmpfehlung_08_03");	//Ладно, я убежден. Если Мартин за тебя ручается, я согласен тебя принять. Скажи мне, когда ты будешь готов.
 	}
@@ -723,7 +715,6 @@ instance DIA_Andre_Alternative(C_Info)
 	nr = 2;
 	condition = DIA_Andre_Alternative_Condition;
 	information = DIA_Andre_Alternative_Info;
-	permanent = FALSE;
 	description = "А нет более быстрого способа присоединиться к вам?";
 };
 
@@ -759,7 +750,6 @@ instance DIA_Andre_GuildOfThieves(C_Info)
 	nr = 2;
 	condition = DIA_Andre_GuildOfThieves_Condition;
 	information = DIA_Andre_GuildOfThieves_Info;
-	permanent = FALSE;
 	description = "Что у тебя за проблема?";
 };
 
@@ -795,7 +785,6 @@ instance DIA_Andre_WhereThieves(C_Info)
 	nr = 2;
 	condition = DIA_Andre_WhereThieves_Condition;
 	information = DIA_Andre_WhereThieves_Info;
-	permanent = FALSE;
 	description = "Где мне лучше начать искать этих воров?";
 };
 
@@ -829,7 +818,6 @@ instance DIA_Andre_WhatToDo(C_Info)
 	nr = 3;
 	condition = DIA_Andre_WhatToDo_Condition;
 	information = DIA_Andre_WhatToDo_Info;
-	permanent = FALSE;
 	description = "Что мне делать, когда я найду этих воров?";
 };
 
@@ -1177,7 +1165,6 @@ instance DIA_Andre_FoundThieves_KilledByMilitia(C_Info)
 	nr = 9;
 	condition = DIA_Andre_FoundThieves_KilledByMilitia_Condition;
 	information = DIA_Andre_FoundThieves_KilledByMilitia_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -1240,7 +1227,7 @@ instance DIA_Andre_JOIN(C_Info)
 
 func int DIA_Andre_JOIN_Condition()
 {
-	if((hero.guild == GIL_NONE) && Npc_KnowsInfo(other,DIA_Andre_AskToJoin))
+	if((other.guild == GIL_NONE) && Npc_KnowsInfo(other,DIA_Andre_AskToJoin))
 	{
 		return TRUE;
 	};
@@ -1304,7 +1291,7 @@ func void DIA_Andre_JOIN_Yes()
 	AI_Output(self,other,"DIA_Andre_JOIN_Yes_08_01");	//Тогда так тому и быть. Добро пожаловать в ряды ополчения.
 	AI_Output(self,other,"DIA_Andre_JOIN_Yes_08_02");	//Вот твои доспехи.
 	AI_Output(self,other,"DIA_Andre_JOIN_Yes_08_03");	//Носи их с гордостью и достоинством.
-	B_SetGuild(hero,GIL_MIL);
+	B_SetGuild(other,GIL_MIL);
 	B_GiveArmor(ITAR_MIL_L);
 	Snd_Play("LEVELUP");
 	B_StartOtherRoutine(Lothar,"START");
@@ -1341,7 +1328,6 @@ instance DIA_Andre_LORDHAGEN(C_Info)
 	nr = 2;
 	condition = DIA_Andre_LORDHAGEN_Condition;
 	information = DIA_Andre_LORDHAGEN_Info;
-	permanent = FALSE;
 	description = "Могу я теперь увидеть лорда Хагена?";
 };
 
@@ -1372,7 +1358,6 @@ instance DIA_Andre_Waffe(C_Info)
 	nr = 2;
 	condition = DIA_Andre_Waffe_Condition;
 	information = DIA_Andre_Waffe_Info;
-	permanent = FALSE;
 	description = "А я получу оружие?";
 };
 
@@ -1410,7 +1395,6 @@ instance DIA_Andre_FOUND_PECK(C_Info)
 	nr = 2;
 	condition = DIA_Andre_FOUND_PECK_Condition;
 	information = DIA_Andre_FOUND_PECK_Info;
-	permanent = FALSE;
 	description = "Мне удалось найти Пека.";
 };
 
@@ -1422,12 +1406,12 @@ func int DIA_Andre_FOUND_PECK_Condition()
 		if(Npc_IsDead(Peck))
 		{
 			return TRUE;
-		}
-		else if(Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
+		};
+		if(Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
 		{
 			return TRUE;
-		}
-		else if((Peck.aivar[AIV_TalkedToPlayer] == TRUE) && (Kapitel >= 3))
+		};
+		if((Peck.aivar[AIV_TalkedToPlayer] == TRUE) && (Kapitel >= 3))
 		{
 			return TRUE;
 		};
@@ -1496,7 +1480,6 @@ instance DIA_Andre_FIRSTMISSION(C_Info)
 	nr = 2;
 	condition = DIA_Andre_FIRSTMISSION_Condition;
 	information = DIA_Andre_FIRSTMISSION_Info;
-	permanent = FALSE;
 	description = "У тебя есть задание для меня?";
 };
 
@@ -1923,7 +1906,6 @@ instance DIA_Andre_BerichtDrachen(C_Info)
 	nr = 1;
 	condition = DIA_Andre_BerichtDrachen_Condition;
 	information = DIA_Andre_BerichtDrachen_Info;
-	permanent = FALSE;
 	description = "Я был в Долине Рудников и видел драконов!";
 };
 
@@ -1939,7 +1921,7 @@ func int DIA_Andre_BerichtDrachen_Condition()
 func void DIA_Andre_BerichtDrachen_Info()
 {
 	AI_Output(other,self,"DIA_Andre_Add_15_13");	//Я был в Долине Рудников и видел драконов!
-	if(Npc_HasItems(hero,ItWr_PaladinLetter_MIS))
+	if(Npc_HasItems(other,ItWr_PaladinLetter_MIS))
 	{
 		AI_Output(other,self,"DIA_Andre_Add_15_14");	//У меня есть письмо от командующего Гаронда, подтверждающее то, что я сказал.
 		AI_Output(self,other,"DIA_Andre_Add_08_10");	//Это заинтересует лорда Хагена!
@@ -2043,7 +2025,6 @@ instance DIA_Andre_Paladin(C_Info)
 	npc = MIL_311_Andre;
 	condition = DIA_Andre_Paladin_Condition;
 	information = DIA_Andre_Paladin_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -2103,7 +2084,6 @@ instance DIA_Andre_BerichtDrachenTot(C_Info)
 	nr = 1;
 	condition = DIA_Andre_BerichtDrachenTot_Condition;
 	information = DIA_Andre_BerichtDrachenTot_Info;
-	permanent = FALSE;
 	description = "Я убил всех драконов в Долине Рудников!";
 };
 
@@ -2130,7 +2110,6 @@ instance DIA_Andre_BerichtTorAuf(C_Info)
 	nr = 1;
 	condition = DIA_Andre_BerichtTorAuf_Condition;
 	information = DIA_Andre_BerichtTorAuf_Info;
-	permanent = FALSE;
 	description = "Замок в Долине Рудников штурмовали орки!";
 };
 

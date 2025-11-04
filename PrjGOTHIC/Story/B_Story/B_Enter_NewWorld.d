@@ -99,6 +99,7 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 		};
 	};
 	B_KillThievesGuild();
+	B_ResetWambo();
 	B_ResetWolfSLDs();
 };
 

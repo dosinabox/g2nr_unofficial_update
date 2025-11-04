@@ -46,6 +46,18 @@ func void B_ResetSalandril()
 	};
 };
 
+func void B_ResetWambo()
+{
+	if((WamboLocation == Q_HAFEN) && C_DaysSinceEvent(Wambo_Day,5))
+	{
+		if(!Npc_IsDead(Wambo))
+		{
+			Npc_ExchangeRoutine(Wambo,"START");
+			WamboLocation = Q_OBERSTADT;
+		};
+	};
+};
+
 func void B_ResetLares()
 {
 	if(LaresGuide_ZuOnar != 2)

@@ -27,7 +27,6 @@ instance DIA_Wulfgar_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Wulfgar_Hallo_Condition;
 	information = DIA_Wulfgar_Hallo_Info;
-	permanent = FALSE;
 	description = "Каковы твои обязанности?";
 };
 
@@ -51,7 +50,6 @@ instance DIA_Wulfgar_WannaJoin(C_Info)
 	nr = 2;
 	condition = DIA_Wulfgar_WannaJoin_Condition;
 	information = DIA_Wulfgar_WannaJoin_Info;
-	permanent = FALSE;
 	description = "Я хочу вступить в ополчение!";
 };
 
@@ -88,7 +86,6 @@ instance DIA_Wulfgar_AboutMiliz(C_Info)
 	nr = 3;
 	condition = DIA_Wulfgar_AboutMiliz_Condition;
 	information = DIA_Wulfgar_AboutMiliz_Info;
-	permanent = FALSE;
 	description = "Каково это, служить в ополчении?";
 };
 
@@ -124,7 +121,6 @@ instance DIA_Wulfgar_CanYouTrain(C_Info)
 	nr = 4;
 	condition = DIA_Wulfgar_CanYouTrain_Condition;
 	information = DIA_Wulfgar_CanYouTrain_Info;
-	permanent = FALSE;
 	description = "Ты можешь обучить меня сражению на мечах?";
 };
 
@@ -177,7 +173,6 @@ instance DIA_Wulfgar_Advantage(C_Info)
 	nr = 5;
 	condition = DIA_Wulfgar_Advantage_Condition;
 	information = DIA_Wulfgar_Advantage_Info;
-	permanent = FALSE;
 	description = "Каковы преимущества двуручного оружия?";
 };
 
@@ -204,7 +199,6 @@ instance DIA_Wulfgar_HowToBegin(C_Info)
 	nr = 6;
 	condition = DIA_Wulfgar_HowToBegin_Condition;
 	information = DIA_Wulfgar_HowToBegin_Info;
-	permanent = FALSE;
 	description = "С чего мне лучше начать? С одноручного или двуручного оружия?";
 };
 
@@ -407,7 +401,6 @@ instance DIA_Wulfgar_AlsMil(C_Info)
 	nr = 1;
 	condition = DIA_Wulfgar_AlsMil_Condition;
 	information = DIA_Wulfgar_AlsMil_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -445,7 +438,6 @@ instance DIA_Wulfgar_Bonus(C_Info)
 	nr = 2;
 	condition = DIA_Wulfgar_Bonus_Condition;
 	information = DIA_Wulfgar_Bonus_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
