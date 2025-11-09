@@ -31,7 +31,6 @@ instance DIA_Hilda_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Hilda_Hallo_Condition;
 	information = DIA_Hilda_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -46,7 +45,7 @@ func int DIA_Hilda_Hallo_Condition()
 
 func void DIA_Hilda_Hallo_Info()
 {
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Hilda_Hallo_17_00");	//Эй, тебя сюда звали? Немедленно убирайся из моего дома. Здесь не подают милостыню.
 		AI_StopProcessInfos(self);
@@ -57,6 +56,8 @@ func void DIA_Hilda_Hallo_Info()
 	};
 };
 
+
+var int Hilda_FirstStewGiven;
 
 instance DIA_Hilda_WasZuEssen(C_Info)
 {
@@ -79,20 +80,19 @@ func int DIA_Hilda_WasZuEssen_Condition()
 
 func void DIA_Hilda_WasZuEssen_Info()
 {
-	var int Rueben_TagNull;
 	AI_Output(other,self,"DIA_Hilda_WasZuEssen_15_00");	//Ты дашь мне что-нибудь поесть?
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		if(MIS_Lobart_Rueben == LOG_SUCCESS)
 		{
 			if(!Npc_KnowsInfo(other,DIA_Hilda_PfanneTooLate))
 			{
-				if(Rueben_TagNull == FALSE)
+				if(Hilda_FirstStewGiven == FALSE)
 				{
 					AI_Output(self,other,"DIA_Hilda_WasZuEssen_17_02");	//За добавкой можешь зайти завтра.
 					B_GiveInvItems(self,other,ItFo_Stew,1);
 					Hilda_Stew_Day = Wld_GetDay();
-					Rueben_TagNull = TRUE;
+					Hilda_FirstStewGiven = TRUE;
 					Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
 					B_LogEntry(TOPIC_Bonus,"Я могу получать тарелку тушеной репы у Хильды каждый день.");
 				}
@@ -157,7 +157,7 @@ func void DIA_Hilda_BringBeet_Info()
 	}
 	else
 	{
-		if(hero.guild == GIL_NONE)
+		if(other.guild == GIL_NONE)
 		{
 			AI_Output(self,other,"DIA_Hilda_BringBeet_17_04");	//Что?! Это все?
 		}
@@ -177,7 +177,6 @@ instance DIA_Hilda_Einkaufen(C_Info)
 	nr = 2;
 	condition = DIA_Hilda_Einkaufen_Condition;
 	information = DIA_Hilda_Einkaufen_Info;
-	permanent = FALSE;
 	description = "Дай мне золота, и я схожу к этому торговцу для тебя...";
 };
 
@@ -193,7 +192,7 @@ func int DIA_Hilda_Einkaufen_Condition()
 func void DIA_Hilda_Einkaufen_Info()
 {
 	AI_Output(other,self,"DIA_Hilda_Einkaufen_15_00");	//Дай мне золота, и я схожу к этому торговцу для тебя...
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Hilda_Einkaufen_17_01");	//А тебе можно доверять? Только попробуй потратить эти деньги на выпивку, слышишь?!
 	}
@@ -216,7 +215,6 @@ instance DIA_Hilda_PfanneGeholt(C_Info)
 	nr = 2;
 	condition = DIA_Hilda_PfanneGeholt_Condition;
 	information = DIA_Hilda_PfanneGeholt_Info;
-	permanent = FALSE;
 	description = "Вот твоя сковородка.";
 };
 
@@ -253,7 +251,6 @@ instance DIA_Hilda_PfanneTooLate(C_Info)
 	nr = 1;
 	condition = DIA_Hilda_PfanneTooLate_Condition;
 	information = DIA_Hilda_PfanneTooLate_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -268,7 +265,7 @@ func int DIA_Hilda_PfanneTooLate_Condition()
 
 func void DIA_Hilda_PfanneTooLate_Info()
 {
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Hilda_PfanneTooLate_17_00");	//У тебя еще хватает наглости появляться здесь? Что ты сделал с моими деньгами, ты, бездельник?!
 	}
@@ -306,6 +303,8 @@ func void DIA_Hilda_PfanneTooLate_Info()
 };
 
 
+var int DIA_Hilda_KRANK_OnTime;
+
 instance DIA_Hilda_KRANK(C_Info)
 {
 	npc = BAU_951_Hilda;
@@ -319,14 +318,11 @@ instance DIA_Hilda_KRANK(C_Info)
 
 func int DIA_Hilda_KRANK_Condition()
 {
-	if((Kapitel >= 3) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)) && (MIS_HealHilda != LOG_SUCCESS))
+	if((Kapitel >= 3) && ((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF)) && (MIS_HealHilda != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
 };
-
-
-var int DIA_Hilda_KRANK_OnTime;
 
 func void DIA_Hilda_KRANK_Info()
 {

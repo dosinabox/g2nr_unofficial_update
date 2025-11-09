@@ -114,6 +114,8 @@ func void DIA_Edda_Stadt_Info()
 };
 
 
+var int Edda_FirstSoupGiven;
+
 instance DIA_Edda_Suppe(C_Info)
 {
 	npc = VLK_471_Edda;
@@ -161,6 +163,12 @@ func void DIA_Edda_Suppe_Info()
 			AI_Output(self,other,"DIA_Edda_Suppe_17_01");	//Нет ничего проще. Вот, держи тарелку.
 			B_GiveInvItems(self,other,ItFo_EddasFishSoup,1);
 			Edda_Day = Wld_GetDay();
+			if(Edda_FirstSoupGiven == FALSE)
+			{
+				Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
+				B_LogEntry(TOPIC_Bonus,"Эдда готова варить для меня уху каждый день, если я буду приносить ей рыбу.");
+				Edda_FirstSoupGiven = TRUE;
+			};
 		}
 		else
 		{
