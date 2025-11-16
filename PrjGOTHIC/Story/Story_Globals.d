@@ -54,6 +54,7 @@ const int SerpentesMinenAnteilOffer = 200;
 const int NefariusMissingOrnamentsOffer = 100;
 const int Addon_ErolsStoneplatesOffer = 10;
 const int HagensRingOffer = 150;
+const int CrimsonGoldNuggetOffer = 10;
 const int PremiumTeachersPrice = 20;
 const int AlligatorJack_TeachingCost = 200;
 const int Grimbald_TeachingCost = 200;

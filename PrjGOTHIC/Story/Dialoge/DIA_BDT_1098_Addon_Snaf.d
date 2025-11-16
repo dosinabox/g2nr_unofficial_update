@@ -27,7 +27,6 @@ instance DIA_Addon_Snaf_Hi(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Snaf_Hi_Condition;
 	information = DIA_Addon_Snaf_Hi_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -52,7 +51,6 @@ instance DIA_Addon_Snaf_Cook(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Snaf_Cook_Condition;
 	information = DIA_Addon_Snaf_Cook_Info;
-	permanent = FALSE;
 	description = "А что у вас в меню, сэр?";
 };
 
@@ -114,7 +112,6 @@ instance DIA_Addon_Snaf_Booze(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Snaf_Booze_Condition;
 	information = DIA_Addon_Snaf_Booze_Info;
-	permanent = FALSE;
 	description = "Вот твой самогон, приятель.";
 };
 
@@ -153,7 +150,6 @@ instance DIA_Addon_Snaf_Attentat(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Snaf_Attentat_Condition;
 	information = DIA_Addon_Snaf_Attentat_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о нападении?";
 };
 
@@ -276,7 +272,6 @@ instance DIA_Addon_Snaf_HOCH(C_Info)
 	nr = 6;
 	condition = DIA_Addon_Snaf_HOCH_Condition;
 	information = DIA_Addon_Snaf_HOCH_Info;
-	permanent = FALSE;
 	description = "Я от Хуно.";
 };
 
@@ -333,9 +328,12 @@ instance DIA_Addon_Snaf_People(C_Info)
 
 func int DIA_Addon_Snaf_People_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Snaf_Attentat) && !Npc_IsDead(Esteban))
+	if(Npc_KnowsInfo(other,DIA_Addon_Snaf_Attentat))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Esteban))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -464,16 +462,18 @@ instance DIA_Addon_Snaf_Himself(C_Info)
 	nr = 7;
 	condition = DIA_Addon_Snaf_Himself_Condition;
 	information = DIA_Addon_Snaf_Himself_Info;
-	permanent = FALSE;
 	description = "А ты? Что ты думаешь об Эстебане?";
 };
 
 
 func int DIA_Addon_Snaf_Himself_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Snaf_Attentat) && !Npc_IsDead(Esteban))
+	if(Npc_KnowsInfo(other,DIA_Addon_Snaf_Attentat))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Esteban))
+		{
+			return TRUE;
+		};
 	};
 };
 

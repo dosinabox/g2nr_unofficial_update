@@ -839,6 +839,8 @@ func void DIA_Cord_Teach_Info()
 			DIA_Cord_Teacher_permanent = TRUE;
 		};
 		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		Cord_Approved = TRUE;
+		B_CheckLog();
 		AI_StopProcessInfos(self);
 	}
 	else if(TeacherCanTrainTalent(NPC_TALENT_1H,TeachCondition_Cord) || TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_Cord) || (other.guild == GIL_SLD) || (other.guild == GIL_DJG) || (Cord_RangerHelp_Fight == TRUE))

@@ -28,7 +28,6 @@ instance DIA_Addon_Crimson_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Crimson_Hi_Condition;
 	information = DIA_Addon_Crimson_Hi_Info;
-	permanent = FALSE;
 	description = "Что ты делаешь? Ты плавишь наше золото?";
 };
 
@@ -53,7 +52,6 @@ instance DIA_Addon_Crimson_How(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Crimson_How_Condition;
 	information = DIA_Addon_Crimson_How_Info;
-	permanent = FALSE;
 	description = "Сколько монет ты дашь мне за самородок?";
 };
 
@@ -70,7 +68,7 @@ func void DIA_Addon_Crimson_How_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Crimson_How_15_00");	//Сколько монет ты дашь мне за самородок?
 	AI_Output(self,other,"DIA_Addon_Crimson_How_10_01");	//Ну, тебя я совсем не знаю, но думаю, что дам тебе особую цену. За один самородок я дам тебе...
-	B_Say_Gold(self,other,10);
+	B_Say_Gold(self,other,CrimsonGoldNuggetOffer);
 	Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
 	B_LogEntry(TOPIC_Bonus,"Я могу продавать золотые самородки Кримсону по особой цене.");
 };
@@ -82,7 +80,6 @@ instance DIA_Addon_Crimson_Feilsch(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Crimson_Feilsch_Condition;
 	information = DIA_Addon_Crimson_Feilsch_Info;
-	permanent = FALSE;
 	description = "Давай поторгуемся!";
 };
 
@@ -161,7 +158,7 @@ func void DIA_Addon_Crimson_Gold_ALLE()
 	var int CurrentNuggets;
 	CurrentNuggets = Npc_HasItems(other,ItMi_GoldNugget_Addon);
 	B_GiveInvItems(other,self,ItMi_GoldNugget_Addon,CurrentNuggets);
-	B_GiveInvItems(self,other,ItMi_Gold,CurrentNuggets * 10);
+	B_GiveInvItems(self,other,ItMi_Gold,CurrentNuggets * CrimsonGoldNuggetOffer);
 	B_RemoveEveryInvItem(self,ItMi_GoldNugget_Addon);
 	Info_ClearChoices(DIA_Addon_Crimson_Gold);
 };
@@ -169,7 +166,7 @@ func void DIA_Addon_Crimson_Gold_ALLE()
 func void DIA_Addon_Crimson_Gold_1()
 {
 	B_GiveInvItems(other,self,ItMi_GoldNugget_Addon,1);
-	B_GiveInvItems(self,other,ItMi_Gold,10);
+	B_GiveInvItems(self,other,ItMi_Gold,CrimsonGoldNuggetOffer);
 	B_RemoveEveryInvItem(self,ItMi_GoldNugget_Addon);
 	Info_ClearChoices(DIA_Addon_Crimson_Gold);
 	Info_AddChoice(DIA_Addon_Crimson_Gold,Dialog_Back,DIA_Addon_Crimson_Gold_BACK);
@@ -195,7 +192,6 @@ instance DIA_Addon_Crimson_Raven(C_Info)
 	nr = 9;
 	condition = DIA_Addon_Crimson_Raven_Condition;
 	information = DIA_Addon_Crimson_Raven_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о Вороне?";
 };
 
