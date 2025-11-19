@@ -27,7 +27,6 @@ instance DIA_Addon_Pardos_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Pardos_Hi_Condition;
 	information = DIA_Addon_Pardos_Hi_Info;
-	permanent = FALSE;
 	description = "Как ты?";
 };
 
@@ -55,7 +54,6 @@ instance DIA_Addon_Pardos_save(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Pardos_save_Condition;
 	information = DIA_Addon_Pardos_save_Info;
-	permanent = FALSE;
 	description = "Держись. Помощь скоро придет.";
 };
 
@@ -74,8 +72,6 @@ func void DIA_Addon_Pardos_save_Info()
 	AI_Output(self,other,"DIA_Addon_Pardos_save_03_01");	//(устало) Спасибо. Спасибо за добрые слова.
 };
 
-
-var int Pardos_Geheilt;
 
 instance DIA_Addon_Pardos_trank(C_Info)
 {

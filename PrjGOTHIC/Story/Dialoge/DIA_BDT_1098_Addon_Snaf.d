@@ -128,14 +128,17 @@ func void DIA_Addon_Snaf_Booze_Info()
 {
 	B_GiveInvItems(other,self,ItFo_Addon_LousHammer,1);
 	AI_Output(other,self,"DIA_Addon_Snaf_Booze_15_00");	//Вот твой самогон, приятель.
-	AI_Output(self,other,"DIA_Addon_Snaf_Booze_01_01");	//Прекрасно. Позволь мне приготовить соус.
-	AI_GotoWP(self,"BL_INN_BAR_03");
-	AI_UseMob(self,"CAULDRON",1);
-	AI_Wait(self,2);
-	AI_UseMob(self,"CAULDRON",-1);
-	AI_Wait(self,1);
-	AI_GotoWP(self,"BL_INN_BAR_05");
-	AI_TurnToNPC(self,other);
+	if(Npc_GetDistToWP(self,"BL_INN_BAR_03") < 1000)
+	{
+		AI_Output(self,other,"DIA_Addon_Snaf_Booze_01_01");	//Прекрасно. Позволь мне приготовить соус.
+		AI_GotoWP(self,"BL_INN_BAR_03");
+		AI_UseMob(self,"CAULDRON",1);
+		AI_Wait(self,2);
+		AI_UseMob(self,"CAULDRON",-1);
+		AI_Wait(self,1);
+		AI_GotoWP(self,"BL_INN_BAR_05");
+		AI_TurnToNPC(self,other);
+	};
 	AI_Output(self,other,"DIA_Addon_Snaf_Booze_01_02");	//Вот, готово. Можешь попробовать прямо сейчас. Силушки-то в ручонках прибавится, спору нет.
 	AI_Output(self,other,"DIA_Addon_Snaf_Booze_01_03");	//А еще, если тебе понадобится моя помощь... Теперь вся информация для тебя - бесплатно.
 	B_GiveInvItems(self,other,ItFo_Addon_FireStew,1);

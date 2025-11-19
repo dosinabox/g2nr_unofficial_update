@@ -20,7 +20,7 @@ func void DIA_1017_BANDIT_EXIT_Info()
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_SuddenEnemyInferno,1);
 	self.aivar[AIV_IgnoresArmor] = TRUE;
-	//ch1
+	//глава 1
 	if(!Npc_IsDead(BDT_1001_Bandit_L)) //уникальный в мире
 	{
 		BDT_1001_Bandit_L.aivar[AIV_IgnoresArmor] = TRUE;
@@ -41,7 +41,7 @@ func void DIA_1017_BANDIT_EXIT_Info()
 		BDT_1018_Bandit_L.aivar[AIV_IgnoresArmor] = TRUE;
 		B_Attack(BDT_1018_Bandit_L,other,AR_SuddenEnemyInferno,1);
 	};
-	//ch3
+	//глава 3
 	if(!Npc_IsDead(BDT_1004_Bandit_M)) //уникальный в мире
 	{
 		BDT_1004_Bandit_M.aivar[AIV_IgnoresArmor] = TRUE;
@@ -74,7 +74,6 @@ instance DIA_1017_BANDIT_AMBUSH(C_Info)
 	nr = 2;
 	condition = DIA_1017_BANDIT_AMBUSH_Condition;
 	information = DIA_1017_BANDIT_AMBUSH_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

@@ -157,6 +157,7 @@ func void DIA_Cord_WannaJoin_Info()
 	{
 		DIA_Cord_Approve();
 		AI_Output(self,other,"DIA_Cord_WannaJoin_14_11");	//Если тебе еще что-то нужно знать, ты можешь спросить у меня.
+		Cord_Approved = TRUE;
 		Cord_Voted = TRUE;
 		B_GivePlayerXP(XP_Cord_Voted);
 		if(Torlof_GenugStimmen == FALSE)
