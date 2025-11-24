@@ -27,7 +27,6 @@ instance DIA_Addon_BDT_10019_Wache_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_10019_Wache_Hi_Condition;
 	information = DIA_Addon_10019_Wache_Hi_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -47,7 +46,7 @@ func void DIA_Addon_10019_Wache_Hi_Info()
 	}
 	else
 	{
-		Info_AddChoice(DIA_Addon_BDT_10019_Wache_Hi,"Может быть.",DIA_Addon_BDT_10019_Wache_Hi_Ja);
+		Info_AddChoice(DIA_Addon_BDT_10019_Wache_Hi,"Может быть.",DIA_Addon_BDT_10019_Wache_Hi_Raven);
 	};
 	Info_AddChoice(DIA_Addon_BDT_10019_Wache_Hi,"Да.",DIA_Addon_BDT_10019_Wache_Hi_Ja);
 };
@@ -60,7 +59,14 @@ func void B_Say_Wache_kaputt()
 
 func void DIA_Addon_BDT_10019_Wache_Hi_Raven()
 {
-	AI_Output(other,self,"DIA_Addon_BDT_10019_Wache_Hi_Raven_15_00");	//Вообще-то я хотел увидеть Ворона.
+	if(RavenIsDead == FALSE)
+	{
+		AI_Output(other,self,"DIA_Addon_BDT_10019_Wache_Hi_Raven_15_00");	//Вообще-то я хотел увидеть Ворона.
+	}
+	else
+	{
+		DIA_Common_Maybe();
+	};
 	AI_Output(self,other,"DIA_Addon_BDT_10019_Wache_Hi_Raven_06_01");	//(предупреждая) Эй! Только попробуй войти в храм - и ты погибнешь так же, как эти заключенные.
 	AI_Output(self,other,"DIA_Addon_BDT_10019_Wache_Hi_Raven_06_02");	//Давай-ка лучше двигай в шахту.
 	B_Say_Wache_kaputt();
@@ -69,14 +75,7 @@ func void DIA_Addon_BDT_10019_Wache_Hi_Raven()
 
 func void DIA_Addon_BDT_10019_Wache_Hi_Ja()
 {
-	if(RavenIsDead == FALSE)
-	{
-		AI_Output(other,self,"DIA_Addon_BDT_10019_Wache_Hi_Ja_15_00");	//Да.
-	}
-	else
-	{
-		DIA_Common_Maybe();
-	};
+	AI_Output(other,self,"DIA_Addon_BDT_10019_Wache_Hi_Ja_15_00");	//Да.
 	AI_Output(self,other,"DIA_Addon_BDT_10019_Wache_Hi_Ja_06_01");	//Тогда постарайся быть осторожнее, чем эти бедняги.
 	B_Say_Wache_kaputt();
 	Info_ClearChoices(DIA_Addon_BDT_10019_Wache_Hi);

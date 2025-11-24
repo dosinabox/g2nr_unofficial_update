@@ -59,7 +59,6 @@ instance DIA_Addon_10028_Buddler_Hacken(C_Info)
 	nr = 3;
 	condition = DIA_Addon_10028_Buddler_Hacken_Condition;
 	information = DIA_Addon_10028_Buddler_Hacken_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_GOLD_DESCRIPTION;
 };
 

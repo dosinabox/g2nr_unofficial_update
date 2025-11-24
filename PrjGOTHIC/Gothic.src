@@ -202,6 +202,7 @@ AI\Human\C_Human\C_NpcIsDemon.d
 AI\Human\C_Human\C_NpcIsUndead.d
 AI\Human\C_Human\C_NpcIsEvil.d
 AI\Human\C_Human\C_NpcIsGolem.d
+AI\Human\C_Human\C_NpcIsWeaponTrader.d
 AI\Human\C_Human\C_RefuseTalk.d
 AI\Human\B_Human\B_GetTotalPetzCounter.d
 AI\Human\B_Human\B_GetCurrentAbsolutionLevel.d
@@ -215,6 +216,7 @@ AI\Human\B_Human\B_Attack.d
 AI\Human\B_Human\B_Flee.d
 AI\Human\B_Human\B_CallGuards.d
 AI\Human\B_Human\B_CreateAmmo.d
+AI\Human\B_Human\B_HideTradeItem.d
 AI\Human\C_Human\C_NpcHasAmbientNews.d
 AI\Human\C_Human\C_NpcHasPersonalServices.d
 AI\Human\C_Human\C_WantToAttackSheepKiller.d
