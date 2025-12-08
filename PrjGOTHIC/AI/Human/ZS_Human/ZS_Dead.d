@@ -5,7 +5,11 @@ func void ZS_Dead()
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	B_StopLookAt(self);
 	AI_StopPointAt(self);
-	B_CheckDeadMissionNPCs(self);
+	if(self.aivar[AIV_MissionsValidated] == FALSE)
+	{
+		B_CheckDeadMissionNPCs(self);
+		self.aivar[AIV_MissionsValidated] = TRUE;
+	};
 	if(Hlp_IsValidNpc(other))
 	{
 		B_GiveDeathXP(other,self);
