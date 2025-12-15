@@ -24,10 +24,12 @@ instance PIR_1365_Addon_Matt(Npc_Default)
 
 func void Rtn_Start_1365()
 {
+	TA_Wash_FP(6,49,7,5,"ADW_PIRATECAMP_BEACH_11");
 	TA_Smalltalk(7,5,16,5,"ADW_PIRATECAMP_BEACH_11");
 	TA_Stand_Drinking(16,5,20,5,"ADW_PIRATECAMP_BEACH_11");
 	TA_Smalltalk(20,5,21,5,"ADW_PIRATECAMP_BEACH_11");
-	TA_Stand_Drinking(21,5,7,5,"ADW_PIRATECAMP_BEACH_11");
+	TA_Stand_Drinking(21,5,2,0,"ADW_PIRATECAMP_BEACH_11");
+	TA_Sleep(2,0,6,49,"ADW_PIRATECAMP_HUT2_01");
 };
 
 func void Rtn_Follow_1365()

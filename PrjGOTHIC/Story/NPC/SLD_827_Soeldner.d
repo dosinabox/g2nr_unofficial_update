@@ -22,7 +22,7 @@ instance SLD_827_Soeldner(Npc_Default)
 
 func void Rtn_Start_827()
 {
-	TA_Smalltalk(7,2,20,58,"NW_BIGFARM_ALLEE_HUT");
-	TA_Sit_Bench(20,58,7,2,"NW_BIGFARM_HUT_BENCH");
+	TA_Smalltalk(7,15,20,58,"NW_BIGFARM_ALLEE_HUT");
+	TA_Sit_Bench(20,58,7,15,"NW_BIGFARM_HUT_BENCH");
 };
 
