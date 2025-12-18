@@ -3,8 +3,8 @@ ver 1
 zCArchiverGeneric
 ASCII
 saveGame 0
-date 4.10.2018 16:59:14
-user User
+date 14.12.2025 19:43:16
+user D36
 END
 objects 393      
 END
@@ -7186,7 +7186,7 @@ END
 	defaultMapping=rawFloat:2.34375 2.34375 
 []
 [% zCMaterial 39939 276]
-	name=string:G:\GOTHIC2_RELEASE_118_12-06-02\_WORK\DATA\TEXTURES\LEVEL\NEWWORLD\NW_CITY_BROKENSTONE_01
+	name=string:NW_CITY_BROKENSTONE_01
 	matGroup=enum:2
 	color=color:94 78 50 255
 	smoothAngle=float:60

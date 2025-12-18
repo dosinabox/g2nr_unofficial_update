@@ -31,7 +31,6 @@ instance DIA_Sekob_HALLO(C_Info)
 	nr = 3;
 	condition = DIA_Sekob_HALLO_Condition;
 	information = DIA_Sekob_HALLO_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -84,7 +83,6 @@ instance DIA_Sekob_ZAHLPACHT(C_Info)
 	nr = 5;
 	condition = DIA_Sekob_ZAHLPACHT_Condition;
 	information = DIA_Sekob_ZAHLPACHT_Info;
-	permanent = FALSE;
 	description = "Онар хочет, чтобы ты, наконец, заплатил ренту.";
 };
 
@@ -140,7 +138,6 @@ instance DIA_Sekob_InformOnar(C_Info)
 	nr = 5;
 	condition = DIA_Sekob_InformOnar_Condition;
 	information = DIA_Sekob_InformOnar_Info;
-	permanent = FALSE;
 	description = "Что ж, тогда мне придется доложить об этом Онару.";
 };
 
@@ -168,7 +165,6 @@ instance DIA_Sekob_Defeated(C_Info)
 	nr = 5;
 	condition = DIA_Sekob_Defeated_Condition;
 	information = DIA_Sekob_Defeated_Info;
-	permanent = FALSE;
 	description = "Где ты хранишь деньги?!";
 };
 

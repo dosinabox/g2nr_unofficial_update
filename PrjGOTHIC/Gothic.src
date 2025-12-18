@@ -29,6 +29,7 @@ Story\B_Story\B_CheckOption.d
 Story\B_Story\C_NpcIsInQuarter.d
 Story\B_Story\B_GetLaresLocation.d
 Story\B_Story\C_DiegoTooFar.d
+Story\B_Story\C_DaysSinceEvent.d
 Story\B_Story\B_ArmorChecks.d
 Story\B_Story\B_UnEquipHeroItem.d
 Story\B_Story\B_EquipArmor.d
@@ -62,7 +63,6 @@ AI\Human\B_Human\B_Say_Overlay.d
 AI\AI_Intern\Player_Plunder_Is_Empty.d
 Story\Log_Entries\B_CloseTopic.d
 Story\Log_Entries\B_CheckLog.d
-Story\B_Story\C_DaysSinceEvent.d
 Story\B_Story\B_GivePlayerLP.d
 Story\B_Story\B_GivePlayerXP.d
 Story\B_Content\B_ScUsesRake.d
@@ -202,6 +202,7 @@ AI\Human\C_Human\C_NpcIsDemon.d
 AI\Human\C_Human\C_NpcIsUndead.d
 AI\Human\C_Human\C_NpcIsEvil.d
 AI\Human\C_Human\C_NpcIsGolem.d
+AI\Human\C_Human\C_NpcIsWeaponTrader.d
 AI\Human\C_Human\C_RefuseTalk.d
 AI\Human\B_Human\B_GetTotalPetzCounter.d
 AI\Human\B_Human\B_GetCurrentAbsolutionLevel.d
@@ -215,6 +216,7 @@ AI\Human\B_Human\B_Attack.d
 AI\Human\B_Human\B_Flee.d
 AI\Human\B_Human\B_CallGuards.d
 AI\Human\B_Human\B_CreateAmmo.d
+AI\Human\B_Human\B_HideTradeItem.d
 AI\Human\C_Human\C_NpcHasAmbientNews.d
 AI\Human\C_Human\C_NpcHasPersonalServices.d
 AI\Human\C_Human\C_WantToAttackSheepKiller.d
@@ -234,7 +236,6 @@ AI\Human\B_Human\B_AssessDrawWeapon.d
 AI\Human\B_Human\B_AssessEnterRoom.d
 AI\Human\B_Human\B_AssessFightSound.d
 AI\Human\B_Human\B_AssessMurder.d
-AI\Human\B_Human\B_AssessObserveSuspect.d
 AI\Human\B_Human\B_AssessQuietSound.d
 AI\Human\B_Human\B_AssessTalk.d
 AI\Human\B_Human\B_AssessTheft.d

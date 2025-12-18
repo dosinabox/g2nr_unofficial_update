@@ -27,7 +27,6 @@ instance DIA_Addon_BDT_10031_Wache_Scatty(C_Info)
 	nr = 2;
 	condition = DIA_Addon_10031_Wache_Scatty_Condition;
 	information = DIA_Addon_10031_Wache_Scatty_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -47,7 +46,7 @@ func void DIA_Addon_10031_Wache_Scatty_Info()
 };
 
 
-var int Wache_Joker;
+var int BDT_10031_Joker;
 
 instance DIA_Addon_BDT_10031_Wache_Hi(C_Info)
 {
@@ -68,12 +67,15 @@ func int DIA_Addon_10031_Wache_Hi_Condition()
 func void DIA_Addon_10031_Wache_Hi_Info()
 {
 	AI_Output(other,self,"DIA_Addon_BDT_10031_Wache_Hi_15_00");	//Все в порядке?
-	if((Sklaven_Flucht == TRUE) && (Wache_Joker == FALSE))
+	if((Sklaven_Flucht == TRUE) && (BDT_10031_Joker == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_BDT_10031_Wache_Hi_06_01");	//О, приятель. Рабы, видно, очень спешили.
 		AI_Output(self,other,"DIA_Addon_BDT_10031_Wache_Hi_06_02");	//Когда они услышали, что они свободны, они побежали, как кролики!
-		Wache_Joker = TRUE;
+		BDT_10031_Joker = TRUE;
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_BDT_10031_Wache_Hi_06_03");	//Да. Так что не создавай никому проблем, и все у тебя будет в порядке.
 	};
-	AI_Output(self,other,"DIA_Addon_BDT_10031_Wache_Hi_06_03");	//Да. Так что не создавай никому проблем, и все у тебя будет в порядке.
 };
 

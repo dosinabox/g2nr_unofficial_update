@@ -27,7 +27,6 @@ instance DIA_Addon_10008_Bandit_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_10008_Bandit_Hi_Condition;
 	information = DIA_Addon_10008_Bandit_Hi_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -59,7 +58,6 @@ instance DIA_Addon_10008_Bandit_soup(C_Info)
 	nr = 2;
 	condition = DIA_Addon_10008_Bandit_soup_Condition;
 	information = DIA_Addon_10008_Bandit_soup_Info;
-	permanent = FALSE;
 	description = "Ты рудокоп?";
 };
 

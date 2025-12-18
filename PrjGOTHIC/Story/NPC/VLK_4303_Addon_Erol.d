@@ -36,7 +36,8 @@ func void Rtn_Start_4303()
 
 func void Rtn_Home_4303()
 {
-	TA_Sit_Chair(8,0,22,0,"NW_BIGFARM_HUT_IN_01");
+	TA_Wash_FP(8,0,8,15,"NW_BIGFARM_HUT_02");
+	TA_Sit_Chair(8,15,22,0,"NW_BIGFARM_HUT_IN_01");
 	TA_Sleep(22,0,8,0,"NW_BIGFARM_HUTINSIDE_BED");
 };
 

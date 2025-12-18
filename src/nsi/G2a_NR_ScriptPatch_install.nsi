@@ -33,7 +33,7 @@ VIAddVersionKey "FileDescription" "${MOD_NAME_RU}"
 VIAddVersionKey "ProductVersion" "${MOD_VERSION}"
 
 Unicode true
-SetCompressor lzma
+SetCompressor /SOLID /FINAL lzma
 
 ###################################
 ##      Настройки интерфейса     ##

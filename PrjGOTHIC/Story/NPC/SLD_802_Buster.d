@@ -27,7 +27,8 @@ instance SLD_802_Buster(Npc_Default)
 
 func void Rtn_Start_802()
 {
-	TA_Smalltalk(7,0,21,0,"NW_BIGFARM_HUT_01");
+	TA_Wash_FP(7,0,7,15,"NW_BIGFARM_HUT_02");
+	TA_Smalltalk(7,15,21,0,"NW_BIGFARM_HUT_01");
 	TA_Sit_Bench(21,0,7,0,"NW_BIGFARM_HUT_BENCH_02");
 };
 

@@ -99,6 +99,7 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 		};
 	};
 	B_KillThievesGuild();
+	B_ResetWambo();
 	B_ResetWolfSLDs();
 };
 
@@ -550,7 +551,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(OrcElite_AntiPaladin,"NW_FARM1_PATH_CITY_13");
 			Wld_InsertNpc(OrcElite_AntiPaladin,"NW_BIGFARM_FARM4_PATH_04");
 			Wld_InsertNpc(OrcWarrior_Roam,"FP_PICK_NW_FARM4_FIELD_01");
-			Wld_InsertNpc(OrcWarrior_Roam,"FP_PICK_NW_FARM4_FIELD_04");
+			Wld_InsertNpc(OrcWarrior_Roam,"FP_PICK_NW_FARM4_FIELD_07");
 			Wld_InsertNpc(OrcWarrior_Roam,"FP_PICK_NW_FARM4_FIELD_05");
 			Wld_InsertNpc(OrcWarrior_Roam,"FP_PICK_NW_FARM4_FIELD_02");
 			Wld_InsertNpc(OrcWarrior_Roam,"FP_PICK_NW_FARM4_FIELD_06");

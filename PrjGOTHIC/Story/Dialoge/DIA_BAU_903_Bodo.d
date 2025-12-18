@@ -67,7 +67,6 @@ instance DIA_Bodo_Bauernaufstand(C_Info)
 	nr = 2;
 	condition = DIA_Bodo_Bauernaufstand_Condition;
 	information = DIA_Bodo_Bauernaufstand_Info;
-	permanent = FALSE;
 	description = "В городе говорят о восстании фермеров!";
 };
 
@@ -91,7 +90,6 @@ instance DIA_Bodo_Bett(C_Info)
 	nr = 3;
 	condition = DIA_Bodo_Bett_Condition;
 	information = DIA_Bodo_Bett_Info;
-	permanent = FALSE;
 	description = "Могу я где-нибудь здесь отдохнуть?";
 };
 
@@ -118,7 +116,6 @@ instance DIA_Bodo_Cipher(C_Info)
 	nr = 4;
 	condition = DIA_Bodo_Cipher_Condition;
 	information = DIA_Bodo_Cipher_Info;
-	permanent = FALSE;
 	description = "Сифер сказал мне, что кто-то украл у него тюк болотной травы...";
 };
 
@@ -148,7 +145,6 @@ instance DIA_Bodo_WeedOrElse(C_Info)
 	nr = 5;
 	condition = DIA_Bodo_WeedOrElse_Condition;
 	information = DIA_Bodo_WeedOrElse_Info;
-	permanent = FALSE;
 	description = "Отдай мне эту траву или...";
 };
 

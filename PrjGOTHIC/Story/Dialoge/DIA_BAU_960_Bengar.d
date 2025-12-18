@@ -354,7 +354,6 @@ instance DIA_Bengar_MILIZ(C_Info)
 	nr = 11;
 	condition = DIA_Bengar_MILIZ_Condition;
 	information = DIA_Bengar_MILIZ_Info;
-	permanent = FALSE;
 	description = "Я должен решить твою проблему с ополчением.";
 };
 
@@ -400,7 +399,6 @@ instance DIA_Bengar_Selber(C_Info)
 	nr = 11;
 	condition = DIA_Bengar_Selber_Condition;
 	information = DIA_Bengar_Selber_Info;
-	permanent = FALSE;
 	description = "Почему вы не можете справиться с ополчением сами?";
 };
 
@@ -429,7 +427,6 @@ instance DIA_Bengar_MILIZKLATSCHEN(C_Info)
 	nr = 12;
 	condition = DIA_Bengar_MILIZKLATSCHEN_Condition;
 	information = DIA_Bengar_MILIZKLATSCHEN_Info;
-	permanent = FALSE;
 	description = "Ну и где твое ополчение, я готов разобраться с ними!";
 };
 
@@ -704,9 +701,12 @@ instance DIA_Bengar_MALAKTOT(C_Info)
 
 func int DIA_Bengar_MALAKTOT_Condition()
 {
-	if(Npc_IsDead(Malak) && (Malak_isAlive_Kap3 == TRUE) && Npc_KnowsInfo(other,DIA_Bengar_ALLEIN))
+	if((Malak_isAlive_Kap3 == TRUE) && Npc_KnowsInfo(other,DIA_Bengar_ALLEIN))
 	{
-		return TRUE;
+		if(Npc_IsDead(Malak))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -729,11 +729,14 @@ instance DIA_Bengar_SLDDA(C_Info)
 
 func int DIA_Bengar_SLDDA_Condition()
 {
-	if((MIS_BengarsHelpingSLD == LOG_SUCCESS) && !Npc_IsDead(SLD_Wolf))
+	if(MIS_BengarsHelpingSLD == LOG_SUCCESS)
 	{
-		if(Npc_GetDistToWP(SLD_Wolf,"FARM3") < 3000)
+		if(!Npc_IsDead(SLD_Wolf))
 		{
-			return TRUE;
+			if(Npc_GetDistToWP(SLD_Wolf,"FARM3") < 3000)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -761,11 +764,14 @@ instance DIA_Bengar_MALAKWIEDERDA(C_Info)
 
 func int DIA_Bengar_MALAKWIEDERDA_Condition()
 {
-	if((MalakIsBackToBengar == TRUE) && !Npc_IsDead(Malak) && Npc_KnowsInfo(other,DIA_Bengar_ALLEIN))
+	if((MalakIsBackToBengar == TRUE) && Npc_KnowsInfo(other,DIA_Bengar_ALLEIN))
 	{
-		if(Npc_GetDistToWP(Malak,"FARM3") < 3000)
+		if(!Npc_IsDead(Malak))
 		{
-			return TRUE;
+			if(Npc_GetDistToWP(Malak,"FARM3") < 3000)
+			{
+				return TRUE;
+			};
 		};
 	};
 };

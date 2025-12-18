@@ -96,7 +96,7 @@ const int AIV_SchafswurstGiven = 93;
 const int AIV_NPCIsTrader = 94;
 const int AIV_Teeth = 95;
 const int AIV_RefreshAmmoDay = 96;
-//const int AIV_Free_97 = 97;
+const int AIV_MissionsValidated = 97;
 //const int AIV_Free_98 = 98;
 //const int AIV_Free_99 = 99;
 
