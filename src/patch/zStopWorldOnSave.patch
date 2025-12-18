@@ -1,5 +1,6 @@
 #engine [G1, G1A, G2, G2A]
 	#patch [zStopWorldOnSave]
+		IF ModuleBase("g2a.dll") == 0 && ModuleBase("g2a_avx.dll") == 0 && ModuleBase("g2a_avx2.dll") == 0
 		// engine specific
 		INT engine_version = ZenDef(1, 2, 3, 4)
 		
@@ -61,5 +62,6 @@
 			pop eax
 			orgcode
 		#/assembler
+		END
 	#/patch
 #/engine
