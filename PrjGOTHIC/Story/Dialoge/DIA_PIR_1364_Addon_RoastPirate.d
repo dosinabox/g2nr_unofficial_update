@@ -169,18 +169,18 @@ func int DIA_Addon_RoastPirate_PERM_Condition()
 
 func void DIA_Addon_RoastPirate_PERM_Info()
 {
-	var int randy;
-	randy = Hlp_Random(3);
+	var int random;
+	random = Hlp_Random(3);
 	AI_Output(other,self,"DIA_Addon_Matt_Job_15_00");	//Что-нибудь еще?
 	if(GregIsBack == TRUE)
 	{
 		if(!Npc_IsDead(Greg))
 		{
-			if((randy == 0) && !Npc_IsDead(Francis))
+			if((random == 0) && !Npc_IsDead(Francis))
 			{
 				AI_Output(self,other,"DIA_Addon_PIR_6_Chef_06_02");	//На месте Грега я бы отправил Фрэнсиса на болото.
 			}
-			else if(randy == 1)
+			else if(random == 1)
 			{
 				AI_Output(self,other,"DIA_Addon_PIR_6_Chef_06_03");	//После возвращения Грега бандиты дважды подумают, прежде чем нападать на нас.
 			}
@@ -194,11 +194,11 @@ func void DIA_Addon_RoastPirate_PERM_Info()
 			AI_Output(self,other,"DIA_Addon_PIR_6_SeichtesWasser_06_03");	//Я бы лучше побродил по берегу в поисках добычи.
 		};
 	}
-	else if((randy == 0) && !Npc_IsDead(Francis))
+	else if((random == 0) && !Npc_IsDead(Francis))
 	{
 		AI_Output(self,other,"DIA_Addon_PIR_6_Chef_06_06");	//Фрэнсис - полный неудачник. С тех пор как он начал командовать, все катится под гору.
 	}
-	else if(randy == 1)
+	else if(random == 1)
 	{
 		AI_Output(self,other,"DIA_Addon_PIR_6_Chef_06_05");	//Пусть эти бандиты нападают. Они даже не поймут, что с ними произошло.
 	}
@@ -314,9 +314,12 @@ instance DIA_Addon_RoastPirate_TooFar(C_Info)
 
 func int DIA_Addon_RoastPirate_TooFar_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_GregsPiratesTooFar())
+	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		return TRUE;
+		if(C_GregsPiratesTooFar())
+		{
+			return TRUE;
+		};
 	};
 };
 

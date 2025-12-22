@@ -721,9 +721,12 @@ instance DIA_Addon_Skip_TooFar(C_Info)
 
 func int DIA_Addon_Skip_TooFar_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_GregsPiratesTooFar())
+	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		return TRUE;
+		if(C_GregsPiratesTooFar())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -755,9 +758,12 @@ instance DIA_Addon_Skip_Treffpunkt(C_Info)
 
 func int DIA_Addon_Skip_Treffpunkt_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToWP(self,"ADW_CANYON_TELEPORT_PATH_06") <= 800) && (CanyonRazorBodyCount < 10))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (CanyonRazorBodyCount < 10))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"ADW_CANYON_TELEPORT_PATH_06") <= 800)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -781,9 +787,12 @@ instance DIA_Addon_Skip_Orks(C_Info)
 
 func int DIA_Addon_Skip_Orks_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToWP(self,"ADW_CANYON_PATH_TO_LIBRARY_14") <= 2000))
+	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"ADW_CANYON_PATH_TO_LIBRARY_14") <= 2000)
+		{
+			return TRUE;
+		};
 	};
 };
 

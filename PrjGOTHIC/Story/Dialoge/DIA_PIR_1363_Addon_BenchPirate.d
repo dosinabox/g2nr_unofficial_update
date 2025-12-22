@@ -39,18 +39,18 @@ func int DIA_Addon_BenchPirate_Hello_Condition()
 
 func void DIA_Addon_BenchPirate_Hello_Info()
 {
-	var int randy;
-	randy = Hlp_Random(3);
+	var int random;
+	random = Hlp_Random(3);
 	AI_Output(other,self,"DIA_Addon_Pir_7_Hello_15_00");	//Как дела?
 	if(GregIsBack == TRUE)
 	{
 		if(!Npc_IsDead(Greg))
 		{
-			if(randy == 0)
+			if(random == 0)
 			{
 				AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_01");	//Грег наконец-то вернулся. Самое время.
 			}
-			else if(randy == 1)
+			else if((random == 1) && !Npc_IsDead(Francis))
 			{
 				AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_02");	//Теперь Фрэнсису приходится пилить деревья для частокола. Надеюсь, это для него не слишком большой удар.
 			}
@@ -64,11 +64,11 @@ func void DIA_Addon_BenchPirate_Hello_Info()
 			AI_Output(self,other,"DIA_Addon_BenchPirate_GoHome_07_02");	//Мне все это не нравится.
 		};
 	}
-	else if(randy == 0)
+	else if(random == 0)
 	{
 		AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_04");	//Фрэнсис, который остался за главного - всего лишь жалкий клоун. Никто не воспринимает его всерьез.
 	}
-	else if(randy == 1)
+	else if(random == 1)
 	{
 		AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_05");	//Грег доверяет Фрэнсису, потому что тот слишком туп, чтобы его обманывать. Но делать его за это командиром...
 	}
@@ -189,9 +189,12 @@ instance DIA_Addon_BenchPirate_TooFar(C_Info)
 
 func int DIA_Addon_BenchPirate_TooFar_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_GregsPiratesTooFar())
+	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		return TRUE;
+		if(C_GregsPiratesTooFar())
+		{
+			return TRUE;
+		};
 	};
 };
 
