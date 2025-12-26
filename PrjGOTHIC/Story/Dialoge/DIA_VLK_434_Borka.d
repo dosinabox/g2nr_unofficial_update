@@ -68,9 +68,12 @@ instance DIA_Borka_TROUBLE(C_Info)
 
 func int DIA_Borka_TROUBLE_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Nadja) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_ENTRANCE") <= 500))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Nadja) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_ENTRANCE") <= 500))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -24,10 +24,6 @@ func int C_NpcBelongsToOldCamp(var C_Npc slf)
 
 func int C_NpcBelongsToCity(var C_Npc slf)
 {
-	if(C_NpcBelongsToOldCamp(slf))
-	{
-		return FALSE;
-	};
 	if(C_IsNpc(slf,PAL_280_Tengron) || C_IsNpc(slf,PAL_281_Fajeth))
 	{
 		return FALSE;

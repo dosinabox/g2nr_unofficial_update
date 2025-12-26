@@ -88,9 +88,16 @@ func void B_AssessMurder()
 	{
 		return;
 	};
-	if((victim.guild == GIL_DMT) || ((victim.guild == GIL_BDT) && !C_NpcBelongsToBL(victim)))
+	if(victim.guild == GIL_DMT)
 	{
 		return;
+	};
+	if(victim.guild == GIL_BDT)
+	{
+		if(!C_NpcBelongsToBL(victim))
+		{
+			return;
+		};
 	};
 	B_Attack(self,other,AR_HumanMurderedHuman,0);
 };

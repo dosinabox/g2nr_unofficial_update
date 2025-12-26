@@ -78,9 +78,12 @@ func int B_AssessEnemy()
 	{
 		return FALSE;
 	};
-	if(C_NpcIsSwimming(other) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
+	if(self.aivar[AIV_MM_FollowInWater] == FALSE)
 	{
-		return FALSE;
+		if(C_NpcIsSwimming(other))
+		{
+			return FALSE;
+		};
 	};
 	if(Npc_GetHeightToNpc(self,other) > PERC_DIST_HEIGHT)
 	{
@@ -97,9 +100,12 @@ func int B_AssessEnemy()
 			return FALSE;
 		};
 	};
-	if(C_PlayerIsFakeBandit(self,other) && (self.guild == GIL_BDT))
+	if(self.guild == GIL_BDT)
 	{
-		return FALSE;
+		if(C_PlayerIsFakeBandit(self,other))
+		{
+			return FALSE;
+		};
 	};
 	if(Npc_GetAttitude(self,other) != ATT_HOSTILE)
 	{

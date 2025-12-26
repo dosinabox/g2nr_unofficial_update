@@ -30,7 +30,6 @@ func void B_GetCantharReward()
 	{
 		AI_Output(other,self,"DIA_Canthar_Success_15_02");	//Ты собирался дать мне оружие.
 		AI_Output(self,other,"DIA_Canthar_Success_09_03");	//Правильно. Вот, это оружие - произведение оружейного искусства.
-//		B_GiveInvItems(self,other,ItMw_Lightsaebel,1);
 		B_GiveInvItems(self,other,ItMw_Schiffsaxt,1);
 	};
 };
@@ -302,9 +301,12 @@ instance DIA_Canthar_TRADE(C_Info)
 
 func int DIA_Canthar_TRADE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Canthar_WhatOffer) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_RENGARU") > 1000))
+	if(Npc_KnowsInfo(other,DIA_Canthar_WhatOffer))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_RENGARU") > 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -333,9 +335,12 @@ instance DIA_Canthar_PAYPRICEINCITY(C_Info)
 
 func int DIA_Canthar_PAYPRICEINCITY_Condition()
 {
-	if((PlayerEnteredCity == TRUE) && !Npc_IsDead(Sarah) && (Canthar_GotMe == TRUE))
+	if((PlayerEnteredCity == TRUE) && (Canthar_GotMe == TRUE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Sarah))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -425,9 +430,12 @@ instance DIA_Canthar_SARAHERLEDIGT(C_Info)
 
 func int DIA_Canthar_SARAHERLEDIGT_Condition()
 {
-	if((MIS_Canthars_KomproBrief == LOG_RUNNING) && !Npc_IsDead(Sarah) && (Kapitel < 3) && !Npc_KnowsInfo(other,DIA_Canthar_TooLate))
+	if((MIS_Canthars_KomproBrief == LOG_RUNNING) && (Kapitel < 3) && !Npc_KnowsInfo(other,DIA_Canthar_TooLate))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Sarah))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -465,9 +473,12 @@ instance DIA_Canthar_SarahIsDead(C_Info)
 
 func int DIA_Canthar_SarahIsDead_Condition()
 {
-	if((MIS_Canthars_KomproBrief == LOG_RUNNING) && Npc_IsDead(Sarah) && (Kapitel < 3))
+	if((MIS_Canthars_KomproBrief == LOG_RUNNING) && (Kapitel < 3))
 	{
-		return TRUE;
+		if(Npc_IsDead(Sarah))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -496,9 +507,12 @@ instance DIA_Canthar_TooLate(C_Info)
 
 func int DIA_Canthar_TooLate_Condition()
 {
-	if((MIS_Canthars_KomproBrief == LOG_RUNNING) && C_DaysSinceEvent(MIS_Canthars_KomproBrief_Day,2) && !Npc_IsDead(Sarah) && (Kapitel < 3))
+	if((MIS_Canthars_KomproBrief == LOG_RUNNING) && C_DaysSinceEvent(MIS_Canthars_KomproBrief_Day,2) && (Kapitel < 3))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Sarah))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -649,9 +663,12 @@ instance DIA_Canthar_CANTHARANGEPISST(C_Info)
 
 func int DIA_Canthar_CANTHARANGEPISST_Condition()
 {
-	if((Canthar_Ausgeliefert == TRUE) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000) && Npc_IsInState(self,ZS_Talk))
+	if((Canthar_Ausgeliefert == TRUE) && Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 

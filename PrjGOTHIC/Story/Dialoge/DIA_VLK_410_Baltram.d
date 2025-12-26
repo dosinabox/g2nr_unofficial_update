@@ -103,9 +103,12 @@ instance DIA_Addon_Baltram_LaresAbloese(C_Info)
 
 func int DIA_Addon_Baltram_LaresAbloese_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && C_BaltramCanTalkAboutLares())
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(C_BaltramCanTalkAboutLares())
+		{
+			return TRUE;
+		};
 	};
 };
 

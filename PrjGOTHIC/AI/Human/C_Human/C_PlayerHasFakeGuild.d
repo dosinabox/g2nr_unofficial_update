@@ -88,11 +88,14 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if((slf.guild == GIL_BDT) && C_PlayerIsFakeBandit(slf,oth))
+	if(slf.guild == GIL_BDT)
 	{
 		if(!Npc_HasEquippedArmor(oth))
 		{
-			return TRUE;
+			if(C_PlayerIsFakeBandit(slf,oth))
+			{
+				return TRUE;
+			};
 		};
 		return FALSE;
 	};
