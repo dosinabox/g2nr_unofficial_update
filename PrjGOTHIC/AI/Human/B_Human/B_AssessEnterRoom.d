@@ -63,8 +63,12 @@ func int C_NpcIsReadyToObservePlayer(var C_Npc slf)
 func int B_AssessEnterRoom()
 {
 	var int portalguild;
+	if(!Npc_IsPlayer(other))
+	{
+		return FALSE;
+	};
 	portalguild = Wld_GetPlayerPortalGuild();
-	if(Npc_IsPlayer(other) && (Player_LeftRoomComment == TRUE) && (portalguild > GIL_NONE) && (portalguild != GIL_PUBLIC))
+	if((portalguild > GIL_NONE) && (portalguild != GIL_PUBLIC) && (Player_LeftRoomComment == TRUE))
 	{
 		Player_LeftRoomComment = FALSE;
 	};
@@ -72,15 +76,18 @@ func int B_AssessEnterRoom()
 	{
 		return FALSE;
 	};
-	if(!Npc_IsInPlayersRoom(self) && (Npc_GetPortalGuild(self) >= GIL_NONE))
+	if(!Npc_IsInPlayersRoom(self))
 	{
-		return FALSE;
+		if(Npc_GetPortalGuild(self) >= GIL_NONE)
+		{
+			return FALSE;
+		};
+		if(C_NpcIsSleeping(self))
+		{
+			return FALSE;
+		};
 	};
 	if(Npc_IsInState(self,ZS_Attack))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsPlayer(other))
 	{
 		return FALSE;
 	};
@@ -106,10 +113,6 @@ func int B_AssessEnterRoom()
 		{
 			return FALSE;
 		};
-	};
-	if(!Npc_IsInPlayersRoom(self) && C_NpcIsSleeping(self))
-	{
-		return FALSE;
 	};
 	if(C_NpcIsGateGuard(self))
 	{
@@ -152,12 +155,15 @@ func int B_AssessEnterRoom()
 		};
 		return FALSE;
 	};
-	if(C_NpcIsBotheredByPlayerRoomGuild(self))
+	if(portalguild > GIL_NONE)
 	{
-		Npc_ClearAIQueue(self);
-		B_ClearPerceptions(self);
-		AI_StartState(self,ZS_ClearRoom,1,"");
-		return TRUE;
+		if(C_NpcIsBotheredByPlayerRoomGuild(self))
+		{
+			Npc_ClearAIQueue(self);
+			B_ClearPerceptions(self);
+			AI_StartState(self,ZS_ClearRoom,1,"");
+			return TRUE;
+		};
 	};
 	return FALSE;
 };

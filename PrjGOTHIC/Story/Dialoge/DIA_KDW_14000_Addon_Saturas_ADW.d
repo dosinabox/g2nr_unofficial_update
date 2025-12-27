@@ -1,33 +1,4 @@
 
-func int C_SCHasBDTArmor()
-{
-	if(Npc_HasItems(hero,ITAR_BDT_M))
-	{
-		return TRUE;
-	};
-	if(Npc_HasItems(hero,ITAR_BDT_H))
-	{
-		return TRUE;
-	};
-	if(Npc_HasItems(hero,ITAR_Thorus_Addon))
-	{
-		return TRUE;
-	};
-	if(Npc_HasItems(hero,ITAR_OreBaron_Addon))
-	{
-		return TRUE;
-	};
-	if(Npc_HasItems(hero,ITAR_Bloodwyn_Addon))
-	{
-		return TRUE;
-	};
-	if(Npc_HasItems(hero,ITAR_Diego))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
 instance DIA_Addon_Saturas_ADW_EXIT(C_Info)
 {
 	npc = KDW_14000_Addon_Saturas_ADW;
@@ -646,6 +617,12 @@ func void DIA_Addon_Saturas_AdanosZorn_Info()
 };
 
 
+var int DIA_Addon_Saturas_RavenInfos_OneTime1;
+var int DIA_Addon_Saturas_RavenInfos_OneTime2;
+var int DIA_Addon_Saturas_RavenInfos_OneTime3;
+var int DIA_Addon_Saturas_RavenInfos_OneTime4;
+var int Addon_Saturas_Fortuno;
+
 instance DIA_Addon_Saturas_RavenInfos(C_Info)
 {
 	npc = KDW_14000_Addon_Saturas_ADW;
@@ -656,12 +633,6 @@ instance DIA_Addon_Saturas_RavenInfos(C_Info)
 	description = "Насчет Ворона...";
 };
 
-
-var int DIA_Addon_Saturas_RavenInfos_OneTime1;
-var int DIA_Addon_Saturas_RavenInfos_OneTime2;
-var int DIA_Addon_Saturas_RavenInfos_OneTime3;
-var int DIA_Addon_Saturas_RavenInfos_OneTime4;
-var int Addon_Saturas_Fortuno;
 
 func int DIA_Addon_Saturas_RavenInfos_Condition()
 {
@@ -1048,7 +1019,11 @@ func int DIA_Addon_Saturas_BeliarsWeapon_Condition()
 {
 	if(RavenIsDead == TRUE)
 	{
-		if(C_ScHasMeleeBeliarsWeapon() || C_SCHasBeliarsRune())
+		if(C_ScHasMeleeBeliarsWeapon())
+		{
+			return TRUE;
+		};
+		if(C_SCHasBeliarsRune())
 		{
 			return TRUE;
 		};
@@ -1106,6 +1081,8 @@ func void DIA_Addon_Saturas_BeliarsWeapon_besser()
 };
 
 
+var int DIA_Addon_Saturas_PermENDE_ADDON_OneTime;
+
 instance DIA_Addon_Saturas_PermENDE_ADDON(C_Info)
 {
 	npc = KDW_14000_Addon_Saturas_ADW;
@@ -1124,9 +1101,6 @@ func int DIA_Addon_Saturas_PermENDE_ADDON_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Addon_Saturas_PermENDE_ADDON_OneTime;
 
 func void DIA_Addon_Saturas_PermENDE_ADDON_Info()
 {
@@ -1159,7 +1133,11 @@ func int DIA_Addon_Saturas_BeliarWeapGeben_Condition()
 {
 	if((RavenIsDead == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Saturas_BeliarsWeapon))
 	{
-		if(C_ScHasMeleeBeliarsWeapon() || C_SCHasBeliarsRune())
+		if(C_ScHasMeleeBeliarsWeapon())
+		{
+			return TRUE;
+		};
+		if(C_SCHasBeliarsRune())
 		{
 			return TRUE;
 		};
@@ -1240,6 +1218,8 @@ func void DIA_Addon_Saturas_ADW_PreTeachCircle_Info()
 };
 
 
+var int DIA_Addon_Saturas_ADW_CIRCLE_NoPerm;
+
 instance DIA_Addon_Saturas_ADW_CIRCLE(C_Info)
 {
 	npc = KDW_14000_Addon_Saturas_ADW;
@@ -1251,16 +1231,14 @@ instance DIA_Addon_Saturas_ADW_CIRCLE(C_Info)
 };
 
 
-var int DIA_Addon_Saturas_ADW_CIRCLE_NoPerm;
-
 func int DIA_Addon_Saturas_ADW_CIRCLE_Condition()
 {
 	var int circle;
 	var int kosten;
-	circle = Npc_GetTalentSkill(other,NPC_TALENT_MAGE) + 1;
-	kosten = B_GetLearnCostTalent(other,NPC_TALENT_MAGE,circle);
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
 	{
+		circle = Npc_GetTalentSkill(other,NPC_TALENT_MAGE) + 1;
+		kosten = B_GetLearnCostTalent(other,NPC_TALENT_MAGE,circle);
 		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Следующий Круг магии",kosten);
 		return TRUE;
 	};

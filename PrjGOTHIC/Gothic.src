@@ -140,7 +140,6 @@ AI\Human\C_Human\C_NpcHasReadiedWeapon.d
 AI\Magic\B_MagicHurtNpc.d
 AI\Magic\B_FireHurtNpc.d
 AI\Human\C_Human\C_BodyStateContains.d
-Story\B_Content\C_SCHasBlessedSword.d
 Story\B_Content\B_UpgrateBeliarsWeapon.d
 Story\B_Content\B_SpecialWeaponDamage.d
 AI\Monster\C_Monster\C_NpcIsFireCreature.d
@@ -448,7 +447,10 @@ Story\B_Story\B_BuildDateString.d
 Story\B_Story\B_BuildFullVersionString.d
 Story\B_Story\B_BuildOptionString.d
 Story\B_Story\B_RemoveTestNpcs.d
+Story\B_Story\C_LehmarDebtIsOverdue.d
 Story\B_Story\C_SCHasAnyDragonHeart.d
+Story\B_Story\C_SCHasBDTArmor.d
+Story\B_Story\C_SCHasBlessedSword.d
 Story\Dialog_Mobsis\Bookstand.d
 Story\Dialog_Mobsis\BookstandAlchemy.d
 Story\Dialog_Mobsis\BookstandAnimals.d

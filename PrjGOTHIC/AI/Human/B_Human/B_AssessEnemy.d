@@ -3,33 +3,22 @@ func int B_AssessEnemy()
 {
 	if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		if(C_IsNpc(self,VLK_449_Lares))
+		if(!Npc_IsPlayer(other))
 		{
-			if(C_IsNpc(other,MagicGolem))
+			if(C_IsNpc(self,VLK_449_Lares))
 			{
-				return FALSE;
-			};
-		};
-		if(C_IsNpc(self,VLK_401_Cornelius) && !Npc_IsPlayer(other))
-		{
-			if(Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") <= 1000)
+				if(C_IsNpc(other,MagicGolem))
+				{
+					return FALSE;
+				};
+			}
+			else if(C_IsNpc(self,BAU_942_Randolph))
 			{
-				return FALSE;
-			};
-		};
-		if(C_IsNpc(other,VLK_401_Cornelius))
-		{
-			if(C_IsNpc(self,BDT_1031_Fluechtling) || C_IsNpc(self,BDT_1032_Fluechtling))
-			{
-				return FALSE;
-			};
-		};
-		if(C_IsNpc(self,BAU_942_Randolph) && !Npc_IsPlayer(other))
-		{
-			if(Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000)
-			{
-				B_Flee();
-				return FALSE;
+				if(Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000)
+				{
+					B_Flee();
+					return FALSE;
+				};
 			};
 		};
 		if((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE))

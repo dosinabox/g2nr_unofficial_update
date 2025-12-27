@@ -48,9 +48,12 @@ instance DIA_Addon_Fisk_Hi(C_Info)
 
 func int DIA_Addon_Fisk_Hi_Condition()
 {
-	if((Npc_GetDistToWP(self,"BL_INN_UP_06") > 500) && !Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH))
+	if(!Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"BL_INN_UP_06") > 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -411,9 +414,12 @@ instance DIA_Addon_Fisk_Meeting(C_Info)
 
 func int DIA_Addon_Fisk_Meeting_Condition()
 {
-	if((Npc_GetDistToWP(self,"BL_INN_UP_06") <= 500) && Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH) && (MIS_Judas == LOG_RUNNING))
+	if(Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH) && (MIS_Judas == LOG_RUNNING))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"BL_INN_UP_06") <= 500)
+		{
+			return TRUE;
+		};
 	};
 };
 

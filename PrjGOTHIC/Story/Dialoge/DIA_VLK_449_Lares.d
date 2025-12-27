@@ -1927,11 +1927,18 @@ func void B_TellLaresAboutErolProblem()
 
 func int C_SCCanTellLaresAboutErolProblem()
 {
-	if((MIS_Addon_Erol_BanditStuff == LOG_RUNNING) && !Npc_IsDead(Erol) && (LaresKnowsErolProblem == FALSE))
+	if((MIS_Addon_Erol_BanditStuff == LOG_RUNNING) && (LaresKnowsErolProblem == FALSE))
 	{
-		if((Npc_GetDistToWP(self,"NW_TAVERN_TO_FOREST_03") < 1000) && (Npc_GetDistToWP(Erol,"NW_TAVERN_TO_FOREST_03") < 1000))
+		if(Npc_GetDistToWP(self,"NW_TAVERN_TO_FOREST_03") >= 1000)
 		{
-			return TRUE;
+			return FALSE;
+		};
+		if(!Npc_IsDead(Erol))
+		{
+			if(Npc_GetDistToWP(Erol,"NW_TAVERN_TO_FOREST_03") < 1000)
+			{
+				return TRUE;
+			};
 		};
 	};
 	return FALSE;
