@@ -45,8 +45,8 @@ func void B_AddPetzCrime(var C_Npc slf,var int crime)
 			{
 				PETZCOUNTER_City_Sheepkiller += 1;
 			};
-		};
-		if(C_NpcBelongsToMonastery(slf))
+		}
+		else if(C_NpcBelongsToMonastery(slf))
 		{
 			TotalMonasteryCrimes += 1;
 			if(crime == CRIME_MURDER)
@@ -65,8 +65,8 @@ func void B_AddPetzCrime(var C_Npc slf,var int crime)
 			{
 				PETZCOUNTER_Monastery_Sheepkiller += 1;
 			};
-		};
-		if(C_NpcBelongsToFarm(slf))
+		}
+		else if(C_NpcBelongsToFarm(slf))
 		{
 			TotalFarmCrimes += 1;
 			if(crime == CRIME_MURDER)

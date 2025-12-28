@@ -45,8 +45,8 @@ func void B_DeletePetzCrime(var C_Npc slf)
 			{
 				PETZCOUNTER_City_Sheepkiller -= 1;
 			};
-		};
-		if(C_NpcBelongsToMonastery(slf))
+		}
+		else if(C_NpcBelongsToMonastery(slf))
 		{
 			if(crime == CRIME_MURDER)
 			{
@@ -64,8 +64,8 @@ func void B_DeletePetzCrime(var C_Npc slf)
 			{
 				PETZCOUNTER_Monastery_Sheepkiller -= 1;
 			};
-		};
-		if(C_NpcBelongsToFarm(slf))
+		}
+		else if(C_NpcBelongsToFarm(slf))
 		{
 			if(crime == CRIME_MURDER)
 			{

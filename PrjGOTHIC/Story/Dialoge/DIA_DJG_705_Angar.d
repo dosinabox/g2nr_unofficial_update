@@ -335,9 +335,12 @@ instance DIA_AngarDJG_WASMACHSTDU(C_Info)
 
 func int DIA_AngarDJG_WASMACHSTDU_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_DJG_WATCH_STONEHENGE_01") < 8000) && Npc_KnowsInfo(other,DIA_Angar_DJG_ANWERBEN) && (DJG_AngarGotAmulett == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Angar_DJG_ANWERBEN) && (DJG_AngarGotAmulett == FALSE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"OW_DJG_WATCH_STONEHENGE_01") < 8000)
+		{
+			return TRUE;
+		};
 	};
 };
 

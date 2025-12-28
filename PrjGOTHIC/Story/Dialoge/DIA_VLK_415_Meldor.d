@@ -33,9 +33,9 @@ instance DIA_Meldor_Hallo(C_Info)
 
 func int DIA_Meldor_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && !C_LehmarDebtIsOverdue())
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
-		if(!Npc_IsDead(Lehmar))
+		if(!Npc_IsDead(Lehmar) && !C_LehmarDebtIsOverdue())
 		{
 			return TRUE;
 		};

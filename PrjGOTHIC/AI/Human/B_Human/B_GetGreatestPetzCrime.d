@@ -43,8 +43,8 @@ func int B_GetGreatestPetzCrime(var C_Npc slf)
 			{
 				return CRIME_SHEEPKILLER;
 			};
-		};
-		if(C_NpcBelongsToMonastery(slf))
+		}
+		else if(C_NpcBelongsToMonastery(slf))
 		{
 			if(PETZCOUNTER_Monastery_Murder > 0)
 			{
@@ -62,8 +62,8 @@ func int B_GetGreatestPetzCrime(var C_Npc slf)
 			{
 				return CRIME_SHEEPKILLER;
 			};
-		};
-		if(C_NpcBelongsToFarm(slf))
+		}
+		else if(C_NpcBelongsToFarm(slf))
 		{
 			if(PETZCOUNTER_Farm_Murder > 0)
 			{

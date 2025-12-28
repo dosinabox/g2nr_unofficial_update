@@ -1,7 +1,7 @@
 
 func void B_GetWispDetectedItem()
 {
-	var int randy;
+	var int random;
 	if(!Hlp_IsValidItem(item))
 	{
 		return;
@@ -10,11 +10,14 @@ func void B_GetWispDetectedItem()
 	{
 		return;
 	};
-	randy = Hlp_Random(100);
 	AI_GotoItem(self,item);
-	if((Npc_GetDistToItem(self,item) < 1000) && (randy <= 1))
+	if(Npc_GetDistToItem(self,item) < 1000)
 	{
-		Wld_PlayEffect("spellFX_ItemAusbuddeln",item,item,0,0,0,FALSE);
+		random = Hlp_Random(100);
+		if(random <= 1)
+		{
+			Wld_PlayEffect("spellFX_ItemAusbuddeln",item,item,0,0,0,FALSE);
+		};
 	};
 };
 
