@@ -34,15 +34,18 @@ instance DIA_Talbin_NW_MOVING(C_Info)
 
 func int DIA_Talbin_NW_MOVING_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_GREATPEASENT_TO_PASS") > 2100) && (MIS_Talbin_Runs == LOG_RUNNING) && (Npc_IsInState(self,ZS_Talk)))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_Talbin_Runs == LOG_RUNNING))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_GREATPEASENT_TO_PASS") > 2100)
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Talbin_NW_MOVING_Info()
 {
-	AI_Output(self,other,"DIA_Talbin_WOHIN_ok_07_01");	//Спасибо. Я просто пойду за тобой.
+	B_Talbin_Following();
 	AI_StopProcessInfos(self);
 };
 
@@ -115,6 +118,7 @@ func void DIA_Talbin_NW_PERM_Info()
 	AI_Output(self,other,"DIA_Talbin_NW_PERM_07_01");	//Да, спасибо тебе. А теперь иди. Со мной будет все в порядке.
 	AI_StopProcessInfos(self);
 };
+
 
 instance DIA_Talbin_TEACHHUNTING_NW(C_Info)
 {

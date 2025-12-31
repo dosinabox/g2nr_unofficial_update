@@ -121,9 +121,12 @@ instance DIA_Talbin_SORRYFORENGROM(C_Info)
 
 func int DIA_Talbin_SORRYFORENGROM_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Talbin_WASMACHTIHR) && !Npc_IsDead(Engrom) && (Talbin_FollowsThroughPass == FALSE) && (Kapitel <= 3) && (Talbin_Runs == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Talbin_WASMACHTIHR) && (Talbin_FollowsThroughPass == FALSE) && (Kapitel <= 3) && (Talbin_Runs == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Engrom))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -174,9 +177,12 @@ instance DIA_Talbin_ENGROMANGRY(C_Info)
 
 func int DIA_Talbin_ENGROMANGRY_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Engrom_WhatAboutLeaving) && Npc_KnowsInfo(other,DIA_Talbin_SORRYFORENGROM) && !Npc_IsDead(Engrom) && (Talbin_FollowsThroughPass == FALSE) && (Kapitel <= 3) && (Talbin_Runs == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Engrom_WhatAboutLeaving) && Npc_KnowsInfo(other,DIA_Talbin_SORRYFORENGROM) && (Talbin_FollowsThroughPass == FALSE) && (Kapitel <= 3) && (Talbin_Runs == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Engrom))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -243,9 +249,12 @@ instance DIA_Talbin_PayTeacher(C_Info)
 
 func int DIA_Talbin_PayTeacher_Condition()
 {
-	if((MIS_TalbinCheese == LOG_RUNNING) && Npc_HasItems(other,ItFo_Cheese))
+	if(MIS_TalbinCheese == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItFo_Cheese))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -273,9 +282,12 @@ instance DIA_Talbin_PayTeacher_NoCheese(C_Info)
 
 func int DIA_Talbin_PayTeacher_NoCheese_Condition()
 {
-	if((MIS_TalbinCheese == LOG_RUNNING) && !Npc_HasItems(other,ItFo_Cheese))
+	if(MIS_TalbinCheese == LOG_RUNNING)
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,ItFo_Cheese))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -550,7 +562,7 @@ func void DIA_Talbin_WOHIN_Info()
 	{
 		AI_Output(self,other,"DIA_Talbin_WOHIN_07_01");	//Доведи меня до Прохода. Пожалуйста!
 		Info_ClearChoices(DIA_Talbin_WOHIN);
-		Info_AddChoice(DIA_Talbin_WOHIN,"У меня нет времени на тебя.",DIA_Talbin_WOHIN_);
+		Info_AddChoice(DIA_Talbin_WOHIN,"У меня нет времени на тебя.",DIA_Talbin_WOHIN_schwein);
 		Info_AddChoice(DIA_Talbin_WOHIN,"Просто иди вперед.",DIA_Talbin_WOHIN_durch);
 		Info_AddChoice(DIA_Talbin_WOHIN,"Хорошо.",DIA_Talbin_WOHIN_ok);
 	}
@@ -561,10 +573,15 @@ func void DIA_Talbin_WOHIN_Info()
 	};
 };
 
+func void B_Talbin_Following()
+{
+	AI_Output(self,other,"DIA_Talbin_WOHIN_ok_07_01");	//Спасибо. Я просто пойду за тобой.
+};
+
 func void DIA_Talbin_WOHIN_ok()
 {
 	AI_Output(other,self,"DIA_Talbin_WOHIN_ok_15_00");	//Хорошо.
-	AI_Output(self,other,"DIA_Talbin_WOHIN_ok_07_01");	//Спасибо. Я просто пойду за тобой.
+	B_Talbin_Following();
 	self.npcType = NPCTYPE_FRIEND;
 	B_SetImmortal(self);
 	Talbin_FollowsThroughPass = LOG_RUNNING;
@@ -578,7 +595,7 @@ func void DIA_Talbin_WOHIN_durch()
 	AI_Output(self,other,"DIA_Talbin_WOHIN_durch_07_01");	//Там так темно. Я бы ни за что не пошел бы туда один.
 };
 
-func void DIA_Talbin_WOHIN_()
+func void DIA_Talbin_WOHIN_schwein()
 {
 	AI_Output(other,self,"DIA_Talbin_WOHIN_schwein_15_00");	//У меня нет времени на тебя.
 	AI_Output(self,other,"DIA_Talbin_WOHIN_schwein_07_01");	//Ты оставляешь меня здесь умирать?! Ты будешь гореть в аду за это!

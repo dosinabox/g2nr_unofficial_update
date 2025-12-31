@@ -44,6 +44,7 @@ instance ITAR_Governor(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Governor;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_VLK;
 	visual = "ItAr_Governor.3ds";
 	visual_change = "Armor_Governor.asc";
 	visual_skin = 0;
@@ -73,6 +74,7 @@ instance ITAR_Larius(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Governor;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_VLK;
 	visual = "ItAr_Larius.3ds";
 	visual_change = "Armor_Larius.asc";
 	visual_skin = 0;
@@ -102,6 +104,7 @@ instance ITAR_Onar(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Vlk_H;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_BAU;
 	visual = "ItAr_Onar.3DS";
 	visual_change = "Armor_Onar.asc";
 	visual_skin = 0;
@@ -131,6 +134,7 @@ instance ITAR_Judge(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = 0;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_VLK;
 	visual = "ItAr_Judge.3DS";
 	visual_change = "Armor_Judge.asc";
 	visual_skin = 0;
@@ -217,6 +221,7 @@ instance ITAR_Vlk_L(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Vlk_L;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_VLK;
 	visual = "ItAr_VLK_L.3DS";
 	visual_change = "Armor_VLK_L.asc";
 	visual_skin = 0;
@@ -246,6 +251,7 @@ instance ITAR_Vlk_M(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Vlk_M;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_VLK;
 	visual = "ItAr_VLK_M.3DS";
 	visual_change = "Armor_VLK_M.asc";
 	visual_skin = 0;
@@ -275,6 +281,7 @@ instance ITAR_Vlk_H(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Vlk_H;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_VLK;
 	visual = "ItAr_VLK_H.3DS";
 	visual_change = "Armor_VLK_H.asc";
 	visual_skin = 0;
@@ -385,6 +392,7 @@ instance ITAR_MIL_L(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_MIL_L;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_MIL;
 	visual = "ItAr_MIL_L.3DS";
 	visual_change = "Armor_MIL_L.asc";
 	visual_skin = 0;
@@ -416,6 +424,7 @@ instance ITAR_MIL_M(C_Item)
 	protection[PROT_MAGIC] = 10;
 	value = VALUE_ITAR_MIL_M;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_MIL;
 	visual = "ItAr_MIL_M.3DS";
 	visual_change = "Armor_MIL_M.asc";
 	visual_skin = 0;
@@ -447,6 +456,7 @@ instance ITAR_PAL_M(C_Item)
 	protection[PROT_MAGIC] = 25;
 	value = VALUE_ITAR_PAL_M;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_PAL;
 	visual = "ItAr_PAL_M.3ds";
 	visual_change = "Armor_PAL_M.asc";
 	visual_skin = 0;
@@ -477,6 +487,7 @@ instance ITAR_PAL_H(C_Item)
 	protection[PROT_MAGIC] = 50;
 	value = VALUE_ITAR_PAL_H;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_PAL;
 	visual = "ItAr_PAL_H.3ds";
 	visual_change = "Armor_PAL_H.asc";
 	visual_skin = 0;
@@ -507,6 +518,7 @@ instance ITAR_Bau_L(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Bau_L;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_BAU;
 	visual = "ItAr_BAU_L.3DS";
 	visual_change = "Armor_BAU_L.asc";
 	visual_skin = 0;
@@ -538,6 +550,7 @@ instance ITAR_Bau_M(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Bau_M;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_BAU;
 	visual = "ItAr_BAU_M.3ds";
 	visual_change = "Armor_BAU_M.asc";
 	visual_skin = 0;
@@ -623,6 +636,7 @@ instance ITAR_SLD_L(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_SLD_L;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_SLD;
 	visual = "ItAr_SLD_L.3ds";
 	visual_change = "Armor_SLD_L.asc";
 	visual_skin = 0;
@@ -654,6 +668,7 @@ instance ITAR_SLD_M(C_Item)
 	protection[PROT_MAGIC] = 5;
 	value = VALUE_ITAR_SLD_M;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_SLD;
 	visual = "ItAr_SLD_M.3ds";
 	visual_change = "Armor_SLD_M.asc";
 	visual_skin = 0;
@@ -685,6 +700,7 @@ instance ITAR_SLD_H(C_Item)
 	protection[PROT_MAGIC] = 10;
 	value = VALUE_ITAR_SLD_H;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_SLD;
 	visual = "ItAr_SLD_H.3ds";
 	visual_change = "Armor_SLD_H.asc";
 	visual_skin = 0;
@@ -747,6 +763,7 @@ instance ITAR_DJG_L(C_Item)
 	protection[PROT_MAGIC] = 25;
 	value = VALUE_ITAR_DJG_L;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_DJG;
 	visual = "ItAr_DJG_L.3ds";
 	visual_change = "Armor_DJG_L.asc";
 	visual_skin = 0;
@@ -776,6 +793,7 @@ instance ITAR_DJG_M(C_Item)
 	protection[PROT_MAGIC] = 35;
 	value = VALUE_ITAR_DJG_M;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_DJG;
 	visual = "ItAr_DJG_M.3ds";
 	visual_change = "Armor_DJG_M.asc";
 	visual_skin = 0;
@@ -806,6 +824,7 @@ instance ITAR_DJG_H(C_Item)
 	protection[PROT_MAGIC] = 50;
 	value = VALUE_ITAR_DJG_H;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_DJG;
 	visual = "ItAr_DJG_H.3ds";
 	visual_change = "Armor_DJG_H.asc";
 	visual_skin = 0;
@@ -836,6 +855,7 @@ instance ITAR_NOV_L(C_Item)
 	protection[PROT_MAGIC] = 10;
 	value = VALUE_ITAR_NOV_L;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_NOV;
 	visual = "ItAr_NOV_L.3ds";
 	visual_change = "Armor_NOV_L.asc";
 	visual_skin = 0;
@@ -867,6 +887,7 @@ instance ITAR_KDF_L(C_Item)
 	protection[PROT_MAGIC] = 20;
 	value = VALUE_ITAR_KDF_L;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_KDF;
 	visual = "ItAr_KDF_L.3ds";
 	visual_change = "Armor_KDF_L.asc";
 	visual_skin = 0;
@@ -898,6 +919,7 @@ instance ITAR_KDF_H(C_Item)
 	protection[PROT_MAGIC] = 50;
 	value = VALUE_ITAR_KDF_H;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_KDF;
 	visual = "ItAr_KDF_H.3ds";
 	visual_change = "Armor_KDF_H.asc";
 	visual_skin = 0;
@@ -960,6 +982,7 @@ instance ITAR_BDT_M(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_BDT_M;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_BDT;
 	visual = "ItAr_BDT_M.3ds";
 	visual_change = "Armor_BDT_M.asc";
 	visual_skin = 0;
@@ -992,6 +1015,7 @@ instance ITAR_BDT_H(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_BDT_H;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_BDT;
 	visual = "ItAr_BDT_H.3ds";
 	visual_change = "Armor_BDT_H.asc";
 	visual_skin = 0;
@@ -1115,6 +1139,7 @@ instance ITAR_Diego(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Diego;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_BDT;
 	visual = "ItAr_Diego.3ds";
 	visual_change = "Armor_Diego.asc";
 	visual_skin = 0;
@@ -1227,6 +1252,7 @@ instance ITAR_KDW_H(C_Item)
 	protection[PROT_MAGIC] = 50;
 	value = VALUE_ITAR_KDW_H;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_KDW;
 	visual = "ItAr_KDW_H.3ds";
 	visual_change = "Armor_KDW_H.asc";
 	visual_skin = 0;
@@ -1366,6 +1392,7 @@ instance ITAR_DJGN_M(C_Item)
 	protection[PROT_MAGIC] = 35 - Prot_Helmet_M;
 	value = VALUE_ITAR_DJG_M - Value_Helmet_M;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_DJG;
 	visual = "ItAr_DJGN_M.3ds";
 	visual_change = "Armor_DJGN_M.asc";
 	visual_skin = 0;
@@ -1395,6 +1422,7 @@ instance ITAR_DJGN_H(C_Item)
 	protection[PROT_MAGIC] = 50 - Prot_Helmet_H;
 	value = VALUE_ITAR_DJG_H - Value_Helmet_H;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_DJG;
 	visual = "ItAr_DJGN_H.3ds";
 	visual_change = "Armor_DJGN_H.asc";
 	visual_skin = 0;
@@ -1424,6 +1452,7 @@ instance ITAR_PALN_M(C_Item)
 	protection[PROT_MAGIC] = 25 - Prot_Helmet_M;
 	value = VALUE_ITAR_PAL_M - Value_Helmet_M;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_PAL;
 	visual = "ItAr_PALN_M.3ds";
 	visual_change = "Armor_PALN_M.asc";
 	visual_skin = 0;
@@ -1453,6 +1482,7 @@ instance ITAR_PALN_H(C_Item)
 	protection[PROT_MAGIC] = 50 - Prot_Helmet_H;
 	value = VALUE_ITAR_PAL_H - Value_Helmet_H;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_PAL;
 	visual = "ItAr_PALN_H.3ds";
 	visual_change = "Armor_PALN_H.asc";
 	visual_skin = 0;
@@ -1482,6 +1512,7 @@ instance ITAR_PAL_S(C_Item)
 	protection[PROT_MAGIC] = 60;
 	value = 30000;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_PAL;
 	visual = "ItAr_PAL_S.3ds";
 	visual_change = "Armor_PAL_S.asc";
 	visual_skin = 0;
@@ -1569,6 +1600,7 @@ instance ITAR_KDF_M(C_Item)
 	protection[PROT_MAGIC] = 20;
 	value = VALUE_ITAR_KDF_L;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_KDF;
 	visual = "ItAr_KDF_M.3ds";
 	visual_change = "Armor_KDF_M.asc";
 	visual_skin = 0;
@@ -1600,6 +1632,7 @@ instance ITAR_KDF_S(C_Item)
 	protection[PROT_MAGIC] = 50;
 	value = VALUE_ITAR_KDF_H;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_KDF;
 	visual = "ItAr_KDF_S.3ds";
 	visual_change = "Armor_KDF_S.asc";
 	visual_skin = 0;
@@ -1631,6 +1664,7 @@ instance ITAR_SLD_S(C_Item)
 	protection[PROT_MAGIC] = 5;
 	value = VALUE_ITAR_SLD_S;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_SLD;
 	visual = "ItAr_SLD_S.3ds";
 	visual_change = "Armor_SLD_S.asc";
 	visual_skin = 0;
