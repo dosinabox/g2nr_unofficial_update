@@ -86,9 +86,20 @@ instance DIA_Maleth_BANDITS(C_Info)
 
 func int DIA_Maleth_BANDITS_Condition()
 {
-	if((Kapitel < 3) && (Npc_KnowsInfo(other,DIA_BDT_1013_BANDIT_WHERE) || Npc_KnowsInfo(other,DIA_BDT_1014_BANDIT_KILLER) || Npc_KnowsInfo(other,DIA_1015_BANDIT_AMBUSH) || C_BragoBanditsDead() || Npc_KnowsInfo(other,DIA_Addon_Cavalorn_LETSKILLBANDITS) || (BragoBanditsAttacked == TRUE)))
+	if(Kapitel < 3)
 	{
-		return TRUE;
+		if(BragoBanditsAttacked == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_BDT_1013_BANDIT_WHERE))
+		{
+			return TRUE;
+		};
+		if(C_BragoBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -257,9 +268,12 @@ instance DIA_Maleth_LOBART(C_Info)
 
 func int DIA_Maleth_LOBART_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maleth_Equipment) && !Npc_IsDead(Lobart) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Maleth_Equipment) && (other.guild == GIL_NONE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Lobart))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -404,9 +418,12 @@ instance DIA_Maleth_GEHSTOCK(C_Info)
 
 func int DIA_Maleth_GEHSTOCK_Condition()
 {
-	if(Npc_HasItems(other,ItMw_MalethsGehstock_MIS) && Npc_KnowsInfo(other,DIA_Maleth_PROBLEME))
+	if(Npc_KnowsInfo(other,DIA_Maleth_PROBLEME))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMw_MalethsGehstock_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -1,38 +1,6 @@
 
 func int B_AssessEnemy()
 {
-	if(CurrentLevel == NEWWORLD_ZEN)
-	{
-		if(!Npc_IsPlayer(other))
-		{
-			if(C_IsNpc(self,VLK_449_Lares))
-			{
-				if(C_IsNpc(other,MagicGolem))
-				{
-					return FALSE;
-				};
-			}
-			else if(C_IsNpc(self,BAU_942_Randolph))
-			{
-				if(Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000)
-				{
-					B_Flee();
-					return FALSE;
-				};
-			};
-		};
-		if((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE))
-		{
-			if(C_NpcIsOrc(other) || C_NpcIsGolem(other))
-			{
-				if(C_NpcIsAfraidOfOrcs(self))
-				{
-					B_Flee();
-					return FALSE;
-				};
-			};
-		};
-	};
 	if(C_NpcIsHuman(other))
 	{
 		if(self.aivar[AIV_EnemyOverride] == TRUE)
@@ -53,19 +21,54 @@ func int B_AssessEnemy()
 			{
 				return FALSE;
 			};
-		};
-		if(C_NpcIsGhost(other))
-		{
-			return FALSE;
+			if(C_NpcIsGhost(other))
+			{
+				return FALSE;
+			};
+			if(C_IsNpc(self,BAU_942_Randolph))
+			{
+				if(Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000)
+				{
+					if(C_ErolBanditsDead())
+					{
+						B_Flee();
+						return FALSE;
+					};
+				};
+			};
 		};
 		/*if(C_NpcIsLevelinspektor(other))
 		{
 			return FALSE;
 		};*/
 	}
-	else if(other.aivar[AIV_NoFightParker] == TRUE)
+	else
 	{
-		return FALSE;
+		if(other.aivar[AIV_NoFightParker] == TRUE)
+		{
+			return FALSE;
+		};
+		if(CurrentLevel == NEWWORLD_ZEN)
+		{
+			if(C_IsNpc(self,VLK_449_Lares))
+			{
+				if(C_IsNpc(other,MagicGolem))
+				{
+					return FALSE;
+				};
+			};
+			if((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE))
+			{
+				if(C_NpcIsOrc(other) || C_NpcIsGolem(other))
+				{
+					if(C_NpcIsAfraidOfOrcs(self))
+					{
+						B_Flee();
+						return FALSE;
+					};
+				};
+			};
+		};
 	};
 	if(self.aivar[AIV_MM_FollowInWater] == FALSE)
 	{

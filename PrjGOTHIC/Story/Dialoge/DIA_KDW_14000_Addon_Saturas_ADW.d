@@ -299,9 +299,12 @@ instance DIA_Addon_Saturas_LanceRing(C_Info)
 
 func int DIA_Addon_Saturas_LanceRing_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_LanceLeiche) && Npc_HasItems(other,ItRi_Ranger_Lance_Addon))
+	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_LanceLeiche))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItRi_Ranger_Lance_Addon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -334,6 +337,31 @@ func void B_Saturas_SCFound_SayWhereOnce()
 	};
 };
 
+func int C_SCHasStoneplatesForSaturas()
+{
+	if(Npc_HasItems(other,ItMi_Addon_Stone_01) && (Saturas_SCFound_ItMi_Addon_Stone_01 == FALSE))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItMi_Addon_Stone_02) && (Saturas_SCFound_ItMi_Addon_Stone_02 == FALSE))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItMi_Addon_Stone_03) && (Saturas_SCFound_ItMi_Addon_Stone_03 == FALSE))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItMi_Addon_Stone_04) && (Saturas_SCFound_ItMi_Addon_Stone_04 == FALSE))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(other,ItMi_Addon_Stone_05) && (Saturas_SCFound_ItMi_Addon_Stone_05 == FALSE))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 instance DIA_Addon_Saturas_Tokens(C_Info)
 {
 	npc = KDW_14000_Addon_Saturas_ADW;
@@ -362,7 +390,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 	XP_BroughtTokens = 0;
 	Saturas_SCFound_SayWhereOnce = FALSE;
 	AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_00");	//Насчет реликвий...
-	if((Npc_HasItems(other,ItMi_Addon_Stone_01) && (Saturas_SCFound_ItMi_Addon_Stone_01 == FALSE)) || (Npc_HasItems(other,ItMi_Addon_Stone_02) && (Saturas_SCFound_ItMi_Addon_Stone_02 == FALSE)) || (Npc_HasItems(other,ItMi_Addon_Stone_03) && (Saturas_SCFound_ItMi_Addon_Stone_03 == FALSE)) || (Npc_HasItems(other,ItMi_Addon_Stone_04) && (Saturas_SCFound_ItMi_Addon_Stone_04 == FALSE)) || (Npc_HasItems(other,ItMi_Addon_Stone_05) && (Saturas_SCFound_ItMi_Addon_Stone_05 == FALSE)))
+	if(C_SCHasStoneplatesForSaturas())
 	{
 		AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_04");	//Как насчет ЭТОГО?
 		B_LogEntry(TOPIC_Addon_Relicts,"Я отдал Сатурасу следующие реликвии:");
@@ -487,8 +515,8 @@ func int DIA_Addon_Saturas_StonePlateHint_Condition()
 		if(RavenIsDead == FALSE)
 		{
 			return TRUE;
-		}
-		else if(Npc_KnowsInfo(other,DIA_Addon_Saturas_RavensDead) && (MyxirMovedToNW == TRUE))
+		};
+		if(Npc_KnowsInfo(other,DIA_Addon_Saturas_RavensDead) && (MyxirMovedToNW == TRUE))
 		{
 			return TRUE;
 		};

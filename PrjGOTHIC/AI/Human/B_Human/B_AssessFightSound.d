@@ -59,27 +59,41 @@ func void B_AssessFightSound()
 	{
 		return;
 	};
-	if((victim.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer) || (other.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer))
+	if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		if(self.aivar[AIV_SubGuild] != GIL_SUB_Thief_Sewer)
+		if(Npc_GetHeightToNpc(self,other) > 500)
 		{
-			return;
-		};
-	};
-	if(C_IsNpc(self,VLK_448_Joe))
-	{
-		if(Npc_GetDistToWP(self,"NW_CITY_MERCHANT_TOWER_01") < 600)
-		{
-			return;
-		};
-	};
-	if(C_IsNpc(self,MIL_324_Peck))
-	{
-		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_PECK") <= 500)
-		{
-			if(Npc_GetDistToWP(victim,"NW_PUFF_DANCE") > 1000)
+			if(Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_04") <= 3000)
 			{
 				return;
+			};
+		};
+		if(self.aivar[AIV_SubGuild] != GIL_SUB_Thief_Sewer)
+		{
+			if(victim.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer)
+			{
+				return;
+			};
+			if(other.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer)
+			{
+				return;
+			};
+		};
+		if(C_IsNpc(self,VLK_448_Joe))
+		{
+			if(TOPIC_END_Joe == FALSE)
+			{
+				return;
+			};
+		};
+		if(C_IsNpc(self,MIL_324_Peck))
+		{
+			if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_PECK") <= 500)
+			{
+				if(Npc_GetDistToWP(victim,"NW_PUFF_DANCE") > 1000)
+				{
+					return;
+				};
 			};
 		};
 	};
@@ -95,7 +109,11 @@ func void B_AssessFightSound()
 	};
 	if(self.aivar[AIV_MM_FollowInWater] == FALSE)
 	{
-		if(C_NpcIsSwimming(other) || C_NpcIsSwimming(victim))
+		if(C_NpcIsSwimming(victim))
+		{
+			return;
+		};
+		if(C_NpcIsSwimming(other))
 		{
 			return;
 		};
@@ -104,13 +122,9 @@ func void B_AssessFightSound()
 	{
 		return;
 	};
-	if((Npc_GetHeightToNpc(self,other) > PERC_DIST_HEIGHT) && (Npc_GetHeightToNpc(self,victim) > PERC_DIST_HEIGHT))
+	if(Npc_GetHeightToNpc(self,other) > PERC_DIST_HEIGHT)
 	{
-		return;
-	};
-	if(CurrentLevel == NEWWORLD_ZEN)
-	{
-		if((Npc_GetHeightToNpc(self,other) > 500) && (Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_04") <= 3000))
+		if(Npc_GetHeightToNpc(self,victim) > PERC_DIST_HEIGHT)
 		{
 			return;
 		};

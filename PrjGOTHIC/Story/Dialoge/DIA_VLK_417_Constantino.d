@@ -341,6 +341,55 @@ func void DIA_Constantino_BringHerbs_Info()
 };
 
 
+func int C_SCHasAllPlantsForConstantino()
+{
+	if(!Npc_HasItems(other,ItPl_Mana_Herb_01))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(other,ItPl_Mana_Herb_02))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(other,ItPl_Mana_Herb_03))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(other,ItPl_Health_Herb_01))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(other,ItPl_Health_Herb_02))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(other,ItPl_Health_Herb_03))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(other,ItPl_Dex_Herb_01))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(other,ItPl_Strength_Herb_01))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(other,ItPl_Speed_Herb_01))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(other,ItPl_Temp_Herb))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(other,ItPl_Perm_Herb))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 instance DIA_Constantino_HerbsRunning(C_Info)
 {
 	npc = VLK_417_Constantino;
@@ -366,7 +415,7 @@ func void DIA_Constantino_HerbsRunning_Info()
 	AI_Output(self,other,"DIA_Constantino_HerbsRunning_10_01");	//≈сли ты не можешь выполнить это задание самосто€тельно, из теб€ не получитс€ хорошего алхимика!
 	Info_ClearChoices(DIA_Constantino_HerbsRunning);
 	Info_AddChoice(DIA_Constantino_HerbsRunning,"ѕонимаю.",DIA_Constantino_HerbsRunning_Running);
-	if(Npc_HasItems(other,ItPl_Mana_Herb_01) && Npc_HasItems(other,ItPl_Mana_Herb_02) && Npc_HasItems(other,ItPl_Mana_Herb_03) && Npc_HasItems(other,ItPl_Health_Herb_01) && Npc_HasItems(other,ItPl_Health_Herb_02) && Npc_HasItems(other,ItPl_Health_Herb_03) && Npc_HasItems(other,ItPl_Dex_Herb_01) && Npc_HasItems(other,ItPl_Strength_Herb_01) && Npc_HasItems(other,ItPl_Speed_Herb_01) && Npc_HasItems(other,ItPl_Temp_Herb) && Npc_HasItems(other,ItPl_Perm_Herb))
+	if(C_SCHasAllPlantsForConstantino())
 	{
 		Info_AddChoice(DIA_Constantino_HerbsRunning,"я принес все растени€, что ты просил!",DIA_Constantino_HerbsRunning_Success);
 	};

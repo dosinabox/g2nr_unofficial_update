@@ -5,6 +5,7 @@ func void B_AssessPlayer()
 	{
 		return;
 	};*/
+	var int dist;
 	if(other.aivar[AIV_INVINCIBLE] == TRUE)
 	{
 		return;
@@ -58,7 +59,8 @@ func void B_AssessPlayer()
 			return;
 		};
 	};
-	if(Npc_GetDistToNpc(self,other) <= PERC_DIST_INTERMEDIAT)
+	dist = Npc_GetDistToNpc(self,other);
+	if(dist <= PERC_DIST_INTERMEDIAT)
 	{
 		if(B_GetPlayerCrime(self) == CRIME_MURDER)
 		{
@@ -100,7 +102,7 @@ func void B_AssessPlayer()
 	if(Npc_CheckInfo(self,1))
 	{
 		self.aivar[AIV_CommentedPlayerCrime] = FALSE;
-		if(Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG)
+		if(dist <= PERC_DIST_DIALOG)
 		{
 			if(C_IsNpc(self,NOV_608_Garwig))
 			{
@@ -125,7 +127,7 @@ func void B_AssessPlayer()
 			};
 		};
 	};
-	if(Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG)
+	if(dist <= PERC_DIST_DIALOG)
 	{
 		if(C_BodyStateContains(self,BS_WALK) && !Npc_RefuseTalk(other) && !C_NpcIsGateGuard(self))
 		{
