@@ -3,9 +3,12 @@ var int Lee_Teleport;
 
 func int C_Lee_ReadyToGiveRune()
 {
-	if((Lee_Teleport == FALSE) && (Kapitel >= 3) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && (Lee_IsOnBoard != LOG_FAILED) && (Lee_IsOnBoard != LOG_SUCCESS))
+	if((Lee_Teleport == FALSE) && (Kapitel >= 3) && (Lee_IsOnBoard != LOG_FAILED) && (Lee_IsOnBoard != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
+		{
+			return TRUE;
+		};
 	};
 	return FALSE;
 };
@@ -122,9 +125,12 @@ instance DIA_Lee_PMSchulden(C_Info)
 
 func int DIA_Lee_PMSchulden_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Lee_Schulden > 0) && (B_GetGreatestPetzCrime(self) <= Lee_LastPetzCrime))
+	if(Npc_IsInState(self,ZS_Talk) && (Lee_Schulden > 0))
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) <= Lee_LastPetzCrime)
+		{
+			return TRUE;
+		};
 	};
 };
 

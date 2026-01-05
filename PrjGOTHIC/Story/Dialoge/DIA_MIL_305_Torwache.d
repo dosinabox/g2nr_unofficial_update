@@ -290,9 +290,12 @@ instance DIA_MIL_305_Torwache_PassAsArmoredMil(C_Info)
 
 func int DIA_MIL_305_Torwache_PassAsArmoredMil_Condition()
 {
-	if((VisibleGuild(other) == GIL_MIL) && (MIL_305_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if(MIL_305_schonmalreingelassen == FALSE)
 	{
-		return TRUE;
+		if((VisibleGuild(other) == GIL_MIL) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -394,9 +397,12 @@ instance DIA_MIL_305_Torwache_PassAsSld(C_Info)
 
 func int DIA_MIL_305_Torwache_PassAsSld_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Passage_MIS) && (MIL_305_schonmalreingelassen == FALSE))
+	if(MIL_305_schonmalreingelassen == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Passage_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -438,9 +444,12 @@ instance DIA_MIL_305_Torwache_PERM(C_Info)
 
 func int DIA_MIL_305_Torwache_PERM_Condition()
 {
-	if((MIL_305_schonmalreingelassen == TRUE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if(MIL_305_schonmalreingelassen == TRUE)
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) < CRIME_ATTACK)
+		{
+			return TRUE;
+		};
 	};
 };
 

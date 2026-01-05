@@ -87,9 +87,12 @@ instance DIA_Hagen_PMSchulden(C_Info)
 
 func int DIA_Hagen_PMSchulden_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Hagen_Schulden > 0) && (B_GetGreatestPetzCrime(self) <= Hagen_LastPetzCrime))
+	if(Npc_IsInState(self,ZS_Talk) && (Hagen_Schulden > 0))
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) <= Hagen_LastPetzCrime)
+		{
+			return TRUE;
+		};
 	};
 };
 

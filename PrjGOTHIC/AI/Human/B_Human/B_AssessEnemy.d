@@ -29,7 +29,7 @@ func int B_AssessEnemy()
 			{
 				if(Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000)
 				{
-					if(C_ErolBanditsDead())
+					if(!C_ErolBanditsDead())
 					{
 						B_Flee();
 						return FALSE;
@@ -56,8 +56,8 @@ func int B_AssessEnemy()
 				{
 					return FALSE;
 				};
-			};
-			if((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE))
+			}
+			else if((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE))
 			{
 				if(C_NpcIsOrc(other) || C_NpcIsGolem(other))
 				{
@@ -107,16 +107,30 @@ func int B_AssessEnemy()
 	{
 		return FALSE;
 	};
-	if(Npc_IsPlayer(other) && (self.npcType == NPCTYPE_FRIEND))
+	if(self.npcType == NPCTYPE_FRIEND)
 	{
-		return FALSE;
+		if(Npc_IsPlayer(other))
+		{
+			return FALSE;
+		};
 	};
 	if(Wld_GetGuildAttitude(self.guild,other.guild) != ATT_HOSTILE)
 	{
-		if((Npc_GetAttitude(self,other) == ATT_HOSTILE) && ((Npc_GetStateTime(self) > 2) || Npc_IsInState(self,ZS_ObservePlayer)) && (Npc_GetDistToNpc(self,other) <= PERC_DIST_INTERMEDIAT))
+		if(Npc_GetAttitude(self,other) == ATT_HOSTILE)
 		{
-			B_Attack(self,other,self.aivar[AIV_LastPlayerAR],0);
-			return TRUE;
+			if(Npc_GetDistToNpc(self,other) <= PERC_DIST_INTERMEDIAT)
+			{
+				if(Npc_GetStateTime(self) > 2)
+				{
+					B_Attack(self,other,self.aivar[AIV_LastPlayerAR],0);
+					return TRUE;
+				};
+				if(Npc_IsInState(self,ZS_ObservePlayer))
+				{
+					B_Attack(self,other,self.aivar[AIV_LastPlayerAR],0);
+					return TRUE;
+				};
+			};
 		};
 		return FALSE;
 	};

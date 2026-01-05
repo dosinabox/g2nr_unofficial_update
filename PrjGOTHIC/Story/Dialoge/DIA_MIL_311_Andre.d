@@ -206,9 +206,12 @@ instance DIA_Andre_PMSchulden(C_Info)
 
 func int DIA_Andre_PMSchulden_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Andre_Schulden > 0) && (B_GetGreatestPetzCrime(self) <= Andre_LastPetzCrime))
+	if(Npc_IsInState(self,ZS_Talk) && (Andre_Schulden > 0))
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) <= Andre_LastPetzCrime)
+		{
+			return TRUE;
+		};
 	};
 };
 
