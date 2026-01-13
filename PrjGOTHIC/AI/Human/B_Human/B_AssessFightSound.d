@@ -85,8 +85,8 @@ func void B_AssessFightSound()
 			{
 				return;
 			};
-		};
-		if(C_IsNpc(self,MIL_324_Peck))
+		}
+		else if(C_IsNpc(self,MIL_324_Peck))
 		{
 			if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_PECK") <= 500)
 			{
@@ -161,12 +161,15 @@ func void B_AssessFightSound()
 			return;
 		};
 	};
-	if((Npc_GetAttitude(self,other) != ATT_HOSTILE) && !Npc_IsDead(victim))
+	if(Npc_GetAttitude(self,other) != ATT_HOSTILE)
 	{
-		if(!C_NpcIsHuman(victim))
+		if(!Npc_IsDead(victim))
 		{
-			B_Attack(self,victim,AR_MonsterVsHuman,0);
-			return;
+			if(!C_NpcIsHuman(victim))
+			{
+				B_Attack(self,victim,AR_MonsterVsHuman,0);
+				return;
+			};
 		};
 	};
 	if(self.aivar[AIV_EnemyOverride] == TRUE)
@@ -180,9 +183,9 @@ func void B_AssessFightSound()
 		};
 		return;
 	};
-	if((C_PlayerIsFakeBandit(self,other) || C_PlayerIsFakeBandit(self,victim)) && ((other.guild == GIL_BDT) || (victim.guild == GIL_BDT)))
+	if((self.guild == GIL_BDT) && ((other.guild == GIL_BDT) || (victim.guild == GIL_BDT)))
 	{
-		if(self.guild == GIL_BDT)
+		if(C_PlayerIsFakeBandit(self,other) || C_PlayerIsFakeBandit(self,victim))
 		{
 			if(self.aivar[AIV_SubGuild] == GIL_SUB_Esteban)
 			{
