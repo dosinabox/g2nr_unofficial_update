@@ -202,18 +202,28 @@ func void B_AssessPortalCollision()
 		{
 			return;
 		};
-		if((Wld_GetGuildAttitude(self.guild,other.guild) == ATT_FRIENDLY) || (Npc_IsPlayer(other) && (self.npcType == NPCTYPE_FRIEND)))
+		if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_FRIENDLY)
 		{
 			return;
+		};
+		if(self.npcType == NPCTYPE_FRIEND)
+		{
+			if(Npc_IsPlayer(other))
+			{
+				return;
+			};
 		};
 		if(self.guild == GIL_NONE)
 		{
 			return;
 		};
-		if(((formerportalguild == GIL_MIL) || (formerportalguild == GIL_SLD)) && (Wld_GetGuildAttitude(self.guild,formerportalguild) == ATT_FRIENDLY))
+		if((formerportalguild == GIL_MIL) || (formerportalguild == GIL_SLD))
 		{
-			B_Attack(self,other,AR_LeftPortalRoom,0);
-			return;
+			if(Wld_GetGuildAttitude(self.guild,formerportalguild) == ATT_FRIENDLY)
+			{
+				B_Attack(self,other,AR_LeftPortalRoom,0);
+				return;
+			};
 		};
 		self.aivar[AIV_SeenLeftRoom] = TRUE;
 		Npc_ClearAIQueue(self);

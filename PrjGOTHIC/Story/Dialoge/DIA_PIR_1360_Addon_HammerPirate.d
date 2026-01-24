@@ -176,9 +176,12 @@ instance DIA_Addon_HammerPirate_TooFar(C_Info)
 
 func int DIA_Addon_HammerPirate_TooFar_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToWP(self,"ADW_PIRATECAMP_WAY_08") > 6000))
+	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"ADW_PIRATECAMP_WAY_08") > 6000)
+		{
+			return TRUE;
+		};
 	};
 };
 

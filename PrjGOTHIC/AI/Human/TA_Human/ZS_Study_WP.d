@@ -62,9 +62,19 @@ func int ZS_Study_WP_Loop()
 			if((self.guild == GIL_KDW) && (RavenIsDead == FALSE))
 			{
 				eventrandy = Hlp_Random(100);
-				if(((eventrandy < 5) && (CurrentLevel == NEWWORLD_ZEN)) || ((eventrandy == 1) && (CurrentLevel == ADDONWORLD_ZEN)))
+				if(CurrentLevel == NEWWORLD_ZEN)
 				{
-					B_Event_Portal_EarthQuake();
+					if(eventrandy < 5)
+					{
+						B_Event_Portal_EarthQuake();
+					};
+				}
+				else if(CurrentLevel == ADDONWORLD_ZEN)
+				{
+					if(eventrandy == 1)
+					{
+						B_Event_Portal_EarthQuake();
+					};
 				};
 			};
 		};

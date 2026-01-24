@@ -31,6 +31,8 @@ func void B_Nadja_NotHere()
 	};
 };
 
+var int Nadja_LuciaInfo;
+
 instance DIA_Nadja_STANDARD(C_Info)
 {
 	npc = VLK_435_Nadja;
@@ -49,9 +51,6 @@ func int DIA_Nadja_STANDARD_Condition()
 		return TRUE;
 	};
 };
-
-
-var int Nadja_LuciaInfo;
 
 func void DIA_Nadja_STANDARD_Info()
 {
@@ -118,17 +117,20 @@ instance DIA_Addon_Nadja_LuciaInfo(C_Info)
 
 func int DIA_Addon_Nadja_LuciaInfo_Condition()
 {
-	if((Bromor_Pay == 2) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 300))
+	if(Bromor_Pay == 2)
 	{
-		if(Nadja_LuciaInfo == TRUE)
+		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 300)
 		{
-			DIA_Addon_Nadja_LuciaInfo.description = "Ну, а теперь мы можем поговорить?";
-			return TRUE;
-		}
-		else if((SC_HearedAboutMissingPeople == TRUE) && (SCKnowsMissingPeopleAreInAddonWorld == FALSE))
-		{
-			DIA_Addon_Nadja_LuciaInfo.description = "Я только хотел задать тебе пару вопросов о пропавших людях.";
-			return TRUE;
+			if(Nadja_LuciaInfo == TRUE)
+			{
+				DIA_Addon_Nadja_LuciaInfo.description = "Ну, а теперь мы можем поговорить?";
+				return TRUE;
+			};
+			if((SC_HearedAboutMissingPeople == TRUE) && (SCKnowsMissingPeopleAreInAddonWorld == FALSE))
+			{
+				DIA_Addon_Nadja_LuciaInfo.description = "Я только хотел задать тебе пару вопросов о пропавших людях.";
+				return TRUE;
+			};
 		};
 	};
 };
@@ -360,9 +362,12 @@ instance DIA_Nadja_Poppen(C_Info)
 
 func int DIA_Nadja_Poppen_Condition()
 {
-	if((Bromor_Pay == 2) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 300))
+	if(Bromor_Pay == 2)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 300)
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -68,9 +68,16 @@ func void B_AssessMurder()
 		};
 		return;
 	};
-	if(((Npc_GetAttitude(self,victim) == ATT_HOSTILE) || (Npc_GetAttitude(self,victim) == ATT_ANGRY)) && ((Npc_GetAttitude(self,other) == ATT_FRIENDLY) || (Npc_GetAttitude(self,other) == ATT_NEUTRAL)))
+	if((Npc_GetAttitude(self,victim) == ATT_HOSTILE) || (Npc_GetAttitude(self,victim) == ATT_ANGRY))
 	{
-		return;
+		if(Npc_GetAttitude(self,other) == ATT_FRIENDLY)
+		{
+			return;
+		};
+		if(Npc_GetAttitude(self,other) == ATT_NEUTRAL)
+		{
+			return;
+		};
 	};
 	if(Npc_IsPlayer(other) && (self.npcType == NPCTYPE_FRIEND))
 	{

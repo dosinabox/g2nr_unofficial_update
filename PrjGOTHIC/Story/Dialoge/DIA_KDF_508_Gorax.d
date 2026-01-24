@@ -46,6 +46,8 @@ func void DIA_Gorax_HELP_Info()
 };
 
 
+var int DIA_Gorax_GOLD_perm;
+
 instance DIA_Gorax_GOLD(C_Info)
 {
 	npc = KDF_508_Gorax;
@@ -56,8 +58,6 @@ instance DIA_Gorax_GOLD(C_Info)
 	description = "Я принес целую кучу золота.";
 };
 
-
-var int DIA_Gorax_GOLD_perm;
 
 func int DIA_Gorax_GOLD_Condition()
 {
@@ -249,9 +249,12 @@ instance DIA_Gorax_Aufgabe2(C_Info)
 
 func int DIA_Gorax_Aufgabe2_Condition()
 {
-	if(((MIS_GoraxEssen == LOG_SUCCESS) || (MIS_GoraxEssen == LOG_FAILED)) && !Npc_IsDead(Orlan))
+	if((MIS_GoraxEssen == LOG_SUCCESS) || (MIS_GoraxEssen == LOG_FAILED))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Orlan))
+		{
+			return TRUE;
+		};
 	};
 };
 

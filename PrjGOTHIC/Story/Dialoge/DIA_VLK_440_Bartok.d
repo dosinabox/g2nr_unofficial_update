@@ -440,9 +440,12 @@ instance DIA_Bartok_ImWald(C_Info)
 
 func int DIA_Bartok_ImWald_Condition()
 {
-	if((Bartok_Los == TRUE) && (Npc_GetDistToWP(self,"NW_FARM1_CITYWALL_FOREST_03") < 500))
+	if(Bartok_Los == TRUE)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_FARM1_CITYWALL_FOREST_03") < 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -503,9 +506,12 @@ instance DIA_Bartok_Angekommen(C_Info)
 
 func int DIA_Bartok_Angekommen_Condition()
 {
-	if((Bartok_Los == TRUE) && (Npc_GetDistToWP(self,"NW_FARM1_CITYWALL_FOREST_07") < 500))
+	if(Bartok_Los == TRUE)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_FARM1_CITYWALL_FOREST_07") < 500)
+		{
+			return TRUE;
+		};
 	};
 };
 

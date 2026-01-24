@@ -1027,9 +1027,12 @@ instance DIA_Lord_Hagen_RescueBennet(C_Info)
 
 func int DIA_Lord_Hagen_RescueBennet_Condition()
 {
-	if((MIS_RescueBennet == LOG_RUNNING) && !C_SCReadyToRescueBennet())
+	if(MIS_RescueBennet == LOG_RUNNING)
 	{
-		return TRUE;
+		if(!C_SCReadyToRescueBennet())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1107,9 +1110,12 @@ instance DIA_Lord_Hagen_Cornelius(C_Info)
 
 func int DIA_Lord_Hagen_Cornelius_Condition()
 {
-	if((MIS_RescueBennet == LOG_RUNNING) && C_SCReadyToRescueBennet())
+	if(MIS_RescueBennet == LOG_RUNNING)
 	{
-		return TRUE;
+		if(C_SCReadyToRescueBennet())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1212,9 +1218,16 @@ instance DIA_Lord_Hagen_ANTIPALADINE(C_Info)
 
 func int DIA_Lord_Hagen_ANTIPALADINE_Condition()
 {
-	if(((AntiPaladinTalkCount > 0) || Npc_HasItems(other,ItRi_OrcEliteRing)) && (Hagen_SawOrcRing == FALSE))
+	if(Hagen_SawOrcRing == FALSE)
 	{
-		return TRUE;
+		if(AntiPaladinTalkCount > 0)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItRi_OrcEliteRing))
+		{
+			return TRUE;
+		};
 	};
 };
 
