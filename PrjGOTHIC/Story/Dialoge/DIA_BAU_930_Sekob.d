@@ -527,6 +527,8 @@ func void DIA_Sekob_PERM_Info()
 };
 
 
+var int DIA_Sekob_Heilung_oneTime;
+
 instance DIA_Sekob_Heilung(C_Info)
 {
 	npc = BAU_930_Sekob;
@@ -545,9 +547,6 @@ func int DIA_Sekob_Heilung_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Sekob_Heilung_oneTime;
 
 func void DIA_Sekob_Heilung_Info()
 {
@@ -583,7 +582,11 @@ func int DIA_Sekob_ROSIBACKATSEKOB_Condition()
 {
 	if(!Npc_IsDead(Rosi) && (MIS_BringRosiBackToSekob == LOG_RUNNING))
 	{
-		if((Npc_GetDistToWP(Rosi,"NW_FARM4_IN_04") < 3000) || (Npc_GetDistToWP(Rosi,"NW_BIGFARM_FARM4_PATH_01") < 3000))
+		if(Npc_GetDistToWP(Rosi,"NW_FARM4_IN_04") < 3000)
+		{
+			return TRUE;
+		};
+		if(Npc_GetDistToWP(Rosi,"NW_BIGFARM_FARM4_PATH_01") < 3000)
 		{
 			return TRUE;
 		};

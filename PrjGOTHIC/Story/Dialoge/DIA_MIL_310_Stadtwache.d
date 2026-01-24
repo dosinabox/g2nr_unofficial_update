@@ -252,9 +252,12 @@ instance DIA_MIL_310_Stadtwache_Passierschein(C_Info)
 
 func int DIA_MIL_310_Stadtwache_Passierschein_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Passierschein) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK) && (MIL_310_schonmalreingelassen == FALSE))
+	if(MIL_310_schonmalreingelassen == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Passierschein) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -292,9 +295,12 @@ instance DIA_MIL_310_Stadtwache_ZumSchmied(C_Info)
 
 func int DIA_MIL_310_Stadtwache_ZumSchmied_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maleth_ToTheCity) && (MIL_310_schonmalreingelassen == FALSE) && (VisibleGuild(other) == GIL_BAU))
+	if(Npc_KnowsInfo(other,DIA_Maleth_ToTheCity) && (MIL_310_schonmalreingelassen == FALSE))
 	{
-		return TRUE;
+		if(VisibleGuild(other) == GIL_BAU)
+		{
+			return TRUE;
+		};
 	};
 };
 

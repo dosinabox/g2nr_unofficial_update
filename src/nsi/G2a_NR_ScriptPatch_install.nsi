@@ -13,7 +13,7 @@
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"
-!define MOD_AUTHOR "Fizzban, Efectivo, Dimus, D36, Kvincius, N1kX, Kor Angar"
+!define MOD_AUTHOR "Fizzban, Efectivo, Dimus, D36, Kvincius, Kor Angar"
 !define MOD_LINK "https://worldofplayers.ru/threads/36817"
 !define MOD_SIZE "227000"
 !define MOD_HEADER "logo.bmp"

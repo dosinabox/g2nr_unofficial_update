@@ -194,9 +194,20 @@ instance DIA_Ingmar_ORKELITE(C_Info)
 
 func int DIA_Ingmar_ORKELITE_Condition()
 {
-	if(((AntiPaladinTalkCount > 0) || Npc_HasItems(other,ItRi_OrcEliteRing) || (Hagen_SawOrcRing == TRUE)) && (other.guild == GIL_PAL))
+	if(other.guild == GIL_PAL)
 	{
-		return TRUE;
+		if(AntiPaladinTalkCount > 0)
+		{
+			return TRUE;
+		};
+		if(Hagen_SawOrcRing == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItRi_OrcEliteRing))
+		{
+			return TRUE;
+		};
 	};
 };
 

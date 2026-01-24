@@ -55,21 +55,27 @@ func void B_CheerFight()
 	}
 	else
 	{
-		if(C_NpcBelongsToCity(self))
+		if(CurrentLevel == NEWWORLD_ZEN)
 		{
-			B_Say_Overlay(self,self,"$GETOUTOFHERE");
+			if(C_NpcBelongsToCity(self))
+			{
+				B_Say_Overlay(self,self,"$GETOUTOFHERE");
+			}
+			else if(C_NpcBelongsToFarm(self))
+			{
+				B_Say_Overlay(self,self,"$YOUDAREHITME");
+			}
+			else if(C_NpcBelongsToMonastery(self))
+			{
+				B_Say_Overlay(self,self,"$WILLYOUSTOPFIGHTING");
+			};
 		}
-		else if(C_NpcBelongsToFarm(self))
+		else if(CurrentLevel == OLDWORLD_ZEN)
 		{
-			B_Say_Overlay(self,self,"$YOUDAREHITME");
-		}
-		else if(C_NpcBelongsToMonastery(self))
-		{
-			B_Say_Overlay(self,self,"$WILLYOUSTOPFIGHTING");
-		}
-		else if(C_NpcBelongsToOldCamp(self))
-		{
-			B_Say_Overlay(self,self,"$WILLYOUSTOPFIGHTING");
+			if(C_NpcBelongsToOldCamp(self))
+			{
+				B_Say_Overlay(self,self,"$WILLYOUSTOPFIGHTING");
+			};
 		};
 		AI_PlayAni(self,"T_WATCHFIGHT_OHNO");
 	};

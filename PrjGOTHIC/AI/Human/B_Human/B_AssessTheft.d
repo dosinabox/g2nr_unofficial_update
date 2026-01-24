@@ -22,9 +22,12 @@ func void B_AssessTheft()
 	{
 		return;
 	};
-	if((Wld_GetPlayerPortalGuild() >= GIL_NONE) && (Npc_GetHeightToNpc(self,other) > PERC_DIST_INDOOR_HEIGHT))
+	if(Wld_GetPlayerPortalGuild() >= GIL_NONE)
 	{
-		return;
+		if(Npc_GetHeightToNpc(self,other) > PERC_DIST_INDOOR_HEIGHT)
+		{
+			return;
+		};
 	};
 	if(!Npc_CanSeeNpc(self,other))
 	{
@@ -36,6 +39,10 @@ func void B_AssessTheft()
 	if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_FRIENDLY)
 	{
 		if(!Hlp_IsValidItem(item))
+		{
+			return;
+		};
+		if(Wld_GetGuildAttitude(other.guild,item.ownerGuild) == ATT_FRIENDLY)
 		{
 			return;
 		};

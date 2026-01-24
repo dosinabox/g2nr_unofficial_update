@@ -87,9 +87,12 @@ instance DIA_GornOW_MetMilten(C_Info)
 
 func int DIA_GornOW_MetMilten_Condition()
 {
-	if((MIS_RescueGorn == LOG_SUCCESS) && (Npc_GetDistToWP(self,"OC_MAGE_LIBRARY_IN") <= 500) && Npc_IsInState(self,ZS_Talk) && (Kapitel == 2))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((MIS_RescueGorn == LOG_SUCCESS) && (Npc_GetDistToWP(self,"OC_MAGE_LIBRARY_IN") <= 500) && (Kapitel == 2))
+		{
+			return TRUE;
+		};
 	};
 };
 

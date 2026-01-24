@@ -205,7 +205,7 @@ func void DIA_Addon_Henry_WantEnter_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_07");	//А ты выглядишь человеком состоятельным.
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_08");	//Так что небольшая плата за вход тебя не разорит.
-		if((VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_KDW))
+		if((VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_KDW) && !ArmorEquipped(other,ITAR_Judge))
 		{
 			AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_09");	//Или свою роскошную броню ты у кого-то украл?
 		};
@@ -237,9 +237,12 @@ instance DIA_Addon_Henry_Einigen2(C_Info)
 
 func int DIA_Addon_Henry_Einigen2_Condition()
 {
-	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_WantEnter) && !Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen) && (Npc_HasItems(other,ItMi_Gold) >= 500))
+	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_WantEnter) && !Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Gold) >= 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -293,9 +296,12 @@ instance DIA_Addon_Henry_MeatForMorgan(C_Info)
 
 func int DIA_Addon_Henry_MeatForMorgan_Condition()
 {
-	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen) && (MIS_AlligatorJack_BringMeat == LOG_RUNNING) && Npc_HasItems(other,ItFoMuttonRaw))
+	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen) && (MIS_AlligatorJack_BringMeat == LOG_RUNNING))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItFoMuttonRaw))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -346,9 +352,12 @@ instance DIA_Addon_Henry_BaltramPack(C_Info)
 
 func int DIA_Addon_Henry_BaltramPack_Condition()
 {
-	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen) && Npc_HasItems(other,ItMi_Packet_Baltram4Skip_Addon))
+	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Packet_Baltram4Skip_Addon))
+		{
+			return TRUE;
+		};
 	};
 };
 

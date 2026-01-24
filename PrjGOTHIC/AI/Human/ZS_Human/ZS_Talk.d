@@ -48,9 +48,12 @@ func void ZS_Talk()
 		if(C_NpcIsAmbient(self))
 		{
 			B_AssignAmbientInfos(self);
-			if(C_NpcBelongsToCity(self))
+			if(CurrentLevel == NEWWORLD_ZEN)
 			{
-				B_AssignCityGuide(self);
+				if(C_NpcBelongsToCity(self))
+				{
+					B_AssignCityGuide(self);
+				};
 			};
 		};
 		if(self.aivar[AIV_PARTYMEMBER] == TRUE)

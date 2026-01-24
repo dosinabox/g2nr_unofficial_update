@@ -82,9 +82,12 @@ instance DIA_Garond_PMSchulden(C_Info)
 
 func int DIA_Garond_PMSchulden_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Garond_Schulden > 0) && (B_GetGreatestPetzCrime(self) <= Garond_LastPetzCrime))
+	if(Npc_IsInState(self,ZS_Talk) && (Garond_Schulden > 0))
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) <= Garond_LastPetzCrime)
+		{
+			return TRUE;
+		};
 	};
 };
 

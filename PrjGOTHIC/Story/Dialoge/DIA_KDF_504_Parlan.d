@@ -103,9 +103,9 @@ instance DIA_Parlan_PMSchulden(C_Info)
 
 func int DIA_Parlan_PMSchulden_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Parlan_Schulden > 0) && (B_GetGreatestPetzCrime(self) <= Parlan_LastPetzCrime))
+	if(Npc_IsInState(self,ZS_Talk) && (Parlan_Schulden > 0))
 	{
-		if((other.guild == GIL_NOV) && !Npc_KnowsInfo(other,DIA_Parlan_WELCOME))
+		if((other.guild == GIL_NOV) && !Npc_KnowsInfo(other,DIA_Parlan_WELCOME) && (B_GetGreatestPetzCrime(self) <= Parlan_LastPetzCrime))
 		{
 			return FALSE;
 		};
@@ -792,9 +792,12 @@ instance DIA_Parlan_MAGE(C_Info)
 
 func int DIA_Parlan_MAGE_Condition()
 {
-	if((other.guild == GIL_KDF) && (B_GetGreatestPetzCrime(self) == CRIME_NONE))
+	if(other.guild == GIL_KDF)
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1075,9 +1078,12 @@ instance DIA_Parlan_IAmParlan(C_Info)
 
 func int DIA_Parlan_IAmParlan_Condition()
 {
-	if((Kapitel >= 3) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF) && (B_GetGreatestPetzCrime(self) == CRIME_NONE))
+	if((Kapitel >= 3) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1163,9 +1169,12 @@ instance DIA_Parlan_DontDisturb(C_Info)
 
 func int DIA_Parlan_DontDisturb_Condition()
 {
-	if((Parlan_DontTalkToNovice == LOG_FAILED) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && (other.guild != GIL_PAL))
+	if((Parlan_DontTalkToNovice == LOG_FAILED) && (other.guild != GIL_PAL))
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
+		{
+			return TRUE;
+		};
 	};
 };
 

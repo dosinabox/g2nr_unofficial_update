@@ -227,9 +227,12 @@ instance DIA_Ulf_Suche(C_Info)
 
 func int DIA_Ulf_Suche_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_RUNNING) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_42") <= 1000) && !Npc_KnowsInfo(other,DIA_Ulf_Abrechnung))
+	if((MIS_Schnitzeljagd == LOG_RUNNING) && (other.guild == GIL_NOV) && !Npc_KnowsInfo(other,DIA_Ulf_Abrechnung))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_42") <= 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -257,9 +260,12 @@ instance DIA_Ulf_Rausgefunden(C_Info)
 
 func int DIA_Ulf_Rausgefunden_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_RUNNING) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_42") <= 1000) && !Npc_KnowsInfo(other,DIA_Ulf_Abrechnung))
+	if((MIS_Schnitzeljagd == LOG_RUNNING) && (other.guild == GIL_NOV) && !Npc_KnowsInfo(other,DIA_Ulf_Abrechnung))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_42") <= 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -403,9 +409,16 @@ instance DIA_Ulf_Troll(C_Info)
 
 func int DIA_Ulf_Troll_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_RUNNING) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Ulf_Rausgefunden) && ((Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_14") <= 1000) || (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_15") <= 1000)) && !Npc_KnowsInfo(other,DIA_Ulf_Abrechnung))
+	if((MIS_Schnitzeljagd == LOG_RUNNING) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Ulf_Rausgefunden) && !Npc_KnowsInfo(other,DIA_Ulf_Abrechnung))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_14") <= 1000)
+		{
+			return TRUE;
+		};
+		if(Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_15") <= 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 

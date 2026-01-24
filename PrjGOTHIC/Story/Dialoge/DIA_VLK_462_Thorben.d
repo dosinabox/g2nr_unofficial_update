@@ -267,9 +267,12 @@ instance DIA_Thorben_Schuldenbuch(C_Info)
 
 func int DIA_Thorben_Schuldenbuch_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Schuldenbuch) && ((SchuldBuchNamesKnown == TRUE) || Npc_KnowsInfo(other,DIA_Thorben_Gritta)))
+	if((SchuldBuchNamesKnown == TRUE) || Npc_KnowsInfo(other,DIA_Thorben_Gritta))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Schuldenbuch))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -841,13 +844,13 @@ func void DIA_Thorben_PICKPOCKET_Book_DoIt()
 		CreateInvItem(other,ItWr_Schuldenbuch);
 		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		B_GiveThiefXP();
-		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Торбен",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings(self.name[0],ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
 		SchuldBuch_Stolen_Thorben = TRUE;
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Торбен",PRINT_PickPocketFailed));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};

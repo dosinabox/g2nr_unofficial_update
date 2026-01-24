@@ -296,9 +296,12 @@ instance DIA_Lester_Perm(C_Info)
 
 func int DIA_Lester_Perm_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lester_Hello) && (PlayerEnteredCity == FALSE) && (Npc_GetDistToWP(self,"NW_XARDAS_TOWER_LESTER") <= 2000))
+	if(Npc_KnowsInfo(other,DIA_Lester_Hello) && (PlayerEnteredCity == FALSE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_XARDAS_TOWER_LESTER") <= 2000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -323,9 +326,12 @@ instance DIA_Lester_Sleep(C_Info)
 
 func int DIA_Lester_Sleep_Condition()
 {
-	if((Kapitel < 3) && (Npc_GetDistToWP(self,"NW_XARDAS_TOWER_IN1_31") <= 500))
+	if(Kapitel < 3)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_XARDAS_TOWER_IN1_31") <= 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -350,9 +356,12 @@ instance DIA_Lester_BACKINTOWN(C_Info)
 
 func int DIA_Lester_BACKINTOWN_Condition()
 {
-	if((Npc_GetDistToWP(self,"LEVELCHANGE") <= 2000) && (Kapitel > 2) && (Kapitel < 5))
+	if((Kapitel > 2) && (Kapitel < 5))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"LEVELCHANGE") <= 2000)
+		{
+			return TRUE;
+		};
 	};
 };
 

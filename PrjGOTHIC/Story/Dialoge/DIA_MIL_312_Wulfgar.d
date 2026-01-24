@@ -409,7 +409,11 @@ func int DIA_Wulfgar_AlsMil_Condition()
 {
 	if(other.guild == GIL_MIL)
 	{
-		if(Npc_KnowsInfo(other,DIA_Wulfgar_Bonus) || !C_WulfgarCanGiveBonus())
+		if(Npc_KnowsInfo(other,DIA_Wulfgar_Bonus))
+		{
+			return TRUE;
+		};
+		if(!C_WulfgarCanGiveBonus())
 		{
 			return TRUE;
 		};
@@ -444,9 +448,12 @@ instance DIA_Wulfgar_Bonus(C_Info)
 
 func int DIA_Wulfgar_Bonus_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && C_WulfgarCanGiveBonus())
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(C_WulfgarCanGiveBonus())
+		{
+			return TRUE;
+		};
 	};
 };
 

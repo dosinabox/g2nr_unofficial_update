@@ -66,9 +66,19 @@ instance DIA_Vino_SeekWork(C_Info)
 
 func int DIA_Vino_SeekWork_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Lobart_WorkNOW) || Npc_KnowsInfo(other,DIA_Lobart_KLEIDUNG)) && !Npc_IsDead(Lobart) && (Kapitel < 3))
+	if(Kapitel < 3)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Lobart))
+		{
+			if(Npc_KnowsInfo(other,DIA_Lobart_WorkNOW))
+			{
+				return TRUE;
+			};
+			if(Npc_KnowsInfo(other,DIA_Lobart_KLEIDUNG))
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -114,7 +124,11 @@ func int DIA_Vino_BringWine_Condition()
 {
 	if((MIS_Vino_Wein == LOG_RUNNING) && (Kapitel < 3))
 	{
-		if(Npc_HasItems(other,ItFo_Wine) || Npc_HasItems(other,ItFo_DarkWine))
+		if(Npc_HasItems(other,ItFo_Wine))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItFo_DarkWine))
 		{
 			return TRUE;
 		};
@@ -335,9 +349,12 @@ instance DIA_Vino_Heilung(C_Info)
 
 func int DIA_Vino_Heilung_Condition()
 {
-	if((NpcObsessedByDMT_Vino == TRUE) && (NpcObsessedByDMT == FALSE) && (other.guild == GIL_KDF) && (Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_07") >= 4000))
+	if((NpcObsessedByDMT_Vino == TRUE) && (NpcObsessedByDMT == FALSE) && (other.guild == GIL_KDF))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_07") >= 4000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -364,6 +381,8 @@ func void DIA_Vino_Heilung_Info()
 };
 
 
+var int DIA_Vino_PERM4OBSESSED_XP_oneTime;
+
 instance DIA_Vino_PERM4OBSESSED(C_Info)
 {
 	npc = BAU_952_Vino;
@@ -377,14 +396,14 @@ instance DIA_Vino_PERM4OBSESSED(C_Info)
 
 func int DIA_Vino_PERM4OBSESSED_Condition()
 {
-	if((other.guild == GIL_KDF) && (NpcObsessedByDMT_Vino == TRUE) && (Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_07") < 4000))
+	if((other.guild == GIL_KDF) && (NpcObsessedByDMT_Vino == TRUE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_07") < 4000)
+		{
+			return TRUE;
+		};
 	};
 };
-
-
-var int DIA_Vino_PERM4OBSESSED_XP_oneTime;
 
 func void DIA_Vino_PERM4OBSESSED_Info()
 {

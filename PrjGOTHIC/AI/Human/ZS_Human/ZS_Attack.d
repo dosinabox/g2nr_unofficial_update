@@ -38,7 +38,10 @@ func void ZS_Attack()
 		}
 		else if(self.aivar[AIV_SubGuild] == GIL_SUB_Brago)
 		{
-			BragoBanditsAttacked = TRUE;
+			if(Npc_IsPlayer(other))
+			{
+				BragoBanditsAttacked = TRUE;
+			};
 		};
 	};
 	if(C_WantToFlee(self))

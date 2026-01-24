@@ -33,9 +33,12 @@ instance DIA_Cassia_Gilde(C_Info)
 
 func int DIA_Cassia_Gilde_Condition()
 {
-	if((Cassia_Gildencheck == TRUE) && (Join_Thiefs == TRUE) && ((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF)) && !Npc_IsDead(Jesper) && !Npc_IsDead(Ramirez))
+	if((Cassia_Gildencheck == TRUE) && (Join_Thiefs == TRUE) && ((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF)))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Jesper) && !Npc_IsDead(Ramirez))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -66,9 +69,12 @@ instance DIA_Cassia_Abgelaufen(C_Info)
 
 func int DIA_Cassia_Abgelaufen_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Cassia_Frist == TRUE) && (Cassia_Day < (B_GetDayPlus() - 2)) && !Npc_IsDead(Jesper) && !Npc_IsDead(Ramirez))
+	if(Npc_IsInState(self,ZS_Talk) && (Cassia_Frist == TRUE) && (Cassia_Day < (B_GetDayPlus() - 2)))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Jesper) && !Npc_IsDead(Ramirez))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -92,9 +98,12 @@ instance DIA_Cassia_News(C_Info)
 
 func int DIA_Cassia_News_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && !Npc_IsDead(Jesper) && !Npc_IsDead(Ramirez))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Jesper) && !Npc_IsDead(Ramirez))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -306,6 +315,8 @@ func void DIA_Cassia_Erwischen_Info()
 };
 
 
+var int DIA_Cassia_beweisen_permanent;
+
 instance DIA_Cassia_beweisen(C_Info)
 {
 	npc = VLK_447_Cassia;
@@ -316,8 +327,6 @@ instance DIA_Cassia_beweisen(C_Info)
 	description = " ак мне доказать серьезность моих намерений?";
 };
 
-
-var int DIA_Cassia_beweisen_permanent;
 
 func int DIA_Cassia_beweisen_Condition()
 {
@@ -483,9 +492,19 @@ instance DIA_Cassia_BevorLernen(C_Info)
 
 func int DIA_Cassia_BevorLernen_Condition()
 {
-	if((Join_Thiefs == TRUE) && Npc_KnowsInfo(other,DIA_Cassia_Lernen) && (((Cassia_TeachPickpocket == FALSE) && !Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET)) || (Cassia_TeachDEX == FALSE)))
+	if((Join_Thiefs == TRUE) && Npc_KnowsInfo(other,DIA_Cassia_Lernen))
 	{
-		return TRUE;
+		if(Cassia_TeachDEX == FALSE)
+		{
+			return TRUE;
+		};
+		if(Cassia_TeachPickpocket == FALSE)
+		{
+			if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -650,9 +669,12 @@ instance DIA_Cassia_Aufnahme(C_Info)
 
 func int DIA_Cassia_Aufnahme_Condition()
 {
-	if((MIS_CassiaRing == LOG_RUNNING) && Npc_HasItems(other,ItRi_Prot_Point_01_MIS))
+	if(MIS_CassiaRing == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItRi_Prot_Point_01_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

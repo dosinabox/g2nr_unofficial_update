@@ -8,12 +8,12 @@ func void B_GiveTradeInv(var C_Npc slf)
 	B_ClearSpecialAmmo(slf);
 	if(slf.aivar[AIV_NPCIsTrader] == TRUE)
 	{
+		if(C_NpcIsWeaponTrader(slf))
+		{
+			B_UnEquipAllWeapons(slf,TRUE);
+		};
 		if(slf.aivar[AIV_ChapterInv] <= Kapitel)
 		{
-			if(C_NpcIsWeaponTrader(slf))
-			{
-				B_UnEquipAllWeapons(slf,TRUE);
-			};
 			B_ClearJunkTradeInv(slf);
 			if(C_IsNpc(slf,KDW_1401_Addon_Cronos_NW))
 			{

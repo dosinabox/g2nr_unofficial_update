@@ -139,9 +139,12 @@ instance DIA_Gerold_Deal(C_Info)
 
 func int DIA_Gerold_Deal_Condition()
 {
-	if((MIS_RescueGorn == LOG_RUNNING) && Npc_HasItems(other,ItWr_LetterForGorn_MIS) && (Kapitel == 2) && (Garond_Kerkerauf == FALSE))
+	if((MIS_RescueGorn == LOG_RUNNING) && (Kapitel == 2) && (Garond_Kerkerauf == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_LetterForGorn_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -173,9 +176,12 @@ instance DIA_Gerold_Stuff(C_Info)
 
 func int DIA_Gerold_Stuff_Condition()
 {
-	if(Npc_HasItems(other,ItWr_LetterForGorn_MIS) && Npc_KnowsInfo(other,DIA_Gerold_Deal) && (Kapitel == 2) && (DIA_Gerold_Stuff_permanent == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Gerold_Deal) && (Kapitel == 2) && (DIA_Gerold_Stuff_permanent == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_LetterForGorn_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -386,9 +392,12 @@ instance DIA_Gerold_FOOD(C_Info)
 
 func int DIA_Gerold_FOOD_Condition()
 {
-	if((Npc_GetDistToWP(self,"OC_MAGE_IN") < 500) && (MIS_GeroldGiveFood == LOG_RUNNING))
+	if(MIS_GeroldGiveFood == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"OC_MAGE_IN") < 500)
+		{
+			return TRUE;
+		};
 	};
 };
 

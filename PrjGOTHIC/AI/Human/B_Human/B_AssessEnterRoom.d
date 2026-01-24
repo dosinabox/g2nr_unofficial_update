@@ -63,8 +63,12 @@ func int C_NpcIsReadyToObservePlayer(var C_Npc slf)
 func int B_AssessEnterRoom()
 {
 	var int portalguild;
+	if(!Npc_IsPlayer(other))
+	{
+		return FALSE;
+	};
 	portalguild = Wld_GetPlayerPortalGuild();
-	if(Npc_IsPlayer(other) && (Player_LeftRoomComment == TRUE) && (portalguild > GIL_NONE) && (portalguild != GIL_PUBLIC))
+	if((portalguild > GIL_NONE) && (portalguild != GIL_PUBLIC) && (Player_LeftRoomComment == TRUE))
 	{
 		Player_LeftRoomComment = FALSE;
 	};
@@ -72,15 +76,18 @@ func int B_AssessEnterRoom()
 	{
 		return FALSE;
 	};
-	if(!Npc_IsInPlayersRoom(self) && (Npc_GetPortalGuild(self) >= GIL_NONE))
+	if(!Npc_IsInPlayersRoom(self))
 	{
-		return FALSE;
+		if(Npc_GetPortalGuild(self) >= GIL_NONE)
+		{
+			return FALSE;
+		};
+		if(C_NpcIsSleeping(self))
+		{
+			return FALSE;
+		};
 	};
 	if(Npc_IsInState(self,ZS_Attack))
-	{
-		return FALSE;
-	};
-	if(!Npc_IsPlayer(other))
 	{
 		return FALSE;
 	};
@@ -106,10 +113,6 @@ func int B_AssessEnterRoom()
 		{
 			return FALSE;
 		};
-	};
-	if(!Npc_IsInPlayersRoom(self) && C_NpcIsSleeping(self))
-	{
-		return FALSE;
 	};
 	if(C_NpcIsGateGuard(self))
 	{
@@ -152,12 +155,15 @@ func int B_AssessEnterRoom()
 		};
 		return FALSE;
 	};
-	if(C_NpcIsBotheredByPlayerRoomGuild(self))
+	if(portalguild > GIL_NONE)
 	{
-		Npc_ClearAIQueue(self);
-		B_ClearPerceptions(self);
-		AI_StartState(self,ZS_ClearRoom,1,"");
-		return TRUE;
+		if(C_NpcIsBotheredByPlayerRoomGuild(self))
+		{
+			Npc_ClearAIQueue(self);
+			B_ClearPerceptions(self);
+			AI_StartState(self,ZS_ClearRoom,1,"");
+			return TRUE;
+		};
 	};
 	return FALSE;
 };
@@ -196,18 +202,28 @@ func void B_AssessPortalCollision()
 		{
 			return;
 		};
-		if((Wld_GetGuildAttitude(self.guild,other.guild) == ATT_FRIENDLY) || (Npc_IsPlayer(other) && (self.npcType == NPCTYPE_FRIEND)))
+		if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_FRIENDLY)
 		{
 			return;
+		};
+		if(self.npcType == NPCTYPE_FRIEND)
+		{
+			if(Npc_IsPlayer(other))
+			{
+				return;
+			};
 		};
 		if(self.guild == GIL_NONE)
 		{
 			return;
 		};
-		if(((formerportalguild == GIL_MIL) || (formerportalguild == GIL_SLD)) && (Wld_GetGuildAttitude(self.guild,formerportalguild) == ATT_FRIENDLY))
+		if((formerportalguild == GIL_MIL) || (formerportalguild == GIL_SLD))
 		{
-			B_Attack(self,other,AR_LeftPortalRoom,0);
-			return;
+			if(Wld_GetGuildAttitude(self.guild,formerportalguild) == ATT_FRIENDLY)
+			{
+				B_Attack(self,other,AR_LeftPortalRoom,0);
+				return;
+			};
 		};
 		self.aivar[AIV_SeenLeftRoom] = TRUE;
 		Npc_ClearAIQueue(self);

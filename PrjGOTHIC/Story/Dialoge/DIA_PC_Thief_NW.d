@@ -282,9 +282,16 @@ instance DIA_DiegoNW_HaveYourGold(C_Info)
 
 func int DIA_DiegoNW_HaveYourGold_Condition()
 {
-	if(((OpenedDiegosBag == TRUE) || Npc_HasItems(other,ItSe_DiegosTreasure_MIS)) && (MIS_HelpDiegoNW == LOG_RUNNING) && (Diego_IsOnBoard != LOG_SUCCESS))
+	if((MIS_HelpDiegoNW == LOG_RUNNING) && (Diego_IsOnBoard != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(OpenedDiegosBag == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItSe_DiegosTreasure_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

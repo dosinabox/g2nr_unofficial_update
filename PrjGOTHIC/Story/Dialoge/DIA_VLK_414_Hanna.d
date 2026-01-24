@@ -31,7 +31,15 @@ func int C_Hanna_ThievesGuildIsExposed()
 	{
 		if(C_DaysSinceEvent(Andre_FoundThieves_Reported_Day,2))
 		{
-			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
+			if(!Npc_IsDead(Cassia))
+			{
+				return TRUE;
+			};
+			if(!Npc_IsDead(Jesper))
+			{
+				return TRUE;
+			};
+			if(!Npc_IsDead(Ramirez))
 			{
 				return TRUE;
 			};
@@ -362,9 +370,12 @@ instance DIA_Hanna_ThisLetter(C_Info)
 
 func int DIA_Hanna_ThisLetter_Condition()
 {
-	if((MIS_HannaRetrieveLetter == LOG_RUNNING) && Npc_HasItems(other,ItWr_ShatteredGolem_MIS) && (Andre_FoundThieves_KilledByMilitia == FALSE))
+	if((MIS_HannaRetrieveLetter == LOG_RUNNING) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_ShatteredGolem_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -445,9 +456,12 @@ instance DIA_Hanna_Schuldenbuch(C_Info)
 
 func int DIA_Hanna_Schuldenbuch_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Schuldenbuch) && (SchuldBuchNamesKnown == TRUE) && (Andre_FoundThieves_KilledByMilitia == FALSE))
+	if((SchuldBuchNamesKnown == TRUE) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Schuldenbuch))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -472,9 +486,12 @@ instance DIA_Hanna_GiveSchuldenbuch(C_Info)
 
 func int DIA_Hanna_GiveSchuldenbuch_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hanna_Schuldenbuch) && Npc_HasItems(other,ItWr_Schuldenbuch) && (Andre_FoundThieves_KilledByMilitia == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Hanna_Schuldenbuch) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Schuldenbuch))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -627,9 +644,12 @@ instance DIA_Hanna_PICKPOCKET_Book(C_Info)
 
 func int DIA_Hanna_PICKPOCKET_Book_Condition()
 {
-	if((ClassicLehmarBook == FALSE) && Npc_HasItems(self,ItWr_Schuldenbuch) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 35))
+	if((ClassicLehmarBook == FALSE) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 35))
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItWr_Schuldenbuch))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -648,12 +668,12 @@ func void DIA_Hanna_PICKPOCKET_Book_DoIt()
 		CreateInvItem(other,ItWr_Schuldenbuch);
 		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		B_GiveThiefXP();
-		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Ханна",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings(self.name[0],ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Ханна",PRINT_PickPocketFailed));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};
@@ -678,9 +698,12 @@ instance DIA_Hanna_Blubb4(C_Info)
 
 func int DIA_Hanna_Blubb4_Condition()
 {
-	if((Andre_FoundThieves_KilledByMilitia == TRUE) && Npc_KnowsInfo(other,DIA_Hanna_Blubb3) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((Andre_FoundThieves_KilledByMilitia == TRUE) && Npc_KnowsInfo(other,DIA_Hanna_Blubb3))
+		{
+			return TRUE;
+		};
 	};
 };
 

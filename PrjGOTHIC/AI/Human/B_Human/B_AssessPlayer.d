@@ -5,6 +5,7 @@ func void B_AssessPlayer()
 	{
 		return;
 	};*/
+	var int dist;
 	if(other.aivar[AIV_INVINCIBLE] == TRUE)
 	{
 		return;
@@ -23,7 +24,15 @@ func void B_AssessPlayer()
 		}
 		else if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_HOSTILE)
 		{
-			if(((self.aivar[AIV_PARTYMEMBER] == FALSE) && (self.npcType != NPCTYPE_FRIEND)) || (Npc_IsPlayer(other) && (self.npcType == NPCTYPE_FRIEND) && (PlayerIsTransformed == TRUE)))
+			if(self.npcType == NPCTYPE_FRIEND)
+			{
+				if(Npc_IsPlayer(other) && (PlayerIsTransformed == TRUE))
+				{
+					B_Attack(self,other,AR_GuildEnemy,0);
+					return;
+				};
+			}
+			else if(self.aivar[AIV_PARTYMEMBER] == FALSE)
 			{
 				B_Attack(self,other,AR_GuildEnemy,0);
 				return;
@@ -42,15 +51,25 @@ func void B_AssessPlayer()
 			return;
 		};
 	};
-	if(C_PlayerIsFakeBandit(self,other) && (self.guild != GIL_BDT))
+	if(self.guild != GIL_BDT)
 	{
-		B_Attack(self,other,AR_GuildEnemy,0);
-		return;
+		if(C_PlayerIsFakeBandit(self,other))
+		{
+			B_Attack(self,other,AR_GuildEnemy,0);
+			return;
+		};
 	};
-	if((B_GetPlayerCrime(self) == CRIME_MURDER) && C_WantToAttackMurder(self,other) && (Npc_GetDistToNpc(self,other) <= PERC_DIST_INTERMEDIAT))
+	dist = Npc_GetDistToNpc(self,other);
+	if(dist <= PERC_DIST_INTERMEDIAT)
 	{
-		B_Attack(self,other,AR_HumanMurderedHuman,0);
-		return;
+		if(B_GetPlayerCrime(self) == CRIME_MURDER)
+		{
+			if(C_WantToAttackMurder(self,other))
+			{
+				B_Attack(self,other,AR_HumanMurderedHuman,0);
+				return;
+			};
+		};
 	};
 	if(B_AssessEnterRoom())
 	{
@@ -83,7 +102,7 @@ func void B_AssessPlayer()
 	if(Npc_CheckInfo(self,1))
 	{
 		self.aivar[AIV_CommentedPlayerCrime] = FALSE;
-		if(Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG)
+		if(dist <= PERC_DIST_DIALOG)
 		{
 			if(C_IsNpc(self,NOV_608_Garwig))
 			{
@@ -97,22 +116,28 @@ func void B_AssessPlayer()
 				B_AssessTalk();
 				return;
 			};
-			if(!C_BodyStateContains(other,BS_FALL) && !C_NpcIsSwimming(other) && (B_GetPlayerCrime(self) == CRIME_NONE) && !C_RefuseTalk(self,other) && !C_PlayerHasFakeGuild(self,other))
+			if(!C_BodyStateContains(other,BS_FALL) && !C_NpcIsSwimming(other) && (B_GetPlayerCrime(self) == CRIME_NONE) && !C_RefuseTalk(self,other))
 			{
-				self.aivar[AIV_NpcStartedTalk] = TRUE;
-				B_AssessTalk();
-				return;
+				if(!C_PlayerHasFakeGuild(self,other))
+				{
+					self.aivar[AIV_NpcStartedTalk] = TRUE;
+					B_AssessTalk();
+					return;
+				};
 			};
 		};
 	};
-	if(Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG)
+	if(dist <= PERC_DIST_DIALOG)
 	{
-		if(C_BodyStateContains(self,BS_WALK) && !Npc_RefuseTalk(other) && !C_NpcIsGateGuard(self) && !C_PlayerHasFakeGuild(self,other))
+		if(C_BodyStateContains(self,BS_WALK) && !Npc_RefuseTalk(other) && !C_NpcIsGateGuard(self))
 		{
-			B_LookAtNpc(self,other);
-			B_Say_GuildGreetings(self,other);
-			B_StopLookAt(self);
-			Npc_SetRefuseTalk(other,20);
+			if(!C_PlayerHasFakeGuild(self,other))
+			{
+				B_LookAtNpc(self,other);
+				B_Say_GuildGreetings(self,other);
+				B_StopLookAt(self);
+				Npc_SetRefuseTalk(other,20);
+			};
 		};
 	}
 	else if(C_NpcIsGateGuard(self))

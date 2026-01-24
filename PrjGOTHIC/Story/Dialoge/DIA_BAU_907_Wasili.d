@@ -33,9 +33,19 @@ instance DIA_Wasili_HALLO(C_Info)
 
 func int DIA_Wasili_HALLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && ((VisibleGuild(other) == GIL_NONE) || (VisibleGuild(other) == GIL_NOV)))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(self.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			if(VisibleGuild(other) == GIL_NONE)
+			{
+				return TRUE;
+			};
+			if(VisibleGuild(other) == GIL_NOV)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -114,9 +124,12 @@ instance DIA_Wasili_FirstOldCoin(C_Info)
 
 func int DIA_Wasili_FirstOldCoin_Condition()
 {
-	if((MIS_Wasili_BringOldCoin == LOG_RUNNING) && Npc_HasItems(other,ItMi_OldCoin))
+	if(MIS_Wasili_BringOldCoin == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_OldCoin))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -224,9 +237,12 @@ instance DIA_Wasili_BringOldCoin(C_Info)
 
 func int DIA_Wasili_BringOldCoin_Condition()
 {
-	if(Npc_HasItems(other,ItMi_OldCoin) && (MIS_Wasili_BringOldCoin == LOG_SUCCESS))
+	if(MIS_Wasili_BringOldCoin == LOG_SUCCESS)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_OldCoin))
+		{
+			return TRUE;
+		};
 	};
 };
 

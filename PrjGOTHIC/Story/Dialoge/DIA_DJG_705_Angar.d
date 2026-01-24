@@ -220,9 +220,12 @@ instance DIA_Angar_FOUNDAMULETT(C_Info)
 
 func int DIA_Angar_FOUNDAMULETT_Condition()
 {
-	if(Npc_HasItems(other,ItAm_Mana_Angar_MIS) && Npc_KnowsInfo(other,DIA_Angar_WIEKOMMSTDUHIERHER))
+	if(Npc_KnowsInfo(other,DIA_Angar_WIEKOMMSTDUHIERHER))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAm_Mana_Angar_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -274,9 +277,12 @@ instance DIA_Angar_DJG_ANWERBEN(C_Info)
 
 func int DIA_Angar_DJG_ANWERBEN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Angar_WIEKOMMSTDUHIERHER) && (DJG_AngarGotAmulett == FALSE) && !Npc_HasItems(other,ItAm_Mana_Angar_MIS))
+	if(Npc_KnowsInfo(other,DIA_Angar_WIEKOMMSTDUHIERHER) && (DJG_AngarGotAmulett == FALSE))
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,ItAm_Mana_Angar_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -335,9 +341,12 @@ instance DIA_AngarDJG_WASMACHSTDU(C_Info)
 
 func int DIA_AngarDJG_WASMACHSTDU_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_DJG_WATCH_STONEHENGE_01") < 8000) && Npc_KnowsInfo(other,DIA_Angar_DJG_ANWERBEN) && (DJG_AngarGotAmulett == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Angar_DJG_ANWERBEN) && (DJG_AngarGotAmulett == FALSE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"OW_DJG_WATCH_STONEHENGE_01") < 8000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -442,9 +451,15 @@ instance DIA_AngarDJG_UndeadMageDead(C_Info)
 
 func int DIA_AngarDJG_UndeadMageDead_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_UNDEAD_DUNGEON_02") < 1000) && (DJG_AngarAngriff == TRUE) && (DJG_AngarGotAmulett == FALSE) && Npc_IsDead(SkeletonMage_Angar))
+	if((DJG_AngarAngriff == TRUE) && (DJG_AngarGotAmulett == FALSE))
 	{
-		return TRUE;
+		if(Npc_IsDead(SkeletonMage_Angar))
+		{
+			if(Npc_GetDistToWP(self,"OW_UNDEAD_DUNGEON_02") < 1000)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -469,9 +484,15 @@ instance DIA_AngarDJG_UNDEADMAGECOMES(C_Info)
 
 func int DIA_AngarDJG_UNDEADMAGECOMES_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_PATH_3_13") < 500) && Npc_KnowsInfo(other,DIA_AngarDJG_WANTTOGOINTHERE) && !Npc_KnowsInfo(other,DIA_AngarDJG_UndeadMageDead) && (DJG_AngarGotAmulett == FALSE) && Npc_IsDead(SkeletonMage_Angar))
+	if(Npc_KnowsInfo(other,DIA_AngarDJG_WANTTOGOINTHERE) && !Npc_KnowsInfo(other,DIA_AngarDJG_UndeadMageDead) && (DJG_AngarGotAmulett == FALSE))
 	{
-		return TRUE;
+		if(Npc_IsDead(SkeletonMage_Angar))
+		{
+			if(Npc_GetDistToWP(self,"OW_PATH_3_13") < 500)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -495,9 +516,15 @@ instance DIA_Angar_WASISTLOS(C_Info)
 
 func int DIA_Angar_WASISTLOS_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_PATH_3_STONES") < 1000) && (DJG_AngarGotAmulett == FALSE) && Npc_IsDead(SkeletonMage_Angar))
+	if(DJG_AngarGotAmulett == FALSE)
 	{
-		return TRUE;
+		if(Npc_IsDead(SkeletonMage_Angar))
+		{
+			if(Npc_GetDistToWP(self,"OW_PATH_3_STONES") < 1000)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 

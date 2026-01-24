@@ -72,9 +72,12 @@ instance DIA_Rangar_Ork(C_Info)
 
 func int DIA_Rangar_Ork_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rangar_Hallo) && (Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") >= 500) && (Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") >= 500))
+	if(Npc_KnowsInfo(other,DIA_Rangar_Hallo))
 	{
-		return TRUE;
+		if((Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") >= 500) && (Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") >= 500))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -106,15 +109,18 @@ instance DIA_Rangar_Bier(C_Info)
 
 func int DIA_Rangar_Bier_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rangar_Ork) && (Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") >= 500) && (Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") >= 500))
+	if(Npc_KnowsInfo(other,DIA_Rangar_Ork))
 	{
-		if(MIS_Garvell_Infos == LOG_RUNNING)
+		if((Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") >= 500) && (Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") >= 500))
 		{
-			return TRUE;
-		};
-		if((MIS_Garvell_Infos == FALSE) && (Knows_Ork == TRUE) && !Npc_IsDead(CityOrc) && (RangarToldAboutOrc == FALSE))
-		{
-			return TRUE;
+			if(MIS_Garvell_Infos == LOG_RUNNING)
+			{
+				return TRUE;
+			};
+			if((MIS_Garvell_Infos == FALSE) && (Knows_Ork == TRUE) && !Npc_IsDead(CityOrc) && (RangarToldAboutOrc == FALSE))
+			{
+				return TRUE;
+			};
 		};
 	};
 };
