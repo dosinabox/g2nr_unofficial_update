@@ -4,7 +4,7 @@ func void B_GiveAllClassicMiscItems(var C_Npc npc)
 	CreateInvItems(npc,ItMi_Gold,1000);
 	CreateInvItems(npc,ItKe_Lockpick,10);
 	CreateInvItems(npc,ItLsTorch,10);
-	CreateInvItem(npc,ItLsTorchburned);
+	CreateInvItem(npc,ItLsTorchBurned);
 	CreateInvItem(npc,ItLsTorchFirespit);
 	CreateInvItem(npc,ItMiSwordRaw);
 	CreateInvItem(npc,ItMiSwordRawHot);
