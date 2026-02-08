@@ -64,7 +64,6 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		{
 			B_RemoveEveryInvItem(slf,ItAt_KeilerHorn);
 		};
-//		B_RemoveEveryInvItem(slf,ItFo_Apple);
 		B_RemoveEveryInvItem(slf,ItFo_Cheese);
 		B_RemoveEveryInvItem(slf,ItFo_Bacon);
 		B_RemoveEveryInvItem(slf,ItFo_Bread);
@@ -118,12 +117,11 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		B_RemoveEveryInvItem(slf,ItMi_InnosStatue);
 		B_RemoveEveryInvItem(slf,ItPl_Beet);
 		B_RemoveEveryInvItem(slf,ItPl_SwampHerb);
-//		B_RemoveEveryInvItem(slf,ItPl_Mushroom_01);
 		B_RemoveEveryInvItem(slf,ItPl_Mushroom_02);
 		B_RemoveEveryInvItem(slf,ItPl_Blueplant);
 		B_RemoveEveryInvItem(slf,ItPl_Forestberry);
 		B_RemoveEveryInvItem(slf,ItPl_Planeberry);
-		B_RemoveEveryInvItem(slf,ItLsTorchburned);
+		B_RemoveEveryInvItem(slf,ItLsTorchBurned);
 		B_RemoveEveryInvItem(slf,ItWr_Poster_MIS);
 		Npc_RemoveInvItem(slf,ItSe_Addon_EmptyFrancisChest);
 		Npc_RemoveInvItem(slf,ItMi_Addon_Bloodwyn_Kopf);

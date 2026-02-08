@@ -56,7 +56,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 				}
 				else if(Kapitel == 4)
 				{
-					B_ReadyRune(slf,ItRu_Deathball,SPL_Cost_LightningFlash);
+					B_ReadyRune(slf,ItRu_Deathball,SPL_Cost_Deathball);
 				}
 				else
 				{
