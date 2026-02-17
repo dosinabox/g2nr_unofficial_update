@@ -1456,3 +1456,4 @@ var int MeatbugStompDisabled;
 var int WamboLocation;
 var int Wambo_Day;
 var int Pardos_Geheilt;
+var int AlmanachCounter;

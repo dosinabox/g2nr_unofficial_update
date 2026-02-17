@@ -3,21 +3,10 @@ instance DIA_Addon_Greg_NW_EXIT(C_Info)
 {
 	npc = PIR_1300_Addon_Greg_NW;
 	nr = 999;
-	condition = DIA_Addon_Greg_NW_EXIT_Condition;
-	information = DIA_Addon_Greg_NW_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Greg_NW_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Greg_NW_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -104,6 +93,9 @@ func void DIA_Addon_Greg_NW_Hallo_hide()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_hide_01_02");	//Но давай лучше поговорим о тебе. Ты берешь работу?
 };
 
+var int DIA_Addon_Greg_NW_Stadtwachen_ChoiceClose_geld;
+var int DIA_Addon_Greg_NW_Stadtwachen_ChoiceClose_Schein;
+var int DIA_Addon_Greg_NW_Stadtwachen_ChoiceClose_constantino;
 
 instance DIA_Addon_Greg_NW_Stadtwachen(C_Info)
 {
@@ -123,11 +115,6 @@ func int DIA_Addon_Greg_NW_Stadtwachen_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Addon_Greg_NW_Stadtwachen_ChoiceClose_geld;
-var int DIA_Addon_Greg_NW_Stadtwachen_ChoiceClose_Schein;
-var int DIA_Addon_Greg_NW_Stadtwachen_ChoiceClose_constantino;
 
 func void DIA_Addon_Greg_NW_Stadtwachen_Info()
 {
@@ -231,9 +218,16 @@ instance DIA_Addon_Greg_NW_PERM(C_Info)
 
 func int DIA_Addon_Greg_NW_PERM_Condition()
 {
-	if(((MIS_Addon_Greg_BringMeToTheCity == LOG_SUCCESS) || (MIS_Addon_Greg_BringMeToTheCity == LOG_FAILED)) && (GregLocation == Greg_Farm1))
+	if(GregLocation == Greg_Farm1)
 	{
-		return TRUE;
+		if(MIS_Addon_Greg_BringMeToTheCity == LOG_SUCCESS)
+		{
+			return TRUE;
+		};
+		if(MIS_Addon_Greg_BringMeToTheCity == LOG_FAILED)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -677,11 +671,14 @@ instance DIA_Addon_Greg_NW_LakeCave(C_Info)
 
 func int DIA_Addon_Greg_NW_LakeCave_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_Addon_Greg_RakeCave == LOG_RUNNING) && (GregLocation >= Greg_Taverne) && (GregLocation < Greg_Dexter) && (Greg_SuchWeiter == FALSE))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		if(Npc_GetDistToWP(self,"NW_BIGFARM_LAKE_CAVE_01") < 1000)
+		if((MIS_Addon_Greg_RakeCave == LOG_RUNNING) && (GregLocation >= Greg_Taverne) && (GregLocation < Greg_Dexter) && (Greg_SuchWeiter == FALSE))
 		{
-			return TRUE;
+			if(Npc_GetDistToWP(self,"NW_BIGFARM_LAKE_CAVE_01") < 1000)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -1056,9 +1053,12 @@ instance DIA_Addon_Greg_NW_RavensLetter(C_Info)
 
 func int DIA_Addon_Greg_NW_RavensLetter_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Greg_NW_CaughtDexter2) && Npc_HasItems(other,ItWr_RavensKidnapperMission_Addon))
+	if(Npc_KnowsInfo(other,DIA_Addon_Greg_NW_CaughtDexter2))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_RavensKidnapperMission_Addon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1087,9 +1087,16 @@ instance DIA_Addon_Greg_NW_WasWillstDu(C_Info)
 
 func int DIA_Addon_Greg_NW_WasWillstDu_Condition()
 {
-	if((GregLocation == Greg_Dexter) && (Npc_KnowsInfo(other,DIA_Addon_Greg_NW_RavensLetter) || (MIS_Addon_Vatras_WhereAreMissingPeople == LOG_SUCCESS)))
+	if(GregLocation == Greg_Dexter)
 	{
-		return TRUE;
+		if(MIS_Addon_Vatras_WhereAreMissingPeople == LOG_SUCCESS)
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Addon_Greg_NW_RavensLetter))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1152,15 +1159,6 @@ func void DIA_Addon_Greg_NW_Skip_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_Skip_01_02");	//Ничего, я ему еще покажу, что к чему.
 	SC_KnowsConnectionSkipGreg = TRUE;
 	B_GivePlayerXP(XP_Ambient);
-};
-
-func int C_SCHasGregsItems()
-{
-	if((Npc_HasItems(hero,ItSe_GoldPocket100) || (Npc_HasItems(hero,ItMi_Gold) >= 100)) && Npc_HasItems(hero,ItMi_GoldChalice) && Npc_HasItems(hero,ItMi_GregsSilverPlate) && Npc_HasItems(hero,ItAm_Addon_Greg))
-	{
-		return TRUE;
-	};
-	return FALSE;
 };
 
 func void B_GiveGregsItems()

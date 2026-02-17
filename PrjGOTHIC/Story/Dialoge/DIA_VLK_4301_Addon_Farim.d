@@ -3,21 +3,10 @@ instance DIA_Addon_Farim_EXIT(C_Info)
 {
 	npc = VLK_4301_Addon_Farim;
 	nr = 999;
-	condition = DIA_Addon_Farim_EXIT_Condition;
-	information = DIA_Addon_Farim_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Farim_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Farim_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -368,7 +357,11 @@ func int DIA_Addon_Farim_WilliamReport_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Farim_William) && (ToldFarimAboutDeadWilliam == FALSE) && C_DaysSinceEvent(Farim_Day,2))
 	{
-		if(Npc_HasItems(other,ItWr_Addon_William_01) || (FoundDeadWilliam == TRUE))
+		if(FoundDeadWilliam == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItWr_Addon_William_01))
 		{
 			return TRUE;
 		};

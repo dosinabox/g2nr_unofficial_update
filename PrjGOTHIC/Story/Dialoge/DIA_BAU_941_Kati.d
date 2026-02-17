@@ -3,21 +3,10 @@ instance DIA_Kati_EXIT(C_Info)
 {
 	npc = BAU_941_Kati;
 	nr = 999;
-	condition = DIA_Kati_EXIT_Condition;
-	information = DIA_Kati_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Kati_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Kati_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -117,9 +106,12 @@ instance DIA_Kati_ESSEN(C_Info)
 
 func int DIA_Kati_ESSEN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Kati_HALLO) && (Kati_Mahlzeit == TRUE) && !Npc_IsDead(Akil))
+	if(Npc_KnowsInfo(other,DIA_Kati_HALLO) && (Kati_Mahlzeit == TRUE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Akil))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -152,9 +144,12 @@ instance DIA_Kati_Baltram(C_Info)
 
 func int DIA_Kati_Baltram_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Kati_HALLO) && Npc_IsDead(Akil) && (MIS_Baltram_ScoutAkil == LOG_RUNNING) && (Lieferung_Geholt == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Kati_HALLO) && (MIS_Baltram_ScoutAkil == LOG_RUNNING) && (Lieferung_Geholt == FALSE))
 	{
-		return TRUE;
+		if(Npc_IsDead(Akil))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -282,9 +277,12 @@ instance DIA_Kati_PERMKAP1(C_Info)
 
 func int DIA_Kati_PERMKAP1_Condition()
 {
-	if(!C_NpcIsDown(Akil) && Npc_KnowsInfo(other,DIA_Kati_HALLO) && Npc_KnowsInfo(other,DIA_Kati_BAUERNAUFSTAND) && Npc_KnowsInfo(other,DIA_Kati_ANDEREHOEFE) && Npc_KnowsInfo(other,DIA_Kati_HIERWEG) && Npc_KnowsInfo(other,DIA_Kati_PASS) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Kati_HALLO) && Npc_KnowsInfo(other,DIA_Kati_BAUERNAUFSTAND) && Npc_KnowsInfo(other,DIA_Kati_ANDEREHOEFE) && Npc_KnowsInfo(other,DIA_Kati_HIERWEG) && Npc_KnowsInfo(other,DIA_Kati_PASS) && (Kapitel < 3))
 	{
-		return TRUE;
+		if(!C_NpcIsDown(Akil))
+		{
+			return TRUE;
+		};
 	};
 };
 

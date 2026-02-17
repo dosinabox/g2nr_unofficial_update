@@ -3,21 +3,10 @@ instance DIA_Addon_BenchPirate_EXIT(C_Info)
 {
 	npc = PIR_1363_Addon_Pirat;
 	nr = 999;
-	condition = DIA_Addon_BenchPirate_EXIT_Condition;
-	information = DIA_Addon_BenchPirate_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_BenchPirate_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_BenchPirate_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -41,22 +30,22 @@ func void DIA_Addon_BenchPirate_Hello_Info()
 {
 	var int random;
 	random = Hlp_Random(3);
-	AI_Output(other,self,"DIA_Addon_Pir_7_Hello_15_00");	//Как дела?
+	AI_Output(other,self,"DIA_Addon_PIR_7_Hello_15_00");	//Как дела?
 	if(GregIsBack == TRUE)
 	{
 		if(!Npc_IsDead(Greg))
 		{
 			if(random == 0)
 			{
-				AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_01");	//Грег наконец-то вернулся. Самое время.
+				AI_Output(self,other,"DIA_Addon_PIR_7_Hello_07_01");	//Грег наконец-то вернулся. Самое время.
 			}
-			else if((random == 1) && !Npc_IsDead(Francis))
+			else if((random == 1) && !Npc_IsDead(Francis) && !Npc_KnowsInfo(other,DIA_Addon_Greg_GiveFrancisBook))
 			{
-				AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_02");	//Теперь Фрэнсису приходится пилить деревья для частокола. Надеюсь, это для него не слишком большой удар.
+				AI_Output(self,other,"DIA_Addon_PIR_7_Hello_07_02");	//Теперь Фрэнсису приходится пилить деревья для частокола. Надеюсь, это для него не слишком большой удар.
 			}
 			else
 			{
-				AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_03");	//Что ж, пусть приходят бандиты. Пока с нами Грег, они нам не страшны.
+				AI_Output(self,other,"DIA_Addon_PIR_7_Hello_07_03");	//Что ж, пусть приходят бандиты. Пока с нами Грег, они нам не страшны.
 			};
 		}
 		else
@@ -66,15 +55,15 @@ func void DIA_Addon_BenchPirate_Hello_Info()
 	}
 	else if(random == 0)
 	{
-		AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_04");	//Фрэнсис, который остался за главного - всего лишь жалкий клоун. Никто не воспринимает его всерьез.
+		AI_Output(self,other,"DIA_Addon_PIR_7_Hello_07_04");	//Фрэнсис, который остался за главного - всего лишь жалкий клоун. Никто не воспринимает его всерьез.
 	}
 	else if(random == 1)
 	{
-		AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_05");	//Грег доверяет Фрэнсису, потому что тот слишком туп, чтобы его обманывать. Но делать его за это командиром...
+		AI_Output(self,other,"DIA_Addon_PIR_7_Hello_07_05");	//Грег доверяет Фрэнсису, потому что тот слишком туп, чтобы его обманывать. Но делать его за это командиром...
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_06");	//Если в ближайшее время Грег не вернется, и я не почувствую палубу под своими ногами, у меня будет земная болезнь!
+		AI_Output(self,other,"DIA_Addon_PIR_7_Hello_07_06");	//Если в ближайшее время Грег не вернется, и я не почувствую палубу под своими ногами, у меня будет земная болезнь!
 	};
 };
 
