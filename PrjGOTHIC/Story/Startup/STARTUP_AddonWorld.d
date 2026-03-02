@@ -255,7 +255,7 @@ func void STARTUP_AddonWorld_Part_BanditsCamp_01()
 	Wld_InsertItem(ItPo_Speed,"FP_ITEM_BANDITSCAMP_13");
 	Wld_InsertItem(ItPl_Temp_Herb,"FP_ITEM_BANDITSCAMP_14");
 	Wld_InsertItem(ItPo_Health_03,"FP_ITEM_BANDITSCAMP_15");
-	Wld_InsertItem(ItMw_Addon_Keule_2h_01,"FP_ITEM_BANDITSCAMP_16");
+	Wld_InsertItem(ItMw_Addon_Keule_2H_01,"FP_ITEM_BANDITSCAMP_16");
 	Wld_InsertItem(ItMi_GoldNugget_Addon,"FP_ITEM_BANDITSCAMP_17");
 	Wld_InsertItem(ItPl_Speed_Herb_01,"FP_ITEM_BANDITSCAMP_19");
 	Wld_InsertItem(ItPl_Temp_Herb,"FP_ITEM_BANDITSCAMP_20");

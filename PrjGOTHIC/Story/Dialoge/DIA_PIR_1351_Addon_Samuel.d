@@ -112,9 +112,12 @@ instance DIA_Addon_Samuel_Versteck(C_Info)
 
 func int DIA_Addon_Samuel_Versteck_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Samuel_Francis) && (GregIsBack == FALSE) && !Npc_IsDead(Francis))
+	if(Npc_KnowsInfo(other,DIA_Addon_Samuel_Francis) && (GregIsBack == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Francis))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -158,9 +161,19 @@ instance DIA_Addon_Samuel_Recipe(C_Info)
 
 func int DIA_Addon_Samuel_Recipe_Condition()
 {
-	if(((Samuel_Knows_LousHammer == FALSE) && Npc_HasItems(other,ItWr_Addon_Lou_Rezept)) || ((Samuel_Knows_SchlafHammer == FALSE) && Npc_HasItems(other,ItWr_Addon_Lou_Rezept2)))
+	if(Samuel_Knows_LousHammer == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Addon_Lou_Rezept))
+		{
+			return TRUE;
+		};
+	};
+	if(Samuel_Knows_SchlafHammer == FALSE)
+	{
+		if(Npc_HasItems(other,ItWr_Addon_Lou_Rezept2))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -13,7 +13,7 @@ instance ItMw_Addon_Knife01(C_Item)
 	on_unequip = UnEquip_1H_03;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Wolfsmesser;
-	visual = "ItMw_012_1h_Knife_02.3DS";
+	visual = "ItMw_012_1H_Knife_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -175,7 +175,7 @@ instance ItMw_Addon_Stab05(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_Addon_Hacker_1h_01(C_Item)
+instance ItMw_Addon_Hacker_1H_01(C_Item)
 {
 	name = "Мачете";
 	mainflag = ITEM_KAT_NF;
@@ -201,7 +201,7 @@ instance ItMw_Addon_Hacker_1h_01(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_Addon_Hacker_1h_02(C_Item)
+instance ItMw_Addon_Hacker_1H_02(C_Item)
 {
 	name = "Старое мачете";
 	mainflag = ITEM_KAT_NF;
@@ -227,7 +227,7 @@ instance ItMw_Addon_Hacker_1h_02(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_Addon_Hacker_2h_01(C_Item)
+instance ItMw_Addon_Hacker_2H_01(C_Item)
 {
 	name = "Гигантское мачете";
 	mainflag = ITEM_KAT_NF;
@@ -253,7 +253,7 @@ instance ItMw_Addon_Hacker_2h_01(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_Addon_Hacker_2h_02(C_Item)
+instance ItMw_Addon_Hacker_2H_02(C_Item)
 {
 	name = "Старое гигантское мачете";
 	mainflag = ITEM_KAT_NF;
@@ -279,7 +279,7 @@ instance ItMw_Addon_Hacker_2h_02(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_Addon_Keule_1h_01(C_Item)
+instance ItMw_Addon_Keule_1H_01(C_Item)
 {
 	name = "Дубинка ветра";
 	mainflag = ITEM_KAT_NF;
@@ -305,7 +305,7 @@ instance ItMw_Addon_Keule_1h_01(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_Addon_Keule_2h_01(C_Item)
+instance ItMw_Addon_Keule_2H_01(C_Item)
 {
 	name = "Дубинка бури";
 	mainflag = ITEM_KAT_NF;
@@ -331,7 +331,7 @@ instance ItMw_Addon_Keule_2h_01(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Pir_Dagger(C_Item)
+instance ItMw_1H_PIR_Dagger(C_Item)
 {
 	name = "Хороший кинжал";
 	mainflag = ITEM_KAT_NF;
@@ -345,7 +345,7 @@ instance ItMw_1h_Pir_Dagger(C_Item)
 	on_unequip = UnEquip_1H_05;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_VLKDolch;
-	visual = "Itmw_005_1h_dagger_02.3DS";
+	visual = "ItMw_005_1H_Dagger_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -369,7 +369,7 @@ instance ItMw_RangerStaff_Addon(C_Item)
 	range = Range_RangerStaff;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_RangerStaff;
-	visual = "ItMw_020_2h_Nov_Staff_02.3DS";
+	visual = "ItMw_020_2H_NOV_Staff_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -392,7 +392,7 @@ instance ItMw_Addon_PIR2hAxe(C_Item)
 	range = Range_PIR2hAxe;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_PIR2hAxe;
-	visual = "ItMw_070_2h_axe_heavy_04.3DS";
+	visual = "ItMw_070_2H_Axe_Heavy_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -415,7 +415,7 @@ instance ItMw_Addon_PIR2hSword(C_Item)
 	range = 115;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_PIR2hSword;
-	visual = "ItMw_070_2h_sword_10.3DS";
+	visual = "ItMw_070_2H_Sword_10.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -438,7 +438,7 @@ instance ItMw_Addon_PIR1hAxe(C_Item)
 	range = Range_PIR1hAxe;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_PIR1hAxe;
-	visual = "ItMw_030_1h_axe_02.3DS";
+	visual = "ItMw_030_1H_Axe_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -461,7 +461,7 @@ instance ItMw_Addon_PIR1hSword(C_Item)
 	range = Range_PIR1hSword;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_PIR1hSword;
-	visual = "ItMw_030_1h_sword_03.3DS";
+	visual = "ItMw_030_1H_Sword_03.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -484,7 +484,7 @@ instance ItMw_Addon_BanditTrader(C_Item)
 	range = Range_VLKSchwert;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_VLKSchwert;
-	visual = "ItMw_018_1h_SwordCane_02.3ds";
+	visual = "ItMw_018_1H_SwordCane_02.3ds";
 	description = name;
 	text[0] = "На эфесе нацарапана буква 'Ф.'";
 	text[2] = NAME_Damage;
@@ -508,7 +508,7 @@ instance ItMw_Addon_Betty(C_Item)
 	range = Range_ElBastardo;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_ElBastardo;
-	visual = "ItMw_065_1h_sword_bastard_05.3DS";
+	visual = "ItMw_065_1H_Sword_Bastard_05.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -533,7 +533,7 @@ instance ItMw_Addon_Becky(C_Item)
 	on_unequip = UnEquip_1H_10;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_ElBastardo;
-	visual = "ItMw_065_1h_sword_bastard_06.3DS";
+	visual = "ItMw_065_1H_Sword_Bastard_06.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;

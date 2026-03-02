@@ -68,13 +68,21 @@ func void B_AssessFightSound()
 				return;
 			};
 		};
-		if(self.aivar[AIV_SubGuild] != GIL_SUB_Thief_Sewer)
+		if(self.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer)
 		{
 			if(victim.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer)
 			{
+				B_Attack(self,other,AR_NONE,0);
+			};
+			return;
+		}
+		else
+		{
+			if(other.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer)
+			{
 				return;
 			};
-			if(other.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer)
+			if(victim.aivar[AIV_SubGuild] == GIL_SUB_Thief_Sewer)
 			{
 				return;
 			};

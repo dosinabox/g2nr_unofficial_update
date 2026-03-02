@@ -8,6 +8,37 @@ func void B_AssessSurprise()
 	};
 };
 
+func int C_NpcCanAttackNextTarget(var C_Npc npc,var C_Npc target)
+{
+	if(other.aivar[AIV_INVINCIBLE] == TRUE)
+	{
+		return FALSE;
+	};
+	if(C_NpcIsDown(other))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsPlayer(other))
+	{
+		if(Npc_GetDistToNpc(self,other) >= PERC_DIST_INTERMEDIAT)
+		{
+			return FALSE;
+		};
+	};
+	if(Npc_GetHeightToNpc(self,other) >= PERC_DIST_HEIGHT)
+	{
+		return FALSE;
+	};
+	if(self.guild == GIL_BDT)
+	{
+		if(C_PlayerIsFakeBandit(self,other))
+		{
+			return FALSE;
+		};
+	};
+	return TRUE;
+};
+
 func void ZS_Attack()
 {
 	Perception_Set_Minimal();
@@ -153,9 +184,12 @@ func int ZS_Attack_Loop()
 			self.fight_tactic = self.aivar[AIV_OriginalFightTactic];
 		};
 	};
-	if(!C_BodyStateContains(other,BS_RUN) && !C_BodyStateContains(other,BS_JUMP))
+	if(!C_BodyStateContains(other,BS_RUN))
 	{
-		Npc_SetStateTime(self,0);
+		if(!C_BodyStateContains(other,BS_JUMP))
+		{
+			Npc_SetStateTime(self,0);
+		};
 	};
 	if((Npc_GetStateTime(self) > 2) && (self.aivar[AIV_TAPOSITION] == 0))
 	{
@@ -187,7 +221,7 @@ func int ZS_Attack_Loop()
 		Npc_ClearAIQueue(self);
 		if(Hlp_IsValidNpc(other))
 		{
-			if(Npc_IsPlayer(other) && C_NpcIsDown(other))
+			if(Npc_IsPlayer(other))
 			{
 				Npc_SetTempAttitude(self,Npc_GetPermAttitude(self,hero));
 			};
@@ -199,7 +233,7 @@ func int ZS_Attack_Loop()
 		};
 		if(Hlp_IsValidNpc(other))
 		{
-			if(!C_NpcIsDown(other) && ((Npc_GetDistToNpc(self,other) < PERC_DIST_INTERMEDIAT) || Npc_IsPlayer(other)) && (Npc_GetHeightToNpc(self,other) < PERC_DIST_HEIGHT) && (other.aivar[AIV_INVINCIBLE] == FALSE) && !(C_PlayerIsFakeBandit(self,other) && (self.guild == GIL_BDT)))
+			if(C_NpcCanAttackNextTarget(self,other))
 			{
 				if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_HOSTILE)
 				{
