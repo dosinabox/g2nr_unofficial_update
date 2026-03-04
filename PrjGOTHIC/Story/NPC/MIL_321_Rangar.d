@@ -29,8 +29,8 @@ func void Rtn_Start_321()
 
 func void Rtn_PrePalCampKlau_321()
 {
-	TA_Sit_Bench(3,0,24,0,"NW_CITY_WAY_TO_SHIP_03");
-	TA_Sit_Bench(24,0,3,0,"NW_CITY_WAY_TO_SHIP_03");
+	TA_Sit_Bench(4,0,23,0,"NW_CITY_WAY_TO_SHIP_03");
+	TA_Sit_Bench(23,0,4,0,"NW_CITY_WAY_TO_SHIP_03");
 };
 
 func void Rtn_PalCampKlau_321()

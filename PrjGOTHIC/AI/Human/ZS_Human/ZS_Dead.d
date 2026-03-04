@@ -138,7 +138,7 @@ func void ZS_Dead()
 			{
 				B_RemoveEveryInvItem(self,ItMw_1h_Bau_Mace);
 				B_RemoveEveryInvItem(self,ItMw_1h_MISC_Sword);
-				B_RemoveEveryInvItem(self,ItMw_1h_Misc_Axe);
+				B_RemoveEveryInvItem(self,ItMw_1H_Misc_Axe);
 			}
 			else if(self.guild == GIL_SUMMONED_SKELETON)
 			{

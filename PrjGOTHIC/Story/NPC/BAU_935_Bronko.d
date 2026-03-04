@@ -11,7 +11,7 @@ instance BAU_935_Bronko(Npc_Default)
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_2h_Bau_Axe);
+	EquipItem(self,ItMw_2H_BAU_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,54,ItMi_Gold,80);
 	CreateInvItems(self,ItMi_Gold,35);

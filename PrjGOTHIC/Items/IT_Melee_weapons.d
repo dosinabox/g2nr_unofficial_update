@@ -370,7 +370,7 @@ instance ItMw_1h_Nov_Mace(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_2h_Bau_Axe(C_Item)
+instance ItMw_2H_BAU_Axe(C_Item)
 {
 	name = "Топор дровосека";
 	mainflag = ITEM_KAT_NF;
@@ -382,7 +382,7 @@ instance ItMw_2h_Bau_Axe(C_Item)
 	range = Range_Bau2hAxt;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Bau2hAxt;
-	visual = "ItMw_020_2h_Axe_Lumberjack_01.3ds";
+	visual = "ItMw_020_2H_Axe_Lumberjack_01.3ds";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -439,7 +439,7 @@ instance ItMw_1h_MISC_Sword(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_OLD_Sword(C_Item)
+instance ItMw_1H_OLD_Sword(C_Item)
 {
 	name = "Старый меч";
 	mainflag = ITEM_KAT_NF;
@@ -451,7 +451,7 @@ instance ItMw_1h_OLD_Sword(C_Item)
 	range = Range_OldSword;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_OldSword;
-	visual = "ItMw_020_1h_sword_old_02.3DS";
+	visual = "ItMw_020_1H_sword_old_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -479,7 +479,7 @@ instance ItMw_TrainSword(C_Item)
 	text[4] = NAME_OneHanded;
 };
 
-instance ItMw_1h_Misc_Axe(C_Item)
+instance ItMw_1H_Misc_Axe(C_Item)
 {
 	name = "Ржавый топор";
 	mainflag = ITEM_KAT_NF;
@@ -491,7 +491,7 @@ instance ItMw_1h_Misc_Axe(C_Item)
 	range = Range_MiscAxe;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_MiscAxe;
-	visual = "ItMw_025_2h_Misc_Axe_old_01.3DS";
+	visual = "ItMw_025_2H_Misc_Axe_old_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;

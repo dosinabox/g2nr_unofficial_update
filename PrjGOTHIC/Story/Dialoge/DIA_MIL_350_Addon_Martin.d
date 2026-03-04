@@ -377,23 +377,6 @@ func void DIA_Addon_Martin_AboutBandits_Info()
 };
 
 
-func int C_SCHasAnyFernandoEvidence()
-{
-	if(Npc_HasItems(hero,ItMw_Addon_BanditTrader))
-	{
-		return TRUE;
-	};
-	if(Npc_HasItems(hero,ItRi_Addon_BanditTrader))
-	{
-		return TRUE;
-	};
-	if(Npc_HasItems(hero,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
 var int Martin_IrrlichtHint;
 
 instance DIA_Addon_Martin_Fernando(C_Info)
@@ -535,7 +518,7 @@ func void DIA_Addon_Martin_Perm_Info()
 	if(C_DaysSinceEvent(MIS_Addon_Martin_GetRangar_Day,2) && (MIS_Addon_Martin_GetRangar == LOG_RUNNING) && !Npc_IsDead(Rangar) && (SC_GotRangar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Perm_07_01");	//(сердито) Проклятый лентяй, ты должен был охранять эти ящики! Еще несколько вещей пропало!
-		if(Wld_IsTime(24,0,3,0))
+		if(Wld_IsTime(0,0,3,0))
 		{
 			AI_Output(self,other,"DIA_Addon_Martin_Perm_07_02");	//Отправляйся в гавань и поймай того ублюдка, который это сделал! Ты меня понял?
 		}

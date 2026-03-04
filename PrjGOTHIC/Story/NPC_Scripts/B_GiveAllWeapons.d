@@ -16,10 +16,10 @@ func void B_GiveAllClassicWeapons(var C_Npc npc)
 	CreateInvItem(npc,ItMw_Sense);
 	CreateInvItem(npc,ItMw_1h_Vlk_Sword);
 	CreateInvItem(npc,ItMw_1h_Nov_Mace);
-	CreateInvItem(npc,ItMw_2h_Bau_Axe);
+	CreateInvItem(npc,ItMw_2H_BAU_Axe);
 	CreateInvItem(npc,ItMw_2H_Axe_L_01);
 	CreateInvItem(npc,ItMw_1h_MISC_Sword);
-	CreateInvItem(npc,ItMw_1h_Misc_Axe);
+	CreateInvItem(npc,ItMw_1H_Misc_Axe);
 	CreateInvItem(npc,ItMw_2H_Sword_M_01);
 	CreateInvItem(npc,ItMw_1h_Mil_Sword);
 	CreateInvItem(npc,ItMw_1h_Sld_Axe);
@@ -169,6 +169,6 @@ func void B_GiveAllPatchWeapons(var C_Npc npc)
 	CreateInvItem(npc,ItMw_2H_Hammer_01);
 	CreateInvItem(npc,ItMw_2H_Hammer_02);
 	CreateInvItem(npc,ItMw_Addon_Becky);
-	CreateInvItem(npc,ItMw_1h_OLD_Sword);
+	CreateInvItem(npc,ItMw_1H_OLD_Sword);
 };
 

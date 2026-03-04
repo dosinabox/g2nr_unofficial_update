@@ -37,7 +37,7 @@ func void Rtn_Lighthouse_444()
 func void Rtn_WaitForShipCaptain_444()
 {
 	TA_Sit_Bench(8,0,20,0,"NW_WAITFOR_SHIP_CAPTAIN");
-	TA_Sit_Bench(0,0,8,0,"NW_WAITFOR_SHIP_CAPTAIN");
+	TA_Sit_Bench(20,0,8,0,"NW_WAITFOR_SHIP_CAPTAIN");
 };
 
 func void Rtn_AllOnBoard_444()

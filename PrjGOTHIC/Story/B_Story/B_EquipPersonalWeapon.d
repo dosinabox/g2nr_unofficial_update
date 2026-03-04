@@ -7,7 +7,7 @@ func void B_EquipPersonalWeapon_Rod(var C_Npc npc)
 	}
 	else
 	{
-		EquipItem(npc,ItMw_1h_OLD_Sword);
+		EquipItem(npc,ItMw_1H_OLD_Sword);
 	};
 };
 

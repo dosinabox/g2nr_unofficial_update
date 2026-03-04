@@ -115,7 +115,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 		}
 		else
 		{
-			CreateInvItem(slf,ItMw_1h_Misc_Axe);
+			CreateInvItem(slf,ItMw_1H_Misc_Axe);
 		};
 	}
 	else if(slf.guild == GIL_BAU)
