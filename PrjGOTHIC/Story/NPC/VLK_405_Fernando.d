@@ -9,7 +9,7 @@ instance VLK_405_Fernando(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Vlk_Mace);
+	EquipItem(self,ItMw_1H_VLK_Mace);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,50,ItSe_GoldPocket100,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Corristo,BodyTex_N,ITAR_Governor);

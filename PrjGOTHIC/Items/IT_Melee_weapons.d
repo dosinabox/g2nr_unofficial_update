@@ -11,7 +11,7 @@ instance ItMw_1h_Vlk_Dagger(C_Item)
 	range = Range_VLKDolch;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_VLKDolch;
-	visual = "Itmw_005_1h_dagger_01.3DS";
+	visual = "ItMw_005_1H_dagger_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -34,7 +34,7 @@ instance ItMw_1H_Mace_L_01(C_Item)
 	range = Range_Schuerhaken;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Schuerhaken;
-	visual = "Itmw_005_1h_poker_01.3DS";
+	visual = "ItMw_005_1H_poker_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -57,7 +57,7 @@ instance ItMw_1h_Bau_Axe(C_Item)
 	range = Range_BauAxe;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_BauAxe;
-	visual = "Itmw_007_1h_sickle_01.3DS";
+	visual = "ItMw_007_1H_sickle_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -68,7 +68,7 @@ instance ItMw_1h_Bau_Axe(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Vlk_Mace(C_Item)
+instance ItMw_1H_VLK_Mace(C_Item)
 {
 	name = "“рость";
 	mainflag = ITEM_KAT_NF;
@@ -80,7 +80,7 @@ instance ItMw_1h_Vlk_Mace(C_Item)
 	range = Range_VLKMace;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_VLKMace;
-	visual = "Itmw_008_1h_pole_01.3ds";
+	visual = "ItMw_008_1H_pole_01.3ds";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -149,7 +149,7 @@ instance ItMw_1h_Vlk_Axe(C_Item)
 	range = Range_VLKAxe;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_VLKAxe;
-	visual = "Itmw_010_1h_vlk_hatchet_01.3DS";
+	visual = "ItMw_010_1H_VLK_hatchet_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -416,7 +416,7 @@ instance ItMw_2H_Axe_L_01(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_MISC_Sword(C_Item)
+instance ItMw_1H_MISC_Sword(C_Item)
 {
 	name = "–жавый меч";
 	mainflag = ITEM_KAT_NF;
@@ -428,7 +428,7 @@ instance ItMw_1h_MISC_Sword(C_Item)
 	range = Range_MiscSword;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_MiscSword;
-	visual = "ItMw_020_1h_sword_old_01.3DS";
+	visual = "ItMw_020_1H_sword_old_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -537,7 +537,7 @@ instance ItMw_1h_Mil_Sword(C_Item)
 	range = Range_MilSchwert;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_MilSchwert;
-	visual = "Itmw_025_1h_Mil_Sword_broad_01.3DS";
+	visual = "ItMw_025_1H_MIL_Sword_broad_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
