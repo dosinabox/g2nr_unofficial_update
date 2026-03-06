@@ -19,9 +19,9 @@ func void B_RemoveStolenItems(var C_Npc owner,var C_Npc thief)
 	}
 	else if(C_IsNpc(owner,SLD_804_Rod))
 	{
-		if(Npc_HasItems(thief,ItMw_2h_Rod))
+		if(Npc_HasItems(thief,ItMw_2H_Rod))
 		{
-			B_TransferAllInvItems(thief,owner,ItMw_2h_Rod);
+			B_TransferAllInvItems(thief,owner,ItMw_2H_Rod);
 			AI_EquipBestMeleeWeapon(owner);
 		};
 	}

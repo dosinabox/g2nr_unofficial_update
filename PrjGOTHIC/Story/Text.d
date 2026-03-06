@@ -962,7 +962,7 @@ const string PRINT_PickPocketSuccess = " - украдено: ";
 const string PRINT_RequiresAlchemyTalent = "Для его создания нужно знание основ алхимии.";
 const string PRINT_KnowsBloodfly = "Теперь я знаю, что необходимо сделать, чтобы добыть целебный секрет из жала кровавой мухи.";
 
-const string NAME_2h_Rod = "Двуручный меч Рода";
+const string NAME_2H_Rod = "Двуручный меч Рода";
 const string NAME_InnosEye = "Глаз Инноса";
 const string NAME_TowerKey = "Ключ от башни";
 const string NAME_Beutel = "Кожаный кошелек";

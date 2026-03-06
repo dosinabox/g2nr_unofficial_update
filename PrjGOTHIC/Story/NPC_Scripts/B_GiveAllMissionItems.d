@@ -2,7 +2,7 @@
 func void B_GiveAllClassicMissionItems(var C_Npc npc)
 {
 	CreateInvItem(npc,Holy_Hammer_MIS);
-	CreateInvItem(npc,ItMw_2h_Rod);
+	CreateInvItem(npc,ItMw_2H_Rod);
 	CreateInvItem(npc,ItMw_AlriksSword_MIS);
 	CreateInvItem(npc,ItMw_1H_FerrosSword_MIS);
 	CreateInvItem(npc,ItMw_MalethsGehstock_MIS);
