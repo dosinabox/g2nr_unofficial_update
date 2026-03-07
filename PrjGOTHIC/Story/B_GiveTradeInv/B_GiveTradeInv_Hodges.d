@@ -18,7 +18,7 @@ func void B_GiveTradeInv_Hodges(var C_Npc slf)
 		else
 		{
 			CreateInvItems(slf,ItMw_1h_Bau_Axe,1);
-			CreateInvItems(slf,ItMw_1h_Vlk_Axe,1);
+			CreateInvItems(slf,ItMw_1H_VLK_Axe,1);
 			CreateInvItems(slf,ItMw_Schwert,1);
 		};
 		Hodges_ItemsGiven_Chapter_1 = TRUE;

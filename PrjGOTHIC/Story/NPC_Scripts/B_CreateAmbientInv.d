@@ -539,7 +539,7 @@ func void B_CreateAmbientInv_PIR(var int InventorySet)
 	{
 		CreateInvItems(self,ItMi_Gold,23);
 		CreateInvItems(self,ItPl_Forestberry,1);
-		CreateInvItems(self,ItMw_1h_Vlk_Axe,1);
+		CreateInvItems(self,ItMw_1H_VLK_Axe,1);
 	}
 	else
 	{

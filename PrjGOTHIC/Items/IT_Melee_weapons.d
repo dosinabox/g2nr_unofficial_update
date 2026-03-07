@@ -137,7 +137,7 @@ instance ItMw_1h_Bau_Mace(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Vlk_Axe(C_Item)
+instance ItMw_1H_VLK_Axe(C_Item)
 {
 	name = "Легкий топор";
 	mainflag = ITEM_KAT_NF;
@@ -617,7 +617,7 @@ instance ItMw_2h_Sld_Axe(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_2h_Sld_Sword(C_Item)
+instance ItMw_2H_SLD_Sword(C_Item)
 {
 	name = "Грубый двуручный меч";
 	mainflag = ITEM_KAT_NF;
@@ -629,7 +629,7 @@ instance ItMw_2h_Sld_Sword(C_Item)
 	range = Range_Sld2hSchwert;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Sld2hSchwert;
-	visual = "ItMw_035_2h_sld_sword_01.3DS";
+	visual = "ItMw_035_2H_SLD_sword_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;

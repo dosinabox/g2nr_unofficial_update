@@ -10,7 +10,7 @@ instance VLK_442_Arbeiter(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Vlk_Axe);
+	EquipItem(self,ItMw_1H_VLK_Axe);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart_Senyan,BodyTex_N,ITAR_Bau_L);
 	Mdl_SetModelFatness(self,0);

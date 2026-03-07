@@ -9,7 +9,7 @@ instance BDT_1012_Bandit_L(Npc_Default)
 	npcType = NPCTYPE_AMBIENT;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Vlk_Axe);
+	EquipItem(self,ItMw_1H_VLK_Axe);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Homer,BodyTex_N,ITAR_Leather_L);
 	Mdl_SetModelFatness(self,0);

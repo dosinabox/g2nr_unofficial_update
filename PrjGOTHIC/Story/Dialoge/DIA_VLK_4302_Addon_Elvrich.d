@@ -3,21 +3,10 @@ instance DIA_Addon_Elvrich_EXIT(C_Info)
 {
 	npc = VLK_4302_Addon_Elvrich;
 	nr = 999;
-	condition = DIA_Addon_Elvrich_EXIT_Condition;
-	information = DIA_Addon_Elvrich_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Elvrich_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Elvrich_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -32,6 +21,7 @@ instance DIA_Addon_Elvrich_BanditsThere(C_Info)
 	important = TRUE;
 	permanent = TRUE;
 };
+
 
 func int DIA_Addon_Elvrich_BanditsThere_Condition()
 {
@@ -315,9 +305,12 @@ instance DIA_Addon_Elvrich_LuciaLetter(C_Info)
 
 func int DIA_Addon_Elvrich_LuciaLetter_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Elvrich_WhatExactly) && Npc_HasItems(other,ItWr_LuciasLoveLetter_Addon))
+	if(Npc_KnowsInfo(other,DIA_Addon_Elvrich_WhatExactly))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_LuciasLoveLetter_Addon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -373,7 +366,7 @@ func void DIA_Addon_Elvrich_WasNun_Info()
 	AI_Output(self,other,"DIA_Addon_Elvrich_WasNun_04_04");	//Если найдешь Люсию, отведи ее в город, хорошо?
 	AI_Output(other,self,"DIA_Addon_Elvrich_WasNun_15_05");	//Я посмотрю, что смогу сделать.
 	AI_Output(self,other,"OUTRO_Xardas_04_00");	//До встречи!
-	CreateInvItem(self,ItMw_1h_Vlk_Axe);
+	CreateInvItem(self,ItMw_1H_VLK_Axe);
 	AI_EquipBestMeleeWeapon(self);
 	if(MissingPeopleReturnedHome == FALSE)
 	{
