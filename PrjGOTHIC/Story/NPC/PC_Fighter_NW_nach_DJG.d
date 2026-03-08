@@ -9,7 +9,7 @@ instance PC_Fighter_NW_nach_DJG(Npc_Default)
 	npcType = NPCTYPE_FRIEND;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_2h_Sld_Axe);
+	EquipItem(self,ItMw_2H_SLD_Axe);
 	EquipItem(self,ItRw_Crossbow_M_01);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,10,ItMi_Gold,25);

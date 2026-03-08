@@ -9,7 +9,7 @@ instance BDT_10020_Addon_Wache(Npc_Default)
 	npcType = NPCTYPE_BL_AMBIENT;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_2h_Sld_Axe);
+	EquipItem(self,ItMw_2H_SLD_Axe);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart21,BodyTex_N,ITAR_Thorus_Addon);
 	Mdl_SetModelFatness(self,0);
