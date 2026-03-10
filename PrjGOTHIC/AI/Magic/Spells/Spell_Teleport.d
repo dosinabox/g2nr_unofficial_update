@@ -1,6 +1,11 @@
 
 const int SPL_Cost_Teleport = 10;
 
+func void B_TeleportBetweenWorlds(var int level,var string waypoint)
+{
+	//system\autorun\B_TeleportBetweenWorlds.d
+};
+
 func void B_TeleportBySpell(var int level,var string waypoint)
 {
 	self.attribute[ATR_MANA] -= SPL_Cost_Teleport;
@@ -8,9 +13,16 @@ func void B_TeleportBySpell(var int level,var string waypoint)
 	{
 		AI_Teleport(self,waypoint);
 	}
-	else
+	else if(Npc_IsPlayer(self))
 	{
-		PrintScreen(PRINT_TeleportTooFarAway,-1,YPOS_LevelUp,FONT_ScreenSmall,2);
+		if(C_TeleportBetweenWorldsEnabled() && (CurrentLevel != DRAGONISLAND_ZEN))
+		{
+			B_TeleportBetweenWorlds(level,waypoint);
+		}
+		else
+		{
+			PrintScreen(PRINT_TeleportTooFarAway,-1,YPOS_LevelUp,FONT_ScreenSmall,2);
+		};
 	};
 };
 

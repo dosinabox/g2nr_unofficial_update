@@ -13,7 +13,7 @@ instance SLD_807_Bullco(Npc_Default)
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_1h_Sld_Axe);
+	EquipItem(self,ItMw_1H_SLD_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,56,ItMi_Gold,35);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal_Olli_Kahn,BodyTex_N,ITAR_SLD_M);

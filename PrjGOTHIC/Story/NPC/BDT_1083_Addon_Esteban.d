@@ -12,7 +12,7 @@ instance BDT_1083_Addon_Esteban(Npc_Default)
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Sld_Axe);
+	EquipItem(self,ItMw_1H_SLD_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,105,ItMi_Gold,500);
 	CreateInvItem(self,ItKe_Addon_Esteban);

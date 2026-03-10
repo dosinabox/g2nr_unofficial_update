@@ -548,7 +548,7 @@ instance ItMw_1h_Mil_Sword(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Sld_Axe(C_Item)
+instance ItMw_1H_SLD_Axe(C_Item)
 {
 	name = "Грубый тесак";
 	mainflag = ITEM_KAT_NF;
@@ -560,7 +560,7 @@ instance ItMw_1h_Sld_Axe(C_Item)
 	range = Range_Sld1hAxt;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Sld1hAxt;
-	visual = "ItMw_025_1h_sld_axe_01.3DS";
+	visual = "ItMw_025_1H_SLD_axe_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
