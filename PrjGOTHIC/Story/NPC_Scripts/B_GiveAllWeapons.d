@@ -27,7 +27,7 @@ func void B_GiveAllClassicWeapons(var C_Npc npc)
 	CreateInvItem(npc,ItMw_2H_SLD_Axe);
 	CreateInvItem(npc,ItMw_2H_SLD_Sword);
 	CreateInvItem(npc,ItMw_1h_Pal_Sword);
-	CreateInvItem(npc,ItMw_2h_Pal_Sword);
+	CreateInvItem(npc,ItMw_2H_PAL_Sword);
 	CreateInvItem(npc,ItMw_2H_OrcAxe_01);
 	CreateInvItem(npc,ItMw_2H_OrcAxe_02);
 	CreateInvItem(npc,ItMw_2H_OrcAxe_03);

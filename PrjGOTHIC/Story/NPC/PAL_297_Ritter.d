@@ -14,7 +14,7 @@ instance PAL_297_Ritter(Npc_Default)
 	aivar[AIV_IGNORE_Sheepkiller] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_2h_Pal_Sword);
+	EquipItem(self,ItMw_2H_PAL_Sword);
 	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItRu_TeleportPassNW,1);

@@ -103,7 +103,7 @@ instance ItMw_1H_Mace_L_03(C_Item)
 	range = Range_Belegnagel;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Belegnagel;
-	visual = "ItMw_008_1h_mace_light_01.3DS";
+	visual = "ItMw_008_1H_mace_light_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -126,7 +126,7 @@ instance ItMw_1h_Bau_Mace(C_Item)
 	range = Range_BauMace;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_BauMace;
-	visual = "ItMw_010_1h_Club_01.3DS";
+	visual = "ItMw_010_1H_Club_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -172,7 +172,7 @@ instance ItMw_1H_Mace_L_04(C_Item)
 	range = Range_Schmiedehammer;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Schmiedehammer;
-	visual = "ItMw_010_1h_sledgehammer_01.3DS";
+	visual = "ItMw_010_1H_sledgehammer_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -195,7 +195,7 @@ instance ItMw_ShortSword1(C_Item)
 	range = Range_ShortSword1;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_ShortSword1;
-	visual = "ItMw_012_1h_Sword_short_02.3DS";
+	visual = "ItMw_012_1H_Sword_short_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -218,7 +218,7 @@ instance ItMw_Nagelknueppel(C_Item)
 	range = Range_Nagelknueppel;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Nagelknueppel;
-	visual = "ItMw_012_1h_Nailmace_01.3DS";
+	visual = "ItMw_012_1H_Nailmace_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -241,7 +241,7 @@ instance ItMw_1H_Sword_L_03(C_Item)
 	range = Range_Wolfsklinge;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Wolfsklinge;
-	visual = "ItMw_012_1h_Knife_01.3DS";
+	visual = "ItMw_012_1H_Knife_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -264,7 +264,7 @@ instance ItMw_ShortSword2(C_Item)
 	range = Range_ShortSword2;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_ShortSword2;
-	visual = "ItMw_010_1h_Sword_short_01.3DS";
+	visual = "ItMw_010_1H_Sword_short_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -287,7 +287,7 @@ instance ItMw_Sense(C_Item)
 	range = Range_Sense;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = 5;
-	visual = "ItMw_012_1h_Scythe_01.3DS";
+	visual = "ItMw_012_1H_Scythe_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -310,7 +310,7 @@ instance ItMw_BattleSense(C_Item)
 	range = Range_Sense;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Sense;
-	visual = "ItMw_012_1h_Scythe_02.3DS";
+	visual = "ItMw_012_1H_Scythe_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -335,7 +335,7 @@ instance ItMw_1h_Vlk_Sword(C_Item)
 	on_unequip = UnEquip_1H_05;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_VLKSchwert;
-	visual = "ItMw_018_1h_SwordCane_01.3ds";
+	visual = "ItMw_018_1H_SwordCane_01.3ds";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -583,7 +583,7 @@ instance ItMw_1h_Sld_Sword(C_Item)
 	range = Range_Sld1hSchwert;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Sld1hSchwert;
-	visual = "ItMw_025_1h_sld_sword_01.3DS";
+	visual = "ItMw_025_1H_sld_sword_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -652,7 +652,7 @@ instance ItMw_1h_Pal_Sword(C_Item)
 	range = Range_PalSchwert;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_PalSchwert;
-	visual = "ItMw_030_1h_PAL_Sword_02.3DS";
+	visual = "ItMw_030_1H_PAL_Sword_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -663,7 +663,7 @@ instance ItMw_1h_Pal_Sword(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_2h_Pal_Sword(C_Item)
+instance ItMw_2H_PAL_Sword(C_Item)
 {
 	name = "Двуручный меч паладина";
 	mainflag = ITEM_KAT_NF;
@@ -859,7 +859,7 @@ instance ItMw_ShortSword3(C_Item)
 	range = Range_ShortSword3;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_ShortSword3;
-	visual = "ItMw_016_1h_Sword_short_03.3DS";
+	visual = "ItMw_016_1H_Sword_short_03.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -882,7 +882,7 @@ instance ItMw_Nagelkeule(C_Item)
 	range = Range_Nagelkeule;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Nagelkeule;
-	visual = "ItMw_018_1h_Mace_01.3DS";
+	visual = "ItMw_018_1H_Mace_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -905,7 +905,7 @@ instance ItMw_ShortSword4(C_Item)
 	range = Range_ShortSword4;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_ShortSword4;
-	visual = "ItMw_020_1h_Sword_short_04.3DS";
+	visual = "ItMw_020_1H_Sword_short_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -928,7 +928,7 @@ instance ItMw_Kriegskeule(C_Item)
 	range = Range_Kriegskeule;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Kriegskeule;
-	visual = "ItMw_022_1h_mace_war_01.3DS";
+	visual = "ItMw_022_1H_mace_war_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -974,7 +974,7 @@ instance ItMw_ShortSword5(C_Item)
 	range = Range_ShortSword5;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_ShortSword5;
-	visual = "ItMw_025_1h_Sword_short_05.3DS";
+	visual = "ItMw_025_1H_Sword_short_05.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -997,7 +997,7 @@ instance ItMw_Kriegshammer1(C_Item)
 	range = Range_Kriegshammer1;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Kriegshammer1;
-	visual = "ItMw_028_1h_warhammer_01.3DS";
+	visual = "ItMw_028_1H_warhammer_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1043,7 +1043,7 @@ instance ItMw_Nagelkeule2(C_Item)
 	range = Range_Nagelkeule2;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Nagelkeule2;
-	visual = "ItMw_028_1h_Mace_02.3DS";
+	visual = "ItMw_028_1H_Mace_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1066,7 +1066,7 @@ instance ItMw_Schiffsaxt(C_Item)
 	range = Range_Schiffsaxt;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Schiffsaxt;
-	visual = "ItMw_030_1h_axe_01.3DS";
+	visual = "ItMw_030_1H_axe_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1089,7 +1089,7 @@ instance ItMw_Piratensaebel(C_Item)
 	range = Range_Piratensaebel;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Piratensaebel;
-	visual = "ItMw_030_1h_sword_04.3DS";
+	visual = "ItMw_030_1H_sword_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1112,7 +1112,7 @@ instance ItMw_Lightsaebel(C_Item)
 	range = Range_Piratensaebel;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = 45;
-	visual = "ItMw_030_1h_sword_05.3DS";
+	visual = "ItMw_030_1H_sword_05.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1135,7 +1135,7 @@ instance ItMw_Schwert(C_Item)
 	range = Range_Schwert;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Schwert;
-	visual = "ItMw_030_1h_sword_long_01.3DS";
+	visual = "ItMw_030_1H_sword_long_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1160,7 +1160,7 @@ instance ItMw_1H_Common_01(C_Item)
 	on_unequip = UnEquip_1H_05;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Common1;
-	visual = "ItMw_030_1h_Common_Sword_01.3DS";
+	visual = "ItMw_030_1H_Common_Sword_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1230,7 +1230,7 @@ instance ItMw_Steinbrecher(C_Item)
 	range = Range_Steinbrecher;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Steinbrecher;
-	visual = "ItMw_035_1h_mace_war_02.3DS";
+	visual = "ItMw_035_1H_mace_war_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1253,7 +1253,7 @@ instance ItMw_Spicker(C_Item)
 	range = Range_Spicker;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Spicker;
-	visual = "ItMw_035_1h_mace_03.3DS";
+	visual = "ItMw_035_1H_mace_03.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1324,7 +1324,7 @@ instance ItMw_Schwert1(C_Item)
 	on_unequip = UnEquip_1H_05;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Schwert1;
-	visual = "ItMw_035_1h_Sword_04.3DS";
+	visual = "ItMw_035_1H_Sword_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1348,7 +1348,7 @@ instance ItMw_Schwert2(C_Item)
 	range = Range_Schwert2;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Schwert2;
-	visual = "ItMw_037_1h_sword_long_02.3DS";
+	visual = "ItMw_037_1H_sword_long_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1371,7 +1371,7 @@ instance ItMw_Doppelaxt(C_Item)
 	range = Range_Doppelaxt;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Doppelaxt;
-	visual = "ItMw_040_1h_Axe_02.3DS";
+	visual = "ItMw_040_1H_Axe_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1394,7 +1394,7 @@ instance ItMw_Bartaxt(C_Item)
 	range = Range_Bartaxt;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Bartaxt;
-	visual = "ItMw_040_1h_axe_03.3DS";
+	visual = "ItMw_040_1H_axe_03.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1417,7 +1417,7 @@ instance ItMw_Morgenstern(C_Item)
 	range = Range_Morgenstern;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Morgenstern;
-	visual = "ItMw_045_1h_mace_04.3DS";
+	visual = "ItMw_045_1H_mace_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1440,7 +1440,7 @@ instance ItMw_Schwert3(C_Item)
 	range = Range_Schwert3;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Schwert3;
-	visual = "ItMw_045_1h_Sword_Bastard_01.3DS";
+	visual = "ItMw_045_1H_Sword_Bastard_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1465,7 +1465,7 @@ instance ItMw_Schwert4(C_Item)
 	on_unequip = UnEquip_1H_06;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Schwert4;
-	visual = "ItMw_045_1h_Sword_long_04.3DS";
+	visual = "ItMw_045_1H_Sword_long_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1491,7 +1491,7 @@ instance ItMw_1H_Special_01(C_Item)
 	on_unequip = UnEquip_1H_10;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Special_1H_1;
-	visual = "ItMw_045_1h_Sword_smith_02.3DS";
+	visual = "ItMw_045_1H_Sword_smith_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1543,7 +1543,7 @@ instance ItMw_Rapier(C_Item)
 	on_unequip = UnEquip_1H_08;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_Rapier;
-	visual = "ItMw_050_1h_Sword_Rapier_01.3ds";
+	visual = "ItMw_050_1H_Sword_Rapier_01.3ds";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1569,7 +1569,7 @@ instance ItMw_Lightrapier(C_Item)
 	on_unequip = UnEquip_1H_06;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = 60;
-	visual = "ItMw_050_1h_Sword_Rapier_02.3ds";
+	visual = "ItMw_050_1H_Sword_Rapier_02.3ds";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1595,7 +1595,7 @@ instance ItMw_Rubinklinge(C_Item)
 	on_unequip = UnEquip_1H_07;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Rubinklinge;
-	visual = "ItMw_050_1h_sword_05.3DS";
+	visual = "ItMw_050_1H_sword_05.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1619,7 +1619,7 @@ instance ItMw_Streitkolben(C_Item)
 	range = Range_Streitkolben;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Streitkolben;
-	visual = "ItMw_050_1h_mace_war_03.3DS";
+	visual = "ItMw_050_1H_mace_war_03.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1665,7 +1665,7 @@ instance ItMw_Runenschwert(C_Item)
 	range = Range_Runenschwert;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Runenschwert;
-	visual = "ItMw_055_1h_sword_long_05.3DS";
+	visual = "ItMw_055_1H_sword_long_05.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1688,7 +1688,7 @@ instance ItMw_Rabenschnabel(C_Item)
 	range = Range_Rabenschnabel;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Rabenschnabel;
-	visual = "ItMw_058_1h_warhammer_02.3DS";
+	visual = "ItMw_058_1H_warhammer_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1711,7 +1711,7 @@ instance ItMw_Schwert5(C_Item)
 	range = Range_Schwert5;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Schwert5;
-	visual = "ItMw_058_1h_Sword_Bastard_02.3DS";
+	visual = "ItMw_058_1H_Sword_Bastard_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1734,7 +1734,7 @@ instance ItMw_Inquisitor(C_Item)
 	range = Range_Inquisitor;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Inquisitor;
-	visual = "ItMw_060_1h_mace_war_04.3DS";
+	visual = "ItMw_060_1H_mace_war_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1805,7 +1805,7 @@ instance ItMw_1H_Special_02(C_Item)
 	on_unequip = UnEquip_1H_10;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Special_1H_2;
-	visual = "ItMw_060_1h_Sword_smith_03.3DS";
+	visual = "ItMw_060_1H_Sword_smith_03.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1857,7 +1857,7 @@ instance ItMw_ElBastardo(C_Item)
 	on_unequip = UnEquip_1H_08;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_ElBastardo;
-	visual = "ItMw_065_1h_sword_bastard_03.3DS";
+	visual = "ItMw_065_1H_sword_bastard_03.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1883,7 +1883,7 @@ instance ItMw_ElChapo(C_Item)
 	on_unequip = UnEquip_1H_05;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = 120;
-	visual = "ItMw_065_1h_sword_bastard_06.3DS";
+	visual = "ItMw_065_1H_sword_bastard_06.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1907,7 +1907,7 @@ instance ItMw_Kriegshammer2(C_Item)
 	range = Range_Kriegshammer2;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Kriegshammer2;
-	visual = "ItMw_065_1h_warhammer_03.3DS";
+	visual = "ItMw_065_1H_warhammer_03.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1932,7 +1932,7 @@ instance ItMw_Meisterdegen(C_Item)
 	on_unequip = UnEquip_1H_10;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_Meisterdegen;
-	visual = "ItMw_065_1h_SwordCane_02.3ds";
+	visual = "ItMw_065_1H_SwordCane_02.3ds";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1958,7 +1958,7 @@ instance ItMw_Kampferdegen(C_Item)
 	on_unequip = UnEquip_1H_08;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = 80;
-	visual = "ItMw_065_1h_SwordCane_03.3ds";
+	visual = "ItMw_065_1H_SwordCane_03.3ds";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -2005,7 +2005,7 @@ instance ItMw_Orkschlaechter(C_Item)
 	range = Range_Orkschlaechter;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Orkschlaechter;
-	visual = "ItMw_065_1h_sword_bastard_04.3DS";
+	visual = "ItMw_065_1H_sword_bastard_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -2145,7 +2145,7 @@ instance ItMw_1H_Special_03(C_Item)
 	on_unequip = UnEquip_1H_10;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Special_1H_3;
-	visual = "ItMw_075_1h_sword_smith_04.3DS";
+	visual = "ItMw_075_1H_sword_smith_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -2289,7 +2289,7 @@ instance ItMw_1H_Special_04(C_Item)
 	on_unequip = UnEquip_1H_10;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Special_1H_4;
-	visual = "ItMw_090_1h_sword_smith_05.3DS";
+	visual = "ItMw_090_1H_sword_smith_05.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -2339,7 +2339,7 @@ instance ItMw_1H_Blessed_01(C_Item)
 	range = Range_Blessed_1H_1;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Blessed_1H_1;
-	visual = "ItMw_030_1h_PAL_sword_bastard_RAW_01.3DS";
+	visual = "ItMw_030_1H_PAL_sword_bastard_RAW_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -2362,7 +2362,7 @@ instance ItMw_1H_Blessed_02(C_Item)
 	range = Range_Blessed_1H_2;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Blessed_1H_2;
-	visual = "ItMw_030_1h_PAL_sword_bastard_RAW_01.3DS";
+	visual = "ItMw_030_1H_PAL_sword_bastard_RAW_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -2385,7 +2385,7 @@ instance ItMw_1H_Blessed_03(C_Item)
 	range = Range_Blessed_1H_3;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Blessed_1H_3;
-	visual = "ItMw_030_1h_PAL_sword_bastard_RAW_01.3DS";
+	visual = "ItMw_030_1H_PAL_sword_bastard_RAW_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;

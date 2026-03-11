@@ -18,7 +18,7 @@
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player_G1,ITAR_KDW_L_Addon);
 	Npc_SetTalentSkill(self,NPC_TALENT_MAGE,6);
 	B_SetFightSkills(self,100);
-	EquipItem(self,ItMw_2h_Pal_Sword);
+	EquipItem(self,ItMw_2H_PAL_Sword);
 	B_GiveAllAddonRunes(self);
 };*/
 

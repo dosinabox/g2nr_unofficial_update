@@ -9,8 +9,7 @@ instance PAL_264_Ritter(Npc_Default)
 	npcType = NPCTYPE_OCAMBIENT;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_2h_Pal_Sword);
-//	EquipItem(self,ItRw_Mil_Crossbow);
+	EquipItem(self,ItMw_2H_PAL_Sword);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,70,ItKe_OC_Store,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Ratford,BodyTex_L,ITAR_PAL_M);

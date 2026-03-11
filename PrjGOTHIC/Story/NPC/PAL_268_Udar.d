@@ -9,7 +9,7 @@ instance PAL_268_Udar(Npc_Default)
 	npcType = NPCTYPE_OCMAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_NAILED;
-	EquipItem(self,ItMw_2h_Pal_Sword);
+	EquipItem(self,ItMw_2H_PAL_Sword);
 	EquipItem(self,ItRw_Crossbow_H_01);
 	CreateInvItems(self,ItRw_Bolt,10);
 	B_CreateAmbientInv(self);
