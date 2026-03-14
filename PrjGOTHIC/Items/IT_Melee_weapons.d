@@ -321,7 +321,7 @@ instance ItMw_BattleSense(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Vlk_Sword(C_Item)
+instance ItMw_1H_VLK_Sword(C_Item)
 {
 	name = "Шпага";
 	mainflag = ITEM_KAT_NF;
@@ -347,7 +347,7 @@ instance ItMw_1h_Vlk_Sword(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Nov_Mace(C_Item)
+instance ItMw_1H_NOV_Mace(C_Item)
 {
 	name = "Боевой посох";
 	mainflag = ITEM_KAT_NF;
@@ -583,7 +583,7 @@ instance ItMw_1h_Sld_Sword(C_Item)
 	range = Range_Sld1hSchwert;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Sld1hSchwert;
-	visual = "ItMw_025_1H_sld_sword_01.3DS";
+	visual = "ItMw_025_1H_SLD_sword_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;

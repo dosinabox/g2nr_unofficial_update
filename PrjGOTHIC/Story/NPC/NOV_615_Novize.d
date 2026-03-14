@@ -9,7 +9,7 @@ instance NOV_615_Novize(Npc_Default)
 	npcType = NPCTYPE_AMBIENT;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Nov_Mace);
+	EquipItem(self,ItMw_1H_NOV_Mace);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_NormalBart_Riordian,BodyTex_P,ITAR_NOV_L);
 	Mdl_SetModelFatness(self,1);

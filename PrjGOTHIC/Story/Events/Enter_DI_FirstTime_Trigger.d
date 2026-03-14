@@ -7,6 +7,7 @@ func void Enter_DI_FirstTime_Trigger()
 	{
 		var C_Npc player;
 		player = Hlp_GetNpc(PC_Hero);
+		Wld_InsertItem(itpo_perm_dex,"FP_ITEM_DI_ENTER_05");
 		if(player.guild == GIL_PAL)
 		{
 			CreateInvItems(Archol,ItRu_PalDestroyEvil,1);
