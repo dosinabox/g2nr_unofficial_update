@@ -9,8 +9,8 @@ func void B_TransferSarahItemsToCanthar()
 		B_TransferAllInvItems(Sarah,Canthar,ItMw_ShortSword4);
 		B_TransferAllInvItems(Sarah,Canthar,ItMw_ShortSword5);
 		B_TransferAllInvItems(Sarah,Canthar,ItMw_Kriegshammer1);
-		B_TransferAllInvItems(Sarah,Canthar,ItMw_1h_Vlk_Sword);
-		B_TransferAllInvItems(Sarah,Canthar,ItMw_1h_Nov_Mace);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_1H_VLK_Sword);
+		B_TransferAllInvItems(Sarah,Canthar,ItMw_1H_NOV_Mace);
 		B_TransferAllInvItems(Sarah,Canthar,ItMw_1H_Sword_L_03);
 		B_TransferAllInvItems(Sarah,Canthar,ItMw_Stabkeule);
 		B_TransferAllInvItems(Sarah,Canthar,ItMw_Steinbrecher);

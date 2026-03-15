@@ -3,21 +3,10 @@ instance DIA_Torlof_EXIT(C_Info)
 {
 	npc = SLD_801_Torlof;
 	nr = 999;
-	condition = DIA_Torlof_EXIT_Condition;
-	information = DIA_Torlof_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Torlof_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Torlof_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -212,7 +201,7 @@ func void DIA_Torlof_DeineStimme_Info()
 };
 
 
-var int Points_Sld;
+var int Points_SLD;
 
 instance DIA_Torlof_RUF(C_Info)
 {
@@ -237,24 +226,24 @@ func void DIA_Torlof_RUF_Info()
 {
 	AI_Output(other,self,"DIA_Torlof_RUF_15_00");	//Как моя репутация среди наемников?
 	AI_Output(self,other,"DIA_Torlof_RUF_01_01");	//Так, посмотрим...
-	Points_Sld = 0;
+	Points_SLD = 0;
 	if(Npc_IsDead(SLD_Wolf))
 	{
-		Points_Sld += 1;
+		Points_SLD += 1;
 	}
 	else if(SLD_Wolf.aivar[AIV_TalkedToPlayer] == TRUE)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_02");	//Вольф говорит, что ничего не имеет против тебя.
-		Points_Sld += 1;
+		Points_SLD += 1;
 	};
 	if(Npc_IsDead(Jarvis))
 	{
-		Points_Sld += 1;
+		Points_SLD += 1;
 	}
 	else if(MIS_Jarvis_SldKO == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_03");	//Джарвис полагает, что ты на правильной стороне.
-		Points_Sld += 1;
+		Points_SLD += 1;
 	}
 	else if(Jarvis.aivar[AIV_TalkedToPlayer] == TRUE)
 	{
@@ -263,12 +252,12 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if(Npc_IsDead(Cord))
 	{
-		Points_Sld += 1;
+		Points_SLD += 1;
 	}
 	else if(Cord_Voted == TRUE)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_06");	//Корд полагает, что ты достаточно хорош, чтобы присоединиться к нам.
-		Points_Sld += 1;
+		Points_SLD += 1;
 	}
 	else if(Cord.aivar[AIV_TalkedToPlayer] == TRUE)
 	{
@@ -276,12 +265,12 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if(Npc_IsDead(Cipher))
 	{
-		Points_Sld += 1;
+		Points_SLD += 1;
 	}
 	else if(GotCipherVote == TRUE)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_08");	//Сифер говорит, что ему абсолютно ясно, что ты достоин присоединиться к нам. Похоже, что-то сделало его безгранично счастливым.
-		Points_Sld += 1;
+		Points_SLD += 1;
 	}
 	else if(Cipher.aivar[AIV_TalkedToPlayer] == TRUE)
 	{
@@ -289,16 +278,16 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if(Npc_IsDead(Rod))
 	{
-		Points_Sld += 1;
+		Points_SLD += 1;
 	}
-	else if(!Npc_HasItems(Rod,ItMw_2h_Rod))
+	else if(!Npc_HasItems(Rod,ItMw_2H_Rod))
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_10");	//Род просто хочет получить свой меч назад.
 	}
 	else if((Rod.aivar[AIV_DefeatedByPlayer] == TRUE) || (MIS_RodSword == LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_11");	//Похоже, тебе удалось убедить Рода, что ты достаточно силен.
-		Points_Sld += 1;
+		Points_SLD += 1;
 	}
 	else if(Rod.aivar[AIV_TalkedToPlayer] == TRUE)
 	{
@@ -306,12 +295,12 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if(Npc_IsDead(Sentenza))
 	{
-		Points_Sld += 1;
+		Points_SLD += 1;
 	}
 	else if(Npc_HasItems(Sentenza,ItMi_Gold) >= 50)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_13");	//Сентенза проголосует за тебя. Он говорит, что ты весьма рассудительный человек.
-		Points_Sld += 1;
+		Points_SLD += 1;
 		Torlof_SentenzaCounted = TRUE;
 	}
 	else if(Sentenza.aivar[AIV_TalkedToPlayer] == TRUE)
@@ -320,7 +309,7 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if(Npc_IsDead(Raoul))
 	{
-		Points_Sld += 1;
+		Points_SLD += 1;
 	}
 	else if(Raoul.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
@@ -329,11 +318,11 @@ func void DIA_Torlof_RUF_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_15_add");	//Рауль ничего не имеет против тебя.
-		Points_Sld += 1;
+		Points_SLD += 1;
 	};
 	if(Npc_IsDead(Bullco))
 	{
-		Points_Sld += 1;
+		Points_SLD += 1;
 	}
 	else if(Bullco.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
@@ -341,7 +330,7 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if(Npc_IsDead(Buster))
 	{
-		Points_Sld += 1;
+		Points_SLD += 1;
 	}
 	else if(Buster_Duell == TRUE)
 	{
@@ -350,7 +339,7 @@ func void DIA_Torlof_RUF_Info()
 		{
 			AI_Output(self,other,"DIA_Torlof_RUF_01_18");	//Хотя ты и проиграл ему.
 		};
-		Points_Sld += 1;
+		Points_SLD += 1;
 	}
 	else if(Buster.aivar[AIV_TalkedToPlayer] == TRUE)
 	{
@@ -359,13 +348,13 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if(Npc_IsDead(Dar))
 	{
-		Points_Sld += 1;
+		Points_SLD += 1;
 	}
 	else if(Npc_KnowsInfo(other,DIA_Cipher_DarDieb))
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_21");	//Дар говорит, что ты трепач. Но к его голосу здесь не особенно прислушиваются.
 	};
-	if(Points_Sld > 0)
+	if(Points_SLD > 0)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_22");	//Остальные наемники ничего не сказали.
 	};
@@ -379,16 +368,16 @@ func void DIA_Torlof_RUF_Info()
 		if(Cord_RangerHelp_TorlofsProbe == TRUE)
 		{
 			AI_Output(self,other,"DIA_Addon_Torlof_RUF_01_00");	//(усмехается) Пусть Корд в этом и поучаствовал...
-			Points_Sld += 4;
+			Points_SLD += 4;
 		}
 		else if(MIS_Torlof_HolPachtVonSekob == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Torlof_RUF_01_25");	//Хотя многие считают, что заставить фермера заплатить ренту было слишком легко, чтобы считать это испытанием.
-			Points_Sld += 3;
+			Points_SLD += 3;
 		}
 		else
 		{
-			Points_Sld += 5;
+			Points_SLD += 5;
 		};
 		AI_Output(self,other,"DIA_Torlof_RUF_01_26");	//В любом случае, ты можешь рассчитывать на мой голос.
 		if(GotTorlofVote == FALSE)
@@ -401,12 +390,12 @@ func void DIA_Torlof_RUF_Info()
 			B_LogEntry(TOPIC_SLDRespekt,"Торлоф считает, что я могу выполнять обязанности наемника.");
 			GotTorlofVote = TRUE;
 		};
-		Points_Sld += 1;
+		Points_SLD += 1;
 	};
 	if(Sld_Duelle_gewonnen >= 3)
 	{
-		Points_Sld += 1;
-		if(Points_Sld >= 9)
+		Points_SLD += 1;
+		if(Points_SLD >= 9)
 		{
 			AI_Output(self,other,"DIA_Torlof_RUF_01_27");	//И ты победил в нескольких честных дуэлях.
 			AI_Output(self,other,"DIA_Torlof_RUF_01_28");	//Многие наемники уважают это.
@@ -416,7 +405,7 @@ func void DIA_Torlof_RUF_Info()
 			AI_Output(self,other,"DIA_Torlof_RUF_01_29");	//Как бы то ни было, ты уже победил в нескольких честных дуэлях.
 		};
 	};
-	if((Points_Sld >= 9) && ((MIS_Torlof_HolPachtVonSekob == LOG_SUCCESS) || (MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS)))
+	if((Points_SLD >= 9) && ((MIS_Torlof_HolPachtVonSekob == LOG_SUCCESS) || (MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS)))
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_30");	//Большинство наемников за тебя, и мы считаем, что ты можешь присоединиться к нам в любое время.
 		AI_Output(self,other,"DIA_Torlof_RUF_01_31");	//Иди, поговори с Ли. Он объяснит тебе детали.
@@ -424,7 +413,7 @@ func void DIA_Torlof_RUF_Info()
 		Torlof_GenugStimmen = TRUE;
 		B_CheckLog();
 	}
-	else if(Points_Sld >= 7)
+	else if(Points_SLD >= 7)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_32");	//Это довольно много, но пока еще не достаточно.
 		if(Sld_Duelle_gewonnen < 3)
@@ -638,9 +627,12 @@ instance DIA_Torlof_BengarSuccess(C_Info)
 
 func int DIA_Torlof_BengarSuccess_Condition()
 {
-	if((MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING) && C_BengarFarmIsFree() && (Kapitel < 3))
+	if((MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING) && (Kapitel < 3))
 	{
-		return TRUE;
+		if(C_BengarFarmIsFree())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -800,7 +792,11 @@ func int DIA_Torlof_TooLate_Condition()
 {
 	if((Kapitel >= 3) && (other.guild == GIL_SLD))
 	{
-		if((MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING) || (MIS_Torlof_HolPachtVonSekob == LOG_RUNNING))
+		if(MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING)
+		{
+			return TRUE;
+		};
+		if(MIS_Torlof_HolPachtVonSekob == LOG_RUNNING)
 		{
 			return TRUE;
 		};
@@ -1100,6 +1096,9 @@ func void DIA_Torlof_BEMYCAPTAIN2_Info()
 };
 
 
+var int Torlof_PaidToBeCaptain;
+var int Torlof_PaidToBeCaptain_Log_OneTime;
+
 instance DIA_Torlof_BEMYCAPTAIN3(C_Info)
 {
 	npc = SLD_801_Torlof;
@@ -1110,9 +1109,6 @@ instance DIA_Torlof_BEMYCAPTAIN3(C_Info)
 	description = "Теперь ты поможешь мне добраться до острова?";
 };
 
-
-var int Torlof_PaidToBeCaptain;
-var int Torlof_PaidToBeCaptain_Log_OneTime;
 
 func int DIA_Torlof_BEMYCAPTAIN3_Condition()
 {

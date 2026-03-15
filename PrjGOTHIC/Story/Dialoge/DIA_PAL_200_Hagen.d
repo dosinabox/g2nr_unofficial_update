@@ -3,21 +3,10 @@ instance DIA_Hagen_EXIT(C_Info)
 {
 	npc = PAL_200_Hagen;
 	nr = 999;
-	condition = DIA_Hagen_EXIT_Condition;
-	information = DIA_Hagen_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Hagen_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Hagen_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -320,9 +309,12 @@ instance DIA_Lord_Hagen_Frieden(C_Info)
 
 func int DIA_Lord_Hagen_Frieden_Condition()
 {
-	if((MIS_Lee_Friedensangebot == LOG_RUNNING) && Npc_HasItems(other,ItWr_Passage_MIS))
+	if(MIS_Lee_Friedensangebot == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Passage_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -783,8 +775,8 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	};
 	if(other.HitChance[NPC_TALENT_2H] > other.HitChance[NPC_TALENT_1H])
 	{
-		CreateInvItems(self,ItMw_2h_Pal_Sword,1);
-		B_GiveInvItems(self,other,ItMw_2h_Pal_Sword,1);
+		CreateInvItems(self,ItMw_2H_PAL_Sword,1);
+		B_GiveInvItems(self,other,ItMw_2H_PAL_Sword,1);
 	}
 	else
 	{
@@ -936,9 +928,12 @@ instance DIA_Lord_Hagen_BACKINTOWN(C_Info)
 
 func int DIA_Lord_Hagen_BACKINTOWN_Condition()
 {
-	if((MIS_OLDWORLD == LOG_RUNNING) && Npc_HasItems(other,ItWr_PaladinLetter_MIS) && (Kapitel == 3))
+	if((MIS_OLDWORLD == LOG_RUNNING) && (Kapitel == 3))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_PaladinLetter_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1313,9 +1308,12 @@ instance DIA_Lord_Hagen_RINGEBRINGEN(C_Info)
 
 func int DIA_Lord_Hagen_RINGEBRINGEN_Condition()
 {
-	if((Hagen_SawOrcRing == TRUE) && Npc_HasItems(other,ItRi_OrcEliteRing) && (other.guild == GIL_PAL))
+	if((Hagen_SawOrcRing == TRUE) && (other.guild == GIL_PAL))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItRi_OrcEliteRing))
+		{
+			return TRUE;
+		};
 	};
 };
 

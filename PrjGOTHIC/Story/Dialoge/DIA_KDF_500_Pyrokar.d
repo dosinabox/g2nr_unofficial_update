@@ -3,21 +3,10 @@ instance DIA_Pyrokar_EXIT(C_Info)
 {
 	npc = KDF_500_Pyrokar;
 	nr = 999;
-	condition = DIA_Pyrokar_EXIT_Condition;
-	information = DIA_Pyrokar_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Pyrokar_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Pyrokar_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -33,9 +22,12 @@ instance DIA_Pyrokar_WELCOME(C_Info)
 
 func int DIA_Pyrokar_WELCOME_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -168,9 +160,12 @@ func int DIA_Pyrokar_GOAWAY_Condition()
 	{
 		return FALSE;
 	};
-	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Pyrokar_Hagen) && Npc_KnowsInfo(other,DIA_Pyrokar_Auge) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Pyrokar_Hagen) && Npc_KnowsInfo(other,DIA_Pyrokar_Auge) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -392,9 +387,19 @@ instance DIA_Pyrokar_Todo(C_Info)
 
 func int DIA_Pyrokar_Todo_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_SUCCESS) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && ((MIS_Rune != LOG_SUCCESS) || (MIS_Golem != LOG_SUCCESS)))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((MIS_Schnitzeljagd == LOG_SUCCESS) && (other.guild == GIL_NOV))
+		{
+			if(MIS_Rune != LOG_SUCCESS)
+			{
+				return TRUE;
+			};
+			if(MIS_Golem != LOG_SUCCESS)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -1172,9 +1177,12 @@ instance DIA_Pyrokar_GIVEINNOSEYE(C_Info)
 
 func int DIA_Pyrokar_GIVEINNOSEYE_Condition()
 {
-	if((Kapitel == 3) && Npc_HasItems(other,ItWr_PermissionToWearInnosEye_MIS))
+	if(Kapitel == 3)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_PermissionToWearInnosEye_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1592,13 +1600,14 @@ instance DIA_Pyrokar_BUCHDERBESSENEN(C_Info)
 
 func int DIA_Pyrokar_BUCHDERBESSENEN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Pyrokar_BACKFROMOW) && Npc_HasItems(other,ItWr_DementorObsessionBook_MIS))
+	if(Npc_KnowsInfo(other,DIA_Pyrokar_BACKFROMOW))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_DementorObsessionBook_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
-
-var int AlmanachCounter;
 
 func void DIA_Pyrokar_BUCHDERBESSENEN_Info()
 {
@@ -1764,9 +1773,12 @@ instance DIA_Pyrokar_AlmanachBringen(C_Info)
 
 func int DIA_Pyrokar_AlmanachBringen_Condition()
 {
-	if((Kapitel >= 3) && Npc_HasItems(other,ItWr_DementorObsessionBook_MIS) && (other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pyrokar_BUCHDERBESSENEN))
+	if((Kapitel >= 3) && (other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pyrokar_BUCHDERBESSENEN))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_DementorObsessionBook_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

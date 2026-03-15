@@ -9,7 +9,7 @@ instance NOV_604_Dyrian(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Nov_Mace);
+	EquipItem(self,ItMw_1H_NOV_Mace);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,10,ItMi_Gold,15);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_P_Tough_Torrez,BodyTex_P,ITAR_NOV_L);

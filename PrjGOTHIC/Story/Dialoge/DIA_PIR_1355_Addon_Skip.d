@@ -161,7 +161,11 @@ func int DIA_Addon_Skip_Transport_Condition()
 {
 	if(self.aivar[AIV_PARTYMEMBER] == FALSE)
 	{
-		if(Npc_KnowsInfo(other,DIA_Addon_Skip_Job) || (GregIsBack == TRUE))
+		if(GregIsBack == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Addon_Skip_Job))
 		{
 			return TRUE;
 		};
@@ -241,9 +245,12 @@ instance DIA_Addon_Skip_ArmorPrice(C_Info)
 
 func int DIA_Addon_Skip_ArmorPrice_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Skip_Bandits) && (GregIsBack == FALSE) && !C_SCHasBDTArmor())
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_Bandits) && (GregIsBack == FALSE))
 	{
-		return TRUE;
+		if(!C_SCHasBDTArmor())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -313,17 +320,24 @@ func int DIA_Addon_Skip_Francis_Condition()
 func void DIA_Addon_Skip_Francis_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_Francis_15_00");	//Что ты скажешь о Фрэнсисе?
-	AI_Output(self,other,"DIA_Addon_Skip_Francis_08_01");	//Это наш казначей.
-	AI_Output(self,other,"DIA_Addon_Skip_Francis_08_02");	//Капитан ему доверяет. Поэтому он оставил Фрэнсиса за старшего.
-	AI_Output(self,other,"DIA_Addon_Skip_Francis_08_03");	//Но никто из наших не воспринимает его всерьез.
-	if(!Npc_IsDead(Samuel))
+	if(Npc_KnowsInfo(other,DIA_Addon_Greg_GiveFrancisBook))
 	{
-		AI_Output(self,other,"DIA_Addon_Skip_Francis_08_04");	//Если хочешь узнать больше, поговори с Сэмюэлем.
-		AI_Output(self,other,"DIA_Addon_Skip_Francis_08_05");	//У него лаборатория в небольшой пещере на севере отсюда.
-		AI_Output(self,other,"DIA_Addon_Skip_Francis_08_06");	//Нет в лагере такого человека, о котором Сэмюэль не знал бы всю подноготную...
-		if((MIS_Greg_ScoutBandits == FALSE) && !C_SCHasBDTArmor())
+		B_Say(self,other,"$GOODMONSTERKILL");
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Skip_Francis_08_01");	//Это наш казначей.
+		AI_Output(self,other,"DIA_Addon_Skip_Francis_08_02");	//Капитан ему доверяет. Поэтому он оставил Фрэнсиса за старшего.
+		AI_Output(self,other,"DIA_Addon_Skip_Francis_08_03");	//Но никто из наших не воспринимает его всерьез.
+		if(!Npc_IsDead(Samuel))
 		{
-			B_LogEntry(TOPIC_Addon_BDTRuestung,"Я должен поговорить с Сэмюэлем. Возможно, он поможет мне.");
+			AI_Output(self,other,"DIA_Addon_Skip_Francis_08_04");	//Если хочешь узнать больше, поговори с Сэмюэлем.
+			AI_Output(self,other,"DIA_Addon_Skip_Francis_08_05");	//У него лаборатория в небольшой пещере на севере отсюда.
+			AI_Output(self,other,"DIA_Addon_Skip_Francis_08_06");	//Нет в лагере такого человека, о котором Сэмюэль не знал бы всю подноготную...
+			if((MIS_Greg_ScoutBandits == FALSE) && !C_SCHasBDTArmor())
+			{
+				B_LogEntry(TOPIC_Addon_BDTRuestung,"Я должен поговорить с Сэмюэлем. Возможно, он поможет мне.");
+			};
 		};
 	};
 };

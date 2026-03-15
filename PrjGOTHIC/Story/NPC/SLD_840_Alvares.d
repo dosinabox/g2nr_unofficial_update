@@ -10,7 +10,7 @@ instance SLD_840_Alvares(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	aivar[AIV_EnemyOverride] = TRUE;
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_2h_Sld_Axe);
+	EquipItem(self,ItMw_2H_SLD_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,20,ItMi_Gold,15);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Tough_Silas,BodyTex_B,ITAR_SLD_L);

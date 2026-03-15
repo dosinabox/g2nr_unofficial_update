@@ -185,7 +185,7 @@ instance PC_L60(Npc_Default)
 	B_AddFightSkill(self,NPC_TALENT_BOW,20);
 	B_AddFightSkill(self,NPC_TALENT_CROSSBOW,10);
 	Npc_SetTalentSkill(self,NPC_TALENT_MAGE,6);
-	EquipItem(self,ItMw_1h_MISC_Sword);
+	EquipItem(self,ItMw_1H_MISC_Sword);
 	EquipItem(self,ItAm_Mana_01);
 	EquipItem(self,ItRu_Light);
 	EquipItem(self,ItRu_InstantFireball);
@@ -260,7 +260,7 @@ instance PC_E3Paladin(Npc_Default)
 	B_AddFightSkill(self,NPC_TALENT_2H,90);
 	B_AddFightSkill(self,NPC_TALENT_BOW,80);
 	B_AddFightSkill(self,NPC_TALENT_CROSSBOW,70);
-	EquipItem(self,ItMw_2h_Pal_Sword);
+	EquipItem(self,ItMw_2H_PAL_Sword);
 	EquipItem(self,ItRw_Bow_H_01);
 	CreateInvItems(self,ItRw_Crossbow_H_01,1);
 	CreateInvItems(self,ItRw_Arrow,1000);

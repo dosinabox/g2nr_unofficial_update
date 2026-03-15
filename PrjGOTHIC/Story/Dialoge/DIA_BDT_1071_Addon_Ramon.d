@@ -3,21 +3,10 @@ instance DIA_Addon_Ramon_EXIT(C_Info)
 {
 	npc = BDT_1071_Addon_Ramon;
 	nr = 999;
-	condition = DIA_Addon_Ramon_EXIT_Condition;
-	information = DIA_Addon_Ramon_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Ramon_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Ramon_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -198,9 +187,12 @@ instance DIA_Addon_Ramon_News(C_Info)
 
 func int DIA_Addon_Ramon_News_Condition()
 {
-	if(!Npc_IsDead(Franco) && (Ramon_News == TRUE))
+	if(Ramon_News == TRUE)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Franco))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -223,9 +215,12 @@ instance DIA_Addon_Ramon_Lie(C_Info)
 
 func int DIA_Addon_Ramon_Lie_Condition()
 {
-	if(!Npc_IsDead(Franco) && (Ramon_News == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Franco_HI))
+	if((Ramon_News == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Franco_HI))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Franco))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -251,9 +246,12 @@ instance DIA_Addon_Ramon_Perm(C_Info)
 
 func int DIA_Addon_Ramon_Perm_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Ramon_News) && !Npc_IsDead(Franco))
+	if(Npc_KnowsInfo(other,DIA_Addon_Ramon_News))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Franco))
+		{
+			return TRUE;
+		};
 	};
 };
 

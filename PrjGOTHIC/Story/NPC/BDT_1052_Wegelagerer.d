@@ -10,7 +10,7 @@ instance BDT_1052_Wegelagerer(Npc_Default)
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_2h_Sld_Sword);
+	EquipItem(self,ItMw_2H_SLD_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal07,BodyTex_N,ITAR_BDT_M);
 	Mdl_SetModelFatness(self,2);

@@ -9,7 +9,7 @@ instance VLK_440_Bartok(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_Addon_Hacker_1h_02);
+	EquipItem(self,ItMw_Addon_Hacker_1H_02);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,30,ItMi_ArrowPack,1);
 	CreateInvItems(self,ItPo_Health_03,5);

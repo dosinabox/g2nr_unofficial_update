@@ -29,10 +29,10 @@ func void B_GiveTradeInv_Addon_Garett(var C_Npc slf)
 			CreateInvItems(slf,ItMw_Streitaxt1,1);
 			CreateInvItems(slf,ItMw_Zweihaender4,1);
 			CreateInvItems(slf,ItMw_Orkschlaechter,1);
-			CreateInvItems(slf,ItMw_Addon_Hacker_1h_01,1);
-			CreateInvItems(slf,ItMw_Addon_Hacker_1h_02,1);
-			CreateInvItems(slf,ItMw_Addon_Hacker_2h_01,1);
-			CreateInvItems(slf,ItMw_Addon_Hacker_2h_02,1);
+			CreateInvItems(slf,ItMw_Addon_Hacker_1H_01,1);
+			CreateInvItems(slf,ItMw_Addon_Hacker_1H_02,1);
+			CreateInvItems(slf,ItMw_Addon_Hacker_2H_01,1);
+			CreateInvItems(slf,ItMw_Addon_Hacker_2H_02,1);
 			CreateInvItems(slf,ItMw_Piratensaebel,1);
 		};
 		Garett_ItemsGiven_Chapter_1 = TRUE;
@@ -49,8 +49,8 @@ func void B_GiveTradeInv_Addon_Garett(var C_Npc slf)
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
 			CreateInvItems(slf,ItMw_Streitaxt1,1);
-			CreateInvItems(slf,ItMw_Addon_Hacker_1h_02,1);
-			CreateInvItems(slf,ItMw_Addon_Hacker_2h_02,1);
+			CreateInvItems(slf,ItMw_Addon_Hacker_1H_02,1);
+			CreateInvItems(slf,ItMw_Addon_Hacker_2H_02,1);
 			CreateInvItems(slf,ItMw_2H_Hammer_01,1);
 		};
 		Garett_ItemsGiven_Chapter_2 = TRUE;
@@ -62,8 +62,8 @@ func void B_GiveTradeInv_Addon_Garett(var C_Npc slf)
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
 			CreateInvItems(slf,ItMw_Orkschlaechter,1);
-			CreateInvItems(slf,ItMw_Addon_Hacker_1h_01,1);
-			CreateInvItems(slf,ItMw_Addon_Hacker_2h_01,1);
+			CreateInvItems(slf,ItMw_Addon_Hacker_1H_01,1);
+			CreateInvItems(slf,ItMw_Addon_Hacker_2H_01,1);
 		};
 		Garett_ItemsGiven_Chapter_3 = TRUE;
 	};

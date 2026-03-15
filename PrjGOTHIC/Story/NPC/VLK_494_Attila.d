@@ -11,7 +11,7 @@ instance VLK_494_Attila(Npc_Default)
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Sld_Axe);
+	EquipItem(self,ItMw_1H_SLD_Axe);
 	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,55,ItMi_Gold,100);

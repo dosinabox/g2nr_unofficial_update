@@ -11,7 +11,7 @@ instance BDT_10018_Addon_Torwache(Npc_Default)
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_2h_Sld_Sword);
+	EquipItem(self,ItMw_2H_SLD_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_L_Jackal,BodyTex_L,ITAR_Thorus_Addon);
 	Mdl_SetModelFatness(self,1);

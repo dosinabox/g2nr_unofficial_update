@@ -177,6 +177,7 @@ AI\Human\B_Human\B_ResetAll.d
 Story\B_Story\B_InspectMeleeWeapon.d
 Story\B_Story\B_UseItem.d
 Story\B_AssignAmbientInfos\DIA_Common.d
+Story\B_AssignAmbientInfos\DIA_Common_EXIT.d
 Story\B_AssignAmbientInfos\B_LastWarningVatras.d
 Story\B_AssignAmbientInfos\B_Addon_Riordian_TeachWisp.d
 AI\Human\B_Human\B_ValidateOther.d
@@ -302,7 +303,6 @@ Story\B_AssignAmbientInfos\B_AssignToughGuyNews.d
 Story\B_AssignAmbientInfos\B_AssignCityGuide.d
 Story\B_AssignAmbientInfos\B_AssignPickpocket.d
 Story\B_AssignAmbientInfos\B_AssignAmbientInfos.d
-Story\B_AssignAmbientInfos\DIA_Common_EXIT.d
 AI\Magic\C_Spell_Proto.d
 AI\Magic\B_AssessMagic.d
 AI\Magic\C_CanNpcCollideWithSpell.d
@@ -450,8 +450,10 @@ Story\B_Story\B_BuildOptionString.d
 Story\B_Story\B_RemoveTestNpcs.d
 Story\B_Story\C_LehmarDebtIsOverdue.d
 Story\B_Story\C_SCHasAnyDragonHeart.d
+Story\B_Story\C_SCHasAnyFernandoEvidence.d
 Story\B_Story\C_SCHasBDTArmor.d
 Story\B_Story\C_SCHasBlessedSword.d
+Story\B_Story\C_SCHasGregsItems.d
 Story\Dialog_Mobsis\Bookstand.d
 Story\Dialog_Mobsis\BookstandAlchemy.d
 Story\Dialog_Mobsis\BookstandAnimals.d

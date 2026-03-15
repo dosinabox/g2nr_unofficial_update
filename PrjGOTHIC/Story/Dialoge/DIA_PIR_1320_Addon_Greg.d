@@ -3,21 +3,10 @@ instance DIA_Addon_Greg_EXIT(C_Info)
 {
 	npc = PIR_1320_Addon_Greg;
 	nr = 999;
-	condition = DIA_Addon_Greg_EXIT_Condition;
-	information = DIA_Addon_Greg_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Greg_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Greg_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -340,6 +329,8 @@ func void DIA_Addon_Greg_AboutCanyon_RazorsDead()
 };
 
 
+var int Greg_BanditArmor_Once;
+
 instance DIA_Addon_Greg_BanditArmor(C_Info)
 {
 	npc = PIR_1320_Addon_Greg;
@@ -353,13 +344,14 @@ instance DIA_Addon_Greg_BanditArmor(C_Info)
 
 func int DIA_Addon_Greg_BanditArmor_Condition()
 {
-	if((MIS_Greg_ScoutBandits == FALSE) && !C_SCHasBDTArmor())
+	if(MIS_Greg_ScoutBandits == FALSE)
 	{
-		return TRUE;
+		if(!C_SCHasBDTArmor())
+		{
+			return TRUE;
+		};
 	};
 };
-
-var int Greg_BanditArmor_Once;
 
 func void DIA_Addon_Greg_BanditArmor_Info()
 {
@@ -639,9 +631,16 @@ instance DIA_Addon_Greg_Story(C_Info)
 
 func int DIA_Addon_Greg_Story_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Addon_Greg_WhoAreYou) || Npc_KnowsInfo(other,DIA_Addon_Greg_NiceToSeeYou)) && (MIS_Greg_ScoutBandits != FALSE))
+	if(MIS_Greg_ScoutBandits != FALSE)
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Addon_Greg_WhoAreYou))
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Addon_Greg_NiceToSeeYou))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -742,9 +741,12 @@ instance DIA_Addon_Greg_ItemsInADW(C_Info)
 
 func int DIA_Addon_Greg_ItemsInADW_Condition()
 {
-	if((RAKEPLACE[1] == TRUE) && (RAKEPLACE[2] == TRUE) && (RAKEPLACE[3] == TRUE) && (RAKEPLACE[4] == TRUE) && (RAKEPLACE[5] == TRUE) && (MIS_Addon_Greg_RakeCave == LOG_RUNNING) && (Greg_SuchWeiter == TRUE) && C_SCHasGregsItems())
+	if((RAKEPLACE[1] == TRUE) && (RAKEPLACE[2] == TRUE) && (RAKEPLACE[3] == TRUE) && (RAKEPLACE[4] == TRUE) && (RAKEPLACE[5] == TRUE) && (MIS_Addon_Greg_RakeCave == LOG_RUNNING) && (Greg_SuchWeiter == TRUE))
 	{
-		return TRUE;
+		if(C_SCHasGregsItems())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -769,7 +771,11 @@ func int DIA_Addon_Greg_BeMyCap_Condition()
 {
 	if((Kapitel == 5) && (MIS_SCKnowsWayToIrdorath == TRUE) && (SCGotCaptain == FALSE))
 	{
-		if((PlayerTalkedToGregNW == TRUE) || Npc_KnowsInfo(other,DIA_Addon_Greg_WhoAreYou))
+		if(PlayerTalkedToGregNW == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Addon_Greg_WhoAreYou))
 		{
 			return TRUE;
 		};

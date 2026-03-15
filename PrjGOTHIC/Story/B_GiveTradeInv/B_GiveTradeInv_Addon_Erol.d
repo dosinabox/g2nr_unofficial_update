@@ -29,7 +29,7 @@ func void B_GiveTradeInv_Addon_Erol(var C_Npc slf)
 			CreateInvItems(slf,ItMw_Kriegshammer2,1);
 			CreateInvItems(slf,ItMw_ShortSword5,1);
 			CreateInvItems(slf,ItMw_Zweihaender1,1);
-			CreateInvItems(slf,ItMw_1h_Vlk_Sword,1);
+			CreateInvItems(slf,ItMw_1H_VLK_Sword,1);
 		};
 		Erol_ItemsGiven_Chapter_1 = TRUE;
 	};

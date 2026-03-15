@@ -140,9 +140,12 @@ instance DIA_Addon_Fernando_BanditTrader(C_Info)
 
 func int DIA_Addon_Fernando_BanditTrader_Condition()
 {
-	if((FernandoBlame_noPerm == FALSE) && (MIS_Vatras_FindTheBanditTrader == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Fernando_Hello) && (NpcObsessedByDMT_Fernando == FALSE) && C_SCHasAnyFernandoEvidence() && (Fernando_ImKnast == FALSE))
+	if((FernandoBlame_noPerm == FALSE) && (MIS_Vatras_FindTheBanditTrader == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Fernando_Hello) && (NpcObsessedByDMT_Fernando == FALSE) && (Fernando_ImKnast == FALSE))
 	{
-		return TRUE;
+		if(C_SCHasAnyFernandoEvidence())
+		{
+			return TRUE;
+		};
 	};
 };
 

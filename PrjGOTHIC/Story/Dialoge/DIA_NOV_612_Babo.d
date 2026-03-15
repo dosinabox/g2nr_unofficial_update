@@ -3,21 +3,10 @@ instance DIA_Babo_EXIT(C_Info)
 {
 	npc = NOV_612_Babo;
 	nr = 999;
-	condition = DIA_Babo_EXIT_Condition;
-	information = DIA_Babo_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Babo_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Babo_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -46,7 +35,7 @@ func void DIA_Babo_Hello_Info()
 	AI_Output(self,other,"DIA_Babo_Hello_03_02");	//Четыре недели. Тебе уже выдали боевой посох?
 	AI_Output(other,self,"DIA_Babo_Hello_15_03");	//Пока нет.
 	AI_Output(self,other,"DIA_Babo_Hello_03_04");	//Тогда возьми вот этот. Мы, послушники, всегда ходим с посохом, чтобы показать, что мы способны защитить себя. Ты умеешь сражаться?
-	CreateInvItem(other,ItMw_1h_Nov_Mace);
+	CreateInvItem(other,ItMw_1H_NOV_Mace);
 	AI_PrintScreen("Боевой посох получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	AI_Output(other,self,"DIA_Babo_Hello_15_05");	//Ну, мне случалось пользоваться оружием...
 	AI_Output(self,other,"DIA_Babo_Hello_03_06");	//Если хочешь, я могу обучить тебя кое-чему. Но у меня есть просьба...
@@ -116,9 +105,12 @@ instance DIA_Babo_Sergio(C_Info)
 
 func int DIA_Babo_Sergio_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sergio_Babo) && !Npc_IsDead(Sergio))
+	if(Npc_KnowsInfo(other,DIA_Sergio_Babo))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Sergio))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -416,6 +408,8 @@ func void DIA_Babo_Fegen_Info()
 };
 
 
+var int DIA_Babo_Windfaust_permanent;
+
 instance DIA_Babo_Windfaust(C_Info)
 {
 	npc = NOV_612_Babo;
@@ -426,8 +420,6 @@ instance DIA_Babo_Windfaust(C_Info)
 	description = "Насчет свитка...";
 };
 
-
-var int DIA_Babo_Windfaust_permanent;
 
 func int DIA_Babo_Windfaust_Condition()
 {

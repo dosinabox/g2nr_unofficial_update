@@ -9,7 +9,7 @@ instance BDT_10024_Addon_Garaz(Npc_Default)
 	npcType = NPCTYPE_BL_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_2h_Sld_Axe);
+	EquipItem(self,ItMw_2H_SLD_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,80,ItMi_Gold,80);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal16,BodyTex_N,ITAR_Bloodwyn_Addon);

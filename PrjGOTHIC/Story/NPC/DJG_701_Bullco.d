@@ -47,8 +47,8 @@ func void Rtn_IceDragon_701()
 
 func void Rtn_Guide_701()
 {
-	TA_Guide_Player(0,0,23,0,"OW_MOVEMENT_BGOBBO1");
-	TA_Guide_Player(23,0,24,0,"OW_MOVEMENT_BGOBBO1");
+	TA_Guide_Player(8,0,23,0,"OW_MOVEMENT_BGOBBO1");
+	TA_Guide_Player(23,0,8,0,"OW_MOVEMENT_BGOBBO1");
 };
 
 func void Rtn_DJGVorposten_701()

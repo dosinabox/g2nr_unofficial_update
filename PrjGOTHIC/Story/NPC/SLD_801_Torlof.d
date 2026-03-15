@@ -10,7 +10,7 @@ instance SLD_801_Torlof(Npc_Default)
 	aivar[AIV_Teeth] = 1;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_2h_Sld_Sword);
+	EquipItem(self,ItMw_2H_SLD_Sword);
 	EquipItem(self,ItRw_Sld_Bow);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,76,ItMi_Gold,120);

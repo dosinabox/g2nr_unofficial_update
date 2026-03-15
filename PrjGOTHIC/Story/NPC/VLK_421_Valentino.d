@@ -9,7 +9,7 @@ instance VLK_421_Valentino(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Vlk_Mace);
+	EquipItem(self,ItMw_1H_VLK_Mace);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,30,ItKe_Valentino,1);
 	CreateInvItems(self,ItMi_Gold,200);

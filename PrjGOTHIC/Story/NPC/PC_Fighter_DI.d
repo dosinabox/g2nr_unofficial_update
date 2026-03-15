@@ -14,7 +14,7 @@ instance PC_Fighter_DI(Npc_Default)
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_2h_Sld_Axe);
+	EquipItem(self,ItMw_2H_SLD_Axe);
 	EquipItem(self,ItRw_Crossbow_M_01);
 	CreateInvItems(self,ItPo_Health_02,6);
 	B_CreateAmbientInv(self);

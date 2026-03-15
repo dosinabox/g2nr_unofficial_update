@@ -101,7 +101,7 @@ instance Lesser_Skeleton(Mst_Default_Skeleton)
 	protection[PROT_FLY] = 80;
 	fight_tactic = FAI_HUMAN_NORMAL;
 	B_SetVisuals_Lesser_Skeleton();
-	EquipItem(self,ItMw_1h_MISC_Sword);
+	EquipItem(self,ItMw_1H_MISC_Sword);
 };
 
 instance SkeletonScout(Mst_Default_Skeleton)
@@ -116,7 +116,7 @@ instance SkeletonScout(Mst_Default_Skeleton)
 	protection[PROT_FLY] = 90;
 	fight_tactic = FAI_HUMAN_NORMAL;
 	B_SetVisuals_SkeletonScout();
-	EquipItem(self,ItMw_1h_MISC_Sword);
+	EquipItem(self,ItMw_1H_MISC_Sword);
 };
 
 instance Crypt_Skeleton_Room_01(Mst_Default_Skeleton)
@@ -124,7 +124,7 @@ instance Crypt_Skeleton_Room_01(Mst_Default_Skeleton)
 	name[0] = NAME_Crypt_Skeleton;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Skeleton();
-	EquipItem(self,ItMw_1h_MISC_Sword);
+	EquipItem(self,ItMw_1H_MISC_Sword);
 	CreateInvItem(self,ItKe_EVT_CRYPT_01);
 };
 
@@ -142,7 +142,7 @@ instance Crypt_Skeleton_Room_03(Mst_Default_Skeleton)
 	name[0] = NAME_Crypt_Skeleton;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Skeleton();
-	EquipItem(self,ItMw_1h_MISC_Sword);
+	EquipItem(self,ItMw_1H_MISC_Sword);
 	CreateInvItem(self,ItKe_EVT_CRYPT_03);
 };
 
@@ -150,7 +150,7 @@ instance Skeleton_Archol1(Mst_Default_Skeleton)
 {
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Skeleton();
-	EquipItem(self,ItMw_1h_MISC_Sword);
+	EquipItem(self,ItMw_1H_MISC_Sword);
 };
 
 instance Skeleton_Archol2(Mst_Default_Skeleton)
@@ -164,7 +164,7 @@ instance Skeleton_Archol3(Mst_Default_Skeleton)
 {
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Skeleton();
-	EquipItem(self,ItMw_1h_MISC_Sword);
+	EquipItem(self,ItMw_1H_MISC_Sword);
 };
 
 instance Skeleton_Archol4(Mst_Default_Skeleton)
@@ -178,7 +178,7 @@ instance Skeleton_Archol5(Mst_Default_Skeleton)
 {
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Skeleton();
-	EquipItem(self,ItMw_1h_MISC_Sword);
+	EquipItem(self,ItMw_1H_MISC_Sword);
 };
 
 instance Skeleton_Archol6(Mst_Default_Skeleton)
@@ -192,7 +192,7 @@ instance Skeleton_Mario1(Mst_Default_Skeleton)
 {
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Skeleton();
-	EquipItem(self,ItMw_1h_MISC_Sword);
+	EquipItem(self,ItMw_1H_MISC_Sword);
 };
 
 instance Skeleton_Mario2(Mst_Default_Skeleton)
@@ -206,7 +206,7 @@ instance Skeleton_Mario3(Mst_Default_Skeleton)
 {
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Skeleton();
-	EquipItem(self,ItMw_1h_MISC_Sword);
+	EquipItem(self,ItMw_1H_MISC_Sword);
 };
 
 instance Skeleton_Mario4(Mst_Default_Skeleton)

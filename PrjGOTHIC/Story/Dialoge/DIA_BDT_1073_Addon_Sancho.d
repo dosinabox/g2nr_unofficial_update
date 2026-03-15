@@ -3,21 +3,10 @@ instance DIA_Addon_Sancho_EXIT(C_Info)
 {
 	npc = BDT_1073_Addon_Sancho;
 	nr = 999;
-	condition = DIA_Addon_Sancho_EXIT_Condition;
-	information = DIA_Addon_Sancho_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Sancho_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Sancho_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -124,9 +113,12 @@ instance DIA_Addon_Sancho_Franco(C_Info)
 
 func int DIA_Addon_Sancho_Franco_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Sancho_Mine) && !Npc_IsDead(Franco))
+	if(Npc_KnowsInfo(other,DIA_Addon_Sancho_Mine))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Franco))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -151,7 +143,11 @@ instance DIA_Addon_Sancho_Spitzel(C_Info)
 
 func int DIA_Addon_Sancho_Spitzel_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Sancho_Franco) || Npc_IsDead(Franco))
+	if(Npc_KnowsInfo(other,DIA_Addon_Sancho_Franco))
+	{
+		return TRUE;
+	};
+	if(Npc_IsDead(Franco))
 	{
 		return TRUE;
 	};

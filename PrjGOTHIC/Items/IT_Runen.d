@@ -1165,3 +1165,21 @@ instance ItRu_Concussionbolt(C_Item)
 	text[4] = NAME_Addon_SpellDontKill;
 };
 
+instance ItRu_Teleport_Maya(C_Item)
+{
+	name = NAME_Rune;
+	mainflag = ITEM_KAT_RUNE;
+	flags = 0;
+	value = 10000;
+	visual = "ItRu_Teleport_3.3ds";
+	material = MAT_STONE;
+	spell = SPL_Teleport_Maya;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_WEAKGLIMMER";
+	description = NAME_SPL_Teleport_Maya;
+	text[1] = NAME_Manakosten;
+	count[1] = SPL_Cost_Teleport;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+

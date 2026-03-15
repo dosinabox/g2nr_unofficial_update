@@ -9,7 +9,7 @@ instance BDT_1070_Addon_Paul(Npc_Default)
 	npcType = NPCTYPE_BL_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Sld_Axe);
+	EquipItem(self,ItMw_1H_SLD_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,22,ItMi_Gold,19);
 	CreateInvItems(self,ItMi_Nugget,1);

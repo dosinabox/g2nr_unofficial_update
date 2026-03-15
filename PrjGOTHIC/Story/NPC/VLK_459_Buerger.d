@@ -10,7 +10,7 @@ instance VLK_459_Buerger(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Vlk_Mace);
+	EquipItem(self,ItMw_1H_VLK_Mace);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Weak_Cutter,BodyTex_P,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,1);

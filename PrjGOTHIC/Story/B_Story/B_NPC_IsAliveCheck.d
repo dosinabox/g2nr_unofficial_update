@@ -46,7 +46,7 @@ func void B_NPC_IsAliveCheck(var int Zen)
 			};
 			if(!Npc_IsDead(Rod))
 			{
-				if(Npc_HasItems(Rod,ItMw_2h_Rod))
+				if(Npc_HasItems(Rod,ItMw_2H_Rod))
 				{
 					Rod_HasHisSwordInNW = TRUE;
 				};

@@ -34,3 +34,8 @@ func int C_IgnorePermBonuses()
 	return B_CheckOption("IgnorePermBonuses",IgnorePermBonuses);
 };
 
+func int C_TeleportBetweenWorldsEnabled()
+{
+	return B_CheckOption("TeleportBetweenWorldsEnabled",FALSE);
+};
+

@@ -3,21 +3,10 @@ instance DIA_Addon_Bill_EXIT(C_Info)
 {
 	npc = PIR_1356_Addon_Bill;
 	nr = 999;
-	condition = DIA_Addon_Bill_EXIT_Condition;
-	information = DIA_Addon_Bill_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Bill_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Bill_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -33,9 +22,12 @@ instance DIA_Addon_Bill_Hello(C_Info)
 
 func int DIA_Addon_Bill_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (GregIsBack == FALSE))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((self.aivar[AIV_TalkedToPlayer] == FALSE) && (GregIsBack == FALSE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -135,7 +127,7 @@ func void DIA_Addon_Bill_Perm2_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Bill_Perm2_15_00");	//Что ты делаешь сейчас?
 	AI_Output(self,other,"DIA_Addon_Bill_Perm2_03_01");	//Я? Я отдыхаю.
-	if(!Npc_IsDead(Francis))
+	if(!Npc_IsDead(Francis) && !Npc_KnowsInfo(other,DIA_Addon_Greg_GiveFrancisBook))
 	{
 		AI_Output(self,other,"DIA_Addon_Bill_Perm2_03_02");	//(усмехается) Моей работой занимается Фрэнсис.
 		AI_Output(self,other,"DIA_Addon_Bill_Perm2_03_03");	//И пилить он будет, пока у него руки не отвалятся.
