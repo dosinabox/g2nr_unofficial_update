@@ -11,7 +11,7 @@ instance VLK_489_Buerger(Npc_Default)
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Vlk_Sword);
+	EquipItem(self,ItMw_1H_VLK_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal14,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);

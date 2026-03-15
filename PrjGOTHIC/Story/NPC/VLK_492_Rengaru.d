@@ -10,7 +10,7 @@ instance VLK_492_Rengaru(Npc_Default)
 	aivar[AIV_SubGuild] = GIL_SUB_Thief_City;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Vlk_Sword);
+	EquipItem(self,ItMw_1H_VLK_Sword);
 	CreateInvItems(self,ItMi_Gold,50);
 	CreateInvItems(self,ItFo_Bread,1);
 	CreateInvItems(self,ItFo_Water,1);

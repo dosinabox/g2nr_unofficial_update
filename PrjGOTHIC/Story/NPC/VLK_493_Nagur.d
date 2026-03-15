@@ -11,7 +11,7 @@ instance VLK_493_Nagur(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Vlk_Sword);
+	EquipItem(self,ItMw_1H_VLK_Sword);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,75,ItMi_Gold,150);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal17,BodyTex_N,ITAR_Vlk_L);

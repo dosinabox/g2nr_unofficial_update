@@ -18,7 +18,7 @@ func void B_GiveTradeInv_Canthar(var C_Npc slf)
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
 			CreateInvItems(slf,ItMw_Nagelkeule,1);
-			CreateInvItems(slf,ItMw_1h_Vlk_Sword,1);
+			CreateInvItems(slf,ItMw_1H_VLK_Sword,1);
 			CreateInvItems(slf,ItMw_Hellebarde,1);
 		}
 		else
@@ -28,7 +28,7 @@ func void B_GiveTradeInv_Canthar(var C_Npc slf)
 			CreateInvItems(slf,ItMw_Hellebarde,1);
 			CreateInvItems(slf,ItMw_Piratensaebel,1);
 			CreateInvItems(slf,ItMw_Schwert2,2);
-			CreateInvItems(slf,ItMw_1h_Vlk_Sword,1);
+			CreateInvItems(slf,ItMw_1H_VLK_Sword,1);
 		};
 		Canthar_ItemsGiven_Chapter_1 = TRUE;
 	};
