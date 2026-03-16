@@ -296,6 +296,11 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 		PLAYER_TALENT_RUNES[SPL_Thunderstorm] = TRUE;
 		B_CreateScrollForTrading(ItSc_Thunderstorm);
 		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Thunderstorm,"1 ледяной кварц и 1 крыло кровавой мухи."));
+	}
+	else if(spell == SPL_MasterOfDisaster)
+	{
+		PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] = TRUE;
+		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_MasterOfDisaster,"1 святая вода. Свиток не нужен."));
 	};
 	PrintScreen(PRINT_LearnRunes,-1,-1,FONT_Screen,2);
 	return TRUE;

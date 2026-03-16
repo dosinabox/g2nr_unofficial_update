@@ -10,28 +10,28 @@ func void B_AssessSurprise()
 
 func int C_NpcCanAttackNextTarget(var C_Npc npc,var C_Npc target)
 {
-	if(other.aivar[AIV_INVINCIBLE] == TRUE)
+	if(target.aivar[AIV_INVINCIBLE] == TRUE)
 	{
 		return FALSE;
 	};
-	if(C_NpcIsDown(other))
+	if(C_NpcIsDown(target))
 	{
 		return FALSE;
 	};
-	if(!Npc_IsPlayer(other))
+	if(!Npc_IsPlayer(target))
 	{
-		if(Npc_GetDistToNpc(self,other) >= PERC_DIST_INTERMEDIAT)
+		if(Npc_GetDistToNpc(self,target) >= PERC_DIST_INTERMEDIAT)
 		{
 			return FALSE;
 		};
 	};
-	if(Npc_GetHeightToNpc(self,other) >= PERC_DIST_HEIGHT)
+	if(Npc_GetHeightToNpc(self,target) >= PERC_DIST_HEIGHT)
 	{
 		return FALSE;
 	};
 	if(self.guild == GIL_BDT)
 	{
-		if(C_PlayerIsFakeBandit(self,other))
+		if(C_PlayerIsFakeBandit(self,target))
 		{
 			return FALSE;
 		};

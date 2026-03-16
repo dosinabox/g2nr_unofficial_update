@@ -90,6 +90,7 @@ func void B_SetKDFRunes()
 		B_RefreshInvItemToAmount(hero,ItRu_BreathOfDeath,1);
 		B_RefreshInvItemToAmount(hero,ItRu_MassDeath,1);
 		B_RefreshInvItemToAmount(hero,ItRu_ArmyOfDarkness,1);
+		B_RefreshInvItemToAmount(hero,ItRu_MasterOfDisaster,1);
 	};
 };
 
@@ -2066,6 +2067,11 @@ func void CH_Training_Runen_Circle_5_SPL_Pyrokinesis()
 	B_TeachPlayerTalentRunes(self,other,SPL_Pyrokinesis);
 };
 
+func void CH_Training_Runen_Circle_5_SPL_Shrink()
+{
+	B_TeachPlayerTalentRunes(self,other,SPL_Shrink);
+};
+
 func void DIA_CH_Runen_6()
 {
 	Info_ClearChoices(DIA_CH_Runen);
@@ -2086,10 +2092,10 @@ func void DIA_CH_Runen_6()
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_ArmyOfDarkness,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ArmyOfDarkness)),CH_Training_Runen_Circle_6_SPL_ArmyOfDarkness);
 	};
-	/*if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),CH_Training_Runen_Circle_6_SPL_Shrink);
-	};*/
+		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_MasterOfDisaster,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_MasterOfDisaster)),CH_Training_Runen_Circle_6_SPL_MasterOfDisaster);
+	};
 };
 
 func void CH_Training_Runen_Circle_6_SPL_Firerain()
@@ -2112,9 +2118,9 @@ func void CH_Training_Runen_Circle_6_SPL_ArmyOfDarkness()
 	B_TeachPlayerTalentRunes(self,other,SPL_ArmyOfDarkness);
 };
 
-func void CH_Training_Runen_Circle_5_SPL_Shrink()
+func void CH_Training_Runen_Circle_6_SPL_MasterOfDisaster()
 {
-	B_TeachPlayerTalentRunes(self,other,SPL_Shrink);
+	B_TeachPlayerTalentRunes(self,other,SPL_MasterOfDisaster);
 };
 
 

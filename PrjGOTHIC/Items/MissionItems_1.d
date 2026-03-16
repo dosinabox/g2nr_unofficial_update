@@ -435,7 +435,7 @@ instance ItMw_AlriksSword_MIS(C_Item)
 	range = Range_Alrik;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Alrik;
-	visual = "ItMw_025_1h_Sld_Sword_02.3DS";
+	visual = "ItMw_025_1H_SLD_Sword_02.3DS";
 	on_equip = Equip_1H_10;
 	on_unequip = UnEquip_1H_10;
 	description = name;

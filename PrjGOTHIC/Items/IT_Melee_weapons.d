@@ -1,5 +1,5 @@
 
-instance ItMw_1h_Vlk_Dagger(C_Item)
+instance ItMw_1H_VLK_Dagger(C_Item)
 {
 	name = "Кинжал";
 	mainflag = ITEM_KAT_NF;
@@ -45,7 +45,7 @@ instance ItMw_1H_Mace_L_01(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Bau_Axe(C_Item)
+instance ItMw_1H_BAU_Axe(C_Item)
 {
 	name = "Серп";
 	mainflag = ITEM_KAT_NF;
@@ -114,7 +114,7 @@ instance ItMw_1H_Mace_L_03(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Bau_Mace(C_Item)
+instance ItMw_1H_BAU_Mace(C_Item)
 {
 	name = "Тяжелый сук";
 	mainflag = ITEM_KAT_NF;
@@ -525,7 +525,7 @@ instance ItMw_2H_Sword_M_01(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Mil_Sword(C_Item)
+instance ItMw_1H_MIL_Sword(C_Item)
 {
 	name = "Широкий меч";
 	mainflag = ITEM_KAT_NF;
@@ -571,7 +571,7 @@ instance ItMw_1H_SLD_Axe(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Sld_Sword(C_Item)
+instance ItMw_1H_SLD_Sword(C_Item)
 {
 	name = "Грубый меч";
 	mainflag = ITEM_KAT_NF;
@@ -640,7 +640,7 @@ instance ItMw_2H_SLD_Sword(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Pal_Sword(C_Item)
+instance ItMw_1H_PAL_Sword(C_Item)
 {
 	name = "Меч паладина";
 	mainflag = ITEM_KAT_NF;

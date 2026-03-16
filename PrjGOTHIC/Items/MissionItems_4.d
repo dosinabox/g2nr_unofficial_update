@@ -1,5 +1,5 @@
 
-const int Value_Dragonegg = 200;
+const int Value_DragonEgg = 200;
 const int Value_OrcEliteRing = 130;
 
 instance ItAm_Mana_Angar_MIS(C_Item)
@@ -36,7 +36,7 @@ instance ItMw_1H_FerrosSword_MIS(C_Item)
 	range = Range_Special_1H_2;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Special_1H_2;
-	visual = "ItMw_060_1h_Sword_smith_04.3DS";
+	visual = "ItMw_060_1H_Sword_smith_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -127,7 +127,7 @@ instance ItAt_DragonEgg_MIS(C_Item)
 	name = "ƒраконье €йцо";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION | ITEM_MULTI;
-	value = Value_Dragonegg;
+	value = Value_DragonEgg;
 	visual = "ItAt_DragonEgg.3ds";
 	material = MAT_LEATHER;
 	description = name;

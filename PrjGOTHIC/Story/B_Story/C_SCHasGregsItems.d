@@ -7,7 +7,7 @@ func int C_SCHasGregsItems()
 		{
 			return TRUE;
 		};
-		if(Npc_HasItems(hero,ItMi_Gold) < 100)
+		if(Npc_HasItems(hero,ItMi_Gold) >= 100)
 		{
 			return TRUE;
 		};

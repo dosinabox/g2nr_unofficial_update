@@ -9,7 +9,6 @@ func void B_GiveTradeInv_Rosi(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Rosi_ItemsGiven_Chapter_1 == FALSE))
 	{
-//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItRw_Arrow,50);
 		CreateInvItems(slf,ItRw_Bolt,30);
 		CreateInvItems(slf,ItFo_Water,5);
@@ -17,15 +16,14 @@ func void B_GiveTradeInv_Rosi(var C_Npc slf)
 		CreateInvItems(slf,ItRw_Crossbow_L_01,1);
 		CreateInvItems(slf,ItRw_Crossbow_L_02,1);
 		CreateInvItems(slf,ItRw_Bow_L_01,1);
-		CreateInvItems(slf,ItRw_Sld_Bow,1);
+		CreateInvItems(slf,ItRw_SLD_Bow,1);
 		CreateInvItems(slf,ItRw_Bow_L_03,1);
 		CreateInvItems(slf,ItRw_Bow_L_04,1);
-		CreateInvItems(slf,ItMw_1h_Bau_Axe,1);
+		CreateInvItems(slf,ItMw_1H_BAU_Axe,1);
 		Rosi_ItemsGiven_Chapter_1 = TRUE;
 	};
 	if((Kapitel >= 2) && (Rosi_ItemsGiven_Chapter_2 == FALSE))
 	{
-//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItRw_Arrow,70);
 		CreateInvItems(slf,ItRw_Bolt,80);
 		CreateInvItems(slf,ItFo_Cheese,5);
@@ -36,7 +34,6 @@ func void B_GiveTradeInv_Rosi(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Rosi_ItemsGiven_Chapter_3 == FALSE))
 	{
-//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItRw_Arrow,90);
 		CreateInvItems(slf,ItRw_Bolt,40);
 		CreateInvItems(slf,ItFo_Cheese,2);
@@ -47,7 +44,6 @@ func void B_GiveTradeInv_Rosi(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Rosi_ItemsGiven_Chapter_4 == FALSE))
 	{
-//		CreateInvItems(slf,ItMi_Gold,150);
 		CreateInvItems(slf,ItRw_Arrow,100);
 		CreateInvItems(slf,ItRw_Bolt,130);
 		CreateInvItems(slf,ItFo_Wine,5);
@@ -58,7 +54,6 @@ func void B_GiveTradeInv_Rosi(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Rosi_ItemsGiven_Chapter_5 == FALSE))
 	{
-//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItRw_Arrow,150);
 		CreateInvItems(slf,ItRw_Bolt,130);
 		CreateInvItems(slf,ItFo_Wine,3);
