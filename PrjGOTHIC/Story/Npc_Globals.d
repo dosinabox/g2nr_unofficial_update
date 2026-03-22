@@ -16,9 +16,9 @@ var C_Npc Skinner;
 var C_Npc Juan;
 var C_Npc Senyan;
 var C_Npc Fortuno;
-var C_Npc Wache_01;
-var C_Npc Wache_02;
-var C_Npc Torwache2;
+var C_Npc EstebanGuard1;
+var C_Npc EstebanGuard2;
+var C_Npc GoldmineGuard;
 var C_Npc PrisonGuard;
 var C_Npc Patrick;
 var C_Npc Tonak;
@@ -502,9 +502,9 @@ func void B_InitNpc_ADW()
 	Senyan = Hlp_GetNpc(BDT_1084_Addon_Senyan);
 	Fortuno = Hlp_GetNpc(BDT_1075_Addon_Fortuno);
 	Finn = Hlp_GetNpc(BDT_10004_Addon_Finn);
-	Wache_02 = Hlp_GetNpc(BDT_10005_Addon_Wache_02);
-	Wache_01 = Hlp_GetNpc(BDT_1081_Addon_Wache_01);
-	Torwache2 = Hlp_GetNpc(BDT_1088_Addon_Torwache);
+	EstebanGuard1 = Hlp_GetNpc(BDT_1081_Addon_Wache_01);
+	EstebanGuard2 = Hlp_GetNpc(BDT_10005_Addon_Wache_02);
+	GoldmineGuard = Hlp_GetNpc(BDT_1088_Addon_Torwache);
 	PrisonGuard = Hlp_GetNpc(BDT_10023_Addon_Wache);
 	//рабы
 	Patrick = Hlp_GetNpc(STRF_1118_Addon_Patrick);

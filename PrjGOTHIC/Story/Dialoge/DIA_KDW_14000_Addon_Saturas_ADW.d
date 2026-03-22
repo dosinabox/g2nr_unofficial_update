@@ -676,10 +676,10 @@ func void DIA_Addon_Saturas_RavenInfos_Info()
 	var int XP_RavenNeuigkeit;
 	AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_00");	//Насчет Ворона...
 	RavenNeuigkeit = 0;
-	if(((EnteredBanditsCamp == TRUE) || Npc_IsDead(Senyan) || Npc_IsDead(Esteban) || Npc_IsDead(Wache_01) || Npc_IsDead(Wache_02) || Npc_IsDead(Bloodwyn)) && (DIA_Addon_Saturas_RavenInfos_OneTime1 == FALSE))
+	if(((EnteredBanditsCamp == TRUE) || Npc_IsDead(Senyan) || Npc_IsDead(Esteban) || Npc_IsDead(EstebanGuard1) || Npc_IsDead(EstebanGuard2) || Npc_IsDead(Bloodwyn)) && (DIA_Addon_Saturas_RavenInfos_OneTime1 == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_01");	//Я побывал в лагере бандитов к востоку отсюда. Ворон - их предводитель.
-		if(Npc_IsDead(Franco) || Npc_IsDead(Ramon) || Npc_IsDead(Senyan) || Npc_IsDead(Esteban) || Npc_IsDead(Wache_01) || Npc_IsDead(Wache_02) || Npc_IsDead(Bloodwyn))
+		if(Npc_IsDead(Franco) || Npc_IsDead(Ramon) || Npc_IsDead(Senyan) || Npc_IsDead(Esteban) || Npc_IsDead(EstebanGuard1) || Npc_IsDead(EstebanGuard2) || Npc_IsDead(Bloodwyn))
 		{
 			AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_02");	//Но прежде чем оказаться рядом с Вороном, я был вынужден убрать с дороги нескольких бандитов.
 		};

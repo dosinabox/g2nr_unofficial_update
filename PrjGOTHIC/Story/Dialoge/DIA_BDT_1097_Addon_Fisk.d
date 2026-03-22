@@ -464,7 +464,7 @@ func void DIA_Addon_Fisk_Meeting_now()
 	{
 		AI_Output(other,self,"DIA_Addon_Fisk_Meeting_now_15_00");	//Что за идея?
 		AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_01");	//Мы уберем Эстебана с нашего пути. А это значит, ты его убьешь и займешь его место.
-		if(!Npc_IsDead(Wache_01) || !Npc_IsDead(Wache_02))
+		if(!Npc_IsDead(EstebanGuard1) || !Npc_IsDead(EstebanGuard2))
 		{
 			AI_Output(other,self,"DIA_Addon_Fisk_Meeting_now_15_02");	//Пока с ним его охранники, он для меня недосягаем.
 			AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_03");	//Тогда мы их выманим. Правдой.

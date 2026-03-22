@@ -3,21 +3,10 @@ instance DIA_Till_EXIT(C_Info)
 {
 	npc = BAU_931_Till;
 	nr = 999;
-	condition = DIA_Till_EXIT_Condition;
-	information = DIA_Till_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Till_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Till_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -108,9 +97,12 @@ instance DIA_Till_SEKOB(C_Info)
 
 func int DIA_Till_SEKOB_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Till_FELDARBEITER) && !Npc_KnowsInfo(other,DIA_Sekob_HALLO) && (Kapitel < 3) && !Npc_IsDead(Sekob))
+	if(Npc_KnowsInfo(other,DIA_Till_FELDARBEITER) && !Npc_KnowsInfo(other,DIA_Sekob_HALLO) && (Kapitel < 3))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Sekob))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -197,9 +189,12 @@ instance DIA_Till_BRONKO(C_Info)
 
 func int DIA_Till_BRONKO_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Till_FELDARBEITER) && Npc_KnowsInfo(other,DIA_Bronko_HALLO) && (Kapitel < 5) && !Npc_IsDead(Bronko))
+	if(Npc_KnowsInfo(other,DIA_Till_FELDARBEITER) && Npc_KnowsInfo(other,DIA_Bronko_HALLO) && (Kapitel < 5))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Bronko))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -350,9 +345,12 @@ instance DIA_Till_BRONKOWIEDERANARBEIT(C_Info)
 
 func int DIA_Till_BRONKOWIEDERANARBEIT_Condition()
 {
-	if((MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS) && (DIA_Till_BRONKOZURARBEIT_noPerm == TRUE) && (Kapitel < 5) && !Npc_IsDead(Bronko))
+	if((MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS) && (DIA_Till_BRONKOZURARBEIT_noPerm == TRUE) && (Kapitel < 5))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Bronko))
+		{
+			return TRUE;
+		};
 	};
 };
 

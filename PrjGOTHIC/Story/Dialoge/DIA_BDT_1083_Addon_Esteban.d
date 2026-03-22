@@ -261,15 +261,15 @@ func void DIA_Addon_Esteban_Auftrag_Info()
 			B_Say(self,other,"$NOTBAD");
 			Esteban_KnowsFiskIsDead = TRUE;
 		}
-		else if(!Npc_IsDead(Wache_01) || !Npc_IsDead(Wache_02))
+		else if(!Npc_IsDead(EstebanGuard1) || !Npc_IsDead(EstebanGuard2))
 		{
-			if(!Npc_IsDead(Wache_01))
+			if(!Npc_IsDead(EstebanGuard1))
 			{
-				AI_TurnToNPC(self,Wache_01);
+				AI_TurnToNPC(self,EstebanGuard1);
 			}
 			else
 			{
-				AI_TurnToNPC(self,Wache_02);
+				AI_TurnToNPC(self,EstebanGuard2);
 			};
 			AI_Output(self,other,"DIA_Addon_Esteban_Auftrag_07_06");	//Вы слышали, что он сказал, ребята. Пойдите и схватите Фиска.
 			AI_TurnToNPC(self,other);
@@ -309,8 +309,8 @@ func void DIA_Addon_Esteban_Away_Info()
 	AI_Output(self,other,"DIA_Addon_Esteban_Away_07_01");	//Что теперь будет? Я скажу тебе, что будет.
 	AI_Output(self,other,"DIA_Addon_Esteban_Away_07_02");	//Фиск умрет мучительной смертью. И весь лагерь будет знать, за что.
 	AI_Output(self,other,"DIA_Addon_Esteban_Away_07_03");	//Это послужит им всем предупреждением.
-	B_StartOtherRoutine(Wache_01,"AMBUSH");
-	B_StartOtherRoutine(Wache_02,"AMBUSH");
+	B_StartOtherRoutine(EstebanGuard1,"AMBUSH");
+	B_StartOtherRoutine(EstebanGuard2,"AMBUSH");
 };
 
 
@@ -396,7 +396,7 @@ func void DIA_Addon_Esteban_fight_Info()
 	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_01");	//Не каждый получает такое предложение. Но если оно тебе не нравится, ты можешь свободно покинуть лагерь...
 	AI_Output(other,self,"DIA_Addon_Esteban_fight_15_02");	//А может быть, ты сдержишь слово и дашь мне красный камень?
 	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_03");	//Эй! Еще одно слово - и моим охранникам придется применить силу.
-	if(((Npc_GetDistToWP(Wache_01,"BL_INN_OUTSIDE_01") <= 1500) && (Npc_GetDistToWP(Wache_02,"BL_INN_OUTSIDE_02") <= 1500)) || (Npc_IsDead(Wache_01) && Npc_IsDead(Wache_02)))
+	if(((Npc_GetDistToWP(EstebanGuard1,"BL_INN_OUTSIDE_01") <= 1500) && (Npc_GetDistToWP(EstebanGuard2,"BL_INN_OUTSIDE_02") <= 1500)) || (Npc_IsDead(EstebanGuard1) && Npc_IsDead(EstebanGuard2)))
 	{
 		AI_Output(other,self,"DIA_Addon_Esteban_fight_15_04");	//(ухмыляясь) Каким охранникам?
 		AI_Output(self,other,"DIA_Addon_Esteban_fight_07_05");	//Что?.. А, понятно, ты хочешь обвести меня... Ну, погоди...
@@ -408,9 +408,9 @@ func void DIA_Addon_Esteban_fight_Info()
 	Bodyguard_Killer = FALSE;
 	if(Esteban_KnowsFiskIsDead == FALSE)
 	{
-		B_StartOtherRoutine(Wache_01,"TOT");
+		B_StartOtherRoutine(EstebanGuard1,"TOT");
 		B_KillNpc(BDT_1081_Addon_Wache_01);
-		B_StartOtherRoutine(Wache_02,"TOT");
+		B_StartOtherRoutine(EstebanGuard2,"TOT");
 		B_KillNpc(BDT_10005_Addon_Wache_02);
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_NONE,1);
@@ -444,7 +444,7 @@ func int DIA_Addon_Esteban_Duell_Condition()
 func void DIA_Addon_Esteban_Duell_Info()
 {
 	B_Esteban_GiveMeTablet();
-	if(Npc_IsDead(Wache_01) && Npc_IsDead(Wache_02))
+	if(Npc_IsDead(EstebanGuard1) && Npc_IsDead(EstebanGuard2))
 	{
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_NONE,1);
@@ -460,18 +460,18 @@ func void DIA_Addon_Esteban_Duell_End()
 {
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
-	if(!C_NpcIsDown(Wache_01))
+	if(!C_NpcIsDown(EstebanGuard1))
 	{
-		if(Npc_GetDistToNpc(Wache_01,other) <= 1500)
+		if(Npc_GetDistToNpc(EstebanGuard1,other) <= 1500)
 		{
-			B_Attack(Wache_01,other,AR_NONE,1);
+			B_Attack(EstebanGuard1,other,AR_NONE,1);
 		};
 	};
-	if(!C_NpcIsDown(Wache_02))
+	if(!C_NpcIsDown(EstebanGuard2))
 	{
-		if(Npc_GetDistToNpc(Wache_02,other) <= 1500)
+		if(Npc_GetDistToNpc(EstebanGuard2,other) <= 1500)
 		{
-			B_Attack(Wache_02,other,AR_NONE,1);
+			B_Attack(EstebanGuard2,other,AR_NONE,1);
 		};
 	};
 };

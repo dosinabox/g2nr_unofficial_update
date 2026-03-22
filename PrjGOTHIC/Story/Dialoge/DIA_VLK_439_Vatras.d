@@ -1312,7 +1312,11 @@ instance DIA_Addon_Vatras_Stoneplate(C_Info)
 
 func int DIA_Addon_Vatras_Stoneplate_Condition()
 {
-	if(C_ScHasMagicStonePlate() || Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+	if(Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+	{
+		return TRUE;
+	};
+	if(C_ScHasMagicStonePlate())
 	{
 		return TRUE;
 	};
@@ -1932,9 +1936,12 @@ instance DIA_Vatras_MISSION(C_Info)
 
 func int DIA_Vatras_MISSION_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Kapitel == 2) && !Npc_IsDead(Isgaroth) && Npc_KnowsInfo(other,DIA_Addon_Vatras_HowToJoin))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((Kapitel == 2) && !Npc_IsDead(Isgaroth) && Npc_KnowsInfo(other,DIA_Addon_Vatras_HowToJoin))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -2185,7 +2192,11 @@ func int DIA_Vatras_INNOSEYEKAPUTT_Condition()
 {
 	if((Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3))
 	{
-		if((VatrasCanLeaveTown_Kap3 == TRUE) || (AddonDisabled == TRUE))
+		if(VatrasCanLeaveTown_Kap3 == TRUE)
+		{
+			return TRUE;
+		};
+		if(AddonDisabled == TRUE)
 		{
 			return TRUE;
 		};
