@@ -20,18 +20,18 @@ func int C_NpcCanAttackNextTarget(var C_Npc npc,var C_Npc target)
 	};
 	if(!Npc_IsPlayer(target))
 	{
-		if(Npc_GetDistToNpc(self,target) >= PERC_DIST_INTERMEDIAT)
+		if(Npc_GetDistToNpc(npc,target) >= PERC_DIST_INTERMEDIAT)
 		{
 			return FALSE;
 		};
 	};
-	if(Npc_GetHeightToNpc(self,target) >= PERC_DIST_HEIGHT)
+	if(Npc_GetHeightToNpc(npc,target) >= PERC_DIST_HEIGHT)
 	{
 		return FALSE;
 	};
-	if(self.guild == GIL_BDT)
+	if(npc.guild == GIL_BDT)
 	{
-		if(C_PlayerIsFakeBandit(self,target))
+		if(C_PlayerIsFakeBandit(npc,target))
 		{
 			return FALSE;
 		};

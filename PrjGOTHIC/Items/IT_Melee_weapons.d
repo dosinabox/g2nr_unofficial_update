@@ -479,7 +479,7 @@ instance ItMw_TrainSword(C_Item)
 	text[4] = NAME_OneHanded;
 };
 
-instance ItMw_1H_Misc_Axe(C_Item)
+instance ItMw_1H_MISC_Axe(C_Item)
 {
 	name = "–жавый топор";
 	mainflag = ITEM_KAT_NF;

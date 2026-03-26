@@ -2899,8 +2899,8 @@ Model ("HuS")
 			aniAlias	("t_Ladder_S0_2_Stand"		1	""				0.0	0.0	MF	"t_Ladder_Stand_2_S0"		R)
 			ani			("t_Ladder_S0_2_S1"			1	"s_Ladder_S1"	0.0	0.0	MF	"Hum_LadderClimb_M03.asc"	F	15	45)
 			{
-				*eventSFX	(16	"Ladder_Step"	R:1000	EMTPY_SLOT	)
-				*eventSFX	(31	"Ladder_Step"	R:1000	EMTPY_SLOT	)
+				*eventSFX	(16	"Ladder_Step"	R:1000	EMPTY_SLOT	)
+				*eventSFX	(31	"Ladder_Step"	R:1000	EMPTY_SLOT	)
 			}
 			// 2m Leiter
 			aniAlias	("s_Ladder_S1"				1	"s_Ladder_S1"	0.0	0.0	MF	"s_Ladder_S0"				F)
@@ -2911,8 +2911,8 @@ Model ("HuS")
 			}
 			ani			("t_Ladder_Stand_2_S1"		1	"s_Ladder_S1"	0.2	0.0	MF	"Hum_LadderClimb_M03.asc"	F	67	95)
 			{
-				*eventSFX	(85	"Ladder_Step"	R:1000	EMTPY_SLOT	)
-				*eventSFX	(90	"Ladder_Step"	R:1000	EMTPY_SLOT	)
+				*eventSFX	(85	"Ladder_Step"	R:1000	EMPTY_SLOT	)
+				*eventSFX	(90	"Ladder_Step"	R:1000	EMPTY_SLOT	)
 			}
 			aniAlias	("t_Ladder_S1_2_S0"			1	"s_Ladder_S0"	0.0	0.0	MF	"t_Ladder_S0_2_S1"			R)
 			aniAlias	("t_Ladder_S1_2_S2"			1	"s_Ladder_S2"	0.0	0.0	MF	"t_Ladder_S0_2_S1"			F)

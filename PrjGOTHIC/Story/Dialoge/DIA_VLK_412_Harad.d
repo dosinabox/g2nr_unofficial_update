@@ -225,9 +225,12 @@ instance DIA_Harad_OrcSuccess(C_Info)
 
 func int DIA_Harad_OrcSuccess_Condition()
 {
-	if((MIS_Harad_Orc == LOG_RUNNING) && C_ScHasOrcWeapon())
+	if(MIS_Harad_Orc == LOG_RUNNING)
 	{
-		return TRUE;
+		if(C_ScHasOrcWeapon())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1008,8 +1011,8 @@ func void B_ChooseHaradOreBlade()
 {
 	Info_ClearChoices(DIA_Harad_Erzklingen);
 	Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
-	Info_AddChoice(DIA_Harad_Erzklingen,B_BuildPriceString("Двуручный меч",Value_Blessed_2H_1),DIA_Harad_Erzklingen_2h);
-	Info_AddChoice(DIA_Harad_Erzklingen,B_BuildPriceString("Одноручный меч",Value_Blessed_1H_1),DIA_Harad_Erzklingen_1h);
+	Info_AddChoice(DIA_Harad_Erzklingen,B_BuildPriceString("Двуручный меч",Value_Blessed_2H_1),DIA_Harad_Erzklingen_2H);
+	Info_AddChoice(DIA_Harad_Erzklingen,B_BuildPriceString("Одноручный меч",Value_Blessed_1H_1),DIA_Harad_Erzklingen_1H);
 };
 
 instance DIA_Harad_Erzklingen(C_Info)
@@ -1064,9 +1067,9 @@ func void B_Harad_HaveFunWithYourSword()
 	Info_ClearChoices(DIA_Harad_Erzklingen);
 };
 
-func void DIA_Harad_Erzklingen_2h()
+func void DIA_Harad_Erzklingen_2H()
 {
-	AI_Output(other,self,"DIA_Harad_Erzklingen_2h_15_00");	//Я возьму двуручный меч!
+	AI_Output(other,self,"DIA_Harad_Erzklingen_2H_15_00");	//Я возьму двуручный меч!
 	if(Npc_HasItems(other,ItMi_Gold) >= Value_Blessed_2H_1)
 	{
 		B_GiveInvItems(other,self,ItMi_Gold,Value_Blessed_2H_1);
@@ -1081,9 +1084,9 @@ func void DIA_Harad_Erzklingen_2h()
 	};
 };
 
-func void DIA_Harad_Erzklingen_1h()
+func void DIA_Harad_Erzklingen_1H()
 {
-	AI_Output(other,self,"DIA_Harad_Erzklingen_1h_15_00");	//Я возьму одноручный меч!
+	AI_Output(other,self,"DIA_Harad_Erzklingen_1H_15_00");	//Я возьму одноручный меч!
 	if(Npc_HasItems(other,ItMi_Gold) >= Value_Blessed_1H_1)
 	{
 		B_GiveInvItems(other,self,ItMi_Gold,Value_Blessed_1H_1);
@@ -1111,9 +1114,13 @@ instance DIA_Harad_RepairNecklace(C_Info)
 
 func int DIA_Harad_RepairNecklace_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && !Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 	{
-		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
+		if(MIS_SCKnowsInnosEyeIsBroken == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 		{
 			return TRUE;
 		};

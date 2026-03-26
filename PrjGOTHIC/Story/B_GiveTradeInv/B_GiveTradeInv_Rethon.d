@@ -20,7 +20,7 @@ func void B_GiveTradeInv_Rethon(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItMw_Barbarenstreitaxt,1);
 			CreateInvItems(slf,ItMw_Berserkeraxt,1);
-			CreateInvItems(slf,ItMw_1h_Sld_Sword,1);
+			CreateInvItems(slf,ItMw_1H_SLD_Sword,1);
 		};
 		Rethon_ItemsGiven_Chapter_4 = TRUE;
 	};

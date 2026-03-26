@@ -39,25 +39,25 @@ func void B_SetVisuals_Gobbo_Black()
 instance Gobbo_Black(Mst_Default_Gobbo_Black)
 {
 	B_SetVisuals_Gobbo_Black();
-	Npc_SetToFightMode(self,ItMw_1h_Bau_Mace);
+	Npc_SetToFightMode(self,ItMw_1H_BAU_Mace);
 };
 
 instance Gobbo_DaronsStatuenKlauer(Mst_Default_Gobbo_Black)
 {
 	B_SetVisuals_Gobbo_Black();
 	CreateInvItems(self,ItMi_LostInnosStatue_Daron,1);
-	Npc_SetToFightMode(self,ItMw_1h_Bau_Mace);
+	Npc_SetToFightMode(self,ItMw_1H_BAU_Mace);
 };
 
 instance Gobbo_Black_Crossbow_Guard_01(Mst_Default_Gobbo_Black)
 {
 	B_SetVisuals_Gobbo_Black();
-	Npc_SetToFightMode(self,ItMw_1h_Bau_Mace);
+	Npc_SetToFightMode(self,ItMw_1H_BAU_Mace);
 };
 
 instance Gobbo_Black_Crossbow_Guard_02(Mst_Default_Gobbo_Black)
 {
 	B_SetVisuals_Gobbo_Black();
-	Npc_SetToFightMode(self,ItMw_1h_Bau_Mace);
+	Npc_SetToFightMode(self,ItMw_1H_BAU_Mace);
 };
 

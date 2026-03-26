@@ -780,8 +780,8 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	}
 	else
 	{
-		CreateInvItems(self,ItMw_1h_Pal_Sword,1);
-		B_GiveInvItems(self,other,ItMw_1h_Pal_Sword,1);
+		CreateInvItems(self,ItMw_1H_PAL_Sword,1);
+		B_GiveInvItems(self,other,ItMw_1H_PAL_Sword,1);
 	};
 	Snd_Play("LEVELUP");
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_08");	//С этого времени благодаря твоему рангу ты будешь иметь доступ в монастырь.
