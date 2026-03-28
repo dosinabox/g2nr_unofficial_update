@@ -10,8 +10,8 @@ instance SLD_810_Dar(Npc_Default)
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Sld_Sword);
-	EquipItem(self,ItRw_Sld_Bow);
+	EquipItem(self,ItMw_1H_SLD_Sword);
+	EquipItem(self,ItRw_SLD_Bow);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,67,ItMi_Gold,35);
 	CreateInvItems(self,ItMi_Joint,10);
