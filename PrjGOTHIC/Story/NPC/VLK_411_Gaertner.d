@@ -10,7 +10,7 @@ instance VLK_411_Gaertner(Npc_Default)
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Bau_Axe);
+	EquipItem(self,ItMw_1H_BAU_Axe);
 	B_CreateItemToSteal(self,40,ItMi_Gold,50);
 	CreateInvItems(self,ItKe_Lockpick,3);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_NormalBart_Graham,BodyTex_N,ITAR_Bau_M);

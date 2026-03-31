@@ -343,47 +343,47 @@ func void DIA_Constantino_BringHerbs_Info()
 
 func int C_SCHasAllPlantsForConstantino()
 {
-	if(!Npc_HasItems(other,ItPl_Mana_Herb_01))
+	if(!Npc_HasItems(hero,ItPl_Mana_Herb_01))
 	{
 		return FALSE;
 	};
-	if(!Npc_HasItems(other,ItPl_Mana_Herb_02))
+	if(!Npc_HasItems(hero,ItPl_Mana_Herb_02))
 	{
 		return FALSE;
 	};
-	if(!Npc_HasItems(other,ItPl_Mana_Herb_03))
+	if(!Npc_HasItems(hero,ItPl_Mana_Herb_03))
 	{
 		return FALSE;
 	};
-	if(!Npc_HasItems(other,ItPl_Health_Herb_01))
+	if(!Npc_HasItems(hero,ItPl_Health_Herb_01))
 	{
 		return FALSE;
 	};
-	if(!Npc_HasItems(other,ItPl_Health_Herb_02))
+	if(!Npc_HasItems(hero,ItPl_Health_Herb_02))
 	{
 		return FALSE;
 	};
-	if(!Npc_HasItems(other,ItPl_Health_Herb_03))
+	if(!Npc_HasItems(hero,ItPl_Health_Herb_03))
 	{
 		return FALSE;
 	};
-	if(!Npc_HasItems(other,ItPl_Dex_Herb_01))
+	if(!Npc_HasItems(hero,ItPl_Dex_Herb_01))
 	{
 		return FALSE;
 	};
-	if(!Npc_HasItems(other,ItPl_Strength_Herb_01))
+	if(!Npc_HasItems(hero,ItPl_Strength_Herb_01))
 	{
 		return FALSE;
 	};
-	if(!Npc_HasItems(other,ItPl_Speed_Herb_01))
+	if(!Npc_HasItems(hero,ItPl_Speed_Herb_01))
 	{
 		return FALSE;
 	};
-	if(!Npc_HasItems(other,ItPl_Temp_Herb))
+	if(!Npc_HasItems(hero,ItPl_Temp_Herb))
 	{
 		return FALSE;
 	};
-	if(!Npc_HasItems(other,ItPl_Perm_Herb))
+	if(!Npc_HasItems(hero,ItPl_Perm_Herb))
 	{
 		return FALSE;
 	};

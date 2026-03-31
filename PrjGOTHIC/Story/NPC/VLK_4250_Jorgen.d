@@ -9,7 +9,7 @@ instance VLK_4250_Jorgen(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Bau_Axe);
+	EquipItem(self,ItMw_1H_BAU_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,59,ItMi_Gold,70);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_Tough_Skip,BodyTex_N,ITAR_Vlk_L);
@@ -29,7 +29,6 @@ func void Rtn_Start_4250()
 
 func void Rtn_Kloster_4250()
 {
-//	TA_Stand_ArmsCrossed(8,0,20,0,"NW_MONASTERY_PLACE_06");
 	TA_Pick_FP(8,0,20,0,"NW_MONASTERY_HERB_03");
 	TA_Sleep(20,0,8,0,"NW_MONASTERY_NOVICE02_07");
 };

@@ -3,21 +3,10 @@ instance DIA_MIL_310_Stadtwache_EXIT(C_Info)
 {
 	npc = MIL_310_Stadtwache;
 	nr = 999;
-	condition = DIA_MIL_310_Stadtwache_EXIT_Condition;
-	information = DIA_MIL_310_Stadtwache_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_MIL_310_Stadtwache_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_MIL_310_Stadtwache_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -326,59 +315,59 @@ func void DIA_MIL_310_Stadtwache_ZumSchmied_Info()
 
 func int C_SCHasHerbs(var int count)
 {
-	if(Npc_HasItems(other,ItPl_Blueplant) >= count)
+	if(Npc_HasItems(hero,ItPl_Blueplant) >= count)
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItPl_Forestberry) >= count)
+	if(Npc_HasItems(hero,ItPl_Forestberry) >= count)
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItPl_Planeberry) >= count)
+	if(Npc_HasItems(hero,ItPl_Planeberry) >= count)
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItPl_Mana_Herb_01) >= count)
+	if(Npc_HasItems(hero,ItPl_Mana_Herb_01) >= count)
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItPl_Mana_Herb_02) >= count)
+	if(Npc_HasItems(hero,ItPl_Mana_Herb_02) >= count)
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItPl_Mana_Herb_03) >= count)
+	if(Npc_HasItems(hero,ItPl_Mana_Herb_03) >= count)
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItPl_Health_Herb_01) >= count)
+	if(Npc_HasItems(hero,ItPl_Health_Herb_01) >= count)
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItPl_Health_Herb_02) >= count)
+	if(Npc_HasItems(hero,ItPl_Health_Herb_02) >= count)
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItPl_Health_Herb_03) >= count)
+	if(Npc_HasItems(hero,ItPl_Health_Herb_03) >= count)
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItPl_Dex_Herb_01) >= count)
+	if(Npc_HasItems(hero,ItPl_Dex_Herb_01) >= count)
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItPl_Strength_Herb_01) >= count)
+	if(Npc_HasItems(hero,ItPl_Strength_Herb_01) >= count)
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItPl_Speed_Herb_01) >= count)
+	if(Npc_HasItems(hero,ItPl_Speed_Herb_01) >= count)
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItPl_Temp_Herb) >= count)
+	if(Npc_HasItems(hero,ItPl_Temp_Herb) >= count)
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItPl_Perm_Herb) >= count)
+	if(Npc_HasItems(hero,ItPl_Perm_Herb) >= count)
 	{
 		return TRUE;
 	};

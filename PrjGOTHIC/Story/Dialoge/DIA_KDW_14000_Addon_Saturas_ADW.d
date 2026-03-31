@@ -339,25 +339,40 @@ func void B_Saturas_SCFound_SayWhereOnce()
 
 func int C_SCHasStoneplatesForSaturas()
 {
-	if(Npc_HasItems(other,ItMi_Addon_Stone_01) && (Saturas_SCFound_ItMi_Addon_Stone_01 == FALSE))
+	if(Saturas_SCFound_ItMi_Addon_Stone_01 == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(hero,ItMi_Addon_Stone_01))
+		{
+			return TRUE;
+		};
 	};
-	if(Npc_HasItems(other,ItMi_Addon_Stone_02) && (Saturas_SCFound_ItMi_Addon_Stone_02 == FALSE))
+	if(Saturas_SCFound_ItMi_Addon_Stone_02 == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(hero,ItMi_Addon_Stone_02))
+		{
+			return TRUE;
+		};
 	};
-	if(Npc_HasItems(other,ItMi_Addon_Stone_03) && (Saturas_SCFound_ItMi_Addon_Stone_03 == FALSE))
+	if(Saturas_SCFound_ItMi_Addon_Stone_03 == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(hero,ItMi_Addon_Stone_03))
+		{
+			return TRUE;
+		};
 	};
-	if(Npc_HasItems(other,ItMi_Addon_Stone_04) && (Saturas_SCFound_ItMi_Addon_Stone_04 == FALSE))
+	if(Saturas_SCFound_ItMi_Addon_Stone_04 == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(hero,ItMi_Addon_Stone_04))
+		{
+			return TRUE;
+		};
 	};
-	if(Npc_HasItems(other,ItMi_Addon_Stone_05) && (Saturas_SCFound_ItMi_Addon_Stone_05 == FALSE))
+	if(Saturas_SCFound_ItMi_Addon_Stone_05 == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(hero,ItMi_Addon_Stone_05))
+		{
+			return TRUE;
+		};
 	};
 	return FALSE;
 };
