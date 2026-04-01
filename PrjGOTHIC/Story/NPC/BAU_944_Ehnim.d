@@ -9,11 +9,11 @@ instance BAU_944_Ehnim(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Bau_Axe);
+	EquipItem(self,ItMw_1H_BAU_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,76,ItMi_Gold,35);
 	CreateInvItems(self,ItPo_Health_02,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_P_Normal03,BodyTex_P,ITAR_Bau_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_P_Normal03,BodyTex_P,ITAR_BAU_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);

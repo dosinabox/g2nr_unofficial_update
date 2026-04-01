@@ -3,21 +3,10 @@ instance DIA_DiegoNW_EXIT(C_Info)
 {
 	npc = PC_Thief_NW;
 	nr = 999;
-	condition = DIA_DiegoNW_EXIT_Condition;
-	information = DIA_DiegoNW_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_DiegoNW_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_DiegoNW_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -650,7 +639,7 @@ func void DIA_DiegoNW_LeaveMyShip_Info()
 	AI_Output(other,self,"DIA_DiegoNW_LeaveMyShip_15_02");	//Ты думаешь, мы еще встретимся?
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_03");	//Я никогда не забуду выражение твоего лица, когда ты лежал на земле после того, как Буллит вырубил тебя. Тогда мы встретились в первый раз.
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_04");	//Им никогда не одолеть тебя. Мы ОБЯЗАТЕЛЬНО встретимся снова. Береги себя.
-	B_EquipArmor(self,ITAR_Vlk_H);
+	B_EquipArmor(self,ITAR_VLK_H);
 	Diego_IsOnBoard = LOG_OBSOLETE;
 	Crewmember_Count -= 1;
 	if(MIS_DiegosResidence == LOG_SUCCESS)

@@ -12,7 +12,7 @@ instance BAU_911_Elena(Npc_Default)
 	attribute[ATR_STRENGTH] = 50;
 	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Bau_Axe);
+	EquipItem(self,ItMw_1H_BAU_Axe);
 	B_CreateItemToSteal(self,30,ItMi_Gold,35);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabe_N_GreyCloth,BodyTexBabe_N,ITAR_BauBabe_L);
 	Mdl_SetModelFatness(self,0);

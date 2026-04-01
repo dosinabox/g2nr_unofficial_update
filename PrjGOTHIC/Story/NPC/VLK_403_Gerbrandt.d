@@ -12,7 +12,7 @@ instance VLK_403_Gerbrandt(Npc_Default)
 	EquipItem(self,ItMw_1H_VLK_Mace);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,30,ItSe_GoldPocket100,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_L_Tough_Santino,BodyTex_L,ITAR_Vlk_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_L_Tough_Santino,BodyTex_L,ITAR_VLK_H);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);

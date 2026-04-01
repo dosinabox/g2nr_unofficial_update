@@ -10,10 +10,10 @@ instance BAU_952_Vino(Npc_Default)
 	aivar[AIV_SubGuild] = GIL_SUB_Lobart;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Bau_Axe);
+	EquipItem(self,ItMw_1H_BAU_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,34,ItMi_Gold,60);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_N_Weak_Herek,BodyTex_N,ITAR_Bau_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_N_Weak_Herek,BodyTex_N,ITAR_BAU_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);
