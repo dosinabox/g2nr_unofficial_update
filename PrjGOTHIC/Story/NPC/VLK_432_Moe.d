@@ -11,10 +11,10 @@ instance VLK_432_Moe(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Bau_Mace);
+	EquipItem(self,ItMw_1H_BAU_Mace);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,25,ItMi_Gold,30);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Scar,BodyTex_N,ITAR_Vlk_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Scar,BodyTex_N,ITAR_VLK_L);
 	Mdl_SetModelFatness(self,0.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

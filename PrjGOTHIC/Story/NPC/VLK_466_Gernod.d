@@ -10,9 +10,9 @@ instance VLK_466_Gernod(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Bau_Mace);
+	EquipItem(self,ItMw_1H_BAU_Mace);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Ulbert,BodyTex_N,ITAR_Vlk_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Ulbert,BodyTex_N,ITAR_VLK_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);
