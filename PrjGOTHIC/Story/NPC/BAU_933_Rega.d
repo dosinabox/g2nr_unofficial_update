@@ -9,7 +9,7 @@ instance BAU_933_Rega(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Bau_Mace);
+	EquipItem(self,ItMw_1H_BAU_Mace);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,25,ItMi_Gold,40);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe1",FaceBabe_N_OldBlonde,BodyTexBabe_N,ITAR_BauBabe_M);

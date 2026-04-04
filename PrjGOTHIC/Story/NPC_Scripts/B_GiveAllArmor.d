@@ -5,9 +5,9 @@ func void B_GiveAllClassicArmor(var C_Npc npc)
 	CreateInvItem(npc,ITAR_Smith);
 	CreateInvItem(npc,ITAR_Barkeeper);
 	CreateInvItem(npc,ITAR_Judge);
-	CreateInvItem(npc,ITAR_Vlk_L);
-	CreateInvItem(npc,ITAR_Vlk_M);
-	CreateInvItem(npc,ITAR_Vlk_H);
+	CreateInvItem(npc,ITAR_VLK_L);
+	CreateInvItem(npc,ITAR_VLK_M);
+	CreateInvItem(npc,ITAR_VLK_H);
 	CreateInvItem(npc,ITAR_VlkBabe_L);
 	CreateInvItem(npc,ITAR_VlkBabe_M);
 	CreateInvItem(npc,ITAR_VlkBabe_H);
@@ -16,8 +16,8 @@ func void B_GiveAllClassicArmor(var C_Npc npc)
 	CreateInvItem(npc,ITAR_PAL_M);
 	CreateInvItem(npc,ITAR_PAL_H);
 	CreateInvItem(npc,ITAR_PAL_Skel);
-	CreateInvItem(npc,ITAR_Bau_L);
-	CreateInvItem(npc,ITAR_Bau_M);
+	CreateInvItem(npc,ITAR_BAU_L);
+	CreateInvItem(npc,ITAR_BAU_M);
 	CreateInvItem(npc,ITAR_BauBabe_L);
 	CreateInvItem(npc,ITAR_BauBabe_M);
 	CreateInvItem(npc,ITAR_SLD_L);

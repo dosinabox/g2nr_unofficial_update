@@ -3,21 +3,10 @@ instance DIA_Bartok_EXIT(C_Info)
 {
 	npc = VLK_440_Bartok;
 	nr = 999;
-	condition = DIA_Bartok_EXIT_Condition;
-	information = DIA_Bartok_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Bartok_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Bartok_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -463,7 +452,7 @@ func void B_Bartok_BackInCity()
 {
 	Bartok_Ende = TRUE;
 	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
-	B_EquipArmor(self,ITAR_Vlk_L);
+	B_EquipArmor(self,ITAR_VLK_L);
 	AI_UnequipWeapons(self);
 	AI_EquipBestMeleeWeapon(self);
 	Npc_RemoveInvItem(self,ItRw_Bow_M_03);
