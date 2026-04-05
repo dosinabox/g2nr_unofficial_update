@@ -12,7 +12,7 @@
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1H_VLK_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Normal_Erpresser,BodyTex_N,ITAR_Vlk_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Normal_Erpresser,BodyTex_N,ITAR_VLK_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);

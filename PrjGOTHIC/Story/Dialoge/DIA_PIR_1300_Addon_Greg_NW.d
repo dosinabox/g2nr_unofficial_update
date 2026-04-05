@@ -134,7 +134,7 @@ func void DIA_Addon_Greg_NW_Stadtwachen_Info()
 	{
 		Info_AddChoice(DIA_Addon_Greg_NW_Stadtwachen,"Ты можешь попасть в город, сказав, что ты сборщик трав.",DIA_Addon_Greg_NW_Stadtwachen_constantino);
 	};
-	if(Npc_HasItems(other,ITAR_Bau_L) || Npc_HasItems(other,ITAR_Bau_M))
+	if(Npc_HasItems(other,ITAR_BAU_L) || Npc_HasItems(other,ITAR_BAU_M))
 	{
 		Info_AddChoice(DIA_Addon_Greg_NW_Stadtwachen,"Они пропустят тебя, если на тебе будет одежда крестьянина.",DIA_Addon_Greg_NW_Stadtwachen_klamotten);
 	};
@@ -143,23 +143,23 @@ func void DIA_Addon_Greg_NW_Stadtwachen_Info()
 func void DIA_Addon_Greg_NW_Stadtwachen_klamotten()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_15_00");	//Они пропустят тебя, если на тебе будет одежда крестьянина.
-	if(Npc_HasItems(other,ITAR_Bau_L))
+	if(Npc_HasItems(other,ITAR_BAU_L))
 	{
-		B_GiveInvItems(other,self,ITAR_Bau_L,1);
+		B_GiveInvItems(other,self,ITAR_BAU_L,1);
 	}
 	else
 	{
-		B_GiveInvItems(other,self,ITAR_Bau_M,1);
+		B_GiveInvItems(other,self,ITAR_BAU_M,1);
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_01_01");	//Это как раз то, что мне нужно! Я знал, что могу на тебя положиться, приятель.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_01_02");	//Если я буду одет как местный деревенский мужлан, никто не будет обращать на меня внимания.
-	if(Npc_HasItems(self,ITAR_Bau_L))
+	if(Npc_HasItems(self,ITAR_BAU_L))
 	{
-		AI_EquipArmor(self,ITAR_Bau_L);
+		AI_EquipArmor(self,ITAR_BAU_L);
 	}
 	else
 	{
-		AI_EquipArmor(self,ITAR_Bau_M);
+		AI_EquipArmor(self,ITAR_BAU_M);
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_01_03");	//Отлично! Вот твоя награда.
 	CreateInvItems(self,ItMi_Gold,50);
@@ -277,7 +277,6 @@ func void DIA_Addon_Greg_NW_MeetGregSecondTime_Info()
 		Greg_NoHelpInNW += 1;
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_NW_MeetGregSecondTime_01_06");	//Ты как раз вовремя.
-	Knows_Taverne = TRUE;
 };
 
 

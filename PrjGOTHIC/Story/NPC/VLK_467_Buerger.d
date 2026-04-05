@@ -13,7 +13,7 @@ instance VLK_467_Buerger(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1H_VLK_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Normal_GorNaBar,BodyTex_L,ITAR_Vlk_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Normal_GorNaBar,BodyTex_L,ITAR_VLK_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);

@@ -390,7 +390,7 @@ var int Cord_RangerHelp_Fight;
 var int Cord_RangerHelp_Fight_Trick;
 var int Cord_RangerHelp_TorlofsProbe;
 var int RangerMeetingRunning;
-var int Lares_ComeToRangerMeeting;
+//var int Lares_ComeToRangerMeeting;
 var int Lares_TakeFirstMissionFromVatras;
 var int BanditTrader_Lieferung_Gelesen;
 var int Fernando_HatsZugegeben;

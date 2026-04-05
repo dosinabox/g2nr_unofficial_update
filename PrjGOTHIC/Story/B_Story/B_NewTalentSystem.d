@@ -47,7 +47,7 @@ var C_Npc RealHero;
 const int TS_Training = 0;
 const int TS_TempBonus = 1;
 const int TS_PermBonus = 2;
-const int TS_Max = 3;
+//const int TS_Max = 3;
 
 // Talents number controlled by the system
 const int TAL_Max = 5;

@@ -412,7 +412,7 @@ instance ItMw_Addon_PIR2hSword(C_Item)
 	value = Value_PIR2hSword;
 	damageTotal = Damage_PIR2hSword;
 	damagetype = DAM_EDGE;
-	range = 115;
+	range = Range_PIR2hSword;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_PIR2hSword;
 	visual = "ItMw_070_2H_Sword_10.3DS";

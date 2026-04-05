@@ -17,7 +17,6 @@ func int DIA_Orlan_EXIT_Condition()
 
 func void DIA_Orlan_EXIT_Info()
 {
-	Knows_Taverne = TRUE;
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
@@ -35,9 +34,12 @@ instance DIA_Orlan_Wein(C_Info)
 
 func int DIA_Orlan_Wein_Condition()
 {
-	if((MIS_GoraxWein == LOG_RUNNING) && (Npc_HasItems(other,ItFo_Wine) >= 12) && (Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU)))
+	if((MIS_GoraxWein == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItFo_Wine) >= 12)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -338,7 +340,6 @@ func void DIA_Addon_Orlan_WhenRangerMeeting_theyCome()
 
 func void DIA_Addon_Orlan_WhenRangerMeeting_Los()
 {
-	Knows_Taverne = TRUE;
 	AI_StopProcessInfos(self);
 	B_Addon_Orlan_ComingRanger();
 };
