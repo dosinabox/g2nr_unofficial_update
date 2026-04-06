@@ -27,9 +27,9 @@ func void B_RemoveStolenItems(var C_Npc owner,var C_Npc thief)
 	}
 	else if(C_IsNpc(owner,BAU_950_Lobart))
 	{
-		if(Npc_IsPlayer(thief) && (Lobart_Kleidung_Verkauft == FALSE) && !Mob_HasItems("CHEST_LOBART",ITAR_Bau_L))
+		if(Npc_IsPlayer(thief) && (Lobart_Kleidung_Verkauft == FALSE) && !Mob_HasItems("CHEST_LOBART",ITAR_BAU_L))
 		{
-			B_TransferAllInvItems(thief,owner,ITAR_Bau_L);
+			B_TransferAllInvItems(thief,owner,ITAR_BAU_L);
 		};
 	}
 	else if(C_IsNpc(owner,BAU_970_Orlan))

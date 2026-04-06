@@ -19,7 +19,7 @@ func void ZS_RansackBody_End()
 	target = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
 	if(C_NpcIsDown(target))
 	{
-		AI_TurnToNpc(self,target);
+		AI_TurnToNPC(self,target);
 		AI_PlayAni(self,"T_PLUNDER");
 		B_RemoveStolenItems(self,target);
 		if(Npc_HasItems(target,ItMi_Gold))
