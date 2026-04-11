@@ -313,7 +313,7 @@ instance PC_Bandit(Npc_Default)
 	CreateInvItems(self,ItMi_Gold,1000);
 	CreateInvItems(self,ItMi_GoldNugget_Addon,5);
 	CreateInvItems(self,ItMw_BeliarWeapon_1H_01,1);
-	CreateInvItems(self,ItMw_1h_Vlk_Dagger,1);
+	CreateInvItems(self,ItMw_1H_VLK_Dagger,1);
 	CreateInvItems(self,ItMw_1H_Mace_L_01,1);
 	CreateInvItems(self,ItAm_Addon_STR,1);
 	CreateInvItems(self,ItRi_Addon_STR_01,1);

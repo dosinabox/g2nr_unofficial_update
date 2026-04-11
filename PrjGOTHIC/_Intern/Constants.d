@@ -329,7 +329,7 @@ const int MAT_WOOD = 0;
 const int MAT_STONE = 1;
 const int MAT_METAL = 2;
 const int MAT_LEATHER = 3;
-const int MAT_CLAY = 4;
+//const int MAT_CLAY = 4;
 const int MAT_GLAS = 5;
 
 const int LOG_MISSION = 0;
@@ -845,7 +845,7 @@ const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2026;
 const int FIX_DATE_MONTH = 4;
-const int FIX_DATE_DAY = 5;
+const int FIX_DATE_DAY = 11;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;
