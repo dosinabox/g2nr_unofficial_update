@@ -10,7 +10,7 @@ instance BDT_1016_Bandit_M(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1H_VLK_Axe);
-	EquipItem(self,ItRw_Sld_Bow);
+	EquipItem(self,ItRw_SLD_Bow);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Tough_Pacho,BodyTex_B,ITAR_BDT_M);
 	Mdl_SetModelFatness(self,2);

@@ -11,7 +11,7 @@ instance VLK_436_Sonja(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Vlk_Dagger);
+	EquipItem(self,ItMw_1H_VLK_Dagger);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,58,ItMi_Gold,70);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe6",FaceBabe_L_Charlotte2,BodyTexBabe_L,ITAR_VlkBabe_H);

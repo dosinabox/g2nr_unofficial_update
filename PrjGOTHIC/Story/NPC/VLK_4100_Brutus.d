@@ -11,7 +11,7 @@ instance VLK_4100_Brutus(Npc_Default)
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Vlk_Dagger);
+	EquipItem(self,ItMw_1H_VLK_Dagger);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,14,ItMi_Gold,35);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_P_ToughBald,BodyTex_P,ITAR_MIL_L);

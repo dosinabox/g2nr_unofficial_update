@@ -27,11 +27,11 @@ func void Rtn_Start_1096()
 	TA_Roast_Scavenger(19,30,1,50,"BL_DOWN_RING_ROAST");
 };
 
-func void Rtn_Ruhe_1096()
+/*func void Rtn_Ruhe_1096()
 {
 	TA_Stand_Drinking(10,0,20,0,"ADW_MINE_22");
 	TA_Stand_Drinking(20,0,10,0,"ADW_MINE_22");
-};
+};*/
 
 func void Rtn_Mine_1096()
 {
