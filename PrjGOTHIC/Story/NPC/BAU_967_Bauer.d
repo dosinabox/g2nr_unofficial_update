@@ -11,7 +11,7 @@ instance BAU_967_Bauer(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1H_BAU_Axe);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_L_Jackal,BodyTex_L,ITAR_Bau_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_L_Jackal,BodyTex_L,ITAR_BAU_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

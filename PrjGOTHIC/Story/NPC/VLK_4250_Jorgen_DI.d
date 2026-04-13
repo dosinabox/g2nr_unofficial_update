@@ -17,7 +17,7 @@ instance VLK_4250_Jorgen_DI(Npc_Default)
 //	EquipItem(self,ItMw_1H_BAU_Axe);
 	EquipItem(self,ItMw_Lightsaebel);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_Tough_Skip,BodyTex_N,ITAR_Vlk_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_Tough_Skip,BodyTex_N,ITAR_VLK_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

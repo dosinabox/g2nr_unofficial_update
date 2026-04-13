@@ -13,7 +13,7 @@ instance STRF_1127_Addon_Pardos_NW(Npc_Default)
 	EquipItem(self,ItMw_1H_BAU_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,85,ItMi_Gold,10);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Asghan,BodyTex_N,ITAR_Bau_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Asghan,BodyTex_N,ITAR_BAU_L);
 	Mdl_SetModelFatness(self,-1);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);

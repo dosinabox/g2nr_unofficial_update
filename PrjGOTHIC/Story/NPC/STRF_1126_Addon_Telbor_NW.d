@@ -13,7 +13,7 @@ instance STRF_1126_Addon_Telbor_NW(Npc_Default)
 	EquipItem(self,ItMw_1H_BAU_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,60,ItMi_Gold,55);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_B_Normal01,BodyTex_B,ITAR_Bau_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_B_Normal01,BodyTex_B,ITAR_BAU_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);

@@ -15,7 +15,7 @@ instance VLK_4302_Addon_Elvrich(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,62,ItMi_Gold,110);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_B_Normal01,BodyTex_B,ITAR_Bau_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_B_Normal01,BodyTex_B,ITAR_BAU_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
