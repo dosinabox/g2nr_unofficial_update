@@ -12,7 +12,7 @@ instance VLK_494_Attila(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1H_SLD_Axe);
-	EquipItem(self,ItRw_Mil_Crossbow);
+	EquipItem(self,ItRw_MIL_Crossbow);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,55,ItMi_Gold,100);
 	CreateInvItem(self,ItKe_ThiefGuildKey_MIS);

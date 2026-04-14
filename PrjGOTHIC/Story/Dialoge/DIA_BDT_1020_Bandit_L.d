@@ -3,21 +3,10 @@ instance DIA_BDT_1020_Wegelagerer_EXIT(C_Info)
 {
 	npc = BDT_1020_Bandit_L;
 	nr = 999;
-	condition = DIA_BDT_1020_Wegelagerer_EXIT_Condition;
-	information = DIA_BDT_1020_Wegelagerer_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_BDT_1020_Wegelagerer_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_BDT_1020_Wegelagerer_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -53,9 +42,12 @@ instance DIA_BDT_1020_Wegelagerer_FirstWarn(C_Info)
 
 func int DIA_BDT_1020_Wegelagerer_FirstWarn_Condition()
 {
-	if(C_NpcHasGuardStatus(self,BDT_1020_Wegelagerer_Checkpoint,GP_NONE) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 1000))
+	if(C_NpcHasGuardStatus(self,BDT_1020_Wegelagerer_Checkpoint,GP_NONE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -228,9 +220,12 @@ instance DIA_BDT_1020_Wegelagerer_SecondWarn(C_Info)
 
 func int DIA_BDT_1020_Wegelagerer_SecondWarn_Condition()
 {
-	if(C_NpcHasGuardStatus(self,BDT_1020_Wegelagerer_Checkpoint,GP_FirstWarnGiven) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 1000))
+	if(C_NpcHasGuardStatus(self,BDT_1020_Wegelagerer_Checkpoint,GP_FirstWarnGiven))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -276,9 +271,12 @@ instance DIA_BDT_1020_Wegelagerer_Attack(C_Info)
 
 func int DIA_BDT_1020_Wegelagerer_Attack_Condition()
 {
-	if(C_NpcHasGuardStatus(self,BDT_1020_Wegelagerer_Checkpoint,GP_SecondWarnGiven) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 1000))
+	if(C_NpcHasGuardStatus(self,BDT_1020_Wegelagerer_Checkpoint,GP_SecondWarnGiven))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -304,9 +302,12 @@ instance BDT_1020_Bandit_L_GetLost(C_Info)
 
 func int BDT_1020_Bandit_L_GetLost_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") >= 1000))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") >= 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 

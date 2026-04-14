@@ -3,21 +3,10 @@ instance DIA_Gritta_EXIT(C_Info)
 {
 	npc = VLK_418_Gritta;
 	nr = 999;
-	condition = DIA_Gritta_EXIT_Condition;
-	information = DIA_Gritta_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Gritta_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Gritta_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -169,9 +158,12 @@ instance DIA_Gritta_WINE(C_Info)
 
 func int DIA_Gritta_WINE_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Gritta_WantPay == TRUE) && (MIS_Matteo_Gold == LOG_SUCCESS) && (Npc_HasItems(self,ItMi_Gold) >= 80))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((Gritta_WantPay == TRUE) && (MIS_Matteo_Gold == LOG_SUCCESS) && (Npc_HasItems(self,ItMi_Gold) >= 80))
+		{
+			return TRUE;
+		};
 	};
 };
 

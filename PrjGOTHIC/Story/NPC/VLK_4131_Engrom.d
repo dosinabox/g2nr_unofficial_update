@@ -10,7 +10,7 @@ instance VLK_4131_Engrom(Npc_Default)
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1H_VLK_Axe);
-	EquipItem(self,ItRw_Mil_Crossbow);
+	EquipItem(self,ItRw_MIL_Crossbow);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,10,ItMi_Gold,5);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart20,BodyTex_N,ITAR_Leather_L);

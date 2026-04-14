@@ -9,7 +9,7 @@ instance MIL_319_Pablo(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Mil_Sword);
+	EquipItem(self,ItMw_1H_MIL_Sword);
 	B_CreateAmbientInv(self);
 	CreateInvItem(self,ItWr_Poster_MIS);
 	B_CreateItemToSteal(self,20,ItKe_City_Tower_01,1);
