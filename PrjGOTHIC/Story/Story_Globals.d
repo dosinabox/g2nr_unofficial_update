@@ -1457,3 +1457,4 @@ var int WamboLocation;
 var int Wambo_Day;
 var int Pardos_Geheilt;
 var int AlmanachCounter;
+var int DIA_Ehnim_STREIT5_noPerm;

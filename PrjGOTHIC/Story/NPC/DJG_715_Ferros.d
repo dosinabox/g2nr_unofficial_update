@@ -9,7 +9,7 @@ instance DJG_715_Ferros(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Sld_Sword);
+	EquipItem(self,ItMw_1H_SLD_Sword);
 	EquipItem(self,ItRw_Crossbow_M_01);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,56,ItMi_Gold,75);

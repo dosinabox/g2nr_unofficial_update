@@ -3,21 +3,10 @@ instance DIA_Ehnim_EXIT(C_Info)
 {
 	npc = BAU_944_Ehnim;
 	nr = 999;
-	condition = DIA_Ehnim_EXIT_Condition;
-	information = DIA_Ehnim_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Ehnim_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Ehnim_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -111,9 +100,12 @@ instance DIA_Ehnim_STREIT1(C_Info)
 
 func int DIA_Ehnim_STREIT1_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Egill_FELDRAEUBER) && Npc_KnowsInfo(other,DIA_Ehnim_FELDRAEUBER) && !Npc_KnowsInfo(other,DIA_Egill_STREIT2) && !C_NpcIsDown(Egill))
+	if(Npc_KnowsInfo(other,DIA_Egill_FELDRAEUBER) && Npc_KnowsInfo(other,DIA_Ehnim_FELDRAEUBER) && !Npc_KnowsInfo(other,DIA_Egill_STREIT2))
 	{
-		return TRUE;
+		if(!C_NpcIsDown(Egill))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -137,9 +129,12 @@ instance DIA_Ehnim_STREIT3(C_Info)
 
 func int DIA_Ehnim_STREIT3_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Egill_STREIT2) && !C_NpcIsDown(Egill))
+	if(Npc_KnowsInfo(other,DIA_Egill_STREIT2))
 	{
-		return TRUE;
+		if(!C_NpcIsDown(Egill))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -164,13 +159,14 @@ instance DIA_Ehnim_STREIT5(C_Info)
 };
 
 
-var int DIA_Ehnim_STREIT5_noPerm;
-
 func int DIA_Ehnim_STREIT5_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Egill_STREIT4) && !C_NpcIsDown(Egill) && (DIA_Ehnim_STREIT5_noPerm == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Egill_STREIT4) && (DIA_Ehnim_STREIT5_noPerm == FALSE))
 	{
-		return TRUE;
+		if(!C_NpcIsDown(Egill))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -9,7 +9,7 @@ instance BDT_1087_Addon_Bandit(Npc_Default)
 	npcType = NPCTYPE_TAL_AMBIENT;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Mil_Sword);
+	EquipItem(self,ItMw_1H_MIL_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_ToughBald,BodyTex_P,ITAR_BDT_M);
 	Mdl_SetModelFatness(self,0);
