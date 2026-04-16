@@ -10,7 +10,7 @@ instance BDT_1072_Addon_Logan(Npc_Default)
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Sld_Sword);
+	EquipItem(self,ItMw_1H_SLD_Sword);
 	EquipItem(self,ItRw_Bow_M_02);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,59,ItMi_Gold,50);

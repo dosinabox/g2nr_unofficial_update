@@ -9,7 +9,7 @@ instance BDT_1073_Addon_Sancho(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Sld_Sword);
+	EquipItem(self,ItMw_1H_SLD_Sword);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,50,ItMi_Gold,40);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_Mordrag,BodyTex_N,ITAR_BDT_M);

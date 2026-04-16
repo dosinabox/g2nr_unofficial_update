@@ -11,7 +11,7 @@ instance BDT_1097_Addon_Fisk(Npc_Default)
 	aivar[AIV_Teeth] = 2;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Sld_Sword);
+	EquipItem(self,ItMw_1H_SLD_Sword);
 	B_CreateItemToSteal(self,118,ItMi_Gold,300);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Cavalorn,BodyTex_B,ITAR_Diego);
 	Mdl_SetModelFatness(self,-1);

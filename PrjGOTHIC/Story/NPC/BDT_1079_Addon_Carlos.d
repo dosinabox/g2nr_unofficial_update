@@ -9,7 +9,7 @@ instance BDT_1079_Addon_Carlos(Npc_Default)
 	npcType = NPCTYPE_BL_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Sld_Sword);
+	EquipItem(self,ItMw_1H_SLD_Sword);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,71,ItMi_Gold,85);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_L_Ian,BodyTex_L,ITAR_Bloodwyn_Addon);

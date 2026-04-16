@@ -10,7 +10,7 @@ instance BDT_1032_Fluechtling(Npc_Default)
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Sld_Sword);
+	EquipItem(self,ItMw_1H_SLD_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart09,BodyTex_Tattoo_N,ITAR_Beggar);
 	Mdl_SetModelFatness(self,0);
