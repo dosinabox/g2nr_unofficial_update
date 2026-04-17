@@ -9,7 +9,7 @@ instance PAL_252_Parcival(Npc_Default)
 	npcType = NPCTYPE_OCMAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_1h_Pal_Sword);
+	EquipItem(self,ItMw_1H_PAL_Sword);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,84,ItMi_Gold,460);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_P_Tough_Drago,BodyTex_P,ITAR_PAL_H);

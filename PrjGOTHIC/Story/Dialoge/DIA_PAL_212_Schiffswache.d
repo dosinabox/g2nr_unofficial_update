@@ -13,6 +13,7 @@ instance DIA_PAL_212_Schiffswache_EXIT(C_Info)
 instance DIA_PAL_212_Schiffswache_WERSEIDIHR(C_Info)
 {
 	npc = PAL_212_Schiffswache;
+	nr = 1;
 	condition = DIA_PAL_212_Schiffswache_WERSEIDIHR_Condition;
 	information = DIA_PAL_212_Schiffswache_WERSEIDIHR_Info;
 	description = "Кто вы?";
@@ -37,6 +38,7 @@ func void DIA_PAL_212_Schiffswache_WERSEIDIHR_Info()
 instance DIA_PAL_212_Schiffswache_WASMACHSTDU2(C_Info)
 {
 	npc = PAL_212_Schiffswache;
+	nr = 2;
 	condition = DIA_PAL_212_Schiffswache_WASMACHSTDU2_Condition;
 	information = DIA_PAL_212_Schiffswache_WASMACHSTDU2_Info;
 	description = "Что вы делаете здесь?";

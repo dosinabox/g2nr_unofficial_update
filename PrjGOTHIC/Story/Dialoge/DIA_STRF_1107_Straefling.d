@@ -3,21 +3,10 @@ instance DIA_STRF_1107_EXIT(C_Info)
 {
 	npc = STRF_1107_Straefling;
 	nr = 999;
-	condition = DIA_STRF_1107_EXIT_Condition;
-	information = DIA_STRF_1107_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_STRF_1107_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_STRF_1107_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -48,6 +37,7 @@ func void DIA_STRF_1107_FINGER_Info()
 instance DIA_STRF_1107_COOK(C_Info)
 {
 	npc = STRF_1107_Straefling;
+	nr = 1;
 	condition = DIA_STRF_1107_COOK_Condition;
 	information = DIA_STRF_1107_COOK_Info;
 	description = "Кто назначил тебя поваром?";

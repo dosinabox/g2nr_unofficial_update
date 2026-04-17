@@ -9,7 +9,7 @@ instance MIL_304_Torwache(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Pal_Sword);
+	EquipItem(self,ItMw_1H_PAL_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal16,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,1);

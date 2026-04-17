@@ -12,7 +12,7 @@ func void B_AddCityGuideChoices()
 	};
 	if(!C_IsQuarterNearest(self,Q_TEMPEL))
 	{
-		Info_AddChoice(DIA_CityGuide,"Я ищу храм.",DIA_CityGuide_tempel);
+		Info_AddChoice(DIA_CityGuide,"Я ищу храм.",DIA_CityGuide_Tempel);
 	};
 	if(!C_IsQuarterNearest(self,Q_MARKT))
 	{

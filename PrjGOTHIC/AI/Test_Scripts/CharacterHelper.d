@@ -1776,6 +1776,10 @@ func void DIA_CH_Runen_1()
 {
 	Info_ClearChoices(DIA_CH_Runen);
 	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_Info);
+	if(PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Firebolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firebolt)),CH_Training_Runen_Circle_1_SPL_Firebolt);
+	};
 	if(PLAYER_TALENT_RUNES[SPL_SummonGoblinSkeleton] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_SummonGoblinSkeleton,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonGoblinSkeleton)),CH_Training_Runen_Circle_1_SPL_SummonGoblinSkeleton);
@@ -1787,10 +1791,6 @@ func void DIA_CH_Runen_1()
 	if(PLAYER_TALENT_RUNES[SPL_Zap] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Zap,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Zap)),CH_Training_Runen_Circle_1_SPL_Zap);
-	};
-	if(PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Firebolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firebolt)),CH_Training_Runen_Circle_1_SPL_Firebolt);
 	};
 	if(PLAYER_TALENT_RUNES[SPL_Light] == FALSE)
 	{
@@ -1896,10 +1896,6 @@ func void DIA_CH_Runen_3()
 {
 	Info_ClearChoices(DIA_CH_Runen);
 	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_Info);
-	if(PLAYER_TALENT_RUNES[SPL_MediumHeal] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_MediumHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_MediumHeal)),CH_Training_Runen_Circle_3_SPL_MediumHeal);
-	};
 	if(PLAYER_TALENT_RUNES[SPL_ChargeZap] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_ChargeZap,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ChargeZap)),CH_Training_Runen_Circle_3_SPL_ThunderBall);
@@ -1912,21 +1908,25 @@ func void DIA_CH_Runen_3()
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_SummonSkeleton,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonSkeleton)),CH_Training_Runen_Circle_3_SPL_SummonSkeleton);
 	};
-	if(PLAYER_TALENT_RUNES[SPL_Fear] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Fear,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Fear)),CH_Training_Runen_Circle_3_SPL_Fear);
-	};
 	if(PLAYER_TALENT_RUNES[SPL_IceCube] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_IceCube,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_IceCube)),CH_Training_Runen_Circle_3_SPL_IceCube);
+	};
+	if(PLAYER_TALENT_RUNES[SPL_Geyser] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Geyser,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Geyser)),CH_Training_Runen_Circle_3_SPL_Geyser);
+	};
+	if(PLAYER_TALENT_RUNES[SPL_Fear] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Fear,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Fear)),CH_Training_Runen_Circle_3_SPL_Fear);
 	};
 	if(PLAYER_TALENT_RUNES[SPL_Thunderstorm] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Thunderstorm,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Thunderstorm)),CH_Training_Runen_Circle_3_SPL_Thunderstorm);
 	};
-	if(PLAYER_TALENT_RUNES[SPL_Geyser] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_MediumHeal] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Geyser,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Geyser)),CH_Training_Runen_Circle_3_SPL_Geyser);
+		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_MediumHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_MediumHeal)),CH_Training_Runen_Circle_3_SPL_MediumHeal);
 	};
 };
 
@@ -1982,10 +1982,6 @@ func void DIA_CH_Runen_4()
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_DestroyUndead,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_DestroyUndead)),CH_Training_Runen_Circle_4_SPL_DestroyUndead);
 	};
-	if(PLAYER_TALENT_RUNES[SPL_LightningFlash] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_LightningFlash,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_LightningFlash)),CH_Training_Runen_Circle_4_SPL_LightningFlash);
-	};
 	if(PLAYER_TALENT_RUNES[SPL_ChargeFireball] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_ChargeFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ChargeFireball)),CH_Training_Runen_Circle_4_SPL_ChargeFireball);
@@ -1993,6 +1989,10 @@ func void DIA_CH_Runen_4()
 	if(PLAYER_TALENT_RUNES[SPL_WaterFist] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_WaterFist,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_WaterFist)),CH_Training_Runen_Circle_4_SPL_Waterfist);
+	};
+	if(PLAYER_TALENT_RUNES[SPL_LightningFlash] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_LightningFlash,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_LightningFlash)),CH_Training_Runen_Circle_4_SPL_LightningFlash);
 	};
 };
 
@@ -2033,13 +2033,13 @@ func void DIA_CH_Runen_5()
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_SummonDemon,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonDemon)),CH_Training_Runen_Circle_5_SPL_SummonDemon);
 	};
-	if(PLAYER_TALENT_RUNES[SPL_FullHeal] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_FullHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_FullHeal)),CH_Training_Runen_Circle_5_SPL_FullHeal);
-	};
 	if(PLAYER_TALENT_RUNES[SPL_Pyrokinesis] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Pyrokinesis,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Pyrokinesis)),CH_Training_Runen_Circle_5_SPL_Pyrokinesis);
+	};
+	if(PLAYER_TALENT_RUNES[SPL_FullHeal] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_FullHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_FullHeal)),CH_Training_Runen_Circle_5_SPL_FullHeal);
 	};
 	if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
 	{
