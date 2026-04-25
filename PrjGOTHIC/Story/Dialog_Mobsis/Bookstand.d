@@ -22,7 +22,7 @@ func void Use_Bookstand_01_S1()
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"ֲûסרטי Cמגוע");
+		Doc_PrintLines(nDocID,1,"ֲûסרטי ׁמגוע");
 		Doc_Show(nDocID);
 		if((self.guild == GIL_NOV) && (Knows_Fire_Contest == FALSE))
 		{

@@ -252,7 +252,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	{
 		PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] = TRUE;
 		B_CreateScrollForTrading(ItSc_ArmyOfDarkness);
-		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_ArmyOfDarkness,"1 кость скелета, 1 черная жемчужина, 1 сердце каменного голема и 1 cердце демона."));
+		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_ArmyOfDarkness,"1 кость скелета, 1 черная жемчужина, 1 сердце каменного голема и 1 сердце демона."));
 	}
 	else if(spell == SPL_Shrink)
 	{

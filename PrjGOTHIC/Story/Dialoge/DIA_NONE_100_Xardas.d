@@ -1078,6 +1078,7 @@ func void DIA_Xardas_WARUMNICHTJETZT_wastun()
 instance DIA_Xardas_BEREIT(C_Info)
 {
 	npc = NONE_100_Xardas;
+	nr = 34;
 	condition = DIA_Xardas_BEREIT_Condition;
 	information = DIA_Xardas_BEREIT_Info;
 	description = "Я готов к сражению с драконами.";

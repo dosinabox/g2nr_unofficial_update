@@ -9,7 +9,7 @@ instance PAL_220_Schiffswache(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_1h_Pal_Sword);
+	EquipItem(self,ItMw_1H_PAL_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_NormalBart05,BodyTex_N,ITAR_PAL_H);
 	Mdl_SetModelFatness(self,0);

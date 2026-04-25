@@ -3,21 +3,10 @@ instance DIA_AngarDJG_EXIT(C_Info)
 {
 	npc = DJG_705_Angar;
 	nr = 999;
-	condition = DIA_AngarDJG_EXIT_Condition;
-	information = DIA_AngarDJG_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_AngarDJG_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_AngarDJG_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -582,6 +571,7 @@ func void DIA_Angar_WHYAREYOUHERE_Info()
 instance DIA_Angar_PERMKAP4(C_Info)
 {
 	npc = DJG_705_Angar;
+	nr = 99;
 	condition = DIA_Angar_PERMKAP4_Condition;
 	information = DIA_Angar_PERMKAP4_Info;
 	permanent = TRUE;

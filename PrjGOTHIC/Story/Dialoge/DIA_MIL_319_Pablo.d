@@ -3,21 +3,10 @@ instance DIA_Pablo_EXIT(C_Info)
 {
 	npc = MIL_319_Pablo;
 	nr = 999;
-	condition = DIA_Pablo_EXIT_Condition;
-	information = DIA_Pablo_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Pablo_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Pablo_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -200,7 +189,7 @@ func void DIA_Pablo_MyBandits_Info()
 	AI_Output(other,self,"DIA_Pablo_Add_15_19");	//Я запомню это.
 	if(MIS_Steckbriefe == LOG_RUNNING)
 	{
-		B_LogEntry(TOPIC_Bandits,"Ополчение нашло бандитов с объявлением о моем розыке неподалеку от поместья Онара. Похоже, что они из банды, которая засела там в горах.");
+		B_LogEntry(TOPIC_Bandits,"Ополчение нашло бандитов с объявлением о моем розыске неподалеку от поместья Онара. Похоже, что они из банды, которая засела там в горах.");
 	};
 };
 
