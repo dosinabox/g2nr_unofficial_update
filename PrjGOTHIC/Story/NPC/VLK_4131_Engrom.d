@@ -36,7 +36,7 @@ func void Rtn_Obsessed_4131()
 
 func void Rtn_FleePass_4131()
 {
-	TA_FleeToWP(8,0,23,0,"START");
-	TA_FleeToWP(23,0,8,0,"START");
+	TA_FleeToWp(8,0,23,0,"START");
+	TA_FleeToWp(23,0,8,0,"START");
 };
 

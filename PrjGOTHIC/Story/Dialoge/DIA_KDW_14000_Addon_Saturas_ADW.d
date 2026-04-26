@@ -430,7 +430,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 			B_ReadFakeItem(self,other,ItMi_Addon_Stone_02,2);
 			Saturas_SCFound_ItMi_Addon_Stone_02 = TRUE;
 			BroughtToken += 1;
-			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_11");	//A! Табличка стражей мертвых. Вот кто вызвал духов их мертвецов.
+			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_11");	//А! Табличка стражей мертвых. Вот кто вызвал духов их мертвецов.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_12");	//Зодчие поддерживали очень тесную связь с предками.
 			Log_AddEntry(TOPIC_Addon_Relicts,"Фиолетовая каменная табличка из дворца стражей мертвых на юге.");
 		};

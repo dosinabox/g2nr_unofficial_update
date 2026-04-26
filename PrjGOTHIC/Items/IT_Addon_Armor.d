@@ -343,7 +343,7 @@ instance ITAR_FireArmor_Addon(C_Item)
 	protection[PROT_POINT] = 100;
 	protection[PROT_FIRE] = 50;
 	protection[PROT_MAGIC] = 50;
-	value = VALUE_ITAR_XARDAS;
+	value = VALUE_ITAR_Xardas;
 	wear = WEAR_TORSO | WEAR_EFFECT;
 	effect = "SPELLFX_FIREARMOR";
 	visual = "ItAr_Xardas.3ds";

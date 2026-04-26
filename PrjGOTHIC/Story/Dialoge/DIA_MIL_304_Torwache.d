@@ -3,21 +3,10 @@ instance DIA_MIL_304_Torwache_EXIT(C_Info)
 {
 	npc = MIL_304_Torwache;
 	nr = 999;
-	condition = DIA_MIL_304_Torwache_EXIT_Condition;
-	information = DIA_MIL_304_Torwache_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_MIL_304_Torwache_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_MIL_304_Torwache_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -34,10 +23,7 @@ instance DIA_MIL_304_Torwache_WASMACHSTDU(C_Info)
 
 func int DIA_MIL_304_Torwache_WASMACHSTDU_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk))
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_MIL_304_Torwache_WASMACHSTDU_Info()

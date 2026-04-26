@@ -310,7 +310,7 @@ func void DIA_Addon_Riordian_FoundHouse_Info()
 	RiordianHouseNeuigkeit = 0;
 	AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_00");	//Насчет дворцов...
 	AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_01");	//Да?
-	if((SC_COMESINTO_CANYONLIBRARY_FUNC_OneTime == TRUE) && (FOUNDHOUSEINFO[Scientists] == FALSE))
+	if((SC_ComesInto_CanyonLibrary_Func_OneTime == TRUE) && (FOUNDHOUSEINFO[Scientists] == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_02");	//Библиотекой ученых, похоже, заинтересовались орки.
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_03");	//Ты полагаешь, что они способны прочитать записи на древнем языке?

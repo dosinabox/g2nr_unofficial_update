@@ -71,7 +71,7 @@ func void DIA_DiegoNW_NeedHelp_Info()
 		AI_Output(self,other,"DIA_DiegoNW_NeedHelp_11_00");	//Хорошо, что ты здесь. Ты должен помочь мне.
 	};
 	Info_ClearChoices(DIA_DiegoNW_NeedHelp);
-	if(!Npc_KnowsInfo(other,DIA_DiegoOW_Hallo))
+	if(!Npc_KnowsInfo(other,DIA_DiegoOw_Hallo))
 	{
 		Info_AddChoice(DIA_DiegoNW_NeedHelp,"Кто ты?",DIA_DiegoNW_NeedHelp_WhoAreYou);
 	};

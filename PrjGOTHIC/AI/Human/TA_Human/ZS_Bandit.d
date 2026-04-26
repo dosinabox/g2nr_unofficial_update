@@ -24,7 +24,7 @@ func int ZS_Bandit_Loop()
 	{
 		if(!C_BodyStateContains(self,BS_SIT))
 		{
-			if(Npc_GetStateTime(self) > self.aivar[AIV_STATETIME])
+			if(Npc_GetStateTime(self) > self.aivar[AIV_StateTime])
 			{
 				AI_PlayAni(self,"T_HGUARD_LOOKAROUND");
 				self.aivar[AIV_StateTime] = Hlp_Random(100) % 8 + 10; // от 10 до 17 секунд.

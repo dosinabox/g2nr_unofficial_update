@@ -30,7 +30,7 @@ instance ItHe_OHT(C_Item)
 	protection[PROT_FIRE] = 5;
 	protection[PROT_MAGIC] = 5;
 	value = 1000;
-	wear = WEAR_Head;
+	wear = WEAR_HEAD;
 	visual = "ItHe_OHT.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -59,7 +59,7 @@ instance ItHe_DHT(C_Item)
 	protection[PROT_FIRE] = 5;
 	protection[PROT_MAGIC] = 5;
 	value = 1000;
-	wear = WEAR_Head;
+	wear = WEAR_HEAD;
 	visual = "ItHe_DHT.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -88,7 +88,7 @@ instance ItHe_DJG_M(C_Item)
 	protection[PROT_FIRE] = Prot_Helmet_M;
 	protection[PROT_MAGIC] = Prot_Helmet_M;
 	value = Value_Helmet_M;
-	wear = WEAR_Head;
+	wear = WEAR_HEAD;
 	visual = "ItHe_DJG_M.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -117,7 +117,7 @@ instance ItHe_DJG_H(C_Item)
 	protection[PROT_FIRE] = Prot_Helmet_H;
 	protection[PROT_MAGIC] = Prot_Helmet_H;
 	value = Value_Helmet_H;
-	wear = WEAR_Head;
+	wear = WEAR_HEAD;
 	visual = "ItHe_DJG_H.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -146,7 +146,7 @@ instance ItHe_PAL_M(C_Item)
 	protection[PROT_FIRE] = Prot_Helmet_M;
 	protection[PROT_MAGIC] = Prot_Helmet_M;
 	value = Value_Helmet_M;
-	wear = WEAR_Head;
+	wear = WEAR_HEAD;
 	visual = "ItHe_PAL_M.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -176,7 +176,7 @@ instance ItHe_PAL_H(C_Item)
 	protection[PROT_FIRE] = Prot_Helmet_H;
 	protection[PROT_MAGIC] = Prot_Helmet_H;
 	value = Value_Helmet_H;
-	wear = WEAR_Head;
+	wear = WEAR_HEAD;
 	visual = "ItHe_PAL_H.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;

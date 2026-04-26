@@ -90,7 +90,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	{
 		PLAYER_TALENT_RUNES[SPL_Light] = TRUE;
 		B_CreateScrollForTrading(ItSc_Light);
-		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Light,"1 золотая монета."));
+		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_LIGHT,"1 золотая монета."));
 	}
 	else if(spell == SPL_Firebolt)
 	{
@@ -138,7 +138,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	{
 		PLAYER_TALENT_RUNES[SPL_WindFist] = TRUE;
 		B_CreateScrollForTrading(ItSc_Windfist);
-		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_WindFist,"1 уголь."));
+		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_WINDFIST,"1 уголь."));
 	}
 	else if(spell == SPL_Sleep)
 	{

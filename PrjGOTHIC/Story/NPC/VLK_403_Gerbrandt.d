@@ -38,8 +38,8 @@ func void Rtn_WaitForDiego_403()
 
 func void Rtn_Flee_403()
 {
-	TA_FleeToWP(22,0,8,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
-	TA_FleeToWP(8,0,22,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
+	TA_FleeToWp(22,0,8,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
+	TA_FleeToWp(8,0,22,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
 };
 
 func void Rtn_NewLife_403()

@@ -3,21 +3,10 @@ instance DIA_Jesper_EXIT(C_Info)
 {
 	npc = VLK_446_Jesper;
 	nr = 999;
-	condition = DIA_Jesper_EXIT_Condition;
-	information = DIA_Jesper_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Jesper_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Jesper_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -317,7 +306,7 @@ func int DIA_Jesper_Tuer_Condition()
 func void DIA_Jesper_Tuer_Info()
 {
 	AI_Output(other,self,"DIA_Jesper_Tuer_15_00");	//А что за этой закрытой дверью?
-	AI_Output(self,other,"DIA_Jesper_Tuer_09_01");	//(ухмыляется) За ней находится сундук - сундук мастера-медвежатника Фингерcа.
+	AI_Output(self,other,"DIA_Jesper_Tuer_09_01");	//(ухмыляется) За ней находится сундук - сундук мастера-медвежатника Фингерса.
 	AI_Output(self,other,"DIA_Jesper_Tuer_09_02");	//Он поставил такой невероятно сложный замок на него, что до сих пор никому не удалось открыть его.
 	AI_Output(self,other,"DIA_Jesper_Tuer_09_03");	//К сожалению, он как-то попался - и его засунули за Барьер, где он, вероятно, и умер.
 	if(Npc_HasItems(self,ItKe_Fingers))

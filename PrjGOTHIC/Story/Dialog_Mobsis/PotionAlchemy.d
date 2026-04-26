@@ -1439,7 +1439,7 @@ func void PC_ItMi_Tabak_Double()
 	else
 	{
 		Npc_RemoveInvItems(self,ItFo_Apple,1);
-		B_MakeTobacco(ItMi_Doppeltabak);
+		B_MakeTobacco(ItMi_DoppelTabak);
 	};
 };
 

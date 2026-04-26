@@ -22,7 +22,7 @@ func void B_GiveTradeInv_Vatras_DI(var C_Npc slf)
 			{
 				CreateInvItems(slf,ItSc_HarmUndead,1);
 			};
-			if(!Npc_HasItems(hero,ItSc_ChargeFireBall) && !Npc_HasItems(hero,ItRu_ChargeFireBall))
+			if(!Npc_HasItems(hero,ItSc_ChargeFireBall) && !Npc_HasItems(hero,ItRu_ChargeFireball))
 			{
 				CreateInvItems(slf,ItSc_ChargeFireBall,1);
 			};

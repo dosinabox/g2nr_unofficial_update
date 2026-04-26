@@ -1357,7 +1357,7 @@ instance ITAR_Slave(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_BEGGAR(C_Item)
+instance ITAR_Beggar(C_Item)
 {
 	name = "Грязная накидка";
 	mainflag = ITEM_KAT_ARMOR;
