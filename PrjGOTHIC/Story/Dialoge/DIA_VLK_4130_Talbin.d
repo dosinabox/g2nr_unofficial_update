@@ -3,21 +3,10 @@ instance DIA_Talbin_EXIT(C_Info)
 {
 	npc = VLK_4130_Talbin;
 	nr = 999;
-	condition = DIA_Talbin_EXIT_Condition;
-	information = DIA_Talbin_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Talbin_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Talbin_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -475,7 +464,6 @@ func void DIA_Talbin_WOENGROM_Info()
 		AI_Output(other,self,"DIA_Talbin_WOENGROM_15_05");	//Но у меня было впечатление, что он не собирался уходить отсюда, пока орки все еще в долине.
 		AI_Output(self,other,"DIA_Talbin_WOENGROM_07_06");	//Я же сказал: у него крыша поехала.
 	};
-	MIS_Tabin_LookForEngrom = LOG_RUNNING;
 };
 
 
@@ -491,9 +479,16 @@ instance DIA_Talbin_FOUNDENGROM(C_Info)
 
 func int DIA_Talbin_FOUNDENGROM_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Talbin_WOENGROM) && ((NpcObsessedByDMT_Engrom == TRUE) || Npc_HasItems(other,ItAt_TalbinsLurkerSkin)) && (Kapitel >= 4) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Talbin_WOENGROM) && (Kapitel >= 4) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE))
 	{
-		return TRUE;
+		if(NpcObsessedByDMT_Engrom == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItAt_TalbinsLurkerSkin))
+		{
+			return TRUE;
+		};
 	};
 };
 

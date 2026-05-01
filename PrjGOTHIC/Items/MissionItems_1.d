@@ -67,10 +67,10 @@ instance ItMw_2H_Rod(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
-	value = Value_Sld2hSchwert;
+	value = Value_SLD2hSchwert;
 	damageTotal = Damage_Rod;
 	damagetype = DAM_EDGE;
-	range = Range_Sld2hSchwert;
+	range = Range_SLD2hSchwert;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Rod;
 	visual = "ItMw_035_2H_SLD_sword_02.3DS";

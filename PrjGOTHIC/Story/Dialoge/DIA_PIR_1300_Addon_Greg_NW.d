@@ -164,15 +164,15 @@ func void DIA_Addon_Greg_NW_Stadtwachen_klamotten()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_01_03");	//Отлично! Вот твоя награда.
 	CreateInvItems(self,ItMi_Gold,50);
 	B_GiveInvItems(self,other,ItMi_Gold,50);
-	B_GivePlayerXP(XP_Greg_NW_GiveBauArmor);
 	AI_Output(other,self,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_15_04");	//Что? Жалкие 50 монет? Да ты, должно быть, шутишь.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_01_05");	//Золото - это не самое важное на свете, друг мой. Возьми пока то, что я тебе предлагаю.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_01_06");	//У меня есть предчувствие, что мы скоро встретимся снова.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_01_07");	//И кто знает, может быть, у меня будет возможность отплатить тебе услугой за услугу. Береги себя!
+	MIS_Addon_Greg_BringMeToTheCity = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Greg_NW_GiveBauArmor);
+	B_LogEntry(TOPIC_Addon_Greg_NW,"Я дал ему одежду крестьянина. В ней он может пройти в город.");
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"MARKT");
-	B_LogEntry(TOPIC_Addon_Greg_NW,"Я дал ему одежду крестьянина. В ней он может пройти в город.");
-	MIS_Addon_Greg_BringMeToTheCity = LOG_SUCCESS;
 };
 
 func void DIA_Addon_Greg_NW_Stadtwachen_nochnicht()

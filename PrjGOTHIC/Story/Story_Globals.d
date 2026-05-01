@@ -184,7 +184,6 @@ var int MIS_JanBecomesSmith;
 var int MIS_FerrosSword;
 var int MIS_GeroldGiveFood;
 var int MIS_KillHoshPak;
-var int MIS_Tabin_LookForEngrom;
 var int MIS_KillOrkOberst;
 var int MIS_Neoras_DragonEgg;
 var int MIS_Dar_BringOrcEliteRing;

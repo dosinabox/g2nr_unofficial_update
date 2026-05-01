@@ -197,10 +197,10 @@ const int LOG_SUCCESS = 2;
 const int LOG_FAILED = 3;
 const int LOG_OBSOLETE = 4;
 
-const int ATT_FRIENDLY = 3;
-const int ATT_NEUTRAL = 2;
-const int ATT_ANGRY = 1;
 const int ATT_HOSTILE = 0;
+const int ATT_ANGRY = 1;
+const int ATT_NEUTRAL = 2;
+const int ATT_FRIENDLY = 3;
 
 const int GIL_NONE = 0;
 const int GIL_HUMAN = 1;
@@ -844,8 +844,8 @@ const int INVCAM_Z_RING_STANDARD = 45;
 const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2026;
-const int FIX_DATE_MONTH = 4;
-const int FIX_DATE_DAY = 26;
+const int FIX_DATE_MONTH = 5;
+const int FIX_DATE_DAY = 1;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;
