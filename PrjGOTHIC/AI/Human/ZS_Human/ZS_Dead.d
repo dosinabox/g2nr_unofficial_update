@@ -136,9 +136,9 @@ func void ZS_Dead()
 		{
 			if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON))
 			{
-				B_RemoveEveryInvItem(self,ItMw_1h_Bau_Mace);
+				B_RemoveEveryInvItem(self,ItMw_1H_BAU_Mace);
 				B_RemoveEveryInvItem(self,ItMw_1H_MISC_Sword);
-				B_RemoveEveryInvItem(self,ItMw_1H_Misc_Axe);
+				B_RemoveEveryInvItem(self,ItMw_1H_MISC_Axe);
 			}
 			else if(self.guild == GIL_SUMMONED_SKELETON)
 			{

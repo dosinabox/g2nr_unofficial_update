@@ -17,13 +17,19 @@ func int C_AkilFarmIsFree()
 	{
 		return TRUE;
 	};
-	if(Npc_IsDead(Alvares) && (ScaredEngardo == TRUE))
+	if(ScaredEngardo == TRUE)
 	{
-		return TRUE;
+		if(Npc_IsDead(Alvares))
+		{
+			return TRUE;
+		};
 	};
-	if(Npc_IsDead(Engardo) && (ScaredAlvares == TRUE))
+	if(ScaredAlvares == TRUE)
 	{
-		return TRUE;
+		if(Npc_IsDead(Engardo))
+		{
+			return TRUE;
+		};
 	};
 	return FALSE;
 };

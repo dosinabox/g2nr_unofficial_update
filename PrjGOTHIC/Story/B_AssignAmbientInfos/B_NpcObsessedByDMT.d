@@ -23,19 +23,19 @@ func void B_NpcClearObsessionByDMT(var C_Npc medium)
 		AI_EquipBestRangedWeapon(medium);
 		if(C_IsNpc(medium,BAU_930_Sekob))
 		{
-			B_EquipArmor(medium,ITAR_Vlk_H);
+			B_EquipArmor(medium,ITAR_VLK_H);
 		}
 		else if(C_IsNpc(medium,BAU_942_Randolph))
 		{
-			B_EquipArmor(medium,ITAR_Bau_L);
+			B_EquipArmor(medium,ITAR_BAU_L);
 		}
 		else if(C_IsNpc(medium,BAU_952_Vino))
 		{
-			B_EquipArmor(medium,ITAR_Bau_L);
+			B_EquipArmor(medium,ITAR_BAU_L);
 		}
 		else if(C_IsNpc(medium,BAU_963_Malak))
 		{
-			B_EquipArmor(medium,ITAR_Bau_M);
+			B_EquipArmor(medium,ITAR_BAU_M);
 			if(!Npc_IsDead(BAU_962_Bauer))
 			{
 				Npc_SetTarget(BAU_962_Bauer,medium);
@@ -86,7 +86,7 @@ func void B_NpcClearObsessionByDMT(var C_Npc medium)
 		}
 		else if(C_IsNpc(medium,VLK_433_Bromor))
 		{
-			B_EquipArmor(medium,ITAR_Vlk_H);
+			B_EquipArmor(medium,ITAR_VLK_H);
 		};
 		NpcObsessedByDMT = FALSE;
 		medium.flags = 0;

@@ -9,7 +9,6 @@ instance PAL_203_Lothar(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
-//	EquipItem(self,ItMw_1h_Pal_Sword);
 	EquipItem(self,ItMw_1H_Blessed_02);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,56,ItMi_Gold,95);

@@ -266,8 +266,8 @@ func void DIA_Addon_Lucia_Attentat_Info()
 	AI_Output(self,other,"DIA_Addon_Lucia_Attentat_16_00");	//Ќичего.
 	Info_ClearChoices(DIA_Addon_Lucia_Attentat);
 	Info_AddChoice(DIA_Addon_Lucia_Attentat,"(промолчать)",DIA_Addon_Lucia_Attentat_BACK);
-	Info_AddChoice(DIA_Addon_Lucia_Attentat,"я ищу этих реб€т, чтобы выступить против Ёстебана.",DIA_Addon_Lucia_Attentat_CONTRA);
-	Info_AddChoice(DIA_Addon_Lucia_Attentat,"я убью этих предателей.",DIA_Addon_Lucia_Attentat_PRO);
+	Info_AddChoice(DIA_Addon_Lucia_Attentat,DIALOG_ADDON_ATTENTAT_CONTRA,DIA_Addon_Lucia_Attentat_CONTRA);
+	Info_AddChoice(DIA_Addon_Lucia_Attentat,DIALOG_ADDON_ATTENTAT_PRO,DIA_Addon_Lucia_Attentat_PRO);
 };
 
 func void DIA_Addon_Lucia_Attentat_BACK()

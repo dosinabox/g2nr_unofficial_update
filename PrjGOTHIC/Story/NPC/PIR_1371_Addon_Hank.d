@@ -16,7 +16,7 @@ instance PIR_1371_Addon_Hank(Npc_Default)
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,30);
-	daily_routine = Rtn_Start_1370;
+	daily_routine = Rtn_Start_1371;
 };
 
 

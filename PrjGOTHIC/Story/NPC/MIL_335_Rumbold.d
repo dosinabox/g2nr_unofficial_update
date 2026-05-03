@@ -10,7 +10,7 @@ instance MIL_335_Rumbold(Npc_Default)
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Mil_Sword);
+	EquipItem(self,ItMw_1H_MIL_Sword);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,24,ItMi_Gold,45);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Important_Arto,BodyTex_N,ITAR_MIL_L);

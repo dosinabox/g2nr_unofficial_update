@@ -3,21 +3,10 @@ instance DIA_Addon_BDT_10014_Thorus_EXIT(C_Info)
 {
 	npc = BDT_10014_Addon_Thorus;
 	nr = 999;
-	condition = DIA_Addon_Thorus_EXIT_Condition;
-	information = DIA_Addon_Thorus_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Thorus_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Thorus_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -171,7 +160,15 @@ func int DIA_Addon_Thorus_Stein_Condition()
 {
 	if((RavenIsDead == FALSE) && (MIS_Send_Buddler != LOG_SUCCESS) && !Npc_HasItems(other,ItMi_Addon_Stone_01) && !Npc_KnowsInfo(other,DIA_Addon_BDT_10014_Thorus_Rein))
 	{
-		if(C_ScHasMagicStonePlate() || C_ScHasColoredStonePlate() || Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+		if(Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+		{
+			return TRUE;
+		};
+		if(C_ScHasColoredStonePlate())
+		{
+			return TRUE;
+		};
+		if(C_ScHasMagicStonePlate())
 		{
 			return TRUE;
 		};
@@ -197,9 +194,12 @@ instance DIA_Addon_BDT_10014_Thorus_Rein(C_Info)
 
 func int DIA_Addon_Thorus_Rein_Condition()
 {
-	if((RavenIsDead == FALSE) && (MIS_Send_Buddler != LOG_SUCCESS) && Npc_HasItems(other,ItMi_Addon_Stone_01))
+	if((RavenIsDead == FALSE) && (MIS_Send_Buddler != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Addon_Stone_01))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -321,9 +321,12 @@ instance DIA_Addon_Thorus_Attack(C_Info)
 
 func int DIA_Addon_Thorus_Attack_Condition()
 {
-	if(Npc_IsDead(Torwache2) && (RavenIsDead == FALSE))
+	if(RavenIsDead == FALSE)
 	{
-		return TRUE;
+		if(Npc_IsDead(GoldmineGuard))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -390,9 +393,9 @@ func void DIA_Addon_Thorus_Speech_Info()
 		AI_Output(self,other,"DIA_Addon_Thorus_Add_12_01");	//Давай я объясню тебе кое-что. Ты знаешь, почему я до сих пор жив?
 		AI_Output(self,other,"DIA_Addon_Thorus_Add_12_02");	//Потому что я всегда был верен своим людям.
 	};
-	if(!Npc_IsDead(Torwache2))
+	if(!Npc_IsDead(GoldmineGuard))
 	{
-		Torwache2.aivar[AIV_PASSGATE] = TRUE;
+		GoldmineGuard.aivar[AIV_PASSGATE] = TRUE;
 	};
 };
 
@@ -458,9 +461,9 @@ func void DIA_Addon_Thorus_Raventot_Info()
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raventot_12_04");	//(смеется) Да, ты постоянно куда-то движешься, так ведь? (серьезно) Счастливого тебе пути.
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Raventot_15_05");	//Кто знает, может, наши пути еще пересекутся.
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raventot_12_06");	//Кто знает. У тебя на пути будет много ворот и много переходов. И на одном из них ты можешь встретить меня...
-	if(!Npc_IsDead(Torwache2))
+	if(!Npc_IsDead(GoldmineGuard))
 	{
-		Torwache2.aivar[AIV_PASSGATE] = TRUE;
+		GoldmineGuard.aivar[AIV_PASSGATE] = TRUE;
 	};
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");

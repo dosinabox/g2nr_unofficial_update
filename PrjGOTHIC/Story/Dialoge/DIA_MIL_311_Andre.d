@@ -133,7 +133,11 @@ instance DIA_Andre_Informed(C_Info)
 
 func int DIA_Andre_Informed_Condition()
 {
-	if(C_Andre_InfoFromPablo() || C_Andre_InfoFromCanthar())
+	if(C_Andre_InfoFromPablo())
+	{
+		return TRUE;
+	};
+	if(C_Andre_InfoFromCanthar())
 	{
 		return TRUE;
 	};
@@ -1471,8 +1475,8 @@ func void DIA_Andre_FOUND_PECK_REDLIGHT()
 	AI_Output(other,self,"DIA_Andre_FOUND_PECK_REDLIGHT_15_00");	//Он был в Красном Фонаре.
 	AI_Output(self,other,"DIA_Andre_FOUND_PECK_REDLIGHT_08_01");	//То есть он развлекался с девочками вместо того, чтобы выполнять свои обязанности.
 	AI_Output(self,other,"DIA_Andre_FOUND_PECK_REDLIGHT_08_02");	//Я думаю, мне нужно серьезно поговорить с ним.
-	B_GivePlayerXP(XP_FoundPeck * 2);
 	MIS_Andre_Peck = LOG_SUCCESS;
+	B_GivePlayerXP(XP_FoundPeck * 2);
 	Info_ClearChoices(DIA_Andre_FOUND_PECK);
 };
 
@@ -1749,6 +1753,7 @@ func void DIA_Andre_HILFBAUERLOBART_Info()
 instance DIA_Andre_LOBART_SUCCESS(C_Info)
 {
 	npc = MIL_311_Andre;
+	nr = 3;
 	condition = DIA_Andre_LOBART_SUCCESS_Condition;
 	information = DIA_Andre_LOBART_SUCCESS_Info;
 	description = "Я помог Лобарту.";
@@ -1775,6 +1780,7 @@ func void DIA_Andre_LOBART_SUCCESS_Info()
 instance DIA_Andre_ThievesGuildQuestForMIL(C_Info)
 {
 	npc = MIL_311_Andre;
+	nr = 3;
 	condition = DIA_Andre_ThievesGuildQuestForMIL_Condition;
 	information = DIA_Andre_ThievesGuildQuestForMIL_Info;
 	description = "У тебя есть еще задания для меня?";
@@ -1940,6 +1946,7 @@ func void DIA_Andre_BerichtDrachen_Info()
 instance DIA_Andre_BennetInPrison(C_Info)
 {
 	npc = MIL_311_Andre;
+	nr = 6;
 	condition = DIA_Andre_BennetInPrison_Condition;
 	information = DIA_Andre_BennetInPrison_Info;
 	permanent = TRUE;
@@ -1967,6 +1974,7 @@ func void DIA_Andre_BennetInPrison_Info()
 instance DIA_Andre_Cornelius_Liar(C_Info)
 {
 	npc = MIL_311_Andre;
+	nr = 6;
 	condition = DIA_Andre_Cornelius_Liar_Condition;
 	information = DIA_Andre_Cornelius_Liar_Info;
 	permanent = TRUE;
@@ -2026,6 +2034,7 @@ func void DIA_Andre_Cornelius_Liar_Yes()
 instance DIA_Andre_Paladin(C_Info)
 {
 	npc = MIL_311_Andre;
+	nr = 10;
 	condition = DIA_Andre_Paladin_Condition;
 	information = DIA_Andre_Paladin_Info;
 	important = TRUE;
@@ -2036,7 +2045,10 @@ func int DIA_Andre_Paladin_Condition()
 {
 	if(other.guild == GIL_PAL)
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
+		{
+			return TRUE;
+		};
 	};
 };
 

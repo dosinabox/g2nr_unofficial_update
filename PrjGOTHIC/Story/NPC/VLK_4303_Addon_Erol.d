@@ -13,7 +13,7 @@ instance VLK_4303_Addon_Erol(Npc_Default)
 	EquipItem(self,ItMw_1H_VLK_Sword);
 	CreateInvItems(self,ItPo_Health_01,3);
 	B_CreateItemToSteal(self,43,ItMi_Gold,42);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Corristo,BodyTex_N,ITAR_Vlk_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Corristo,BodyTex_N,ITAR_VLK_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);

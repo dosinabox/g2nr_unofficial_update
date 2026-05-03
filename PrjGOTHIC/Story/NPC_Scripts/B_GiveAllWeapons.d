@@ -1,12 +1,12 @@
 
 func void B_GiveAllClassicWeapons(var C_Npc npc)
 {
-	CreateInvItem(npc,ItMw_1h_Vlk_Dagger);
+	CreateInvItem(npc,ItMw_1H_VLK_Dagger);
 	CreateInvItem(npc,ItMw_1H_Mace_L_01);
-	CreateInvItem(npc,ItMw_1h_Bau_Axe);
+	CreateInvItem(npc,ItMw_1H_BAU_Axe);
 	CreateInvItem(npc,ItMw_1H_VLK_Mace);
 	CreateInvItem(npc,ItMw_1H_Mace_L_03);
-	CreateInvItem(npc,ItMw_1h_Bau_Mace);
+	CreateInvItem(npc,ItMw_1H_BAU_Mace);
 	CreateInvItem(npc,ItMw_1H_VLK_Axe);
 	CreateInvItem(npc,ItMw_1H_Mace_L_04);
 	CreateInvItem(npc,ItMw_ShortSword1);
@@ -19,14 +19,14 @@ func void B_GiveAllClassicWeapons(var C_Npc npc)
 	CreateInvItem(npc,ItMw_2H_BAU_Axe);
 	CreateInvItem(npc,ItMw_2H_Axe_L_01);
 	CreateInvItem(npc,ItMw_1H_MISC_Sword);
-	CreateInvItem(npc,ItMw_1H_Misc_Axe);
+	CreateInvItem(npc,ItMw_1H_MISC_Axe);
 	CreateInvItem(npc,ItMw_2H_Sword_M_01);
-	CreateInvItem(npc,ItMw_1h_Mil_Sword);
+	CreateInvItem(npc,ItMw_1H_MIL_Sword);
 	CreateInvItem(npc,ItMw_1H_SLD_Axe);
-	CreateInvItem(npc,ItMw_1h_Sld_Sword);
+	CreateInvItem(npc,ItMw_1H_SLD_Sword);
 	CreateInvItem(npc,ItMw_2H_SLD_Axe);
 	CreateInvItem(npc,ItMw_2H_SLD_Sword);
-	CreateInvItem(npc,ItMw_1h_Pal_Sword);
+	CreateInvItem(npc,ItMw_1H_PAL_Sword);
 	CreateInvItem(npc,ItMw_2H_PAL_Sword);
 	CreateInvItem(npc,ItMw_2H_OrcAxe_01);
 	CreateInvItem(npc,ItMw_2H_OrcAxe_02);
@@ -108,14 +108,14 @@ func void B_GiveAllClassicWeapons(var C_Npc npc)
 	CreateInvItem(npc,ItRw_Bow_H_02);
 	CreateInvItem(npc,ItRw_Bow_H_03);
 	CreateInvItem(npc,ItRw_Bow_H_04);
-	CreateInvItem(npc,ItRw_Sld_Bow);
+	CreateInvItem(npc,ItRw_SLD_Bow);
 	CreateInvItem(npc,ItRw_Crossbow_L_01);
 	CreateInvItem(npc,ItRw_Crossbow_L_02);
 	CreateInvItem(npc,ItRw_Crossbow_M_01);
 	CreateInvItem(npc,ItRw_Crossbow_M_02);
 	CreateInvItem(npc,ItRw_Crossbow_H_01);
 	CreateInvItem(npc,ItRw_Crossbow_H_02);
-	CreateInvItem(npc,ItRw_Mil_Crossbow);
+	CreateInvItem(npc,ItRw_MIL_Crossbow);
 	CreateInvItems(npc,ItRw_Arrow,1000);
 	CreateInvItems(npc,ItRw_Bolt,1000);
 };

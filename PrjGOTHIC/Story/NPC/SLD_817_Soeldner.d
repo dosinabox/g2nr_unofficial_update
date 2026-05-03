@@ -10,7 +10,7 @@ instance SLD_817_Soeldner(Npc_Default)
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1H_SLD_Axe);
-	EquipItem(self,ItRw_Sld_Bow);
+	EquipItem(self,ItRw_SLD_Bow);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Tough01,BodyTex_L,ITAR_SLD_L);
 	Mdl_SetModelFatness(self,0);

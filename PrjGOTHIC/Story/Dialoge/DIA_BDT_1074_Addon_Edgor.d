@@ -130,9 +130,12 @@ instance DIA_Addon_Edgor_Weg(C_Info)
 
 func int DIA_Addon_Edgor_Weg_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_MIS2) && !Npc_HasItems(other,ItMi_Addon_Stone_04) && (MIS_HlpEdgor == LOG_RUNNING))
+	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_MIS2) && (MIS_HlpEdgor == LOG_RUNNING))
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,ItMi_Addon_Stone_04))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -160,11 +163,11 @@ func int DIA_Addon_Edgor_Found_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_MIS2))
 	{
-		if(Npc_HasItems(other,ItMi_Addon_Stone_04))
+		if(MIS_HlpEdgor == LOG_SUCCESS)
 		{
 			return TRUE;
 		};
-		if(MIS_HlpEdgor == LOG_SUCCESS)
+		if(Npc_HasItems(other,ItMi_Addon_Stone_04))
 		{
 			return TRUE;
 		};
@@ -229,14 +232,14 @@ instance DIA_Addon_Edgor_TrainStart(C_Info)
 {
 	npc = BDT_1074_Addon_Edgor;
 	nr = 9;
-	condition = DIA_Addon_Edgor_Start_Condition;
-	information = DIA_Addon_Edgor_Start_Info;
+	condition = DIA_Addon_Edgor_TrainStart_Condition;
+	information = DIA_Addon_Edgor_TrainStart_Info;
 	permanent = TRUE;
 	description = "По поводу кровавых мух...";
 };
 
 
-func int DIA_Addon_Edgor_Start_Condition()
+func int DIA_Addon_Edgor_TrainStart_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_Teach) && (DIA_Edgor_Teach_permanent == FALSE))
 	{
@@ -244,7 +247,7 @@ func int DIA_Addon_Edgor_Start_Condition()
 	};
 };
 
-func void DIA_Addon_Edgor_Start_Info()
+func void DIA_Addon_Edgor_TrainStart_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Edgor_TrainStart_SEKRET_15_00");	//По поводу кровавых мух...
 	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || (Knows_Bloodfly == FALSE))

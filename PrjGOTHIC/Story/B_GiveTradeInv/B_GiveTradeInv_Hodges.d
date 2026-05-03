@@ -7,7 +7,7 @@ func void B_GiveTradeInv_Hodges(var C_Npc slf)
 	{
 		CreateInvItems(slf,ItMw_1H_Mace_L_04,1);
 		CreateInvItems(slf,ItMw_1H_SLD_Axe,1);
-		CreateInvItems(slf,ItMw_1h_Sld_Sword,1);
+		CreateInvItems(slf,ItMw_1H_SLD_Sword,1);
 		CreateInvItems(slf,ItMw_1H_Sword_L_03,1);
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
@@ -17,7 +17,7 @@ func void B_GiveTradeInv_Hodges(var C_Npc slf)
 		}
 		else
 		{
-			CreateInvItems(slf,ItMw_1h_Bau_Axe,1);
+			CreateInvItems(slf,ItMw_1H_BAU_Axe,1);
 			CreateInvItems(slf,ItMw_1H_VLK_Axe,1);
 			CreateInvItems(slf,ItMw_Schwert,1);
 		};

@@ -12,7 +12,7 @@ instance BAU_902_Gunnar(Npc_Default)
 	EquipItem(self,ItMw_2H_BAU_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,45,ItMi_Gold,70);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart03,BodyTex_N,ITAR_Bau_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart03,BodyTex_N,ITAR_BAU_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

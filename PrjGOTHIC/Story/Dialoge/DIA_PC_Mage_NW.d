@@ -3,21 +3,10 @@ instance DIA_MiltenNW_EXIT(C_Info)
 {
 	npc = PC_Mage_NW;
 	nr = 999;
-	condition = DIA_MiltenNW_EXIT_Condition;
-	information = DIA_MiltenNW_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_MiltenNW_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_MiltenNW_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -724,7 +713,7 @@ func void DIA_MiltenNW_Teach_Info()
 		{
 			if(PLAYER_TALENT_RUNES[SPL_Light] == FALSE)
 			{
-				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_Light,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Light)),DIA_MiltenOW_Teach_Light);
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_LIGHT,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Light)),DIA_MiltenOW_Teach_Light);
 			};
 			if(PLAYER_TALENT_RUNES[SPL_LightHeal] == FALSE)
 			{

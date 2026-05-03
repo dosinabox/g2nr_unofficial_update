@@ -1,5 +1,5 @@
 
-func void B_StopPyro()
+/*func void B_StopPyro()
 {
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_ClearAIQueue(self);
@@ -50,5 +50,5 @@ func int ZS_Pyro_Loop()
 
 func void ZS_Pyro_End()
 {
-};
+};*/
 

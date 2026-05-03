@@ -11,7 +11,7 @@ instance PIR_1355_Addon_Skip(Npc_Default)
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_ShortSword2);
-	EquipItem(self,ItRw_Sld_Bow);
+	EquipItem(self,ItRw_SLD_Bow);
 	CreateInvItems(self,ItPo_Health_03,2);
 	CreateInvItem(self,ItWr_Poster_MIS);
 	B_CreateAmbientInv(self);

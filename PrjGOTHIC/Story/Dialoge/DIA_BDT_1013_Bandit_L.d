@@ -176,7 +176,7 @@ func void DIA_BDT_1013_BANDIT_WHERE_NotImportant()
 	Info_AddChoice(DIA_BDT_1013_BANDIT_WHERE,"Хорошо! Ты идешь первым!",DIA_BDT_1013_BANDIT_WHERE_Yes);
 };
 
-func void DIA_BDT_1013_BANDIT_WHERE_later()
+func void DIA_BDT_1013_BANDIT_WHERE_Later()
 {
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_LATER_15_00");	//Может быть, позже...
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_LATER_01_01");	//Позже не будет, приятель!

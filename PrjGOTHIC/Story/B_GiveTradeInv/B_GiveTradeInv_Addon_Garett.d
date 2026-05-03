@@ -12,7 +12,7 @@ func void B_GiveTradeInv_Addon_Garett(var C_Npc slf)
 		CreateInvItems(slf,ItRw_Bolt,50);
 		CreateInvItems(slf,ItFo_Addon_Rum,1);
 		CreateInvItems(slf,ItPo_Health_Addon_04,1);
-		CreateInvItems(slf,ItRw_Mil_Crossbow,1);
+		CreateInvItems(slf,ItRw_MIL_Crossbow,1);
 		CreateInvItems(slf,ItAm_Prot_Fire_01,1);
 		CreateInvItems(slf,ItRi_Prot_Mage_02,1);
 		if(ClassicMeleeWeaponsTraders == FALSE)

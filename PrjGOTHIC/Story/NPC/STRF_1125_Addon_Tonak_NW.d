@@ -10,10 +10,10 @@ instance STRF_1125_Addon_Tonak_NW(Npc_Default)
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Bau_Mace);
+	EquipItem(self,ItMw_1H_BAU_Mace);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,80,ItMi_Gold,160);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_B_Normal01,BodyTex_B,ITAR_Bau_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_B_Normal01,BodyTex_B,ITAR_BAU_L);
 	Mdl_SetModelFatness(self,-1);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);

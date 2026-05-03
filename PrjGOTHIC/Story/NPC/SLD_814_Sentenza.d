@@ -10,7 +10,7 @@ instance SLD_814_Sentenza(Npc_Default)
 	aivar[AIV_MM_FollowTime] = 60;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Sld_Sword);
+	EquipItem(self,ItMw_1H_SLD_Sword);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,56,ItMi_SilverRing,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Tough_Okyl,BodyTex_N,ITAR_SLD_H);

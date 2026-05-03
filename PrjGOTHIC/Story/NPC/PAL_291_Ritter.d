@@ -9,7 +9,7 @@ instance PAL_291_Ritter(Npc_Default)
 	npcType = NPCTYPE_AMBIENT;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_1h_Pal_Sword);
+	EquipItem(self,ItMw_1H_PAL_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_P_Tough_Torrez,BodyTex_P,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,0);

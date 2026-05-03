@@ -3,9 +3,9 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 {
 	if(Hlp_IsValidNpc(slf))
 	{
-		if(!C_NpcHasEquippedMeleeWeapon(slf,ItMw_1h_Bau_Mace))
+		if(!C_NpcHasEquippedMeleeWeapon(slf,ItMw_1H_BAU_Mace))
 		{
-			B_RemoveEveryInvItem(slf,ItMw_1h_Bau_Mace);
+			B_RemoveEveryInvItem(slf,ItMw_1H_BAU_Mace);
 		};
 		if(!C_IsNpc(slf,SLD_803_Cipher))
 		{

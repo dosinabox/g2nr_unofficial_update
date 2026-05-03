@@ -80,12 +80,20 @@ func void B_AssessTalk()
 			{
 				MIS_SearchForDiego = LOG_SUCCESS;
 			}
+			else if(C_IsNpc(self,BAU_970_Orlan))
+			{
+				Knows_Taverne = TRUE;
+			}
 			else if(C_IsNpc(self,PC_Psionic))
 			{
 				PlayerTalkedToLesterNW = TRUE;
 			}
 			else if(C_IsNpc(self,PIR_1300_Addon_Greg_NW))
 			{
+				if(GregLocation == Greg_Taverne)
+				{
+					Knows_Taverne = TRUE;
+				};
 				PlayerTalkedToGregNW = TRUE;
 			}
 			else if(C_IsNpc(self,PIR_1301_Addon_Skip_NW))

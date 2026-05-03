@@ -11,7 +11,7 @@ instance SLD_801_Torlof(Npc_Default)
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2H_SLD_Sword);
-	EquipItem(self,ItRw_Sld_Bow);
+	EquipItem(self,ItRw_SLD_Bow);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,76,ItMi_Gold,120);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Torlof,BodyTex_N,ITAR_SLD_H);

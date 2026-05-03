@@ -3,21 +3,10 @@ instance DIA_Jack_EXIT(C_Info)
 {
 	npc = VLK_444_Jack;
 	nr = 999;
-	condition = DIA_Jack_EXIT_Condition;
-	information = DIA_Jack_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Jack_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Jack_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -170,7 +159,7 @@ func void DIA_Jack_Harbor_Leave()
 {
 	AI_Output(other,self,"DIA_Jack_Harbor_Leave_15_00");	//Так почему ты не уедешь отсюда?
 	AI_Output(self,other,"DIA_Jack_Harbor_Leave_14_01");	//Сегодня никто не возьмет на корабль старого морского волка вроде меня.
-	AI_Output(self,other,"DIA_Jack_Harbor_Leave_14_02");	//Большинство полагает, что cтарый Джек ни на что не годен, и что его старые кости разъедает подагра.
+	AI_Output(self,other,"DIA_Jack_Harbor_Leave_14_02");	//Большинство полагает, что старый Джек ни на что не годен, и что его старые кости разъедает подагра.
 	AI_Output(other,self,"DIA_Jack_Harbor_Leave_15_03");	//И? Они правы?
 	AI_Output(self,other,"DIA_Jack_Harbor_Leave_14_04");	//Вздор. Как только я опять почувствую под своими ногами палубу, я дам фору любому из этих нахальных юнцов.
 };
@@ -471,7 +460,11 @@ instance DIA_Jack_PERM5_NOTCAPTAIN(C_Info)
 
 func int DIA_Jack_PERM5_NOTCAPTAIN_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Jack_BEMYCAPTAIN2) && (SCGotCaptain == TRUE) && (JackIsCaptain == FALSE)) || (MIS_Jack_NewLighthouseOfficer == LOG_OBSOLETE))
+	if(MIS_Jack_NewLighthouseOfficer == LOG_OBSOLETE)
+	{
+		return TRUE;
+	};
+	if(Npc_KnowsInfo(other,DIA_Jack_BEMYCAPTAIN2) && (SCGotCaptain == TRUE) && (JackIsCaptain == FALSE))
 	{
 		return TRUE;
 	};

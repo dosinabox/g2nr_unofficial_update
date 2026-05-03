@@ -18,7 +18,7 @@ instance VLK_468_Canthar(Npc_Default)
 	EquipItem(self,ItMw_ShortSword5);
 	CreateInvItems(self,ItMi_Gold,50);
 	B_CreateItemToSteal(self,20,ItMi_Gold,25);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Orry,BodyTex_N,ITAR_Vlk_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Orry,BodyTex_N,ITAR_VLK_M);
 	Mdl_SetModelFatness(self,1.8);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);

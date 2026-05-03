@@ -11,7 +11,7 @@ instance VLK_4108_Engor(Npc_Default)
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateItemToSteal(self,40,ItWr_Map_OldWorld,1);
-	EquipItem(self,ItMw_1h_Mil_Sword);
+	EquipItem(self,ItMw_1H_MIL_Sword);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Jackal,BodyTex_L,ITAR_MIL_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

@@ -12,10 +12,9 @@ instance BAU_4300_Addon_Cavalorn(Npc_Default)
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_ShortSword2);
-	EquipItem(self,ItRw_Sld_Bow);
+	EquipItem(self,ItRw_SLD_Bow);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,25,ItMi_ArrowPack,1);
-	CreateInvItems(self,ITAR_Bau_L,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_B_Cavalorn,BodyTex_B,ITAR_RANGER_Addon);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

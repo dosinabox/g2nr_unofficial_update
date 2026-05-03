@@ -17,7 +17,7 @@ instance PC_Thief_DI(Npc_Default)
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	CreateInvItems(self,ItRw_Arrow,10);
-	EquipItem(self,ItMw_1h_Sld_Sword);
+	EquipItem(self,ItMw_1H_SLD_Sword);
 	EquipItem(self,ItRw_Bow_M_03);
 	B_CreateItemToSteal(self,120,ItMi_Gold,600);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_L_Diego,BodyTex_L,ITAR_Diego);

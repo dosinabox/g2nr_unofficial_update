@@ -10,7 +10,7 @@ instance MIL_337_Mika(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Mil_Sword);
+	EquipItem(self,ItMw_1H_MIL_Sword);
 	CreateInvItems(self,ItPo_Health_01,4);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,65,ItMi_Gold,75);

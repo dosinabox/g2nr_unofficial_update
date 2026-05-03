@@ -1,5 +1,5 @@
 
-const int Value_Sc_Water = 1;
+//const int Value_Sc_Water = 1;
 const int Value_Sc_IceLance = 100;
 const int Value_Sc_Whirlwind = 200;
 const int Value_Sc_Geyser = 100;

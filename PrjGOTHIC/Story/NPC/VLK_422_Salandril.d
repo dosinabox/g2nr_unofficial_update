@@ -11,9 +11,9 @@ instance VLK_422_Salandril(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Vlk_Dagger);
+	EquipItem(self,ItMw_1H_VLK_Dagger);
 	B_CreateItemToSteal(self,30,ItKe_Salandril,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Asghan,BodyTex_N,ITAR_Vlk_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Asghan,BodyTex_N,ITAR_VLK_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);

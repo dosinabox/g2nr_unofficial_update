@@ -3,21 +3,10 @@ instance DIA_Pedro_EXIT(C_Info)
 {
 	npc = NOV_600_Pedro;
 	nr = 999;
-	condition = DIA_Pedro_EXIT_Condition;
-	information = DIA_Pedro_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Pedro_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Pedro_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -105,6 +94,7 @@ func void DIA_Pedro_Wurst_NEIN()
 instance DIA_Pedro_EINLASS(C_Info)
 {
 	npc = NOV_600_Pedro;
+	nr = 1;
 	condition = DIA_Pedro_EINLASS_Condition;
 	information = DIA_Pedro_EINLASS_Info;
 	description = "Я хочу войти в монастырь.";
@@ -192,9 +182,12 @@ instance DIA_Addon_Pedro_Statuette(C_Info)
 
 func int DIA_Addon_Pedro_Statuette_Condition()
 {
-	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron) && (MIS_Addon_Daron_GetStatue == LOG_RUNNING))
+	if(MIS_Addon_Daron_GetStatue == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -290,6 +283,7 @@ var int DIA_Pedro_AUFNAHME_NOPERM;
 instance DIA_Pedro_AUFNAHME(C_Info)
 {
 	npc = NOV_600_Pedro;
+	nr = 2;
 	condition = DIA_Pedro_AUFNAHME_Condition;
 	information = DIA_Pedro_AUFNAHME_Info;
 	permanent = TRUE;

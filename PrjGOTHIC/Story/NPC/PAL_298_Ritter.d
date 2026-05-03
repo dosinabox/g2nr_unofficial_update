@@ -15,7 +15,7 @@ instance PAL_298_Ritter(Npc_Default)
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2H_PAL_Sword);
-	EquipItem(self,ItRw_Mil_Crossbow);
+	EquipItem(self,ItRw_MIL_Crossbow);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal08,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,1);

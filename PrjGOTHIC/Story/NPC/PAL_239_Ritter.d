@@ -9,7 +9,7 @@ instance PAL_239_Ritter(Npc_Default)
 	npcType = NPCTYPE_AMBIENT;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_1h_Pal_Sword);
+	EquipItem(self,ItMw_1H_PAL_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_NormalBart_Grim,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,0);
@@ -23,6 +23,6 @@ instance PAL_239_Ritter(Npc_Default)
 func void Rtn_Start_239()
 {
 	TA_Smalltalk(8,0,23,0,"NW_CITY_PALCAMP_03");
-	TA_Stand_WP(23,0,8,0,"NW_CITY_PALCAMP_10");
+	TA_Stand_Guarding(23,0,8,0,"NW_CITY_PALCAMP_14");
 };
 

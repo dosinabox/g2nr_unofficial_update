@@ -9,8 +9,8 @@ instance BAU_983_Dragomir(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Sld_Sword);
-	EquipItem(self,ItRw_Mil_Crossbow);
+	EquipItem(self,ItMw_1H_SLD_Sword);
+	EquipItem(self,ItRw_MIL_Crossbow);
 	CreateInvItems(self,ItRw_Bolt,10);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,47,ItMi_Gold,70);

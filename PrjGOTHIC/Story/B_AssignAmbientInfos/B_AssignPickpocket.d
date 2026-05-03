@@ -12,11 +12,11 @@ func string B_BuildPickpocketString()
 	};
 	if(self.aivar[AIV_Gender] == FEMALE)
 	{
-		text = ConcatStrings(text,"ee ");
+		text = ConcatStrings(text,"ее ");
 	}
 	else
 	{
-		text = ConcatStrings(text,"eго ");
+		text = ConcatStrings(text,"его ");
 	};
 	Npc_GetInvItem(self,self.aivar[AIV_ItemToSteal]);
 	if(Hlp_StrCmp(item.name,NAME_Amulett))

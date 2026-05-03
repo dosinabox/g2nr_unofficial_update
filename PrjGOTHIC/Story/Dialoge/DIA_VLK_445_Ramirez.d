@@ -3,21 +3,10 @@ instance DIA_Ramirez_EXIT(C_Info)
 {
 	npc = VLK_445_Ramirez;
 	nr = 999;
-	condition = DIA_Ramirez_EXIT_Condition;
-	information = DIA_Ramirez_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Ramirez_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Ramirez_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -161,7 +150,7 @@ func int DIA_Ramirez_Beute_Condition()
 		{
 			return TRUE;
 		};
-		if(!Mob_HasItems("THIEF_CHEST_04",ItSc_ChargeFireball))
+		if(!Mob_HasItems("THIEF_CHEST_04",ItSc_ChargeFireBall))
 		{
 			return TRUE;
 		};

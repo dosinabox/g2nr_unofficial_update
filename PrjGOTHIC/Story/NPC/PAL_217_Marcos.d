@@ -10,8 +10,8 @@ instance PAL_217_Marcos(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Pal_Sword);
-	EquipItem(self,ItRw_Mil_Crossbow);
+	EquipItem(self,ItMw_1H_PAL_Sword);
+	EquipItem(self,ItRw_MIL_Crossbow);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,65,ItMi_Gold,380);
 	CreateInvItems(self,ItPo_Health_03,5);

@@ -114,7 +114,7 @@ func void DIA_Addon_Garett_Samuel_Info()
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_01");	//Наш самогонщик. У него есть пещера на берегу, недалеко от лагеря.
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_02");	//Просто иди по берегу на север, и ты ее найдешь.
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_03");	//Я бы посоветовал тебе запастись грогом.
-	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_04");	//Не все наши ребята приветливо относятся к новичкам, надеюсь, ты меня понимаешь.
+	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_04");	//Не все наши ребята приветливо относятся к новичкам. Надеюсь, ты меня понимаешь.
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_05");	//А бутылка-другая грога может сотворить настоящие чудеса!
 	Log_CreateTopic(TOPIC_Addon_PIR_Trader,LOG_NOTE);
 	B_LogEntry(TOPIC_Addon_PIR_Trader,Log_Text_Addon_SamuelTrade);

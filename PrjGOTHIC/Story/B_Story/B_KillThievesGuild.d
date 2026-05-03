@@ -17,10 +17,10 @@ func void B_KillThievesGuild()
 			if(!Npc_IsDead(Jesper))
 			{
 				B_KillNpc(VLK_446_Jesper);
-				if(Npc_HasItems(Jesper,ItMw_1h_Sld_Sword))
+				if(Npc_HasItems(Jesper,ItMw_1H_SLD_Sword))
 				{
-					Npc_RemoveInvItem(Jesper,ItMw_1h_Sld_Sword);
-					CreateInvItem(Jesper,ItMw_1h_Sld_Sword);
+					Npc_RemoveInvItem(Jesper,ItMw_1H_SLD_Sword);
+					CreateInvItem(Jesper,ItMw_1H_SLD_Sword);
 				};
 			};
 			if(!Npc_IsDead(Ramirez))

@@ -41,6 +41,8 @@ instance MENU_SAVEGAME_LOAD(C_MENU_DEF)
 	items[28] = "MENUITEM_LOAD_SLOT20";
 	items[29] = "MENUITEM_LOAD_SLOT0";
 	items[30] = "MENUITEM_LOAD_BACK";
+	items[31] = "MENU_ITEM_LOADSAVE_CHAPTER_TITLE";
+	items[32] = "MENU_ITEM_LOADSAVE_CHAPTER";
 	flags = flags | MENU_SHOW_INFO;
 };
 
@@ -77,6 +79,8 @@ instance MENU_SAVEGAME_SAVE(C_MENU_DEF)
 	items[27] = "MENUITEM_SAVE_SLOT19";
 	items[28] = "MENUITEM_SAVE_SLOT20";
 	items[29] = "MENUITEM_SAVE_BACK";
+	items[30] = "MENU_ITEM_LOADSAVE_CHAPTER_TITLE";
+	items[31] = "MENU_ITEM_LOADSAVE_CHAPTER";
 	flags = flags | MENU_SHOW_INFO;
 };
 
@@ -193,6 +197,30 @@ instance MENUITEM_LOADSAVE_PLAYTIME_VALUE(C_MENU_ITEM_DEF)
 	dimy = 350;
 	fontname = MENU_FONT_SMALL;
 	flags = flags & ~IT_SELECTABLE;
+};
+
+instance MENU_ITEM_LOADSAVE_CHAPTER_TITLE(C_MENU_ITEM_DEF)
+{
+	text[0] = MENU_TEXT_CHAPTER;
+	posx = SAVEGAME_X2;
+	posy = 4805;
+	fontname = MENU_FONT_SMALL;
+	flags = flags & ~IT_SELECTABLE;
+	hideifoptionsectionset = "INTERNAL";
+	hideifoptionset = "UnionActivated";
+	hideonvalue = 0;
+};
+
+instance MENU_ITEM_LOADSAVE_CHAPTER(C_MENU_ITEM_DEF)
+{
+	text[0] = "";
+	posx = SAVEGAME_X2;
+	posy = 5125;
+	fontname = MENU_FONT_SMALL;
+	flags = flags & ~IT_SELECTABLE;
+	hideifoptionsectionset = "INTERNAL";
+	hideifoptionset = "UnionActivated";
+	hideonvalue = 0;
 };
 
 instance MENUITEM_SAVE_BACK(C_MENU_ITEM_DEF)

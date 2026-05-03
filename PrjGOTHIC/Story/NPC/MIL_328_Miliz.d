@@ -15,7 +15,7 @@ instance MIL_328_Miliz(Npc_Default)
 	aivar[AIV_IGNORE_Sheepkiller] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Mil_Sword);
+	EquipItem(self,ItMw_1H_MIL_Sword);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,35,ItKe_Storage,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart17,BodyTex_N,ITAR_Leather_L);

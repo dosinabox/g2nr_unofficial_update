@@ -1,5 +1,5 @@
 
-instance ItMw_1h_Vlk_Dagger(C_Item)
+instance ItMw_1H_VLK_Dagger(C_Item)
 {
 	name = "Кинжал";
 	mainflag = ITEM_KAT_NF;
@@ -45,18 +45,18 @@ instance ItMw_1H_Mace_L_01(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Bau_Axe(C_Item)
+instance ItMw_1H_BAU_Axe(C_Item)
 {
 	name = "Серп";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_METAL;
-	value = Value_BauAxe;
-	damageTotal = Damage_BauAxe;
+	value = Value_BAUAxe;
+	damageTotal = Damage_BAUAxe;
 	damagetype = DAM_EDGE;
-	range = Range_BauAxe;
+	range = Range_BAUAxe;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = Condition_BauAxe;
+	cond_value[2] = Condition_BAUAxe;
 	visual = "ItMw_007_1H_sickle_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -114,18 +114,18 @@ instance ItMw_1H_Mace_L_03(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Bau_Mace(C_Item)
+instance ItMw_1H_BAU_Mace(C_Item)
 {
 	name = "Тяжелый сук";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
-	value = Value_BauMace;
-	damageTotal = Damage_BauMace;
+	value = Value_BAUMace;
+	damageTotal = Damage_BAUMace;
 	damagetype = DAM_BLUNT;
-	range = Range_BauMace;
+	range = Range_BAUMace;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = Condition_BauMace;
+	cond_value[2] = Condition_BAUMace;
 	visual = "ItMw_010_1H_Club_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -353,12 +353,12 @@ instance ItMw_1H_NOV_Mace(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
 	material = MAT_WOOD;
-	value = Value_NovMace;
-	damageTotal = Damage_NovMace;
+	value = Value_NOVMace;
+	damageTotal = Damage_NOVMace;
 	damagetype = DAM_BLUNT;
-	range = Range_NovMace;
+	range = Range_NOVMace;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = Condition_NovMace;
+	cond_value[2] = Condition_NOVMace;
 	visual = "ItMw_020_2H_NOV_Staff_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -376,12 +376,12 @@ instance ItMw_2H_BAU_Axe(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
 	material = MAT_WOOD;
-	value = Value_Bau2hAxt;
-	damageTotal = Damage_Bau2hAxt;
+	value = Value_BAU2hAxt;
+	damageTotal = Damage_BAU2hAxt;
 	damagetype = DAM_EDGE;
-	range = Range_Bau2hAxt;
+	range = Range_BAU2hAxt;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = Condition_Bau2hAxt;
+	cond_value[2] = Condition_BAU2hAxt;
 	visual = "ItMw_020_2H_Axe_Lumberjack_01.3ds";
 	description = name;
 	text[2] = NAME_Damage;
@@ -479,7 +479,7 @@ instance ItMw_TrainSword(C_Item)
 	text[4] = NAME_OneHanded;
 };
 
-instance ItMw_1H_Misc_Axe(C_Item)
+instance ItMw_1H_MISC_Axe(C_Item)
 {
 	name = "Ржавый топор";
 	mainflag = ITEM_KAT_NF;
@@ -525,18 +525,18 @@ instance ItMw_2H_Sword_M_01(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Mil_Sword(C_Item)
+instance ItMw_1H_MIL_Sword(C_Item)
 {
 	name = "Широкий меч";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
-	value = Value_MilSchwert;
-	damageTotal = Damage_MilSchwert;
+	value = Value_MILSchwert;
+	damageTotal = Damage_MILSchwert;
 	damagetype = DAM_EDGE;
-	range = Range_MilSchwert;
+	range = Range_MILSchwert;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = Condition_MilSchwert;
+	cond_value[2] = Condition_MILSchwert;
 	visual = "ItMw_025_1H_MIL_Sword_broad_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -554,12 +554,12 @@ instance ItMw_1H_SLD_Axe(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
-	value = Value_Sld1hAxt;
-	damageTotal = Damage_Sld1hAxt;
+	value = Value_SLD1hAxt;
+	damageTotal = Damage_SLD1hAxt;
 	damagetype = DAM_EDGE;
-	range = Range_Sld1hAxt;
+	range = Range_SLD1hAxt;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = Condition_Sld1hAxt;
+	cond_value[2] = Condition_SLD1hAxt;
 	visual = "ItMw_025_1H_SLD_axe_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -571,18 +571,18 @@ instance ItMw_1H_SLD_Axe(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Sld_Sword(C_Item)
+instance ItMw_1H_SLD_Sword(C_Item)
 {
 	name = "Грубый меч";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
-	value = Value_Sld1hSchwert;
-	damageTotal = Damage_Sld1hSchwert;
+	value = Value_SLD1hSchwert;
+	damageTotal = Damage_SLD1hSchwert;
 	damagetype = DAM_EDGE;
-	range = Range_Sld1hSchwert;
+	range = Range_SLD1hSchwert;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = Condition_Sld1hSchwert;
+	cond_value[2] = Condition_SLD1hSchwert;
 	visual = "ItMw_025_1H_SLD_sword_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -600,12 +600,12 @@ instance ItMw_2H_SLD_Axe(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
 	material = MAT_WOOD;
-	value = Value_Sld2hAxe;
-	damageTotal = Damage_Sld2hAxe;
+	value = Value_SLD2hAxe;
+	damageTotal = Damage_SLD2hAxe;
 	damagetype = DAM_EDGE;
-	range = Range_Sld2hAxe;
+	range = Range_SLD2hAxe;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = Condition_Sld2hAxe;
+	cond_value[2] = Condition_SLD2hAxe;
 	visual = "ItMw_035_2H_SLD_axe_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -623,12 +623,12 @@ instance ItMw_2H_SLD_Sword(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
-	value = Value_Sld2hSchwert;
-	damageTotal = Damage_Sld2hSchwert;
+	value = Value_SLD2hSchwert;
+	damageTotal = Damage_SLD2hSchwert;
 	damagetype = DAM_EDGE;
-	range = Range_Sld2hSchwert;
+	range = Range_SLD2hSchwert;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = Condition_Sld2hSchwert;
+	cond_value[2] = Condition_SLD2hSchwert;
 	visual = "ItMw_035_2H_SLD_sword_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -640,18 +640,18 @@ instance ItMw_2H_SLD_Sword(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_1h_Pal_Sword(C_Item)
+instance ItMw_1H_PAL_Sword(C_Item)
 {
 	name = "Меч паладина";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
-	value = Value_PalSchwert;
-	damageTotal = Damage_PalSchwert;
+	value = Value_PALSchwert;
+	damageTotal = Damage_PALSchwert;
 	damagetype = DAM_EDGE;
-	range = Range_PalSchwert;
+	range = Range_PALSchwert;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = Condition_PalSchwert;
+	cond_value[2] = Condition_PALSchwert;
 	visual = "ItMw_030_1H_PAL_Sword_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -669,12 +669,12 @@ instance ItMw_2H_PAL_Sword(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
-	value = Value_PalZweihaender;
-	damageTotal = Damage_PalZweihaender;
+	value = Value_PALZweihaender;
+	damageTotal = Damage_PALZweihaender;
 	damagetype = DAM_EDGE;
-	range = Range_PalZweihaender;
+	range = Range_PALZweihaender;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = Condition_PalZweihaender;
+	cond_value[2] = Condition_PALZweihaender;
 	visual = "ItMw_040_2H_PAL_Sword_03.3DS";
 	description = name;
 	text[2] = NAME_Damage;

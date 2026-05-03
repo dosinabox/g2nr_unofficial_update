@@ -3,21 +3,10 @@ instance DIA_328_Miliz_EXIT(C_Info)
 {
 	npc = MIL_328_Miliz;
 	nr = 999;
-	condition = DIA_328_Miliz_EXIT_Condition;
-	information = DIA_328_Miliz_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_328_Miliz_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_328_Miliz_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -83,7 +72,7 @@ func int DIA_328_Miliz_Kill_Condition()
 		{
 			return TRUE;
 		};
-		if((Npc_GetDistToWP(other,MIL_328_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+		if(Npc_GetDistToWP(other,MIL_328_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50))
 		{
 			return TRUE;
 		};

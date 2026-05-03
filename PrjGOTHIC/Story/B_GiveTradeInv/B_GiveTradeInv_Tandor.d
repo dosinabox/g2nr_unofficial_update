@@ -11,7 +11,7 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 	{
 		CreateInvItems(slf,ItRw_Arrow,25);
 		CreateInvItems(slf,ItRw_Bolt,25);
-		CreateInvItems(slf,ItRw_Mil_Crossbow,1);
+		CreateInvItems(slf,ItRw_MIL_Crossbow,1);
 		CreateInvItems(slf,ItRw_Bow_L_03,1);
 		CreateInvItems(slf,ItRw_Bow_L_04,1);
 		CreateInvItems(slf,ItAm_Prot_Total_01,1);
@@ -32,7 +32,7 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 			CreateInvItems(slf,ItMw_Orkschlaechter,1);
 			CreateInvItems(slf,ItMw_Schlachtaxt,1);
 			CreateInvItems(slf,ItMw_Bloodschneide,1);
-			CreateInvItems(slf,ItMw_1h_Pal_Sword,1);
+			CreateInvItems(slf,ItMw_1H_PAL_Sword,1);
 		};
 		Tandor_ItemsGiven_Chapter_1 = TRUE;
 	};
@@ -49,7 +49,7 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 			CreateInvItems(slf,ItMw_Stabkeule,1);
 			CreateInvItems(slf,ItMw_Steinbrecher,1);
 			CreateInvItems(slf,ItMw_Schwert2,1);
-			CreateInvItems(slf,ItMw_1h_Pal_Sword,1);
+			CreateInvItems(slf,ItMw_1H_PAL_Sword,1);
 		};
 		Tandor_ItemsGiven_Chapter_2 = TRUE;
 	};

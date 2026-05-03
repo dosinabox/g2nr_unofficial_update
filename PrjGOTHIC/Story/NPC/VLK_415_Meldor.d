@@ -10,10 +10,10 @@ instance VLK_415_Meldor(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Sld_Sword);
+	EquipItem(self,ItMw_1H_SLD_Sword);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,34,ItMi_Gold,55);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_P_NormalBald,BodyTex_P,ITAR_Vlk_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_P_NormalBald,BodyTex_P,ITAR_VLK_L);
 	Mdl_SetModelFatness(self,0.8);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

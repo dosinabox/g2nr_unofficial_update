@@ -11,7 +11,7 @@ instance VLK_435_Nadja(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Vlk_Dagger);
+	EquipItem(self,ItMw_1H_VLK_Dagger);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,40,ItMi_Gold,40);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe8",FaceBabe_N_Hure,BodyTexBabe_N,ITAR_VlkBabe_H);

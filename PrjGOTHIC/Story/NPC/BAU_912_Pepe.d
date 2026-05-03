@@ -9,10 +9,10 @@ instance BAU_912_Pepe(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Bau_Mace);
+	EquipItem(self,ItMw_1H_BAU_Mace);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,15,ItMi_Gold,25);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Markus_Kark,BodyTex_N,ITAR_Bau_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Markus_Kark,BodyTex_N,ITAR_BAU_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

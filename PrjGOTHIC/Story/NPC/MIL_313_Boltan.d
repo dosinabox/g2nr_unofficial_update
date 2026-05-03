@@ -10,7 +10,7 @@ instance MIL_313_Boltan(Npc_Default)
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Mil_Sword);
+	EquipItem(self,ItMw_1H_MIL_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Normal01,BodyTex_B,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,0);

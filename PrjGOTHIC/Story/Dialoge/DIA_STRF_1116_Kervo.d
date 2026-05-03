@@ -3,21 +3,10 @@ instance DIA_Kervo_EXIT(C_Info)
 {
 	npc = STRF_1116_Kervo;
 	nr = 999;
-	condition = DIA_Kervo_EXIT_Condition;
-	information = DIA_Kervo_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Kervo_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Kervo_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -115,6 +104,7 @@ func void DIA_Kervo_HILFE_tschau()
 instance DIA_Kervo_LurkerPlatt(C_Info)
 {
 	npc = STRF_1116_Kervo;
+	nr = 5;
 	condition = DIA_Kervo_LurkerPlatt_Condition;
 	information = DIA_Kervo_LurkerPlatt_Info;
 	description = "Луркеров больше нет.";
@@ -162,6 +152,7 @@ func void DIA_Kervo_LurkerPlatt_Info()
 instance DIA_Kervo_VERGISSES(C_Info)
 {
 	npc = STRF_1116_Kervo;
+	nr = 6;
 	condition = DIA_Kervo_VERGISSES_Condition;
 	information = DIA_Kervo_VERGISSES_Info;
 	permanent = TRUE;

@@ -37,7 +37,7 @@ func void B_SetVisuals_Gobbo_Skeleton()
 instance Gobbo_Skeleton(Mst_Default_Gobbo_Skeleton)
 {
 	B_SetVisuals_Gobbo_Skeleton();
-	Npc_SetToFightMode(self,ItMw_1h_Bau_Mace);
+	Npc_SetToFightMode(self,ItMw_1H_BAU_Mace);
 };
 
 instance Summoned_Gobbo_Skeleton(Mst_Default_Gobbo_Skeleton)
@@ -50,6 +50,6 @@ instance Summoned_Gobbo_Skeleton(Mst_Default_Gobbo_Skeleton)
 	B_SetAttitude(self,ATT_FRIENDLY);
 	start_aistate = ZS_MM_Rtn_Summoned;
 	B_SetVisuals_Gobbo_Skeleton();
-	Npc_SetToFightMode(self,ItMw_1h_Bau_Mace);
+	Npc_SetToFightMode(self,ItMw_1H_BAU_Mace);
 };
 

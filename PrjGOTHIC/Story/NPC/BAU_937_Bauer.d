@@ -11,9 +11,9 @@ instance BAU_937_Bauer(Npc_Default)
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,15);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Bau_Mace);
+	EquipItem(self,ItMw_1H_BAU_Mace);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Weak05,BodyTex_N,ITAR_Bau_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Weak05,BodyTex_N,ITAR_BAU_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	daily_routine = Rtn_Start_937;

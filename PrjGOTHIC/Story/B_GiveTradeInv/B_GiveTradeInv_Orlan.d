@@ -25,7 +25,7 @@ func void B_GiveTradeInv_Orlan(var C_Npc slf)
 		CreateInvItems(slf,ItRi_Prot_Mage_02,1);
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
-			CreateInvItems(slf,ItMw_1h_Vlk_Dagger,1);
+			CreateInvItems(slf,ItMw_1H_VLK_Dagger,1);
 		}
 		else
 		{
@@ -34,7 +34,7 @@ func void B_GiveTradeInv_Orlan(var C_Npc slf)
 			CreateInvItems(slf,ItMw_Orkschlaechter,1);
 			CreateInvItems(slf,ItMw_Schlachtaxt,1);
 			CreateInvItems(slf,ItMw_Barbarenstreitaxt,1);
-			CreateInvItems(slf,ItMw_1h_Vlk_Dagger,1);
+			CreateInvItems(slf,ItMw_1H_VLK_Dagger,1);
 		};
 		Orlan_ItemsGiven_Chapter_1 = TRUE;
 	};

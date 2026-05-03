@@ -9,8 +9,8 @@ instance BAU_982_Grimbald(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_1h_Sld_Sword);
-	EquipItem(self,ItRw_Sld_Bow);
+	EquipItem(self,ItMw_1H_SLD_Sword);
+	EquipItem(self,ItRw_SLD_Bow);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,85,ItMi_Gold,250);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_B_Normal_Kirgo,BodyTex_B,ITAR_Leather_L);

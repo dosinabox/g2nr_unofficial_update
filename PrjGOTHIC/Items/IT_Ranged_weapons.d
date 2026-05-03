@@ -26,7 +26,7 @@ instance ItRw_Bolt(C_Item)
 	inv_zbias = 190;
 };
 
-instance ItRw_Mil_Crossbow(C_Item)
+instance ItRw_MIL_Crossbow(C_Item)
 {
 	name = "Арбалет ополчения";
 	mainflag = ITEM_KAT_FF;
@@ -38,7 +38,7 @@ instance ItRw_Mil_Crossbow(C_Item)
 	munition = ItRw_Bolt;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_MilArmbrust;
-	visual = "ItRw_Mil_Crossbow.mms";
+	visual = "ItRw_MIL_Crossbow.mms";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -48,7 +48,7 @@ instance ItRw_Mil_Crossbow(C_Item)
 	count[5] = value;
 };
 
-instance ItRw_Sld_Bow(C_Item)
+instance ItRw_SLD_Bow(C_Item)
 {
 	name = "Лук наемника";
 	mainflag = ITEM_KAT_FF;
@@ -60,7 +60,7 @@ instance ItRw_Sld_Bow(C_Item)
 	munition = ItRw_Arrow;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_SldBogen;
-	visual = "ItRw_Sld_Bow.mms";
+	visual = "ItRw_SLD_Bow.mms";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;

@@ -339,25 +339,40 @@ func void B_Saturas_SCFound_SayWhereOnce()
 
 func int C_SCHasStoneplatesForSaturas()
 {
-	if(Npc_HasItems(other,ItMi_Addon_Stone_01) && (Saturas_SCFound_ItMi_Addon_Stone_01 == FALSE))
+	if(Saturas_SCFound_ItMi_Addon_Stone_01 == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(hero,ItMi_Addon_Stone_01))
+		{
+			return TRUE;
+		};
 	};
-	if(Npc_HasItems(other,ItMi_Addon_Stone_02) && (Saturas_SCFound_ItMi_Addon_Stone_02 == FALSE))
+	if(Saturas_SCFound_ItMi_Addon_Stone_02 == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(hero,ItMi_Addon_Stone_02))
+		{
+			return TRUE;
+		};
 	};
-	if(Npc_HasItems(other,ItMi_Addon_Stone_03) && (Saturas_SCFound_ItMi_Addon_Stone_03 == FALSE))
+	if(Saturas_SCFound_ItMi_Addon_Stone_03 == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(hero,ItMi_Addon_Stone_03))
+		{
+			return TRUE;
+		};
 	};
-	if(Npc_HasItems(other,ItMi_Addon_Stone_04) && (Saturas_SCFound_ItMi_Addon_Stone_04 == FALSE))
+	if(Saturas_SCFound_ItMi_Addon_Stone_04 == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(hero,ItMi_Addon_Stone_04))
+		{
+			return TRUE;
+		};
 	};
-	if(Npc_HasItems(other,ItMi_Addon_Stone_05) && (Saturas_SCFound_ItMi_Addon_Stone_05 == FALSE))
+	if(Saturas_SCFound_ItMi_Addon_Stone_05 == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(hero,ItMi_Addon_Stone_05))
+		{
+			return TRUE;
+		};
 	};
 	return FALSE;
 };
@@ -415,7 +430,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 			B_ReadFakeItem(self,other,ItMi_Addon_Stone_02,2);
 			Saturas_SCFound_ItMi_Addon_Stone_02 = TRUE;
 			BroughtToken += 1;
-			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_11");	//A! Табличка стражей мертвых. Вот кто вызвал духов их мертвецов.
+			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_11");	//А! Табличка стражей мертвых. Вот кто вызвал духов их мертвецов.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_12");	//Зодчие поддерживали очень тесную связь с предками.
 			Log_AddEntry(TOPIC_Addon_Relicts,"Фиолетовая каменная табличка из дворца стражей мертвых на юге.");
 		};
@@ -676,10 +691,10 @@ func void DIA_Addon_Saturas_RavenInfos_Info()
 	var int XP_RavenNeuigkeit;
 	AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_00");	//Насчет Ворона...
 	RavenNeuigkeit = 0;
-	if(((EnteredBanditsCamp == TRUE) || Npc_IsDead(Senyan) || Npc_IsDead(Esteban) || Npc_IsDead(Wache_01) || Npc_IsDead(Wache_02) || Npc_IsDead(Bloodwyn)) && (DIA_Addon_Saturas_RavenInfos_OneTime1 == FALSE))
+	if(((EnteredBanditsCamp == TRUE) || Npc_IsDead(Senyan) || Npc_IsDead(Esteban) || Npc_IsDead(EstebanGuard1) || Npc_IsDead(EstebanGuard2) || Npc_IsDead(Bloodwyn)) && (DIA_Addon_Saturas_RavenInfos_OneTime1 == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_01");	//Я побывал в лагере бандитов к востоку отсюда. Ворон - их предводитель.
-		if(Npc_IsDead(Franco) || Npc_IsDead(Ramon) || Npc_IsDead(Senyan) || Npc_IsDead(Esteban) || Npc_IsDead(Wache_01) || Npc_IsDead(Wache_02) || Npc_IsDead(Bloodwyn))
+		if(Npc_IsDead(Franco) || Npc_IsDead(Ramon) || Npc_IsDead(Senyan) || Npc_IsDead(Esteban) || Npc_IsDead(EstebanGuard1) || Npc_IsDead(EstebanGuard2) || Npc_IsDead(Bloodwyn))
 		{
 			AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_02");	//Но прежде чем оказаться рядом с Вороном, я был вынужден убрать с дороги нескольких бандитов.
 		};

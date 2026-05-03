@@ -742,13 +742,16 @@ func void B_GiveBaboDocs()
 
 func int C_SCHasBabosDocs()
 {
-	if(Npc_HasItems(other,ItWr_BabosDocs_MIS))
+	if(Npc_HasItems(hero,ItWr_BabosDocs_MIS))
 	{
 		return TRUE;
 	};
-	if(Npc_HasItems(other,ItWr_BabosPinUp_MIS) && Npc_HasItems(other,ItWr_BabosLetter_MIS))
+	if(Npc_HasItems(hero,ItWr_BabosPinUp_MIS))
 	{
-		return TRUE;
+		if(Npc_HasItems(hero,ItWr_BabosLetter_MIS))
+		{
+			return TRUE;
+		};
 	};
 	return FALSE;
 };

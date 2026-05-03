@@ -12,7 +12,7 @@ instance BDT_10005_Addon_Wache_02(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2H_SLD_Axe);
-	EquipItem(self,ItRw_Mil_Crossbow);
+	EquipItem(self,ItRw_MIL_Crossbow);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,38,ItMi_Gold,101);
 	CreateInvItem(self,ItWr_Poster_MIS);

@@ -982,7 +982,7 @@ const string NAME_TROPHY_ReptileSkin = "Кожа рептилий";
 const string NAME_TROPHY_Mandibles = "Удаление мандибул";
 const string NAME_TROPHY_DragonScale = "Удаление чешуи дракона";
 const string NAME_TROPHY_DragonBlood = "Сбор крови дракона";
-const string NAME_TROPHY_CrawlerPlate = "Снятие панцирей c краулеров";
+const string NAME_TROPHY_CrawlerPlate = "Снятие панцирей с краулеров";
 const string NAME_TROPHY_FireTongue = "Огненный язык";
 
 const string PRINT_HiddenInFish = "В этой рыбе что-то спрятано.";

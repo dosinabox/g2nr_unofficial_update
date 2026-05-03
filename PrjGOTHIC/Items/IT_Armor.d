@@ -1,14 +1,14 @@
 
 const int VALUE_ITAR_Governor = 1100;
-const int VALUE_ITAR_Vlk_L = 100;
-const int VALUE_ITAR_Vlk_M = 120;
-const int VALUE_ITAR_Vlk_H = 150;
+const int VALUE_ITAR_VLK_L = 100;
+const int VALUE_ITAR_VLK_M = 120;
+const int VALUE_ITAR_VLK_H = 150;
 const int VALUE_ITAR_MIL_L = 600;
 const int VALUE_ITAR_MIL_M = 2500;
 const int VALUE_ITAR_PAL_M = 5000;
 const int VALUE_ITAR_PAL_H = 20000;
-const int VALUE_ITAR_Bau_L = 80;
-const int VALUE_ITAR_Bau_M = 100;
+const int VALUE_ITAR_BAU_L = 80;
+const int VALUE_ITAR_BAU_M = 100;
 const int VALUE_ITAR_SLD_L = 500;
 const int VALUE_ITAR_SLD_M = 1000;
 const int VALUE_ITAR_DJG_Crawler = 1500;
@@ -102,7 +102,7 @@ instance ITAR_Onar(C_Item)
 	protection[PROT_POINT] = 15;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_Vlk_H;
+	value = VALUE_ITAR_VLK_H;
 	wear = WEAR_TORSO;
 	ownerGuild = GIL_BAU;
 	visual = "ItAr_Onar.3DS";
@@ -209,7 +209,7 @@ instance ITAR_Barkeeper(C_Item)
 	count[4] = protection[PROT_MAGIC];
 };
 
-instance ITAR_Vlk_L(C_Item)
+instance ITAR_VLK_L(C_Item)
 {
 	name = "Простой городской костюм";
 	mainflag = ITEM_KAT_ARMOR;
@@ -219,7 +219,7 @@ instance ITAR_Vlk_L(C_Item)
 	protection[PROT_POINT] = 10;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_Vlk_L;
+	value = VALUE_ITAR_VLK_L;
 	wear = WEAR_TORSO;
 	ownerGuild = GIL_VLK;
 	visual = "ItAr_VLK_L.3DS";
@@ -239,7 +239,7 @@ instance ITAR_Vlk_L(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_Vlk_M(C_Item)
+instance ITAR_VLK_M(C_Item)
 {
 	name = "Хороший городской костюм";
 	mainflag = ITEM_KAT_ARMOR;
@@ -249,7 +249,7 @@ instance ITAR_Vlk_M(C_Item)
 	protection[PROT_POINT] = 10;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_Vlk_M;
+	value = VALUE_ITAR_VLK_M;
 	wear = WEAR_TORSO;
 	ownerGuild = GIL_VLK;
 	visual = "ItAr_VLK_M.3DS";
@@ -269,7 +269,7 @@ instance ITAR_Vlk_M(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_Vlk_H(C_Item)
+instance ITAR_VLK_H(C_Item)
 {
 	name = "Добротный городской костюм";
 	mainflag = ITEM_KAT_ARMOR;
@@ -279,7 +279,7 @@ instance ITAR_Vlk_H(C_Item)
 	protection[PROT_POINT] = 15;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_Vlk_H;
+	value = VALUE_ITAR_VLK_H;
 	wear = WEAR_TORSO;
 	ownerGuild = GIL_VLK;
 	visual = "ItAr_VLK_H.3DS";
@@ -506,7 +506,7 @@ instance ITAR_PAL_H(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_Bau_L(C_Item)
+instance ITAR_BAU_L(C_Item)
 {
 	name = "Рабочая одежда";
 	mainflag = ITEM_KAT_ARMOR;
@@ -516,7 +516,7 @@ instance ITAR_Bau_L(C_Item)
 	protection[PROT_POINT] = 10;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_Bau_L;
+	value = VALUE_ITAR_BAU_L;
 	wear = WEAR_TORSO;
 	ownerGuild = GIL_BAU;
 	visual = "ItAr_BAU_L.3DS";
@@ -538,7 +538,7 @@ instance ITAR_Bau_L(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_Bau_M(C_Item)
+instance ITAR_BAU_M(C_Item)
 {
 	name = "Крестьянский костюм";
 	mainflag = ITEM_KAT_ARMOR;
@@ -548,7 +548,7 @@ instance ITAR_Bau_M(C_Item)
 	protection[PROT_POINT] = 15;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_Bau_M;
+	value = VALUE_ITAR_BAU_M;
 	wear = WEAR_TORSO;
 	ownerGuild = GIL_BAU;
 	visual = "ItAr_BAU_M.3ds";
@@ -1357,7 +1357,7 @@ instance ITAR_Slave(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_BEGGAR(C_Item)
+instance ITAR_Beggar(C_Item)
 {
 	name = "Грязная накидка";
 	mainflag = ITEM_KAT_ARMOR;

@@ -14,7 +14,7 @@ instance BAU_940_Akil(Npc_Default)
 	EquipItem(self,ItMw_ShortSword2);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,37,ItMi_Gold,30);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart_Grim,BodyTex_N,ITAR_Bau_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart_Grim,BodyTex_N,ITAR_BAU_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

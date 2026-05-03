@@ -199,9 +199,12 @@ instance DIA_Addon_Saturas_raus(C_Info)
 
 func int DIA_Addon_Saturas_raus_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_keineAhnung) && (MIS_Addon_Lares_Ornament2Saturas == FALSE) && Npc_IsInState(self,ZS_Talk) && !Npc_HasItems(other,ItMi_Ornament_Addon_Vatras))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Addon_Saturas_keineAhnung) && (MIS_Addon_Lares_Ornament2Saturas == FALSE) && !Npc_HasItems(other,ItMi_Ornament_Addon_Vatras))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -552,11 +555,19 @@ instance DIA_Addon_Saturas_GiveVatrasLetter(C_Info)
 	description = "У меня есть для тебя послание от Ватраса.";
 };
 
+
 func int DIA_Addon_Saturas_GiveVatrasLetter_Condition()
 {
-	if((VatrasLetterGivenToSaturas == FALSE) && (RangerMeetingRunning == LOG_SUCCESS) && (Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven) || Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven_opened)))
+	if((VatrasLetterGivenToSaturas == FALSE) && (RangerMeetingRunning == LOG_SUCCESS))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven_opened))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -9,7 +9,7 @@ instance BDT_1098_Addon_Snaf(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Sld_Sword);
+	EquipItem(self,ItMw_1H_SLD_Sword);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,49,ItMi_Gold,56);
 	CreateInvItems(self,ItFo_Addon_LousHammer,1);

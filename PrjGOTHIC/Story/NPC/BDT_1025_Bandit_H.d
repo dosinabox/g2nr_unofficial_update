@@ -10,8 +10,8 @@ instance BDT_1025_Bandit_H(Npc_Default)
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Sld_Sword);
-	EquipItem(self,ItRw_Sld_Bow);
+	EquipItem(self,ItMw_1H_SLD_Sword);
+	EquipItem(self,ItRw_SLD_Bow);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_B_Normal01,BodyTex_B,ITAR_BDT_H);
 	Mdl_SetModelFatness(self,0);

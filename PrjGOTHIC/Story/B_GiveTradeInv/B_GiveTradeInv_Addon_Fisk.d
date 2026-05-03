@@ -39,7 +39,7 @@ func void B_GiveTradeInv_Addon_Fisk(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItMw_Addon_Keule_1H_01,1);
 			CreateInvItems(slf,ItMw_Addon_Keule_2H_01,1);
-			CreateInvItems(slf,ItMw_1h_Sld_Sword,1);
+			CreateInvItems(slf,ItMw_1H_SLD_Sword,1);
 		};
 		Fisk_ItemsGiven_Chapter_1 = TRUE;
 	};

@@ -78,9 +78,12 @@ instance DIA_Akil_Nichtjetzt(C_Info)
 
 func int DIA_Akil_Nichtjetzt_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && !C_AkilFarmIsFree() && Npc_KnowsInfo(other,DIA_Akil_Hallo))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(!C_AkilFarmIsFree() && Npc_KnowsInfo(other,DIA_Akil_Hallo))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -103,9 +106,12 @@ instance DIA_Akil_NachKampf(C_Info)
 
 func int DIA_Akil_NachKampf_Condition()
 {
-	if(C_AkilFarmIsFree() && (Kapitel < 4))
+	if(Kapitel < 4)
 	{
-		return TRUE;
+		if(C_AkilFarmIsFree())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -291,9 +297,16 @@ instance DIA_Akil_Lieferung(C_Info)
 
 func int DIA_Akil_Lieferung_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Akil_NachKampf) && (MIS_Baltram_ScoutAkil == LOG_RUNNING))
+	if(MIS_Baltram_ScoutAkil == LOG_RUNNING)
 	{
-		return TRUE;
+		if(AkilFarmIsFreeKap4 == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Akil_NachKampf))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -317,7 +330,11 @@ instance DIA_Akil_Gegend(C_Info)
 
 func int DIA_Akil_Gegend_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Akil_Soeldner))
+	if(AkilFarmIsFreeKap4 == TRUE)
+	{
+		return TRUE;
+	};
+	if(Npc_KnowsInfo(other,DIA_Akil_NachKampf))
 	{
 		return TRUE;
 	};
@@ -412,6 +429,12 @@ func void DIA_Akil_Wald_Info()
 };
 
 
+func void B_Akil_OldNews()
+{
+	AI_Output(other,self,"DIA_Akil_Perm_15_06");	//Это не новость.
+	AI_Output(self,other,"DIA_Akil_Perm_13_07");	//Ну и ладно. Я просто подумал, что тебе стоит знать это.
+};
+
 instance DIA_Akil_Perm(C_Info)
 {
 	npc = BAU_940_Akil;
@@ -425,11 +448,7 @@ instance DIA_Akil_Perm(C_Info)
 
 func int DIA_Akil_Perm_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Akil_Soeldner) && (Kapitel >= 3))
-	{
-		return TRUE;
-	};
-	if(Kapitel >= 4)
+	if(Npc_KnowsInfo(other,DIA_Akil_SCHAFDIEB))
 	{
 		return TRUE;
 	};
@@ -451,20 +470,30 @@ func void DIA_Akil_Perm_Info()
 	}
 	else
 	{
-		if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
+		if(other.guild == GIL_PAL)
 		{
 			AI_Output(self,other,"DIA_Akil_Perm_13_03");	//Орки теперь повсюду. Говорят даже, что у них здесь где-то есть штаб-квартира. Расспроси об этом фермера Лобарта.
-		};
-		if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+			if(Npc_HasItems(other,ItRi_OrcEliteRing) || (AntiPaladinTalkCount > 0))
+			{
+				B_Akil_OldNews();
+			};
+		}
+		else if(other.guild == GIL_DJG)
 		{
 			AI_Output(self,other,"DIA_Akil_Perm_13_04");	//Говорят, что в округе появились люди-ящеры. На твоем месте я бы не ходил в пещеры.
-		};
-		if(other.guild == GIL_KDF)
+			if(Npc_HasItems(other,ItAt_DragonEgg_MIS) || (BennetsDragonEggOffer > 0))
+			{
+				B_Akil_OldNews();
+			};
+		}
+		else if(other.guild == GIL_KDF)
 		{
 			AI_Output(self,other,"DIA_Akil_Perm_13_05");	//Люди в черных рясах ищут тебя.
+			if(Npc_HasItems(other,ItWr_DementorObsessionBook_MIS) || (SC_ObsessionCounter > 0) || Npc_KnowsInfo(other,DIA_Pyrokar_BUCHDERBESSENEN))
+			{
+				B_Akil_OldNews();
+			};
 		};
-		AI_Output(other,self,"DIA_Akil_Perm_15_06");	//Это не новость.
-		AI_Output(self,other,"DIA_Akil_Perm_13_07");	//Ну и ладно. Я просто подумал, что тебе стоит знать это.
 	};
 };
 
@@ -481,13 +510,16 @@ instance DIA_Akil_SCHAFDIEB(C_Info)
 
 func int DIA_Akil_SCHAFDIEB_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Akil_Soeldner) && (Kapitel >= 3))
-	{
-		return TRUE;
-	};
 	if(Kapitel >= 4)
 	{
 		return TRUE;
+	};
+	if(Kapitel == 3)
+	{
+		if(Npc_KnowsInfo(other,DIA_Akil_NachKampf))
+		{
+			return TRUE;
+		};
 	};
 };
 

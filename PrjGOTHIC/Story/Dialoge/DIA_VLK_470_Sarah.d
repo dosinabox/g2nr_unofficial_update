@@ -35,9 +35,12 @@ instance DIA_Sarah_Greet(C_Info)
 
 func int DIA_Sarah_Greet_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Sarah_HALLO) && !Npc_KnowsInfo(other,DIA_Sarah_Success))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Sarah_HALLO) && !Npc_KnowsInfo(other,DIA_Sarah_Success))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -50,6 +53,7 @@ func void DIA_Sarah_Greet_Info()
 instance DIA_Sarah_HALLO(C_Info)
 {
 	npc = VLK_470_Sarah;
+	nr = 1;
 	condition = DIA_Sarah_HALLO_Condition;
 	information = DIA_Sarah_HALLO_Info;
 	description = "Как торговля?";

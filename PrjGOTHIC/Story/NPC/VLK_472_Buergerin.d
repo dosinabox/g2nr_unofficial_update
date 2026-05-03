@@ -11,7 +11,7 @@ instance VLK_472_Buergerin(Npc_Default)
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);
-	EquipItem(self,ItMw_1h_Vlk_Dagger);
+	EquipItem(self,ItMw_1H_VLK_Dagger);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_BabeHair",FaceBabe_N_HairAndCloth,BodyTexBabe_N,ITAR_VlkBabe_L);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");
 	B_GiveNpcTalents(self);
@@ -24,7 +24,6 @@ func void Rtn_Start_472()
 {
 	TA_Smalltalk(5,0,12,35,"NW_CITY_HABOUR_JACK");
 	TA_Smalltalk(12,35,18,0,"NW_CITY_HABOUR_POOR_AREA_01");
-//	TA_Sweep_FP(18,0,22,0,"NW_CITY_HABOUR_POOR_AREA_HUT_07_01");
 	TA_Sit_Chair(18,0,22,0,"NW_CITY_HABOUR_POOR_AREA_HUT_07_01");
 	TA_Sleep(22,0,5,0,"NW_CITY_HABOUR_POOR_AREA_HUT_07_BED_01");
 };

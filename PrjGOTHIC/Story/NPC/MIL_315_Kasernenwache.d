@@ -9,7 +9,7 @@ instance MIL_315_Kasernenwache(Npc_Default)
 	npcType = NPCTYPE_AMBIENT;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Mil_Sword);
+	EquipItem(self,ItMw_1H_MIL_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Tough_Skip,BodyTex_N,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,0);

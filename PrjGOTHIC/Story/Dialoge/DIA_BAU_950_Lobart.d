@@ -39,7 +39,7 @@ func int DIA_Lobart_STOLENCLOTHS_Condition()
 {
 	if((Lobart_Kleidung_Verkauft == FALSE) && (other.guild == GIL_NONE))
 	{
-		if(!Mob_HasItems("CHEST_LOBART",ITAR_Bau_L))
+		if(!Mob_HasItems("CHEST_LOBART",ITAR_BAU_L))
 		{
 			return TRUE;
 		};
@@ -48,7 +48,7 @@ func int DIA_Lobart_STOLENCLOTHS_Condition()
 
 func void DIA_Lobart_STOLENCLOTHS_Info()
 {
-	if(ArmorEquipped(other,ITAR_Bau_L))
+	if(ArmorEquipped(other,ITAR_BAU_L))
 	{
 		AI_Output(self,other,"DIA_Lobart_STOLENCLOTHS_05_00");	//Я не могу поверить своим глазам! Этот ублюдок расхаживает в МОЕЙ одежде!
 	}
@@ -64,7 +64,7 @@ func void DIA_Lobart_STOLENCLOTHS_Info()
 	AI_Output(self,other,"DIA_Lobart_STOLENCLOTHS_05_04");	//Отдай немедленно мою одежду!
 	Info_ClearChoices(DIA_Lobart_STOLENCLOTHS);
 	Info_AddChoice(DIA_Lobart_STOLENCLOTHS,"Забудь об этом!",DIA_Lobart_STOLENCLOTHS_ForgetIt);
-	if(Npc_HasItems(other,ITAR_Bau_L))
+	if(Npc_HasItems(other,ITAR_BAU_L))
 	{
 		Info_AddChoice(DIA_Lobart_STOLENCLOTHS,"Ладно, можешь забрать ее назад.",DIA_Lobart_STOLENCLOTHS_HereYouGo);
 	}
@@ -80,7 +80,7 @@ func void DIA_Lobart_STOLENCLOTHS_HereYouGo()
 	AI_Output(other,self,"DIA_Lobart_STOLENCLOTHS_HereYouGo_15_00");	//Ладно, можешь забрать ее назад.
 	AI_Output(self,other,"DIA_Lobart_STOLENCLOTHS_HereYouGo_05_01");	//Если она тебе нужна, ты можешь ЗАПЛАТИТЬ за нее!
 	AI_Output(self,other,"DIA_Lobart_STOLENCLOTHS_HereYouGo_05_02");	//(отрывисто) А теперь иди работай!
-	B_GiveInvItems(other,self,ITAR_Bau_L,1);
+	B_GiveInvItems(other,self,ITAR_BAU_L,1);
 	Info_ClearChoices(DIA_Lobart_STOLENCLOTHS);
 };
 
@@ -105,9 +105,9 @@ func void DIA_Lobart_STOLENCLOTHS_ForgetIt()
 func void DIA_Lobart_STOLENCLOTHS_HowMuch()
 {
 	AI_Output(other,self,"DIA_Lobart_BuyClothes_15_00");	//Сколько стоит эта рабочая одежда?
-	B_Say_Gold(self,other,VALUE_ITAR_Bau_L);
+	B_Say_Gold(self,other,VALUE_ITAR_BAU_L);
 	AI_Output(self,other,"DIA_Lobart_GOLD_05_06");	//И дешевле я ее не отдам.
-	if(Npc_HasItems(other,ItMi_Gold) >= VALUE_ITAR_Bau_L)
+	if(Npc_HasItems(other,ItMi_Gold) >= VALUE_ITAR_BAU_L)
 	{
 		Info_AddChoice(DIA_Lobart_STOLENCLOTHS,"Хорошо, я заплачу, ты не оставляешь мне выбора.",DIA_Lobart_STOLENCLOTHS_GiveGold);
 	};
@@ -116,7 +116,7 @@ func void DIA_Lobart_STOLENCLOTHS_HowMuch()
 func void DIA_Lobart_STOLENCLOTHS_GiveGold()
 {
 	AI_Output(other,self,"DIA_Canthar_Pay_Ja_15_00");	//Хорошо, я заплачу, ты не оставляешь мне выбора.
-	B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_Bau_L);
+	B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_BAU_L);
 	AI_Output(self,other,"DIA_Lobart_DMT_05_01");	//Это все невыносимо.
 	Lobart_Kleidung_Verkauft = TRUE;
 	LobartGotGoldForStolenClothes = TRUE;
@@ -241,18 +241,25 @@ instance DIA_Lobart_BuyClothes(C_Info)
 
 func int DIA_Lobart_BuyClothes_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lobart_KLEIDUNG) || (Npc_KnowsInfo(other,DIA_Lobart_STOLENCLOTHS) && (Lobart_Kleidung_gestohlen == FALSE)))
+	if((Lobart_Kleidung_Verkauft == FALSE) && (other.guild == GIL_NONE))
 	{
-		if((Lobart_Kleidung_Verkauft == FALSE) && (other.guild == GIL_NONE))
+		if(Npc_KnowsInfo(other,DIA_Lobart_KLEIDUNG))
 		{
 			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Lobart_STOLENCLOTHS))
+		{
+			if(Lobart_Kleidung_gestohlen == FALSE)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
 
 func void DIA_Lobart_BuyClothes_Info()
 {
-	Wert_LobartsRuestung = VALUE_ITAR_Bau_L;
+	Wert_LobartsRuestung = VALUE_ITAR_BAU_L;
 	AI_Output(other,self,"DIA_Lobart_BuyClothes_15_00");	//Сколько стоит эта рабочая одежда?
 	AI_Output(self,other,"DIA_Lobart_BuyClothes_05_01");	//Так. Посмотрим...
 	if(Npc_KnowsInfo(other,DIA_Lobart_STOLENCLOTHS))
@@ -304,10 +311,10 @@ func void DIA_Lobart_BuyClothes_BUY()
 	AI_Output(other,self,"DIA_Lobart_BuyClothes_BUY_15_00");	//Давай тогда сюда эту рабочую одежду.
 	if(B_GiveInvItems(other,self,ItMi_Gold,Wert_LobartsRuestung))
 	{
-		if(Npc_HasItems(self,ITAR_Bau_L))
+		if(Npc_HasItems(self,ITAR_BAU_L))
 		{
 			AI_Output(self,other,"DIA_Lobart_BuyClothes_BUY_05_01");	//Хорошо, мой мальчик. Превыше всего я ценю честность. Вот, держи!
-			B_GiveInvItems(self,other,ITAR_Bau_L,1);
+			B_GiveInvItems(self,other,ITAR_BAU_L,1);
 		}
 		else
 		{
@@ -479,9 +486,17 @@ instance DIA_Lobart_WorkNOW(C_Info)
 
 func int DIA_Lobart_WorkNOW_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lobart_AufstandInfo) || Npc_KnowsInfo(other,DIA_Lobart_STOLENCLOTHS) || Npc_KnowsInfo(other,DIA_Lobart_KLEIDUNG))
+	if(Kapitel < 3)
 	{
-		if(Kapitel < 3)
+		if(Npc_KnowsInfo(other,DIA_Lobart_AufstandInfo))
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Lobart_STOLENCLOTHS))
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Lobart_KLEIDUNG))
 		{
 			return TRUE;
 		};
@@ -580,9 +595,12 @@ instance DIA_Lobart_RuebenRunning(C_Info)
 
 func int DIA_Lobart_RuebenRunning_Condition()
 {
-	if((MIS_Lobart_Rueben == LOG_RUNNING) && Npc_HasItems(other,ItPl_Beet) && (Kapitel < 3))
+	if((MIS_Lobart_Rueben == LOG_RUNNING) && (Kapitel < 3))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItPl_Beet))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -695,6 +713,7 @@ func void DIA_Lobart_MoreWork_Info()
 instance DIA_Lobart_ANDREHELPLOBART(C_Info)
 {
 	npc = BAU_950_Lobart;
+	nr = 50;
 	condition = DIA_Lobart_ANDREHELPLOBART_Condition;
 	information = DIA_Lobart_ANDREHELPLOBART_Info;
 	description = "Меня направил к тебе Андрэ. Я могу чем-нибудь помочь тебе?";
@@ -723,6 +742,7 @@ func void DIA_Lobart_ANDREHELPLOBART_Info()
 instance DIA_Lobart_BUGDEAD(C_Info)
 {
 	npc = BAU_950_Lobart;
+	nr = 50;
 	condition = DIA_Lobart_BUGDEAD_Condition;
 	information = DIA_Lobart_BUGDEAD_Info;
 	description = "Я разделался с этими тварями!";
@@ -759,6 +779,7 @@ func void DIA_Lobart_BUGDEAD_Info()
 instance DIA_Lobart_BUGALIVE(C_Info)
 {
 	npc = BAU_950_Lobart;
+	nr = 50;
 	condition = DIA_Lobart_BUGALIVE_Condition;
 	information = DIA_Lobart_BUGALIVE_Info;
 	permanent = TRUE;
@@ -933,7 +954,15 @@ func int DIA_Lobart_PERM_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Lobart_DMT) && (Kapitel >= 3))
 	{
-		if(Npc_KnowsInfo(other,DIA_Lobart_ORKSWEG) || Npc_KnowsInfo(other,DIA_Lobart_VINOTOT) || (MIS_HealHilda == LOG_SUCCESS))
+		if(MIS_HealHilda == LOG_SUCCESS)
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Lobart_VINOTOT))
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Lobart_ORKSWEG))
 		{
 			return TRUE;
 		};

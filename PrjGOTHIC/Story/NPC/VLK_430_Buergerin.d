@@ -11,7 +11,7 @@ instance VLK_430_Buergerin(Npc_Default)
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);
-	EquipItem(self,ItMw_1h_Vlk_Dagger);
+	EquipItem(self,ItMw_1H_VLK_Dagger);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe8",FaceBabe_N_Lilo,BodyTexBabe_N,ITAR_BauBabe_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");

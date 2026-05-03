@@ -3,21 +3,10 @@ instance DIA_Addon_Emilio_EXIT(C_Info)
 {
 	npc = BDT_10015_Addon_Emilio;
 	nr = 999;
-	condition = DIA_Addon_Emilio_EXIT_Condition;
-	information = DIA_Addon_Emilio_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Emilio_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Emilio_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -120,9 +109,12 @@ instance DIA_Addon_Emilio_Attentat(C_Info)
 
 func int DIA_Addon_Emilio_Attentat_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Emilio_VonEmilio) && Npc_IsDead(Senyan))
+	if(Npc_KnowsInfo(other,DIA_Addon_Emilio_VonEmilio))
 	{
-		return FALSE;
+		if(Npc_IsDead(Senyan))
+		{
+			return FALSE;
+		};
 	};
 	if(MIS_Judas == LOG_RUNNING)
 	{
@@ -263,9 +255,12 @@ instance DIA_Addon_Emilio_HilfMir(C_Info)
 
 func int DIA_Addon_Emilio_HilfMir_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Emilio_VonEmilio) && Npc_IsDead(Senyan))
+	if(Npc_KnowsInfo(other,DIA_Addon_Emilio_VonEmilio))
 	{
-		return TRUE;
+		if(Npc_IsDead(Senyan))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -300,9 +295,12 @@ instance DIA_Addon_Emilio_GegenEsteban(C_Info)
 
 func int DIA_Addon_Emilio_GegenEsteban_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_BDT_10015_Emilio_Senyan) && !Npc_IsDead(Esteban))
+	if(Npc_KnowsInfo(other,DIA_Addon_BDT_10015_Emilio_Senyan))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Esteban))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -329,9 +327,12 @@ instance DIA_Addon_BDT_10015_Emilio_Mine(C_Info)
 
 func int DIA_Addon_Emilio_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
+	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Addon_Stone_01))
+		{
+			return TRUE;
+		};
 	};
 };
 

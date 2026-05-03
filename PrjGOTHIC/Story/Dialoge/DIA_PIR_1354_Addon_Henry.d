@@ -3,21 +3,10 @@ instance DIA_Addon_Henry_EXIT(C_Info)
 {
 	npc = PIR_1354_Addon_Henry;
 	nr = 999;
-	condition = DIA_Addon_Henry_EXIT_Condition;
-	information = DIA_Addon_Henry_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Henry_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Henry_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -539,14 +528,14 @@ instance DIA_Addon_Henry_Turmbanditen(C_Info)
 {
 	npc = PIR_1354_Addon_Henry;
 	nr = 13;
-	condition = DIA_Addon_Henry_Turmbanditen_WhatFor_Condition;
-	information = DIA_Addon_Henry_Turmbanditen_WhatFor_Info;
+	condition = DIA_Addon_Henry_Turmbanditen_Condition;
+	information = DIA_Addon_Henry_Turmbanditen_Info;
 	permanent = TRUE;
 	description = "Насчет бандитов в башне...";
 };
 
 
-func int DIA_Addon_Henry_Turmbanditen_WhatFor_Condition()
+func int DIA_Addon_Henry_Turmbanditen_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Henry_Palisade_WhatFor) && (MIS_Henry_FreeBDTTower != LOG_SUCCESS))
 	{
@@ -554,7 +543,7 @@ func int DIA_Addon_Henry_Turmbanditen_WhatFor_Condition()
 	};
 };
 
-func void DIA_Addon_Henry_Turmbanditen_WhatFor_Info()
+func void DIA_Addon_Henry_Turmbanditen_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_Turmbanditen_15_00");	//Насчет бандитов в башне...
 	if(C_TowerBanditsDead())

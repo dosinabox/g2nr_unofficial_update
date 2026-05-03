@@ -10,7 +10,7 @@ instance PAL_258_Keroloth(Npc_Default)
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2H_PAL_Sword);
-	EquipItem(self,ItRw_Mil_Crossbow);
+	EquipItem(self,ItRw_MIL_Crossbow);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,25,ItMi_Gold,45);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal20,BodyTex_N,ITAR_PAL_M);

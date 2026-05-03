@@ -3,21 +3,10 @@ instance DIA_Jorgen_EXIT(C_Info)
 {
 	npc = VLK_4250_Jorgen;
 	nr = 999;
-	condition = DIA_Jorgen_EXIT_Condition;
-	information = DIA_Jorgen_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Jorgen_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Jorgen_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -79,14 +68,14 @@ func int DIA_Jorgen_Novice_Condition()
 func void DIA_Jorgen_Novice_Info()
 {
 	DIA_Common_NovicePassedBy();
-	if((Npc_GetDistToWP(self,"NW_MONASTERY_BRIDGE_01") <= 250) && Wld_IsFPAvailable(self,"LOOKOUT"))
+	if(C_WorldIsFixed() && (Npc_GetDistToWP(self,"NW_MONASTERY_BRIDGE_01") <= 250) && Wld_IsFPAvailable(self,"LOOKOUT"))
 	{
 		AI_Output(self,other,"DIA_Jorgen_Novice_07_01");	//Да, конечно, он побежал туда.
 		AI_StopLookAt(self);
 		AI_GotoFP(self,"LOOKOUT");
 		AI_AlignToFP(self);
 		AI_PlayAni(self,"T_GREETCOOL");
-		AI_TurnToNpc(self,other);
+		AI_TurnToNPC(self,other);
 	};
 	AI_Output(self,other,"DIA_Jorgen_Novice_07_02");	//Он прыгнул в воду с моста и поплыл так, как будто за ним гналась акула.
 };
@@ -104,11 +93,14 @@ instance DIA_Jorgen_Milten(C_Info)
 
 func int DIA_Jorgen_Milten_Condition()
 {
-	if((Kapitel == 3) && (MIS_SCKnowsInnosEyeIsBroken == FALSE) && (MIS_OLDWORLD == LOG_SUCCESS) && !Npc_IsDead(MiltenNW))
+	if((Kapitel == 3) && (MIS_SCKnowsInnosEyeIsBroken == FALSE) && (MIS_OLDWORLD == LOG_SUCCESS))
 	{
-		if(MiltenNW.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(!Npc_IsDead(MiltenNW))
 		{
-			return TRUE;
+			if(MiltenNW.aivar[AIV_TalkedToPlayer] == TRUE)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -212,6 +204,8 @@ func void DIA_Jorgen_NEUHIER_Info()
 };
 
 
+var int DIA_Jorgen_PERM4_OneTime;
+
 instance DIA_Jorgen_PERM4(C_Info)
 {
 	npc = VLK_4250_Jorgen;
@@ -230,9 +224,6 @@ func int DIA_Jorgen_PERM4_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Jorgen_PERM4_OneTime;
 
 func void DIA_Jorgen_PERM4_Info()
 {
@@ -419,6 +410,8 @@ func void DIA_Jorgen_LOSFAHREN_Info()
 };
 
 
+var int DIA_Jorgen_PERM5_NOTCAPTAIN_XPGiven;
+
 instance DIA_Jorgen_PERM5_NOTCAPTAIN(C_Info)
 {
 	npc = VLK_4250_Jorgen;
@@ -437,9 +430,6 @@ func int DIA_Jorgen_PERM5_NOTCAPTAIN_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Jorgen_PERM5_NOTCAPTAIN_XPGiven;
 
 func void DIA_Jorgen_PERM5_NOTCAPTAIN_Info()
 {

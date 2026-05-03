@@ -56,16 +56,16 @@ const int CLOSE_ITEM = 1;
 class C_MENU_ITEM
 {
 	var string fontname;
-	var string text[10];
+	var string text[MAX_USERSTRINGS];
 	var string backpic;
 	var string alphamode;
 	var int alpha;
 	var int type;
-	var int onselaction[5];
-	var string onselaction_s[5];
+	var int onselaction[MAX_SEL_ACTIONS];
+	var string onselaction_s[MAX_SEL_ACTIONS];
 	var string onchgsetoption;
 	var string onchgsetoptionsection;
-	var func oneventaction[10];
+	var func oneventaction[MAX_EVENTS];
 	var int posx;
 	var int posy;
 	var int dimx;
@@ -74,8 +74,8 @@ class C_MENU_ITEM
 	var int flags;
 	var float opendelaytime;
 	var float openduration;
-	var float userfloat[4];
-	var string userstring[4];
+	var float userfloat[MAX_USERVARS];
+	var string userstring[MAX_USERVARS];
 	var int framesizex;
 	var int framesizey;
 	var string hideifoptionsectionset;
@@ -94,7 +94,7 @@ class C_MENU
 	var int alpha;
 	var string musictheme;
 	var int eventtimermsec;
-	var string items[150];
+	var string items[MAX_ITEMS];
 	var int flags;
 	var int defaultoutgame;
 	var int defaultingame;
@@ -133,11 +133,8 @@ prototype C_MENU_DEF(C_MENU)
 	posy = 0;
 	dimx = 8192;
 	dimy = 8192;
-//	dimx = 5120;
-//	dimy = 6144;
 	alpha = 254;
 	flags = MENU_EXCLUSIVE | MENU_DONTSCALE_DIM | MENU_ALIGN_CENTER;
-//	flags = MENU_EXCLUSIVE | MENU_ALIGN_CENTER;
 	eventtimermsec = 1000;
 	musictheme = "";
 	defaultoutgame = -1;

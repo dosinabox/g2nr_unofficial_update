@@ -3,21 +3,10 @@ instance DIA_Addon_Eremit_EXIT(C_Info)
 {
 	npc = NONE_ADDON_115_Eremit;
 	nr = 999;
-	condition = DIA_Addon_Eremit_EXIT_Condition;
-	information = DIA_Addon_Eremit_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Eremit_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Eremit_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -219,19 +208,19 @@ func void DIA_Addon_Eremit_Klamotten_Info()
 	{
 		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать доспехи 'Кольца Воды')",DIA_Addon_Eremit_Klamotten_Ranger);
 	};
-	if(Npc_HasItems(other,ITAR_Vlk_L))
+	if(Npc_HasItems(other,ITAR_VLK_L))
 	{
 		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать простой городской костюм)",DIA_Addon_Eremit_Klamotten_VLK_L);
 	};
-	if(Npc_HasItems(other,ITAR_Vlk_M))
+	if(Npc_HasItems(other,ITAR_VLK_M))
 	{
 		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать хороший городской костюм)",DIA_Addon_Eremit_Klamotten_VLK_M);
 	};
-	if(Npc_HasItems(other,ITAR_Vlk_H))
+	if(Npc_HasItems(other,ITAR_VLK_H))
 	{
 		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать добротный городской костюм)",DIA_Addon_Eremit_Klamotten_VLK_H);
 	};
-	if(Npc_HasItems(other,ITAR_Bau_L))
+	if(Npc_HasItems(other,ITAR_BAU_L))
 	{
 		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать рабочую одежду)",DIA_Addon_Eremit_Klamotten_BAU_L);
 	};
@@ -300,25 +289,25 @@ func void DIA_Addon_Eremit_Klamotten_Ranger()
 
 func void DIA_Addon_Eremit_Klamotten_VLK_L()
 {
-	B_GiveInvItems(other,self,ITAR_Vlk_L,1);
+	B_GiveInvItems(other,self,ITAR_VLK_L,1);
 	B_Eremit_Tatsache();
 };
 
 func void DIA_Addon_Eremit_Klamotten_VLK_M()
 {
-	B_GiveInvItems(other,self,ITAR_Vlk_M,1);
+	B_GiveInvItems(other,self,ITAR_VLK_M,1);
 	B_Eremit_Tatsache();
 };
 
 func void DIA_Addon_Eremit_Klamotten_VLK_H()
 {
-	B_GiveInvItems(other,self,ITAR_Vlk_H,1);
+	B_GiveInvItems(other,self,ITAR_VLK_H,1);
 	B_Eremit_Tatsache();
 };
 
 func void DIA_Addon_Eremit_Klamotten_BAU_L()
 {
-	B_GiveInvItems(other,self,ITAR_Bau_L,1);
+	B_GiveInvItems(other,self,ITAR_BAU_L,1);
 	B_Eremit_Tatsache();
 };
 
