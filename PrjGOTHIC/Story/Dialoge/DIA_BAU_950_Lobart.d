@@ -713,6 +713,7 @@ func void DIA_Lobart_MoreWork_Info()
 instance DIA_Lobart_ANDREHELPLOBART(C_Info)
 {
 	npc = BAU_950_Lobart;
+	nr = 50;
 	condition = DIA_Lobart_ANDREHELPLOBART_Condition;
 	information = DIA_Lobart_ANDREHELPLOBART_Info;
 	description = "Меня направил к тебе Андрэ. Я могу чем-нибудь помочь тебе?";
@@ -741,6 +742,7 @@ func void DIA_Lobart_ANDREHELPLOBART_Info()
 instance DIA_Lobart_BUGDEAD(C_Info)
 {
 	npc = BAU_950_Lobart;
+	nr = 50;
 	condition = DIA_Lobart_BUGDEAD_Condition;
 	information = DIA_Lobart_BUGDEAD_Info;
 	description = "Я разделался с этими тварями!";
@@ -777,6 +779,7 @@ func void DIA_Lobart_BUGDEAD_Info()
 instance DIA_Lobart_BUGALIVE(C_Info)
 {
 	npc = BAU_950_Lobart;
+	nr = 50;
 	condition = DIA_Lobart_BUGALIVE_Condition;
 	information = DIA_Lobart_BUGALIVE_Info;
 	permanent = TRUE;

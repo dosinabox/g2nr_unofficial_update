@@ -3,27 +3,17 @@ instance DIA_CipherDJG_EXIT(C_Info)
 {
 	npc = DJG_703_Cipher;
 	nr = 999;
-	condition = DIA_CipherDJG_EXIT_Condition;
-	information = DIA_CipherDJG_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_CipherDJG_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_CipherDJG_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
 instance DIA_Cipher_HALLO(C_Info)
 {
 	npc = DJG_703_Cipher;
+	nr = 1;
 	condition = DIA_Cipher_HALLO_Condition;
 	information = DIA_Cipher_HALLO_Info;
 	description = "Отличный лагерь.";
@@ -45,6 +35,7 @@ func void DIA_Cipher_HALLO_Info()
 instance DIA_CipherDJG_HELLOAGAIN(C_Info)
 {
 	npc = DJG_703_Cipher;
+	nr = 1;
 	condition = DIA_CipherDJG_HELLOAGAIN_Condition;
 	information = DIA_CipherDJG_HELLOAGAIN_Info;
 	description = "Что ты делаешь здесь?";
@@ -106,6 +97,7 @@ func void DIA_CipherDJG_HELLOAGAIN_GoTogether()
 instance DIA_CipherDJG_GOTOGETHERAGAIN(C_Info)
 {
 	npc = DJG_703_Cipher;
+	nr = 1;
 	condition = DIA_CipherDJG_GOTOGETHERAGAIN_Condition;
 	information = DIA_CipherDJG_GOTOGETHERAGAIN_Info;
 	description = "Я передумал! Пойдем вместе!";
@@ -135,6 +127,7 @@ func void DIA_CipherDJG_GOTOGETHERAGAIN_Info()
 instance DIA_CipherDJG_GO(C_Info)
 {
 	npc = DJG_703_Cipher;
+	nr = 2;
 	condition = DIA_CipherDJG_GO_Condition;
 	information = DIA_CipherDJG_GO_Info;
 	description = "Сейчас самый подходящий момент, чтобы идти туда!";
@@ -300,6 +293,7 @@ var int DIA_CipherDJG_WHATNEXT_Once;
 instance DIA_CipherDJG_WHATNEXT(C_Info)
 {
 	npc = DJG_703_Cipher;
+	nr = 10;
 	condition = DIA_CipherDJG_WHATNEXT_Condition;
 	information = DIA_CipherDJG_WHATNEXT_Info;
 	permanent = TRUE;
