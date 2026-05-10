@@ -38,7 +38,7 @@ func void B_GiveAllClassicMissionItems(var C_Npc npc)
 	CreateInvItem(npc,ItSe_Olav);
 	CreateInvItem(npc,ItSe_XardasNotfallBeutel_MIS);
 	CreateInvItem(npc,ItSe_HannasBeutel);
-	CreateInvItem(npc,ItSe_Golemchest_MIS);
+	CreateInvItem(npc,ItSe_GolemChest_MIS);
 	CreateInvItem(npc,ItSe_DiegosTreasure_MIS);
 };
 

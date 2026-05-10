@@ -3,21 +3,10 @@ instance DIA_Buster_EXIT(C_Info)
 {
 	npc = SLD_802_Buster;
 	nr = 999;
-	condition = DIA_Buster_EXIT_Condition;
-	information = DIA_Buster_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Buster_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Buster_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -33,7 +22,7 @@ instance DIA_Buster_Hello(C_Info)
 
 func int DIA_Buster_Hello_Condition()
 {
-	if((self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST) && ((other.guild != GIL_SLD) && (other.guild != GIL_DJG)))
+	if((self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST) && (other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		return TRUE;
 	};

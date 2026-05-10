@@ -197,6 +197,7 @@ var C_Npc Jergan;
 var C_Npc Parlaf;
 var C_Npc Garond;
 var C_Npc Oric;
+var C_Npc Parcival;
 var C_Npc DJG_Sylvio;
 var C_Npc DJG_Bullco;
 var C_Npc DJG_Cipher;
@@ -571,6 +572,7 @@ func void B_InitNpc_OW()
 	Parlaf = Hlp_GetNpc(VLK_4107_Parlaf);
 	Garond = Hlp_GetNpc(PAL_250_Garond);
 	Oric = Hlp_GetNpc(PAL_251_Oric);
+	Parcival = Hlp_GetNpc(PAL_252_Parcival);
 	MiltenOW = Hlp_GetNpc(PC_Mage_OW);
 	Brutus = Hlp_GetNpc(VLK_4100_Brutus);
 	Rethon = Hlp_GetNpc(DJG_709_Rethon);

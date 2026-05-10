@@ -405,7 +405,7 @@ instance ItWr_Map_OldWorld_Oremines_MIS(C_Item)
 {
 	name = "Карта рудников Гаронда";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION | ITEM_MULTI;
+	flags = ITEM_MULTI;
 	value = 50;
 	visual = "ItWr_Map_OW.3DS";
 	material = MAT_LEATHER;
@@ -440,7 +440,7 @@ instance ItWr_Map_OldWorld_Oremines_Small_MIS(C_Item)
 {
 	name = "Карта рудников Гаронда";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION | ITEM_MULTI;
+	flags = ITEM_MULTI;
 	value = 50;
 	visual = "ItWr_Map_OW_Small.3DS";
 	material = MAT_LEATHER;

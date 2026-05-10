@@ -3,21 +3,10 @@ instance DIA_Garond_EXIT(C_Info)
 {
 	npc = PAL_250_Garond;
 	nr = 999;
-	condition = DIA_Garond_EXIT_Condition;
-	information = DIA_Garond_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Garond_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Garond_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -457,8 +446,11 @@ func void DIA_Garond_Wo_Info()
 	AI_Output(self,other,"DIA_Garond_Wo_10_01");	//Вот, возьми эту карту. На ней показаны две области, где находятся шахты.
 	CreateInvItems(self,ItWr_Map_OldWorld_Oremines_Small_MIS,1);
 	B_GiveInvItems(self,other,ItWr_Map_OldWorld_Oremines_Small_MIS,1);
-	AI_Output(self,other,"DIA_Garond_Wo_10_02");	//Если у тебя есть еще вопросы, обратись к Парсивалю. Он расскажет все, что тебе нужно знать о старателях.
-	B_LogEntry(TOPIC_ScoutMine,"Паладин Парсиваль может дать мне информацию о старателях.");
+	if(!Npc_IsDead(Parcival))
+	{
+		AI_Output(self,other,"DIA_Garond_Wo_10_02");	//Если у тебя есть еще вопросы, обратись к Парсивалю. Он расскажет все, что тебе нужно знать о старателях.
+		B_LogEntry(TOPIC_ScoutMine,"Паладин Парсиваль может дать мне информацию о старателях.");
+	};
 };
 
 func void B_Garond_OreCounter()

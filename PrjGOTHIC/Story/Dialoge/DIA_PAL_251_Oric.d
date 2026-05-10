@@ -3,21 +3,10 @@ instance DIA_Oric_EXIT(C_Info)
 {
 	npc = PAL_251_Oric;
 	nr = 999;
-	condition = DIA_Oric_EXIT_Condition;
-	information = DIA_Oric_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Oric_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Oric_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -98,7 +87,10 @@ func void DIA_Oric_ScoutMine_Info()
 {
 	AI_Output(other,self,"DIA_Oric_ScoutMine_15_00");	//Я отправляюсь к шахтам.
 	AI_Output(self,other,"DIA_Oric_ScoutMine_11_01");	//Будь осторожен. Это нелегкая задача. Прежде всего, найди паладинов. Они возглавляют эти три группы.
-	AI_Output(self,other,"DIA_Oric_ScoutMine_11_02");	//Если тебе нужно больше информации, поговори с Парсивалем.
+	if(!Npc_IsDead(Parcival))
+	{
+		AI_Output(self,other,"DIA_Oric_ScoutMine_11_02");	//Если тебе нужно больше информации, поговори с Парсивалем.
+	};
 };
 
 

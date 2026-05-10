@@ -3,7 +3,7 @@ instance Fakescroll(C_Item)
 {
 	name = NAME_Letter;
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+	flags = 0;
 	value = 0;
 	visual = "ItWr_Scroll_01.3ds";
 	material = MAT_LEATHER;
@@ -18,7 +18,7 @@ instance Fakeheroface(C_Item)
 {
 	name = "Объявление о розыске";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+	flags = 0;
 	value = 0;
 	visual = "ItWr_Poster_MIS.3DS";
 	material = MAT_LEATHER;
@@ -29,11 +29,11 @@ instance Fakeheroface(C_Item)
 	inv_roty = 180;
 };
 
-instance Fakemap(C_Item)
+instance FakeMap(C_Item)
 {
 	name = "Карта";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+	flags = 0;
 	value = 0;
 	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
@@ -48,7 +48,7 @@ instance Openbook1(C_Item)
 {
 	name = "Открытая книга 1";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+	flags = 0;
 	value = 0;
 	visual = "ItWr_Book_01_Open.3DS";
 	material = MAT_LEATHER;
@@ -63,7 +63,7 @@ instance Openbook2(C_Item)
 {
 	name = "Открытая книга 2";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+	flags = 0;
 	value = 0;
 	visual = "ItWr_Book_02_Open.3DS";
 	material = MAT_LEATHER;
