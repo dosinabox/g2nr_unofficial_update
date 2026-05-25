@@ -76,7 +76,7 @@ func void DIA_BDT_1013_BANDIT_WHERE_Mountain()
 {
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_MOUNTAIN_15_00");	//Я спустился с гор.
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_MOUNTAIN_01_01");	//Точно. Ты спустился с гор. И это плохо для тебя.
-	B_ReadFakeItem(self,other,Fakeheroface,1);
+	B_ReadFakeItem(self,other,FakeHeroFace,1);
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_MOUNTAIN_01_02");	//Очень плохо.
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_MOUNTAIN_01_03");	//Тебя ищут - целая куча плохих парней.
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_MOUNTAIN_01_04");	//Есть человек, с которым тебе просто необходимо переговорить. Иди за мной!
@@ -321,7 +321,7 @@ func void DIA_1013_BANDIT_PIC_Info()
 	AI_Output(other,self,"DIA_1013_BANDIT_PIC_15_00");	//Могу я взять эту картинку?
 	AI_Output(self,other,"DIA_1013_BANDIT_PIC_01_01");	//Конечно (ухмыляется) - ведь на ней ТВОЯ рожа.
 	B_GiveInvItems(self,other,ItWr_Poster_MIS,1);
-	B_ReadFakeItem(other,self,Fakeheroface,1);
+	B_ReadFakeItem(other,self,FakeHeroFace,1);
 };
 
 

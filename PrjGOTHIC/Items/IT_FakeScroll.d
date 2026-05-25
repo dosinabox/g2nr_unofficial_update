@@ -1,5 +1,5 @@
 
-instance Fakescroll(C_Item)
+instance FakeScroll(C_Item)
 {
 	name = NAME_Letter;
 	mainflag = ITEM_KAT_DOCS;
@@ -14,7 +14,7 @@ instance Fakescroll(C_Item)
 	inv_roty = 180;
 };
 
-instance Fakeheroface(C_Item)
+instance FakeHeroFace(C_Item)
 {
 	name = "ќбъ€вление о розыске";
 	mainflag = ITEM_KAT_DOCS;
