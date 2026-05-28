@@ -875,9 +875,12 @@ instance DIA_Lothar_OWRunning(C_Info)
 
 func int DIA_Lothar_OWRunning_Condition()
 {
-	if((MIS_OLDWORLD == LOG_RUNNING) && !Npc_HasItems(hero,ItWr_PaladinLetter_MIS) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
+	if((MIS_OLDWORLD == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,ItWr_PaladinLetter_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -905,9 +908,12 @@ instance DIA_Lothar_OWRunningBrief(C_Info)
 
 func int DIA_Lothar_OWRunningBrief_Condition()
 {
-	if((MIS_OLDWORLD == LOG_RUNNING) && Npc_HasItems(hero,ItWr_PaladinLetter_MIS) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
+	if((MIS_OLDWORLD == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_PaladinLetter_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -921,7 +927,7 @@ func void DIA_Lothar_OWRunningBrief_Info()
 		AI_UseMob(self,"THRONE",-1);
 		B_TurnToNpc(self,other);
 	};
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	AI_Output(self,other,"DIA_Lothar_Add_01_61");	//Я был несправедлив к тебе. Я буду молить Инноса о прощении за мое поведение.
 	AI_PrintScreen("Письмо Гаронда лорду Хагену получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 };

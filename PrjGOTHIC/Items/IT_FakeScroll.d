@@ -44,7 +44,7 @@ instance FakeMap(C_Item)
 	inv_roty = 180;
 };
 
-instance Openbook1(C_Item)
+instance OpenBook1(C_Item)
 {
 	name = "Открытая книга 1";
 	mainflag = ITEM_KAT_DOCS;
@@ -59,7 +59,7 @@ instance Openbook1(C_Item)
 	inv_roty = 180;
 };
 
-instance Openbook2(C_Item)
+instance OpenBook2(C_Item)
 {
 	name = "Открытая книга 2";
 	mainflag = ITEM_KAT_DOCS;

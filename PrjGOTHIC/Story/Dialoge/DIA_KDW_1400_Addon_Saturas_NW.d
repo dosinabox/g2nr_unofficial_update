@@ -511,7 +511,7 @@ func void B_GiveVatrasLetterToSaturas()
 		if(Vatras2Saturas_FindRaven_Open == TRUE)
 		{
 			B_GiveInvItems(other,self,ItWr_Vatras2Saturas_FindRaven_opened,1);
-			B_ReadFakeItem(self,other,Fakescroll,1);
+			B_ReadFakeItem(self,other,FakeScroll,1);
 			AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_04");	//(раздраженно) Вижу. И, конечно же, ты не удержался и наверняка вскрыл его?
 			AI_Output(other,self,"DIA_Addon_Saturas_OpenPortal_15_05");	//Ну, э-э...
 			AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_06");	//(грозно) Надеюсь, мое и так хрупкое доверие к тебе не пошатнется окончательно. Ради твоего же блага.
@@ -519,7 +519,7 @@ func void B_GiveVatrasLetterToSaturas()
 		else
 		{
 			B_GiveInvItems(other,self,ItWr_Vatras2Saturas_FindRaven,1);
-			B_ReadFakeItem(self,other,Fakescroll,1);
+			B_ReadFakeItem(self,other,FakeScroll,1);
 			AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_07");	//(удивленно) Интересно. Хорошо.
 			B_GivePlayerXP(XP_Ambient);
 		};

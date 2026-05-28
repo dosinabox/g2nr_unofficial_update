@@ -137,7 +137,7 @@ func void B_GiveAllPatchDocuments(var C_Npc npc)
 	CreateInvItem(npc,ItWr_AppleSTR);
 	CreateInvItem(npc,StatsBook);
 	CreateInvItem(npc,AttBook);
-	CreateInvItem(npc,Openbook1);
-	CreateInvItem(npc,Openbook2);
+	CreateInvItem(npc,OpenBook1);
+	CreateInvItem(npc,OpenBook2);
 };
 

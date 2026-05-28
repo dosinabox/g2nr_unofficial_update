@@ -46,7 +46,7 @@ func int DIA_Khaled_Hallo_Condition()
 func void DIA_Khaled_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Khaled_Hallo_15_00");	//С тобой все в порядке?
-	if(Npc_KnowsInfo(other,DIA_Lee_WannaJoin) || Npc_KnowsInfo(other,DIA_Lee_KeinSld) || (Lee_IsOnBoard == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Lee_WannaJoin) || Npc_KnowsInfo(other,DIA_Lee_KeinSLD) || (Lee_IsOnBoard == TRUE))
 	{
 		if(Npc_KnowsInfo(other,DIA_Lee_WannaJoin) && (other.guild == GIL_NONE))
 		{

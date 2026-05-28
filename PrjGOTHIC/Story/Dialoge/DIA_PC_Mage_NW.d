@@ -325,7 +325,7 @@ func void DIA_MiltenNW_KAP3_Entry_Permit()
 	AI_Output(other,self,"DIA_MiltenNW_KAP3_Entry_Permit_15_00");	//У меня есть письмо от лорда Хагена.
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_Permit_03_01");	//Покажи.
 	B_GiveInvItems(other,self,ItWr_PermissionToWearInnosEye_MIS,1);
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	AI_Output(self,other,"DIA_MiltenOW_Hello_NO_03_01");	//Ты через многое прошел, да?
 	B_GiveInvItems(self,other,ItWr_PermissionToWearInnosEye_MIS,1);
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_Permit_03_02");	//(колеблясь) Хорошо. Вот ключ от монастыря. Ты найдешь Пирокара в церкви.
@@ -775,9 +775,19 @@ instance DIA_MiltenNW_Mana(C_Info)
 
 func int DIA_MiltenNW_Mana_Condition()
 {
-	if(((other.guild == GIL_KDF) || ((GuildlessMode == TRUE) && (other.guild == GIL_NOV))) && (Milten_NW_TeachMANA_NoPerm == FALSE))
+	if(Milten_NW_TeachMANA_NoPerm == FALSE)
 	{
-		return TRUE;
+		if(other.guild == GIL_KDF)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
+		{
+			if(GuildlessMode == TRUE)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 

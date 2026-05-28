@@ -225,9 +225,19 @@ instance DIA_Addon_Vatras_Cavalorn(C_Info)
 
 func int DIA_Addon_Vatras_Cavalorn_Condition()
 {
-	if((Npc_HasItems(other,ItWr_SaturasFirstMessage_Addon_Sealed) && (MIS_Addon_Cavalorn_Letter2Vatras == LOG_RUNNING)) || Npc_HasItems(other,ItWr_SaturasFirstMessage_Addon))
+	if(MIS_Addon_Cavalorn_Letter2Vatras == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_SaturasFirstMessage_Addon_Sealed))
+		{
+			return TRUE;
+		};
+	};
+	if(SaturasFirstMessageOpened == TRUE)
+	{
+		if(Npc_HasItems(other,ItWr_SaturasFirstMessage_Addon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -249,7 +259,7 @@ func void DIA_Addon_Vatras_Cavalorn_Info()
 		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras / 4);
 		AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_02");	//Да, но... оно вскрыто. Я надеюсь, оно не попало в чужие руки?
 	};
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_03");	//Да. Это очень важное известие.
 	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_04");	//Интересно, как к тебе попало это письмо?
 	Info_ClearChoices(DIA_Addon_Vatras_Cavalorn);
@@ -1060,7 +1070,7 @@ func void DIA_Addon_Vatras_MissingPeople_Success()
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Success_15_05");	//Вот.
 		B_GiveInvItems(other,self,ItWr_RavensKidnapperMission_Addon,1);
-		B_ReadFakeItem(self,other,Fakescroll,1);
+		B_ReadFakeItem(self,other,FakeScroll,1);
 	};
 	AI_Output(self,other,"DIA_Addon_Vatras_MissingPeople_Success_05_06");	//Отличная работа. Я боялся, что мы никогда не узнаем ответа на эту загадку.
 	MIS_Addon_Vatras_WhereAreMissingPeople = LOG_SUCCESS;
@@ -1367,9 +1377,12 @@ instance DIA_Addon_Vatras_SellStonplate(C_Info)
 
 func int DIA_Addon_Vatras_SellStonplate_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Addon_Vatras_Stoneplate) || Npc_KnowsInfo(other,DIA_Addon_Vatras_DI_Stoneplate)) && Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+	if(Npc_KnowsInfo(other,DIA_Addon_Vatras_Stoneplate) || Npc_KnowsInfo(other,DIA_Addon_Vatras_DI_Stoneplate))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -2106,9 +2119,13 @@ instance DIA_Addon_Vatras_AbloesePre(C_Info)
 
 func int DIA_Addon_Vatras_AbloesePre_Condition()
 {
-	if((Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == FALSE))
+	if((RavenIsDead == FALSE) && (AddonDisabled == FALSE) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == FALSE))
 	{
-		if((RavenIsDead == FALSE) && (AddonDisabled == FALSE))
+		if(MIS_SCKnowsInnosEyeIsBroken == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 		{
 			return TRUE;
 		};

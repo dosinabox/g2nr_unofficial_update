@@ -759,7 +759,7 @@ var int Dar_Dieb;
 //var int Dar_Verdacht;
 var int Dar_LostAgainstCipher;
 var int Sylvio_MenDefeated;
-var int Sld_Duelle_gewonnen;
+var int SLD_Duelle_gewonnen;
 var int Torlof_GenugStimmen;
 var int Onar_Approved;
 var int Lee_SendToOnar;

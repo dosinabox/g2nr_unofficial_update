@@ -824,7 +824,7 @@ func void DIA_Addon_Greg_GiveFrancisBook_Info()
 		AI_UseMob(self,"BENCH",-1);
 		B_TurnToNpc(self,other);
 	};
-	B_ReadFakeItem(self,other,Openbook2,2);
+	B_ReadFakeItem(self,other,OpenBook2,2);
 	AI_Output(self,other,"DIA_Addon_Greg_GiveFrancisBook_01_01_add");	//Не ожидал я этого...
 	B_GivePlayerXP(200);
 	Greg_NoHelpInNW = 0;

@@ -82,7 +82,7 @@ func void DIA_Torlof_Probe_Info()
 {
 	AI_Output(other,self,"DIA_Torlof_Probe_15_00");	//Испытай меня!
 	AI_Output(self,other,"DIA_Torlof_Probe_01_01");	//Тебя послал ко мне Ли?
-	if(Npc_KnowsInfo(other,DIA_Lee_OtherSld))
+	if(Npc_KnowsInfo(other,DIA_Lee_OtherSLD))
 	{
 		AI_Output(other,self,"DIA_Torlof_Probe_15_02");	//Он сказал, ты поможешь мне.
 		AI_Output(self,other,"DIA_Torlof_Probe_01_03");	//(вздыхает) Хорошо. Тогда слушай. Прежде чем присоединиться к нам, ты должен сделать две вещи.
@@ -392,7 +392,7 @@ func void DIA_Torlof_RUF_Info()
 		};
 		Points_SLD += 1;
 	};
-	if(Sld_Duelle_gewonnen >= 3)
+	if(SLD_Duelle_gewonnen >= 3)
 	{
 		Points_SLD += 1;
 		if(Points_SLD >= 9)
@@ -416,7 +416,7 @@ func void DIA_Torlof_RUF_Info()
 	else if(Points_SLD >= 7)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_32");	//Это довольно много, но пока еще не достаточно.
-		if(Sld_Duelle_gewonnen < 3)
+		if(SLD_Duelle_gewonnen < 3)
 		{
 			AI_Output(self,other,"DIA_Torlof_RUF_01_33");	//Тебе нужно еще сразиться с несколькими парнями.
 		};

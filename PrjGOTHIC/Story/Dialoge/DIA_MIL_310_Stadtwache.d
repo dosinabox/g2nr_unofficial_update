@@ -255,7 +255,7 @@ func void DIA_MIL_310_Stadtwache_Passierschein_Info()
 	AI_Output(other,self,"DIA_MIL_310_Stadtwache_Passierschein_15_00");	//У меня есть пропуск!
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItWr_Passierschein,1);
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	if(!Npc_HasEquippedArmor(other))
 	{
 		AI_Output(self,other,"DIA_MIL_310_Stadtwache_Passierschein_07_01");	//Да ну? И кого ты убил ради этой бумажки?
