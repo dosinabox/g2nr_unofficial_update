@@ -687,7 +687,7 @@ var int Alrik_ArenaKampfVerloren_Day;
 var int Alrik_VomSchwertErzaehlt;
 var int Abuyin_Zukunft;
 var int Abuyin_Erzaehlt;
-var int Abuyin_Honigtabak;
+var int Abuyin_HonigTabak;
 //var int Abuyin_Score;
 var int Bromor_Pay;
 var int Nadja_Nacht;

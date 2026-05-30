@@ -295,17 +295,17 @@ func void DIA_Buster_WannaJoin_Info()
 
 var int Buster_SentenzaTip;
 
-instance DIA_Buster_OtherSld(C_Info)
+instance DIA_Buster_OtherSLD(C_Info)
 {
 	npc = SLD_802_Buster;
 	nr = 1;
-	condition = DIA_Buster_OtherSld_Condition;
-	information = DIA_Buster_OtherSld_Info;
+	condition = DIA_Buster_OtherSLD_Condition;
+	information = DIA_Buster_OtherSLD_Info;
 	description = "Я хочу узнать больше о наемниках и этой местности.";
 };
 
 
-func int DIA_Buster_OtherSld_Condition()
+func int DIA_Buster_OtherSLD_Condition()
 {
 	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
@@ -313,28 +313,28 @@ func int DIA_Buster_OtherSld_Condition()
 	};
 };
 
-func void DIA_Buster_OtherSld_Info()
+func void DIA_Buster_OtherSLD_Info()
 {
-	AI_Output(other,self,"DIA_Buster_OtherSld_15_00");	//Я хочу узнать больше о наемниках и этой местности.
-	AI_Output(self,other,"DIA_Buster_OtherSld_13_01");	//О местности я мало что могу сказать. Тебе лучше поспрашивать фермеров.
+	AI_Output(other,self,"DIA_Buster_OtherSLD_15_00");	//Я хочу узнать больше о наемниках и этой местности.
+	AI_Output(self,other,"DIA_Buster_OtherSLD_13_01");	//О местности я мало что могу сказать. Тебе лучше поспрашивать фермеров.
 	if(other.guild == GIL_NONE)
 	{
-		AI_Output(self,other,"DIA_Buster_OtherSld_13_02");	//А что касается наемников - то правила у нас просты: если можешь постоять за себя - добро пожаловать к нам.
+		AI_Output(self,other,"DIA_Buster_OtherSLD_13_02");	//А что касается наемников - то правила у нас просты: если можешь постоять за себя - добро пожаловать к нам.
 	};
 	if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
 	{
 		if(other.guild == GIL_NONE)
 		{
-			AI_Output(self,other,"DIA_Buster_OtherSld_13_03");	//Я думаю, ты достоин стать одним из нас.
-			AI_Output(self,other,"DIA_Buster_OtherSld_13_04");	//Но не стоит обольщаться. Тебе просто повезло во время нашего последнего боя.
+			AI_Output(self,other,"DIA_Buster_OtherSLD_13_03");	//Я думаю, ты достоин стать одним из нас.
+			AI_Output(self,other,"DIA_Buster_OtherSLD_13_04");	//Но не стоит обольщаться. Тебе просто повезло во время нашего последнего боя.
 		};
-		AI_Output(self,other,"DIA_Buster_OtherSld_13_05");	//На этой ферме полно парней, которые будут получше меня...
-		AI_Output(self,other,"DIA_Buster_OtherSld_13_06");	//Сентенза, например. Он охраняет вход на ферму. Тебе лучше не связываться с ним.
+		AI_Output(self,other,"DIA_Buster_OtherSLD_13_05");	//На этой ферме полно парней, которые будут получше меня...
+		AI_Output(self,other,"DIA_Buster_OtherSLD_13_06");	//Сентенза, например. Он охраняет вход на ферму. Тебе лучше не связываться с ним.
 		Buster_SentenzaTip = TRUE;
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Buster_OtherSld_13_07");	//Но зачем я говорю тебе все это, слизняк?!
+		AI_Output(self,other,"DIA_Buster_OtherSLD_13_07");	//Но зачем я говорю тебе все это, слизняк?!
 		AI_StopProcessInfos(self);
 	};
 };

@@ -771,7 +771,7 @@ instance ItMi_DoppelTabak(C_Item)
 	inv_zbias = 190;
 };
 
-instance ItMi_Honigtabak(C_Item)
+instance ItMi_HonigTabak(C_Item)
 {
 	name = PRINT_HONIG;
 	mainflag = ITEM_KAT_NONE;

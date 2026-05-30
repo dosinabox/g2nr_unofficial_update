@@ -146,7 +146,7 @@ func void B_SCGetTreasure_S1()
 			}
 			else if((Npc_GetDistToWP(self,RAKEPLACE_WP_14) < RAKE_BUDDEL_DIST_MIN) && (RAKEPLACE[14] == FALSE))
 			{
-				Wld_InsertItem(ItMi_Honigtabak,RAKEPLACE_WP_14);
+				Wld_InsertItem(ItMi_HonigTabak,RAKEPLACE_WP_14);
 				Wld_InsertItem(ItWr_StonePlateCommon_Addon,RAKEPLACE_WP_14);
 				Wld_InsertItem(ItAm_Addon_MANA,RAKEPLACE_WP_14);
 				RakeTreasureSuccess(ItAm_Addon_MANA);

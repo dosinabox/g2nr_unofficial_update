@@ -3,21 +3,10 @@ instance DIA_MIL_305_Torwache_EXIT(C_Info)
 {
 	npc = MIL_305_Torwache;
 	nr = 999;
-	condition = DIA_MIL_305_Torwache_EXIT_Condition;
-	information = DIA_MIL_305_Torwache_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_MIL_305_Torwache_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_MIL_305_Torwache_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -278,17 +267,17 @@ func void DIA_MIL_305_Torwache_PassAsCitizen_Info()
 };
 
 
-instance DIA_MIL_305_Torwache_PassAsArmoredMil(C_Info)
+instance DIA_MIL_305_Torwache_PassAsArmoredMIL(C_Info)
 {
 	npc = MIL_305_Torwache;
 	nr = 3;
-	condition = DIA_MIL_305_Torwache_PassAsArmoredMil_Condition;
-	information = DIA_MIL_305_Torwache_PassAsArmoredMil_Info;
+	condition = DIA_MIL_305_Torwache_PassAsArmoredMIL_Condition;
+	information = DIA_MIL_305_Torwache_PassAsArmoredMIL_Info;
 	important = TRUE;
 };
 
 
-func int DIA_MIL_305_Torwache_PassAsArmoredMil_Condition()
+func int DIA_MIL_305_Torwache_PassAsArmoredMIL_Condition()
 {
 	if(MIL_305_schonmalreingelassen == FALSE)
 	{
@@ -299,30 +288,30 @@ func int DIA_MIL_305_Torwache_PassAsArmoredMil_Condition()
 	};
 };
 
-func void DIA_MIL_305_Torwache_PassAsArmoredMil_Info()
+func void DIA_MIL_305_Torwache_PassAsArmoredMIL_Info()
 {
 	if(self.aivar[AIV_TalkedToPlayer] == TRUE)
 	{
-		AI_Output(self,other,"DIA_MIL_305_Torwache_PassAsMil_03_01");	//Так Андрэ принял тебя? Возможно, ты не такой уж плохой парень, как кажешься!
+		AI_Output(self,other,"DIA_MIL_305_Torwache_PassAsMIL_03_01");	//Так Андрэ принял тебя? Возможно, ты не такой уж плохой парень, как кажешься!
 	};
-	AI_Output(self,other,"DIA_MIL_305_Torwache_PassAsMil_03_02");	//Теперь ты один из защитников города! Так что постарайся быть вежливым и дружелюбным с горожанами!
+	AI_Output(self,other,"DIA_MIL_305_Torwache_PassAsMIL_03_02");	//Теперь ты один из защитников города! Так что постарайся быть вежливым и дружелюбным с горожанами!
 	B_UpperCityPass();
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_MIL_305_Torwache_PassAsMil(C_Info)
+instance DIA_MIL_305_Torwache_PassAsMIL(C_Info)
 {
 	npc = MIL_305_Torwache;
 	nr = 3;
-	condition = DIA_MIL_305_Torwache_PassAsMil_Condition;
-	information = DIA_MIL_305_Torwache_PassAsMil_Info;
+	condition = DIA_MIL_305_Torwache_PassAsMIL_Condition;
+	information = DIA_MIL_305_Torwache_PassAsMIL_Info;
 	permanent = TRUE;
 	description = "Я состою в ополчении - дай мне пройти!";
 };
 
 
-func int DIA_MIL_305_Torwache_PassAsMil_Condition()
+func int DIA_MIL_305_Torwache_PassAsMIL_Condition()
 {
 	if((other.guild == GIL_MIL) && (MIL_305_schonmalreingelassen == FALSE))
 	{
@@ -330,17 +319,17 @@ func int DIA_MIL_305_Torwache_PassAsMil_Condition()
 	};
 };
 
-func void DIA_MIL_305_Torwache_PassAsMil_Info()
+func void DIA_MIL_305_Torwache_PassAsMIL_Info()
 {
-	AI_Output(other,self,"DIA_MIL_305_Torwache_PassAsMil_15_00");	//Я состою в ополчении - дай мне пройти!
+	AI_Output(other,self,"DIA_MIL_305_Torwache_PassAsMIL_15_00");	//Я состою в ополчении - дай мне пройти!
 	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
 	{
 		B_MIL_305_Torwache_Crimes();
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_MIL_305_Torwache_PassAsMil_03_01");	//Так Андрэ принял тебя? Возможно, ты не такой уж плохой парень, как кажешься!
-		AI_Output(self,other,"DIA_MIL_305_Torwache_PassAsMil_03_02");	//Теперь ты один из защитников города! Так что постарайся быть вежливым и дружелюбным с горожанами!
+		AI_Output(self,other,"DIA_MIL_305_Torwache_PassAsMIL_03_01");	//Так Андрэ принял тебя? Возможно, ты не такой уж плохой парень, как кажешься!
+		AI_Output(self,other,"DIA_MIL_305_Torwache_PassAsMIL_03_02");	//Теперь ты один из защитников города! Так что постарайся быть вежливым и дружелюбным с горожанами!
 		B_UpperCityPass();
 	};
 	AI_StopProcessInfos(self);
@@ -384,18 +373,18 @@ func void DIA_MIL_305_Torwache_PassAsMage_Info()
 };
 
 
-instance DIA_MIL_305_Torwache_PassAsSld(C_Info)
+instance DIA_MIL_305_Torwache_PassAsSLD(C_Info)
 {
 	npc = MIL_305_Torwache;
 	nr = 3;
-	condition = DIA_MIL_305_Torwache_PassAsSld_Condition;
-	information = DIA_MIL_305_Torwache_PassAsSld_Info;
+	condition = DIA_MIL_305_Torwache_PassAsSLD_Condition;
+	information = DIA_MIL_305_Torwache_PassAsSLD_Info;
 	permanent = TRUE;
 	description = "У меня важное сообщение для лорда Хагена!";
 };
 
 
-func int DIA_MIL_305_Torwache_PassAsSld_Condition()
+func int DIA_MIL_305_Torwache_PassAsSLD_Condition()
 {
 	if(MIL_305_schonmalreingelassen == FALSE)
 	{
@@ -406,17 +395,17 @@ func int DIA_MIL_305_Torwache_PassAsSld_Condition()
 	};
 };
 
-func void DIA_MIL_305_Torwache_PassAsSld_Info()
+func void DIA_MIL_305_Torwache_PassAsSLD_Info()
 {
-	AI_Output(other,self,"DIA_MIL_305_Torwache_PassAsSld_15_00");	//У меня важное сообщение для лорда Хагена!
+	AI_Output(other,self,"DIA_MIL_305_Torwache_PassAsSLD_15_00");	//У меня важное сообщение для лорда Хагена!
 	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
-		AI_Output(self,other,"DIA_MIL_305_Torwache_PassAsSld_03_01");	//Ты один из этих подонков наемников! Что тебе нужно от лорда Хагена?
-		AI_Output(other,self,"DIA_MIL_305_Torwache_PassAsSld_15_02");	//Я пришел с предложением мира.
+		AI_Output(self,other,"DIA_MIL_305_Torwache_PassAsSLD_03_01");	//Ты один из этих подонков наемников! Что тебе нужно от лорда Хагена?
+		AI_Output(other,self,"DIA_MIL_305_Torwache_PassAsSLD_15_02");	//Я пришел с предложением мира.
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsSld_15_00");	//Дай мне пройти, я несу послание от наемников.
+		AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsSLD_15_00");	//Дай мне пройти, я несу послание от наемников.
 	};
 	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
 	{
@@ -424,7 +413,7 @@ func void DIA_MIL_305_Torwache_PassAsSld_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_MIL_305_Torwache_PassAsSld_03_03");	//Ах! Значит, наконец, до вас, подлецов, дошел голос разума. Тогда проходи к лорду Хагену, но постарайся быть милым и вежливым, или я так отделаю тебя, что мало не покажется!
+		AI_Output(self,other,"DIA_MIL_305_Torwache_PassAsSLD_03_03");	//Ах! Значит, наконец, до вас, подлецов, дошел голос разума. Тогда проходи к лорду Хагену, но постарайся быть милым и вежливым, или я так отделаю тебя, что мало не покажется!
 		B_UpperCityPass();
 	};
 	AI_StopProcessInfos(self);

@@ -1400,7 +1400,7 @@ func void PC_ItMi_Tabak_Honey()
 	else
 	{
 		Npc_RemoveInvItems(self,ItFo_Honey,1);
-		B_MakeTobacco(ItMi_Honigtabak);
+		B_MakeTobacco(ItMi_HonigTabak);
 	};
 };
 
