@@ -72,21 +72,6 @@ func void Use_Addon_Joint_01()
 };
 
 
-instance ItMi_BaltramPaket(C_Item)
-{
-	name = "Пакет для Бальтрама";
-	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MISSION;
-	value = 200;
-	visual = "ItMi_Packet.3ds";
-	material = MAT_LEATHER;
-	description = name;
-	text[0] = "Тяжелый пакет с различными";
-	text[1] = "товарами с фермы Акила.";
-	text[5] = NAME_Value;
-	count[5] = value;
-};
-
 instance ItMi_Packet_Baltram4Skip_Addon(C_Item)
 {
 	name = "Пакет для Скипа";

@@ -509,17 +509,17 @@ func void DIA_Lee_ClearWhat_Info()
 };
 
 
-instance DIA_Lee_OtherSld(C_Info)
+instance DIA_Lee_OtherSLD(C_Info)
 {
 	npc = SLD_800_Lee;
 	nr = 7;
-	condition = DIA_Lee_OtherSld_Condition;
-	information = DIA_Lee_OtherSld_Info;
+	condition = DIA_Lee_OtherSLD_Condition;
+	information = DIA_Lee_OtherSLD_Info;
 	description = "Как мне убедить наемников проголосовать за меня?";
 };
 
 
-func int DIA_Lee_OtherSld_Condition()
+func int DIA_Lee_OtherSLD_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Lee_ClearWhat) && (other.guild == GIL_NONE))
 	{
@@ -527,13 +527,13 @@ func int DIA_Lee_OtherSld_Condition()
 	};
 };
 
-func void DIA_Lee_OtherSld_Info()
+func void DIA_Lee_OtherSLD_Info()
 {
-	AI_Output(other,self,"DIA_Lee_OtherSld_15_00");	//Как мне убедить наемников проголосовать за меня?
-	AI_Output(self,other,"DIA_Lee_OtherSld_04_01");	//Делая то, что ожидается от тебя, когда ты будешь наемником, я бы сказал.
-	AI_Output(self,other,"DIA_Lee_OtherSld_04_02");	//Поговори с Торлофом. Он обычно находится перед домом. Он даст тебе испытание.
-	AI_Output(self,other,"DIA_Lee_OtherSld_04_03");	//Если ты сможешь пройти его, ты завоюешь большую часть необходимого уважения.
-	AI_Output(self,other,"DIA_Lee_OtherSld_04_04");	//Он расскажет тебе обо всем, что тебе нужно знать.
+	AI_Output(other,self,"DIA_Lee_OtherSLD_15_00");	//Как мне убедить наемников проголосовать за меня?
+	AI_Output(self,other,"DIA_Lee_OtherSLD_04_01");	//Делая то, что ожидается от тебя, когда ты будешь наемником, я бы сказал.
+	AI_Output(self,other,"DIA_Lee_OtherSLD_04_02");	//Поговори с Торлофом. Он обычно находится перед домом. Он даст тебе испытание.
+	AI_Output(self,other,"DIA_Lee_OtherSLD_04_03");	//Если ты сможешь пройти его, ты завоюешь большую часть необходимого уважения.
+	AI_Output(self,other,"DIA_Lee_OtherSLD_04_04");	//Он расскажет тебе обо всем, что тебе нужно знать.
 	Log_CreateTopic(TOPIC_BecomeSLD,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BecomeSLD,LOG_RUNNING);
 	B_LogEntry(TOPIC_BecomeSLD,"Чтобы быть принятым в ряды наемников, я должен пройти испытание Торлофа и заслужить уважение остальных наемников.");
@@ -588,7 +588,7 @@ instance DIA_Lee_JoinNOW(C_Info)
 
 func int DIA_Lee_JoinNOW_Condition()
 {
-	if((other.guild == GIL_NONE) && Npc_KnowsInfo(other,DIA_Lee_OtherSld) && (Lee_OnarOK == FALSE))
+	if((other.guild == GIL_NONE) && Npc_KnowsInfo(other,DIA_Lee_OtherSLD) && (Lee_OnarOK == FALSE))
 	{
 		return TRUE;
 	};
@@ -674,38 +674,41 @@ func void DIA_Lee_JoinNOW_Info()
 };
 
 
-instance DIA_Lee_KeinSld(C_Info)
+instance DIA_Lee_KeinSLD(C_Info)
 {
 	npc = SLD_800_Lee;
 	nr = 4;
-	condition = DIA_Lee_KeinSld_Condition;
-	information = DIA_Lee_KeinSld_Info;
+	condition = DIA_Lee_KeinSLD_Condition;
+	information = DIA_Lee_KeinSLD_Info;
 	important = TRUE;
 };
 
 
-func int DIA_Lee_KeinSld_Condition()
+func int DIA_Lee_KeinSLD_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Lee_FirstMetAsGuildless == TRUE) && ((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_NOV) || (other.guild == GIL_KDF)))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((Lee_FirstMetAsGuildless == TRUE) && ((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_NOV) || (other.guild == GIL_KDF)))
+		{
+			return TRUE;
+		};
 	};
 };
 
-func void DIA_Lee_KeinSld_Info()
+func void DIA_Lee_KeinSLD_Info()
 {
 	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
-		AI_Output(self,other,"DIA_Lee_KeinSld_04_00");	//Я вижу, ты поступил на службу к паладинам.
+		AI_Output(self,other,"DIA_Lee_KeinSLD_04_00");	//Я вижу, ты поступил на службу к паладинам.
 	}
 	else if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
 	{
-		AI_Output(self,other,"DIA_Lee_KeinSld_04_01");	//Ты постригся в монастырь? (смеется) Я всего ожидал, только не этого.
+		AI_Output(self,other,"DIA_Lee_KeinSLD_04_01");	//Ты постригся в монастырь? (смеется) Я всего ожидал, только не этого.
 	};
-	AI_Output(self,other,"DIA_Lee_KeinSld_04_02");	//Что ж, теперь ты не сможешь стать наемником.
-	AI_Output(self,other,"DIA_Lee_KeinSld_04_03");	//Но кто знает, может быть, ты сможешь сделать что-нибудь для меня - или я для тебя.
-	AI_Output(self,other,"DIA_Lee_KeinSld_04_04");	//Посмотрим. Но, как бы то ни было, я желаю тебе всего наилучшего.
-	AI_Output(self,other,"DIA_Lee_KeinSld_04_05");	//Но даже и не думай обвести меня вокруг пальца, понял?
+	AI_Output(self,other,"DIA_Lee_KeinSLD_04_02");	//Что ж, теперь ты не сможешь стать наемником.
+	AI_Output(self,other,"DIA_Lee_KeinSLD_04_03");	//Но кто знает, может быть, ты сможешь сделать что-нибудь для меня - или я для тебя.
+	AI_Output(self,other,"DIA_Lee_KeinSLD_04_04");	//Посмотрим. Но, как бы то ни было, я желаю тебе всего наилучшего.
+	AI_Output(self,other,"DIA_Lee_KeinSLD_04_05");	//Но даже и не думай обвести меня вокруг пальца, понял?
 };
 
 
@@ -1003,7 +1006,7 @@ func void DIA_Lee_Report_Info()
 };
 
 
-var int Lee_Give_Sld_M;
+var int Lee_Give_SLD_M;
 
 instance DIA_Lee_ArmorM(C_Info)
 {
@@ -1018,7 +1021,7 @@ instance DIA_Lee_ArmorM(C_Info)
 
 func int DIA_Lee_ArmorM_Condition()
 {
-	if((Kapitel == 2) && (other.guild == GIL_SLD) && (Lee_Give_Sld_M == FALSE))
+	if((Kapitel == 2) && (other.guild == GIL_SLD) && (Lee_Give_SLD_M == FALSE))
 	{
 		return TRUE;
 	};
@@ -1031,7 +1034,7 @@ func void DIA_Lee_ArmorM_Info()
 	{
 		AI_Output(self,other,"DIA_Lee_ArmorM_04_01");	//Ты выполнил задание.
 		AI_Output(self,other,"DIA_Lee_ArmorM_04_02");	//У меня есть достойные доспехи для тебя. Конечно, если ты кредитоспособен.
-		Lee_Give_Sld_M = TRUE;
+		Lee_Give_SLD_M = TRUE;
 	}
 	else
 	{
@@ -1054,7 +1057,7 @@ instance DIA_Lee_BuyArmorM(C_Info)
 
 func int DIA_Lee_BuyArmorM_Condition()
 {
-	if((Lee_Give_Sld_M == TRUE) && (Lee_SldMGiven == FALSE) && (Gorn_SldMGiven == FALSE) && (other.guild == GIL_SLD))
+	if((Lee_Give_SLD_M == TRUE) && (Lee_SldMGiven == FALSE) && (Gorn_SldMGiven == FALSE) && (other.guild == GIL_SLD))
 	{
 		return TRUE;
 	};
@@ -1148,9 +1151,12 @@ instance DIA_Lee_Teleport(C_Info)
 
 func int DIA_Lee_Teleport_Condition()
 {
-	if(C_Lee_ReadyToGiveRune() && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
-		return TRUE;
+		if(C_Lee_ReadyToGiveRune())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1241,9 +1247,12 @@ instance DIA_Lee_RichterBeweise(C_Info)
 
 func int DIA_Lee_RichterBeweise_Condition()
 {
-	if((Kapitel >= 3) && (MIS_Lee_JudgeRichter == LOG_RUNNING) && Npc_HasItems(other,ItWr_RichterKomproBrief_MIS) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
+	if((Kapitel >= 3) && (MIS_Lee_JudgeRichter == LOG_RUNNING) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_RichterKomproBrief_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1256,7 +1265,7 @@ func void DIA_Lee_RichterBeweise_Info()
 	AI_Output(other,self,"DIA_Lee_RichterBeweise_15_04");	//Я принес тебе в качестве доказательства письменный приказ судьи этим головорезам.
 	AI_Output(self,other,"DIA_Lee_RichterBeweise_04_05");	//Покажи.
 	B_GiveInvItems(other,self,ItWr_RichterKomproBrief_MIS,1);
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	if(!Npc_IsDead(Richter))
 	{
 		AI_Output(self,other,"DIA_Lee_RichterBeweise_04_06");	//Наконец-то. Этого должно быть достаточно, чтобы заставить его страдать. Я восхищен.
@@ -1629,9 +1638,12 @@ instance DIA_Lee_DRACHENEI(C_Info)
 
 func int DIA_Lee_DRACHENEI_Condition()
 {
-	if(Npc_HasItems(other,ItAt_DragonEgg_MIS) && (Kapitel >= 4))
+	if(Kapitel >= 4)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAt_DragonEgg_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

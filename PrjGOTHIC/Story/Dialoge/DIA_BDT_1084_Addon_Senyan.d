@@ -84,7 +84,7 @@ func void DIA_Addon_Senyan_Hi_Info()
 	}
 	else
 	{
-		B_ReadFakeItem(self,other,Fakeheroface,1);
+		B_ReadFakeItem(self,other,FakeHeroFace,1);
 		AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_12_01");	//Ну-ка, ну-ка. Вот ты где. У меня для тебя есть хорошие новости и плохие новости.
 		Npc_ExchangeRoutine(self,"BAR");
 		Senyan_Contact = TRUE;

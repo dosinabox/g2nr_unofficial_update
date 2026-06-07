@@ -686,11 +686,11 @@ func void Use_HealObsession()
 };
 
 
-instance ItSe_Golemchest_MIS(C_Item)
+instance ItSe_GolemChest_MIS(C_Item)
 {
 	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI | ITEM_MISSION;
+	flags = ITEM_MULTI;
 	value = 50;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";

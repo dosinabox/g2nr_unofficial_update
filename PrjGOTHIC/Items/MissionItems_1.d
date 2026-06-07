@@ -849,6 +849,21 @@ instance ItKe_Bandit(C_Item)
 	inv_zbias = 145;
 };
 
+instance ItMi_BaltramPaket(C_Item)
+{
+	name = "Пакет для Бальтрама";
+	mainflag = ITEM_KAT_NONE;
+	flags = 0;
+	value = 200;
+	visual = "ItMi_Packet.3ds";
+	material = MAT_LEATHER;
+	description = name;
+	text[0] = "Тяжелый пакет с различными";
+	text[1] = "товарами с фермы Акила.";
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
 instance ItRw_Bow_L_03_MIS(C_Item)
 {
 	name = "Охотничий лук";
@@ -900,7 +915,7 @@ instance ItMi_EddasStatue(C_Item)
 {
 	name = NAME_InnosStatue;
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI | ITEM_MISSION;
+	flags = ITEM_MULTI;
 	value = Value_InnosStatue;
 	visual = "ItMi_InnosStatue.3DS";
 	material = MAT_METAL;

@@ -3,21 +3,10 @@ instance DIA_Abuyin_EXIT(C_Info)
 {
 	npc = VLK_456_Abuyin;
 	nr = 999;
-	condition = DIA_Abuyin_EXIT_Condition;
-	information = DIA_Abuyin_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Abuyin_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Abuyin_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -178,9 +167,24 @@ instance DIA_Abuyin_Mischung(C_Info)
 
 func int DIA_Abuyin_Mischung_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Abuyin_anderen) && (Abuyin_Honigtabak == FALSE) && (Npc_HasItems(other,ItMi_SumpfTabak) || Npc_HasItems(other,ItMi_PilzTabak) || Npc_HasItems(other,ItMi_DoppelTabak) || Npc_HasItems(other,ItMi_Honigtabak)))
+	if(Npc_KnowsInfo(other,DIA_Abuyin_anderen) && (Abuyin_HonigTabak == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_SumpfTabak))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMi_PilzTabak))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMi_DoppelTabak))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMi_HonigTabak))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -201,7 +205,7 @@ func void DIA_Abuyin_Mischung_Info()
 	{
 		Info_AddChoice(DIA_Abuyin_Mischung,PRINT_DOPPEL,DIA_Abuyin_Mischung_Doppel);
 	};
-	if(Npc_HasItems(other,ItMi_Honigtabak))
+	if(Npc_HasItems(other,ItMi_HonigTabak))
 	{
 		Info_AddChoice(DIA_Abuyin_Mischung,PRINT_HONIG,DIA_Abuyin_Mischung_Super);
 	};
@@ -238,8 +242,8 @@ func void DIA_Abuyin_Mischung_Doppel()
 
 func void DIA_Abuyin_Mischung_Super()
 {
-	B_GiveInvItems(other,self,ItMi_Honigtabak,1);
-	Npc_RemoveInvItems(self,ItMi_Honigtabak,1);
+	B_GiveInvItems(other,self,ItMi_HonigTabak,1);
+	Npc_RemoveInvItems(self,ItMi_HonigTabak,1);
 	AI_Output(self,other,"DIA_Abuyin_Mischung_Super_13_00");	//Давай я попробую твой табак.
 	CreateInvItems(self,ItMi_Joint,1);
 	B_UseItem(self,ItMi_Joint);
@@ -249,7 +253,7 @@ func void DIA_Abuyin_Mischung_Super()
 	AI_Output(self,other,"DIA_Abuyin_Mischung_Super_13_04");	//Ты хорошо поработал, о, Отец Искусства Смешения. Я с превеликим удовольствием набью им свои презренные трубки.
 	AI_Output(other,self,"DIA_Abuyin_Mischung_Super_15_05");	//Ну, набей.
 	AI_Output(self,other,"DIA_Abuyin_Mischung_Super_13_06");	//Спасибо тебе, о, Сын Великодушия. Ни одна другая смесь не сравнится с твоим творением. Я готов покупать все, что ты сможешь принести мне.
-	Abuyin_Honigtabak = TRUE;
+	Abuyin_HonigTabak = TRUE;
 	B_GivePlayerXP(XP_Ambient * 2);
 	Info_ClearChoices(DIA_Abuyin_Mischung);
 };
@@ -268,19 +272,22 @@ instance DIA_Abuyin_Trade(C_Info)
 
 func int DIA_Abuyin_Trade_Condition()
 {
-	if((Abuyin_Honigtabak == TRUE) && Npc_HasItems(other,ItMi_Honigtabak))
+	if(Abuyin_HonigTabak == TRUE)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_HonigTabak))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Abuyin_Trade_Info()
 {
 	var int count;
-	count = Npc_HasItems(other,ItMi_Honigtabak);
+	count = Npc_HasItems(other,ItMi_HonigTabak);
 	AI_Output(other,self,"DIA_Abuyin_Trade_15_00");	//Я принес тебе медового табака.
-	B_GiveInvItems(other,self,ItMi_Honigtabak,count);
-	Npc_RemoveInvItems(self,ItMi_Honigtabak,count);
+	B_GiveInvItems(other,self,ItMi_HonigTabak,count);
+	Npc_RemoveInvItems(self,ItMi_HonigTabak,count);
 	B_GiveInvItems(self,other,ItMi_Gold,count * VALUE_ItMi_HonigTabak);
 	AI_Output(self,other,"DIA_Abuyin_Trade_13_01");	//Для меня огромное удовольствие иметь с тобой дело.
 };
@@ -298,9 +305,12 @@ instance DIA_Abuyin_Herb(C_Info)
 
 func int DIA_Abuyin_Herb_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Abuyin_du) && Npc_HasItems(other,ItMi_HerbPaket))
+	if(Npc_KnowsInfo(other,DIA_Abuyin_du))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_HerbPaket))
+		{
+			return TRUE;
+		};
 	};
 };
 

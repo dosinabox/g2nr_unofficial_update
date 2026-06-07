@@ -164,7 +164,14 @@ func void DIA_MiltenOW_Wo_Info()
 	{
 		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_01");	//Горн, похоже, ничуть не изменился после заключения в тюрьме Гаронда.
 	};
-	AI_Output(self,other,"DIA_MiltenOW_Wo_Forget_03_02");	//Диего прикрепили к отряду старателей. Спроси паладина Парсиваля, он отправлял этот отряд.
+	if(!Npc_IsDead(Parcival))
+	{
+		AI_Output(self,other,"DIA_MiltenOW_Wo_Forget_03_02");	//Диего прикрепили к отряду старателей. Спроси паладина Парсиваля, он отправлял этот отряд.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_MiltenOW_Wo_Forget_03_02_add");	//Диего прикрепили к отряду старателей.
+	};
 	if(MIS_SearchForDiego == FALSE)
 	{
 		MIS_SearchForDiego = LOG_RUNNING;

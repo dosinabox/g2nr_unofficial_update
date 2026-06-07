@@ -3,21 +3,10 @@ instance DIA_PAL_213_Schiffswache_EXIT(C_Info)
 {
 	npc = PAL_213_Schiffswache;
 	nr = 999;
-	condition = DIA_PAL_213_Schiffswache_EXIT_Condition;
-	information = DIA_PAL_213_Schiffswache_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_PAL_213_Schiffswache_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_PAL_213_Schiffswache_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -36,9 +25,12 @@ instance DIA_PAL_213_Schiffswache_FirstWarn(C_Info)
 
 func int DIA_PAL_213_Schiffswache_FirstWarn_Condition()
 {
-	if(C_NpcHasGuardStatus(self,PAL_213_Checkpoint,GP_NONE) && (MIS_ShipIsFree == FALSE))
+	if(MIS_ShipIsFree == FALSE)
 	{
-		return TRUE;
+		if(C_NpcHasGuardStatus(self,PAL_213_Checkpoint,GP_NONE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -72,9 +64,12 @@ instance DIA_PAL_213_Schiffswache_SecondWarn(C_Info)
 
 func int DIA_PAL_213_Schiffswache_SecondWarn_Condition()
 {
-	if(C_NpcHasGuardStatus(self,PAL_213_Checkpoint,GP_FirstWarnGiven) && (MIS_ShipIsFree == FALSE))
+	if(MIS_ShipIsFree == FALSE)
 	{
-		return TRUE;
+		if(C_NpcHasGuardStatus(self,PAL_213_Checkpoint,GP_FirstWarnGiven))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -107,9 +102,12 @@ instance DIA_PAL_213_Schiffswache_Attack(C_Info)
 
 func int DIA_PAL_213_Schiffswache_Attack_Condition()
 {
-	if(C_NpcHasGuardStatus(self,PAL_213_Checkpoint,GP_SecondWarnGiven) && (MIS_ShipIsFree == FALSE))
+	if(MIS_ShipIsFree == FALSE)
 	{
-		return TRUE;
+		if(C_NpcHasGuardStatus(self,PAL_213_Checkpoint,GP_SecondWarnGiven))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -444,9 +442,12 @@ instance DIA_PAL_213_Schiffswache_IAmDJG3(C_Info)
 
 func int DIA_PAL_213_Schiffswache_IAmDJG3_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (other.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmDJG) && Npc_HasItems(other,ItWr_ForgedShipLetter_MIS))
+	if((MIS_ShipIsFree == FALSE) && (other.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmDJG))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_ForgedShipLetter_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -455,7 +456,7 @@ func void DIA_PAL_213_Schiffswache_IAmDJG3_Info()
 	AI_Output(other,self,"DIA_PAL_213_Schiffswache_IAmDJG3_15_00");	//У меня письменное разрешение. Я уполномочен взойти на этот корабль.
 	AI_Output(self,other,"DIA_PAL_213_Schiffswache_IAmDJG3_01_01");	//Дай я взгляну.
 	B_GiveInvItems(other,self,ItWr_ForgedShipLetter_MIS,1);
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	AI_Output(self,other,"DIA_PAL_213_Schiffswache_IAmDJG3_01_02");	//Все правильно, ты можешь пройти.
 	B_ShipIsFree();
 };

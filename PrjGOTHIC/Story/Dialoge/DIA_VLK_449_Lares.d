@@ -61,9 +61,12 @@ instance DIA_Addon_Lares_Patch(C_Info)
 
 func int DIA_Addon_Lares_Patch_Condition()
 {
-	if(Npc_HasItems(self,ItMi_Ornament_Addon_Vatras) && (Kapitel >= 3) && (ENTERED_ADDONWORLD == FALSE) && !Npc_HasItems(other,ItMi_Ornament_Addon_Vatras) && (MIS_Addon_Lares_Ornament2Saturas != LOG_SUCCESS))
+	if((Kapitel >= 3) && (ENTERED_ADDONWORLD == FALSE) && (MIS_Addon_Lares_Ornament2Saturas != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItMi_Ornament_Addon_Vatras) && !Npc_HasItems(other,ItMi_Ornament_Addon_Vatras))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -513,9 +516,12 @@ instance DIA_Addon_Lares_RingBack2(C_Info)
 
 func int DIA_Addon_Lares_RingBack2_Condition()
 {
-	if(Npc_HasItems(other,ItRi_Ranger_Lares_Addon) && (Lares_GotRingBack == FALSE) && (MIS_Addon_Lares_ComeToRangerMeeting != FALSE))
+	if((Lares_GotRingBack == FALSE) && (MIS_Addon_Lares_ComeToRangerMeeting != FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItRi_Ranger_Lares_Addon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -772,9 +778,12 @@ instance DIA_Addon_Lares_Ornament(C_Info)
 
 func int DIA_Addon_Lares_Ornament_Condition()
 {
-	if(Npc_HasItems(other,ItMi_Ornament_Addon_Vatras) && Npc_KnowsInfo(other,DIA_Addon_Lares_Vatras))
+	if(Npc_KnowsInfo(other,DIA_Addon_Lares_Vatras))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Ornament_Addon_Vatras))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1336,18 +1345,18 @@ func void DIA_Addon_Lares_Gilde_KDF()
 
 var int Lares_WorkForLee;
 
-instance DIA_Lares_AboutSld(C_Info)
+instance DIA_Lares_AboutSLD(C_Info)
 {
 	npc = VLK_449_Lares;
 	nr = 10;
-	condition = DIA_Lares_AboutSld_Condition;
-	information = DIA_Lares_AboutSld_Info;
+	condition = DIA_Lares_AboutSLD_Condition;
+	information = DIA_Lares_AboutSLD_Info;
 	permanent = TRUE;
 	description = "Расскажи мне о Ли и наемниках...";
 };
 
 
-func int DIA_Lares_AboutSld_Condition()
+func int DIA_Lares_AboutSLD_Condition()
 {
 	if(other.guild == GIL_NONE)
 	{
@@ -1355,43 +1364,43 @@ func int DIA_Lares_AboutSld_Condition()
 	};
 };
 
-func void DIA_Lares_AboutSld_Info()
+func void DIA_Lares_AboutSLD_Info()
 {
-	AI_Output(other,self,"DIA_ADDON_Lares_AboutSld_15_00");	//Расскажи мне о Ли и наемниках...
-	AI_Output(self,other,"DIA_ADDON_Lares_AboutSld_09_01");	//Что ты хочешь узнать?
-	Info_ClearChoices(DIA_Lares_AboutSld);
-	Info_AddChoice(DIA_Lares_AboutSld,Dialog_Back,DIA_Lares_AboutSld_BACK);
-	Info_AddChoice(DIA_Lares_AboutSld,"А почему ТЫ не с Ли и наемниками?",DIA_Lares_AboutSld_WhyNotYou);
-	Info_AddChoice(DIA_Lares_AboutSld,"Расскажи мне подробнее о наемниках.",DIA_Lares_AboutSld_Sld);
+	AI_Output(other,self,"DIA_ADDON_Lares_AboutSLD_15_00");	//Расскажи мне о Ли и наемниках...
+	AI_Output(self,other,"DIA_ADDON_Lares_AboutSLD_09_01");	//Что ты хочешь узнать?
+	Info_ClearChoices(DIA_Lares_AboutSLD);
+	Info_AddChoice(DIA_Lares_AboutSLD,Dialog_Back,DIA_Lares_AboutSLD_BACK);
+	Info_AddChoice(DIA_Lares_AboutSLD,"А почему ТЫ не с Ли и наемниками?",DIA_Lares_AboutSLD_WhyNotYou);
+	Info_AddChoice(DIA_Lares_AboutSLD,"Расскажи мне подробнее о наемниках.",DIA_Lares_AboutSLD_SLD);
 	if(Lares_WayToOnar == FALSE)
 	{
-		Info_AddChoice(DIA_Lares_AboutSld,"Как мне найти ферму лендлорда?",DIA_Lares_AboutSld_WayToOnar);
+		Info_AddChoice(DIA_Lares_AboutSLD,"Как мне найти ферму лендлорда?",DIA_Lares_AboutSLD_WayToOnar);
 	};
 };
 
-func void DIA_Lares_AboutSld_BACK()
+func void DIA_Lares_AboutSLD_BACK()
 {
-	Info_ClearChoices(DIA_Lares_AboutSld);
+	Info_ClearChoices(DIA_Lares_AboutSLD);
 };
 
-func void DIA_Lares_AboutSld_Sld()
+func void DIA_Lares_AboutSLD_SLD()
 {
-	AI_Output(other,self,"DIA_Lares_AboutSld_15_00");	//Расскажи мне подробнее о наемниках.
-	AI_Output(self,other,"DIA_Lares_AboutSld_09_01");	//Ну, если ты так же силен, как был в долине, то у тебя не должно возникнуть проблем с ними.
-	AI_Output(self,other,"DIA_Lares_AboutSld_09_02");	//Большинство из них настоящие головорезы, и если ты не сможешь дать им отпор, то далеко ты не продвинешься.
-	AI_Output(self,other,"DIA_Lares_AboutSld_09_03");	//(смеется) Если ты проявишь слабость, у тебя не будет шансов присоединиться к ним...
+	AI_Output(other,self,"DIA_Lares_AboutSLD_15_00");	//Расскажи мне подробнее о наемниках.
+	AI_Output(self,other,"DIA_Lares_AboutSLD_09_01");	//Ну, если ты так же силен, как был в долине, то у тебя не должно возникнуть проблем с ними.
+	AI_Output(self,other,"DIA_Lares_AboutSLD_09_02");	//Большинство из них настоящие головорезы, и если ты не сможешь дать им отпор, то далеко ты не продвинешься.
+	AI_Output(self,other,"DIA_Lares_AboutSLD_09_03");	//(смеется) Если ты проявишь слабость, у тебя не будет шансов присоединиться к ним...
 };
 
-func void DIA_Lares_AboutSld_WhyNotYou()
+func void DIA_Lares_AboutSLD_WhyNotYou()
 {
 	AI_Output(other,self,"DIA_Lares_WhyInCity_15_00");	//А почему ТЫ не с Ли и наемниками?
 	AI_Output(self,other,"DIA_Lares_WhyInCity_09_01");	//Я с ними! Просто я сейчас не на ферме.
 	AI_Output(self,other,"DIA_Lares_WhyInCity_09_02");	//Можно сказать, я их аванпост в городе. Мы не хотим, чтобы корабль уплыл без нас.
 	Lares_WorkForLee = TRUE;
-	Info_AddChoice(DIA_Lares_AboutSld,"О каком корабле ты говоришь?",DIA_Lares_AboutSld_Schiff);
+	Info_AddChoice(DIA_Lares_AboutSLD,"О каком корабле ты говоришь?",DIA_Lares_AboutSLD_Schiff);
 };
 
-func void DIA_Lares_AboutSld_Schiff()
+func void DIA_Lares_AboutSLD_Schiff()
 {
 	AI_Output(other,self,"DIA_Lares_Schiff_15_00");	//О каком корабле ты говоришь?
 	AI_Output(self,other,"DIA_Lares_Schiff_09_01");	//Он стоит в гавани порта, за утесами. Ли и часть его людей очень хотят убраться отсюда.
@@ -1401,7 +1410,7 @@ func void DIA_Lares_AboutSld_Schiff()
 	B_LaresOffersWayToOnar();
 };
 
-func void DIA_Lares_AboutSld_WayToOnar()
+func void DIA_Lares_AboutSLD_WayToOnar()
 {
 	AI_Output(other,self,"DIA_Lares_WegZumHof_15_00");	//Как мне найти ферму лендлорда?
 	AI_Output(self,other,"DIA_Addon_Lares_WegZumHof_09_00");	//Это довольно просто. Ты выходишь из города через восточные ворота, а затем следуешь по дороге на восток.
@@ -1478,9 +1487,12 @@ instance DIA_Lares_GotKey(C_Info)
 
 func int DIA_Lares_GotKey_Condition()
 {
-	if(Npc_HasItems(other,ItKe_ThiefGuildKey_MIS) && (DG_gefunden == FALSE))
+	if(DG_gefunden == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItKe_ThiefGuildKey_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

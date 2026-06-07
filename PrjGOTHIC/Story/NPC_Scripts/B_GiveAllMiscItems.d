@@ -53,7 +53,7 @@ func void B_GiveAllClassicMiscItems(var C_Npc npc)
 	CreateInvItem(npc,ItMi_ApfelTabak);
 	CreateInvItem(npc,ItMi_PilzTabak);
 	CreateInvItem(npc,ItMi_DoppelTabak);
-	CreateInvItem(npc,ItMi_Honigtabak);
+	CreateInvItem(npc,ItMi_HonigTabak);
 	CreateInvItem(npc,ItMi_SumpfTabak);
 	CreateInvItem(npc,ItMi_Pocket);
 	CreateInvItem(npc,ItSe_GoldPocket25);

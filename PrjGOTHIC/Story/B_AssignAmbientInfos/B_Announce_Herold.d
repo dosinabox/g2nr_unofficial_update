@@ -1,33 +1,33 @@
 
 func void B_Announce_Herold()
 {
-	var int randy;
+	var int random;
 	AI_RemoveWeapon(self);
-	if(!Npc_HasItems(self,Fakescroll))
+	if(!Npc_HasItems(self,FakeScroll))
 	{
-		CreateInvItem(self,Fakescroll);
+		CreateInvItem(self,FakeScroll);
 	};
-	AI_UseItemToState(self,Fakescroll,1);
+	AI_UseItemToState(self,FakeScroll,1);
 	AI_Output(self,self,"DIA_Herold_Announce_04_00");	//Слушайте, жители Хориниса! По прямому указанию достопочтимого лорда Хагена, сегодня вступает в силу следующий декрет.
 	if(Kapitel <= 2)
 	{
-		randy = Hlp_Random(5);
-		if(randy == 0)
+		random = Hlp_Random(5);
+		if(random == 0)
 		{
 			AI_Output(self,self,"DIA_Herold_Announce_04_01");	//Учитывая общую ситуацию, леса и пустоши около города следует избегать ради вашей собственной же безопасности.
 			AI_Output(self,self,"DIA_Herold_Announce_04_02");	//Кроме того, любые контакты с восставшими крестьянами в прилежащих землях строжайше запрещены.
 		}
-		else if(randy == 1)
+		else if(random == 1)
 		{
 			AI_Output(self,self,"DIA_Herold_Announce_04_03");	//С этого момента лорд Андрэ назначается главнокомандующим нашим ополчением.
 			AI_Output(self,self,"DIA_Herold_Announce_04_04");	//Все граждане этого города, имеющие военные навыки, обязаны вступить в королевское ополчение.
 		}
-		else if(randy == 2)
+		else if(random == 2)
 		{
 			AI_Output(self,self,"DIA_Herold_Announce_04_05");	//Меры безопасности по защите верхнего квартала будут еще усилены.
 			AI_Output(self,self,"DIA_Herold_Announce_04_06");	//Охране у ворот приказано применять закон самым строжайшим образом, чтобы предотвратить несанкционированный доступ к кварталу.
 		}
-		else if(randy == 3)
+		else if(random == 3)
 		{
 			AI_Output(self,self,"DIA_Herold_Announce_04_07");	//Во всех городах и провинциях королевства объявляется военное положение.
 			AI_Output(self,self,"DIA_Herold_Announce_04_08");	//Все гражданские судьи должны сложить свои обязанности и передать их королевским паладинам.
@@ -60,8 +60,8 @@ func void B_Announce_Herold()
 	}
 	else
 	{
-		randy = Hlp_Random(2);
-		if(randy == 0)
+		random = Hlp_Random(2);
+		if(random == 0)
 		{
 			AI_Output(self,self,"DIA_Herold_Announce_04_19");	//Драконы, угрожавшие спокойствию нашей земли, были уничтожены мужественным воином под командованием лорда Хагена.
 			AI_Output(self,self,"DIA_Herold_Announce_04_20");	//Скоро король Робар освободит наши земли от орков, и королевство опять станет цветущим и преуспевающим.
@@ -72,6 +72,6 @@ func void B_Announce_Herold()
 			AI_Output(self,self,"DIA_Herold_Announce_04_22");	//Лорд Хаген объявил, что лично направляется в Долину Рудников, чтобы обеспечить загрузку корабля магической рудой.
 		};
 	};
-	AI_UseItemToState(self,Fakescroll,-1);
+	AI_UseItemToState(self,FakeScroll,-1);
 };
 

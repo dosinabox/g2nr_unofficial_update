@@ -3,21 +3,10 @@ instance DIA_Dar_EXIT(C_Info)
 {
 	npc = SLD_810_Dar;
 	nr = 999;
-	condition = DIA_Dar_EXIT_Condition;
-	information = DIA_Dar_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Dar_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Dar_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -262,44 +251,47 @@ func void DIA_Dar_Kameradenschwein_Info()
 };
 
 
-instance DIA_Dar_Pilztabak(C_Info)
+instance DIA_Dar_PilzTabak(C_Info)
 {
 	npc = SLD_810_Dar;
 	nr = 6;
-	condition = DIA_Dar_Pilztabak_Condition;
-	information = DIA_Dar_Pilztabak_Info;
+	condition = DIA_Dar_PilzTabak_Condition;
+	information = DIA_Dar_PilzTabak_Info;
 	description = "Ты когда-нибудь пробовал грибной табак?";
 };
 
 
-func int DIA_Dar_Pilztabak_Condition()
+func int DIA_Dar_PilzTabak_Condition()
 {
-	if(Npc_HasItems(other,ItMi_PilzTabak) && Npc_KnowsInfo(other,DIA_Dar_Hallo))
+	if(Npc_KnowsInfo(other,DIA_Dar_Hallo))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_PilzTabak))
+		{
+			return TRUE;
+		};
 	};
 };
 
-func void DIA_Dar_Pilztabak_Info()
+func void DIA_Dar_PilzTabak_Info()
 {
-	AI_Output(other,self,"DIA_Dar_Pilztabak_15_00");	//Ты когда-нибудь пробовал грибной табак?
-	AI_Output(self,other,"DIA_Dar_Pilztabak_03_01");	//Звучит интересно. Дай его сюда.
+	AI_Output(other,self,"DIA_Dar_PilzTabak_15_00");	//Ты когда-нибудь пробовал грибной табак?
+	AI_Output(self,other,"DIA_Dar_PilzTabak_03_01");	//Звучит интересно. Дай его сюда.
 	B_GiveInvItems(other,self,ItMi_PilzTabak,1);
 	Npc_RemoveInvItem(self,ItMi_PilzTabak);
-	AI_Output(self,other,"DIA_Dar_Pilztabak_03_02");	//Так, попробуем...
+	AI_Output(self,other,"DIA_Dar_PilzTabak_03_02");	//Так, попробуем...
 	CreateInvItem(self,ItMi_Joint);
 	B_UseItem(self,ItMi_Joint);
-	AI_Output(self,other,"DIA_Dar_Pilztabak_03_03");	//Ты когда-нибудь курил его сам?
-	AI_Output(other,self,"DIA_Dar_Pilztabak_15_04");	//Ну...
+	AI_Output(self,other,"DIA_Dar_PilzTabak_03_03");	//Ты когда-нибудь курил его сам?
+	AI_Output(other,self,"DIA_Dar_PilzTabak_15_04");	//Ну...
 	CreateInvItem(self,ItMi_Joint);
 	B_UseItem(self,ItMi_Joint);
-	AI_Output(self,other,"DIA_Dar_Pilztabak_03_05");	//Курил или нет?
-	AI_Output(other,self,"DIA_Dar_Pilztabak_15_06");	//Мне было некогда...
-	AI_Output(self,other,"DIA_Dar_Pilztabak_03_07");	//Ох, черт!
+	AI_Output(self,other,"DIA_Dar_PilzTabak_03_05");	//Курил или нет?
+	AI_Output(other,self,"DIA_Dar_PilzTabak_15_06");	//Мне было некогда...
+	AI_Output(self,other,"DIA_Dar_PilzTabak_03_07");	//Ох, черт!
 	AI_PlayAni(self,"T_MAGRUN_2_HEASHOOT");
-	AI_Output(self,other,"DIA_Dar_Pilztabak_03_08");	//Святой Робар!
+	AI_Output(self,other,"DIA_Dar_PilzTabak_03_08");	//Святой Робар!
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
-	AI_Output(self,other,"DIA_Dar_Pilztabak_03_09");	//Это дерьмо слишком крутое! Даже и не вздумай пробовать!
+	AI_Output(self,other,"DIA_Dar_PilzTabak_03_09");	//Это дерьмо слишком крутое! Даже и не вздумай пробовать!
 	B_GivePlayerXP(XP_Ambient);
 };
 
@@ -442,9 +434,12 @@ instance DIA_Dar_BRINGORCELITERING(C_Info)
 
 func int DIA_Dar_BRINGORCELITERING_Condition()
 {
-	if((MIS_Dar_BringOrcEliteRing == LOG_RUNNING) && Npc_HasItems(other,ItRi_OrcEliteRing))
+	if(MIS_Dar_BringOrcEliteRing == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItRi_OrcEliteRing))
+		{
+			return TRUE;
+		};
 	};
 };
 

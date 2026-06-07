@@ -691,9 +691,12 @@ instance DIA_Addon_Andre_MartinEmpfehlung(C_Info)
 
 func int DIA_Addon_Andre_MartinEmpfehlung_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Martin_MilizEmpfehlung_Addon) && Npc_KnowsInfo(other,DIA_Andre_AskToJoin))
+	if(Npc_KnowsInfo(other,DIA_Andre_AskToJoin))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Martin_MilizEmpfehlung_Addon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -702,7 +705,7 @@ func void DIA_Addon_Andre_MartinEmpfehlung_Info()
 	AI_Output(other,self,"DIA_Addon_Andre_MartinEmpfehlung_15_00");	//я принес рекомендательное письмо от вашего интенданта.
 	AI_Output(self,other,"DIA_Addon_Andre_MartinEmpfehlung_08_01");	//(недоверчиво) „то? ј ну-ка, покажи.
 	B_GiveInvItems(other,self,ItWr_Martin_MilizEmpfehlung_Addon,1);
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	AI_Output(self,other,"DIA_Addon_Andre_MartinEmpfehlung_08_02");	//(удивленно) Ќу надо же! “ебе, должно быть, пришлось потрудитьс€! Ќе так-то просто получить нечто подобное от ћартина.
 	if(other.guild == GIL_NONE)
 	{
@@ -969,7 +972,7 @@ func void DIA_Andre_Auslieferung_Halvor()
 	{
 		AI_WaitTillEnd(self,other);
 		B_GiveInvItems(other,self,ItWr_HalvorMessage,1);
-		B_ReadFakeItem(self,other,Fakescroll,1);
+		B_ReadFakeItem(self,other,FakeScroll,1);
 		AI_Teleport(Halvor,"NW_CITY_HABOUR_KASERN_HALVOR");
 		AI_Output(self,other,"DIA_Andre_Auslieferung_Halvor_08_01");	//“ак вот, кто этим занимаетс€. ћои люди немедленно схват€т его.
 		AI_Output(self,other,"DIA_Andre_Auslieferung_Halvor_08_02");	//я не думаю, что это будет сложно. я готов вручить тебе твою награду пр€мо сейчас.
@@ -1018,7 +1021,7 @@ func void DIA_Andre_Auslieferung_Canthar()
 		AI_Teleport(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU");
 		AI_Output(other,self,"DIA_Andre_Auslieferung_Canthar_15_02");	//я должен был подсунуть —аре письмо, которое подтвердило бы, что она поставл€ет оружие ќнару.
 		B_GiveInvItems(other,self,ItWr_Canthars_KomproBrief_MIS,1);
-		B_ReadFakeItem(self,other,Fakescroll,1);
+		B_ReadFakeItem(self,other,FakeScroll,1);
 		AI_Output(self,other,"DIA_Andre_Auslieferung_Canthar_08_03");	//ѕонимаю. я с радостью заплачу награду за этого ублюдка. ћожешь считать, что он уже за решеткой.
 		B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
 		B_NpcSetJailed(Canthar);
@@ -1186,7 +1189,15 @@ func int DIA_Andre_FoundThieves_KilledByMilitia_Condition()
 	{
 		if(C_DaysSinceEvent(Andre_FoundThieves_Reported_Day,2))
 		{
-			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
+			if(!Npc_IsDead(Cassia))
+			{
+				return TRUE;
+			};
+			if(!Npc_IsDead(Jesper))
+			{
+				return TRUE;
+			};
+			if(!Npc_IsDead(Ramirez))
 			{
 				return TRUE;
 			};
@@ -1414,11 +1425,14 @@ func int DIA_Andre_FOUND_PECK_Condition()
 		{
 			return TRUE;
 		};
-		if(Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
+		if(Kapitel < 3)
 		{
-			return TRUE;
-		};
-		if((Peck.aivar[AIV_TalkedToPlayer] == TRUE) && (Kapitel >= 3))
+			if(Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK))
+			{
+				return TRUE;
+			};
+		}
+		else if(Peck.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			return TRUE;
 		};
