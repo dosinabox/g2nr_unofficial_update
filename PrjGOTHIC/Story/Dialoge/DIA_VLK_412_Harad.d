@@ -3,21 +3,10 @@ instance DIA_Harad_EXIT(C_Info)
 {
 	npc = VLK_412_Harad;
 	nr = 999;
-	condition = DIA_Harad_EXIT_Condition;
-	information = DIA_Harad_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Harad_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Harad_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -510,6 +499,8 @@ func void DIA_Harad_LEHRLING_Later()
 };
 
 
+var int DIA_Harad_Zustimmung_Permanent;
+
 instance DIA_Harad_Zustimmung(C_Info)
 {
 	npc = VLK_412_Harad;
@@ -528,9 +519,6 @@ func int DIA_Harad_Zustimmung_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Harad_Zustimmung_Permanent;
 
 func void DIA_Harad_Zustimmung_Info()
 {
@@ -590,9 +578,12 @@ instance DIA_Harad_AlsLehrling(C_Info)
 
 func int DIA_Harad_AlsLehrling_Condition()
 {
-	if((Player_IsApprentice == APP_Harad) && Npc_IsInState(self,ZS_Talk) && (Harad_Lehrling_Day != Wld_GetDay()))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((Player_IsApprentice == APP_Harad) && (Harad_Lehrling_Day != Wld_GetDay()))
+		{
+			return TRUE;
+		};
 	};
 };
 

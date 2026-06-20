@@ -1,4 +1,15 @@
 
+instance DIA_Lares_EXIT(C_Info)
+{
+	npc = VLK_449_Lares;
+	nr = 999;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
+	permanent = TRUE;
+	description = Dialog_Ende;
+};
+
+
 var int LaresToldAboutKDW1;
 var int LaresToldAboutKDW2;
 
@@ -100,28 +111,6 @@ func void DIA_Addon_Lares_Patch_ja()
 	DIA_Addon_Lares_Patch_WhereTo();
 	Info_ClearChoices(DIA_Addon_Lares_Patch);
 };
-
-instance DIA_Lares_EXIT(C_Info)
-{
-	npc = VLK_449_Lares;
-	nr = 999;
-	condition = DIA_Lares_EXIT_Condition;
-	information = DIA_Lares_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lares_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Lares_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
 
 instance DIA_Addon_Lares_HaltsMaul(C_Info)
 {
@@ -1542,9 +1531,12 @@ instance DIA_Lares_OtherGuild(C_Info)
 
 func int DIA_Lares_OtherGuild_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (other.guild != GIL_NONE) && (SC_IsRanger == FALSE) && (Lares_FirstMetAsGuildless == TRUE))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((other.guild != GIL_NONE) && (SC_IsRanger == FALSE) && (Lares_FirstMetAsGuildless == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 

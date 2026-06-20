@@ -299,9 +299,12 @@ instance DIA_Thorben_GiveBook(C_Info)
 
 func int DIA_Thorben_GiveBook_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Thorben_Schuldenbuch) && Npc_HasItems(other,ItWr_Schuldenbuch))
+	if(Npc_KnowsInfo(other,DIA_Thorben_Schuldenbuch))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Schuldenbuch))
+		{
+			return TRUE;
+		};
 	};
 };
 

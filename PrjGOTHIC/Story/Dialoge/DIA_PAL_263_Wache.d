@@ -3,21 +3,10 @@ instance DIA_PAL_263_EXIT(C_Info)
 {
 	npc = PAL_263_Wache;
 	nr = 999;
-	condition = DIA_PAL_263_EXIT_Condition;
-	information = DIA_PAL_263_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_PAL_263_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_PAL_263_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -34,7 +23,7 @@ instance DIA_PAL_263_PERM(C_Info)
 
 func int DIA_PAL_263_PERM_Condition()
 {
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		return TRUE;
 	};
@@ -65,7 +54,7 @@ instance DIA_PAL_263_PERM_CIV(C_Info)
 
 func int DIA_PAL_263_PERM_CIV_Condition()
 {
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (hero.guild == GIL_NONE))
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG) || (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -91,7 +80,7 @@ instance DIA_PAL_263_PERM_OTH(C_Info)
 
 func int DIA_PAL_263_PERM_OTH_Condition()
 {
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_NOV) || (hero.guild == GIL_KDF) || (hero.guild == GIL_NONE))
+	if((other.guild == GIL_MIL) || (other.guild == GIL_NOV) || (other.guild == GIL_KDF) || (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};

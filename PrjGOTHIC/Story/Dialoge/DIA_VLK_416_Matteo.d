@@ -83,6 +83,15 @@ func void DIA_Matteo_SellWhat_Info()
 };
 
 
+var int Matteo_TradeNewsPermanent;
+
+func void B_MatteoAboutLothar()
+{
+	AI_Output(self,other,"DIA_Matteo_TRADE_09_01");	//С тех пор, как наемники прикончили Лотара, инспекции паладинов стали значительно более строгими.
+	AI_Output(self,other,"DIA_Matteo_TRADE_09_02");	//Я надеюсь, все успокоится, когда этого убийцу повесят.
+	Matteo_TradeNewsPermanent = 1;
+};
+
 instance DIA_Matteo_TRADE(C_Info)
 {
 	npc = VLK_416_Matteo;
@@ -101,16 +110,6 @@ func int DIA_Matteo_TRADE_Condition()
 	{
 		return TRUE;
 	};
-};
-
-
-var int Matteo_TradeNewsPermanent;
-
-func void B_MatteoAboutLothar()
-{
-	AI_Output(self,other,"DIA_Matteo_TRADE_09_01");	//С тех пор, как наемники прикончили Лотара, инспекции паладинов стали значительно более строгими.
-	AI_Output(self,other,"DIA_Matteo_TRADE_09_02");	//Я надеюсь, все успокоится, когда этого убийцу повесят.
-	Matteo_TradeNewsPermanent = 1;
 };
 
 func void DIA_Matteo_TRADE_Info()
@@ -509,6 +508,8 @@ func void DIA_Matteo_GoldRunning_Info()
 };
 
 
+var int DIA_Matteo_Zustimmung_perm;
+
 instance DIA_Matteo_Zustimmung(C_Info)
 {
 	npc = VLK_416_Matteo;
@@ -519,8 +520,6 @@ instance DIA_Matteo_Zustimmung(C_Info)
 	description = "Помоги мне стать учеником одного из мастеров!";
 };
 
-
-var int DIA_Matteo_Zustimmung_perm;
 
 func int DIA_Matteo_Zustimmung_Condition()
 {

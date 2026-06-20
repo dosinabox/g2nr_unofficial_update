@@ -3,21 +3,10 @@ instance DIA_Addon_Patrick_EXIT(C_Info)
 {
 	npc = STRF_1118_Addon_Patrick;
 	nr = 999;
-	condition = DIA_Addon_Patrick_EXIT_Condition;
-	information = DIA_Addon_Patrick_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Patrick_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Patrick_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -186,9 +175,12 @@ instance DIA_Addon_Patrick_Killer(C_Info)
 
 func int DIA_Addon_Patrick_Killer_Condition()
 {
-	if(Npc_IsDead(PrisonGuard) && (Ready_Togo == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi) && (Sklaven_Flucht == FALSE))
+	if((Ready_Togo == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi) && (Sklaven_Flucht == FALSE))
 	{
-		return TRUE;
+		if(Npc_IsDead(PrisonGuard))
+		{
+			return TRUE;
+		};
 	};
 };
 

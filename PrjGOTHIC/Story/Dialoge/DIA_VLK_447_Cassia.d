@@ -3,21 +3,10 @@ instance DIA_Cassia_EXIT(C_Info)
 {
 	npc = VLK_447_Cassia;
 	nr = 999;
-	condition = DIA_Cassia_EXIT_Condition;
-	information = DIA_Cassia_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Cassia_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Cassia_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -723,6 +712,8 @@ func void DIA_Cassia_Versteck_Info()
 };
 
 
+var int DIA_Cassia_Blutkelche_permanent;
+
 instance DIA_Cassia_Blutkelche(C_Info)
 {
 	npc = VLK_447_Cassia;
@@ -733,8 +724,6 @@ instance DIA_Cassia_Blutkelche(C_Info)
 	description = "У тебя есть работа для меня?";
 };
 
-
-var int DIA_Cassia_Blutkelche_permanent;
 
 func int DIA_Cassia_Blutkelche_Condition()
 {
