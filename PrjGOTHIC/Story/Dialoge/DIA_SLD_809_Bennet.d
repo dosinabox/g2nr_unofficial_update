@@ -1343,9 +1343,6 @@ func void DIA_Bennet_GetInnosEye_Info()
 };
 
 
-var int BennetsDragonEggOffer;
-var int DragonEggCounter;
-
 instance DIA_Bennet_DRACHENEIER(C_Info)
 {
 	npc = SLD_809_Bennet;

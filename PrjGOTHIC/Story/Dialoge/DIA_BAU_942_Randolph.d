@@ -289,8 +289,6 @@ func void DIA_Randolph_WASBRAUCHSTDU_Info()
 };
 
 
-var int DIA_Randolph_ICHGEBEDIRGELD_noPerm;
-
 instance DIA_Randolph_ICHGEBEDIRGELD(C_Info)
 {
 	npc = BAU_942_Randolph;
@@ -409,9 +407,6 @@ func int DIA_Randolph_PERM_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Randolph_SoberForever;
 
 func void DIA_Randolph_PERM_Info()
 {

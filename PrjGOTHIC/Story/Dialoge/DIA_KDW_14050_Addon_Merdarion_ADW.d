@@ -151,8 +151,6 @@ func void DIA_Addon_Merdarion_FokusGeben_Info()
 };
 
 
-var int Merdarion_GotFocusCount;
-
 instance DIA_Addon_Merdarion_FirstFocus(C_Info)
 {
 	npc = KDW_14050_Addon_Merdarion_ADW;

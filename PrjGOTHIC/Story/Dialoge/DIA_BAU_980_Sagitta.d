@@ -517,7 +517,6 @@ func void DIA_Sagitta_Thekla_Info()
 
 
 var int DIA_Sagitta_HEALRANDOLPH_GotOne;
-var int DIA_Sagitta_HEALRANDOLPH_KnowsPrice;
 
 instance DIA_Sagitta_HEALRANDOLPH(C_Info)
 {

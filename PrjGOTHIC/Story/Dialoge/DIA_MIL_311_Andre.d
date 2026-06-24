@@ -52,7 +52,6 @@ func void DIA_Andre_FIRSTEXIT_Info()
 
 
 var int Andre_ToldInfoFromPablo;
-var int Andre_ToldInfoFromCanthar;
 
 func int C_Andre_InfoFromCanthar()
 {

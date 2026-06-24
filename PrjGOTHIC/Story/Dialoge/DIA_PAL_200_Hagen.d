@@ -1198,8 +1198,6 @@ func void DIA_Lord_Hagen_AugeAmStart_Info()
 };
 
 
-var int Hagen_SawOrcRing;
-
 instance DIA_Lord_Hagen_ANTIPALADINE(C_Info)
 {
 	npc = PAL_200_Hagen;
@@ -1292,8 +1290,6 @@ func void DIA_Hagen_MoreOrcRings()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_RINGEBRINGEN_15_03");	//Я могу дать тебе еще несколько колец орков.
 };
-
-var int OrkRingCounter;
 
 instance DIA_Lord_Hagen_RINGEBRINGEN(C_Info)
 {

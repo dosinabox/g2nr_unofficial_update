@@ -319,7 +319,6 @@ func void DIA_Addon_Vatras_CavalornSentMe_Info()
 };
 
 
-var int Vatras_ToldAboutDuty;
 var int Vatras_ToldAboutOtherKDW;
 var int Vatras_ToldAboutUnexplored;
 

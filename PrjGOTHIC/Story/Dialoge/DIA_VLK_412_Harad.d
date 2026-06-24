@@ -996,8 +996,6 @@ func void DIA_Harad_AboutErzklingen_Info()
 };
 
 
-var int OreBladeBought;
-
 func void B_ChooseHaradOreBlade()
 {
 	Info_ClearChoices(DIA_Harad_Erzklingen);

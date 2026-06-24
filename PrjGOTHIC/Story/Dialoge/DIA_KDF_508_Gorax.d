@@ -46,8 +46,6 @@ func void DIA_Gorax_HELP_Info()
 };
 
 
-var int DIA_Gorax_GOLD_perm;
-
 instance DIA_Gorax_GOLD(C_Info)
 {
 	npc = KDF_508_Gorax;

@@ -334,8 +334,6 @@ func void DIA_Vino_Obesessed_Info()
 };
 
 
-var int DIA_Vino_Heilung_oneTime;
-
 instance DIA_Vino_Heilung(C_Info)
 {
 	npc = BAU_952_Vino;
