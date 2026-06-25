@@ -16,7 +16,7 @@ func void ZS_Cook_Cauldron()
 
 func int ZS_Cook_Cauldron_Loop()
 {
-	B_UseAvailableMob(self,"CAULDRON");
+	B_UseAvailableMob(self,"CAULDRON",BS_MOBINTERACT_INTERRUPT);
 	return LOOP_CONTINUE;
 };
 

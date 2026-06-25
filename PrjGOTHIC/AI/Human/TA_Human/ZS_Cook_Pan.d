@@ -16,7 +16,7 @@ func void ZS_Cook_Pan()
 
 func int ZS_Cook_Pan_Loop()
 {
-	B_UseAvailableMob(self,"PAN");
+	B_UseAvailableMob(self,"PAN",BS_MOBINTERACT);
 	return LOOP_CONTINUE;
 };
 

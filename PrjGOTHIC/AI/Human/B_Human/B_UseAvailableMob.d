@@ -1,7 +1,7 @@
 
-func void B_UseAvailableMob(var C_Npc npc,var string mob)
+func void B_UseAvailableMob(var C_Npc npc,var string mob,var int mobBodyState)
 {
-	if(!C_BodyStateContains(npc,BS_MOBINTERACT_INTERRUPT))
+	if(!C_BodyStateContains(npc,mobBodyState))
 	{
 		if(Wld_IsMobAvailable(npc,mob))
 		{

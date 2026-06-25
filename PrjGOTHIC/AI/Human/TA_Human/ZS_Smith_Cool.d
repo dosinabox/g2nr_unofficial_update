@@ -13,7 +13,7 @@ func void ZS_Smith_Cool()
 
 func int ZS_Smith_Cool_Loop()
 {
-	B_UseAvailableMob(self,"BSCOOL");
+	B_UseAvailableMob(self,"BSCOOL",BS_MOBINTERACT_INTERRUPT);
 	return LOOP_CONTINUE;
 };
 

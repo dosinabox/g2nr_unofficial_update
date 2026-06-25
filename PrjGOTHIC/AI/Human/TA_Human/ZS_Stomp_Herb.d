@@ -12,7 +12,7 @@ func void ZS_Stomp_Herb()
 
 func int ZS_Stomp_Herb_Loop()
 {
-	B_UseAvailableMob(self,"HERB");
+	B_UseAvailableMob(self,"HERB",BS_MOBINTERACT);
 	return LOOP_CONTINUE;
 };
 
