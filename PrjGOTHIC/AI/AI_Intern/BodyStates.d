@@ -1,44 +1,51 @@
 
-const int BS_FLAG_INTERRUPTABLE = 1 << 15;
-const int BS_FLAG_FREEHANDS = 1 << 16;
-const int BS_STAND = 98304;
-const int BS_WALK = 32769;
-const int BS_SNEAK = 32770;
+const int BS_FLAG_INTERRUPTABLE = 32768;
+const int BS_FLAG_FREEHANDS = 65536;
+
+const int BS_STAND = 0 | BS_FLAG_INTERRUPTABLE | BS_FLAG_FREEHANDS; //98304
+const int BS_WALK = 1 | BS_FLAG_INTERRUPTABLE; //32769
+const int BS_SNEAK = 2 | BS_FLAG_INTERRUPTABLE; //32770
 const int BS_RUN = 3;
 const int BS_SPRINT = 4;
 const int BS_SWIM = 5;
 const int BS_CRAWL = 6;
 const int BS_DIVE = 7;
 const int BS_JUMP = 8;
-const int BS_CLIMB = 32777;
+const int BS_CLIMB = 9 | BS_FLAG_INTERRUPTABLE; //32777
 const int BS_FALL = 10;
-const int BS_SIT = 65547;
+const int BS_SIT = 11 | BS_FLAG_FREEHANDS; //65547
 const int BS_LIE = 12;
 const int BS_INVENTORY = 13;
-const int BS_ITEMINTERACT = 32782;
+const int BS_ITEMINTERACT = 14 | BS_FLAG_INTERRUPTABLE; //32782
 const int BS_MOBINTERACT = 15;
-const int BS_MOBINTERACT_INTERRUPT = 32784;
+const int BS_MOBINTERACT_INTERRUPT = 16 | BS_FLAG_INTERRUPTABLE; //32784
+
 const int BS_TAKEITEM = 17;
 const int BS_DROPITEM = 18;
 const int BS_THROWITEM = 19;
-const int BS_PICKPOCKET = 32788;
+const int BS_PICKPOCKET = 20 | BS_FLAG_INTERRUPTABLE; //32788
+
 const int BS_STUMBLE = 21;
 const int BS_UNCONSCIOUS = 22;
 const int BS_DEAD = 23;
+
 const int BS_AIMNEAR = 24;
 const int BS_AIMFAR = 25;
-const int BS_HIT = 32794;
+const int BS_HIT = 26 | BS_FLAG_INTERRUPTABLE; //32794
 const int BS_PARADE = 27;
+
 const int BS_CASTING = 28;
 const int BS_PETRIFIED = 29;
-const int BS_CONTROLLING = 32798;
+const int BS_CONTROLLING = 30 | BS_FLAG_INTERRUPTABLE; //32798
+
 const int BS_MAX = 31;
+
 const int BS_MOD_HIDDEN = 128;
 const int BS_MOD_DRUNK = 256;
 const int BS_MOD_NUTS = 512;
-const int BS_MOD_BURNING = 1 << 10;
-const int BS_MOD_CONTROLLED = 1 << 11;
-const int BS_MOD_TRANSFORMED = 1 << 12;
+const int BS_MOD_BURNING = 1024;
+const int BS_MOD_CONTROLLED = 2048;
+const int BS_MOD_TRANSFORMED = 4096;
 
 const string MOB_SIT = "BENCH,CHAIR,GROUND,THRONE";
 const string MOB_LIE = "BED,BEDHIGH,BEDLOW";
