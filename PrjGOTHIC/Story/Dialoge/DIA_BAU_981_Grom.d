@@ -3,21 +3,10 @@ instance DIA_Grom_EXIT(C_Info)
 {
 	npc = BAU_981_Grom;
 	nr = 999;
-	condition = DIA_Grom_EXIT_Condition;
-	information = DIA_Grom_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Grom_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Grom_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -135,9 +124,12 @@ instance DIA_Grom_PayTeacher(C_Info)
 
 func int DIA_Grom_PayTeacher_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Grom_AskTeacher) && Npc_HasItems(other,ItFo_Milk) && Npc_HasItems(other,ItFo_Bread) && Npc_HasItems(other,ItFo_Bacon))
+	if(Npc_KnowsInfo(other,DIA_Grom_AskTeacher))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItFo_Milk) && Npc_HasItems(other,ItFo_Bread) && Npc_HasItems(other,ItFo_Bacon))
+		{
+			return TRUE;
+		};
 	};
 };
 

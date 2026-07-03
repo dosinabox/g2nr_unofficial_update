@@ -105,11 +105,15 @@ instance DIA_Ramirez_Beute(C_Info)
 
 func int DIA_Ramirez_Beute_Condition()
 {
-	if(Npc_IsDead(Cassia) || Npc_IsDead(Jesper))
+	if(Npc_IsDead(Cassia))
 	{
 		return FALSE;
-	}
-	else if(Npc_GetDistToWP(self,"NW_CITY_KANAL_ROOM_04_01") < 1000)
+	};
+	if(Npc_IsDead(Jesper))
+	{
+		return FALSE;
+	};
+	if(Npc_GetDistToWP(self,"NW_CITY_KANAL_ROOM_04_01") < 1000)
 	{
 		if(Mob_HasItems("THIEF_CHEST_01",ItMi_Gold) < 50)
 		{
@@ -373,9 +377,12 @@ instance DIA_Ramirez_Success(C_Info)
 
 func int DIA_Ramirez_Success_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Ramirez_Sextant) && Npc_HasItems(other,ItMi_Sextant))
+	if(Npc_KnowsInfo(other,DIA_Ramirez_Sextant))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Sextant))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -423,7 +430,11 @@ instance DIA_Ramirez_Killer(C_Info)
 
 func int DIA_Ramirez_Killer_Condition()
 {
-	if(Npc_IsDead(Cassia) || Npc_IsDead(Jesper))
+	if(Npc_IsDead(Cassia))
+	{
+		return TRUE;
+	};
+	if(Npc_IsDead(Jesper))
 	{
 		return TRUE;
 	};

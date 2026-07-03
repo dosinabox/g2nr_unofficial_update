@@ -3,21 +3,10 @@ instance DIA_Larius_EXIT(C_Info)
 {
 	npc = VLK_400_Larius;
 	nr = 999;
-	condition = DIA_Larius_EXIT_Condition;
-	information = DIA_Larius_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Larius_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Larius_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -212,9 +201,12 @@ instance DIA_Larius_Dragons_Proof(C_Info)
 
 func int DIA_Larius_Dragons_Proof_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Larius_Dragons) && Npc_HasItems(other,ItWr_PaladinLetter_MIS))
+	if(Npc_KnowsInfo(other,DIA_Larius_Dragons))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_PaladinLetter_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
