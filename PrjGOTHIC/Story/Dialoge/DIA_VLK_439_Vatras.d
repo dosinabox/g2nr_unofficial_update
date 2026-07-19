@@ -588,7 +588,7 @@ func void B_Vatras_Second_Lie()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_SECOND_LIE_05_02");	//Ага. И поэтому ты поделал весь этот долгий путь. Кто ты такой вообще?
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_SECOND_LIE_05_02");	//Ага. И поэтому ты проделал весь этот долгий путь. Кто ты такой вообще?
 	};
 	Vatras_Second = 2;
 };

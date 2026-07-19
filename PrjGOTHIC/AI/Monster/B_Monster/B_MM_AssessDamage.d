@@ -27,17 +27,26 @@ func void B_MM_AssessDamage()
 	};
 	if(Npc_IsInState(self,ZS_MM_Attack))
 	{
-		if(Npc_IsPlayer(other) && (self.aivar[AIV_PARTYMEMBER] == TRUE))
+		if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 		{
-			return;
-		};
-		if((self.aivar[AIV_MM_REAL_ID] == ID_SKELETON) && (other.aivar[AIV_MM_REAL_ID] == ID_SKELETON_MAGE))
+			if(Npc_IsPlayer(other))
+			{
+				return;
+			};
+		}
+		else if(C_NpcIsUndead(self))
 		{
-			return;
-		};
-		if((self.aivar[AIV_MM_REAL_ID] == ID_WARG) && (other.aivar[AIV_MM_REAL_ID] == ID_ORCSHAMAN))
+			if(C_NpcIsMonsterMage(other))
+			{
+				return;
+			};
+		}
+		else if(self.aivar[AIV_MM_REAL_ID] == ID_WARG)
 		{
-			return;
+			if(other.aivar[AIV_MM_REAL_ID] == ID_ORCSHAMAN)
+			{
+				return;
+			};
 		};
 		if(Hlp_GetInstanceID(other) != self.aivar[AIV_LASTTARGET])
 		{

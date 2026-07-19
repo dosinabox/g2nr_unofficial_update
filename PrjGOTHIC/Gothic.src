@@ -167,7 +167,6 @@ AI\Human\C_Human\C_IsTakenItemMyPossession.d
 AI\Human\C_Human\C_NpcIsDown.d
 AI\Human\C_Human\C_NpcIsToughGuy.d
 AI\Human\C_Human\C_NpcIsAfraidOfOrcs.d
-AI\Human\C_Human\C_NpcIsSummon.d
 AI\Human\C_Human\C_NpcIsNearWP.d
 AI\Human\C_Human\C_NpcHasGuardStatus.d
 AI\Human\C_Human\C_PlayerIsFakePirate.d
@@ -198,10 +197,11 @@ AI\Human\C_Human\C_WantToRansack.d
 AI\Human\C_Human\C_NpcHasAttackReasonToKill.d
 AI\Human\C_Human\C_NpcBelongsTo.d
 AI\Human\C_Human\C_DropUnconscious.d
-AI\Human\C_Human\C_NpcIsDemon.d
-AI\Human\C_Human\C_NpcIsUndead.d
-AI\Human\C_Human\C_NpcIsEvil.d
-AI\Human\C_Human\C_NpcIsGolem.d
+AI\Monster\C_Monster\C_NpcIsSummon.d
+AI\Monster\C_Monster\C_NpcIsDemon.d
+AI\Monster\C_Monster\C_NpcIsUndead.d
+AI\Monster\C_Monster\C_NpcIsEvil.d
+AI\Monster\C_Monster\C_NpcIsGolem.d
 AI\Human\C_Human\C_NpcIsWeaponTrader.d
 AI\Human\C_Human\C_RefuseTalk.d
 AI\Human\B_Human\B_GetTotalPetzCounter.d

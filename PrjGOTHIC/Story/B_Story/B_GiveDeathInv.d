@@ -348,6 +348,10 @@ func void B_GiveDeathInv(var C_Npc slf)
 	{
 		CreateInvItems(slf,ItAt_SkeletonBone,1);
 	}
+	else if(slf.aivar[AIV_MM_REAL_ID] == ID_SKELETON_LORD)
+	{
+		CreateInvItems(slf,ItAt_SkeletonBone,1);
+	}
 	else if(slf.aivar[AIV_MM_REAL_ID] == ID_BLATTCRAWLER)
 	{
 		CreateInvItems(slf,ItAt_Addon_BCKopf,1);
