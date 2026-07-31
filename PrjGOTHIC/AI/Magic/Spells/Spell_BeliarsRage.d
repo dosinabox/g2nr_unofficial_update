@@ -2,7 +2,7 @@
 const int SPL_Cost_BeliarsRage = 100;
 const int SPL_Damage_BeliarsRage = 200;
 
-instance Spell_BeliarsRage(C_Spell_Proto)
+instance Spell_EnergyBall(C_Spell_Proto)
 {
 	time_per_mana = 0;
 	damage_per_level = SPL_Damage_BeliarsRage;
@@ -23,7 +23,7 @@ func int Spell_Logic_BeliarsRage(var int manaInvested)
 	return SPL_SENDSTOP;
 };
 
-func void Spell_Cast_BeliarsRage()
+func void Spell_Cast_EnergyBall()
 {
 	if(Npc_GetActiveSpellIsScroll(self))
 	{

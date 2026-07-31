@@ -231,7 +231,7 @@ func void DIA_MiltenNW_FourFriends_Info()
 	if(MIS_RescueGorn != LOG_SUCCESS)
 	{
 		AI_Output(other,self,"DIA_MiltenNW_FourFriends_15_02");	//Как ему удалось выбраться?
-		if(Npc_KnowsInfo(other,DIA_DiegoOw_Gorn))
+		if(Npc_KnowsInfo(other,DIA_DiegoOW_Gorn))
 		{
 			AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_03");	//Мне пришлось солгать Гаронду, так что он снял все обвинения.
 			AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_04");	//Но это только между нами, понятно?

@@ -759,11 +759,11 @@ func int GetTeachLimitReason_Hero(var int talent,var int change,var int teacherM
 	var int talentMax;
 	teachPart = GetTalentPart_TeachLimit_Hero(talent);
 	talentMax = GetTalentMax(talent);
-	if(teachPart >= GetTalentMax(talent))
+	if(teachPart >= talentMax)
 	{
 		return TLR_AlreadyMax;
 	};
-	if(teachPart + change > GetTalentMax(talent))
+	if(teachPart + change > talentMax)
 	{
 		return TLR_WillBeOverMax;
 	};

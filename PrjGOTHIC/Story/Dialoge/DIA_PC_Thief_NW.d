@@ -71,7 +71,7 @@ func void DIA_DiegoNW_NeedHelp_Info()
 		AI_Output(self,other,"DIA_DiegoNW_NeedHelp_11_00");	//Хорошо, что ты здесь. Ты должен помочь мне.
 	};
 	Info_ClearChoices(DIA_DiegoNW_NeedHelp);
-	if(!Npc_KnowsInfo(other,DIA_DiegoOw_Hallo))
+	if(!Npc_KnowsInfo(other,DIA_DiegoOW_Hallo))
 	{
 		Info_AddChoice(DIA_DiegoNW_NeedHelp,"Кто ты?",DIA_DiegoNW_NeedHelp_WhoAreYou);
 	};
@@ -488,7 +488,7 @@ func int DIA_DiegoNW_Teach_Condition()
 func void DIA_DiegoNW_Teach_Info()
 {
 	AI_Output(other,self,"DIA_DiegoNW_Teach_15_00");	//Обучи меня.
-	AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_01");	//Конечно. Что ты хочешь знать?
+	AI_Output(self,other,"DIA_Addon_DiegoOW_Teach_11_01");	//Конечно. Что ты хочешь знать?
 	DiegoNW_Merke_DEX = ATR_Training[ATR_DEXTERITY];
 	DiegoNW_Merke_STR = ATR_Training[ATR_STRENGTH];
 	B_BuildLearnDialog_Diego_NW();
@@ -502,7 +502,7 @@ func void DIA_DiegoNW_Teach_BACK()
 	};
 	if(DiegoNW_Merke_STR < ATR_Training[ATR_STRENGTH])
 	{
-		AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_03");	//(оценивающе) Очень хорошо. Твоя сила увеличилась.
+		AI_Output(self,other,"DIA_Addon_DiegoOW_Teach_11_03");	//(оценивающе) Очень хорошо. Твоя сила увеличилась.
 	};
 	Info_ClearChoices(DIA_DiegoNW_Teach);
 };

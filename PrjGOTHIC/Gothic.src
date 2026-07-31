@@ -197,6 +197,7 @@ AI\Human\C_Human\C_WantToRansack.d
 AI\Human\C_Human\C_NpcHasAttackReasonToKill.d
 AI\Human\C_Human\C_NpcBelongsTo.d
 AI\Human\C_Human\C_DropUnconscious.d
+AI\Monster\C_Monster\C_NpcIsFlyingCreature.d
 AI\Monster\C_Monster\C_NpcIsSummon.d
 AI\Monster\C_Monster\C_NpcIsDemon.d
 AI\Monster\C_Monster\C_NpcIsUndead.d
