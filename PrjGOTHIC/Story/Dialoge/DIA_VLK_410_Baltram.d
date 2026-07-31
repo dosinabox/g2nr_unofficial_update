@@ -399,9 +399,12 @@ instance DIA_Addon_Baltram_SkipsRum_All(C_Info)
 
 func int DIA_Addon_Baltram_SkipsRum_All_Condition()
 {
-	if((Skip_Rum4Baltram == TRUE) && (MIS_Addon_Baltram_Paket4Skip != LOG_SUCCESS) && (Npc_HasItems(other,ItFo_Addon_Rum) >= 3))
+	if((Skip_Rum4Baltram == TRUE) && (MIS_Addon_Baltram_Paket4Skip != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItFo_Addon_Rum) >= 3)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -424,9 +427,12 @@ instance DIA_Addon_Baltram_SkipsRum(C_Info)
 
 func int DIA_Addon_Baltram_SkipsRum_Condition()
 {
-	if((Skip_Rum4Baltram == TRUE) && (MIS_Addon_Baltram_Paket4Skip != LOG_SUCCESS) && (Npc_HasItems(other,ItFo_Addon_Rum) >= 2))
+	if((Skip_Rum4Baltram == TRUE) && (MIS_Addon_Baltram_Paket4Skip != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItFo_Addon_Rum) >= 2)
+		{
+			return TRUE;
+		};
 	};
 };
 

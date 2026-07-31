@@ -3,21 +3,10 @@ instance DIA_Bronko_EXIT(C_Info)
 {
 	npc = BAU_935_Bronko;
 	nr = 999;
-	condition = DIA_Bronko_EXIT_Condition;
-	information = DIA_Bronko_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Bronko_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Bronko_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -108,6 +97,8 @@ func void DIA_Bronko_HALLO_attack()
 };
 
 
+var int DIA_Bronko_KEINBAUER_noPerm;
+
 instance DIA_Bronko_KEINBAUER(C_Info)
 {
 	npc = BAU_935_Bronko;
@@ -118,8 +109,6 @@ instance DIA_Bronko_KEINBAUER(C_Info)
 	description = "Ты?! Фермер?! Не смеши меня. Да ты вообще никто.";
 };
 
-
-var int DIA_Bronko_KEINBAUER_noPerm;
 
 func int DIA_Bronko_KEINBAUER_Condition()
 {

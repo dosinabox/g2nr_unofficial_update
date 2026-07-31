@@ -46,7 +46,6 @@ func void DIA_Addon_Erol_Hallo_Info()
 
 
 var int Erol_AskedAttack;
-var int Erol_AskedKDW;
 
 instance DIA_Addon_Erol_what(C_Info)
 {

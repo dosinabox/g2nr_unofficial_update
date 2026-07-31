@@ -124,11 +124,11 @@ func void DIA_Sergio_Aufgabe_Info()
 	if(!Npc_IsDead(Isgaroth))
 	{
 		AI_Output(self,other,"DIA_Sergio_Aufgabe_04_02");	//Но я могу помочь тебе. Иди к мастеру Исгароту и поговори с ним. Я слышал, ему нужна помощь и собирался сам помочь ему, но я поручаю эту задачу тебе.
-		Wld_InsertNpc(BlackWolf,"NW_PATH_TO_MONASTER_AREA_01");
 		MIS_IsgarothWolf = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_IsgarothWolf,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_IsgarothWolf,LOG_RUNNING);
 		B_LogEntry(TOPIC_IsgarothWolf,"Мастеру Исгароту необходима помощь в часовне. Я должен найти его.");
+		Wld_InsertNpc(BlackWolf,"NW_PATH_TO_MONASTER_AREA_01");
 	};
 };
 
@@ -176,9 +176,12 @@ instance DIA_Sergio_Babo(C_Info)
 
 func int DIA_Sergio_Babo_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Babo_Training == LOG_RUNNING) && !Npc_IsDead(Babo))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Babo_Training == LOG_RUNNING))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Babo))
+		{
+			return TRUE;
+		};
 	};
 };
 

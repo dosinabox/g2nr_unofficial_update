@@ -692,8 +692,6 @@ func void DIA_Buster_TeachTrophyShadowbeast_back()
 	Info_ClearChoices(DIA_Buster_TeachTrophyShadowbeast);
 };
 
-var int BusterTrophyCounter;
-
 instance DIA_Buster_BringTrophyShadowbeast(C_Info)
 {
 	npc = SLD_802_Buster;

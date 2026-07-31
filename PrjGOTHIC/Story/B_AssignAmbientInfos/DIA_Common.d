@@ -344,6 +344,11 @@ func void DIA_Common_IHaveLetterForYou()
 	AI_Output(other,self,"DIA_Addon_Vatras_Cavalorn_15_00");	//У меня для тебя письмо.
 };
 
+func void DIA_Common_ShutUp()
+{
+	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_KeepCalm_15_00");	//Придержи язык.
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?

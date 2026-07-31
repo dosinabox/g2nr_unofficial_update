@@ -1,62 +1,51 @@
 
-instance DIA_DiegoOw_EXIT(C_Info)
+instance DIA_DiegoOW_EXIT(C_Info)
 {
 	npc = PC_ThiefOW;
 	nr = 999;
-	condition = DIA_DiegoOw_EXIT_Condition;
-	information = DIA_DiegoOw_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_DiegoOw_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_DiegoOw_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_DiegoOw_Hallo(C_Info)
+instance DIA_DiegoOW_Hallo(C_Info)
 {
 	npc = PC_ThiefOW;
 	nr = 1;
-	condition = DIA_DiegoOw_Hallo_Condition;
-	information = DIA_DiegoOw_Hallo_Info;
+	condition = DIA_DiegoOW_Hallo_Condition;
+	information = DIA_DiegoOW_Hallo_Info;
 	important = TRUE;
 };
 
 
-func int DIA_DiegoOw_Hallo_Condition()
+func int DIA_DiegoOW_Hallo_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_DiegoOw_Hallo_Info()
+func void DIA_DiegoOW_Hallo_Info()
 {
-	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_00");	//Эй, я думал, ты мертв.
-	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_01");	//Да... так было.
-	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_02");	//Ну, теперь я вернулся и ищу доказательства появления драконов.
+	AI_Output(self,other,"DIA_DiegoOW_Hallo_11_00");	//Эй, я думал, ты мертв.
+	AI_Output(other,self,"DIA_DiegoOW_Hallo_15_01");	//Да... так было.
+	AI_Output(other,self,"DIA_DiegoOW_Hallo_15_02");	//Ну, теперь я вернулся и ищу доказательства появления драконов.
 	if(Kapitel == 2)
 	{
-		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_03");	//Для кого ты это делаешь?
-		AI_Output(other,self,"DIA_DiegoOw_Hallo_15_04");	//Я работаю на лорда Хагена. С помощью паладинов драконов можно остановить.
-		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_05");	//Паладины? Позволь мне сказать тебе кое-что. После того, как мне удалось вырваться отсюда, я отправился в Хоринис.
+		AI_Output(self,other,"DIA_DiegoOW_Hallo_11_03");	//Для кого ты это делаешь?
+		AI_Output(other,self,"DIA_DiegoOW_Hallo_15_04");	//Я работаю на лорда Хагена. С помощью паладинов драконов можно остановить.
+		AI_Output(self,other,"DIA_DiegoOW_Hallo_11_05");	//Паладины? Позволь мне сказать тебе кое-что. После того, как мне удалось вырваться отсюда, я отправился в Хоринис.
 	};
-	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_06");	//Я хотел предупредить паладинов о драконах. Сам не знаю, зачем мне это было нужно.
-	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_07");	//Этот напыщенный Лотар даже не стал слушать меня - и, конечно же, не позволил мне поговорить с лордом Хагеном.
-	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_08");	//Вместо этого они отправили меня назад, с экспедицией. Так что лучше не напоминай мне о паладинах...
-	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_09");	//Очень важно остановить драконов, пока у нас еще есть время - и не важно, кто поможет нам сделать это.
-	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_10");	//Остановить их? Да нам нужно уносить ноги из этой долины, пока у нас еще есть время для этого!
-	AI_Output(self,other,"DIA_DiegoOw_Silvestro_11_03");	//Скажи - как тебе удалось пробраться через Проход? Я думал, там все кишит орками.
+	AI_Output(self,other,"DIA_DiegoOW_Hallo_11_06");	//Я хотел предупредить паладинов о драконах. Сам не знаю, зачем мне это было нужно.
+	AI_Output(self,other,"DIA_DiegoOW_Hallo_11_07");	//Этот напыщенный Лотар даже не стал слушать меня - и, конечно же, не позволил мне поговорить с лордом Хагеном.
+	AI_Output(self,other,"DIA_DiegoOW_Hallo_11_08");	//Вместо этого они отправили меня назад, с экспедицией. Так что лучше не напоминай мне о паладинах...
+	AI_Output(other,self,"DIA_DiegoOW_Hallo_15_09");	//Очень важно остановить драконов, пока у нас еще есть время - и не важно, кто поможет нам сделать это.
+	AI_Output(self,other,"DIA_DiegoOW_Hallo_11_10");	//Остановить их? Да нам нужно уносить ноги из этой долины, пока у нас еще есть время для этого!
+	AI_Output(self,other,"DIA_DiegoOW_Silvestro_11_03");	//Скажи - как тебе удалось пробраться через Проход? Я думал, там все кишит орками.
 	if(PlayerPassedAbandonedMine == TRUE)
 	{
-		AI_Output(other,self,"DIA_DiegoOw_Silvestro_15_04");	//Есть путь через заброшенные шахты, где нет орков.
-		AI_Output(self,other,"DIA_DiegoOw_Silvestro_11_05");	//Это хорошая новость. Тогда я должен как можно быстрее отправляться в Хоринис - мне там нужно кое с кем свести счеты.
+		AI_Output(other,self,"DIA_DiegoOW_Silvestro_15_04");	//Есть путь через заброшенные шахты, где нет орков.
+		AI_Output(self,other,"DIA_DiegoOW_Silvestro_11_05");	//Это хорошая новость. Тогда я должен как можно быстрее отправляться в Хоринис - мне там нужно кое с кем свести счеты.
 	}
 	else
 	{
@@ -65,17 +54,17 @@ func void DIA_DiegoOw_Hallo_Info()
 };
 
 
-instance DIA_DiegoOw_Beweise(C_Info)
+instance DIA_DiegoOW_Beweise(C_Info)
 {
 	npc = PC_ThiefOW;
 	nr = 2;
-	condition = DIA_DiegoOw_Beweise_Condition;
-	information = DIA_DiegoOw_Beweise_Info;
+	condition = DIA_DiegoOW_Beweise_Condition;
+	information = DIA_DiegoOW_Beweise_Info;
 	description = "Послушай, мне нужны доказательства.";
 };
 
 
-func int DIA_DiegoOw_Beweise_Condition()
+func int DIA_DiegoOW_Beweise_Condition()
 {
 	if(Kapitel == 2)
 	{
@@ -83,19 +72,19 @@ func int DIA_DiegoOw_Beweise_Condition()
 	};
 };
 
-func void DIA_DiegoOw_Beweise_Info()
+func void DIA_DiegoOW_Beweise_Info()
 {
-	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_11");	//Послушай, мне нужны доказательства.
+	AI_Output(other,self,"DIA_DiegoOW_Hallo_15_11");	//Послушай, мне нужны доказательства.
 	if(MIS_ScoutMine == LOG_RUNNING)
 	{
-		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_14");	//Хорошо, я помогу тебе, чем смогу. Но я не буду рисковать своей шкурой неизвестно из-за чего.
-		AI_Output(other,self,"DIA_DiegoOw_Garond_15_00");	//Я здесь по поручению Гаронда. Он хочет знать, сколько руды было добыто к этому времени.
-		AI_Output(self,other,"DIA_DiegoOw_Garond_11_01");	//И тогда он даст тебе доказательства?
-		AI_Output(other,self,"DIA_DiegoOw_Garond_15_02");	//Именно. Поэтому - ты можешь сказать что-нибудь на этот счет?
+		AI_Output(self,other,"DIA_DiegoOW_Hallo_11_14");	//Хорошо, я помогу тебе, чем смогу. Но я не буду рисковать своей шкурой неизвестно из-за чего.
+		AI_Output(other,self,"DIA_DiegoOW_Garond_15_00");	//Я здесь по поручению Гаронда. Он хочет знать, сколько руды было добыто к этому времени.
+		AI_Output(self,other,"DIA_DiegoOW_Garond_11_01");	//И тогда он даст тебе доказательства?
+		AI_Output(other,self,"DIA_DiegoOW_Garond_15_02");	//Именно. Поэтому - ты можешь сказать что-нибудь на этот счет?
 		if(Npc_KnowsInfo(other,DIA_Parcival_Diego))
 		{
-			AI_Output(self,other,"DIA_DiegoOw_Garond_11_03");	//Конечно, что ты хочешь знать?
-			AI_Output(other,self,"DIA_DiegoOw_Silvestro_15_00");	//Что ты знаешь о руде Сильвестро?
+			AI_Output(self,other,"DIA_DiegoOW_Garond_11_03");	//Конечно, что ты хочешь знать?
+			AI_Output(other,self,"DIA_DiegoOW_Silvestro_15_00");	//Что ты знаешь о руде Сильвестро?
 		};
 		if(Log_Silvestro_Ore == FALSE)
 		{
@@ -105,110 +94,110 @@ func void DIA_DiegoOw_Beweise_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_12");	//Хорошо, если такова твоя задача - иди, поговори с командующим Гарондом.
-		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_13");	//Если уж кто и знает что-нибудь о нападении драконов, то это парни из замка.
-		AI_Output(self,other,"DIA_Addon_DiegoOw_Garond_11_01");	//Когда ты будешь в замке, можешь сказать Гаронду кое-что, что его очень заинтересует:
+		AI_Output(self,other,"DIA_DiegoOW_Hallo_11_12");	//Хорошо, если такова твоя задача - иди, поговори с командующим Гарондом.
+		AI_Output(self,other,"DIA_DiegoOW_Hallo_11_13");	//Если уж кто и знает что-нибудь о нападении драконов, то это парни из замка.
+		AI_Output(self,other,"DIA_Addon_DiegoOW_Garond_11_01");	//Когда ты будешь в замке, можешь сказать Гаронду кое-что, что его очень заинтересует:
 	};
 	if(Npc_GetDistToWP(self,"LOCATION_02_05") <= 1000)
 	{
-		AI_Output(self,other,"DIA_DiegoOw_Silvestro_11_01");	//Здесь, в задней части пещеры хранятся ЧЕТЫРЕ ящика руды. Их добыли люди Сильвестро.
-		AI_Output(self,other,"DIA_DiegoOw_Silvestro_11_02");	//Гаронд может прийти и забрать их, но меня здесь к тому времени уже не будет.
+		AI_Output(self,other,"DIA_DiegoOW_Silvestro_11_01");	//Здесь, в задней части пещеры хранятся ЧЕТЫРЕ ящика руды. Их добыли люди Сильвестро.
+		AI_Output(self,other,"DIA_DiegoOW_Silvestro_11_02");	//Гаронд может прийти и забрать их, но меня здесь к тому времени уже не будет.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_DiegoOw_Silvestro_11_01");	//В пещере неподалеку от того места, где я спрятался, хранятся ЧЕТЫРЕ ящика руды. Их добыли люди Сильвестро.
-		AI_Output(self,other,"DIA_Addon_DiegoOw_Silvestro_11_02");	//Гаронд может прийти и забрать их.
+		AI_Output(self,other,"DIA_Addon_DiegoOW_Silvestro_11_01");	//В пещере неподалеку от того места, где я спрятался, хранятся ЧЕТЫРЕ ящика руды. Их добыли люди Сильвестро.
+		AI_Output(self,other,"DIA_Addon_DiegoOW_Silvestro_11_02");	//Гаронд может прийти и забрать их.
 	};
 	Silvestro_Ore = TRUE;
 };
 
 
-instance DIA_DiegoOw_Mine(C_Info)
+instance DIA_DiegoOW_Mine(C_Info)
 {
 	npc = PC_ThiefOW;
 	nr = 3;
-	condition = DIA_DiegoOw_Mine_Condition;
-	information = DIA_DiegoOw_Mine_Info;
+	condition = DIA_DiegoOW_Mine_Condition;
+	information = DIA_DiegoOW_Mine_Info;
 	description = "А какое ты имеешь отношение к руде?";
 };
 
 
-func int DIA_DiegoOw_Mine_Condition()
+func int DIA_DiegoOW_Mine_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_DiegoOw_Beweise))
+	if(Npc_KnowsInfo(other,DIA_DiegoOW_Beweise))
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_DiegoOw_Mine_Info()
+func void DIA_DiegoOW_Mine_Info()
 {
-	AI_Output(other,self,"DIA_DiegoOw_Mine_15_00");	//А какое ты имеешь отношение к руде?
-	AI_Output(self,other,"DIA_DiegoOw_Mine_11_01");	//Я был с группой Сильвестро. Мы добывали руду уже несколько дней, когда Сильвестро вдруг занервничал.
-	AI_Output(self,other,"DIA_DiegoOw_Mine_11_02");	//Он сказал, что мы должны переправить руду в безопасное место.
-	AI_Output(self,other,"DIA_DiegoOw_Mine_11_03");	//Ну, так как я все равно собирался линять, я вызвался добровольцем.
-	AI_Output(self,other,"DIA_DiegoOw_Mine_11_04");	//И в этом мне очень повезло. Потому что вскоре на старателей напали краулеры. И никто из них не выжил.
+	AI_Output(other,self,"DIA_DiegoOW_Mine_15_00");	//А какое ты имеешь отношение к руде?
+	AI_Output(self,other,"DIA_DiegoOW_Mine_11_01");	//Я был с группой Сильвестро. Мы добывали руду уже несколько дней, когда Сильвестро вдруг занервничал.
+	AI_Output(self,other,"DIA_DiegoOW_Mine_11_02");	//Он сказал, что мы должны переправить руду в безопасное место.
+	AI_Output(self,other,"DIA_DiegoOW_Mine_11_03");	//Ну, так как я все равно собирался линять, я вызвался добровольцем.
+	AI_Output(self,other,"DIA_DiegoOW_Mine_11_04");	//И в этом мне очень повезло. Потому что вскоре на старателей напали краулеры. И никто из них не выжил.
 };
 
 
-instance DIA_DiegoOw_Ritter(C_Info)
+instance DIA_DiegoOW_Ritter(C_Info)
 {
 	npc = PC_ThiefOW;
 	nr = 4;
-	condition = DIA_DiegoOw_Ritter_Condition;
-	information = DIA_DiegoOw_Ritter_Info;
+	condition = DIA_DiegoOW_Ritter_Condition;
+	information = DIA_DiegoOW_Ritter_Info;
 	description = "А что насчет этих двух мертвых рыцарей перед твоим укрытием?";
 };
 
 
-func int DIA_DiegoOw_Ritter_Condition()
+func int DIA_DiegoOW_Ritter_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_DiegoOw_Ritter_Info()
+func void DIA_DiegoOW_Ritter_Info()
 {
-	AI_Output(other,self,"DIA_DiegoOw_Ritter_15_00");	//А что насчет этих двух мертвых рыцарей перед твоим укрытием?
-	AI_Output(self,other,"DIA_DiegoOw_Ritter_11_01");	//Они нашли свою судьбу во время битвы со стаей снепперов.
-	AI_Output(self,other,"DIA_DiegoOw_Ritter_11_02");	//Да уж, у Долины Рудников свои собственные правила. Я говорил им это. Но они меня не слушали.
+	AI_Output(other,self,"DIA_DiegoOW_Ritter_15_00");	//А что насчет этих двух мертвых рыцарей перед твоим укрытием?
+	AI_Output(self,other,"DIA_DiegoOW_Ritter_11_01");	//Они нашли свою судьбу во время битвы со стаей снепперов.
+	AI_Output(self,other,"DIA_DiegoOW_Ritter_11_02");	//Да уж, у Долины Рудников свои собственные правила. Я говорил им это. Но они меня не слушали.
 };
 
 
-instance DIA_DiegoOw_Perm(C_Info)
+instance DIA_DiegoOW_Perm(C_Info)
 {
 	npc = PC_ThiefOW;
 	nr = 5;
-	condition = DIA_DiegoOw_Perm_Condition;
-	information = DIA_DiegoOw_Perm_Info;
+	condition = DIA_DiegoOW_Perm_Condition;
+	information = DIA_DiegoOW_Perm_Info;
 	description = "Что мне нужно знать о Долине?";
 };
 
 
-func int DIA_DiegoOw_Perm_Condition()
+func int DIA_DiegoOW_Perm_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_DiegoOw_Perm_Info()
+func void DIA_DiegoOW_Perm_Info()
 {
-	AI_Output(other,self,"DIA_DiegoOw_Perm_15_00");	//Что мне нужно знать о Долине?
-	AI_Output(self,other,"DIA_DiegoOw_Perm_11_01");	//С тех пор, как Барьер пал, здесь многое переменилось. Теперь здесь заправляют орки.
-	AI_Output(self,other,"DIA_DiegoOw_Perm_11_02");	//А мы, люди, теперь не более чем корм для истинных правителей этой Долины: драконов.
-	AI_Output(self,other,"DIA_DiegoOw_Perm_11_03");	//Держись подальше от всех, кто сильнее тебя - и избегай всего, что напоминает дракона.
+	AI_Output(other,self,"DIA_DiegoOW_Perm_15_00");	//Что мне нужно знать о Долине?
+	AI_Output(self,other,"DIA_DiegoOW_Perm_11_01");	//С тех пор, как Барьер пал, здесь многое переменилось. Теперь здесь заправляют орки.
+	AI_Output(self,other,"DIA_DiegoOW_Perm_11_02");	//А мы, люди, теперь не более чем корм для истинных правителей этой Долины: драконов.
+	AI_Output(self,other,"DIA_DiegoOW_Perm_11_03");	//Держись подальше от всех, кто сильнее тебя - и избегай всего, что напоминает дракона.
 };
 
 
-instance DIA_DiegoOw_Gorn(C_Info)
+instance DIA_DiegoOW_Gorn(C_Info)
 {
 	npc = PC_ThiefOW;
 	nr = 6;
-	condition = DIA_DiegoOw_Gorn_Condition;
-	information = DIA_DiegoOw_Gorn_Info;
+	condition = DIA_DiegoOW_Gorn_Condition;
+	information = DIA_DiegoOW_Gorn_Info;
 	description = "Я хочу купить свободу Горну, но Гаронд просит за это 1000 золотых.";
 };
 
 
-func int DIA_DiegoOw_Gorn_Condition()
+func int DIA_DiegoOW_Gorn_Condition()
 {
 	if(MIS_RescueGorn == LOG_RUNNING)
 	{
@@ -216,10 +205,10 @@ func int DIA_DiegoOw_Gorn_Condition()
 	};
 };
 
-func void DIA_DiegoOw_Gorn_Info()
+func void DIA_DiegoOW_Gorn_Info()
 {
-	AI_Output(other,self,"DIA_DiegoOw_Gorn_15_00");	//Я хочу купить свободу Горну, но Гаронд просит за это 1000 золотых.
-	AI_Output(self,other,"DIA_DiegoOw_Gorn_11_01");	//Немаленькая сумма. У меня есть 300 монет, ты можешь взять их. Остальное найди сам.
+	AI_Output(other,self,"DIA_DiegoOW_Gorn_15_00");	//Я хочу купить свободу Горну, но Гаронд просит за это 1000 золотых.
+	AI_Output(self,other,"DIA_DiegoOW_Gorn_11_01");	//Немаленькая сумма. У меня есть 300 монет, ты можешь взять их. Остальное найди сам.
 	B_GiveInvItems(self,other,ItMi_Gold,300);
 	B_LogEntry(TOPIC_RescueGorn,"Диего заплатил 300 золотых за освобождение Горна.");
 };
@@ -230,34 +219,34 @@ var int Diego_MerkeSTR;
 
 func void B_BuildLearnDialog_Diego_OW()
 {
-	Info_ClearChoices(DIA_DiegoOw_Teach);
-	Info_AddChoice(DIA_DiegoOw_Teach,Dialog_Back,DIA_DiegoOw_TEACH_BACK);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnAttributeString(ATR_DEXTERITY,1),DIA_DiegoOw_TEACHDEX_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnAttributeString(ATR_DEXTERITY,5),DIA_DiegoOw_TEACHDEX_5);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_DiegoOw_TEACHSTR_1);
-	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_DiegoOw_TEACHSTR_5);
+	Info_ClearChoices(DIA_DiegoOW_Teach);
+	Info_AddChoice(DIA_DiegoOW_Teach,Dialog_Back,DIA_DiegoOW_TEACH_BACK);
+	Info_AddChoice(DIA_DiegoOW_Teach,B_BuildLearnAttributeString(ATR_DEXTERITY,1),DIA_DiegoOW_TEACHDEX_1);
+	Info_AddChoice(DIA_DiegoOW_Teach,B_BuildLearnAttributeString(ATR_DEXTERITY,5),DIA_DiegoOW_TEACHDEX_5);
+	Info_AddChoice(DIA_DiegoOW_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,1),DIA_DiegoOW_TEACHSTR_1);
+	Info_AddChoice(DIA_DiegoOW_Teach,B_BuildLearnAttributeString(ATR_STRENGTH,5),DIA_DiegoOW_TEACHSTR_5);
 };
 
-instance DIA_DiegoOw_Teach(C_Info)
+instance DIA_DiegoOW_Teach(C_Info)
 {
 	npc = PC_ThiefOW;
 	nr = 100;
-	condition = DIA_DiegoOw_Teach_Condition;
-	information = DIA_DiegoOw_Teach_Info;
+	condition = DIA_DiegoOW_Teach_Condition;
+	information = DIA_DiegoOW_Teach_Info;
 	permanent = TRUE;
 	description = "Ты можешь научить меня чему-нибудь?";
 };
 
 
-func int DIA_DiegoOw_Teach_Condition()
+func int DIA_DiegoOW_Teach_Condition()
 {
 	return TRUE;
 };
 
-func void DIA_DiegoOw_Teach_Info()
+func void DIA_DiegoOW_Teach_Info()
 {
-	AI_Output(other,self,"DIA_DiegoOw_Teach_15_00");	//Ты можешь научить меня чему-нибудь?
-	AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_01");	//Конечно. Что ты хочешь знать?
+	AI_Output(other,self,"DIA_DiegoOW_Teach_15_00");	//Ты можешь научить меня чему-нибудь?
+	AI_Output(self,other,"DIA_Addon_DiegoOW_Teach_11_01");	//Конечно. Что ты хочешь знать?
 	if(DiegoOW_Teach == FALSE)
 	{
 		Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
@@ -269,20 +258,20 @@ func void DIA_DiegoOw_Teach_Info()
 	B_BuildLearnDialog_Diego_OW();
 };
 
-func void DIA_DiegoOw_TEACH_BACK()
+func void DIA_DiegoOW_TEACH_BACK()
 {
 	if(ATR_Training[ATR_DEXTERITY] > Diego_MerkeDEX)
 	{
-		AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_02");	//Ты уже стал более ловким.
+		AI_Output(self,other,"DIA_Addon_DiegoOW_Teach_11_02");	//Ты уже стал более ловким.
 	};
 	if(ATR_Training[ATR_STRENGTH] > Diego_MerkeSTR)
 	{
-		AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_03");	//(оценивающе) Очень хорошо. Твоя сила увеличилась.
+		AI_Output(self,other,"DIA_Addon_DiegoOW_Teach_11_03");	//(оценивающе) Очень хорошо. Твоя сила увеличилась.
 	};
-	Info_ClearChoices(DIA_DiegoOw_Teach);
+	Info_ClearChoices(DIA_DiegoOW_Teach);
 };
 
-func void DIA_DiegoOw_TEACHDEX_1()
+func void DIA_DiegoOW_TEACHDEX_1()
 {
 	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MAX))
 	{
@@ -290,7 +279,7 @@ func void DIA_DiegoOw_TEACHDEX_1()
 	};
 };
 
-func void DIA_DiegoOw_TEACHDEX_5()
+func void DIA_DiegoOW_TEACHDEX_5()
 {
 	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MAX))
 	{
@@ -298,7 +287,7 @@ func void DIA_DiegoOw_TEACHDEX_5()
 	};
 };
 
-func void DIA_DiegoOw_TEACHSTR_1()
+func void DIA_DiegoOW_TEACHSTR_1()
 {
 	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MED))
 	{
@@ -306,7 +295,7 @@ func void DIA_DiegoOw_TEACHSTR_1()
 	};
 };
 
-func void DIA_DiegoOw_TEACHSTR_5()
+func void DIA_DiegoOW_TEACHSTR_5()
 {
 	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MED))
 	{
@@ -720,7 +709,7 @@ instance DIA_Addon_ThiefOW_PERM(C_Info)
 
 func int DIA_Addon_ThiefOW_PERM_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_DiegoOw_Perm) && Npc_KnowsInfo(other,DIA_Addon_ThiefOW_Together))
+	if(Npc_KnowsInfo(other,DIA_DiegoOW_Perm) && Npc_KnowsInfo(other,DIA_Addon_ThiefOW_Together))
 	{
 		return TRUE;
 	};

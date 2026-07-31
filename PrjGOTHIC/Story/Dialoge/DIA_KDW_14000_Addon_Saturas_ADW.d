@@ -318,14 +318,8 @@ func void DIA_Addon_Saturas_LanceRing_Info()
 
 
 var int DIA_Addon_Saturas_Tokens_OneTime;
-var int Saturas_SCBroughtAllToken;
 var int Saturas_BroughtTokenAmount;
 var int ScBroughtToken;
-var int Saturas_SCFound_ItMi_Addon_Stone_01;
-var int Saturas_SCFound_ItMi_Addon_Stone_02;
-var int Saturas_SCFound_ItMi_Addon_Stone_03;
-var int Saturas_SCFound_ItMi_Addon_Stone_04;
-var int Saturas_SCFound_ItMi_Addon_Stone_05;
 var int Saturas_SCFound_SayWhereOnce;
 
 func void B_Saturas_SCFound_SayWhereOnce()

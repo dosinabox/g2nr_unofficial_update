@@ -3,7 +3,7 @@ prototype Mst_Skeleton_Lord(C_Npc)
 {
 	name[0] = "Теневой воин";
 	guild = GIL_SKELETON;
-	aivar[AIV_MM_REAL_ID] = ID_SKELETON;
+	aivar[AIV_MM_REAL_ID] = ID_SKELETON_LORD;
 	level = 40;
 	attribute[ATR_STRENGTH] = 105;
 	attribute[ATR_DEXTERITY] = 100;

@@ -3,21 +3,10 @@ instance DIA_GornOW_EXIT(C_Info)
 {
 	npc = PC_Fighter_OW;
 	nr = 999;
-	condition = DIA_GornOW_EXIT_Condition;
-	information = DIA_GornOW_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_GornOW_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_GornOW_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -51,7 +40,7 @@ func void DIA_GornOW_Hello_Info()
 		AI_Output(self,other,"DIA_GornOW_Add_12_00");	//ѕодожди, у мен€ есть кое-что, что могло бы пригодитьс€ тебе.
 		AI_Output(self,other,"DIA_GornOW_Add_12_01");	//я нашел эти доспехи здесь, в камере. Ќаверное, их спр€тал какой-то заключенный.
 		AI_Output(self,other,"DIA_GornOW_Add_12_02");	//ƒл€ мен€ они слишком малы, но тебе могут подойти...
-		if(Npc_KnowsInfo(other,DIA_MiltenOW_Preis) && Npc_KnowsInfo(other,DIA_DiegoOw_Gorn) && (GornsTreasure == TRUE) && (Npc_HasItems(other,ItMi_GornsTreasure_MIS) || (Gorns_Beutel == TRUE)))
+		if(Npc_KnowsInfo(other,DIA_MiltenOW_Preis) && Npc_KnowsInfo(other,DIA_DiegoOW_Gorn) && (GornsTreasure == TRUE) && (Npc_HasItems(other,ItMi_GornsTreasure_MIS) || (Gorns_Beutel == TRUE)))
 		{
 			B_GiveArmor(ITAR_SLD_S);
 		}

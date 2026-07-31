@@ -3,21 +3,10 @@ instance DIA_DJG_715_Ferros_EXIT(C_Info)
 {
 	npc = DJG_715_Ferros;
 	nr = 999;
-	condition = DIA_DJG_715_Ferros_EXIT_Condition;
-	information = DIA_DJG_715_Ferros_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_DJG_715_Ferros_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_DJG_715_Ferros_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -171,9 +160,16 @@ instance DIA_DJG_715_Ferros_FerrosAnySword(C_Info)
 
 func int DIA_DJG_715_Ferros_FerrosAnySword_Condition()
 {
-	if((MIS_FerrosSword == LOG_RUNNING) && (Npc_HasItems(other,ItMw_1H_Special_01) || Npc_HasItems(other,ItMw_1H_Special_02)))
+	if(MIS_FerrosSword == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMw_1H_Special_01))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMw_1H_Special_02))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -274,9 +270,12 @@ instance DIA_DJG_715_Ferros_FerrosHisSword(C_Info)
 
 func int DIA_DJG_715_Ferros_FerrosHisSword_Condition()
 {
-	if((MIS_FerrosSword == LOG_RUNNING) && Npc_HasItems(other,ItMw_1H_FerrosSword_MIS))
+	if(MIS_FerrosSword == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMw_1H_FerrosSword_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

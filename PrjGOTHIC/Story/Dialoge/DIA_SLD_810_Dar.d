@@ -356,8 +356,6 @@ func void DIA_Dar_ORCRING_necken()
 };
 
 
-var int Dar_FightAgainstPaladin;
-
 func void DIA_Dar_ORCRING_necken_schlagen()
 {
 	AI_Output(other,self,"DIA_Dar_ORCRING_necken_schlagen_15_00");	//Ладно. Попробуй.

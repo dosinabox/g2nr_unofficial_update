@@ -3,21 +3,10 @@ instance DIA_Bullco_EXIT(C_Info)
 {
 	npc = SLD_807_Bullco;
 	nr = 999;
-	condition = DIA_Bullco_EXIT_Condition;
-	information = DIA_Bullco_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Bullco_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Bullco_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -64,11 +53,14 @@ instance DIA_Bullco_Quatscher(C_Info)
 
 func int DIA_Bullco_Quatscher_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && !Npc_IsDead(Sylvio))
+	if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
-		if(Sylvio.aivar[AIV_Nerver] >= 2)
+		if(!Npc_IsDead(Sylvio))
 		{
-			return TRUE;
+			if(Sylvio.aivar[AIV_Nerver] >= 2)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -83,7 +75,6 @@ func void DIA_Bullco_Quatscher_Info()
 
 
 var int Bullco_Leave_Day;
-var int Bullco_scharf;
 
 instance DIA_Bullco_PleaseLeave(C_Info)
 {
@@ -99,7 +90,11 @@ func int DIA_Bullco_PleaseLeave_Condition()
 {
 	if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
-		if((self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE) || (Sylvio_MenDefeated == TRUE))
+		if(Sylvio_MenDefeated == TRUE)
+		{
+			return TRUE;
+		};
+		if(self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE)
 		{
 			return TRUE;
 		};
@@ -251,9 +246,16 @@ instance DIA_Bullco_PepesSchafe(C_Info)
 
 func int DIA_Bullco_PepesSchafe_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Onar_WegenPepe) || Npc_KnowsInfo(other,DIA_Lee_WegenBullco)) && (Bullco_scharf == TRUE))
+	if(Bullco_scharf == TRUE)
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Onar_WegenPepe))
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Lee_WegenBullco))
+		{
+			return TRUE;
+		};
 	};
 };
 

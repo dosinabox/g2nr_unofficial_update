@@ -1,6 +1,5 @@
 
 var int RosiTradeInfo;
-var int RosiLocation;
 var int RosiToldAboutBarrier;
 var int RosiToldAboutMilitia;
 var int RosiToldAboutOnar;

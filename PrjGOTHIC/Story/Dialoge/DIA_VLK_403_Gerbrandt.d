@@ -96,7 +96,7 @@ func void DIA_Gerbrandt_Hello_Yes()
 func void DIA_Gerbrandt_Hello_Yes_No()
 {
 	AI_Output(other,self,"DIA_Gerbrandt_Hello_Yes_No_15_00");	//Ќет.
-	AI_Output(self,other,"DIA_Gerbrandt_Hello_Yes_No_10_01");	//Ќичего, по крайне мере, ты сможешь переложить несколько мешков с места на место.
+	AI_Output(self,other,"DIA_Gerbrandt_Hello_Yes_No_10_01");	//Ќичего, по крайней мере, ты сможешь переложить несколько мешков с места на место.
 	AI_Output(self,other,"DIA_Gerbrandt_Hello_Yes_No_10_02");	//» если € буду доволен тобой, возможно, € даже предложу тебе посто€нное место. «десь всегда много работы.
 	AI_Output(self,other,"DIA_Gerbrandt_Hello_Yes_No_10_03");	//„то ж, тогда € жду теб€ у себ€, как только к пристани пришвартуетс€ первый торговый корабль.
 	Info_ClearChoices(DIA_Gerbrandt_Hello);

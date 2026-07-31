@@ -849,7 +849,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_End()
 
 func void DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_KeepCalm()
 {
-	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_KeepCalm_15_00");	//Придержи язык.
+	DIA_Common_ShutUp();
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_KeepCalm_03_01");	//Я буду вежлив как всегда.
 	AI_StopProcessInfos(self);
 };

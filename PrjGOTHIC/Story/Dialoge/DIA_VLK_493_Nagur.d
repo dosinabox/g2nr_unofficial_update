@@ -48,8 +48,6 @@ func void DIA_Nagur_Hallo_Info()
 };
 
 
-var int NagurHack;
-
 func void B_Nagur_Abfertigen()
 {
 	if(!C_LawArmorEquipped(other))

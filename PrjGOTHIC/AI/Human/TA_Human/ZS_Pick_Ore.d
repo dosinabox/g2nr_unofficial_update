@@ -16,7 +16,7 @@ func void ZS_Pick_Ore()
 
 func int ZS_Pick_Ore_Loop()
 {
-	B_UseAvailableMob(self,"ORE");
+	B_UseAvailableMob(self,"ORE",BS_MOBINTERACT_INTERRUPT);
 	return LOOP_CONTINUE;
 };
 

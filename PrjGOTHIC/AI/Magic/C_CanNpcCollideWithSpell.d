@@ -117,7 +117,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_GreenTentacle)
 	{
-		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || C_NpcIsGateGuard(self) || C_NpcIsDemon(self) || (self.guild == GIL_BLOODFLY) || (self.guild == GIL_WISP) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON) || (self.guild == GIL_HARPY) || (self.aivar[AIV_MM_REAL_ID] == ID_SKELETON_MAGE) || (self.guild == GIL_SHADOWBEAST_FIRE))
+		if(C_NpcIsDown(self) || C_NpcIsSwimming(self) || C_NpcIsGateGuard(self) || C_NpcIsDemon(self) || C_NpcIsFlyingCreature(self) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON) || (self.guild == GIL_SHADOWBEAST_FIRE))
 		{
 			return COLL_DONOTHING;
 		};

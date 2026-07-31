@@ -242,6 +242,7 @@ const int ID_SWAMPDRONE = 64;
 const int ID_ORCCOMMANDER = 65;
 //const int ID_SWAMPZOMBIE = 66;
 const int ID_SCAVENGER_DEMON = 67;
+const int ID_SKELETON_LORD = 68;
 
 const int MAGIC_NEVER = 0;
 const int MAGIC_ALWAYS = 1;

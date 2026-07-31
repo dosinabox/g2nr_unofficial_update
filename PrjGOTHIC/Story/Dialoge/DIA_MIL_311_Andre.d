@@ -52,7 +52,6 @@ func void DIA_Andre_FIRSTEXIT_Info()
 
 
 var int Andre_ToldInfoFromPablo;
-var int Andre_ToldInfoFromCanthar;
 
 func int C_Andre_InfoFromCanthar()
 {
@@ -1745,6 +1744,9 @@ func void DIA_Andre_HILFBAUERLOBART_Info()
 		Log_SetTopicStatus(TOPIC_Feldraeuber,LOG_RUNNING);
 		B_LogEntry(TOPIC_Feldraeuber,"Андрэ отправил меня на ферму Лобарта. Я опять должен помочь Лобарту восстановить порядок на ферме.");
 		MIS_AndreHelpLobart = LOG_RUNNING;
+		B_StartOtherRoutine(Vino,"BUGSTHERE");
+		B_StartOtherRoutine(LobartsBauer1,"BUGSTHERE");
+		B_StartOtherRoutine(LobartsBauer2,"BUGSTHERE");
 		Wld_InsertNpc(Lobarts_Giant_Bug1,"NW_FARM1_FIELD_06");
 		Wld_InsertNpc(Lobarts_Giant_Bug2,"NW_FARM1_FIELD_06");
 		Wld_InsertNpc(Lobarts_Giant_Bug3,"NW_FARM1_FIELD_05");
@@ -1752,9 +1754,6 @@ func void DIA_Andre_HILFBAUERLOBART_Info()
 		Wld_InsertNpc(Lobarts_Giant_Bug5,"NW_FARM1_FIELD_04");
 		Wld_InsertNpc(Lobarts_Giant_Bug6,"NW_FARM1_FIELD_04");
 		Wld_InsertNpc(Lobarts_Giant_Bug7,"NW_FARM1_FIELD_03");
-		B_StartOtherRoutine(Vino,"BUGSTHERE");
-		B_StartOtherRoutine(LobartsBauer1,"BUGSTHERE");
-		B_StartOtherRoutine(LobartsBauer2,"BUGSTHERE");
 	}
 	else if(other.guild == GIL_PAL)
 	{

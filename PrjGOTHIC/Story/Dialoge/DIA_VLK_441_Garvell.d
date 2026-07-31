@@ -3,21 +3,10 @@ instance DIA_Garvell_EXIT(C_Info)
 {
 	npc = VLK_441_Garvell;
 	nr = 999;
-	condition = DIA_Garvell_EXIT_Condition;
-	information = DIA_Garvell_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Garvell_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Garvell_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -301,9 +290,16 @@ instance DIA_Garvell_Orks(C_Info)
 
 func int DIA_Garvell_Orks_Condition()
 {
-	if((MIS_Garvell_Infos == LOG_RUNNING) && ((RangarToldAboutPaladins == TRUE) || Npc_KnowsInfo(other,DIA_Garond_NeedProof)))
+	if(MIS_Garvell_Infos == LOG_RUNNING)
 	{
-		return TRUE;
+		if(RangarToldAboutPaladins == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Garond_NeedProof))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -357,9 +353,16 @@ instance DIA_Garvell_City(C_Info)
 
 func int DIA_Garvell_City_Condition()
 {
-	if((MIS_Garvell_Infos == LOG_RUNNING) && ((RangarToldAboutOrc == TRUE) || Npc_IsDead(CityOrc)))
+	if(MIS_Garvell_Infos == LOG_RUNNING)
 	{
-		return TRUE;
+		if(RangarToldAboutOrc == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_IsDead(CityOrc))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -22,8 +22,6 @@ func void DIA_Khaled_EXIT_Info()
 };
 
 
-var int Khaled_weiter;
-
 instance DIA_Khaled_Hallo(C_Info)
 {
 	npc = SLD_823_Khaled;

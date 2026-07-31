@@ -3,21 +3,10 @@ instance DIA_Mika_EXIT(C_Info)
 {
 	npc = MIL_337_Mika;
 	nr = 999;
-	condition = DIA_Mika_EXIT_Condition;
-	information = DIA_Mika_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Mika_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Mika_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -50,18 +39,21 @@ instance DIA_Mika_Refuse(C_Info)
 
 func int DIA_Mika_Refuse_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Npc_GetDistToWP(self,"NW_FARM2_PATH_03") >= 10000))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		if(!Npc_IsDead(Lares))
+		if(Npc_GetDistToWP(self,"NW_FARM2_PATH_03") >= 10000)
 		{
-			if((Lares.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToNpc(self,Lares) < 2000))
+			if(Npc_GetDistToWP(self,"NW_CITY_KASERN_BARRACK02_03") < 3000)
 			{
 				return TRUE;
 			};
-		};
-		if(Npc_GetDistToWP(self,"NW_CITY_KASERN_BARRACK02_03") < 3000)
-		{
-			return TRUE;
+			if(!Npc_IsDead(Lares))
+			{
+				if((Lares.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToNpc(self,Lares) < 2000))
+				{
+					return TRUE;
+				};
+			};
 		};
 	};
 };
@@ -176,9 +168,12 @@ instance DIA_Mika_WASGEFAEHRLICH(C_Info)
 
 func int DIA_Mika_WASGEFAEHRLICH_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Mika_WOHIN) && !C_Mika_FreeHelp())
+	if(Npc_KnowsInfo(other,DIA_Mika_WOHIN))
 	{
-		return TRUE;
+		if(!C_Mika_FreeHelp())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -214,9 +209,12 @@ instance DIA_Mika_WASKOSTETHILFE(C_Info)
 
 func int DIA_Mika_WASKOSTETHILFE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Mika_WASGEFAEHRLICH) && (Mika_Helps == FALSE) && !C_Mika_FreeHelp())
+	if(Npc_KnowsInfo(other,DIA_Mika_WASGEFAEHRLICH) && (Mika_Helps == FALSE))
 	{
-		return TRUE;
+		if(!C_Mika_FreeHelp())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -268,9 +266,12 @@ instance DIA_Mika_UEBERLEGT(C_Info)
 
 func int DIA_Mika_UEBERLEGT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Mika_WASKOSTETHILFE) && (Mika_Helps == FALSE) && !C_Mika_FreeHelp())
+	if(Npc_KnowsInfo(other,DIA_Mika_WASKOSTETHILFE) && (Mika_Helps == FALSE))
 	{
-		return TRUE;
+		if(!C_Mika_FreeHelp())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -475,7 +476,11 @@ instance DIA_Mika_Kap3u4u5_PERM(C_Info)
 
 func int DIA_Mika_Kap3u4u5_PERM_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Mika_WIEDERNACHHAUSE) || C_Mika_FreeHelp())
+	if(Npc_KnowsInfo(other,DIA_Mika_WIEDERNACHHAUSE))
+	{
+		return TRUE;
+	};
+	if(C_Mika_FreeHelp())
 	{
 		return TRUE;
 	};

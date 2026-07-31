@@ -3,21 +3,10 @@ instance DIA_Addon_Fortuno_EXIT(C_Info)
 {
 	npc = BDT_1075_Addon_Fortuno;
 	nr = 999;
-	condition = DIA_Addon_Fortuno_EXIT_Condition;
-	information = DIA_Addon_Fortuno_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Fortuno_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Fortuno_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -162,12 +151,12 @@ func void DIA_Addon_Fortuno_FREE_Info()
 	AI_Output(other,self,"DIA_Addon_Fortuno_FREE_15_03");	//А ТЫ что-нибудь помнишь про это?
 	AI_Output(self,other,"DIA_Addon_Fortuno_FREE_13_04");	//Нет, я боюсь, это знание исчезло вместе с гуру...
 	AI_Output(other,self,"DIA_Addon_Fortuno_FREE_15_05");	//Проклятье. Ладно, если есть способ освободить твой разум, я найду его.
+	B_LogEntry(TOPIC_Addon_Fortuno,"Разум Фортуно прояснился, но он все еще ничего не помнит.");
 	Wld_InsertNpc(Bloodfly,"ADW_PATH_TO_BL_09");
 	Wld_InsertNpc(Bloodfly,"ADW_PATH_TO_BL_10");
 	Wld_InsertNpc(Bloodfly,"ADW_PATH_TO_BL_10");
 	Wld_InsertNpc(Bloodfly,"ADW_PATH_TO_LOCH_01");
 	Wld_InsertNpc(Bloodfly,"ADW_PATH_TO_LOCH_01");
-	B_LogEntry(TOPIC_Addon_Fortuno,"Разум Фортуно прояснился, но он все еще ничего не помнит.");
 };
 
 
@@ -223,9 +212,12 @@ instance DIA_Addon_Fortuno_Trade(C_Info)
 
 func int DIA_Addon_Fortuno_Trade_Condition()
 {
-	if(Npc_HasItems(other,ItPl_SwampHerb) && Npc_KnowsInfo(other,DIA_Addon_Fortuno_Herb))
+	if(Npc_KnowsInfo(other,DIA_Addon_Fortuno_Herb))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItPl_SwampHerb))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -283,9 +275,16 @@ instance DIA_Addon_Fortuno_Trank(C_Info)
 
 func int DIA_Addon_Fortuno_Trank_Condition()
 {
-	if((Fortuno_Geheilt_01 == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Fortuno_FREE) && (Npc_HasItems(other,ItPo_Addon_Geist_01) || Npc_HasItems(other,ItPo_Addon_Geist_02)))
+	if((Fortuno_Geheilt_01 == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Fortuno_FREE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItPo_Addon_Geist_01))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItPo_Addon_Geist_02))
+		{
+			return TRUE;
+		};
 	};
 };
 

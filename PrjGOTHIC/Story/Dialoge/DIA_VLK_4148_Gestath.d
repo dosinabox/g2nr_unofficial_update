@@ -118,6 +118,8 @@ func void DIA_Gestath_HALLO_Back()
 	Info_ClearChoices(DIA_Gestath_HALLO);
 };
 
+var int Gestath_DragonTrophy;
+
 instance DIA_Gestath_Drachen(C_Info)
 {
 	npc = VLK_4148_Gestath;
@@ -128,8 +130,6 @@ instance DIA_Gestath_Drachen(C_Info)
 	description = "Ты умеешь потрошить драконов?";
 };
 
-
-var int Gestath_DragonTrophy;
 
 func int DIA_Gestath_Drachen_Condition()
 {

@@ -35,7 +35,6 @@ func void DIA_Gritta_Hello_Info()
 };
 
 
-var int Gritta_WantPay;
 var int Gritta_Threatened;
 
 instance DIA_Gritta_WantsMoney(C_Info)

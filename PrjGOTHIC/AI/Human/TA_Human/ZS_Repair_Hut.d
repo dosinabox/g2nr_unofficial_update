@@ -12,16 +12,19 @@ func void ZS_Repair_Hut()
 
 func int ZS_Repair_Hut_Loop()
 {
-	var int zufall;
-	B_UseAvailableMob(self,"REPAIR");
-	if((Npc_GetStateTime(self) > 5) && C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT))
+	var int random;
+	B_UseAvailableMob(self,"REPAIR",BS_MOBINTERACT_INTERRUPT);
+	if(Npc_GetStateTime(self) > 5)
 	{
-		zufall = Hlp_Random(100);
-		if(zufall < 50)
+		if(C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT))
 		{
-			AI_PlayAniBS(self,"T_REPAIR_RANDOM_1",BS_MOBINTERACT_INTERRUPT);
+			random = Hlp_Random(100);
+			if(random < 50)
+			{
+				AI_PlayAniBS(self,"T_REPAIR_RANDOM_1",BS_MOBINTERACT_INTERRUPT);
+			};
+			Npc_SetStateTime(self,0);
 		};
-		Npc_SetStateTime(self,0);
 	};
 	return LOOP_CONTINUE;
 };

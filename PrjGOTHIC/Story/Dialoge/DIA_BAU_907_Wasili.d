@@ -3,21 +3,10 @@ instance DIA_Wasili_EXIT(C_Info)
 {
 	npc = BAU_907_Wasili;
 	nr = 999;
-	condition = DIA_Wasili_EXIT_Condition;
-	information = DIA_Wasili_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Wasili_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Wasili_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -109,7 +98,6 @@ func void DIA_Wasili_Sammler_Info()
 var int WasilisOldCoinOffer;
 var int FirstOldCoin_angebotenXP_OneTime;
 var int DIA_Wasili_FirstOldCoin_mehr_OneTime;
-var int OldCoinCounter;
 
 instance DIA_Wasili_FirstOldCoin(C_Info)
 {

@@ -414,17 +414,17 @@ func void DIA_Lobart_OnarStory_Info()
 };
 
 
-instance DIA_Lobart_SldInfo(C_Info)
+instance DIA_Lobart_SLDInfo(C_Info)
 {
 	npc = BAU_950_Lobart;
 	nr = 1;
-	condition = DIA_Lobart_SldInfo_Condition;
-	information = DIA_Lobart_SldInfo_Info;
+	condition = DIA_Lobart_SLDInfo_Condition;
+	information = DIA_Lobart_SLDInfo_Info;
 	description = "А кто эти наемники, которых нанял Онар?";
 };
 
 
-func int DIA_Lobart_SldInfo_Condition()
+func int DIA_Lobart_SLDInfo_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Lobart_OnarStory) && (Kapitel < 3))
 	{
@@ -432,13 +432,13 @@ func int DIA_Lobart_SldInfo_Condition()
 	};
 };
 
-func void DIA_Lobart_SldInfo_Info()
+func void DIA_Lobart_SLDInfo_Info()
 {
-	AI_Output(other,self,"DIA_Lobart_SldInfo_15_00");	//А кто эти наемники, которых нанял Онар?
-	AI_Output(self,other,"DIA_Lobart_SldInfo_05_01");	//Я мало что знаю об этих парнях. Предположительно, большинство из них - бывшие каторжники из колонии.
+	AI_Output(other,self,"DIA_Lobart_SLDInfo_15_00");	//А кто эти наемники, которых нанял Онар?
+	AI_Output(self,other,"DIA_Lobart_SLDInfo_05_01");	//Я мало что знаю об этих парнях. Предположительно, большинство из них - бывшие каторжники из колонии.
 	if(other.guild != GIL_SLD)
 	{
-		AI_Output(self,other,"DIA_Lobart_SldInfo_05_02");	//(презрительно) И чего, спрашивается, от них можно ожидать...
+		AI_Output(self,other,"DIA_Lobart_SLDInfo_05_02");	//(презрительно) И чего, спрашивается, от них можно ожидать...
 	};
 };
 

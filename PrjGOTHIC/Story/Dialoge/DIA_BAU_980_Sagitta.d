@@ -124,6 +124,9 @@ func void DIA_Sagitta_Pre_Heal_Info()
 };
 
 
+var int DIA_Sagitta_TeachAlchemyRequest_OneTime;
+var int DIA_Sagitta_TeachAlchemyRequest_ToldAboutPlant;
+
 instance DIA_Sagitta_TeachAlchemyRequest(C_Info)
 {
 	npc = BAU_980_Sagitta;
@@ -143,16 +146,15 @@ func int DIA_Sagitta_TeachAlchemyRequest_Condition()
 		{
 			return TRUE;
 		};
-		if((MIS_Sagitta_Herb == LOG_RUNNING) && Npc_HasItems(self,ItPl_Sagitta_Herb_MIS) && (Sagitta_TeachAlchemy == FALSE))
+		if((MIS_Sagitta_Herb == LOG_RUNNING) && (Sagitta_TeachAlchemy == FALSE))
 		{
-			return TRUE;
+			if(Npc_HasItems(self,ItPl_Sagitta_Herb_MIS))
+			{
+				return TRUE;
+			};
 		};
 	};
 };
-
-
-var int DIA_Sagitta_TeachAlchemyRequest_OneTime;
-var int DIA_Sagitta_TeachAlchemyRequest_ToldAboutPlant;
 
 func void DIA_Sagitta_TeachAlchemyRequest_Info()
 {
@@ -246,9 +248,12 @@ instance DIA_Sagitta_Sagitta_Herb(C_Info)
 
 func int DIA_Sagitta_Sagitta_Herb_Condition()
 {
-	if(Npc_HasItems(other,ItPl_Sagitta_Herb_MIS) && (MIS_Sagitta_Herb == LOG_RUNNING))
+	if(MIS_Sagitta_Herb == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItPl_Sagitta_Herb_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -266,6 +271,8 @@ func void DIA_Sagitta_Sagitta_Herb_Info()
 };
 
 
+var int DIA_Sagitta_Teach_permanent;
+
 instance DIA_Sagitta_Teach(C_Info)
 {
 	npc = BAU_980_Sagitta;
@@ -276,8 +283,6 @@ instance DIA_Sagitta_Teach(C_Info)
 	description = "Какие зелья можешь ты научить меня варить?";
 };
 
-
-var int DIA_Sagitta_Teach_permanent;
 
 func int DIA_Sagitta_Teach_Condition()
 {
@@ -414,10 +419,10 @@ func int DIA_Sagitta_HEAL_Condition()
 func void DIA_Sagitta_HEAL_Info()
 {
 	AI_Output(other,self,"DIA_Sagitta_HEAL_15_00");	//Вылечи меня.
-	if(hero.attribute[ATR_HITPOINTS] < hero.attribute[ATR_HITPOINTS_MAX])
+	if(other.attribute[ATR_HITPOINTS] < other.attribute[ATR_HITPOINTS_MAX])
 	{
 		AI_Output(self,other,"DIA_Sagitta_HEAL_17_01");	//Давай посмотрим, что там у тебя. Ммм. Моя мазь в момент заживит все твои раны.
-		hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
+		other.attribute[ATR_HITPOINTS] = other.attribute[ATR_HITPOINTS_MAX];
 		AI_PrintScreen(PRINT_FullyHealed,-1,-1,FONT_Screen,2);
 	}
 	else
@@ -511,6 +516,8 @@ func void DIA_Sagitta_Thekla_Info()
 };
 
 
+var int DIA_Sagitta_HEALRANDOLPH_GotOne;
+
 instance DIA_Sagitta_HEALRANDOLPH(C_Info)
 {
 	npc = BAU_980_Sagitta;
@@ -522,14 +529,14 @@ instance DIA_Sagitta_HEALRANDOLPH(C_Info)
 };
 
 
-var int DIA_Sagitta_HEALRANDOLPH_GotOne;
-var int DIA_Sagitta_HEALRANDOLPH_KnowsPrice;
-
 func int DIA_Sagitta_HEALRANDOLPH_Condition()
 {
-	if((MIS_HealRandolph == LOG_RUNNING) && !Npc_HasItems(other,ItPo_HealRandolph_MIS) && Npc_KnowsInfo(other,DIA_Sagitta_Pre_Who))
+	if((MIS_HealRandolph == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Sagitta_Pre_Who))
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,ItPo_HealRandolph_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

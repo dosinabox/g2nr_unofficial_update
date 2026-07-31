@@ -3,21 +3,10 @@ instance DIA_Alrik_EXIT(C_Info)
 {
 	npc = VLK_438_Alrik;
 	nr = 999;
-	condition = DIA_Alrik_EXIT_Condition;
-	information = DIA_Alrik_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Alrik_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Alrik_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -489,9 +478,12 @@ instance DIA_Alrik_WerSchwert(C_Info)
 
 func int DIA_Alrik_WerSchwert_Condition()
 {
-	if((Alrik_VomSchwertErzaehlt == TRUE) && (MIS_Alrik_Sword != LOG_SUCCESS) && !Npc_HasItems(other,ItMw_AlriksSword_MIS))
+	if((Alrik_VomSchwertErzaehlt == TRUE) && (MIS_Alrik_Sword != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,ItMw_AlriksSword_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -532,9 +524,12 @@ instance DIA_Alrik_HaveSword(C_Info)
 
 func int DIA_Alrik_HaveSword_Condition()
 {
-	if((Alrik_VomSchwertErzaehlt == TRUE) && Npc_HasItems(other,ItMw_AlriksSword_MIS))
+	if(Alrik_VomSchwertErzaehlt == TRUE)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMw_AlriksSword_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

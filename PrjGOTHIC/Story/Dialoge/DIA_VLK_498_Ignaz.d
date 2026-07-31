@@ -242,6 +242,8 @@ func void DIA_Ignaz_Trade_Info()
 };
 
 
+var int DIA_Ignaz_Teach_permanent;
+
 instance DIA_Ignaz_Teach(C_Info)
 {
 	npc = VLK_498_Ignaz;
@@ -252,8 +254,6 @@ instance DIA_Ignaz_Teach(C_Info)
 	description = "Обучи меня искусству алхимии.";
 };
 
-
-var int DIA_Ignaz_Teach_permanent;
 
 func int DIA_Ignaz_Teach_Condition()
 {

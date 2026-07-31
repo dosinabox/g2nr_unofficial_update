@@ -61,8 +61,6 @@ func void DIA_Xardas_EXIT_Info()
 };
 
 
-var int Addon_zuerst;
-
 func void B_Xardas_SoLittleTime()
 {
 	AI_Output(self,other,"DIA_Xardas_Hello_14_15");	//(задумчиво) У нас очень мало времени.
