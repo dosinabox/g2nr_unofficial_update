@@ -9,6 +9,13 @@ func void B_Parlan_HAMMER()
 	Parlan_Hammer = TRUE;
 };
 
+func void B_Parlan_LEARN()
+{
+	AI_Output(self,other,"DIA_Parlan_LEARN_05_02");	//Но я могу показать тебе, как повысить твои магические способности.
+	Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_KlosterTeacher,"Мастер Парлан может помочь мне повысить мою магическую энергию.");
+};
+
 instance DIA_Parlan_EXIT(C_Info)
 {
 	npc = KDF_504_Parlan;
@@ -103,9 +110,9 @@ instance DIA_Parlan_PMSchulden(C_Info)
 
 func int DIA_Parlan_PMSchulden_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Parlan_Schulden > 0) && (B_GetGreatestPetzCrime(self) <= Parlan_LastPetzCrime))
+	if(Npc_IsInState(self,ZS_Talk) && (Parlan_Schulden > 0))
 	{
-		if((other.guild == GIL_NOV) && !Npc_KnowsInfo(other,DIA_Parlan_WELCOME))
+		if((other.guild == GIL_NOV) && !Npc_KnowsInfo(other,DIA_Parlan_WELCOME) && (B_GetGreatestPetzCrime(self) <= Parlan_LastPetzCrime))
 		{
 			return FALSE;
 		};
@@ -415,11 +422,14 @@ instance DIA_Parlan_Hagen(C_Info)
 
 func int DIA_Parlan_Hagen_Condition()
 {
-	if((other.guild == GIL_NOV) && !Npc_IsDead(LordHagen))
+	if(other.guild == GIL_NOV)
 	{
-		if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+		if(!Npc_IsDead(LordHagen))
 		{
-			return TRUE;
+			if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -432,6 +442,8 @@ func void DIA_Parlan_Hagen_Info()
 };
 
 
+var int DIA_Parlan_WORK_perm;
+
 instance DIA_Parlan_WORK(C_Info)
 {
 	npc = KDF_504_Parlan;
@@ -443,8 +455,6 @@ instance DIA_Parlan_WORK(C_Info)
 };
 
 
-var int DIA_Parlan_WORK_perm;
-
 func int DIA_Parlan_WORK_Condition()
 {
 	if(!Npc_KnowsInfo(other,DIA_Parlan_KNOWSJUDGE) && Npc_KnowsInfo(other,DIA_Parlan_WELCOME) && (DIA_Parlan_WORK_perm == FALSE))
@@ -455,7 +465,10 @@ func int DIA_Parlan_WORK_Condition()
 		};
 		if(GuildlessMode == TRUE)
 		{
-			return TRUE;
+			if(other.guild == GIL_NOV)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -684,8 +697,7 @@ func void DIA_Parlan_LEARN_Info()
 {
 	AI_Output(other,self,"DIA_Parlan_LEARN_15_00");	//Как мне изучить основы магии?
 	AI_Output(self,other,"DIA_Parlan_LEARN_05_01");	//Ты здесь не для того, чтобы получить дар магии. Ты здесь, чтобы служить Инносу.
-	AI_Output(self,other,"DIA_Parlan_LEARN_05_02");	//Но я могу показать тебе, как повысить твои магические способности.
-	B_LogEntry(TOPIC_KlosterTeacher,"Мастер Парлан может помочь мне повысить мою магическую энергию.");
+	B_Parlan_LEARN();
 };
 
 
@@ -747,9 +759,23 @@ instance DIA_Parlan_TEACH_MANA(C_Info)
 
 func int DIA_Parlan_TEACH_MANA_Condition()
 {
-	if(((other.guild == GIL_KDF) || (other.guild == GIL_PAL) || ((other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Parlan_LEARN))) && (Parlan_Sends == FALSE))
+	if(Parlan_Sends == FALSE)
 	{
-		return TRUE;
+		if(other.guild == GIL_KDF)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_PAL)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
+		{
+			if(Npc_KnowsInfo(other,DIA_Parlan_LEARN))
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -792,9 +818,12 @@ instance DIA_Parlan_MAGE(C_Info)
 
 func int DIA_Parlan_MAGE_Condition()
 {
-	if((other.guild == GIL_KDF) && (B_GetGreatestPetzCrime(self) == CRIME_NONE))
+	if(other.guild == GIL_KDF)
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1075,9 +1104,12 @@ instance DIA_Parlan_IAmParlan(C_Info)
 
 func int DIA_Parlan_IAmParlan_Condition()
 {
-	if((Kapitel >= 3) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF) && (B_GetGreatestPetzCrime(self) == CRIME_NONE))
+	if((Kapitel >= 3) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1087,6 +1119,7 @@ func void DIA_Parlan_IAmParlan_Info()
 	{
 		AI_Output(self,other,"DIA_Parlan_IAmParlan_05_00");	//Я вижу, ты решил сражаться на нашей стороне. Я рад.
 		AI_Output(self,other,"DIA_Parlan_IAmParlan_05_01");	//Нам нужны каждые сильные руки. Ты должен поговорить с Мардуком, он отвечает за вас, паладинов.
+		B_Parlan_LEARN();
 	}
 	else
 	{
@@ -1163,9 +1196,12 @@ instance DIA_Parlan_DontDisturb(C_Info)
 
 func int DIA_Parlan_DontDisturb_Condition()
 {
-	if((Parlan_DontTalkToNovice == LOG_FAILED) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && (other.guild != GIL_PAL))
+	if((Parlan_DontTalkToNovice == LOG_FAILED) && (other.guild != GIL_PAL))
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
+		{
+			return TRUE;
+		};
 	};
 };
 

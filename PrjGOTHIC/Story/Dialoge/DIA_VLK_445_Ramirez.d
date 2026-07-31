@@ -3,21 +3,10 @@ instance DIA_Ramirez_EXIT(C_Info)
 {
 	npc = VLK_445_Ramirez;
 	nr = 999;
-	condition = DIA_Ramirez_EXIT_Condition;
-	information = DIA_Ramirez_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Ramirez_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Ramirez_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -27,7 +16,6 @@ instance DIA_Ramirez_Zeichen(C_Info)
 	nr = 800;
 	condition = DIA_Ramirez_Zeichen_Condition;
 	information = DIA_Ramirez_Zeichen_Info;
-	permanent = FALSE;
 	description = DIALOG_SecretSign;
 };
 
@@ -53,16 +41,18 @@ instance DIA_Ramirez_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Ramirez_Hallo_Condition;
 	information = DIA_Ramirez_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Ramirez_Hallo_Condition()
 {
-	if((Join_Thiefs == FALSE) && !Npc_IsDead(Cassia) && !Npc_IsDead(Jesper))
+	if(Join_Thiefs == FALSE)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Cassia) && !Npc_IsDead(Jesper))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -80,16 +70,18 @@ instance DIA_Ramirez_Hallo_Joined(C_Info)
 	nr = 2;
 	condition = DIA_Ramirez_Hallo_Joined_Condition;
 	information = DIA_Ramirez_Hallo_Joined_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Ramirez_Hallo_Joined_Condition()
 {
-	if((Join_Thiefs == TRUE) && !Npc_IsDead(Cassia) && !Npc_IsDead(Jesper))
+	if(Join_Thiefs == TRUE)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Cassia) && !Npc_IsDead(Jesper))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -107,18 +99,21 @@ instance DIA_Ramirez_Beute(C_Info)
 	nr = 3;
 	condition = DIA_Ramirez_Beute_Condition;
 	information = DIA_Ramirez_Beute_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Ramirez_Beute_Condition()
 {
-	if(Npc_IsDead(Cassia) || Npc_IsDead(Jesper))
+	if(Npc_IsDead(Cassia))
 	{
 		return FALSE;
-	}
-	else if(Npc_GetDistToWP(self,"NW_CITY_KANAL_ROOM_04_01") < 1000)
+	};
+	if(Npc_IsDead(Jesper))
+	{
+		return FALSE;
+	};
+	if(Npc_GetDistToWP(self,"NW_CITY_KANAL_ROOM_04_01") < 1000)
 	{
 		if(Mob_HasItems("THIEF_CHEST_01",ItMi_Gold) < 50)
 		{
@@ -159,7 +154,7 @@ func int DIA_Ramirez_Beute_Condition()
 		{
 			return TRUE;
 		};
-		if(!Mob_HasItems("THIEF_CHEST_04",ItSc_ChargeFireball))
+		if(!Mob_HasItems("THIEF_CHEST_04",ItSc_ChargeFireBall))
 		{
 			return TRUE;
 		};
@@ -187,6 +182,8 @@ func void DIA_Ramirez_Beute_Info()
 };
 
 
+var int DIA_Ramirez_Bezahlen_permanent;
+
 instance DIA_Ramirez_Bezahlen(C_Info)
 {
 	npc = VLK_445_Ramirez;
@@ -197,8 +194,6 @@ instance DIA_Ramirez_Bezahlen(C_Info)
 	description = "“ы можешь научить мен€ чему-нибудь?";
 };
 
-
-var int DIA_Ramirez_Bezahlen_permanent;
 
 func int DIA_Ramirez_Bezahlen_Condition()
 {
@@ -345,7 +340,6 @@ instance DIA_Ramirez_Sextant(C_Info)
 	nr = 2;
 	condition = DIA_Ramirez_Sextant_Condition;
 	information = DIA_Ramirez_Sextant_Info;
-	permanent = FALSE;
 	description = "” теб€ есть работа дл€ мен€?";
 };
 
@@ -377,16 +371,18 @@ instance DIA_Ramirez_Success(C_Info)
 	nr = 2;
 	condition = DIA_Ramirez_Success_Condition;
 	information = DIA_Ramirez_Success_Info;
-	permanent = FALSE;
 	description = "я принес тебе секстант.";
 };
 
 
 func int DIA_Ramirez_Success_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Ramirez_Sextant) && Npc_HasItems(other,ItMi_Sextant))
+	if(Npc_KnowsInfo(other,DIA_Ramirez_Sextant))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Sextant))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -428,14 +424,17 @@ instance DIA_Ramirez_Killer(C_Info)
 	nr = 1;
 	condition = DIA_Ramirez_Killer_Condition;
 	information = DIA_Ramirez_Killer_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Ramirez_Killer_Condition()
 {
-	if(Npc_IsDead(Cassia) || Npc_IsDead(Jesper))
+	if(Npc_IsDead(Cassia))
+	{
+		return TRUE;
+	};
+	if(Npc_IsDead(Jesper))
 	{
 		return TRUE;
 	};

@@ -3,21 +3,10 @@ instance DIA_SylvioDJG_EXIT(C_Info)
 {
 	npc = DJG_700_Sylvio;
 	nr = 999;
-	condition = DIA_SylvioDJG_EXIT_Condition;
-	information = DIA_SylvioDJG_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_SylvioDJG_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_SylvioDJG_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -73,11 +62,14 @@ instance DIA_Sylvio_VERSAGER(C_Info)
 
 func int DIA_Sylvio_VERSAGER_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_SylvioDJG_HelloAgain) && !Npc_IsDead(IceDragon))
+	if(Npc_KnowsInfo(other,DIA_SylvioDJG_HelloAgain))
 	{
-		if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+		if(!Npc_IsDead(IceDragon))
 		{
-			return TRUE;
+			if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -110,11 +102,14 @@ instance DIA_Sylvio_DEINELEUTE(C_Info)
 
 func int DIA_Sylvio_DEINELEUTE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && !Npc_IsDead(IceDragon) && (MIS_DJG_Sylvio_KillIceGolem != LOG_SUCCESS) && (SylvioIceGolemsKilledBefore4Chapter == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && (MIS_DJG_Sylvio_KillIceGolem != LOG_SUCCESS) && (SylvioIceGolemsKilledBefore4Chapter == FALSE))
 	{
-		if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+		if(!Npc_IsDead(IceDragon))
 		{
-			return TRUE;
+			if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -138,11 +133,14 @@ instance DIA_Sylvio_WASISTPASSIERT(C_Info)
 
 func int DIA_Sylvio_WASISTPASSIERT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && !Npc_IsDead(IceDragon) && (SylvioIceGolemsKilledBefore4Chapter == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && (SylvioIceGolemsKilledBefore4Chapter == FALSE))
 	{
-		if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+		if(!Npc_IsDead(IceDragon))
 		{
-			return TRUE;
+			if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -224,11 +222,14 @@ instance DIA_Sylvio_ICEGOLEMSKILLED(C_Info)
 
 func int DIA_Sylvio_ICEGOLEMSKILLED_Condition()
 {
-	if(C_SylvioGolemsDead() && (MIS_DJG_Sylvio_KillIceGolem == LOG_RUNNING) && !Npc_IsDead(IceDragon))
+	if(MIS_DJG_Sylvio_KillIceGolem == LOG_RUNNING)
 	{
-		if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+		if(C_SylvioGolemsDead() && !Npc_IsDead(IceDragon))
 		{
-			return TRUE;
+			if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -244,8 +245,7 @@ func void DIA_Sylvio_ICEGOLEMSKILLED_Info()
 	};
 	if(C_BodyStateContains(self,BS_SIT))
 	{
-		AI_Standup(self);
-		B_TurnToNpc(self,other);
+		AI_UseMob(self,"BENCH",-1);
 	};
 	AI_StopProcessInfos(self);
 	MIS_DJG_Sylvio_KillIceGolem = LOG_SUCCESS;
@@ -255,7 +255,7 @@ func void DIA_Sylvio_ICEGOLEMSKILLED_Info()
 	{
 		if(C_BodyStateContains(DJG_Bullco,BS_SIT))
 		{
-			AI_Standup(DJG_Bullco);
+			AI_UseMob(DJG_Bullco,"BENCH",-1);
 		};
 		B_StartOtherRoutine(DJG_Bullco,"ICEWAIT1");
 	};
@@ -274,15 +274,18 @@ instance DIA_Sylvio_WASJETZT(C_Info)
 
 func int DIA_Sylvio_WASJETZT_Condition()
 {
-	if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+	if(!Npc_IsDead(IceDragon))
 	{
-		if(MIS_DJG_Sylvio_KillIceGolem == LOG_SUCCESS)
+		if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
 		{
-			return TRUE;
-		};
-		if((SylvioIceGolemsKilledBefore4Chapter == TRUE) && Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER))
-		{
-			return TRUE;
+			if(MIS_DJG_Sylvio_KillIceGolem == LOG_SUCCESS)
+			{
+				return TRUE;
+			};
+			if((SylvioIceGolemsKilledBefore4Chapter == TRUE) && Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER))
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -348,11 +351,14 @@ instance DIA_Sylvio_KOMMSTDU(C_Info)
 
 func int DIA_Sylvio_KOMMSTDU_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sylvio_WASJETZT) && !Npc_IsDead(IceDragon))
+	if(Npc_KnowsInfo(other,DIA_Sylvio_WASJETZT))
 	{
-		if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+		if(!Npc_IsDead(IceDragon))
 		{
-			return TRUE;
+			if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -472,9 +478,12 @@ instance DIA_SylvioDJG_BUTNOW(C_Info)
 
 func int DIA_SylvioDJG_BUTNOW_Condition()
 {
-	if(Npc_IsDead(IceDragon) && !Npc_RefuseTalk(self) && Npc_KnowsInfo(other,DIA_SylvioDJG_WHATNEXT))
+	if(!Npc_RefuseTalk(self) && Npc_KnowsInfo(other,DIA_SylvioDJG_WHATNEXT))
 	{
-		return TRUE;
+		if(Npc_IsDead(IceDragon))
+		{
+			return TRUE;
+		};
 	};
 };
 

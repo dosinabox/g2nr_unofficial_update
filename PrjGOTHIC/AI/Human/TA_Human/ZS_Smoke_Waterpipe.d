@@ -12,7 +12,7 @@ func void ZS_Smoke_Waterpipe()
 
 func int ZS_Smoke_Waterpipe_Loop()
 {
-	B_UseAvailableMob(self,"SMOKE");
+	B_UseAvailableMob(self,"SMOKE",BS_MOBINTERACT);
 	return LOOP_CONTINUE;
 };
 

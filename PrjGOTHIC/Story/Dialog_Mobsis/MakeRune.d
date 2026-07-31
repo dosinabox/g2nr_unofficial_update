@@ -65,6 +65,7 @@ func void PC_MakeRune_End_Info()
 instance PC_Circle_01(C_Info)
 {
 	npc = PC_Hero;
+	nr = 1;
 	condition = PC_Circle_01_Condition;
 	information = PC_Circle_01_Info;
 	permanent = TRUE;
@@ -115,6 +116,7 @@ func void PC_Circle_01_BACK()
 instance PC_Circle_02(C_Info)
 {
 	npc = PC_Hero;
+	nr = 2;
 	condition = PC_Circle_02_Condition;
 	information = PC_Circle_02_Info;
 	permanent = TRUE;
@@ -173,6 +175,7 @@ func void PC_Circle_02_BACK()
 instance PC_Circle_03(C_Info)
 {
 	npc = PC_Hero;
+	nr = 3;
 	condition = PC_Circle_03_Condition;
 	information = PC_Circle_03_Info;
 	permanent = TRUE;
@@ -235,6 +238,7 @@ func void PC_Circle_03_BACK()
 instance PC_Circle_04(C_Info)
 {
 	npc = PC_Hero;
+	nr = 4;
 	condition = PC_Circle_04_Condition;
 	information = PC_Circle_04_Info;
 	permanent = TRUE;
@@ -285,6 +289,7 @@ func void PC_Circle_04_BACK()
 instance PC_Circle_05(C_Info)
 {
 	npc = PC_Hero;
+	nr = 5;
 	condition = PC_Circle_05_Condition;
 	information = PC_Circle_05_Info;
 	permanent = TRUE;
@@ -335,6 +340,7 @@ func void PC_Circle_05_BACK()
 instance PC_Circle_06(C_Info)
 {
 	npc = PC_Hero;
+	nr = 6;
 	condition = PC_Circle_06_Condition;
 	information = PC_Circle_06_Info;
 	permanent = TRUE;
@@ -370,10 +376,6 @@ func void PC_Circle_06_Info()
 	{
 		Info_AddChoice(PC_Circle_06,NAME_SPL_ArmyOfDarkness,PC_ItRu_ArmyOfDarkness_Info);
 	};
-/*	if(PLAYER_TALENT_RUNES[SPL_Shrink] == TRUE)
-	{
-		Info_AddChoice(PC_Circle_06,NAME_SPL_Shrink,PC_ItRu_Shrink_Info);
-	};*/
 };
 
 func void PC_Circle_06_BACK()
@@ -382,100 +384,44 @@ func void PC_Circle_06_BACK()
 };
 
 
-instance PC_SPL_MasterOfDisaster(C_Info)
+instance PC_Circle_Special(C_Info)
 {
 	npc = PC_Hero;
-	condition = PC_SPL_MasterOfDisaster_Condition;
-	information = PC_SPL_MasterOfDisaster_Info;
+	nr = 7;
+	condition = PC_Circle_Special_Condition;
+	information = PC_Circle_Special_Info;
 	permanent = TRUE;
 	description = "Секрет библиотеки!";
 };
 
 
-func int PC_SPL_MasterOfDisaster_Condition()
+func int PC_Circle_Special_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune) && (PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune) && ((PLAYER_TALENT_RUNES[SPL_PalTeleportSecret] == TRUE) || (PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] == TRUE)))
 	{
 		return TRUE;
 	};
 };
 
-func void PC_SPL_MasterOfDisaster_Info()
+func void PC_Circle_Special_Info()
 {
-	Info_ClearChoices(PC_SPL_MasterOfDisaster);
-	Info_AddChoice(PC_SPL_MasterOfDisaster,Dialog_Back,PC_SPL_MasterOfDisaster_BACK);
-	if(PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] == TRUE)
-	{
-		Info_AddChoice(PC_SPL_MasterOfDisaster,NAME_SPL_MasterOfDisaster,PC_SPL_MasterOfDisaster_Create);
-	};
-};
-
-func void PC_SPL_MasterOfDisaster_BACK()
-{
-	Info_ClearChoices(PC_SPL_MasterOfDisaster);
-};
-
-func void PC_SPL_MasterOfDisaster_Create()
-{
-	if(Npc_HasItems(self,ItMi_HolyWater))
-	{
-		Npc_RemoveInvItems(self,ItMi_HolyWater,1);
-		B_CreateRune(ItRu_MasterOfDisaster);
-	}
-	else
-	{
-		B_RuneProdItemsMissing();
-	};
-	B_EndProductionDialog();
-};
-
-
-instance PC_SPL_PalTeleportSecret(C_Info)
-{
-	npc = PC_Hero;
-	condition = PC_SPL_PalTeleportSecret_Condition;
-	information = PC_SPL_PalTeleportSecret_Info;
-	permanent = TRUE;
-	description = "Секрет библиотеки!";
-};
-
-
-func int PC_SPL_PalTeleportSecret_Condition()
-{
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune) && (PLAYER_TALENT_RUNES[SPL_PalTeleportSecret] == TRUE))
-	{
-		return TRUE;
-	};
-};
-
-func void PC_SPL_PalTeleportSecret_Info()
-{
-	Info_ClearChoices(PC_SPL_PalTeleportSecret);
-	Info_AddChoice(PC_SPL_PalTeleportSecret,Dialog_Back,PC_SPL_PalTeleportSecret_BACK);
+	Info_ClearChoices(PC_Circle_Special);
+	Info_AddChoice(PC_Circle_Special,Dialog_Back,PC_Circle_Special_BACK);
 	if(PLAYER_TALENT_RUNES[SPL_PalTeleportSecret] == TRUE)
 	{
-		Info_AddChoice(PC_SPL_PalTeleportSecret,NAME_SPL_PalTeleportSecret,PC_SPL_PalTeleportSecret_Create);
+		Info_AddChoice(PC_Circle_Special,NAME_SPL_PalTeleportSecret,PC_ItRu_PalTeleportSecret_Info);
+	};
+	if(PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] == TRUE)
+	{
+		Info_AddChoice(PC_Circle_Special,NAME_SPL_MasterOfDisaster,PC_ItRu_MasterOfDisaster_Info);
 	};
 };
 
-func void PC_SPL_PalTeleportSecret_BACK()
+func void PC_Circle_Special_BACK()
 {
-	Info_ClearChoices(PC_SPL_PalTeleportSecret);
+	Info_ClearChoices(PC_Circle_Special);
 };
 
-func void PC_SPL_PalTeleportSecret_Create()
-{
-	if(Npc_HasItems(self,ItMi_HolyWater))
-	{
-		Npc_RemoveInvItems(self,ItMi_HolyWater,1);
-		B_CreateRune(ItRu_PalTeleportSecret);
-	}
-	else
-	{
-		B_RuneProdItemsMissing();
-	};
-	B_EndProductionDialog();
-};
 
 func void PC_ItRu_Light_Info()
 {
@@ -996,6 +942,34 @@ func void PC_ItRu_Waterfist_Info()
 		Npc_RemoveInvItems(self,ItMi_Aquamarine,1);
 		Npc_RemoveInvItems(self,ItMi_Rockcrystal,1);
 		B_CreateRune(ItRu_Waterfist);
+	}
+	else
+	{
+		B_RuneProdItemsMissing();
+	};
+	B_EndProductionDialog();
+};
+
+func void PC_ItRu_PalTeleportSecret_Info()
+{
+	if(Npc_HasItems(self,ItMi_HolyWater))
+	{
+		Npc_RemoveInvItems(self,ItMi_HolyWater,1);
+		B_CreateRune(ItRu_PalTeleportSecret);
+	}
+	else
+	{
+		B_RuneProdItemsMissing();
+	};
+	B_EndProductionDialog();
+};
+
+func void PC_ItRu_MasterOfDisaster_Info()
+{
+	if(Npc_HasItems(self,ItMi_HolyWater))
+	{
+		Npc_RemoveInvItems(self,ItMi_HolyWater,1);
+		B_CreateRune(ItRu_MasterOfDisaster);
 	}
 	else
 	{

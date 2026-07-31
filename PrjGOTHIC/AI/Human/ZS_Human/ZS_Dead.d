@@ -5,7 +5,11 @@ func void ZS_Dead()
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	B_StopLookAt(self);
 	AI_StopPointAt(self);
-	B_CheckDeadMissionNPCs(self);
+	if(self.aivar[AIV_MissionsValidated] == FALSE)
+	{
+		B_CheckDeadMissionNPCs(self);
+		self.aivar[AIV_MissionsValidated] = TRUE;
+	};
 	if(Hlp_IsValidNpc(other))
 	{
 		B_GiveDeathXP(other,self);
@@ -132,9 +136,9 @@ func void ZS_Dead()
 		{
 			if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON))
 			{
-				B_RemoveEveryInvItem(self,ItMw_1h_Bau_Mace);
-				B_RemoveEveryInvItem(self,ItMw_1h_MISC_Sword);
-				B_RemoveEveryInvItem(self,ItMw_1h_Misc_Axe);
+				B_RemoveEveryInvItem(self,ItMw_1H_BAU_Mace);
+				B_RemoveEveryInvItem(self,ItMw_1H_MISC_Sword);
+				B_RemoveEveryInvItem(self,ItMw_1H_MISC_Axe);
 			}
 			else if(self.guild == GIL_SUMMONED_SKELETON)
 			{

@@ -86,7 +86,7 @@ func int DIA_AkilsSchaf_WarteHier_Condition()
 
 func void DIA_AkilsSchaf_WarteHier_Info()
 {
-	AI_Output(other,self,"DIA_Liesel_WarteHier_15_00");	//Подожди здесь!
+	DIA_Common_WaitHere();
 	B_LieselMaeh();
 	Npc_ExchangeRoutine(self,"CAVE");
 	self.aivar[AIV_PARTYMEMBER] = FALSE;

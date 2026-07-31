@@ -22,8 +22,6 @@ func void DIA_Khaled_EXIT_Info()
 };
 
 
-var int Khaled_weiter;
-
 instance DIA_Khaled_Hallo(C_Info)
 {
 	npc = SLD_823_Khaled;
@@ -46,7 +44,7 @@ func int DIA_Khaled_Hallo_Condition()
 func void DIA_Khaled_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Khaled_Hallo_15_00");	//С тобой все в порядке?
-	if(Npc_KnowsInfo(other,DIA_Lee_WannaJoin) || Npc_KnowsInfo(other,DIA_Lee_KeinSld) || (Lee_IsOnBoard == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Lee_WannaJoin) || Npc_KnowsInfo(other,DIA_Lee_KeinSLD) || (Lee_IsOnBoard == TRUE))
 	{
 		if(Npc_KnowsInfo(other,DIA_Lee_WannaJoin) && (other.guild == GIL_NONE))
 		{
@@ -78,8 +76,8 @@ instance DIA_Khaled_TRADE(C_Info)
 	condition = DIA_Khaled_TRADE_Condition;
 	information = DIA_Khaled_TRADE_Info;
 	permanent = TRUE;
-	description = "Какое оружие ты можешь предложить мне?";
 	trade = TRUE;
+	description = "Какое оружие ты можешь предложить мне?";
 };
 
 
@@ -138,7 +136,6 @@ instance DIA_Khaled_Woher(C_Info)
 	nr = 3;
 	condition = DIA_Khaled_Woher_Condition;
 	information = DIA_Khaled_Woher_Info;
-	permanent = FALSE;
 	description = "Как ты оказался среди наемников?";
 };
 
@@ -164,7 +161,6 @@ instance DIA_Khaled_AboutSylvio(C_Info)
 	nr = 4;
 	condition = DIA_Khaled_AboutSylvio_Condition;
 	information = DIA_Khaled_AboutSylvio_Info;
-	permanent = FALSE;
 	description = "Что ты думаешь о Сильвио?";
 };
 
@@ -190,7 +186,6 @@ instance DIA_Khaled_AboutLee(C_Info)
 	nr = 5;
 	condition = DIA_Khaled_AboutLee_Condition;
 	information = DIA_Khaled_AboutLee_Info;
-	permanent = FALSE;
 	description = "Что ты думаешь о Ли?";
 };
 

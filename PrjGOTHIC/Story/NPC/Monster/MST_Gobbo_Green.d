@@ -39,7 +39,7 @@ func void B_SetVisuals_Gobbo_Green()
 instance Gobbo_Green(Mst_Default_Gobbo_Green)
 {
 	B_SetVisuals_Gobbo_Green();
-	Npc_SetToFightMode(self,ItMw_1h_Bau_Mace);
+	Npc_SetToFightMode(self,ItMw_1H_BAU_Mace);
 };
 
 instance YGobbo_Green(Mst_Default_Gobbo_Green)
@@ -55,6 +55,6 @@ instance YGobbo_Green(Mst_Default_Gobbo_Green)
 	protection[PROT_FLY] = 0;
 	fight_tactic = FAI_MONSTER_COWARD;
 	B_SetVisuals_Gobbo_Green();
-	Npc_SetToFightMode(self,ItMw_1h_Bau_Mace);
+	Npc_SetToFightMode(self,ItMw_1H_BAU_Mace);
 };
 

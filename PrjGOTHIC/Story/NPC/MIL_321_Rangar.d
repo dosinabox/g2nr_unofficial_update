@@ -9,7 +9,7 @@ instance MIL_321_Rangar(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Mil_Sword);
+	EquipItem(self,ItMw_1H_MIL_Sword);
 	B_CreateItemToSteal(self,30,ItKe_City_Tower_02,1);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Tough_Skip,BodyTex_N,ITAR_MIL_L);
@@ -29,8 +29,8 @@ func void Rtn_Start_321()
 
 func void Rtn_PrePalCampKlau_321()
 {
-	TA_Sit_Bench(3,0,24,0,"NW_CITY_WAY_TO_SHIP_03");
-	TA_Sit_Bench(24,0,3,0,"NW_CITY_WAY_TO_SHIP_03");
+	TA_Sit_Bench(4,0,23,0,"NW_CITY_WAY_TO_SHIP_03");
+	TA_Sit_Bench(23,0,4,0,"NW_CITY_WAY_TO_SHIP_03");
 };
 
 func void Rtn_PalCampKlau_321()

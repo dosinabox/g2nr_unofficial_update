@@ -19,27 +19,21 @@ var int Normalwaffen;
 
 func void smithweapon_s1()
 {
-	var C_Item EquipWeap;
 	if(C_NpcIsHero(self))
 	{
-		HotRawSwordsCount = Npc_HasItems(self,ItMiSwordrawhot) + 1;
-		B_RemoveEveryInvItem(self,ItMiSwordrawhot);
+		HotRawSwordsCount = Npc_HasItems(self,ItMiSwordRawHot) + 1;
+		B_RemoveEveryInvItem(self,ItMiSwordRawHot);
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_SmithWeapon;
-		//перенести снятие оружия в smithweapon_cond(), если будут готовы зены
-		if(Npc_HasEquippedMeleeWeapon(self))
+		if(C_NpcHasEquippedMeleeWeapon(self,ItMw_1H_Mace_L_04))
 		{
-			EquipWeap = Npc_GetEquippedMeleeWeapon(self);
-			if(Hlp_IsItem(EquipWeap,ItMw_1H_Mace_L_04))
+			if(UnionActivated == TRUE)
 			{
-				if(UnionActivated == TRUE)
-				{
-					B_UnEquipHeroItem(ItMw_1H_Mace_L_04);
-				}
-				else
-				{
-					AI_UnequipWeapons(self);
-				};
+				B_UnEquipHeroItem(ItMw_1H_Mace_L_04);
+			}
+			else
+			{
+				AI_UnequipWeapons(self);
 			};
 		};
 		AI_ProcessInfos(self);
@@ -64,7 +58,7 @@ func void B_CraftSword(var int sword,var int ore,var int blood)
 	var float waittime;
 	if(HotRawSwordsCount <= 0)
 	{
-		AI_PrintScreen("Закончилась раскаленная сталь!",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen(PRINT_HotRawSwordsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		B_EndProductionDialog();
 		return;
 	};
@@ -120,7 +114,7 @@ func void PC_SmithWeapon_End_Info()
 {
 	if(HotRawSwordsCount > 0)
 	{
-		CreateInvItems(self,ItMiSwordraw,HotRawSwordsCount);
+		CreateInvItems(self,ItMiSwordRaw,HotRawSwordsCount);
 	};
 	B_EndProductionDialog();
 };
@@ -574,7 +568,7 @@ func void PC_ItMw_Streitaxt1_Info()
 {
 	if(HotRawSwordsCount <= 0)
 	{
-		AI_PrintScreen("Закончилась раскаленная сталь!",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen(PRINT_HotRawSwordsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		B_EndProductionDialog();
 	}
 	else
@@ -590,5 +584,147 @@ func void PC_ItMw_Streitaxt1_Info()
 			B_CraftSword(ItMw_Banditenaxt,1,0);
 		};
 	};
+};
+
+
+func void B_SeparateHelmets(var C_Npc npc)
+{
+	if(Npc_HasItems(npc,ITAR_PAL_M))
+	{
+		Npc_RemoveInvItem(npc,ITAR_PAL_M);
+		CreateInvItem(npc,ITAR_PALN_M);
+		CreateInvItem(npc,ItHe_PAL_M);
+	};
+	if(Npc_HasItems(npc,ITAR_PAL_H))
+	{
+		Npc_RemoveInvItem(npc,ITAR_PAL_H);
+		CreateInvItem(npc,ITAR_PALN_H);
+		CreateInvItem(npc,ItHe_PAL_H);
+	};
+	if(Npc_HasItems(npc,ITAR_DJG_M))
+	{
+		Npc_RemoveInvItem(npc,ITAR_DJG_M);
+		CreateInvItem(npc,ITAR_DJGN_M);
+		CreateInvItem(npc,ItHe_DJG_M);
+	};
+	if(Npc_HasItems(npc,ITAR_DJG_H))
+	{
+		Npc_RemoveInvItem(npc,ITAR_DJG_H);
+		CreateInvItem(npc,ITAR_DJGN_H);
+		CreateInvItem(npc,ItHe_DJG_H);
+	};
+	AI_PrintScreen(PRINT_HelmetsOn,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+};
+
+func void B_CombineHelmets(var C_Npc npc)
+{
+	Npc_RemoveInvItem(npc,ItHe_PAL_M);
+	Npc_RemoveInvItem(npc,ItHe_PAL_H);
+	Npc_RemoveInvItem(npc,ItHe_DJG_M);
+	Npc_RemoveInvItem(npc,ItHe_DJG_H);
+	if(Npc_HasItems(npc,ITAR_PALN_M))
+	{
+		Npc_RemoveInvItem(npc,ITAR_PALN_M);
+		CreateInvItem(npc,ITAR_PAL_M);
+	};
+	if(Npc_HasItems(npc,ITAR_PALN_H))
+	{
+		Npc_RemoveInvItem(npc,ITAR_PALN_H);
+		CreateInvItem(npc,ITAR_PAL_H);
+	};
+	if(Npc_HasItems(npc,ITAR_DJGN_M))
+	{
+		Npc_RemoveInvItem(npc,ITAR_DJGN_M);
+		CreateInvItem(npc,ITAR_DJG_M);
+	};
+	if(Npc_HasItems(npc,ITAR_DJGN_H))
+	{
+		Npc_RemoveInvItem(npc,ITAR_DJGN_H);
+		CreateInvItem(npc,ITAR_DJG_H);
+	};
+	AI_PrintScreen(PRINT_HelmetsOff,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+};
+
+instance PC_Helmets_On(C_Info)
+{
+	npc = PC_Hero;
+	nr = 997;
+	condition = PC_Helmets_On_Condition;
+	information = PC_Helmets_On_Info;
+	permanent = TRUE;
+	description = "Отделить шлем от доспехов";
+};
+
+
+func int PC_Helmets_On_Condition()
+{
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE))
+	{
+		if(Npc_HasItems(self,ITAR_DJG_M))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(self,ITAR_DJG_H))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(self,ITAR_PAL_M))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(self,ITAR_PAL_H))
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void PC_Helmets_On_Info()
+{
+	Snd_Play("BACKPACK_APPLY");
+	AI_Wait(self,2);
+	B_SeparateHelmets(self);
+};
+
+
+instance PC_Helmets_Off(C_Info)
+{
+	npc = PC_Hero;
+	nr = 998;
+	condition = PC_Helmets_Off_Condition;
+	information = PC_Helmets_Off_Info;
+	permanent = TRUE;
+	description = "Соединить шлем и доспехи";
+};
+
+
+func int PC_Helmets_Off_Condition()
+{
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE))
+	{
+		if(Npc_HasItems(self,ITAR_DJGN_M) && Npc_HasItems(self,ItHe_DJG_M))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(self,ITAR_DJGN_H) && Npc_HasItems(self,ItHe_DJG_H))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(self,ITAR_PALN_M) && Npc_HasItems(self,ItHe_PAL_M))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(self,ITAR_PALN_H) && Npc_HasItems(self,ItHe_PAL_H))
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void PC_Helmets_Off_Info()
+{
+	Snd_Play("BACKPACK_APPLY");
+	AI_Wait(self,2);
+	B_CombineHelmets(self);
 };
 

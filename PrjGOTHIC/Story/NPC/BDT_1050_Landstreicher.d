@@ -9,7 +9,7 @@ instance BDT_1050_Landstreicher(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_2h_Sld_Sword);
+	EquipItem(self,ItMw_2H_SLD_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Normal02,BodyTex_N,ITAR_BDT_H);
 	Mdl_SetModelFatness(self,1);

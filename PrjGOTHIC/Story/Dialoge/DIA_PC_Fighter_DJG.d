@@ -3,27 +3,17 @@ instance DIA_GornDJG_EXIT(C_Info)
 {
 	npc = PC_Fighter_DJG;
 	nr = 999;
-	condition = DIA_GornDJG_EXIT_Condition;
-	information = DIA_GornDJG_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_GornDJG_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_GornDJG_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
 instance DIA_GornDJG_STARTCAMP(C_Info)
 {
 	npc = PC_Fighter_DJG;
+	nr = 1;
 	condition = DIA_GornDJG_STARTCAMP_Condition;
 	information = DIA_GornDJG_STARTCAMP_Info;
 	description = "Я вижу, ты присоединился к охотникам на драконов.";
@@ -66,6 +56,7 @@ func void DIA_GornDJG_STARTCAMP_By()
 instance DIA_GornDJG_HALLO(C_Info)
 {
 	npc = PC_Fighter_DJG;
+	nr = 1;
 	condition = DIA_GornDJG_HALLO_Condition;
 	information = DIA_GornDJG_HALLO_Info;
 	description = "Так вот ты куда забился!";
@@ -90,6 +81,7 @@ func void DIA_GornDJG_HALLO_Info()
 instance DIA_GornDJG_WHATSUP(C_Info)
 {
 	npc = PC_Fighter_DJG;
+	nr = 2;
 	condition = DIA_GornDJG_WHATSUP_Condition;
 	information = DIA_GornDJG_WHATSUP_Info;
 	description = "Что-нибудь выяснил?";
@@ -139,6 +131,7 @@ func void DIA_GornDJG_WHATSUP_A_Dragon()
 instance DIA_GornDJG_WHATMONSTERS(C_Info)
 {
 	npc = PC_Fighter_DJG;
+	nr = 3;
 	condition = DIA_GornDJG_WHATMONSTERS_Condition;
 	information = DIA_GornDJG_WHATMONSTERS_Info;
 	description = "А что это за монстры?";
@@ -164,6 +157,7 @@ func void DIA_GornDJG_WHATMONSTERS_Info()
 instance DIA_GornDJG_WAHTABOUTORCS(C_Info)
 {
 	npc = PC_Fighter_DJG;
+	nr = 4;
 	condition = DIA_GornDJG_WAHTABOUTORCS_Condition;
 	information = DIA_GornDJG_WAHTABOUTORCS_Info;
 	description = "Что насчет орков?";
@@ -191,6 +185,7 @@ func void DIA_GornDJG_WAHTABOUTORCS_Info()
 instance DIA_GornDJG_HELPKILLDRACONIANS(C_Info)
 {
 	npc = PC_Fighter_DJG;
+	nr = 5;
 	condition = DIA_GornDJG_HELPKILLDRACONIANS_Condition;
 	information = DIA_GornDJG_HELPKILLDRACONIANS_Info;
 	description = "Ты поможешь мне пробиться в эту крепость?";
@@ -224,6 +219,7 @@ func void DIA_GornDJG_HELPKILLDRACONIANS_Info()
 instance DIA_GornDJG_LOSGEHTS(C_Info)
 {
 	npc = PC_Fighter_DJG;
+	nr = 6;
 	condition = DIA_GornDJG_LOSGEHTS_Condition;
 	information = DIA_GornDJG_LOSGEHTS_Info;
 	description = "Пошли в атаку!";
@@ -259,9 +255,12 @@ instance DIA_GornDJG_BISHIERHIN(C_Info)
 
 func int DIA_GornDJG_BISHIERHIN_Condition()
 {
-	if(Npc_GetDistToWP(self,"LOCATION_19_01") < 1000)
+	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"LOCATION_19_01") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -281,6 +280,7 @@ func void DIA_GornDJG_BISHIERHIN_Info()
 instance DIA_GornDJG_DRAGONDEAD(C_Info)
 {
 	npc = PC_Fighter_DJG;
+	nr = 99;
 	condition = DIA_GornDJG_DRAGONDEAD_Condition;
 	information = DIA_GornDJG_DRAGONDEAD_Info;
 	description = "Каменный дракон мертв!";

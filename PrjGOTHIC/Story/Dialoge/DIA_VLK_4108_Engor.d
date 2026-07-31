@@ -238,7 +238,7 @@ instance DIA_Engor_BRINGMEAT(C_Info)
 
 func int DIA_Engor_BRINGMEAT_Condition()
 {
-	if((MIS_Engor_BringMeat == LOG_RUNNING) && (Meat_Counter < Meat_Amount))
+	if((MIS_Engor_BringMeat == LOG_RUNNING) && (Engor_Meat_Counter < Engor_Meat_Amount))
 	{
 		if(Npc_HasItems(other,ItFo_Bacon))
 		{
@@ -290,117 +290,117 @@ func void DIA_Engor_BRINGMEAT_Info()
 	var int SchafswurstCounter;
 	info_ypos = 35;
 	AI_Output(other,self,"DIA_Engor_BRINGMEAT_15_00");	//Вот, я принес тебе кое-что.
-	if(Npc_HasItems(other,ItFoMuttonRaw) && (Meat_Counter < Meat_Amount))
+	if(Npc_HasItems(other,ItFoMuttonRaw) && (Engor_Meat_Counter < Engor_Meat_Amount))
 	{
 		Npc_GetInvItem(other,ItFoMuttonRaw);
-		RawCounter = Meat_Amount - Meat_Counter;
+		RawCounter = Engor_Meat_Amount - Engor_Meat_Counter;
 		if(Npc_HasItems(other,ItFoMuttonRaw) > RawCounter)
 		{
 			ConcatRaw = IntToString(RawCounter);
-			Meat_Counter += RawCounter;
+			Engor_Meat_Counter += RawCounter;
 			Npc_RemoveInvItems(other,ItFoMuttonRaw,RawCounter);
 		}
 		else
 		{
 			ConcatRaw = IntToString(Npc_HasItems(other,ItFoMuttonRaw));
-			Meat_Counter += Npc_HasItems(other,ItFoMuttonRaw);
+			Engor_Meat_Counter += Npc_HasItems(other,ItFoMuttonRaw);
 			B_RemoveEveryInvItem(other,ItFoMuttonRaw);
 		};
 		ConcatRaw = ConcatStrings(ConcatRaw," кусков сырого мяса отдано");
 		AI_PrintScreen(ConcatRaw,-1,info_ypos,FONT_ScreenSmall,3);
 		info_ypos += 3;
 	};
-	if(Npc_HasItems(other,ItFoMutton) && (Meat_Counter < Meat_Amount))
+	if(Npc_HasItems(other,ItFoMutton) && (Engor_Meat_Counter < Engor_Meat_Amount))
 	{
 		Npc_GetInvItem(other,ItFoMutton);
-		MuttonCounter = Meat_Amount - Meat_Counter;
+		MuttonCounter = Engor_Meat_Amount - Engor_Meat_Counter;
 		if(Npc_HasItems(other,ItFoMutton) > MuttonCounter)
 		{
 			ConcatMutton = IntToString(MuttonCounter);
-			Meat_Counter += MuttonCounter;
+			Engor_Meat_Counter += MuttonCounter;
 			Npc_RemoveInvItems(other,ItFoMutton,MuttonCounter);
 		}
 		else
 		{
 			ConcatMutton = IntToString(Npc_HasItems(other,ItFoMutton));
-			Meat_Counter += Npc_HasItems(other,ItFoMutton);
+			Engor_Meat_Counter += Npc_HasItems(other,ItFoMutton);
 			B_RemoveEveryInvItem(other,ItFoMutton);
 		};
 		ConcatMutton = ConcatStrings(ConcatMutton," кусков жареного мяса отдано");
 		AI_PrintScreen(ConcatMutton,-1,info_ypos,FONT_ScreenSmall,3);
 		info_ypos += 3;
 	};
-	if(Npc_HasItems(other,ItFo_Bacon) && (Meat_Counter < Meat_Amount))
+	if(Npc_HasItems(other,ItFo_Bacon) && (Engor_Meat_Counter < Engor_Meat_Amount))
 	{
 		Npc_GetInvItem(other,ItFo_Bacon);
-		BaconCounter = Meat_Amount - Meat_Counter;
+		BaconCounter = Engor_Meat_Amount - Engor_Meat_Counter;
 		if(Npc_HasItems(other,ItFo_Bacon) > BaconCounter)
 		{
 			ConcatBacon = IntToString(BaconCounter);
-			Meat_Counter += BaconCounter;
+			Engor_Meat_Counter += BaconCounter;
 			Npc_RemoveInvItems(other,ItFo_Bacon,BaconCounter);
 		}
 		else
 		{
 			ConcatBacon = IntToString(Npc_HasItems(other,ItFo_Bacon));
-			Meat_Counter += Npc_HasItems(other,ItFo_Bacon);
+			Engor_Meat_Counter += Npc_HasItems(other,ItFo_Bacon);
 			B_RemoveEveryInvItem(other,ItFo_Bacon);
 		};
 		ConcatBacon = ConcatStrings(ConcatBacon," окороков отдано");
 		AI_PrintScreen(ConcatBacon,-1,info_ypos,FONT_ScreenSmall,3);
 		info_ypos += 3;
 	};
-	if(Npc_HasItems(other,ItFo_Sausage) && (Meat_Counter < Meat_Amount))
+	if(Npc_HasItems(other,ItFo_Sausage) && (Engor_Meat_Counter < Engor_Meat_Amount))
 	{
 		Npc_GetInvItem(other,ItFo_Sausage);
-		SausageCounter = Meat_Amount - Meat_Counter;
+		SausageCounter = Engor_Meat_Amount - Engor_Meat_Counter;
 		if(Npc_HasItems(other,ItFo_Sausage) > SausageCounter)
 		{
 			ConcatSausage = IntToString(SausageCounter);
-			Meat_Counter += SausageCounter;
+			Engor_Meat_Counter += SausageCounter;
 			Npc_RemoveInvItems(other,ItFo_Sausage,SausageCounter);
 		}
 		else
 		{
 			ConcatSausage = IntToString(Npc_HasItems(other,ItFo_Sausage));
-			Meat_Counter += Npc_HasItems(other,ItFo_Sausage);
+			Engor_Meat_Counter += Npc_HasItems(other,ItFo_Sausage);
 			B_RemoveEveryInvItem(other,ItFo_Sausage);
 		};
 		ConcatSausage = ConcatStrings(ConcatSausage," колбас отдано");
 		AI_PrintScreen(ConcatSausage,-1,info_ypos,FONT_ScreenSmall,3);
 		info_ypos += 3;
 	};
-	if(Npc_HasItems(other,ItFo_Schafswurst) && ((Kapitel > 1) || (MIS_GoraxEssen == LOG_SUCCESS)) && (Meat_Counter < Meat_Amount))
+	if(Npc_HasItems(other,ItFo_Schafswurst) && ((Kapitel > 1) || (MIS_GoraxEssen == LOG_SUCCESS)) && (Engor_Meat_Counter < Engor_Meat_Amount))
 	{
 		Npc_GetInvItem(other,ItFo_Schafswurst);
-		SchafswurstCounter = Meat_Amount - Meat_Counter;
+		SchafswurstCounter = Engor_Meat_Amount - Engor_Meat_Counter;
 		if(Npc_HasItems(other,ItFo_Schafswurst) > SchafswurstCounter)
 		{
 			ConcatSchafswurst = IntToString(SchafswurstCounter);
-			Meat_Counter += SchafswurstCounter;
+			Engor_Meat_Counter += SchafswurstCounter;
 			Npc_RemoveInvItems(other,ItFo_Schafswurst,SchafswurstCounter);
 		}
 		else
 		{
 			ConcatSchafswurst = IntToString(Npc_HasItems(other,ItFo_Schafswurst));
-			Meat_Counter += Npc_HasItems(other,ItFo_Schafswurst);
+			Engor_Meat_Counter += Npc_HasItems(other,ItFo_Schafswurst);
 			B_RemoveEveryInvItem(other,ItFo_Schafswurst);
 		};
 		ConcatSchafswurst = ConcatStrings(ConcatSchafswurst," бараньих колбас отдано");
 		AI_PrintScreen(ConcatSchafswurst,-1,info_ypos,FONT_ScreenSmall,3);
 		info_ypos += 3;
 	};
-	if(Npc_HasItems(other,ItFo_NiclasBacon) && (Meat_Counter < Meat_Amount))
+	if(Npc_HasItems(other,ItFo_NiclasBacon) && (Engor_Meat_Counter < Engor_Meat_Amount))
 	{
-		Meat_Counter += 1;
+		Engor_Meat_Counter += 1;
 		Npc_RemoveInvItems(other,ItFo_NiclasBacon,1);
 		AI_PrintScreen("1 нога крысокрота отдано",-1,info_ypos,FONT_ScreenSmall,3);
 		info_ypos += 3;
 	};
-	if(Meat_Counter < Meat_Amount)
+	if(Engor_Meat_Counter < Engor_Meat_Amount)
 	{
 		AI_Output(self,other,"DIA_Engor_BRINGMEAT_13_01");	//Для начала и это неплохо, но мне нужно больше.
-		GesamtFleisch = IntToString(Meat_Counter);
+		GesamtFleisch = IntToString(Engor_Meat_Counter);
 		GesamtFleisch = ConcatStrings("Всего отдано мяса: ",GesamtFleisch);
 		AI_PrintScreen(GesamtFleisch,-1,info_ypos,FONT_ScreenSmall,3);
 	}
@@ -439,8 +439,8 @@ func void DIA_Engor_Business_Info()
 	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Engor_Business_13_01");	//Неважно. Я надеюсь, что хотя бы у этих охотников на драконов есть какое-нибудь золото.
-	};
-	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_Engor_Business_13_02");	//Паршиво! Паладины ничего не покупают.
 	};

@@ -48,9 +48,12 @@ instance DIA_Addon_Fisk_Hi(C_Info)
 
 func int DIA_Addon_Fisk_Hi_Condition()
 {
-	if((Npc_GetDistToWP(self,"BL_INN_UP_06") > 500) && !Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH))
+	if(!Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"BL_INN_UP_06") > 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -411,9 +414,12 @@ instance DIA_Addon_Fisk_Meeting(C_Info)
 
 func int DIA_Addon_Fisk_Meeting_Condition()
 {
-	if((Npc_GetDistToWP(self,"BL_INN_UP_06") <= 500) && Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH) && (MIS_Judas == LOG_RUNNING))
+	if(Npc_KnowsInfo(other,DIA_Addon_Snaf_HOCH) && (MIS_Judas == LOG_RUNNING))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"BL_INN_UP_06") <= 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -458,7 +464,7 @@ func void DIA_Addon_Fisk_Meeting_now()
 	{
 		AI_Output(other,self,"DIA_Addon_Fisk_Meeting_now_15_00");	//Что за идея?
 		AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_01");	//Мы уберем Эстебана с нашего пути. А это значит, ты его убьешь и займешь его место.
-		if(!Npc_IsDead(Wache_01) || !Npc_IsDead(Wache_02))
+		if(!Npc_IsDead(EstebanGuard1) || !Npc_IsDead(EstebanGuard2))
 		{
 			AI_Output(other,self,"DIA_Addon_Fisk_Meeting_now_15_02");	//Пока с ним его охранники, он для меня недосягаем.
 			AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_03");	//Тогда мы их выманим. Правдой.

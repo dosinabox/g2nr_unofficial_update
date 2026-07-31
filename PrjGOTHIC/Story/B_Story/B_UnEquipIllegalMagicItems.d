@@ -6,17 +6,11 @@ func int C_PredictedMana(var int value)
 
 func void B_UnEquipIllegalMagicWeapons(var int value)
 {
-	var C_Item EquippedMeleeWeapon;
 	if(UnionActivated == FALSE)
 	{
 		return;
 	};
-	if(!Npc_HasEquippedMeleeWeapon(hero))
-	{
-		return;
-	};
-	EquippedMeleeWeapon = Npc_GetEquippedMeleeWeapon(hero);
-	if(Hlp_IsItem(EquippedMeleeWeapon,ItMw_Addon_Stab02))
+	if(C_NpcHasEquippedMeleeWeapon(hero,ItMw_Addon_Stab02))
 	{
 		if(C_PredictedMana(value) < (Condition_Stab02 + Zauberstab_ManaBonus))
 		{

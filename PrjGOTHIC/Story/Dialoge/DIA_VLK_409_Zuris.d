@@ -56,12 +56,12 @@ func void DIA_Zuris_PICKPOCKET_DoIt()
 		AI_PrintScreen(ConcatStrings(NAME_HP_Elixier,PRINT_ItemTaken),-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
-		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Зурис",ConcatStrings(PRINT_PickPocketSuccess,"Лечебный эликсир.")));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings(self.name[0],ConcatStrings(PRINT_PickPocketSuccess,"Лечебный эликсир.")));
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Зурис",PRINT_PickPocketFailed));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};
@@ -258,6 +258,7 @@ func void DIA_Zuris_Kronstoeckel_Info()
 instance DIA_Zuris_WHERE(C_Info)
 {
 	npc = VLK_409_Zuris;
+	nr = 3;
 	condition = DIA_Zuris_WHERE_Condition;
 	information = DIA_Zuris_WHERE_Info;
 	description = "Где я могу найти Константино?";
@@ -282,7 +283,7 @@ func void DIA_Zuris_WHERE_Info()
 instance DIA_Zuris_Kloster(C_Info)
 {
 	npc = VLK_409_Zuris;
-	nr = 2;
+	nr = 4;
 	condition = DIA_Zuris_Kloster_Condition;
 	information = DIA_Zuris_Kloster_Info;
 	description = "Расскажи мне о монастыре.";
@@ -310,7 +311,7 @@ func void DIA_Zuris_Kloster_Info()
 instance DIA_Zuris_Minenanteil(C_Info)
 {
 	npc = VLK_409_Zuris;
-	nr = 3;
+	nr = 99;
 	condition = DIA_Zuris_Minenanteil_Condition;
 	information = DIA_Zuris_Minenanteil_Info;
 	description = "Ты продаешь шахтерские акции?";

@@ -3,21 +3,10 @@ instance DIA_Jan_EXIT(C_Info)
 {
 	npc = DJG_714_Jan;
 	nr = 999;
-	condition = DIA_Jan_EXIT_Condition;
-	information = DIA_Jan_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Jan_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Jan_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -94,13 +83,20 @@ func void DIA_Jan_Dragons_Info()
 func void DIA_Jan_Dragons_HelpYou()
 {
 	AI_Output(other,self,"DIA_Jan_Dragons_HelpYou_15_00");	//Я попробую помочь тебе.
-	AI_Output(self,other,"DIA_Jan_Dragons_HelpYou_10_01");	//Как тебе это удастся? Парсиваль приказал страже ни к чему нас не подпускать.
-	AI_Output(self,other,"DIA_Jan_Dragons_HelpYou_10_02");	//Никто не осмелится нарушить его.
-	AI_Output(other,self,"DIA_Jan_Dragons_HelpYou_15_03");	//Я сделаю все, что смогу.
-	AI_Output(self,other,"DIA_Jan_Dragons_HelpYou_10_04");	//Представить себе не могу, что он послушает тебя.
 	Log_CreateTopic(TOPIC_JanBecomesSmith,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_JanBecomesSmith,LOG_RUNNING);
-	B_LogEntry(TOPIC_JanBecomesSmith,"Охотник на драконов Ян, находящийся в замке Долины Рудников, хочет работать в кузнице. Но Парсиваль запрещает ему это.");
+	if(!Npc_IsDead(Parcival))
+	{
+		AI_Output(self,other,"DIA_Jan_Dragons_HelpYou_10_01");	//Как тебе это удастся? Парсиваль приказал страже ни к чему нас не подпускать.
+		AI_Output(self,other,"DIA_Jan_Dragons_HelpYou_10_02");	//Никто не осмелится нарушить его.
+		AI_Output(other,self,"DIA_Jan_Dragons_HelpYou_15_03");	//Я сделаю все, что смогу.
+		AI_Output(self,other,"DIA_Jan_Dragons_HelpYou_10_04");	//Представить себе не могу, что он послушает тебя.
+		B_LogEntry(TOPIC_JanBecomesSmith,"Охотник на драконов Ян, находящийся в замке Долины Рудников, хочет работать в кузнице. Но Парсиваль запрещает ему это.");
+	}
+	else
+	{
+		B_LogEntry(TOPIC_JanBecomesSmith,"Охотник на драконов Ян, находящийся в замке Долины Рудников, хочет работать в кузнице. Но паладины запрещают ему это.");
+	};
 	MIS_JanBecomesSmith = LOG_RUNNING;
 	Info_ClearChoices(DIA_Jan_Dragons);
 };
@@ -452,9 +448,12 @@ instance DIA_Jan_Dragonscales(C_Info)
 
 func int DIA_Jan_Dragonscales_Condition()
 {
-	if((MIS_JanBecomesSmith == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Jan_JanIsSmith) && (MIS_OCGateOpen == FALSE) && (DIA_Jan_SellArmor_permanent == TRUE) && (Jan_Sells_Armor == FALSE) && Npc_HasItems(other,ItAt_DragonScale))
+	if((MIS_JanBecomesSmith == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Jan_JanIsSmith) && (MIS_OCGateOpen == FALSE) && (DIA_Jan_SellArmor_permanent == TRUE) && (Jan_Sells_Armor == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAt_DragonScale))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -645,9 +644,12 @@ instance DIA_Jan_DragonBlood(C_Info)
 
 func int DIA_Jan_DragonBlood_Condition()
 {
-	if((Jan_WantsDragonBlood == TRUE) && (MIS_OCGateOpen == FALSE) && Npc_HasItems(other,ItAt_DragonBlood) && ((other.guild != GIL_DJG) && (other.guild != GIL_SLD)))
+	if((Jan_WantsDragonBlood == TRUE) && (MIS_OCGateOpen == FALSE) && (other.guild != GIL_DJG) && (other.guild != GIL_SLD))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAt_DragonBlood))
+		{
+			return TRUE;
+		};
 	};
 };
 

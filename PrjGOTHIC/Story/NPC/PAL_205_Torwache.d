@@ -10,7 +10,7 @@ instance PAL_205_Torwache(Npc_Default)
 	B_SetAttributesToChapter(self,5);
 	aivar[AIV_NewsOverride] = TRUE;
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_1h_Pal_Sword);
+	EquipItem(self,ItMw_1H_PAL_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak05,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,1);

@@ -16,7 +16,20 @@ func void ZS_Cook_Stove()
 
 func int ZS_Cook_Stove_Loop()
 {
-	B_UseAvailableMob(self,"STOVE");
+	var int random;
+	B_UseAvailableMob(self,"STOVE",BS_MOBINTERACT_INTERRUPT);
+	if(Npc_GetStateTime(self) > 15)
+	{
+		if(C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT))
+		{
+			random = Hlp_Random(100);
+			if(random < 50)
+			{
+				AI_PlayAniBS(self,"T_STOVE_RANDOM_1",BS_MOBINTERACT_INTERRUPT);
+			};
+			Npc_SetStateTime(self,0);
+		};
+	};
 	return LOOP_CONTINUE;
 };
 

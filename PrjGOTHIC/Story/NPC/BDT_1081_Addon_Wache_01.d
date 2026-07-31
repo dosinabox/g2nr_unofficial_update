@@ -11,8 +11,8 @@ instance BDT_1081_Addon_Wache_01(Npc_Default)
 	aivar[AIV_StoryBandit] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_2h_Pal_Sword);
-	EquipItem(self,ItRw_Mil_Crossbow);
+	EquipItem(self,ItMw_2H_PAL_Sword);
+	EquipItem(self,ItRw_MIL_Crossbow);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,38,ItMi_Gold,99);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal14,BodyTex_N,ITAR_Bloodwyn_Addon);

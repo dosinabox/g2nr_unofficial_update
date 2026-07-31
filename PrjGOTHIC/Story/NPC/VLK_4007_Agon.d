@@ -9,7 +9,7 @@ instance VLK_4007_Agon(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Pir_Dagger);
+	EquipItem(self,ItMw_1H_PIR_Dagger);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal01,BodyTex_N,ITAR_VLK_H);
 	Mdl_SetModelFatness(self,0);

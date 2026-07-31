@@ -41,26 +41,37 @@ func void B_Biff_SetRefuseTalk()
 	};
 };
 
+func int C_BiffCanStartImportantInfo()
+{
+	var int bodyState;
+	bodyState = Npc_GetBodyState(hero);
+	if(bodyState == BS_TAKEITEM)
+	{
+		return FALSE;
+	};
+	if(bodyState == BS_INVENTORY)
+	{
+		return FALSE;
+	};
+	if(bodyState == BS_ITEMINTERACT)
+	{
+		return FALSE;
+	};
+	if(bodyState == BS_MOBINTERACT_INTERRUPT)
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
 
 instance DIA_Biff_EXIT(C_Info)
 {
 	npc = DJG_713_Biff;
 	nr = 999;
-	condition = DIA_Biff_EXIT_Condition;
-	information = DIA_Biff_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Biff_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Biff_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -278,14 +289,10 @@ func void DIA_Biff_ARBEITEN_lebenlassen()
 	DJG_BiffParty_nomore += 1;
 };
 
-
-var int BIFF_LABERT_GELDEINTREIBEN;
-
 func void B_GiveBiffsAnteil()
 {
 	B_GiveInvItems(other,self,ItMi_Gold,BiffsAnteil);
 	AI_Output(self,other,"DIA_Biff_GELDEINTREIBEN_geben_07_01");	//Хорошо. Тогда в путь.
-	BIFF_LABERT_GELDEINTREIBEN = FALSE;
 	DJG_Biff_SCGold = Npc_HasItems(other,ItMi_Gold);
 	AI_StopProcessInfos(self);
 	B_Biff_SetRefuseTalk();
@@ -304,18 +311,15 @@ instance DIA_Biff_GELDEINTREIBEN(C_Info)
 
 func int DIA_Biff_GELDEINTREIBEN_Condition()
 {
-	if(Npc_GetBodyState(hero) == BS_INVENTORY)
+	if((DJG_Biff_HalbeHalbe == TRUE) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE))
 	{
-		return FALSE;
-	};
-	if(Npc_GetBodyState(hero) == BS_MOBINTERACT_INTERRUPT)
-	{
-		return FALSE;
-	};
-	if((DJG_Biff_SCGold < (Npc_HasItems(hero,ItMi_Gold) - 1)) && ((Npc_GetBodyState(hero) != BS_STAND) || (BIFF_LABERT_GELDEINTREIBEN == TRUE)) && ((Npc_GetBodyState(hero) != BS_ITEMINTERACT) || (BIFF_LABERT_GELDEINTREIBEN == TRUE)) && (DJG_Biff_HalbeHalbe == TRUE) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE))
-	{
-		BIFF_LABERT_GELDEINTREIBEN = TRUE;
-		return TRUE;
+		if(Npc_HasItems(hero,ItMi_Gold) >= (DJG_Biff_SCGold + 2))
+		{
+			if(C_BiffCanStartImportantInfo())
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -337,7 +341,7 @@ func void DIA_Biff_GELDEINTREIBEN_geben()
 
 func void DIA_Biff_GELDEINTREIBEN_geben2()
 {
-	AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_15_02");	//Хорошо, похоже, у меня нет выбора. Давай разделим пополам.
+	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_15_02");	//Хорошо, похоже, у меня нет выбора. Давай разделим пополам.
 	B_GiveBiffsAnteil();
 };
 
@@ -354,7 +358,6 @@ func void DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen()
 {
 	DIA_Common_ImAfraidThatsTheEndForUs();
 	AI_Output(self,other,"DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen_07_01");	//Как скажешь. Тогда я заберу свою долю.
-	BIFF_LABERT_GELDEINTREIBEN = FALSE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
 	B_Attack(self,other,AR_NONE,1);
@@ -368,48 +371,48 @@ func int B_GetBiffLocation(var int tolerance)
 {
 	if(Npc_GetDistToWP(self,"OC_CENTER_GUARD_02") < (4500 + tolerance))
 	{
-		return LOC_BURG;
+		return LOC_OW_OLDCAMP;
 	};
 	if(!Npc_IsDead(SwampDragon))
 	{
-		if(SwampDragon.flags != 0)
+		if(C_NpcIsImmortal(SwampDragon))
 		{
 			if(Npc_GetDistToWP(self,"OW_SWAMPDRAGON_01") < (4000 + tolerance))
 			{
-				return LOC_SWAMP;
+				return LOC_OW_SWAMPDRAGON;
 			};
 		};
 	};
 	if(!Npc_IsDead(RockDragon))
 	{
-		if(RockDragon.flags != 0)
+		if(C_NpcIsImmortal(RockDragon))
 		{
 			if(Npc_GetDistToWP(self,"LOCATION_19_03_PATH_RUIN8") < (2000 + tolerance))
 			{
-				return LOC_ROCK;
+				return LOC_OW_ROCKDRAGON;
 			};
 		};
 	};
 	if(!Npc_IsDead(FireDragon))
 	{
-		if(FireDragon.flags != 0)
+		if(C_NpcIsImmortal(FireDragon))
 		{
 			if(Npc_GetDistToWP(self,"CASTLE_36") < (4000 + tolerance))
 			{
 				if(Npc_GetHeightToNpc(self,FireDragon) < 500)
 				{
-					return LOC_FIRE;
+					return LOC_OW_FIREDRAGON;
 				};
 			};
 		};
 	};
 	if(!Npc_IsDead(IceDragon))
 	{
-		if(IceDragon.flags != 0)
+		if(C_NpcIsImmortal(IceDragon))
 		{
 			if(Npc_GetDistToWP(self,"OW_ICEDRAGON_01") < (4000 + tolerance))
 			{
-				return LOC_ICE;
+				return LOC_OW_ICEDRAGON;
 			};
 		};
 	};
@@ -429,37 +432,32 @@ instance DIA_Biff_ICHBLEIBHIER(C_Info)
 
 func int DIA_Biff_ICHBLEIBHIER_Condition()
 {
-	if(Npc_GetBodyState(hero) == BS_INVENTORY)
-	{
-		return FALSE;
-	};
-	if(Npc_GetBodyState(hero) == BS_MOBINTERACT_INTERRUPT)
-	{
-		return FALSE;
-	};
 	if((DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE))
 	{
-		var int location;
-		location = B_GetBiffLocation(0);
-		if(location == LOC_BURG)
+		if(C_BiffCanStartImportantInfo())
 		{
-			return TRUE;
-		};
-		if(location == LOC_SWAMP)
-		{
-			return TRUE;
-		};
-		if(location == LOC_ROCK)
-		{
-			return TRUE;
-		};
-		if(location == LOC_FIRE)
-		{
-			return TRUE;
-		};
-		if(location == LOC_ICE)
-		{
-			return TRUE;
+			var int location;
+			location = B_GetBiffLocation(0);
+			if(location == LOC_OW_OLDCAMP)
+			{
+				return TRUE;
+			};
+			if(location == LOC_OW_SWAMPDRAGON)
+			{
+				return TRUE;
+			};
+			if(location == LOC_OW_ROCKDRAGON)
+			{
+				return TRUE;
+			};
+			if(location == LOC_OW_FIREDRAGON)
+			{
+				return TRUE;
+			};
+			if(location == LOC_OW_ICEDRAGON)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -473,23 +471,23 @@ func void DIA_Biff_ICHBLEIBHIER_Info()
 	DJG_Biff_SCGold = Npc_HasItems(other,ItMi_Gold);
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,300);
-	if(location == LOC_BURG)
+	if(location == LOC_OW_OLDCAMP)
 	{
 		Npc_ExchangeRoutine(self,"STAY_AWAYFROMOC");
 	}
-	else if(location == LOC_SWAMP)
+	else if(location == LOC_OW_SWAMPDRAGON)
 	{
 		Npc_ExchangeRoutine(self,"STAY_SWAMP");
 	}
-	else if(location == LOC_ROCK)
+	else if(location == LOC_OW_ROCKDRAGON)
 	{
 		Npc_ExchangeRoutine(self,"STAY_ROCK");
 	}
-	else if(location == LOC_FIRE)
+	else if(location == LOC_OW_FIREDRAGON)
 	{
 		Npc_ExchangeRoutine(self,"STAY_FIRE");
 	}
-	else if(location == LOC_ICE)
+	else if(location == LOC_OW_ICEDRAGON)
 	{
 		Npc_ExchangeRoutine(self,"STAY_ICE");
 	};
@@ -558,17 +556,15 @@ instance DIA_Biff_KOHLEWEGGEBEN(C_Info)
 
 func int DIA_Biff_KOHLEWEGGEBEN_Condition()
 {
-	if(Npc_GetBodyState(hero) == BS_INVENTORY)
+	if((DJG_Biff_HalbeHalbe == TRUE) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE))
 	{
-		return FALSE;
-	};
-	if(Npc_GetBodyState(hero) == BS_MOBINTERACT_INTERRUPT)
-	{
-		return FALSE;
-	};
-	if((DJG_Biff_SCGold > Npc_HasItems(hero,ItMi_Gold)) && (DJG_Biff_HalbeHalbe == TRUE) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE))
-	{
-		return TRUE;
+		if(Npc_HasItems(hero,ItMi_Gold) < DJG_Biff_SCGold)
+		{
+			if(C_BiffCanStartImportantInfo())
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -576,6 +572,20 @@ func void DIA_Biff_KOHLEWEGGEBEN_Info()
 {
 	AI_Output(self,other,"DIA_Biff_KOHLEWEGGEBEN_07_00");	//Не разбрасывай свое золото.
 	AI_Output(self,other,"DIA_Biff_KOHLEWEGGEBEN_07_01");	//Лучше дай мне его сюда.
+	Npc_PerceiveAll(self);
+	if(Wld_DetectItem(self,ITEM_KAT_NONE))
+	{
+		if(Hlp_IsValidItem(item))
+		{
+			if(Hlp_IsItem(item,ItMi_Gold) && (item.flags & ITEM_DROPPED))
+			{
+				if(Npc_GetDistToItem(self,item) < 500)
+				{
+					AI_TakeItem(self,item);
+				};
+			};
+		};
+	};
 	DJG_Biff_SCGold = Npc_HasItems(other,ItMi_Gold);
 	AI_StopProcessInfos(self);
 };
@@ -609,6 +619,7 @@ func void DIA_Biff_BIFFLOSWERDEN_Info()
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	DJG_Biff_HalbeHalbe = FALSE;
 	DJG_BiffParty = FALSE;
+	DJG_Biff_Stay = FALSE;
 	DJG_BiffParty_nomore += 1;
 	if(Biff_IsOnBoard == LOG_SUCCESS)
 	{
@@ -618,6 +629,8 @@ func void DIA_Biff_BIFFLOSWERDEN_Info()
 	};
 };
 
+
+var int DIA_Biff_MEHRGELD_Info_OneTime;
 
 instance DIA_Biff_MEHRGELD(C_Info)
 {
@@ -637,9 +650,6 @@ func int DIA_Biff_MEHRGELD_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Biff_MEHRGELD_Info_OneTime;
 
 func void DIA_Biff_MEHRGELD_Info()
 {
@@ -907,9 +917,12 @@ instance DIA_Biff_Pass(C_Info)
 
 func int DIA_Biff_Pass_Condition()
 {
-	if((Npc_GetDistToWP(self,"START") < 1000) && (Biff_IsOnBoard == LOG_SUCCESS))
+	if(Biff_IsOnBoard == LOG_SUCCESS)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"START") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 

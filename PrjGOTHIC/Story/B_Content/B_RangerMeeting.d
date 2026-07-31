@@ -20,7 +20,7 @@ func void B_MakeRangerReadyToLeaveMeeting(var C_Npc ranger)
 	}
 	else if(C_IsNpc(ranger,VLK_449_Lares))
 	{
-		B_EquipArmor(ranger,ITAR_Vlk_L);
+		B_EquipArmor(ranger,ITAR_VLK_L);
 	}
 	else if(C_IsNpc(ranger,SLD_805_Cord))
 	{
@@ -28,17 +28,17 @@ func void B_MakeRangerReadyToLeaveMeeting(var C_Npc ranger)
 	}
 	else if(C_IsNpc(ranger,BAU_961_Gaan))
 	{
-		B_EquipArmor(ranger,ITAR_Bau_L);
+		B_EquipArmor(ranger,ITAR_BAU_L);
 	}
 	else if(C_IsNpc(ranger,BAU_970_Orlan))
 	{
-		B_EquipArmor(ranger,ITAR_Bau_M);
+		B_EquipArmor(ranger,ITAR_BAU_M);
 	}
 	else if(C_IsNpc(ranger,BAU_4300_Addon_Cavalorn))
 	{
 		if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE)
 		{
-			B_EquipArmor(ranger,ITAR_Bau_L);
+			B_EquipArmor(ranger,ITAR_BAU_L);
 		};
 	};
 };

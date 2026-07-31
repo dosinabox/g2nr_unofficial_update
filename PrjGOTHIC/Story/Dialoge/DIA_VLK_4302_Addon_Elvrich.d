@@ -3,23 +3,14 @@ instance DIA_Addon_Elvrich_EXIT(C_Info)
 {
 	npc = VLK_4302_Addon_Elvrich;
 	nr = 999;
-	condition = DIA_Addon_Elvrich_EXIT_Condition;
-	information = DIA_Addon_Elvrich_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Addon_Elvrich_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Elvrich_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
+var int DIA_Addon_Elvrich_BanditsThere_NoPerm;
 
 instance DIA_Addon_Elvrich_BanditsThere(C_Info)
 {
@@ -31,8 +22,6 @@ instance DIA_Addon_Elvrich_BanditsThere(C_Info)
 	permanent = TRUE;
 };
 
-
-var int DIA_Addon_Elvrich_BanditsThere_NoPerm;
 
 func int DIA_Addon_Elvrich_BanditsThere_Condition()
 {
@@ -161,8 +150,11 @@ func void DIA_Addon_Elvrich_WhatExactly_Pirates()
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_Pirates_04_05");	//Но пираты отказались, и бандитам пришлось уйти. С тех пор мы здесь и сидим.
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_Pirates_04_06");	//По-моему, бандиты просто не знали, что им делать дальше. А потом пришел ты.
 	Elvrich_SCKnowsPirats = TRUE;
-	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
+	if(MIS_Addon_Vatras_WhereAreMissingPeople != LOG_SUCCESS)
+	{
+		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
+	};
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Элврих, ученик плотника из Хориниса Торбена, был похищен бандитами. Похоже, что пираты и бандиты в сговоре.");
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Пираты в Хоринисе?",DIA_Addon_Elvrich_WhatExactly_Here);
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Где находится лагерь пиратов?",DIA_Addon_Elvrich_WhatExactly_pirat);
@@ -190,8 +182,6 @@ func void DIA_Addon_Elvrich_WhatExactly_pirat()
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_pirat_04_01");	//Недалеко от гавани Хориниса.
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_pirat_04_02");	//Если ты встанешь на набережной лицом к морю, то он будет справа.
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_pirat_04_03");	//Первый небольшой залив, который встретится тебе на пути, и будет нужным тебе местом.
-	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Чтобы найти место встречи с пиратами, нужно пойти в порт Хориниса и встать на набережной лицом к морю. Затем нужно спрыгнуть в море и поплыть вдоль берега направо.");
 	Info_ClearChoices(DIA_Addon_Elvrich_WhatExactly);
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,Dialog_Back,DIA_Addon_Elvrich_WhatExactly_Back);
@@ -315,9 +305,12 @@ instance DIA_Addon_Elvrich_LuciaLetter(C_Info)
 
 func int DIA_Addon_Elvrich_LuciaLetter_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Elvrich_WhatExactly) && Npc_HasItems(other,ItWr_LuciasLoveLetter_Addon))
+	if(Npc_KnowsInfo(other,DIA_Addon_Elvrich_WhatExactly))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_LuciasLoveLetter_Addon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -326,7 +319,7 @@ func void DIA_Addon_Elvrich_LuciaLetter_Info()
 	AI_Output(other,self,"DIA_Addon_Elvrich_LuciaLetter_15_00");	//Я нашел письмо от Люсии.
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_01");	//(возбужденно) Что? Дай его сюда!
 	AI_PrintScreen("Прощальное письмо Люсии отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_02");	//(в отчаянии) Нет! Я не верю! Я просто не могу поверить.
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_03");	//(в отчаянии) Она не может меня вот так вот бросить.
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_04");	//Забери это письмо! Я не хочу его видеть. Я верю, что когда-нибудь она ко мне вернется.
@@ -352,7 +345,6 @@ instance DIA_Addon_Elvrich_WasNun(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Elvrich_WasNun_Condition;
 	information = DIA_Addon_Elvrich_WasNun_Info;
-	permanent = FALSE;
 	description = "Ты должен вернуться в город!";
 };
 
@@ -374,7 +366,7 @@ func void DIA_Addon_Elvrich_WasNun_Info()
 	AI_Output(self,other,"DIA_Addon_Elvrich_WasNun_04_04");	//Если найдешь Люсию, отведи ее в город, хорошо?
 	AI_Output(other,self,"DIA_Addon_Elvrich_WasNun_15_05");	//Я посмотрю, что смогу сделать.
 	AI_Output(self,other,"OUTRO_Xardas_04_00");	//До встречи!
-	CreateInvItem(self,ItMw_1h_Vlk_Axe);
+	CreateInvItem(self,ItMw_1H_VLK_Axe);
 	AI_EquipBestMeleeWeapon(self);
 	if(MissingPeopleReturnedHome == FALSE)
 	{
@@ -383,9 +375,8 @@ func void DIA_Addon_Elvrich_WasNun_Info()
 	};
 	B_LogEntry(TOPIC_Addon_MissingPeople,"Элврих отправился обратно к мастеру Торбену.");
 	Elvrich_GoesBack2Thorben = TRUE;
-	AI_EquipBestMeleeWeapon(self);
-	Npc_ExchangeRoutine(self,"BACKINTHECITY");
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"BACKINTHECITY");
 };
 
 
@@ -402,7 +393,7 @@ instance DIA_Addon_Elvrich_PERM(C_Info)
 
 func int DIA_Addon_Elvrich_PERM_Condition()
 {
-	if((Elvrich_GoesBack2Thorben == TRUE) && Npc_IsInState(self,ZS_Talk) && (MIS_LuciasLetter != LOG_RUNNING))
+	if((Elvrich_GoesBack2Thorben == TRUE) && (MIS_LuciasLetter != LOG_RUNNING))
 	{
 		return TRUE;
 	};

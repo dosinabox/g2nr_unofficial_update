@@ -3,22 +3,12 @@ instance DIA_Addon_Henry_EXIT(C_Info)
 {
 	npc = PIR_1354_Addon_Henry;
 	nr = 999;
-	condition = DIA_Addon_Henry_EXIT_Condition;
-	information = DIA_Addon_Henry_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
-
-func int DIA_Addon_Henry_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Henry_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
 
 func void B_Henry_Gold(var int gold)
 {
@@ -176,7 +166,6 @@ instance DIA_Addon_Henry_WantEnter(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Henry_WantEnter_Condition;
 	information = DIA_Addon_Henry_WantEnter_Info;
-	permanent = FALSE;
 	description = "Я хочу попасть внутрь.";
 };
 
@@ -205,7 +194,7 @@ func void DIA_Addon_Henry_WantEnter_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_07");	//А ты выглядишь человеком состоятельным.
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_08");	//Так что небольшая плата за вход тебя не разорит.
-		if((VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_KDW))
+		if((VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_KDW) && !ArmorEquipped(other,ITAR_Judge))
 		{
 			AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_09");	//Или свою роскошную броню ты у кого-то украл?
 		};
@@ -237,9 +226,12 @@ instance DIA_Addon_Henry_Einigen2(C_Info)
 
 func int DIA_Addon_Henry_Einigen2_Condition()
 {
-	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_WantEnter) && !Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen) && (Npc_HasItems(other,ItMi_Gold) >= 500))
+	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_WantEnter) && !Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Gold) >= 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -287,16 +279,18 @@ instance DIA_Addon_Henry_MeatForMorgan(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Henry_MeatForMorgan_Condition;
 	information = DIA_Addon_Henry_MeatForMorgan_Info;
-	permanent = FALSE;
 	description = "Я должен отдать Моргану мясо.";
 };
 
 
 func int DIA_Addon_Henry_MeatForMorgan_Condition()
 {
-	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen) && (MIS_AlligatorJack_BringMeat == LOG_RUNNING) && Npc_HasItems(other,ItFoMuttonRaw))
+	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen) && (MIS_AlligatorJack_BringMeat == LOG_RUNNING))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItFoMuttonRaw))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -347,9 +341,12 @@ instance DIA_Addon_Henry_BaltramPack(C_Info)
 
 func int DIA_Addon_Henry_BaltramPack_Condition()
 {
-	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen) && Npc_HasItems(other,ItMi_Packet_Baltram4Skip_Addon))
+	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Packet_Baltram4Skip_Addon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -464,7 +461,6 @@ instance DIA_Addon_Henry_Palisade(C_Info)
 	nr = 11;
 	condition = DIA_Addon_Henry_Palisade_Condition;
 	information = DIA_Addon_Henry_Palisade_Info;
-	permanent = FALSE;
 	description = "Что ты здесь делаешь?";
 };
 
@@ -492,7 +488,6 @@ instance DIA_Addon_Henry_Palisade_WhatFor(C_Info)
 	nr = 12;
 	condition = DIA_Addon_Henry_Palisade_WhatFor_Condition;
 	information = DIA_Addon_Henry_Palisade_WhatFor_Info;
-	permanent = FALSE;
 	description = "Зачем вам понадобился частокол?";
 };
 
@@ -521,6 +516,7 @@ func void DIA_Addon_Henry_Palisade_WhatFor_Info()
 	};
 };
 
+
 func void B_Henry_WhereIsTower()
 {
 	AI_Output(other,self,"DIA_Addon_Francis_BanditsDead_15_08");	//Где именно находится башня?
@@ -528,19 +524,18 @@ func void B_Henry_WhereIsTower()
 	AI_Output(self,other,"DIA_Addon_Henry_Entercrew_Add_04_08");	//Ты увидишь башню на небольшом утесе.
 };
 
-
 instance DIA_Addon_Henry_Turmbanditen(C_Info)
 {
 	npc = PIR_1354_Addon_Henry;
 	nr = 13;
-	condition = DIA_Addon_Henry_Turmbanditen_WhatFor_Condition;
-	information = DIA_Addon_Henry_Turmbanditen_WhatFor_Info;
+	condition = DIA_Addon_Henry_Turmbanditen_Condition;
+	information = DIA_Addon_Henry_Turmbanditen_Info;
 	permanent = TRUE;
 	description = "Насчет бандитов в башне...";
 };
 
 
-func int DIA_Addon_Henry_Turmbanditen_WhatFor_Condition()
+func int DIA_Addon_Henry_Turmbanditen_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Henry_Palisade_WhatFor) && (MIS_Henry_FreeBDTTower != LOG_SUCCESS))
 	{
@@ -548,7 +543,7 @@ func int DIA_Addon_Henry_Turmbanditen_WhatFor_Condition()
 	};
 };
 
-func void DIA_Addon_Henry_Turmbanditen_WhatFor_Info()
+func void DIA_Addon_Henry_Turmbanditen_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_Turmbanditen_15_00");	//Насчет бандитов в башне...
 	if(C_TowerBanditsDead())
@@ -589,7 +584,6 @@ instance DIA_Addon_Henry_Palisade_Bandits(C_Info)
 	nr = 14;
 	condition = DIA_Addon_Henry_Palisade_Bandits_Condition;
 	information = DIA_Addon_Henry_Palisade_Bandits_Info;
-	permanent = FALSE;
 	description = "Почему ты думаешь, что бандиты могут на вас напасть?";
 };
 
@@ -1036,7 +1030,6 @@ instance DIA_Addon_Henry_Palisade_Train(C_Info)
 	nr = 11;
 	condition = DIA_Addon_Henry_Palisade_Train_Condition;
 	information = DIA_Addon_Henry_Palisade_Train_Info;
-	permanent = FALSE;
 	description = "Грег - ваш командир?";
 };
 
@@ -1074,7 +1067,6 @@ instance DIA_Addon_Henry_YourOwnTrupp(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Henry_YourOwnTrupp_Condition;
 	information = DIA_Addon_Henry_YourOwnTrupp_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

@@ -3,21 +3,10 @@ instance DIA_Nadja_EXIT(C_Info)
 {
 	npc = VLK_435_Nadja;
 	nr = 999;
-	condition = DIA_Nadja_EXIT_Condition;
-	information = DIA_Nadja_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Nadja_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Nadja_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -30,6 +19,8 @@ func void B_Nadja_NotHere()
 		AI_Output(self,other,"DIA_ADDON_Nadja_STANDARD_16_04");	//’орошо. Ќо сначала ты должен договоритьс€ с Ѕромором. Ќепри€тности мне не нужны.
 	};
 };
+
+var int Nadja_LuciaInfo;
 
 instance DIA_Nadja_STANDARD(C_Info)
 {
@@ -49,9 +40,6 @@ func int DIA_Nadja_STANDARD_Condition()
 		return TRUE;
 	};
 };
-
-
-var int Nadja_LuciaInfo;
 
 func void DIA_Nadja_STANDARD_Info()
 {
@@ -118,17 +106,20 @@ instance DIA_Addon_Nadja_LuciaInfo(C_Info)
 
 func int DIA_Addon_Nadja_LuciaInfo_Condition()
 {
-	if((Bromor_Pay == 2) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 300))
+	if(Bromor_Pay == 2)
 	{
-		if(Nadja_LuciaInfo == TRUE)
+		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 300)
 		{
-			DIA_Addon_Nadja_LuciaInfo.description = "Ќу, а теперь мы можем поговорить?";
-			return TRUE;
-		}
-		else if((SC_HearedAboutMissingPeople == TRUE) && (SCKnowsMissingPeopleAreInAddonWorld == FALSE))
-		{
-			DIA_Addon_Nadja_LuciaInfo.description = "я только хотел задать тебе пару вопросов о пропавших люд€х.";
-			return TRUE;
+			if(Nadja_LuciaInfo == TRUE)
+			{
+				DIA_Addon_Nadja_LuciaInfo.description = "Ќу, а теперь мы можем поговорить?";
+				return TRUE;
+			};
+			if((SC_HearedAboutMissingPeople == TRUE) && (SCKnowsMissingPeopleAreInAddonWorld == FALSE))
+			{
+				DIA_Addon_Nadja_LuciaInfo.description = "я только хотел задать тебе пару вопросов о пропавших люд€х.";
+				return TRUE;
+			};
 		};
 	};
 };
@@ -360,9 +351,12 @@ instance DIA_Nadja_Poppen(C_Info)
 
 func int DIA_Nadja_Poppen_Condition()
 {
-	if((Bromor_Pay == 2) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 300))
+	if(Bromor_Pay == 2)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 300)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -381,11 +375,6 @@ func void DIA_Nadja_Poppen_Start()
 	PlayVideo("LOVESCENE.BIK");
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
-};
-
-func void DIA_Addon_Nadja_LuciaInfo_Pop()
-{
-	DIA_Nadja_Poppen_Start();
 };
 
 

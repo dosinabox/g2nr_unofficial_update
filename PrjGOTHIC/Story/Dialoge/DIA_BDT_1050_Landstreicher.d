@@ -3,21 +3,10 @@ instance DIA_Landstreicher_EXIT(C_Info)
 {
 	npc = BDT_1050_Landstreicher;
 	nr = 999;
-	condition = DIA_Landstreicher_EXIT_Condition;
-	information = DIA_Landstreicher_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Landstreicher_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Landstreicher_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -58,11 +47,11 @@ func void DIA_Landstreicher_HALLO_wer()
 	AI_Output(other,self,"DIA_Landstreicher_HALLO_wer_15_00");	//А кто это был?
 	AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_09_01");	//Он был похож на одного из этих головастых послушников из монастыря.
 	AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_09_02");	//Можешь говорить что угодно, но, по-моему, у этих парней не все в порядке с головой.
-	if(hero.guild == GIL_NOV)
+	if(other.guild == GIL_NOV)
 	{
 		Info_AddChoice(DIA_Landstreicher_HALLO,"Придержи язык.",DIA_Landstreicher_HALLO_wer_vorsicht);
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_09_03");	//Только посмотри на их дурацкое одеяние. Я бы не хотел быть пойманным на улице ночью в такой одежке. (смеется)
 		Info_AddChoice(DIA_Landstreicher_HALLO,"Попридержи язык. Я сам был послушником в монастыре.",DIA_Landstreicher_HALLO_wer_vorsicht);
@@ -71,9 +60,9 @@ func void DIA_Landstreicher_HALLO_wer()
 
 func void DIA_Landstreicher_HALLO_wer_vorsicht()
 {
-	if(hero.guild == GIL_NOV)
+	if(other.guild == GIL_NOV)
 	{
-		AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_KeepCalm_15_00");	//Придержи язык.
+		DIA_Common_ShutUp();
 	}
 	else
 	{

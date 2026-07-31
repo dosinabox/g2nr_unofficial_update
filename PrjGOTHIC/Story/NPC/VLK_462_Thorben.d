@@ -10,9 +10,9 @@ instance VLK_462_Thorben(Npc_Default)
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Bau_Mace);
+	EquipItem(self,ItMw_1H_BAU_Mace);
 	B_CreateItemToSteal(self,30,ItMi_Gold,28);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal04,BodyTex_N,ITAR_Vlk_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal04,BodyTex_N,ITAR_VLK_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
@@ -23,13 +23,13 @@ instance VLK_462_Thorben(Npc_Default)
 
 func void Rtn_Start_462()
 {
-	TA_Saw(6,0,9,0,"NW_CITY_MAINSTREET_05_B");
+	TA_Saw(6,0,9,0,"NW_CITY_MERCHANT_SHOP01_FRONT_01");
 	TA_Repair_Hut(9,0,13,0,"NW_CITY_MERCHANT_SHOP01_FRONT_01");
 	TA_Smalltalk(13,0,14,2,"NW_CITY_MERCHANT_SHOP01_FRONT_01");
 	TA_Repair_Hut(14,2,16,0,"NW_CITY_MERCHANT_SHOP01_FRONT_01");
-	TA_Saw(16,0,17,5,"NW_CITY_MAINSTREET_05_B");
+	TA_Saw(16,0,17,5,"NW_CITY_MERCHANT_SHOP01_FRONT_01");
 	TA_Smalltalk(17,5,18,0,"NW_CITY_MERCHANT_SHOP01_FRONT_01");
-	TA_Saw(18,0,19,0,"NW_CITY_MAINSTREET_05_B");
+	TA_Saw(18,0,19,0,"NW_CITY_MERCHANT_SHOP01_FRONT_01");
 	TA_Repair_Hut(19,0,20,0,"NW_CITY_MERCHANT_SHOP01_FRONT_01");
 	TA_Sit_Bench(20,0,0,0,"NW_CITY_MERCHANT_HUT_01_FRONT");
 	TA_Sleep(0,0,6,0,"NW_CITY_BED_BOSPER");

@@ -95,6 +95,16 @@ instance ADW_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "adw_day_fgt.sgt";
 };
 
+instance ADW_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "adw_day_std.sgt";
+};
+
+instance ADW_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "adw_day_fgt.sgt";
+};
+
 instance AWC_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "awc_day_std.sgt";
@@ -105,7 +115,22 @@ instance AWC_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "adw_day_fgt.sgt";
 };
 
+instance AWC_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "awc_day_std.sgt";
+};
+
+instance AWC_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "adw_day_fgt.sgt";
+};
+
 instance ADT_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "adt_day_std.sgt";
+};
+
+instance ADT_NGT_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "adt_day_std.sgt";
 };
@@ -120,12 +145,32 @@ instance BDT_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "adw_day_fgt.sgt";
 };
 
+instance BDT_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "bdt_day_std.sgt";
+};
+
+instance BDT_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "adw_day_fgt.sgt";
+};
+
 instance BIB_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "bib_day_std.sgt";
 };
 
 instance BIB_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "adw_day_fgt.sgt";
+};
+
+instance BIB_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "bib_day_std.sgt";
+};
+
+instance BIB_NGT_FGT(C_MUSICTHEME_FIGHT)
 {
 	file = "adw_day_fgt.sgt";
 };
@@ -140,12 +185,32 @@ instance CAN_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "adw_day_fgt.sgt";
 };
 
+instance CAN_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "can_day_std.sgt";
+};
+
+instance CAN_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "adw_day_fgt.sgt";
+};
+
 instance CRY_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "awc_day_std.sgt";
 };
 
 instance CRY_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "adw_day_fgt.sgt";
+};
+
+instance CRY_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "awc_day_std.sgt";
+};
+
+instance CRY_NGT_FGT(C_MUSICTHEME_FIGHT)
 {
 	file = "adw_day_fgt.sgt";
 };
@@ -160,6 +225,16 @@ instance GOL_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "adw_day_fgt.sgt";
 };
 
+instance GOL_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "bib_day_std.sgt";
+};
+
+instance GOL_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "adw_day_fgt.sgt";
+};
+
 instance GHO_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "bib_day_std.sgt";
@@ -170,12 +245,32 @@ instance GHO_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "adw_day_fgt.sgt";
 };
 
+instance GHO_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "bib_day_std.sgt";
+};
+
+instance GHO_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "adw_day_fgt.sgt";
+};
+
 instance MI1_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "bib_day_std.sgt";
 };
 
+instance MI1_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "bib_day_std.sgt";
+};
+
 instance MI2_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "bib_day_std.sgt";
+};
+
+instance MI2_NGT_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "bib_day_std.sgt";
 };
@@ -190,12 +285,32 @@ instance PO1_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "adw_day_fgt.sgt";
 };
 
+instance PO1_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "bib_day_std.sgt";
+};
+
+instance PO1_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "adw_day_fgt.sgt";
+};
+
 instance PIR_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "pir_day_std.sgt";
 };
 
 instance PIR_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "adw_day_fgt.sgt";
+};
+
+instance PIR_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "pir_day_std.sgt";
+};
+
+instance PIR_NGT_FGT(C_MUSICTHEME_FIGHT)
 {
 	file = "adw_day_fgt.sgt";
 };
@@ -210,12 +325,32 @@ instance RAV_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "adw_day_fgt.sgt";
 };
 
+instance RAV_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "bdt_day_std.sgt";
+};
+
+instance RAV_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "adw_day_fgt.sgt";
+};
+
 instance SHO_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "sho_day_std.sgt";
 };
 
 instance SHO_DAY_FGT(C_MUSICTHEME_STANDARD)
+{
+	file = "sho_day_fgt.sgt";
+};
+
+instance SHO_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "sho_day_std.sgt";
+};
+
+instance SHO_NGT_FGT(C_MUSICTHEME_STANDARD)
 {
 	file = "sho_day_fgt.sgt";
 };
@@ -230,7 +365,22 @@ instance SWP_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "adw_day_fgt.sgt";
 };
 
+instance SWP_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "swp_day_std.sgt";
+};
+
+instance SWP_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "adw_day_fgt.sgt";
+};
+
 instance STO_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "sto_day_std.sgt";
+};
+
+instance STO_NGT_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "sto_day_std.sgt";
 };
@@ -310,6 +460,21 @@ instance INS_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "di_daystd.sgt";
 };
 
+instance INS_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "di_daystd.sgt";
+};
+
+instance INS_NGT_THR(C_MUSICTHEME_THREAT)
+{
+	file = "di_daystd.sgt";
+};
+
+instance INS_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "di_daystd.sgt";
+};
+
 instance BAN_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "ban_daystd.sgt";
@@ -320,7 +485,22 @@ instance BAN_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "ban_dayfgt.sgt";
 };
 
+instance BAN_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "ban_daystd.sgt";
+};
+
+instance BAN_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "ban_dayfgt.sgt";
+};
+
 instance FRI_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "fri_daystd.sgt";
+};
+
+instance FRI_NGT_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "fri_daystd.sgt";
 };
@@ -335,7 +515,22 @@ instance DLC_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "dlc_dayfgt.sgt";
 };
 
+instance DLC_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "dlc_daystd.sgt";
+};
+
+instance DLC_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "dlc_dayfgt.sgt";
+};
+
 instance KAS_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "kas_loop_daystd.sgt";
+};
+
+instance KAS_NGT_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "kas_loop_daystd.sgt";
 };
@@ -350,12 +545,32 @@ instance KHO_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "kh_dayfgt.sgt";
 };
 
+instance KHO_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "kh_daystd.sgt";
+};
+
+instance KHO_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "kh_dayfgt.sgt";
+};
+
 instance LEU_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "leu_daystd.sgt";
 };
 
+instance LEU_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "leu_daystd.sgt";
+};
+
 instance LOB_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "lob_daystd.sgt";
+};
+
+instance LOB_NGT_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "lob_daystd.sgt";
 };
@@ -370,12 +585,32 @@ instance MAY_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "may_dayfgt.sgt";
 };
 
+instance MAY_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "may_daystd.sgt";
+};
+
+instance MAY_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "may_dayfgt.sgt";
+};
+
 instance MOO_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "mo_daystd.sgt";
 };
 
+instance MOO_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "mo_daystd.sgt";
+};
+
 instance MOI_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "mi_daystd.sgt";
+};
+
+instance MOI_NGT_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "mi_daystd.sgt";
 };
@@ -390,6 +625,16 @@ instance MOD_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "ban_dayfgt.sgt";
 };
 
+instance MOD_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "ban_daystd.sgt";
+};
+
+instance MOD_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "ban_dayfgt.sgt";
+};
+
 instance OWP_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "owp_daystd.sgt";
@@ -400,7 +645,22 @@ instance OWP_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "owp_dayfgt.sgt";
 };
 
+instance OWP_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "owp_daystd.sgt";
+};
+
+instance OWP_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "owp_dayfgt.sgt";
+};
+
 instance PIE_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "pie_daystd.sgt";
+};
+
+instance PIE_NGT_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "pie_daystd.sgt";
 };
@@ -420,6 +680,21 @@ instance TAL_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "woo_dayfgt.sgt";
 };
 
+instance TAL_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "woo_daystd.sgt";
+};
+
+instance TAL_NGT_THR(C_MUSICTHEME_THREAT)
+{
+	file = "woo_daythr.sgt";
+};
+
+instance TAL_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "woo_dayfgt.sgt";
+};
+
 instance WOO_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "woo_daystd.sgt";
@@ -435,12 +710,37 @@ instance WOO_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "woo_dayfgt.sgt";
 };
 
+instance WOO_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "woo_daystd.sgt";
+};
+
+instance WOO_NGT_THR(C_MUSICTHEME_THREAT)
+{
+	file = "woo_daythr.sgt";
+};
+
+instance WOO_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "woo_dayfgt.sgt";
+};
+
 instance XAR_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "xt_daystd.sgt";
 };
 
 instance XAR_DAY_THR(C_MUSICTHEME_THREAT)
+{
+	file = "xt_daystd.sgt";
+};
+
+instance XAR_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "xt_daystd.sgt";
+};
+
+instance XAR_NGT_THR(C_MUSICTHEME_THREAT)
 {
 	file = "xt_daystd.sgt";
 };
@@ -485,12 +785,32 @@ instance NCI_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "dlc_dayfgt.sgt";
 };
 
+instance NCI_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "dlc_daystd.sgt";
+};
+
+instance NCI_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "dlc_dayfgt.sgt";
+};
+
 instance GRO_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "dlc_daystd.sgt";
 };
 
 instance GRO_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "dlc_dayfgt.sgt";
+};
+
+instance GRO_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "dlc_daystd.sgt";
+};
+
+instance GRO_NGT_FGT(C_MUSICTHEME_FIGHT)
 {
 	file = "dlc_dayfgt.sgt";
 };
@@ -505,12 +825,32 @@ instance TMP_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "dlc_dayfgt.sgt";
 };
 
+instance TMP_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "dlc_daystd.sgt";
+};
+
+instance TMP_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "dlc_dayfgt.sgt";
+};
+
 instance END_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "dlc_daystd.sgt";
 };
 
 instance END_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "dlc_dayfgt.sgt";
+};
+
+instance END_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "dlc_daystd.sgt";
+};
+
+instance END_NGT_FGT(C_MUSICTHEME_FIGHT)
 {
 	file = "dlc_dayfgt.sgt";
 };
@@ -525,12 +865,32 @@ instance BOR_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "kh_dayfgt.sgt";
 };
 
+instance BOR_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "kh_daystd.sgt";
+};
+
+instance BOR_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "kh_dayfgt.sgt";
+};
+
 instance OBS_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "kh_daystd.sgt";
 };
 
 instance OBS_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "kh_dayfgt.sgt";
+};
+
+instance OBS_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "kh_daystd.sgt";
+};
+
+instance OBS_NGT_FGT(C_MUSICTHEME_FIGHT)
 {
 	file = "kh_dayfgt.sgt";
 };
@@ -545,6 +905,16 @@ instance NWP_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "may_dayfgt.sgt";
 };
 
+instance NWP_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "may_daystd.sgt";
+};
+
+instance NWP_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "may_dayfgt.sgt";
+};
+
 instance TRO_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "dlc_daystd.sgt";
@@ -555,7 +925,22 @@ instance TRO_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "dlc_dayfgt.sgt";
 };
 
+instance TRO_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "dlc_daystd.sgt";
+};
+
+instance TRO_NGT_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "dlc_dayfgt.sgt";
+};
+
 instance HOF_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "lob_daystd.sgt";
+};
+
+instance HOF_NGT_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "lob_daystd.sgt";
 };
@@ -566,6 +951,16 @@ instance RVE_DAY_STD(C_MUSICTHEME_STANDARD)
 };
 
 instance RVE_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "adw_day_fgt.sgt";
+};
+
+instance RVE_NGT_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "bdt_day_std.sgt";
+};
+
+instance RVE_NGT_FGT(C_MUSICTHEME_FIGHT)
 {
 	file = "adw_day_fgt.sgt";
 };

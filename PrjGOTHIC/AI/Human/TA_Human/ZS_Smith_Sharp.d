@@ -13,7 +13,7 @@ func void ZS_Smith_Sharp()
 
 func int ZS_Smith_Sharp_Loop()
 {
-	B_UseAvailableMob(self,"BSSHARP");
+	B_UseAvailableMob(self,"BSSHARP",BS_MOBINTERACT_INTERRUPT);
 	return LOOP_CONTINUE;
 };
 

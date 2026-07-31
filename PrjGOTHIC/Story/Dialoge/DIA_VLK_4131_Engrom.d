@@ -127,7 +127,6 @@ func int DIA_Engrom_B_NpcObsessedByDMT_Condition()
 func void DIA_Engrom_B_NpcObsessedByDMT_Info()
 {
 	DIA_Common_IsEverythingOk();
-	MIS_Tabin_LookForEngrom = LOG_SUCCESS;
 	B_NpcObsessedByDMT(self);
 };
 

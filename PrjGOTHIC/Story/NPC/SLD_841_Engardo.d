@@ -10,7 +10,7 @@ instance SLD_841_Engardo(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	aivar[AIV_EnemyOverride] = TRUE;
-	EquipItem(self,ItMw_2h_Sld_Sword);
+	EquipItem(self,ItMw_2H_SLD_Sword);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,34,ItMi_Gold,45);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Normal_Erpresser,BodyTex_N,ITAR_SLD_L);
@@ -28,11 +28,11 @@ func void Rtn_PreStart_841()
 	TA_Stand_Guarding(22,0,8,0,"NW_FARM2_PATH_02");
 };
 
-func void Rtn_Start_841()
+/*func void Rtn_Start_841()
 {
 	TA_Smalltalk(8,0,22,0,"NW_FARM2_TO_TAVERN_08");
 	TA_Smalltalk(22,0,8,0,"NW_FARM2_TO_TAVERN_08");
-};
+};*/
 
 func void Rtn_Bigfarm_841()
 {

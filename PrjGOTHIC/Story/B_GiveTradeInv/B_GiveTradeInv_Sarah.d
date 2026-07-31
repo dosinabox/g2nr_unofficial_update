@@ -12,34 +12,28 @@ func void B_GiveTradeInv_Sarah(var C_Npc slf)
 		CreateInvItems(slf,ItLsTorch,20);
 		CreateInvItems(slf,ItRw_Arrow,50);
 		CreateInvItems(slf,ItRi_HP_01,1);
+		CreateInvItems(slf,ItMw_ShortSword3,1);
+		CreateInvItems(slf,ItMw_ShortSword4,1);
+		CreateInvItems(slf,ItMw_Kriegshammer1,1);
+		CreateInvItems(slf,ItMw_1H_VLK_Sword,1);
+		CreateInvItems(slf,ItMw_1H_NOV_Mace,1);
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
-			CreateInvItems(slf,ItMw_ShortSword3,1);
-			CreateInvItems(slf,ItMw_ShortSword4,1);
-			CreateInvItems(slf,ItMw_Kriegshammer1,1);
-			CreateInvItems(slf,ItMw_1h_Vlk_Sword,1);
-			CreateInvItems(slf,ItMw_1h_Nov_Mace,1);
 			CreateInvItems(slf,ItMw_1H_Sword_L_03,1);
 		}
 		else
 		{
-			CreateInvItems(slf,ItMw_ShortSword3,1);
-			CreateInvItems(slf,ItMw_ShortSword4,1);
 			CreateInvItems(slf,ItMw_ShortSword5,1);
-			CreateInvItems(slf,ItMw_Kriegshammer1,1);
 			CreateInvItems(slf,ItMw_Stabkeule,1);
 			CreateInvItems(slf,ItMw_Steinbrecher,1);
 			CreateInvItems(slf,ItMw_Schwert2,1);
 			CreateInvItems(slf,ItMw_Bartaxt,1);
-			CreateInvItems(slf,ItMw_1h_Vlk_Sword,1);
-			CreateInvItems(slf,ItMw_1h_Nov_Mace,1);
 			CreateInvItems(slf,ItMw_Zweihaender2,1);
 			CreateInvItems(slf,ItMw_Schwert5,1);
 			CreateInvItems(slf,ItMw_Inquisitor,1);
 			CreateInvItems(slf,ItMw_Kriegshammer2,1);
 			CreateInvItems(slf,ItMw_Zweihaender4,1);
 			CreateInvItems(slf,ItMw_Krummschwert,1);
-			CreateInvItems(slf,ItMw_1h_Vlk_Sword,1);
 		};
 		Sarah_ItemsGiven_Chapter_1 = TRUE;
 	};

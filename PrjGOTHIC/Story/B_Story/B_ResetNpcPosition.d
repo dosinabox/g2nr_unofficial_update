@@ -36,12 +36,24 @@ func void B_ResetFernando()
 
 func void B_ResetSalandril()
 {
-	if((SalandrilLocation == LOC_MONASTERY) && (TOPIC_END_MinenAnteile == TRUE))
+	if((SalandrilLocation == LOC_NW_MONASTERY) && (TOPIC_END_MinenAnteile == TRUE))
 	{
 		if(!Npc_IsDead(Salandril))
 		{
 			Npc_ExchangeRoutine(Salandril,"START");
-			SalandrilLocation = LOC_CITY;
+			SalandrilLocation = LOC_NW_CITY;
+		};
+	};
+};
+
+func void B_ResetWambo()
+{
+	if((WamboLocation == Q_HAFEN) && C_DaysSinceEvent(Wambo_Day,5))
+	{
+		if(!Npc_IsDead(Wambo))
+		{
+			Npc_ExchangeRoutine(Wambo,"START");
+			WamboLocation = Q_OBERSTADT;
 		};
 	};
 };
@@ -98,6 +110,24 @@ func void B_ResetHenryPirates()
 			Npc_ExchangeRoutine(HammerPirate,"START");
 			HammerPirate.aivar[AIV_PARTYMEMBER] = FALSE;
 		};
+	};
+};
+
+func void B_ResetSwampParty()
+{
+	if(DJG_SwampParty == TRUE)
+	{
+		if(!Npc_IsDead(DJG_Cipher))
+		{
+			Npc_ExchangeRoutine(DJG_Cipher,"START");
+			DJG_Cipher.aivar[AIV_PARTYMEMBER] = FALSE;
+		};
+		if(!Npc_IsDead(DJG_Rod))
+		{
+			Npc_ExchangeRoutine(DJG_Rod,"START");
+			DJG_Rod.aivar[AIV_PARTYMEMBER] = FALSE;
+		};
+		DJG_SwampParty = FALSE;
 	};
 };
 

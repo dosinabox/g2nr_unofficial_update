@@ -1,167 +1,6 @@
 
-func int C_AmIWeaponTrader(var C_Npc slf)
-{
-	if(C_IsNpc(slf,VLK_4303_Addon_Erol))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,BDT_1097_Addon_Fisk))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,PIR_1357_Addon_Garett))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,BDT_1099_Addon_Huno))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,MIL_350_Addon_Martin))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,BDT_1086_Addon_Scatty))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,SLD_809_Bennet_DI))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,VLK_468_Canthar))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,SLD_803_Cipher))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,VLK_407_Hakon))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,BAU_908_Hodges))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,VLK_408_Jora))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,SLD_823_Khaled))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,VLK_416_Matteo))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,BAU_970_Orlan))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,DJG_709_Rethon))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,VLK_470_Sarah))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,PAL_260_Tandor))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,VLK_413_Bosper))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,VLK_4108_Engor))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,BAU_936_Rosi))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
-func int C_TraderCanEquipRangedWeapon(var C_Npc slf)
-{
-	if(C_IsNpc(slf,PIR_1357_Addon_Garett))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,VLK_4108_Engor))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,VLK_413_Bosper))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,PC_Thief_DI))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,PAL_260_Tandor))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,PAL_267_Sengrath))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,SLD_823_Khaled))
-	{
-		return TRUE;
-	};
-	if(C_IsNpc(slf,SLD_803_Cipher))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
-func void B_HideTradeItem(var C_Npc slf,var int itm)
-{
-	if(Npc_HasItems(slf,itm))
-	{
-		slf.aivar[AIV_HiddenTradeItem] = itm;
-		Npc_RemoveInvItem(slf,itm);
-	};
-};
-
-func void B_RestoreHiddenTradeItem(var C_Npc slf)
-{
-	var int itm;
-	itm = slf.aivar[AIV_HiddenTradeItem];
-	if(itm == 0)
-	{
-		return;
-	};
-	if(itm == slf.aivar[AIV_ItemToSteal])
-	{
-		if(slf.aivar[AIV_PlayerHasPickedMyPocket] == TRUE)
-		{
-			return;
-		};
-	};
-	if(!Npc_HasItems(slf,itm))
-	{
-		CreateInvItem(slf,itm);
-	};
-	slf.aivar[AIV_HiddenTradeItem] = 0;
-};
-
 func void B_GiveTradeInv(var C_Npc slf)
 {
-	if(C_AmIWeaponTrader(slf))
-	{
-		B_UnEquipAllWeapons(slf,TRUE);
-	};
 	B_CreateMobsiItems(slf);
 	B_ClearRuneInv(slf);
 	B_ClearFakeItems(slf);
@@ -169,6 +8,10 @@ func void B_GiveTradeInv(var C_Npc slf)
 	B_ClearSpecialAmmo(slf);
 	if(slf.aivar[AIV_NPCIsTrader] == TRUE)
 	{
+		if(C_NpcIsWeaponTrader(slf))
+		{
+			B_UnEquipAllWeapons(slf,TRUE);
+		};
 		if(slf.aivar[AIV_ChapterInv] <= Kapitel)
 		{
 			B_ClearJunkTradeInv(slf);

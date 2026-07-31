@@ -28,7 +28,6 @@ instance DIA_Addon_Miguel_Hi(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Miguel_Hi_Condition;
 	information = DIA_Addon_Miguel_Hi_Info;
-	permanent = FALSE;
 	description = "Что ты здесь делаешь?";
 };
 
@@ -62,7 +61,6 @@ instance DIA_Addon_Miguel_Story(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Miguel_Story_Condition;
 	information = DIA_Addon_Miguel_Story_Info;
-	permanent = FALSE;
 	description = "А почему ты оказался за Барьером?";
 };
 
@@ -91,7 +89,6 @@ instance DIA_Addon_Miguel_Lager(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Miguel_Lager_Condition;
 	information = DIA_Addon_Miguel_Lager_Info;
-	permanent = FALSE;
 	description = "Расскажи мне про лагерь.";
 };
 
@@ -115,7 +112,6 @@ instance DIA_Addon_Miguel_WhereFrom(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Miguel_WhereFrom_Condition;
 	information = DIA_Addon_Miguel_WhereFrom_Info;
-	permanent = FALSE;
 	description = "Откуда ты пришел?";
 };
 
@@ -143,7 +139,6 @@ instance DIA_Addon_Miguel_Angefordert(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Miguel_Angefordert_Condition;
 	information = DIA_Addon_Miguel_Angefordert_Info;
-	permanent = FALSE;
 	description = "Когда им бывают нужны новые люди?";
 };
 
@@ -173,16 +168,18 @@ instance DIA_Addon_Miguel_Fortuno(C_Info)
 	nr = 6;
 	condition = DIA_Addon_Miguel_Fortuno_Condition;
 	information = DIA_Addon_Miguel_Fortuno_Info;
-	permanent = FALSE;
 	description = "У Фортуно не все в порядке с головой, он мог бы выпить зелье и вернуть себе память.";
 };
 
 
 func int DIA_Addon_Miguel_Fortuno_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Miguel_Story) && Npc_KnowsInfo(other,DIA_Addon_Fortuno_FREE) && !Npc_IsDead(Fortuno))
+	if(Npc_KnowsInfo(other,DIA_Addon_Miguel_Story) && Npc_KnowsInfo(other,DIA_Addon_Fortuno_FREE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Fortuno))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -207,7 +204,6 @@ instance DIA_Addon_Miguel_BRAU(C_Info)
 	nr = 7;
 	condition = DIA_Addon_Miguel_BRAU_Condition;
 	information = DIA_Addon_Miguel_BRAU_Info;
-	permanent = FALSE;
 	description = "Ты можешь научить меня кое-чему?";
 };
 

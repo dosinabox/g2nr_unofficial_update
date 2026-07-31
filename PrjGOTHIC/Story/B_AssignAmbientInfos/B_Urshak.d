@@ -1,6 +1,4 @@
 
-var int Urshak_Sucked;
-
 instance DIA_Urshak_EXIT(C_Info)
 {
 	npc = NONE_110_Urshak;
@@ -177,7 +175,7 @@ func void DIA_Urshak_WASHASTDUVOR_Info()
 	B_LogEntry(TOPIC_Urshak,"Ур-Шак хочет встретиться с шаманом орков Хош-Паком и убедить его принять Ур-Шака назад в совет шаманов.");
 	Info_ClearChoices(DIA_Urshak_WASHASTDUVOR);
 	Info_AddChoice(DIA_Urshak_WASHASTDUVOR,Dialog_Back,DIA_Urshak_WASHASTDUVOR_weiter);
-	Info_AddChoice(DIA_Urshak_WASHASTDUVOR,"Где я могу найти этого Хош-Пака?",DIA_Urshak_WASHASTDUVOR_);
+	Info_AddChoice(DIA_Urshak_WASHASTDUVOR,"Где я могу найти этого Хош-Пака?",DIA_Urshak_WASHASTDUVOR_Urshak);
 	Info_AddChoice(DIA_Urshak_WASHASTDUVOR,"Почему ты тогда не пойдешь к нему?",DIA_Urshak_WASHASTDUVOR_hoshpak);
 };
 
@@ -189,7 +187,7 @@ func void DIA_Urshak_WASHASTDUVOR_hoshpak()
 	AI_Output(self,other,"DIA_Urshak_WASHASTDUVOR_hoshpak_18_03");	//Может быть, это удаваться сегодня.
 };
 
-func void DIA_Urshak_WASHASTDUVOR_()
+func void DIA_Urshak_WASHASTDUVOR_Urshak()
 {
 	AI_Output(other,self,"DIA_Urshak_WASHASTDUVOR_Urshak_15_00");	//Где я могу найти этого Хош-Пака?
 	AI_Output(self,other,"DIA_Urshak_WASHASTDUVOR_Urshak_18_01");	//Он там где может наблюдать за воины орков у крепости у большой вулкан, чтобы Хош-Пак мочь контролировать воины.
@@ -252,9 +250,12 @@ instance DIA_Urshak_GEH(C_Info)
 
 func int DIA_Urshak_GEH_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Npc_GetDistToWP(self,"OW_HOSHPAK_04") > 1000) && (Urshak_Sucked == FALSE) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Urshak_Sucked == FALSE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"OW_HOSHPAK_04") > 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -276,9 +277,12 @@ instance DIA_Urshak_HOSHPAKRACHE(C_Info)
 
 func int DIA_Urshak_HOSHPAKRACHE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Npc_GetDistToWP(self,"OW_HOSHPAK_04") <= 1000) && (Urshak_Sucked == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Urshak_Sucked == FALSE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"OW_HOSHPAK_04") <= 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -310,7 +314,7 @@ instance DIA_Urshak_KEINEWAHL(C_Info)
 
 func int DIA_Urshak_KEINEWAHL_Condition()
 {
-	if((Urshak_Sucked == TRUE) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (Urshak_Sucked == TRUE))
 	{
 		return TRUE;
 	};

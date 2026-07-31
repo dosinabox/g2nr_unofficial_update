@@ -3,21 +3,10 @@ instance DIA_Maria_EXIT(C_Info)
 {
 	npc = BAU_910_Maria;
 	nr = 999;
-	condition = DIA_Maria_EXIT_Condition;
-	information = DIA_Maria_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Maria_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Maria_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -151,9 +140,12 @@ instance DIA_Maria_BringPlate(C_Info)
 
 func int DIA_Maria_BringPlate_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maria_Hallo) && Npc_HasItems(other,ItMi_MariasGoldPlate))
+	if(Npc_KnowsInfo(other,DIA_Maria_Hallo))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_MariasGoldPlate))
+		{
+			return TRUE;
+		};
 	};
 };
 

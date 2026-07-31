@@ -3,21 +3,10 @@ instance DIA_DiegoNW_EXIT(C_Info)
 {
 	npc = PC_Thief_NW;
 	nr = 999;
-	condition = DIA_DiegoNW_EXIT_Condition;
-	information = DIA_DiegoNW_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_DiegoNW_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_DiegoNW_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -282,9 +271,16 @@ instance DIA_DiegoNW_HaveYourGold(C_Info)
 
 func int DIA_DiegoNW_HaveYourGold_Condition()
 {
-	if(((OpenedDiegosBag == TRUE) || Npc_HasItems(other,ItSe_DiegosTreasure_MIS)) && (MIS_HelpDiegoNW == LOG_RUNNING) && (Diego_IsOnBoard != LOG_SUCCESS))
+	if((MIS_HelpDiegoNW == LOG_RUNNING) && (Diego_IsOnBoard != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(OpenedDiegosBag == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItSe_DiegosTreasure_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -492,7 +488,7 @@ func int DIA_DiegoNW_Teach_Condition()
 func void DIA_DiegoNW_Teach_Info()
 {
 	AI_Output(other,self,"DIA_DiegoNW_Teach_15_00");	//Обучи меня.
-	AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_01");	//Конечно. Что ты хочешь знать?
+	AI_Output(self,other,"DIA_Addon_DiegoOW_Teach_11_01");	//Конечно. Что ты хочешь знать?
 	DiegoNW_Merke_DEX = ATR_Training[ATR_DEXTERITY];
 	DiegoNW_Merke_STR = ATR_Training[ATR_STRENGTH];
 	B_BuildLearnDialog_Diego_NW();
@@ -506,7 +502,7 @@ func void DIA_DiegoNW_Teach_BACK()
 	};
 	if(DiegoNW_Merke_STR < ATR_Training[ATR_STRENGTH])
 	{
-		AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_03");	//(оценивающе) Очень хорошо. Твоя сила увеличилась.
+		AI_Output(self,other,"DIA_Addon_DiegoOW_Teach_11_03");	//(оценивающе) Очень хорошо. Твоя сила увеличилась.
 	};
 	Info_ClearChoices(DIA_DiegoNW_Teach);
 };
@@ -643,7 +639,7 @@ func void DIA_DiegoNW_LeaveMyShip_Info()
 	AI_Output(other,self,"DIA_DiegoNW_LeaveMyShip_15_02");	//Ты думаешь, мы еще встретимся?
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_03");	//Я никогда не забуду выражение твоего лица, когда ты лежал на земле после того, как Буллит вырубил тебя. Тогда мы встретились в первый раз.
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_04");	//Им никогда не одолеть тебя. Мы ОБЯЗАТЕЛЬНО встретимся снова. Береги себя.
-	B_EquipArmor(self,ITAR_Vlk_H);
+	B_EquipArmor(self,ITAR_VLK_H);
 	Diego_IsOnBoard = LOG_OBSOLETE;
 	Crewmember_Count -= 1;
 	if(MIS_DiegosResidence == LOG_SUCCESS)

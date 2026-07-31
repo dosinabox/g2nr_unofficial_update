@@ -161,10 +161,10 @@ func void DIA_Addon_Nefarius_SCbringOrnaments_Info()
 	{
 		B_StartOtherRoutine(Cavalorn,"ORNAMENTSTEINRING");
 	};
-	if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_FromCavalorn == TRUE) && (Bdt_1013_ToCavalorn == FALSE))
+	if(!Npc_IsDead(Ambusher_1013) && (BDT_1013_FromCavalorn == TRUE) && (BDT_1013_ToCavalorn == FALSE))
 	{
 		Npc_ExchangeRoutine(Ambusher_1013,"AWAY");
-		Bdt_1013_ToCavalorn = TRUE;
+		BDT_1013_ToCavalorn = TRUE;
 	};
 	AI_Output(self,other,"DIA_Addon_Nefarius_SCbringOrnaments_05_08");	//Ты должен искать части ключа именно там.
 	AI_Output(self,other,"DIA_Addon_Nefarius_SCbringOrnaments_05_09");	//Обращай внимание на древние постройки. Они могут быть полуразрушенными, но все же легко узнаваемыми.
@@ -201,6 +201,8 @@ func void DIA_Addon_Nefarius_WhyPortalClosed_Info()
 };
 
 
+var int MissingOrnamentsCounter;
+
 instance DIA_Addon_Nefarius_MissingOrnaments(C_Info)
 {
 	npc = KDW_1402_Addon_Nefarius_NW;
@@ -219,9 +221,6 @@ func int DIA_Addon_Nefarius_MissingOrnaments_Condition()
 		return TRUE;
 	};
 };
-
-
-var int MissingOrnamentsCounter;
 
 func void DIA_Addon_Nefarius_MissingOrnaments_Info()
 {
@@ -291,9 +290,12 @@ instance DIA_Addon_Nefarius_Ringritual(C_Info)
 
 func int DIA_Addon_Nefarius_Ringritual_Condition()
 {
-	if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_SUCCESS) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PORTALTEMPEL_42") < 1000))
+	if(MIS_Addon_Nefarius_BringMissingOrnaments == LOG_SUCCESS)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_TROLLAREA_PORTALTEMPEL_42") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -3,27 +3,17 @@ instance DIA_Marduk_EXIT(C_Info)
 {
 	npc = KDF_505_Marduk;
 	nr = 999;
-	condition = DIA_Marduk_EXIT_Condition;
-	information = DIA_Marduk_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Marduk_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Marduk_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
 instance DIA_Marduk_JOB(C_Info)
 {
 	npc = KDF_505_Marduk;
+	nr = 1;
 	condition = DIA_Marduk_JOB_Condition;
 	information = DIA_Marduk_JOB_Info;
 	description = "Что ты делаешь здесь?";
@@ -101,6 +91,7 @@ func void DIA_Marduk_Gebetet_Info()
 instance DIA_Marduk_Evil(C_Info)
 {
 	npc = KDF_505_Marduk;
+	nr = 5;
 	condition = DIA_Marduk_Evil_Condition;
 	information = DIA_Marduk_Evil_Info;
 	permanent = TRUE;
@@ -129,6 +120,7 @@ func void DIA_Marduk_Evil_Info()
 instance DIA_Marduk_Pal(C_Info)
 {
 	npc = KDF_505_Marduk;
+	nr = 6;
 	condition = DIA_Marduk_Pal_Condition;
 	information = DIA_Marduk_Pal_Info;
 	description = "Но в монастыре живут только маги и послушники.";
@@ -442,9 +434,12 @@ instance DIA_Marduk_SwordBlessing(C_Info)
 
 func int DIA_Marduk_SwordBlessing_Condition()
 {
-	if((Marduk_TrainPals_permanent == TRUE) && !C_SCHasBlessedSword())
+	if(Marduk_TrainPals_permanent == TRUE)
 	{
-		return TRUE;
+		if(!C_SCHasBlessedSword())
+		{
+			return TRUE;
+		};
 	};
 };
 

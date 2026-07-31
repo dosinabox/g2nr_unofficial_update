@@ -3,21 +3,10 @@ instance DIA_Addon_RoastPirate_EXIT(C_Info)
 {
 	npc = PIR_1364_Addon_Pirat;
 	nr = 999;
-	condition = DIA_Addon_RoastPirate_EXIT_Condition;
-	information = DIA_Addon_RoastPirate_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_RoastPirate_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_RoastPirate_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -34,9 +23,12 @@ instance DIA_Addon_RoastPirate_GimmeGrog(C_Info)
 
 func int DIA_Addon_RoastPirate_GimmeGrog_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_Addon_GrogForRoastPirate != LOG_SUCCESS) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((MIS_Addon_GrogForRoastPirate != LOG_SUCCESS) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -144,7 +136,10 @@ func void DIA_Addon_RoastPirate_Francis_Info()
 		AI_Output(self,other,"DIA_Addon_PIR_6_Francis_06_02");	//Фрэнсис сразу же забьется в свой темный угол.
 	};
 	AI_Output(self,other,"DIA_Addon_PIR_6_Francis_06_04");	//Этот червяк обманывает всех и каждого. Уверен, он даже сам у себя крадет.
-	AI_Output(self,other,"DIA_Addon_PIR_6_Francis_06_05");	//Но я тебе этого не говорил. И до тех пор, пока у тебя не будет доказательств, не стоит его обвинять.
+	if(!Npc_KnowsInfo(other,DIA_Addon_Greg_GiveFrancisBook))
+	{
+		AI_Output(self,other,"DIA_Addon_PIR_6_Francis_06_05");	//Но я тебе этого не говорил. И до тех пор, пока у тебя не будет доказательств, не стоит его обвинять.
+	};
 };
 
 
@@ -169,18 +164,18 @@ func int DIA_Addon_RoastPirate_PERM_Condition()
 
 func void DIA_Addon_RoastPirate_PERM_Info()
 {
-	var int randy;
-	randy = Hlp_Random(3);
+	var int random;
+	random = Hlp_Random(3);
 	AI_Output(other,self,"DIA_Addon_Matt_Job_15_00");	//Что-нибудь еще?
 	if(GregIsBack == TRUE)
 	{
 		if(!Npc_IsDead(Greg))
 		{
-			if((randy == 0) && !Npc_IsDead(Francis))
+			if((random == 0) && !Npc_IsDead(Francis) && !Npc_KnowsInfo(other,DIA_Addon_Greg_GiveFrancisBook))
 			{
 				AI_Output(self,other,"DIA_Addon_PIR_6_Chef_06_02");	//На месте Грега я бы отправил Фрэнсиса на болото.
 			}
-			else if(randy == 1)
+			else if(random == 1)
 			{
 				AI_Output(self,other,"DIA_Addon_PIR_6_Chef_06_03");	//После возвращения Грега бандиты дважды подумают, прежде чем нападать на нас.
 			}
@@ -194,11 +189,11 @@ func void DIA_Addon_RoastPirate_PERM_Info()
 			AI_Output(self,other,"DIA_Addon_PIR_6_SeichtesWasser_06_03");	//Я бы лучше побродил по берегу в поисках добычи.
 		};
 	}
-	else if((randy == 0) && !Npc_IsDead(Francis))
+	else if((random == 0) && !Npc_IsDead(Francis))
 	{
 		AI_Output(self,other,"DIA_Addon_PIR_6_Chef_06_06");	//Фрэнсис - полный неудачник. С тех пор как он начал командовать, все катится под гору.
 	}
-	else if(randy == 1)
+	else if(random == 1)
 	{
 		AI_Output(self,other,"DIA_Addon_PIR_6_Chef_06_05");	//Пусть эти бандиты нападают. Они даже не поймут, что с ними произошло.
 	}
@@ -314,9 +309,12 @@ instance DIA_Addon_RoastPirate_TooFar(C_Info)
 
 func int DIA_Addon_RoastPirate_TooFar_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_GregsPiratesTooFar())
+	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		return TRUE;
+		if(C_GregsPiratesTooFar())
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -45,14 +45,14 @@ func void B_SetVisuals_Gobbo_Warrior_Visir()
 instance Gobbo_Warrior(Mst_Default_Gobbo_Warrior)
 {
 	B_SetVisuals_Gobbo_Warrior();
-	Npc_SetToFightMode(self,ItMw_1h_MISC_Sword);
+	Npc_SetToFightMode(self,ItMw_1H_MISC_Sword);
 	Mdl_SetModelScale(self,1.15,1.15,1.15);
 };
 
 instance Gobbo_Warrior_Visir(Mst_Default_Gobbo_Warrior)
 {
 	B_SetVisuals_Gobbo_Warrior_Visir();
-	Npc_SetToFightMode(self,ItMw_1h_Misc_Axe);
+	Npc_SetToFightMode(self,ItMw_1H_MISC_Axe);
 	Mdl_SetModelScale(self,1.15,1.15,1.15);
 };
 

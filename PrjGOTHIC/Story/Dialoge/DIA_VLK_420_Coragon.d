@@ -28,7 +28,6 @@ instance DIA_Coragon_HALLO(C_Info)
 	nr = 2;
 	condition = DIA_Coragon_HALLO_Condition;
 	information = DIA_Coragon_HALLO_Info;
-	permanent = FALSE;
 	description = "Могу я выпить здесь?";
 };
 
@@ -54,8 +53,8 @@ instance DIA_Coragon_Trade(C_Info)
 	condition = DIA_Coragon_Trade_Condition;
 	information = DIA_Coragon_Trade_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
 	trade = TRUE;
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -81,7 +80,6 @@ instance DIA_Coragon_WhatsUp(C_Info)
 	nr = 3;
 	condition = DIA_Coragon_WhatsUp_Condition;
 	information = DIA_Coragon_WhatsUp_Info;
-	permanent = FALSE;
 	description = "Как идут дела?";
 };
 
@@ -147,7 +145,6 @@ instance DIA_Coragon_Bestohlen(C_Info)
 	nr = 4;
 	condition = DIA_Coragon_Bestohlen_Condition;
 	information = DIA_Coragon_Bestohlen_Info;
-	permanent = FALSE;
 	description = "Тебя ограбили?";
 };
 
@@ -195,16 +192,18 @@ instance DIA_Coragon_BringSilber(C_Info)
 	nr = 5;
 	condition = DIA_Coragon_BringSilber_Condition;
 	information = DIA_Coragon_BringSilber_Info;
-	permanent = FALSE;
 	description = "Я принес твое серебро.";
 };
 
 
 func int DIA_Coragon_BringSilber_Condition()
 {
-	if((MIS_Coragon_Silber == LOG_RUNNING) && (Npc_HasItems(other,ItMi_CoragonsSilber) >= 8))
+	if(MIS_Coragon_Silber == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_CoragonsSilber) >= 8)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -226,16 +225,18 @@ instance DIA_Coragon_Schuldenbuch(C_Info)
 	nr = 6;
 	condition = DIA_Coragon_Schuldenbuch_Condition;
 	information = DIA_Coragon_Schuldenbuch_Info;
-	permanent = FALSE;
 	description = "Посмотри, что у меня есть...";
 };
 
 
 func int DIA_Coragon_Schuldenbuch_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Schuldenbuch) && (SchuldBuchNamesKnown == TRUE))
+	if(SchuldBuchNamesKnown == TRUE)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Schuldenbuch))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -253,16 +254,18 @@ instance DIA_Coragon_GiveBook(C_Info)
 	nr = 7;
 	condition = DIA_Coragon_GiveBook_Condition;
 	information = DIA_Coragon_GiveBook_Info;
-	permanent = FALSE;
 	description = "Вот твоя книга.";
 };
 
 
 func int DIA_Coragon_GiveBook_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Coragon_Schuldenbuch) && Npc_HasItems(other,ItWr_Schuldenbuch))
+	if(Npc_KnowsInfo(other,DIA_Coragon_Schuldenbuch))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Schuldenbuch))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -290,7 +293,6 @@ instance DIA_Coragon_ToOV(C_Info)
 	nr = 9;
 	condition = DIA_Coragon_ToOV_Condition;
 	information = DIA_Coragon_ToOV_Info;
-	permanent = FALSE;
 	description = "Как мне попасть в верхний квартал?";
 };
 
@@ -319,7 +321,6 @@ instance DIA_Coragon_Valentino(C_Info)
 	nr = 8;
 	condition = DIA_Coragon_Valentino_Condition;
 	information = DIA_Coragon_Valentino_Info;
-	permanent = FALSE;
 	description = "А что там насчет Валентино?";
 };
 
@@ -348,7 +349,6 @@ instance DIA_Coragon_News(C_Info)
 	nr = 1;
 	condition = DIA_Coragon_News_Condition;
 	information = DIA_Coragon_News_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -382,16 +382,18 @@ instance DIA_Coragon_Ring(C_Info)
 	nr = 10;
 	condition = DIA_Coragon_Ring_Condition;
 	information = DIA_Coragon_Ring_Info;
-	permanent = FALSE;
 	description = "Вот - возьми это кольцо.";
 };
 
 
 func int DIA_Coragon_Ring_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Coragon_News) && Npc_HasItems(other,ItRi_Prot_Edge_01_Valentino))
+	if(Npc_KnowsInfo(other,DIA_Coragon_News))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItRi_Prot_Edge_01_Valentino))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -439,13 +441,13 @@ func void DIA_Coragon_PICKPOCKET_Book_DoIt()
 		CreateInvItem(other,ItWr_Schuldenbuch);
 		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		B_GiveThiefXP();
-		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Корагон",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings(self.name[0],ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
 		SchuldBuch_Stolen_Coragon = TRUE;
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Корагон",PRINT_PickPocketFailed));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};

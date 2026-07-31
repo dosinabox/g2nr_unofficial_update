@@ -2,7 +2,6 @@
 instance VLK_448_Joe(Npc_Default)
 {
 	name[0] = "Äæî";
-//	guild = GIL_OUT;
 	guild = GIL_VLK;
 	id = 448;
 	voice = 10;
@@ -18,7 +17,7 @@ instance VLK_448_Joe(Npc_Default)
 	EquipItem(self,ItMw_ShortSword5);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,25,ItMi_Gold,25);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_ToughBald,BodyTex_P,ITAR_Vlk_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_ToughBald,BodyTex_P,ITAR_VLK_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

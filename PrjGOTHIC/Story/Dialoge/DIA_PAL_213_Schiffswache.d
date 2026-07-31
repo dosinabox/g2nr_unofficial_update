@@ -3,21 +3,10 @@ instance DIA_PAL_213_Schiffswache_EXIT(C_Info)
 {
 	npc = PAL_213_Schiffswache;
 	nr = 999;
-	condition = DIA_PAL_213_Schiffswache_EXIT_Condition;
-	information = DIA_PAL_213_Schiffswache_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_PAL_213_Schiffswache_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_PAL_213_Schiffswache_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -36,9 +25,12 @@ instance DIA_PAL_213_Schiffswache_FirstWarn(C_Info)
 
 func int DIA_PAL_213_Schiffswache_FirstWarn_Condition()
 {
-	if(C_NpcHasGuardStatus(self,PAL_213_Checkpoint,GP_NONE) && (MIS_ShipIsFree == FALSE))
+	if(MIS_ShipIsFree == FALSE)
 	{
-		return TRUE;
+		if(C_NpcHasGuardStatus(self,PAL_213_Checkpoint,GP_NONE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -46,7 +38,7 @@ func void DIA_PAL_213_Schiffswache_FirstWarn_Info()
 {
 	AI_Output(self,other,"DIA_PAL_213_Schiffswache_FirstWarn_01_00");	//Стой! Куда это ты идешь?
 	AI_Output(other,self,"DIA_PAL_213_Schiffswache_FirstWarn_15_01");	//Я хотел...
-	if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_PAL_213_Schiffswache_FirstWarn_01_02");	//Извини. Но тебе сюда нельзя.
 	}
@@ -72,15 +64,18 @@ instance DIA_PAL_213_Schiffswache_SecondWarn(C_Info)
 
 func int DIA_PAL_213_Schiffswache_SecondWarn_Condition()
 {
-	if(C_NpcHasGuardStatus(self,PAL_213_Checkpoint,GP_FirstWarnGiven) && (MIS_ShipIsFree == FALSE))
+	if(MIS_ShipIsFree == FALSE)
 	{
-		return TRUE;
+		if(C_NpcHasGuardStatus(self,PAL_213_Checkpoint,GP_FirstWarnGiven))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_PAL_213_Schiffswache_SecondWarn_Info()
 {
-	if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_PAL_213_Schiffswache_SecondWarn_01_00");	//Ни шагу дальше. Исключений нет ни для кого.
 	}
@@ -107,9 +102,12 @@ instance DIA_PAL_213_Schiffswache_Attack(C_Info)
 
 func int DIA_PAL_213_Schiffswache_Attack_Condition()
 {
-	if(C_NpcHasGuardStatus(self,PAL_213_Checkpoint,GP_SecondWarnGiven) && (MIS_ShipIsFree == FALSE))
+	if(MIS_ShipIsFree == FALSE)
 	{
-		return TRUE;
+		if(C_NpcHasGuardStatus(self,PAL_213_Checkpoint,GP_SecondWarnGiven))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -128,7 +126,6 @@ instance DIA_PAL_213_Schiffswache_GoOnBoard(C_Info)
 	nr = 5;
 	condition = DIA_PAL_213_Schiffswache_GoOnBoard_Condition;
 	information = DIA_PAL_213_Schiffswache_GoOnBoard_Info;
-	permanent = FALSE;
 	description = "Я хочу попасть на борт корабля.";
 };
 
@@ -156,14 +153,13 @@ instance DIA_PAL_213_Schiffswache_IAmKDF(C_Info)
 	nr = 6;
 	condition = DIA_PAL_213_Schiffswache_IAmKDF_Condition;
 	information = DIA_PAL_213_Schiffswache_IAmKDF_Info;
-	permanent = FALSE;
 	description = "Ты сомневаешься в намерениях мага Огня?";
 };
 
 
 func int DIA_PAL_213_Schiffswache_IAmKDF_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_GoOnBoard))
+	if((MIS_ShipIsFree == FALSE) && (other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_GoOnBoard))
 	{
 		return TRUE;
 	};
@@ -184,14 +180,13 @@ instance DIA_PAL_213_Schiffswache_IAmKDF2(C_Info)
 	nr = 6;
 	condition = DIA_PAL_213_Schiffswache_IAmKDF2_Condition;
 	information = DIA_PAL_213_Schiffswache_IAmKDF2_Info;
-	permanent = FALSE;
 	description = "Что будет, если я взойду на борт?";
 };
 
 
 func int DIA_PAL_213_Schiffswache_IAmKDF2_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmKDF))
+	if((MIS_ShipIsFree == FALSE) && (other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmKDF))
 	{
 		return TRUE;
 	};
@@ -210,14 +205,13 @@ instance DIA_PAL_213_Schiffswache_IAmKDF3(C_Info)
 	nr = 6;
 	condition = DIA_PAL_213_Schiffswache_IAmKDF3_Condition;
 	information = DIA_PAL_213_Schiffswache_IAmKDF3_Info;
-	permanent = FALSE;
 	description = "Ты осмелишься атаковать мага Огня?";
 };
 
 
 func int DIA_PAL_213_Schiffswache_IAmKDF3_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmKDF2))
+	if((MIS_ShipIsFree == FALSE) && (other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmKDF2))
 	{
 		return TRUE;
 	};
@@ -238,14 +232,13 @@ instance DIA_PAL_213_Schiffswache_IAmKDF4(C_Info)
 	nr = 6;
 	condition = DIA_PAL_213_Schiffswache_IAmKDF4_Condition;
 	information = DIA_PAL_213_Schiffswache_IAmKDF4_Info;
-	permanent = FALSE;
 	description = "Тогда я сейчас взойду на борт.";
 };
 
 
 func int DIA_PAL_213_Schiffswache_IAmKDF4_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmKDF3))
+	if((MIS_ShipIsFree == FALSE) && (other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmKDF3))
 	{
 		return TRUE;
 	};
@@ -264,14 +257,13 @@ instance DIA_PAL_213_Schiffswache_IAmKDF5(C_Info)
 	nr = 6;
 	condition = DIA_PAL_213_Schiffswache_IAmKDF5_Condition;
 	information = DIA_PAL_213_Schiffswache_IAmKDF5_Info;
-	permanent = FALSE;
 	description = "Приказы лорда Хагена касаются и меня тоже?";
 };
 
 
 func int DIA_PAL_213_Schiffswache_IAmKDF5_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmKDF4))
+	if((MIS_ShipIsFree == FALSE) && (other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmKDF4))
 	{
 		return TRUE;
 	};
@@ -292,14 +284,13 @@ instance DIA_PAL_213_Schiffswache_IAmKDF6(C_Info)
 	nr = 6;
 	condition = DIA_PAL_213_Schiffswache_IAmKDF6_Condition;
 	information = DIA_PAL_213_Schiffswache_IAmKDF6_Info;
-	permanent = FALSE;
 	description = "В последний раз: позволь мне взойти на корабль!";
 };
 
 
 func int DIA_PAL_213_Schiffswache_IAmKDF6_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmKDF5))
+	if((MIS_ShipIsFree == FALSE) && (other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmKDF5))
 	{
 		return TRUE;
 	};
@@ -319,14 +310,13 @@ instance DIA_PAL_213_Schiffswache_IAmPAL(C_Info)
 	nr = 6;
 	condition = DIA_PAL_213_Schiffswache_IAmPAL_Condition;
 	information = DIA_PAL_213_Schiffswache_IAmPAL_Info;
-	permanent = FALSE;
 	description = "Ты не доверяешь мне, рыцарь?";
 };
 
 
 func int DIA_PAL_213_Schiffswache_IAmPAL_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_PAL) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_GoOnBoard))
+	if((MIS_ShipIsFree == FALSE) && (other.guild == GIL_PAL) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_GoOnBoard))
 	{
 		return TRUE;
 	};
@@ -345,14 +335,13 @@ instance DIA_PAL_213_Schiffswache_IAmPAL2(C_Info)
 	nr = 6;
 	condition = DIA_PAL_213_Schiffswache_IAmPAL2_Condition;
 	information = DIA_PAL_213_Schiffswache_IAmPAL2_Info;
-	permanent = FALSE;
 	description = "Тогда ты должен знать, кто из нас выше званием.";
 };
 
 
 func int DIA_PAL_213_Schiffswache_IAmPAL2_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_PAL) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmPAL))
+	if((MIS_ShipIsFree == FALSE) && (other.guild == GIL_PAL) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmPAL))
 	{
 		return TRUE;
 	};
@@ -371,14 +360,13 @@ instance DIA_PAL_213_Schiffswache_IAmPAL3(C_Info)
 	nr = 6;
 	condition = DIA_PAL_213_Schiffswache_IAmPAL3_Condition;
 	information = DIA_PAL_213_Schiffswache_IAmPAL3_Info;
-	permanent = FALSE;
 	description = "И я приказываю тебе пропустить меня на этот корабль.";
 };
 
 
 func int DIA_PAL_213_Schiffswache_IAmPAL3_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_PAL) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmPAL2))
+	if((MIS_ShipIsFree == FALSE) && (other.guild == GIL_PAL) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmPAL2))
 	{
 		return TRUE;
 	};
@@ -398,14 +386,13 @@ instance DIA_PAL_213_Schiffswache_IAmDJG(C_Info)
 	nr = 6;
 	condition = DIA_PAL_213_Schiffswache_IAmDJG_Condition;
 	information = DIA_PAL_213_Schiffswache_IAmDJG_Info;
-	permanent = FALSE;
 	description = "А этот вопрос нельзя как-нибудь решить?";
 };
 
 
 func int DIA_PAL_213_Schiffswache_IAmDJG_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_GoOnBoard))
+	if((MIS_ShipIsFree == FALSE) && (other.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_GoOnBoard))
 	{
 		return TRUE;
 	};
@@ -424,14 +411,13 @@ instance DIA_PAL_213_Schiffswache_IAmDJG2(C_Info)
 	nr = 6;
 	condition = DIA_PAL_213_Schiffswache_IAmDJG2_Condition;
 	information = DIA_PAL_213_Schiffswache_IAmDJG2_Info;
-	permanent = FALSE;
 	description = "Я могу дать тебе денег. За то, что ты будешь смотреть в другую сторону.";
 };
 
 
 func int DIA_PAL_213_Schiffswache_IAmDJG2_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmDJG))
+	if((MIS_ShipIsFree == FALSE) && (other.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmDJG))
 	{
 		return TRUE;
 	};
@@ -450,16 +436,18 @@ instance DIA_PAL_213_Schiffswache_IAmDJG3(C_Info)
 	nr = 6;
 	condition = DIA_PAL_213_Schiffswache_IAmDJG3_Condition;
 	information = DIA_PAL_213_Schiffswache_IAmDJG3_Info;
-	permanent = FALSE;
 	description = "У меня письменное разрешение. Я уполномочен взойти на этот корабль.";
 };
 
 
 func int DIA_PAL_213_Schiffswache_IAmDJG3_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmDJG) && Npc_HasItems(other,ItWr_ForgedShipLetter_MIS))
+	if((MIS_ShipIsFree == FALSE) && (other.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_PAL_213_Schiffswache_IAmDJG))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_ForgedShipLetter_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -468,7 +456,7 @@ func void DIA_PAL_213_Schiffswache_IAmDJG3_Info()
 	AI_Output(other,self,"DIA_PAL_213_Schiffswache_IAmDJG3_15_00");	//У меня письменное разрешение. Я уполномочен взойти на этот корабль.
 	AI_Output(self,other,"DIA_PAL_213_Schiffswache_IAmDJG3_01_01");	//Дай я взгляну.
 	B_GiveInvItems(other,self,ItWr_ForgedShipLetter_MIS,1);
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	AI_Output(self,other,"DIA_PAL_213_Schiffswache_IAmDJG3_01_02");	//Все правильно, ты можешь пройти.
 	B_ShipIsFree();
 };

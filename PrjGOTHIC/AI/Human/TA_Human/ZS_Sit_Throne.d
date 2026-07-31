@@ -15,10 +15,7 @@ func void ZS_Sit_Throne()
 
 func int ZS_Sit_Throne_Loop()
 {
-	if(!C_BodyStateContains(self,BS_SIT) && Wld_IsMobAvailable(self,"THRONE"))
-	{
-		AI_UseMob(self,"THRONE",1);
-	};
+	B_UseAvailableMob(self,"THRONE",BS_SIT);
 	return LOOP_CONTINUE;
 };
 

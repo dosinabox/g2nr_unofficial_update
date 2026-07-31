@@ -67,6 +67,5 @@ instance Giant_RatTransform(Mst_Default_Giant_Rat)
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_StopMagicTransform);
 	B_SetVisuals_Giant_Rat();
 	Npc_SetToFistMode(self);
-	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 

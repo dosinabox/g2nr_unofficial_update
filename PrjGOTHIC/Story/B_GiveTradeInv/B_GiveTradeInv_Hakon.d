@@ -12,7 +12,7 @@ func void B_GiveTradeInv_Hakon(var C_Npc slf)
 		CreateInvItems(slf,ItBe_Addon_Leather_01,1);
 		CreateInvItems(slf,ItBe_Addon_MIL_01,1);
 		CreateInvItems(slf,ItAm_Prot_Edge_01,1);
-		CreateInvItems(slf,ItMiSwordraw,5);
+		CreateInvItems(slf,ItMiSwordRaw,5);
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
 			CreateInvItems(slf,ItMw_ShortSword2,1);
@@ -35,7 +35,7 @@ func void B_GiveTradeInv_Hakon(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Hakon_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMiSwordraw,5);
+		CreateInvItems(slf,ItMiSwordRaw,5);
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
 			CreateInvItems(slf,ItMw_Steinbrecher,1);
@@ -47,7 +47,7 @@ func void B_GiveTradeInv_Hakon(var C_Npc slf)
 	if((Kapitel >= 3) && (Hakon_ItemsGiven_Chapter_3 == FALSE))
 	{
 		CreateInvItems(slf,ItBe_Addon_Prot_Point,1);
-		CreateInvItems(slf,ItMiSwordraw,5);
+		CreateInvItems(slf,ItMiSwordRaw,5);
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
 			CreateInvItems(slf,ItMw_Schwert3,1);
@@ -66,7 +66,7 @@ func void B_GiveTradeInv_Hakon(var C_Npc slf)
 	{
 		CreateInvItems(slf,ItBe_Addon_Prot_EDGE,1);
 		CreateInvItems(slf,ItBe_Addon_Prot_TOTAL,1);
-		CreateInvItems(slf,ItMiSwordraw,5);
+		CreateInvItems(slf,ItMiSwordRaw,5);
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
 			CreateInvItems(slf,ItMw_Schlachtaxt,1);
@@ -75,7 +75,7 @@ func void B_GiveTradeInv_Hakon(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Hakon_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMiSwordraw,5);
+		CreateInvItems(slf,ItMiSwordRaw,5);
 		Hakon_ItemsGiven_Chapter_5 = TRUE;
 	};
 };

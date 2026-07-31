@@ -20,14 +20,14 @@ func void B_InsertMalethWolf()
 
 func void B_InsertLobartOrcs()
 {
+	B_StartOtherRoutine(Vino,"BUGSTHERE");
+	B_StartOtherRoutine(LobartsBauer1,"BUGSTHERE");
+	B_StartOtherRoutine(LobartsBauer2,"BUGSTHERE");
 	Wld_InsertNpc(OrcWarrior_Lobart1,"NW_FARM1_PATH_CITY_SHEEP_04");
 	Wld_InsertNpc(OrcWarrior_Lobart2,"NW_FARM1_PATH_CITY_SHEEP_04");
 	Wld_InsertNpc(OrcWarrior_Lobart3,"NW_FARM1_PATH_CITY_SHEEP_04");
 	Wld_InsertNpc(OrcWarrior_Lobart4,"NW_FARM1_PATH_CITY_SHEEP_01");
 	Wld_InsertNpc(OrcWarrior_Lobart5,"NW_FARM1_PATH_CITY_SHEEP_01");
 	Wld_InsertNpc(OrcWarrior_Lobart6,"NW_FARM1_PATH_CITY_SHEEP_01");
-	B_StartOtherRoutine(Vino,"BUGSTHERE");
-	B_StartOtherRoutine(LobartsBauer1,"BUGSTHERE");
-	B_StartOtherRoutine(LobartsBauer2,"BUGSTHERE");
 };
 

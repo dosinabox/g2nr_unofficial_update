@@ -59,9 +59,12 @@ instance DIA_Addon_Morgan_Anheuern(C_Info)
 
 func int DIA_Addon_Morgan_Anheuern_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (GregIsBack == TRUE) && !Npc_IsDead(Greg))
+	if(Npc_IsInState(self,ZS_Talk) && (GregIsBack == TRUE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Greg))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -88,9 +91,12 @@ instance DIA_Addon_Morgan_Hello(C_Info)
 
 func int DIA_Addon_Morgan_Hello_Condition()
 {
-	if((MIS_AlligatorJack_BringMeat == FALSE) && Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(AlligatorJack) && (GregIsBack == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (GregIsBack == FALSE) && (MIS_AlligatorJack_BringMeat == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(AlligatorJack))
+		{
+			return TRUE;
+		};
 	};
 };
 

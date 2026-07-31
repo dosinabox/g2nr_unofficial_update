@@ -31,7 +31,15 @@ func int C_Hanna_ThievesGuildIsExposed()
 	{
 		if(C_DaysSinceEvent(Andre_FoundThieves_Reported_Day,2))
 		{
-			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
+			if(!Npc_IsDead(Cassia))
+			{
+				return TRUE;
+			};
+			if(!Npc_IsDead(Jesper))
+			{
+				return TRUE;
+			};
+			if(!Npc_IsDead(Ramirez))
 			{
 				return TRUE;
 			};
@@ -62,16 +70,18 @@ instance DIA_Hanna_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Hanna_Hello_Condition;
 	information = DIA_Hanna_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Hanna_Hello_Condition()
 {
-	if(!C_Hanna_ThievesGuildIsExposed() && (HotelDoorOpened == FALSE) && (Knows_SecretSign == FALSE))
+	if((HotelDoorOpened == FALSE) && (Knows_SecretSign == FALSE))
 	{
-		return TRUE;
+		if(!C_Hanna_ThievesGuildIsExposed())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -87,7 +97,6 @@ instance DIA_Hanna_Room(C_Info)
 	nr = 2;
 	condition = DIA_Hanna_Room_Condition;
 	information = DIA_Hanna_Room_Info;
-	permanent = FALSE;
 	description = "Я хочу снять комнату.";
 };
 
@@ -127,7 +136,6 @@ instance DIA_Hanna_WhyPay(C_Info)
 	nr = 3;
 	condition = DIA_Hanna_WhyPay_Condition;
 	information = DIA_Hanna_WhyPay_Info;
-	permanent = FALSE;
 	description = "А почему паладины платят за все?";
 };
 
@@ -248,7 +256,6 @@ instance DIA_Hanna_AnyNews(C_Info)
 	nr = 31;
 	condition = DIA_Hanna_AnyNews_Condition;
 	information = DIA_Hanna_AnyNews_Info;
-	permanent = FALSE;
 	description = "Как дела?";
 };
 
@@ -357,16 +364,18 @@ instance DIA_Hanna_ThisLetter(C_Info)
 	nr = 31;
 	condition = DIA_Hanna_ThisLetter_Condition;
 	information = DIA_Hanna_ThisLetter_Info;
-	permanent = FALSE;
 	description = "Ты этот документ имела в виду?";
 };
 
 
 func int DIA_Hanna_ThisLetter_Condition()
 {
-	if((MIS_HannaRetrieveLetter == LOG_RUNNING) && Npc_HasItems(other,ItWr_ShatteredGolem_MIS) && (Andre_FoundThieves_KilledByMilitia == FALSE))
+	if((MIS_HannaRetrieveLetter == LOG_RUNNING) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_ShatteredGolem_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -390,16 +399,18 @@ instance DIA_Hanna_AusKeller(C_Info)
 	nr = 11;
 	condition = DIA_Hanna_AusKeller_Condition;
 	information = DIA_Hanna_AusKeller_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Hanna_AusKeller_Condition()
 {
-	if(((HotelDoorOpened == TRUE) || (Knows_SecretSign == TRUE)) && !C_Hanna_ThievesGuildIsExposed())
+	if((HotelDoorOpened == TRUE) || (Knows_SecretSign == TRUE))
 	{
-		return TRUE;
+		if(!C_Hanna_ThievesGuildIsExposed())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -439,16 +450,18 @@ instance DIA_Hanna_Schuldenbuch(C_Info)
 	nr = 1;
 	condition = DIA_Hanna_Schuldenbuch_Condition;
 	information = DIA_Hanna_Schuldenbuch_Info;
-	permanent = FALSE;
 	description = "Посмотри, какая у меня есть книга!";
 };
 
 
 func int DIA_Hanna_Schuldenbuch_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Schuldenbuch) && (SchuldBuchNamesKnown == TRUE) && (Andre_FoundThieves_KilledByMilitia == FALSE))
+	if((SchuldBuchNamesKnown == TRUE) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Schuldenbuch))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -467,16 +480,18 @@ instance DIA_Hanna_GiveSchuldenbuch(C_Info)
 	nr = 1;
 	condition = DIA_Hanna_GiveSchuldenbuch_Condition;
 	information = DIA_Hanna_GiveSchuldenbuch_Info;
-	permanent = FALSE;
 	description = "Вот - возьми эту книгу.";
 };
 
 
 func int DIA_Hanna_GiveSchuldenbuch_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hanna_Schuldenbuch) && Npc_HasItems(other,ItWr_Schuldenbuch) && (Andre_FoundThieves_KilledByMilitia == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Hanna_Schuldenbuch) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Schuldenbuch))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -525,6 +540,7 @@ func void DIA_Hanna_Blubb_Info()
 		B_Hanna_ThievesCheck();
 	};
 };
+
 
 instance DIA_Hanna_Blubb2(C_Info)
 {
@@ -614,6 +630,7 @@ func void DIA_Hanna_Blubb3_Info()
 	B_Attack(self,other,AR_NONE,1);
 };
 
+
 instance DIA_Hanna_PICKPOCKET_Book(C_Info)
 {
 	npc = VLK_414_Hanna;
@@ -627,9 +644,12 @@ instance DIA_Hanna_PICKPOCKET_Book(C_Info)
 
 func int DIA_Hanna_PICKPOCKET_Book_Condition()
 {
-	if((ClassicLehmarBook == FALSE) && Npc_HasItems(self,ItWr_Schuldenbuch) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 35))
+	if((ClassicLehmarBook == FALSE) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 35))
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItWr_Schuldenbuch))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -648,12 +668,12 @@ func void DIA_Hanna_PICKPOCKET_Book_DoIt()
 		CreateInvItem(other,ItWr_Schuldenbuch);
 		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		B_GiveThiefXP();
-		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Ханна",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings(self.name[0],ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Ханна",PRINT_PickPocketFailed));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};
@@ -675,11 +695,15 @@ instance DIA_Hanna_Blubb4(C_Info)
 	important = TRUE;
 };
 
+
 func int DIA_Hanna_Blubb4_Condition()
 {
-	if((Andre_FoundThieves_KilledByMilitia == TRUE) && Npc_KnowsInfo(other,DIA_Hanna_Blubb3) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((Andre_FoundThieves_KilledByMilitia == TRUE) && Npc_KnowsInfo(other,DIA_Hanna_Blubb3))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -3,21 +3,10 @@ instance DIA_Harad_EXIT(C_Info)
 {
 	npc = VLK_412_Harad;
 	nr = 999;
-	condition = DIA_Harad_EXIT_Condition;
-	information = DIA_Harad_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Harad_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Harad_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -225,9 +214,12 @@ instance DIA_Harad_OrcSuccess(C_Info)
 
 func int DIA_Harad_OrcSuccess_Condition()
 {
-	if((MIS_Harad_Orc == LOG_RUNNING) && C_ScHasOrcWeapon())
+	if(MIS_Harad_Orc == LOG_RUNNING)
 	{
-		return TRUE;
+		if(C_ScHasOrcWeapon())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -237,34 +229,34 @@ func void DIA_Harad_OrcSuccess_Info()
 	AI_Output(self,other,"DIA_Harad_OrcSuccess_12_01");	//Покажи...
 	if(Npc_HasItems(other,ItMw_2H_OrcMace_01))
 	{
-		B_GiveInvItems(other,self,ItMw_2H_OrcMace_01,1);
+		B_GiveWeapon(other,self,ItMw_2H_OrcMace_01,1);
 		Harad_GotEliteOrcWeapon = TRUE;
 	}
 	else if(Npc_HasItems(other,ItMw_2H_OrcSword_02))
 	{
-		B_GiveInvItems(other,self,ItMw_2H_OrcSword_02,1);
+		B_GiveWeapon(other,self,ItMw_2H_OrcSword_02,1);
 		Harad_GotEliteOrcWeapon = TRUE;
 	}
 	else if(Npc_HasItems(other,ItMw_2H_OrcAxe_04))
 	{
-		B_GiveInvItems(other,self,ItMw_2H_OrcAxe_04,1);
+		B_GiveWeapon(other,self,ItMw_2H_OrcAxe_04,1);
 		Harad_GotEliteOrcWeapon = TRUE;
 	}
 	else if(Npc_HasItems(other,ItMw_2H_OrcSword_01))
 	{
-		B_GiveInvItems(other,self,ItMw_2H_OrcSword_01,1);
+		B_GiveWeapon(other,self,ItMw_2H_OrcSword_01,1);
 	}
 	else if(Npc_HasItems(other,ItMw_2H_OrcAxe_03))
 	{
-		B_GiveInvItems(other,self,ItMw_2H_OrcAxe_03,1);
+		B_GiveWeapon(other,self,ItMw_2H_OrcAxe_03,1);
 	}
 	else if(Npc_HasItems(other,ItMw_2H_OrcAxe_02))
 	{
-		B_GiveInvItems(other,self,ItMw_2H_OrcAxe_02,1);
+		B_GiveWeapon(other,self,ItMw_2H_OrcAxe_02,1);
 	}
 	else if(Npc_HasItems(other,ItMw_2H_OrcAxe_01))
 	{
-		B_GiveInvItems(other,self,ItMw_2H_OrcAxe_01,1);
+		B_GiveWeapon(other,self,ItMw_2H_OrcAxe_01,1);
 	};
 	B_InspectMeleeWeapon(self);
 	if(Harad_HakonMission == TRUE)
@@ -507,6 +499,8 @@ func void DIA_Harad_LEHRLING_Later()
 };
 
 
+var int DIA_Harad_Zustimmung_Permanent;
+
 instance DIA_Harad_Zustimmung(C_Info)
 {
 	npc = VLK_412_Harad;
@@ -525,9 +519,6 @@ func int DIA_Harad_Zustimmung_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Harad_Zustimmung_Permanent;
 
 func void DIA_Harad_Zustimmung_Info()
 {
@@ -587,9 +578,12 @@ instance DIA_Harad_AlsLehrling(C_Info)
 
 func int DIA_Harad_AlsLehrling_Condition()
 {
-	if((Player_IsApprentice == APP_Harad) && Npc_IsInState(self,ZS_Talk) && (Harad_Lehrling_Day != Wld_GetDay()))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((Player_IsApprentice == APP_Harad) && (Harad_Lehrling_Day != Wld_GetDay()))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -685,6 +679,21 @@ func void DIA_Harad_Aufgaben_Info()
 };
 
 
+func int Harad_CountBladesForSale(var int itemInstance)
+{
+	var int count;
+	count = Npc_HasItems(hero,itemInstance);
+	if(C_NpcHasEquippedMeleeWeapon(hero,itemInstance))
+	{
+		if(count > 1)
+		{
+			Npc_RemoveInvItem(hero,itemInstance);
+		};
+		count -= 1;
+	};
+	return count;
+};
+
 instance DIA_Harad_SellBlades(C_Info)
 {
 	npc = VLK_412_Harad;
@@ -706,66 +715,29 @@ func int DIA_Harad_SellBlades_Condition()
 
 func void DIA_Harad_SellBlades_Info()
 {
-	var C_Item EquipWeap;
-	var int anzahl_common;
-	var int anzahl_schwert1;
-	var int anzahl_schwert4;
-	var int anzahl_rubinklinge;
-	var int anzahl_elbastardo;
-	var int gesamt;
-	var string concatText;
-	var int lohn;
+	var int count_common;
+	var int count_schwert1;
+	var int count_schwert4;
+	var int count_rubinklinge;
+	var int count_elbastardo;
+	var int count_total;
+	var int gold;
 	AI_Output(other,self,"DIA_Harad_SellBlades_15_00");	//Я хочу продать оружие, выкованное мной.
-	EquipWeap = Npc_GetEquippedMeleeWeapon(other);
-	anzahl_common = Npc_HasItems(other,ItMw_1H_Common_01);
-	if(Hlp_IsItem(EquipWeap,ItMw_1H_Common_01))
+	if(Npc_HasReadiedWeapon(other))
 	{
-		if(anzahl_common > 1)
-		{
-			Npc_RemoveInvItem(other,ItMw_1H_Common_01);
-		};
-		anzahl_common -= 1;
+		B_Say(self,other,"$ISAIDWEAPONDOWN");
+		AI_StopProcessInfos(self);
+		return;
 	};
-	anzahl_schwert1 = Npc_HasItems(other,ItMw_Schwert1);
-	if(Hlp_IsItem(EquipWeap,ItMw_Schwert1))
+	count_common = Harad_CountBladesForSale(ItMw_1H_Common_01);
+	count_schwert1 = Harad_CountBladesForSale(ItMw_Schwert1);
+	count_schwert4 = Harad_CountBladesForSale(ItMw_Schwert4);
+	count_rubinklinge = Harad_CountBladesForSale(ItMw_Rubinklinge);
+	count_elbastardo = Harad_CountBladesForSale(ItMw_ElBastardo);
+	count_total = count_common + count_schwert1 + count_schwert4 + count_rubinklinge + count_elbastardo;
+	if(count_total == 0)
 	{
-		if(anzahl_schwert1 > 1)
-		{
-			Npc_RemoveInvItem(other,ItMw_Schwert1);
-		};
-		anzahl_schwert1 -= 1;
-	};
-	anzahl_schwert4 = Npc_HasItems(other,ItMw_Schwert4);
-	if(Hlp_IsItem(EquipWeap,ItMw_Schwert4))
-	{
-		if(anzahl_schwert4 > 1)
-		{
-			Npc_RemoveInvItem(other,ItMw_Schwert4);
-		};
-		anzahl_schwert4 -= 1;
-	};
-	anzahl_rubinklinge = Npc_HasItems(other,ItMw_Rubinklinge);
-	if(Hlp_IsItem(EquipWeap,ItMw_Rubinklinge))
-	{
-		if(anzahl_rubinklinge > 1)
-		{
-			Npc_RemoveInvItem(other,ItMw_Rubinklinge);
-		};
-		anzahl_rubinklinge -= 1;
-	};
-	anzahl_elbastardo = Npc_HasItems(other,ItMw_ElBastardo);
-	if(Hlp_IsItem(EquipWeap,ItMw_ElBastardo))
-	{
-		if(anzahl_elbastardo > 1)
-		{
-			Npc_RemoveInvItem(other,ItMw_ElBastardo);
-		};
-		anzahl_elbastardo -= 1;
-	};
-	gesamt = anzahl_common + anzahl_schwert1 + anzahl_schwert4 + anzahl_rubinklinge + anzahl_elbastardo;
-	if(gesamt == 0)
-	{
-		if(Hlp_IsItem(EquipWeap,ItMw_1H_Common_01) || Hlp_IsItem(EquipWeap,ItMw_Schwert1) || Hlp_IsItem(EquipWeap,ItMw_Schwert4) || Hlp_IsItem(EquipWeap,ItMw_Rubinklinge) || Hlp_IsItem(EquipWeap,ItMw_ElBastardo))
+		if(C_NpcHasEquippedMeleeWeapon(other,ItMw_1H_Common_01) || C_NpcHasEquippedMeleeWeapon(other,ItMw_Schwert1) || C_NpcHasEquippedMeleeWeapon(other,ItMw_Schwert4) || C_NpcHasEquippedMeleeWeapon(other,ItMw_Rubinklinge) || C_NpcHasEquippedMeleeWeapon(other,ItMw_ElBastardo))
 		{
 			AI_Output(self,other,"DIA_Harad_SellBlades_12_01");	//Все, что у тебя есть - это меч, висящий на поясе. Ты лучше оставь его себе.
 		}
@@ -777,18 +749,17 @@ func void DIA_Harad_SellBlades_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Harad_SellBlades_12_02");	//Хорошо - давай сюда.
-		Npc_RemoveInvItems(other,ItMw_1H_Common_01,anzahl_common);
-		Npc_RemoveInvItems(other,ItMw_Schwert1,anzahl_schwert1);
-		Npc_RemoveInvItems(other,ItMw_Schwert4,anzahl_schwert4);
-		Npc_RemoveInvItems(other,ItMw_Rubinklinge,anzahl_rubinklinge);
-		Npc_RemoveInvItems(other,ItMw_ElBastardo,anzahl_elbastardo);
-		concatText = ConcatStrings(IntToString(gesamt),PRINT_ItemsGiven);
-		AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		Npc_RemoveInvItems(other,ItMw_1H_Common_01,count_common);
+		Npc_RemoveInvItems(other,ItMw_Schwert1,count_schwert1);
+		Npc_RemoveInvItems(other,ItMw_Schwert4,count_schwert4);
+		Npc_RemoveInvItems(other,ItMw_Rubinklinge,count_rubinklinge);
+		Npc_RemoveInvItems(other,ItMw_ElBastardo,count_elbastardo);
+		AI_PrintScreen(ConcatStrings(IntToString(count_total),PRINT_ItemsGiven),-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		AI_Output(self,other,"DIA_Harad_SellBlades_12_03");	//Отлично. Держи, что заработал.
-		lohn = ((anzahl_common * Value_Common1) + (anzahl_schwert1 * Value_Schwert1) + (anzahl_schwert4 * Value_Schwert4) + (anzahl_rubinklinge * Value_Rubinklinge) + (anzahl_elbastardo * Value_ElBastardo)) / 3;
-		HaradSwordsCounter += gesamt;
-		ApprenticeGoldCounter += lohn;
-		B_GiveInvItems(self,other,ItMi_Gold,lohn);
+		gold = ((count_common * Value_Common1) + (count_schwert1 * Value_Schwert1) + (count_schwert4 * Value_Schwert4) + (count_rubinklinge * Value_Rubinklinge) + (count_elbastardo * Value_ElBastardo)) / 3;
+		HaradSwordsCounter += count_total;
+		ApprenticeGoldCounter += gold;
+		B_GiveInvItems(self,other,ItMi_Gold,gold);
 	};
 };
 
@@ -1025,14 +996,12 @@ func void DIA_Harad_AboutErzklingen_Info()
 };
 
 
-var int OreBladeBought;
-
 func void B_ChooseHaradOreBlade()
 {
 	Info_ClearChoices(DIA_Harad_Erzklingen);
 	Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
-	Info_AddChoice(DIA_Harad_Erzklingen,B_BuildPriceString("Двуручный меч",Value_Blessed_2H_1),DIA_Harad_Erzklingen_2h);
-	Info_AddChoice(DIA_Harad_Erzklingen,B_BuildPriceString("Одноручный меч",Value_Blessed_1H_1),DIA_Harad_Erzklingen_1h);
+	Info_AddChoice(DIA_Harad_Erzklingen,B_BuildPriceString("Двуручный меч",Value_Blessed_2H_1),DIA_Harad_Erzklingen_2H);
+	Info_AddChoice(DIA_Harad_Erzklingen,B_BuildPriceString("Одноручный меч",Value_Blessed_1H_1),DIA_Harad_Erzklingen_1H);
 };
 
 instance DIA_Harad_Erzklingen(C_Info)
@@ -1087,9 +1056,9 @@ func void B_Harad_HaveFunWithYourSword()
 	Info_ClearChoices(DIA_Harad_Erzklingen);
 };
 
-func void DIA_Harad_Erzklingen_2h()
+func void DIA_Harad_Erzklingen_2H()
 {
-	AI_Output(other,self,"DIA_Harad_Erzklingen_2h_15_00");	//Я возьму двуручный меч!
+	AI_Output(other,self,"DIA_Harad_Erzklingen_2H_15_00");	//Я возьму двуручный меч!
 	if(Npc_HasItems(other,ItMi_Gold) >= Value_Blessed_2H_1)
 	{
 		B_GiveInvItems(other,self,ItMi_Gold,Value_Blessed_2H_1);
@@ -1104,9 +1073,9 @@ func void DIA_Harad_Erzklingen_2h()
 	};
 };
 
-func void DIA_Harad_Erzklingen_1h()
+func void DIA_Harad_Erzklingen_1H()
 {
-	AI_Output(other,self,"DIA_Harad_Erzklingen_1h_15_00");	//Я возьму одноручный меч!
+	AI_Output(other,self,"DIA_Harad_Erzklingen_1H_15_00");	//Я возьму одноручный меч!
 	if(Npc_HasItems(other,ItMi_Gold) >= Value_Blessed_1H_1)
 	{
 		B_GiveInvItems(other,self,ItMi_Gold,Value_Blessed_1H_1);
@@ -1134,9 +1103,13 @@ instance DIA_Harad_RepairNecklace(C_Info)
 
 func int DIA_Harad_RepairNecklace_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && !Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 	{
-		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
+		if(MIS_SCKnowsInnosEyeIsBroken == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 		{
 			return TRUE;
 		};

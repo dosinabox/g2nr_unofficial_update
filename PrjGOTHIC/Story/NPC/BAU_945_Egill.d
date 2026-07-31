@@ -9,11 +9,11 @@ instance BAU_945_Egill(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Bau_Axe);
+	EquipItem(self,ItMw_1H_BAU_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,45,ItMi_Gold,24);
 	CreateInvItems(self,ItPo_Health_02,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_P_Normal03,BodyTex_P,ITAR_Bau_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_P_Normal03,BodyTex_P,ITAR_BAU_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

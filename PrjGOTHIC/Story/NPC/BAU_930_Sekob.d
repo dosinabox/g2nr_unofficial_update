@@ -13,7 +13,7 @@ instance BAU_930_Sekob(Npc_Default)
 	EquipItem(self,ItMw_ShortSword2);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,75,ItMi_Gold,230);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_P_OldMan_Gravo,BodyTex_P,ITAR_Vlk_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_P_OldMan_Gravo,BodyTex_P,ITAR_VLK_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);

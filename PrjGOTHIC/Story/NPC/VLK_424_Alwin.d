@@ -10,7 +10,7 @@ instance VLK_424_Alwin(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Vlk_Axe);
+	EquipItem(self,ItMw_1H_VLK_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,20,ItMi_Gold,10);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_NormalBart_Riordian,BodyTex_P,ITAR_Barkeeper);

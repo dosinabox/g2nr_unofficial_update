@@ -185,7 +185,7 @@ instance PC_L60(Npc_Default)
 	B_AddFightSkill(self,NPC_TALENT_BOW,20);
 	B_AddFightSkill(self,NPC_TALENT_CROSSBOW,10);
 	Npc_SetTalentSkill(self,NPC_TALENT_MAGE,6);
-	EquipItem(self,ItMw_1h_MISC_Sword);
+	EquipItem(self,ItMw_1H_MISC_Sword);
 	EquipItem(self,ItAm_Mana_01);
 	EquipItem(self,ItRu_Light);
 	EquipItem(self,ItRu_InstantFireball);
@@ -260,7 +260,7 @@ instance PC_E3Paladin(Npc_Default)
 	B_AddFightSkill(self,NPC_TALENT_2H,90);
 	B_AddFightSkill(self,NPC_TALENT_BOW,80);
 	B_AddFightSkill(self,NPC_TALENT_CROSSBOW,70);
-	EquipItem(self,ItMw_2h_Pal_Sword);
+	EquipItem(self,ItMw_2H_PAL_Sword);
 	EquipItem(self,ItRw_Bow_H_01);
 	CreateInvItems(self,ItRw_Crossbow_H_01,1);
 	CreateInvItems(self,ItRw_Arrow,1000);
@@ -270,7 +270,7 @@ instance PC_E3Paladin(Npc_Default)
 	EquipItem(self,ItRu_PalRepelEvil);
 	CreateInvItems(self,ItMi_Gold,100);
 	CreateInvItems(self,ItMi_Nugget,50);
-	CreateInvItems(self,ItMiSwordraw,10);
+	CreateInvItems(self,ItMiSwordRaw,10);
 	CreateInvItems(self,ItAt_DragonBlood,10);
 	CreateInvItems(self,ItSc_InstantFireball,10);
 	CreateInvItems(self,ItSc_TrfSheep,5);
@@ -313,7 +313,7 @@ instance PC_Bandit(Npc_Default)
 	CreateInvItems(self,ItMi_Gold,1000);
 	CreateInvItems(self,ItMi_GoldNugget_Addon,5);
 	CreateInvItems(self,ItMw_BeliarWeapon_1H_01,1);
-	CreateInvItems(self,ItMw_1h_Vlk_Dagger,1);
+	CreateInvItems(self,ItMw_1H_VLK_Dagger,1);
 	CreateInvItems(self,ItMw_1H_Mace_L_01,1);
 	CreateInvItems(self,ItAm_Addon_STR,1);
 	CreateInvItems(self,ItRi_Addon_STR_01,1);

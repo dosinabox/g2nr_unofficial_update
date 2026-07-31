@@ -223,7 +223,7 @@ func void DIA_Lothar_Dragons_Info()
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_03");	//В городе и без этого полно проблем. Не хватает только еще идиота, пугающего людей баснями о драконах!
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_04");	//Я немедля посадил в тюрьму последнего, кто рассказывал здесь сказки о драконах, и отправил его тюремным транспортом в Долину Рудников. Так что попридержи свой язык!
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_05");	//Мы не можем позволить, чтобы кто-либо здесь сеял панику среди людей!
-		if(Npc_KnowsInfo(other,DIA_DiegoOw_Hallo))
+		if(Npc_KnowsInfo(other,DIA_DiegoOW_Hallo))
 		{
 			AI_Output(other,self,"DIA_Addon_Greg_NW_was_Diego_15_00");	//Ты говоришь о Диего?
 			AI_Output(self,other,"DIA_Lothar_WhoDragons_01_01");	//Да. Парень по имени Диего. Если я не ошибаюсь.
@@ -300,7 +300,7 @@ instance DIA_Lothar_WhoDragons(C_Info)
 
 func int DIA_Lothar_WhoDragons_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && !Npc_KnowsInfo(other,DIA_DiegoOw_Hallo))
+	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && !Npc_KnowsInfo(other,DIA_DiegoOW_Hallo))
 	{
 		return TRUE;
 	};
@@ -875,9 +875,12 @@ instance DIA_Lothar_OWRunning(C_Info)
 
 func int DIA_Lothar_OWRunning_Condition()
 {
-	if((MIS_OLDWORLD == LOG_RUNNING) && !Npc_HasItems(hero,ItWr_PaladinLetter_MIS) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
+	if((MIS_OLDWORLD == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,ItWr_PaladinLetter_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -905,9 +908,12 @@ instance DIA_Lothar_OWRunningBrief(C_Info)
 
 func int DIA_Lothar_OWRunningBrief_Condition()
 {
-	if((MIS_OLDWORLD == LOG_RUNNING) && Npc_HasItems(hero,ItWr_PaladinLetter_MIS) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
+	if((MIS_OLDWORLD == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_PaladinLetter_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -921,7 +927,7 @@ func void DIA_Lothar_OWRunningBrief_Info()
 		AI_UseMob(self,"THRONE",-1);
 		B_TurnToNpc(self,other);
 	};
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	AI_Output(self,other,"DIA_Lothar_Add_01_61");	//Я был несправедлив к тебе. Я буду молить Инноса о прощении за мое поведение.
 	AI_PrintScreen("Письмо Гаронда лорду Хагену получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 };

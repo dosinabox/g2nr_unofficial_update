@@ -45,12 +45,15 @@ func void ZS_Talk()
 		{
 			B_AssignPickpocket(self);
 		};
-		if((self.npcType == NPCTYPE_AMBIENT) || (self.npcType == NPCTYPE_OCAMBIENT) || (self.npcType == NPCTYPE_OWAMBIENT) || (self.npcType == NPCTYPE_BL_AMBIENT) || (self.npcType == NPCTYPE_TAL_AMBIENT))
+		if(C_NpcIsAmbient(self))
 		{
 			B_AssignAmbientInfos(self);
-			if(C_NpcBelongsToCity(self))
+			if(CurrentLevel == NEWWORLD_ZEN)
 			{
-				B_AssignCityGuide(self);
+				if(C_NpcBelongsToCity(self))
+				{
+					B_AssignCityGuide(self);
+				};
 			};
 		};
 		if(self.aivar[AIV_PARTYMEMBER] == TRUE)

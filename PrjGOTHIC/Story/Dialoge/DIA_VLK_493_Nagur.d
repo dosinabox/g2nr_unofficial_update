@@ -3,21 +3,10 @@ instance DIA_Nagur_EXIT(C_Info)
 {
 	npc = VLK_493_Nagur;
 	nr = 999;
-	condition = DIA_Nagur_EXIT_Condition;
-	information = DIA_Nagur_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Nagur_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Nagur_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -58,8 +47,6 @@ func void DIA_Nagur_Hallo_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-var int NagurHack;
 
 func void B_Nagur_Abfertigen()
 {
@@ -119,7 +106,7 @@ func void DIA_Nagur_Job_Info()
 	}
 	else
 	{
-		if(C_MartinIsNear())
+		if(C_MartinIsInTavern())
 		{
 			B_Nagur_RefuseToTalk();
 		}
@@ -176,7 +163,7 @@ func int DIA_Nagur_Auftrag_Condition()
 func void DIA_Nagur_Auftrag_Info()
 {
 	AI_Output(other,self,"DIA_Nagur_Auftrag_15_00");	//Договорились. Так какой у тебя план?
-	if(C_MartinIsNear())
+	if(C_MartinIsInTavern())
 	{
 		B_Nagur_RefuseToTalk();
 	}
@@ -272,9 +259,12 @@ instance DIA_Nagur_Success(C_Info)
 
 func int DIA_Nagur_Success_Condition()
 {
-	if((MIS_Nagur_Bote == LOG_RUNNING) && Npc_HasItems(other,ItMi_BaltramPaket) && (Nagur_Ausgeliefert == FALSE))
+	if((MIS_Nagur_Bote == LOG_RUNNING) && (Nagur_Ausgeliefert == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_BaltramPaket))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -14,6 +14,8 @@ instance MENU_LOG(C_MENU_DEF)
 	items[10] = "MENU_ITEM_LIST_MISSIONS_OLD";
 	items[11] = "MENU_ITEM_LIST_LOG";
 	items[12] = "MENU_ITEM_CONTENT_VIEWER";
+	items[13] = "MENU_ITEM_LOG_CHAPTER_TITLE";
+	items[14] = "MENU_ITEM_LOG_CHAPTER";
 	alpha = 255;
 	posx = 0;
 	posy = 0;
@@ -198,5 +200,29 @@ instance MENU_ITEM_TIME(C_MENU_ITEM_DEF)
 	posy = 6300;
 	fontname = LOG_FONT_DATETIME;
 	flags = flags & ~IT_SELECTABLE;
+};
+
+instance MENU_ITEM_LOG_CHAPTER_TITLE(C_MENU_ITEM_DEF)
+{
+	text[0] = MENU_TEXT_CHAPTER;
+	posx = 1400;
+	posy = 5700;
+	fontname = LOG_FONT_DATETIME;
+	flags = flags & ~IT_SELECTABLE;
+	hideifoptionsectionset = "INTERNAL";
+	hideifoptionset = "UnionActivated";
+	hideonvalue = 0;
+};
+
+instance MENU_ITEM_LOG_CHAPTER(C_MENU_ITEM_DEF)
+{
+	text[0] = "";
+	posx = 2270;
+	posy = 5700;
+	fontname = LOG_FONT_DATETIME;
+	flags = flags & ~IT_SELECTABLE;
+	hideifoptionsectionset = "INTERNAL";
+	hideifoptionset = "UnionActivated";
+	hideonvalue = 0;
 };
 

@@ -766,7 +766,7 @@ instance ItRu_IceCube(C_Item)
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_IceCube;
 	text[2] = NAME_Dam_Magic;
-	count[2] = 60;
+	count[2] = SPL_Damage_IceCube;
 	text[3] = NAME_Sec_Duration;
 	count[3] = SPL_TIME_FREEZE;
 	text[4] = NAME_PureDamagePerSec;
@@ -914,7 +914,7 @@ instance ItRu_IceWave(C_Item)
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_IceWave;
 	text[2] = NAME_Dam_Magic;
-	count[2] = 60;
+	count[2] = SPL_Damage_IceWave;
 	text[3] = NAME_Sec_Duration;
 	count[3] = SPL_TIME_FREEZE;
 	text[4] = NAME_PureDamagePerSec;
@@ -1163,5 +1163,23 @@ instance ItRu_Concussionbolt(C_Item)
 	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_Damage_Concussionbolt;
 	text[4] = NAME_Addon_SpellDontKill;
+};
+
+instance ItRu_Teleport_Maya(C_Item)
+{
+	name = NAME_Rune;
+	mainflag = ITEM_KAT_RUNE;
+	flags = 0;
+	value = 10000;
+	visual = "ItRu_Teleport_3.3ds";
+	material = MAT_STONE;
+	spell = SPL_Teleport_Maya;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_WEAKGLIMMER";
+	description = NAME_SPL_Teleport_Maya;
+	text[1] = NAME_Manakosten;
+	count[1] = SPL_Cost_Teleport;
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 

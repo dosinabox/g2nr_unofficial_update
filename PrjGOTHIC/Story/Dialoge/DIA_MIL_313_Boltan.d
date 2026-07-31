@@ -73,7 +73,6 @@ instance DIA_Boltan_HALLO(C_Info)
 	nr = 1;
 	condition = DIA_Boltan_HALLO_Condition;
 	information = DIA_Boltan_HALLO_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -156,7 +155,6 @@ instance DIA_Boltan_HalloBennet(C_Info)
 	nr = 1;
 	condition = DIA_Boltan_HalloBennet_Condition;
 	information = DIA_Boltan_HalloBennet_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -183,7 +181,6 @@ instance DIA_Boltan_HalloCanthar(C_Info)
 	nr = 1;
 	condition = DIA_Boltan_HalloCanthar_Condition;
 	information = DIA_Boltan_HalloCanthar_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

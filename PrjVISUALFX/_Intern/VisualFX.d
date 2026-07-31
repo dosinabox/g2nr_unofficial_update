@@ -79,7 +79,7 @@ class CFX_BASE
 	var float eminvestnextkeyduration;
 	var float emflygravity;
 	var string emselfrotvel_s;
-	var string userstring[5];
+	var string userstring[VFX_NUM_USERSTRINGS];
 	var string lightpresetname;
 	var string sfxid;
 	var int sfxisambient;

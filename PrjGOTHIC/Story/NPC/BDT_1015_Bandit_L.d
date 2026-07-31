@@ -11,7 +11,7 @@ instance BDT_1015_Bandit_L(Npc_Default)
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,0);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Vlk_Dagger);
+	EquipItem(self,ItMw_1H_VLK_Dagger);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItWr_BanditLetter_MIS,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Normal01,BodyTex_B,ITAR_BDT_M);

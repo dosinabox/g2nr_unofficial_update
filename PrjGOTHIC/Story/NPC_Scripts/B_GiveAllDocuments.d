@@ -37,8 +37,8 @@ func void B_GiveAllClassicDocuments(var C_Npc npc)
 	CreateInvItem(npc,ItWr_Map_Orcelite_MIS);
 	CreateInvItem(npc,ItWr_Map_Caves_MIS);
 	CreateInvItem(npc,ItWr_XardasLetterToOpenBook_MIS);
-	CreateInvItem(npc,ItWr_HallsofIrdorath_MIS);
-	CreateInvItem(npc,ItWr_HallsofIrdorath_Open_MIS);
+	CreateInvItem(npc,ItWr_HallsOfIrdorath_MIS);
+	CreateInvItem(npc,ItWr_HallsOfIrdorath_Open_MIS);
 	CreateInvItem(npc,ItWr_XardasSeamapBook_MIS);
 	CreateInvItem(npc,ItWr_UseLampIdiot_MIS);
 	CreateInvItem(npc,ItWr_Seamap_Irdorath);
@@ -137,7 +137,7 @@ func void B_GiveAllPatchDocuments(var C_Npc npc)
 	CreateInvItem(npc,ItWr_AppleSTR);
 	CreateInvItem(npc,StatsBook);
 	CreateInvItem(npc,AttBook);
-	CreateInvItem(npc,Openbook1);
-	CreateInvItem(npc,Openbook2);
+	CreateInvItem(npc,OpenBook1);
+	CreateInvItem(npc,OpenBook2);
 };
 

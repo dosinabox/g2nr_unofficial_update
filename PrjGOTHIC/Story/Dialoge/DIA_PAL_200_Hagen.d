@@ -3,21 +3,10 @@ instance DIA_Hagen_EXIT(C_Info)
 {
 	npc = PAL_200_Hagen;
 	nr = 999;
-	condition = DIA_Hagen_EXIT_Condition;
-	information = DIA_Hagen_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Hagen_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Hagen_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -87,9 +76,12 @@ instance DIA_Hagen_PMSchulden(C_Info)
 
 func int DIA_Hagen_PMSchulden_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Hagen_Schulden > 0) && (B_GetGreatestPetzCrime(self) <= Hagen_LastPetzCrime))
+	if(Npc_IsInState(self,ZS_Talk) && (Hagen_Schulden > 0))
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) <= Hagen_LastPetzCrime)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -317,9 +309,12 @@ instance DIA_Lord_Hagen_Frieden(C_Info)
 
 func int DIA_Lord_Hagen_Frieden_Condition()
 {
-	if((MIS_Lee_Friedensangebot == LOG_RUNNING) && Npc_HasItems(other,ItWr_Passage_MIS))
+	if(MIS_Lee_Friedensangebot == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Passage_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -328,7 +323,7 @@ func void DIA_Lord_Hagen_Frieden_Info()
 	AI_Output(other,self,"DIA_Lord_Hagen_Frieden_15_00");	//Я принес предложение мира от наемников!
 	AI_Output(self,other,"DIA_Lord_Hagen_Frieden_04_01");	//(раздражительно) Хм... покажи!
 	B_GiveInvItems(other,self,ItWr_Passage_MIS,1);
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	AI_Output(self,other,"DIA_Lord_Hagen_Frieden_04_02");	//Я знаю генерала Ли. Мне также известно об обстоятельствах, при которых он был приговорен к исправительным работам в колонии.
 	AI_Output(self,other,"DIA_Lord_Hagen_Frieden_04_03");	//Я считаю его благородным человеком. Я готов даровать ему помилование - но только ему!
 	AI_Output(self,other,"DIA_Lord_Hagen_Frieden_04_04");	//Это не касается его людей. Впрочем, большинство из них - отъявленные головорезы и заслуживают наказания!
@@ -780,13 +775,13 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	};
 	if(other.HitChance[NPC_TALENT_2H] > other.HitChance[NPC_TALENT_1H])
 	{
-		CreateInvItems(self,ItMw_2h_Pal_Sword,1);
-		B_GiveInvItems(self,other,ItMw_2h_Pal_Sword,1);
+		CreateInvItems(self,ItMw_2H_PAL_Sword,1);
+		B_GiveInvItems(self,other,ItMw_2H_PAL_Sword,1);
 	}
 	else
 	{
-		CreateInvItems(self,ItMw_1h_Pal_Sword,1);
-		B_GiveInvItems(self,other,ItMw_1h_Pal_Sword,1);
+		CreateInvItems(self,ItMw_1H_PAL_Sword,1);
+		B_GiveInvItems(self,other,ItMw_1H_PAL_Sword,1);
 	};
 	Snd_Play("LEVELUP");
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_08");	//С этого времени благодаря твоему рангу ты будешь иметь доступ в монастырь.
@@ -933,9 +928,12 @@ instance DIA_Lord_Hagen_BACKINTOWN(C_Info)
 
 func int DIA_Lord_Hagen_BACKINTOWN_Condition()
 {
-	if((MIS_OLDWORLD == LOG_RUNNING) && Npc_HasItems(other,ItWr_PaladinLetter_MIS) && (Kapitel == 3))
+	if((MIS_OLDWORLD == LOG_RUNNING) && (Kapitel == 3))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_PaladinLetter_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -944,7 +942,7 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_00");	//Я принес тебе новости от Гаронда. Вот, он начертал эти строки для тебя.
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItWr_PaladinLetter_MIS,1);
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_01");	//Наша ситуация хуже, чем я опасался. Но доложи мне о ситуации в Долине Рудников!
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_02");	//Паладины заперты в замке Долины Рудников, окруженном орками.
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_03");	//Они потеряли много людей в старательских операциях и добыли очень мало руды.
@@ -1024,9 +1022,12 @@ instance DIA_Lord_Hagen_RescueBennet(C_Info)
 
 func int DIA_Lord_Hagen_RescueBennet_Condition()
 {
-	if((MIS_RescueBennet == LOG_RUNNING) && !C_SCReadyToRescueBennet())
+	if(MIS_RescueBennet == LOG_RUNNING)
 	{
-		return TRUE;
+		if(!C_SCReadyToRescueBennet())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1104,9 +1105,12 @@ instance DIA_Lord_Hagen_Cornelius(C_Info)
 
 func int DIA_Lord_Hagen_Cornelius_Condition()
 {
-	if((MIS_RescueBennet == LOG_RUNNING) && C_SCReadyToRescueBennet())
+	if(MIS_RescueBennet == LOG_RUNNING)
 	{
-		return TRUE;
+		if(C_SCReadyToRescueBennet())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1120,7 +1124,7 @@ func void DIA_Lord_Hagen_Cornelius_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_01");	//Откуда тебе это известно?
 	AI_Output(other,self,"DIA_Lord_Hagen_Cornelius_15_02");	//Вот, у меня его дневник. Все в нем.
 	B_GiveInvItems(other,self,ItWr_CorneliusTagebuch_MIS,1);
-	B_ReadFakeItem(self,other,Openbook1,3);
+	B_ReadFakeItem(self,other,OpenBook1,3);
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_03");	//(в ярости) Ах, гнусная мразь!
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_04");	//Перед лицом новых доказательств мне не остается ничего другого.
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_05");	//Властью, данной мне королем и церковью, я провозглашаю...
@@ -1194,8 +1198,6 @@ func void DIA_Lord_Hagen_AugeAmStart_Info()
 };
 
 
-var int Hagen_SawOrcRing;
-
 instance DIA_Lord_Hagen_ANTIPALADINE(C_Info)
 {
 	npc = PAL_200_Hagen;
@@ -1209,9 +1211,16 @@ instance DIA_Lord_Hagen_ANTIPALADINE(C_Info)
 
 func int DIA_Lord_Hagen_ANTIPALADINE_Condition()
 {
-	if(((AntiPaladinTalkCount > 0) || Npc_HasItems(other,ItRi_OrcEliteRing)) && (Hagen_SawOrcRing == FALSE))
+	if(Hagen_SawOrcRing == FALSE)
 	{
-		return TRUE;
+		if(AntiPaladinTalkCount > 0)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItRi_OrcEliteRing))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1282,8 +1291,6 @@ func void DIA_Hagen_MoreOrcRings()
 	AI_Output(other,self,"DIA_Lord_Hagen_RINGEBRINGEN_15_03");	//Я могу дать тебе еще несколько колец орков.
 };
 
-var int OrkRingCounter;
-
 instance DIA_Lord_Hagen_RINGEBRINGEN(C_Info)
 {
 	npc = PAL_200_Hagen;
@@ -1297,9 +1304,12 @@ instance DIA_Lord_Hagen_RINGEBRINGEN(C_Info)
 
 func int DIA_Lord_Hagen_RINGEBRINGEN_Condition()
 {
-	if((Hagen_SawOrcRing == TRUE) && Npc_HasItems(other,ItRi_OrcEliteRing) && (other.guild == GIL_PAL))
+	if((Hagen_SawOrcRing == TRUE) && (other.guild == GIL_PAL))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItRi_OrcEliteRing))
+		{
+			return TRUE;
+		};
 	};
 };
 

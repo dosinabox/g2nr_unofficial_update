@@ -18,6 +18,11 @@ func void B_SetStoryPoint(var int newStoryPoint)
 	};
 	if((newStoryPoint >= SP_C2_P1) && (STORYPOINT[SP_C2_P1] == FALSE))
 	{
+		if(CurrentLevel == NEWWORLD_ZEN)
+		{
+			B_SetMortal(Sekob);
+			B_SetMortal(Bengar);
+		};
 		if(!Npc_HasItems(hero,ItKe_Pass_MIS))
 		{
 			CreateInvItem(hero,ItKe_Pass_MIS);

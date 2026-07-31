@@ -45,14 +45,14 @@ func int ZS_Whirlwind_Loop()
 	if(Npc_GetStateTime(self) != self.aivar[AIV_WhirlwindStateTime])
 	{
 		self.aivar[AIV_WhirlwindStateTime] = Npc_GetStateTime(self);
-		if(self.attribute[ATR_HITPOINTS] > SPL_Whirlwind_DAMAGE)
+		/*if(self.attribute[ATR_HITPOINTS] > SPL_WHIRLWIND_DAMAGE_PER_SEC)
 		{
-			B_MagicHurtNpc(other,self,SPL_Whirlwind_DAMAGE);
+			B_MagicHurtNpc(other,self,SPL_WHIRLWIND_DAMAGE_PER_SEC);
 		}
 		else
 		{
 			B_MagicHurtNpc(other,self,self.attribute[ATR_HITPOINTS] - 1);
-		};
+		};*/
 	};
 	return LOOP_CONTINUE;
 };

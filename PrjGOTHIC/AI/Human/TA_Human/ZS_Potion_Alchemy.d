@@ -13,7 +13,7 @@ func void ZS_Potion_Alchemy()
 
 func int ZS_Potion_Alchemy_Loop()
 {
-	B_UseAvailableMob(self,"LAB");
+	B_UseAvailableMob(self,"LAB",BS_MOBINTERACT_INTERRUPT);
 	return LOOP_CONTINUE;
 };
 

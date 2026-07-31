@@ -27,7 +27,6 @@ instance DIA_Wolf_Hallo(C_Info)
 	nr = 4;
 	condition = DIA_Wolf_Hallo_Condition;
 	information = DIA_Wolf_Hallo_Info;
-	permanent = FALSE;
 	description = " ак дела?";
 };
 
@@ -51,7 +50,6 @@ instance DIA_Wolf_WannaJoin(C_Info)
 	nr = 5;
 	condition = DIA_Wolf_WannaJoin_Condition;
 	information = DIA_Wolf_WannaJoin_Info;
-	permanent = FALSE;
 	description = "я хочу присоединитьс€ к вам.";
 };
 
@@ -88,7 +86,6 @@ instance DIA_Wolf_WannaBuy(C_Info)
 	nr = 6;
 	condition = DIA_Wolf_WannaBuy_Condition;
 	information = DIA_Wolf_WannaBuy_Info;
-	permanent = FALSE;
 	description = "“ы можешь что-нибудь продать?";
 };
 
@@ -121,7 +118,6 @@ instance DIA_Wolf_WannaLearn(C_Info)
 	nr = 7;
 	condition = DIA_Wolf_WannaLearn_Condition;
 	information = DIA_Wolf_WannaLearn_Info;
-	permanent = FALSE;
 	description = "“ы можешь научить мен€ чему-нибудь?";
 };
 
@@ -296,7 +292,6 @@ instance DIA_Wolf_Stadt(C_Info)
 	nr = 10;
 	condition = DIA_Wolf_Stadt_Condition;
 	information = DIA_Wolf_Stadt_Info;
-	permanent = FALSE;
 	description = "ј ты не пыталс€ найти работу в городе?";
 };
 
@@ -327,7 +322,6 @@ instance DIA_Wolf_AboutCrawler(C_Info)
 	nr = 1;
 	condition = DIA_Wolf_AboutCrawler_Condition;
 	information = DIA_Wolf_AboutCrawler_Info;
-	permanent = FALSE;
 	description = "я слышал, ты умеешь делать доспехи из панцирей краулеров?";
 };
 
@@ -507,7 +501,7 @@ func void DIA_Wolf_BENGAR_Info()
 		AI_Output(self,other,"DIA_Wolf_BENGAR_08_04");	//Ќу, хоть что-то. я хот€ бы буду далеко от этой фермы, и не буду смотреть как идиот на здешнюю кузницу.
 		DIA_Wolf_BENGAR_oneTime = TRUE;
 	};
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Wolf_BENGAR_08_05");	//я согласен. ј так как ты один из нас, € не возьму много за эту работу. ƒай мне 300 золотых, и € сразу же отправлюсь туда.
 		Wolf_BENGAR_geld = 300;
@@ -570,9 +564,12 @@ instance DIA_Wolf_PERMKAP3(C_Info)
 
 func int DIA_Wolf_PERMKAP3_Condition()
 {
-	if((Kapitel >= 3) && (Npc_GetDistToWP(self,"FARM3") < 3000) && (MIS_BengarsHelpingSLD == LOG_SUCCESS) && (Wolf_IsOnBoard != LOG_SUCCESS))
+	if((Kapitel >= 3) && (MIS_BengarsHelpingSLD == LOG_SUCCESS) && (Wolf_IsOnBoard != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"FARM3") < 3000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -593,15 +590,20 @@ instance DIA_Wolf_BENGARDEAD(C_Info)
 	condition = DIA_Wolf_BENGARDEAD_Condition;
 	information = DIA_Wolf_BENGARDEAD_Info;
 	important = TRUE;
-	permanent = FALSE;
 };
 
 
 func int DIA_Wolf_BENGARDEAD_Condition()
 {
-	if((Kapitel >= 3) && (Npc_GetDistToWP(self,"FARM3") < 3000) && (MIS_BengarsHelpingSLD == LOG_SUCCESS) && (Wolf_IsOnBoard != LOG_SUCCESS) && Npc_IsDead(Bengar))
+	if((Kapitel >= 3) && (MIS_BengarsHelpingSLD == LOG_SUCCESS) && (Wolf_IsOnBoard != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(Npc_IsDead(Bengar))
+		{
+			if(Npc_GetDistToWP(self,"FARM3") < 3000)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 

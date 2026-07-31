@@ -10415,11 +10415,11 @@ instance SWIM_BACKWARDS_A1(C_SFX_DEF)
 	vol = 60;
 };
 
-instance CS_MHL_FL_WA(C_SFX_DEF)
+/*instance CS_MHL_FL_WA(C_SFX_DEF)
 {
 	file = "CS_Intro_WaterSplash.wav";
 	vol = 40;
-};
+};*/
 
 instance CS_IAL_ME_WO(C_SFX_DEF)
 {

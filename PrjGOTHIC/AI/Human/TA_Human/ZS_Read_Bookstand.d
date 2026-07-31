@@ -12,7 +12,7 @@ func void ZS_Read_Bookstand()
 
 func int ZS_Read_Bookstand_Loop()
 {
-	B_UseAvailableMob(self,"BOOK");
+	B_UseAvailableMob(self,"BOOK",BS_MOBINTERACT_INTERRUPT);
 	return LOOP_CONTINUE;
 };
 

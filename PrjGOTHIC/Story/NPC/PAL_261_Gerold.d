@@ -9,8 +9,8 @@ instance PAL_261_Gerold(Npc_Default)
 	npcType = NPCTYPE_OCMAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_2h_Pal_Sword);
-	EquipItem(self,ItRw_Mil_Crossbow);
+	EquipItem(self,ItMw_2H_PAL_Sword);
+	EquipItem(self,ItRw_MIL_Crossbow);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,71,ItMi_Gold,170);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal_Blade,BodyTex_N,ITAR_PAL_M);

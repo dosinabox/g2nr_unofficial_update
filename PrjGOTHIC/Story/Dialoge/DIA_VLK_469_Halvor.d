@@ -60,9 +60,12 @@ instance DIA_Halvor_Hallo(C_Info)
 
 func int DIA_Halvor_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && Wld_IsTime(5,0,20,0) && (Halvor_Ausgeliefert == FALSE))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(Wld_IsTime(5,0,20,0) && (Halvor_Ausgeliefert == FALSE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -115,9 +118,12 @@ instance DIA_Halvor_Night(C_Info)
 
 func int DIA_Halvor_Night_Condition()
 {
-	if(Wld_IsTime(20,0,5,0) && Npc_IsInState(self,ZS_Talk) && (Halvor_Ausgeliefert == FALSE))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(Wld_IsTime(20,0,5,0) && (Halvor_Ausgeliefert == FALSE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -204,9 +210,12 @@ instance DIA_Halvor_MESSAGE(C_Info)
 
 func int DIA_Halvor_MESSAGE_Condition()
 {
-	if(Npc_HasItems(other,ItWr_HalvorMessage) && (Knows_Halvor == TRUE) && (Halvor_Ausgeliefert == FALSE))
+	if((Knows_Halvor == TRUE) && (Halvor_Ausgeliefert == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_HalvorMessage))
+		{
+			return TRUE;
+		};
 	};
 };
 

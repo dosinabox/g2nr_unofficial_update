@@ -9,8 +9,8 @@ instance PAL_257_Ritter(Npc_Default)
 	npcType = NPCTYPE_OWAMBIENT;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_1h_Pal_Sword);
-	EquipItem(self,ItRw_Mil_Crossbow);
+	EquipItem(self,ItMw_1H_PAL_Sword);
+	EquipItem(self,ItRw_MIL_Crossbow);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart_Swiney,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,1);

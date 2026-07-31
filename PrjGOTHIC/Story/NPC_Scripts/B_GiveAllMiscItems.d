@@ -4,12 +4,12 @@ func void B_GiveAllClassicMiscItems(var C_Npc npc)
 	CreateInvItems(npc,ItMi_Gold,1000);
 	CreateInvItems(npc,ItKe_Lockpick,10);
 	CreateInvItems(npc,ItLsTorch,10);
-	CreateInvItem(npc,ItLsTorchburned);
+	CreateInvItem(npc,ItLsTorchBurned);
 	CreateInvItem(npc,ItLsTorchFirespit);
-	CreateInvItem(npc,ItMiSwordraw);
-	CreateInvItem(npc,ItMiSwordrawhot);
-	CreateInvItem(npc,ItMiSwordbladehot);
-	CreateInvItem(npc,ItMiSwordblade);
+	CreateInvItem(npc,ItMiSwordRaw);
+	CreateInvItem(npc,ItMiSwordRawHot);
+	CreateInvItem(npc,ItMiSwordBladeHot);
+	CreateInvItem(npc,ItMiSwordBlade);
 	CreateInvItem(npc,ItMi_Pan);
 	CreateInvItem(npc,ItMi_PanFull);
 	CreateInvItem(npc,ItMi_Pliers);
@@ -53,7 +53,7 @@ func void B_GiveAllClassicMiscItems(var C_Npc npc)
 	CreateInvItem(npc,ItMi_ApfelTabak);
 	CreateInvItem(npc,ItMi_PilzTabak);
 	CreateInvItem(npc,ItMi_DoppelTabak);
-	CreateInvItem(npc,ItMi_Honigtabak);
+	CreateInvItem(npc,ItMi_HonigTabak);
 	CreateInvItem(npc,ItMi_SumpfTabak);
 	CreateInvItem(npc,ItMi_Pocket);
 	CreateInvItem(npc,ItSe_GoldPocket25);

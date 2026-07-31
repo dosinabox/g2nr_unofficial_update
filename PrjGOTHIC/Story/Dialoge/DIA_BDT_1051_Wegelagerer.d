@@ -188,9 +188,16 @@ instance DIA_1051_Wegelagerer_ANGRIFF(C_Info)
 
 func int DIA_1051_Wegelagerer_ANGRIFF_Condition()
 {
-	if(!Npc_RefuseTalk(self) && ((BDT_1051_Attack == TRUE) || C_NpcIsDown(BDT_1052)))
+	if(!Npc_RefuseTalk(self))
 	{
-		return TRUE;
+		if(BDT_1051_Attack == TRUE)
+		{
+			return TRUE;
+		};
+		if(C_NpcIsDown(BDT_1052))
+		{
+			return TRUE;
+		};
 	};
 };
 

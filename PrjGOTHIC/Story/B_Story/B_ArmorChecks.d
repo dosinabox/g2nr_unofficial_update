@@ -15,68 +15,40 @@ func int ArmorEquipped(var C_Npc npc,var int itemInstance)
 
 func int VisibleGuild(var C_Npc npc)
 {
-	if(!Npc_HasEquippedArmor(npc))
+	var C_Item armor;
+	if(Npc_HasEquippedArmor(npc))
 	{
-		return GIL_NONE;
-	};
-	if(ArmorEquipped(npc,ITAR_NOV_L))
-	{
-		return GIL_NOV;
-	};
-	if(ArmorEquipped(npc,ITAR_KDF_L) || ArmorEquipped(npc,ITAR_KDF_M) || ArmorEquipped(npc,ITAR_KDF_H) || ArmorEquipped(npc,ITAR_KDF_S))
-	{
-		return GIL_KDF;
-	};
-	if(ArmorEquipped(npc,ITAR_MIL_L) || ArmorEquipped(npc,ITAR_MIL_M))
-	{
-		return GIL_MIL;
-	};
-	if(ArmorEquipped(npc,ITAR_PAL_M) || ArmorEquipped(npc,ITAR_PALN_M) || ArmorEquipped(npc,ITAR_PAL_H) || ArmorEquipped(npc,ITAR_PALN_H) || ArmorEquipped(npc,ITAR_PAL_S))
-	{
-		return GIL_PAL;
-	};
-	if(ArmorEquipped(npc,ITAR_SLD_L) || ArmorEquipped(npc,ITAR_SLD_M) || ArmorEquipped(npc,ITAR_SLD_H) || ArmorEquipped(npc,ITAR_SLD_S))
-	{
-		return GIL_SLD;
-	};
-	if(ArmorEquipped(npc,ITAR_DJG_L) || ArmorEquipped(npc,ITAR_DJG_M) || ArmorEquipped(npc,ITAR_DJGN_M) || ArmorEquipped(npc,ITAR_DJG_H) || ArmorEquipped(npc,ITAR_DJGN_H))
-	{
-		return GIL_DJG;
-	};
-	if(ArmorEquipped(npc,ITAR_Vlk_L) || ArmorEquipped(npc,ITAR_Vlk_M) || ArmorEquipped(npc,ITAR_Vlk_H) || ArmorEquipped(npc,ITAR_Governor) || ArmorEquipped(npc,ITAR_Larius))
-	{
-		return GIL_VLK;
-	};
-	if(ArmorEquipped(npc,ITAR_Bau_L) || ArmorEquipped(npc,ITAR_Bau_M) || ArmorEquipped(npc,ITAR_Onar))
-	{
-		return GIL_BAU;
-	};
-	if(ArmorEquipped(npc,ITAR_KDW_L_Addon) || ArmorEquipped(npc,ITAR_KDW_H))
-	{
-		return GIL_KDW;
+		armor = Npc_GetEquippedArmor(npc);
+		return armor.ownerGuild;
 	};
 	return GIL_NONE;
 };
 
 func int C_LawArmorEquipped(var C_Npc npc)
 {
-	if(VisibleGuild(npc) == GIL_MIL)
+	var int guild;
+	guild = VisibleGuild(npc);
+	if(guild == GIL_MIL)
 	{
 		return TRUE;
 	};
-	if(VisibleGuild(npc) == GIL_PAL)
+	if(guild == GIL_PAL)
 	{
 		return TRUE;
 	};
-	if(VisibleGuild(npc) == GIL_NOV)
+	if(guild == GIL_NOV)
 	{
 		return TRUE;
 	};
-	if(VisibleGuild(npc) == GIL_KDF)
+	if(guild == GIL_KDF)
 	{
 		return TRUE;
 	};
-	if(VisibleGuild(npc) == GIL_KDW)
+	if(guild == GIL_KDW)
+	{
+		return TRUE;
+	};
+	if(ArmorEquipped(npc,ITAR_Judge))
 	{
 		return TRUE;
 	};
@@ -105,15 +77,21 @@ func void B_BaltramRangerCheck(var C_Npc npc)
 
 func int C_ExpensiveArmorEquipped(var C_Npc npc)
 {
-	if(VisibleGuild(npc) == GIL_KDF)
+	var int guild;
+	guild = VisibleGuild(npc);
+	if(guild == GIL_KDF)
 	{
 		return TRUE;
 	};
-	if(VisibleGuild(npc) == GIL_PAL)
+	if(guild == GIL_PAL)
 	{
 		return TRUE;
 	};
-	if(VisibleGuild(npc) == GIL_DJG)
+	if(guild == GIL_DJG)
+	{
+		return TRUE;
+	};
+	if(guild == GIL_KDW)
 	{
 		return TRUE;
 	};
@@ -153,7 +131,7 @@ func int C_ExpensiveArmorEquipped(var C_Npc npc)
 	{
 		return TRUE;
 	};
-	if(VisibleGuild(npc) == GIL_KDW)
+	if(ArmorEquipped(npc,ITAR_Judge))
 	{
 		return TRUE;
 	};
@@ -162,27 +140,7 @@ func int C_ExpensiveArmorEquipped(var C_Npc npc)
 
 func int C_BanditArmorEquipped(var C_Npc npc)
 {
-	if(ArmorEquipped(npc,ITAR_BDT_M))
-	{
-		return TRUE;
-	};
-	if(ArmorEquipped(npc,ITAR_BDT_H))
-	{
-		return TRUE;
-	};
-	if(ArmorEquipped(npc,ITAR_Thorus_Addon))
-	{
-		return TRUE;
-	};
-	if(ArmorEquipped(npc,ITAR_OreBaron_Addon))
-	{
-		return TRUE;
-	};
-	if(ArmorEquipped(npc,ITAR_Bloodwyn_Addon))
-	{
-		return TRUE;
-	};
-	if(ArmorEquipped(npc,ITAR_Diego))
+	if(VisibleGuild(npc) == GIL_BDT)
 	{
 		return TRUE;
 	};
@@ -191,15 +149,7 @@ func int C_BanditArmorEquipped(var C_Npc npc)
 
 func int C_PirateArmorEquipped(var C_Npc npc)
 {
-	if(ArmorEquipped(npc,ITAR_PIR_M_Addon))
-	{
-		return TRUE;
-	};
-	if(ArmorEquipped(npc,ITAR_PIR_L_Addon))
-	{
-		return TRUE;
-	};
-	if(ArmorEquipped(npc,ITAR_PIR_H_Addon))
+	if(VisibleGuild(npc) == GIL_PIR)
 	{
 		return TRUE;
 	};

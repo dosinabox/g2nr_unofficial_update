@@ -90,9 +90,12 @@ instance DIA_Igaranz_NotWork(C_Info)
 
 func int DIA_Igaraz_NotWork_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
+	if((Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -117,9 +120,12 @@ instance DIA_Igaranz_Choosen(C_Info)
 
 func int DIA_Igaraz_Choosen_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaranz_NotWork) && (Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Igaranz_NotWork) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -166,9 +172,12 @@ instance DIA_Igaranz_StudyInnos(C_Info)
 
 func int DIA_Igaraz_StudyInnos_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaranz_NotWork) && (Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500) && (Parlan_Erlaubnis == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Igaranz_NotWork) && (Parlan_Erlaubnis == FALSE) && (other.guild == GIL_NOV))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -192,9 +201,12 @@ instance DIA_Igaraz_IMTHEMAN(C_Info)
 
 func int DIA_Igaraz_IMTHEMAN_Condition()
 {
-	if((MIS_Schnitzeljagd == LOG_RUNNING) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein))
+	if((MIS_Schnitzeljagd == LOG_RUNNING) && (other.guild == GIL_NOV) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -216,9 +228,12 @@ instance DIA_Igaraz_METOO(C_Info)
 
 func int DIA_Igaraz_METOO_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaraz_IMTHEMAN) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein))
+	if(Npc_KnowsInfo(other,DIA_Igaraz_IMTHEMAN) && (other.guild == GIL_NOV) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -272,11 +287,18 @@ instance DIA_Igaraz_ADD(C_Info)
 
 func int DIA_Igaraz_ADD_Condition()
 {
-	if(((Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) || (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_66") <= 3500)) && (MIS_Golem == LOG_RUNNING) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
+	if((MIS_Golem == LOG_RUNNING) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
 	{
 		if(!Npc_IsDead(Magic_Golem))
 		{
-			return TRUE;
+			if(Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500)
+			{
+				return TRUE;
+			};
+			if(Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_66") <= 3500)
+			{
+				return TRUE;
+			};
 		};
 	};
 };

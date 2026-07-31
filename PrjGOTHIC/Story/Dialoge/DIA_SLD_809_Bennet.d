@@ -3,25 +3,25 @@ func void B_UpdateBennetItemsCount()
 {
 	if((Bennet_ItemsGiven_Chapter_1 == TRUE) && (Kapitel == 1))
 	{
-		Bennet_NW_ItMi_Swordraw_Count = Npc_HasItems(self,ItMiSwordraw);
+		Bennet_NW_ItMi_SwordRaw_Count = Npc_HasItems(self,ItMiSwordRaw);
 	};
 	if((Bennet_ItemsGiven_Chapter_2 == TRUE) && (Kapitel == 2))
 	{
-		Bennet_NW_ItMi_Swordraw_Count = Npc_HasItems(self,ItMiSwordraw);
+		Bennet_NW_ItMi_SwordRaw_Count = Npc_HasItems(self,ItMiSwordRaw);
 	};
 	if((Bennet_ItemsGiven_Chapter_3 == TRUE) && (Kapitel == 3))
 	{
-		Bennet_NW_ItMi_Swordraw_Count = Npc_HasItems(self,ItMiSwordraw);
+		Bennet_NW_ItMi_SwordRaw_Count = Npc_HasItems(self,ItMiSwordRaw);
 		Bennet_NW_ItMi_Nugget_Count = Npc_HasItems(self,ItMi_Nugget);
 	};
 	if((Bennet_ItemsGiven_Chapter_4 == TRUE) && (Kapitel == 4))
 	{
-		Bennet_NW_ItMi_Swordraw_Count = Npc_HasItems(self,ItMiSwordraw);
+		Bennet_NW_ItMi_SwordRaw_Count = Npc_HasItems(self,ItMiSwordRaw);
 		Bennet_NW_ItMi_Nugget_Count = Npc_HasItems(self,ItMi_Nugget);
 	};
 	if((Bennet_ItemsGiven_Chapter_5 == TRUE) && (Kapitel == 5))
 	{
-		Bennet_NW_ItMi_Swordraw_Count = Npc_HasItems(self,ItMiSwordraw);
+		Bennet_NW_ItMi_SwordRaw_Count = Npc_HasItems(self,ItMiSwordRaw);
 		Bennet_NW_ItMi_Nugget_Count = Npc_HasItems(self,ItMi_Nugget);
 	};
 };
@@ -1001,9 +1001,9 @@ func void DIA_Bennet_Present_Info()
 	AI_Output(self,other,"DIA_Bennet_Present_06_01");	//Мы все слышали о драконах, которые вроде бы появились в Долине.
 	AI_Output(other,self,"DIA_Bennet_Present_15_02");	//Они действительно там!
 	AI_Output(self,other,"DIA_Bennet_Present_06_03");	//Хорошо, я верю тебе.
-	if(hero.guild == GIL_SLD)
+	if(other.guild == GIL_SLD)
 	{
-		B_SetGuild(hero,GIL_DJG);
+		B_SetGuild(other,GIL_DJG);
 		AI_Output(self,other,"DIA_Bennet_Present_06_04");	//Как бы там ни было, некоторые из парней решили отправиться в Долину.
 		AI_Output(self,other,"DIA_Bennet_Present_06_05");	//(ухмыляется) Они собираются навести там порядок.
 		AI_Output(other,self,"DIA_Bennet_Present_15_06");	//А какое это имеет отношение ко мне?
@@ -1043,7 +1043,7 @@ instance DIA_Bennet_DragonScale(C_Info)
 
 func int DIA_Bennet_DragonScale_Condition()
 {
-	if(Npc_HasItems(other,ItAt_DragonScale) && (hero.guild == GIL_DJG))
+	if(Npc_HasItems(other,ItAt_DragonScale) && (other.guild == GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -1085,7 +1085,7 @@ instance DIA_Bennet_DJG_ARMOR_M(C_Info)
 
 func int DIA_Bennet_DJG_ARMOR_M_Condition()
 {
-	if((Bennet_DIA_Bennet_DJG_ARMOR_M_permanent == FALSE) && (hero.guild == GIL_DJG) && (Show_DJG_Armor_M == TRUE))
+	if((Bennet_DIA_Bennet_DJG_ARMOR_M_permanent == FALSE) && (other.guild == GIL_DJG) && (Show_DJG_Armor_M == TRUE))
 	{
 		return TRUE;
 	};
@@ -1103,7 +1103,7 @@ func void DIA_Bennet_DJG_ARMOR_M_Info()
 		if(Helmets_Enabled == TRUE)
 		{
 			B_GiveArmor(ITAR_DJGN_M);
-			CreateInvItem(hero,ItHe_DJG_M);
+			CreateInvItem(other,ItHe_DJG_M);
 		}
 		else
 		{
@@ -1130,7 +1130,7 @@ instance DIA_Bennet_BetterArmor(C_Info)
 
 func int DIA_Bennet_BetterArmor_Condition()
 {
-	if((PlayergetsFinalDJGArmor == TRUE) && (hero.guild == GIL_DJG))
+	if((PlayerGetsFinalDJGArmor == TRUE) && (other.guild == GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -1161,7 +1161,7 @@ instance DIA_Bennet_DJG_ARMOR_H(C_Info)
 
 func int DIA_Bennet_DJG_ARMOR_H_Condition()
 {
-	if((Bennet_DIA_Bennet_DJG_ARMOR_H_permanent == FALSE) && (hero.guild == GIL_DJG) && (Npc_KnowsInfo(other,DIA_Bennet_BetterArmor) || Npc_KnowsInfo(other,DIA_Bennet_DI_BetterArmor)))
+	if((Bennet_DIA_Bennet_DJG_ARMOR_H_permanent == FALSE) && (other.guild == GIL_DJG) && (Npc_KnowsInfo(other,DIA_Bennet_BetterArmor) || Npc_KnowsInfo(other,DIA_Bennet_DI_BetterArmor)))
 	{
 		return TRUE;
 	};
@@ -1178,7 +1178,7 @@ func void DIA_Bennet_DJG_ARMOR_H_Info()
 		if(Helmets_Enabled == TRUE)
 		{
 			B_GiveArmor(ITAR_DJGN_H);
-			CreateInvItem(hero,ItHe_DJG_H);
+			CreateInvItem(other,ItHe_DJG_H);
 		}
 		else
 		{
@@ -1342,9 +1342,6 @@ func void DIA_Bennet_GetInnosEye_Info()
 	};
 };
 
-
-var int BennetsDragonEggOffer;
-var int DragonEggCounter;
 
 instance DIA_Bennet_DRACHENEIER(C_Info)
 {

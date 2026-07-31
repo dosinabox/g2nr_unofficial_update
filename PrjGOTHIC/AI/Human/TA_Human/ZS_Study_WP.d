@@ -50,21 +50,31 @@ func int ZS_Study_WP_Loop()
 		{
 			AI_PlayAni(self,"T_LGUARD_2_STAND");
 			self.aivar[AIV_TAPOSITION] = NOTINPOS;
-			if(!Npc_HasItems(self,Fakescroll))
+			if(!Npc_HasItems(self,FakeScroll))
 			{
-				CreateInvItem(self,Fakescroll);
+				CreateInvItem(self,FakeScroll);
 			};
 			B_StopLookAt(self);
-			AI_UseItemToState(self,Fakescroll,1);
+			AI_UseItemToState(self,FakeScroll,1);
 			AI_Wait(self,waittime);
-			AI_UseItemToState(self,Fakescroll,-1);
+			AI_UseItemToState(self,FakeScroll,-1);
 			Npc_SetStateTime(self,0);
 			if((self.guild == GIL_KDW) && (RavenIsDead == FALSE))
 			{
 				eventrandy = Hlp_Random(100);
-				if(((eventrandy < 5) && (CurrentLevel == NEWWORLD_ZEN)) || ((eventrandy == 1) && (CurrentLevel == ADDONWORLD_ZEN)))
+				if(CurrentLevel == NEWWORLD_ZEN)
 				{
-					B_Event_Portal_EarthQuake();
+					if(eventrandy < 5)
+					{
+						B_Event_Portal_EarthQuake();
+					};
+				}
+				else if(CurrentLevel == ADDONWORLD_ZEN)
+				{
+					if(eventrandy == 1)
+					{
+						B_Event_Portal_EarthQuake();
+					};
 				};
 			};
 		};
@@ -79,6 +89,6 @@ func int ZS_Study_WP_Loop()
 
 func void ZS_Study_WP_End()
 {
-	B_RemoveEveryInvItem(self,Fakescroll);
+	B_RemoveEveryInvItem(self,FakeScroll);
 };
 

@@ -9,10 +9,10 @@ instance VLK_403_Gerbrandt(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Vlk_Mace);
+	EquipItem(self,ItMw_1H_VLK_Mace);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,30,ItSe_GoldPocket100,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_L_Tough_Santino,BodyTex_L,ITAR_Vlk_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_L_Tough_Santino,BodyTex_L,ITAR_VLK_H);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);
@@ -38,8 +38,8 @@ func void Rtn_WaitForDiego_403()
 
 func void Rtn_Flee_403()
 {
-	TA_FleeToWP(22,0,8,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
-	TA_FleeToWP(8,0,22,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
+	TA_FleeToWp(22,0,8,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
+	TA_FleeToWp(8,0,22,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
 };
 
 func void Rtn_NewLife_403()

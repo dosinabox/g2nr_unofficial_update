@@ -10,10 +10,10 @@ instance VLK_444_Jack(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Vlk_Sword);
+	EquipItem(self,ItMw_1H_VLK_Sword);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,50,ItMi_Gold,100);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_ImportantOld,BodyTex_N,ITAR_Vlk_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_ImportantOld,BodyTex_N,ITAR_VLK_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);
@@ -37,7 +37,7 @@ func void Rtn_Lighthouse_444()
 func void Rtn_WaitForShipCaptain_444()
 {
 	TA_Sit_Bench(8,0,20,0,"NW_WAITFOR_SHIP_CAPTAIN");
-	TA_Sit_Bench(0,0,8,0,"NW_WAITFOR_SHIP_CAPTAIN");
+	TA_Sit_Bench(20,0,8,0,"NW_WAITFOR_SHIP_CAPTAIN");
 };
 
 func void Rtn_AllOnBoard_444()

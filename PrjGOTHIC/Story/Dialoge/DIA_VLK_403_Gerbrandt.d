@@ -3,21 +3,10 @@ instance DIA_Gerbrandt_EXIT(C_Info)
 {
 	npc = VLK_403_Gerbrandt;
 	nr = 999;
-	condition = DIA_Gerbrandt_EXIT_Condition;
-	information = DIA_Gerbrandt_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Gerbrandt_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Gerbrandt_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -33,9 +22,9 @@ instance DIA_Gerbrandt_PreHello(C_Info)
 
 func int DIA_Gerbrandt_PreHello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_DiegosResidence != LOG_SUCCESS))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		if((VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_PAL) && (VisibleGuild(other) != GIL_KDW))
+		if((MIS_DiegosResidence != LOG_SUCCESS) && (VisibleGuild(other) != GIL_KDF) && (VisibleGuild(other) != GIL_PAL) && (VisibleGuild(other) != GIL_KDW))
 		{
 			return TRUE;
 		};
@@ -107,7 +96,7 @@ func void DIA_Gerbrandt_Hello_Yes()
 func void DIA_Gerbrandt_Hello_Yes_No()
 {
 	AI_Output(other,self,"DIA_Gerbrandt_Hello_Yes_No_15_00");	//Нет.
-	AI_Output(self,other,"DIA_Gerbrandt_Hello_Yes_No_10_01");	//Ничего, по крайне мере, ты сможешь переложить несколько мешков с места на место.
+	AI_Output(self,other,"DIA_Gerbrandt_Hello_Yes_No_10_01");	//Ничего, по крайней мере, ты сможешь переложить несколько мешков с места на место.
 	AI_Output(self,other,"DIA_Gerbrandt_Hello_Yes_No_10_02");	//И если я буду доволен тобой, возможно, я даже предложу тебе постоянное место. Здесь всегда много работы.
 	AI_Output(self,other,"DIA_Gerbrandt_Hello_Yes_No_10_03");	//Что ж, тогда я жду тебя у себя, как только к пристани пришвартуется первый торговый корабль.
 	Info_ClearChoices(DIA_Gerbrandt_Hello);
@@ -202,9 +191,12 @@ instance DIA_Gerbrandt_GreetingsFromDiego(C_Info)
 
 func int DIA_Gerbrandt_GreetingsFromDiego_Condition()
 {
-	if((MIS_DiegosResidence == LOG_RUNNING) && Npc_HasItems(other,ItWr_DiegosLetter_MIS))
+	if(MIS_DiegosResidence == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_DiegosLetter_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -214,7 +206,7 @@ func void DIA_Gerbrandt_GreetingsFromDiego_Info()
 	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_01");	//(испуганно) Что? Кто? Какой Диего?
 	AI_Output(other,self,"DIA_Gerbrandt_GreetingsFromDiego_15_02");	//Он попросил меня вручить тебе это письмо.
 	B_GiveInvItems(other,self,ItWr_DiegosLetter_MIS,1);
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_03");	//(возбужденно) Этого не может быть. Мне конец!
 	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_04");	//(в страхе) Он что, уже в городе?
 	AI_Output(other,self,"DIA_Gerbrandt_GreetingsFromDiego_15_05");	//Кто?

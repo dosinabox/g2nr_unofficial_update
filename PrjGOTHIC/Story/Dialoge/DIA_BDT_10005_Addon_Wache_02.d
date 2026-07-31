@@ -3,21 +3,10 @@ instance DIA_Addon_Wache_02_EXIT(C_Info)
 {
 	npc = BDT_10005_Addon_Wache_02;
 	nr = 999;
-	condition = DIA_Addon_Wache_02_EXIT_Condition;
-	information = DIA_Addon_Wache_02_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Wache_02_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Wache_02_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -40,7 +29,7 @@ func void DIA_Addon_Wache_02_Hi_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Wache_02_Hi_15_00");	//Как дела?
 	AI_Output(self,other,"DIA_Addon_Wache_02_Hi_13_01");	//Подожди-ка, а мы с тобой не знакомы?
-	B_ReadFakeItem(self,other,Fakeheroface,1);
+	B_ReadFakeItem(self,other,FakeHeroFace,1);
 	AI_Output(self,other,"DIA_Addon_Wache_02_Hi_13_02");	//Хм-м... нет, ты не похож. Проходи, не задерживайся.
 };
 

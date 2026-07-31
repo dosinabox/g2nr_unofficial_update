@@ -46,6 +46,10 @@ func void B_NPC_IsAliveCheck(var int Zen)
 			};
 			if(!Npc_IsDead(Rod))
 			{
+				if(Npc_HasItems(Rod,ItMw_2H_Rod))
+				{
+					Rod_HasHisSwordInNW = TRUE;
+				};
 				SLD_Rod_isAlive = TRUE;
 				B_DeletePetzCrime(Rod);
 				B_RemoveNpc(SLD_804_Rod);

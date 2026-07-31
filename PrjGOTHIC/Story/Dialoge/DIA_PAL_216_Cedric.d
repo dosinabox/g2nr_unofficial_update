@@ -27,7 +27,6 @@ instance DIA_Cedric_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Cedric_Hallo_Condition;
 	information = DIA_Cedric_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

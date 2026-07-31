@@ -99,6 +99,7 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 		};
 	};
 	B_KillThievesGuild();
+	B_ResetWambo();
 	B_ResetWolfSLDs();
 };
 
@@ -280,7 +281,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(Wolf,"NW_PATH_TO_MONASTER_AREA_10");
 		Wld_InsertNpc(Warg,"NW_XARDAS_GOBBO_01");
 		Wld_InsertNpc(Warg,"NW_XARDAS_GOBBO_01");
-		if(Bdt_1013_ToCavalorn == TRUE)
+		if(BDT_1013_ToCavalorn == TRUE)
 		{
 			B_KillNpc(BDT_1013_Bandit_L);
 		};
@@ -550,7 +551,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(OrcElite_AntiPaladin,"NW_FARM1_PATH_CITY_13");
 			Wld_InsertNpc(OrcElite_AntiPaladin,"NW_BIGFARM_FARM4_PATH_04");
 			Wld_InsertNpc(OrcWarrior_Roam,"FP_PICK_NW_FARM4_FIELD_01");
-			Wld_InsertNpc(OrcWarrior_Roam,"FP_PICK_NW_FARM4_FIELD_04");
+			Wld_InsertNpc(OrcWarrior_Roam,"FP_PICK_NW_FARM4_FIELD_07");
 			Wld_InsertNpc(OrcWarrior_Roam,"FP_PICK_NW_FARM4_FIELD_05");
 			Wld_InsertNpc(OrcWarrior_Roam,"FP_PICK_NW_FARM4_FIELD_02");
 			Wld_InsertNpc(OrcWarrior_Roam,"FP_PICK_NW_FARM4_FIELD_06");
@@ -685,7 +686,6 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_STAND_DEMENTOR_KDF_09");
 			Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_KDF_10");
 			Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_KDF_11");
-			Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_KDF_13");
 			Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_STAND_DEMENTOR_KDF_14");
 			Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_KDF_22");
 			Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_KDF_23");
@@ -694,6 +694,10 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(DMT_DementorAmbientWalker10,"CITY1");
 			Wld_InsertNpc(DMT_DementorAmbientWalker8,"CITY1");
 			Wld_InsertNpc(DMT_DementorAmbientWalker7,"CITY1");
+			if(C_WorldIsFixed())
+			{
+				Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_KDF_13");
+			};
 			if(!Npc_IsDead(Randolph))
 			{
 				CreateInvItems(Randolph,ItWr_DementorObsessionBook_MIS,1);
@@ -796,7 +800,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		Wld_InsertNpc(Lurker,"NW_FARM3_MOUNTAINLAKE_05");
 		Wld_InsertNpc(Lurker,"NW_FARM3_MOUNTAINLAKE_05");
 		Wld_InsertNpc(NONE_101_Mario,"NW_CITY_ENTRANCE_01");
-		Wld_InsertItem(ItWr_HallsofIrdorath_MIS,"FP_NW_ITEM_LIBRARY_IRDORATHBOOK");
+		Wld_InsertItem(ItWr_HallsOfIrdorath_MIS,"FP_NW_ITEM_LIBRARY_IRDORATHBOOK");
 		Wld_InsertItem(ItWr_Seamap_Irdorath,"FP_NW_ITEM_LIBRARY_SEAMAP");
 		Wld_InsertItem(ItWr_XardasSeamapBook_MIS,"FP_NW_ITEM_LIBRARY_SEAMAP");
 		Wld_InsertItem(ItPo_PotionOfDeath_01_MIS,"FP_NW_ITEM_LIBRARY_SEAMAP2");

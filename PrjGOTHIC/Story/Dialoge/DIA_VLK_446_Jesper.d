@@ -3,21 +3,10 @@ instance DIA_Jesper_EXIT(C_Info)
 {
 	npc = VLK_446_Jesper;
 	nr = 999;
-	condition = DIA_Jesper_EXIT_Condition;
-	information = DIA_Jesper_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Jesper_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Jesper_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -27,7 +16,6 @@ instance DIA_Jesper_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Jesper_Hallo_Condition;
 	information = DIA_Jesper_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -78,7 +66,7 @@ func void DIA_Jesper_Hallo_NurSo()
 	{
 		Info_AddChoice(DIA_Jesper_Hallo,"Отведи меня к вашему главарю.",DIA_Jesper_Hallo_Anfuehrer);
 	}
-	else if(!Npc_IsDead(Attila))
+	else if(C_NpcIsValidAndAlive(Attila))
 	{
 		if(Npc_HasItems(Attila,ItKe_ThiefGuildKey_MIS))
 		{
@@ -228,14 +216,17 @@ instance DIA_Jesper_Killer(C_Info)
 	nr = 1;
 	condition = DIA_Jesper_Killer_Condition;
 	information = DIA_Jesper_Killer_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Jesper_Killer_Condition()
 {
-	if(Npc_IsDead(Cassia) || Npc_IsDead(Ramirez))
+	if(Npc_IsDead(Cassia))
+	{
+		return TRUE;
+	};
+	if(Npc_IsDead(Ramirez))
 	{
 		return TRUE;
 	};
@@ -267,7 +258,6 @@ instance DIA_Jesper_Bogen(C_Info)
 	nr = 10;
 	condition = DIA_Jesper_Bogen_Condition;
 	information = DIA_Jesper_Bogen_Info;
-	permanent = FALSE;
 	description = "Скажи, ты ничего не знаешь о луке Боспера?";
 };
 
@@ -301,7 +291,6 @@ instance DIA_Jesper_Tuer(C_Info)
 	nr = 10;
 	condition = DIA_Jesper_Tuer_Condition;
 	information = DIA_Jesper_Tuer_Info;
-	permanent = FALSE;
 	description = "А что за этой закрытой дверью?";
 };
 
@@ -317,7 +306,7 @@ func int DIA_Jesper_Tuer_Condition()
 func void DIA_Jesper_Tuer_Info()
 {
 	AI_Output(other,self,"DIA_Jesper_Tuer_15_00");	//А что за этой закрытой дверью?
-	AI_Output(self,other,"DIA_Jesper_Tuer_09_01");	//(ухмыляется) За ней находится сундук - сундук мастера-медвежатника Фингерcа.
+	AI_Output(self,other,"DIA_Jesper_Tuer_09_01");	//(ухмыляется) За ней находится сундук - сундук мастера-медвежатника Фингерса.
 	AI_Output(self,other,"DIA_Jesper_Tuer_09_02");	//Он поставил такой невероятно сложный замок на него, что до сих пор никому не удалось открыть его.
 	AI_Output(self,other,"DIA_Jesper_Tuer_09_03");	//К сожалению, он как-то попался - и его засунули за Барьер, где он, вероятно, и умер.
 	if(Npc_HasItems(self,ItKe_Fingers))
@@ -334,7 +323,6 @@ instance DIA_Jesper_Truhe(C_Info)
 	nr = 10;
 	condition = DIA_Jesper_Truhe_Condition;
 	information = DIA_Jesper_Truhe_Info;
-	permanent = FALSE;
 	description = "Мне удалось открыть сундук.";
 };
 

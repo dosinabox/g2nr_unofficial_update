@@ -12,7 +12,7 @@ instance DJG_713_Biff_NW(Npc_Default)
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_2h_Sld_Axe);
+	EquipItem(self,ItMw_2H_SLD_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,92,ItMi_Gold,250);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal16,BodyTex_N,ITAR_DJG_M);

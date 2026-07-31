@@ -9,7 +9,7 @@ instance VLK_4109_Waffenknecht(Npc_Default)
 	npcType = NPCTYPE_OCAMBIENT;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Mil_Sword);
+	EquipItem(self,ItMw_1H_MIL_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Ricelord,BodyTex_N,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,2);

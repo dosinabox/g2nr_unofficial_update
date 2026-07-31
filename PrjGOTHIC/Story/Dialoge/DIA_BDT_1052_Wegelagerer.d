@@ -27,7 +27,6 @@ instance DIA_1052_Wegelagerer_Hello(C_Info)
 	nr = 1;
 	condition = DIA_1052_Wegelagerer_Hello_Condition;
 	information = DIA_1052_Wegelagerer_Hello_Info;
-	permanent = FALSE;
 	description = " то ты?";
 };
 
@@ -63,9 +62,12 @@ instance DIA_1052_Wegelagerer_ANGRIFF(C_Info)
 
 func int DIA_1052_Wegelagerer_ANGRIFF_Condition()
 {
-	if(!Npc_RefuseTalk(self) && C_NpcIsDown(BDT_1051))
+	if(!Npc_RefuseTalk(self))
 	{
-		return TRUE;
+		if(C_NpcIsDown(BDT_1051))
+		{
+			return TRUE;
+		};
 	};
 };
 

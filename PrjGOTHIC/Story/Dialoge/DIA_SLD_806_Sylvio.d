@@ -41,7 +41,7 @@ func void DIA_Sylvio_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Sylvio_Hallo_15_00");	//Как дела?
 	AI_Output(self,other,"DIA_Sylvio_Hallo_09_01");	//Разве я давал тебе разрешение обратиться ко мне?
-	Sylvio_angequatscht += 1;
+	self.aivar[AIV_Nerver] += 1;
 	AI_StopProcessInfos(self);
 };
 
@@ -52,7 +52,6 @@ instance DIA_Sylvio_Thekla(C_Info)
 	nr = 2;
 	condition = DIA_Sylvio_Thekla_Condition;
 	information = DIA_Sylvio_Thekla_Info;
-	permanent = FALSE;
 	description = "Текла говорит, что у нее проблемы с тобой.";
 };
 
@@ -78,7 +77,7 @@ func void DIA_Sylvio_Thekla_Info()
 	{
 		B_Say(self,other,"$GETOUTOFHERE");
 	};
-	Sylvio_angequatscht += 1;
+	self.aivar[AIV_Nerver] += 1;
 	AI_StopProcessInfos(self);
 };
 
@@ -89,7 +88,6 @@ instance DIA_Sylvio_Gossip(C_Info)
 	nr = 3;
 	condition = DIA_Sylvio_Gossip_Condition;
 	information = DIA_Sylvio_Gossip_Info;
-	permanent = FALSE;
 	description = "О тебе многие говорят...";
 };
 
@@ -103,7 +101,7 @@ func void DIA_Sylvio_Gossip_Info()
 {
 	AI_Output(other,self,"DIA_Sylvio_Gossip_15_00");	//О тебе многие говорят...
 	AI_Output(self,other,"DIA_Sylvio_Gossip_09_01");	//Эти многие говорят слишком много.
-	Sylvio_angequatscht += 1;
+	self.aivar[AIV_Nerver] += 1;
 	AI_StopProcessInfos(self);
 };
 
@@ -114,7 +112,6 @@ instance DIA_Sylvio_AboutLee(C_Info)
 	nr = 4;
 	condition = DIA_Sylvio_AboutLee_Condition;
 	information = DIA_Sylvio_AboutLee_Info;
-	permanent = FALSE;
 	description = "Что ты думаешь о Ли?";
 };
 
@@ -129,7 +126,7 @@ func void DIA_Sylvio_AboutLee_Info()
 	AI_Output(other,self,"DIA_Sylvio_AboutLee_15_00");	//Что ты думаешь о Ли?
 	AI_Output(self,other,"DIA_Sylvio_AboutLee_09_01");	//(слегка иронично) Ох, он хороший боец. Я бы не стал вступать в схватку с ним.
 	AI_Output(self,other,"DIA_Sylvio_AboutLee_09_02");	//(холодно) Если конечно, ее можно было бы избежать.
-	Sylvio_angequatscht += 1;
+	self.aivar[AIV_Nerver] += 1;
 	AI_StopProcessInfos(self);
 };
 
@@ -247,7 +244,6 @@ instance DIA_Sylvio_MenDefeated(C_Info)
 	nr = 5;
 	condition = DIA_Sylvio_MenDefeated_Condition;
 	information = DIA_Sylvio_MenDefeated_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -282,14 +278,13 @@ instance DIA_Sylvio_Asshole(C_Info)
 	nr = 2;
 	condition = DIA_Sylvio_Asshole_Condition;
 	information = DIA_Sylvio_Asshole_Info;
-	permanent = FALSE;
 	description = "Эй, дерьмо...";
 };
 
 
 func int DIA_Sylvio_Asshole_Condition()
 {
-	if(Sylvio_angequatscht >= 1)
+	if(self.aivar[AIV_Nerver] >= 1)
 	{
 		return TRUE;
 	};
@@ -300,7 +295,7 @@ func void DIA_Sylvio_Asshole_Info()
 	AI_Output(other,self,"DIA_Sylvio_Asshole_15_00");	//Эй, дерьмо...
 	AI_Output(self,other,"DIA_Sylvio_Asshole_09_01");	//Ты что, действительно думаешь, что я вызову тебя на дуэль?
 	AI_Output(self,other,"DIA_Sylvio_Asshole_09_02");	//Проваливай туда, откуда ты выполз.
-	Sylvio_angequatscht += 1;
+	self.aivar[AIV_Nerver] += 1;
 	AI_StopProcessInfos(self);
 };
 

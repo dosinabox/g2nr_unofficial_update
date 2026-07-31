@@ -93,17 +93,17 @@ func void DIA_Hodges_TellAboutFarm_Info()
 };
 
 
-instance DIA_Hodges_AboutSld(C_Info)
+instance DIA_Hodges_AboutSLD(C_Info)
 {
 	npc = BAU_908_Hodges;
 	nr = 2;
-	condition = DIA_Hodges_AboutSld_Condition;
-	information = DIA_Hodges_AboutSld_Info;
+	condition = DIA_Hodges_AboutSLD_Condition;
+	information = DIA_Hodges_AboutSLD_Info;
 	description = "А что насчет наемников?";
 };
 
 
-func int DIA_Hodges_AboutSld_Condition()
+func int DIA_Hodges_AboutSLD_Condition()
 {
 	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
 	{
@@ -111,13 +111,13 @@ func int DIA_Hodges_AboutSld_Condition()
 	};
 };
 
-func void DIA_Hodges_AboutSld_Info()
+func void DIA_Hodges_AboutSLD_Info()
 {
-	AI_Output(other,self,"DIA_Hodges_AboutSld_15_00");	//А что насчет наемников?
-	AI_Output(self,other,"DIA_Hodges_AboutSld_03_01");	//Онар нанял их, чтобы они не пускали сюда ополчение.
-	AI_Output(self,other,"DIA_Hodges_AboutSld_03_02");	//Но также они охраняют ферму, наших овец и самих фермеров.
-	AI_Output(self,other,"DIA_Hodges_AboutSld_03_03");	//Так что даже не думай украсть что-нибудь или пошарить в чужом сундуке.
-	AI_Output(self,other,"DIA_Hodges_AboutSld_03_04");	//Они только и ждут шанса, чтобы задать тебе трепку.
+	AI_Output(other,self,"DIA_Hodges_AboutSLD_15_00");	//А что насчет наемников?
+	AI_Output(self,other,"DIA_Hodges_AboutSLD_03_01");	//Онар нанял их, чтобы они не пускали сюда ополчение.
+	AI_Output(self,other,"DIA_Hodges_AboutSLD_03_02");	//Но также они охраняют ферму, наших овец и самих фермеров.
+	AI_Output(self,other,"DIA_Hodges_AboutSLD_03_03");	//Так что даже не думай украсть что-нибудь или пошарить в чужом сундуке.
+	AI_Output(self,other,"DIA_Hodges_AboutSLD_03_04");	//Они только и ждут шанса, чтобы задать тебе трепку.
 };
 
 

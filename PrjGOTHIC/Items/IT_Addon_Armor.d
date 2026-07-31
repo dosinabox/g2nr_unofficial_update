@@ -21,6 +21,7 @@ instance ITAR_PIR_L_Addon(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_PIR_L_Addon;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_PIR;
 	visual = "ItAr_PIR_L_ADDON.3ds";
 	visual_change = "Armor_Pir_L_Addon.ASC";
 	visual_skin = 0;
@@ -52,6 +53,7 @@ instance ITAR_PIR_M_Addon(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_PIR_M_Addon;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_PIR;
 	visual = "ItAr_PIR_M_ADDON.3ds";
 	visual_change = "Armor_PIR_M_ADDON.asc";
 	visual_skin = 0;
@@ -83,6 +85,7 @@ instance ITAR_PIR_H_Addon(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_PIR_H_Addon;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_PIR;
 	visual = "ItAr_PIR_H_ADDON.3ds";
 	visual_change = "Armor_PIR_H_ADDON.asc";
 	visual_skin = 0;
@@ -113,6 +116,7 @@ instance ITAR_Thorus_Addon(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Thorus_Addon;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_BDT;
 	visual = "ItAr_Thorus_ADDON.3ds";
 	visual_change = "Armor_Thorus_ADDON.asc";
 	visual_skin = 0;
@@ -172,6 +176,7 @@ instance ITAR_OreBaron_Addon(C_Item)
 	protection[PROT_MAGIC] = 10;
 	value = VALUE_ITAR_OreBaron_Addon;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_BDT;
 	visual = "ItAr_CHAOS_ADDON.3ds";
 	visual_change = "Armor_CHAOS_ADDON.asc";
 	visual_skin = 0;
@@ -252,6 +257,7 @@ instance ITAR_KDW_L_Addon(C_Item)
 	protection[PROT_MAGIC] = 25;
 	value = VALUE_ITAR_KDW_L_Addon;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_KDW;
 	visual = "ItAr_KDW_L_ADDON.3ds";
 	visual_change = "Armor_KDW_L_ADDON.asc";
 	visual_skin = 0;
@@ -281,6 +287,7 @@ instance ITAR_Bloodwyn_Addon(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Bloodwyn_Addon;
 	wear = WEAR_TORSO;
+	ownerGuild = GIL_BDT;
 	visual = "ItAr_Bloodwyn_ADDON.3ds";
 	visual_change = "Armor_Bloodwyn_ADDON.asc";
 	visual_skin = 0;
@@ -336,7 +343,7 @@ instance ITAR_FireArmor_Addon(C_Item)
 	protection[PROT_POINT] = 100;
 	protection[PROT_FIRE] = 50;
 	protection[PROT_MAGIC] = 50;
-	value = VALUE_ITAR_XARDAS;
+	value = VALUE_ITAR_Xardas;
 	wear = WEAR_TORSO | WEAR_EFFECT;
 	effect = "SPELLFX_FIREARMOR";
 	visual = "ItAr_Xardas.3ds";

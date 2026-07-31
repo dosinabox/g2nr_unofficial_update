@@ -112,9 +112,12 @@ instance DIA_Addon_Samuel_Versteck(C_Info)
 
 func int DIA_Addon_Samuel_Versteck_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Samuel_Francis) && (GregIsBack == FALSE) && !Npc_IsDead(Francis))
+	if(Npc_KnowsInfo(other,DIA_Addon_Samuel_Francis) && (GregIsBack == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Francis))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -158,9 +161,19 @@ instance DIA_Addon_Samuel_Recipe(C_Info)
 
 func int DIA_Addon_Samuel_Recipe_Condition()
 {
-	if(((Samuel_Knows_LousHammer == FALSE) && Npc_HasItems(other,ItWr_Addon_Lou_Rezept)) || ((Samuel_Knows_SchlafHammer == FALSE) && Npc_HasItems(other,ItWr_Addon_Lou_Rezept2)))
+	if(Samuel_Knows_LousHammer == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Addon_Lou_Rezept))
+		{
+			return TRUE;
+		};
+	};
+	if(Samuel_Knows_SchlafHammer == FALSE)
+	{
+		if(Npc_HasItems(other,ItWr_Addon_Lou_Rezept2))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -190,7 +203,7 @@ func void DIA_Addon_Samuel_Recipe_LousHammer()
 	AI_Output(other,self,"DIA_Addon_Samuel_Recipe_LousHammer_15_00");	//Это от Снафа.
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItWr_Addon_Lou_Rezept,1);
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	AI_Output(self,other,"DIA_Addon_Samuel_Recipe_LousHammer_14_04");	//Но это же ужасно! Я должен немедленно попробовать...
 	B_GivePlayerXP(XP_Ambient);
 	Samuel_Knows_LousHammer = TRUE;
@@ -201,7 +214,7 @@ func void DIA_Addon_Samuel_Recipe_LousDoubleHammer()
 	AI_Output(other,self,"DIA_Addon_Samuel_Recipe_LousDoubleHammer_15_00");	//Будь осторожен. Это опасная штука!
 	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItWr_Addon_Lou_Rezept2,1);
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	AI_Output(self,other,"DIA_Addon_Samuel_Recipe_LousDoubleHammer_14_04");	//Ты меня пугаешь. Но я все равно попробую.
 	B_GivePlayerXP(XP_Ambient);
 	Samuel_Knows_SchlafHammer = TRUE;

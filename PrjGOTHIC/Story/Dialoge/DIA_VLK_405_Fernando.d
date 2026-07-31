@@ -140,9 +140,12 @@ instance DIA_Addon_Fernando_BanditTrader(C_Info)
 
 func int DIA_Addon_Fernando_BanditTrader_Condition()
 {
-	if((FernandoBlame_noPerm == FALSE) && (MIS_Vatras_FindTheBanditTrader == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Fernando_Hello) && (NpcObsessedByDMT_Fernando == FALSE) && C_SCHasAnyFernandoEvidence() && (Fernando_ImKnast == FALSE))
+	if((FernandoBlame_noPerm == FALSE) && (MIS_Vatras_FindTheBanditTrader == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Fernando_Hello) && (NpcObsessedByDMT_Fernando == FALSE) && (Fernando_ImKnast == FALSE))
 	{
-		return TRUE;
+		if(C_SCHasAnyFernandoEvidence())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -358,11 +361,14 @@ func int DIA_Fernando_Prison_Condition()
 {
 	if((Fernando_ImKnast == TRUE) && Npc_IsInState(self,ZS_Talk) && (NpcObsessedByDMT_Fernando == FALSE))
 	{
-		if((Kapitel >= 3) && (other.guild == GIL_KDF))
+		if(Kapitel < 3)
 		{
-			return FALSE;
+			return TRUE;
 		};
-		return TRUE;
+		if(other.guild != GIL_KDF)
+		{
+			return TRUE;
+		};
 	};
 };
 

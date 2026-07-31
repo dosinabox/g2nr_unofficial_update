@@ -26,25 +26,14 @@ func void Rtn_Start_9999()
 };
 
 
-instance StoryHelper_EXIT(C_Info)
+instance DIA_StoryHelper_EXIT(C_Info)
 {
 	npc = SH;
 	nr = 999;
-	condition = StoryHelper_EXIT_Condition;
-	information = StoryHelper_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int StoryHelper_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void StoryHelper_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

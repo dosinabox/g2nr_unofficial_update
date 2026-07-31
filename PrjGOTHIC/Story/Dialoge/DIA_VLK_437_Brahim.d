@@ -75,7 +75,6 @@ instance DIA_Brahim_GREET(C_Info)
 	nr = 2;
 	condition = DIA_Brahim_GREET_Condition;
 	information = DIA_Brahim_GREET_Info;
-	permanent = FALSE;
 	description = "Что ты делаешь здесь?";
 };
 
@@ -153,11 +152,11 @@ func int DIA_Brahim_BUY_Condition()
 func void DIA_Brahim_BUY_Info()
 {
 	AI_Output(other,self,"DIA_Brahim_BUY_15_00");	//Покажи мне свои карты.
-	if(hero.guild == GIL_KDF)
+	if(VisibleGuild(other) == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Brahim_BUY_07_01");	//Ты не найдешь лучше даже в монастыре.
 	}
-	else if(hero.guild == GIL_PAL)
+	else if(VisibleGuild(other) == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Brahim_BUY_07_02");	//Хорошая карта - это очень важно, особенно для людей, прибывших с материка, мистер паладин.
 	};

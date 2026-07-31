@@ -9,9 +9,12 @@ func void B_AssessQuietSound()
 	{
 		return;
 	};
-	if((Wld_GetPlayerPortalGuild() >= GIL_NONE) && (Npc_GetHeightToNpc(self,other) > PERC_DIST_INDOOR_HEIGHT))
+	if(Wld_GetPlayerPortalGuild() >= GIL_NONE)
 	{
-		return;
+		if(Npc_GetHeightToNpc(self,other) > PERC_DIST_INDOOR_HEIGHT)
+		{
+			return;
+		};
 	};
 	if(B_AssessEnterRoom())
 	{

@@ -27,7 +27,6 @@ instance DIA_Valentino_HALLO(C_Info)
 	nr = 1;
 	condition = DIA_Valentino_HALLO_Condition;
 	information = DIA_Valentino_HALLO_Info;
-	permanent = FALSE;
 	description = "Так, и что у нас здесь?";
 };
 
@@ -40,7 +39,7 @@ func int DIA_Valentino_HALLO_Condition()
 func void DIA_Valentino_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Valentino_HALLO_15_00");	//Так, и что у нас здесь?
-	if((hero.guild == GIL_KDF) || (hero.guild == GIL_PAL))
+	if((other.guild == GIL_KDF) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Valentino_HALLO_03_01");	//Меня зовут Валентино. Я пытаюсь не осквернить этот день, данный мне Инносом, своей работой.
 		AI_Output(other,self,"DIA_Valentino_HALLO_15_02");	//Придержи язык.
@@ -63,7 +62,6 @@ instance DIA_Valentino_WhoAgain(C_Info)
 	nr = 2;
 	condition = DIA_Valentino_WhoAgain_Condition;
 	information = DIA_Valentino_WhoAgain_Info;
-	permanent = FALSE;
 	description = "Я спросил тебя, кто ты такой!";
 };
 
@@ -91,7 +89,6 @@ instance DIA_Valentino_Manieren(C_Info)
 	nr = 3;
 	condition = DIA_Valentino_Manieren_Condition;
 	information = DIA_Valentino_Manieren_Info;
-	permanent = FALSE;
 	description = "Похоже, мне придется поучить тебя хорошим манерам!";
 };
 

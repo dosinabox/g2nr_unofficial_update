@@ -33,13 +33,13 @@ func void B_GiveTradeInv_Addon_Fisk(var C_Npc slf)
 		CreateInvItems(slf,ItRi_Prot_Edge_02,1);
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
-			CreateInvItems(slf,ItMw_Addon_Keule_1h_01,1);
+			CreateInvItems(slf,ItMw_Addon_Keule_1H_01,1);
 		}
 		else
 		{
-			CreateInvItems(slf,ItMw_Addon_Keule_1h_01,1);
-			CreateInvItems(slf,ItMw_Addon_Keule_2h_01,1);
-			CreateInvItems(slf,ItMw_1h_Sld_Sword,1);
+			CreateInvItems(slf,ItMw_Addon_Keule_1H_01,1);
+			CreateInvItems(slf,ItMw_Addon_Keule_2H_01,1);
+			CreateInvItems(slf,ItMw_1H_SLD_Sword,1);
 		};
 		Fisk_ItemsGiven_Chapter_1 = TRUE;
 	};
@@ -91,7 +91,7 @@ func void B_GiveTradeInv_Addon_Fisk(var C_Npc slf)
 		CreateInvItems(slf,ItAt_Sting,5);
 		if(ClassicMeleeWeaponsTraders == FALSE)
 		{
-			CreateInvItems(slf,ItMw_Addon_Keule_2h_01,1);
+			CreateInvItems(slf,ItMw_Addon_Keule_2H_01,1);
 		};
 		Fisk_ItemsGiven_Chapter_3 = TRUE;
 	};

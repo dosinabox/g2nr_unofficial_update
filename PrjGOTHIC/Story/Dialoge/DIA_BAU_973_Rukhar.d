@@ -177,9 +177,12 @@ instance DIA_Rukhar_RANDOLPHWILL(C_Info)
 
 func int DIA_Rukhar_RANDOLPHWILL_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Randolph_GEGENWEN) && Npc_KnowsInfo(other,DIA_Rukhar_HOLERANDOLPH) && (DIA_Rukhar_RANDOLPHWILL_noPerm == FALSE) && !Npc_IsDead(Randolph) && (MIS_HealRandolph == FALSE) && (NpcObsessedByDMT_Randolph == FALSE) && (DIA_Randolph_SoberForever == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Randolph_GEGENWEN) && Npc_KnowsInfo(other,DIA_Rukhar_HOLERANDOLPH) && (DIA_Rukhar_RANDOLPHWILL_noPerm == FALSE) && (MIS_HealRandolph == FALSE) && (NpcObsessedByDMT_Randolph == FALSE) && (DIA_Randolph_SoberForever == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Randolph))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -262,9 +265,12 @@ instance DIA_Rukhar_ICHSEHEDICH(C_Info)
 
 func int DIA_Rukhar_ICHSEHEDICH_Condition()
 {
-	if((DIA_Rukhar_ICHSEHEDICH_noPerm == FALSE) && (DIA_Rukhar_RANDOLPHWILL_noPerm == TRUE) && (Rukhar_Einsatz != 0) && !Npc_IsDead(Randolph) && (MIS_HealRandolph == FALSE) && (NpcObsessedByDMT_Randolph == FALSE) && (DIA_Randolph_SoberForever == FALSE))
+	if((DIA_Rukhar_ICHSEHEDICH_noPerm == FALSE) && (DIA_Rukhar_RANDOLPHWILL_noPerm == TRUE) && (Rukhar_Einsatz != 0) && (MIS_HealRandolph == FALSE) && (NpcObsessedByDMT_Randolph == FALSE) && (DIA_Randolph_SoberForever == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Randolph))
+		{
+			return TRUE;
+		};
 	};
 };
 

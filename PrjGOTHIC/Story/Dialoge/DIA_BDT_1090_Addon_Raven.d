@@ -27,7 +27,6 @@ instance DIA_Addon_Raven_Hi(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Raven_Hi_Condition;
 	information = DIA_Addon_Raven_Hi_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 

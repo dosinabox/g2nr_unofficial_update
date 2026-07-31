@@ -34,7 +34,7 @@ func void Rtn_Start_1352()
 {
 	TA_Sleep(23,0,6,0,"ADW_PIRATECAMP_AJ_04");
 	TA_Cook_Pan(6,0,8,30,"AD_PIRATECAMP_AJ_03");
-	TA_Sit_Campfire(8,30,12,0,"AD_PIRATECAMP_AJ_03");
+	TA_Sit_Campfire(8,30,12,30,"AD_PIRATECAMP_AJ_03");
 	TA_Stand_ArmsCrossed(12,30,19,0,"ADW_PIRATECAMP_WAY_07");
 	TA_Cook_Pan(19,0,20,30,"AD_PIRATECAMP_AJ_03");
 	TA_Sit_Campfire(20,30,23,0,"AD_PIRATECAMP_AJ_03");
@@ -75,7 +75,7 @@ func void Rtn_GregIsBack_1352()
 	TA_Sleep(3,0,6,0,"ADW_PIRATECAMP_AJ_04");
 	TA_Cook_Pan(6,0,7,0,"AD_PIRATECAMP_AJ_03");
 	TA_Stand_ArmsCrossed(7,0,10,0,"ADW_PIRATECAMP_WAY_07");
-	TA_Sit_Campfire(10,0,11,0,"AD_PIRATECAMP_AJ_03");
+	TA_Sit_Campfire(10,0,11,30,"AD_PIRATECAMP_AJ_03");
 	TA_Stand_ArmsCrossed(11,30,16,0,"ADW_PIRATECAMP_WAY_07");
 	TA_Cook_Pan(16,0,17,0,"AD_PIRATECAMP_AJ_03");
 	TA_Stand_ArmsCrossed(17,0,20,0,"ADW_PIRATECAMP_WAY_07");

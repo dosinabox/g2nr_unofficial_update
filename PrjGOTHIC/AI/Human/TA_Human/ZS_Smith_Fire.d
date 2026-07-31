@@ -13,7 +13,7 @@ func void ZS_Smith_Fire()
 
 func int ZS_Smith_Fire_Loop()
 {
-	B_UseAvailableMob(self,"BSFIRE");
+	B_UseAvailableMob(self,"BSFIRE",BS_MOBINTERACT_INTERRUPT);
 	return LOOP_CONTINUE;
 };
 

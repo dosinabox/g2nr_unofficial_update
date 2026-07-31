@@ -1,49 +1,6 @@
 
 func int B_AssessEnemy()
 {
-	if(CurrentLevel == NEWWORLD_ZEN)
-	{
-		if(C_IsNpc(self,VLK_449_Lares))
-		{
-			if(C_IsNpc(other,MagicGolem))
-			{
-				return FALSE;
-			};
-		};
-		if(C_IsNpc(self,VLK_401_Cornelius) && !Npc_IsPlayer(other))
-		{
-			if(Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") <= 1000)
-			{
-				return FALSE;
-			};
-		};
-		if(C_IsNpc(other,VLK_401_Cornelius))
-		{
-			if(C_IsNpc(self,BDT_1031_Fluechtling) || C_IsNpc(self,BDT_1032_Fluechtling))
-			{
-				return FALSE;
-			};
-		};
-		if(C_IsNpc(self,BAU_942_Randolph) && !Npc_IsPlayer(other))
-		{
-			if(Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000)
-			{
-				B_Flee();
-				return FALSE;
-			};
-		};
-		if((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE))
-		{
-			if(C_NpcIsOrc(other) || C_NpcIsGolem(other))
-			{
-				if(C_NpcIsAfraidOfOrcs(self))
-				{
-					B_Flee();
-					return FALSE;
-				};
-			};
-		};
-	};
 	if(C_NpcIsHuman(other))
 	{
 		if(self.aivar[AIV_EnemyOverride] == TRUE)
@@ -64,23 +21,61 @@ func int B_AssessEnemy()
 			{
 				return FALSE;
 			};
-		};
-		if(C_NpcIsGhost(other))
-		{
-			return FALSE;
+			if(C_NpcIsGhost(other))
+			{
+				return FALSE;
+			};
+			if(C_IsNpc(self,BAU_942_Randolph))
+			{
+				if(Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000)
+				{
+					if(!C_ErolBanditsDead())
+					{
+						B_Flee();
+						return FALSE;
+					};
+				};
+			};
 		};
 		/*if(C_NpcIsLevelinspektor(other))
 		{
 			return FALSE;
 		};*/
 	}
-	else if(other.aivar[AIV_NoFightParker] == TRUE)
+	else
 	{
-		return FALSE;
+		if(other.aivar[AIV_NoFightParker] == TRUE)
+		{
+			return FALSE;
+		};
+		if(CurrentLevel == NEWWORLD_ZEN)
+		{
+			if(C_IsNpc(self,VLK_449_Lares))
+			{
+				if(C_IsNpc(other,MagicGolem))
+				{
+					return FALSE;
+				};
+			}
+			else if((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE))
+			{
+				if(C_NpcIsOrc(other) || C_NpcIsGolem(other))
+				{
+					if(C_NpcIsAfraidOfOrcs(self))
+					{
+						B_Flee();
+						return FALSE;
+					};
+				};
+			};
+		};
 	};
-	if(C_NpcIsSwimming(other) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
+	if(self.aivar[AIV_MM_FollowInWater] == FALSE)
 	{
-		return FALSE;
+		if(C_NpcIsSwimming(other))
+		{
+			return FALSE;
+		};
 	};
 	if(Npc_GetHeightToNpc(self,other) > PERC_DIST_HEIGHT)
 	{
@@ -97,9 +92,12 @@ func int B_AssessEnemy()
 			return FALSE;
 		};
 	};
-	if(C_PlayerIsFakeBandit(self,other) && (self.guild == GIL_BDT))
+	if(self.guild == GIL_BDT)
 	{
-		return FALSE;
+		if(C_PlayerIsFakeBandit(self,other))
+		{
+			return FALSE;
+		};
 	};
 	if(Npc_GetAttitude(self,other) != ATT_HOSTILE)
 	{
@@ -109,16 +107,30 @@ func int B_AssessEnemy()
 	{
 		return FALSE;
 	};
-	if(Npc_IsPlayer(other) && (self.npcType == NPCTYPE_FRIEND))
+	if(self.npcType == NPCTYPE_FRIEND)
 	{
-		return FALSE;
+		if(Npc_IsPlayer(other))
+		{
+			return FALSE;
+		};
 	};
 	if(Wld_GetGuildAttitude(self.guild,other.guild) != ATT_HOSTILE)
 	{
-		if((Npc_GetAttitude(self,other) == ATT_HOSTILE) && ((Npc_GetStateTime(self) > 2) || Npc_IsInState(self,ZS_ObservePlayer)) && (Npc_GetDistToNpc(self,other) <= PERC_DIST_INTERMEDIAT))
+		if(Npc_GetAttitude(self,other) == ATT_HOSTILE)
 		{
-			B_Attack(self,other,self.aivar[AIV_LastPlayerAR],0);
-			return TRUE;
+			if(Npc_GetDistToNpc(self,other) <= PERC_DIST_INTERMEDIAT)
+			{
+				if(Npc_GetStateTime(self) > 2)
+				{
+					B_Attack(self,other,self.aivar[AIV_LastPlayerAR],0);
+					return TRUE;
+				};
+				if(Npc_IsInState(self,ZS_ObservePlayer))
+				{
+					B_Attack(self,other,self.aivar[AIV_LastPlayerAR],0);
+					return TRUE;
+				};
+			};
 		};
 		return FALSE;
 	};

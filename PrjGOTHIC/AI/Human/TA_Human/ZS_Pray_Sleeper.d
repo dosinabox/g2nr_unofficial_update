@@ -12,7 +12,7 @@
 
 func int ZS_Pray_Sleeper_Loop()
 {
-	B_UseAvailableMob(self,"IDOL");
+	B_UseAvailableMob(self,"IDOL",BS_MOBINTERACT);
 	return LOOP_CONTINUE;
 };
 

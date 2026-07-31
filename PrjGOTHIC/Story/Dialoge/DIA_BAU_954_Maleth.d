@@ -86,9 +86,20 @@ instance DIA_Maleth_BANDITS(C_Info)
 
 func int DIA_Maleth_BANDITS_Condition()
 {
-	if((Kapitel < 3) && (Npc_KnowsInfo(other,DIA_BDT_1013_BANDIT_WHERE) || Npc_KnowsInfo(other,DIA_BDT_1014_BANDIT_KILLER) || Npc_KnowsInfo(other,DIA_1015_BANDIT_AMBUSH) || C_BragoBanditsDead() || Npc_KnowsInfo(other,DIA_Addon_Cavalorn_LETSKILLBANDITS) || (BragoBanditsAttacked == TRUE)))
+	if(Kapitel < 3)
 	{
-		return TRUE;
+		if(BragoBanditsAttacked == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_BDT_1013_BANDIT_WHERE))
+		{
+			return TRUE;
+		};
+		if(C_BragoBanditsDead())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -257,9 +268,12 @@ instance DIA_Maleth_LOBART(C_Info)
 
 func int DIA_Maleth_LOBART_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maleth_Equipment) && !Npc_IsDead(Lobart) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Maleth_Equipment) && (other.guild == GIL_NONE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Lobart))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -404,9 +418,12 @@ instance DIA_Maleth_GEHSTOCK(C_Info)
 
 func int DIA_Maleth_GEHSTOCK_Condition()
 {
-	if(Npc_HasItems(other,ItMw_MalethsGehstock_MIS) && Npc_KnowsInfo(other,DIA_Maleth_PROBLEME))
+	if(Npc_KnowsInfo(other,DIA_Maleth_PROBLEME))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMw_MalethsGehstock_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -429,7 +446,7 @@ func void DIA_Maleth_GEHSTOCK_Info()
 func void DIA_Maleth_GEHSTOCK_ok()
 {
 	AI_Output(other,self,"DIA_Maleth_GEHSTOCK_ok_15_00");	//Хорошо.
-	B_GiveInvItems(other,self,ItMw_MalethsGehstock_MIS,1);
+	B_GiveWeapon(other,self,ItMw_MalethsGehstock_MIS,1);
 	AI_EquipBestMeleeWeapon(self);
 	AI_Output(self,other,"DIA_Maleth_GEHSTOCK_ok_08_01");	//Ладно. Просто иди на запад, вон к тому лесу. Там ты увидишь ущелье.
 	AI_Output(self,other,"DIA_Maleth_GEHSTOCK_ok_08_02");	//В пещере внизу ты наверняка найдешь что-нибудь.
@@ -453,7 +470,7 @@ func void DIA_Maleth_GEHSTOCK_gold()
 	AI_Output(self,other,"DIA_Maleth_GEHSTOCK_gold_08_01");	//Вот все, что у меня есть. Этого должно быть достаточно.
 	CreateInvItems(self,ItMi_Gold,35);
 	B_GiveInvItems(self,other,ItMi_Gold,35);
-	B_GiveInvItems(other,self,ItMw_MalethsGehstock_MIS,1);
+	B_GiveWeapon(other,self,ItMw_MalethsGehstock_MIS,1);
 	AI_EquipBestMeleeWeapon(self);
 	Info_ClearChoices(DIA_Maleth_GEHSTOCK);
 };

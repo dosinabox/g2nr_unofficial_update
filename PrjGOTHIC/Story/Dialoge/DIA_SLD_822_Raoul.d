@@ -27,7 +27,6 @@ instance DIA_Raoul_NoSentenza(C_Info)
 	nr = 1;
 	condition = DIA_Raoul_NoSentenza_Condition;
 	information = DIA_Raoul_NoSentenza_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -92,10 +91,6 @@ func void DIA_Raoul_Hello_Info()
 	{
 		AI_Output(self,other,"DIA_Raoul_Hello_01_01");	//(раздраженно) Что тебе нужно на этот раз?
 	};
-	if(Npc_KnowsInfo(other,DIA_Sentenza_Hello))
-	{
-		Npc_ExchangeRoutine(self,"START");
-	};
 };
 
 
@@ -143,7 +138,6 @@ instance DIA_Raoul_WannaJoin(C_Info)
 	nr = 2;
 	condition = DIA_Raoul_WannaJoin_Condition;
 	information = DIA_Raoul_WannaJoin_Info;
-	permanent = FALSE;
 	description = "Я хочу присоединиться к Ли!";
 };
 
@@ -172,7 +166,6 @@ instance DIA_Raoul_AboutSylvio(C_Info)
 	nr = 2;
 	condition = DIA_Raoul_AboutSylvio_Condition;
 	information = DIA_Raoul_AboutSylvio_Info;
-	permanent = FALSE;
 	description = "Кто такой Сильвио?";
 };
 
@@ -330,7 +323,7 @@ instance DIA_Raoul_TROLL(C_Info)
 
 func int DIA_Raoul_TROLL_Condition()
 {
-	if(hero.guild != GIL_NONE)
+	if(other.guild != GIL_NONE)
 	{
 		return TRUE;
 	};
@@ -556,7 +549,7 @@ instance DIA_Raoul_GotTrollFurBack(C_Info)
 
 func int DIA_Raoul_GotTrollFurBack_Condition()
 {
-	if((MIS_Raoul_DoesntPayTrollFur == LOG_RUNNING) && !Npc_HasItems(self,ItAt_TrollBlackFur) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
+	if((MIS_Raoul_DoesntPayTrollFur == LOG_RUNNING) && !Npc_HasItems(self,ItAt_TrollBlackFur) && (self.aivar[AIV_DefeatedByPlayer] == TRUE))
 	{
 		return TRUE;
 	};

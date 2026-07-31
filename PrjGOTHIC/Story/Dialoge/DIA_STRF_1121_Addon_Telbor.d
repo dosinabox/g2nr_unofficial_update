@@ -3,21 +3,10 @@ instance DIA_Addon_Telbor_EXIT(C_Info)
 {
 	npc = STRF_1121_Addon_Telbor;
 	nr = 999;
-	condition = DIA_Addon_Telbor_EXIT_Condition;
-	information = DIA_Addon_Telbor_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Telbor_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Telbor_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -36,9 +25,12 @@ instance DIA_Addon_Telbor_Hi(C_Info)
 
 func int DIA_Addon_Telbor_Hi_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Patrick))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Patrick))
+		{
+			return TRUE;
+		};
 	};
 };
 

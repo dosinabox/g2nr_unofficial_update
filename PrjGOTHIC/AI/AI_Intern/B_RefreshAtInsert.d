@@ -99,7 +99,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 		rnd = Hlp_Random(2);
 		if(rnd == 0)
 		{
-			CreateInvItem(slf,ItMw_1h_MISC_Sword);
+			CreateInvItem(slf,ItMw_1H_MISC_Sword);
 		}
 		else
 		{
@@ -111,11 +111,11 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 		rnd = Hlp_Random(2);
 		if(rnd == 0)
 		{
-			CreateInvItem(slf,ItMw_1h_MISC_Sword);
+			CreateInvItem(slf,ItMw_1H_MISC_Sword);
 		}
 		else
 		{
-			CreateInvItem(slf,ItMw_1h_Misc_Axe);
+			CreateInvItem(slf,ItMw_1H_MISC_Axe);
 		};
 	}
 	else if(slf.guild == GIL_BAU)
@@ -123,11 +123,11 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 		rnd = Hlp_Random(2);
 		if(rnd == 0)
 		{
-			CreateInvItem(slf,ItMw_1h_Bau_Mace);
+			CreateInvItem(slf,ItMw_1H_BAU_Mace);
 		}
 		else
 		{
-			CreateInvItem(slf,ItMw_1h_Bau_Axe);
+			CreateInvItem(slf,ItMw_1H_BAU_Axe);
 		};
 	}
 	else if(slf.guild == GIL_NOV)
@@ -135,7 +135,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 		rnd = Hlp_Random(2);
 		if(rnd == 0)
 		{
-			CreateInvItem(slf,ItMw_1h_Vlk_Mace);
+			CreateInvItem(slf,ItMw_1H_VLK_Mace);
 		}
 		else
 		{
@@ -147,7 +147,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 		rnd = Hlp_Random(2);
 		if(rnd == 0)
 		{
-			CreateInvItem(slf,ItMw_1h_Vlk_Dagger);
+			CreateInvItem(slf,ItMw_1H_VLK_Dagger);
 		}
 		else
 		{
@@ -156,7 +156,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 	}
 	else
 	{
-		CreateInvItem(slf,ItMw_1h_Bau_Mace);
+		CreateInvItem(slf,ItMw_1H_BAU_Mace);
 	};
 };
 

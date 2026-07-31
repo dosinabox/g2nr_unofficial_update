@@ -27,14 +27,13 @@ instance DIA_Edda_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Edda_Hallo_Condition;
 	information = DIA_Edda_Hallo_Info;
-	permanent = FALSE;
 	description = "Что ты варишь?";
 };
 
 
 func int DIA_Edda_Hallo_Condition()
 {
-	if(Wld_IsTime(8,0,22,0))
+	if(Npc_WasInState(self,ZS_Cook_Cauldron))
 	{
 		return TRUE;
 	};
@@ -71,7 +70,6 @@ instance DIA_Edda_Sleep(C_Info)
 	nr = 3;
 	condition = DIA_Edda_Sleep_Condition;
 	information = DIA_Edda_Sleep_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -96,7 +94,6 @@ instance DIA_Edda_Stadt(C_Info)
 	nr = 9;
 	condition = DIA_Edda_Stadt_Condition;
 	information = DIA_Edda_Stadt_Info;
-	permanent = FALSE;
 	description = "Что ты можешь рассказать мне о городе?";
 };
 
@@ -116,6 +113,8 @@ func void DIA_Edda_Stadt_Info()
 	};
 };
 
+
+var int Edda_FirstSoupGiven;
 
 instance DIA_Edda_Suppe(C_Info)
 {
@@ -164,6 +163,12 @@ func void DIA_Edda_Suppe_Info()
 			AI_Output(self,other,"DIA_Edda_Suppe_17_01");	//Нет ничего проще. Вот, держи тарелку.
 			B_GiveInvItems(self,other,ItFo_EddasFishSoup,1);
 			Edda_Day = Wld_GetDay();
+			if(Edda_FirstSoupGiven == FALSE)
+			{
+				Log_CreateTopic(TOPIC_Bonus,LOG_NOTE);
+				B_LogEntry(TOPIC_Bonus,"Эдда готова варить для меня уху каждый день, если я буду приносить ей рыбу.");
+				Edda_FirstSoupGiven = TRUE;
+			};
 		}
 		else
 		{
@@ -183,7 +188,6 @@ instance DIA_Edda_Statue(C_Info)
 	nr = 6;
 	condition = DIA_Edda_Statue_Condition;
 	information = DIA_Edda_Statue_Info;
-	permanent = FALSE;
 	description = "Посмотри, я принес статую Инноса для тебя.";
 };
 

@@ -35,7 +35,7 @@ func int C_WantToRansack(var C_Npc slf,var C_Npc oth)
 				};
 			};
 		};
-		if(Npc_HasItems(oth,ItMw_2h_Rod))
+		if(Npc_HasItems(oth,ItMw_2H_Rod))
 		{
 			if(C_IsNpc(slf,SLD_804_Rod))
 			{

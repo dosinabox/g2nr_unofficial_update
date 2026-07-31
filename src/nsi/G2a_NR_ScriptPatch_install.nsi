@@ -8,14 +8,14 @@
 ##            Основное           ##
 ###################################
 
-!define MOD_VERSION "31"
-!define MOD_DATE "6.27"
+!define MOD_VERSION "32"
+!define MOD_DATE "7.31"
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"
-!define MOD_AUTHOR "Fizzban, Efectivo, Dimus, D36, Kvincius, N1kX, Kor Angar"
+!define MOD_AUTHOR "Fizzban, Efectivo, Dimus, D36, Kvincius, Kor Angar"
 !define MOD_LINK "https://worldofplayers.ru/threads/36817"
-!define MOD_SIZE "227000"
+!define MOD_SIZE "226650"
 !define MOD_HEADER "logo.bmp"
 !define MOD_PIC "pic.bmp"
 
@@ -33,7 +33,7 @@ VIAddVersionKey "FileDescription" "${MOD_NAME_RU}"
 VIAddVersionKey "ProductVersion" "${MOD_VERSION}"
 
 Unicode true
-SetCompressor lzma
+SetCompressor /SOLID /FINAL lzma
 
 ###################################
 ##      Настройки интерфейса     ##

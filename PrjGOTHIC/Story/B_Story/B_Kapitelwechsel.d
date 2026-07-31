@@ -19,7 +19,7 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		Cronos_NW_ItSc_SumGobSkel_Count = 2;
 		Cronos_NW_ItSc_Icelance_Count = 5;
 		Cronos_NW_ItSc_Whirlwind_Count = 1;
-		Bennet_NW_ItMi_Swordraw_Count = 3;
+		Bennet_NW_ItMi_SwordRaw_Count = 3;
 		IceDragonSpell = SPL_InstantFireball;
 		G2BodySkin = TRUE;
 		FullNPCRemoval = TRUE;
@@ -65,21 +65,21 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 	{
 		B_SetMortal(Sekob);
 		B_SetMortal(Bengar);
-		Bennet_NW_ItMi_Swordraw_Count += 3;
+		Bennet_NW_ItMi_SwordRaw_Count += 3;
 		STORYPOINT[SP_C2_P1] = TRUE;
 		CurrentStoryPoint = SP_C2_P1;
 		IntroduceChapter(KapWechsel_2,KapWechsel_2_Text,"chapter2.tga","chapter_01.wav",6000);
 	}
 	else if(neues_Kapitel == 3)
 	{
-		Bennet_NW_ItMi_Swordraw_Count += 3;
+		Bennet_NW_ItMi_SwordRaw_Count += 3;
 		Bennet_NW_ItMi_Nugget_Count = 1;
 		STORYPOINT[SP_C3_P1] = TRUE;
 		CurrentStoryPoint = SP_C3_P1;
 	}
 	else if(neues_Kapitel == 4)
 	{
-		Bennet_NW_ItMi_Swordraw_Count += 3;
+		Bennet_NW_ItMi_SwordRaw_Count += 3;
 		Bennet_NW_ItMi_Nugget_Count += 2;
 		PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 		STORYPOINT[SP_C4_P1] = TRUE;
@@ -87,7 +87,7 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 	}
 	else if(neues_Kapitel == 5)
 	{
-		Bennet_NW_ItMi_Swordraw_Count += 3;
+		Bennet_NW_ItMi_SwordRaw_Count += 3;
 		Bennet_NW_ItMi_Nugget_Count += 2;
 		PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 		STORYPOINT[SP_C5_P1] = TRUE;

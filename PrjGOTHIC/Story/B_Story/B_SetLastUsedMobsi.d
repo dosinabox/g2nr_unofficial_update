@@ -5,7 +5,7 @@ func void B_SetLastUsedMobsi(var C_Npc slf,var int mobsi)
 	{
 		if(mobsi == MOBSI_SmithWeapon)
 		{
-			slf.aivar[AIV_MobsiItemsCount] = Npc_HasItems(slf,ItMiSwordraw);
+			slf.aivar[AIV_MobsiItemsCount] = Npc_HasItems(slf,ItMiSwordRaw);
 		}
 		else if(mobsi == MOBSI_PotionAlchemy)
 		{
@@ -24,7 +24,7 @@ func void B_CreateMobsiItems(var C_Npc slf)
 		B_ClearSmithInv(slf);
 		if(count > 0)
 		{
-			CreateInvItems(slf,ItMiSwordraw,count);
+			CreateInvItems(slf,ItMiSwordRaw,count);
 		};
 	}
 	else if(slf.aivar[AIV_LastUsedMobsi] == MOBSI_PotionAlchemy)

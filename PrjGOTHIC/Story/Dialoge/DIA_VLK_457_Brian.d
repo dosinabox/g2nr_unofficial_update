@@ -148,9 +148,12 @@ instance DIA_Brian_AboutHarad(C_Info)
 
 func int DIA_Brian_AboutHarad_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Brian_AboutLehrling) && !Npc_IsDead(Harad))
+	if(Npc_KnowsInfo(other,DIA_Brian_AboutLehrling))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Harad))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -264,9 +267,16 @@ instance DIA_Brian_RepairNecklace(C_Info)
 
 func int DIA_Brian_RepairNecklace_Condition()
 {
-	if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 	{
-		return TRUE;
+		if(MIS_SCKnowsInnosEyeIsBroken == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

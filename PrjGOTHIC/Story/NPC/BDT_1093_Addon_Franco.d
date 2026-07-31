@@ -11,7 +11,7 @@ instance BDT_1093_Addon_Franco(Npc_Default)
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Mil_Sword);
+	EquipItem(self,ItMw_1H_MIL_Sword);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,60,ItAm_Addon_Franco,1);
 	CreateInvItems(self,ItMi_GoldNugget_Addon,7);

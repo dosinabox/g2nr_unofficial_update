@@ -124,11 +124,11 @@ func void DIA_Sergio_Aufgabe_Info()
 	if(!Npc_IsDead(Isgaroth))
 	{
 		AI_Output(self,other,"DIA_Sergio_Aufgabe_04_02");	//Но я могу помочь тебе. Иди к мастеру Исгароту и поговори с ним. Я слышал, ему нужна помощь и собирался сам помочь ему, но я поручаю эту задачу тебе.
-		Wld_InsertNpc(BlackWolf,"NW_PATH_TO_MONASTER_AREA_01");
 		MIS_IsgarothWolf = LOG_RUNNING;
 		Log_CreateTopic(TOPIC_IsgarothWolf,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_IsgarothWolf,LOG_RUNNING);
 		B_LogEntry(TOPIC_IsgarothWolf,"Мастеру Исгароту необходима помощь в часовне. Я должен найти его.");
+		Wld_InsertNpc(BlackWolf,"NW_PATH_TO_MONASTER_AREA_01");
 	};
 };
 
@@ -145,9 +145,12 @@ instance DIA_Sergio_WHAT(C_Info)
 
 func int DIA_Sergio_WHAT_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (self.aivar[AIV_PARTYMEMBER] == FALSE))
+	if(self.aivar[AIV_PARTYMEMBER] == FALSE)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -173,9 +176,12 @@ instance DIA_Sergio_Babo(C_Info)
 
 func int DIA_Sergio_Babo_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Babo_Training == LOG_RUNNING) && !Npc_IsDead(Babo))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Babo_Training == LOG_RUNNING))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Babo))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -202,9 +208,12 @@ instance DIA_Sergio_WHY(C_Info)
 
 func int DIA_Sergio_WHY_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (self.aivar[AIV_PARTYMEMBER] == FALSE))
+	if(self.aivar[AIV_PARTYMEMBER] == FALSE)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -229,15 +238,18 @@ instance DIA_Sergio_ORDERS(C_Info)
 
 func int DIA_Sergio_ORDERS_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sergio_WHY) && (Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500))
+	if(Npc_KnowsInfo(other,DIA_Sergio_WHY))
 	{
-		if(Sergio_CanGuide == FALSE)
+		if(Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500)
 		{
-			return TRUE;
-		};
-		if(Sergio_GuideStatus == LOG_SUCCESS)
-		{
-			return TRUE;
+			if(Sergio_CanGuide == FALSE)
+			{
+				return TRUE;
+			};
+			if(Sergio_GuideStatus == LOG_SUCCESS)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -292,9 +304,12 @@ instance DIA_Sergio_Guide(C_Info)
 
 func int DIA_Sergio_Guide_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToWP(self,"NW_TO_PASS_01") > 1000))
+	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_TO_PASS_01") > 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -319,9 +334,12 @@ instance DIA_Sergio_Ende(C_Info)
 
 func int DIA_Sergio_Ende_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToWP(self,"NW_TO_PASS_01") <= 1000))
+	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_TO_PASS_01") <= 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 

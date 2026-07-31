@@ -61,19 +61,19 @@ func void Use_Canthars_KomproBrief()
 };
 
 
-instance ItMw_2h_Rod(C_Item)
+instance ItMw_2H_Rod(C_Item)
 {
-	name = NAME_2h_Rod;
+	name = NAME_2H_Rod;
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
-	value = Value_Sld2hSchwert;
+	value = Value_SLD2hSchwert;
 	damageTotal = Damage_Rod;
 	damagetype = DAM_EDGE;
-	range = Range_Sld2hSchwert;
+	range = Range_SLD2hSchwert;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Rod;
-	visual = "ItMw_035_2h_sld_sword_02.3DS";
+	visual = "ItMw_035_2H_SLD_sword_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -84,13 +84,13 @@ instance ItMw_2h_Rod(C_Item)
 	count[5] = value;
 };
 
-instance ItMw_2h_Rod_Fake(C_Item)
+instance ItMw_2H_Rod_Fake(C_Item)
 {
-	name = NAME_2h_Rod;
+	name = NAME_2H_Rod;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 0;
-	visual = "ItMw_035_2h_sld_sword_02.3DS";
+	visual = "ItMw_035_2H_SLD_sword_02.3DS";
 	scemeName = "INSPECTWEAPON";
 	material = MAT_METAL;
 	description = name;
@@ -435,7 +435,7 @@ instance ItMw_AlriksSword_MIS(C_Item)
 	range = Range_Alrik;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Alrik;
-	visual = "ItMw_025_1h_Sld_Sword_02.3DS";
+	visual = "ItMw_025_1H_SLD_Sword_02.3DS";
 	on_equip = Equip_1H_10;
 	on_unequip = UnEquip_1H_10;
 	description = name;
@@ -684,8 +684,8 @@ instance Holy_Hammer_MIS(C_Item)
 	damagetype = DAM_BLUNT;
 	range = Range_HolyHammer;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = Condition_HolyHammer;
-	visual = "ItMw_030_2h_kdf_hammer_01.3DS";
+	cond_value[2] = START_ATR_STRENGTH;
+	visual = "ItMw_030_2H_KDF_hammer_01.3DS";
 	description = name;
 	text[2] = NAME_DamageUnknown;
 	text[3] = NAME_Unknown_needed;
@@ -849,6 +849,21 @@ instance ItKe_Bandit(C_Item)
 	inv_zbias = 145;
 };
 
+instance ItMi_BaltramPaket(C_Item)
+{
+	name = "Пакет для Бальтрама";
+	mainflag = ITEM_KAT_NONE;
+	flags = 0;
+	value = 200;
+	visual = "ItMi_Packet.3ds";
+	material = MAT_LEATHER;
+	description = name;
+	text[0] = "Тяжелый пакет с различными";
+	text[1] = "товарами с фермы Акила.";
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
 instance ItRw_Bow_L_03_MIS(C_Item)
 {
 	name = "Охотничий лук";
@@ -900,7 +915,7 @@ instance ItMi_EddasStatue(C_Item)
 {
 	name = NAME_InnosStatue;
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI | ITEM_MISSION;
+	flags = ITEM_MULTI;
 	value = Value_InnosStatue;
 	visual = "ItMi_InnosStatue.3DS";
 	material = MAT_METAL;

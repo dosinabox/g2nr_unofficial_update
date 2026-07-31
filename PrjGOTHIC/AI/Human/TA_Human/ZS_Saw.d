@@ -12,10 +12,19 @@ func void ZS_Saw()
 
 func int ZS_Saw_Loop()
 {
-	B_UseAvailableMob(self,"BAUMSAEGE");
-	if((Npc_GetStateTime(self) > 15) && C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT))
+	var int random;
+	B_UseAvailableMob(self,"BAUMSAEGE",BS_MOBINTERACT_INTERRUPT);
+	if(Npc_GetStateTime(self) > 15)
 	{
-		Npc_SetStateTime(self,0);
+		if(C_BodyStateContains(self,BS_MOBINTERACT_INTERRUPT))
+		{
+			random = Hlp_Random(100);
+			if(random < 50)
+			{
+				AI_PlayAniBS(self,"T_BAUMSAEGE_RANDOM_1",BS_MOBINTERACT_INTERRUPT);
+			};
+			Npc_SetStateTime(self,0);
+		};
 	};
 	return LOOP_CONTINUE;
 };

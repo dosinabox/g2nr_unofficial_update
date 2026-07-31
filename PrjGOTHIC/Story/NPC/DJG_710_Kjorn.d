@@ -10,7 +10,7 @@ instance DJG_710_Kjorn(Npc_Default)
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_1h_Sld_Sword);
+	EquipItem(self,ItMw_1H_SLD_Sword);
 	B_CreateItemToSteal(self,47,ItMi_Gold,75);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal02,BodyTex_N,ITAR_DJG_L);
 	Mdl_SetModelFatness(self,1);

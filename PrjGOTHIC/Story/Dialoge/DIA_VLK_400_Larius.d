@@ -3,21 +3,10 @@ instance DIA_Larius_EXIT(C_Info)
 {
 	npc = VLK_400_Larius;
 	nr = 999;
-	condition = DIA_Larius_EXIT_Condition;
-	information = DIA_Larius_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Larius_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Larius_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -27,7 +16,6 @@ instance DIA_Larius_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Larius_Hello_Condition;
 	information = DIA_Larius_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -60,7 +48,6 @@ instance DIA_Larius_WhoAreYou(C_Info)
 	nr = 1;
 	condition = DIA_Larius_WhoAreYou_Condition;
 	information = DIA_Larius_WhoAreYou_Info;
-	permanent = FALSE;
 	description = "Кто ты?";
 };
 
@@ -96,20 +83,16 @@ instance DIA_Larius_Disturb(C_Info)
 
 func int DIA_Larius_Disturb_Condition()
 {
-	return TRUE;
+	if(!Npc_KnowsInfo(other,DIA_Larius_Richterueberfall) && !Npc_KnowsInfo(other,DIA_Larius_Dragons) && !Npc_KnowsInfo(other,DIA_Larius_Dragons_Proof))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Larius_Disturb_Info()
 {
 	AI_Output(other,self,"DIA_Larius_Disturb_15_00");	//Я не хотел помешать.
-	if(!Npc_KnowsInfo(other,DIA_Larius_Dragons_Proof))
-	{
-		AI_Output(self,other,"DIA_Larius_Disturb_01_01");	//Но, тем не менее, помешал! Убирайся!
-	}
-	else
-	{
-		B_Say(self,other,"$ABS_GOOD");
-	};
+	AI_Output(self,other,"DIA_Larius_Disturb_01_01");	//Но, тем не менее, помешал! Убирайся!
 };
 
 
@@ -218,9 +201,12 @@ instance DIA_Larius_Dragons_Proof(C_Info)
 
 func int DIA_Larius_Dragons_Proof_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Larius_Dragons) && Npc_HasItems(other,ItWr_PaladinLetter_MIS))
+	if(Npc_KnowsInfo(other,DIA_Larius_Dragons))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_PaladinLetter_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

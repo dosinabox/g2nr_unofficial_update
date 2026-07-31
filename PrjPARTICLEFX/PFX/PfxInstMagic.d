@@ -9733,6 +9733,47 @@ instance MFX_MAGICFIRE_HUMANSMOKE(C_PARTICLEFX)
 	visalphastart = 150;
 };
 
+instance MFX_THUNDERBOLT_INIT(C_PARTICLEFX)
+{
+	ppsvalue = 50;
+	ppsscalekeys_s = "1";
+	ppsislooping = 1;
+	ppsissmooth = 1;
+	ppsfps = 1;
+	shptype_s = "POINT";
+	shpfor_s = "object";
+	shpoffsetvec_s = "0 0 0";
+	shpdistribtype_s = "RAND";
+	shpdim_s = "10";
+	shpscalekeys_s = "1";
+	shpscaleislooping = 1;
+	shpscaleissmooth = 1;
+	shpscalefps = 2;
+	dirmode_s = "RAND";
+	dirfor_s = "OBJECT";
+	dirmodetargetfor_s = "OBJECT";
+	dirmodetargetpos_s = "0 0 0";
+	dirangleheadvar = 180;
+	dirangleelevvar = 180;
+	velavg = 0.003;
+	velvar = 0.001;
+	lsppartavg = 200;
+	lsppartvar = 50;
+	flygravity_s = "0 0 0";
+	flycolldet_b = 0;
+	visname_s = "LIGHTNING_BIG_A0.TGA";
+	visorientation_s = "VELO";
+	vistexisquadpoly = 1;
+	vistexanifps = 10;
+	vistexaniislooping = 1;
+	vistexcolorstart_s = "255 255 255";
+	vistexcolorend_s = "0 255 255";
+	vissizestart_s = "6 6";
+	vissizeendscale = 3;
+	visalphafunc_s = "ADD";
+	visalphastart = 180;
+};
+
 instance PFX2(C_PARTICLEFX)
 {
 	ppsvalue = 40;

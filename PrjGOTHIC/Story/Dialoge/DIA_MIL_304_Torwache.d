@@ -1,55 +1,41 @@
 
-instance DIA_Mil_304_Torwache_EXIT(C_Info)
+instance DIA_MIL_304_Torwache_EXIT(C_Info)
 {
 	npc = MIL_304_Torwache;
 	nr = 999;
-	condition = DIA_Mil_304_Torwache_EXIT_Condition;
-	information = DIA_Mil_304_Torwache_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Mil_304_Torwache_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Mil_304_Torwache_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Mil_304_Torwache_WASMACHSTDU(C_Info)
+instance DIA_MIL_304_Torwache_WASMACHSTDU(C_Info)
 {
 	npc = MIL_304_Torwache;
 	nr = 3;
-	condition = DIA_Mil_304_Torwache_WASMACHSTDU_Condition;
-	information = DIA_Mil_304_Torwache_WASMACHSTDU_Info;
+	condition = DIA_MIL_304_Torwache_WASMACHSTDU_Condition;
+	information = DIA_MIL_304_Torwache_WASMACHSTDU_Info;
 	permanent = TRUE;
 	description = " ак дела?";
 };
 
 
-func int DIA_Mil_304_Torwache_WASMACHSTDU_Condition()
+func int DIA_MIL_304_Torwache_WASMACHSTDU_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk))
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
-func void DIA_Mil_304_Torwache_WASMACHSTDU_Info()
+func void DIA_MIL_304_Torwache_WASMACHSTDU_Info()
 {
-	AI_Output(other,self,"DIA_Mil_304_Torwache_WASMACHSTDU_15_00");	// ак дела?
-	if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+	AI_Output(other,self,"DIA_MIL_304_Torwache_WASMACHSTDU_15_00");	// ак дела?
+	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 	{
-		AI_Output(self,other,"DIA_Mil_304_Torwache_WASMACHSTDU_08_01");	//ћне не на что жаловатьс€. я выполн€ю свои об€занности, как того желает »ннос.
+		AI_Output(self,other,"DIA_MIL_304_Torwache_WASMACHSTDU_08_01");	//ћне не на что жаловатьс€. я выполн€ю свои об€занности, как того желает »ннос.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Mil_304_Torwache_WASMACHSTDU_08_02");	//Ёй, хватит нести чушь вроде 'как поживаешь'. ”бирайс€ с глаз моих, пон€тно?
+		AI_Output(self,other,"DIA_MIL_304_Torwache_WASMACHSTDU_08_02");	//Ёй, хватит нести чушь вроде 'как поживаешь'. ”бирайс€ с глаз моих, пон€тно?
 	};
 	AI_StopProcessInfos(self);
 };

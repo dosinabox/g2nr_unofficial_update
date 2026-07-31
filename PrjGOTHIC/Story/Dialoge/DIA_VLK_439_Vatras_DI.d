@@ -44,10 +44,10 @@ func int DIA_Vatras_DI_HEAL_Condition()
 func void DIA_Vatras_DI_HEAL_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_DI_HEAL_15_00");	//Вылечи меня.
-	if(hero.attribute[ATR_HITPOINTS] < hero.attribute[ATR_HITPOINTS_MAX])
+	if(other.attribute[ATR_HITPOINTS] < other.attribute[ATR_HITPOINTS_MAX])
 	{
 		AI_Output(self,other,"DIA_Vatras_DI_HEAL_05_01");	//(благоговейно) Аданос, благослови это тело. Ему предназначено восстановить баланс мира.
-		hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
+		other.attribute[ATR_HITPOINTS] = other.attribute[ATR_HITPOINTS_MAX];
 		AI_PrintScreen(PRINT_FullyHealed,-1,-1,FONT_Screen,2);
 	}
 	else
@@ -175,7 +175,11 @@ instance DIA_Vatras_DI_PEDROTOT(C_Info)
 
 func int DIA_Vatras_DI_PEDROTOT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Pedro_DI_YOU) || Npc_IsDead(Pedro_DI))
+	if(Npc_KnowsInfo(other,DIA_Pedro_DI_YOU))
+	{
+		return TRUE;
+	};
+	if(Npc_IsDead(Pedro_DI))
 	{
 		return TRUE;
 	};
@@ -244,7 +248,7 @@ func void B_BuildLearnDialog_Vatras_DI()
 	Info_AddChoice(DIA_Vatras_DI_Talente,Dialog_Back,DIA_Vatras_DI_Talente_BACK);
 	Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnAttributeString(ATR_MANA_MAX,1),DIA_Vatras_DI_Talente_MANA_1);
 	Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnAttributeString(ATR_MANA_MAX,5),DIA_Vatras_DI_Talente_MANA_5);
-	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) < 6))
+	if((other.guild == GIL_KDF) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) < 6))
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,NAME_Skill_MagicCircles,DIA_Vatras_DI_Talente_CIRCLES);
 	};
@@ -534,6 +538,8 @@ func void DIA_Vatras_DI_DementorObsessionBook_Info()
 };
 
 
+var int DIA_Vatras_DI_UndeadDragonDead_OneTime;
+
 instance DIA_Vatras_DI_UndeadDragonDead(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
@@ -553,9 +559,6 @@ func int DIA_Vatras_DI_UndeadDragonDead_Condition()
 	};
 };
 
-
-var int DIA_Vatras_DI_UndeadDragonDead_OneTime;
-
 func void DIA_Vatras_DI_UndeadDragonDead_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_DI_UndeadDragonDead_15_00");	//Я сделал это.
@@ -564,12 +567,12 @@ func void DIA_Vatras_DI_UndeadDragonDead_Info()
 		AI_Output(self,other,"DIA_Vatras_DI_UndeadDragonDead_05_01");	//Я знаю, я чувствую это.
 		AI_Output(self,other,"DIA_Vatras_DI_UndeadDragonDead_05_02");	//Ты нанес удар Белиару, от которого он скоро не оправится.
 		AI_Output(self,other,"DIA_Vatras_DI_UndeadDragonDead_05_04");	//Помни, что это был всего лишь эпизод в вечной битве Добра со Злом.
-		if(hero.guild == GIL_DJG)
+		if(other.guild == GIL_DJG)
 		{
 			AI_Output(other,self,"DIA_Vatras_DI_UndeadDragonDead_15_03");	//Могу я теперь успокоиться, или у вас, у магов, есть еще один скелет в шкафу, которого нужно изгнать из этого мира?
 		};
 		AI_Output(self,other,"DIA_Vatras_DI_UndeadDragonDead_05_05");	//Зло всегда находит способ проникнуть в этот мир. Эта война никогда не кончится.
-		if(hero.guild == GIL_PAL)
+		if(other.guild == GIL_PAL)
 		{
 			AI_Output(self,other,"DIA_Vatras_DI_UndeadDragonDead_05_06");	//Как воин Добра ты должен понимать это.
 		};
@@ -634,9 +637,16 @@ instance DIA_Addon_Vatras_DI_Stoneplate(C_Info)
 
 func int DIA_Addon_Vatras_DI_Stoneplate_Condition()
 {
-	if(!Npc_KnowsInfo(other,DIA_Addon_Vatras_Stoneplate) && (C_ScHasMagicStonePlate() || Npc_HasItems(other,ItWr_StonePlateCommon_Addon)))
+	if(!Npc_KnowsInfo(other,DIA_Addon_Vatras_Stoneplate))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+		{
+			return TRUE;
+		};
+		if(C_ScHasMagicStonePlate())
+		{
+			return TRUE;
+		};
 	};
 };
 

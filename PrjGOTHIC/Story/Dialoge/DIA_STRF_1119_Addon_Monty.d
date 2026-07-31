@@ -29,7 +29,6 @@ instance DIA_Addon_Monty_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Monty_Hi_Condition;
 	information = DIA_Addon_Monty_Hi_Info;
-	permanent = FALSE;
 	description = "Как идут дела?";
 };
 
@@ -57,7 +56,6 @@ instance DIA_Addon_Monty_Hacken(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Monty_Hacken_Condition;
 	information = DIA_Addon_Monty_Hacken_Info;
-	permanent = FALSE;
 	description = DIALOG_ADDON_GOLD_DESCRIPTION;
 };
 

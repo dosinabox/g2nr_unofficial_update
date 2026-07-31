@@ -166,7 +166,7 @@ func void DIA_Peck_WEAPON_Info()
 	{
 		AI_Output(self,other,"DIA_Peck_WEAPON_12_04");	//Я не забуду тебе этого. Кто сказал Андрэ, что я был в Красном Фонаре, а?
 		AI_Output(self,other,"DIA_Peck_WEAPON_12_05");	//И теперь ты хочешь получить от меня меч... хорошо, ты получишь меч. Вот. А теперь пошел к черту!
-		B_GiveInvItems(self,other,ItMw_1h_MISC_Sword,1);
+		B_GiveInvItems(self,other,ItMw_1H_MISC_Sword,1);
 		DIA_Peck_WEAPON_perm = TRUE;
 	}
 	else if(Kapitel >= 3)

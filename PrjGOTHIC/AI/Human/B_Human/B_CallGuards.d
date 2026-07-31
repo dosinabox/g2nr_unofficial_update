@@ -5,17 +5,23 @@ func int C_WantToCallGuards(var C_Npc slf)
 	{
 		return FALSE;
 	};
-	if(C_NpcBelongsToOldCamp(slf))
+	if(CurrentLevel == OLDWORLD_ZEN)
 	{
-		return TRUE;
-	};
-	if(C_NpcBelongsToCity(slf))
+		if(C_NpcBelongsToOldCamp(slf))
+		{
+			return TRUE;
+		};
+	}
+	else if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		return TRUE;
-	};
-	if(C_NpcBelongsToFarm(slf))
-	{
-		return TRUE;
+		if(C_NpcBelongsToCity(slf))
+		{
+			return TRUE;
+		};
+		if(C_NpcBelongsToFarm(slf))
+		{
+			return TRUE;
+		};
 	};
 	return FALSE;
 };

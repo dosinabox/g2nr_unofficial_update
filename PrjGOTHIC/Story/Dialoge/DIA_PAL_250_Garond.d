@@ -3,21 +3,10 @@ instance DIA_Garond_EXIT(C_Info)
 {
 	npc = PAL_250_Garond;
 	nr = 999;
-	condition = DIA_Garond_EXIT_Condition;
-	information = DIA_Garond_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Garond_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Garond_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -82,9 +71,12 @@ instance DIA_Garond_PMSchulden(C_Info)
 
 func int DIA_Garond_PMSchulden_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Garond_Schulden > 0) && (B_GetGreatestPetzCrime(self) <= Garond_LastPetzCrime))
+	if(Npc_IsInState(self,ZS_Talk) && (Garond_Schulden > 0))
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) <= Garond_LastPetzCrime)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -454,8 +446,11 @@ func void DIA_Garond_Wo_Info()
 	AI_Output(self,other,"DIA_Garond_Wo_10_01");	//Вот, возьми эту карту. На ней показаны две области, где находятся шахты.
 	CreateInvItems(self,ItWr_Map_OldWorld_Oremines_Small_MIS,1);
 	B_GiveInvItems(self,other,ItWr_Map_OldWorld_Oremines_Small_MIS,1);
-	AI_Output(self,other,"DIA_Garond_Wo_10_02");	//Если у тебя есть еще вопросы, обратись к Парсивалю. Он расскажет все, что тебе нужно знать о старателях.
-	B_LogEntry(TOPIC_ScoutMine,"Паладин Парсиваль может дать мне информацию о старателях.");
+	if(!Npc_IsDead(Parcival))
+	{
+		AI_Output(self,other,"DIA_Garond_Wo_10_02");	//Если у тебя есть еще вопросы, обратись к Парсивалю. Он расскажет все, что тебе нужно знать о старателях.
+		B_LogEntry(TOPIC_ScoutMine,"Паладин Парсиваль может дать мне информацию о старателях.");
+	};
 };
 
 func void B_Garond_OreCounter()
@@ -523,7 +518,7 @@ func void DIA_Garond_Silvestro_Info()
 {
 	AI_Output(other,self,"DIA_Garond_Silvestro_15_00");	//Насчет шахты Сильвестро...
 	AI_Output(self,other,"DIA_Garond_Silvestro_10_01");	//Ты видел его? Ты говорил с ним?
-	if(!Npc_HasItems(Silvestro,ItWr_Silvestro_MIS) || Npc_KnowsInfo(other,DIA_DiegoOw_Mine))
+	if(!Npc_HasItems(Silvestro,ItWr_Silvestro_MIS) || Npc_KnowsInfo(other,DIA_DiegoOW_Mine))
 	{
 		AI_Output(other,self,"DIA_Garond_Silvestro_15_02");	//Все, кто находился в шахте, мертвы. Растерзаны краулерами.
 		AI_Output(self,other,"DIA_Garond_Silvestro_10_05");	//Черт! Это были хорошие люди - да проявит Иннос милосердие к их душам.
@@ -533,7 +528,7 @@ func void DIA_Garond_Silvestro_Info()
 		DIA_Common_NotFoundYet();
 	};
 	AI_Output(self,other,"DIA_Garond_Silvestro_10_03");	//А что насчет руды? Ты знаешь, сколько они добыли?
-	if(Npc_KnowsInfo(other,DIA_DiegoOw_Beweise))
+	if(Npc_KnowsInfo(other,DIA_DiegoOW_Beweise))
 	{
 		AI_Output(other,self,"DIA_Garond_Silvestro_15_04");	//Им удалось спрятать несколько ящиков. Они в пещере - по пути от замка к шахте.
 	}

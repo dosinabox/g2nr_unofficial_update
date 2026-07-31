@@ -453,7 +453,7 @@ instance ItMw_MalethsGehstock_MIS(C_Item)
 	range = 80;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_VLKMace;
-	visual = "Itmw_008_1h_pole_02.3ds";
+	visual = "ItMw_008_1H_pole_02.3ds";
 	description = name;
 	text[0] = "На древке вырезана буква 'М.'";
 	text[2] = NAME_Damage;
@@ -686,11 +686,11 @@ func void Use_HealObsession()
 };
 
 
-instance ItSe_Golemchest_MIS(C_Item)
+instance ItSe_GolemChest_MIS(C_Item)
 {
 	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI | ITEM_MISSION;
+	flags = ITEM_MULTI;
 	value = 50;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";

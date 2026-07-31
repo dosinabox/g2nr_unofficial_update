@@ -9,8 +9,8 @@ instance SLD_802_Buster(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Sld_Axe);
-	EquipItem(self,ItRw_Sld_Bow);
+	EquipItem(self,ItMw_1H_SLD_Axe);
+	EquipItem(self,ItRw_SLD_Bow);
 	CreateInvItems(self,ItRw_Arrow,10);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,34,ItMi_Gold,60);
@@ -27,7 +27,8 @@ instance SLD_802_Buster(Npc_Default)
 
 func void Rtn_Start_802()
 {
-	TA_Smalltalk(7,0,21,0,"NW_BIGFARM_HUT_01");
+	TA_Wash_FP(7,0,7,15,"NW_BIGFARM_HUT_02");
+	TA_Smalltalk(7,15,21,0,"NW_BIGFARM_HUT_01");
 	TA_Sit_Bench(21,0,7,0,"NW_BIGFARM_HUT_BENCH_02");
 };
 

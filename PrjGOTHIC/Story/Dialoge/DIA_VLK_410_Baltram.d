@@ -1,9 +1,16 @@
 
 func int C_BaltramCanTalkAboutLares()
 {
-	if((MIS_Lares_BringRangerToMe == LOG_RUNNING) && (AnyRangerRingEquipped() || ArmorEquipped(other,ITAR_RANGER_Addon)))
+	if(MIS_Lares_BringRangerToMe == LOG_RUNNING)
 	{
-		return TRUE;
+		if(AnyRangerRingEquipped())
+		{
+			return TRUE;
+		};
+		if(ArmorEquipped(other,ITAR_RANGER_Addon))
+		{
+			return TRUE;
+		};
 	};
 	return FALSE;
 };
@@ -44,9 +51,12 @@ instance DIA_Baltram_Sperre(C_Info)
 
 func int DIA_Baltram_Sperre_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Canthar_Sperre == TRUE) && !C_BaltramCanTalkAboutLares() && (SC_KnowsBaltramAsRanger == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (Canthar_Sperre == TRUE) && (SC_KnowsBaltramAsRanger == FALSE))
 	{
-		return TRUE;
+		if(!C_BaltramCanTalkAboutLares())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -69,9 +79,12 @@ instance DIA_Baltram_Hallo(C_Info)
 
 func int DIA_Baltram_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_Nagur_Bote == FALSE) && (Canthar_Sperre == FALSE) && !C_BaltramCanTalkAboutLares())
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_Nagur_Bote == FALSE) && (Canthar_Sperre == FALSE))
 	{
-		return TRUE;
+		if(!C_BaltramCanTalkAboutLares())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -103,9 +116,12 @@ instance DIA_Addon_Baltram_LaresAbloese(C_Info)
 
 func int DIA_Addon_Baltram_LaresAbloese_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && C_BaltramCanTalkAboutLares())
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(C_BaltramCanTalkAboutLares())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -383,9 +399,12 @@ instance DIA_Addon_Baltram_SkipsRum_All(C_Info)
 
 func int DIA_Addon_Baltram_SkipsRum_All_Condition()
 {
-	if((Skip_Rum4Baltram == TRUE) && (MIS_Addon_Baltram_Paket4Skip != LOG_SUCCESS) && (Npc_HasItems(other,ItFo_Addon_Rum) >= 3))
+	if((Skip_Rum4Baltram == TRUE) && (MIS_Addon_Baltram_Paket4Skip != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItFo_Addon_Rum) >= 3)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -408,9 +427,12 @@ instance DIA_Addon_Baltram_SkipsRum(C_Info)
 
 func int DIA_Addon_Baltram_SkipsRum_Condition()
 {
-	if((Skip_Rum4Baltram == TRUE) && (MIS_Addon_Baltram_Paket4Skip != LOG_SUCCESS) && (Npc_HasItems(other,ItFo_Addon_Rum) >= 2))
+	if((Skip_Rum4Baltram == TRUE) && (MIS_Addon_Baltram_Paket4Skip != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItFo_Addon_Rum) >= 2)
+		{
+			return TRUE;
+		};
 	};
 };
 

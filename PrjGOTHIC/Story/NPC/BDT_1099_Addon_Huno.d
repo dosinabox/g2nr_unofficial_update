@@ -10,7 +10,7 @@ instance BDT_1099_Addon_Huno(Npc_Default)
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Sld_Sword);
+	EquipItem(self,ItMw_1H_SLD_Sword);
 	B_CreateItemToSteal(self,85,ItMi_Gold,102);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart_Huno,BodyTex_N,ITAR_Smith);
 	Mdl_SetModelFatness(self,1);

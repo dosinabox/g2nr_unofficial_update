@@ -27,7 +27,6 @@ instance DIA_Hyglas_Feuer(C_Info)
 	nr = 2;
 	condition = DIA_Hyglas_Feuer_Condition;
 	information = DIA_Hyglas_Feuer_Info;
-	permanent = FALSE;
 	description = "Мне необходимо пройти Испытание Огнем.";
 };
 
@@ -54,7 +53,6 @@ instance DIA_Hyglas_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Hyglas_Hallo_Condition;
 	information = DIA_Hyglas_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -84,7 +82,6 @@ instance DIA_Hyglas_JOB(C_Info)
 	nr = 2;
 	condition = DIA_Hyglas_JOB_Condition;
 	information = DIA_Hyglas_JOB_Info;
-	permanent = FALSE;
 	description = "Что ты изучаешь, Мастер?";
 };
 
@@ -123,7 +120,6 @@ instance DIA_Hyglas_CONTEST(C_Info)
 	nr = 9;
 	condition = DIA_Hyglas_CONTEST_Condition;
 	information = DIA_Hyglas_CONTEST_Info;
-	permanent = FALSE;
 	description = "Я должен пройти Испытание Огнем.";
 };
 
@@ -238,7 +234,6 @@ instance DIA_Hyglas_BLANK_RUNE(C_Info)
 	nr = 9;
 	condition = DIA_Hyglas_BLANK_RUNE_Condition;
 	information = DIA_Hyglas_BLANK_RUNE_Info;
-	permanent = FALSE;
 	description = "Где я могу найти рунный камень?";
 };
 
@@ -267,7 +262,6 @@ instance DIA_Hyglas_GOTRUNE(C_Info)
 	nr = 2;
 	condition = DIA_Hyglas_GOTRUNE_Condition;
 	information = DIA_Hyglas_GOTRUNE_Info;
-	permanent = FALSE;
 	description = "Я создал руну.";
 };
 
@@ -391,14 +385,13 @@ instance DIA_Hyglas_BringBook(C_Info)
 	nr = 38;
 	condition = DIA_Hyglas_BringBook_Condition;
 	information = DIA_Hyglas_BringBook_Info;
-	permanent = FALSE;
 	description = "Есть какие-нибудь новости?";
 };
 
 
 func int DIA_Hyglas_BringBook_Condition()
 {
-	if((Kapitel >= 3) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
+	if((Kapitel >= 3) && (other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -456,7 +449,6 @@ instance DIA_Hyglas_HaveBook(C_Info)
 	nr = 38;
 	condition = DIA_Hyglas_HaveBook_Condition;
 	information = DIA_Hyglas_HaveBook_Info;
-	permanent = FALSE;
 	description = "Я принес тебе книгу.";
 };
 

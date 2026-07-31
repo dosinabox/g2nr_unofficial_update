@@ -27,7 +27,6 @@ instance DIA_Addon_Tonak_NW_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Tonak_NW_Hi_Condition;
 	information = DIA_Addon_Tonak_NW_Hi_Info;
-	permanent = FALSE;
 	description = "Вернулся к работе на поле?";
 };
 

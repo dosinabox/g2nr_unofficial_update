@@ -10,7 +10,7 @@ instance BDT_10314_Addon_RangerBandit_M(Npc_Default)
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Addon_BanditTrader);
-	EquipItem(self,ItRw_Sld_Bow);
+	EquipItem(self,ItRw_SLD_Bow);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItMi_BromorsGeld_Addon,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal19,BodyTex_N,ITAR_BDT_M);

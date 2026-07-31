@@ -18,7 +18,7 @@ func int DIA_Kurgan_EXIT_Condition()
 func void DIA_Kurgan_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-	if(!Npc_IsDead(Biff))
+	if((DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE) && !Npc_IsDead(Biff))
 	{
 		Npc_SetRefuseTalk(Biff,400);
 	};
@@ -28,6 +28,7 @@ func void DIA_Kurgan_EXIT_Info()
 instance DIA_Kurgan_HELLO(C_Info)
 {
 	npc = DJG_708_Kurgan;
+	nr = 1;
 	condition = DIA_Kurgan_HELLO_Condition;
 	information = DIA_Kurgan_HELLO_Info;
 	important = TRUE;
@@ -45,13 +46,17 @@ func void DIA_Kurgan_HELLO_Info()
 	AI_Output(other,self,"DIA_Kurgan_HELLO_15_01");	//„то ты этим хочешь сказать?
 	AI_Output(self,other,"DIA_Kurgan_HELLO_01_02");	//я хочу сказать, что пребывание здесь может не очень хорошо сказатьс€ на твоем здоровье. Ёто место просто кишит орками и монстрами.
 	AI_Output(self,other,"DIA_Kurgan_HELLO_01_03");	//Ќе говор€ уже о драконах. Ёто просто дружеское предупреждение.
-	B_LogEntry(TOPIC_Dragonhunter,"” входа в ƒолину –удников мне встретилась группа охотников на драконов. Ёти парни хорошо вооружены, но, боюсь, это не произведет особого впечатлени€ на драконов.");
+	if(MIS_AllDragonsDead == FALSE)
+	{
+		B_LogEntry(TOPIC_Dragonhunter,"” входа в ƒолину –удников мне встретилась группа охотников на драконов. Ёти парни хорошо вооружены, но, боюсь, это не произведет особого впечатлени€ на драконов.");
+	};
 };
 
 
 instance DIA_Kurgan_ELSE(C_Info)
 {
 	npc = DJG_708_Kurgan;
+	nr = 2;
 	condition = DIA_Kurgan_ELSE_Condition;
 	information = DIA_Kurgan_ELSE_Info;
 	description = "“ы можешь сказать мне что-нибудь, чего € еще не знаю?";
@@ -75,6 +80,7 @@ func void DIA_Kurgan_ELSE_Info()
 instance DIA_Kurgan_Leader(C_Info)
 {
 	npc = DJG_708_Kurgan;
+	nr = 3;
 	condition = DIA_Kurgan_Leader_Condition;
 	information = DIA_Kurgan_Leader_Info;
 	description = "“ы что, здесь за главного?";
@@ -96,9 +102,12 @@ func void DIA_Kurgan_Leader_Info()
 };
 
 
+var int Kurgan_KillDragon_Day;
+
 instance DIA_Kurgan_KillDragon(C_Info)
 {
 	npc = DJG_708_Kurgan;
+	nr = 3;
 	condition = DIA_Kurgan_KillDragon_Condition;
 	information = DIA_Kurgan_KillDragon_Info;
 	description = "“ак вы хотите убить драконов?";
@@ -112,9 +121,6 @@ func int DIA_Kurgan_KillDragon_Condition()
 		return TRUE;
 	};
 };
-
-
-var int Kurgan_KillDragon_Day;
 
 func void DIA_Kurgan_KillDragon_Info()
 {
@@ -156,6 +162,7 @@ func void DIA_Kurgan_KillDragon_weg()
 instance DIA_Kurgan_SEENDRAGON(C_Info)
 {
 	npc = DJG_708_Kurgan;
+	nr = 4;
 	condition = DIA_Kurgan_SEENDRAGON_Condition;
 	information = DIA_Kurgan_SEENDRAGON_Info;
 	permanent = TRUE;
@@ -184,7 +191,6 @@ instance DIA_Kurgan_AllDragonsDead(C_Info)
 	nr = 5;
 	condition = DIA_Kurgan_AllDragonsDead_Condition;
 	information = DIA_Kurgan_AllDragonsDead_Info;
-	permanent = FALSE;
 	description = "ƒраконы мертвы.";
 };
 

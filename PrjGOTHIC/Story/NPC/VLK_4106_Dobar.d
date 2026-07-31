@@ -9,7 +9,7 @@ instance VLK_4106_Dobar(Npc_Default)
 	npcType = NPCTYPE_OCMAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Vlk_Axe);
+	EquipItem(self,ItMw_1H_VLK_Axe);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,79,ItMi_Nugget,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Snaf,BodyTex_N,ITAR_Smith);

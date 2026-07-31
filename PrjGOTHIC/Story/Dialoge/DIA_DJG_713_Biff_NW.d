@@ -62,7 +62,6 @@ instance DIA_Biff_NW_QUIT(C_Info)
 	nr = 6;
 	condition = DIA_Biff_NW_QUIT_Condition;
 	information = DIA_Biff_NW_QUIT_Info;
-	permanent = FALSE;
 	description = "Боюсь, дальше наши пути расходятся.";
 };
 

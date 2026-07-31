@@ -9,7 +9,7 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Engor_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMiSwordraw,3);
+		CreateInvItems(slf,ItMiSwordRaw,3);
 		CreateInvItems(slf,ItPo_Health_01,10);
 		CreateInvItems(slf,ItPo_Health_02,5);
 		CreateInvItems(slf,ItPo_Health_03,5);
@@ -25,7 +25,7 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 		CreateInvItems(slf,ItSc_SumGol,2);
 		CreateInvItems(slf,ItSc_Pyrokinesis,1);
 		CreateInvItems(slf,ItSc_SumDemon,1);
-		CreateInvItems(slf,ItRw_Mil_Crossbow,1);
+		CreateInvItems(slf,ItRw_MIL_Crossbow,1);
 		if(RandomGoblinBerries == FALSE)
 		{
 			CreateInvItems(slf,ItPl_Dex_Herb_01,1);

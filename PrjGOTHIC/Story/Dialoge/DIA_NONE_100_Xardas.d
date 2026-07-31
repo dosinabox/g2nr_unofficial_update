@@ -61,8 +61,6 @@ func void DIA_Xardas_EXIT_Info()
 };
 
 
-var int Addon_zuerst;
-
 func void B_Xardas_SoLittleTime()
 {
 	AI_Output(self,other,"DIA_Xardas_Hello_14_15");	//(задумчиво) У нас очень мало времени.
@@ -98,7 +96,7 @@ func void DIA_Xardas_Hello_Info()
 
 func void DIA_Addon_Xardas_Hello_Man()
 {
-	PlayVideo("Intro_ADDON.BIK");
+	PlayVideo("INTRO_ADDON.BIK");
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_01");	//(пренебрежительно) Люди слабы.
 	AI_Output(other,self,"DIA_Addon_AddonIntro_15_00");	//(ошеломлен) ...люди?
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_02");	//(пренебрежительно) Они слишком легко поддаются соблазнам Зла.
@@ -1078,6 +1076,7 @@ func void DIA_Xardas_WARUMNICHTJETZT_wastun()
 instance DIA_Xardas_BEREIT(C_Info)
 {
 	npc = NONE_100_Xardas;
+	nr = 34;
 	condition = DIA_Xardas_BEREIT_Condition;
 	information = DIA_Xardas_BEREIT_Info;
 	description = "Я готов к сражению с драконами.";

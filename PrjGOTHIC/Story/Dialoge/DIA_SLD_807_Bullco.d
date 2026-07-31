@@ -3,21 +3,10 @@ instance DIA_Bullco_EXIT(C_Info)
 {
 	npc = SLD_807_Bullco;
 	nr = 999;
-	condition = DIA_Bullco_EXIT_Condition;
-	information = DIA_Bullco_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Bullco_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Bullco_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -58,16 +47,21 @@ instance DIA_Bullco_Quatscher(C_Info)
 	nr = 2;
 	condition = DIA_Bullco_Quatscher_Condition;
 	information = DIA_Bullco_Quatscher_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Bullco_Quatscher_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Sylvio_angequatscht >= 2))
+	if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Sylvio))
+		{
+			if(Sylvio.aivar[AIV_Nerver] >= 2)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -81,7 +75,6 @@ func void DIA_Bullco_Quatscher_Info()
 
 
 var int Bullco_Leave_Day;
-var int Bullco_scharf;
 
 instance DIA_Bullco_PleaseLeave(C_Info)
 {
@@ -89,7 +82,6 @@ instance DIA_Bullco_PleaseLeave(C_Info)
 	nr = 3;
 	condition = DIA_Bullco_PleaseLeave_Condition;
 	information = DIA_Bullco_PleaseLeave_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -98,7 +90,11 @@ func int DIA_Bullco_PleaseLeave_Condition()
 {
 	if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
-		if((self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE) || (Sylvio_MenDefeated == TRUE))
+		if(Sylvio_MenDefeated == TRUE)
+		{
+			return TRUE;
+		};
+		if(self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE)
 		{
 			return TRUE;
 		};
@@ -161,7 +157,6 @@ instance DIA_Bullco_DailyCheck(C_Info)
 	nr = 4;
 	condition = DIA_Bullco_DailyCheck_Condition;
 	information = DIA_Bullco_DailyCheck_Info;
-//	permanent = FALSE;
 	permanent = TRUE;
 	important = TRUE;
 };
@@ -221,7 +216,6 @@ instance DIA_Bullco_WontLeave(C_Info)
 	nr = 5;
 	condition = DIA_Bullco_WontLeave_Condition;
 	information = DIA_Bullco_WontLeave_Info;
-	permanent = FALSE;
 	description = "Я НЕ СОБИРАЮСЬ уходить отсюда!";
 };
 
@@ -246,16 +240,22 @@ instance DIA_Bullco_PepesSchafe(C_Info)
 	nr = 6;
 	condition = DIA_Bullco_PepesSchafe_Condition;
 	information = DIA_Bullco_PepesSchafe_Info;
-	permanent = FALSE;
 	description = "Тебе имя Пепе говорит о чем-нибудь?";
 };
 
 
 func int DIA_Bullco_PepesSchafe_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Onar_WegenPepe) || Npc_KnowsInfo(other,DIA_Lee_WegenBullco)) && (Bullco_scharf == TRUE))
+	if(Bullco_scharf == TRUE)
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Onar_WegenPepe))
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Lee_WegenBullco))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -7,7 +7,7 @@ func void ZS_Bandit()
 	{
 		if(Npc_GetDistToWP(self,self.wp) > TA_DIST_SELFWP_MAX)
 		{
-			AI_StandUp(self);
+			AI_Standup(self);
 		}
 		else
 		{
@@ -24,7 +24,7 @@ func int ZS_Bandit_Loop()
 	{
 		if(!C_BodyStateContains(self,BS_SIT))
 		{
-			if(Npc_GetStateTime(self) > self.aivar[AIV_STATETIME])
+			if(Npc_GetStateTime(self) > self.aivar[AIV_StateTime])
 			{
 				AI_PlayAni(self,"T_HGUARD_LOOKAROUND");
 				self.aivar[AIV_StateTime] = Hlp_Random(100) % 8 + 10; // от 10 до 17 секунд.
@@ -36,7 +36,7 @@ func int ZS_Bandit_Loop()
 	};
 	if(Npc_GetDistToWP(self,self.wp) > TA_DIST_SELFWP_MAX)
 	{
-		AI_StandUp(self);
+		AI_Standup(self);
 		AI_SetWalkMode(self,NPC_WALK);
 		AI_GotoWP(self,self.wp);
 		return LOOP_CONTINUE;
@@ -55,7 +55,7 @@ func int ZS_Bandit_Loop()
 	Npc_SetStateTime(self,0);
 	if(Wld_IsFPAvailable(self,"STAND"))
 	{
-		AI_StandUp(self);
+		AI_Standup(self);
 		AI_SetWalkMode(self,NPC_WALK);
 		AI_Wait(self,0.5);
 		AI_GotoFP(self,"STAND");
@@ -65,7 +65,7 @@ func int ZS_Bandit_Loop()
 		self.aivar[AIV_TAPOSITION] = ISINPOS;
 		return LOOP_CONTINUE;
 	};
-	AI_StandUp(self);
+	AI_Standup(self);
 	AI_AlignToWP(self);
 	AI_SetWalkMode(self,NPC_RUN);
 	AI_Wait(self,0.5);

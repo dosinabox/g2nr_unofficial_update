@@ -43,79 +43,93 @@ func int DIA_Ambient_NEWS_Condition()
 
 func void DIA_Ambient_NEWS_Info()
 {
-	if(B_GetPlayerCrime(self) != CRIME_NONE)
+	var int crime;
+	crime = B_GetPlayerCrime(self);
+	if(crime != CRIME_NONE)
 	{
-		if(B_GetPlayerCrime(self) == CRIME_SHEEPKILLER)
+		if(crime == CRIME_SHEEPKILLER)
 		{
 			B_Say(self,other,"$SHEEPKILLER_CRIME");
-		};
-		if(B_GetPlayerCrime(self) == CRIME_ATTACK)
+		}
+		else if(crime == CRIME_ATTACK)
 		{
 			B_Say(self,other,"$ATTACK_CRIME");
-		};
-		if(B_GetPlayerCrime(self) == CRIME_THEFT)
+		}
+		else if(crime == CRIME_THEFT)
 		{
 			B_Say(self,other,"$THEFT_CRIME");
 		};
-		if(C_NpcBelongsToCity(self))
+		if(CurrentLevel == NEWWORLD_ZEN)
 		{
-			if((other.guild == GIL_PAL) && (Hagen_Schulden <= 0))
+			if(C_NpcBelongsToCity(self))
 			{
-				B_Say(self,other,"$PAL_CITY_CRIME");
+				if((other.guild == GIL_PAL) && (Hagen_Schulden <= 0))
+				{
+					B_Say(self,other,"$PAL_CITY_CRIME");
+				}
+				else if((other.guild == GIL_MIL) && (Andre_Schulden <= 0))
+				{
+					B_Say(self,other,"$MIL_CITY_CRIME");
+				}
+				else if(Andre_Schulden <= 0)
+				{
+					B_Say(self,other,"$CITY_CRIME");
+				};
+				self.aivar[AIV_CommentedPlayerCrime] = TRUE;
 			}
-			else if((other.guild == GIL_MIL) && (Andre_Schulden <= 0))
+			else if(C_NpcBelongsToMonastery(self))
 			{
-				B_Say(self,other,"$MIL_CITY_CRIME");
+				if((Parlan_Schulden <= 0) && C_CommentMonasteryCrimes(self))
+				{
+					B_Say(self,other,"$MONA_CRIME");
+					self.aivar[AIV_CommentedPlayerCrime] = TRUE;
+				};
 			}
-			else if(Andre_Schulden <= 0)
+			else if(C_NpcBelongsToFarm(self))
 			{
-				B_Say(self,other,"$CITY_CRIME");
-			};
-			self.aivar[AIV_CommentedPlayerCrime] = TRUE;
-		}
-		else if(C_NpcBelongsToMonastery(self))
-		{
-			if((Parlan_Schulden <= 0) && C_CommentMonasteryCrimes(self))
-			{
-				B_Say(self,other,"$MONA_CRIME");
-				self.aivar[AIV_CommentedPlayerCrime] = TRUE;
+				if(Lee_Schulden <= 0)
+				{
+					B_Say(self,other,"$FARM_CRIME");
+					self.aivar[AIV_CommentedPlayerCrime] = TRUE;
+				};
 			};
 		}
-		else if(C_NpcBelongsToFarm(self))
+		else if(CurrentLevel == OLDWORLD_ZEN)
 		{
-			if(Lee_Schulden <= 0)
+			if(C_NpcBelongsToOldCamp(self))
 			{
-				B_Say(self,other,"$FARM_CRIME");
-				self.aivar[AIV_CommentedPlayerCrime] = TRUE;
-			};
-		}
-		else if(C_NpcBelongsToOldCamp(self))
-		{
-			if(Garond_Schulden <= 0)
-			{
-				B_Say(self,other,"$OC_CRIME");
-				self.aivar[AIV_CommentedPlayerCrime] = TRUE;
+				if(Garond_Schulden <= 0)
+				{
+					B_Say(self,other,"$OC_CRIME");
+					self.aivar[AIV_CommentedPlayerCrime] = TRUE;
+				};
 			};
 		};
 		AI_StopProcessInfos(self);
 	}
 	else if(self.aivar[AIV_CommentedPlayerCrime] == TRUE)
 	{
-		if(C_NpcBelongsToCity(self))
+		if(CurrentLevel == NEWWORLD_ZEN)
 		{
-			B_Say(self,other,"$ABS_CITY");
+			if(C_NpcBelongsToCity(self))
+			{
+				B_Say(self,other,"$ABS_CITY");
+			}
+			else if(C_NpcBelongsToMonastery(self))
+			{
+				B_Say(self,other,"$ABS_MONASTERY");
+			}
+			else if(C_NpcBelongsToFarm(self))
+			{
+				B_Say(self,other,"$ABS_FARM");
+			};
 		}
-		else if(C_NpcBelongsToMonastery(self))
+		else if(CurrentLevel == OLDWORLD_ZEN)
 		{
-			B_Say(self,other,"$ABS_MONASTERY");
-		}
-		else if(C_NpcBelongsToFarm(self))
-		{
-			B_Say(self,other,"$ABS_FARM");
-		}
-		else if(C_NpcBelongsToOldCamp(self))
-		{
-			B_Say(self,other,"$ABS_COMMANDER");
+			if(C_NpcBelongsToOldCamp(self))
+			{
+				B_Say(self,other,"$ABS_COMMANDER");
+			};
 		};
 		B_Say(self,other,"$ABS_GOOD");
 		self.aivar[AIV_CommentedPlayerCrime] = FALSE;

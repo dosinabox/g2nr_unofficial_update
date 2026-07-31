@@ -9,7 +9,7 @@
 	npcType = NPCTYPE_TAL_AMBIENT;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_2h_Sld_Sword);
+	EquipItem(self,ItMw_2H_SLD_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Normal_Kirgo,BodyTex_B,ITAR_Prisoner);
 	Mdl_SetModelFatness(self,1);

@@ -10,10 +10,10 @@ instance VLK_484_Lehmar(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Sld_Sword);
+	EquipItem(self,ItMw_1H_SLD_Sword);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,20,ItWr_Schuldenbuch,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Whistler,BodyTex_N,ITAR_Vlk_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Whistler,BodyTex_N,ITAR_VLK_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

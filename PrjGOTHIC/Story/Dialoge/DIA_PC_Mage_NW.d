@@ -3,21 +3,10 @@ instance DIA_MiltenNW_EXIT(C_Info)
 {
 	npc = PC_Mage_NW;
 	nr = 999;
-	condition = DIA_MiltenNW_EXIT_Condition;
-	information = DIA_MiltenNW_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_MiltenNW_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_MiltenNW_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -242,7 +231,7 @@ func void DIA_MiltenNW_FourFriends_Info()
 	if(MIS_RescueGorn != LOG_SUCCESS)
 	{
 		AI_Output(other,self,"DIA_MiltenNW_FourFriends_15_02");	//Как ему удалось выбраться?
-		if(Npc_KnowsInfo(other,DIA_DiegoOw_Gorn))
+		if(Npc_KnowsInfo(other,DIA_DiegoOW_Gorn))
 		{
 			AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_03");	//Мне пришлось солгать Гаронду, так что он снял все обвинения.
 			AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_04");	//Но это только между нами, понятно?
@@ -336,7 +325,7 @@ func void DIA_MiltenNW_KAP3_Entry_Permit()
 	AI_Output(other,self,"DIA_MiltenNW_KAP3_Entry_Permit_15_00");	//У меня есть письмо от лорда Хагена.
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_Permit_03_01");	//Покажи.
 	B_GiveInvItems(other,self,ItWr_PermissionToWearInnosEye_MIS,1);
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	AI_Output(self,other,"DIA_MiltenOW_Hello_NO_03_01");	//Ты через многое прошел, да?
 	B_GiveInvItems(self,other,ItWr_PermissionToWearInnosEye_MIS,1);
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_Permit_03_02");	//(колеблясь) Хорошо. Вот ключ от монастыря. Ты найдешь Пирокара в церкви.
@@ -724,7 +713,7 @@ func void DIA_MiltenNW_Teach_Info()
 		{
 			if(PLAYER_TALENT_RUNES[SPL_Light] == FALSE)
 			{
-				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_Light,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Light)),DIA_MiltenOW_Teach_Light);
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_LIGHT,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Light)),DIA_MiltenOW_Teach_Light);
 			};
 			if(PLAYER_TALENT_RUNES[SPL_LightHeal] == FALSE)
 			{
@@ -786,9 +775,19 @@ instance DIA_MiltenNW_Mana(C_Info)
 
 func int DIA_MiltenNW_Mana_Condition()
 {
-	if(((other.guild == GIL_KDF) || ((GuildlessMode == TRUE) && (other.guild == GIL_NOV))) && (Milten_NW_TeachMANA_NoPerm == FALSE))
+	if(Milten_NW_TeachMANA_NoPerm == FALSE)
 	{
-		return TRUE;
+		if(other.guild == GIL_KDF)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
+		{
+			if(GuildlessMode == TRUE)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 

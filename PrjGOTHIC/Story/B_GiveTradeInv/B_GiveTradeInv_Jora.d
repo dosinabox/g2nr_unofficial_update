@@ -16,7 +16,7 @@ func void B_GiveTradeInv_Jora(var C_Npc slf)
 		CreateInvItems(slf,ItPl_Mushroom_01,3);
 		CreateInvItems(slf,ItFoMutton,8);
 		CreateInvItems(slf,ItRw_Crossbow_L_01,1);
-		CreateInvItems(slf,ItRw_Mil_Crossbow,1);
+		CreateInvItems(slf,ItRw_MIL_Crossbow,1);
 		CreateInvItems(slf,ItRw_Crossbow_L_02,1);
 		CreateInvItems(slf,ItAm_Prot_Point_01,1);
 		if(ClassicMeleeWeaponsTraders == FALSE)
@@ -35,7 +35,7 @@ func void B_GiveTradeInv_Jora(var C_Npc slf)
 	{
 		CreateInvItems(slf,ItRw_Arrow,60);
 		CreateInvItems(slf,ItRw_Bolt,60);
-		CreateInvItems(slf,ItMiSwordraw,1);
+		CreateInvItems(slf,ItMiSwordRaw,1);
 		CreateInvItems(slf,ItPl_Health_Herb_01,3);
 		CreateInvItems(slf,ItPl_Mushroom_02,2);
 		CreateInvItems(slf,ItFo_FishSoup,3);

@@ -108,7 +108,7 @@ func void B_ClearPerceptions(var C_Npc slf)
 
 func void Perception_Set_Monster_Rtn()
 {
-	if(self.guild == GIL_MEATBUG)
+	if((self.guild == GIL_MEATBUG) && (MeatbugStompDisabled == FALSE))
 	{
 		Npc_SetPercTime(self,0.1);
 		Npc_PercEnable(self,PERC_ASSESSPLAYER,B_MM_AssessPlayer);

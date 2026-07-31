@@ -127,7 +127,7 @@ var int TOPIC_END_MinenAnteile;
 
 const string TOPIC_RichterLakai = "Лакей судьи";
 const string TOPIC_KillTrollBlack = "Черная шкура";
-const string TOPIC_Torlof_Dmt = "Боязнь Торлофа людей в черном";
+const string TOPIC_Torlof_DMT = "Боязнь Торлофа людей в черном";
 const string TOPIC_KillHoshPak = "Хош-Пак";
 const string TOPIC_Urshak = "Ур-Шак";
 const string TOPIC_DRACHENJAGD = "Охота на драконов";

@@ -10,10 +10,10 @@ instance VLK_4303_Addon_Erol(Npc_Default)
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_1h_Vlk_Sword);
+	EquipItem(self,ItMw_1H_VLK_Sword);
 	CreateInvItems(self,ItPo_Health_01,3);
 	B_CreateItemToSteal(self,43,ItMi_Gold,42);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Corristo,BodyTex_N,ITAR_Vlk_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Corristo,BodyTex_N,ITAR_VLK_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);
@@ -36,7 +36,8 @@ func void Rtn_Start_4303()
 
 func void Rtn_Home_4303()
 {
-	TA_Sit_Chair(8,0,22,0,"NW_BIGFARM_HUT_IN_01");
+	TA_Wash_FP(8,0,8,15,"NW_BIGFARM_HUT_02");
+	TA_Sit_Chair(8,15,22,0,"NW_BIGFARM_HUT_IN_01");
 	TA_Sleep(22,0,8,0,"NW_BIGFARM_HUTINSIDE_BED");
 };
 

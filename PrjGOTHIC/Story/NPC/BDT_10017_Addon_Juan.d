@@ -10,7 +10,7 @@ instance BDT_10017_Addon_Juan(Npc_Default)
 	aivar[AIV_NPCIsTrader] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_2h_Sld_Axe);
+	EquipItem(self,ItMw_2H_SLD_Axe);
 	CreateInvItems(self,ItMi_Addon_Steel_Paket,1);
 	CreateInvItems(self,ItMi_Addon_Fisk_Paket,1);
 	CreateInvItems(self,ItMi_Grog_Crate,5);

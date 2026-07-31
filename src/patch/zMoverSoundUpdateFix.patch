@@ -1,0 +1,15 @@
+#engine [G2A]
+    #patch [zMoverSoundUpdateFix]
+        #assembler [0x00611DC2]
+            push    ecx
+            mov     ecx, dword ptr [0x0099B03C] ; zsound
+            mov     edx, [ecx]
+            lea     eax, [esi+1A4h]
+            push    0
+            push    eax
+            call    dword ptr [edx+40h]         ; UpdateSound3D
+            pop     ecx
+            orgcode
+        #/assembler
+    #/patch
+#/engine

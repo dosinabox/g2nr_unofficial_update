@@ -19,7 +19,7 @@ func int DIA_Addon_AlligatorJack_EXIT_Condition()
 
 func void DIA_Addon_AlligatorJack_EXIT_Info()
 {
-	if((MIS_KrokoJagd == LOG_SUCCESS) && (DIA_Addon_AlligatorJack_EXIT_Info_OneTime == FALSE))
+	if((MIS_KrokoJagd == LOG_SUCCESS) && (self.aivar[AIV_PARTYMEMBER] == FALSE) && (DIA_Addon_AlligatorJack_EXIT_Info_OneTime == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_Exit_12_00");	//≈сли € тебе понадоблюсь, ты можешь найти мен€ у моего лагер€ р€дом с частоколом.
 		if(!Npc_IsDead(Henry))
@@ -32,10 +32,12 @@ func void DIA_Addon_AlligatorJack_EXIT_Info()
 		};
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"START");
-		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		DIA_Addon_AlligatorJack_EXIT_Info_OneTime = TRUE;
+	}
+	else
+	{
+		AI_StopProcessInfos(self);
 	};
-	AI_StopProcessInfos(self);
 };
 
 
@@ -169,9 +171,12 @@ instance DIA_Addon_AlligatorJack_BDTRuestung(C_Info)
 
 func int DIA_Addon_AlligatorJack_BDTRuestung_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Vorschlag) && (MIS_Greg_ScoutBandits == FALSE) && !C_SCHasBDTArmor())
+	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Vorschlag) && (MIS_Greg_ScoutBandits == FALSE))
 	{
-		return TRUE;
+		if(!C_SCHasBDTArmor())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -422,9 +427,12 @@ instance DIA_Addon_AlligatorJack_AlligatorJackInter1(C_Info)
 
 func int DIA_Addon_AlligatorJack_AlligatorJackInter1_Condition()
 {
-	if((AlligatorJack_JagdStart == AlligatorJack_Inter1) && (Npc_GetDistToWP(self,"ADW_PIRATECAMP_WAY_16") <= 500) && (GregIsBack == FALSE))
+	if((AlligatorJack_JagdStart == AlligatorJack_Inter1) && (GregIsBack == FALSE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"ADW_PIRATECAMP_WAY_16") <= 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -456,9 +464,12 @@ instance DIA_Addon_AlligatorJack_TheHunt(C_Info)
 
 func int DIA_Addon_AlligatorJack_TheHunt_Condition()
 {
-	if((AlligatorJack_JagdStart == AlligatorJack_Kessel) && (Npc_GetDistToWP(self,"ADW_PIRATECAMP_WATERHOLE_07") <= 500) && (GregIsBack == FALSE))
+	if((AlligatorJack_JagdStart == AlligatorJack_Kessel) && (GregIsBack == FALSE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"ADW_PIRATECAMP_WATERHOLE_07") <= 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -518,9 +529,12 @@ instance DIA_Addon_AlligatorJack_AlligatorJackInter2(C_Info)
 
 func int DIA_Addon_AlligatorJack_AlligatorJackInter2_Condition()
 {
-	if((AlligatorJack_JagdStart == AlligatorJack_Inter2) && (Npc_GetDistToWP(self,"ADW_PIRATECAMP_WAY_16") <= 250) && (GregIsBack == FALSE))
+	if((AlligatorJack_JagdStart == AlligatorJack_Inter2) && (GregIsBack == FALSE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"ADW_PIRATECAMP_WAY_16") <= 250)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -545,9 +559,12 @@ instance DIA_Addon_AlligatorJack_HuntEnd(C_Info)
 
 func int DIA_Addon_AlligatorJack_HuntEnd_Condition()
 {
-	if((AlligatorJack_JagdStart == AlligatorJack_Canyon) && (Npc_GetDistToWP(self,"ADW_CANYON_TELEPORT_PATH_06") <= 500) && (GregIsBack == FALSE))
+	if((AlligatorJack_JagdStart == AlligatorJack_Canyon) && (GregIsBack == FALSE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"ADW_CANYON_TELEPORT_PATH_06") <= 500)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -682,7 +699,7 @@ func void B_AlligatorJack_CanLearn()
 func void DIA_Addon_AlligatorJack_CanLearn_Pay()
 {
 	DIA_Common_TakeIt();
-	B_GiveInvItems(other,self,ItMi_Gold,200);
+	B_GiveInvItems(other,self,ItMi_Gold,AlligatorJack_TeachingCost);
 	B_AlliJack_AlliKlar();
 	B_AlligatorJack_CanLearn();
 	Info_ClearChoices(DIA_Addon_AlligatorJack_CanLearn);
@@ -727,10 +744,10 @@ func void DIA_Addon_AlligatorJack_CanLearn_Info()
 		}
 		else if((GregIsBack == TRUE) || (MIS_KrokoJagd == LOG_FAILED))
 		{
-			B_Say_Gold(self,other,200);
+			B_Say_Gold(self,other,AlligatorJack_TeachingCost);
 			Info_ClearChoices(DIA_Addon_AlligatorJack_CanLearn);
 			Info_AddChoice(DIA_Addon_AlligatorJack_CanLearn,"я подумаю над этим.",DIA_Addon_AlligatorJack_CanLearn_NoPay);
-			if(Npc_HasItems(other,ItMi_Gold) >= 200)
+			if(Npc_HasItems(other,ItMi_Gold) >= AlligatorJack_TeachingCost)
 			{
 				Info_AddChoice(DIA_Addon_AlligatorJack_CanLearn,"ƒержи.",DIA_Addon_AlligatorJack_CanLearn_Pay);
 			};
@@ -805,11 +822,19 @@ func int DIA_Addon_AlligatorJack_Teach_Condition()
 func void DIA_Addon_AlligatorJack_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_Teach_15_00");	//я готов учитьс€!
-	if((VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_AlligatorJack) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE))
+	if(self.aivar[AIV_RefuseService] == TRUE)
 	{
-		AI_Output(self,other,"DIA_Addon_AlligatorJack_Teach_12_01");	//„ему теб€ научить?
+		B_Say(self,other,"$NOTNOW");
+		AI_StopProcessInfos(self);
+	}
+	else
+	{
+		if((VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_AlligatorJack) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE))
+		{
+			AI_Output(self,other,"DIA_Addon_AlligatorJack_Teach_12_01");	//„ему теб€ научить?
+		};
+		B_BuildLearnDialog_AlligatorJack();
 	};
-	B_BuildLearnDialog_AlligatorJack();
 };
 
 func void DIA_Addon_AlligatorJack_Teach_Back()
@@ -958,9 +983,12 @@ instance DIA_Addon_AlligatorJack_TooFar(C_Info)
 
 func int DIA_Addon_AlligatorJack_TooFar_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_GregsPiratesTooFar() && (MIS_Addon_Greg_ClearCanyon == LOG_RUNNING))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (MIS_Addon_Greg_ClearCanyon == LOG_RUNNING))
 	{
-		return TRUE;
+		if(C_GregsPiratesTooFar())
+		{
+			return TRUE;
+		};
 	};
 };
 

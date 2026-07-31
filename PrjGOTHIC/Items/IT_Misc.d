@@ -165,52 +165,52 @@ instance ItMi_Saw(C_Item)
 	count[5] = value;
 };
 
-instance ItMiSwordraw(C_Item)
+instance ItMiSwordRaw(C_Item)
 {
 	name = "Сырая сталь";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_SwordRaw;
-	visual = "ItMiSwordraw.3DS";
+	visual = "ItMiSwordRaw.3DS";
 	material = MAT_METAL;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
-instance ItMiSwordrawhot(C_Item)
+instance ItMiSwordRawHot(C_Item)
 {
 	name = "Раскаленная сталь";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_SwordRawHot;
-	visual = "ItMiSwordrawhot.3DS";
+	visual = "ItMiSwordRawHot.3DS";
 	material = MAT_METAL;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
-instance ItMiSwordbladehot(C_Item)
+instance ItMiSwordBladeHot(C_Item)
 {
 	name = "Раскаленный клинок";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_SwordBladeHot;
-	visual = "ItMiSwordbladehot.3DS";
+	visual = "ItMiSwordBladeHot.3DS";
 	material = MAT_METAL;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
-instance ItMiSwordblade(C_Item)
+instance ItMiSwordBlade(C_Item)
 {
 	name = "Клинок";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_SwordBlade;
-	visual = "ItMiSwordblade.3DS";
+	visual = "ItMiSwordBlade.3DS";
 	material = MAT_METAL;
 	description = name;
 	text[5] = NAME_Value;
@@ -771,7 +771,7 @@ instance ItMi_DoppelTabak(C_Item)
 	inv_zbias = 190;
 };
 
-instance ItMi_Honigtabak(C_Item)
+instance ItMi_HonigTabak(C_Item)
 {
 	name = PRINT_HONIG;
 	mainflag = ITEM_KAT_NONE;

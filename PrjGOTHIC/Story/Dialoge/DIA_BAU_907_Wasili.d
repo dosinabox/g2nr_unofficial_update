@@ -3,21 +3,10 @@ instance DIA_Wasili_EXIT(C_Info)
 {
 	npc = BAU_907_Wasili;
 	nr = 999;
-	condition = DIA_Wasili_EXIT_Condition;
-	information = DIA_Wasili_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Wasili_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Wasili_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -33,9 +22,19 @@ instance DIA_Wasili_HALLO(C_Info)
 
 func int DIA_Wasili_HALLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && ((VisibleGuild(other) == GIL_NONE) || (VisibleGuild(other) == GIL_NOV)))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(self.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			if(VisibleGuild(other) == GIL_NONE)
+			{
+				return TRUE;
+			};
+			if(VisibleGuild(other) == GIL_NOV)
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -99,7 +98,6 @@ func void DIA_Wasili_Sammler_Info()
 var int WasilisOldCoinOffer;
 var int FirstOldCoin_angebotenXP_OneTime;
 var int DIA_Wasili_FirstOldCoin_mehr_OneTime;
-var int OldCoinCounter;
 
 instance DIA_Wasili_FirstOldCoin(C_Info)
 {
@@ -114,9 +112,12 @@ instance DIA_Wasili_FirstOldCoin(C_Info)
 
 func int DIA_Wasili_FirstOldCoin_Condition()
 {
-	if((MIS_Wasili_BringOldCoin == LOG_RUNNING) && Npc_HasItems(other,ItMi_OldCoin))
+	if(MIS_Wasili_BringOldCoin == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_OldCoin))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -224,9 +225,12 @@ instance DIA_Wasili_BringOldCoin(C_Info)
 
 func int DIA_Wasili_BringOldCoin_Condition()
 {
-	if(Npc_HasItems(other,ItMi_OldCoin) && (MIS_Wasili_BringOldCoin == LOG_SUCCESS))
+	if(MIS_Wasili_BringOldCoin == LOG_SUCCESS)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_OldCoin))
+		{
+			return TRUE;
+		};
 	};
 };
 

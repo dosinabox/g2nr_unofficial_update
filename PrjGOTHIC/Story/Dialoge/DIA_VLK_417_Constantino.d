@@ -47,7 +47,6 @@ instance DIA_Constantino_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Constantino_Hallo_Condition;
 	information = DIA_Constantino_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -83,7 +82,6 @@ instance DIA_Constantino_AboutLehrling(C_Info)
 	nr = 1;
 	condition = DIA_Constantino_AboutLehrling_Condition;
 	information = DIA_Constantino_AboutLehrling_Info;
-	permanent = FALSE;
 	description = "Я хочу поступить в ученики.";
 };
 
@@ -109,7 +107,6 @@ instance DIA_Constantino_Heilung(C_Info)
 	nr = 5;
 	condition = DIA_Constantino_Heilung_Condition;
 	information = DIA_Constantino_Heilung_Info;
-	permanent = FALSE;
 	description = "Мне нужно лечение.";
 };
 
@@ -181,8 +178,8 @@ instance DIA_Constantino_Trade(C_Info)
 	condition = DIA_Constantino_Trade_Condition;
 	information = DIA_Constantino_Trade_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
 	trade = TRUE;
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -246,7 +243,6 @@ instance DIA_Constantino_BeiDir(C_Info)
 	nr = 1;
 	condition = DIA_Constantino_BeiDir_Condition;
 	information = DIA_Constantino_BeiDir_Info;
-	permanent = FALSE;
 	description = "Я хочу стать твоим учеником.";
 };
 
@@ -317,7 +313,6 @@ instance DIA_Constantino_BringHerbs(C_Info)
 	nr = 1;
 	condition = DIA_Constantino_BringHerbs_Condition;
 	information = DIA_Constantino_BringHerbs_Info;
-	permanent = FALSE;
 	description = "Что мне нужно сделать, чтобы стать ТВОИМ учеником?";
 };
 
@@ -346,6 +341,55 @@ func void DIA_Constantino_BringHerbs_Info()
 };
 
 
+func int C_SCHasAllPlantsForConstantino()
+{
+	if(!Npc_HasItems(hero,ItPl_Mana_Herb_01))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(hero,ItPl_Mana_Herb_02))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(hero,ItPl_Mana_Herb_03))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(hero,ItPl_Health_Herb_01))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(hero,ItPl_Health_Herb_02))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(hero,ItPl_Health_Herb_03))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(hero,ItPl_Dex_Herb_01))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(hero,ItPl_Strength_Herb_01))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(hero,ItPl_Speed_Herb_01))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(hero,ItPl_Temp_Herb))
+	{
+		return FALSE;
+	};
+	if(!Npc_HasItems(hero,ItPl_Perm_Herb))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 instance DIA_Constantino_HerbsRunning(C_Info)
 {
 	npc = VLK_417_Constantino;
@@ -371,7 +415,7 @@ func void DIA_Constantino_HerbsRunning_Info()
 	AI_Output(self,other,"DIA_Constantino_HerbsRunning_10_01");	//Если ты не можешь выполнить это задание самостоятельно, из тебя не получится хорошего алхимика!
 	Info_ClearChoices(DIA_Constantino_HerbsRunning);
 	Info_AddChoice(DIA_Constantino_HerbsRunning,"Понимаю.",DIA_Constantino_HerbsRunning_Running);
-	if(Npc_HasItems(other,ItPl_Mana_Herb_01) && Npc_HasItems(other,ItPl_Mana_Herb_02) && Npc_HasItems(other,ItPl_Mana_Herb_03) && Npc_HasItems(other,ItPl_Health_Herb_01) && Npc_HasItems(other,ItPl_Health_Herb_02) && Npc_HasItems(other,ItPl_Health_Herb_03) && Npc_HasItems(other,ItPl_Dex_Herb_01) && Npc_HasItems(other,ItPl_Strength_Herb_01) && Npc_HasItems(other,ItPl_Speed_Herb_01) && Npc_HasItems(other,ItPl_Temp_Herb) && Npc_HasItems(other,ItPl_Perm_Herb))
+	if(C_SCHasAllPlantsForConstantino())
 	{
 		Info_AddChoice(DIA_Constantino_HerbsRunning,"Я принес все растения, что ты просил!",DIA_Constantino_HerbsRunning_Success);
 	};
@@ -688,7 +732,6 @@ instance DIA_Constantino_Aufgaben(C_Info)
 	nr = 2;
 	condition = DIA_Constantino_Aufgaben_Condition;
 	information = DIA_Constantino_Aufgaben_Info;
-	permanent = FALSE;
 	description = "Каковы мои задачи?";
 };
 
@@ -717,7 +760,6 @@ instance DIA_Constantino_Mushrooms(C_Info)
 	nr = 2;
 	condition = DIA_Constantino_Mushrooms_Condition;
 	information = DIA_Constantino_Mushrooms_Info;
-	permanent = FALSE;
 	description = "Какие растения я должен приносить?";
 };
 
@@ -957,6 +999,8 @@ func void DIA_Constantino_NewRecipes_Info()
 };
 
 
+var int DIA_Constantino_Teach_permanent;
+
 instance DIA_Constantino_TEACH(C_Info)
 {
 	npc = VLK_417_Constantino;
@@ -967,8 +1011,6 @@ instance DIA_Constantino_TEACH(C_Info)
 	description = "Каким рецептам ты можешь обучить меня?";
 };
 
-
-var int DIA_Constantino_Teach_permanent;
 
 func int DIA_Constantino_TEACH_Condition()
 {

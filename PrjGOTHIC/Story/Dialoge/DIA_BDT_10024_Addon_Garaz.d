@@ -106,8 +106,11 @@ func void DIA_Addon_Garaz_Bloodwyn_Info()
 	AI_Output(other,self,"DIA_Addon_Garaz_Bloodwyn_15_03");	//Что еще?
 	AI_Output(self,other,"DIA_Addon_Garaz_Bloodwyn_08_04");	//Он думает, что он - лучший и терпеть не может, если у кого-то больше денег, чем у него. Пожалуйста - я не встану у него на пути.
 	AI_Output(self,other,"DIA_Addon_Garaz_Bloodwyn_08_05");	//Просто не стой у него на пути и не провоцируй его, если не хочешь, чтобы он впал в ярость и перестал себя контролировать...
-	B_LogEntry(TOPIC_Addon_Tempel,"Если Бладвин узнает, что в шахте была открыта новая золотая жила, он наверняка покинет храм.");
-	Log_AddEntry(TOPIC_Addon_Tempel,"Когда Бладвин рассержен, он теряет над собой контроль. Это может мне помочь.");
+	if(MIS_BloodwynRaus == LOG_RUNNING)
+	{
+		B_LogEntry(TOPIC_Addon_Tempel,"Если Бладвин узнает, что в шахте была открыта новая золотая жила, он наверняка покинет храм.");
+		Log_AddEntry(TOPIC_Addon_Tempel,"Когда Бладвин рассержен, он теряет над собой контроль. Это может мне помочь.");
+	};
 };
 
 
@@ -137,7 +140,7 @@ func void DIA_Addon_Garaz_Sieg_Info()
 	AI_Output(other,self,"DIA_Addon_Garaz_Sieg_15_00");	//Ну, готово. С краулерами покончено.
 	AI_Output(self,other,"DIA_Addon_Garaz_Sieg_08_01");	//Бладвин уже идет сюда. Ты ведь этого хотел?
 	AI_Output(self,other,"DIA_Addon_Garaz_Sieg_08_02");	//Я хочу сказать, что ты перебил краулеров, чтобы Бладвин пришел сюда, да? Тогда, что бы ты ни планировал, делай это СЕЙЧАС.
-	B_GivePlayerXP(XP_Addon_Bloodywyn);
+	B_GivePlayerXP(XP_Addon_Bloodwyn);
 	if(!Npc_KnowsInfo(other,DIA_Addon_Bloodwyn_Wait))
 	{
 		B_StartOtherRoutine(Bloodwyn,"GOLD");
@@ -188,9 +191,12 @@ instance DIA_Addon_Garaz_Gold(C_Info)
 
 func int DIA_Addon_Garaz_Gold_Condition()
 {
-	if((Npc_GetDistToWP(self,"ADW_MINE_MC_GARAZ") <= 500) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"ADW_MINE_MC_GARAZ") <= 500)
+		{
+			return TRUE;
+		};
 	};
 };
 

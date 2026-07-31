@@ -256,7 +256,7 @@ func int C_ScHasReadiedBeliarsMagic()
 	if(Npc_IsDrawingSpell(hero))
 	{
 		activeSpell = Npc_GetActiveSpell(hero);
-		if(activeSpell == SPL_Energyball)
+		if(activeSpell == SPL_BeliarsRage)
 		{
 			return TRUE;
 		};

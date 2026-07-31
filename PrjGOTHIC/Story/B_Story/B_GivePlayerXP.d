@@ -76,7 +76,15 @@ func void B_GivePlayerXP(var int add_xp)
 
 func void B_GiveDeathXP(var C_Npc killer,var C_Npc target)
 {
-	if((Npc_IsPlayer(killer) || ((killer.aivar[AIV_PARTYMEMBER] == TRUE) && !Npc_IsPlayer(target))) && (target.level > 0))
+	if(Npc_IsPlayer(target))
+	{
+		return;
+	};
+	if(target.level <= 0)
+	{
+		return;
+	};
+	if(Npc_IsPlayer(killer) || (killer.aivar[AIV_PARTYMEMBER] == TRUE))
 	{
 		if(target.aivar[AIV_VictoryXPGiven] == FALSE)
 		{

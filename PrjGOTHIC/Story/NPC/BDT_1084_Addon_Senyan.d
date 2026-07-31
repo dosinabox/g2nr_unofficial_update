@@ -11,7 +11,7 @@ instance BDT_1084_Addon_Senyan(Npc_Default)
 	aivar[AIV_StoryBandit] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Mil_Sword);
+	EquipItem(self,ItMw_1H_MIL_Sword);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,45,ItMi_Gold,88);
 	CreateInvItem(self,ItWr_Poster_MIS);

@@ -22,6 +22,8 @@ func void DIA_Addon_Martin_EXIT_Info()
 };
 
 
+var int DIA_Addon_Martin_MeetingIsRunning_OneTime;
+
 instance DIA_Addon_Martin_MeetingIsRunning(C_Info)
 {
 	npc = MIL_350_Addon_Martin;
@@ -40,9 +42,6 @@ func int DIA_Addon_Martin_MeetingIsRunning_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Addon_Martin_MeetingIsRunning_OneTime;
 
 func void DIA_Addon_Martin_MeetingIsRunning_Info()
 {
@@ -68,9 +67,12 @@ instance DIA_Addon_Martin_Hallo(C_Info)
 
 func int DIA_Addon_Martin_Hallo_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") < 1000) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (RangerMeetingRunning != LOG_SUCCESS) && (SC_IsRanger == FALSE) && (other.guild != GIL_MIL) && (other.guild != GIL_PAL))
+	if((self.aivar[AIV_TalkedToPlayer] == FALSE) && (RangerMeetingRunning != LOG_SUCCESS) && (SC_IsRanger == FALSE) && (other.guild != GIL_MIL) && (other.guild != GIL_PAL))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -260,9 +262,6 @@ func int DIA_Addon_Martin_Auftrag_Condition()
 	};
 };
 
-
-var int MIS_Addon_Martin_GetRangar_Day;
-
 func void DIA_Addon_Martin_Auftrag_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Martin_Auftrag_15_00");	//Хорошо, я присмотрю за твоими ящиками.
@@ -378,23 +377,6 @@ func void DIA_Addon_Martin_AboutBandits_Info()
 };
 
 
-func int C_SCHasAnyFernandoEvidence()
-{
-	if(Npc_HasItems(hero,ItMw_Addon_BanditTrader))
-	{
-		return TRUE;
-	};
-	if(Npc_HasItems(hero,ItRi_Addon_BanditTrader))
-	{
-		return TRUE;
-	};
-	if(Npc_HasItems(hero,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
-
 var int Martin_IrrlichtHint;
 
 instance DIA_Addon_Martin_Fernando(C_Info)
@@ -444,7 +426,7 @@ func void DIA_Addon_Martin_Fernando_Info()
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_04");	//Этот список оружия и прочих доставленных бандитам вещей подписан неким Фернандо.
 				Npc_RemoveInvItem(other,ItWr_Addon_BanditTrader);
-				B_ReadFakeItem(self,other,Fakescroll,1);
+				B_ReadFakeItem(self,other,FakeScroll,1);
 				FernandoHintsCount += 1;
 				FernandoHints_ItWr = TRUE;
 			};
@@ -536,7 +518,7 @@ func void DIA_Addon_Martin_Perm_Info()
 	if(C_DaysSinceEvent(MIS_Addon_Martin_GetRangar_Day,2) && (MIS_Addon_Martin_GetRangar == LOG_RUNNING) && !Npc_IsDead(Rangar) && (SC_GotRangar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Perm_07_01");	//(сердито) Проклятый лентяй, ты должен был охранять эти ящики! Еще несколько вещей пропало!
-		if(Wld_IsTime(24,0,3,0))
+		if(Wld_IsTime(0,0,3,0))
 		{
 			AI_Output(self,other,"DIA_Addon_Martin_Perm_07_02");	//Отправляйся в гавань и поймай того ублюдка, который это сделал! Ты меня понял?
 		}

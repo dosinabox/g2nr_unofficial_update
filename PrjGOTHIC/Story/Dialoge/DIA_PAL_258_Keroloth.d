@@ -368,9 +368,16 @@ instance DIA_Keroloth_KAP4_GELDGEFUNDEN(C_Info)
 
 func int DIA_Keroloth_KAP4_GELDGEFUNDEN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Keroloth_KAP4_HELLO) && (Npc_HasItems(other,ItMi_KerolothsGeldbeutel_MIS) || Npc_HasItems(other,ItMi_KerolothsGeldbeutelLeer_MIS)))
+	if(Npc_KnowsInfo(other,DIA_Keroloth_KAP4_HELLO))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_KerolothsGeldbeutel_MIS))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMi_KerolothsGeldbeutelLeer_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -429,6 +436,19 @@ func void DIA_Keroloth_KAP4_GELDGEFUNDEN_keineAhnung_kannstmich()
 	B_Attack(self,other,AR_NONE,1);
 };
 
+func int C_Keroloth_ReadyToAttackDJG(var C_Npc target)
+{
+	if(C_NpcIsDown(target))
+	{
+		return FALSE;
+	};
+	if(Npc_GetDistToNpc(self,target) > 3000)
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 func void DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG()
 {
 	AI_Output(other,self,"DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG_15_00");	//Я подозреваю одного охотника на драконов.
@@ -443,15 +463,15 @@ func void DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG()
 	};
 	AI_StopProcessInfos(self);
 	other.aivar[AIV_INVINCIBLE] = FALSE;
-	if(!Npc_IsDead(Ferros) && (Npc_GetDistToNpc(self,Ferros) <= 3000))
+	if(C_Keroloth_ReadyToAttackDJG(Ferros))
 	{
 		B_Attack(self,Ferros,AR_NONE,1);
 	}
-	else if(!Npc_IsDead(Jan) && (Npc_GetDistToNpc(self,Jan) <= 3000))
+	else if(C_Keroloth_ReadyToAttackDJG(Jan))
 	{
 		B_Attack(self,Jan,AR_NONE,1);
 	}
-	else if(!Npc_IsDead(Rethon) && (Npc_GetDistToNpc(self,Rethon) <= 3000))
+	else if(C_Keroloth_ReadyToAttackDJG(Rethon))
 	{
 		B_Attack(self,Rethon,AR_NONE,1);
 	};

@@ -28,7 +28,6 @@ instance DIA_Tandor_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Tandor_Hallo_Condition;
 	information = DIA_Tandor_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -60,7 +59,6 @@ instance DIA_Tandor_Trupp(C_Info)
 	nr = 2;
 	condition = DIA_Tandor_Trupp_Condition;
 	information = DIA_Tandor_Trupp_Info;
-	permanent = FALSE;
 	description = "„то стало с этим отр€дом?";
 };
 
@@ -216,7 +214,7 @@ func int DIA_Tandor_News_Condition()
 func void DIA_Tandor_News_Info()
 {
 	AI_Output(other,self,"DIA_Tandor_News_15_00");	//≈сть какие-нибудь новости?
-	if(hero.guild == GIL_DJG)
+	if(other.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_Tandor_News_08_01");	//≈динственна€ новость за последнее врем€ - то, что вы, охотники на драконов, по€вились здесь.
 	}

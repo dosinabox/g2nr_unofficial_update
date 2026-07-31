@@ -27,7 +27,6 @@ instance DIA_Bromor_GIRLS(C_Info)
 	nr = 2;
 	condition = DIA_Bromor_GIRLS_Condition;
 	information = DIA_Bromor_GIRLS_Info;
-	permanent = FALSE;
 	description = "Ты хозяин этого заведения?";
 };
 
@@ -139,9 +138,12 @@ instance DIA_Addon_Bromor_LuciaGold(C_Info)
 
 func int DIA_Addon_Bromor_LuciaGold_Condition()
 {
-	if((MIS_Bromor_LuciaStoleGold == LOG_RUNNING) && Npc_HasItems(other,ItMi_BromorsGeld_Addon))
+	if(MIS_Bromor_LuciaStoleGold == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_BromorsGeld_Addon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -258,9 +260,12 @@ instance DIA_Bromor_Pay(C_Info)
 
 func int DIA_Bromor_Pay_Condition()
 {
-	if((Bromor_Pay == 0) && Npc_KnowsInfo(other,DIA_Bromor_GIRLS) && (NpcObsessedByDMT_Bromor == FALSE) && !Npc_IsDead(Nadja))
+	if((Bromor_Pay == 0) && Npc_KnowsInfo(other,DIA_Bromor_GIRLS) && (NpcObsessedByDMT_Bromor == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Nadja))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -299,7 +304,6 @@ instance DIA_Bromor_DOPE(C_Info)
 	nr = 3;
 	condition = DIA_Bromor_DOPE_Condition;
 	information = DIA_Bromor_DOPE_Info;
-	permanent = FALSE;
 	description = "А могу я рассчитывать на 'особые' услуги, а?";
 };
 
@@ -346,7 +350,7 @@ instance DIA_Bromor_Obsession(C_Info)
 
 func int DIA_Bromor_Obsession_Condition()
 {
-	if((Kapitel >= 3) && (NpcObsessedByDMT_Bromor == FALSE) && (hero.guild == GIL_KDF))
+	if((Kapitel >= 3) && (NpcObsessedByDMT_Bromor == FALSE) && (other.guild == GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -372,7 +376,7 @@ instance DIA_Bromor_Heilung(C_Info)
 
 func int DIA_Bromor_Heilung_Condition()
 {
-	if((NpcObsessedByDMT_Bromor == TRUE) && (NpcObsessedByDMT == FALSE) && (hero.guild == GIL_KDF))
+	if((NpcObsessedByDMT_Bromor == TRUE) && (NpcObsessedByDMT == FALSE) && (other.guild == GIL_KDF))
 	{
 		return TRUE;
 	};

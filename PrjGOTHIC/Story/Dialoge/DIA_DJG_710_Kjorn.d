@@ -28,14 +28,13 @@ instance DIA_Kjorn_Hello(C_Info)
 	nr = 4;
 	condition = DIA_Kjorn_Hello_Condition;
 	information = DIA_Kjorn_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Kjorn_Hello_Condition()
 {
-	if((Npc_GetDistToNpc(self,hero) < 300) || Npc_IsInState(self,ZS_Talk))
+	if((Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist) || Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -84,7 +83,6 @@ instance DIA_Kjorn_SellInfos(C_Info)
 	nr = 5;
 	condition = DIA_Kjorn_SellInfos_Condition;
 	information = DIA_Kjorn_SellInfos_Info;
-	permanent = FALSE;
 	description = "А информацией ты не торгуешь?";
 };
 
@@ -263,7 +261,6 @@ instance DIA_Kjorn_AllDragonsDead(C_Info)
 	nr = 5;
 	condition = DIA_Kjorn_AllDragonsDead_Condition;
 	information = DIA_Kjorn_AllDragonsDead_Info;
-	permanent = FALSE;
 	description = "Я убил всех драконов!";
 };
 

@@ -3,21 +3,10 @@ instance DIA_Opolos_EXIT(C_Info)
 {
 	npc = NOV_605_Opolos;
 	nr = 999;
-	condition = DIA_Opolos_EXIT_Condition;
-	information = DIA_Opolos_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Opolos_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Opolos_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -194,9 +183,9 @@ func void DIA_Opolos_rezept_Info()
 		AI_Output(other,self,"DIA_Opolos_rezept_15_00");	//Я принес рецепт, как ты и хотел.
 		AI_Output(self,other,"DIA_Opolos_rezept_12_01");	//Хорошо, дай я прочту его.
 		AI_PrintScreen("Рецепт магических зелий отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-		B_ReadFakeItem(self,other,Fakescroll,1);
+		B_ReadFakeItem(self,other,FakeScroll,1);
 		AI_Output(self,other,"DIA_Opolos_rezept_12_02");	//Ага... хм... да... понятно... так, так...
-		B_ReadFakeItem(self,other,Fakescroll,1);
+		B_ReadFakeItem(self,other,FakeScroll,1);
 		AI_Output(self,other,"DIA_Opolos_rezept_12_03");	//Хорошо. Огромное спасибо. Если хочешь, ты можешь потренироваться со мной.
 		AI_PrintScreen("Рецепт магических зелий получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		MIS_Opolos_Rezept = LOG_SUCCESS;
@@ -449,6 +438,10 @@ func void DIA_Opolos_HowIsIt_Info()
 };
 
 
+var int Opolos_Dragons;
+var int Opolos_DMT;
+var int Opolos_Pedro;
+
 instance DIA_Opolos_Kap3_PERM(C_Info)
 {
 	npc = NOV_605_Opolos;
@@ -467,11 +460,6 @@ func int DIA_Opolos_Kap3_PERM_Condition()
 		return TRUE;
 	};
 };
-
-
-var int Opolos_Dragons;
-var int Opolos_DMT;
-var int Opolos_Pedro;
 
 func void DIA_Opolos_Kap3_PERM_Info()
 {

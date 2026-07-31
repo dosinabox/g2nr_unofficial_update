@@ -3,21 +3,10 @@ instance DIA_Pablo_EXIT(C_Info)
 {
 	npc = MIL_319_Pablo;
 	nr = 999;
-	condition = DIA_Pablo_EXIT_Condition;
-	information = DIA_Pablo_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Pablo_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Pablo_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -46,10 +35,10 @@ func void DIA_Pablo_WANTED_Info()
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_00");	//Ёй, ты, подожди - мне кажетс€, € теб€ знаю.
 	AI_Output(other,self,"DIA_Pablo_WANTED_15_01");	//„то тебе нужно?
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_02");	//я где-то уже видел твое лицо... ах - точно!
-	B_ReadFakeItem(self,other,Fakeheroface,1);
+	B_ReadFakeItem(self,other,FakeHeroFace,1);
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_03");	//¬от - мы нашли этот листок у одного из бандитов, на которых наткнулись несколько дней назад - рисунок очень похож на теб€.
 	B_GiveInvItems(self,other,ItWr_Poster_MIS,1);
-	B_ReadFakeItem(other,self,Fakeheroface,1);
+	B_ReadFakeItem(other,self,FakeHeroFace,1);
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_04");	//ѕо-видимому, эти парни искали теб€.
 	B_PlayerEnteredCity();
 	Info_ClearChoices(DIA_Pablo_WANTED);
@@ -200,7 +189,7 @@ func void DIA_Pablo_MyBandits_Info()
 	AI_Output(other,self,"DIA_Pablo_Add_15_19");	//я запомню это.
 	if(MIS_Steckbriefe == LOG_RUNNING)
 	{
-		B_LogEntry(TOPIC_Bandits,"ќполчение нашло бандитов с объ€влением о моем розыке неподалеку от поместь€ ќнара. ѕохоже, что они из банды, котора€ засела там в горах.");
+		B_LogEntry(TOPIC_Bandits,"ќполчение нашло бандитов с объ€влением о моем розыске неподалеку от поместь€ ќнара. ѕохоже, что они из банды, котора€ засела там в горах.");
 	};
 };
 

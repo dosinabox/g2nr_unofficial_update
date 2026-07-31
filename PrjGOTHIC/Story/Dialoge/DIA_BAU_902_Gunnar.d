@@ -27,7 +27,6 @@ instance DIA_Gunnar_GuildComment(C_Info)
 	nr = 1;
 	condition = DIA_Gunnar_GuildComment_Condition;
 	information = DIA_Gunnar_GuildComment_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -100,7 +99,6 @@ instance DIA_Gunnar_Everywhere(C_Info)
 	nr = 2;
 	condition = DIA_Gunnar_Everywhere_Condition;
 	information = DIA_Gunnar_Everywhere_Info;
-	permanent = FALSE;
 	description = "Наемники приходят отовсюду?";
 };
 
@@ -143,7 +141,6 @@ instance DIA_Gunnar_South(C_Info)
 	nr = 3;
 	condition = DIA_Gunnar_South_Condition;
 	information = DIA_Gunnar_South_Info;
-	permanent = FALSE;
 	description = "Что ты знаешь о наемниках с юга?";
 };
 
@@ -170,7 +167,6 @@ instance DIA_Gunnar_Colony(C_Info)
 	nr = 4;
 	condition = DIA_Gunnar_Colony_Condition;
 	information = DIA_Gunnar_Colony_Info;
-	permanent = FALSE;
 	description = "А кто пришел из колонии?";
 };
 
@@ -196,7 +192,6 @@ instance DIA_Gunnar_Bandits(C_Info)
 	nr = 5;
 	condition = DIA_Gunnar_Bandits_Condition;
 	information = DIA_Gunnar_Bandits_Info;
-	permanent = FALSE;
 	description = "А что это за бандиты, о которых ты говоришь?";
 };
 

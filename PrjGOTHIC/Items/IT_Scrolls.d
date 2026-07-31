@@ -604,7 +604,7 @@ instance ItSc_IceCube(C_Item)
 	text[1] = NAME_Mana_needed;
 	count[1] = SPL_Cost_Scroll;
 	text[2] = NAME_Dam_Magic;
-	count[2] = 60;
+	count[2] = SPL_Damage_IceCube;
 	text[3] = NAME_Sec_Duration;
 	count[3] = SPL_TIME_FREEZE;
 	text[4] = NAME_PureDamagePerSec;
@@ -752,7 +752,7 @@ instance ItSc_IceWave(C_Item)
 	text[1] = NAME_Mana_needed;
 	count[1] = SPL_Cost_Scroll;
 	text[2] = NAME_Dam_Magic;
-	count[2] = 60;
+	count[2] = SPL_Damage_IceWave;
 	text[3] = NAME_Sec_Duration;
 	count[3] = SPL_TIME_FREEZE;
 	text[4] = NAME_PureDamagePerSec;

@@ -1,15 +1,13 @@
 
 const int SPL_Cost_IceWave = 120;
+const int SPL_Damage_IceWave = 60;
 
 instance Spell_IceWave(C_Spell_Proto)
 {
 	time_per_mana = 0;
-	damage_per_level = 60;
+	damage_per_level = SPL_Damage_IceWave;
 	targetCollectAlgo = TARGET_COLLECT_NONE;
 	targetCollectRange = 900;
-//	targetCollectRange = 0;
-//	targetCollectAzi = 0;
-//	targetCollectElev = 0;
 };
 
 

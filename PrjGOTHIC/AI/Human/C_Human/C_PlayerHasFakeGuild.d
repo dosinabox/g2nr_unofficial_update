@@ -88,17 +88,16 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if((slf.guild == GIL_BDT) && C_PlayerIsFakeBandit(slf,oth))
-	{
-		if(!Npc_HasEquippedArmor(oth))
-		{
-			return TRUE;
-		};
-		return FALSE;
-	};
 	if(!Npc_HasEquippedArmor(oth))
 	{
-		if((slf.guild == GIL_SLD) || (slf.guild == GIL_DJG))
+		if(slf.guild == GIL_BDT)
+		{
+			if(C_PlayerIsFakeBandit(slf,oth))
+			{
+				return TRUE;
+			};
+		}
+		else if((slf.guild == GIL_SLD) || (slf.guild == GIL_DJG))
 		{
 			if((oth.guild == GIL_SLD) || (oth.guild == GIL_DJG))
 			{
@@ -139,7 +138,7 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 	{
 		if(oth.guild == GIL_NONE)
 		{
-			if(Hlp_IsItem(armor,ITAR_Vlk_L) || Hlp_IsItem(armor,ITAR_Vlk_M) || Hlp_IsItem(armor,ITAR_Vlk_H) || Hlp_IsItem(armor,ITAR_Bau_L) || Hlp_IsItem(armor,ITAR_Bau_M) || Hlp_IsItem(armor,ITAR_Leather_L))
+			if(Hlp_IsItem(armor,ITAR_VLK_L) || Hlp_IsItem(armor,ITAR_VLK_M) || Hlp_IsItem(armor,ITAR_VLK_H) || Hlp_IsItem(armor,ITAR_BAU_L) || Hlp_IsItem(armor,ITAR_BAU_M) || Hlp_IsItem(armor,ITAR_Leather_L))
 			{
 				return FALSE;
 			};

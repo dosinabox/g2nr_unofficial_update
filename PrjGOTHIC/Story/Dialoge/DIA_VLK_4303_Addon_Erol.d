@@ -46,7 +46,6 @@ func void DIA_Addon_Erol_Hallo_Info()
 
 
 var int Erol_AskedAttack;
-var int Erol_AskedKDW;
 
 instance DIA_Addon_Erol_what(C_Info)
 {
@@ -371,7 +370,7 @@ func int DIA_Addon_Erol_PreTeach_Condition()
 func void DIA_Addon_Erol_PreTeach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Erol_PreTeach_15_00");	//Ты смог отбиться от бандитов?
-	if(Npc_IsDead(BDT_10305_Addon_RangerBandit_L) && Npc_IsDead(BDT_10304_Addon_RangerBandit_M) && Npc_IsDead(BDT_10303_Addon_RangerBandit_L) && Npc_IsDead(BDT_10302_Addon_RangerBandit_L) && Npc_IsDead(BDT_10301_Addon_RangerBandit_M) && Npc_IsDead(BDT_10300_Addon_RangerBandit_L))
+	if(C_ErolBanditsDead())
 	{
 		AI_Output(self,other,"DIA_Addon_Erol_SLD_10_01");	//Да. А что? Что-нибудь не так?
 	}
@@ -400,9 +399,12 @@ instance DIA_Addon_Erol_PreTrade(C_Info)
 
 func int DIA_Addon_Erol_PreTrade_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Erol_what) && (Npc_GetDistToWP(self,"NW_BIGFARM_HUT_IN_01") > 2000))
+	if(Npc_KnowsInfo(other,DIA_Addon_Erol_what))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_BIGFARM_HUT_IN_01") > 2000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -446,9 +448,12 @@ instance DIA_Addon_Erol_SLD(C_Info)
 
 func int DIA_Addon_Erol_SLD_Condition()
 {
-	if((MIS_Addon_Erol_BanditStuff == LOG_SUCCESS) && (Npc_GetDistToWP(self,"NW_BIGFARM_HUT_IN_01") <= 2000))
+	if(MIS_Addon_Erol_BanditStuff == LOG_SUCCESS)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_BIGFARM_HUT_IN_01") <= 2000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -478,9 +483,12 @@ instance DIA_Addon_Erol_Trade(C_Info)
 
 func int DIA_Addon_Erol_Trade_Condition()
 {
-	if((MIS_Addon_Erol_BanditStuff == LOG_SUCCESS) && (Npc_GetDistToWP(self,"NW_BIGFARM_HUT_IN_01") <= 2000))
+	if(MIS_Addon_Erol_BanditStuff == LOG_SUCCESS)
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_BIGFARM_HUT_IN_01") <= 2000)
+		{
+			return TRUE;
+		};
 	};
 };
 

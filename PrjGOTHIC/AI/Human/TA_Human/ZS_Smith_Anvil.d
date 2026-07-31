@@ -13,7 +13,7 @@ func void ZS_Smith_Anvil()
 
 func int ZS_Smith_Anvil_Loop()
 {
-	B_UseAvailableMob(self,"BSANVIL");
+	B_UseAvailableMob(self,"BSANVIL",BS_MOBINTERACT_INTERRUPT);
 	return LOOP_CONTINUE;
 };
 

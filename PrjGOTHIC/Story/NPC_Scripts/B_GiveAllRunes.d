@@ -72,6 +72,7 @@ func void B_GiveAllAddonRunes(var C_Npc npc)
 func void B_GiveAllPatchRunes(var C_Npc npc)
 {
 	CreateInvItem(npc,ItRu_TeleportRitual);
+	CreateInvItem(npc,ItRu_Teleport_Maya);
 	CreateInvItem(npc,ItRu_Inflate);
 };
 

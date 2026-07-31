@@ -3,29 +3,9 @@ var int DIA_Kardif_Buerger_permanent;
 var int DIA_Kardif_Lehmar_permanent;
 var int DIA_Kardif_Arbeit_permanent;
 var int DIA_Addon_Kardif_MissingPeople_permanent;
-var int DIA_Kardif_Lernen_permanent;
-var int DIA_Kardif_Diebeswerk_permanent;
-var int DIA_Kardif_Diebeswerk2_permanent;
 var int DIA_Kardif_DOPE_perm;
 var int DIA_Kardif_Paket_perm;
 var int DIA_Kardif_Kerl_permanent;
-
-func int C_MartinIsNear()
-{
-	if(!Hlp_IsValidNpc(Martin))
-	{
-		return FALSE;
-	};
-	if(C_NpcIsDown(Martin))
-	{
-		return FALSE;
-	};
-	if(Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") >= PERC_DIST_DIALOG)
-	{
-		return FALSE;
-	};
-	return TRUE;
-};
 
 instance DIA_Kardif_EXIT(C_Info)
 {
@@ -56,7 +36,6 @@ instance DIA_Kardif_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Kardif_Hi_Condition;
 	information = DIA_Kardif_Hi_Info;
-	permanent = FALSE;
 	description = "Как дела?";
 };
 
@@ -88,7 +67,6 @@ instance DIA_Kardif_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Kardif_Hallo_Condition;
 	information = DIA_Kardif_Hallo_Info;
-	permanent = FALSE;
 	description = "Готов побиться об заклад, ты многое здесь слышишь...";
 };
 
@@ -504,7 +482,7 @@ func void DIA_Kardif_Diebeswerk2_Info()
 	{
 		AI_Output(self,other,"DIA_Kardif_Crew_14_04");	//Ты обращаешься не по адресу. Я простой трактирщик.
 	}
-	else if(C_MartinIsNear())
+	else if(C_MartinIsInTavern())
 	{
 		AI_WaitTillEnd(self,other);
 		AI_PlayAni(self,"T_SEARCH");
@@ -646,7 +624,6 @@ instance DIA_Kardif_DEFEATEDATTILA(C_Info)
 	nr = 2;
 	condition = DIA_Kardif_DEFEATEDATTILA_Condition;
 	information = DIA_Kardif_DEFEATEDATTILA_Info;
-	permanent = FALSE;
 	description = "Этот ублюдок пытался убить меня!";
 };
 
@@ -681,7 +658,6 @@ instance DIA_Kardif_Zeichen(C_Info)
 	nr = 800;
 	condition = DIA_Kardif_Zeichen_Condition;
 	information = DIA_Kardif_Zeichen_Info;
-	permanent = FALSE;
 	description = DIALOG_SecretSign;
 };
 
@@ -701,7 +677,7 @@ func void DIA_Kardif_Zeichen_Info()
 	AI_Output(self,other,"DIA_Kardif_Zeichen_14_01");	//(вкрадчиво) Если тебе понадобятся отмычки, намекни. Я припас несколько на всякий случай. Просто попроси меня налить тебе выпивки.
 	if(DIA_Kardif_Diebeswerk2_permanent == FALSE)
 	{
-		if(!C_MartinIsNear())
+		if(!C_MartinIsInTavern())
 		{
 			AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_00");	//Есть что-нибудь 'особенное' для меня?
 			B_Kardif_AboutDaronChest();
@@ -720,7 +696,6 @@ instance DIA_Kardif_Crew(C_Info)
 	nr = 51;
 	condition = DIA_Kardif_Crew_Condition;
 	information = DIA_Kardif_Crew_Info;
-	permanent = FALSE;
 	description = "Мне все еще нужны матросы.";
 };
 

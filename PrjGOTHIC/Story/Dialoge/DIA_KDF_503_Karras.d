@@ -380,7 +380,7 @@ instance DIA_Karras_CIRCLE4(C_Info)
 
 func int DIA_Karras_CIRCLE4_Condition()
 {
-	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 3) && Npc_KnowsInfo(other,DIA_Karras_JOB))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 3) && Npc_KnowsInfo(other,DIA_Karras_JOB))
 	{
 		return TRUE;
 	};
@@ -418,7 +418,7 @@ instance DIA_Karras_CIRCLE5(C_Info)
 
 func int DIA_Karras_CIRCLE5_Condition()
 {
-	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 4) && Npc_KnowsInfo(other,DIA_Karras_JOB))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 4) && Npc_KnowsInfo(other,DIA_Karras_JOB))
 	{
 		return TRUE;
 	};
@@ -646,6 +646,8 @@ func void DIA_Karras_KAP3_Perm_WillSee()
 };
 
 
+var int KarrasGotResearchDMTBook_Day;
+
 instance DIA_Karras_HaveBook(C_Info)
 {
 	npc = KDF_503_Karras;
@@ -658,14 +660,11 @@ instance DIA_Karras_HaveBook(C_Info)
 
 func int DIA_Karras_HaveBook_Condition()
 {
-	if((MIS_KarrasResearchDMT == LOG_RUNNING) && Npc_HasItems(hero,ItWr_DementorObsessionBook_MIS) && (other.guild == GIL_KDF))
+	if((MIS_KarrasResearchDMT == LOG_RUNNING) && Npc_HasItems(other,ItWr_DementorObsessionBook_MIS) && (other.guild == GIL_KDF))
 	{
 		return TRUE;
 	};
 };
-
-
-var int KarrasGotResearchDMTBook_Day;
 
 func void DIA_Karras_HaveBook_Info()
 {
@@ -679,9 +678,9 @@ func void DIA_Karras_HaveBook_Info()
 	AI_Output(self,other,"DIA_Karras_HaveBook_10_05");	//Эти создания имеют частично демоническую и частично человеческую природу.
 	AI_Output(self,other,"DIA_Karras_HaveBook_10_06");	//Однако я пока не могу сказать, имеем ли мы дело с типичной спиритуальной одержимостью или с чистой физической мутацией.
 	AI_Output(self,other,"DIA_Karras_HaveBook_10_07");	//Заходи попозже. Тогда я определенно смогу сказать больше.
-	MIS_KarrasResearchDMT = LOG_SUCCESS;
 	B_LogEntry(TOPIC_DEMENTOREN,"Каррас смог использовать альманах Одержимых для продолжения своих исследований. Я должен вернуться к нему позже.");
 	KarrasGotResearchDMTBook_Day = Wld_GetDay();
+	MIS_KarrasResearchDMT = LOG_SUCCESS;
 	B_GivePlayerXP(XP_KarrasResearchDMT);
 };
 
@@ -774,6 +773,8 @@ func void DIA_Karras_Prot_BlackEye_Info()
 };
 
 
+var int KarrasMakesBlessedStone_Day;
+
 instance DIA_Karras_KarrasBlessedStone(C_Info)
 {
 	npc = KDF_503_Karras;
@@ -792,9 +793,6 @@ func int DIA_Karras_KarrasBlessedStone_Condition()
 	};
 };
 
-
-var int KarrasMakesBlessedStone_Day;
-
 func void DIA_Karras_KarrasBlessedStone_Info()
 {
 	AI_Output(other,self,"DIA_Karras_KarrasBlessedStone_15_00");	//Я принес несколько камней с благословенной земли.
@@ -804,8 +802,8 @@ func void DIA_Karras_KarrasBlessedStone_Info()
 	AI_Output(self,other,"DIA_Karras_KarrasBlessedStone_10_02");	//Хорошо. Я сделаю для тебя амулет, защищающий от черного взгляда Ищущих.
 	AI_Output(self,other,"DIA_Karras_KarrasBlessedStone_10_03");	//Дай мне немного времени. Над этим нужно поработать.
 	KarrasMakesBlessedStone_Day = Wld_GetDay();
-	MIS_Karras_FindBlessedStone = LOG_SUCCESS;
 	B_LogEntry(TOPIC_DEMENTOREN,"Каррас даст мне амулет, который будет защищать меня от ментальных атак Ищущих. Это должно сильно облегчить мне жизнь.");
+	MIS_Karras_FindBlessedStone = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Karras_FoundBlessedStone);
 	AI_StopProcessInfos(self);
 };

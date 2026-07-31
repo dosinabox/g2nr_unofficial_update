@@ -56,7 +56,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 				}
 				else if(Kapitel == 4)
 				{
-					B_ReadyRune(slf,ItRu_Deathball,SPL_Cost_LightningFlash);
+					B_ReadyRune(slf,ItRu_Deathball,SPL_Cost_Deathball);
 				}
 				else
 				{
@@ -117,7 +117,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 				}
 				else
 				{
-					B_ReadyRune(slf,ItRu_Firestorm,SPL_Cost_FireStorm);
+					B_ReadyRune(slf,ItRu_Firestorm,SPL_Cost_Firestorm);
 				};
 			};
 			return TRUE;
@@ -212,7 +212,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
 			{
-				B_ReadyRune(slf,ItRu_Icelance,SPL_Cost_IceLance);
+				B_ReadyRune(slf,ItRu_Icelance,SPL_Cost_Icelance);
 				return TRUE;
 			};
 		}

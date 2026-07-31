@@ -3,22 +3,10 @@ instance DIA_Addon_Garett_EXIT(C_Info)
 {
 	npc = PIR_1357_Addon_Garett;
 	nr = 999;
-	condition = DIA_Addon_Garett_EXIT_Condition;
-	information = DIA_Addon_Garett_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Garett_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Garett_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -46,9 +34,12 @@ instance DIA_Addon_Garett_Anheuern(C_Info)
 
 func int DIA_Addon_Garett_Anheuern_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_Addon_Greg_ClearCanyon == LOG_RUNNING))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(MIS_Addon_Greg_ClearCanyon == LOG_RUNNING)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -77,9 +68,12 @@ instance DIA_Addon_Garett_Hello(C_Info)
 
 func int DIA_Addon_Garett_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_Addon_Greg_ClearCanyon != LOG_RUNNING))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((self.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_Addon_Greg_ClearCanyon != LOG_RUNNING))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -120,7 +114,7 @@ func void DIA_Addon_Garett_Samuel_Info()
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_01");	//Наш самогонщик. У него есть пещера на берегу, недалеко от лагеря.
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_02");	//Просто иди по берегу на север, и ты ее найдешь.
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_03");	//Я бы посоветовал тебе запастись грогом.
-	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_04");	//Не все наши ребята приветливо относятся к новичкам, надеюсь, ты меня понимаешь.
+	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_04");	//Не все наши ребята приветливо относятся к новичкам. Надеюсь, ты меня понимаешь.
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_05");	//А бутылка-другая грога может сотворить настоящие чудеса!
 	Log_CreateTopic(TOPIC_Addon_PIR_Trader,LOG_NOTE);
 	B_LogEntry(TOPIC_Addon_PIR_Trader,Log_Text_Addon_SamuelTrade);
@@ -198,7 +192,10 @@ func void DIA_Addon_Garett_Greg_Info()
 	AI_Output(other,self,"DIA_Addon_Garett_Greg_15_00");	//Ваш капитан Грег. Какой он?
 	AI_Output(self,other,"DIA_Addon_Garett_Greg_09_01");	//С этим старым морским волком лучше не шутить.
 	AI_Output(self,other,"DIA_Addon_Garett_Greg_09_02");	//К тому же он жаден до невозможности.
-	AI_Output(self,other,"DIA_Addon_Garett_Greg_09_03");	//Фрэнсис, его казначей, платит нам ровно столько, сколько нужно, чтобы мы не подняли бунт.
+	if(!Npc_KnowsInfo(other,DIA_Addon_Greg_GiveFrancisBook))
+	{
+		AI_Output(self,other,"DIA_Addon_Garett_Greg_09_03");	//Фрэнсис, его казначей, платит нам ровно столько, сколько нужно, чтобы мы не подняли бунт.
+	};
 	AI_Output(self,other,"DIA_Addon_Garett_Greg_09_04");	//А если нам попадется что-нибудь действительно ценное, капитан тут же забирает это себе.
 	AI_Output(self,other,"DIA_Addon_Garett_Greg_09_05");	//Однажды на королевском фрегате я нашел золотой компас.
 	AI_Output(self,other,"DIA_Addon_Garett_Greg_09_06");	//Конечно же, этот ублюдок Грег отобрал его у меня.
@@ -258,9 +255,12 @@ instance DIA_Addon_Garett_GiveKompass(C_Info)
 
 func int DIA_Addon_Garett_GiveKompass_Condition()
 {
-	if(Npc_HasItems(other,ItMi_Addon_Kompass_MIS) && (MIS_Addon_Garett_BringKompass == LOG_RUNNING))
+	if(MIS_Addon_Garett_BringKompass == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Addon_Kompass_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -305,9 +305,12 @@ instance DIA_Addon_Garett_Francis(C_Info)
 
 func int DIA_Addon_Garett_Francis_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Garett_Greg) && !Npc_IsDead(Francis))
+	if(Npc_KnowsInfo(other,DIA_Addon_Garett_Greg))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Francis))
+		{
+			return TRUE;
+		};
 	};
 	if(C_CanAskPiratesAboutFrancis())
 	{
@@ -318,15 +321,22 @@ func int DIA_Addon_Garett_Francis_Condition()
 func void DIA_Addon_Garett_Francis_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Garett_Francis_15_00");	//Что ты можешь мне сказать о Фрэнсисе?
-	AI_Output(self,other,"DIA_Addon_Garett_Francis_09_01");	//Когда Грега нет, он остается за старшего.
-	AI_Output(self,other,"DIA_Addon_Garett_Francis_09_02");	//Но честно говоря, лидер из него никакой.
-	AI_Output(self,other,"DIA_Addon_Garett_Francis_09_03");	//Он даже Моргана не может заставить оторвать свою ленивую задницу от кровати.
-	if(GregIsBack == FALSE)
+	if(Npc_KnowsInfo(other,DIA_Addon_Greg_GiveFrancisBook))
 	{
-		AI_Output(self,other,"DIA_Addon_Garett_Francis_09_04");	//Чем-то полезным сейчас занимается только Генри со своими ребятами.
-		AI_Output(self,other,"DIA_Addon_Garett_Francis_09_05");	//Остальные же просто бездельничают.
-		AI_Output(self,other,"DIA_Addon_Garett_Francis_09_06");	//Надеюсь, что Грег скоро вернется.
-		AI_Output(self,other,"DIA_Addon_Garett_Francis_09_07");	//Он-то покажет этим лентяям, что к чему.
+		B_Say(self,other,"$GOODVICTORY");
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Garett_Francis_09_01");	//Когда Грега нет, он остается за старшего.
+		AI_Output(self,other,"DIA_Addon_Garett_Francis_09_02");	//Но честно говоря, лидер из него никакой.
+		AI_Output(self,other,"DIA_Addon_Garett_Francis_09_03");	//Он даже Моргана не может заставить оторвать свою ленивую задницу от кровати.
+		if(GregIsBack == FALSE)
+		{
+			AI_Output(self,other,"DIA_Addon_Garett_Francis_09_04");	//Чем-то полезным сейчас занимается только Генри со своими ребятами.
+			AI_Output(self,other,"DIA_Addon_Garett_Francis_09_05");	//Остальные же просто бездельничают.
+			AI_Output(self,other,"DIA_Addon_Garett_Francis_09_06");	//Надеюсь, что Грег скоро вернется.
+			AI_Output(self,other,"DIA_Addon_Garett_Francis_09_07");	//Он-то покажет этим лентяям, что к чему.
+		};
 	};
 };
 
@@ -402,9 +412,16 @@ instance DIA_Addon_Garett_ArmorM(C_Info)
 
 func int DIA_Addon_Garett_ArmorM_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && (Greg_LightArmorGiven == TRUE) && (Garett_Armor_Given == FALSE))
+	if((Greg_LightArmorGiven == TRUE) && (Garett_Armor_Given == FALSE))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Addon_Garett_Hello))
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern))
+		{
+			return TRUE;
+		};
 	};
 };
 

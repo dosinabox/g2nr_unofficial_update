@@ -27,7 +27,6 @@ instance DIA_Addon_10023_Wache_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_10023_Wache_Hi_Condition;
 	information = DIA_Addon_10023_Wache_Hi_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -62,7 +61,7 @@ func void DIA_Addon_10023_Wache_Hi_Info()
 
 
 var int PrisonGuard_Rules;
-var int Wache_Einmal;
+var int BDT_10023_Einmal;
 
 func void B_YouBetterLetSlavesGo()
 {
@@ -105,7 +104,7 @@ func void DIA_Addon_10023_Wache_go_Info()
 	{
 		Info_AddChoice(DIA_Addon_10023_Wache_go,"Я поговорил с Торусом. Он приказал отпустить рабов.",DIA_Addon_10023_Wache_go_Thorus);
 	}
-	else if(Wache_Einmal == TRUE)
+	else if(BDT_10023_Einmal == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_10023_Wache_go,"Лучше бы тебе отпустить рабов СЕЙЧАС ЖЕ.",DIA_Addon_10023_Wache_go_Threat);
 	}
@@ -144,7 +143,7 @@ func void DIA_Addon_10023_Wache_go_Blood()
 	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_04");	//Но ты только что сказал, что рабы принадлежат Бладвину.
 	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Blood_11_05");	//Да, но я также сказал, что никого не отпущу без приказа от Торуса.
 	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_06");	//Ты из тех ребят, кто не может даже помочиться без приказа?
-	Wache_Einmal = TRUE;
+	BDT_10023_Einmal = TRUE;
 	Info_ClearChoices(DIA_Addon_10023_Wache_go);
 };
 

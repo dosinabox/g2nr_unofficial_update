@@ -9,7 +9,7 @@ instance PAL_228_Schiffswache(Npc_Default)
 	npcType = NPCTYPE_MAIN;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_1h_Pal_Sword);
+	EquipItem(self,ItMw_1H_PAL_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_P_NormalBald,BodyTex_P,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,1.5);
@@ -81,7 +81,7 @@ func void Rtn_Start_228()
 	TA_Stand_Guarding(16,10,16,20,"SHIP_DECK_03");
 	TA_Stand_Guarding(16,20,16,30,"SHIP_DECK_38");
 	TA_Stand_Guarding(16,30,16,40,"SHIP_DECK_03");
-	TA_Stand_Guarding(16,40,16,50,"SHIP_DECK_03");
+	TA_Stand_Guarding(16,40,16,50,"SHIP_DECK_30");
 	TA_Stand_Guarding(16,50,17,0,"SHIP_DECK_03");
 	TA_Stand_Guarding(17,0,17,10,"SHIP_DECK_38");
 	TA_Stand_Guarding(17,10,17,20,"SHIP_DECK_03");

@@ -57,8 +57,6 @@ instance DIA_Gorax_GOLD(C_Info)
 };
 
 
-var int DIA_Gorax_GOLD_perm;
-
 func int DIA_Gorax_GOLD_Condition()
 {
 	if((other.guild == GIL_NOV) && (DIA_Gorax_GOLD_perm == FALSE) && (Pedro_NOV_Aufnahme_LostInnosStatue_Daron == FALSE))
@@ -207,9 +205,12 @@ instance DIA_Gorax_Wurst(C_Info)
 
 func int DIA_Gorax_Wurst_Condition()
 {
-	if((MIS_GoraxEssen == LOG_RUNNING) && !Mob_HasItems("WURSTTRUHE",ItFo_Schafswurst))
+	if(MIS_GoraxEssen == LOG_RUNNING)
 	{
-		return TRUE;
+		if(!Mob_HasItems("WURSTTRUHE",ItFo_Schafswurst))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -246,9 +247,12 @@ instance DIA_Gorax_Aufgabe2(C_Info)
 
 func int DIA_Gorax_Aufgabe2_Condition()
 {
-	if(((MIS_GoraxEssen == LOG_SUCCESS) || (MIS_GoraxEssen == LOG_FAILED)) && !Npc_IsDead(Orlan))
+	if((MIS_GoraxEssen == LOG_SUCCESS) || (MIS_GoraxEssen == LOG_FAILED))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Orlan))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -12,7 +12,7 @@ func void ZS_Roast_Scavenger()
 
 func int ZS_Roast_Scavenger_Loop()
 {
-	B_UseAvailableMob(self,"BARBQ");
+	B_UseAvailableMob(self,"BARBQ",BS_MOBINTERACT_INTERRUPT);
 	return LOOP_CONTINUE;
 };
 

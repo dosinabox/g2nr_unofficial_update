@@ -27,7 +27,6 @@ instance DIA_Jarvis_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Jarvis_Hello_Condition;
 	information = DIA_Jarvis_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -54,7 +53,6 @@ instance DIA_Jarvis_DieLage(C_Info)
 	nr = 2;
 	condition = DIA_Jarvis_DieLage_Condition;
 	information = DIA_Jarvis_DieLage_Info;
-	permanent = FALSE;
 	description = "Как ситуация?";
 };
 
@@ -78,7 +76,6 @@ instance DIA_Jarvis_TwoFronts(C_Info)
 	nr = 3;
 	condition = DIA_Jarvis_TwoFronts_Condition;
 	information = DIA_Jarvis_TwoFronts_Info;
-	permanent = FALSE;
 	description = "А как случилось, что появились две фракции?";
 };
 
@@ -110,7 +107,6 @@ instance DIA_Jarvis_LeesPlan(C_Info)
 	nr = 4;
 	condition = DIA_Jarvis_LeesPlan_Condition;
 	information = DIA_Jarvis_LeesPlan_Info;
-	permanent = FALSE;
 	description = "Ты знаешь, что собирается делать Ли?";
 };
 
@@ -141,7 +137,6 @@ instance DIA_Jarvis_SylviosPlan(C_Info)
 	nr = 5;
 	condition = DIA_Jarvis_SylviosPlan_Condition;
 	information = DIA_Jarvis_SylviosPlan_Info;
-	permanent = FALSE;
 	description = "Ты знаешь, что планирует Сильвио?";
 };
 
@@ -170,7 +165,6 @@ instance DIA_Jarvis_WannaJoin(C_Info)
 	nr = 6;
 	condition = DIA_Jarvis_WannaJoin_Condition;
 	information = DIA_Jarvis_WannaJoin_Info;
-	permanent = FALSE;
 	description = "Я хочу стать наемником!";
 };
 
@@ -200,7 +194,6 @@ instance DIA_Jarvis_MissionKO(C_Info)
 	nr = 7;
 	condition = DIA_Jarvis_MissionKO_Condition;
 	information = DIA_Jarvis_MissionKO_Info;
-	permanent = FALSE;
 	description = "И что я должен сделать?";
 };
 
@@ -254,7 +247,6 @@ instance DIA_Jarvis_DuellRegeln(C_Info)
 	nr = 8;
 	condition = DIA_Jarvis_DuellRegeln_Condition;
 	information = DIA_Jarvis_DuellRegeln_Info;
-	permanent = FALSE;
 	description = "Что за правила дуэлей?";
 };
 
@@ -289,7 +281,6 @@ instance DIA_Jarvis_SylviosMen(C_Info)
 	nr = 8;
 	condition = DIA_Jarvis_SylviosMen_Condition;
 	information = DIA_Jarvis_SylviosMen_Info;
-	permanent = FALSE;
 	description = "Кто из наемников люди Сильвио?";
 };
 
@@ -325,7 +316,6 @@ instance DIA_Jarvis_HowMany(C_Info)
 	nr = 8;
 	condition = DIA_Jarvis_HowMany_Condition;
 	information = DIA_Jarvis_HowMany_Info;
-	permanent = FALSE;
 	description = "И сколько людей Сильвио я должен победить?";
 };
 
@@ -480,7 +470,6 @@ instance DIA_Jarvis_PERM(C_Info)
 	nr = 8;
 	condition = DIA_Jarvis_PERM_Condition;
 	information = DIA_Jarvis_PERM_Info;
-	permanent = FALSE;
 	description = "Есть новости?";
 };
 

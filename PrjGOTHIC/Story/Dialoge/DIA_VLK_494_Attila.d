@@ -27,7 +27,6 @@ instance DIA_Attila_Hallo(C_Info)
 	nr = 1;
 	condition = DIA_Attila_Hallo_Condition;
 	information = DIA_Attila_Hallo_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -175,7 +174,6 @@ instance DIA_Attila_Willkommen(C_Info)
 	nr = 1;
 	condition = DIA_Attila_Willkommen_Condition;
 	information = DIA_Attila_Willkommen_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -239,7 +237,6 @@ instance DIA_Attila_Wer(C_Info)
 	nr = 1;
 	condition = DIA_Attila_Wer_Condition;
 	information = DIA_Attila_Wer_Info;
-	permanent = FALSE;
 	description = " то ты?";
 };
 

@@ -70,9 +70,12 @@ instance DIA_Fenia_Hallo_Pal(C_Info)
 
 func int DIA_Fenia_Hallo_Pal_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (VisibleGuild(other) == GIL_PAL) && Npc_KnowsInfo(other,DIA_Fenia_Hallo))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((VisibleGuild(other) == GIL_PAL) && Npc_KnowsInfo(other,DIA_Fenia_Hallo))
+		{
+			return TRUE;
+		};
 	};
 };
 

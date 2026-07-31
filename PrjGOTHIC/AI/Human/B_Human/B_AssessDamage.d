@@ -29,6 +29,7 @@ func void B_AssessDamage()
 		B_GhostSpecialDamage(other);
 		return;
 	};
+	B_SpecialMeleeWeaponDamage(other,self);
 	B_SpecialRangedWeaponDamage(other,self,TRUE);
 	if(Npc_IsInState(self,ZS_ReactToDamage))
 	{
@@ -38,7 +39,6 @@ func void B_AssessDamage()
 	{
 		B_SetAttitude(self,ATT_HOSTILE);
 	};
-	B_SpecialMeleeWeaponDamage(other,self);
 	if(self.aivar[AIV_ArenaFight] == AF_AFTER)
 	{
 		self.aivar[AIV_ArenaFight] = AF_AFTER_PLUS_DAMAGE;

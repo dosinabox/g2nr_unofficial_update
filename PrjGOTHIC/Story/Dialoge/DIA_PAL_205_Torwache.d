@@ -3,25 +3,14 @@ instance DIA_PAL_205_Torwache_EXIT(C_Info)
 {
 	npc = PAL_205_Torwache;
 	nr = 999;
-	condition = DIA_PAL_205_Torwache_EXIT_Condition;
-	information = DIA_PAL_205_Torwache_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_PAL_205_Torwache_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_PAL_205_Torwache_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-func void B_Mil_205_Torwache_Crimes()
+func void B_PAL_205_Torwache_Crimes()
 {
 	if(B_GetGreatestPetzCrime(self) == CRIME_MURDER)
 	{
@@ -88,7 +77,7 @@ func void DIA_PAL_205_Torwache_FirstWarn_Info()
 	AI_Output(self,other,"DIA_PAL_205_Torwache_FirstWarn_12_00");	//СТОЙ!
 	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
 	{
-		B_Mil_205_Torwache_Crimes();
+		B_PAL_205_Torwache_Crimes();
 	}
 	else
 	{
@@ -192,7 +181,11 @@ func int DIA_PAL_205_Torwache_Hagen_Condition()
 {
 	if(PAL_205_schonmalreingelassen == FALSE)
 	{
-		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -216,45 +209,47 @@ func void B_CityHallPass()
 	B_PlayerEnteredCity();
 };
 
-instance DIA_PAL_205_Torwache_PassAsArmoredMil(C_Info)
+instance DIA_PAL_205_Torwache_PassAsArmoredMIL(C_Info)
 {
 	npc = PAL_205_Torwache;
 	nr = 3;
-	condition = DIA_PAL_205_Torwache_PassAsArmoredMil_Condition;
-	information = DIA_PAL_205_Torwache_PassAsArmoredMil_Info;
-	permanent = FALSE;
+	condition = DIA_PAL_205_Torwache_PassAsArmoredMIL_Condition;
+	information = DIA_PAL_205_Torwache_PassAsArmoredMIL_Info;
 	important = TRUE;
 };
 
 
-func int DIA_PAL_205_Torwache_PassAsArmoredMil_Condition()
+func int DIA_PAL_205_Torwache_PassAsArmoredMIL_Condition()
 {
-	if((VisibleGuild(other) == GIL_MIL) && (PAL_205_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if(PAL_205_schonmalreingelassen == FALSE)
 	{
-		return TRUE;
+		if((VisibleGuild(other) == GIL_MIL) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+		{
+			return TRUE;
+		};
 	};
 };
 
-func void DIA_PAL_205_Torwache_PassAsArmoredMil_Info()
+func void DIA_PAL_205_Torwache_PassAsArmoredMIL_Info()
 {
-	AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsMil_12_01");	//Хорошо, ты можешь войти.
+	AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsMIL_12_01");	//Хорошо, ты можешь войти.
 	B_CityHallPass();
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_PAL_205_Torwache_PassAsMil(C_Info)
+instance DIA_PAL_205_Torwache_PassAsMIL(C_Info)
 {
 	npc = PAL_205_Torwache;
 	nr = 3;
-	condition = DIA_PAL_205_Torwache_PassAsMil_Condition;
-	information = DIA_PAL_205_Torwache_PassAsMil_Info;
+	condition = DIA_PAL_205_Torwache_PassAsMIL_Condition;
+	information = DIA_PAL_205_Torwache_PassAsMIL_Info;
 	permanent = TRUE;
 	description = "Я состою в ополчении.";
 };
 
 
-func int DIA_PAL_205_Torwache_PassAsMil_Condition()
+func int DIA_PAL_205_Torwache_PassAsMIL_Condition()
 {
 	if((other.guild == GIL_MIL) && (PAL_205_schonmalreingelassen == FALSE))
 	{
@@ -262,16 +257,16 @@ func int DIA_PAL_205_Torwache_PassAsMil_Condition()
 	};
 };
 
-func void DIA_PAL_205_Torwache_PassAsMil_Info()
+func void DIA_PAL_205_Torwache_PassAsMIL_Info()
 {
-	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsMil_15_00");	//Я состою в ополчении.
+	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsMIL_15_00");	//Я состою в ополчении.
 	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
 	{
-		B_Mil_205_Torwache_Crimes();
+		B_PAL_205_Torwache_Crimes();
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsMil_12_01");	//Хорошо, ты можешь войти.
+		AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsMIL_12_01");	//Хорошо, ты можешь войти.
 		B_CityHallPass();
 	};
 	AI_StopProcessInfos(self);
@@ -299,10 +294,10 @@ func int DIA_PAL_205_Torwache_PassAsMage_Condition()
 
 func void DIA_PAL_205_Torwache_PassAsMage_Info()
 {
-	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsMage_15_00");	//Я маг Огня.
+	DIA_Common_IAmFireMage();
 	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
 	{
-		B_Mil_205_Torwache_Crimes();
+		B_PAL_205_Torwache_Crimes();
 	}
 	else
 	{
@@ -313,35 +308,38 @@ func void DIA_PAL_205_Torwache_PassAsMage_Info()
 };
 
 
-instance DIA_PAL_205_Torwache_PassAsSld(C_Info)
+instance DIA_PAL_205_Torwache_PassAsSLD(C_Info)
 {
 	npc = PAL_205_Torwache;
 	nr = 3;
-	condition = DIA_PAL_205_Torwache_PassAsSld_Condition;
-	information = DIA_PAL_205_Torwache_PassAsSld_Info;
+	condition = DIA_PAL_205_Torwache_PassAsSLD_Condition;
+	information = DIA_PAL_205_Torwache_PassAsSLD_Info;
 	permanent = TRUE;
 	description = "Дай мне пройти, я несу послание от наемников.";
 };
 
 
-func int DIA_PAL_205_Torwache_PassAsSld_Condition()
+func int DIA_PAL_205_Torwache_PassAsSLD_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Passage_MIS) && (PAL_205_schonmalreingelassen == FALSE))
+	if(PAL_205_schonmalreingelassen == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Passage_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
-func void DIA_PAL_205_Torwache_PassAsSld_Info()
+func void DIA_PAL_205_Torwache_PassAsSLD_Info()
 {
-	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsSld_15_00");	//Дай мне пройти, я несу послание от наемников.
+	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsSLD_15_00");	//Дай мне пройти, я несу послание от наемников.
 	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
 	{
-		B_Mil_205_Torwache_Crimes();
+		B_PAL_205_Torwache_Crimes();
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsSld_12_01");	//Хорошо, но предупреждаю тебя. Если возникнут какие-нибудь проблемы, то ты не успеешь даже пожалеть об этом.
+		AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsSLD_12_01");	//Хорошо, но предупреждаю тебя. Если возникнут какие-нибудь проблемы, то ты не успеешь даже пожалеть об этом.
 		B_CityHallPass();
 	};
 	AI_StopProcessInfos(self);
@@ -361,9 +359,12 @@ instance DIA_PAL_205_Torwache_PERM(C_Info)
 
 func int DIA_PAL_205_Torwache_PERM_Condition()
 {
-	if((PAL_205_schonmalreingelassen == TRUE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if(PAL_205_schonmalreingelassen == TRUE)
 	{
-		return TRUE;
+		if(B_GetGreatestPetzCrime(self) < CRIME_ATTACK)
+		{
+			return TRUE;
+		};
 	};
 };
 

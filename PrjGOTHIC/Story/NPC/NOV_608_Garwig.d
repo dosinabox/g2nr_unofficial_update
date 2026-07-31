@@ -12,7 +12,7 @@ instance NOV_608_Garwig(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 600;
 	attribute[ATR_HITPOINTS] = 600;
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Nov_Mace);
+	EquipItem(self,ItMw_1H_NOV_Mace);
 	B_CreateAmbientInv(self);
 	B_CreateItemToSteal(self,52,ItMi_Gold,80);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Tough02,BodyTex_L,ITAR_NOV_L);

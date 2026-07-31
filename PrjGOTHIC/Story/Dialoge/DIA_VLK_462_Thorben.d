@@ -267,9 +267,12 @@ instance DIA_Thorben_Schuldenbuch(C_Info)
 
 func int DIA_Thorben_Schuldenbuch_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Schuldenbuch) && ((SchuldBuchNamesKnown == TRUE) || Npc_KnowsInfo(other,DIA_Thorben_Gritta)))
+	if((SchuldBuchNamesKnown == TRUE) || Npc_KnowsInfo(other,DIA_Thorben_Gritta))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Schuldenbuch))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -296,9 +299,12 @@ instance DIA_Thorben_GiveBook(C_Info)
 
 func int DIA_Thorben_GiveBook_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Thorben_Schuldenbuch) && Npc_HasItems(other,ItWr_Schuldenbuch))
+	if(Npc_KnowsInfo(other,DIA_Thorben_Schuldenbuch))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Schuldenbuch))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -495,10 +501,10 @@ func void DIA_Thorben_TRADE_Info()
 	{
 		AI_Output(self,other,"DIA_Thorben_TRADE_06_02");	//Хорошо. Но они ничем не помогут тебе, пока ты не научишься пользоваться ими.
 	};
-	if(!Npc_HasItems(self,ItKe_Lockpick) && (Kapitel > Dietrichgeben))
+	if(!Npc_HasItems(self,ItKe_Lockpick) && (Kapitel > Thorben_LockpicksUpdated))
 	{
 		CreateInvItems(self,ItKe_Lockpick,5);
-		Dietrichgeben += 1;
+		Thorben_LockpicksUpdated += 1;
 	};
 	if(Thorben_TradeLog == FALSE)
 	{
@@ -841,13 +847,13 @@ func void DIA_Thorben_PICKPOCKET_Book_DoIt()
 		CreateInvItem(other,ItWr_Schuldenbuch);
 		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		B_GiveThiefXP();
-		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Торбен",ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings(self.name[0],ConcatStrings(PRINT_PickPocketSuccess,"Долговая книга.")));
 		SchuldBuch_Stolen_Thorben = TRUE;
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(TOPIC_PickPocket,ConcatStrings("Торбен",PRINT_PickPocketFailed));
+		B_LogEntry(TOPIC_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};

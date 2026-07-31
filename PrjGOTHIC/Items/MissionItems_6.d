@@ -238,7 +238,7 @@ func void Use_RezeptFuerMegaTrank()
 	Doc_Show(nDocID);
 	if(Npc_IsPlayer(self))
 	{
-		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == FALSE))
+		if(Npc_GetTalentSkill(self,NPC_TALENT_ALCHEMY) && (PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == FALSE))
 		{
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭМБАРЛА ФИРГАСТО': 10 драконьих яиц, 1 черная жемчужина и 1 сера.");
 			PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] = TRUE;

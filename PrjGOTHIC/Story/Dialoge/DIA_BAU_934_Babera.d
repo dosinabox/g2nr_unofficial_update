@@ -3,21 +3,10 @@ instance DIA_Babera_EXIT(C_Info)
 {
 	npc = BAU_934_Babera;
 	nr = 999;
-	condition = DIA_Babera_EXIT_Condition;
-	information = DIA_Babera_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Babera_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Babera_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -103,9 +92,12 @@ instance DIA_Babera_BRONKO(C_Info)
 
 func int DIA_Babera_BRONKO_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Babera_HALLO) && Npc_KnowsInfo(other,DIA_Bronko_HALLO) && !Npc_IsDead(Bronko))
+	if(Npc_KnowsInfo(other,DIA_Babera_HALLO) && Npc_KnowsInfo(other,DIA_Bronko_HALLO))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Bronko))
+		{
+			return TRUE;
+		};
 	};
 };
 

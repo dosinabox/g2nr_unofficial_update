@@ -6,23 +6,14 @@ instance DIA_Addon_Cavalorn_EXIT(C_Info)
 {
 	npc = BAU_4300_Addon_Cavalorn;
 	nr = 999;
-	condition = DIA_Addon_Cavalorn_EXIT_Condition;
-	information = DIA_Addon_Cavalorn_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Addon_Cavalorn_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Cavalorn_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
+var int DIA_Addon_Cavalorn_MeetingIsRunning_OneTime;
 
 instance DIA_Addon_Cavalorn_MeetingIsRunning(C_Info)
 {
@@ -34,8 +25,6 @@ instance DIA_Addon_Cavalorn_MeetingIsRunning(C_Info)
 	permanent = TRUE;
 };
 
-
-var int DIA_Addon_Cavalorn_MeetingIsRunning_OneTime;
 
 func int DIA_Addon_Cavalorn_MeetingIsRunning_Condition()
 {
@@ -182,9 +171,12 @@ instance DIA_Addon_Cavalorn_ImGoingToMineValley(C_Info)
 
 func int DIA_Addon_Cavalorn_ImGoingToMineValley_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO) && (Hagen_BringProof == TRUE) && (Kapitel < 3) && (MIS_Addon_Cavalorn_TheHut == FALSE) && !Npc_HasItems(other,ItSe_Addon_CavalornsBeutel) && (SC_OpenedCavalornsBeutel == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO) && (Hagen_BringProof == TRUE) && (Kapitel < 3) && (MIS_Addon_Cavalorn_TheHut == FALSE) && (SC_OpenedCavalornsBeutel == FALSE))
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,ItSe_Addon_CavalornsBeutel))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -207,9 +199,16 @@ instance DIA_Addon_Cavalorn_Beutel(C_Info)
 
 func int DIA_Addon_Cavalorn_Beutel_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO) && (Npc_HasItems(other,ItSe_Addon_CavalornsBeutel) || (SC_OpenedCavalornsBeutel == TRUE)))
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO))
 	{
-		return TRUE;
+		if(SC_OpenedCavalornsBeutel == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItSe_Addon_CavalornsBeutel))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -308,11 +307,14 @@ func int DIA_Addon_Cavalorn_ErzGeben_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Beutel) && (Cavalorn_GotOre == FALSE))
 	{
-		if(Npc_HasItems(other,ItSe_Addon_CavalornsBeutel))
+		if(SC_OpenedCavalornsBeutel == TRUE)
 		{
-			return TRUE;
+			if(Npc_HasItems(other,ItMi_Nugget))
+			{
+				return TRUE;
+			};
 		};
-		if((SC_OpenedCavalornsBeutel == TRUE) && Npc_HasItems(other,ItMi_Nugget))
+		if(Npc_HasItems(other,ItSe_Addon_CavalornsBeutel))
 		{
 			return TRUE;
 		};
@@ -526,7 +528,7 @@ func void DIA_Addon_Cavalorn_LETSKILLBANDITS_Info()
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"KILLBANDITS");
-	if(Bdt_1013_Away == FALSE)
+	if(BDT_1013_Away == FALSE)
 	{
 		if(!Npc_IsDead(Ambusher_1013))
 		{
@@ -873,7 +875,7 @@ func void B_Cavalorn_Triggered_Wohin()
 
 func void DIA_Addon_Cavalorn_Triggered_OBack()
 {
-	B_EquipArmor(self,ITAR_Bau_L);
+	B_EquipArmor(self,ITAR_BAU_L);
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Triggered_OBack_15_00");	//Тогда я пойду и попрошу у них орнамент.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_OBack_08_01");	//Отлично.
 	B_Cavalorn_Triggered_Wohin();
@@ -881,7 +883,7 @@ func void DIA_Addon_Cavalorn_Triggered_OBack()
 
 func void DIA_Addon_Cavalorn_Triggered_Pal()
 {
-	B_EquipArmor(self,ITAR_Bau_L);
+	B_EquipArmor(self,ITAR_BAU_L);
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Triggered_Pal_15_00");	//Кому-то из нас придется подняться в верхнюю часть города.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_Pal_08_01");	//У меня нет на это времени. Это придется сделать тебе.
 	B_Cavalorn_Triggered_Wohin();

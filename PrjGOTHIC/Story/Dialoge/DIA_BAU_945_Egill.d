@@ -3,21 +3,10 @@ instance DIA_Egill_EXIT(C_Info)
 {
 	npc = BAU_945_Egill;
 	nr = 999;
-	condition = DIA_Egill_EXIT_Condition;
-	information = DIA_Egill_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Egill_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Egill_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -112,9 +101,12 @@ instance DIA_Egill_STREIT2(C_Info)
 
 func int DIA_Egill_STREIT2_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Egill_FELDRAEUBER) && Npc_KnowsInfo(other,DIA_Ehnim_FELDRAEUBER) && !C_NpcIsDown(Ehnim))
+	if(Npc_KnowsInfo(other,DIA_Egill_FELDRAEUBER) && Npc_KnowsInfo(other,DIA_Ehnim_FELDRAEUBER))
 	{
-		return TRUE;
+		if(!C_NpcIsDown(Ehnim))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -141,9 +133,12 @@ instance DIA_Egill_STREIT4(C_Info)
 
 func int DIA_Egill_STREIT4_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Ehnim_STREIT3) && !C_NpcIsDown(Ehnim))
+	if(Npc_KnowsInfo(other,DIA_Ehnim_STREIT3))
 	{
-		return TRUE;
+		if(!C_NpcIsDown(Ehnim))
+		{
+			return TRUE;
+		};
 	};
 };
 

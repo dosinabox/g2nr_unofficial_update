@@ -225,15 +225,25 @@ instance DIA_Addon_Vatras_Cavalorn(C_Info)
 
 func int DIA_Addon_Vatras_Cavalorn_Condition()
 {
-	if((Npc_HasItems(other,ItWr_SaturasFirstMessage_Addon_Sealed) && (MIS_Addon_Cavalorn_Letter2Vatras == LOG_RUNNING)) || Npc_HasItems(other,ItWr_SaturasFirstMessage_Addon))
+	if(MIS_Addon_Cavalorn_Letter2Vatras == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_SaturasFirstMessage_Addon_Sealed))
+		{
+			return TRUE;
+		};
+	};
+	if(SaturasFirstMessageOpened == TRUE)
+	{
+		if(Npc_HasItems(other,ItWr_SaturasFirstMessage_Addon))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Addon_Vatras_Cavalorn_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Vatras_Cavalorn_15_00");	//У меня для тебя письмо.
+	DIA_Common_IHaveLetterForYou();
 	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_01");	//Для меня?
 	MIS_Addon_Cavalorn_Letter2Vatras = LOG_SUCCESS;
 	if(SaturasFirstMessageOpened == FALSE)
@@ -249,7 +259,7 @@ func void DIA_Addon_Vatras_Cavalorn_Info()
 		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras / 4);
 		AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_02");	//Да, но... оно вскрыто. Я надеюсь, оно не попало в чужие руки?
 	};
-	B_ReadFakeItem(self,other,Fakescroll,1);
+	B_ReadFakeItem(self,other,FakeScroll,1);
 	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_03");	//Да. Это очень важное известие.
 	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_04");	//Интересно, как к тебе попало это письмо?
 	Info_ClearChoices(DIA_Addon_Vatras_Cavalorn);
@@ -309,7 +319,6 @@ func void DIA_Addon_Vatras_CavalornSentMe_Info()
 };
 
 
-var int Vatras_ToldAboutDuty;
 var int Vatras_ToldAboutOtherKDW;
 var int Vatras_ToldAboutUnexplored;
 
@@ -579,7 +588,7 @@ func void B_Vatras_Second_Lie()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_SECOND_LIE_05_02");	//Ага. И поэтому ты поделал весь этот долгий путь. Кто ты такой вообще?
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_SECOND_LIE_05_02");	//Ага. И поэтому ты проделал весь этот долгий путь. Кто ты такой вообще?
 	};
 	Vatras_Second = 2;
 };
@@ -1060,7 +1069,7 @@ func void DIA_Addon_Vatras_MissingPeople_Success()
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Success_15_05");	//Вот.
 		B_GiveInvItems(other,self,ItWr_RavensKidnapperMission_Addon,1);
-		B_ReadFakeItem(self,other,Fakescroll,1);
+		B_ReadFakeItem(self,other,FakeScroll,1);
 	};
 	AI_Output(self,other,"DIA_Addon_Vatras_MissingPeople_Success_05_06");	//Отличная работа. Я боялся, что мы никогда не узнаем ответа на эту загадку.
 	MIS_Addon_Vatras_WhereAreMissingPeople = LOG_SUCCESS;
@@ -1312,7 +1321,11 @@ instance DIA_Addon_Vatras_Stoneplate(C_Info)
 
 func int DIA_Addon_Vatras_Stoneplate_Condition()
 {
-	if(C_ScHasMagicStonePlate() || Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+	if(Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+	{
+		return TRUE;
+	};
+	if(C_ScHasMagicStonePlate())
 	{
 		return TRUE;
 	};
@@ -1363,9 +1376,12 @@ instance DIA_Addon_Vatras_SellStonplate(C_Info)
 
 func int DIA_Addon_Vatras_SellStonplate_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Addon_Vatras_Stoneplate) || Npc_KnowsInfo(other,DIA_Addon_Vatras_DI_Stoneplate)) && Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+	if(Npc_KnowsInfo(other,DIA_Addon_Vatras_Stoneplate) || Npc_KnowsInfo(other,DIA_Addon_Vatras_DI_Stoneplate))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1932,9 +1948,12 @@ instance DIA_Vatras_MISSION(C_Info)
 
 func int DIA_Vatras_MISSION_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Kapitel == 2) && !Npc_IsDead(Isgaroth) && Npc_KnowsInfo(other,DIA_Addon_Vatras_HowToJoin))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((Kapitel == 2) && !Npc_IsDead(Isgaroth) && Npc_KnowsInfo(other,DIA_Addon_Vatras_HowToJoin))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -2099,9 +2118,13 @@ instance DIA_Addon_Vatras_AbloesePre(C_Info)
 
 func int DIA_Addon_Vatras_AbloesePre_Condition()
 {
-	if((Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == FALSE))
+	if((RavenIsDead == FALSE) && (AddonDisabled == FALSE) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == FALSE))
 	{
-		if((RavenIsDead == FALSE) && (AddonDisabled == FALSE))
+		if(MIS_SCKnowsInnosEyeIsBroken == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 		{
 			return TRUE;
 		};
@@ -2185,7 +2208,11 @@ func int DIA_Vatras_INNOSEYEKAPUTT_Condition()
 {
 	if((Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3))
 	{
-		if((VatrasCanLeaveTown_Kap3 == TRUE) || (AddonDisabled == TRUE))
+		if(VatrasCanLeaveTown_Kap3 == TRUE)
+		{
+			return TRUE;
+		};
+		if(AddonDisabled == TRUE)
 		{
 			return TRUE;
 		};

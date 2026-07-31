@@ -68,13 +68,19 @@ instance DIA_Randolph_HALLO(C_Info)
 
 func int DIA_Randolph_HALLO_Condition()
 {
-	if(C_AkilFarmIsFree() && (Kapitel < 4))
+	if(Kapitel < 4)
 	{
-		return TRUE;
-	};
-	if((Kapitel >= 4) && (other.guild == GIL_KDF) && (NpcObsessedByDMT_Randolph == TRUE) && Npc_IsDead(Akil) && Npc_IsDead(Kati))
+		if(C_AkilFarmIsFree())
+		{
+			return TRUE;
+		};
+	}
+	else if((other.guild == GIL_KDF) && (NpcObsessedByDMT_Randolph == TRUE))
 	{
-		return TRUE;
+		if(Npc_IsDead(Akil) && Npc_IsDead(Kati))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -114,9 +120,12 @@ instance DIA_Randolph_Baltram(C_Info)
 
 func int DIA_Randolph_Baltram_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Randolph_HALLO) && (MIS_Baltram_ScoutAkil == LOG_RUNNING) && Npc_IsDead(Akil) && Npc_IsDead(Kati) && (Lieferung_Geholt == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Randolph_HALLO) && (MIS_Baltram_ScoutAkil == LOG_RUNNING) && (Lieferung_Geholt == FALSE))
 	{
-		return TRUE;
+		if(Npc_IsDead(Akil) && Npc_IsDead(Kati))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -291,13 +300,14 @@ instance DIA_Randolph_ICHGEBEDIRGELD(C_Info)
 };
 
 
-var int DIA_Randolph_ICHGEBEDIRGELD_noPerm;
-
 func int DIA_Randolph_ICHGEBEDIRGELD_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Randolph_WASBRAUCHSTDU) && (DIA_Randolph_ICHGEBEDIRGELD_noPerm == FALSE) && (Kapitel < 4) && !Npc_IsDead(Rukhar))
+	if(Npc_KnowsInfo(other,DIA_Randolph_WASBRAUCHSTDU) && (DIA_Randolph_ICHGEBEDIRGELD_noPerm == FALSE) && (Kapitel < 4))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Rukhar))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -328,6 +338,16 @@ func void DIA_Randolph_ICHGEBEDIRGELD_Info()
 };
 
 
+func void B_Randolph_SuccessPay()
+{
+	AI_Output(self,other,"DIA_Randolph_WETTKAMPFZUENDE_06_04");	//Все, наконец, получилось. Спасибо еще раз за деньги. Вот, получи их назад.
+	CreateInvItems(self,ItMi_Gold,20);
+	B_GiveInvItems(self,other,ItMi_Gold,20);
+	B_GivePlayerXP(XP_Rukhar_WettkampfVorbei);
+};
+
+var int DIA_Randolph_WETTKAMPFZUENDE_OneTime;
+
 instance DIA_Randolph_WETTKAMPFZUENDE(C_Info)
 {
 	npc = BAU_942_Randolph;
@@ -345,17 +365,6 @@ func int DIA_Randolph_WETTKAMPFZUENDE_Condition()
 	{
 		return TRUE;
 	};
-};
-
-
-var int DIA_Randolph_WETTKAMPFZUENDE_OneTime;
-
-func void B_Randolph_SuccessPay()
-{
-	AI_Output(self,other,"DIA_Randolph_WETTKAMPFZUENDE_06_04");	//Все, наконец, получилось. Спасибо еще раз за деньги. Вот, получи их назад.
-	CreateInvItems(self,ItMi_Gold,20);
-	B_GiveInvItems(self,other,ItMi_Gold,20);
-	B_GivePlayerXP(XP_Rukhar_WettkampfVorbei);
 };
 
 func void DIA_Randolph_WETTKAMPFZUENDE_Info()
@@ -398,9 +407,6 @@ func int DIA_Randolph_PERM_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Randolph_SoberForever;
 
 func void DIA_Randolph_PERM_Info()
 {
@@ -490,9 +496,12 @@ instance DIA_Randolph_SAGITTAHEAL(C_Info)
 
 func int DIA_Randolph_SAGITTAHEAL_Condition()
 {
-	if((MIS_HealRandolph == LOG_RUNNING) && Npc_HasItems(other,ItPo_HealRandolph_MIS))
+	if(MIS_HealRandolph == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItPo_HealRandolph_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

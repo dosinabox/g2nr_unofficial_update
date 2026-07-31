@@ -14,8 +14,6 @@ instance ItWr_SaturasFirstMessage_Addon_Sealed(C_Item)
 };
 
 
-var int Use_SaturasFirstMessage_OneTime;
-
 func void Use_SaturasFirstMessage()
 {
 	nDocID = Doc_Create();
@@ -37,7 +35,7 @@ func void Use_SaturasFirstMessage()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Сатурас");
 	Doc_Show(nDocID);
-	if(Use_SaturasFirstMessage_OneTime == FALSE)
+	if(SaturasFirstMessageOpened == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_RUNNING);
@@ -54,7 +52,7 @@ func void Use_SaturasFirstMessage()
 		{
 			B_LogEntry(TOPIC_Addon_KDW,"Я забрал у бандита письмо, которое Кавалорн должен был доставить магу Воды Ватрасу. Теперь это моя задача.");
 		};
-		Use_SaturasFirstMessage_OneTime = TRUE;
+		SaturasFirstMessageOpened = TRUE;
 	};
 };
 
@@ -62,7 +60,6 @@ func void Use_SaturasFirstMessage_Sealed()
 {
 	Snd_Play("PICKLOCK_BROKEN");
 	CreateInvItem(self,ItWr_SaturasFirstMessage_Addon);
-	SaturasFirstMessageOpened = TRUE;
 	Use_SaturasFirstMessage();
 };
 
@@ -620,13 +617,13 @@ func void Use_Vatras2Saturas_FindRaven()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Ватрас");
 	Doc_Show(nDocID);
+	Vatras2Saturas_FindRaven_Open = TRUE;
 };
 
 func void Use_Vatras2Saturas_FindRaven_Sealed()
 {
 	Snd_Play("PICKLOCK_BROKEN");
 	CreateInvItems(self,ItWr_Vatras2Saturas_FindRaven_opened,1);
-	Vatras2Saturas_FindRaven_Open = TRUE;
 	Use_Vatras2Saturas_FindRaven();
 };
 
@@ -1057,7 +1054,7 @@ instance ItSe_Addon_FrancisChest(C_Item)
 func void FrancisChest()
 {
 	CreateInvItems(hero,ItWr_Addon_FrancisAbrechnung_MIS,1);
-	CreateInvItems(hero,ItMw_1h_Pir_Dagger,1);
+	CreateInvItems(hero,ItMw_1H_PIR_Dagger,1);
 	CreateInvItems(hero,ItMi_Gold,153);
 	CreateInvItems(hero,ItMi_GoldCup,1);
 	CreateInvItems(hero,ItMi_SilverNecklace,1);

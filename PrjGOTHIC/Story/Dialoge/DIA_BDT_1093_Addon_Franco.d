@@ -101,9 +101,12 @@ instance DIA_Addon_Franco_Wo(C_Info)
 
 func int DIA_Addon_Franco_Wo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Franco_Hai) && !Npc_IsDead(Logan) && (MIS_HlpLogan == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Franco_Hai) && (MIS_HlpLogan == FALSE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Logan))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -133,9 +136,12 @@ instance DIA_Addon_Franco_Tot(C_Info)
 
 func int DIA_Addon_Franco_Tot_Condition()
 {
-	if((MIS_HlpLogan != LOG_SUCCESS) && Npc_IsDead(Logan) && Npc_KnowsInfo(other,DIA_Addon_Franco_Hai))
+	if((MIS_HlpLogan != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Addon_Franco_Hai))
 	{
-		return TRUE;
+		if(Npc_IsDead(Logan))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -259,9 +265,12 @@ instance DIA_Addon_Franco_WOEDGOR(C_Info)
 
 func int DIA_Addon_Franco_WOEDGOR_Condition()
 {
-	if((MIS_HlpEdgor == LOG_RUNNING) && !Npc_HasItems(other,ItMi_Addon_Stone_04))
+	if(MIS_HlpEdgor == LOG_RUNNING)
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,ItMi_Addon_Stone_04))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -310,9 +319,12 @@ instance DIA_Addon_Franco_Tafel(C_Info)
 
 func int DIA_Addon_Franco_Tafel_Condition()
 {
-	if((MIS_HlpEdgor == LOG_RUNNING) && Npc_HasItems(other,ItMi_Addon_Stone_04))
+	if(MIS_HlpEdgor == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Addon_Stone_04))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -424,9 +436,12 @@ instance DIA_Addon_Franco_Pig(C_Info)
 
 func int DIA_Addon_Franco_Pig_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Franco_JemandAnderen) && !Npc_IsDead(Ramon))
+	if(Npc_KnowsInfo(other,DIA_Addon_Franco_JemandAnderen))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Ramon))
+		{
+			return TRUE;
+		};
 	};
 };
 

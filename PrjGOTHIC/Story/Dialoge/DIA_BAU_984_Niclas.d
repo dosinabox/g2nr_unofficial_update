@@ -27,7 +27,6 @@ instance DIA_Niclas_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Niclas_Hello_Condition;
 	information = DIA_Niclas_Hello_Info;
-	permanent = FALSE;
 	important = TRUE;
 };
 
@@ -51,7 +50,6 @@ instance DIA_Niclas_HaveALook(C_Info)
 	nr = 1;
 	condition = DIA_Niclas_HaveALook_Condition;
 	information = DIA_Niclas_HaveALook_Info;
-	permanent = FALSE;
 	description = "Я просто брожу, любуюсь природой.";
 };
 
@@ -65,7 +63,6 @@ func void DIA_Niclas_HaveALook_Info()
 {
 	AI_Output(other,self,"DIA_Niclas_HaveALook_15_00");	//Я просто брожу, любуюсь природой.
 	AI_Output(self,other,"DIA_Niclas_HaveALook_03_01");	//Хорошо, будь моим гостем. Хочешь кусок мяса?
-//	CreateInvItems(self,ItFoMutton,1);
 	CreateInvItems(self,ItFo_NiclasBacon,1);
 	Info_ClearChoices(DIA_Niclas_HaveALook);
 	Info_AddChoice(DIA_Niclas_HaveALook,"Нет, спасибо.",DIA_Niclas_HaveALook_No);
@@ -76,7 +73,6 @@ func void DIA_Niclas_HaveALook_No()
 {
 	AI_Output(other,self,"DIA_Niclas_HaveALook_No_15_00");	//Нет, спасибо.
 	AI_Output(self,other,"DIA_Niclas_HaveALook_No_03_01");	//Как хочешь. Надеюсь, ты не будешь против, если я поем.
-//	B_UseItem(self,ItFoMutton);
 	B_UseItem(self,ItFo_NiclasBacon);
 	Info_ClearChoices(DIA_Niclas_HaveALook);
 };
@@ -85,7 +81,6 @@ func void DIA_Niclas_HaveALook_Yes()
 {
 	AI_Output(other,self,"DIA_Niclas_HaveALook_Yes_15_00");	//Да, спасибо.
 	AI_Output(self,other,"DIA_Niclas_HaveALook_Yes_03_01");	//Держи, вкуснейшая нога крысокрота. Приготовлена по моему собственному рецепту.
-//	B_GiveInvItems(self,other,ItFoMutton,1);
 	B_GiveInvItems(self,other,ItFo_NiclasBacon,1);
 	Info_ClearChoices(DIA_Niclas_HaveALook);
 };
@@ -97,7 +92,6 @@ instance DIA_Niclas_WhyHere(C_Info)
 	nr = 2;
 	condition = DIA_Niclas_WhyHere_Condition;
 	information = DIA_Niclas_WhyHere_Info;
-	permanent = FALSE;
 	description = "А ты что здесь делаешь?";
 };
 
@@ -120,7 +114,6 @@ instance DIA_Niclas_ShouldntWork(C_Info)
 	nr = 2;
 	condition = DIA_Niclas_ShouldntWork_Condition;
 	information = DIA_Niclas_ShouldntWork_Info;
-	permanent = FALSE;
 	description = "Разве тебе не нужно работать?";
 };
 
@@ -148,7 +141,6 @@ instance DIA_Niclas_CanTeachMe(C_Info)
 	nr = 2;
 	condition = DIA_Niclas_CanTeachMe_Condition;
 	information = DIA_Niclas_CanTeachMe_Info;
-	permanent = FALSE;
 	description = "В таком случае, я уверен, что ты можешь научить меня чему-нибудь.";
 };
 

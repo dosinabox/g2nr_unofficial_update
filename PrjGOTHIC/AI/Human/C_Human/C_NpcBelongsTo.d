@@ -12,9 +12,9 @@ func int C_NpcBelongsToOldCamp(var C_Npc slf)
 			return TRUE;
 		};
 	};
-	if(C_IsNpc(slf,PAL_253_Wache) || C_IsNpc(slf,PAL_257_Ritter))
+	if(MIS_Marcos_Jungs != LOG_SUCCESS)
 	{
-		if(MIS_Marcos_Jungs != LOG_SUCCESS)
+		if(C_IsNpc(slf,PAL_253_Wache) || C_IsNpc(slf,PAL_257_Ritter))
 		{
 			return TRUE;
 		};
@@ -24,22 +24,6 @@ func int C_NpcBelongsToOldCamp(var C_Npc slf)
 
 func int C_NpcBelongsToCity(var C_Npc slf)
 {
-	if(C_NpcBelongsToOldCamp(slf))
-	{
-		return FALSE;
-	};
-	if(C_IsNpc(slf,PAL_280_Tengron) || C_IsNpc(slf,PAL_281_Fajeth))
-	{
-		return FALSE;
-	};
-	if(slf.npcType == NPCTYPE_OWAMBIENT)
-	{
-		return FALSE;
-	};
-	if(C_IsNpc(slf,PAL_253_Wache) || C_IsNpc(slf,PAL_257_Ritter))
-	{
-		return FALSE;
-	};
 	if(C_IsNpc(slf,PAL_299_Sergio))
 	{
 		return FALSE;
@@ -48,7 +32,7 @@ func int C_NpcBelongsToCity(var C_Npc slf)
 	{
 		return TRUE;
 	};
-	if(RosiLocation == LOC_CITY)
+	if(RosiLocation == LOC_NW_CITY)
 	{
 		if(C_IsNpc(slf,BAU_936_Rosi))
 		{
@@ -68,19 +52,25 @@ func int C_NpcBelongsToMonastery(var C_Npc slf)
 	{
 		return TRUE;
 	};
-	if(C_IsNpc(slf,VLK_4250_Jorgen) && (EnterNW_Kapitel4 == TRUE) && (JorgenMovedFromKloster == FALSE))
+	if((EnterNW_Kapitel4 == TRUE) && (JorgenMovedFromKloster == FALSE))
 	{
-		return TRUE;
+		if(C_IsNpc(slf,VLK_4250_Jorgen))
+		{
+			return TRUE;
+		};
 	};
-	if(C_IsNpc(slf,BAU_952_Vino) && (DIA_Vino_Heilung_oneTime == TRUE))
+	if(DIA_Vino_Heilung_oneTime == TRUE)
 	{
-		return TRUE;
+		if(C_IsNpc(slf,BAU_952_Vino))
+		{
+			return TRUE;
+		};
 	};
 	if((slf.guild == GIL_KDF) || (slf.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
-	if(RosiLocation == LOC_MONASTERY)
+	if(RosiLocation == LOC_NW_MONASTERY)
 	{
 		if(C_IsNpc(slf,BAU_936_Rosi))
 		{
@@ -100,9 +90,12 @@ func int C_CommentMonasteryCrimes(var C_Npc slf)
 	{
 		return FALSE;
 	};
-	if(C_IsNpc(slf,KDF_509_Isgaroth) && (NOV_Aufnahme == FALSE))
+	if(NOV_Aufnahme == FALSE)
 	{
-		return FALSE;
+		if(C_IsNpc(slf,KDF_509_Isgaroth))
+		{
+			return FALSE;
+		};
 	};
 	return TRUE;
 };
@@ -132,9 +125,12 @@ func int C_NpcBelongsToFarm(var C_Npc slf)
 			return FALSE;
 		};
 	};
-	if(C_IsNpc(slf,VLK_4250_Jorgen) && (JorgenMovedFromKloster == TRUE))
+	if(JorgenMovedFromKloster == TRUE)
 	{
-		return TRUE;
+		if(C_IsNpc(slf,VLK_4250_Jorgen))
+		{
+			return TRUE;
+		};
 	};
 	if((slf.guild == GIL_BAU) || (slf.guild == GIL_SLD))
 	{

@@ -28,7 +28,6 @@ instance DIA_Rod_Hello(C_Info)
 	nr = 1;
 	condition = DIA_Rod_Hello_Condition;
 	information = DIA_Rod_Hello_Info;
-	permanent = FALSE;
 	description = "Как дела?";
 };
 
@@ -88,7 +87,7 @@ func void DIA_Rod_WannaLearn_Info()
 	AI_Output(other,self,"DIA_Rod_WannaLearn_15_00");	//Ты можешь обучить меня владению двуручным оружием?
 	if((MIS_RodSword == LOG_SUCCESS) || (self.aivar[AIV_DefeatedByPlayer] == TRUE))
 	{
-		if(!Npc_HasItems(self,ItMw_2h_Rod))
+		if(!Npc_HasItems(self,ItMw_2H_Rod))
 		{
 			AI_Output(self,other,"DIA_Rod_WannaLearn_06_03");	//Да, если ты отдашь мне назад мой меч.
 		}
@@ -213,7 +212,7 @@ func int DIA_Rod_WannaJoin_Condition()
 func void DIA_Rod_WannaJoin_Info()
 {
 	AI_Output(other,self,"DIA_Rod_WannaJoin_15_00");	//Я хочу присоединиться к наемникам!
-	if(!Npc_HasItems(self,ItMw_2h_Rod))
+	if(!Npc_HasItems(self,ItMw_2H_Rod))
 	{
 		AI_Output(self,other,"DIA_Rod_WannaJoin_06_01");	//А как насчет того, чтобы сначала вернуть мне мой меч, а?
 	}
@@ -291,14 +290,13 @@ instance DIA_Rod_StarkGenug(C_Info)
 	nr = 5;
 	condition = DIA_Rod_StarkGenug_Condition;
 	information = DIA_Rod_StarkGenug_Info;
-	permanent = FALSE;
 	description = "Я достаточно силен!";
 };
 
 
 func int DIA_Rod_StarkGenug_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Rod_SchwachGesagt == TRUE) && Npc_HasItems(self,ItMw_2h_Rod))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Rod_SchwachGesagt == TRUE) && Npc_HasItems(self,ItMw_2H_Rod))
 	{
 		return TRUE;
 	};
@@ -321,14 +319,13 @@ instance DIA_Rod_BINStarkGenug(C_Info)
 	nr = 5;
 	condition = DIA_Rod_BINStarkGenug_Condition;
 	information = DIA_Rod_BINStarkGenug_Info;
-	permanent = FALSE;
 	description = "Я сказал, я достаточно силен!";
 };
 
 
 func int DIA_Rod_BINStarkGenug_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && Npc_KnowsInfo(other,DIA_Rod_StarkGenug) && Npc_HasItems(self,ItMw_2h_Rod))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && Npc_KnowsInfo(other,DIA_Rod_StarkGenug) && Npc_HasItems(self,ItMw_2H_Rod))
 	{
 		return TRUE;
 	};
@@ -356,7 +353,7 @@ instance DIA_Rod_Wette(C_Info)
 
 func int DIA_Rod_Wette_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && Npc_KnowsInfo(other,DIA_Rod_BINStarkGenug) && Npc_HasItems(self,ItMw_2h_Rod) && (MIS_RodSword == LOG_RUNNING))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && Npc_KnowsInfo(other,DIA_Rod_BINStarkGenug) && Npc_HasItems(self,ItMw_2H_Rod) && (MIS_RodSword == LOG_RUNNING))
 	{
 		return TRUE;
 	};
@@ -392,7 +389,7 @@ func void DIA_Rod_Wette_Yes()
 	{
 		AI_Output(other,self,"DIA_Rod_Wette_Yes_15_02");	//Вот!
 		AI_Output(self,other,"DIA_Rod_Wette_Yes_06_03");	//(злорадно) Хорошо, давай посмотрим, насколько ты силен...
-		B_GiveInvItems(self,other,ItMw_2h_Rod,1);
+		B_GiveInvItems(self,other,ItMw_2H_Rod,1);
 		if(other.attribute[ATR_STRENGTH] >= Condition_Rod)
 		{
 			if(Npc_HasReadiedWeapon(other))
@@ -400,8 +397,8 @@ func void DIA_Rod_Wette_Yes()
 				AI_RemoveWeapon(other);
 			};
 			AI_WaitTillEnd(other,self);
-			CreateInvItem(other,ItMw_2h_Rod_Fake);
-			AI_UseItem(other,ItMw_2h_Rod_Fake);
+			CreateInvItem(other,ItMw_2H_Rod_Fake);
+			AI_UseItem(other,ItMw_2H_Rod_Fake);
 			AI_Wait(other,0.5);
 			AI_Output(other,self,"DIA_Rod_Wette_Yes_15_04");	//Так достаточно?!
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_05");	//(сбитый с толку) Похоже, ты побил меня.
@@ -437,7 +434,7 @@ func void DIA_Rod_Wette_GiveBack()
 {
 	B_ClearFakeItems(other);
 	AI_Output(other,self,"DIA_Rod_Wette_GiveBack_15_00");	//Вот, держи.
-	B_GiveInvItems(other,self,ItMw_2h_Rod,1);
+	B_GiveWeapon(other,self,ItMw_2H_Rod,1);
 	if(MIS_RodSword != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Rod_Wette_GiveBack_06_01_add");	//Да ты просто слабак!
@@ -473,7 +470,7 @@ instance DIA_Rod_GiveItBack(C_Info)
 
 func int DIA_Rod_GiveItBack_Condition()
 {
-	if(Npc_HasItems(other,ItMw_2h_Rod))
+	if(Npc_HasItems(other,ItMw_2H_Rod))
 	{
 		return TRUE;
 	};
@@ -481,23 +478,9 @@ func int DIA_Rod_GiveItBack_Condition()
 
 func void DIA_Rod_GiveItBack_Info()
 {
-	var C_Item ReadyWeap;
-	if(Npc_HasReadiedMeleeWeapon(other))
-	{
-		ReadyWeap = Npc_GetReadiedWeapon(other);
-		if(Hlp_IsItem(ReadyWeap,ItMw_2h_Rod))
-		{
-			AI_DropItem(other,ItMw_2h_Rod);
-			AI_RemoveWeapon(other);
-		};
-	};
-	B_GiveInvItems(other,self,ItMw_2h_Rod,1);
 	AI_Output(other,self,"DIA_Rod_GiveItBack_15_00");	//Вот, держи свой меч!
+	B_GiveWeapon(other,self,ItMw_2H_Rod,1);
 	AI_Output(self,other,"DIA_Rod_GiveItBack_06_01");	//Вовремя!
-	if(Hlp_IsItem(ReadyWeap,ItMw_2h_Rod))
-	{
-		AI_TakeItem(self,ReadyWeap);
-	};
 	AI_EquipBestMeleeWeapon(self);
 	if(Rod_SchwertXPGiven == FALSE)
 	{

@@ -263,8 +263,8 @@ func void PC_Booze_SchnellerHering_Info()
 
 instance PC_Charge_InnosEye(C_Info)
 {
-	nr = 1;
 	npc = PC_Hero;
+	nr = 1;
 	condition = PC_Charge_InnosEye_Condition;
 	information = PC_Charge_InnosEye_Info;
 	permanent = TRUE;
@@ -384,8 +384,8 @@ func void PC_Mana_Stop_Info()
 
 instance PC_ItPo_Mana_01(C_Info)
 {
-	nr = 2;
 	npc = PC_Hero;
+	nr = 1;
 	condition = PC_ItPo_Mana_01_Condition;
 	information = PC_ItPo_Mana_01_Info;
 	permanent = TRUE;
@@ -422,8 +422,8 @@ func void PC_ItPo_Mana_01_Info()
 
 instance PC_ItPo_Mana_02(C_Info)
 {
-	nr = 3;
 	npc = PC_Hero;
+	nr = 2;
 	condition = PC_ItPo_Mana_02_Condition;
 	information = PC_ItPo_Mana_02_Info;
 	permanent = TRUE;
@@ -460,8 +460,8 @@ func void PC_ItPo_Mana_02_Info()
 
 instance PC_ItPo_Mana_03(C_Info)
 {
-	nr = 4;
 	npc = PC_Hero;
+	nr = 3;
 	condition = PC_ItPo_Mana_03_Condition;
 	information = PC_ItPo_Mana_03_Info;
 	permanent = TRUE;
@@ -498,8 +498,8 @@ func void PC_ItPo_Mana_03_Info()
 
 instance PC_ItPo_Mana_04(C_Info)
 {
-	nr = 4;
 	npc = PC_Hero;
+	nr = 4;
 	condition = PC_ItPo_Mana_04_Condition;
 	information = PC_ItPo_Mana_04_Info;
 	permanent = TRUE;
@@ -601,8 +601,8 @@ func void PC_Health_Stop_Info()
 
 instance PC_ItPo_Health_01(C_Info)
 {
-	nr = 2;
 	npc = PC_Hero;
+	nr = 1;
 	condition = PC_ItPo_Health_01_Condition;
 	information = PC_ItPo_Health_01_Info;
 	permanent = TRUE;
@@ -639,8 +639,8 @@ func void PC_ItPo_Health_01_Info()
 
 instance PC_ItPo_Health_02(C_Info)
 {
-	nr = 3;
 	npc = PC_Hero;
+	nr = 2;
 	condition = PC_ItPo_Health_02_Condition;
 	information = PC_ItPo_Health_02_Info;
 	permanent = TRUE;
@@ -677,8 +677,8 @@ func void PC_ItPo_Health_02_Info()
 
 instance PC_ItPo_Health_03(C_Info)
 {
-	nr = 4;
 	npc = PC_Hero;
+	nr = 3;
 	condition = PC_ItPo_Health_03_Condition;
 	information = PC_ItPo_Health_03_Info;
 	permanent = TRUE;
@@ -715,8 +715,8 @@ func void PC_ItPo_Health_03_Info()
 
 instance PC_ItPo_Health_04(C_Info)
 {
-	nr = 4;
 	npc = PC_Hero;
+	nr = 4;
 	condition = PC_ItPo_Health_04_Condition;
 	information = PC_ItPo_Health_04_Info;
 	permanent = TRUE;
@@ -838,8 +838,8 @@ func void PC_Special_Stop_Info()
 
 instance PC_ItPo_Perm_Health(C_Info)
 {
-	nr = 1;
 	npc = PC_Hero;
+	nr = 1;
 	condition = PC_ItPo_Perm_Health_Condition;
 	information = PC_ItPo_Perm_Health_Info;
 	permanent = TRUE;
@@ -877,8 +877,8 @@ func void PC_ItPo_Perm_Health_Info()
 
 instance PC_ItPo_Perm_Mana(C_Info)
 {
-	nr = 2;
 	npc = PC_Hero;
+	nr = 2;
 	condition = PC_ItPo_Perm_Mana_Condition;
 	information = PC_ItPo_Perm_Mana_Info;
 	permanent = TRUE;
@@ -916,8 +916,8 @@ func void PC_ItPo_Perm_Mana_Info()
 
 instance PC_ItPo_Perm_MushroomMana(C_Info)
 {
-	nr = 3;
 	npc = PC_Hero;
+	nr = 3;
 	condition = PC_ItPo_Perm_MushroomMana_Condition;
 	information = PC_ItPo_Perm_MushroomMana_Info;
 	permanent = TRUE;
@@ -955,8 +955,8 @@ func void PC_ItPo_Perm_MushroomMana_Info()
 
 instance PC_ItPo_Perm_AppleSTR(C_Info)
 {
-	nr = 4;
 	npc = PC_Hero;
+	nr = 4;
 	condition = PC_ItPo_Perm_AppleSTR_Condition;
 	information = PC_ItPo_Perm_AppleSTR_Info;
 	permanent = TRUE;
@@ -994,8 +994,8 @@ func void PC_ItPo_Perm_AppleSTR_Info()
 
 instance PC_ItPo_Dex(C_Info)
 {
-	nr = 5;
 	npc = PC_Hero;
+	nr = 5;
 	condition = PC_ItPo_Dex_Condition;
 	information = PC_ItPo_Dex_Info;
 	permanent = TRUE;
@@ -1034,8 +1034,8 @@ func void PC_ItPo_Dex_Info()
 
 instance PC_ItPo_Strg(C_Info)
 {
-	nr = 6;
 	npc = PC_Hero;
+	nr = 6;
 	condition = PC_ItPo_Strg_Condition;
 	information = PC_ItPo_Strg_Info;
 	permanent = TRUE;
@@ -1074,8 +1074,8 @@ func void PC_ItPo_Strg_Info()
 
 instance PC_ItPo_Speed(C_Info)
 {
-	nr = 7;
 	npc = PC_Hero;
+	nr = 7;
 	condition = PC_ItPo_Speed_Condition;
 	information = PC_ItPo_Speed_Info;
 	permanent = TRUE;
@@ -1112,8 +1112,8 @@ func void PC_ItPo_Speed_Info()
 
 instance PC_ItPo_Addon_Geist(C_Info)
 {
-	nr = 8;
 	npc = PC_Hero;
+	nr = 8;
 	condition = PC_ItPo_Addon_Geist_Condition;
 	information = PC_ItPo_Addon_Geist_Info;
 	permanent = TRUE;
@@ -1159,8 +1159,8 @@ func void PC_ItPo_Addon_Geist_Info()
 
 instance PC_ItPo_MegaDrink(C_Info)
 {
-	nr = 9;
 	npc = PC_Hero;
+	nr = 9;
 	condition = PC_ItPo_MegaDrink_Condition;
 	information = PC_ItPo_MegaDrink_Info;
 	permanent = TRUE;
@@ -1248,8 +1248,8 @@ func void PC_Tabak_Stop_Info()
 
 instance PC_ItMi_Joint(C_Info)
 {
-	nr = 10;
 	npc = PC_Hero;
+	nr = 1;
 	condition = PC_ItMi_Joint_Condition;
 	information = PC_ItMi_Joint_Info;
 	permanent = TRUE;
@@ -1288,8 +1288,8 @@ func void PC_ItMi_Joint_Info()
 
 instance PC_ItMi_Addon_Joint_01(C_Info)
 {
-	nr = 11;
 	npc = PC_Hero;
+	nr = 2;
 	condition = PC_ItMi_Addon_Joint_01_Condition;
 	information = PC_ItMi_Addon_Joint_01_Info;
 	permanent = TRUE;
@@ -1329,8 +1329,8 @@ func void PC_ItMi_Addon_Joint_01_Info()
 
 instance PC_ItMi_Tabak(C_Info)
 {
-	nr = 12;
 	npc = PC_Hero;
+	nr = 3;
 	condition = PC_ItMi_Tabak_Condition;
 	information = PC_ItMi_Tabak_Info;
 	permanent = TRUE;
@@ -1400,7 +1400,7 @@ func void PC_ItMi_Tabak_Honey()
 	else
 	{
 		Npc_RemoveInvItems(self,ItFo_Honey,1);
-		B_MakeTobacco(ItMi_Honigtabak);
+		B_MakeTobacco(ItMi_HonigTabak);
 	};
 };
 
@@ -1439,7 +1439,7 @@ func void PC_ItMi_Tabak_Double()
 	else
 	{
 		Npc_RemoveInvItems(self,ItFo_Apple,1);
-		B_MakeTobacco(ItMi_Doppeltabak);
+		B_MakeTobacco(ItMi_DoppelTabak);
 	};
 };
 
