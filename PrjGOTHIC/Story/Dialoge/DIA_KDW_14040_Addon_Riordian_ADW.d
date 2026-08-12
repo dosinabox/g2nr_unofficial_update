@@ -107,6 +107,8 @@ func void DIA_Addon_Riordian_WhatToFind_Info()
 };
 
 
+var int DIA_Addon_Riordian_Gegend_Info_OneTime;
+
 instance DIA_Addon_Riordian_Gegend(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
@@ -126,9 +128,6 @@ func int DIA_Addon_Riordian_Gegend_Condition()
 	};
 };
 
-
-var int DIA_Addon_Riordian_Gegend_Info_OneTime;
-
 func void DIA_Addon_Riordian_Gegend_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Riordian_Gegend_15_00");	//Расскажи мне об этой местности побольше.
@@ -146,6 +145,7 @@ func void DIA_Addon_Riordian_Gegend_Info()
 	Info_AddChoice(DIA_Addon_Riordian_Gegend,"Что расположено на юге?",DIA_Addon_Riordian_Gegend_sued);
 	Info_AddChoice(DIA_Addon_Riordian_Gegend,"Что находится на севере?",DIA_Addon_Riordian_Gegend_nord);
 };
+
 
 func void DIA_Addon_Riordian_Gegend_Back()
 {

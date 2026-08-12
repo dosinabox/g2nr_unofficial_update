@@ -3,21 +3,10 @@ instance DIA_Gerold_EXIT(C_Info)
 {
 	npc = PAL_261_Gerold;
 	nr = 999;
-	condition = DIA_Gerold_EXIT_Condition;
-	information = DIA_Gerold_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Gerold_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Gerold_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -174,6 +163,7 @@ instance DIA_Gerold_Stuff(C_Info)
 	description = "Я принес тебе кое-что. Вот еда, как ты и просил.";
 };
 
+
 func int DIA_Gerold_Stuff_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Gerold_Deal) && (Kapitel == 2) && (DIA_Gerold_Stuff_permanent == FALSE))
@@ -224,6 +214,7 @@ instance DIA_Gerold_Antwort(C_Info)
 	permanent = TRUE;
 	description = "Горн получил записку?";
 };
+
 
 func int DIA_Gerold_Antwort_Condition()
 {

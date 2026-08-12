@@ -3,21 +3,10 @@ instance DIA_Lester_EXIT(C_Info)
 {
 	npc = PC_Psionic;
 	nr = 999;
-	condition = DIA_Lester_EXIT_Condition;
-	information = DIA_Lester_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Lester_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Lester_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -380,6 +369,8 @@ func void DIA_Lester_BACKINTOWN_Info()
 };
 
 
+var int DIA_Lester_PERM3_OneTime;
+
 instance DIA_Lester_PERM3(C_Info)
 {
 	npc = PC_Psionic;
@@ -398,9 +389,6 @@ func int DIA_Lester_PERM3_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Lester_PERM3_OneTime;
 
 func void DIA_Lester_PERM3_Info()
 {

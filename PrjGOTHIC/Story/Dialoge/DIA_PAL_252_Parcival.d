@@ -3,21 +3,10 @@ instance DIA_Parcival_EXIT(C_Info)
 {
 	npc = PAL_252_Parcival;
 	nr = 999;
-	condition = DIA_Parcival_EXIT_Condition;
-	information = DIA_Parcival_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Parcival_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Parcival_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -161,6 +150,8 @@ func void DIA_Parcival_DRAGONS_Info()
 };
 
 
+var int Parcival_BRAVE_LaberCount;
+
 instance DIA_Parcival_BRAVE(C_Info)
 {
 	npc = PAL_252_Parcival;
@@ -182,9 +173,6 @@ func int DIA_Parcival_BRAVE_Condition()
 		};
 	};
 };
-
-
-var int Parcival_BRAVE_LaberCount;
 
 func void DIA_Parcival_BRAVE_Info()
 {
@@ -214,6 +202,8 @@ func void DIA_Parcival_BRAVE_Info()
 };
 
 
+var int DIA_Parcival_ALLESKLAR_NervCounter;
+
 instance DIA_Parcival_ALLESKLAR(C_Info)
 {
 	npc = PAL_252_Parcival;
@@ -232,9 +222,6 @@ func int DIA_Parcival_ALLESKLAR_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Parcival_ALLESKLAR_NervCounter;
 
 func void DIA_Parcival_ALLESKLAR_Info()
 {

@@ -550,6 +550,8 @@ func void DIA_Milten_DI_DragonEgg_Info()
 };
 
 
+var int DIA_Milten_DI_UndeadDragonDead_OneTime;
+
 instance DIA_Milten_DI_UndeadDragonDead(C_Info)
 {
 	npc = PC_Mage_DI;
@@ -568,9 +570,6 @@ func int DIA_Milten_DI_UndeadDragonDead_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Milten_DI_UndeadDragonDead_OneTime;
 
 func void DIA_Milten_DI_UndeadDragonDead_Info()
 {

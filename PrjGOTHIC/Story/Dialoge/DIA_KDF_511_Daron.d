@@ -49,21 +49,10 @@ instance DIA_Daron_EXIT(C_Info)
 {
 	npc = KDF_511_Daron;
 	nr = 999;
-	condition = DIA_Daron_EXIT_Condition;
-	information = DIA_Daron_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Daron_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Daron_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -471,9 +460,12 @@ instance DIA_Addon_Daron_FoundStatue(C_Info)
 
 func int DIA_Addon_Daron_FoundStatue_Condition()
 {
-	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron) && (MIS_Addon_Daron_GetStatue == LOG_RUNNING) && (LostInnosStatueInMonastery == FALSE))
+	if((MIS_Addon_Daron_GetStatue == LOG_RUNNING) && (LostInnosStatueInMonastery == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -541,9 +533,12 @@ instance DIA_Daron_arm(C_Info)
 
 func int DIA_Daron_arm_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Daron_Stadt) && (Npc_HasItems(other,ItMi_Gold) < 10) && (other.guild == GIL_NONE) && (Daron_Spende == 0))
+	if(Npc_KnowsInfo(other,DIA_Daron_Stadt) && (other.guild == GIL_NONE) && (Daron_Spende == 0))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Gold) < 10)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -567,6 +562,7 @@ instance DIA_Daron_Spende(C_Info)
 	permanent = TRUE;
 	description = "Я хочу сделать пожертвование...";
 };
+
 
 func int DIA_Daron_Spende_Condition()
 {
@@ -596,6 +592,7 @@ func void DIA_Daron_Spende_Info()
 		DIA_Daron_Spende_permanent = TRUE;
 	};
 };
+
 
 func void DIA_Daron_Spende_NoGold()
 {

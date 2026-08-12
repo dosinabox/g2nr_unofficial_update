@@ -3,21 +3,10 @@ instance DIA_Hyglas_EXIT(C_Info)
 {
 	npc = KDF_510_Hyglas;
 	nr = 999;
-	condition = DIA_Hyglas_EXIT_Condition;
-	information = DIA_Hyglas_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Hyglas_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Hyglas_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -143,6 +132,8 @@ func void DIA_Hyglas_CONTEST_Info()
 };
 
 
+var int Firebolt_Scroll_Once;
+
 instance DIA_Hyglas_TALENT_FIREBOLT(C_Info)
 {
 	npc = KDF_510_Hyglas;
@@ -161,8 +152,6 @@ func int DIA_Hyglas_TALENT_FIREBOLT_Condition()
 		return TRUE;
 	};
 };
-
-var int Firebolt_Scroll_Once;
 
 func void DIA_Hyglas_TALENT_FIREBOLT_Info()
 {
@@ -240,9 +229,9 @@ instance DIA_Hyglas_BLANK_RUNE(C_Info)
 
 func int DIA_Hyglas_BLANK_RUNE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (MIS_Rune == LOG_RUNNING) && !Npc_HasItems(other,ItMi_RuneBlank) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (MIS_Rune == LOG_RUNNING) && (SC_KnowsBlankRuneForFirebolt == TRUE) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
 	{
-		if(SC_KnowsBlankRuneForFirebolt == TRUE)
+		if(!Npc_HasItems(other,ItMi_RuneBlank))
 		{
 			return TRUE;
 		};
@@ -268,9 +257,12 @@ instance DIA_Hyglas_GOTRUNE(C_Info)
 
 func int DIA_Hyglas_GOTRUNE_Condition()
 {
-	if((MIS_Rune == LOG_RUNNING) && Npc_HasItems(other,ItRu_FireBolt) && !Npc_KnowsInfo(other,DIA_Ulthar_SUCCESS))
+	if((MIS_Rune == LOG_RUNNING) && !Npc_KnowsInfo(other,DIA_Ulthar_SUCCESS))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItRu_FireBolt))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -455,9 +447,12 @@ instance DIA_Hyglas_HaveBook(C_Info)
 
 func int DIA_Hyglas_HaveBook_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hyglas_BringBook) && Npc_HasItems(other,ItWr_Astronomy_MIS))
+	if(Npc_KnowsInfo(other,DIA_Hyglas_BringBook))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Astronomy_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

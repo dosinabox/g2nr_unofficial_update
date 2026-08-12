@@ -3,21 +3,10 @@ instance DIA_Neoras_EXIT(C_Info)
 {
 	npc = KDF_506_Neoras;
 	nr = 999;
-	condition = DIA_Neoras_EXIT_Condition;
-	information = DIA_Neoras_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Neoras_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Neoras_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -555,6 +544,8 @@ func void DIA_Neoras_DRACHENEIER_no()
 };
 
 
+var int Neoras_DragonEggDrink_Day;
+
 instance DIA_Neoras_FOUNDDRAGONEGG(C_Info)
 {
 	npc = KDF_506_Neoras;
@@ -567,14 +558,14 @@ instance DIA_Neoras_FOUNDDRAGONEGG(C_Info)
 
 func int DIA_Neoras_FOUNDDRAGONEGG_Condition()
 {
-	if(Npc_HasItems(other,ItAt_DragonEgg_MIS) && (MIS_Neoras_DragonEgg == LOG_RUNNING))
+	if(MIS_Neoras_DragonEgg == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAt_DragonEgg_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
-
-
-var int Neoras_DragonEggDrink_Day;
 
 func void DIA_Neoras_FOUNDDRAGONEGG_Info()
 {

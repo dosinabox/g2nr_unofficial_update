@@ -27,6 +27,7 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		RandomPepper = TRUE;
 		if(C_WorldIsFixed())
 		{
+			Wld_InsertItem(ItKe_Orlan_BackDoor,"FP_ITEM_NW_TAVERNE_01");
 			Wld_InsertItem(ItRu_LightHeal,"FP_ITEM_PASS_02");
 			Wld_InsertItem(ItWr_OneHStonePlate1_Addon,"FP_ITEM_NW_BIGMILL_01");
 			Wld_InsertItem(ItWr_StrStonePlate1_Addon,"FP_ITEM_NW_BIGMILL_02");

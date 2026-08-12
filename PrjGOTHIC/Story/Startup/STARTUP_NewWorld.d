@@ -565,7 +565,6 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 	Wld_InsertNpc(Giant_Bug,"FP_ROAM_MONSTERMILL_03");
 	Wld_InsertNpc(Lurker,"NW_BIGMILL_FIELD_MONSTER_03");
 	Wld_InsertNpc(Lurker,"NW_BIGMILL_FIELD_MONSTER_03");
-//	Wld_InsertItem(ItWr_OneHStonePlate1_Addon,"FP_ROAM_NW_BIGMILL_FIELD_MONSTER_04_03");
 	Wld_InsertNpc(Giant_Bug,"NW_BIGMILL_FIELD_MONSTER_01");
 	Wld_InsertNpc(Giant_Bug,"NW_BIGMILL_FIELD_MONSTER_01");
 	Wld_InsertNpc(Giant_Bug,"NW_BIGMILL_FIELD_MONSTER_01");
@@ -723,7 +722,6 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 	Wld_InsertItem(ItMi_Zeitspalt_Addon,"EVT_CRYPT_ROOM_01_SPAWN_03");
 	Wld_InsertItem(ItWr_ManaStonePlate2_Addon,"EVT_CRYPT_ROOM_FINAL_SPAWN_01");
 	Wld_InsertItem(ItWr_ManaStonePlate3_Addon,"EVT_CRYPT_ROOM_02_SPAWN_05");
-//	Wld_InsertItem(ItWr_HitPointStonePlate3_Addon,"FP_STAND_DEMENTOR_KDF_12");
 	Wld_InsertItem(ItWr_StonePlateCommon_Addon,"FP_SIT_CAMPFIRE_TOWER_01");
 	Wld_InsertNpc(BDT_1040_Bandit_L,"NW_CASTLEMINE_01");
 	Wld_InsertNpc(BDT_1041_Bandit_L,"NW_CASTLEMINE_TOWER_REP_HUT");
@@ -963,7 +961,6 @@ func void STARTUP_NewWorld_Part_Pass_To_OW_01()
 
 func void STARTUP_NewWorld_Part_Forest_01()
 {
-	Wld_InsertItem(ItKe_Orlan_BackDoor,"FP_ITEM_NW_TAVERNE_01");
 	Wld_InsertItem(ItMi_ErolsKelch,"FP_SPAWN_KELCH");
 	Wld_InsertNpc(BDT_1009_Bandit_L,"NW_FOREST_CAVE1_IN_04");
 	Wld_InsertNpc(BDT_1010_Bandit_L,"NW_FOREST_CAVE1_IN_05");

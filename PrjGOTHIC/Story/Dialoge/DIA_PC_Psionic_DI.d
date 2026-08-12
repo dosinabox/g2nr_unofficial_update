@@ -3,23 +3,15 @@ instance DIA_Lester_DI_EXIT(C_Info)
 {
 	npc = PC_Psionic_DI;
 	nr = 999;
-	condition = DIA_Lester_DI_EXIT_Condition;
-	information = DIA_Lester_DI_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Lester_DI_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Lester_DI_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
+var int DIA_Lester_DI_SCGotWarning1;
+var int DIA_Lester_DI_SCGotWarning2;
 
 instance DIA_Lester_DI_Hello(C_Info)
 {
@@ -39,10 +31,6 @@ func int DIA_Lester_DI_Hello_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Lester_DI_SCGotWarning1;
-var int DIA_Lester_DI_SCGotWarning2;
 
 func void DIA_Lester_DI_Hello_Info()
 {
@@ -102,6 +90,8 @@ func void DIA_Lester_DI_MarioArsch_Info()
 };
 
 
+var int DIA_PC_Lester_DI_UndeadDragonDead_OneTime;
+
 instance DIA_PC_Lester_DI_UndeadDragonDead(C_Info)
 {
 	npc = PC_Psionic_DI;
@@ -120,9 +110,6 @@ func int DIA_PC_Lester_DI_UndeadDragonDead_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_PC_Lester_DI_UndeadDragonDead_OneTime;
 
 func void DIA_PC_Lester_DI_UndeadDragonDead_Info()
 {
