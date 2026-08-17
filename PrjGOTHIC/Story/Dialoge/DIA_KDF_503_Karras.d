@@ -157,9 +157,12 @@ instance DIA_Karras_Success(C_Info)
 
 func int DIA_Karras_Success_Condition()
 {
-	if((MIS_KarrasVergessen == LOG_RUNNING) && (Npc_HasItems(other,ItSc_Charm) >= 3) && (MIS_Ignaz_Charm != FALSE))
+	if((MIS_KarrasVergessen == LOG_RUNNING) && (MIS_Ignaz_Charm != FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItSc_Charm) >= 3)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -511,9 +514,12 @@ instance DIA_Karras_NeedInfo(C_Info)
 
 func int DIA_Karras_NeedInfo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Karras_ChasePedro) && (Kapitel == 3) && (other.guild != GIL_KDF) && (MIS_NovizenChase == LOG_RUNNING) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Karras_ChasePedro) && (Kapitel == 3) && (other.guild != GIL_KDF) && (MIS_NovizenChase == LOG_RUNNING))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -660,9 +666,12 @@ instance DIA_Karras_HaveBook(C_Info)
 
 func int DIA_Karras_HaveBook_Condition()
 {
-	if((MIS_KarrasResearchDMT == LOG_RUNNING) && Npc_HasItems(other,ItWr_DementorObsessionBook_MIS) && (other.guild == GIL_KDF))
+	if((MIS_KarrasResearchDMT == LOG_RUNNING) && (other.guild == GIL_KDF))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_DementorObsessionBook_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -787,9 +796,12 @@ instance DIA_Karras_KarrasBlessedStone(C_Info)
 
 func int DIA_Karras_KarrasBlessedStone_Condition()
 {
-	if((other.guild == GIL_KDF) && Npc_HasItems(other,ItMi_KarrasBlessedStone_MIS) && (MIS_Karras_FindBlessedStone == LOG_RUNNING))
+	if((other.guild == GIL_KDF) && (MIS_Karras_FindBlessedStone == LOG_RUNNING))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_KarrasBlessedStone_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

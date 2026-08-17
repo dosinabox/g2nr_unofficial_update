@@ -481,9 +481,12 @@ instance DIA_Addon_RiordianADW_TeachPre(C_Info)
 
 func int DIA_Addon_RiordianADW_TeachPre_Condition()
 {
-	if((Riordian_Addon_TeachWisp == FALSE) && Npc_HasItems(other,ItAm_Addon_WispDetector))
+	if(Riordian_Addon_TeachWisp == FALSE)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAm_Addon_WispDetector))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -500,9 +503,12 @@ instance DIA_Addon_Riordian_ADW_Teach(C_Info)
 
 func int DIA_Addon_Riordian_ADW_Teach_Condition()
 {
-	if((Riordian_Addon_TeachWisp == TRUE) && (Riordian_Addon_TeachWisp_NoPerm == FALSE) && Npc_HasItems(other,ItAm_Addon_WispDetector))
+	if((Riordian_Addon_TeachWisp == TRUE) && (Riordian_Addon_TeachWisp_NoPerm == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAm_Addon_WispDetector))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -389,9 +389,12 @@ instance DIA_Addon_Huno_Paket(C_Info)
 
 func int DIA_Addon_Huno_Paket_Condition()
 {
-	if((MIS_Huno_Stahl == LOG_RUNNING) && Npc_HasItems(other,ItMi_Addon_Steel_Paket))
+	if(MIS_Huno_Stahl == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Addon_Steel_Paket))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -460,9 +463,13 @@ instance DIA_Huno_RepairNecklace(C_Info)
 
 func int DIA_Huno_RepairNecklace_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && !Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 	{
-		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
+		if(MIS_SCKnowsInnosEyeIsBroken == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 		{
 			return TRUE;
 		};

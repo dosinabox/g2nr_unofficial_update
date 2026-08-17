@@ -3,21 +3,10 @@ instance DIA_Addon_Riordian_EXIT(C_Info)
 {
 	npc = KDW_1404_Addon_Riordian_NW;
 	nr = 999;
-	condition = DIA_Addon_Riordian_EXIT_Condition;
-	information = DIA_Addon_Riordian_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Riordian_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Riordian_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -204,9 +193,12 @@ instance DIA_Addon_Riordian_TeachPre(C_Info)
 
 func int DIA_Addon_Riordian_TeachPre_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Riordian_Hallo) && Npc_HasItems(other,ItAm_Addon_WispDetector))
+	if(Npc_KnowsInfo(other,DIA_Addon_Riordian_Hallo))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAm_Addon_WispDetector))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -235,9 +227,12 @@ instance DIA_Addon_Riordian_Teach(C_Info)
 
 func int DIA_Addon_Riordian_Teach_Condition()
 {
-	if((Riordian_Addon_TeachWisp == TRUE) && (Riordian_Addon_TeachWisp_NoPerm == FALSE) && Npc_HasItems(other,ItAm_Addon_WispDetector))
+	if((Riordian_Addon_TeachWisp == TRUE) && (Riordian_Addon_TeachWisp_NoPerm == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAm_Addon_WispDetector))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -229,9 +229,9 @@ instance DIA_Addon_Pedro_Statuette_Abgeben(C_Info)
 
 func int DIA_Addon_Pedro_Statuette_Abgeben_Condition()
 {
-	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron) && Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette) && (LostInnosStatueInMonastery == FALSE))
+	if((other.guild != GIL_NONE) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF) && Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette) && (LostInnosStatueInMonastery == FALSE))
 	{
-		if((other.guild != GIL_NONE) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
+		if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron))
 		{
 			return TRUE;
 		};

@@ -3,21 +3,10 @@ instance DIA_Addon_Paul_EXIT(C_Info)
 {
 	npc = BDT_1070_Addon_Paul;
 	nr = 999;
-	condition = DIA_Addon_Paul_EXIT_Condition;
-	information = DIA_Addon_Paul_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Paul_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Paul_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -222,9 +211,12 @@ instance DIA_Addon_BDT_1070_Paul_Mine(C_Info)
 
 func int DIA_Addon_Paul_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
+	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Addon_Stone_01))
+		{
+			return TRUE;
+		};
 	};
 };
 

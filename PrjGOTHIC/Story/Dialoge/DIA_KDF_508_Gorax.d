@@ -283,6 +283,7 @@ instance DIA_Gorax_Orlan(C_Info)
 	description = "Я отнес вино Орлану.";
 };
 
+
 func int DIA_Gorax_Orlan_Condition()
 {
 	if((MIS_GoraxWein == LOG_RUNNING) && Npc_KnowsInfo(other,DIA_Orlan_Wein) && (DIA_Gorax_Orlan_permanent == FALSE))
@@ -307,6 +308,7 @@ func void DIA_Gorax_Orlan_Info()
 		AI_Output(self,other,"DIA_Gorax_Orlan_14_02");	//И что ты сделал с этим золотом? Ты потратил его? Уходи и не возвращайся сюда без золота!
 	};
 };
+
 
 func void B_Gorax_YouAreUseless()
 {

@@ -563,9 +563,12 @@ instance DIA_Bennet_BringOre(C_Info)
 
 func int DIA_Bennet_BringOre_Condition()
 {
-	if((MIS_Bennet_BringOre == LOG_RUNNING) && (Npc_HasItems(other,ItMi_Nugget) >= 5) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
+	if((MIS_Bennet_BringOre == LOG_RUNNING) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Nugget) >= 5)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1043,9 +1046,12 @@ instance DIA_Bennet_DragonScale(C_Info)
 
 func int DIA_Bennet_DragonScale_Condition()
 {
-	if(Npc_HasItems(other,ItAt_DragonScale) && (other.guild == GIL_DJG))
+	if(other.guild == GIL_DJG)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAt_DragonScale))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1205,9 +1211,16 @@ instance DIA_Bennet_RepairNecklace(C_Info)
 
 func int DIA_Bennet_RepairNecklace_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if(MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS)
 	{
-		return TRUE;
+		if(MIS_SCKnowsInnosEyeIsBroken == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1236,9 +1249,12 @@ instance DIA_Bennet_ShowInnosEye(C_Info)
 
 func int DIA_Bennet_ShowInnosEye_Condition()
 {
-	if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Bennet_RepairNecklace))
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Bennet_RepairNecklace))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1277,9 +1293,12 @@ instance DIA_Bennet_GiveInnosEye(C_Info)
 
 func int DIA_Bennet_GiveInnosEye_Condition()
 {
-	if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) && (MIS_SCKnowsInnosEyeIsBroken == TRUE) && (MIS_RescueBennet == LOG_SUCCESS) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
+	if((MIS_SCKnowsInnosEyeIsBroken == TRUE) && (MIS_RescueBennet == LOG_SUCCESS) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1356,9 +1375,12 @@ instance DIA_Bennet_DRACHENEIER(C_Info)
 
 func int DIA_Bennet_DRACHENEIER_Condition()
 {
-	if((Kapitel >= 4) && (BennetsDragonEggOffer == 0) && Npc_HasItems(other,ItAt_DragonEgg_MIS) && (other.guild == GIL_DJG))
+	if((Kapitel >= 4) && (BennetsDragonEggOffer == 0) && (other.guild == GIL_DJG))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAt_DragonEgg_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1462,9 +1484,12 @@ instance DIA_Bennet_EierBringen(C_Info)
 
 func int DIA_Bennet_EierBringen_Condition()
 {
-	if((BennetsDragonEggOffer > 0) && (Kapitel >= 4) && Npc_HasItems(other,ItAt_DragonEgg_MIS) && (other.guild == GIL_DJG))
+	if((BennetsDragonEggOffer > 0) && (Kapitel >= 4) && (other.guild == GIL_DJG))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAt_DragonEgg_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

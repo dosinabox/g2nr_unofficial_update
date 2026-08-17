@@ -3,21 +3,10 @@ instance DIA_Dragomir_EXIT(C_Info)
 {
 	npc = BAU_983_Dragomir;
 	nr = 999;
-	condition = DIA_Dragomir_EXIT_Condition;
-	information = DIA_Dragomir_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Dragomir_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Dragomir_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -141,9 +130,12 @@ instance DIA_Dragomir_Armbrust(C_Info)
 
 func int DIA_Dragomir_Armbrust_Condition()
 {
-	if((MIS_DragomirsArmbrust == LOG_RUNNING) && Npc_HasItems(other,ItRw_DragomirsArmbrust_MIS))
+	if(MIS_DragomirsArmbrust == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItRw_DragomirsArmbrust_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

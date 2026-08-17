@@ -437,19 +437,19 @@ func void DIA_Babo_Windfaust_Info()
 	{
 		AI_Output(other,self,"DIA_Babo_Windfaust_15_02");	//Вот свиток, который ты хотел получить.
 		AI_Output(self,other,"DIA_Babo_Windfaust_03_03");	//Отлично. Тогда я помогу тебе подметать кельи.
+		B_LogEntry(TOPIC_ParlanFegen,"Бабо поможет мне подмести кельи послушников.");
 		NOV_Helfer += 1;
 		DIA_Babo_Windfaust_permanent = TRUE;
 		B_GivePlayerXP(XP_Feger);
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"SWEEP");
-		B_LogEntry(TOPIC_ParlanFegen,"Бабо поможет мне подмести кельи послушников.");
 	}
 	else
 	{
 		AI_Output(other,self,"DIA_Babo_Windfaust_15_04");	//Нет, пока нет.
 		AI_Output(self,other,"DIA_Babo_Windfaust_03_05");	//Ничего, я подожду.
+		AI_StopProcessInfos(self);
 	};
-	AI_StopProcessInfos(self);
 };
 
 

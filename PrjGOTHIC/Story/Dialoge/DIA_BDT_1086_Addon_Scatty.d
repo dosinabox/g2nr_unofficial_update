@@ -189,9 +189,12 @@ instance DIA_Addon_Scatty_Bier(C_Info)
 
 func int DIA_Addon_Scatty_Bier_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Scatty_Trinken) && Npc_HasItems(other,ItFo_Beer))
+	if(Npc_KnowsInfo(other,DIA_Addon_Scatty_Trinken))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItFo_Beer))
+		{
+			return TRUE;
+		};
 	};
 };
 

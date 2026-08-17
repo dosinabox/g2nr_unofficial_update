@@ -122,9 +122,12 @@ instance DIA_Addon_Morgan_Meat(C_Info)
 
 func int DIA_Addon_Morgan_Meat_Condition()
 {
-	if((MIS_AlligatorJack_BringMeat == LOG_RUNNING) && Npc_HasItems(other,ItFoMuttonRaw))
+	if(MIS_AlligatorJack_BringMeat == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItFoMuttonRaw))
+		{
+			return TRUE;
+		};
 	};
 };
 
