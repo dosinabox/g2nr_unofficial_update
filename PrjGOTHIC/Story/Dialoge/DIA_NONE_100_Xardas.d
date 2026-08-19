@@ -23,8 +23,8 @@ func void DIA_Xardas_FirstEXIT_Info()
 	AI_Output(self,other,"DIA_Xardas_FirstEXIT_14_01");	//Хорошо! И еще одно: не говори никому, что разговаривал со мной. И, прежде всего, не говори об этом магам!
 	AI_Output(self,other,"DIA_Xardas_FirstEXIT_14_02");	//С тех пор, как я отошел от них, Круг Огня считает меня мертвым - и это очень хорошо.
 	AI_StopProcessInfos(self);
-	B_Kapitelwechsel(1,NEWWORLD_ZEN);
 	Npc_ExchangeRoutine(self,"START");
+	B_Kapitelwechsel(1,NEWWORLD_ZEN);
 };
 
 

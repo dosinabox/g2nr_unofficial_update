@@ -340,7 +340,6 @@ func int DIA_Akil_Gegend_Condition()
 	};
 };
 
-
 func void DIA_Akil_Gegend_Info()
 {
 	AI_Output(other,self,"DIA_Akil_Gegend_15_00");	//Ты знаешь здешние места?

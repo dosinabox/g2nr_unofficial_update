@@ -472,12 +472,10 @@ func void DIA_Lord_Hagen_Pass_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_Pass_15_00");	//Как я пройду через Проход?
 	AI_Output(self,other,"DIA_Lord_Hagen_Pass_04_01");	//Я дам тебе ключ от ворот Прохода. Однако тебе самому придется решать, как пробраться через толпы орков.
-	AI_Output(self,other,"DIA_Lord_Hagen_Pass_04_02");	//Да защитит тебя Иннос.
-	AI_StopProcessInfos(self);
-	MIS_OLDWORLD = LOG_RUNNING;
-	B_Kapitelwechsel(2,NEWWORLD_ZEN);
 	CreateInvItems(self,ItKe_Pass_MIS,1);
 	B_GiveInvItems(self,other,ItKe_Pass_MIS,1);
+	AI_Output(self,other,"DIA_Lord_Hagen_Pass_04_02");	//Да защитит тебя Иннос.
+	MIS_OLDWORLD = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_MISOLDWORLD,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_MISOLDWORLD,LOG_RUNNING);
 	B_LogEntry(TOPIC_MISOLDWORLD,"Лорд Хаген хочет, чтобы я принес ему доказательства существования армии Зла. Я должен отправиться в Долину Рудников и поговорить с командующим Гарондом.");
@@ -485,6 +483,8 @@ func void DIA_Lord_Hagen_Pass_Info()
 	{
 		B_StartOtherRoutine(Fernando,"WAIT");
 	};
+	AI_StopProcessInfos(self);
+	B_Kapitelwechsel(2,NEWWORLD_ZEN);
 };
 
 

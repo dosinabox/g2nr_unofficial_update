@@ -196,7 +196,6 @@ func int DIA_Addon_Martin_Trade_Condition()
 	};
 };
 
-
 func void DIA_Addon_Martin_Trade_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Martin_Trade_15_00");	//Что ты можешь предложить?

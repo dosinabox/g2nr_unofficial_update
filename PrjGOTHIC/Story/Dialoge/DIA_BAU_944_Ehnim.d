@@ -211,9 +211,16 @@ instance DIA_Ehnim_PERMKAP1(C_Info)
 
 func int DIA_Ehnim_PERMKAP1_Condition()
 {
-	if((DIA_Ehnim_STREIT5_noPerm == TRUE) && Npc_IsInState(self,ZS_Talk) && ((Kapitel < 3) || (other.guild == GIL_KDF)))
+	if((DIA_Ehnim_STREIT5_noPerm == TRUE) && Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(Kapitel < 3)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_KDF)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -319,6 +326,7 @@ func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja()
 			{
 				AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_02");	//(себе под нос) Вино убьет меня за это.
 			};
+			AI_StopProcessInfos(self);
 		}
 		else
 		{
@@ -330,14 +338,18 @@ func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja()
 				AI_StopProcessInfos(self);
 				other.aivar[AIV_INVINCIBLE] = FALSE;
 				B_Attack(self,Egill,AR_NONE,0);
+			}
+			else
+			{
+				AI_StopProcessInfos(self);
 			};
 		};
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_05");	//Так вообще-то не поступают. Сначала ты договариваешься о сделке, а затем оказывается, что у тебя даже нет денег! Уходи, я не хочу тебя видеть!
+		AI_StopProcessInfos(self);
 	};
-	AI_StopProcessInfos(self);
 };
 
 func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_zuviel()

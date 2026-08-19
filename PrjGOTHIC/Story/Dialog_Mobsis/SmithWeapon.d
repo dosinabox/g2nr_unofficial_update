@@ -658,7 +658,7 @@ instance PC_Helmets_On(C_Info)
 
 func int PC_Helmets_On_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE) && (ArmorSeparationDisabled == FALSE))
 	{
 		if(Npc_HasItems(self,ITAR_DJG_M))
 		{
@@ -700,7 +700,7 @@ instance PC_Helmets_Off(C_Info)
 
 func int PC_Helmets_Off_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE) && (ArmorSeparationDisabled == FALSE))
 	{
 		if(Npc_HasItems(self,ITAR_DJGN_M) && Npc_HasItems(self,ItHe_DJG_M))
 		{

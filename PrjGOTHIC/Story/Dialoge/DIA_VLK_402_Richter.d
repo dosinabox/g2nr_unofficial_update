@@ -3,21 +3,10 @@ instance DIA_Richter_EXIT(C_Info)
 {
 	npc = VLK_402_Richter;
 	nr = 999;
-	condition = DIA_Richter_EXIT_Condition;
-	information = DIA_Richter_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Richter_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Richter_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -164,9 +153,12 @@ instance DIA_Richter_KillMorgahard(C_Info)
 
 func int DIA_Richter_KillMorgahard_Condition()
 {
-	if(Npc_HasItems(other,Holy_Hammer_MIS) && (MIS_Richter_BringHolyHammer == LOG_RUNNING))
+	if(MIS_Richter_BringHolyHammer == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,Holy_Hammer_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

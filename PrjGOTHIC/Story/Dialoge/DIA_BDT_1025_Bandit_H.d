@@ -124,7 +124,6 @@ func int DIA_NAME_BANDIT_RUECKDASSCHAFRAUS_Condition()
 	};
 };
 
-
 func void DIA_NAME_BANDIT_RUECKDASSCHAFRAUS_Info()
 {
 	AI_Output(other,self,"DIA_NAME_BANDIT_RUECKDASSCHAFRAUS_15_00");	//Вы украли овцу у фермера Акила.

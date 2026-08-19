@@ -434,6 +434,7 @@ instance DIA_Thekla_BennetNews(C_Info)
 	important = TRUE;
 };
 
+
 func int DIA_Thekla_BennetNews_Condition()
 {
 	if(C_Thekla_BennetNews())

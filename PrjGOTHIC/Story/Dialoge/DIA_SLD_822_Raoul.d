@@ -3,21 +3,10 @@ instance DIA_Raoul_EXIT(C_Info)
 {
 	npc = SLD_822_Raoul;
 	nr = 999;
-	condition = DIA_Raoul_EXIT_Condition;
-	information = DIA_Raoul_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Raoul_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Raoul_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -468,9 +457,12 @@ instance DIA_Raoul_TROLLFELL(C_Info)
 
 func int DIA_Raoul_TROLLFELL_Condition()
 {
-	if(Npc_HasItems(other,ItAt_TrollBlackFur) && Npc_KnowsInfo(other,DIA_Raoul_TROLL))
+	if(Npc_KnowsInfo(other,DIA_Raoul_TROLL))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAt_TrollBlackFur))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -523,9 +515,12 @@ instance DIA_Raoul_FELLZURUECK(C_Info)
 
 func int DIA_Raoul_FELLZURUECK_Condition()
 {
-	if((MIS_Raoul_DoesntPayTrollFur == LOG_RUNNING) && Npc_HasItems(self,ItAt_TrollBlackFur))
+	if(MIS_Raoul_DoesntPayTrollFur == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItAt_TrollBlackFur))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -549,9 +544,12 @@ instance DIA_Raoul_GotTrollFurBack(C_Info)
 
 func int DIA_Raoul_GotTrollFurBack_Condition()
 {
-	if((MIS_Raoul_DoesntPayTrollFur == LOG_RUNNING) && !Npc_HasItems(self,ItAt_TrollBlackFur) && (self.aivar[AIV_DefeatedByPlayer] == TRUE))
+	if((MIS_Raoul_DoesntPayTrollFur == LOG_RUNNING) && (self.aivar[AIV_DefeatedByPlayer] == TRUE))
 	{
-		return TRUE;
+		if(!Npc_HasItems(self,ItAt_TrollBlackFur))
+		{
+			return TRUE;
+		};
 	};
 };
 

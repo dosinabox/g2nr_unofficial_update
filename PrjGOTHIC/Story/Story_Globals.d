@@ -1493,3 +1493,4 @@ var int Vatras_ToldAboutDuty;
 var int Erol_AskedKDW;
 var int Addon_zuerst;
 var int Andre_ToldInfoFromCanthar;
+var int ArmorSeparationDisabled;
