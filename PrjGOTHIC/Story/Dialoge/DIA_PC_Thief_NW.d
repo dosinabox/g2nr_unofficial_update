@@ -591,7 +591,7 @@ func void DIA_DiegoNW_KnowWhereEnemy_Info()
 	{
 		Info_ClearChoices(DIA_DiegoNW_KnowWhereEnemy);
 		Info_AddChoice(DIA_DiegoNW_KnowWhereEnemy,"Возможно, я дам тебе знать, когда придет время.",DIA_DiegoNW_KnowWhereEnemy_No);
-		Info_AddChoice(DIA_DiegoNW_KnowWhereEnemy,"Почему бы тебе не отправиться в путь со мной? Встретимся в гавани.",DIA_DiegoNW_KnowWhereEnemy_Yes);
+		Info_AddChoice(DIA_DiegoNW_KnowWhereEnemy,"Почему бы тебе не отправиться в путь со мной? Встретимся у гавани.",DIA_DiegoNW_KnowWhereEnemy_Yes);
 	};
 };
 

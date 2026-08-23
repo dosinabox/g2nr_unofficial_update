@@ -29,6 +29,13 @@ func int DIA_Ambient_NEWS_Condition()
 					return TRUE;
 				};
 			}
+			else if(C_IsNpc(self,SLD_801_Torlof_DI))
+			{
+				if(UndeadDragonIsDead == FALSE)
+				{
+					return TRUE;
+				};
+			}
 			else
 			{
 				return TRUE;

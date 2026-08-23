@@ -6,7 +6,7 @@ instance VLK_4250_Jorgen_DI(Npc_Default)
 	id = 42500;
 	voice = 7;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = NPCTYPE_MAIN;
+	npcType = NPCTYPE_FRIEND;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
@@ -14,7 +14,6 @@ instance VLK_4250_Jorgen_DI(Npc_Default)
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_COWARD;
-//	EquipItem(self,ItMw_1H_BAU_Axe);
 	EquipItem(self,ItMw_Lightsaebel);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_Tough_Skip,BodyTex_N,ITAR_VLK_L);
