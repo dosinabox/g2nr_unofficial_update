@@ -3,23 +3,14 @@ instance DIA_Wolf_DI_EXIT(C_Info)
 {
 	npc = SLD_811_Wolf_DI;
 	nr = 999;
-	condition = DIA_Wolf_DI_EXIT_Condition;
-	information = DIA_Wolf_DI_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Wolf_DI_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Wolf_DI_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
+var int DIA_Wolf_DI_HALLO_OneTime;
 
 instance DIA_Wolf_DI_HALLO(C_Info)
 {
@@ -39,9 +30,6 @@ func int DIA_Wolf_DI_HALLO_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Wolf_DI_HALLO_OneTime;
 
 func void DIA_Wolf_DI_HALLO_Info()
 {
@@ -166,6 +154,8 @@ func void DIA_Wolf_DI_Training_BACK()
 	Info_ClearChoices(DIA_Wolf_DI_Training);
 };
 
+var int DIA_Wolf_DI_UndeadDragonDead_OneTime;
+
 instance DIA_Wolf_DI_UndeadDragonDead(C_Info)
 {
 	npc = SLD_811_Wolf_DI;
@@ -184,9 +174,6 @@ func int DIA_Wolf_DI_UndeadDragonDead_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Wolf_DI_UndeadDragonDead_OneTime;
 
 func void DIA_Wolf_DI_UndeadDragonDead_Info()
 {

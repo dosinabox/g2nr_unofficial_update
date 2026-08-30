@@ -724,8 +724,9 @@ func void B_UpgrateBeliarsWeapon()
 			};
 		};
 		Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-		Snd_Play("CS_Prayer_WaveOfInsanity");
+		Snd_Play("CS_PRAYER_WAVEOFINSANITY");
 		BeliarsWeaponUpgrated = TRUE;
+		B_CheckLog();
 	};
 };
 
@@ -734,8 +735,9 @@ func void B_CreateBeliarsRune(var int rune)
 	CreateInvItem(self,rune);
 	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
 	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-	Snd_Play("CS_Prayer_WaveOfInsanity");
+	Snd_Play("CS_PRAYER_WAVEOFINSANITY");
 	BeliarsWeaponUpgrated = TRUE;
+	B_CheckLog();
 	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
 };
 

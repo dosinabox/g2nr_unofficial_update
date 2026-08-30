@@ -301,7 +301,7 @@ instance ItMi_Addon_Fisk_Paket(C_Item)
 func void Use_FiskPaket()
 {
 	B_PlayerFindItem(ItKe_Lockpick,Fisk_Lockpicks_amount);
-	Snd_Play("Geldbeutel");
+	Snd_Play("GELDBEUTEL");
 	FiskPaket_Open = TRUE;
 };
 

@@ -59,7 +59,7 @@ func void B_StealItem()
 		{
 			text = ConcatStrings(text,IntToString(amount));
 			text = ConcatStrings(text,PRINT_Gold);
-			Snd_Play("Geldbeutel");
+			Snd_Play("GELDBEUTEL");
 			TotalTheftGold += amount;
 		}
 		else

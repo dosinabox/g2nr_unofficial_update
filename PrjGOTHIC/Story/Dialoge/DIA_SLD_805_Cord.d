@@ -3,23 +3,14 @@ instance DIA_Cord_EXIT(C_Info)
 {
 	npc = SLD_805_Cord;
 	nr = 999;
-	condition = DIA_Cord_EXIT_Condition;
-	information = DIA_Cord_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Cord_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Cord_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
+var int DIA_Addon_Cord_MeetingIsRunning_OneTime;
 
 instance DIA_Addon_Cord_MeetingIsRunning(C_Info)
 {
@@ -39,9 +30,6 @@ func int DIA_Addon_Cord_MeetingIsRunning_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Addon_Cord_MeetingIsRunning_OneTime;
 
 func void DIA_Addon_Cord_MeetingIsRunning_Info()
 {
@@ -67,9 +55,12 @@ instance DIA_Cord_Hallo(C_Info)
 
 func int DIA_Cord_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild == GIL_NONE) && (MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((self.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild == GIL_NONE) && (MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -845,7 +845,7 @@ const int UnionActivated = 0;
 
 const int FIX_DATE_YEAR = 2026;
 const int FIX_DATE_MONTH = 8;
-const int FIX_DATE_DAY = 23;
+const int FIX_DATE_DAY = 30;
 
 var int FIX_DATE_YEAR_SAVE;
 var int FIX_DATE_MONTH_SAVE;

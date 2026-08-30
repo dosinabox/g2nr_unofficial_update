@@ -7,8 +7,8 @@ func void EVT_Ornament_Switch_BigFarm_01_Func()
 		Wld_InsertItem(ItMi_OrnamentEffekt_BIGFARM_Addon,"FP_EVENT_STONEGUARDIAN_ORNAMENT_EFFECT_BIGFARM_01");
 		Wld_PlayEffect("FX_EarthQuake",hero,hero,0,0,0,FALSE);
 		Wld_PlayEffect("spellFX_INCOVATION_WHITE",ItMi_OrnamentEffekt_BIGFARM_Addon,ItMi_OrnamentEffekt_BIGFARM_Addon,0,0,0,FALSE);
-		Snd_Play("Ravens_Earthquake4");
-		Snd_Play("Ravens_Earthquake2");
+		Snd_Play("RAVENS_EARTHQUAKE4");
+		Snd_Play("RAVENS_EARTHQUAKE2");
 		Snd_Play("THRILLJINGLE_02");
 		Wld_PlayEffect("spellFX_LIGHTSTAR_RingRitual",ItMi_OrnamentEffekt_BIGFARM_Addon,ItMi_OrnamentEffekt_BIGFARM_Addon,0,0,0,FALSE);
 		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
@@ -38,8 +38,8 @@ func void EVT_Ornament_Switch_Forest_01_Func()
 		Wld_InsertItem(ItMi_OrnamentEffekt_FOREST_Addon,"FP_EVENT_STONEGUARDIAN_ORNAMENT_EFFECT_FOREST_01");
 		Wld_PlayEffect("FX_EarthQuake",hero,hero,0,0,0,FALSE);
 		Wld_PlayEffect("spellFX_INCOVATION_WHITE",ItMi_OrnamentEffekt_FOREST_Addon,ItMi_OrnamentEffekt_FOREST_Addon,0,0,0,FALSE);
-		Snd_Play("Ravens_Earthquake4");
-		Snd_Play("Ravens_Earthquake2");
+		Snd_Play("RAVENS_EARTHQUAKE4");
+		Snd_Play("RAVENS_EARTHQUAKE2");
 		Snd_Play("THRILLJINGLE_02");
 		Wld_PlayEffect("spellFX_LIGHTSTAR_RingRitual",ItMi_OrnamentEffekt_FOREST_Addon,ItMi_OrnamentEffekt_FOREST_Addon,0,0,0,FALSE);
 		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
