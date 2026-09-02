@@ -29,7 +29,7 @@ func void Rtn_PreStart_1099()
 	TA_Sleep(23,0,6,0,"BL_SMITH_SLEEP");
 };
 
-func void Rtn_Start_1099()
+/*func void Rtn_Start_1099()
 {
 	TA_Sleep(22,0,7,0,"BL_SMITH_SLEEP");
 	TA_Smith_Fire(7,0,7,10,"BL_SMITH_FIRE");
@@ -122,5 +122,5 @@ func void Rtn_Start_1099()
 	TA_Smith_Anvil(21,30,21,40,"BL_SMITH_ANVIL");
 	TA_Smith_Cool(21,40,21,50,"BL_SMITH_COOL");
 	TA_Smith_Anvil(21,50,22,0,"BL_SMITH_ANVIL");
-};
+};*/
 

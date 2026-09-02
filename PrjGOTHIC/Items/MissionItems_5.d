@@ -86,7 +86,7 @@ func void Use_HallsOfIrdorath()
 	{
 		B_Say(self,self,"$SCOPENSIRDORATHBOOK");
 		Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",self,self,0,0,0,FALSE);
-		Snd_Play("SFX_HealObsession");
+		Snd_Play("SFX_HEALOBSESSION");
 		CreateInvItems(self,ItWr_HallsOfIrdorath_Open_MIS,1);
 		CreateInvItems(self,ItKe_MonastarySecretLibrary_MIS,1);
 		CreateInvItems(self,ItWr_UseLampIdiot_MIS,1);
@@ -399,7 +399,7 @@ func void UseItPo_PotionOfDeath()
 		PrintScreen(PRINT_FullyHealed,-1,53,FONT_Screen,3);
 		Mdl_ApplyOverlayMdsTimed(self,"Humans_Sprint.mds",Time_Speed);
 		Wld_PlayEffect("spellFX_LIGHTSTAR_BLUE",self,self,0,0,0,FALSE);
-		Snd_Play("SFX_HealObsession");
+		Snd_Play("SFX_HEALOBSESSION");
 	}
 	else
 	{

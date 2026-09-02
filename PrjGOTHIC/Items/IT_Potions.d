@@ -345,7 +345,7 @@ func void UseItPo_MegaDrink()
 		B_RaiseAttributeByPermBonus(self,ATR_STRENGTH,STRorDEX_MegaDrink);
 	};
 	self.attribute[ATR_MANA] = 0;
-	Snd_Play("DEM_Warn");
+	Snd_Play("DEM_WARN");
 	TEXT_MegaDrink_Setting_Desc = TEXT_MegaDrink_Setting_Desc_Print;
 	TEXT_MegaDrink_Setting = TEXT_MegaDrink_Setting_Print;
 	COUNT_MegaDrink_Setting = STRorDEX_MegaDrink;

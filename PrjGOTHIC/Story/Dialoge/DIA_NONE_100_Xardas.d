@@ -277,9 +277,12 @@ instance DIA_Addon_Xardas_Portal(C_Info)
 
 func int DIA_Addon_Xardas_Portal_Condition()
 {
-	if((SC_KnowsPortal == TRUE) && !C_ScHasMeleeBeliarsWeapon() && !C_SCHasBeliarsRune() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
+	if((SC_KnowsPortal == TRUE) && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
 	{
-		return TRUE;
+		if(!C_ScHasMeleeBeliarsWeapon() && !C_SCHasBeliarsRune())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -305,9 +308,12 @@ instance DIA_Addon_Xardas_PortalAgain(C_Info)
 
 func int DIA_Addon_Xardas_PortalAgain_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Xardas_Portal) && !C_ScHasMeleeBeliarsWeapon() && !C_SCHasBeliarsRune() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Xardas_Portal) && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
 	{
-		return TRUE;
+		if(!C_ScHasMeleeBeliarsWeapon() && !C_SCHasBeliarsRune())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -916,9 +922,16 @@ instance DIA_Xardas_INNOSEYEBROKEN(C_Info)
 
 func int DIA_Xardas_INNOSEYEBROKEN_Condition()
 {
-	if((Kapitel == 3) && Npc_KnowsInfo(other,DIA_Xardas_DMTSINDDA) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((Kapitel == 3) && Npc_KnowsInfo(other,DIA_Xardas_DMTSINDDA))
 	{
-		return TRUE;
+		if(MIS_SCKnowsInnosEyeIsBroken == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1038,9 +1051,16 @@ instance DIA_Xardas_WARUMNICHTJETZT(C_Info)
 
 func int DIA_Xardas_WARUMNICHTJETZT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_RITUALREQUEST) && (Xardas_GoesToRitualInnosEye == FALSE) && ((other.guild == GIL_MIL) || (other.guild == GIL_SLD)))
+	if(Npc_KnowsInfo(other,DIA_Xardas_RITUALREQUEST) && (Xardas_GoesToRitualInnosEye == FALSE))
 	{
-		return TRUE;
+		if(other.guild == GIL_MIL)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_SLD)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1085,9 +1105,16 @@ instance DIA_Xardas_BEREIT(C_Info)
 
 func int DIA_Xardas_BEREIT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_RITUALREQUEST) && (Xardas_GoesToRitualInnosEye == FALSE) && ((other.guild == GIL_DJG) || (other.guild == GIL_PAL)))
+	if(Npc_KnowsInfo(other,DIA_Xardas_RITUALREQUEST) && (Xardas_GoesToRitualInnosEye == FALSE))
 	{
-		return TRUE;
+		if(other.guild == GIL_DJG)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_PAL)
+		{
+			return TRUE;
+		};
 	};
 };
 

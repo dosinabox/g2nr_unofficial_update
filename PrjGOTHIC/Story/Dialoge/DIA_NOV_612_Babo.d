@@ -478,7 +478,7 @@ func void DIA_Babo_Life_Info()
 	AI_Output(self,other,"DIA_Babo_Life_03_01");	//Не хочу жаловаться, но я никогда не думал, что здесь такие жесткие правила. Если ты нарушаешь правила, тебя наказывают.
 	AI_Output(self,other,"DIA_Babo_Life_03_02");	//Конечно, многие послушники хотят изучать учения Инноса в библиотеке, чтобы подготовиться стать Избранными.
 	AI_Output(self,other,"DIA_Babo_Life_03_03");	//Но я думаю, что лучшая подготовка к Испытанию Магией - это тщательно выполнять нашу работу.
-	if(!Npc_KnowsInfo(other,DIA_Igaranz_Choosen))
+	if(!Npc_KnowsInfo(other,DIA_Igaraz_Choosen))
 	{
 		AI_Output(other,self,"DIA_Babo_Life_15_04");	//Что ты там говорил об Избранных, и что за Испытание?
 		AI_Output(self,other,"DIA_Babo_Life_03_05");	//Поговори с братом Игарацем. Он больше знает об этом.
@@ -785,7 +785,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_Info()
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_03_03");	//(нервно) Это действительно мои? Ты уверен? Покажи мне.
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Я подержу их пока у себя.",DIA_Babo_Kap3_HaveYourDocs_KeepThem);
-	if((BabosDocsOpen == TRUE) || Npc_KnowsInfo(other,DIA_Igaranz_BabosJob) || Npc_KnowsInfo(other,DIA_Igaranz_Price))
+	if((BabosDocsOpen == TRUE) || Npc_KnowsInfo(other,DIA_Igaraz_BabosJob) || Npc_KnowsInfo(other,DIA_Igaraz_Price))
 	{
 		Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Теперь, учитывая все обстоятельства, цена выросла.",DIA_Babo_Kap3_HaveYourDocs_IWantMore);
 	};
@@ -799,7 +799,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_KeepThem()
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Просто шучу.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Это мое дело.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_MyConcern);
-	if(Npc_KnowsInfo(other,DIA_Igaranz_BabosJob))
+	if(Npc_KnowsInfo(other,DIA_Igaraz_BabosJob))
 	{
 		Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Игарац и я теперь партнеры.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner);
 	};

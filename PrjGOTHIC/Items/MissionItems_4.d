@@ -207,7 +207,7 @@ func void Use_DragonEggDrinkNeoras()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Elixier);
 	B_RaiseAttributeByPermBonus(self,ATR_STRENGTH,3);
-	Snd_Play("DEM_Warn");
+	Snd_Play("DEM_WARN");
 	Neoras_SCUsedDragonEggDrink = TRUE;
 };
 

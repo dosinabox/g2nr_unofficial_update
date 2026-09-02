@@ -44,7 +44,7 @@ instance DIA_Jora_Sperre(C_Info)
 
 func int DIA_Jora_Sperre_Condition()
 {
-	if((Canthar_Sperre == TRUE) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (Canthar_Sperre == TRUE))
 	{
 		return TRUE;
 	};
@@ -390,9 +390,13 @@ instance DIA_Jora_GHDgInfo(C_Info)
 
 func int DIA_Jora_GHDgInfo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jora_Bestohlen) && (Jora_GhdgHinweis == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Jora_Bestohlen) && (Jora_GhdgHinweis == FALSE) && (DG_gefunden == FALSE))
 	{
-		if(((MIS_Andre_GuildOfThieves == LOG_RUNNING) || Npc_HasItems(other,ItKe_ThiefGuildKey_MIS)) && (DG_gefunden == FALSE))
+		if(MIS_Andre_GuildOfThieves == LOG_RUNNING)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItKe_ThiefGuildKey_MIS))
 		{
 			return TRUE;
 		};
@@ -526,9 +530,12 @@ instance DIA_Jora_BUYAlriksSchwert(C_Info)
 
 func int DIA_Jora_BUYAlriksSchwert_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jora_AlriksSchwert) && Npc_HasItems(self,ItMw_AlriksSword_MIS))
+	if(Npc_KnowsInfo(other,DIA_Jora_AlriksSchwert))
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItMw_AlriksSword_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

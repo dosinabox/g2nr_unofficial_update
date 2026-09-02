@@ -39,7 +39,7 @@ func void B_RaiseAttributeByStonePlate(var int attribute,var int value)
 {
 	B_RaiseAttributeByPermBonus(self,attribute,value);
 	Wld_PlayEffect("spellFX_LIGHTSTAR_ORANGE",self,self,0,0,0,FALSE);
-	Snd_Play("SFX_HealObsession");
+	Snd_Play("SFX_HEALOBSESSION");
 };
 
 func void B_RaiseTalentByStonePlate(var C_Npc npc,var int talent,var int value)
@@ -75,7 +75,7 @@ func void B_RaiseTalentByStonePlate(var C_Npc npc,var int talent,var int value)
 	text = ConcatStrings(text,IntToString(change));
 	B_PrintPlayerMiddle(npc,text);
 	Wld_PlayEffect("spellFX_LIGHTSTAR_ORANGE",self,self,0,0,0,FALSE);
-	Snd_Play("SFX_HealObsession");
+	Snd_Play("SFX_HEALOBSESSION");
 };
 
 func void B_CannotUse_Addon()

@@ -1,27 +1,16 @@
 
-instance DIA_Igaranz_EXIT(C_Info)
+instance DIA_Igaraz_EXIT(C_Info)
 {
 	npc = NOV_601_Igaraz;
 	nr = 999;
-	condition = DIA_Igaraz_EXIT_Condition;
-	information = DIA_Igaraz_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int DIA_Igaraz_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Igaraz_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Igaranz_Hello(C_Info)
+instance DIA_Igaraz_Hello(C_Info)
 {
 	npc = NOV_601_Igaraz;
 	nr = 2;
@@ -78,7 +67,7 @@ func void DIA_Igaraz_Wurst_Info()
 };
 
 
-instance DIA_Igaranz_NotWork(C_Info)
+instance DIA_Igaraz_NotWork(C_Info)
 {
 	npc = NOV_601_Igaraz;
 	nr = 3;
@@ -107,7 +96,7 @@ func void DIA_Igaraz_NotWork_Info()
 };
 
 
-instance DIA_Igaranz_Choosen(C_Info)
+instance DIA_Igaraz_Choosen(C_Info)
 {
 	npc = NOV_601_Igaraz;
 	nr = 2;
@@ -120,7 +109,7 @@ instance DIA_Igaranz_Choosen(C_Info)
 
 func int DIA_Igaraz_Choosen_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaranz_NotWork) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Igaraz_NotWork) && (Knows_Fire_Contest == FALSE) && (other.guild == GIL_NOV))
 	{
 		if(Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500)
 		{
@@ -134,18 +123,18 @@ func void DIA_Igaraz_Choosen_Info()
 	AI_Output(other,self,"DIA_Igaranz_Choosen_15_00");	//Кто такие Избранные?
 	AI_Output(self,other,"DIA_Igaranz_Choosen_13_01");	//Это послушники, которым Иннос предписал пройти Испытание Магией.
 	AI_Output(self,other,"DIA_Igaranz_Choosen_13_02");	//Тот, кто проходит его, принимается в ряды магов Огня.
-	Info_ClearChoices(DIA_Igaranz_Choosen);
-	Info_AddChoice(DIA_Igaranz_Choosen,Dialog_Back,DIA_Igaranz_Choosen_back);
-	Info_AddChoice(DIA_Igaranz_Choosen,"Что такое Испытание Магией?",DIA_Igaranz_Choosen_TestOfMagic);
-	Info_AddChoice(DIA_Igaranz_Choosen,"Как я могу стать Избранным?",DIA_Igaranz_Choosen_HowChoosen);
+	Info_ClearChoices(DIA_Igaraz_Choosen);
+	Info_AddChoice(DIA_Igaraz_Choosen,Dialog_Back,DIA_Igaraz_Choosen_back);
+	Info_AddChoice(DIA_Igaraz_Choosen,"Что такое Испытание Магией?",DIA_Igaraz_Choosen_TestOfMagic);
+	Info_AddChoice(DIA_Igaraz_Choosen,"Как я могу стать Избранным?",DIA_Igaraz_Choosen_HowChoosen);
 };
 
-func void DIA_Igaranz_Choosen_back()
+func void DIA_Igaraz_Choosen_back()
 {
-	Info_ClearChoices(DIA_Igaranz_Choosen);
+	Info_ClearChoices(DIA_Igaraz_Choosen);
 };
 
-func void DIA_Igaranz_Choosen_TestOfMagic()
+func void DIA_Igaraz_Choosen_TestOfMagic()
 {
 	AI_Output(other,self,"DIA_Igaranz_Choosen_TestOfMagic_15_00");	//Что такое Испытание Магией?
 	AI_Output(self,other,"DIA_Igaranz_Choosen_TestOfMagic_13_01");	//Это испытание, которому Высший Совет подвергает всех избранных послушников.
@@ -153,14 +142,14 @@ func void DIA_Igaranz_Choosen_TestOfMagic()
 	AI_Output(self,other,"DIA_Igaranz_Choosen_TestOfMagic_13_03");	//Все избранные послушники принимают в нем участие - но только один из них может успешно выполнить его.
 };
 
-func void DIA_Igaranz_Choosen_HowChoosen()
+func void DIA_Igaraz_Choosen_HowChoosen()
 {
 	AI_Output(other,self,"DIA_Igaranz_Choosen_HowChoosen_15_00");	//Как я могу стать Избранным?
 	AI_Output(self,other,"DIA_Igaranz_Choosen_HowChoosen_13_01");	//Ты не можешь влиять на это. Иннос самолично выбирает своих послушников, а Высший Совет объявляет его волю.
 };
 
 
-instance DIA_Igaranz_StudyInnos(C_Info)
+instance DIA_Igaraz_StudyInnos(C_Info)
 {
 	npc = NOV_601_Igaraz;
 	nr = 2;
@@ -172,7 +161,7 @@ instance DIA_Igaranz_StudyInnos(C_Info)
 
 func int DIA_Igaraz_StudyInnos_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaranz_NotWork) && (Parlan_Erlaubnis == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Igaraz_NotWork) && (Parlan_Erlaubnis == FALSE) && (other.guild == GIL_NOV))
 	{
 		if(Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500)
 		{
@@ -394,7 +383,7 @@ func void DIA_Igaraz_Stein_Info()
 };
 
 
-instance DIA_Igaranz_TalkAboutBabo(C_Info)
+instance DIA_Igaraz_TalkAboutBabo(C_Info)
 {
 	npc = NOV_601_Igaraz;
 	nr = 31;
@@ -419,7 +408,7 @@ func void DIA_Igaraz_TalkAboutBabo_Info()
 };
 
 
-instance DIA_Igaranz_BabosBelongings(C_Info)
+instance DIA_Igaraz_BabosBelongings(C_Info)
 {
 	npc = NOV_601_Igaraz;
 	nr = 31;
@@ -431,7 +420,7 @@ instance DIA_Igaranz_BabosBelongings(C_Info)
 
 func int DIA_Igaraz_BabosBelongings_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaranz_TalkAboutBabo))
+	if(Npc_KnowsInfo(other,DIA_Igaraz_TalkAboutBabo))
 	{
 		return TRUE;
 	};
@@ -446,7 +435,7 @@ func void DIA_Igaraz_BabosBelongings_Info()
 };
 
 
-instance DIA_Igaranz_WhereDocs(C_Info)
+instance DIA_Igaraz_WhereDocs(C_Info)
 {
 	npc = NOV_601_Igaraz;
 	nr = 31;
@@ -458,7 +447,7 @@ instance DIA_Igaranz_WhereDocs(C_Info)
 
 func int DIA_Igaraz_WhereDocs_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaranz_BabosBelongings) && (GotIgarazChestKey == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Igaraz_BabosBelongings) && (GotIgarazChestKey == FALSE))
 	{
 		if(!C_WorldIsFixed())
 		{
@@ -480,7 +469,7 @@ func void DIA_Igaraz_WhereDocs_Info()
 };
 
 
-instance DIA_Igaranz_BabosJob(C_Info)
+instance DIA_Igaraz_BabosJob(C_Info)
 {
 	npc = NOV_601_Igaraz;
 	nr = 31;
@@ -492,7 +481,7 @@ instance DIA_Igaranz_BabosJob(C_Info)
 
 func int DIA_Igaraz_BabosJob_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaranz_BabosBelongings))
+	if(Npc_KnowsInfo(other,DIA_Igaraz_BabosBelongings))
 	{
 		return TRUE;
 	};
@@ -508,7 +497,7 @@ func void DIA_Igaraz_BabosJob_Info()
 };
 
 
-instance DIA_Igaranz_Price(C_Info)
+instance DIA_Igaraz_Price(C_Info)
 {
 	npc = NOV_601_Igaraz;
 	nr = 31;
@@ -520,7 +509,7 @@ instance DIA_Igaranz_Price(C_Info)
 
 func int DIA_Igaraz_Price_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaranz_BabosBelongings))
+	if(Npc_KnowsInfo(other,DIA_Igaraz_BabosBelongings))
 	{
 		return TRUE;
 	};
@@ -535,7 +524,7 @@ func void DIA_Igaraz_Price_Info()
 };
 
 
-instance DIA_Igaranz_BuyIt(C_Info)
+instance DIA_Igaraz_BuyIt(C_Info)
 {
 	npc = NOV_601_Igaraz;
 	nr = 31;
@@ -548,9 +537,12 @@ instance DIA_Igaranz_BuyIt(C_Info)
 
 func int DIA_Igaraz_BuyIt_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaranz_Price) && (GotIgarazChestKey == FALSE) && Npc_HasItems(self,ItKe_IgarazChest_MIS))
+	if(Npc_KnowsInfo(other,DIA_Igaraz_Price) && (GotIgarazChestKey == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItKe_IgarazChest_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -580,7 +572,7 @@ func void DIA_Igaraz_BuyIt_Info()
 };
 
 
-instance DIA_Igaranz_Perm(C_Info)
+instance DIA_Igaraz_Perm(C_Info)
 {
 	npc = NOV_601_Igaraz;
 	nr = 2;

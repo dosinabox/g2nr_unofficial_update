@@ -261,7 +261,11 @@ func int DIA_Rod_Duell_Condition()
 {
 	if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
-		if(((MIS_RodSword != LOG_SUCCESS) && (Rod_SchwachGesagt == TRUE)) || (MIS_Jarvis_SldKO == LOG_RUNNING))
+		if(MIS_Jarvis_SldKO == LOG_RUNNING)
+		{
+			return TRUE;
+		};
+		if((MIS_RodSword != LOG_SUCCESS) && (Rod_SchwachGesagt == TRUE))
 		{
 			return TRUE;
 		};
@@ -296,9 +300,12 @@ instance DIA_Rod_StarkGenug(C_Info)
 
 func int DIA_Rod_StarkGenug_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Rod_SchwachGesagt == TRUE) && Npc_HasItems(self,ItMw_2H_Rod))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Rod_SchwachGesagt == TRUE))
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItMw_2H_Rod))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -325,9 +332,12 @@ instance DIA_Rod_BINStarkGenug(C_Info)
 
 func int DIA_Rod_BINStarkGenug_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && Npc_KnowsInfo(other,DIA_Rod_StarkGenug) && Npc_HasItems(self,ItMw_2H_Rod))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && Npc_KnowsInfo(other,DIA_Rod_StarkGenug))
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItMw_2H_Rod))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -353,9 +363,12 @@ instance DIA_Rod_Wette(C_Info)
 
 func int DIA_Rod_Wette_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && Npc_KnowsInfo(other,DIA_Rod_BINStarkGenug) && Npc_HasItems(self,ItMw_2H_Rod) && (MIS_RodSword == LOG_RUNNING))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && Npc_KnowsInfo(other,DIA_Rod_BINStarkGenug) && (MIS_RodSword == LOG_RUNNING))
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItMw_2H_Rod))
+		{
+			return TRUE;
+		};
 	};
 };
 
