@@ -3,21 +3,10 @@ instance DIA_Cornelius_EXIT(C_Info)
 {
 	npc = VLK_401_Cornelius;
 	nr = 999;
-	condition = DIA_Cornelius_EXIT_Condition;
-	information = DIA_Cornelius_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Cornelius_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Cornelius_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -252,9 +241,12 @@ instance DIA_Cornelius_PayCornelius(C_Info)
 
 func int DIA_Cornelius_PayCornelius_Condition()
 {
-	if((Cornelius_PayForProof == TRUE) && (Npc_HasItems(other,ItMi_Gold) >= 2000) && (Cornelius_TellTruth == FALSE))
+	if((Cornelius_PayForProof == TRUE) && (Cornelius_TellTruth == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Gold) >= 2000)
+		{
+			return TRUE;
+		};
 	};
 };
 

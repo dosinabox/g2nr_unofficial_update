@@ -3,21 +3,10 @@ instance DIA_Rengaru_EXIT(C_Info)
 {
 	npc = VLK_492_Rengaru;
 	nr = 999;
-	condition = DIA_Rengaru_EXIT_Condition;
-	information = DIA_Rengaru_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Rengaru_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Rengaru_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -102,9 +91,12 @@ instance DIA_Rengaru_GOTYOU(C_Info)
 
 func int DIA_Rengaru_GOTYOU_Condition()
 {
-	if(C_RengaruIsReadyToTalk() && Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB))
+	if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB))
 	{
-		return TRUE;
+		if(C_RengaruIsReadyToTalk())
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -416,6 +416,8 @@ func void DIA_Bosper_Bartok_Info()
 };
 
 
+var int Bosper_Zustimmung_Once;
+
 instance DIA_Bosper_ZUSTIMMUNG(C_Info)
 {
 	npc = VLK_413_Bosper;
@@ -434,9 +436,6 @@ func int DIA_Bosper_ZUSTIMMUNG_Condition()
 		return TRUE;
 	};
 };
-
-
-var int Bosper_Zustimmung_Once;
 
 func void DIA_Bosper_ZUSTIMMUNG_Info()
 {
@@ -608,6 +607,7 @@ instance DIA_Bosper_Trade(C_Info)
 	condition = DIA_Bosper_Trade_Condition;
 	information = DIA_Bosper_Trade_Info;
 	permanent = TRUE;
+	trade = TRUE;
 	description = DIALOG_TRADE_v4;
 };
 
@@ -616,29 +616,47 @@ func int DIA_Bosper_Trade_Condition()
 {
 	if(MIS_Bosper_WolfFurs != LOG_RUNNING)
 	{
-		DIA_Bosper_Trade.trade = TRUE;
+		return TRUE;
 	};
-	return TRUE;
 };
 
 func void DIA_Bosper_Trade_Info()
 {
 	AI_Output(other,self,"DIA_Bosper_Trade_15_00");	//ѕокажи мне свои товары.
-	if(DIA_Bosper_Trade.trade == TRUE)
+	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
+	B_RefreshTraderAmmo(self,50);
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING)
 	{
-		B_GiveTradeInv(self);
-		Trade_IsActive = TRUE;
-		B_RefreshTraderAmmo(self,50);
-		if(MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING)
-		{
-			BosperMinenAnteil = TRUE;
-		};
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Bosper_Trade_11_01");	//“ы здесь не дл€ того, чтобы разгл€дывать мои товары, ты должен принести мне шкуры!
-		AI_Output(self,other,"DIA_Bosper_Trade_11_02");	//“ак что берись за дело!
+		BosperMinenAnteil = TRUE;
 	};
+};
+
+
+instance DIA_Bosper_NoTrade(C_Info)
+{
+	npc = VLK_413_Bosper;
+	nr = 700;
+	condition = DIA_Bosper_NoTrade_Condition;
+	information = DIA_Bosper_NoTrade_Info;
+	permanent = TRUE;
+	description = DIALOG_TRADE_v4;
+};
+
+
+func int DIA_Bosper_NoTrade_Condition()
+{
+	if(MIS_Bosper_WolfFurs == LOG_RUNNING)
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Bosper_NoTrade_Info()
+{
+	DIA_Common_ShowMeYourGoods();
+	AI_Output(self,other,"DIA_Bosper_Trade_11_01");	//“ы здесь не дл€ того, чтобы разгл€дывать мои товары, ты должен принести мне шкуры!
+	AI_Output(self,other,"DIA_Bosper_Trade_11_02");	//“ак что берись за дело!
 };
 
 

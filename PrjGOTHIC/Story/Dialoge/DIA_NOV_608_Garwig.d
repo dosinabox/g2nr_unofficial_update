@@ -3,21 +3,10 @@ instance DIA_Garwig_EXIT(C_Info)
 {
 	npc = NOV_608_Garwig;
 	nr = 999;
-	condition = DIA_Garwig_EXIT_Condition;
-	information = DIA_Garwig_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Garwig_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Garwig_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -111,9 +100,12 @@ instance DIA_Garwig_Hammer(C_Info)
 
 func int DIA_Garwig_Hammer_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Garwig_Room) && (Hammer_Taken == FALSE) && !Npc_HasItems(other,Holy_Hammer_MIS))
+	if(Npc_KnowsInfo(other,DIA_Garwig_Room) && (Hammer_Taken == FALSE))
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,Holy_Hammer_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -256,9 +248,16 @@ instance DIA_Garwig_THIEF(C_Info)
 
 func int DIA_Garwig_THIEF_Condition()
 {
-	if((Npc_HasItems(other,Holy_Hammer_MIS) || (Hammer_Taken == TRUE)) && (GarwigThiefOneTime == FALSE))
+	if(GarwigThiefOneTime == FALSE)
 	{
-		return TRUE;
+		if(Hammer_Taken == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,Holy_Hammer_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

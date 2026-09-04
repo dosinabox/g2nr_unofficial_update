@@ -3,21 +3,10 @@ instance DIA_Alwin_EXIT(C_Info)
 {
 	npc = VLK_424_Alwin;
 	nr = 999;
-	condition = DIA_Alwin_EXIT_Condition;
-	information = DIA_Alwin_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Alwin_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Alwin_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -147,7 +136,11 @@ func int DIA_Alwin_FellanSuccess_Condition()
 {
 	if(MIS_AttackFellan == LOG_RUNNING)
 	{
-		if((FellanGeschlagen == TRUE) || Npc_IsDead(Fellan))
+		if(FellanGeschlagen == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_IsDead(Fellan))
 		{
 			return TRUE;
 		};

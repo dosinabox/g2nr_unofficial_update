@@ -3,21 +3,10 @@ instance DIA_Bengar_EXIT(C_Info)
 {
 	npc = BAU_960_Bengar;
 	nr = 999;
-	condition = DIA_Bengar_EXIT_Condition;
-	information = DIA_Bengar_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Bengar_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Bengar_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -407,7 +396,15 @@ func int DIA_Bengar_Selber_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZ) && (Kapitel < 3))
 	{
-		if((other.guild == GIL_NONE) || (other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_SLD)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_DJG)
 		{
 			return TRUE;
 		};
@@ -618,9 +615,16 @@ instance DIA_Bengar_PERMKAP1(C_Info)
 
 func int DIA_Bengar_PERMKAP1_Condition()
 {
-	if(((Bengar_MilSuccess == TRUE) || Npc_KnowsInfo(other,DIA_Addon_Bengar_ReturnPardos)) && (Kapitel < 3))
+	if(Kapitel < 3)
 	{
-		return TRUE;
+		if(Bengar_MilSuccess == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Addon_Bengar_ReturnPardos))
+		{
+			return TRUE;
+		};
 	};
 };
 

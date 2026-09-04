@@ -3,21 +3,10 @@ instance DIA_Addon_Bones_EXIT(C_Info)
 {
 	npc = PIR_1362_Addon_Bones;
 	nr = 999;
-	condition = DIA_Addon_Bones_EXIT_Condition;
-	information = DIA_Addon_Bones_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Bones_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Bones_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -196,9 +185,12 @@ instance DIA_Addon_Bones_WantArmor(C_Info)
 
 func int DIA_Addon_Bones_WantArmor_Condition()
 {
-	if((Greg_GaveArmorToBones == TRUE) && (MIS_Greg_ScoutBandits == FALSE) && !C_SCHasBDTArmor())
+	if((Greg_GaveArmorToBones == TRUE) && (MIS_Greg_ScoutBandits == FALSE))
 	{
-		return TRUE;
+		if(!C_SCHasBDTArmor())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -231,9 +223,12 @@ instance DIA_Addon_Bones_GiveArmor(C_Info)
 
 func int DIA_Addon_Bones_GiveArmor_Condition()
 {
-	if((MIS_Greg_ScoutBandits == LOG_RUNNING) && !C_SCHasBDTArmor())
+	if(MIS_Greg_ScoutBandits == LOG_RUNNING)
 	{
-		return TRUE;
+		if(!C_SCHasBDTArmor())
+		{
+			return TRUE;
+		};
 	};
 };
 
