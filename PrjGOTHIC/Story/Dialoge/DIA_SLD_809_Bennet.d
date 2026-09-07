@@ -237,14 +237,14 @@ instance DIA_Bennet_TRADE(C_Info)
 	condition = DIA_Bennet_TRADE_Condition;
 	information = DIA_Bennet_TRADE_Info;
 	permanent = TRUE;
-	description = "А как насчет кузнечного инструмента?";
 	trade = TRUE;
+	description = "А как насчет кузнечного инструмента?";
 };
 
 
 func int DIA_Bennet_TRADE_Condition()
 {
-	if((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS))
+	if(!C_BennetIsInPrison())
 	{
 		return TRUE;
 	};
@@ -282,7 +282,7 @@ instance DIA_Bennet_WhichWeapons(C_Info)
 
 func int DIA_Bennet_WhichWeapons_Condition()
 {
-	if(((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)) && (MIS_Bennet_BringOre == FALSE))
+	if(!C_BennetIsInPrison() && (MIS_Bennet_BringOre == FALSE))
 	{
 		return TRUE;
 	};
@@ -311,7 +311,7 @@ instance DIA_Bennet_BauOrSld(C_Info)
 
 func int DIA_Bennet_BauOrSld_Condition()
 {
-	if((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS))
+	if(!C_BennetIsInPrison())
 	{
 		return TRUE;
 	};
@@ -373,7 +373,7 @@ instance DIA_Bennet_WannaSmith(C_Info)
 
 func int DIA_Bennet_WannaSmith_Condition()
 {
-	if((PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE) && (Bennet_TeachCommon == FALSE) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
+	if((PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE) && (Bennet_TeachCommon == FALSE) && !C_BennetIsInPrison())
 	{
 		return TRUE;
 	};
@@ -427,7 +427,7 @@ instance DIA_Bennet_TeachCOMMON(C_Info)
 
 func int DIA_Bennet_TeachCOMMON_Condition()
 {
-	if((PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE) && (Bennet_TeachCommon == TRUE) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
+	if((PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE) && (Bennet_TeachCommon == TRUE) && !C_BennetIsInPrison())
 	{
 		return TRUE;
 	};
@@ -465,7 +465,7 @@ instance DIA_Bennet_WannaSmithORE(C_Info)
 
 func int DIA_Bennet_WannaSmithORE_Condition()
 {
-	if((Bennet_TeachSmith == FALSE) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
+	if((Bennet_TeachSmith == FALSE) && !C_BennetIsInPrison())
 	{
 		return TRUE;
 	};
@@ -535,7 +535,7 @@ instance DIA_Bennet_WhereOre(C_Info)
 
 func int DIA_Bennet_WhereOre_Condition()
 {
-	if((MIS_Bennet_BringOre == LOG_RUNNING) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
+	if((MIS_Bennet_BringOre == LOG_RUNNING) && !C_BennetIsInPrison())
 	{
 		return TRUE;
 	};
@@ -563,7 +563,7 @@ instance DIA_Bennet_BringOre(C_Info)
 
 func int DIA_Bennet_BringOre_Condition()
 {
-	if((MIS_Bennet_BringOre == LOG_RUNNING) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
+	if((MIS_Bennet_BringOre == LOG_RUNNING) && !C_BennetIsInPrison())
 	{
 		if(Npc_HasItems(other,ItMi_Nugget) >= 5)
 		{
@@ -617,7 +617,7 @@ instance DIA_Bennet_TeachSmith(C_Info)
 
 func int DIA_Bennet_TeachSmith_Condition()
 {
-	if((Bennet_TeachSmith == TRUE) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
+	if((Bennet_TeachSmith == TRUE) && !C_BennetIsInPrison())
 	{
 		return TRUE;
 	};
@@ -802,7 +802,7 @@ instance DIA_Bennet_WhyPrison(C_Info)
 
 func int DIA_Bennet_WhyPrison_Condition()
 {
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS))
+	if(C_BennetIsInPrison())
 	{
 		return TRUE;
 	};
@@ -1211,7 +1211,7 @@ instance DIA_Bennet_RepairNecklace(C_Info)
 
 func int DIA_Bennet_RepairNecklace_Condition()
 {
-	if(MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS)
+	if(Kapitel == 3)
 	{
 		if(MIS_SCKnowsInnosEyeIsBroken == TRUE)
 		{
@@ -1228,7 +1228,7 @@ func void DIA_Bennet_RepairNecklace_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_RepairNecklace_15_00");	//Ты можешь ремонтировать ювелирные изделия?
 	AI_Output(self,other,"DIA_Bennet_RepairNecklace_06_01");	//Может быть. Ты должен сначала показать мне их.
-	if(MIS_RescueBennet != LOG_SUCCESS)
+	if(C_BennetIsInPrison())
 	{
 		AI_Output(self,other,"DIA_Bennet_RepairNecklace_06_02");	//Также мне сначала нужно выбраться отсюда.
 		AI_Output(self,other,"DIA_Bennet_RepairNecklace_06_03");	//Без этого я не смогу ничего сделать, это очевидно.
@@ -1249,7 +1249,7 @@ instance DIA_Bennet_ShowInnosEye(C_Info)
 
 func int DIA_Bennet_ShowInnosEye_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Bennet_RepairNecklace))
+	if(Npc_KnowsInfo(other,DIA_Bennet_RepairNecklace))
 	{
 		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 		{
@@ -1265,7 +1265,7 @@ func void DIA_Bennet_ShowInnosEye_Info()
 	AI_PrintScreen(Print_InnoseyeGiven,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Bennet_ShowInnosEye_06_02");	//Хммм, превосходная работа. Оправа сломана. Но, думаю, я смогу починить ее, впрочем.
 	AI_Output(other,self,"DIA_Bennet_ShowInnosEye_15_03");	//Сколько это займет времени?
-	if(MIS_RescueBennet != LOG_SUCCESS)
+	if(C_BennetIsInPrison())
 	{
 		AI_Output(self,other,"DIA_Bennet_ShowInnosEye_06_04");	//Ну, я застрял здесь пока. Или ты где-то здесь видишь кузницу?
 		AI_Output(self,other,"DIA_Bennet_ShowInnosEye_06_05");	//Если бы я был в своей кузнице, я мог бы сделать это за один день. Но, конечно же, сначала мне нужно выбраться отсюда.
@@ -1293,7 +1293,7 @@ instance DIA_Bennet_GiveInnosEye(C_Info)
 
 func int DIA_Bennet_GiveInnosEye_Condition()
 {
-	if((MIS_SCKnowsInnosEyeIsBroken == TRUE) && (MIS_RescueBennet == LOG_SUCCESS) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
+	if((MIS_SCKnowsInnosEyeIsBroken == TRUE) && (MIS_RescueBennet == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 	{
 		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 		{

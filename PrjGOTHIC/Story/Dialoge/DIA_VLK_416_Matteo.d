@@ -99,8 +99,8 @@ instance DIA_Matteo_TRADE(C_Info)
 	condition = DIA_Matteo_TRADE_Condition;
 	information = DIA_Matteo_TRADE_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
 	trade = TRUE;
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -115,7 +115,7 @@ func int DIA_Matteo_TRADE_Condition()
 func void DIA_Matteo_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_TRADE_15_00");	//Покажи мне свои товары.
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (Matteo_TradeNewsPermanent == 0))
+	if(C_BennetIsInPrison() && (Matteo_TradeNewsPermanent == 0))
 	{
 		B_MatteoAboutLothar();
 	};
@@ -203,7 +203,7 @@ func int DIA_Matteo_Paladine_Condition()
 func void DIA_Matteo_Paladine_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_Paladine_15_00");	//Что ты знаешь о паладинах?
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (Matteo_TradeNewsPermanent == 0))
+	if(C_BennetIsInPrison() && (Matteo_TradeNewsPermanent == 0))
 	{
 		B_MatteoAboutLothar();
 	}

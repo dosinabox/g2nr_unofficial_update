@@ -263,7 +263,7 @@ func void DIA_Baltram_WAREZ_Info()
 		B_LogEntry(TOPIC_CityTrader,"Ѕальтрам торгует продуктами на рыночной площади.");
 		Baltram_TradeLOG = TRUE;
 	};
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS))
+	if(C_BennetIsInPrison())
 	{
 		AI_Output(self,other,"DIA_Baltram_WAREZ_01_01");	//»м не стоило допускать, чтобы все зашло так далеко. “еперь вот один из наемников убил паладина.
 		AI_Output(self,other,"DIA_Baltram_WAREZ_01_02");	//„то-то подобное об€зательно должно было случитьс€!

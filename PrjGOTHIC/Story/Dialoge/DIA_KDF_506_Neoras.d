@@ -462,9 +462,9 @@ func void DIA_Neoras_BrewForMe_Health()
 		if(Neoras_Ingrediences_Advice == FALSE)
 		{
 			DIA_Common_SureWhatsNeeded();
-			//AI_Output(other,self,"DIA_Neoras_INGREDIENCES_Health_01_01");	//A potion like that is not especially complicated.
+			//AI_Output(self,other,"DIA_Neoras_INGREDIENCES_Health_01_01");	//A potion like that is not especially complicated.
 			DIA_Common_14_GoReadAboutIt();
-			//AI_Output(other,self,"DIA_Neoras_INGREDIENCES_Health_01_03");	//And don't forget the gold!
+			//AI_Output(self,other,"DIA_Neoras_INGREDIENCES_Health_01_03");	//And don't forget the gold!
 			Neoras_Ingrediences_Advice = TRUE;
 		};
 	};

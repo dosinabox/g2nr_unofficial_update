@@ -55,7 +55,7 @@ func int C_PrisonIsEmpty()
 	{
 		return FALSE;
 	};
-	if((MIS_RescueBennet != LOG_SUCCESS) && (Kapitel == 3))
+	if(C_BennetIsInPrison())
 	{
 		return FALSE;
 	};
@@ -83,13 +83,16 @@ func int DIA_Boltan_HALLO_Condition()
 	{
 		return FALSE;
 	};
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (other.guild == GIL_SLD))
+	if(C_BennetIsInPrison() && (other.guild == GIL_SLD))
 	{
 		return FALSE;
 	};
-	if((Kapitel >= 3) && (Canthar_Ausgeliefert == TRUE) && !Npc_IsDead(Canthar))
+	if((Kapitel >= 3) && (Canthar_Ausgeliefert == TRUE))
 	{
-		return FALSE;
+		if(!Npc_IsDead(Canthar))
+		{
+			return FALSE;
+		};
 	};
 	return TRUE;
 };
@@ -119,7 +122,7 @@ func int DIA_Boltan_ToConvicts_Condition()
 func void DIA_Boltan_ToConvicts_Info()
 {
 	AI_Output(other,self,"DIA_Boltan_Add_15_01");	//Я хочу увидеть заключенных.
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS))
+	if(C_BennetIsInPrison())
 	{
 		if(other.guild == GIL_SLD)
 		{
@@ -161,7 +164,7 @@ instance DIA_Boltan_HalloBennet(C_Info)
 
 func int DIA_Boltan_HalloBennet_Condition()
 {
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (other.guild == GIL_SLD))
+	if(C_BennetIsInPrison() && (other.guild == GIL_SLD))
 	{
 		return TRUE;
 	};
@@ -187,13 +190,16 @@ instance DIA_Boltan_HalloCanthar(C_Info)
 
 func int DIA_Boltan_HalloCanthar_Condition()
 {
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (other.guild == GIL_SLD) && !Npc_KnowsInfo(other,DIA_Boltan_HalloBennet))
+	if(C_BennetIsInPrison() && (other.guild == GIL_SLD) && !Npc_KnowsInfo(other,DIA_Boltan_HalloBennet))
 	{
 		return FALSE;
 	};
-	if((Kapitel >= 3) && (Canthar_Ausgeliefert == TRUE) && !Npc_IsDead(Canthar))
+	if((Kapitel >= 3) && (Canthar_Ausgeliefert == TRUE))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Canthar))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -34,7 +34,7 @@ instance DIA_Hodges_HALLO(C_Info)
 
 func int DIA_Hodges_HALLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && !C_BennetIsInPrison())
 	{
 		return TRUE;
 	};
@@ -68,7 +68,7 @@ instance DIA_Hodges_TellAboutFarm(C_Info)
 
 func int DIA_Hodges_TellAboutFarm_Condition()
 {
-	if((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS))
+	if(!C_BennetIsInPrison())
 	{
 		return TRUE;
 	};
@@ -105,7 +105,7 @@ instance DIA_Hodges_AboutSLD(C_Info)
 
 func int DIA_Hodges_AboutSLD_Condition()
 {
-	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG) && !C_BennetIsInPrison())
 	{
 		return TRUE;
 	};
@@ -167,7 +167,7 @@ instance DIA_Hodges_DontWork(C_Info)
 
 func int DIA_Hodges_DontWork_Condition()
 {
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS))
+	if(C_BennetIsInPrison())
 	{
 		return TRUE;
 	};

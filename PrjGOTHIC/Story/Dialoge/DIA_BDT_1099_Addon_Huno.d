@@ -463,7 +463,7 @@ instance DIA_Huno_RepairNecklace(C_Info)
 
 func int DIA_Huno_RepairNecklace_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && !Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
+	if((Kapitel == 3) && !Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 	{
 		if(MIS_SCKnowsInnosEyeIsBroken == TRUE)
 		{

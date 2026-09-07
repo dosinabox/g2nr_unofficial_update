@@ -68,7 +68,7 @@ func int C_NpcCanEquipWeapons(var C_Npc slf)
 	}
 	else if(C_IsNpc(slf,SLD_809_Bennet))
 	{
-		if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS))
+		if(C_BennetIsInPrison())
 		{
 			return FALSE;
 		};

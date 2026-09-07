@@ -879,7 +879,7 @@ instance DIA_Lord_Hagen_EyeBroken(C_Info)
 
 func int DIA_Lord_Hagen_EyeBroken_Condition()
 {
-	if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS))
+	if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
 		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 		{
