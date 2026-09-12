@@ -56,6 +56,7 @@ func void Perception_Set_Normal()
 	Npc_PercEnable(self,PERC_ASSESSWARN,B_AssessWarn);
 	Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessTalk);
 	Npc_PercEnable(self,PERC_MOVEMOB,B_MoveMob);
+	Npc_PercEnable(self,PERC_MOVENPC,B_MoveNpc);
 	if(!C_NpcIsSleeping(self))
 	{
 		B_ResetFaceExpression(self);
@@ -97,6 +98,7 @@ func void B_ClearPerceptions(var C_Npc slf)
 	Npc_PercDisable(slf,PERC_ASSESSWARN);
 	Npc_PercDisable(slf,PERC_ASSESSTALK);
 	Npc_PercDisable(slf,PERC_MOVEMOB);
+	Npc_PercDisable(slf,PERC_MOVENPC);
 	Npc_PercDisable(slf,PERC_ASSESSOTHERSDAMAGE);
 	Npc_PercDisable(slf,PERC_ASSESSSTOPMAGIC);
 	Npc_PercDisable(slf,PERC_ASSESSSURPRISE);

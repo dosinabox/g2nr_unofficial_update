@@ -6,7 +6,7 @@ instance NONE_101_Mario(Npc_Default)
 	id = 101;
 	voice = 7;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = NPCTYPE_MAIN;
+	npcType = NPCTYPE_FRIEND;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_Sturmbringer);

@@ -3,22 +3,10 @@ instance DIA_Addon_Samuel_EXIT(C_Info)
 {
 	npc = PIR_1351_Addon_Samuel;
 	nr = 999;
-	condition = DIA_Addon_Samuel_EXIT_Condition;
-	information = DIA_Addon_Samuel_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Samuel_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Samuel_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -51,23 +39,6 @@ func void DIA_Addon_Samuel_Hello_Info()
 	};
 };
 
-
-func int C_CanAskPiratesAboutFrancis()
-{
-	if(Npc_IsDead(Francis))
-	{
-		return FALSE;
-	};
-	if(Francis.aivar[AIV_TalkedToPlayer] == TRUE)
-	{
-		return TRUE;
-	};
-	if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut))
-	{
-		return TRUE;
-	};
-	return FALSE;
-};
 
 instance DIA_Addon_Samuel_Francis(C_Info)
 {

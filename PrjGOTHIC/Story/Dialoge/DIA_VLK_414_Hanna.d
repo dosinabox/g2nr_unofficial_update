@@ -625,6 +625,7 @@ func void DIA_Hanna_Blubb3_Info()
 		MIS_RamirezSextant = LOG_FAILED;
 	};
 	B_CheckLog();
+	B_SetGuild(self,GIL_NONE);
 	self.aivar[AIV_DropDeadAndKill] = TRUE;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);

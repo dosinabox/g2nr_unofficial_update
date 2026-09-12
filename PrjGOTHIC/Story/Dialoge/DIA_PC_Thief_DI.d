@@ -3,22 +3,10 @@ instance DIA_PC_Thief_DI_EXIT(C_Info)
 {
 	npc = PC_Thief_DI;
 	nr = 999;
-	condition = DIA_PC_Thief_DI_EXIT_Condition;
-	information = DIA_PC_Thief_DI_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_PC_Thief_DI_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_PC_Thief_DI_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -280,7 +268,7 @@ func void DIA_PC_Thief_DI_UndeadDragonDead_Info()
 		AI_Output(other,self,"DIA_PC_Thief_DI_UndeadDragonDead_15_06");	//Что ты собираешься делать дальше?
 		if(MIS_HelpDiegoNW != LOG_SUCCESS)
 		{
-			AI_Output(self,other,"DIA_DIEGONW_NEEDHELP_PROBLEM_WILLHELPYOU_11_01");	//Я спрятал небольшое состояние в Долине Рудников...
+			AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_11_01");	//Я спрятал небольшое состояние в Долине Рудников...
 		}
 		else
 		{

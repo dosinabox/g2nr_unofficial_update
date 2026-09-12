@@ -3,22 +3,10 @@ instance DIA_Milten_DI_EXIT(C_Info)
 {
 	npc = PC_Mage_DI;
 	nr = 999;
-	condition = DIA_Milten_DI_EXIT_Condition;
-	information = DIA_Milten_DI_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Milten_DI_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Milten_DI_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -135,7 +123,11 @@ instance DIA_Milten_DI_PEDROTOT(C_Info)
 
 func int DIA_Milten_DI_PEDROTOT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Pedro_DI_YOU) || Npc_IsDead(Pedro_DI))
+	if(Npc_KnowsInfo(other,DIA_Pedro_DI_YOU))
+	{
+		return TRUE;
+	};
+	if(Npc_IsDead(Pedro_DI))
 	{
 		return TRUE;
 	};
