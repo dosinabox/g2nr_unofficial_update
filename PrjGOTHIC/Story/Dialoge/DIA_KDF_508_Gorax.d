@@ -3,22 +3,10 @@ instance DIA_Gorax_EXIT(C_Info)
 {
 	npc = KDF_508_Gorax;
 	nr = 999;
-	condition = DIA_Gorax_EXIT_Condition;
-	information = DIA_Gorax_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Gorax_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Gorax_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -207,6 +195,10 @@ func int DIA_Gorax_Wurst_Condition()
 {
 	if(MIS_GoraxEssen == LOG_RUNNING)
 	{
+		if(!C_WorldIsFixed())
+		{
+			return TRUE;
+		};
 		if(!Mob_HasItems("WURSTTRUHE",ItFo_Schafswurst))
 		{
 			return TRUE;
@@ -416,9 +408,12 @@ instance DIA_Gorax_TRADE(C_Info)
 
 func int DIA_Gorax_TRADE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gorax_JOB) && C_Gorax_WantToTrade())
+	if(Npc_KnowsInfo(other,DIA_Gorax_JOB))
 	{
-		return TRUE;
+		if(C_Gorax_WantToTrade())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -447,9 +442,12 @@ instance DIA_Gorax_NOTRADE(C_Info)
 
 func int DIA_Gorax_NOTRADE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gorax_JOB) && !C_Gorax_WantToTrade())
+	if(Npc_KnowsInfo(other,DIA_Gorax_JOB))
 	{
-		return TRUE;
+		if(!C_Gorax_WantToTrade())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -501,9 +499,16 @@ instance DIA_Gorax_KILLPEDRO(C_Info)
 
 func int DIA_Gorax_KILLPEDRO_Condition()
 {
-	if((Pedro_Traitor == TRUE) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
+	if(Pedro_Traitor == TRUE)
 	{
-		return TRUE;
+		if(other.guild == GIL_SLD)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_DJG)
+		{
+			return TRUE;
+		};
 	};
 };
 

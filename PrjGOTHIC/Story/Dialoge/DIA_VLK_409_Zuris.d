@@ -3,22 +3,10 @@ instance DIA_Zuris_EXIT(C_Info)
 {
 	npc = VLK_409_Zuris;
 	nr = 999;
-	condition = DIA_Zuris_EXIT_Condition;
-	information = DIA_Zuris_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Zuris_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Zuris_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -292,9 +280,13 @@ instance DIA_Zuris_Kloster(C_Info)
 
 func int DIA_Zuris_Kloster_Condition()
 {
-	if((Zuris_Einmal == TRUE) || Npc_KnowsInfo(other,DIA_Zuris_Potions))
+	if(other.guild != GIL_KDF)
 	{
-		if(other.guild != GIL_KDF)
+		if(Zuris_Einmal == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Zuris_Potions))
 		{
 			return TRUE;
 		};

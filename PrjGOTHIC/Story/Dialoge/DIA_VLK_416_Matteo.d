@@ -3,22 +3,10 @@ instance DIA_Matteo_EXIT(C_Info)
 {
 	npc = VLK_416_Matteo;
 	nr = 999;
-	condition = DIA_Matteo_EXIT_Condition;
-	information = DIA_Matteo_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Matteo_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Matteo_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -270,7 +258,11 @@ func int DIA_Matteo_HelpMeToOV_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Matteo_Paladine) && (Player_IsApprentice == APP_NONE))
 	{
-		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -322,7 +314,11 @@ func int DIA_Matteo_HelpMeNow_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Matteo_HelpMeToOV) && (Player_IsApprentice == APP_NONE))
 	{
-		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -687,7 +683,11 @@ func int DIA_Matteo_OtherWay_Condition()
 {
 	if((Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) || (MIS_Matteo_Gold == LOG_FAILED)) && (MIL_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE))
 	{
-		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
