@@ -3,22 +3,10 @@ instance DIA_Rethon_EXIT(C_Info)
 {
 	npc = DJG_709_Rethon;
 	nr = 999;
-	condition = DIA_Rethon_EXIT_Condition;
-	information = DIA_Rethon_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Rethon_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Rethon_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -171,7 +159,7 @@ func void DIA_Rethon_ANGST_Info()
 {
 	AI_Output(other,self,"DIA_Rethon_ANGST_15_00");	//А ты не боишься, что кто-нибудь может тебя опередить?
 	AI_Output(self,other,"DIA_Rethon_ANGST_12_01");	//Что? Кто? Сильвио?
-	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Rethon_ANGST_12_02");	//Твой босс действительно думает, что ему здесь что-то светит, ха?
 		AI_Output(other,self,"DIA_Rethon_ANGST_15_03");	//Я не из людей Сильвио. Я работаю сам на себя.
@@ -280,11 +268,11 @@ func int DIA_Rethon_TRADE_Condition()
 func void DIA_Rethon_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Rethon_TRADE_15_00");	//Что ты можешь продать мне?
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Rethon_TRADE_12_01");	//Ох, как низко я опустился! Теперь я даже продаю мое оружие паладину!
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Rethon_TRADE_12_02");	//У меня мало что есть для мага, но все же ты можешь взглянуть.
 	}

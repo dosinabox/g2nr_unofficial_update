@@ -157,11 +157,11 @@ func void B_BuildLearnDialog_Milten_DI()
 	Info_AddChoice(DIA_Milten_DI_TeachMagic,Dialog_Back,DIA_Milten_DI_TeachMagic_BACK);
 	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnAttributeString(ATR_MANA_MAX,1),DIA_Milten_DI_TeachMagic_MANA_1);
 	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnAttributeString(ATR_MANA_MAX,5),DIA_Milten_DI_TeachMagic_MANA_5);
-	if(hero.guild == GIL_KDF)
+	if(other.guild == GIL_KDF)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,NAME_Skill_Runes,DIA_Milten_DI_TeachMagic_RUNES);
 	}
-	else if(hero.guild == GIL_PAL)
+	else if(other.guild == GIL_PAL)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,NAME_Skill_PalRunes,DIA_Milten_DI_TeachMagic_RUNES);
 	};
@@ -171,11 +171,11 @@ func void B_BuildLearnDialog_Runes_Milten_DI()
 {
 	Info_ClearChoices(DIA_Milten_DI_TeachMagic);
 	Info_AddChoice(DIA_Milten_DI_TeachMagic,Dialog_Back,DIA_Milten_DI_SubTeachMagic_BACK);
-	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 6)
+	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 6)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,NAME_Circle_6,DIA_Milten_DI_TeachMagic_Runen_Circle_6);
 	};
-	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 5)
+	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 5)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,NAME_Circle_5,DIA_Milten_DI_TeachMagic_Runen_Circle_5);
 	};
@@ -292,12 +292,12 @@ func void DIA_Milten_DI_TeachMagic_MANA_5()
 func void DIA_Milten_DI_TeachMagic_RUNES()
 {
 	DIA_Common_WantToLearnNewRunes();
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		DIA_Milten_RunesComment_01();
 		B_BuildLearnDialog_PalRunes_Milten_DI();
 	}
-	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 4)
+	else if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 4)
 	{
 		B_BuildLearnDialog_Runes_Milten_DI();
 	}
@@ -571,7 +571,7 @@ func void DIA_Milten_DI_UndeadDragonDead_Info()
 		AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_01");	// ак тебе всегда удаетс€ выходись сухим из воды?
 		AI_Output(other,self,"DIA_Milten_DI_UndeadDragonDead_15_02");	//„ерт мен€ побери, если € знаю.
 		AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_03");	//(смеетс€) ћы, когда-нибудь сможем пожить спокойно? ћы, определенно, заслужили это.
-		if(hero.guild == GIL_KDF)
+		if(other.guild == GIL_KDF)
 		{
 			AI_Output(other,self,"DIA_Milten_DI_UndeadDragonDead_15_04");	//„то ты собираешьс€ делать сейчас?
 			AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_05");	//я думаю об основании собственной академии, чтобы проповедовать нашу веру. Ќо из этого может ничего не получитьс€.

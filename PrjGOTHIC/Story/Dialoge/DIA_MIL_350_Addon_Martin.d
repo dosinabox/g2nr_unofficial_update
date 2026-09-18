@@ -3,22 +3,10 @@ instance DIA_Addon_Martin_EXIT(C_Info)
 {
 	npc = MIL_350_Addon_Martin;
 	nr = 999;
-	condition = DIA_Addon_Martin_EXIT_Condition;
-	information = DIA_Addon_Martin_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Martin_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Martin_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -182,8 +170,8 @@ instance DIA_Addon_Martin_Trade(C_Info)
 	nr = 80;
 	condition = DIA_Addon_Martin_Trade_Condition;
 	information = DIA_Addon_Martin_Trade_Info;
-	trade = TRUE;
 	permanent = TRUE;
+	trade = TRUE;
 	description = "Что ты можешь предложить?";
 };
 

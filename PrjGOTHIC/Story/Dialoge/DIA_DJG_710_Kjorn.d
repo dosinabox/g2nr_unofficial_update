@@ -3,22 +3,10 @@ instance DIA_Kjorn_EXIT(C_Info)
 {
 	npc = DJG_710_Kjorn;
 	nr = 999;
-	condition = DIA_Kjorn_EXIT_Condition;
-	information = DIA_Kjorn_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Kjorn_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Kjorn_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 

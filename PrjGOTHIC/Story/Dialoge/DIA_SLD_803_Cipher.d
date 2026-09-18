@@ -3,22 +3,10 @@ instance DIA_Cipher_EXIT(C_Info)
 {
 	npc = SLD_803_Cipher;
 	nr = 999;
-	condition = DIA_Cipher_EXIT_Condition;
-	information = DIA_Cipher_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Cipher_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Cipher_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -289,8 +277,8 @@ instance DIA_Cipher_TRADE(C_Info)
 	condition = DIA_Cipher_TRADE_Condition;
 	information = DIA_Cipher_TRADE_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
 	trade = TRUE;
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -421,9 +409,12 @@ instance DIA_Cipher_KrautPaket(C_Info)
 
 func int DIA_Cipher_KrautPaket_Condition()
 {
-	if(Npc_HasItems(other,ItMi_HerbPaket) && (MIS_Cipher_Paket == LOG_RUNNING))
+	if(MIS_Cipher_Paket == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_HerbPaket))
+		{
+			return TRUE;
+		};
 	};
 };
 

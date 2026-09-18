@@ -3,22 +3,10 @@ instance DIA_Coragon_EXIT(C_Info)
 {
 	npc = VLK_420_Coragon;
 	nr = 999;
-	condition = DIA_Coragon_EXIT_Condition;
-	information = DIA_Coragon_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Coragon_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Coragon_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -355,11 +343,14 @@ instance DIA_Coragon_News(C_Info)
 
 func int DIA_Coragon_News_Condition()
 {
-	if(!Npc_IsDead(Valentino) && (Valentino_Day < Wld_GetDay()))
+	if(Valentino_Day < Wld_GetDay())
 	{
-		if(Valentino.aivar[AIV_DefeatedByPlayer] == TRUE)
+		if(!Npc_IsDead(Valentino))
 		{
-			return TRUE;
+			if(Valentino.aivar[AIV_DefeatedByPlayer] == TRUE)
+			{
+				return TRUE;
+			};
 		};
 	};
 };

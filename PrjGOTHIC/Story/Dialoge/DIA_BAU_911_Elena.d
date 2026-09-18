@@ -3,22 +3,10 @@ instance DIA_Elena_EXIT(C_Info)
 {
 	npc = BAU_911_Elena;
 	nr = 999;
-	condition = DIA_Elena_EXIT_Condition;
-	information = DIA_Elena_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Elena_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Elena_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -183,8 +171,8 @@ instance DIA_Elena_TRADE(C_Info)
 	condition = DIA_Elena_TRADE_Condition;
 	information = DIA_Elena_TRADE_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
 	trade = TRUE;
+	description = DIALOG_TRADE_v4;
 };
 
 

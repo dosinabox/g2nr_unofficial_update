@@ -22,7 +22,7 @@ instance PAL_208_Paladin(Npc_Default)
 
 func void Rtn_Start_208()
 {
-	TA_Smalltalk(8,0,19,2,"NW_CITY_UPTOWN_PATH_05_B");
+	TA_Smalltalk(7,0,19,2,"NW_CITY_UPTOWN_PATH_05_B");
 	TA_Smalltalk(19,2,23,0,"NW_CITY_UPTOWN_HUT_03_04");
 	TA_Sleep(23,0,7,0,"NW_CITY_LEOMAR_BED_06");
 };

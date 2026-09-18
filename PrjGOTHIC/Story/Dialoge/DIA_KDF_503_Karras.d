@@ -3,22 +3,10 @@ instance DIA_Karras_EXIT(C_Info)
 {
 	npc = KDF_503_Karras;
 	nr = 999;
-	condition = DIA_Karras_EXIT_Condition;
-	information = DIA_Karras_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Karras_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Karras_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -247,9 +235,16 @@ instance DIA_Karras_Trade(C_Info)
 
 func int DIA_Karras_Trade_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Karras_JOB) && (Npc_KnowsInfo(other,DIA_Karras_InnosEyeRetrieved) || (other.guild == GIL_KDF)))
+	if(Npc_KnowsInfo(other,DIA_Karras_JOB))
 	{
-		return TRUE;
+		if(other.guild == GIL_KDF)
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Karras_InnosEyeRetrieved))
+		{
+			return TRUE;
+		};
 	};
 };
 

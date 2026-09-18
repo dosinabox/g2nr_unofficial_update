@@ -3,21 +3,10 @@ instance DIA_Lee_DI_EXIT(C_Info)
 {
 	npc = SLD_800_Lee_DI;
 	nr = 999;
-	condition = DIA_Lee_DI_EXIT_Condition;
-	information = DIA_Lee_DI_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Lee_DI_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Lee_DI_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -229,7 +218,7 @@ func void DIA_Lee_DI_UndeadDragonDead_Info()
 {
 	AI_Output(other,self,"DIA_Lee_DI_UndeadDragonDead_15_00");	//Мы можем отчаливать. Враг мертв.
 	AI_Output(self,other,"DIA_Lee_DI_UndeadDragonDead_04_01");	//Очень хорошо. Тогда скажи капитану, чтобы поднимал якорь.
-	if((DIA_Lee_DI_UndeadDragonDead_OneTime == FALSE) && (hero.guild == GIL_DJG))
+	if((DIA_Lee_DI_UndeadDragonDead_OneTime == FALSE) && (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Lee_DI_UndeadDragonDead_04_02");	//Ты ведь доставишь меня на материк, да?
 		AI_Output(other,self,"DIA_Lee_DI_UndeadDragonDead_15_03");	//Да. Хоринис проживет и без тебя.
