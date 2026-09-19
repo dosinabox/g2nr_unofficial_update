@@ -3,21 +3,10 @@ instance DIA_Addon_Quarhodron_EXIT(C_Info)
 {
 	npc = NONE_ADDON_111_Quarhodron;
 	nr = 999;
-	condition = DIA_Addon_Quarhodron_EXIT_Condition;
-	information = DIA_Addon_Quarhodron_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Quarhodron_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Quarhodron_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -124,26 +113,6 @@ func void DIA_Addon_Quarhodron_Hello_frech()
 };
 
 
-instance DIA_Addon_Quarhodron_Fragen(C_Info)
-{
-	npc = NONE_ADDON_111_Quarhodron;
-	nr = 5;
-	condition = DIA_Addon_Quarhodron_Fragen_Condition;
-	information = DIA_Addon_Quarhodron_Fragen_Info;
-	permanent = TRUE;
-	description = "Спрашивай!";
-};
-
-
-func int DIA_Addon_Quarhodron_Fragen_Condition()
-{
-	if(QuarhodronIstZufrieden == FALSE)
-	{
-		return TRUE;
-	};
-};
-
-
 var int Quarhodrons_NextQuestion;
 var int QuarhodronIstZufrieden;
 var int Quarhodrons_RichtigeAntworten;
@@ -231,6 +200,25 @@ func void B_Quarhodron_Fragen_Choices()
 
 
 var int DIA_Addon_Quarhodron_Fragen_Info_OneTime;
+
+instance DIA_Addon_Quarhodron_Fragen(C_Info)
+{
+	npc = NONE_ADDON_111_Quarhodron;
+	nr = 5;
+	condition = DIA_Addon_Quarhodron_Fragen_Condition;
+	information = DIA_Addon_Quarhodron_Fragen_Info;
+	permanent = TRUE;
+	description = "Спрашивай!";
+};
+
+
+func int DIA_Addon_Quarhodron_Fragen_Condition()
+{
+	if(QuarhodronIstZufrieden == FALSE)
+	{
+		return TRUE;
+	};
+};
 
 func void DIA_Addon_Quarhodron_Fragen_Info()
 {

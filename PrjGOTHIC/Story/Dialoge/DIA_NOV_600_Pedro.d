@@ -280,6 +280,13 @@ func void DIA_Pedro_Rules_Info()
 
 var int DIA_Pedro_AUFNAHME_NOPERM;
 
+func void B_DIA_Pedro_AUFNAHME_Choice()
+{
+	Info_ClearChoices(DIA_Pedro_AUFNAHME);
+	Info_AddChoice(DIA_Pedro_AUFNAHME,"я еще немного подумаю над этим.",DIA_Pedro_AUFNAHME_NO);
+	Info_AddChoice(DIA_Pedro_AUFNAHME,"ƒа, € хочу посв€тить свою жизнь служению »нносу.",DIA_Pedro_AUFNAHME_YES);
+};
+
 instance DIA_Pedro_AUFNAHME(C_Info)
 {
 	npc = NOV_600_Pedro;
@@ -297,13 +304,6 @@ func int DIA_Pedro_AUFNAHME_Condition()
 	{
 		return TRUE;
 	};
-};
-
-func void B_DIA_Pedro_AUFNAHME_Choice()
-{
-	Info_ClearChoices(DIA_Pedro_AUFNAHME);
-	Info_AddChoice(DIA_Pedro_AUFNAHME,"я еще немного подумаю над этим.",DIA_Pedro_AUFNAHME_NO);
-	Info_AddChoice(DIA_Pedro_AUFNAHME,"ƒа, € хочу посв€тить свою жизнь служению »нносу.",DIA_Pedro_AUFNAHME_YES);
 };
 
 func void DIA_Pedro_AUFNAHME_Info()

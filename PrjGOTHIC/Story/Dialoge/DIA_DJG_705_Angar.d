@@ -197,6 +197,15 @@ func void DIA_Angar_SCTellsAngarAboutMadPsi2_Info()
 };
 
 
+func void B_AngarsAmulettAbgeben()
+{
+	AI_Output(other,self,"DIA_Angar_FOUNDAMULETT_15_00");	//Я нашел твой амулет.
+	AI_Output(self,other,"DIA_Angar_FOUNDAMULETT_04_01");	//Спасибо. Я уж думал, что больше никогда не увижу его.
+	B_GiveInvItems(other,self,ItAm_Mana_Angar_MIS,1);
+	DJG_AngarGotAmulett = TRUE;
+	B_GivePlayerXP(XP_AngarDJGUndeadMage);
+};
+
 instance DIA_Angar_FOUNDAMULETT(C_Info)
 {
 	npc = DJG_705_Angar;
@@ -216,15 +225,6 @@ func int DIA_Angar_FOUNDAMULETT_Condition()
 			return TRUE;
 		};
 	};
-};
-
-func void B_AngarsAmulettAbgeben()
-{
-	AI_Output(other,self,"DIA_Angar_FOUNDAMULETT_15_00");	//Я нашел твой амулет.
-	AI_Output(self,other,"DIA_Angar_FOUNDAMULETT_04_01");	//Спасибо. Я уж думал, что больше никогда не увижу его.
-	B_GiveInvItems(other,self,ItAm_Mana_Angar_MIS,1);
-	DJG_AngarGotAmulett = TRUE;
-	B_GivePlayerXP(XP_AngarDJGUndeadMage);
 };
 
 func void DIA_Angar_FOUNDAMULETT_Info()

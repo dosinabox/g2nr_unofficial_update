@@ -371,27 +371,6 @@ func void DIA_Gerold_KAP4_ALLESRUHIG_Nein()
 
 var int Gerold_FoodCounter;
 
-instance DIA_Gerold_FOOD(C_Info)
-{
-	npc = PAL_261_Gerold;
-	nr = 31;
-	condition = DIA_Gerold_FOOD_Condition;
-	information = DIA_Gerold_FOOD_Info;
-	important = TRUE;
-};
-
-
-func int DIA_Gerold_FOOD_Condition()
-{
-	if(MIS_GeroldGiveFood == LOG_RUNNING)
-	{
-		if(Npc_GetDistToWP(self,"OC_MAGE_IN") < 500)
-		{
-			return TRUE;
-		};
-	};
-};
-
 func void DIA_Gerold_MoreFood()
 {
 	Info_ClearChoices(DIA_Gerold_FOOD);
@@ -450,6 +429,27 @@ func void DIA_Gerold_MoreFood()
 			Info_AddChoice(DIA_Gerold_FOOD,"(дать колбасу)",DIA_Gerold_FOOD_Wurst);
 		};
 		Gerold_FoodCounter += 1;
+	};
+};
+
+instance DIA_Gerold_FOOD(C_Info)
+{
+	npc = PAL_261_Gerold;
+	nr = 31;
+	condition = DIA_Gerold_FOOD_Condition;
+	information = DIA_Gerold_FOOD_Info;
+	important = TRUE;
+};
+
+
+func int DIA_Gerold_FOOD_Condition()
+{
+	if(MIS_GeroldGiveFood == LOG_RUNNING)
+	{
+		if(Npc_GetDistToWP(self,"OC_MAGE_IN") < 500)
+		{
+			return TRUE;
+		};
 	};
 };
 

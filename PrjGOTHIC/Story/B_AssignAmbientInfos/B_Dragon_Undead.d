@@ -57,19 +57,19 @@ func void DIA_Dragon_Undead_Hello_Info()
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_20_02");	//(громко смеется) Что ты знаешь о моих намерениях?
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_20_03");	//Разве я не послал к тебе Ищущих, чтобы навести тебя на мой след?
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_20_04");	//Разве я не оставлял знаки о моем присутствии, столь явные, что ты не мог не заметить их?
-	if((hero.guild == GIL_DJG) && (DragonEggCounter >= 7))
+	if((other.guild == GIL_DJG) && (DragonEggCounter >= 7))
 	{
 		AI_Output(self,other,"DIA_Dragon_Undead_Hello_20_05");	//А разве драконьи яйца, из которых сделаны твои доспехи, не помогли тебе добраться до меня?
 	}
-	else if(hero.guild == GIL_PAL)
+	else if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Dragon_Undead_Hello_20_06");	//Разве обращенные паладины были недостаточной причиной для тебя, чтобы искать силу, управляющую ими?
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Dragon_Undead_Hello_20_07");	//Разве одержимые из твоего племени были недостаточной причиной для тебя, чтобы искать силу, управляющую ими?
 	};
-	AI_Output(self,other,"DIA_Dragon_Undead_Hello_20_08");	//Как бы ты не изворачивался, ты не можешь поспорить со всем этим.
+	AI_Output(self,other,"DIA_Dragon_Undead_Hello_20_08");	//Как бы ты ни изворачивался, ты не можешь поспорить со всем этим.
 	if(RavenIsDead == TRUE)
 	{
 		AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_01");	//Есть только одна вещь, которая не была предопределена!
@@ -93,15 +93,15 @@ func void DIA_Dragon_Undead_Hello_wer()
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_02");	//У меня нет имени. Так же, как нет имени и у тебя.
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_03");	//Моим создателем мне дана божественная сила. Так же, как ты владеешь силой, данной тебе твоим богом.
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_04");	//Моя судьба - уничтожение этого мира.
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_05");	//Так же, как твоя судьба определяется прямотой и добродетелями паладина.
 	}
-	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_06");	//Так же, как твоя рука несет смерть определенным созданиям, охотник на драконов.
 	}
-	else if(hero.guild == GIL_KDF)
+	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_07");	//Так же, как твоя судьба - проповедовать веру в Инноса, маг Огня.
 	};

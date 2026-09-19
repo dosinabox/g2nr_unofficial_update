@@ -573,6 +573,8 @@ func void DIA_Vatras_DI_UndeadDragonDead_Info()
 };
 
 
+var int DIA_Addon_Vatras_PissOffForever_DI_OneTime;
+
 instance DIA_Addon_Vatras_PissOffForever_DI(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
@@ -598,9 +600,6 @@ func int DIA_Addon_Vatras_PissOffForever_DI_Condition()
 		};
 	};
 };
-
-
-var int DIA_Addon_Vatras_PissOffForever_DI_OneTime;
 
 func void DIA_Addon_Vatras_PissOffForever_DI_Info()
 {

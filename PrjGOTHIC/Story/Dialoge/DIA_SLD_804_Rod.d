@@ -208,7 +208,6 @@ func int DIA_Rod_WannaJoin_Condition()
 	};
 };
 
-
 func void DIA_Rod_WannaJoin_Info()
 {
 	AI_Output(other,self,"DIA_Rod_WannaJoin_15_00");	//Я хочу присоединиться к наемникам!

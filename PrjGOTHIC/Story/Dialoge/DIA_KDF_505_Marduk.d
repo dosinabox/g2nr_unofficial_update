@@ -559,7 +559,7 @@ func void DIA_Marduk_Kap3_PERM_AndNow()
 	AI_Output(other,self,"DIA_Marduk_Kap3_PERM_AndNow_15_00");	//Что будет теперь?
 	if((Pedro_Traitor == TRUE) && (MIS_NovizenChase != LOG_SUCCESS))
 	{
-		AI_Output(self,other,"DIA_Marduk_Kap3_PERM_AndNow_05_01");	//Мы будем преследовать вора, куда бы он не побежал. Мы найдем его, и он понесет заслуженное наказание.
+		AI_Output(self,other,"DIA_Marduk_Kap3_PERM_AndNow_05_01");	//Мы будем преследовать вора, куда бы он ни побежал. Мы найдем его, и он понесет заслуженное наказание.
 		AI_Output(other,self,"DIA_Marduk_Kap3_PERM_AndNow_15_02");	//Для этого сначала нужно знать, кто этот вор.
 		AI_Output(self,other,"DIA_Marduk_Kap3_PERM_AndNow_05_03");	//Мы скоро выясним это. И не важно, сколько времени на это понадобится, но мы найдем его.
 		AI_Output(self,other,"DIA_Marduk_Kap3_PERM_AndNow_05_04");	//Клянусь Инносом.

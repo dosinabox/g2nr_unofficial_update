@@ -22,7 +22,7 @@
 
 func void Rtn_Start_10013()
 {
-	TA_Stand_Guarding(0,0,12,0,"XXX");
-	TA_Stand_Guarding(0,0,12,0,"XXX");
+	TA_Stand_Guarding(9,0,21,0,"XXX");
+	TA_Stand_Guarding(21,0,9,0,"XXX");
 };*/
 

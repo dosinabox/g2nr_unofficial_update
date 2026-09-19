@@ -1840,6 +1840,8 @@ func void DIA_Lee_StealShip_Info()
 };
 
 
+var int SCToldLeeHeKnowWhereEnemy;
+
 instance DIA_Lee_KnowWhereEnemy(C_Info)
 {
 	npc = SLD_800_Lee;
@@ -1865,8 +1867,6 @@ func int DIA_Lee_KnowWhereEnemy_Condition()
 		};
 	};
 };
-
-var int SCToldLeeHeKnowWhereEnemy;
 
 func void DIA_Lee_KnowWhereEnemy_Info()
 {
