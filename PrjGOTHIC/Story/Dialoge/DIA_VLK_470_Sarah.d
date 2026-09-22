@@ -187,7 +187,7 @@ func int DIA_Sarah_IMKNAST_Condition()
 
 func void DIA_Sarah_IMKNAST_Info()
 {
-	AI_Output(self,other,"DIA_Sarah_IMKNAST_16_00");	//“ы! “ы осмелилс€ по€витьс€ здесь! я, конечно не могу доказать этого, но € готова покл€стьс€, что это твоих рук дело!
+	AI_Output(self,other,"DIA_Sarah_IMKNAST_16_00");	//“ы! “ы осмелилс€ по€витьс€ здесь! я, конечно, не могу доказать этого, но € готова покл€стьс€, что это твоих рук дело!
 	AI_Output(self,other,"DIA_Sarah_IMKNAST_16_01");	//Ёто ты виноват, что € здесь. “ы и этот прокл€тый  антар - да накажет вас »ннос!
 	AI_StopProcessInfos(self);
 };

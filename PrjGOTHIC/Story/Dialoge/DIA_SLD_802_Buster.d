@@ -51,7 +51,7 @@ func void DIA_Buster_Hello_WhoAreYou()
 func void DIA_Buster_Hello_IKnowLee()
 {
 	AI_Output(other,self,"DIA_Buster_Hello_IKnowLee_15_00");	//Я знаю Ли!
-	AI_Output(self,other,"DIA_Buster_Hello_IKnowLee_13_01");	//Все знают Ли! Это ни чего не значит, приятель. Сейчас ты разговариваешь со МНОЙ!
+	AI_Output(self,other,"DIA_Buster_Hello_IKnowLee_13_01");	//Все знают Ли! Это ничего не значит, приятель. Сейчас ты разговариваешь со МНОЙ!
 	AI_Output(self,other,"DIA_Buster_Hello_IKnowLee_13_02");	//Итак, куда ты направляешься?
 	Info_ClearChoices(DIA_Buster_Hello);
 	Info_AddChoice(DIA_Buster_Hello,"Это не твое дело.",DIA_Buster_Hello_NotYourBusiness);
@@ -186,11 +186,14 @@ func int DIA_Buster_FightNone_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Buster_Hello) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE) && Npc_IsInState(self,ZS_Talk))
 	{
-		if((Kapitel >= 3) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
+		if(Kapitel < 3)
 		{
-			return FALSE;
+			return TRUE;
 		};
-		return TRUE;
+		if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -355,11 +358,14 @@ instance DIA_Buster_AboutSentenza(C_Info)
 
 func int DIA_Buster_AboutSentenza_Condition()
 {
-	if((Buster_SentenzaTip == TRUE) && !Npc_IsDead(Sentenza) && (other.guild != GIL_DJG))
+	if((Buster_SentenzaTip == TRUE) && (MIS_RescueBennet != LOG_SUCCESS))
 	{
-		if(Sentenza.aivar[AIV_TalkedToPlayer] == FALSE)
+		if(!Npc_IsDead(Sentenza))
 		{
-			return TRUE;
+			if(Sentenza.aivar[AIV_TalkedToPlayer] == FALSE)
+			{
+				return TRUE;
+			};
 		};
 	};
 };

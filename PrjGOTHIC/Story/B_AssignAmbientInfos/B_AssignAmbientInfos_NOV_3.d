@@ -95,7 +95,7 @@ func void DIA_NOV_3_Fegen_Info()
 				Feger2_Once = TRUE;
 			};
 			Info_ClearChoices(DIA_NOV_3_Fegen);
-			Info_AddChoice(DIA_NOV_3_Fegen,"Возможно позже, сейчас я не могу позволить себе такие расходы.",DIA_NOV_3_Fegen_Nein);
+			Info_AddChoice(DIA_NOV_3_Fegen,"Возможно, позже, сейчас я не могу позволить себе такие расходы.",DIA_NOV_3_Fegen_Nein);
 			if(Npc_HasItems(other,ItMi_Gold) >= 50)
 			{
 				Info_AddChoice(DIA_NOV_3_Fegen,"Хорошо, я заплачу.",DIA_NOV_3_Fegen_Ja);
@@ -114,7 +114,7 @@ func void DIA_NOV_3_Fegen_Info()
 
 func void DIA_NOV_3_Fegen_Nein()
 {
-	AI_Output(other,self,"DIA_NOV_3_Fegen_Nein_15_00");	//Возможно позже, сейчас я не могу позволить себе такие расходы.
+	AI_Output(other,self,"DIA_NOV_3_Fegen_Nein_15_00");	//Возможно, позже, сейчас я не могу позволить себе такие расходы.
 	Info_ClearChoices(DIA_NOV_3_Fegen);
 };
 

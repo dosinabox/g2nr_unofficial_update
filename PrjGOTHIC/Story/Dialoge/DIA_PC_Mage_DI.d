@@ -570,7 +570,7 @@ func void DIA_Milten_DI_UndeadDragonDead_Info()
 	{
 		AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_01");	// ак тебе всегда удаетс€ выходись сухим из воды?
 		AI_Output(other,self,"DIA_Milten_DI_UndeadDragonDead_15_02");	//„ерт мен€ побери, если € знаю.
-		AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_03");	//(смеетс€) ћы, когда-нибудь сможем пожить спокойно? ћы, определенно, заслужили это.
+		AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_03");	//(смеетс€) ћы когда-нибудь сможем пожить спокойно? ћы определенно заслужили это.
 		if(other.guild == GIL_KDF)
 		{
 			AI_Output(other,self,"DIA_Milten_DI_UndeadDragonDead_15_04");	//„то ты собираешьс€ делать сейчас?

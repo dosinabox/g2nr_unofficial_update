@@ -3,21 +3,10 @@ instance DIA_Addon_BDT_10028_Buddler_EXIT(C_Info)
 {
 	npc = BDT_10028_Addon_Buddler;
 	nr = 999;
-	condition = DIA_Addon_10028_Buddler_EXIT_Condition;
-	information = DIA_Addon_10028_Buddler_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_10028_Buddler_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_10028_Buddler_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
