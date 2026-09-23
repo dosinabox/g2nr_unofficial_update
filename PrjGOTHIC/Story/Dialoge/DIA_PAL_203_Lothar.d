@@ -52,6 +52,7 @@ func void DIA_Lothar_FirstEXIT_Info()
 	{
 		AI_Output(self,other,"DIA_Lothar_FirstEXIT_01_01");	//Подожди! Ты даже не знаешь новых законов города!
 		AI_Output(other,self,"DIA_Lothar_FirstEXIT_15_02");	//Позже.
+		AI_StopProcessInfos(self);
 	}
 	else
 	{
@@ -68,9 +69,9 @@ func void DIA_Lothar_FirstEXIT_Info()
 			};
 		};
 		Lothar_ImOV = TRUE;
+		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"START");
 	};
-	AI_StopProcessInfos(self);
 };
 
 
@@ -129,7 +130,11 @@ func int DIA_Lothar_MESSAGE_Condition()
 {
 	if(PAL_205_schonmalreingelassen == FALSE)
 	{
-		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -401,7 +406,11 @@ func int DIA_Lothar_HowCitizen_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Lothar_Regeln) && (Player_IsApprentice == APP_NONE))
 	{
-		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -433,7 +442,11 @@ func int DIA_Lothar_WoArbeit_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Lothar_HowCitizen) && (Player_IsApprentice == APP_NONE))
 	{
-		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -467,7 +480,11 @@ func int DIA_Lothar_ToOV_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Lothar_Regeln) && (MIL_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE) && !Npc_KnowsInfo(other,DIA_Lothar_HelloAgain))
 	{
-		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -565,11 +582,14 @@ instance DIA_Lothar_WoAndre(C_Info)
 
 func int DIA_Lothar_WoAndre_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Lothar_Regeln) || Npc_KnowsInfo(other,DIA_Lothar_MESSAGE)) && !Npc_IsDead(Andre))
+	if(Npc_KnowsInfo(other,DIA_Lothar_Regeln) || Npc_KnowsInfo(other,DIA_Lothar_MESSAGE))
 	{
-		if(Andre.aivar[AIV_TalkedToPlayer] == FALSE)
+		if(!Npc_IsDead(Andre))
 		{
-			return TRUE;
+			if(Andre.aivar[AIV_TalkedToPlayer] == FALSE)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -814,11 +834,14 @@ instance DIA_Lothar_Hagen(C_Info)
 
 func int DIA_Lothar_Hagen_Condition()
 {
-	if((Player_KnowsLordHagen == TRUE) && !Npc_IsDead(LordHagen))
+	if(Player_KnowsLordHagen == TRUE)
 	{
-		if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+		if(!Npc_IsDead(LordHagen))
 		{
-			return TRUE;
+			if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+			{
+				return TRUE;
+			};
 		};
 	};
 };

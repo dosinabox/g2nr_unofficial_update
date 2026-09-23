@@ -305,9 +305,12 @@ instance DIA_MiltenOW_Versteck(C_Info)
 
 func int DIA_MiltenOW_Versteck_Condition()
 {
-	if((GornsTreasure == TRUE) && !Npc_HasItems(other,ItMi_GornsTreasure_MIS) && (Gorns_Beutel == FALSE) && (Kapitel == 2) && (MIS_RescueGorn == LOG_RUNNING))
+	if((GornsTreasure == TRUE) && (Gorns_Beutel == FALSE) && (Kapitel == 2) && (MIS_RescueGorn == LOG_RUNNING))
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,ItMi_GornsTreasure_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -98,8 +98,8 @@ func void DIA_BDT_1013_BANDIT_WHERE_Yes()
 {
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_YES_15_00");	//Хорошо! Ты идешь первым!
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_YES_01_01");	//Просто следуй за мной, пещера находится вон там.
-	Npc_ExchangeRoutine(self,"AMBUSH");
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"AMBUSH");
 };
 
 func void DIA_BDT_1013_BANDIT_WHERE_Who()
@@ -211,13 +211,14 @@ func void DIA_1013_BANDIT_AMBUSH_Info()
 	if(!C_NpcIsDown(Ambusher_1014) && !C_NpcIsDown(Ambusher_1015))
 	{
 		AI_Output(self,other,"DIA_1013_BANDIT_AMBUSH_01_01");	//Эй, парни, посмотрите, кто у нас здесь...
+		AI_StopProcessInfos(self);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_1013_BANDIT_AMBUSH_01_00");	//Тебе не стоило идти за мной...
+		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_SuddenEnemyInferno,1);
 	};
-	AI_StopProcessInfos(self);
 };
 
 
@@ -360,6 +361,7 @@ func void DIA_1013_BANDIT_FromMaleth_Info()
 	};
 	BDT_1013_Away = TRUE;
 	B_GivePlayerXP(XP_BanditWeg);
+	AI_StopProcessInfos(self);
 	if(MIS_Addon_Nefarius_BringMissingOrnaments == FALSE)
 	{
 		Npc_ExchangeRoutine(self,"AWAY2");
@@ -370,7 +372,6 @@ func void DIA_1013_BANDIT_FromMaleth_Info()
 		Npc_ExchangeRoutine(self,"AWAY");
 		BDT_1013_ToCavalorn = TRUE;
 	};
-	AI_StopProcessInfos(self);
 };
 
 

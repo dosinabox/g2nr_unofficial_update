@@ -3,21 +3,10 @@ instance DIA_Liesel_EXIT(C_Info)
 {
 	npc = Follow_Sheep;
 	nr = 999;
-	condition = DIA_Liesel_EXIT_Condition;
-	information = DIA_Liesel_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Liesel_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Liesel_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -69,9 +58,9 @@ func void DIA_Liesel_KommMit_Info()
 {
 	AI_Output(other,self,"DIA_Liesel_KommMit_15_00");	//Пойдем со мной!
 	B_LieselMaeh();
-	Npc_ExchangeRoutine(self,"FOLLOW");
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"FOLLOW");
 };
 
 
@@ -98,8 +87,8 @@ func void DIA_Liesel_WarteHier_Info()
 {
 	DIA_Common_WaitHere();
 	B_LieselMaeh();
-	Npc_ExchangeRoutine(self,"START");
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"START");
 };
 

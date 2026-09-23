@@ -807,9 +807,12 @@ instance DIA_Addon_Greg_GiveFrancisBook(C_Info)
 
 func int DIA_Addon_Greg_GiveFrancisBook_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Addon_FrancisAbrechnung_MIS) && (Francis_HasProof == TRUE))
+	if(Francis_HasProof == TRUE)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Addon_FrancisAbrechnung_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

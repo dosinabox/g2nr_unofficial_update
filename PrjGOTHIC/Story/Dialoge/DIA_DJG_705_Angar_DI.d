@@ -3,21 +3,10 @@ instance DIA_Angar_DI_EXIT(C_Info)
 {
 	npc = DJG_705_Angar_DI;
 	nr = 999;
-	condition = DIA_Angar_DI_EXIT_Condition;
-	information = DIA_Angar_DI_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Angar_DI_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Angar_DI_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -280,9 +269,12 @@ instance DIA_Angar_DI_FOUNDAMULETT(C_Info)
 
 func int DIA_Angar_DI_FOUNDAMULETT_Condition()
 {
-	if(Npc_HasItems(other,ItAm_Mana_Angar_MIS) && (SC_KnowsAngarsAmulett == TRUE) && (DJG_AngarGotAmulett == FALSE))
+	if((SC_KnowsAngarsAmulett == TRUE) && (DJG_AngarGotAmulett == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAm_Mana_Angar_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

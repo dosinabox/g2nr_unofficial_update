@@ -3,21 +3,10 @@ instance DIA_Addon_Tom_EXIT(C_Info)
 {
 	npc = BDT_1080_Addon_Tom;
 	nr = 999;
-	condition = DIA_Addon_Tom_EXIT_Condition;
-	information = DIA_Addon_Tom_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Tom_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Tom_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -121,9 +110,12 @@ instance DIA_Addon_Tom_Dead(C_Info)
 
 func int DIA_Addon_Tom_Dead_Condition()
 {
-	if(Npc_IsDead(Esteban) && Npc_KnowsInfo(other,DIA_Addon_Tom_Esteban))
+	if(Npc_KnowsInfo(other,DIA_Addon_Tom_Esteban))
 	{
-		return TRUE;
+		if(Npc_IsDead(Esteban))
+		{
+			return TRUE;
+		};
 	};
 };
 

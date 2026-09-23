@@ -1444,9 +1444,12 @@ instance DIA_Pyrokar_BUCHZURUECK(C_Info)
 
 func int DIA_Pyrokar_BUCHZURUECK_Condition()
 {
-	if(Npc_HasItems(other,ItWr_XardasBookForPyrokar_MIS) && (Kapitel == 3))
+	if(Kapitel == 3)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_XardasBookForPyrokar_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

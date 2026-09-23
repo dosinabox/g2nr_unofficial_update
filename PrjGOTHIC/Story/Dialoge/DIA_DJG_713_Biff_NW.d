@@ -3,21 +3,10 @@ instance DIA_Biff_NW_EXIT(C_Info)
 {
 	npc = DJG_713_Biff_NW;
 	nr = 999;
-	condition = DIA_Biff_NW_EXIT_Condition;
-	information = DIA_Biff_NW_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Biff_NW_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Biff_NW_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -44,6 +33,7 @@ func void DIA_Biff_NW_Hafen_Info()
 {
 	AI_Output(other,self,"DIA_Biff_NW_Hafen_15_00");	//Хорошо. Осталось недолго.
 	AI_Output(self,other,"DIA_Biff_NW_Hafen_07_01");	//Я не могу ждать.
+	AI_StopProcessInfos(self);
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
 		Npc_ExchangeRoutine(self,"SHIP");
@@ -52,7 +42,6 @@ func void DIA_Biff_NW_Hafen_Info()
 	{
 		Npc_ExchangeRoutine(self,"WAITFORSHIP");
 	};
-	AI_StopProcessInfos(self);
 };
 
 

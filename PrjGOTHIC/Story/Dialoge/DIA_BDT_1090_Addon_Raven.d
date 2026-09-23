@@ -3,21 +3,10 @@ instance DIA_Addon_Raven_EXIT(C_Info)
 {
 	npc = BDT_1090_Addon_Raven;
 	nr = 999;
-	condition = DIA_Addon_Raven_EXIT_Condition;
-	information = DIA_Addon_Raven_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Raven_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Raven_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -96,12 +85,12 @@ func void DIA_Addon_Raven_Hi_Attack()
 	AI_Output(other,self,"DIA_Addon_Raven_Add_15_06");	//Достаточно. Приступим к делу...
 	AI_Output(self,other,"DIA_Addon_Raven_Add_10_12");	//(усмехается) Ты так торопишься умереть? Ну, раз ты настаиваешь...
 	self.aivar[AIV_EnemyOverride] = FALSE;
+	AI_StopProcessInfos(self);
 	if(Raven_Awaken == FALSE)
 	{
 		Npc_ExchangeRoutine(self,"WAITFORPLAYER");
 		Raven_Awaken = TRUE;
 	};
-	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_SuddenEnemyInferno,1);
 };
 

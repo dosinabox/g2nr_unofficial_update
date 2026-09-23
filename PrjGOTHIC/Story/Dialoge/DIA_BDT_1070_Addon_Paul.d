@@ -132,8 +132,8 @@ func void DIA_Addon_Paul_HunoArbeit_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Paul_HunoArbeit_15_00");	//Но ты же работаешь на Хуно! Так что ты должен что-то знать!
 	AI_Output(self,other,"DIA_Addon_Paul_HunoArbeit_03_01");	//(в отчаянии) Я ничего не знаю - честно! Мне нужно идти!
-	Npc_ExchangeRoutine(self,"AWAY");
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"AWAY");
 };
 
 
@@ -159,8 +159,8 @@ func void DIA_Addon_Paul_FearEsteban_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Paul_FearEsteban_15_00");	//Ты знаешь, что Эстебан сделает с тобой, если узнает, что ты прикрываешь Хуно?
 	AI_Output(self,other,"DIA_Addon_Paul_FearEsteban_03_01");	//Парень! Оставь меня в покое. Я не имею никакого отношения к этому.
-	Npc_ExchangeRoutine(self,"PRESTART");
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"PRESTART");
 };
 
 
