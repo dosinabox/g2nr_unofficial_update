@@ -3,21 +3,10 @@ instance DIA_Talamon_EXIT(C_Info)
 {
 	npc = KDF_507_Talamon;
 	nr = 999;
-	condition = DIA_Talamon_EXIT_Condition;
-	information = DIA_Talamon_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Talamon_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Talamon_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -36,9 +25,12 @@ instance DIA_KDF_507_Talamon_FirstWarn(C_Info)
 
 func int DIA_KDF_507_Talamon_FirstWarn_Condition()
 {
-	if(C_NpcHasGuardStatus(self,KDF_507_Checkpoint,GP_NONE) && (Pyrokar_LetYouPassTalamon == FALSE))
+	if(Pyrokar_LetYouPassTalamon == FALSE)
 	{
-		return TRUE;
+		if(C_NpcHasGuardStatus(self,KDF_507_Checkpoint,GP_NONE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -64,9 +56,12 @@ instance DIA_KDF_507_Talamon_SecondWarn(C_Info)
 
 func int DIA_KDF_507_Talamon_SecondWarn_Condition()
 {
-	if(C_NpcHasGuardStatus(self,KDF_507_Checkpoint,GP_FirstWarnGiven) && (Pyrokar_LetYouPassTalamon == FALSE))
+	if(Pyrokar_LetYouPassTalamon == FALSE)
 	{
-		return TRUE;
+		if(C_NpcHasGuardStatus(self,KDF_507_Checkpoint,GP_FirstWarnGiven))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -92,9 +87,12 @@ instance DIA_KDF_507_Talamon_Attack(C_Info)
 
 func int DIA_KDF_507_Talamon_Attack_Condition()
 {
-	if(C_NpcHasGuardStatus(self,KDF_507_Checkpoint,GP_SecondWarnGiven) && (Pyrokar_LetYouPassTalamon == FALSE))
+	if(Pyrokar_LetYouPassTalamon == FALSE)
 	{
-		return TRUE;
+		if(C_NpcHasGuardStatus(self,KDF_507_Checkpoint,GP_SecondWarnGiven))
+		{
+			return TRUE;
+		};
 	};
 };
 

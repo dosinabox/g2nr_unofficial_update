@@ -3,21 +3,10 @@ instance DIA_Serpentes_EXIT(C_Info)
 {
 	npc = KDF_501_Serpentes;
 	nr = 999;
-	condition = DIA_Serpentes_EXIT_Condition;
-	information = DIA_Serpentes_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Serpentes_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Serpentes_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -75,9 +64,12 @@ instance DIA_Serpentes_GOAWAY(C_Info)
 
 func int DIA_Serpentes_GOAWAY_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Serpentes_NOTALK) && Npc_IsInState(self,ZS_Talk) && !Npc_KnowsInfo(other,DIA_Pyrokar_FIRE) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Serpentes_NOTALK) && !Npc_KnowsInfo(other,DIA_Pyrokar_FIRE) && (other.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 

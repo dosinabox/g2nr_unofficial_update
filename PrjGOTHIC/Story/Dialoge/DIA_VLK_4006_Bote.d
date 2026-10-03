@@ -3,21 +3,10 @@ instance DIA_Bote_EXIT(C_Info)
 {
 	npc = VLK_4006_Bote;
 	nr = 999;
-	condition = DIA_Bote_EXIT_Condition;
-	information = DIA_Bote_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Bote_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Bote_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
