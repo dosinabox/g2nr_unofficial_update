@@ -3,21 +3,10 @@ instance DIA_Geppert_EXIT(C_Info)
 {
 	npc = STRF_1115_Geppert;
 	nr = 999;
-	condition = DIA_Geppert_EXIT_Condition;
-	information = DIA_Geppert_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Geppert_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Geppert_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

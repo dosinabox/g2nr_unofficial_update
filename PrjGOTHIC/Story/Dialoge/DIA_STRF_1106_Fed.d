@@ -3,21 +3,10 @@ instance DIA_Fed_EXIT(C_Info)
 {
 	npc = STRF_1106_Fed;
 	nr = 999;
-	condition = DIA_Fed_EXIT_Condition;
-	information = DIA_Fed_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Fed_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Fed_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

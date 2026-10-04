@@ -3,21 +3,10 @@ instance DIA_RodDJG_EXIT(C_Info)
 {
 	npc = DJG_702_Rod;
 	nr = 999;
-	condition = DIA_RodDJG_EXIT_Condition;
-	information = DIA_RodDJG_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_RodDJG_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_RodDJG_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -121,10 +110,10 @@ func void DIA_RodDJG_HALLO_warten_zusammen()
 	{
 		AI_UseMob(self,"BENCH",-1);
 	};
-	AI_StopProcessInfos(self);
 	DJG_SwampParty = TRUE;
 	self.npcType = NPCTYPE_FRIEND;
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"SWAMPWAIT2");
 };
 
@@ -175,8 +164,8 @@ func void DIA_RodDJG_FallBack_Info()
 	};
 	DJG_RodSurvivedSwampDragon = TRUE;
 	DJG_SwampParty = FALSE;
-	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
 };
 
@@ -267,8 +256,8 @@ func void DIA_RodDJG_CipherDead_Info()
 {
 	B_Say(self,other,"$RUNAWAY");
 	DJG_SwampParty = FALSE;
-	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
 };
 

@@ -348,10 +348,10 @@ func void DIA_Mika_HILFE_Akil()
 {
 	AI_Output(other,self,"DIA_Mika_HILFE_Akil_15_00");	//На фермера Акила напали наемники.
 	AI_Output(self,other,"DIA_Mika_HILFE_Akil_12_01");	//(возбужденно) Что? Этот сброд ошивается вокруг фермы Акила? Тогда не будем терять времени попусту. Идем за мной.
-	AI_StopProcessInfos(self);
-	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	B_GivePlayerXP(XP_Ambient);
 	B_LogEntry(TOPIC_AkilsSLDStillthere,"Мика хочет помочь мне решить проблему с наемниками на ферме Акила.");
+	self.aivar[AIV_PARTYMEMBER] = TRUE;
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"AKIL");
 };
 
@@ -456,10 +456,10 @@ func int DIA_Mika_WIEDERNACHHAUSE_Condition()
 func void DIA_Mika_WIEDERNACHHAUSE_Info()
 {
 	AI_Output(self,other,"DIA_Mika_WIEDERNACHHAUSE_12_00");	//Вот и все. Я могу возвращаться назад.
-	AI_StopProcessInfos(self);
-	self.aivar[AIV_PARTYMEMBER] = FALSE;
-	Npc_ExchangeRoutine(self,"START");
 	B_GivePlayerXP(XP_Ambient);
+	self.aivar[AIV_PARTYMEMBER] = FALSE;
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"START");
 };
 
 

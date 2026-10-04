@@ -153,10 +153,10 @@ func void DIA_CipherDJG_GO_Info()
 	{
 		AI_UseMob(self,"BENCH",-1);
 	};
-	AI_StopProcessInfos(self);
 	DJG_SwampParty = TRUE;
 	self.npcType = NPCTYPE_FRIEND;
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"SWAMPWAIT1");
 	if(!Npc_IsDead(DJG_Rod))
 	{
@@ -274,10 +274,10 @@ func void DIA_CipherDJG_SWAMPDRAGONDEAD_Info()
 	AI_Output(self,other,"DIA_CipherDJG_SWAMPDRAGONDEAD_07_00");	//Черт. Он мертв?
 	AI_Output(other,self,"DIA_CipherDJG_SWAMPDRAGONDEAD_15_01");	//Успокойся. Все кончено!
 	AI_Output(self,other,"DIA_CipherDJG_SWAMPDRAGONDEAD_07_02");	//Ух, ну и громадина.
-	AI_StopProcessInfos(self);
 	B_GivePlayerXP(XP_CipherDJGDeadDragon);
 	DJG_SwampParty = FALSE;
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
 	if(!Npc_IsDead(DJG_Rod))
 	{

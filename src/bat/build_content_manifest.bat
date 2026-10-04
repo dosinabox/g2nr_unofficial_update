@@ -4,6 +4,7 @@ setlocal
 set "OUTFILE=content_manifest.txt"
 
 powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+  "$ErrorActionPreference = 'Stop'; " ^
   "$root = (Get-Location).Path; " ^
   "$output = Join-Path $root '%OUTFILE%'; " ^
   "'Path|Size|MD5' | Set-Content -LiteralPath $output -Encoding UTF8; " ^
@@ -20,5 +21,13 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command ^
   "    '{0}|{1}|{2}' -f $relative, $_.Length, $hash " ^
   "} | Add-Content -LiteralPath $output -Encoding UTF8"
 
+set "RC=%ERRORLEVEL%"
+
+if not "%RC%"=="0" (
+    echo ERROR: Failed to create manifest. Exit code: %RC%
+    exit /b %RC%
+)
+
 echo Manifest created: %OUTFILE%
 pause
+exit /b 0
