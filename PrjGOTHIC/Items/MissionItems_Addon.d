@@ -685,7 +685,7 @@ func void Equip_WispDetector()
 	};
 	Wld_SpawnNpcRange(self,Wisp_Detector,1,500);
 	Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",Wisp_Detector,Wisp_Detector,0,0,0,FALSE);
-	Snd_Play("MFX_Transform_Cast");
+	Snd_Play("MFX_TRANSFORM_CAST");
 };
 
 func void UnEquip_WispDetector()
@@ -696,7 +696,7 @@ func void UnEquip_WispDetector()
 	{
 		if(!Npc_IsDead(DetWsp))
 		{
-			Snd_Play("WSP_Dead_A1");
+			Snd_Play("WSP_DEAD_A1");
 		};
 		Wld_RemoveNpc(Wisp_Detector);
 	};
@@ -1064,7 +1064,7 @@ func void FrancisChest()
 	AI_PrintScreen("153 золотых получено",-1,52,FONT_ScreenSmall,4);
 	AI_PrintScreen("Золотой кубок получено",-1,43,FONT_ScreenSmall,4);
 	AI_PrintScreen("Серебряное ожерелье получено",-1,46,FONT_ScreenSmall,4);
-	Snd_Play("Geldbeutel");
+	Snd_Play("GELDBEUTEL");
 };
 
 

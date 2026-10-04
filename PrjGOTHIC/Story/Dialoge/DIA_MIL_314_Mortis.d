@@ -3,21 +3,10 @@ instance DIA_Mortis_EXIT(C_Info)
 {
 	npc = MIL_314_Mortis;
 	nr = 999;
-	condition = DIA_Mortis_EXIT_Condition;
-	information = DIA_Mortis_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Mortis_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Mortis_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -257,9 +246,13 @@ instance DIA_Mortis_RepairNecklace(C_Info)
 
 func int DIA_Mortis_RepairNecklace_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((Kapitel == 3) && !Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 	{
-		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
+		if(MIS_SCKnowsInnosEyeIsBroken == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 		{
 			return TRUE;
 		};

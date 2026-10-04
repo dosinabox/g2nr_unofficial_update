@@ -10,8 +10,8 @@ func void B_RemoveGhost()
 		{
 			AI_Teleport(Quarhodron,"TOT");
 			B_MoveNpcToMorgue(NONE_ADDON_111_Quarhodron);
-			Snd_Play("MFX_GhostVoice");
-			Snd_Play("MFX_Firestorm_Cast");
+			Snd_Play("MFX_GHOSTVOICE");
+			Snd_Play("MFX_FIRESTORM_CAST");
 			B_RemoveQuarhodron_OneTime = TRUE;
 			GhostAttackWarn = 0;
 		};
@@ -22,8 +22,8 @@ func void B_RemoveGhost()
 		{
 			AI_Teleport(Rhademes,"TOT");
 			B_MoveNpcToMorgue(NONE_ADDON_112_Rhademes);
-			Snd_Play("MFX_GhostVoice");
-			Snd_Play("MFX_Firestorm_Cast");
+			Snd_Play("MFX_GHOSTVOICE");
+			Snd_Play("MFX_FIRESTORM_CAST");
 			B_RemoveRhademes_OneTime = TRUE;
 			GhostAttackWarn = 0;
 		};

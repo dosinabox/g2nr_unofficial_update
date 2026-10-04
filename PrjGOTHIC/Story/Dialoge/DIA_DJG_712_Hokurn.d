@@ -134,21 +134,10 @@ instance DIA_Hokurn_EXIT(C_Info)
 {
 	npc = DJG_712_Hokurn;
 	nr = 999;
-	condition = DIA_Hokurn_EXIT_Condition;
-	information = DIA_Hokurn_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Hokurn_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Hokurn_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -238,9 +227,12 @@ instance DIA_Hokurn_Drink(C_Info)
 
 func int DIA_Hokurn_Drink_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hokurn_Hello) && (HokurnGetsDrink == FALSE) && C_GotDrinkForHokurn())
+	if(Npc_KnowsInfo(other,DIA_Hokurn_Hello) && (HokurnGetsDrink == FALSE))
 	{
-		return TRUE;
+		if(C_GotDrinkForHokurn())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -364,9 +356,12 @@ instance DIA_Hokurn_PayTeacher(C_Info)
 
 func int DIA_Hokurn_PayTeacher_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hokurn_Learn) && (Npc_HasItems(other,ItMi_Gold) >= 300) && (Hokurn_TeachPlayer == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Hokurn_Learn) && (Hokurn_TeachPlayer == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Gold) >= 300)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -399,9 +394,12 @@ instance DIA_Hokurn_DrinkAndLearn(C_Info)
 
 func int DIA_Hokurn_DrinkAndLearn_Condition()
 {
-	if((HokurnGetsDrink == TRUE) && C_GotDrinkForHokurn())
+	if(HokurnGetsDrink == TRUE)
 	{
-		return TRUE;
+		if(C_GotDrinkForHokurn())
+		{
+			return TRUE;
+		};
 	};
 };
 

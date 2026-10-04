@@ -3,22 +3,10 @@ instance DIA_Addon_Scatty_EXIT(C_Info)
 {
 	npc = BDT_1086_Addon_Scatty;
 	nr = 999;
-	condition = DIA_Addon_Scatty_EXIT_Condition;
-	information = DIA_Addon_Scatty_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Scatty_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Scatty_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -189,9 +177,12 @@ instance DIA_Addon_Scatty_Bier(C_Info)
 
 func int DIA_Addon_Scatty_Bier_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Scatty_Trinken) && Npc_HasItems(other,ItFo_Beer))
+	if(Npc_KnowsInfo(other,DIA_Addon_Scatty_Trinken))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItFo_Beer))
+		{
+			return TRUE;
+		};
 	};
 };
 

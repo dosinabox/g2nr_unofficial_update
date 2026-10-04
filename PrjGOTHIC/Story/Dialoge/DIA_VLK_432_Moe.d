@@ -3,21 +3,10 @@ instance DIA_Moe_EXIT(C_Info)
 {
 	npc = VLK_432_Moe;
 	nr = 999;
-	condition = DIA_Moe_EXIT_Condition;
-	information = DIA_Moe_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Moe_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Moe_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -204,7 +193,7 @@ func void DIA_Moe_Harbor_Info()
 	Info_AddChoice(DIA_Moe_Harbor,Dialog_Back,DIA_Moe_Harbor_Back);
 	Info_AddChoice(DIA_Moe_Harbor,"Как тут с кораблями?",DIA_Moe_Harbor_Ship);
 	Info_AddChoice(DIA_Moe_Harbor,"Почему я не вижу здесь никого из ополчения?",DIA_Moe_Harbor_Militia);
-	Info_AddChoice(DIA_Moe_Harbor,"Какие слухи бродят в последнее время?",DIA_Moe_Harbor_Rumors);
+	Info_AddChoice(DIA_Moe_Harbor,"Какие слухи бродят последнее время?",DIA_Moe_Harbor_Rumors);
 };
 
 func void DIA_Moe_Harbor_Back()

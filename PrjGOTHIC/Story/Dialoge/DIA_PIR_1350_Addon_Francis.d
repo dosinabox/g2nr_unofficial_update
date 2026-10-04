@@ -3,21 +3,10 @@ instance DIA_Addon_Francis_EXIT(C_Info)
 {
 	npc = PIR_1350_Addon_Francis;
 	nr = 999;
-	condition = DIA_Addon_Francis_EXIT_Condition;
-	information = DIA_Addon_Francis_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Francis_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Francis_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -59,9 +48,12 @@ instance DIA_Addon_Francis_LetMeIn(C_Info)
 
 func int DIA_Addon_Francis_LetMeIn_Condition()
 {
-	if((Knows_GregsHut == TRUE) && (GregIsBack == FALSE) && Npc_HasItems(self,ItKe_Greg_Addon_MIS))
+	if((Knows_GregsHut == TRUE) && (GregIsBack == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItKe_Greg_Addon_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -125,9 +117,12 @@ instance DIA_Addon_Francis_Key(C_Info)
 
 func int DIA_Addon_Francis_Key_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Francis_LetMeIn) && Npc_HasItems(self,ItKe_Greg_Addon_MIS))
+	if(Npc_KnowsInfo(other,DIA_Addon_Francis_LetMeIn))
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItKe_Greg_Addon_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -189,9 +184,12 @@ instance DIA_Addon_Francis_AufsMaul(C_Info)
 
 func int DIA_Addon_Francis_AufsMaul_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Francis_LetMeIn) && Npc_HasItems(self,ItKe_Greg_Addon_MIS))
+	if(Npc_KnowsInfo(other,DIA_Addon_Francis_LetMeIn))
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItKe_Greg_Addon_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -218,9 +216,12 @@ instance DIA_Addon_Francis_Buch(C_Info)
 
 func int DIA_Addon_Francis_Buch_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Addon_FrancisAbrechnung_MIS) && (Francis_HasProof == TRUE))
+	if(Francis_HasProof == TRUE)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Addon_FrancisAbrechnung_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -278,7 +279,7 @@ instance DIA_Francis_Ausgeschissen(C_Info)
 
 func int DIA_Francis_Ausgeschissen_Condition()
 {
-	if((Francis_ausgeschissen == TRUE) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (Francis_ausgeschissen == TRUE))
 	{
 		return TRUE;
 	};

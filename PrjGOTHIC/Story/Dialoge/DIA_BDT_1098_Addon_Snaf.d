@@ -3,21 +3,10 @@ instance DIA_Addon_Snaf_EXIT(C_Info)
 {
 	npc = BDT_1098_Addon_Snaf;
 	nr = 999;
-	condition = DIA_Addon_Snaf_EXIT_Condition;
-	information = DIA_Addon_Snaf_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Snaf_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Snaf_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -118,9 +107,12 @@ instance DIA_Addon_Snaf_Booze(C_Info)
 
 func int DIA_Addon_Snaf_Booze_Condition()
 {
-	if(Npc_HasItems(other,ItFo_Addon_LousHammer) && (MIS_SnafHammer == LOG_RUNNING))
+	if(MIS_SnafHammer == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItFo_Addon_LousHammer))
+		{
+			return TRUE;
+		};
 	};
 };
 

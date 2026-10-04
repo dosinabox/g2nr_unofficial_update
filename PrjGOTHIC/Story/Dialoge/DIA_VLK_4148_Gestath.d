@@ -156,6 +156,8 @@ func void DIA_Gestath_Drachen_Info()
 };
 
 
+var int DIA_Gestath_TEACHHUNTING_OneTime;
+
 instance DIA_Gestath_TEACHHUNTING(C_Info)
 {
 	npc = VLK_4148_Gestath;
@@ -174,9 +176,6 @@ func int DIA_Gestath_TEACHHUNTING_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Gestath_TEACHHUNTING_OneTime;
 
 func void DIA_Gestath_TEACHHUNTING_Info()
 {

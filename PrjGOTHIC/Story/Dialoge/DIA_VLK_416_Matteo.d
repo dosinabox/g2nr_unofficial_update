@@ -3,22 +3,10 @@ instance DIA_Matteo_EXIT(C_Info)
 {
 	npc = VLK_416_Matteo;
 	nr = 999;
-	condition = DIA_Matteo_EXIT_Condition;
-	information = DIA_Matteo_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Matteo_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Matteo_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -99,8 +87,8 @@ instance DIA_Matteo_TRADE(C_Info)
 	condition = DIA_Matteo_TRADE_Condition;
 	information = DIA_Matteo_TRADE_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
 	trade = TRUE;
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -115,7 +103,7 @@ func int DIA_Matteo_TRADE_Condition()
 func void DIA_Matteo_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_TRADE_15_00");	//Покажи мне свои товары.
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (Matteo_TradeNewsPermanent == 0))
+	if(C_BennetIsInPrison() && (Matteo_TradeNewsPermanent == 0))
 	{
 		B_MatteoAboutLothar();
 	};
@@ -203,7 +191,7 @@ func int DIA_Matteo_Paladine_Condition()
 func void DIA_Matteo_Paladine_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_Paladine_15_00");	//Что ты знаешь о паладинах?
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (Matteo_TradeNewsPermanent == 0))
+	if(C_BennetIsInPrison() && (Matteo_TradeNewsPermanent == 0))
 	{
 		B_MatteoAboutLothar();
 	}
@@ -270,7 +258,11 @@ func int DIA_Matteo_HelpMeToOV_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Matteo_Paladine) && (Player_IsApprentice == APP_NONE))
 	{
-		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -322,7 +314,11 @@ func int DIA_Matteo_HelpMeNow_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Matteo_HelpMeToOV) && (Player_IsApprentice == APP_NONE))
 	{
-		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};
@@ -687,7 +683,11 @@ func int DIA_Matteo_OtherWay_Condition()
 {
 	if((Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) || (MIS_Matteo_Gold == LOG_FAILED)) && (MIL_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE))
 	{
-		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};

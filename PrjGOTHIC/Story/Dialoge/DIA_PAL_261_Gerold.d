@@ -3,21 +3,10 @@ instance DIA_Gerold_EXIT(C_Info)
 {
 	npc = PAL_261_Gerold;
 	nr = 999;
-	condition = DIA_Gerold_EXIT_Condition;
-	information = DIA_Gerold_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Gerold_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Gerold_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -174,6 +163,7 @@ instance DIA_Gerold_Stuff(C_Info)
 	description = "Я принес тебе кое-что. Вот еда, как ты и просил.";
 };
 
+
 func int DIA_Gerold_Stuff_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Gerold_Deal) && (Kapitel == 2) && (DIA_Gerold_Stuff_permanent == FALSE))
@@ -224,6 +214,7 @@ instance DIA_Gerold_Antwort(C_Info)
 	permanent = TRUE;
 	description = "Горн получил записку?";
 };
+
 
 func int DIA_Gerold_Antwort_Condition()
 {
@@ -380,27 +371,6 @@ func void DIA_Gerold_KAP4_ALLESRUHIG_Nein()
 
 var int Gerold_FoodCounter;
 
-instance DIA_Gerold_FOOD(C_Info)
-{
-	npc = PAL_261_Gerold;
-	nr = 31;
-	condition = DIA_Gerold_FOOD_Condition;
-	information = DIA_Gerold_FOOD_Info;
-	important = TRUE;
-};
-
-
-func int DIA_Gerold_FOOD_Condition()
-{
-	if(MIS_GeroldGiveFood == LOG_RUNNING)
-	{
-		if(Npc_GetDistToWP(self,"OC_MAGE_IN") < 500)
-		{
-			return TRUE;
-		};
-	};
-};
-
 func void DIA_Gerold_MoreFood()
 {
 	Info_ClearChoices(DIA_Gerold_FOOD);
@@ -462,6 +432,27 @@ func void DIA_Gerold_MoreFood()
 	};
 };
 
+instance DIA_Gerold_FOOD(C_Info)
+{
+	npc = PAL_261_Gerold;
+	nr = 31;
+	condition = DIA_Gerold_FOOD_Condition;
+	information = DIA_Gerold_FOOD_Info;
+	important = TRUE;
+};
+
+
+func int DIA_Gerold_FOOD_Condition()
+{
+	if(MIS_GeroldGiveFood == LOG_RUNNING)
+	{
+		if(Npc_GetDistToWP(self,"OC_MAGE_IN") < 500)
+		{
+			return TRUE;
+		};
+	};
+};
+
 func void DIA_Gerold_FOOD_Info()
 {
 	AI_Output(self,other,"DIA_Gerold_FOOD_12_00");	//Вот ты где. И как? У тебя есть что-нибудь поесть?
@@ -472,11 +463,11 @@ func void DIA_Gerold_FOOD_nichts()
 {
 	AI_Output(other,self,"DIA_Gerold_FOOD_nichts_15_00");	//Сейчас у меня ничего нет.
 	AI_Output(self,other,"DIA_Gerold_FOOD_nichts_12_01");	//Сначала наобещаешь с три короба, а затем хочешь обмануть меня?
-	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_NONE,1);
-	Npc_ExchangeRoutine(self,"START");
 	MIS_GeroldGiveFood = LOG_FAILED;
 	B_GivePlayerXP(50);
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"START");
+	B_Attack(self,other,AR_NONE,1);
 };
 
 func void DIA_Gerold_FOOD_kaese_nichtmehr()
@@ -486,8 +477,6 @@ func void DIA_Gerold_FOOD_kaese_nichtmehr()
 	CreateInvItems(self,ItMi_Gold,50);
 	B_GiveInvItems(self,other,ItMi_Gold,50);
 	AI_Output(self,other,"DIA_Gerold_FOOD_kaese_nichtmehr_12_02");	//Хорошо. А теперь мне нужно возвращаться на мой пост.
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"START");
 	MIS_GeroldGiveFood = LOG_OBSOLETE;
 	if(Gerold_FoodCounter < 4)
 	{
@@ -497,6 +486,8 @@ func void DIA_Gerold_FOOD_kaese_nichtmehr()
 	{
 		B_GivePlayerXP(XP_GeroldGiveFood / 2);
 	};
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"START");
 };
 
 func void B_FeedGerold(var int food)

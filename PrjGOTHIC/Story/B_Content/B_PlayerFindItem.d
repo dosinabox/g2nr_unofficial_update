@@ -12,7 +12,7 @@ func void B_PlayerFindItem(var int itm,var int amount)
 		{
 			concatText = ConcatStrings(IntToString(amount),PRINT_GoldTaken);
 			Print(concatText);
-			Snd_Play("Geldbeutel");
+			Snd_Play("GELDBEUTEL");
 		}
 		else if(amount == 1)
 		{

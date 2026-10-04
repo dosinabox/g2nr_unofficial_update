@@ -6,7 +6,7 @@ instance VLK_444_Jack_DI(Npc_Default)
 	id = 4440;
 	voice = 14;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = NPCTYPE_MAIN;
+	npcType = NPCTYPE_FRIEND;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;

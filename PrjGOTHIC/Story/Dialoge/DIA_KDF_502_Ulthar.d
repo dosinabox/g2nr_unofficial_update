@@ -3,21 +3,10 @@ instance DIA_Ulthar_EXIT(C_Info)
 {
 	npc = KDF_502_Ulthar;
 	nr = 999;
-	condition = DIA_Ulthar_EXIT_Condition;
-	information = DIA_Ulthar_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Ulthar_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Ulthar_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -153,9 +142,12 @@ instance DIA_Ulthar_RUNNING(C_Info)
 
 func int DIA_Ulthar_RUNNING_Condition()
 {
-	if((MIS_Rune == LOG_RUNNING) && Npc_IsInState(self,ZS_Talk) && !Npc_HasItems(other,ItRu_FireBolt))
+	if((MIS_Rune == LOG_RUNNING) && Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,ItRu_FireBolt))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -178,9 +170,12 @@ instance DIA_Ulthar_SUCCESS(C_Info)
 
 func int DIA_Ulthar_SUCCESS_Condition()
 {
-	if((MIS_Rune == LOG_RUNNING) && Npc_HasItems(other,ItRu_FireBolt))
+	if(MIS_Rune == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItRu_FireBolt))
+		{
+			return TRUE;
+		};
 	};
 };
 

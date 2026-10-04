@@ -118,9 +118,12 @@ instance DIA_Addon_Lennar_Mine(C_Info)
 
 func int DIA_Addon_Lennar_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
+	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Addon_Stone_01))
+		{
+			return TRUE;
+		};
 	};
 };
 

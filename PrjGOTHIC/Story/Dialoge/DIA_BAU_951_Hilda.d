@@ -138,9 +138,12 @@ instance DIA_Hilda_BringBeet(C_Info)
 
 func int DIA_Hilda_BringBeet_Condition()
 {
-	if((MIS_Lobart_RuebenToHilda == LOG_RUNNING) && Npc_HasItems(other,ItPl_Beet) && (Kapitel < 3))
+	if((MIS_Lobart_RuebenToHilda == LOG_RUNNING) && (Kapitel < 3))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItPl_Beet))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -221,9 +224,12 @@ instance DIA_Hilda_PfanneGeholt(C_Info)
 
 func int DIA_Hilda_PfanneGeholt_Condition()
 {
-	if((MIS_Hilda_PfanneKaufen == LOG_RUNNING) && Npc_HasItems(other,ItMi_Pan) && (Kapitel < 3))
+	if((MIS_Hilda_PfanneKaufen == LOG_RUNNING) && (Kapitel < 3))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Pan))
+		{
+			return TRUE;
+		};
 	};
 };
 

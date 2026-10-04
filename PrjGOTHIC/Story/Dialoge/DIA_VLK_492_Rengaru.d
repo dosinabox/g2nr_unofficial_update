@@ -3,21 +3,10 @@ instance DIA_Rengaru_EXIT(C_Info)
 {
 	npc = VLK_492_Rengaru;
 	nr = 999;
-	condition = DIA_Rengaru_EXIT_Condition;
-	information = DIA_Rengaru_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Rengaru_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Rengaru_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -102,9 +91,12 @@ instance DIA_Rengaru_GOTYOU(C_Info)
 
 func int DIA_Rengaru_GOTYOU_Condition()
 {
-	if(C_RengaruIsReadyToTalk() && Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB))
+	if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB))
 	{
-		return TRUE;
+		if(C_RengaruIsReadyToTalk())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -228,10 +220,10 @@ func void DIA_Rengaru_INKNAST_HauAb()
 {
 	AI_Output(other,self,"DIA_Rengaru_INKNAST_HauAb_15_00");	//Проваливай! И чтоб больше я тебя здесь не видел!
 	AI_Output(self,other,"DIA_Rengaru_INKNAST_HauAb_07_01");	//Ты не пожалеешь об этом! Спасибо, парень!
-	self.aivar[AIV_ToughGuy] = FALSE;
-	Npc_ExchangeRoutine(self,"START");
-	AI_StopProcessInfos(self);
 	Diebesgilde_Okay += 1;
+	self.aivar[AIV_ToughGuy] = FALSE;
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"START");
 };
 
 func void DIA_Rengaru_INKNAST_Knast()

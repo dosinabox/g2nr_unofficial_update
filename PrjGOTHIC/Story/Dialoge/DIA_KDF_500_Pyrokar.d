@@ -1444,9 +1444,12 @@ instance DIA_Pyrokar_BUCHZURUECK(C_Info)
 
 func int DIA_Pyrokar_BUCHZURUECK_Condition()
 {
-	if(Npc_HasItems(other,ItWr_XardasBookForPyrokar_MIS) && (Kapitel == 3))
+	if(Kapitel == 3)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_XardasBookForPyrokar_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1674,7 +1677,6 @@ func int DIA_Pyrokar_SCOBSESSED_KDF_Condition()
 	};
 };
 
-
 func void DIA_Pyrokar_SCOBSESSED_KDF_Info()
 {
 	AI_Output(other,self,"DIA_Pyrokar_SCOBSESSED_15_00");	//Исцели меня, Мастер, ибо я одержим.
@@ -1697,6 +1699,7 @@ func void DIA_Pyrokar_SCOBSESSED_KDF_Info()
 	};
 };
 
+
 instance DIA_Pyrokar_SCOBSESSED(C_Info)
 {
 	npc = KDF_500_Pyrokar;
@@ -1715,7 +1718,6 @@ func int DIA_Pyrokar_SCOBSESSED_Condition()
 		return TRUE;
 	};
 };
-
 
 func void DIA_Pyrokar_SCOBSESSED_Info()
 {

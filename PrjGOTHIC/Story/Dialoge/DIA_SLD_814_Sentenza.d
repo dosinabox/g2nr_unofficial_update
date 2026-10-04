@@ -3,21 +3,10 @@ instance DIA_Sentenza_EXIT(C_Info)
 {
 	npc = SLD_814_Sentenza;
 	nr = 999;
-	condition = DIA_Sentenza_EXIT_Condition;
-	information = DIA_Sentenza_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Sentenza_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Sentenza_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -36,9 +25,12 @@ instance DIA_Sentenza_Hello(C_Info)
 
 func int DIA_Sentenza_Hello_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Npc_HasItems(self,ItMi_Gold) < 50) && (other.guild != GIL_DJG))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (MIS_RescueBennet != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItMi_Gold) < 50)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -142,9 +134,12 @@ instance DIA_Sentenza_Vzwei(C_Info)
 
 func int DIA_Sentenza_Vzwei_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Sentenza_GoldTaken == FALSE) && (Sentenza_GoldGiven == FALSE) && (Sentenza_SearchDay < Wld_GetDay()) && (Npc_HasItems(self,ItMi_Gold) < 50) && (other.guild != GIL_DJG))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Sentenza_GoldTaken == FALSE) && (Sentenza_GoldGiven == FALSE) && (Sentenza_SearchDay < Wld_GetDay()) && (MIS_RescueBennet != LOG_SUCCESS))
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItMi_Gold) < 50)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -270,9 +265,12 @@ instance DIA_Sentenza_Pay50(C_Info)
 
 func int DIA_Sentenza_Pay50_Condition()
 {
-	if((Sentenza_Wants50 == TRUE) && (Npc_HasItems(self,ItMi_Gold) < 50))
+	if(Sentenza_Wants50 == TRUE)
 	{
-		return TRUE;
+		if(Npc_HasItems(self,ItMi_Gold) < 50)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -338,7 +336,11 @@ instance DIA_Sentenza_AufsMaul(C_Info)
 
 func int DIA_Sentenza_AufsMaul_Condition()
 {
-	if((Npc_HasItems(self,ItMi_Gold) >= 50) || Npc_KnowsInfo(other,DIA_Jarvis_MissionKO))
+	if(Npc_KnowsInfo(other,DIA_Jarvis_MissionKO))
+	{
+		return TRUE;
+	};
+	if(Npc_HasItems(self,ItMi_Gold) >= 50)
 	{
 		return TRUE;
 	};
@@ -368,7 +370,11 @@ func int DIA_Sentenza_AufsMaulAgain_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Sentenza_AufsMaul) && (MIS_ReadyforChapter4 == FALSE))
 	{
-		if((Npc_HasItems(self,ItMi_Gold) >= 50) || Npc_KnowsInfo(other,DIA_Jarvis_MissionKO))
+		if(Npc_KnowsInfo(other,DIA_Jarvis_MissionKO))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(self,ItMi_Gold) >= 50)
 		{
 			return TRUE;
 		};

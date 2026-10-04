@@ -150,7 +150,7 @@ func void B_GetGoldNugget(var int count)
 {
 	var string text;
 	CreateInvItems(self,ItMi_GoldNugget_Addon,count);
-	Snd_Play("Geldbeutel");
+	Snd_Play("GELDBEUTEL");
 	if(count == 1)
 	{
 		AI_PrintScreen("Добыт 1 золотой самородок!",-1,-1,FONT_ScreenSmall,1);

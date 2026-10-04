@@ -3,21 +3,10 @@ instance DIA_Edda_EXIT(C_Info)
 {
 	npc = VLK_471_Edda;
 	nr = 999;
-	condition = DIA_Edda_EXIT_Condition;
-	information = DIA_Edda_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Edda_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Edda_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -76,9 +65,12 @@ instance DIA_Edda_Sleep(C_Info)
 
 func int DIA_Edda_Sleep_Condition()
 {
-	if(Wld_IsTime(22,0,8,0) && Npc_IsInState(self,ZS_Talk) && (Edda_Schlafplatz == FALSE))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(Wld_IsTime(22,0,8,0) && (Edda_Schlafplatz == FALSE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -196,7 +188,15 @@ func int DIA_Edda_Statue_Condition()
 {
 	if(Edda_Schlafplatz == TRUE)
 	{
-		if(Npc_HasItems(other,ItMi_EddasStatue) || Npc_HasItems(other,ItMi_InnosStatue) || Npc_HasItems(other,ItMi_LostInnosStatue_Daron))
+		if(Npc_HasItems(other,ItMi_InnosStatue))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron))
+		{
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItMi_EddasStatue))
 		{
 			return TRUE;
 		};

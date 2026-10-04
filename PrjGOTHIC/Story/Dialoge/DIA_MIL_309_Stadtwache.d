@@ -3,21 +3,10 @@ instance DIA_MIL_309_Stadtwache_EXIT(C_Info)
 {
 	npc = MIL_309_Stadtwache;
 	nr = 999;
-	condition = DIA_MIL_309_Stadtwache_EXIT_Condition;
-	information = DIA_MIL_309_Stadtwache_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_MIL_309_Stadtwache_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_MIL_309_Stadtwache_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

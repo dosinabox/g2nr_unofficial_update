@@ -518,6 +518,7 @@ instance DIA_Hanna_Blubb(C_Info)
 	description = "В логове все в порядке?";
 };
 
+
 func int DIA_Hanna_Blubb_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) && (Knows_SecretSign == TRUE) && (Andre_FoundThieves_KilledByMilitia == FALSE))
@@ -552,6 +553,7 @@ instance DIA_Hanna_Blubb2(C_Info)
 	description = "Ты знала о логове воров?";
 };
 
+
 func int DIA_Hanna_Blubb2_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) && (Knows_SecretSign == FALSE) && (Andre_FoundThieves_KilledByMilitia == FALSE))
@@ -576,6 +578,7 @@ instance DIA_Hanna_Blubb3(C_Info)
 	information = DIA_Hanna_Blubb3_Info;
 	important = TRUE;
 };
+
 
 func int DIA_Hanna_Blubb3_Condition()
 {
@@ -625,6 +628,7 @@ func void DIA_Hanna_Blubb3_Info()
 		MIS_RamirezSextant = LOG_FAILED;
 	};
 	B_CheckLog();
+	B_SetGuild(self,GIL_NONE);
 	self.aivar[AIV_DropDeadAndKill] = TRUE;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);

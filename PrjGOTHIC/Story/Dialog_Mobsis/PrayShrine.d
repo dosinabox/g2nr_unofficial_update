@@ -216,7 +216,7 @@ func void PC_PrayShrine_HEALSHRINE_Info()
 	var string ShrinesText;
 	var string ShrinesLeft;
 	Wld_PlayEffect("spellFX_HealShrine",hero,hero,0,0,0,FALSE);
-	Snd_Play("MFX_Heal_Cast");
+	Snd_Play("MFX_HEAL_CAST");
 	ShrineHealing = TRUE;
 	C_IsShrineObsessed(self);
 	ShrineHealing = FALSE;
@@ -339,7 +339,7 @@ func void PC_PrayShrine_Pray_Info()
 	{
 		SC_IsObsessed = TRUE;
 		PrintScreen(PRINT_SCIsObsessed,-1,-1,FONT_Screen,2);
-		Snd_Play("DEM_Die");
+		Snd_Play("DEM_DIE");
 	}
 	else
 	{
@@ -419,7 +419,7 @@ func void PC_PrayShrine_BlessSword_Info()
 	{
 		SC_IsObsessed = TRUE;
 		PrintScreen(PRINT_SCIsObsessed,-1,-1,FONT_Screen,2);
-		Snd_Play("DEM_Die");
+		Snd_Play("DEM_DIE");
 	}
 	else if(Npc_HasItems(hero,ItMi_Gold) >= Gold_BlessSword)
 	{
@@ -436,7 +436,7 @@ func void PC_PrayShrine_BlessSword_Info()
 			CreateInvItems(hero,ItMw_1H_Blessed_02,1);
 		};
 		Wld_PlayEffect("spellFX_PalHeal_ORIGIN",hero,hero,0,0,0,FALSE);
-		Snd_Play("MFX_Heal_Cast");
+		Snd_Play("MFX_HEAL_CAST");
 		B_GivePlayerXP(XP_SwordBlessed);
 	}
 	else
@@ -474,7 +474,7 @@ func void PC_PrayShrine_BlessSword_Final_Info()
 	{
 		SC_IsObsessed = TRUE;
 		PrintScreen(PRINT_SCIsObsessed,-1,-1,FONT_Screen,2);
-		Snd_Play("DEM_Die");
+		Snd_Play("DEM_DIE");
 	}
 	else if(Npc_HasItems(hero,ItPo_PotionOfDeath_01_MIS) || Npc_HasItems(hero,ItPo_PotionOfDeath_02_MIS))
 	{
@@ -491,7 +491,7 @@ func void PC_PrayShrine_BlessSword_Final_Info()
 			CreateInvItems(hero,ItMw_1H_Blessed_03,1);
 		};
 		Wld_PlayEffect("spellFX_PalHeal_ORIGIN",hero,hero,0,0,0,FALSE);
-		Snd_Play("MFX_Heal_Cast");
+		Snd_Play("MFX_HEAL_CAST");
 		B_GivePlayerXP(XP_SwordBlessed2);
 	}
 	else

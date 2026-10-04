@@ -3,21 +3,10 @@ instance DIA_Pedro_DI_EXIT(C_Info)
 {
 	npc = NOV_600_Pedro_DI;
 	nr = 999;
-	condition = DIA_Pedro_DI_EXIT_Condition;
-	information = DIA_Pedro_DI_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Pedro_DI_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Pedro_DI_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -80,10 +69,10 @@ func void DIA_Pedro_DI_YOU_tot()
 {
 	AI_Output(other,self,"DIA_Pedro_DI_YOU_tot_15_00");	//И слышать ничего не хочу. Я убью тебя.
 	AI_Output(self,other,"DIA_Pedro_DI_YOU_tot_09_01");	//Умоляю всеми богами...
+	PedroDI_Flee = LOG_RUNNING;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"SHIP");
 	B_Attack(self,other,AR_NONE,1);
-	PedroDI_Flee = LOG_RUNNING;
 };
 
 func void DIA_Pedro_DI_YOU_Serpentes()
@@ -107,10 +96,10 @@ func void DIA_Pedro_DI_YOU_FollowShip()
 {
 	AI_Output(other,self,"DIA_Pedro_DI_YOU_FollowShip_15_00");	//Хорошо. Иди за мной, я отведу тебя на корабль.
 	AI_Output(self,other,"DIA_Pedro_DI_YOU_FollowShip_09_01");	//Спасибо. Ты не пожалеешь об этом.
+	MIS_Pedro_DI_FollowShip = LOG_RUNNING;
+	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FOLLOWSHIP");
-	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	MIS_Pedro_DI_FollowShip = LOG_RUNNING;
 };
 
 
@@ -193,9 +182,9 @@ func void DIA_Pedro_DI_ArrivedAtShip_Back()
 {
 	AI_Output(other,self,"DIA_Pedro_DI_ArrivedAtShip_Back_15_00");	//Я услышал достаточно. Иди, найди себе место на моем корабле. А мне еще кое-что нужно сделать.
 	AI_Output(self,other,"DIA_Pedro_DI_ArrivedAtShip_Back_09_01");	//Да пребудет с тобой сила Инноса. Я буду молиться за тебя.
+	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"SHIP");
-	self.aivar[AIV_PARTYMEMBER] = FALSE;
 };
 
 
@@ -238,10 +227,10 @@ func void DIA_Pedro_DI_PERM_Info()
 			AI_Output(self,other,"DIA_Pedro_DI_PERM_09_04");	//Я полностью измотан.
 			AI_Output(other,self,"DIA_Pedro_DI_PERM_15_05");	//Поспи немного. Скоро мы опять выйдем в море.
 			AI_Output(self,other,"DIA_Pedro_DI_PERM_09_06");	//Спасибо. Я уже чуть не падаю. Спокойной ночи.
+			PedroDI_TalkNomore = TRUE;
+			self.aivar[AIV_PARTYMEMBER] = FALSE;
 			AI_StopProcessInfos(self);
 			Npc_ExchangeRoutine(self,"SLEEPSHIP");
-			self.aivar[AIV_PARTYMEMBER] = FALSE;
-			PedroDI_TalkNomore = TRUE;
 		}
 		else
 		{

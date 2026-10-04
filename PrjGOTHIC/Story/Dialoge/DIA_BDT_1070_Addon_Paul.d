@@ -3,21 +3,10 @@ instance DIA_Addon_Paul_EXIT(C_Info)
 {
 	npc = BDT_1070_Addon_Paul;
 	nr = 999;
-	condition = DIA_Addon_Paul_EXIT_Condition;
-	information = DIA_Addon_Paul_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Paul_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Paul_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -143,8 +132,8 @@ func void DIA_Addon_Paul_HunoArbeit_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Paul_HunoArbeit_15_00");	//Но ты же работаешь на Хуно! Так что ты должен что-то знать!
 	AI_Output(self,other,"DIA_Addon_Paul_HunoArbeit_03_01");	//(в отчаянии) Я ничего не знаю - честно! Мне нужно идти!
-	Npc_ExchangeRoutine(self,"AWAY");
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"AWAY");
 };
 
 
@@ -170,8 +159,8 @@ func void DIA_Addon_Paul_FearEsteban_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Paul_FearEsteban_15_00");	//Ты знаешь, что Эстебан сделает с тобой, если узнает, что ты прикрываешь Хуно?
 	AI_Output(self,other,"DIA_Addon_Paul_FearEsteban_03_01");	//Парень! Оставь меня в покое. Я не имею никакого отношения к этому.
-	Npc_ExchangeRoutine(self,"PRESTART");
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"PRESTART");
 };
 
 
@@ -222,9 +211,12 @@ instance DIA_Addon_BDT_1070_Paul_Mine(C_Info)
 
 func int DIA_Addon_Paul_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
+	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Addon_Stone_01))
+		{
+			return TRUE;
+		};
 	};
 };
 

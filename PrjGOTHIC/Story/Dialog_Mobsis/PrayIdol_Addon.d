@@ -84,7 +84,7 @@ func void B_GetBeliarsGold(var int Kohle)
 	};
 	CreateInvItems(hero,ItMi_Gold,Kohle);
 	AI_PrintScreen(ConcatStrings(IntToString(Kohle),PRINT_GoldTaken),-1,YPOS_GoldTaken,FONT_ScreenSmall,2);
-	Snd_Play("CS_Prayer_FokusFinal");
+	Snd_Play("CS_PRAYER_FOKUSFINAL");
 };
 
 

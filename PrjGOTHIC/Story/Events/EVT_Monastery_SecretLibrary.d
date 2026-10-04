@@ -5,7 +5,7 @@ func void EVT_Open_Door_Library_s1()
 {
 	if(EVT_Open_Door_Library_s1_OneTime == FALSE)
 	{
-		Snd_Play("DEM_Die");
+		Snd_Play("DEM_DIE");
 		Wld_InsertNpc(Skeleton,"FP_ROAM_NW_KDF_LIBRARY_19");
 		Wld_InsertNpc(Skeleton,"FP_ROAM_NW_KDF_LIBRARY_18");
 		Wld_InsertNpc(Skeleton,"FP_ROAM_NW_KDF_LIBRARY_30");

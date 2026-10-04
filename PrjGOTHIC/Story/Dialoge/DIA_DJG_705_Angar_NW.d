@@ -3,21 +3,10 @@ instance DIA_Angar_NW_EXIT(C_Info)
 {
 	npc = DJG_705_Angar_NW;
 	nr = 999;
-	condition = DIA_Angar_NW_EXIT_Condition;
-	information = DIA_Angar_NW_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Angar_NW_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Angar_NW_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -218,9 +207,12 @@ instance DIA_Angar_NW_WHEREAMULETT(C_Info)
 
 func int DIA_Angar_NW_WHEREAMULETT_Condition()
 {
-	if(!Npc_HasItems(other,ItAm_Mana_Angar_MIS) && (SC_KnowsAngarsAmulett == TRUE) && (DJG_AngarGotAmulett == FALSE))
+	if((SC_KnowsAngarsAmulett == TRUE) && (DJG_AngarGotAmulett == FALSE))
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,ItAm_Mana_Angar_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -242,9 +234,12 @@ instance DIA_Angar_NW_FOUNDAMULETT(C_Info)
 
 func int DIA_Angar_NW_FOUNDAMULETT_Condition()
 {
-	if(Npc_HasItems(other,ItAm_Mana_Angar_MIS) && (SC_KnowsAngarsAmulett == TRUE) && (DJG_AngarGotAmulett == FALSE))
+	if((SC_KnowsAngarsAmulett == TRUE) && (DJG_AngarGotAmulett == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAm_Mana_Angar_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -269,7 +264,11 @@ func int DIA_Angar_SCTellsAngarAboutMadPsi2_NW_Condition()
 {
 	if((SC_KnowsMadPsi == TRUE) && (Angar_KnowsMadPsi == FALSE))
 	{
-		if(Npc_KnowsInfo(other,DIA_AngarDJG_HALLO) || Npc_KnowsInfo(other,DIA_Angar_NW_HALLO))
+		if(Npc_KnowsInfo(other,DIA_AngarDJG_HALLO))
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Angar_NW_HALLO))
 		{
 			return TRUE;
 		};

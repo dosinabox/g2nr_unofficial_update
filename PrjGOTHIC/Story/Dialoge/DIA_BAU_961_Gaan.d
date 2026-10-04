@@ -39,6 +39,8 @@ func void DIA_Gaan_EXIT_Info()
 };
 
 
+var int DIA_Addon_Gaan_MeetingIsRunning_One_time;
+
 instance DIA_Addon_Gaan_MeetingIsRunning(C_Info)
 {
 	npc = BAU_961_Gaan;
@@ -57,9 +59,6 @@ func int DIA_Addon_Gaan_MeetingIsRunning_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Addon_Gaan_MeetingIsRunning_One_time;
 
 func void DIA_Addon_Gaan_MeetingIsRunning_Info()
 {
@@ -286,6 +285,8 @@ func void DIA_Gaan_MONSTER_Info()
 };
 
 
+var int Gaan_Deal;
+
 instance DIA_Gaan_WASZAHLSTDU(C_Info)
 {
 	npc = BAU_961_Gaan;
@@ -303,8 +304,6 @@ func int DIA_Gaan_WASZAHLSTDU_Condition()
 		return TRUE;
 	};
 };
-
-var int Gaan_Deal;
 
 func void DIA_Gaan_WASZAHLSTDU_Info()
 {

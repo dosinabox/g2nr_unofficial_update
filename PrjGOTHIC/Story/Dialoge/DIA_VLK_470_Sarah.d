@@ -3,22 +3,10 @@ instance DIA_Sarah_EXIT(C_Info)
 {
 	npc = VLK_470_Sarah;
 	nr = 999;
-	condition = DIA_Sarah_EXIT_Condition;
-	information = DIA_Sarah_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Sarah_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Sarah_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -191,7 +179,7 @@ instance DIA_Sarah_IMKNAST(C_Info)
 
 func int DIA_Sarah_IMKNAST_Condition()
 {
-	if((MIS_Canthars_KomproBrief == LOG_SUCCESS) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_Canthars_KomproBrief == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -199,7 +187,7 @@ func int DIA_Sarah_IMKNAST_Condition()
 
 func void DIA_Sarah_IMKNAST_Info()
 {
-	AI_Output(self,other,"DIA_Sarah_IMKNAST_16_00");	//“ы! “ы осмелилс€ по€витьс€ здесь! я, конечно не могу доказать этого, но € готова покл€стьс€, что это твоих рук дело!
+	AI_Output(self,other,"DIA_Sarah_IMKNAST_16_00");	//“ы! “ы осмелилс€ по€витьс€ здесь! я, конечно, не могу доказать этого, но € готова покл€стьс€, что это твоих рук дело!
 	AI_Output(self,other,"DIA_Sarah_IMKNAST_16_01");	//Ёто ты виноват, что € здесь. “ы и этот прокл€тый  антар - да накажет вас »ннос!
 	AI_StopProcessInfos(self);
 };

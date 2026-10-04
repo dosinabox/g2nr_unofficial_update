@@ -124,7 +124,6 @@ func int DIA_Addon_Nadja_LuciaInfo_Condition()
 	};
 };
 
-
 func void DIA_Addon_Nadja_LuciaInfo_Info()
 {
 	if(Nadja_LuciaInfo == TRUE)

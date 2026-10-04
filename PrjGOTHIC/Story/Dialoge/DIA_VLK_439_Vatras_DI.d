@@ -3,22 +3,10 @@ instance DIA_Vatras_DI_EXIT(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
 	nr = 999;
-	condition = DIA_Vatras_DI_EXIT_Condition;
-	information = DIA_Vatras_DI_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Vatras_DI_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Vatras_DI_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -585,6 +573,8 @@ func void DIA_Vatras_DI_UndeadDragonDead_Info()
 };
 
 
+var int DIA_Addon_Vatras_PissOffForever_DI_OneTime;
+
 instance DIA_Addon_Vatras_PissOffForever_DI(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
@@ -610,9 +600,6 @@ func int DIA_Addon_Vatras_PissOffForever_DI_Condition()
 		};
 	};
 };
-
-
-var int DIA_Addon_Vatras_PissOffForever_DI_OneTime;
 
 func void DIA_Addon_Vatras_PissOffForever_DI_Info()
 {

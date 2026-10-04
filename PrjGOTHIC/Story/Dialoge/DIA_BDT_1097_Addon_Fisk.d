@@ -246,9 +246,12 @@ instance DIA_Addon_Fisk_GivePaket(C_Info)
 
 func int DIA_Addon_Fisk_GivePaket_Condition()
 {
-	if((MIS_Fisk_Lockpicks == LOG_RUNNING) && Npc_HasItems(other,ItMi_Addon_Fisk_Paket))
+	if(MIS_Fisk_Lockpicks == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Addon_Fisk_Paket))
+		{
+			return TRUE;
+		};
 	};
 };
 

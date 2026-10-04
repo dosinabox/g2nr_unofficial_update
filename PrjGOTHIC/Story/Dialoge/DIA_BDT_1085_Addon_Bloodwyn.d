@@ -3,21 +3,10 @@ instance DIA_Addon_Bloodwyn_EXIT(C_Info)
 {
 	npc = BDT_1085_Addon_Bloodwyn;
 	nr = 999;
-	condition = DIA_Addon_Bloodwyn_EXIT_Condition;
-	information = DIA_Addon_Bloodwyn_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Bloodwyn_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Bloodwyn_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -73,6 +62,8 @@ func void Bloodwyn_Choices_3()
 };
 
 
+var int Bloodwyn_KnowsSC;
+
 instance DIA_Addon_Bloodwyn_Wait(C_Info)
 {
 	npc = BDT_1085_Addon_Bloodwyn;
@@ -90,8 +81,6 @@ func int DIA_Addon_Bloodwyn_Wait_Condition()
 		return TRUE;
 	};
 };
-
-var int Bloodwyn_KnowsSC;
 
 func void DIA_Addon_Bloodwyn_Wait_Info()
 {

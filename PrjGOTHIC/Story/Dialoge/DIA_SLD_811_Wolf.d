@@ -3,21 +3,10 @@ instance DIA_Wolf_EXIT(C_Info)
 {
 	npc = SLD_811_Wolf;
 	nr = 999;
-	condition = DIA_Wolf_EXIT_Condition;
-	information = DIA_Wolf_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Wolf_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Wolf_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -399,9 +388,12 @@ instance DIA_Wolf_BringPlates(C_Info)
 
 func int DIA_Wolf_BringPlates_Condition()
 {
-	if((MIS_Wolf_BringCrawlerPlates == LOG_RUNNING) && (Npc_HasItems(other,ItAt_CrawlerPlate) >= 10))
+	if(MIS_Wolf_BringCrawlerPlates == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAt_CrawlerPlate) >= 10)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -467,6 +459,9 @@ func void DIA_Wolf_ArmorReady_Info()
 };
 
 
+var int DIA_Wolf_BENGAR_oneTime;
+var int Wolf_BENGAR_geld;
+
 instance DIA_Wolf_BENGAR(C_Info)
 {
 	npc = SLD_811_Wolf;
@@ -485,10 +480,6 @@ func int DIA_Wolf_BENGAR_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Wolf_BENGAR_oneTime;
-var int Wolf_BENGAR_geld;
 
 func void DIA_Wolf_BENGAR_Info()
 {

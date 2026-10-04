@@ -681,7 +681,7 @@ func void Use_HealObsession()
 		SC_ObsessionTimes += 1;
 		B_ClearSCObsession(self);
 		Wld_PlayEffect("spellFX_LIGHTSTAR_VIOLET",hero,hero,0,0,0,FALSE);
-		Snd_Play("SFX_HealObsession");
+		Snd_Play("SFX_HEALOBSESSION");
 	};
 };
 

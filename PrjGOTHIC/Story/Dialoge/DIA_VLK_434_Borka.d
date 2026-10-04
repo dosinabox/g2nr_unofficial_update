@@ -3,21 +3,10 @@ instance DIA_Borka_EXIT(C_Info)
 {
 	npc = VLK_434_Borka;
 	nr = 999;
-	condition = DIA_Borka_EXIT_Condition;
-	information = DIA_Borka_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Borka_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Borka_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -197,9 +186,12 @@ instance DIA_Borka_SECOND_CHANCE(C_Info)
 
 func int DIA_Borka_SECOND_CHANCE_Condition()
 {
-	if((Borka_Deal == TRUE) && (Npc_HasItems(other,ItMi_Gold) >= 50) && (Borka_RefuseToTalk == FALSE))
+	if((Borka_Deal == TRUE) && (Borka_RefuseToTalk == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_Gold) >= 50)
+		{
+			return TRUE;
+		};
 	};
 };
 

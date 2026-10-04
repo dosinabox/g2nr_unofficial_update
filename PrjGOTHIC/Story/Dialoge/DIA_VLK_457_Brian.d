@@ -3,22 +3,10 @@ instance DIA_Brian_EXIT(C_Info)
 {
 	npc = VLK_457_Brian;
 	nr = 999;
-	condition = DIA_Brian_EXIT_Condition;
-	information = DIA_Brian_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Brian_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Brian_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -60,7 +48,11 @@ func int DIA_Brian_AboutLehrling_Condition()
 {
 	if(Player_IsApprentice == APP_NONE)
 	{
-		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
 		{
 			return TRUE;
 		};

@@ -957,7 +957,7 @@ func void DIA_Lee_WegenBullco_Info()
 {
 	AI_Output(other,self,"DIA_Lee_Add_15_00");	//У Онара теперь на несколько овец меньше благодаря Буллко...
 	AI_Output(self,other,"DIA_Lee_Add_04_01");	//Ох, не приставай ко мне с такой чепухой! У меня и без этого проблем хватает.
-	if((Bullco_scharf == TRUE) && !Npc_IsDead(Bullco) && (MIS_ReadyforChapter4 == FALSE))
+	if((Bullco_scharf == TRUE) && !Npc_IsDead(Bullco) && (MIS_ReadyforChapter4 == FALSE) && (SLD_Bullco_Defeated == FALSE))
 	{
 		AI_Output(other,self,"DIA_Lee_Add_15_02");	//У меня тоже. Буллко, похоже, видит проблему во мне. Он хочет, чтобы я покинул ферму...
 		AI_Output(self,other,"DIA_Lee_Add_04_03");	//Да, и что? Постой за себя.
@@ -1816,9 +1816,16 @@ instance DIA_Lee_StealShip(C_Info)
 
 func int DIA_Lee_StealShip_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lee_GetShip) && (MIS_RichtersPermissionForShip == FALSE) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
+	if(Npc_KnowsInfo(other,DIA_Lee_GetShip) && (MIS_RichtersPermissionForShip == FALSE))
 	{
-		return TRUE;
+		if(other.guild == GIL_SLD)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_DJG)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1832,6 +1839,8 @@ func void DIA_Lee_StealShip_Info()
 	B_GiveInvItems(self,other,ItWr_ForgedShipLetter_MIS,1);
 };
 
+
+var int SCToldLeeHeKnowWhereEnemy;
 
 instance DIA_Lee_KnowWhereEnemy(C_Info)
 {
@@ -1848,14 +1857,16 @@ func int DIA_Lee_KnowWhereEnemy_Condition()
 {
 	if((MIS_SCKnowsWayToIrdorath == TRUE) && (Lee_IsOnBoard == FALSE))
 	{
-		if(Npc_KnowsInfo(other,DIA_Lee_GetShip) || (MIS_ShipIsFree == TRUE))
+		if(MIS_ShipIsFree == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_KnowsInfo(other,DIA_Lee_GetShip))
 		{
 			return TRUE;
 		};
 	};
 };
-
-var int SCToldLeeHeKnowWhereEnemy;
 
 func void DIA_Lee_KnowWhereEnemy_Info()
 {

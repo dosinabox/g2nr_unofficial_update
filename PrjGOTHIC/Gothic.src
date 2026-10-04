@@ -87,6 +87,7 @@ Story\B_Story\B_NpcSetDrunk.d
 Story\B_Story\B_CheckRedLightUndercover.d
 Story\B_Story\B_UnEquipAllWeapons.d
 Story\B_Story\B_UnEquipIllegalMagicItems.d
+Story\B_Story\C_BennetIsInPrison.d
 Items\Tuning_Addon_BeliarsWeapons.d
 Items\Tuning_Melee_Weapons.d
 Items\Tuning_Ranged_Weapons.d
@@ -176,7 +177,6 @@ AI\Human\B_Human\B_ResetAll.d
 Story\B_Story\B_InspectMeleeWeapon.d
 Story\B_Story\B_UseItem.d
 Story\B_AssignAmbientInfos\DIA_Common.d
-Story\B_AssignAmbientInfos\DIA_Common_EXIT.d
 Story\B_AssignAmbientInfos\B_LastWarningVatras.d
 Story\B_AssignAmbientInfos\B_Addon_Riordian_TeachWisp.d
 AI\Human\B_Human\B_ValidateOther.d
@@ -247,6 +247,7 @@ Story\B_AssignAmbientInfos\B_AssignDementorTalk.d
 Story\B_AssignAmbientInfos\B_AssignSchiffswachenTalk.d
 AI\Human\B_Human\B_AssessPlayer.d
 AI\Human\B_Human\B_MoveMob.d
+AI\Human\B_Human\B_MoveNpc.d
 AI\Human\B_Human\B_UseAvailableMob.d
 Story\B_Content\B_GiveThiefXP.d
 Story\B_Story\B_DetectAndTakeItem.d
@@ -450,6 +451,7 @@ Story\B_Story\B_BuildDateString.d
 Story\B_Story\B_BuildFullVersionString.d
 Story\B_Story\B_BuildOptionString.d
 Story\B_Story\B_RemoveTestNpcs.d
+Story\B_Story\C_CanAskPiratesAboutFrancis.d
 Story\B_Story\C_LehmarDebtIsOverdue.d
 Story\B_Story\C_SCHasAnyDragonHeart.d
 Story\B_Story\C_SCHasAnyFernandoEvidence.d
@@ -1322,6 +1324,7 @@ Story\B_GiveTradeInv\B_GiveTradeInv_Thorben.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Vatras_DI.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Zuris.d
 Story\B_GiveTradeInv\B_GiveTradeInv.d
+Story\B_AssignAmbientInfos\DIA_Common_EXIT.d
 Story\B_AssignAmbientInfos\B_Addon_GivePotion.d
 AI\Human\ZS_Human\ZS_ClearRoom.d
 AI\Human\ZS_Human\ZS_Dead.d
@@ -1373,6 +1376,7 @@ Story\B_Story\B_Enter_NewWorld.d
 Story\B_Story\B_EnteredBanditsCamp.d
 Story\B_Story\B_SetAmbientXP.d
 Story\B_Story\B_Kapitelwechsel.d
+Story\B_Story\C_SylvioMenDefeated.d
 Story\B_Content\B_CaptainConditions.d
 Story\B_Content\B_JoinShip.d
 Story\B_Content\B_CaptainCallsAllOnBoard.d
@@ -1398,7 +1402,7 @@ Story\Dialoge\DIA_BDT_10028_Addon_Buddler.d
 Story\Dialoge\DIA_BDT_10029_Addon_Buddler.d
 Story\Dialoge\DIA_BDT_10030_Addon_Buddler.d
 Story\Dialoge\DIA_BDT_10031_Addon_Wache.d
-Story\Dialoge\DIA_BDT_1017_Bandit_L.d
+Story\Dialoge\DIA_BDT_1024_MalethsBandit.d
 Story\Dialoge\DIA_BDT_1064_Bandit_L.d
 Story\Dialoge\DIA_BDT_1070_Addon_Paul.d
 Story\Dialoge\DIA_BDT_1071_Addon_Ramon.d

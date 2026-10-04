@@ -4,7 +4,7 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 	var string concatText;
 	var int cost;
 	var int limitReason;
-	limitReason = B_GetTeachLimitReason(oth,talent,percent,teacherMax);
+	limitReason = B_GetTeachLimitReason(oth,talent,percent,teacherMAX);
 	if(limitReason == TLR_AlreadyMax)
 	{
 		B_PrintPlayerMiddle(oth,PRINT_NoLearnOverMAX);

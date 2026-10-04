@@ -24,7 +24,7 @@ instance BDT_10015_Addon_Emilio(Npc_Default)
 func void Rtn_Start_10015()
 {
 	TA_Sit_Bench(8,0,22,0,"BL_INN_01_BENCH");
-	TA_Stand_Drinking(22,0,10,0,"BL_INN_03_C");
+	TA_Stand_Drinking(22,0,8,0,"BL_INN_03_C");
 };
 
 func void Rtn_Mine_10015()

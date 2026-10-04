@@ -489,9 +489,9 @@ func void DIA_Canthar_SarahIsDead_Info()
 	B_GetCantharReward();
 	MIS_Canthars_KomproBrief = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Canthars_KomproBrief);
-	Npc_ExchangeRoutine(self,"MARKTSTAND");
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"MARKTSTAND");
 };
 
 

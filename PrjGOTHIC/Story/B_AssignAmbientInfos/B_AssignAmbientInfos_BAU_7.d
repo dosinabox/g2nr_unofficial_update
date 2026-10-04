@@ -42,7 +42,7 @@ func void DIA_BAU_7_JOIN_Info()
 {
 	DIA_Common_TellMeAboutSLD();
 	AI_Output(self,other,"DIA_BAU_7_JOIN_07_01");	//ќнар нан€л их дл€ защиты своей фермы.
-	AI_Output(self,other,"DIA_BAU_7_JOIN_07_02");	//Ѕольшинство их них ведут себ€ так, как будто эта ферма принадлежит им. Ќо все же они защищают нас.
+	AI_Output(self,other,"DIA_BAU_7_JOIN_07_02");	//Ѕольшинство из них ведут себ€ так, как будто эта ферма принадлежит им. Ќо все же они защищают нас.
 };
 
 

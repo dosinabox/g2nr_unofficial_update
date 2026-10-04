@@ -27,6 +27,6 @@ func void Rtn_Start_475()
 	TA_Stand_ArmsCrossed(10,55,18,50,"NW_CITY_WATCH_FIGHT_02");
 	TA_Smalltalk(18,50,3,5,"NW_CITY_HABOUR_04");
 	TA_Stand_Drinking(3,5,5,5,"NW_CITY_HABOUR_PUFF_IN_01");
-	TA_Smalltalk(5,5,10,5,"NW_CITY_HABOUR_POOR_AREA_01");
+	TA_Smalltalk(5,5,10,55,"NW_CITY_HABOUR_POOR_AREA_01");
 };
 

@@ -14,21 +14,10 @@ instance DIA_BDT_1031_Fluechtling_EXIT(C_Info)
 {
 	npc = BDT_1031_Fluechtling;
 	nr = 999;
-	condition = DIA_BDT_1031_Fluechtling_EXIT_Condition;
-	information = DIA_BDT_1031_Fluechtling_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_BDT_1031_Fluechtling_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_BDT_1031_Fluechtling_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -129,21 +118,10 @@ instance DIA_BDT_1032_Fluechtling_EXIT(C_Info)
 {
 	npc = BDT_1032_Fluechtling;
 	nr = 999;
-	condition = DIA_BDT_1032_Fluechtling_EXIT_Condition;
-	information = DIA_BDT_1032_Fluechtling_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_BDT_1032_Fluechtling_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_BDT_1032_Fluechtling_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -177,21 +155,10 @@ instance DIA_BDT_1033_Fluechtling_EXIT(C_Info)
 {
 	npc = BDT_1033_Fluechtling;
 	nr = 999;
-	condition = DIA_BDT_1033_Fluechtling_EXIT_Condition;
-	information = DIA_BDT_1033_Fluechtling_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_BDT_1033_Fluechtling_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_BDT_1033_Fluechtling_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -285,21 +252,10 @@ instance DIA_BDT_1034_Fluechtling_EXIT(C_Info)
 {
 	npc = BDT_1034_Fluechtling;
 	nr = 999;
-	condition = DIA_BDT_1034_Fluechtling_EXIT_Condition;
-	information = DIA_BDT_1034_Fluechtling_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_BDT_1034_Fluechtling_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_BDT_1034_Fluechtling_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -333,21 +289,10 @@ instance DIA_BDT_1035_Fluechtling_EXIT(C_Info)
 {
 	npc = BDT_1035_Fluechtling;
 	nr = 999;
-	condition = DIA_BDT_1035_Fluechtling_EXIT_Condition;
-	information = DIA_BDT_1035_Fluechtling_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_BDT_1035_Fluechtling_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_BDT_1035_Fluechtling_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

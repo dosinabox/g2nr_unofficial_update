@@ -56,9 +56,9 @@ func void Rtn_Kloster_952()
 	TA_Sleep(22,0,8,0,"NW_MONASTERY_NOVICE04_07");
 };
 
-func void Rtn_Flee_952()
+/*func void Rtn_Flee_952()
 {
 	TA_Stand_Drinking(8,0,22,0,"NW_TAVERNE_CROSS");
 	TA_Sleep(22,0,8,0,"NW_TAVERNE_CROSS");
-};
+};*/
 

@@ -229,9 +229,9 @@ instance DIA_Addon_Pedro_Statuette_Abgeben(C_Info)
 
 func int DIA_Addon_Pedro_Statuette_Abgeben_Condition()
 {
-	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron) && Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette) && (LostInnosStatueInMonastery == FALSE))
+	if((other.guild != GIL_NONE) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF) && Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette) && (LostInnosStatueInMonastery == FALSE))
 	{
-		if((other.guild != GIL_NONE) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
+		if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron))
 		{
 			return TRUE;
 		};
@@ -280,6 +280,13 @@ func void DIA_Pedro_Rules_Info()
 
 var int DIA_Pedro_AUFNAHME_NOPERM;
 
+func void B_DIA_Pedro_AUFNAHME_Choice()
+{
+	Info_ClearChoices(DIA_Pedro_AUFNAHME);
+	Info_AddChoice(DIA_Pedro_AUFNAHME,"я еще немного подумаю над этим.",DIA_Pedro_AUFNAHME_NO);
+	Info_AddChoice(DIA_Pedro_AUFNAHME,"ƒа, € хочу посв€тить свою жизнь служению »нносу.",DIA_Pedro_AUFNAHME_YES);
+};
+
 instance DIA_Pedro_AUFNAHME(C_Info)
 {
 	npc = NOV_600_Pedro;
@@ -297,13 +304,6 @@ func int DIA_Pedro_AUFNAHME_Condition()
 	{
 		return TRUE;
 	};
-};
-
-func void B_DIA_Pedro_AUFNAHME_Choice()
-{
-	Info_ClearChoices(DIA_Pedro_AUFNAHME);
-	Info_AddChoice(DIA_Pedro_AUFNAHME,"я еще немного подумаю над этим.",DIA_Pedro_AUFNAHME_NO);
-	Info_AddChoice(DIA_Pedro_AUFNAHME,"ƒа, € хочу посв€тить свою жизнь служению »нносу.",DIA_Pedro_AUFNAHME_YES);
 };
 
 func void DIA_Pedro_AUFNAHME_Info()

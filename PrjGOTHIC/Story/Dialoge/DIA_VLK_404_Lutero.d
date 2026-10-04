@@ -3,22 +3,10 @@ instance DIA_Lutero_EXIT(C_Info)
 {
 	npc = VLK_404_Lutero;
 	nr = 999;
-	condition = DIA_Lutero_EXIT_Condition;
-	information = DIA_Lutero_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Lutero_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Lutero_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -28,11 +16,11 @@ func int C_LuteroIsReadyToTalk()
 	{
 		return TRUE;
 	};
-	if(hero.guild == GIL_NONE)
+	if(other.guild == GIL_NONE)
 	{
 		return FALSE;
 	};
-	if(hero.guild == GIL_NOV)
+	if(other.guild == GIL_NOV)
 	{
 		return FALSE;
 	};
@@ -51,9 +39,12 @@ instance DIA_Lutero_Hallo(C_Info)
 
 func int DIA_Lutero_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && C_LuteroIsReadyToTalk())
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(C_LuteroIsReadyToTalk())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -80,9 +71,12 @@ instance DIA_Lutero_GetLost(C_Info)
 
 func int DIA_Lutero_GetLost_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && !C_LuteroIsReadyToTalk())
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(!C_LuteroIsReadyToTalk())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -154,9 +148,12 @@ instance DIA_Lutero_Kralle(C_Info)
 
 func int DIA_Lutero_Kralle_Condition()
 {
-	if(Npc_HasItems(other,ItAt_ClawLeader) && Npc_KnowsInfo(other,DIA_Lutero_Snapper))
+	if(Npc_KnowsInfo(other,DIA_Lutero_Snapper))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItAt_ClawLeader))
+		{
+			return TRUE;
+		};
 	};
 };
 

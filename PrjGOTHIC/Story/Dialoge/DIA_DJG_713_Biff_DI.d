@@ -3,21 +3,10 @@ instance DIA_Biff_DI_EXIT(C_Info)
 {
 	npc = DJG_713_Biff_DI;
 	nr = 999;
-	condition = DIA_Biff_DI_EXIT_Condition;
-	information = DIA_Biff_DI_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Biff_DI_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Biff_DI_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -92,9 +81,12 @@ instance DIA_Biff_DI_ORKS(C_Info)
 
 func int DIA_Biff_DI_ORKS_Condition()
 {
-	if((Npc_GetDistToWP(self,"DI_SHIP_03") < 1000) && (OrkSturmDI == TRUE) && (UndeadDragonIsDead == FALSE))
+	if((OrkSturmDI == TRUE) && (UndeadDragonIsDead == FALSE))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"DI_SHIP_03") < 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 

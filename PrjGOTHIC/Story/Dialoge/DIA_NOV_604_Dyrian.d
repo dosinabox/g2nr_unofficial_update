@@ -3,21 +3,10 @@ instance DIA_Dyrian_EXIT(C_Info)
 {
 	npc = NOV_604_Dyrian;
 	nr = 999;
-	condition = DIA_Dyrian_EXIT_Condition;
-	information = DIA_Dyrian_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Dyrian_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Dyrian_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -173,9 +162,20 @@ instance DIA_Dyrian_Scroll(C_Info)
 
 func int DIA_Dyrian_Scroll_Condition()
 {
-	if((Kapitel == 1) && (MIS_Schnitzeljagd == LOG_RUNNING) || (MIS_Rune == LOG_RUNNING) || (MIS_Golem == LOG_RUNNING))
+	if(Kapitel == 1)
 	{
-		return TRUE;
+		if(MIS_Schnitzeljagd == LOG_RUNNING)
+		{
+			return TRUE;
+		};
+		if(MIS_Rune == LOG_RUNNING)
+		{
+			return TRUE;
+		};
+		if(MIS_Golem == LOG_RUNNING)
+		{
+			return TRUE;
+		};
 	};
 };
 

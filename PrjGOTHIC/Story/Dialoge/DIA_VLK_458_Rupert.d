@@ -3,22 +3,10 @@ instance DIA_Rupert_EXIT(C_Info)
 {
 	npc = VLK_458_Rupert;
 	nr = 999;
-	condition = DIA_Rupert_EXIT_Condition;
-	information = DIA_Rupert_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Rupert_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Rupert_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -89,9 +77,16 @@ instance DIA_Rupert_HelpMeIntoOV(C_Info)
 
 func int DIA_Rupert_HelpMeIntoOV_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rupert_ZuPal) && ((other.guild == GIL_NONE) || (other.guild == GIL_NOV)) && (Player_IsApprentice == APP_NONE))
+	if(Npc_KnowsInfo(other,DIA_Rupert_ZuPal) && (Player_IsApprentice == APP_NONE))
 	{
-		return TRUE;
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -120,9 +115,16 @@ instance DIA_Rupert_WoMatteo(C_Info)
 
 func int DIA_Rupert_WoMatteo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rupert_HelpMeIntoOV) && ((other.guild == GIL_NONE) || (other.guild == GIL_NOV)) && (Knows_Matteo == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Rupert_HelpMeIntoOV) && (Knows_Matteo == FALSE))
 	{
-		return TRUE;
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -151,9 +153,16 @@ instance DIA_Rupert_WerEinfluss(C_Info)
 
 func int DIA_Rupert_WerEinfluss_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rupert_HelpMeIntoOV) && ((other.guild == GIL_NONE) || (other.guild == GIL_NOV)))
+	if(Npc_KnowsInfo(other,DIA_Rupert_HelpMeIntoOV))
 	{
-		return TRUE;
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -182,9 +191,16 @@ instance DIA_Rupert_Work(C_Info)
 
 func int DIA_Rupert_Work_Condition()
 {
-	if(((other.guild == GIL_NONE) || (other.guild == GIL_NOV)) && (Player_IsApprentice == APP_NONE))
+	if(Player_IsApprentice == APP_NONE)
 	{
-		return TRUE;
+		if(other.guild == GIL_NONE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_NOV)
+		{
+			return TRUE;
+		};
 	};
 };
 

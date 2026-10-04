@@ -19,22 +19,10 @@ instance DIA_Baltram_EXIT(C_Info)
 {
 	npc = VLK_410_Baltram;
 	nr = 999;
-	condition = DIA_Baltram_EXIT_Condition;
-	information = DIA_Baltram_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Baltram_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Baltram_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -263,7 +251,7 @@ func void DIA_Baltram_WAREZ_Info()
 		B_LogEntry(TOPIC_CityTrader,"Ѕальтрам торгует продуктами на рыночной площади.");
 		Baltram_TradeLOG = TRUE;
 	};
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS))
+	if(C_BennetIsInPrison())
 	{
 		AI_Output(self,other,"DIA_Baltram_WAREZ_01_01");	//»м не стоило допускать, чтобы все зашло так далеко. “еперь вот один из наемников убил паладина.
 		AI_Output(self,other,"DIA_Baltram_WAREZ_01_02");	//„то-то подобное об€зательно должно было случитьс€!

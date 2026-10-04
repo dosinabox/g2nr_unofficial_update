@@ -3,21 +3,10 @@ instance DIA_Jack_DI_EXIT(C_Info)
 {
 	npc = VLK_444_Jack_DI;
 	nr = 999;
-	condition = DIA_Jack_DI_EXIT_Condition;
-	information = DIA_Jack_DI_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Jack_DI_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Jack_DI_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -94,7 +83,7 @@ func void DIA_Jack_DI_UndeadDragonDead_Info()
 	AI_Output(self,other,"DIA_Jack_DI_UndeadDragonDead_14_01");	//Я надеялся, что все кончится хорошо. Но, должен признать, последние несколько часов я не был так уверен.
 	AI_Output(self,other,"DIA_Jack_DI_UndeadDragonDead_14_02");	//Мы можем наконец поднять паруса?
 	Info_ClearChoices(DIA_Jack_DI_UndeadDragonDead);
-	Info_AddChoice(DIA_Jack_DI_UndeadDragonDead,"Подожди немного.",DIA_Jack_DI_UndeadDragonDead_moment);
+	Info_AddChoice(DIA_Jack_DI_UndeadDragonDead,"Подожди немного. Я еще кое-что должен сделать.",DIA_Jack_DI_UndeadDragonDead_moment);
 	Info_AddChoice(DIA_Jack_DI_UndeadDragonDead,"Да. Закончим с этим.",DIA_Jack_DI_UndeadDragonDead_over);
 };
 

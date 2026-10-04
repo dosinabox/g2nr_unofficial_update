@@ -3,21 +3,10 @@ instance DIA_Jorgen_DI_EXIT(C_Info)
 {
 	npc = VLK_4250_Jorgen_DI;
 	nr = 999;
-	condition = DIA_Jorgen_DI_EXIT_Condition;
-	information = DIA_Jorgen_DI_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Jorgen_DI_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Jorgen_DI_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -79,7 +68,7 @@ func void DIA_Jorgen_DI_UndeadDragonDead_Info()
 	AI_Output(other,self,"DIA_Jorgen_DI_UndeadDragonDead_15_00");	//Врагу настал конец.
 	AI_Output(self,other,"DIA_Jorgen_DI_UndeadDragonDead_07_01");	//Это хорошие новости. Надеюсь, нам больше ничего не нужно на этом острове?
 	Info_ClearChoices(DIA_Jorgen_DI_UndeadDragonDead);
-	Info_AddChoice(DIA_Jorgen_DI_UndeadDragonDead,"Подожди минутку.",DIA_Jorgen_DI_UndeadDragonDead_moment);
+	Info_AddChoice(DIA_Jorgen_DI_UndeadDragonDead,"Подожди минутку. Я забыл сделать кое-что.",DIA_Jorgen_DI_UndeadDragonDead_moment);
 	Info_AddChoice(DIA_Jorgen_DI_UndeadDragonDead,"Все, мы можем отправляться в путь.",DIA_Jorgen_DI_UndeadDragonDead_over);
 };
 

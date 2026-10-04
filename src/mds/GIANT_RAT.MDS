@@ -77,7 +77,7 @@ Model ("Giant_Rat")
 			aniAlias	("s_FistWalkBL"					1	"s_FistWalkBL"	0.0	0.1	M.	"s_FistWalkL"				R)
 		// -----------------------------------------------------------------------------------------------------------------------------
 		// Loop -> Ambient
-			aniAlias	("t_FistWalkBL_2_FistWalk"		1	"s_FistWalk"	0.0	0.0	M:	"t_FistWalk_2_FistWalkL"	R)
+			aniAlias	("t_FistWalkBL_2_FistWalk"		1	"s_FistWalk"	0.0	0.0	M.	"t_FistWalk_2_FistWalkL"	R)
 			aniBlend	("t_FistWalkBR_2_FistWalk"			"s_FistWalk"	0.2	0.2)
 
 /////////////////////
@@ -434,5 +434,5 @@ Model ("Giant_Rat")
 //			aniAlias	("t_Stand_2_Victim_Sle"		1	"s_Victim_Sle"			0.1	0.0	M.	"t_Stand_2_Sleep"	F)
 //			aniAlias	("s_Victim_Sle"				1	"s_Victim_Sle"			0.1	0.1	M.	"s_Sleep"			F)
 //			aniAlias	("t_Victim_Sle_2_Stand"		1	""						0.0	0.2	M.	"t_Sleep_2_Stand"	F)
+	}
 }
-

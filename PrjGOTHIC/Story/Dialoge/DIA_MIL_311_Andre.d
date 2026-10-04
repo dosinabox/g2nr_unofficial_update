@@ -1351,11 +1351,14 @@ instance DIA_Andre_LORDHAGEN(C_Info)
 
 func int DIA_Andre_LORDHAGEN_Condition()
 {
-	if((other.guild == GIL_MIL) && (Andre_LordHagenNichtZuSprechen == TRUE) && !Npc_IsDead(LordHagen))
+	if((other.guild == GIL_MIL) && (Andre_LordHagenNichtZuSprechen == TRUE))
 	{
-		if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+		if(!Npc_IsDead(LordHagen))
 		{
-			return TRUE;
+			if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -1747,6 +1750,7 @@ func void DIA_Andre_HILFBAUERLOBART_Info()
 		B_StartOtherRoutine(Vino,"BUGSTHERE");
 		B_StartOtherRoutine(LobartsBauer1,"BUGSTHERE");
 		B_StartOtherRoutine(LobartsBauer2,"BUGSTHERE");
+		AI_StopProcessInfos(self);
 		Wld_InsertNpc(Lobarts_Giant_Bug1,"NW_FARM1_FIELD_06");
 		Wld_InsertNpc(Lobarts_Giant_Bug2,"NW_FARM1_FIELD_06");
 		Wld_InsertNpc(Lobarts_Giant_Bug3,"NW_FARM1_FIELD_05");
@@ -1758,8 +1762,8 @@ func void DIA_Andre_HILFBAUERLOBART_Info()
 	else if(other.guild == GIL_PAL)
 	{
 		B_ReportToHagenNow();
+		AI_StopProcessInfos(self);
 	};
-	AI_StopProcessInfos(self);
 };
 
 

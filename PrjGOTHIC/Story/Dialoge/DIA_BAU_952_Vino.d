@@ -262,7 +262,6 @@ func int DIA_Vino_DMTAMSTART_Condition()
 	};
 };
 
-
 func void DIA_Vino_DMTAMSTART_Info()
 {
 	AI_Output(other,self,"DIA_Vino_DMTAMSTART_15_00");	//А как у тебя дела?

@@ -3,22 +3,10 @@ instance DIA_Salandril_EXIT(C_Info)
 {
 	npc = VLK_422_Salandril;
 	nr = 999;
-	condition = DIA_Salandril_EXIT_Condition;
-	information = DIA_Salandril_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Salandril_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Salandril_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -199,9 +187,13 @@ instance DIA_Salandril_GehinsKloster(C_Info)
 
 func int DIA_Salandril_GehinsKloster_Condition()
 {
-	if((SC_KnowsProspektorSalandril == TRUE) || (MIS_Serpentes_BringSalandril_SLD == LOG_RUNNING))
+	if(Npc_KnowsInfo(other,DIA_Salandril_KLOSTER) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
 	{
-		if(Npc_KnowsInfo(other,DIA_Salandril_KLOSTER) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
+		if(SC_KnowsProspektorSalandril == TRUE)
+		{
+			return TRUE;
+		};
+		if(MIS_Serpentes_BringSalandril_SLD == LOG_RUNNING)
 		{
 			return TRUE;
 		};

@@ -429,7 +429,6 @@ func int DIA_Addon_Vatras_Bandittrader_Condition()
 	};
 };
 
-
 func void DIA_Addon_Vatras_Bandittrader_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Vatras_TellMe_Konkret_15_00");	//(хмуро) И что это значит для меня?

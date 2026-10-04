@@ -3,21 +3,10 @@ instance DIA_Girion_DI_EXIT(C_Info)
 {
 	npc = PAL_207_Girion_DI;
 	nr = 999;
-	condition = DIA_Girion_DI_EXIT_Condition;
-	information = DIA_Girion_DI_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Girion_DI_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Girion_DI_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -48,7 +37,7 @@ func void DIA_Girion_DI_Hallo_Info()
 		AI_Output(self,other,"DIA_Girion_DI_Hallo_08_01");	//У орков хватило мужества, чтобы атаковать меня.
 		AI_Output(self,other,"DIA_Girion_DI_Hallo_08_02");	//Но им стоило лучше подумать, прежде чем нападать на паладина из королевской стражи.
 	}
-	else if(hero.guild == GIL_PAL)
+	else if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Girion_DI_Hallo_08_03");	//Думаю, да. Долго ты еще будешь возиться на этом утесе?
 	}
@@ -316,7 +305,7 @@ func void DIA_Girion_DI_UndeadDragonDead_Info()
 		AI_Output(other,self,"DIA_Girion_DI_UndeadDragonDead_15_04");	//Я и так провел там слишком много времени.
 		AI_Output(self,other,"DIA_Girion_DI_UndeadDragonDead_08_05");	//Я так и думал. Но сейчас не место и не время поднимать этот вопрос. Лучше мы обсудим это в открытом море.
 		AI_Output(self,other,"DIA_Girion_DI_UndeadDragonDead_08_06");	//Ладно. Я, тем не менее, рад видеть тебя на борту в полном здравии.
-		if(hero.guild == GIL_PAL)
+		if(other.guild == GIL_PAL)
 		{
 			AI_Output(self,other,"DIA_Girion_DI_UndeadDragonDead_08_07");	//Ты настоящий воин Инноса. У меня нет сомнений на этот счет. И я рад, что ты на нашей стороне.
 		}

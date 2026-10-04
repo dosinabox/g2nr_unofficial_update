@@ -4,7 +4,7 @@ func void B_WISPDETECTOR_LearnEffect(var C_Npc teacher)
 	AI_PlayAni(teacher,"T_PRACTICEMAGIC5");
 	Wld_PlayEffect("spellFX_HealShrine",hero,hero,0,0,0,FALSE);
 	Wld_PlayEffect("spellFX_INCOVATION_BLUE",hero,hero,0,0,0,FALSE);
-	Snd_Play("WSP_Dead_A1");
+	Snd_Play("WSP_DEAD_A1");
 };
 
 func int B_TeachPlayerTalentWispDetector(var C_Npc slf,var C_Npc oth,var int WispSkill)

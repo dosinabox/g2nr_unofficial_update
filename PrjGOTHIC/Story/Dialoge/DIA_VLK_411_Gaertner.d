@@ -3,22 +3,10 @@ instance DIA_Gaertner_EXIT(C_Info)
 {
 	npc = VLK_411_Gaertner;
 	nr = 999;
-	condition = DIA_Gaertner_EXIT_Condition;
-	information = DIA_Gaertner_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Gaertner_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Gaertner_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -118,9 +106,12 @@ instance DIA_Gaertner_Krautabak(C_Info)
 
 func int DIA_Gaertner_Krautabak_Condition()
 {
-	if(Npc_HasItems(other,ItMi_SumpfTabak) && Npc_KnowsInfo(other,DIA_Gaertner_Plants))
+	if(Npc_KnowsInfo(other,DIA_Gaertner_Plants))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_SumpfTabak))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -185,9 +176,12 @@ instance DIA_Gaertner_FreeLockpicks(C_Info)
 
 func int DIA_Gaertner_FreeLockpicks_Condition()
 {
-	if(!Npc_HasItems(other,ItKe_Lockpick) && Npc_HasItems(self,ItKe_Lockpick) && Npc_KnowsInfo(other,DIA_Gaertner_Sign))
+	if(Npc_KnowsInfo(other,DIA_Gaertner_Sign))
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,ItKe_Lockpick) && Npc_HasItems(self,ItKe_Lockpick))
+		{
+			return TRUE;
+		};
 	};
 };
 
