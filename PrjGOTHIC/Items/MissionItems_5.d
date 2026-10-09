@@ -44,7 +44,7 @@ func void Use_XardasLetterToOpenBook()
 	Doc_Show(nDocID);
 	if(MIS_Xardas_SCCanOpenIrdorathBook == FALSE)
 	{
-		B_LogEntry(TOPIC_BuchHallenVonIrdorath,"В этом письме Ксардас сообщил мне слова, открывающие книгу ЧЕРТОГИ ИРДОРАТА.");
+		B_LogEntry_Instant(TOPIC_BuchHallenVonIrdorath,"В этом письме Ксардас сообщил мне слова, открывающие книгу ЧЕРТОГИ ИРДОРАТА.");
 		MIS_Xardas_SCCanOpenIrdorathBook = TRUE;
 	};
 };
@@ -92,7 +92,7 @@ func void Use_HallsOfIrdorath()
 		CreateInvItems(self,ItWr_UseLampIdiot_MIS,1);
 		Print(PRINT_IrdorathBookHiddenKey);
 		ItWr_HallsOfIrdorathIsOpen = TRUE;
-		B_LogEntry(TOPIC_BuchHallenVonIrdorath,"Я смог открыть книгу Ксардаса. В ней находилось секретное сообщение и странный ключ. Кто знает, что еще смогу найти я в монастырских подвалах.");
+		B_LogEntry_Instant(TOPIC_BuchHallenVonIrdorath,"Я смог открыть книгу Ксардаса. В ней находилось секретное сообщение и странный ключ. Кто знает, что еще смогу найти я в монастырских подвалах.");
 		B_GivePlayerXP(XP_HallsOfIrdorathIsOpen);
 	}
 	else
@@ -144,7 +144,7 @@ func void Use_HallsOfIrdorath_Open()
 	Doc_Show(nDocID);
 	if(ItWr_SCReadsHallsOfIrdorath == FALSE)
 	{
-		B_LogEntry(TOPIC_BuchHallenVonIrdorath,"Я прочел книгу Ксардаса. В ней упоминается секретная библиотека. Она должна быть где-то здесь, в подвалах монастыря.");
+		B_LogEntry_Instant(TOPIC_BuchHallenVonIrdorath,"Я прочел книгу Ксардаса. В ней упоминается секретная библиотека. Она должна быть где-то здесь, в подвалах монастыря.");
 		ItWr_SCReadsHallsOfIrdorath = TRUE;
 	};
 };
@@ -271,15 +271,15 @@ func void Use_Seamap_Irdorath()
 	{
 		Log_CreateTopic(TOPIC_Crew,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Crew,LOG_RUNNING);
-		B_LogEntries(TOPIC_Crew,"Для путешествия на корабле и решающего сражения мне нужна команда.");
+		B_LogEntries_Instant(TOPIC_Crew,"Для путешествия на корабле и решающего сражения мне нужна команда.");
 		Log_CreateTopic(TOPIC_Captain,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Captain,LOG_RUNNING);
-		B_LogNextEntry(TOPIC_Captain,"Для управления кораблем мне нужен опытный капитан, готовый отправиться со мной в опасное путешествие.");
+		B_LogNextEntry_Instant(TOPIC_Captain,"Для управления кораблем мне нужен опытный капитан, готовый отправиться со мной в опасное путешествие.");
 		if(MIS_ShipIsFree == FALSE)
 		{
 			Log_CreateTopic(TOPIC_Ship,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_Ship,LOG_RUNNING);
-			B_LogNextEntry(TOPIC_Ship,"Похоже, я должен добраться до этого странного вражеского острова. Но для этого мне нужен корабль.");
+			B_LogNextEntry_Instant(TOPIC_Ship,"Похоже, я должен добраться до этого странного вражеского острова. Но для этого мне нужен корабль.");
 		};
 		if(Kapitel < 6)
 		{

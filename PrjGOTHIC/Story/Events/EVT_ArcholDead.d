@@ -32,7 +32,7 @@ func void EVT_ArcholDead_Func()
 	};
 	if(EVT_ArcholDead_Func_OneTime == FALSE)
 	{
-		B_LogEntry(TOPIC_HallenVonIrdorath,"Я нашел здесь что-то вроде храма. Его населяют толпы нежити. Это все напоминает мне проклятый храм Спящего. Но на этот раз, я не подведу. Только не на этот раз!");
+		B_LogEntry_Instant(TOPIC_HallenVonIrdorath,"Я нашел здесь что-то вроде храма. Его населяют толпы нежити. Это все напоминает мне проклятый храм Спящего. Но на этот раз, я не подведу. Только не на этот раз!");
 		EVT_ArcholDead_Func_OneTime = TRUE;
 	};
 };

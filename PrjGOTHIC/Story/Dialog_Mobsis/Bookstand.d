@@ -29,7 +29,7 @@ func void Use_Bookstand_01_S1()
 			Knows_Fire_Contest = TRUE;
 			Log_CreateTopic(TOPIC_FireContest,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_FireContest,LOG_RUNNING);
-			B_LogEntry(TOPIC_FireContest,"Будучи послушником, я имею право требовать прохождения Испытания Огнем. Каждый из трех магов Высшего Совета должен дать мне задание. Если я пройду эти испытания, я буду принят в Круг Огня.");
+			B_LogEntry_Instant(TOPIC_FireContest,"Будучи послушником, я имею право требовать прохождения Испытания Огнем. Каждый из трех магов Высшего Совета должен дать мне задание. Если я пройду эти испытания, я буду принят в Круг Огня.");
 		};
 	};
 };
@@ -61,7 +61,7 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 				PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] = TRUE;
 				PrintScreen(PRINT_LearnRunes,-1,-1,FONT_Screen,4);
 				Log_CreateTopic(TOPIC_TalentRunes,LOG_NOTE);
-				B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Святой удар': 1 святая вода. Свиток не нужен.");
+				B_LogEntry_Instant(TOPIC_TalentRunes,"Ингредиенты для руны 'Святой удар': 1 святая вода. Свиток не нужен.");
 			};
 		}
 		else if(self.guild == GIL_PAL)
@@ -76,7 +76,7 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 				PLAYER_TALENT_RUNES[SPL_PalTeleportSecret] = TRUE;
 				PrintScreen(PRINT_LearnPalTeleportSecret,-1,-1,FONT_Screen,4);
 				Log_CreateTopic(TOPIC_TalentRunes,LOG_NOTE);
-				B_LogEntry(TOPIC_TalentRunes,"Для создания руны необходимы специфические ингредиенты. При помощи этих ингредиентов и чистого рунного камня, можно создать руну на рунном столе.");
+				B_LogEntry_Instant(TOPIC_TalentRunes,"Для создания руны необходимы специфические ингредиенты. При помощи этих ингредиентов и чистого рунного камня, можно создать руну на рунном столе.");
 				Log_AddEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Секретный телепорт': 1 святая вода.");
 			};
 		}
@@ -97,12 +97,12 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 				{
 					Npc_SetTalentSkill(self,NPC_TALENT_SMITH,1);
 					Log_CreateTopic(TOPIC_TalentSmith,LOG_NOTE);
-					B_LogEntry(TOPIC_TalentSmith,PRINT_LearnSmithLog);
+					B_LogEntry_Instant(TOPIC_TalentSmith,PRINT_LearnSmithLog);
 				};
 				PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] = TRUE;
 				PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] = TRUE;
 				PrintScreen(PRINT_LearnSmith,-1,-1,FONT_Screen,4);
-				B_LogEntry(TOPIC_TalentSmith,"Если я добавлю 4 куска руды и 5 пробирок драконьей крови, то смогу выковать рудный клинок 'УБИЙЦА ДРАКОНОВ'.");
+				B_LogEntry_Instant(TOPIC_TalentSmith,"Если я добавлю 4 куска руды и 5 пробирок драконьей крови, то смогу выковать рудный клинок 'УБИЙЦА ДРАКОНОВ'.");
 				Log_AddEntry(TOPIC_TalentSmith,"Если я добавлю 5 кусков руды и 5 пробирок драконьей крови, то смогу выковать большой рудный клинок 'УБИЙЦА ДРАКОНОВ'.");
 			};
 		};

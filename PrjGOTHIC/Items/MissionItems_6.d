@@ -178,11 +178,11 @@ func void Use_ItWr_LastDoorToUndeadDrgDI_MIS()
 	{
 		if(!Npc_HasItems(hero,ItMi_PowerEye))
 		{
-			B_LogEntry(TOPIC_HallenVonIrdorath,"Свиток черного мага содержит слова КАДОШ ЭМЕМ КАДАР. Это похоже на какую-то магическую формулу, но для чего она используется - и что такое Глаз Силы?");
+			B_LogEntry_Instant(TOPIC_HallenVonIrdorath,"Свиток черного мага содержит слова КАДОШ ЭМЕМ КАДАР. Это похоже на какую-то магическую формулу, но для чего она используется - и что такое Глаз Силы?");
 		}
 		else
 		{
-			B_LogEntry(TOPIC_HallenVonIrdorath,"Свиток черного мага содержит слова КАДОШ ЭМЕМ КАДАР. Это похоже на какую-то магическую формулу, но для чего она используется?");
+			B_LogEntry_Instant(TOPIC_HallenVonIrdorath,"Свиток черного мага содержит слова КАДОШ ЭМЕМ КАДАР. Это похоже на какую-то магическую формулу, но для чего она используется?");
 		};
 		Read_LastDoorToUndeadDrgDI_MIS = TRUE;
 	};
@@ -240,7 +240,7 @@ func void Use_RezeptFuerMegaTrank()
 	{
 		if(Npc_GetTalentSkill(self,NPC_TALENT_ALCHEMY) && (PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == FALSE))
 		{
-			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭМБАРЛА ФИРГАСТО': 10 драконьих яиц, 1 черная жемчужина и 1 сера.");
+			B_LogEntry_Instant(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭМБАРЛА ФИРГАСТО': 10 драконьих яиц, 1 черная жемчужина и 1 сера.");
 			PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] = TRUE;
 		};
 		Opened_MegaDrink = TRUE;
@@ -286,7 +286,7 @@ func void Use_Diary_BlackNovice()
 	Doc_Show(nDocID);
 	if(Use_Diary_BlackNovice_Once == FALSE)
 	{
-		B_LogEntry(TOPIC_HallenVonIrdorath,"В дневнике послушника черного мага упоминаются камеры с рычагами, ключник, комбинации переключателей и много чего еще. Я должен запомнить это, никогда не знаешь заранее, что пригодится, а что нет.");
+		B_LogEntry_Instant(TOPIC_HallenVonIrdorath,"В дневнике послушника черного мага упоминаются камеры с рычагами, ключник, комбинации переключателей и много чего еще. Я должен запомнить это, никогда не знаешь заранее, что пригодится, а что нет.");
 		Use_Diary_BlackNovice_Once = TRUE;
 	};
 };

@@ -247,7 +247,7 @@ func void Use_Map_NewWorld_Orcelite_MIS()
 	Doc_Show(nDocID);
 	if((Use_Map_NewWorld_Orcelite_MIS_OneTime == FALSE) && (MIS_KillOrkOberst != FALSE))
 	{
-		B_LogEntry(TOPIC_OrcElite,"Я нашел необычную карту у полковника орков. Похоже на стратегические военные планы.");
+		B_LogEntry_Instant(TOPIC_OrcElite,"Я нашел необычную карту у полковника орков. Похоже на стратегические военные планы.");
 		Use_Map_NewWorld_Orcelite_MIS_OneTime = TRUE;
 	};
 };

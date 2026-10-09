@@ -23,7 +23,7 @@ func int Spell_Logic_Charm(var int manaInvested)
 			{
 				if(Charm_Test == FALSE)
 				{
-					B_LogEntry(TOPIC_Ignaz,"Кажется, заклинание сработало! И, похоже, обошлось без свидетелей.");
+					B_LogEntry_Instant(TOPIC_Ignaz,"Кажется, заклинание сработало! И, похоже, обошлось без свидетелей.");
 					Charm_Test = TRUE;
 				};
 			};

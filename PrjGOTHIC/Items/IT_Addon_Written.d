@@ -76,7 +76,7 @@ func void Use_Heilrezept_04()
 	{
 		if((PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_04] == FALSE))
 		{
-			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЧИСТОГО ЗДОРОВЬЯ': 1 луговой горец и 3 лечебные эссенции.");
+			B_LogEntry_Instant(TOPIC_TalentAlchemy,"Ингредиенты для 'ЧИСТОГО ЗДОРОВЬЯ': 1 луговой горец и 3 лечебные эссенции.");
 			PLAYER_TALENT_ALCHEMY[POTION_Health_04] = TRUE;
 		};
 	};
@@ -122,7 +122,7 @@ func void Use_Manarezept_04()
 	{
 		if((PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_04] == FALSE))
 		{
-			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЧИСТОЙ МАНЫ': 1 луговой горец и 3 эссенции маны.");
+			B_LogEntry_Instant(TOPIC_TalentAlchemy,"Ингредиенты для 'ЧИСТОЙ МАНЫ': 1 луговой горец и 3 эссенции маны.");
 			PLAYER_TALENT_ALCHEMY[POTION_Mana_04] = TRUE;
 		};
 	};
@@ -210,7 +210,7 @@ func void Use_William_01()
 			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 		};
-		B_LogEntry(TOPIC_Addon_MissingPeople,"Рыбак из Хориниса Вильям мертв. Я нашел его тело в Яркендаре.");
+		B_LogEntry_Instant(TOPIC_Addon_MissingPeople,"Рыбак из Хориниса Вильям мертв. Я нашел его тело в Яркендаре.");
 		FoundDeadWilliam = TRUE;
 	};
 };
@@ -254,7 +254,7 @@ func void Use_MCELIXIER_01()
 		if(Knows_MCELIXIER == FALSE)
 		{
 			Log_CreateTopic(TOPIC_TalentAlchemy,LOG_NOTE);
-			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭЛИКСИРА ИЗМЕНЕНИЯ СОЗНАНИЯ': 2 жала кровавой мухи, 1 экстракт маны, 1 лечебная эссенция и 1 красный жгучий перец.");
+			B_LogEntry_Instant(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭЛИКСИРА ИЗМЕНЕНИЯ СОЗНАНИЯ': 2 жала кровавой мухи, 1 экстракт маны, 1 лечебная эссенция и 1 красный жгучий перец.");
 			Knows_MCELIXIER = TRUE;
 		};
 	};
@@ -337,7 +337,7 @@ func void Use_Joint_Rezept_01()
 		if(Green_Extrem == FALSE)
 		{
 			Log_CreateTopic(TOPIC_TalentAlchemy,LOG_NOTE);
-			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЗЕЛЕНОГО ПОСЛУШНИКА': 2 болотные травы и 1 луговой горец.");
+			B_LogEntry_Instant(TOPIC_TalentAlchemy,"Ингредиенты для 'ЗЕЛЕНОГО ПОСЛУШНИКА': 2 болотные травы и 1 луговой горец.");
 			Green_Extrem = TRUE;
 		};
 	};
@@ -386,7 +386,7 @@ func void UseLouRezept()
 	{
 		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_LousHammer == FALSE))
 		{
-			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'МОЛОТА ЛУ': 1 вода, 2 репы, 1 болотная трава, 1 зуб болотной акулы и 1 ром.");
+			B_LogEntry_Instant(TOPIC_TalentAlchemy,"Ингредиенты для 'МОЛОТА ЛУ': 1 вода, 2 репы, 1 болотная трава, 1 зуб болотной акулы и 1 ром.");
 			Knows_LousHammer = TRUE;
 		};
 		Opened_LousHammer = TRUE;
@@ -431,7 +431,7 @@ func void UseLouRezept2()
 	{
 		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_Schlafhammer == FALSE))
 		{
-			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для двойного 'МОЛОТА ЛУ': 1 'Молот Лу' и 1 ром.");
+			B_LogEntry_Instant(TOPIC_TalentAlchemy,"Ингредиенты для двойного 'МОЛОТА ЛУ': 1 'Молот Лу' и 1 ром.");
 			Knows_Schlafhammer = TRUE;
 		};
 		Opened_Schlafhammer = TRUE;
@@ -477,7 +477,7 @@ func void UseRezeptPiratentod()
 	{
 		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_SchnellerHering == FALSE))
 		{
-			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'БЫСТРОЙ СЕЛЕДКИ': 1 вода, 1 ром, 1 рыба и 1 снеппер-трава.");
+			B_LogEntry_Instant(TOPIC_TalentAlchemy,"Ингредиенты для 'БЫСТРОЙ СЕЛЕДКИ': 1 вода, 1 ром, 1 рыба и 1 снеппер-трава.");
 			Knows_SchnellerHering = TRUE;
 		};
 		Opened_SchnellerHering = TRUE;
@@ -523,7 +523,7 @@ func void UseMushroomManaRecipe()
 	{
 		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_MushroomMana == FALSE))
 		{
-			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ГРИБНОГО ЭКСТРАКТА': 50 черных грибов и 1 луговая ягода.");
+			B_LogEntry_Instant(TOPIC_TalentAlchemy,"Ингредиенты для 'ГРИБНОГО ЭКСТРАКТА': 50 черных грибов и 1 луговая ягода.");
 			Knows_MushroomMana = TRUE;
 		};
 		Opened_MushroomMana = TRUE;
@@ -567,7 +567,7 @@ func void UseAppleSTRRecipe()
 	{
 		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_AppleSTR == FALSE))
 		{
-			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЯБЛОЧНОГО ЭКСТРАКТА': 25 яблок и 1 лесная ягода.");
+			B_LogEntry_Instant(TOPIC_TalentAlchemy,"Ингредиенты для 'ЯБЛОЧНОГО ЭКСТРАКТА': 25 яблок и 1 лесная ягода.");
 			Knows_AppleSTR = TRUE;
 		};
 		Opened_AppleSTR = TRUE;
@@ -615,7 +615,7 @@ func void UseAxtAnleitung()
 	{
 		if((Npc_GetTalentSkill(self,NPC_TALENT_SMITH) > 0) && (Knows_Banditenaxt == FALSE))
 		{
-			B_LogEntry(TOPIC_TalentSmith,"Для бандитского топора мне нужен 1 кусок руды, 3 зуба и 1 дополнительная стальная заготовка.");
+			B_LogEntry_Instant(TOPIC_TalentSmith,"Для бандитского топора мне нужен 1 кусок руды, 3 зуба и 1 дополнительная стальная заготовка.");
 			Knows_Banditenaxt = TRUE;
 		};
 		Opened_Banditenaxt = TRUE;

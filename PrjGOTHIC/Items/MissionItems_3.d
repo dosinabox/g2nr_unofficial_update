@@ -212,7 +212,7 @@ func void UseCorneliusTagebuch()
 	Doc_Show(nDocID);
 	if(Cornelius_IsLiar == FALSE)
 	{
-		B_LogEntry(TOPIC_RescueBennet,"Этот дневник - доказательство, необходимое для подтверждения невиновности Беннета.");
+		B_LogEntry_Instant(TOPIC_RescueBennet,"Этот дневник - доказательство, необходимое для подтверждения невиновности Беннета.");
 		Cornelius_IsLiar = TRUE;
 	};
 };
@@ -862,11 +862,11 @@ func void Use_MinenAnteil_MIS()
 	{
 		if(!Npc_IsDead(Salandril))
 		{
-			B_LogEntry(TOPIC_MinenAnteileKDF,"Парня, продавшего акции шахт торговцам, зовут Саландрил. Вероятно, я смогу найти его в верхней части Хориниса, если он еще не начал прятаться от правосудия.");
+			B_LogEntry_Instant(TOPIC_MinenAnteileKDF,"Парня, продавшего акции шахт торговцам, зовут Саландрил. Вероятно, я смогу найти его в верхней части Хориниса, если он еще не начал прятаться от правосудия.");
 		}
 		else
 		{
-			B_LogEntry(TOPIC_MinenAnteileKDF,"Парня, продавшего акции шахт торговцам, зовут Саландрил. Он мертв. Мне нужно сообщить это Серпентесу.");
+			B_LogEntry_Instant(TOPIC_MinenAnteileKDF,"Парня, продавшего акции шахт торговцам, зовут Саландрил. Он мертв. Мне нужно сообщить это Серпентесу.");
 			Log_SalandrilIsDead = TRUE;
 		};
 		SC_KnowsProspektorSalandril = TRUE;
@@ -938,7 +938,7 @@ func void Use_RichterKomproBrief()
 	Doc_Show(nDocID);
 	if(SCKnowsRichterKomproBrief == FALSE)
 	{
-		B_LogEntry(TOPIC_RichterLakai,"Интересно, поверит ли Лариус в то, что его ограбили по приказу судьи?");
+		B_LogEntry_Instant(TOPIC_RichterLakai,"Интересно, поверит ли Лариус в то, что его ограбили по приказу судьи?");
 		SCKnowsRichterKomproBrief = TRUE;
 	};
 };

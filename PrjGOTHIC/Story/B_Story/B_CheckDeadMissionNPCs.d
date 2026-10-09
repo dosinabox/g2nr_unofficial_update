@@ -325,7 +325,7 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		{
 			if((SC_KnowsProspektorSalandril == TRUE) && (Log_SalandrilIsDead == FALSE))
 			{
-				B_LogEntry(TOPIC_MinenAnteileKDF,"Саландрил мертв. Мне нужно сообщить это Серпентесу.");
+				B_LogEntry_Instant(TOPIC_MinenAnteileKDF,"Саландрил мертв. Мне нужно сообщить это Серпентесу.");
 				Log_SalandrilIsDead = TRUE;
 			};
 		}

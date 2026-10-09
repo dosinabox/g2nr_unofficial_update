@@ -132,7 +132,7 @@ func void Use_CavalornsBeutel()
 	};
 	if(MIS_Addon_Cavalorn_TheHut == LOG_RUNNING)
 	{
-		B_LogEntry(TOPIC_Addon_CavalornTheHut,"Я нашел мешочек с куском руды около хижины Кавалорна в Долине Рудников. Его, должно быть, забыл там старый пройдоха Кавалорн.");
+		B_LogEntry_Instant(TOPIC_Addon_CavalornTheHut,"Я нашел мешочек с куском руды около хижины Кавалорна в Долине Рудников. Его, должно быть, забыл там старый пройдоха Кавалорн.");
 	};
 	SC_OpenedCavalornsBeutel = TRUE;
 };

@@ -90,7 +90,7 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 				AI_Teleport(hero,"UNDEAD_ENDTELEPORT");
 				Log_CreateTopic(TOPIC_BackToShip,LOG_MISSION);
 				Log_SetTopicStatus(TOPIC_BackToShip,LOG_RUNNING);
-				B_LogEntry(TOPIC_BackToShip,PRINT_DragKillCount);
+				B_LogEntry_Instant(TOPIC_BackToShip,PRINT_DragKillCount);
 				UndeadDragonIsDead = TRUE;
 				STORYPOINT[SP_C6_P3] = TRUE;
 				CurrentStoryPoint = SP_C6_P3;
