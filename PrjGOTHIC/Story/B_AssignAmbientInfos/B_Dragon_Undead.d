@@ -79,11 +79,11 @@ func void DIA_Dragon_Undead_Hello_Info()
 			AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_03");	// ак € вижу, теперь его носишь ты. «а это бесчинство ты сейчас умрешь!
 		};
 	};
+	B_LogEntry(TOPIC_HallenVonIrdorath,"—ейчас мой враг - дракон-нежить. я должен убить его, прежде чем смогу покинуть этот прокл€тый остров.");
 	Info_AddChoice(DIA_Dragon_Undead_Hello,"’ватит болтать. я загоню теб€ обратно под камень, из-под которого ты вылез, монстр.",DIA_Dragon_Undead_Hello_attack);
 	Info_AddChoice(DIA_Dragon_Undead_Hello,"ѕо чьему повелению ты ведешь своих прихвостней на войну против человечества?",DIA_Dragon_Undead_Hello_Auftraggeber);
 	Info_AddChoice(DIA_Dragon_Undead_Hello,"«ачем ты здесь?",DIA_Dragon_Undead_Hello_warum);
 	Info_AddChoice(DIA_Dragon_Undead_Hello," то ты?",DIA_Dragon_Undead_Hello_wer);
-	B_LogEntry(TOPIC_HallenVonIrdorath,"—ейчас мой враг - дракон-нежить. я должен убить его, прежде чем смогу покинуть этот прокл€тый остров.");
 };
 
 func void DIA_Dragon_Undead_Hello_wer()

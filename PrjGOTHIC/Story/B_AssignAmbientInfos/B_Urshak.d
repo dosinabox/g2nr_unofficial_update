@@ -295,10 +295,10 @@ func void DIA_Urshak_HOSHPAKRACHE_Info()
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_04");	//Ур-Шак видеть большая ошибка доверять злой человек. Ур-Шак сожалеть звать человек другом и помогать ему не быть убит.
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_05");	//Чужак теперь покидать долина и идти проход. Ур-Шак не будет убивать чужак сейчас. Честь шаман говорит Ур-Шак не убивать.
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_06");	//Следующий раз мы встречаться мы враги. Твоя лучше уходить сейчас.
-	AI_StopProcessInfos(self);
-	Urshak_Sucked = TRUE;
 	B_LogEntry(TOPIC_Urshak,"Ур-Шак был принят назад, в совет шаманов орков. Теперь он на стороне врага и немного напряжен. Лучше мне не вставать у него на пути, пока я не решу все дела с орками. К тому времени он должен успокоиться.");
+	Urshak_Sucked = TRUE;
 	B_GivePlayerXP(XP_UrshakBecomesShaman);
+	AI_StopProcessInfos(self);
 };
 
 

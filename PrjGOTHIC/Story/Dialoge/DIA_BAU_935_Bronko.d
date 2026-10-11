@@ -112,9 +112,16 @@ instance DIA_Bronko_KEINBAUER(C_Info)
 
 func int DIA_Bronko_KEINBAUER_Condition()
 {
-	if(((MIS_Sekob_Bronko_eingeschuechtert == LOG_RUNNING) || (Babera_BronkoKeinBauer == TRUE)) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST) && (DIA_Bronko_KEINBAUER_noPerm == FALSE))
+	if((self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST) && (DIA_Bronko_KEINBAUER_noPerm == FALSE))
 	{
-		return TRUE;
+		if(MIS_Sekob_Bronko_eingeschuechtert == LOG_RUNNING)
+		{
+			return TRUE;
+		};
+		if(Babera_BronkoKeinBauer == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -216,6 +223,7 @@ func void DIA_Bronko_FLEISSIG_Info()
 	AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_04");	//Не бей меня, пожалуйста.
 	AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_05");	//Я даже вернусь к работе, хорошо?
 	MIS_Sekob_Bronko_eingeschuechtert = LOG_SUCCESS;
+	B_CheckLog();
 	AI_StopProcessInfos(self);
 	if((Kapitel == 3) && (TOPIC_END_SekobDMT == FALSE))
 	{

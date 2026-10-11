@@ -70,12 +70,12 @@ func void DIA_NOV_3_Fegen_Info()
 				AI_Output(self,other,"DIA_NOV_3_Fegen_03_02");	//Я единственный, кто готов помочь тебе?
 				AI_Output(other,self,"DIA_NOV_3_Fegen_15_03");	//Нет, я уже нашел помощника.
 				AI_Output(self,other,"DIA_NOV_3_Fegen_03_04");	//Тогда - за дело!
+				B_LogEntry(TOPIC_ParlanFegen,"Послушник из погреба поможет мне подметать комнаты.");
 				NOV_Helfer += 1;
 				Feger1_Permanent = TRUE;
 				B_GivePlayerXP(XP_Feger);
 				AI_StopProcessInfos(self);
 				Npc_ExchangeRoutine(self,"FEGEN");
-				B_LogEntry(TOPIC_ParlanFegen,"Послушник из погреба поможет мне подметать комнаты.");
 			};
 		}
 		else
@@ -121,15 +121,15 @@ func void DIA_NOV_3_Fegen_Nein()
 func void DIA_NOV_3_Fegen_Ja()
 {
 	AI_Output(other,self,"DIA_NOV_3_Fegen_Ja_15_00");	//Хорошо, я заплачу.
-	AI_Output(self,other,"DIA_NOV_3_Fegen_Ja_03_01");	//Хорошо, тогда я готов приступать.
 	B_GiveInvItems(other,self,ItMi_Gold,50);
+	AI_Output(self,other,"DIA_NOV_3_Fegen_Ja_03_01");	//Хорошо, тогда я готов приступать.
+	B_LogEntry(TOPIC_ParlanFegen,"Послушник у церкви поможет мне подметать комнаты.");
 	NOV_Helfer += 1;
 	B_GivePlayerXP(XP_Feger);
 	Feger2_Permanent = TRUE;
 	Info_ClearChoices(DIA_NOV_3_Fegen);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FEGEN");
-	B_LogEntry(TOPIC_ParlanFegen,"Послушник у церкви поможет мне подметать комнаты.");
 };
 
 

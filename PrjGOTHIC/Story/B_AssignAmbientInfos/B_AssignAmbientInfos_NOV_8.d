@@ -56,12 +56,12 @@ func void DIA_NOV_8_Fegen_Info()
 		{
 			AI_Output(self,other,"DIA_NOV_8_Fegen_08_01");	//ќх, парень. “ы только недавно по€вилс€ здесь и уже заставл€ешь других делать свою работу?
 			AI_Output(self,other,"DIA_NOV_8_Fegen_08_02");	//Ќе расстраивайс€, у мен€ были такие же проблемы, когда € пришел сюда. ѕоэтому € помогу тебе. Ѕыло бы смешно, если бы мы не справились с этим.
+			B_LogEntry(TOPIC_ParlanFegen,"я нашел послушника, желающего помочь мне подметать комнаты.");
 			NOV_Helfer += 1;
 			Feger3_Permanent = TRUE;
 			B_GivePlayerXP(XP_Feger);
 			AI_StopProcessInfos(self);
 			Npc_ExchangeRoutine(self,"FEGEN");
-			B_LogEntry(TOPIC_ParlanFegen,"я нашел послушника, желающего помочь мне подметать комнаты.");
 		}
 		else
 		{

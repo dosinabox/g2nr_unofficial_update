@@ -3,21 +3,10 @@ instance DIA_Addon_Nefarius_EXIT(C_Info)
 {
 	npc = KDW_1402_Addon_Nefarius_NW;
 	nr = 999;
-	condition = DIA_Addon_Nefarius_EXIT_Condition;
-	information = DIA_Addon_Nefarius_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Nefarius_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Nefarius_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -339,6 +328,8 @@ func void DIA_Addon_Nefarius_RingRitualEnds_Info()
 	AI_Output(self,other,"DIA_Addon_Nefarius_RingRitualEnds_05_01");	//Ты принес нам недостающие фрагменты, поэтому мы удостаиваем тебя чести вставить ключ в портал.
 	AI_Output(self,other,"DIA_Addon_Nefarius_RingRitualEnds_05_02");	//Иди к Сатурасу и забери у него кольцо.
 	AI_Output(self,other,"DIA_Addon_Nefarius_RingRitualEnds_05_03");	//Надеюсь, портал откроется.
+	B_LogEntry(TOPIC_Addon_Ornament,"Украшенное кольцо восстановлено. Я должен забрать его у Сатураса.");
+	RitualRingRuns = LOG_SUCCESS;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
 	B_StartOtherRoutine(Saturas_NW,"START");
@@ -346,8 +337,6 @@ func void DIA_Addon_Nefarius_RingRitualEnds_Info()
 	B_StartOtherRoutine(Myxir_NW,"START");
 	B_StartOtherRoutine(Riordian_NW,"START");
 	B_StartOtherRoutine(Merdarion_NW,"START");
-	RitualRingRuns = LOG_SUCCESS;
-	B_LogEntry(TOPIC_Addon_Ornament,"Украшенное кольцо восстановлено. Я должен забрать его у Сатураса.");
 };
 
 

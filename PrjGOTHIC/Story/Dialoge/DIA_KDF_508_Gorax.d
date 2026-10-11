@@ -314,6 +314,7 @@ func void DIA_Gorax_Orlan_100()
 	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_01");	//Ты продал ему вино дешевле? Ох, нет! И почему я послал ТЕБЯ?!
 	B_Gorax_YouAreUseless();
 	MIS_GoraxWein = LOG_FAILED;
+	B_CheckLog();
 	Gorax_Mad_Day = Wld_GetDay();
 	Info_ClearChoices(DIA_Gorax_Orlan);
 	AI_StopProcessInfos(self);
@@ -334,6 +335,7 @@ func void DIA_Gorax_Orlan_240()
 		B_GiveAllInvItems(other,self,ItMi_Gold);
 		AI_Output(self,other,"DIA_Gorax_Orlan_240_14_02");	//Но ты уже потратил часть этих денег, да? Ты ничтожество - пшел прочь!
 		MIS_GoraxWein = LOG_FAILED;
+		B_CheckLog();
 		Gorax_Mad_Day = Wld_GetDay();
 	};
 	Info_ClearChoices(DIA_Gorax_Orlan);

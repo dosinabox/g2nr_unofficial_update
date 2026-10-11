@@ -866,11 +866,11 @@ func void DIA_Addon_Cavalorn_Triggered_Info()
 func void B_Cavalorn_Triggered_Wohin()
 {
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_Wohin_08_00");	//Сейчас я снова иду в город. Встретимся у Ватраса.
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"STADT");
 	B_LogEntry(TOPIC_Addon_Ornament,"Одна из частей орнамента находится у паладинов в верхнем квартале.");
 	MIS_Addon_Cavalorn_GetOrnamentFromPAL = LOG_RUNNING;
 	self.flags = 0;
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"STADT");
 };
 
 func void DIA_Addon_Cavalorn_Triggered_OBack()

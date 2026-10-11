@@ -532,6 +532,7 @@ func void DIA_Bosper_BringFur_Info()
 	{
 		AI_Output(self,other,"DIA_Bosper_BringFur_11_01");	//“ы уже стал учеником другого мастера. я буду покупать у теб€ шкуры по обычной цене.
 		MIS_Bosper_WolfFurs = LOG_OBSOLETE;
+		B_CheckLog();
 	}
 	else if(B_GiveInvItems(other,self,ItAt_WolfFur,6))
 	{
@@ -542,8 +543,9 @@ func void DIA_Bosper_BringFur_Info()
 		BosperFurCounter += 6;
 		ApprenticeGoldCounter += Value_WolfFur * 6;
 		AI_Output(self,other,"DIA_Bosper_BringFur_11_05");	//»? „то скажешь? –азве это не лучше, чем корпеть над мечами день напролет или наполн€ть бутылочки в пыльной каморке?
-		MIS_Bosper_WolfFurs = LOG_SUCCESS;
 		B_LogEntry(TOPIC_Lehrling,"Ѕоспер примет мен€ в ученики, если другие мастера не будут против.");
+		MIS_Bosper_WolfFurs = LOG_SUCCESS;
+		B_CheckLog();
 	}
 	else
 	{

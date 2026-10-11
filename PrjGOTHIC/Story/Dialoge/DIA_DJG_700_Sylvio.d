@@ -451,11 +451,11 @@ func void DIA_SylvioDJG_WHATNEXT_Info()
 
 func void DIA_SylvioDJG_WHATNEXT_ATTACK()
 {
+	B_LogEntry(TOPIC_Dragonhunter,"Эта грязная свинья Сильвио собирался присвоить себе мою победу над ледяным драконом. Мы немного повздорили.");
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,60);
 	Npc_ExchangeRoutine(self,"START");
 	B_StartOtherRoutine(DJG_Bullco,"START");
-	B_LogEntry(TOPIC_Dragonhunter,"Эта грязная свинья Сильвио собирался присвоить себе мою победу над ледяным драконом. Мы немного повздорили.");
 	B_Attack(self,other,AR_KILL,1);
 	if(!C_NpcIsDown(DJG_Bullco))
 	{

@@ -722,10 +722,10 @@ func void DIA_Wolf_LeaveMyShip_Info()
 	AI_Output(self,other,"DIA_Wolf_LeaveMyShip_08_01");	//—начала ты всел€ешь в мен€ надежду, а потом даешь от ворот поворот. “ы еще пожалеешь об этом!
 	Wolf_IsOnBoard = LOG_FAILED;
 	Crewmember_Count -= 1;
-	AI_StopProcessInfos(self);
 	self.flags = 0;
-	B_Attack(self,other,AR_NONE,1);
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
+	B_Attack(self,other,AR_NONE,1);
 };
 
 

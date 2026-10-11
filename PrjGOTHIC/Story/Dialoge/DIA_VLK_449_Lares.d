@@ -684,9 +684,9 @@ func void DIA_Addon_Lares_GetRangerArmor_end()
 
 func void DIA_Addon_Lares_GetRangerArmor_weiter()
 {
+	B_LogEntry(TOPIC_Addon_RingOfWater,"На встрече в таверне Орлана я получил свою броню Кольца Воды. Теперь я должен встретиться с Ватрасом, который даст мне мое первое задание.");
 	AI_StopProcessInfos(self);
 	B_RangerMeetingParking();
-	B_LogEntry(TOPIC_Addon_RingOfWater,"На встрече в таверне Орлана я получил свою броню Кольца Воды. Теперь я должен встретиться с Ватрасом, который даст мне мое первое задание.");
 };
 
 func void DIA_Addon_Lares_GetRangerArmor_Learn()
@@ -874,6 +874,7 @@ func void DIA_Addon_Lares_YourMission_Info()
 		else
 		{
 			MIS_Lares_BringRangerToMe = LOG_OBSOLETE;
+			B_CheckLog();
 		};
 	};
 };

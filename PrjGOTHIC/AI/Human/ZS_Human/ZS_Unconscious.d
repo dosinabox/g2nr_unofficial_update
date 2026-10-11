@@ -32,6 +32,7 @@ func void ZS_Unconscious()
 				if(MIS_RodSword == LOG_RUNNING)
 				{
 					MIS_RodSword = LOG_OBSOLETE;
+					B_CheckLog();
 				};
 			}
 			else if(C_IsNpc(self,PIR_1364_Addon_Pirat))
@@ -39,6 +40,7 @@ func void ZS_Unconscious()
 				if(MIS_Addon_GrogForRoastPirate == LOG_RUNNING)
 				{
 					MIS_Addon_GrogForRoastPirate = LOG_OBSOLETE;
+					B_CheckLog();
 				};
 			}
 			else if(C_IsNpc(self,VLK_421_Valentino))

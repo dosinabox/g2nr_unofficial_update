@@ -989,14 +989,14 @@ func void B_XardasGoesToRitual()
 	{
 		B_XardasGivesProofForPyrokar();
 	};
-	AI_StopProcessInfos(self);
+	B_LogEntry(TOPIC_INNOSEYE,"Ксардас согласился участвовать в ритуале в Круге Солнца.");
+	Xardas_GoesToRitualInnosEye = TRUE;
 	if(C_BodyStateContains(self,BS_SIT))
 	{
 		AI_UseMob(self,"THRONE",-1);
 	};
-	B_LogEntry(TOPIC_INNOSEYE,"Ксардас согласился участвовать в ритуале в Круге Солнца.");
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"RITUALINNOSEYEREPAIR");
-	Xardas_GoesToRitualInnosEye = TRUE;
 };
 
 instance DIA_Xardas_RITUALREQUEST(C_Info)

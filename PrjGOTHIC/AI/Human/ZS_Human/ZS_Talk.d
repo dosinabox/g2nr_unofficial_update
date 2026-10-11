@@ -76,6 +76,7 @@ func void ZS_Talk()
 			if(MIS_LookingForLucia == FALSE)
 			{
 				MIS_LookingForLucia = LOG_SUCCESS;
+				B_CheckLog();
 			};
 		}
 		else if(C_IsNpc(self,KDW_1403_Addon_Myxir_NW))

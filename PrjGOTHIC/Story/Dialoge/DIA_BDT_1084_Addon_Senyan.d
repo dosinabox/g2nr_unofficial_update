@@ -48,10 +48,10 @@ func void B_Senyan_Erpressung()
 	AI_Output(other,self,"DIA_Addon_Senyan_Erpressung_15_02");	//Тогда что тебе нужно?
 	AI_Output(self,other,"DIA_Addon_Senyan_Erpressung_12_03");	//Недавно кто-то хотел убрать Эстебана. Но напоролся на телохранителей.
 	AI_Output(self,other,"DIA_Addon_Senyan_Erpressung_12_04");	//Пойди к Эстебану и поговори с ним. Потом возвращайся.
-	AI_StopProcessInfos(self);
 	Log_CreateTopic(TOPIC_Addon_Senyan,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Senyan,LOG_RUNNING);
 	B_LogEntry(TOPIC_Addon_Senyan,"Сеньян узнал меня. Ему известно, кто я такой. Он хочет использовать меня для каких-то своих целей. Но сначала я должен поговорить с Эстебаном.");
+	AI_StopProcessInfos(self);
 };
 
 

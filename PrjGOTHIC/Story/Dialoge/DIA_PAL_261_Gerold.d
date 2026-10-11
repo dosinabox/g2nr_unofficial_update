@@ -352,12 +352,12 @@ func void DIA_Gerold_KAP4_ALLESRUHIG_geben()
 	};
 	AI_Output(self,other,"DIA_Gerold_KAP4_ALLESRUHIG_geben_12_04");	//я думаю, в это врем€ в храме никого нет. я буду ждать теб€ там.
 	AI_Output(self,other,"DIA_Gerold_KAP4_ALLESRUHIG_geben_12_05");	//Ќо смотри, чтобы это не оказалась черства€ корка хлеба или какой-нибудь сырой кусок м€са, ты пон€л?
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"FOOD");
 	Log_CreateTopic(TOPIC_GeroldGiveFood,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_GeroldGiveFood,LOG_RUNNING);
 	B_LogEntry(TOPIC_GeroldGiveFood,"√аронд оп€ть урезал паек. ћне лучше принести √ерольду что-нибудь поесть, пока он с голодухи не выкинул какую-нибудь глупость. я должен встретитьс€ с ним в доме магов, когда все уснут.");
 	MIS_GeroldGiveFood = LOG_RUNNING;
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"FOOD");
 };
 
 func void DIA_Gerold_KAP4_ALLESRUHIG_Nein()
