@@ -3,21 +3,10 @@ instance DIA_Udar_EXIT(C_Info)
 {
 	npc = PAL_268_Udar;
 	nr = 999;
-	condition = DIA_Udar_EXIT_Condition;
-	information = DIA_Udar_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Udar_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Udar_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -254,9 +243,12 @@ instance DIA_Udar_Ring(C_Info)
 
 func int DIA_Udar_Ring_Condition()
 {
-	if(Npc_HasItems(other,ItRi_HP_01_Tengron))
+	if(MIS_TengronRing == LOG_RUNNING)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItRi_HP_01_Tengron))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -266,7 +258,7 @@ func void DIA_Udar_Ring_Info()
 	B_GiveInvItems(other,self,ItRi_HP_01_Tengron,1);
 	AI_Output(self,other,"DIA_Udar_Ring_09_01");	//Что? Да ты знаешь, что это за кольцо? Он получил эту награду за мужество, проявленное в бою.
 	AI_Output(self,other,"DIA_Udar_Ring_09_02");	//Говоришь, что он хочет забрать его назад? Если такова воля Инноса, так и будет. Если такова воля Инноса...
-	TengronRing = TRUE;
+	MIS_TengronRing = LOG_SUCCESS;
 	B_GivePlayerXP(XP_TengronRing);
 };
 

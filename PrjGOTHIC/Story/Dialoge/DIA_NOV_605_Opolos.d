@@ -108,7 +108,7 @@ instance DIA_Opolos_Monastery(C_Info)
 
 func int DIA_Opolos_Monastery_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Opolos_Hello) && (other.guild == GIL_NOV))
+	if(other.guild == GIL_NOV)
 	{
 		return TRUE;
 	};
@@ -123,6 +123,16 @@ func void DIA_Opolos_Monastery_Info()
 };
 
 
+func void B_Opolos_TeachSTR()
+{
+	if(Opolos_TeachSTR == FALSE)
+	{
+		Opolos_TeachSTR = TRUE;
+		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_KlosterTeacher,"Ополос может помочь мне стать сильнее.");
+	};
+};
+
 instance DIA_Opolos_beibringen(C_Info)
 {
 	npc = NOV_605_Opolos;
@@ -135,7 +145,11 @@ instance DIA_Opolos_beibringen(C_Info)
 
 func int DIA_Opolos_beibringen_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Opolos_Hello) && ((other.guild == GIL_NOV) || (other.guild == GIL_KDF)))
+	if(other.guild == GIL_KDF)
+	{
+		return TRUE;
+	};
+	if(other.guild == GIL_NOV)
 	{
 		return TRUE;
 	};
@@ -145,14 +159,21 @@ func void DIA_Opolos_beibringen_Info()
 {
 	AI_Output(other,self,"DIA_Opolos_beibringen_15_00");	//Ты можешь чему-нибудь научить меня?
 	AI_Output(self,other,"DIA_Opolos_beibringen_12_01");	//Конечно, мне часто приходилось драться. Я могу научить тебя, как стать сильнее.
-	AI_Output(self,other,"DIA_Opolos_beibringen_12_02");	//Но я бы хотел узнать что-нибудь о зельях, особенно магических.
-	AI_Output(other,self,"DIA_Opolos_beibringen_15_03");	//Чем я могу помочь тебе в этом?
-	AI_Output(self,other,"DIA_Opolos_beibringen_12_04");	//Ну, если ты работаешь на Неораса, то у тебя наверняка будет возможность 'позаимствовать' ненадолго один из его рецептов.
-	AI_Output(self,other,"DIA_Opolos_beibringen_12_05");	//Если ты принесешь его мне, чтобы я мог изучить его, то я потренирую тебя.
-	MIS_Opolos_Rezept = LOG_RUNNING;
-	Log_CreateTopic(TOPIC_OpolosRezept,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_OpolosRezept,LOG_RUNNING);
-	B_LogEntry(TOPIC_OpolosRezept,"Ополос хочет взглянуть на рецепт приготовления магических зелий. Возможно, мне удастся позаимствовать его, работая на Неораса.");
+	if(other.guild == GIL_KDF)
+	{
+		B_Opolos_TeachSTR();
+	}
+	else if(other.guild == GIL_NOV)
+	{
+		AI_Output(self,other,"DIA_Opolos_beibringen_12_02");	//Но я бы хотел узнать что-нибудь о зельях, особенно магических.
+		AI_Output(other,self,"DIA_Opolos_beibringen_15_03");	//Чем я могу помочь тебе в этом?
+		AI_Output(self,other,"DIA_Opolos_beibringen_12_04");	//Ну, если ты работаешь на Неораса, то у тебя наверняка будет возможность 'позаимствовать' ненадолго один из его рецептов.
+		AI_Output(self,other,"DIA_Opolos_beibringen_12_05");	//Если ты принесешь его мне, чтобы я мог изучить его, то я потренирую тебя.
+		MIS_Opolos_Rezept = LOG_RUNNING;
+		Log_CreateTopic(TOPIC_OpolosRezept,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_OpolosRezept,LOG_RUNNING);
+		B_LogEntry(TOPIC_OpolosRezept,"Ополос хочет взглянуть на рецепт приготовления магических зелий. Возможно, мне удастся позаимствовать его, работая на Неораса.");
+	};
 };
 
 
@@ -169,7 +190,7 @@ instance DIA_Opolos_rezept(C_Info)
 
 func int DIA_Opolos_rezept_Condition()
 {
-	if((MIS_Opolos_Rezept == LOG_RUNNING) && ((other.guild == GIL_NOV) || (other.guild == GIL_KDF)))
+	if(MIS_Opolos_Rezept == LOG_RUNNING)
 	{
 		return TRUE;
 	};
@@ -185,14 +206,13 @@ func void DIA_Opolos_rezept_Info()
 		AI_PrintScreen("Рецепт магических зелий отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		B_ReadFakeItem(self,other,FakeScroll,1);
 		AI_Output(self,other,"DIA_Opolos_rezept_12_02");	//Ага... хм... да... понятно... так, так...
+		CreateInvItem(self,FakeScroll);
 		B_ReadFakeItem(self,other,FakeScroll,1);
 		AI_Output(self,other,"DIA_Opolos_rezept_12_03");	//Хорошо. Огромное спасибо. Если хочешь, ты можешь потренироваться со мной.
 		AI_PrintScreen("Рецепт магических зелий получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		MIS_Opolos_Rezept = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Ambient);
-		Opolos_TeachSTR = TRUE;
-		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_KlosterTeacher,"Ополос может помочь мне стать сильнее.");
+		B_Opolos_TeachSTR();
 	}
 	else if(MIS_NeorasRezept == LOG_SUCCESS)
 	{
@@ -200,9 +220,7 @@ func void DIA_Opolos_rezept_Info()
 		AI_Output(self,other,"DIA_Opolos_rezept_12_05");	//Ох, черт - мне, наверное, никогда не удастся научиться чему-нибудь здесь. Ладно. Я все равно потренирую тебя.
 		MIS_Opolos_Rezept = LOG_FAILED;
 		B_CheckLog();
-		Opolos_TeachSTR = TRUE;
-		Log_CreateTopic(TOPIC_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_KlosterTeacher,"Ополос может помочь мне стать сильнее.");
+		B_Opolos_TeachSTR();
 	}
 	else
 	{
@@ -239,15 +257,23 @@ instance DIA_Opolos_TEACH_STR(C_Info)
 
 func int DIA_Opolos_TEACH_STR_Condition()
 {
-	if(((other.guild == GIL_KDF) || (other.guild == GIL_NOV)) && (Opolos_TeachSTR == TRUE))
+	if(Opolos_TeachSTR == TRUE)
 	{
 		return TRUE;
+	};
+	if(other.guild == GIL_KDF)
+	{
+		if(MIS_Opolos_Rezept == LOG_RUNNING)
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Opolos_TEACH_STR_Info()
 {
 	AI_Output(other,self,"DIA_Opolos_TEACH_STR_15_00");	//Я хочу стать сильнее.
+	B_Opolos_TeachSTR();
 	B_BuildLearnDialog_Opolos();
 };
 

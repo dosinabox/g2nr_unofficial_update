@@ -3,21 +3,10 @@ instance DIA_Agon_VLK_EXIT(C_Info)
 {
 	npc = VLK_4007_Agon;
 	nr = 999;
-	condition = DIA_Agon_VLK_EXIT_Condition;
-	information = DIA_Agon_VLK_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Agon_VLK_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Agon_VLK_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

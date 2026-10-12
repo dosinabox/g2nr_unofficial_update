@@ -91,6 +91,10 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		}
 		else if(C_IsNpc(slf,VLK_410_Baltram))
 		{
+			if(MIS_Baltram_ScoutAkil == LOG_RUNNING)
+			{
+				MIS_Baltram_ScoutAkil = LOG_FAILED;
+			};
 			if(MIS_Addon_Baltram_Paket4Skip == LOG_RUNNING)
 			{
 				MIS_Addon_Baltram_Paket4Skip = LOG_FAILED;
@@ -210,6 +214,21 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_KarrasVergessen = LOG_FAILED;
 			};
 		}
+		else if(C_IsNpc(slf,KDF_506_Neoras))
+		{
+			if(MIS_NeorasRezept == LOG_RUNNING)
+			{
+				MIS_NeorasRezept = LOG_FAILED;
+			};
+			if(MIS_NeorasPflanzen == LOG_RUNNING)
+			{
+				MIS_NeorasPflanzen = LOG_FAILED;
+			};
+			if(MIS_Neoras_DragonEgg == LOG_RUNNING)
+			{
+				MIS_Neoras_DragonEgg = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,KDF_508_Gorax))
 		{
 			if(MIS_GoraxEssen == LOG_RUNNING)
@@ -259,6 +278,10 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		}
 		else if(C_IsNpc(slf,NOV_605_Opolos))
 		{
+			if(MIS_Opolos_Rezept == LOG_RUNNING)
+			{
+				MIS_Opolos_Rezept = LOG_FAILED;
+			};
 			if(MIS_HelpOpolos == LOG_RUNNING)
 			{
 				MIS_HelpOpolos = LOG_FAILED;
@@ -266,6 +289,10 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 		}
 		else if(C_IsNpc(slf,NOV_612_Babo))
 		{
+			if(MIS_BabosDocs == LOG_RUNNING)
+			{
+				MIS_BabosDocs = LOG_FAILED;
+			};
 			if(MIS_HelpBabo == LOG_RUNNING)
 			{
 				MIS_HelpBabo = LOG_FAILED;
@@ -479,11 +506,32 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_KillHoshPak = LOG_FAILED;
 			};
 		}
+		else if(C_IsNpc(slf,PAL_261_Gerold))
+		{
+			if(MIS_GeroldGiveFood == LOG_RUNNING)
+			{
+				MIS_GeroldGiveFood = LOG_FAILED;
+			};
+		}
+		else if(C_IsNpc(slf,PAL_268_Udar))
+		{
+			if(MIS_TengronRing == LOG_RUNNING)
+			{
+				MIS_TengronRing = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,VLK_4120_Bilgot))
 		{
 			if(MIS_RescueBilgot == LOG_RUNNING)
 			{
 				MIS_RescueBilgot = LOG_FAILED;
+			};
+		}
+		else if(C_IsNpc(slf,DJG_715_Ferros))
+		{
+			if(MIS_FerrosSword == LOG_RUNNING)
+			{
+				MIS_FerrosSword = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,DJG_703_Cipher))

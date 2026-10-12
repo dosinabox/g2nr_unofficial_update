@@ -51,7 +51,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_Feldraeuber,MIS_AndreHelpLobart,0,6);
 	B_CloseTopic(TOPIC_Kloster,NOV_Aufnahme,0,2);
 	B_CloseTopic(TOPIC_Gemeinschaft,MIS_KlosterArbeit,0,2);
-	B_CloseTopic(TOPIC_Neorasrezept,MIS_NeorasRezept,0,2);
+	B_CloseTopic(TOPIC_NeorasRezept,MIS_NeorasRezept,0,2);
 	B_CloseTopic(TOPIC_NeorasPflanzen,MIS_NeorasPflanzen,0,2);
 	B_CloseTopic(TOPIC_IsgarothWolf,MIS_IsgarothWolf,0,2);
 	B_CloseTopic(TOPIC_ParlanFegen,MIS_ParlanFegen,0,2);
@@ -88,7 +88,7 @@ func void B_CheckLog()
 	B_CloseTopic(TOPIC_FajethKillSnapper,MIS_Fajeth_Kill_Snapper,0,3);
 	B_CloseTopic(TOPIC_OricBruder,MIS_OricBruder,0,3);
 	B_CloseTopic(TOPIC_BrutusKasse,0,Brutus_TeachSTR,6);
-	B_CloseTopic(TOPIC_TengronRing,0,TengronRing,6);
+	B_CloseTopic(TOPIC_TengronRing,MIS_TengronRing,0,6);
 	B_CloseTopic(TOPIC_BringMeat,MIS_Engor_BringMeat,0,6);
 	B_CloseTopic(TOPIC_BilgotEscort,MIS_RescueBilgot,0,6);
 	B_CloseTopic(TOPIC_MarcosJungs,MIS_Marcos_Jungs,0,3);

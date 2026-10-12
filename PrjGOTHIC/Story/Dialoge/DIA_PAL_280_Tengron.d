@@ -3,21 +3,10 @@ instance DIA_Tengron_EXIT(C_Info)
 {
 	npc = PAL_280_Tengron;
 	nr = 999;
-	condition = DIA_Tengron_EXIT_Condition;
-	information = DIA_Tengron_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Tengron_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Tengron_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -119,10 +108,11 @@ func void DIA_Tengron_News_Yes()
 	AI_Output(other,self,"DIA_Tengron_News_Yes_15_00");	//Нет проблем. Когда я буду в замке, я передам это кольцо Удару.
 	AI_Output(self,other,"DIA_Tengron_News_Yes_07_01");	//Хорошо. Магия этого кольца придаст Удару силу. И не забудь сказать ему, что я потом заберу его.
 	B_GiveInvItems(self,other,ItRi_HP_01_Tengron,1);
-	Info_ClearChoices(DIA_Tengron_News);
+	MIS_TengronRing = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_TengronRing,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_TengronRing,LOG_RUNNING);
 	B_LogEntry(TOPIC_TengronRing,"Тенгрон дал мне кольцо, которое я должен передать Удару в замке.");
+	Info_ClearChoices(DIA_Tengron_News);
 };
 
 

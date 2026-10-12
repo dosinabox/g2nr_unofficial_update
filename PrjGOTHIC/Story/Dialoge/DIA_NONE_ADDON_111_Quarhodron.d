@@ -364,7 +364,6 @@ func void DIA_Addon_Quarhodron_GibMirKey_Info()
 	AI_Output(self,other,"DIA_Addon_Quarhodron_GibMirKey_11_09");	//(исчезает) Помни, залы Аданоса смертельно опасны. Будь осторожнее.
 	AI_Output(other,self,"DIA_Addon_Quarhodron_GibMirKey_15_10");	//Постой! Что находится в этих залах?
 	AI_Output(self,other,"DIA_Addon_Quarhodron_GibMirKey_11_11");	//(исчезает) Силы покидают меня. Прощай! Когда-нибудь мы снова встретимся в стране мертвых.
-	AI_StopProcessInfos(self);
 	Log_CreateTopic(TOPIC_Addon_Kammern,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Kammern,LOG_RUNNING);
 	B_LogEntries(TOPIC_Addon_Kammern,"Куарходрон сказал, что я должен быть осторожнее в 'Залах Аданоса'. Я должен выяснить, что он имел в виду, если не хочу попасть в ловушку.");
@@ -372,5 +371,6 @@ func void DIA_Addon_Quarhodron_GibMirKey_Info()
 	Ghost_SCKnowsHow2GetInAdanosTempel = TRUE;
 	STORYPOINT_ADDON[SP_A4] = TRUE;
 	CurrentAddonStoryPoint = SP_A4;
+	AI_StopProcessInfos(self);
 };
 

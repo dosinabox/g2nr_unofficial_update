@@ -72,12 +72,12 @@ func void DIA_Neoras_Arbeit_Info()
 	Log_CreateTopic(TOPIC_NeorasPflanzen,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_NeorasPflanzen,LOG_RUNNING);
 	B_LogEntries(TOPIC_NeorasPflanzen,"Я должен принести семь кустов огненной крапивы мастеру Неорасу, алхимику.");
-	Log_CreateTopic(TOPIC_Neorasrezept,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Neorasrezept,LOG_RUNNING);
-	B_LogNextEntry(TOPIC_Neorasrezept,"Мастеру Неорасу не хватает рецепта для приготовления зелий маны.");
+	Log_CreateTopic(TOPIC_NeorasRezept,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_NeorasRezept,LOG_RUNNING);
+	B_LogNextEntry(TOPIC_NeorasRezept,"Мастеру Неорасу не хватает рецепта для приготовления зелий маны.");
 	if(MIS_Opolos_Rezept == LOG_RUNNING)
 	{
-		Log_AddEntry(TOPIC_Neorasrezept,"Это, должно быть, рецепт, на который так хочет взглянуть Ополос.");
+		Log_AddEntry(TOPIC_NeorasRezept,"Это, должно быть, рецепт, на который так хочет взглянуть Ополос.");
 	};
 };
 

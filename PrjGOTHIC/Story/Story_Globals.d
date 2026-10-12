@@ -218,6 +218,7 @@ var int MIS_TalbinCheese;
 var int MIS_DementorsOrigins;
 var int MIS_RodSword;
 var int MIS_Pedro_DI_FollowShip;
+var int MIS_TengronRing;
 
 var int MIS_Eremit_Klamotten;
 var int MIS_Addon_Cavalorn_TheHut;
@@ -830,7 +831,7 @@ var int Marcos_einmalig;
 var int Dobar_einmalig;
 var int Brutus_einmalig;
 var int Garond_Kerkerauf;
-var int TengronRing;
+//var int TengronRing;
 //var int MIS_FindTheObesessed;
 //var int MIS_DiegoNWSendsYouToJudge;
 //var int MIS_InnosEyeStolen;
