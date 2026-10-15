@@ -184,11 +184,11 @@ func void DIA_Ehnim_STREIT5_Attack()
 {
 	AI_Output(other,self,"DIA_Ehnim_STREIT5_Attack_15_00");	//Почему ты не скажешь ему это сам?
 	AI_Output(self,other,"DIA_Ehnim_STREIT5_Attack_12_01");	//Сейчас пойду и сделаю это.
-	AI_StopProcessInfos(self);
 	DIA_Ehnim_STREIT5_noPerm = TRUE;
+	B_GivePlayerXP(XP_EgillEhnimStreit);
+	AI_StopProcessInfos(self);
 	other.aivar[AIV_INVINCIBLE] = FALSE;
 	B_Attack(self,Egill,AR_NONE,0);
-	B_GivePlayerXP(XP_EgillEhnimStreit);
 };
 
 func void DIA_Ehnim_STREIT5_gehen()

@@ -158,7 +158,7 @@ func void B_UnEquipAllTempBonusItems()
 	B_UnEquipHeroItem(ItAm_Mana_Angar_MIS);
 	B_UnEquipHeroItem(ItAm_Hp_Regen);
 	B_UnEquipHeroItem(ItAm_Mana_Regen);
-	//костыли для исправления удаления экипированных колец и амелута жрецов
+	//костыли для исправления удаления экипированных колец и амулета жрецов
 	if(MA_Amulett_Equipped == TRUE)
 	{
 		B_RemoveEveryInvItem(hero,ItAm_Addon_MANA);

@@ -17,7 +17,7 @@ func int DIA_NAME_BANDIT_EXIT_Condition()
 
 func void DIA_NAME_BANDIT_EXIT_Info()
 {
-	hero.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(hero,"NW_FOREST_CAVE1_IN_01");
+	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,"NW_FOREST_CAVE1_IN_01");
 	AI_StopProcessInfos(self);
 };
 
@@ -54,7 +54,7 @@ func void DIA_NAME_BANDIT_SCHAFBLEIBTHIER_Info()
 	};
 	if(MIS_Akil_SchafDiebe == FALSE)
 	{
-		hero.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(hero,"NW_FOREST_CAVE1_IN_01");
+		other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,"NW_FOREST_CAVE1_IN_01");
 		AI_StopProcessInfos(self);
 	};
 };
@@ -72,7 +72,7 @@ instance DIA_NAME_BANDIT_SchafKlau(C_Info)
 
 func int DIA_NAME_BANDIT_SchafKlau_Condition()
 {
-	if(Npc_GetDistToWP(hero,"NW_FOREST_CAVE1_IN_01") < (hero.aivar[AIV_LastDistToWP] - 50))
+	if(Npc_GetDistToWP(other,"NW_FOREST_CAVE1_IN_01") < (other.aivar[AIV_LastDistToWP] - 50))
 	{
 		return TRUE;
 	};
@@ -145,7 +145,7 @@ func void DIA_NAME_BANDIT_RUECKDASSCHAFRAUS_nichts()
 {
 	AI_Output(other,self,"DIA_NAME_BANDIT_RUECKDASSCHAFRAUS_nichts_15_00");	//Ничего. И зачем мне эта тупая овца?
 	AI_Output(self,other,"DIA_NAME_BANDIT_RUECKDASSCHAFRAUS_nichts_09_01");	//Тогда не играй у меня на нервах. Проваливай!
-	hero.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(hero,"NW_FOREST_CAVE1_IN_01");
+	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,"NW_FOREST_CAVE1_IN_01");
 	AI_StopProcessInfos(self);
 };
 

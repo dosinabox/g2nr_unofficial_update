@@ -3,21 +3,10 @@ instance DIA_Morgahard_EXIT(C_Info)
 {
 	npc = BDT_1030_Morgahard;
 	nr = 999;
-	condition = DIA_Morgahard_EXIT_Condition;
-	information = DIA_Morgahard_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Morgahard_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Morgahard_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -46,13 +35,13 @@ func void DIA_Morgahard_HALLO_Info()
 	AI_Output(self,other,"DIA_Morgahard_HALLO_07_05");	//А после того, как мы напали на губернатора, он не захотел делиться награбленным с нами и посадил нас за решетку.
 	AI_Output(self,other,"DIA_Morgahard_HALLO_07_06");	//Нам не хотелось болтаться на виселице, поэтому мы сбежали.
 	AI_Output(self,other,"DIA_Morgahard_HALLO_07_07");	//Мы думали, что нас здесь не найдут. Но похоже, мы ошибались.
+	B_LogEntry(TOPIC_RichterLakai,"Я нашел Моргахарда, главаря бродяг.");
+	SCFoundMorgahard = TRUE;
+	B_GivePlayerXP(XP_FoundMorgahard);
 	Info_ClearChoices(DIA_Morgahard_HALLO);
 	Info_AddChoice(DIA_Morgahard_HALLO,"Хватит хныкать. Доставай свое оружие. Мы положим этому конец.",DIA_Morgahard_HALLO_attack);
 	Info_AddChoice(DIA_Morgahard_HALLO,"Что мы можем сделать с судьей?",DIA_Morgahard_HALLO_richter);
 	Info_AddChoice(DIA_Morgahard_HALLO,"Судья приказал мне убить тебя.",DIA_Morgahard_HALLO_tot);
-	B_LogEntry(TOPIC_RichterLakai,"Я нашел Моргахарда, главаря бродяг.");
-	SCFoundMorgahard = TRUE;
-	B_GivePlayerXP(XP_FoundMorgahard);
 };
 
 func void DIA_Morgahard_HALLO_tot()
@@ -82,8 +71,8 @@ func void DIA_Morgahard_HALLO_attack()
 {
 	AI_Output(other,self,"DIA_Morgahard_HALLO_attack_15_00");	//Хватит хныкать. Доставай свое оружие. Мы положим этому конец.
 	AI_Output(self,other,"DIA_Morgahard_HALLO_attack_07_01");	//Отлично. Мне все равно нечего терять.
-	AI_StopProcessInfos(self);
 	MorgahardSucked = TRUE;
+	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_SuddenEnemyInferno,1);
 };
 

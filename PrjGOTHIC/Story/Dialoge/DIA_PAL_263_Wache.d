@@ -32,7 +32,7 @@ func int DIA_PAL_263_PERM_Condition()
 func void DIA_PAL_263_PERM_Info()
 {
 	AI_Output(other,self,"DIA_PAL_263_PERM_15_00");	//Докладывай, солдат!
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_PAL_263_PERM_04_01");	//Есть, сэр! Удерживаю позицию, как приказано. Потери минимальны. Провизия кончается, орки спокойны.
 	};

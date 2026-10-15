@@ -3,21 +3,10 @@ instance DIA_Wulfgar_EXIT(C_Info)
 {
 	npc = MIL_312_Wulfgar;
 	nr = 999;
-	condition = DIA_Wulfgar_EXIT_Condition;
-	information = DIA_Wulfgar_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Wulfgar_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Wulfgar_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -372,12 +361,12 @@ func void B_Ruga_Teach_Log()
 {
 	if(Ruga_Teach_Log == FALSE)
 	{
-		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+		if((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 		{
 			Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 			B_LogEntry(TOPIC_CityTeacher,"Ополченец Руга может помочь мне повысить мою ловкость и научить меня пользоваться арбалетом.");
 		}
-		else if((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV))
+		else if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 		{
 			Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 			B_LogEntry(TOPIC_CityTeacher,"Ополченец Руга может помочь мне повысить мою ловкость и научить меня пользоваться арбалетом. Но для этого я должен числиться в городском ополчении или стать магом.");

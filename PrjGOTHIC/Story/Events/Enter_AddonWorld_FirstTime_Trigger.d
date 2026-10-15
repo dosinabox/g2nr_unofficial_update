@@ -29,6 +29,7 @@ func void Enter_AddonWorld_FirstTime_Trigger_Func()
 		{
 			CreateInvItems(Stoneguardian_NailedValleyShowcase_01,ItSc_Teleport_Maya,1);
 		};
+		B_CheckLog();
 		Enter_AddonWorld_FirstTime_Trigger_OneTime = TRUE;
 	};
 };

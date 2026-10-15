@@ -3,21 +3,10 @@ instance DIA_Addon_Owen_EXIT(C_Info)
 {
 	npc = PIR_1367_Addon_Owen;
 	nr = 999;
-	condition = DIA_Addon_Owen_EXIT_Condition;
-	information = DIA_Addon_Owen_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Addon_Owen_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Addon_Owen_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -142,8 +131,8 @@ func void DIA_Addon_Owen_Henry_Info()
 		AI_Output(self,other,"DIA_Addon_Owen_Henry_13_02");	//Расслабься. Получит он рано или поздно свое дерево.
 		AI_Output(self,other,"DIA_Addon_Owen_Henry_13_03");	//Так ему и передай.
 		B_LogEntry(TOPIC_Addon_HolOwen,"Я должен передать Генри, что Оуэн доставит дерево.");
-		AI_StopProcessInfos(self);
 		Owen_ComesToHenry = TRUE;
+		AI_StopProcessInfos(self);
 	};
 };
 

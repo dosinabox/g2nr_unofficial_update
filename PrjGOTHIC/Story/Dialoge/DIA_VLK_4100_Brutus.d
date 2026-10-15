@@ -358,7 +358,7 @@ func int DIA_Brutus_MEATBUGSWEG_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Brutus_WARUMNICHTARBBEIT) && (Kapitel >= 4) && (NpcObsessedByDMT_Brutus == FALSE) && (MIS_OCGateOpen == FALSE))
 	{
-		if(Npc_IsDead(Meatbug_Brutus1) && Npc_IsDead(Meatbug_Brutus2) && Npc_IsDead(Meatbug_Brutus3) && Npc_IsDead(Meatbug_Brutus4))
+		if(C_BrutusMeatbugsDead())
 		{
 			return TRUE;
 		};

@@ -310,6 +310,7 @@ func int DIA_Sentenza_GoldBack_Condition()
 
 func void DIA_Sentenza_GoldBack_Info()
 {
+	AI_Output(other,self,"DIA_Sentenza_GoldBack_15_00");	//Верни мне мое золото!
 	if(Torlof_SentenzaCounted == TRUE)
 	{
 		AI_Output(self,other,"DIA_Sentenza_GoldBack_09_01");	//После того, как я проголосовал за тебя?

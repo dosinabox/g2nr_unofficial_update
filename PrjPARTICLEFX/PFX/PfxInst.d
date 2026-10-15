@@ -4686,7 +4686,7 @@ instance HUMAN_WASHSELF1(C_PARTICLEFX)
 	vistexcolorend_s = "100 200 255";
 	vissizestart_s = "2 2";
 	vissizeendscale = 10;
-	visalphafunc_s = "BLENND";
+	visalphafunc_s = "BLEND";
 	visalphastart = 255;
 	trlfadespeed = 1.5;
 	trltexture_s = "WHITE.TGA";
@@ -6055,7 +6055,6 @@ instance GROUNDFOG2_OUTDOOR_MID(C_PARTICLEFX)
 	dirangleheadvar = 50;
 	dirangleelev = 90;
 	dirangleelevvar = 20;
-	velavg = 0;
 	lsppartavg = 5500;
 	lsppartvar = 800;
 	flygravity_s = "0 0 0";
@@ -6179,7 +6178,6 @@ instance GROUNDFOG2_INDOOR_MID(C_PARTICLEFX)
 	dirangleheadvar = 50;
 	dirangleelev = 90;
 	dirangleelevvar = 20;
-	velavg = 0;
 	lsppartavg = 5500;
 	lsppartvar = 800;
 	flygravity_s = "0 0 0";

@@ -439,3 +439,24 @@ func int C_SylvioGolemsDead()
 	return TRUE;
 };
 
+func int C_BrutusMeatbugsDead()
+{
+	if(!Npc_IsDead(Meatbug_Brutus1))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Meatbug_Brutus2))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Meatbug_Brutus3))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(Meatbug_Brutus4))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
