@@ -3,21 +3,10 @@ instance DIA_Gorn_DI_EXIT(C_Info)
 {
 	npc = PC_Fighter_DI;
 	nr = 999;
-	condition = DIA_Gorn_DI_EXIT_Condition;
-	information = DIA_Gorn_DI_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Gorn_DI_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Gorn_DI_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

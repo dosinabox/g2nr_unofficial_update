@@ -876,7 +876,7 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 	Wld_InsertNpc(Gobbo_Skeleton,"NW_BIGFARM_LAKE_03_MOVEMENT5");
 	Wld_InsertNpc(Gobbo_Black_Crossbow_Guard_01,"NW_TROLLAREA_GOBBO_01");
 	Wld_InsertNpc(Gobbo_Black_Crossbow_Guard_02,"NW_TROLLAREA_GOBBO_01");
-	Wld_InsertItem(ItWr_ManaStonePlate1_Addon,"FP_ROAM_WP_BIGFARM_TAVERNCAVE2_02_01");
+	Wld_InsertItem(ItWr_ManaStonePlate1_Addon,"FP_ROAM_WP_BIGFARM_TAVERNCAVE2_02_02");
 	Wld_InsertNpc(BDT_10307_Addon_RangerBandit_M,"NW_BIGMILL_FARM3_RANGERBANDITS_01");
 	Wld_InsertNpc(BDT_10308_Addon_RangerBandit_L,"NW_BIGMILL_FARM3_RANGERBANDITS_02");
 	Wld_InsertNpc(BDT_10309_Addon_RangerBandit_L,"NW_BIGMILL_FARM3_RANGERBANDITS_03");

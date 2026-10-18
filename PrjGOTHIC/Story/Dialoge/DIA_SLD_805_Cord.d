@@ -458,10 +458,10 @@ func void B_Cord_IDoItForYou()
 		Log_SetTopicStatus(TOPIC_Addon_RangerHelpSLD,LOG_RUNNING);
 	};
 	B_LogEntry(TOPIC_Addon_RangerHelpSLD,"Корд готов решить проблему с испытанием Торлофа. Пропал приятель Корда Патрик. Корд хочет, чтобы я отправился в лагерь бандитов в горах на юго-востоке и выяснил, нет ли там Патрика.");
+	DIA_Addon_Cord_RangerHelp2GetSLD_NoPerm = TRUE;
 	Info_ClearChoices(DIA_Addon_Cord_RangerHelp2GetSLD);
 	Info_AddChoice(DIA_Addon_Cord_RangerHelp2GetSLD,"Забудь об этом. Это гораздо сложнее, чем задание Торлофа.",B_Cord_IDoItForYou_mist);
 	Info_AddChoice(DIA_Addon_Cord_RangerHelp2GetSLD,"А почему ты думаешь, что со мной они не расправятся так же, как с Патриком?",B_Cord_IDoItForYou_Dexter);
-	DIA_Addon_Cord_RangerHelp2GetSLD_NoPerm = TRUE;
 };
 
 func void B_Cord_IDoItForYou_mist()
@@ -478,13 +478,40 @@ func void B_Cord_IDoItForYou_Dexter()
 	AI_Output(self,other,"Dia_Addon_Cord_IDoItForYou_Dexter_14_02");	//Это должно лишить их желания свернуть тебе шею.
 	AI_Output(self,other,"Dia_Addon_Cord_IDoItForYou_Dexter_14_03");	//Конечно, это все довольно опасно.
 	AI_Output(self,other,"Dia_Addon_Cord_IDoItForYou_Dexter_14_04");	//Но ты справишься.
-	Info_ClearChoices(DIA_Addon_Cord_RangerHelp2GetSLD);
 	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_RUNNING);
 	B_LogEntries(TOPIC_Addon_MissingPeople,"Наемник Корд ищет своего приятеля Патрика.");
 	B_LogNextEntry(TOPIC_Addon_RangerHelpSLD,"Главаря бандитов зовут Декстер.");
 	MIS_Addon_Cord_Look4Patrick = LOG_RUNNING;
 	Ranger_SCKnowsDexter = TRUE;
+	Info_ClearChoices(DIA_Addon_Cord_RangerHelp2GetSLD);
+};
+
+func int C_Cord_RangerHelpObsolete()
+{
+	if(Torlof_ProbeBestanden == TRUE)
+	{
+		return TRUE;
+	};
+	if(MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING)
+	{
+		if(C_BengarFarmIsFree())
+		{
+			return TRUE;
+		};
+	};
+	if(MIS_Torlof_HolPachtVonSekob == LOG_RUNNING)
+	{
+		if(Npc_IsDead(Sekob))
+		{
+			return TRUE;
+		};
+		if(Sekob.aivar[AIV_DefeatedByPlayer] == TRUE)
+		{
+			return TRUE;
+		};
+	};
+	return FALSE;
 };
 
 instance DIA_Addon_Cord_RangerHelp2GetSLD(C_Info)
@@ -520,7 +547,7 @@ func void DIA_Addon_Cord_RangerHelp2GetSLD_Info()
 	{
 		AI_Output(other,self,"DIA_Addon_Cord_RangerHelp2GetSLD_15_04");	//Да. Он рассказал мне об испытании и прочем...
 		AI_Output(self,other,"DIA_Addon_Cord_RangerHelp2GetSLD_14_05");	//Ага. И какое же задание тебе дали?
-		if((Torlof_ProbeBestanden == TRUE) || ((MIS_Torlof_BengarMilizKlatschen == LOG_RUNNING) && C_BengarFarmIsFree()) || ((MIS_Torlof_HolPachtVonSekob == LOG_RUNNING) && ((Sekob.aivar[AIV_DefeatedByPlayer] == TRUE) || Npc_IsDead(Sekob))))
+		if(C_Cord_RangerHelpObsolete())
 		{
 			B_Cord_RangerHelpObsolete();
 		}

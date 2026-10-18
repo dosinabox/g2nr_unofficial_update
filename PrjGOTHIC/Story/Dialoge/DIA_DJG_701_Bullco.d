@@ -3,21 +3,10 @@ instance DIA_BullcoDJG_EXIT(C_Info)
 {
 	npc = DJG_701_Bullco;
 	nr = 999;
-	condition = DIA_BullcoDJG_EXIT_Condition;
-	information = DIA_BullcoDJG_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_BullcoDJG_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_BullcoDJG_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

@@ -43,7 +43,7 @@ func void B_Attack(var C_Npc slf,var C_Npc oth,var int attack_reason,var int wai
 	}
 	else if((slf.aivar[AIV_ATTACKREASON] == AR_ReactToDamage) || (slf.aivar[AIV_ATTACKREASON] == AR_ReactToWeapon))
 	{
-		if(!C_NpcIsToughGuy(slf) && !(Npc_IsPlayer(oth) && (slf.npcType == NPCTYPE_FRIEND)))
+		if(!C_NpcIsToughGuy(slf) && (slf.npcType != NPCTYPE_FRIEND))
 		{
 			B_MemorizePlayerCrime(slf,oth,CRIME_ATTACK);
 		};

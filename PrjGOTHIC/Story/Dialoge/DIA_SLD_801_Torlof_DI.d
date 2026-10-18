@@ -3,21 +3,10 @@ instance DIA_Torlof_DI_EXIT(C_Info)
 {
 	npc = SLD_801_Torlof_DI;
 	nr = 999;
-	condition = DIA_Torlof_DI_EXIT_Condition;
-	information = DIA_Torlof_DI_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Torlof_DI_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Torlof_DI_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

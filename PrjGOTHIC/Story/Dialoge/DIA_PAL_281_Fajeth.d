@@ -3,21 +3,10 @@ instance DIA_Fajeth_EXIT(C_Info)
 {
 	npc = PAL_281_Fajeth;
 	nr = 999;
-	condition = DIA_Fajeth_EXIT_Condition;
-	information = DIA_Fajeth_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Fajeth_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Fajeth_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

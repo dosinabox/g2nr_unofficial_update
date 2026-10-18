@@ -10,9 +10,12 @@ instance DIA_DragonTalk_Main_1(C_Info)
 
 func int DIA_DragonTalk_Main_1_Condition()
 {
-	if((MIS_KilledDragons == 0) && Npc_HasItems(other,ItMi_InnosEye_MIS))
+	if(MIS_KilledDragons == 0)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_InnosEye_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -32,7 +35,7 @@ func void DIA_DragonTalk_Main_1_verbannen()
 	AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_02");	//ќднако никто не раскроет тебе эту тайну по своей собственной воле.
 	AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_03");	//“олько √лаз может разв€зать нам €зык и раскрыть тебе наши истинные цели.
 	AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_04");	//Ќо в любом случае, эта информаци€ будет бесполезна дл€ теб€, когда ты будешь мертв.
-	if(hero.guild == GIL_DJG)
+	if(other.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_05");	//Ќам уже сообщили, что ты выбрал путь охотника на дракона.
 		AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_06");	//ѕоэтому мы послали наших отпрысков в твой мир, чтобы обеспечить продолжение нашего рода здесь.
@@ -41,7 +44,7 @@ func void DIA_DragonTalk_Main_1_verbannen()
 		{
 			Log_CreateTopic(TOPIC_DRACHENEIER,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_DRACHENEIER,LOG_RUNNING);
-			B_LogEntry(TOPIC_DRACHENEIER,"ќдин из драконов пробормотал что-то об 'отпрыске' и продолжении его родового древа. Ѕоюсь, они могли распихать свой выводок по всем миру.");
+			B_LogEntry(TOPIC_DRACHENEIER,"ќдин из драконов пробормотал что-то об 'отпрыске' и продолжении его родового древа. Ѕоюсь, они могли распихать свой выводок по всему миру.");
 		};
 	}
 	else
@@ -69,9 +72,12 @@ instance DIA_DragonTalk_Main_2(C_Info)
 
 func int DIA_DragonTalk_Main_2_Condition()
 {
-	if((MIS_KilledDragons == 1) && Npc_HasItems(other,ItMi_InnosEye_MIS))
+	if(MIS_KilledDragons == 1)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_InnosEye_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -99,9 +105,12 @@ instance DIA_DragonTalk_Main_3(C_Info)
 
 func int DIA_DragonTalk_Main_3_Condition()
 {
-	if((MIS_KilledDragons == 2) && Npc_HasItems(other,ItMi_InnosEye_MIS))
+	if(MIS_KilledDragons == 2)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_InnosEye_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -146,9 +155,12 @@ instance DIA_DragonTalk_Main_4(C_Info)
 
 func int DIA_DragonTalk_Main_4_Condition()
 {
-	if((MIS_KilledDragons == 3) && Npc_HasItems(other,ItMi_InnosEye_MIS))
+	if(MIS_KilledDragons == 3)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_InnosEye_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

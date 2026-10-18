@@ -133,9 +133,12 @@ instance DIA_Addon_Gaan_Ranger(C_Info)
 
 func int DIA_Addon_Gaan_Ranger_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_HALLO) && AnyRangerRingEquipped() && (RangerMeetingRunning == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Gaan_HALLO) && (RangerMeetingRunning == FALSE))
 	{
-		return TRUE;
+		if(AnyRangerRingEquipped())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -462,6 +465,39 @@ func void DIA_Gaan_PayTeacher_Info()
 	};
 };
 
+
+func int C_Gaan_CanTeach()
+{
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
+	{
+		return TRUE;
+	};
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE)
+	{
+		return TRUE;
+	};
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
+	{
+		return TRUE;
+	};
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
+	{
+		return TRUE;
+	};
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE)
+	{
+		return TRUE;
+	};
+	if(MIS_Gaan_Snapper == LOG_SUCCESS)
+	{
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == FALSE)
+		{
+			return TRUE;
+		};
+	};
+	return FALSE;
+};
+
 instance DIA_Gaan_TEACHHUNTING(C_Info)
 {
 	npc = BAU_961_Gaan;
@@ -484,7 +520,7 @@ func int DIA_Gaan_TEACHHUNTING_Condition()
 func void DIA_Gaan_TEACHHUNTING_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_TEACHHUNTING_15_00");	//Чему ты можешь обучить меня?
-	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || ((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == FALSE) && (MIS_Gaan_Snapper == LOG_SUCCESS)))
+	if(C_Gaan_CanTeach())
 	{
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_03_01");	//Это зависит от того, что ты уже знаешь.
 		B_GaanTeachHornComment();

@@ -156,6 +156,38 @@ func void DIA_Gestath_Drachen_Info()
 };
 
 
+func int C_Gestath_CanTeach()
+{
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_FireTongue] == FALSE)
+	{
+		return TRUE;
+	};
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == FALSE)
+	{
+		return TRUE;
+	};
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] == FALSE)
+	{
+		return TRUE;
+	};
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == FALSE)
+	{
+		return TRUE;
+	};
+	if(Gestath_DragonTrophy == TRUE)
+	{
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == FALSE)
+		{
+			return TRUE;
+		};
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == FALSE)
+		{
+			return TRUE;
+		};
+	};
+	return FALSE;
+};
+
 var int DIA_Gestath_TEACHHUNTING_OneTime;
 
 instance DIA_Gestath_TEACHHUNTING(C_Info)
@@ -180,13 +212,13 @@ func int DIA_Gestath_TEACHHUNTING_Condition()
 func void DIA_Gestath_TEACHHUNTING_Info()
 {
 	AI_Output(other,self,"DIA_Gestath_TEACHHUNTING_15_00");	//Научи меня потрошить животных.
-	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_FireTongue] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == FALSE) || ((Gestath_DragonTrophy == TRUE) && ((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == FALSE))))
+	if(C_Gestath_CanTeach())
 	{
 		if(DIA_Gestath_TEACHHUNTING_OneTime == FALSE)
 		{
+			AI_Output(self,other,"DIA_Gestath_TEACHHUNTING_09_01");	//Почему нет? У меня есть немного свободного времени.
 			Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
 			B_LogEntry(TOPIC_OutTeacher,"Охотник в Долине Рудников по имени Гестат может обучить меня разделке огненных ящеров, краулеров и драконьих снепперов.");
-			AI_Output(self,other,"DIA_Gestath_TEACHHUNTING_09_01");	//Почему нет? У меня есть немного свободного времени.
 			DIA_Gestath_TEACHHUNTING_OneTime = TRUE;
 		}
 		else
