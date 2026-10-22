@@ -460,3 +460,20 @@ func int C_BrutusMeatbugsDead()
 	return TRUE;
 };
 
+func int C_LoganSwampsharksDead()
+{
+	if(!Npc_IsDead(MIS_Addon_Swampshark_01))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(MIS_Addon_Swampshark_02))
+	{
+		return FALSE;
+	};
+	if(!Npc_IsDead(MIS_Addon_Swampshark_03))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+

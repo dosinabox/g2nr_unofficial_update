@@ -42,11 +42,14 @@ instance DIA_Addon_BDT_1072_Logan_Mine(C_Info)
 
 func int DIA_Addon_Logan_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01) && (Logan_Inside == TRUE))
+	if((MIS_Send_Buddler == LOG_RUNNING) && (Player_SentBuddler < 3) && (Logan_Inside == TRUE))
 	{
-		if(Npc_GetDistToWP(self,"BL_INN_05_D") <= 1200)
+		if(Npc_HasItems(other,ItMi_Addon_Stone_01))
 		{
-			return TRUE;
+			if(Npc_GetDistToWP(self,"BL_INN_05_D") <= 1200)
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -271,7 +274,7 @@ func int DIA_Addon_Logan_tot_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Logan_MIS))
 	{
-		if(Npc_IsDead(MIS_Addon_Swampshark_01) && Npc_IsDead(MIS_Addon_Swampshark_02) && Npc_IsDead(MIS_Addon_Swampshark_03))
+		if(C_LoganSwampsharksDead())
 		{
 			return TRUE;
 		};
@@ -417,9 +420,12 @@ instance DIA_Addon_Logan_Hacker(C_Info)
 
 func int DIA_Addon_Logan_Hacker_Condition()
 {
-	if(Npc_GetDistToWP(self,"ADW_MINE_PICK_08") <= 500)
+	if(Npc_KnowsInfo(other,DIA_Addon_BDT_1072_Logan_Mine))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"ADW_MINE_PICK_08") <= 500)
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -3,21 +3,10 @@ instance DIA_Attila_EXIT(C_Info)
 {
 	npc = VLK_494_Attila;
 	nr = 999;
-	condition = DIA_Attila_EXIT_Condition;
-	information = DIA_Attila_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Attila_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Attila_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -197,9 +186,9 @@ func void DIA_Attila_Willkommen_Info()
 	AI_Output(self,other,"DIA_Attila_Willkommen_09_05");	//” мен€ есть дл€ теб€ подарок. ј все остальное в твоих руках, чужеземец. (тихо смеетс€)
 	B_GiveInvItems(self,other,ItKe_ThiefGuildKey_MIS,1);
 	Attila_Key = TRUE;
-	AI_StopProcessInfos(self);
 	self.aivar[AIV_DropDeadAndKill] = FALSE;
 	self.aivar[AIV_ToughGuy] = TRUE;
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"AFTER");
 };
 

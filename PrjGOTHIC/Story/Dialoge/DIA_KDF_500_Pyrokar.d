@@ -1287,17 +1287,18 @@ instance DIA_Pyrokar_FOUNDINNOSEYE(C_Info)
 
 func int DIA_Pyrokar_FOUNDINNOSEYE_Condition()
 {
-	if((Kapitel == 3) && (MIS_NovizenChase == LOG_RUNNING) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((Kapitel == 3) && (MIS_NovizenChase == LOG_RUNNING))
 	{
+		if(MIS_SCKnowsInnosEyeIsBroken == TRUE)
+		{
+			DIA_Pyrokar_FOUNDINNOSEYE.description = "Глаз Инноса поврежден.";
+			return TRUE;
+		};
 		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 		{
 			DIA_Pyrokar_FOUNDINNOSEYE.description = "Я нашел Глаз Инноса. Он поврежден.";
-		}
-		else
-		{
-			DIA_Pyrokar_FOUNDINNOSEYE.description = "Глаз Инноса поврежден.";
+			return TRUE;
 		};
-		return TRUE;
 	};
 };
 
@@ -1334,11 +1335,11 @@ func void DIA_Pyrokar_FOUNDINNOSEYE_was()
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_11_02");	//Мы должны исцелить Глаз и восстановить его былую силу. Но время работает против нас.
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_11_03");	//Я даже представить себе не могу, что теперь ждет всех нас. Без защиты Глаза, мы беспомощны и находимся полностью в руках врага.
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_11_04");	//Иди в город, к Ватрасу, магу Воды. В этой ужасной ситуации, только он знает, что нужно делать. Отнеси Глаз ему, и поторопись.
+	B_LogEntry(TOPIC_INNOSEYE,"Пирокар хочет, чтобы я спросил у мага Воды Ватраса, находящегося в городе, совета о том, что можно сделать с поврежденным Глазом.");
+	MIS_Pyrokar_GoToVatrasInnoseye = LOG_RUNNING;
 	Info_AddChoice(DIA_Pyrokar_FOUNDINNOSEYE,Dialog_Back,DIA_Pyrokar_FOUNDINNOSEYE_weiter);
 	Info_AddChoice(DIA_Pyrokar_FOUNDINNOSEYE,"Почему Ватрас?",DIA_Pyrokar_FOUNDINNOSEYE_was_vatras);
 	Info_AddChoice(DIA_Pyrokar_FOUNDINNOSEYE,"Что такое Круг Солнца?",DIA_Pyrokar_FOUNDINNOSEYE_sonnenkreis);
-	B_LogEntry(TOPIC_INNOSEYE,"Пирокар хочет, чтобы я спросил у мага Воды Ватраса, находящегося в городе, совета о том, что можно сделать с поврежденным Глазом.");
-	MIS_Pyrokar_GoToVatrasInnoseye = LOG_RUNNING;
 };
 
 func void DIA_Pyrokar_FOUNDINNOSEYE_was_vatras()
@@ -1468,12 +1469,12 @@ func void DIA_Pyrokar_BUCHZURUECK_Info()
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_08");	//Да, я отправляюсь в Круг Солнца, но, конечно, не потому, что я убедился в добрых намерениях Ксардаса.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_09");	//На самом деле, я собираюсь заставить этого шакала объяснить, где он прятал эту книгу столько долгих лет. На этот раз он, определенно, зашел слишком далеко.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_10");	//Увидимся в Круге Солнца.
+	B_LogEntry(TOPIC_INNOSEYE,"Пирокар наконец согласился отправиться к Кругу Солнца.");
+	Pyrokar_GoesToRitualInnosEye = TRUE;
 	if(C_BodyStateContains(self,BS_SIT))
 	{
 		AI_UseMob(self,"THRONE",-1);
 	};
-	B_LogEntry(TOPIC_INNOSEYE,"Пирокар наконец согласился отправиться к Кругу Солнца.");
-	Pyrokar_GoesToRitualInnosEye = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"RITUALINNOSEYEREPAIR");
 };

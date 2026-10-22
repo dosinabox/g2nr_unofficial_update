@@ -879,17 +879,18 @@ instance DIA_Lord_Hagen_EyeBroken(C_Info)
 
 func int DIA_Lord_Hagen_EyeBroken_Condition()
 {
-	if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE) && (Npc_HasItems(other,ItMi_InnosEye_Broken_MIS) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE))
 	{
+		if(MIS_SCKnowsInnosEyeIsBroken == TRUE)
+		{
+			DIA_Lord_Hagen_EyeBroken.description = "Глаз Инноса поврежден.";
+			return TRUE;
+		};
 		if(Npc_HasItems(other,ItMi_InnosEye_Broken_MIS))
 		{
 			DIA_Lord_Hagen_EyeBroken.description = "Глаз у меня, но он поврежден.";
-		}
-		else
-		{
-			DIA_Lord_Hagen_EyeBroken.description = "Глаз Инноса поврежден.";
+			return TRUE;
 		};
-		return TRUE;
 	};
 };
 

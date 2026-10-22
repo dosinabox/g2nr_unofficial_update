@@ -3,21 +3,10 @@ instance DIA_Lares_DI_EXIT(C_Info)
 {
 	npc = VLK_449_Lares_DI;
 	nr = 999;
-	condition = DIA_Lares_DI_EXIT_Condition;
-	information = DIA_Lares_DI_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Lares_DI_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Lares_DI_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

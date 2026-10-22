@@ -711,17 +711,18 @@ instance DIA_Buster_BringTrophyShadowbeast(C_Info)
 
 func int DIA_Buster_BringTrophyShadowbeast_Condition()
 {
-	if((MIS_Buster_KillShadowbeasts_DJG == LOG_RUNNING) && Npc_HasItems(other,ItAt_ShadowHorn) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
+	if((MIS_Buster_KillShadowbeasts_DJG == LOG_RUNNING) && (Kapitel < 5))
 	{
 		if(Npc_HasItems(other,ItAt_ShadowHorn) > 1)
 		{
 			DIA_Buster_BringTrophyShadowbeast.description = "Я принес рога мракорисов для твоего торговца.";
-		}
-		else
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItAt_ShadowHorn) == 1)
 		{
 			DIA_Buster_BringTrophyShadowbeast.description = "Я принес тебе рог мракориса.";
+			return TRUE;
 		};
-		return TRUE;
 	};
 };
 
