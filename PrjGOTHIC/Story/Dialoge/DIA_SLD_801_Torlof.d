@@ -494,13 +494,13 @@ func void B_Torlof_BengarMilizKlatschen()
 		DIA_Common_No();
 	};
 	MIS_Torlof_BengarMilizKlatschen = LOG_RUNNING;
+	Log_CreateTopic(TOPIC_TorlofMiliz,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_TorlofMiliz,LOG_RUNNING);
+	B_LogEntry(TOPIC_TorlofMiliz,"Торлоф попросил прогнать ополчение с фермы Бенгара. Она находится на плоскогорье.");
 	B_SetMortal(Bengar);
 	Wld_InsertNpc(MIL_335_Rumbold,"FARM3");
 	Wld_InsertNpc(MIL_336_Rick,"FARM3");
 	B_InitNpcGlobals();
-	Log_CreateTopic(TOPIC_TorlofMiliz,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_TorlofMiliz,LOG_RUNNING);
-	B_LogEntry(TOPIC_TorlofMiliz,"Торлоф попросил прогнать ополчение с фермы Бенгара. Она находится на плоскогорье.");
 };
 
 func void DIA_Torlof_Aufgaben_Pacht()
@@ -964,11 +964,11 @@ func void DIA_Torlof_DEMENTOREN_Info()
 	TorlofIsSailor = TRUE;
 	AI_Output(self,other,"DIA_Torlof_DEMENTOREN_01_03");	//Они пришли со стороны лагеря бандитов, который находится в горах, в южной части этой долины.
 	AI_Output(self,other,"DIA_Torlof_DEMENTOREN_01_04");	//Возможно, тебе стоит сходить туда и разобраться с этими парнями!
-	Wld_InsertNpc(CastlemineDMT,"FP_STAND_DEMENTOR_KDF_12");
 	Log_CreateTopic(TOPIC_Torlof_DMT,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Torlof_DMT,LOG_RUNNING);
 	B_LogEntry(TOPIC_Torlof_DMT,"В южной части долины, в горах, в бандитском лагере, похоже, появились эти люди в черных рясах. Они очень беспокоят Торлофа. Я должен решить эту проблему для него.");
 	MIS_Torlof_DMT = LOG_RUNNING;
+	Wld_InsertNpc(CastlemineDMT,"FP_STAND_DEMENTOR_KDF_12");
 };
 
 

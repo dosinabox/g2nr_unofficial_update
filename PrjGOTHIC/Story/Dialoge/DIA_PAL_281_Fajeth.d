@@ -108,13 +108,13 @@ func void DIA_Fajeth_Hallo_Tun()
 		AI_Output(self,other,"DIA_Fajeth_Hallo_Tun_12_05");	//Тенгрона? Конечно, он умеет сражаться, но он не обладает хитростью охотника.
 	};
 	AI_Output(self,other,"DIA_Fajeth_Hallo_Tun_12_06");	//Ты единственный, кто может сделать это. Я хочу, чтобы ты выследил этих чертовых тварей и убил их.
-	Wld_InsertNpc(NewMine_Snapper7,"OW_PATH_333");
-	Wld_InsertNpc(NewMine_Snapper8,"OW_PATH_333");
-	Wld_InsertNpc(NewMine_Snapper3,"SPAWN_OW_BLOCKGOBBO_CAVE_DM6");
 	MIS_Fajeth_Kill_Snapper = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_FajethKillSnapper,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_FajethKillSnapper,LOG_RUNNING);
 	B_LogEntry(TOPIC_FajethKillSnapper,"Фаджет дал мне задание: поохотиться на снепперов, которые стаями бродят вокруг шахты.");
+	Wld_InsertNpc(NewMine_Snapper7,"OW_PATH_333");
+	Wld_InsertNpc(NewMine_Snapper8,"OW_PATH_333");
+	Wld_InsertNpc(NewMine_Snapper3,"SPAWN_OW_BLOCKGOBBO_CAVE_DM6");
 	Info_ClearChoices(DIA_Fajeth_Hallo);
 };
 

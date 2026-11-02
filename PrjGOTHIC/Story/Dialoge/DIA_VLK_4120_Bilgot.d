@@ -3,21 +3,10 @@ instance DIA_Bilgot_EXIT(C_Info)
 {
 	npc = VLK_4120_Bilgot;
 	nr = 999;
-	condition = DIA_Bilgot_EXIT_Condition;
-	information = DIA_Bilgot_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Bilgot_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Bilgot_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -158,12 +147,12 @@ func void DIA_Bilgot_KNOWSLEADSNAPPER_Info()
 	AI_Output(self,other,"DIA_Bilgot_KNOWSLEADSNAPPER_05_07");	//Я видел его на ступенях старой сторожевой башни.
 	AI_Output(other,self,"DIA_Bilgot_KNOWSLEADSNAPPER_15_08");	//Отлично. Мне кажется, я понял. Спасибо!
 	AI_Output(self,other,"DIA_Bilgot_KNOWSLEADSNAPPER_05_09");	//Помни, ты дал мне слово!
-	Wld_InsertNpc(NewMine_LeadSnapper,"OW_ORC_LOOKOUT_2_01");
 	NewMine_LeadSnapper_Spawned = TRUE;
 	B_LogEntries(TOPIC_FajethKillSnapper,"Билгот рассказал мне о вожаке стаи снепперов. Он должен быть у старой сторожевой башни.");
 	Log_CreateTopic(TOPIC_BilgotEscort,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BilgotEscort,LOG_RUNNING);
 	B_LogNextEntry(TOPIC_BilgotEscort,"Билгот хочет, чтобы я вывел его из долины.");
+	Wld_InsertNpc(NewMine_LeadSnapper,"OW_ORC_LOOKOUT_2_01");
 };
 
 

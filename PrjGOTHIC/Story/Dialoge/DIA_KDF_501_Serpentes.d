@@ -134,12 +134,12 @@ func void DIA_Serpentes_TEST_Info()
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_03");	//Если нет, ты заплатишь за это своей жизнью.
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_04");	//А теперь слушай: В Месте Камней найди того, кто никогда не был рожден - найди того, кто когда-то был вызван.
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_05");	//Одолей того, кого нельзя одолеть - померься силами с живой скалой, сразись с бессмертным камнем - и уничтожь его.
-	Wld_InsertNpc(MagicGolem,"FP_MAGICGOLEM");
-	B_InitNpcGlobals();
 	MIS_Golem = LOG_RUNNING;
 	Log_CreateTopic(TOPIC_Golem,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Golem,LOG_RUNNING);
 	B_LogEntry(TOPIC_Golem,"Серпентес дал мне испытание. Он хочет, чтобы я нашел 'того, кто когда-то был вызван', живую скалу, и победил его.");
+	Wld_InsertNpc(MagicGolem,"FP_MAGICGOLEM");
+	B_InitNpcGlobals();
 };
 
 
@@ -503,17 +503,18 @@ instance DIA_Serpentes_MinenAnteileBringen(C_Info)
 
 func int DIA_Serpentes_MinenAnteileBringen_Condition()
 {
-	if((MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && Npc_HasItems(other,ItWr_MinenAnteil_MIS) && (other.guild == GIL_KDF))
+	if((MIS_Serpentes_MinenAnteil_KDF == LOG_RUNNING) && (other.guild == GIL_KDF))
 	{
 		if(Npc_HasItems(other,ItWr_MinenAnteil_MIS) > 1)
 		{
 			DIA_Serpentes_MinenAnteileBringen.description = "Я смог найти несколько акций шахт.";
-		}
-		else
+			return TRUE;
+		};
+		if(Npc_HasItems(other,ItWr_MinenAnteil_MIS) == 1)
 		{
 			DIA_Serpentes_MinenAnteileBringen.description = "Я смог найти акции шахт.";
+			return TRUE;
 		};
-		return TRUE;
 	};
 };
 

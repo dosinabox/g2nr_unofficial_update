@@ -185,6 +185,9 @@ func void DIA_Xardas_TODO_Info()
 	AI_Output(self,other,"DIA_Xardas_TODO_14_05");	//Расскажи паладинам о надвигающейся угрозе. Ты должен убедить их предводителя поддержать нас!
 	AI_Output(self,other,"DIA_Addon_Xardas_Add_14_07");	//А после этого ты должен найти артефакт Белиара.
 	AI_Output(self,other,"DIA_Addon_Xardas_Add_14_08");	//Это противоположность Глаза Инноса. Он не должен попасть в руки Зла.
+	Log_CreateTopic(TOPIC_INNOSEYE,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_INNOSEYE,LOG_RUNNING);
+	B_LogEntry(TOPIC_INNOSEYE,"В городе Хоринис расположился отряд паладинов. Они обладают сильным артефактом: Глазом Инноса. Его сила должна помочь нам избавиться от драконов. Я должен убедить паладинов, что нам нужно объединить наши усилия.");
 	if(C_WorldIsFixed())
 	{
 		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_017");
@@ -229,9 +232,6 @@ func void DIA_Xardas_TODO_Info()
 		Wld_InsertNpc(Meatbug,"FP_ROAM_XARDAS_SECRET_01");
 		Wld_InsertNpc(YGiant_Bug,"NW_XARDAS_TOWER_WATERFALL_CAVE_SIDE_02");
 	};
-	Log_CreateTopic(TOPIC_INNOSEYE,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_INNOSEYE,LOG_RUNNING);
-	B_LogEntry(TOPIC_INNOSEYE,"В городе Хоринис расположился отряд паладинов. Они обладают сильным артефактом: Глазом Инноса. Его сила должна помочь нам избавиться от драконов. Я должен убедить паладинов, что нам нужно объединить наши усилия.");
 };
 
 
