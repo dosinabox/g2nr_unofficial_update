@@ -29,7 +29,7 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		};
 		if(!C_IsNpc(slf,KDF_508_Gorax) && !C_IsNpc(slf,KDW_14010_Addon_Cronos_ADW))
 		{
-			B_RemoveEveryInvItem(slf,ItAt_WaranFiretongue);
+			B_RemoveEveryInvItem(slf,ItAt_WaranFireTongue);
 		};
 		B_RemoveEveryInvItem(slf,ItAt_Meatbugflesh);
 		B_RemoveEveryInvItem(slf,ItAt_SheepFur);

@@ -714,11 +714,11 @@ func void PC_ItRu_HarmUndead_Info()
 
 func void PC_ItRu_Pyrokinesis_Info()
 {
-	if(Npc_HasItems(self,ItSc_Pyrokinesis) && Npc_HasItems(self,ItMi_Sulfur) && Npc_HasItems(self,ItAt_WaranFiretongue))
+	if(Npc_HasItems(self,ItSc_Pyrokinesis) && Npc_HasItems(self,ItMi_Sulfur) && Npc_HasItems(self,ItAt_WaranFireTongue))
 	{
 		Npc_RemoveInvItems(self,ItSc_Pyrokinesis,1);
 		Npc_RemoveInvItems(self,ItMi_Sulfur,1);
-		Npc_RemoveInvItems(self,ItAt_WaranFiretongue,1);
+		Npc_RemoveInvItems(self,ItAt_WaranFireTongue,1);
 		B_CreateRune(ItRu_Pyrokinesis);
 	}
 	else
@@ -792,12 +792,12 @@ func void PC_ItRu_FullHeal_Info()
 
 func void PC_ItRu_Firerain_Info()
 {
-	if(Npc_HasItems(self,ItSc_Firerain) && Npc_HasItems(self,ItMi_Pitch) && Npc_HasItems(self,ItMi_Sulfur) && Npc_HasItems(self,ItAt_WaranFiretongue))
+	if(Npc_HasItems(self,ItSc_Firerain) && Npc_HasItems(self,ItMi_Pitch) && Npc_HasItems(self,ItMi_Sulfur) && Npc_HasItems(self,ItAt_WaranFireTongue))
 	{
 		Npc_RemoveInvItems(self,ItSc_Firerain,1);
 		Npc_RemoveInvItems(self,ItMi_Pitch,1);
 		Npc_RemoveInvItems(self,ItMi_Sulfur,1);
-		Npc_RemoveInvItems(self,ItAt_WaranFiretongue,1);
+		Npc_RemoveInvItems(self,ItAt_WaranFireTongue,1);
 		B_CreateRune(ItRu_Firerain);
 	}
 	else

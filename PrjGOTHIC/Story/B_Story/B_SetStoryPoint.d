@@ -88,7 +88,7 @@ func void B_SetStoryPoint(var int newStoryPoint)
 		};
 		if(!C_SCHasAnyDragonHeart(hero))
 		{
-			CreateInvItem(hero,ItAt_IcedragonHeart);
+			CreateInvItem(hero,ItAt_IceDragonHeart);
 		};
 		SwampDragonIsDead = TRUE;
 		RockDragonIsDead = TRUE;
@@ -136,7 +136,7 @@ func void B_SetStoryPoint(var int newStoryPoint)
 		};
 		if(!C_SCHasAnyDragonHeart(hero))
 		{
-			CreateInvItem(hero,ItAt_FiredragonHeart);
+			CreateInvItem(hero,ItAt_FireDragonHeart);
 		};
 		FireDragonIslandIsDead = TRUE;
 		STORYPOINT[SP_C6_P2] = TRUE;

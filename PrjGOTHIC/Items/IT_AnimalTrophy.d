@@ -17,7 +17,7 @@ const int Value_CrawlerPlate = 50;
 const int Value_ShadowFur = 250;
 const int Value_SharkSkin = 200;
 const int Value_TrollFur = 300;
-const int Value_WaranFiretongue = 300;
+const int Value_WaranFireTongue = 300;
 const int Value_ShadowHorn = 300;
 const int Value_SharkTeeth = 300;
 const int Value_TrollTooth = 300;
@@ -30,10 +30,10 @@ const int Value_FireGolemHeart = 300;
 const int Value_IceGolemHeart = 300;
 const int Value_SwampGolemHeart = 100;
 const int Value_UndeadDragonSoulStone = 400;
-const int Value_IcedragonHeart = 400;
-const int Value_FiredragonHeart = 400;
-const int Value_SwampdragonHeart = 400;
-const int Value_RockdragonHeart = 400;
+const int Value_IceDragonHeart = 400;
+const int Value_FireDragonHeart = 400;
+const int Value_SwampDragonHeart = 400;
+const int Value_RockDragonHeart = 400;
 const int Value_DragonBlood = 200;
 const int Value_DragonScale = 200;
 const int Value_Keilerfur = 15;
@@ -436,13 +436,13 @@ instance ItAt_TrollBlackFur(C_Item)
 	count[5] = value;
 };
 
-instance ItAt_WaranFiretongue(C_Item)
+instance ItAt_WaranFireTongue(C_Item)
 {
 	name = "Огненный язык";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
-	value = Value_WaranFiretongue;
-	visual = "ItAt_WaranFiretongue.3DS";
+	value = Value_WaranFireTongue;
+	visual = "ItAt_WaranFireTongue.3DS";
 	material = MAT_LEATHER;
 	description = name;
 	text[5] = NAME_Value;
@@ -596,52 +596,52 @@ instance ItAt_UndeadDragonSoulStone(C_Item)
 	inv_zbias = INVCAM_ENTF_MISC_STANDARD;
 };
 
-instance ItAt_IcedragonHeart(C_Item)
+instance ItAt_IceDragonHeart(C_Item)
 {
 	name = "Сердце ледяного дракона";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
-	value = Value_IcedragonHeart;
-	visual = "ItAt_IcedragonHeart.3DS";
+	value = Value_IceDragonHeart;
+	visual = "ItAt_IceDragonHeart.3DS";
 	material = MAT_GLAS;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
-instance ItAt_RockdragonHeart(C_Item)
+instance ItAt_RockDragonHeart(C_Item)
 {
 	name = "Сердце каменного дракона";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
-	value = Value_RockdragonHeart;
-	visual = "ItAt_RockdragonHeart.3DS";
+	value = Value_RockDragonHeart;
+	visual = "ItAt_RockDragonHeart.3DS";
 	material = MAT_STONE;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
-instance ItAt_SwampdragonHeart(C_Item)
+instance ItAt_SwampDragonHeart(C_Item)
 {
 	name = "Сердце болотного дракона";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
-	value = Value_SwampdragonHeart;
-	visual = "ItAt_SwampdragonHeart.3DS";
+	value = Value_SwampDragonHeart;
+	visual = "ItAt_SwampDragonHeart.3DS";
 	material = MAT_LEATHER;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
-instance ItAt_FiredragonHeart(C_Item)
+instance ItAt_FireDragonHeart(C_Item)
 {
 	name = "Сердце огненного дракона";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
-	value = Value_FiredragonHeart;
-	visual = "ItAt_FiredragonHeart.3DS";
+	value = Value_FireDragonHeart;
+	visual = "ItAt_FireDragonHeart.3DS";
 	material = MAT_LEATHER;
 	description = name;
 	text[5] = NAME_Value;

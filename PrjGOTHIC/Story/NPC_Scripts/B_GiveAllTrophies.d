@@ -25,7 +25,7 @@ func void B_GiveAllClassicTrophies(var C_Npc npc)
 	CreateInvItems(npc,ItAt_SharkSkin,10);
 	CreateInvItems(npc,ItAt_TrollFur,10);
 	CreateInvItems(npc,ItAt_TrollBlackFur,10);
-	CreateInvItems(npc,ItAt_WaranFiretongue,10);
+	CreateInvItems(npc,ItAt_WaranFireTongue,10);
 	CreateInvItems(npc,ItAt_ShadowHorn,10);
 	CreateInvItems(npc,ItAt_SharkTeeth,10);
 	CreateInvItems(npc,ItAt_TrollTooth,10);
@@ -37,10 +37,10 @@ func void B_GiveAllClassicTrophies(var C_Npc npc)
 	CreateInvItems(npc,ItAt_IceGolemHeart,10);
 	CreateInvItems(npc,ItAt_SwampGolemHeart,10);
 	CreateInvItems(npc,ItAt_UndeadDragonSoulStone,10);
-	CreateInvItems(npc,ItAt_IcedragonHeart,10);
-	CreateInvItems(npc,ItAt_RockdragonHeart,10);
-	CreateInvItems(npc,ItAt_SwampdragonHeart,10);
-	CreateInvItems(npc,ItAt_FiredragonHeart,10);
+	CreateInvItems(npc,ItAt_IceDragonHeart,10);
+	CreateInvItems(npc,ItAt_RockDragonHeart,10);
+	CreateInvItems(npc,ItAt_SwampDragonHeart,10);
+	CreateInvItems(npc,ItAt_FireDragonHeart,10);
 	CreateInvItems(npc,ItAt_DragonBlood,10);
 	CreateInvItems(npc,ItAt_DragonScale,10);
 	CreateInvItems(npc,ItAt_ClawLeader,10);

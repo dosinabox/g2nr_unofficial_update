@@ -50,7 +50,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItMi_Quartz,2);
 		CreateInvItems(slf,ItMi_Rockcrystal,2);
 		CreateInvItems(slf,ItMi_Coal,2);
-		CreateInvItems(slf,ItAt_WaranFiretongue,1);
+		CreateInvItems(slf,ItAt_WaranFireTongue,1);
 		CreateInvItems(slf,ItMi_Pitch,1);
 		CreateInvItems(slf,ItPo_Health_02,9);
 		CreateInvItems(slf,ItPo_Health_03,6);

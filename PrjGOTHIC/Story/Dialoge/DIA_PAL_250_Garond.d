@@ -893,10 +893,10 @@ func void DIA_Garond_BACKINKAP4_Info()
 
 
 var int Garond_DragonCounter;
-var int Garond_SwampdragonKilled_OneTime;
-var int Garond_RockdragonKilled_OneTime;
+var int Garond_SwampDragonKilled_OneTime;
+var int Garond_RockDragonKilled_OneTime;
 var int Garond_FireDragonKilled_OneTime;
-var int Garond_IcedragonKilled_OneTime;
+var int Garond_IceDragonKilled_OneTime;
 var int DIA_Garond_DragonPlettBericht_NoPerm;
 
 instance DIA_Garond_DragonPlettBericht(C_Info)
@@ -926,16 +926,16 @@ func void DIA_Garond_DragonPlettBericht_Info()
 	AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_00");	//У меня есть новости о драконах.
 	AI_Output(self,other,"DIA_Garond_DragonPlettBericht_10_01");	//Докладывай.
 	CurrentDragonCount = 0;
-	if(Npc_IsDead(SwampDragon) && (Garond_SwampdragonKilled_OneTime == FALSE))
+	if(Npc_IsDead(SwampDragon) && (Garond_SwampDragonKilled_OneTime == FALSE))
 	{
 		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_02");	//Я убил дракона в болоте к востоку отсюда.
-		Garond_SwampdragonKilled_OneTime = TRUE;
+		Garond_SwampDragonKilled_OneTime = TRUE;
 		CurrentDragonCount += 1;
 	};
-	if(Npc_IsDead(RockDragon) && (Garond_RockdragonKilled_OneTime == FALSE))
+	if(Npc_IsDead(RockDragon) && (Garond_RockDragonKilled_OneTime == FALSE))
 	{
 		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_03");	//Дракон в каменной крепости, к югу отсюда, мертв.
-		Garond_RockdragonKilled_OneTime = TRUE;
+		Garond_RockDragonKilled_OneTime = TRUE;
 		CurrentDragonCount += 1;
 	};
 	if(Npc_IsDead(FireDragon) && (Garond_FireDragonKilled_OneTime == FALSE))
@@ -944,10 +944,10 @@ func void DIA_Garond_DragonPlettBericht_Info()
 		Garond_FireDragonKilled_OneTime = TRUE;
 		CurrentDragonCount += 1;
 	};
-	if(Npc_IsDead(IceDragon) && (Garond_IcedragonKilled_OneTime == FALSE))
+	if(Npc_IsDead(IceDragon) && (Garond_IceDragonKilled_OneTime == FALSE))
 	{
 		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_05");	//Я был в западном ледяном районе и расправился с драконом, обитавшем там.
-		Garond_IcedragonKilled_OneTime = TRUE;
+		Garond_IceDragonKilled_OneTime = TRUE;
 		CurrentDragonCount += 1;
 	};
 	AI_Output(self,other,"DIA_Garond_DragonPlettBericht_10_06");	//Это хорошие новости. Вот. Возьми эти деньги. Надеюсь, они помогут тебе обновить твое снаряжение.

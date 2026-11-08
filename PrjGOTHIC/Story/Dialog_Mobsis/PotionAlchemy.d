@@ -290,21 +290,21 @@ func void PC_Charge_InnosEye_Info()
 	{
 		AI_Wait(self,0.5);
 		FlasksCount -= 1;
-		if(Npc_HasItems(self,ItAt_SwampdragonHeart))
+		if(Npc_HasItems(self,ItAt_SwampDragonHeart))
 		{
-			Npc_RemoveInvItems(self,ItAt_SwampdragonHeart,1);
+			Npc_RemoveInvItems(self,ItAt_SwampDragonHeart,1);
 		}
-		else if(Npc_HasItems(self,ItAt_RockdragonHeart))
+		else if(Npc_HasItems(self,ItAt_RockDragonHeart))
 		{
-			Npc_RemoveInvItems(self,ItAt_RockdragonHeart,1);
+			Npc_RemoveInvItems(self,ItAt_RockDragonHeart,1);
 		}
-		else if(Npc_HasItems(self,ItAt_FiredragonHeart))
+		else if(Npc_HasItems(self,ItAt_FireDragonHeart))
 		{
-			Npc_RemoveInvItems(self,ItAt_FiredragonHeart,1);
+			Npc_RemoveInvItems(self,ItAt_FireDragonHeart,1);
 		}
-		else if(Npc_HasItems(self,ItAt_IcedragonHeart))
+		else if(Npc_HasItems(self,ItAt_IceDragonHeart))
 		{
-			Npc_RemoveInvItems(self,ItAt_IcedragonHeart,1);
+			Npc_RemoveInvItems(self,ItAt_IceDragonHeart,1);
 		};
 		Npc_RemoveInvItems(self,ItMi_InnosEye_Discharged_MIS,1);
 		CreateInvItems(self,ItMi_InnosEye_MIS,1);

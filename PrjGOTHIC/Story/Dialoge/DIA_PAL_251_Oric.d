@@ -436,10 +436,10 @@ func void DIA_Oric_AnyNews_Info()
 };
 
 
-var int Oric_SwampdragonInfo_OneTime;
-var int Oric_RockdragonInfo_OneTime;
-var int Oric_FiredragonInfo_OneTime;
-var int Oric_IcedragonInfo_OneTime;
+var int Oric_SwampDragonInfo_OneTime;
+var int Oric_RockDragonInfo_OneTime;
+var int Oric_FireDragonInfo_OneTime;
+var int Oric_IceDragonInfo_OneTime;
 var int Oric_DragonCounter;
 var int Oric_FirstQuestion;
 
@@ -473,32 +473,32 @@ func void DIA_Oric_DragonPlettBericht_Info()
 	{
 		AI_Output(other,self,"DIA_Oric_DragonPlettBericht_15_02");	//” мен€ есть чувство, что € пока нашел не всех драконов. ћожет, € что-то упустил?
 	};
-	if(((Oric_DragonCounter < MIS_KilledDragons) || (Oric_FirstQuestion == FALSE)) && ((Oric_SwampdragonInfo_OneTime == FALSE) || (Oric_RockdragonInfo_OneTime == FALSE) || (Oric_FiredragonInfo_OneTime == FALSE) || (Oric_IcedragonInfo_OneTime == FALSE)))
+	if(((Oric_DragonCounter < MIS_KilledDragons) || (Oric_FirstQuestion == FALSE)) && ((Oric_SwampDragonInfo_OneTime == FALSE) || (Oric_RockDragonInfo_OneTime == FALSE) || (Oric_FireDragonInfo_OneTime == FALSE) || (Oric_IceDragonInfo_OneTime == FALSE)))
 	{
-		if(!Npc_IsDead(SwampDragon) && (Oric_SwampdragonInfo_OneTime == FALSE))
+		if(!Npc_IsDead(SwampDragon) && (Oric_SwampDragonInfo_OneTime == FALSE))
 		{
 			AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_03");	//Ќесколько дней назад к западу от нашего замка по€вилось большое болото. Ёто довольно подозрительно, так тебе не кажетс€?
 			B_LogEntry(TOPIC_DRACHENJAGD,"ќрик дал мне повод к размышлению: за последние несколько дней к западу от замка образовалось большое болото. ќн считает это очень подозрительным.");
-			Oric_SwampdragonInfo_OneTime = TRUE;
+			Oric_SwampDragonInfo_OneTime = TRUE;
 		}
-		else if(!Npc_IsDead(RockDragon) && (Oric_RockdragonInfo_OneTime == FALSE))
+		else if(!Npc_IsDead(RockDragon) && (Oric_RockDragonInfo_OneTime == FALSE))
 		{
 			AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_04");	//Ќа юге находитс€ крепость в скалах, далеко за вулканом.
 			AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_05");	//Ќаши разведчики докладывают, что эта крепость хорошо охран€етс€. ћожет быть, один из них скрываетс€ там.
 			B_LogEntry(TOPIC_DRACHENJAGD,"–азведчики паладинов сообщили ќрику, что крепость в скалах за вулканом на юге хорошо охран€етс€. ќрик подозревает, что дракон находитс€ там.");
-			Oric_RockdragonInfo_OneTime = TRUE;
+			Oric_RockDragonInfo_OneTime = TRUE;
 		}
-		else if(!Npc_IsDead(FireDragon) && (Oric_FiredragonInfo_OneTime == FALSE))
+		else if(!Npc_IsDead(FireDragon) && (Oric_FireDragonInfo_OneTime == FALSE))
 		{
 			AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_06");	//ѕосле прошлого нападени€ драконов, один из них, по слухам, полетел в направлении вулкана на юге. “ебе стоит поискать его там.
 			B_LogEntry(TOPIC_DRACHENJAGD,"ѕо-видимому, последнего дракона, нападавшего на замок в ƒолине –удников, видели неподалеку от вулкана.");
-			Oric_FiredragonInfo_OneTime = TRUE;
+			Oric_FireDragonInfo_OneTime = TRUE;
 		}
-		else if(!Npc_IsDead(IceDragon) && (Oric_IcedragonInfo_OneTime == FALSE))
+		else if(!Npc_IsDead(IceDragon) && (Oric_IceDragonInfo_OneTime == FALSE))
 		{
 			AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_07");	//Ќа западе находитс€ обширна€ лед€на€ долина. я не удивлюсь, если один из драконов скрываетс€ там.
 			B_LogEntry(TOPIC_DRACHENJAGD,"—огласно информации, полученной от ќрика, заснеженный район на западе может быть логовом дракона.");
-			Oric_IcedragonInfo_OneTime = TRUE;
+			Oric_IceDragonInfo_OneTime = TRUE;
 		};
 		Oric_DragonCounter = MIS_KilledDragons;
 		Oric_FirstQuestion = TRUE;

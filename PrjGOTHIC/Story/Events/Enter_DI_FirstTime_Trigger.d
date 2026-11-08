@@ -22,7 +22,7 @@ func void Enter_DI_FirstTime_Trigger()
 			};
 			if(!C_SCHasAnyDragonHeart(player))
 			{
-				CreateInvItems(AntiPaladin_DI,ItAt_RockdragonHeart,1);
+				CreateInvItems(AntiPaladin_DI,ItAt_RockDragonHeart,1);
 			};
 		};
 		if(PedroGotLostInnosStatue == TRUE)

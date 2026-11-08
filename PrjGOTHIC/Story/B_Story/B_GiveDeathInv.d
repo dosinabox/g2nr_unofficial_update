@@ -206,7 +206,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 	{
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN)
 		{
-			CreateInvItems(slf,ItAt_WaranFiretongue,1);
+			CreateInvItems(slf,ItAt_WaranFireTongue,1);
 		};
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == TRUE)
@@ -326,19 +326,19 @@ func void B_GiveDeathInv(var C_Npc slf)
 	}
 	else if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE)
 	{
-		CreateInvItems(slf,ItAt_FiredragonHeart,1);
+		CreateInvItems(slf,ItAt_FireDragonHeart,1);
 	}
 	else if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE)
 	{
-		CreateInvItems(slf,ItAt_IcedragonHeart,1);
+		CreateInvItems(slf,ItAt_IceDragonHeart,1);
 	}
 	else if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ROCK)
 	{
-		CreateInvItems(slf,ItAt_RockdragonHeart,1);
+		CreateInvItems(slf,ItAt_RockDragonHeart,1);
 	}
 	else if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_SWAMP)
 	{
-		CreateInvItems(slf,ItAt_SwampdragonHeart,1);
+		CreateInvItems(slf,ItAt_SwampDragonHeart,1);
 	}
 	else if(slf.aivar[AIV_MM_REAL_ID] == ID_GOBBO_SKELETON)
 	{
