@@ -448,7 +448,7 @@ func void DIA_Marduk_SwordBlessing_Info()
 	AI_Output(other,self,"DIA_Marduk_SwordBlessing_15_00");	//Я хочу освятить мой меч.
 	AI_Output(self,other,"DIA_Marduk_SwordBlessing_05_01");	//Если ты твердо решил сделать этот шаг, тебе сначала нужно найти магический меч.
 	AI_Output(self,other,"DIA_Marduk_SwordBlessing_05_02");	//Затем ты должен вернуться в эту часовню и молиться.
-	AI_Output(self,other,"DIA_Marduk_SwordBlessing_05_03");	//Во время молитвы и после разумного пожертвования нашему Владыке Инносу ты должен попросить у Инноса благословления и помощи в битве против Зла.
+	AI_Output(self,other,"DIA_Marduk_SwordBlessing_05_03");	//Во время молитвы и после разумного пожертвования нашему Владыке Инносу ты должен попросить у Инноса благословения и помощи в битве против Зла.
 	AI_Output(self,other,"DIA_Marduk_SwordBlessing_05_04");	//Если Иннос будет благосклонен к тебе, твой меч в тот же момент будет освящен нашим Владыкой.
 	Info_ClearChoices(DIA_Marduk_SwordBlessing);
 	Info_AddChoice(DIA_Marduk_SwordBlessing,Dialog_Back,DIA_Marduk_SwordBlessing_Back);

@@ -22,8 +22,8 @@ instance ITAR_PIR_L_Addon(C_Item)
 	value = VALUE_ITAR_PIR_L_Addon;
 	wear = WEAR_TORSO;
 	ownerGuild = GIL_PIR;
-	visual = "ItAr_PIR_L_ADDON.3ds";
-	visual_change = "Armor_Pir_L_Addon.ASC";
+	visual = "ItAr_PIR_L_Addon.3ds";
+	visual_change = "Armor_PIR_L_Addon.ASC";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_OpenArmor;
@@ -54,8 +54,8 @@ instance ITAR_PIR_M_Addon(C_Item)
 	value = VALUE_ITAR_PIR_M_Addon;
 	wear = WEAR_TORSO;
 	ownerGuild = GIL_PIR;
-	visual = "ItAr_PIR_M_ADDON.3ds";
-	visual_change = "Armor_PIR_M_ADDON.asc";
+	visual = "ItAr_PIR_M_Addon.3ds";
+	visual_change = "Armor_PIR_M_Addon.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_OpenArmor;
@@ -86,8 +86,8 @@ instance ITAR_PIR_H_Addon(C_Item)
 	value = VALUE_ITAR_PIR_H_Addon;
 	wear = WEAR_TORSO;
 	ownerGuild = GIL_PIR;
-	visual = "ItAr_PIR_H_ADDON.3ds";
-	visual_change = "Armor_PIR_H_ADDON.asc";
+	visual = "ItAr_PIR_H_Addon.3ds";
+	visual_change = "Armor_PIR_H_Addon.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ArmorSet;
@@ -117,8 +117,8 @@ instance ITAR_Thorus_Addon(C_Item)
 	value = VALUE_ITAR_Thorus_Addon;
 	wear = WEAR_TORSO;
 	ownerGuild = GIL_BDT;
-	visual = "ItAr_Thorus_ADDON.3ds";
-	visual_change = "Armor_Thorus_ADDON.asc";
+	visual = "ItAr_Thorus_Addon.3ds";
+	visual_change = "Armor_Thorus_Addon.asc";
 	visual_skin = 0;
 	material = MAT_METAL;
 	description = name;
@@ -147,8 +147,8 @@ instance ITAR_Raven_Addon(C_Item)
 	protection[PROT_MAGIC] = 100;
 	value = VALUE_ITAR_Raven_Addon;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Raven_ADDON.3ds";
-	visual_change = "Armor_Raven_ADDON.asc";
+	visual = "ItAr_Raven_Addon.3ds";
+	visual_change = "Armor_Raven_Addon.asc";
 	visual_skin = 0;
 	material = MAT_METAL;
 	description = name;
@@ -288,8 +288,8 @@ instance ITAR_Bloodwyn_Addon(C_Item)
 	value = VALUE_ITAR_Bloodwyn_Addon;
 	wear = WEAR_TORSO;
 	ownerGuild = GIL_BDT;
-	visual = "ItAr_Bloodwyn_ADDON.3ds";
-	visual_change = "Armor_Bloodwyn_ADDON.asc";
+	visual = "ItAr_Bloodwyn_Addon.3ds";
+	visual_change = "Armor_Bloodwyn_Addon.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;
@@ -308,7 +308,7 @@ instance ITAR_Bloodwyn_Addon(C_Item)
 
 instance ITAR_MayaZombie_Addon(C_Item)
 {
-	name = "Доспехи древного воина";
+	name = "Доспехи древнего воина";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 50;
@@ -318,7 +318,7 @@ instance ITAR_MayaZombie_Addon(C_Item)
 	protection[PROT_MAGIC] = 50;
 	value = 0;
 	wear = WEAR_TORSO;
-	visual = "ItAr_MayaZombie_ADDON.3ds";
+	visual = "ItAr_MayaZombie_Addon.3ds";
 	visual_change = "Armor_MayaZombie_Addon.asc";
 	visual_skin = 0;
 	material = MAT_METAL;

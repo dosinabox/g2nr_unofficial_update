@@ -3,21 +3,10 @@ instance DIA_Godar_EXIT(C_Info)
 {
 	npc = DJG_711_Godar;
 	nr = 999;
-	condition = DIA_Godar_EXIT_Condition;
-	information = DIA_Godar_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Godar_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Godar_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -279,7 +268,7 @@ func void DIA_Godar_Prison_Info()
 		AI_Output(other,self,"DIA_Godar_Prison_15_05");	//Это все?
 		AI_Output(self,other,"DIA_Godar_Prison_13_06");	//Ну... Конечно же, я защищался...
 		AI_Output(other,self,"DIA_Godar_Prison_15_07");	//И?
-		AI_Output(self,other,"DIA_Godar_Prison_13_08");	//Я тут не причем. Этот парень сам поскользнулся и сломал себе шею. Честно!
+		AI_Output(self,other,"DIA_Godar_Prison_13_08");	//Я тут ни при чем. Этот парень сам поскользнулся и сломал себе шею. Честно!
 		Info_ClearChoices(DIA_Godar_Prison);
 		Info_AddChoice(DIA_Godar_Prison,"Знакомая история.",DIA_Godar_Prison_Court);
 		Info_AddChoice(DIA_Godar_Prison,"Тебе не следовало попадаться.",DIA_Godar_Prison_Pissoff);
