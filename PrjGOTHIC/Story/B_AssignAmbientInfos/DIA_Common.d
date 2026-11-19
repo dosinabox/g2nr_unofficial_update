@@ -349,6 +349,11 @@ func void DIA_Common_ShutUp()
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_KeepCalm_15_00");	//Придержи язык.
 };
 
+func void DIA_Common_WhereCanIBuyWeed()
+{
+	AI_Output(other,self,"DIA_Meldor_Smoke_15_00");	//Ты не знаешь, где мне купить травки?
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?
@@ -367,6 +372,11 @@ func void DIA_Common_09_AllQuiet()
 func void DIA_Common_14_GoReadAboutIt()
 {
 	AI_Output(self,other,"DIA_Hyglas_FIREBOLT_14_01");	//Прочти об этом - ты найдешь эту информацию здесь, в книгах.
+};
+
+func void DIA_Common_16_ImBusy()
+{
+	AI_Output(self,other,"DIA_Babera_DUSTOERST_16_01");	//Я занята.
 };
 
 func void DIA_Common_17_Thanks()

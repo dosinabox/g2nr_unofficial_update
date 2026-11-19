@@ -171,7 +171,7 @@ func int DIA_Babera_DUSTOERST_Condition()
 func void DIA_Babera_DUSTOERST_Info()
 {
 	AI_Output(other,self,"DIA_Babera_DUSTOERST_15_00");	//Есть что-нибудь еще?
-	AI_Output(self,other,"DIA_Babera_DUSTOERST_16_01");	//Я занята.
+	DIA_Common_16_ImBusy();
 	AI_StopProcessInfos(self);
 };
 

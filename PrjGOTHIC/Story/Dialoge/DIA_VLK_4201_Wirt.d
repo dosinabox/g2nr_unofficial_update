@@ -3,21 +3,10 @@ instance DIA_Wirt_EXIT(C_Info)
 {
 	npc = VLK_4201_Wirt;
 	nr = 999;
-	condition = DIA_Wirt_EXIT_Condition;
-	information = DIA_Wirt_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Wirt_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Wirt_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -45,14 +34,14 @@ func int DIA_Wirt_Hallo_Condition()
 
 func void DIA_Wirt_Hallo_Info()
 {
-	var int randy;
+	var int random;
 	if(other.guild == GIL_PAL)
 	{
-		randy = Hlp_Random(3);
+		random = Hlp_Random(3);
 	}
 	else
 	{
-		randy = Hlp_Random(4);
+		random = Hlp_Random(4);
 	};
 	if((Wirt_GiveBeer == FALSE) || (Wirt_GiveBeer_Day < Wld_GetDay()))
 	{
@@ -61,19 +50,19 @@ func void DIA_Wirt_Hallo_Info()
 		Wirt_GiveBeer_Day = B_GetDayPlus();
 		Wirt_GiveBeer = TRUE;
 	};
-	if(randy == 0)
+	if(random == 0)
 	{
 		AI_Output(self,other,"DIA_Wirt_Hallo_14_02");	//Нет ничего лучше, чем кружка холодного пива после работы.
 	}
-	else if(randy == 1)
+	else if(random == 1)
 	{
 		AI_Output(self,other,"DIA_Wirt_Hallo_14_01");	//Лорд Андрэ расщедрился на несколько бочек бесплатного пива.
 	}
-	else if(randy == 2)
+	else if(random == 2)
 	{
 		AI_Output(self,other,"DIA_Wirt_Hallo_14_04");	//Можно говорить о Хоринисе что угодно, но наше 'Темное паладинское' бесспорно самое лучшее пиво во всей Миртане.
 	}
-	else if(randy == 3)
+	else if(random == 3)
 	{
 		AI_Output(self,other,"DIA_Wirt_Hallo_14_03");	//Паладины со всем разберутся сами. А ты можешь потягивать здесь пиво и наслаждаться жизнью.
 	};

@@ -3,21 +3,10 @@ instance DIA_Meldor_EXIT(C_Info)
 {
 	npc = VLK_415_Meldor;
 	nr = 999;
-	condition = DIA_Meldor_EXIT_Condition;
-	information = DIA_Meldor_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Meldor_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Meldor_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -188,7 +177,7 @@ func int DIA_Meldor_Smoke_Condition()
 
 func void DIA_Meldor_Smoke_Info()
 {
-	AI_Output(other,self,"DIA_Meldor_Smoke_15_00");	//Ты не знаешь, где мне купить травки?
+	DIA_Common_WhereCanIBuyWeed();
 	if(Meldor_Busted == TRUE)
 	{
 		AI_Output(self,other,"DIA_Meldor_Smoke_07_01");	//(оценивающе) Нет, понятия не имею.

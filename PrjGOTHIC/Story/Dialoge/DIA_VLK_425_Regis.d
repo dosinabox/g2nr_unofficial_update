@@ -3,21 +3,10 @@ instance DIA_Regis_EXIT(C_Info)
 {
 	npc = VLK_425_Regis;
 	nr = 999;
-	condition = DIA_Regis_EXIT_Condition;
-	information = DIA_Regis_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Regis_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Regis_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

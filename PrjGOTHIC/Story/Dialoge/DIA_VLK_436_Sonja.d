@@ -3,21 +3,10 @@ instance DIA_Sonja_EXIT(C_Info)
 {
 	npc = VLK_436_Sonja;
 	nr = 999;
-	condition = DIA_Sonja_EXIT_Condition;
-	information = DIA_Sonja_EXIT_Info;
+	condition = DIA_Common_EXIT_Condition;
+	information = DIA_Common_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
-};
-
-
-func int DIA_Sonja_EXIT_Condition()
-{
-	return TRUE;
-};
-
-func void DIA_Sonja_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -81,8 +70,8 @@ func int DIA_Sonja_WEED_Condition()
 
 func void DIA_Sonja_WEED_Info()
 {
-	AI_Output(other,self,"DIA_Meldor_Smoke_15_00");	//“ы не знаешь, где мне купить травки?
-	AI_Output(self,other,"DIA_Babera_DUSTOERST_16_01");	//я зан€та.
+	DIA_Common_WhereCanIBuyWeed();
+	DIA_Common_16_ImBusy();
 	AI_StopProcessInfos(self);
 };
 

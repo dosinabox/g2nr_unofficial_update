@@ -240,11 +240,11 @@ func void DIA_Biff_ARBEITEN_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Biff_ARBEITEN_07_02");	//Ммм. Почему бы и нет? Как будешь платить?
+		Info_ClearChoices(DIA_Biff_ARBEITEN);
+		Info_AddChoice(DIA_Biff_ARBEITEN,"Считай, что тебе повезло, если я оставлю тебя в живых.",DIA_Biff_ARBEITEN_lebenlassen);
+		Info_AddChoice(DIA_Biff_ARBEITEN,"Ты получишь половину добычи.",DIA_Biff_ARBEITEN_HalbeHalbe);
+		Info_AddChoice(DIA_Biff_ARBEITEN,"Я заплачу тебе 100 золотых.",DIA_Biff_ARBEITEN_100);
 	};
-	Info_ClearChoices(DIA_Biff_ARBEITEN);
-	Info_AddChoice(DIA_Biff_ARBEITEN,"Считай, что тебе повезло, если я оставлю тебя в живых.",DIA_Biff_ARBEITEN_lebenlassen);
-	Info_AddChoice(DIA_Biff_ARBEITEN,"Ты получишь половину добычи.",DIA_Biff_ARBEITEN_HalbeHalbe);
-	Info_AddChoice(DIA_Biff_ARBEITEN,"Я заплачу тебе 100 золотых.",DIA_Biff_ARBEITEN_100);
 };
 
 func void DIA_Biff_ARBEITEN_100()

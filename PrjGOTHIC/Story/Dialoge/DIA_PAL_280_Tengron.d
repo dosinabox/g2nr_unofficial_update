@@ -48,9 +48,16 @@ instance DIA_Tengron_HALLO(C_Info)
 
 func int DIA_Tengron_HALLO_Condition()
 {
-	if((Npc_IsInState(self,ZS_Talk) && (MIS_ScoutMine == LOG_RUNNING)) || (MIS_ScoutMine == LOG_SUCCESS))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if(MIS_ScoutMine == LOG_RUNNING)
+		{
+			return TRUE;
+		};
+		if(MIS_ScoutMine == LOG_SUCCESS)
+		{
+			return TRUE;
+		};
 	};
 };
 
