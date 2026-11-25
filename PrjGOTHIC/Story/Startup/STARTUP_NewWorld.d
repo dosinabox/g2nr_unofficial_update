@@ -1390,7 +1390,7 @@ func void STARTUP_NewWorld()
 	STARTUP_NewWorld_Part_Pass_To_OW_01();
 	Kapitel = 1;
 	PlayVideo("INTRO.BIK");
-//	PlayVideo("ADDON_TITLE.BIK");
+	PlayVideo("ADDON_TITLE.BIK");
 };
 
 func void INIT_NewWorld()

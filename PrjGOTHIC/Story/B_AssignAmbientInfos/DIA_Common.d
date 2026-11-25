@@ -354,6 +354,11 @@ func void DIA_Common_WhereCanIBuyWeed()
 	AI_Output(other,self,"DIA_Meldor_Smoke_15_00");	//Ты не знаешь, где мне купить травки?
 };
 
+func void DIA_Common_WhatHappened()
+{
+	AI_Output(other,self,"DIA_Addon_Tom_Juan_15_00");	//Что случилось?
+};
+
 func void DIA_Common_01_AreYouTryingToPissMeOff()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?

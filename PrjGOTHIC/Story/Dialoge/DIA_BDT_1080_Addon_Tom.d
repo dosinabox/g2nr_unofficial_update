@@ -57,7 +57,7 @@ func int DIA_Addon_Tom_Juan_Condition()
 
 func void DIA_Addon_Tom_Juan_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Tom_Juan_15_00");	//Что случилось?
+	DIA_Common_WhatHappened();
 	AI_Output(self,other,"DIA_Addon_Tom_Juan_11_01");	//Эстебан послал одного из своих ребят - Хуана. Этот мерзавец устроил нам засаду.
 	AI_Output(self,other,"DIA_Addon_Tom_Juan_11_02");	//Я как раз собирался заключить сделку с пиратами, когда он выскочил из темноты и сбил меня с ног двумя ударами!
 	AI_Output(self,other,"DIA_Addon_Tom_Juan_11_03");	//Этот парень очень быстр! Но недостаточно быстр. Мне удалось убежать от него.

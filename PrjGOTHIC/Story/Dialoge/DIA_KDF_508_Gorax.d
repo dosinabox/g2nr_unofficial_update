@@ -483,7 +483,7 @@ func void DIA_Gorax_KDF_Info()
 {
 	AI_Output(other,self,"DIA_Gorax_KDF_15_00");	//Мне нужно место для сна.
 	AI_Output(self,other,"DIA_Gorax_KDF_14_01");	//У нас есть свободная комната справа отсюда. Вот, возьми ключ. Там ты найдешь все, что тебе может понадобиться.
-//	Wld_AssignRoomToNpc("kloster09",hero);
+	Wld_AssignRoomToNpc("kloster09",hero);
 	B_GiveInvItems(self,other,ItKe_KDFPlayer,1);
 	Wld_InsertItem(ItPo_Perm_Mana,"FP_ITEM_KDFPLAYER");
 };

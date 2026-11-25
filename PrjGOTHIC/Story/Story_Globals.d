@@ -545,7 +545,7 @@ var int AlligatorJack_KrokosKilled;
 var int AlligatorJack_JagdStart;
 //var int AlligatorJack_PlayersTriesAlone;
 var int SC_Knows_JuanMurderedAngus;
-//var int SC_MadeStunt;
+var int SC_MadeStunt;
 //var int TowerBanditsDead;
 //var int AllCanyonRazorDead;
 //var int Francis_100_Told;

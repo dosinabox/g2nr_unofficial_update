@@ -585,6 +585,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 				MIS_AlligatorJack_BringMeat = LOG_FAILED;
 			};
 		}
+		else if(C_IsNpc(slf,PIR_1354_Addon_Henry))
+		{
+			if(MIS_Henry_HolOwen == LOG_RUNNING)
+			{
+				MIS_Henry_HolOwen = LOG_FAILED;
+			};
+		}
 		else if(C_IsNpc(slf,PIR_1355_Addon_Skip))
 		{
 			if((MIS_Addon_Baltram_Paket4Skip == LOG_RUNNING) && (Skip_Rum4Baltram == FALSE))
@@ -608,6 +615,13 @@ func void B_CheckDeadMissionHumans(var C_Npc slf)
 			if(MIS_Brandon_BringHering == LOG_RUNNING)
 			{
 				MIS_Brandon_BringHering = LOG_OBSOLETE;
+			};
+		}
+		else if(C_IsNpc(slf,PIR_1367_Addon_Owen))
+		{
+			if(MIS_Owen_FindMalcom == LOG_RUNNING)
+			{
+				MIS_Owen_FindMalcom = LOG_FAILED;
 			};
 		}
 		else if(C_IsNpc(slf,BDT_10018_Addon_Torwache))

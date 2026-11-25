@@ -17,5 +17,6 @@ func void B_GiveStuntBonus_FUNC()
 		B_GivePlayerXP(XP_EXPLOITBONUS);
 		Snd_Play("MFX_BELIARWEAP");
 	};
+	SC_MadeStunt = TRUE;
 };
 
